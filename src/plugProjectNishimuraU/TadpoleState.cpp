@@ -7,10 +7,9 @@
 namespace Game {
 namespace Tadpole {
 
-/*
- * --INFO--
- * Address:	8027730C
- * Size:	000224
+/**
+ * @note Address: 0x8027730C
+ * @note Size: 0x224
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -24,10 +23,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateLeap);
 }
 
-/*
- * --INFO--
- * Address:	80277530
- * Size:	00005C
+/**
+ * @note Address: 0x80277530
+ * @note Size: 0x5C
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -37,10 +35,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(TADPOLEANIM_Dead, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8027758C
- * Size:	000058
+/**
+ * @note Address: 0x8027758C
+ * @note Size: 0x58
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -54,17 +51,15 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802775E4
- * Size:	000004
+/**
+ * @note Address: 0x802775E4
+ * @note Size: 0x4
  */
 void StateDead::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802775E8
- * Size:	000048
+/**
+ * @note Address: 0x802775E8
+ * @note Size: 0x48
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -75,10 +70,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	tadpole->startMotion(TADPOLEANIM_Wait, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80277630
- * Size:	00015C
+/**
+ * @note Address: 0x80277630
+ * @note Size: 0x15C
  */
 void StateWait::exec(EnemyBase* enemy)
 {
@@ -111,17 +105,15 @@ void StateWait::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8027778C
- * Size:	000004
+/**
+ * @note Address: 0x8027778C
+ * @note Size: 0x4
  */
 void StateWait::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	80277790
- * Size:	000054
+/**
+ * @note Address: 0x80277790
+ * @note Size: 0x54
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -132,10 +124,9 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	tadpole->startMotion(TADPOLEANIM_Move, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802777E4
- * Size:	000210
+/**
+ * @note Address: 0x802777E4
+ * @note Size: 0x210
  */
 void StateMove::exec(EnemyBase* enemy)
 {
@@ -176,17 +167,15 @@ void StateMove::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802779F4
- * Size:	000004
+/**
+ * @note Address: 0x802779F4
+ * @note Size: 0x4
  */
 void StateMove::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802779F8
- * Size:	00005C
+/**
+ * @note Address: 0x802779F8
+ * @note Size: 0x5C
  */
 void StateAmaze::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -196,10 +185,9 @@ void StateAmaze::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(TADPOLEANIM_Amaze, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80277A54
- * Size:	0000B4
+/**
+ * @note Address: 0x80277A54
+ * @note Size: 0xB4
  */
 void StateAmaze::exec(EnemyBase* enemy)
 {
@@ -221,10 +209,9 @@ void StateAmaze::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80277B08
- * Size:	000030
+/**
+ * @note Address: 0x80277B08
+ * @note Size: 0x30
  */
 void StateAmaze::cleanup(EnemyBase* enemy)
 {
@@ -232,10 +219,9 @@ void StateAmaze::cleanup(EnemyBase* enemy)
 	enemy->setEmotionCaution();
 }
 
-/*
- * --INFO--
- * Address:	80277B38
- * Size:	000040
+/**
+ * @note Address: 0x80277B38
+ * @note Size: 0x40
  */
 void StateEscape::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -243,10 +229,9 @@ void StateEscape::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(TADPOLEANIM_Move, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80277B78
- * Size:	000168
+/**
+ * @note Address: 0x80277B78
+ * @note Size: 0x168
  */
 void StateEscape::exec(EnemyBase* enemy)
 {
@@ -279,17 +264,15 @@ void StateEscape::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80277CE0
- * Size:	000024
+/**
+ * @note Address: 0x80277CE0
+ * @note Size: 0x24
  */
 void StateEscape::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	80277D04
- * Size:	0000E0
+/**
+ * @note Address: 0x80277D04
+ * @note Size: 0xE0
  */
 void StateLeap::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -308,10 +291,9 @@ void StateLeap::init(EnemyBase* enemy, StateArg* stateArg)
 	tadpole->mTargetVelocity = Vector3f(tadpole->getVelocity());
 }
 
-/*
- * --INFO--
- * Address:	80277DE4
- * Size:	0003FC
+/**
+ * @note Address: 0x80277DE4
+ * @note Size: 0x3FC
  */
 void StateLeap::exec(EnemyBase* enemy)
 {
@@ -399,10 +381,9 @@ void StateLeap::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802781E0
- * Size:	000010
+/**
+ * @note Address: 0x802781E0
+ * @note Size: 0x10
  */
 void StateLeap::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_NoInterrupt); }
 } // namespace Tadpole

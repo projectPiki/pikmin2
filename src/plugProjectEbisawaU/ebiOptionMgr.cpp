@@ -9,19 +9,17 @@
 #include "SoundID.h"
 #include "System.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
+/**
+ * @note Address: N/A
+ * @note Size: 0xE4
  */
 void _Print(char* name, ...) { OSReport("ebiOptionMgr"); }
 
 namespace ebi {
 namespace Option {
-/*
- * --INFO--
- * Address:	803CE8F8
- * Size:	0002D8
+/**
+ * @note Address: 0x803CE8F8
+ * @note Size: 0x2D8
  */
 void FSMStateMachine::init(TMgr*)
 {
@@ -36,38 +34,33 @@ void FSMStateMachine::init(TMgr*)
 	registerState(new FSMState_WorldMapInfoWindow(WorldMapInfoWindow, "WorldMapInfoWindow"));
 }
 
-/*
- * --INFO--
- * Address:	803CEBD0
- * Size:	00002C
+/**
+ * @note Address: 0x803CEBD0
+ * @note Size: 0x2C
  */
 void FSMState::init(TMgr* obj, Game::StateArg* arg) { do_init(obj, arg); }
 
-/*
- * --INFO--
- * Address:	803CEBFC
- * Size:	000004
+/**
+ * @note Address: 0x803CEBFC
+ * @note Size: 0x4
  */
 void FSMState::do_init(TMgr*, Game::StateArg* arg) { }
 
-/*
- * --INFO--
- * Address:	803CEC00
- * Size:	00002C
+/**
+ * @note Address: 0x803CEC00
+ * @note Size: 0x2C
  */
 void FSMState::exec(TMgr* obj) { do_exec(obj); }
 
-/*
- * --INFO--
- * Address:	803CEC2C
- * Size:	000004
+/**
+ * @note Address: 0x803CEC2C
+ * @note Size: 0x4
  */
 void FSMState::do_exec(TMgr*) { }
 
-/*
- * --INFO--
- * Address:	803CEC30
- * Size:	000050
+/**
+ * @note Address: 0x803CEC30
+ * @note Size: 0x50
  */
 void FSMState_ScreenOpen::do_init(TMgr* obj, Game::StateArg* arg)
 {
@@ -76,10 +69,9 @@ void FSMState_ScreenOpen::do_init(TMgr* obj, Game::StateArg* arg)
 	obj->mOptionScreen.openScreen(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	803CEC80
- * Size:	000064
+/**
+ * @note Address: 0x803CEC80
+ * @note Size: 0x64
  */
 void FSMState_ScreenOpen::do_exec(TMgr* obj)
 {
@@ -88,17 +80,15 @@ void FSMState_ScreenOpen::do_exec(TMgr* obj)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803CED14
- * Size:	00000C
+/**
+ * @note Address: 0x803CED14
+ * @note Size: 0xC
  */
 void FSMState_ScreenWait::do_init(TMgr* obj, Game::StateArg* arg) { obj->mOptionScreen.mEnabled = 1; }
 
-/*
- * --INFO--
- * Address:	803CED20
- * Size:	000144
+/**
+ * @note Address: 0x803CED20
+ * @note Size: 0x144
  */
 void FSMState_ScreenWait::do_exec(TMgr* mgr)
 {
@@ -128,10 +118,9 @@ void FSMState_ScreenWait::do_exec(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803CEE64
- * Size:	00003C
+/**
+ * @note Address: 0x803CEE64
+ * @note Size: 0x3C
  */
 void FSMState_ScreenClose::do_init(TMgr* obj, Game::StateArg* arg)
 {
@@ -139,10 +128,9 @@ void FSMState_ScreenClose::do_init(TMgr* obj, Game::StateArg* arg)
 	obj->mOptionScreen.closeScreen(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	803CEEA0
- * Size:	00004C
+/**
+ * @note Address: 0x803CEEA0
+ * @note Size: 0x4C
  */
 void FSMState_ScreenClose::do_exec(TMgr* obj)
 {
@@ -151,10 +139,9 @@ void FSMState_ScreenClose::do_exec(TMgr* obj)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803CEEEC
- * Size:	000044
+/**
+ * @note Address: 0x803CEEEC
+ * @note Size: 0x44
  */
 void FSMState_WaitCloseForNoCard::do_init(TMgr* obj, Game::StateArg* arg)
 {
@@ -163,10 +150,9 @@ void FSMState_WaitCloseForNoCard::do_init(TMgr* obj, Game::StateArg* arg)
 	_14    = v1;
 }
 
-/*
- * --INFO--
- * Address:	803CEF30
- * Size:	000084
+/**
+ * @note Address: 0x803CEF30
+ * @note Size: 0x84
  */
 void FSMState_WaitCloseForNoCard::do_exec(TMgr* obj)
 {
@@ -179,10 +165,9 @@ void FSMState_WaitCloseForNoCard::do_exec(TMgr* obj)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803CEFB4
- * Size:	0000B8
+/**
+ * @note Address: 0x803CEFB4
+ * @note Size: 0xB8
  */
 void FSMState_WorldMapInfoWindow::do_init(TMgr* obj, Game::StateArg* arg)
 {
@@ -193,10 +178,9 @@ void FSMState_WorldMapInfoWindow::do_init(TMgr* obj, Game::StateArg* arg)
 	::Screen::gGame2DMgr->open_WorldMapInfoWin0(disp);
 }
 
-/*
- * --INFO--
- * Address:	803CF06C
- * Size:	0000A0
+/**
+ * @note Address: 0x803CF06C
+ * @note Size: 0xA0
  */
 void FSMState_WorldMapInfoWindow::do_exec(TMgr* obj)
 {
@@ -211,17 +195,15 @@ void FSMState_WorldMapInfoWindow::do_exec(TMgr* obj)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803CF10C
- * Size:	00000C
+/**
+ * @note Address: 0x803CF10C
+ * @note Size: 0xC
  */
 void FSMState_LoadOption::do_init(TMgr* obj, Game::StateArg* arg) { mStatus = 0; }
 
-/*
- * --INFO--
- * Address:	803CF118
- * Size:	0001A0
+/**
+ * @note Address: 0x803CF118
+ * @note Size: 0x1A0
  */
 void FSMState_LoadOption::do_exec(TMgr* mgr)
 {
@@ -249,10 +231,9 @@ void FSMState_LoadOption::do_exec(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803CF2B8
- * Size:	00002C
+/**
+ * @note Address: 0x803CF2B8
+ * @note Size: 0x2C
  */
 void FSMState_SaveMgr::do_init(TMgr* obj, Game::StateArg* arg)
 {
@@ -260,10 +241,9 @@ void FSMState_SaveMgr::do_init(TMgr* obj, Game::StateArg* arg)
 	obj->mSaveMgr->start();
 }
 
-/*
- * --INFO--
- * Address:	803CF2E4
- * Size:	000100
+/**
+ * @note Address: 0x803CF2E4
+ * @note Size: 0x100
  */
 void FSMState_SaveMgr::do_exec(TMgr* obj)
 {
@@ -285,10 +265,9 @@ void FSMState_SaveMgr::do_exec(TMgr* obj)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803CF3E4
- * Size:	0000C0
+/**
+ * @note Address: 0x803CF3E4
+ * @note Size: 0xC0
  */
 TMgr::TMgr()
     : mOptionScreen()
@@ -304,10 +283,9 @@ TMgr::TMgr()
 	mSaveMgr->_47A             = 0;
 }
 
-/*
- * --INFO--
- * Address:	803D00C0
- * Size:	000088
+/**
+ * @note Address: 0x803D00C0
+ * @note Size: 0x88
  */
 void TMgr::loadResource()
 {
@@ -318,10 +296,9 @@ void TMgr::loadResource()
 	mSaveMgr->doLoadMenuResource();
 }
 
-/*
- * --INFO--
- * Address:	803D0148
- * Size:	00004C
+/**
+ * @note Address: 0x803D0148
+ * @note Size: 0x4C
  */
 void TMgr::setController(Controller* controller)
 {
@@ -330,17 +307,15 @@ void TMgr::setController(Controller* controller)
 	mSaveMgr->setControllers(controller);
 }
 
-/*
- * --INFO--
- * Address:	803D0194
- * Size:	00003C
+/**
+ * @note Address: 0x803D0194
+ * @note Size: 0x3C
  */
 void TMgr::start() { mStateMachine.transit(this, LoadOption, nullptr); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 void TMgr::forceQuit()
 {
@@ -350,17 +325,15 @@ void TMgr::forceQuit()
 	::Screen::gGame2DMgr->mScreenMgr->reset();
 }
 
-/*
- * --INFO--
- * Address:	803D01D0
- * Size:	000028
+/**
+ * @note Address: 0x803D01D0
+ * @note Size: 0x28
  */
 bool TMgr::isFinish() { return u8(getStateID() == 0); }
 
-/*
- * --INFO--
- * Address:	803D01F8
- * Size:	00007C
+/**
+ * @note Address: 0x803D01F8
+ * @note Size: 0x7C
  */
 void TMgr::goEnd_()
 {
@@ -368,10 +341,9 @@ void TMgr::goEnd_()
 	forceQuit();
 }
 
-/*
- * --INFO--
- * Address:	803D0274
- * Size:	000094
+/**
+ * @note Address: 0x803D0274
+ * @note Size: 0x94
  */
 void TMgr::update()
 {
@@ -385,10 +357,9 @@ void TMgr::update()
 	::Screen::gGame2DMgr->update();
 }
 
-/*
- * --INFO--
- * Address:	803D0308
- * Size:	000090
+/**
+ * @note Address: 0x803D0308
+ * @note Size: 0x90
  */
 void TMgr::draw()
 {
@@ -401,20 +372,18 @@ void TMgr::draw()
 	::Screen::gGame2DMgr->draw(*sys->mGfx);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void TMgr::showInfo()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803D0398
- * Size:	000058
+/**
+ * @note Address: 0x803D0398
+ * @note Size: 0x58
  */
 int TMgr::getStateID()
 {

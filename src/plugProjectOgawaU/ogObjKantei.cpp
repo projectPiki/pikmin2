@@ -11,20 +11,18 @@
 #include "PSSystem/PSGame.h"
 #include "PSM/Scene.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
+/**
+ * @note Address: N/A
+ * @note Size: 0xE4
  */
 static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	80318244
- * Size:	000120
+/**
+ * @note Address: 0x80318244
+ * @note Size: 0x120
  */
 ObjKantei::ObjKantei(char const* name)
 {
@@ -73,27 +71,24 @@ ObjKantei::ObjKantei(char const* name)
 	mPlayExitSE              = false;
 }
 
-/*
- * --INFO--
- * Address:	80318364
- * Size:	0000AC
+/**
+ * @note Address: 0x80318364
+ * @note Size: 0xAC
  */
 ObjKantei::~ObjKantei() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
+/**
+ * @note Address: N/A
+ * @note Size: 0x50
  */
 void ObjKantei::startItemName(u64)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80318410
- * Size:	0007CC
+/**
+ * @note Address: 0x80318410
+ * @note Size: 0x7CC
  */
 void ObjKantei::doCreate(JKRArchive* arc)
 {
@@ -209,30 +204,27 @@ void ObjKantei::doCreate(JKRArchive* arc)
 	commonUpdate();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000068
+/**
+ * @note Address: N/A
+ * @note Size: 0x68
  */
 void ObjKantei::startKanteiVoice(int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F4
+/**
+ * @note Address: N/A
+ * @note Size: 0xF4
  */
 void ObjKantei::updateKanteiVoice()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80318BDC
- * Size:	000258
+/**
+ * @note Address: 0x80318BDC
+ * @note Size: 0x258
  */
 void ObjKantei::scaleAnimItemName()
 {
@@ -295,10 +287,9 @@ void ObjKantei::scaleAnimItemName()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80318E34
- * Size:	000154
+/**
+ * @note Address: 0x80318E34
+ * @note Size: 0x154
  */
 void ObjKantei::commonUpdate()
 {
@@ -326,10 +317,9 @@ void ObjKantei::commonUpdate()
 	mScreenButton->update();
 }
 
-/*
- * --INFO--
- * Address:	80318F88
- * Size:	00040C
+/**
+ * @note Address: 0x80318F88
+ * @note Size: 0x40C
  */
 bool ObjKantei::doUpdate()
 {
@@ -411,10 +401,9 @@ bool ObjKantei::doUpdate()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80319394
- * Size:	000040
+/**
+ * @note Address: 0x80319394
+ * @note Size: 0x40
  */
 void ObjKantei::finishKantei()
 {
@@ -425,10 +414,9 @@ void ObjKantei::finishKantei()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803193D4
- * Size:	000290
+/**
+ * @note Address: 0x803193D4
+ * @note Size: 0x290
  */
 void ObjKantei::doDraw(Graphics& gfx)
 {
@@ -474,10 +462,9 @@ void ObjKantei::doDraw(Graphics& gfx)
 	mScreenName->draw(gfx2, *graf);
 }
 
-/*
- * --INFO--
- * Address:	80319664
- * Size:	00003C
+/**
+ * @note Address: 0x80319664
+ * @note Size: 0x3C
  */
 void ObjKantei::doDrawMsg(Graphics& gfx)
 {
@@ -486,10 +473,9 @@ void ObjKantei::doDrawMsg(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803196A0
- * Size:	00010C
+/**
+ * @note Address: 0x803196A0
+ * @note Size: 0x10C
  */
 bool ObjKantei::doStart(::Screen::StartSceneArg const*)
 {
@@ -504,10 +490,9 @@ bool ObjKantei::doStart(::Screen::StartSceneArg const*)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	803197AC
- * Size:	000010
+/**
+ * @note Address: 0x803197AC
+ * @note Size: 0x10
  */
 bool ObjKantei::doEnd(::Screen::EndSceneArg const*)
 {
@@ -515,17 +500,15 @@ bool ObjKantei::doEnd(::Screen::EndSceneArg const*)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	803197BC
- * Size:	000004
+/**
+ * @note Address: 0x803197BC
+ * @note Size: 0x4
  */
 void ObjKantei::doUpdateFadeinFinish() { }
 
-/*
- * --INFO--
- * Address:	803197C0
- * Size:	000040
+/**
+ * @note Address: 0x803197C0
+ * @note Size: 0x40
  */
 void ObjKantei::doUpdateFinish()
 {
@@ -535,17 +518,15 @@ void ObjKantei::doUpdateFinish()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80319800
- * Size:	000004
+/**
+ * @note Address: 0x80319800
+ * @note Size: 0x4
  */
 void ObjKantei::doUpdateFadeoutFinish() { }
 
-/*
- * --INFO--
- * Address:	80319804
- * Size:	0001A4
+/**
+ * @note Address: 0x80319804
+ * @note Size: 0x1A4
  */
 bool ObjKantei::doUpdateFadein()
 {
@@ -561,10 +542,9 @@ bool ObjKantei::doUpdateFadein()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	803199A8
- * Size:	0001AC
+/**
+ * @note Address: 0x803199A8
+ * @note Size: 0x1AC
  */
 bool ObjKantei::doUpdateFadeout()
 {

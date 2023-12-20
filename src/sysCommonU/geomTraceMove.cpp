@@ -7,10 +7,9 @@
 
 namespace Sys {
 
-/*
- * --INFO--
- * Address:	8041FFA8
- * Size:	0001C0
+/**
+ * @note Address: 0x8041FFA8
+ * @note Size: 0x1C0
  */
 void OBBTree::traceMove_new(Matrixf& startMatrix, Matrixf& endMatrix, Game::MoveInfo& moveInfo, f32 step)
 {
@@ -56,10 +55,9 @@ void OBBTree::traceMove_new(Matrixf& startMatrix, Matrixf& endMatrix, Game::Move
 	moveSphere->mPosition = startMatrix.mtxMult(moveSphere->mPosition);
 }
 
-/*
- * --INFO--
- * Address:	80420168
- * Size:	0002FC
+/**
+ * @note Address: 0x80420168
+ * @note Size: 0x2FC
  */
 void OBB::traceMoveTriList_new(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable,
                                Matrixf& startMatrix, Matrixf& endMatrix, int& hitCount, Sys::Triangle** resultTris, f32* hitDists,
@@ -333,10 +331,9 @@ void OBB::traceMoveTriList_new(Game::MoveInfo& moveInfo, Sys::VertexTable& verte
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80420464
- * Size:	0007F0
+/**
+ * @note Address: 0x80420464
+ * @note Size: 0x7F0
  */
 void OBB::traceMove_new(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable, Matrixf& startMatrix,
                         Matrixf& endMatrix, int& hitCount, Sys::Triangle** resultTris, f32* hitDists, Vector3f* hitPositions)
@@ -380,10 +377,9 @@ void OBB::traceMove_new(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable,
 	}
 }
 
-/*
- * --INFO--
- * Address:	80420C54
- * Size:	000098
+/**
+ * @note Address: 0x80420C54
+ * @note Size: 0x98
  */
 void OBBTree::traceMove_new_global(Game::MoveInfo& moveInfo, f32 step)
 {
@@ -399,10 +395,9 @@ void OBBTree::traceMove_new_global(Game::MoveInfo& moveInfo, f32 step)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80420CEC
- * Size:	00024C
+/**
+ * @note Address: 0x80420CEC
+ * @note Size: 0x24C
  */
 void OBB::traceMoveTriList_new_global(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable,
                                       int& hitCount, Sys::Triangle** resultTris, f32* hitDists, Vector3f* hitPositions)
@@ -621,10 +616,9 @@ void OBB::traceMoveTriList_new_global(Game::MoveInfo& moveInfo, Sys::VertexTable
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80420F38
- * Size:	0006F0
+/**
+ * @note Address: 0x80420F38
+ * @note Size: 0x6F0
  */
 void OBB::traceMove_new_global(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable, int& hitCount,
                                Sys::Triangle** resultTris, f32* hitDists, Vector3f* hitPositions)

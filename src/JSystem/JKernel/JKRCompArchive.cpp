@@ -8,10 +8,9 @@
 #include "stl/mem.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	8001BBB8
- * Size:	0000B0
+/**
+ * @note Address: 0x8001BBB8
+ * @note Size: 0xB0
  * __ct
  */
 JKRCompArchive::JKRCompArchive(s32 entryNum, JKRArchive::EMountDirection mountDirection)
@@ -27,10 +26,9 @@ JKRCompArchive::JKRCompArchive(s32 entryNum, JKRArchive::EMountDirection mountDi
 	mIsMounted = true;
 }
 
-/*
- * --INFO--
- * Address:	8001BC68
- * Size:	000150
+/**
+ * @note Address: 0x8001BC68
+ * @note Size: 0x150
  */
 JKRCompArchive::~JKRCompArchive()
 {
@@ -60,10 +58,9 @@ JKRCompArchive::~JKRCompArchive()
 	mIsMounted = false;
 }
 
-/*
- * --INFO--
- * Address:	8001BDB8
- * Size:	00057C
+/**
+ * @note Address: 0x8001BDB8
+ * @note Size: 0x57C
  */
 bool JKRCompArchive::open(s32 entryNum)
 {
@@ -207,10 +204,9 @@ bool JKRCompArchive::open(s32 entryNum)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8001C334
- * Size:	000190
+/**
+ * @note Address: 0x8001C334
+ * @note Size: 0x190
  */
 void* JKRCompArchive::fetchResource(SDIFileEntry* fileEntry, u32* pSize)
 {
@@ -257,10 +253,9 @@ void* JKRCompArchive::fetchResource(SDIFileEntry* fileEntry, u32* pSize)
 	return fileEntry->mData;
 }
 
-/*
- * --INFO--
- * Address:	8001C4C4
- * Size:	000194
+/**
+ * @note Address: 0x8001C4C4
+ * @note Size: 0x194
  */
 void* JKRCompArchive::fetchResource(void* data, u32 compressedSize, JKRArchive::SDIFileEntry* fileEntry, u32* pSize)
 {
@@ -306,10 +301,9 @@ void* JKRCompArchive::fetchResource(void* data, u32 compressedSize, JKRArchive::
 	return data;
 }
 
-/*
- * --INFO--
- * Address:	8001C658
- * Size:	0000A4
+/**
+ * @note Address: 0x8001C658
+ * @note Size: 0xA4
  */
 void JKRCompArchive::removeResourceAll()
 {
@@ -328,10 +322,9 @@ void JKRCompArchive::removeResourceAll()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8001C6FC
- * Size:	000074
+/**
+ * @note Address: 0x8001C6FC
+ * @note Size: 0x74
  */
 bool JKRCompArchive::removeResource(void* resPtr)
 {
@@ -346,10 +339,9 @@ bool JKRCompArchive::removeResource(void* resPtr)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8001C770
- * Size:	0001C4
+/**
+ * @note Address: 0x8001C770
+ * @note Size: 0x1C4
  */
 u32 JKRCompArchive::getExpandedResSize(const void* resource) const
 {

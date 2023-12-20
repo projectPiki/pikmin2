@@ -5,10 +5,9 @@ namespace Imomushi {
 
 static const char imomushiMgrName[] = "246-ImomushiMgr";
 
-/*
- * --INFO--
- * Address:	802BBCD4
- * Size:	000050
+/**
+ * @note Address: 0x802BBCD4
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -16,24 +15,21 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "イモムシマネージャ"; // caterpillar manager
 }
 
-/*
- * --INFO--
- * Address:	802BBD24
- * Size:	000048
+/**
+ * @note Address: 0x802BBD24
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Parms); }
 
-/*
- * --INFO--
- * Address:	802BBEFC
- * Size:	000060
+/**
+ * @note Address: 0x802BBEFC
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	802BC018
- * Size:	000010
+/**
+ * @note Address: 0x802BC018
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 

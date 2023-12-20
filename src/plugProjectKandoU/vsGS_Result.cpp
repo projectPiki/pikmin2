@@ -21,10 +21,9 @@ namespace VsGame {
 static const char vsGSResultUnusedArray[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 static const char vsGSResultName[]        = "vsGS_Result";
 
-/*
- * --INFO--
- * Address:	8022C7F4
- * Size:	000104
+/**
+ * @note Address: 0x8022C7F4
+ * @note Size: 0x104
  */
 ResultState::ResultState()
     : State(VGS_Result)
@@ -35,10 +34,9 @@ ResultState::ResultState()
 	mDelegate          = new Delegate<ResultState>(this, &dvdload);
 }
 
-/*
- * --INFO--
- * Address:	8022C8F8
- * Size:	0000BC
+/**
+ * @note Address: 0x8022C8F8
+ * @note Size: 0xBC
  */
 void ResultState::init(VsGameSection* section, StateArg* stateArg)
 {
@@ -58,10 +56,9 @@ void ResultState::init(VsGameSection* section, StateArg* stateArg)
 	section->refreshHIO();
 }
 
-/*
- * --INFO--
- * Address:	8022C9B4
- * Size:	0002A8
+/**
+ * @note Address: 0x8022C9B4
+ * @note Size: 0x2A8
  */
 void ResultState::prepareMorimuraInfo(VsGameSection* section)
 {
@@ -126,10 +123,9 @@ void ResultState::prepareMorimuraInfo(VsGameSection* section)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8022CC5C
- * Size:	00013C
+/**
+ * @note Address: 0x8022CC5C
+ * @note Size: 0x13C
  */
 void ResultState::dvdload()
 {
@@ -147,10 +143,9 @@ void ResultState::dvdload()
 	sceneMgr->mScenes->mChild->startMainSeq();
 }
 
-/*
- * --INFO--
- * Address:	8022CD98
- * Size:	00017C
+/**
+ * @note Address: 0x8022CD98
+ * @note Size: 0x17C
  */
 void ResultState::exec(VsGameSection* section)
 {
@@ -193,10 +188,9 @@ void ResultState::exec(VsGameSection* section)
 	section->BaseHIOSection::doUpdate();
 }
 
-/*
- * --INFO--
- * Address:	8022CF14
- * Size:	000088
+/**
+ * @note Address: 0x8022CF14
+ * @note Size: 0x88
  */
 void ResultState::draw(VsGameSection* section, Graphics& gfx)
 {
@@ -213,10 +207,9 @@ void ResultState::draw(VsGameSection* section, Graphics& gfx)
 	particle2dMgr->draw(0, 0);
 }
 
-/*
- * --INFO--
- * Address:	8022CF9C
- * Size:	0000CC
+/**
+ * @note Address: 0x8022CF9C
+ * @note Size: 0xCC
  */
 void ResultState::cleanup(VsGameSection* section)
 {

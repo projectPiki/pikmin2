@@ -7,10 +7,9 @@
 
 JUTDbPrint* JUTDbPrint::sDebugPrint;
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 JUTDbPrint::JUTDbPrint(JUTFont* font, JKRHeap* heap)
     : mColor()
@@ -22,17 +21,15 @@ JUTDbPrint::JUTDbPrint(JUTFont* font, JKRHeap* heap)
 	mIsVisible = true;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
+/**
+ * @note Address: N/A
+ * @note Size: 0x50
  */
 JUTDbPrint::~JUTDbPrint() { }
 
-/*
- * --INFO--
- * Address:	800294D4
- * Size:	0000AC
+/**
+ * @note Address: 0x800294D4
+ * @note Size: 0xAC
  */
 JUTDbPrint* JUTDbPrint::start(JUTFont* font, JKRHeap* heap)
 {
@@ -45,10 +42,9 @@ JUTDbPrint* JUTDbPrint::start(JUTFont* font, JKRHeap* heap)
 	return sDebugPrint;
 }
 
-/*
- * --INFO--
- * Address:	80029580
- * Size:	000018
+/**
+ * @note Address: 0x80029580
+ * @note Size: 0x18
  */
 JUTFont* JUTDbPrint::changeFont(JUTFont* newFont)
 {
@@ -59,18 +55,16 @@ JUTFont* JUTDbPrint::changeFont(JUTFont* newFont)
 	return oldFont;
 }
 
-/*
- * --INFO--
- * Address:	80029598
- * Size:	000038
+/**
+ * @note Address: 0x80029598
+ * @note Size: 0x38
  * flush__10JUTDbPrintFv
  */
 void JUTDbPrint::flush() { flush(0, 0, JUTVideo::sManager->getFbWidth(), JUTVideo::sManager->getEfbHeight()); }
 
-/*
- * --INFO--
- * Address:	800295D0
- * Size:	000174
+/**
+ * @note Address: 0x800295D0
+ * @note Size: 0x174
  * flush__10JUTDbPrintFiiii
  */
 void JUTDbPrint::flush(int p1, int p2, int p3, int p4)
@@ -103,10 +97,9 @@ void JUTDbPrint::flush(int p1, int p2, int p3, int p4)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80029744
- * Size:	0000E8
+/**
+ * @note Address: 0x80029744
+ * @note Size: 0xE8
  */
 void JUTDbPrint::drawString(int p1, int p2, int p3, const u8* p4)
 {

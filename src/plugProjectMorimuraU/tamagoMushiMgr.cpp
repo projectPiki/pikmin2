@@ -7,10 +7,9 @@ namespace TamagoMushi {
 
 static const char tamagoMushiMgrName[] = "tamagoMushiMgr";
 
-/*
- * --INFO--
- * Address:	8036D988
- * Size:	000050
+/**
+ * @note Address: 0x8036D988
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -18,10 +17,9 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "タマゴムシマネージャ"; // egg bug manager
 }
 
-/*
- * --INFO--
- * Address:	8036D9D8
- * Size:	000100
+/**
+ * @note Address: 0x8036D9D8
+ * @note Size: 0x100
  */
 void Mgr::doAlloc()
 {
@@ -29,10 +27,9 @@ void Mgr::doAlloc()
 	mMtxCacheRef = new J3DUMtxCacheRef<J3DUMtxAnmCacheTable>(getCacheTable(getModel(), getTransform()));
 }
 
-/*
- * --INFO--
- * Address:	8036DD90
- * Size:	000048
+/**
+ * @note Address: 0x8036DD90
+ * @note Size: 0x48
  */
 EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
 {
@@ -44,10 +41,9 @@ EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
 	return tamagomushi;
 }
 
-/*
- * --INFO--
- * Address:	8036DDD8
- * Size:	000058
+/**
+ * @note Address: 0x8036DDD8
+ * @note Size: 0x58
  */
 void Mgr::fetch(J3DModel* model, f32 p1)
 {
@@ -57,10 +53,9 @@ void Mgr::fetch(J3DModel* model, f32 p1)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000090
+/**
+ * @note Address: N/A
+ * @note Size: 0x90
  * --INLINED--
  */
 int Mgr::getFreeNum()
@@ -75,10 +70,9 @@ int Mgr::getFreeNum()
 	return freeSlots;
 }
 
-/*
- * --INFO--
- * Address:	8036DE30
- * Size:	0000F8
+/**
+ * @note Address: 0x8036DE30
+ * @note Size: 0xF8
  */
 Obj* Mgr::createGroup(EnemyBirthArg& birthArg, int count, Vector3f& velocity)
 {
@@ -102,10 +96,9 @@ Obj* Mgr::createGroup(EnemyBirthArg& birthArg, int count, Vector3f& velocity)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8036DF28
- * Size:	0000B0
+/**
+ * @note Address: 0x8036DF28
+ * @note Size: 0xB0
  */
 Obj* Mgr::createGroupByBigFoot(EnemyBirthArg& birthArg, int count, Vector3f& velocity, f32 p1)
 {
@@ -123,10 +116,9 @@ Obj* Mgr::createGroupByBigFoot(EnemyBirthArg& birthArg, int count, Vector3f& vel
 	}
 }
 
-/*
- * --INFO--
- * Address:	8036DFD8
- * Size:	0003AC
+/**
+ * @note Address: 0x8036DFD8
+ * @note Size: 0x3AC
  */
 void Mgr::createGroup(Obj* leader, int count, bool check)
 {
@@ -183,10 +175,9 @@ void Mgr::createGroup(Obj* leader, int count, bool check)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8036E384
- * Size:	000484
+/**
+ * @note Address: 0x8036E384
+ * @note Size: 0x484
  */
 void Mgr::createGroupByBigFoot(Obj* leader, int count, bool check, f32 p1)
 {

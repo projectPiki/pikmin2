@@ -4,10 +4,9 @@
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	8010BA00
- * Size:	00007C
+/**
+ * @note Address: 0x8010BA00
+ * @note Size: 0x7C
  */
 bool InteractHipdrop::actEnemy(EnemyBase* enemy)
 {
@@ -18,10 +17,9 @@ bool InteractHipdrop::actEnemy(EnemyBase* enemy)
 	return callback;
 }
 
-/*
- * --INFO--
- * Address:	8010BA7C
- * Size:	000074
+/**
+ * @note Address: 0x8010BA7C
+ * @note Size: 0x74
  */
 bool InteractEarthquake::actEnemy(EnemyBase* enemy)
 {
@@ -32,24 +30,21 @@ bool InteractEarthquake::actEnemy(EnemyBase* enemy)
 	return callback;
 }
 
-/*
- * --INFO--
- * Address:	8010BAF0
- * Size:	000040
+/**
+ * @note Address: 0x8010BAF0
+ * @note Size: 0x40
  */
 bool InteractPress::actEnemy(EnemyBase* enemy) { return enemy->pressCallBack(mCreature, mDamage, mCollPart); }
 
-/*
- * --INFO--
- * Address:	8010BB30
- * Size:	000040
+/**
+ * @note Address: 0x8010BB30
+ * @note Size: 0x40
  */
 bool InteractFlyCollision::actEnemy(EnemyBase* enemy) { return enemy->flyCollisionCallBack(mCreature, _08, mCollPart); }
 
-/*
- * --INFO--
- * Address:	8010BB70
- * Size:	00011C
+/**
+ * @note Address: 0x8010BB70
+ * @note Size: 0x11C
  */
 bool InteractAttack::actEnemy(EnemyBase* enemy)
 {
@@ -83,17 +78,15 @@ bool InteractAttack::actEnemy(EnemyBase* enemy)
 	return isSuccess;
 }
 
-/*
- * --INFO--
- * Address:	8010BC8C
- * Size:	000038
+/**
+ * @note Address: 0x8010BC8C
+ * @note Size: 0x38
  */
 bool InteractDrop::actEnemy(EnemyBase* enemy) { return enemy->dropCallBack(mCreature); }
 
-/*
- * --INFO--
- * Address:	8010BCC4
- * Size:	000078
+/**
+ * @note Address: 0x8010BCC4
+ * @note Size: 0x78
  */
 bool InteractBomb::actEnemy(EnemyBase* enemy)
 {

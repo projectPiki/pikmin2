@@ -1,30 +1,26 @@
 #include "types.h"
 #include "PowerPC_EABI_Support/MSL_C/MSL_Common/critical_regions.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void __init_critical_regions(void) { return; }
 
-/*
- * --INFO--
- * Address:	800C6260
- * Size:	000004
+/**
+ * @note Address: 0x800C6260
+ * @note Size: 0x4
  */
 void __kill_critical_regions(void) { return; }
 
-/*
- * --INFO--
- * Address:	800C625C
- * Size:	000004
+/**
+ * @note Address: 0x800C625C
+ * @note Size: 0x4
  */
 void __begin_critical_region(int region) { return; }
 
-/*
- * --INFO--
- * Address:	800C6258
- * Size:	000004
+/**
+ * @note Address: 0x800C6258
+ * @note Size: 0x4
  */
 void __end_critical_region(int region) { return; }

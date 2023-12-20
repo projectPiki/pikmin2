@@ -3,10 +3,9 @@
 namespace Game {
 namespace Demon {
 
-/*
- * --INFO--
- * Address:	8028E048
- * Size:	000050
+/**
+ * @note Address: 0x8028E048
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -14,31 +13,27 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "オニサライマネージャ"; // onisarai manager
 }
 
-/*
- * --INFO--
- * Address:	8028E098
- * Size:	000048
+/**
+ * @note Address: 0x8028E098
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Sarai::Parms); }
 
-/*
- * --INFO--
- * Address:	8028E0E0
- * Size:	000060
+/**
+ * @note Address: 0x8028E0E0
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	8028E230
- * Size:	000010
+/**
+ * @note Address: 0x8028E230
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
-/*
- * --INFO--
- * Address:	8028E240
- * Size:	000068
+/**
+ * @note Address: 0x8028E240
+ * @note Size: 0x68
  */
 void Mgr::loadModelData()
 {

@@ -5,10 +5,9 @@ namespace Morimura {
 int TScrollList::mRightOffset;
 bool TScrollList::mForceResetParm;
 bool TScrollList::mWideWindow = true;
-/*
- * --INFO--
- * Address:	803A2154
- * Size:	00004C
+/**
+ * @note Address: 0x803A2154
+ * @note Size: 0x4C
  */
 TIndexGroup::TIndexGroup()
 {
@@ -25,10 +24,9 @@ TIndexGroup::TIndexGroup()
 	mInitialRollSpeed    = 2.0f;
 }
 
-/*
- * --INFO--
- * Address:	803A21A0
- * Size:	00006C
+/**
+ * @note Address: 0x803A21A0
+ * @note Size: 0x6C
  */
 bool TIndexGroup::upIndex()
 {
@@ -45,10 +43,9 @@ bool TIndexGroup::upIndex()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	803A220C
- * Size:	00006C
+/**
+ * @note Address: 0x803A220C
+ * @note Size: 0x6C
  */
 bool TIndexGroup::downIndex()
 {
@@ -65,10 +62,9 @@ bool TIndexGroup::downIndex()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 void TIndexGroup::speedUpdate(bool check)
 {
@@ -81,10 +77,9 @@ void TIndexGroup::speedUpdate(bool check)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000088
+/**
+ * @note Address: N/A
+ * @note Size: 0x88
  */
 bool TIndexGroup::offsetUpdate(f32 offset)
 {
@@ -115,10 +110,9 @@ bool TIndexGroup::offsetUpdate(f32 offset)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803A2278
- * Size:	000030
+/**
+ * @note Address: 0x803A2278
+ * @note Size: 0x30
  */
 void TIndexGroup::rollSpUp()
 {
@@ -129,10 +123,9 @@ void TIndexGroup::rollSpUp()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A22A8
- * Size:	00009C
+/**
+ * @note Address: 0x803A22A8
+ * @note Size: 0x9C
  */
 void TIndexPane::update()
 {
@@ -147,10 +140,9 @@ void TIndexPane::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A2344
- * Size:	000094
+/**
+ * @note Address: 0x803A2344
+ * @note Size: 0x94
  */
 void TIndexPane::createIconInfo(int num, int entries)
 {
@@ -162,10 +154,9 @@ void TIndexPane::createIconInfo(int num, int entries)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A23D8
- * Size:	0001E4
+/**
+ * @note Address: 0x803A23D8
+ * @note Size: 0x1E4
  */
 void TIndexPane::setIndex(int index)
 {
@@ -213,10 +204,9 @@ void TIndexPane::setIndex(int index)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A25BC
- * Size:	000058
+/**
+ * @note Address: 0x803A25BC
+ * @note Size: 0x58
  */
 int TIndexPane::getIndex()
 {
@@ -238,17 +228,15 @@ int TIndexPane::getIndex()
 	return mIndex;
 }
 
-/*
- * --INFO--
- * Address:	803A2614
- * Size:	000008
+/**
+ * @note Address: 0x803A2614
+ * @note Size: 0x8
  */
 int TIndexPane::getListIndex() { return mIndex; }
 
-/*
- * --INFO--
- * Address:	803A261C
- * Size:	0000F4
+/**
+ * @note Address: 0x803A261C
+ * @note Size: 0xF4
  */
 void TIndexPane::doIconOffsetY()
 {
@@ -265,10 +253,9 @@ void TIndexPane::doIconOffsetY()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A2710
- * Size:	000068
+/**
+ * @note Address: 0x803A2710
+ * @note Size: 0x68
  */
 TIconInfo::TIconInfo()
 {
@@ -282,10 +269,9 @@ TIconInfo::TIconInfo()
 	mScaleMgr    = new og::Screen::ScaleMgr;
 }
 
-/*
- * --INFO--
- * Address:	803A2778
- * Size:	0000D0
+/**
+ * @note Address: 0x803A2778
+ * @note Size: 0xD0
  */
 void TIconInfo::init(TScaleUpCounter* counter, J2DPane* pane1, J2DPane* pane2)
 {
@@ -298,10 +284,9 @@ void TIconInfo::init(TScaleUpCounter* counter, J2DPane* pane1, J2DPane* pane2)
 	P2ASSERTLINE(333, mPane);
 }
 
-/*
- * --INFO--
- * Address:	803A2848
- * Size:	000198
+/**
+ * @note Address: 0x803A2848
+ * @note Size: 0x198
  */
 void TIconInfo::update(f32 base)
 {
@@ -325,10 +310,9 @@ void TIconInfo::update(f32 base)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A29E0
- * Size:	0001B4
+/**
+ * @note Address: 0x803A29E0
+ * @note Size: 0x1B4
  */
 void TIconInfo::setInfo(int id, ResTIMG const* timg)
 {
@@ -369,10 +353,9 @@ void TIconInfo::setInfo(int id, ResTIMG const* timg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A2B94
- * Size:	000040
+/**
+ * @note Address: 0x803A2B94
+ * @note Size: 0x40
  */
 void TIconInfo::startScaleUp(f32 scale)
 {
@@ -381,10 +364,9 @@ void TIconInfo::startScaleUp(f32 scale)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A2BD4
- * Size:	0000E4
+/**
+ * @note Address: 0x803A2BD4
+ * @note Size: 0xE4
  */
 void TListScreen::create(char const* filename, u32 flag)
 {
@@ -396,10 +378,9 @@ void TListScreen::create(char const* filename, u32 flag)
 	og::Screen::setAlphaScreen(mScreenObj);
 }
 
-/*
- * --INFO--
- * Address:	803A2CB8
- * Size:	000090
+/**
+ * @note Address: 0x803A2CB8
+ * @note Size: 0x90
  */
 TScrollList::TScrollList(char* name)
     : TTestBase(name)
@@ -422,10 +403,9 @@ TScrollList::TScrollList(char* name)
 	mRightOffset     = 0;
 }
 
-/*
- * --INFO--
- * Address:	803A2D48
- * Size:	000428
+/**
+ * @note Address: 0x803A2D48
+ * @note Size: 0x428
  */
 void TScrollList::updateIndex(bool check)
 {
@@ -823,10 +803,9 @@ lbl_803A3150:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803A3170
- * Size:	0000DC
+/**
+ * @note Address: 0x803A3170
+ * @note Size: 0xDC
  */
 void TScrollList::getUpdateIndex(int& id, bool flag)
 {
@@ -845,10 +824,9 @@ void TScrollList::getUpdateIndex(int& id, bool flag)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A324C
- * Size:	000390
+/**
+ * @note Address: 0x803A324C
+ * @note Size: 0x390
  */
 bool TScrollList::updateList()
 {
@@ -1223,10 +1201,9 @@ lbl_803A3598:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803A35DC
- * Size:	000060
+/**
+ * @note Address: 0x803A35DC
+ * @note Size: 0x60
  */
 void TScrollList::changeIndex()
 {

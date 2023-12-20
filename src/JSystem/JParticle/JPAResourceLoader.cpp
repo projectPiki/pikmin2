@@ -10,20 +10,18 @@
 
 #define GetTypeFromByteStream(data, type, offset) (*(type*)((data) + (offset)))
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
+/**
+ * @note Address: N/A
+ * @note Size: 0x50
  */
 JPAResourceLoader::JPAResourceLoader(const u8*, JPAResourceManager*, u16)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800980D8
- * Size:	000040
+/**
+ * @note Address: 0x800980D8
+ * @note Size: 0x40
  */
 JPAResourceLoader::JPAResourceLoader(const u8* p1, JPAResourceManager* manager)
 {
@@ -32,20 +30,18 @@ JPAResourceLoader::JPAResourceLoader(const u8* p1, JPAResourceManager* manager)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000390
+/**
+ * @note Address: N/A
+ * @note Size: 0x390
  */
 void JPAResourceLoader::load_jpa(const u8*, JPAResourceManager*, u16)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80098118
- * Size:	0003B8
+/**
+ * @note Address: 0x80098118
+ * @note Size: 0x3B8
  */
 void JPAResourceLoader::load_jpc(const u8* p1, JPAResourceManager* manager)
 {

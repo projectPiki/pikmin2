@@ -8,10 +8,9 @@
 namespace Game {
 namespace Rock {
 
-/*
- * --INFO--
- * Address:	80261D8C
- * Size:	000228
+/**
+ * @note Address: 0x80261D8C
+ * @note Size: 0x228
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -24,10 +23,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateDead);
 }
 
-/*
- * --INFO--
- * Address:	80261FB4
- * Size:	000098
+/**
+ * @note Address: 0x80261FB4
+ * @note Size: 0x98
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -43,10 +41,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	rock->stopMotion();
 }
 
-/*
- * --INFO--
- * Address:	8026204C
- * Size:	000108
+/**
+ * @note Address: 0x8026204C
+ * @note Size: 0x108
  */
 void StateWait::exec(EnemyBase* enemy)
 {
@@ -73,10 +70,9 @@ void StateWait::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80262154
- * Size:	000048
+/**
+ * @note Address: 0x80262154
+ * @note Size: 0x48
  */
 void StateWait::cleanup(EnemyBase* enemy)
 {
@@ -86,10 +82,9 @@ void StateWait::cleanup(EnemyBase* enemy)
 	rock->disableEvent(0, EB_ModelHidden);
 }
 
-/*
- * --INFO--
- * Address:	8026219C
- * Size:	000104
+/**
+ * @note Address: 0x8026219C
+ * @note Size: 0x104
  */
 void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -111,10 +106,9 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	rock->getJAIObject()->startSound(PSSE_EN_ROCK_FALL, 0);
 }
 
-/*
- * --INFO--
- * Address:	802622A0
- * Size:	000064
+/**
+ * @note Address: 0x802622A0
+ * @note Size: 0x64
  */
 void StateAppear::exec(EnemyBase* enemy)
 {
@@ -124,10 +118,9 @@ void StateAppear::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80262304
- * Size:	00005C
+/**
+ * @note Address: 0x80262304
+ * @note Size: 0x5C
  */
 void StateAppear::cleanup(EnemyBase* enemy)
 {
@@ -137,10 +130,9 @@ void StateAppear::cleanup(EnemyBase* enemy)
 	rock->disableEvent(0, EB_ModelHidden);
 }
 
-/*
- * --INFO--
- * Address:	80262360
- * Size:	00002C
+/**
+ * @note Address: 0x80262360
+ * @note Size: 0x2C
  */
 void StateDropWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -148,17 +140,15 @@ void StateDropWait::init(EnemyBase* enemy, StateArg* stateArg)
 	rock->startMotion(ROCKANIM_Run, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8026238C
- * Size:	000034
+/**
+ * @note Address: 0x8026238C
+ * @note Size: 0x34
  */
 void StateDropWait::exec(EnemyBase* enemy) { transit(enemy, ROCK_Fall, nullptr); }
 
-/*
- * --INFO--
- * Address:	802623C0
- * Size:	000058
+/**
+ * @note Address: 0x802623C0
+ * @note Size: 0x58
  */
 void StateDropWait::cleanup(EnemyBase* enemy)
 {
@@ -170,10 +160,9 @@ void StateDropWait::cleanup(EnemyBase* enemy)
 	shadowMgr->setForceVisible(rock, true);
 }
 
-/*
- * --INFO--
- * Address:	80262418
- * Size:	000060
+/**
+ * @note Address: 0x80262418
+ * @note Size: 0x60
  */
 void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -183,10 +172,9 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 	rock->startFallEffect();
 }
 
-/*
- * --INFO--
- * Address:	80262478
- * Size:	000068
+/**
+ * @note Address: 0x80262478
+ * @note Size: 0x68
  */
 void StateFall::exec(EnemyBase* enemy)
 {
@@ -197,10 +185,9 @@ void StateFall::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802624E0
- * Size:	000094
+/**
+ * @note Address: 0x802624E0
+ * @note Size: 0x94
  */
 void StateFall::cleanup(EnemyBase* enemy)
 {
@@ -213,10 +200,9 @@ void StateFall::cleanup(EnemyBase* enemy)
 	rumbleMgr->startRumble(14, position, 2);
 }
 
-/*
- * --INFO--
- * Address:	80262574
- * Size:	00007C
+/**
+ * @note Address: 0x80262574
+ * @note Size: 0x7C
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -233,10 +219,9 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802625F0
- * Size:	0000D0
+/**
+ * @note Address: 0x802625F0
+ * @note Size: 0xD0
  */
 void StateMove::exec(EnemyBase* enemy)
 {
@@ -252,10 +237,9 @@ void StateMove::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802626C0
- * Size:	00007C
+/**
+ * @note Address: 0x802626C0
+ * @note Size: 0x7C
  */
 void StateMove::cleanup(EnemyBase* enemy)
 {
@@ -267,10 +251,9 @@ void StateMove::cleanup(EnemyBase* enemy)
 	rumbleMgr->startRumble(14, position, 2);
 }
 
-/*
- * --INFO--
- * Address:	8026273C
- * Size:	000088
+/**
+ * @note Address: 0x8026273C
+ * @note Size: 0x88
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -282,10 +265,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	rock->getJAIObject()->startSound(PSSE_EN_ROCK_BREAK, 0);
 }
 
-/*
- * --INFO--
- * Address:	802627C4
- * Size:	00008C
+/**
+ * @note Address: 0x802627C4
+ * @note Size: 0x8C
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -300,10 +282,9 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80262850
- * Size:	000004
+/**
+ * @note Address: 0x80262850
+ * @note Size: 0x4
  */
 void StateDead::cleanup(EnemyBase* enemy) { }
 

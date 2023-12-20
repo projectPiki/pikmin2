@@ -8,10 +8,9 @@
 namespace Game {
 namespace Miulin {
 
-/*
- * --INFO--
- * Address:	80362618
- * Size:	000150
+/**
+ * @note Address: 0x80362618
+ * @note Size: 0x150
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -26,10 +25,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateDead(MIULIN_Dead));
 }
 
-/*
- * --INFO--
- * Address:	80362768
- * Size:	00003C
+/**
+ * @note Address: 0x80362768
+ * @note Size: 0x3C
  */
 StateWait::StateWait(int stateID)
     : State(stateID)
@@ -37,10 +35,9 @@ StateWait::StateWait(int stateID)
 	mName = "wait";
 }
 
-/*
- * --INFO--
- * Address:	803627A4
- * Size:	00008C
+/**
+ * @note Address: 0x803627A4
+ * @note Size: 0x8C
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -55,10 +52,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
 }
 
-/*
- * --INFO--
- * Address:	80362830
- * Size:	000118
+/**
+ * @note Address: 0x80362830
+ * @note Size: 0x118
  */
 void StateWait::exec(EnemyBase* enemy)
 {
@@ -80,10 +76,9 @@ void StateWait::exec(EnemyBase* enemy)
 	enemy->enableEvent(0, EB_LifegaugeVisible);
 }
 
-/*
- * --INFO--
- * Address:	80362948
- * Size:	00003C
+/**
+ * @note Address: 0x80362948
+ * @note Size: 0x3C
  */
 StateWalk::StateWalk(int stateID)
     : State(stateID)
@@ -91,10 +86,9 @@ StateWalk::StateWalk(int stateID)
 	mName = "walk";
 }
 
-/*
- * --INFO--
- * Address:	80362984
- * Size:	00016C
+/**
+ * @note Address: 0x80362984
+ * @note Size: 0x16C
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -117,10 +111,9 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80362AF0
- * Size:	000364
+/**
+ * @note Address: 0x80362AF0
+ * @note Size: 0x364
  */
 void StateWalk::exec(EnemyBase* enemy)
 {
@@ -200,10 +193,9 @@ void StateWalk::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80362E54
- * Size:	000040
+/**
+ * @note Address: 0x80362E54
+ * @note Size: 0x40
  */
 StateAttackStart::StateAttackStart(int stateID)
     : State(stateID)
@@ -211,10 +203,9 @@ StateAttackStart::StateAttackStart(int stateID)
 	mName = "attackstart";
 }
 
-/*
- * --INFO--
- * Address:	80362E94
- * Size:	00004C
+/**
+ * @note Address: 0x80362E94
+ * @note Size: 0x4C
  */
 void StateAttackStart::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -223,10 +214,9 @@ void StateAttackStart::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->setEmotionExcitement();
 }
 
-/*
- * --INFO--
- * Address:	80362EE0
- * Size:	000050
+/**
+ * @note Address: 0x80362EE0
+ * @note Size: 0x50
  */
 void StateAttackStart::exec(EnemyBase* enemy)
 {
@@ -235,10 +225,9 @@ void StateAttackStart::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80362F30
- * Size:	000040
+/**
+ * @note Address: 0x80362F30
+ * @note Size: 0x40
  */
 StateAttacking::StateAttacking(int stateID)
     : State(stateID)
@@ -246,10 +235,9 @@ StateAttacking::StateAttacking(int stateID)
 	mName = "attackind"; // thanks devs
 }
 
-/*
- * --INFO--
- * Address:	80362F70
- * Size:	000058
+/**
+ * @note Address: 0x80362F70
+ * @note Size: 0x58
  */
 void StateAttacking::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -258,10 +246,9 @@ void StateAttacking::init(EnemyBase* enemy, StateArg* stateArg)
 	mIsTransitioning = true;
 }
 
-/*
- * --INFO--
- * Address:	80362FC8
- * Size:	00082C
+/**
+ * @note Address: 0x80362FC8
+ * @note Size: 0x82C
  */
 void StateAttacking::exec(EnemyBase* enemy)
 {
@@ -360,10 +347,9 @@ void StateAttacking::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803637F4
- * Size:	000040
+/**
+ * @note Address: 0x803637F4
+ * @note Size: 0x40
  */
 StateAttackEnd::StateAttackEnd(int stateID)
     : State(stateID)
@@ -371,10 +357,9 @@ StateAttackEnd::StateAttackEnd(int stateID)
 	mName = "attackend";
 }
 
-/*
- * --INFO--
- * Address:	80363834
- * Size:	000054
+/**
+ * @note Address: 0x80363834
+ * @note Size: 0x54
  */
 void StateAttackEnd::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -384,10 +369,9 @@ void StateAttackEnd::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->setEmotionCaution();
 }
 
-/*
- * --INFO--
- * Address:	80363888
- * Size:	0000AC
+/**
+ * @note Address: 0x80363888
+ * @note Size: 0xAC
  */
 void StateAttackEnd::exec(EnemyBase* enemy)
 {
@@ -402,10 +386,9 @@ void StateAttackEnd::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80363934
- * Size:	00003C
+/**
+ * @note Address: 0x80363934
+ * @note Size: 0x3C
  */
 StateTurn::StateTurn(int stateID)
     : State(stateID)
@@ -413,10 +396,9 @@ StateTurn::StateTurn(int stateID)
 	mName = "turn";
 }
 
-/*
- * --INFO--
- * Address:	80363970
- * Size:	0000F4
+/**
+ * @note Address: 0x80363970
+ * @note Size: 0xF4
  */
 void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -439,10 +421,9 @@ void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80363A64
- * Size:	000178
+/**
+ * @note Address: 0x80363A64
+ * @note Size: 0x178
  */
 void StateTurn::exec(EnemyBase* enemy)
 {
@@ -477,10 +458,9 @@ void StateTurn::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80363BDC
- * Size:	00003C
+/**
+ * @note Address: 0x80363BDC
+ * @note Size: 0x3C
  */
 StateFlick::StateFlick(int stateID)
     : State(stateID)
@@ -488,10 +468,9 @@ StateFlick::StateFlick(int stateID)
 	mName = "flick";
 }
 
-/*
- * --INFO--
- * Address:	80363C18
- * Size:	00004C
+/**
+ * @note Address: 0x80363C18
+ * @note Size: 0x4C
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -500,10 +479,9 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->setEmotionCaution();
 }
 
-/*
- * --INFO--
- * Address:	80363C64
- * Size:	000190
+/**
+ * @note Address: 0x80363C64
+ * @note Size: 0x190
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
@@ -536,10 +514,9 @@ void StateFlick::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80363DF4
- * Size:	00003C
+/**
+ * @note Address: 0x80363DF4
+ * @note Size: 0x3C
  */
 StateDead::StateDead(int stateID)
     : State(stateID)
@@ -547,10 +524,9 @@ StateDead::StateDead(int stateID)
 	mName = "dead";
 }
 
-/*
- * --INFO--
- * Address:	80363E30
- * Size:	000054
+/**
+ * @note Address: 0x80363E30
+ * @note Size: 0x54
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -560,10 +536,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->deathProcedure();
 }
 
-/*
- * --INFO--
- * Address:	80363E84
- * Size:	000060
+/**
+ * @note Address: 0x80363E84
+ * @note Size: 0x60
  */
 void StateDead::exec(EnemyBase* enemy)
 {

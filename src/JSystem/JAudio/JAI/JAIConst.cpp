@@ -21,10 +21,9 @@ Vec camPreTrans;
 JMath::TRandom_fast_ random(0);
 } // namespace Const
 
-/*
- * --INFO--
- * Address:	800AD1C4
- * Size:	0000F4
+/**
+ * @note Address: 0x800AD1C4
+ * @note Size: 0xF4
  */
 
 u8* transInitDataFile(u8* param_1, u32 param_2)
@@ -39,10 +38,9 @@ u8* transInitDataFile(u8* param_1, u32 param_2)
 	return charptr;
 }
 
-/*
- * --INFO--
- * Address:	800AD2B8
- * Size:	0000E4
+/**
+ * @note Address: 0x800AD2B8
+ * @note Size: 0xE4
  */
 void loadTmpDVDFile(char* filename, u8** param_2)
 {
@@ -63,10 +61,9 @@ void loadTmpDVDFile(char* filename, u8** param_2)
 	return;
 }
 
-/*
- * --INFO--
- * Address:	800AD39C
- * Size:	000030
+/**
+ * @note Address: 0x800AD39C
+ * @note Size: 0x30
  */
 void deleteTmpDVDFile(u8** bing)
 {
@@ -74,10 +71,9 @@ void deleteTmpDVDFile(u8** bing)
 		JASDram->freeTail();
 }
 
-/*
- * --INFO--
- * Address:	800AD3CC
- * Size:	000040
+/**
+ * @note Address: 0x800AD3CC
+ * @note Size: 0x40
  */
 u32 routeToTrack(u32 param_1)
 {

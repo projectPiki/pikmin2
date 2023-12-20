@@ -10,34 +10,30 @@ static const u32 padding[3] = { 0, 0, 0 };
 
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
+/**
+ * @note Address: N/A
+ * @note Size: 0x60
  */
 void DispMemberCpy(u8*, og::Screen::DispMemberBase*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 ScreenOwnerID getSceneOwnerName(SceneBase* scene) { return scene->getOwnerID(); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 ScreenMemberID getSceneMemberName(SceneBase* scene) { return scene->getMemberID(); }
 
-/*
- * --INFO--
- * Address:	80452300
- * Size:	000054
+/**
+ * @note Address: 0x80452300
+ * @note Size: 0x54
  */
 SceneInfoList::SceneInfoList()
 {
@@ -45,20 +41,18 @@ SceneInfoList::SceneInfoList()
 	memset(mDispMemberBuffer, 205, 0x400);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 void SceneInfoList::set(long, og::Screen::DispMemberBase*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000088
+/**
+ * @note Address: N/A
+ * @note Size: 0x88
  */
 MgrCommand::MgrCommand()
     : CNode("")
@@ -71,10 +65,9 @@ MgrCommand::MgrCommand()
 	OSUnlockMutex(&mMutex);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 void MgrCommand::clearArgBuf()
 {
@@ -83,20 +76,18 @@ void MgrCommand::clearArgBuf()
 	OSUnlockMutex(&mMutex);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 void MgrCommand::clearDispMemberBuf()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E8
+/**
+ * @note Address: N/A
+ * @note Size: 0xE8
  */
 void MgrCommand::setArg(SceneArgBase* arg)
 {
@@ -104,10 +95,9 @@ void MgrCommand::setArg(SceneArgBase* arg)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F4
+/**
+ * @note Address: N/A
+ * @note Size: 0xF4
  */
 void MgrCommand::setDispMember(og::Screen::DispMemberBase* disp)
 {
@@ -130,10 +120,9 @@ void MgrCommand::setDispMember(og::Screen::DispMemberBase* disp)
 	OSUnlockMutex(&mMutex);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001BC
+/**
+ * @note Address: N/A
+ * @note Size: 0x1BC
  */
 void MgrCommand::setTypeSetScene(SetSceneArg& arg)
 {
@@ -152,10 +141,9 @@ void MgrCommand::setTypeSetScene(SetSceneArg& arg)
 	OSUnlockMutex(&mMutex);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000110
+/**
+ * @note Address: N/A
+ * @note Size: 0x110
  */
 void MgrCommand::setTypeStartScene(SceneArgBase* arg)
 {
@@ -179,10 +167,9 @@ void MgrCommand::setTypeStartScene(SceneArgBase* arg)
 	OSUnlockMutex(&mMutex);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000110
+/**
+ * @note Address: N/A
+ * @note Size: 0x110
  */
 void MgrCommand::setTypeEndScene(SceneArgBase* arg)
 {
@@ -207,20 +194,18 @@ void MgrCommand::setTypeEndScene(SceneArgBase* arg)
 	OSUnlockMutex(&mMutex);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00008C
+/**
+ * @note Address: N/A
+ * @note Size: 0x8C
  */
 void MgrCommand::setTypeInvalid()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80452354
- * Size:	0001CC
+/**
+ * @note Address: 0x80452354
+ * @note Size: 0x1CC
  */
 Mgr::Mgr()
     : mBackupScene(nullptr)
@@ -241,17 +226,15 @@ Mgr::Mgr()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80452520
- * Size:	000060
+/**
+ * @note Address: 0x80452520
+ * @note Size: 0x60
  */
 SceneInfoList::~SceneInfoList() { }
 
-/*
- * --INFO--
- * Address:	80452580
- * Size:	000070
+/**
+ * @note Address: 0x80452580
+ * @note Size: 0x70
  */
 void Mgr::init()
 {
@@ -261,10 +244,9 @@ void Mgr::init()
 	}
 }
 
-/*
- * --INFO--
- * Address:	804525F0
- * Size:	0000FC
+/**
+ * @note Address: 0x804525F0
+ * @note Size: 0xFC
  */
 bool Mgr::reset()
 {
@@ -292,20 +274,18 @@ bool Mgr::reset()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000240
+/**
+ * @note Address: N/A
+ * @note Size: 0x240
  */
 void Mgr::create()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	804526EC
- * Size:	0001E8
+/**
+ * @note Address: 0x804526EC
+ * @note Size: 0x1E8
  */
 bool Mgr::startScene(StartSceneArg* arg)
 {
@@ -485,10 +465,9 @@ bool Mgr::startScene(StartSceneArg* arg)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	804528D4
- * Size:	00018C
+/**
+ * @note Address: 0x804528D4
+ * @note Size: 0x18C
  */
 bool Mgr::endScene(Screen::EndSceneArg* arg)
 {
@@ -625,17 +604,15 @@ lbl_80452A48:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80452A60
- * Size:	000008
+/**
+ * @note Address: 0x80452A60
+ * @note Size: 0x8
  */
 MgrCommand* Mgr::getCurrentCommand() { return (MgrCommand*)mAvailableCommands.mChild; }
 
-/*
- * --INFO--
- * Address:	80452A68
- * Size:	0000A8
+/**
+ * @note Address: 0x80452A68
+ * @note Size: 0xA8
  */
 MgrCommand* Mgr::getNewCommand()
 {
@@ -655,10 +632,9 @@ MgrCommand* Mgr::getNewCommand()
 	return command;
 }
 
-/*
- * --INFO--
- * Address:	80452B10
- * Size:	000058
+/**
+ * @note Address: 0x80452B10
+ * @note Size: 0x58
  */
 void Mgr::releaseCommand(MgrCommand* command)
 {
@@ -668,20 +644,18 @@ void Mgr::releaseCommand(MgrCommand* command)
 	OSUnlockMutex(&command->mMutex);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 void Mgr::updateCurrentScene()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80452B68
- * Size:	0002D8
+/**
+ * @note Address: 0x80452B68
+ * @note Size: 0x2D8
  */
 void Mgr::update()
 {
@@ -706,14 +680,14 @@ void Mgr::update()
 	                                                               beq      lbl_80452BC0
 	                                                               mr       r3, r28
 	                                                               b        lbl_80452BB8
-	                                                           
+
 	                                                           lbl_80452BB4:
 	                                                               lwz      r3, 4(r3)
-	                                                           
+
 	                                                           lbl_80452BB8:
 	                                                               cmplwi   r3, 0
 	                                                               bne      lbl_80452BB4
-	                                                           
+
 	                                                           lbl_80452BC0:
 	                                                               cmplwi   r28, 0
 	                                                               beq      lbl_80452E10
@@ -728,12 +702,12 @@ void Mgr::update()
 	                                                               beq      lbl_80452E08
 	                                                               bge      lbl_80452C00
 	                                                               b        lbl_80452DF4
-	                                                           
+
 	                                                           lbl_80452BF4:
 	                                                               cmpwi    r0, 3
 	                                                               bge      lbl_80452DF4
 	                                                               b        lbl_80452D4C
-	                                                           
+
 	                                                           lbl_80452C00:
 	                                                               lwz      r29, 0x1c(r28)
 	                                                               mr       r3, r31
@@ -747,7 +721,7 @@ void Mgr::update()
 	                                                               bl       isSceneFinish__Q26Screen3MgrFv
 	                                                               clrlwi.  r0, r3, 0x18
 	                                                               beq      lbl_80452E08
-	                                                           
+
 	                                                           lbl_80452C30:
 	                                                               lwz      r5, 0x60(r28)
 	                                                               mr       r3, r31
@@ -763,7 +737,7 @@ void Mgr::update()
 	                                                               addi     r3, r28, 0x464
 	                                                               bl       OSUnlockMutex
 	                                                               b        lbl_80452E08
-	                                                           
+
 	                                                           lbl_80452C68:
 	                                                               cmplwi   r3, 0
 	                                                               bne      lbl_80452C84
@@ -772,7 +746,7 @@ void Mgr::update()
 	                                                               li       r4, 0x2d6
 	                                                               crclr    6
 	                                                               bl       panic_f__12JUTExceptionFPCciPCce
-	                                                           
+
 	                                                           lbl_80452C84:
 	                                                               lwz      r3, 0x1c(r28)
 	                                                               cmplwi   r3, 0
@@ -807,7 +781,7 @@ void Mgr::update()
 	                                                               li       r4, 0x2de
 	                                                               crclr    6
 	                                                               bl       panic_f__12JUTExceptionFPCciPCce
-	                                                           
+
 	                                                           lbl_80452D08:
 	                                                               lwz      r3, 0x1c(r31)
 	                                                               lwz      r4, 0x1c(r28)
@@ -826,7 +800,7 @@ void Mgr::update()
 	                                                               lwz      r3, 0x1c(r31)
 	                                                               bl       update__Q26Screen9SceneBaseFv
 	                                                               b        lbl_80452E08
-	                                                           
+
 	                                                           lbl_80452D4C:
 	                                                               cmplwi   r3, 0
 	                                                               bne      lbl_80452D68
@@ -835,7 +809,7 @@ void Mgr::update()
 	                                                               li       r4, 0x2f3
 	                                                               crclr    6
 	                                                               bl       panic_f__12JUTExceptionFPCciPCce
-	                                                           
+
 	                                                           lbl_80452D68:
 	                                                               lwz      r3, 0x1c(r28)
 	                                                               cmplwi   r3, 0
@@ -857,7 +831,7 @@ void Mgr::update()
 	                                                               li       r4, 0x2f7
 	                                                               crclr    6
 	                                                               bl       panic_f__12JUTExceptionFPCciPCce
-	                                                           
+
 	                                                           lbl_80452DB8:
 	                                                               lwz      r3, 0x1c(r31)
 	                                                               lwz      r4, 0x1c(r28)
@@ -874,24 +848,24 @@ void Mgr::update()
 	                                                               addi     r3, r28, 0x464
 	                                                               bl       OSUnlockMutex
 	                                                               b        lbl_80452E08
-	                                                           
+
 	                                                           lbl_80452DF4:
 	                                                               addi     r3, r29, 0xc
 	                                                               addi     r5, r29, 0x1c
 	                                                               li       r4, 0x30d
 	                                                               crclr    6
 	                                                               bl       panic_f__12JUTExceptionFPCciPCce
-	                                                           
+
 	                                                           lbl_80452E08:
 	                                                               addi     r3, r28, 0x464
 	                                                               bl       OSUnlockMutex
-	                                                           
+
 	                                                           lbl_80452E10:
 	                                                               lwz      r3, 0x1c(r31)
 	                                                               cmplwi   r3, 0
 	                                                               beq      lbl_80452E20
 	                                                               bl       update__Q26Screen9SceneBaseFv
-	                                                           
+
 	                                                           lbl_80452E20:
 	                                                               lwz      r0, 0x24(r1)
 	                                                               lwz      r31, 0x1c(r1)
@@ -904,10 +878,9 @@ void Mgr::update()
 	                                                               */
 }
 
-/*
- * --INFO--
- * Address:	80452E40
- * Size:	0000B4
+/**
+ * @note Address: 0x80452E40
+ * @note Size: 0xB4
  */
 void Mgr::draw(Graphics& gfx)
 {
@@ -927,17 +900,15 @@ void Mgr::draw(Graphics& gfx)
 	drawWipe(gfx);
 }
 
-/*
- * --INFO--
- * Address:	80452EF8
- * Size:	000008
+/**
+ * @note Address: 0x80452EF8
+ * @note Size: 0x8
  */
 SceneBase* Mgr::doGetSceneBase(long) { return nullptr; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A0
+/**
+ * @note Address: N/A
+ * @note Size: 0xA0
  */
 SceneBase* Mgr::getSceneBase(long type)
 {
@@ -950,10 +921,9 @@ SceneBase* Mgr::getSceneBase(long type)
 	return scene;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
+/**
+ * @note Address: N/A
+ * @note Size: 0xE4
  */
 void Mgr::createNewBackupSceneInfo(SceneBase* scene)
 {
@@ -971,10 +941,9 @@ void Mgr::createNewBackupSceneInfo(SceneBase* scene)
 	mBackupInfoList.add(info);
 }
 
-/*
- * --INFO--
- * Address:	80452F00
- * Size:	000078
+/**
+ * @note Address: 0x80452F00
+ * @note Size: 0x78
  */
 void Mgr::clearBackupSceneInfo()
 {
@@ -988,10 +957,9 @@ void Mgr::clearBackupSceneInfo()
 	mBackupInfoList.clearRelations();
 }
 
-/*
- * --INFO--
- * Address:	80452F78
- * Size:	00024C
+/**
+ * @note Address: 0x80452F78
+ * @note Size: 0x24C
  */
 void Mgr::changeScene(SetSceneArg& arg, u8* dispBuf)
 {
@@ -1198,10 +1166,9 @@ lbl_804531B0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	804531C4
- * Size:	000598
+/**
+ * @note Address: 0x804531C4
+ * @note Size: 0x598
  */
 bool Mgr::setScene(SetSceneArg& arg)
 {
@@ -1663,17 +1630,15 @@ lbl_80453744:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045375C
- * Size:	000024
+/**
+ * @note Address: 0x8045375C
+ * @note Size: 0x24
  */
 bool Mgr::isCurrentSceneLoading() { return mBackupScene && mBackupScene->mStateID == 1; }
 
-/*
- * --INFO--
- * Address:	80453780
- * Size:	000160
+/**
+ * @note Address: 0x80453780
+ * @note Size: 0x160
  */
 void Mgr::copyDispMember(u8* destAddress, u8* sourceAddress)
 {
@@ -1704,10 +1669,9 @@ void Mgr::copyDispMember(u8* destAddress, u8* sourceAddress)
 	JUT_PANICLINE(1098, "to   [%s] [%s]\nfrom [%s] [%s]\n", ownerStr, memberStr, srcOwnerStr, srcMemberStr);
 }
 
-/*
- * --INFO--
- * Address:	804538E0
- * Size:	000034
+/**
+ * @note Address: 0x804538E0
+ * @note Size: 0x34
  */
 bool Mgr::setDispMember(og::Screen::DispMemberBase* disp)
 {
@@ -1718,10 +1682,9 @@ bool Mgr::setDispMember(og::Screen::DispMemberBase* disp)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80453914
- * Size:	00001C
+/**
+ * @note Address: 0x80453914
+ * @note Size: 0x1C
  */
 og::Screen::DispMemberBase* Mgr::getDispMember()
 {
@@ -1732,10 +1695,9 @@ og::Screen::DispMemberBase* Mgr::getDispMember()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80453930
- * Size:	000040
+/**
+ * @note Address: 0x80453930
+ * @note Size: 0x40
  */
 SceneType Mgr::getSceneType()
 {
@@ -1746,10 +1708,9 @@ SceneType Mgr::getSceneType()
 	return SCENE_DUMMY;
 }
 
-/*
- * --INFO--
- * Address:	80453970
- * Size:	000028
+/**
+ * @note Address: 0x80453970
+ * @note Size: 0x28
  */
 bool Mgr::isSceneFinish()
 {
@@ -1760,10 +1721,9 @@ bool Mgr::isSceneFinish()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80453998
- * Size:	000038
+/**
+ * @note Address: 0x80453998
+ * @note Size: 0x38
  */
 int Mgr::getSceneFinishState()
 {
@@ -1776,10 +1736,9 @@ int Mgr::getSceneFinishState()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	804539D0
- * Size:	00001C
+/**
+ * @note Address: 0x804539D0
+ * @note Size: 0x1C
  */
 void Mgr::setGamePad(Controller* control)
 {
@@ -1789,10 +1748,9 @@ void Mgr::setGamePad(Controller* control)
 	}
 }
 
-/*
- * --INFO--
- * Address:	804539EC
- * Size:	000034
+/**
+ * @note Address: 0x804539EC
+ * @note Size: 0x34
  */
 bool Mgr::setBackupScene()
 {
@@ -1803,10 +1761,9 @@ bool Mgr::setBackupScene()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80453A20
- * Size:	000038
+/**
+ * @note Address: 0x80453A20
+ * @note Size: 0x38
  */
 bool Mgr::isAnyReservation() const
 {

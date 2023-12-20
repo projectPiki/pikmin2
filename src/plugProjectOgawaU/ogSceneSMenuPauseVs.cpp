@@ -5,24 +5,21 @@
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	80329CFC
- * Size:	00003C
+/**
+ * @note Address: 0x80329CFC
+ * @note Size: 0x3C
  */
 SMenuPauseVS::SMenuPauseVS() { }
 
-/*
- * --INFO--
- * Address:	80329D38
- * Size:	000004
+/**
+ * @note Address: 0x80329D38
+ * @note Size: 0x4
  */
 void SMenuPauseVS::doUserCallBackFunc(Resource::MgrCommand*) { }
 
-/*
- * --INFO--
- * Address:	80329D3C
- * Size:	000078
+/**
+ * @note Address: 0x80329D3C
+ * @note Size: 0x78
  */
 void SMenuPauseVS::doCreateObj(JKRArchive* archive)
 {
@@ -30,10 +27,9 @@ void SMenuPauseVS::doCreateObj(JKRArchive* archive)
 	setColorBG(0, 0, 0, 180);
 }
 
-/*
- * --INFO--
- * Address:	80329DB4
- * Size:	000088
+/**
+ * @note Address: 0x80329DB4
+ * @note Size: 0x88
  */
 int SMenuPauseVS::doGetFinishState()
 {
@@ -49,17 +45,15 @@ int SMenuPauseVS::doGetFinishState()
 	return state;
 }
 
-/*
- * --INFO--
- * Address:	80329E3C
- * Size:	000004
+/**
+ * @note Address: 0x80329E3C
+ * @note Size: 0x4
  */
 void SMenuPauseVS::doUpdateActive() { }
 
-/*
- * --INFO--
- * Address:	80329E40
- * Size:	000068
+/**
+ * @note Address: 0x80329E40
+ * @note Size: 0x68
  */
 bool SMenuPauseVS::doConfirmSetScene(::Screen::SetSceneArg& arg)
 {
@@ -73,10 +67,9 @@ bool SMenuPauseVS::doConfirmSetScene(::Screen::SetSceneArg& arg)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80329EA8
- * Size:	00000C
+/**
+ * @note Address: 0x80329EA8
+ * @note Size: 0xC
  */
 void SMenuPauseVS::doSetBackupScene(::Screen::SetSceneArg& arg) { arg.mDoCreateBackup = false; }
 

@@ -10,11 +10,10 @@
 
 namespace Morimura {
 
-/*
+/**
  * __ct
- * --INFO--
- * Address:	803A3644
- * Size:	000050
+ * @note Address: 0x803A3644
+ * @note Size: 0x50
  */
 TConfirmEndWindow::TConfirmEndWindow(const char* p1)
     : og::newScreen::ObjWorldMapInfoWindow0(p1)
@@ -23,10 +22,9 @@ TConfirmEndWindow::TConfirmEndWindow(const char* p1)
 	mIsActive = false;
 }
 
-/*
- * --INFO--
- * Address:	803A3694
- * Size:	000040
+/**
+ * @note Address: 0x803A3694
+ * @note Size: 0x40
  */
 bool TConfirmEndWindow::doStart(const Screen::StartSceneArg* arg)
 {
@@ -37,10 +35,9 @@ bool TConfirmEndWindow::doStart(const Screen::StartSceneArg* arg)
 	return og::newScreen::ObjWorldMapInfoWindow0::doStart(arg);
 }
 
-/*
- * --INFO--
- * Address:	803A36D4
- * Size:	000054
+/**
+ * @note Address: 0x803A36D4
+ * @note Size: 0x54
  */
 void TConfirmEndWindow::doUpdateFadeinFinish()
 {
@@ -50,17 +47,15 @@ void TConfirmEndWindow::doUpdateFadeinFinish()
 	og::newScreen::ObjSMenuPauseVS::doUpdateFadeinFinish();
 }
 
-/*
- * --INFO--
- * Address:	803A3728
- * Size:	000020
+/**
+ * @note Address: 0x803A3728
+ * @note Size: 0x20
  */
 bool TConfirmEndWindow::doUpdateFadein() { return og::newScreen::ObjWorldMapInfoWindow0::doUpdateFadein(); }
 
-/*
- * --INFO--
- * Address:	803A3748
- * Size:	000040
+/**
+ * @note Address: 0x803A3748
+ * @note Size: 0x40
  */
 void TConfirmEndWindow::doUpdateFadeoutFinish()
 {
@@ -69,10 +64,9 @@ void TConfirmEndWindow::doUpdateFadeoutFinish()
 	mAnimText2->stop();
 }
 
-/*
- * --INFO--
- * Address:	803A3788
- * Size:	000028
+/**
+ * @note Address: 0x803A3788
+ * @note Size: 0x28
  */
 bool TConfirmEndWindow::doUpdateFadeout()
 {
@@ -80,10 +74,9 @@ bool TConfirmEndWindow::doUpdateFadeout()
 	return og::newScreen::ObjSMenuPauseVS::doUpdateFadeout();
 }
 
-/*
- * --INFO--
- * Address:	803A37B0
- * Size:	000038
+/**
+ * @note Address: 0x803A37B0
+ * @note Size: 0x38
  */
 void TConfirmEndWindow::doDraw(Graphics& gfx)
 {
@@ -94,17 +87,15 @@ void TConfirmEndWindow::doDraw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A37E8
- * Size:	000024
+/**
+ * @note Address: 0x803A37E8
+ * @note Size: 0x24
  */
 void TConfirmEndWindow::setRetireMsg(u64 msgID) { mAnimText2->setText(msgID); }
 
-/*
- * --INFO--
- * Address:	803A380C
- * Size:	000074
+/**
+ * @note Address: 0x803A380C
+ * @note Size: 0x74
  */
 TSelectExplanationWindow::TSelectExplanationWindow(JKRArchive* archive, int p2)
     : TScreenBase(archive, p2)
@@ -117,10 +108,9 @@ TSelectExplanationWindow::TSelectExplanationWindow(JKRArchive* archive, int p2)
 	mScaleMgr        = new og::Screen::ScaleMgr();
 }
 
-/*
- * --INFO--
- * Address:	803A3880
- * Size:	000194
+/**
+ * @note Address: 0x803A3880
+ * @note Size: 0x194
  */
 void TSelectExplanationWindow::update()
 {
@@ -162,10 +152,9 @@ void TSelectExplanationWindow::update()
 	mScreenObj->scaleScreen(mScaleMgr->calc());
 }
 
-/*
- * --INFO--
- * Address:	803A3A14
- * Size:	00002C
+/**
+ * @note Address: 0x803A3A14
+ * @note Size: 0x2C
  */
 void TSelectExplanationWindow::draw(Graphics& gfx, J2DPerspGraph* perspGraph)
 {
@@ -174,10 +163,9 @@ void TSelectExplanationWindow::draw(Graphics& gfx, J2DPerspGraph* perspGraph)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A3A40
- * Size:	000014
+/**
+ * @note Address: 0x803A3A40
+ * @note Size: 0x14
  */
 void TSelectExplanationWindow::openWindow()
 {
@@ -185,10 +173,9 @@ void TSelectExplanationWindow::openWindow()
 	mState         = SelWinState_Opening;
 }
 
-/*
- * --INFO--
- * Address:	803A3A54
- * Size:	000014
+/**
+ * @note Address: 0x803A3A54
+ * @note Size: 0x14
  */
 void TSelectExplanationWindow::closeWindow()
 {

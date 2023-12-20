@@ -19,10 +19,9 @@ u64 arrow[6] = { 'Nyaji01', 'Nyaji02', 'Nyaji03', 'Nyaji04', 'Nyaji05', 'Nyaji06
 
 static void _Printf(char* format) { OSReport(format, __FILE__); }
 
-/*
- * --INFO--
- * Address:	8040284C
- * Size:	00008C
+/**
+ * @note Address: 0x8040284C
+ * @note Size: 0x8C
  */
 DispDayEndResultItem::DispDayEndResultItem(Game::Result::TNode* resultNode, int treasures, int pokos, bool payDebt)
 {
@@ -44,10 +43,9 @@ DispDayEndResultItem::DispDayEndResultItem(Game::Result::TNode* resultNode, int 
 	mHasNothing       = false;
 }
 
-/*
- * --INFO--
- * Address:	804028D8
- * Size:	000294
+/**
+ * @note Address: 0x804028D8
+ * @note Size: 0x294
  */
 IncP::IncP()
 {
@@ -107,10 +105,9 @@ IncP::IncP()
 	Game::playData->setPikminCounts_Yesterday();
 }
 
-/*
- * --INFO--
- * Address:	80402B6C
- * Size:	000030
+/**
+ * @note Address: 0x80402B6C
+ * @note Size: 0x30
  */
 DispDayEndResultIncP::DispDayEndResultIncP(const IncP* incP)
 {
@@ -119,10 +116,9 @@ DispDayEndResultIncP::DispDayEndResultIncP(const IncP* incP)
 	_0C         = 0;
 }
 
-/*
- * --INFO--
- * Address:	80402B9C
- * Size:	000050
+/**
+ * @note Address: 0x80402B9C
+ * @note Size: 0x50
  */
 DispDayEndResultMail::DispDayEndResultMail(JKRHeap* heap, MailCategory category)
 {
@@ -135,10 +131,9 @@ DispDayEndResultMail::DispDayEndResultMail(JKRHeap* heap, MailCategory category)
 	mDayCount     = Game::gameSystem->mTimeMgr->mDayCount;
 }
 
-/*
- * --INFO--
- * Address: ........
- * Size:	0000b4
+/**
+ * @note Address: N/A
+ * @note Size: 0xb4
  */
 ObjDayEndResultBase::ObjDayEndResultBase()
 {
@@ -169,10 +164,9 @@ ObjDayEndResultBase::ObjDayEndResultBase()
 	mFlags             = 0;
 }
 
-/*
- * --INFO--
- * Address:	80402BEC
- * Size:	0000FC
+/**
+ * @note Address: 0x80402BEC
+ * @note Size: 0xFC
  */
 void ObjDayEndResultBase::doCreate(JKRArchive* archive)
 {
@@ -189,10 +183,9 @@ void ObjDayEndResultBase::doCreate(JKRArchive* archive)
 	mNextBtnFadePane->set_init_alpha(0);
 }
 
-/*
- * --INFO--
- * Address:	80402CE8
- * Size:	000098
+/**
+ * @note Address: 0x80402CE8
+ * @note Size: 0x98
  */
 bool ObjDayEndResultBase::doStart(const ::Screen::StartSceneArg* sceneArg)
 {
@@ -211,10 +204,9 @@ bool ObjDayEndResultBase::doStart(const ::Screen::StartSceneArg* sceneArg)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80402D80
- * Size:	000044
+/**
+ * @note Address: 0x80402D80
+ * @note Size: 0x44
  */
 void ObjDayEndResultBase::doUpdateFinish()
 {
@@ -223,10 +215,9 @@ void ObjDayEndResultBase::doUpdateFinish()
 	PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_RECEIPT, 0);
 }
 
-/*
- * --INFO--
- * Address:	80402DC4
- * Size:	0000F4
+/**
+ * @note Address: 0x80402DC4
+ * @note Size: 0xF4
  */
 bool ObjDayEndResultBase::doUpdateFadein()
 {
@@ -241,10 +232,9 @@ bool ObjDayEndResultBase::doUpdateFadein()
 	return (u8)(mMainAnimTimer1 >= mFadeinMaxFrame);
 }
 
-/*
- * --INFO--
- * Address:	80402EB8
- * Size:	000010
+/**
+ * @note Address: 0x80402EB8
+ * @note Size: 0x10
  */
 void ObjDayEndResultBase::doUpdateFadeinFinish()
 {
@@ -252,10 +242,9 @@ void ObjDayEndResultBase::doUpdateFadeinFinish()
 	_95 = 0;
 }
 
-/*
- * --INFO--
- * Address:	80402EC8
- * Size:	0000FC
+/**
+ * @note Address: 0x80402EC8
+ * @note Size: 0xFC
  */
 bool ObjDayEndResultBase::doUpdateFadeout()
 {
@@ -270,10 +259,9 @@ bool ObjDayEndResultBase::doUpdateFadeout()
 	return (u8)(mMainAnimTimer1 >= mFadeoutMaxFrame);
 }
 
-/*
- * --INFO--
- * Address:	80402FC4
- * Size:	000118
+/**
+ * @note Address: 0x80402FC4
+ * @note Size: 0x118
  */
 void ObjDayEndResultBase::doDraw(Graphics& gfx)
 {
@@ -289,10 +277,9 @@ void ObjDayEndResultBase::doDraw(Graphics& gfx)
 	mScreenMain->setXY(msVal._18, 0.0f);
 }
 
-/*
- * --INFO--
- * Address:	804030DC
- * Size:	000280
+/**
+ * @note Address: 0x804030DC
+ * @note Size: 0x280
  */
 void ObjDayEndResultBase::updateCommon()
 {
@@ -347,10 +334,9 @@ void ObjDayEndResultBase::updateCommon()
 	mScreenTitle->update();
 }
 
-/*
- * --INFO--
- * Address:	8040335C
- * Size:	000098
+/**
+ * @note Address: 0x8040335C
+ * @note Size: 0x98
  */
 void ObjDayEndResultBase::setFadeinFrm()
 {
@@ -365,10 +351,9 @@ void ObjDayEndResultBase::setFadeinFrm()
 	mMainAnimTimer1 = mFadeinMinFrame;
 }
 
-/*
- * --INFO--
- * Address:	804033F4
- * Size:	000098
+/**
+ * @note Address: 0x804033F4
+ * @note Size: 0x98
  */
 void ObjDayEndResultBase::setFadeoutFrm()
 {
@@ -383,10 +368,9 @@ void ObjDayEndResultBase::setFadeoutFrm()
 	mMainAnimTimer1 = mFadeoutMinFrame;
 }
 
-/*
- * --INFO--
- * Address:	8040348C
- * Size:	000144
+/**
+ * @note Address: 0x8040348C
+ * @note Size: 0x144
  */
 ObjDayEndResultItem::ObjDayEndResultItem()
 {
@@ -418,10 +402,9 @@ ObjDayEndResultItem::ObjDayEndResultItem()
 	mScrollUpDelay          = 0;
 }
 
-/*
- * --INFO--
- * Address:	8040367C
- * Size:	0007AC
+/**
+ * @note Address: 0x8040367C
+ * @note Size: 0x7AC
  */
 void ObjDayEndResultItem::doCreate(JKRArchive* archive)
 {
@@ -530,10 +513,9 @@ void ObjDayEndResultItem::doCreate(JKRArchive* archive)
 	dispResult->mItem.mHasNothing = true;
 }
 
-/*
- * --INFO--
- * Address:	80403E28
- * Size:	000108
+/**
+ * @note Address: 0x80403E28
+ * @note Size: 0x108
  */
 bool ObjDayEndResultItem::doStart(const ::Screen::StartSceneArg* sceneArg)
 {
@@ -560,10 +542,9 @@ bool ObjDayEndResultItem::doStart(const ::Screen::StartSceneArg* sceneArg)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80403F30
- * Size:	00011C
+/**
+ * @note Address: 0x80403F30
+ * @note Size: 0x11C
  */
 bool ObjDayEndResultItem::doUpdateFadein()
 {
@@ -586,10 +567,9 @@ bool ObjDayEndResultItem::doUpdateFadein()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	8040404C
- * Size:	0002CC
+/**
+ * @note Address: 0x8040404C
+ * @note Size: 0x2CC
  */
 bool ObjDayEndResultItem::doUpdate()
 {
@@ -657,10 +637,9 @@ bool ObjDayEndResultItem::doUpdate()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80404318
- * Size:	000124
+/**
+ * @note Address: 0x80404318
+ * @note Size: 0x124
  */
 bool ObjDayEndResultItem::doUpdateFadeout()
 {
@@ -683,10 +662,9 @@ bool ObjDayEndResultItem::doUpdateFadeout()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	8040443C
- * Size:	0006C4
+/**
+ * @note Address: 0x8040443C
+ * @note Size: 0x6C4
  */
 void ObjDayEndResultItem::doDraw(Graphics& gfx)
 {
@@ -1244,10 +1222,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80404B00
- * Size:	0001D4
+/**
+ * @note Address: 0x80404B00
+ * @note Size: 0x1D4
  */
 void ObjDayEndResultItem::statusNormal()
 {
@@ -1303,10 +1280,9 @@ void ObjDayEndResultItem::statusNormal()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80404CD4
- * Size:	0000F4
+/**
+ * @note Address: 0x80404CD4
+ * @note Size: 0xF4
  */
 void ObjDayEndResultItem::statusScrollUp()
 {
@@ -1320,10 +1296,9 @@ void ObjDayEndResultItem::statusScrollUp()
 	PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_ROLL, 0);
 }
 
-/*
- * --INFO--
- * Address:	80404DC8
- * Size:	0000F4
+/**
+ * @note Address: 0x80404DC8
+ * @note Size: 0xF4
  */
 void ObjDayEndResultItem::statusScrollDown()
 {
@@ -1337,10 +1312,9 @@ void ObjDayEndResultItem::statusScrollDown()
 	PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_ROLL, 0);
 }
 
-/*
- * --INFO--
- * Address:	80404EBC
- * Size:	0001D4
+/**
+ * @note Address: 0x80404EBC
+ * @note Size: 0x1D4
  */
 void ObjDayEndResultItem::statusForceScroll()
 {
@@ -1374,10 +1348,9 @@ void ObjDayEndResultItem::statusForceScroll()
 	PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_ROLL, 0);
 }
 
-/*
- * --INFO--
- * Address:	80405090
- * Size:	00001C
+/**
+ * @note Address: 0x80405090
+ * @note Size: 0x1C
  */
 void ObjDayEndResultItem::statusDrumRoll()
 {
@@ -1385,10 +1358,9 @@ void ObjDayEndResultItem::statusDrumRoll()
 	mStatus          = ITEMSTATUS_TotalValue;
 }
 
-/*
- * --INFO--
- * Address:	804050AC
- * Size:	0000C8
+/**
+ * @note Address: 0x804050AC
+ * @note Size: 0xC8
  */
 void ObjDayEndResultItem::statusTotalValue()
 {
@@ -1409,10 +1381,9 @@ void ObjDayEndResultItem::statusTotalValue()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80405174
- * Size:	0003C8
+/**
+ * @note Address: 0x80405174
+ * @note Size: 0x3C8
  */
 void ObjDayEndResultItem::updateCommon()
 {
@@ -1437,10 +1408,9 @@ void ObjDayEndResultItem::updateCommon()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8040553C
- * Size:	00019C
+/**
+ * @note Address: 0x8040553C
+ * @note Size: 0x19C
  */
 ObjDayEndResultIncP::ObjDayEndResultIncP()
 {
@@ -1480,10 +1450,9 @@ ObjDayEndResultIncP::ObjDayEndResultIncP()
 	mArrowAngles[5]       = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	804056D8
- * Size:	001374
+/**
+ * @note Address: 0x804056D8
+ * @note Size: 0x1374
  */
 void ObjDayEndResultIncP::doCreate(JKRArchive* arc)
 {
@@ -1701,10 +1670,9 @@ void ObjDayEndResultIncP::doCreate(JKRArchive* arc)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80406A4C
- * Size:	00017C
+/**
+ * @note Address: 0x80406A4C
+ * @note Size: 0x17C
  */
 bool ObjDayEndResultIncP::doUpdateFadein()
 {
@@ -1726,10 +1694,9 @@ bool ObjDayEndResultIncP::doUpdateFadein()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80406BC8
- * Size:	00047C
+/**
+ * @note Address: 0x80406BC8
+ * @note Size: 0x47C
  */
 bool ObjDayEndResultIncP::doUpdate()
 {
@@ -1823,10 +1790,9 @@ bool ObjDayEndResultIncP::doUpdate()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80407044
- * Size:	000184
+/**
+ * @note Address: 0x80407044
+ * @note Size: 0x184
  */
 bool ObjDayEndResultIncP::doUpdateFadeout()
 {
@@ -1847,10 +1813,9 @@ bool ObjDayEndResultIncP::doUpdateFadeout()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	804071C8
- * Size:	000148
+/**
+ * @note Address: 0x804071C8
+ * @note Size: 0x148
  */
 void ObjDayEndResultIncP::doDraw(Graphics& gfx)
 {
@@ -1860,10 +1825,9 @@ void ObjDayEndResultIncP::doDraw(Graphics& gfx)
 	mScreenMain->draw(gfx, gfx.mOrthoGraph);
 }
 
-/*
- * --INFO--
- * Address:	80407310
- * Size:	000050
+/**
+ * @note Address: 0x80407310
+ * @note Size: 0x50
  */
 void ObjDayEndResultIncP::statusNormal()
 {
@@ -1873,10 +1837,9 @@ void ObjDayEndResultIncP::statusNormal()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80407360
- * Size:	000100
+/**
+ * @note Address: 0x80407360
+ * @note Size: 0x100
  */
 void ObjDayEndResultIncP::statusFadeout()
 {
@@ -1905,10 +1868,9 @@ void ObjDayEndResultIncP::statusFadeout()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80407460
- * Size:	000050
+/**
+ * @note Address: 0x80407460
+ * @note Size: 0x50
  */
 void ObjDayEndResultIncP::statusDecP()
 {
@@ -1918,10 +1880,9 @@ void ObjDayEndResultIncP::statusDecP()
 	}
 }
 
-/*
- * --INFO--
- * Address:	804074B0
- * Size:	000064
+/**
+ * @note Address: 0x804074B0
+ * @note Size: 0x64
  */
 void ObjDayEndResultIncP::statusFadein()
 {
@@ -1940,10 +1901,9 @@ void ObjDayEndResultIncP::statusFadein()
 	mStatus = INCPSTATUS_Normal;
 }
 
-/*
- * --INFO--
- * Address:	80407514
- * Size:	000140
+/**
+ * @note Address: 0x80407514
+ * @note Size: 0x140
  */
 void ObjDayEndResultIncP::statusSlot()
 {
@@ -1972,10 +1932,9 @@ void ObjDayEndResultIncP::statusSlot()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80407654
- * Size:	00019C
+/**
+ * @note Address: 0x80407654
+ * @note Size: 0x19C
  */
 void ObjDayEndResultIncP::statusDecPSlot()
 {
@@ -2012,10 +1971,9 @@ void ObjDayEndResultIncP::statusDecPSlot()
 	}
 }
 static const int someDumbUnusedArray[0x40] = { 0 }; // not actually unused according to pikhacker
-/*
- * --INFO--
- * Address:	804077F0
- * Size:	000088
+/**
+ * @note Address: 0x804077F0
+ * @note Size: 0x88
  */
 void ObjDayEndResultIncP::callIncPSE(int id)
 {
@@ -2083,10 +2041,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80407878
- * Size:	00004C
+/**
+ * @note Address: 0x80407878
+ * @note Size: 0x4C
  */
 void ObjDayEndResultIncP::callDecPSE(int id)
 {
@@ -2100,10 +2057,9 @@ void ObjDayEndResultIncP::callDecPSE(int id)
 	sys->playSystemSe(soundID, 0);
 }
 
-/*
- * --INFO--
- * Address:	804078C4
- * Size:	000188
+/**
+ * @note Address: 0x804078C4
+ * @note Size: 0x188
  */
 void ObjDayEndResultIncP::effectCommon()
 {
@@ -2135,10 +2091,9 @@ void ObjDayEndResultIncP::effectCommon()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80407A4C
- * Size:	00036C
+/**
+ * @note Address: 0x80407A4C
+ * @note Size: 0x36C
  */
 void ObjDayEndResultIncP::updateCommon()
 {
@@ -2154,10 +2109,9 @@ void ObjDayEndResultIncP::updateCommon()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80407DB8
- * Size:	0008B4
+/**
+ * @note Address: 0x80407DB8
+ * @note Size: 0x8B4
  */
 void ObjDayEndResultMail::doCreate(JKRArchive* arc)
 {
@@ -2868,10 +2822,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8040867C
- * Size:	000170
+/**
+ * @note Address: 0x8040867C
+ * @note Size: 0x170
  */
 bool ObjDayEndResultMail::doStart(const ::Screen::StartSceneArg* arg)
 {
@@ -2897,10 +2850,9 @@ bool ObjDayEndResultMail::doStart(const ::Screen::StartSceneArg* arg)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	804087EC
- * Size:	0001B8
+/**
+ * @note Address: 0x804087EC
+ * @note Size: 0x1B8
  */
 bool ObjDayEndResultMail::doUpdateFadein()
 {
@@ -2926,10 +2878,9 @@ bool ObjDayEndResultMail::doUpdateFadein()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	804089A4
- * Size:	000280
+/**
+ * @note Address: 0x804089A4
+ * @note Size: 0x280
  */
 bool ObjDayEndResultMail::doUpdate()
 {
@@ -2998,10 +2949,9 @@ bool ObjDayEndResultMail::doUpdate()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80408C24
- * Size:	0001B4
+/**
+ * @note Address: 0x80408C24
+ * @note Size: 0x1B4
  */
 bool ObjDayEndResultMail::doUpdateFadeout()
 {
@@ -3027,10 +2977,9 @@ bool ObjDayEndResultMail::doUpdateFadeout()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80408DD8
- * Size:	000214
+/**
+ * @note Address: 0x80408DD8
+ * @note Size: 0x214
  */
 void ObjDayEndResultMail::statusNormal()
 {
@@ -3066,10 +3015,9 @@ void ObjDayEndResultMail::statusNormal()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80408FEC
- * Size:	0000A8
+/**
+ * @note Address: 0x80408FEC
+ * @note Size: 0xA8
  */
 void ObjDayEndResultMail::statusFadeoutToLeft()
 {
@@ -3091,10 +3039,9 @@ void ObjDayEndResultMail::statusFadeoutToLeft()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80409094
- * Size:	000038
+/**
+ * @note Address: 0x80409094
+ * @note Size: 0x38
  */
 void ObjDayEndResultMail::statusFadeinFromLeft()
 {
@@ -3106,10 +3053,9 @@ void ObjDayEndResultMail::statusFadeinFromLeft()
 	}
 }
 
-/*
- * --INFO--
- * Address:	804090CC
- * Size:	0000B8
+/**
+ * @note Address: 0x804090CC
+ * @note Size: 0xB8
  */
 void ObjDayEndResultMail::statusFadeoutToRight()
 {
@@ -3131,10 +3077,9 @@ void ObjDayEndResultMail::statusFadeoutToRight()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80409184
- * Size:	000038
+/**
+ * @note Address: 0x80409184
+ * @note Size: 0x38
  */
 void ObjDayEndResultMail::statusFadeinFromRight()
 {
@@ -3146,10 +3091,9 @@ void ObjDayEndResultMail::statusFadeinFromRight()
 	}
 }
 
-/*
- * --INFO--
- * Address:	804091BC
- * Size:	00012C
+/**
+ * @note Address: 0x804091BC
+ * @note Size: 0x12C
  */
 void ObjDayEndResultMail::statusWaitOpen()
 {
@@ -3189,10 +3133,9 @@ void ObjDayEndResultMail::statusWaitOpen()
 	mStatus = MAILSTATUS_OpenW;
 }
 
-/*
- * --INFO--
- * Address:	804092E8
- * Size:	0000D4
+/**
+ * @note Address: 0x804092E8
+ * @note Size: 0xD4
  */
 void ObjDayEndResultMail::statusOpenW()
 {
@@ -3214,10 +3157,9 @@ void ObjDayEndResultMail::statusOpenW()
 	changeAlpha();
 }
 
-/*
- * --INFO--
- * Address:	804093BC
- * Size:	0000CC
+/**
+ * @note Address: 0x804093BC
+ * @note Size: 0xCC
  */
 void ObjDayEndResultMail::statusOpenH()
 {
@@ -3238,10 +3180,9 @@ void ObjDayEndResultMail::statusOpenH()
 	changeAlpha();
 }
 
-/*
- * --INFO--
- * Address:	80409488
- * Size:	000480
+/**
+ * @note Address: 0x80409488
+ * @note Size: 0x480
  */
 void ObjDayEndResultMail::changeMail()
 {
@@ -3558,17 +3499,15 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80409908
- * Size:	000064
+/**
+ * @note Address: 0x80409908
+ * @note Size: 0x64
  */
 void ObjDayEndResultMail::changeAlpha() { mScreenCharacter->search('NitemW')->setAlpha(255 - mAlpha); }
 
-/*
- * --INFO--
- * Address:	8040996C
- * Size:	0001C4
+/**
+ * @note Address: 0x8040996C
+ * @note Size: 0x1C4
  */
 void ObjDayEndResultMail::doDraw(Graphics& gfx)
 {
@@ -3587,10 +3526,9 @@ void ObjDayEndResultMail::doDraw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80409B30
- * Size:	000288
+/**
+ * @note Address: 0x80409B30
+ * @note Size: 0x288
  */
 void ObjDayEndResultMail::updateCommon()
 {
@@ -3600,10 +3538,9 @@ void ObjDayEndResultMail::updateCommon()
 
 inline u64 J2DPane::getTagName() const { return mTag; }
 
-/*
- * --INFO--
- * Address:	80409DB8
- * Size:	0003BC
+/**
+ * @note Address: 0x80409DB8
+ * @note Size: 0x3BC
  */
 void ObjDayEndResultMail::setCallBackMessage(P2DScreen::Mgr* mgr, J2DPane* pane)
 {
@@ -3625,17 +3562,15 @@ void ObjDayEndResultMail::setCallBackMessage(P2DScreen::Mgr* mgr, J2DPane* pane)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8040A174
- * Size:	000024
+/**
+ * @note Address: 0x8040A174
+ * @note Size: 0x24
  */
 void ObjDayEndResultMail::setCallBackMessage(P2DScreen::Mgr* mgr) { setCallBackMessage(mgr, mgr); }
 
-/*
- * --INFO--
- * Address:	8040A198
- * Size:	00005C
+/**
+ * @note Address: 0x8040A198
+ * @note Size: 0x5C
  */
 bool ObjDayEndResultMail::skipped() const
 {
@@ -3643,10 +3578,9 @@ bool ObjDayEndResultMail::skipped() const
 	return scene->mMailFlags[mMaxDay - mCurrentDay] == -2;
 }
 
-/*
- * --INFO--
- * Address:	8040A1F4
- * Size:	000068
+/**
+ * @note Address: 0x8040A1F4
+ * @note Size: 0x68
  */
 ObjDayEndResultTitl::ObjDayEndResultTitl()
 {
@@ -3659,10 +3593,9 @@ ObjDayEndResultTitl::ObjDayEndResultTitl()
 	mAlpha         = 0;
 }
 
-/*
- * --INFO--
- * Address:	8040A25C
- * Size:	0001BC
+/**
+ * @note Address: 0x8040A25C
+ * @note Size: 0x1BC
  */
 void ObjDayEndResultTitl::doCreate(JKRArchive* arc)
 {
@@ -3681,10 +3614,9 @@ void ObjDayEndResultTitl::doCreate(JKRArchive* arc)
 	mScreenMain->setBlendInfo(info, tags);
 }
 
-/*
- * --INFO--
- * Address:	8040A418
- * Size:	000078
+/**
+ * @note Address: 0x8040A418
+ * @note Size: 0x78
  */
 bool ObjDayEndResultTitl::doUpdateFadein()
 {
@@ -3700,10 +3632,9 @@ bool ObjDayEndResultTitl::doUpdateFadein()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8040A490
- * Size:	000064
+/**
+ * @note Address: 0x8040A490
+ * @note Size: 0x64
  */
 bool ObjDayEndResultTitl::doUpdate()
 {
@@ -3715,10 +3646,9 @@ bool ObjDayEndResultTitl::doUpdate()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8040A4F4
- * Size:	000074
+/**
+ * @note Address: 0x8040A4F4
+ * @note Size: 0x74
  */
 bool ObjDayEndResultTitl::doUpdateFadeout()
 {
@@ -3735,10 +3665,9 @@ bool ObjDayEndResultTitl::doUpdateFadeout()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8040A568
- * Size:	0000CC
+/**
+ * @note Address: 0x8040A568
+ * @note Size: 0xCC
  */
 void ObjDayEndResultTitl::doUpdateFadeoutFinish()
 {
@@ -3749,10 +3678,9 @@ void ObjDayEndResultTitl::doUpdateFadeoutFinish()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8040A634
- * Size:	000144
+/**
+ * @note Address: 0x8040A634
+ * @note Size: 0x144
  */
 void ObjDayEndResultTitl::doDraw(Graphics& gfx)
 {
@@ -3770,10 +3698,9 @@ void ObjDayEndResultTitl::doDraw(Graphics& gfx)
 	mScreenMain->draw(gfx, gfx.mOrthoGraph);
 }
 
-/*
- * --INFO--
- * Address:	8040A778
- * Size:	0000E0
+/**
+ * @note Address: 0x8040A778
+ * @note Size: 0xE0
  */
 void ObjDayEndResultTitl::updateCommon()
 {
@@ -3792,10 +3719,9 @@ void ObjDayEndResultTitl::updateCommon()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8040A858
- * Size:	000048
+/**
+ * @note Address: 0x8040A858
+ * @note Size: 0x48
  */
 SceneDayEndResultMail::SceneDayEndResultMail()
 {
@@ -3803,10 +3729,9 @@ SceneDayEndResultMail::SceneDayEndResultMail()
 	mIconArchive = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8040A8A0
- * Size:	00058C
+/**
+ * @note Address: 0x8040A8A0
+ * @note Size: 0x58C
  */
 void SceneDayEndResultMail::doUserCallBackFunc(Resource::MgrCommand* mgr)
 {

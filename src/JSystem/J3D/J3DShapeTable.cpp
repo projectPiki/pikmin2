@@ -1,10 +1,9 @@
 #include "JSystem/J3D/J3DShape.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	80089664
- * Size:	000064
+/**
+ * @note Address: 0x80089664
+ * @note Size: 0x64
  */
 void J3DShapeTable::initShapeNodes(J3DDrawMtxData* drawMtxData, J3DVertexData* vtxData)
 {
@@ -17,10 +16,9 @@ void J3DShapeTable::initShapeNodes(J3DDrawMtxData* drawMtxData, J3DVertexData* v
 	}
 }
 
-/*
- * --INFO--
- * Address:	800896C8
- * Size:	000094
+/**
+ * @note Address: 0x800896C8
+ * @note Size: 0x94
  */
 void J3DShapeTable::sortVcdVatCmd()
 {

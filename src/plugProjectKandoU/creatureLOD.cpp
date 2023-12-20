@@ -8,10 +8,9 @@
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	801D7808
- * Size:	00001C
+/**
+ * @note Address: 0x801D7808
+ * @note Size: 0x1C
  */
 AILODParm::AILODParm()
     : mFar(0.07f)
@@ -20,10 +19,9 @@ AILODParm::AILODParm()
 {
 }
 
-/*
- * --INFO--
- * Address:	801D7824
- * Size:	000018
+/**
+ * @note Address: 0x801D7824
+ * @note Size: 0x18
  */
 AILOD::AILOD()
     : mFlags(AILOD_NULL)
@@ -32,10 +30,9 @@ AILOD::AILOD()
 	mFlags = AILOD_IsVisVP0;
 }
 
-/*
- * --INFO--
- * Address:	801D783C
- * Size:	0003A8
+/**
+ * @note Address: 0x801D783C
+ * @note Size: 0x3A8
  */
 void Creature::updateLOD(Game::AILODParm& parm)
 {
@@ -410,10 +407,9 @@ lbl_801D7BB8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D7BE4
- * Size:	000258
+/**
+ * @note Address: 0x801D7BE4
+ * @note Size: 0x258
  */
 void Creature::drawLODInfo(Graphics& gfx, Vector3f& position)
 {

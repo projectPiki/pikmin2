@@ -8,10 +8,9 @@ namespace Imomushi {
 
 const char statename[] = "246-ImomushiState";
 
-/*
- * --INFO--
- * Address:	802BA0D8
- * Size:	0004D4
+/**
+ * @note Address: 0x802BA0D8
+ * @note Size: 0x4D4
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -34,10 +33,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateZukanMove);
 }
 
-/*
- * --INFO--
- * Address:	802BA5AC
- * Size:	000050
+/**
+ * @note Address: 0x802BA5AC
+ * @note Size: 0x50
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -47,10 +45,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->startMotion(IMOMUSHIANIM_Dead, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802BA5FC
- * Size:	000044
+/**
+ * @note Address: 0x802BA5FC
+ * @note Size: 0x44
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -62,17 +59,15 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802BA640
- * Size:	000004
+/**
+ * @note Address: 0x802BA640
+ * @note Size: 0x4
  */
 void StateDead::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802BA644
- * Size:	00004C
+/**
+ * @note Address: 0x802BA644
+ * @note Size: 0x4C
  */
 void StateFallDive::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -83,10 +78,9 @@ void StateFallDive::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->startMotion(IMOMUSHIANIM_FallDive, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802BA690
- * Size:	000140
+/**
+ * @note Address: 0x802BA690
+ * @note Size: 0x140
  */
 void StateFallDive::exec(EnemyBase* enemy)
 {
@@ -106,17 +100,15 @@ void StateFallDive::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802BA7D0
- * Size:	000004
+/**
+ * @note Address: 0x802BA7D0
+ * @note Size: 0x4
  */
 void StateFallDive::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802BA7D4
- * Size:	00004C
+/**
+ * @note Address: 0x802BA7D4
+ * @note Size: 0x4C
  */
 void StateFallMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -127,10 +119,9 @@ void StateFallMove::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->startMotion(IMOMUSHIANIM_FallMove, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802BA820
- * Size:	000178
+/**
+ * @note Address: 0x802BA820
+ * @note Size: 0x178
  */
 void StateFallMove::exec(EnemyBase* enemy)
 {
@@ -152,17 +143,15 @@ void StateFallMove::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802BA998
- * Size:	000004
+/**
+ * @note Address: 0x802BA998
+ * @note Size: 0x4
  */
 void StateFallMove::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802BA99C
- * Size:	0000C8
+/**
+ * @note Address: 0x802BA99C
+ * @note Size: 0xC8
  */
 void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -182,10 +171,9 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->stopMotion();
 }
 
-/*
- * --INFO--
- * Address:	802BAA64
- * Size:	0000A8
+/**
+ * @note Address: 0x802BAA64
+ * @note Size: 0xA8
  */
 void StateStay::exec(EnemyBase* enemy)
 {
@@ -199,10 +187,9 @@ void StateStay::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802BAB0C
- * Size:	000090
+/**
+ * @note Address: 0x802BAB0C
+ * @note Size: 0x90
  */
 void StateStay::cleanup(EnemyBase* enemy)
 {
@@ -217,10 +204,9 @@ void StateStay::cleanup(EnemyBase* enemy)
 	imomushi->disableEvent(0, EB_ModelHidden);
 }
 
-/*
- * --INFO--
- * Address:	802BAB9C
- * Size:	000080
+/**
+ * @note Address: 0x802BAB9C
+ * @note Size: 0x80
  */
 void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -235,10 +221,9 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->createAppearEffect();
 }
 
-/*
- * --INFO--
- * Address:	802BAC1C
- * Size:	0000D8
+/**
+ * @note Address: 0x802BAC1C
+ * @note Size: 0xD8
  */
 void StateAppear::exec(EnemyBase* enemy)
 {
@@ -254,10 +239,9 @@ void StateAppear::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802BACF4
- * Size:	00003C
+/**
+ * @note Address: 0x802BACF4
+ * @note Size: 0x3C
  */
 void StateAppear::cleanup(EnemyBase* enemy)
 {
@@ -266,10 +250,9 @@ void StateAppear::cleanup(EnemyBase* enemy)
 	imomushi->disableEvent(0, EB_NoInterrupt);
 }
 
-/*
- * --INFO--
- * Address:	802BAD30
- * Size:	000074
+/**
+ * @note Address: 0x802BAD30
+ * @note Size: 0x74
  */
 void StateDive::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -283,10 +266,9 @@ void StateDive::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->createDisAppearEffect();
 }
 
-/*
- * --INFO--
- * Address:	802BADA4
- * Size:	000050
+/**
+ * @note Address: 0x802BADA4
+ * @note Size: 0x50
  */
 void StateDive::exec(EnemyBase* enemy)
 {
@@ -296,10 +278,9 @@ void StateDive::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802BADF4
- * Size:	00003C
+/**
+ * @note Address: 0x802BADF4
+ * @note Size: 0x3C
  */
 void StateDive::cleanup(EnemyBase* enemy)
 {
@@ -308,10 +289,9 @@ void StateDive::cleanup(EnemyBase* enemy)
 	imomushi->disableEvent(0, EB_BitterImmune);
 }
 
-/*
- * --INFO--
- * Address:	802BAE30
- * Size:	000048
+/**
+ * @note Address: 0x802BAE30
+ * @note Size: 0x48
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -321,10 +301,9 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->startMoveTraceEffect();
 }
 
-/*
- * --INFO--
- * Address:	802BAE78
- * Size:	000238
+/**
+ * @note Address: 0x802BAE78
+ * @note Size: 0x238
  */
 void StateMove::exec(EnemyBase* enemy)
 {
@@ -379,10 +358,9 @@ void StateMove::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802BB0B0
- * Size:	000024
+/**
+ * @note Address: 0x802BB0B0
+ * @note Size: 0x24
  */
 void StateMove::cleanup(EnemyBase* enemy)
 {
@@ -390,10 +368,9 @@ void StateMove::cleanup(EnemyBase* enemy)
 	imomushi->finishMoveTraceEffect();
 }
 
-/*
- * --INFO--
- * Address:	802BB0D4
- * Size:	000048
+/**
+ * @note Address: 0x802BB0D4
+ * @note Size: 0x48
  */
 void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -403,10 +380,9 @@ void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->startMoveTraceEffect();
 }
 
-/*
- * --INFO--
- * Address:	802BB11C
- * Size:	00014C
+/**
+ * @note Address: 0x802BB11C
+ * @note Size: 0x14C
  */
 void StateGoHome::exec(EnemyBase* enemy)
 // does NOT match
@@ -439,10 +415,9 @@ void StateGoHome::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802BB268
- * Size:	000024
+/**
+ * @note Address: 0x802BB268
+ * @note Size: 0x24
  */
 void StateGoHome::cleanup(EnemyBase* enemy)
 {
@@ -450,10 +425,9 @@ void StateGoHome::cleanup(EnemyBase* enemy)
 	imomushi->finishMoveTraceEffect();
 }
 
-/*
- * --INFO--
- * Address:	802BB28C
- * Size:	00014C
+/**
+ * @note Address: 0x802BB28C
+ * @note Size: 0x14C
  */
 void StateClimb::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -473,10 +447,9 @@ void StateClimb::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->_2E4 = Vector3f(-sin, 0.0f, -cos);
 }
 
-/*
- * --INFO--
- * Address:	802BB3D8
- * Size:	000170
+/**
+ * @note Address: 0x802BB3D8
+ * @note Size: 0x170
  */
 void StateClimb::exec(EnemyBase* enemy)
 {
@@ -517,10 +490,9 @@ void StateClimb::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802BB548
- * Size:	000024
+/**
+ * @note Address: 0x802BB548
+ * @note Size: 0x24
  */
 void StateClimb::cleanup(EnemyBase* enemy)
 {
@@ -528,10 +500,9 @@ void StateClimb::cleanup(EnemyBase* enemy)
 	imomushi->endStick();
 }
 
-/*
- * --INFO--
- * Address:	802BB56C
- * Size:	00009C
+/**
+ * @note Address: 0x802BB56C
+ * @note Size: 0x9C
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -547,10 +518,9 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->startMotion(IMOMUSHIANIM_Eat, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802BB608
- * Size:	00015C
+/**
+ * @note Address: 0x802BB608
+ * @note Size: 0x15C
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
@@ -587,10 +557,9 @@ void StateAttack::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802BB764
- * Size:	000024
+/**
+ * @note Address: 0x802BB764
+ * @note Size: 0x24
  */
 void StateAttack::cleanup(EnemyBase* enemy)
 {
@@ -598,10 +567,9 @@ void StateAttack::cleanup(EnemyBase* enemy)
 	imomushi->endStick();
 }
 
-/*
- * --INFO--
- * Address:	802BB788
- * Size:	000094
+/**
+ * @note Address: 0x802BB788
+ * @note Size: 0x94
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -616,10 +584,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->startMotion(IMOMUSHIANIM_Climb, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802BB81C
- * Size:	000138
+/**
+ * @note Address: 0x802BB81C
+ * @note Size: 0x138
  */
 void StateWait::exec(EnemyBase* enemy)
 {
@@ -655,10 +622,9 @@ void StateWait::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802BB954
- * Size:	000024
+/**
+ * @note Address: 0x802BB954
+ * @note Size: 0x24
  */
 void StateWait::cleanup(EnemyBase* enemy)
 {
@@ -666,10 +632,9 @@ void StateWait::cleanup(EnemyBase* enemy)
 	imomushi->endStick();
 }
 
-/*
- * --INFO--
- * Address:	802BB978
- * Size:	00006C
+/**
+ * @note Address: 0x802BB978
+ * @note Size: 0x6C
  */
 void StateZukanStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -682,10 +647,9 @@ void StateZukanStay::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->stopMotion();
 }
 
-/*
- * --INFO--
- * Address:	802BB9E4
- * Size:	000058
+/**
+ * @note Address: 0x802BB9E4
+ * @note Size: 0x58
  */
 void StateZukanStay::exec(EnemyBase* enemy)
 {
@@ -696,10 +660,9 @@ void StateZukanStay::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802BBA3C
- * Size:	000030
+/**
+ * @note Address: 0x802BBA3C
+ * @note Size: 0x30
  */
 void StateZukanStay::cleanup(EnemyBase* enemy)
 {
@@ -708,10 +671,9 @@ void StateZukanStay::cleanup(EnemyBase* enemy)
 	imomushi->hardConstraintOff();
 }
 
-/*
- * --INFO--
- * Address:	802BBA6C
- * Size:	00005C
+/**
+ * @note Address: 0x802BBA6C
+ * @note Size: 0x5C
  */
 void StateZukanAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -722,10 +684,9 @@ void StateZukanAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->createAppearEffect();
 }
 
-/*
- * --INFO--
- * Address:	802BBAC8
- * Size:	000050
+/**
+ * @note Address: 0x802BBAC8
+ * @note Size: 0x50
  */
 void StateZukanAppear::exec(EnemyBase* enemy)
 {
@@ -735,10 +696,9 @@ void StateZukanAppear::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802BBB18
- * Size:	000010
+/**
+ * @note Address: 0x802BBB18
+ * @note Size: 0x10
  */
 void StateZukanAppear::cleanup(EnemyBase* enemy)
 {
@@ -746,10 +706,9 @@ void StateZukanAppear::cleanup(EnemyBase* enemy)
 	imomushi->disableEvent(0, EB_NoInterrupt);
 }
 
-/*
- * --INFO--
- * Address:	802BBB28
- * Size:	000058
+/**
+ * @note Address: 0x802BBB28
+ * @note Size: 0x58
  */
 void StateZukanMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -760,10 +719,9 @@ void StateZukanMove::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->startMoveTraceEffect();
 }
 
-/*
- * --INFO--
- * Address:	802BBB80
- * Size:	0000BC
+/**
+ * @note Address: 0x802BBB80
+ * @note Size: 0xBC
  */
 void StateZukanMove::exec(EnemyBase* enemy)
 {
@@ -779,10 +737,9 @@ void StateZukanMove::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802BBC3C
- * Size:	000024
+/**
+ * @note Address: 0x802BBC3C
+ * @note Size: 0x24
  */
 void StateZukanMove::cleanup(EnemyBase* enemy)
 {

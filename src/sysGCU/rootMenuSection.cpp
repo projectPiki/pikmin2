@@ -1,33 +1,29 @@
 #include "RootMenuSection.h"
 #include "GameFlow.h"
 
-/*
- * --INFO--
- * Address:	8044CACC
- * Size:	000048
+/**
+ * @note Address: 0x8044CACC
+ * @note Size: 0x48
  */
 RootMenuSection::RootMenuSection(JKRHeap* heap)
     : MenuSection(nullptr, heap, false)
 {
 }
 
-/*
- * --INFO--
- * Address:	8044CB14
- * Size:	000070
+/**
+ * @note Address: 0x8044CB14
+ * @note Size: 0x70
  */
 RootMenuSection::~RootMenuSection() { }
 
-/*
- * --INFO--
- * Address:	8044CB84
- * Size:	000024
+/**
+ * @note Address: 0x8044CB84
+ * @note Size: 0x24
  */
 ISection* RootMenuSection::setChildSection(JKRHeap* heap) { return GameFlow::createSection(heap); }
 
-/*
- * --INFO--
- * Address:	8044CBA8
- * Size:	000004
+/**
+ * @note Address: 0x8044CBA8
+ * @note Size: 0x4
  */
 void RootMenuSection::drawInit(Graphics&) { }

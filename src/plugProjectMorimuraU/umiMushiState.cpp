@@ -11,10 +11,9 @@
 namespace Game {
 namespace UmiMushi {
 
-/*
- * --INFO--
- * Address:	80380A2C
- * Size:	000198
+/**
+ * @note Address: 0x80380A2C
+ * @note Size: 0x198
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -32,10 +31,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateLost(UMIMUSHI_Lost));
 }
 
-/*
- * --INFO--
- * Address:	80380BC4
- * Size:	00003C
+/**
+ * @note Address: 0x80380BC4
+ * @note Size: 0x3C
  */
 StateWait::StateWait(int stateID)
     : State(stateID)
@@ -43,10 +41,9 @@ StateWait::StateWait(int stateID)
 	mName = "wait";
 }
 
-/*
- * --INFO--
- * Address:	80380C00
- * Size:	000054
+/**
+ * @note Address: 0x80380C00
+ * @note Size: 0x54
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -55,10 +52,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	mWaitTimer             = 0;
 }
 
-/*
- * --INFO--
- * Address:	80380C54
- * Size:	000214
+/**
+ * @note Address: 0x80380C54
+ * @note Size: 0x214
  */
 void StateWait::exec(EnemyBase* enemy)
 {
@@ -104,10 +100,9 @@ void StateWait::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80380E68
- * Size:	00003C
+/**
+ * @note Address: 0x80380E68
+ * @note Size: 0x3C
  */
 StateWalk::StateWalk(int stateID)
     : State(stateID)
@@ -115,10 +110,9 @@ StateWalk::StateWalk(int stateID)
 	mName = "walk";
 }
 
-/*
- * --INFO--
- * Address:	80380EA4
- * Size:	000060
+/**
+ * @note Address: 0x80380EA4
+ * @note Size: 0x60
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -129,10 +123,9 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	mBlindMoveTimer = 0;
 }
 
-/*
- * --INFO--
- * Address:	80380F04
- * Size:	0002C0
+/**
+ * @note Address: 0x80380F04
+ * @note Size: 0x2C0
  */
 void StateWalk::exec(EnemyBase* enemy)
 {
@@ -205,10 +198,9 @@ void StateWalk::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803811C4
- * Size:	00003C
+/**
+ * @note Address: 0x803811C4
+ * @note Size: 0x3C
  */
 StateFind::StateFind(int stateID)
     : State(stateID)
@@ -216,10 +208,9 @@ StateFind::StateFind(int stateID)
 	mName = "find";
 }
 
-/*
- * --INFO--
- * Address:	80381200
- * Size:	00008C
+/**
+ * @note Address: 0x80381200
+ * @note Size: 0x8C
  */
 void StateFind::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -234,10 +225,9 @@ void StateFind::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8038128C
- * Size:	00012C
+/**
+ * @note Address: 0x8038128C
+ * @note Size: 0x12C
  */
 void StateFind::exec(EnemyBase* enemy)
 {
@@ -264,10 +254,9 @@ void StateFind::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803813B8
- * Size:	00003C
+/**
+ * @note Address: 0x803813B8
+ * @note Size: 0x3C
  */
 StateSearch::StateSearch(int stateID)
     : State(stateID)
@@ -275,10 +264,9 @@ StateSearch::StateSearch(int stateID)
 	mName = "search";
 }
 
-/*
- * --INFO--
- * Address:	803813F4
- * Size:	000040
+/**
+ * @note Address: 0x803813F4
+ * @note Size: 0x40
  */
 void StateSearch::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -286,10 +274,9 @@ void StateSearch::init(EnemyBase* enemy, StateArg* stateArg)
 	OBJ(enemy)->mNextState = UMIMUSHI_NULL;
 }
 
-/*
- * --INFO--
- * Address:	80381434
- * Size:	000294
+/**
+ * @note Address: 0x80381434
+ * @note Size: 0x294
  */
 void StateSearch::exec(EnemyBase* enemy)
 {
@@ -344,10 +331,9 @@ void StateSearch::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803816C8
- * Size:	00003C
+/**
+ * @note Address: 0x803816C8
+ * @note Size: 0x3C
  */
 StateTurn::StateTurn(int stateID)
     : State(stateID)
@@ -355,10 +341,9 @@ StateTurn::StateTurn(int stateID)
 	mName = "turn";
 }
 
-/*
- * --INFO--
- * Address:	80381704
- * Size:	000040
+/**
+ * @note Address: 0x80381704
+ * @note Size: 0x40
  */
 void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -366,10 +351,9 @@ void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 	OBJ(enemy)->mNextState = UMIMUSHI_NULL;
 }
 
-/*
- * --INFO--
- * Address:	80381744
- * Size:	0001EC
+/**
+ * @note Address: 0x80381744
+ * @note Size: 0x1EC
  */
 void StateTurn::exec(EnemyBase* enemy)
 {
@@ -424,10 +408,9 @@ void StateTurn::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80381930
- * Size:	00003C
+/**
+ * @note Address: 0x80381930
+ * @note Size: 0x3C
  */
 StateFlick::StateFlick(int stateID)
     : State(stateID)
@@ -435,10 +418,9 @@ StateFlick::StateFlick(int stateID)
 	mName = "flick";
 }
 
-/*
- * --INFO--
- * Address:	8038196C
- * Size:	000160
+/**
+ * @note Address: 0x8038196C
+ * @note Size: 0x160
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -458,10 +440,9 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80381ACC
- * Size:	000190
+/**
+ * @note Address: 0x80381ACC
+ * @note Size: 0x190
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
@@ -491,10 +472,9 @@ void StateFlick::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80381C5C
- * Size:	00003C
+/**
+ * @note Address: 0x80381C5C
+ * @note Size: 0x3C
  */
 StateAttack::StateAttack(int stateID)
     : State(stateID)
@@ -502,10 +482,9 @@ StateAttack::StateAttack(int stateID)
 	mName = "attack";
 }
 
-/*
- * --INFO--
- * Address:	80381C98
- * Size:	000118
+/**
+ * @note Address: 0x80381C98
+ * @note Size: 0x118
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -524,10 +503,9 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80381DB0
- * Size:	000520
+/**
+ * @note Address: 0x80381DB0
+ * @note Size: 0x520
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
@@ -601,10 +579,9 @@ void StateAttack::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803822D0
- * Size:	00003C
+/**
+ * @note Address: 0x803822D0
+ * @note Size: 0x3C
  */
 StateEat::StateEat(int stateID)
     : State(stateID)
@@ -612,10 +589,9 @@ StateEat::StateEat(int stateID)
 	mName = "eat";
 }
 
-/*
- * --INFO--
- * Address:	8038230C
- * Size:	000040
+/**
+ * @note Address: 0x8038230C
+ * @note Size: 0x40
  */
 void StateEat::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -623,10 +599,9 @@ void StateEat::init(EnemyBase* enemy, StateArg* stateArg)
 	OBJ(enemy)->eatEffect();
 }
 
-/*
- * --INFO--
- * Address:	8038234C
- * Size:	0000B8
+/**
+ * @note Address: 0x8038234C
+ * @note Size: 0xB8
  */
 void StateEat::exec(EnemyBase* enemy)
 {
@@ -642,10 +617,9 @@ void StateEat::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80382404
- * Size:	00003C
+/**
+ * @note Address: 0x80382404
+ * @note Size: 0x3C
  */
 StateDead::StateDead(int stateID)
     : State(stateID)
@@ -653,10 +627,9 @@ StateDead::StateDead(int stateID)
 	mName = "dead";
 }
 
-/*
- * --INFO--
- * Address:	80382440
- * Size:	000088
+/**
+ * @note Address: 0x80382440
+ * @note Size: 0x88
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -669,10 +642,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->mSoundObj->startSound(PSSE_EN_UMI_DEAD, 0);
 }
 
-/*
- * --INFO--
- * Address:	803824C8
- * Size:	0000B8
+/**
+ * @note Address: 0x803824C8
+ * @note Size: 0xB8
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -700,10 +672,9 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80382580
- * Size:	00003C
+/**
+ * @note Address: 0x80382580
+ * @note Size: 0x3C
  */
 StateLost::StateLost(int stateID)
     : State(stateID)
@@ -711,10 +682,9 @@ StateLost::StateLost(int stateID)
 	mName = "lost";
 }
 
-/*
- * --INFO--
- * Address:	803825BC
- * Size:	000054
+/**
+ * @note Address: 0x803825BC
+ * @note Size: 0x54
  */
 void StateLost::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -723,10 +693,9 @@ void StateLost::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->mTargetVelocity  = Vector3f(0.0f);
 }
 
-/*
- * --INFO--
- * Address:	80382610
- * Size:	000090
+/**
+ * @note Address: 0x80382610
+ * @note Size: 0x90
  */
 void StateLost::exec(EnemyBase* enemy)
 {

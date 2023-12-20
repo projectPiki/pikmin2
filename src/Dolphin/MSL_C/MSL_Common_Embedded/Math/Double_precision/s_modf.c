@@ -1,6 +1,6 @@
 
 /* @(#)s_modf.c 1.3 95/01/18 */
-/*
+/**
  * ====================================================
  * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
  *
@@ -11,7 +11,7 @@
  * ====================================================
  */
 
-/*
+/**
  * modf(double x, double *iptr)
  * return fraction part of x, and return x's integral part in *iptr.
  * Method:

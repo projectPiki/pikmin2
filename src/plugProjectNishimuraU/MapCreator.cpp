@@ -9,10 +9,9 @@ namespace Cave {
 extern RandMapMgr* randMapMgr;
 } // namespace Cave
 
-/*
- * --INFO--
- * Address:	8024C5E4
- * Size:	0000F0
+/**
+ * @note Address: 0x8024C5E4
+ * @note Size: 0xF0
  */
 void RoomMapMgr::nishimuraCreateRandomMap(MapUnitInterface* muiArray, int p2, Cave::FloorInfo* floorInfo, bool lastFloor,
                                           Cave::EditMapUnit* unit)
@@ -33,10 +32,9 @@ void RoomMapMgr::nishimuraCreateRandomMap(MapUnitInterface* muiArray, int p2, Ca
 	}
 }
 
-/*
- * --INFO--
- * Address:	8024C6D4
- * Size:	00011C
+/**
+ * @note Address: 0x8024C6D4
+ * @note Size: 0x11C
  */
 void RoomMapMgr::nishimuraPlaceRooms()
 {
@@ -65,10 +63,9 @@ void RoomMapMgr::nishimuraPlaceRooms()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8024C7F0
- * Size:	000088
+/**
+ * @note Address: 0x8024C7F0
+ * @note Size: 0x88
  */
 void RoomMapMgr::nishimuraSetTexture()
 {

@@ -7,10 +7,9 @@
 #include "Game/TimeMgr.h"
 #include "Game/gameStages.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
+/**
+ * @note Address: N/A
+ * @note Size: 0xE4
  */
 void _Print(char* name, ...) { OSReport("PlayDataMemCard"); }
 
@@ -21,20 +20,18 @@ int PlayData::sMaxPlayDataSize  = 0;
 
 u32 PlayData::mVersion = 'j009';
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void PlayData::prepareSave()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8021CFF4
- * Size:	000740
+/**
+ * @note Address: 0x8021CFF4
+ * @note Size: 0x740
  */
 void PlayData::write(Stream& output)
 {
@@ -700,10 +697,9 @@ lbl_8021D720:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8021D734
- * Size:	000404
+/**
+ * @note Address: 0x8021D734
+ * @note Size: 0x404
  */
 void PlayData::read(Stream& input)
 {
@@ -1105,11 +1101,10 @@ lbl_8021DB24:
 	*/
 }
 
-/*
+/**
  * read__Q34Game8PlayData8LimitGenFR6Stream
- * --INFO--
- * Address:	8021DB38
- * Size:	000044
+ * @note Address: 0x8021DB38
+ * @note Size: 0x44
  */
 void PlayData::LimitGen::read(Stream& input)
 {
@@ -1117,11 +1112,10 @@ void PlayData::LimitGen::read(Stream& input)
 	mLoops.read(input);
 }
 
-/*
+/**
  * write__Q34Game8PlayData8LimitGenFR6Stream
- * --INFO--
- * Address:	8021DB7C
- * Size:	000078
+ * @note Address: 0x8021DB7C
+ * @note Size: 0x78
  */
 void PlayData::LimitGen::write(Stream& output)
 {
@@ -1133,11 +1127,10 @@ void PlayData::LimitGen::write(Stream& output)
 	output.textEndGroup();
 }
 
-/*
+/**
  * write__Q24Game11KindCounterFR6Stream
- * --INFO--
- * Address:	........
- * Size:	0000C8
+ * @note Address: N/A
+ * @note Size: 0xC8
  */
 void KindCounter::write(Stream& output)
 {
@@ -1152,11 +1145,10 @@ void KindCounter::write(Stream& output)
 	output.textEndGroup();
 }
 
-/*
+/**
  * read__Q24Game11KindCounterFR6Stream
- * --INFO--
- * Address:	........
- * Size:	000098
+ * @note Address: N/A
+ * @note Size: 0x98
  */
 void KindCounter::read(Stream& input)
 {
@@ -1167,11 +1159,10 @@ void KindCounter::read(Stream& input)
 	}
 }
 
-/*
+/**
  * write__Q24Game16PelletCropMemoryFR6Stream
- * --INFO--
- * Address:	8021DBF4
- * Size:	000208
+ * @note Address: 0x8021DBF4
+ * @note Size: 0x208
  */
 void PelletCropMemory::write(Stream& output)
 {
@@ -1332,11 +1323,10 @@ lbl_8021DDC8:
 	*/
 }
 
-/*
+/**
  * read__Q24Game16PelletCropMemoryFR6Stream
- * --INFO--
- * Address:	8021DDFC
- * Size:	000150
+ * @note Address: 0x8021DDFC
+ * @note Size: 0x150
  */
 void PelletCropMemory::read(Stream& input)
 {
@@ -1345,11 +1335,10 @@ void PelletCropMemory::read(Stream& input)
 	mCarcass.read(input);
 }
 
-/*
+/**
  * write__Q24Game10OlimarDataFR6Stream
- * --INFO--
- * Address:	8021DF4C
- * Size:	00007C
+ * @note Address: 0x8021DF4C
+ * @note Size: 0x7C
  */
 void OlimarData::write(Stream& output)
 {
@@ -1360,11 +1349,10 @@ void OlimarData::write(Stream& output)
 	output.textWriteText("\t# itemFlag\r\n");
 }
 
-/*
+/**
  * read__Q24Game10OlimarDataFR6Stream
- * --INFO--
- * Address:	8021DFC8
- * Size:	00005C
+ * @note Address: 0x8021DFC8
+ * @note Size: 0x5C
  */
 void OlimarData::read(Stream& input)
 {
@@ -1373,11 +1361,10 @@ void OlimarData::read(Stream& input)
 	}
 }
 
-/*
+/**
  * write__Q24Game12CaveSaveDataFR6Stream
- * --INFO--
- * Address:	8021E024
- * Size:	000198
+ * @note Address: 0x8021E024
+ * @note Size: 0x198
  */
 void CaveSaveData::write(Stream& output)
 {
@@ -1414,10 +1401,9 @@ void CaveSaveData::write(Stream& output)
 	output.textWriteText("\t# active player id\r\n");
 }
 
-/*
- * --INFO--
- * Address:	8021E1BC
- * Size:	0000D0
+/**
+ * @note Address: 0x8021E1BC
+ * @note Size: 0xD0
  */
 void CaveSaveData::read(Stream& input, u32 size)
 {

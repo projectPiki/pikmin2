@@ -19,10 +19,9 @@ namespace Game {
 GameSystem* gameSystem;
 OptimiseController* OptimiseController::mInstance;
 
-/*
- * --INFO--
- * Address:	801B4A80
- * Size:	000100
+/**
+ * @note Address: 0x801B4A80
+ * @note Size: 0x100
  */
 GameSystem::GameSystem(BaseGameSection* section)
 {
@@ -36,17 +35,15 @@ GameSystem::GameSystem(BaseGameSection* section)
 	mIsMoviePause = false;
 }
 
-/*
- * --INFO--
- * Address:	801B4B80
- * Size:	0000E8
+/**
+ * @note Address: 0x801B4B80
+ * @note Size: 0xE8
  */
 GameSystem::~GameSystem() { OptimiseController::deleteInstance(); }
 
-/*
- * --INFO--
- * Address:	801B4C68
- * Size:	0000F0
+/**
+ * @note Address: 0x801B4C68
+ * @note Size: 0xF0
  */
 void GameSystem::init()
 {
@@ -73,10 +70,9 @@ void GameSystem::init()
 	mTimeMgr->setFlag(TIMEFLAG_Stopped);
 }
 
-/*
- * --INFO--
- * Address:	801B4D58
- * Size:	000020
+/**
+ * @note Address: 0x801B4D58
+ * @note Size: 0x20
  */
 int GameSystem::calcFrameDist(int time)
 {
@@ -87,10 +83,9 @@ int GameSystem::calcFrameDist(int time)
 	return timeFromEnd + mFrameTimer;
 }
 
-/*
- * --INFO--
- * Address:	801B4D78
- * Size:	0000DC
+/**
+ * @note Address: 0x801B4D78
+ * @note Size: 0xDC
  */
 void GameSystem::startFrame()
 {
@@ -112,10 +107,9 @@ void GameSystem::startFrame()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801B4E54
- * Size:	000018
+/**
+ * @note Address: 0x801B4E54
+ * @note Size: 0x18
  */
 void GameSystem::endFrame()
 {
@@ -124,10 +118,9 @@ void GameSystem::endFrame()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801B4E6C
- * Size:	000038
+/**
+ * @note Address: 0x801B4E6C
+ * @note Size: 0x38
  */
 void GameSystem::startFadeout(f32 speed)
 {
@@ -136,10 +129,9 @@ void GameSystem::startFadeout(f32 speed)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801B4EA4
- * Size:	000038
+/**
+ * @note Address: 0x801B4EA4
+ * @note Size: 0x38
  */
 void GameSystem::startFadein(f32 speed)
 {
@@ -148,10 +140,9 @@ void GameSystem::startFadein(f32 speed)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801B4EDC
- * Size:	000038
+/**
+ * @note Address: 0x801B4EDC
+ * @note Size: 0x38
  */
 void GameSystem::startFadeoutin(f32 speed)
 {
@@ -160,10 +151,9 @@ void GameSystem::startFadeoutin(f32 speed)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801B4F14
- * Size:	000038
+/**
+ * @note Address: 0x801B4F14
+ * @note Size: 0x38
  */
 void GameSystem::startFadeblack()
 {
@@ -172,10 +162,9 @@ void GameSystem::startFadeblack()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801B4F4C
- * Size:	000038
+/**
+ * @note Address: 0x801B4F4C
+ * @note Size: 0x38
  */
 void GameSystem::startFadewhite()
 {
@@ -184,38 +173,33 @@ void GameSystem::startFadewhite()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801B4F84
- * Size:	000008
+/**
+ * @note Address: 0x801B4F84
+ * @note Size: 0x8
  */
 void GameSystem::setMoviePause(bool isMoviePause, char*) { mIsMoviePause = isMoviePause; }
 
-/*
- * --INFO--
- * Address:	801B4F8C
- * Size:	000008
+/**
+ * @note Address: 0x801B4F8C
+ * @note Size: 0x8
  */
 void GameSystem::setFrozen(bool isFrozen, char*) { mIsFrozen = isFrozen; }
 
-/*
- * --INFO--
- * Address:	801B4F94
- * Size:	00002C
+/**
+ * @note Address: 0x801B4F94
+ * @note Size: 0x2C
  */
 u32 GameSystem::setPause(bool isPausedSoft, char* str, int pauseID) { startPause(isPausedSoft, pauseID, str); }
 
-/*
- * --INFO--
- * Address:	801B4FC0
- * Size:	000008
+/**
+ * @note Address: 0x801B4FC0
+ * @note Size: 0x8
  */
 bool GameSystem::paused_soft() { return mIsPausedSoft; }
 
-/*
- * --INFO--
- * Address:	801B4FC8
- * Size:	000028
+/**
+ * @note Address: 0x801B4FC8
+ * @note Size: 0x28
  */
 bool GameSystem::paused()
 {
@@ -225,10 +209,9 @@ bool GameSystem::paused()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	801B4FF0
- * Size:	000050
+/**
+ * @note Address: 0x801B4FF0
+ * @note Size: 0x50
  */
 int GameSystem::startPause(bool isPausedSoft, int pauseID, char* str)
 {
@@ -242,10 +225,9 @@ int GameSystem::startPause(bool isPausedSoft, int pauseID, char* str)
 	return prev;
 }
 
-/*
- * --INFO--
- * Address:	801B5040
- * Size:	00002C
+/**
+ * @note Address: 0x801B5040
+ * @note Size: 0x2C
  */
 void GameSystem::setDrawBuffer(int id)
 {
@@ -254,17 +236,15 @@ void GameSystem::setDrawBuffer(int id)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801B506C
- * Size:	00000C
+/**
+ * @note Address: 0x801B506C
+ * @note Size: 0xC
  */
 GameLightMgr* GameSystem::getLightMgr() { return mSection->mLightMgr; }
 
-/*
- * --INFO--
- * Address:	801B5078
- * Size:	000274
+/**
+ * @note Address: 0x801B5078
+ * @note Size: 0x274
  */
 void GameSystem::doAnimation()
 {
@@ -287,10 +267,9 @@ void GameSystem::doAnimation()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801B52EC
- * Size:	0001E4
+/**
+ * @note Address: 0x801B52EC
+ * @note Size: 0x1E4
  */
 void GameSystem::doEntry()
 {
@@ -302,10 +281,9 @@ void GameSystem::doEntry()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801B54D0
- * Size:	0001F4
+/**
+ * @note Address: 0x801B54D0
+ * @note Size: 0x1F4
  */
 void GameSystem::doSetView(int viewportNumber)
 {
@@ -317,10 +295,9 @@ void GameSystem::doSetView(int viewportNumber)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801B56C4
- * Size:	000404
+/**
+ * @note Address: 0x801B56C4
+ * @note Size: 0x404
  */
 void GameSystem::doViewCalc()
 {
@@ -346,10 +323,9 @@ void GameSystem::doViewCalc()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801B5AC8
- * Size:	000284
+/**
+ * @note Address: 0x801B5AC8
+ * @note Size: 0x284
  */
 void GameSystem::doSimulation(f32 speed)
 {
@@ -372,10 +348,9 @@ void GameSystem::doSimulation(f32 speed)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801B5D4C
- * Size:	0001F4
+/**
+ * @note Address: 0x801B5D4C
+ * @note Size: 0x1F4
  */
 void GameSystem::doSimpleDraw(Viewport* vp)
 {
@@ -387,24 +362,21 @@ void GameSystem::doSimpleDraw(Viewport* vp)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801B5F40
- * Size:	000004
+/**
+ * @note Address: 0x801B5F40
+ * @note Size: 0x4
  */
 void GameSystem::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	801B5F44
- * Size:	000004
+/**
+ * @note Address: 0x801B5F44
+ * @note Size: 0x4
  */
 void GameSystem::directDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	801B5F48
- * Size:	00006C
+/**
+ * @note Address: 0x801B5F48
+ * @note Size: 0x6C
  */
 void GameSystem::addObjectMgr(GenericObjectMgr* mgr)
 {
@@ -413,34 +385,30 @@ void GameSystem::addObjectMgr(GenericObjectMgr* mgr)
 	mNode.add(node);
 }
 
-/*
- * --INFO--
- * Address:	801B5FB4
- * Size:	000020
+/**
+ * @note Address: 0x801B5FB4
+ * @note Size: 0x20
  */
 void GameSystem::detachObjectMgr(GenericObjectMgr* mgr) { delNode(mgr); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 void GameSystem::detachAllMgr()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	801B5FD4
- * Size:	000024
+/**
+ * @note Address: 0x801B5FD4
+ * @note Size: 0x24
  */
 void GameSystem::addObjectMgr_reuse(TObjectNode<GenericObjectMgr>* obj) { mNode.add(obj); }
 
-/*
- * --INFO--
- * Address:	801B5FF8
- * Size:	000058
+/**
+ * @note Address: 0x801B5FF8
+ * @note Size: 0x58
  */
 TObjectNode<GenericObjectMgr>* GameSystem::detachObjectMgr_reuse(GenericObjectMgr* obj)
 {
@@ -455,10 +423,9 @@ TObjectNode<GenericObjectMgr>* GameSystem::detachObjectMgr_reuse(GenericObjectMg
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000FC
+/**
+ * @note Address: N/A
+ * @note Size: 0xFC
  */
 OptimiseController::OptimiseController()
     : Parameters(nullptr, "Dynamics")
@@ -467,17 +434,15 @@ OptimiseController::OptimiseController()
 {
 }
 
-/*
- * --INFO--
- * Address:	801B6050
- * Size:	000068
+/**
+ * @note Address: 0x801B6050
+ * @note Size: 0x68
  */
 OptimiseController::~OptimiseController() { mInstance = nullptr; }
 
-/*
- * --INFO--
- * Address:	801B60B8
- * Size:	00010C
+/**
+ * @note Address: 0x801B60B8
+ * @note Size: 0x10C
  */
 void OptimiseController::globalInstance()
 {
@@ -485,10 +450,9 @@ void OptimiseController::globalInstance()
 		mInstance = new OptimiseController;
 }
 
-/*
- * --INFO--
- * Address:	801B61C4
- * Size:	000048
+/**
+ * @note Address: 0x801B61C4
+ * @note Size: 0x48
  */
 void OptimiseController::deleteInstance()
 {

@@ -6,7 +6,7 @@
 
 namespace PSM {
 #pragma enumalwaysint off
-/*
+/**
  * Intended size: 1 byte
  */
 enum CreatureCastType {

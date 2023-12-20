@@ -3,10 +3,9 @@
 
 namespace ebi {
 namespace title {
-/*
- * --INFO--
- * Address:	803C1EBC
- * Size:	000074
+/**
+ * @note Address: 0x803C1EBC
+ * @note Size: 0x74
  */
 
 void TTitleCameraMgr::update()

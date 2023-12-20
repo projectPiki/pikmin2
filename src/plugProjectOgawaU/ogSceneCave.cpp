@@ -3,24 +3,21 @@
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	8031CC90
- * Size:	00003C
+/**
+ * @note Address: 0x8031CC90
+ * @note Size: 0x3C
  */
 Cave::Cave() { }
 
-/*
- * --INFO--
- * Address:	8031CCCC
- * Size:	000004
+/**
+ * @note Address: 0x8031CCCC
+ * @note Size: 0x4
  */
 void Cave::doUserCallBackFunc(Resource::MgrCommand*) { }
 
-/*
- * --INFO--
- * Address:	8031CCD0
- * Size:	000078
+/**
+ * @note Address: 0x8031CCD0
+ * @note Size: 0x78
  */
 void Cave::doCreateObj(JKRArchive* archive)
 {

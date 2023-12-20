@@ -11,10 +11,9 @@
 #include "JSystem/J3D/J3DTypes.h"
 #include "JSystem/JSupport/JSU.h"
 
-/*
- * --INFO--
- * Address:	8006C3A4
- * Size:	000248
+/**
+ * @note Address: 0x8006C3A4
+ * @note Size: 0x248
  * TODO: Rename _SDK_GX*
  */
 J3DMaterialFactory::J3DMaterialFactory(const J3DMaterialBlock& block)
@@ -60,10 +59,9 @@ J3DMaterialFactory::J3DMaterialFactory(const J3DMaterialBlock& block)
 	mPEModes      = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8006C5EC
- * Size:	000088
+/**
+ * @note Address: 0x8006C5EC
+ * @note Size: 0x88
  * __ct__18J3DMaterialFactoryFRC18J3DMaterialDLBlock
  */
 J3DMaterialFactory::J3DMaterialFactory(const J3DMaterialDLBlock& block)
@@ -76,10 +74,9 @@ J3DMaterialFactory::J3DMaterialFactory(const J3DMaterialDLBlock& block)
 	mPEModes      = JSUConvertOffsetToPtr<u8>(&block, block.mPixelEngineModesOffset);
 }
 
-/*
- * --INFO--
- * Address:	8006C674
- * Size:	000048
+/**
+ * @note Address: 0x8006C674
+ * @note Size: 0x48
  */
 u32 J3DMaterialFactory::countUniqueMaterials()
 {
@@ -91,10 +88,9 @@ u32 J3DMaterialFactory::countUniqueMaterials()
 	return count;
 }
 
-/*
- * --INFO--
- * Address:	8006C6BC
- * Size:	00007C
+/**
+ * @note Address: 0x8006C6BC
+ * @note Size: 0x7C
  * create__18J3DMaterialFactoryCFP11J3DMaterialQ218J3DMaterialFactory12MaterialTypeiUl
  */
 J3DMaterial* J3DMaterialFactory::create(J3DMaterial* material, MaterialType type, int p3, u32 flags) const
@@ -113,10 +109,9 @@ J3DMaterial* J3DMaterialFactory::create(J3DMaterial* material, MaterialType type
 	return material;
 }
 
-/*
- * --INFO--
- * Address:	8006C738
- * Size:	000A0C
+/**
+ * @note Address: 0x8006C738
+ * @note Size: 0xA0C
  */
 J3DMaterial* J3DMaterialFactory::createNormalMaterial(J3DMaterial*, int, u32) const
 {
@@ -884,10 +879,9 @@ J3DMaterial* J3DMaterialFactory::createNormalMaterial(J3DMaterial*, int, u32) co
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006D170
- * Size:	000924
+/**
+ * @note Address: 0x8006D170
+ * @note Size: 0x924
  */
 J3DPatchedMaterial* J3DMaterialFactory::createPatchedMaterial(J3DMaterial*, int, u32) const
 {
@@ -1557,10 +1551,9 @@ J3DPatchedMaterial* J3DMaterialFactory::createPatchedMaterial(J3DMaterial*, int,
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006DADC
- * Size:	0001A4
+/**
+ * @note Address: 0x8006DADC
+ * @note Size: 0x1A4
  * TODO: texGenNumIndex is probably from a const function. bit shifts need fixing.
  */
 void J3DMaterialFactory::modifyPatchedCurrentMtx(J3DMaterial* material, int index) const
@@ -1696,10 +1689,9 @@ lbl_8006DC04:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006DC80
- * Size:	0002B8
+/**
+ * @note Address: 0x8006DC80
+ * @note Size: 0x2B8
  */
 J3DLockedMaterial* J3DMaterialFactory::createLockedMaterial(J3DMaterial* material, int index, u32 flags) const
 {
@@ -1923,24 +1915,21 @@ J3DLockedMaterial* J3DMaterialFactory::createLockedMaterial(J3DMaterial* materia
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006DF38
- * Size:	000004
+/**
+ * @note Address: 0x8006DF38
+ * @note Size: 0x4
  */
 void J3DTevBlock::setTevRegOffset(u32) { }
 
-/*
- * --INFO--
- * Address:	8006DF3C
- * Size:	000008
+/**
+ * @note Address: 0x8006DF3C
+ * @note Size: 0x8
  */
 void J3DTevBlock::setTexNoOffset(u32 a1) { mTexNoOffset = a1; }
 
-/*
- * --INFO--
- * Address:	8006DF44
- * Size:	000080
+/**
+ * @note Address: 0x8006DF44
+ * @note Size: 0x80
  * calcSize__18J3DMaterialFactoryCFP11J3DMaterialQ218J3DMaterialFactory12MaterialTypeiUl
  */
 size_t J3DMaterialFactory::calcSize(J3DMaterial* material, MaterialType type, int p3, u32 flags) const
@@ -1960,10 +1949,9 @@ size_t J3DMaterialFactory::calcSize(J3DMaterial* material, MaterialType type, in
 	return size;
 }
 
-/*
- * --INFO--
- * Address:	8006DFC4
- * Size:	000258
+/**
+ * @note Address: 0x8006DFC4
+ * @note Size: 0x258
  */
 size_t J3DMaterialFactory::calcSizeNormalMaterial(J3DMaterial*, int, u32) const
 {
@@ -2172,10 +2160,9 @@ size_t J3DMaterialFactory::calcSizeNormalMaterial(J3DMaterial*, int, u32) const
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006E21C
- * Size:	00013C
+/**
+ * @note Address: 0x8006E21C
+ * @note Size: 0x13C
  */
 size_t J3DMaterialFactory::calcSizePatchedMaterial(J3DMaterial*, int, u32) const
 {
@@ -2281,10 +2268,9 @@ size_t J3DMaterialFactory::calcSizePatchedMaterial(J3DMaterial*, int, u32) const
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006E358
- * Size:	000018
+/**
+ * @note Address: 0x8006E358
+ * @note Size: 0x18
  */
 size_t J3DMaterialFactory::calcSizeLockedMaterial(J3DMaterial*, int, u32) const
 {
@@ -2301,10 +2287,9 @@ size_t J3DMaterialFactory::calcSizeLockedMaterial(J3DMaterial*, int, u32) const
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006E370
- * Size:	000090
+/**
+ * @note Address: 0x8006E370
+ * @note Size: 0x90
  */
 J3DGXColor J3DMaterialFactory::newMatColor(int p1, int p2) const
 {
@@ -2373,10 +2358,9 @@ lbl_8006E3F8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006E400
- * Size:	000038
+/**
+ * @note Address: 0x8006E400
+ * @note Size: 0x38
  */
 u8 J3DMaterialFactory::newColorChanNum(int initDataIndexIndex) const
 {
@@ -2386,10 +2370,9 @@ u8 J3DMaterialFactory::newColorChanNum(int initDataIndexIndex) const
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	8006E438
- * Size:	000194
+/**
+ * @note Address: 0x8006E438
+ * @note Size: 0x194
  */
 J3DColorChan J3DMaterialFactory::newColorChan(int, int) const
 {
@@ -2500,10 +2483,9 @@ lbl_8006E518:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006E5CC
- * Size:	000090
+/**
+ * @note Address: 0x8006E5CC
+ * @note Size: 0x90
  */
 J3DGXColor J3DMaterialFactory::newAmbColor(int, int) const
 {
@@ -2551,10 +2533,9 @@ lbl_8006E654:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006E65C
- * Size:	000038
+/**
+ * @note Address: 0x8006E65C
+ * @note Size: 0x38
  */
 u8 J3DMaterialFactory::newTexGenNum(int index) const
 {
@@ -2564,10 +2545,9 @@ u8 J3DMaterialFactory::newTexGenNum(int index) const
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	8006E694
- * Size:	000084
+/**
+ * @note Address: 0x8006E694
+ * @note Size: 0x84
  */
 J3DTexCoord J3DMaterialFactory::newTexCoord(int p1, int p2) const
 {
@@ -2614,10 +2594,9 @@ lbl_8006E6F0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006E718
- * Size:	000158
+/**
+ * @note Address: 0x8006E718
+ * @note Size: 0x158
  */
 J3DTexMtx J3DMaterialFactory::newTexMtx(int, int) const
 {
@@ -2713,10 +2692,9 @@ lbl_8006E854:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006E870
- * Size:	000040
+/**
+ * @note Address: 0x8006E870
+ * @note Size: 0x40
  */
 u8 J3DMaterialFactory::newCullMode(int index) const
 {
@@ -2726,10 +2704,9 @@ u8 J3DMaterialFactory::newCullMode(int index) const
 	return (GXCullMode)0xFF;
 }
 
-/*
- * --INFO--
- * Address:	8006E8B0
- * Size:	000048
+/**
+ * @note Address: 0x8006E8B0
+ * @note Size: 0x48
  */
 u16 J3DMaterialFactory::newTexNo(int p1, int p2) const
 {
@@ -2739,10 +2716,9 @@ u16 J3DMaterialFactory::newTexNo(int p1, int p2) const
 	return 0xFFFF;
 }
 
-/*
- * --INFO--
- * Address:	8006E8F8
- * Size:	000074
+/**
+ * @note Address: 0x8006E8F8
+ * @note Size: 0x74
  */
 J3DTevOrder J3DMaterialFactory::newTevOrder(int p1, int p2) const
 {
@@ -2753,10 +2729,9 @@ J3DTevOrder J3DMaterialFactory::newTevOrder(int p1, int p2) const
 	return J3DTevOrder();
 }
 
-/*
- * --INFO--
- * Address:	8006E96C
- * Size:	000098
+/**
+ * @note Address: 0x8006E96C
+ * @note Size: 0x98
  */
 J3DGXColorS10 J3DMaterialFactory::newTevColor(int p1, int p2) const
 {
@@ -2812,10 +2787,9 @@ lbl_8006E9FC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006EA04
- * Size:	000090
+/**
+ * @note Address: 0x8006EA04
+ * @note Size: 0x90
  */
 J3DGXColor J3DMaterialFactory::newTevKColor(int p1, int p2) const
 {
@@ -2869,10 +2843,9 @@ lbl_8006EA8C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006EA94
- * Size:	000038
+/**
+ * @note Address: 0x8006EA94
+ * @note Size: 0x38
  */
 u8 J3DMaterialFactory::newTevStageNum(int p1) const
 {
@@ -2882,10 +2855,9 @@ u8 J3DMaterialFactory::newTevStageNum(int p1) const
 	return 0xFF;
 }
 
-/*
- * --INFO--
- * Address:	8006EACC
- * Size:	000060
+/**
+ * @note Address: 0x8006EACC
+ * @note Size: 0x60
  * newTevStage__18J3DMaterialFactoryCFii
  */
 J3DTevStage J3DMaterialFactory::newTevStage(int p1, int p2) const
@@ -2896,10 +2868,9 @@ J3DTevStage J3DMaterialFactory::newTevStage(int p1, int p2) const
 	return J3DTevStage();
 }
 
-/*
- * --INFO--
- * Address:	8006EB2C
- * Size:	000060
+/**
+ * @note Address: 0x8006EB2C
+ * @note Size: 0x60
  * __ct__11J3DTevStageFRC15J3DTevStageInfo
  */
 J3DTevStage::J3DTevStage(const J3DTevStageInfo& info)
@@ -2935,10 +2906,9 @@ J3DTevStage::J3DTevStage(const J3DTevStageInfo& info)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006EB8C
- * Size:	00009C
+/**
+ * @note Address: 0x8006EB8C
+ * @note Size: 0x9C
  */
 J3DTevSwapModeTable J3DMaterialFactory::newTevSwapModeTable(int, int) const
 {
@@ -2987,10 +2957,9 @@ lbl_8006EBF4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006EC28
- * Size:	000028
+/**
+ * @note Address: 0x8006EC28
+ * @note Size: 0x28
  */
 u8 J3DMaterialFactory::newIndTexStageNum(int p1) const
 {
@@ -3000,10 +2969,9 @@ u8 J3DMaterialFactory::newIndTexStageNum(int p1) const
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	8006EC50
- * Size:	000060
+/**
+ * @note Address: 0x8006EC50
+ * @note Size: 0x60
  */
 J3DIndTexOrder J3DMaterialFactory::newIndTexOrder(int p1, int p2) const
 {
@@ -3059,10 +3027,9 @@ lbl_8006ECA8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006ECB0
- * Size:	0000E0
+/**
+ * @note Address: 0x8006ECB0
+ * @note Size: 0xE0
  */
 J3DIndTexMtx J3DMaterialFactory::newIndTexMtx(int p1, int p2) const
 {
@@ -3143,10 +3110,9 @@ lbl_8006ED88:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006ED90
- * Size:	000194
+/**
+ * @note Address: 0x8006ED90
+ * @note Size: 0x194
  */
 J3DIndTevStage J3DMaterialFactory::newIndTevStage(int, int) const
 {
@@ -3257,10 +3223,9 @@ lbl_8006EF1C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006EF24
- * Size:	000060
+/**
+ * @note Address: 0x8006EF24
+ * @note Size: 0x60
  */
 J3DIndTexCoordScale J3DMaterialFactory::newIndTexCoordScale(int, int) const
 {
@@ -3298,10 +3263,9 @@ lbl_8006EF7C:
 
 // TODO: getMaterialInitData__18J3DMaterialFactoryCFUs was UNUSED here
 
-/*
- * --INFO--
- * Address:	8006EF84
- * Size:	00024C
+/**
+ * @note Address: 0x8006EF84
+ * @note Size: 0x24C
  */
 J3DFog J3DMaterialFactory::newFog(int) const
 {
@@ -3458,10 +3422,9 @@ lbl_8006F16C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006F1D0
- * Size:	000080
+/**
+ * @note Address: 0x8006F1D0
+ * @note Size: 0x80
  */
 J3DAlphaComp J3DMaterialFactory::newAlphaComp(int id) const
 {
@@ -3508,10 +3471,9 @@ lbl_8006F234:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006F250
- * Size:	00007C
+/**
+ * @note Address: 0x8006F250
+ * @note Size: 0x7C
  */
 J3DBlend J3DMaterialFactory::newBlend(int p1) const
 {
@@ -3522,10 +3484,9 @@ J3DBlend J3DMaterialFactory::newBlend(int p1) const
 	return J3DBlend();
 }
 
-/*
- * --INFO--
- * Address:	8006F2CC
- * Size:	000060
+/**
+ * @note Address: 0x8006F2CC
+ * @note Size: 0x60
  */
 J3DZMode J3DMaterialFactory::newZMode(int p1) const
 {
@@ -3536,10 +3497,9 @@ J3DZMode J3DMaterialFactory::newZMode(int p1) const
 	return J3DZMode();
 }
 
-/*
- * --INFO--
- * Address:	8006F32C
- * Size:	000038
+/**
+ * @note Address: 0x8006F32C
+ * @note Size: 0x38
  */
 u8 J3DMaterialFactory::newZCompLoc(int p1) const
 {
@@ -3550,10 +3510,9 @@ u8 J3DMaterialFactory::newZCompLoc(int p1) const
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	8006F364
- * Size:	000038
+/**
+ * @note Address: 0x8006F364
+ * @note Size: 0x38
  */
 u8 J3DMaterialFactory::newDither(int p1) const
 {
@@ -3564,10 +3523,9 @@ u8 J3DMaterialFactory::newDither(int p1) const
 	return 1;
 }
 
-/*
- * --INFO--
- * Address:	8006F39C
- * Size:	0000A8
+/**
+ * @note Address: 0x8006F39C
+ * @note Size: 0xA8
  */
 J3DNBTScale J3DMaterialFactory::newNBTScale(int p1) const
 {

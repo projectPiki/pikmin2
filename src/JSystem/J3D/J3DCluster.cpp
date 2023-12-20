@@ -1,17 +1,15 @@
 #include "JSystem/J3D/J3DSkinDeform.h"
 #include "JSystem/J3D/J3DAnmCluster.h"
 
-/*
- * --INFO--
- * Address:	8006A59C
- * Size:	000024
+/**
+ * @note Address: 0x8006A59C
+ * @note Size: 0x24
  */
 void J3DDeformData::deform(J3DModel* model) { deform(model->getVertexBuffer()); }
 
-/*
- * --INFO--
- * Address:	8006A5C0
- * Size:	0000D4
+/**
+ * @note Address: 0x8006A5C0
+ * @note Size: 0xD4
  */
 void J3DDeformData::deform(J3DVertexBuffer* vtxbuffer)
 {
@@ -36,10 +34,9 @@ void J3DDeformData::deform(J3DVertexBuffer* vtxbuffer)
 	vtxbuffer->mCurrentVtxNorm = vtxbuffer->mVtxNorm[0];
 }
 
-/*
- * --INFO--
- * Address:	8006A694
- * Size:	000168
+/**
+ * @note Address: 0x8006A694
+ * @note Size: 0x168
  */
 void J3DDeformer::deform(J3DVertexBuffer* vtxbuffer, u16 index)
 {
@@ -57,10 +54,9 @@ void J3DDeformer::deform(J3DVertexBuffer* vtxbuffer, u16 index)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8006A7FC
- * Size:	00026C
+/**
+ * @note Address: 0x8006A7FC
+ * @note Size: 0x26C
  */
 void J3DDeformer::deform_VtxPosF32(J3DVertexBuffer* vtxbuffer, J3DCluster* cluster, J3DClusterKey* key, f32* weights)
 {
@@ -249,10 +245,9 @@ void J3DDeformer::deform_VtxPosF32(J3DVertexBuffer* vtxbuffer, J3DCluster* clust
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006AA68
- * Size:	000470
+/**
+ * @note Address: 0x8006AA68
+ * @note Size: 0x470
  */
 void J3DDeformer::deform_VtxNrmF32(J3DVertexBuffer*, J3DCluster*, J3DClusterKey*, f32*)
 {
@@ -597,10 +592,9 @@ void J3DDeformer::deform_VtxNrmF32(J3DVertexBuffer*, J3DCluster*, J3DClusterKey*
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006AED8
- * Size:	0001CC
+/**
+ * @note Address: 0x8006AED8
+ * @note Size: 0x1CC
  */
 void J3DDeformer::deform(J3DVertexBuffer* vtxbuffer, u16 index, f32* weights)
 {
@@ -755,10 +749,9 @@ lbl_8006B090:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006B0A4
- * Size:	00015C
+/**
+ * @note Address: 0x8006B0A4
+ * @note Size: 0x15C
  */
 void J3DDeformer::normalizeWeight(int count, f32* weights)
 {

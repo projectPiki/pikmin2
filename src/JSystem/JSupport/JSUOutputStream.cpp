@@ -2,18 +2,16 @@
 #include "string.h"
 #include "JSystem/JSupport/JSUStream.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
+/**
+ * @note Address: N/A
+ * @note Size: 0x5C
  * Unused function.
  */
 JSUOutputStream::~JSUOutputStream() { }
 
-/*
- * --INFO--
- * Address:	800261E0
- * Size:	000058
+/**
+ * @note Address: 0x800261E0
+ * @note Size: 0x58
  */
 int JSUOutputStream::write(const void* data, long length)
 {
@@ -24,10 +22,9 @@ int JSUOutputStream::write(const void* data, long length)
 	return len;
 }
 
-/*
- * --INFO--
- * Address:	80026238
- * Size:	0000F8
+/**
+ * @note Address: 0x80026238
+ * @note Size: 0xF8
  */
 void JSUOutputStream::write(const char* str)
 {

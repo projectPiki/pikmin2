@@ -47,10 +47,9 @@ static BOOL __GXShutdown(BOOL);
 
 static OSResetFunctionInfo GXResetFuncInfo = { __GXShutdown, OS_RESET_PRIO_GX };
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 ASM BOOL IsWriteGatherBufferEmpty(void)
 {
@@ -64,10 +63,9 @@ ASM BOOL IsWriteGatherBufferEmpty(void)
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 static void EnableWriteGatherPipe()
 {
@@ -78,10 +76,9 @@ static void EnableWriteGatherPipe()
 	PPCMthid2(hid2);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 static void DisableWriteGatherPipe()
 {
@@ -91,10 +88,9 @@ static void DisableWriteGatherPipe()
 	PPCMthid2(hid2);
 }
 
-/*
- * --INFO--
- * Address:	800E2680
- * Size:	0000FC
+/**
+ * @note Address: 0x800E2680
+ * @note Size: 0xFC
  */
 static GXTexRegion* __GXDefaultTexRegionCallback(const GXTexObj* obj, GXTexMapID id)
 {
@@ -125,10 +121,9 @@ static GXTexRegion* __GXDefaultTexRegionCallback(const GXTexObj* obj, GXTexMapID
 	}
 }
 
-/*
- * --INFO--
- * Address:	800E277C
- * Size:	000024
+/**
+ * @note Address: 0x800E277C
+ * @note Size: 0x24
  */
 static GXTlutRegion* __GXDefaultTlutRegionCallback(u32 tlut)
 {
@@ -139,10 +134,9 @@ static GXTlutRegion* __GXDefaultTlutRegionCallback(u32 tlut)
 	return &gx->TlutRegions[tlut];
 }
 
-/*
- * --INFO--
- * Address:	800E27A0
- * Size:	000190
+/**
+ * @note Address: 0x800E27A0
+ * @note Size: 0x190
  */
 BOOL __GXShutdown(BOOL final)
 {
@@ -202,10 +196,9 @@ BOOL __GXShutdown(BOOL final)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800E2930
- * Size:	000798
+/**
+ * @note Address: 0x800E2930
+ * @note Size: 0x798
  */
 GXFifoObj* GXInit(void* base, u32 size)
 {
@@ -397,10 +390,9 @@ GXFifoObj* GXInit(void* base, u32 size)
 	return &FifoObj;
 }
 
-/*
- * --INFO--
- * Address:	800E30C8
- * Size:	000938
+/**
+ * @note Address: 0x800E30C8
+ * @note Size: 0x938
  */
 void __GXInitGX(void)
 {

@@ -7,10 +7,9 @@ char* __EXIVersion = "<< Dolphin SDK - EXI\trelease build: Apr 17 2003 12:33:17 
 static EXIControl Ecb[EXI_MAX_CHAN];
 static u32 IDSerialPort1;
 
-/*
- * --INFO--
- * Address:	800DFB54
- * Size:	0000F4
+/**
+ * @note Address: 0x800DFB54
+ * @note Size: 0xF4
  */
 static void SetExiInterruptMask(s32 chan, EXIControl* exi)
 {
@@ -42,10 +41,9 @@ static void SetExiInterruptMask(s32 chan, EXIControl* exi)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000154
+/**
+ * @note Address: N/A
+ * @note Size: 0x154
  */
 static void CompleteTransfer(s32 chan)
 {
@@ -67,10 +65,9 @@ static void CompleteTransfer(s32 chan)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800DFC48
- * Size:	00025C
+/**
+ * @note Address: 0x800DFC48
+ * @note Size: 0x25C
  */
 BOOL EXIImm(s32 chan, void* buf, s32 len, u32 type, EXICallback callback)
 {
@@ -112,10 +109,9 @@ BOOL EXIImm(s32 chan, void* buf, s32 len, u32 type, EXICallback callback)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800DFEA4
- * Size:	0000A0
+/**
+ * @note Address: 0x800DFEA4
+ * @note Size: 0xA0
  */
 BOOL EXIImmEx(s32 chan, void* buf, s32 len, u32 mode)
 {
@@ -137,10 +133,9 @@ BOOL EXIImmEx(s32 chan, void* buf, s32 len, u32 mode)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800DFF44
- * Size:	0000EC
+/**
+ * @note Address: 0x800DFF44
+ * @note Size: 0xEC
  */
 BOOL EXIDma(s32 chan, void* buf, s32 len, u32 type, EXICallback callback)
 {
@@ -170,10 +165,9 @@ BOOL EXIDma(s32 chan, void* buf, s32 len, u32 type, EXICallback callback)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800E0030
- * Size:	00024C
+/**
+ * @note Address: 0x800E0030
+ * @note Size: 0x24C
  */
 BOOL EXISync(s32 chan)
 {
@@ -200,10 +194,9 @@ BOOL EXISync(s32 chan)
 	return rc;
 }
 
-/*
- * --INFO--
- * Address:	800E027C
- * Size:	000048
+/**
+ * @note Address: 0x800E027C
+ * @note Size: 0x48
  */
 int EXIClearInterrupts(s32 chan, BOOL exi, BOOL tc, BOOL ext)
 {
@@ -222,10 +215,9 @@ int EXIClearInterrupts(s32 chan, BOOL exi, BOOL tc, BOOL ext)
 	return prev;
 }
 
-/*
- * --INFO--
- * Address:	800E02C4
- * Size:	00007C
+/**
+ * @note Address: 0x800E02C4
+ * @note Size: 0x7C
  */
 EXICallback EXISetExiCallback(s32 chan, EXICallback exiCallback)
 {
@@ -247,10 +239,9 @@ EXICallback EXISetExiCallback(s32 chan, EXICallback exiCallback)
 	return prev;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 void EXIProbeReset(void)
 {
@@ -260,10 +251,9 @@ void EXIProbeReset(void)
 	__EXIProbe(1);
 }
 
-/*
- * --INFO--
- * Address:	800E0340
- * Size:	000174
+/**
+ * @note Address: 0x800E0340
+ * @note Size: 0x174
  */
 static BOOL __EXIProbe(s32 chan)
 {
@@ -307,10 +297,9 @@ static BOOL __EXIProbe(s32 chan)
 	return rc;
 }
 
-/*
- * --INFO--
- * Address:	800E04B4
- * Size:	000080
+/**
+ * @note Address: 0x800E04B4
+ * @note Size: 0x80
  */
 BOOL EXIProbe(s32 chan)
 {
@@ -325,10 +314,9 @@ BOOL EXIProbe(s32 chan)
 	return rc;
 }
 
-/*
- * --INFO--
- * Address:	800E0534
- * Size:	0000B4
+/**
+ * @note Address: 0x800E0534
+ * @note Size: 0xB4
  */
 s32 EXIProbeEx(s32 chan)
 {
@@ -341,10 +329,9 @@ s32 EXIProbeEx(s32 chan)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D4
+/**
+ * @note Address: N/A
+ * @note Size: 0xD4
  */
 static BOOL __EXIAttach(s32 chan, EXICallback extCallback)
 {
@@ -367,10 +354,9 @@ static BOOL __EXIAttach(s32 chan, EXICallback extCallback)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800E05E8
- * Size:	00010C
+/**
+ * @note Address: 0x800E05E8
+ * @note Size: 0x10C
  */
 BOOL EXIAttach(s32 chan, EXICallback extCallback)
 {
@@ -390,10 +376,9 @@ BOOL EXIAttach(s32 chan, EXICallback extCallback)
 	return rc;
 }
 
-/*
- * --INFO--
- * Address:	800E06F4
- * Size:	0000BC
+/**
+ * @note Address: 0x800E06F4
+ * @note Size: 0xBC
  */
 BOOL EXIDetach(s32 chan)
 {
@@ -416,10 +401,9 @@ BOOL EXIDetach(s32 chan)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800E07B0
- * Size:	00012C
+/**
+ * @note Address: 0x800E07B0
+ * @note Size: 0x12C
  */
 BOOL EXISelect(s32 chan, u32 dev, u32 freq)
 {
@@ -457,10 +441,9 @@ BOOL EXISelect(s32 chan, u32 dev, u32 freq)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800E08DC
- * Size:	000110
+/**
+ * @note Address: 0x800E08DC
+ * @note Size: 0x110
  */
 BOOL EXIDeselect(s32 chan)
 {
@@ -497,10 +480,9 @@ BOOL EXIDeselect(s32 chan)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800E09EC
- * Size:	0000C8
+/**
+ * @note Address: 0x800E09EC
+ * @note Size: 0xC8
  */
 static void EXIIntrruptHandler(__OSInterrupt interrupt, OSContext* context)
 {
@@ -532,10 +514,9 @@ static void EXIIntrruptHandler(__OSInterrupt interrupt, OSContext* context)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800E0AB4
- * Size:	000218
+/**
+ * @note Address: 0x800E0AB4
+ * @note Size: 0x218
  */
 static void TCIntrruptHandler(__OSInterrupt interrupt, OSContext* context)
 {
@@ -569,10 +550,9 @@ static void TCIntrruptHandler(__OSInterrupt interrupt, OSContext* context)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800E0CCC
- * Size:	0000D0
+/**
+ * @note Address: 0x800E0CCC
+ * @note Size: 0xD0
  */
 static void EXTIntrruptHandler(__OSInterrupt interrupt, OSContext* context)
 {
@@ -599,10 +579,9 @@ static void EXTIntrruptHandler(__OSInterrupt interrupt, OSContext* context)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800E0D9C
- * Size:	0001D4
+/**
+ * @note Address: 0x800E0D9C
+ * @note Size: 0x1D4
  */
 void EXIInit(void)
 {
@@ -645,10 +624,9 @@ void EXIInit(void)
 	OSRegisterVersion(__EXIVersion);
 }
 
-/*
- * --INFO--
- * Address:	800E0F70
- * Size:	0000F4
+/**
+ * @note Address: 0x800E0F70
+ * @note Size: 0xF4
  */
 BOOL EXILock(s32 chan, u32 dev, EXICallback unlockedCallback)
 {
@@ -681,10 +659,9 @@ BOOL EXILock(s32 chan, u32 dev, EXICallback unlockedCallback)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800E1064
- * Size:	0000DC
+/**
+ * @note Address: 0x800E1064
+ * @note Size: 0xDC
  */
 BOOL EXIUnlock(s32 chan)
 {
@@ -712,10 +689,9 @@ BOOL EXIUnlock(s32 chan)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800E1140
- * Size:	000018
+/**
+ * @note Address: 0x800E1140
+ * @note Size: 0x18
  */
 u32 EXIGetState(s32 chan)
 {
@@ -724,10 +700,9 @@ u32 EXIGetState(s32 chan)
 	return (u32)exi->state;
 }
 
-/*
- * --INFO--
- * Address:	800E1158
- * Size:	000028
+/**
+ * @note Address: 0x800E1158
+ * @note Size: 0x28
  */
 static void UnlockedHandler(s32 chan, OSContext* context)
 {
@@ -736,10 +711,9 @@ static void UnlockedHandler(s32 chan, OSContext* context)
 	EXIGetID(chan, 0, &id);
 }
 
-/*
- * --INFO--
- * Address:	800E1180
- * Size:	0003B0
+/**
+ * @note Address: 0x800E1180
+ * @note Size: 0x3B0
  */
 s32 EXIGetID(s32 chan, u32 dev, u32* id)
 {
@@ -803,10 +777,9 @@ s32 EXIGetID(s32 chan, u32 dev, u32* id)
 	return err ? 0 : !0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000234
+/**
+ * @note Address: N/A
+ * @note Size: 0x234
  */
 char* EXIGetTypeString(u32 type)
 {

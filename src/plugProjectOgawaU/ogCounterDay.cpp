@@ -6,10 +6,9 @@
 namespace og {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	8030D2B8
- * Size:	00004C
+/**
+ * @note Address: 0x8030D2B8
+ * @note Size: 0x4C
  */
 CallBack_CounterDay::CallBack_CounterDay(char** p1, u16 p2, JKRArchive* archive)
     : CallBack_CounterRV(p1, p2, 2, archive)
@@ -17,10 +16,9 @@ CallBack_CounterDay::CallBack_CounterDay(char** p1, u16 p2, JKRArchive* archive)
 	mDayPic = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8030D304
- * Size:	0000EC
+/**
+ * @note Address: 0x8030D304
+ * @note Size: 0xEC
  */
 void CallBack_CounterDay::init(J2DScreen* mgr, u64 tag1, u64 tag2, u64 pictureTag, u32* ptr, bool p7)
 {
@@ -43,10 +41,9 @@ void CallBack_CounterDay::init(J2DScreen* mgr, u64 tag1, u64 tag2, u64 pictureTa
 	mPic2->hide();
 }
 
-/*
- * --INFO--
- * Address:	8030D3F0
- * Size:	000168
+/**
+ * @note Address: 0x8030D3F0
+ * @note Size: 0x168
  */
 void CallBack_CounterDay::setValue()
 {
@@ -85,10 +82,9 @@ void CallBack_CounterDay::setValue()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8030D558
- * Size:	000040
+/**
+ * @note Address: 0x8030D558
+ * @note Size: 0x40
  */
 void CallBack_CounterDay::show()
 {
@@ -98,10 +94,9 @@ void CallBack_CounterDay::show()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8030D598
- * Size:	00004C
+/**
+ * @note Address: 0x8030D598
+ * @note Size: 0x4C
  */
 void CallBack_CounterDay::hide()
 {
@@ -112,10 +107,9 @@ void CallBack_CounterDay::hide()
 	mDayPic->hide();
 }
 
-/*
- * --INFO--
- * Address:	8030D5E4
- * Size:	000040
+/**
+ * @note Address: 0x8030D5E4
+ * @note Size: 0x40
  */
 void CallBack_CounterDay::update()
 {
@@ -124,10 +118,9 @@ void CallBack_CounterDay::update()
 	setValue();
 }
 
-/*
- * --INFO--
- * Address:	8030D624
- * Size:	0000DC
+/**
+ * @note Address: 0x8030D624
+ * @note Size: 0xDC
  */
 CallBack_CounterDay* setCallBack_CounterDay(P2DScreen::Mgr* mgr, u64 tag1, u64 tag2, u64 pictureTag, u32* ptr, u16 p6, JKRArchive* archive)
 {

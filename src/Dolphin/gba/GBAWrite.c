@@ -1,9 +1,8 @@
 #include "Dolphin/gba.h"
 
-/*
- * --INFO--
- * Address:	800FEE64
- * Size:	000030
+/**
+ * @note Address: 0x800FEE64
+ * @note Size: 0x30
  */
 void WriteProc(s32 chan)
 {
@@ -13,10 +12,9 @@ void WriteProc(s32 chan)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
+/**
+ * @note Address: N/A
+ * @note Size: 0x94
  */
 int GBWriteAsync(s32 chan, u8* ptr, u8* statusPtr)
 {
@@ -32,10 +30,9 @@ int GBWriteAsync(s32 chan, u8* ptr, u8* statusPtr)
 	return __GBATransfer(chan, 5, 1, WriteProc);
 }
 
-/*
- * --INFO--
- * Address:	800FEE94
- * Size:	0000C4
+/**
+ * @note Address: 0x800FEE94
+ * @note Size: 0xC4
  */
 int GBAWrite(s32 chan, u8* ptr, u8* statusPtr)
 {

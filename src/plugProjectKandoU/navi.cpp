@@ -35,10 +35,9 @@ int numSearch;
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	8013F6D4
- * Size:	000050
+/**
+ * @note Address: 0x8013F6D4
+ * @note Size: 0x50
  */
 void Navi::getShadowParam(ShadowParam& param)
 {
@@ -51,10 +50,9 @@ void Navi::getShadowParam(ShadowParam& param)
 	param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 }
 
-/*
- * --INFO--
- * Address:	8013F724
- * Size:	000024
+/**
+ * @note Address: 0x8013F724
+ * @note Size: 0x24
  */
 void Navi::getLODSphere(Sys::Sphere& sphere)
 {
@@ -62,10 +60,9 @@ void Navi::getLODSphere(Sys::Sphere& sphere)
 	sphere.mPosition = mBoundingSphere.mPosition;
 }
 
-/*
- * --INFO--
- * Address:	8013F748
- * Size:	000208
+/**
+ * @note Address: 0x8013F748
+ * @note Size: 0x208
  */
 Navi::Navi()
 {
@@ -98,10 +95,9 @@ Navi::Navi()
 	mSoundObj = new PSM::Navi(this);
 }
 
-/*
- * --INFO--
- * Address:	801400B0
- * Size:	000290
+/**
+ * @note Address: 0x801400B0
+ * @note Size: 0x290
  */
 void Navi::onInit(Game::CreatureInitArg* arg)
 {
@@ -176,10 +172,9 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 	mArrowMatAnim->start(&naviMgr->mMarkerAnims[id]);
 }
 
-/*
- * --INFO--
- * Address:	8014037C
- * Size:	000088
+/**
+ * @note Address: 0x8014037C
+ * @note Size: 0x88
  */
 void Navi::onSetPosition(Vector3f& position)
 {
@@ -196,10 +191,9 @@ void Navi::onSetPosition(Vector3f& position)
 	mWhistle->init();
 }
 
-/*
- * --INFO--
- * Address:	80140404
- * Size:	000040
+/**
+ * @note Address: 0x80140404
+ * @note Size: 0x40
  */
 void Navi::onKill(CreatureKillArg* killArg)
 {
@@ -207,10 +201,9 @@ void Navi::onKill(CreatureKillArg* killArg)
 	mEffectsObj->killLight();
 }
 
-/*
- * --INFO--
- * Address:	80140444
- * Size:	0000D4
+/**
+ * @note Address: 0x80140444
+ * @note Size: 0xD4
  */
 void Navi::onKeyEvent(const SysShape::KeyEvent& event)
 {
@@ -233,10 +226,9 @@ void Navi::onKeyEvent(const SysShape::KeyEvent& event)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8014051C
- * Size:	000080
+/**
+ * @note Address: 0x8014051C
+ * @note Size: 0x80
  */
 Vector3f Navi::getPosition()
 {
@@ -251,10 +243,9 @@ Vector3f Navi::getPosition()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8014059C
- * Size:	000050
+/**
+ * @note Address: 0x8014059C
+ * @note Size: 0x50
  */
 void Navi::onStickStart(Creature* creature)
 {
@@ -263,10 +254,9 @@ void Navi::onStickStart(Creature* creature)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801405EC
- * Size:	000058
+/**
+ * @note Address: 0x801405EC
+ * @note Size: 0x58
  */
 void Navi::onStickEnd(Creature* creature)
 {
@@ -275,10 +265,9 @@ void Navi::onStickEnd(Creature* creature)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80140644
- * Size:	000654
+/**
+ * @note Address: 0x80140644
+ * @note Size: 0x654
  */
 bool Navi::procActionButton()
 {
@@ -820,10 +809,9 @@ lbl_80140C64:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80140CF4
- * Size:	000138
+/**
+ * @note Address: 0x80140CF4
+ * @note Size: 0x138
  */
 void Navi::setupNukuAdjustArg(ItemPikihead::Item* item, NaviNukuAdjustStateArg& arg)
 {
@@ -837,10 +825,9 @@ void Navi::setupNukuAdjustArg(ItemPikihead::Item* item, NaviNukuAdjustStateArg& 
 	arg.mPikihead = item;
 }
 
-/*
- * --INFO--
- * Address:	80140E2C
- * Size:	000050
+/**
+ * @note Address: 0x80140E2C
+ * @note Size: 0x50
  */
 bool Navi::hasDope(int sprayType)
 {
@@ -851,10 +838,9 @@ bool Navi::hasDope(int sprayType)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80140E7C
- * Size:	000044
+/**
+ * @note Address: 0x80140E7C
+ * @note Size: 0x44
  */
 int Navi::getDopeCount(int sprayType)
 {
@@ -865,10 +851,9 @@ int Navi::getDopeCount(int sprayType)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80140EC0
- * Size:	00004C
+/**
+ * @note Address: 0x80140EC0
+ * @note Size: 0x4C
  */
 void Navi::useDope(int sprayType)
 {
@@ -879,10 +864,9 @@ void Navi::useDope(int sprayType)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80140F0C
- * Size:	0000A0
+/**
+ * @note Address: 0x80140F0C
+ * @note Size: 0xA0
  */
 void Navi::incDopeCount(int sprayType)
 {
@@ -896,10 +880,9 @@ void Navi::incDopeCount(int sprayType)
 	playData->incDopeCount(sprayType);
 }
 
-/*
- * --INFO--
- * Address:	80140FB4
- * Size:	0002E0
+/**
+ * @note Address: 0x80140FB4
+ * @note Size: 0x2E0
  * 87%
  */
 void Navi::applyDopes(int sprayType, Vector3f& sprayOrigin)
@@ -926,10 +909,9 @@ void Navi::applyDopes(int sprayType, Vector3f& sprayOrigin)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80141294
- * Size:	0001B0
+/**
+ * @note Address: 0x80141294
+ * @note Size: 0x1B0
  */
 void Navi::applyDopeSmoke(CellObject* object)
 {
@@ -1061,10 +1043,9 @@ void Navi::applyDopeSmoke(CellObject* object)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80141444
- * Size:	00001C
+/**
+ * @note Address: 0x80141444
+ * @note Size: 0x1C
  */
 int Navi::getStateID()
 {
@@ -1075,38 +1056,33 @@ int Navi::getStateID()
 	return -1;
 }
 
-/*
- * --INFO--
- * Address:	80141460
- * Size:	000044
+/**
+ * @note Address: 0x80141460
+ * @note Size: 0x44
  */
 void Navi::transit(int next, StateArg* arg) { mFsm->transit(this, next, arg); }
 
-/*
- * --INFO--
- * Address:	801414A4
- * Size:	00000C
+/**
+ * @note Address: 0x801414A4
+ * @note Size: 0xC
  */
 OlimarData* Navi::getOlimarData() { return playData->mOlimarData; }
 
-/*
- * --INFO--
- * Address:	801414B0
- * Size:	000014
+/**
+ * @note Address: 0x801414B0
+ * @note Size: 0x14
  */
 JAInter::Object* Navi::getJAIObject() { return mSoundObj; }
 
-/*
- * --INFO--
- * Address:	801414C4
- * Size:	000008
+/**
+ * @note Address: 0x801414C4
+ * @note Size: 0x8
  */
 PSM::Creature* Navi::getPSCreature() { return mSoundObj; }
 
-/*
- * --INFO--
- * Address:	801414CC
- * Size:	000044
+/**
+ * @note Address: 0x801414CC
+ * @note Size: 0x44
  */
 void Navi::wallCallback(Vector3f& pos)
 {
@@ -1115,10 +1091,9 @@ void Navi::wallCallback(Vector3f& pos)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80141514
- * Size:	000044
+/**
+ * @note Address: 0x80141514
+ * @note Size: 0x44
  */
 void Navi::bounceCallback(Sys::Triangle* tri)
 {
@@ -1127,10 +1102,9 @@ void Navi::bounceCallback(Sys::Triangle* tri)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8014155C
- * Size:	000044
+/**
+ * @note Address: 0x8014155C
+ * @note Size: 0x44
  */
 void Navi::collisionCallback(CollEvent& event)
 {
@@ -1139,10 +1113,9 @@ void Navi::collisionCallback(CollEvent& event)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801415A4
- * Size:	000194
+/**
+ * @note Address: 0x801415A4
+ * @note Size: 0x194
  */
 void Navi::platCallback(PlatEvent& plat)
 {
@@ -1274,31 +1247,27 @@ void Navi::platCallback(PlatEvent& plat)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80141738
- * Size:	000004
+/**
+ * @note Address: 0x80141738
+ * @note Size: 0x4
  */
 void Navi::viewEntryShape(Matrixf&, Vector3f&) { }
 
-/*
- * --INFO--
- * Address:	8014173C
- * Size:	000008
+/**
+ * @note Address: 0x8014173C
+ * @note Size: 0x8
  */
 SysShape::Model* Navi::viewGetShape() { return mModel; }
 
-/*
- * --INFO--
- * Address:	80141744
- * Size:	00001C
+/**
+ * @note Address: 0x80141744
+ * @note Size: 0x1C
  */
 f32 Navi::viewGetBaseScale() { return mNaviIndex == NAVIID_Olimar ? 1.3f : 1.5f; }
 
-/*
- * --INFO--
- * Address:	80141760
- * Size:	0001F8
+/**
+ * @note Address: 0x80141760
+ * @note Size: 0x1F8
  * ////////////////////////FIX//SOME//WEIRD//STUFF//GOING//ON//HERE////////////////////////
  * 86%
  */
@@ -1358,10 +1327,9 @@ void Navi::doEntry()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80141958
- * Size:	0002C4
+/**
+ * @note Address: 0x80141958
+ * @note Size: 0x2C4
  */
 void Navi::doAnimation()
 {
@@ -1605,10 +1573,9 @@ void Navi::doAnimation()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80141C1C
- * Size:	000280
+/**
+ * @note Address: 0x80141C1C
+ * @note Size: 0x280
  */
 void Navi::updateCursor()
 {
@@ -1800,10 +1767,9 @@ void Navi::updateCursor()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80141E9C
- * Size:	000058
+/**
+ * @note Address: 0x80141E9C
+ * @note Size: 0x58
  */
 void Navi::doSimulation(f32 timeStep)
 {
@@ -1816,10 +1782,9 @@ void Navi::doSimulation(f32 timeStep)
 	FakePiki::doSimulation(timeStep);
 }
 
-/*
- * --INFO--
- * Address:	80141EF4
- * Size:	0000B8
+/**
+ * @note Address: 0x80141EF4
+ * @note Size: 0xB8
  */
 void Navi::doSetView(int viewportNumber)
 {
@@ -1836,10 +1801,9 @@ void Navi::doSetView(int viewportNumber)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80141FAC
- * Size:	00003C
+/**
+ * @note Address: 0x80141FAC
+ * @note Size: 0x3C
  */
 void Navi::doViewCalc()
 {
@@ -1848,24 +1812,21 @@ void Navi::doViewCalc()
 	mCursorModel->viewCalc();
 }
 
-/*
- * --INFO--
- * Address:	80141FE8
- * Size:	000014
+/**
+ * @note Address: 0x80141FE8
+ * @note Size: 0x14
  */
 void Navi::setLifeMax() { mHealth = naviMgr->mNaviParms->mNaviParms.mMaxHealth; }
 
-/*
- * --INFO--
- * Address:	80141FFC
- * Size:	000018
+/**
+ * @note Address: 0x80141FFC
+ * @note Size: 0x18
  */
 f32 Navi::getLifeRatio() { return mHealth / naviMgr->mNaviParms->mNaviParms.mMaxHealth.mValue; }
 
-/*
- * --INFO--
- * Address:	80142014
- * Size:	0000AC
+/**
+ * @note Address: 0x80142014
+ * @note Size: 0xAC
  */
 int Navi::getDownfloorMass()
 {
@@ -1904,10 +1865,9 @@ int Navi::getDownfloorMass()
 	return mass;
 }
 
-/*
- * --INFO--
- * Address:	801420C0
- * Size:	0002A8
+/**
+ * @note Address: 0x801420C0
+ * @note Size: 0x2A8
  */
 void Navi::update()
 {
@@ -1956,17 +1916,15 @@ void Navi::update()
 	mCPlateMgr->update();
 }
 
-/*
- * --INFO--
- * Address:	8014237C
- * Size:	000004
+/**
+ * @note Address: 0x8014237C
+ * @note Size: 0x4
  */
 void Navi::do_updateLookCreature() { }
 
-/*
- * --INFO--
- * Address:	80142380
- * Size:	00009C
+/**
+ * @note Address: 0x80142380
+ * @note Size: 0x9C
  */
 void Navi::inWaterCallback(WaterBox* wb)
 {
@@ -1985,10 +1943,9 @@ void Navi::inWaterCallback(WaterBox* wb)
 	mSoundObj->startSound(PSSE_PL_WATER_IN, 0);
 }
 
-/*
- * --INFO--
- * Address:	8014241C
- * Size:	000044
+/**
+ * @note Address: 0x8014241C
+ * @note Size: 0x44
  */
 void Navi::outWaterCallback()
 {
@@ -1998,10 +1955,9 @@ void Navi::outWaterCallback()
 	fx->killHamonB_();
 }
 
-/*
- * --INFO--
- * Address:	80142460
- * Size:	0000B0
+/**
+ * @note Address: 0x80142460
+ * @note Size: 0xB0
  */
 bool Navi::ignoreAtari(Creature* other)
 {
@@ -2016,10 +1972,9 @@ bool Navi::ignoreAtari(Creature* other)
 	return mCurrentState->ignoreAtari(other);
 }
 
-/*
- * --INFO--
- * Address:	80142518
- * Size:	00004C
+/**
+ * @note Address: 0x80142518
+ * @note Size: 0x4C
  */
 void Navi::on_movie_begin(bool)
 {
@@ -2031,10 +1986,9 @@ void Navi::on_movie_begin(bool)
 	fx->killFueact_();
 }
 
-/*
- * --INFO--
- * Address:	80142564
- * Size:	000048
+/**
+ * @note Address: 0x80142564
+ * @note Size: 0x48
  */
 void Navi::on_movie_end(bool)
 {
@@ -2042,10 +1996,9 @@ void Navi::on_movie_end(bool)
 	startMotion(IPikiAnims::WAIT, IPikiAnims::WAIT, nullptr, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	801425AC
- * Size:	00027C
+/**
+ * @note Address: 0x801425AC
+ * @note Size: 0x27C
  */
 void Navi::movieUserCommand(u32 command, MoviePlayer* player)
 {
@@ -2293,10 +2246,9 @@ void Navi::movieUserCommand(u32 command, MoviePlayer* player)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80142828
- * Size:	000028
+/**
+ * @note Address: 0x80142828
+ * @note Size: 0x28
  */
 void Navi::movieSetFaceDir(f32 direction)
 {
@@ -2304,10 +2256,9 @@ void Navi::movieSetFaceDir(f32 direction)
 	mWhistle->setFaceDir(direction);
 }
 
-/*
- * --INFO--
- * Address:	80142850
- * Size:	00004C
+/**
+ * @note Address: 0x80142850
+ * @note Size: 0x4C
  */
 void Navi::movieStartAnimation(u32 anim)
 {
@@ -2315,10 +2266,9 @@ void Navi::movieStartAnimation(u32 anim)
 	mAnimSpeed = 30.0f;
 }
 
-/*
- * --INFO--
- * Address:	8014289C
- * Size:	0000DC
+/**
+ * @note Address: 0x8014289C
+ * @note Size: 0xDC
  */
 void Navi::movieStartDemoAnimation(SysShape::AnimInfo* info)
 {
@@ -2334,10 +2284,9 @@ void Navi::movieStartDemoAnimation(SysShape::AnimInfo* info)
 	model->mJ3dModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = (J3DMtxCalcAnmBase*)mAnimator.mBoundAnimator.getCalc();
 }
 
-/*
- * --INFO--
- * Address:	80142978
- * Size:	000088
+/**
+ * @note Address: 0x80142978
+ * @note Size: 0x88
  */
 void Navi::movieSetTranslation(Vector3f& newpos, f32 dir)
 {
@@ -2349,10 +2298,9 @@ void Navi::movieSetTranslation(Vector3f& newpos, f32 dir)
 	mFaceDir = dir;
 }
 
-/*
- * --INFO--
- * Address:	80142A00
- * Size:	00012C
+/**
+ * @note Address: 0x80142A00
+ * @note Size: 0x12C
  */
 bool Navi::movieGotoPosition(Vector3f& pos)
 {
@@ -2452,10 +2400,9 @@ bool Navi::movieGotoPosition(Vector3f& pos)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80142B2C
- * Size:	0001A8
+/**
+ * @note Address: 0x80142B2C
+ * @note Size: 0x1A8
  */
 void Navi::set_movie_draw(bool on)
 {
@@ -2481,17 +2428,15 @@ void Navi::set_movie_draw(bool on)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80142CD4
- * Size:	000050
+/**
+ * @note Address: 0x80142CD4
+ * @note Size: 0x50
  */
 bool Navi::isWalking() { return mVelocity.qLength() > 10.0f; }
 
-/*
- * --INFO--
- * Address:	80142D24
- * Size:	00016C
+/**
+ * @note Address: 0x80142D24
+ * @note Size: 0x16C
  */
 void Navi::setDeadLaydown()
 {
@@ -2621,10 +2566,9 @@ void Navi::setDeadLaydown()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80142E90
- * Size:	0002DC
+/**
+ * @note Address: 0x80142E90
+ * @note Size: 0x2DC
  */
 ItemHole::Item* Navi::checkHole()
 {
@@ -2653,10 +2597,9 @@ ItemHole::Item* Navi::checkHole()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	801431B8
- * Size:	0002CC
+/**
+ * @note Address: 0x801431B8
+ * @note Size: 0x2CC
  */
 ItemCave::Item* Navi::checkCave()
 {
@@ -2684,10 +2627,9 @@ ItemCave::Item* Navi::checkCave()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80143484
- * Size:	0002B4
+/**
+ * @note Address: 0x80143484
+ * @note Size: 0x2B4
  */
 ItemBigFountain::Item* Navi::checkBigFountain()
 {
@@ -2716,10 +2658,9 @@ ItemBigFountain::Item* Navi::checkBigFountain()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80143738
- * Size:	000368
+/**
+ * @note Address: 0x80143738
+ * @note Size: 0x368
  */
 Onyon* Navi::checkOnyon()
 {
@@ -2762,81 +2703,72 @@ Onyon* Navi::checkOnyon()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	80143AEC
- * Size:	000008
+/**
+ * @note Address: 0x80143AEC
+ * @note Size: 0x8
  */
 f32 Navi::getMapCollisionRadius() { return 8.5f; }
 
-/*
- * --INFO--
- * Address:	80143AF4
- * Size:	000004
+/**
+ * @note Address: 0x80143AF4
+ * @note Size: 0x4
  */
 void Navi::doDirectDraw(Graphics&) { }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000004
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x4
 //  */
 // void Navi::draw2d(J2DGrafContext&)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000008
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x8
 //  */
 // void Navi::changeCamera(Camera*)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	00000C
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0xC
 //  */
 // void Navi::restoreCamera()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	80143AF8
- * Size:	00000C
+/**
+ * @note Address: 0x80143AF8
+ * @note Size: 0xC
  */
 void Navi::disableController() { mController1 = nullptr; }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000008
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x8
 //  */
 // void Navi::changeController(Controller*)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	00000C
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0xC
 //  */
 // void Navi::restoreController()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	80143B04
- * Size:	0000D8
+/**
+ * @note Address: 0x80143B04
+ * @note Size: 0xD8
  */
 void Navi::control()
 {
@@ -2866,10 +2798,9 @@ void Navi::control()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80143BDC
- * Size:	000418
+/**
+ * @note Address: 0x80143BDC
+ * @note Size: 0x418
  */
 void Navi::makeVelocity()
 {
@@ -3227,10 +3158,9 @@ void Navi::makeVelocity()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80143FF4
- * Size:	0001A4
+/**
+ * @note Address: 0x80143FF4
+ * @note Size: 0x1A4
  */
 void Navi::reviseController(Vector3f& input)
 {
@@ -3371,10 +3301,9 @@ void Navi::reviseController(Vector3f& input)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80144198
- * Size:	0001D4
+/**
+ * @note Address: 0x80144198
+ * @note Size: 0x1D4
  */
 void Navi::callPikis()
 {
@@ -3528,20 +3457,18 @@ void Navi::callPikis()
 	*/
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	00014C
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x14C
 //  */
 // void Navi::applyForceObjectsInWhistle(CellObject*)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	8014436C
- * Size:	00008C
+/**
+ * @note Address: 0x8014436C
+ * @note Size: 0x8C
  */
 bool Navi::invincible()
 {
@@ -3560,17 +3487,15 @@ bool Navi::invincible()
 	return mCurrentState->invincible();
 }
 
-/*
- * --INFO--
- * Address:	80144400
- * Size:	000008
+/**
+ * @note Address: 0x80144400
+ * @note Size: 0x8
  */
 void Navi::setInvincibleTimer(u8 timer) { mInvincibleTimer = timer; }
 
-/*
- * --INFO--
- * Address:	80144408
- * Size:	000208
+/**
+ * @note Address: 0x80144408
+ * @note Size: 0x208
  */
 void Navi::startDamage(f32 damage)
 {
@@ -3747,10 +3672,9 @@ void Navi::startDamage(f32 damage)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80144610
- * Size:	000214
+/**
+ * @note Address: 0x80144610
+ * @note Size: 0x214
  */
 void Navi::addDamage(f32 damage, bool flag)
 {
@@ -3931,10 +3855,9 @@ void Navi::addDamage(f32 damage, bool flag)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80144824
- * Size:	00029C
+/**
+ * @note Address: 0x80144824
+ * @note Size: 0x29C
  */
 void Navi::enterAllPikis()
 {
@@ -4152,27 +4075,24 @@ void Navi::enterAllPikis()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80144AC0
- * Size:	000014
+/**
+ * @note Address: 0x80144AC0
+ * @note Size: 0x14
  */
 bool Navi::formationable() { return mDisbandTimer == 0; }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	00000C
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0xC
 //  */
 // void Navi::startKaisanDisable()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	80144AD4
- * Size:	000070
+/**
+ * @note Address: 0x80144AD4
+ * @note Size: 0x70
  */
 void Navi::updateKaisanDisable()
 {
@@ -4181,31 +4101,27 @@ void Navi::updateKaisanDisable()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80144B44
- * Size:	00000C
+/**
+ * @note Address: 0x80144B44
+ * @note Size: 0xC
  */
 void Navi::clearKaisanDisable() { mDisbandTimer = 0; }
 
-/*
- * --INFO--
- * Address:	80144B50
- * Size:	000010
+/**
+ * @note Address: 0x80144B50
+ * @note Size: 0x10
  */
 bool Navi::throwable() { return mThrowTimer == 0; }
 
-/*
- * --INFO--
- * Address:	80144B60
- * Size:	00000C
+/**
+ * @note Address: 0x80144B60
+ * @note Size: 0xC
  */
 void Navi::startThrowDisable() { mThrowTimer = NAVI_THROWTIMER_LENGTH; }
 
-/*
- * --INFO--
- * Address:	80144B6C
- * Size:	00003C
+/**
+ * @note Address: 0x80144B6C
+ * @note Size: 0x3C
  */
 void Navi::updateThrowDisable()
 {
@@ -4220,17 +4136,15 @@ void Navi::updateThrowDisable()
 	mThrowTimer--;
 }
 
-/*
- * --INFO--
- * Address:	80144BA8
- * Size:	00000C
+/**
+ * @note Address: 0x80144BA8
+ * @note Size: 0xC
  */
 void Navi::clearThrowDisable() { mThrowTimer = 0; }
 
-/*
- * --INFO--
- * Address:	80144BB4
- * Size:	0002FC
+/**
+ * @note Address: 0x80144BB4
+ * @note Size: 0x2FC
  */
 void Navi::holeinAllPikis(Vector3f& pos)
 {
@@ -4261,10 +4175,9 @@ void Navi::holeinAllPikis(Vector3f& pos)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80144EC0
- * Size:	0002F8
+/**
+ * @note Address: 0x80144EC0
+ * @note Size: 0x2F8
  */
 void Navi::fountainonAllPikis(Vector3f& pos)
 {
@@ -4294,10 +4207,9 @@ void Navi::fountainonAllPikis(Vector3f& pos)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801451B8
- * Size:	0002D4
+/**
+ * @note Address: 0x801451B8
+ * @note Size: 0x2D4
  */
 void Navi::demowaitAllPikis()
 {
@@ -4326,10 +4238,9 @@ void Navi::demowaitAllPikis()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8014548C
- * Size:	000954
+/**
+ * @note Address: 0x8014548C
+ * @note Size: 0x954
  */
 bool Navi::releasePikis()
 {
@@ -5093,10 +5004,9 @@ bool Navi::releasePikis()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80145DE8
- * Size:	000920
+/**
+ * @note Address: 0x80145DE8
+ * @note Size: 0x920
  */
 void Navi::makeCStick(bool disable)
 {
@@ -5873,10 +5783,9 @@ void Navi::makeCStick(bool disable)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80146708
- * Size:	000064
+/**
+ * @note Address: 0x80146708
+ * @note Size: 0x64
  */
 bool Navi::isCStickNetural()
 {
@@ -5884,10 +5793,9 @@ bool Navi::isCStickNetural()
 	return mCStickPosition.qLength() <= parms.mNeutralStickThreshold.mValue;
 }
 
-/*
- * --INFO--
- * Address:	8014676C
- * Size:	0002BC
+/**
+ * @note Address: 0x8014676C
+ * @note Size: 0x2BC
  */
 void Navi::findNextThrowPiki()
 {
@@ -6095,10 +6003,9 @@ void Navi::findNextThrowPiki()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80146A28
- * Size:	00002C
+/**
+ * @note Address: 0x80146A28
+ * @note Size: 0x2C
  */
 u32 Navi::ogGetNextThrowPiki()
 {
@@ -6122,10 +6029,9 @@ inline f32 pikmin2_normalise(Vector3f& vec)
 	return length;
 }
 
-/*
- * --INFO--
- * Address:	80146A54
- * Size:	0002C0
+/**
+ * @note Address: 0x80146A54
+ * @note Size: 0x2C0
  */
 void Navi::throwPiki(Piki* piki, Vector3f& cursorPos)
 {
@@ -6395,10 +6301,9 @@ void Navi::throwPiki(Piki* piki, Vector3f& cursorPos)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80146D14
- * Size:	000008
+/**
+ * @note Address: 0x80146D14
+ * @note Size: 0x8
  */
 bool Navi::commandOn() { return mCommandOn2; }
 

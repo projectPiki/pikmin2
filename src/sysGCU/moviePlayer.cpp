@@ -26,10 +26,9 @@ namespace Game {
 JKRArchive* MoviePlayer::mArchive;
 MoviePlayer* moviePlayer;
 
-/*
- * --INFO--
- * Address:	8042C700
- * Size:	000150
+/**
+ * @note Address: 0x8042C700
+ * @note Size: 0x150
  */
 MoviePlayer::MoviePlayer()
     : mTextControl(nullptr)
@@ -61,10 +60,9 @@ MoviePlayer::MoviePlayer()
 	mDelegate3 = new Delegate<MoviePlayer>(this, loadResource);
 }
 
-/*
- * --INFO--
- * Address:	8042C8B0
- * Size:	00002C
+/**
+ * @note Address: 0x8042C8B0
+ * @note Size: 0x2C
  */
 void MoviePlayer::reset()
 {
@@ -73,10 +71,9 @@ void MoviePlayer::reset()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8042C8DC
- * Size:	00001C
+/**
+ * @note Address: 0x8042C8DC
+ * @note Size: 0x1C
  */
 Navi* MoviePlayer::getActiveOrima()
 {
@@ -85,10 +82,9 @@ Navi* MoviePlayer::getActiveOrima()
 	return mTargetNavi;
 }
 
-/*
- * --INFO--
- * Address:	8042C8F8
- * Size:	00001C
+/**
+ * @note Address: 0x8042C8F8
+ * @note Size: 0x1C
  */
 PlayCamera* MoviePlayer::getActiveGameCamera()
 {
@@ -97,10 +93,9 @@ PlayCamera* MoviePlayer::getActiveGameCamera()
 	return mActingCamera;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  */
 void MoviePlayer::setMovieHeap(JKRHeap* heap)
 {
@@ -109,10 +104,9 @@ void MoviePlayer::setMovieHeap(JKRHeap* heap)
 	mMovieHeapFreeSize = heap->getTotalFreeSize();
 }
 
-/*
- * --INFO--
- * Address:	8042C914
- * Size:	0000BC
+/**
+ * @note Address: 0x8042C914
+ * @note Size: 0xBC
  */
 void MoviePlayer::allocMovieHeap(u32 size)
 {
@@ -123,20 +117,18 @@ void MoviePlayer::allocMovieHeap(u32 size)
 	backup->becomeCurrentHeap();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  */
 void MoviePlayer::clearMovieHeap()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8042C9D0
- * Size:	000060
+/**
+ * @note Address: 0x8042C9D0
+ * @note Size: 0x60
  */
 u8 MoviePlayer::play(MoviePlayArg& arg)
 {
@@ -148,10 +140,9 @@ u8 MoviePlayer::play(MoviePlayArg& arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8042CA30
- * Size:	00033C
+/**
+ * @note Address: 0x8042CA30
+ * @note Size: 0x33C
  */
 u8 MoviePlayer::play(MovieConfig* config, MoviePlayArg& arg, bool flag)
 {
@@ -233,27 +224,24 @@ u8 MoviePlayer::play(MovieConfig* config, MoviePlayArg& arg, bool flag)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 void MoviePlayer::doStartMovie()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8042CD6C
- * Size:	000024
+/**
+ * @note Address: 0x8042CD6C
+ * @note Size: 0x24
  */
 MovieConfig* MoviePlayer::findConfig(char* demoName, char* courseName) { return movieList->findConfig(demoName, courseName); }
 
-/*
- * --INFO--
- * Address:	8042CD90
- * Size:	0000B0
+/**
+ * @note Address: 0x8042CD90
+ * @note Size: 0xB0
  */
 MovieContext::MovieContext()
 {
@@ -271,10 +259,9 @@ MovieContext::MovieContext()
 	mArg.mSoundPosition = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8042CE40
- * Size:	00009C
+/**
+ * @note Address: 0x8042CE40
+ * @note Size: 0x9C
  */
 void MoviePlayer::allocContexts()
 {
@@ -286,10 +273,9 @@ void MoviePlayer::allocContexts()
 	clearContexts();
 }
 
-/*
- * --INFO--
- * Address:	8042CEDC
- * Size:	0000AC
+/**
+ * @note Address: 0x8042CEDC
+ * @note Size: 0xAC
  */
 void MoviePlayer::clearContexts()
 {
@@ -303,37 +289,33 @@ void MoviePlayer::clearContexts()
 	mActiveContextNum = 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F0
+/**
+ * @note Address: N/A
+ * @note Size: 0xF0
  */
 void MoviePlayer::playSuspended()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8042CF88
- * Size:	0000AC
+/**
+ * @note Address: 0x8042CF88
+ * @note Size: 0xAC
  */
 void MoviePlayer::clearSuspendedDemo() { clearContexts(); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 void MoviePlayer::hasSuspendedDemo()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8042D034
- * Size:	00006C
+/**
+ * @note Address: 0x8042D034
+ * @note Size: 0x6C
  */
 MovieContext* MoviePlayer::getNewContext()
 {
@@ -346,20 +328,18 @@ MovieContext* MoviePlayer::getNewContext()
 	return context;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  */
 void MoviePlayer::hasSuspendedContext()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  */
 void MoviePlayer::getSuspendedContext()
 {
@@ -388,10 +368,9 @@ void MoviePlayer::getSuspendedContext()
 	// }
 }
 
-/*
- * --INFO--
- * Address:	8042D0A8
- * Size:	000088
+/**
+ * @note Address: 0x8042D0A8
+ * @note Size: 0x88
  */
 void MoviePlayer::setContext(MovieContext* context, MovieConfig* config, MoviePlayArg& arg)
 {
@@ -413,10 +392,9 @@ void MoviePlayer::setContext(MovieContext* context, MovieConfig* config, MoviePl
 	context->mArg.mSoundPosition = arg.mSoundPosition;
 }
 
-/*
- * --INFO--
- * Address:	8042D130
- * Size:	000478
+/**
+ * @note Address: 0x8042D130
+ * @note Size: 0x478
  */
 void MoviePlayer::loadResource()
 {
@@ -491,10 +469,9 @@ void MoviePlayer::loadResource()
 	sys->heapStatusDump(false);
 }
 
-/*
- * --INFO--
- * Address:	8042D5A8
- * Size:	0000C0
+/**
+ * @note Address: 0x8042D5A8
+ * @note Size: 0xC0
  */
 bool MoviePlayer::parse(bool flag)
 {
@@ -513,10 +490,9 @@ bool MoviePlayer::parse(bool flag)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8042D668
- * Size:	0007C4
+/**
+ * @note Address: 0x8042D668
+ * @note Size: 0x7C4
  */
 bool MoviePlayer::update(Controller* input1, Controller* input2)
 {
@@ -685,10 +661,9 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 	return isFlag(MVP_IsActive);
 }
 
-/*
- * --INFO--
- * Address:	8042DE58
- * Size:	000078
+/**
+ * @note Address: 0x8042DE58
+ * @note Size: 0x78
  */
 void MoviePlayer::draw(Graphics& gfx)
 {
@@ -698,10 +673,9 @@ void MoviePlayer::draw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8042DED0
- * Size:	000074
+/**
+ * @note Address: 0x8042DED0
+ * @note Size: 0x74
  */
 bool MoviePlayer::start(Camera* cam)
 {
@@ -717,10 +691,9 @@ bool MoviePlayer::start(Camera* cam)
 	return isFlag(MVP_IsActive);
 }
 
-/*
- * --INFO--
- * Address:	8042DF44
- * Size:	000120
+/**
+ * @note Address: 0x8042DF44
+ * @note Size: 0x120
  */
 bool MoviePlayer::stop()
 {
@@ -754,20 +727,18 @@ bool MoviePlayer::stop()
 	return isFlag(MVP_IsActive);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00010C
+/**
+ * @note Address: N/A
+ * @note Size: 0x10C
  */
 void MoviePlayer::do_stop()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8042E064
- * Size:	000324
+/**
+ * @note Address: 0x8042E064
+ * @note Size: 0x324
  */
 void MoviePlayer::setCamera(Camera* cam)
 {
@@ -1050,20 +1021,18 @@ lbl_8042E374:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 void MoviePlayer::suspend(long)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8042E388
- * Size:	0000D0
+/**
+ * @note Address: 0x8042E388
+ * @note Size: 0xD0
  */
 void MoviePlayer::unsuspend(long msg, bool flag)
 {
@@ -1081,10 +1050,9 @@ void MoviePlayer::unsuspend(long msg, bool flag)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8042E458
- * Size:	0000C4
+/**
+ * @note Address: 0x8042E458
+ * @note Size: 0xC4
  */
 void MoviePlayer::resetFrame()
 {
@@ -1096,10 +1064,9 @@ void MoviePlayer::resetFrame()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8042E51C
- * Size:	00009C
+/**
+ * @note Address: 0x8042E51C
+ * @note Size: 0x9C
  */
 void MoviePlayer::setTransform(Vector3f& pos, f32 angle)
 {
@@ -1114,10 +1081,9 @@ void MoviePlayer::setTransform(Vector3f& pos, f32 angle)
 	control->transformOnSet_setOrigin(*(Vec*)&pos, angle);
 }
 
-/*
- * --INFO--
- * Address:	8042E5B8
- * Size:	000034
+/**
+ * @note Address: 0x8042E5B8
+ * @note Size: 0x34
  */
 bool MoviePlayer::isPlaying(char* name)
 {
@@ -1128,20 +1094,18 @@ bool MoviePlayer::isPlaying(char* name)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 void MoviePlayer::isLoadingBlack()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8042E5EC
- * Size:	000148
+/**
+ * @note Address: 0x8042E5EC
+ * @note Size: 0x148
  */
 void MoviePlayer::drawLoading(Graphics& gfx)
 {
@@ -1242,10 +1206,9 @@ lbl_8042E718:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8042E734
- * Size:	000108
+/**
+ * @note Address: 0x8042E734
+ * @note Size: 0x108
  */
 void MoviePlayer::skip()
 {
@@ -1332,10 +1295,9 @@ lbl_8042E7FC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000404
+/**
+ * @note Address: N/A
+ * @note Size: 0x404
  */
 void MoviePlayer::draw2d()
 {

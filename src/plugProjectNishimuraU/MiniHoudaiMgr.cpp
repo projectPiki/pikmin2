@@ -5,10 +5,9 @@
 namespace Game {
 namespace MiniHoudai {
 
-/*
- * --INFO--
- * Address:	802EBD54
- * Size:	000050
+/**
+ * @note Address: 0x802EBD54
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -16,10 +15,9 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "チビホウダイマネージャ"; // little houdai manager
 }
 
-/*
- * --INFO--
- * Address:	802EBDA4
- * Size:	0000D8
+/**
+ * @note Address: 0x802EBDA4
+ * @note Size: 0xD8
  */
 void Mgr::loadModelData()
 {
@@ -45,10 +43,9 @@ void Mgr::loadModelData()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802EBE7C
- * Size:	000090
+/**
+ * @note Address: 0x802EBE7C
+ * @note Size: 0x90
  */
 void Mgr::loadAnimData()
 {

@@ -12,24 +12,21 @@ namespace Screen {
 
 static const char className[] = "ebiScreenMemoryCard";
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 TResourceObserver::TResourceObserver(TMemoryCard* owner) { mOwner = owner; }
 
-/*
- * --INFO--
- * Address:	803C2244
- * Size:	00006C
+/**
+ * @note Address: 0x803C2244
+ * @note Size: 0x6C
  */
 TResourceObserver::~TResourceObserver() { mOwner->destroyResource(); }
 
-/*
- * --INFO--
- * Address:	803C22B0
- * Size:	0000D8
+/**
+ * @note Address: 0x803C22B0
+ * @note Size: 0xD8
  */
 void TMemoryCard::loadResource(JKRHeap* heap)
 {
@@ -47,10 +44,9 @@ void TMemoryCard::loadResource(JKRHeap* heap)
 	setArchive(arc);
 }
 
-/*
- * --INFO--
- * Address:	803C2388
- * Size:	00039C
+/**
+ * @note Address: 0x803C2388
+ * @note Size: 0x39C
  */
 void TMemoryCard::setArchive(JKRArchive* arc)
 {
@@ -112,10 +108,9 @@ void TMemoryCard::setArchive(JKRArchive* arc)
 
 } // namespace Screen
 
-/*
- * --INFO--
- * Address:	803C2724
- * Size:	0001BC
+/**
+ * @note Address: 0x803C2724
+ * @note Size: 0x1BC
  */
 void E2DCallBack_BlinkFontColor::set(J2DTextBox* pane1, J2DTextBox* pane2)
 {
@@ -125,10 +120,9 @@ void E2DCallBack_BlinkFontColor::set(J2DTextBox* pane1, J2DTextBox* pane2)
 
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	803C28E0
- * Size:	000018
+/**
+ * @note Address: 0x803C28E0
+ * @note Size: 0x18
  */
 void TMemoryCard::destroyResource()
 {
@@ -138,10 +132,9 @@ void TMemoryCard::destroyResource()
 	mPaneMsg4 = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	803C28F8
- * Size:	001208
+/**
+ * @note Address: 0x803C28F8
+ * @note Size: 0x1208
  */
 void TMemoryCard::open(long type)
 {
@@ -571,10 +564,9 @@ void TMemoryCard::open(long type)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803C3B00
- * Size:	000030
+/**
+ * @note Address: 0x803C3B00
+ * @note Size: 0x30
  */
 void TMemoryCard::close()
 {
@@ -582,17 +574,15 @@ void TMemoryCard::close()
 		startState(MEMCARD_Finish);
 }
 
-/*
- * --INFO--
- * Address:	803C3B30
- * Size:	000024
+/**
+ * @note Address: 0x803C3B30
+ * @note Size: 0x24
  */
 void TMemoryCard::killScreen() { startState(MEMCARD_Disabled); }
 
-/*
- * --INFO--
- * Address:	803C3B54
- * Size:	000334
+/**
+ * @note Address: 0x803C3B54
+ * @note Size: 0x334
  */
 void TMemoryCard::setSelect_(bool sel)
 {
@@ -616,10 +606,9 @@ void TMemoryCard::setSelect_(bool sel)
 
 } // namespace Screen
 
-/*
- * --INFO--
- * Address:	803C3E88
- * Size:	000128
+/**
+ * @note Address: 0x803C3E88
+ * @note Size: 0x128
  */
 void TYesNoCursor::update()
 {
@@ -727,10 +716,9 @@ lbl_803C3F9C:
 
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	803C3FB0
- * Size:	000028
+/**
+ * @note Address: 0x803C3FB0
+ * @note Size: 0x28
  */
 bool TMemoryCard::isFinish()
 {
@@ -740,20 +728,18 @@ bool TMemoryCard::isFinish()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 bool TMemoryCard::isDecide()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803C3FD8
- * Size:	0004EC
+/**
+ * @note Address: 0x803C3FD8
+ * @note Size: 0x4EC
  */
 void TMemoryCard::startState(enumState state)
 {
@@ -818,10 +804,9 @@ void TMemoryCard::startState(enumState state)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803C44C4
- * Size:	0008C8
+/**
+ * @note Address: 0x803C44C4
+ * @note Size: 0x8C8
  */
 void TMemoryCard::update()
 {
@@ -1573,10 +1558,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803C4D8C
- * Size:	000080
+/**
+ * @note Address: 0x803C4D8C
+ * @note Size: 0x80
  */
 void TMemoryCard::draw()
 {

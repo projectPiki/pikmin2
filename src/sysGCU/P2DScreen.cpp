@@ -6,16 +6,14 @@
 namespace P2DScreen {
 
 /* __ct
- * --INFO--
- * Address:	80434AC0
- * Size:	000064
+ * @note Address: 0x80434AC0
+ * @note Size: 0x64
  */
 Mgr::Mgr() { }
 
-/*
- * --INFO--
- * Address:	80434B24
- * Size:	000138
+/**
+ * @note Address: 0x80434B24
+ * @note Size: 0x138
  */
 J2DPane* Mgr::addCallBack(u64 tag, Node* node)
 {
@@ -136,10 +134,9 @@ lbl_80434C3C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80434C5C
- * Size:	000084
+/**
+ * @note Address: 0x80434C5C
+ * @note Size: 0x84
  */
 void Mgr::addCallBackPane(J2DPane* pane, Node* node)
 {
@@ -149,20 +146,18 @@ void Mgr::addCallBackPane(J2DPane* pane, Node* node)
 	mScreenNode.add(node);
 }
 
-/*
- * --INFO--
- * Address:	80434CE0
- * Size:	00004C
+/**
+ * @note Address: 0x80434CE0
+ * @note Size: 0x4C
  */
 void Mgr::update()
 {
 	FOREACH_NODE(Node, mScreenNode.mChild, node) { node->update(); }
 }
 
-/*
- * --INFO--
- * Address:	80434D2C
- * Size:	000080
+/**
+ * @note Address: 0x80434D2C
+ * @note Size: 0x80
  */
 void Mgr::draw(Graphics& gfx, J2DGrafContext& context)
 {
@@ -175,10 +170,9 @@ const f32 Mgr_tuning::mstTuningScaleY = 0.95f;
 const f32 Mgr_tuning::mstTuningTransX = -15.2f;
 const f32 Mgr_tuning::mstTuningTransY = -15.2f;
 
-/*
- * --INFO--
- * Address:	80434DAC
- * Size:	000088
+/**
+ * @note Address: 0x80434DAC
+ * @note Size: 0x88
  */
 Mgr_tuning::Mgr_tuning()
     : mScreenScaleX(0.95f)
@@ -189,9 +183,8 @@ Mgr_tuning::Mgr_tuning()
 }
 
 /* draw__Q29P2DScreen10Mgr_tuningFR8GraphicsR14J2DGrafContext
- * --INFO--
- * Address:	80434E34
- * Size:	000128
+ * @note Address: 0x80434E34
+ * @note Size: 0x128
  */
 void Mgr_tuning::draw(Graphics& gfx, J2DGrafContext& context)
 {

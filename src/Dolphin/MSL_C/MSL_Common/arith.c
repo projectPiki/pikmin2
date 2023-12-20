@@ -1,9 +1,8 @@
 #include "PowerPC_EABI_Support/MSL_C/MSL_Common/arith.h"
 
-/*
- * --INFO--
- * Address:	800C6150
- * Size:	000010
+/**
+ * @note Address: 0x800C6150
+ * @note Size: 0x10
  */
 int abs(int x)
 {
@@ -17,10 +16,9 @@ int abs(int x)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 long labs(long x)
 {
@@ -35,20 +33,18 @@ long labs(long x)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 void llabs(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800C60F8
- * Size:	000058
+/**
+ * @note Address: 0x800C60F8
+ * @note Size: 0x58
  */
 div_t div(s32 __numer, s32 __denom)
 {
@@ -104,140 +100,126 @@ div_t div(s32 __numer, s32 __denom)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
+/**
+ * @note Address: N/A
+ * @note Size: 0x58
  */
 void ldiv(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00015C
+/**
+ * @note Address: N/A
+ * @note Size: 0x15C
  */
 void lldiv(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
+/**
+ * @note Address: N/A
+ * @note Size: 0x60
  */
 void __msl_add(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
+/**
+ * @note Address: N/A
+ * @note Size: 0x60
  */
 void __msl_ladd(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D8
+/**
+ * @note Address: N/A
+ * @note Size: 0xD8
  */
 void __lladd(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 void __msl_mul(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 void __msl_lmul(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000148
+/**
+ * @note Address: N/A
+ * @note Size: 0x148
  */
 void __llmul(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
+/**
+ * @note Address: N/A
+ * @note Size: 0x78
  */
 void __msl_div(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
+/**
+ * @note Address: N/A
+ * @note Size: 0x78
  */
 void __msl_ldiv(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001C4
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C4
  */
 void __lldiv(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
+/**
+ * @note Address: N/A
+ * @note Size: 0x5C
  */
 void __msl_mod(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
+/**
+ * @note Address: N/A
+ * @note Size: 0x5C
  */
 void __msl_lmod(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000198
+/**
+ * @note Address: N/A
+ * @note Size: 0x198
  */
 void __llmod(void)
 {

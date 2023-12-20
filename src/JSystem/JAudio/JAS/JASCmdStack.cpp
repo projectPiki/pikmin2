@@ -5,10 +5,9 @@
 JASPortCmd::TPortHead JASPortCmd::sCommandListOnce;
 JASPortCmd::TPortHead JASPortCmd::sCommandListStay;
 
-/*
- * --INFO--
- * Address:	800A6724
- * Size:	00005C
+/**
+ * @note Address: 0x800A6724
+ * @note Size: 0x5C
  */
 bool JASPortCmd::addPortCmdOnce()
 {
@@ -18,30 +17,27 @@ bool JASPortCmd::addPortCmdOnce()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
+/**
+ * @note Address: N/A
+ * @note Size: 0x5C
  */
 u32 JASPortCmd::addPortCmdStay()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
+/**
+ * @note Address: N/A
+ * @note Size: 0x5C
  */
 u32 JASPortCmd::cancelPortCmdStay()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800A6780
- * Size:	000024
+/**
+ * @note Address: 0x800A6780
+ * @note Size: 0x24
  */
 bool JASPortCmd::setPortCmd(void (*command)(JASPortArgs*), JASPortArgs* args)
 {
@@ -53,10 +49,9 @@ bool JASPortCmd::setPortCmd(void (*command)(JASPortArgs*), JASPortArgs* args)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	800A67A4
- * Size:	000034
+/**
+ * @note Address: 0x800A67A4
+ * @note Size: 0x34
  */
 void JASPortCmd::execAllCommand()
 {
@@ -64,10 +59,9 @@ void JASPortCmd::execAllCommand()
 	sCommandListStay.execCommandStay();
 }
 
-/*
- * --INFO--
- * Address:	800A67D8
- * Size:	000088
+/**
+ * @note Address: 0x800A67D8
+ * @note Size: 0x88
  */
 void JASPortCmd::TPortHead::execCommandOnce()
 {
@@ -81,10 +75,9 @@ void JASPortCmd::TPortHead::execCommandOnce()
 	OSRestoreInterrupts(interrupts);
 }
 
-/*
- * --INFO--
- * Address:	800A6860
- * Size:	000068
+/**
+ * @note Address: 0x800A6860
+ * @note Size: 0x68
  */
 void JASPortCmd::TPortHead::execCommandStay()
 {

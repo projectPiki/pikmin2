@@ -2,10 +2,9 @@
 
 #include "BitFlags.h"
 
-/*
- * --INFO--
- * Address:	8041C1A8
- * Size:	000010
+/**
+ * @note Address: 0x8041C1A8
+ * @note Size: 0x10
  */
 BitFlags::BitFlags()
     : mFlagArr(0)
@@ -13,20 +12,18 @@ BitFlags::BitFlags()
 {
 }
 
-/*
- * --INFO--
- * Address:	8041C1B8
- * Size:	000050
+/**
+ * @note Address: 0x8041C1B8
+ * @note Size: 0x50
  */
 void BitFlags::dump()
 {
 	for (s32 i = 0; i < mFlagCnt; i++) { }
 }
 
-/*
- * --INFO--
- * Address:	8041C208
- * Size:	000064
+/**
+ * @note Address: 0x8041C208
+ * @note Size: 0x64
  */
 void BitFlags::read(Stream& stream)
 {
@@ -35,10 +32,9 @@ void BitFlags::read(Stream& stream)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8041C26C
- * Size:	000064
+/**
+ * @note Address: 0x8041C26C
+ * @note Size: 0x64
  */
 void BitFlags::write(Stream& stream)
 {
@@ -47,10 +43,9 @@ void BitFlags::write(Stream& stream)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8041C2D0
- * Size:	000054
+/**
+ * @note Address: 0x8041C2D0
+ * @note Size: 0x54
  */
 void BitFlags::create(u16 arg1, u8* flags)
 {
@@ -64,10 +59,9 @@ void BitFlags::create(u16 arg1, u8* flags)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8041C324
- * Size:	000028
+/**
+ * @note Address: 0x8041C324
+ * @note Size: 0x28
  */
 void BitFlags::reset()
 {
@@ -76,24 +70,21 @@ void BitFlags::reset()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8041C34C
- * Size:	000028
+/**
+ * @note Address: 0x8041C34C
+ * @note Size: 0x28
  */
 void BitFlags::all_zero() { set_all(0); }
 
-/*
- * --INFO--
- * Address:	8041C374
- * Size:	000028
+/**
+ * @note Address: 0x8041C374
+ * @note Size: 0x28
  */
 void BitFlags::all_one() { set_all(0xFF); }
 
-/*
- * --INFO--
- * Address:	8041C39C
- * Size:	000030
+/**
+ * @note Address: 0x8041C39C
+ * @note Size: 0x30
  */
 void BitFlags::setFlag(u16 input)
 {
@@ -102,10 +93,9 @@ void BitFlags::setFlag(u16 input)
 	mFlagArr[index] |= 1 << input;
 }
 
-/*
- * --INFO--
- * Address:	8041C3CC
- * Size:	000030
+/**
+ * @note Address: 0x8041C3CC
+ * @note Size: 0x30
  */
 void BitFlags::resetFlag(u16 input)
 {
@@ -114,10 +104,9 @@ void BitFlags::resetFlag(u16 input)
 	mFlagArr[index] &= ~(1 << input);
 }
 
-/*
- * --INFO--
- * Address:	8041C3FC
- * Size:	000038
+/**
+ * @note Address: 0x8041C3FC
+ * @note Size: 0x38
  */
 bool BitFlags::isFlag(u16 input)
 {

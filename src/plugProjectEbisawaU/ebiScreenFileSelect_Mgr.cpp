@@ -8,10 +8,9 @@ static const char className[] = "ebiScreenFileSelect_Mgr";
 namespace ebi {
 namespace FS {
 
-/*
- * --INFO--
- * Address:	803DE2C0
- * Size:	0005B0
+/**
+ * @note Address: 0x803DE2C0
+ * @note Size: 0x5B0
  */
 void FSMStateMachine::init(TMgr* mgr)
 {
@@ -33,24 +32,21 @@ void FSMStateMachine::init(TMgr* mgr)
 	registerState(new FSMState10_FinishCopy);
 }
 
-/*
- * --INFO--
- * Address:	803DE870
- * Size:	00002C
+/**
+ * @note Address: 0x803DE870
+ * @note Size: 0x2C
  */
 void FSMState::init(TMgr* mgr, Game::StateArg* arg) { do_init(mgr, arg); }
 
-/*
- * --INFO--
- * Address:	803DE89C
- * Size:	00002C
+/**
+ * @note Address: 0x803DE89C
+ * @note Size: 0x2C
  */
 void FSMState::exec(TMgr* mgr) { do_exec(mgr); }
 
-/*
- * --INFO--
- * Address:	803DE8C8
- * Size:	000070
+/**
+ * @note Address: 0x803DE8C8
+ * @note Size: 0x70
  */
 void FSMState_SelectYesNo::do_init(TMgr* mgr, Game::StateArg* arg)
 {
@@ -62,10 +58,9 @@ void FSMState_SelectYesNo::do_init(TMgr* mgr, Game::StateArg* arg)
 	mClosedMsg  = false;
 }
 
-/*
- * --INFO--
- * Address:	803DE938
- * Size:	000204
+/**
+ * @note Address: 0x803DE938
+ * @note Size: 0x204
  */
 void FSMState_SelectYesNo::do_exec(TMgr* mgr)
 {
@@ -270,10 +265,9 @@ lbl_803DEB24:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803DEB3C
- * Size:	000060
+/**
+ * @note Address: 0x803DEB3C
+ * @note Size: 0x60
  */
 void FSMState01_DataBroken::do_set(TMgr* mgr, Game::StateArg*)
 {
@@ -285,10 +279,9 @@ void FSMState01_DataBroken::do_set(TMgr* mgr, Game::StateArg*)
 	mgr->mMainScreen.openDataWindow(mgr->mCurrSelection);
 }
 
-/*
- * --INFO--
- * Address:	803DEB9C
- * Size:	000024
+/**
+ * @note Address: 0x803DEB9C
+ * @note Size: 0x24
  */
 void FSMState03_DoYouDelete::do_set(TMgr* mgr, Game::StateArg*)
 {
@@ -298,17 +291,15 @@ void FSMState03_DoYouDelete::do_set(TMgr* mgr, Game::StateArg*)
 	mNextStateNo  = FSSTATE_SelectData;
 }
 
-/*
- * --INFO--
- * Address:	803DEBC0
- * Size:	000024
+/**
+ * @note Address: 0x803DEBC0
+ * @note Size: 0x24
  */
 void FSMState03_DoYouDelete::do_decide(TMgr* mgr) { mgr->mMainScreen.closeDataWindow(); }
 
-/*
- * --INFO--
- * Address:	803DEBE4
- * Size:	000024
+/**
+ * @note Address: 0x803DEBE4
+ * @note Size: 0x24
  */
 void FSMState07_DoYouOverwrite::do_set(TMgr* mgr, Game::StateArg*)
 {
@@ -318,10 +309,9 @@ void FSMState07_DoYouOverwrite::do_set(TMgr* mgr, Game::StateArg*)
 	mNextStateNo  = FSSTATE_SelectData;
 }
 
-/*
- * --INFO--
- * Address:	803DEC08
- * Size:	000038
+/**
+ * @note Address: 0x803DEC08
+ * @note Size: 0x38
  */
 void FSMState07_DoYouOverwrite::do_decide(TMgr* mgr)
 {
@@ -329,10 +319,9 @@ void FSMState07_DoYouOverwrite::do_decide(TMgr* mgr)
 	mgr->mMainScreen.closeDataWindow();
 }
 
-/*
- * --INFO--
- * Address:	803DEC40
- * Size:	000060
+/**
+ * @note Address: 0x803DEC40
+ * @note Size: 0x60
  */
 void FSMState_Warning::do_init(TMgr* mgr, Game::StateArg*)
 {
@@ -344,10 +333,9 @@ void FSMState_Warning::do_init(TMgr* mgr, Game::StateArg*)
 	mCounterMax      = time;
 }
 
-/*
- * --INFO--
- * Address:	803DECA0
- * Size:	0000C4
+/**
+ * @note Address: 0x803DECA0
+ * @note Size: 0xC4
  */
 void FSMState_Warning::do_exec(TMgr* mgr)
 {
@@ -370,17 +358,15 @@ void FSMState_Warning::do_exec(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803DED64
- * Size:	000028
+/**
+ * @note Address: 0x803DED64
+ * @note Size: 0x28
  */
 void FSMState05_FailToDelete::do_open(TMgr* mgr) { mgr->mMainScreen.openMSG(Screen::FileSelect::TMainScreen::MessageType_FileDeleteFail); }
 
-/*
- * --INFO--
- * Address:	803DED8C
- * Size:	000044
+/**
+ * @note Address: 0x803DED8C
+ * @note Size: 0x44
  */
 void FSMState05_FailToDelete::do_transit(TMgr* mgr)
 {
@@ -391,31 +377,27 @@ void FSMState05_FailToDelete::do_transit(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803DEDD0
- * Size:	000028
+/**
+ * @note Address: 0x803DEDD0
+ * @note Size: 0x28
  */
 void FSMState06_FinishDelete::do_open(TMgr* mgr) { mgr->mMainScreen.openMSG(Screen::FileSelect::TMainScreen::MessageType_FileDeleted); }
 
-/*
- * --INFO--
- * Address:	803DEDF8
- * Size:	000034
+/**
+ * @note Address: 0x803DEDF8
+ * @note Size: 0x34
  */
 void FSMState06_FinishDelete::do_transit(TMgr* mgr) { transit(mgr, FSSTATE_SelectData, nullptr); }
 
-/*
- * --INFO--
- * Address:	803DEE2C
- * Size:	000028
+/**
+ * @note Address: 0x803DEE2C
+ * @note Size: 0x28
  */
 void FSMState08_FailToCopy::do_open(TMgr* mgr) { mgr->mMainScreen.openMSG(Screen::FileSelect::TMainScreen::MessageType_FileCopyFail); }
 
-/*
- * --INFO--
- * Address:	803DEE54
- * Size:	000044
+/**
+ * @note Address: 0x803DEE54
+ * @note Size: 0x44
  */
 void FSMState08_FailToCopy::do_transit(TMgr* mgr)
 {
@@ -426,24 +408,21 @@ void FSMState08_FailToCopy::do_transit(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803DEE98
- * Size:	000028
+/**
+ * @note Address: 0x803DEE98
+ * @note Size: 0x28
  */
 void FSMState10_FinishCopy::do_open(TMgr* mgr) { mgr->mMainScreen.openMSG(Screen::FileSelect::TMainScreen::MessageType_FileCopied); }
 
-/*
- * --INFO--
- * Address:	803DEEC0
- * Size:	000034
+/**
+ * @note Address: 0x803DEEC0
+ * @note Size: 0x34
  */
 void FSMState10_FinishCopy::do_transit(TMgr* mgr) { transit(mgr, FSSTATE_SelectData, nullptr); }
 
-/*
- * --INFO--
- * Address:	803DEEF4
- * Size:	00006C
+/**
+ * @note Address: 0x803DEEF4
+ * @note Size: 0x6C
  */
 void FSMState_CardTask::init(TMgr* mgr, Game::StateArg* arg)
 {
@@ -455,10 +434,9 @@ void FSMState_CardTask::init(TMgr* mgr, Game::StateArg* arg)
 	mgr->mInSeq      = false;
 }
 
-/*
- * --INFO--
- * Address:	803DEF60
- * Size:	0002C0
+/**
+ * @note Address: 0x803DEF60
+ * @note Size: 0x2C0
  */
 void FSMState_CardTask::exec(TMgr* mgr)
 {
@@ -733,17 +711,15 @@ lbl_803DF204:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803DF220
- * Size:	000034
+/**
+ * @note Address: 0x803DF220
+ * @note Size: 0x34
  */
 void FSMState_CardTask::do_transitCardPlayerDataBroken(TMgr* mgr) { transit(mgr, FSSTATE_DataBroken, nullptr); }
 
-/*
- * --INFO--
- * Address:	803DF254
- * Size:	000040
+/**
+ * @note Address: 0x803DF254
+ * @note Size: 0x40
  */
 void FSMState02_NowDelete::do_init(TMgr* mgr, Game::StateArg*)
 {
@@ -751,24 +727,21 @@ void FSMState02_NowDelete::do_init(TMgr* mgr, Game::StateArg*)
 	mgr->mMainScreen.createFiledeletingEffect(mgr->mCurrSelection);
 }
 
-/*
- * --INFO--
- * Address:	803DF294
- * Size:	000024
+/**
+ * @note Address: 0x803DF294
+ * @note Size: 0x24
  */
 void FSMState02_NowDelete::do_close(TMgr* mgr) { mgr->mMainScreen.fadeFiledeletingEffect(); }
 
-/*
- * --INFO--
- * Address:	803DF2B8
- * Size:	00002C
+/**
+ * @note Address: 0x803DF2B8
+ * @note Size: 0x2C
  */
 bool FSMState02_NowDelete::do_cardRequest(TMgr* mgr) { return sys->mCardMgr->deletePlayer(mgr->mCurrSelection); }
 
-/*
- * --INFO--
- * Address:	803DF2E4
- * Size:	000060
+/**
+ * @note Address: 0x803DF2E4
+ * @note Size: 0x60
  */
 void FSMState02_NowDelete::do_transitCardReady(TMgr* mgr)
 {
@@ -776,31 +749,27 @@ void FSMState02_NowDelete::do_transitCardReady(TMgr* mgr)
 	transit(mgr, FSSTATE_FinishDelete, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	803DF344
- * Size:	000034
+/**
+ * @note Address: 0x803DF344
+ * @note Size: 0x34
  */
 void FSMState02_NowDelete::do_transitCardNoCard(TMgr* mgr) { transit(mgr, FSSTATE_FailToDelete, nullptr); }
 
-/*
- * --INFO--
- * Address:	803DF378
- * Size:	000034
+/**
+ * @note Address: 0x803DF378
+ * @note Size: 0x34
  */
 void FSMState02_NowDelete::do_transitCardIOError(TMgr* mgr) { transit(mgr, FSSTATE_FailToDelete, nullptr); }
 
-/*
- * --INFO--
- * Address:	803DF3AC
- * Size:	000024
+/**
+ * @note Address: 0x803DF3AC
+ * @note Size: 0x24
  */
 void FSMState02_NowDelete::cleanup(TMgr* mgr) { mgr->mMainScreen.fadeFiledeletingEffect(); }
 
-/*
- * --INFO--
- * Address:	803DF3D0
- * Size:	000044
+/**
+ * @note Address: 0x803DF3D0
+ * @note Size: 0x44
  */
 void FSMState09_NowCopy::do_init(TMgr* mgr, Game::StateArg*)
 {
@@ -808,24 +777,21 @@ void FSMState09_NowCopy::do_init(TMgr* mgr, Game::StateArg*)
 	mgr->mMainScreen.createFilecopyEffect(mgr->mCurrSelection, mgr->mCopySelection);
 }
 
-/*
- * --INFO--
- * Address:	803DF414
- * Size:	000024
+/**
+ * @note Address: 0x803DF414
+ * @note Size: 0x24
  */
 void FSMState09_NowCopy::do_close(TMgr* mgr) { mgr->mMainScreen.fadeFilecopyEffect(); }
 
-/*
- * --INFO--
- * Address:	803DF438
- * Size:	000034
+/**
+ * @note Address: 0x803DF438
+ * @note Size: 0x34
  */
 bool FSMState09_NowCopy::do_cardRequest(TMgr* mgr) { return sys->mCardMgr->copyPlayer(mgr->mCurrSelection, mgr->mCopySelection); }
 
-/*
- * --INFO--
- * Address:	803DF46C
- * Size:	000064
+/**
+ * @note Address: 0x803DF46C
+ * @note Size: 0x64
  */
 void FSMState09_NowCopy::do_transitCardReady(TMgr* mgr)
 {
@@ -833,31 +799,27 @@ void FSMState09_NowCopy::do_transitCardReady(TMgr* mgr)
 	transit(mgr, FSSTATE_FinishCopy, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	803DF4D0
- * Size:	000034
+/**
+ * @note Address: 0x803DF4D0
+ * @note Size: 0x34
  */
 void FSMState09_NowCopy::do_transitCardNoCard(TMgr* mgr) { transit(mgr, FSSTATE_FailToCopy, nullptr); }
 
-/*
- * --INFO--
- * Address:	803DF504
- * Size:	000034
+/**
+ * @note Address: 0x803DF504
+ * @note Size: 0x34
  */
 void FSMState09_NowCopy::do_transitCardIOError(TMgr* mgr) { transit(mgr, FSSTATE_FailToCopy, nullptr); }
 
-/*
- * --INFO--
- * Address:	803DF538
- * Size:	000024
+/**
+ * @note Address: 0x803DF538
+ * @note Size: 0x24
  */
 void FSMState09_NowCopy::cleanup(TMgr* mgr) { mgr->mMainScreen.fadeFilecopyEffect(); }
 
-/*
- * --INFO--
- * Address:	803DF55C
- * Size:	00004C
+/**
+ * @note Address: 0x803DF55C
+ * @note Size: 0x4C
  */
 void FSMState00a_OpenScene::do_init(TMgr* mgr, Game::StateArg*)
 {
@@ -866,10 +828,9 @@ void FSMState00a_OpenScene::do_init(TMgr* mgr, Game::StateArg*)
 	mgr->mEndStat       = TMgr::END_0;
 }
 
-/*
- * --INFO--
- * Address:	803DF5A8
- * Size:	000064
+/**
+ * @note Address: 0x803DF5A8
+ * @note Size: 0x64
  */
 void FSMState00a_OpenScene::do_exec(TMgr* mgr)
 {
@@ -879,10 +840,9 @@ void FSMState00a_OpenScene::do_exec(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803DF60C
- * Size:	0000AC
+/**
+ * @note Address: 0x803DF60C
+ * @note Size: 0xAC
  */
 void FSMState00_SelectData::do_init(TMgr* mgr, Game::StateArg*)
 {
@@ -901,10 +861,9 @@ void FSMState00_SelectData::do_init(TMgr* mgr, Game::StateArg*)
 	mCounterMax  = time;
 }
 
-/*
- * --INFO--
- * Address:	803DF6B8
- * Size:	000254
+/**
+ * @note Address: 0x803DF6B8
+ * @note Size: 0x254
  */
 void FSMState00_SelectData::do_exec(TMgr* mgr)
 {
@@ -1141,10 +1100,9 @@ lbl_803DF8F8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803DF90C
- * Size:	000064
+/**
+ * @note Address: 0x803DF90C
+ * @note Size: 0x64
  */
 void FSMState00b_CheckData::do_init(TMgr* mgr, Game::StateArg*)
 {
@@ -1156,10 +1114,9 @@ void FSMState00b_CheckData::do_init(TMgr* mgr, Game::StateArg*)
 	mStatus = CheckDataState_DoLoad;
 }
 
-/*
- * --INFO--
- * Address:	803DF970
- * Size:	0001E0
+/**
+ * @note Address: 0x803DF970
+ * @note Size: 0x1E0
  */
 void FSMState00b_CheckData::do_exec(TMgr* mgr)
 {
@@ -1196,10 +1153,9 @@ void FSMState00b_CheckData::do_exec(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803DFB50
- * Size:	00003C
+/**
+ * @note Address: 0x803DFB50
+ * @note Size: 0x3C
  */
 void FSMState00c_DecideData::do_init(TMgr* mgr, Game::StateArg*)
 {
@@ -1208,10 +1164,9 @@ void FSMState00c_DecideData::do_init(TMgr* mgr, Game::StateArg*)
 	mgr->mMainScreen.decideDataWindow();
 }
 
-/*
- * --INFO--
- * Address:	803DFB8C
- * Size:	0000B4
+/**
+ * @note Address: 0x803DFB8C
+ * @note Size: 0xB4
  */
 void FSMState00c_DecideData::do_exec(TMgr* mgr)
 {
@@ -1231,10 +1186,9 @@ void FSMState00c_DecideData::do_exec(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803DFC40
- * Size:	0000B0
+/**
+ * @note Address: 0x803DFC40
+ * @note Size: 0xB0
  */
 void FSMState04_WhichDataDoYouCopyTo::do_init(TMgr* mgr, Game::StateArg*)
 {
@@ -1260,10 +1214,9 @@ void FSMState04_WhichDataDoYouCopyTo::do_init(TMgr* mgr, Game::StateArg*)
 	mIsChanging = true;
 }
 
-/*
- * --INFO--
- * Address:	803DFCF0
- * Size:	00029C
+/**
+ * @note Address: 0x803DFCF0
+ * @note Size: 0x29C
  */
 void FSMState04_WhichDataDoYouCopyTo::do_exec(TMgr* mgr)
 {
@@ -1343,10 +1296,9 @@ void FSMState04_WhichDataDoYouCopyTo::do_exec(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803DFF8C
- * Size:	0000A4
+/**
+ * @note Address: 0x803DFF8C
+ * @note Size: 0xA4
  */
 TMgr::TMgr()
     : mCounter(0)
@@ -1357,10 +1309,9 @@ TMgr::TMgr()
 	mCurrSelection = 0;
 }
 
-/*
- * --INFO--
- * Address:	803E0030
- * Size:	000048
+/**
+ * @note Address: 0x803E0030
+ * @note Size: 0x48
  */
 void TMgr::setController(Controller* control)
 {
@@ -1368,10 +1319,9 @@ void TMgr::setController(Controller* control)
 	mCountNumInterface.init(mController, 0, 2, &mCurrSelection, EUTPadInterface_countNum::MODE_RIGHTLEFT, 1.0f, 1.0f);
 }
 
-/*
- * --INFO--
- * Address:	803E0078
- * Size:	0000FC
+/**
+ * @note Address: 0x803E0078
+ * @note Size: 0xFC
  */
 void TMgr::perseInfo(Game::MemoryCard::PlayerFileInfo& info)
 {
@@ -1476,10 +1426,9 @@ lbl_803E009C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803E0174
- * Size:	000098
+/**
+ * @note Address: 0x803E0174
+ * @note Size: 0x98
  */
 void TMgr::update()
 {
@@ -1494,10 +1443,9 @@ void TMgr::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E020C
- * Size:	000048
+/**
+ * @note Address: 0x803E020C
+ * @note Size: 0x48
  */
 void TMgr::draw()
 {
@@ -1506,10 +1454,9 @@ void TMgr::draw()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E0254
- * Size:	000044
+/**
+ * @note Address: 0x803E0254
+ * @note Size: 0x44
  */
 void TMgr::startSeq()
 {
@@ -1517,10 +1464,9 @@ void TMgr::startSeq()
 	mStateMachine.transit(this, FSSTATE_OpenScene, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	803E0298
- * Size:	000058
+/**
+ * @note Address: 0x803E0298
+ * @note Size: 0x58
  */
 void TMgr::forceQuitSeq()
 {
@@ -1528,17 +1474,15 @@ void TMgr::forceQuitSeq()
 	mStateMachine.transit(this, FSSTATE_Standby, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	803E02F0
- * Size:	000028
+/**
+ * @note Address: 0x803E02F0
+ * @note Size: 0x28
  */
 bool TMgr::isFinish() { return u8(getStateID() == FSSTATE_Standby); }
 
-/*
- * --INFO--
- * Address:	803E0318
- * Size:	000060
+/**
+ * @note Address: 0x803E0318
+ * @note Size: 0x60
  */
 void TMgr::goEnd_(enumEnd id)
 {
@@ -1547,10 +1491,9 @@ void TMgr::goEnd_(enumEnd id)
 	mMainScreen.killScreen();
 }
 
-/*
- * --INFO--
- * Address:	803E0378
- * Size:	0000D0
+/**
+ * @note Address: 0x803E0378
+ * @note Size: 0xD0
  */
 void TMgr::checkAndTransitNoCard_()
 {
@@ -1623,10 +1566,9 @@ lbl_803E0430:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803E0448
- * Size:	000058
+/**
+ * @note Address: 0x803E0448
+ * @note Size: 0x58
  */
 int TMgr::getStateID()
 {

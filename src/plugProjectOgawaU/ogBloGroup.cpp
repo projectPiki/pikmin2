@@ -5,10 +5,9 @@
 namespace og {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	8030EF88
- * Size:	000098
+/**
+ * @note Address: 0x8030EF88
+ * @note Size: 0x98
  */
 BloGroup::BloGroup(u16 count)
 {
@@ -24,17 +23,15 @@ BloGroup::BloGroup(u16 count)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B4
+/**
+ * @note Address: N/A
+ * @note Size: 0xB4
  */
 BloGroup::~BloGroup() { }
 
-/*
- * --INFO--
- * Address:	8030F020
- * Size:	0000A0
+/**
+ * @note Address: 0x8030F020
+ * @note Size: 0xA0
  */
 u32 BloGroup::addBlo(char* screenName, P2DScreen::Mgr_tuning* screen, u32 flag, JKRArchive* arc)
 {
@@ -53,10 +50,9 @@ u32 BloGroup::addBlo(char* screenName, P2DScreen::Mgr_tuning* screen, u32 flag, 
 	return count;
 }
 
-/*
- * --INFO--
- * Address:	8030F0C0
- * Size:	000044
+/**
+ * @note Address: 0x8030F0C0
+ * @note Size: 0x44
  */
 void BloGroup::scale(f32 scale)
 {
@@ -65,10 +61,9 @@ void BloGroup::scale(f32 scale)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8030F104
- * Size:	0000A4
+/**
+ * @note Address: 0x8030F104
+ * @note Size: 0xA4
  */
 void BloGroup::rotate(f32 axisX, f32 axisY, J2DRotateAxis type, f32 angle)
 {
@@ -77,10 +72,9 @@ void BloGroup::rotate(f32 axisX, f32 axisY, J2DRotateAxis type, f32 angle)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8030F1A8
- * Size:	000070
+/**
+ * @note Address: 0x8030F1A8
+ * @note Size: 0x70
  */
 void BloGroup::update()
 {
@@ -89,10 +83,9 @@ void BloGroup::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8030F218
- * Size:	0000E8
+/**
+ * @note Address: 0x8030F218
+ * @note Size: 0xE8
  */
 void BloGroup::draw(J2DPerspGraph* graf)
 {

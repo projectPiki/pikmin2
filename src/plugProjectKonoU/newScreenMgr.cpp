@@ -25,10 +25,9 @@
 
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	804001D8
- * Size:	0003CC
+/**
+ * @note Address: 0x804001D8
+ * @note Size: 0x3CC
  */
 ::Screen::SceneBase* createScene_Ogawa(long sceneType)
 {
@@ -149,10 +148,9 @@ namespace newScreen {
 	return base;
 }
 
-/*
- * --INFO--
- * Address:	804005A4
- * Size:	000348
+/**
+ * @note Address: 0x804005A4
+ * @note Size: 0x348
  */
 ::Screen::SceneBase* createScene_Morimura(long sceneType)
 {
@@ -213,10 +211,9 @@ namespace newScreen {
 	return base;
 }
 
-/*
- * --INFO--
- * Address:	804008EC
- * Size:	000050
+/**
+ * @note Address: 0x804008EC
+ * @note Size: 0x50
  */
 ::Screen::SceneBase* Mgr::doGetSceneBase(long id)
 {
@@ -231,10 +228,9 @@ namespace newScreen {
 	return base;
 }
 
-/*
- * --INFO--
- * Address:	8040093C
- * Size:	0000AC
+/**
+ * @note Address: 0x8040093C
+ * @note Size: 0xAC
  */
 Mgr* Mgr::create()
 {
@@ -249,10 +245,9 @@ Mgr* Mgr::create()
 	return mgr;
 }
 
-/*
- * --INFO--
- * Address:	80400A98
- * Size:	0001A0
+/**
+ * @note Address: 0x80400A98
+ * @note Size: 0x1A0
  */
 void Mgr::drawBG(Graphics& gfx)
 {
@@ -289,10 +284,9 @@ void Mgr::drawBG(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80400C38
- * Size:	000064
+/**
+ * @note Address: 0x80400C38
+ * @note Size: 0x64
  */
 bool Mgr::reset()
 {

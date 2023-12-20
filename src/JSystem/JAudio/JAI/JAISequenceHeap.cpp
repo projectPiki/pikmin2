@@ -26,10 +26,9 @@ JAInter::HeapBlock* JAInter::HeapMgr::sStayHeap;
 u32 JAInter::HeapMgr::sAutoHeapCount;
 u32 JAInter::HeapMgr::sStayHeapCount;
 
-/*
- * --INFO--
- * Address:	800B0340
- * Size:	000254
+/**
+ * @note Address: 0x800B0340
+ * @note Size: 0x254
  */
 void JAInter::HeapMgr::init(u8 p1, u32 p2, u8 p3, u32 p4)
 {
@@ -215,17 +214,15 @@ void JAInter::HeapMgr::init(u8 p1, u32 p2, u8 p3, u32 p4)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800B0594
- * Size:	000008
+/**
+ * @note Address: 0x800B0594
+ * @note Size: 0x8
  */
 JAInter::HeapBlock* JAInter::HeapMgr::getAutoHeapPointer() { return sAutoHeap; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 JAInter::HeapBlock* JAInter::HeapMgr::getStayHeapPointer()
 {
@@ -233,10 +230,9 @@ JAInter::HeapBlock* JAInter::HeapMgr::getStayHeapPointer()
 	return sStayHeap;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 u32 JAInter::HeapMgr::getAutoHeapCount()
 {
@@ -244,10 +240,9 @@ u32 JAInter::HeapMgr::getAutoHeapCount()
 	return sAutoHeapCount;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 u32 JAInter::HeapMgr::getStayHeapCount()
 {
@@ -255,10 +250,9 @@ u32 JAInter::HeapMgr::getStayHeapCount()
 	return sStayHeapCount;
 }
 
-/*
- * --INFO--
- * Address:	800B059C
- * Size:	000100
+/**
+ * @note Address: 0x800B059C
+ * @note Size: 0x100
  */
 void JAInter::HeapMgr::checkOnMemory(u32, u8*)
 {
@@ -350,10 +344,9 @@ lbl_800B0680:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800B069C
- * Size:	000024
+/**
+ * @note Address: 0x800B069C
+ * @note Size: 0x24
  */
 void JAInter::HeapMgr::releaseAutoHeapPointer(u8 index)
 {
@@ -374,20 +367,18 @@ void JAInter::HeapMgr::releaseAutoHeapPointer(u8 index)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 void JAInter::HeapMgr::changeAutoHeapPointerToPosition(u8*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800B06C0
- * Size:	0000E8
+/**
+ * @note Address: 0x800B06C0
+ * @note Size: 0xE8
  */
 void JAInter::HeapMgr::checkUsefulAutoHeapPosition()
 {
@@ -467,10 +458,9 @@ lbl_800B0784:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800B07A8
- * Size:	000048
+/**
+ * @note Address: 0x800B07A8
+ * @note Size: 0x48
  */
 void* JAInter::HeapMgr::getFreeAutoHeapPointer(u8 index, u32 p2)
 {
@@ -502,17 +492,15 @@ void* JAInter::HeapMgr::getFreeAutoHeapPointer(u8 index, u32 p2)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800B07F0
- * Size:	00000C
+/**
+ * @note Address: 0x800B07F0
+ * @note Size: 0xC
  */
 u32 JAInter::HeapMgr::checkUsefulStayHeapPosition() { return sStayHeapCount & 0xFF; }
 
-/*
- * --INFO--
- * Address:	800B07FC
- * Size:	000108
+/**
+ * @note Address: 0x800B07FC
+ * @note Size: 0x108
  */
 void* JAInter::HeapMgr::getFreeStayHeapPointer(u32, u32)
 {
@@ -596,64 +584,57 @@ lbl_800B08E4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 void JAInter::HeapMgr::clearAutoHeap(JAInter::HeapBlock*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 void JAInter::HeapMgr::clearAutoHeap(u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  */
 void JAInter::HeapMgr::clearStayHeap(u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
+/**
+ * @note Address: N/A
+ * @note Size: 0x7C
  */
 void JAInter::HeapMgr::getAutoHeapPointer(u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800B0904
- * Size:	000014
+/**
+ * @note Address: 0x800B0904
+ * @note Size: 0x14
  */
 void JAInter::HeapMgr::setAutoHeapLoadedFlag(u8 index, u8 flag) { sAutoHeap[index]._00 = flag; }
 
-/*
- * --INFO--
- * Address:	800B0918
- * Size:	000014
+/**
+ * @note Address: 0x800B0918
+ * @note Size: 0x14
  */
 void JAInter::HeapMgr::setStayHeapLoadedFlag(u8 index, u8 flag) { sStayHeap[index]._00 = flag; }
 
-/*
- * --INFO--
- * Address:	800B092C
- * Size:	000018
+/**
+ * @note Address: 0x800B092C
+ * @note Size: 0x18
  */
 JAInter::HeapBlock::HeapBlock()
 {

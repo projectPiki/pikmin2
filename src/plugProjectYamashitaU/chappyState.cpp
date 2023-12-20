@@ -5,10 +5,9 @@
 namespace Game {
 namespace ChappyBase {
 
-/*
- * --INFO--
- * Address:	80116648
- * Size:	000150
+/**
+ * @note Address: 0x80116648
+ * @note Size: 0x150
  */
 void ChappyBase::FSM::init(EnemyBase* base)
 {
@@ -24,10 +23,9 @@ void ChappyBase::FSM::init(EnemyBase* base)
 	registerState(new StateSleep(CHAPPY_Sleep));
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 StateCautionBase::StateCautionBase(int stateID)
     : State(stateID)
@@ -42,9 +40,8 @@ StateCautionBase::StateCautionBase(int stateID)
  *
  * @param enemy A pointer to the EnemyBase object.
  *
- * --INFO--
- * Address:	........
- * Size:	000194
+ * @note Address: N/A
+ * @note Size: 0x194
  */
 void StateCautionBase::cautionProc(EnemyBase* enemy)
 {
@@ -86,10 +83,9 @@ void StateCautionBase::cautionProc(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80116798
- * Size:	00003C
+/**
+ * @note Address: 0x80116798
+ * @note Size: 0x3C
  */
 StateSleep::StateSleep(int stateID)
     : State(stateID)
@@ -97,10 +93,9 @@ StateSleep::StateSleep(int stateID)
 	mName = "sleep";
 }
 
-/*
- * --INFO--
- * Address:	801167D4
- * Size:	0000BC
+/**
+ * @note Address: 0x801167D4
+ * @note Size: 0xBC
  */
 void StateSleep::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -124,10 +119,9 @@ void StateSleep::init(EnemyBase* enemy, StateArg* stateArg)
 	OBJ(enemy)->setUnderGround();
 }
 
-/*
- * --INFO--
- * Address:	80116890
- * Size:	0001B0
+/**
+ * @note Address: 0x80116890
+ * @note Size: 0x1B0
  * 70%
  */
 void StateSleep::exec(EnemyBase* enemy)
@@ -168,10 +162,9 @@ void StateSleep::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80116A40
- * Size:	000098
+/**
+ * @note Address: 0x80116A40
+ * @note Size: 0x98
  */
 void StateSleep::cleanup(EnemyBase* enemy)
 {
@@ -187,10 +180,9 @@ void StateSleep::cleanup(EnemyBase* enemy)
 	OBJ(enemy)->finishSleepEffect();
 }
 
-/*
- * --INFO--
- * Address:	80116AD8
- * Size:	000064
+/**
+ * @note Address: 0x80116AD8
+ * @note Size: 0x64
  */
 void StateSleep::setNextState(EnemyBase* enemy, int stateID)
 {
@@ -199,10 +191,9 @@ void StateSleep::setNextState(EnemyBase* enemy, int stateID)
 	mNextState = stateID;
 }
 
-/*
- * --INFO--
- * Address:	80116B3C
- * Size:	000054
+/**
+ * @note Address: 0x80116B3C
+ * @note Size: 0x54
  */
 StateDead::StateDead(int stateID)
     : StateCautionBase(stateID)
@@ -210,10 +201,9 @@ StateDead::StateDead(int stateID)
 	mName = "dead";
 }
 
-/*
- * --INFO--
- * Address:	80116B90
- * Size:	000040
+/**
+ * @note Address: 0x80116B90
+ * @note Size: 0x40
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -221,10 +211,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->deathProcedure();
 }
 
-/*
- * --INFO--
- * Address:	80116BD0
- * Size:	000064
+/**
+ * @note Address: 0x80116BD0
+ * @note Size: 0x64
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -237,27 +226,24 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80116C34
- * Size:	000004
+/**
+ * @note Address: 0x80116C34
+ * @note Size: 0x4
  */
 void StateDead::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 StateTurnBase::StateTurnBase(int stateID)
     : StateCautionBase(stateID)
 {
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001E0
+/**
+ * @note Address: N/A
+ * @note Size: 0x1E0
  */
 bool StateTurnBase::turnToTarget(EnemyBase* enemy, Vector3f& targetPos)
 {
@@ -272,10 +258,9 @@ bool StateTurnBase::turnToTarget(EnemyBase* enemy, Vector3f& targetPos)
 	return absF(turnAngle) <= TORADIANS(attackAngle);
 }
 
-/*
- * --INFO--
- * Address:	80116C38
- * Size:	000060
+/**
+ * @note Address: 0x80116C38
+ * @note Size: 0x60
  */
 StateTurn::StateTurn(int stateID)
     : StateTurnBase(stateID)
@@ -283,10 +268,9 @@ StateTurn::StateTurn(int stateID)
 	mName = "turn";
 }
 
-/*
- * --INFO--
- * Address:	80116C98
- * Size:	000058
+/**
+ * @note Address: 0x80116C98
+ * @note Size: 0x58
  */
 void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -295,10 +279,9 @@ void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(CHAPPYANIM_WaitAct1, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80116CF0
- * Size:	0007F0
+/**
+ * @note Address: 0x80116CF0
+ * @note Size: 0x7F0
  */
 void StateTurn::exec(EnemyBase* enemy)
 {
@@ -914,10 +897,9 @@ lbl_80117480:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801174E0
- * Size:	000038
+/**
+ * @note Address: 0x801174E0
+ * @note Size: 0x38
  */
 void ChappyBase::StateTurn::cleanup(EnemyBase* enemy)
 {
@@ -925,10 +907,9 @@ void ChappyBase::StateTurn::cleanup(EnemyBase* enemy)
 	enemy->resetAnimSpeed();
 }
 
-/*
- * --INFO--
- * Address:	80117518
- * Size:	000054
+/**
+ * @note Address: 0x80117518
+ * @note Size: 0x54
  */
 StateWalk::StateWalk(int stateID)
     : StateCautionBase(stateID)
@@ -936,10 +917,9 @@ StateWalk::StateWalk(int stateID)
 	mName = "Walk";
 }
 
-/*
- * --INFO--
- * Address:	8011756C
- * Size:	000058
+/**
+ * @note Address: 0x8011756C
+ * @note Size: 0x58
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -948,10 +928,9 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(CHAPPYANIM_Move1, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	801175C4
- * Size:	0007FC
+/**
+ * @note Address: 0x801175C4
+ * @note Size: 0x7FC
  */
 void StateWalk::exec(EnemyBase* enemy)
 {
@@ -1593,10 +1572,9 @@ lbl_80117D60:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80117DC0
- * Size:	000048
+/**
+ * @note Address: 0x80117DC0
+ * @note Size: 0x48
  */
 void StateWalk::cleanup(EnemyBase* enemy)
 {
@@ -1605,10 +1583,9 @@ void StateWalk::cleanup(EnemyBase* enemy)
 	enemy->mTargetVelocity = Vector3f(0.0f);
 }
 
-/*
- * --INFO--
- * Address:	80117E08
- * Size:	000054
+/**
+ * @note Address: 0x80117E08
+ * @note Size: 0x54
  */
 StateAttack::StateAttack(int stateID)
     : StateCautionBase(stateID)
@@ -1616,10 +1593,9 @@ StateAttack::StateAttack(int stateID)
 	mName = "Attack";
 }
 
-/*
- * --INFO--
- * Address:	80117E5C
- * Size:	000048
+/**
+ * @note Address: 0x80117E5C
+ * @note Size: 0x48
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1628,10 +1604,9 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->resetAnimSpeed();
 }
 
-/*
- * --INFO--
- * Address:	80117EA4
- * Size:	00033C
+/**
+ * @note Address: 0x80117EA4
+ * @note Size: 0x33C
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
@@ -1950,10 +1925,9 @@ lbl_801181BC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801181E0
- * Size:	0002F0
+/**
+ * @note Address: 0x801181E0
+ * @note Size: 0x2F0
  */
 void StateAttack::transitState(EnemyBase* enemy)
 {
@@ -2175,24 +2149,21 @@ lbl_80118480:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801184D0
- * Size:	000024
+/**
+ * @note Address: 0x801184D0
+ * @note Size: 0x24
  */
 void StateAttack::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	801184F4
- * Size:	000004
+/**
+ * @note Address: 0x801184F4
+ * @note Size: 0x4
  */
 void StateAttack::doDirectDraw(EnemyBase* enemy, Graphics&) { }
 
-/*
- * --INFO--
- * Address:	801184F8
- * Size:	000054
+/**
+ * @note Address: 0x801184F8
+ * @note Size: 0x54
  */
 StateFlick::StateFlick(int stateID)
     : StateCautionBase(stateID)
@@ -2200,10 +2171,9 @@ StateFlick::StateFlick(int stateID)
 	mName = "Flick";
 }
 
-/*
- * --INFO--
- * Address:	8011854C
- * Size:	000078
+/**
+ * @note Address: 0x8011854C
+ * @note Size: 0x78
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -2214,10 +2184,9 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	OBJ(enemy)->createFlickEffect();
 }
 
-/*
- * --INFO--
- * Address:	801185C4
- * Size:	00023C
+/**
+ * @note Address: 0x801185C4
+ * @note Size: 0x23C
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
@@ -2239,10 +2208,9 @@ void StateFlick::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80118800
- * Size:	000054
+/**
+ * @note Address: 0x80118800
+ * @note Size: 0x54
  */
 void StateFlick::cleanup(EnemyBase* enemy)
 {
@@ -2251,10 +2219,9 @@ void StateFlick::cleanup(EnemyBase* enemy)
 	enemy->enableEvent(0, EB_FlickEnabled);
 }
 
-/*
- * --INFO--
- * Address:	80118854
- * Size:	000064
+/**
+ * @note Address: 0x80118854
+ * @note Size: 0x64
  */
 StateTurnToHome::StateTurnToHome(int stateID)
     : StateTurnBase(stateID)
@@ -2262,10 +2229,9 @@ StateTurnToHome::StateTurnToHome(int stateID)
 	mName = "TurnToHome";
 }
 
-/*
- * --INFO--
- * Address:	801188B8
- * Size:	000150
+/**
+ * @note Address: 0x801188B8
+ * @note Size: 0x150
  */
 void StateTurnToHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -2286,10 +2252,9 @@ void StateTurnToHome::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(CHAPPYANIM_Wait2, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80118A08
- * Size:	0006AC
+/**
+ * @note Address: 0x80118A08
+ * @note Size: 0x6AC
  */
 void StateTurnToHome::exec(EnemyBase* enemy)
 {
@@ -2831,17 +2796,15 @@ lbl_80119064:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801190B4
- * Size:	000004
+/**
+ * @note Address: 0x801190B4
+ * @note Size: 0x4
  */
 void StateTurnToHome::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	801190B8
- * Size:	000054
+/**
+ * @note Address: 0x801190B8
+ * @note Size: 0x54
  */
 StateGoHome::StateGoHome(int stateID)
     : StateCautionBase(stateID)
@@ -2849,17 +2812,15 @@ StateGoHome::StateGoHome(int stateID)
 	mName = "GoHome";
 }
 
-/*
- * --INFO--
- * Address:	8011910C
- * Size:	00002C
+/**
+ * @note Address: 0x8011910C
+ * @note Size: 0x2C
  */
 void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg) { enemy->startMotion(CHAPPYANIM_Move1, nullptr); }
 
-/*
- * --INFO--
- * Address:	80119138
- * Size:	0005C4
+/**
+ * @note Address: 0x80119138
+ * @note Size: 0x5C4
  */
 void StateGoHome::exec(EnemyBase* enemy)
 {
@@ -3331,10 +3292,9 @@ lbl_801196AC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801196FC
- * Size:	000014
+/**
+ * @note Address: 0x801196FC
+ * @note Size: 0x14
  */
 void StateGoHome::cleanup(EnemyBase* enemy) { enemy->mTargetVelocity = Vector3f(0.0f); }
 } // namespace ChappyBase

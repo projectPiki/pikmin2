@@ -4,10 +4,9 @@
 
 namespace PSM {
 
-/*
- * --INFO--
- * Address:	804718D0
- * Size:	0000A8
+/**
+ * @note Address: 0x804718D0
+ * @note Size: 0xA8
  */
 BgmTrackMapFile::BgmTrackMapFile(bool flag)
     : SingletonBase(this)
@@ -61,10 +60,9 @@ lbl_8047195C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80471978
- * Size:	00077C
+/**
+ * @note Address: 0x80471978
+ * @note Size: 0x77C
  */
 BgmTrackMap BgmTrackMapFile::readTrackMap(const char* path)
 {
@@ -664,10 +662,9 @@ lbl_804720E0:
 static const char* unused  = "P2Assert";
 static const char* unused2 = "not find info\n";
 
-/*
- * --INFO--
- * Address:	804720F4
- * Size:	000294
+/**
+ * @note Address: 0x804720F4
+ * @note Size: 0x294
  */
 bool BgmTrackMapFile::read(Stream& input)
 {

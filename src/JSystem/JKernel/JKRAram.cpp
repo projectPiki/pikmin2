@@ -33,10 +33,9 @@ static u8* firstSrcData();
 static u8* nextSrcData(u8* current);
 static int decompSZS_subroutine(u8* src, u8* dest);
 
-/*
- * --INFO--
- * Address:	80017A10
- * Size:	000094
+/**
+ * @note Address: 0x80017A10
+ * @note Size: 0x94
  */
 JKRAram* JKRAram::create(u32 aram_audio_buffer_size, u32 aram_audio_graph_size, s32 streamPriority, s32 decomp_priority, s32 piece_priority)
 {
@@ -59,10 +58,9 @@ OSMessage JKRAram::sMessageBuffer[4] = {
 
 OSMessageQueue JKRAram::sMessageQueue = { 0 };
 
-/*
- * --INFO--
- * Address:	80017AA4
- * Size:	00011C
+/**
+ * @note Address: 0x80017AA4
+ * @note Size: 0x11C
  */
 JKRAram::JKRAram(u32 bufSize, u32 graphSize, s32 priority)
     : JKRThread(0x4000, 0x10, priority)
@@ -91,10 +89,9 @@ JKRAram::JKRAram(u32 bufSize, u32 graphSize, s32 priority)
 	mAramHeap = new (JKRHeap::getSystemHeap(), 0) JKRAramHeap(mGraphMemoryPtr, mGraphMemorySize);
 }
 
-/*
- * --INFO--
- * Address:	80017BC0
- * Size:	000090
+/**
+ * @note Address: 0x80017BC0
+ * @note Size: 0x90
  */
 JKRAram::~JKRAram()
 {
@@ -104,10 +101,9 @@ JKRAram::~JKRAram()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80017C50
- * Size:	000070
+/**
+ * @note Address: 0x80017C50
+ * @note Size: 0x70
  */
 void* JKRAram::run()
 {
@@ -129,10 +125,9 @@ void* JKRAram::run()
 	} while (true);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00009C
+/**
+ * @note Address: N/A
+ * @note Size: 0x9C
  * It's something like this because of line numbers, but probably with a better check.
  * Needs to be 'automatic' to get removed when inlined.
  * Size 0x90 as-is.
@@ -151,10 +146,9 @@ void JKRAram::checkOkAddress(u8* addr, u32 size, JKRAramBlock* block, u32 param_
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
+/**
+ * @note Address: N/A
+ * @note Size: 0x60
  */
 void JKRAram::changeGroupIdIfNeed(u8* data, int groupId)
 {
@@ -165,10 +159,9 @@ void JKRAram::changeGroupIdIfNeed(u8* data, int groupId)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80017CC0
- * Size:	00028C
+/**
+ * @note Address: 0x80017CC0
+ * @note Size: 0x28C
  */
 JKRAramBlock* JKRAram::mainRamToAram(u8* buf, u32 bufSize, u32 alignedSize, JKRExpandSwitch expandSwitch, u32 fileSize, JKRHeap* heap,
                                      int id, u32* pSize)
@@ -242,10 +235,9 @@ JKRAramBlock* JKRAram::mainRamToAram(u8* buf, u32 bufSize, u32 alignedSize, JKRE
 	return block;
 }
 
-/*
- * --INFO--
- * Address:	80017F4C
- * Size:	0002DC
+/**
+ * @note Address: 0x80017F4C
+ * @note Size: 0x2DC
  */
 u8* JKRAram::aramToMainRam(u32 address, u8* buf, u32 size, JKRExpandSwitch expandSwitch, u32 maxExpandSize, JKRHeap* heap, int id,
                            u32* pSize)
@@ -328,10 +320,9 @@ u8* JKRAram::aramToMainRam(u32 address, u8* buf, u32 size, JKRExpandSwitch expan
 	}
 }
 
-/*
- * --INFO--
- * Address:	80018228
- * Size:	00010C
+/**
+ * @note Address: 0x80018228
+ * @note Size: 0x10C
  */
 u8* JKRAram::aramToMainRam(JKRAramBlock* block, u8* buf, u32 address, u32 offset, JKRExpandSwitch expandSwitch, u32 maxExpandSize,
                            JKRHeap* heap, int id, u32* pSize)
@@ -361,10 +352,9 @@ u8* JKRAram::aramToMainRam(JKRAramBlock* block, u8* buf, u32 address, u32 offset
 
 static const char unusedBADSYNCstr[] = "---------------- BAD SYNC. you'd set callback, but now call sync.\n";
 
-/*
- * --INFO--
- * Address:	80018334
- * Size:	000168
+/**
+ * @note Address: 0x80018334
+ * @note Size: 0x168
  */
 int JKRDecompressFromAramToMainRam(u32 src, void* dst, u32 srcLength, u32 dstLength, u32 offset, u32* resourceSize)
 {
@@ -408,10 +398,9 @@ int JKRDecompressFromAramToMainRam(u32 src, void* dst, u32 srcLength, u32 dstLen
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	8001849C
- * Size:	0002A8
+/**
+ * @note Address: 0x8001849C
+ * @note Size: 0x2A8
  */
 static int decompSZS_subroutine(u8* src, u8* dest)
 {
@@ -526,10 +515,9 @@ static int decompSZS_subroutine(u8* src, u8* dest)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	80018744
- * Size:	0000A4
+/**
+ * @note Address: 0x80018744
+ * @note Size: 0xA4
  */
 static u8* firstSrcData()
 {

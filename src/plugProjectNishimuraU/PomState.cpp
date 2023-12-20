@@ -4,10 +4,9 @@
 namespace Game {
 namespace Pom {
 
-/*
- * --INFO--
- * Address:	80255CA4
- * Size:	000224
+/**
+ * @note Address: 0x80255CA4
+ * @note Size: 0x224
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -20,17 +19,15 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateSwing);
 }
 
-/*
- * --INFO--
- * Address:	80255EC8
- * Size:	00002C
+/**
+ * @note Address: 0x80255EC8
+ * @note Size: 0x2C
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg) { enemy->startMotion(POMANIM_Wait, nullptr); }
 
-/*
- * --INFO--
- * Address:	80255EF4
- * Size:	00005C
+/**
+ * @note Address: 0x80255EF4
+ * @note Size: 0x5C
  */
 void StateWait::exec(EnemyBase* enemy)
 {
@@ -39,17 +36,15 @@ void StateWait::exec(EnemyBase* enemy)
 	transit(pom, POM_Open, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80255F50
- * Size:	000004
+/**
+ * @note Address: 0x80255F50
+ * @note Size: 0x4
  */
 void StateWait::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	80255F54
- * Size:	000060
+/**
+ * @note Address: 0x80255F54
+ * @note Size: 0x60
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -62,10 +57,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	pom->createPomDeadEffect();
 }
 
-/*
- * --INFO--
- * Address:	80255FB4
- * Size:	000044
+/**
+ * @note Address: 0x80255FB4
+ * @note Size: 0x44
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -74,17 +68,15 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80255FF8
- * Size:	000004
+/**
+ * @note Address: 0x80255FF8
+ * @note Size: 0x4
  */
 void StateDead::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	80255FFC
- * Size:	000040
+/**
+ * @note Address: 0x80255FFC
+ * @note Size: 0x40
  */
 void StateOpen::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -95,10 +87,9 @@ void StateOpen::init(EnemyBase* enemy, StateArg* stateArg)
 	pom->startMotion(POMANIM_Open, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8025603C
- * Size:	0000A0
+/**
+ * @note Address: 0x8025603C
+ * @note Size: 0xA0
  */
 void StateOpen::exec(EnemyBase* enemy)
 {
@@ -114,17 +105,15 @@ void StateOpen::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802560DC
- * Size:	000004
+/**
+ * @note Address: 0x802560DC
+ * @note Size: 0x4
  */
 void StateOpen::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802560E0
- * Size:	000040
+/**
+ * @note Address: 0x802560E0
+ * @note Size: 0x40
  */
 void StateClose::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -135,10 +124,9 @@ void StateClose::init(EnemyBase* enemy, StateArg* stateArg)
 	pom->startMotion(POMANIM_Close, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80256120
- * Size:	000078
+/**
+ * @note Address: 0x80256120
+ * @note Size: 0x78
  */
 void StateClose::exec(EnemyBase* enemy)
 {
@@ -151,17 +139,15 @@ void StateClose::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80256198
- * Size:	000004
+/**
+ * @note Address: 0x80256198
+ * @note Size: 0x4
  */
 void StateClose::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8025619C
- * Size:	00004C
+/**
+ * @note Address: 0x8025619C
+ * @note Size: 0x4C
  */
 void StateShot::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -173,10 +159,9 @@ void StateShot::init(EnemyBase* enemy, StateArg* stateArg)
 	pom->startMotion(POMANIM_Shot, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802561E8
- * Size:	000094
+/**
+ * @note Address: 0x802561E8
+ * @note Size: 0x94
  */
 void StateShot::exec(EnemyBase* enemy)
 {
@@ -194,17 +179,15 @@ void StateShot::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8025627C
- * Size:	000010
+/**
+ * @note Address: 0x8025627C
+ * @note Size: 0x10
  */
 void StateShot::cleanup(EnemyBase* enemy) { enemy->enableEvent(0, EB_Cullable); }
 
-/*
- * --INFO--
- * Address:	8025628C
- * Size:	00003C
+/**
+ * @note Address: 0x8025628C
+ * @note Size: 0x3C
  */
 void StateSwing::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -214,10 +197,9 @@ void StateSwing::init(EnemyBase* enemy, StateArg* stateArg)
 	pom->startMotion(POMANIM_Swing, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802562C8
- * Size:	0000F8
+/**
+ * @note Address: 0x802562C8
+ * @note Size: 0xF8
  */
 void StateSwing::exec(EnemyBase* enemy)
 {
@@ -238,10 +220,9 @@ void StateSwing::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802563C0
- * Size:	000004
+/**
+ * @note Address: 0x802563C0
+ * @note Size: 0x4
  */
 void StateSwing::cleanup(EnemyBase* enemy) { }
 } // namespace Pom

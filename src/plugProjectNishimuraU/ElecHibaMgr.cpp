@@ -5,10 +5,9 @@ namespace ElecHiba {
 
 static const char elecHibaMgrName[] = "246-ElecHibaMgr";
 
-/*
- * --INFO--
- * Address:	8026EA08
- * Size:	00008C
+/**
+ * @note Address: 0x8026EA08
+ * @note Size: 0x8C
  */
 Generator::Generator()
     : EnemyGeneratorBase("電撃ヒバジェネレータ") // electric hiba generator
@@ -16,17 +15,15 @@ Generator::Generator()
 {
 }
 
-/*
- * --INFO--
- * Address:	8026EA94
- * Size:	00000C
+/**
+ * @note Address: 0x8026EA94
+ * @note Size: 0xC
  */
 u32 Generator::getLatestVersion() { return '0000'; }
 
-/*
- * --INFO--
- * Address:	8026EAA0
- * Size:	000074
+/**
+ * @note Address: 0x8026EAA0
+ * @note Size: 0x74
  */
 void Generator::doRead(Stream& stream)
 {
@@ -38,10 +35,9 @@ void Generator::doRead(Stream& stream)
 	doReadOldVersion(stream);
 }
 
-/*
- * --INFO--
- * Address:	8026EB14
- * Size:	000060
+/**
+ * @note Address: 0x8026EB14
+ * @note Size: 0x60
  */
 void Generator::doWrite(Stream& stream)
 {
@@ -50,24 +46,21 @@ void Generator::doWrite(Stream& stream)
 	stream.textWriteText("\t\t# distance \r\n");
 }
 
-/*
- * --INFO--
- * Address:	8026EB74
- * Size:	000034
+/**
+ * @note Address: 0x8026EB74
+ * @note Size: 0x34
  */
 void Generator::doReadLatestVersion(Stream& stream) { mDistance = stream.readFloat(); }
 
-/*
- * --INFO--
- * Address:	8026EBA8
- * Size:	000004
+/**
+ * @note Address: 0x8026EBA8
+ * @note Size: 0x4
  */
 void Generator::doReadOldVersion(Stream&) { }
 
-/*
- * --INFO--
- * Address:	8026EBAC
- * Size:	000064
+/**
+ * @note Address: 0x8026EBAC
+ * @note Size: 0x64
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
@@ -75,31 +68,27 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "電撃ヒバマネージャ"; // electric hiba manager
 }
 
-/*
- * --INFO--
- * Address:	8026EC10
- * Size:	000048
+/**
+ * @note Address: 0x8026EC10
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Parms); }
 
-/*
- * --INFO--
- * Address:	8026EE24
- * Size:	000060
+/**
+ * @note Address: 0x8026EE24
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	8026EF64
- * Size:	000010
+/**
+ * @note Address: 0x8026EF64
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
-/*
- * --INFO--
- * Address:	8026EF74
- * Size:	0000E4
+/**
+ * @note Address: 0x8026EF74
+ * @note Size: 0xE4
  */
 EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
 {

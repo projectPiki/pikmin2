@@ -11,10 +11,9 @@ static const char* cMatAnimBtkTexName = "/enemy/data/FireChappy/yakichappy.btk";
 static const char* cMatAnimBrkTexName = "/enemy/data/FireChappy/yakichappy.brk";
 } // namespace
 
-/*
- * --INFO--
- * Address:	8028F138
- * Size:	000050
+/**
+ * @note Address: 0x8028F138
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -22,31 +21,27 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "ヤキチャッピーマネージャ"; // yaki chappy manager
 }
 
-/*
- * --INFO--
- * Address:	8028F188
- * Size:	000048
+/**
+ * @note Address: 0x8028F188
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new ChappyBase::Parms); }
 
-/*
- * --INFO--
- * Address:	8028F1D0
- * Size:	000060
+/**
+ * @note Address: 0x8028F1D0
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	8028F320
- * Size:	000010
+/**
+ * @note Address: 0x8028F320
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
-/*
- * --INFO--
- * Address:	8028F330
- * Size:	000068
+/**
+ * @note Address: 0x8028F330
+ * @note Size: 0x68
  */
 void Mgr::loadModelData()
 {
@@ -58,10 +53,9 @@ void Mgr::loadModelData()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8028F398
- * Size:	00012C
+/**
+ * @note Address: 0x8028F398
+ * @note Size: 0x12C
  */
 void Mgr::loadTexData()
 {
@@ -89,10 +83,9 @@ void Mgr::loadTexData()
 	mTevRegAnimation->attachResource(brkFile, mModelData);
 }
 
-/*
- * --INFO--
- * Address:	8028F4C4
- * Size:	00007C
+/**
+ * @note Address: 0x8028F4C4
+ * @note Size: 0x7C
  */
 SysShape::Model* Mgr::createModel()
 {

@@ -2,10 +2,9 @@
 #include "Dolphin/gx.h"
 #include "Dolphin/Mtx.h"
 #include "Dolphin/os.h"
-/*
- * --INFO--
- * Address:	8044D684
- * Size:	000118
+/**
+ * @note Address: 0x8044D684
+ * @note Size: 0x118
  */
 void THPGXRestore(void)
 {
@@ -25,10 +24,10 @@ void THPGXRestore(void)
 	GXSetTevSwapModeTable(GX_TEV_SWAP2, GX_CH_GREEN, GX_CH_GREEN, GX_CH_GREEN, GX_CH_ALPHA);
 	GXSetTevSwapModeTable(GX_TEV_SWAP3, GX_CH_BLUE, GX_CH_BLUE, GX_CH_BLUE, GX_CH_ALPHA);
 }
-/*
- * --INFO--
- * Address:	8044D79C
- * Size:	0004C0
+
+/**
+ * @note Address: 0x8044D79C
+ * @note Size: 0x4C0
  */
 void THPGXYuv2RgbSetup(GXRenderModeObj* obj)
 {
@@ -99,10 +98,10 @@ void THPGXYuv2RgbSetup(GXRenderModeObj* obj)
 	GXSetTevKColor(GX_KCOLOR2, (GXColor) { 0xFF, 0x00, 0xFF, 0xFF });
 	GXSetTevSwapModeTable(GX_TEV_SWAP0, GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE, GX_CH_ALPHA);
 }
-/*
- * --INFO--
- * Address:	8044DC5C
- * Size:	0001DC
+
+/**
+ * @note Address: 0x8044DC5C
+ * @note Size: 0x1DC
  */
 void THPGXYuv2RgbDraw(u32* yImage, u32* uImage, u32* vImage, s16 x, s16 y, s16 texWidth, s16 texHeight, s16 polyWidth, s16 polyHeight)
 {

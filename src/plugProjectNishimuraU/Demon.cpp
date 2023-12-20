@@ -3,17 +3,15 @@
 
 namespace Game {
 namespace Demon {
-/*
- * --INFO--
- * Address:	8028E394
- * Size:	000090
+/**
+ * @note Address: 0x8028E394
+ * @note Size: 0x90
  */
 Obj::Obj() { }
 
-/*
- * --INFO--
- * Address:	8028E424
- * Size:	0003F0
+/**
+ * @note Address: 0x8028E424
+ * @note Size: 0x3F0
  */
 FakePiki* Obj::getAttackableTarget()
 {
@@ -45,10 +43,9 @@ FakePiki* Obj::getAttackableTarget()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8028E814
- * Size:	00033C
+/**
+ * @note Address: 0x8028E814
+ * @note Size: 0x33C
  */
 int Obj::catchTarget()
 {

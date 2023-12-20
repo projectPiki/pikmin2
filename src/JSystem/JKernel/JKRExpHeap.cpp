@@ -5,10 +5,9 @@
 #include "stl/limits.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	8001FE48
- * Size:	000080
+/**
+ * @note Address: 0x8001FE48
+ * @note Size: 0x80
  */
 JKRExpHeap* JKRExpHeap::createRoot(int maxHeaps, bool errorFlag)
 {
@@ -26,10 +25,9 @@ JKRExpHeap* JKRExpHeap::createRoot(int maxHeaps, bool errorFlag)
 	return heap;
 }
 
-/*
- * --INFO--
- * Address:	8001FEC8
- * Size:	0000E4
+/**
+ * @note Address: 0x8001FEC8
+ * @note Size: 0xE4
  */
 JKRExpHeap* JKRExpHeap::create(u32 size, JKRHeap* parent, bool errorFlag)
 {
@@ -61,10 +59,9 @@ JKRExpHeap* JKRExpHeap::create(u32 size, JKRHeap* parent, bool errorFlag)
 	return newHeap;
 }
 
-/*
- * --INFO--
- * Address:	8001FFAC
- * Size:	000084
+/**
+ * @note Address: 0x8001FFAC
+ * @note Size: 0x84
  */
 void JKRExpHeap::do_destroy()
 {
@@ -79,10 +76,9 @@ void JKRExpHeap::do_destroy()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80020030
- * Size:	000098
+/**
+ * @note Address: 0x80020030
+ * @note Size: 0x98
  * __ct
  */
 JKRExpHeap::JKRExpHeap(void* p1, u32 p2, JKRHeap* p3, bool p4)
@@ -97,17 +93,15 @@ JKRExpHeap::JKRExpHeap(void* p1, u32 p2, JKRHeap* p3, bool p4)
 	mTailUsedList = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	800200C8
- * Size:	000068
+/**
+ * @note Address: 0x800200C8
+ * @note Size: 0x68
  */
 JKRExpHeap::~JKRExpHeap() { dispose(); }
 
-/*
- * --INFO--
- * Address:	80020130
- * Size:	00011C
+/**
+ * @note Address: 0x80020130
+ * @note Size: 0x11C
  * TODO: Needs JUTWarningConsole_f, probably changes to conditions
  */
 void* JKRExpHeap::do_alloc(u32 byteCount, int padding)
@@ -146,10 +140,9 @@ static JKRExpHeap::CMemBlock* DBfoundBlock;
 static JKRExpHeap::CMemBlock* DBnewFreeBlock;
 static JKRExpHeap::CMemBlock* DBnewUsedBlock;
 
-/*
- * --INFO--
- * Address:	8002024C
- * Size:	000254
+/**
+ * @note Address: 0x8002024C
+ * @note Size: 0x254
  */
 void* JKRExpHeap::allocFromHead(u32 size, int align)
 {
@@ -239,10 +232,9 @@ void* JKRExpHeap::allocFromHead(u32 size, int align)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	800204A0
- * Size:	0000E4
+/**
+ * @note Address: 0x800204A0
+ * @note Size: 0xE4
  */
 void* JKRExpHeap::allocFromHead(u32 size)
 {
@@ -278,10 +270,9 @@ void* JKRExpHeap::allocFromHead(u32 size)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80020584
- * Size:	000158
+/**
+ * @note Address: 0x80020584
+ * @note Size: 0x158
  */
 void* JKRExpHeap::allocFromTail(u32 size, int align)
 {
@@ -324,10 +315,9 @@ void* JKRExpHeap::allocFromTail(u32 size, int align)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	800206DC
- * Size:	0000E0
+/**
+ * @note Address: 0x800206DC
+ * @note Size: 0xE0
  */
 void* JKRExpHeap::allocFromTail(u32 size)
 {
@@ -358,10 +348,9 @@ void* JKRExpHeap::allocFromTail(u32 size)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	800207BC
- * Size:	000074
+/**
+ * @note Address: 0x800207BC
+ * @note Size: 0x74
  */
 void JKRExpHeap::do_free(void* p1)
 {
@@ -375,10 +364,9 @@ void JKRExpHeap::do_free(void* p1)
 	OSUnlockMutex(&mMutex);
 }
 
-/*
- * --INFO--
- * Address:	80020830
- * Size:	000094
+/**
+ * @note Address: 0x80020830
+ * @note Size: 0x94
  */
 int JKRExpHeap::freeGroup(u8 groupID)
 {
@@ -400,10 +388,9 @@ int JKRExpHeap::freeGroup(u8 groupID)
 	return count;
 }
 
-/*
- * --INFO--
- * Address:	800208C4
- * Size:	00007C
+/**
+ * @note Address: 0x800208C4
+ * @note Size: 0x7C
  */
 void JKRExpHeap::do_freeAll()
 {
@@ -417,10 +404,9 @@ void JKRExpHeap::do_freeAll()
 	unlock();
 }
 
-/*
- * --INFO--
- * Address:	80020940
- * Size:	000090
+/**
+ * @note Address: 0x80020940
+ * @note Size: 0x90
  */
 void JKRExpHeap::do_freeTail()
 {
@@ -438,17 +424,15 @@ void JKRExpHeap::do_freeTail()
 	unlock();
 }
 
-/*
- * --INFO--
- * Address:	800209D0
- * Size:	000004
+/**
+ * @note Address: 0x800209D0
+ * @note Size: 0x4
  */
 void JKRExpHeap::do_fillFreeArea() { }
 
-/*
- * --INFO--
- * Address:	800209D4
- * Size:	000058
+/**
+ * @note Address: 0x800209D4
+ * @note Size: 0x58
  */
 u8 JKRExpHeap::do_changeGroupID(u8 groupID)
 {
@@ -459,10 +443,9 @@ u8 JKRExpHeap::do_changeGroupID(u8 groupID)
 	return oldGroupID;
 }
 
-/*
- * --INFO--
- * Address:	80020A2C
- * Size:	0001BC
+/**
+ * @note Address: 0x80020A2C
+ * @note Size: 0x1BC
  * Regswaps
  */
 int JKRExpHeap::do_resize(void* ptr, u32 size)
@@ -514,10 +497,9 @@ int JKRExpHeap::do_resize(void* ptr, u32 size)
 	return block->mAllocatedSpace;
 }
 
-/*
- * --INFO--
- * Address:	80020BE8
- * Size:	000088
+/**
+ * @note Address: 0x80020BE8
+ * @note Size: 0x88
  */
 int JKRExpHeap::do_getSize(void* p1)
 {
@@ -532,12 +514,11 @@ int JKRExpHeap::do_getSize(void* p1)
 	}
 }
 
-/*
+/**
  * Returns the max size of any free block of memory within this heap.
  *
- * --INFO--
- * Address:	80020C70
- * Size:	00006C
+ * @note Address: 0x80020C70
+ * @note Size: 0x6C
  */
 u32 JKRExpHeap::do_getFreeSize()
 {
@@ -552,12 +533,11 @@ u32 JKRExpHeap::do_getFreeSize()
 	return maxFreeSize;
 }
 
-/*
+/**
  * Returns the block with the max size of any free block of memory within this heap.
  *
- * --INFO--
- * Address:	80020CDC
- * Size:	000074
+ * @note Address: 0x80020CDC
+ * @note Size: 0x74
  */
 void* JKRExpHeap::do_getMaxFreeBlock()
 {
@@ -574,12 +554,11 @@ void* JKRExpHeap::do_getMaxFreeBlock()
 	return maxFreeBlock;
 }
 
-/*
+/**
  * Returns the total space allocated to all free blocks of memory within this heap.
  *
- * --INFO--
- * Address:	80020D50
- * Size:	000064
+ * @note Address: 0x80020D50
+ * @note Size: 0x64
  */
 u32 JKRExpHeap::do_getTotalFreeSize()
 {
@@ -607,10 +586,9 @@ s32 JKRExpHeap::getUsedSize(u8 groupId) const
 	return size;
 }
 
-/*
- * --INFO--
- * Address:	80020DB4
- * Size:	000098
+/**
+ * @note Address: 0x80020DB4
+ * @note Size: 0x98
  */
 void JKRExpHeap::appendUsedList(JKRExpHeap::CMemBlock* blockToAppend)
 {
@@ -632,10 +610,9 @@ void JKRExpHeap::appendUsedList(JKRExpHeap::CMemBlock* blockToAppend)
 	blockToAppend->mNext = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80020E4C
- * Size:	00004C
+/**
+ * @note Address: 0x80020E4C
+ * @note Size: 0x4C
  */
 void JKRExpHeap::setFreeBlock(JKRExpHeap::CMemBlock* p1, JKRExpHeap::CMemBlock* p2, JKRExpHeap::CMemBlock* p3)
 {
@@ -656,10 +633,9 @@ void JKRExpHeap::setFreeBlock(JKRExpHeap::CMemBlock* p1, JKRExpHeap::CMemBlock* 
 	p1->mUsageHeader = 0;
 }
 
-/*
- * --INFO--
- * Address:	80020E98
- * Size:	000034
+/**
+ * @note Address: 0x80020E98
+ * @note Size: 0x34
  */
 void JKRExpHeap::removeFreeBlock(JKRExpHeap::CMemBlock* blockToRemove)
 {
@@ -677,10 +653,9 @@ void JKRExpHeap::removeFreeBlock(JKRExpHeap::CMemBlock* blockToRemove)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 void JKRExpHeap::removeUsedBlock(JKRExpHeap::CMemBlock* blockToRemove)
 {
@@ -699,10 +674,9 @@ void JKRExpHeap::removeUsedBlock(JKRExpHeap::CMemBlock* blockToRemove)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80020ECC
- * Size:	0001E4
+/**
+ * @note Address: 0x80020ECC
+ * @note Size: 0x1E4
  */
 void JKRExpHeap::recycleFreeBlock(JKRExpHeap::CMemBlock* block)
 {
@@ -755,10 +729,9 @@ void JKRExpHeap::recycleFreeBlock(JKRExpHeap::CMemBlock* block)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800210B0
- * Size:	000104
+/**
+ * @note Address: 0x800210B0
+ * @note Size: 0x104
  */
 void JKRExpHeap::joinTwoBlocks(JKRExpHeap::CMemBlock* block)
 {
@@ -776,10 +749,9 @@ void JKRExpHeap::joinTwoBlocks(JKRExpHeap::CMemBlock* block)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800211B4
- * Size:	0001E0
+/**
+ * @note Address: 0x800211B4
+ * @note Size: 0x1E0
  */
 bool JKRExpHeap::check()
 {
@@ -841,10 +813,9 @@ bool JKRExpHeap::check()
 	return ok;
 }
 
-/*
- * --INFO--
- * Address:	80021394
- * Size:	0001C8
+/**
+ * @note Address: 0x80021394
+ * @note Size: 0x1C8
  */
 bool JKRExpHeap::dump()
 {
@@ -884,10 +855,9 @@ bool JKRExpHeap::dump()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	8002155C
- * Size:	0001F8
+/**
+ * @note Address: 0x8002155C
+ * @note Size: 0x1F8
  */
 bool JKRExpHeap::dump_sort()
 {
@@ -955,10 +925,9 @@ void genData()
 	JUTWarningConsole_f("+---------------End\n");
 }
 
-/*
- * --INFO--
- * Address:	80021754
- * Size:	000020
+/**
+ * @note Address: 0x80021754
+ * @note Size: 0x20
  */
 void JKRExpHeap::CMemBlock::initiate(JKRExpHeap::CMemBlock* prev, JKRExpHeap::CMemBlock* next, u32 size, u8 groupID, u8 alignment)
 {
@@ -970,10 +939,9 @@ void JKRExpHeap::CMemBlock::initiate(JKRExpHeap::CMemBlock* prev, JKRExpHeap::CM
 	mNext           = next;
 }
 
-/*
- * --INFO--
- * Address:	80021774
- * Size:	000044
+/**
+ * @note Address: 0x80021774
+ * @note Size: 0x44
  */
 JKRExpHeap::CMemBlock* JKRExpHeap::CMemBlock::allocFore(u32 size, u8 groupId1, u8 alignment1, u8 groupId2, u8 alignment2)
 {
@@ -991,10 +959,9 @@ JKRExpHeap::CMemBlock* JKRExpHeap::CMemBlock::allocFore(u32 size, u8 groupId1, u
 	return block;
 }
 
-/*
- * --INFO--
- * Address:	800217B8
- * Size:	000058
+/**
+ * @note Address: 0x800217B8
+ * @note Size: 0x58
  */
 JKRExpHeap::CMemBlock* JKRExpHeap::CMemBlock::allocBack(u32 size, u8 groupID, u8 p3, u8 allocGroupID, u8 p5)
 {
@@ -1014,10 +981,9 @@ JKRExpHeap::CMemBlock* JKRExpHeap::CMemBlock::allocBack(u32 size, u8 groupID, u8
 	return newBlock;
 }
 
-/*
- * --INFO--
- * Address:	80021810
- * Size:	000060
+/**
+ * @note Address: 0x80021810
+ * @note Size: 0x60
  * free__Q210JKRExpHeap9CMemBlockFP10JKRExpHeap
  */
 void* JKRExpHeap::CMemBlock::free(JKRExpHeap* heap)
@@ -1027,10 +993,9 @@ void* JKRExpHeap::CMemBlock::free(JKRExpHeap* heap)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80021870
- * Size:	00001C
+/**
+ * @note Address: 0x80021870
+ * @note Size: 0x1C
  */
 JKRExpHeap::CMemBlock* JKRExpHeap::CMemBlock::getHeapBlock(void* mem)
 {
@@ -1040,10 +1005,9 @@ JKRExpHeap::CMemBlock* JKRExpHeap::CMemBlock::getHeapBlock(void* mem)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8002188C
- * Size:	0000F4
+/**
+ * @note Address: 0x8002188C
+ * @note Size: 0xF4
  */
 void JKRExpHeap::state_register(JKRHeap::TState* p, u32 param_1) const
 {
@@ -1068,10 +1032,9 @@ void JKRExpHeap::state_register(JKRHeap::TState* p, u32 param_1) const
 	setState_u32CheckCode_(p, checkCode);
 }
 
-/*
- * --INFO--
- * Address:	80021980
- * Size:	000030
+/**
+ * @note Address: 0x80021980
+ * @note Size: 0x30
  */
 bool JKRExpHeap::state_compare(const JKRHeap::TState& r1, const JKRHeap::TState& r2) const
 {

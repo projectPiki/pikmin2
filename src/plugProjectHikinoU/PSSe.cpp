@@ -6,10 +6,9 @@
 
 namespace PSGame {
 
-/*
- * --INFO--
- * Address:	8033F158
- * Size:	000210
+/**
+ * @note Address: 0x8033F158
+ * @note Size: 0x210
  */
 SeMgr::SeMgr()
     // : PSSystem::SingletonBase<SeMgr>(this)
@@ -34,10 +33,9 @@ SeMgr::SeMgr()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8033F368
- * Size:	000120
+/**
+ * @note Address: 0x8033F368
+ * @note Size: 0x120
  */
 void SeMgr::playMessageVoice(u32 soundID, bool flag)
 {
@@ -72,10 +70,9 @@ void SeMgr::playMessageVoice(u32 soundID, bool flag)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8033F488
- * Size:	00003C
+/**
+ * @note Address: 0x8033F488
+ * @note Size: 0x3C
  */
 void SeMgr::stopMessageVoice()
 {
@@ -84,10 +81,9 @@ void SeMgr::stopMessageVoice()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8033F4C4
- * Size:	000050
+/**
+ * @note Address: 0x8033F4C4
+ * @note Size: 0x50
  */
 Rappa::Rappa()
 {
@@ -96,10 +92,9 @@ Rappa::Rappa()
 	mTblNo = 0;
 }
 
-/*
- * --INFO--
- * Address:	8033F514
- * Size:	0000A0
+/**
+ * @note Address: 0x8033F514
+ * @note Size: 0xA0
  */
 void Rappa::init(u16 id)
 {
@@ -154,17 +149,15 @@ lbl_8033F578:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033F5B4
- * Size:	000008
+/**
+ * @note Address: 0x8033F5B4
+ * @note Size: 0x8
  */
 void Rappa::setId(u32 id) { mId = id; }
 
-/*
- * --INFO--
- * Address:	8033F5BC
- * Size:	000098
+/**
+ * @note Address: 0x8033F5BC
+ * @note Size: 0x98
  */
 Rappa::~Rappa()
 {
@@ -223,10 +216,9 @@ lbl_8033F638:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033F654
- * Size:	000170
+/**
+ * @note Address: 0x8033F654
+ * @note Size: 0x170
  */
 bool Rappa::playRappa(bool flag, f32 x, f32 y, JAInter::Object* obj)
 {
@@ -373,10 +365,9 @@ lbl_8033F798:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033F7C4
- * Size:	00003C
+/**
+ * @note Address: 0x8033F7C4
+ * @note Size: 0x3C
  */
 u32 Rappa::syncCpu_WaitChk(JASTrack* track)
 {
@@ -384,17 +375,15 @@ u32 Rappa::syncCpu_WaitChk(JASTrack* track)
 	return mWait;
 }
 
-/*
- * --INFO--
- * Address:	8033F800
- * Size:	000008
+/**
+ * @note Address: 0x8033F800
+ * @note Size: 0x8
  */
 u32 Rappa::syncCpu_TblNo(JASTrack* track) { return mTblNo; }
 
-/*
- * --INFO--
- * Address:	8033F808
- * Size:	000078
+/**
+ * @note Address: 0x8033F808
+ * @note Size: 0x78
  */
 SetSe::SetSe(const char* name, s16 min, s16 max)
 {
@@ -409,10 +398,9 @@ SetSe::SetSe(const char* name, s16 min, s16 max)
 	P2ASSERTLINE(319, max >= 0);
 }
 
-/*
- * --INFO--
- * Address:	8033F880
- * Size:	000038
+/**
+ * @note Address: 0x8033F880
+ * @note Size: 0x38
  */
 void SetSe::exec()
 {
@@ -423,10 +411,9 @@ void SetSe::exec()
 	mCounter++;
 }
 
-/*
- * --INFO--
- * Address:	8033F8B8
- * Size:	0000B8
+/**
+ * @note Address: 0x8033F8B8
+ * @note Size: 0xB8
  */
 JAISound* SetSe::startSound(JAInter::Object* obj, u32 id1, u32 flag)
 {
@@ -494,10 +481,9 @@ lbl_8033F950:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033F970
- * Size:	0000A0
+/**
+ * @note Address: 0x8033F970
+ * @note Size: 0xA0
  */
 JAISound* SetSe::playSystemSe(u32 soundID, u32 flag)
 {
@@ -516,10 +502,9 @@ JAISound* SetSe::playSystemSe(u32 soundID, u32 flag)
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	8033FA10
- * Size:	000084
+/**
+ * @note Address: 0x8033FA10
+ * @note Size: 0x84
  */
 void SetSe::startCounter(u32 id)
 {
@@ -528,17 +513,15 @@ void SetSe::startCounter(u32 id)
 	mMaxCount = mMaxId * JALCalc::getRandom_0_1() + mMinId;
 }
 
-/*
- * --INFO--
- * Address:	8033FA94
- * Size:	00000C
+/**
+ * @note Address: 0x8033FA94
+ * @note Size: 0xC
  */
 RandId::RandId() { mId = cNotUsingMasterIdRatio; }
 
-/*
- * --INFO--
- * Address:	8033FAA0
- * Size:	0001E8
+/**
+ * @note Address: 0x8033FAA0
+ * @note Size: 0x1E8
  */
 void RandId::startSound(JAInter::Object* obj, u32 soundID, u32 range, u32 flag)
 {
@@ -712,10 +695,9 @@ void RandId::startSound(JAInter::Object* obj, u32 soundID, u32 range, u32 flag)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033FC88
- * Size:	0001B8
+/**
+ * @note Address: 0x8033FC88
+ * @note Size: 0x1B8
  */
 void RandId::playSystemSe(u32 soundID, JAISound** sound, u32 range, u32 flag)
 {
@@ -874,10 +856,9 @@ void RandId::playSystemSe(u32 soundID, JAISound** sound, u32 range, u32 flag)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033FE40
- * Size:	000074
+/**
+ * @note Address: 0x8033FE40
+ * @note Size: 0x74
  */
 void EnvSe_Pan::setPanAndDolby(JAISound* sound)
 {
@@ -885,10 +866,9 @@ void EnvSe_Pan::setPanAndDolby(JAISound* sound)
 	sound->setDolby(mDolby, 0, 0);
 }
 
-/*
- * --INFO--
- * Address:	8033FEB4
- * Size:	000060
+/**
+ * @note Address: 0x8033FEB4
+ * @note Size: 0x60
  */
 EnvSe_Perspective::EnvSe_Perspective(u32 a1, f32 a2, Vec a3)
     : EnvSeBase(a1, a2)
@@ -896,10 +876,9 @@ EnvSe_Perspective::EnvSe_Perspective(u32 a1, f32 a2, Vec a3)
 	mVec = a3;
 }
 
-/*
- * --INFO--
- * Address:	8033FF14
- * Size:	00004C
+/**
+ * @note Address: 0x8033FF14
+ * @note Size: 0x4C
  */
 JAISound* EnvSe_Perspective::play()
 {
@@ -928,10 +907,9 @@ JAISound* EnvSe_Perspective::play()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033FF60
- * Size:	000088
+/**
+ * @note Address: 0x8033FF60
+ * @note Size: 0x88
  */
 EnvSe_AutoPan::EnvSe_AutoPan(u32 a1, f32 a2, f32 a3, f32 a4, f32 a5, f32 a6)
     : EnvSe_Pan(a1, a2)
@@ -980,10 +958,9 @@ EnvSe_AutoPan::EnvSe_AutoPan(u32 a1, f32 a2, f32 a3, f32 a4, f32 a5, f32 a6)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033FFE8
- * Size:	00000C
+/**
+ * @note Address: 0x8033FFE8
+ * @note Size: 0xC
  */
 void EnvSe_AutoPan::setDirection(bool dolby, bool dir)
 {
@@ -991,10 +968,9 @@ void EnvSe_AutoPan::setDirection(bool dolby, bool dir)
 	mDirection = dir;
 }
 
-/*
- * --INFO--
- * Address:	8033FFF4
- * Size:	00011C
+/**
+ * @note Address: 0x8033FFF4
+ * @note Size: 0x11C
  */
 void EnvSe_AutoPan::setPanAndDolby(JAISound* sound)
 {
@@ -1085,10 +1061,9 @@ lbl_803400AC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80340110
- * Size:	00021C
+/**
+ * @note Address: 0x80340110
+ * @note Size: 0x21C
  */
 Builder_EvnSe_Perspective::Builder_EvnSe_Perspective(JGeometry::TBox3f box)
 {
@@ -1257,10 +1232,9 @@ lbl_80340310:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8034032C
- * Size:	0002D0
+/**
+ * @note Address: 0x8034032C
+ * @note Size: 0x2D0
  */
 void Builder_EvnSe_Perspective::build(f32, PSSystem::EnvSeMgr*)
 {
@@ -1472,17 +1446,15 @@ lbl_803405AC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803405FC
- * Size:	0000AC
+/**
+ * @note Address: 0x803405FC
+ * @note Size: 0xAC
  */
 EnvSe_Perspective* Builder_EvnSe_Perspective::newSeObj(u32 flag, f32 a2, Vec vec) { return new EnvSe_Perspective(flag, a2, vec); }
 
-/*
- * --INFO--
- * Address:	803406A8
- * Size:	0000C8
+/**
+ * @note Address: 0x803406A8
+ * @note Size: 0xC8
  */
 Builder_EvnSe_Perspective::~Builder_EvnSe_Perspective()
 {

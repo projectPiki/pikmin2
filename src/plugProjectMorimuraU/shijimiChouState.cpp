@@ -8,10 +8,9 @@
 namespace Game {
 namespace ShijimiChou {
 
-/*
- * --INFO--
- * Address:	80387718
- * Size:	000108
+/**
+ * @note Address: 0x80387718
+ * @note Size: 0x108
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -25,10 +24,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateRest(SHIJIMICHOU_Rest));
 }
 
-/*
- * --INFO--
- * Address:	80387820
- * Size:	00003C
+/**
+ * @note Address: 0x80387820
+ * @note Size: 0x3C
  */
 StateWait::StateWait(int stateID)
     : State(stateID)
@@ -36,10 +34,9 @@ StateWait::StateWait(int stateID)
 	mName = "wait";
 }
 
-/*
- * --INFO--
- * Address:	8038785C
- * Size:	0000C0
+/**
+ * @note Address: 0x8038785C
+ * @note Size: 0xC0
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -51,10 +48,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	mWaitTimer = 0;
 }
 
-/*
- * --INFO--
- * Address:	8038791C
- * Size:	000140
+/**
+ * @note Address: 0x8038791C
+ * @note Size: 0x140
  */
 void StateWait::exec(EnemyBase* enemy)
 {
@@ -84,10 +80,9 @@ void StateWait::exec(EnemyBase* enemy)
 	OBJ(enemy)->fly();
 }
 
-/*
- * --INFO--
- * Address:	80387A5C
- * Size:	00003C
+/**
+ * @note Address: 0x80387A5C
+ * @note Size: 0x3C
  */
 StateFly::StateFly(int stateID)
     : State(stateID)
@@ -95,10 +90,9 @@ StateFly::StateFly(int stateID)
 	mName = "fly";
 }
 
-/*
- * --INFO--
- * Address:	80387A98
- * Size:	000054
+/**
+ * @note Address: 0x80387A98
+ * @note Size: 0x54
  */
 void StateFly::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -108,10 +102,9 @@ void StateFly::init(EnemyBase* enemy, StateArg* stateArg)
 	mFlyTimer = 0;
 }
 
-/*
- * --INFO--
- * Address:	80387AEC
- * Size:	0000E8
+/**
+ * @note Address: 0x80387AEC
+ * @note Size: 0xE8
  */
 void StateFly::exec(EnemyBase* enemy)
 {
@@ -140,10 +133,9 @@ void StateFly::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80387BD4
- * Size:	00003C
+/**
+ * @note Address: 0x80387BD4
+ * @note Size: 0x3C
  */
 StateFall::StateFall(int stateID)
     : State(stateID)
@@ -151,10 +143,9 @@ StateFall::StateFall(int stateID)
 	mName = "fall";
 }
 
-/*
- * --INFO--
- * Address:	80387C10
- * Size:	0000D0
+/**
+ * @note Address: 0x80387C10
+ * @note Size: 0xD0
  */
 void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -173,10 +164,9 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 	mFallTimer = 0;
 }
 
-/*
- * --INFO--
- * Address:	80387CE0
- * Size:	000094
+/**
+ * @note Address: 0x80387CE0
+ * @note Size: 0x94
  */
 void StateFall::exec(EnemyBase* enemy)
 {
@@ -190,10 +180,9 @@ void StateFall::exec(EnemyBase* enemy)
 	mFallTimer++;
 }
 
-/*
- * --INFO--
- * Address:	80387D74
- * Size:	00003C
+/**
+ * @note Address: 0x80387D74
+ * @note Size: 0x3C
  */
 StateDead::StateDead(int stateID)
     : State(stateID)
@@ -201,10 +190,9 @@ StateDead::StateDead(int stateID)
 	mName = "dead";
 }
 
-/*
- * --INFO--
- * Address:	80387DB0
- * Size:	0000A0
+/**
+ * @note Address: 0x80387DB0
+ * @note Size: 0xA0
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -219,10 +207,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	OBJ(enemy)->deadEffect();
 }
 
-/*
- * --INFO--
- * Address:	80387E50
- * Size:	000114
+/**
+ * @note Address: 0x80387E50
+ * @note Size: 0x114
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -238,10 +225,9 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80387F64
- * Size:	00003C
+/**
+ * @note Address: 0x80387F64
+ * @note Size: 0x3C
  */
 StateLeave::StateLeave(int stateID)
     : State(stateID)
@@ -249,10 +235,9 @@ StateLeave::StateLeave(int stateID)
 	mName = "leave";
 }
 
-/*
- * --INFO--
- * Address:	80387FA0
- * Size:	000044
+/**
+ * @note Address: 0x80387FA0
+ * @note Size: 0x44
  */
 void StateLeave::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -261,17 +246,15 @@ void StateLeave::init(EnemyBase* enemy, StateArg* stateArg)
 	OBJ(enemy)->leaveInit();
 }
 
-/*
- * --INFO--
- * Address:	80387FE4
- * Size:	000024
+/**
+ * @note Address: 0x80387FE4
+ * @note Size: 0x24
  */
 void StateLeave::exec(EnemyBase* enemy) { OBJ(enemy)->leave(); }
 
-/*
- * --INFO--
- * Address:	80388008
- * Size:	00003C
+/**
+ * @note Address: 0x80388008
+ * @note Size: 0x3C
  */
 StateRest::StateRest(int stateID)
     : State(stateID)
@@ -279,10 +262,9 @@ StateRest::StateRest(int stateID)
 	mName = "rest";
 }
 
-/*
- * --INFO--
- * Address:	80388044
- * Size:	0000BC
+/**
+ * @note Address: 0x80388044
+ * @note Size: 0xBC
  */
 void StateRest::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -298,10 +280,9 @@ void StateRest::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80388100
- * Size:	00034C
+/**
+ * @note Address: 0x80388100
+ * @note Size: 0x34C
  */
 void StateRest::exec(EnemyBase* enemy)
 {

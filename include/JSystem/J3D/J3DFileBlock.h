@@ -63,7 +63,7 @@ enum J3DFileBlockType {
 	J3DFBT_AnmTevRegKey      = 'TRK1',
 };
 
-/*
+/**
  *    Block members courtesy of https://wiki.cloudmodding.com/tww/BMD_and_BDL
  */
 

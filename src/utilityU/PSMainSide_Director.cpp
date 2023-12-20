@@ -378,10 +378,9 @@
 
 namespace PSM {
 
-/*
- * --INFO--
- * Address:	80456AF8
- * Size:	000080
+/**
+ * @note Address: 0x80456AF8
+ * @note Size: 0x80
  */
 DamageDirector::DamageDirector()
     : mPitchMod1(0.1f)
@@ -390,20 +389,18 @@ DamageDirector::DamageDirector()
 {
 }
 
-/*
- * --INFO--
- * Address:	80456BF8
- * Size:	000034
+/**
+ * @note Address: 0x80456BF8
+ * @note Size: 0x34
  */
 void DamageDirector::directOnTrack(PSSystem::SeqTrackBase& seqTrack)
 {
 	static_cast<PSSystem::SeqTrackRoot&>(seqTrack).pitchModulation(mPitchMod1, mPitchMod2, mDuration, this);
 }
 
-/*
- * --INFO--
- * Address:	80456C2C
- * Size:	00003C
+/**
+ * @note Address: 0x80456C2C
+ * @note Size: 0x3C
  */
 void DamageDirector::execInner()
 {
@@ -412,37 +409,33 @@ void DamageDirector::execInner()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80456CE8
- * Size:	000030
+/**
+ * @note Address: 0x80456CE8
+ * @note Size: 0x30
  */
 void TempoChangeDirectorBase::directOnTrack(PSSystem::SeqTrackBase& seqTrack)
 {
 	static_cast<PSSystem::SeqTrackRoot&>(seqTrack).tempoChange(mTempoValue, mTimeBase, this);
 }
 
-/*
- * --INFO--
- * Address:	80456D18
- * Size:	000030
+/**
+ * @note Address: 0x80456D18
+ * @note Size: 0x30
  */
 void TempoChangeDirectorBase::directOffTrack(PSSystem::SeqTrackBase& seqTrack)
 {
 	static_cast<PSSystem::SeqTrackRoot&>(seqTrack).tempoChange(1.0f, mTimeBase, this);
 }
 
-/*
- * --INFO--
- * Address:	80456D48
- * Size:	000084
+/**
+ * @note Address: 0x80456D48
+ * @note Size: 0x84
  */
 ActorDirector_TempoChange::ActorDirector_TempoChange() { }
 
-/*
- * --INFO--
- * Address:	80456E5C
- * Size:	00003C
+/**
+ * @note Address: 0x80456E5C
+ * @note Size: 0x3C
  */
 void ActorDirector_TempoChange::execInner()
 {
@@ -451,10 +444,9 @@ void ActorDirector_TempoChange::execInner()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80456E98
- * Size:	000078
+/**
+ * @note Address: 0x80456E98
+ * @note Size: 0x78
  */
 PikminNumberDirector::PikminNumberDirector(int type, u8 mask, PSSystem::DirectedBgm& bgm)
     : SwitcherDirector(type, "pikminD  ")
@@ -464,10 +456,9 @@ PikminNumberDirector::PikminNumberDirector(int type, u8 mask, PSSystem::Directed
 {
 }
 
-/*
- * --INFO--
- * Address:	80456F10
- * Size:	00004C
+/**
+ * @note Address: 0x80456F10
+ * @note Size: 0x4C
  */
 void PikminNumberDirector::directOnTrack(PSSystem::SeqTrackBase& seqTrack)
 {
@@ -475,20 +466,18 @@ void PikminNumberDirector::directOnTrack(PSSystem::SeqTrackBase& seqTrack)
 	static_cast<PSSystem::SeqTrackChild&>(seqTrack).setIdMask(mMaskId, this);
 }
 
-/*
- * --INFO--
- * Address:	80456F5C
- * Size:	00002C
+/**
+ * @note Address: 0x80456F5C
+ * @note Size: 0x2C
  */
 void PikminNumberDirector::directOffTrack(PSSystem::SeqTrackBase& seqTrack)
 {
 	static_cast<PSSystem::SeqTrackChild&>(seqTrack).setIdMask(0, this);
 }
 
-/*
- * --INFO--
- * Address:	80456F88
- * Size:	00003C
+/**
+ * @note Address: 0x80456F88
+ * @note Size: 0x3C
  */
 void PikminNumberDirector::execInner()
 {
@@ -497,10 +486,9 @@ void PikminNumberDirector::execInner()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80456FC4
- * Size:	000094
+/**
+ * @note Address: 0x80456FC4
+ * @note Size: 0x94
  */
 PikminNumberDirector_AutoBgm::PikminNumberDirector_AutoBgm(int p1, u8 p2, PSSystem::DirectedBgm& bgm)
     : PikminNumberDirector(p1, p2, bgm)
@@ -548,10 +536,9 @@ PikminNumberDirector_AutoBgm::PikminNumberDirector_AutoBgm(int p1, u8 p2, PSSyst
 	*/
 }
 
-/*
- * --INFO--
- * Address:	804570E8
- * Size:	000088
+/**
+ * @note Address: 0x804570E8
+ * @note Size: 0x88
  */
 void PikminNumberDirector_AutoBgm::directOnTrack(PSSystem::SeqTrackBase& track)
 {
@@ -611,10 +598,9 @@ lbl_80457150:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80457170
- * Size:	000088
+/**
+ * @note Address: 0x80457170
+ * @note Size: 0x88
  */
 void PikminNumberDirector_AutoBgm::directOffTrack(PSSystem::SeqTrackBase& track)
 {
@@ -674,10 +660,9 @@ lbl_804571D8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	804571F8
- * Size:	0000B8
+/**
+ * @note Address: 0x804571F8
+ * @note Size: 0xB8
  */
 PSAutoBgm::Track* PikminNumberDirector_AutoBgm::getTrack(PSSystem::SeqTrackBase& parent)
 {
@@ -743,10 +728,9 @@ lbl_80457294:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	804572B0
- * Size:	00007C
+/**
+ * @note Address: 0x804572B0
+ * @note Size: 0x7C
  */
 TrackOnDirectorBase::TrackOnDirectorBase(int type, const char* name, long in, long out)
     : SwitcherDirector(type, name)
@@ -756,10 +740,9 @@ TrackOnDirectorBase::TrackOnDirectorBase(int type, const char* name, long in, lo
 {
 }
 
-/*
- * --INFO--
- * Address:	8045732C
- * Size:	000034
+/**
+ * @note Address: 0x8045732C
+ * @note Size: 0x34
  */
 void TrackOnDirectorBase::onPlayInit(JASTrack* track)
 {
@@ -767,10 +750,9 @@ void TrackOnDirectorBase::onPlayInit(JASTrack* track)
 	track->muteTrack(true);
 }
 
-/*
- * --INFO--
- * Address:	80457360
- * Size:	000050
+/**
+ * @note Address: 0x80457360
+ * @note Size: 0x50
  */
 void TrackOnDirectorBase::directOnTrack(PSSystem::SeqTrackBase& seqTrack)
 {
@@ -781,20 +763,18 @@ void TrackOnDirectorBase::directOnTrack(PSSystem::SeqTrackBase& seqTrack)
 	}
 }
 
-/*
- * --INFO--
- * Address:	804573B0
- * Size:	00002C
+/**
+ * @note Address: 0x804573B0
+ * @note Size: 0x2C
  */
 void TrackOnDirectorBase::directOffTrack(PSSystem::SeqTrackBase& seqTrack)
 {
 	static_cast<PSSystem::SeqTrackChild&>(seqTrack).fadeoutAndMute(mFadeOutValue, this);
 }
 
-/*
- * --INFO--
- * Address:	804573DC
- * Size:	000090
+/**
+ * @note Address: 0x804573DC
+ * @note Size: 0x90
  */
 void TrackOnDirector_Voting::execInner()
 {
@@ -806,10 +786,9 @@ void TrackOnDirector_Voting::execInner()
 	mVoteState = 0;
 }
 
-/*
- * --INFO--
- * Address:	804574FC
- * Size:	0000FC
+/**
+ * @note Address: 0x804574FC
+ * @note Size: 0xFC
  */
 void TrackOnDirector_Scaled::underDirection()
 {
@@ -896,10 +875,9 @@ lbl_804575C0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	804575F8
- * Size:	00008C
+/**
+ * @note Address: 0x804575F8
+ * @note Size: 0x8C
  */
 void ListDirectorActor::onUpdateFromMasterD()
 {
@@ -910,10 +888,9 @@ void ListDirectorActor::onUpdateFromMasterD()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80457684
- * Size:	000098
+/**
+ * @note Address: 0x80457684
+ * @note Size: 0x98
  */
 ActorDirector_TrackOn::ActorDirector_TrackOn(const char* p1, int p2, long p3, long p4)
     : TrackOnDirectorBase(p2, p1, p3, p4)
@@ -961,10 +938,9 @@ ActorDirector_TrackOn::ActorDirector_TrackOn(const char* p1, int p2, long p3, lo
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045771C
- * Size:	00003C
+/**
+ * @note Address: 0x8045771C
+ * @note Size: 0x3C
  */
 void ActorDirector_TrackOn::execInner()
 {
@@ -973,20 +949,18 @@ void ActorDirector_TrackOn::execInner()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80457758
- * Size:	0000F4
+/**
+ * @note Address: 0x80457758
+ * @note Size: 0xF4
  */
 ActorDirector_Scaled::ActorDirector_Scaled(const char* name, int p2, f32 p3, f32 p4, long p5, long p6, u32 p7)
     : TrackOnDirector_Scaled(name, p2, p3, p4, p5, p6, p7)
 {
 }
 
-/*
- * --INFO--
- * Address:	804578EC
- * Size:	00003C
+/**
+ * @note Address: 0x804578EC
+ * @note Size: 0x3C
  */
 void ActorDirector_Scaled::execInner()
 {
@@ -995,10 +969,9 @@ void ActorDirector_Scaled::execInner()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80457928
- * Size:	000614
+/**
+ * @note Address: 0x80457928
+ * @note Size: 0x614
  */
 f32 ActorDirector_Scaled::getNearestDistance()
 {
@@ -1466,10 +1439,9 @@ lbl_80457ED8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80457F3C
- * Size:	0000E4
+/**
+ * @note Address: 0x80457F3C
+ * @note Size: 0xE4
  */
 ActorDirector_Enemy::ActorDirector_Enemy(const char* name, int p2, long p3, long p4, u32 p5)
     : ActorDirector_Scaled(name, p2, 1.0f, 0.0f, p3, p4, p5)
@@ -1477,17 +1449,15 @@ ActorDirector_Enemy::ActorDirector_Enemy(const char* name, int p2, long p3, long
 {
 }
 
-/*
- * --INFO--
- * Address:	804580D0
- * Size:	000008
+/**
+ * @note Address: 0x804580D0
+ * @note Size: 0x8
  */
 void ActorDirector_Enemy::onSetMinDistObj(Game::Creature* obj) { mGameObject = static_cast<Game::EnemyBase*>(obj); }
 
-/*
- * --INFO--
- * Address:	804580D8
- * Size:	0001D0
+/**
+ * @note Address: 0x804580D8
+ * @note Size: 0x1D0
  */
 void ActorDirector_Enemy::underDirection()
 {
@@ -1643,10 +1613,9 @@ lbl_80458274:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	804582A8
- * Size:	000044
+/**
+ * @note Address: 0x804582A8
+ * @note Size: 0x44
  */
 f64 ActorDirector_Battle::getVolZeroDist(Game::EnemyBase* enemy)
 {
@@ -1654,10 +1623,9 @@ f64 ActorDirector_Battle::getVolZeroDist(Game::EnemyBase* enemy)
 	return CreaturePrm::cVolZeroDist_Battle[id];
 }
 
-/*
- * --INFO--
- * Address:	804582EC
- * Size:	000044
+/**
+ * @note Address: 0x804582EC
+ * @note Size: 0x44
  */
 f64 ActorDirector_Battle::getVolMaxDist(Game::EnemyBase* enemy)
 {
@@ -1665,10 +1633,9 @@ f64 ActorDirector_Battle::getVolMaxDist(Game::EnemyBase* enemy)
 	return CreaturePrm::cVolMaxDist_Battle[id];
 }
 
-/*
- * --INFO--
- * Address:	80458330
- * Size:	000044
+/**
+ * @note Address: 0x80458330
+ * @note Size: 0x44
  */
 f64 ActorDirector_Kehai::getVolZeroDist(Game::EnemyBase* enemy)
 {
@@ -1676,10 +1643,9 @@ f64 ActorDirector_Kehai::getVolZeroDist(Game::EnemyBase* enemy)
 	return CreaturePrm::cVolZeroDist_Kehai[id];
 }
 
-/*
- * --INFO--
- * Address:	80458374
- * Size:	000044
+/**
+ * @note Address: 0x80458374
+ * @note Size: 0x44
  */
 f64 ActorDirector_Kehai::getVolMaxDist(Game::EnemyBase* enemy)
 {
@@ -1690,30 +1656,27 @@ f64 ActorDirector_Kehai::getVolMaxDist(Game::EnemyBase* enemy)
 // exists here but doesnt seem to be used by any panics
 static const char* unusedpath = "PSMainSide_ObjSound.h";
 
-/*
- * --INFO--
- * Address:	804583B8
- * Size:	00007C
+/**
+ * @note Address: 0x804583B8
+ * @note Size: 0x7C
  */
 PikAttackDirector::PikAttackDirector(int p1)
     : TrackOnDirectorBase(p1, "pikatkD  ", 100, 100)
 {
 }
 
-/*
- * --INFO--
- * Address:	80458434
- * Size:	00007C
+/**
+ * @note Address: 0x80458434
+ * @note Size: 0x7C
  */
 ExiteDirector::ExiteDirector(int p1)
     : TrackOnDirectorBase(p1, "tentionD ", 100, 100)
 {
 }
 
-/*
- * --INFO--
- * Address:	804584B0
- * Size:	000068
+/**
+ * @note Address: 0x804584B0
+ * @note Size: 0x68
  */
 DirectorUpdator::DirectorUpdator(PSSystem::DirectorBase* director, u8 number, PSM::DirectorUpdator::Type type)
     : mUpdateNum(number)
@@ -1725,10 +1688,9 @@ DirectorUpdator::DirectorUpdator(PSSystem::DirectorBase* director, u8 number, PS
 	P2ASSERTLINE(698, number != 0);
 }
 
-/*
- * --INFO--
- * Address:	80458518
- * Size:	000034
+/**
+ * @note Address: 0x80458518
+ * @note Size: 0x34
  */
 void DirectorUpdator::directOn(u8 id)
 {
@@ -1755,10 +1717,9 @@ void DirectorUpdator::directOn(u8 id)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045854C
- * Size:	000034
+/**
+ * @note Address: 0x8045854C
+ * @note Size: 0x34
  */
 void DirectorUpdator::directOff(u8 id)
 {
@@ -1785,10 +1746,9 @@ void DirectorUpdator::directOff(u8 id)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80458580
- * Size:	00012C
+/**
+ * @note Address: 0x80458580
+ * @note Size: 0x12C
  */
 void DirectorUpdator::frameEndWork()
 {
@@ -1830,10 +1790,9 @@ void DirectorUpdator::frameEndWork()
 
 } // namespace PSM
 
-/*
- * --INFO--
- * Address:	804586AC
- * Size:	000148
+/**
+ * @note Address: 0x804586AC
+ * @note Size: 0x148
  */
 PSSystem::DirectorBase* PSMGetBattleDirector(u8 flag)
 {
@@ -1949,10 +1908,9 @@ lbl_804587D4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	804587F4
- * Size:	000108
+/**
+ * @note Address: 0x804587F4
+ * @note Size: 0x108
  */
 PSM::ActorDirector_Kehai* PSMGetKehaiD()
 {
@@ -1971,10 +1929,9 @@ PSM::ActorDirector_Kehai* PSMGetKehaiD()
 	}
 }
 
-/*
- * --INFO--
- * Address:	804588FC
- * Size:	000108
+/**
+ * @note Address: 0x804588FC
+ * @note Size: 0x108
  */
 PSM::ActorDirector_Battle* PSMGetBattleD()
 {
@@ -1993,10 +1950,9 @@ PSM::ActorDirector_Battle* PSMGetBattleD()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80458A04
- * Size:	000108
+/**
+ * @note Address: 0x80458A04
+ * @note Size: 0x108
  */
 PSM::ActorDirector_Scaled* PSMGetEventD()
 {
@@ -2015,10 +1971,9 @@ PSM::ActorDirector_Scaled* PSMGetEventD()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80458B0C
- * Size:	0000F0
+/**
+ * @note Address: 0x80458B0C
+ * @note Size: 0xF0
  */
 PSM::ActorDirector_TrackOn* PSMGetOtakaraEventD()
 {
@@ -2032,10 +1987,9 @@ PSM::ActorDirector_TrackOn* PSMGetOtakaraEventD()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80458BFC
- * Size:	000194
+/**
+ * @note Address: 0x80458BFC
+ * @note Size: 0x194
  */
 PSM::ActorDirector_Scaled* PSMGetGroundD()
 {
@@ -2050,10 +2004,9 @@ PSM::ActorDirector_Scaled* PSMGetGroundD()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80458D90
- * Size:	0000F0
+/**
+ * @note Address: 0x80458D90
+ * @note Size: 0xF0
  */
 PSM::PikminNumberDirector* PSMGetPikminNumD()
 {
@@ -2067,10 +2020,9 @@ PSM::PikminNumberDirector* PSMGetPikminNumD()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80458E80
- * Size:	0000F0
+/**
+ * @note Address: 0x80458E80
+ * @note Size: 0xF0
  */
 PSM::DamageDirector* PSMGetDamageD()
 {
@@ -2084,10 +2036,9 @@ PSM::DamageDirector* PSMGetDamageD()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80458F70
- * Size:	0000F0
+/**
+ * @note Address: 0x80458F70
+ * @note Size: 0xF0
  */
 PSM::ActorDirector_TempoChange* PSMGetLifeD()
 {
@@ -2101,10 +2052,9 @@ PSM::ActorDirector_TempoChange* PSMGetLifeD()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80459060
- * Size:	0000F0
+/**
+ * @note Address: 0x80459060
+ * @note Size: 0xF0
  */
 PSM::ActorDirector_TrackOn* PSMGetBeedamaForOrimerD()
 {
@@ -2118,10 +2068,9 @@ PSM::ActorDirector_TrackOn* PSMGetBeedamaForOrimerD()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80459150
- * Size:	0000F0
+/**
+ * @note Address: 0x80459150
+ * @note Size: 0xF0
  */
 PSM::ActorDirector_TrackOn* PSMGetBeedamaForLugieD()
 {
@@ -2135,10 +2084,9 @@ PSM::ActorDirector_TrackOn* PSMGetBeedamaForLugieD()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80459240
- * Size:	0000F0
+/**
+ * @note Address: 0x80459240
+ * @note Size: 0xF0
  */
 PSM::ActorDirector_TrackOn* PSMGetIchouForOrimerD()
 {
@@ -2152,10 +2100,9 @@ PSM::ActorDirector_TrackOn* PSMGetIchouForOrimerD()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80459330
- * Size:	0000F0
+/**
+ * @note Address: 0x80459330
+ * @note Size: 0xF0
  */
 PSM::ActorDirector_TrackOn* PSMGetIchouForLugieD()
 {
@@ -2169,10 +2116,9 @@ PSM::ActorDirector_TrackOn* PSMGetIchouForLugieD()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80459420
- * Size:	0000F0
+/**
+ * @note Address: 0x80459420
+ * @note Size: 0xF0
  */
 PSM::TrackOnDirector_Voting* PSMGetPikiBattleD()
 {

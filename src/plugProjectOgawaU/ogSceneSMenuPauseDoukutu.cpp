@@ -4,31 +4,27 @@
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	80323584
- * Size:	000050
+/**
+ * @note Address: 0x80323584
+ * @note Size: 0x50
  */
 SMenuPauseDoukutu::SMenuPauseDoukutu() { }
 
-/*
- * --INFO--
- * Address:	803235D4
- * Size:	000004
+/**
+ * @note Address: 0x803235D4
+ * @note Size: 0x4
  */
 void SMenuPauseDoukutu::doUserCallBackFunc(Resource::MgrCommand*) { }
 
-/*
- * --INFO--
- * Address:	803235D8
- * Size:	000060
+/**
+ * @note Address: 0x803235D8
+ * @note Size: 0x60
  */
 void SMenuPauseDoukutu::doCreateObj(JKRArchive* archive) { registObj(new ObjSMenuPauseDoukutu("SMenuPauseDoukutu screen"), archive); }
 
-/*
- * --INFO--
- * Address:	80323638
- * Size:	000090
+/**
+ * @note Address: 0x80323638
+ * @note Size: 0x90
  */
 int SMenuPauseDoukutu::doGetFinishState()
 {
@@ -46,17 +42,15 @@ int SMenuPauseDoukutu::doGetFinishState()
 	return finishState;
 }
 
-/*
- * --INFO--
- * Address:	803236C8
- * Size:	000004
+/**
+ * @note Address: 0x803236C8
+ * @note Size: 0x4
  */
 void SMenuPauseDoukutu::doUpdateActive() { }
 
-/*
- * --INFO--
- * Address:	803236CC
- * Size:	000068
+/**
+ * @note Address: 0x803236CC
+ * @note Size: 0x68
  */
 bool SMenuPauseDoukutu::doConfirmSetScene(::Screen::SetSceneArg& sceneArg)
 {

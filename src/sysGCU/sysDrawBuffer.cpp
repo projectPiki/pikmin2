@@ -5,10 +5,9 @@
 
 namespace Sys {
 
-/*
- * --INFO--
- * Address:	80455700
- * Size:	00005C
+/**
+ * @note Address: 0x80455700
+ * @note Size: 0x5C
  */
 DrawBuffer::DrawBuffer()
 {
@@ -17,18 +16,16 @@ DrawBuffer::DrawBuffer()
 	mIndex  = -1;
 }
 
-/*
+/**
  * __dt__Q23Sys10DrawBufferFv
- * --INFO--
- * Address:	8045575C
- * Size:	000060
+ * @note Address: 0x8045575C
+ * @note Size: 0x60
  */
 DrawBuffer::~DrawBuffer() { }
 
-/*
- * --INFO--
- * Address:	804557BC
- * Size:	0000DC
+/**
+ * @note Address: 0x804557BC
+ * @note Size: 0xDC
  */
 void DrawBuffer::create(CreateArg& arg)
 {
@@ -43,11 +40,10 @@ void DrawBuffer::create(CreateArg& arg)
 	mSortType          = mBuffer->mSortType;
 }
 
-/*
+/**
  * draw__Q23Sys10DrawBufferFv
- * --INFO--
- * Address:	80455898
- * Size:	000088
+ * @note Address: 0x80455898
+ * @note Size: 0x88
  */
 void DrawBuffer::draw()
 {
@@ -61,10 +57,9 @@ void DrawBuffer::draw()
 	mBuffer->draw();
 }
 
-/*
- * --INFO--
- * Address:	80455920
- * Size:	000058
+/**
+ * @note Address: 0x80455920
+ * @note Size: 0x58
  */
 void DrawBuffer::frameInit()
 {
@@ -72,10 +67,9 @@ void DrawBuffer::frameInit()
 	mBuffer->frameInit();
 }
 
-/*
- * --INFO--
- * Address:	80455978
- * Size:	000054
+/**
+ * @note Address: 0x80455978
+ * @note Size: 0x54
  */
 DrawBuffers::DrawBuffers()
 {
@@ -84,18 +78,16 @@ DrawBuffers::DrawBuffers()
 	setName("DrawBuffer");
 }
 
-/*
+/**
  * __dt__Q23Sys11DrawBuffersFv
- * --INFO--
- * Address:	804559CC
- * Size:	000060
+ * @note Address: 0x804559CC
+ * @note Size: 0x60
  */
 DrawBuffers::~DrawBuffers() { }
 
-/*
- * --INFO--
- * Address:	80455A2C
- * Size:	000098
+/**
+ * @note Address: 0x80455A2C
+ * @note Size: 0x98
  */
 void DrawBuffers::allocate(int count)
 {
@@ -106,10 +98,9 @@ void DrawBuffers::allocate(int count)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80455AC4
- * Size:	00008C
+/**
+ * @note Address: 0x80455AC4
+ * @note Size: 0x8C
  */
 DrawBuffer* DrawBuffers::get(int index)
 {
@@ -121,10 +112,9 @@ DrawBuffer* DrawBuffers::get(int index)
 	return &mBuffers[index];
 }
 
-/*
- * --INFO--
- * Address:	80455B50
- * Size:	0000E0
+/**
+ * @note Address: 0x80455B50
+ * @note Size: 0xE0
  */
 void DrawBuffers::frameInitAll()
 {

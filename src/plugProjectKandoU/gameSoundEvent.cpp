@@ -4,10 +4,9 @@
 #include "Game/TSoundEvent.h"
 
 namespace Game {
-/*
- * --INFO--
- * Address:	8022EBCC
- * Size:	00001C
+/**
+ * @note Address: 0x8022EBCC
+ * @note Size: 0x1C
  */
 TSoundEvent::TSoundEvent()
     : mState(TSE_Inactive)
@@ -17,10 +16,9 @@ TSoundEvent::TSoundEvent()
 	mDuration = 30;
 }
 
-/*
- * --INFO--
- * Address:	8022EBE8
- * Size:	000048
+/**
+ * @note Address: 0x8022EBE8
+ * @note Size: 0x48
  */
 u32 TSoundEvent::event()
 {
@@ -38,17 +36,15 @@ u32 TSoundEvent::event()
 	return TSE_Inactive;
 }
 
-/*
- * --INFO--
- * Address:	8022EC30
- * Size:	000010
+/**
+ * @note Address: 0x8022EC30
+ * @note Size: 0x10
  */
 void TSoundEvent::finish() { mState |= TSE_Finish; }
 
-/*
- * --INFO--
- * Address:	8022EC40
- * Size:	000074
+/**
+ * @note Address: 0x8022EC40
+ * @note Size: 0x74
  */
 u32 TSoundEvent::update()
 {

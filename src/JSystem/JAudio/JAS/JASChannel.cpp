@@ -117,10 +117,9 @@
         .4byte 0x00000000
 */
 
-/*
- * --INFO--
- * Address:	800A3204
- * Size:	000160
+/**
+ * @note Address: 0x800A3204
+ * @note Size: 0x160
  */
 JASChannel::JASChannel(Callback* callback, void* p2)
     : JSULink(this)
@@ -163,17 +162,15 @@ JASChannel::JASChannel(Callback* callback, void* p2)
 	_1C  = 0;
 }
 
-/*
- * --INFO--
- * Address:	800A3364
- * Size:	000030
+/**
+ * @note Address: 0x800A3364
+ * @note Size: 0x30
  */
 JASOscillator::JASOscillator() { init(); }
 
-/*
- * --INFO--
- * Address:	800A3394
- * Size:	0000A4
+/**
+ * @note Address: 0x800A3394
+ * @note Size: 0xA4
  */
 // void JASPoolAllocObject<JASChannel, JASCreationPolicy::NewFromRootHeap, JASThreadingModel::SingleThreaded>::~JASPoolAllocObject()
 // {
@@ -231,20 +228,18 @@ JASOscillator::JASOscillator() { init(); }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 // void JSULink<JASChannel>::~JSULink()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	800A3438
- * Size:	00010C
+/**
+ * @note Address: 0x800A3438
+ * @note Size: 0x10C
  */
 JASChannel::~JASChannel()
 {
@@ -341,24 +336,21 @@ lbl_800A3528:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A3544
- * Size:	000034
+/**
+ * @note Address: 0x800A3544
+ * @note Size: 0x34
  */
 void JASChannel::setOscInit(int index, const JASOscillator::Data* data) { _30[index].initStart(data); }
 
-/*
- * --INFO--
- * Address:	800A3578
- * Size:	000010
+/**
+ * @note Address: 0x800A3578
+ * @note Size: 0x10
  */
 void JASChannel::setMixConfig(int index, u16 mixConfig) { _B0[index] = mixConfig; }
 
-/*
- * --INFO--
- * Address:	800A3588
- * Size:	000008
+/**
+ * @note Address: 0x800A3588
+ * @note Size: 0x8
  */
 void JASChannel::directReleaseOsc(u16 a1)
 {
@@ -366,20 +358,18 @@ void JASChannel::directReleaseOsc(u16 a1)
 	_30[0]._1A = a1;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000DC
+/**
+ * @note Address: N/A
+ * @note Size: 0xDC
  */
 void JASChannel::effectOsc(int index, EffectOscParam* param)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800A3590
- * Size:	000048
+/**
+ * @note Address: 0x800A3590
+ * @note Size: 0x48
  */
 void JASChannel::copyOsc(int index, JASOscillator::Data* toData)
 {
@@ -395,17 +385,15 @@ void JASChannel::copyOsc(int index, JASOscillator::Data* toData)
 	toData->_14 = fromData->_14;
 }
 
-/*
- * --INFO--
- * Address:	800A35D8
- * Size:	000034
+/**
+ * @note Address: 0x800A35D8
+ * @note Size: 0x34
  */
 void JASChannel::overwriteOsc(int index, JASOscillator::Data* data) { _30[index].initStart(data); }
 
-/*
- * --INFO--
- * Address:	800A360C
- * Size:	000088
+/**
+ * @note Address: 0x800A360C
+ * @note Size: 0x88
  */
 void JASChannel::setKeySweepTarget(u8 p1, u32 p2)
 {
@@ -425,10 +413,9 @@ void JASChannel::setKeySweepTarget(u8 p1, u32 p2)
 	_C4 = p2;
 }
 
-/*
- * --INFO--
- * Address:	800A3694
- * Size:	000008
+/**
+ * @note Address: 0x800A3694
+ * @note Size: 0x8
  */
 void JASChannel::setPauseFlag(bool a1)
 {
@@ -436,10 +423,9 @@ void JASChannel::setPauseFlag(bool a1)
 	_1C = a1;
 }
 
-/*
- * --INFO--
- * Address:	800A369C
- * Size:	000024
+/**
+ * @note Address: 0x800A369C
+ * @note Size: 0x24
  */
 void JASChannel::setPanPower(f32 p1, f32 p2, f32 p3)
 {
@@ -449,10 +435,9 @@ void JASChannel::setPanPower(f32 p1, f32 p2, f32 p3)
 	_114        = p3 / divisor;
 }
 
-/*
- * --INFO--
- * Address:	800A36C0
- * Size:	000084
+/**
+ * @note Address: 0x800A36C0
+ * @note Size: 0x84
  */
 BOOL JASChannel::play()
 {
@@ -467,10 +452,9 @@ BOOL JASChannel::play()
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800A3744
- * Size:	000084
+/**
+ * @note Address: 0x800A3744
+ * @note Size: 0x84
  */
 BOOL JASChannel::playForce()
 {
@@ -485,10 +469,9 @@ BOOL JASChannel::playForce()
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800A37C8
- * Size:	000098
+/**
+ * @note Address: 0x800A37C8
+ * @note Size: 0x98
  */
 void JASChannel::release(u16 p1)
 {
@@ -507,10 +490,9 @@ void JASChannel::release(u16 p1)
 	_18 = 2;
 }
 
-/*
- * --INFO--
- * Address:	800A3860
- * Size:	00025C
+/**
+ * @note Address: 0x800A3860
+ * @note Size: 0x25C
  */
 void JASChannel::updateEffectorParam(JASDsp::TChannel*, u16*, const JASChannel::EffectOscParam&)
 {
@@ -710,10 +692,9 @@ void JASChannel::updateEffectorParam(JASDsp::TChannel*, u16*, const JASChannel::
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A3ABC
- * Size:	0000A0
+/**
+ * @note Address: 0x800A3ABC
+ * @note Size: 0xA0
  */
 long JASChannel::dspUpdateCallback(u32 p1, JASDsp::TChannel* p2, void* p3)
 {
@@ -734,10 +715,9 @@ long JASChannel::dspUpdateCallback(u32 p1, JASDsp::TChannel* p2, void* p3)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	800A3B5C
- * Size:	0002A4
+/**
+ * @note Address: 0x800A3B5C
+ * @note Size: 0x2A4
  */
 void JASChannel::initialUpdateDSPChannel(JASDsp::TChannel*)
 {
@@ -957,10 +937,9 @@ lbl_800A3D98:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A3E00
- * Size:	0002BC
+/**
+ * @note Address: 0x800A3E00
+ * @note Size: 0x2BC
  */
 long JASChannel::updateDSPChannel(JASDsp::TChannel*)
 {
@@ -1178,10 +1157,9 @@ lbl_800A409C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A40BC
- * Size:	0000C0
+/**
+ * @note Address: 0x800A40BC
+ * @note Size: 0xC0
  */
 f32 JASChannel::calcEffect(const JASChannel::PanVector* vectorA, const JASChannel::PanVector* vectorB, u8 p3)
 {
@@ -1300,10 +1278,9 @@ f32 JASChannel::calcEffect(const JASChannel::PanVector* vectorA, const JASChanne
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A417C
- * Size:	0000FC
+/**
+ * @note Address: 0x800A417C
+ * @note Size: 0xFC
  */
 f32 JASChannel::calcPan(const JASChannel::PanVector*, const JASChannel::PanVector*, u8)
 {
@@ -1399,10 +1376,9 @@ f32 JASChannel::calcPan(const JASChannel::PanVector*, const JASChannel::PanVecto
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A4278
- * Size:	000120
+/**
+ * @note Address: 0x800A4278
+ * @note Size: 0x120
  */
 void JASChannel::updateAutoMixer(JASDsp::TChannel* p1, f32 p2, f32 p3, f32 p4, f32 p5)
 {
@@ -1498,10 +1474,9 @@ lbl_800A42EC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A4398
- * Size:	0003D4
+/**
+ * @note Address: 0x800A4398
+ * @note Size: 0x3D4
  */
 void JASChannel::updateMixer(f32, f32, f32, f32, u16*)
 {
@@ -1836,10 +1811,9 @@ lbl_800A46F4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A476C
- * Size:	000054
+/**
+ * @note Address: 0x800A476C
+ * @note Size: 0x54
  */
 void JASChannel::sweepProc()
 {
@@ -1875,10 +1849,9 @@ lbl_800A47B8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A47C0
- * Size:	000010
+/**
+ * @note Address: 0x800A47C0
+ * @note Size: 0x10
  */
 void JASChannel::free()
 {

@@ -5,10 +5,9 @@ efx::TPkEffectMgr* pkEffectMgr;
 
 namespace efx {
 
-/*
- * --INFO--
- * Address:	803C4E0C
- * Size:	0000B4
+/**
+ * @note Address: 0x803C4E0C
+ * @note Size: 0xB4
  */
 bool TPkOneEmitterSimple::create(Arg*)
 {
@@ -27,10 +26,9 @@ bool TPkOneEmitterSimple::create(Arg*)
 	return mEmitter;
 }
 
-/*
- * --INFO--
- * Address:	803C4EC0
- * Size:	0000D4
+/**
+ * @note Address: 0x803C4EC0
+ * @note Size: 0xD4
  */
 void TPkOneEmitterSimple::executeAfter(JPABaseEmitter* emitter)
 {
@@ -53,10 +51,9 @@ void TPkOneEmitterSimple::executeAfter(JPABaseEmitter* emitter)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
+/**
+ * @note Address: N/A
+ * @note Size: 0x70
  */
 void TPkOneEmitterSimple::add(Vector3f& position)
 {
@@ -71,17 +68,15 @@ void TPkOneEmitterSimple::add(Vector3f& position)
 	nextContext++;
 }
 
-/*
- * --INFO--
- * Address:	803C4F94
- * Size:	000024
+/**
+ * @note Address: 0x803C4F94
+ * @note Size: 0x24
  */
 void TPkEffectMgr::globalInstance() { pkEffectMgr = Instance(); }
 
-/*
- * --INFO--
- * Address:	803C4FB8
- * Size:	000050
+/**
+ * @note Address: 0x803C4FB8
+ * @note Size: 0x50
  */
 TPkEffectMgr* TPkEffectMgr::_instance;
 
@@ -94,10 +89,9 @@ void TPkEffectMgr::deleteInstance()
 	pkEffectMgr = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	803C5008
- * Size:	000048
+/**
+ * @note Address: 0x803C5008
+ * @note Size: 0x48
  */
 TPkEffectMgr* TPkEffectMgr::Instance()
 {
@@ -107,10 +101,9 @@ TPkEffectMgr* TPkEffectMgr::Instance()
 	return _instance;
 }
 
-/*
- * --INFO--
- * Address:	803C5050
- * Size:	0013BC
+/**
+ * @note Address: 0x803C5050
+ * @note Size: 0x13BC
  */
 TPkEffectMgr::TPkEffectMgr()
 {
@@ -182,10 +175,9 @@ TPkEffectMgr::TPkEffectMgr()
 	mNextOpenContext = 0;
 }
 
-/*
- * --INFO--
- * Address:	803C6498
- * Size:	000108
+/**
+ * @note Address: 0x803C6498
+ * @note Size: 0x108
  */
 TPkEffectMgr::~TPkEffectMgr()
 {
@@ -201,10 +193,9 @@ TPkEffectMgr::~TPkEffectMgr()
 	pkEffectMgr = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	803C6620
- * Size:	000098
+/**
+ * @note Address: 0x803C6620
+ * @note Size: 0x98
  */
 void TPkEffectMgr::startMgr()
 {
@@ -216,10 +207,9 @@ void TPkEffectMgr::startMgr()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803C66B8
- * Size:	000090
+/**
+ * @note Address: 0x803C66B8
+ * @note Size: 0x90
  */
 void TPkEffectMgr::exitMgr()
 {
@@ -231,10 +221,9 @@ void TPkEffectMgr::exitMgr()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803C678C
- * Size:	00000C
+/**
+ * @note Address: 0x803C678C
+ * @note Size: 0xC
  */
 void TPkEffectMgr::resetContextS() { mNextOpenContext = 0; }
 
@@ -264,24 +253,21 @@ void TPkEffectMgr::createS_Dead(Vector3f& position, long pikiKind)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 void TPkEffectMgr::createS_Attack(Vector3f& position) { pkEffectMgr->mTPkOneEmitters.mPikiDamage->add(position); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 void TPkEffectMgr::createS_AttackDp(Vector3f& position) { pkEffectMgr->mTPkOneEmitters.mAttackDP->add(position); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000160
+/**
+ * @note Address: N/A
+ * @note Size: 0x160
  */
 void TPkEffectMgr::createS_Kanden(Vector3f& position)
 {
@@ -291,10 +277,9 @@ void TPkEffectMgr::createS_Kanden(Vector3f& position)
 	pkEffectMgr->mTPkOneEmitters.mKanden4->add(position);
 }
 
-/*
- * --INFO--
- * Address:	803C69B4
- * Size:	0000C8
+/**
+ * @note Address: 0x803C69B4
+ * @note Size: 0xC8
  */
 void TPkEffectMgr::createS_Chinka(Vector3f& position)
 {
@@ -302,10 +287,9 @@ void TPkEffectMgr::createS_Chinka(Vector3f& position)
 	pkEffectMgr->mTPkOneEmitters.mChinka2->add(position);
 }
 
-/*
- * --INFO--
- * Address:	803C6A7C
- * Size:	0000C8
+/**
+ * @note Address: 0x803C6A7C
+ * @note Size: 0xC8
  */
 void TPkEffectMgr::createS_Gedoku(Vector3f& position)
 {
@@ -313,10 +297,9 @@ void TPkEffectMgr::createS_Gedoku(Vector3f& position)
 	pkEffectMgr->mTPkOneEmitters.mGedoku2->add(position);
 }
 
-/*
- * --INFO--
- * Address:	803C6B44
- * Size:	0000C8
+/**
+ * @note Address: 0x803C6B44
+ * @note Size: 0xC8
  */
 void TPkEffectMgr::createS_WaterOff(Vector3f& position)
 {
@@ -324,10 +307,9 @@ void TPkEffectMgr::createS_WaterOff(Vector3f& position)
 	pkEffectMgr->mTPkOneEmitters.mWaterOff2->add(position);
 }
 
-/*
- * --INFO--
- * Address:	803C6C0C
- * Size:	0000C8
+/**
+ * @note Address: 0x803C6C0C
+ * @note Size: 0xC8
  */
 void TPkEffectMgr::createS_Dive(Vector3f& position)
 {
@@ -336,45 +318,39 @@ void TPkEffectMgr::createS_Dive(Vector3f& position)
 	pkEffectMgr->mTPkOneEmitters.mEnemyDive2->add(position);
 }
 
-/*
- * --INFO--
- * Address:	803C6CD4
- * Size:	000074
+/**
+ * @note Address: 0x803C6CD4
+ * @note Size: 0x74
  */
 void TPkEffectMgr::createS_Chiru(Vector3f& position) { pkEffectMgr->mTPkOneEmitters.mChiru->add(position); }
 
-/*
- * --INFO--
- * Address:	803C6D48
- * Size:	000074
+/**
+ * @note Address: 0x803C6D48
+ * @note Size: 0x74
  */
 void TPkEffectMgr::createS_Inattack(Vector3f& position) { pkEffectMgr->mTPkOneEmitters.mInAttack->add(position); }
 
-/*
- * --INFO--
- * Address:	803C6DBC
- * Size:	000074
+/**
+ * @note Address: 0x803C6DBC
+ * @note Size: 0x74
  */
 void TPkEffectMgr::createS_Walksmoke(Vector3f& position) { pkEffectMgr->mTPkOneEmitters.mWalkSmoke->add(position); }
 
-/*
- * --INFO--
- * Address:	803C6E30
- * Size:	000074
+/**
+ * @note Address: 0x803C6E30
+ * @note Size: 0x74
  */
 void TPkEffectMgr::createS_Dig(Vector3f& position) { pkEffectMgr->mTPkOneEmitters.mDig->add(position); }
 
-/*
- * --INFO--
- * Address:	803C6EA4
- * Size:	000074
+/**
+ * @note Address: 0x803C6EA4
+ * @note Size: 0x74
  */
 void TPkEffectMgr::createS_ChiruRed(Vector3f& position) { pkEffectMgr->mTPkOneEmitters.mChiruRed->add(position); }
 
-/*
- * --INFO--
- * Address:	803C6F18
- * Size:	000074
+/**
+ * @note Address: 0x803C6F18
+ * @note Size: 0x74
  */
 void TPkEffectMgr::createS_Gate3Attack(Vector3f& position)
 {
@@ -382,10 +358,9 @@ void TPkEffectMgr::createS_Gate3Attack(Vector3f& position)
 	pkEffectMgr->mTPkOneEmitters.mGate3Attack->add(position);
 }
 
-/*
- * --INFO--
- * Address:	803C6F8C
- * Size:	0000C8
+/**
+ * @note Address: 0x803C6F8C
+ * @note Size: 0xC8
  */
 void TPkEffectMgr::createS_Walkwater(Vector3f& position)
 {
@@ -393,10 +368,9 @@ void TPkEffectMgr::createS_Walkwater(Vector3f& position)
 	pkEffectMgr->mTPkOneEmitters.mWalkWater2->add(position);
 }
 
-/*
- * --INFO--
- * Address:	803C7054
- * Size:	000128
+/**
+ * @note Address: 0x803C7054
+ * @note Size: 0x128
  */
 void ToeKourin::create(Vector3f* chasePos, long pikiKind)
 {
@@ -432,10 +406,9 @@ void ToeKourin::create(Vector3f* chasePos, long pikiKind)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803C717C
- * Size:	0000B8
+/**
+ * @note Address: 0x803C717C
+ * @note Size: 0xB8
  */
 void ToeKourin::kill()
 {
@@ -466,10 +439,9 @@ void ToeKourin::kill()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803C7234
- * Size:	000068
+/**
+ * @note Address: 0x803C7234
+ * @note Size: 0x68
  */
 void ToeDoping::create(Vector3f* chasePos)
 {
@@ -478,17 +450,15 @@ void ToeDoping::create(Vector3f* chasePos)
 	pkEffectMgr->mTOneEmitters.mToeDoping->add(&mContext);
 }
 
-/*
- * --INFO--
- * Address:	803C729C
- * Size:	00002C
+/**
+ * @note Address: 0x803C729C
+ * @note Size: 0x2C
  */
 void ToeDoping::kill() { pkEffectMgr->mTOneEmitters.mToeDoping->del(&mContext); }
 
-/*
- * --INFO--
- * Address:	803C72C8
- * Size:	000068
+/**
+ * @note Address: 0x803C72C8
+ * @note Size: 0x68
  */
 void ToeNagekira::create(Vector3f* chasePos)
 {
@@ -497,17 +467,15 @@ void ToeNagekira::create(Vector3f* chasePos)
 	pkEffectMgr->mTOneEmitters.mToeNageKira->add(&mContext);
 }
 
-/*
- * --INFO--
- * Address:	803C7330
- * Size:	00002C
+/**
+ * @note Address: 0x803C7330
+ * @note Size: 0x2C
  */
 void ToeNagekira::kill() { pkEffectMgr->mTOneEmitters.mToeNageKira->del(&mContext); }
 
-/*
- * --INFO--
- * Address:	803C735C
- * Size:	00007C
+/**
+ * @note Address: 0x803C735C
+ * @note Size: 0x7C
  */
 void ToeMoeBC::create(Vector3f* chasePos)
 {
@@ -519,10 +487,9 @@ void ToeMoeBC::create(Vector3f* chasePos)
 	pkEffectMgr->mTOneEmitters.mToeMoeBC2->add(&mContexts[1]);
 }
 
-/*
- * --INFO--
- * Address:	803C73D8
- * Size:	000048
+/**
+ * @note Address: 0x803C73D8
+ * @note Size: 0x48
  */
 void ToeMoeBC::kill()
 {
@@ -530,10 +497,9 @@ void ToeMoeBC::kill()
 	pkEffectMgr->mTOneEmitters.mToeMoeBC2->del(&mContexts[1]);
 }
 
-/*
- * --INFO--
- * Address:	803C7420
- * Size:	000068
+/**
+ * @note Address: 0x803C7420
+ * @note Size: 0x68
  */
 void ToeChudoku::create(Vector3f* chasePos)
 {
@@ -542,17 +508,15 @@ void ToeChudoku::create(Vector3f* chasePos)
 	pkEffectMgr->mTOneEmitters.mToeChudoku->add(&mContext);
 }
 
-/*
- * --INFO--
- * Address:	803C7488
- * Size:	00002C
+/**
+ * @note Address: 0x803C7488
+ * @note Size: 0x2C
  */
 void ToeChudoku::kill() { pkEffectMgr->mTOneEmitters.mToeChudoku->del(&mContext); }
 
-/*
- * --INFO--
- * Address:	803C74B4
- * Size:	00007C
+/**
+ * @note Address: 0x803C74B4
+ * @note Size: 0x7C
  */
 void ToeWater::create(Vector3f* chasePos)
 {
@@ -564,10 +528,9 @@ void ToeWater::create(Vector3f* chasePos)
 	pkEffectMgr->mTOneEmitters.mToeWater2->add(&mContexts[1]);
 }
 
-/*
- * --INFO--
- * Address:	803C7530
- * Size:	000048
+/**
+ * @note Address: 0x803C7530
+ * @note Size: 0x48
  */
 void ToeWater::kill()
 {
@@ -575,10 +538,9 @@ void ToeWater::kill()
 	pkEffectMgr->mTOneEmitters.mToeWater2->del(&mContexts[1]);
 }
 
-/*
- * --INFO--
- * Address:	803C7578
- * Size:	000074
+/**
+ * @note Address: 0x803C7578
+ * @note Size: 0x74
  */
 void ToeHamonA::create(Vector3f* chasePos)
 {
@@ -589,17 +551,15 @@ void ToeHamonA::create(Vector3f* chasePos)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803C75EC
- * Size:	00002C
+/**
+ * @note Address: 0x803C75EC
+ * @note Size: 0x2C
  */
 void ToeHamonA::kill() { pkEffectMgr->mTOneEmitters.mToeHamonA->del(mContext); }
 
-/*
- * --INFO--
- * Address:	803C7618
- * Size:	000074
+/**
+ * @note Address: 0x803C7618
+ * @note Size: 0x74
  */
 void ToeHamonB::create(Vector3f* chasePos)
 {
@@ -610,17 +570,15 @@ void ToeHamonB::create(Vector3f* chasePos)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803C768C
- * Size:	00002C
+/**
+ * @note Address: 0x803C768C
+ * @note Size: 0x2C
  */
 void ToeHamonB::kill() { pkEffectMgr->mTOneEmitters.mToeHamonB->del(mContext); }
 
-/*
- * --INFO--
- * Address:	803C76B8
- * Size:	000068
+/**
+ * @note Address: 0x803C76B8
+ * @note Size: 0x68
  */
 void ToeMoeSmoke::create(Vector3f* chasePos)
 {
@@ -629,17 +587,15 @@ void ToeMoeSmoke::create(Vector3f* chasePos)
 	pkEffectMgr->mTOneEmitters.mToeMoeSmoke->add(&mContext);
 }
 
-/*
- * --INFO--
- * Address:	803C7720
- * Size:	00002C
+/**
+ * @note Address: 0x803C7720
+ * @note Size: 0x2C
  */
 void ToeMoeSmoke::kill() { pkEffectMgr->mTOneEmitters.mToeMoeSmoke->del(&mContext); }
 
-/*
- * --INFO--
- * Address:	803C774C
- * Size:	000068
+/**
+ * @note Address: 0x803C774C
+ * @note Size: 0x68
  */
 void ToeTanekira::create(Vector3f* chasePos)
 {
@@ -648,10 +604,9 @@ void ToeTanekira::create(Vector3f* chasePos)
 	pkEffectMgr->mTOneEmitters.mToeTaneKira->add(&mContext[0]);
 }
 
-/*
- * --INFO--
- * Address:	803C77B4
- * Size:	00002C
+/**
+ * @note Address: 0x803C77B4
+ * @note Size: 0x2C
  */
 void ToeTanekira::kill() { pkEffectMgr->mTOneEmitters.mToeTaneKira->del(&mContext[0]); }
 

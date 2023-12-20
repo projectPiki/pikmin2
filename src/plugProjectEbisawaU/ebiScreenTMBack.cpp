@@ -7,10 +7,9 @@
 namespace ebi {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	803E9C60
- * Size:	0000B4
+/**
+ * @note Address: 0x803E9C60
+ * @note Size: 0xB4
  */
 void TTMBack::doSetArchive(JKRArchive* archive)
 {
@@ -25,10 +24,9 @@ void TTMBack::doSetArchive(JKRArchive* archive)
 	sys->heapStatusEnd("TScreenTMBack::setArchive");
 }
 
-/*
- * --INFO--
- * Address:	803E9D14
- * Size:	000070
+/**
+ * @note Address: 0x803E9D14
+ * @note Size: 0x70
  */
 void TTMBack::doOpenScreen(ArgOpen* arg)
 {
@@ -38,10 +36,9 @@ void TTMBack::doOpenScreen(ArgOpen* arg)
 	mOpenCloseCounterMax = duration;
 }
 
-/*
- * --INFO--
- * Address:	803E9D84
- * Size:	000044
+/**
+ * @note Address: 0x803E9D84
+ * @note Size: 0x44
  */
 void TTMBack::doCloseScreen(ArgClose* arg)
 {
@@ -50,10 +47,9 @@ void TTMBack::doCloseScreen(ArgClose* arg)
 	mOpenCloseCounterMax = duration;
 }
 
-/*
- * --INFO--
- * Address:	803E9DC8
- * Size:	0000DC
+/**
+ * @note Address: 0x803E9DC8
+ * @note Size: 0xDC
  */
 bool TTMBack::doUpdateStateOpen()
 {
@@ -77,10 +73,9 @@ bool TTMBack::doUpdateStateOpen()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803E9EA4
- * Size:	000034
+/**
+ * @note Address: 0x803E9EA4
+ * @note Size: 0x34
  */
 bool TTMBack::doUpdateStateWait()
 {
@@ -88,10 +83,9 @@ bool TTMBack::doUpdateStateWait()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803E9ED8
- * Size:	0000D4
+/**
+ * @note Address: 0x803E9ED8
+ * @note Size: 0xD4
  */
 bool TTMBack::doUpdateStateClose()
 {
@@ -115,10 +109,9 @@ bool TTMBack::doUpdateStateClose()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803E9FAC
- * Size:	000074
+/**
+ * @note Address: 0x803E9FAC
+ * @note Size: 0x74
  */
 void TTMBack::doDraw()
 {
@@ -130,10 +123,9 @@ void TTMBack::doDraw()
 	mScreenObj->draw(*gfx, *context);
 }
 
-/*
- * --INFO--
- * Address:	803EA020
- * Size:	000090
+/**
+ * @note Address: 0x803EA020
+ * @note Size: 0x90
  */
 void TNintendoLogo::doSetArchive(JKRArchive* archive)
 {
@@ -145,10 +137,9 @@ void TNintendoLogo::doSetArchive(JKRArchive* archive)
 	sys->heapStatusEnd("TScreenNintendoLogo::setArchive");
 }
 
-/*
- * --INFO--
- * Address:	803EA0B0
- * Size:	000034
+/**
+ * @note Address: 0x803EA0B0
+ * @note Size: 0x34
  */
 bool TNintendoLogo::doUpdateStateWait()
 {
@@ -156,10 +147,9 @@ bool TNintendoLogo::doUpdateStateWait()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803EA0E4
- * Size:	000074
+/**
+ * @note Address: 0x803EA0E4
+ * @note Size: 0x74
  */
 void TNintendoLogo::doDraw()
 {

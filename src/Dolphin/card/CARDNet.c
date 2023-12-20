@@ -3,10 +3,9 @@
 u16 __CARDVendorID = 0xFFFF;
 u8 __CARDPermMask  = 28;
 
-/*
- * --INFO--
- * Address:	800DAB00
- * Size:	0000C4
+/**
+ * @note Address: 0x800DAB00
+ * @note Size: 0xC4
  */
 s32 CARDGetSerialNo(s32 channel, u64* serialNo)
 {

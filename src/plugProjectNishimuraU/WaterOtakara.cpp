@@ -3,17 +3,15 @@
 namespace Game {
 namespace WaterOtakara {
 
-/*
- * --INFO--
- * Address:	802B8A38
- * Size:	0000A4
+/**
+ * @note Address: 0x802B8A38
+ * @note Size: 0xA4
  */
 Obj::Obj() { createEffect(); }
 
-/*
- * --INFO--
- * Address:	802B8ADC
- * Size:	0001A4
+/**
+ * @note Address: 0x802B8ADC
+ * @note Size: 0x1A4
  */
 void Obj::changeMaterial()
 {
@@ -42,10 +40,9 @@ void Obj::changeMaterial()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802B8C80
- * Size:	000060
+/**
+ * @note Address: 0x802B8C80
+ * @note Size: 0x60
  */
 void Obj::interactCreature(Creature* creature)
 {
@@ -54,17 +51,15 @@ void Obj::interactCreature(Creature* creature)
 	creature->stimulate(bubble);
 }
 
-/*
- * --INFO--
- * Address:	802B8CE0
- * Size:	000060
+/**
+ * @note Address: 0x802B8CE0
+ * @note Size: 0x60
  */
 void Obj::createEffect() { mEfxChargeWater = new efx::TOtaChargewat; }
 
-/*
- * --INFO--
- * Address:	802B8D40
- * Size:	000048
+/**
+ * @note Address: 0x802B8D40
+ * @note Size: 0x48
  */
 void Obj::setupEffect()
 {
@@ -72,24 +67,21 @@ void Obj::setupEffect()
 	mEfxChargeWater->setMtxptr(centerJointMtx->mMatrix.mtxView);
 }
 
-/*
- * --INFO--
- * Address:	802B8D88
- * Size:	000034
+/**
+ * @note Address: 0x802B8D88
+ * @note Size: 0x34
  */
 void Obj::startChargeEffect() { mEfxChargeWater->create(nullptr); }
 
-/*
- * --INFO--
- * Address:	802B8DBC
- * Size:	000030
+/**
+ * @note Address: 0x802B8DBC
+ * @note Size: 0x30
  */
 void Obj::finishChargeEffect() { mEfxChargeWater->fade(); }
 
-/*
- * --INFO--
- * Address:	802B8DEC
- * Size:	0000A4
+/**
+ * @note Address: 0x802B8DEC
+ * @note Size: 0xA4
  */
 void Obj::createDisChargeEffect()
 {
@@ -98,24 +90,21 @@ void Obj::createDisChargeEffect()
 	dischargeFX.create(&fxArg);
 }
 
-/*
- * --INFO--
- * Address:	802B8E90
- * Size:	000030
+/**
+ * @note Address: 0x802B8E90
+ * @note Size: 0x30
  */
 void Obj::effectDrawOn() { mEfxChargeWater->endDemoDrawOn(); }
 
-/*
- * --INFO--
- * Address:	802B8EC0
- * Size:	000030
+/**
+ * @note Address: 0x802B8EC0
+ * @note Size: 0x30
  */
 void Obj::effectDrawOff() { mEfxChargeWater->startDemoDrawOff(); }
 
-/*
- * --INFO--
- * Address:	802B8EF0
- * Size:	000044
+/**
+ * @note Address: 0x802B8EF0
+ * @note Size: 0x44
  */
 void Obj::startDisChargeSE() { getJAIObject()->startSound(PSSE_EN_OTAKARA_ATK_WATER, 0); }
 } // namespace WaterOtakara

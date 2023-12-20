@@ -8,10 +8,9 @@
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	802E7050
- * Size:	000148
+/**
+ * @note Address: 0x802E7050
+ * @note Size: 0x148
  */
 KumaKochappy::Obj::Obj()
 {
@@ -20,17 +19,15 @@ KumaKochappy::Obj::Obj()
 	createChappyRelation();
 }
 
-/*
- * --INFO--
- * Address:	802E7198
- * Size:	000004
+/**
+ * @note Address: 0x802E7198
+ * @note Size: 0x4
  */
 void KumaKochappy::Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
-/*
- * --INFO--
- * Address:	802E719C
- * Size:	000068
+/**
+ * @note Address: 0x802E719C
+ * @note Size: 0x68
  */
 void KumaKochappy::Obj::onInit(CreatureInitArg* initArg)
 {
@@ -41,10 +38,9 @@ void KumaKochappy::Obj::onInit(CreatureInitArg* initArg)
 	resetZukanAnimationFrame();
 }
 
-/*
- * --INFO--
- * Address:	802E7204
- * Size:	000044
+/**
+ * @note Address: 0x802E7204
+ * @note Size: 0x44
  */
 void KumaKochappy::Obj::onKill(CreatureKillArg* killArg)
 {
@@ -52,10 +48,9 @@ void KumaKochappy::Obj::onKill(CreatureKillArg* killArg)
 	EnemyBase::onKill(killArg);
 }
 
-/*
- * --INFO--
- * Address:	802E7248
- * Size:	00004C
+/**
+ * @note Address: 0x802E7248
+ * @note Size: 0x4C
  */
 void KumaKochappy::Obj::doUpdate()
 {
@@ -64,24 +59,21 @@ void KumaKochappy::Obj::doUpdate()
 	mMouthSlots.update();
 }
 
-/*
- * --INFO--
- * Address:	802E7294
- * Size:	000004
+/**
+ * @note Address: 0x802E7294
+ * @note Size: 0x4
  */
 void KumaKochappy::Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	802E7298
- * Size:	000020
+/**
+ * @note Address: 0x802E7298
+ * @note Size: 0x20
  */
 void KumaKochappy::Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	802E72B8
- * Size:	00004C
+/**
+ * @note Address: 0x802E72B8
+ * @note Size: 0x4C
  */
 void KumaKochappy::Obj::setFSM(KumaKochappy::FSM* fsm)
 {
@@ -90,10 +82,9 @@ void KumaKochappy::Obj::setFSM(KumaKochappy::FSM* fsm)
 	mCurrentLifecycleState = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	802E7304
- * Size:	0000A8
+/**
+ * @note Address: 0x802E7304
+ * @note Size: 0xA8
  */
 void KumaKochappy::Obj::getShadowParam(ShadowParam& shadowParam)
 {
@@ -111,10 +102,9 @@ void KumaKochappy::Obj::getShadowParam(ShadowParam& shadowParam)
 	shadowParam.mSize = 10.0f;
 }
 
-/*
- * --INFO--
- * Address:	802E73AC
- * Size:	000088
+/**
+ * @note Address: 0x802E73AC
+ * @note Size: 0x88
  */
 bool KumaKochappy::Obj::pressCallBack(Creature* creature, f32 damage, CollPart* part)
 {
@@ -125,24 +115,21 @@ bool KumaKochappy::Obj::pressCallBack(Creature* creature, f32 damage, CollPart* 
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802E7434
- * Size:	00002C
+/**
+ * @note Address: 0x802E7434
+ * @note Size: 0x2C
  */
 bool KumaKochappy::Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* part) { pressCallBack(creature, damage, part); }
 
-/*
- * --INFO--
- * Address:	802E7460
- * Size:	000028
+/**
+ * @note Address: 0x802E7460
+ * @note Size: 0x28
  */
 void KumaKochappy::Obj::startCarcassMotion() { startMotion(KUMAKOCHAPPYANIM_Carry, nullptr); }
 
-/*
- * --INFO--
- * Address:	802E7488
- * Size:	00008C
+/**
+ * @note Address: 0x802E7488
+ * @note Size: 0x8C
  */
 void KumaKochappy::Obj::initMouthSlots()
 {
@@ -154,10 +141,9 @@ void KumaKochappy::Obj::initMouthSlots()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E7514
- * Size:	000064
+/**
+ * @note Address: 0x802E7514
+ * @note Size: 0x64
  */
 void KumaKochappy::Obj::initWalkSmokeEffect()
 {
@@ -166,17 +152,15 @@ void KumaKochappy::Obj::initWalkSmokeEffect()
 	mWalkSmokeMgr.setup(1, mModel, "asiR", 4.0f);
 }
 
-/*
- * --INFO--
- * Address:	802E7578
- * Size:	000008
+/**
+ * @note Address: 0x802E7578
+ * @note Size: 0x8
  */
 WalkSmokeEffect::Mgr* KumaKochappy::Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
 
-/*
- * --INFO--
- * Address:	802E7580
- * Size:	000078
+/**
+ * @note Address: 0x802E7580
+ * @note Size: 0x78
  */
 void KumaKochappy::Obj::resetZukanAnimationFrame()
 {
@@ -185,10 +169,9 @@ void KumaKochappy::Obj::resetZukanAnimationFrame()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E75F8
- * Size:	000380
+/**
+ * @note Address: 0x802E75F8
+ * @note Size: 0x380
  */
 KumaChappy::Obj* KumaKochappy::Obj::setNearestParent()
 {
@@ -222,10 +205,9 @@ KumaChappy::Obj* KumaKochappy::Obj::setNearestParent()
 	return parent;
 }
 
-/*
- * --INFO--
- * Address:	802E79C4
- * Size:	0001A8
+/**
+ * @note Address: 0x802E79C4
+ * @note Size: 0x1A8
  */
 Vector3f* KumaKochappy::Obj::setTargetParentPosition()
 {
@@ -259,17 +241,15 @@ Vector3f* KumaKochappy::Obj::setTargetParentPosition()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	802E7B6C
- * Size:	00001C
+/**
+ * @note Address: 0x802E7B6C
+ * @note Size: 0x1C
  */
 void KumaKochappy::Obj::updateHomePosition() { mHomePosition = mPosition; }
 
-/*
- * --INFO--
- * Address:	802E7B88
- * Size:	000038
+/**
+ * @note Address: 0x802E7B88
+ * @note Size: 0x38
  */
 Creature* KumaKochappy::Obj::getSearchedTarget()
 {
@@ -277,10 +257,9 @@ Creature* KumaKochappy::Obj::getSearchedTarget()
 	                                         nullptr, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802E7BC0
- * Size:	000070
+/**
+ * @note Address: 0x802E7BC0
+ * @note Size: 0x70
  */
 void KumaKochappy::Obj::createChappyRelation()
 {
@@ -288,24 +267,21 @@ void KumaKochappy::Obj::createChappyRelation()
 	mParentRelation->clearRelations();
 }
 
-/*
- * --INFO--
- * Address:	802E7C30
- * Size:	000024
+/**
+ * @note Address: 0x802E7C30
+ * @note Size: 0x24
  */
 void KumaKochappy::Obj::releaseParent() { mParentRelation->del(); }
 
-/*
- * --INFO--
- * Address:	802E7C54
- * Size:	00000C
+/**
+ * @note Address: 0x802E7C54
+ * @note Size: 0xC
  */
 ChappyRelation* KumaKochappy::Obj::getParentRelation() { return static_cast<ChappyRelation*>(mParentRelation->mParent); }
 
-/*
- * --INFO--
- * Address:	802E7C60
- * Size:	00003C
+/**
+ * @note Address: 0x802E7C60
+ * @note Size: 0x3C
  */
 int KumaKochappy::Obj::getEnemyIndex(int& idx)
 {
@@ -322,10 +298,9 @@ int KumaKochappy::Obj::getEnemyIndex(int& idx)
 	return -1;
 }
 
-/*
- * --INFO--
- * Address:	802E7C9C
- * Size:	0000A0
+/**
+ * @note Address: 0x802E7C9C
+ * @note Size: 0xA0
  */
 void KumaKochappy::Obj::addParentEnemy(KumaChappy::Obj* parent)
 {

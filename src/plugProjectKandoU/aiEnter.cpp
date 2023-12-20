@@ -9,10 +9,9 @@
 #define PIKI_EXITONYON_SPEED   (100.0f)
 
 namespace PikiAI {
-/*
- * --INFO--
- * Address:	801A2720
- * Size:	0000D0
+/**
+ * @note Address: 0x801A2720
+ * @note Size: 0xD0
  */
 ActEnter::ActEnter(Game::Piki* p)
     : Action(p)
@@ -23,10 +22,9 @@ ActEnter::ActEnter(Game::Piki* p)
 	mName = "Enter";
 }
 
-/*
- * --INFO--
- * Address:	801A27F0
- * Size:	000338
+/**
+ * @note Address: 0x801A27F0
+ * @note Size: 0x338
  */
 void ActEnter::init(ActionArg* arg)
 {
@@ -68,10 +66,9 @@ void ActEnter::init(ActionArg* arg)
 	mState = ENTER_OnyonBegin;
 }
 
-/*
- * --INFO--
- * Address:	801A2B28
- * Size:	000240
+/**
+ * @note Address: 0x801A2B28
+ * @note Size: 0x240
  */
 int ActEnter::exec()
 {
@@ -129,10 +126,9 @@ int ActEnter::exec()
 	return ACTEXEC_Continue;
 }
 
-/*
- * --INFO--
- * Address:	801A2D68
- * Size:	000068
+/**
+ * @note Address: 0x801A2D68
+ * @note Size: 0x68
  */
 void ActEnter::cleanup()
 {
@@ -142,17 +138,15 @@ void ActEnter::cleanup()
 	mParent->mScale = mBaseScale;
 }
 
-/*
- * --INFO--
- * Address:	801A2DD0
- * Size:	000004
+/**
+ * @note Address: 0x801A2DD0
+ * @note Size: 0x4
  */
 void ActEnter::onKeyEvent(SysShape::KeyEvent const&) { }
 
-/*
- * --INFO--
- * Address:	801A2DD4
- * Size:	000078
+/**
+ * @note Address: 0x801A2DD4
+ * @note Size: 0x78
  */
 void ActEnter::initStay()
 {
@@ -162,10 +156,9 @@ void ActEnter::initStay()
 	mParent->setMoveRotation(false);
 }
 
-/*
- * --INFO--
- * Address:	801A2E4C
- * Size:	000064
+/**
+ * @note Address: 0x801A2E4C
+ * @note Size: 0x64
  */
 int ActEnter::execStay()
 {
@@ -178,10 +171,9 @@ int ActEnter::execStay()
 	return ACTEXEC_Continue;
 }
 
-/*
- * --INFO--
- * Address:	801A2EB0
- * Size:	0001A0
+/**
+ * @note Address: 0x801A2EB0
+ * @note Size: 0x1A0
  */
 void ActEnter::initSuck()
 {
@@ -319,10 +311,9 @@ lbl_801A2FD0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801A3050
- * Size:	00018C
+/**
+ * @note Address: 0x801A3050
+ * @note Size: 0x18C
  */
 int ActEnter::execSuck()
 {
@@ -356,10 +347,9 @@ int ActEnter::execSuck()
 	return ACTEXEC_Continue;
 }
 
-/*
- * --INFO--
- * Address:	801A31DC
- * Size:	000070
+/**
+ * @note Address: 0x801A31DC
+ * @note Size: 0x70
  */
 ActExit::ActExit(Game::Piki* parent)
     : Action(parent)
@@ -368,10 +358,9 @@ ActExit::ActExit(Game::Piki* parent)
 	mName = "Exit";
 }
 
-/*
- * --INFO--
- * Address:	801A324C
- * Size:	000204
+/**
+ * @note Address: 0x801A324C
+ * @note Size: 0x204
  */
 void ActExit::init(ActionArg* arg)
 {
@@ -405,10 +394,9 @@ void ActExit::init(ActionArg* arg)
 	mParent->mModel->mJ3dModel->calc();
 }
 
-/*
- * --INFO--
- * Address:	801A3450
- * Size:	0000A8
+/**
+ * @note Address: 0x801A3450
+ * @note Size: 0xA8
  */
 int ActExit::exec()
 {
@@ -425,10 +413,9 @@ int ActExit::exec()
 	return ACTEXEC_Continue;
 }
 
-/*
- * --INFO--
- * Address:	801A34F8
- * Size:	0000C8
+/**
+ * @note Address: 0x801A34F8
+ * @note Size: 0xC8
  */
 void ActExit::cleanup()
 {

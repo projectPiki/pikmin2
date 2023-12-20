@@ -4,10 +4,9 @@ static const char name[] = "gameOver2D";
 
 namespace Morimura {
 
-/*
- * --INFO--
- * Address:	80347F48
- * Size:	00006C
+/**
+ * @note Address: 0x80347F48
+ * @note Size: 0x6C
  */
 TGameOverBase::TGameOverBase(char* name)
     : TTestBase(name)
@@ -21,10 +20,9 @@ TGameOverBase::TGameOverBase(char* name)
 	mMaxTime        = 150;
 }
 
-/*
- * --INFO--
- * Address:	80347FB4
- * Size:	0000F0
+/**
+ * @note Address: 0x80347FB4
+ * @note Size: 0xF0
  */
 bool TGameOverBase::doUpdate()
 {
@@ -49,10 +47,9 @@ bool TGameOverBase::doUpdate()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803480A4
- * Size:	000240
+/**
+ * @note Address: 0x803480A4
+ * @note Size: 0x240
  */
 void TGameOverBase::doDraw(Graphics& gfx)
 {
@@ -106,20 +103,18 @@ void TGameOverBase::doDraw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 void TGameOverBase::init()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803482E4
- * Size:	0000AC
+/**
+ * @note Address: 0x803482E4
+ * @note Size: 0xAC
  */
 void TGameOver2D::doCreate(JKRArchive* arc)
 {
@@ -133,10 +128,9 @@ void TGameOver2D::doCreate(JKRArchive* arc)
 	mGameOverScreen->addAnim("gameover_gameover_02.btk");
 }
 
-/*
- * --INFO--
- * Address:	80348390
- * Size:	0000A0
+/**
+ * @note Address: 0x80348390
+ * @note Size: 0xA0
  */
 void TOrimaDown2D::doCreate(JKRArchive* arc)
 {
@@ -149,10 +143,9 @@ void TOrimaDown2D::doCreate(JKRArchive* arc)
 	mGameOverScreen->addAnim("gameover_orima_02.btk");
 }
 
-/*
- * --INFO--
- * Address:	80348430
- * Size:	0000A0
+/**
+ * @note Address: 0x80348430
+ * @note Size: 0xA0
  */
 void TLujiDown2D::doCreate(JKRArchive* arc)
 {
@@ -165,10 +158,9 @@ void TLujiDown2D::doCreate(JKRArchive* arc)
 	mGameOverScreen->addAnim("gameover_louie_02.btk");
 }
 
-/*
- * --INFO--
- * Address:	803484D0
- * Size:	0000A0
+/**
+ * @note Address: 0x803484D0
+ * @note Size: 0xA0
  */
 void TPresidentDown2D::doCreate(JKRArchive* arc)
 {
@@ -181,10 +173,9 @@ void TPresidentDown2D::doCreate(JKRArchive* arc)
 	mGameOverScreen->addAnim("gameover_president_02.btk");
 }
 
-/*
- * --INFO--
- * Address:	80348570
- * Size:	0000A0
+/**
+ * @note Address: 0x80348570
+ * @note Size: 0xA0
  */
 void TPikminDown2D::doCreate(JKRArchive* arc)
 {
@@ -197,10 +188,9 @@ void TPikminDown2D::doCreate(JKRArchive* arc)
 	mGameOverScreen->addAnim("gameover_pikmin_02.btk");
 }
 
-/*
- * --INFO--
- * Address:	80348610
- * Size:	000024
+/**
+ * @note Address: 0x80348610
+ * @note Size: 0x24
  */
 TGameOverScreen::TGameOverScreen(JKRArchive* arc, int anims)
 {
@@ -213,10 +203,9 @@ TGameOverScreen::TGameOverScreen(JKRArchive* arc, int anims)
 	mAnimList2        = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80348634
- * Size:	000218
+/**
+ * @note Address: 0x80348634
+ * @note Size: 0x218
  */
 void TGameOverScreen::init(char const* path, u32 flags)
 {
@@ -252,10 +241,9 @@ void TGameOverScreen::init(char const* path, u32 flags)
 	mAnimList2 = new og::Screen::AnimScreen*[mAnimCountMax];
 }
 
-/*
- * --INFO--
- * Address:	8034884C
- * Size:	0000D0
+/**
+ * @note Address: 0x8034884C
+ * @note Size: 0xD0
  */
 void TGameOverScreen::addAnim(char* name)
 {
@@ -268,10 +256,9 @@ void TGameOverScreen::addAnim(char* name)
 	mAnimCountCurrent++;
 }
 
-/*
- * --INFO--
- * Address:	8034891C
- * Size:	00008C
+/**
+ * @note Address: 0x8034891C
+ * @note Size: 0x8C
  */
 void TGameOverScreen::update()
 {
@@ -285,27 +272,24 @@ void TGameOverScreen::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00023C
+/**
+ * @note Address: N/A
+ * @note Size: 0x23C
  */
 void addYPos(J2DPane*, f32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803489A8
- * Size:	000024
+/**
+ * @note Address: 0x803489A8
+ * @note Size: 0x24
  */
 void TGameOverScreen::setPosY(f32 pos) { mScreen->setXY(0.0f, pos); }
 
-/*
- * --INFO--
- * Address:	803489CC
- * Size:	000038
+/**
+ * @note Address: 0x803489CC
+ * @note Size: 0x38
  */
 void TGameOverScreen::draw(Graphics& gfx, J2DPerspGraph* persp)
 {
@@ -314,10 +298,9 @@ void TGameOverScreen::draw(Graphics& gfx, J2DPerspGraph* persp)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80348A04
- * Size:	000038
+/**
+ * @note Address: 0x80348A04
+ * @note Size: 0x38
  */
 void TGameOverScreen::orgdraw(Graphics& gfx, J2DPerspGraph* persp)
 {
@@ -326,10 +309,9 @@ void TGameOverScreen::orgdraw(Graphics& gfx, J2DPerspGraph* persp)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80348A3C
- * Size:	000184
+/**
+ * @note Address: 0x80348A3C
+ * @note Size: 0x184
  */
 void TGameOverScreen::setFadeAlpha(u8 alpha)
 {

@@ -3,10 +3,9 @@
 #include "JSystem/J3D/J3DGD.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	80074440
- * Size:	000170
+/**
+ * @note Address: 0x80074440
+ * @note Size: 0x170
  */
 void J3DGDSetGenMode(u8 p1, u8 p2, u8 p3, u8 p4, GXCullMode cullMode)
 {
@@ -137,10 +136,9 @@ static u8 GX2HWFiltConv[6]     = { 0, 4, 1, 5, 2, 6 };
 static u8 J3DTexImage1Ids[8] = { 0x8C, 0x8D, 0x8E, 0x8F, 0xAC, 0xAD, 0xAE, 0xAF };
 static u8 J3DTexImage2Ids[8] = { 0x90, 0x91, 0x92, 0x93, 0xB0, 0xB1, 0xB2, 0xB3 };
 
-/*
- * --INFO--
- * Address:	800745B0
- * Size:	00015C
+/**
+ * @note Address: 0x800745B0
+ * @note Size: 0x15C
  */
 void J3DGDSetGenMode_3Param(u8 texGenNum, u8 tevStageNum, u8 indTexStageNum)
 {
@@ -251,10 +249,9 @@ lbl_800745F0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8007470C
- * Size:	000318
+/**
+ * @note Address: 0x8007470C
+ * @note Size: 0x318
  */
 void J3DGDSetLightAttn(GXLightID id, f32 p2, f32 p3, f32 p4, f32 p5, f32 p6, f32 p7)
 {
@@ -476,10 +473,9 @@ lbl_80074738:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80074A24
- * Size:	000110
+/**
+ * @note Address: 0x80074A24
+ * @note Size: 0x110
  */
 void J3DGDSetLightColor(_GXLightID, _GXColor)
 {
@@ -557,10 +553,9 @@ lbl_80074A5C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80074B34
- * Size:	0001EC
+/**
+ * @note Address: 0x80074B34
+ * @note Size: 0x1EC
  */
 void J3DGDSetLightPos(_GXLightID, f32, f32, f32)
 {
@@ -693,10 +688,9 @@ lbl_80074B60:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80074D20
- * Size:	0001EC
+/**
+ * @note Address: 0x80074D20
+ * @note Size: 0x1EC
  */
 void J3DGDSetLightDir(_GXLightID, f32, f32, f32)
 {
@@ -829,10 +823,9 @@ lbl_80074D4C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80074F0C
- * Size:	000548
+/**
+ * @note Address: 0x80074F0C
+ * @note Size: 0x548
  */
 void J3DGDSetVtxAttrFmtv(_GXVtxFmt, const _GXVtxAttrFmtList*, bool)
 {
@@ -1227,10 +1220,9 @@ lbl_80075158:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80075454
- * Size:	0001D0
+/**
+ * @note Address: 0x80075454
+ * @note Size: 0x1D0
  */
 void J3DGDSetTexCoordGen(_GXTexGenType, _GXTexGenSrc)
 {
@@ -1433,10 +1425,9 @@ lbl_80075598:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80075624
- * Size:	0001FC
+/**
+ * @note Address: 0x80075624
+ * @note Size: 0x1FC
  */
 void J3DGDSetTexCoordScale2(_GXTexCoordID, u16, u8, u8, u16, u8, u8)
 {
@@ -1574,10 +1565,9 @@ void J3DGDSetTexCoordScale2(_GXTexCoordID, u16, u8, u8, u16, u8, u8)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80075820
- * Size:	0001AC
+/**
+ * @note Address: 0x80075820
+ * @note Size: 0x1AC
  */
 void J3DGDSetTexLookupMode(_GXTexMapID, _GXTexWrapMode, _GXTexWrapMode, _GXTexFilter, _GXTexFilter, f32, f32, f32, u8, u8, _GXAnisotropy)
 {
@@ -1693,10 +1683,9 @@ void J3DGDSetTexLookupMode(_GXTexMapID, _GXTexWrapMode, _GXTexWrapMode, _GXTexFi
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800759CC
- * Size:	0000A8
+/**
+ * @note Address: 0x800759CC
+ * @note Size: 0xA8
  */
 void J3DGDSetTexImgAttr(_GXTexMapID, u16, u16, _GXTexFmt)
 {
@@ -1746,10 +1735,9 @@ void J3DGDSetTexImgAttr(_GXTexMapID, u16, u16, _GXTexFmt)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80075A74
- * Size:	000090
+/**
+ * @note Address: 0x80075A74
+ * @note Size: 0x90
  */
 void J3DGDSetTexImgPtr(_GXTexMapID, void*)
 {
@@ -1793,10 +1781,9 @@ void J3DGDSetTexImgPtr(_GXTexMapID, void*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80075B04
- * Size:	0000D4
+/**
+ * @note Address: 0x80075B04
+ * @note Size: 0xD4
  */
 void J3DGDSetTexImgPtrRaw(_GXTexMapID, u32)
 {
@@ -1859,10 +1846,9 @@ lbl_80075B3C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80075BD8
- * Size:	000098
+/**
+ * @note Address: 0x80075BD8
+ * @note Size: 0x98
  */
 void J3DGDSetTexTlut(_GXTexMapID, u32, _GXTlutFmt)
 {
@@ -1908,10 +1894,9 @@ void J3DGDSetTexTlut(_GXTexMapID, u32, _GXTlutFmt)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80075C70
- * Size:	0002C8
+/**
+ * @note Address: 0x80075C70
+ * @note Size: 0x2C8
  */
 void J3DGDLoadTlut(void*, u32, _GXTlutSize)
 {
@@ -2097,10 +2082,9 @@ void J3DGDLoadTlut(void*, u32, _GXTlutSize)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80075F38
- * Size:	0002D8
+/**
+ * @note Address: 0x80075F38
+ * @note Size: 0x2D8
  */
 void J3DGDSetIndTexMtx(_GXIndTexMtxID, f32 (*)[3], s8)
 {
@@ -2304,10 +2288,9 @@ lbl_80076048:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80076210
- * Size:	0000F0
+/**
+ * @note Address: 0x80076210
+ * @note Size: 0xF0
  */
 void J3DGDSetIndTexCoordScale(_GXIndTexStageID, _GXIndTexScale, _GXIndTexScale, _GXIndTexScale, _GXIndTexScale)
 {
@@ -2378,10 +2361,9 @@ void J3DGDSetIndTexCoordScale(_GXIndTexStageID, _GXIndTexScale, _GXIndTexScale, 
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80076300
- * Size:	0001F8
+/**
+ * @note Address: 0x80076300
+ * @note Size: 0x1F8
  */
 void J3DGDSetIndTexOrder(u32, _GXTexCoordID, _GXTexMapID, _GXTexCoordID, _GXTexMapID, _GXTexCoordID, _GXTexMapID, _GXTexCoordID,
                          _GXTexMapID)
@@ -2535,10 +2517,9 @@ void J3DGDSetIndTexOrder(u32, _GXTexCoordID, _GXTexMapID, _GXTexCoordID, _GXTexM
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800764F8
- * Size:	000188
+/**
+ * @note Address: 0x800764F8
+ * @note Size: 0x188
  */
 void J3DGDSetTevOrder(_GXTevStageID, _GXTexCoordID, _GXTexMapID, _GXChannelID, _GXTexCoordID, _GXTexMapID, _GXChannelID)
 {
@@ -2655,10 +2636,9 @@ void J3DGDSetTevOrder(_GXTevStageID, _GXTexCoordID, _GXTexMapID, _GXChannelID, _
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80076680
- * Size:	000168
+/**
+ * @note Address: 0x80076680
+ * @note Size: 0x168
  */
 void J3DGDSetTevKColor(_GXTevKColorID, _GXColor)
 {
@@ -2758,10 +2738,9 @@ lbl_800766EC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800767E8
- * Size:	000234
+/**
+ * @note Address: 0x800767E8
+ * @note Size: 0x234
  */
 void J3DGDSetTevColorS10(_GXTevRegID, _GXColorS10)
 {
@@ -2912,10 +2891,9 @@ lbl_80076854:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80076A1C
- * Size:	000360
+/**
+ * @note Address: 0x80076A1C
+ * @note Size: 0x360
  */
 void J3DGDSetFog(_GXFogType, f32, f32, f32, f32, _GXColor)
 {
@@ -3155,10 +3133,9 @@ lbl_80076ABC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80076D7C
- * Size:	00013C
+/**
+ * @note Address: 0x80076D7C
+ * @note Size: 0x13C
  */
 void J3DGDSetFogRangeAdj(u8, u16, _GXFogAdjTable*)
 {
@@ -3249,10 +3226,9 @@ lbl_80076E2C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80076EB8
- * Size:	000080
+/**
+ * @note Address: 0x80076EB8
+ * @note Size: 0x80
  */
 void J3DFifoLoadPosMtxImm(f32 (*)[4], u32)
 {
@@ -3292,10 +3268,9 @@ void J3DFifoLoadPosMtxImm(f32 (*)[4], u32)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80076F38
- * Size:	00006C
+/**
+ * @note Address: 0x80076F38
+ * @note Size: 0x6C
  */
 void J3DFifoLoadNrmMtxImm(f32 (*)[4], u32)
 {
@@ -3330,10 +3305,9 @@ void J3DFifoLoadNrmMtxImm(f32 (*)[4], u32)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80076FA4
- * Size:	00006C
+/**
+ * @note Address: 0x80076FA4
+ * @note Size: 0x6C
  */
 void J3DFifoLoadNrmMtxImm3x3(f32 (*)[3], u32)
 {
@@ -3368,10 +3342,9 @@ void J3DFifoLoadNrmMtxImm3x3(f32 (*)[3], u32)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80077010
- * Size:	000098
+/**
+ * @note Address: 0x80077010
+ * @note Size: 0x98
  */
 void J3DFifoLoadNrmMtxToTexMtx(f32 (*)[4], u32)
 {
@@ -3417,10 +3390,9 @@ void J3DFifoLoadNrmMtxToTexMtx(f32 (*)[4], u32)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800770A8
- * Size:	000098
+/**
+ * @note Address: 0x800770A8
+ * @note Size: 0x98
  */
 void J3DFifoLoadNrmMtxToTexMtx3x3(f32 (*)[3], u32)
 {
@@ -3466,10 +3438,9 @@ void J3DFifoLoadNrmMtxToTexMtx3x3(f32 (*)[3], u32)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80077140
- * Size:	000080
+/**
+ * @note Address: 0x80077140
+ * @note Size: 0x80
  */
 void J3DFifoLoadTexCached(_GXTexMapID, u32, _GXTexCacheSize, u32, _GXTexCacheSize)
 {

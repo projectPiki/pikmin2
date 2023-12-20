@@ -1,10 +1,9 @@
 #include "types.h"
 #include "JSystem/J2D/J2DGrafContext.h"
 
-/*
- * --INFO--
- * Address:	80035530
- * Size:	000060
+/**
+ * @note Address: 0x80035530
+ * @note Size: 0x60
  */
 J2DOrthoGraph::J2DOrthoGraph()
     : J2DGrafContext(0.0f, 0.0f, 0.0f, 0.0f)
@@ -12,10 +11,9 @@ J2DOrthoGraph::J2DOrthoGraph()
 	setLookat();
 }
 
-/*
- * --INFO--
- * Address:	800355D8
- * Size:	0000E4
+/**
+ * @note Address: 0x800355D8
+ * @note Size: 0xE4
  */
 J2DOrthoGraph::J2DOrthoGraph(f32 left, f32 top, f32 right, f32 bottom, f32 param_4, f32 param_5)
     : J2DGrafContext(left, top, right, bottom)
@@ -26,10 +24,9 @@ J2DOrthoGraph::J2DOrthoGraph(f32 left, f32 top, f32 right, f32 bottom, f32 param
 	setLookat();
 }
 
-/*
- * --INFO--
- * Address:	800356BC
- * Size:	000058
+/**
+ * @note Address: 0x800356BC
+ * @note Size: 0x58
  */
 void J2DOrthoGraph::setPort()
 {
@@ -38,10 +35,9 @@ void J2DOrthoGraph::setPort()
 	GXSetProjection(mMtx44, GX_ORTHOGRAPHIC);
 }
 
-/*
- * --INFO--
- * Address:	80035714
- * Size:	000034
+/**
+ * @note Address: 0x80035714
+ * @note Size: 0x34
  */
 void J2DOrthoGraph::setOrtho(JGeometry::TBox2<f32> const& bounds, f32 far, f32 near)
 {
@@ -50,10 +46,9 @@ void J2DOrthoGraph::setOrtho(JGeometry::TBox2<f32> const& bounds, f32 far, f32 n
 	mFar   = -far;
 }
 
-/*
- * --INFO--
- * Address:	80035748
- * Size:	00003C
+/**
+ * @note Address: 0x80035748
+ * @note Size: 0x3C
  */
 void J2DOrthoGraph::setLookat()
 {
@@ -61,10 +56,9 @@ void J2DOrthoGraph::setLookat()
 	GXLoadPosMtxImm(mPosMtx, 0);
 }
 
-/*
- * --INFO--
- * Address:	80035784
- * Size:	00010C
+/**
+ * @note Address: 0x80035784
+ * @note Size: 0x10C
  */
 void J2DOrthoGraph::scissorBounds(JGeometry::TBox2<f32>* param_0, JGeometry::TBox2<f32> const* param_1)
 {
@@ -80,10 +74,9 @@ void J2DOrthoGraph::scissorBounds(JGeometry::TBox2<f32>* param_0, JGeometry::TBo
 	param_0->intersect(mScissorBounds);
 }
 
-/*
- * --INFO--
- * Address:	80035890
- * Size:	000168
+/**
+ * @note Address: 0x80035890
+ * @note Size: 0x168
  */
 void J2DDrawLine(f32 param_0, f32 param_1, f32 param_2, f32 param_3, JUtility::TColor color, int line_width)
 {
@@ -94,20 +87,18 @@ void J2DDrawLine(f32 param_0, f32 param_1, f32 param_2, f32 param_3, JUtility::T
 	oGrph.lineTo(param_2, param_3);
 }
 
-/*
- * --INFO--
- * Address:	800359F8
- * Size:	000048
+/**
+ * @note Address: 0x800359F8
+ * @note Size: 0x48
  */
 void J2DFillBox(f32 param_0, f32 param_1, f32 param_2, f32 param_3, JUtility::TColor color)
 {
 	J2DFillBox(JGeometry::TBox2<f32>(param_0, param_1, param_0 + param_2, param_1 + param_3), color);
 }
 
-/*
- * --INFO--
- * Address:	80035A40
- * Size:	0000CC
+/**
+ * @note Address: 0x80035A40
+ * @note Size: 0xCC
  */
 void J2DFillBox(JGeometry::TBox2<f32> const& param_0, JUtility::TColor param_1)
 {
@@ -116,20 +107,18 @@ void J2DFillBox(JGeometry::TBox2<f32> const& param_0, JUtility::TColor param_1)
 	oGrph.fillBox(param_0);
 }
 
-/*
- * --INFO--
- * Address:	80035B0C
- * Size:	00006C
+/**
+ * @note Address: 0x80035B0C
+ * @note Size: 0x6C
  */
 void J2DFillBox(f32 x0, f32 y0, f32 x1, f32 y1, JUtility::TColor c1, JUtility::TColor c2, JUtility::TColor c3, JUtility::TColor c4)
 {
 	J2DFillBox(JGeometry::TBox2<f32>(x0, y0, x0 + x1, y0 + y1), c1, c2, c3, c4);
 }
 
-/*
- * --INFO--
- * Address:	80035B78
- * Size:	0000D0
+/**
+ * @note Address: 0x80035B78
+ * @note Size: 0xD0
  */
 void J2DFillBox(const JGeometry::TBox2<f32>& box, JUtility::TColor c1, JUtility::TColor c2, JUtility::TColor c3, JUtility::TColor c4)
 {
@@ -138,20 +127,18 @@ void J2DFillBox(const JGeometry::TBox2<f32>& box, JUtility::TColor c1, JUtility:
 	oGrph.fillBox(box);
 }
 
-/*
- * --INFO--
- * Address:	80035C48
- * Size:	00004C
+/**
+ * @note Address: 0x80035C48
+ * @note Size: 0x4C
  */
 void J2DDrawFrame(f32 param_0, f32 param_1, f32 param_2, f32 param_3, JUtility::TColor color, u8 line_width)
 {
 	J2DDrawFrame(JGeometry::TBox2<f32>(param_0, param_1, param_0 + param_2, param_1 + param_3), color, line_width);
 }
 
-/*
- * --INFO--
- * Address:	80035C94
- * Size:	0000E4
+/**
+ * @note Address: 0x80035C94
+ * @note Size: 0xE4
  */
 void J2DDrawFrame(JGeometry::TBox2<f32> const& param_0, JUtility::TColor color, u8 line_width)
 {

@@ -5,10 +5,9 @@
 
 namespace Game {
 namespace Baby {
-/*
- * --INFO--
- * Address:	8028C584
- * Size:	0001D0
+/**
+ * @note Address: 0x8028C584
+ * @note Size: 0x1D0
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -19,10 +18,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateAttack);
 }
 
-/*
- * --INFO--
- * Address:	8028C754
- * Size:	000058
+/**
+ * @note Address: 0x8028C754
+ * @note Size: 0x58
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -33,10 +31,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	baby->startMotion(BABYANIM_Dead, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8028C7AC
- * Size:	000044
+/**
+ * @note Address: 0x8028C7AC
+ * @note Size: 0x44
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -45,17 +42,15 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8028C7F0
- * Size:	000004
+/**
+ * @note Address: 0x8028C7F0
+ * @note Size: 0x4
  */
 void StateDead::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8028C7F4
- * Size:	0000DC
+/**
+ * @note Address: 0x8028C7F4
+ * @note Size: 0xDC
  */
 void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -73,10 +68,9 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 	bechaEffect.create(&fxArg);
 }
 
-/*
- * --INFO--
- * Address:	8028C8D0
- * Size:	000044
+/**
+ * @note Address: 0x8028C8D0
+ * @note Size: 0x44
  */
 void StatePress::exec(EnemyBase* enemy)
 {
@@ -85,17 +79,15 @@ void StatePress::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8028C914
- * Size:	000004
+/**
+ * @note Address: 0x8028C914
+ * @note Size: 0x4
  */
 void StatePress::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8028C918
- * Size:	000040
+/**
+ * @note Address: 0x8028C918
+ * @note Size: 0x40
  */
 void StateBorn::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -104,10 +96,9 @@ void StateBorn::init(EnemyBase* enemy, StateArg* stateArg)
 	baby->startMotion(BABYANIM_Born, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8028C958
- * Size:	0000D8
+/**
+ * @note Address: 0x8028C958
+ * @note Size: 0xD8
  */
 void StateBorn::exec(EnemyBase* enemy)
 {
@@ -130,17 +121,15 @@ void StateBorn::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8028CA30
- * Size:	000004
+/**
+ * @note Address: 0x8028CA30
+ * @note Size: 0x4
  */
 void StateBorn::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8028CA34
- * Size:	000034
+/**
+ * @note Address: 0x8028CA34
+ * @note Size: 0x34
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -149,10 +138,9 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	baby->startMotion(BABYANIM_Move, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8028CA68
- * Size:	000468
+/**
+ * @note Address: 0x8028CA68
+ * @note Size: 0x468
  */
 // NON-MATCHING
 void StateMove::exec(EnemyBase* enemy)
@@ -509,17 +497,15 @@ lbl_8028CE80:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8028CED0
- * Size:	000004
+/**
+ * @note Address: 0x8028CED0
+ * @note Size: 0x4
  */
 void StateMove::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8028CED4
- * Size:	000050
+/**
+ * @note Address: 0x8028CED4
+ * @note Size: 0x50
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -528,10 +514,9 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(BABYANIM_Attack, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8028CF24
- * Size:	000104
+/**
+ * @note Address: 0x8028CF24
+ * @note Size: 0x104
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
@@ -558,10 +543,10 @@ void StateAttack::exec(EnemyBase* enemy)
 		}
 	}
 }
-/*
- * --INFO--
- * Address:	8028D028
- * Size:	000024
+
+/**
+ * @note Address: 0x8028D028
+ * @note Size: 0x24
  */
 void StateAttack::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 } // namespace Baby

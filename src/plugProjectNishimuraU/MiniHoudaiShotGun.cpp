@@ -6,10 +6,9 @@ namespace MiniHoudai {
 
 static MiniHoudaiShotGunMgr* sMiniHoudaiShotGunMgr;
 
-/*
- * --INFO--
- * Address:	802EDCA0
- * Size:	00003C
+/**
+ * @note Address: 0x802EDCA0
+ * @note Size: 0x3C
  */
 static bool verticalRotationCallBack(J3DJoint* joint, int idx)
 {
@@ -19,10 +18,9 @@ static bool verticalRotationCallBack(J3DJoint* joint, int idx)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 MiniHoudaiShotGunNode::MiniHoudaiShotGunNode(Obj* obj)
 {
@@ -30,50 +28,45 @@ MiniHoudaiShotGunNode::MiniHoudaiShotGunNode(Obj* obj)
 	mOwner = obj;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E8
+/**
+ * @note Address: N/A
+ * @note Size: 0xE8
  */
 void MiniHoudaiShotGunNode::create()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 void MiniHoudaiShotGunNode::setPosition(Vector3f&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 void MiniHoudaiShotGunNode::setVelocity(Vector3f&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000DC
+/**
+ * @note Address: N/A
+ * @note Size: 0xDC
  */
 void MiniHoudaiShotGunNode::startShotGun(bool)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	802EDCDC
- * Size:	000D14
+/**
+ * @note Address: 0x802EDCDC
+ * @note Size: 0xD14
  */
 bool MiniHoudaiShotGunNode::update()
 {
@@ -1018,40 +1011,36 @@ lbl_802EE948:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
+/**
+ * @note Address: N/A
+ * @note Size: 0x30
  */
 void MiniHoudaiShotGunNode::effectDrawOn()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
+/**
+ * @note Address: N/A
+ * @note Size: 0x30
  */
 void MiniHoudaiShotGunNode::effectDrawOff()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void MiniHoudaiShotGunNode::doDebugDraw(Graphics&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	802EE9F0
- * Size:	0001E0
+/**
+ * @note Address: 0x802EE9F0
+ * @note Size: 0x1E0
  */
 MiniHoudaiShotGunMgr::MiniHoudaiShotGunMgr(Obj* obj)
 {
@@ -1075,10 +1064,9 @@ MiniHoudaiShotGunMgr::MiniHoudaiShotGunMgr(Obj* obj)
 	sMiniHoudaiShotGunMgr = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	802EEBD0
- * Size:	00006C
+/**
+ * @note Address: 0x802EEBD0
+ * @note Size: 0x6C
  */
 void MiniHoudaiShotGunMgr::setupShotGun()
 {
@@ -1092,24 +1080,21 @@ void MiniHoudaiShotGunMgr::setupShotGun()
 	_10                    = joint->getWorldMatrix();
 }
 
-/*
- * --INFO--
- * Address:	802EEC3C
- * Size:	00000C
+/**
+ * @note Address: 0x802EEC3C
+ * @note Size: 0xC
  */
 void MiniHoudaiShotGunMgr::resetCallBack() { sMiniHoudaiShotGunMgr = nullptr; }
 
-/*
- * --INFO--
- * Address:	802EEC48
- * Size:	000008
+/**
+ * @note Address: 0x802EEC48
+ * @note Size: 0x8
  */
 void MiniHoudaiShotGunMgr::setCallBack() { sMiniHoudaiShotGunMgr = this; }
 
-/*
- * --INFO--
- * Address:	802EEC50
- * Size:	000024
+/**
+ * @note Address: 0x802EEC50
+ * @note Size: 0x24
  */
 void MiniHoudaiShotGunMgr::startRotation()
 {
@@ -1120,10 +1105,9 @@ void MiniHoudaiShotGunMgr::startRotation()
 	_0C                = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	802EEC74
- * Size:	000014
+/**
+ * @note Address: 0x802EEC74
+ * @note Size: 0x14
  */
 void MiniHoudaiShotGunMgr::finishRotation()
 {
@@ -1131,38 +1115,33 @@ void MiniHoudaiShotGunMgr::finishRotation()
 	mIsShotGunFinished = true;
 }
 
-/*
- * --INFO--
- * Address:	802EEC88
- * Size:	000008
+/**
+ * @note Address: 0x802EEC88
+ * @note Size: 0x8
  */
 bool MiniHoudaiShotGunMgr::isShotGunRotation() { return mIsShotGunRotation; }
 
-/*
- * --INFO--
- * Address:	802EEC90
- * Size:	000008
+/**
+ * @note Address: 0x802EEC90
+ * @note Size: 0x8
  */
 bool MiniHoudaiShotGunMgr::isShotGunLockOn() { return mIsShotGunLockedOn; }
 
-/*
- * --INFO--
- * Address:	802EEC98
- * Size:	000008
+/**
+ * @note Address: 0x802EEC98
+ * @note Size: 0x8
  */
 bool MiniHoudaiShotGunMgr::isFinishShotGun() { return mIsShotGunFinished; }
 
-/*
- * --INFO--
- * Address:	802EECA0
- * Size:	00001C
+/**
+ * @note Address: 0x802EECA0
+ * @note Size: 0x1C
  */
 void MiniHoudaiShotGunMgr::setShotGunTarget(Vector3f& targetPos) { mTargetPosition = targetPos; }
 
-/*
- * --INFO--
- * Address:	802EECBC
- * Size:	0004C4
+/**
+ * @note Address: 0x802EECBC
+ * @note Size: 0x4C4
  */
 void MiniHoudaiShotGunMgr::emitShotGun()
 {
@@ -1507,10 +1486,9 @@ lbl_802EF0A4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802EF180
- * Size:	000074
+/**
+ * @note Address: 0x802EF180
+ * @note Size: 0x74
  */
 void MiniHoudaiShotGunMgr::doUpdate()
 {
@@ -1526,10 +1504,9 @@ void MiniHoudaiShotGunMgr::doUpdate()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802EF1F4
- * Size:	000078
+/**
+ * @note Address: 0x802EF1F4
+ * @note Size: 0x78
  */
 void MiniHoudaiShotGunMgr::doUpdateCommon()
 {
@@ -1545,10 +1522,9 @@ void MiniHoudaiShotGunMgr::doUpdateCommon()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802EF26C
- * Size:	00007C
+/**
+ * @note Address: 0x802EF26C
+ * @note Size: 0x7C
  */
 void MiniHoudaiShotGunMgr::forceFinishShotGun()
 {
@@ -1563,17 +1539,15 @@ void MiniHoudaiShotGunMgr::forceFinishShotGun()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802EF2E8
- * Size:	000020
+/**
+ * @note Address: 0x802EF2E8
+ * @note Size: 0x20
  */
 Vector3f MiniHoudaiShotGunMgr::getShotGunPosition() { return _10->getBasis(3); }
 
-/*
- * --INFO--
- * Address:	802EF308
- * Size:	0001C4
+/**
+ * @note Address: 0x802EF308
+ * @note Size: 0x1C4
  */
 bool MiniHoudaiShotGunMgr::searchShotGunRotation()
 {
@@ -1752,10 +1726,9 @@ lbl_802EF4A4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802EF4CC
- * Size:	0000C4
+/**
+ * @note Address: 0x802EF4CC
+ * @note Size: 0xC4
  */
 bool MiniHoudaiShotGunMgr::returnShotGunRotation()
 {
@@ -1832,10 +1805,9 @@ lbl_802EF588:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802EF590
- * Size:	000258
+/**
+ * @note Address: 0x802EF590
+ * @note Size: 0x258
  */
 void MiniHoudaiShotGunMgr::rotateVertical(J3DJoint*)
 {
@@ -2019,10 +1991,9 @@ lbl_802EF7BC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802EF7E8
- * Size:	000088
+/**
+ * @note Address: 0x802EF7E8
+ * @note Size: 0x88
  */
 void MiniHoudaiShotGunMgr::effectDrawOn()
 {
@@ -2031,10 +2002,9 @@ void MiniHoudaiShotGunMgr::effectDrawOn()
 	FOREACH_NODE(MiniHoudaiShotGunNode, _30->mChild, node) { node->mEfxShell->endDemoDrawOn(); }
 }
 
-/*
- * --INFO--
- * Address:	802EF870
- * Size:	000088
+/**
+ * @note Address: 0x802EF870
+ * @note Size: 0x88
  */
 void MiniHoudaiShotGunMgr::effectDrawOff()
 {
@@ -2043,10 +2013,9 @@ void MiniHoudaiShotGunMgr::effectDrawOff()
 	FOREACH_NODE(MiniHoudaiShotGunNode, _30->mChild, node) { node->mEfxShell->startDemoDrawOff(); }
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void MiniHoudaiShotGunMgr::doDebugDraw(Graphics&)
 {

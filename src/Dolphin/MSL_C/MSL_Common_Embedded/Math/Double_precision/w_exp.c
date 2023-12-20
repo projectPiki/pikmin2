@@ -1,9 +1,8 @@
 extern double __ieee754_exp();
 
-/*
- * --INFO--
- * Address:	800CF9AC
- * Size:	000020
+/**
+ * @note Address: 0x800CF9AC
+ * @note Size: 0x20
  */
 
 double exp(double __x) { return (double)__ieee754_exp(); }

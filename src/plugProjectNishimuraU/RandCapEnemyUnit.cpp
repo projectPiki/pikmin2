@@ -10,9 +10,8 @@ namespace Game {
 namespace Cave {
 
 /**
- * --INFO--
- * Address:	80300E68
- * Size:	00002C
+ * @note Address: 0x80300E68
+ * @note Size: 0x2C
  */
 RandCapEnemyUnit::RandCapEnemyUnit(MapUnitGenerator* mapUnitGenerator)
 {
@@ -26,18 +25,16 @@ RandCapEnemyUnit::RandCapEnemyUnit(MapUnitGenerator* mapUnitGenerator)
 /**
  * Sets RandItemUnit pointer (mRandItemUnit).
  *
- * --INFO--
- * Address:	80300E94
- * Size:	000008
+ * @note Address: 0x80300E94
+ * @note Size: 0x8
  */
 void RandCapEnemyUnit::setManageClassPtr(RandItemUnit* randItemUnit) { mRandItemUnit = randItemUnit; }
 
 /**
  * Sets ground and falling teki slots in caps.
  *
- * --INFO--
- * Address:	80300E9C
- * Size:	000108
+ * @note Address: 0x80300E9C
+ * @note Size: 0x108
  */
 void RandCapEnemyUnit::setCapEnemySlot()
 {
@@ -69,9 +66,8 @@ void RandCapEnemyUnit::setCapEnemySlot()
 /**
  * Sets slots for cap enemies based on max num + weights.
  *
- * --INFO--
- * Address:	80300FA4
- * Size:	0001BC
+ * @note Address: 0x80300FA4
+ * @note Size: 0x1BC
  */
 void RandCapEnemyUnit::setCapCommonEnemySlot(MapNode* mapTile, int spawnType)
 {
@@ -131,9 +127,8 @@ void RandCapEnemyUnit::setCapCommonEnemySlot(MapNode* mapTile, int spawnType)
 /**
  * Sets cap enemies.
  *
- * --INFO--
- * Address:	80301160
- * Size:	000098
+ * @note Address: 0x80301160
+ * @note Size: 0x98
  */
 void RandCapEnemyUnit::setCapEnemy(MapNode* mapTile, EnemyUnit* enemyUnit, int spawnType, int setCount)
 {

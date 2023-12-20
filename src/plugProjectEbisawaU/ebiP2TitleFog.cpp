@@ -6,12 +6,11 @@
 namespace ebi {
 namespace title {
 
-/*
+/**
  * sets Fog graphics effect based on parameters.
  *
- * --INFO--
- * Address:	803EB1A4
- * Size:	000118
+ * @note Address: 0x803EB1A4
+ * @note Size: 0x118
  */
 void TTitleFogMgr::setGX(Camera& camera)
 {
@@ -33,12 +32,11 @@ void TTitleFogMgr::setGX(Camera& camera)
 	}
 }
 
-/*
+/**
  * Sets title-screen fog parameters from file.
  *
- * --INFO--
- * Address:	803EB2BC
- * Size:	00007C
+ * @note Address: 0x803EB2BC
+ * @note Size: 0x7C
  */
 void TTitleFogMgr::loadSettingFile(JKRArchive* archive, char* file)
 {

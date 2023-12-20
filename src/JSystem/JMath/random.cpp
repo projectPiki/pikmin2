@@ -6,27 +6,24 @@
 */
 namespace JMath {
 
-/*
- * --INFO--
- * Address:	80035100
- * Size:	000008
+/**
+ * @note Address: 0x80035100
+ * @note Size: 0x8
  */
 TRandom_fast_::TRandom_fast_(u32 param_0) { value = param_0; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C8
+/**
+ * @note Address: N/A
+ * @note Size: 0xC8
  */
 // void TRandomEnough_::setSeed(u32)
 //{
 // UNUSED FUNCTION
 //}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A8
+/**
+ * @note Address: N/A
+ * @note Size: 0xA8
  */
 // void TRandomEnough_::get()
 //{

@@ -3,10 +3,9 @@
 og::Lib2D* og::gLib2D;
 
 namespace og {
-/*
- * --INFO--
- * Address:	........
- * Size:	000068
+/**
+ * @note Address: N/A
+ * @note Size: 0x68
  */
 inline Lib2D::Lib2D()
 {
@@ -15,17 +14,15 @@ inline Lib2D::Lib2D()
 	mMessage->init();
 }
 
-/*
- * --INFO--
- * Address:	8030F600
- * Size:	000068
+/**
+ * @note Address: 0x8030F600
+ * @note Size: 0x68
  */
 Lib2D::~Lib2D() { gLib2D = nullptr; }
 
-/*
- * --INFO--
- * Address:	8030F668
- * Size:	000088
+/**
+ * @note Address: 0x8030F668
+ * @note Size: 0x88
  */
 void Lib2D::create()
 {

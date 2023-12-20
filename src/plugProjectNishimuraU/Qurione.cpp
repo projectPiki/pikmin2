@@ -8,10 +8,9 @@
 namespace Game {
 namespace Qurione {
 
-/*
- * --INFO--
- * Address:	80260178
- * Size:	000154
+/**
+ * @note Address: 0x80260178
+ * @note Size: 0x154
  */
 Obj::Obj()
 {
@@ -20,10 +19,9 @@ Obj::Obj()
 	createEffect();
 }
 
-/*
- * --INFO--
- * Address:	802602CC
- * Size:	00005C
+/**
+ * @note Address: 0x802602CC
+ * @note Size: 0x5C
  */
 void Obj::birth(Vector3f& pos, f32 faceDir)
 {
@@ -33,10 +31,9 @@ void Obj::birth(Vector3f& pos, f32 faceDir)
 	setInitialSetting(&param);
 }
 
-/*
- * --INFO--
- * Address:	80260328
- * Size:	00002C
+/**
+ * @note Address: 0x80260328
+ * @note Size: 0x2C
  */
 void Obj::setInitialSetting(EnemyInitialParamBase* params)
 {
@@ -45,10 +42,9 @@ void Obj::setInitialSetting(EnemyInitialParamBase* params)
 	setQurioneStartPos(qParam->mSlideDist);
 }
 
-/*
- * --INFO--
- * Address:	80260354
- * Size:	0000EC
+/**
+ * @note Address: 0x80260354
+ * @note Size: 0xEC
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
@@ -72,10 +68,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 	doAnimationCullingOff();
 }
 
-/*
- * --INFO--
- * Address:	80260440
- * Size:	000044
+/**
+ * @note Address: 0x80260440
+ * @note Size: 0x44
  */
 void Obj::onKill(CreatureKillArg* killArg)
 {
@@ -83,17 +78,15 @@ void Obj::onKill(CreatureKillArg* killArg)
 	EnemyBase::onKill(killArg);
 }
 
-/*
- * --INFO--
- * Address:	80260484
- * Size:	000034
+/**
+ * @note Address: 0x80260484
+ * @note Size: 0x34
  */
 void Obj::doUpdate() { mFsm->exec(this); }
 
-/*
- * --INFO--
- * Address:	802604B8
- * Size:	00004C
+/**
+ * @note Address: 0x802604B8
+ * @note Size: 0x4C
  */
 void Obj::setFSM(FSM* fsm)
 {
@@ -102,24 +95,21 @@ void Obj::setFSM(FSM* fsm)
 	mCurrentLifecycleState = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80260504
- * Size:	000004
+/**
+ * @note Address: 0x80260504
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	80260508
- * Size:	000020
+/**
+ * @note Address: 0x80260508
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	80260528
- * Size:	00005C
+/**
+ * @note Address: 0x80260528
+ * @note Size: 0x5C
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
@@ -131,10 +121,9 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 	shadowParam.mBoundingSphere.mRadius   = C_PROPERPARMS.mFlightHeight.mValue + C_PROPERPARMS.mPitchAmp.mValue;
 }
 
-/*
- * --INFO--
- * Address:	80260584
- * Size:	000088
+/**
+ * @note Address: 0x80260584
+ * @note Size: 0x88
  */
 bool Obj::flyCollisionCallBack(Creature* creature, f32 force, CollPart* part)
 {
@@ -146,10 +135,9 @@ bool Obj::flyCollisionCallBack(Creature* creature, f32 force, CollPart* part)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8026060C
- * Size:	000034
+/**
+ * @note Address: 0x8026060C
+ * @note Size: 0x34
  */
 void Obj::doStartWaitingBirthTypeDrop()
 {
@@ -157,10 +145,9 @@ void Obj::doStartWaitingBirthTypeDrop()
 	effectDrawOff();
 }
 
-/*
- * --INFO--
- * Address:	80260640
- * Size:	000034
+/**
+ * @note Address: 0x80260640
+ * @note Size: 0x34
  */
 void Obj::doFinishWaitingBirthTypeDrop()
 {
@@ -168,24 +155,21 @@ void Obj::doFinishWaitingBirthTypeDrop()
 	effectDrawOn();
 }
 
-/*
- * --INFO--
- * Address:	80260674
- * Size:	000020
+/**
+ * @note Address: 0x80260674
+ * @note Size: 0x20
  */
 void Obj::doStartMovie() { effectDrawOff(); }
 
-/*
- * --INFO--
- * Address:	80260694
- * Size:	000020
+/**
+ * @note Address: 0x80260694
+ * @note Size: 0x20
  */
 void Obj::doEndMovie() { effectDrawOn(); }
 
-/*
- * --INFO--
- * Address:	802606B4
- * Size:	000188
+/**
+ * @note Address: 0x802606B4
+ * @note Size: 0x188
  */
 void Obj::setQurioneStartPos(f32 slideDist)
 {
@@ -205,10 +189,9 @@ void Obj::setQurioneStartPos(f32 slideDist)
 	mSpawnPositions[QSPAWN_End].z = slideZ + (mSpawnPositions[QSPAWN_Start].z + flyZ);
 }
 
-/*
- * --INFO--
- * Address:	8026083C
- * Size:	00016C
+/**
+ * @note Address: 0x8026083C
+ * @note Size: 0x16C
  */
 void Obj::moveFaceDir()
 {
@@ -227,10 +210,9 @@ void Obj::moveFaceDir()
 	    = 2.5f * ((minY + (C_PROPERPARMS.mPitchAmp() * sinf(mPitchRatio) + C_PROPERPARMS.mFlightHeight.mValue)) - mPosition.y);
 }
 
-/*
- * --INFO--
- * Address:	802609A8
- * Size:	000038
+/**
+ * @note Address: 0x802609A8
+ * @note Size: 0x38
  */
 void Obj::addPitchRatio()
 {
@@ -240,10 +222,9 @@ void Obj::addPitchRatio()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802609E0
- * Size:	000088
+/**
+ * @note Address: 0x802609E0
+ * @note Size: 0x88
  */
 void Obj::resetUtilityTimer()
 {
@@ -256,10 +237,9 @@ void Obj::resetUtilityTimer()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80260A68
- * Size:	00006C
+/**
+ * @note Address: 0x80260A68
+ * @note Size: 0x6C
  */
 bool Obj::isAppear()
 {
@@ -275,10 +255,9 @@ bool Obj::isAppear()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80260AD4
- * Size:	000030
+/**
+ * @note Address: 0x80260AD4
+ * @note Size: 0x30
  */
 bool Obj::isFlyKill()
 {
@@ -289,10 +268,9 @@ bool Obj::isFlyKill()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80260B04
- * Size:	0000A4
+/**
+ * @note Address: 0x80260B04
+ * @note Size: 0xA4
  */
 void Obj::attachItem()
 {
@@ -308,10 +286,9 @@ void Obj::attachItem()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80260BA8
- * Size:	00004C
+/**
+ * @note Address: 0x80260BA8
+ * @note Size: 0x4C
  */
 void Obj::dropItem()
 {
@@ -323,10 +300,9 @@ void Obj::dropItem()
 	setZukanVisible(false);
 }
 
-/*
- * --INFO--
- * Address:	80260BF4
- * Size:	00002C
+/**
+ * @note Address: 0x80260BF4
+ * @note Size: 0x2C
  */
 void Obj::addQurioneScale()
 {
@@ -336,10 +312,9 @@ void Obj::addQurioneScale()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80260C20
- * Size:	00002C
+/**
+ * @note Address: 0x80260C20
+ * @note Size: 0x2C
  */
 void Obj::subQurioneScale()
 {
@@ -349,10 +324,9 @@ void Obj::subQurioneScale()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80260C4C
- * Size:	0001C0
+/**
+ * @note Address: 0x80260C4C
+ * @note Size: 0x1C0
  */
 void Obj::createEffect()
 {
@@ -361,10 +335,9 @@ void Obj::createEffect()
 	mEfxDisappear = new efx::TQuriDisap;
 }
 
-/*
- * --INFO--
- * Address:	80260E0C
- * Size:	000054
+/**
+ * @note Address: 0x80260E0C
+ * @note Size: 0x54
  */
 void Obj::setupEffect()
 {
@@ -374,10 +347,9 @@ void Obj::setupEffect()
 	mEfxDisappear->mMtx = fxMtx;
 }
 
-/*
- * --INFO--
- * Address:	80260E60
- * Size:	0000A0
+/**
+ * @note Address: 0x80260E60
+ * @note Size: 0xA0
  */
 void Obj::createHitEffect()
 {
@@ -388,10 +360,9 @@ void Obj::createHitEffect()
 	hitFX.create(&fxArg);
 }
 
-/*
- * --INFO--
- * Address:	80260F00
- * Size:	00004C
+/**
+ * @note Address: 0x80260F00
+ * @note Size: 0x4C
  */
 void Obj::startGlowEffect()
 {
@@ -399,38 +370,33 @@ void Obj::startGlowEffect()
 	mEfxGlow->setGlobalScale(0.0f);
 }
 
-/*
- * --INFO--
- * Address:	80260F4C
- * Size:	00002C
+/**
+ * @note Address: 0x80260F4C
+ * @note Size: 0x2C
  */
 void Obj::setGlowEffectScale() { mEfxGlow->setGlobalScale(mQurioneScale); }
 
-/*
- * --INFO--
- * Address:	80260F78
- * Size:	000030
+/**
+ * @note Address: 0x80260F78
+ * @note Size: 0x30
  */
 void Obj::finishGlowEffect() { mEfxGlow->forceKill(); }
 
-/*
- * --INFO--
- * Address:	80260FA8
- * Size:	000034
+/**
+ * @note Address: 0x80260FA8
+ * @note Size: 0x34
  */
 void Obj::createAppearEffect() { mEfxAppear->create(nullptr); }
 
-/*
- * --INFO--
- * Address:	80260FDC
- * Size:	000034
+/**
+ * @note Address: 0x80260FDC
+ * @note Size: 0x34
  */
 void Obj::createDisppearEffect() { mEfxDisappear->create(nullptr); }
 
-/*
- * --INFO--
- * Address:	80261010
- * Size:	000064
+/**
+ * @note Address: 0x80261010
+ * @note Size: 0x64
  */
 void Obj::effectDrawOn()
 {
@@ -439,10 +405,9 @@ void Obj::effectDrawOn()
 	mEfxDisappear->endDemoDrawOn();
 }
 
-/*
- * --INFO--
- * Address:	80261074
- * Size:	000064
+/**
+ * @note Address: 0x80261074
+ * @note Size: 0x64
  */
 void Obj::effectDrawOff()
 {

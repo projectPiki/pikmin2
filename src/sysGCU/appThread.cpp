@@ -1,9 +1,8 @@
 #include "AppThread.h"
 
-/*
- * --INFO--
- * Address:	80424E18
- * Size:	00003C
+/**
+ * @note Address: 0x80424E18
+ * @note Size: 0x3C
  */
 AppThread::AppThread(u32 stackSize, int msgCount, int priority)
     : JKRThread(stackSize, msgCount, priority)

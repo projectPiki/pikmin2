@@ -5,10 +5,9 @@
 namespace ebi {
 namespace title {
 
-/*
- * --INFO--
- * Address:	803C1F58
- * Size:	000094
+/**
+ * @note Address: 0x803C1F58
+ * @note Size: 0x94
  */
 void TTitleLightMgr::loadSettingFile(JKRArchive* arc, char* path)
 {
@@ -23,10 +22,9 @@ void TTitleLightMgr::loadSettingFile(JKRArchive* arc, char* path)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803C1FEC
- * Size:	00017C
+/**
+ * @note Address: 0x803C1FEC
+ * @note Size: 0x17C
  */
 void TTitleLightMgr::setParam_()
 {
@@ -53,17 +51,15 @@ void TTitleLightMgr::setParam_()
 	mLightObjSpec.mKScale    = mSetting.mSpecParms.mGlossAmount;
 }
 
-/*
- * --INFO--
- * Address:	803C2168
- * Size:	000020
+/**
+ * @note Address: 0x803C2168
+ * @note Size: 0x20
  */
 void TTitleLightMgr::update() { setParam_(); }
 
-/*
- * --INFO--
- * Address:	803C2188
- * Size:	000094
+/**
+ * @note Address: 0x803C2188
+ * @note Size: 0x94
  */
 void TTitleLightMgr::setCameraMtx(Mtx mtx)
 {

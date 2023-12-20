@@ -5,10 +5,9 @@
 namespace og {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	8030B370
- * Size:	0000A4
+/**
+ * @note Address: 0x8030B370
+ * @note Size: 0xA4
  */
 CallBack_Screen::CallBack_Screen(P2DScreen::Mgr* mgr, u64 tag)
 {
@@ -20,17 +19,15 @@ CallBack_Screen::CallBack_Screen(P2DScreen::Mgr* mgr, u64 tag)
 	mYOffs       = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	8030B414
- * Size:	000008
+/**
+ * @note Address: 0x8030B414
+ * @note Size: 0x8
  */
 P2DScreen::Mgr* CallBack_Screen::getPartsScreen() { return mPartsScreen; }
 
-/*
- * --INFO--
- * Address:	8030B41C
- * Size:	000038
+/**
+ * @note Address: 0x8030B41C
+ * @note Size: 0x38
  */
 void CallBack_Screen::update()
 {
@@ -40,10 +37,9 @@ void CallBack_Screen::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8030B454
- * Size:	0000D0
+/**
+ * @note Address: 0x8030B454
+ * @note Size: 0xD0
  */
 void CallBack_Screen::draw(Graphics& gfx, J2DGrafContext& grafContext)
 {

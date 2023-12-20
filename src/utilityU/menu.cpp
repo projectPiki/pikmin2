@@ -4,10 +4,9 @@
 #include "PSSystem/PSSystemIF.h"
 #include "SoundID.h"
 
-/*
- * --INFO--
- * Address:	80456184
- * Size:	00012C
+/**
+ * @note Address: 0x80456184
+ * @note Size: 0x12C
  */
 Menu::Menu(JUTGamePad* control, JUTFont* font, bool flag)
 {
@@ -48,10 +47,9 @@ Menu::Menu(JUTGamePad* control, JUTFont* font, bool flag)
 	_5C = 256;
 }
 
-/*
- * --INFO--
- * Address:	804562B0
- * Size:	0000C0
+/**
+ * @note Address: 0x804562B0
+ * @note Size: 0xC0
  */
 void Menu::addOption(int index, char* name, IDelegate1<Menu&>* delegate, bool flag)
 {
@@ -69,10 +67,9 @@ void Menu::addOption(int index, char* name, IDelegate1<Menu&>* delegate, bool fl
 	mItemCount++;
 }
 
-/*
- * --INFO--
- * Address:	80456370
- * Size:	0000C8
+/**
+ * @note Address: 0x80456370
+ * @note Size: 0xC8
  */
 void Menu::addKeyEvent(KeyEvent::cTypeFlag type, u32 a1, IDelegate1<Menu&>* delegate)
 {
@@ -90,10 +87,9 @@ void Menu::addKeyEvent(KeyEvent::cTypeFlag type, u32 a1, IDelegate1<Menu&>* dele
 	}
 }
 
-/*
- * --INFO--
- * Address:	80456438
- * Size:	0003A0
+/**
+ * @note Address: 0x80456438
+ * @note Size: 0x3A0
  */
 void Menu::doUpdate(bool flag)
 {
@@ -439,10 +435,9 @@ lbl_804567B8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	804567D8
- * Size:	000068
+/**
+ * @note Address: 0x804567D8
+ * @note Size: 0x68
  */
 Menu::KeyEvent::KeyEvent(cTypeFlag type, u32 a1, IDelegate1<Menu&>* delegate)
     : mLink(this)
@@ -452,10 +447,9 @@ Menu::KeyEvent::KeyEvent(cTypeFlag type, u32 a1, IDelegate1<Menu&>* delegate)
 	mAction = delegate;
 }
 
-/*
- * --INFO--
- * Address:	80456840
- * Size:	000080
+/**
+ * @note Address: 0x80456840
+ * @note Size: 0x80
  */
 Menu::MenuItem::MenuItem(cTypeFlag type, int a1, char* name)
     : mLink(this)
@@ -467,10 +461,9 @@ Menu::MenuItem::MenuItem(cTypeFlag type, int a1, char* name)
 	_00   = 0;
 }
 
-/*
- * --INFO--
- * Address:	804568C0
- * Size:	00001C
+/**
+ * @note Address: 0x804568C0
+ * @note Size: 0x1C
  */
 Menu::MenuItem* Menu::MenuItem::getNext()
 {
@@ -481,10 +474,9 @@ Menu::MenuItem* Menu::MenuItem::getNext()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	804568DC
- * Size:	00001C
+/**
+ * @note Address: 0x804568DC
+ * @note Size: 0x1C
  */
 Menu::MenuItem* Menu::MenuItem::getPrev()
 {
@@ -495,10 +487,9 @@ Menu::MenuItem* Menu::MenuItem::getPrev()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	804568F8
- * Size:	000200
+/**
+ * @note Address: 0x804568F8
+ * @note Size: 0x200
  */
 void Menu::MenuItem::checkEvents(Menu*, int)
 {

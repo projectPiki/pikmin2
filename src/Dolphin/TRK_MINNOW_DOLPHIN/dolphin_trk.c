@@ -25,17 +25,15 @@ static u32 TRK_ISR_OFFSETS[15] = { PPC_SystemReset,
 
 DECL_SECT(".init") void __TRK_reset() { OSResetSystem(FALSE, 0, FALSE); }
 
-/*
- * --INFO--
- * Address:	800C03EC
- * Size:	000020
+/**
+ * @note Address: 0x800C03EC
+ * @note Size: 0x20
  */
 void EnableMetroTRKInterrupts(void) { EnableEXI2Interrupts(); }
 
-/*
- * --INFO--
- * Address:	800C0394
- * Size:	000058
+/**
+ * @note Address: 0x800C0394
+ * @note Size: 0x58
  */
 u32 TRKTargetTranslate(u32 val)
 {
@@ -51,10 +49,9 @@ u32 TRKTargetTranslate(u32 val)
 	return (val & 0x3FFFFFFF) | 0x80000000;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B0
+/**
+ * @note Address: N/A
+ * @note Size: 0xB0
  */
 void TRK_copy_vector(u32 offset)
 {
@@ -63,10 +60,9 @@ void TRK_copy_vector(u32 offset)
 	TRK_flush_cache(destPtr, 0x100);
 }
 
-/*
- * --INFO--
- * Address:	800C0268
- * Size:	00012C
+/**
+ * @note Address: 0x800C0268
+ * @note Size: 0x12C
  */
 void __TRK_copy_vectors(void)
 {
@@ -187,10 +183,9 @@ void __TRK_copy_vectors(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800C021C
- * Size:	00004C
+/**
+ * @note Address: 0x800C021C
+ * @note Size: 0x4C
  */
 DSError TRKInitializeTarget()
 {
@@ -200,10 +195,9 @@ DSError TRKInitializeTarget()
 	return DS_NoError;
 }
 
-/*
- * --INFO--
- * Address:	800C00E8
- * Size:	000134
+/**
+ * @note Address: 0x800C00E8
+ * @note Size: 0x134
  */
 void TRK__read_aram(void)
 {
@@ -303,20 +297,18 @@ void TRK__read_aram(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
+/**
+ * @note Address: N/A
+ * @note Size: 0x5C
  */
 void __read_aram_1block(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800BFEFC
- * Size:	0001EC
+/**
+ * @note Address: 0x800BFEFC
+ * @note Size: 0x1EC
  */
 void TRK__write_aram(void)
 {
@@ -472,10 +464,9 @@ void TRK__write_aram(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BFE68
- * Size:	000094
+/**
+ * @note Address: 0x800BFE68
+ * @note Size: 0x94
  */
 ASM void InitMetroTRK_BBA(void)
 {
@@ -537,10 +528,9 @@ initCommTableSuccess:
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800BFDD0
- * Size:	000098
+/**
+ * @note Address: 0x800BFDD0
+ * @note Size: 0x98
  */
 ASM void InitMetroTRK(void)
 {

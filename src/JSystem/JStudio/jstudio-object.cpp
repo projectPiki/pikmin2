@@ -1206,28 +1206,25 @@ static TOutputVariableValue_BOOL_<TAdaptor_particle> soovv_particle_PARENT_ENABL
 static TOutputVariableValue_BOOL_<TAdaptor_sound> soovv_sound_PARENT_ENABLE_;
 } // namespace
 
-/*
- * --INFO--
- * Address:	8000D068
- * Size:	000048
+/**
+ * @note Address: 0x8000D068
+ * @note Size: 0x48
  * __dt__Q37JStudio14TVariableValue7TOutputFv
  */
 TVariableValue::TOutput::~TOutput() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 void TVariableValue::update(double, JStudio::TAdaptor*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8000D0B0
- * Size:	000014
+/**
+ * @note Address: 0x8000D0B0
+ * @note Size: 0x14
  */
 void TVariableValue::update_immediate_(TVariableValue* p1, double p2)
 {
@@ -1235,10 +1232,9 @@ void TVariableValue::update_immediate_(TVariableValue* p1, double p2)
 	p1->_08 = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8000D0C4
- * Size:	00003C
+/**
+ * @note Address: 0x8000D0C4
+ * @note Size: 0x3C
  */
 void TVariableValue::update_time_(TVariableValue* p1, double p2)
 {
@@ -1262,10 +1258,9 @@ void TVariableValue::update_time_(TVariableValue* p1, double p2)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8000D100
- * Size:	000064
+/**
+ * @note Address: 0x8000D100
+ * @note Size: 0x64
  */
 void TVariableValue::update_functionValue_(JStudio::TVariableValue*, double)
 {
@@ -1298,70 +1293,61 @@ void TVariableValue::update_functionValue_(JStudio::TVariableValue*, double)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8000D164
- * Size:	00005C
+/**
+ * @note Address: 0x8000D164
+ * @note Size: 0x5C
  * __dt__Q37JStudio14TVariableValue13TOutput_none_Fv
  */
 TVariableValue::TOutput_none_::~TOutput_none_() { }
 
-/*
- * --INFO--
- * Address:	8000D1C0
- * Size:	000004
+/**
+ * @note Address: 0x8000D1C0
+ * @note Size: 0x4
  */
 void TVariableValue::TOutput_none_::operator()(float, JStudio::TAdaptor*) const { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 TAdaptor::~TAdaptor()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8000D1C4
- * Size:	000004
+/**
+ * @note Address: 0x8000D1C4
+ * @note Size: 0x4
  */
 void TAdaptor::adaptor_do_prepare(JStudio::TObject const*) { }
 
-/*
- * --INFO--
- * Address:	8000D1C8
- * Size:	000004
+/**
+ * @note Address: 0x8000D1C8
+ * @note Size: 0x4
  */
 void TAdaptor::adaptor_do_begin(JStudio::TObject const*) { }
 
-/*
- * --INFO--
- * Address:	8000D1CC
- * Size:	000004
+/**
+ * @note Address: 0x8000D1CC
+ * @note Size: 0x4
  */
 void TAdaptor::adaptor_do_end(JStudio::TObject const*) { }
 
-/*
- * --INFO--
- * Address:	8000D1D0
- * Size:	000004
+/**
+ * @note Address: 0x8000D1D0
+ * @note Size: 0x4
  */
 void TAdaptor::adaptor_do_update(JStudio::TObject const*, u32) { }
 
-/*
- * --INFO--
- * Address:	8000D1D4
- * Size:	000004
+/**
+ * @note Address: 0x8000D1D4
+ * @note Size: 0x4
  */
 void TAdaptor::adaptor_do_data(JStudio::TObject const*, void const*, u32, void const*, u32) { }
 
-/*
- * --INFO--
- * Address:	8000D1D8
- * Size:	0000A0
+/**
+ * @note Address: 0x8000D1D8
+ * @note Size: 0xA0
  */
 void TAdaptor::adaptor_setVariableValue(JStudio::TObject* object, u32 value, JStudio::data::TEOperationData operation, void const* p4,
                                         u32 p5)
@@ -1403,10 +1389,9 @@ void TAdaptor::adaptor_setVariableValue(JStudio::TObject* object, u32 value, JSt
 	func(this, object, value, p4, p5);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000EC
+/**
+ * @note Address: N/A
+ * @note Size: 0xEC
  */
 void TAdaptor::adaptor_setVariableValue_n(JStudio::TObject* object, u32 const* values, u32 p3, JStudio::data::TEOperationData operation,
                                           void const* p5, u32 p6)
@@ -1456,10 +1441,9 @@ void TAdaptor::adaptor_setVariableValue_n(JStudio::TObject* object, u32 const* v
 	}
 }
 
-/*
- * --INFO--
- * Address:	8000D278
- * Size:	000044
+/**
+ * @note Address: 0x8000D278
+ * @note Size: 0x44
  */
 void TAdaptor::adaptor_setVariableValue_immediate(JStudio::TAdaptor::TSetVariableValue_immediate const* p1)
 {
@@ -1472,10 +1456,9 @@ void TAdaptor::adaptor_setVariableValue_immediate(JStudio::TAdaptor::TSetVariabl
 	}
 }
 
-/*
- * --INFO--
- * Address:	8000D2BC
- * Size:	000070
+/**
+ * @note Address: 0x8000D2BC
+ * @note Size: 0x70
  */
 void TAdaptor::adaptor_setVariableValue_Vec(u32 const* indices, Vec const& value)
 {
@@ -1497,10 +1480,9 @@ void TAdaptor::adaptor_setVariableValue_Vec(u32 const* indices, Vec const& value
 	// tvv->_0C            = value.z;
 }
 
-/*
- * --INFO--
- * Address:	8000D32C
- * Size:	000038
+/**
+ * @note Address: 0x8000D32C
+ * @note Size: 0x38
  */
 void TAdaptor::adaptor_getVariableValue_Vec(Vec* p1, u32 const* p2) const
 {
@@ -1509,20 +1491,18 @@ void TAdaptor::adaptor_getVariableValue_Vec(Vec* p1, u32 const* p2) const
 	p1->z = _04[p2[2]]._00;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000174
+/**
+ * @note Address: N/A
+ * @note Size: 0x174
  */
 void TAdaptor::adaptor_updateVariableValue_Vec(u32 const*, Vec const&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8000D364
- * Size:	0000E0
+/**
+ * @note Address: 0x8000D364
+ * @note Size: 0xE0
  */
 void TAdaptor::adaptor_setVariableValue_GXColor(u32 const* p1, _GXColor const& p2)
 {
@@ -1531,10 +1511,9 @@ void TAdaptor::adaptor_setVariableValue_GXColor(u32 const* p1, _GXColor const& p
 	}
 }
 
-/*
- * --INFO--
- * Address:	8000D444
- * Size:	00014C
+/**
+ * @note Address: 0x8000D444
+ * @note Size: 0x14C
  * adaptor_getVariableValue_GXColor__Q27JStudio8TAdaptorCFP8_GXColorPCUl
  */
 void TAdaptor::adaptor_getVariableValue_GXColor(_GXColor*, u32 const*) const
@@ -1651,40 +1630,36 @@ void TAdaptor::adaptor_getVariableValue_GXColor(_GXColor*, u32 const*) const
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000238
+/**
+ * @note Address: N/A
+ * @note Size: 0x238
  */
 void TAdaptor::adaptor_updateVariableValue_GXColor(u32 const*, _GXColor const&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00009C
+/**
+ * @note Address: N/A
+ * @note Size: 0x9C
  */
 void TAdaptor::adaptor_updateVariableValue()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C4
+/**
+ * @note Address: N/A
+ * @note Size: 0xC4
  */
 void TAdaptor::adaptor_updateVariableValue(JStudio::TObject*, u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8000D590
- * Size:	000018
+/**
+ * @note Address: 0x8000D590
+ * @note Size: 0x18
  */
 void TAdaptor::adaptor_setVariableValue_VOID_(JStudio::TAdaptor* adaptor, JStudio::TObject* object, u32 p3, void const* p4, u32 p5)
 {
@@ -1700,30 +1675,27 @@ void TAdaptor::adaptor_setVariableValue_VOID_(JStudio::TAdaptor* adaptor, JStudi
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8000D5A8
- * Size:	00002C
+/**
+ * @note Address: 0x8000D5A8
+ * @note Size: 0x2C
  */
 void TAdaptor::adaptor_setVariableValue_IMMEDIATE_(JStudio::TAdaptor* adaptor, JStudio::TObject* object, u32 p3, void const* p4, u32 p5)
 {
 	adaptor->_04[p3].set(TVariableValue::update_immediate_, 0, *(f32*)p4);
 }
 
-/*
- * --INFO--
- * Address:	8000D5D4
- * Size:	00002C
+/**
+ * @note Address: 0x8000D5D4
+ * @note Size: 0x2C
  */
 void TAdaptor::adaptor_setVariableValue_TIME_(JStudio::TAdaptor* adaptor, JStudio::TObject* object, u32 p3, void const* p4, u32 p5)
 {
 	adaptor->_04[p3].set(TVariableValue::update_time_, 0, *(f32*)p4);
 }
 
-/*
- * --INFO--
- * Address:	8000D600
- * Size:	000070
+/**
+ * @note Address: 0x8000D600
+ * @note Size: 0x70
  */
 void TAdaptor::adaptor_setVariableValue_FVR_NAME_(JStudio::TAdaptor* adaptor, JStudio::TObject* object, u32 p3, void const* p4, u32 p5)
 {
@@ -1764,10 +1736,9 @@ void TAdaptor::adaptor_setVariableValue_FVR_NAME_(JStudio::TAdaptor* adaptor, JS
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8000D670
- * Size:	00006C
+/**
+ * @note Address: 0x8000D670
+ * @note Size: 0x6C
  */
 void TAdaptor::adaptor_setVariableValue_FVR_INDEX_(JStudio::TAdaptor* adaptor, JStudio::TObject* object, u32 p3, void const* p4, u32 p5)
 {
@@ -1807,10 +1778,9 @@ void TAdaptor::adaptor_setVariableValue_FVR_INDEX_(JStudio::TAdaptor* adaptor, J
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
+/**
+ * @note Address: N/A
+ * @note Size: 0x84
  */
 TObject::~TObject()
 {
@@ -1818,20 +1788,18 @@ TObject::~TObject()
 	delete mAdaptor;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000EC
+/**
+ * @note Address: N/A
+ * @note Size: 0xEC
  */
 void TObject::forward_value(u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8000D6DC
- * Size:	00003C
+/**
+ * @note Address: 0x8000D6DC
+ * @note Size: 0x3C
  * do_begin__Q27JStudio7TObjectFv
  */
 void TObject::do_begin()
@@ -1841,10 +1809,9 @@ void TObject::do_begin()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8000D718
- * Size:	00003C
+/**
+ * @note Address: 0x8000D718
+ * @note Size: 0x3C
  * do_end__Q27JStudio7TObjectFv
  */
 void TObject::do_end()
@@ -1854,10 +1821,9 @@ void TObject::do_end()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8000D754
- * Size:	0000EC
+/**
+ * @note Address: 0x8000D754
+ * @note Size: 0xEC
  * do_wait__Q27JStudio7TObjectFUl
  */
 void TObject::do_wait(u32)
@@ -1935,10 +1901,9 @@ lbl_8000D824:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8000D840
- * Size:	00005C
+/**
+ * @note Address: 0x8000D840
+ * @note Size: 0x5C
  * do_data__Q27JStudio7TObjectFPCvUlPCvUl
  */
 void TObject::do_data(void const* p1, u32 p2, void const* p3, u32 p4)
@@ -1948,10 +1913,9 @@ void TObject::do_data(void const* p1, u32 p2, void const* p3, u32 p4)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  * __ct__Q27JStudio7TObjectFQ37JStudio4data9TE32BlockPCvUlPQ27JStudio8TAdaptor
  */
 TObject::TObject(JStudio::data::TE32Block, void const*, u32, JStudio::TAdaptor*)
@@ -1959,10 +1923,9 @@ TObject::TObject(JStudio::data::TE32Block, void const*, u32, JStudio::TAdaptor*)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  * __ct__Q27JStudio7TObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio8TAdaptor
  */
 // TObject::TObject(JStudio::stb::data::TParse_TBlock_object const& p1, JStudio::TAdaptor*)
@@ -1970,18 +1933,16 @@ TObject::TObject(JStudio::data::TE32Block, void const*, u32, JStudio::TAdaptor*)
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	8000D89C
- * Size:	00005C
+/**
+ * @note Address: 0x8000D89C
+ * @note Size: 0x5C
  * __dt__Q27JStudio14TAdaptor_actorFv
  */
 TAdaptor_actor::~TAdaptor_actor() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  * __ct__Q27JStudio13TObject_actorFPCvUlPQ27JStudio14TAdaptor_actor
  */
 TObject_actor::TObject_actor(void const* p1, u32 p2, JStudio::TAdaptor_actor* p3)
@@ -1990,10 +1951,9 @@ TObject_actor::TObject_actor(void const* p1, u32 p2, JStudio::TAdaptor_actor* p3
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8000D8F8
- * Size:	000058
+/**
+ * @note Address: 0x8000D8F8
+ * @note Size: 0x58
  * __ct__Q27JStudio13TObject_actorFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio14TAdaptor_actor
  */
 TObject_actor::TObject_actor(JStudio::stb::data::TParse_TBlock_object const& p1, JStudio::TAdaptor_actor* p2)
@@ -2001,10 +1961,9 @@ TObject_actor::TObject_actor(JStudio::stb::data::TParse_TBlock_object const& p1,
 {
 }
 
-/*
- * --INFO--
- * Address:	8000D950
- * Size:	000484
+/**
+ * @note Address: 0x8000D950
+ * @note Size: 0x484
  */
 void TObject_actor::do_paragraph(u32, void const*, u32)
 {
@@ -2470,18 +2429,16 @@ lbl_8000DDC0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8000DDD4
- * Size:	00005C
+/**
+ * @note Address: 0x8000DDD4
+ * @note Size: 0x5C
  * __dt__Q27JStudio21TAdaptor_ambientLightFv
  */
 TAdaptor_ambientLight::~TAdaptor_ambientLight() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  * __ct__Q27JStudio20TObject_ambientLightFPCvUlPQ27JStudio21TAdaptor_ambientLight
  */
 TObject_ambientLight::TObject_ambientLight(void const* p1, u32 p2, JStudio::TAdaptor_ambientLight* p3)
@@ -2490,10 +2447,9 @@ TObject_ambientLight::TObject_ambientLight(void const* p1, u32 p2, JStudio::TAda
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8000DE30
- * Size:	000058
+/**
+ * @note Address: 0x8000DE30
+ * @note Size: 0x58
  * __ct__Q27JStudio20TObject_ambientLightFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio21TAdaptor_ambientLight
  */
 TObject_ambientLight::TObject_ambientLight(const JStudio::stb::data::TParse_TBlock_object& p1, JStudio::TAdaptor_ambientLight* p2)
@@ -2501,10 +2457,9 @@ TObject_ambientLight::TObject_ambientLight(const JStudio::stb::data::TParse_TBlo
 {
 }
 
-/*
- * --INFO--
- * Address:	8000DE88
- * Size:	0001DC
+/**
+ * @note Address: 0x8000DE88
+ * @note Size: 0x1DC
  * do_paragraph__Q27JStudio20TObject_ambientLightFUlPCvUl
  */
 void TObject_ambientLight::do_paragraph(u32 p1, void const* p2, u32 p3)
@@ -2756,18 +2711,16 @@ multi:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8000E064
- * Size:	00005C
+/**
+ * @note Address: 0x8000E064
+ * @note Size: 0x5C
  * __dt__Q27JStudio15TAdaptor_cameraFv
  */
 TAdaptor_camera::~TAdaptor_camera() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  * __ct__Q27JStudio14TObject_cameraFPCvUlPQ27JStudio15TAdaptor_camera
  */
 TObject_camera::TObject_camera(void const* p1, u32 p2, JStudio::TAdaptor_camera* p3)
@@ -2776,10 +2729,9 @@ TObject_camera::TObject_camera(void const* p1, u32 p2, JStudio::TAdaptor_camera*
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8000E0C0
- * Size:	000058
+/**
+ * @note Address: 0x8000E0C0
+ * @note Size: 0x58
  * __ct__Q27JStudio14TObject_cameraFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio15TAdaptor_camera
  */
 TObject_camera::TObject_camera(JStudio::stb::data::TParse_TBlock_object const& p1, JStudio::TAdaptor_camera* p2)
@@ -2787,10 +2739,9 @@ TObject_camera::TObject_camera(JStudio::stb::data::TParse_TBlock_object const& p
 {
 }
 
-/*
- * --INFO--
- * Address:	8000E118
- * Size:	0003F8
+/**
+ * @note Address: 0x8000E118
+ * @note Size: 0x3F8
  * do_paragraph__Q27JStudio14TObject_cameraFUlPCvUl
  */
 void TObject_camera::do_paragraph(u32, void const*, u32)
@@ -3215,18 +3166,16 @@ lbl_8000E4FC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8000E510
- * Size:	00005C
+/**
+ * @note Address: 0x8000E510
+ * @note Size: 0x5C
  * __dt__Q27JStudio12TAdaptor_fogFv
  */
 TAdaptor_fog::~TAdaptor_fog() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  * __ct__Q27JStudio11TObject_fogFPCvUlPQ27JStudio12TAdaptor_fog
  */
 TObject_fog::TObject_fog(void const* p1, u32 p2, JStudio::TAdaptor_fog* p3)
@@ -3235,10 +3184,9 @@ TObject_fog::TObject_fog(void const* p1, u32 p2, JStudio::TAdaptor_fog* p3)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8000E56C
- * Size:	000058
+/**
+ * @note Address: 0x8000E56C
+ * @note Size: 0x58
  * __ct__Q27JStudio11TObject_fogFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio12TAdaptor_fog
  */
 TObject_fog::TObject_fog(JStudio::stb::data::TParse_TBlock_object const& p1, JStudio::TAdaptor_fog* p2)
@@ -3246,10 +3194,9 @@ TObject_fog::TObject_fog(JStudio::stb::data::TParse_TBlock_object const& p1, JSt
 {
 }
 
-/*
- * --INFO--
- * Address:	8000E5C4
- * Size:	0001E8
+/**
+ * @note Address: 0x8000E5C4
+ * @note Size: 0x1E8
  * do_paragraph__Q27JStudio11TObject_fogFUlPCvUl
  */
 void TObject_fog::do_paragraph(u32, void const*, u32)
@@ -3469,10 +3416,9 @@ lbl_8000E798:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8000E7AC
- * Size:	00005C
+/**
+ * @note Address: 0x8000E7AC
+ * @note Size: 0x5C
  * __dt__Q27JStudio14TAdaptor_lightFv
  */
 TAdaptor_light::~TAdaptor_light()
@@ -3508,10 +3454,9 @@ lbl_8000E7F0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  * __ct__Q27JStudio13TObject_lightFPCvUlPQ27JStudio14TAdaptor_light
  */
 TObject_light::TObject_light(void const* p1, u32 p2, JStudio::TAdaptor_light* p3)
@@ -3520,10 +3465,9 @@ TObject_light::TObject_light(void const* p1, u32 p2, JStudio::TAdaptor_light* p3
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8000E808
- * Size:	000058
+/**
+ * @note Address: 0x8000E808
+ * @note Size: 0x58
  * __ct__Q27JStudio13TObject_lightFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio14TAdaptor_light
  */
 TObject_light::TObject_light(JStudio::stb::data::TParse_TBlock_object const& p1, JStudio::TAdaptor_light* p2)
@@ -3531,10 +3475,9 @@ TObject_light::TObject_light(JStudio::stb::data::TParse_TBlock_object const& p1,
 {
 }
 
-/*
- * --INFO--
- * Address:	8000E860
- * Size:	000370
+/**
+ * @note Address: 0x8000E860
+ * @note Size: 0x370
  * do_paragraph__Q27JStudio13TObject_lightFUlPCvUl
  */
 void TObject_light::do_paragraph(u32, void const*, u32)
@@ -3896,18 +3839,16 @@ lbl_8000EBBC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8000EBD0
- * Size:	00005C
+/**
+ * @note Address: 0x8000EBD0
+ * @note Size: 0x5C
  * __dt__Q27JStudio16TAdaptor_messageFv
  */
 TAdaptor_message::~TAdaptor_message() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  * __ct__Q27JStudio15TObject_messageFPCvUlPQ27JStudio16TAdaptor_message
  */
 TObject_message::TObject_message(void const* p1, u32 p2, JStudio::TAdaptor_message* p3)
@@ -3916,10 +3857,9 @@ TObject_message::TObject_message(void const* p1, u32 p2, JStudio::TAdaptor_messa
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8000EC2C
- * Size:	000058
+/**
+ * @note Address: 0x8000EC2C
+ * @note Size: 0x58
  * __ct__Q27JStudio15TObject_messageFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio16TAdaptor_message
  */
 TObject_message::TObject_message(JStudio::stb::data::TParse_TBlock_object const& p1, JStudio::TAdaptor_message* p2)
@@ -3927,10 +3867,9 @@ TObject_message::TObject_message(JStudio::stb::data::TParse_TBlock_object const&
 {
 }
 
-/*
- * --INFO--
- * Address:	8000EC84
- * Size:	000090
+/**
+ * @note Address: 0x8000EC84
+ * @note Size: 0x90
  * do_paragraph__Q27JStudio15TObject_messageFUlPCvUl
  */
 void TObject_message::do_paragraph(u32, void const*, u32)
@@ -3981,18 +3920,16 @@ lbl_8000ED04:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8000ED14
- * Size:	00005C
+/**
+ * @note Address: 0x8000ED14
+ * @note Size: 0x5C
  * __dt__Q27JStudio17TAdaptor_particleFv
  */
 TAdaptor_particle::~TAdaptor_particle() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  * __ct__Q27JStudio16TObject_particleFPCvUlPQ27JStudio17TAdaptor_particle
  */
 TObject_particle::TObject_particle(void const* p1, u32 p2, JStudio::TAdaptor_particle* p3)
@@ -4001,10 +3938,9 @@ TObject_particle::TObject_particle(void const* p1, u32 p2, JStudio::TAdaptor_par
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8000ED70
- * Size:	000058
+/**
+ * @note Address: 0x8000ED70
+ * @note Size: 0x58
  * __ct__Q27JStudio16TObject_particleFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio17TAdaptor_particle
  */
 TObject_particle::TObject_particle(JStudio::stb::data::TParse_TBlock_object const& p1, JStudio::TAdaptor_particle* p2)
@@ -4012,10 +3948,9 @@ TObject_particle::TObject_particle(JStudio::stb::data::TParse_TBlock_object cons
 {
 }
 
-/*
- * --INFO--
- * Address:	8000EDC8
- * Size:	000458
+/**
+ * @note Address: 0x8000EDC8
+ * @note Size: 0x458
  * do_paragraph__Q27JStudio16TObject_particleFUlPCvUl
  */
 void TObject_particle::do_paragraph(u32, void const*, u32)
@@ -4451,18 +4386,16 @@ lbl_8000F20C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8000F220
- * Size:	00005C
+/**
+ * @note Address: 0x8000F220
+ * @note Size: 0x5C
  * __dt__Q27JStudio14TAdaptor_soundFv
  */
 TAdaptor_sound::~TAdaptor_sound() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  * __ct__Q27JStudio13TObject_soundFPCvUlPQ27JStudio14TAdaptor_sound
  */
 TObject_sound::TObject_sound(void const* p1, u32 p2, JStudio::TAdaptor_sound* p3)
@@ -4471,10 +4404,9 @@ TObject_sound::TObject_sound(void const* p1, u32 p2, JStudio::TAdaptor_sound* p3
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8000F27C
- * Size:	000058
+/**
+ * @note Address: 0x8000F27C
+ * @note Size: 0x58
  * __ct__Q27JStudio13TObject_soundFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio14TAdaptor_sound
  */
 TObject_sound::TObject_sound(JStudio::stb::data::TParse_TBlock_object const& p1, JStudio::TAdaptor_sound* p2)
@@ -4482,10 +4414,9 @@ TObject_sound::TObject_sound(JStudio::stb::data::TParse_TBlock_object const& p1,
 {
 }
 
-/*
- * --INFO--
- * Address:	8000F2D4
- * Size:	0003F8
+/**
+ * @note Address: 0x8000F2D4
+ * @note Size: 0x3F8
  * do_paragraph__Q27JStudio13TObject_soundFUlPCvUl
  */
 void TObject_sound::do_paragraph(u32, void const*, u32)
@@ -4868,76 +4799,67 @@ lbl_8000F6B8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8000F6CC
- * Size:	000094
+/**
+ * @note Address: 0x8000F6CC
+ * @note Size: 0x94
  *  __dt__Q27JStudio13TObject_soundFv
  */
 TObject_sound::~TObject_sound() { }
 
-/*
- * --INFO--
- * Address:	8000F760
- * Size:	000094
+/**
+ * @note Address: 0x8000F760
+ * @note Size: 0x94
  * __dt__Q27JStudio16TObject_particleFv
  */
 TObject_particle::~TObject_particle() { }
 
-/*
- * --INFO--
- * Address:	8000F7F4
- * Size:	000094
+/**
+ * @note Address: 0x8000F7F4
+ * @note Size: 0x94
  * __dt__Q27JStudio15TObject_messageFv
  */
 TObject_message::~TObject_message() { }
 
-/*
- * --INFO--
- * Address:	8000F888
- * Size:	000094
+/**
+ * @note Address: 0x8000F888
+ * @note Size: 0x94
  * __dt__Q27JStudio13TObject_lightFv
  */
 TObject_light::~TObject_light() { }
 
-/*
- * --INFO--
- * Address:	8000F91C
- * Size:	000094
+/**
+ * @note Address: 0x8000F91C
+ * @note Size: 0x94
  * __dt__Q27JStudio11TObject_fogFv
  */
 TObject_fog::~TObject_fog() { }
 
-/*
- * --INFO--
- * Address:	8000F9B0
- * Size:	000094
+/**
+ * @note Address: 0x8000F9B0
+ * @note Size: 0x94
  * __dt__Q27JStudio14TObject_cameraFv
  */
 TObject_camera::~TObject_camera() { }
 
-/*
- * --INFO--
- * Address:	8000FA44
- * Size:	000094
+/**
+ * @note Address: 0x8000FA44
+ * @note Size: 0x94
  * __dt__Q27JStudio20TObject_ambientLightFv
  */
 TObject_ambientLight::~TObject_ambientLight() { }
 
-/*
- * --INFO--
- * Address:	8000FAD8
- * Size:	000094
+/**
+ * @note Address: 0x8000FAD8
+ * @note Size: 0x94
  * __dt__Q27JStudio13TObject_actorFv
  */
 TObject_actor::~TObject_actor() { }
 
 } // namespace JStudio
 
-/*
- * --INFO--
- * Address:	8000FB6C
- * Size:	000284
+/**
+ * @note Address: 0x8000FB6C
+ * @note Size: 0x284
  */
 // void __sinit_jstudio - object_cpp()
 // {
@@ -5122,10 +5044,9 @@ TObject_actor::~TObject_actor() { }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	8000FDF0
- * Size:	00005C
+/**
+ * @note Address: 0x8000FDF0
+ * @note Size: 0x5C
  * __dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_sound>Fv
  */
 // void __dt__Q37JStudio28 @unnamed @jstudio_object_cpp @54TOutputVariableValue_BOOL_ < JStudio::TAdaptor_sound > Fv()
@@ -5162,10 +5083,9 @@ TObject_actor::~TObject_actor() { }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	8000FE4C
- * Size:	00005C
+/**
+ * @note Address: 0x8000FE4C
+ * @note Size: 0x5C
  */
 // void __dt__Q37JStudio28 @unnamed @jstudio_object_cpp @57TOutputVariableValue_BOOL_ < JStudio::TAdaptor_particle > Fv()
 // {
@@ -5201,10 +5121,9 @@ TObject_actor::~TObject_actor() { }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	8000FEA8
- * Size:	00005C
+/**
+ * @note Address: 0x8000FEA8
+ * @note Size: 0x5C
  */
 // void __dt__Q37JStudio28 @unnamed @jstudio_object_cpp @54TOutputVariableValue_BOOL_ < JStudio::TAdaptor_light > Fv()
 // {
@@ -5240,10 +5159,9 @@ TObject_actor::~TObject_actor() { }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	8000FF04
- * Size:	00005C
+/**
+ * @note Address: 0x8000FF04
+ * @note Size: 0x5C
  */
 // void __dt__Q37JStudio28 @unnamed @jstudio_object_cpp @55TOutputVariableValue_BOOL_ < JStudio::TAdaptor_camera > Fv()
 // {
@@ -5279,10 +5197,9 @@ TObject_actor::~TObject_actor() { }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	8000FF60
- * Size:	00005C
+/**
+ * @note Address: 0x8000FF60
+ * @note Size: 0x5C
  */
 // void __dt__Q37JStudio28 @unnamed @jstudio_object_cpp @54TOutputVariableValue_BOOL_ < JStudio::TAdaptor_actor > Fv()
 // {
@@ -5318,10 +5235,9 @@ TObject_actor::~TObject_actor() { }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	8000FFBC
- * Size:	00005C
+/**
+ * @note Address: 0x8000FFBC
+ * @note Size: 0x5C
  */
 // void __cl__Q37JStudio28 @unnamed @jstudio_object_cpp @54TOutputVariableValue_BOOL_ < JStudio::TAdaptor_sound >
 // CFfPQ27JStudio8TAdaptor()
@@ -5356,10 +5272,9 @@ TObject_actor::~TObject_actor() { }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80010018
- * Size:	00005C
+/**
+ * @note Address: 0x80010018
+ * @note Size: 0x5C
  */
 // void __cl__Q37JStudio28 @unnamed @jstudio_object_cpp @57TOutputVariableValue_BOOL_ < JStudio::TAdaptor_particle
 //     > CFfPQ27JStudio8TAdaptor()
@@ -5394,10 +5309,9 @@ TObject_actor::~TObject_actor() { }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80010074
- * Size:	00005C
+/**
+ * @note Address: 0x80010074
+ * @note Size: 0x5C
  */
 // void __cl__Q37JStudio28 @unnamed @jstudio_object_cpp @54TOutputVariableValue_BOOL_ < JStudio::TAdaptor_light >
 // CFfPQ27JStudio8TAdaptor()
@@ -5432,10 +5346,9 @@ TObject_actor::~TObject_actor() { }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	800100D0
- * Size:	00005C
+/**
+ * @note Address: 0x800100D0
+ * @note Size: 0x5C
  */
 // void __cl__Q37JStudio28 @unnamed @jstudio_object_cpp @55TOutputVariableValue_BOOL_ < JStudio::TAdaptor_camera
 //     > CFfPQ27JStudio8TAdaptor()
@@ -5470,10 +5383,9 @@ TObject_actor::~TObject_actor() { }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	8001012C
- * Size:	00005C
+/**
+ * @note Address: 0x8001012C
+ * @note Size: 0x5C
  */
 // void __cl__Q37JStudio28 @unnamed @jstudio_object_cpp @54TOutputVariableValue_BOOL_ < JStudio::TAdaptor_actor >
 // CFfPQ27JStudio8TAdaptor()

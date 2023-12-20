@@ -24,10 +24,9 @@ static int sParentHeapFreeSize_Last;
 namespace Game {
 namespace SingleGame {
 
-/*
- * --INFO--
- * Address:	8021B94C
- * Size:	0000E4
+/**
+ * @note Address: 0x8021B94C
+ * @note Size: 0xE4
  */
 SelectState::SelectState()
     : State(SGS_Select)
@@ -37,10 +36,9 @@ SelectState::SelectState()
 	mPreviousCourseID = -1;
 }
 
-/*
- * --INFO--
- * Address:	8021BA30
- * Size:	000098
+/**
+ * @note Address: 0x8021BA30
+ * @note Size: 0x98
  */
 void SelectState::init(SingleGameSection*, StateArg*)
 {
@@ -58,10 +56,9 @@ void SelectState::init(SingleGameSection*, StateArg*)
 	mNewLevelOpen = false;
 }
 
-/*
- * --INFO--
- * Address:	8021BAC8
- * Size:	000260
+/**
+ * @note Address: 0x8021BAC8
+ * @note Size: 0x260
  */
 void SelectState::initNext(SingleGameSection* section)
 {
@@ -120,10 +117,9 @@ void SelectState::initNext(SingleGameSection* section)
 	sys->dvdLoadUseCallBack(&section->mDvdThread, mDvdLoadCallback);
 }
 
-/*
- * --INFO--
- * Address:	8021BD2C
- * Size:	00030C
+/**
+ * @note Address: 0x8021BD2C
+ * @note Size: 0x30C
  */
 void SelectState::dvdload()
 {
@@ -165,10 +161,9 @@ void SelectState::dvdload()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8021C03C
- * Size:	0002AC
+/**
+ * @note Address: 0x8021C03C
+ * @note Size: 0x2AC
  */
 void SelectState::exec(SingleGameSection* game)
 {
@@ -264,10 +259,9 @@ void SelectState::exec(SingleGameSection* game)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8021C2EC
- * Size:	0002D0
+/**
+ * @note Address: 0x8021C2EC
+ * @note Size: 0x2D0
  */
 void SelectState::draw(SingleGameSection* game, Graphics& gfx)
 {
@@ -315,10 +309,9 @@ void SelectState::draw(SingleGameSection* game, Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8021C5CC
- * Size:	0000F4
+/**
+ * @note Address: 0x8021C5CC
+ * @note Size: 0xF4
  */
 void SelectState::cleanup(SingleGameSection* game)
 {

@@ -12,10 +12,9 @@ static const char aiAttackName[] = "actAttack";
 
 namespace PikiAI {
 
-/*
- * --INFO--
- * Address:	801A04CC
- * Size:	000070
+/**
+ * @note Address: 0x801A04CC
+ * @note Size: 0x70
  */
 void ActAttack::getInfo(char* dest)
 {
@@ -23,10 +22,9 @@ void ActAttack::getInfo(char* dest)
 	sprintf(dest, "attack %s", actions[mAttackID]);
 }
 
-/*
- * --INFO--
- * Address:	801A053C
- * Size:	000044
+/**
+ * @note Address: 0x801A053C
+ * @note Size: 0x44
  */
 void ActAttack::emotion_success()
 {
@@ -34,10 +32,9 @@ void ActAttack::emotion_success()
 	mParent->mFsm->transit(mParent, Game::PIKISTATE_Emotion, &emotionArg);
 }
 
-/*
- * --INFO--
- * Address:	801A0580
- * Size:	0000D4
+/**
+ * @note Address: 0x801A0580
+ * @note Size: 0xD4
  */
 ActAttack::ActAttack(Game::Piki* piki)
     : Action(piki)
@@ -47,10 +44,9 @@ ActAttack::ActAttack(Game::Piki* piki)
 	mName        = "Attack";
 }
 
-/*
- * --INFO--
- * Address:	801A0654
- * Size:	00011C
+/**
+ * @note Address: 0x801A0654
+ * @note Size: 0x11C
  */
 void ActAttack::init(ActionArg* initarg)
 {
@@ -82,10 +78,9 @@ void ActAttack::init(ActionArg* initarg)
 	mIsSearchAnimFinished = false;
 }
 
-/*
- * --INFO--
- * Address:	801A0770
- * Size:	000084
+/**
+ * @note Address: 0x801A0770
+ * @note Size: 0x84
  */
 void ActAttack::initStickAttack()
 {
@@ -95,10 +90,9 @@ void ActAttack::initStickAttack()
 	mAttackID = ATTACK_Stick;
 }
 
-/*
- * --INFO--
- * Address:	801A07F4
- * Size:	0000A8
+/**
+ * @note Address: 0x801A07F4
+ * @note Size: 0xA8
  */
 void ActAttack::initAdjust()
 {
@@ -113,10 +107,9 @@ void ActAttack::initAdjust()
 	mApproachPos->init(&approachArg);
 }
 
-/*
- * --INFO--
- * Address:	801A089C
- * Size:	0000AC
+/**
+ * @note Address: 0x801A089C
+ * @note Size: 0xAC
  */
 void ActAttack::initJumpAdjust()
 {
@@ -131,10 +124,9 @@ void ActAttack::initJumpAdjust()
 	mApproachPos->init(&approachArg);
 }
 
-/*
- * --INFO--
- * Address:	801A0948
- * Size:	00008C
+/**
+ * @note Address: 0x801A0948
+ * @note Size: 0x8C
  */
 bool ActAttack::applicable()
 {
@@ -147,10 +139,9 @@ bool ActAttack::applicable()
 	return !(FABS(mAttackSphere.mPosition.y - pos.y) > 20.0f);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D8
+/**
+ * @note Address: N/A
+ * @note Size: 0xD8
  */
 void ActAttack::initJump()
 {
@@ -160,10 +151,9 @@ void ActAttack::initJump()
 	mParent->mSimVelocity = Vector3f(sep.x * 100.0f, 200.0f, sep.z * 100.0f);
 }
 
-/*
- * --INFO--
- * Address:	801A09D4
- * Size:	0001C4
+/**
+ * @note Address: 0x801A09D4
+ * @note Size: 0x1C4
  */
 void ActAttack::calcAttackPos()
 {
@@ -195,10 +185,9 @@ void ActAttack::calcAttackPos()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801A0B98
- * Size:	00094C
+/**
+ * @note Address: 0x801A0B98
+ * @note Size: 0x94C
  */
 int ActAttack::exec()
 {
@@ -271,10 +260,9 @@ int ActAttack::exec()
 	return ACTEXEC_Continue;
 }
 
-/*
- * --INFO--
- * Address:	801A14E4
- * Size:	000054
+/**
+ * @note Address: 0x801A14E4
+ * @note Size: 0x54
  */
 void ActAttack::cleanup()
 {
@@ -289,10 +277,9 @@ void ActAttack::cleanup()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801A1538
- * Size:	0000E0
+/**
+ * @note Address: 0x801A1538
+ * @note Size: 0xE0
  */
 void ActAttack::collisionCallback(Game::Piki* piki, Game::CollEvent& collEvent)
 {
@@ -304,10 +291,9 @@ void ActAttack::collisionCallback(Game::Piki* piki, Game::CollEvent& collEvent)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801A1618
- * Size:	00024C
+/**
+ * @note Address: 0x801A1618
+ * @note Size: 0x24C
  */
 void ActAttack::bounceCallback(Game::Piki*, Sys::Triangle*)
 {
@@ -316,10 +302,9 @@ void ActAttack::bounceCallback(Game::Piki*, Sys::Triangle*)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801A1864
- * Size:	000024
+/**
+ * @note Address: 0x801A1864
+ * @note Size: 0x24
  */
 void ActAttack::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 {

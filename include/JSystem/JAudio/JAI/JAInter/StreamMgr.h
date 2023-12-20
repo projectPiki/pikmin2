@@ -106,7 +106,7 @@ extern JASHeap* aramBufferHeap;
 extern JASHeap* aramParentHeap;
 extern AllocCallback allocCallback;
 extern DeallocCallback deallocCallback;
-/*
+/**
  * This isn't the same type as the param to setExternalAramBuffer.
  * It must return typeof(aramParentHeap).
  */

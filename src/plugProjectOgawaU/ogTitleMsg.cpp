@@ -218,10 +218,9 @@ namespace og {
 
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000108
+/**
+ * @note Address: N/A
+ * @note Size: 0x108
  */
 TitleMessageAnalyzer::TitleMessageAnalyzer(const JMessage::TReference* ref)
     : Analyzer(ref)
@@ -229,20 +228,18 @@ TitleMessageAnalyzer::TitleMessageAnalyzer(const JMessage::TReference* ref)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 void TitleMessageAnalyzer::set2ByteString(char*, int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8032EAC8
- * Size:	000228
+/**
+ * @note Address: 0x8032EAC8
+ * @note Size: 0x228
  */
 void TitleMessageAnalyzer::do_character(int data)
 {
@@ -458,10 +455,9 @@ lbl_8032ECE8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8032ECF0
- * Size:	00028C
+/**
+ * @note Address: 0x8032ECF0
+ * @note Size: 0x28C
  */
 TitleMsg::TitleMsg(J2DScreen* screen, J2DPane* root, char* str)
     : mAnalyzer(og::gLib2D->mMessage->mProcessor->mReference)
@@ -689,10 +685,9 @@ lbl_8032EF48:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8032EFFC
- * Size:	000154
+/**
+ * @note Address: 0x8032EFFC
+ * @note Size: 0x154
  */
 void TitleMsg::setFontPane(J2DPictureEx* pic, int id)
 {
@@ -796,10 +791,9 @@ void TitleMsg::setFontPane(J2DPictureEx* pic, int id)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8032F150
- * Size:	000164
+/**
+ * @note Address: 0x8032F150
+ * @note Size: 0x164
  */
 void TitleMsg::setCentering(EnumCentering center)
 {
@@ -948,20 +942,18 @@ lbl_8032F268:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void TitleMsg::drawMsgArea(J2DGrafContext&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8032F2B4
- * Size:	0000D0
+/**
+ * @note Address: 0x8032F2B4
+ * @note Size: 0xD0
  */
 void TitleMsg::setColor(JUtility::TColor& col1, JUtility::TColor& col2)
 {
@@ -973,10 +965,9 @@ void TitleMsg::setColor(JUtility::TColor& col1, JUtility::TColor& col2)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8032F384
- * Size:	0000F0
+/**
+ * @note Address: 0x8032F384
+ * @note Size: 0xF0
  */
 TitleMsgDrop::TitleMsgDrop(J2DScreen* screen, J2DPane* pane, char* str)
     : TitleMsg(screen, pane, str)
@@ -1054,20 +1045,18 @@ lbl_8032F444:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A0
+/**
+ * @note Address: N/A
+ * @note Size: 0xA0
  */
 // TitleMsg::~TitleMsg()
 //{
 // UNUSED FUNCTION
 //}
 
-/*
- * --INFO--
- * Address:	8032F4CC
- * Size:	000128
+/**
+ * @note Address: 0x8032F4CC
+ * @note Size: 0x128
  */
 void TitleMsgDrop::init()
 {
@@ -1164,10 +1153,9 @@ lbl_8032F5AC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8032F5F4
- * Size:	000230
+/**
+ * @note Address: 0x8032F5F4
+ * @note Size: 0x230
  */
 void TitleMsgDrop::update()
 {
@@ -1358,10 +1346,9 @@ lbl_8032F7FC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8032F824
- * Size:	00006C
+/**
+ * @note Address: 0x8032F824
+ * @note Size: 0x6C
  */
 void TitleMsgDrop::end()
 {
@@ -1370,10 +1357,9 @@ void TitleMsgDrop::end()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8032F890
- * Size:	00018C
+/**
+ * @note Address: 0x8032F890
+ * @note Size: 0x18C
  */
 TitleMsgWave::TitleMsgWave(J2DScreen* screen, J2DPane* pane, char* str)
     : TitleMsg(screen, pane, str)
@@ -1514,17 +1500,15 @@ lbl_8032F9F0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8032FA1C
- * Size:	000004
+/**
+ * @note Address: 0x8032FA1C
+ * @note Size: 0x4
  */
 void TitleMsgWave::init() { }
 
-/*
- * --INFO--
- * Address:	8032FA20
- * Size:	0000B0
+/**
+ * @note Address: 0x8032FA20
+ * @note Size: 0xB0
  */
 void TitleMsgWave::start()
 {
@@ -1584,10 +1568,9 @@ lbl_8032FA94:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8032FAD0
- * Size:	0002E0
+/**
+ * @note Address: 0x8032FAD0
+ * @note Size: 0x2E0
  */
 void TitleMsgWave::update()
 {
@@ -1829,10 +1812,9 @@ lbl_8032FD54:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8032FDB0
- * Size:	00006C
+/**
+ * @note Address: 0x8032FDB0
+ * @note Size: 0x6C
  */
 void TitleMsgWave::end()
 {
@@ -1841,10 +1823,9 @@ void TitleMsgWave::end()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8032FE1C
- * Size:	000014
+/**
+ * @note Address: 0x8032FE1C
+ * @note Size: 0x14
  */
 void TitleMsgWave::setParam(f32 s1, f32 s2, f32 s3, f32 s4)
 {
@@ -1854,10 +1835,9 @@ void TitleMsgWave::setParam(f32 s1, f32 s2, f32 s3, f32 s4)
 	mScaleup4 = s4;
 }
 
-/*
- * --INFO--
- * Address:	8032FE30
- * Size:	0000F8
+/**
+ * @note Address: 0x8032FE30
+ * @note Size: 0xF8
  */
 TitleMsgClash::TitleMsgClash(J2DScreen* screen, J2DPane* pane, char* str)
     : TitleMsg(screen, pane, str)
@@ -1943,10 +1923,9 @@ lbl_8032FEF0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8032FF28
- * Size:	000014
+/**
+ * @note Address: 0x8032FF28
+ * @note Size: 0x14
  */
 void TitleMsgClash::init()
 {
@@ -1954,10 +1933,9 @@ void TitleMsgClash::init()
 	mCurrScale = 50.0f;
 }
 
-/*
- * --INFO--
- * Address:	8032FF3C
- * Size:	000214
+/**
+ * @note Address: 0x8032FF3C
+ * @note Size: 0x214
  */
 void TitleMsgClash::update()
 {
@@ -2129,10 +2107,9 @@ lbl_8033011C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80330150
- * Size:	00006C
+/**
+ * @note Address: 0x80330150
+ * @note Size: 0x6C
  */
 void TitleMsgClash::end()
 {

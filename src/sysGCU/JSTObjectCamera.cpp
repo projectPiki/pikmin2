@@ -6,10 +6,9 @@ namespace Game {
 namespace P2JST {
 static f32 sFovBackup;
 
-/*
- * --INFO--
- * Address:	8042F6E4
- * Size:	0000F0
+/**
+ * @note Address: 0x8042F6E4
+ * @note Size: 0xF0
  */
 ObjectCamera::ObjectCamera(char const* name, MoviePlayer* movie)
     : ObjectBase(name, movie)
@@ -90,17 +89,15 @@ lbl_8042F7B8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8042F7D4
- * Size:	000068
+/**
+ * @note Address: 0x8042F7D4
+ * @note Size: 0x68
  */
 ObjectCamera::~ObjectCamera() { }
 
-/*
- * --INFO--
- * Address:	8042F83C
- * Size:	0000A8
+/**
+ * @note Address: 0x8042F83C
+ * @note Size: 0xA8
  */
 void ObjectCamera::reset()
 {
@@ -165,24 +162,21 @@ void ObjectCamera::reset()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8042F8E4
- * Size:	000004
+/**
+ * @note Address: 0x8042F8E4
+ * @note Size: 0x4
  */
 void ObjectCamera::update() { }
 
-/*
- * --INFO--
- * Address:	8042F8E8
- * Size:	000024
+/**
+ * @note Address: 0x8042F8E8
+ * @note Size: 0x24
  */
 void ObjectCamera::setProjection() { mCameraObj->setProjection(); }
 
-/*
- * --INFO--
- * Address:	8042F90C
- * Size:	00007C
+/**
+ * @note Address: 0x8042F90C
+ * @note Size: 0x7C
  */
 void ObjectCamera::setView()
 {
@@ -197,10 +191,9 @@ void ObjectCamera::setView()
 	PSMTXConcat(mtx2, mtx, mViewMatrix.mMatrix.mtxView);
 }
 
-/*
- * --INFO--
- * Address:	8042F988
- * Size:	00006C
+/**
+ * @note Address: 0x8042F988
+ * @note Size: 0x6C
  */
 void ObjectCamera::updateCamera()
 {
@@ -214,31 +207,27 @@ void ObjectCamera::updateCamera()
 	mCameraObj->setProjectionNearFar(mProjectionNear, mProjectionFar);
 }
 
-/*
- * --INFO--
- * Address:	8042F9F4
- * Size:	000008
+/**
+ * @note Address: 0x8042F9F4
+ * @note Size: 0x8
  */
 char const* ObjectCamera::JSGGetName() const { return mName; }
 
-/*
- * --INFO--
- * Address:	8042F9FC
- * Size:	000008
+/**
+ * @note Address: 0x8042F9FC
+ * @note Size: 0x8
  */
 void ObjectCamera::JSGSetFlag(u32 a1) { mFlags = a1; }
 
-/*
- * --INFO--
- * Address:	8042FA04
- * Size:	000008
+/**
+ * @note Address: 0x8042FA04
+ * @note Size: 0x8
  */
 u32 ObjectCamera::JSGGetFlag() const { return mFlags; }
 
-/*
- * --INFO--
- * Address:	8042FA0C
- * Size:	000010
+/**
+ * @note Address: 0x8042FA0C
+ * @note Size: 0x10
  */
 void ObjectCamera::JSGSetData(u32 a1, void const* a2, u32 a3)
 {
@@ -247,121 +236,105 @@ void ObjectCamera::JSGSetData(u32 a1, void const* a2, u32 a3)
 	_1C = a3;
 }
 
-/*
- * --INFO--
- * Address:	8042FA1C
- * Size:	00001C
+/**
+ * @note Address: 0x8042FA1C
+ * @note Size: 0x1C
  */
 void ObjectCamera::JSGSetViewPosition(Vec const& pos) { mViewPos = pos; }
 
-/*
- * --INFO--
- * Address:	8042FA38
- * Size:	00001C
+/**
+ * @note Address: 0x8042FA38
+ * @note Size: 0x1C
  */
 void ObjectCamera::JSGGetViewPosition(Vec* pos) const { *pos = mViewPos; }
 
-/*
- * --INFO--
- * Address:	8042FA54
- * Size:	00001C
+/**
+ * @note Address: 0x8042FA54
+ * @note Size: 0x1C
  */
 void ObjectCamera::JSGSetViewTargetPosition(Vec const& pos) { mViewTargetPos = pos; }
 
-/*
- * --INFO--
- * Address:	8042FA70
- * Size:	00001C
+/**
+ * @note Address: 0x8042FA70
+ * @note Size: 0x1C
  */
 void ObjectCamera::JSGGetViewTargetPosition(Vec* pos) const { *pos = mViewTargetPos; }
 
-/*
- * --INFO--
- * Address:	8042FA8C
- * Size:	000008
+/**
+ * @note Address: 0x8042FA8C
+ * @note Size: 0x8
  */
 void P2JST::ObjectCamera::JSGSetViewRoll(f32 roll) { mViewRoll = roll; }
 
-/*
- * --INFO--
- * Address:	8042FA94
- * Size:	000008
+/**
+ * @note Address: 0x8042FA94
+ * @note Size: 0x8
  */
 f32 ObjectCamera::JSGGetViewRoll() const { return mViewRoll; }
 
-/*
- * --INFO--
- * Address:	8042FA9C
- * Size:	000008
+/**
+ * @note Address: 0x8042FA9C
+ * @note Size: 0x8
  */
 void ObjectCamera::JSGSetProjectionNear(f32 near) { mProjectionNear = near; }
 
-/*
- * --INFO--
- * Address:	8042FAA4
- * Size:	000008
+/**
+ * @note Address: 0x8042FAA4
+ * @note Size: 0x8
  */
 f32 ObjectCamera::JSGGetProjectionNear() const { return mProjectionNear; }
 
-/*
- * --INFO--
- * Address:	8042FAAC
- * Size:	000008
+/**
+ * @note Address: 0x8042FAAC
+ * @note Size: 0x8
  */
 void ObjectCamera::JSGSetProjectionFar(f32 far) { mProjectionFar = far; }
 
-/*
- * --INFO--
- * Address:	8042FAB4
- * Size:	000008
+/**
+ * @note Address: 0x8042FAB4
+ * @note Size: 0x8
  */
 f32 ObjectCamera::JSGGetProjectionFar() const { return mProjectionFar; }
 
-/*
- * --INFO--
- * Address:	8042FABC
- * Size:	000008
+/**
+ * @note Address: 0x8042FABC
+ * @note Size: 0x8
  */
 void ObjectCamera::JSGSetProjectionFovy(f32 fovy) { mProjectionFovy = fovy; }
 
-/*
- * --INFO--
- * Address:	8042FAC4
- * Size:	000008
+/**
+ * @note Address: 0x8042FAC4
+ * @note Size: 0x8
  */
 f32 ObjectCamera::JSGGetProjectionFovy() const { return mProjectionFovy; }
 
-/*
- * --INFO--
- * Address:	8042FACC
- * Size:	000064
+/**
+ * @note Address: 0x8042FACC
+ * @note Size: 0x64
  */
 void ObjectCamera::JSGSetProjectionAspect(f32 aspect)
 {
 	mProjectionAspect = sys->getRenderModeObj()->fbWidth / sys->getRenderModeObj()->efbHeight;
 }
 
-/*
- * --INFO--
- * Address:	8042FB30
- * Size:	000008
+/**
+ * @note Address: 0x8042FB30
+ * @note Size: 0x8
  */
 f32 ObjectCamera::JSGGetProjectionAspect() const { return mProjectionAspect; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000168
+/**
+ * @note Address: N/A
+ * @note Size: 0x168
  */
 void ObjectCamera::setParms(Camera*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8042FB38
- * Size:	0001A0
+/**
+ * @note Address: 0x8042FB38
+ * @note Size: 0x1A0
  */
 void ObjectCamera::setCamera(Camera* cam)
 {
@@ -385,10 +358,9 @@ void ObjectCamera::setCamera(Camera* cam)
 	mCameraObj->mViewMatrix = &mViewMatrix;
 }
 
-/*
- * --INFO--
- * Address:	8042FCD8
- * Size:	000038
+/**
+ * @note Address: 0x8042FCD8
+ * @note Size: 0x38
  */
 void ObjectCamera::start()
 {
@@ -396,10 +368,9 @@ void ObjectCamera::start()
 	mIsRunning = true;
 }
 
-/*
- * --INFO--
- * Address:	8042FD10
- * Size:	000050
+/**
+ * @note Address: 0x8042FD10
+ * @note Size: 0x50
  */
 void ObjectCamera::stop()
 {

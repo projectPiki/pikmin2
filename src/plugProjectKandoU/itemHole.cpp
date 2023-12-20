@@ -36,10 +36,9 @@ static const char unusedItemHoleName[] = "itemHole";
 
 Mgr* mgr;
 
-/*
- * --INFO--
- * Address:	801D1738
- * Size:	000134
+/**
+ * @note Address: 0x801D1738
+ * @note Size: 0x134
  */
 void ItemHole::FSM::init(Game::CFSMItem*)
 {
@@ -49,10 +48,9 @@ void ItemHole::FSM::init(Game::CFSMItem*)
 	registerState(new CloseState());
 }
 
-/*
- * --INFO--
- * Address:	801D186C
- * Size:	00003C
+/**
+ * @note Address: 0x801D186C
+ * @note Size: 0x3C
  */
 void ItemHole::NormalState::init(Game::CFSMItem* item, Game::StateArg* arg)
 {
@@ -60,24 +58,21 @@ void ItemHole::NormalState::init(Game::CFSMItem* item, Game::StateArg* arg)
 	item->setAlive(true);
 }
 
-/*
- * --INFO--
- * Address:	801D18A8
- * Size:	000004
+/**
+ * @note Address: 0x801D18A8
+ * @note Size: 0x4
  */
 void ItemHole::NormalState::exec(Game::CFSMItem*) { }
 
-/*
- * --INFO--
- * Address:	801D18AC
- * Size:	000004
+/**
+ * @note Address: 0x801D18AC
+ * @note Size: 0x4
  */
 void ItemHole::NormalState::cleanup(Game::CFSMItem*) { }
 
-/*
- * --INFO--
- * Address:	801D18B0
- * Size:	00005C
+/**
+ * @note Address: 0x801D18B0
+ * @note Size: 0x5C
  */
 void ItemHole::AppearState::init(Game::CFSMItem* item, Game::StateArg* arg)
 {
@@ -86,10 +81,9 @@ void ItemHole::AppearState::init(Game::CFSMItem* item, Game::StateArg* arg)
 	_10                                  = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	801D190C
- * Size:	000118
+/**
+ * @note Address: 0x801D190C
+ * @note Size: 0x118
  */
 void ItemHole::AppearState::exec(Game::CFSMItem* item)
 {
@@ -105,17 +99,15 @@ void ItemHole::AppearState::exec(Game::CFSMItem* item)
 	static_cast<Item*>(item)->mBuryDepth = buriedFrac * 25.0f;
 }
 
-/*
- * --INFO--
- * Address:	801D1A54
- * Size:	000004
+/**
+ * @note Address: 0x801D1A54
+ * @note Size: 0x4
  */
 void ItemHole::AppearState::cleanup(Game::CFSMItem*) { }
 
-/*
- * --INFO--
- * Address:	801D1A58
- * Size:	00003C
+/**
+ * @note Address: 0x801D1A58
+ * @note Size: 0x3C
  */
 void ItemHole::CloseState::init(Game::CFSMItem* item, Game::StateArg* arg)
 {
@@ -123,25 +115,22 @@ void ItemHole::CloseState::init(Game::CFSMItem* item, Game::StateArg* arg)
 	item->setAlive(false);
 }
 
-/*
- * --INFO--
- * Address:	801D1A94
- * Size:	000014
+/**
+ * @note Address: 0x801D1A94
+ * @note Size: 0x14
  * exec__Q34Game8ItemHole10CloseStateFPQ24Game8CFSMItem
  */
 void ItemHole::CloseState::exec(Game::CFSMItem* item) { item->mLod.resetFlag(AILOD_IsVisible | AILOD_IsVisVP0 | AILOD_IsVisVP1); }
 
-/*
- * --INFO--
- * Address:	801D1AA8
- * Size:	000004
+/**
+ * @note Address: 0x801D1AA8
+ * @note Size: 0x4
  */
 void ItemHole::CloseState::cleanup(Game::CFSMItem*) { }
 
-/*
- * --INFO--
- * Address:	801D1AAC
- * Size:	00025C
+/**
+ * @note Address: 0x801D1AAC
+ * @note Size: 0x25C
  */
 void ItemHole::Item::movieUserCommand(u32 command, MoviePlayer* player)
 {
@@ -178,10 +167,9 @@ void ItemHole::Item::movieUserCommand(u32 command, MoviePlayer* player)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801D1D08
- * Size:	000108
+/**
+ * @note Address: 0x801D1D08
+ * @note Size: 0x108
  */
 bool ItemHole::Item::interactGotKey(Game::InteractGotKey& interaction)
 {
@@ -198,10 +186,9 @@ bool ItemHole::Item::interactGotKey(Game::InteractGotKey& interaction)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	801D1E18
- * Size:	0000C0
+/**
+ * @note Address: 0x801D1E18
+ * @note Size: 0xC0
  */
 void ItemHole::Item::onInit(Game::CreatureInitArg* arg)
 {
@@ -216,17 +203,15 @@ void ItemHole::Item::onInit(Game::CreatureInitArg* arg)
 	mFaceDir = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	801D1F50
- * Size:	000050
+/**
+ * @note Address: 0x801D1F50
+ * @note Size: 0x50
  */
 void ItemHole::Item::changeMaterial() { mModel->jointVisible(false, mModel->getJoint("flag")->mJointIndex); }
 
-/*
- * --INFO--
- * Address:	801D1FA0
- * Size:	0001DC
+/**
+ * @note Address: 0x801D1FA0
+ * @note Size: 0x1DC
  */
 void ItemHole::Item::onSetPosition()
 {
@@ -264,10 +249,9 @@ void ItemHole::Item::onSetPosition()
 	mSidePlatInstance->setCollision(true);
 }
 
-/*
- * --INFO--
- * Address:	801D217C
- * Size:	000314
+/**
+ * @note Address: 0x801D217C
+ * @note Size: 0x314
  * initDependency__Q34Game8ItemHole4ItemFv
  */
 void ItemHole::Item::initDependency()
@@ -296,10 +280,9 @@ void ItemHole::Item::initDependency()
 	mBarrel = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	801D2490
- * Size:	000068
+/**
+ * @note Address: 0x801D2490
+ * @note Size: 0x68
  */
 void ItemHole::Item::makeTrMatrix()
 {
@@ -309,17 +292,15 @@ void ItemHole::Item::makeTrMatrix()
 	mBaseTrMatrix.makeTR(translation, rot);
 }
 
-/*
- * --INFO--
- * Address:	801D24F8
- * Size:	000030
+/**
+ * @note Address: 0x801D24F8
+ * @note Size: 0x30
  */
 bool ItemHole::Item::canRide() { return static_cast<State*>(getCurrState())->canRide(); }
 
-/*
- * --INFO--
- * Address:	801D2530
- * Size:	000014
+/**
+ * @note Address: 0x801D2530
+ * @note Size: 0x14
  */
 void ItemHole::Item::do_setLODParm(Game::AILODParm& parm)
 {
@@ -327,17 +308,15 @@ void ItemHole::Item::do_setLODParm(Game::AILODParm& parm)
 	parm.mClose = 0.0425f;
 }
 
-/*
- * --INFO--
- * Address:	801D2544
- * Size:	000008
+/**
+ * @note Address: 0x801D2544
+ * @note Size: 0x8
  */
 bool ItemHole::Item::sound_culling() { return false; }
 
-/*
- * --INFO--
- * Address:	801D254C
- * Size:	0000E4
+/**
+ * @note Address: 0x801D254C
+ * @note Size: 0xE4
  */
 void ItemHole::Item::doAI()
 {
@@ -357,10 +336,9 @@ void ItemHole::Item::doAI()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801D2630
- * Size:	0000BC
+/**
+ * @note Address: 0x801D2630
+ * @note Size: 0xBC
  */
 void ItemHole::Item::doDirectDraw(Graphics& gfx)
 {
@@ -430,17 +408,15 @@ void ItemHole::Item::doDirectDraw(Graphics& gfx)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D26EC
- * Size:	000058
+/**
+ * @note Address: 0x801D26EC
+ * @note Size: 0x58
  */
 CItemFSM* ItemHole::Item::createFSM() { return new FSM(); }
 
-/*
- * --INFO--
- * Address:	801D2744
- * Size:	00007C
+/**
+ * @note Address: 0x801D2744
+ * @note Size: 0x7C
  */
 ItemHole::Mgr::Mgr()
     : TNodeItemMgr()
@@ -450,10 +426,9 @@ ItemHole::Mgr::Mgr()
 	mObjectPathComponent = "user/Kando/objects/dungeon_hole";
 }
 
-/*
- * --INFO--
- * Address:	801D27C0
- * Size:	000100
+/**
+ * @note Address: 0x801D27C0
+ * @note Size: 0x100
  */
 void ItemHole::Mgr::onLoadResources()
 {
@@ -472,10 +447,9 @@ void ItemHole::Mgr::onLoadResources()
 	closeTextArc(archive);
 }
 
-/*
- * --INFO--
- * Address:	801D28C0
- * Size:	0000BC
+/**
+ * @note Address: 0x801D28C0
+ * @note Size: 0xBC
  */
 void ItemHole::Mgr::setup(Game::BaseItem* item)
 {
@@ -486,10 +460,9 @@ void ItemHole::Mgr::setup(Game::BaseItem* item)
 	item->mModel->mJ3dModel->lock();
 }
 
-/*
- * --INFO--
- * Address:	801D297C
- * Size:	000054
+/**
+ * @note Address: 0x801D297C
+ * @note Size: 0x54
  */
 BaseItem* ItemHole::Mgr::generatorBirth(Vector3f& position, Vector3f& p2, Game::GenItemParm* parm)
 {

@@ -6,10 +6,9 @@
 namespace Game {
 namespace PanModokiBase {
 
-/*
- * --INFO--
- * Address:	8034C93C
- * Size:	0001BC
+/**
+ * @note Address: 0x8034C93C
+ * @note Size: 0x1BC
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -27,10 +26,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateCarryEnd(PANMODOKI_CarryEnd));
 }
 
-/*
- * --INFO--
- * Address:	8034CAF8
- * Size:	00003C
+/**
+ * @note Address: 0x8034CAF8
+ * @note Size: 0x3C
  */
 StateDead::StateDead(int stateID)
     : State(stateID)
@@ -38,10 +36,9 @@ StateDead::StateDead(int stateID)
 	mName = "dead";
 }
 
-/*
- * --INFO--
- * Address:	8034CB34
- * Size:	000090
+/**
+ * @note Address: 0x8034CB34
+ * @note Size: 0x90
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -59,10 +56,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	panModoki->killNest();
 }
 
-/*
- * --INFO--
- * Address:	8034CBC4
- * Size:	000058
+/**
+ * @note Address: 0x8034CBC4
+ * @note Size: 0x58
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -76,10 +72,9 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8034CC1C
- * Size:	00003C
+/**
+ * @note Address: 0x8034CC1C
+ * @note Size: 0x3C
  */
 StateWalk::StateWalk(int stateID)
     : State(stateID)
@@ -87,10 +82,9 @@ StateWalk::StateWalk(int stateID)
 	mName = "walk";
 }
 
-/*
- * --INFO--
- * Address:	8034CC58
- * Size:	000070
+/**
+ * @note Address: 0x8034CC58
+ * @note Size: 0x70
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -103,10 +97,9 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->mTargetCreature = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8034CCC8
- * Size:	00010C
+/**
+ * @note Address: 0x8034CCC8
+ * @note Size: 0x10C
  */
 void StateWalk::exec(EnemyBase* enemy)
 {
@@ -132,10 +125,9 @@ void StateWalk::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8034CDD4
- * Size:	00003C
+/**
+ * @note Address: 0x8034CDD4
+ * @note Size: 0x3C
  */
 StateBack::StateBack(int stateID)
     : State(stateID)
@@ -143,10 +135,9 @@ StateBack::StateBack(int stateID)
 	mName = "back";
 }
 
-/*
- * --INFO--
- * Address:	8034CE10
- * Size:	000104
+/**
+ * @note Address: 0x8034CE10
+ * @note Size: 0x104
  */
 void StateBack::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -176,10 +167,9 @@ void StateBack::init(EnemyBase* enemy, StateArg* stateArg)
 	_10                    = 0;
 }
 
-/*
- * --INFO--
- * Address:	8034CF14
- * Size:	0004D0
+/**
+ * @note Address: 0x8034CF14
+ * @note Size: 0x4D0
  */
 void StateBack::exec(EnemyBase* enemy)
 {
@@ -248,10 +238,9 @@ void StateBack::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8034D3E4
- * Size:	00003C
+/**
+ * @note Address: 0x8034D3E4
+ * @note Size: 0x3C
  */
 StatePulled::StatePulled(int stateID)
     : State(stateID)
@@ -259,10 +248,9 @@ StatePulled::StatePulled(int stateID)
 	mName = "pulled";
 }
 
-/*
- * --INFO--
- * Address:	8034D420
- * Size:	0000B0
+/**
+ * @note Address: 0x8034D420
+ * @note Size: 0xB0
  */
 void StatePulled::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -281,10 +269,9 @@ void StatePulled::init(EnemyBase* enemy, StateArg* stateArg)
 	OBJ(enemy)->mNextState  = PANMODOKI_NULL;
 }
 
-/*
- * --INFO--
- * Address:	8034D4D0
- * Size:	0004CC
+/**
+ * @note Address: 0x8034D4D0
+ * @note Size: 0x4CC
  */
 void StatePulled::exec(EnemyBase* enemy)
 {
@@ -354,17 +341,15 @@ void StatePulled::exec(EnemyBase* enemy)
 	OBJ(enemy)->checkSucked();
 }
 
-/*
- * --INFO--
- * Address:	8034D99C
- * Size:	000024
+/**
+ * @note Address: 0x8034D99C
+ * @note Size: 0x24
  */
 void StatePulled::cleanup(EnemyBase* enemy) { OBJ(enemy)->fadePulledSmokeEffect(); }
 
-/*
- * --INFO--
- * Address:	8034D9C0
- * Size:	00003C
+/**
+ * @note Address: 0x8034D9C0
+ * @note Size: 0x3C
  */
 StateAppear::StateAppear(int stateID)
     : State(stateID)
@@ -372,10 +357,9 @@ StateAppear::StateAppear(int stateID)
 	mName = "appear";
 }
 
-/*
- * --INFO--
- * Address:	8034D9FC
- * Size:	000070
+/**
+ * @note Address: 0x8034D9FC
+ * @note Size: 0x70
  */
 void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -387,10 +371,9 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->hardConstraintOn();
 }
 
-/*
- * --INFO--
- * Address:	8034DA70
- * Size:	000064
+/**
+ * @note Address: 0x8034DA70
+ * @note Size: 0x64
  */
 void StateAppear::exec(EnemyBase* enemy)
 {
@@ -400,10 +383,9 @@ void StateAppear::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8034DAD4
- * Size:	00003C
+/**
+ * @note Address: 0x8034DAD4
+ * @note Size: 0x3C
  */
 StateHide::StateHide(int stateID)
     : State(stateID)
@@ -411,10 +393,9 @@ StateHide::StateHide(int stateID)
 	mName = "hide";
 }
 
-/*
- * --INFO--
- * Address:	8034DB10
- * Size:	000068
+/**
+ * @note Address: 0x8034DB10
+ * @note Size: 0x68
  */
 void StateHide::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -424,10 +405,9 @@ void StateHide::init(EnemyBase* enemy, StateArg* stateArg)
 	mHideTimer             = 0;
 }
 
-/*
- * --INFO--
- * Address:	8034DB78
- * Size:	000118
+/**
+ * @note Address: 0x8034DB78
+ * @note Size: 0x118
  */
 void StateHide::exec(EnemyBase* enemy)
 {
@@ -453,10 +433,9 @@ void StateHide::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8034DC94
- * Size:	00003C
+/**
+ * @note Address: 0x8034DC94
+ * @note Size: 0x3C
  */
 StateDamage::StateDamage(int stateID)
     : State(stateID)
@@ -464,10 +443,9 @@ StateDamage::StateDamage(int stateID)
 	mName = "damage";
 }
 
-/*
- * --INFO--
- * Address:	8034DCD0
- * Size:	00010C
+/**
+ * @note Address: 0x8034DCD0
+ * @note Size: 0x10C
  */
 void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -496,10 +474,9 @@ void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 	OBJ(enemy)->boundEffect();
 }
 
-/*
- * --INFO--
- * Address:	8034DDDC
- * Size:	000080
+/**
+ * @note Address: 0x8034DDDC
+ * @note Size: 0x80
  */
 void StateDamage::exec(EnemyBase* enemy)
 {
@@ -512,10 +489,9 @@ void StateDamage::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8034DE5C
- * Size:	00003C
+/**
+ * @note Address: 0x8034DE5C
+ * @note Size: 0x3C
  */
 StateWait::StateWait(int stateID)
     : State(stateID)
@@ -523,10 +499,9 @@ StateWait::StateWait(int stateID)
 	mName = "wait";
 }
 
-/*
- * --INFO--
- * Address:	8034DE98
- * Size:	000070
+/**
+ * @note Address: 0x8034DE98
+ * @note Size: 0x70
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -537,10 +512,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	OBJ(enemy)->mNextState = PANMODOKI_Walk;
 }
 
-/*
- * --INFO--
- * Address:	8034DF08
- * Size:	0000F4
+/**
+ * @note Address: 0x8034DF08
+ * @note Size: 0xF4
  */
 void StateWait::exec(EnemyBase* enemy)
 {
@@ -560,10 +534,9 @@ void StateWait::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8034DFFC
- * Size:	00003C
+/**
+ * @note Address: 0x8034DFFC
+ * @note Size: 0x3C
  */
 StateStick::StateStick(int stateID)
     : State(stateID)
@@ -571,10 +544,9 @@ StateStick::StateStick(int stateID)
 	mName = "stick";
 }
 
-/*
- * --INFO--
- * Address:	8034E038
- * Size:	000108
+/**
+ * @note Address: 0x8034E038
+ * @note Size: 0x108
  */
 void StateStick::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -595,10 +567,9 @@ void StateStick::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8034E140
- * Size:	0003BC
+/**
+ * @note Address: 0x8034E140
+ * @note Size: 0x3BC
  */
 void StateStick::exec(EnemyBase* enemy)
 {
@@ -645,10 +616,9 @@ void StateStick::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8034E4FC
- * Size:	00003C
+/**
+ * @note Address: 0x8034E4FC
+ * @note Size: 0x3C
  */
 StateSucked::StateSucked(int stateID)
     : State(stateID)
@@ -656,10 +626,9 @@ StateSucked::StateSucked(int stateID)
 	mName = "sucked";
 }
 
-/*
- * --INFO--
- * Address:	8034E538
- * Size:	00006C
+/**
+ * @note Address: 0x8034E538
+ * @note Size: 0x6C
  */
 void StateSucked::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -674,17 +643,15 @@ void StateSucked::init(EnemyBase* enemy, StateArg* stateArg)
 	OBJ(enemy)->_2F1 = 1;
 }
 
-/*
- * --INFO--
- * Address:	8034E5A4
- * Size:	00000C
+/**
+ * @note Address: 0x8034E5A4
+ * @note Size: 0xC
  */
 void StateSucked::exec(EnemyBase* enemy) { OBJ(enemy)->_2F1 = 1; }
 
-/*
- * --INFO--
- * Address:	8034E5B0
- * Size:	000040
+/**
+ * @note Address: 0x8034E5B0
+ * @note Size: 0x40
  */
 StateCarryEnd::StateCarryEnd(int stateID)
     : State(stateID)
@@ -692,10 +659,9 @@ StateCarryEnd::StateCarryEnd(int stateID)
 	mName = "carryend";
 }
 
-/*
- * --INFO--
- * Address:	8034E5F0
- * Size:	00006C
+/**
+ * @note Address: 0x8034E5F0
+ * @note Size: 0x6C
  */
 void StateCarryEnd::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -703,10 +669,9 @@ void StateCarryEnd::init(EnemyBase* enemy, StateArg* stateArg)
 	_10 = enemy->getPosition();
 }
 
-/*
- * --INFO--
- * Address:	8034E65C
- * Size:	0002F0
+/**
+ * @note Address: 0x8034E65C
+ * @note Size: 0x2F0
  */
 void StateCarryEnd::exec(EnemyBase* enemy)
 {

@@ -12,10 +12,9 @@ static const char className[] = "246-ShadowMgr";
 
 ShadowMgr* shadowMgr;
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 JointShadowRootNode::JointShadowRootNode()
 {
@@ -23,10 +22,9 @@ JointShadowRootNode::JointShadowRootNode()
 	mIsVisible = false;
 }
 
-/*
- * --INFO--
- * Address:	8024127C
- * Size:	000060
+/**
+ * @note Address: 0x8024127C
+ * @note Size: 0x60
  */
 JointShadowRootNode::JointShadowRootNode(Creature* owner)
 {
@@ -35,10 +33,9 @@ JointShadowRootNode::JointShadowRootNode(Creature* owner)
 	shadowMgr->setJointShadowRootNode(this);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
+/**
+ * @note Address: N/A
+ * @note Size: 0x58
  */
 void JointShadowRootNode::init(int count)
 {
@@ -46,20 +43,18 @@ void JointShadowRootNode::init(int count)
 	FOREACH_NODE(JointShadowNode, mChild, childNode) { childNode->init(count); }
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 JointShadowNode::JointShadowNode()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	802412DC
- * Size:	000074
+/**
+ * @note Address: 0x802412DC
+ * @note Size: 0x74
  */
 JointShadowNode::JointShadowNode(int mtxCount)
 {
@@ -69,10 +64,9 @@ JointShadowNode::JointShadowNode(int mtxCount)
 	init(mtxCount);
 }
 
-/*
- * --INFO--
- * Address:	80241350
- * Size:	000074
+/**
+ * @note Address: 0x80241350
+ * @note Size: 0x74
  */
 void JointShadowNode::init(int count)
 {
@@ -82,10 +76,9 @@ void JointShadowNode::init(int count)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 ShadowNode::ShadowNode()
 {
@@ -94,10 +87,9 @@ ShadowNode::ShadowNode()
 	mFlags    = 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
+/**
+ * @note Address: N/A
+ * @note Size: 0x70
  */
 ShadowNode::ShadowNode(Creature* owner, int count)
 {
@@ -109,10 +101,9 @@ ShadowNode::ShadowNode(Creature* owner, int count)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
+/**
+ * @note Address: N/A
+ * @note Size: 0x70
  */
 void ShadowNode::init(int count)
 {
@@ -122,10 +113,9 @@ void ShadowNode::init(int count)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802413C4
- * Size:	000080
+/**
+ * @note Address: 0x802413C4
+ * @note Size: 0x80
  */
 ShadowMgr::ShadowMgr(int count)
 {
@@ -139,10 +129,9 @@ ShadowMgr::ShadowMgr(int count)
 	mName                = "ShadowMgr";
 }
 
-/*
- * --INFO--
- * Address:	80241444
- * Size:	000210
+/**
+ * @note Address: 0x80241444
+ * @note Size: 0x210
  */
 void ShadowMgr::loadResource()
 {
@@ -157,24 +146,21 @@ void ShadowMgr::loadResource()
 	readShadowParms("/user/Nishimura/Shadow/shadowParms.txt");
 }
 
-/*
- * --INFO--
- * Address:	80241654
- * Size:	000004
+/**
+ * @note Address: 0x80241654
+ * @note Size: 0x4
  */
 void ShadowMgr::init() { }
 
-/*
- * --INFO--
- * Address:	80241658
- * Size:	000010
+/**
+ * @note Address: 0x80241658
+ * @note Size: 0x10
  */
 void ShadowMgr::setViewport(Viewport* vp, int idx) { mViewports[idx] = vp; }
 
-/*
- * --INFO--
- * Address:	80241668
- * Size:	000048
+/**
+ * @note Address: 0x80241668
+ * @note Size: 0x48
  */
 void ShadowMgr::setShadowColor(Color4* color)
 {
@@ -182,40 +168,36 @@ void ShadowMgr::setShadowColor(Color4* color)
 	mCylinders[1]->setColor(color);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 void ShadowMgr::resetShadowColor()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void ShadowMgr::drawShadowOn()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void ShadowMgr::drawShadowOff()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	802416B0
- * Size:	000260
+/**
+ * @note Address: 0x802416B0
+ * @note Size: 0x260
  */
 void ShadowMgr::update()
 {
@@ -269,20 +251,18 @@ void ShadowMgr::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000250
+/**
+ * @note Address: N/A
+ * @note Size: 0x250
  */
 void ShadowMgr::draw(Graphics&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80241910
- * Size:	000210
+/**
+ * @note Address: 0x80241910
+ * @note Size: 0x210
  */
 void ShadowMgr::draw(Graphics& gfx, int idx)
 {
@@ -320,10 +300,9 @@ void ShadowMgr::draw(Graphics& gfx, int idx)
 	sys->mTimers->_stop("shadow");
 }
 
-/*
- * --INFO--
- * Address:	80241B20
- * Size:	0000F0
+/**
+ * @note Address: 0x80241B20
+ * @note Size: 0xF0
  */
 void ShadowMgr::createShadow(Creature* owner)
 {
@@ -345,10 +324,9 @@ void ShadowMgr::createShadow(Creature* owner)
 	mAllocShadowNum++;
 }
 
-/*
- * --INFO--
- * Address:	80241C10
- * Size:	000058
+/**
+ * @note Address: 0x80241C10
+ * @note Size: 0x58
  */
 void ShadowMgr::killAll()
 {
@@ -358,10 +336,9 @@ void ShadowMgr::killAll()
 	mInactiveShadows->clearRelations();
 }
 
-/*
- * --INFO--
- * Address:	80241C68
- * Size:	000044
+/**
+ * @note Address: 0x80241C68
+ * @note Size: 0x44
  */
 void ShadowMgr::killShadow(Creature* owner)
 {
@@ -369,10 +346,9 @@ void ShadowMgr::killShadow(Creature* owner)
 	killNormalShadow(owner);
 }
 
-/*
- * --INFO--
- * Address:	80241CAC
- * Size:	000044
+/**
+ * @note Address: 0x80241CAC
+ * @note Size: 0x44
  */
 void ShadowMgr::addShadow(Creature* owner)
 {
@@ -380,20 +356,18 @@ void ShadowMgr::addShadow(Creature* owner)
 	addNormalShadow(owner);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
+/**
+ * @note Address: N/A
+ * @note Size: 0x44
  */
 void ShadowMgr::addHeadShadow(Creature*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80241CF0
- * Size:	000044
+/**
+ * @note Address: 0x80241CF0
+ * @note Size: 0x44
  */
 void ShadowMgr::delShadow(Creature* owner)
 {
@@ -401,10 +375,9 @@ void ShadowMgr::delShadow(Creature* owner)
 	delNormalShadow(owner);
 }
 
-/*
- * --INFO--
- * Address:	80241D34
- * Size:	0000AC
+/**
+ * @note Address: 0x80241D34
+ * @note Size: 0xAC
  */
 void ShadowMgr::addNormalShadow(Creature* owner)
 {
@@ -419,10 +392,9 @@ void ShadowMgr::addNormalShadow(Creature* owner)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80241DE0
- * Size:	0000B8
+/**
+ * @note Address: 0x80241DE0
+ * @note Size: 0xB8
  */
 void ShadowMgr::addJointShadow(Creature* owner)
 {
@@ -438,30 +410,27 @@ void ShadowMgr::addJointShadow(Creature* owner)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000AC
+/**
+ * @note Address: N/A
+ * @note Size: 0xAC
  */
 void ShadowMgr::addHeadNormalShadow(Creature*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B8
+/**
+ * @note Address: N/A
+ * @note Size: 0xB8
  */
 void ShadowMgr::addHeadJointShadow(Creature*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80241E98
- * Size:	00006C
+/**
+ * @note Address: 0x80241E98
+ * @note Size: 0x6C
  */
 void ShadowMgr::delNormalShadow(Creature* owner)
 {
@@ -475,10 +444,9 @@ void ShadowMgr::delNormalShadow(Creature* owner)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80241F04
- * Size:	000080
+/**
+ * @note Address: 0x80241F04
+ * @note Size: 0x80
  */
 void ShadowMgr::delJointShadow(Creature* owner)
 {
@@ -494,10 +462,9 @@ void ShadowMgr::delJointShadow(Creature* owner)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80241F84
- * Size:	0000AC
+/**
+ * @note Address: 0x80241F84
+ * @note Size: 0xAC
  */
 void ShadowMgr::killNormalShadow(Creature* owner)
 {
@@ -518,10 +485,9 @@ void ShadowMgr::killNormalShadow(Creature* owner)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80242030
- * Size:	0000AC
+/**
+ * @note Address: 0x80242030
+ * @note Size: 0xAC
  */
 void ShadowMgr::killJointShadow(Creature* owner)
 {
@@ -547,17 +513,15 @@ void ShadowMgr::killJointShadow(Creature* owner)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802420DC
- * Size:	000024
+/**
+ * @note Address: 0x802420DC
+ * @note Size: 0x24
  */
 void ShadowMgr::setJointShadowRootNode(JointShadowRootNode* node) { mInactiveJointShadows->add(node); }
 
-/*
- * --INFO--
- * Address:	80242100
- * Size:	0000F0
+/**
+ * @note Address: 0x80242100
+ * @note Size: 0xF0
  */
 void ShadowMgr::setForceVisible(Creature* owner, bool isVisible)
 {
@@ -602,24 +566,21 @@ void ShadowMgr::setForceVisible(Creature* owner, bool isVisible)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802421F0
- * Size:	000030
+/**
+ * @note Address: 0x802421F0
+ * @note Size: 0x30
  */
 int ShadowMgr::getSize() { return mActiveShadows->getChildCount(); }
 
-/*
- * --INFO--
- * Address:	80242220
- * Size:	000008
+/**
+ * @note Address: 0x80242220
+ * @note Size: 0x8
  */
 int ShadowMgr::getMax() { return mAllocShadowNum; }
 
-/*
- * --INFO--
- * Address:	80242228
- * Size:	000038
+/**
+ * @note Address: 0x80242228
+ * @note Size: 0x38
  */
 Creature* ShadowMgr::getCreature(int idx)
 {
@@ -631,31 +592,27 @@ Creature* ShadowMgr::getCreature(int idx)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80242260
- * Size:	000008
+/**
+ * @note Address: 0x80242260
+ * @note Size: 0x8
  */
 int ShadowMgr::getFirst() { return 0; }
 
-/*
- * --INFO--
- * Address:	80242268
- * Size:	000008
+/**
+ * @note Address: 0x80242268
+ * @note Size: 0x8
  */
 int ShadowMgr::getNext(int idx) { return idx + 1; }
 
-/*
- * --INFO--
- * Address:	80242270
- * Size:	00004C
+/**
+ * @note Address: 0x80242270
+ * @note Size: 0x4C
  */
 bool ShadowMgr::isDone(int idx) { return (u8)(idx >= getSize()); }
 
-/*
- * --INFO--
- * Address:	802422BC
- * Size:	00004C
+/**
+ * @note Address: 0x802422BC
+ * @note Size: 0x4C
  */
 u32 ShadowMgr::getShadowMaskType(int p1, int p2)
 {
@@ -678,10 +635,9 @@ u32 ShadowMgr::getShadowMaskType(int p1, int p2)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	80242308
- * Size:	00004C
+/**
+ * @note Address: 0x80242308
+ * @note Size: 0x4C
  */
 u32 ShadowMgr::getShadowType(int p1, int p2)
 {
@@ -704,10 +660,9 @@ u32 ShadowMgr::getShadowType(int p1, int p2)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	80242354
- * Size:	000080
+/**
+ * @note Address: 0x80242354
+ * @note Size: 0x80
  */
 bool ShadowMgr::isDrawNormalShadow(ShadowNode* node, int vpNum)
 {
@@ -718,10 +673,9 @@ bool ShadowMgr::isDrawNormalShadow(ShadowNode* node, int vpNum)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802423D4
- * Size:	000080
+/**
+ * @note Address: 0x802423D4
+ * @note Size: 0x80
  */
 bool ShadowMgr::isDrawJointShadow(JointShadowRootNode* node, int vpNum)
 {
@@ -732,10 +686,9 @@ bool ShadowMgr::isDrawJointShadow(JointShadowRootNode* node, int vpNum)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80242454
- * Size:	0000AC
+/**
+ * @note Address: 0x80242454
+ * @note Size: 0xAC
  */
 void ShadowMgr::readShadowParms(char* fileName)
 {
@@ -749,10 +702,9 @@ void ShadowMgr::readShadowParms(char* fileName)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80242500
- * Size:	000084
+/**
+ * @note Address: 0x80242500
+ * @note Size: 0x84
  */
 void ShadowMgr::write(Stream& output)
 {
@@ -764,10 +716,9 @@ void ShadowMgr::write(Stream& output)
 	mParms->write(output);
 }
 
-/*
- * --INFO--
- * Address:	80242584
- * Size:	00007C
+/**
+ * @note Address: 0x80242584
+ * @note Size: 0x7C
  */
 void ShadowMgr::read(Stream& input)
 {

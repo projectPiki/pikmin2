@@ -2,10 +2,9 @@
 #include "JSystem/JParticle/JPAEmitter.h"
 #include "JSystem/JParticle/JPAShape.h"
 
-/*
- * --INFO--
- * Address:	8008EE44
- * Size:	000128
+/**
+ * @note Address: 0x8008EE44
+ * @note Size: 0x128
  */
 void JPARegistChildPrmEnv(JPAEmitterWorkData* work)
 {
@@ -25,10 +24,9 @@ void JPARegistChildPrmEnv(JPAEmitterWorkData* work)
 	GXSetTevColor(GX_TEVREG1, env);
 }
 
-/*
- * --INFO--
- * Address:	8008EF6C
- * Size:	00002C
+/**
+ * @note Address: 0x8008EF6C
+ * @note Size: 0x2C
  */
 void JPACalcChildAlphaOut(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
@@ -36,10 +34,9 @@ void JPACalcChildAlphaOut(JPAEmitterWorkData* workData, JPABaseParticle* particl
 	OSf32tou8(&anm, &particle->mPrmColorAlphaAnm);
 }
 
-/*
- * --INFO--
- * Address:	8008EF98
- * Size:	000030
+/**
+ * @note Address: 0x8008EF98
+ * @note Size: 0x30
  */
 void JPACalcChildScaleOut(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
@@ -47,17 +44,15 @@ void JPACalcChildScaleOut(JPAEmitterWorkData* workData, JPABaseParticle* particl
 	particle->mParticleScaleY = particle->mAlphaWaveRandom * (1.0f - particle->mTime);
 }
 
-/*
- * --INFO--
- * Address:	8008EFC8
- * Size:	000008
+/**
+ * @note Address: 0x8008EFC8
+ * @note Size: 0x8
  */
 JPAChildShape::JPAChildShape(const u8* data) { mData = (JPAChildShapeData*)data; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001C8
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C8
  */
 void JPAChildShape::init_jpa(const u8*, JKRHeap*)
 {

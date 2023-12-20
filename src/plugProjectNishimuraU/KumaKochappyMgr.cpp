@@ -3,10 +3,9 @@
 namespace Game {
 namespace KumaKochappy {
 
-/*
- * --INFO--
- * Address:	802E6CE4
- * Size:	000050
+/**
+ * @note Address: 0x802E6CE4
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -14,24 +13,21 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "チビクママネージャ"; // little bear manager
 }
 
-/*
- * --INFO--
- * Address:	802E6D34
- * Size:	000048
+/**
+ * @note Address: 0x802E6D34
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Parms); }
 
-/*
- * --INFO--
- * Address:	802E6E14
- * Size:	000060
+/**
+ * @note Address: 0x802E6E14
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	802E6F30
- * Size:	000010
+/**
+ * @note Address: 0x802E6F30
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 

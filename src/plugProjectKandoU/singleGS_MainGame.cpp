@@ -38,10 +38,9 @@ static const char className[] = "SingleGS_Game";
 namespace Game {
 namespace SingleGame {
 
-/*
- * --INFO--
- * Address:	802135AC
- * Size:	0008B0
+/**
+ * @note Address: 0x802135AC
+ * @note Size: 0x8B0
  */
 void GameState::init(SingleGameSection* game, StateArg* arg)
 {
@@ -201,10 +200,9 @@ void GameState::init(SingleGameSection* game, StateArg* arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000174
+/**
+ * @note Address: N/A
+ * @note Size: 0x174
  */
 unknown GameState::gameStart(SingleGameSection*)
 {
@@ -218,10 +216,9 @@ unknown GameState::gameStart(SingleGameSection*)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80213E5C
- * Size:	000288
+/**
+ * @note Address: 0x80213E5C
+ * @note Size: 0x288
  */
 bool GameState::check_DemoInout(SingleGameSection* game)
 {
@@ -276,17 +273,15 @@ bool GameState::check_DemoInout(SingleGameSection* game)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802140E4
- * Size:	00000C
+/**
+ * @note Address: 0x802140E4
+ * @note Size: 0xC
  */
 void GameState::on_section_fadeout(SingleGameSection*) { mDoExit = 1; }
 
-/*
- * --INFO--
- * Address:	802140F0
- * Size:	000B28
+/**
+ * @note Address: 0x802140F0
+ * @note Size: 0xB28
  */
 void GameState::on_demo_timer(SingleGameSection* game, u32 id)
 {
@@ -400,10 +395,9 @@ void GameState::on_demo_timer(SingleGameSection* game, u32 id)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80214C18
- * Size:	0006E0
+/**
+ * @note Address: 0x80214C18
+ * @note Size: 0x6E0
  */
 void GameState::exec(SingleGameSection* game)
 {
@@ -1051,10 +1045,9 @@ lbl_802152DC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802154D4
- * Size:	0000D4
+/**
+ * @note Address: 0x802154D4
+ * @note Size: 0xD4
  */
 void GameState::onOrimaDown(SingleGameSection* game, int id)
 {
@@ -1070,10 +1063,9 @@ void GameState::onOrimaDown(SingleGameSection* game, int id)
 	moviePlayer->play(moviePlayArg);
 }
 
-/*
- * --INFO--
- * Address:	802155A8
- * Size:	0000DC
+/**
+ * @note Address: 0x802155A8
+ * @note Size: 0xDC
  */
 void GameState::onHoleIn(SingleGameSection* game, ItemCave::Item* item)
 {
@@ -1086,17 +1078,15 @@ void GameState::onHoleIn(SingleGameSection* game, ItemCave::Item* item)
 	moviePlayer->play(moviePlayArg);
 }
 
-/*
- * --INFO--
- * Address:	80215684
- * Size:	000004
+/**
+ * @note Address: 0x80215684
+ * @note Size: 0x4
  */
 void GameState::onMovieCommand(SingleGameSection*, int) { }
 
-/*
- * --INFO--
- * Address:	80215688
- * Size:	000158
+/**
+ * @note Address: 0x80215688
+ * @note Size: 0x158
  */
 void GameState::onMovieStart(SingleGameSection* game, MovieConfig* config, u32, u32 id)
 {
@@ -1241,10 +1231,9 @@ void GameState::onMovieStart(SingleGameSection* game, MovieConfig* config, u32, 
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802157E0
- * Size:	001A7C
+/**
+ * @note Address: 0x802157E0
+ * @note Size: 0x1A7C
  */
 void GameState::onMovieDone(SingleGameSection* game, MovieConfig* config, u32, u32 id)
 {
@@ -1481,10 +1470,9 @@ void GameState::onMovieDone(SingleGameSection* game, MovieConfig* config, u32, u
 	}
 }
 
-/*
- * --INFO--
- * Address:	8021725C
- * Size:	000074
+/**
+ * @note Address: 0x8021725C
+ * @note Size: 0x74
  */
 bool GameState::needRepayDemo()
 {
@@ -1542,10 +1530,9 @@ lbl_802172BC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802172D0
- * Size:	000140
+/**
+ * @note Address: 0x802172D0
+ * @note Size: 0x140
  */
 void GameState::startRepayDemo()
 {
@@ -1573,10 +1560,9 @@ void GameState::startRepayDemo()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80217410
- * Size:	0000A8
+/**
+ * @note Address: 0x80217410
+ * @note Size: 0xA8
  */
 GameState::RepayDemoState GameState::updateRepayDemo()
 {
@@ -1598,20 +1584,18 @@ GameState::RepayDemoState GameState::updateRepayDemo()
 	return RDS_0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void GameState::drawRepayDemo(Graphics&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	802174B8
- * Size:	000078
+/**
+ * @note Address: 0x802174B8
+ * @note Size: 0x78
  */
 void GameState::draw(SingleGameSection* game, Graphics& gfx)
 {
@@ -1629,10 +1613,9 @@ void GameState::draw(SingleGameSection* game, Graphics& gfx)
 	game->test_draw_treasure_detector();
 }
 
-/*
- * --INFO--
- * Address:	80217530
- * Size:	000068
+/**
+ * @note Address: 0x80217530
+ * @note Size: 0x68
  */
 void GameState::cleanup(SingleGameSection* game)
 {

@@ -5,24 +5,21 @@
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	8031FD04
- * Size:	00003C
+/**
+ * @note Address: 0x8031FD04
+ * @note Size: 0x3C
  */
 Challenge2P::Challenge2P() { }
 
-/*
- * --INFO--
- * Address:	8031FD40
- * Size:	000004
+/**
+ * @note Address: 0x8031FD40
+ * @note Size: 0x4
  */
 void Challenge2P::doUserCallBackFunc(Resource::MgrCommand*) { }
 
-/*
- * --INFO--
- * Address:	8031FD44
- * Size:	0000C0
+/**
+ * @note Address: 0x8031FD44
+ * @note Size: 0xC0
  */
 void Challenge2P::doCreateObj(JKRArchive* archive)
 {
@@ -32,10 +29,9 @@ void Challenge2P::doCreateObj(JKRArchive* archive)
 	setColorBG(0, 0, 0, 0);
 }
 
-/*
- * --INFO--
- * Address:	8031FE04
- * Size:	00004C
+/**
+ * @note Address: 0x8031FE04
+ * @note Size: 0x4C
  */
 bool Challenge2P::doStart(::Screen::StartSceneArg* sceneArg)
 {
@@ -43,10 +39,9 @@ bool Challenge2P::doStart(::Screen::StartSceneArg* sceneArg)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8031FE50
- * Size:	000038
+/**
+ * @note Address: 0x8031FE50
+ * @note Size: 0x38
  */
 void Challenge2P::doUpdateActive()
 {
@@ -56,10 +51,9 @@ void Challenge2P::doUpdateActive()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8031FE88
- * Size:	000084
+/**
+ * @note Address: 0x8031FE88
+ * @note Size: 0x84
  */
 void Challenge2P::startCountDown()
 {

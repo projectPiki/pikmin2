@@ -53,10 +53,9 @@
         .4byte 0x00000000
 */
 
-/*
- * --INFO--
- * Address:	80094028
- * Size:	000048
+/**
+ * @note Address: 0x80094028
+ * @note Size: 0x48
  */
 JPAParticleCallBack::~JPAParticleCallBack()
 {
@@ -84,10 +83,9 @@ lbl_80094058:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80094070
- * Size:	0008C4
+/**
+ * @note Address: 0x80094070
+ * @note Size: 0x8C4
  */
 void JPABaseParticle::init_p(JPAEmitterWorkData* workData)
 {
@@ -741,10 +739,9 @@ lbl_800948F0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80094934
- * Size:	0006A8
+/**
+ * @note Address: 0x80094934
+ * @note Size: 0x6A8
  */
 void JPABaseParticle::init_c(JPAEmitterWorkData*, JPABaseParticle*)
 {
@@ -1214,10 +1211,9 @@ lbl_80094FD4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80094FDC
- * Size:	0002A8
+/**
+ * @note Address: 0x80094FDC
+ * @note Size: 0x2A8
  */
 void JPABaseParticle::calc_p(JPAEmitterWorkData*)
 {
@@ -1413,17 +1409,15 @@ lbl_80095268:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80095284
- * Size:	000004
+/**
+ * @note Address: 0x80095284
+ * @note Size: 0x4
  */
 void JPAParticleCallBack::execute(JPABaseEmitter*, JPABaseParticle*) { }
 
-/*
- * --INFO--
- * Address:	80095288
- * Size:	000278
+/**
+ * @note Address: 0x80095288
+ * @note Size: 0x278
  */
 void JPABaseParticle::calc_c(JPAEmitterWorkData*)
 {
@@ -1603,10 +1597,9 @@ lbl_800954E8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80095500
- * Size:	000080
+/**
+ * @note Address: 0x80095500
+ * @note Size: 0x80
  */
 bool JPABaseParticle::canCreateChild(JPAEmitterWorkData* workData)
 {
@@ -1648,10 +1641,9 @@ lbl_80095574:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80095580
- * Size:	000024
+/**
+ * @note Address: 0x80095580
+ * @note Size: 0x24
  */
 float JPABaseParticle::getCalcCurrentPositionX(const JPABaseEmitter* emitter) const
 {
@@ -1669,10 +1661,9 @@ float JPABaseParticle::getCalcCurrentPositionX(const JPABaseEmitter* emitter) co
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800955A4
- * Size:	000024
+/**
+ * @note Address: 0x800955A4
+ * @note Size: 0x24
  */
 float JPABaseParticle::getCalcCurrentPositionY(const JPABaseEmitter* emitter) const
 {
@@ -1689,10 +1680,9 @@ float JPABaseParticle::getCalcCurrentPositionY(const JPABaseEmitter* emitter) co
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800955C8
- * Size:	000024
+/**
+ * @note Address: 0x800955C8
+ * @note Size: 0x24
  */
 float JPABaseParticle::getCalcCurrentPositionZ(const JPABaseEmitter* emitter) const
 {
@@ -1709,20 +1699,18 @@ float JPABaseParticle::getCalcCurrentPositionZ(const JPABaseEmitter* emitter) co
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 float JPABaseParticle::getWidth(const JPABaseEmitter* emitter) const
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 float JPABaseParticle::getHeight(const JPABaseEmitter* emitter) const
 {

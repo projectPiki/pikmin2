@@ -11,10 +11,9 @@ static u32 LatencyTable[8] = {
 void __CARDMountCallback(s32 channel, s32 result);
 static void DoUnmount(s32 channel, s32 result);
 
-/*
- * --INFO--
- * Address:	800D8334
- * Size:	0000CC
+/**
+ * @note Address: 0x800D8334
+ * @note Size: 0xCC
  */
 static BOOL IsCard(u32 id)
 {
@@ -54,10 +53,9 @@ static BOOL IsCard(u32 id)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800D8400
- * Size:	000038
+/**
+ * @note Address: 0x800D8400
+ * @note Size: 0x38
  */
 BOOL CARDProbe(s32 channel)
 {
@@ -68,10 +66,9 @@ BOOL CARDProbe(s32 channel)
 	return EXIProbe(channel);
 }
 
-/*
- * --INFO--
- * Address:	800D8438
- * Size:	00017C
+/**
+ * @note Address: 0x800D8438
+ * @note Size: 0x17C
  */
 s32 CARDProbeEx(s32 channel, s32* memSize, s32* sectorSize)
 {
@@ -129,10 +126,9 @@ s32 CARDProbeEx(s32 channel, s32* memSize, s32* sectorSize)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	800D85B4
- * Size:	000410
+/**
+ * @note Address: 0x800D85B4
+ * @note Size: 0x410
  */
 static s32 DoMount(s32 channel)
 {
@@ -252,10 +248,9 @@ error:
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	800D89C4
- * Size:	000138
+/**
+ * @note Address: 0x800D89C4
+ * @note Size: 0x138
  */
 void __CARDMountCallback(s32 channel, s32 result)
 {
@@ -299,10 +294,9 @@ void __CARDMountCallback(s32 channel, s32 result)
 	callback(channel, result);
 }
 
-/*
- * --INFO--
- * Address:	800D8AFC
- * Size:	0001A0
+/**
+ * @note Address: 0x800D8AFC
+ * @note Size: 0x1A0
  */
 s32 CARDMountAsync(s32 channel, CARDMemoryCard* workArea, CARDCallback detachCallback, CARDCallback attachCallback)
 {
@@ -359,10 +353,9 @@ s32 CARDMountAsync(s32 channel, CARDMemoryCard* workArea, CARDCallback detachCal
 	return DoMount(channel);
 }
 
-/*
- * --INFO--
- * Address:	800D8C9C
- * Size:	000048
+/**
+ * @note Address: 0x800D8C9C
+ * @note Size: 0x48
  */
 s32 CARDMount(s32 channel, CARDMemoryCard* workArea, CARDCallback detachCallback)
 {
@@ -374,10 +367,9 @@ s32 CARDMount(s32 channel, CARDMemoryCard* workArea, CARDCallback detachCallback
 	return __CARDSync(channel);
 }
 
-/*
- * --INFO--
- * Address:	800D8CE4
- * Size:	00009C
+/**
+ * @note Address: 0x800D8CE4
+ * @note Size: 0x9C
  */
 static void DoUnmount(s32 channel, s32 result)
 {
@@ -397,10 +389,9 @@ static void DoUnmount(s32 channel, s32 result)
 	OSRestoreInterrupts(enabled);
 }
 
-/*
- * --INFO--
- * Address:	800D8D80
- * Size:	0000AC
+/**
+ * @note Address: 0x800D8D80
+ * @note Size: 0xAC
  */
 s32 CARDUnmount(s32 channel)
 {

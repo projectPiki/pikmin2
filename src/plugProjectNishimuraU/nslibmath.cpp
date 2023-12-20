@@ -3,10 +3,9 @@
 
 namespace Game {
 namespace NsMathExp {
-/*
- * --INFO--
- * Address:	8023D7B0
- * Size:	0000A8
+/**
+ * @note Address: 0x8023D7B0
+ * @note Size: 0xA8
  * Aside from arg order and defines, identical to Pikmin 1's NsCalculation::calcLagrange
  * Matches!
  */
@@ -20,10 +19,9 @@ void calcLagrange(const Vector3f* p_vec, float p2, Vector3f& new_vec)
 	new_vec.z     = p2_sub1 * (p_vec[2].z * 0.5f * p2) + (p2_sub2 * (p_vec[0].z * 0.5f * p2_sub1) - (p2_sub2 * (p_vec[1].z * p2)));
 }
 
-/*
- * --INFO--
- * Address:	8023D858
- * Size:	0001D8
+/**
+ * @note Address: 0x8023D858
+ * @note Size: 0x1D8
  */
 void calcJointPos(const Vector3f& inPos1, const Vector3f& inPos2, f32 p1, f32 p2, Vector3f& outPos1, Vector3f& outPos2)
 {

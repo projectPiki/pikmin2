@@ -15,10 +15,9 @@ namespace MemoryCard {
 
 char* cFileName = "Pikmin2_SaveData";
 
-/*
- * --INFO--
- * Address:	804428AC
- * Size:	00003C
+/**
+ * @note Address: 0x804428AC
+ * @note Size: 0x3C
  */
 Player::Player()
     : mFlag(0)
@@ -37,17 +36,15 @@ Player::Player()
 {
 }
 
-/*
- * --INFO--
- * Address:	804428E8
- * Size:	000044
+/**
+ * @note Address: 0x804428E8
+ * @note Size: 0x44
  */
 PlayerFileInfo::PlayerFileInfo() { }
 
-/*
- * --INFO--
- * Address:	8044292C
- * Size:	000074
+/**
+ * @note Address: 0x8044292C
+ * @note Size: 0x74
  */
 Player* PlayerFileInfo::getPlayer(int idx)
 {
@@ -55,17 +52,15 @@ Player* PlayerFileInfo::getPlayer(int idx)
 	return &mPlayers[idx];
 }
 
-/*
- * --INFO--
- * Address:	804429A0
- * Size:	000080
+/**
+ * @note Address: 0x804429A0
+ * @note Size: 0x80
  */
 bool PlayerFileInfo::isBrokenFile(int idx) { return getPlayer(idx)->mFlag != 0; }
 
-/*
- * --INFO--
- * Address:	80442A20
- * Size:	000094
+/**
+ * @note Address: 0x80442A20
+ * @note Size: 0x94
  */
 bool PlayerFileInfo::isNewFile(int idx)
 {
@@ -73,17 +68,15 @@ bool PlayerFileInfo::isNewFile(int idx)
 	return !curPlayer->mFlag && !curPlayer->_04;
 }
 
-/*
- * --INFO--
- * Address:	80442AB4
- * Size:	00006C
+/**
+ * @note Address: 0x80442AB4
+ * @note Size: 0x6C
  */
 Resource::~Resource() { mMgr->destroyResource(); }
 
-/*
- * --INFO--
- * Address:	80442B20
- * Size:	00007C
+/**
+ * @note Address: 0x80442B20
+ * @note Size: 0x7C
  */
 Mgr::Mgr()
     : MemoryCardMgr()
@@ -94,17 +87,15 @@ Mgr::Mgr()
 	OSReport("sizeof(PlayerInfo): %d BLOCKSIZE %d padding:%d \n", 0xC000, 0xC000, 0x3C);
 }
 
-/*
- * --INFO--
- * Address:	80442B9C
- * Size:	000030
+/**
+ * @note Address: 0x80442B9C
+ * @note Size: 0x30
  */
 bool Mgr::isErrorOccured() { return getCardStatus() != MCS_IOError; }
 
-/*
- * --INFO--
- * Address:	80442BCC
- * Size:	000120
+/**
+ * @note Address: 0x80442BCC
+ * @note Size: 0x120
  */
 void Mgr::loadResource(JKRHeap* heap)
 {
@@ -118,10 +109,9 @@ void Mgr::loadResource(JKRHeap* heap)
 	P2ASSERTLINE(544, mIconImageFile);
 }
 
-/*
- * --INFO--
- * Address:	80442CEC
- * Size:	000010
+/**
+ * @note Address: 0x80442CEC
+ * @note Size: 0x10
  */
 void Mgr::destroyResource()
 {
@@ -129,17 +119,15 @@ void Mgr::destroyResource()
 	mIconImageFile   = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80442CFC
- * Size:	000020
+/**
+ * @note Address: 0x80442CFC
+ * @note Size: 0x20
  */
 void Mgr::update() { MemoryCardMgr::update(); }
 
-/*
- * --INFO--
- * Address:	80442D1C
- * Size:	00006C
+/**
+ * @note Address: 0x80442D1C
+ * @note Size: 0x6C
  */
 bool Mgr::format()
 {
@@ -152,30 +140,27 @@ bool Mgr::format()
 	return result;
 }
 
-// /*
-// * --INFO--
-// * Address:	........
-// * Size:	000080
+// /**
+// * @note Address: N/A
+// * @note Size: 0x80
 // */
 // void Mgr::setCommandFlag(int)
 // {
 // // UNUSED FUNCTION
 // }
 
-// /*
-// * --INFO--
-// * Address:	........
-// * Size:	000074
+// /**
+// * @note Address: N/A
+// * @note Size: 0x74
 // */
 // void Mgr::verifySerialNo()
 // {
 // // UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	80442D88
- * Size:	000074
+/**
+ * @note Address: 0x80442D88
+ * @note Size: 0x74
  */
 bool Mgr::checkBeforeSave()
 {
@@ -189,10 +174,9 @@ bool Mgr::checkBeforeSave()
 	return isCheck;
 }
 
-/*
- * --INFO--
- * Address:	80442DFC
- * Size:	000074
+/**
+ * @note Address: 0x80442DFC
+ * @note Size: 0x74
  */
 bool Mgr::checkError()
 {
@@ -206,10 +190,9 @@ bool Mgr::checkError()
 	return isError;
 }
 
-/*
- * --INFO--
- * Address:	80442E70
- * Size:	000074
+/**
+ * @note Address: 0x80442E70
+ * @note Size: 0x74
  */
 bool Mgr::createNewFile()
 {
@@ -223,10 +206,9 @@ bool Mgr::createNewFile()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80442EE4
- * Size:	0000B8
+/**
+ * @note Address: 0x80442EE4
+ * @note Size: 0xB8
  */
 bool Mgr::saveGameOption()
 {
@@ -240,10 +222,9 @@ bool Mgr::saveGameOption()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80442F9C
- * Size:	0000B8
+/**
+ * @note Address: 0x80442F9C
+ * @note Size: 0xB8
  */
 bool Mgr::loadGameOption()
 {
@@ -257,10 +238,9 @@ bool Mgr::loadGameOption()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80443054
- * Size:	000124
+/**
+ * @note Address: 0x80443054
+ * @note Size: 0x124
  */
 bool Mgr::savePlayerNoCheckSerialNumber(int fileIndex)
 {
@@ -284,10 +264,9 @@ bool Mgr::savePlayerNoCheckSerialNumber(int fileIndex)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80443178
- * Size:	000114
+/**
+ * @note Address: 0x80443178
+ * @note Size: 0x114
  */
 bool Mgr::savePlayer(int fileIndex)
 {
@@ -313,10 +292,9 @@ bool Mgr::savePlayer(int fileIndex)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	8044328C
- * Size:	000124
+/**
+ * @note Address: 0x8044328C
+ * @note Size: 0x124
  */
 bool Mgr::loadPlayer(int fileIndex)
 {
@@ -332,10 +310,9 @@ bool Mgr::loadPlayer(int fileIndex)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	804433B0
- * Size:	000124
+/**
+ * @note Address: 0x804433B0
+ * @note Size: 0x124
  */
 bool Mgr::deletePlayer(int fileIndex)
 {
@@ -351,10 +328,9 @@ bool Mgr::deletePlayer(int fileIndex)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	804434D4
- * Size:	000150
+/**
+ * @note Address: 0x804434D4
+ * @note Size: 0x150
  */
 bool Mgr::copyPlayer(int fileIndex1, int fileIndex2)
 {
@@ -371,10 +347,9 @@ bool Mgr::copyPlayer(int fileIndex1, int fileIndex2)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80443624
- * Size:	0000E8
+/**
+ * @note Address: 0x80443624
+ * @note Size: 0xE8
  */
 bool Mgr::getPlayerHeader(PlayerFileInfo* playerInfo)
 {
@@ -389,10 +364,9 @@ bool Mgr::getPlayerHeader(PlayerFileInfo* playerInfo)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	8044370C
- * Size:	000354
+/**
+ * @note Address: 0x8044370C
+ * @note Size: 0x354
  */
 bool Mgr::doCardProc(void*, MemoryCardMgrCommand* command)
 {
@@ -471,10 +445,9 @@ bool Mgr::doCardProc(void*, MemoryCardMgrCommand* command)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80443A60
- * Size:	000390
+/**
+ * @note Address: 0x80443A60
+ * @note Size: 0x390
  */
 bool Mgr::commandUpdatePlayerHeader(PlayerFileInfo* playerInfo)
 {
@@ -525,10 +498,9 @@ bool Mgr::commandUpdatePlayerHeader(PlayerFileInfo* playerInfo)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80443DF0
- * Size:	00007C
+/**
+ * @note Address: 0x80443DF0
+ * @note Size: 0x7C
  */
 bool Mgr::commandCheckBeforeSave()
 {
@@ -546,10 +518,9 @@ bool Mgr::commandCheckBeforeSave()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80443E6C
- * Size:	000080
+/**
+ * @note Address: 0x80443E6C
+ * @note Size: 0x80
  */
 bool Mgr::commandCheckError()
 {
@@ -566,10 +537,9 @@ bool Mgr::commandCheckError()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80443EEC
- * Size:	0000B8
+/**
+ * @note Address: 0x80443EEC
+ * @note Size: 0xB8
  */
 bool Mgr::checkSpace(MemoryCardMgr::ECardSlot cardSlot)
 {
@@ -595,10 +565,9 @@ bool Mgr::checkSpace(MemoryCardMgr::ECardSlot cardSlot)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80443FA4
- * Size:	000118
+/**
+ * @note Address: 0x80443FA4
+ * @note Size: 0x118
  */
 bool Mgr::commandSaveHeader()
 {
@@ -623,10 +592,9 @@ bool Mgr::commandSaveHeader()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	804440BC
- * Size:	0001A0
+/**
+ * @note Address: 0x804440BC
+ * @note Size: 0x1A0
  */
 bool Mgr::commandCreateNewFile()
 {
@@ -663,10 +631,9 @@ bool Mgr::commandCreateNewFile()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	8044425C
- * Size:	000100
+/**
+ * @note Address: 0x8044425C
+ * @note Size: 0x100
  */
 bool Mgr::dataFormat(MemoryCardMgr::ECardSlot cardSlot)
 {
@@ -690,10 +657,9 @@ bool Mgr::dataFormat(MemoryCardMgr::ECardSlot cardSlot)
 	return !isErrorOccured();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000114
+/**
+ * @note Address: N/A
+ * @note Size: 0x114
  */
 bool Mgr::writeBrokenData(MemoryCardMgr::ECardSlot slot)
 {
@@ -719,10 +685,9 @@ bool Mgr::writeBrokenData(MemoryCardMgr::ECardSlot slot)
 	return !isErrorOccured();
 }
 
-/*
- * --INFO--
- * Address:	8044435C
- * Size:	000170
+/**
+ * @note Address: 0x8044435C
+ * @note Size: 0x170
  */
 bool Mgr::varifyCardStatus()
 {
@@ -742,10 +707,9 @@ bool Mgr::varifyCardStatus()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	804444CC
- * Size:	0001C0
+/**
+ * @note Address: 0x804444CC
+ * @note Size: 0x1C0
  */
 bool Mgr::commandSaveGameOption(bool param_1, bool param_2)
 {
@@ -790,10 +754,9 @@ bool Mgr::commandSaveGameOption(bool param_1, bool param_2)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	8044468C
- * Size:	000248
+/**
+ * @note Address: 0x8044468C
+ * @note Size: 0x248
  */
 bool Mgr::commandLoadGameOption()
 {
@@ -871,24 +834,21 @@ bool Mgr::commandLoadGameOption()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	804448D4
- * Size:	000028
+/**
+ * @note Address: 0x804448D4
+ * @note Size: 0x28
  */
 void Mgr::writeGameOption(Stream& stream) { sys->mPlayData->write(stream); }
 
-/*
- * --INFO--
- * Address:	804448FC
- * Size:	000028
+/**
+ * @note Address: 0x804448FC
+ * @note Size: 0x28
  */
 void Mgr::readGameOption(Stream& stream) { sys->mPlayData->read(stream); }
 
-/*
- * --INFO--
- * Address:	80444924
- * Size:	000070
+/**
+ * @note Address: 0x80444924
+ * @note Size: 0x70
  */
 bool Mgr::checkSerialNo(bool param_1)
 {
@@ -906,10 +866,9 @@ bool Mgr::checkSerialNo(bool param_1)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80444994
- * Size:	0000D0
+/**
+ * @note Address: 0x80444994
+ * @note Size: 0xD0
  */
 bool Mgr::commandSavePlayer(s8 fileIndex, bool param_2)
 {
@@ -922,10 +881,9 @@ bool Mgr::commandSavePlayer(s8 fileIndex, bool param_2)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80444A64
- * Size:	000374
+/**
+ * @note Address: 0x80444A64
+ * @note Size: 0x374
  */
 bool Mgr::commandSavePlayerNoCheckSerialNo(s8 fileIndex, bool param_2)
 {
@@ -1015,10 +973,9 @@ bool Mgr::commandSavePlayerNoCheckSerialNo(s8 fileIndex, bool param_2)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80444DD8
- * Size:	000070
+/**
+ * @note Address: 0x80444DD8
+ * @note Size: 0x70
  */
 bool Mgr::getPlayerInfo(s8 fileIndex, PlayerInfoHeader* playerInfo, bool* param_1)
 {
@@ -1026,10 +983,9 @@ bool Mgr::getPlayerInfo(s8 fileIndex, PlayerInfoHeader* playerInfo, bool* param_
 	return !isErrorOccured() && (index >= 0 && index < 4);
 }
 
-/*
- * --INFO--
- * Address:	80444E48
- * Size:	0002B0
+/**
+ * @note Address: 0x80444E48
+ * @note Size: 0x2B0
  */
 int Mgr::getIndexPlayerInfo(s8 fileIndex, PlayerInfoHeader* infoHeader, bool* param_1)
 {
@@ -1084,10 +1040,9 @@ int Mgr::getIndexPlayerInfo(s8 fileIndex, PlayerInfoHeader* infoHeader, bool* pa
 	return index;
 }
 
-/*
- * --INFO--
- * Address:	804450F8
- * Size:	00019C
+/**
+ * @note Address: 0x804450F8
+ * @note Size: 0x19C
  */
 bool Mgr::commandLoadPlayer(s8 fileIndex)
 {
@@ -1116,10 +1071,9 @@ bool Mgr::commandLoadPlayer(s8 fileIndex)
 	return !isErrorOccured();
 }
 
-/*
- * --INFO--
- * Address:	80445294
- * Size:	00009C
+/**
+ * @note Address: 0x80445294
+ * @note Size: 0x9C
  */
 bool Mgr::loadPlayerForNoCard(s8 fileIndex)
 {
@@ -1131,10 +1085,9 @@ bool Mgr::loadPlayerForNoCard(s8 fileIndex)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80445330
- * Size:	000178
+/**
+ * @note Address: 0x80445330
+ * @note Size: 0x178
  */
 bool Mgr::loadPlayerProc(s8 fileIndex, u8* param_2)
 {
@@ -1160,10 +1113,9 @@ bool Mgr::loadPlayerProc(s8 fileIndex, u8* param_2)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	804454A8
- * Size:	000094
+/**
+ * @note Address: 0x804454A8
+ * @note Size: 0x94
  */
 bool Mgr::commandDeletePlayer(s8 fileIndex)
 {
@@ -1179,10 +1131,9 @@ bool Mgr::commandDeletePlayer(s8 fileIndex)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	8044553C
- * Size:	00019C
+/**
+ * @note Address: 0x8044553C
+ * @note Size: 0x19C
  */
 bool Mgr::savePlayerProc(s8 fileIndex, u8* param_2, bool param_3)
 {
@@ -1215,10 +1166,9 @@ bool Mgr::savePlayerProc(s8 fileIndex, u8* param_2, bool param_3)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	804456D8
- * Size:	000068
+/**
+ * @note Address: 0x804456D8
+ * @note Size: 0x68
  */
 bool Mgr::commandCheckSerialNo()
 {
@@ -1234,10 +1184,9 @@ bool Mgr::commandCheckSerialNo()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80445740
- * Size:	0001C8
+/**
+ * @note Address: 0x80445740
+ * @note Size: 0x1C8
  */
 bool Mgr::commandCopyPlayer(s8 fileIndex, s8 param_1)
 {
@@ -1254,48 +1203,42 @@ bool Mgr::commandCopyPlayer(s8 fileIndex, s8 param_1)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80445908
- * Size:	000024
+/**
+ * @note Address: 0x80445908
+ * @note Size: 0x24
  */
 void Mgr::writePlayer(Stream& stream) { playData->write(stream); }
 
-/*
- * --INFO--
- * Address:	8044592C
- * Size:	000024
+/**
+ * @note Address: 0x8044592C
+ * @note Size: 0x24
  */
 void Mgr::readPlayer(Stream& stream) { playData->read(stream); }
 
-/*
- * --INFO--
- * Address:	80445950
- * Size:	000074
+/**
+ * @note Address: 0x80445950
+ * @note Size: 0x74
  */
 bool Mgr::checkOptionInfo(OptionInfo* optionInfo)
 {
 	return _D0 && testCheckSumOptionInfo(optionInfo) && optionInfo->_00 == 'OpVa' && optionInfo->_04 == '0002';
 }
 
-/*
- * --INFO--
- * Address:	804459C4
- * Size:	000024
+/**
+ * @note Address: 0x804459C4
+ * @note Size: 0x24
  */
 u32 Mgr::calcCheckSumOptionInfo(OptionInfo* optionInfo) { return calcCheckSum(optionInfo, 0x1FFC); }
 
-/*
- * --INFO--
- * Address:	804459E8
- * Size:	000040
+/**
+ * @note Address: 0x804459E8
+ * @note Size: 0x40
  */
 bool Mgr::testCheckSumOptionInfo(OptionInfo* optionInfo) { return (calcCheckSum(optionInfo, 0x1FFC) == optionInfo[0x3FF]._04); }
 
-/*
- * --INFO--
- * Address:	80445A28
- * Size:	000074
+/**
+ * @note Address: 0x80445A28
+ * @note Size: 0x74
  */
 bool Mgr::checkPlayerInfo(PlayerInfo* playerInfo)
 {
@@ -1306,24 +1249,21 @@ bool Mgr::checkPlayerInfo(PlayerInfo* playerInfo)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80445A9C
- * Size:	000028
+/**
+ * @note Address: 0x80445A9C
+ * @note Size: 0x28
  */
 u32 Mgr::calcCheckSumPlayerInfo(PlayerInfo* playerInfo) { return calcCheckSum(playerInfo, 0xBFFC); }
 
-/*
- * --INFO--
- * Address:	80445AC4
- * Size:	000048
+/**
+ * @note Address: 0x80445AC4
+ * @note Size: 0x48
  */
 bool Mgr::testCheckSumPlayerInfo(PlayerInfo* playerInfo) { return (calcCheckSum(playerInfo, 0xBFFC) == playerInfo[0x17FF]._04); }
 
-/*
- * --INFO--
- * Address:	80445B0C
- * Size:	0000B8
+/**
+ * @note Address: 0x80445B0C
+ * @note Size: 0xB8
  */
 u32 Mgr::getCardStatus()
 {
@@ -1351,10 +1291,9 @@ u32 Mgr::getCardStatus()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80445BC4
- * Size:	0000B8
+/**
+ * @note Address: 0x80445BC4
+ * @note Size: 0xB8
  */
 bool Mgr::writeInvalidGameOption()
 {
@@ -1376,10 +1315,9 @@ bool Mgr::writeInvalidGameOption()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80445C7C
- * Size:	000070
+/**
+ * @note Address: 0x80445C7C
+ * @note Size: 0x70
  */
 bool Mgr::writeInvalidPlayerInfoAll()
 {
@@ -1392,10 +1330,9 @@ bool Mgr::writeInvalidPlayerInfoAll()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80445CEC
- * Size:	000110
+/**
+ * @note Address: 0x80445CEC
+ * @note Size: 0x110
  */
 bool Mgr::writeInvalidPlayerInfo(int fileIndex, s8 param_2)
 {
@@ -1410,10 +1347,9 @@ bool Mgr::writeInvalidPlayerInfo(int fileIndex, s8 param_2)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80445DFC
- * Size:	0001A8
+/**
+ * @note Address: 0x80445DFC
+ * @note Size: 0x1A8
  */
 bool Mgr::checkPlayerNoPlayerInfo(int param_1, s8 param_2, PlayerInfoHeader* infoHeader)
 {
@@ -1442,20 +1378,18 @@ bool Mgr::checkPlayerNoPlayerInfo(int param_1, s8 param_2, PlayerInfoHeader* inf
 	return result;
 }
 
-// /*
-// * --INFO--
-// * Address:	........
-// * Size:	000040
+// /**
+// * @note Address: N/A
+// * @note Size: 0x40
 // */
 // void Mgr::loadPlayerHeaderProc(int, u8*)
 // {
 // // UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	80445FA4
- * Size:	000380
+/**
+ * @note Address: 0x80445FA4
+ * @note Size: 0x380
  */
 bool Mgr::getIndexInvalidPlayerInfo(int* param_1, s8* param_2, s8 param_3, u32 param_4, bool param_5)
 {
@@ -1561,10 +1495,9 @@ inline bool Mgr::checkInfo(u32* buffer)
 	return checkVersion;
 }
 
-/*
- * --INFO--
- * Address:	80446324
- * Size:	0004BC
+/**
+ * @note Address: 0x80446324
+ * @note Size: 0x4BC
  */
 bool Mgr::modifyPlayerInfo(s8 fileIndex, bool* param_2)
 {
@@ -2016,10 +1949,9 @@ bool Mgr::modifyPlayerInfo(s8 fileIndex, bool* param_2)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	804467E0
- * Size:	000084
+/**
+ * @note Address: 0x804467E0
+ * @note Size: 0x84
  */
 bool Mgr::verifyCardSerialNo(u64* serial, MemoryCardMgr::ECardSlot cardSlot)
 {
@@ -2035,10 +1967,9 @@ bool Mgr::verifyCardSerialNo(u64* serial, MemoryCardMgr::ECardSlot cardSlot)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80446864
- * Size:	00007C
+/**
+ * @note Address: 0x80446864
+ * @note Size: 0x7C
  */
 bool Mgr::resetError()
 {
@@ -2053,10 +1984,9 @@ bool Mgr::resetError()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	804468E0
- * Size:	00012C
+/**
+ * @note Address: 0x804468E0
+ * @note Size: 0x12C
  */
 void Mgr::doMakeHeader(u8* param_1)
 {
@@ -2161,10 +2091,9 @@ void Mgr::doMakeHeader(u8* param_1)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80446A0C
- * Size:	000104
+/**
+ * @note Address: 0x80446A0C
+ * @note Size: 0x104
  */
 void Mgr::doSetCardStat(CARDStat* cardStat)
 {
@@ -2192,10 +2121,9 @@ void Mgr::doSetCardStat(CARDStat* cardStat)
 	CARDSetIconSpeed(cardStat, 7, 0);
 }
 
-/*
- * --INFO--
- * Address:	80446B10
- * Size:	0000DC
+/**
+ * @note Address: 0x80446B10
+ * @note Size: 0xDC
  */
 bool MemoryCard::Mgr::doCheckCardStat(CARDStat* cardStat)
 {

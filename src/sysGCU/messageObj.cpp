@@ -3,10 +3,9 @@
 
 namespace P2JME {
 
-/*
- * --INFO--
- * Address:	80438A34
- * Size:	000074
+/**
+ * @note Address: 0x80438A34
+ * @note Size: 0x74
  */
 TControl::TControl()
 {
@@ -22,10 +21,9 @@ TControl::TControl()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80438AA8
- * Size:	000024
+/**
+ * @note Address: 0x80438AA8
+ * @note Size: 0x24
  */
 bool TControl::setController(Controller* control1, Controller* control2)
 {
@@ -38,10 +36,9 @@ bool TControl::setController(Controller* control1, Controller* control2)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80438ACC
- * Size:	00006C
+/**
+ * @note Address: 0x80438ACC
+ * @note Size: 0x6C
  */
 bool TControl::setFont(JUTFont* font)
 {
@@ -50,10 +47,9 @@ bool TControl::setFont(JUTFont* font)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80438B38
- * Size:	00009C
+/**
+ * @note Address: 0x80438B38
+ * @note Size: 0x9C
  */
 bool TControl::setRubyFont(JUTFont* font)
 {
@@ -68,10 +64,9 @@ bool TControl::setRubyFont(JUTFont* font)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80438BD4
- * Size:	000104
+/**
+ * @note Address: 0x80438BD4
+ * @note Size: 0x104
  */
 bool TControl::init()
 {
@@ -95,10 +90,9 @@ bool TControl::init()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	80438DDC
- * Size:	000070
+/**
+ * @note Address: 0x80438DDC
+ * @note Size: 0x70
  */
 void TControl::reset()
 {
@@ -111,10 +105,9 @@ void TControl::reset()
 	mTextRenderProc->reset();
 }
 
-/*
- * --INFO--
- * Address:	80438E4C
- * Size:	00008C
+/**
+ * @note Address: 0x80438E4C
+ * @note Size: 0x8C
  */
 bool TControl::update()
 {
@@ -132,34 +125,30 @@ bool TControl::update()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	80438ED8
- * Size:	000004
+/**
+ * @note Address: 0x80438ED8
+ * @note Size: 0x4
  */
 void TRenderingProcessor::update() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 void TControl::drawCommon()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80438EDC
- * Size:	000020
+/**
+ * @note Address: 0x80438EDC
+ * @note Size: 0x20
  */
 void TControl::draw(Graphics& gfx) { JMessage::TControl::render(); }
 
-/*
- * --INFO--
- * Address:	80438EFC
- * Size:	000080
+/**
+ * @note Address: 0x80438EFC
+ * @note Size: 0x80
  */
 void TControl::draw(Mtx a, Mtx b)
 {
@@ -169,10 +158,9 @@ void TControl::draw(Mtx a, Mtx b)
 	JMessage::TControl::render();
 }
 
-/*
- * --INFO--
- * Address:	80438F7C
- * Size:	000050
+/**
+ * @note Address: 0x80438F7C
+ * @note Size: 0x50
  */
 void TControl::setLocate(int x, int y) // JGeometry::TBox2f shenanigans
 {
@@ -185,10 +173,9 @@ void TControl::setLocate(int x, int y) // JGeometry::TBox2f shenanigans
 	proc->mLocate.f.y         = ypos;
 }
 
-/*
- * --INFO--
- * Address:	80438FCC
- * Size:	000054
+/**
+ * @note Address: 0x80438FCC
+ * @note Size: 0x54
  */
 void TControl::setMessageID(char* mesg)
 {
@@ -197,10 +184,9 @@ void TControl::setMessageID(char* mesg)
 	setMessageID(part1, part2);
 }
 
-/*
- * --INFO--
- * Address:	80439020
- * Size:	000084
+/**
+ * @note Address: 0x80439020
+ * @note Size: 0x84
  */
 BOOL TControl::setMessageID(u32 part1, u32 part2)
 {
@@ -210,10 +196,9 @@ BOOL TControl::setMessageID(u32 part1, u32 part2)
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	804390A4
- * Size:	00007C
+/**
+ * @note Address: 0x804390A4
+ * @note Size: 0x7C
  */
 BOOL TControl::setMessageCode(u16 id1, u16 id2)
 {
@@ -223,10 +208,9 @@ BOOL TControl::setMessageCode(u16 id1, u16 id2)
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	80439120
- * Size:	000070
+/**
+ * @note Address: 0x80439120
+ * @note Size: 0x70
  */
 BOOL TControl::setMessageCode(u32 id)
 {

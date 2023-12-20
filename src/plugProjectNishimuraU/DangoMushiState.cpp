@@ -8,10 +8,9 @@
 namespace Game {
 namespace DangoMushi {
 
-/*
- * --INFO--
- * Address:	802F9A8C
- * Size:	000320
+/**
+ * @note Address: 0x802F9A8C
+ * @note Size: 0x320
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -28,10 +27,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateFlick);
 }
 
-/*
- * --INFO--
- * Address:	802F9DAC
- * Size:	000088
+/**
+ * @note Address: 0x802F9DAC
+ * @note Size: 0x88
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -48,10 +46,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802F9E34
- * Size:	00013C
+/**
+ * @note Address: 0x802F9E34
+ * @note Size: 0x13C
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -80,17 +77,15 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802F9F70
- * Size:	000004
+/**
+ * @note Address: 0x802F9F70
+ * @note Size: 0x4
  */
 void StateDead::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802F9F74
- * Size:	000094
+/**
+ * @note Address: 0x802F9F74
+ * @note Size: 0x94
  */
 void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -107,10 +102,9 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	crab->stopMotion();
 }
 
-/*
- * --INFO--
- * Address:	802FA008
- * Size:	000144
+/**
+ * @note Address: 0x802FA008
+ * @note Size: 0x144
  */
 void StateStay::exec(EnemyBase* enemy)
 {
@@ -142,17 +136,15 @@ void StateStay::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802FA14C
- * Size:	000004
+/**
+ * @note Address: 0x802FA14C
+ * @note Size: 0x4
  */
 void StateStay::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802FA150
- * Size:	00008C
+/**
+ * @note Address: 0x802FA150
+ * @note Size: 0x8C
  */
 void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -168,10 +160,9 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	crab->startBlendAnimation(DANGOANIM_Fly, false);
 }
 
-/*
- * --INFO--
- * Address:	802FA1DC
- * Size:	000400
+/**
+ * @note Address: 0x802FA1DC
+ * @note Size: 0x400
  */
 void StateAppear::exec(EnemyBase* enemy)
 {
@@ -490,10 +481,9 @@ lbl_802FA58C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802FA5DC
- * Size:	000030
+/**
+ * @note Address: 0x802FA5DC
+ * @note Size: 0x30
  */
 void StateAppear::cleanup(EnemyBase* enemy)
 {
@@ -501,10 +491,9 @@ void StateAppear::cleanup(EnemyBase* enemy)
 	enemy->hardConstraintOff();
 }
 
-/*
- * --INFO--
- * Address:	802FA60C
- * Size:	00009C
+/**
+ * @note Address: 0x802FA60C
+ * @note Size: 0x9C
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -523,10 +512,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802FA6A8
- * Size:	000364
+/**
+ * @note Address: 0x802FA6A8
+ * @note Size: 0x364
  */
 void StateWait::exec(EnemyBase* enemy)
 {
@@ -802,17 +790,15 @@ lbl_802FA9BC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802FAA0C
- * Size:	000004
+/**
+ * @note Address: 0x802FAA0C
+ * @note Size: 0x4
  */
 void StateWait::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802FAA10
- * Size:	00005C
+/**
+ * @note Address: 0x802FAA10
+ * @note Size: 0x5C
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -825,10 +811,9 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	crab->startBlendAnimation(DANGOANIM_Move, false);
 }
 
-/*
- * --INFO--
- * Address:	802FAA6C
- * Size:	0007A8
+/**
+ * @note Address: 0x802FAA6C
+ * @note Size: 0x7A8
  */
 void StateMove::exec(EnemyBase* enemy)
 {
@@ -1433,17 +1418,15 @@ lbl_802FB1C4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802FB214
- * Size:	000004
+/**
+ * @note Address: 0x802FB214
+ * @note Size: 0x4
  */
 void StateMove::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802FB218
- * Size:	000088
+/**
+ * @note Address: 0x802FB218
+ * @note Size: 0x88
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1459,10 +1442,9 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	crab->startBlendAnimation(DANGOANIM_Attack, false);
 }
 
-/*
- * --INFO--
- * Address:	802FB2A0
- * Size:	000288
+/**
+ * @note Address: 0x802FB2A0
+ * @note Size: 0x288
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
@@ -1520,10 +1502,9 @@ void StateAttack::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802FB528
- * Size:	000058
+/**
+ * @note Address: 0x802FB528
+ * @note Size: 0x58
  */
 void StateAttack::cleanup(EnemyBase* enemy)
 {
@@ -1536,10 +1517,9 @@ void StateAttack::cleanup(EnemyBase* enemy)
 	crab->finishBossAttackLoopBGM();
 }
 
-/*
- * --INFO--
- * Address:	802FB580
- * Size:	0000D4
+/**
+ * @note Address: 0x802FB580
+ * @note Size: 0xD4
  */
 void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1558,10 +1538,9 @@ void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 	rumbleMgr->startRumble(15, crabPos, 2);
 }
 
-/*
- * --INFO--
- * Address:	802FB654
- * Size:	000270
+/**
+ * @note Address: 0x802FB654
+ * @note Size: 0x270
  */
 void StateTurn::exec(EnemyBase* enemy)
 {
@@ -1612,10 +1591,9 @@ void StateTurn::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802FB8C4
- * Size:	000068
+/**
+ * @note Address: 0x802FB8C4
+ * @note Size: 0x68
  */
 void StateTurn::cleanup(EnemyBase* enemy)
 {
@@ -1626,10 +1604,9 @@ void StateTurn::cleanup(EnemyBase* enemy)
 	crab->setBodyCollision(true);
 }
 
-/*
- * --INFO--
- * Address:	802FB92C
- * Size:	000050
+/**
+ * @note Address: 0x802FB92C
+ * @note Size: 0x50
  */
 void StateRecover::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1641,10 +1618,9 @@ void StateRecover::init(EnemyBase* enemy, StateArg* stateArg)
 	crab->startBlendAnimation(DANGOANIM_Recover, false);
 }
 
-/*
- * --INFO--
- * Address:	802FB97C
- * Size:	0000FC
+/**
+ * @note Address: 0x802FB97C
+ * @note Size: 0xFC
  */
 void StateRecover::exec(EnemyBase* enemy)
 {
@@ -1668,17 +1644,15 @@ void StateRecover::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802FBA78
- * Size:	000004
+/**
+ * @note Address: 0x802FBA78
+ * @note Size: 0x4
  */
 void StateRecover::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802FBA7C
- * Size:	00006C
+/**
+ * @note Address: 0x802FBA7C
+ * @note Size: 0x6C
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1692,10 +1666,9 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	crab->startBlendAnimation(DANGOANIM_Attack2, false);
 }
 
-/*
- * --INFO--
- * Address:	802FBAE8
- * Size:	0001E0
+/**
+ * @note Address: 0x802FBAE8
+ * @note Size: 0x1E0
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
@@ -1732,10 +1705,9 @@ void StateFlick::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802FBCC8
- * Size:	00002C
+/**
+ * @note Address: 0x802FBCC8
+ * @note Size: 0x2C
  */
 void StateFlick::cleanup(EnemyBase* enemy)
 {

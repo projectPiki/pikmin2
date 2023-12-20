@@ -11,10 +11,9 @@ namespace PikiAI {
 
 static const int unusedArray[] = { 0, 0, 0 };
 
-/*
- * --INFO--
- * Address:	8020D784
- * Size:	00004C
+/**
+ * @note Address: 0x8020D784
+ * @note Size: 0x4C
  */
 void ActWeed::getInfo(char* infoStringBuffer)
 {
@@ -22,10 +21,9 @@ void ActWeed::getInfo(char* infoStringBuffer)
 	sprintf(infoStringBuffer, "Weed %s", states[mState]);
 }
 
-/*
- * --INFO--
- * Address:	8020D7D0
- * Size:	000094
+/**
+ * @note Address: 0x8020D7D0
+ * @note Size: 0x94
  */
 ActWeed::ActWeed(Game::Piki* parent)
     : Action(parent)
@@ -35,10 +33,9 @@ ActWeed::ActWeed(Game::Piki* parent)
 	mName = "Weed";
 }
 
-/*
- * --INFO--
- * Address:	8020D864
- * Size:	000170
+/**
+ * @note Address: 0x8020D864
+ * @note Size: 0x170
  */
 void ActWeed::init(ActionArg* arg)
 {
@@ -67,10 +64,9 @@ void ActWeed::init(ActionArg* arg)
 	initAdjust();
 }
 
-/*
- * --INFO--
- * Address:	8020D9D4
- * Size:	000068
+/**
+ * @note Address: 0x8020D9D4
+ * @note Size: 0x68
  */
 void ActWeed::decideTarget()
 {
@@ -78,10 +74,9 @@ void ActWeed::decideTarget()
 	mTargetFlockIdx    = mFlockMgr->getNearestFlock(parentPos);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B0
+/**
+ * @note Address: N/A
+ * @note Size: 0xB0
  */
 void ActWeed::initStickAttack()
 {
@@ -92,10 +87,9 @@ void ActWeed::initStickAttack()
 	mState = WEED_Attack;
 }
 
-/*
- * --INFO--
- * Address:	8020DA3C
- * Size:	000188
+/**
+ * @note Address: 0x8020DA3C
+ * @note Size: 0x188
  */
 void ActWeed::initAdjust()
 {
@@ -113,10 +107,9 @@ void ActWeed::initAdjust()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8020DBC4
- * Size:	0000D0
+/**
+ * @note Address: 0x8020DBC4
+ * @note Size: 0xD0
  */
 void ActWeed::calcAttackPos()
 {
@@ -125,10 +118,9 @@ void ActWeed::calcAttackPos()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8020DC94
- * Size:	000840
+/**
+ * @note Address: 0x8020DC94
+ * @note Size: 0x840
  */
 int ActWeed::exec()
 {
@@ -172,10 +164,9 @@ int ActWeed::exec()
 	return ACTEXEC_Continue;
 }
 
-/*
- * --INFO--
- * Address:	8020E4D4
- * Size:	000068
+/**
+ * @note Address: 0x8020E4D4
+ * @note Size: 0x68
  */
 void ActWeed::cleanup()
 {
@@ -189,17 +180,15 @@ void ActWeed::cleanup()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8020E53C
- * Size:	000004
+/**
+ * @note Address: 0x8020E53C
+ * @note Size: 0x4
  */
 void ActWeed::collisionCallback(Game::Piki*, Game::CollEvent&) { }
 
-/*
- * --INFO--
- * Address:	8020E540
- * Size:	000088
+/**
+ * @note Address: 0x8020E540
+ * @note Size: 0x88
  */
 ActFlockAttack::ActFlockAttack(Game::Piki* parent)
     : Action(parent)
@@ -208,10 +197,9 @@ ActFlockAttack::ActFlockAttack(Game::Piki* parent)
 	mTarget = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8020E5C8
- * Size:	000138
+/**
+ * @note Address: 0x8020E5C8
+ * @note Size: 0x138
  */
 void ActFlockAttack::init(ActionArg* arg)
 {
@@ -241,10 +229,9 @@ void ActFlockAttack::init(ActionArg* arg)
 	mParent->mVelocity = Vector3f(0.0f);
 }
 
-/*
- * --INFO--
- * Address:	8020E700
- * Size:	000324
+/**
+ * @note Address: 0x8020E700
+ * @note Size: 0x324
  */
 int ActFlockAttack::exec()
 {
@@ -303,10 +290,9 @@ int ActFlockAttack::exec()
 	return ACTEXEC_Continue;
 }
 
-/*
- * --INFO--
- * Address:	8020EA24
- * Size:	000064
+/**
+ * @note Address: 0x8020EA24
+ * @note Size: 0x64
  */
 void ActFlockAttack::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 {
@@ -326,10 +312,9 @@ void ActFlockAttack::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8020EA88
- * Size:	00000C
+/**
+ * @note Address: 0x8020EA88
+ * @note Size: 0xC
  */
 void ActFlockAttack::cleanup() { mTarget = nullptr; }
 

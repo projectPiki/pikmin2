@@ -21,11 +21,10 @@ u64 vsRuleMsgId[6] = {
 	'2026_00'  // "An advisory: Get a clover for one roulette spin. You can store up to four."
 };
 
-/*
+/**
  * __ct
- * --INFO--
- * Address:	8031A3C8
- * Size:	0000E8
+ * @note Address: 0x8031A3C8
+ * @note Size: 0xE8
  */
 ObjFloor::ObjFloor(const char* name)
     : mFadeLevel(0.0f)
@@ -54,17 +53,15 @@ ObjFloor::ObjFloor(const char* name)
 	sprintf(mTextTag, "");
 }
 
-/*
- * --INFO--
- * Address:	8031A4B0
- * Size:	0000AC
+/**
+ * @note Address: 0x8031A4B0
+ * @note Size: 0xAC
  */
 ObjFloor::~ObjFloor() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000090
+/**
+ * @note Address: N/A
+ * @note Size: 0x90
  * True if caveID is a story cave, false otherwise
  */
 bool newScreen::ObjFloor::isFLOOR()
@@ -90,10 +87,9 @@ bool newScreen::ObjFloor::isFLOOR()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
+/**
+ * @note Address: N/A
+ * @note Size: 0x7C
  * True if caveID is a Challenge Mode level, false otherwise
  */
 bool newScreen::ObjFloor::isCHALLENGE()
@@ -136,10 +132,9 @@ bool newScreen::ObjFloor::isCHALLENGE()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
+/**
+ * @note Address: N/A
+ * @note Size: 0x30
  * True if caveID is a VS stage, false otherwise
  */
 inline bool newScreen::ObjFloor::isVS()
@@ -161,10 +156,9 @@ inline bool newScreen::ObjFloor::isVS()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	8031A55C
- * Size:	000460
+/**
+ * @note Address: 0x8031A55C
+ * @note Size: 0x460
  */
 void ObjFloor::setCaveMsgID(u32 caveid, char* buffer)
 {
@@ -341,10 +335,9 @@ void ObjFloor::setCaveMsgID(u32 caveid, char* buffer)
 	sprintf(buffer, "%s", cave_msg);
 }
 
-/*
- * --INFO--
- * Address:	8031A9BC
- * Size:	0008C0
+/**
+ * @note Address: 0x8031A9BC
+ * @note Size: 0x8C0
  */
 void ObjFloor::doCreate(JKRArchive* arc)
 {
@@ -474,10 +467,9 @@ void ObjFloor::doCreate(JKRArchive* arc)
 	mSublevelYoffs = mSublevelPane->mOffset.y;
 }
 
-/*
- * --INFO--
- * Address:	8031B280
- * Size:	000598
+/**
+ * @note Address: 0x8031B280
+ * @note Size: 0x598
  */
 bool newScreen::ObjFloor::commonUpdate()
 {
@@ -574,17 +566,15 @@ bool newScreen::ObjFloor::commonUpdate()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	8031B820
- * Size:	000020
+/**
+ * @note Address: 0x8031B820
+ * @note Size: 0x20
  */
 bool newScreen::ObjFloor::doUpdate() { return commonUpdate(); }
 
-/*
- * --INFO--
- * Address:	8031B840
- * Size:	00019C
+/**
+ * @note Address: 0x8031B840
+ * @note Size: 0x19C
  */
 void ObjFloor::doDraw(Graphics& gfx)
 {
@@ -613,10 +603,9 @@ void ObjFloor::doDraw(Graphics& gfx)
 	j3dSys.reinitGX();
 }
 
-/*
- * --INFO--
- * Address:	8031B9DC
- * Size:	000034
+/**
+ * @note Address: 0x8031B9DC
+ * @note Size: 0x34
  */
 bool newScreen::ObjFloor::doStart(::Screen::StartSceneArg const* arg)
 {
@@ -626,10 +615,9 @@ bool newScreen::ObjFloor::doStart(::Screen::StartSceneArg const* arg)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8031BA10
- * Size:	000010
+/**
+ * @note Address: 0x8031BA10
+ * @note Size: 0x10
  */
 bool newScreen::ObjFloor::doEnd(::Screen::EndSceneArg const* arg)
 {
@@ -637,17 +625,15 @@ bool newScreen::ObjFloor::doEnd(::Screen::EndSceneArg const* arg)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8031BA20
- * Size:	000004
+/**
+ * @note Address: 0x8031BA20
+ * @note Size: 0x4
  */
 void ObjFloor::doUpdateFadeinFinish() { }
 
-/*
- * --INFO--
- * Address:	8031BA24
- * Size:	000030
+/**
+ * @note Address: 0x8031BA24
+ * @note Size: 0x30
  */
 void ObjFloor::doUpdateFinish()
 {
@@ -655,17 +641,15 @@ void ObjFloor::doUpdateFinish()
 	particle2dMgr->killGroup(2);
 }
 
-/*
- * --INFO--
- * Address:	8031BA54
- * Size:	000004
+/**
+ * @note Address: 0x8031BA54
+ * @note Size: 0x4
  */
 void ObjFloor::doUpdateFadeoutFinish() { }
 
-/*
- * --INFO--
- * Address:	8031BA58
- * Size:	000074
+/**
+ * @note Address: 0x8031BA58
+ * @note Size: 0x74
  */
 bool newScreen::ObjFloor::doUpdateFadein()
 {
@@ -680,10 +664,9 @@ bool newScreen::ObjFloor::doUpdateFadein()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	8031BACC
- * Size:	000088
+/**
+ * @note Address: 0x8031BACC
+ * @note Size: 0x88
  */
 bool newScreen::ObjFloor::doUpdateFadeout()
 {
@@ -701,10 +684,9 @@ bool newScreen::ObjFloor::doUpdateFadeout()
 	return check;
 }
 
-/*
- * --INFO--
- * Address:	8031BB54
- * Size:	000168
+/**
+ * @note Address: 0x8031BB54
+ * @note Size: 0x168
  */
 void ObjFloor::drawBG(Graphics& gfx)
 {

@@ -3,10 +3,9 @@
 
 namespace P2JME {
 
-/*
- * --INFO--
- * Address:	8043D32C
- * Size:	000048
+/**
+ * @note Address: 0x8043D32C
+ * @note Size: 0x48
  */
 void convertU64ToMessageID(u64 inID, u32* messageID, u32* variantID)
 {
@@ -14,10 +13,9 @@ void convertU64ToMessageID(u64 inID, u32* messageID, u32* variantID)
 	convertCharToMessageID((char*)(&inID), messageID, variantID);
 }
 
-/*
- * --INFO--
- * Address:	8043D374
- * Size:	000128
+/**
+ * @note Address: 0x8043D374
+ * @note Size: 0x128
  */
 void convertCharToMessageID(char* str, u32* messageID, u32* variantID)
 {

@@ -433,10 +433,9 @@
         .4byte 0x80000000
 */
 
-/*
- * --INFO--
- * Address:	8009C5B4
- * Size:	00001C
+/**
+ * @note Address: 0x8009C5B4
+ * @note Size: 0x1C
  */
 s16 JASPlayer::extend8to16(u8 value)
 {
@@ -446,10 +445,9 @@ s16 JASPlayer::extend8to16(u8 value)
 	return value;
 }
 
-/*
- * --INFO--
- * Address:	8009C5D0
- * Size:	0000D4
+/**
+ * @note Address: 0x8009C5D0
+ * @note Size: 0xD4
  */
 f32 JASPlayer::pitchToCent(f32, f32)
 {
@@ -514,10 +512,9 @@ lbl_8009C658:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8009C6A4
- * Size:	000070
+/**
+ * @note Address: 0x8009C6A4
+ * @note Size: 0x70
  */
 s32 JASPlayer::getRandomS32()
 {

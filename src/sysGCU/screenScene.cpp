@@ -14,10 +14,9 @@
 
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	80451790
- * Size:	000134
+/**
+ * @note Address: 0x80451790
+ * @note Size: 0x134
  */
 SceneBase::SceneBase()
     : mController(nullptr)
@@ -35,17 +34,15 @@ SceneBase::SceneBase()
 	sprintf(mName, "???");
 }
 
-/*
- * --INFO--
- * Address:	804518C4
- * Size:	000030
+/**
+ * @note Address: 0x804518C4
+ * @note Size: 0x30
  */
 IObjBase* SceneBase::searchObj(char* name) { return mObjMgr->search(this, name); }
 
-/*
- * --INFO--
- * Address:	804518F4
- * Size:	000038
+/**
+ * @note Address: 0x804518F4
+ * @note Size: 0x38
  */
 void SceneBase::destroy()
 {
@@ -54,10 +51,9 @@ void SceneBase::destroy()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8045192C
- * Size:	0000BC
+/**
+ * @note Address: 0x8045192C
+ * @note Size: 0xBC
  */
 void SceneBase::create()
 {
@@ -74,10 +70,9 @@ void SceneBase::create()
 	}
 }
 
-/*
- * --INFO--
- * Address:	804519E8
- * Size:	00015C
+/**
+ * @note Address: 0x804519E8
+ * @note Size: 0x15C
  */
 void SceneBase::update()
 {
@@ -114,10 +109,9 @@ void SceneBase::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80451B44
- * Size:	000040
+/**
+ * @note Address: 0x80451B44
+ * @note Size: 0x40
  */
 bool SceneBase::updateActive()
 {
@@ -125,18 +119,16 @@ bool SceneBase::updateActive()
 	return mObjMgr->update();
 }
 
-/*
- * --INFO--
- * Address:	80451B84
- * Size:	000004
+/**
+ * @note Address: 0x80451B84
+ * @note Size: 0x4
  */
 void SceneBase::doUpdateActive() { }
 
-/*
+/**
  * @note `break;` has a different result from `return;` here.
- * --INFO--
- * Address:	80451B88
- * Size:	000090
+ * @note Address: 0x80451B88
+ * @note Size: 0x90
  */
 void SceneBase::draw(Graphics& gfx)
 {
@@ -155,10 +147,9 @@ void SceneBase::draw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80451C18
- * Size:	000050
+/**
+ * @note Address: 0x80451C18
+ * @note Size: 0x50
  */
 bool SceneBase::start(Screen::StartSceneArg* arg)
 {
@@ -170,10 +161,9 @@ bool SceneBase::start(Screen::StartSceneArg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80451C68
- * Size:	000028
+/**
+ * @note Address: 0x80451C68
+ * @note Size: 0x28
  */
 bool SceneBase::doStart(Screen::StartSceneArg* arg)
 {
@@ -181,10 +171,9 @@ bool SceneBase::doStart(Screen::StartSceneArg* arg)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80451C90
- * Size:	000068
+/**
+ * @note Address: 0x80451C90
+ * @note Size: 0x68
  */
 bool SceneBase::end(Screen::EndSceneArg* arg)
 {
@@ -200,31 +189,27 @@ bool SceneBase::end(Screen::EndSceneArg* arg)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80451CF8
- * Size:	000024
+/**
+ * @note Address: 0x80451CF8
+ * @note Size: 0x24
  */
 bool SceneBase::doEnd(Screen::EndSceneArg* arg) { return mObjMgr->end(arg); }
 
-/*
- * --INFO--
- * Address:	80451D1C
- * Size:	00002C
+/**
+ * @note Address: 0x80451D1C
+ * @note Size: 0x2C
  */
 void SceneBase::userCallBackFunc(Resource::MgrCommand* command) { doUserCallBackFunc(command); }
 
-/*
- * --INFO--
- * Address:	80451D48
- * Size:	00002C
+/**
+ * @note Address: 0x80451D48
+ * @note Size: 0x2C
  */
 void SceneBase::createObj(JKRArchive* archive) { doCreateObj(archive); }
 
-/*
- * --INFO--
- * Address:	80451D74
- * Size:	00005C
+/**
+ * @note Address: 0x80451D74
+ * @note Size: 0x5C
  */
 void SceneBase::registObj(ObjBase* obj, JKRArchive* archive)
 {
@@ -232,56 +217,49 @@ void SceneBase::registObj(ObjBase* obj, JKRArchive* archive)
 	obj->create(archive);
 }
 
-/*
- * --INFO--
- * Address:	80451DD0
- * Size:	000078
+/**
+ * @note Address: 0x80451DD0
+ * @note Size: 0x78
  */
 bool SceneBase::confirmSetScene(SetSceneArg& arg) { return (mObjMgr->confirmSetScene(arg) && doConfirmSetScene(arg)); }
 
-/*
- * --INFO--
- * Address:	80451E48
- * Size:	000078
+/**
+ * @note Address: 0x80451E48
+ * @note Size: 0x78
  */
 bool SceneBase::confirmStartScene(StartSceneArg* arg) { return (mObjMgr->confirmStartScene(arg) && doConfirmStartScene(arg)); }
 
-/*
- * --INFO--
- * Address:	80451EC0
- * Size:	000070
+/**
+ * @note Address: 0x80451EC0
+ * @note Size: 0x70
  */
 bool SceneBase::confirmEndScene(EndSceneArg* arg) { return (mObjMgr->confirmEndScene(arg) && doConfirmEndScene(arg)); }
 
-/*
+/**
  * setScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
- * --INFO--
- * Address:	80451F30
- * Size:	000030
+ * @note Address: 0x80451F30
+ * @note Size: 0x30
  */
 bool SceneBase::setScene(SetSceneArg& arg) { return mScreenMgr->setScene(arg); }
 
-/*
+/**
  * startScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
- * --INFO--
- * Address:	80451F60
- * Size:	000030
+ * @note Address: 0x80451F60
+ * @note Size: 0x30
  */
 bool SceneBase::startScene(StartSceneArg* arg) { return mScreenMgr->startScene(arg); }
 
-/*
+/**
  * endScene__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
- * --INFO--
- * Address:	80451F90
- * Size:	000030
+ * @note Address: 0x80451F90
+ * @note Size: 0x30
  */
 void SceneBase::endScene(EndSceneArg* arg) { mScreenMgr->endScene(arg); }
 
-/*
+/**
  * setBackupScene__Q26Screen9SceneBaseFv
- * --INFO--
- * Address:	80451FC0
- * Size:	000100
+ * @note Address: 0x80451FC0
+ * @note Size: 0x100
  */
 bool SceneBase::setBackupScene()
 {
@@ -307,11 +285,10 @@ bool SceneBase::setBackupScene()
 	return result;
 }
 
-/*
+/**
  * setDispMember__Q26Screen9SceneBaseFPQ32og6Screen14DispMemberBase
- * --INFO--
- * Address:	804520C0
- * Size:	000130
+ * @note Address: 0x804520C0
+ * @note Size: 0x130
  */
 bool SceneBase::setDispMember(og::Screen::DispMemberBase* disp)
 {
@@ -326,17 +303,15 @@ bool SceneBase::setDispMember(og::Screen::DispMemberBase* disp)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	804521F0
- * Size:	000040
+/**
+ * @note Address: 0x804521F0
+ * @note Size: 0x40
  */
 int SceneBase::getFinishState() { return (mStateID == SB_Unknown4) ? doGetFinishState() : SB_Finished2; }
 
-/*
- * --INFO--
- * Address:	80452230
- * Size:	000054
+/**
+ * @note Address: 0x80452230
+ * @note Size: 0x54
  */
 Controller* SceneBase::getGamePad() const
 {
@@ -345,10 +320,9 @@ Controller* SceneBase::getGamePad() const
 	return mgr->mController;
 }
 
-/*
- * --INFO--
- * Address:	80452284
- * Size:	000044
+/**
+ * @note Address: 0x80452284
+ * @note Size: 0x44
  */
 void SceneBase::setColorBG(u8 r, u8 g, u8 b, u8 a)
 {
@@ -356,10 +330,9 @@ void SceneBase::setColorBG(u8 r, u8 g, u8 b, u8 a)
 	mScreenMgr->setColorBG(color);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
+/**
+ * @note Address: N/A
+ * @note Size: 0x30
  */
 void SceneBase::setBGMode(int mode) { mScreenMgr->setBGMode(mode); }
 

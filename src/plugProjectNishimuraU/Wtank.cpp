@@ -3,17 +3,15 @@
 namespace Game {
 namespace Wtank {
 
-/*
- * --INFO--
- * Address:	8027C80C
- * Size:	0000A4
+/**
+ * @note Address: 0x8027C80C
+ * @note Size: 0xA4
  */
 Obj::Obj() { createEffect(); }
 
-/*
- * --INFO--
- * Address:	8027C8B0
- * Size:	0001A4
+/**
+ * @note Address: 0x8027C8B0
+ * @note Size: 0x1A4
  */
 void Obj::changeMaterial()
 {
@@ -42,17 +40,15 @@ void Obj::changeMaterial()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8027CA54
- * Size:	00019C
+/**
+ * @note Address: 0x8027CA54
+ * @note Size: 0x19C
  */
 void Obj::createEffect() { mTankEffect = new efx::TWtankEffect(nullptr); }
 
-/*
- * --INFO--
- * Address:	8027CDDC
- * Size:	000050
+/**
+ * @note Address: 0x8027CDDC
+ * @note Size: 0x50
  */
 void Obj::setupEffect()
 {
@@ -65,17 +61,15 @@ void Obj::setupEffect()
 	effect->mEfxWatYodare.mMtx = mtx;
 }
 
-/*
- * --INFO--
- * Address:	8027CE2C
- * Size:	000034
+/**
+ * @note Address: 0x8027CE2C
+ * @note Size: 0x34
  */
 void Obj::startEffect() { mTankEffect->mEfxWat.create(nullptr); }
 
-/*
- * --INFO--
- * Address:	8027CE60
- * Size:	000054
+/**
+ * @note Address: 0x8027CE60
+ * @note Size: 0x54
  */
 void Obj::startYodare()
 {
@@ -84,10 +78,9 @@ void Obj::startYodare()
 	tankEffect->mEfxWatYodare.create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8027CF40
- * Size:	000050
+/**
+ * @note Address: 0x8027CF40
+ * @note Size: 0x50
  */
 void Obj::finishEffect()
 {
@@ -96,10 +89,9 @@ void Obj::finishEffect()
 	effect->mEfxWatYodare.fade();
 }
 
-/*
- * --INFO--
- * Address:	8027CF90
- * Size:	000050
+/**
+ * @note Address: 0x8027CF90
+ * @note Size: 0x50
  */
 void Obj::effectDrawOn()
 {
@@ -108,10 +100,9 @@ void Obj::effectDrawOn()
 	effect->mEfxWatYodare.endDemoDrawOn();
 }
 
-/*
- * --INFO--
- * Address:	8027D03C
- * Size:	000050
+/**
+ * @note Address: 0x8027D03C
+ * @note Size: 0x50
  */
 void Obj::effectDrawOff()
 {
@@ -120,10 +111,9 @@ void Obj::effectDrawOff()
 	effect->mEfxWatYodare.startDemoDrawOff();
 }
 
-/*
- * --INFO--
- * Address:	8027D0E8
- * Size:	000060
+/**
+ * @note Address: 0x8027D0E8
+ * @note Size: 0x60
  */
 void Obj::interactCreature(Creature* creature)
 {
@@ -131,10 +121,9 @@ void Obj::interactCreature(Creature* creature)
 	creature->stimulate(bubble);
 }
 
-/*
- * --INFO--
- * Address:	8027D148
- * Size:	00000C
+/**
+ * @note Address: 0x8027D148
+ * @note Size: 0xC
  */
 void Obj::stopEffectRadius(f32 radius)
 {
@@ -142,17 +131,15 @@ void Obj::stopEffectRadius(f32 radius)
 	effect->mEfxWat.mParticleCallBack._04 = radius;
 }
 
-/*
- * --INFO--
- * Address:	8027D154
- * Size:	000044
+/**
+ * @note Address: 0x8027D154
+ * @note Size: 0x44
  */
 void Obj::createChargeSE() { getJAIObject()->startSound(PSSE_EN_WATERTANK_BREATH, 0); }
 
-/*
- * --INFO--
- * Address:	8027D198
- * Size:	000044
+/**
+ * @note Address: 0x8027D198
+ * @note Size: 0x44
  */
 void Obj::createDisChargeSE() { getJAIObject()->startSound(PSSE_EN_WATERTANK_SHOT, 0); }
 

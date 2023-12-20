@@ -16,10 +16,9 @@ static const char name[]   = "SingleGS_Game";
 namespace Game {
 namespace SingleGame {
 
-/*
- * --INFO--
- * Address:	8021C718
- * Size:	0000A8
+/**
+ * @note Address: 0x8021C718
+ * @note Size: 0xA8
  */
 FileState::FileState()
     : State(SGS_File)
@@ -30,10 +29,9 @@ FileState::FileState()
 	mMainHeap        = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8021C7C0
- * Size:	00009C
+/**
+ * @note Address: 0x8021C7C0
+ * @note Size: 0x9C
  */
 void FileState::init(SingleGameSection* section, StateArg* arg)
 {
@@ -47,10 +45,9 @@ void FileState::init(SingleGameSection* section, StateArg* arg)
 	playData->mDeadNaviID = 0;
 }
 
-/*
- * --INFO--
- * Address:	8021C85C
- * Size:	00019C
+/**
+ * @note Address: 0x8021C85C
+ * @note Size: 0x19C
  */
 void FileState::dvdload()
 {
@@ -81,10 +78,9 @@ void FileState::dvdload()
 	playData->reset();
 }
 
-/*
- * --INFO--
- * Address:	8021C9F8
- * Size:	000194
+/**
+ * @note Address: 0x8021C9F8
+ * @note Size: 0x194
  */
 void FileState::exec(SingleGameSection* game)
 {
@@ -124,10 +120,9 @@ void FileState::exec(SingleGameSection* game)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8021CB8C
- * Size:	00027C
+/**
+ * @note Address: 0x8021CB8C
+ * @note Size: 0x27C
  */
 void FileState::startGame(SingleGameSection* game)
 {
@@ -191,10 +186,9 @@ void FileState::startGame(SingleGameSection* game)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8021CE08
- * Size:	0000C0
+/**
+ * @note Address: 0x8021CE08
+ * @note Size: 0xC0
  */
 void FileState::draw(SingleGameSection* game, Graphics& gfx)
 {
@@ -210,10 +204,9 @@ void FileState::draw(SingleGameSection* game, Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8021CEC8
- * Size:	0000D4
+/**
+ * @note Address: 0x8021CEC8
+ * @note Size: 0xD4
  */
 void FileState::cleanup(SingleGameSection* game)
 {

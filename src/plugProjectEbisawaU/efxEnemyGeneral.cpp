@@ -14,10 +14,9 @@ namespace efx {
 
 static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 
-/*
- * --INFO--
- * Address:	803C7834
- * Size:	000274
+/**
+ * @note Address: 0x803C7834
+ * @note Size: 0x274
  */
 bool TEnemyPiyo::create(Arg* arg)
 {
@@ -250,10 +249,9 @@ bool TEnemyPiyo::create(Arg* arg)
 	return docreate;
 }
 
-/*
- * --INFO--
- * Address:	803C7AA8
- * Size:	0000DC
+/**
+ * @note Address: 0x803C7AA8
+ * @note Size: 0xDC
  */
 bool TEnemyPoisonL::create(Arg* arg)
 {
@@ -279,10 +277,9 @@ bool TEnemyPoisonL::create(Arg* arg)
 	return docreate;
 }
 
-/*
- * --INFO--
- * Address:	803C7B84
- * Size:	0000DC
+/**
+ * @note Address: 0x803C7B84
+ * @note Size: 0xDC
  */
 bool TEnemyPoisonS::create(Arg* arg)
 {
@@ -307,10 +304,9 @@ bool TEnemyPoisonS::create(Arg* arg)
 	return docreate;
 }
 
-/*
- * --INFO--
- * Address:	803C7C60
- * Size:	0000DC
+/**
+ * @note Address: 0x803C7C60
+ * @note Size: 0xDC
  */
 bool TSekikaLOff::create(Arg* arg)
 {
@@ -335,10 +331,9 @@ bool TSekikaLOff::create(Arg* arg)
 	return docreate;
 }
 
-/*
- * --INFO--
- * Address:	803C7D3C
- * Size:	0000DC
+/**
+ * @note Address: 0x803C7D3C
+ * @note Size: 0xDC
  */
 bool TSekikaLOn::create(Arg* arg)
 {
@@ -363,10 +358,9 @@ bool TSekikaLOn::create(Arg* arg)
 	return docreate;
 }
 
-/*
- * --INFO--
- * Address:	803C7E18
- * Size:	0000DC
+/**
+ * @note Address: 0x803C7E18
+ * @note Size: 0xDC
  */
 bool TSekikaSOff::create(Arg* arg)
 {
@@ -391,10 +385,9 @@ bool TSekikaSOff::create(Arg* arg)
 	return docreate;
 }
 
-/*
- * --INFO--
- * Address:	803C7EF4
- * Size:	0000DC
+/**
+ * @note Address: 0x803C7EF4
+ * @note Size: 0xDC
  */
 bool TSekikaSOn::create(Arg* arg)
 {
@@ -419,10 +412,9 @@ bool TSekikaSOn::create(Arg* arg)
 	return docreate;
 }
 
-/*
- * --INFO--
- * Address:	803C7FD0
- * Size:	0000DC
+/**
+ * @note Address: 0x803C7FD0
+ * @note Size: 0xDC
  */
 bool TEnemyDead_ArgScale::create(Arg* arg)
 {
@@ -447,10 +439,9 @@ bool TEnemyDead_ArgScale::create(Arg* arg)
 	return docreate;
 }
 
-/*
- * --INFO--
- * Address:	803C80AC
- * Size:	00024C
+/**
+ * @note Address: 0x803C80AC
+ * @note Size: 0x24C
  */
 bool TEnemyDead::create(Arg* arg)
 {
@@ -673,10 +664,9 @@ bool TEnemyDead::create(Arg* arg)
 	return docreate;
 }
 
-/*
- * --INFO--
- * Address:	803C82F8
- * Size:	000318
+/**
+ * @note Address: 0x803C82F8
+ * @note Size: 0x318
  */
 bool TEnemyWalkSmoke::create(Arg* arg)
 {
@@ -885,10 +875,9 @@ bool TEnemyWalkSmoke::create(Arg* arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803C8610
- * Size:	0000DC
+/**
+ * @note Address: 0x803C8610
+ * @note Size: 0xDC
  */
 bool TEnemyWalkSmokeM::create(Arg* arg)
 {
@@ -913,10 +902,9 @@ bool TEnemyWalkSmokeM::create(Arg* arg)
 	return docreate;
 }
 
-/*
- * --INFO--
- * Address:	803C86EC
- * Size:	000078
+/**
+ * @note Address: 0x803C86EC
+ * @note Size: 0x78
  */
 bool TEnemyWalkSmokeS::create(Arg* arg)
 {
@@ -937,10 +925,9 @@ bool TEnemyWalkSmokeS::create(Arg* arg)
 	return docreate;
 }
 
-/*
- * --INFO--
- * Address:	803C8764
- * Size:	000068
+/**
+ * @note Address: 0x803C8764
+ * @note Size: 0x68
  */
 bool TEnemyDownSmoke::create(Arg* arg)
 {
@@ -959,10 +946,9 @@ bool TEnemyDownSmoke::create(Arg* arg)
 	return docreate;
 }
 
-/*
- * --INFO--
- * Address:	803C87CC
- * Size:	00010C
+/**
+ * @note Address: 0x803C87CC
+ * @note Size: 0x10C
  */
 bool TEnemyDownWat::create(Arg* arg)
 {
@@ -989,10 +975,9 @@ bool TEnemyDownWat::create(Arg* arg)
 	return docreate;
 }
 
-/*
- * --INFO--
- * Address:	803C88D8
- * Size:	0000F4
+/**
+ * @note Address: 0x803C88D8
+ * @note Size: 0xF4
  */
 bool TEnemyDive::create(Arg* arg)
 {
@@ -1018,10 +1003,9 @@ bool TEnemyDive::create(Arg* arg)
 	return docreate;
 }
 
-/*
- * --INFO--
- * Address:	803C89CC
- * Size:	0003B8
+/**
+ * @note Address: 0x803C89CC
+ * @note Size: 0x3B8
  */
 TEnemyBombScaleTable::TEnemyBombScaleTable(Game::EnemyTypeID::EEnemyTypeID id)
 {
@@ -1283,10 +1267,9 @@ TEnemyBombScaleTable::TEnemyBombScaleTable(Game::EnemyTypeID::EEnemyTypeID id)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803C8D84
- * Size:	0001EC
+/**
+ * @note Address: 0x803C8D84
+ * @note Size: 0x1EC
  */
 bool TEnemyBomb::create(Arg* arg)
 {
@@ -1316,10 +1299,9 @@ bool TEnemyBomb::create(Arg* arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803C8F70
- * Size:	000124
+/**
+ * @note Address: 0x803C8F70
+ * @note Size: 0x124
  */
 bool TEnemyBombM::create(Arg* arg)
 {
@@ -1347,10 +1329,9 @@ bool TEnemyBombM::create(Arg* arg)
 	return docreate;
 }
 
-/*
- * --INFO--
- * Address:	803C9094
- * Size:	000124
+/**
+ * @note Address: 0x803C9094
+ * @note Size: 0x124
  */
 bool TEnemyBombS::create(Arg* arg)
 {
@@ -1378,10 +1359,9 @@ bool TEnemyBombS::create(Arg* arg)
 	return docreate;
 }
 
-/*
- * --INFO--
- * Address:	803C91B8
- * Size:	0001A4
+/**
+ * @note Address: 0x803C91B8
+ * @note Size: 0x1A4
  */
 bool TEnemyApsmoke::create(Arg* arg)
 {
@@ -1411,10 +1391,9 @@ bool TEnemyApsmoke::create(Arg* arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803C935C
- * Size:	0000DC
+/**
+ * @note Address: 0x803C935C
+ * @note Size: 0xDC
  */
 bool TEnemyApsmokeM::create(Arg* arg)
 {
@@ -1440,10 +1419,9 @@ bool TEnemyApsmokeM::create(Arg* arg)
 	return docreate;
 }
 
-/*
- * --INFO--
- * Address:	803C9438
- * Size:	0000DC
+/**
+ * @note Address: 0x803C9438
+ * @note Size: 0xDC
  */
 bool TEnemyApsmokeS::create(Arg* arg)
 {
@@ -1469,10 +1447,9 @@ bool TEnemyApsmokeS::create(Arg* arg)
 	return docreate;
 }
 
-/*
- * --INFO--
- * Address:	803C9514
- * Size:	0000DC
+/**
+ * @note Address: 0x803C9514
+ * @note Size: 0xDC
  */
 bool TEnemyHamonM::create(Arg* arg)
 {
@@ -1497,10 +1474,9 @@ bool TEnemyHamonM::create(Arg* arg)
 	return docreate;
 }
 
-/*
- * --INFO--
- * Address:	803C95F0
- * Size:	0000DC
+/**
+ * @note Address: 0x803C95F0
+ * @note Size: 0xDC
  */
 bool TEnemyHamonMInd::create(Arg* arg)
 {
@@ -1525,10 +1501,9 @@ bool TEnemyHamonMInd::create(Arg* arg)
 	return docreate;
 }
 
-/*
- * --INFO--
- * Address:	803C96CC
- * Size:	0002FC
+/**
+ * @note Address: 0x803C96CC
+ * @note Size: 0x2FC
  */
 bool TEnemyHamonChasePos::create(Arg* arg)
 {
@@ -1768,10 +1743,9 @@ bool TEnemyHamonChasePos::create(Arg* arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803C99C8
- * Size:	000138
+/**
+ * @note Address: 0x803C99C8
+ * @note Size: 0x138
  */
 void TEnemyHamon::update(Vector3f& pos)
 {
@@ -1789,10 +1763,9 @@ void TEnemyHamon::update(Vector3f& pos)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803C9B00
- * Size:	0000A0
+/**
+ * @note Address: 0x803C9B00
+ * @note Size: 0xA0
  */
 bool TEnemyHamon::create(Arg* arg)
 {
@@ -1807,10 +1780,9 @@ bool TEnemyHamon::create(Arg* arg)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	803C9BA0
- * Size:	000140
+/**
+ * @note Address: 0x803C9BA0
+ * @note Size: 0x140
  */
 f32 TEnemyHamon::getLimitDepth_()
 {

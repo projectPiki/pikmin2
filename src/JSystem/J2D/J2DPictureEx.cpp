@@ -150,10 +150,9 @@
         .4byte 0x00000000
 */
 
-/*
- * --INFO--
- * Address:	80054AF0
- * Size:	000048
+/**
+ * @note Address: 0x80054AF0
+ * @note Size: 0x48
  */
 J2DPictureEx::J2DPictureEx()
     : J2DPicture()
@@ -161,10 +160,9 @@ J2DPictureEx::J2DPictureEx()
 	initialize(0x1100000);
 }
 
-/*
- * --INFO--
- * Address:	80054B38
- * Size:	00007C
+/**
+ * @note Address: 0x80054B38
+ * @note Size: 0x7C
  * __ct__12J2DPictureExFPC7ResTIMGUl
  */
 J2DPictureEx::J2DPictureEx(const ResTIMG* img, u32 p2)
@@ -174,26 +172,23 @@ J2DPictureEx::J2DPictureEx(const ResTIMG* img, u32 p2)
 	append(img, 1.0f);
 }
 
-/*
- * --INFO--
- * Address:	80054BB4
- * Size:	000030
+/**
+ * @note Address: 0x80054BB4
+ * @note Size: 0x30
  * append__12J2DPictureExFPC7ResTIMGf
  */
 bool J2DPictureEx::append(const ResTIMG* img, float p2) { return append(img, nullptr, p2); }
 
-/*
- * --INFO--
- * Address:	80054BE4
- * Size:	000030
+/**
+ * @note Address: 0x80054BE4
+ * @note Size: 0x30
  * append__12J2DPictureExFPCcf
  */
 bool J2DPictureEx::append(const char* p1, float p2) { return append(p1, nullptr, p2); }
 
-/*
- * --INFO--
- * Address:	80054C14
- * Size:	0000AC
+/**
+ * @note Address: 0x80054C14
+ * @note Size: 0xAC
  * initiate__12J2DPictureExFPC7ResTIMGPC7ResTLUT
  */
 void J2DPictureEx::initiate(const ResTIMG* img, const ResTLUT* lut)
@@ -206,10 +201,9 @@ void J2DPictureEx::initiate(const ResTIMG* img, const ResTLUT* lut)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80054CC0
- * Size:	0000D0
+/**
+ * @note Address: 0x80054CC0
+ * @note Size: 0xD0
  * initialize__12J2DPictureExFUl
  */
 void J2DPictureEx::initialize(u32 p1)
@@ -235,10 +229,9 @@ void J2DPictureEx::initialize(u32 p1)
 	mAnmVtxColor   = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80054D90
- * Size:	00029C
+/**
+ * @note Address: 0x80054D90
+ * @note Size: 0x29C
  * __ct__12J2DPictureExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial
  */
 J2DPictureEx::J2DPictureEx(J2DPane* parent, JSURandomInputStream* input, u32 flags, J2DMaterial* materials)
@@ -419,10 +412,9 @@ J2DPictureEx::J2DPictureEx(J2DPane* parent, JSURandomInputStream* input, u32 fla
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005502C
- * Size:	000110
+/**
+ * @note Address: 0x8005502C
+ * @note Size: 0x110
  * __ct__12J2DPictureExFUxRCQ29JGeometry8TBox2<f>PC7ResTIMGUl
  */
 J2DPictureEx::J2DPictureEx(u64 id, const JGeometry::TBox2f& bounds, const ResTIMG* img, u32 p4)
@@ -433,10 +425,9 @@ J2DPictureEx::J2DPictureEx(u64 id, const JGeometry::TBox2f& bounds, const ResTIM
 	append(img, 1.0f);
 }
 
-/*
- * --INFO--
- * Address:	8005513C
- * Size:	000110
+/**
+ * @note Address: 0x8005513C
+ * @note Size: 0x110
  * __ct__12J2DPictureExFUxRCQ29JGeometry8TBox2<f>PCcUl
  */
 J2DPictureEx::J2DPictureEx(u64 id, const JGeometry::TBox2f& bounds, const char* p3, u32 p4)
@@ -447,10 +438,9 @@ J2DPictureEx::J2DPictureEx(u64 id, const JGeometry::TBox2f& bounds, const char* 
 	append(p3, 1.0f);
 }
 
-/*
- * --INFO--
- * Address:	8005524C
- * Size:	000090
+/**
+ * @note Address: 0x8005524C
+ * @note Size: 0x90
  * __dt__12J2DPictureExFv
  */
 J2DPictureEx::~J2DPictureEx()
@@ -460,10 +450,9 @@ J2DPictureEx::~J2DPictureEx()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800552DC
- * Size:	0000F8
+/**
+ * @note Address: 0x800552DC
+ * @note Size: 0xF8
  */
 void J2DPictureEx::prepareTexture(u8)
 {
@@ -541,10 +530,9 @@ lbl_800553B4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800553D4
- * Size:	0000CC
+/**
+ * @note Address: 0x800553D4
+ * @note Size: 0xCC
  */
 void J2DPictureEx::drawSelf(float p1, float p2, float (*mtx)[3][4])
 {
@@ -559,10 +547,9 @@ void J2DPictureEx::drawSelf(float p1, float p2, float (*mtx)[3][4])
 	drawFullSet(p1, p2, mBounds.f.x - mBounds.i.x, mBounds.f.y - mBounds.i.y, mtx);
 }
 
-/*
- * --INFO--
- * Address:	800554A0
- * Size:	00005C
+/**
+ * @note Address: 0x800554A0
+ * @note Size: 0x5C
  */
 void J2DPictureEx::drawFullSet(float p1, float p2, float p3, float p4, float (*mtx)[3][4])
 {
@@ -570,10 +557,9 @@ void J2DPictureEx::drawFullSet(float p1, float p2, float p3, float p4, float (*m
 	             mTexCoords[2].y, mTexCoords[3].x, mTexCoords[3].y, mtx);
 }
 
-/*
- * --INFO--
- * Address:	800554FC
- * Size:	0002B4
+/**
+ * @note Address: 0x800554FC
+ * @note Size: 0x2B4
  */
 void J2DPictureEx::drawTexCoord(float p1, float p2, float p3, float p4, short p5, short p6, short p7, short p8, short p9, short p10,
                                 short p11, short p12, float (*p13)[3][4])
@@ -796,10 +782,9 @@ void J2DPictureEx::drawTexCoord(float p1, float p2, float p3, float p4, short p5
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800557B0
- * Size:	000048
+/**
+ * @note Address: 0x800557B0
+ * @note Size: 0x48
  * append__12J2DPictureExFPC7ResTIMGP10JUTPalettef
  */
 bool J2DPictureEx::append(const ResTIMG* img, JUTPalette* palette, float p3)
@@ -807,10 +792,9 @@ bool J2DPictureEx::append(const ResTIMG* img, JUTPalette* palette, float p3)
 	return (!mMaterial) ? false : insert(img, palette, mMaterial->mTexGenBlock.mTexGenNum, p3);
 }
 
-/*
- * --INFO--
- * Address:	800557F8
- * Size:	000048
+/**
+ * @note Address: 0x800557F8
+ * @note Size: 0x48
  * append__12J2DPictureExFPCcP10JUTPalettef
  */
 bool J2DPictureEx::append(const char* p1, JUTPalette* palette, float p3)
@@ -818,10 +802,9 @@ bool J2DPictureEx::append(const char* p1, JUTPalette* palette, float p3)
 	return (!mMaterial) ? false : insert(p1, palette, mMaterial->mTexGenBlock.mTexGenNum, p3);
 }
 
-/*
- * --INFO--
- * Address:	80055840
- * Size:	000048
+/**
+ * @note Address: 0x80055840
+ * @note Size: 0x48
  * append__12J2DPictureExFP10JUTTexturef
  */
 bool J2DPictureEx::append(JUTTexture* texture, float p2)
@@ -829,10 +812,9 @@ bool J2DPictureEx::append(JUTTexture* texture, float p2)
 	return (!mMaterial) ? false : insert(texture, mMaterial->mTexGenBlock.mTexGenNum, p2);
 }
 
-/*
- * --INFO--
- * Address:	80055888
- * Size:	0000B4
+/**
+ * @note Address: 0x80055888
+ * @note Size: 0xB4
  * insert__12J2DPictureExFPC7ResTIMGP10JUTPaletteUcf
  */
 bool J2DPictureEx::insert(const ResTIMG* img, JUTPalette* palette, u8 p3, float p4)
@@ -848,10 +830,9 @@ bool J2DPictureEx::insert(const ResTIMG* img, JUTPalette* palette, u8 p3, float 
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8005593C
- * Size:	000078
+/**
+ * @note Address: 0x8005593C
+ * @note Size: 0x78
  * insert__12J2DPictureExFPCcP10JUTPaletteUcf
  */
 bool J2DPictureEx::insert(const char* p1, JUTPalette* palette, u8 p3, float p4)
@@ -859,10 +840,9 @@ bool J2DPictureEx::insert(const char* p1, JUTPalette* palette, u8 p3, float p4)
 	return insert((ResTIMG*)J2DScreen::getNameResource(p1), palette, p3, p4);
 }
 
-/*
- * --INFO--
- * Address:	800559B4
- * Size:	0000A4
+/**
+ * @note Address: 0x800559B4
+ * @note Size: 0xA4
  * insert__12J2DPictureExFP10JUTTextureUcf
  */
 bool J2DPictureEx::insert(JUTTexture* texture, u8 p2, float p3)
@@ -878,10 +858,9 @@ bool J2DPictureEx::insert(JUTTexture* texture, u8 p2, float p3)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80055A58
- * Size:	000334
+/**
+ * @note Address: 0x80055A58
+ * @note Size: 0x334
  * insertCommon__12J2DPictureExFUcf
  */
 void J2DPictureEx::insertCommon(u8, float)
@@ -1115,10 +1094,9 @@ lbl_80055D08:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80055D8C
- * Size:	0000F8
+/**
+ * @note Address: 0x80055D8C
+ * @note Size: 0xF8
  */
 bool J2DPictureEx::isInsert(u8 p1) const
 {
@@ -1220,10 +1198,9 @@ lbl_80055E68:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80055E84
- * Size:	0001AC
+/**
+ * @note Address: 0x80055E84
+ * @note Size: 0x1AC
  * remove__12J2DPictureExFUc
  */
 int J2DPictureEx::remove(u8 p1)
@@ -1371,10 +1348,9 @@ lbl_80056010:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80056030
- * Size:	000064
+/**
+ * @note Address: 0x80056030
+ * @note Size: 0x64
  * remove__12J2DPictureExFv
  */
 int J2DPictureEx::remove()
@@ -1418,10 +1394,9 @@ lbl_80056084:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80056094
- * Size:	0000C8
+/**
+ * @note Address: 0x80056094
+ * @note Size: 0xC8
  * remove__12J2DPictureExFP10JUTTexture
  */
 int J2DPictureEx::remove(JUTTexture* texture)
@@ -1501,10 +1476,9 @@ lbl_8005613C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005615C
- * Size:	000054
+/**
+ * @note Address: 0x8005615C
+ * @note Size: 0x54
  */
 bool J2DPictureEx::isRemove(u8 p1) const
 {
@@ -1521,10 +1495,9 @@ bool J2DPictureEx::isRemove(u8 p1) const
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	800561B0
- * Size:	000124
+/**
+ * @note Address: 0x800561B0
+ * @note Size: 0x124
  * draw__12J2DPictureExFffUcbbb
  */
 void J2DPictureEx::draw(float p1, float p2, u8 p3, bool p4, bool p5, bool p6)
@@ -1537,10 +1510,9 @@ void J2DPictureEx::draw(float p1, float p2, u8 p3, bool p4, bool p5, bool p6)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800562D4
- * Size:	0005A8
+/**
+ * @note Address: 0x800562D4
+ * @note Size: 0x5A8
  */
 void J2DPictureEx::draw(float, float, float, float, bool, bool, bool)
 {
@@ -1934,10 +1906,9 @@ lbl_80056848:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005687C
- * Size:	000168
+/**
+ * @note Address: 0x8005687C
+ * @note Size: 0x168
  * drawOut__12J2DPictureExFffffff
  */
 void J2DPictureEx::drawOut(float p1, float p2, float p3, float p4, float p5, float p6)
@@ -1951,10 +1922,9 @@ void J2DPictureEx::drawOut(float p1, float p2, float p3, float p4, float p5, flo
 	}
 }
 
-/*
- * --INFO--
- * Address:	800569E4
- * Size:	0003E8
+/**
+ * @note Address: 0x800569E4
+ * @note Size: 0x3E8
  */
 void J2DPictureEx::drawOut(const JGeometry::TBox2<float>&, const JGeometry::TBox2<float>&)
 {
@@ -2221,10 +2191,9 @@ void J2DPictureEx::drawOut(const JGeometry::TBox2<float>&, const JGeometry::TBox
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80056DCC
- * Size:	000048
+/**
+ * @note Address: 0x80056DCC
+ * @note Size: 0x48
  */
 void J2DPictureEx::load(GXTexMapID p1, u8 p2)
 {
@@ -2233,10 +2202,9 @@ void J2DPictureEx::load(GXTexMapID p1, u8 p2)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80056E14
- * Size:	0001FC
+/**
+ * @note Address: 0x80056E14
+ * @note Size: 0x1FC
  */
 void J2DPictureEx::setTevOrder(u8 p1, u8 p2, bool p3)
 {
@@ -2265,10 +2233,9 @@ void J2DPictureEx::setTevOrder(u8 p1, u8 p2, bool p3)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80057010
- * Size:	0002BC
+/**
+ * @note Address: 0x80057010
+ * @note Size: 0x2BC
  */
 void J2DPictureEx::setTevStage(u8 p1, u8 p2, bool p3)
 {
@@ -2509,10 +2476,9 @@ lbl_800572AC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800572CC
- * Size:	000300
+/**
+ * @note Address: 0x800572CC
+ * @note Size: 0x300
  */
 void J2DPictureEx::setStage(J2DTevStage*, J2DPictureEx::stage_enum)
 {
@@ -2720,10 +2686,9 @@ lbl_8005759C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800575CC
- * Size:	0004A4
+/**
+ * @note Address: 0x800575CC
+ * @note Size: 0x4A4
  */
 void J2DPictureEx::setTevKColor(u8)
 {
@@ -3064,10 +3029,9 @@ lbl_80057A5C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80057A70
- * Size:	0000B0
+/**
+ * @note Address: 0x80057A70
+ * @note Size: 0xB0
  */
 void J2DPictureEx::setTevKColorSel(u8 p1)
 {
@@ -3134,10 +3098,9 @@ lbl_80057AF8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80057B20
- * Size:	0000B0
+/**
+ * @note Address: 0x80057B20
+ * @note Size: 0xB0
  */
 void J2DPictureEx::setTevKAlphaSel(u8)
 {
@@ -3197,10 +3160,9 @@ lbl_80057BA8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80057BD0
- * Size:	000118
+/**
+ * @note Address: 0x80057BD0
+ * @note Size: 0x118
  */
 void J2DPictureEx::shiftSetBlendRatio(u8, float, bool, bool)
 {
@@ -3308,10 +3270,9 @@ lbl_80057CD4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80057CE8
- * Size:	000058
+/**
+ * @note Address: 0x80057CE8
+ * @note Size: 0x58
  */
 void J2DPictureEx::setBlendColorRatio(float p1, float p2, float p3, float p4, float p5, float p6, float p7, float p8)
 {
@@ -3355,10 +3316,9 @@ void J2DPictureEx::setBlendColorRatio(float p1, float p2, float p3, float p4, fl
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80057D40
- * Size:	000058
+/**
+ * @note Address: 0x80057D40
+ * @note Size: 0x58
  */
 void J2DPictureEx::setBlendAlphaRatio(float, float, float, float, float, float, float, float)
 {
@@ -3391,10 +3351,9 @@ void J2DPictureEx::setBlendAlphaRatio(float, float, float, float, float, float, 
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80057D98
- * Size:	000140
+/**
+ * @note Address: 0x80057D98
+ * @note Size: 0x140
  */
 ResTIMG* J2DPictureEx::changeTexture(const ResTIMG*, u8)
 {
@@ -3498,18 +3457,16 @@ lbl_80057EC4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80057ED8
- * Size:	000058
+/**
+ * @note Address: 0x80057ED8
+ * @note Size: 0x58
  * changeTexture__12J2DPictureExFPCcUc
  */
 ResTIMG* J2DPictureEx::changeTexture(const char* name, u8 p2) { return changeTexture((ResTIMG*)J2DScreen::getNameResource(name), p2); }
 
-/*
- * --INFO--
- * Address:	80057F30
- * Size:	000160
+/**
+ * @note Address: 0x80057F30
+ * @note Size: 0x160
  * changeTexture__12J2DPictureExFPC7ResTIMGUcP10JUTPalette
  */
 ResTIMG* J2DPictureEx::changeTexture(const ResTIMG*, u8, JUTPalette*)
@@ -3622,10 +3579,9 @@ lbl_8005807C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80058090
- * Size:	000068
+/**
+ * @note Address: 0x80058090
+ * @note Size: 0x68
  * changeTexture__12J2DPictureExFPCcUcP10JUTPalette
  */
 ResTIMG* J2DPictureEx::changeTexture(const char* name, u8 p2, JUTPalette* palette)
@@ -3633,10 +3589,9 @@ ResTIMG* J2DPictureEx::changeTexture(const char* name, u8 p2, JUTPalette* palett
 	return changeTexture((ResTIMG*)J2DScreen::getNameResource(name), p2, palette);
 }
 
-/*
- * --INFO--
- * Address:	800580F8
- * Size:	000058
+/**
+ * @note Address: 0x800580F8
+ * @note Size: 0x58
  */
 JUTTexture* J2DPictureEx::getTexture(u8) const
 {
@@ -3672,10 +3627,9 @@ lbl_80058140:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80058150
- * Size:	000020
+/**
+ * @note Address: 0x80058150
+ * @note Size: 0x20
  */
 u8 J2DPictureEx::getTextureCount() const
 {
@@ -3685,10 +3639,9 @@ u8 J2DPictureEx::getTextureCount() const
 	return mMaterial->mTexGenBlock.mTexGenNum;
 }
 
-/*
- * --INFO--
- * Address:	80058170
- * Size:	000088
+/**
+ * @note Address: 0x80058170
+ * @note Size: 0x88
  */
 bool J2DPictureEx::setBlack(JUtility::TColor black)
 {
@@ -3699,10 +3652,9 @@ bool J2DPictureEx::setBlack(JUtility::TColor black)
 	return setBlackWhite(black, oldWhite);
 }
 
-/*
- * --INFO--
- * Address:	800581F8
- * Size:	000088
+/**
+ * @note Address: 0x800581F8
+ * @note Size: 0x88
  */
 bool J2DPictureEx::setWhite(JUtility::TColor white)
 {
@@ -3713,10 +3665,9 @@ bool J2DPictureEx::setWhite(JUtility::TColor white)
 	return setBlackWhite(oldBlack, white);
 }
 
-/*
- * --INFO--
- * Address:	80058280
- * Size:	000454
+/**
+ * @note Address: 0x80058280
+ * @note Size: 0x454
  */
 bool J2DPictureEx::setBlackWhite(JUtility::TColor black, JUtility::TColor white)
 {
@@ -4057,10 +4008,9 @@ lbl_800586C0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800586D4
- * Size:	0001C4
+/**
+ * @note Address: 0x800586D4
+ * @note Size: 0x1C4
  */
 bool J2DPictureEx::getBlackWhite(JUtility::TColor* black, JUtility::TColor* white) const
 {
@@ -4213,10 +4163,9 @@ lbl_80058884:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80058898
- * Size:	0000DC
+/**
+ * @note Address: 0x80058898
+ * @note Size: 0xDC
  */
 bool J2DPictureEx::isSetBlackWhite(JUtility::TColor, JUtility::TColor) const
 {
@@ -4289,10 +4238,9 @@ lbl_8005895C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80058974
- * Size:	000060
+/**
+ * @note Address: 0x80058974
+ * @note Size: 0x60
  * getBlack__12J2DPictureExCFv
  */
 JUtility::TColor J2DPictureEx::getBlack() const
@@ -4334,10 +4282,9 @@ lbl_800589C0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800589D4
- * Size:	000060
+/**
+ * @note Address: 0x800589D4
+ * @note Size: 0x60
  */
 JUtility::TColor J2DPictureEx::getWhite() const
 {
@@ -4373,10 +4320,9 @@ lbl_80058A20:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80058A34
- * Size:	000020
+/**
+ * @note Address: 0x80058A34
+ * @note Size: 0x20
  */
 void J2DPictureEx::setAlpha(u8 alpha)
 {
@@ -4401,10 +4347,9 @@ void J2DPictureEx::setAlpha(u8 alpha)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80058A54
- * Size:	000034
+/**
+ * @note Address: 0x80058A54
+ * @note Size: 0x34
  */
 void J2DPictureEx::setCullBack(_GXCullMode cullMode)
 {
@@ -4415,10 +4360,9 @@ void J2DPictureEx::setCullBack(_GXCullMode cullMode)
 	J2DPane::setCullBack(cullMode);
 }
 
-/*
- * --INFO--
- * Address:	80058A88
- * Size:	000018
+/**
+ * @note Address: 0x80058A88
+ * @note Size: 0x18
  */
 void J2DPictureEx::rewriteAlpha()
 {
@@ -4428,10 +4372,9 @@ void J2DPictureEx::rewriteAlpha()
 	mAlpha = mMaterial->mColorBlock.mColors[0].a;
 }
 
-/*
- * --INFO--
- * Address:	80058AA0
- * Size:	0000A8
+/**
+ * @note Address: 0x80058AA0
+ * @note Size: 0xA8
  */
 bool J2DPictureEx::isUsed(const ResTIMG* resource)
 {
@@ -4446,10 +4389,9 @@ bool J2DPictureEx::isUsed(const ResTIMG* resource)
 	return J2DPane::isUsed(resource);
 }
 
-/*
- * --INFO--
- * Address:	80058B48
- * Size:	00002C
+/**
+ * @note Address: 0x80058B48
+ * @note Size: 0x2C
  */
 void J2DPictureEx::setAnimation(J2DAnmColor* animation)
 {
@@ -4458,10 +4400,9 @@ void J2DPictureEx::setAnimation(J2DAnmColor* animation)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80058B74
- * Size:	00002C
+/**
+ * @note Address: 0x80058B74
+ * @note Size: 0x2C
  */
 void J2DPictureEx::setAnimation(J2DAnmTextureSRTKey* animation)
 {
@@ -4470,10 +4411,9 @@ void J2DPictureEx::setAnimation(J2DAnmTextureSRTKey* animation)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80058BA0
- * Size:	00002C
+/**
+ * @note Address: 0x80058BA0
+ * @note Size: 0x2C
  */
 void J2DPictureEx::setAnimation(J2DAnmTexPattern* animation)
 {
@@ -4482,10 +4422,9 @@ void J2DPictureEx::setAnimation(J2DAnmTexPattern* animation)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80058BCC
- * Size:	00002C
+/**
+ * @note Address: 0x80058BCC
+ * @note Size: 0x2C
  */
 void J2DPictureEx::setAnimation(J2DAnmTevRegKey* animation)
 {
@@ -4494,17 +4433,15 @@ void J2DPictureEx::setAnimation(J2DAnmTevRegKey* animation)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80058BF8
- * Size:	000008
+/**
+ * @note Address: 0x80058BF8
+ * @note Size: 0x8
  */
 void J2DPictureEx::setAnimation(J2DAnmVisibilityFull* animation) { mAnmVisibility = animation; }
 
-/*
- * --INFO--
- * Address:	80058C00
- * Size:	0000E0
+/**
+ * @note Address: 0x80058C00
+ * @note Size: 0xE0
  * setAnimation__12J2DPictureExFP14J2DAnmVtxColor
  */
 void J2DPictureEx::setAnimation(J2DAnmVtxColor* animation)
@@ -4612,10 +4549,9 @@ lbl_80058CC8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80058CE0
- * Size:	000164
+/**
+ * @note Address: 0x80058CE0
+ * @note Size: 0x164
  */
 const J2DAnmTransform* J2DPictureEx::animationPane(const J2DAnmTransform* animation)
 {
@@ -4734,10 +4670,9 @@ lbl_80058E18:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80058E44
- * Size:	000104
+/**
+ * @note Address: 0x80058E44
+ * @note Size: 0x104
  */
 u8 J2DPictureEx::getUsableTlut(u8)
 {
@@ -4826,25 +4761,22 @@ lbl_80058F34:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80058F48
- * Size:	000008
+/**
+ * @note Address: 0x80058F48
+ * @note Size: 0x8
  */
 J2DMaterial* J2DPictureEx::getMaterial() const { return mMaterial; }
 
-/*
- * --INFO--
- * Address:	80058F50
- * Size:	000030
+/**
+ * @note Address: 0x80058F50
+ * @note Size: 0x30
  * prepend__12J2DPictureExFP10JUTTexturef
  */
 bool J2DPictureEx::prepend(JUTTexture* texture, float p2) { return insert(texture, 0, p2); }
 
-/*
- * --INFO--
- * Address:	80058F80
- * Size:	000030
+/**
+ * @note Address: 0x80058F80
+ * @note Size: 0x30
  */
 bool J2DPictureEx::prepend(const char*, JUTPalette*, float)
 {
@@ -4864,10 +4796,9 @@ bool J2DPictureEx::prepend(const char*, JUTPalette*, float)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80058FB0
- * Size:	000030
+/**
+ * @note Address: 0x80058FB0
+ * @note Size: 0x30
  */
 bool J2DPictureEx::prepend(const char*, float)
 {
@@ -4887,10 +4818,9 @@ bool J2DPictureEx::prepend(const char*, float)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80058FE0
- * Size:	000030
+/**
+ * @note Address: 0x80058FE0
+ * @note Size: 0x30
  */
 bool J2DPictureEx::prepend(const ResTIMG*, JUTPalette*, float)
 {
@@ -4910,10 +4840,9 @@ bool J2DPictureEx::prepend(const ResTIMG*, JUTPalette*, float)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80059010
- * Size:	000030
+/**
+ * @note Address: 0x80059010
+ * @note Size: 0x30
  */
 bool J2DPictureEx::prepend(const ResTIMG*, float)
 {
@@ -4933,10 +4862,9 @@ bool J2DPictureEx::prepend(const ResTIMG*, float)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80059040
- * Size:	000034
+/**
+ * @note Address: 0x80059040
+ * @note Size: 0x34
  */
 bool J2DPictureEx::insert(const char*, u8, float)
 {
@@ -4957,10 +4885,9 @@ bool J2DPictureEx::insert(const char*, u8, float)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80059074
- * Size:	000034
+/**
+ * @note Address: 0x80059074
+ * @note Size: 0x34
  */
 bool J2DPictureEx::insert(const ResTIMG*, u8, float)
 {
@@ -4981,18 +4908,16 @@ bool J2DPictureEx::insert(const ResTIMG*, u8, float)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800590A8
- * Size:	000040
+/**
+ * @note Address: 0x800590A8
+ * @note Size: 0x40
  * draw__12J2DPictureExFffbbb
  */
 void J2DPictureEx::draw(float p1, float p2, bool p3, bool p4, bool p5) { draw(p1, p2, 0, p3, p4, p5); }
 
-/*
- * --INFO--
- * Address:	800590E8
- * Size:	000064
+/**
+ * @note Address: 0x800590E8
+ * @note Size: 0x64
  * drawOut__12J2DPictureExFffffffff
  */
 void J2DPictureEx::drawOut(float p1, float p2, float p3, float p4, float p5, float p6, float p7, float p8)
@@ -5000,10 +4925,9 @@ void J2DPictureEx::drawOut(float p1, float p2, float p3, float p4, float p5, flo
 	drawOut(JGeometry::TBox2f(p1, p2, p1 + p3, p2 + p4), JGeometry::TBox2f(p5, p6, p5 + p7, p6 + p8));
 }
 
-/*
- * --INFO--
- * Address:	8005914C
- * Size:	000034
+/**
+ * @note Address: 0x8005914C
+ * @note Size: 0x34
  */
 void J2DPictureEx::load(u8)
 {
@@ -5024,10 +4948,9 @@ void J2DPictureEx::load(u8)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80059180
- * Size:	00003C
+/**
+ * @note Address: 0x80059180
+ * @note Size: 0x3C
  */
 void J2DPictureEx::setCullBack(bool shouldCullBack)
 {
@@ -5052,10 +4975,9 @@ lbl_8005919C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800591BC
- * Size:	000020
+/**
+ * @note Address: 0x800591BC
+ * @note Size: 0x20
  */
 bool J2DPictureEx::isUsed(const ResFONT* resource)
 {
@@ -5071,10 +4993,9 @@ bool J2DPictureEx::isUsed(const ResFONT* resource)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800591DC
- * Size:	000020
+/**
+ * @note Address: 0x800591DC
+ * @note Size: 0x20
  */
 void J2DPictureEx::setAnimation(J2DAnmTransform* animation)
 {
@@ -5090,10 +5011,9 @@ void J2DPictureEx::setAnimation(J2DAnmTransform* animation)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800591FC
- * Size:	000020
+/**
+ * @note Address: 0x800591FC
+ * @note Size: 0x20
  */
 void J2DPictureEx::setAnimation(J2DAnmBase* animation)
 {

@@ -3,10 +3,9 @@
 #include "Viewport.h"
 #include "nans.h"
 
-/*
- * --INFO--
- * Address:	8042B46C
- * Size:	0000C4
+/**
+ * @note Address: 0x8042B46C
+ * @note Size: 0xC4
  *
  */
 LightObj::LightObj(char* name, GXLightID lightID, ELightTypeFlag lightType, JUtility::TColor lightColor)
@@ -46,10 +45,9 @@ inline void ScaleColor(u8& input, u8& output, f32 brightness)
 	output = xCol;
 }
 
-/*
- * --INFO--
- * Address:	8042B530
- * Size:	0002DC
+/**
+ * @note Address: 0x8042B530
+ * @note Size: 0x2DC
  */
 void LightObj::set(Matrixf& posMtx)
 {
@@ -104,17 +102,15 @@ void LightObj::set(Matrixf& posMtx)
 	GXLoadLightObjImm(&lightObj, static_cast<GXLightID>(mLightID));
 }
 
-/*
- * --INFO--
- * Address:	8042B80C
- * Size:	00005C
+/**
+ * @note Address: 0x8042B80C
+ * @note Size: 0x5C
  */
 void LightObj::drawPos(Graphics& gfx) { drawPos(gfx, *gfx.mCurrentViewport->getMatrix(false)); }
 
-/*
- * --INFO--
- * Address:	8042B868
- * Size:	00007C
+/**
+ * @note Address: 0x8042B868
+ * @note Size: 0x7C
  */
 void LightObj::drawPos(Graphics& gfx, Camera& cam)
 {
@@ -122,10 +118,9 @@ void LightObj::drawPos(Graphics& gfx, Camera& cam)
 	drawPos(gfx, *cam.getViewMatrix(false));
 }
 
-/*
- * --INFO--
- * Address:	8042B8E4
- * Size:	0001A8
+/**
+ * @note Address: 0x8042B8E4
+ * @note Size: 0x1A8
  */
 void LightObj::drawPos(Graphics& gfx, Matrixf& transformationMtx)
 {
@@ -171,10 +166,9 @@ void LightObj::drawPos(Graphics& gfx, Matrixf& transformationMtx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8042BA8C
- * Size:	0000D8
+/**
+ * @note Address: 0x8042BA8C
+ * @note Size: 0xD8
  */
 LightMgr::LightMgr(char* name)
     : CNode(name)
@@ -186,10 +180,9 @@ LightMgr::LightMgr(char* name)
 	add(&mLightObjChain);
 }
 
-/*
- * --INFO--
- * Address:	8042BB64
- * Size:	00003C
+/**
+ * @note Address: 0x8042BB64
+ * @note Size: 0x3C
  */
 void LightMgr::registLightObj(LightObj* light)
 {
@@ -197,10 +190,9 @@ void LightMgr::registLightObj(LightObj* light)
 	mLightCount++;
 }
 
-/*
- * --INFO--
- * Address:	8042BBA0
- * Size:	000050
+/**
+ * @note Address: 0x8042BBA0
+ * @note Size: 0x50
  */
 void LightMgr::set(Graphics& gfx)
 {
@@ -208,10 +200,9 @@ void LightMgr::set(Graphics& gfx)
 	set(mtx);
 }
 
-/*
- * --INFO--
- * Address:	8042BBF0
- * Size:	000094
+/**
+ * @note Address: 0x8042BBF0
+ * @note Size: 0x94
  */
 void LightMgr::set(Matrixf& mtx)
 {
@@ -221,10 +212,9 @@ void LightMgr::set(Matrixf& mtx)
 	FOREACH_NODE(LightObj, mLightObjChain.mChild, light) { light->set(mtx); }
 }
 
-/*
- * --INFO--
- * Address:	8042BC84
- * Size:	00005C
+/**
+ * @note Address: 0x8042BC84
+ * @note Size: 0x5C
  */
 void LightMgr::drawDebugInfo(Graphics& gfx)
 {

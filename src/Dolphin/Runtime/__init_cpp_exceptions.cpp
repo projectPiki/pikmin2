@@ -3,10 +3,9 @@
 
 static int fragmentID = -2;
 
-/*
- * --INFO--
- * Address:	800C22C4
- * Size:	000008
+/**
+ * @note Address: 0x800C22C4
+ * @note Size: 0x8
  */
 ASM static char* GetR2()
 {
@@ -17,10 +16,9 @@ ASM static char* GetR2()
 #endif // clang-format on
 }
 extern "C" {
-/*
- * --INFO--
- * Address:	800C2300
- * Size:	000040
+/**
+ * @note Address: 0x800C2300
+ * @note Size: 0x40
  */
 void __init_cpp_exceptions()
 {
@@ -30,10 +28,9 @@ void __init_cpp_exceptions()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800C22CC
- * Size:	000034
+/**
+ * @note Address: 0x800C22CC
+ * @note Size: 0x34
  */
 void __fini_cpp_exceptions()
 {

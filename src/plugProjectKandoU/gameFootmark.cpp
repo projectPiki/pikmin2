@@ -4,10 +4,9 @@
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	801B4794
- * Size:	00001C
+/**
+ * @note Address: 0x801B4794
+ * @note Size: 0x1C
  */
 Footmark::Footmark()
 {
@@ -15,10 +14,9 @@ Footmark::Footmark()
 	mFlags    = 0;
 }
 
-/*
- * --INFO--
- * Address:	801B47B0
- * Size:	00001C
+/**
+ * @note Address: 0x801B47B0
+ * @note Size: 0x1C
  */
 Footmarks::Footmarks()
 {
@@ -29,10 +27,9 @@ Footmarks::Footmarks()
 	mLastUpdateTime = 0;
 }
 
-/*
- * --INFO--
- * Address:	801B47CC
- * Size:	00006C
+/**
+ * @note Address: 0x801B47CC
+ * @note Size: 0x6C
  */
 void Footmarks::alloc(int amt)
 {
@@ -42,10 +39,9 @@ void Footmarks::alloc(int amt)
 	mCurrentIndex = 0;
 }
 
-/*
- * --INFO--
- * Address:	801B4838
- * Size:	000134
+/**
+ * @note Address: 0x801B4838
+ * @note Size: 0x134
  */
 void Footmarks::add(Footmark& mark)
 {
@@ -72,10 +68,9 @@ void Footmarks::add(Footmark& mark)
 	mLastUpdateTime = timer;
 }
 
-/*
- * --INFO--
- * Address:	801B496C
- * Size:	00004C
+/**
+ * @note Address: 0x801B496C
+ * @note Size: 0x4C
  */
 Footmark* Footmarks::get(int index)
 {
@@ -86,10 +81,9 @@ Footmark* Footmarks::get(int index)
 	return &mMarks[(((mCount + mCurrentIndex) - (index + 1)) % mCount)];
 }
 
-/*
- * --INFO--
- * Address:	801B49B8
- * Size:	0000C8
+/**
+ * @note Address: 0x801B49B8
+ * @note Size: 0xC8
  */
 Footmark* Footmarks::findNearest2(Vector3f& position, int minFlagValue)
 {

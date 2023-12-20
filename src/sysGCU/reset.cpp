@@ -11,10 +11,9 @@
 #include "MemoryCardMgr.h"
 #include "Game/MemoryCard/Mgr.h"
 
-/*
- * --INFO--
- * Address:	80429DB0
- * Size:	0000C8
+/**
+ * @note Address: 0x80429DB0
+ * @note Size: 0xC8
  */
 ResetManager::ResetManager(f32 thres)
 {
@@ -33,10 +32,9 @@ ResetManager::ResetManager(f32 thres)
 	mCounter     = 0;
 }
 
-/*
- * --INFO--
- * Address:	80429E78
- * Size:	0002B4
+/**
+ * @note Address: 0x80429E78
+ * @note Size: 0x2B4
  */
 void ResetManager::update()
 {
@@ -128,10 +126,9 @@ void ResetManager::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8042A12C
- * Size:	000038
+/**
+ * @note Address: 0x8042A12C
+ * @note Size: 0x38
  */
 bool ResetManager::updateStatusEffects()
 {
@@ -144,10 +141,9 @@ bool ResetManager::updateStatusEffects()
 	return check;
 }
 
-/*
- * --INFO--
- * Address:	8042A164
- * Size:	000158
+/**
+ * @note Address: 0x8042A164
+ * @note Size: 0x158
  */
 void ResetManager::draw()
 {
@@ -166,17 +162,15 @@ void ResetManager::draw()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8042A2BC
- * Size:	000014
+/**
+ * @note Address: 0x8042A2BC
+ * @note Size: 0x14
  */
 bool ResetManager::isWritingMemoryCard() { return sys->mCardMgr->mFlags.isSet(1); }
 
-/*
- * --INFO--
- * Address:	8042A2D0
- * Size:	000044
+/**
+ * @note Address: 0x8042A2D0
+ * @note Size: 0x44
  */
 bool ResetManager::isSoundSystemStopped()
 {

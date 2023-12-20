@@ -223,10 +223,9 @@ ParticleMgr* particleMgr;
         .4byte 0xBF000000
 */
 
-/*
- * --INFO--
- * Address:	803BAF70
- * Size:	000044
+/**
+ * @note Address: 0x803BAF70
+ * @note Size: 0x44
  */
 void ParticleMgr::globalInstance()
 {
@@ -235,10 +234,9 @@ void ParticleMgr::globalInstance()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803BAFB4
- * Size:	000048
+/**
+ * @note Address: 0x803BAFB4
+ * @note Size: 0x48
  */
 void ParticleMgr::deleteInstance()
 {
@@ -248,10 +246,9 @@ void ParticleMgr::deleteInstance()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803BAFFC
- * Size:	000114
+/**
+ * @note Address: 0x803BAFFC
+ * @note Size: 0x114
  */
 ParticleMgr::ParticleMgr()
 {
@@ -264,17 +261,15 @@ ParticleMgr::ParticleMgr()
 	mLightMgr                = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	803BB110
- * Size:	000070
+/**
+ * @note Address: 0x803BB110
+ * @note Size: 0x70
  */
 ModelEffectDataRoot::~ModelEffectDataRoot() { }
 
-/*
- * --INFO--
- * Address:	803BB3A0
- * Size:	00012C
+/**
+ * @note Address: 0x803BB3A0
+ * @note Size: 0x12C
  */
 ParticleMgr::~ParticleMgr()
 {
@@ -282,10 +277,9 @@ ParticleMgr::~ParticleMgr()
 	mHeap     = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	803BB4CC
- * Size:	000070
+/**
+ * @note Address: 0x803BB4CC
+ * @note Size: 0x70
  */
 void ParticleMgr::createHeap(u32 size)
 {
@@ -293,10 +287,9 @@ void ParticleMgr::createHeap(u32 size)
 	mHeap = JKRSolidHeap::create(size, JKRGetCurrentHeap(), true);
 }
 
-/*
- * --INFO--
- * Address:	803BB53C
- * Size:	00014C
+/**
+ * @note Address: 0x803BB53C
+ * @note Size: 0x14C
  */
 void ParticleMgr::createMgr(char* path, u32 flag1, u32 flag2, u32)
 {
@@ -411,24 +404,21 @@ lbl_803BB654:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803BB688
- * Size:	000020
+/**
+ * @note Address: 0x803BB688
+ * @note Size: 0x20
  */
 void ParticleMgr::Instance_TPkEffectMgr() { efx::TPkEffectMgr::globalInstance(); }
 
-/*
- * --INFO--
- * Address:	803BB6A8
- * Size:	000020
+/**
+ * @note Address: 0x803BB6A8
+ * @note Size: 0x20
  */
 void ParticleMgr::deleteInstance_TPkEffectMgr() { efx::TPkEffectMgr::deleteInstance(); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
+/**
+ * @note Address: N/A
+ * @note Size: 0x60
  */
 void ParticleMgr::destroyHeap()
 {
@@ -437,10 +427,9 @@ void ParticleMgr::destroyHeap()
 	// unused, probably something like this
 }
 
-/*
- * --INFO--
- * Address:	803BB6C8
- * Size:	00002C
+/**
+ * @note Address: 0x803BB6C8
+ * @note Size: 0x2C
  */
 void ParticleMgr::beginEntryModelEffect()
 {
@@ -448,24 +437,21 @@ void ParticleMgr::beginEntryModelEffect()
 	mHeap->becomeCurrentHeap();
 }
 
-/*
- * --INFO--
- * Address:	803BB6F4
- * Size:	000024
+/**
+ * @note Address: 0x803BB6F4
+ * @note Size: 0x24
  */
 void ParticleMgr::endEntryModelEffect() { mModelEffectHeap->becomeCurrentHeap(); }
 
-/*
- * --INFO--
- * Address:	803BB718
- * Size:	000024
+/**
+ * @note Address: 0x803BB718
+ * @note Size: 0x24
  */
 void ParticleMgr::start() { pkEffectMgr->startMgr(); }
 
-/*
- * --INFO--
- * Address:	803BB73C
- * Size:	000058
+/**
+ * @note Address: 0x803BB73C
+ * @note Size: 0x58
  */
 void ParticleMgr::reset()
 {
@@ -476,17 +462,15 @@ void ParticleMgr::reset()
 	mLightMgr = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	803BB794
- * Size:	000024
+/**
+ * @note Address: 0x803BB794
+ * @note Size: 0x24
  */
 void ParticleMgr::killAll() { mEmitterManager->forceDeleteAllEmitter(); }
 
-/*
- * --INFO--
- * Address:	803BB7B8
- * Size:	00002C
+/**
+ * @note Address: 0x803BB7B8
+ * @note Size: 0x2C
  */
 void ParticleMgr::update()
 {
@@ -494,17 +478,15 @@ void ParticleMgr::update()
 	pkEffectMgr->resetContextS();
 }
 
-/*
- * --INFO--
- * Address:	803BB7E4
- * Size:	00002C
+/**
+ * @note Address: 0x803BB7E4
+ * @note Size: 0x2C
  */
 void ParticleMgr::setXfb(const ResTIMG* tex) { mResourceManager->swapTexture(tex, "IP2_dummy"); }
 
-/*
- * --INFO--
- * Address:	803BB810
- * Size:	0000A4
+/**
+ * @note Address: 0x803BB810
+ * @note Size: 0xA4
  */
 void ParticleMgr::draw(Viewport* vp, u8 flag)
 {
@@ -517,10 +499,9 @@ void ParticleMgr::draw(Viewport* vp, u8 flag)
 	mEmitterManager->draw(&info, flag);
 }
 
-/*
- * --INFO--
- * Address:	803BB8B4
- * Size:	0000C8
+/**
+ * @note Address: 0x803BB8B4
+ * @note Size: 0xC8
  */
 JPABaseEmitter* ParticleMgr::create(u16 id, Vector3f& position, u8 flag)
 {
@@ -542,10 +523,9 @@ JPABaseEmitter* ParticleMgr::create(u16 id, Vector3f& position, u8 flag)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803BB97C
- * Size:	00005C
+/**
+ * @note Address: 0x803BB97C
+ * @note Size: 0x5C
  */
 JPABaseEmitter* ParticleMgr::createDemo(u16 id, Vector3f& position, u8 flag1, u8 flag2)
 {
@@ -554,10 +534,9 @@ JPABaseEmitter* ParticleMgr::createDemo(u16 id, Vector3f& position, u8 flag1, u8
 	return emit;
 }
 
-/*
- * --INFO--
- * Address:	803BB9D8
- * Size:	0000A8
+/**
+ * @note Address: 0x803BB9D8
+ * @note Size: 0xA8
  */
 void ParticleMgr::setGlobalColor(JPABaseEmitter* emit)
 {
@@ -651,10 +630,9 @@ lbl_803BBA64:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803BBA80
- * Size:	00002C
+/**
+ * @note Address: 0x803BBA80
+ * @note Size: 0x2C
  */
 void ParticleMgr::forceKill(JPABaseEmitter* emit)
 {
@@ -663,10 +641,9 @@ void ParticleMgr::forceKill(JPABaseEmitter* emit)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803BBAAC
- * Size:	00002C
+/**
+ * @note Address: 0x803BBAAC
+ * @note Size: 0x2C
  */
 void ParticleMgr::fade(JPABaseEmitter* emit)
 {
@@ -678,24 +655,21 @@ void ParticleMgr::fade(JPABaseEmitter* emit)
 	emit->mFlags &= ~0x40;
 }
 
-/*
- * --INFO--
- * Address:	803BBAD8
- * Size:	000028
+/**
+ * @note Address: 0x803BBAD8
+ * @note Size: 0x28
  */
 void ParticleMgr::setDemoResourceManager(JPAResourceManager* mgr) { mEmitterManager->entryResourceManager(mgr, 7); }
 
-/*
- * --INFO--
- * Address:	803BBB00
- * Size:	000028
+/**
+ * @note Address: 0x803BBB00
+ * @note Size: 0x28
  */
 void ParticleMgr::clearDemoResourceManager() { mEmitterManager->clearResourceManager(7); }
 
-/*
- * --INFO--
- * Address:	803BBB28
- * Size:	0000A8
+/**
+ * @note Address: 0x803BBB28
+ * @note Size: 0xA8
  */
 void ParticleMgr::setViewport(Graphics& gfx)
 {
@@ -764,20 +738,18 @@ lbl_803BBBA8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A0
+/**
+ * @note Address: N/A
+ * @note Size: 0xA0
  */
 void ParticleMgr::cull(Sys::Sphere&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803BBBD0
- * Size:	000114
+/**
+ * @note Address: 0x803BBBD0
+ * @note Size: 0x114
  */
 bool ParticleMgr::cullByResFlg(Vector3f& pos, u16 id)
 {
@@ -909,10 +881,9 @@ lbl_803BBCD0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803BBCE4
- * Size:	000178
+/**
+ * @note Address: 0x803BBCE4
+ * @note Size: 0x178
  */
 bool ParticleMgr::cullByResFlg(JPABaseEmitter* emit)
 {
@@ -1081,109 +1052,95 @@ lbl_803BBE48:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A0
+/**
+ * @note Address: N/A
+ * @note Size: 0xA0
  */
 void ParticleMgr::cullCylinder(Sys::Cylinder&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void ParticleMgr::draw2d()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803BBE5C
- * Size:	000004
+/**
+ * @note Address: 0x803BBE5C
+ * @note Size: 0x4
  */
 void ModelEffectDataRoot::loadResources() { }
 
-/*
- * --INFO--
- * Address:	803BBE60
- * Size:	000010
+/**
+ * @note Address: 0x803BBE60
+ * @note Size: 0x10
  */
 u64 ModelEffectDataRoot::getID() { return 'ROOT'; }
 
-/*
- * --INFO--
- * Address:	803BBE70
- * Size:	000008
+/**
+ * @note Address: 0x803BBE70
+ * @note Size: 0x8
  */
 ModelEffect* ModelEffectDataRoot::onCreate(ModelEffectCreateArg* arg) { return nullptr; }
 
-/*
- * --INFO--
- * Address:	803BBE78
- * Size:	000008
+/**
+ * @note Address: 0x803BBE78
+ * @note Size: 0x8
  */
 ModelEffect* NodeObjectMgr<ModelEffect>::get(void* node) { return ((TObjectNode<ModelEffect>*)node)->mContents; }
 
-/*
- * --INFO--
- * Address:	803BBE80
- * Size:	000008
+/**
+ * @note Address: 0x803BBE80
+ * @note Size: 0x8
  */
 void* NodeObjectMgr<ModelEffect>::getNext(void* node) { return ((TObjectNode<ModelEffect>*)node)->mNext; }
 
-/*
- * --INFO--
- * Address:	803BBE88
- * Size:	000008
+/**
+ * @note Address: 0x803BBE88
+ * @note Size: 0x8
  */
 void* NodeObjectMgr<ModelEffect>::getStart() { return mNode.mChild; }
 
-/*
- * --INFO--
- * Address:	803BBE90
- * Size:	000008
+/**
+ * @note Address: 0x803BBE90
+ * @note Size: 0x8
  */
 void* NodeObjectMgr<ModelEffect>::getEnd() { return nullptr; }
 
-/*
- * --INFO--
- * Address:	803BBE98
- * Size:	000018
+/**
+ * @note Address: 0x803BBE98
+ * @note Size: 0x18
  */
 // void NodeObjectMgr<ModelEffect>::resetMgr()
 //{
 //}
 
-/*
- * --INFO--
- * Address:	803BBEB0
- * Size:	00002C
+/**
+ * @note Address: 0x803BBEB0
+ * @note Size: 0x2C
  */
 void* Container<ModelEffect>::getObject(void* index) { return get(index); }
 
-/*
- * --INFO--
- * Address:	803BBEDC
- * Size:	000008
+/**
+ * @note Address: 0x803BBEDC
+ * @note Size: 0x8
  */
 ModelEffect* Container<ModelEffect>::getAt(int) { return nullptr; }
 
-/*
- * --INFO--
- * Address:	803BBEE4
- * Size:	000008
+/**
+ * @note Address: 0x803BBEE4
+ * @note Size: 0x8
  */
 int Container<ModelEffect>::getTo() { return 0; }
 
-/*
- * --INFO--
- * Address:	803BBEEC
- * Size:	0001F4
+/**
+ * @note Address: 0x803BBEEC
+ * @note Size: 0x1F4
  */
 void ObjectMgr<ModelEffect>::doDirectDraw(Graphics& gfx)
 {
@@ -1339,10 +1296,9 @@ lbl_803BC0AC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803BC0E0
- * Size:	00004C
+/**
+ * @note Address: 0x803BC0E0
+ * @note Size: 0x4C
  */
 // bool Iterator<ModelEffect>::isDone()
 //{
@@ -1369,10 +1325,9 @@ blr
 */
 //}
 
-/*
- * --INFO--
- * Address:	803BC12C
- * Size:	0001F4
+/**
+ * @note Address: 0x803BC12C
+ * @note Size: 0x1F4
  */
 void ObjectMgr<ModelEffect>::doSimulation(f32 sim)
 {
@@ -1527,10 +1482,9 @@ lbl_803BC2EC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803BC320
- * Size:	0001E4
+/**
+ * @note Address: 0x803BC320
+ * @note Size: 0x1E4
  */
 void ObjectMgr<ModelEffect>::doViewCalc()
 {
@@ -1681,10 +1635,9 @@ lbl_803BC4D4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803BC504
- * Size:	0001F4
+/**
+ * @note Address: 0x803BC504
+ * @note Size: 0x1F4
  */
 void ObjectMgr<ModelEffect>::doSetView(int viewportNumber)
 {
@@ -1839,10 +1792,9 @@ lbl_803BC6C4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803BC6F8
- * Size:	0001E4
+/**
+ * @note Address: 0x803BC6F8
+ * @note Size: 0x1E4
  */
 void ObjectMgr<ModelEffect>::doEntry()
 {
@@ -1993,10 +1945,9 @@ lbl_803BC8AC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803BC8DC
- * Size:	0001E4
+/**
+ * @note Address: 0x803BC8DC
+ * @note Size: 0x1E4
  */
 void ObjectMgr<ModelEffect>::doAnimation()
 {
@@ -2147,10 +2098,9 @@ lbl_803BCA90:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803BCAC0
- * Size:	000038
+/**
+ * @note Address: 0x803BCAC0
+ * @note Size: 0x38
  */
 // ModelEffect* Iterator<ModelEffect>::operator*()
 //{
@@ -2172,10 +2122,9 @@ blr
 */
 //}
 
-/*
- * --INFO--
- * Address:	803BCAF8
- * Size:	0000E4
+/**
+ * @note Address: 0x803BCAF8
+ * @note Size: 0xE4
  */
 // void Iterator<ModelEffect>::next()
 //{
@@ -2248,10 +2197,9 @@ blr
 */
 //}
 
-/*
- * --INFO--
- * Address:	803BCBDC
- * Size:	0000DC
+/**
+ * @note Address: 0x803BCBDC
+ * @note Size: 0xDC
  */
 // void Iterator<ModelEffect>::first()
 //{
@@ -2322,10 +2270,9 @@ blr
 */
 //}
 
-/*
- * --INFO--
- * Address:	803BCCB8
- * Size:	000028
+/**
+ * @note Address: 0x803BCCB8
+ * @note Size: 0x28
  */
 void __sinit_particleMgr_cpp()
 {

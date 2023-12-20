@@ -1,17 +1,15 @@
 #include "types.h"
 #include "JSystem/JSupport/JSUStream.h"
 
-/*
- * --INFO--
- * Address:	80026378
- * Size:	00005C
+/**
+ * @note Address: 0x80026378
+ * @note Size: 0x5C
  */
 JSUInputStream::~JSUInputStream() { }
 
-/*
- * --INFO--
- * Address:	800263D4
- * Size:	000058
+/**
+ * @note Address: 0x800263D4
+ * @note Size: 0x58
  */
 s32 JSUInputStream::read(void* data, long length)
 {
@@ -22,10 +20,9 @@ s32 JSUInputStream::read(void* data, long length)
 	return len;
 }
 
-/*
- * --INFO--
- * Address:	8002642C
- * Size:	0000B0
+/**
+ * @note Address: 0x8002642C
+ * @note Size: 0xB0
  */
 char* JSUInputStream::read(char* str)
 {
@@ -45,10 +42,9 @@ char* JSUInputStream::read(char* str)
 	return str;
 }
 
-/*
- * --INFO--
- * Address:	800264DC
- * Size:	000088
+/**
+ * @note Address: 0x800264DC
+ * @note Size: 0x88
  */
 s32 JSUInputStream::skip(long val)
 {
@@ -63,10 +59,9 @@ s32 JSUInputStream::skip(long val)
 	return i;
 }
 
-/*
- * --INFO--
- * Address:	80026564
- * Size:	00008C
+/**
+ * @note Address: 0x80026564
+ * @note Size: 0x8C
  */
 u32 JSURandomInputStream::align(s32 arg0)
 {
@@ -87,10 +82,9 @@ u32 JSURandomInputStream::align(s32 arg0)
 	return newtemp;
 }
 
-/*
- * --INFO--
- * Address:	800265F0
- * Size:	00005C
+/**
+ * @note Address: 0x800265F0
+ * @note Size: 0x5C
  */
 s32 JSURandomInputStream::skip(long offset)
 {
@@ -101,10 +95,9 @@ s32 JSURandomInputStream::skip(long offset)
 	return tmp;
 }
 
-/*
- * --INFO--
- * Address:	8002664C
- * Size:	0000BC
+/**
+ * @note Address: 0x8002664C
+ * @note Size: 0xBC
  */
 size_t JSURandomInputStream::peek(void* buffer, long byteCount)
 {
@@ -121,10 +114,9 @@ size_t JSURandomInputStream::peek(void* buffer, long byteCount)
 	return dataLength;
 }
 
-/*
- * --INFO--
- * Address:	80026708
- * Size:	000044
+/**
+ * @note Address: 0x80026708
+ * @note Size: 0x44
  */
 void JSURandomInputStream::seek(long offset, JSUStreamSeekFrom mode)
 {

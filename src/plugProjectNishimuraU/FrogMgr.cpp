@@ -5,10 +5,9 @@ namespace Frog {
 
 static const char frogMgrName[] = "246-FrogMgr";
 
-/*
- * --INFO--
- * Address:	80258120
- * Size:	000050
+/**
+ * @note Address: 0x80258120
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -16,24 +15,21 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "イモガエルマネージャ"; // tree frog manager
 }
 
-/*
- * --INFO--
- * Address:	80258170
- * Size:	000048
+/**
+ * @note Address: 0x80258170
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Parms); }
 
-/*
- * --INFO--
- * Address:	8025830C
- * Size:	000060
+/**
+ * @note Address: 0x8025830C
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	80258428
- * Size:	000010
+/**
+ * @note Address: 0x80258428
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 

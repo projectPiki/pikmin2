@@ -11,10 +11,9 @@
         .skip 0x8
 */
 
-/*
- * --INFO--
- * Address:	80098A68
- * Size:	000028
+/**
+ * @note Address: 0x80098A68
+ * @note Size: 0x28
  */
 u32 JASWSParser::getGroupCount(void* stream)
 {
@@ -22,10 +21,9 @@ u32 JASWSParser::getGroupCount(void* stream)
 	return JSUConvertOffsetToPtr<TCtrlGroup>(header, header->mCtrlGroupOffset)->mCtrlGroupCount;
 }
 
-/*
- * --INFO--
- * Address:	80098A90
- * Size:	000204
+/**
+ * @note Address: 0x80098A90
+ * @note Size: 0x204
  */
 JASBasicWaveBank* JASWSParser::createBasicWaveBank(void* stream)
 {
@@ -222,10 +220,9 @@ lbl_80098C80:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80098C94
- * Size:	0001F8
+/**
+ * @note Address: 0x80098C94
+ * @note Size: 0x1F8
  */
 JASSimpleWaveBank* JASWSParser::createSimpleWaveBank(void* stream)
 {
@@ -422,61 +419,53 @@ lbl_80098E78:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 size_t JASWSParser::getUsedHeapSize()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80098E8C
- * Size:	000018
+/**
+ * @note Address: 0x80098E8C
+ * @note Size: 0x18
  */
 // void JSUConvertOffsetToPtr<JASWSParser::TCtrlWave>(const void*, u32) { }
 
-/*
- * --INFO--
- * Address:	80098EA4
- * Size:	000018
+/**
+ * @note Address: 0x80098EA4
+ * @note Size: 0x18
  */
 // void JSUConvertOffsetToPtr<JASWSParser::TWave>(const void*, u32) { }
 
-/*
- * --INFO--
- * Address:	80098EBC
- * Size:	000018
+/**
+ * @note Address: 0x80098EBC
+ * @note Size: 0x18
  */
 // void JSUConvertOffsetToPtr<JASWSParser::TWaveArchive>(const void*, u32) { }
 
-/*
- * --INFO--
- * Address:	80098ED4
- * Size:	000018
+/**
+ * @note Address: 0x80098ED4
+ * @note Size: 0x18
  */
 // void JSUConvertOffsetToPtr<JASWSParser::TWaveArchiveBank>(const void*, u32) { }
 
-/*
- * --INFO--
- * Address:	80098EEC
- * Size:	000018
+/**
+ * @note Address: 0x80098EEC
+ * @note Size: 0x18
  */
 // void JSUConvertOffsetToPtr<JASWSParser::TCtrl>(const void*, u32) { }
 
-/*
- * --INFO--
- * Address:	80098F04
- * Size:	000018
+/**
+ * @note Address: 0x80098F04
+ * @note Size: 0x18
  */
 // void JSUConvertOffsetToPtr<JASWSParser::TCtrlScene>(const void*, u32) { }
 
-/*
- * --INFO--
- * Address:	80098F1C
- * Size:	000018
+/**
+ * @note Address: 0x80098F1C
+ * @note Size: 0x18
  */
 // void JSUConvertOffsetToPtr<JASWSParser::TCtrlGroup>(const void*, u32) { }

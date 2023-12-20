@@ -9,17 +9,15 @@
 
 namespace Game {
 namespace CommonSaveData {
-/*
- * --INFO--
- * Address:	80446C68
- * Size:	000044
+/**
+ * @note Address: 0x80446C68
+ * @note Size: 0x44
  */
 Mgr::Mgr() { setDefault(); }
 
-/*
- * --INFO--
- * Address:	80446CAC
- * Size:	000078
+/**
+ * @note Address: 0x80446CAC
+ * @note Size: 0x78
  */
 void Mgr::setDefault()
 {
@@ -40,10 +38,9 @@ void Mgr::setDefault()
 	reset();
 }
 
-/*
- * --INFO--
- * Address:	80446D24
- * Size:	000018
+/**
+ * @note Address: 0x80446D24
+ * @note Size: 0x18
  */
 void Mgr::setCardSerialNo(u64 tag)
 {
@@ -51,10 +48,9 @@ void Mgr::setCardSerialNo(u64 tag)
 	mFlags.set(1);
 }
 
-/*
- * --INFO--
- * Address:	80446D3C
- * Size:	000020
+/**
+ * @note Address: 0x80446D3C
+ * @note Size: 0x20
  */
 void Mgr::resetCardSerialNo()
 {
@@ -62,10 +58,9 @@ void Mgr::resetCardSerialNo()
 	mFlags.unset(1);
 }
 
-/*
- * --INFO--
- * Address:	80446D5C
- * Size:	0000AC
+/**
+ * @note Address: 0x80446D5C
+ * @note Size: 0xAC
  */
 void Mgr::write(Stream& output)
 {
@@ -83,10 +78,9 @@ void Mgr::write(Stream& output)
 	PlayCommonData::write(output);
 }
 
-/*
- * --INFO--
- * Address:	80446E08
- * Size:	0000AC
+/**
+ * @note Address: 0x80446E08
+ * @note Size: 0xAC
  */
 void Mgr::read(Stream& input)
 {
@@ -104,10 +98,9 @@ void Mgr::read(Stream& input)
 	PlayCommonData::read(input);
 }
 
-/*
- * --INFO--
- * Address:	80446EB4
- * Size:	000100
+/**
+ * @note Address: 0x80446EB4
+ * @note Size: 0x100
  */
 void Mgr::setup()
 {
@@ -140,10 +133,9 @@ void Mgr::setup()
 	setDeflicker();
 }
 
-/*
- * --INFO--
- * Address:	80446FB4
- * Size:	000014
+/**
+ * @note Address: 0x80446FB4
+ * @note Size: 0x14
  */
 void Mgr::resetPlayer(s8 fileIndex)
 {
@@ -152,17 +144,15 @@ void Mgr::resetPlayer(s8 fileIndex)
 	_18        = 0;
 }
 
-/*
- * --INFO--
- * Address:	80446FC8
- * Size:	000030
+/**
+ * @note Address: 0x80446FC8
+ * @note Size: 0x30
  */
 void Mgr::setDeflicker() { setDeflicker(mUseDeflicker); }
 
-/*
- * --INFO--
- * Address:	80446FF8
- * Size:	0000D0
+/**
+ * @note Address: 0x80446FF8
+ * @note Size: 0xD0
  */
 void Mgr::setDeflicker(bool deflicker)
 {
@@ -198,10 +188,9 @@ void Mgr::setDeflicker(bool deflicker)
 	}
 }
 
-/*
- * --INFO--
- * Address:	804470C8
- * Size:	000034
+/**
+ * @note Address: 0x804470C8
+ * @note Size: 0x34
  */
 void Mgr::setSoundModeMono()
 {
@@ -210,10 +199,9 @@ void Mgr::setSoundModeMono()
 	OSSetSoundMode(false);
 }
 
-/*
- * --INFO--
- * Address:	804470FC
- * Size:	000034
+/**
+ * @note Address: 0x804470FC
+ * @note Size: 0x34
  */
 void Mgr::setSoundModeStereo()
 {
@@ -222,10 +210,9 @@ void Mgr::setSoundModeStereo()
 	OSSetSoundMode(true);
 }
 
-/*
- * --INFO--
- * Address:	80447130
- * Size:	000034
+/**
+ * @note Address: 0x80447130
+ * @note Size: 0x34
  */
 void Mgr::setSoundModeSurround()
 {
@@ -234,10 +221,9 @@ void Mgr::setSoundModeSurround()
 	OSSetSoundMode(true);
 }
 
-/*
- * --INFO--
- * Address:	80447164
- * Size:	00012C
+/**
+ * @note Address: 0x80447164
+ * @note Size: 0x12C
  */
 void Mgr::setBgmVolume(f32 volume)
 {
@@ -269,10 +255,9 @@ void Mgr::setBgmVolume(f32 volume)
 	OSRestoreInterrupts(temp);
 }
 
-/*
- * --INFO--
- * Address:	80447290
- * Size:	00012C
+/**
+ * @note Address: 0x80447290
+ * @note Size: 0x12C
  */
 void Mgr::setSeVolume(f32 volume)
 {

@@ -8,10 +8,9 @@
 #include "stl/string.h"
 #include "P2Macros.h"
 
-/*
- * --INFO--
- * Address:	80424818
- * Size:	000080
+/**
+ * @note Address: 0x80424818
+ * @note Size: 0x80
  */
 DvdThreadCommand::DvdThreadCommand()
     : mLink(this)
@@ -28,10 +27,9 @@ DvdThreadCommand::DvdThreadCommand()
 	OSInitMessageQueue(&mMsgQueue, &mMsgBuffer, 1);
 }
 
-/*
- * --INFO--
- * Address:	80424898
- * Size:	000020
+/**
+ * @note Address: 0x80424898
+ * @note Size: 0x20
  */
 void DvdThreadCommand::loadUseCallBack(IDelegate* cb)
 {
@@ -42,10 +40,9 @@ void DvdThreadCommand::loadUseCallBack(IDelegate* cb)
 	mMode           = 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 void DvdThreadCommand::invokeCallBack()
 {
@@ -53,10 +50,9 @@ void DvdThreadCommand::invokeCallBack()
 	mCallBack->invoke();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D0
+/**
+ * @note Address: N/A
+ * @note Size: 0xD0
  */
 bool DvdThreadCommand::checkExp(const char* path) const
 {
@@ -88,10 +84,9 @@ bool DvdThreadCommand::checkExp(const char* path) const
 	return strcmp(path, newStr) == 0;
 }
 
-/*
- * --INFO--
- * Address:	804248B8
- * Size:	00004C
+/**
+ * @note Address: 0x804248B8
+ * @note Size: 0x4C
  */
 DvdThread::DvdThread(u32 p1, int p2, int p3)
     : AppThread(p1, p2, p3)
@@ -100,10 +95,9 @@ DvdThread::DvdThread(u32 p1, int p2, int p3)
 	OSResumeThread(mThread);
 }
 
-/*
- * --INFO--
- * Address:	80424904
- * Size:	000194
+/**
+ * @note Address: 0x80424904
+ * @note Size: 0x194
  */
 void* DvdThread::run()
 {
@@ -140,10 +134,9 @@ void* DvdThread::run()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80424A98
- * Size:	00009C
+/**
+ * @note Address: 0x80424A98
+ * @note Size: 0x9C
  */
 void DvdThread::loadArchive(DvdThreadCommand* cmd)
 {
@@ -155,10 +148,9 @@ void DvdThread::loadArchive(DvdThreadCommand* cmd)
 	currentHeap->becomeCurrentHeap();
 }
 
-/*
- * --INFO--
- * Address:	80424B34
- * Size:	000108
+/**
+ * @note Address: 0x80424B34
+ * @note Size: 0x108
  */
 void DvdThread::loadFile(DvdThreadCommand* cmd)
 {
@@ -175,10 +167,9 @@ void DvdThread::loadFile(DvdThreadCommand* cmd)
 	currentHeap->becomeCurrentHeap();
 }
 
-/*
- * --INFO--
- * Address:	80424C3C
- * Size:	000060
+/**
+ * @note Address: 0x80424C3C
+ * @note Size: 0x60
  */
 void DvdThread::sendCommand(DvdThreadCommand* cmd)
 {
@@ -190,10 +181,9 @@ void DvdThread::sendCommand(DvdThreadCommand* cmd)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80424C9C
- * Size:	0000B0
+/**
+ * @note Address: 0x80424C9C
+ * @note Size: 0xB0
  */
 bool DvdThread::sync(DvdThreadCommand* cmd, DvdThread::ESyncBlockFlag blockFlag)
 {
@@ -212,10 +202,9 @@ bool DvdThread::sync(DvdThreadCommand* cmd, DvdThread::ESyncBlockFlag blockFlag)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80424D4C
- * Size:	0000CC
+/**
+ * @note Address: 0x80424D4C
+ * @note Size: 0xCC
  */
 int DvdThread::syncAll(DvdThread::ESyncBlockFlag blockFlag)
 {

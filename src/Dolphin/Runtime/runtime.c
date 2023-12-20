@@ -110,10 +110,9 @@ static const unsigned long __constants[] = {
 	0x00000000, 0x00000000, 0x41F00000, 0x00000000, 0x41E00000, 0x00000000,
 };
 
-/*
- * --INFO--
- * Address:	800C1B4C
- * Size:	00005C
+/**
+ * @note Address: 0x800C1B4C
+ * @note Size: 0x5C
  */
 ASM unsigned long __cvt_fp2unsigned(register double d)
 {
@@ -146,10 +145,9 @@ ASM unsigned long __cvt_fp2unsigned(register double d)
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800C1BA8
- * Size:	00004C
+/**
+ * @note Address: 0x800C1BA8
+ * @note Size: 0x4C
  */
 ASM static void __save_fpr(void) {
 #ifdef __MWERKS__ // clang-format off
@@ -194,10 +192,9 @@ ASM static void __save_fpr(void) {
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800C1BF4
- * Size:	00004C
+/**
+ * @note Address: 0x800C1BF4
+ * @note Size: 0x4C
  */
 ASM static void __restore_fpr(void) {
 #ifdef __MWERKS__ // clang-format off
@@ -242,10 +239,9 @@ ASM static void __restore_fpr(void) {
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800C1C40
- * Size:	00004C
+/**
+ * @note Address: 0x800C1C40
+ * @note Size: 0x4C
  */
 ASM static void __save_gpr(void) {
 #ifdef __MWERKS__ // clang-format off
@@ -290,10 +286,9 @@ ASM static void __save_gpr(void) {
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800C1C8C
- * Size:	00004C
+/**
+ * @note Address: 0x800C1C8C
+ * @note Size: 0x4C
  */
 ASM static void __restore_gpr(void) {
 #ifdef __MWERKS__ // clang-format off
@@ -338,10 +333,9 @@ ASM static void __restore_gpr(void) {
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800C1CD8
- * Size:	0000EC
+/**
+ * @note Address: 0x800C1CD8
+ * @note Size: 0xEC
  */
 ASM void __div2u(void) {
 #ifdef __MWERKS__ // clang-format off
@@ -417,10 +411,9 @@ lab9:
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800C1DC4
- * Size:	000138
+/**
+ * @note Address: 0x800C1DC4
+ * @note Size: 0x138
  */
 ASM void __div2i(void) {
 #ifdef __MWERKS__ // clang-format off
@@ -521,10 +514,9 @@ func_end:
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800C1EFC
- * Size:	0000E4
+/**
+ * @note Address: 0x800C1EFC
+ * @note Size: 0xE4
  */
 ASM void __mod2u(void) {
 #ifdef __MWERKS__ // clang-format off
@@ -598,10 +590,9 @@ lab9:
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800C1FE0
- * Size:	00010C
+/**
+ * @note Address: 0x800C1FE0
+ * @note Size: 0x10C
  */
 ASM void __mod2i(void) {
 #ifdef __MWERKS__ // clang-format off
@@ -689,10 +680,9 @@ no_adjust:
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800C20EC
- * Size:	000024
+/**
+ * @note Address: 0x800C20EC
+ * @note Size: 0x24
  */
 ASM void __shl2i(void) {
 #ifdef __MWERKS__ // clang-format off
@@ -709,10 +699,9 @@ ASM void __shl2i(void) {
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800C2110
- * Size:	000024
+/**
+ * @note Address: 0x800C2110
+ * @note Size: 0x24
  */
 ASM void __shr2u(void) {
 #ifdef __MWERKS__ // clang-format off
@@ -729,10 +718,9 @@ ASM void __shr2u(void) {
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800C2134
- * Size:	000028
+/**
+ * @note Address: 0x800C2134
+ * @note Size: 0x28
  */
 ASM void __shr2i(void) {
 #ifdef __MWERKS__ // clang-format off
@@ -751,10 +739,9 @@ around:
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B0
+/**
+ * @note Address: N/A
+ * @note Size: 0xB0
  */
 ASM void __cvt_sll_dbl(void) {
 #ifdef __MWERKS__ // clang-format off
@@ -810,10 +797,9 @@ zero:
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800C215C
- * Size:	00009C
+/**
+ * @note Address: 0x800C215C
+ * @note Size: 0x9C
  */
 ASM void __cvt_ull_dbl(void) {
 #ifdef __MWERKS__ // clang-format off
@@ -863,10 +849,9 @@ zero:
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B4
+/**
+ * @note Address: N/A
+ * @note Size: 0xB4
  */
 ASM void __cvt_sll_flt(void) {
 #ifdef __MWERKS__ // clang-format off
@@ -923,10 +908,9 @@ zero:
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A0
+/**
+ * @note Address: N/A
+ * @note Size: 0xA0
  */
 ASM void __cvt_ull_flt(void) {
 #ifdef __MWERKS__ // clang-format off
@@ -977,10 +961,9 @@ zero:
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800C21F8
- * Size:	0000CC
+/**
+ * @note Address: 0x800C21F8
+ * @note Size: 0xCC
  */
 ASM void __cvt_dbl_usll(void)
 {

@@ -4,10 +4,9 @@
 namespace og {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	8030E958
- * Size:	0002F8
+/**
+ * @note Address: 0x8030E958
+ * @note Size: 0x2F8
  */
 J2DPictureEx* CopyPicture(J2DPictureEx* pic, u64 tag)
 {
@@ -48,10 +47,9 @@ J2DPictureEx* CopyPicture(J2DPictureEx* pic, u64 tag)
 	return copy;
 }
 
-/*
- * --INFO--
- * Address:	8030EC50
- * Size:	000338
+/**
+ * @note Address: 0x8030EC50
+ * @note Size: 0x338
  */
 J2DPictureEx* CopyPictureToPane(J2DPictureEx* pic, J2DPane* pane, f32 x, f32 y, u64 tag)
 {

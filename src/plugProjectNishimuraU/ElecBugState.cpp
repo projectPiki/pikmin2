@@ -11,10 +11,9 @@ namespace ElecBug {
 
 static const char unusedElecBugName[] = "246-ElecBugState";
 
-/*
- * --INFO--
- * Address:	80278E90
- * Size:	000384
+/**
+ * @note Address: 0x80278E90
+ * @note Size: 0x384
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -31,10 +30,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateReturn);
 }
 
-/*
- * --INFO--
- * Address:	80279214
- * Size:	00005C
+/**
+ * @note Address: 0x80279214
+ * @note Size: 0x5C
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -44,10 +42,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(ELECBUGANIM_Dead, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80279270
- * Size:	000044
+/**
+ * @note Address: 0x80279270
+ * @note Size: 0x44
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -56,17 +53,15 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802792B4
- * Size:	000004
+/**
+ * @note Address: 0x802792B4
+ * @note Size: 0x4
  */
 void StateDead::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802792B8
- * Size:	00004C
+/**
+ * @note Address: 0x802792B8
+ * @note Size: 0x4C
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -77,10 +72,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	bug->startMotion(ELECBUGANIM_Wait, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80279304
- * Size:	0000A0
+/**
+ * @note Address: 0x80279304
+ * @note Size: 0xA0
  */
 void StateWait::exec(EnemyBase* enemy)
 {
@@ -94,17 +88,15 @@ void StateWait::exec(EnemyBase* enemy)
 	bug->mStateTimer += sys->mDeltaTime;
 }
 
-/*
- * --INFO--
- * Address:	802793A4
- * Size:	000004
+/**
+ * @note Address: 0x802793A4
+ * @note Size: 0x4
  */
 void StateWait::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802793A8
- * Size:	00005C
+/**
+ * @note Address: 0x802793A8
+ * @note Size: 0x5C
  */
 void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -115,10 +107,9 @@ void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 	bug->startMotion(ELECBUGANIM_Move, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80279404
- * Size:	000200
+/**
+ * @note Address: 0x80279404
+ * @note Size: 0x200
  */
 void StateTurn::exec(EnemyBase* enemy)
 {
@@ -148,17 +139,15 @@ void StateTurn::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80279604
- * Size:	000004
+/**
+ * @note Address: 0x80279604
+ * @note Size: 0x4
  */
 void StateTurn::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	80279608
- * Size:	00003C
+/**
+ * @note Address: 0x80279608
+ * @note Size: 0x3C
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -167,10 +156,9 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	bug->startMotion(ELECBUGANIM_Move, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80279644
- * Size:	00013C
+/**
+ * @note Address: 0x80279644
+ * @note Size: 0x13C
  */
 void StateMove::exec(EnemyBase* enemy)
 {
@@ -197,17 +185,15 @@ void StateMove::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80279780
- * Size:	000004
+/**
+ * @note Address: 0x80279780
+ * @note Size: 0x4
  */
 void StateMove::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	80279784
- * Size:	00007C
+/**
+ * @note Address: 0x80279784
+ * @note Size: 0x7C
  */
 void StateCharge::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -222,10 +208,9 @@ void StateCharge::init(EnemyBase* enemy, StateArg* stateArg)
 	bug->startMotion(ELECBUGANIM_Charge, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80279800
- * Size:	000554
+/**
+ * @note Address: 0x80279800
+ * @note Size: 0x554
  */
 void StateCharge::exec(EnemyBase* enemy)
 {
@@ -276,16 +261,14 @@ void StateCharge::exec(EnemyBase* enemy)
 	bug->mStateTimer += sys->mDeltaTime;
 }
 
-/*
- * --INFO--
- * Address:	80279D54
- * Size:	00004C
+/**
+ * @note Address: 0x80279D54
+ * @note Size: 0x4C
  */
 
-/*
- * --INFO--
- * Address:	80279DA0
- * Size:	000064
+/**
+ * @note Address: 0x80279DA0
+ * @note Size: 0x64
  */
 void StateCharge::cleanup(EnemyBase* enemy)
 {
@@ -294,10 +277,9 @@ void StateCharge::cleanup(EnemyBase* enemy)
 	bug->mInactiveTimer = randWeightFloat(10.0f);
 }
 
-/*
- * --INFO--
- * Address:	80279E04
- * Size:	000060
+/**
+ * @note Address: 0x80279E04
+ * @note Size: 0x60
  */
 void StateDischarge::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -309,10 +291,9 @@ void StateDischarge::init(EnemyBase* enemy, StateArg* stateArg)
 	bug->startMotion(ELECBUGANIM_Discharge, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80279E64
- * Size:	0000E8
+/**
+ * @note Address: 0x80279E64
+ * @note Size: 0xE8
  */
 void StateDischarge::exec(EnemyBase* enemy)
 {
@@ -341,10 +322,9 @@ void StateDischarge::exec(EnemyBase* enemy)
 	bug->mStateTimer += sys->mDeltaTime;
 }
 
-/*
- * --INFO--
- * Address:	80279F4C
- * Size:	00006C
+/**
+ * @note Address: 0x80279F4C
+ * @note Size: 0x6C
  */
 void StateDischarge::cleanup(EnemyBase* enemy)
 {
@@ -354,10 +334,9 @@ void StateDischarge::cleanup(EnemyBase* enemy)
 	bug->finishPartnerAndEffect();
 }
 
-/*
- * --INFO--
- * Address:	80279FB8
- * Size:	00006C
+/**
+ * @note Address: 0x80279FB8
+ * @note Size: 0x6C
  */
 void StateChildCharge::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -370,10 +349,9 @@ void StateChildCharge::init(EnemyBase* enemy, StateArg* stateArg)
 	bug->startMotion(ELECBUGANIM_Charge, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8027A024
- * Size:	000228
+/**
+ * @note Address: 0x8027A024
+ * @note Size: 0x228
  */
 void StateChildCharge::exec(EnemyBase* enemy)
 {
@@ -547,10 +525,9 @@ lbl_8027A1FC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8027A24C
- * Size:	000064
+/**
+ * @note Address: 0x8027A24C
+ * @note Size: 0x64
  */
 void StateChildCharge::cleanup(EnemyBase* enemy)
 {
@@ -559,10 +536,9 @@ void StateChildCharge::cleanup(EnemyBase* enemy)
 	bug->mInactiveTimer = randWeightFloat(10.0f);
 }
 
-/*
- * --INFO--
- * Address:	8027A2B0
- * Size:	000060
+/**
+ * @note Address: 0x8027A2B0
+ * @note Size: 0x60
  */
 void StateChildDischarge::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -574,10 +550,9 @@ void StateChildDischarge::init(EnemyBase* enemy, StateArg* stateArg)
 	bug->startMotion(ELECBUGANIM_Discharge, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8027A310
- * Size:	0000C0
+/**
+ * @note Address: 0x8027A310
+ * @note Size: 0xC0
  */
 void StateChildDischarge::exec(EnemyBase* enemy)
 {
@@ -598,10 +573,9 @@ void StateChildDischarge::exec(EnemyBase* enemy)
 	bug->mStateTimer += sys->mDeltaTime;
 }
 
-/*
- * --INFO--
- * Address:	8027A3D0
- * Size:	00006C
+/**
+ * @note Address: 0x8027A3D0
+ * @note Size: 0x6C
  */
 void StateChildDischarge::cleanup(EnemyBase* enemy)
 {
@@ -611,10 +585,9 @@ void StateChildDischarge::cleanup(EnemyBase* enemy)
 	bug->finishPartnerAndEffect();
 }
 
-/*
- * --INFO--
- * Address:	8027A43C
- * Size:	000070
+/**
+ * @note Address: 0x8027A43C
+ * @note Size: 0x70
  */
 void StateReverse::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -627,10 +600,9 @@ void StateReverse::init(EnemyBase* enemy, StateArg* stateArg)
 	bug->startMotion(ELECBUGANIM_Turn, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8027A4AC
- * Size:	0000D8
+/**
+ * @note Address: 0x8027A4AC
+ * @note Size: 0xD8
  */
 void StateReverse::exec(EnemyBase* enemy)
 {
@@ -651,17 +623,15 @@ void StateReverse::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8027A584
- * Size:	000010
+/**
+ * @note Address: 0x8027A584
+ * @note Size: 0x10
  */
 void StateReverse::cleanup(EnemyBase* enemy) { enemy->enableEvent(0, EB_Invulnerable); }
 
-/*
- * --INFO--
- * Address:	8027A594
- * Size:	000048
+/**
+ * @note Address: 0x8027A594
+ * @note Size: 0x48
  */
 void StateReturn::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -671,10 +641,9 @@ void StateReturn::init(EnemyBase* enemy, StateArg* stateArg)
 	bug->startMotion(ELECBUGANIM_Recover, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8027A5DC
- * Size:	000050
+/**
+ * @note Address: 0x8027A5DC
+ * @note Size: 0x50
  */
 void StateReturn::exec(EnemyBase* enemy)
 {
@@ -683,10 +652,9 @@ void StateReturn::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8027A62C
- * Size:	000004
+/**
+ * @note Address: 0x8027A62C
+ * @note Size: 0x4
  */
 void StateReturn::cleanup(EnemyBase* enemy) { }
 

@@ -14,10 +14,9 @@
 namespace PSSystem {
 u8 sDistanceParameterMoveTime;
 
-/*
- * --INFO--
- * Address:	8033836C
- * Size:	000050
+/**
+ * @note Address: 0x8033836C
+ * @note Size: 0x50
  */
 u32 getObject(JASTrack* track, u8 p2)
 {
@@ -47,10 +46,9 @@ u32 getObject(JASTrack* track, u8 p2)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803383BC
- * Size:	000060
+/**
+ * @note Address: 0x803383BC
+ * @note Size: 0x60
  */
 void setObject(JASTrack* track, void* p2, u8 p3)
 {
@@ -84,10 +82,9 @@ void setObject(JASTrack* track, void* p2, u8 p3)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033841C
- * Size:	000134
+/**
+ * @note Address: 0x8033841C
+ * @note Size: 0x134
  */
 SysIF::SysIF(const SetupArg& arg)
     : JAIBasic()
@@ -194,10 +191,9 @@ lbl_803384B8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80338550
- * Size:	0000E0
+/**
+ * @note Address: 0x80338550
+ * @note Size: 0xE0
  */
 void SysIF::stopSoundSystem()
 {
@@ -212,10 +208,9 @@ void SysIF::stopSoundSystem()
 	stopAudio(10, true);
 }
 
-/*
- * --INFO--
- * Address:	80338630
- * Size:	000040
+/**
+ * @note Address: 0x80338630
+ * @note Size: 0x40
  */
 JAISe* SysIF::playSystemSe(u32 soundID, u32 flag)
 {
@@ -224,10 +219,9 @@ JAISe* SysIF::playSystemSe(u32 soundID, u32 flag)
 	return se;
 }
 
-/*
- * --INFO--
- * Address:	80338670
- * Size:	00002C
+/**
+ * @note Address: 0x80338670
+ * @note Size: 0x2C
  */
 void SysIF::playSystemSe(u32 soundID, JAISound** handles, u32 flag)
 {
@@ -248,10 +242,9 @@ void SysIF::playSystemSe(u32 soundID, JAISound** handles, u32 flag)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033869C
- * Size:	000078
+/**
+ * @note Address: 0x8033869C
+ * @note Size: 0x78
  */
 void SysIF::initIF(const SetupArg& arg)
 {
@@ -300,10 +293,9 @@ lbl_80338700:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80338714
- * Size:	000038
+/**
+ * @note Address: 0x80338714
+ * @note Size: 0x38
  */
 JAISe* SysIF::makeSe()
 {
@@ -334,10 +326,9 @@ lbl_8033873C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033874C
- * Size:	0000DC
+/**
+ * @note Address: 0x8033874C
+ * @note Size: 0xDC
  */
 void SysIF::mainLoop()
 {
@@ -348,10 +339,9 @@ void SysIF::mainLoop()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80338828
- * Size:	00008C
+/**
+ * @note Address: 0x80338828
+ * @note Size: 0x8C
  */
 void SysIF::setConfigVol_Se(f32 volume)
 {
@@ -406,10 +396,9 @@ lbl_803388A0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803388B4
- * Size:	0000C8
+/**
+ * @note Address: 0x803388B4
+ * @note Size: 0xC8
  */
 void SysIF::setConfigVol_Bgm(f32 volume)
 {
@@ -491,27 +480,24 @@ lbl_80338964:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033897C
- * Size:	000004
+/**
+ * @note Address: 0x8033897C
+ * @note Size: 0x4
  */
 FxMgr::FxMgr() { }
 
-/*
- * --INFO--
- * Address:	80338980
- * Size:	000044
+/**
+ * @note Address: 0x80338980
+ * @note Size: 0x44
  */
 TextDataBase::TextDataBase()
     : mFile(nullptr)
 {
 }
 
-/*
- * --INFO--
- * Address:	803389C4
- * Size:	000070
+/**
+ * @note Address: 0x803389C4
+ * @note Size: 0x70
  */
 TextDataBase::~TextDataBase()
 {
@@ -550,10 +536,9 @@ lbl_80338A18:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80338A34
- * Size:	00007C
+/**
+ * @note Address: 0x80338A34
+ * @note Size: 0x7C
  */
 bool TextDataBase::load(const char* path, JKRDvdRipper::EAllocDirection direction)
 {
@@ -566,10 +551,9 @@ bool TextDataBase::load(const char* path, JKRDvdRipper::EAllocDirection directio
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80338AB0
- * Size:	000068
+/**
+ * @note Address: 0x80338AB0
+ * @note Size: 0x68
  */
 bool TextDataBase::onlyLoad(const char* path, JKRDvdRipper::EAllocDirection direction)
 {
@@ -577,17 +561,15 @@ bool TextDataBase::onlyLoad(const char* path, JKRDvdRipper::EAllocDirection dire
 	return !!mFile; // ???
 }
 
-/*
- * --INFO--
- * Address:	80338B18
- * Size:	00000C
+/**
+ * @note Address: 0x80338B18
+ * @note Size: 0xC
  */
 void SysIF::start1stSeq() { JAInter::SeMgr::seHandle = nullptr; }
 
-/*
- * --INFO--
- * Address:	80338B24
- * Size:	000070
+/**
+ * @note Address: 0x80338B24
+ * @note Size: 0x70
  */
 JAISequence* SysIF::makeSequence()
 {
@@ -598,17 +580,15 @@ JAISequence* SysIF::makeSequence()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80338B94
- * Size:	000058
+/**
+ * @note Address: 0x80338B94
+ * @note Size: 0x58
  */
 SeqSound::SeqSound() { }
 
-/*
- * --INFO--
- * Address:	80338BEC
- * Size:	000070
+/**
+ * @note Address: 0x80338BEC
+ * @note Size: 0x70
  */
 JAIStream* SysIF::makeStream()
 {
@@ -620,10 +600,9 @@ JAIStream* SysIF::makeStream()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80338C5C
- * Size:	000058
+/**
+ * @note Address: 0x80338C5C
+ * @note Size: 0x58
  */
 StreamSound::StreamSound()
 {

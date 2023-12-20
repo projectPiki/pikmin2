@@ -24,10 +24,9 @@ Obj* curK;
 static const int unusedKingChappyArray[] = { 0, 0, 0 };
 static const char kingChappyName[]       = "kingChappy";
 
-/*
- * --INFO--
- * Address:	8035CCE8
- * Size:	000038
+/**
+ * @note Address: 0x8035CCE8
+ * @note Size: 0x38
  */
 static bool lFootCallBack(J3DJoint* joint, int footIdx)
 {
@@ -40,10 +39,9 @@ static bool lFootCallBack(J3DJoint* joint, int footIdx)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8035CD20
- * Size:	000038
+/**
+ * @note Address: 0x8035CD20
+ * @note Size: 0x38
  */
 static bool rFootCallBack(J3DJoint* joint, int footIdx)
 {
@@ -56,10 +54,9 @@ static bool rFootCallBack(J3DJoint* joint, int footIdx)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8035CD58
- * Size:	0000A4
+/**
+ * @note Address: 0x8035CD58
+ * @note Size: 0xA4
  */
 void Obj::setParameters()
 {
@@ -75,17 +72,15 @@ void Obj::setParameters()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8035CDFC
- * Size:	000020
+/**
+ * @note Address: 0x8035CDFC
+ * @note Size: 0x20
  */
 void Obj::birth(Vector3f& position, f32 faceDir) { EnemyBase::birth(position, faceDir); }
 
-/*
- * --INFO--
- * Address:	8035CE1C
- * Size:	000448
+/**
+ * @note Address: 0x8035CE1C
+ * @note Size: 0x448
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
@@ -160,10 +155,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8035D264
- * Size:	0005AC
+/**
+ * @note Address: 0x8035D264
+ * @note Size: 0x5AC
  */
 Obj::Obj()
     : mMouthJoint1(nullptr)
@@ -213,30 +207,27 @@ Obj::Obj()
 } // namespace Game
 
 namespace efx {
-/*
- * --INFO--
- * Address:	8035D810
- * Size:	0001D8
+/**
+ * @note Address: 0x8035D810
+ * @note Size: 0x1D8
  */
 TKchDeadYodare::TKchDeadYodare(Mtx mtx)
     : TKchYodareBaseChaseMtx(mtx, PID_KchYodareBase_Dead)
 {
 }
 
-/*
- * --INFO--
- * Address:	8035DD24
- * Size:	0001D8
+/**
+ * @note Address: 0x8035DD24
+ * @note Size: 0x1D8
  */
 TKchAttackYodare::TKchAttackYodare(Mtx mtx)
     : TKchYodareBaseChaseMtx(mtx, PID_KchYodareBase_1)
 {
 }
 
-/*
- * --INFO--
- * Address:	8035DEFC
- * Size:	0001D8
+/**
+ * @note Address: 0x8035DEFC
+ * @note Size: 0x1D8
  */
 TKchYodare::TKchYodare(Mtx mtx)
     : TKchYodareBaseChaseMtx(mtx, PID_KchYodareBase_2)
@@ -248,10 +239,9 @@ TKchYodare::TKchYodare(Mtx mtx)
 namespace Game {
 namespace KingChappy {
 
-/*
- * --INFO--
- * Address:	8035E0D4
- * Size:	00004C
+/**
+ * @note Address: 0x8035E0D4
+ * @note Size: 0x4C
  */
 void Obj::setFSM(FSM* fsm)
 {
@@ -260,10 +250,9 @@ void Obj::setFSM(FSM* fsm)
 	mCurrentLifecycleState = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8035E120
- * Size:	0001A0
+/**
+ * @note Address: 0x8035E120
+ * @note Size: 0x1A0
  */
 void Obj::doUpdate()
 {
@@ -284,24 +273,21 @@ void Obj::doUpdate()
 	mFsm->exec(this);
 }
 
-/*
- * --INFO--
- * Address:	8035E2C0
- * Size:	000004
+/**
+ * @note Address: 0x8035E2C0
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	8035E2C4
- * Size:	000020
+/**
+ * @note Address: 0x8035E2C4
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	8035E2E4
- * Size:	0000B8
+/**
+ * @note Address: 0x8035E2E4
+ * @note Size: 0xB8
  */
 void Obj::doAnimationUpdateAnimator()
 {
@@ -319,10 +305,9 @@ void Obj::doAnimationUpdateAnimator()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8035E39C
- * Size:	000034
+/**
+ * @note Address: 0x8035E39C
+ * @note Size: 0x34
  */
 void Obj::onKill(CreatureKillArg* killArg)
 {
@@ -330,10 +315,9 @@ void Obj::onKill(CreatureKillArg* killArg)
 	fadeAllEffect();
 }
 
-/*
- * --INFO--
- * Address:	8035E3D0
- * Size:	000588
+/**
+ * @note Address: 0x8035E3D0
+ * @note Size: 0x588
  */
 void Obj::doAnimationCullingOff()
 {
@@ -837,10 +821,9 @@ lbl_8035E934:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8035E958
- * Size:	000040
+/**
+ * @note Address: 0x8035E958
+ * @note Size: 0x40
  */
 void Obj::doSimulation(f32 rate)
 {
@@ -852,10 +835,9 @@ void Obj::doSimulation(f32 rate)
 	EnemyBase::doSimulation(rate);
 }
 
-/*
- * --INFO--
- * Address:	8035E998
- * Size:	000098
+/**
+ * @note Address: 0x8035E998
+ * @note Size: 0x98
  */
 void Obj::getShadowParam(ShadowParam& param)
 {
@@ -866,10 +848,9 @@ void Obj::getShadowParam(ShadowParam& param)
 	param.mSize                     = 45.0f * mScaleModifier;
 }
 
-/*
- * --INFO--
- * Address:	8035EA30
- * Size:	000158
+/**
+ * @note Address: 0x8035EA30
+ * @note Size: 0x158
  */
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
@@ -898,17 +879,15 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8035EB88
- * Size:	000030
+/**
+ * @note Address: 0x8035EB88
+ * @note Size: 0x30
  */
 void Obj::collisionCallback(CollEvent& event) { event.mHitPart->mCurrentID == ('kuti'); }
 
-/*
- * --INFO--
- * Address:	8035EBB8
- * Size:	000030
+/**
+ * @note Address: 0x8035EBB8
+ * @note Size: 0x30
  */
 void Obj::wallCallback(MoveInfo const& moveInfo)
 {
@@ -917,20 +896,18 @@ void Obj::wallCallback(MoveInfo const& moveInfo)
 	setNextGoal();
 }
 
-/*
- * --INFO--
- * Address:	8035EBE8
- * Size:	000028
+/**
+ * @note Address: 0x8035EBE8
+ * @note Size: 0x28
  */
 bool Obj::bombCallBack(Creature* creature, Vector3f& direction, f32 damage)
 {
 	return EnemyBase::bombCallBack(creature, direction, 0.25f * damage);
 }
 
-/*
- * --INFO--
- * Address:	8035EC10
- * Size:	00004C
+/**
+ * @note Address: 0x8035EC10
+ * @note Size: 0x4C
  */
 void Obj::inWaterCallback(WaterBox* wbox)
 {
@@ -939,17 +916,15 @@ void Obj::inWaterCallback(WaterBox* wbox)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8035EC5C
- * Size:	000028
+/**
+ * @note Address: 0x8035EC5C
+ * @note Size: 0x28
  */
 void Obj::startCarcassMotion() { startMotion(KINGANIM_Carry, nullptr); }
 
-/*
- * --INFO--
- * Address:	8035EC84
- * Size:	000064
+/**
+ * @note Address: 0x8035EC84
+ * @note Size: 0x64
  */
 void Obj::initWalkSmokeEffect()
 {
@@ -958,17 +933,15 @@ void Obj::initWalkSmokeEffect()
 	mWalkSmokeMgr.setup(1, mModel, "asiL", 2.0f);
 }
 
-/*
- * --INFO--
- * Address:	8035ECE8
- * Size:	000008
+/**
+ * @note Address: 0x8035ECE8
+ * @note Size: 0x8
  */
 WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
 
-/*
- * --INFO--
- * Address:	8035ECF0
- * Size:	000074
+/**
+ * @note Address: 0x8035ECF0
+ * @note Size: 0x74
  */
 void Obj::doStartStoneState()
 {
@@ -980,10 +953,9 @@ void Obj::doStartStoneState()
 	fadeAllEffect();
 }
 
-/*
- * --INFO--
- * Address:	8035ED64
- * Size:	0000A0
+/**
+ * @note Address: 0x8035ED64
+ * @note Size: 0xA0
  */
 void Obj::doFinishStoneState()
 {
@@ -998,10 +970,9 @@ void Obj::doFinishStoneState()
 	createEffect(0);
 }
 
-/*
- * --INFO--
- * Address:	8035EE04
- * Size:	00013C
+/**
+ * @note Address: 0x8035EE04
+ * @note Size: 0x13C
  */
 void Obj::doStartMovie()
 {
@@ -1018,10 +989,9 @@ void Obj::doStartMovie()
 	_378->startDemoDrawOff();
 }
 
-/*
- * --INFO--
- * Address:	8035EF9C
- * Size:	00013C
+/**
+ * @note Address: 0x8035EF9C
+ * @note Size: 0x13C
  */
 void Obj::doEndMovie()
 {
@@ -1038,10 +1008,9 @@ void Obj::doEndMovie()
 	_378->endDemoDrawOn();
 }
 
-/*
- * --INFO--
- * Address:	8035F134
- * Size:	000134
+/**
+ * @note Address: 0x8035F134
+ * @note Size: 0x134
  */
 void Obj::initMouthSlots()
 {
@@ -1055,10 +1024,9 @@ void Obj::initMouthSlots()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8035F268
- * Size:	0001A4
+/**
+ * @note Address: 0x8035F268
+ * @note Size: 0x1A4
  */
 int Obj::eatBomb()
 {
@@ -1094,17 +1062,15 @@ int Obj::eatBomb()
 	return count;
 }
 
-/*
- * --INFO--
- * Address:	8035F40C
- * Size:	000008
+/**
+ * @note Address: 0x8035F40C
+ * @note Size: 0x8
  */
 MouthSlots* Obj::getMouthSlots() { return &mMouthSlots; }
 
-/*
- * --INFO--
- * Address:	8035F414
- * Size:	0002C8
+/**
+ * @note Address: 0x8035F414
+ * @note Size: 0x2C8
  */
 int Obj::getPikminInMouth(bool doKill)
 {
@@ -1135,10 +1101,9 @@ int Obj::getPikminInMouth(bool doKill)
 	return count;
 }
 
-/*
- * --INFO--
- * Address:	8035F6DC
- * Size:	00011C
+/**
+ * @note Address: 0x8035F6DC
+ * @note Size: 0x11C
  */
 void Obj::getTonguePosVel(Vector3f& pos, Vector3f& vel)
 {
@@ -1150,10 +1115,9 @@ void Obj::getTonguePosVel(Vector3f& pos, Vector3f& vel)
 	vel.normalise();
 }
 
-/*
- * --INFO--
- * Address:	8035F7F8
- * Size:	0001F0
+/**
+ * @note Address: 0x8035F7F8
+ * @note Size: 0x1F0
  */
 void Obj::setNextGoal()
 {
@@ -1179,10 +1143,9 @@ void Obj::setNextGoal()
 	mGoalPosition.z += rad * cosf(randAngle);
 }
 
-/*
- * --INFO--
- * Address:	8035F9E8
- * Size:	000500
+/**
+ * @note Address: 0x8035F9E8
+ * @note Size: 0x500
  */
 void Obj::searchTarget()
 {
@@ -1586,10 +1549,9 @@ lbl_8035FE94:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8035FEE8
- * Size:	000040
+/**
+ * @note Address: 0x8035FEE8
+ * @note Size: 0x40
  */
 bool Obj::isOutOfTerritory(f32 rangeScale)
 {
@@ -1598,10 +1560,9 @@ bool Obj::isOutOfTerritory(f32 rangeScale)
 	return (dist > SQUARE(radius));
 }
 
-/*
- * --INFO--
- * Address:	8035FF28
- * Size:	0000DC
+/**
+ * @note Address: 0x8035FF28
+ * @note Size: 0xDC
  */
 bool Obj::forceTransit(int stateID)
 {
@@ -1627,17 +1588,15 @@ bool Obj::forceTransit(int stateID)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80360004
- * Size:	000030
+/**
+ * @note Address: 0x80360004
+ * @note Size: 0x30
  */
 void Obj::requestTransit(int stateID) { static_cast<Mgr*>(mMgr)->requestState(this, stateID); }
 
-/*
- * --INFO--
- * Address:	80360034
- * Size:	00012C
+/**
+ * @note Address: 0x80360034
+ * @note Size: 0x12C
  */
 void Obj::walkFunc()
 {
@@ -1665,10 +1624,9 @@ void Obj::walkFunc()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80360160
- * Size:	0001AC
+/**
+ * @note Address: 0x80360160
+ * @note Size: 0x1AC
  */
 f32 Obj::turnFunc(f32 scale)
 {
@@ -1805,10 +1763,9 @@ lbl_803602A4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8036030C
- * Size:	000034
+/**
+ * @note Address: 0x8036030C
+ * @note Size: 0x34
  */
 bool Obj::isReachToGoal(f32 radius)
 {
@@ -1817,20 +1774,18 @@ bool Obj::isReachToGoal(f32 radius)
 	return (u8)(dist < rad);
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	0000D8
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0xD8
 //  */
 // void Obj::isUseTurn()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	80360340
- * Size:	000844
+/**
+ * @note Address: 0x80360340
+ * @note Size: 0x844
  */
 void Obj::checkAttack(bool check)
 {
@@ -2479,10 +2434,9 @@ lbl_80360B20:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80360B84
- * Size:	00042C
+/**
+ * @note Address: 0x80360B84
+ * @note Size: 0x42C
  */
 void Obj::checkFlick(bool check)
 {
@@ -2528,10 +2482,9 @@ void Obj::checkFlick(bool check)
 	mFsm->transit(this, KINGCHAPPY_Flick, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80360FB0
- * Size:	0000EC
+/**
+ * @note Address: 0x80360FB0
+ * @note Size: 0xEC
  */
 void Obj::checkDead(bool check)
 {
@@ -2557,10 +2510,9 @@ void Obj::checkDead(bool check)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8036109C
- * Size:	000128
+/**
+ * @note Address: 0x8036109C
+ * @note Size: 0x128
  */
 void Obj::checkTurn(bool check)
 {
@@ -2581,10 +2533,9 @@ void Obj::checkTurn(bool check)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803611C4
- * Size:	00013C
+/**
+ * @note Address: 0x803611C4
+ * @note Size: 0x13C
  */
 void Obj::startMotionSelf(int animIdx, SysShape::MotionListener* listener)
 {
@@ -2626,10 +2577,9 @@ void Obj::startMotionSelf(int animIdx, SysShape::MotionListener* listener)
 	_2E4 = 0;
 }
 
-/*
- * --INFO--
- * Address:	80361300
- * Size:	000098
+/**
+ * @note Address: 0x80361300
+ * @note Size: 0x98
  */
 void Obj::endBlendAnimation()
 {
@@ -2648,24 +2598,21 @@ void Obj::endBlendAnimation()
 	setMotionFrame(timer);
 }
 
-/*
- * --INFO--
- * Address:	80361398
- * Size:	000044
+/**
+ * @note Address: 0x80361398
+ * @note Size: 0x44
  */
 void Obj::leftFootMtxCalc() { footMtxCalc(mModel->mJ3dModel->mMtxBuffer->mWorldMatrices[mLFootJointIndex], &mLFootPosition, &_320); }
 
-/*
- * --INFO--
- * Address:	803613DC
- * Size:	000044
+/**
+ * @note Address: 0x803613DC
+ * @note Size: 0x44
  */
 void Obj::rightFootMtxCalc() { footMtxCalc(mModel->mJ3dModel->mMtxBuffer->mWorldMatrices[mRFootJointIndex], &mRFootPosition, &_334); }
 
-/*
- * --INFO--
- * Address:	80361420
- * Size:	000190
+/**
+ * @note Address: 0x80361420
+ * @note Size: 0x190
  */
 void Obj::footMtxCalc(Mtx mtx, Vector3f* pos, f32* p1)
 {
@@ -2702,10 +2649,9 @@ void Obj::footMtxCalc(Mtx mtx, Vector3f* pos, f32* p1)
 	mtx[2][3]          = *p1 * pos->z + mtx[2][3] * invP1;
 }
 
-/*
- * --INFO--
- * Address:	803615B0
- * Size:	000078
+/**
+ * @note Address: 0x803615B0
+ * @note Size: 0x78
  */
 void Obj::resetFootPos()
 {
@@ -2715,10 +2661,9 @@ void Obj::resetFootPos()
 	_334           = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	80361628
- * Size:	0000DC
+/**
+ * @note Address: 0x80361628
+ * @note Size: 0xDC
  */
 void Obj::fadeAllEffect()
 {
@@ -2733,10 +2678,9 @@ void Obj::fadeAllEffect()
 	mEfxDeadHana->fade();
 }
 
-/*
- * --INFO--
- * Address:	80361758
- * Size:	000474
+/**
+ * @note Address: 0x80361758
+ * @note Size: 0x474
  */
 void Obj::createEffect(int effectID)
 {
@@ -2824,10 +2768,9 @@ void Obj::createEffect(int effectID)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80361BCC
- * Size:	000140
+/**
+ * @note Address: 0x80361BCC
+ * @note Size: 0x140
  */
 void Obj::fadeEffect(int effectID)
 {
@@ -2862,10 +2805,9 @@ void Obj::fadeEffect(int effectID)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80361D0C
- * Size:	0000C8
+/**
+ * @note Address: 0x80361D0C
+ * @note Size: 0xC8
  */
 void Obj::createBounceEffect()
 {

@@ -2,30 +2,27 @@
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	802613C0
- * Size:	00000C
+/**
+ * @note Address: 0x802613C0
+ * @note Size: 0xC
  */
 RumbleData::RumbleData()
     : mCount(0)
 {
 }
 
-/*
- * --INFO--
- * Address:	802613CC
- * Size:	00000C
+/**
+ * @note Address: 0x802613CC
+ * @note Size: 0xC
  */
 RumbleDataMgr::RumbleDataMgr()
     : mDataCnt(0)
 {
 }
 
-/*
- * --INFO--
- * Address:	802613D8
- * Size:	00002C
+/**
+ * @note Address: 0x802613D8
+ * @note Size: 0x2C
  */
 RumbleData* RumbleDataMgr::getRumbleData(int idx)
 {
@@ -36,10 +33,9 @@ RumbleData* RumbleDataMgr::getRumbleData(int idx)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80261404
- * Size:	000128
+/**
+ * @note Address: 0x80261404
+ * @note Size: 0x128
  */
 void RumbleDataMgr::read(Stream& stream)
 {

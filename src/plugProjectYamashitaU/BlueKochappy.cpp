@@ -2,10 +2,9 @@
 
 namespace Game {
 namespace BlueKochappy {
-/*
- * --INFO--
- * Address:	8012CF38
- * Size:	000130
+/**
+ * @note Address: 0x8012CF38
+ * @note Size: 0x130
  */
 Obj::Obj()
 {
@@ -13,10 +12,9 @@ Obj::Obj()
 	setFSM(new KochappyBase::FSM);
 }
 
-/*
- * --INFO--
- * Address:	8012D068
- * Size:	0001A4
+/**
+ * @note Address: 0x8012D068
+ * @note Size: 0x1A4
  */
 void Obj::changeMaterial()
 {

@@ -8,17 +8,15 @@ namespace Game {
 
 DynParticleMgr* dynParticleMgr;
 
-/*
- * --INFO--
- * Address:	801A7F3C
- * Size:	00005C
+/**
+ * @note Address: 0x801A7F3C
+ * @note Size: 0x5C
  */
 DynParticleMgr::DynParticleMgr(int count) { alloc(count); }
 
-/*
- * --INFO--
- * Address:	801A8038
- * Size:	000030
+/**
+ * @note Address: 0x801A8038
+ * @note Size: 0x30
  */
 void DynParticleMgr::resetMgr()
 {
@@ -29,10 +27,9 @@ void DynParticleMgr::resetMgr()
 	mActiveCount = 0;
 }
 
-/*
- * --INFO--
- * Address:	801A8068
- * Size:	000078
+/**
+ * @note Address: 0x801A8068
+ * @note Size: 0x78
  */
 DynParticle* DynParticle::getAt(int idx)
 {
@@ -47,30 +44,27 @@ DynParticle* DynParticle::getAt(int idx)
 	return particle;
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000058
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x58
 //  */
 // void DynParticle::release()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000050
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x50
 //  */
 // void DynParticle::updateGlobal(Matrixf&)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	801A80E0
- * Size:	000074
+/**
+ * @note Address: 0x801A80E0
+ * @note Size: 0x74
  */
 DynCreature::DynCreature()
 {
@@ -82,10 +76,9 @@ DynCreature::DynCreature()
 	_311         = 0;
 }
 
-/*
- * --INFO--
- * Address:	801A8154
- * Size:	0000B0
+/**
+ * @note Address: 0x801A8154
+ * @note Size: 0xB0
  */
 bool DynCreature::createParticles(int count)
 {
@@ -109,10 +102,9 @@ bool DynCreature::createParticles(int count)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801A8204
- * Size:	000074
+/**
+ * @note Address: 0x801A8204
+ * @note Size: 0x74
  */
 void DynCreature::releaseParticles()
 {
@@ -128,10 +120,9 @@ void DynCreature::releaseParticles()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801A8278
- * Size:	00006C
+/**
+ * @note Address: 0x801A8278
+ * @note Size: 0x6C
  */
 void DynCreature::updateParticlePositions()
 {
@@ -142,10 +133,9 @@ void DynCreature::updateParticlePositions()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801A82E4
- * Size:	0004F4
+/**
+ * @note Address: 0x801A82E4
+ * @note Size: 0x4F4
  */
 void DynCreature::computeForces(f32)
 {
@@ -520,10 +510,9 @@ lbl_801A87D0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801A87D8
- * Size:	0000B4
+/**
+ * @note Address: 0x801A87D8
+ * @note Size: 0xB4
  */
 void DynCreature::tracemoveCallback(Vector3f& vec1, Vector3f& vec2)
 {
@@ -542,20 +531,18 @@ void DynCreature::tracemoveCallback(Vector3f& vec1, Vector3f& vec2)
 
 } // namespace Game
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 void range_check(f32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000BC
+/**
+ * @note Address: N/A
+ * @note Size: 0xBC
  */
 void range_check(Vector3f&)
 {
@@ -564,40 +551,36 @@ void range_check(Vector3f&)
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
+/**
+ * @note Address: N/A
+ * @note Size: 0x80
  */
 void DynCreature::getContactParticeRatio()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 int DynCreature::getContactParticleNum()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 int DynCreature::getParticleNum()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	801A888C
- * Size:	0004A8
+/**
+ * @note Address: 0x801A888C
+ * @note Size: 0x4A8
  */
 void DynCreature::simulate(f32 rate)
 {
@@ -952,17 +935,15 @@ lbl_801A8CE0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801A8D34
- * Size:	00001C
+/**
+ * @note Address: 0x801A8D34
+ * @note Size: 0x1C
  */
 Vector3f DynCreature::getPosition() { return mRigid.mConfigs[0].mPosition; }
 
-/*
- * --INFO--
- * Address:	801A8D50
- * Size:	0000AC
+/**
+ * @note Address: 0x801A8D50
+ * @note Size: 0xAC
  */
 void DynCreature::onSetPosition(Vector3f& pos)
 {
@@ -971,24 +952,21 @@ void DynCreature::onSetPosition(Vector3f& pos)
 	onSetPosition();
 }
 
-/*
- * --INFO--
- * Address:	801A8E00
- * Size:	00001C
+/**
+ * @note Address: 0x801A8E00
+ * @note Size: 0x1C
  */
 Vector3f DynCreature::getVelocity() { return mRigid.mConfigs[0].mVelocity; }
 
-/*
- * --INFO--
- * Address:	801A8E1C
- * Size:	00001C
+/**
+ * @note Address: 0x801A8E1C
+ * @note Size: 0x1C
  */
 void DynCreature::setVelocity(Vector3f& velocity) { mRigid.mConfigs[0].mVelocity = velocity; }
 
-/*
- * --INFO--
- * Address:	801A8E38
- * Size:	000088
+/**
+ * @note Address: 0x801A8E38
+ * @note Size: 0x88
  */
 void DynCreature::getVelocityAt(Vector3f& position, Vector3f& outVelocity)
 {
@@ -998,24 +976,21 @@ void DynCreature::getVelocityAt(Vector3f& position, Vector3f& outVelocity)
 	outVelocity       = outVelocity + cross(otherVec, diff);
 }
 
-/*
- * --INFO--
- * Address:	801A8EC0
- * Size:	000008
+/**
+ * @note Address: 0x801A8EC0
+ * @note Size: 0x8
  */
 f32 DynCreature::getAngularEffect(Vector3f&, Vector3f&) { return 0.0f; }
 
-/*
- * --INFO--
- * Address:	801A8EC8
- * Size:	000044
+/**
+ * @note Address: 0x801A8EC8
+ * @note Size: 0x44
  */
 void DynCreature::applyImpulse(Vector3f&, Vector3f& vel) { mRigid.mConfigs[0].mVelocity = mRigid.mConfigs[0].mVelocity + vel * mMass; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00019C
+/**
+ * @note Address: N/A
+ * @note Size: 0x19C
  */
 void DynCreature::simulateCylinder(Sys::Cylinder&, f32)
 {

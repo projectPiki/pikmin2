@@ -1,9 +1,8 @@
 #include "Dolphin/card.h"
 
-/*
- * --INFO--
- * Address:	800D6B80
- * Size:	0000DC
+/**
+ * @note Address: 0x800D6B80
+ * @note Size: 0xDC
  */
 static void BlockReadCallback(s32 channel, s32 result)
 {
@@ -40,10 +39,9 @@ error:
 	}
 }
 
-/*
- * --INFO--
- * Address:	800D6C5C
- * Size:	000064
+/**
+ * @note Address: 0x800D6C5C
+ * @note Size: 0x64
  */
 int __CARDRead(s32 channel, u32 addr, s32 length, void* dst, CARDCallback callback)
 {
@@ -61,10 +59,9 @@ int __CARDRead(s32 channel, u32 addr, s32 length, void* dst, CARDCallback callba
 	return __CARDReadSegment(channel, BlockReadCallback);
 }
 
-/*
- * --INFO--
- * Address:	800D6CC0
- * Size:	0000DC
+/**
+ * @note Address: 0x800D6CC0
+ * @note Size: 0xDC
  */
 static void BlockWriteCallback(s32 channel, s32 result)
 {
@@ -101,10 +98,9 @@ error:
 	}
 }
 
-/*
- * --INFO--
- * Address:	800D6D9C
- * Size:	000064
+/**
+ * @note Address: 0x800D6D9C
+ * @note Size: 0x64
  */
 s32 __CARDWrite(s32 channel, u32 addr, s32 length, void* dst, CARDCallback callback)
 {

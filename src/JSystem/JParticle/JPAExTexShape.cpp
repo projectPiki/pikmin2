@@ -4,10 +4,9 @@
 
 // TODO: replace GX functions with proper enumerated values
 
-/*
- * --INFO--
- * Address:	80090F2C
- * Size:	0000FC
+/**
+ * @note Address: 0x80090F2C
+ * @note Size: 0xFC
  */
 void JPALoadExTex(JPAEmitterWorkData* work)
 {
@@ -28,20 +27,18 @@ void JPALoadExTex(JPAEmitterWorkData* work)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80091028
- * Size:	000008
+/**
+ * @note Address: 0x80091028
+ * @note Size: 0x8
  */
 JPAExTexShape::JPAExTexShape(const u8* data)
     : mData((JPAExTexShapeData*)data)
 {
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D8
+/**
+ * @note Address: N/A
+ * @note Size: 0xD8
  */
 void JPAExTexShape::init_jpa(const u8*, JKRHeap*)
 {

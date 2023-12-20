@@ -21,10 +21,9 @@ int CellPyramid::sCellBugID;
 u8 CellPyramid::sOptResolveColl = 1;
 char* CellPyramid::sCellBugName = "cellPyramid";
 
-/*
- * --INFO--
- * Address:	801565C8
- * Size:	0000C4
+/**
+ * @note Address: 0x801565C8
+ * @note Size: 0xC4
  */
 void CellPyramid::mapSearch(Sys::Sphere& sphere, IDelegate1<CellObject*>* delegate)
 {
@@ -50,10 +49,9 @@ void CellPyramid::mapSearch(Sys::Sphere& sphere, IDelegate1<CellObject*>* delega
 	}
 }
 
-/*
- * --INFO--
- * Address:	8015668C
- * Size:	0000B4
+/**
+ * @note Address: 0x8015668C
+ * @note Size: 0xB4
  */
 void CellObject::exitCell()
 {
@@ -67,10 +65,9 @@ void CellObject::exitCell()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80156740
- * Size:	00003C
+/**
+ * @note Address: 0x80156740
+ * @note Size: 0x3C
  */
 Cell::Cell()
 {
@@ -88,10 +85,9 @@ Cell::Cell()
 	mLayerIdx            = -1;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 void Cell::clear()
 {
@@ -99,10 +95,9 @@ void Cell::clear()
 	mTotalObjectCount = 0;
 }
 
-/*
- * --INFO--
- * Address:	8015677C
- * Size:	0000C4
+/**
+ * @note Address: 0x8015677C
+ * @note Size: 0xC4
  */
 void Cell::mapSearch(IDelegate1<CellObject*>* delegate, u32 passID)
 {
@@ -122,13 +117,12 @@ void Cell::mapSearch(IDelegate1<CellObject*>* delegate, u32 passID)
 	}
 }
 
-/*
+/**
  * This and mapSearchDown get recursively inlined a few times for stack
  * efficiency. Quite beautiful, really.
  *
- * --INFO--
- * Address:	80156840
- * Size:	000238
+ * @note Address: 0x80156840
+ * @note Size: 0x238
  */
 void Cell::mapSearchUp(IDelegate1<CellObject*>* delegate, u32 passID)
 {
@@ -143,10 +137,9 @@ void Cell::mapSearchUp(IDelegate1<CellObject*>* delegate, u32 passID)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80156A78
- * Size:	000280
+/**
+ * @note Address: 0x80156A78
+ * @note Size: 0x280
  */
 void Cell::mapSearchDown(IDelegate1<CellObject*>* delegate, u32 passID)
 {
@@ -163,10 +156,9 @@ void Cell::mapSearchDown(IDelegate1<CellObject*>* delegate, u32 passID)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80156CF8
- * Size:	00004C
+/**
+ * @note Address: 0x80156CF8
+ * @note Size: 0x4C
  */
 void Cell::resolveCollision()
 {
@@ -177,34 +169,30 @@ void Cell::resolveCollision()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80156D44
- * Size:	000004
+/**
+ * @note Address: 0x80156D44
+ * @note Size: 0x4
  */
 void CellPyramid::initFrame() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 u32 CellPyramid::getCheckCount() { return mPassID; }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000018
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x18
 //  */
 // void Cell::dump()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 // void Cell::hasLeg(CellLeg*)
 // bool Cell::hasLeg(CellLeg&)
@@ -252,10 +240,9 @@ u32 CellPyramid::getCheckCount() { return mPassID; }
 // 	return dist;
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B8
+/**
+ * @note Address: N/A
+ * @note Size: 0xB8
  * 46(dec) instructions
  */
 float CellObject::calcCollisionDistance(CellObject* them)
@@ -270,29 +257,26 @@ float CellObject::calcCollisionDistance(CellObject* them)
 	return dist - (ourBounds.mRadius + theirBounds.mRadius);
 }
 
-/*
- * --INFO--
- * Address:	80156D48
- * Size:	0000D0
+/**
+ * @note Address: 0x80156D48
+ * @note Size: 0xD0
  */
 void CellObject::updateCollisionBuffer(CellObject* them) { mCollisionBuffer.insert(them, calcCollisionDistance(them)); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
+/**
+ * @note Address: N/A
+ * @note Size: 0x80
  */
 inline void CellObject::resolveUsingBuffer()
 {
 	// UNUSED FUNCTION
 }
 
-/*
+/**
  * __ct__Q24Game15CollisionBufferFv
  *
- * --INFO--
- * Address:	80156E18
- * Size:	000018
+ * @note Address: 0x80156E18
+ * @note Size: 0x18
  */
 CollisionBuffer::CollisionBuffer()
 {
@@ -302,30 +286,27 @@ CollisionBuffer::CollisionBuffer()
 	mNodeCount     = 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 // inline bool CollisionBuffer::isAvailable()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 inline void CollisionBuffer::init(CellObject*, CollNode*, int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80156E30
- * Size:	00006C
+/**
+ * @note Address: 0x80156E30
+ * @note Size: 0x6C
  */
 void CollisionBuffer::alloc(CellObject* object, int nodeCount)
 {
@@ -335,12 +316,11 @@ void CollisionBuffer::alloc(CellObject* object, int nodeCount)
 	mCollNodes     = new CollNode[mNodeCount];
 }
 
-/*
+/**
  * __ct__Q24Game8CollNodeFv
  *
- * --INFO--
- * Address:	80156E9C
- * Size:	000014
+ * @note Address: 0x80156E9C
+ * @note Size: 0x14
  */
 CollNode::CollNode()
     : mCellObject(nullptr)
@@ -348,11 +328,10 @@ CollNode::CollNode()
 {
 }
 
-/*
+/**
  * clear__Q24Game15CollisionBufferFv
- * --INFO--
- * Address:	........
- * Size:	000044
+ * @note Address: N/A
+ * @note Size: 0x44
  */
 void CollisionBuffer::clear()
 {
@@ -363,10 +342,9 @@ void CollisionBuffer::clear()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80156EB0
- * Size:	0000B8
+/**
+ * @note Address: 0x80156EB0
+ * @note Size: 0xB8
  */
 void CollisionBuffer::insert(CellObject* newObject, float distance)
 {
@@ -380,13 +358,12 @@ void CollisionBuffer::insert(CellObject* newObject, float distance)
 	}
 }
 
-/*
+/**
  * This seems expensive.
  * I wonder why they didn't use a linked list...
  *
- * --INFO--
- * Address:	80156F68
- * Size:	000128
+ * @note Address: 0x80156F68
+ * @note Size: 0x128
  */
 void CollisionBuffer::pikiInsertPiki(CellObject* object, float distance)
 {
@@ -416,10 +393,9 @@ void CollisionBuffer::pikiInsertPiki(CellObject* object, float distance)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80157090
- * Size:	000128
+/**
+ * @note Address: 0x80157090
+ * @note Size: 0x128
  */
 void CollisionBuffer::pikiInsertOther(CellObject* object, float distance)
 {
@@ -449,10 +425,9 @@ void CollisionBuffer::pikiInsertOther(CellObject* object, float distance)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801571B8
- * Size:	0000F8
+/**
+ * @note Address: 0x801571B8
+ * @note Size: 0xF8
  */
 void CollisionBuffer::insertSort(CellObject* object, float distance)
 {
@@ -477,10 +452,9 @@ void CollisionBuffer::insertSort(CellObject* object, float distance)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801572B0
- * Size:	000044
+/**
+ * @note Address: 0x801572B0
+ * @note Size: 0x44
  */
 int CollisionBuffer::findIndex(CellObject* object)
 {
@@ -492,12 +466,11 @@ int CollisionBuffer::findIndex(CellObject* object)
 	return -1;
 }
 
-/*
+/**
  * resolveCollision__Q24Game9Cell
  *
- * --INFO--
- * Address:	........
- * Size:	0000A4
+ * @note Address: N/A
+ * @note Size: 0xA4
  */
 inline void CellLayer::resolveCollision()
 {
@@ -508,12 +481,11 @@ inline void CellLayer::resolveCollision()
 	}
 }
 
-/*
+/**
  * resolveCollision__Q24Game11CellPyramidFv
  *
- * --INFO--
- * Address:	801572F4
- * Size:	000244
+ * @note Address: 0x801572F4
+ * @note Size: 0x244
  */
 void CellPyramid::resolveCollision()
 {
@@ -569,12 +541,11 @@ void CellPyramid::resolveCollision()
 	}
 }
 
-/*
+/**
  * The inlining on this function is fascinating.
  *
- * --INFO--
- * Address:	80157538
- * Size:	000294
+ * @note Address: 0x80157538
+ * @note Size: 0x294
  */
 inline void Cell::rec_resolveColl()
 {
@@ -587,11 +558,10 @@ inline void Cell::rec_resolveColl()
 	resolveCollision();
 }
 
-/*
+/**
  * clearAllCollBuffer__Q24Game4CellFv
- * --INFO--
- * Address:	........
- * Size:	000064 (25 instructions)
+ * @note Address: N/A
+ * @note Size: 0x64 (25 instructions)
  */
 void Cell::clearAllCollBuffer()
 {
@@ -609,11 +579,10 @@ void Cell::clearAllCollBuffer()
 	// }
 }
 
-/*
+/**
  * clearAllCollBuffer__Q24Game9CellLayerFv
- * --INFO--
- * Address:	........
- * Size:	00009C (39 instructions)
+ * @note Address: N/A
+ * @note Size: 0x9C (39 instructions)
  */
 void CellLayer::clearAllCollBuffer()
 {
@@ -625,13 +594,12 @@ void CellLayer::clearAllCollBuffer()
 	}
 }
 
-/*
+/**
  * This probably calls (CellLayer|Cell)::clearAllCollBuffer.
  * clearAllCollBuffer__Q24Game11CellPyramidFv
  *
- * --INFO--
- * Address:	801577DC
- * Size:	0000DC
+ * @note Address: 0x801577DC
+ * @note Size: 0xDC
  */
 void CellPyramid::clearAllCollBuffer()
 {
@@ -640,31 +608,28 @@ void CellPyramid::clearAllCollBuffer()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
+/**
+ * @note Address: N/A
+ * @note Size: 0x94
  */
 inline void Cell::appendList()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
+/**
+ * @note Address: N/A
+ * @note Size: 0x84
  */
 inline void Cell::remove()
 {
 	// UNUSED FUNCTION
 }
 
-/*
+/**
  * exit__Q24Game4CellFPQ24Game7CellLegb
- * --INFO--
- * Address:	801578B8
- * Size:	000158
+ * @note Address: 0x801578B8
+ * @note Size: 0x158
  */
 inline void Cell::exit(CellLeg* exitingLeg, bool isPikiOrNavi)
 {
@@ -720,10 +685,9 @@ inline void Cell::exit(CellLeg* exitingLeg, bool isPikiOrNavi)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80157A10
- * Size:	0002EC
+/**
+ * @note Address: 0x80157A10
+ * @note Size: 0x2EC
  */
 void Cell::entry(CellLeg* leg, bool isPikiOrNavi)
 {
@@ -790,10 +754,9 @@ void Cell::entry(CellLeg* leg, bool isPikiOrNavi)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
+/**
+ * @note Address: N/A
+ * @note Size: 0x58
  */
 inline void CellLayer::clear()
 {
@@ -806,22 +769,20 @@ inline void CellLayer::clear()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D0
+/**
+ * @note Address: N/A
+ * @note Size: 0xD0
  */
 inline void CellLayer::createBottom(int, int) // might be x and y
 {
 	// UNUSED FUNCTION
 }
 
-/*
+/**
  * __cl__Q24Game9Cell
  *
- * --INFO--
- * Address:	80157CFC
- * Size:	000048
+ * @note Address: 0x80157CFC
+ * @note Size: 0x48
  */
 inline Cell* CellLayer::operator()(int x, int y)
 {
@@ -831,10 +792,9 @@ inline Cell* CellLayer::operator()(int x, int y)
 	return &mCells[x + y * mSizeX];
 }
 
-/*
- * --INFO--
- * Address:	80157D44
- * Size:	000578
+/**
+ * @note Address: 0x80157D44
+ * @note Size: 0x578
  */
 void CellLayer::pileup(CellLayer&)
 {
@@ -1290,10 +1250,9 @@ lbl_80158294:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 // void drawCell__Q24Game9CellLayerFR8GraphicsR10Vector3f iif()
 inline void CellLayer::drawCell(Graphics&, Vector3f&, int, int, float) const
@@ -1301,10 +1260,9 @@ inline void CellLayer::drawCell(Graphics&, Vector3f&, int, int, float) const
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	801582BC
- * Size:	00003C
+/**
+ * @note Address: 0x801582BC
+ * @note Size: 0x3C
  */
 CellPyramid::CellPyramid()
 {
@@ -1312,12 +1270,11 @@ CellPyramid::CellPyramid()
 	mFreeMemory = 0;
 }
 
-/*
+/**
  * clear__Q24Game11CellPyramidFv
  *
- * --INFO--
- * Address:	801582F8
- * Size:	000098
+ * @note Address: 0x801582F8
+ * @note Size: 0x98
  */
 void CellPyramid::clear()
 {
@@ -1331,10 +1288,9 @@ void CellPyramid::clear()
 	mZNode.mPrev = 0;
 }
 
-/*
- * --INFO--
- * Address:	80158390
- * Size:	000190
+/**
+ * @note Address: 0x80158390
+ * @note Size: 0x190
  */
 // void calcExtent__Q24Game11CellPyramidFRQ23Sys6SphereRiR7Rect<i>()
 void CellPyramid::calcExtent(Sys::Sphere&, int&, Recti&)
@@ -1448,12 +1404,11 @@ void CellPyramid::calcExtent(Sys::Sphere&, int&, Recti&)
 	*/
 }
 
-/*
+/**
  * entry__Q24Game11CellPyramidFPQ24Game10CellObjectRQ23Sys6Sphere
  *
- * --INFO--
- * Address:	80158520
- * Size:	000034
+ * @note Address: 0x80158520
+ * @note Size: 0x34
  */
 void CellPyramid::entry(CellObject* object, Sys::Sphere& sphere)
 {
@@ -1467,12 +1422,11 @@ void CellPyramid::entry(CellObject* object, Sys::Sphere& sphere)
 
 // TODO: Finish this. It's pretty much one big ol' usage of inlined functions.
 // I know that SysShape::Model::entry(Sys::Sphere&) exists, among others...
-/*
+/**
  * entry__Q24Game11CellPyramidFPQ24Game10CellObjectRQ23Sys6SphereRiR7Rect
  *
- * --INFO--
- * Address:	80158554
- * Size:	0004B8
+ * @note Address: 0x80158554
+ * @note Size: 0x4B8
  */
 // void entry__Q24Game11CellPyramidFPQ24Game10CellObjectRQ23Sys6SphereRiR7Rect<
 //     int>()
@@ -1630,10 +1584,9 @@ void CellPyramid::entry(CellObject* object, Sys::Sphere& sphere, int& layerIndex
 	// }
 }
 
-/*
- * --INFO--
- * Address:	80158A0C
- * Size:	0002EC
+/**
+ * @note Address: 0x80158A0C
+ * @note Size: 0x2EC
  */
 void CellPyramid::create(BoundBox2d& box, float scale)
 {
@@ -1886,30 +1839,27 @@ void CellPyramid::create(BoundBox2d& box, float scale)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80158CF8
- * Size:	00003C
+/**
+ * @note Address: 0x80158CF8
+ * @note Size: 0x3C
  */
 CellLayer::CellLayer()
     : mCell()
 {
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 inline void CellPyramid::drawCell(Graphics&, Sys::Sphere&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000068
+/**
+ * @note Address: N/A
+ * @note Size: 0x68
  */
 // void assertExtent__Q24Game9CellLayerFR7Rect<int>()
 inline void CellLayer::assertExtent(Recti&) const
@@ -1917,10 +1867,9 @@ inline void CellLayer::assertExtent(Recti&) const
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 // void checkPoint__Q24Game9CellLayerFR10Vector2<int>()
 inline void CellLayer::checkPoint(Vector2<int>&) const
@@ -1928,10 +1877,9 @@ inline void CellLayer::checkPoint(Vector2<int>&) const
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80158D34
- * Size:	000134
+/**
+ * @note Address: 0x80158D34
+ * @note Size: 0x134
  */
 // void getPikiCount__Q24Game11CellPyramidFiR7Rect<int>()
 int CellPyramid::getPikiCount(int layerLevel, Recti& extent)
@@ -1954,10 +1902,9 @@ int CellPyramid::getPikiCount(int layerLevel, Recti& extent)
 	return sum;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 // void drawCell__Q24Game11CellPyramidFR8GraphicsiR7Rect<int> f()
 inline void CellPyramid::drawCell(Graphics&, int, Rect<int>&, float) const
@@ -1965,40 +1912,36 @@ inline void CellPyramid::drawCell(Graphics&, int, Rect<int>&, float) const
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 inline void CellPyramid::drawCell(Graphics&, int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 inline void CellPyramid::drawCell(Graphics&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000088
+/**
+ * @note Address: N/A
+ * @note Size: 0x88
  */
 inline void CellPyramid::dumpCount(int&, int&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80158E68
- * Size:	0000F8
+/**
+ * @note Address: 0x80158E68
+ * @note Size: 0xF8
  */
 void Cell::resolveCollision_2()
 {
@@ -2018,10 +1961,9 @@ void Cell::resolveCollision_2()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80158F60
- * Size:	000100
+/**
+ * @note Address: 0x80158F60
+ * @note Size: 0x100
  */
 void Cell::resolveCollision_1()
 {
@@ -2045,10 +1987,9 @@ void Cell::resolveCollision_1()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80159060
- * Size:	0001E0
+/**
+ * @note Address: 0x80159060
+ * @note Size: 0x1E0
  */
 void Cell::resolveCollision_3()
 {
@@ -2250,10 +2191,9 @@ void Cell::resolveCollision_3()
 }
 } // namespace Game
 
-/*
- * --INFO--
- * Address:	80159240
- * Size:	00004C
+/**
+ * @note Address: 0x80159240
+ * @note Size: 0x4C
  */
 void SweepCallback::invoke(SweepPrune::Object*, SweepPrune::Object*)
 {

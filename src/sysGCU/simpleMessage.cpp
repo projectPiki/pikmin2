@@ -3,17 +3,15 @@
 
 namespace P2JME {
 
-/*
- * --INFO--
- * Address:	8043DBEC
- * Size:	000004
+/**
+ * @note Address: 0x8043DBEC
+ * @note Size: 0x4
  */
 SimpleMessage::SimpleMessage() { }
 
-/*
- * --INFO--
- * Address:	8043DBF0
- * Size:	00006C
+/**
+ * @note Address: 0x8043DBF0
+ * @note Size: 0x6C
  */
 void SimpleMessage::init()
 {
@@ -23,10 +21,9 @@ void SimpleMessage::init()
 	mProcessor->mRubyFont = gP2JMEMgr->mFont;
 }
 
-/*
- * --INFO--
- * Address:	8043DC5C
- * Size:	000080
+/**
+ * @note Address: 0x8043DC5C
+ * @note Size: 0x80
  */
 void SimpleMessage::drawMessageID(Graphics& gfx, u32 lowerHalf, u32 upperHalf)
 {

@@ -4,21 +4,19 @@
 namespace Game {
 namespace Catfish {
 
-/*
+/**
  * Catfish Obj constructor
  *
- * --INFO--
- * Address:	80277008
- * Size:	000090
+ * @note Address: 0x80277008
+ * @note Size: 0x90
  */
 Obj::Obj() { }
 
-/*
+/**
  * Performs base initialisation and sets shadow joint.
  *
- * --INFO--
- * Address:	80277098
- * Size:	00003C
+ * @note Address: 0x80277098
+ * @note Size: 0x3C
  */
 void Obj::onInit(Game::CreatureInitArg* arg)
 {
@@ -26,12 +24,11 @@ void Obj::onInit(Game::CreatureInitArg* arg)
 	mShadowJoint = mModel->getJoint("kosi");
 }
 
-/*
+/**
  * Gets shadow parameters for Obj and stores in input param.
  *
- * --INFO--
- * Address:	802770D4
- * Size:	0000C0
+ * @note Address: 0x802770D4
+ * @note Size: 0xC0
  */
 void Obj::getShadowParam(Game::ShadowParam& param)
 {
@@ -52,12 +49,11 @@ void Obj::getShadowParam(Game::ShadowParam& param)
 	param.mSize = 15.0f;
 }
 
-/*
+/**
  * Calls damage calculation upon 'press' (?).
  *
- * --INFO--
- * Address:	80277194
- * Size:	000028
+ * @note Address: 0x80277194
+ * @note Size: 0x28
  */
 bool Obj::pressCallBack(Game::Creature*, float damage, CollPart*)
 {
@@ -65,24 +61,22 @@ bool Obj::pressCallBack(Game::Creature*, float damage, CollPart*)
 	return false;
 }
 
-/*
+/**
  * Calls base response upon 'hipdrop' (?).
  *
- * --INFO--
- * Address:	802771BC
- * Size:	000020
+ * @note Address: 0x802771BC
+ * @note Size: 0x20
  */
 bool Obj::hipdropCallBack(Game::Creature* creature, float a2, CollPart* collPart)
 {
 	return EnemyBase::hipdropCallBack(creature, a2, collPart);
 }
 
-/*
+/**
  * Initialises mouth slots.
  *
- * --INFO--
- * Address:	802771DC
- * Size:	0000A0
+ * @note Address: 0x802771DC
+ * @note Size: 0xA0
  */
 void Obj::initMouthSlots()
 {
@@ -95,12 +89,11 @@ void Obj::initMouthSlots()
 	}
 }
 
-/*
+/**
  * Resets enemy when bitter state expires.
  *
- * --INFO--
- * Address:	8027727C
- * Size:	000044
+ * @note Address: 0x8027727C
+ * @note Size: 0x44
  */
 void Obj::resetEnemyNonStone()
 {
@@ -111,12 +104,11 @@ void Obj::resetEnemyNonStone()
 	disableEvent(0, EB_NoInterrupt);
 }
 
-/*
+/**
  * Calls base 'bounce' effect.
  *
- * --INFO--
- * Address:	802772C0
- * Size:	000028
+ * @note Address: 0x802772C0
+ * @note Size: 0x28
  */
 void Obj::createDownEffect() { EnemyBase::createBounceEffect(mPosition, 0.5f); }
 

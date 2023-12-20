@@ -20,10 +20,9 @@ static const char unusedName[] = "itemPikihead";
 
 Mgr* mgr;
 
-/*
- * --INFO--
- * Address:	801D8ABC
- * Size:	000294
+/**
+ * @note Address: 0x801D8ABC
+ * @note Size: 0x294
  */
 void FSM::init(Item*)
 {
@@ -37,10 +36,9 @@ void FSM::init(Item*)
 	registerState(new SioreState());
 }
 
-/*
- * --INFO--
- * Address:	801D8D50
- * Size:	000098
+/**
+ * @note Address: 0x801D8D50
+ * @note Size: 0x98
  */
 void FallState::init(Item* item, StateArg* arg)
 {
@@ -50,31 +48,27 @@ void FallState::init(Item* item, StateArg* arg)
 	item->mAnimator.startAnim(4, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	801D8DE8
- * Size:	000038
+/**
+ * @note Address: 0x801D8DE8
+ * @note Size: 0x38
  */
 void FallState::exec(Item* item) { item->applyAirDrag(sys->getFrameLength(), _10, _14); }
 
-/*
- * --INFO--
- * Address:	801D8E20
- * Size:	000024
+/**
+ * @note Address: 0x801D8E20
+ * @note Size: 0x24
  */
 void FallState::cleanup(Item* item) { item->mEfxTane->killTanekira_(); }
 
-/*
- * --INFO--
- * Address:	801D8E44
- * Size:	000028
+/**
+ * @note Address: 0x801D8E44
+ * @note Size: 0x28
  */
 void FallState::onPlatCollision(Item* item, PlatEvent& event) { item->kill(nullptr); }
 
-/*
- * --INFO--
- * Address:	801D8E6C
- * Size:	0002F0
+/**
+ * @note Address: 0x801D8E6C
+ * @note Size: 0x2F0
  */
 void FallState::onBounce(Item* item, Sys::Triangle* tri)
 {
@@ -123,10 +117,9 @@ void FallState::onBounce(Item* item, Sys::Triangle* tri)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801D918C
- * Size:	00008C
+/**
+ * @note Address: 0x801D918C
+ * @note Size: 0x8C
  */
 void BuryState::init(Item* item, StateArg* arg)
 {
@@ -135,10 +128,9 @@ void BuryState::init(Item* item, StateArg* arg)
 	mTimer    = randFloat() * 2.0f + pikiMgr->mParms->mPikiParms.mBuriedSeedWaitTime.mValue;
 }
 
-/*
- * --INFO--
- * Address:	801D9218
- * Size:	000068
+/**
+ * @note Address: 0x801D9218
+ * @note Size: 0x68
  */
 void BuryState::exec(Item* item)
 {
@@ -151,24 +143,21 @@ void BuryState::exec(Item* item)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801D9280
- * Size:	000004
+/**
+ * @note Address: 0x801D9280
+ * @note Size: 0x4
  */
 void BuryState::cleanup(Item* item) { }
 
-/*
- * --INFO--
- * Address:	801D9284
- * Size:	00000C
+/**
+ * @note Address: 0x801D9284
+ * @note Size: 0xC
  */
 void BuryState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent) { mAnimDone = true; }
 
-/*
- * --INFO--
- * Address:	801D9290
- * Size:	00008C
+/**
+ * @note Address: 0x801D9290
+ * @note Size: 0x8C
  */
 void TaneState::init(Item* item, StateArg* arg)
 {
@@ -177,10 +166,9 @@ void TaneState::init(Item* item, StateArg* arg)
 	mTimer    = randFloat() * 2.0f + pikiMgr->mParms->mPikiParms.mUnpluckableTime.mValue;
 }
 
-/*
- * --INFO--
- * Address:	801D931C
- * Size:	000068
+/**
+ * @note Address: 0x801D931C
+ * @note Size: 0x68
  */
 void TaneState::exec(Item* item)
 {
@@ -193,24 +181,21 @@ void TaneState::exec(Item* item)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801D9384
- * Size:	000004
+/**
+ * @note Address: 0x801D9384
+ * @note Size: 0x4
  */
 void TaneState::cleanup(Item* item) { }
 
-/*
- * --INFO--
- * Address:	801D9388
- * Size:	00000C
+/**
+ * @note Address: 0x801D9388
+ * @note Size: 0xC
  */
 void TaneState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent) { mAnimDone = true; }
 
-/*
- * --INFO--
- * Address:	801D9394
- * Size:	000058
+/**
+ * @note Address: 0x801D9394
+ * @note Size: 0x58
  */
 void HatugaState::init(Item* item, StateArg* arg)
 {
@@ -218,31 +203,27 @@ void HatugaState::init(Item* item, StateArg* arg)
 	item->startSound(PSSE_PK_SE_ONY_HATSUGA);
 }
 
-/*
- * --INFO--
- * Address:	801D93EC
- * Size:	000004
+/**
+ * @note Address: 0x801D93EC
+ * @note Size: 0x4
  */
 void HatugaState::exec(Item* item) { }
 
-/*
- * --INFO--
- * Address:	801D93F0
- * Size:	000004
+/**
+ * @note Address: 0x801D93F0
+ * @note Size: 0x4
  */
 void HatugaState::cleanup(Item* item) { }
 
-/*
- * --INFO--
- * Address:	801D93F4
- * Size:	000034
+/**
+ * @note Address: 0x801D93F4
+ * @note Size: 0x34
  */
 void HatugaState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent) { transit(item, PIKIHEAD_Wait, nullptr); }
 
-/*
- * --INFO--
- * Address:	801D9428
- * Size:	0000EC
+/**
+ * @note Address: 0x801D9428
+ * @note Size: 0xEC
  */
 void WaitState::init(Item* item, StateArg* arg)
 {
@@ -255,10 +236,9 @@ void WaitState::init(Item* item, StateArg* arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801D9514
- * Size:	00009C
+/**
+ * @note Address: 0x801D9514
+ * @note Size: 0x9C
  */
 void WaitState::exec(Item* item)
 {
@@ -275,24 +255,21 @@ void WaitState::exec(Item* item)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801D95B0
- * Size:	000024
+/**
+ * @note Address: 0x801D95B0
+ * @note Size: 0x24
  */
 void WaitState::cleanup(Item* item) { item->mEfxTane->killKourin_(); }
 
-/*
- * --INFO--
- * Address:	801D95D4
- * Size:	000038
+/**
+ * @note Address: 0x801D95D4
+ * @note Size: 0x38
  */
 void WaitState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent) { item->mAnimator.startAnim(0, item); }
 
-/*
- * --INFO--
- * Address:	801D960C
- * Size:	00004C
+/**
+ * @note Address: 0x801D960C
+ * @note Size: 0x4C
  */
 void GrowState::init(Item* item, StateArg* arg)
 {
@@ -300,24 +277,21 @@ void GrowState::init(Item* item, StateArg* arg)
 	item->mEfxTane->createGlow1_(item->mEfxTane->mPos);
 }
 
-/*
- * --INFO--
- * Address:	801D9658
- * Size:	000004
+/**
+ * @note Address: 0x801D9658
+ * @note Size: 0x4
  */
 void GrowState::exec(Item* item) { }
 
-/*
- * --INFO--
- * Address:	801D965C
- * Size:	000004
+/**
+ * @note Address: 0x801D965C
+ * @note Size: 0x4
  */
 void GrowState::cleanup(Item* item) { }
 
-/*
- * --INFO--
- * Address:	801D9660
- * Size:	0000CC
+/**
+ * @note Address: 0x801D9660
+ * @note Size: 0xCC
  */
 void GrowState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent)
 {
@@ -334,10 +308,9 @@ void GrowState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801D972C
- * Size:	0000AC
+/**
+ * @note Address: 0x801D972C
+ * @note Size: 0xAC
  */
 void SioreState::init(Item* item, StateArg* arg)
 {
@@ -347,10 +320,9 @@ void SioreState::init(Item* item, StateArg* arg)
 	item->startSound(PSSE_PK_SE_ONY_KARERU);
 }
 
-/*
- * --INFO--
- * Address:	801D97D8
- * Size:	000068
+/**
+ * @note Address: 0x801D97D8
+ * @note Size: 0x68
  */
 void SioreState::exec(Item* item)
 {
@@ -362,17 +334,15 @@ void SioreState::exec(Item* item)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801D9840
- * Size:	000004
+/**
+ * @note Address: 0x801D9840
+ * @note Size: 0x4
  */
 void SioreState::cleanup(Item* item) { }
 
-/*
- * --INFO--
- * Address:	801D9844
- * Size:	000014
+/**
+ * @note Address: 0x801D9844
+ * @note Size: 0x14
  */
 void SioreState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent)
 {
@@ -380,10 +350,9 @@ void SioreState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent)
 	mAnimDone       = true;
 }
 
-/*
- * --INFO--
- * Address:	801D9858
- * Size:	0001D0
+/**
+ * @note Address: 0x801D9858
+ * @note Size: 0x1D0
  */
 Item::Item()
     : FSMItem<Item, FSM, State>(OBJTYPE_Pikihead)
@@ -393,10 +362,9 @@ Item::Item()
 	mCollTree->createSingleSphere(mModel, 0, mBoundingSphere, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	801D9AC4
- * Size:	00021C
+/**
+ * @note Address: 0x801D9AC4
+ * @note Size: 0x21C
  */
 void Item::onInit(CreatureInitArg* settings)
 {
@@ -438,10 +406,9 @@ void Item::onInit(CreatureInitArg* settings)
 	Radar::Mgr::entry(this, Radar::MAP_BURIED_PIKMIN, 0);
 }
 
-/*
- * --INFO--
- * Address:	801D9D14
- * Size:	000094
+/**
+ * @note Address: 0x801D9D14
+ * @note Size: 0x94
  */
 void Item::onKill(CreatureKillArg* settings)
 {
@@ -455,17 +422,15 @@ void Item::onKill(CreatureKillArg* settings)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801D9DD0
- * Size:	00002C
+/**
+ * @note Address: 0x801D9DD0
+ * @note Size: 0x2C
  */
 bool Item::needSave() { return getStateID() != PIKIHEAD_Fall; }
 
-/*
- * --INFO--
- * Address:	801D9DFC
- * Size:	00005C
+/**
+ * @note Address: 0x801D9DFC
+ * @note Size: 0x5C
  */
 void Item::cacheSave(Stream& output)
 {
@@ -473,10 +438,9 @@ void Item::cacheSave(Stream& output)
 	mPosition.write(output);
 }
 
-/*
- * --INFO--
- * Address:	801D9E58
- * Size:	0000A4
+/**
+ * @note Address: 0x801D9E58
+ * @note Size: 0xA4
  */
 void Item::cacheLoad(Stream& input)
 {
@@ -490,10 +454,9 @@ void Item::cacheLoad(Stream& input)
 	GameStat::mePikis.inc(mColor);
 }
 
-/*
- * --INFO--
- * Address:	801D9EFC
- * Size:	000200
+/**
+ * @note Address: 0x801D9EFC
+ * @note Size: 0x200
  */
 void Item::makeTrMatrix()
 {
@@ -677,10 +640,9 @@ lbl_801DA0E8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801DA0FC
- * Size:	000140
+/**
+ * @note Address: 0x801DA0FC
+ * @note Size: 0x140
  */
 void Item::doAI()
 {
@@ -708,10 +670,9 @@ void Item::doAI()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801DA23C
- * Size:	00014C
+/**
+ * @note Address: 0x801DA23C
+ * @note Size: 0x14C
  */
 void Item::changeMaterial()
 {
@@ -827,10 +788,9 @@ lbl_801DA34C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801DA388
- * Size:	000044
+/**
+ * @note Address: 0x801DA388
+ * @note Size: 0x44
  */
 void Item::onKeyEvent(const SysShape::KeyEvent& keyEvent)
 {
@@ -839,17 +799,15 @@ void Item::onKeyEvent(const SysShape::KeyEvent& keyEvent)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801DA3CC
- * Size:	000004
+/**
+ * @note Address: 0x801DA3CC
+ * @note Size: 0x4
  */
 void State::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent) { }
 
-/*
- * --INFO--
- * Address:	801DA3D0
- * Size:	000024
+/**
+ * @note Address: 0x801DA3D0
+ * @note Size: 0x24
  */
 void Item::updateBoundSphere()
 {
@@ -857,10 +815,9 @@ void Item::updateBoundSphere()
 	mBoundingSphere.mRadius   = 4.0f;
 }
 
-/*
- * --INFO--
- * Address:	801DA3F4
- * Size:	000024
+/**
+ * @note Address: 0x801DA3F4
+ * @note Size: 0x24
  */
 void Item::getLODSphere(Sys::Sphere& lodSphere)
 {
@@ -868,17 +825,15 @@ void Item::getLODSphere(Sys::Sphere& lodSphere)
 	lodSphere.mRadius   = 20.0f;
 }
 
-/*
- * --INFO--
- * Address:	801DA418
- * Size:	000004
+/**
+ * @note Address: 0x801DA418
+ * @note Size: 0x4
  */
 void Item::onSetPosition() { }
 
-/*
- * --INFO--
- * Address:	801DA41C
- * Size:	000074
+/**
+ * @note Address: 0x801DA41C
+ * @note Size: 0x74
  */
 void Item::doSimulation(f32 rate)
 {
@@ -888,20 +843,18 @@ void Item::doSimulation(f32 rate)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801DA490
- * Size:	00002C
+/**
+ * @note Address: 0x801DA490
+ * @note Size: 0x2C
  */
 bool Item::canPullout()
 {
 	return (s8)(getStateID() == PIKIHEAD_Wait); // why is this cast necessary smh
 }
 
-/*
- * --INFO--
- * Address:	801DA4BC
- * Size:	0001AC
+/**
+ * @note Address: 0x801DA4BC
+ * @note Size: 0x1AC
  */
 bool Item::interactFue(InteractFue& whistle)
 {
@@ -1058,10 +1011,9 @@ lbl_801DA648:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801DA668
- * Size:	0000D4
+/**
+ * @note Address: 0x801DA668
+ * @note Size: 0xD4
  */
 Mgr::Mgr()
     : FixedSizeItemMgr<Item>()
@@ -1071,10 +1023,9 @@ Mgr::Mgr()
 	mObjectPathComponent = "user/Kando/objects/pikihead";
 }
 
-/*
- * --INFO--
- * Address:	801DA94C
- * Size:	0000AC
+/**
+ * @note Address: 0x801DA94C
+ * @note Size: 0xAC
  */
 void Mgr::onLoadResources()
 {
@@ -1087,10 +1038,9 @@ void Mgr::onLoadResources()
 	createMgr(100, 0x80000);
 }
 
-/*
- * --INFO--
- * Address:	801DA9F8
- * Size:	000378
+/**
+ * @note Address: 0x801DA9F8
+ * @note Size: 0x378
  */
 void Mgr::doSimpleDraw(Viewport* vp)
 {
@@ -1139,10 +1089,9 @@ void Mgr::doSimpleDraw(Viewport* vp)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801DAD70
- * Size:	00006C
+/**
+ * @note Address: 0x801DAD70
+ * @note Size: 0x6C
  */
 void Mgr::onCreateModel(SysShape::Model* model)
 {
@@ -1153,10 +1102,9 @@ void Mgr::onCreateModel(SysShape::Model* model)
 	model->getJ3DModel()->lock();
 }
 
-/*
- * --INFO--
- * Address:	801DADDC
- * Size:	0000A0
+/**
+ * @note Address: 0x801DADDC
+ * @note Size: 0xA0
  */
 Item* Mgr::birth()
 {
@@ -1176,10 +1124,9 @@ Item* Mgr::birth()
 	return mMonoObjectMgr.birth();
 }
 
-/*
- * --INFO--
- * Address:	801DAE7C
- * Size:	000060
+/**
+ * @note Address: 0x801DAE7C
+ * @note Size: 0x60
  */
 Item* Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenItemParm* genParm)
 {

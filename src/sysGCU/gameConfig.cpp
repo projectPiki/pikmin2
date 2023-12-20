@@ -11,21 +11,19 @@ namespace Game {
 
 GameConfig gGameConfig;
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
+/**
+ * @note Address: N/A
+ * @note Size: 0x78
  */
 // void GameConfig::setConstSetting()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
+/**
  * __ct__Q24Game10GameConfigFv
- * --INFO--
- * Address:	80432170
- * Size:	000130
+ * @note Address: 0x80432170
+ * @note Size: 0x130
  */
 GameConfig::GameConfig()
     : mParms()
@@ -100,19 +98,17 @@ GameConfig::GameConfig()
 	mParms.mVsFifo.mData               = 0;
 }
 
-/*
- * --INFO--
- * Address:	804322A0
- * Size:	000070
+/**
+ * @note Address: 0x804322A0
+ * @note Size: 0x70
  */
 // WEAK - in header.
 // GameConfig::Parms::~Parms() { }
 
-/*
+/**
  * __ct__Q34Game10GameConfig5ParmsFv
- * --INFO--
- * Address:	80432310
- * Size:	000460
+ * @note Address: 0x80432310
+ * @note Size: 0x460
  */
 // WEAK - in header.
 // GameConfig::Parms::Parms()
@@ -158,10 +154,9 @@ GameConfig::GameConfig()
 // {
 // }
 
-/*
- * --INFO--
- * Address:	80432770
- * Size:	000128
+/**
+ * @note Address: 0x80432770
+ * @note Size: 0x128
  */
 bool GameConfig::load(char*)
 {

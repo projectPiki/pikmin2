@@ -7,10 +7,9 @@ const TAdaptor_light::TVVOutput_direction_ saoVVOutput_direction[6]
 	    TAdaptor_light::TVVOutput_direction_(7, 2),  TAdaptor_light::TVVOutput_direction_(8, 2),
 	    TAdaptor_light::TVVOutput_direction_(9, 2),  TAdaptor_light::TVVOutput_direction_(-1, 0) };
 
-/*
- * --INFO--
- * Address:	800113C8
- * Size:	0000A8
+/**
+ * @note Address: 0x800113C8
+ * @note Size: 0xA8
  */
 TAdaptor_light::TAdaptor_light(const JStage::TSystem* sys, JStage::TLight* light)
     : mSystem(sys)
@@ -19,17 +18,15 @@ TAdaptor_light::TAdaptor_light(const JStage::TSystem* sys, JStage::TLight* light
 {
 }
 
-/*
- * --INFO--
- * Address:	80011470
- * Size:	000078
+/**
+ * @note Address: 0x80011470
+ * @note Size: 0x78
  */
 TAdaptor_light::~TAdaptor_light() { adaptor_do_end(nullptr); }
 
-/*
- * --INFO--
- * Address:	800114E8
- * Size:	000048
+/**
+ * @note Address: 0x800114E8
+ * @note Size: 0x48
  */
 void TAdaptor_light::adaptor_do_prepare(const JStudio::TObject* obj)
 {
@@ -38,10 +35,9 @@ void TAdaptor_light::adaptor_do_prepare(const JStudio::TObject* obj)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80011530
- * Size:	0002AC
+/**
+ * @note Address: 0x80011530
+ * @note Size: 0x2AC
  */
 void TAdaptor_light::adaptor_do_begin(const JStudio::TObject*)
 {
@@ -235,10 +231,9 @@ r1, 0x10 bl       adaptor_setVariableValue_Vec__Q27JStudio8TAdaptorFPCUlRC3Vec
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800117DC
- * Size:	000054
+/**
+ * @note Address: 0x800117DC
+ * @note Size: 0x54
  */
 void TAdaptor_light::adaptor_do_end(const JStudio::TObject*)
 {
@@ -246,10 +241,9 @@ void TAdaptor_light::adaptor_do_end(const JStudio::TObject*)
 	obj->JSGSetFlag(obj->JSGGetFlag() & ~0x1);
 }
 
-/*
- * --INFO--
- * Address:	80011830
- * Size:	0001C8
+/**
+ * @note Address: 0x80011830
+ * @note Size: 0x1C8
  */
 void TAdaptor_light::adaptor_do_update(const JStudio::TObject*, u32)
 {
@@ -382,10 +376,9 @@ void TAdaptor_light::adaptor_do_update(const JStudio::TObject*, u32)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800119F8
- * Size:	000034
+/**
+ * @note Address: 0x800119F8
+ * @note Size: 0x34
  */
 void TAdaptor_light::adaptor_do_data(const JStudio::TObject*, const void*, u32, const void*, u32)
 {
@@ -407,10 +400,9 @@ void TAdaptor_light::adaptor_do_data(const JStudio::TObject*, const void*, u32, 
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80011A2C
- * Size:	000078
+/**
+ * @note Address: 0x80011A2C
+ * @note Size: 0x78
  */
 void TAdaptor_light::adaptor_do_FACULTY(JStudio::data::TEOperationData op, const void* data, u32)
 {
@@ -483,20 +475,18 @@ void TAdaptor_light::adaptor_do_FACULTY(JStudio::data::TEOperationData op, const
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80011AA4
- * Size:	000024
+/**
+ * @note Address: 0x80011AA4
+ * @note Size: 0x24
  */
 void TAdaptor_light::adaptor_do_ENABLE(JStudio::data::TEOperationData op, const void* data, u32 flag)
 {
 	TAdaptor_object_::adaptor_ENABLE_(mObject, op, data, flag);
 }
 
-/*
- * --INFO--
- * Address:	80011AC8
- * Size:	00000C
+/**
+ * @note Address: 0x80011AC8
+ * @note Size: 0xC
  */
 void TAdaptor_light::TVVOutput_direction_::operator()(f32, JStudio::TAdaptor* adaptor) const { ((TAdaptor_light*)adaptor)->_118 = _08; }
 

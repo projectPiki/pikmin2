@@ -17,10 +17,9 @@ struct OtakaraArray {
 	f32 b;
 } asArrayOtakara[] = { { -1, 1.0f } };
 
-/*
- * --INFO--
- * Address:	8023B534
- * Size:	000064
+/**
+ * @note Address: 0x8023B534
+ * @note Size: 0x64
  */
 void BaseGameSection::drawOtakaraWindow(Graphics& gfx)
 {
@@ -29,10 +28,9 @@ void BaseGameSection::drawOtakaraWindow(Graphics& gfx)
 	do_drawOtakaraWindow(gfx);
 }
 
-/*
- * --INFO--
- * Address:	8023B598
- * Size:	000094
+/**
+ * @note Address: 0x8023B598
+ * @note Size: 0x94
  */
 void BaseGameSection::setDraw2DCreature(Creature* creature)
 {
@@ -49,10 +47,9 @@ void BaseGameSection::setDraw2DCreature(Creature* creature)
 	mDraw2DCreature = creature;
 }
 
-/*
- * --INFO--
- * Address:	8023B62C
- * Size:	0001E0
+/**
+ * @note Address: 0x8023B62C
+ * @note Size: 0x1E0
  */
 void BaseGameSection::startZoomWindow()
 {
@@ -88,10 +85,9 @@ void BaseGameSection::startZoomWindow()
 	mTreasureZoomCamera->init(properDist, properDist * JMath::sincosTable_.mTable[256].first, pos, mControllerP1);
 }
 
-/*
- * --INFO--
- * Address:	8023B80C
- * Size:	000258
+/**
+ * @note Address: 0x8023B80C
+ * @note Size: 0x258
  */
 void BaseGameSection::startKantei2D()
 {
@@ -134,10 +130,9 @@ void BaseGameSection::startKantei2D()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8023BA64
- * Size:	0000CC
+/**
+ * @note Address: 0x8023BA64
+ * @note Size: 0xCC
  */
 void BaseGameSection::onKanteiDone(Rectf& rect)
 {
@@ -207,10 +202,9 @@ void BaseGameSection::onKanteiDone(Rectf& rect)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8023BB30
- * Size:	000114
+/**
+ * @note Address: 0x8023BB30
+ * @note Size: 0x114
  */
 void BaseGameSection::ZoomCamera::init(f32 dist1, f32 dist2, Vector3f& pos, Controller* control)
 {
@@ -237,10 +231,9 @@ void BaseGameSection::ZoomCamera::init(f32 dist1, f32 dist2, Vector3f& pos, Cont
 	makeLookAt();
 }
 
-/*
- * --INFO--
- * Address:	8023BC44
- * Size:	0002B0
+/**
+ * @note Address: 0x8023BC44
+ * @note Size: 0x2B0
  */
 void BaseGameSection::ZoomCamera::makeLookAt()
 {
@@ -469,10 +462,9 @@ lbl_8023BEBC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8023BEF4
- * Size:	000164
+/**
+ * @note Address: 0x8023BEF4
+ * @note Size: 0x164
  */
 bool BaseGameSection::ZoomCamera::doUpdate()
 {
@@ -532,10 +524,9 @@ bool BaseGameSection::ZoomCamera::doUpdate()
 	makeLookAt();
 }
 
-/*
- * --INFO--
- * Address:	8023C058
- * Size:	000410
+/**
+ * @note Address: 0x8023C058
+ * @note Size: 0x410
  */
 void BaseGameSection::do_drawOtakaraWindow(Graphics& gfx)
 {

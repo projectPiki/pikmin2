@@ -1,9 +1,8 @@
 #include "Dolphin/gba.h"
 
-/*
- * --INFO--
- * Address:	800FED70
- * Size:	000060
+/**
+ * @note Address: 0x800FED70
+ * @note Size: 0x60
  */
 void ReadProc(s32 chan)
 {
@@ -14,10 +13,9 @@ void ReadProc(s32 chan)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  */
 int GBAReadAsync(s32 chan, u8* ptr, u8* statusPtr)
 {
@@ -32,10 +30,9 @@ int GBAReadAsync(s32 chan, u8* ptr, u8* statusPtr)
 	return __GBATransfer(chan, 1, 5, ReadProc);
 }
 
-/*
- * --INFO--
- * Address:	800FEDD0
- * Size:	000094
+/**
+ * @note Address: 0x800FEDD0
+ * @note Size: 0x94
  */
 int GBARead(s32 chan, u8* ptr, u8* statusPtr)
 {

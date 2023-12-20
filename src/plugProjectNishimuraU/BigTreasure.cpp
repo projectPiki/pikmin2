@@ -21,24 +21,21 @@ namespace BigTreasure {
 static const int unusedBigTreasureArray[] = { 0, 0, 0 };
 static const char bigTreasureName[]       = "246-BigTreasure";
 
-/*
- * --INFO--
- * Address:	802DBBB4
- * Size:	000024
+/**
+ * @note Address: 0x802DBBB4
+ * @note Size: 0x24
  */
 void BigTreasureGroundCallBack::invokeOnGround(int footIdx, WaterBox* wbox) { mObj->createOnGroundEffect(footIdx, wbox); }
 
-/*
- * --INFO--
- * Address:	802DBBD8
- * Size:	000024
+/**
+ * @note Address: 0x802DBBD8
+ * @note Size: 0x24
  */
 void BigTreasureGroundCallBack::invokeOffGround(int footIdx, WaterBox* wbox) { mObj->createOffGroundEffect(footIdx, wbox); }
 
-/*
- * --INFO--
- * Address:	802DBBFC
- * Size:	00013C
+/**
+ * @note Address: 0x802DBBFC
+ * @note Size: 0x13C
  */
 Obj::Obj()
 {
@@ -51,17 +48,15 @@ Obj::Obj()
 	createEffect();
 }
 
-/*
- * --INFO--
- * Address:	802DBD38
- * Size:	000004
+/**
+ * @note Address: 0x802DBD38
+ * @note Size: 0x4
  */
 void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
-/*
- * --INFO--
- * Address:	802DBD3C
- * Size:	000160
+/**
+ * @note Address: 0x802DBD3C
+ * @note Size: 0x160
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
@@ -103,10 +98,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 	startShineParticleEffect();
 }
 
-/*
- * --INFO--
- * Address:	802DBE9C
- * Size:	00004C
+/**
+ * @note Address: 0x802DBE9C
+ * @note Size: 0x4C
  */
 void Obj::onKill(CreatureKillArg* killArg)
 {
@@ -115,10 +109,9 @@ void Obj::onKill(CreatureKillArg* killArg)
 	EnemyBase::onKill(killArg);
 }
 
-/*
- * --INFO--
- * Address:	802DBEE8
- * Size:	00004C
+/**
+ * @note Address: 0x802DBEE8
+ * @note Size: 0x4C
  */
 void Obj::doUpdate()
 {
@@ -127,10 +120,9 @@ void Obj::doUpdate()
 	updateIKSystem();
 }
 
-/*
- * --INFO--
- * Address:	802DBF34
- * Size:	00003C
+/**
+ * @note Address: 0x802DBF34
+ * @note Size: 0x3C
  */
 void Obj::doUpdateCommon()
 {
@@ -139,10 +131,9 @@ void Obj::doUpdateCommon()
 	updateBossBGM();
 }
 
-/*
- * --INFO--
- * Address:	802DBF70
- * Size:	000094
+/**
+ * @note Address: 0x802DBF70
+ * @note Size: 0x94
  */
 void Obj::doAnimationUpdateAnimator()
 {
@@ -155,10 +146,9 @@ void Obj::doAnimationUpdateAnimator()
 	    = static_cast<J3DMtxCalcAnmBase*>(static_cast<ProperAnimator*>(mAnimator)->mAnimator.getCalc());
 }
 
-/*
- * --INFO--
- * Address:	802DC004
- * Size:	000098
+/**
+ * @note Address: 0x802DC004
+ * @note Size: 0x98
  */
 void Obj::doAnimationCullingOff()
 {
@@ -176,10 +166,9 @@ void Obj::doAnimationCullingOff()
 	finishAnimationIKSystem();
 }
 
-/*
- * --INFO--
- * Address:	802DC09C
- * Size:	000194
+/**
+ * @note Address: 0x802DC09C
+ * @note Size: 0x194
  */
 void Obj::changeMaterial()
 {
@@ -205,24 +194,21 @@ void Obj::changeMaterial()
 	j3dModel->calcMaterial();
 }
 
-/*
- * --INFO--
- * Address:	802DC230
- * Size:	000004
+/**
+ * @note Address: 0x802DC230
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	802DC234
- * Size:	000020
+/**
+ * @note Address: 0x802DC234
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	802DC254
- * Size:	00004C
+/**
+ * @note Address: 0x802DC254
+ * @note Size: 0x4C
  */
 void Obj::setFSM(FSM* fsm)
 {
@@ -231,10 +217,9 @@ void Obj::setFSM(FSM* fsm)
 	mCurrentLifecycleState = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	802DC2A0
- * Size:	00003C
+/**
+ * @note Address: 0x802DC2A0
+ * @note Size: 0x3C
  */
 void Obj::getShadowParam(ShadowParam& param)
 {
@@ -244,10 +229,9 @@ void Obj::getShadowParam(ShadowParam& param)
 	param.mSize                     = 0.1f;
 }
 
-/*
- * --INFO--
- * Address:	802DC2DC
- * Size:	000100
+/**
+ * @note Address: 0x802DC2DC
+ * @note Size: 0x100
  */
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
@@ -278,27 +262,24 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802DC3DC
- * Size:	000038
+/**
+ * @note Address: 0x802DC3DC
+ * @note Size: 0x38
  */
 bool BigTreasure::Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
 	return damageCallBack(creature, damage, collpart) == false; // sure.
 }
 
-/*
- * --INFO--
- * Address:	802DC414
- * Size:	000020
+/**
+ * @note Address: 0x802DC414
+ * @note Size: 0x20
  */
 void Obj::doStartStoneState() { EnemyBase::doStartStoneState(); }
 
-/*
- * --INFO--
- * Address:	802DC434
- * Size:	000048
+/**
+ * @note Address: 0x802DC434
+ * @note Size: 0x48
  */
 void Obj::doFinishStoneState()
 {
@@ -306,31 +287,27 @@ void Obj::doFinishStoneState()
 	EnemyFunc::flickStickPikmin(this, 1.0f, 10.0f, 0.0f, FLICK_BACKWARD_ANGLE, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802DC47C
- * Size:	000020
+/**
+ * @note Address: 0x802DC47C
+ * @note Size: 0x20
  */
 void Obj::doStartMovie() { effectDrawOff(); }
 
-/*
- * --INFO--
- * Address:	802DC49C
- * Size:	000020
+/**
+ * @note Address: 0x802DC49C
+ * @note Size: 0x20
  */
 void Obj::doEndMovie() { effectDrawOn(); }
 
-/*
- * --INFO--
- * Address:	802DC4BC
- * Size:	000050
+/**
+ * @note Address: 0x802DC4BC
+ * @note Size: 0x50
  */
 void Obj::getThrowupItemPosition(Vector3f* position) { *position = mModel->getJoint("kosi")->getWorldMatrix()->getBasis(3); }
 
-/*
- * --INFO--
- * Address:	802DC50C
- * Size:	000014
+/**
+ * @note Address: 0x802DC50C
+ * @note Size: 0x14
  */
 void Obj::getThrowupItemVelocity(Vector3f* velocity)
 {
@@ -339,17 +316,15 @@ void Obj::getThrowupItemVelocity(Vector3f* velocity)
 	velocity->x = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	802DC520
- * Size:	00005C
+/**
+ * @note Address: 0x802DC520
+ * @note Size: 0x5C
  */
 void Obj::resetAttackLimitTimer() { mAttackLimitTimer = randWeightFloat(2.0f); }
 
-/*
- * --INFO--
- * Address:	802DC57C
- * Size:	000228
+/**
+ * @note Address: 0x802DC57C
+ * @note Size: 0x228
  */
 bool Obj::isAttackLimitTime()
 {
@@ -400,10 +375,9 @@ bool Obj::isAttackLimitTime()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802DC7A4
- * Size:	000298
+/**
+ * @note Address: 0x802DC7A4
+ * @note Size: 0x298
  */
 void Obj::getTargetPosition()
 {
@@ -434,10 +408,9 @@ void Obj::getTargetPosition()
 	setIKSystemTargetPosition(mTargetPosition);
 }
 
-/*
- * --INFO--
- * Address:	802DCA3C
- * Size:	00010C
+/**
+ * @note Address: 0x802DCA3C
+ * @note Size: 0x10C
  */
 void Obj::createIKSystem()
 {
@@ -446,10 +419,9 @@ void Obj::createIKSystem()
 	mGroundCallBack = new BigTreasureGroundCallBack(this);
 }
 
-/*
- * --INFO--
- * Address:	802DCB48
- * Size:	000124
+/**
+ * @note Address: 0x802DCB48
+ * @note Size: 0x124
  */
 void Obj::setupIKSystem()
 {
@@ -469,10 +441,9 @@ void Obj::setupIKSystem()
 	mIkSystemMgr->mJointGroundCallBack = mGroundCallBack;
 }
 
-/*
- * --INFO--
- * Address:	802DCC6C
- * Size:	000084
+/**
+ * @note Address: 0x802DCC6C
+ * @note Size: 0x84
  */
 void Obj::setIKParameter()
 {
@@ -486,17 +457,15 @@ void Obj::setIKParameter()
 	mIkSystemParms->mHeightOffset        = C_PROPERPARMS.mLegSwing.mValue;
 }
 
-/*
- * --INFO--
- * Address:	802DCCF0
- * Size:	000020
+/**
+ * @note Address: 0x802DCCF0
+ * @note Size: 0x20
  */
 void Obj::setIKSystemTargetPosition(Vector3f& targetPos) { mIkSystemMgr->mTargetPosition = targetPos; }
 
-/*
- * --INFO--
- * Address:	802DCD10
- * Size:	000060
+/**
+ * @note Address: 0x802DCD10
+ * @note Size: 0x60
  */
 void Obj::updateIKSystem()
 {
@@ -506,10 +475,9 @@ void Obj::updateIKSystem()
 	mRotation.y = mFaceDir;
 }
 
-/*
- * --INFO--
- * Address:	802DCD70
- * Size:	000060
+/**
+ * @note Address: 0x802DCD70
+ * @note Size: 0x60
  */
 void Obj::doAnimationIKSystem()
 {
@@ -518,94 +486,81 @@ void Obj::doAnimationIKSystem()
 	mBaseTrMatrix.makeSRT(mScale, mRotation, translation);
 }
 
-/*
- * --INFO--
- * Address:	802DCDD0
- * Size:	000024
+/**
+ * @note Address: 0x802DCDD0
+ * @note Size: 0x24
  */
 void Obj::finishAnimationIKSystem() { mIkSystemMgr->resetAnimationCallBack(); }
 
-/*
- * --INFO--
- * Address:	802DCDF4
- * Size:	000024
+/**
+ * @note Address: 0x802DCDF4
+ * @note Size: 0x24
  */
 void Obj::startProgramedIK() { mIkSystemMgr->startProgramedIK(); }
 
-/*
- * --INFO--
- * Address:	802DCE18
- * Size:	000024
+/**
+ * @note Address: 0x802DCE18
+ * @note Size: 0x24
  */
 void Obj::startIKMotion() { mIkSystemMgr->startIKMotion(); }
 
-/*
- * --INFO--
- * Address:	802DCE3C
- * Size:	000024
+/**
+ * @note Address: 0x802DCE3C
+ * @note Size: 0x24
  */
 void Obj::finishIKMotion() { mIkSystemMgr->finishIKMotion(); }
 
-/*
- * --INFO--
- * Address:	802DCE60
- * Size:	000024
+/**
+ * @note Address: 0x802DCE60
+ * @note Size: 0x24
  */
 void Obj::forceFinishIKMotion() { mIkSystemMgr->forceFinishIKMotion(); }
 
-/*
- * --INFO--
- * Address:	802DCE84
- * Size:	000024
+/**
+ * @note Address: 0x802DCE84
+ * @note Size: 0x24
  */
 bool Obj::isFinishIKMotion() { return mIkSystemMgr->isFinishIKMotion(); }
 
-/*
- * --INFO--
- * Address:	802DCEA8
- * Size:	000024
+/**
+ * @note Address: 0x802DCEA8
+ * @note Size: 0x24
  */
 void Obj::startBlendMotion() { mIkSystemMgr->startBlendMotion(); }
 
-/*
- * --INFO--
- * Address:	802DCECC
- * Size:	000024
+/**
+ * @note Address: 0x802DCECC
+ * @note Size: 0x24
  */
 void Obj::finishBlendMotion() { mIkSystemMgr->finishBlendMotion(); }
 
-/*
- * --INFO--
- * Address:	802DCEF0
- * Size:	000024
+/**
+ * @note Address: 0x802DCEF0
+ * @note Size: 0x24
  */
 void Obj::checkJointScaleOn() { mIkSystemMgr->checkJointScaleOn(); }
 
-/*
- * --INFO--
- * Address:	802DCF14
- * Size:	000020
+/**
+ * @note Address: 0x802DCF14
+ * @note Size: 0x20
  */
 Vector3f Obj::getTraceCentrePosition() { return mIkSystemMgr->mTraceCentrePosition; }
 
-/*
- * --INFO--
- * Address:	802DCF34
- * Size:	00001C
+/**
+ * @note Address: 0x802DCF34
+ * @note Size: 0x1C
  */
 Vector3f* Obj::getJointPositionPtr(int jointIndex, int positionIndex) { return &mJointPositions[jointIndex][positionIndex]; }
 
-/*
- * --INFO--
- * Address:	802DCF50
- * Size:	000048
+/**
+ * @note Address: 0x802DCF50
+ * @note Size: 0x48
  */
 void Obj::createShadowSystem() { mShadowMgr = new BigTreasureShadowMgr(this); }
 
-/*
- * --INFO--
- * Address:	802DCF98
- * Size:	000080
+/**
+ * @note Address: 0x802DCF98
+ * @note Size: 0x80
  */
 void Obj::setupShadowSystem()
 {
@@ -618,17 +573,15 @@ void Obj::setupShadowSystem()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802DD018
- * Size:	000024
+/**
+ * @note Address: 0x802DD018
+ * @note Size: 0x24
  */
 void Obj::doAnimationShadowSystem() { mShadowMgr->update(); }
 
-/*
- * --INFO--
- * Address:	802DD03C
- * Size:	000090
+/**
+ * @note Address: 0x802DD03C
+ * @note Size: 0x90
  */
 void Obj::setupCollision()
 {
@@ -641,10 +594,9 @@ void Obj::setupCollision()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00013C
+/**
+ * @note Address: N/A
+ * @note Size: 0x13C
  */
 void Obj::setupBigTreasureCollision()
 {
@@ -675,10 +627,9 @@ void Obj::setupBigTreasureCollision()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802DD0CC
- * Size:	00035C
+/**
+ * @note Address: 0x802DD0CC
+ * @note Size: 0x35C
  */
 void Obj::setupTreasure()
 {
@@ -721,10 +672,9 @@ void Obj::setupTreasure()
 	mAttackIndex = -1;
 }
 
-/*
- * --INFO--
- * Address:	802DD428
- * Size:	000168
+/**
+ * @note Address: 0x802DD428
+ * @note Size: 0x168
  */
 void Obj::updateTreasure()
 {
@@ -762,10 +712,9 @@ void Obj::updateTreasure()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802DD590
- * Size:	0001C0
+/**
+ * @note Address: 0x802DD590
+ * @note Size: 0x1C0
  */
 void Obj::dropTreasure()
 {
@@ -785,10 +734,9 @@ void Obj::dropTreasure()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802DD750
- * Size:	000088
+/**
+ * @note Address: 0x802DD750
+ * @note Size: 0x88
  */
 bool Obj::dropTreasure(int idx)
 {
@@ -800,10 +748,9 @@ bool Obj::dropTreasure(int idx)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	802DD7D8
- * Size:	00005C
+/**
+ * @note Address: 0x802DD7D8
+ * @note Size: 0x5C
  */
 bool Obj::isCapturedTreasure()
 {
@@ -816,17 +763,15 @@ bool Obj::isCapturedTreasure()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802DD834
- * Size:	00001C
+/**
+ * @note Address: 0x802DD834
+ * @note Size: 0x1C
  */
 bool Obj::isCapturedTreasure(int idx) { return mTreasures[idx]; }
 
-/*
- * --INFO--
- * Address:	802DD850
- * Size:	00004C
+/**
+ * @note Address: 0x802DD850
+ * @note Size: 0x4C
  */
 int Obj::getCapturedTreasureNum()
 {
@@ -840,10 +785,9 @@ int Obj::getCapturedTreasureNum()
 	return count;
 }
 
-/*
- * --INFO--
- * Address:	802DD89C
- * Size:	0000A0
+/**
+ * @note Address: 0x802DD89C
+ * @note Size: 0xA0
  */
 bool Obj::addTreasureDamage(int idx, f32 damage)
 {
@@ -870,10 +814,9 @@ bool Obj::addTreasureDamage(int idx, f32 damage)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802DD93C
- * Size:	000284
+/**
+ * @note Address: 0x802DD93C
+ * @note Size: 0x284
  */
 void Obj::flickStickCollPartPikmin(CollPart* collpart)
 {
@@ -890,10 +833,9 @@ void Obj::flickStickCollPartPikmin(CollPart* collpart)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802DDBC0
- * Size:	00006C
+/**
+ * @note Address: 0x802DDBC0
+ * @note Size: 0x6C
  */
 void Obj::releaseItemLoozy()
 {
@@ -905,31 +847,27 @@ void Obj::releaseItemLoozy()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802DDC2C
- * Size:	000048
+/**
+ * @note Address: 0x802DDC2C
+ * @note Size: 0x48
  */
 void Obj::createAttack() { mAttackMgr = new BigTreasureAttackMgr(this); }
 
-/*
- * --INFO--
- * Address:	802DDC74
- * Size:	000024
+/**
+ * @note Address: 0x802DDC74
+ * @note Size: 0x24
  */
 void Obj::setupAttack() { mAttackMgr->init(); }
 
-/*
- * --INFO--
- * Address:	802DDC98
- * Size:	000024
+/**
+ * @note Address: 0x802DDC98
+ * @note Size: 0x24
  */
 void Obj::updateAttack() { mAttackMgr->update(); }
 
-/*
- * --INFO--
- * Address:	802DDCBC
- * Size:	000074
+/**
+ * @note Address: 0x802DDCBC
+ * @note Size: 0x74
  */
 void Obj::startAttack()
 {
@@ -949,17 +887,15 @@ void Obj::startAttack()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802DDD30
- * Size:	000024
+/**
+ * @note Address: 0x802DDD30
+ * @note Size: 0x24
  */
 void Obj::finishAttack() { mAttackMgr->finishAttack(); }
 
-/*
- * --INFO--
- * Address:	802DDD54
- * Size:	0001A8
+/**
+ * @note Address: 0x802DDD54
+ * @note Size: 0x1A8
  */
 void Obj::setTreasureAttack()
 {
@@ -986,7 +922,7 @@ void Obj::setTreasureAttack()
 
 	// if we have any weapons left, determine attack
 	if (count) {
-		/*
+		/**
 		 * 'threshold' is a random float between 0 and totalWeights.
 		 * - If threshold falls 'within' one of the 'bands' of weights, that weapon is selected.
 		 * - A given band is bigger if that weapon is on lower health.
@@ -1014,10 +950,9 @@ void Obj::setTreasureAttack()
 	mAttackIndex = BIGATTACK_NULL;
 }
 
-/*
- * --INFO--
- * Address:	802DDEFC
- * Size:	000048
+/**
+ * @note Address: 0x802DDEFC
+ * @note Size: 0x48
  */
 int Obj::getPreAttackAnimIndex()
 {
@@ -1034,10 +969,9 @@ int Obj::getPreAttackAnimIndex()
 	return BIGTREASUREANIM_DropItem;
 }
 
-/*
- * --INFO--
- * Address:	802DDF44
- * Size:	000090
+/**
+ * @note Address: 0x802DDF44
+ * @note Size: 0x90
  */
 int Obj::getAttackAnimIndex()
 {
@@ -1063,10 +997,9 @@ int Obj::getAttackAnimIndex()
 	return BIGTREASUREANIM_DropItem;
 }
 
-/*
- * --INFO--
- * Address:	802DDFD4
- * Size:	000090
+/**
+ * @note Address: 0x802DDFD4
+ * @note Size: 0x90
  */
 int Obj::getPutItemAnimIndex()
 {
@@ -1092,10 +1025,9 @@ int Obj::getPutItemAnimIndex()
 	return BIGTREASUREANIM_DropItem;
 }
 
-/*
- * --INFO--
- * Address:	802DE064
- * Size:	000184
+/**
+ * @note Address: 0x802DE064
+ * @note Size: 0x184
  */
 int Obj::getFireAttackAnimIndex()
 {
@@ -1129,10 +1061,9 @@ int Obj::getFireAttackAnimIndex()
 	return BIGTREASUREANIM_PreAttackF;
 }
 
-/*
- * --INFO--
- * Address:	802DE1E8
- * Size:	000098
+/**
+ * @note Address: 0x802DE1E8
+ * @note Size: 0x98
  */
 f32 Obj::getPreAttackTimeMax()
 {
@@ -1156,10 +1087,9 @@ f32 Obj::getPreAttackTimeMax()
 	return 5.0f;
 }
 
-/*
- * --INFO--
- * Address:	802DE280
- * Size:	00005C
+/**
+ * @note Address: 0x802DE280
+ * @note Size: 0x5C
  */
 f32 Obj::getAttackTimeMax()
 {
@@ -1179,17 +1109,15 @@ f32 Obj::getAttackTimeMax()
 	return 5.0f;
 }
 
-/*
- * --INFO--
- * Address:	802DE2DC
- * Size:	000020
+/**
+ * @note Address: 0x802DE2DC
+ * @note Size: 0x20
  */
 bool Obj::isNormalAttack(int idx) { return (mTreasureHealth[idx] > 3000.0f); }
 
-/*
- * --INFO--
- * Address:	802DE2FC
- * Size:	0000B0
+/**
+ * @note Address: 0x802DE2FC
+ * @note Size: 0xB0
  */
 void Obj::resetMaterialColor()
 {
@@ -1205,10 +1133,9 @@ void Obj::resetMaterialColor()
 	setMatEyeAnimSpeed();
 }
 
-/*
- * --INFO--
- * Address:	802DE3AC
- * Size:	000038
+/**
+ * @note Address: 0x802DE3AC
+ * @note Size: 0x38
  */
 void Obj::resetTargetMatBodyColor(bool isVisible)
 {
@@ -1222,17 +1149,15 @@ void Obj::resetTargetMatBodyColor(bool isVisible)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802DE3E4
- * Size:	000024
+/**
+ * @note Address: 0x802DE3E4
+ * @note Size: 0x24
  */
 void Obj::resetCurrentMatBodyColor() { mCurrMatBodyColor = mTargetMatBodyColor; }
 
-/*
- * --INFO--
- * Address:	802DE408
- * Size:	000058
+/**
+ * @note Address: 0x802DE408
+ * @note Size: 0x58
  */
 void Obj::resetTargetEyeMatColor()
 {
@@ -1242,10 +1167,9 @@ void Obj::resetTargetEyeMatColor()
 	mTargetSideEyeColor[EYECOLOR_Light].set(90.0f, 180.0f, 160.0f);
 }
 
-/*
- * --INFO--
- * Address:	802DE460
- * Size:	000034
+/**
+ * @note Address: 0x802DE460
+ * @note Size: 0x34
  */
 void Obj::resetCurrentMatEyeColor()
 {
@@ -1253,10 +1177,9 @@ void Obj::resetCurrentMatEyeColor()
 	mCurrSideEyeColor    = mTargetSideEyeColor[EYECOLOR_Dark];
 }
 
-/*
- * --INFO--
- * Address:	802DE494
- * Size:	00012C
+/**
+ * @note Address: 0x802DE494
+ * @note Size: 0x12C
  */
 void Obj::setMatEyeAnimSpeed()
 {
@@ -1297,10 +1220,9 @@ void Obj::setMatEyeAnimSpeed()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802DE5C0
- * Size:	0004D0
+/**
+ * @note Address: 0x802DE5C0
+ * @note Size: 0x4D0
  */
 void Obj::setAttackMaterialColor(bool isFast)
 {
@@ -1394,10 +1316,9 @@ void Obj::setAttackMaterialColor(bool isFast)
 	setMatEyeAnimSpeed();
 }
 
-/*
- * --INFO--
- * Address:	802DEA90
- * Size:	0004C0
+/**
+ * @note Address: 0x802DEA90
+ * @note Size: 0x4C0
  */
 void Obj::updateMaterialColor()
 {
@@ -1455,10 +1376,9 @@ void Obj::updateMaterialColor()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802DEF50
- * Size:	00011C
+/**
+ * @note Address: 0x802DEF50
+ * @note Size: 0x11C
  */
 void Obj::startBlendAnimation(int animIdx, bool doBlendAnim)
 {
@@ -1496,10 +1416,9 @@ void Obj::startBlendAnimation(int animIdx, bool doBlendAnim)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802DF06C
- * Size:	000098
+/**
+ * @note Address: 0x802DF06C
+ * @note Size: 0x98
  */
 void Obj::endBlendAnimation()
 {
@@ -1519,10 +1438,9 @@ void Obj::endBlendAnimation()
 	setMotionFrame(currFrame);
 }
 
-/*
- * --INFO--
- * Address:	802DF104
- * Size:	00004C
+/**
+ * @note Address: 0x802DF104
+ * @note Size: 0x4C
  */
 int Obj::getCurrAnimationIndex()
 {
@@ -1534,10 +1452,9 @@ int Obj::getCurrAnimationIndex()
 	return BIGTREASUREANIM_NULL;
 }
 
-/*
- * --INFO--
- * Address:	802DF150
- * Size:	0000C8
+/**
+ * @note Address: 0x802DF150
+ * @note Size: 0xC8
  */
 void Obj::startBossChargeBGM()
 {
@@ -1546,10 +1463,9 @@ void Obj::startBossChargeBGM()
 	soundObj->jumpRequest(2);
 }
 
-/*
- * --INFO--
- * Address:	802DF218
- * Size:	000120
+/**
+ * @note Address: 0x802DF218
+ * @note Size: 0x120
  */
 void Obj::startBossAttackBGM()
 {
@@ -1575,10 +1491,9 @@ void Obj::startBossAttackBGM()
 	soundObj->jumpRequest(jumpReqIdx);
 }
 
-/*
- * --INFO--
- * Address:	802DF338
- * Size:	00016C
+/**
+ * @note Address: 0x802DF338
+ * @note Size: 0x16C
  */
 void Obj::finishBossAttackBGM()
 {
@@ -1614,10 +1529,9 @@ void Obj::finishBossAttackBGM()
 	soundObj->jumpRequest(jumpReqIdx);
 }
 
-/*
- * --INFO--
- * Address:	802DF4A4
- * Size:	0000C8
+/**
+ * @note Address: 0x802DF4A4
+ * @note Size: 0xC8
  */
 void Obj::startBossFlickBGM()
 {
@@ -1626,10 +1540,9 @@ void Obj::startBossFlickBGM()
 	soundObj->jumpRequest(4);
 }
 
-/*
- * --INFO--
- * Address:	802DF56C
- * Size:	0001B0
+/**
+ * @note Address: 0x802DF56C
+ * @note Size: 0x1B0
  */
 void Obj::startBossItemDropBGM()
 {
@@ -1668,10 +1581,9 @@ void Obj::startBossItemDropBGM()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802DF71C
- * Size:	0000FC
+/**
+ * @note Address: 0x802DF71C
+ * @note Size: 0xFC
  */
 void Obj::updateBossBGM()
 {
@@ -1685,10 +1597,9 @@ void Obj::updateBossBGM()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802DF818
- * Size:	0000BC
+/**
+ * @note Address: 0x802DF818
+ * @note Size: 0xBC
  */
 void Obj::resetBossAppearBGM()
 {
@@ -1697,10 +1608,9 @@ void Obj::resetBossAppearBGM()
 	soundObj->setAppearFlag(false);
 }
 
-/*
- * --INFO--
- * Address:	802DF8D4
- * Size:	000164
+/**
+ * @note Address: 0x802DF8D4
+ * @note Size: 0x164
  */
 void Obj::setBossAppearBGM()
 {
@@ -1740,10 +1650,9 @@ void Obj::setBossAppearBGM()
 	soundObj->setAppearFlag(true);
 }
 
-/*
- * --INFO--
- * Address:	802DFA38
- * Size:	00061C
+/**
+ * @note Address: 0x802DFA38
+ * @note Size: 0x61C
  */
 void Obj::createEffect()
 {
@@ -1769,10 +1678,9 @@ void Obj::createEffect()
 	mShineParticleFX = new efx::TOootaParticle;
 }
 
-/*
- * --INFO--
- * Address:	802E00D8
- * Size:	000220
+/**
+ * @note Address: 0x802E00D8
+ * @note Size: 0x220
  */
 void Obj::setupEffect()
 {
@@ -1813,10 +1721,9 @@ void Obj::setupEffect()
 	mShineParticleFX->mPosition = &mHomePosition;
 }
 
-/*
- * --INFO--
- * Address:	802E02F8
- * Size:	0001C0
+/**
+ * @note Address: 0x802E02F8
+ * @note Size: 0x1C0
  */
 void Obj::createOnGroundEffect(int footIdx, WaterBox* wbox)
 {
@@ -1846,10 +1753,9 @@ void Obj::createOnGroundEffect(int footIdx, WaterBox* wbox)
 	rumbleMgr->startRumble(14, effectPos, 2);
 }
 
-/*
- * --INFO--
- * Address:	802E04B8
- * Size:	0000A0
+/**
+ * @note Address: 0x802E04B8
+ * @note Size: 0xA0
  */
 void Obj::createOffGroundEffect(int footIdx, WaterBox* wbox)
 {
@@ -1862,24 +1768,21 @@ void Obj::createOffGroundEffect(int footIdx, WaterBox* wbox)
 	getJAIObject()->startSound(PSSE_EN_BIGTAKARA_RAISE, 0);
 }
 
-/*
- * --INFO--
- * Address:	802E0558
- * Size:	00003C
+/**
+ * @note Address: 0x802E0558
+ * @note Size: 0x3C
  */
 void Obj::startTreasurePinchSmoke(int treasureIdx) { mTreasureSmokeFX[treasureIdx]->create(nullptr); }
 
-/*
- * --INFO--
- * Address:	802E0594
- * Size:	000038
+/**
+ * @note Address: 0x802E0594
+ * @note Size: 0x38
  */
 void Obj::finishTreasurePinchSmoke(int treasureIdx) { mTreasureSmokeFX[treasureIdx]->fade(); }
 
-/*
- * --INFO--
- * Address:	802E05CC
- * Size:	0000D8
+/**
+ * @note Address: 0x802E05CC
+ * @note Size: 0xD8
  */
 void Obj::createDropTreasureEffect(int treasureIdx)
 {
@@ -1893,10 +1796,9 @@ void Obj::createDropTreasureEffect(int treasureIdx)
 	getJAIObject()->startSound(PSSE_EN_BIGTAKARA_DROP_ITEM, 0);
 }
 
-/*
- * --INFO--
- * Address:	802E06A4
- * Size:	0000F0
+/**
+ * @note Address: 0x802E06A4
+ * @note Size: 0xF0
  */
 void Obj::createAppearBodyEffect()
 {
@@ -1914,10 +1816,9 @@ void Obj::createAppearBodyEffect()
 	smokeFX.create(&fxArg);
 }
 
-/*
- * --INFO--
- * Address:	802E0794
- * Size:	000060
+/**
+ * @note Address: 0x802E0794
+ * @note Size: 0x60
  */
 void Obj::createAppearLegEffect(int legIdx)
 {
@@ -1926,10 +1827,9 @@ void Obj::createAppearLegEffect(int legIdx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E07F4
- * Size:	00021C
+/**
+ * @note Address: 0x802E07F4
+ * @note Size: 0x21C
  */
 void Obj::createDeadBombLegEffect(int idx)
 {
@@ -1951,10 +1851,9 @@ void Obj::createDeadBombLegEffect(int idx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E0A10
- * Size:	000090
+/**
+ * @note Address: 0x802E0A10
+ * @note Size: 0x90
  */
 void Obj::createDeadBombBodyEffect()
 {
@@ -1964,10 +1863,9 @@ void Obj::createDeadBombBodyEffect()
 	bombBodyFX.create(&fxArg);
 }
 
-/*
- * --INFO--
- * Address:	802E0AA0
- * Size:	000060
+/**
+ * @note Address: 0x802E0AA0
+ * @note Size: 0x60
  */
 void Obj::startDeadBubbleLegEffect(int idx)
 {
@@ -1976,10 +1874,9 @@ void Obj::startDeadBubbleLegEffect(int idx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E0B00
- * Size:	00005C
+/**
+ * @note Address: 0x802E0B00
+ * @note Size: 0x5C
  */
 void Obj::finishDeadBubbleLegEffect(int idx)
 {
@@ -1988,38 +1885,33 @@ void Obj::finishDeadBubbleLegEffect(int idx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E0B5C
- * Size:	000034
+/**
+ * @note Address: 0x802E0B5C
+ * @note Size: 0x34
  */
 void Obj::startDeadBubbleBodyEffect() { mDeadBodyFX->create(nullptr); }
 
-/*
- * --INFO--
- * Address:	802E0B90
- * Size:	000030
+/**
+ * @note Address: 0x802E0B90
+ * @note Size: 0x30
  */
 void Obj::finishDeadBubbleBodyEffect() { mDeadBodyFX->fade(); }
 
-/*
- * --INFO--
- * Address:	802E0BC0
- * Size:	000034
+/**
+ * @note Address: 0x802E0BC0
+ * @note Size: 0x34
  */
 void Obj::startDeadBubbleMouthEffect() { mDeadAwaFX->create(nullptr); }
 
-/*
- * --INFO--
- * Address:	802E0BF4
- * Size:	000030
+/**
+ * @note Address: 0x802E0BF4
+ * @note Size: 0x30
  */
 void Obj::finishDeadBubbleMouthEffect() { mDeadAwaFX->fade(); }
 
-/*
- * --INFO--
- * Address:	802E0C24
- * Size:	0000A0
+/**
+ * @note Address: 0x802E0C24
+ * @note Size: 0xA0
  */
 void Obj::createChangeMaterialEffect()
 {
@@ -2032,10 +1924,9 @@ void Obj::createChangeMaterialEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E0CC4
- * Size:	0000B8
+/**
+ * @note Address: 0x802E0CC4
+ * @note Size: 0xB8
  */
 void Obj::createDeadBombFootEffect()
 {
@@ -2048,24 +1939,21 @@ void Obj::createDeadBombFootEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E0D7C
- * Size:	000034
+/**
+ * @note Address: 0x802E0D7C
+ * @note Size: 0x34
  */
 void Obj::startShineParticleEffect() { mShineParticleFX->create(nullptr); }
 
-/*
- * --INFO--
- * Address:	802E0DB0
- * Size:	000030
+/**
+ * @note Address: 0x802E0DB0
+ * @note Size: 0x30
  */
 void Obj::finishShineParticleEffect() { mShineParticleFX->fade(); }
 
-/*
- * --INFO--
- * Address:	802E0DE0
- * Size:	0001C4
+/**
+ * @note Address: 0x802E0DE0
+ * @note Size: 0x1C4
  */
 void Obj::effectDrawOn()
 {
@@ -2105,10 +1993,9 @@ void Obj::effectDrawOn()
 	mChangeBodyFX->endDemoDrawOn();
 }
 
-/*
- * --INFO--
- * Address:	802E0FA4
- * Size:	0001C4
+/**
+ * @note Address: 0x802E0FA4
+ * @note Size: 0x1C4
  */
 void Obj::effectDrawOff()
 {
@@ -2148,10 +2035,9 @@ void Obj::effectDrawOff()
 	mChangeBodyFX->startDemoDrawOff();
 }
 
-/*
- * --INFO--
- * Address:	802E1168
- * Size:	00002C
+/**
+ * @note Address: 0x802E1168
+ * @note Size: 0x2C
  */
 void Obj::subShadowScale()
 {
@@ -2161,10 +2047,9 @@ void Obj::subShadowScale()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E1194
- * Size:	0000FC
+/**
+ * @note Address: 0x802E1194
+ * @note Size: 0xFC
  */
 bool Obj::startBigTreasureBootUpDemo()
 {

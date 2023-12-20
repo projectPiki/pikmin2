@@ -14,10 +14,9 @@ namespace Jigumo {
 
 Obj* curJ;
 
-/*
- * --INFO--
- * Address:	80368EA0
- * Size:	000038
+/**
+ * @note Address: 0x80368EA0
+ * @note Size: 0x38
  */
 static bool mouthScaleCallBack(J3DJoint* joint, int jointIdx)
 {
@@ -28,10 +27,9 @@ static bool mouthScaleCallBack(J3DJoint* joint, int jointIdx)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80368ED8
- * Size:	00016C
+/**
+ * @note Address: 0x80368ED8
+ * @note Size: 0x16C
  */
 void Obj::setParameters()
 {
@@ -68,10 +66,9 @@ void Obj::setParameters()
 	mBodyRadius           = mScaleModifier * C_PARMS->mGeneral.mPikminDamageRadius();
 }
 
-/*
- * --INFO--
- * Address:	80369044
- * Size:	00017C
+/**
+ * @note Address: 0x80369044
+ * @note Size: 0x17C
  */
 void Obj::birth(Vector3f& pos, f32 faceDir)
 {
@@ -107,10 +104,9 @@ void Obj::birth(Vector3f& pos, f32 faceDir)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803691C8
- * Size:	00023C
+/**
+ * @note Address: 0x803691C8
+ * @note Size: 0x23C
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
@@ -151,10 +147,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mBodyRadius                                        = mScaleModifier * C_PARMS->mGeneral.mPikminDamageRadius();
 }
 
-/*
- * --INFO--
- * Address:	80369404
- * Size:	0003E4
+/**
+ * @note Address: 0x80369404
+ * @note Size: 0x3E4
  */
 Obj::Obj()
     : mHouse(nullptr)
@@ -182,10 +177,9 @@ Obj::Obj()
 	curJ = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80369834
- * Size:	000040
+/**
+ * @note Address: 0x80369834
+ * @note Size: 0x40
  */
 void Obj::doUpdate()
 {
@@ -194,24 +188,21 @@ void Obj::doUpdate()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80369874
- * Size:	000004
+/**
+ * @note Address: 0x80369874
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	80369878
- * Size:	000020
+/**
+ * @note Address: 0x80369878
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	80369898
- * Size:	00014C
+/**
+ * @note Address: 0x80369898
+ * @note Size: 0x14C
  */
 void Obj::doAnimationCullingOff()
 {
@@ -243,17 +234,15 @@ void Obj::doAnimationCullingOff()
 	curJ = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	803699E4
- * Size:	000028
+/**
+ * @note Address: 0x803699E4
+ * @note Size: 0x28
  */
 void Obj::startCarcassMotion() { startMotion(JIGUMOANIM_Carry, nullptr); }
 
-/*
- * --INFO--
- * Address:	80369A0C
- * Size:	0000BC
+/**
+ * @note Address: 0x80369A0C
+ * @note Size: 0xBC
  */
 void Obj::initMouthSlots()
 {
@@ -271,10 +260,9 @@ void Obj::initMouthSlots()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80369AC8
- * Size:	00009C
+/**
+ * @note Address: 0x80369AC8
+ * @note Size: 0x9C
  */
 void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
 {
@@ -292,10 +280,9 @@ void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
 	param.mIsGaugeShown = isVisible;
 }
 
-/*
- * --INFO--
- * Address:	80369B64
- * Size:	000108
+/**
+ * @note Address: 0x80369B64
+ * @note Size: 0x108
  */
 bool Obj::pressCallBack(Creature* source, f32 damage, CollPart* part)
 {
@@ -319,10 +306,9 @@ bool Obj::pressCallBack(Creature* source, f32 damage, CollPart* part)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80369C6C
- * Size:	0001B4
+/**
+ * @note Address: 0x80369C6C
+ * @note Size: 0x1B4
  */
 bool Obj::damageCallBack(Creature* source, f32 damage, CollPart* part)
 {
@@ -351,10 +337,9 @@ bool Obj::damageCallBack(Creature* source, f32 damage, CollPart* part)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80369E20
- * Size:	0000D0
+/**
+ * @note Address: 0x80369E20
+ * @note Size: 0xD0
  */
 void Obj::collisionCallback(CollEvent& event)
 {
@@ -370,10 +355,9 @@ void Obj::collisionCallback(CollEvent& event)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80369EF0
- * Size:	000120
+/**
+ * @note Address: 0x80369EF0
+ * @note Size: 0x120
  */
 void Obj::outWaterCallback()
 {
@@ -395,10 +379,9 @@ void Obj::outWaterCallback()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8036A010
- * Size:	000150
+/**
+ * @note Address: 0x8036A010
+ * @note Size: 0x150
  */
 void Obj::inWaterCallback(WaterBox* wb)
 {
@@ -422,10 +405,9 @@ void Obj::inWaterCallback(WaterBox* wb)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8036A160
- * Size:	00007C
+/**
+ * @note Address: 0x8036A160
+ * @note Size: 0x7C
  */
 bool Obj::earthquakeCallBack(Creature* source, f32 damage)
 {
@@ -436,10 +418,9 @@ bool Obj::earthquakeCallBack(Creature* source, f32 damage)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8036A1DC
- * Size:	00009C
+/**
+ * @note Address: 0x8036A1DC
+ * @note Size: 0x9C
  */
 void Obj::getShadowParam(ShadowParam& param)
 {
@@ -453,10 +434,9 @@ void Obj::getShadowParam(ShadowParam& param)
 	param.mSize                       = 15.0f * mScaleModifier;
 }
 
-/*
- * --INFO--
- * Address:	8036A278
- * Size:	00007C
+/**
+ * @note Address: 0x8036A278
+ * @note Size: 0x7C
  */
 bool Obj::needShadow()
 {
@@ -471,10 +451,9 @@ bool Obj::needShadow()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8036A2F4
- * Size:	000174
+/**
+ * @note Address: 0x8036A2F4
+ * @note Size: 0x174
  */
 void Obj::doSimulationGround(f32 step)
 {
@@ -512,10 +491,9 @@ void Obj::doSimulationGround(f32 step)
 	mCurrentVelocity.y -= dropMass * (step * _aiConstants->mGravity.mData);
 }
 
-/*
- * --INFO--
- * Address:	8036A468
- * Size:	000034
+/**
+ * @note Address: 0x8036A468
+ * @note Size: 0x34
  */
 void Obj::onKill(CreatureKillArg* killArg)
 {
@@ -523,17 +501,15 @@ void Obj::onKill(CreatureKillArg* killArg)
 	killNest();
 }
 
-/*
- * --INFO--
- * Address:	8036A49C
- * Size:	000008
+/**
+ * @note Address: 0x8036A49C
+ * @note Size: 0x8
  */
 bool Obj::isLivingThing() { return true; }
 
-/*
- * --INFO--
- * Address:	8036A4A4
- * Size:	00008C
+/**
+ * @note Address: 0x8036A4A4
+ * @note Size: 0x8C
  */
 void Obj::doStartMovie()
 {
@@ -544,10 +520,9 @@ void Obj::doStartMovie()
 	mEfxSmoke->startDemoDrawOff();
 }
 
-/*
- * --INFO--
- * Address:	8036A530
- * Size:	00008C
+/**
+ * @note Address: 0x8036A530
+ * @note Size: 0x8C
  */
 void Obj::doEndMovie()
 {
@@ -558,10 +533,9 @@ void Obj::doEndMovie()
 	mEfxSmoke->endDemoDrawOn();
 }
 
-/*
- * --INFO--
- * Address:	8036A5BC
- * Size:	0000D8
+/**
+ * @note Address: 0x8036A5BC
+ * @note Size: 0xD8
  */
 void Obj::doStartStoneState()
 {
@@ -578,10 +552,9 @@ void Obj::doStartStoneState()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8036A694
- * Size:	0000E8
+/**
+ * @note Address: 0x8036A694
+ * @note Size: 0xE8
  */
 void Obj::doFinishStoneState()
 {
@@ -601,17 +574,15 @@ void Obj::doFinishStoneState()
 	effectStart();
 }
 
-/*
- * --INFO--
- * Address:	8036A77C
- * Size:	000034
+/**
+ * @note Address: 0x8036A77C
+ * @note Size: 0x34
  */
 f32 Obj::getGoalDist() { return mPosition.sqrDistance(mGoalPosition); }
 
-/*
- * --INFO--
- * Address:	8036A7B0
- * Size:	0007DC
+/**
+ * @note Address: 0x8036A7B0
+ * @note Size: 0x7DC
  */
 void Obj::walkFunc()
 {
@@ -1346,10 +1317,9 @@ lbl_8036AF4C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8036AF8C
- * Size:	00019C
+/**
+ * @note Address: 0x8036AF8C
+ * @note Size: 0x19C
  */
 Vector3f Obj::getOffsetForMapCollision()
 {
@@ -1367,10 +1337,9 @@ Vector3f Obj::getOffsetForMapCollision()
 	return Vector3f(2.0f * sinf(mFaceDir), 0.0f, 2.0f * cosf(mFaceDir));
 }
 
-/*
- * --INFO--
- * Address:	8036B128
- * Size:	000820
+/**
+ * @note Address: 0x8036B128
+ * @note Size: 0x820
  */
 void Obj::calcBaseTrMatrix()
 {
@@ -1512,20 +1481,18 @@ void Obj::calcBaseTrMatrix()
 	mModel->mJ3dModel->mModelScale = *(Vec*)&mScale;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E8
+/**
+ * @note Address: N/A
+ * @note Size: 0xE8
  */
 bool Obj::isUnitePos()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8036B948
- * Size:	000058
+/**
+ * @note Address: 0x8036B948
+ * @note Size: 0x58
  */
 void Obj::revisionAnimPos(f32 val)
 {
@@ -1541,10 +1508,9 @@ void Obj::revisionAnimPos(f32 val)
 	mPosition.z = sep.z * val + mHideAnimPosition.z;
 }
 
-/*
- * --INFO--
- * Address:	8036B9A0
- * Size:	000080
+/**
+ * @note Address: 0x8036B9A0
+ * @note Size: 0x80
  */
 f32 Obj::getWalkSpeed()
 {
@@ -1562,10 +1528,9 @@ f32 Obj::getWalkSpeed()
 	return C_PARMS->mGeneral.mMoveSpeed();
 }
 
-/*
- * --INFO--
- * Address:	8036BA20
- * Size:	000074
+/**
+ * @note Address: 0x8036BA20
+ * @note Size: 0x74
  */
 void Obj::velocityControl()
 {
@@ -1575,10 +1540,9 @@ void Obj::velocityControl()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8036BA94
- * Size:	0000A8
+/**
+ * @note Address: 0x8036BA94
+ * @note Size: 0xA8
  */
 FakePiki* Obj::getNearestPikiOrNavi(f32 angle, f32 radius)
 {
@@ -1597,10 +1561,9 @@ FakePiki* Obj::getNearestPikiOrNavi(f32 angle, f32 radius)
 	return navi;
 }
 
-/*
- * --INFO--
- * Address:	8036BB3C
- * Size:	0001C0
+/**
+ * @note Address: 0x8036BB3C
+ * @note Size: 0x1C0
  */
 void Obj::effectStart()
 {
@@ -1639,10 +1602,9 @@ void Obj::effectStart()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8036BCFC
- * Size:	00008C
+/**
+ * @note Address: 0x8036BCFC
+ * @note Size: 0x8C
  */
 void Obj::effectStop()
 {
@@ -1653,37 +1615,33 @@ void Obj::effectStop()
 	mEfxSmoke->fade();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A8
+/**
+ * @note Address: N/A
+ * @note Size: 0xA8
  */
 void Obj::appearEffectStart()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
+/**
+ * @note Address: N/A
+ * @note Size: 0x30
  */
 void Obj::appearEffectStop()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8036BD88
- * Size:	000028
+/**
+ * @note Address: 0x8036BD88
+ * @note Size: 0x28
  */
 void Obj::boundEffect() { createBounceEffect(mPosition, 0.75f); }
 
-/*
- * --INFO--
- * Address:	8036BDB0
- * Size:	000124
+/**
+ * @note Address: 0x8036BDB0
+ * @note Size: 0x124
  */
 void Obj::eatWaterEffect()
 {
@@ -1698,10 +1656,9 @@ void Obj::eatWaterEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8036BED4
- * Size:	000020
+/**
+ * @note Address: 0x8036BED4
+ * @note Size: 0x20
  */
 void Obj::killNest()
 {
@@ -1712,10 +1669,9 @@ void Obj::killNest()
 	mHouse = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8036BEF4
- * Size:	000194
+/**
+ * @note Address: 0x8036BEF4
+ * @note Size: 0x194
  */
 void Obj::mouthScaleMtxCalc()
 {

@@ -10,10 +10,9 @@ struct pair {
 
 template <>
 struct pair<float, float> {
-	/*
-	 * --INFO--
-	 * Address:	80035520
-	 * Size:	000010
+	/**
+	 * @note Address: 0x80035520
+	 * @note Size: 0x10
 	 * In: JSystem/JMath/JMATrigonometric.cpp
 	 */
 	pair()

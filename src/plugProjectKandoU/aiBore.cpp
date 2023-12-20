@@ -10,10 +10,9 @@
 #define BORE_BEHAVIOURS_FLOAT (2.0f) // what behaviours to randomly choose between - should match BORE_BehaviourCount
 
 namespace PikiAI {
-/*
- * --INFO--
- * Address:	802312F4
- * Size:	000098
+/**
+ * @note Address: 0x802312F4
+ * @note Size: 0x98
  */
 ActBore::ActBore(Game::Piki* piki)
     : Action(piki)
@@ -22,10 +21,9 @@ ActBore::ActBore(Game::Piki* piki)
 	mActions[BORE_Oneshot] = new ActOneshot(piki);
 }
 
-/*
- * --INFO--
- * Address:	8023138C
- * Size:	000080
+/**
+ * @note Address: 0x8023138C
+ * @note Size: 0x80
  */
 void ActBore::init(ActionArg* arg)
 {
@@ -35,10 +33,9 @@ void ActBore::init(ActionArg* arg)
 	mFlag.clear();
 }
 
-/*
- * --INFO--
- * Address:	8023140C
- * Size:	000180
+/**
+ * @note Address: 0x8023140C
+ * @note Size: 0x180
  */
 void ActBore::startCurrAction()
 {
@@ -69,10 +66,9 @@ void ActBore::startCurrAction()
 	mForceFinishTimer = randFloat() * 6.0f + 6.0f;
 }
 
-/*
- * --INFO--
- * Address:	8023158C
- * Size:	00007C
+/**
+ * @note Address: 0x8023158C
+ * @note Size: 0x7C
  */
 void ActBore::finish()
 {
@@ -81,10 +77,9 @@ void ActBore::finish()
 	setFlag(BOREFLAG_Finished);
 }
 
-/*
- * --INFO--
- * Address:	80231608
- * Size:	000294
+/**
+ * @note Address: 0x80231608
+ * @note Size: 0x294
  */
 int ActBore::exec()
 {
@@ -110,27 +105,24 @@ int ActBore::exec()
 	return ACTEXEC_Continue;
 }
 
-/*
- * --INFO--
- * Address:	8023189C
- * Size:	000004
+/**
+ * @note Address: 0x8023189C
+ * @note Size: 0x4
  */
 void ActBore::cleanup() { }
 
-/*
- * --INFO--
- * Address:	802318A0
- * Size:	00009C
+/**
+ * @note Address: 0x802318A0
+ * @note Size: 0x9C
  */
 ActRest::ActRest(Game::Piki* piki)
     : ActBoreBase(piki)
 {
 }
 
-/*
- * --INFO--
- * Address:	8023193C
- * Size:	00001C
+/**
+ * @note Address: 0x8023193C
+ * @note Size: 0x1C
  */
 void ActRest::finish()
 {
@@ -138,10 +130,9 @@ void ActRest::finish()
 	mParent->mAnimSpeed = 60.0f;
 }
 
-/*
- * --INFO--
- * Address:	80231958
- * Size:	000080
+/**
+ * @note Address: 0x80231958
+ * @note Size: 0x80
  */
 void ActRest::init(ActionArg* arg)
 {
@@ -152,10 +143,9 @@ void ActRest::init(ActionArg* arg)
 	mParent->mAnimSpeed = 30.0f;
 }
 
-/*
- * --INFO--
- * Address:	802319D8
- * Size:	0000B8
+/**
+ * @note Address: 0x802319D8
+ * @note Size: 0xB8
  */
 void ActRest::sitDown()
 {
@@ -172,10 +162,9 @@ void ActRest::sitDown()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
+/**
+ * @note Address: N/A
+ * @note Size: 0x7C
  */
 void ActRest::standUp()
 {
@@ -192,10 +181,9 @@ void ActRest::standUp()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80231A90
- * Size:	000330
+/**
+ * @note Address: 0x80231A90
+ * @note Size: 0x330
  */
 int ActRest::exec()
 {
@@ -259,17 +247,15 @@ int ActRest::exec()
 	return ACTEXEC_Continue;
 }
 
-/*
- * --INFO--
- * Address:	80231DC0
- * Size:	000004
+/**
+ * @note Address: 0x80231DC0
+ * @note Size: 0x4
  */
 void ActRest::cleanup() { }
 
-/*
- * --INFO--
- * Address:	80231DC4
- * Size:	0001F4
+/**
+ * @note Address: 0x80231DC4
+ * @note Size: 0x1F4
  */
 void ActRest::onKeyEvent(SysShape::KeyEvent const& event)
 {
@@ -305,20 +291,18 @@ void ActRest::onKeyEvent(SysShape::KeyEvent const& event)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80231FB8
- * Size:	0000BC
+/**
+ * @note Address: 0x80231FB8
+ * @note Size: 0xBC
  */
 ActOneshot::ActOneshot(Game::Piki* piki)
     : ActBoreBase(piki)
 {
 }
 
-/*
- * --INFO--
- * Address:	80232074
- * Size:	000094
+/**
+ * @note Address: 0x80232074
+ * @note Size: 0x94
  */
 void ActOneshot::init(ActionArg* arg)
 {
@@ -329,10 +313,9 @@ void ActOneshot::init(ActionArg* arg)
 	mFlag.clear();
 }
 
-/*
- * --INFO--
- * Address:	80232108
- * Size:	000048
+/**
+ * @note Address: 0x80232108
+ * @note Size: 0x48
  */
 void ActOneshot::finish()
 {
@@ -341,10 +324,9 @@ void ActOneshot::finish()
 	setFlag(ONESHOTFLAG_ForceFinish);
 }
 
-/*
- * --INFO--
- * Address:	80232150
- * Size:	000070
+/**
+ * @note Address: 0x80232150
+ * @note Size: 0x70
  */
 int ActOneshot::exec()
 {
@@ -366,17 +348,15 @@ int ActOneshot::exec()
 	return ACTEXEC_Continue;
 }
 
-/*
- * --INFO--
- * Address:	802321C0
- * Size:	000004
+/**
+ * @note Address: 0x802321C0
+ * @note Size: 0x4
  */
 void ActOneshot::cleanup() { }
 
-/*
- * --INFO--
- * Address:	802321C4
- * Size:	000150
+/**
+ * @note Address: 0x802321C4
+ * @note Size: 0x150
  */
 void ActOneshot::onKeyEvent(SysShape::KeyEvent const& event)
 {

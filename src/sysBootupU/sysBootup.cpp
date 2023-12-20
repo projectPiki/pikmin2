@@ -3,10 +3,9 @@
 #include "Dolphin/os.h"
 #include "System.h"
 
-/*
- * --INFO--
- * Address:	804111B4
- * Size:	000050
+/**
+ * @note Address: 0x804111B4
+ * @note Size: 0x50
  */
 int main()
 {

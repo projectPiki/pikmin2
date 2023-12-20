@@ -1,10 +1,9 @@
 #include "Dolphin/gx.h"
 #include "Dolphin/math.h"
 
-/*
- * --INFO--
- * Address:	800E6870
- * Size:	00001C
+/**
+ * @note Address: 0x800E6870
+ * @note Size: 0x1C
  */
 void GXInitLightAttn(GXLightObj* obj, f32 a0, f32 a1, f32 a2, f32 k0, f32 k1, f32 k2)
 {
@@ -18,50 +17,45 @@ void GXInitLightAttn(GXLightObj* obj, f32 a0, f32 a1, f32 a2, f32 k0, f32 k1, f3
 	pObj->k[2] = k2;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 void GXInitLightAttnA(GXLightObj* obj, f32 a0, f32 a1, f32 a2)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 void GXGetLightAttnA(GXLightObj* obj, f32* a0, f32* a1, f32* a2)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 void GXInitLightAttnK(GXLightObj* obj, f32 k0, f32 k1, f32 k2)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 void GXGetLightAttnK(GXLightObj* obj, f32* k0, f32* k1, f32* k2)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800E688C
- * Size:	000190
+/**
+ * @note Address: 0x800E688C
+ * @note Size: 0x190
  */
 void GXInitLightSpot(GXLightObj* obj, f32 cutoff, GXSpotFn spotFunc)
 {
@@ -122,10 +116,9 @@ void GXInitLightSpot(GXLightObj* obj, f32 cutoff, GXSpotFn spotFunc)
 	pObj->a[2] = a2;
 }
 
-/*
- * --INFO--
- * Address:	800E6A1C
- * Size:	0000D0
+/**
+ * @note Address: 0x800E6A1C
+ * @note Size: 0xD0
  */
 void GXInitLightDistAttn(GXLightObj* obj, f32 refDist, f32 refBrightness, GXDistAttnFn distFunc)
 {
@@ -169,10 +162,9 @@ void GXInitLightDistAttn(GXLightObj* obj, f32 refDist, f32 refBrightness, GXDist
 	pObj->k[2] = k2;
 }
 
-/*
- * --INFO--
- * Address:	800E6AEC
- * Size:	000010
+/**
+ * @note Address: 0x800E6AEC
+ * @note Size: 0x10
  */
 void GXInitLightPos(GXLightObj* obj, f32 x, f32 y, f32 z)
 {
@@ -182,20 +174,18 @@ void GXInitLightPos(GXLightObj* obj, f32 x, f32 y, f32 z)
 	pObj->lpos[2]        = z;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 void GXGetLightPos(GXLightObj* obj, f32* x, f32* y, f32* z)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800E6AFC
- * Size:	00001C
+/**
+ * @note Address: 0x800E6AFC
+ * @note Size: 0x1C
  */
 void GXInitLightDir(GXLightObj* obj, f32 nX, f32 nY, f32 nZ)
 {
@@ -205,20 +195,18 @@ void GXInitLightDir(GXLightObj* obj, f32 nX, f32 nY, f32 nZ)
 	pObj->ldir[2]        = -nZ;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 void GXGetLightDir(GXLightObj* obj, f32* nX, f32* nY, f32* nZ)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800E6B18
- * Size:	0000E4
+/**
+ * @note Address: 0x800E6B18
+ * @note Size: 0xE4
  */
 void GXInitSpecularDir(GXLightObj* obj, f32 nX, f32 nY, f32 nZ)
 {
@@ -244,20 +232,18 @@ void GXInitSpecularDir(GXLightObj* obj, f32 nX, f32 nY, f32 nZ)
 	pObj->lpos[2] = nZ * -GX_LARGE_NUMBER;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 void GXInitSpecularDirHA(GXLightObj* obj, f32 nX, f32 nY, f32 nZ, f32 hX, f32 hY, f32 hZ)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800E6BFC
- * Size:	00000C
+/**
+ * @note Address: 0x800E6BFC
+ * @note Size: 0xC
  */
 void GXInitLightColor(GXLightObj* obj, GXColor color)
 {
@@ -265,10 +251,9 @@ void GXInitLightColor(GXLightObj* obj, GXColor color)
 	pObj->color          = color;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void GXGetLightColor(GXLightObj* obj, GXColor* color)
 {
@@ -305,10 +290,9 @@ static inline void PushLight(const register GXLightObjPriv* lt_obj, register voi
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800E6C08
- * Size:	00007C
+/**
+ * @note Address: 0x800E6C08
+ * @note Size: 0x7C
  */
 void GXLoadLightObjImm(GXLightObj* obj, GXLightID light)
 {
@@ -327,20 +311,18 @@ void GXLoadLightObjImm(GXLightObj* obj, GXLightID light)
 	__GXData->bpSentNot = 1;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 void GXLoadLightObjIndx(u32 objIndex, GXLightID light)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800E6C84
- * Size:	0000F0
+/**
+ * @note Address: 0x800E6C84
+ * @note Size: 0xF0
  */
 void GXSetChanAmbColor(GXChannelID channel, GXColor color)
 {
@@ -387,10 +369,9 @@ void GXSetChanAmbColor(GXChannelID channel, GXColor color)
 	gx->ambColor[colorID] = reg;
 }
 
-/*
- * --INFO--
- * Address:	800E6D74
- * Size:	0000F0
+/**
+ * @note Address: 0x800E6D74
+ * @note Size: 0xF0
  */
 void GXSetChanMatColor(GXChannelID channel, GXColor color)
 {
@@ -436,10 +417,9 @@ void GXSetChanMatColor(GXChannelID channel, GXColor color)
 	gx->matColor[colorID] = reg;
 }
 
-/*
- * --INFO--
- * Address:	800E6E64
- * Size:	00003C
+/**
+ * @note Address: 0x800E6E64
+ * @note Size: 0x3C
  */
 void GXSetNumChans(u8 count)
 {
@@ -448,10 +428,9 @@ void GXSetNumChans(u8 count)
 	gx->dirtyState |= GX_DIRTY_GEN_MODE;
 }
 
-/*
- * --INFO--
- * Address:	800E6EA0
- * Size:	0000B8
+/**
+ * @note Address: 0x800E6EA0
+ * @note Size: 0xB8
  */
 void GXSetChanCtrl(GXChannelID channel, GXBool doEnable, GXColorSrc ambSrc, GXColorSrc matSrc, u32 mask, GXDiffuseFn diffFunc,
                    GXAttnFn attnFunc)

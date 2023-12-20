@@ -6,10 +6,9 @@
 
 namespace Game {
 namespace GasHiba {
-/*
- * --INFO--
- * Address:	8026C68C
- * Size:	000128
+/**
+ * @note Address: 0x8026C68C
+ * @note Size: 0x128
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -19,10 +18,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateAttack);
 }
 
-/*
- * --INFO--
- * Address:	8026C7B4
- * Size:	00017C
+/**
+ * @note Address: 0x8026C7B4
+ * @note Size: 0x17C
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -48,24 +46,21 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	bombEffect.create(&arg);
 }
 
-/*
- * --INFO--
- * Address:	8026C938
- * Size:	000004
+/**
+ * @note Address: 0x8026C938
+ * @note Size: 0x4
  */
 void StateDead::exec(Game::EnemyBase*) { }
 
-/*
- * --INFO--
- * Address:	8026C93C
- * Size:	000004
+/**
+ * @note Address: 0x8026C93C
+ * @note Size: 0x4
  */
 void StateDead::cleanup(Game::EnemyBase*) { }
 
-/*
- * --INFO--
- * Address:	8026C940
- * Size:	000048
+/**
+ * @note Address: 0x8026C940
+ * @note Size: 0x48
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -80,10 +75,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	hiba->startMotion(GASHIBAANIM_Wait, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8026C988
- * Size:	0000C4
+/**
+ * @note Address: 0x8026C988
+ * @note Size: 0xC4
  */
 void StateWait::exec(EnemyBase* enemy)
 {
@@ -104,17 +98,15 @@ void StateWait::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8026CA4C
- * Size:	000004
+/**
+ * @note Address: 0x8026CA4C
+ * @note Size: 0x4
  */
 void StateWait::cleanup(Game::EnemyBase*) { }
 
-/*
- * --INFO--
- * Address:	8026CA50
- * Size:	000048
+/**
+ * @note Address: 0x8026CA50
+ * @note Size: 0x48
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -124,10 +116,9 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	hiba->startGasEffect();
 }
 
-/*
- * --INFO--
- * Address:	8026CA98
- * Size:	000150
+/**
+ * @note Address: 0x8026CA98
+ * @note Size: 0x150
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
@@ -162,10 +153,9 @@ void StateAttack::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8026CBE8
- * Size:	000024
+/**
+ * @note Address: 0x8026CBE8
+ * @note Size: 0x24
  */
 void StateAttack::cleanup(EnemyBase* enemy)
 {

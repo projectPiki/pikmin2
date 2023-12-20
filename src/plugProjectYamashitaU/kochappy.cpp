@@ -3,10 +3,9 @@
 namespace Game {
 namespace Kochappy {
 
-/*
- * --INFO--
- * Address:	8010F31C
- * Size:	000130
+/**
+ * @note Address: 0x8010F31C
+ * @note Size: 0x130
  */
 Obj::Obj()
 {
@@ -14,10 +13,9 @@ Obj::Obj()
 	setFSM(new KochappyBase::FSM);
 }
 
-/*
- * --INFO--
- * Address:	8010F59C
- * Size:	0001A4
+/**
+ * @note Address: 0x8010F59C
+ * @note Size: 0x1A4
  */
 void Obj::changeMaterial()
 {

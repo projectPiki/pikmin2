@@ -45,10 +45,9 @@
         .4byte 0x00000000
 */
 
-/*
- * --INFO--
- * Address:	8009A7DC
- * Size:	0006D0
+/**
+ * @note Address: 0x8009A7DC
+ * @note Size: 0x6D0
  */
 JASBasicBank* JASBNKParser::createBasicBank(void* stream)
 {
@@ -698,10 +697,9 @@ lbl_8009AE98:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8009AEAC
- * Size:	000120
+/**
+ * @note Address: 0x8009AEAC
+ * @note Size: 0x120
  */
 JASOscillator::Data* JASBNKParser::findOscPtr(JASBasicBank* bank, JASBNKParser::THeader* header, JASBNKParser::TOsc* oscPtr)
 {
@@ -811,10 +809,9 @@ JASOscillator::Data* JASBNKParser::findOscPtr(JASBasicBank* bank, JASBNKParser::
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8009AFCC
- * Size:	000014
+/**
+ * @note Address: 0x8009AFCC
+ * @note Size: 0x14
  */
 short* JASBNKParser::getOscTableEndPtr(short* p1)
 {

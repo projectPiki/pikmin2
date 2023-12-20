@@ -27,10 +27,9 @@ char* cMaps[4] = { "caveinfo.txt", "caveinfo_metal.txt", "caveinfo_conc.txt", "c
 
 namespace Game {
 namespace VsGame {
-/*
- * --INFO--
- * Address:	80228328
- * Size:	0000F8
+/**
+ * @note Address: 0x80228328
+ * @note Size: 0xF8
  */
 TitleState::TitleState()
     : State(VGS_Title)
@@ -39,10 +38,10 @@ TitleState::TitleState()
 	mDelegate          = new Delegate<Game::VsGame::TitleState>(this, &dvdload);
 	mPlayer2Controller = new Controller(JUTGamePad::PORT_1);
 }
-/*
- * --INFO--
- * Address:	80228420
- * Size:	000134
+
+/**
+ * @note Address: 0x80228420
+ * @note Size: 0x134
  */
 void TitleState::init(VsGameSection* section, StateArg* arg)
 {
@@ -84,10 +83,9 @@ void TitleState::init(VsGameSection* section, StateArg* arg)
 
 static const char unusedVsTitleString[] = "コンクリート"; // 'concrete'
 
-/*
- * --INFO--
- * Address:	80228554
- * Size:	0003F4
+/**
+ * @note Address: 0x80228554
+ * @note Size: 0x3F4
  */
 void TitleState::dvdload()
 {
@@ -164,10 +162,10 @@ void TitleState::dvdload()
 		}
 	}
 }
-/*
- * --INFO--
- * Address:	80228948
- * Size:	000038
+
+/**
+ * @note Address: 0x80228948
+ * @note Size: 0x38
  */
 void TitleState::exec(VsGameSection* section)
 {
@@ -178,10 +176,9 @@ void TitleState::exec(VsGameSection* section)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80228980
- * Size:	0002DC
+/**
+ * @note Address: 0x80228980
+ * @note Size: 0x2DC
  */
 void TitleState::execChallenge(VsGameSection* section)
 {
@@ -263,10 +260,9 @@ void TitleState::execChallenge(VsGameSection* section)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80228C8C
- * Size:	000430
+/**
+ * @note Address: 0x80228C8C
+ * @note Size: 0x430
  */
 void TitleState::execVs(VsGameSection* section)
 {
@@ -371,10 +367,9 @@ void TitleState::execVs(VsGameSection* section)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802290BC
- * Size:	000088
+/**
+ * @note Address: 0x802290BC
+ * @note Size: 0x88
  */
 void TitleState::draw(VsGameSection* section, Graphics& gfx)
 {
@@ -390,10 +385,9 @@ void TitleState::draw(VsGameSection* section, Graphics& gfx)
 	particle2dMgr->draw(0, 0);
 }
 
-/*
- * --INFO--
- * Address:	80229144
- * Size:	0000B0
+/**
+ * @note Address: 0x80229144
+ * @note Size: 0xB0
  */
 void TitleState::cleanup(VsGameSection* section)
 {

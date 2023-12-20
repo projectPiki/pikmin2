@@ -1,10 +1,9 @@
 #include "types.h"
 #include "PowerPC_EABI_Support/MSL_C/MSL_Common/ansi_files.h"
 
-/*
- * --INFO--
- * Address:	800C6748
- * Size:	0001BC
+/**
+ * @note Address: 0x800C6748
+ * @note Size: 0x1BC
  */
 int fclose(FILE* file)
 {
@@ -27,10 +26,9 @@ int fclose(FILE* file)
 	return ((flush_result || close_result) ? -1 : 0);
 }
 
-/*
- * --INFO--
- * Address:	800C6610
- * Size:	000138
+/**
+ * @note Address: 0x800C6610
+ * @note Size: 0x138
  */
 int fflush(FILE* file)
 {

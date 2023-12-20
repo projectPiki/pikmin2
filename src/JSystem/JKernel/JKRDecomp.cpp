@@ -8,10 +8,9 @@ void* JKRDecomp::sMessageBuffer[4]      = { 0 };
 OSMessageQueue JKRDecomp::sMessageQueue = { 0 };
 JKRDecomp* JKRDecomp::sDecompObject;
 
-/*
- * --INFO--
- * Address:	8001C934
- * Size:	000060
+/**
+ * @note Address: 0x8001C934
+ * @note Size: 0x60
  */
 JKRDecomp* JKRDecomp::create(long priority)
 {
@@ -22,10 +21,9 @@ JKRDecomp* JKRDecomp::create(long priority)
 	return sDecompObject;
 }
 
-/*
- * --INFO--
- * Address:	8001C994
- * Size:	000050
+/**
+ * @note Address: 0x8001C994
+ * @note Size: 0x50
  * __ct
  */
 JKRDecomp::JKRDecomp(long priority)
@@ -34,17 +32,15 @@ JKRDecomp::JKRDecomp(long priority)
 	OSResumeThread(mThread);
 }
 
-/*
- * --INFO--
- * Address:	8001C9E4
- * Size:	000060
+/**
+ * @note Address: 0x8001C9E4
+ * @note Size: 0x60
  */
 JKRDecomp::~JKRDecomp() { }
 
-/*
- * --INFO--
- * Address:	8001CA44
- * Size:	0000C8
+/**
+ * @note Address: 0x8001CA44
+ * @note Size: 0xC8
  */
 void* JKRDecomp::run()
 {
@@ -79,17 +75,15 @@ void* JKRDecomp::run()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8001CB0C
- * Size:	000030
+/**
+ * @note Address: 0x8001CB0C
+ * @note Size: 0x30
  */
 BOOL JKRDecomp::sendCommand(JKRDecompCommand* command) { return OSSendMessage(&sMessageQueue, command, TRUE); }
 
-/*
- * --INFO--
- * Address:	8001CB3C
- * Size:	0000A0
+/**
+ * @note Address: 0x8001CB3C
+ * @note Size: 0xA0
  */
 bool JKRDecomp::orderSync(u8* srcBuffer, u8* destBuffer, u32 srcLen, u32 destLen)
 {
@@ -106,10 +100,9 @@ bool JKRDecomp::orderSync(u8* srcBuffer, u8* destBuffer, u32 srcLen, u32 destLen
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8001CBDC
- * Size:	00008C
+/**
+ * @note Address: 0x8001CBDC
+ * @note Size: 0x8C
  */
 void JKRDecomp::decode(u8* p1, u8* p2, u32 p3, u32 p4)
 {
@@ -120,10 +113,9 @@ void JKRDecomp::decode(u8* p1, u8* p2, u32 p3, u32 p4)
 		decodeSZS(p1, p2, p3, p4);
 }
 
-/*
- * --INFO--
- * Address:	8001CC68
- * Size:	0001A4
+/**
+ * @note Address: 0x8001CC68
+ * @note Size: 0x1A4
  */
 void JKRDecomp::decodeSZP(u8* src, u8* dst, u32 srcLength, u32 dstLength)
 {
@@ -200,10 +192,9 @@ void JKRDecomp::decodeSZP(u8* src, u8* dst, u32 srcLength, u32 dstLength)
 	} while (dstOffset < decodedSize);
 }
 
-/*
- * --INFO--
- * Address:	8001CE0C
- * Size:	0000E4
+/**
+ * @note Address: 0x8001CE0C
+ * @note Size: 0xE4
  */
 void JKRDecomp::decodeSZS(u8* src_buffer, u8* dst_buffer, u32 srcSize, u32 dstSize)
 {
@@ -270,10 +261,9 @@ void JKRDecomp::decodeSZS(u8* src_buffer, u8* dst_buffer, u32 srcSize, u32 dstSi
 	} while (dst_buffer != decompEnd);
 }
 
-/*
- * --INFO--
- * Address:	8001CEF0
- * Size:	000050
+/**
+ * @note Address: 0x8001CEF0
+ * @note Size: 0x50
  */
 JKRCompression JKRDecomp::checkCompressed(u8* p1)
 {
@@ -288,10 +278,9 @@ JKRCompression JKRDecomp::checkCompressed(u8* p1)
 	return COMPRESSION_None;
 }
 
-/*
- * --INFO--
- * Address:	8001CF40
- * Size:	000050
+/**
+ * @note Address: 0x8001CF40
+ * @note Size: 0x50
  */
 JKRDecompCommand::JKRDecompCommand()
 {
@@ -302,9 +291,8 @@ JKRDecompCommand::JKRDecompCommand()
 	_20       = 0;
 }
 
-/*
- * --INFO--
- * Address:	8001CF90
- * Size:	00003C
+/**
+ * @note Address: 0x8001CF90
+ * @note Size: 0x3C
  */
 JKRDecompCommand::~JKRDecompCommand() { }

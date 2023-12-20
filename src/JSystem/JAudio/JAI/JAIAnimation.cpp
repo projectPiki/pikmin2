@@ -2,10 +2,9 @@
 #include "JSystem/JAudio/JAI/JAIBasic.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	800AB0EC
- * Size:	00003C
+/**
+ * @note Address: 0x800AB0EC
+ * @note Size: 0x3C
  */
 void JAIAnimeSound::handleStop(u8 handleNo, u32 p2)
 {
@@ -14,10 +13,9 @@ void JAIAnimeSound::handleStop(u8 handleNo, u32 p2)
 	ObjectBase::handleStop(handleNo, p2);
 }
 
-/*
- * --INFO--
- * Address:	800AB128
- * Size:	000188
+/**
+ * @note Address: 0x800AB128
+ * @note Size: 0x188
  */
 JAIAnimeSound::JAIAnimeSound(Vec* p1, JKRHeap* heap, u8 p3)
     : Object(p1, heap, p3)
@@ -161,20 +159,18 @@ lbl_800AB28C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 void JAIAnimeSound::initActorAnimSound(JAIAnimeSoundData*, JAInter::Actor, u32, float, float)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800AB2B0
- * Size:	000194
+/**
+ * @note Address: 0x800AB2B0
+ * @note Size: 0x194
  */
 void JAIAnimeSound::initActorAnimSound(JAIAnimeSoundData*, u32, float, float)
 {
@@ -302,10 +298,9 @@ void JAIAnimeSound::initActorAnimSound(JAIAnimeSoundData*, u32, float, float)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800AB444
- * Size:	000040
+/**
+ * @note Address: 0x800AB444
+ * @note Size: 0x40
  */
 int JAIAnimeSound::checkLoopStartCount(float p1)
 {
@@ -341,10 +336,9 @@ lbl_800AB460:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800AB484
- * Size:	000048
+/**
+ * @note Address: 0x800AB484
+ * @note Size: 0x48
  */
 void JAIAnimeSound::checkLoopEndCount(float)
 {
@@ -374,90 +368,81 @@ lbl_800AB4BC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 void JAIAnimeSound::setLoopStartFrame(float)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 void JAIAnimeSound::setLoopEndFrame(float)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
+/**
+ * @note Address: N/A
+ * @note Size: 0x94
  */
 void JAIAnimeSound::setLoopFrame(float, float)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 void JAIAnimeSound::setAnimSound(float, float, u8)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void JAIAnimeSound::setAnimSound(JAIBasic*, float, float, u8)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
+/**
+ * @note Address: N/A
+ * @note Size: 0x78
  */
 void JAIAnimeSound::setAnimObjectSound(float, float, u8)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 void JAIAnimeSound::setAnimSoundVec(Vec*, float, float, u32, u8)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 void JAIAnimeSound::setAnimSoundVec(JAIBasic*, Vec*, float, float, u32, u8)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800AB4CC
- * Size:	000504
+/**
+ * @note Address: 0x800AB4CC
+ * @note Size: 0x504
  */
 void JAIAnimeSound::setAnimSoundActor(JAInter::Actor*, float, float, u8)
 {
@@ -855,10 +840,9 @@ void JAIAnimeSound::setAnimSoundActor(JAInter::Actor*, float, float, u8)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800AB9D0
- * Size:	000280
+/**
+ * @note Address: 0x800AB9D0
+ * @note Size: 0x280
  */
 void JAIAnimeSound::playActorAnimSound(JAInter::Actor*, float, u8)
 {
@@ -1048,10 +1032,9 @@ lbl_800ABC34:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800ABC50
- * Size:	00004C
+/**
+ * @note Address: 0x800ABC50
+ * @note Size: 0x4C
  */
 void JAIAnimeSound::startAnimSound(u32 id, JAISound** handlePtr, JAInter::Actor* actor, u8 p4)
 {
@@ -1085,10 +1068,9 @@ void JAIAnimeSound::startAnimSound(u32 id, JAISound** handlePtr, JAInter::Actor*
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800ABC9C
- * Size:	00013C
+/**
+ * @note Address: 0x800ABC9C
+ * @note Size: 0x13C
  */
 void JAIAnimeSound::setSpeedModifySound(JAISound*, JAIAnimeFrameSoundData*, float)
 {
@@ -1182,10 +1164,9 @@ void JAIAnimeSound::setSpeedModifySound(JAISound*, JAIAnimeFrameSoundData*, floa
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800ABDD8
- * Size:	000060
+/**
+ * @note Address: 0x800ABDD8
+ * @note Size: 0x60
  */
 // JAIAnimeSound::~JAIAnimeSound()
 // {
@@ -1219,10 +1200,9 @@ void JAIAnimeSound::setSpeedModifySound(JAISound*, JAIAnimeFrameSoundData*, floa
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	800ABE38
- * Size:	00000C
+/**
+ * @note Address: 0x800ABE38
+ * @note Size: 0xC
  */
 // void JAInter::ObjectBase::enable()
 // {

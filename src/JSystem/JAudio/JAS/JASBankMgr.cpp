@@ -19,10 +19,9 @@ static u16* sVir2PhyTable;
 const s16 OSC_RELEASE_TABLE[6]    = { 1, 10, 0, 15, 0, 0 };
 const JASOscillator::Data OSC_ENV = { 0, 1.0f, nullptr, OSC_RELEASE_TABLE, 1.0f, 0.0f };
 
-/*
- * --INFO--
- * Address:	80098F34
- * Size:	000138
+/**
+ * @note Address: 0x80098F34
+ * @note Size: 0x138
  */
 void init(int tableSize)
 {
@@ -35,20 +34,18 @@ void init(int tableSize)
 	sTableSize = tableSize;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 bool registBank(int bankIndex, JASBank* bank)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8009906C
- * Size:	000068
+/**
+ * @note Address: 0x8009906C
+ * @note Size: 0x68
  */
 bool registBankBNK(int bankIndex, void* data)
 {
@@ -63,10 +60,9 @@ bool registBankBNK(int bankIndex, void* data)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 JASBank* getBank(int bankIndex)
 {
@@ -80,17 +76,15 @@ JASBank* getBank(int bankIndex)
 	return sBankArray[bankIndex];
 }
 
-/*
- * --INFO--
- * Address:	800990D4
- * Size:	000010
+/**
+ * @note Address: 0x800990D4
+ * @note Size: 0x10
  */
 u16 getPhysicalNumber(u16 virtualNumber) { return sVir2PhyTable[virtualNumber]; }
 
-/*
- * --INFO--
- * Address:	800990E4
- * Size:	000018
+/**
+ * @note Address: 0x800990E4
+ * @note Size: 0x18
  */
 void setVir2PhyTable(u32 virtualNumber, int physicalNumber)
 {
@@ -100,10 +94,9 @@ void setVir2PhyTable(u32 virtualNumber, int physicalNumber)
 	sVir2PhyTable[virtualNumber] = physicalNumber;
 }
 
-/*
- * --INFO--
- * Address:	800990FC
- * Size:	000084
+/**
+ * @note Address: 0x800990FC
+ * @note Size: 0x84
  */
 bool assignWaveBank(int bankIndex, int waveBankIndex)
 {
@@ -119,10 +112,9 @@ bool assignWaveBank(int bankIndex, int waveBankIndex)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80099180
- * Size:	000360
+/**
+ * @note Address: 0x80099180
+ * @note Size: 0x360
  */
 JASChannel* noteOn(int bankIndex, int instIndex, u8 p3, u8 p4, u16 p5, void (*p6)(u32, JASChannel*, JASDsp::TChannel*, void*), void* p7)
 {
@@ -192,20 +184,18 @@ JASChannel* noteOn(int bankIndex, int instIndex, u8 p3, u8 p4, u16 p5, void (*p6
 	return channel;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 // JASCriticalSection::~JASCriticalSection()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	800994E0
- * Size:	000174
+/**
+ * @note Address: 0x800994E0
+ * @note Size: 0x174
  */
 static JASChannel* noteOnOsc(int p1, u8 p2, u8 p3, u16 p4, void (*p5)(u32, JASChannel*, JASDsp::TChannel*, void*), void* p6)
 {
@@ -232,10 +222,9 @@ static JASChannel* noteOnOsc(int p1, u8 p2, u8 p3, u16 p4, void (*p5)(u32, JASCh
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80099654
- * Size:	0000A8
+/**
+ * @note Address: 0x80099654
+ * @note Size: 0xA8
  */
 void gateOn(JASChannel* channel, u8 p2, u8 p3)
 {
@@ -244,10 +233,9 @@ void gateOn(JASChannel* channel, u8 p2, u8 p3)
 	channel->_FC = channel->_FC * channel->_FC * channel->_F4;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 size_t getUsedHeapSize()
 {

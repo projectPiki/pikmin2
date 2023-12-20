@@ -7,10 +7,9 @@ namespace Tank {
 
 static const char tankMgrName[] = "246-TankMgr";
 
-/*
- * --INFO--
- * Address:	80275A18
- * Size:	000050
+/**
+ * @note Address: 0x80275A18
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -18,10 +17,9 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "ブタドックリマネージャ"; // pig dog manager
 }
 
-/*
- * --INFO--
- * Address:	80275A68
- * Size:	00009C
+/**
+ * @note Address: 0x80275A68
+ * @note Size: 0x9C
  */
 void Mgr::loadModelData()
 {
@@ -42,10 +40,9 @@ void Mgr::loadModelData()
 	EnemyMgrBase::loadModelData();
 }
 
-/*
- * --INFO--
- * Address:	80275B04
- * Size:	000090
+/**
+ * @note Address: 0x80275B04
+ * @note Size: 0x90
  */
 void Mgr::loadAnimData()
 {
@@ -65,10 +62,9 @@ void Mgr::loadAnimData()
 	EnemyMgrBase::loadAnimData();
 }
 
-/*
- * --INFO--
- * Address:	80275B94
- * Size:	000138
+/**
+ * @note Address: 0x80275B94
+ * @note Size: 0x138
  */
 SysShape::Model* Mgr::createModel()
 {

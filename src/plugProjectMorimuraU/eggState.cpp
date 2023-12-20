@@ -7,10 +7,9 @@
 
 namespace Game {
 namespace Egg {
-/*
- * --INFO--
- * Address:	8034B3C4
- * Size:	000054
+/**
+ * @note Address: 0x8034B3C4
+ * @note Size: 0x54
  */
 void FSM::init(Game::EnemyBase* enemy)
 {
@@ -18,10 +17,9 @@ void FSM::init(Game::EnemyBase* enemy)
 	registerState(new StateWait(EGG_Wait));
 }
 
-/*
- * --INFO--
- * Address:	8034B418
- * Size:	00003C
+/**
+ * @note Address: 0x8034B418
+ * @note Size: 0x3C
  */
 StateWait::StateWait(int stateID)
     : State(stateID)
@@ -29,10 +27,9 @@ StateWait::StateWait(int stateID)
 	mName = "wait";
 }
 
-/*
- * --INFO--
- * Address:	8034B454
- * Size:	000040
+/**
+ * @note Address: 0x8034B454
+ * @note Size: 0x40
  */
 
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
@@ -41,10 +38,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->stopMotion();
 }
 
-/*
- * --INFO--
- * Address:	8034B494
- * Size:	0001A8
+/**
+ * @note Address: 0x8034B494
+ * @note Size: 0x1A8
  */
 void StateWait::exec(EnemyBase* enemy)
 {

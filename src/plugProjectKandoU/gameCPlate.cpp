@@ -6,17 +6,15 @@
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	80194FF4
- * Size:	000014
+/**
+ * @note Address: 0x80194FF4
+ * @note Size: 0x14
  */
 Creature* CPlate::get(void* index) { return mSlots[(int)index].mCreature; }
 
-/*
- * --INFO--
- * Address:	80195008
- * Size:	00003C
+/**
+ * @note Address: 0x80195008
+ * @note Size: 0x3C
  */
 void* CPlate::getNext(void* index)
 {
@@ -24,42 +22,37 @@ void* CPlate::getNext(void* index)
 	return (void*)((int)index + 1); // the void* pointer cast stuff is for Container compatibility.
 }
 
-/*
- * --INFO--
- * Address:	80195044
- * Size:	000008
+/**
+ * @note Address: 0x80195044
+ * @note Size: 0x8
  */
 void* CPlate::getStart() { return nullptr; }
 
-/*
- * --INFO--
- * Address:	8019504C
- * Size:	000008
+/**
+ * @note Address: 0x8019504C
+ * @note Size: 0x8
  */
 void* CPlate::getEnd() { return (void*)mSlotCount; }
 
-/*
- * --INFO--
- * Address:	80195054
- * Size:	00000C
+/**
+ * @note Address: 0x80195054
+ * @note Size: 0xC
  */
 void CPlate::shrink() { _100 = 10; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 void CPlate::updateShrink()
 {
 	// UNUSED FUNCTION
 }
 
-/*
+/**
  * ct__
- * --INFO--
- * Address:	80195060
- * Size:	0001F0
+ * @note Address: 0x80195060
+ * @note Size: 0x1F0
  */
 CPlate::CPlate(int slotLimit)
     : Container<Creature>()
@@ -93,11 +86,9 @@ CPlate::CPlate(int slotLimit)
  * @param angle The new angle of the CPlate object.
  * @param velocity The new velocity of the CPlate object.
  * @param scale The scale factor to be applied to the CPlate object.
- */
-/*
- * --INFO--
- * Address:	801952EC
- * Size:	000210
+ *
+ * @note Address: 0x801952EC
+ * @note Size: 0x210
  */
 void CPlate::setPos(Vector3f& position, f32 angle, Vector3f& velocity, f32 scale)
 {
@@ -122,10 +113,9 @@ void CPlate::setPos(Vector3f& position, f32 angle, Vector3f& velocity, f32 scale
 	_111               = 0;
 }
 
-/*
- * --INFO--
- * Address:	801954FC
- * Size:	00020C
+/**
+ * @note Address: 0x801954FC
+ * @note Size: 0x20C
  */
 void CPlate::setPosGray(Vector3f& position, f32 angle, Vector3f& velocity, f32 p4)
 {
@@ -149,20 +139,18 @@ void CPlate::setPosGray(Vector3f& position, f32 angle, Vector3f& velocity, f32 p
 	_111               = 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 void CPlate::setPosNeutral(Vector3f& p1, f32 p2, Vector3f& p3, f32 p4)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80195708
- * Size:	0000A8
+/**
+ * @note Address: 0x80195708
+ * @note Size: 0xA8
  */
 int CPlate::getSlot(Creature* piki, SlotChangeListener* listener, bool p3)
 {
@@ -182,10 +170,9 @@ int CPlate::getSlot(Creature* piki, SlotChangeListener* listener, bool p3)
 	return slot;
 }
 
-/*
- * --INFO--
- * Address:	801957B0
- * Size:	0000B8
+/**
+ * @note Address: 0x801957B0
+ * @note Size: 0xB8
  */
 void CPlate::changeFlower(Creature* creature)
 {
@@ -202,10 +189,9 @@ void CPlate::changeFlower(Creature* creature)
 	_104[prevHappa]--;
 }
 
-/*
- * --INFO--
- * Address:	80195868
- * Size:	000128
+/**
+ * @note Address: 0x80195868
+ * @note Size: 0x128
  */
 void CPlate::releaseSlot(Creature* creature, int idx)
 {
@@ -227,20 +213,18 @@ void CPlate::releaseSlot(Creature* creature, int idx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B0
+/**
+ * @note Address: N/A
+ * @note Size: 0xB0
  */
 void CPlate::swapSlot(int, int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80195990
- * Size:	000024
+/**
+ * @note Address: 0x80195990
+ * @note Size: 0x24
  */
 bool CPlate::validSlot(int index)
 {
@@ -252,10 +236,9 @@ bool CPlate::validSlot(int index)
 
 } // namespace Game
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000CC
+/**
+ * @note Address: N/A
+ * @note Size: 0xCC
  */
 void getPriority(int*, int)
 {
@@ -264,10 +247,9 @@ void getPriority(int*, int)
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	801959B4
- * Size:	0004A0
+/**
+ * @note Address: 0x801959B4
+ * @note Size: 0x4A0
  */
 void CPlate::sortByColor(Creature* piki, int happaType)
 {
@@ -655,10 +637,9 @@ lbl_80195E34:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80195E54
- * Size:	0001E0
+/**
+ * @note Address: 0x80195E54
+ * @note Size: 0x1E0
  */
 void CPlate::rearrangeSlot(Vector3f& p1, f32 p2, Vector3f& p3)
 {
@@ -804,10 +785,9 @@ lbl_80196008:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80196034
- * Size:	0000C4
+/**
+ * @note Address: 0x80196034
+ * @note Size: 0xC4
  */
 // void getSlotPosition__Q24Game6CPlateFiR10Vector3f()
 void CPlate::getSlotPosition(int p1, Vector3f& p2)
@@ -873,10 +853,9 @@ lbl_8019609C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801960F8
- * Size:	0001B8
+/**
+ * @note Address: 0x801960F8
+ * @note Size: 0x1B8
  */
 void CPlate::refresh(int, f32)
 {
@@ -1018,10 +997,9 @@ lbl_8019629C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801962B0
- * Size:	0002EC
+/**
+ * @note Address: 0x801962B0
+ * @note Size: 0x2EC
  */
 void CPlate::refreshSlot(f32)
 {
@@ -1238,12 +1216,11 @@ lbl_8019652C:
 	*/
 }
 
-/*
+/**
  * update__Q24Game6CPlateFv
  *
- * --INFO--
- * Address:	8019659C
- * Size:	000018
+ * @note Address: 0x8019659C
+ * @note Size: 0x18
  */
 void CPlate::update()
 {
@@ -1253,10 +1230,9 @@ void CPlate::update()
 	_100--;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void CPlate::directDraw(Graphics&)
 {

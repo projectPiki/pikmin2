@@ -4,10 +4,9 @@
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	8019FE78
- * Size:	000044
+/**
+ * @note Address: 0x8019FE78
+ * @note Size: 0x44
  */
 bool InteractFlick::actCommon(Creature* creature)
 {
@@ -18,10 +17,9 @@ bool InteractFlick::actCommon(Creature* creature)
 	return true;
 };
 
-/*
- * --INFO--
- * Address:	8019FEBC
- * Size:	00006C
+/**
+ * @note Address: 0x8019FEBC
+ * @note Size: 0x6C
  */
 bool InteractAttack::actCommon(Creature* creature)
 {
@@ -32,17 +30,15 @@ bool InteractAttack::actCommon(Creature* creature)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8019FF28
- * Size:	000008
+/**
+ * @note Address: 0x8019FF28
+ * @note Size: 0x8
  */
 bool InteractSwallow::actCommon(Game::Creature* creature) { return true; }
 
-/*
- * --INFO--
- * Address:	8019FF30
- * Size:	000008
+/**
+ * @note Address: 0x8019FF30
+ * @note Size: 0x8
  */
 bool InteractKill::actCommon(Game::Creature* creature) { return true; }
 }; // namespace Game

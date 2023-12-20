@@ -7,10 +7,9 @@
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	80324A54
- * Size:	000060
+/**
+ * @note Address: 0x80324A54
+ * @note Size: 0x60
  */
 ObjSave::ObjSave(const char* name)
 {
@@ -19,17 +18,15 @@ ObjSave::ObjSave(const char* name)
 	mDisp    = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80324AB4
- * Size:	0000AC
+/**
+ * @note Address: 0x80324AB4
+ * @note Size: 0xAC
  */
 ObjSave::~ObjSave() { }
 
-/*
- * --INFO--
- * Address:	80324B60
- * Size:	00008C
+/**
+ * @note Address: 0x80324B60
+ * @note Size: 0x8C
  */
 void ObjSave::doCreate(JKRArchive* arc)
 {
@@ -43,10 +40,9 @@ void ObjSave::doCreate(JKRArchive* arc)
 	mTimer = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	80324BEC
- * Size:	000134
+/**
+ * @note Address: 0x80324BEC
+ * @note Size: 0x134
  */
 bool ObjSave::doUpdate()
 {
@@ -86,10 +82,9 @@ bool ObjSave::doUpdate()
 	return check;
 }
 
-/*
- * --INFO--
- * Address:	80324D20
- * Size:	000030
+/**
+ * @note Address: 0x80324D20
+ * @note Size: 0x30
  */
 void ObjSave::doDraw(Graphics& gfx)
 {
@@ -98,52 +93,45 @@ void ObjSave::doDraw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80324D50
- * Size:	000008
+/**
+ * @note Address: 0x80324D50
+ * @note Size: 0x8
  */
 bool ObjSave::doStart(::Screen::StartSceneArg const*) { return true; }
 
-/*
- * --INFO--
- * Address:	80324D58
- * Size:	000008
+/**
+ * @note Address: 0x80324D58
+ * @note Size: 0x8
  */
 bool ObjSave::doEnd(::Screen::EndSceneArg const*) { return true; }
 
-/*
- * --INFO--
- * Address:	80324D60
- * Size:	000004
+/**
+ * @note Address: 0x80324D60
+ * @note Size: 0x4
  */
 void ObjSave::doUpdateFadeinFinish() { }
 
-/*
- * --INFO--
- * Address:	80324D64
- * Size:	000004
+/**
+ * @note Address: 0x80324D64
+ * @note Size: 0x4
  */
 void ObjSave::doUpdateFinish() { }
 
-/*
- * --INFO--
- * Address:	80324D68
- * Size:	000034
+/**
+ * @note Address: 0x80324D68
+ * @note Size: 0x34
  */
 void ObjSave::doUpdateFadeoutFinish() { getOwner()->endScene(nullptr); }
 
-/*
- * --INFO--
- * Address:	80324D9C
- * Size:	000008
+/**
+ * @note Address: 0x80324D9C
+ * @note Size: 0x8
  */
 bool ObjSave::doUpdateFadein() { return true; }
 
-/*
- * --INFO--
- * Address:	80324DA4
- * Size:	000008
+/**
+ * @note Address: 0x80324DA4
+ * @note Size: 0x8
  */
 bool ObjSave::doUpdateFadeout() { return true; }
 

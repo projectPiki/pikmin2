@@ -4,10 +4,9 @@
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	802F2040
- * Size:	000278
+/**
+ * @note Address: 0x802F2040
+ * @note Size: 0x278
  */
 void TubeShadowTransNode::makeShadowSRT(JointShadowParm& parm, Vector3f& pos1, Vector3f& pos2)
 {
@@ -213,10 +212,9 @@ void TubeShadowTransNode::makeShadowSRT(JointShadowParm& parm, Vector3f& pos1, V
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802F22B8
- * Size:	000278
+/**
+ * @note Address: 0x802F22B8
+ * @note Size: 0x278
  */
 void TubeShadowSetNode::makeShadowSRT(JointShadowParm& parm, Vector3f& pos1, Vector3f& pos2)
 {
@@ -422,10 +420,9 @@ void TubeShadowSetNode::makeShadowSRT(JointShadowParm& parm, Vector3f& pos1, Vec
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802F2530
- * Size:	0001AC
+/**
+ * @note Address: 0x802F2530
+ * @note Size: 0x1AC
  */
 void TubeShadowPosNode::makeShadowSRT(JointShadowParm& parm, Vector3f& pos1, Vector3f& pos2)
 {
@@ -569,10 +566,9 @@ void TubeShadowPosNode::makeShadowSRT(JointShadowParm& parm, Vector3f& pos1, Vec
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802F26DC
- * Size:	000100
+/**
+ * @note Address: 0x802F26DC
+ * @note Size: 0x100
  */
 void SphereShadowNode::makeShadowSRT(JointShadowParm& parm, Vector3f& pos)
 {

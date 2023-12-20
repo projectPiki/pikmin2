@@ -21,10 +21,9 @@ static const char unusedItemGateName[] = "itemGate";
 ItemGateMgr* itemGateMgr;
 ItemDengekiGate::Mgr* ItemDengekiGate::mgr;
 
-/*
- * --INFO--
- * Address:	801C7604
- * Size:	000134
+/**
+ * @note Address: 0x801C7604
+ * @note Size: 0x134
  */
 void GateFSM::init(ItemGate* gate)
 {
@@ -34,10 +33,9 @@ void GateFSM::init(ItemGate* gate)
 	registerState(new GateDownState);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00014C
+/**
+ * @note Address: N/A
+ * @note Size: 0x14C
  */
 ItemGate::ItemGate()
     : WorkItem(OBJTYPE_Gate)
@@ -54,17 +52,15 @@ ItemGate::ItemGate()
 	mEgateEfxBC             = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	801C7738
- * Size:	000048
+/**
+ * @note Address: 0x801C7738
+ * @note Size: 0x48
  */
 void ItemGate::constructor() { mSoundObj = new PSM::WorkItem(this); }
 
-/*
- * --INFO--
- * Address:	801C7780
- * Size:	000248
+/**
+ * @note Address: 0x801C7780
+ * @note Size: 0x248
  */
 void ItemGate::onInit(CreatureInitArg* arg)
 {
@@ -96,10 +92,9 @@ void ItemGate::onInit(CreatureInitArg* arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C79FC
- * Size:	0001E4
+/**
+ * @note Address: 0x801C79FC
+ * @note Size: 0x1E4
  */
 void ItemGate::onSetPosition()
 {
@@ -135,10 +130,9 @@ void ItemGate::onSetPosition()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C7BE0
- * Size:	0000E8
+/**
+ * @note Address: 0x801C7BE0
+ * @note Size: 0xE8
  */
 void ItemGate::doLoad(Stream& stream)
 {
@@ -160,10 +154,9 @@ void ItemGate::doLoad(Stream& stream)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C7CC8
- * Size:	00004C
+/**
+ * @note Address: 0x801C7CC8
+ * @note Size: 0x4C
  */
 void ItemGate::doSave(Stream& stream)
 {
@@ -171,17 +164,15 @@ void ItemGate::doSave(Stream& stream)
 	stream.writeInt(mSegmentsDown);
 }
 
-/*
- * --INFO--
- * Address:	801C7D14
- * Size:	00001C
+/**
+ * @note Address: 0x801C7D14
+ * @note Size: 0x1C
  */
 void ItemGate::updateBoundSphere() { mBoundingSphere.mPosition = mPosition; }
 
-/*
- * --INFO--
- * Address:	801C7D30
- * Size:	00007C
+/**
+ * @note Address: 0x801C7D30
+ * @note Size: 0x7C
  */
 void ItemGate::update()
 {
@@ -192,10 +183,9 @@ void ItemGate::update()
 	do_updateLOD();
 }
 
-/*
- * --INFO--
- * Address:	801C7DAC
- * Size:	000130
+/**
+ * @note Address: 0x801C7DAC
+ * @note Size: 0x130
  */
 void ItemGate::doAI()
 {
@@ -212,10 +202,9 @@ void ItemGate::doAI()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C7EDC
- * Size:	000044
+/**
+ * @note Address: 0x801C7EDC
+ * @note Size: 0x44
  */
 void ItemGate::onKeyEvent(const SysShape::KeyEvent& keyEvent)
 {
@@ -224,10 +213,9 @@ void ItemGate::onKeyEvent(const SysShape::KeyEvent& keyEvent)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C7F24
- * Size:	00011C
+/**
+ * @note Address: 0x801C7F24
+ * @note Size: 0x11C
  */
 bool ItemGate::interactAttack(Game::InteractAttack& attack)
 {
@@ -247,10 +235,9 @@ bool ItemGate::interactAttack(Game::InteractAttack& attack)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801C8044
- * Size:	00006C
+/**
+ * @note Address: 0x801C8044
+ * @note Size: 0x6C
  */
 void ItemGate::initMotion()
 {
@@ -263,10 +250,9 @@ void ItemGate::initMotion()
 	mAnimSpeed = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	801C80B0
- * Size:	000290
+/**
+ * @note Address: 0x801C80B0
+ * @note Size: 0x290
  */
 bool ItemGate::getVectorField(Sys::Sphere& sphere, Vector3f& vectorField)
 {
@@ -301,10 +287,9 @@ bool ItemGate::getVectorField(Sys::Sphere& sphere, Vector3f& vectorField)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801C8340
- * Size:	00011C
+/**
+ * @note Address: 0x801C8340
+ * @note Size: 0x11C
  */
 f32 ItemGate::getWorkDistance(Sys::Sphere& sphere)
 {
@@ -423,10 +408,9 @@ lbl_801C8454:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801C845C
- * Size:	0003A8
+/**
+ * @note Address: 0x801C845C
+ * @note Size: 0x3A8
  */
 void ItemGate::initPlanes()
 {
@@ -710,10 +694,9 @@ lbl_801C8578:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801C8804
- * Size:	0000D4
+/**
+ * @note Address: 0x801C8804
+ * @note Size: 0xD4
  */
 void ItemGate::changeMaterial()
 {
@@ -731,10 +714,9 @@ void ItemGate::changeMaterial()
 
 inline f32 ItemGate::getGateHealth() { return (mMaxSegments - mSegmentsDown - 1) * mMaxSegmentHealth + mCurrentSegmentHealth; }
 
-/*
- * --INFO--
- * Address:	801C88D8
- * Size:	0000A0
+/**
+ * @note Address: 0x801C88D8
+ * @note Size: 0xA0
  */
 
 void ItemGate::getLifeGaugeParam(Game::LifeGaugeParam& param)
@@ -788,10 +770,9 @@ void ItemGate::getLifeGaugeParam(Game::LifeGaugeParam& param)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801C8978
- * Size:	0001FC
+/**
+ * @note Address: 0x801C8978
+ * @note Size: 0x1FC
  */
 ItemGateMgr::ItemGateMgr()
     : BaseItemMgr(1)
@@ -947,10 +928,9 @@ mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMount
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801C8D94
- * Size:	0000A0
+/**
+ * @note Address: 0x801C8D94
+ * @note Size: 0xA0
  */
 void ItemGateMgr::setupGate(Game::ItemGate* gate)
 {
@@ -961,10 +941,9 @@ void ItemGateMgr::setupGate(Game::ItemGate* gate)
 	gate->mAnimator.startAnim(0, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	801C8E34
- * Size:	000158
+/**
+ * @note Address: 0x801C8E34
+ * @note Size: 0x158
  */
 void ItemGateMgr::setupPlatform(Game::ItemGate* gate)
 {
@@ -991,10 +970,9 @@ void ItemGateMgr::setupPlatform(Game::ItemGate* gate)
 	sys->heapStatusEnd("Platform");
 }
 
-/*
- * --INFO--
- * Address:	801C8F8C
- * Size:	0001D4
+/**
+ * @note Address: 0x801C8F8C
+ * @note Size: 0x1D4
  */
 BaseItem* ItemGateMgr::birth()
 {
@@ -1139,10 +1117,9 @@ lbl_801C910C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801C9160
- * Size:	0001E8
+/**
+ * @note Address: 0x801C9160
+ * @note Size: 0x1E8
  */
 void ItemGateMgr::initDependency()
 {
@@ -1154,17 +1131,15 @@ void ItemGateMgr::initDependency()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C9348
- * Size:	000054
+/**
+ * @note Address: 0x801C9348
+ * @note Size: 0x54
  */
 GenItemParm* ItemGateMgr::generatorNewItemParm() { return new GenGateParm(); }
 
-/*
- * --INFO--
- * Address:	801C939C
- * Size:	0000B0
+/**
+ * @note Address: 0x801C939C
+ * @note Size: 0xB0
  */
 void ItemGateMgr::generatorWrite(Stream& stream, Game::GenItemParm* param)
 {
@@ -1178,10 +1153,9 @@ void ItemGateMgr::generatorWrite(Stream& stream, Game::GenItemParm* param)
 	stream.textWriteText("\t#Color\r\n");
 }
 
-/*
- * --INFO--
- * Address:	801C944C
- * Size:	0000A8
+/**
+ * @note Address: 0x801C944C
+ * @note Size: 0xA8
  */
 void ItemGateMgr::generatorRead(Stream& stream, Game::GenItemParm* param, u32 version)
 {
@@ -1197,10 +1171,9 @@ void ItemGateMgr::generatorRead(Stream& stream, Game::GenItemParm* param, u32 ve
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C94F4
- * Size:	000228
+/**
+ * @note Address: 0x801C94F4
+ * @note Size: 0x228
  */
 BaseItem* ItemGateMgr::generatorBirth(Vector3f& pos, Vector3f& rot, Game::GenItemParm* param)
 {
@@ -1216,10 +1189,9 @@ BaseItem* ItemGateMgr::generatorBirth(Vector3f& pos, Vector3f& rot, Game::GenIte
 	return gate;
 }
 
-/*
- * --INFO--
- * Address:	801C971C
- * Size:	000014
+/**
+ * @note Address: 0x801C971C
+ * @note Size: 0x14
  */
 char* ItemGateMgr::getCaveName(int outsideCave)
 {
@@ -1229,38 +1201,33 @@ char* ItemGateMgr::getCaveName(int outsideCave)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	801C9730
- * Size:	00004C
+/**
+ * @note Address: 0x801C9730
+ * @note Size: 0x4C
  */
 int ItemGateMgr::getCaveID(char* cave) { return -(strncmp("gate", cave, strlen("gate")) != 0); }
 
-/*
- * --INFO--
- * Address:	801C977C
- * Size:	000004
+/**
+ * @note Address: 0x801C977C
+ * @note Size: 0x4
  */
 void GateWaitState::init(Game::ItemGate*, Game::StateArg*) { }
 
-/*
- * --INFO--
- * Address:	801C9780
- * Size:	000004
+/**
+ * @note Address: 0x801C9780
+ * @note Size: 0x4
  */
 void GateWaitState::exec(Game::ItemGate*) { }
 
-/*
- * --INFO--
- * Address:	801C9784
- * Size:	000004
+/**
+ * @note Address: 0x801C9784
+ * @note Size: 0x4
  */
 void GateWaitState::cleanup(Game::ItemGate*) { }
 
-/*
- * --INFO--
- * Address:	801C9788
- * Size:	000040
+/**
+ * @note Address: 0x801C9788
+ * @note Size: 0x40
  */
 void GateWaitState::onDamage(Game::ItemGate* item, float damage)
 {
@@ -1268,17 +1235,15 @@ void GateWaitState::onDamage(Game::ItemGate* item, float damage)
 	transit(item, GATESTATE_Damaged, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	801C97F8
- * Size:	000004
+/**
+ * @note Address: 0x801C97F8
+ * @note Size: 0x4
  */
 void GateWaitState::onKeyEvent(Game::ItemGate*, const SysShape::KeyEvent&) { }
 
-/*
- * --INFO--
- * Address:	801C97FC
- * Size:	00005C
+/**
+ * @note Address: 0x801C97FC
+ * @note Size: 0x5C
  */
 void GateDamagedState::init(Game::ItemGate* item, Game::StateArg* arg)
 {
@@ -1287,10 +1252,9 @@ void GateDamagedState::init(Game::ItemGate* item, Game::StateArg* arg)
 	mNotInAnim       = false;
 }
 
-/*
- * --INFO--
- * Address:	801C9858
- * Size:	0000C0
+/**
+ * @note Address: 0x801C9858
+ * @note Size: 0xC0
  */
 void GateDamagedState::exec(Game::ItemGate* gate)
 {
@@ -1310,31 +1274,27 @@ void GateDamagedState::exec(Game::ItemGate* gate)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C9918
- * Size:	000004
+/**
+ * @note Address: 0x801C9918
+ * @note Size: 0x4
  */
 void GateDamagedState::cleanup(Game::ItemGate*) { }
 
-/*
- * --INFO--
- * Address:	801C991C
- * Size:	000010
+/**
+ * @note Address: 0x801C991C
+ * @note Size: 0x10
  */
 void GateDamagedState::onDamage(Game::ItemGate* gate, float damage) { gate->mDamage += damage; }
 
-/*
- * --INFO--
- * Address:	801C992C
- * Size:	00000C
+/**
+ * @note Address: 0x801C992C
+ * @note Size: 0xC
  */
 void GateDamagedState::onKeyEvent(Game::ItemGate*, const SysShape::KeyEvent&) { mNotInAnim = true; }
 
-/*
- * --INFO--
- * Address:	801C9938
- * Size:	000224
+/**
+ * @note Address: 0x801C9938
+ * @note Size: 0x224
  */
 void GateDownState::init(Game::ItemGate* gate, Game::StateArg* arg)
 {
@@ -1360,38 +1320,33 @@ void GateDownState::init(Game::ItemGate* gate, Game::StateArg* arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C9B5C
- * Size:	000008
+/**
+ * @note Address: 0x801C9B5C
+ * @note Size: 0x8
  */
 f32 ItemGate::getFaceDir() { return mFaceDir; }
 
-/*
- * --INFO--
- * Address:	801C9B64
- * Size:	000004
+/**
+ * @note Address: 0x801C9B64
+ * @note Size: 0x4
  */
 void GateDownState::exec(Game::ItemGate*) { }
 
-/*
- * --INFO--
- * Address:	801C9B68
- * Size:	000004
+/**
+ * @note Address: 0x801C9B68
+ * @note Size: 0x4
  */
 void GateDownState::cleanup(Game::ItemGate*) { }
 
-/*
- * --INFO--
- * Address:	801C9B6C
- * Size:	000010
+/**
+ * @note Address: 0x801C9B6C
+ * @note Size: 0x10
  */
 void GateDownState::onDamage(Game::ItemGate* gate, float damage) { gate->mDamage += damage; }
 
-/*
- * --INFO--
- * Address:	801C9B7C
- * Size:	000168
+/**
+ * @note Address: 0x801C9B7C
+ * @note Size: 0x168
  */
 void GateDownState::onKeyEvent(Game::ItemGate* gate, const SysShape::KeyEvent& keyEvent)
 {
@@ -1519,10 +1474,9 @@ lbl_801C9CD0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801C9CE4
- * Size:	000180
+/**
+ * @note Address: 0x801C9CE4
+ * @note Size: 0x180
  */
 ItemDengekiGate::Mgr::Mgr()
 {
@@ -1544,10 +1498,10 @@ ItemDengekiGate::Mgr::Mgr()
 	mMatAnimation.attachResource(brk, mModelData[0]);
 	sys->heapStatusEnd("ItemDengekiGate");
 }
-/*
- * --INFO--
- * Address:	801C9F80
- * Size:	0000A4
+
+/**
+ * @note Address: 0x801C9F80
+ * @note Size: 0xA4
  */
 
 void ItemDengekiGate::Mgr::setupGate(Game::ItemGate* gate)
@@ -1560,10 +1514,9 @@ void ItemDengekiGate::Mgr::setupGate(Game::ItemGate* gate)
 	gate->mAnimator.startAnim(0, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	801CA024
- * Size:	000158
+/**
+ * @note Address: 0x801CA024
+ * @note Size: 0x158
  */
 void ItemDengekiGate::Mgr::setupPlatform(Game::ItemGate* gate)
 {
@@ -1590,17 +1543,15 @@ void ItemDengekiGate::Mgr::setupPlatform(Game::ItemGate* gate)
 	sys->heapStatusEnd("Platform");
 }
 
-/*
- * --INFO--
- * Address:	801CA17C
- * Size:	000054
+/**
+ * @note Address: 0x801CA17C
+ * @note Size: 0x54
  */
 GenItemParm* ItemDengekiGate::Mgr::generatorNewItemParm() { return new GenGateParm; }
 
-/*
- * --INFO--
- * Address:	801CA1D0
- * Size:	000084
+/**
+ * @note Address: 0x801CA1D0
+ * @note Size: 0x84
  */
 void ItemDengekiGate::Mgr::generatorWrite(Stream& stream, Game::GenItemParm* param)
 {
@@ -1649,10 +1600,9 @@ lbl_801CA210:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801CA254
- * Size:	000060
+/**
+ * @note Address: 0x801CA254
+ * @note Size: 0x60
  */
 void ItemDengekiGate::Mgr::generatorRead(Stream& stream, Game::GenItemParm* param, u32 version)
 {
@@ -1661,10 +1611,9 @@ void ItemDengekiGate::Mgr::generatorRead(Stream& stream, Game::GenItemParm* para
 	gateParam->mLife       = stream.readFloat();
 }
 
-/*
- * --INFO--
- * Address:	801CA2B4
- * Size:	0000B8
+/**
+ * @note Address: 0x801CA2B4
+ * @note Size: 0xB8
  */
 BaseItem* ItemDengekiGate::Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, Game::GenItemParm* param)
 {
@@ -1680,10 +1629,9 @@ BaseItem* ItemDengekiGate::Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, Gam
 	return gate;
 }
 
-/*
- * --INFO--
- * Address:	801CA36C
- * Size:	000014
+/**
+ * @note Address: 0x801CA36C
+ * @note Size: 0x14
  */
 char* ItemDengekiGate::Mgr::getCaveName(int outsideCave)
 {
@@ -1693,10 +1641,9 @@ char* ItemDengekiGate::Mgr::getCaveName(int outsideCave)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	801CA380
- * Size:	00004C
+/**
+ * @note Address: 0x801CA380
+ * @note Size: 0x4C
  */
 int ItemDengekiGate::Mgr::getCaveID(char* cave)
 {
@@ -1724,103 +1671,89 @@ int ItemDengekiGate::Mgr::getCaveID(char* cave)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801CA3CC
- * Size:	000134
+/**
+ * @note Address: 0x801CA3CC
+ * @note Size: 0x134
  */
 ItemDengekiGate::Mgr::~Mgr() { }
 
-/*
- * --INFO--
- * Address:	801CA500
- * Size:	00000C
+/**
+ * @note Address: 0x801CA500
+ * @note Size: 0xC
  */
 u32 ItemDengekiGate::Mgr::generatorGetID() { return 'dgat'; }
 
-/*
- * --INFO--
- * Address:	801CA50C
- * Size:	00000C
+/**
+ * @note Address: 0x801CA50C
+ * @note Size: 0xC
  */
 u32 ItemDengekiGate::Mgr::generatorLocalVersion() { return '0000'; }
 
-/*
- * --INFO--
- * Address:	801CA518
- * Size:	00000C
+/**
+ * @note Address: 0x801CA518
+ * @note Size: 0xC
  */
 u32 ItemGateMgr::generatorGetID() { return 'gate'; }
 
-/*
- * --INFO--
- * Address:	801CA524
- * Size:	00000C
+/**
+ * @note Address: 0x801CA524
+ * @note Size: 0xC
  */
 u32 ItemGateMgr::generatorLocalVersion() { return '0002'; }
 
-/*
- * --INFO--
- * Address:	801CA530
- * Size:	00002C
+/**
+ * @note Address: 0x801CA530
+ * @note Size: 0x2C
  */
 void ItemGateMgr::doAnimation() { mNodeObjectMgr.doAnimation(); }
 
-/*
- * --INFO--
- * Address:	801CA55C
- * Size:	00002C
+/**
+ * @note Address: 0x801CA55C
+ * @note Size: 0x2C
  */
 void ItemGateMgr::doEntry() { mNodeObjectMgr.doEntry(); }
 
-/*
- * --INFO--
- * Address:	801CA588
- * Size:	00002C
+/**
+ * @note Address: 0x801CA588
+ * @note Size: 0x2C
  */
 void ItemGateMgr::doSetView(int viewportNumber) { mNodeObjectMgr.doSetView(viewportNumber); }
 
-/*
- * --INFO--
- * Address:	801CA5B4
- * Size:	00002C
+/**
+ * @note Address: 0x801CA5B4
+ * @note Size: 0x2C
  */
 void ItemGateMgr::doViewCalc() { mNodeObjectMgr.doViewCalc(); }
 
-/*
- * --INFO--
- * Address:	801CA5E0
- * Size:	00002C
+/**
+ * @note Address: 0x801CA5E0
+ * @note Size: 0x2C
  */
 void ItemGateMgr::doSimulation(float val) { mNodeObjectMgr.doSimulation(val); }
 
-/*
- * --INFO--
- * Address:	801CA60C
- * Size:	00002C
+/**
+ * @note Address: 0x801CA60C
+ * @note Size: 0x2C
  */
 void ItemGateMgr::doDirectDraw(Graphics& gfx) { mNodeObjectMgr.doDirectDraw(gfx); }
 
 efx::TEgateA::~TEgateA() { }
 
-/*
- * --INFO--
- * Address:	801CA6DC
- * Size:	000008
+/**
+ * @note Address: 0x801CA6DC
+ * @note Size: 0x8
  */
 char* ItemGate::getCreatureName() { return "Gate"; }
 
-/*
- * --INFO--
- * Address:	801CA6E4
- * Size:	000008
+/**
+ * @note Address: 0x801CA6E4
+ * @note Size: 0x8
  */
 Mabiki* ItemGate::getMabiki() { return &mMabiki; }
 
-/*
- * --INFO--
- * Address:	801CA6EC
- * Size:	000004
+/**
+ * @note Address: 0x801CA6EC
+ * @note Size: 0x4
  */
 void ItemGate::makeTrMatrix() { }
 

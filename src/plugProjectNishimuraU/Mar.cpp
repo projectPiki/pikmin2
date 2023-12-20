@@ -10,10 +10,9 @@
 namespace Game {
 namespace Mar {
 
-/*
- * --INFO--
- * Address:	8027F50C
- * Size:	00015C
+/**
+ * @note Address: 0x8027F50C
+ * @note Size: 0x15C
  */
 Obj::Obj()
 {
@@ -23,17 +22,15 @@ Obj::Obj()
 	mMatAnimators = new Sys::MatLoopAnimator[2];
 }
 
-/*
- * --INFO--
- * Address:	8027F668
- * Size:	000004
+/**
+ * @note Address: 0x8027F668
+ * @note Size: 0x4
  */
 void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
-/*
- * --INFO--
- * Address:	8027F66C
- * Size:	0000EC
+/**
+ * @note Address: 0x8027F66C
+ * @note Size: 0xEC
  */
 void Obj::onInit(CreatureInitArg* settings)
 {
@@ -62,10 +59,9 @@ void Obj::onInit(CreatureInitArg* settings)
 	mMatAnimators[1].start(C_MGR->mTevRegAnimation);
 }
 
-/*
- * --INFO--
- * Address:	8027F758
- * Size:	000044
+/**
+ * @note Address: 0x8027F758
+ * @note Size: 0x44
  */
 void Obj::onKill(CreatureKillArg* settings)
 {
@@ -73,10 +69,9 @@ void Obj::onKill(CreatureKillArg* settings)
 	EnemyBase::onKill(settings);
 }
 
-/*
- * --INFO--
- * Address:	8027F79C
- * Size:	000050
+/**
+ * @note Address: 0x8027F79C
+ * @note Size: 0x50
  */
 void Obj::doUpdate()
 {
@@ -85,10 +80,9 @@ void Obj::doUpdate()
 	updateEmit();
 }
 
-/*
- * --INFO--
- * Address:	8027F7EC
- * Size:	0000D4
+/**
+ * @note Address: 0x8027F7EC
+ * @note Size: 0xD4
  */
 void Obj::changeMaterial()
 {
@@ -109,10 +103,9 @@ void Obj::changeMaterial()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8027F8C0
- * Size:	00004C
+/**
+ * @note Address: 0x8027F8C0
+ * @note Size: 0x4C
  */
 void Obj::setFSM(FSM* fsm)
 {
@@ -121,24 +114,21 @@ void Obj::setFSM(FSM* fsm)
 	mCurrentLifecycleState = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8027F90C
- * Size:	000004
+/**
+ * @note Address: 0x8027F90C
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	8027F910
- * Size:	000020
+/**
+ * @note Address: 0x8027F910
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	8027F930
- * Size:	0000D0
+/**
+ * @note Address: 0x8027F930
+ * @note Size: 0xD0
  */
 void Obj::getShadowParam(ShadowParam& shadow)
 {
@@ -154,10 +144,9 @@ void Obj::getShadowParam(ShadowParam& shadow)
 	shadow.mSize = mShadowRadius;
 }
 
-/*
- * --INFO--
- * Address:	8027FA00
- * Size:	00003C
+/**
+ * @note Address: 0x8027FA00
+ * @note Size: 0x3C
  */
 void Obj::doStartStoneState()
 {
@@ -166,10 +155,9 @@ void Obj::doStartStoneState()
 	setShadowOffsetMax();
 }
 
-/*
- * --INFO--
- * Address:	8027FA3C
- * Size:	000074
+/**
+ * @note Address: 0x8027FA3C
+ * @note Size: 0x74
  */
 void Obj::doFinishStoneState()
 {
@@ -181,10 +169,9 @@ void Obj::doFinishStoneState()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8027FAB0
- * Size:	000034
+/**
+ * @note Address: 0x8027FAB0
+ * @note Size: 0x34
  */
 void Obj::doStartWaitingBirthTypeDrop()
 {
@@ -192,10 +179,9 @@ void Obj::doStartWaitingBirthTypeDrop()
 	effectDrawOff();
 }
 
-/*
- * --INFO--
- * Address:	8027FAE4
- * Size:	000034
+/**
+ * @note Address: 0x8027FAE4
+ * @note Size: 0x34
  */
 void Obj::doFinishWaitingBirthTypeDrop()
 {
@@ -203,24 +189,21 @@ void Obj::doFinishWaitingBirthTypeDrop()
 	effectDrawOn();
 }
 
-/*
- * --INFO--
- * Address:	8027FB18
- * Size:	000020
+/**
+ * @note Address: 0x8027FB18
+ * @note Size: 0x20
  */
 void Obj::doStartMovie() { effectDrawOff(); }
 
-/*
- * --INFO--
- * Address:	8027FB38
- * Size:	000020
+/**
+ * @note Address: 0x8027FB38
+ * @note Size: 0x20
  */
 void Obj::doEndMovie() { effectDrawOn(); }
 
-/*
- * --INFO--
- * Address:	8027FB58
- * Size:	000064
+/**
+ * @note Address: 0x8027FB58
+ * @note Size: 0x64
  */
 Vector3f Obj::getOffsetForMapCollision()
 {
@@ -230,10 +213,9 @@ Vector3f Obj::getOffsetForMapCollision()
 	return pos;
 }
 
-/*
- * --INFO--
- * Address:	8027FBBC
- * Size:	000050
+/**
+ * @note Address: 0x8027FBBC
+ * @note Size: 0x50
  */
 void Obj::getThrowupItemPosition(Vector3f* position)
 {
@@ -244,10 +226,9 @@ void Obj::getThrowupItemPosition(Vector3f* position)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8027FC0C
- * Size:	000040
+/**
+ * @note Address: 0x8027FC0C
+ * @note Size: 0x40
  */
 void Obj::getThrowupItemVelocity(Vector3f* velocity)
 {
@@ -260,17 +241,15 @@ void Obj::getThrowupItemVelocity(Vector3f* velocity)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8027FC4C
- * Size:	000050
+/**
+ * @note Address: 0x8027FC4C
+ * @note Size: 0x50
  */
 Vector3f Obj::getHeadJointPos() { return mModel->getJoint("head")->getWorldMatrix()->getPosition(); }
 
-/*
- * --INFO--
- * Address:	8027FC9C
- * Size:	00011C
+/**
+ * @note Address: 0x8027FC9C
+ * @note Size: 0x11C
  */
 f32 Obj::setHeightVelocity()
 {
@@ -288,10 +267,9 @@ f32 Obj::setHeightVelocity()
 	return mPosition.y - groundY;
 }
 
-/*
- * --INFO--
- * Address:	8027FDB8
- * Size:	0001D8
+/**
+ * @note Address: 0x8027FDB8
+ * @note Size: 0x1D8
  */
 void Obj::setRandTarget()
 {
@@ -307,24 +285,21 @@ void Obj::setRandTarget()
 	mTargetPosition = Vector3f(radius * sinf(theta) + homePos.x, homePos.y, radius * cosf(theta) + homePos.z);
 }
 
-/*
- * --INFO--
- * Address:	8027FF90
- * Size:	00000C
+/**
+ * @note Address: 0x8027FF90
+ * @note Size: 0xC
  */
 void Obj::resetShadowOffset() { mShadowOffset = -10.0f; }
 
-/*
- * --INFO--
- * Address:	8027FF9C
- * Size:	00000C
+/**
+ * @note Address: 0x8027FF9C
+ * @note Size: 0xC
  */
 void Obj::setShadowOffsetMax() { mShadowOffset = 10.0f; }
 
-/*
- * --INFO--
- * Address:	8027FFA8
- * Size:	000028
+/**
+ * @note Address: 0x8027FFA8
+ * @note Size: 0x28
  */
 void Obj::addShadowOffset()
 {
@@ -334,10 +309,9 @@ void Obj::addShadowOffset()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8027FFD0
- * Size:	000028
+/**
+ * @note Address: 0x8027FFD0
+ * @note Size: 0x28
  */
 void Obj::subShadowOffset()
 {
@@ -347,17 +321,15 @@ void Obj::subShadowOffset()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8027FFF8
- * Size:	00000C
+/**
+ * @note Address: 0x8027FFF8
+ * @note Size: 0xC
  */
 void Obj::resetShadowRadius() { mShadowRadius = 40.0f; }
 
-/*
- * --INFO--
- * Address:	80280004
- * Size:	000030
+/**
+ * @note Address: 0x80280004
+ * @note Size: 0x30
  */
 void Obj::subShadowRadius()
 {
@@ -370,10 +342,9 @@ void Obj::subShadowRadius()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80280034
- * Size:	000030
+/**
+ * @note Address: 0x80280034
+ * @note Size: 0x30
  */
 void Obj::updateFallTimer()
 {
@@ -384,10 +355,9 @@ void Obj::updateFallTimer()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80280064
- * Size:	0000A4
+/**
+ * @note Address: 0x80280064
+ * @note Size: 0xA4
  */
 StateID Obj::getFlyingNextState()
 {
@@ -409,10 +379,9 @@ StateID Obj::getFlyingNextState()
 	return MAR_NULL;
 }
 
-/*
- * --INFO--
- * Address:	80280108
- * Size:	000038
+/**
+ * @note Address: 0x80280108
+ * @note Size: 0x38
  */
 void Obj::addPitchRatio()
 {
@@ -422,10 +391,9 @@ void Obj::addPitchRatio()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80280140
- * Size:	0003AC
+/**
+ * @note Address: 0x80280140
+ * @note Size: 0x3AC
  */
 Piki* Obj::getSearchedPikmin()
 {
@@ -453,10 +421,9 @@ Piki* Obj::getSearchedPikmin()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	802804EC
- * Size:	0002F0
+/**
+ * @note Address: 0x802804EC
+ * @note Size: 0x2F0
  */
 bool Obj::isTargetLost()
 {
@@ -680,10 +647,9 @@ lbl_8028078C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802807DC
- * Size:	00038C
+/**
+ * @note Address: 0x802807DC
+ * @note Size: 0x38C
  */
 Creature* Obj::isAttackable()
 {
@@ -964,10 +930,9 @@ lbl_80280B38:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80280B68
- * Size:	0001AC
+/**
+ * @note Address: 0x80280B68
+ * @note Size: 0x1AC
  */
 void Obj::updateEmit()
 {
@@ -979,10 +944,9 @@ void Obj::updateEmit()
 	_2EC.normalise();
 }
 
-/*
- * --INFO--
- * Address:	80280D14
- * Size:	0001E8
+/**
+ * @note Address: 0x80280D14
+ * @note Size: 0x1E8
  */
 Vector3f Obj::getAttackPosition()
 {
@@ -1017,10 +981,9 @@ Vector3f Obj::getAttackPosition()
 	return nextPos;
 }
 
-/*
- * --INFO--
- * Address:	80280EFC
- * Size:	0008F4
+/**
+ * @note Address: 0x80280EFC
+ * @note Size: 0x8F4
  */
 void Obj::windTarget()
 {
@@ -1717,10 +1680,9 @@ lbl_80281714:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802817F0
- * Size:	000150
+/**
+ * @note Address: 0x802817F0
+ * @note Size: 0x150
  */
 void Obj::createEffect()
 {
@@ -1730,10 +1692,9 @@ void Obj::createEffect()
 	mEfxSui    = new efx::TFusenSui;
 }
 
-/*
- * --INFO--
- * Address:	80281940
- * Size:	00004C
+/**
+ * @note Address: 0x80281940
+ * @note Size: 0x4C
  */
 void Obj::setupEffect()
 {
@@ -1742,10 +1703,9 @@ void Obj::setupEffect()
 	mEfxSui->mMtx = mEfxMatrix;
 }
 
-/*
- * --INFO--
- * Address:	8028198C
- * Size:	00007C
+/**
+ * @note Address: 0x8028198C
+ * @note Size: 0x7C
  */
 void Obj::startDeadEffect()
 {
@@ -1755,17 +1715,15 @@ void Obj::startDeadEffect()
 	mEfxSui->fade();
 }
 
-/*
- * --INFO--
- * Address:	80281A08
- * Size:	000034
+/**
+ * @note Address: 0x80281A08
+ * @note Size: 0x34
  */
 void Obj::createSuckEffect() { mEfxSui->create(nullptr); }
 
-/*
- * --INFO--
- * Address:	80281A3C
- * Size:	000090
+/**
+ * @note Address: 0x80281A3C
+ * @note Size: 0x90
  */
 void Obj::startWindEffect()
 {
@@ -1775,10 +1733,9 @@ void Obj::startWindEffect()
 	mEfxAirhit->create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80281ACC
- * Size:	000078
+/**
+ * @note Address: 0x80281ACC
+ * @note Size: 0x78
  */
 void Obj::finishWindEffect()
 {
@@ -1788,10 +1745,9 @@ void Obj::finishWindEffect()
 	mEfxSui->fade();
 }
 
-/*
- * --INFO--
- * Address:	80281B44
- * Size:	000074
+/**
+ * @note Address: 0x80281B44
+ * @note Size: 0x74
  */
 void Obj::createDownEffect()
 {
@@ -1799,10 +1755,9 @@ void Obj::createDownEffect()
 	createBounceEffect(downEffectPos, getDownSmokeScale());
 }
 
-/*
- * --INFO--
- * Address:	80281BC0
- * Size:	000078
+/**
+ * @note Address: 0x80281BC0
+ * @note Size: 0x78
  */
 void Obj::effectDrawOn()
 {
@@ -1812,10 +1767,9 @@ void Obj::effectDrawOn()
 	mEfxSui->endDemoDrawOn();
 }
 
-/*
- * --INFO--
- * Address:	80281C38
- * Size:	000078
+/**
+ * @note Address: 0x80281C38
+ * @note Size: 0x78
  */
 void Obj::effectDrawOff()
 {

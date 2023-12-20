@@ -2,10 +2,9 @@
 #include "JSystem/JGadget/list.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	80027484
- * Size:	000020
+/**
+ * @note Address: 0x80027484
+ * @note Size: 0x20
  */
 // void __ct__Q27JGadget18TList_pointer_voidFRCQ27JGadget14TAllocator<void*>()
 JGadget::TList_pointer_void::TList_pointer_void(const JGadget::TVoidAllocator& allocator)
@@ -16,30 +15,27 @@ JGadget::TList_pointer_void::TList_pointer_void(const JGadget::TVoidAllocator& a
 	_0C = &_08;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000BC
+/**
+ * @note Address: N/A
+ * @note Size: 0xBC
  */
 // JGadget::TList<void*, JGadget::TAllocator<void*>>::~TList()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000BC
+/**
+ * @note Address: N/A
+ * @note Size: 0xBC
  */
 // JGadget::TList_pointer_void::TList_pointer_void(u32, const void*&, const TAllocator<void*>&)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	800274A4
- * Size:	0000C0
+/**
+ * @note Address: 0x800274A4
+ * @note Size: 0xC0
  */
 JGadget::TList_pointer_void::~TList_pointer_void()
 {
@@ -103,10 +99,9 @@ lbl_80027540:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80027564
- * Size:	000098
+/**
+ * @note Address: 0x80027564
+ * @note Size: 0x98
  */
 void JGadget::TList_pointer_void::insert(JGadget::TList_pointer_void::iterator, void* const&)
 {
@@ -161,20 +156,18 @@ void JGadget::TList_pointer_void::insert(JGadget::TList_pointer_void::iterator, 
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00009C
+/**
+ * @note Address: N/A
+ * @note Size: 0x9C
  */
 void JGadget::TList_pointer_void::insert(JGadget::TList_pointer_void::iterator, u32, void* const&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800275FC
- * Size:	000070
+/**
+ * @note Address: 0x800275FC
+ * @note Size: 0x70
  */
 void JGadget::TList_pointer_void::erase(JGadget::TList_pointer_void::iterator)
 {
@@ -211,40 +204,36 @@ void JGadget::TList_pointer_void::erase(JGadget::TList_pointer_void::iterator)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A0
+/**
+ * @note Address: N/A
+ * @note Size: 0xA0
  */
 void JGadget::TList_pointer_void::erase(JGadget::TList_pointer_void::iterator, JGadget::TList_pointer_void::iterator)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
+/**
+ * @note Address: N/A
+ * @note Size: 0xE4
  */
 void JGadget::TList_pointer_void::remove(void* const&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 void JGadget::TList_pointer_void::assign(u32, void* const&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000100
+/**
+ * @note Address: N/A
+ * @note Size: 0x100
  */
 template <>
 void JGadget::TList<void*, JGadget::TVoidAllocator>::assign(u32, void* const&)
@@ -252,40 +241,36 @@ void JGadget::TList<void*, JGadget::TVoidAllocator>::assign(u32, void* const&)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000FC
+/**
+ * @note Address: N/A
+ * @note Size: 0xFC
  */
 void JGadget::TList_pointer_void::resize(u32, void* const&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000DC
+/**
+ * @note Address: N/A
+ * @note Size: 0xDC
  */
 void JGadget::TList_pointer_void::unique()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
+/**
+ * @note Address: N/A
+ * @note Size: 0x30
  */
 JGadget::TList_pointer_void& JGadget::TList_pointer_void::operator=(JGadget::TList_pointer_void const&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000194
+/**
+ * @note Address: N/A
+ * @note Size: 0x194
  */
 template <>
 JGadget::TList<void*, JGadget::TVoidAllocator>&

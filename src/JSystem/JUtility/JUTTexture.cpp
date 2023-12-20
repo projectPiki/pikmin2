@@ -6,10 +6,9 @@
 #include "JSystem/ResTIMG.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	80032F1C
- * Size:	0000F4
+/**
+ * @note Address: 0x80032F1C
+ * @note Size: 0xF4
  */
 JUTTexture::JUTTexture(int sizeX, int sizeY, GXTexFmt textureFormat)
 {
@@ -43,10 +42,9 @@ JUTTexture::JUTTexture(int sizeX, int sizeY, GXTexFmt textureFormat)
 	DCFlushRange(mTexData, texBufferSize);
 }
 
-/*
- * --INFO--
- * Address:	80033010
- * Size:	000074
+/**
+ * @note Address: 0x80033010
+ * @note Size: 0x74
  */
 JUTTexture::~JUTTexture()
 {
@@ -58,10 +56,9 @@ JUTTexture::~JUTTexture()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80033084
- * Size:	0001AC
+/**
+ * @note Address: 0x80033084
+ * @note Size: 0x1AC
  */
 void JUTTexture::storeTIMG(const ResTIMG* img, u8 lutID)
 {
@@ -108,20 +105,18 @@ void JUTTexture::storeTIMG(const ResTIMG* img, u8 lutID)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80033230
- * Size:	000034
+/**
+ * @note Address: 0x80033230
+ * @note Size: 0x34
  */
 void JUTTexture::storeTIMG(const ResTIMG* img, JUTPalette* palette)
 {
 	storeTIMG(img, palette, palette ? (GXTlut)palette->mTlutID : GX_TLUT0);
 }
 
-/*
- * --INFO--
- * Address:	80033264
- * Size:	000138
+/**
+ * @note Address: 0x80033264
+ * @note Size: 0x138
  */
 void JUTTexture::storeTIMG(const ResTIMG* img, JUTPalette* palette, GXTlut tlut)
 {
@@ -158,10 +153,9 @@ void JUTTexture::storeTIMG(const ResTIMG* img, JUTPalette* palette, GXTlut tlut)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8003339C
- * Size:	000058
+/**
+ * @note Address: 0x8003339C
+ * @note Size: 0x58
  */
 void JUTTexture::attachPalette(JUTPalette* palette)
 {
@@ -176,10 +170,9 @@ void JUTTexture::attachPalette(JUTPalette* palette)
 	initTexObj((GXTlut)mActivePalette->mTlutID);
 }
 
-/*
- * --INFO--
- * Address:	800333F4
- * Size:	000050
+/**
+ * @note Address: 0x800333F4
+ * @note Size: 0x50
  */
 void JUTTexture::init()
 {
@@ -191,10 +184,9 @@ void JUTTexture::init()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80033444
- * Size:	0000F0
+/**
+ * @note Address: 0x80033444
+ * @note Size: 0xF0
  */
 void JUTTexture::initTexObj()
 {
@@ -210,10 +202,9 @@ void JUTTexture::initTexObj()
 	                mTexInfo->mIsBiasClamp, mTexInfo->mDoEdgeLOD, (GXAnisotropy)mTexInfo->mIsMaxAnisotropy);
 }
 
-/*
- * --INFO--
- * Address:	80033534
- * Size:	0000FC
+/**
+ * @note Address: 0x80033534
+ * @note Size: 0xFC
  */
 void JUTTexture::initTexObj(GXTlut tlut)
 {
@@ -230,10 +221,9 @@ void JUTTexture::initTexObj(GXTlut tlut)
 	                mTexInfo->mIsBiasClamp, mTexInfo->mDoEdgeLOD, (GXAnisotropy)mTexInfo->mIsMaxAnisotropy);
 }
 
-/*
- * --INFO--
- * Address:	80033630
- * Size:	000050
+/**
+ * @note Address: 0x80033630
+ * @note Size: 0x50
  */
 void JUTTexture::load(GXTexMapID id)
 {
@@ -243,10 +233,9 @@ void JUTTexture::load(GXTexMapID id)
 	GXLoadTexObj(this, id);
 }
 
-/*
- * --INFO--
- * Address:	80033680
- * Size:	0000C4
+/**
+ * @note Address: 0x80033680
+ * @note Size: 0xC4
  */
 void JUTTexture::capture(int x0, int y0, GXTexFmt textureFormat, bool useMIPmap, u8 doClear)
 {

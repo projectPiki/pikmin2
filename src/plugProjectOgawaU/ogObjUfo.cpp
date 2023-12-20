@@ -13,10 +13,9 @@ namespace newScreen {
 
 static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 
-/*
- * --INFO--
- * Address:	80323798
- * Size:	0000B0
+/**
+ * @note Address: 0x80323798
+ * @note Size: 0xB0
  */
 ObjUfoMenu::ObjUfoMenu(char const* name)
 {
@@ -43,17 +42,15 @@ ObjUfoMenu::ObjUfoMenu(char const* name)
 	mDoDraw          = false;
 }
 
-/*
- * --INFO--
- * Address:	80323848
- * Size:	0000AC
+/**
+ * @note Address: 0x80323848
+ * @note Size: 0xAC
  */
 ObjUfoMenu::~ObjUfoMenu() { }
 
-/*
- * --INFO--
- * Address:	803238F4
- * Size:	000490
+/**
+ * @note Address: 0x803238F4
+ * @note Size: 0x490
  */
 void ObjUfoMenu::doCreate(JKRArchive* arc)
 {
@@ -97,10 +94,9 @@ void ObjUfoMenu::doCreate(JKRArchive* arc)
 	og::Screen::registAnimGroupScreen(mPikiAnims, arc, mPikiScreen, "ufo_pikmin_icon.btp", 0.5f);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00012C
+/**
+ * @note Address: N/A
+ * @note Size: 0x12C
  */
 void ObjUfoMenu::commonUpdate()
 {
@@ -119,10 +115,9 @@ void ObjUfoMenu::commonUpdate()
 	mPikiScreen->update();
 }
 
-/*
- * --INFO--
- * Address:	80323D84
- * Size:	0000F4
+/**
+ * @note Address: 0x80323D84
+ * @note Size: 0xF4
  */
 void ObjUfoMenu::setSelectPikmin(int doEnable)
 {
@@ -139,10 +134,9 @@ void ObjUfoMenu::setSelectPikmin(int doEnable)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80323E78
- * Size:	000524
+/**
+ * @note Address: 0x80323E78
+ * @note Size: 0x524
  */
 bool ObjUfoMenu::doUpdate()
 {
@@ -208,10 +202,9 @@ bool ObjUfoMenu::doUpdate()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	8032439C
- * Size:	000094
+/**
+ * @note Address: 0x8032439C
+ * @note Size: 0x94
  */
 void ObjUfoMenu::setBackupScene()
 {
@@ -226,10 +219,9 @@ void ObjUfoMenu::setBackupScene()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80324430
- * Size:	0000B4
+/**
+ * @note Address: 0x80324430
+ * @note Size: 0xB4
  */
 void ObjUfoMenu::doDraw(Graphics& gfx)
 {
@@ -243,10 +235,9 @@ void ObjUfoMenu::doDraw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803244E4
- * Size:	000020
+/**
+ * @note Address: 0x803244E4
+ * @note Size: 0x20
  */
 bool ObjUfoMenu::doStart(::Screen::StartSceneArg const*)
 {
@@ -256,17 +247,15 @@ bool ObjUfoMenu::doStart(::Screen::StartSceneArg const*)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80324504
- * Size:	000008
+/**
+ * @note Address: 0x80324504
+ * @note Size: 0x8
  */
 bool ObjUfoMenu::doEnd(::Screen::EndSceneArg const*) { return true; }
 
-/*
- * --INFO--
- * Address:	8032450C
- * Size:	000044
+/**
+ * @note Address: 0x8032450C
+ * @note Size: 0x44
  */
 void ObjUfoMenu::doUpdateFadeinFinish()
 {
@@ -274,10 +263,9 @@ void ObjUfoMenu::doUpdateFadeinFinish()
 	mMenu->startCursor(0.1f);
 }
 
-/*
- * --INFO--
- * Address:	80324550
- * Size:	00002C
+/**
+ * @note Address: 0x80324550
+ * @note Size: 0x2C
  */
 void ObjUfoMenu::doUpdateFinish()
 {
@@ -285,17 +273,15 @@ void ObjUfoMenu::doUpdateFinish()
 	mMenu->killCursor();
 }
 
-/*
- * --INFO--
- * Address:	8032457C
- * Size:	000024
+/**
+ * @note Address: 0x8032457C
+ * @note Size: 0x24
  */
 void ObjUfoMenu::doUpdateFadeoutFinish() { mMenu->killCursor(); }
 
-/*
- * --INFO--
- * Address:	803245A0
- * Size:	000188
+/**
+ * @note Address: 0x803245A0
+ * @note Size: 0x188
  */
 bool ObjUfoMenu::doUpdateFadein()
 {
@@ -310,10 +296,9 @@ bool ObjUfoMenu::doUpdateFadein()
 	return check;
 }
 
-/*
- * --INFO--
- * Address:	80324728
- * Size:	00017C
+/**
+ * @note Address: 0x80324728
+ * @note Size: 0x17C
  */
 bool ObjUfoMenu::doUpdateFadeout()
 {

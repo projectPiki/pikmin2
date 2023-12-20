@@ -9,10 +9,9 @@
 
 namespace Game {
 namespace Bomb {
-/*
- * --INFO--
- * Address:	803493F8
- * Size:	000078
+/**
+ * @note Address: 0x803493F8
+ * @note Size: 0x78
  */
 void FSM::init(EnemyBase*)
 {
@@ -21,10 +20,9 @@ void FSM::init(EnemyBase*)
 	registerState(new StateBomb(BOMB_Bomb));
 }
 
-/*
- * --INFO--
- * Address:	80349470
- * Size:	00003C
+/**
+ * @note Address: 0x80349470
+ * @note Size: 0x3C
  */
 StateWait::StateWait(int stateID)
     : State(stateID)
@@ -32,10 +30,9 @@ StateWait::StateWait(int stateID)
 	mName = "wait";
 }
 
-/*
- * --INFO--
- * Address:	803494AC
- * Size:	00005C
+/**
+ * @note Address: 0x803494AC
+ * @note Size: 0x5C
  */
 void Bomb::StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -46,10 +43,9 @@ void Bomb::StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	_10 = 0;
 }
 
-/*
- * --INFO--
- * Address:	80349508
- * Size:	000148
+/**
+ * @note Address: 0x80349508
+ * @note Size: 0x148
  */
 void Bomb::StateWait::exec(EnemyBase* enemy)
 {
@@ -84,10 +80,9 @@ void Bomb::StateWait::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80349650
- * Size:	00003C
+/**
+ * @note Address: 0x80349650
+ * @note Size: 0x3C
  */
 StateBomb::StateBomb(int stateID)
     : State(stateID)
@@ -95,10 +90,9 @@ StateBomb::StateBomb(int stateID)
 	mName = "bomb";
 }
 
-/*
- * --INFO--
- * Address:	8034968C
- * Size:	000060
+/**
+ * @note Address: 0x8034968C
+ * @note Size: 0x60
  */
 void Bomb::StateBomb::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -108,10 +102,9 @@ void Bomb::StateBomb::init(EnemyBase* enemy, StateArg* stateArg)
 	_10 = 0;
 }
 
-/*
- * --INFO--
- * Address:	803496EC
- * Size:	0005C4
+/**
+ * @note Address: 0x803496EC
+ * @note Size: 0x5C4
  */
 void StateBomb::exec(EnemyBase* enemy)
 {

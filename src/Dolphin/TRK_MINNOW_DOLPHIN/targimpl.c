@@ -1,9 +1,8 @@
 
 
-/*
- * --INFO--
- * Address:	800BF790
- * Size:	0002A4
+/**
+ * @note Address: 0x800BF790
+ * @note Size: 0x2A4
  */
 void TRKValidMemory32(void)
 {
@@ -219,10 +218,9 @@ void TRKValidMemory32(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BF644
- * Size:	00014C
+/**
+ * @note Address: 0x800BF644
+ * @note Size: 0x14C
  */
 void TRKTargetAccessMemory(void)
 {
@@ -324,10 +322,9 @@ void TRKTargetAccessMemory(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BF5F8
- * Size:	00004C
+/**
+ * @note Address: 0x800BF5F8
+ * @note Size: 0x4C
  */
 void TRKTargetReadInstruction(void)
 {
@@ -359,10 +356,9 @@ void TRKTargetReadInstruction(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BF504
- * Size:	0000F4
+/**
+ * @note Address: 0x800BF504
+ * @note Size: 0xF4
  */
 void TRKTargetAccessDefault(void)
 {
@@ -442,10 +438,9 @@ void TRKTargetAccessDefault(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BEFF8
- * Size:	00050C
+/**
+ * @note Address: 0x800BEFF8
+ * @note Size: 0x50C
  */
 void TRKTargetAccessFP(void)
 {
@@ -829,10 +824,9 @@ void TRKTargetAccessFP(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BEE88
- * Size:	000170
+/**
+ * @note Address: 0x800BEE88
+ * @note Size: 0x170
  */
 void TRKTargetAccessExtended1(void)
 {
@@ -947,10 +941,9 @@ void TRKTargetAccessExtended1(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BEA50
- * Size:	000438
+/**
+ * @note Address: 0x800BEA50
+ * @note Size: 0x438
  */
 void TRKTargetAccessExtended2(void)
 {
@@ -1249,50 +1242,45 @@ void TRKTargetAccessExtended2(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 void TRKTargetVersions(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A4
+/**
+ * @note Address: N/A
+ * @note Size: 0xA4
  */
 void TRKTargetSupportMask(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
+/**
+ * @note Address: N/A
+ * @note Size: 0x60
  */
 void TRKTargetCPUType(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 void TRKTargetCheckException(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800BE9A4
- * Size:	0000AC
+/**
+ * @note Address: 0x800BE9A4
+ * @note Size: 0xAC
  */
 void TRKPostInterruptEvent(void)
 {
@@ -1356,10 +1344,9 @@ void TRKPostInterruptEvent(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BE814
- * Size:	000190
+/**
+ * @note Address: 0x800BE814
+ * @note Size: 0x190
  */
 void TRKTargetInterrupt(void)
 {
@@ -1486,10 +1473,9 @@ void TRKTargetInterrupt(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BE788
- * Size:	00008C
+/**
+ * @note Address: 0x800BE788
+ * @note Size: 0x8C
  */
 void TRKTargetAddStopInfo(void)
 {
@@ -1533,10 +1519,9 @@ void TRKTargetAddStopInfo(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BE704
- * Size:	000084
+/**
+ * @note Address: 0x800BE704
+ * @note Size: 0x84
  */
 void TRKTargetAddExceptionInfo(void)
 {
@@ -1578,50 +1563,45 @@ void TRKTargetAddExceptionInfo(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 void TRKTargetEnableTrace(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
+/**
+ * @note Address: N/A
+ * @note Size: 0x80
  */
 void TRKTargetStepDone(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000098
+/**
+ * @note Address: N/A
+ * @note Size: 0x98
  */
 void TRKTargetDoStep(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000148
+/**
+ * @note Address: N/A
+ * @note Size: 0x148
  */
 void TRKTargetCheckStep(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800BE658
- * Size:	0000AC
+/**
+ * @note Address: 0x800BE658
+ * @note Size: 0xAC
  */
 void TRKTargetSingleStep(void)
 {
@@ -1681,10 +1661,9 @@ void TRKTargetSingleStep(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BE5A0
- * Size:	0000B8
+/**
+ * @note Address: 0x800BE5A0
+ * @note Size: 0xB8
  */
 void TRKTargetStepOutOfRange(void)
 {
@@ -1747,10 +1726,9 @@ void TRKTargetStepOutOfRange(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BE590
- * Size:	000010
+/**
+ * @note Address: 0x800BE590
+ * @note Size: 0x10
  */
 void TRKTargetGetPC(void)
 {
@@ -1763,10 +1741,9 @@ void TRKTargetGetPC(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BE390
- * Size:	000200
+/**
+ * @note Address: 0x800BE390
+ * @note Size: 0x200
  */
 void TRKTargetSupportRequest(void)
 {
@@ -1923,20 +1900,18 @@ void TRKTargetSupportRequest(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 void TRKTargetFlushCache(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800BE380
- * Size:	000010
+/**
+ * @note Address: 0x800BE380
+ * @note Size: 0x10
  */
 void TRKTargetStopped(void)
 {
@@ -1949,10 +1924,9 @@ void TRKTargetStopped(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BE370
- * Size:	000010
+/**
+ * @note Address: 0x800BE370
+ * @note Size: 0x10
  */
 void TRKTargetSetStopped(void)
 {
@@ -1965,10 +1939,9 @@ void TRKTargetSetStopped(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BE358
- * Size:	000018
+/**
+ * @note Address: 0x800BE358
+ * @note Size: 0x18
  */
 void TRKTargetStop(void)
 {
@@ -1983,50 +1956,45 @@ void TRKTargetStop(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000108
+/**
+ * @note Address: N/A
+ * @note Size: 0x108
  */
 void TRKPPCAccessSPR(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000DC
+/**
+ * @note Address: N/A
+ * @note Size: 0xDC
  */
 void TRKPPCAccessPairedSingleRegister(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00021C
+/**
+ * @note Address: N/A
+ * @note Size: 0x21C
  */
 void TRKPPCAccessFPRegister(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000068
+/**
+ * @note Address: N/A
+ * @note Size: 0x68
  */
 void TRKPPCAccessSpecialReg(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800BE348
- * Size:	000010
+/**
+ * @note Address: 0x800BE348
+ * @note Size: 0x10
  */
 void TRKTargetSetInputPendingPtr(void)
 {
@@ -2039,30 +2007,27 @@ void TRKTargetSetInputPendingPtr(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 void SetInputState(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 void TRKGetInTRKFlag(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800BE284
- * Size:	0000C4
+/**
+ * @note Address: 0x800BE284
+ * @note Size: 0xC4
  */
 void TRKTargetAccessARAM(void)
 {
@@ -2126,10 +2091,9 @@ void TRKTargetAccessARAM(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BE260
- * Size:	000024
+/**
+ * @note Address: 0x800BE260
+ * @note Size: 0x24
  */
 void WriteFPSCR(void)
 {
@@ -2147,10 +2111,9 @@ void WriteFPSCR(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BE23C
- * Size:	000024
+/**
+ * @note Address: 0x800BE23C
+ * @note Size: 0x24
  */
 void ReadFPSCR(void)
 {
@@ -2168,10 +2131,9 @@ void ReadFPSCR(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BE1E8
- * Size:	000054
+/**
+ * @note Address: 0x800BE1E8
+ * @note Size: 0x54
  */
 void TRKInterruptHandlerEnableInterrupts(void)
 {
@@ -2201,10 +2163,9 @@ void TRKInterruptHandlerEnableInterrupts(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BE124
- * Size:	0000C4
+/**
+ * @note Address: 0x800BE124
+ * @note Size: 0xC4
  */
 void TRKSwapAndGo(void)
 {
@@ -2266,10 +2227,9 @@ void TRKSwapAndGo(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BE088
- * Size:	00009C
+/**
+ * @note Address: 0x800BE088
+ * @note Size: 0x9C
  */
 void TRKExceptionHandler(void)
 {
@@ -2321,10 +2281,9 @@ void TRKExceptionHandler(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BDEF4
- * Size:	000194
+/**
+ * @note Address: 0x800BDEF4
+ * @note Size: 0x194
  */
 void TRKInterruptHandler(void)
 {
@@ -2440,10 +2399,9 @@ void TRKInterruptHandler(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BDEB8
- * Size:	00003C
+/**
+ * @note Address: 0x800BDEB8
+ * @note Size: 0x3C
  */
 void TRK_ppc_memcpy(void)
 {
@@ -2471,180 +2429,162 @@ void TRK_ppc_memcpy(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void __TRK_get_DBAT3L(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void __TRK_get_DBAT3U(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void __TRK_get_DBAT2L(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void __TRK_get_DBAT2U(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void __TRK_get_DBAT1L(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void __TRK_get_DBAT1U(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void __TRK_get_DBAT0L(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void __TRK_get_DBAT0U(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void __TRK_get_IBAT3L(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void __TRK_get_IBAT3U(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void __TRK_get_IBAT2L(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void __TRK_get_IBAT2U(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void __TRK_get_IBAT1L(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void __TRK_get_IBAT1U(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void __TRK_get_IBAT0L(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void __TRK_get_IBAT0U(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void __TRK_get_PVR(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800BDEB0
- * Size:	000008
+/**
+ * @note Address: 0x800BDEB0
+ * @note Size: 0x8
  */
 void __TRK_set_MSR(void)
 {
@@ -2655,10 +2595,9 @@ void __TRK_set_MSR(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BDEA8
- * Size:	000008
+/**
+ * @note Address: 0x800BDEA8
+ * @note Size: 0x8
  */
 void __TRK_get_MSR(void)
 {

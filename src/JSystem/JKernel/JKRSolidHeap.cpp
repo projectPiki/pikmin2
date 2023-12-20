@@ -3,10 +3,9 @@
 #include "types.h"
 #include "JSystem/JKernel/JKRHeap.h"
 
-/*
- * --INFO--
- * Address:	80024D70
- * Size:	0000B4
+/**
+ * @note Address: 0x80024D70
+ * @note Size: 0xB4
  */
 JKRSolidHeap* JKRSolidHeap::create(u32 heapSize, JKRHeap* heap, bool useErrorHandler)
 {
@@ -35,10 +34,9 @@ JKRSolidHeap* JKRSolidHeap::create(u32 heapSize, JKRHeap* heap, bool useErrorHan
 	return solidHeap;
 }
 
-/*
- * --INFO--
- * Address:	80024E24
- * Size:	000060
+/**
+ * @note Address: 0x80024E24
+ * @note Size: 0x60
  */
 void JKRSolidHeap::do_destroy()
 {
@@ -49,10 +47,9 @@ void JKRSolidHeap::do_destroy()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80024E84
- * Size:	00005C
+/**
+ * @note Address: 0x80024E84
+ * @note Size: 0x5C
  * __ct__12JKRSolidHeapFPvUlP7JKRHeapb
  */
 JKRSolidHeap::JKRSolidHeap(void* start, u32 size, JKRHeap* heap, bool useErrorHandler)
@@ -64,18 +61,16 @@ JKRSolidHeap::JKRSolidHeap(void* start, u32 size, JKRHeap* heap, bool useErrorHa
 {
 }
 
-/*
- * --INFO--
- * Address:	80024EE0
- * Size:	000068
+/**
+ * @note Address: 0x80024EE0
+ * @note Size: 0x68
  * __dt__12JKRSolidHeapFv
  */
 JKRSolidHeap::~JKRSolidHeap() { dispose(); }
 
-/*
- * --INFO--
- * Address:	80024F48
- * Size:	0000C4
+/**
+ * @note Address: 0x80024F48
+ * @note Size: 0xC4
  */
 int JKRSolidHeap::adjustSize()
 {
@@ -100,10 +95,9 @@ int JKRSolidHeap::adjustSize()
 	return -1;
 }
 
-/*
- * --INFO--
- * Address:	8002500C
- * Size:	0000B0
+/**
+ * @note Address: 0x8002500C
+ * @note Size: 0xB0
  */
 void* JKRSolidHeap::do_alloc(u32 size, int alignment)
 {
@@ -121,10 +115,9 @@ void* JKRSolidHeap::do_alloc(u32 size, int alignment)
 	return mem;
 }
 
-/*
- * --INFO--
- * Address:	800250BC
- * Size:	0000D8
+/**
+ * @note Address: 0x800250BC
+ * @note Size: 0xD8
  */
 void* JKRSolidHeap::allocFromHead(u32 size, int alignment)
 {
@@ -147,10 +140,9 @@ void* JKRSolidHeap::allocFromHead(u32 size, int alignment)
 	return start;
 }
 
-/*
- * --INFO--
- * Address:	80025194
- * Size:	0000D0
+/**
+ * @note Address: 0x80025194
+ * @note Size: 0xD0
  */
 void* JKRSolidHeap::allocFromTail(u32 size, int alignment)
 {
@@ -171,17 +163,15 @@ void* JKRSolidHeap::allocFromTail(u32 size, int alignment)
 	return start;
 }
 
-/*
- * --INFO--
- * Address:	80025264
- * Size:	00002C
+/**
+ * @note Address: 0x80025264
+ * @note Size: 0x2C
  */
 void JKRSolidHeap::do_free(void* block) { JUTWarningConsole_f("free: cannot free memory block (%08x)\n", block); }
 
-/*
- * --INFO--
- * Address:	80025290
- * Size:	000060
+/**
+ * @note Address: 0x80025290
+ * @note Size: 0x60
  */
 void JKRSolidHeap::do_freeAll()
 {
@@ -194,10 +184,9 @@ void JKRSolidHeap::do_freeAll()
 	OSUnlockMutex(&mMutex);
 }
 
-/*
- * --INFO--
- * Address:	800252F0
- * Size:	00008C
+/**
+ * @note Address: 0x800252F0
+ * @note Size: 0x8C
  */
 void JKRSolidHeap::do_freeTail()
 {
@@ -218,17 +207,15 @@ void JKRSolidHeap::do_freeTail()
 	unlock();
 }
 
-/*
- * --INFO--
- * Address:	8002537C
- * Size:	000004
+/**
+ * @note Address: 0x8002537C
+ * @note Size: 0x4
  */
 void JKRSolidHeap::do_fillFreeArea() { }
 
-/*
- * --INFO--
- * Address:	80025380
- * Size:	000030
+/**
+ * @note Address: 0x80025380
+ * @note Size: 0x30
  */
 int JKRSolidHeap::do_resize(void* p1, u32 p2)
 {
@@ -236,10 +223,9 @@ int JKRSolidHeap::do_resize(void* p1, u32 p2)
 	return -1;
 }
 
-/*
- * --INFO--
- * Address:	800253B0
- * Size:	000030
+/**
+ * @note Address: 0x800253B0
+ * @note Size: 0x30
  */
 int JKRSolidHeap::do_getSize(void* p1)
 {
@@ -247,10 +233,9 @@ int JKRSolidHeap::do_getSize(void* p1)
 	return -1;
 }
 
-/*
- * --INFO--
- * Address:	800253E0
- * Size:	00008C
+/**
+ * @note Address: 0x800253E0
+ * @note Size: 0x8C
  */
 bool JKRSolidHeap::check()
 {
@@ -268,10 +253,9 @@ bool JKRSolidHeap::check()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	8002546C
- * Size:	000104
+/**
+ * @note Address: 0x8002546C
+ * @note Size: 0x104
  */
 bool JKRSolidHeap::dump()
 {
@@ -292,10 +276,9 @@ bool JKRSolidHeap::dump()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80025570
- * Size:	00005C
+/**
+ * @note Address: 0x80025570
+ * @note Size: 0x5C
  * Matches on 1.3.2
  */
 void JKRSolidHeap::state_register(JKRHeap::TState* state, u32 id) const
@@ -309,10 +292,9 @@ void JKRSolidHeap::state_register(JKRHeap::TState* state, u32 id) const
 	setState_u32CheckCode_(state, sum);
 }
 
-/*
- * --INFO--
- * Address:	800255CC
- * Size:	000030
+/**
+ * @note Address: 0x800255CC
+ * @note Size: 0x30
  */
 bool JKRSolidHeap::state_compare(const JKRHeap::TState& r1, const JKRHeap::TState& r2) const
 {

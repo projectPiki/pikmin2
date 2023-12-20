@@ -6,12 +6,11 @@
 
 JSUList<JKRDvdFile> JKRDvdFile::sDvdList;
 
-/*
+/**
  * __ct__10JKRDvdFileFv
  *
- * --INFO--
- * Address:	8001D0B8
- * Size:	000074
+ * @note Address: 0x8001D0B8
+ * @note Size: 0x74
  */
 JKRDvdFile::JKRDvdFile()
     : JKRFile()
@@ -20,12 +19,11 @@ JKRDvdFile::JKRDvdFile()
 	initiate();
 }
 
-/*
+/**
  * __ct__10JKRDvdFileFPCc
  *
- * --INFO--
- * Address:	8001D12C
- * Size:	0000B0
+ * @note Address: 0x8001D12C
+ * @note Size: 0xB0
  */
 JKRDvdFile::JKRDvdFile(const char* path)
     : JKRFile()
@@ -37,12 +35,11 @@ JKRDvdFile::JKRDvdFile(const char* path)
 		return;
 }
 
-/*
+/**
  * __ct__10JKRDvdFileFl
  *
- * --INFO--
- * Address:	8001D1DC
- * Size:	0000B0
+ * @note Address: 0x8001D1DC
+ * @note Size: 0xB0
  */
 JKRDvdFile::JKRDvdFile(s32 entryNum)
     : JKRFile()
@@ -55,19 +52,17 @@ JKRDvdFile::JKRDvdFile(s32 entryNum)
 		return;
 }
 
-/*
+/**
  * __dt__10JKRDvdFileFv
  *
- * --INFO--
- * Address:	8001D28C
- * Size:	00009C
+ * @note Address: 0x8001D28C
+ * @note Size: 0x9C
  */
 JKRDvdFile::~JKRDvdFile() { close(); }
 
-/*
- * --INFO--
- * Address:	8001D328
- * Size:	00006C
+/**
+ * @note Address: 0x8001D328
+ * @note Size: 0x6C
  */
 void JKRDvdFile::initiate()
 {
@@ -81,12 +76,11 @@ void JKRDvdFile::initiate()
 	_58            = 0;
 }
 
-/*
+/**
  * open__10JKRDvdFileFPCc
  *
- * --INFO--
- * Address:	8001D394
- * Size:	000078
+ * @note Address: 0x8001D394
+ * @note Size: 0x78
  */
 bool JKRDvdFile::open(const char* path)
 {
@@ -100,12 +94,11 @@ bool JKRDvdFile::open(const char* path)
 	return mFileOpen;
 }
 
-/*
+/**
  * open__10JKRDvdFileFl
  *
- * --INFO--
- * Address:	8001D40C
- * Size:	000078
+ * @note Address: 0x8001D40C
+ * @note Size: 0x78
  */
 bool JKRDvdFile::open(s32 entryNum)
 {
@@ -119,10 +112,9 @@ bool JKRDvdFile::open(s32 entryNum)
 	return mFileOpen;
 }
 
-/*
- * --INFO--
- * Address:	8001D484
- * Size:	00007C
+/**
+ * @note Address: 0x8001D484
+ * @note Size: 0x7C
  */
 void JKRDvdFile::close()
 {
@@ -136,10 +128,9 @@ void JKRDvdFile::close()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8001D500
- * Size:	0000C4
+/**
+ * @note Address: 0x8001D500
+ * @note Size: 0xC4
  */
 int JKRDvdFile::readData(void* addr, s32 length, s32 offset)
 {
@@ -160,17 +151,15 @@ int JKRDvdFile::readData(void* addr, s32 length, s32 offset)
 	return retAddr;
 }
 
-/*
- * --INFO--
- * Address:	8001D5C4
- * Size:	000008
+/**
+ * @note Address: 0x8001D5C4
+ * @note Size: 0x8
  */
 int JKRDvdFile::writeData(const void* addr, s32 length, s32 offset) { return writeDataAsync(addr, length, offset); }
 
-/*
- * --INFO--
- * Address:	8001D5CC
- * Size:	000054
+/**
+ * @note Address: 0x8001D5CC
+ * @note Size: 0x54
  */
 long JKRDvdFile::sync()
 {
@@ -182,10 +171,9 @@ long JKRDvdFile::sync()
 	return (u32)*buffer;
 }
 
-/*
- * --INFO--
- * Address:	8001D620
- * Size:	000030
+/**
+ * @note Address: 0x8001D620
+ * @note Size: 0x30
  */
 void JKRDvdFile::doneProcess(s32 result, DVDFileInfo* info)
 {

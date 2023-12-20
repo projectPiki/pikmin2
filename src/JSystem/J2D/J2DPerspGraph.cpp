@@ -4,22 +4,20 @@
 #include "Dolphin/math.h"
 #include "Dolphin/gx.h"
 
-/*
+/**
  * __ct
  *
- * --INFO--
- * Address:	80035DC8
- * Size:	00004C
+ * @note Address: 0x80035DC8
+ * @note Size: 0x4C
  */
 J2DPerspGraph::J2DPerspGraph()
     : J2DGrafContext(0.0f, 0.0f, 0.0f, 0.0f)
 {
 }
 
-/*
- * --INFO--
- * Address:	80035E14
- * Size:	000060
+/**
+ * @note Address: 0x80035E14
+ * @note Size: 0x60
  */
 void J2DPerspGraph::set(f32 fovY, f32 f2, f32 f3)
 {
@@ -29,10 +27,9 @@ void J2DPerspGraph::set(f32 fovY, f32 f2, f32 f3)
 	setLookat();
 }
 
-/*
- * --INFO--
- * Address:	80035E74
- * Size:	00002C
+/**
+ * @note Address: 0x80035E74
+ * @note Size: 0x2C
  */
 void J2DPerspGraph::setFovy(f32 fovY)
 {
@@ -44,10 +41,9 @@ void J2DPerspGraph::setFovy(f32 fovY)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80035EA0
- * Size:	000068
+/**
+ * @note Address: 0x80035EA0
+ * @note Size: 0x68
  */
 void J2DPerspGraph::setPort()
 {
@@ -56,10 +52,9 @@ void J2DPerspGraph::setPort()
 	GXSetProjection(mMtx44, GX_PERSPECTIVE);
 }
 
-/*
- * --INFO--
- * Address:	80035F08
- * Size:	000068
+/**
+ * @note Address: 0x80035F08
+ * @note Size: 0x68
  */
 void J2DPerspGraph::setLookat()
 {
@@ -68,10 +63,9 @@ void J2DPerspGraph::setLookat()
 	makeLookat();
 }
 
-/*
- * --INFO--
- * Address:	80035F70
- * Size:	0000A0
+/**
+ * @note Address: 0x80035F70
+ * @note Size: 0xA0
  */
 void J2DPerspGraph::makeLookat()
 {

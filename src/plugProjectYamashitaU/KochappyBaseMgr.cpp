@@ -6,10 +6,9 @@
 namespace Game {
 namespace KochappyBase {
 
-/*
- * --INFO--
- * Address:	8012D80C
- * Size:	000050
+/**
+ * @note Address: 0x8012D80C
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -17,10 +16,9 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "コチャッピーベースマネージャ";
 }
 
-/*
- * --INFO--
- * Address:	8012D85C
- * Size:	0000C0
+/**
+ * @note Address: 0x8012D85C
+ * @note Size: 0xC0
  */
 void Mgr::loadModelData()
 {
@@ -44,10 +42,9 @@ void Mgr::loadModelData()
 	mModelData->makeSharedDL();
 }
 
-/*
- * --INFO--
- * Address:	8012D91C
- * Size:	0000A0
+/**
+ * @note Address: 0x8012D91C
+ * @note Size: 0xA0
  */
 void Mgr::loadAnimData()
 {
@@ -67,10 +64,9 @@ void Mgr::loadAnimData()
 	EnemyMgrBase::loadAnimData();
 }
 
-/*
- * --INFO--
- * Address:	8012D9BC
- * Size:	00011C
+/**
+ * @note Address: 0x8012D9BC
+ * @note Size: 0x11C
  */
 SysShape::Model* Mgr::createModel()
 {

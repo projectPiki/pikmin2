@@ -18,10 +18,9 @@ namespace Game {
 
 static const char unusedName[] = "routeMgr";
 
-/*
- * --INFO--
- * Address:	80172520
- * Size:	000014
+/**
+ * @note Address: 0x80172520
+ * @note Size: 0x14
  */
 WayPointIterator::WayPointIterator(WayPoint* wp, bool r5)
     : mWayPoint(wp)
@@ -30,10 +29,9 @@ WayPointIterator::WayPointIterator(WayPoint* wp, bool r5)
 	mIndex = 0;
 }
 
-/*
- * --INFO--
- * Address:	80172534
- * Size:	000028
+/**
+ * @note Address: 0x80172534
+ * @note Size: 0x28
  */
 void WayPointIterator::first()
 {
@@ -41,10 +39,9 @@ void WayPointIterator::first()
 	forward();
 }
 
-/*
- * --INFO--
- * Address:	8017255C
- * Size:	00002C
+/**
+ * @note Address: 0x8017255C
+ * @note Size: 0x2C
  */
 void WayPointIterator::next()
 {
@@ -52,10 +49,9 @@ void WayPointIterator::next()
 	forward();
 }
 
-/*
- * --INFO--
- * Address:	80172588
- * Size:	00003C
+/**
+ * @note Address: 0x80172588
+ * @note Size: 0x3C
  */
 bool WayPointIterator::isDone()
 {
@@ -70,11 +66,10 @@ bool WayPointIterator::isDone()
 	return false;
 }
 
-/*
+/**
  * __ml
- * --INFO--
- * Address:	801725C4
- * Size:	000034
+ * @note Address: 0x801725C4
+ * @note Size: 0x34
  */
 s16 WayPointIterator::operator*()
 {
@@ -85,10 +80,9 @@ s16 WayPointIterator::operator*()
 	return mWayPoint->mToLinks[mIndex - 8];
 }
 
-/*
- * --INFO--
- * Address:	801725F8
- * Size:	0000A8
+/**
+ * @note Address: 0x801725F8
+ * @note Size: 0xA8
  */
 void WayPointIterator::forward()
 {
@@ -129,10 +123,9 @@ void WayPointIterator::forward()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801726A0
- * Size:	00006C
+/**
+ * @note Address: 0x801726A0
+ * @note Size: 0x6C
  */
 WayPoint::WayPoint()
     : JKRDisposer()
@@ -141,17 +134,15 @@ WayPoint::WayPoint()
 	reset();
 }
 
-/*
- * --INFO--
- * Address:	8017276C
- * Size:	000084
+/**
+ * @note Address: 0x8017276C
+ * @note Size: 0x84
  */
 WayPoint::~WayPoint() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 bool WayPoint::includeRoom(s16 roomIdx)
 {
@@ -165,10 +156,9 @@ bool WayPoint::includeRoom(s16 roomIdx)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	801727F0
- * Size:	000084
+/**
+ * @note Address: 0x801727F0
+ * @note Size: 0x84
  */
 void WayPoint::reset()
 {
@@ -185,20 +175,18 @@ void WayPoint::reset()
 	mFlags        = 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
+/**
+ * @note Address: N/A
+ * @note Size: 0x78
  */
 void WayPoint::getLink(int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80172874
- * Size:	000028
+/**
+ * @note Address: 0x80172874
+ * @note Size: 0x28
  */
 void WayPoint::setOpen(bool open)
 {
@@ -209,10 +197,9 @@ void WayPoint::setOpen(bool open)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8017289C
- * Size:	000028
+/**
+ * @note Address: 0x8017289C
+ * @note Size: 0x28
  */
 void WayPoint::setWater(bool water)
 {
@@ -223,10 +210,9 @@ void WayPoint::setWater(bool water)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801728C4
- * Size:	000028
+/**
+ * @note Address: 0x801728C4
+ * @note Size: 0x28
  */
 void WayPoint::setBridge(bool bridge)
 {
@@ -237,40 +223,36 @@ void WayPoint::setBridge(bool bridge)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 void WayPoint::setVisit(bool)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 void WayPoint::setVsColor(int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 bool WayPoint::hasLinkTo(s16 idx)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B4
+/**
+ * @note Address: N/A
+ * @note Size: 0xB4
  */
 void WayPoint::addLink(s16)
 {
@@ -278,20 +260,18 @@ void WayPoint::addLink(s16)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A4
+/**
+ * @note Address: N/A
+ * @note Size: 0xA4
  */
 void WayPoint::killLink(s16)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00012C
+/**
+ * @note Address: N/A
+ * @note Size: 0x12C
  */
 void WayPoint::write(Stream& output)
 {
@@ -322,10 +302,9 @@ void WayPoint::write(Stream& output)
 	output.textEndGroup();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A0
+/**
+ * @note Address: N/A
+ * @note Size: 0xA0
  */
 void WayPoint::read(Stream& input)
 {
@@ -338,34 +317,30 @@ void WayPoint::read(Stream& input)
 	mRadius = input.readFloat();
 }
 
-/*
- * --INFO--
- * Address:	801728EC
- * Size:	000004
+/**
+ * @note Address: 0x801728EC
+ * @note Size: 0x4
  */
 void WayPoint::directDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	801728F0
- * Size:	000004
+/**
+ * @note Address: 0x801728F0
+ * @note Size: 0x4
  */
 void WayPoint::directDraw_Simple(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00010C
+/**
+ * @note Address: N/A
+ * @note Size: 0x10C
  */
 void WayPoint::createOffPlane(Plane&, WayPoint*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  */
 RouteMgr::RouteMgr()
     : Container<WayPoint>()
@@ -374,17 +349,15 @@ RouteMgr::RouteMgr()
 	mName  = "RouteMgr";
 }
 
-/*
- * --INFO--
- * Address:	80172964
- * Size:	000080
+/**
+ * @note Address: 0x80172964
+ * @note Size: 0x80
  */
 RouteMgr::~RouteMgr() { }
 
-/*
- * --INFO--
- * Address:	801729E4
- * Size:	000148
+/**
+ * @note Address: 0x801729E4
+ * @note Size: 0x148
  */
 void RouteMgr::makeInvertLinks()
 {
@@ -417,10 +390,9 @@ void RouteMgr::makeInvertLinks()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80172B2C
- * Size:	0001E4
+/**
+ * @note Address: 0x80172B2C
+ * @note Size: 0x1E4
  */
 bool RouteMgr::linkable(WayPoint* wpA, WayPoint* wpB)
 {
@@ -450,10 +422,9 @@ bool RouteMgr::linkable(WayPoint* wpA, WayPoint* wpB)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80172D10
- * Size:	000268
+/**
+ * @note Address: 0x80172D10
+ * @note Size: 0x268
  */
 void RouteMgr::refreshWater()
 {
@@ -477,10 +448,9 @@ void RouteMgr::refreshWater()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80172FC4
- * Size:	0003A8
+/**
+ * @note Address: 0x80172FC4
+ * @note Size: 0x3A8
  */
 WayPoint* RouteMgr::getNearestWayPoint(WPSearchArg& searchArg)
 {
@@ -525,10 +495,9 @@ WayPoint* RouteMgr::getNearestWayPoint(WPSearchArg& searchArg)
 	return nearestWP;
 }
 
-/*
- * --INFO--
- * Address:	8017336C
- * Size:	00081C
+/**
+ * @note Address: 0x8017336C
+ * @note Size: 0x81C
  */
 bool RouteMgr::getNearestEdge(WPEdgeSearchArg& searchArg)
 {
@@ -1286,10 +1255,9 @@ bool RouteMgr::getNearestEdge(WPEdgeSearchArg& searchArg)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80173B88
- * Size:	0001E0
+/**
+ * @note Address: 0x80173B88
+ * @note Size: 0x1E0
  */
 void RouteMgr::setCloseAll()
 {
@@ -1301,10 +1269,9 @@ void RouteMgr::setCloseAll()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80173D68
- * Size:	000210
+/**
+ * @note Address: 0x80173D68
+ * @note Size: 0x210
  */
 void RouteMgr::openRoom(s16 roomIdx)
 {
@@ -1321,20 +1288,18 @@ void RouteMgr::openRoom(s16 roomIdx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00011C
+/**
+ * @note Address: N/A
+ * @note Size: 0x11C
  */
 void RouteMgr::sonarCheck(RouteMgr::SonarArg&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80173F78
- * Size:	00031C
+/**
+ * @note Address: 0x80173F78
+ * @note Size: 0x31C
  */
 void RouteMgr::write(Stream& output)
 {
@@ -1572,20 +1537,18 @@ void RouteMgr::write(Stream& output)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void RouteMgr::directDraw(Graphics&, WayPoint*, WayPoint*, int, s16*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80174294
- * Size:	00007C
+/**
+ * @note Address: 0x80174294
+ * @note Size: 0x7C
  */
 GameRouteMgr::GameRouteMgr()
     : RouteMgr()
@@ -1593,10 +1556,9 @@ GameRouteMgr::GameRouteMgr()
 	mWayPoints = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80174310
- * Size:	0000BC
+/**
+ * @note Address: 0x80174310
+ * @note Size: 0xBC
  */
 GameRouteMgr::~GameRouteMgr()
 {
@@ -1605,11 +1567,10 @@ GameRouteMgr::~GameRouteMgr()
 	}
 }
 
-/*
+/**
  * read__Q24Game12GameRouteMgrFR6Stream
- * --INFO--
- * Address:	801743CC
- * Size:	0000F4
+ * @note Address: 0x801743CC
+ * @note Size: 0xF4
  */
 void GameRouteMgr::read(Stream& input)
 {
@@ -1621,10 +1582,9 @@ void GameRouteMgr::read(Stream& input)
 	makeInvertLinks();
 }
 
-/*
- * --INFO--
- * Address:	801744C0
- * Size:	000088
+/**
+ * @note Address: 0x801744C0
+ * @note Size: 0x88
  */
 WayPoint* GameRouteMgr::getWayPoint(s16 index)
 {
@@ -1632,38 +1592,33 @@ WayPoint* GameRouteMgr::getWayPoint(s16 index)
 	return &mWayPoints[index];
 }
 
-/*
- * --INFO--
- * Address:	80174548
- * Size:	000030
+/**
+ * @note Address: 0x80174548
+ * @note Size: 0x30
  */
 WayPoint* GameRouteMgr::get(void* index) { return getWayPoint((s16)index); }
 
-/*
- * --INFO--
- * Address:	80174578
- * Size:	000008
+/**
+ * @note Address: 0x80174578
+ * @note Size: 0x8
  */
 void* GameRouteMgr::getNext(void* index) { return (void*)((int)index + 1); }
 
-/*
- * --INFO--
- * Address:	80174580
- * Size:	000008
+/**
+ * @note Address: 0x80174580
+ * @note Size: 0x8
  */
 void* GameRouteMgr::getStart() { return 0; }
 
-/*
- * --INFO--
- * Address:	80174588
- * Size:	000008
+/**
+ * @note Address: 0x80174588
+ * @note Size: 0x8
  */
 void* GameRouteMgr::getEnd() { return (void*)mCount; }
 
-/*
- * --INFO--
- * Address:	80174590
- * Size:	0000AC
+/**
+ * @note Address: 0x80174590
+ * @note Size: 0xAC
  */
 EditorRouteMgr::EditorRouteMgr()
     : RouteMgr()
@@ -1671,10 +1626,9 @@ EditorRouteMgr::EditorRouteMgr()
 {
 }
 
-/*
- * --INFO--
- * Address:	8017469C
- * Size:	0001AC
+/**
+ * @note Address: 0x8017469C
+ * @note Size: 0x1AC
  */
 void EditorRouteMgr::read(Stream& input)
 {
@@ -1817,10 +1771,9 @@ void EditorRouteMgr::read(Stream& input)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80174848
- * Size:	00008C
+/**
+ * @note Address: 0x80174848
+ * @note Size: 0x8C
  */
 void EditorRouteMgr::addWayPoint(WayPoint* wp)
 {
@@ -1831,10 +1784,9 @@ void EditorRouteMgr::addWayPoint(WayPoint* wp)
 	mCount++;
 }
 
-/*
- * --INFO--
- * Address:	801748D4
- * Size:	000088
+/**
+ * @note Address: 0x801748D4
+ * @note Size: 0x88
  */
 void EditorRouteMgr::delWayPoint(WayPoint* wp)
 {
@@ -1849,10 +1801,9 @@ void EditorRouteMgr::delWayPoint(WayPoint* wp)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8017495C
- * Size:	000038
+/**
+ * @note Address: 0x8017495C
+ * @note Size: 0x38
  */
 WayPoint* EditorRouteMgr::getWayPoint(s16 index)
 {
@@ -1867,31 +1818,27 @@ WayPoint* EditorRouteMgr::getWayPoint(s16 index)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80174994
- * Size:	000008
+/**
+ * @note Address: 0x80174994
+ * @note Size: 0x8
  */
 WayPoint* EditorRouteMgr::get(void* node) { return static_cast<WPNode*>(node)->mWayPoint; }
 
-/*
- * --INFO--
- * Address:	8017499C
- * Size:	000008
+/**
+ * @note Address: 0x8017499C
+ * @note Size: 0x8
  */
 void* EditorRouteMgr::getNext(void* node) { return (void*)(static_cast<WPNode*>(node)->mNext); }
 
-/*
- * --INFO--
- * Address:	801749A4
- * Size:	000008
+/**
+ * @note Address: 0x801749A4
+ * @note Size: 0x8
  */
 void* EditorRouteMgr::getStart() { return (void*)(mNode.mChild); }
 
-/*
- * --INFO--
- * Address:	801749AC
- * Size:	000008
+/**
+ * @note Address: 0x801749AC
+ * @note Size: 0x8
  */
 void* EditorRouteMgr::getEnd() { return nullptr; }
 

@@ -10,10 +10,9 @@ namespace {
 static const char* cKoganeChangeTexName = "/enemy/data/Wealthy/oogane_s3tc.bti";
 } // namespace
 
-/*
- * --INFO--
- * Address:	80284470
- * Size:	000050
+/**
+ * @note Address: 0x80284470
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : Kogane::Mgr(objLimit, modelType)
@@ -21,31 +20,27 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "オオガネモチマネージャ"; // oogane manager
 }
 
-/*
- * --INFO--
- * Address:	802844C0
- * Size:	000048
+/**
+ * @note Address: 0x802844C0
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Kogane::Parms); }
 
-/*
- * --INFO--
- * Address:	8028478C
- * Size:	000060
+/**
+ * @note Address: 0x8028478C
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	802848DC
- * Size:	000010
+/**
+ * @note Address: 0x802848DC
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
-/*
- * --INFO--
- * Address:	802848EC
- * Size:	000080
+/**
+ * @note Address: 0x802848EC
+ * @note Size: 0x80
  */
 void Mgr::loadTexData()
 {

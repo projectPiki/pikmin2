@@ -7,10 +7,9 @@
 namespace Game {
 AIConstants* _aiConstants;
 
-/*
- * --INFO--
- * Address:	801B62B0
- * Size:	000148
+/**
+ * @note Address: 0x801B62B0
+ * @note Size: 0x148
  */
 AIConstants::AIConstants()
     : TagParameters("aiConstants")
@@ -35,10 +34,9 @@ AIConstants::AIConstants()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801B63F8
- * Size:	000070
+/**
+ * @note Address: 0x801B63F8
+ * @note Size: 0x70
  * AIConstants::~AIConstants() { }
  */
 

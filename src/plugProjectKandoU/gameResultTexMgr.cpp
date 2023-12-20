@@ -13,10 +13,9 @@ namespace Game {
 
 static const char unusedName[] = "resultTexMgr";
 
-/*
- * --INFO--
- * Address:	80227418
- * Size:	000050
+/**
+ * @note Address: 0x80227418
+ * @note Size: 0x50
  */
 ResultTexMgr::Mgr::Mgr()
     : JKRDisposer()
@@ -27,17 +26,15 @@ ResultTexMgr::Mgr::Mgr()
 {
 }
 
-/*
- * --INFO--
- * Address:	80227468
- * Size:	000060
+/**
+ * @note Address: 0x80227468
+ * @note Size: 0x60
  */
 ResultTexMgr::Mgr::~Mgr() { }
 
-/*
- * --INFO--
- * Address:	802274C8
- * Size:	000340
+/**
+ * @note Address: 0x802274C8
+ * @note Size: 0x340
  */
 void ResultTexMgr::Mgr::create(ResultTexMgr::Arg& arg)
 {
@@ -130,10 +127,9 @@ void ResultTexMgr::Mgr::create(ResultTexMgr::Arg& arg)
 	poppedHeap->becomeCurrentHeap();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
+/**
+ * @note Address: N/A
+ * @note Size: 0x58
  */
 int ResultTexMgr::Mgr::getOtakaraNum()
 {
@@ -142,20 +138,18 @@ int ResultTexMgr::Mgr::getOtakaraNum()
 	return mOtakaraConfigList->mConfigCnt;
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000058
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x58
 //  */
 int ResultTexMgr::Mgr::getItemNum()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80227808
- * Size:	0000B8
+/**
+ * @note Address: 0x80227808
+ * @note Size: 0xB8
  */
 JUTTexture* ResultTexMgr::Mgr::getOtakaraItemTexture(int index)
 {
@@ -170,31 +164,27 @@ JUTTexture* ResultTexMgr::Mgr::getOtakaraItemTexture(int index)
 	return texture;
 }
 
-/*
- * --INFO--
- * Address:	802278C0
- * Size:	000024
+/**
+ * @note Address: 0x802278C0
+ * @note Size: 0x24
  */
 JUTTexture* ResultTexMgr::Mgr::getOtakaraTexture(int otakaraIndex) { return mOtakaraTextures.getTexture(otakaraIndex); }
 
-/*
- * --INFO--
- * Address:	802278E4
- * Size:	000024
+/**
+ * @note Address: 0x802278E4
+ * @note Size: 0x24
  */
 JUTTexture* ResultTexMgr::Mgr::getItemTexture(int itemIndex) { return mItemTextures.getTexture(itemIndex); }
 
-/*
- * --INFO--
- * Address:	80227908
- * Size:	000028
+/**
+ * @note Address: 0x80227908
+ * @note Size: 0x28
  */
 JUTTexture* ResultTexMgr::Mgr::getCarcassTexture() { return mCarcassTextures.getTexture(0); }
 
-/*
- * --INFO--
- * Address:	80227930
- * Size:	000064
+/**
+ * @note Address: 0x80227930
+ * @note Size: 0x64
  */
 void ResultTexMgr::Mgr::Textures::alloc(int count)
 {
@@ -202,10 +192,9 @@ void ResultTexMgr::Mgr::Textures::alloc(int count)
 	mTextures = new JUTTexture[count];
 }
 
-/*
- * --INFO--
- * Address:	80227994
- * Size:	000074
+/**
+ * @note Address: 0x80227994
+ * @note Size: 0x74
  */
 JUTTexture* ResultTexMgr::Mgr::Textures::getTexture(int index)
 {
@@ -216,10 +205,9 @@ JUTTexture* ResultTexMgr::Mgr::Textures::getTexture(int index)
 	return mTextures + index;
 }
 
-/*
- * --INFO--
- * Address:	80227A08
- * Size:	00005C
+/**
+ * @note Address: 0x80227A08
+ * @note Size: 0x5C
  */
 Result::TNode::TNode()
     : DNode()
@@ -232,10 +220,9 @@ Result::TNode::TNode()
 {
 }
 
-/*
- * --INFO--
- * Address:	80227A64
- * Size:	00001C
+/**
+ * @note Address: 0x80227A64
+ * @note Size: 0x1C
  */
 void Result::TNode::setTNode(u64 mesgTag, JUTTexture* texture, int quantity, int totalPokos, int pokoValue)
 {
@@ -246,10 +233,9 @@ void Result::TNode::setTNode(u64 mesgTag, JUTTexture* texture, int quantity, int
 	mPokoValue  = pokoValue;
 }
 
-/*
- * --INFO--
- * Address:	80227A80
- * Size:	000024
+/**
+ * @note Address: 0x80227A80
+ * @note Size: 0x24
  */
 void Result::TNode::setTNode(u64 mesgTag, JUTTexture* texture, int quantity, int totalPokos, int pokoValue, int lostNum)
 {
@@ -257,10 +243,9 @@ void Result::TNode::setTNode(u64 mesgTag, JUTTexture* texture, int quantity, int
 	mLostNum = lostNum;
 }
 
-/*
- * --INFO--
- * Address:	80227AA4
- * Size:	000078
+/**
+ * @note Address: 0x80227AA4
+ * @note Size: 0x78
  */
 u64 Result::TNode::convertByMorimun(int p1)
 {
@@ -271,10 +256,9 @@ u64 Result::TNode::convertByMorimun(int p1)
 	return msgSet.getMsgID(p1);
 }
 
-/*
- * --INFO--
- * Address:	80227B1C
- * Size:	00005C
+/**
+ * @note Address: 0x80227B1C
+ * @note Size: 0x5C
  */
 DNode::DNode()
     : JKRDisposer()
@@ -283,10 +267,9 @@ DNode::DNode()
 	setName("DNode");
 }
 
-/*
- * --INFO--
- * Address:	80227B78
- * Size:	0000B0
+/**
+ * @note Address: 0x80227B78
+ * @note Size: 0xB0
  */
 void DNode::add(Game::DNode* newNode)
 {
@@ -315,10 +298,9 @@ void DNode::add(Game::DNode* newNode)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B0
+/**
+ * @note Address: N/A
+ * @note Size: 0xB0
  * Necessary for rodata to match.
  */
 void DNode::concat(Game::DNode*)
@@ -327,17 +309,15 @@ void DNode::concat(Game::DNode*)
 	JUT_PANICLINE(481, "cannot retrieve %d-th child (real child count = %d)!\n");
 }
 
-/*
- * --INFO--
- * Address:	80227C28
- * Size:	000068
+/**
+ * @note Address: 0x80227C28
+ * @note Size: 0x68
  */
 DNode::~DNode() { del(); }
 
-/*
- * --INFO--
- * Address:	80227C90
- * Size:	000098
+/**
+ * @note Address: 0x80227C90
+ * @note Size: 0x98
  */
 void DNode::del()
 {
@@ -378,10 +358,9 @@ void DNode::del()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80227D28
- * Size:	000034
+/**
+ * @note Address: 0x80227D28
+ * @note Size: 0x34
  */
 int DNode::getChildCount()
 {

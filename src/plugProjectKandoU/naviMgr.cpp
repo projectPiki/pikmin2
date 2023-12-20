@@ -12,10 +12,9 @@ namespace Game {
 NaviMgr* naviMgr;
 SysShape::AnimMgr* NaviMgr::animMgr;
 
-/*
- * --INFO--
- * Address:	8015928C
- * Size:	0000CC
+/**
+ * @note Address: 0x8015928C
+ * @note Size: 0xCC
  */
 NaviMgr::NaviMgr()
     : mFlags()
@@ -27,10 +26,9 @@ NaviMgr::NaviMgr()
 	mPSMMgr       = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8015A7C0
- * Size:	000110
+/**
+ * @note Address: 0x8015A7C0
+ * @note Size: 0x110
  */
 NaviMgr::~NaviMgr()
 {
@@ -46,20 +44,18 @@ NaviMgr::~NaviMgr()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 void NaviMgr::init()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8015A8D0
- * Size:	000078
+/**
+ * @note Address: 0x8015A8D0
+ * @note Size: 0x78
  */
 void NaviMgr::createPSMDirectorUpdator()
 {
@@ -68,10 +64,9 @@ void NaviMgr::createPSMDirectorUpdator()
 	mPSMMgr->directOff(1);
 }
 
-/*
- * --INFO--
- * Address:	8015A948
- * Size:	00005C
+/**
+ * @note Address: 0x8015A948
+ * @note Size: 0x5C
  */
 void NaviMgr::resetMgr()
 {
@@ -88,10 +83,9 @@ void NaviMgr::resetMgr()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8015A9A4
- * Size:	000090
+/**
+ * @note Address: 0x8015A9A4
+ * @note Size: 0x90
  */
 void NaviMgr::killAll()
 {
@@ -104,10 +98,9 @@ void NaviMgr::killAll()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8015AA34
- * Size:	0000F0
+/**
+ * @note Address: 0x8015AA34
+ * @note Size: 0xF0
  */
 void NaviMgr::setupNavi(Navi* navi)
 {
@@ -123,10 +116,9 @@ void NaviMgr::setupNavi(Navi* navi)
 	navi->mCursorModel->mJ3dModel->lock();
 }
 
-/*
- * --INFO--
- * Address:	8015AB24
- * Size:	0000FC
+/**
+ * @note Address: 0x8015AB24
+ * @note Size: 0xFC
  */
 Navi* NaviMgr::birth()
 {
@@ -151,10 +143,9 @@ Navi* NaviMgr::birth()
 	return navi;
 }
 
-/*
- * --INFO--
- * Address:	8015AC20
- * Size:	00009C
+/**
+ * @note Address: 0x8015AC20
+ * @note Size: 0x9C
  */
 Navi* NaviMgr::getActiveNavi()
 {
@@ -173,10 +164,9 @@ Navi* NaviMgr::getActiveNavi()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8015ACBC
- * Size:	0000BC
+/**
+ * @note Address: 0x8015ACBC
+ * @note Size: 0xBC
  */
 void NaviMgr::loadResources()
 {
@@ -191,10 +181,9 @@ void NaviMgr::loadResources()
 	load();
 }
 
-/*
- * --INFO--
- * Address:	8015ADC8
- * Size:	000264
+/**
+ * @note Address: 0x8015ADC8
+ * @note Size: 0x264
  */
 void NaviMgr::load()
 {
@@ -233,17 +222,15 @@ void NaviMgr::load()
 	P2DEBUG("After unmount: %d", JKRGetCurrentHeap()->getTotalFreeSize());
 }
 
-/*
- * --INFO--
- * Address:	8015B02C
- * Size:	000064
+/**
+ * @note Address: 0x8015B02C
+ * @note Size: 0x64
  */
 SysShape::Model* NaviMgr::createModel(int naviID) { return new SysShape::Model((&mOlimarModel)[naviID], 0, 2); }
 
-/*
- * --INFO--
- * Address:	8015B090
- * Size:	0000D4
+/**
+ * @note Address: 0x8015B090
+ * @note Size: 0xD4
  */
 void NaviMgr::loadResources_float()
 {
@@ -261,10 +248,9 @@ void NaviMgr::loadResources_float()
 	mLouieModel = model;
 }
 
-/*
- * --INFO--
- * Address:	8015B164
- * Size:	00008C
+/**
+ * @note Address: 0x8015B164
+ * @note Size: 0x8C
  */
 int NaviMgr::getAliveCount()
 {
@@ -277,20 +263,18 @@ int NaviMgr::getAliveCount()
 	return alive;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000090
+/**
+ * @note Address: N/A
+ * @note Size: 0x90
  */
 Navi* NaviMgr::getSurviveNavi()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8015B1F0
- * Size:	000018
+/**
+ * @note Address: 0x8015B1F0
+ * @note Size: 0x18
  */
 void NaviMgr::clearDeadCount()
 {
@@ -299,10 +283,9 @@ void NaviMgr::clearDeadCount()
 	mNaviDeadFlags[1] = -1;
 }
 
-/*
- * --INFO--
- * Address:	8015B208
- * Size:	000078
+/**
+ * @note Address: 0x8015B208
+ * @note Size: 0x78
  */
 void NaviMgr::informOrimaDead(int id)
 {
@@ -321,10 +304,9 @@ void NaviMgr::informOrimaDead(int id)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8015B280
- * Size:	00004C
+/**
+ * @note Address: 0x8015B280
+ * @note Size: 0x4C
  */
 Navi* NaviMgr::getDeadOrima(int id)
 {
@@ -334,10 +316,9 @@ Navi* NaviMgr::getDeadOrima(int id)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8015B2CC
- * Size:	0000EC
+/**
+ * @note Address: 0x8015B2CC
+ * @note Size: 0xEC
  */
 Navi* NaviMgr::getAliveOrima(int type)
 {
@@ -378,10 +359,9 @@ Navi* NaviMgr::getAliveOrima(int type)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8015B3B8
- * Size:	0000A8
+/**
+ * @note Address: 0x8015B3B8
+ * @note Size: 0xA8
  */
 void NaviMgr::setMovieDraw(bool drawOn)
 {
@@ -398,10 +378,9 @@ void NaviMgr::setMovieDraw(bool drawOn)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8015B460
- * Size:	0000E0
+/**
+ * @note Address: 0x8015B460
+ * @note Size: 0xE0
  */
 void NaviMgr::doAnimation()
 {
@@ -415,10 +394,9 @@ void NaviMgr::doAnimation()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8015B540
- * Size:	000168
+/**
+ * @note Address: 0x8015B540
+ * @note Size: 0x168
  */
 void NaviMgr::doEntry()
 {
@@ -449,10 +427,9 @@ void NaviMgr::doEntry()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8015B6A8
- * Size:	000378
+/**
+ * @note Address: 0x8015B6A8
+ * @note Size: 0x378
  */
 void NaviMgr::doSimulation(f32 rate)
 {
@@ -488,10 +465,9 @@ void NaviMgr::doSimulation(f32 rate)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8015BA20
- * Size:	000004
+/**
+ * @note Address: 0x8015BA20
+ * @note Size: 0x4
  */
 void NaviMgr::setupSoundViewerAndBas() { }
 

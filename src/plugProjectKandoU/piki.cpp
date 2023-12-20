@@ -38,10 +38,9 @@ static const int unusedPikiArray[] = { 0, 0, 0 };
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	801476DC
- * Size:	0001A4
+/**
+ * @note Address: 0x801476DC
+ * @note Size: 0x1A4
  */
 Piki::Piki()
 {
@@ -64,10 +63,9 @@ Piki::Piki()
 	sys->heapStatusEnd("PSPiki");
 }
 
-/*
- * --INFO--
- * Address:	80147D10
- * Size:	0000B4
+/**
+ * @note Address: 0x80147D10
+ * @note Size: 0xB4
  */
 bool Piki::isWalking()
 {
@@ -80,10 +78,9 @@ bool Piki::isWalking()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80147DC4
- * Size:	000050
+/**
+ * @note Address: 0x80147DC4
+ * @note Size: 0x50
  */
 int Piki::getFormationSlotID()
 {
@@ -96,31 +93,27 @@ int Piki::getFormationSlotID()
 	return -1;
 }
 
-/*
- * --INFO--
- * Address:	80147E14
- * Size:	000024
+/**
+ * @note Address: 0x80147E14
+ * @note Size: 0x24
  */
 PikiAI::Action* Piki::getCurrAction() { return mBrain->getCurrAction(); }
 
-/*
- * --INFO--
- * Address:	80147E38
- * Size:	000010
+/**
+ * @note Address: 0x80147E38
+ * @note Size: 0x10
  */
 void Piki::clearCurrAction() { mBrain->mActionId = PikiAI::ACT_NULL; }
 
-/*
- * --INFO--
- * Address:	80147E48
- * Size:	00000C
+/**
+ * @note Address: 0x80147E48
+ * @note Size: 0xC
  */
 int Piki::getCurrActionID() { return mBrain->mActionId; }
 
-/*
- * --INFO--
- * Address:	80147E54
- * Size:	000280
+/**
+ * @note Address: 0x80147E54
+ * @note Size: 0x280
  */
 void Piki::onInit(CreatureInitArg* initArg)
 {
@@ -174,10 +167,9 @@ void Piki::onInit(CreatureInitArg* initArg)
 	setDopeEffect(false);
 }
 
-/*
- * --INFO--
- * Address:	80148108
- * Size:	00038C
+/**
+ * @note Address: 0x80148108
+ * @note Size: 0x38C
  */
 void Piki::onKill(CreatureKillArg* killArg)
 {
@@ -237,17 +229,15 @@ void Piki::onKill(CreatureKillArg* killArg)
 	Radar::Mgr::exit(this);
 }
 
-/*
- * --INFO--
- * Address:	80148498
- * Size:	00001C
+/**
+ * @note Address: 0x80148498
+ * @note Size: 0x1C
  */
 void Piki::onSetPosition() { mBoundingSphere.mPosition = mPosition; }
 
-/*
- * --INFO--
- * Address:	801484B4
- * Size:	000024
+/**
+ * @note Address: 0x801484B4
+ * @note Size: 0x24
  */
 void Piki::getLODSphere(Sys::Sphere& sphere)
 {
@@ -255,10 +245,9 @@ void Piki::getLODSphere(Sys::Sphere& sphere)
 	sphere.mRadius   = 15.0f;
 }
 
-/*
- * --INFO--
- * Address:	801484D8
- * Size:	000210
+/**
+ * @note Address: 0x801484D8
+ * @note Size: 0x210
  */
 void Piki::update()
 {
@@ -291,10 +280,9 @@ void Piki::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801486F0
- * Size:	000058
+/**
+ * @note Address: 0x801486F0
+ * @note Size: 0x58
  */
 bool Piki::isAlive()
 {
@@ -306,17 +294,15 @@ bool Piki::isAlive()
 	return flag;
 }
 
-/*
- * --INFO--
- * Address:	80148748
- * Size:	000004
+/**
+ * @note Address: 0x80148748
+ * @note Size: 0x4
  */
 void Piki::on_movie_begin(bool) { }
 
-/*
- * --INFO--
- * Address:	8014874C
- * Size:	000064
+/**
+ * @note Address: 0x8014874C
+ * @note Size: 0x64
  */
 void Piki::on_movie_end(bool shouldResetAnims)
 {
@@ -326,24 +312,21 @@ void Piki::on_movie_end(bool shouldResetAnims)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801487B8
- * Size:	000004
+/**
+ * @note Address: 0x801487B8
+ * @note Size: 0x4
  */
 void Piki::movieUserCommand(u32, Game::MoviePlayer*) { }
 
-/*
- * --INFO--
- * Address:	801487BC
- * Size:	000038
+/**
+ * @note Address: 0x801487BC
+ * @note Size: 0x38
  */
 void Piki::movieStartAnimation(u32 animIdx) { startMotion(animIdx, animIdx, nullptr, nullptr); }
 
-/*
- * --INFO--
- * Address:	801487F4
- * Size:	000048
+/**
+ * @note Address: 0x801487F4
+ * @note Size: 0x48
  */
 void Piki::movieStartDemoAnimation(SysShape::AnimInfo* animInfo)
 {
@@ -351,10 +334,9 @@ void Piki::movieStartDemoAnimation(SysShape::AnimInfo* animInfo)
 	mAnimator.mSelfAnimator.startExAnim(animInfo);
 }
 
-/*
- * --INFO--
- * Address:	8014883C
- * Size:	000088
+/**
+ * @note Address: 0x8014883C
+ * @note Size: 0x88
  */
 void Piki::movieSetTranslation(Vector3f& position, f32 faceDir)
 {
@@ -366,17 +348,15 @@ void Piki::movieSetTranslation(Vector3f& position, f32 faceDir)
 	mFaceDir = faceDir;
 }
 
-/*
- * --INFO--
- * Address:	801488C4
- * Size:	000008
+/**
+ * @note Address: 0x801488C4
+ * @note Size: 0x8
  */
 bool Piki::movieGotoPosition(Vector3f&) { return false; }
 
-/*
- * --INFO--
- * Address:	801488CC
- * Size:	000040
+/**
+ * @note Address: 0x801488CC
+ * @note Size: 0x40
  */
 void Piki::startSound(u32 id, bool isNotFree)
 {
@@ -387,10 +367,9 @@ void Piki::startSound(u32 id, bool isNotFree)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8014890C
- * Size:	000048
+/**
+ * @note Address: 0x8014890C
+ * @note Size: 0x48
  */
 void Piki::startSound(u32 id, PSGame::SeMgr::SetSeId setSeId)
 {
@@ -401,10 +380,9 @@ void Piki::startSound(u32 id, PSGame::SeMgr::SetSeId setSeId)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80148954
- * Size:	000070
+/**
+ * @note Address: 0x80148954
+ * @note Size: 0x70
  */
 void Piki::startSound(Creature* creature, u32 id, bool check)
 {
@@ -415,10 +393,9 @@ void Piki::startSound(Creature* creature, u32 id, bool check)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801489C4
- * Size:	0000CC
+/**
+ * @note Address: 0x801489C4
+ * @note Size: 0xCC
  */
 void Piki::startSound(Creature* creature, u32 id, PSGame::SeMgr::SetSeId setSeId)
 {
@@ -431,31 +408,27 @@ void Piki::startSound(Creature* creature, u32 id, PSGame::SeMgr::SetSeId setSeId
 	}
 }
 
-/*
- * --INFO--
- * Address:	80148A90
- * Size:	000014
+/**
+ * @note Address: 0x80148A90
+ * @note Size: 0x14
  */
 JAInter::Object* Piki::getJAIObject() { return mSoundObj; }
 
-/*
- * --INFO--
- * Address:	80148AA4
- * Size:	000008
+/**
+ * @note Address: 0x80148AA4
+ * @note Size: 0x8
  */
 PSM::Creature* Piki::getPSCreature() { return mSoundObj; }
 
-/*
- * --INFO--
- * Address:	80148AAC
- * Size:	000030
+/**
+ * @note Address: 0x80148AAC
+ * @note Size: 0x30
  */
 bool Piki::canVsBattle() { return mCurrentState->battleOK(); }
 
-/*
- * --INFO--
- * Address:	80148AE4
- * Size:	00003C
+/**
+ * @note Address: 0x80148AE4
+ * @note Size: 0x3C
  */
 Piki* Piki::getVsBattlePiki()
 {
@@ -465,10 +438,9 @@ Piki* Piki::getVsBattlePiki()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80148B20
- * Size:	0000B0
+/**
+ * @note Address: 0x80148B20
+ * @note Size: 0xB0
  */
 void Piki::attachRadar(bool)
 {
@@ -495,10 +467,9 @@ void Piki::attachRadar(bool)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80148BD0
- * Size:	000148
+/**
+ * @note Address: 0x80148BD0
+ * @note Size: 0x148
  */
 void Piki::inWaterCallback(WaterBox* wbox)
 {
@@ -612,10 +583,9 @@ lbl_80148CFC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80148D18
- * Size:	000068
+/**
+ * @note Address: 0x80148D18
+ * @note Size: 0x68
  */
 void Piki::outWaterCallback()
 {
@@ -625,10 +595,9 @@ void Piki::outWaterCallback()
 	mEffectsObj->doWaterExit();
 }
 
-/*
- * --INFO--
- * Address:	80148D84
- * Size:	000154
+/**
+ * @note Address: 0x80148D84
+ * @note Size: 0x154
  */
 bool Piki::might_bury()
 {
@@ -656,17 +625,15 @@ bool Piki::might_bury()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80148ED8
- * Size:	000014
+/**
+ * @note Address: 0x80148ED8
+ * @note Size: 0x14
  */
 bool Piki::surviveDayEnd() { return (u8)(getCurrActionID() == PikiAI::ACT_Formation); }
 
-/*
- * --INFO--
- * Address:	80148EEC
- * Size:	000044
+/**
+ * @note Address: 0x80148EEC
+ * @note Size: 0x44
  */
 void Piki::onKeyEvent(SysShape::KeyEvent const& event)
 {
@@ -675,10 +642,9 @@ void Piki::onKeyEvent(SysShape::KeyEvent const& event)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80148F34
- * Size:	00001C
+/**
+ * @note Address: 0x80148F34
+ * @note Size: 0x1C
  */
 int Piki::getStateID()
 {
@@ -689,10 +655,9 @@ int Piki::getStateID()
 	return PIKISTATE_NULL;
 }
 
-/*
- * --INFO--
- * Address:	80148F50
- * Size:	0000C8
+/**
+ * @note Address: 0x80148F50
+ * @note Size: 0xC8
  */
 f32 Piki::getSpeed(f32 multiplier)
 {
@@ -783,10 +748,9 @@ lbl_80148FFC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80149018
- * Size:	0001C0
+/**
+ * @note Address: 0x80149018
+ * @note Size: 0x1C0
  */
 void Piki::setSpeed(f32 multiplier, Vector3f& direction)
 {
@@ -797,10 +761,9 @@ void Piki::setSpeed(f32 multiplier, Vector3f& direction)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F8
+/**
+ * @note Address: N/A
+ * @note Size: 0xF8
  */
 f32 Piki::getSpeed(f32 multiplier, f32 max)
 {
@@ -812,10 +775,9 @@ f32 Piki::getSpeed(f32 multiplier, f32 max)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801491D8
- * Size:	00020C
+/**
+ * @note Address: 0x801491D8
+ * @note Size: 0x20C
  */
 void Piki::setSpeed(f32 multiplier, Vector3f& vec, f32 max)
 {
@@ -826,10 +788,9 @@ void Piki::setSpeed(f32 multiplier, Vector3f& vec, f32 max)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801493E4
- * Size:	000040
+/**
+ * @note Address: 0x801493E4
+ * @note Size: 0x40
  */
 bool Piki::isPikmin()
 {
@@ -844,10 +805,9 @@ bool Piki::isPikmin()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80149424
- * Size:	00004C
+/**
+ * @note Address: 0x80149424
+ * @note Size: 0x4C
  */
 bool Piki::isThrowable()
 {
@@ -858,10 +818,9 @@ bool Piki::isThrowable()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80149478
- * Size:	000040
+/**
+ * @note Address: 0x80149478
+ * @note Size: 0x40
  */
 int Piki::getDownfloorMass()
 {
@@ -872,24 +831,21 @@ int Piki::getDownfloorMass()
 	return (getKind() == Purple) ? 10 : 1;
 }
 
-/*
- * --INFO--
- * Address:	801494B8
- * Size:	000014
+/**
+ * @note Address: 0x801494B8
+ * @note Size: 0x14
  */
 bool Piki::gasInvicible() { return mGasInvincible; }
 
-/*
- * --INFO--
- * Address:	801494CC
- * Size:	000008
+/**
+ * @note Address: 0x801494CC
+ * @note Size: 0x8
  */
 void Piki::setGasInvincible(u8 invincibleTime) { mGasInvincible = invincibleTime; }
 
-/*
- * --INFO--
- * Address:	801494D4
- * Size:	000018
+/**
+ * @note Address: 0x801494D4
+ * @note Size: 0x18
  */
 void Piki::updateGasInvincible()
 {
@@ -898,10 +854,9 @@ void Piki::updateGasInvincible()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801494EC
- * Size:	0000F8
+/**
+ * @note Address: 0x801494EC
+ * @note Size: 0xF8
  */
 f32 Piki::getAttackDamage()
 {
@@ -929,10 +884,9 @@ f32 Piki::getAttackDamage()
 	return pikiMgr->mParms->mPikiParms.mBlueAttackDamage.mValue;
 }
 
-/*
- * --INFO--
- * Address:	801495E4
- * Size:	0000C0
+/**
+ * @note Address: 0x801495E4
+ * @note Size: 0xC0
  */
 f32 Piki::getThrowHeight()
 {
@@ -954,10 +908,9 @@ f32 Piki::getThrowHeight()
 	return static_cast<NaviParms*>(mNavi->mParms)->mNaviParms.mThrowHeightMin.mValue;
 }
 
-/*
- * --INFO--
- * Address:	801496A4
- * Size:	0000C4
+/**
+ * @note Address: 0x801496A4
+ * @note Size: 0xC4
  */
 f32 Piki::getPelletCarryPower()
 {
@@ -983,17 +936,15 @@ f32 Piki::getPelletCarryPower()
 	return carryPower;
 }
 
-/*
- * --INFO--
- * Address:	80149768
- * Size:	000004
+/**
+ * @note Address: 0x80149768
+ * @note Size: 0x4
  */
 void Piki::onStickStartSelf(Game::Creature*) { }
 
-/*
- * --INFO--
- * Address:	8014976C
- * Size:	0000E8
+/**
+ * @note Address: 0x8014976C
+ * @note Size: 0xE8
  */
 void Piki::onStickEndSelf(Creature* creature)
 {
@@ -1011,10 +962,9 @@ void Piki::onStickEndSelf(Creature* creature)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80149854
- * Size:	000088
+/**
+ * @note Address: 0x80149854
+ * @note Size: 0x88
  */
 bool Piki::stimulate(Interaction& interaction)
 {
@@ -1029,10 +979,9 @@ bool Piki::stimulate(Interaction& interaction)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	801498DC
- * Size:	0000A4
+/**
+ * @note Address: 0x801498DC
+ * @note Size: 0xA4
  */
 void Piki::bounceCallback(Sys::Triangle* triangle)
 {
@@ -1045,10 +994,9 @@ void Piki::bounceCallback(Sys::Triangle* triangle)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80149990
- * Size:	0000A0
+/**
+ * @note Address: 0x80149990
+ * @note Size: 0xA0
  */
 void Piki::wallCallback(Vector3f& pos)
 {
@@ -1061,10 +1009,9 @@ void Piki::wallCallback(Vector3f& pos)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80149A38
- * Size:	0000AC
+/**
+ * @note Address: 0x80149A38
+ * @note Size: 0xAC
  */
 void Piki::collisionCallback(CollEvent& event)
 {
@@ -1077,10 +1024,9 @@ void Piki::collisionCallback(CollEvent& event)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80149AEC
- * Size:	000178
+/**
+ * @note Address: 0x80149AEC
+ * @note Size: 0x178
  */
 void Piki::platCallback(PlatEvent& event)
 {
@@ -1099,10 +1045,9 @@ void Piki::platCallback(PlatEvent& event)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80149C6C
- * Size:	000050
+/**
+ * @note Address: 0x80149C6C
+ * @note Size: 0x50
  */
 bool Piki::ignoreAtari(Creature* creature)
 {
@@ -1114,10 +1059,9 @@ bool Piki::ignoreAtari(Creature* creature)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80149CC4
- * Size:	000060
+/**
+ * @note Address: 0x80149CC4
+ * @note Size: 0x60
  */
 void Piki::setFreeLightEffect(bool doLightEffect)
 {
@@ -1128,10 +1072,9 @@ void Piki::setFreeLightEffect(bool doLightEffect)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80149D24
- * Size:	000084
+/**
+ * @note Address: 0x80149D24
+ * @note Size: 0x84
  */
 void Piki::setDopeEffect(bool doDoping)
 {
@@ -1142,10 +1085,9 @@ void Piki::setDopeEffect(bool doDoping)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80149DA8
- * Size:	000088
+/**
+ * @note Address: 0x80149DA8
+ * @note Size: 0x88
  */
 void Piki::clearDope()
 {
@@ -1160,17 +1102,15 @@ void Piki::clearDope()
 	mEffectsObj->doKillDoping();
 }
 
-/*
- * --INFO--
- * Address:	80149E30
- * Size:	000014
+/**
+ * @note Address: 0x80149E30
+ * @note Size: 0x14
  */
 void Piki::extendDopeTime() { mDopeTime = pikiMgr->mParms->mPikiParms.mDopeMaxDuration.mValue; }
 
-/*
- * --INFO--
- * Address:	80149E44
- * Size:	00019C
+/**
+ * @note Address: 0x80149E44
+ * @note Size: 0x19C
  */
 bool Piki::startDope(int isDoped)
 {
@@ -1198,27 +1138,24 @@ bool Piki::startDope(int isDoped)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80149FE0
- * Size:	000018
+/**
+ * @note Address: 0x80149FE0
+ * @note Size: 0x18
  */
 bool Piki::doped() { return mIsDoped != -1; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
+/**
+ * @note Address: N/A
+ * @note Size: 0xE0
  */
 void Piki::updateDope()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80149FF8
- * Size:	000040
+/**
+ * @note Address: 0x80149FF8
+ * @note Size: 0x40
  */
 void Piki::initColor()
 {
@@ -1226,20 +1163,18 @@ void Piki::initColor()
 	mDefaultColor = pikiColors[getKind()];
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000194
+/**
+ * @note Address: N/A
+ * @note Size: 0x194
  */
 void Piki::updateColor()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8014A038
- * Size:	000100
+/**
+ * @note Address: 0x8014A038
+ * @note Size: 0x100
  */
 void Piki::setPastel(bool isBright)
 {
@@ -1260,10 +1195,9 @@ void Piki::setPastel(bool isBright)
 	mOldDefaultColor = mDefaultColor;
 }
 
-/*
- * --INFO--
- * Address:	8014A138
- * Size:	0000D0
+/**
+ * @note Address: 0x8014A138
+ * @note Size: 0xD0
  */
 void Piki::getShadowParam(ShadowParam& param)
 {
@@ -1279,10 +1213,9 @@ void Piki::getShadowParam(ShadowParam& param)
 	param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 }
 
-/*
- * --INFO--
- * Address:	8014A208
- * Size:	000080
+/**
+ * @note Address: 0x8014A208
+ * @note Size: 0x80
  */
 bool Piki::isMyPikmin(Creature* creature)
 {
@@ -1296,17 +1229,15 @@ bool Piki::isMyPikmin(Creature* creature)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8014A288
- * Size:	000018
+/**
+ * @note Address: 0x8014A288
+ * @note Size: 0x18
  */
 bool Piki::isTekiFollowAI() { return (u8)(mBrain->mActionId == PikiAI::ACT_Teki); }
 
-/*
- * --INFO--
- * Address:	8014A2A0
- * Size:	0000EC
+/**
+ * @note Address: 0x8014A2A0
+ * @note Size: 0xEC
  */
 void Piki::doColorChange()
 {
@@ -1325,20 +1256,18 @@ void Piki::doColorChange()
 	happa1->getWorldMatrix()->getTranslation(mLeafStemPosition);
 }
 
-/*
- * --INFO--
- * Address:	8014A38C
- * Size:	00002C
+/**
+ * @note Address: 0x8014A38C
+ * @note Size: 0x2C
  */
 void Piki::doDebugDL()
 {
 	for (u16 i = 0; i < mModel->mJ3dModel->getModelData()->getShapeNum(); i++) { }
 }
 
-/*
- * --INFO--
- * Address:	8014A3B8
- * Size:	0000F8
+/**
+ * @note Address: 0x8014A3B8
+ * @note Size: 0xF8
  */
 void Piki::startMotion(int animIdx1, int animIdx2, SysShape::MotionListener* listener1, SysShape::MotionListener* listener2)
 {
@@ -1361,10 +1290,9 @@ void Piki::startMotion(int animIdx1, int animIdx2, SysShape::MotionListener* lis
 	FakePiki::startMotion(animIdx1, animIdx2, listener1, listener2);
 }
 
-/*
- * --INFO--
- * Address:	8014A4B0
- * Size:	0000E4
+/**
+ * @note Address: 0x8014A4B0
+ * @note Size: 0xE4
  */
 void Piki::doAnimation()
 {
@@ -1390,17 +1318,15 @@ void Piki::doAnimation()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8014A594
- * Size:	000004
+/**
+ * @note Address: 0x8014A594
+ * @note Size: 0x4
  */
 void Piki::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	8014A598
- * Size:	000028
+/**
+ * @note Address: 0x8014A598
+ * @note Size: 0x28
  */
 f32 Piki::getBaseScale()
 {
@@ -1414,10 +1340,9 @@ f32 Piki::getBaseScale()
 	return scale;
 }
 
-/*
- * --INFO--
- * Address:	8014A5C0
- * Size:	0001B0
+/**
+ * @note Address: 0x8014A5C0
+ * @note Size: 0x1B0
  */
 void Piki::changeShape(int color)
 {
@@ -1452,17 +1377,15 @@ void Piki::changeShape(int color)
 	headJnt->mJ3d->mFunction = sNeckCallback;
 }
 
-/*
- * --INFO--
- * Address:	8014A770
- * Size:	000008
+/**
+ * @note Address: 0x8014A770
+ * @note Size: 0x8
  */
 void Piki::changeHappa(int newHappa) { mHappaKind = newHappa; }
 
-/*
- * --INFO--
- * Address:	8014A778
- * Size:	000344
+/**
+ * @note Address: 0x8014A778
+ * @note Size: 0x344
  */
 void Piki::do_updateLookCreature()
 {
@@ -1544,10 +1467,9 @@ void Piki::do_updateLookCreature()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8014AABC
- * Size:	000014
+/**
+ * @note Address: 0x8014AABC
+ * @note Size: 0x14
  */
 void Piki::setTekiKillID(int id)
 {
@@ -1560,10 +1482,9 @@ void Piki::setTekiKillID(int id)
 
 } // namespace Game
 
-/*
- * --INFO--
- * Address:	8014AAE0
- * Size:	000054
+/**
+ * @note Address: 0x8014AAE0
+ * @note Size: 0x54
  */
 void MonoObjectMgr<Game::Piki>::kill(Game::Piki* piki)
 {
@@ -1576,17 +1497,15 @@ void MonoObjectMgr<Game::Piki>::kill(Game::Piki* piki)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8014AB34
- * Size:	000004
+/**
+ * @note Address: 0x8014AB34
+ * @note Size: 0x4
  */
 void Game::StateMachine<Game::Piki>::init(Game::Piki*) { }
 
-/*
- * --INFO--
- * Address:	8014AB38
- * Size:	00009C
+/**
+ * @note Address: 0x8014AB38
+ * @note Size: 0x9C
  */
 void Game::StateMachine<Game::Piki>::transit(Game::Piki* piki, int stateID, Game::StateArg* stateArg)
 {
@@ -1605,10 +1524,9 @@ void Game::StateMachine<Game::Piki>::transit(Game::Piki* piki, int stateID, Game
 	state->init(piki, stateArg);
 }
 
-/*
- * --INFO--
- * Address:	8014ABDC
- * Size:	000038
+/**
+ * @note Address: 0x8014ABDC
+ * @note Size: 0x38
  */
 void Game::StateMachine<Game::Piki>::exec(Game::Piki* piki)
 {
@@ -1617,10 +1535,9 @@ void Game::StateMachine<Game::Piki>::exec(Game::Piki* piki)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8014AC18
- * Size:	000170
+/**
+ * @note Address: 0x8014AC18
+ * @note Size: 0x170
  */
 void __sinit_piki_cpp()
 {

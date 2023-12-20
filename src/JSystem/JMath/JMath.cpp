@@ -2,10 +2,9 @@
 #include "JSystem/JMath.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	80034F08
- * Size:	0000BC
+/**
+ * @note Address: 0x80034F08
+ * @note Size: 0xBC
  */
 void JMAEulerToQuat(s16 x, s16 y, s16 z, Quaternion* q)
 {
@@ -26,10 +25,9 @@ void JMAEulerToQuat(s16 x, s16 y, s16 z, Quaternion* q)
 	q->z = sinZ * (cosX * cosY) - cosZ * (sinX * sinY);
 }
 
-/*
- * --INFO--
- * Address:	80034FC4
- * Size:	0000D8
+/**
+ * @note Address: 0x80034FC4
+ * @note Size: 0xD8
  */
 void JMAQuatLerp(register const Quaternion* p, register const Quaternion* q, f32 t, Quaternion* dst)
 {
@@ -66,30 +64,27 @@ void JMAQuatLerp(register const Quaternion* p, register const Quaternion* q, f32
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000148
+/**
+ * @note Address: N/A
+ * @note Size: 0x148
  */
 void JMALagrangeInterpolation(int, float*, float*, float)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 void JMAFastVECMag(const Vec*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 void JMAFastVECNormalize(register const Vec* src, register Vec* dst)
 {
@@ -111,10 +106,9 @@ void JMAFastVECNormalize(register const Vec* src, register Vec* dst)
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 void JMAVECScaleAdd(register const Vec* vec1, register const Vec* vec2, register Vec* dst, register f32 scale)
 {
@@ -142,10 +136,9 @@ void JMAVECScaleAdd(register const Vec* vec1, register const Vec* vec2, register
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
+/**
+ * @note Address: N/A
+ * @note Size: 0x30
  */
 void JMAVECLerp(register const Vec* vec1, register const Vec* vec2, register Vec* dst, register f32 t)
 {
@@ -179,10 +172,9 @@ void JMAVECLerp(register const Vec* vec1, register const Vec* vec2, register Vec
 	dst->z = (vec2->z - vec1->z) * t + vec1->z;*/
 }
 
-/*
- * --INFO--
- * Address:	8003509C
- * Size:	000064
+/**
+ * @note Address: 0x8003509C
+ * @note Size: 0x64
  */
 void JMAMTXApplyScale(register const Mtx src, register Mtx dst, register f32 xScale, register f32 yScale, register f32 zScale)
 {
@@ -233,10 +225,9 @@ void JMAMTXApplyScale(register const Mtx src, register Mtx dst, register f32 xSc
 	dst[3][2] = src[3][2] * normal;*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 void JMAMTXScaleApply(const float (*)[4], float (*)[4], float, float, float)
 {

@@ -19,50 +19,45 @@ static const int padding[]    = { 0, 0, 0 };
 MapMgr* mapMgr;
 bool MapMgr::traceMoveDebug;
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 TDispTriangleArray::TDispTriangleArray()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000068
+/**
+ * @note Address: N/A
+ * @note Size: 0x68
  */
 void TDispTriangleArray::alloc(int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 TDispTriangle::TDispTriangle()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void TDispTriangleArray::clear()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8016239C
- * Size:	000044
+/**
+ * @note Address: 0x8016239C
+ * @note Size: 0x44
  */
 void TDispTriangleArray::store(Sys::Triangle& triangle, Sys::VertexTable& vertexTable, int p3)
 {
@@ -71,10 +66,9 @@ void TDispTriangleArray::store(Sys::Triangle& triangle, Sys::VertexTable& vertex
 	}
 }
 
-/*
- * --INFO--
- * Address:	801623E0
- * Size:	000044
+/**
+ * @note Address: 0x801623E0
+ * @note Size: 0x44
  */
 void TDispTriangleArray::store(Matrixf& mtx, Sys::Triangle& triangle, Sys::VertexTable& vertexTable, int p4)
 {
@@ -83,20 +77,18 @@ void TDispTriangleArray::store(Matrixf& mtx, Sys::Triangle& triangle, Sys::Verte
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 void TDispTriangleArray::draw(Graphics&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80162424
- * Size:	0000C0
+/**
+ * @note Address: 0x80162424
+ * @note Size: 0xC0
  */
 void TDispTriangle::store(Sys::Triangle& triangle, Sys::VertexTable& vertexTable, int p3)
 {
@@ -110,10 +102,9 @@ void TDispTriangle::store(Sys::Triangle& triangle, Sys::VertexTable& vertexTable
 	PSMTXIdentity(mMatrix.mMatrix.mtxView);
 }
 
-/*
- * --INFO--
- * Address:	801624E4
- * Size:	000100
+/**
+ * @note Address: 0x801624E4
+ * @note Size: 0x100
  */
 void TDispTriangle::store(Matrixf& mtx, Sys::Triangle& tri, Sys::VertexTable& vertTable, int p4)
 {
@@ -127,20 +118,18 @@ void TDispTriangle::store(Matrixf& mtx, Sys::Triangle& tri, Sys::VertexTable& ve
 	PSMTXCopy(mtx.mMatrix.mtxView, mMatrix.mMatrix.mtxView);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void TDispTriangle::draw(Graphics&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	801625E4
- * Size:	000098
+/**
+ * @note Address: 0x801625E4
+ * @note Size: 0x98
  */
 MapMgr::MapMgr()
 {
@@ -149,10 +138,9 @@ MapMgr::MapMgr()
 	mCourseInfo = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8016267C
- * Size:	00007C
+/**
+ * @note Address: 0x8016267C
+ * @note Size: 0x7C
  */
 void MapMgr::getStartPosition(Vector3f& outPosition, int p2)
 {
@@ -164,10 +152,9 @@ void MapMgr::getStartPosition(Vector3f& outPosition, int p2)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801626F8
- * Size:	00002C
+/**
+ * @note Address: 0x801626F8
+ * @note Size: 0x2C
  */
 f32 MapMgr::getMapRotation()
 {
@@ -178,17 +165,15 @@ f32 MapMgr::getMapRotation()
 	return 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	80162724
- * Size:	00001C
+/**
+ * @note Address: 0x80162724
+ * @note Size: 0x1C
  */
 Matrixf* MapMgr::getDemoMatrix() { return (mCourseInfo) ? &mCourseInfo->mDemoMatrix : nullptr; }
 
-/*
- * --INFO--
- * Address:	80162740
- * Size:	000704
+/**
+ * @note Address: 0x80162740
+ * @note Size: 0x704
  */
 f32 MapMgr::getBestAngle(Vector3f& vec, f32 p2, f32 p3)
 {
@@ -684,10 +669,9 @@ lbl_80162DC0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80162E44
- * Size:	0002A4
+/**
+ * @note Address: 0x80162E44
+ * @note Size: 0x2A4
  */
 void MapMgr::checkBeamCollision(BeamCollisionArg& arg)
 {
@@ -730,10 +714,9 @@ void MapMgr::checkBeamCollision(BeamCollisionArg& arg)
 	arg._24       = sep2.length();
 }
 
-/*
- * --INFO--
- * Address:	801630E8
- * Size:	000804
+/**
+ * @note Address: 0x801630E8
+ * @note Size: 0x804
  */
 void ShapeMapMgr::load(LoadArg& arg)
 {
@@ -1484,17 +1467,15 @@ lbl_801638CC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80163928
- * Size:	000034
+/**
+ * @note Address: 0x80163928
+ * @note Size: 0x34
  */
 WaterBox* MapMgr::findWater(::Sys::Sphere& boundingSphere) { return (mSeaMgr != nullptr) ? mSeaMgr->findWater(boundingSphere) : nullptr; }
 
-/*
- * --INFO--
- * Address:	8016395C
- * Size:	00009C
+/**
+ * @note Address: 0x8016395C
+ * @note Size: 0x9C
  */
 void ShapeMapMgr::do_update()
 {
@@ -1508,10 +1489,9 @@ void ShapeMapMgr::do_update()
 	mMapModel->getJ3DModel()->diff();
 }
 
-/*
- * --INFO--
- * Address:	801639F8
- * Size:	000050
+/**
+ * @note Address: 0x801639F8
+ * @note Size: 0x50
  */
 void MapMgr::update()
 {
@@ -1522,10 +1502,9 @@ void MapMgr::update()
 	do_update();
 }
 
-/*
- * --INFO--
- * Address:	80163A4C
- * Size:	000018
+/**
+ * @note Address: 0x80163A4C
+ * @note Size: 0x18
  */
 void MapMgr::clearPerfMonitor()
 {
@@ -1535,20 +1514,18 @@ void MapMgr::clearPerfMonitor()
 	mMissedIntersectionCount = 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000258
+/**
+ * @note Address: N/A
+ * @note Size: 0x258
  */
 void MapMgr::draw2d(Graphics&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80163A64
- * Size:	0000AC
+/**
+ * @note Address: 0x80163A64
+ * @note Size: 0xAC
  */
 void ShapeMapMgr::drawCollision(Graphics& gfx, ::Sys::Sphere& boundingSphere)
 {
@@ -1563,17 +1540,15 @@ void ShapeMapMgr::drawCollision(Graphics& gfx, ::Sys::Sphere& boundingSphere)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80163B10
- * Size:	00002C
+/**
+ * @note Address: 0x80163B10
+ * @note Size: 0x2C
  */
 void ShapeMapMgr::createTriangles(::Sys::CreateTriangleArg& arg) { mMapCollision.createTriangles(arg); }
 
-/*
- * --INFO--
- * Address:	80163B70
- * Size:	00008C
+/**
+ * @note Address: 0x80163B70
+ * @note Size: 0x8C
  */
 f32 ShapeMapMgr::getMinY(Vector3f& pos)
 {
@@ -1585,17 +1560,15 @@ f32 ShapeMapMgr::getMinY(Vector3f& pos)
 	return info.mMinY;
 }
 
-/*
- * --INFO--
- * Address:	80163BFC
- * Size:	00002C
+/**
+ * @note Address: 0x80163BFC
+ * @note Size: 0x2C
  */
 void ShapeMapMgr::getCurrTri(CurrTriInfo& info) { mMapCollision.getCurrTri(info); }
 
-/*
- * --INFO--
- * Address:	80163C28
- * Size:	000038
+/**
+ * @note Address: 0x80163C28
+ * @note Size: 0x38
  */
 void ShapeMapMgr::doAnimation()
 {
@@ -1604,10 +1577,9 @@ void ShapeMapMgr::doAnimation()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80163C60
- * Size:	000060
+/**
+ * @note Address: 0x80163C60
+ * @note Size: 0x60
  */
 void ShapeMapMgr::doSetView(int viewportNumber)
 {
@@ -1617,10 +1589,9 @@ void ShapeMapMgr::doSetView(int viewportNumber)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80163CC0
- * Size:	00004C
+/**
+ * @note Address: 0x80163CC0
+ * @note Size: 0x4C
  */
 void ShapeMapMgr::doViewCalc()
 {
@@ -1631,10 +1602,9 @@ void ShapeMapMgr::doViewCalc()
 	mMapModel->viewCalc();
 }
 
-/*
- * --INFO--
- * Address:	80163D0C
- * Size:	0000C0
+/**
+ * @note Address: 0x80163D0C
+ * @note Size: 0xC0
  */
 void ShapeMapMgr::doEntry()
 {
@@ -1652,10 +1622,9 @@ void ShapeMapMgr::doEntry()
 	sys->mTimers->_stop("ENT-MAP");
 }
 
-/*
- * --INFO--
- * Address:	80163DCC
- * Size:	000214
+/**
+ * @note Address: 0x80163DCC
+ * @note Size: 0x214
  */
 bool ShapeMapMgr::findRayIntersection(Sys::RayIntersectInfo& info)
 {
@@ -1840,10 +1809,9 @@ lbl_80163F7C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80163FE0
- * Size:	000080
+/**
+ * @note Address: 0x80163FE0
+ * @note Size: 0x80
  */
 void ShapeMapMgr::getBoundBox2d(BoundBox2d& bounds)
 {
@@ -1852,10 +1820,9 @@ void ShapeMapMgr::getBoundBox2d(BoundBox2d& bounds)
 	bounds.fromBoundBox(calc);
 }
 
-/*
- * --INFO--
- * Address:	80164060
- * Size:	000090
+/**
+ * @note Address: 0x80164060
+ * @note Size: 0x90
  */
 void ShapeMapMgr::getBoundBox(BoundBox& bounds)
 {

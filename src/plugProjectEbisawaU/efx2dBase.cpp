@@ -6,10 +6,9 @@
 
 namespace efx2d {
 
-/*
- * --INFO--
- * Address:	803B9830
- * Size:	000098
+/**
+ * @note Address: 0x803B9830
+ * @note Size: 0x98
  */
 bool TSimple1::create(Arg* arg)
 {
@@ -25,10 +24,9 @@ bool TSimple1::create(Arg* arg)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	803B98C8
- * Size:	0000B0
+/**
+ * @note Address: 0x803B98C8
+ * @note Size: 0xB0
  */
 bool TSimple2::create(Arg* arg)
 {
@@ -44,10 +42,9 @@ bool TSimple2::create(Arg* arg)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	803B9978
- * Size:	0000B0
+/**
+ * @note Address: 0x803B9978
+ * @note Size: 0xB0
  */
 bool TSimple3::create(Arg* arg)
 {
@@ -64,10 +61,9 @@ bool TSimple3::create(Arg* arg)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	803B9A28
- * Size:	0000A4
+/**
+ * @note Address: 0x803B9A28
+ * @note Size: 0xA4
  */
 bool TForever::create(Arg* arg)
 {
@@ -83,10 +79,9 @@ bool TForever::create(Arg* arg)
 	return mEmitter != nullptr;
 }
 
-/*
- * --INFO--
- * Address:	803B9ACC
- * Size:	00003C
+/**
+ * @note Address: 0x803B9ACC
+ * @note Size: 0x3C
  */
 void TForever::kill()
 {
@@ -94,10 +89,9 @@ void TForever::kill()
 	mEmitter = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	803B9B08
- * Size:	00003C
+/**
+ * @note Address: 0x803B9B08
+ * @note Size: 0x3C
  */
 void TForever::fade()
 {
@@ -105,10 +99,9 @@ void TForever::fade()
 	mEmitter = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	803B9B44
- * Size:	000024
+/**
+ * @note Address: 0x803B9B44
+ * @note Size: 0x24
  */
 void TForever::setGlobalScale(f32 scale)
 {
@@ -123,10 +116,9 @@ void TForever::setGlobalScale(f32 scale)
 	emitter->mGlobalPScl.y = scale;
 }
 
-/*
- * --INFO--
- * Address:	803B9B68
- * Size:	000028
+/**
+ * @note Address: 0x803B9B68
+ * @note Size: 0x28
  */
 void TForever::setGlobalEnvColor(JUtility::TColor& color)
 {
@@ -137,10 +129,9 @@ void TForever::setGlobalEnvColor(JUtility::TColor& color)
 	mEmitter->mGlobalEnvClr.setRGB(color);
 }
 
-/*
- * --INFO--
- * Address:	803B9B90
- * Size:	000014
+/**
+ * @note Address: 0x803B9B90
+ * @note Size: 0x14
  */
 void TForever::setGlobalAlpha(u8 alpha)
 {
@@ -151,10 +142,9 @@ void TForever::setGlobalAlpha(u8 alpha)
 	mEmitter->mGlobalPrmClr.a = alpha;
 }
 
-/*
- * --INFO--
- * Address:	803B9BA4
- * Size:	000080
+/**
+ * @note Address: 0x803B9BA4
+ * @note Size: 0x80
  */
 TForeverN::TForeverN(u8 length)
     : mLength(length)
@@ -162,10 +152,9 @@ TForeverN::TForeverN(u8 length)
 	mForevers = new TForever[mLength];
 }
 
-/*
- * --INFO--
- * Address:	803B9C24
- * Size:	000050
+/**
+ * @note Address: 0x803B9C24
+ * @note Size: 0x50
  */
 TForever::TForever()
 {
@@ -173,10 +162,9 @@ TForever::TForever()
 	mEmitter = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	803B9C74
- * Size:	000098
+/**
+ * @note Address: 0x803B9C74
+ * @note Size: 0x98
  */
 bool TForeverN::create(Arg* arg)
 {
@@ -191,10 +179,9 @@ bool TForeverN::create(Arg* arg)
 	return success;
 }
 
-/*
- * --INFO--
- * Address:	803B9D0C
- * Size:	00006C
+/**
+ * @note Address: 0x803B9D0C
+ * @note Size: 0x6C
  */
 void TForeverN::kill()
 {
@@ -203,10 +190,9 @@ void TForeverN::kill()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803B9D78
- * Size:	00006C
+/**
+ * @note Address: 0x803B9D78
+ * @note Size: 0x6C
  */
 void TForeverN::fade()
 {
@@ -215,10 +201,9 @@ void TForeverN::fade()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803B9DE4
- * Size:	00007C
+/**
+ * @note Address: 0x803B9DE4
+ * @note Size: 0x7C
  */
 void TForeverN::setGroup(u8 group)
 {
@@ -227,10 +212,9 @@ void TForeverN::setGroup(u8 group)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803B9E60
- * Size:	000040
+/**
+ * @note Address: 0x803B9E60
+ * @note Size: 0x40
  */
 void TForeverN::setGlobalAlpha(u8 alpha)
 {
@@ -245,10 +229,9 @@ void TForeverN::setGlobalAlpha(u8 alpha)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803B9EA0
- * Size:	000088
+/**
+ * @note Address: 0x803B9EA0
+ * @note Size: 0x88
  */
 bool TChasePos::create(Arg* arg)
 {
@@ -267,10 +250,9 @@ bool TChasePos::create(Arg* arg)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	803B9F28
- * Size:	000078
+/**
+ * @note Address: 0x803B9F28
+ * @note Size: 0x78
  */
 void TChasePos::execute(JPABaseEmitter* emitter)
 {
@@ -284,10 +266,9 @@ void TChasePos::execute(JPABaseEmitter* emitter)
 	emitter->mGlobalTrs.z = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	803B9FA0
- * Size:	000088
+/**
+ * @note Address: 0x803B9FA0
+ * @note Size: 0x88
  */
 bool TChasePosDir::create(Arg* arg)
 {
@@ -306,10 +287,9 @@ bool TChasePosDir::create(Arg* arg)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	803BA028
- * Size:	0000B8
+/**
+ * @note Address: 0x803BA028
+ * @note Size: 0xB8
  */
 void TChasePosDir::execute(JPABaseEmitter* emitter)
 {

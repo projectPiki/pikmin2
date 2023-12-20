@@ -12,10 +12,9 @@ u8 GX2HWFiltConv[6] = { 0x00, 0x04, 0x01, 0x05, 0x02, 0x06 };
 
 #define GET_TILE_COUNT(a, b) (((a) + (1 << (b)) - 1) >> (b))
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 inline void __GXGetTexTileShift(GXTexFmt format, u32* widthTiles, u32* heightTiles)
 {
@@ -66,10 +65,9 @@ inline void __GXGetTexTileShift(GXTexFmt format, u32* widthTiles, u32* heightTil
 	}
 }
 
-/*
- * --INFO--
- * Address:	800E6F58
- * Size:	00015C
+/**
+ * @note Address: 0x800E6F58
+ * @note Size: 0x15C
  */
 u32 GXGetTexBufferSize(u16 width, u16 height, u32 format, GXBool mipmap, u8 max_lod)
 {
@@ -109,10 +107,9 @@ u32 GXGetTexBufferSize(u16 width, u16 height, u32 format, GXBool mipmap, u8 max_
 	return bufferSize;
 }
 
-/*
- * --INFO--
- * Address:	800E70B4
- * Size:	0000C8
+/**
+ * @note Address: 0x800E70B4
+ * @note Size: 0xC8
  */
 void __GetImageTileCount(GXTexFmt format, u16 width, u16 height, u32* a, u32* b, u32* c)
 {
@@ -133,10 +130,9 @@ void __GetImageTileCount(GXTexFmt format, u16 width, u16 height, u32* a, u32* b,
 	*c = (format == GX_TF_RGBA8 || format == GX_TF_Z24X8) ? 2 : 1;
 }
 
-/*
- * --INFO--
- * Address:	800E717C
- * Size:	00024C
+/**
+ * @note Address: 0x800E717C
+ * @note Size: 0x24C
  */
 void GXInitTexObj(GXTexObj* obj, void* imagePtr, u16 width, u16 height, GXTexFmt format, GXTexWrapMode sWrap, GXTexWrapMode tWrap,
                   GXBool useMIPmap)
@@ -220,10 +216,9 @@ void GXInitTexObj(GXTexObj* obj, void* imagePtr, u16 width, u16 height, GXTexFmt
 	internal->flags |= 2;
 }
 
-/*
- * --INFO--
- * Address:	800E73C8
- * Size:	000048
+/**
+ * @note Address: 0x800E73C8
+ * @note Size: 0x48
  */
 void GXInitTexObjCI(GXTexObj* obj, void* imagePtr, u16 width, u16 height, GXCITexFmt format, GXTexWrapMode sWrap, GXTexWrapMode tWrap,
                     GXBool useMIPmap, u32 tlutName)
@@ -236,10 +231,9 @@ void GXInitTexObjCI(GXTexObj* obj, void* imagePtr, u16 width, u16 height, GXCITe
 	internal->tlutName = tlutName;
 }
 
-/*
- * --INFO--
- * Address:	800E7410
- * Size:	000164
+/**
+ * @note Address: 0x800E7410
+ * @note Size: 0x164
  */
 void GXInitTexObjLOD(GXTexObj* obj, GXTexFilter minFilter, GXTexFilter maxFilter, f32 minLOD, f32 maxLOD, f32 lodBias, GXBool doBiasClamp,
                      GXBool doEdgeLOD, GXAnisotropy maxAniso)
@@ -279,170 +273,153 @@ void GXInitTexObjLOD(GXTexObj* obj, GXTexFilter minFilter, GXTexFilter maxFilter
 	GX_SET_REG(internal->mode1, reg2, 16, 23);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 void GXInitTexObjData(GXTexObj* obj, void* imagePtr)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 void GXInitTexObjWrapMode(GXTexObj* obj, GXTexWrapMode sWrap, GXTexWrapMode tWrap)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void GXInitTexObjTlut(GXTexObj* obj, u32 tlutName)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  */
 void GXInitTexObjFilter(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
+/**
+ * @note Address: N/A
+ * @note Size: 0x50
  */
 void GXInitTexObjMaxLOD(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
+/**
+ * @note Address: N/A
+ * @note Size: 0x50
  */
 void GXInitTexObjMinLOD(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 void GXInitTexObjLODBias(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 void GXInitTexObjBiasClamp(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void GXInitTexObjEdgeLOD(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 void GXInitTexObjMaxAniso(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void GXInitTexObjUserData(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void GXGetTexObjUserData(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000068
+/**
+ * @note Address: N/A
+ * @note Size: 0x68
  */
 void GXGetTexObjAll(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void GXGetTexObjData(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 void GXGetTexObjWidth(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 void GXGetTexObjHeight(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800E7574
- * Size:	000008
+/**
+ * @note Address: 0x800E7574
+ * @note Size: 0x8
  */
 GXTexFmt GXGetTexObjFmt(GXTexObj* obj)
 {
@@ -450,30 +427,27 @@ GXTexFmt GXGetTexObjFmt(GXTexObj* obj)
 	return pObj->format;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void GXGetTexObjWrapS(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void GXGetTexObjWrapT(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800E757C
- * Size:	000018
+/**
+ * @note Address: 0x800E757C
+ * @note Size: 0x18
  */
 GXBool GXGetTexObjMipMap(GXTexObj* obj)
 {
@@ -481,110 +455,99 @@ GXBool GXGetTexObjMipMap(GXTexObj* obj)
 	return (internal->flags & 1) == 1;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
+/**
+ * @note Address: N/A
+ * @note Size: 0xE4
  */
 void GXGetTexObjLODAll(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 void GXGetTexObjMinFilt(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void GXGetTexObjMagFilt(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 void GXGetTexObjMinLOD(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 void GXGetTexObjMaxLOD(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 void GXGetTexObjLODBias(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void GXGetTexObjBiasClamp(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 void GXGetTexObjEdgeLOD(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void GXGetTexObjMaxAniso(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void GXGetTexObjTlut(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800E7594
- * Size:	00017C
+/**
+ * @note Address: 0x800E7594
+ * @note Size: 0x17C
  */
 
 void GXLoadTexObjPreLoaded(GXTexObj* obj, GXTexRegion* region, GXTexMapID map)
@@ -624,10 +587,9 @@ void GXLoadTexObjPreLoaded(GXTexObj* obj, GXTexRegion* region, GXTexMapID map)
 	gx->bpSentNot = GX_FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800E7710
- * Size:	000054
+/**
+ * @note Address: 0x800E7710
+ * @note Size: 0x54
  */
 void GXLoadTexObj(GXTexObj* obj, GXTexMapID map)
 {
@@ -636,10 +598,9 @@ void GXLoadTexObj(GXTexObj* obj, GXTexMapID map)
 	GXLoadTexObjPreLoaded(obj, ret, map);
 }
 
-/*
- * --INFO--
- * Address:	800E7764
- * Size:	000038
+/**
+ * @note Address: 0x800E7764
+ * @note Size: 0x38
  */
 void GXInitTlutObj(GXTlutObj* obj, void* table, GXTlutFmt format, u16 numEntries)
 {
@@ -654,50 +615,45 @@ void GXInitTlutObj(GXTlutObj* obj, void* table, GXTlutFmt format, u16 numEntries
 	internal->numEntries = numEntries;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void GXGetTlutObjAll(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void GXGetTlutObjData(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void GXGetTlutObjFmt(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void GXGetTlutObjNumEntries(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800E779C
- * Size:	000098
+/**
+ * @note Address: 0x800E779C
+ * @note Size: 0x98
  */
 void GXLoadTlut(GXTlutObj* obj, u32 tlutName)
 {
@@ -718,10 +674,9 @@ void GXLoadTlut(GXTlutObj* obj, u32 tlutName)
 	ret->tlutObj = *internal;
 }
 
-/*
- * --INFO--
- * Address:	800E7834
- * Size:	0000F4
+/**
+ * @note Address: 0x800E7834
+ * @note Size: 0xF4
  */
 void GXInitTexCacheRegion(GXTexRegion* region, GXBool is32bMIPmap, u32 memEven, GXTexCacheSize sizeEven, u32 memOdd, GXTexCacheSize sizeOdd)
 {
@@ -771,30 +726,27 @@ void GXInitTexCacheRegion(GXTexRegion* region, GXBool is32bMIPmap, u32 memEven, 
 	internal->unkD = 1;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
+/**
+ * @note Address: N/A
+ * @note Size: 0x84
  */
 void GXInitTexPreLoadRegion(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00010C
+/**
+ * @note Address: N/A
+ * @note Size: 0x10C
  */
 void GXGetTexRegionAll(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800E7928
- * Size:	000038
+/**
+ * @note Address: 0x800E7928
+ * @note Size: 0x38
  */
 void GXInitTlutRegion(GXTlutRegion* region, u32 memAddr, GXTlutSize tlutSize)
 {
@@ -806,30 +758,27 @@ void GXInitTlutRegion(GXTlutRegion* region, u32 memAddr, GXTlutSize tlutSize)
 	GX_SET_REG(internal->unk0, 0x65, 0, 7);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 void GXGetTlutRegionAll(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00012C
+/**
+ * @note Address: N/A
+ * @note Size: 0x12C
  */
 void GXInvalidateTexRegion(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800E7960
- * Size:	000048
+/**
+ * @note Address: 0x800E7960
+ * @note Size: 0x48
  */
 void GXInvalidateTexAll(void)
 {
@@ -839,10 +788,9 @@ void GXInvalidateTexAll(void)
 	__GXFlushTextureState();
 }
 
-/*
- * --INFO--
- * Address:	800E79A8
- * Size:	000014
+/**
+ * @note Address: 0x800E79A8
+ * @note Size: 0x14
  */
 GXTexRegionCallback GXSetTexRegionCallback(GXTexRegionCallback func)
 {
@@ -853,10 +801,9 @@ GXTexRegionCallback GXSetTexRegionCallback(GXTexRegionCallback func)
 	return oldFunc;
 }
 
-/*
- * --INFO--
- * Address:	800E79BC
- * Size:	000014
+/**
+ * @note Address: 0x800E79BC
+ * @note Size: 0x14
  */
 GXTlutRegionCallback GXSetTlutRegionCallback(GXTlutRegionCallback func)
 {
@@ -867,50 +814,45 @@ GXTlutRegionCallback GXSetTlutRegionCallback(GXTlutRegionCallback func)
 	return oldFunc;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000264
+/**
+ * @note Address: N/A
+ * @note Size: 0x264
  */
 void GXPreLoadEntireTexture(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
+/**
+ * @note Address: N/A
+ * @note Size: 0x7C
  */
 void GXSetTexCoordScaleManually(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 void GXSetTexCoordCylWrap(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 void GXSetTexCoordBias(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800E79D0
- * Size:	0000A0
+/**
+ * @note Address: 0x800E79D0
+ * @note Size: 0xA0
  */
 void __SetSURegs(u32 texImgIndex, u32 setUpRegIndex)
 {
@@ -936,10 +878,9 @@ void __SetSURegs(u32 texImgIndex, u32 setUpRegIndex)
 	gx->bpSentNot = GX_FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800E7A70
- * Size:	00017C
+/**
+ * @note Address: 0x800E7A70
+ * @note Size: 0x17C
  */
 #pragma dont_inline on
 void __GXSetSUTexRegs(void)
@@ -997,20 +938,18 @@ void __GXSetSUTexRegs(void)
 }
 #pragma dont_inline reset
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
+/**
+ * @note Address: N/A
+ * @note Size: 0x30
  */
 void __GXGetSUTexSize(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800E7BEC
- * Size:	000354
+/**
+ * @note Address: 0x800E7BEC
+ * @note Size: 0x354
  */
 void __GXSetTmemConfig(u32 config)
 {

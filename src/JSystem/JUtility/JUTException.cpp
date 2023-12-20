@@ -36,10 +36,9 @@ const char* JUTException::sCpuExpName[OS_ERROR_MAX + 1]
 	    "FLOATING POINT",    "DECREMENTER",   "SYSTEM CALL",   "TRACE", "PERFORMACE MONITOR", "BREAK POINT", "SYSTEM INTERRUPT",
 	    "THERMAL INTERRUPT", "PROTECTION",    "FLOATING POINT" };
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
+/**
+ * @note Address: N/A
+ * @note Size: 0xE4
  */
 JUTException::JUTException(JUTDirectPrint* directPrint)
     : JKRThread(0x4000, 0x10, 0)
@@ -62,10 +61,9 @@ JUTException::JUTException(JUTDirectPrint* directPrint)
 	mPrintFlags       = EXPRINTFLAG_All;
 }
 
-/*
- * --INFO--
- * Address:	8002A30C
- * Size:	000110
+/**
+ * @note Address: 0x8002A30C
+ * @note Size: 0x110
  */
 JUTException* JUTException::create(JUTDirectPrint* directPrint)
 {
@@ -76,10 +74,9 @@ JUTException* JUTException::create(JUTDirectPrint* directPrint)
 	return sErrorManager;
 }
 
-/*
- * --INFO--
- * Address:	8002A41C
- * Size:	000120
+/**
+ * @note Address: 0x8002A41C
+ * @note Size: 0x120
  */
 void* JUTException::run()
 {
@@ -117,10 +114,9 @@ void* JUTException::run()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8002A53C
- * Size:	000104
+/**
+ * @note Address: 0x8002A53C
+ * @note Size: 0x104
  */
 void JUTException::errorHandler(OSError error, OSContext* context, u32 p3, u32 p4)
 {
@@ -144,10 +140,9 @@ void JUTException::errorHandler(OSError error, OSContext* context, u32 p3, u32 p
 	OSYieldThread();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000134
+/**
+ * @note Address: N/A
+ * @note Size: 0x134
  */
 void JUTException::panic_f_va(const char* fileName, int lineNumber, const char* format, va_list* args)
 {
@@ -176,10 +171,9 @@ void JUTException::panic_f_va(const char* fileName, int lineNumber, const char* 
 	OSSuspendThread(OSGetCurrentThread());
 }
 
-/*
- * --INFO--
- * Address:	8002A640
- * Size:	0001A0
+/**
+ * @note Address: 0x8002A640
+ * @note Size: 0x1A0
  */
 void JUTException::panic_f(const char* fileName, int lineNumber, const char* format, ...)
 {
@@ -190,9 +184,8 @@ void JUTException::panic_f(const char* fileName, int lineNumber, const char* for
 }
 
 /**
- * --INFO--
- * Address:	8002A7E0
- * Size:	000048
+ * @note Address: 0x8002A7E0
+ * @note Size: 0x48
  */
 void JUTException::setFPException(u32 enableBits)
 {
@@ -204,10 +197,9 @@ void JUTException::setFPException(u32 enableBits)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000184
+/**
+ * @note Address: N/A
+ * @note Size: 0x184
  */
 void JUTException::showFloatSub(int reg, float flt)
 {
@@ -226,10 +218,9 @@ void JUTException::showFloatSub(int reg, float flt)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8002A828
- * Size:	000770
+/**
+ * @note Address: 0x8002A828
+ * @note Size: 0x770
  * showFloat__12JUTExceptionFP9OSContext
  */
 void JUTException::showFloat(OSContext* context)
@@ -252,10 +243,9 @@ void JUTException::showFloat(OSContext* context)
 	sConsole->print("\n");
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C0
+/**
+ * @note Address: N/A
+ * @note Size: 0xC0
  */
 bool JUTException::searchPartialModule(u32 address, u32* module_id, u32* section_id, u32* section_offset, u32* name_offset)
 {
@@ -289,10 +279,9 @@ bool JUTException::searchPartialModule(u32 address, u32* module_id, u32* section
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
+/**
+ * @note Address: N/A
+ * @note Size: 0x78
  */
 void search_name_part(u8* src, u8* dst, int dst_length)
 {
@@ -319,10 +308,9 @@ void search_name_part(u8* src, u8* dst, int dst_length)
 	*dst = '\0';
 }
 
-/*
- * --INFO--
- * Address:	8002AF98
- * Size:	0000FC
+/**
+ * @note Address: 0x8002AF98
+ * @note Size: 0xFC
  */
 void JUTException::showStack(OSContext* context)
 {
@@ -348,10 +336,9 @@ void JUTException::showStack(OSContext* context)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8002B094
- * Size:	000244
+/**
+ * @note Address: 0x8002B094
+ * @note Size: 0x244
  */
 void JUTException::showMainInfo(OSError error, OSContext* context, u32 dsisr, u32 dar)
 {
@@ -412,10 +399,9 @@ void JUTException::showMainInfo(OSError error, OSContext* context, u32 dsisr, u3
 	sConsole->print_f("DSISR:  %08XH   DAR: %08XH\n", dsisr, dar);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000BC
+/**
+ * @note Address: N/A
+ * @note Size: 0xBC
  */
 void JUTException::showGPR(OSContext* context)
 {
@@ -431,10 +417,9 @@ void JUTException::showGPR(OSContext* context)
 	sConsole->print_f("R%02d:%08XH  R%02d:%08XH\n", 10, context->gpr[10], 21, context->gpr[21]);
 }
 
-/*
- * --INFO--
- * Address:	8002B2D8
- * Size:	000258
+/**
+ * @note Address: 0x8002B2D8
+ * @note Size: 0x258
  */
 bool JUTException::showMapInfo_subroutine(u32 address, bool begin_with_newline)
 {
@@ -484,10 +469,9 @@ bool JUTException::showMapInfo_subroutine(u32 address, bool begin_with_newline)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8002B530
- * Size:	0002F4
+/**
+ * @note Address: 0x8002B530
+ * @note Size: 0x2F4
  */
 void JUTException::showGPRMap(OSContext* context)
 {
@@ -519,10 +503,9 @@ void JUTException::showGPRMap(OSContext* context)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0002BC
+/**
+ * @note Address: N/A
+ * @note Size: 0x2BC
  */
 void JUTException::showSRR0Map(OSContext* context)
 {
@@ -541,10 +524,9 @@ void JUTException::showSRR0Map(OSContext* context)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8002B824
- * Size:	0003AC
+/**
+ * @note Address: 0x8002B824
+ * @note Size: 0x3AC
  */
 void JUTException::printDebugInfo(JUTException::EInfoPage page, OSError error, OSContext* context, u32 param_3, u32 param_4)
 {
@@ -566,10 +548,9 @@ void JUTException::printDebugInfo(JUTException::EInfoPage page, OSError error, O
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 bool JUTException::isEnablePad() const
 {
@@ -585,10 +566,9 @@ bool JUTException::isEnablePad() const
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8002BBD0
- * Size:	000570
+/**
+ * @note Address: 0x8002BBD0
+ * @note Size: 0x570
  */
 bool JUTException::readPad(u32* out_trigger, u32* out_button)
 {
@@ -663,10 +643,9 @@ bool JUTException::readPad(u32* out_trigger, u32* out_button)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	8002C140
- * Size:	0004E4
+/**
+ * @note Address: 0x8002C140
+ * @note Size: 0x4E4
  */
 void JUTException::printContext(OSError error, OSContext* context, u32 dsisr, u32 dar)
 {
@@ -828,10 +807,9 @@ void JUTException::printContext(OSError error, OSContext* context, u32 dsisr, u3
 	}
 }
 
-/*
- * --INFO--
- * Address:	8002C624
- * Size:	000088
+/**
+ * @note Address: 0x8002C624
+ * @note Size: 0x88
  */
 void JUTException::waitTime(long timeout_ms)
 {
@@ -846,10 +824,9 @@ void JUTException::waitTime(long timeout_ms)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8002C6AC
- * Size:	0000F4
+/**
+ * @note Address: 0x8002C6AC
+ * @note Size: 0xF4
  */
 void JUTException::createFB()
 {
@@ -880,30 +857,27 @@ void JUTException::createFB()
 	mFrameMemory = (JUTExternalFB*)object;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 u32 JUTException::getFpscr()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 void JUTException::setFpscr(u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8002C7A0
- * Size:	000010
+/**
+ * @note Address: 0x8002C7A0
+ * @note Size: 0x10
  */
 JUTExceptionHandler JUTException::setPreUserCallback(JUTExceptionHandler handler)
 {
@@ -912,10 +886,9 @@ JUTExceptionHandler JUTException::setPreUserCallback(JUTExceptionHandler handler
 	return oldCallback;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 JUTExceptionHandler JUTException::setPostUserCallback(JUTExceptionHandler handler)
 {
@@ -925,10 +898,9 @@ JUTExceptionHandler JUTException::setPostUserCallback(JUTExceptionHandler handle
 	return oldCallback;
 }
 
-/*
- * --INFO--
- * Address:	8002C7B0
- * Size:	000094
+/**
+ * @note Address: 0x8002C7B0
+ * @note Size: 0x94
  */
 void JUTException::appendMapFile(const char* fileName)
 {
@@ -945,20 +917,18 @@ void JUTException::appendMapFile(const char* fileName)
 	sMapFileList.append(&mapFile->mLink);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 // void JSULink<JUTException::JUTExMapFile>::~JSULink()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	8002C844
- * Size:	0000E0
+/**
+ * @note Address: 0x8002C844
+ * @note Size: 0xE0
  */
 bool JUTException::queryMapAddress(char* p1, u32 p2, long p3, u32* p4, u32* p5, char* p6, u32 p7, bool p8, bool p9)
 {
@@ -979,10 +949,9 @@ bool JUTException::queryMapAddress(char* p1, u32 p2, long p3, u32* p4, u32* p5, 
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8002C924
- * Size:	00033C
+/**
+ * @note Address: 0x8002C924
+ * @note Size: 0x33C
  */
 bool JUTException::queryMapAddress_single(char* mapPath, u32 address, s32 section_id, u32* out_addr, u32* out_size, char* out_line,
                                           u32 line_length, bool print, bool begin_with_newline)
@@ -1108,10 +1077,9 @@ bool JUTException::queryMapAddress_single(char* mapPath, u32 address, s32 sectio
 	return result ? true : false;
 }
 
-/*
- * --INFO--
- * Address:	8002CC60
- * Size:	0000E0
+/**
+ * @note Address: 0x8002CC60
+ * @note Size: 0xE0
  */
 void JUTException::createConsole(void* buffer, u32 bufferSize)
 {
@@ -1133,10 +1101,9 @@ void JUTException::createConsole(void* buffer, u32 bufferSize)
 	sConsole->setOutput(JUTConsole::CONSOLEOUT_OSReport | JUTConsole::CONSOLEOUT_Console);
 }
 
-/*
- * --INFO--
- * Address:	8002CD40
- * Size:	000020
+/**
+ * @note Address: 0x8002CD40
+ * @note Size: 0x20
  */
 JUTExternalFB::JUTExternalFB(GXRenderModeObj* renderModeObj, GXGamma gamma, void* p3, u32 p4)
     : mRenderModeObj(renderModeObj)
@@ -1147,20 +1114,18 @@ JUTExternalFB::JUTExternalFB(GXRenderModeObj* renderModeObj, GXGamma gamma, void
 {
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 void JUTException::enableFpuException()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 void JUTException::disableFpuException()
 {

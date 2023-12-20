@@ -13,10 +13,9 @@ namespace PikiAI {
 
 static const char aiBridgeName[] = "actBridge";
 
-/*
- * --INFO--
- * Address:	80212288
- * Size:	0000FC
+/**
+ * @note Address: 0x80212288
+ * @note Size: 0xFC
  */
 ActBridge::ActBridge(Game::Piki* parent)
     : Action(parent)
@@ -30,10 +29,9 @@ ActBridge::ActBridge(Game::Piki* parent)
 	mName = "Bridge";
 }
 
-/*
- * --INFO--
- * Address:	80212384
- * Size:	0000C8
+/**
+ * @note Address: 0x80212384
+ * @note Size: 0xC8
  */
 void ActBridge::init(ActionArg* actionArg)
 {
@@ -55,10 +53,9 @@ void ActBridge::init(ActionArg* actionArg)
 	initFollow();
 }
 
-/*
- * --INFO--
- * Address:	8021244C
- * Size:	000068
+/**
+ * @note Address: 0x8021244C
+ * @note Size: 0x68
  */
 void ActBridge::initFollow()
 {
@@ -67,10 +64,9 @@ void ActBridge::initFollow()
 	mState = 1;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00009C
+/**
+ * @note Address: N/A
+ * @note Size: 0x9C
  */
 void ActBridge::initGoto()
 {
@@ -79,10 +75,9 @@ void ActBridge::initGoto()
 	mState = 1;
 }
 
-/*
- * --INFO--
- * Address: --------
- * Size:    0000BC
+/**
+ * @note Address: 0x--------
+ * @note Size: 0xBC
  * --INLINE--
  */
 void ActBridge::initStickAttack()
@@ -104,10 +99,9 @@ void ActBridge::initStickAttack()
 	mState = 2;
 }
 
-/*
- * --INFO--
- * Address:	802124B4
- * Size:	00031C
+/**
+ * @note Address: 0x802124B4
+ * @note Size: 0x31C
  */
 int ActBridge::exec()
 {
@@ -161,10 +155,9 @@ int ActBridge::exec()
 	return 1;
 }
 
-/*
- * --INFO--
- * Address:	802127D0
- * Size:	00005C
+/**
+ * @note Address: 0x802127D0
+ * @note Size: 0x5C
  */
 void ActBridge::cleanup()
 {
@@ -177,10 +170,9 @@ void ActBridge::cleanup()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8021282C
- * Size:	000110
+/**
+ * @note Address: 0x8021282C
+ * @note Size: 0x110
  */
 void ActBridge::platCallback(Game::Piki* p, Game::PlatEvent& platEvent)
 {
@@ -198,17 +190,15 @@ void ActBridge::platCallback(Game::Piki* p, Game::PlatEvent& platEvent)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8021293C
- * Size:	000004
+/**
+ * @note Address: 0x8021293C
+ * @note Size: 0x4
  */
 void ActBridge::collisionCallback(Game::Piki*, Game::CollEvent&) { }
 
-/*
- * --INFO--
- * Address:	80212940
- * Size:	000004
+/**
+ * @note Address: 0x80212940
+ * @note Size: 0x4
  */
 void ActBridge::bounceCallback(Game::Piki*, Sys::Triangle*) { }
 

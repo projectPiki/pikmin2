@@ -13,10 +13,9 @@ namespace Kogane {
 static const int padding[]    = { 0, 0, 0 };
 static const char className[] = "ebiP2TitleKogane";
 
-/*
- * --INFO--
- * Address:	803E7358
- * Size:	000148
+/**
+ * @note Address: 0x803E7358
+ * @note Size: 0x148
  */
 TMgr::TMgr()
     : CNode("KoganeMgr")
@@ -25,10 +24,9 @@ TMgr::TMgr()
 	mObject   = new TUnit;
 }
 
-/*
- * --INFO--
- * Address:	803E74A0
- * Size:	000050
+/**
+ * @note Address: 0x803E74A0
+ * @note Size: 0x50
  */
 void TMgr::setArchive(JKRArchive* arc)
 {
@@ -36,17 +34,15 @@ void TMgr::setArchive(JKRArchive* arc)
 	mAnimator->setArchive(arc);
 }
 
-/*
- * --INFO--
- * Address:	803E74F0
- * Size:	000028
+/**
+ * @note Address: 0x803E74F0
+ * @note Size: 0x28
  */
 void TMgr::initUnit() { mObject->init(this); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
+/**
+ * @note Address: N/A
+ * @note Size: 0x78
  */
 void TAnimFolder::load(J3DModelData* modelData, JKRArchive* arc)
 {
@@ -56,16 +52,15 @@ void TAnimFolder::load(J3DModelData* modelData, JKRArchive* arc)
 	mAnims[1].mMode = 1;
 }
 
-/*
- * --INFO--
- * Address:	803E7518
- * Size:	000068
+/**
+ * @note Address: 0x803E7518
+ * @note Size: 0x68
  */
 TAnimator::TAnimator() { mModelData = nullptr; }
-/*
- * --INFO--
- * Address:	803E7580
- * Size:	00011C
+
+/**
+ * @note Address: 0x803E7580
+ * @note Size: 0x11C
  */
 void TAnimator::setArchive(JKRArchive* arc)
 {
@@ -82,23 +77,21 @@ void TAnimator::setArchive(JKRArchive* arc)
 	mAnimFolder.load(mModelData, arc);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
+/**
+ * @note Address: N/A
+ * @note Size: 0x78
  */
 J3DModel* TAnimator::newJ3DModel() { return new J3DModel(mModelData, 0x20000, 1); }
 
-/*
- * --INFO--
- * Address:	803E769C
- * Size:	000008
+/**
+ * @note Address: 0x803E769C
+ * @note Size: 0x8
  */
 void TUnit::setController(Controller* ctrl) { mControl = ctrl; }
-/*
- * --INFO--
- * Address:	803E76A4
- * Size:	0000F4
+
+/**
+ * @note Address: 0x803E76A4
+ * @note Size: 0xF4
  */
 void TUnit::init(TMgr* mgr)
 {
@@ -113,10 +106,10 @@ void TUnit::init(TMgr* mgr)
 	mParms[2] = mManager->mParams.mCollRadius.mValue;
 	mParms[3] = mManager->mParams.mPikiReactRadius.mValue;
 }
-/*
- * --INFO--
- * Address:	803E7798
- * Size:	00004C
+
+/**
+ * @note Address: 0x803E7798
+ * @note Size: 0x4C
  */
 void TUnit::startZigzagWalk(Vector2f& pos, Vector2f& targetPos)
 {
@@ -126,10 +119,9 @@ void TUnit::startZigzagWalk(Vector2f& pos, Vector2f& targetPos)
 	startState(KSTATE_ZigZagWalk);
 }
 
-/*
- * --INFO--
- * Address:	803E77E4
- * Size:	000030
+/**
+ * @note Address: 0x803E77E4
+ * @note Size: 0x30
  */
 void TUnit::goHome()
 {
@@ -138,31 +130,27 @@ void TUnit::goHome()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E7814
- * Size:	000024
+/**
+ * @note Address: 0x803E7814
+ * @note Size: 0x24
  */
 void TUnit::outOfCalc() { startState(KSTATE_Inactive); }
 
-/*
- * --INFO--
- * Address:	803E7838
- * Size:	000014
+/**
+ * @note Address: 0x803E7838
+ * @note Size: 0x14
  */
 bool TUnit::isCalc() { return (bool)mStateID != 0; }
 
-/*
- * --INFO--
- * Address:	803E784C
- * Size:	000014
+/**
+ * @note Address: 0x803E784C
+ * @note Size: 0x14
  */
 bool TUnit::isController() { return (u8)(mStateID == KSTATE_Controlled); };
 
-/*
- * --INFO--
- * Address:	803E7860
- * Size:	0002D0
+/**
+ * @note Address: 0x803E7860
+ * @note Size: 0x2D0
  */
 void TUnit::startState(enumState state)
 {
@@ -214,10 +202,9 @@ void TUnit::startState(enumState state)
 	}
 };
 
-/*
- * --INFO--
- * Address:	803E7B30
- * Size:	000734
+/**
+ * @note Address: 0x803E7B30
+ * @note Size: 0x734
  */
 void TUnit::update()
 {

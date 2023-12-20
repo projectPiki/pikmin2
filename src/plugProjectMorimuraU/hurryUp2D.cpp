@@ -19,10 +19,9 @@ f32 THurryUp2D::mScaleSp2  = 0.1f;
 f32 THurryUp2D::mScaleRate = 1.02f;
 f32 THurryUp2D::mColorUpSp = 1.0f;
 
-/*
- * --INFO--
- * Address:	80346178
- * Size:	000224
+/**
+ * @note Address: 0x80346178
+ * @note Size: 0x224
  */
 void THuWhitePaneSet::drawSelf(f32 height, f32 width, Mtx* mtx)
 {
@@ -65,10 +64,9 @@ void THuWhitePaneSet::drawSelf(f32 height, f32 width, Mtx* mtx)
 	_1A8 = Vector2f(xFactor, yOffs - getHeight() * 0.5f);
 }
 
-/*
- * --INFO--
- * Address:	8034639C
- * Size:	000094
+/**
+ * @note Address: 0x8034639C
+ * @note Size: 0x94
  */
 void THuWhitePaneSet::gxSet()
 {
@@ -82,10 +80,9 @@ void THuWhitePaneSet::gxSet()
 	GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
 }
 
-/*
- * --INFO--
- * Address:	80346430
- * Size:	0000B0
+/**
+ * @note Address: 0x80346430
+ * @note Size: 0xB0
  */
 THurryUp2D::THurryUp2D()
     : TTestBase("HurryUp2D")
@@ -107,10 +104,9 @@ THurryUp2D::THurryUp2D()
 {
 }
 
-/*
- * --INFO--
- * Address:	80346504
- * Size:	000390
+/**
+ * @note Address: 0x80346504
+ * @note Size: 0x390
  */
 void THurryUp2D::doCreate(JKRArchive* arc)
 {
@@ -150,10 +146,9 @@ void THurryUp2D::doCreate(JKRArchive* arc)
 	mPane2Pos = JGeometry::TVec2f(mPaneSundown->mOffset);
 }
 
-/*
- * --INFO--
- * Address:	80346894
- * Size:	00018C
+/**
+ * @note Address: 0x80346894
+ * @note Size: 0x18C
  */
 bool THurryUp2D::doUpdate()
 {
@@ -200,10 +195,9 @@ bool THurryUp2D::doUpdate()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80346A20
- * Size:	00040C
+/**
+ * @note Address: 0x80346A20
+ * @note Size: 0x40C
  */
 void THurryUp2D::doDraw(Graphics& gfx)
 {
@@ -517,10 +511,9 @@ lbl_80346DF4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80346E2C
- * Size:	00005C
+/**
+ * @note Address: 0x80346E2C
+ * @note Size: 0x5C
  */
 bool THurryUp2D::doStart(Screen::StartSceneArg const* arg)
 {
@@ -530,20 +523,18 @@ bool THurryUp2D::doStart(Screen::StartSceneArg const* arg)
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 void THurryUp2D::calcCount()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80346E88
- * Size:	0004C0
+/**
+ * @note Address: 0x80346E88
+ * @note Size: 0x4C0
  */
 void THurryUp2D::init()
 {
@@ -940,10 +931,9 @@ lbl_80347304:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80347348
- * Size:	0002CC
+/**
+ * @note Address: 0x80347348
+ * @note Size: 0x2CC
  */
 void THurryUp2D::move()
 {
@@ -985,10 +975,9 @@ void THurryUp2D::move()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80347614
- * Size:	000168
+/**
+ * @note Address: 0x80347614
+ * @note Size: 0x168
  */
 void THurryUp2D::scaleUp1()
 {
@@ -1014,10 +1003,9 @@ void THurryUp2D::scaleUp1()
 	mPaneSundown2->setAlpha(alpha);
 }
 
-/*
- * --INFO--
- * Address:	8034777C
- * Size:	0001B0
+/**
+ * @note Address: 0x8034777C
+ * @note Size: 0x1B0
  */
 void THurryUp2D::colorUp()
 {
@@ -1040,10 +1028,9 @@ void THurryUp2D::colorUp()
 	mPaneSundown2->setAlpha(alpha2);
 }
 
-/*
- * --INFO--
- * Address:	8034792C
- * Size:	000240
+/**
+ * @note Address: 0x8034792C
+ * @note Size: 0x240
  */
 void THurryUp2D::scaleUp2()
 {
@@ -1076,10 +1063,9 @@ void THurryUp2D::scaleUp2()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80347B6C
- * Size:	000254
+/**
+ * @note Address: 0x80347B6C
+ * @note Size: 0x254
  */
 void THurryUp2D::changeState(int state, f32 speed)
 {

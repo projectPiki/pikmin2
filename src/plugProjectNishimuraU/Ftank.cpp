@@ -3,17 +3,15 @@
 namespace Game {
 namespace Ftank {
 
-/*
- * --INFO--
- * Address:	8029E484
- * Size:	0000A4
+/**
+ * @note Address: 0x8029E484
+ * @note Size: 0xA4
  */
 Obj::Obj() { createEffect(); }
 
-/*
- * --INFO--
- * Address:	8029E528
- * Size:	0001A4
+/**
+ * @note Address: 0x8029E528
+ * @note Size: 0x1A4
  */
 void Obj::changeMaterial()
 {
@@ -42,17 +40,15 @@ void Obj::changeMaterial()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8029E6CC
- * Size:	000048
+/**
+ * @note Address: 0x8029E6CC
+ * @note Size: 0x48
  */
 void Obj::createEffect() { mTankEffect = new efx::TTankEffect(nullptr); }
 
-/*
- * --INFO--
- * Address:	8029EAF0
- * Size:	000054
+/**
+ * @note Address: 0x8029EAF0
+ * @note Size: 0x54
  */
 void Obj::setupEffect()
 {
@@ -65,17 +61,15 @@ void Obj::setupEffect()
 	effect->mEfxFireYodare.mMtx   = mtx;
 }
 
-/*
- * --INFO--
- * Address:	8029EB44
- * Size:	000034
+/**
+ * @note Address: 0x8029EB44
+ * @note Size: 0x34
  */
 void Obj::startEffect() { mTankEffect->mEfxFire.create(nullptr); }
 
-/*
- * --INFO--
- * Address:	8029EB78
- * Size:	000054
+/**
+ * @note Address: 0x8029EB78
+ * @note Size: 0x54
  */
 void Obj::startYodare()
 {
@@ -84,10 +78,9 @@ void Obj::startYodare()
 	tankEffect->mEfxFireYodare.create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8029EC64
- * Size:	000050
+/**
+ * @note Address: 0x8029EC64
+ * @note Size: 0x50
  */
 void Obj::finishEffect()
 {
@@ -96,10 +89,9 @@ void Obj::finishEffect()
 	effect->mEfxFireYodare.fade();
 }
 
-/*
- * --INFO--
- * Address:	8029ECB4
- * Size:	000064
+/**
+ * @note Address: 0x8029ECB4
+ * @note Size: 0x64
  */
 void Obj::effectDrawOn()
 {
@@ -109,10 +101,9 @@ void Obj::effectDrawOn()
 	effect->mEfxFireYodare.endDemoDrawOn();
 }
 
-/*
- * --INFO--
- * Address:	8029ED58
- * Size:	000064
+/**
+ * @note Address: 0x8029ED58
+ * @note Size: 0x64
  */
 void Obj::effectDrawOff()
 {
@@ -122,10 +113,9 @@ void Obj::effectDrawOff()
 	effect->mEfxFireYodare.startDemoDrawOff();
 }
 
-/*
- * --INFO--
- * Address:	8029EDFC
- * Size:	000060
+/**
+ * @note Address: 0x8029EDFC
+ * @note Size: 0x60
  */
 void Obj::interactCreature(Creature* creature)
 {
@@ -133,10 +123,9 @@ void Obj::interactCreature(Creature* creature)
 	creature->stimulate(fire);
 }
 
-/*
- * --INFO--
- * Address:	8029EE5C
- * Size:	000010
+/**
+ * @note Address: 0x8029EE5C
+ * @note Size: 0x10
  */
 void Obj::stopEffectRadius(f32 radius)
 {
@@ -145,17 +134,15 @@ void Obj::stopEffectRadius(f32 radius)
 	effect->mEfxFire.mEfxIND.mParticleCallBack._04 = radius;
 }
 
-/*
- * --INFO--
- * Address:	8029EE6C
- * Size:	000044
+/**
+ * @note Address: 0x8029EE6C
+ * @note Size: 0x44
  */
 void Obj::createChargeSE() { getJAIObject()->startSound(PSSE_EN_TANK_BREATH, 0); }
 
-/*
- * --INFO--
- * Address:	8029EEB0
- * Size:	000044
+/**
+ * @note Address: 0x8029EEB0
+ * @note Size: 0x44
  */
 void Obj::createDisChargeSE() { getJAIObject()->startSound(PSSE_EN_TANK_FIRE, 0); }
 

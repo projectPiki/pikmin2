@@ -6,10 +6,9 @@ static f32 Unit01[] = { 0.0f, 1.0f };
 
 extern f32 sinf(f32);
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 void C_MTXIdentity(Mtx mtx)
 {
@@ -25,10 +24,9 @@ void C_MTXIdentity(Mtx mtx)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800EA2A0
- * Size:	00002C
+/**
+ * @note Address: 0x800EA2A0
+ * @note Size: 0x2C
  */
 void PSMTXIdentity(register Mtx m)
 {
@@ -51,20 +49,18 @@ void PSMTXIdentity(register Mtx m)
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  */
 void C_MTXCopy(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800EA2CC
- * Size:	000034
+/**
+ * @note Address: 0x800EA2CC
+ * @note Size: 0x34
  */
 ASM void PSMTXCopy(const register Mtx src, register Mtx dst)
 {
@@ -88,20 +84,18 @@ ASM void PSMTXCopy(const register Mtx src, register Mtx dst)
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0002A8
+/**
+ * @note Address: N/A
+ * @note Size: 0x2A8
  */
 void C_MTXConcat(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800EA300
- * Size:	0000CC
+/**
+ * @note Address: 0x800EA300
+ * @note Size: 0xCC
  */
 ASM void PSMTXConcat(const register Mtx mA, // r3
                      const register Mtx mB, // r4
@@ -205,40 +199,36 @@ ASM void PSMTXConcat(const register Mtx mA, // r3
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000068
+/**
+ * @note Address: N/A
+ * @note Size: 0x68
  */
 void C_MTXConcatArray(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000158
+/**
+ * @note Address: N/A
+ * @note Size: 0x158
  */
 void PSMTXConcatArray(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00009C
+/**
+ * @note Address: N/A
+ * @note Size: 0x9C
  */
 void C_MTXTranspose(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800EA3CC
- * Size:	000050
+/**
+ * @note Address: 0x800EA3CC
+ * @note Size: 0x50
  */
 #pragma scheduling off
 void PSMTXTranspose(const register Mtx src, register Mtx xPose)
@@ -270,20 +260,19 @@ void PSMTXTranspose(const register Mtx src, register Mtx xPose)
 	}
 #endif // clang-format on
 }
-/*
- * --INFO--
- * Address:	........
- * Size:	0002AC
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x2AC
  */
 void C_MTXInverse(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800EA41C
- * Size:	0000F8
+/**
+ * @note Address: 0x800EA41C
+ * @note Size: 0xF8
  */
 ASM u32 PSMTXInverse(const register Mtx src, register Mtx inv)
 {
@@ -355,40 +344,36 @@ ASM u32 PSMTXInverse(const register Mtx src, register Mtx inv)
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00021C
+/**
+ * @note Address: N/A
+ * @note Size: 0x21C
  */
 void C_MTXInvXpose(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C8
+/**
+ * @note Address: N/A
+ * @note Size: 0xC8
  */
 void PSMTXInvXpose(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
+/**
+ * @note Address: N/A
+ * @note Size: 0x70
  */
 void C_MTXRotRad(void)
 {
 	// UNUSED FUNCTION
 }
 #pragma scheduling reset
-/*
- * --INFO--
- * Address:	800EA514
- * Size:	000070
+/**
+ * @note Address: 0x800EA514
+ * @note Size: 0x70
  */
 void PSMTXRotRad(Mtx m, char axis, f32 rad)
 {
@@ -398,20 +383,18 @@ void PSMTXRotRad(Mtx m, char axis, f32 rad)
 	PSMTXRotTrig(m, axis, sinA, cosA);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000104
+/**
+ * @note Address: N/A
+ * @note Size: 0x104
  */
 void C_MTXRotTrig(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800EA584
- * Size:	0000B0
+/**
+ * @note Address: 0x800EA584
+ * @note Size: 0xB0
  */
 void PSMTXRotTrig(register Mtx m, register char axis, register f32 sinA, register f32 cosA)
 {
@@ -482,20 +465,18 @@ void PSMTXRotTrig(register Mtx m, register char axis, register f32 sinA, registe
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000118
+/**
+ * @note Address: N/A
+ * @note Size: 0x118
  */
 void C_MTXRotAxisRad(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800EA634
- * Size:	0000B0
+/**
+ * @note Address: 0x800EA634
+ * @note Size: 0xB0
  */
 static void __PSMTXRotAxisRadInternal(register Mtx m, const register Vec* axis, register f32 sT, register f32 cT)
 {
@@ -552,10 +533,10 @@ static void __PSMTXRotAxisRadInternal(register Mtx m, const register Vec* axis, 
 	}
 #endif // clang-format on
 }
-/*
- * --INFO--
- * Address:	800EA6E4
- * Size:	000070
+
+/**
+ * @note Address: 0x800EA6E4
+ * @note Size: 0x70
  */
 void PSMTXRotAxisRad(Mtx m, const Vec* axis, f32 rad)
 {
@@ -567,20 +548,18 @@ void PSMTXRotAxisRad(Mtx m, const Vec* axis, f32 rad)
 	__PSMTXRotAxisRadInternal(m, axis, sinT, cosT);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 void C_MTXTrans(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800EA754
- * Size:	000034
+/**
+ * @note Address: 0x800EA754
+ * @note Size: 0x34
  */
 void PSMTXTrans(register Mtx m, register f32 xT, register f32 yT, register f32 zT)
 {
@@ -603,20 +582,18 @@ void PSMTXTrans(register Mtx m, register f32 xT, register f32 yT, register f32 z
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
+/**
+ * @note Address: N/A
+ * @note Size: 0x78
  */
 void C_MTXTransApply(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800EA788
- * Size:	00004C
+/**
+ * @note Address: 0x800EA788
+ * @note Size: 0x4C
  */
 ASM void PSMTXTransApply(const register Mtx src, register Mtx dst, register f32 xT, register f32 yT, register f32 zT)
 {
@@ -644,20 +621,18 @@ ASM void PSMTXTransApply(const register Mtx src, register Mtx dst, register f32 
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  */
 void C_MTXScale(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800EA7D4
- * Size:	000028
+/**
+ * @note Address: 0x800EA7D4
+ * @note Size: 0x28
  */
 void PSMTXScale(register Mtx m, register f32 xS, register f32 yS, register f32 zS)
 {
@@ -677,20 +652,18 @@ void PSMTXScale(register Mtx m, register f32 xS, register f32 yS, register f32 z
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
+/**
+ * @note Address: N/A
+ * @note Size: 0x94
  */
 void C_MTXScaleApply(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800EA7FC
- * Size:	000058
+/**
+ * @note Address: 0x800EA7FC
+ * @note Size: 0x58
  */
 ASM void PSMTXScaleApply(const register Mtx src, register Mtx dst, register f32 xS, register f32 yS, register f32 zS)
 {
@@ -721,20 +694,18 @@ ASM void PSMTXScaleApply(const register Mtx src, register Mtx dst, register f32 
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F0
+/**
+ * @note Address: N/A
+ * @note Size: 0xF0
  */
 void C_MTXQuat(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800EA854
- * Size:	0000A4
+/**
+ * @note Address: 0x800EA854
+ * @note Size: 0xA4
  */
 void PSMTXQuat(register Mtx m, const register PSQuaternion* q)
 {
@@ -786,20 +757,19 @@ void PSMTXQuat(register Mtx m, const register PSQuaternion* q)
 	}
 #endif // clang-format on
 }
-/*
- * --INFO--
- * Address:	........
- * Size:	000100
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x100
  */
 void C_MTXReflect(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
+/**
+ * @note Address: N/A
+ * @note Size: 0x70
  */
 void PSMTXReflect(void)
 {
@@ -808,10 +778,9 @@ void PSMTXReflect(void)
 
 #pragma fp_contract off
 
-/*
- * --INFO--
- * Address:	800EA8F8
- * Size:	00018C
+/**
+ * @note Address: 0x800EA8F8
+ * @note Size: 0x18C
  */
 void C_MTXLookAt(Mtx m, const Vec* camPos, const Vec* camUp, const Vec* target)
 {
@@ -844,10 +813,9 @@ void C_MTXLookAt(Mtx m, const Vec* camPos, const Vec* camUp, const Vec* target)
 	m[2][3] = -(camPos->x * vLook.x + camPos->y * vLook.y + camPos->z * vLook.z);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
+/**
+ * @note Address: N/A
+ * @note Size: 0x94
  */
 void C_MTXLightFrustum(Mtx m, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9)
 {
@@ -867,10 +835,9 @@ void C_MTXLightFrustum(Mtx m, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, 
 	m[2][3] = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	800EAA84
- * Size:	0000CC
+/**
+ * @note Address: 0x800EAA84
+ * @note Size: 0xCC
  */
 void C_MTXLightPerspective(Mtx m, f32 fovY, f32 aspect, f32 scaleS, f32 scaleT, f32 transS, f32 transT)
 {
@@ -898,10 +865,9 @@ void C_MTXLightPerspective(Mtx m, f32 fovY, f32 aspect, f32 scaleS, f32 scaleT, 
 	m[2][3] = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	800EAB50
- * Size:	000088
+/**
+ * @note Address: 0x800EAB50
+ * @note Size: 0x88
  */
 void C_MTXLightOrtho(Mtx m, f32 t, f32 b, f32 l, f32 r, f32 scaleS, f32 scaleT, f32 transS, f32 transT)
 {

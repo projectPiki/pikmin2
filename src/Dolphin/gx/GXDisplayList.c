@@ -1,9 +1,8 @@
 #include "Dolphin/gx.h"
 
-/*
- * --INFO--
- * Address:	800E93D8
- * Size:	000070
+/**
+ * @note Address: 0x800E93D8
+ * @note Size: 0x70
  */
 void GXCallDisplayList(void* dl, u32 byteCnt)
 {

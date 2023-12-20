@@ -6,10 +6,9 @@
 
 J2DBloSaver::CTextureNameConnect* J2DBloSaver::TextureNameConnect = nullptr;
 
-/*
- * --INFO--
- * Address:	........
- * Size:	001158
+/**
+ * @note Address: N/A
+ * @note Size: 0x1158
  */
 void J2DBloSaver::writeMaterialBlock(const MaterialName*, J2DMaterial**, u16, const ResTIMGName*, u16)
 {
@@ -19,10 +18,9 @@ void J2DBloSaver::writeMaterialBlock(const MaterialName*, J2DMaterial**, u16, co
 	u16 texNo = block->getTexNo(0);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00044C
+/**
+ * @note Address: N/A
+ * @note Size: 0x44C
  */
 void J2DMaterial_SaveBlock::countParts(J2DMaterial**, u16)
 {
@@ -33,10 +31,9 @@ void J2DMaterial_SaveBlock::countParts(J2DMaterial**, u16)
 	block->getTevSwapModeTable(0);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0003FC
+/**
+ * @note Address: N/A
+ * @note Size: 0x3FC
  */
 void J2DMaterial_SaveBlock::setOffset(J2DMaterial**, u16, JUTNameTab*)
 {
@@ -45,17 +42,15 @@ void J2DMaterial_SaveBlock::setOffset(J2DMaterial**, u16, JUTNameTab*)
 	block->getIndTexStageNum();
 }
 
-/*
- * --INFO--
- * Address:	80049518
- * Size:	000050
+/**
+ * @note Address: 0x80049518
+ * @note Size: 0x50
  */
 J2DBloSaver::CTextureNameConnect::~CTextureNameConnect() { clear(); }
 
-/*
- * --INFO--
- * Address:	80049568
- * Size:	000070
+/**
+ * @note Address: 0x80049568
+ * @note Size: 0x70
  */
 void J2DBloSaver::CTextureNameConnect::clear()
 {
@@ -68,10 +63,9 @@ void J2DBloSaver::CTextureNameConnect::clear()
 	mElements = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	800495D8
- * Size:	000068
+/**
+ * @note Address: 0x800495D8
+ * @note Size: 0x68
  */
 J2DTevStage::J2DTevStage()
 {
@@ -87,10 +81,9 @@ J2DTevStage::J2DTevStage()
 	_07        = flag2 | rasSel;
 }
 
-/*
- * --INFO--
- * Address:	80049640
- * Size:	0001E0
+/**
+ * @note Address: 0x80049640
+ * @note Size: 0x1E0
  */
 void J2DTevStage::setTevStageInfo(const J2DTevStageInfo& info)
 {

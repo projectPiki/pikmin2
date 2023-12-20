@@ -2,10 +2,9 @@
 #include "RootMenuSection.h"
 #include "System.h"
 
-/*
- * --INFO--
- * Address:	804245CC
- * Size:	000048
+/**
+ * @note Address: 0x804245CC
+ * @note Size: 0x48
  */
 MenuSection::MenuSection(JFWDisplay* display, JKRHeap* heap, bool b)
     : Section(display, heap, b)
@@ -14,10 +13,9 @@ MenuSection::MenuSection(JFWDisplay* display, JKRHeap* heap, bool b)
 	mIsDone         = false;
 }
 
-/*
- * --INFO--
- * Address:	80424614
- * Size:	000054
+/**
+ * @note Address: 0x80424614
+ * @note Size: 0x54
  */
 void MenuSection::run()
 {
@@ -28,10 +26,9 @@ void MenuSection::run()
 	} while (!mIsDone);
 }
 
-/*
- * --INFO--
- * Address:	80424668
- * Size:	000148
+/**
+ * @note Address: 0x80424668
+ * @note Size: 0x148
  */
 bool MenuSection::runChildSection()
 {

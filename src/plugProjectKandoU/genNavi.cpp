@@ -4,19 +4,17 @@
 #include "SysShape/AnimInfo.h"
 #include "BaseParm.h"
 
-/*
+/**
  * --LOCAL--
- * --INFO--
- * Address:	801ACA08
- * Size:	0000B8
+ * @note Address: 0x801ACA08
+ * @note Size: 0xB8
  */
 Game::GenObject* makeObjectNavi() { return new Game::GenObjectNavi(); }
 
 namespace Game {
-/*
- * --INFO--
- * Address:	801ACAC0
- * Size:	00008C
+/**
+ * @note Address: 0x801ACAC0
+ * @note Size: 0x8C
  * Matches
  */
 void GenObjectNavi::initialise()
@@ -31,24 +29,21 @@ void GenObjectNavi::initialise()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801ACB4C
- * Size:	000004
+/**
+ * @note Address: 0x801ACB4C
+ * @note Size: 0x4
  */
 void GenObjectNavi::ramSaveParameters(Stream&) { }
 
-/*
- * --INFO--
- * Address:	801ACB50
- * Size:	000004
+/**
+ * @note Address: 0x801ACB50
+ * @note Size: 0x4
  */
 void GenObjectNavi::ramLoadParameters(Stream&) { }
 
-/*
- * --INFO--
- * Address:	801ACB54
- * Size:	000078
+/**
+ * @note Address: 0x801ACB54
+ * @note Size: 0x78
  * Matches
  */
 Creature* GenObjectNavi::generate(Generator* gen)
@@ -60,10 +55,9 @@ Creature* GenObjectNavi::generate(Generator* gen)
 	return birth(&arg);
 }
 
-/*
- * --INFO--
- * Address:	801ACBCC
- * Size:	000138
+/**
+ * @note Address: 0x801ACBCC
+ * @note Size: 0x138
  */
 Creature* GenObjectNavi::birth(GenArg* arg)
 {

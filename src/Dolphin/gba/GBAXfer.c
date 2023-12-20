@@ -2,10 +2,9 @@
 #include "Dolphin/os.h"
 #include "Dolphin/si.h"
 
-/*
- * --INFO--
- * Address:	800FEF58
- * Size:	0000DC
+/**
+ * @note Address: 0x800FEF58
+ * @note Size: 0xDC
  */
 static void __GBAHandler(s32 chan, u32 flag, OSContext* context)
 {
@@ -37,17 +36,15 @@ static void __GBAHandler(s32 chan, u32 flag, OSContext* context)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800FF034
- * Size:	000034
+/**
+ * @note Address: 0x800FF034
+ * @note Size: 0x34
  */
 void __GBASyncCallback(s32 chan, int ret) { OSWakeupThread(&__GBA[chan].threadQueue); }
 
-/*
- * --INFO--
- * Address:	800FF068
- * Size:	00006C
+/**
+ * @note Address: 0x800FF068
+ * @note Size: 0x6C
  */
 int __GBASync(s32 chan)
 {
@@ -62,10 +59,9 @@ int __GBASync(s32 chan)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	800FF0D4
- * Size:	000124
+/**
+ * @note Address: 0x800FF0D4
+ * @note Size: 0x124
  */
 static void TypeAndStatusCallback(s32 chan, u32 flags)
 {
@@ -103,10 +99,9 @@ static void TypeAndStatusCallback(s32 chan, u32 flags)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800FF1F8
- * Size:	000074
+/**
+ * @note Address: 0x800FF1F8
+ * @note Size: 0x74
  */
 BOOL __GBATransfer(s32 chan, u32 outputBytes, u32 inputBytes, GBAProcHandler gbaProcHandler)
 {

@@ -1,29 +1,26 @@
 static void (*FatalFunc)();
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00008C
+/**
+ * @note Address: N/A
+ * @note Size: 0x8C
  */
 /* void ShowMessage(void)
 {
     // UNUSED FUNCTION
 } */
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
+/**
+ * @note Address: N/A
+ * @note Size: 0x70
  */
 /* void DVDSetAutoFatalMessaging(void)
 {
     // UNUSED FUNCTION
 } */
 
-/*
- * --INFO--
- * Address:	800DF8E4
- * Size:	000030
+/**
+ * @note Address: 0x800DF8E4
+ * @note Size: 0x30
  */
 void __DVDPrintFatalMessage(void)
 {

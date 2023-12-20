@@ -13,17 +13,15 @@ static void _Print(char*, ...)
 namespace Game {
 namespace VsGame {
 
-/*
- * --INFO--
- * Address:	8022EA94
- * Size:	000044
+/**
+ * @note Address: 0x8022EA94
+ * @note Size: 0x44
  */
 VSState::VSState() { mId = 3; }
 
-/*
- * --INFO--
- * Address:	8022EAD8
- * Size:	0000CC
+/**
+ * @note Address: 0x8022EAD8
+ * @note Size: 0xCC
  */
 void VSState::do_init(VsGameSection* gameSection)
 {

@@ -19,10 +19,9 @@ f32 sBoss_ViewDistVol = 0.3f;
 f32 sBoss_DistMax     = 4000.0f;
 EnemyBigBoss* sBigBoss;
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
+/**
+ * @note Address: N/A
+ * @note Size: 0x50
  */
 ObjBase::ObjBase()
     : JSUPtrLink(this)
@@ -30,10 +29,9 @@ ObjBase::ObjBase()
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8045CE64
- * Size:	000080
+/**
+ * @note Address: 0x8045CE64
+ * @note Size: 0x80
  */
 ObjBase::~ObjBase()
 {
@@ -77,20 +75,18 @@ lbl_8045CEC8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045CEE4
- * Size:	00004C
+/**
+ * @note Address: 0x8045CEE4
+ * @note Size: 0x4C
  */
 void ObjMgr::frameEnd_onPlaySe()
 {
 	FOREACH_NODE(JSULink<ObjBase>, mHead, link) { link->getObject()->frameEnd_onPlaySe(); }
 }
 
-/*
- * --INFO--
- * Address:	8045CF30
- * Size:	000104
+/**
+ * @note Address: 0x8045CF30
+ * @note Size: 0x104
  */
 ObjMgr::~ObjMgr()
 {
@@ -185,10 +181,9 @@ lbl_8045D014:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000CC
+/**
+ * @note Address: N/A
+ * @note Size: 0xCC
  */
 Creature::Creature(Game::Creature* gameObj)
     : mGameObj(gameObj)
@@ -198,20 +193,18 @@ Creature::Creature(Game::Creature* gameObj)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 bool Creature::isVisible()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8045D034
- * Size:	000058
+/**
+ * @note Address: 0x8045D034
+ * @note Size: 0x58
  */
 void Creature::exec()
 {
@@ -220,20 +213,18 @@ void Creature::exec()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8045D08C
- * Size:	000128
+/**
+ * @note Address: 0x8045D08C
+ * @note Size: 0x128
  */
 bool Creature::judgeNearWithPlayer(const Vec& pos1, const Vec& pos2, f32 near, f32 far)
 {
 	return PSMath::calcDistanceInRange(pos1, pos2, near, far);
 }
 
-/*
- * --INFO--
- * Address:	8045D1B4
- * Size:	0000A0
+/**
+ * @note Address: 0x8045D1B4
+ * @note Size: 0xA0
  */
 bool Creature::isNear(Game::Creature* obj, f32 near)
 {
@@ -284,10 +275,9 @@ bool Creature::isNear(Game::Creature* obj, f32 near)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045D254
- * Size:	000070
+/**
+ * @note Address: 0x8045D254
+ * @note Size: 0x70
  */
 u8 Creature::getPlayingHandleNum()
 {
@@ -301,10 +291,9 @@ u8 Creature::getPlayingHandleNum()
 	return num;
 }
 
-/*
- * --INFO--
- * Address:	8045D2C4
- * Size:	00015C
+/**
+ * @note Address: 0x8045D2C4
+ * @note Size: 0x15C
  */
 void Creature::loopCalc(FrameCalcArg& arg)
 {
@@ -411,10 +400,9 @@ lbl_8045D3D4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045D420
- * Size:	000380
+/**
+ * @note Address: 0x8045D420
+ * @note Size: 0x380
  */
 JAISound* Creature::startSoundInner(PSM::StartSoundArg& arg)
 {
@@ -691,17 +679,15 @@ lbl_8045D78C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045D7A0
- * Size:	000004
+/**
+ * @note Address: 0x8045D7A0
+ * @note Size: 0x4
  */
 void Creature::onPlayingSe(u32, JAISound*) { }
 
-/*
- * --INFO--
- * Address:	8045D7A4
- * Size:	00010C
+/**
+ * @note Address: 0x8045D7A4
+ * @note Size: 0x10C
  */
 CreatureObj::CreatureObj(Game::Creature* gameObj, u8 p2)
     : Creature(gameObj)
@@ -709,10 +695,9 @@ CreatureObj::CreatureObj(Game::Creature* gameObj, u8 p2)
 {
 }
 
-/*
- * --INFO--
- * Address:	8045D948
- * Size:	00003C
+/**
+ * @note Address: 0x8045D948
+ * @note Size: 0x3C
  */
 JAISound* CreatureObj::startSound(u32 soundID, u32 a2)
 {
@@ -720,10 +705,9 @@ JAISound* CreatureObj::startSound(u32 soundID, u32 a2)
 	return startSoundInner(arg);
 }
 
-/*
- * --INFO--
- * Address:	8045D984
- * Size:	00008C
+/**
+ * @note Address: 0x8045D984
+ * @note Size: 0x8C
  */
 void CreatureObj::startSound(u8 id, u32 soundID, u32 a3)
 {
@@ -731,10 +715,9 @@ void CreatureObj::startSound(u8 id, u32 soundID, u32 a3)
 	JAIBasic::msBasic->startSoundVecT(soundID, &mSounds[id], _24, a3, 0, players);
 }
 
-/*
- * --INFO--
- * Address:	8045DA10
- * Size:	0000A8
+/**
+ * @note Address: 0x8045DA10
+ * @note Size: 0xA8
  */
 void CreatureObj::startSound(JAISound** se, u32 soundID, u32 a3)
 {
@@ -743,10 +726,9 @@ void CreatureObj::startSound(JAISound** se, u32 soundID, u32 a3)
 	JAIBasic::msBasic->startSoundVecT(soundID, se, _24, a3, 0, PSSystem::SingletonBase<ObjCalcBase>::sInstance->getPlayerNo(this));
 }
 
-/*
- * --INFO--
- * Address:	8045DAB8
- * Size:	00004C
+/**
+ * @note Address: 0x8045DAB8
+ * @note Size: 0x4C
  */
 void CreatureObj::frameEnd_onPlaySe()
 {
@@ -754,10 +736,9 @@ void CreatureObj::frameEnd_onPlaySe()
 	loopCalc(arg);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000118
+/**
+ * @note Address: N/A
+ * @note Size: 0x118
  */
 inline CreatureAnime::CreatureAnime(Game::Creature* gameObj, u8 p2)
     : Creature(gameObj)
@@ -768,10 +749,9 @@ inline CreatureAnime::CreatureAnime(Game::Creature* gameObj, u8 p2)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8045DB04
- * Size:	000148
+/**
+ * @note Address: 0x8045DB04
+ * @note Size: 0x148
  */
 void CreatureAnime::startAnimSound(u32 soundID, JAISound** se, JAInter::Actor* actor, u8)
 {
@@ -789,10 +769,9 @@ void CreatureAnime::startAnimSound(u32 soundID, JAISound** se, JAInter::Actor* a
 	}
 }
 
-/*
- * --INFO--
- * Address:	8045DC4C
- * Size:	00003C
+/**
+ * @note Address: 0x8045DC4C
+ * @note Size: 0x3C
  */
 JAISound* CreatureAnime::startSound(u32 soundID, u32 a2)
 {
@@ -800,10 +779,9 @@ JAISound* CreatureAnime::startSound(u32 soundID, u32 a2)
 	return startSoundInner(arg);
 }
 
-/*
- * --INFO--
- * Address:	8045DC88
- * Size:	0000B0
+/**
+ * @note Address: 0x8045DC88
+ * @note Size: 0xB0
  */
 void CreatureAnime::startSound(u8 id, u32 soundID, u32 a3)
 {
@@ -813,10 +791,9 @@ void CreatureAnime::startSound(u8 id, u32 soundID, u32 a3)
 	                                  PSSystem::SingletonBase<ObjCalcBase>::sInstance->getPlayerNo(this));
 }
 
-/*
- * --INFO--
- * Address:	8045DD38
- * Size:	0000A8
+/**
+ * @note Address: 0x8045DD38
+ * @note Size: 0xA8
  */
 void CreatureAnime::startSound(JAISound** se, u32 soundID, u32 a3)
 {
@@ -825,10 +802,9 @@ void CreatureAnime::startSound(JAISound** se, u32 soundID, u32 a3)
 	JAIBasic::msBasic->startSoundVecT(soundID, se, _24, a3, 0, PSSystem::SingletonBase<ObjCalcBase>::sInstance->getPlayerNo(this));
 }
 
-/*
- * --INFO--
- * Address:	8045DDE0
- * Size:	000040
+/**
+ * @note Address: 0x8045DDE0
+ * @note Size: 0x40
  */
 void CreatureAnime::setAnime(JAIAnimeSoundData* data, u32 a1, f32 a2, f32 a3)
 {
@@ -841,10 +817,9 @@ void CreatureAnime::setAnime(JAIAnimeSoundData* data, u32 a1, f32 a2, f32 a3)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8045DE20
- * Size:	000304
+/**
+ * @note Address: 0x8045DE20
+ * @note Size: 0x304
  */
 void CreatureAnime::playActorAnimSound(JAInter::Actor* actor, f32 pitchmod, u8 a2)
 {
@@ -1135,10 +1110,9 @@ lbl_8045E108:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045E124
- * Size:	0000B4
+/**
+ * @note Address: 0x8045E124
+ * @note Size: 0xB4
  */
 void CreatureAnime::exec()
 {
@@ -1154,10 +1128,9 @@ void CreatureAnime::exec()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8045E1D8
- * Size:	0000C8
+/**
+ * @note Address: 0x8045E1D8
+ * @note Size: 0xC8
  */
 void CreatureAnime::onCalcOn()
 {
@@ -1213,24 +1186,21 @@ r3 lwz      r3, 0x2c(r30) lwz      r12, 0(r3) lwz      r12, 0x10c(r12) mtctr r12
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045E2A0
- * Size:	000024
+/**
+ * @note Address: 0x8045E2A0
+ * @note Size: 0x24
  */
 void CreatureAnime::onCalcTurnOn() { static_cast<Game::EnemyBase*>(mGameObj)->setPSEnemyBaseAnime(); }
 
-/*
- * --INFO--
- * Address:	8045E2C4
- * Size:	000004
+/**
+ * @note Address: 0x8045E2C4
+ * @note Size: 0x4
  */
 void CreatureAnime::onCalcTurnOff() { }
 
-/*
- * --INFO--
- * Address:	8045E2C8
- * Size:	00004C
+/**
+ * @note Address: 0x8045E2C8
+ * @note Size: 0x4C
  */
 void CreatureAnime::frameEnd_onPlaySe()
 {
@@ -1238,10 +1208,9 @@ void CreatureAnime::frameEnd_onPlaySe()
 	loopCalc(arg);
 }
 
-/*
- * --INFO--
- * Address:	8045E314
- * Size:	00004C
+/**
+ * @note Address: 0x8045E314
+ * @note Size: 0x4C
  */
 void BattleLink::battleOn()
 {
@@ -1251,10 +1220,9 @@ void BattleLink::battleOn()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8045E360
- * Size:	00004C
+/**
+ * @note Address: 0x8045E360
+ * @note Size: 0x4C
  */
 void BattleLink::battleOff()
 {
@@ -1264,10 +1232,9 @@ void BattleLink::battleOff()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8045E3AC
- * Size:	00004C
+/**
+ * @note Address: 0x8045E3AC
+ * @note Size: 0x4C
  */
 void KehaiLink::kehaiOn()
 {
@@ -1277,10 +1244,9 @@ void KehaiLink::kehaiOn()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8045E3F8
- * Size:	00004C
+/**
+ * @note Address: 0x8045E3F8
+ * @note Size: 0x4C
  */
 void KehaiLink::kehaiOff()
 {
@@ -1290,10 +1256,9 @@ void KehaiLink::kehaiOff()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8045E444
- * Size:	000180
+/**
+ * @note Address: 0x8045E444
+ * @note Size: 0x180
  */
 EnemyBase::EnemyBase(Game::EnemyBase* gameObj, u8 p2)
     : CreatureAnime(gameObj, p2)
@@ -1302,10 +1267,9 @@ EnemyBase::EnemyBase(Game::EnemyBase* gameObj, u8 p2)
 {
 }
 
-/*
- * --INFO--
- * Address:	8045E6A0
- * Size:	000174
+/**
+ * @note Address: 0x8045E6A0
+ * @note Size: 0x174
  */
 void EnemyBase::startAnimSound(u32 soundID, JAISound** se, JAInter::Actor* actor, u8 a1)
 {
@@ -1425,10 +1389,9 @@ void EnemyBase::startAnimSound(u32 soundID, JAISound** se, JAInter::Actor* actor
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045E814
- * Size:	00005C
+/**
+ * @note Address: 0x8045E814
+ * @note Size: 0x5C
  */
 JAISound* EnemyBase::startSoundInner(PSM::StartSoundArg& arg)
 {
@@ -1470,10 +1433,9 @@ lbl_8045E860:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045E870
- * Size:	000044
+/**
+ * @note Address: 0x8045E870
+ * @note Size: 0x44
  */
 void EnemyBase::onCalcTurnOn()
 {
@@ -1481,10 +1443,9 @@ void EnemyBase::onCalcTurnOn()
 	updateKehai();
 }
 
-/*
- * --INFO--
- * Address:	8045E8B4
- * Size:	00004C
+/**
+ * @note Address: 0x8045E8B4
+ * @note Size: 0x4C
  */
 void EnemyBase::onCalcTurnOff()
 {
@@ -1492,10 +1453,9 @@ void EnemyBase::onCalcTurnOff()
 	kehaiOff();
 }
 
-/*
- * --INFO--
- * Address:	8045E900
- * Size:	0000F0
+/**
+ * @note Address: 0x8045E900
+ * @note Size: 0xF0
  */
 void EnemyBase::onCalcOn()
 {
@@ -1504,10 +1464,9 @@ void EnemyBase::onCalcOn()
 	updateKehai();
 }
 
-/*
- * --INFO--
- * Address:	8045E9F0
- * Size:	000060
+/**
+ * @note Address: 0x8045E9F0
+ * @note Size: 0x60
  */
 void EnemyBase::battleOff()
 {
@@ -1515,10 +1474,9 @@ void EnemyBase::battleOff()
 	updateKehai();
 }
 
-/*
- * --INFO--
- * Address:	8045EA50
- * Size:	000088
+/**
+ * @note Address: 0x8045EA50
+ * @note Size: 0x88
  */
 void EnemyBase::updateKehai()
 {
@@ -1531,10 +1489,9 @@ void EnemyBase::updateKehai()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8045EAD8
- * Size:	0000C8
+/**
+ * @note Address: 0x8045EAD8
+ * @note Size: 0xC8
  */
 void EnemyBase::updateBattle()
 {
@@ -1609,10 +1566,9 @@ lbl_8045EB8C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045EBA0
- * Size:	000338
+/**
+ * @note Address: 0x8045EBA0
+ * @note Size: 0x338
  */
 bool EnemyBase::calcKehai()
 {
@@ -1870,10 +1826,9 @@ lbl_8045EEB8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045EED8
- * Size:	000094
+/**
+ * @note Address: 0x8045EED8
+ * @note Size: 0x94
  */
 bool EnemyBase::judgeNearWithPlayer(const Vec& pos1, const Vec& pos2, f32 a1, f32 a2)
 {
@@ -1945,20 +1900,18 @@ lbl_8045EF64:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045EF6C
- * Size:	0001AC
+/**
+ * @note Address: 0x8045EF6C
+ * @note Size: 0x1AC
  */
 EnemyNotAggressive::EnemyNotAggressive(Game::EnemyBase* gameObj, u8 p2)
     : EnemyBase(gameObj, p2)
 {
 }
 
-/*
- * --INFO--
- * Address:	8045F118
- * Size:	000160
+/**
+ * @note Address: 0x8045F118
+ * @note Size: 0x160
  */
 Tsuyukusa::Tsuyukusa(Game::Creature* gameObj)
     : CreatureObj(gameObj, 2)
@@ -1968,10 +1921,9 @@ Tsuyukusa::Tsuyukusa(Game::Creature* gameObj)
 	P2ASSERTLINE(1078, gameObj);
 }
 
-/*
- * --INFO--
- * Address:	8045F278
- * Size:	0000B8
+/**
+ * @note Address: 0x8045F278
+ * @note Size: 0xB8
  */
 void Tsuyukusa::noukouFrameWork(bool enable)
 {
@@ -2041,20 +1993,18 @@ lbl_8045F30C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045F330
- * Size:	000128
+/**
+ * @note Address: 0x8045F330
+ * @note Size: 0x128
  */
 bool EnemyBig::judgeNearWithPlayer(const Vec& pos1, const Vec& pos2, f32 min, f32 max)
 {
 	return Creature::judgeNearWithPlayer(pos1, pos2, min, max);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001F0
+/**
+ * @note Address: N/A
+ * @note Size: 0x1F0
  */
 inline EnemyBoss::EnemyBoss(Game::EnemyBase* gameObj)
     : EnemyBase(gameObj, 4)
@@ -2070,10 +2020,9 @@ inline EnemyBoss::EnemyBoss(Game::EnemyBase* gameObj)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8045F458
- * Size:	000074
+/**
+ * @note Address: 0x8045F458
+ * @note Size: 0x74
  */
 void EnemyBoss::onPlayingSe(u32, JAISound* sound)
 {
@@ -2084,24 +2033,21 @@ void EnemyBoss::onPlayingSe(u32, JAISound* sound)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8045F4CC
- * Size:	000014
+/**
+ * @note Address: 0x8045F4CC
+ * @note Size: 0x14
  */
 bool EnemyBoss::judgeNearWithPlayer(const Vec&, const Vec&, f32 min, f32) { return mNaviDistance < min; }
 
-/*
- * --INFO--
- * Address:	8045F4E0
- * Size:	0000B4
+/**
+ * @note Address: 0x8045F4E0
+ * @note Size: 0xB4
  */
 void EnemyBoss::exec() { EnemyBase::exec(); }
 
-/*
- * --INFO--
- * Address:	8045F594
- * Size:	0000F8
+/**
+ * @note Address: 0x8045F594
+ * @note Size: 0xF8
  */
 void EnemyBoss::onCalcOn()
 {
@@ -2109,10 +2055,9 @@ void EnemyBoss::onCalcOn()
 	EnemyBase::onCalcOn();
 }
 
-/*
- * --INFO--
- * Address:	8045F68C
- * Size:	000364
+/**
+ * @note Address: 0x8045F68C
+ * @note Size: 0x364
  */
 void EnemyBoss::calcDistance()
 {
@@ -2372,10 +2317,9 @@ lbl_8045F9AC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045F9F0
- * Size:	000140
+/**
+ * @note Address: 0x8045F9F0
+ * @note Size: 0x140
  */
 void EnemyBoss::setAppearFlag(bool flag)
 {
@@ -2396,10 +2340,9 @@ void EnemyBoss::setAppearFlag(bool flag)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8045FB30
- * Size:	00005C
+/**
+ * @note Address: 0x8045FB30
+ * @note Size: 0x5C
  */
 void EnemyBoss::dyingFrameWork()
 {
@@ -2411,10 +2354,9 @@ void EnemyBoss::dyingFrameWork()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8045FB8C
- * Size:	000234
+/**
+ * @note Address: 0x8045FB8C
+ * @note Size: 0x234
  */
 void EnemyBoss::onDeathMotionTop()
 {
@@ -2439,10 +2381,9 @@ void EnemyBoss::onDeathMotionTop()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8045FDC0
- * Size:	00015C
+/**
+ * @note Address: 0x8045FDC0
+ * @note Size: 0x15C
  */
 void EnemyBoss::setKilled()
 {
@@ -2467,17 +2408,15 @@ void EnemyBoss::setKilled()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8045FF1C
- * Size:	000024
+/**
+ * @note Address: 0x8045FF1C
+ * @note Size: 0x24
  */
 bool EnemyBoss::isOnDisappearing() { return mDisappearTimer != 0xffff; }
 
-/*
- * --INFO--
- * Address:	8045FF40
- * Size:	000030
+/**
+ * @note Address: 0x8045FF40
+ * @note Size: 0x30
  */
 void EnemyBoss::updateDisappearing()
 {
@@ -2490,10 +2429,9 @@ void EnemyBoss::updateDisappearing()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8045FF70
- * Size:	000260
+/**
+ * @note Address: 0x8045FF70
+ * @note Size: 0x260
  */
 EnemyMidBoss::EnemyMidBoss(Game::EnemyBase* gameObj)
     : EnemyBoss(gameObj)
@@ -2509,17 +2447,15 @@ EnemyMidBoss::EnemyMidBoss(Game::EnemyBase* gameObj)
 	}
 }
 
-/*
- * --INFO--
- * Address:	804601D0
- * Size:	0001A8
+/**
+ * @note Address: 0x804601D0
+ * @note Size: 0x1A8
  */
 EnemyBoss::~EnemyBoss() { }
 
-/*
- * --INFO--
- * Address:	80460378
- * Size:	00021C
+/**
+ * @note Address: 0x80460378
+ * @note Size: 0x21C
  */
 void EnemyMidBoss::onCalcOn()
 {
@@ -2543,10 +2479,9 @@ void EnemyMidBoss::onCalcOn()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80460594
- * Size:	0000EC
+/**
+ * @note Address: 0x80460594
+ * @note Size: 0xEC
  */
 void EnemyMidBoss::jumpRequest(u16 state)
 {
@@ -2557,10 +2492,9 @@ void EnemyMidBoss::jumpRequest(u16 state)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80460680
- * Size:	00010C
+/**
+ * @note Address: 0x80460680
+ * @note Size: 0x10C
  */
 void EnemyMidBoss::onAppear1st()
 {
@@ -2570,10 +2504,9 @@ void EnemyMidBoss::onAppear1st()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8046078C
- * Size:	000060
+/**
+ * @note Address: 0x8046078C
+ * @note Size: 0x60
  */
 void EnemyMidBoss::postPikiAttack(bool flag)
 {
@@ -2589,10 +2522,9 @@ void EnemyMidBoss::postPikiAttack(bool flag)
 	}
 }
 
-/*
- * --INFO--
- * Address:	804607EC
- * Size:	000068
+/**
+ * @note Address: 0x804607EC
+ * @note Size: 0x68
  */
 EnemyBigBoss::EnemyBigBoss(Game::EnemyBase* gameObj)
     : EnemyMidBoss(gameObj)
@@ -2601,24 +2533,21 @@ EnemyBigBoss::EnemyBigBoss(Game::EnemyBase* gameObj)
 	sBigBoss = this;
 }
 
-/*
- * --INFO--
- * Address:	80460854
- * Size:	0001F0
+/**
+ * @note Address: 0x80460854
+ * @note Size: 0x1F0
  */
 EnemyMidBoss::~EnemyMidBoss() { }
 
-/*
- * --INFO--
- * Address:	80460A44
- * Size:	000088
+/**
+ * @note Address: 0x80460A44
+ * @note Size: 0x88
  */
 EnemyBigBoss::~EnemyBigBoss() { sBigBoss = nullptr; }
 
-/*
- * --INFO--
- * Address:	80460ACC
- * Size:	0000E8
+/**
+ * @note Address: 0x80460ACC
+ * @note Size: 0xE8
  */
 void EnemyBigBoss::jumpRequest(u16 state)
 {
@@ -2629,10 +2558,9 @@ void EnemyBigBoss::jumpRequest(u16 state)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80460BB4
- * Size:	000038
+/**
+ * @note Address: 0x80460BB4
+ * @note Size: 0x38
  */
 void EnemyBigBoss::onDeathMotionTop()
 {
@@ -2640,10 +2568,9 @@ void EnemyBigBoss::onDeathMotionTop()
 	jumpRequest(13);
 }
 
-/*
- * --INFO--
- * Address:	80460BEC
- * Size:	00010C
+/**
+ * @note Address: 0x80460BEC
+ * @note Size: 0x10C
  */
 void EnemyBigBoss::onAppear1st()
 {
@@ -2653,10 +2580,9 @@ void EnemyBigBoss::onAppear1st()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80460CF8
- * Size:	0000BC
+/**
+ * @note Address: 0x80460CF8
+ * @note Size: 0xBC
  * Adjusts pitch for chappy sounds
  */
 void Enemy_SpecialChappy::onPlayingSe(u32 soundID, JAISound* sound)
@@ -2675,17 +2601,15 @@ void Enemy_SpecialChappy::onPlayingSe(u32 soundID, JAISound* sound)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80460DB4
- * Size:	00002C
+/**
+ * @note Address: 0x80460DB4
+ * @note Size: 0x2C
  */
 void DirectorLink::eventStart() { eventRestart(); }
 
-/*
- * --INFO--
- * Address:	80460DE0
- * Size:	00004C
+/**
+ * @note Address: 0x80460DE0
+ * @note Size: 0x4C
  */
 void DirectorLink::eventRestart()
 {
@@ -2695,10 +2619,9 @@ void DirectorLink::eventRestart()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80460E2C
- * Size:	00004C
+/**
+ * @note Address: 0x80460E2C
+ * @note Size: 0x4C
  */
 void DirectorLink::eventStop()
 {
@@ -2708,17 +2631,15 @@ void DirectorLink::eventStop()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80460E78
- * Size:	00002C
+/**
+ * @note Address: 0x80460E78
+ * @note Size: 0x2C
  */
 void DirectorLink::eventFinish() { eventStop(); }
 
-/*
- * --INFO--
- * Address:	80460EA4
- * Size:	000034
+/**
+ * @note Address: 0x80460EA4
+ * @note Size: 0x34
  */
 ListDirectorActor* EventLink::getListDirectorActor()
 {
@@ -2729,10 +2650,9 @@ ListDirectorActor* EventLink::getListDirectorActor()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80460ED8
- * Size:	000034
+/**
+ * @note Address: 0x80460ED8
+ * @note Size: 0x34
  */
 ListDirectorActor* OtakaraEventLink::getListDirectorActor()
 {
@@ -2743,17 +2663,15 @@ ListDirectorActor* OtakaraEventLink::getListDirectorActor()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80460F0C
- * Size:	000004
+/**
+ * @note Address: 0x80460F0C
+ * @note Size: 0x4
  */
 void OtakaraEventLink::eventFinish() { }
 
-/*
- * --INFO--
- * Address:	80460F10
- * Size:	000250
+/**
+ * @note Address: 0x80460F10
+ * @note Size: 0x250
  */
 ActorDirector_TrackOn* OtakaraEventLink_2PBattle::getTargetDirector()
 {
@@ -2804,10 +2722,9 @@ ActorDirector_TrackOn* OtakaraEventLink_2PBattle::getTargetDirector()
 	return actor;
 }
 
-/*
- * --INFO--
- * Address:	80461160
- * Size:	000194
+/**
+ * @note Address: 0x80461160
+ * @note Size: 0x194
  */
 void OtakaraEventLink_2PBattle::eventStart()
 {
@@ -2969,17 +2886,15 @@ lbl_804612D8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	804612F4
- * Size:	00002C
+/**
+ * @note Address: 0x804612F4
+ * @note Size: 0x2C
  */
 void OtakaraEventLink_2PBattle::eventRestart() { eventStart(); }
 
-/*
- * --INFO--
- * Address:	80461320
- * Size:	000194
+/**
+ * @note Address: 0x80461320
+ * @note Size: 0x194
  */
 void OtakaraEventLink_2PBattle::eventStop()
 {
@@ -3142,17 +3057,15 @@ lbl_80461498:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	804614B4
- * Size:	00002C
+/**
+ * @note Address: 0x804614B4
+ * @note Size: 0x2C
  */
 void OtakaraEventLink_2PBattle::eventFinish() { eventStop(); }
 
-/*
- * --INFO--
- * Address:	804614E0
- * Size:	000140
+/**
+ * @note Address: 0x804614E0
+ * @note Size: 0x140
  */
 ListDirectorActor* OtakaraEventLink_2PBattle::getListDirectorActor()
 {
@@ -3263,10 +3176,9 @@ lbl_80461600:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80461620
- * Size:	000170
+/**
+ * @note Address: 0x80461620
+ * @note Size: 0x170
  */
 WorkItem::WorkItem(Game::BaseItem* gameObj)
     : EventBase(gameObj, 2)
@@ -3274,38 +3186,33 @@ WorkItem::WorkItem(Game::BaseItem* gameObj)
 {
 }
 
-/*
- * --INFO--
- * Address:	80461790
- * Size:	000030
+/**
+ * @note Address: 0x80461790
+ * @note Size: 0x30
  */
 void WorkItem::eventStart() { mLink.eventStart(); }
 
-/*
- * --INFO--
- * Address:	804617C0
- * Size:	000030
+/**
+ * @note Address: 0x804617C0
+ * @note Size: 0x30
  */
 void WorkItem::eventRestart() { mLink.eventRestart(); }
 
-/*
- * --INFO--
- * Address:	804617F0
- * Size:	000030
+/**
+ * @note Address: 0x804617F0
+ * @note Size: 0x30
  */
 void WorkItem::eventStop() { mLink.eventStop(); }
 
-/*
- * --INFO--
- * Address:	80461820
- * Size:	000030
+/**
+ * @note Address: 0x80461820
+ * @note Size: 0x30
  */
 void WorkItem::eventFinish() { mLink.eventFinish(); }
 
-/*
- * --INFO--
- * Address:	80461850
- * Size:	0001A0
+/**
+ * @note Address: 0x80461850
+ * @note Size: 0x1A0
  */
 void Otakara::setGoalOnyon(Game::Creature* onyon)
 {
@@ -3340,10 +3247,9 @@ void Otakara::setGoalOnyon(Game::Creature* onyon)
 	}
 }
 
-/*
- * --INFO--
- * Address:	804619F0
- * Size:	0000DC
+/**
+ * @note Address: 0x804619F0
+ * @note Size: 0xDC
  */
 void Otakara::otakaraEventStart()
 {
@@ -3355,10 +3261,9 @@ void Otakara::otakaraEventStart()
 	mOtaEvent->eventStart();
 }
 
-/*
- * --INFO--
- * Address:	80461ACC
- * Size:	0000DC
+/**
+ * @note Address: 0x80461ACC
+ * @note Size: 0xDC
  */
 void Otakara::otakaraEventRestart()
 {
@@ -3370,10 +3275,9 @@ void Otakara::otakaraEventRestart()
 	mOtaEvent->eventRestart();
 }
 
-/*
- * --INFO--
- * Address:	80461BA8
- * Size:	0000DC
+/**
+ * @note Address: 0x80461BA8
+ * @note Size: 0xDC
  */
 void Otakara::otakaraEventStop()
 {
@@ -3385,10 +3289,9 @@ void Otakara::otakaraEventStop()
 	mOtaEvent->eventStop();
 }
 
-/*
- * --INFO--
- * Address:	80461C84
- * Size:	0000DC
+/**
+ * @note Address: 0x80461C84
+ * @note Size: 0xDC
  */
 void Otakara::otakaraEventFinish()
 {
@@ -3400,10 +3303,9 @@ void Otakara::otakaraEventFinish()
 	mOtaEvent->eventFinish();
 }
 
-/*
- * --INFO--
- * Address:	80461D60
- * Size:	000224
+/**
+ * @note Address: 0x80461D60
+ * @note Size: 0x224
  */
 PelletOtakara::PelletOtakara(Game::PelletOtakara::Object* gameObj, bool is2PBattle)
     : Otakara(gameObj)
@@ -3415,17 +3317,15 @@ PelletOtakara::PelletOtakara(Game::PelletOtakara::Object* gameObj, bool is2PBatt
 	}
 }
 
-/*
- * --INFO--
- * Address:	80461F84
- * Size:	000148
+/**
+ * @note Address: 0x80461F84
+ * @note Size: 0x148
  */
 Otakara::~Otakara() { }
 
-/*
- * --INFO--
- * Address:	804620CC
- * Size:	0001D4
+/**
+ * @note Address: 0x804620CC
+ * @note Size: 0x1D4
  */
 PelletItem::PelletItem(Game::PelletItem::Object* gameObj)
     : Otakara(gameObj)
@@ -3433,10 +3333,9 @@ PelletItem::PelletItem(Game::PelletItem::Object* gameObj)
 	mOtaEvent = new OtakaraEventLink(gameObj);
 }
 
-/*
- * --INFO--
- * Address:	804622A0
- * Size:	000148
+/**
+ * @note Address: 0x804622A0
+ * @note Size: 0x148
  */
 Piki::Piki(Game::Piki* p)
     : CreatureObj(p, 2)
@@ -3445,10 +3344,9 @@ Piki::Piki(Game::Piki* p)
 {
 }
 
-/*
- * --INFO--
- * Address:	804623E8
- * Size:	000180
+/**
+ * @note Address: 0x804623E8
+ * @note Size: 0x180
  */
 void Piki::onCalcOn()
 {
@@ -3474,24 +3372,21 @@ void Piki::onCalcOn()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80462568
- * Size:	00000C
+/**
+ * @note Address: 0x80462568
+ * @note Size: 0xC
  */
 void Piki::becomeFree() { mFreeCounter = 0; }
 
-/*
- * --INFO--
- * Address:	80462574
- * Size:	00000C
+/**
+ * @note Address: 0x80462574
+ * @note Size: 0xC
  */
 void Piki::becomeNotFree() { mFreeCounter = -1; }
 
-/*
- * --INFO--
- * Address:	80462580
- * Size:	000144
+/**
+ * @note Address: 0x80462580
+ * @note Size: 0x144
  */
 JAISound* Piki::startFreePikiSound(u32 soundID, u32 time, u32 flag)
 {
@@ -3511,10 +3406,9 @@ JAISound* Piki::startFreePikiSound(u32 soundID, u32 time, u32 flag)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	804626C4
- * Size:	000070
+/**
+ * @note Address: 0x804626C4
+ * @note Size: 0x70
  */
 JAISound* Piki::startPikiSound(JAInter::Object* obj, u32 soundID, u32 flag)
 {
@@ -3525,10 +3419,9 @@ JAISound* Piki::startPikiSound(JAInter::Object* obj, u32 soundID, u32 flag)
 	return obj->startSound(soundID, flag);
 }
 
-/*
- * --INFO--
- * Address:	80462734
- * Size:	0000B4
+/**
+ * @note Address: 0x80462734
+ * @note Size: 0xB4
  */
 JAISound* Piki::startPikiSetSound(JAInter::Object* obj, u32 soundID, PSGame::SeMgr::SetSeId set, u32 flag)
 {
@@ -3539,10 +3432,9 @@ JAISound* Piki::startPikiSetSound(JAInter::Object* obj, u32 soundID, PSGame::SeM
 	return PSSystem::getSeMgrInstance()->mSetSeList[(u8)set]->startSound(obj, soundID, flag);
 }
 
-/*
- * --INFO--
- * Address:	804627E8
- * Size:	0001D4
+/**
+ * @note Address: 0x804627E8
+ * @note Size: 0x1D4
  */
 JAISound* Piki::startFreePikiSetSound(u32 soundID, PSGame::SeMgr::SetSeId set, u32 time, u32 flag)
 {
@@ -3558,10 +3450,9 @@ JAISound* Piki::startFreePikiSetSound(u32 soundID, PSGame::SeMgr::SetSeId set, u
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	804629BC
- * Size:	000104
+/**
+ * @note Address: 0x804629BC
+ * @note Size: 0x104
  */
 u32 Piki::checkHappaChappySE(u32 id)
 {
@@ -3662,10 +3553,9 @@ u32 Piki::checkHappaChappySE(u32 id)
 	return id;
 }
 
-/*
- * --INFO--
- * Address:	80462AC0
- * Size:	000138
+/**
+ * @note Address: 0x80462AC0
+ * @note Size: 0x138
  */
 Navi::Navi(Game::Navi* gameObj)
     : CreatureObj(gameObj, 2)
@@ -3673,24 +3563,21 @@ Navi::Navi(Game::Navi* gameObj)
 {
 }
 
-/*
- * --INFO--
- * Address:	80462BF8
- * Size:	000024
+/**
+ * @note Address: 0x80462BF8
+ * @note Size: 0x24
  */
 void Navi::init(u16 rappa) { mRappa.init(rappa); }
 
-/*
- * --INFO--
- * Address:	80462C1C
- * Size:	000028
+/**
+ * @note Address: 0x80462C1C
+ * @note Size: 0x28
  */
 void Navi::setShacho() { mRappa.setId(137); }
 
-/*
- * --INFO--
- * Address:	80462C44
- * Size:	000050
+/**
+ * @note Address: 0x80462C44
+ * @note Size: 0x50
  */
 void Navi::stopWaitVoice()
 {
@@ -3700,10 +3587,9 @@ void Navi::stopWaitVoice()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80462C94
- * Size:	000108
+/**
+ * @note Address: 0x80462C94
+ * @note Size: 0x108
  */
 JAISound* Navi::startSound(u32 soundID, u32 flag)
 {
@@ -3806,10 +3692,9 @@ lbl_80462D80:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80462D9C
- * Size:	000028
+/**
+ * @note Address: 0x80462D9C
+ * @note Size: 0x28
  */
 int Navi::getManType()
 {
@@ -3838,10 +3723,9 @@ lbl_80462DB0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80462DC4
- * Size:	0000A0
+/**
+ * @note Address: 0x80462DC4
+ * @note Size: 0xA0
  */
 JAISound* Navi::playShugoSE()
 {
@@ -3922,10 +3806,9 @@ lbl_80462E40:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80462E64
- * Size:	0000A0
+/**
+ * @note Address: 0x80462E64
+ * @note Size: 0xA0
  */
 JAISound* Navi::playKaisanSE()
 {
@@ -4005,10 +3888,9 @@ lbl_80462EE0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80462F04
- * Size:	000130
+/**
+ * @note Address: 0x80462F04
+ * @note Size: 0x130
  */
 void Navi::playWalkSound(PSM::Navi::FootType type, int id)
 {
@@ -4100,10 +3982,9 @@ lbl_80463018:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80463034
- * Size:	000158
+/**
+ * @note Address: 0x80463034
+ * @note Size: 0x158
  */
 Cluster::Cluster(Game::Creature* gameObj, PSSystem::ClusterSe::Factory& factory)
     : CreatureObj(gameObj, 2)
@@ -4112,10 +3993,9 @@ Cluster::Cluster(Game::Creature* gameObj, PSSystem::ClusterSe::Factory& factory)
 	mClusterSeMgr->constructParts(factory);
 }
 
-/*
- * --INFO--
- * Address:	8046318C
- * Size:	000060
+/**
+ * @note Address: 0x8046318C
+ * @note Size: 0x60
  */
 void Cluster::startClusterSound(u8 id)
 {
@@ -4125,27 +4005,24 @@ void Cluster::startClusterSound(u8 id)
 
 } // namespace PSM
 
-/*
- * --INFO--
- * Address:	804631EC
- * Size:	000058
+/**
+ * @note Address: 0x804631EC
+ * @note Size: 0x58
  */
 void PSSetCurCameraNo(u8 cams)
 {
 	static_cast<PSM::ObjCalc_SingleGame*>(PSSystem::SingletonBase<PSM::ObjCalcBase>::getInstance())->mPlayerNum = cams;
 }
 
-/*
- * --INFO--
- * Address:	80463244
- * Size:	000008
+/**
+ * @note Address: 0x80463244
+ * @note Size: 0x8
  */
 f32 PSMGetNoukouDist() { return PSM::CreaturePrm::cNokouDistance; }
 
-/*
- * --INFO--
- * Address:	8046324C
- * Size:	000070
+/**
+ * @note Address: 0x8046324C
+ * @note Size: 0x70
  */
 void PSSetLastBeedamaDirection(bool isOlimar, bool isOn)
 {

@@ -18,10 +18,9 @@ static const char bridgeName[] = "itemBridge";
 
 Mgr* mgr;
 
-/*
- * --INFO--
- * Address:	801EDF74
- * Size:	000084
+/**
+ * @note Address: 0x801EDF74
+ * @note Size: 0x84
  */
 void FSM::init(Item* item)
 {
@@ -29,31 +28,27 @@ void FSM::init(Item* item)
 	registerState(new NormalState(BRIDGE_Normal));
 }
 
-/*
- * --INFO--
- * Address:	801EDFF8
- * Size:	000004
+/**
+ * @note Address: 0x801EDFF8
+ * @note Size: 0x4
  */
 void NormalState::init(Item*, StateArg*) { }
 
-/*
- * --INFO--
- * Address:	801EDFFC
- * Size:	000004
+/**
+ * @note Address: 0x801EDFFC
+ * @note Size: 0x4
  */
 void NormalState::exec(Item*) { }
 
-/*
- * --INFO--
- * Address:	801EE000
- * Size:	000004
+/**
+ * @note Address: 0x801EE000
+ * @note Size: 0x4
  */
 void NormalState::cleanup(Item*) { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F4
+/**
+ * @note Address: N/A
+ * @note Size: 0xF4
  */
 Item::Item()
     : WorkItem(OBJTYPE_Bridge)
@@ -63,10 +58,9 @@ Item::Item()
 	mCurrStageIdx = 0;
 }
 
-/*
- * --INFO--
- * Address:	801EE004
- * Size:	000180
+/**
+ * @note Address: 0x801EE004
+ * @note Size: 0x180
  */
 void Item::onInit(CreatureInitArg* settings)
 {
@@ -98,10 +92,9 @@ void Item::onInit(CreatureInitArg* settings)
 	_1F8      = 0;
 }
 
-/*
- * --INFO--
- * Address:	801EE1B8
- * Size:	000110
+/**
+ * @note Address: 0x801EE1B8
+ * @note Size: 0x110
  */
 void Item::update()
 {
@@ -119,10 +112,9 @@ void Item::update()
 	do_updateLOD();
 }
 
-/*
- * --INFO--
- * Address:	801EE2C8
- * Size:	0001B4
+/**
+ * @note Address: 0x801EE2C8
+ * @note Size: 0x1B4
  */
 void Item::getLODCylinder(Sys::Cylinder& cylinder)
 {
@@ -154,10 +146,9 @@ void Item::getLODCylinder(Sys::Cylinder& cylinder)
 	cylinder.set(start, end, 90.0f);
 }
 
-/*
- * --INFO--
- * Address:	801EE47C
- * Size:	000044
+/**
+ * @note Address: 0x801EE47C
+ * @note Size: 0x44
  */
 void Item::do_updateLOD()
 {
@@ -166,24 +157,21 @@ void Item::do_updateLOD()
 	updateLOD(parm);
 }
 
-/*
- * --INFO--
- * Address:	801EE4C0
- * Size:	000004
+/**
+ * @note Address: 0x801EE4C0
+ * @note Size: 0x4
  */
 void Item::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	801EE4C4
- * Size:	000048
+/**
+ * @note Address: 0x801EE4C4
+ * @note Size: 0x48
  */
 void Item::constructor() { mSoundObj = new PSM::WorkItem(this); }
 
-/*
- * --INFO--
- * Address:	801EE50C
- * Size:	0000FC
+/**
+ * @note Address: 0x801EE50C
+ * @note Size: 0xFC
  */
 void Item::doLoad(Stream& input)
 {
@@ -206,10 +194,9 @@ void Item::doLoad(Stream& input)
 	setCurrStage(mCurrStageIdx);
 }
 
-/*
- * --INFO--
- * Address:	801EE608
- * Size:	000074
+/**
+ * @note Address: 0x801EE608
+ * @note Size: 0x74
  */
 void Item::doSave(Stream& output)
 {
@@ -221,10 +208,9 @@ void Item::doSave(Stream& output)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801EE67C
- * Size:	000090
+/**
+ * @note Address: 0x801EE67C
+ * @note Size: 0x90
  */
 void Item::onSetPosition()
 {
@@ -237,10 +223,9 @@ void Item::onSetPosition()
 	setCurrStage(0);
 }
 
-/*
- * --INFO--
- * Address:	801EE70C
- * Size:	000024
+/**
+ * @note Address: 0x801EE70C
+ * @note Size: 0x24
  */
 void Item::updateBoundSphere()
 {
@@ -248,10 +233,9 @@ void Item::updateBoundSphere()
 	mBoundingSphere.mRadius   = 100.0f;
 }
 
-/*
- * --INFO--
- * Address:	801EE730
- * Size:	000124
+/**
+ * @note Address: 0x801EE730
+ * @note Size: 0x124
  */
 void Item::changeMaterial()
 {
@@ -276,10 +260,9 @@ void Item::changeMaterial()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801EE854
- * Size:	0001A0
+/**
+ * @note Address: 0x801EE854
+ * @note Size: 0x1A0
  */
 void Item::doAI()
 {
@@ -314,10 +297,9 @@ void Item::doAI()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801EE9F4
- * Size:	00028C
+/**
+ * @note Address: 0x801EE9F4
+ * @note Size: 0x28C
  */
 void Item::setCurrStage(int stageIdx)
 {
@@ -371,10 +353,9 @@ void Item::setCurrStage(int stageIdx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801EEC80
- * Size:	0001CC
+/**
+ * @note Address: 0x801EEC80
+ * @note Size: 0x1CC
  */
 void Item::createWayPoints()
 {
@@ -407,10 +388,9 @@ void Item::createWayPoints()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801EEE4C
- * Size:	0000E8
+/**
+ * @note Address: 0x801EEE4C
+ * @note Size: 0xE8
  */
 Vector3f Item::getStagePos(int stageIdx)
 {
@@ -425,10 +405,9 @@ Vector3f Item::getStagePos(int stageIdx)
 	return stagePos;
 }
 
-/*
- * --INFO--
- * Address:	801EEF34
- * Size:	0000A0
+/**
+ * @note Address: 0x801EEF34
+ * @note Size: 0xA0
  */
 Vector3f Item::getStartPos()
 {
@@ -437,10 +416,9 @@ Vector3f Item::getStartPos()
 	return startPos;
 }
 
-/*
- * --INFO--
- * Address:	801EEFD4
- * Size:	00005C
+/**
+ * @note Address: 0x801EEFD4
+ * @note Size: 0x5C
  */
 f32 Item::getStageZ(int stageIdx)
 {
@@ -452,46 +430,41 @@ f32 Item::getStageZ(int stageIdx)
 	return z;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 f32 Item::getStageDepth()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	801EF030
- * Size:	000008
+/**
+ * @note Address: 0x801EF030
+ * @note Size: 0x8
  */
 f32 Item::getStageWidth() { return 150.0f; }
 
 // need to increase the inline depth enough that this doesn't auto-inline anymore
 #pragma dont_inline on
-/*
- * --INFO--
- * Address:	801EF038
- * Size:	0000A4
+/**
+ * @note Address: 0x801EF038
+ * @note Size: 0xA4
  * Returns unit vector in direction of bridge unfurling (level with ground).
  */
 Vector3f Item::getBridgeZVec() { return getDirection(mFaceDir); }
 #pragma dont_inline reset
 
-/*
- * --INFO--
- * Address:	801EF0DC
- * Size:	0000B8
+/**
+ * @note Address: 0x801EF0DC
+ * @note Size: 0xB8
  * Returns unit vector perpendicular to bridge unfurling (level with ground).
  */
 Vector3f Item::getBridgeXVec() { return getPerpDirection(mFaceDir); }
 
-/*
- * --INFO--
- * Address:	801EF194
- * Size:	0001F0
+/**
+ * @note Address: 0x801EF194
+ * @note Size: 0x1F0
  */
 void Item::getBridgePos(Vector3f& pos, f32& p1, f32& p2)
 {
@@ -645,10 +618,9 @@ lbl_801EF338:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801EF384
- * Size:	000138
+/**
+ * @note Address: 0x801EF384
+ * @note Size: 0x138
  */
 bool Item::workable(Vector3f& vec)
 {
@@ -680,10 +652,9 @@ bool Item::workable(Vector3f& vec)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801EF4BC
- * Size:	000430
+/**
+ * @note Address: 0x801EF4BC
+ * @note Size: 0x430
  */
 bool Item::getVectorField(Sys::Sphere& sphere, Vector3f& vec)
 {
@@ -1046,10 +1017,9 @@ lbl_801EF8B8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801EF8EC
- * Size:	000148
+/**
+ * @note Address: 0x801EF8EC
+ * @note Size: 0x148
  */
 f32 Item::getWorkDistance(Sys::Sphere& sphere)
 {
@@ -1086,10 +1056,9 @@ f32 Item::getWorkDistance(Sys::Sphere& sphere)
 	return absF(z - rad);
 }
 
-/*
- * --INFO--
- * Address:	801EFA34
- * Size:	000448
+/**
+ * @note Address: 0x801EFA34
+ * @note Size: 0x448
  */
 bool Item::interactAttack(InteractAttack& attack)
 {
@@ -1143,10 +1112,9 @@ bool Item::interactAttack(InteractAttack& attack)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801EFE7C
- * Size:	0000F0
+/**
+ * @note Address: 0x801EFE7C
+ * @note Size: 0xF0
  */
 bool Item::interactBreakBridge(InteractBreakBridge& breakBridge)
 {
@@ -1174,27 +1142,24 @@ bool Item::interactBreakBridge(InteractBreakBridge& breakBridge)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 f32 Item::getWorkRadius()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	801EFF6C
- * Size:	00004C
+/**
+ * @note Address: 0x801EFF6C
+ * @note Size: 0x4C
  */
 GenItemParm* Mgr::generatorNewItemParm() { return new GenBridgeParm(); }
 
-/*
- * --INFO--
- * Address:	801EFFB8
- * Size:	000088
+/**
+ * @note Address: 0x801EFFB8
+ * @note Size: 0x88
  */
 void Mgr::generatorWrite(Stream& output, GenItemParm* genParm)
 {
@@ -1205,10 +1170,9 @@ void Mgr::generatorWrite(Stream& output, GenItemParm* genParm)
 	output.textWriteText("\t#ã¥É^ÉCÉv\r\n"); // '#Bridge type'
 }
 
-/*
- * --INFO--
- * Address:	801F0040
- * Size:	000088
+/**
+ * @note Address: 0x801F0040
+ * @note Size: 0x88
  */
 void Mgr::generatorRead(Stream& input, GenItemParm* genParm, u32 version)
 {
@@ -1221,10 +1185,9 @@ void Mgr::generatorRead(Stream& input, GenItemParm* genParm, u32 version)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801F00C8
- * Size:	000130
+/**
+ * @note Address: 0x801F00C8
+ * @note Size: 0x130
  */
 Mgr::Mgr()
     : TNodeItemMgr()
@@ -1245,10 +1208,9 @@ Mgr::Mgr()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801F0408
- * Size:	000118
+/**
+ * @note Address: 0x801F0408
+ * @note Size: 0x118
  */
 BaseItem* Mgr::birth()
 {
@@ -1257,10 +1219,9 @@ BaseItem* Mgr::birth()
 	return item;
 }
 
-/*
- * --INFO--
- * Address:	801F0520
- * Size:	0000A8
+/**
+ * @note Address: 0x801F0520
+ * @note Size: 0xA8
  */
 BaseItem* Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenItemParm* genParm)
 {
@@ -1277,10 +1238,9 @@ BaseItem* Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenItemParm* genParm
 	return item;
 }
 
-/*
- * --INFO--
- * Address:	801F05C8
- * Size:	000260
+/**
+ * @note Address: 0x801F05C8
+ * @note Size: 0x260
  */
 void Mgr::onLoadResources()
 {
@@ -1333,10 +1293,9 @@ void Mgr::onLoadResources()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801F0844
- * Size:	000078
+/**
+ * @note Address: 0x801F0844
+ * @note Size: 0x78
  */
 BridgeInfo* Mgr::getBridgeInfo(int type)
 {
@@ -1344,10 +1303,9 @@ BridgeInfo* Mgr::getBridgeInfo(int type)
 	return &mBridgeInfos[type];
 }
 
-/*
- * --INFO--
- * Address:	801F08BC
- * Size:	00020C
+/**
+ * @note Address: 0x801F08BC
+ * @note Size: 0x20C
  */
 void Mgr::createBridgeInfo(int type)
 {
@@ -1398,10 +1356,9 @@ void Mgr::createBridgeInfo(int type)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801F0AC8
- * Size:	0001A0
+/**
+ * @note Address: 0x801F0AC8
+ * @note Size: 0x1A0
  */
 void Mgr::setupPlatInstanceAttacher(Item* bridge, PlatInstanceAttacher& attacher)
 {

@@ -113,10 +113,9 @@ u32 seqMuteFlagFromSe;
 f32* seCategoryVolume;
 u8* seEntryCancel;
 
-/*
- * --INFO--
- * Address:	800AE0A0
- * Size:	0003A4
+/**
+ * @note Address: 0x800AE0A0
+ * @note Size: 0x3A4
  */
 void init()
 {
@@ -447,10 +446,9 @@ lbl_800AE40C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800AE444
- * Size:	0000F0
+/**
+ * @note Address: 0x800AE444
+ * @note Size: 0xF0
  * __ct__Q27JAInter11SeParameterFv
  */
 // JAInter::SeParameter::SeParameter()
@@ -464,34 +462,30 @@ lbl_800AE40C:
 // {
 // }
 
-/*
- * --INFO--
- * Address:	800AE534
- * Size:	000018
+/**
+ * @note Address: 0x800AE534
+ * @note Size: 0x18
  * __ct__Q27JAInter19MoveParaSetInitZeroFv
  */
 // JAInter::MoveParaSetInitZero::MoveParaSetInitZero() { }
 
-/*
- * --INFO--
- * Address:	800AE54C
- * Size:	000018
+/**
+ * @note Address: 0x800AE54C
+ * @note Size: 0x18
  * __ct__Q27JAInter19MoveParaSetInitHalfFv
  */
 // JAInter::MoveParaSetInitHalf::MoveParaSetInitHalf() { }
 
-/*
- * --INFO--
- * Address:	800AE564
- * Size:	000018
+/**
+ * @note Address: 0x800AE564
+ * @note Size: 0x18
  * __defctor__Q27JAInter11MoveParaSetFv
  */
 // void JAInter::MoveParaSet::__defctor() { }
 
-/*
- * --INFO--
- * Address:	800AE57C
- * Size:	000050
+/**
+ * @note Address: 0x800AE57C
+ * @note Size: 0x50
  */
 void startSeSequence()
 {
@@ -522,10 +516,9 @@ void startSeSequence()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800AE5CC
- * Size:	000034
+/**
+ * @note Address: 0x800AE5CC
+ * @note Size: 0x34
  */
 void processGFrameSe()
 {
@@ -537,10 +530,9 @@ void processGFrameSe()
 	checkPlayingSe();
 }
 
-/*
- * --INFO--
- * Address:	800AE600
- * Size:	0007E4
+/**
+ * @note Address: 0x800AE600
+ * @note Size: 0x7E4
  */
 void checkNextFrameSe()
 {
@@ -1181,10 +1173,9 @@ lbl_800AEDB8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800AEDE4
- * Size:	000488
+/**
+ * @note Address: 0x800AEDE4
+ * @note Size: 0x488
  */
 void checkPlayingSe()
 {
@@ -1536,10 +1527,9 @@ lbl_800AF248:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800AF29C
- * Size:	0000F0
+/**
+ * @note Address: 0x800AF29C
+ * @note Size: 0xF0
  */
 void setSeqMuteFromSeStart(JAISound* p1)
 {
@@ -1622,20 +1612,18 @@ lbl_800AF360:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
+/**
+ * @note Address: N/A
+ * @note Size: 0xE4
  */
 void clearSeqMuteFromSeStop(JAISound*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800AF3B8
- * Size:	0000D4
+/**
+ * @note Address: 0x800AF3B8
+ * @note Size: 0xD4
  */
 void checkSeMovePara()
 {
@@ -1729,10 +1717,9 @@ lbl_800AF478:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800AF48C
- * Size:	000168
+/**
+ * @note Address: 0x800AF48C
+ * @note Size: 0x168
  */
 void sendSeAllParameter(JAISe*)
 {
@@ -1838,10 +1825,9 @@ lbl_800AF5D4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800AF5F4
- * Size:	00010C
+/**
+ * @note Address: 0x800AF5F4
+ * @note Size: 0x10C
  * checkPlayingSeUpdateMultiplication__Q27JAInter5SeMgrFP5JAISePQ27JAInter13SeqUpdateDataPfPQ27JAInter11MoveParaSetfUcPf
  */
 void checkPlayingSeUpdateMultiplication(JAISe*, JAInter::SeqUpdateData*, float*, JAInter::MoveParaSet*, float, u8, float*)
@@ -1926,10 +1912,9 @@ void checkPlayingSeUpdateMultiplication(JAISe*, JAInter::SeqUpdateData*, float*,
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800AF700
- * Size:	00014C
+/**
+ * @note Address: 0x800AF700
+ * @note Size: 0x14C
  * checkPlayingSeUpdateAddition__Q27JAInter5SeMgrFP5JAISePQ27JAInter13SeqUpdateDataPfPQ27JAInter11MoveParaSetUcPff
  */
 void checkPlayingSeUpdateAddition(JAISe*, JAInter::SeqUpdateData*, float*, JAInter::MoveParaSet*, u8, float*, float)
@@ -2032,17 +2017,15 @@ void checkPlayingSeUpdateAddition(JAISe*, JAInter::SeqUpdateData*, float*, JAInt
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800AF84C
- * Size:	000008
+/**
+ * @note Address: 0x800AF84C
+ * @note Size: 0x8
  */
 u32 changeIDToCategory(u32 id) { return id >> 0xC & 0xFF; }
 
-/*
- * --INFO--
- * Address:	800AF854
- * Size:	0001D0
+/**
+ * @note Address: 0x800AF854
+ * @note Size: 0x1D0
  */
 void releaseSeRegist(JAISe*)
 {
@@ -2182,10 +2165,9 @@ lbl_800AF9D0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800AFA24
- * Size:	0006EC
+/**
+ * @note Address: 0x800AFA24
+ * @note Size: 0x6EC
  */
 void storeSeBuffer(JAISe**, JAInter::Actor*, u32, u32, u8, JAInter::SoundInfo*)
 {
@@ -2711,10 +2693,9 @@ void storeSeBuffer(JAISe**, JAInter::Actor*, u32, u32, u8, JAInter::SoundInfo*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800B0130
- * Size:	000208
+/**
+ * @note Address: 0x800B0130
+ * @note Size: 0x208
  */
 void releaseSeBuffer(JAISe*, u32)
 {
@@ -2874,10 +2855,9 @@ lbl_800B031C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800B0338
- * Size:	000008
+/**
+ * @note Address: 0x800B0338
+ * @note Size: 0x8
  */
 void setSeSequenceStartCallback(StartCallback callback) { seStartCallback = callback; }
 } // namespace SeMgr

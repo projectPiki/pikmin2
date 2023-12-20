@@ -8,10 +8,9 @@
 namespace Game {
 namespace Sarai {
 
-/*
- * --INFO--
- * Address:	802708A0
- * Size:	0003D0
+/**
+ * @note Address: 0x802708A0
+ * @note Size: 0x3D0
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -29,10 +28,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateFallMeck);
 }
 
-/*
- * --INFO--
- * Address:	80270C70
- * Size:	000070
+/**
+ * @note Address: 0x80270C70
+ * @note Size: 0x70
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -45,10 +43,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	sarai->startMotion(SARAIANIM_Dead, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80270CE0
- * Size:	000044
+/**
+ * @note Address: 0x80270CE0
+ * @note Size: 0x44
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -57,17 +54,15 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80270D24
- * Size:	000004
+/**
+ * @note Address: 0x80270D24
+ * @note Size: 0x4
  */
 void StateDead::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	80270D28
- * Size:	000068
+/**
+ * @note Address: 0x80270D28
+ * @note Size: 0x68
  */
 void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -80,10 +75,9 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 	sarai->flickStickTarget();
 }
 
-/*
- * --INFO--
- * Address:	80270D90
- * Size:	0001B8
+/**
+ * @note Address: 0x80270D90
+ * @note Size: 0x1B8
  */
 void StateFall::exec(EnemyBase* enemy)
 {
@@ -121,17 +115,15 @@ void StateFall::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80270F48
- * Size:	000024
+/**
+ * @note Address: 0x80270F48
+ * @note Size: 0x24
  */
 void StateFall::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	80270F6C
- * Size:	000068
+/**
+ * @note Address: 0x80270F6C
+ * @note Size: 0x68
  */
 void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -144,10 +136,9 @@ void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 	sarai->flickStickTarget();
 }
 
-/*
- * --INFO--
- * Address:	80270FD4
- * Size:	000108
+/**
+ * @note Address: 0x80270FD4
+ * @note Size: 0x108
  */
 void StateDamage::exec(EnemyBase* enemy)
 {
@@ -167,17 +158,15 @@ void StateDamage::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802710DC
- * Size:	000024
+/**
+ * @note Address: 0x802710DC
+ * @note Size: 0x24
  */
 void StateDamage::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	80271100
- * Size:	00004C
+/**
+ * @note Address: 0x80271100
+ * @note Size: 0x4C
  */
 void StateTakeOff::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -186,10 +175,9 @@ void StateTakeOff::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(SARAIANIM_TakeOff, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8027114C
- * Size:	000108
+/**
+ * @note Address: 0x8027114C
+ * @note Size: 0x108
  */
 void StateTakeOff::exec(EnemyBase* enemy)
 {
@@ -216,17 +204,15 @@ void StateTakeOff::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80271254
- * Size:	000024
+/**
+ * @note Address: 0x80271254
+ * @note Size: 0x24
  */
 void StateTakeOff::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	80271278
- * Size:	000058
+/**
+ * @note Address: 0x80271278
+ * @note Size: 0x58
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -236,10 +222,9 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(SARAIANIM_Flick, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802712D0
- * Size:	000118
+/**
+ * @note Address: 0x802712D0
+ * @note Size: 0x118
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
@@ -269,10 +254,9 @@ void StateFlick::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802713E8
- * Size:	000030
+/**
+ * @note Address: 0x802713E8
+ * @note Size: 0x30
  */
 void StateFlick::cleanup(EnemyBase* enemy)
 {
@@ -280,10 +264,9 @@ void StateFlick::cleanup(EnemyBase* enemy)
 	enemy->setEmotionCaution();
 }
 
-/*
- * --INFO--
- * Address:	80271418
- * Size:	0000B0
+/**
+ * @note Address: 0x80271418
+ * @note Size: 0xB0
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -300,10 +283,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802714C8
- * Size:	000160
+/**
+ * @note Address: 0x802714C8
+ * @note Size: 0x160
  */
 void StateWait::exec(EnemyBase* enemy)
 {
@@ -336,17 +318,15 @@ void StateWait::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80271628
- * Size:	000004
+/**
+ * @note Address: 0x80271628
+ * @note Size: 0x4
  */
 void StateWait::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8027162C
- * Size:	00005C
+/**
+ * @note Address: 0x8027162C
+ * @note Size: 0x5C
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -358,10 +338,9 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	sarai->startMotion(SARAIANIM_Move, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80271688
- * Size:	000208
+/**
+ * @note Address: 0x80271688
+ * @note Size: 0x208
  */
 void StateMove::exec(EnemyBase* enemy)
 {
@@ -402,17 +381,15 @@ void StateMove::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80271890
- * Size:	000004
+/**
+ * @note Address: 0x80271890
+ * @note Size: 0x4
  */
 void StateMove::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	80271894
- * Size:	000078
+/**
+ * @note Address: 0x80271894
+ * @note Size: 0x78
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -426,10 +403,9 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	sarai->startMotion(SARAIANIM_Attack, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8027190C
- * Size:	000614
+/**
+ * @note Address: 0x8027190C
+ * @note Size: 0x614
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
@@ -944,10 +920,9 @@ lbl_80271EE4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80271F20
- * Size:	000044
+/**
+ * @note Address: 0x80271F20
+ * @note Size: 0x44
  */
 void StateAttack::cleanup(EnemyBase* enemy)
 {
@@ -957,10 +932,9 @@ void StateAttack::cleanup(EnemyBase* enemy)
 	enemy->setEmotionCaution();
 }
 
-/*
- * --INFO--
- * Address:	80271F64
- * Size:	000058
+/**
+ * @note Address: 0x80271F64
+ * @note Size: 0x58
  */
 void StateFail::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -970,10 +944,9 @@ void StateFail::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(SARAIANIM_Fail, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80271FBC
- * Size:	0000D8
+/**
+ * @note Address: 0x80271FBC
+ * @note Size: 0xD8
  */
 void StateFail::exec(EnemyBase* enemy)
 {
@@ -1056,10 +1029,9 @@ lbl_8027207C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80272094
- * Size:	000030
+/**
+ * @note Address: 0x80272094
+ * @note Size: 0x30
  */
 void StateFail::cleanup(EnemyBase* enemy)
 {
@@ -1067,10 +1039,9 @@ void StateFail::cleanup(EnemyBase* enemy)
 	enemy->setEmotionCaution();
 }
 
-/*
- * --INFO--
- * Address:	802720C4
- * Size:	000064
+/**
+ * @note Address: 0x802720C4
+ * @note Size: 0x64
  */
 void StateCatchFly::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1083,10 +1054,9 @@ void StateCatchFly::init(EnemyBase* enemy, StateArg* stateArg)
 	sarai->startMotion(SARAIANIM_CatchFly, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80272128
- * Size:	0001C0
+/**
+ * @note Address: 0x80272128
+ * @note Size: 0x1C0
  */
 void StateCatchFly::exec(EnemyBase* enemy)
 {
@@ -1124,17 +1094,15 @@ void StateCatchFly::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802722E8
- * Size:	000024
+/**
+ * @note Address: 0x802722E8
+ * @note Size: 0x24
  */
 void StateCatchFly::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	8027230C
- * Size:	000070
+/**
+ * @note Address: 0x8027230C
+ * @note Size: 0x70
  */
 void StateFallMeck::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1146,10 +1114,9 @@ void StateFallMeck::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(SARAIANIM_FallMeck, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8027237C
- * Size:	0000BC
+/**
+ * @note Address: 0x8027237C
+ * @note Size: 0xBC
  */
 void StateFallMeck::exec(EnemyBase* enemy)
 {
@@ -1172,10 +1139,9 @@ void StateFallMeck::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80272438
- * Size:	000054
+/**
+ * @note Address: 0x80272438
+ * @note Size: 0x54
  */
 void StateFallMeck::cleanup(EnemyBase* enemy)
 {

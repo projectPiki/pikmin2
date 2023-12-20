@@ -5,20 +5,18 @@
 namespace P2JME {
 namespace IllustratedBook {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 TSequenceProcessor::TSequenceProcessor(JMessage::TReference* ref, JMessage::TControl* owner)
     : TSeqProcNoSeq(ref, owner)
 {
 }
 
-/*
- * --INFO--
- * Address:	80454FF8
- * Size:	00004C
+/**
+ * @note Address: 0x80454FF8
+ * @note Size: 0x4C
  */
 void TRenderingProcessor::makeMatrix(Matrixf* mtx, Window::DrawInfo*, f32 angle, Vector3f position)
 {
@@ -28,10 +26,9 @@ void TRenderingProcessor::makeMatrix(Matrixf* mtx, Window::DrawInfo*, f32 angle,
 	mtx->makeSRT(scale, rotate, position);
 }
 
-/*
- * --INFO--
- * Address:	80455044
- * Size:	000060
+/**
+ * @note Address: 0x80455044
+ * @note Size: 0x60
  */
 TControl::TControl()
 {
@@ -42,10 +39,9 @@ TControl::TControl()
 	mScrollSpeed       = 0.08f;
 }
 
-/*
- * --INFO--
- * Address:	804550A4
- * Size:	00003C
+/**
+ * @note Address: 0x804550A4
+ * @note Size: 0x3C
  */
 bool TControl::onInit()
 {
@@ -54,10 +50,9 @@ bool TControl::onInit()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	804550E0
- * Size:	00003C
+/**
+ * @note Address: 0x804550E0
+ * @note Size: 0x3C
  */
 void TControl::reset()
 {
@@ -67,10 +62,9 @@ void TControl::reset()
 	mCurrentTextHeight = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	8045511C
- * Size:	000028
+/**
+ * @note Address: 0x8045511C
+ * @note Size: 0x28
  */
 f32 TControl::getScrollPosition()
 {
@@ -80,10 +74,9 @@ f32 TControl::getScrollPosition()
 	return mCurrentScroll / mMaxScroll;
 }
 
-/*
- * --INFO--
- * Address:	80455144
- * Size:	0000F4
+/**
+ * @note Address: 0x80455144
+ * @note Size: 0xF4
  */
 void TControl::scroll(f32 rate)
 {
@@ -115,10 +108,9 @@ void TControl::scroll(f32 rate)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80455238
- * Size:	0000D0
+/**
+ * @note Address: 0x80455238
+ * @note Size: 0xD0
  */
 bool TControl::update(Controller* control1, Controller* control2)
 {
@@ -134,10 +126,9 @@ bool TControl::update(Controller* control1, Controller* control2)
 	mTextRenderProc->_58 = val + mTextRenderProc->_58;
 }
 
-/*
- * --INFO--
- * Address:	80455308
- * Size:	000080
+/**
+ * @note Address: 0x80455308
+ * @note Size: 0x80
  */
 void TControl::setTextBoxInfo(J2DTextBox* pane)
 {
@@ -146,10 +137,9 @@ void TControl::setTextBoxInfo(J2DTextBox* pane)
 	mTextRenderProc->setTextBoxInfo(mTextBox);
 }
 
-/*
- * --INFO--
- * Address:	80455388
- * Size:	000078
+/**
+ * @note Address: 0x80455388
+ * @note Size: 0x78
  */
 void TControl::draw(Mtx mtx1, Mtx mtx2)
 {

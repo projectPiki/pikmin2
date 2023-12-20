@@ -6,31 +6,27 @@
 BOOL __DSP_init_flag;
 char* __DSPVersion = "<< Dolphin SDK - DSP\trelease build: Apr 17 2003 12:34:16 (0x2301) >>";
 
-/*
- * --INFO--
- * Address:	800DACB0
- * Size:	000010
+/**
+ * @note Address: 0x800DACB0
+ * @note Size: 0x10
  */
 u32 DSPCheckMailToDSP() { return __DSPRegs[DSP_MAILBOX_IN_HI] >> 0xF & 1; }
 
-/*
- * --INFO--
- * Address:	800DACC0
- * Size:	000010
+/**
+ * @note Address: 0x800DACC0
+ * @note Size: 0x10
  */
 u32 DSPCheckMailFromDSP() { return __DSPRegs[DSP_MAILBOX_OUT_HI] >> 0xF & 1; }
 
-/*
- * --INFO--
- * Address:	800DACD0
- * Size:	000018
+/**
+ * @note Address: 0x800DACD0
+ * @note Size: 0x18
  */
 u32 DSPReadMailFromDSP() { return (__DSPRegs[DSP_MAILBOX_OUT_HI] << 0x10) | __DSPRegs[DSP_MAILBOX_OUT_LO]; }
 
-/*
- * --INFO--
- * Address:	800DACE8
- * Size:	000014
+/**
+ * @note Address: 0x800DACE8
+ * @note Size: 0x14
  */
 void DSPSendMailToDSP(u32 mail)
 {
@@ -38,10 +34,9 @@ void DSPSendMailToDSP(u32 mail)
 	__DSPRegs[DSP_MAILBOX_IN_LO] = mail;
 }
 
-/*
- * --INFO--
- * Address:	800DACFC
- * Size:	000040
+/**
+ * @note Address: 0x800DACFC
+ * @note Size: 0x40
  */
 void DSPAssertInt()
 {
@@ -52,10 +47,9 @@ void DSPAssertInt()
 	OSRestoreInterrupts(interrupts);
 }
 
-/*
- * --INFO--
- * Address:	800DAD3C
- * Size:	0000C4
+/**
+ * @note Address: 0x800DAD3C
+ * @note Size: 0xC4
  */
 void DSPInit()
 {

@@ -3,10 +3,9 @@
 namespace Game {
 namespace MaroFrog {
 
-/*
- * --INFO--
- * Address:	8026152C
- * Size:	000050
+/**
+ * @note Address: 0x8026152C
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -14,24 +13,21 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "マロガエルマネージャ"; // maro frog manager
 }
 
-/*
- * --INFO--
- * Address:	8026157C
- * Size:	000048
+/**
+ * @note Address: 0x8026157C
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Frog::Parms); }
 
-/*
- * --INFO--
- * Address:	802615C4
- * Size:	000060
+/**
+ * @note Address: 0x802615C4
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	80261710
- * Size:	000010
+/**
+ * @note Address: 0x80261710
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 

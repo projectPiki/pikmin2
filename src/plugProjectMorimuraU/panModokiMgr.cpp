@@ -7,10 +7,9 @@ static const char panModokiMgrName[] = "panModokiMgr";
 
 namespace PanModoki {
 
-/*
- * --INFO--
- * Address:	8034E9C0
- * Size:	000050
+/**
+ * @note Address: 0x8034E9C0
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -18,27 +17,24 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "パンモドキマネージャ"; // bread manager
 }
 
-/*
- * --INFO--
- * Address:	8034EA10
- * Size:	000048
+/**
+ * @note Address: 0x8034EA10
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new PanModokiBase::Parms); }
 
-/*
- * --INFO--
- * Address:	8034ED70
- * Size:	000020
+/**
+ * @note Address: 0x8034ED70
+ * @note Size: 0x20
  */
 EnemyBase* Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::birth(birthArg); }
 
 } // namespace PanModoki
 
 namespace OoPanModoki {
-/*
- * --INFO--
- * Address:	8034ED90
- * Size:	000050
+/**
+ * @note Address: 0x8034ED90
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -46,31 +42,27 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "大パンモドキマネージャ"; // big bread manager
 }
 
-/*
- * --INFO--
- * Address:	8034EDE0
- * Size:	000048
+/**
+ * @note Address: 0x8034EDE0
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new PanModokiBase::Parms); }
 
-/*
- * --INFO--
- * Address:	8034EE28
- * Size:	000020
+/**
+ * @note Address: 0x8034EE28
+ * @note Size: 0x20
  */
 EnemyBase* Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::birth(birthArg); }
 
-/*
- * --INFO--
- * Address:	8034EE48
- * Size:	00002C
+/**
+ * @note Address: 0x8034EE48
+ * @note Size: 0x2C
  */
 J3DModelData* Mgr::doLoadBmd(void* filename) { return J3DModelLoaderDataBase::load(filename, 0x00240030); }
 
-/*
- * --INFO--
- * Address:	8034EE74
- * Size:	000068
+/**
+ * @note Address: 0x8034EE74
+ * @note Size: 0x68
  */
 void Mgr::loadModelData()
 {

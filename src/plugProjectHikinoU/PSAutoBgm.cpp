@@ -15,20 +15,18 @@ JKRHeap* ConductorMgr::sHeap;
 
 ConductorArcMgr* ConductorArcMgr::sInstance;
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00015C
+/**
+ * @note Address: N/A
+ * @note Size: 0x15C
  */
 Conductor::Conductor(AutoBgm* autoBgm, int p2)
     : _98(this)
 {
 }
 
-/*
- * --INFO--
- * Address:	80339024
- * Size:	000290
+/**
+ * @note Address: 0x80339024
+ * @note Size: 0x290
  */
 Conductor::~Conductor()
 {
@@ -236,10 +234,9 @@ lbl_80339298:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803392B4
- * Size:	000034
+/**
+ * @note Address: 0x803392B4
+ * @note Size: 0x34
  */
 void Conductor::removeCallback(u8 p1, void* p2)
 {
@@ -262,10 +259,9 @@ void Conductor::removeCallback(u8 p1, void* p2)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803392E8
- * Size:	00011C
+/**
+ * @note Address: 0x803392E8
+ * @note Size: 0x11C
  */
 u32 Conductor::seqCpuSync_AutoBgm(JASTrack* track1, u16 cmd, u32 p3, JASTrack* track2)
 {
@@ -287,10 +283,9 @@ u32 Conductor::seqCpuSync_AutoBgm(JASTrack* track1, u16 cmd, u32 p3, JASTrack* t
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	80339404
- * Size:	0000F4
+/**
+ * @note Address: 0x80339404
+ * @note Size: 0xF4
  */
 void Conductor::createTables(JASTrack* track)
 {
@@ -374,10 +369,9 @@ lbl_803394E0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803394F8
- * Size:	0002A4
+/**
+ * @note Address: 0x803394F8
+ * @note Size: 0x2A4
  */
 Track::Track()
     : JADUtility::PrmSetRc<Module>()
@@ -574,10 +568,9 @@ Track::Track()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033979C
- * Size:	00003C
+/**
+ * @note Address: 0x8033979C
+ * @note Size: 0x3C
  */
 void Track::afterGetFromFree()
 {
@@ -587,17 +580,15 @@ void Track::afterGetFromFree()
 	strcpy(_100.mValue, "\0");
 }
 
-/*
- * --INFO--
- * Address:	803397D8
- * Size:	0003DC
+/**
+ * @note Address: 0x803397D8
+ * @note Size: 0x3DC
  */
 Track::~Track() { }
 
-/*
- * --INFO--
- * Address:	80339BB4
- * Size:	00003C
+/**
+ * @note Address: 0x80339BB4
+ * @note Size: 0x3C
  */
 void Track::removeCallback(u8, void*)
 {
@@ -620,10 +611,9 @@ void Track::removeCallback(u8, void*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80339BF0
- * Size:	0001B8
+/**
+ * @note Address: 0x80339BF0
+ * @note Size: 0x1B8
  */
 u32 Track::seqCpuSync_AutoBgm_Track(JASTrack* track1, u16 cmd, u32 p2, JASTrack* track2)
 {
@@ -798,10 +788,9 @@ u32 Track::seqCpuSync_AutoBgm_Track(JASTrack* track1, u16 cmd, u32 p2, JASTrack*
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80339DA8
- * Size:	000060
+/**
+ * @note Address: 0x80339DA8
+ * @note Size: 0x60
  */
 void Track::incCurModule()
 {
@@ -812,10 +801,9 @@ void Track::incCurModule()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80339E08
- * Size:	000054
+/**
+ * @note Address: 0x80339E08
+ * @note Size: 0x54
  */
 void Module::afterGetFromFree()
 {
@@ -838,10 +826,9 @@ void Module::afterGetFromFree()
 	_2C0        = 0;
 }
 
-/*
- * --INFO--
- * Address:	80339E5C
- * Size:	000554
+/**
+ * @note Address: 0x80339E5C
+ * @note Size: 0x554
  */
 Module::Module()
     : PrmSetBase(true)
@@ -1234,10 +1221,9 @@ lbl_8033A2C4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033A3B0
- * Size:	00072C
+/**
+ * @note Address: 0x8033A3B0
+ * @note Size: 0x72C
  */
 Module::~Module()
 {
@@ -1246,10 +1232,9 @@ Module::~Module()
 	delete _2B8[1];
 }
 
-/*
- * --INFO--
- * Address:	8033AADC
- * Size:	000044
+/**
+ * @note Address: 0x8033AADC
+ * @note Size: 0x44
  */
 void Module::removeCallback(u8, void*)
 {
@@ -1274,10 +1259,9 @@ void Module::removeCallback(u8, void*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033AB20
- * Size:	000218
+/**
+ * @note Address: 0x8033AB20
+ * @note Size: 0x218
  */
 u32 Module::seqCpuSync_AutoBgm_Module(JASTrack* track1, u16 cmd, u32 p3, JASTrack* track2)
 {
@@ -1486,10 +1470,9 @@ u32 Module::seqCpuSync_AutoBgm_Module(JASTrack* track1, u16 cmd, u32 p3, JASTrac
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033AD38
- * Size:	0001BC
+/**
+ * @note Address: 0x8033AD38
+ * @note Size: 0x1BC
  */
 void Module::setTableAddress(JASTrack*)
 {
@@ -1620,10 +1603,9 @@ lbl_8033AEC4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033AEF4
- * Size:	000154
+/**
+ * @note Address: 0x8033AEF4
+ * @note Size: 0x154
  */
 void Module::cycleLoop(JASTrack*)
 {
@@ -1734,10 +1716,9 @@ lbl_8033B030:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033B048
- * Size:	000010
+/**
+ * @note Address: 0x8033B048
+ * @note Size: 0x10
  */
 u32 CycleBase::cycleTop(JASTrack* track)
 {
@@ -1745,10 +1726,9 @@ u32 CycleBase::cycleTop(JASTrack* track)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	8033B058
- * Size:	0001BC
+/**
+ * @note Address: 0x8033B058
+ * @note Size: 0x1BC
  */
 void CycleBase::play(JASTrack* track)
 {
@@ -1881,10 +1861,9 @@ lbl_8033B1F8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033B214
- * Size:	000078
+/**
+ * @note Address: 0x8033B214
+ * @note Size: 0x78
  */
 u32 CycleBase::checkCloser(JASTrack*)
 {
@@ -1897,10 +1876,9 @@ u32 CycleBase::checkCloser(JASTrack*)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	8033B28C
- * Size:	000184
+/**
+ * @note Address: 0x8033B28C
+ * @note Size: 0x184
  */
 OnCycle::OnCycle(Module*)
     : CycleBase()
@@ -2012,10 +1990,9 @@ lbl_8033B3CC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033B468
- * Size:	000360
+/**
+ * @note Address: 0x8033B468
+ * @note Size: 0x360
  */
 void OnCycle::play(JASTrack*)
 {
@@ -2271,10 +2248,9 @@ lbl_8033B7AC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033B7C8
- * Size:	000274
+/**
+ * @note Address: 0x8033B7C8
+ * @note Size: 0x274
  */
 void OnCycle::setTip(JASTrack*)
 {
@@ -2457,10 +2433,9 @@ lbl_8033B9D4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033BA3C
- * Size:	00005C
+/**
+ * @note Address: 0x8033BA3C
+ * @note Size: 0x5C
  */
 void OnCycle::historiesAreSameAll()
 {
@@ -2499,10 +2474,9 @@ lbl_8033BA8C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033BA98
- * Size:	0000BC
+/**
+ * @note Address: 0x8033BA98
+ * @note Size: 0xBC
  */
 u32 OnCycle::avoidCheck()
 {
@@ -2563,10 +2537,9 @@ lbl_8033BB38:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033BB54
- * Size:	0000B0
+/**
+ * @note Address: 0x8033BB54
+ * @note Size: 0xB0
  */
 OffCycle::OffCycle(Module* module)
 {
@@ -2620,10 +2593,9 @@ OffCycle::OffCycle(Module* module)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033BC04
- * Size:	00015C
+/**
+ * @note Address: 0x8033BC04
+ * @note Size: 0x15C
  */
 AutoBgm::AutoBgm(const char* cndFileName, const char* bmsFileName, const JAInter::SoundInfo& soundInfo, JADUtility::AccessMode accessMode,
                  PSSystem::DirectorMgrBase* directorMgr)
@@ -2637,10 +2609,9 @@ AutoBgm::AutoBgm(const char* cndFileName, const char* bmsFileName, const JAInter
 	P2ASSERTLINE(1143, ConductorArcMgr::getInstance());
 }
 
-/*
- * --INFO--
- * Address:	8033C058
- * Size:	000150
+/**
+ * @note Address: 0x8033C058
+ * @note Size: 0x150
  */
 void AutoBgm::startSeq()
 {
@@ -2749,10 +2720,9 @@ lbl_8033C170:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033C1A8
- * Size:	000044
+/**
+ * @note Address: 0x8033C1A8
+ * @note Size: 0x44
  */
 void AutoBgm::scene1st(PSSystem::TaskChecker* task)
 {
@@ -2760,10 +2730,9 @@ void AutoBgm::scene1st(PSSystem::TaskChecker* task)
 	loadConductor(task);
 }
 
-/*
- * --INFO--
- * Address:	8033C1EC
- * Size:	000180
+/**
+ * @note Address: 0x8033C1EC
+ * @note Size: 0x180
  */
 void AutoBgm::loadConductor(PSSystem::TaskChecker* task)
 {
@@ -2904,10 +2873,9 @@ lbl_8033C358:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033C36C
- * Size:	000074
+/**
+ * @note Address: 0x8033C36C
+ * @note Size: 0x74
  */
 void AutoBgm::loadedCallback(u32 p1, u32 p2)
 {
@@ -2956,10 +2924,9 @@ lbl_8033C3CC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033C3E0
- * Size:	000168
+/**
+ * @note Address: 0x8033C3E0
+ * @note Size: 0x168
  */
 void AutoBgm::pauseOn(SeqBase::PauseMode pause)
 {
@@ -3005,10 +2972,9 @@ void AutoBgm::pauseOn(SeqBase::PauseMode pause)
 		mPauseMode = SeqBase::MODE4;
 }
 
-/*
- * --INFO--
- * Address:	8033C548
- * Size:	000020
+/**
+ * @note Address: 0x8033C548
+ * @note Size: 0x20
  */
 void AutoBgm::pauseOff() { SeqBase::pauseOff(); }
 

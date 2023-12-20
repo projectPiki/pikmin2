@@ -11,10 +11,9 @@
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	8029C1C4
- * Size:	000058
+/**
+ * @note Address: 0x8029C1C4
+ * @note Size: 0x58
  */
 bool InteractFuefukiTimerReset::actEnemy(EnemyBase* enemy)
 {
@@ -28,10 +27,9 @@ bool InteractFuefukiTimerReset::actEnemy(EnemyBase* enemy)
 
 namespace Fuefuki {
 
-/*
- * --INFO--
- * Address:	8029C21C
- * Size:	000140
+/**
+ * @note Address: 0x8029C21C
+ * @note Size: 0x140
  */
 Obj::Obj()
 {
@@ -41,17 +39,15 @@ Obj::Obj()
 	createEffect();
 }
 
-/*
- * --INFO--
- * Address:	8029C35C
- * Size:	000004
+/**
+ * @note Address: 0x8029C35C
+ * @note Size: 0x4
  */
 void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
-/*
- * --INFO--
- * Address:	8029C360
- * Size:	000030
+/**
+ * @note Address: 0x8029C360
+ * @note Size: 0x30
  */
 void Obj::birth(Vector3f& position, f32 angle)
 {
@@ -61,10 +57,9 @@ void Obj::birth(Vector3f& position, f32 angle)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8029C390
- * Size:	000088
+/**
+ * @note Address: 0x8029C390
+ * @note Size: 0x88
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
@@ -81,10 +76,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mFsm->start(this, FUEFUKI_Land, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8029C418
- * Size:	000054
+/**
+ * @note Address: 0x8029C418
+ * @note Size: 0x54
  */
 void Obj::onKill(CreatureKillArg* killArg)
 {
@@ -96,10 +90,9 @@ void Obj::onKill(CreatureKillArg* killArg)
 	EnemyBase::onKill(killArg);
 }
 
-/*
- * --INFO--
- * Address:	8029C46C
- * Size:	000078
+/**
+ * @note Address: 0x8029C46C
+ * @note Size: 0x78
  */
 void Obj::doUpdate()
 {
@@ -112,24 +105,21 @@ void Obj::doUpdate()
 	updateFootmarks();
 }
 
-/*
- * --INFO--
- * Address:	8029C4E4
- * Size:	000004
+/**
+ * @note Address: 0x8029C4E4
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	8029C4E8
- * Size:	000020
+/**
+ * @note Address: 0x8029C4E8
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	8029C508
- * Size:	00004C
+/**
+ * @note Address: 0x8029C508
+ * @note Size: 0x4C
  */
 void Obj::setFSM(FSM* fsm)
 {
@@ -138,10 +128,9 @@ void Obj::setFSM(FSM* fsm)
 	mCurrentLifecycleState = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8029C554
- * Size:	0000A4
+/**
+ * @note Address: 0x8029C554
+ * @note Size: 0xA4
  */
 void Obj::getShadowParam(ShadowParam& param)
 {
@@ -160,10 +149,9 @@ void Obj::getShadowParam(ShadowParam& param)
 	param.mSize = 15.0f;
 }
 
-/*
- * --INFO--
- * Address:	8029C5F8
- * Size:	000068
+/**
+ * @note Address: 0x8029C5F8
+ * @note Size: 0x68
  */
 bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
@@ -175,10 +163,9 @@ bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* collpart)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8029C660
- * Size:	000068
+/**
+ * @note Address: 0x8029C660
+ * @note Size: 0x68
  */
 bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
@@ -190,10 +177,9 @@ bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8029C6C8
- * Size:	000044
+/**
+ * @note Address: 0x8029C6C8
+ * @note Size: 0x44
  */
 void Obj::doStartStoneState()
 {
@@ -203,10 +189,9 @@ void Obj::doStartStoneState()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8029C70C
- * Size:	000044
+/**
+ * @note Address: 0x8029C70C
+ * @note Size: 0x44
  */
 void Obj::doFinishStoneState()
 {
@@ -216,10 +201,9 @@ void Obj::doFinishStoneState()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8029C750
- * Size:	000044
+/**
+ * @note Address: 0x8029C750
+ * @note Size: 0x44
  */
 void Obj::doStartEarthquakeFitState()
 {
@@ -229,10 +213,9 @@ void Obj::doStartEarthquakeFitState()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8029C794
- * Size:	000044
+/**
+ * @note Address: 0x8029C794
+ * @note Size: 0x44
  */
 void Obj::doFinishEarthquakeFitState()
 {
@@ -242,10 +225,9 @@ void Obj::doFinishEarthquakeFitState()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8029C7D8
- * Size:	000034
+/**
+ * @note Address: 0x8029C7D8
+ * @note Size: 0x34
  */
 void Obj::doStartWaitingBirthTypeDrop()
 {
@@ -253,10 +235,9 @@ void Obj::doStartWaitingBirthTypeDrop()
 	effectDrawOff();
 }
 
-/*
- * --INFO--
- * Address:	8029C80C
- * Size:	000034
+/**
+ * @note Address: 0x8029C80C
+ * @note Size: 0x34
  */
 void Obj::doFinishWaitingBirthTypeDrop()
 {
@@ -264,31 +245,27 @@ void Obj::doFinishWaitingBirthTypeDrop()
 	effectDrawOn();
 }
 
-/*
- * --INFO--
- * Address:	8029C840
- * Size:	000028
+/**
+ * @note Address: 0x8029C840
+ * @note Size: 0x28
  */
 void Obj::startCarcassMotion() { startMotion(FUEFUKIANIM_Carry, nullptr); }
 
-/*
- * --INFO--
- * Address:	8029C868
- * Size:	000020
+/**
+ * @note Address: 0x8029C868
+ * @note Size: 0x20
  */
 void Obj::doStartMovie() { effectDrawOff(); }
 
-/*
- * --INFO--
- * Address:	8029C888
- * Size:	000020
+/**
+ * @note Address: 0x8029C888
+ * @note Size: 0x20
  */
 void Obj::doEndMovie() { effectDrawOn(); }
 
-/*
- * --INFO--
- * Address:	8029C8A8
- * Size:	0000C0
+/**
+ * @note Address: 0x8029C8A8
+ * @note Size: 0xC0
  */
 Vector3f Obj::getOffsetForMapCollision()
 {
@@ -306,10 +283,9 @@ Vector3f Obj::getOffsetForMapCollision()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8029C968
- * Size:	000078
+/**
+ * @note Address: 0x8029C968
+ * @note Size: 0x78
  */
 void Obj::resetAppearTimer()
 {
@@ -317,10 +293,9 @@ void Obj::resetAppearTimer()
 	mAppearTimer = randWeightFloat(weight);
 }
 
-/*
- * --INFO--
- * Address:	8029C9E0
- * Size:	00002C
+/**
+ * @note Address: 0x8029C9E0
+ * @note Size: 0x2C
  */
 void Obj::resetWhisleTimer(bool check)
 {
@@ -331,10 +306,9 @@ void Obj::resetWhisleTimer(bool check)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8029CA0C
- * Size:	000078
+/**
+ * @note Address: 0x8029CA0C
+ * @note Size: 0x78
  */
 bool Obj::isWhisleTimeMax()
 {
@@ -353,10 +327,9 @@ bool Obj::isWhisleTimeMax()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8029CA84
- * Size:	000038
+/**
+ * @note Address: 0x8029CA84
+ * @note Size: 0x38
  */
 void Obj::startWhisle()
 {
@@ -366,10 +339,9 @@ void Obj::startWhisle()
 	startWhisleEffect();
 }
 
-/*
- * --INFO--
- * Address:	8029CABC
- * Size:	000324
+/**
+ * @note Address: 0x8029CABC
+ * @note Size: 0x324
  */
 void Obj::updateWhisle()
 {
@@ -401,10 +373,9 @@ void Obj::updateWhisle()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8029CDE0
- * Size:	000038
+/**
+ * @note Address: 0x8029CDE0
+ * @note Size: 0x38
  */
 void Obj::finishWhisle()
 {
@@ -414,10 +385,9 @@ void Obj::finishWhisle()
 	finishWhisleEffect();
 }
 
-/*
- * --INFO--
- * Address:	8029CE18
- * Size:	0002A0
+/**
+ * @note Address: 0x8029CE18
+ * @note Size: 0x2A0
  */
 void Obj::setTargetPosition(bool check)
 {
@@ -447,10 +417,9 @@ void Obj::setTargetPosition(bool check)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8029D0B8
- * Size:	0001E0
+/**
+ * @note Address: 0x8029D0B8
+ * @note Size: 0x1E0
  */
 bool Obj::isJumpAway()
 {
@@ -494,10 +463,9 @@ bool Obj::isJumpAway()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8029D298
- * Size:	000048
+/**
+ * @note Address: 0x8029D298
+ * @note Size: 0x48
  */
 bool Obj::isArriveTarget()
 {
@@ -508,10 +476,9 @@ bool Obj::isArriveTarget()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8029D2E0
- * Size:	000050
+/**
+ * @note Address: 0x8029D2E0
+ * @note Size: 0x50
  */
 void Obj::createFootmarks()
 {
@@ -519,10 +486,9 @@ void Obj::createFootmarks()
 	mFootmarks->alloc(10);
 }
 
-/*
- * --INFO--
- * Address:	8029D330
- * Size:	0000BC
+/**
+ * @note Address: 0x8029D330
+ * @note Size: 0xBC
  */
 void Obj::updateFootmarks()
 {
@@ -537,10 +503,9 @@ void Obj::updateFootmarks()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8029D3EC
- * Size:	00019C
+/**
+ * @note Address: 0x8029D3EC
+ * @note Size: 0x19C
  */
 void Obj::createEffect()
 {
@@ -549,10 +514,9 @@ void Obj::createEffect()
 	mEfxOnpa = new efx::TFuebugOnpa;
 }
 
-/*
- * --INFO--
- * Address:	8029D588
- * Size:	00009C
+/**
+ * @note Address: 0x8029D588
+ * @note Size: 0x9C
  */
 void Obj::startWhisleEffect()
 {
@@ -563,10 +527,9 @@ void Obj::startWhisleEffect()
 	mEfxOnpa->create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8029D624
- * Size:	000078
+/**
+ * @note Address: 0x8029D624
+ * @note Size: 0x78
  */
 void Obj::updateWhisleEffect(f32 scale)
 {
@@ -575,10 +538,9 @@ void Obj::updateWhisleEffect(f32 scale)
 	mEfxWhistle->mAngleSpeed = C_PARMS->mGeneral.mAttackHitAngle.mValue;
 }
 
-/*
- * --INFO--
- * Address:	8029D69C
- * Size:	000050
+/**
+ * @note Address: 0x8029D69C
+ * @note Size: 0x50
  */
 void Obj::finishWhisleEffect()
 {
@@ -586,10 +548,9 @@ void Obj::finishWhisleEffect()
 	mEfxOnpa->fade();
 }
 
-/*
- * --INFO--
- * Address:	8029D718
- * Size:	000078
+/**
+ * @note Address: 0x8029D718
+ * @note Size: 0x78
  */
 void Obj::createDownEffect(f32 scale)
 {
@@ -599,10 +560,9 @@ void Obj::createDownEffect(f32 scale)
 	createBounceEffect(position, scale);
 }
 
-/*
- * --INFO--
- * Address:	8029D790
- * Size:	000048
+/**
+ * @note Address: 0x8029D790
+ * @note Size: 0x48
  */
 void Obj::createEfxHamon()
 {
@@ -611,10 +571,9 @@ void Obj::createEfxHamon()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8029D7D8
- * Size:	000050
+/**
+ * @note Address: 0x8029D7D8
+ * @note Size: 0x50
  */
 void Obj::effectDrawOn()
 {
@@ -622,10 +581,9 @@ void Obj::effectDrawOn()
 	mEfxOnpa->endDemoDrawOn();
 }
 
-/*
- * --INFO--
- * Address:	8029D844
- * Size:	000050
+/**
+ * @note Address: 0x8029D844
+ * @note Size: 0x50
  */
 void Obj::effectDrawOff()
 {

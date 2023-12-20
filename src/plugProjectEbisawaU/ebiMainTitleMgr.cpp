@@ -13,10 +13,9 @@ namespace ebi {
 
 const f32 TMainTitleMgr::kFadeOutTime = 1.0f;
 
-/*
- * --INFO--
- * Address:	803EA170
- * Size:	0003B4
+/**
+ * @note Address: 0x803EA170
+ * @note Size: 0x3B4
  */
 TMainTitleMgr::TMainTitleMgr()
     : mDrawColor(0, 0, 0, -1)
@@ -31,10 +30,9 @@ TMainTitleMgr::TMainTitleMgr()
 	title::titleMgr->init();
 }
 
-/*
- * --INFO--
- * Address:	803EA524
- * Size:	000068
+/**
+ * @note Address: 0x803EA524
+ * @note Size: 0x68
  */
 void TMainTitleMgr::setMode(long set)
 {
@@ -54,10 +52,9 @@ void TMainTitleMgr::setMode(long set)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803EA58C
- * Size:	000124
+/**
+ * @note Address: 0x803EA58C
+ * @note Size: 0x124
  */
 void TMainTitleMgr::loadResource()
 {
@@ -82,10 +79,9 @@ void TMainTitleMgr::loadResource()
 	sys->heapStatusEnd("TMainTitleMgr::loadResource");
 }
 
-/*
- * --INFO--
- * Address:	803EA6B0
- * Size:	00004C
+/**
+ * @note Address: 0x803EA6B0
+ * @note Size: 0x4C
  */
 void TMainTitleMgr::setController(Controller* control)
 {
@@ -95,10 +91,9 @@ void TMainTitleMgr::setController(Controller* control)
 	mController = control;
 }
 
-/*
- * --INFO--
- * Address:	803EA6FC
- * Size:	0000C0
+/**
+ * @note Address: 0x803EA6FC
+ * @note Size: 0xC0
  */
 void TMainTitleMgr::start()
 {
@@ -117,10 +112,9 @@ void TMainTitleMgr::start()
 	mDrawState          = 0;
 }
 
-/*
- * --INFO--
- * Address:	803EA7BC
- * Size:	0001F0
+/**
+ * @note Address: 0x803EA7BC
+ * @note Size: 0x1F0
  */
 void TMainTitleMgr::startMenuSet(long, long select)
 {
@@ -172,41 +166,36 @@ void TMainTitleMgr::startMenuSet(long, long select)
 	mDrawState          = 1;
 }
 
-/*
- * --INFO--
- * Address:	803EA9AC
- * Size:	00000C
+/**
+ * @note Address: 0x803EA9AC
+ * @note Size: 0xC
  */
 void TMainTitleMgr::forceQuit() { mState = Standby; }
 
-/*
- * --INFO--
- * Address:	803EA9B8
- * Size:	000010
+/**
+ * @note Address: 0x803EA9B8
+ * @note Size: 0x10
  */
 bool TMainTitleMgr::isFinish() { return u8(mState == Standby); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000068
+/**
+ * @note Address: N/A
+ * @note Size: 0x68
  */
 bool TMainTitleMgr::isAnyKey()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803EA9C8
- * Size:	000008
+/**
+ * @note Address: 0x803EA9C8
+ * @note Size: 0x8
  */
 int TMainTitleMgr::getSelectedMenu() { return mSelectedMenuOption; }
 
-/*
- * --INFO--
- * Address:	803EA9D0
- * Size:	0004B0
+/**
+ * @note Address: 0x803EA9D0
+ * @note Size: 0x4B0
  */
 void TMainTitleMgr::update()
 {
@@ -328,10 +317,9 @@ void TMainTitleMgr::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803EAE80
- * Size:	000274
+/**
+ * @note Address: 0x803EAE80
+ * @note Size: 0x274
  */
 void TMainTitleMgr::draw()
 {
@@ -380,10 +368,9 @@ void TMainTitleMgr::draw()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 void TMainTitleMgr::showInfo()
 {

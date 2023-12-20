@@ -1,6 +1,6 @@
 
 /* @(#)s_frexp.c 1.4 95/01/18 */
-/*
+/**
  * ====================================================
  * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
  *
@@ -11,7 +11,7 @@
  * ====================================================
  */
 
-/*
+/**
  * for non-zero x
  *	x = frexp(arg,&exp);
  * return a double fp quantity x such that 0.5 <= |x| <1.0

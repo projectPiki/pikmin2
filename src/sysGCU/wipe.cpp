@@ -3,10 +3,9 @@
 #include "wipe.h"
 #include "nans.h"
 
-/*
- * --INFO--
- * Address:	8042BD0C
- * Size:	00005C
+/**
+ * @note Address: 0x8042BD0C
+ * @note Size: 0x5C
  */
 WipeBase::WipeBase()
 {
@@ -16,10 +15,9 @@ WipeBase::WipeBase()
 	_21       = 1;
 }
 
-/*
- * --INFO--
- * Address:	8042BD68
- * Size:	000040
+/**
+ * @note Address: 0x8042BD68
+ * @note Size: 0x40
  */
 void WipeBase::start(f32 p1)
 {
@@ -29,10 +27,9 @@ void WipeBase::start(f32 p1)
 	on_start();
 }
 
-/*
- * --INFO--
- * Address:	8042BDAC
- * Size:	000078
+/**
+ * @note Address: 0x8042BDAC
+ * @note Size: 0x78
  */
 void WipeBase::update()
 {
@@ -45,10 +42,9 @@ void WipeBase::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8042BE24
- * Size:	000060
+/**
+ * @note Address: 0x8042BE24
+ * @note Size: 0x60
  */
 void WipeBase::draw()
 {
@@ -60,36 +56,32 @@ void WipeBase::draw()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8042BE88
- * Size:	000018
+/**
+ * @note Address: 0x8042BE88
+ * @note Size: 0x18
  */
 bool WipeInFader::isWhite() { return mTimer > 0.5f; }
 
-/*
- * --INFO--
- * Address:	8042BEA0
- * Size:	000018
+/**
+ * @note Address: 0x8042BEA0
+ * @note Size: 0x18
  */
 bool WipeInFader::isBlack() { return mTimer < 0.5f; }
 
-/*
+/**
  * __ct__11WipeInFaderFv
- * --INFO--
- * Address:	8042BEB8
- * Size:	000078
+ * @note Address: 0x8042BEB8
+ * @note Size: 0x78
  */
 WipeInFader::WipeInFader()
     : mColor(0, 0, 0, 0)
 {
 }
 
-/*
+/**
  * do_draw__11WipeInFaderFf
- * --INFO--
- * Address:	8042BF30
- * Size:	000144
+ * @note Address: 0x8042BF30
+ * @note Size: 0x144
  */
 void WipeInFader::do_draw(f32 rate)
 {
@@ -114,45 +106,40 @@ void WipeInFader::do_draw(f32 rate)
 	graf->fillBox(box);
 }
 
-/*
+/**
  * __ct__12WipeOutFaderFv
- * --INFO--
- * Address:	8042C074
- * Size:	000078
+ * @note Address: 0x8042C074
+ * @note Size: 0x78
  */
 WipeOutFader::WipeOutFader()
     : mColor(0, 0, 0, 0)
 {
 }
 
-/*
- * --INFO--
- * Address:	8042C0EC
- * Size:	000004
+/**
+ * @note Address: 0x8042C0EC
+ * @note Size: 0x4
  */
 void WipeOutFader::on_start() { }
 
-/*
+/**
  * isWhite__12WipeOutFaderFv
- * --INFO--
- * Address:	8042C0F0
- * Size:	000018
+ * @note Address: 0x8042C0F0
+ * @note Size: 0x18
  */
 bool WipeOutFader::isWhite() { return mTimer < 0.5f; }
 
-/*
+/**
  * isBlack__12WipeOutFaderFv
- * --INFO--
- * Address:	8042C108
- * Size:	000018
+ * @note Address: 0x8042C108
+ * @note Size: 0x18
  */
 bool WipeOutFader::isBlack() { return mTimer > 0.5f; }
 
-/*
+/**
  * doDraw__12WipeOutFaderFf
- * --INFO--
- * Address:	8042C120
- * Size:	000138
+ * @note Address: 0x8042C120
+ * @note Size: 0x138
  */
 void WipeOutFader::do_draw(f32 rate)
 {
@@ -178,11 +165,10 @@ void WipeOutFader::do_draw(f32 rate)
 	graf->fillBox(box);
 }
 
-/*
+/**
  * on_start__14WipeOutInFaderFv
- * --INFO--
- * Address:	8042C258
- * Size:	000050
+ * @note Address: 0x8042C258
+ * @note Size: 0x50
  */
 void WipeOutInFader::on_start()
 {
@@ -193,21 +179,19 @@ void WipeOutInFader::on_start()
 	mWipeOutFader.on_start();
 }
 
-/*
+/**
  * isWhite__14WipeOutInFaderFv
- * --INFO--
- * Address:	8042C2A8
- * Size:	00003C
+ * @note Address: 0x8042C2A8
+ * @note Size: 0x3C
  */
 bool WipeOutInFader::isWhite() { return (mState ? mTimer < 0.5f : mTimer > 0.5f); }
 
 bool WipeOutInFader::isBlack() { return !isWhite(); }
 
-/*
+/**
  * do_draw__14WipeOutInFaderFf
- * --INFO--
- * Address:	8042C31C
- * Size:	0000A8
+ * @note Address: 0x8042C31C
+ * @note Size: 0xA8
  */
 void WipeOutInFader::do_draw(f32)
 {
@@ -226,11 +210,10 @@ void WipeOutInFader::do_draw(f32)
 	}
 }
 
-/*
+/**
  * __ct__10BlackFaderFv
- * --INFO--
- * Address:	8042C3C4
- * Size:	00007C
+ * @note Address: 0x8042C3C4
+ * @note Size: 0x7C
  */
 BlackFader::BlackFader()
     : mColor(0, 0, 0, 0)
@@ -238,27 +221,24 @@ BlackFader::BlackFader()
 	mIsBlack = true;
 }
 
-/*
+/**
  * isWhite__10BlackFaderFv
- * --INFO--
- * Address:	8042C440
- * Size:	000010
+ * @note Address: 0x8042C440
+ * @note Size: 0x10
  */
 bool BlackFader::isWhite() { return !mIsBlack; }
 
-/*
+/**
  * isBlack__10BlackFaderFv
- * --INFO--
- * Address:	8042C450
- * Size:	000008
+ * @note Address: 0x8042C450
+ * @note Size: 0x8
  */
 bool BlackFader::isBlack() { return mIsBlack; }
 
-/*
+/**
  * do_draw__10BlackFaderFf
- * --INFO--
- * Address:	8042C458
- * Size:	000120
+ * @note Address: 0x8042C458
+ * @note Size: 0x120
  */
 void BlackFader::do_draw(f32 rate)
 {
@@ -285,120 +265,108 @@ void BlackFader::do_draw(f32 rate)
 
 // Note:: All of BallFader went unused and has been stripped
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000164
+/**
+ * @note Address: N/A
+ * @note Size: 0x164
  */
 BallFader::BallFader(int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 BallFader::Ball::Ball()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
+/**
+ * @note Address: N/A
+ * @note Size: 0x58
  */
 void BallFader::on_start()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
+/**
+ * @note Address: N/A
+ * @note Size: 0x50
  */
 void BallFader::do_draw(f32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 void BallFader::computeForces()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000180
+/**
+ * @note Address: N/A
+ * @note Size: 0x180
  */
 void BallFader::emitBalls(f32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00017C
+/**
+ * @note Address: N/A
+ * @note Size: 0x17C
  */
 void drawBall(Graphics&, Vector2f, f32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000334
+/**
+ * @note Address: N/A
+ * @note Size: 0x334
  */
 void drawBall2(Graphics&, Vector2f, f32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B0
+/**
+ * @note Address: N/A
+ * @note Size: 0xB0
  */
 void BallFader::drawAll()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A8
+/**
+ * @note Address: N/A
+ * @note Size: 0xA8
  */
 void BallFader::simulate()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000324
+/**
+ * @note Address: N/A
+ * @note Size: 0x324
  */
 void BallFader::resolveCollision()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 void BallFader::birth()
 {

@@ -10,10 +10,9 @@
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	80329190
- * Size:	000080
+/**
+ * @note Address: 0x80329190
+ * @note Size: 0x80
  */
 ObjSMenuPauseVS::ObjSMenuPauseVS(char const* name)
 {
@@ -29,17 +28,15 @@ ObjSMenuPauseVS::ObjSMenuPauseVS(char const* name)
 	mType        = 0;
 }
 
-/*
- * --INFO--
- * Address:	80329210
- * Size:	0000C4
+/**
+ * @note Address: 0x80329210
+ * @note Size: 0xC4
  */
 ObjSMenuPauseVS::~ObjSMenuPauseVS() { }
 
-/*
- * --INFO--
- * Address:	803292D4
- * Size:	000334
+/**
+ * @note Address: 0x803292D4
+ * @note Size: 0x334
  */
 void ObjSMenuPauseVS::doCreate(JKRArchive* arc)
 {
@@ -81,10 +78,9 @@ void ObjSMenuPauseVS::doCreate(JKRArchive* arc)
 	blink_Menu(mCurrMenuSel);
 }
 
-/*
- * --INFO--
- * Address:	80329608
- * Size:	000074
+/**
+ * @note Address: 0x80329608
+ * @note Size: 0x74
  */
 void ObjSMenuPauseVS::blink_Menu(int id)
 {
@@ -98,10 +94,9 @@ void ObjSMenuPauseVS::blink_Menu(int id)
 	mAnimText2->blink(blinks[1], 0.0f);
 }
 
-/*
- * --INFO--
- * Address:	8032967C
- * Size:	000068
+/**
+ * @note Address: 0x8032967C
+ * @note Size: 0x68
  */
 void ObjSMenuPauseVS::commonUpdate()
 {
@@ -110,10 +105,9 @@ void ObjSMenuPauseVS::commonUpdate()
 	mScreenPause->update();
 }
 
-/*
- * --INFO--
- * Address:	803296E4
- * Size:	000060
+/**
+ * @note Address: 0x803296E4
+ * @note Size: 0x60
  */
 bool ObjSMenuPauseVS::doUpdate()
 {
@@ -125,10 +119,9 @@ bool ObjSMenuPauseVS::doUpdate()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	80329744
- * Size:	000230
+/**
+ * @note Address: 0x80329744
+ * @note Size: 0x230
  */
 bool ObjSMenuPauseVS::menu()
 {
@@ -178,10 +171,9 @@ bool ObjSMenuPauseVS::menu()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	80329974
- * Size:	000038
+/**
+ * @note Address: 0x80329974
+ * @note Size: 0x38
  */
 void ObjSMenuPauseVS::out_cancel()
 {
@@ -189,10 +181,9 @@ void ObjSMenuPauseVS::out_cancel()
 	out_L();
 }
 
-/*
- * --INFO--
- * Address:	803299AC
- * Size:	000038
+/**
+ * @note Address: 0x803299AC
+ * @note Size: 0x38
  */
 void ObjSMenuPauseVS::out_menu_0()
 {
@@ -200,10 +191,9 @@ void ObjSMenuPauseVS::out_menu_0()
 	out_L();
 }
 
-/*
- * --INFO--
- * Address:	803299E4
- * Size:	000038
+/**
+ * @note Address: 0x803299E4
+ * @note Size: 0x38
  */
 void ObjSMenuPauseVS::out_menu_1()
 {
@@ -211,17 +201,15 @@ void ObjSMenuPauseVS::out_menu_1()
 	out_L();
 }
 
-/*
- * --INFO--
- * Address:	80329A1C
- * Size:	000010
+/**
+ * @note Address: 0x80329A1C
+ * @note Size: 0x10
  */
 void ObjSMenuPauseVS::doUpdateCancelAction() { mDisp->mState = 2; }
 
-/*
- * --INFO--
- * Address:	80329A2C
- * Size:	000060
+/**
+ * @note Address: 0x80329A2C
+ * @note Size: 0x60
  */
 void ObjSMenuPauseVS::doDraw(Graphics& gfx)
 {
@@ -232,10 +220,9 @@ void ObjSMenuPauseVS::doDraw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80329A8C
- * Size:	000044
+/**
+ * @note Address: 0x80329A8C
+ * @note Size: 0x44
  */
 bool ObjSMenuPauseVS::doStart(::Screen::StartSceneArg const*)
 {
@@ -245,17 +232,15 @@ bool ObjSMenuPauseVS::doStart(::Screen::StartSceneArg const*)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80329AD0
- * Size:	000008
+/**
+ * @note Address: 0x80329AD0
+ * @note Size: 0x8
  */
 bool ObjSMenuPauseVS::doEnd(::Screen::EndSceneArg const*) { return true; }
 
-/*
- * --INFO--
- * Address:	80329AD8
- * Size:	00004C
+/**
+ * @note Address: 0x80329AD8
+ * @note Size: 0x4C
  */
 bool ObjSMenuPauseVS::doUpdateFadein()
 {
@@ -263,10 +248,9 @@ bool ObjSMenuPauseVS::doUpdateFadein()
 	return updateFadeIn();
 }
 
-/*
- * --INFO--
- * Address:	80329B24
- * Size:	000048
+/**
+ * @note Address: 0x80329B24
+ * @note Size: 0x48
  */
 void ObjSMenuPauseVS::doUpdateFadeinFinish()
 {
@@ -274,10 +258,9 @@ void ObjSMenuPauseVS::doUpdateFadeinFinish()
 	wait();
 }
 
-/*
- * --INFO--
- * Address:	80329B6C
- * Size:	000048
+/**
+ * @note Address: 0x80329B6C
+ * @note Size: 0x48
  */
 void ObjSMenuPauseVS::doUpdateFinish()
 {
@@ -286,10 +269,9 @@ void ObjSMenuPauseVS::doUpdateFinish()
 	mMenuMgr->killCursor();
 }
 
-/*
- * --INFO--
- * Address:	80329BB4
- * Size:	00004C
+/**
+ * @note Address: 0x80329BB4
+ * @note Size: 0x4C
  */
 bool ObjSMenuPauseVS::doUpdateFadeout()
 {
@@ -297,10 +279,9 @@ bool ObjSMenuPauseVS::doUpdateFadeout()
 	return updateFadeOut();
 }
 
-/*
- * --INFO--
- * Address:	80329C00
- * Size:	0000AC
+/**
+ * @note Address: 0x80329C00
+ * @note Size: 0xAC
  */
 void ObjSMenuPauseVS::doUpdateFadeoutFinish()
 {
@@ -316,17 +297,15 @@ void ObjSMenuPauseVS::doUpdateFadeoutFinish()
 	setFinishState(getResult());
 }
 
-/*
- * --INFO--
- * Address:	80329CAC
- * Size:	00000C
+/**
+ * @note Address: 0x80329CAC
+ * @note Size: 0xC
  */
 int ObjSMenuPauseVS::getResult() { return mDisp->mState; }
 
-/*
- * --INFO--
- * Address:	80329CB8
- * Size:	000014
+/**
+ * @note Address: 0x80329CB8
+ * @note Size: 0x14
  */
 void ObjSMenuPauseVS::in_L()
 {
@@ -334,45 +313,39 @@ void ObjSMenuPauseVS::in_L()
 	mAngle = 15.0f;
 }
 
-/*
- * --INFO--
- * Address:	80329CCC
- * Size:	00000C
+/**
+ * @note Address: 0x80329CCC
+ * @note Size: 0xC
  */
 void ObjSMenuPauseVS::wait() { mState = MENUSTATE_Default; }
 
-/*
- * --INFO--
- * Address:	80329CD8
- * Size:	00000C
+/**
+ * @note Address: 0x80329CD8
+ * @note Size: 0xC
  */
 void ObjSMenuPauseVS::out_L() { mState = MENUSTATE_CloseL; }
 
-/*
- * --INFO--
- * Address:	80329CE4
- * Size:	000004
+/**
+ * @note Address: 0x80329CE4
+ * @note Size: 0x4
  */
 void ObjSMenuPauseVS::doUpdateRAction() { }
 
-/*
- * --INFO--
- * Address:	80329CE8
- * Size:	000004
+/**
+ * @note Address: 0x80329CE8
+ * @note Size: 0x4
  */
 void ObjSMenuPauseVS::doUpdateLAction() { }
 
-/*
- * --INFO--
- * Address:	80329CEC
- * Size:	000004
+/**
+ * @note Address: 0x80329CEC
+ * @note Size: 0x4
  */
 void ObjSMenuPauseVS::in_R() { }
 
-/*
- * --INFO--
- * Address:	80329CF0
- * Size:	000004
+/**
+ * @note Address: 0x80329CF0
+ * @note Size: 0x4
  */
 void ObjSMenuPauseVS::out_R() { }
 

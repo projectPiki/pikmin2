@@ -17,10 +17,9 @@
 
 namespace PSM {
 
-/*
- * --INFO--
- * Address:	8046D144
- * Size:	00021C
+/**
+ * @note Address: 0x8046D144
+ * @note Size: 0x21C
  */
 PSSystem::ClusterSe::PartInitArg ClusterFactory::partInit(u8 unknownID)
 {
@@ -85,10 +84,9 @@ PSSystem::ClusterSe::PartInitArg ClusterFactory::partInit(u8 unknownID)
 	return arg;
 }
 
-/*
- * --INFO--
- * Address:	8046D360
- * Size:	000074
+/**
+ * @note Address: 0x8046D360
+ * @note Size: 0x74
  */
 WorldMapRocket::WorldMapRocket()
     : JADHioNode(nullptr)
@@ -102,17 +100,15 @@ WorldMapRocket::WorldMapRocket()
 	_1C    = 4.0f;
 }
 
-/*
- * --INFO--
- * Address:	8046D3D4
- * Size:	000060
+/**
+ * @note Address: 0x8046D3D4
+ * @note Size: 0x60
  */
 WorldMapRocket::~WorldMapRocket() { }
 
-/*
- * --INFO--
- * Address:	8046D434
- * Size:	000490
+/**
+ * @note Address: 0x8046D434
+ * @note Size: 0x490
  */
 JAISe* WorldMapRocket::startRocketSE(f32 posX, f32 posY)
 {
@@ -213,24 +209,21 @@ f32 sLaderNoiseFuefukiVolumeMin   = 0.25f;
 f32 sLaderNoiseFuefukiVolumeMax   = 0.5f;
 
 namespace PSM {
-/*
- * --INFO--
- * Address:	8046D8C4
- * Size:	000008
+/**
+ * @note Address: 0x8046D8C4
+ * @note Size: 0x8
  */
 void WorldMapRocket::stateChange(rocketState a1) { mState = a1; }
 
-/*
- * --INFO--
- * Address:	8046D8CC
- * Size:	000004
+/**
+ * @note Address: 0x8046D8CC
+ * @note Size: 0x4
  */
 PikiHumming::PikiHumming() { }
 
-/*
- * --INFO--
- * Address:	8046D8D0
- * Size:	0000FC
+/**
+ * @note Address: 0x8046D8D0
+ * @note Size: 0xFC
  */
 PikiHummingMgr::PikiHummingMgr()
 {
@@ -267,10 +260,9 @@ PikiHummingMgr::PikiHummingMgr()
 	humming->mCounter    = -1;
 }
 
-/*
- * --INFO--
- * Address:	8046D9CC
- * Size:	000624
+/**
+ * @note Address: 0x8046D9CC
+ * @note Size: 0x624
  */
 void PikiHummingMgr::exec()
 {
@@ -814,10 +806,9 @@ lbl_8046DFC8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8046DFF0
- * Size:	0000C4
+/**
+ * @note Address: 0x8046DFF0
+ * @note Size: 0xC4
  */
 void PikiHummingMgr::play(PSM::Piki* piki)
 {
@@ -891,10 +882,9 @@ lbl_8046E09C:
 
 } // namespace PSM
 
-/*
- * --INFO--
- * Address:	8046E0B4
- * Size:	00015C
+/**
+ * @note Address: 0x8046E0B4
+ * @note Size: 0x15C
  */
 PSM::SeSound* PSStartSoundVec(u32 soundID, Vec* vec)
 {
@@ -910,10 +900,9 @@ PSM::SeSound* PSStartSoundVec(u32 soundID, Vec* vec)
 	return static_cast<PSM::SeSound*>(soundHandle);
 }
 
-/*
- * --INFO--
- * Address:	8046E210
- * Size:	00006C
+/**
+ * @note Address: 0x8046E210
+ * @note Size: 0x6C
  */
 PSM::Cluster* newPSCluster_SijimiChou(Game::Creature* creature)
 {
@@ -921,10 +910,9 @@ PSM::Cluster* newPSCluster_SijimiChou(Game::Creature* creature)
 	return new PSM::Cluster(creature, factory);
 }
 
-/*
- * --INFO--
- * Address:	8046E27C
- * Size:	000198
+/**
+ * @note Address: 0x8046E27C
+ * @note Size: 0x198
  */
 JAISound* PSStartEnemyGhostSE(Game::EnemyBase* enemy, f32)
 {
@@ -1023,10 +1011,9 @@ JAISound* PSStartEnemyGhostSE(Game::EnemyBase* enemy, f32)
 	return ghost;
 }
 
-/*
- * --INFO--
- * Address:	8046E414
- * Size:	00027C
+/**
+ * @note Address: 0x8046E414
+ * @note Size: 0x27C
  */
 JAISound* PSStartEnemyFatalHitSE(Game::EnemyBase* enemy, f32 p2)
 {
@@ -1057,10 +1044,9 @@ JAISound* PSStartEnemyFatalHitSE(Game::EnemyBase* enemy, f32 p2)
 	return sound;
 }
 
-/*
- * --INFO--
- * Address:	8046E690
- * Size:	0001B0
+/**
+ * @note Address: 0x8046E690
+ * @note Size: 0x1B0
  */
 JAISound* PSStartEnemyDownSmokeSE(Game::EnemyBase* enemy, f32 scale)
 {
@@ -1088,10 +1074,9 @@ JAISound* PSStartEnemyDownSmokeSE(Game::EnemyBase* enemy, f32 scale)
 	return sound;
 }
 
-/*
- * --INFO--
- * Address:	8046E840
- * Size:	000200
+/**
+ * @note Address: 0x8046E840
+ * @note Size: 0x200
  */
 JAISound* PSStartEnemyDownWatSE(Game::EnemyBase* enemy, float p2)
 {
@@ -1244,10 +1229,9 @@ lbl_8046EA24:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8046EA40
- * Size:	000260
+/**
+ * @note Address: 0x8046EA40
+ * @note Size: 0x260
  */
 JAISe* PSStartTreasureLaderSE(f32 rate)
 {
@@ -1453,10 +1437,9 @@ lbl_8046EC70:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8046ECA0
- * Size:	000450
+/**
+ * @note Address: 0x8046ECA0
+ * @note Size: 0x450
  */
 JAISe* PSStartTresureLaderNoiseSE(u8 state, f32 a1, f32)
 {
@@ -1819,10 +1802,9 @@ lbl_8046F0C8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8046F0F0
- * Size:	0000B0
+/**
+ * @note Address: 0x8046F0F0
+ * @note Size: 0xB0
  */
 PSM::WorldMapRocket* PSMGetWorldMapRocket()
 {
@@ -1835,10 +1817,9 @@ PSM::WorldMapRocket* PSMGetWorldMapRocket()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8046F1A0
- * Size:	00007C
+/**
+ * @note Address: 0x8046F1A0
+ * @note Size: 0x7C
  */
 void PSPlayCaveHoleSound(PSM::Creature* obj)
 {

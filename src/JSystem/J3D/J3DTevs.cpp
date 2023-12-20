@@ -300,10 +300,9 @@ const u8 j3dDefaultTevSwapTableID                        = 0x1B;
 const u16 j3dDefaultAlphaCmpID                           = 0xE7;
 const u16 j3dDefaultZModeID                              = 0x17;
 
-/*
- * --INFO--
- * Address:	80063B24
- * Size:	0000B4
+/**
+ * @note Address: 0x80063B24
+ * @note Size: 0xB4
  */
 void J3DLightObj::load(u32 p1) const
 {
@@ -315,10 +314,9 @@ void J3DLightObj::load(u32 p1) const
 	J3DGDSetLightDir(id, mDirection.x, mDirection.y, mDirection.z);
 }
 
-/*
- * --INFO--
- * Address:	80063BD8
- * Size:	000530
+/**
+ * @note Address: 0x80063BD8
+ * @note Size: 0x530
  */
 void loadTexCoordGens(u32 num, J3DTexCoord* coord)
 {
@@ -339,10 +337,9 @@ void loadTexCoordGens(u32 num, J3DTexCoord* coord)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80064108
- * Size:	00003C
+/**
+ * @note Address: 0x80064108
+ * @note Size: 0x3C
  */
 void J3DTexMtx::load(u32 p1) const
 {
@@ -353,10 +350,9 @@ void J3DTexMtx::load(u32 p1) const
 	}
 }
 
-/*
- * --INFO--
- * Address:	80064144
- * Size:	000064
+/**
+ * @note Address: 0x80064144
+ * @note Size: 0x64
  */
 void J3DTexMtx::loadTexMtx(u32 p1) const
 {
@@ -364,10 +360,9 @@ void J3DTexMtx::loadTexMtx(u32 p1) const
 	J3DGDLoadTexMtxImm(const_cast<float(*)[4]>(mMtx), p1 * 3 + 30, (_GXTexMtxType)mTexMtxInfo.mProjection);
 }
 
-/*
- * --INFO--
- * Address:	800641A8
- * Size:	000580
+/**
+ * @note Address: 0x800641A8
+ * @note Size: 0x580
  */
 void J3DGDLoadTexMtxImm(Mtx, u32, _GXTexMtxType)
 {
@@ -731,10 +726,9 @@ lbl_80064720:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80064728
- * Size:	000060
+/**
+ * @note Address: 0x80064728
+ * @note Size: 0x60
  */
 void J3DTexMtx::loadPostTexMtx(u32 p1) const
 {
@@ -742,10 +736,9 @@ void J3DTexMtx::loadPostTexMtx(u32 p1) const
 	J3DGDLoadPostTexMtxImm(const_cast<float(*)[4]>(mMtx), p1 * 3 + 0x40);
 }
 
-/*
- * --INFO--
- * Address:	80064788
- * Size:	00056C
+/**
+ * @note Address: 0x80064788
+ * @note Size: 0x56C
  */
 void J3DGDLoadPostTexMtxImm(Mtx, u32)
 {
@@ -1100,17 +1093,15 @@ void J3DGDLoadPostTexMtxImm(Mtx, u32)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80064CF4
- * Size:	000020
+/**
+ * @note Address: 0x80064CF4
+ * @note Size: 0x20
  */
 void J3DTexMtx::calc(const float (*mtx)[4]) { calcTexMtx(mtx); }
 
-/*
- * --INFO--
- * Address:	80064D14
- * Size:	0002EC
+/**
+ * @note Address: 0x80064D14
+ * @note Size: 0x2EC
  */
 void J3DTexMtx::calcTexMtx(const Mtx mtx)
 {
@@ -1204,10 +1195,9 @@ void J3DTexMtx::calcTexMtx(const Mtx mtx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80065000
- * Size:	000358
+/**
+ * @note Address: 0x80065000
+ * @note Size: 0x358
  */
 void J3DTexMtx::calcPostTexMtx(const Mtx mtx)
 {
@@ -1313,10 +1303,9 @@ void J3DTexMtx::calcPostTexMtx(const Mtx mtx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80065358
- * Size:	000024
+/**
+ * @note Address: 0x80065358
+ * @note Size: 0x24
  */
 bool isTexNoReg(void* ptr)
 {
@@ -1326,17 +1315,15 @@ bool isTexNoReg(void* ptr)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8006537C
- * Size:	00000C
+/**
+ * @note Address: 0x8006537C
+ * @note Size: 0xC
  */
 u16 getTexNoReg(void* p1) { return *(u32*)(static_cast<u8*>(p1) + 1); }
 
-/*
- * --INFO--
- * Address:	80065388
- * Size:	0001B8
+/**
+ * @note Address: 0x80065388
+ * @note Size: 0x1B8
  */
 void loadTexNo(u32 id, const u16& data)
 {
@@ -1359,17 +1346,15 @@ void loadTexNo(u32 id, const u16& data)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80065540
- * Size:	000024
+/**
+ * @note Address: 0x80065540
+ * @note Size: 0x24
  */
 void patchTexNo_PtrToIdx(u32 p1, const u16& p2) { J3DGDSetTexImgPtrRaw((_GXTexMapID)p1, p2); }
 
-/*
- * --INFO--
- * Address:	80065564
- * Size:	000034
+/**
+ * @note Address: 0x80065564
+ * @note Size: 0x34
  */
 void loadNBTScale(J3DNBTScale& scale)
 {
@@ -1395,10 +1380,9 @@ lbl_80065584:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80065598
- * Size:	000160
+/**
+ * @note Address: 0x80065598
+ * @note Size: 0x160
  */
 void makeTexCoordTable()
 {
@@ -1506,10 +1490,9 @@ lbl_800656CC:
 
 u8 j3dAlphaCmpTable[768];
 
-/*
- * --INFO--
- * Address:	800656F8
- * Size:	000130
+/**
+ * @note Address: 0x800656F8
+ * @note Size: 0x130
  */
 void makeAlphaCmpTable()
 {
@@ -1610,10 +1593,9 @@ lbl_80065720:
 
 u8 j3dZModeTable[96];
 
-/*
- * --INFO--
- * Address:	80065828
- * Size:	000138
+/**
+ * @note Address: 0x80065828
+ * @note Size: 0x138
  */
 void makeZModeTable()
 {
@@ -1716,10 +1698,9 @@ lbl_8006585C:
 
 u8 j3dTevSwapTableTable[1024];
 
-/*
- * --INFO--
- * Address:	80065960
- * Size:	000044
+/**
+ * @note Address: 0x80065960
+ * @note Size: 0x44
  */
 void makeTevSwapTable()
 {

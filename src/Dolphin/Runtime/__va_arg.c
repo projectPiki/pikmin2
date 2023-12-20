@@ -1,10 +1,9 @@
 #include "types.h"
 #include "PowerPC_EABI_Support/Runtime/__va_arg.h"
 
-/*
- * --INFO--
- * Address:	800C15F0
- * Size:	0000C8
+/**
+ * @note Address: 0x800C15F0
+ * @note Size: 0xC8
  */
 void* __va_arg(struct va_list* v_list, s32 type)
 {

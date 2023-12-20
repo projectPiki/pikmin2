@@ -8,10 +8,9 @@ namespace newScreen {
 
 static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 
-/*
- * --INFO--
- * Address:	80330658
- * Size:	000064
+/**
+ * @note Address: 0x80330658
+ * @note Size: 0x64
  */
 ObjSMenuCont::ObjSMenuCont(char const* name)
 {
@@ -21,17 +20,15 @@ ObjSMenuCont::ObjSMenuCont(char const* name)
 	mName       = name;
 }
 
-/*
- * --INFO--
- * Address:	803306BC
- * Size:	0000C4
+/**
+ * @note Address: 0x803306BC
+ * @note Size: 0xC4
  */
 ObjSMenuCont::~ObjSMenuCont() { }
 
-/*
- * --INFO--
- * Address:	80330780
- * Size:	00014C
+/**
+ * @note Address: 0x80330780
+ * @note Size: 0x14C
  */
 void ObjSMenuCont::doCreate(JKRArchive* arc)
 {
@@ -52,10 +49,9 @@ void ObjSMenuCont::doCreate(JKRArchive* arc)
 	doCreateAfter(arc, mScreenCont);
 }
 
-/*
- * --INFO--
- * Address:	803308CC
- * Size:	0000CC
+/**
+ * @note Address: 0x803308CC
+ * @note Size: 0xCC
  */
 void ObjSMenuCont::doUpdateLAction()
 {
@@ -69,10 +65,9 @@ void ObjSMenuCont::doUpdateLAction()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80330998
- * Size:	00006C
+/**
+ * @note Address: 0x80330998
+ * @note Size: 0x6C
  */
 void ObjSMenuCont::doUpdateRAction()
 {
@@ -80,10 +75,9 @@ void ObjSMenuCont::doUpdateRAction()
 	jump_R(arg);
 }
 
-/*
- * --INFO--
- * Address:	80330A04
- * Size:	000080
+/**
+ * @note Address: 0x80330A04
+ * @note Size: 0x80
  */
 void ObjSMenuCont::commonUpdate()
 {
@@ -94,10 +88,9 @@ void ObjSMenuCont::commonUpdate()
 	mScreenCont->update();
 }
 
-/*
- * --INFO--
- * Address:	80330A84
- * Size:	000054
+/**
+ * @note Address: 0x80330A84
+ * @note Size: 0x54
  */
 bool ObjSMenuCont::doUpdate()
 {
@@ -107,10 +100,9 @@ bool ObjSMenuCont::doUpdate()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	80330AD8
- * Size:	000084
+/**
+ * @note Address: 0x80330AD8
+ * @note Size: 0x84
  */
 void ObjSMenuCont::doDraw(Graphics& gfx)
 {
@@ -122,10 +114,9 @@ void ObjSMenuCont::doDraw(Graphics& gfx)
 	drawYaji(gfx);
 }
 
-/*
- * --INFO--
- * Address:	80330B5C
- * Size:	000014
+/**
+ * @note Address: 0x80330B5C
+ * @note Size: 0x14
  */
 void ObjSMenuCont::in_L()
 {
@@ -133,10 +124,9 @@ void ObjSMenuCont::in_L()
 	mAngle = 15.0;
 }
 
-/*
- * --INFO--
- * Address:	80330B70
- * Size:	000014
+/**
+ * @note Address: 0x80330B70
+ * @note Size: 0x14
  */
 void ObjSMenuCont::in_R()
 {
@@ -144,17 +134,15 @@ void ObjSMenuCont::in_R()
 	mAngle = 15.0;
 }
 
-/*
- * --INFO--
- * Address:	80330B84
- * Size:	00000C
+/**
+ * @note Address: 0x80330B84
+ * @note Size: 0xC
  */
 void ObjSMenuCont::wait() { mState = MENUSTATE_Default; }
 
-/*
- * --INFO--
- * Address:	80330B90
- * Size:	00002C
+/**
+ * @note Address: 0x80330B90
+ * @note Size: 0x2C
  */
 void ObjSMenuCont::out_L()
 {
@@ -162,10 +150,9 @@ void ObjSMenuCont::out_L()
 	ogSound->setSMenuLR();
 }
 
-/*
- * --INFO--
- * Address:	80330BBC
- * Size:	00002C
+/**
+ * @note Address: 0x80330BBC
+ * @note Size: 0x2C
  */
 void ObjSMenuCont::out_R()
 {
@@ -173,10 +160,9 @@ void ObjSMenuCont::out_R()
 	ogSound->setSMenuLR();
 }
 
-/*
- * --INFO--
- * Address:	80330BE8
- * Size:	0000A4
+/**
+ * @note Address: 0x80330BE8
+ * @note Size: 0xA4
  */
 bool ObjSMenuCont::doStart(::Screen::StartSceneArg const* arg)
 {
@@ -189,24 +175,21 @@ bool ObjSMenuCont::doStart(::Screen::StartSceneArg const* arg)
 	return start_LR(arg);
 }
 
-/*
- * --INFO--
- * Address:	80330C8C
- * Size:	000008
+/**
+ * @note Address: 0x80330C8C
+ * @note Size: 0x8
  */
 bool ObjSMenuCont::doEnd(::Screen::EndSceneArg const*) { return true; }
 
-/*
- * --INFO--
- * Address:	80330C94
- * Size:	000020
+/**
+ * @note Address: 0x80330C94
+ * @note Size: 0x20
  */
 void ObjSMenuCont::doUpdateFinish() { ObjSMenuBase::doUpdateFinish(); }
 
-/*
- * --INFO--
- * Address:	80330CB4
- * Size:	00004C
+/**
+ * @note Address: 0x80330CB4
+ * @note Size: 0x4C
  */
 bool ObjSMenuCont::doUpdateFadeout()
 {
@@ -214,10 +197,9 @@ bool ObjSMenuCont::doUpdateFadeout()
 	return updateFadeOut();
 }
 
-/*
- * --INFO--
- * Address:	80330D00
- * Size:	000004
+/**
+ * @note Address: 0x80330D00
+ * @note Size: 0x4
  */
 void ObjSMenuCont::doUpdateCancelAction() { }
 

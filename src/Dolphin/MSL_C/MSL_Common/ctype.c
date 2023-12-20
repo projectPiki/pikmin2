@@ -52,60 +52,54 @@ unsigned char __upper_map[256] = {
 	0xF2, 0xF3, 0xF4, 0xF5, 0xF6, 0xF7, 0xF8, 0xF9, 0xFA, 0xFB, 0xFC, 0xFD, 0xFE, 0xFF,
 };
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 // void isalnum(void)
 //{
 //	// UNUSED FUNCTION
 //}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 // void isalpha(void)
 //{
 //	// UNUSED FUNCTION
 //}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 // void iscntrl(void)
 //{
 //	// UNUSED FUNCTION
 //}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 // BOOL isdigit(int c)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 // void isgraph(void)
 //{
 //	// UNUSED FUNCTION
 //}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 // BOOL islower(unsigned char c)
 //{
@@ -113,50 +107,45 @@ unsigned char __upper_map[256] = {
 //	return __ctype_map[c] & olowc;
 //}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 // void isprint(void)
 //{
 //	// UNUSED FUNCTION
 //}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 // void ispunct(void)
 //{
 //	// UNUSED FUNCTION
 //}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 // void isspace(void)
 //{
 //	// UNUSED FUNCTION
 //}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 // void isupper(void)
 //{
 //	// UNUSED FUNCTION
 //}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 // BOOL isxdigit(unsigned char c)
 //{
@@ -164,17 +153,15 @@ unsigned char __upper_map[256] = {
 //	return (__ctype_map[c] & ohexd) != 0;
 //}
 
-/*
- * --INFO--
- * Address:	800C6264
- * Size:	000024
+/**
+ * @note Address: 0x800C6264
+ * @note Size: 0x24
  */
 WEAKFUNC int tolower(int __c) { return _tolower(__c); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 // int toupper(int __c)
 //{
@@ -187,10 +174,9 @@ WEAKFUNC int tolower(int __c) { return _tolower(__c); }
 //	}
 //
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 // void iswblank(void)
 //{

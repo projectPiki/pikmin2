@@ -80,31 +80,27 @@
         .4byte do_word__Q28JMessage10TReferenceCFUl
 */
 
-/*
- * --INFO--
- * Address:	80006D0C
- * Size:	000048
+/**
+ * @note Address: 0x80006D0C
+ * @note Size: 0x48
  */
 JMessage::TReference::~TReference() { }
 
-/*
- * --INFO--
- * Address:	80006D54
- * Size:	000008
+/**
+ * @note Address: 0x80006D54
+ * @note Size: 0x8
  */
 char* JMessage::TReference::do_word(u32) const { return 0x0; }
 
-/*
- * --INFO--
- * Address:	80006D5C
- * Size:	000048
+/**
+ * @note Address: 0x80006D5C
+ * @note Size: 0x48
  */
 JMessage::TProcessor::~TProcessor() { }
 
-/*
- * --INFO--
- * Address:	80006DA4
- * Size:	0000BC
+/**
+ * @note Address: 0x80006DA4
+ * @note Size: 0xBC
  * setBegin_messageCode__Q28JMessage10TProcessorFUsUs
  */
 void JMessage::TProcessor::setBegin_messageCode(u16 p1, u16 p2)
@@ -185,10 +181,9 @@ lbl_80006E44:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80006E60
- * Size:	000044
+/**
+ * @note Address: 0x80006E60
+ * @note Size: 0x44
  */
 void JMessage::TProcessor::setBegin_messageID(u32 p1, u32 p2, bool* p3)
 {
@@ -198,10 +193,9 @@ void JMessage::TProcessor::setBegin_messageID(u32 p1, u32 p2, bool* p3)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80006EA4
- * Size:	0000C0
+/**
+ * @note Address: 0x80006EA4
+ * @note Size: 0xC0
  * setBegin_messageCode__Q28JMessage10TProcessorFUl
  */
 void JMessage::TProcessor::setBegin_messageCode(u32 p1)
@@ -267,10 +261,9 @@ lbl_80006F48:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  * pushCurrent__Q28JMessage10TProcessorFPCc
  */
 void JMessage::TProcessor::pushCurrent(const char* p1)
@@ -283,10 +276,9 @@ void JMessage::TProcessor::pushCurrent(const char* p1)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  * popCurrent__Q28JMessage10TProcessorFv
  */
 const char* JMessage::TProcessor::popCurrent()
@@ -294,10 +286,9 @@ const char* JMessage::TProcessor::popCurrent()
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80006F64
- * Size:	000080
+/**
+ * @note Address: 0x80006F64
+ * @note Size: 0x80
  */
 JMessage::TResource* JMessage::TProcessor::getResource_groupID(u16) const
 {
@@ -347,10 +338,9 @@ lbl_80006FD0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80006FE4
- * Size:	000150
+/**
+ * @note Address: 0x80006FE4
+ * @note Size: 0x150
  */
 u32 JMessage::TProcessor::toMessageCode_messageID(u32, u32, bool*) const
 {
@@ -457,10 +447,9 @@ u32 JMessage::TProcessor::toMessageCode_messageID(u32, u32, bool*) const
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B4
+/**
+ * @note Address: N/A
+ * @note Size: 0xB4
  * on_select_begin__Q28JMessage10TProcessorFPFPQ28JMessage10TProcessor_PCcPCvPCcUl
  */
 unknown JMessage::TProcessor::on_select_begin(OnSelectBeginCallBack* p1, const char* p2, const void* p3, const char* p4, u32 p5)
@@ -468,10 +457,9 @@ unknown JMessage::TProcessor::on_select_begin(OnSelectBeginCallBack* p1, const c
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
+/**
+ * @note Address: N/A
+ * @note Size: 0x58
  * on_select_end__Q28JMessage10TProcessorFv
  */
 unknown JMessage::TProcessor::on_select_end()
@@ -479,10 +467,9 @@ unknown JMessage::TProcessor::on_select_end()
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00009C
+/**
+ * @note Address: N/A
+ * @note Size: 0x9C
  * on_select_separate__Q28JMessage10TProcessorFv
  */
 unknown JMessage::TProcessor::on_select_separate()
@@ -490,59 +477,51 @@ unknown JMessage::TProcessor::on_select_separate()
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80007134
- * Size:	000004
+/**
+ * @note Address: 0x80007134
+ * @note Size: 0x4
  */
 void JMessage::TProcessor::do_reset() { }
 
-/*
- * --INFO--
- * Address:	80007138
- * Size:	000004
+/**
+ * @note Address: 0x80007138
+ * @note Size: 0x4
  */
 void JMessage::TProcessor::do_character(int) { }
 
-/*
- * --INFO--
- * Address:	8000713C
- * Size:	000008
+/**
+ * @note Address: 0x8000713C
+ * @note Size: 0x8
  */
 bool JMessage::TProcessor::do_tag(u32, const void*, u32) { return false; }
 
-/*
- * --INFO--
- * Address:	80007144
- * Size:	000008
+/**
+ * @note Address: 0x80007144
+ * @note Size: 0x8
  */
 bool JMessage::TProcessor::do_systemTagCode(u16, const void*, u32) { return false; }
 
-/*
- * --INFO--
- * Address:	8000714C
- * Size:	000004
+/**
+ * @note Address: 0x8000714C
+ * @note Size: 0x4
  */
 void JMessage::TProcessor::do_select_begin(u32) { }
 
-/*
- * --INFO--
- * Address:	80007150
- * Size:	000004
+/**
+ * @note Address: 0x80007150
+ * @note Size: 0x4
  */
 void JMessage::TProcessor::do_select_end() { }
 
-/*
- * --INFO--
- * Address:	80007154
- * Size:	000004
+/**
+ * @note Address: 0x80007154
+ * @note Size: 0x4
  */
 void JMessage::TProcessor::do_select_separate() { }
 
-/*
- * --INFO--
- * Address:	80007158
- * Size:	000064
+/**
+ * @note Address: 0x80007158
+ * @note Size: 0x64
  * reset___Q28JMessage10TProcessorFPCc
  */
 void JMessage::TProcessor::reset_(const char* p1)
@@ -554,10 +533,9 @@ void JMessage::TProcessor::reset_(const char* p1)
 	do_reset();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B0
+/**
+ * @note Address: N/A
+ * @note Size: 0xB0
  * on_tag___Q28JMessage10TProcessorFv
  */
 unknown JMessage::TProcessor::on_tag_()
@@ -565,17 +543,15 @@ unknown JMessage::TProcessor::on_tag_()
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800071BC
- * Size:	000008
+/**
+ * @note Address: 0x800071BC
+ * @note Size: 0x8
  */
 bool JMessage::TProcessor::do_setBegin_isReady_() const { return true; }
 
-/*
- * --INFO--
- * Address:	800071C4
- * Size:	000260
+/**
+ * @note Address: 0x800071C4
+ * @note Size: 0x260
  * do_tag___Q28JMessage10TProcessorFUlPCvUl
  */
 bool JMessage::TProcessor::do_tag_(u32 p1, const void* p2, u32 p3)
@@ -799,10 +775,9 @@ lbl_80007404:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80007424
- * Size:	000050
+/**
+ * @note Address: 0x80007424
+ * @note Size: 0x50
  */
 char* JMessage::TProcessor::on_message_limited(u16) const
 {
@@ -836,10 +811,9 @@ lbl_80007464:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80007474
- * Size:	0000D0
+/**
+ * @note Address: 0x80007474
+ * @note Size: 0xD0
  * do_systemTagCode___Q28JMessage10TProcessorFUsPCvUl
  */
 void JMessage::TProcessor::do_systemTagCode_(u16 p1, const void* p2, u32 p3)
@@ -923,18 +897,16 @@ void JMessage::TProcessor::do_systemTagCode_(u16 p1, const void* p2, u32 p3)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80007544
- * Size:	000020
+/**
+ * @note Address: 0x80007544
+ * @note Size: 0x20
  * on_message__Q28JMessage10TProcessorCFUl
  */
 char* JMessage::TProcessor::on_message(u32 p1) const { return getMessageText_messageCode(p1); }
 
-/*
- * --INFO--
- * Address:	80007564
- * Size:	0000EC
+/**
+ * @note Address: 0x80007564
+ * @note Size: 0xEC
  */
 char* JMessage::TProcessor::getMessageText_messageCode(u32) const
 {
@@ -1021,10 +993,9 @@ lbl_80007638:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000154
+/**
+ * @note Address: N/A
+ * @note Size: 0x154
  * process_character___Q28JMessage10TProcessorFv
  */
 unknown JMessage::TProcessor::process_character_()
@@ -1032,10 +1003,9 @@ unknown JMessage::TProcessor::process_character_()
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80007650
- * Size:	000060
+/**
+ * @note Address: 0x80007650
+ * @note Size: 0x60
  */
 bool JMessage::TProcessor::process_onCharacterEnd_normal_(JMessage::TProcessor* processor)
 {
@@ -1050,10 +1020,9 @@ bool JMessage::TProcessor::process_onCharacterEnd_normal_(JMessage::TProcessor* 
 	}
 }
 
-/*
- * --INFO--
- * Address:	800076B0
- * Size:	0000FC
+/**
+ * @note Address: 0x800076B0
+ * @note Size: 0xFC
  */
 bool JMessage::TProcessor::process_onCharacterEnd_select_(JMessage::TProcessor* processor)
 {
@@ -1078,10 +1047,9 @@ bool JMessage::TProcessor::process_onCharacterEnd_select_(JMessage::TProcessor* 
 	}
 }
 
-/*
- * --INFO--
- * Address:	800077AC
- * Size:	00001C
+/**
+ * @note Address: 0x800077AC
+ * @note Size: 0x1C
  */
 char* JMessage::TProcessor::process_onSelect_limited_(JMessage::TProcessor* processor)
 {
@@ -1099,10 +1067,9 @@ char* JMessage::TProcessor::process_onSelect_limited_(JMessage::TProcessor* proc
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800077C8
- * Size:	00001C
+/**
+ * @note Address: 0x800077C8
+ * @note Size: 0x1C
  * process_onSelect___Q28JMessage10TProcessorFPQ28JMessage10TProcessor
  */
 char* JMessage::TProcessor::process_onSelect_(JMessage::TProcessor* processor)
@@ -1121,10 +1088,9 @@ char* JMessage::TProcessor::process_onSelect_(JMessage::TProcessor* processor)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  * toString_status__Q28JMessage18TSequenceProcessorFi
  */
 const char* JMessage::TSequenceProcessor::toString_status(int)
@@ -1132,10 +1098,9 @@ const char* JMessage::TSequenceProcessor::toString_status(int)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
+/**
+ * @note Address: N/A
+ * @note Size: 0x30
  * toValue_status__Q28JMessage18TSequenceProcessorFPCc
  */
 int JMessage::TSequenceProcessor::toValue_status(const char*)
@@ -1143,10 +1108,9 @@ int JMessage::TSequenceProcessor::toValue_status(const char*)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800077E4
- * Size:	000044
+/**
+ * @note Address: 0x800077E4
+ * @note Size: 0x44
  */
 JMessage::TSequenceProcessor::TSequenceProcessor(const JMessage::TReference*, JMessage::TControl*)
 {
@@ -1172,10 +1136,9 @@ JMessage::TSequenceProcessor::TSequenceProcessor(const JMessage::TReference*, JM
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80007828
- * Size:	00005C
+/**
+ * @note Address: 0x80007828
+ * @note Size: 0x5C
  */
 JMessage::TSequenceProcessor::~TSequenceProcessor()
 {
@@ -1210,10 +1173,9 @@ lbl_8000786C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80007884
- * Size:	000278
+/**
+ * @note Address: 0x80007884
+ * @note Size: 0x278
  */
 char* JMessage::TSequenceProcessor::process(const char*)
 {
@@ -1415,10 +1377,9 @@ lbl_80007AE8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80007AFC
- * Size:	00002C
+/**
+ * @note Address: 0x80007AFC
+ * @note Size: 0x2C
  */
 bool JMessage::TSequenceProcessor::on_isReady()
 {
@@ -1438,10 +1399,9 @@ bool JMessage::TSequenceProcessor::on_isReady()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  * on_jump_register__Q28JMessage18TSequenceProcessorFPFPCQ28JMessage18TSequenceProcessor_PCvUl
  */
 unknown JMessage::TSequenceProcessor::on_jump_register(OnJumpRegisterCallBack*, const void*, u32)
@@ -1449,10 +1409,9 @@ unknown JMessage::TSequenceProcessor::on_jump_register(OnJumpRegisterCallBack*, 
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80007B28
- * Size:	00002C
+/**
+ * @note Address: 0x80007B28
+ * @note Size: 0x2C
  */
 void JMessage::TSequenceProcessor::on_jump_isReady()
 {
@@ -1472,10 +1431,9 @@ void JMessage::TSequenceProcessor::on_jump_isReady()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80007B54
- * Size:	00009C
+/**
+ * @note Address: 0x80007B54
+ * @note Size: 0x9C
  * on_jump__Q28JMessage18TSequenceProcessorFPCvPCc
  */
 void JMessage::TSequenceProcessor::on_jump(const void* p1, const char* p2)
@@ -1488,10 +1446,9 @@ void JMessage::TSequenceProcessor::on_jump(const void* p1, const char* p2)
 	do_jump(p1, p2);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  * on_branch_register__Q28JMessage18TSequenceProcessorFPFPCQ28JMessage18TSequenceProcessorUl_PCvPCvUl
  */
 unknown JMessage::TSequenceProcessor::on_branch_register(OnBranchRegisterCallBack*, const void*, const void*, u32)
@@ -1499,10 +1456,9 @@ unknown JMessage::TSequenceProcessor::on_branch_register(OnBranchRegisterCallBac
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  * on_branch_query__Q28JMessage18TSequenceProcessorFUs
  */
 unknown JMessage::TSequenceProcessor::on_branch_query(u16)
@@ -1510,17 +1466,15 @@ unknown JMessage::TSequenceProcessor::on_branch_query(u16)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80007BF0
- * Size:	00002C
+/**
+ * @note Address: 0x80007BF0
+ * @note Size: 0x2C
  */
 void JMessage::TSequenceProcessor::on_branch_queryResult() { do_branch_queryResult(); }
 
-/*
- * --INFO--
- * Address:	80007C1C
- * Size:	00009C
+/**
+ * @note Address: 0x80007C1C
+ * @note Size: 0x9C
  * on_branch__Q28JMessage18TSequenceProcessorFPCvPCc
  */
 void JMessage::TSequenceProcessor::on_branch(const void* p1, const char* p2)
@@ -1533,66 +1487,57 @@ void JMessage::TSequenceProcessor::on_branch(const void* p1, const char* p2)
 	do_branch(p1, p2);
 }
 
-/*
- * --INFO--
- * Address:	80007CB8
- * Size:	000004
+/**
+ * @note Address: 0x80007CB8
+ * @note Size: 0x4
  */
 void JMessage::TSequenceProcessor::do_begin(const void*, const char*) { }
 
-/*
- * --INFO--
- * Address:	80007CBC
- * Size:	000004
+/**
+ * @note Address: 0x80007CBC
+ * @note Size: 0x4
  */
 void JMessage::TSequenceProcessor::do_end() { }
 
-/*
- * --INFO--
- * Address:	80007CC0
- * Size:	000008
+/**
+ * @note Address: 0x80007CC0
+ * @note Size: 0x8
  */
 bool JMessage::TSequenceProcessor::do_isReady() { return true; }
 
-/*
- * --INFO--
- * Address:	80007CC8
- * Size:	000008
+/**
+ * @note Address: 0x80007CC8
+ * @note Size: 0x8
  */
 bool JMessage::TSequenceProcessor::do_jump_isReady() { return true; }
 
-/*
- * --INFO--
- * Address:	80007CD0
- * Size:	000004
+/**
+ * @note Address: 0x80007CD0
+ * @note Size: 0x4
  */
 void JMessage::TSequenceProcessor::do_jump(const void*, const char*) { }
 
-/*
- * --INFO--
- * Address:	80007CD4
- * Size:	000004
+/**
+ * @note Address: 0x80007CD4
+ * @note Size: 0x4
  */
 void JMessage::TSequenceProcessor::do_branch_query(u16) { }
 
-/*
- * --INFO--
- * Address:	80007CD8
- * Size:	000008
+/**
+ * @note Address: 0x80007CD8
+ * @note Size: 0x8
  */
 int JMessage::TSequenceProcessor::do_branch_queryResult() { return -0x2; }
 
-/*
- * --INFO--
- * Address:	80007CE0
- * Size:	000004
+/**
+ * @note Address: 0x80007CE0
+ * @note Size: 0x4
  */
 void JMessage::TSequenceProcessor::do_branch(const void*, const char*) { }
 
-/*
- * --INFO--
- * Address:	80007CE4
- * Size:	00001C
+/**
+ * @note Address: 0x80007CE4
+ * @note Size: 0x1C
  */
 void JMessage::TSequenceProcessor::do_reset_(const char*)
 {
@@ -1607,26 +1552,23 @@ void JMessage::TSequenceProcessor::do_reset_(const char*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80007D00
- * Size:	000010
+/**
+ * @note Address: 0x80007D00
+ * @note Size: 0x10
  * do_setBegin_isReady___Q28JMessage18TSequenceProcessorCFv
  */
 bool JMessage::TSequenceProcessor::do_setBegin_isReady_() const { return _3C == 0; }
 
-/*
- * --INFO--
- * Address:	80007D10
- * Size:	00002C
+/**
+ * @note Address: 0x80007D10
+ * @note Size: 0x2C
  * do_begin___Q28JMessage18TSequenceProcessorFPCvPCc
  */
 void JMessage::TSequenceProcessor::do_begin_(const void* p1, const char* p2) { do_begin(p1, p2); }
 
-/*
- * --INFO--
- * Address:	80007D3C
- * Size:	000034
+/**
+ * @note Address: 0x80007D3C
+ * @note Size: 0x34
  * do_end___Q28JMessage18TSequenceProcessorFv
  */
 void JMessage::TSequenceProcessor::do_end_()
@@ -1635,10 +1577,9 @@ void JMessage::TSequenceProcessor::do_end_()
 	do_end();
 }
 
-/*
- * --INFO--
- * Address:	80007D70
- * Size:	000140
+/**
+ * @note Address: 0x80007D70
+ * @note Size: 0x140
  */
 bool JMessage::TSequenceProcessor::do_tag_(u32, const void*, u32)
 {
@@ -1745,10 +1686,9 @@ bool JMessage::TSequenceProcessor::do_tag_(u32, const void*, u32)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80007EB0
- * Size:	000064
+/**
+ * @note Address: 0x80007EB0
+ * @note Size: 0x64
  * do_systemTagCode___Q28JMessage18TSequenceProcessorFUsPCvUl
  */
 void JMessage::TSequenceProcessor::do_systemTagCode_(u16 p1, const void* p2, u32 p3)
@@ -1806,10 +1746,9 @@ void JMessage::TSequenceProcessor::do_systemTagCode_(u16 p1, const void* p2, u32
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  * process_setMessageIndex_reserved___Q28JMessage18TSequenceProcessorFUs
  */
 unknown JMessage::TSequenceProcessor::process_setMessageIndex_reserved_(u16)
@@ -1817,10 +1756,9 @@ unknown JMessage::TSequenceProcessor::process_setMessageIndex_reserved_(u16)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  * process_setMessageCode___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUsUs
  */
 unknown JMessage::TSequenceProcessor::process_setMessageCode_(const TSequenceProcessor*, u16, u16)
@@ -1828,10 +1766,9 @@ unknown JMessage::TSequenceProcessor::process_setMessageCode_(const TSequencePro
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80007F14
- * Size:	00006C
+/**
+ * @note Address: 0x80007F14
+ * @note Size: 0x6C
  */
 void JMessage::TSequenceProcessor::process_onJump_limited_(const JMessage::TSequenceProcessor*)
 {
@@ -1873,10 +1810,9 @@ void JMessage::TSequenceProcessor::process_onJump_limited_(const JMessage::TSequ
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80007F80
- * Size:	000064
+/**
+ * @note Address: 0x80007F80
+ * @note Size: 0x64
  * process_onJump___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessor
  */
 void* JMessage::TSequenceProcessor::process_onJump_(const JMessage::TSequenceProcessor* processor)
@@ -1922,10 +1858,9 @@ void* JMessage::TSequenceProcessor::process_onJump_(const JMessage::TSequencePro
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80007FE4
- * Size:	000070
+/**
+ * @note Address: 0x80007FE4
+ * @note Size: 0x70
  */
 void JMessage::TSequenceProcessor::process_onBranch_limited_(const JMessage::TSequenceProcessor*, u32)
 {
@@ -1968,10 +1903,9 @@ void JMessage::TSequenceProcessor::process_onBranch_limited_(const JMessage::TSe
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80008054
- * Size:	00006C
+/**
+ * @note Address: 0x80008054
+ * @note Size: 0x6C
  */
 void JMessage::TSequenceProcessor::process_onBranch_(const JMessage::TSequenceProcessor*, u32)
 {
@@ -2013,10 +1947,9 @@ void JMessage::TSequenceProcessor::process_onBranch_(const JMessage::TSequencePr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800080C0
- * Size:	00003C
+/**
+ * @note Address: 0x800080C0
+ * @note Size: 0x3C
  */
 JMessage::TRenderingProcessor::TRenderingProcessor(const JMessage::TReference*)
 {
@@ -2041,10 +1974,9 @@ JMessage::TRenderingProcessor::TRenderingProcessor(const JMessage::TReference*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800080FC
- * Size:	00005C
+/**
+ * @note Address: 0x800080FC
+ * @note Size: 0x5C
  */
 JMessage::TRenderingProcessor::~TRenderingProcessor()
 {
@@ -2079,10 +2011,9 @@ lbl_80008140:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80008158
- * Size:	000174
+/**
+ * @note Address: 0x80008158
+ * @note Size: 0x174
  */
 void JMessage::TRenderingProcessor::process(const char*)
 {
@@ -2201,47 +2132,41 @@ lbl_800082B8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800082CC
- * Size:	000004
+/**
+ * @note Address: 0x800082CC
+ * @note Size: 0x4
  */
 void JMessage::TRenderingProcessor::do_begin(const void*, const char*) { }
 
-/*
- * --INFO--
- * Address:	800082D0
- * Size:	000004
+/**
+ * @note Address: 0x800082D0
+ * @note Size: 0x4
  */
 void JMessage::TRenderingProcessor::do_end() { }
 
-/*
- * --INFO--
- * Address:	800082D4
- * Size:	000004
+/**
+ * @note Address: 0x800082D4
+ * @note Size: 0x4
  */
 void JMessage::TRenderingProcessor::do_reset_(const char*) { }
 
-/*
- * --INFO--
- * Address:	800082D8
- * Size:	00002C
+/**
+ * @note Address: 0x800082D8
+ * @note Size: 0x2C
  * do_begin___Q28JMessage19TRenderingProcessorFPCvPCc
  */
 void JMessage::TRenderingProcessor::do_begin_(const void* p1, const char* p2) { do_begin(p1, p2); }
 
-/*
- * --INFO--
- * Address:	80008304
- * Size:	00002C
+/**
+ * @note Address: 0x80008304
+ * @note Size: 0x2C
  * do_end___Q28JMessage19TRenderingProcessorFv
  */
 void JMessage::TRenderingProcessor::do_end_() { do_end(); }
 
-/*
- * --INFO--
- * Address:	80008330
- * Size:	000034
+/**
+ * @note Address: 0x80008330
+ * @note Size: 0x34
  * do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl
  */
 bool JMessage::TRenderingProcessor::do_tag_(u32 p1, const void* p2, u32 p3)
@@ -2272,10 +2197,9 @@ bool JMessage::TRenderingProcessor::do_tag_(u32 p1, const void* p2, u32 p3)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80008364
- * Size:	000040
+/**
+ * @note Address: 0x80008364
+ * @note Size: 0x40
  */
 void JMessage::TRenderingProcessor::do_systemTagCode_(u16, const void*, u32)
 {

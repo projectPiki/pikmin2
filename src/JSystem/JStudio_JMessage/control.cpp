@@ -21,10 +21,9 @@ inline JStudio::TObject_message* message_creator(const JStudio::stb::data::TPars
 	return object;
 }
 
-/*
- * --INFO--
- * Address:	80014DF8
- * Size:	0000BC
+/**
+ * @note Address: 0x80014DF8
+ * @note Size: 0xBC
  */
 JStudio::TObject_message* createObject_MESSAGE_JMS_(const JStudio::stb::data::TParse_TBlock_object& data, JMessage::TControl* system)
 {
@@ -37,20 +36,18 @@ JStudio::TObject_message* createObject_MESSAGE_JMS_(const JStudio::stb::data::TP
 }
 } // namespace
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
+/**
+ * @note Address: N/A
+ * @note Size: 0x60
  */
 JStudio_JMessage::TCreateObject_base::~TCreateObject_base()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80014EB4
- * Size:	0000AC
+/**
+ * @note Address: 0x80014EB4
+ * @note Size: 0xAC
  */
 bool JStudio_JMessage::TCreateObject_base::create(JStudio::TObject** newObject, JStudio::stb::data::TParse_TBlock_object const& data)
 {
@@ -74,17 +71,15 @@ bool JStudio_JMessage::TCreateObject_base::create(JStudio::TObject** newObject, 
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80014F60
- * Size:	000070
+/**
+ * @note Address: 0x80014F60
+ * @note Size: 0x70
  */
 JStudio_JMessage::TCreateObject::~TCreateObject() { }
 
-/*
- * --INFO--
- * Address:	80014FD0
- * Size:	000008
+/**
+ * @note Address: 0x80014FD0
+ * @note Size: 0x8
  */
 JMessage::TControl* JStudio_JMessage::TCreateObject::find(JStudio::stb::data::TParse_TBlock_object const&) { return mControl; }
 } // namespace JStudio_JMessage

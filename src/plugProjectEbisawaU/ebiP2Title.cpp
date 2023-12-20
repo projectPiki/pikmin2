@@ -15,10 +15,9 @@ namespace title {
 TTitleMgr* titleMgr;
 TTitleMgr* TTitleMgr::_instance;
 
-/*
- * --INFO--
- * Address:	803BCD18
- * Size:	0005EC
+/**
+ * @note Address: 0x803BCD18
+ * @note Size: 0x5EC
  */
 TTitleMgr::TTitleMgr()
     : CNode("TTitleMgr")
@@ -59,10 +58,9 @@ TTitleMgr::TTitleMgr()
 	mDrawBufferA = nullptr; // Someone made an oopsie here
 }
 
-/*
- * --INFO--
- * Address:	803BE428
- * Size:	00034C
+/**
+ * @note Address: 0x803BE428
+ * @note Size: 0x34C
  */
 TTitleMgr::~TTitleMgr()
 {
@@ -70,17 +68,15 @@ TTitleMgr::~TTitleMgr()
 	titleMgr  = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	803BE774
- * Size:	000024
+/**
+ * @note Address: 0x803BE774
+ * @note Size: 0x24
  */
 void TTitleMgr::globalInstance() { titleMgr = Instance(); }
 
-/*
- * --INFO--
- * Address:	803BE798
- * Size:	000048
+/**
+ * @note Address: 0x803BE798
+ * @note Size: 0x48
  */
 TTitleMgr* TTitleMgr::Instance()
 {
@@ -90,10 +86,9 @@ TTitleMgr* TTitleMgr::Instance()
 	return _instance;
 }
 
-/*
- * --INFO--
- * Address:	803BE7E0
- * Size:	000050
+/**
+ * @note Address: 0x803BE7E0
+ * @note Size: 0x50
  */
 void TTitleMgr::deleteInstance()
 {
@@ -104,10 +99,9 @@ void TTitleMgr::deleteInstance()
 	titleMgr = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	803BE830
- * Size:	000228
+/**
+ * @note Address: 0x803BE830
+ * @note Size: 0x228
  */
 void TTitleMgr::init()
 {
@@ -160,40 +154,36 @@ void TTitleMgr::init()
 	add(&mChappyMgr);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  */
 void TTitleMgr::setDestToPiki(long)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  */
 void TTitleMgr::setPosToPiki(long)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 Vector2f TTitleMgr::setStartPosToPiki()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803BEA58
- * Size:	000050
+/**
+ * @note Address: 0x803BEA58
+ * @note Size: 0x50
  */
 void TTitleMgr::setLogo()
 {
@@ -204,10 +194,9 @@ void TTitleMgr::setLogo()
 	mState = 1;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001D8
+/**
+ * @note Address: N/A
+ * @note Size: 0x1D8
  */
 void TTitleMgr::calcBreakupDestination()
 {
@@ -222,20 +211,18 @@ void TTitleMgr::calcBreakupDestination()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000208
+/**
+ * @note Address: N/A
+ * @note Size: 0x208
  */
 void TTitleMgr::calcDestination(long)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
+/**
+ * @note Address: N/A
+ * @note Size: 0x84
  */
 bool TTitleMgr::isAssemble()
 {
@@ -250,10 +237,9 @@ bool TTitleMgr::isAssemble()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803BEAA8
- * Size:	000300
+/**
+ * @note Address: 0x803BEAA8
+ * @note Size: 0x300
  */
 void TTitleMgr::loadResource()
 {
@@ -338,10 +324,9 @@ void TTitleMgr::loadResource()
 	sys->heapStatusEnd("TTitleMgr::loadResource()");
 }
 
-/*
- * --INFO--
- * Address:	803BEDA8
- * Size:	000040
+/**
+ * @note Address: 0x803BEDA8
+ * @note Size: 0x40
  */
 void TTitleMgr::initAfterLoadRes()
 {
@@ -350,10 +335,9 @@ void TTitleMgr::initAfterLoadRes()
 	mChappyMgr.initUnit();
 }
 
-/*
- * --INFO--
- * Address:	803BEDE8
- * Size:	000044
+/**
+ * @note Address: 0x803BEDE8
+ * @note Size: 0x44
  */
 void TTitleMgr::setController(Controller* control)
 {
@@ -362,20 +346,18 @@ void TTitleMgr::setController(Controller* control)
 	mChappyMgr.mObject->setController(mController);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 void TTitleMgr::setDrawBufferToJ3DSys()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  */
 void TTitleMgr::inField(Vector2f& pos)
 {
@@ -387,10 +369,9 @@ void TTitleMgr::inField(Vector2f& pos)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803BEE2C
- * Size:	000070
+/**
+ * @note Address: 0x803BEE2C
+ * @note Size: 0x70
  */
 bool TTitleMgr::inField(TObjBase* obj)
 {
@@ -402,20 +383,18 @@ bool TTitleMgr::inField(TObjBase* obj)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
+/**
+ * @note Address: N/A
+ * @note Size: 0x44
  */
 void TTitleMgr::inViewField(Vector2f&, f32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803BEEA4
- * Size:	000080
+/**
+ * @note Address: 0x803BEEA4
+ * @note Size: 0x80
  */
 bool TTitleMgr::inViewField(TObjBase* obj)
 {
@@ -426,20 +405,18 @@ bool TTitleMgr::inViewField(TObjBase* obj)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
+/**
+ * @note Address: N/A
+ * @note Size: 0x44
  */
 void TTitleMgr::isInViewField(Vector2f&, f32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803BEF24
- * Size:	000088
+/**
+ * @note Address: 0x803BEF24
+ * @note Size: 0x88
  */
 bool TTitleMgr::isInViewField(TObjBase* obj)
 {
@@ -451,10 +428,9 @@ bool TTitleMgr::isInViewField(TObjBase* obj)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803BEFAC
- * Size:	000044
+/**
+ * @note Address: 0x803BEFAC
+ * @note Size: 0x44
  */
 bool TTitleMgr::isOutViewField(Vector2f& pos, f32 radius)
 {
@@ -463,10 +439,9 @@ bool TTitleMgr::isOutViewField(Vector2f& pos, f32 radius)
 	return bounds.isOut(pos, radius);
 }
 
-/*
- * --INFO--
- * Address:	803BEFF0
- * Size:	000088
+/**
+ * @note Address: 0x803BEFF0
+ * @note Size: 0x88
  */
 bool TTitleMgr::isOutViewField(TObjBase* obj)
 {
@@ -479,20 +454,18 @@ bool TTitleMgr::isOutViewField(TObjBase* obj)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803BF078
- * Size:	000020
+/**
+ * @note Address: 0x803BF078
+ * @note Size: 0x20
  */
 Vector2f TTitleMgr::getPosOutOfViewField()
 {
 	return Vector2f(mTitleParms.mBoundsMinX.mValue * 2.0f, mTitleParms.mBoundsMinY.mValue * 2.0f);
 }
 
-/*
- * --INFO--
- * Address:	803BF098
- * Size:	000408
+/**
+ * @note Address: 0x803BF098
+ * @note Size: 0x408
  */
 void TTitleMgr::start()
 {
@@ -536,20 +509,18 @@ void TTitleMgr::start()
 	startState(STATE1);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000AC
+/**
+ * @note Address: N/A
+ * @note Size: 0xAC
  */
 void TTitleMgr::windBlow()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803BF4A0
- * Size:	00020C
+/**
+ * @note Address: 0x803BF4A0
+ * @note Size: 0x20C
  */
 bool TTitleMgr::breakup()
 {
@@ -562,10 +533,9 @@ bool TTitleMgr::breakup()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	803BF6AC
- * Size:	0001A0
+/**
+ * @note Address: 0x803BF6AC
+ * @note Size: 0x1A0
  */
 bool TTitleMgr::startKogane()
 {
@@ -585,10 +555,9 @@ bool TTitleMgr::startKogane()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803BF84C
- * Size:	0001A0
+/**
+ * @note Address: 0x803BF84C
+ * @note Size: 0x1A0
  */
 bool TTitleMgr::startChappy()
 {
@@ -608,10 +577,9 @@ bool TTitleMgr::startChappy()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803BF9EC
- * Size:	00023C
+/**
+ * @note Address: 0x803BF9EC
+ * @note Size: 0x23C
  */
 bool TTitleMgr::boidToAssemble(long id)
 {
@@ -632,20 +600,18 @@ bool TTitleMgr::boidToAssemble(long id)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
+/**
+ * @note Address: N/A
+ * @note Size: 0x50
  */
 void TTitleMgr::boid3ToAssemble()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803BFC28
- * Size:	00001C
+/**
+ * @note Address: 0x803BFC28
+ * @note Size: 0x1C
  */
 bool TTitleMgr::isControllerOK()
 {
@@ -655,10 +621,9 @@ bool TTitleMgr::isControllerOK()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803BFC44
- * Size:	00001C
+/**
+ * @note Address: 0x803BFC44
+ * @note Size: 0x1C
  */
 bool TTitleMgr::isPressStart()
 {
@@ -668,20 +633,18 @@ bool TTitleMgr::isPressStart()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
+/**
+ * @note Address: N/A
+ * @note Size: 0x58
  */
 void TTitleMgr::isAnyKey()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803BFC60
- * Size:	000124
+/**
+ * @note Address: 0x803BFC60
+ * @note Size: 0x124
  */
 void TTitleMgr::startState(enumState state)
 {
@@ -720,10 +683,9 @@ void TTitleMgr::startState(enumState state)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803BFD84
- * Size:	000458
+/**
+ * @note Address: 0x803BFD84
+ * @note Size: 0x458
  */
 bool TTitleMgr::update()
 {
@@ -820,10 +782,9 @@ bool TTitleMgr::update()
 	updateState();
 }
 
-/*
- * --INFO--
- * Address:	803C01DC
- * Size:	00034C
+/**
+ * @note Address: 0x803C01DC
+ * @note Size: 0x34C
  */
 void TTitleMgr::updateState()
 {
@@ -920,10 +881,9 @@ void TTitleMgr::updateState()
 	mPikminMgr.enemyPushOut(mChappyMgr.mObject);
 }
 
-/*
- * --INFO--
- * Address:	803C0528
- * Size:	00022C
+/**
+ * @note Address: 0x803C0528
+ * @note Size: 0x22C
  */
 void TTitleMgr::checkEncounter_()
 {
@@ -968,10 +928,9 @@ void TTitleMgr::checkEncounter_()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803C0754
- * Size:	000268
+/**
+ * @note Address: 0x803C0754
+ * @note Size: 0x268
  */
 void TTitleMgr::draw()
 {
@@ -1014,20 +973,18 @@ void TTitleMgr::draw()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void TTitleMgr::showInfo(long, long, long, long)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803C09BC
- * Size:	00007C
+/**
+ * @note Address: 0x803C09BC
+ * @note Size: 0x7C
  */
 void TTitleMgr::readTitleParam(JKRArchive* arc, char* path)
 {
@@ -1039,10 +996,9 @@ void TTitleMgr::readTitleParam(JKRArchive* arc, char* path)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803C0A98
- * Size:	000024
+/**
+ * @note Address: 0x803C0A98
+ * @note Size: 0x24
  */
 void TTitleCameraMgr::read(Stream& file) { mParms.read(file); }
 

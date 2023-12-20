@@ -5,10 +5,9 @@
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	801B3EEC
- * Size:	000048
+/**
+ * @note Address: 0x801B3EEC
+ * @note Size: 0x48
  */
 PelletConfigList::PelletConfigList()
 {
@@ -16,10 +15,9 @@ PelletConfigList::PelletConfigList()
 	mConfigCnt = 0;
 }
 
-/*
- * --INFO--
- * Address:	801B3F34
- * Size:	0000AC
+/**
+ * @note Address: 0x801B3F34
+ * @note Size: 0xAC
  */
 PelletConfig::PelletConfig()
 {
@@ -43,10 +41,9 @@ PelletConfig::PelletConfig()
 	mParams.mIndirectState                             = Indirect_No;
 }
 
-/*
- * --INFO--
- * Address:	801B4050
- * Size:	000374
+/**
+ * @note Address: 0x801B4050
+ * @note Size: 0x374
  */
 const char* UNUSED_pelletConfig = "pelletConfig";
 PelletConfig::TParms::TParms()
@@ -87,10 +84,9 @@ PelletConfig::TParms::TParms()
 {
 }
 
-/*
- * --INFO--
- * Address:	801B4424
- * Size:	000084
+/**
+ * @note Address: 0x801B4424
+ * @note Size: 0x84
  */
 PelletConfig* PelletConfigList::getPelletConfig(char* str)
 {
@@ -106,10 +102,9 @@ PelletConfig* PelletConfigList::getPelletConfig(char* str)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	801B44A8
- * Size:	00007C
+/**
+ * @note Address: 0x801B44A8
+ * @note Size: 0x7C
  */
 PelletConfig* PelletConfigList::getPelletConfig(int index)
 {
@@ -119,10 +114,9 @@ PelletConfig* PelletConfigList::getPelletConfig(int index)
 	return &mConfigs[index];
 }
 
-/*
- * --INFO--
- * Address:	801B4524
- * Size:	000044
+/**
+ * @note Address: 0x801B4524
+ * @note Size: 0x44
  */
 PelletConfig* PelletConfigList::getPelletConfig_ByDictionaryNo(int dictNumber)
 {
@@ -136,10 +130,9 @@ PelletConfig* PelletConfigList::getPelletConfig_ByDictionaryNo(int dictNumber)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	801B4568
- * Size:	000130
+/**
+ * @note Address: 0x801B4568
+ * @note Size: 0x130
  */
 void PelletConfigList::read(Stream& stream)
 {

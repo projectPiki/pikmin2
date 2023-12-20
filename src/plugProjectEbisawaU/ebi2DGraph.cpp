@@ -13,10 +13,9 @@ namespace ebi {
 
 const f32 E2DFader::kFadeTime = 0.5f;
 
-/*
- * --INFO--
- * Address:	803CA358
- * Size:	00008C
+/**
+ * @note Address: 0x803CA358
+ * @note Size: 0x8C
  */
 J2DPane* E2DScreen_searchAssert(J2DScreen* screen, u64 tag)
 {
@@ -26,10 +25,9 @@ J2DPane* E2DScreen_searchAssert(J2DScreen* screen, u64 tag)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	803CA3E4
- * Size:	0001D8
+/**
+ * @note Address: 0x803CA3E4
+ * @note Size: 0x1D8
  */
 void E2DPane_setTreeInfluencedAlpha(J2DPane* pane, bool check)
 {
@@ -43,10 +41,9 @@ void E2DPane_setTreeInfluencedAlpha(J2DPane* pane, bool check)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803CA5BC
- * Size:	0001A4
+/**
+ * @note Address: 0x803CA5BC
+ * @note Size: 0x1A4
  */
 void E2DPane_setTreeShow(J2DPane* pane)
 {
@@ -60,10 +57,9 @@ void E2DPane_setTreeShow(J2DPane* pane)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803CA76C
- * Size:	0001A4
+/**
+ * @note Address: 0x803CA76C
+ * @note Size: 0x1A4
  */
 void E2DPane_setTreeHide(J2DPane* pane)
 {
@@ -77,10 +73,9 @@ void E2DPane_setTreeHide(J2DPane* pane)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803CA91C
- * Size:	0003DC
+/**
+ * @note Address: 0x803CA91C
+ * @note Size: 0x3DC
  */
 void E2DPane_setTreeCallBackMessage(P2DScreen::Mgr* mgr, J2DPane* pane)
 {
@@ -104,10 +99,9 @@ void E2DPane_setTreeCallBackMessage(P2DScreen::Mgr* mgr, J2DPane* pane)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803CACF8
- * Size:	0000D0
+/**
+ * @note Address: 0x803CACF8
+ * @note Size: 0xD0
  */
 Vector2f E2DPane_getGlbCenter(J2DPane* pane)
 {

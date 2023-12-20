@@ -8,10 +8,9 @@
 namespace og {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	803087B8
- * Size:	000134
+/**
+ * @note Address: 0x803087B8
+ * @note Size: 0x134
  */
 AnimText_Screen* setAnimTextScreen(JKRArchive* arc, P2DScreen::Mgr* parentScreen, u64 tag)
 {
@@ -38,10 +37,9 @@ AnimText_Screen* setAnimTextScreen(JKRArchive* arc, P2DScreen::Mgr* parentScreen
 	return anm;
 }
 
-/*
- * --INFO--
- * Address:	803088EC
- * Size:	00013C
+/**
+ * @note Address: 0x803088EC
+ * @note Size: 0x13C
  */
 AnimText_Screen* setMenuScreen(JKRArchive* arc, P2DScreen::Mgr* parentScreen, u64 tag)
 {
@@ -50,10 +48,9 @@ AnimText_Screen* setMenuScreen(JKRArchive* arc, P2DScreen::Mgr* parentScreen, u6
 	return anm;
 }
 
-/*
- * --INFO--
- * Address:	80308A28
- * Size:	00013C
+/**
+ * @note Address: 0x80308A28
+ * @note Size: 0x13C
  */
 AnimText_Screen* setMenuTitleScreen(JKRArchive* arc, P2DScreen::Mgr* parentScreen, u64 tag)
 {
@@ -62,10 +59,9 @@ AnimText_Screen* setMenuTitleScreen(JKRArchive* arc, P2DScreen::Mgr* parentScree
 	return anm;
 }
 
-/*
- * --INFO--
- * Address:	80308B64
- * Size:	000228
+/**
+ * @note Address: 0x80308B64
+ * @note Size: 0x228
  */
 AnimText_Screen::AnimText_Screen(P2DScreen::Mgr* scrn, u64 tag)
     : CallBack_Screen(scrn, tag)
@@ -95,10 +91,9 @@ AnimText_Screen::AnimText_Screen(P2DScreen::Mgr* scrn, u64 tag)
 	mColorType = 0;
 }
 
-/*
- * --INFO--
- * Address:	80308E0C
- * Size:	00060C
+/**
+ * @note Address: 0x80308E0C
+ * @note Size: 0x60C
  */
 void AnimText_Screen::update()
 {
@@ -212,17 +207,15 @@ void AnimText_Screen::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80309418
- * Size:	000008
+/**
+ * @note Address: 0x80309418
+ * @note Size: 0x8
  */
 void AnimText_Screen::setAnimScreen(AnimScreen* screen) { mAnmScreen = screen; }
 
-/*
- * --INFO--
- * Address:	80309420
- * Size:	00001C
+/**
+ * @note Address: 0x80309420
+ * @note Size: 0x1C
  */
 void AnimText_Screen::setText(u64 tag)
 {
@@ -230,10 +223,9 @@ void AnimText_Screen::setText(u64 tag)
 	mMsgBackPane->mMessageID = tag;
 }
 
-/*
- * --INFO--
- * Address:	8030943C
- * Size:	000018
+/**
+ * @note Address: 0x8030943C
+ * @note Size: 0x18
  */
 void AnimText_Screen::stop()
 {
@@ -241,10 +233,9 @@ void AnimText_Screen::stop()
 	mAnmScreen->mCurrentFrame = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	80309454
- * Size:	00003C
+/**
+ * @note Address: 0x80309454
+ * @note Size: 0x3C
  */
 void AnimText_Screen::open(f32 a1)
 {
@@ -253,10 +244,9 @@ void AnimText_Screen::open(f32 a1)
 	mAnmScreen->AnimBaseBase::start(a1);
 }
 
-/*
- * --INFO--
- * Address:	80309490
- * Size:	000048
+/**
+ * @note Address: 0x80309490
+ * @note Size: 0x48
  */
 void AnimText_Screen::close()
 {
@@ -265,10 +255,9 @@ void AnimText_Screen::close()
 	mAnmScreen->start();
 }
 
-/*
- * --INFO--
- * Address:	803094D8
- * Size:	0000AC
+/**
+ * @note Address: 0x803094D8
+ * @note Size: 0xAC
  */
 void AnimText_Screen::blink(f32 factor, f32 timer)
 {

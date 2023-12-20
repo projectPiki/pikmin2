@@ -13,17 +13,15 @@ static const char idk[] = "\0\0\0\0\0\0\0\0\0";
 TParticle2dMgr* particle2dMgr;
 TParticle2dMgr* TParticle2dMgr::_instance;
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
+/**
+ * @note Address: N/A
+ * @note Size: 0xE4
  */
 void _Print(char* name, ...) { OSReport("particle2dMgr"); }
 
-/*
- * --INFO--
- * Address:	803B9064
- * Size:	000084
+/**
+ * @note Address: 0x803B9064
+ * @note Size: 0x84
  */
 TParticle2dMgr::~TParticle2dMgr()
 {
@@ -31,17 +29,15 @@ TParticle2dMgr::~TParticle2dMgr()
 	particle2dMgr = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	803B90E8
- * Size:	000024
+/**
+ * @note Address: 0x803B90E8
+ * @note Size: 0x24
  */
 void TParticle2dMgr::globalInstance() { particle2dMgr = Instance(); }
 
-/*
- * --INFO--
- * Address:	803B910C
- * Size:	000048
+/**
+ * @note Address: 0x803B910C
+ * @note Size: 0x48
  */
 TParticle2dMgr* TParticle2dMgr::Instance()
 {
@@ -51,10 +47,9 @@ TParticle2dMgr* TParticle2dMgr::Instance()
 	return _instance;
 }
 
-/*
- * --INFO--
- * Address:	803B9154
- * Size:	000050
+/**
+ * @note Address: 0x803B9154
+ * @note Size: 0x50
  */
 void TParticle2dMgr::deleteInstance()
 {
@@ -65,10 +60,9 @@ void TParticle2dMgr::deleteInstance()
 	particle2dMgr = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	803B91A4
- * Size:	000088
+/**
+ * @note Address: 0x803B91A4
+ * @note Size: 0x88
  */
 TParticle2dMgr::TParticle2dMgr()
     : CNode("TParticle2dMgr")
@@ -80,10 +74,9 @@ TParticle2dMgr::TParticle2dMgr()
 	mEmitterManager  = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	803B922C
- * Size:	000094
+/**
+ * @note Address: 0x803B922C
+ * @note Size: 0x94
  */
 void TParticle2dMgr::createHeap(u32 p1)
 {
@@ -93,10 +86,9 @@ void TParticle2dMgr::createHeap(u32 p1)
 	sys->heapStatusEnd("TParticle2dMgr::createHeap");
 }
 
-/*
- * --INFO--
- * Address:	803B92C0
- * Size:	000154
+/**
+ * @note Address: 0x803B92C0
+ * @note Size: 0x154
  */
 void TParticle2dMgr::createMgr(char* path, u32 u1, u32 u2, u32 u3)
 {
@@ -214,30 +206,27 @@ void TParticle2dMgr::createMgr(char* path, u32 u1, u32 u2, u32 u3)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void TParticle2dMgr::exitMgr()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 void TParticle2dMgr::destroyHeap()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803B9414
- * Size:	0000AC
+/**
+ * @note Address: 0x803B9414
+ * @note Size: 0xAC
  */
 void TParticle2dMgr::setSceneEmitterAndResourceManager(JPAEmitterManager* emitterManager, JPAResourceManager* resourceManager)
 {
@@ -250,10 +239,9 @@ void TParticle2dMgr::setSceneEmitterAndResourceManager(JPAEmitterManager* emitte
 	_30->entryResourceManager(resourceManager, 1);
 }
 
-/*
- * --INFO--
- * Address:	803B94C0
- * Size:	000078
+/**
+ * @note Address: 0x803B94C0
+ * @note Size: 0x78
  */
 void TParticle2dMgr::clearSceneEmitterAndResourceManager()
 {
@@ -264,10 +252,9 @@ void TParticle2dMgr::clearSceneEmitterAndResourceManager()
 	mEmitterManager = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	803B9538
- * Size:	000050
+/**
+ * @note Address: 0x803B9538
+ * @note Size: 0x50
  */
 void TParticle2dMgr::setSceneResourceManager(JPAResourceManager* resourceManager)
 {
@@ -275,24 +262,21 @@ void TParticle2dMgr::setSceneResourceManager(JPAResourceManager* resourceManager
 	_30->entryResourceManager(resourceManager, 1);
 }
 
-/*
- * --INFO--
- * Address:	803B9588
- * Size:	000028
+/**
+ * @note Address: 0x803B9588
+ * @note Size: 0x28
  */
 void TParticle2dMgr::clearSceneResourceManager() { _30->clearResourceManager(1); }
 
-/*
- * --INFO--
- * Address:	803B95B0
- * Size:	000024
+/**
+ * @note Address: 0x803B95B0
+ * @note Size: 0x24
  */
 void TParticle2dMgr::update() { _30->calc(); }
 
-/*
- * --INFO--
- * Address:	803B95D4
- * Size:	000148
+/**
+ * @note Address: 0x803B95D4
+ * @note Size: 0x148
  */
 void TParticle2dMgr::draw(u8 a, u16 flag)
 {
@@ -404,20 +388,18 @@ lbl_803B9700:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 void TParticle2dMgr::setXfb(const ResTIMG*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803B971C
- * Size:	00004C
+/**
+ * @note Address: 0x803B971C
+ * @note Size: 0x4C
  */
 JPABaseEmitter* TParticle2dMgr::create(u16 p1, Vector2<f32>& p2, u8 p3, u8 p4)
 {
@@ -425,10 +407,9 @@ JPABaseEmitter* TParticle2dMgr::create(u16 p1, Vector2<f32>& p2, u8 p3, u8 p4)
 	return _30->createSimpleEmitterID(vec, p1, p3, p4, nullptr, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	803B9768
- * Size:	00002C
+/**
+ * @note Address: 0x803B9768
+ * @note Size: 0x2C
  */
 void TParticle2dMgr::kill(JPABaseEmitter* emitter)
 {
@@ -437,10 +418,9 @@ void TParticle2dMgr::kill(JPABaseEmitter* emitter)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803B9794
- * Size:	000020
+/**
+ * @note Address: 0x803B9794
+ * @note Size: 0x20
  */
 void TParticle2dMgr::fade(JPABaseEmitter* emitter)
 {
@@ -450,24 +430,21 @@ void TParticle2dMgr::fade(JPABaseEmitter* emitter)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803B97B4
- * Size:	000024
+/**
+ * @note Address: 0x803B97B4
+ * @note Size: 0x24
  */
 void TParticle2dMgr::killAll() { _30->forceDeleteAllEmitter(); }
 
-/*
- * --INFO--
- * Address:	803B97D8
- * Size:	000028
+/**
+ * @note Address: 0x803B97D8
+ * @note Size: 0x28
  */
 void TParticle2dMgr::killGroup(u8 p1) { _30->forceDeleteGroupEmitter((int)p1); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void TParticle2dMgr::showInfo(long, long, long, long)
 {

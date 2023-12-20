@@ -4,30 +4,27 @@
 static volatile int flag;
 static u16 DSP_MIXERLEVEL = 0x4000;
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void DSPSendCommands(u32* p1, u32 p2)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  */
 void DSPReleaseHalt3(u32 p1, u16 p2)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800AA760
- * Size:	000048
+/**
+ * @note Address: 0x800AA760
+ * @note Size: 0x48
  */
 void DSPReleaseHalt2(u32 msg)
 {
@@ -38,97 +35,87 @@ void DSPReleaseHalt2(u32 msg)
 	DSPSendCommands2(msgs, 0, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 void DSPReleaseHalt()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 void DSPWaitFinish()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 void Dswap(u32 p1, u32 p2, u32 p3)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 void Dmix(u32 p1, u32 p2, u32 p3, short p4)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 void Dcopy(u32 p1, u32 p2, u32 p3)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
+/**
+ * @note Address: N/A
+ * @note Size: 0x44
  */
 void DloadBuffer1(u32 p1, u32 p2)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 void DloadBuffer(u32 p1, u32 p2, u32 p3)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
+/**
+ * @note Address: N/A
+ * @note Size: 0x44
  */
 void DsaveBuffer(u16 p1, u32 p2, u32 p3)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800AA7C0
- * Size:	00000C
+/**
+ * @note Address: 0x800AA7C0
+ * @note Size: 0xC
  */
 static void setup_callback(u16 p1) { flag = 0; }
 
-/*
- * --INFO--
- * Address:	800AA7E0
- * Size:	000064
+/**
+ * @note Address: 0x800AA7E0
+ * @note Size: 0x64
  */
 void DsetupTable(u32 p1, u32 p2, u32 p3, u32 p4, u32 p5)
 {
@@ -144,17 +131,15 @@ void DsetupTable(u32 p1, u32 p2, u32 p3, u32 p4, u32 p5)
 		;
 }
 
-/*
- * --INFO--
- * Address:	800AA860
- * Size:	000024
+/**
+ * @note Address: 0x800AA860
+ * @note Size: 0x24
  */
 void DsetMixerLevel(f32 mixerLevel) { DSP_MIXERLEVEL = 4096.0f * mixerLevel; }
 
-/*
- * --INFO--
- * Address:	800AA8A0
- * Size:	000048
+/**
+ * @note Address: 0x800AA8A0
+ * @note Size: 0x48
  */
 void DsyncFrame(u32 param_0, u32 param_1, u32 param_2)
 {
@@ -165,60 +150,54 @@ void DsyncFrame(u32 param_0, u32 param_1, u32 param_2)
 	DSPSendCommands2(msgs, 3, 0);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void wait_callback(u16 p1)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 void DwaitFrame()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 void DiplSec(u32 p1, void (*p2)(u16))
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 void DagbSec(u32 p1, void (*p2)(u16))
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void dummy_callback(u16 p1)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 void DsetDolbyDelay(u32 p1, u16 p2)
 {

@@ -1,15 +1,13 @@
 #include "JSystem/JAudio/JAD/JADHioNode.h"
 
-/*
- * --INFO--
- * Address:	800BA1EC
- * Size:	000010
+/**
+ * @note Address: 0x800BA1EC
+ * @note Size: 0x10
  */
 JADHioNode::JADHioNode(const char*) { }
 
-/*
- * --INFO--
- * Address:	800BA1FC
- * Size:	000048
+/**
+ * @note Address: 0x800BA1FC
+ * @note Size: 0x48
  */
 JADHioNode::~JADHioNode() { }

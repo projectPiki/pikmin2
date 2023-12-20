@@ -15,10 +15,9 @@ static u8 DSPInitCode[128]
 volatile u16 __DSPRegs[] : 0xCC005000;
 #define __DSPWorkBuffer (void*)0x81000000
 
-/*
- * --INFO--
- * Address:	800EC444
- * Size:	0001BC
+/**
+ * @note Address: 0x800EC444
+ * @note Size: 0x1BC
  */
 void __OSInitAudioSystem(void)
 {
@@ -83,10 +82,9 @@ void __OSInitAudioSystem(void)
 	memcpy(__DSPWorkBuffer, (void*)((u8*)OSGetArenaHi() - 128), 128);
 }
 
-/*
- * --INFO--
- * Address:	800EC600
- * Size:	0000D8
+/**
+ * @note Address: 0x800EC600
+ * @note Size: 0xD8
  */
 void __OSStopAudioSystem(void)
 {

@@ -6,10 +6,9 @@
 namespace Game {
 namespace Cave {
 
-/*
- * --INFO--
- * Address:	80245C5C
- * Size:	000030
+/**
+ * @note Address: 0x80245C5C
+ * @note Size: 0x30
  */
 EditMapUnit::EditMapUnit()
 {
@@ -23,10 +22,9 @@ EditMapUnit::EditMapUnit()
 	mEditNum     = -128;
 }
 
-/*
- * --INFO--
- * Address:	80245C8C
- * Size:	0000B8
+/**
+ * @note Address: 0x80245C8C
+ * @note Size: 0xB8
  */
 void EditMapUnit::read(char* filepath)
 {
@@ -41,10 +39,9 @@ void EditMapUnit::read(char* filepath)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80245D44
- * Size:	0001E8
+/**
+ * @note Address: 0x80245D44
+ * @note Size: 0x1E8
  */
 void EditMapUnit::read(Stream* stream)
 {
@@ -78,10 +75,9 @@ void EditMapUnit::read(Stream* stream)
 	mEditNum = -128;
 }
 
-/*
- * --INFO--
- * Address:	80245F2C
- * Size:	000054
+/**
+ * @note Address: 0x80245F2C
+ * @note Size: 0x54
  */
 void EditMapUnit::setEditNumber(int editNo)
 {
@@ -106,10 +102,9 @@ void EditMapUnit::setEditNumber(int editNo)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80245F80
- * Size:	00019C
+/**
+ * @note Address: 0x80245F80
+ * @note Size: 0x19C
  */
 RandMapUnit::RandMapUnit(MapUnitGenerator* generator)
 {
@@ -280,10 +275,9 @@ lbl_802460D8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8024611C
- * Size:	0000F4
+/**
+ * @note Address: 0x8024611C
+ * @note Size: 0xF4
  */
 void RandMapUnit::setMapUnit()
 {
@@ -315,10 +309,9 @@ void RandMapUnit::setMapUnit()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80246210
- * Size:	000034
+/**
+ * @note Address: 0x80246210
+ * @note Size: 0x34
  */
 int RandMapUnit::getAliveMapIndex(MapNode* tile)
 {
@@ -335,10 +328,9 @@ int RandMapUnit::getAliveMapIndex(MapNode* tile)
 	return -1;
 }
 
-/*
- * --INFO--
- * Address:	80246244
- * Size:	0000A0
+/**
+ * @note Address: 0x80246244
+ * @note Size: 0xA0
  */
 void RandMapUnit::getTextureSize(int& x, int& y)
 {
@@ -363,10 +355,9 @@ void RandMapUnit::getTextureSize(int& x, int& y)
 	y = tempY;
 }
 
-/*
- * --INFO--
- * Address:	802462E4
- * Size:	00006C
+/**
+ * @note Address: 0x802462E4
+ * @note Size: 0x6C
  */
 MapNode* RandMapUnit::getRandMapUnit()
 {
@@ -384,10 +375,9 @@ MapNode* RandMapUnit::getRandMapUnit()
 	return getLoopEndMapUnit();
 }
 
-/*
- * --INFO--
- * Address:	80246350
- * Size:	000284
+/**
+ * @note Address: 0x80246350
+ * @note Size: 0x284
  */
 void RandMapUnit::changeCapToRootLoopMapUnit()
 {
@@ -466,10 +456,9 @@ void RandMapUnit::changeCapToRootLoopMapUnit()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802465D4
- * Size:	000360
+/**
+ * @note Address: 0x802465D4
+ * @note Size: 0x360
  */
 void RandMapUnit::changeTwoToOneMapUnit()
 {
@@ -829,10 +818,9 @@ lbl_80246920:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80246934
- * Size:	000144
+/**
+ * @note Address: 0x80246934
+ * @note Size: 0x144
  */
 void RandMapUnit::setEditorMapUnit()
 {
@@ -953,10 +941,9 @@ lbl_80246A54:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80246A78
- * Size:	00006C
+/**
+ * @note Address: 0x80246A78
+ * @note Size: 0x6C
  */
 void RandMapUnit::setFirstMapUnit()
 {
@@ -966,10 +953,9 @@ void RandMapUnit::setFirstMapUnit()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80246AE4
- * Size:	00008C
+/**
+ * @note Address: 0x80246AE4
+ * @note Size: 0x8C
  */
 MapNode* RandMapUnit::getFirstMapUnit()
 {
@@ -990,10 +976,9 @@ MapNode* RandMapUnit::getFirstMapUnit()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80246B70
- * Size:	000188
+/**
+ * @note Address: 0x80246B70
+ * @note Size: 0x188
  */
 MapNode* RandMapUnit::getNormalRandMapUnit()
 {
@@ -1031,10 +1016,9 @@ MapNode* RandMapUnit::getNormalRandMapUnit()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80246CF8
- * Size:	0000C8
+/**
+ * @note Address: 0x80246CF8
+ * @note Size: 0xC8
  */
 void RandMapUnit::setUnitKindOrder(MapNode* node, int* unitList)
 {
@@ -1058,10 +1042,9 @@ void RandMapUnit::setUnitKindOrder(MapNode* node, int* unitList)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80246DC0
- * Size:	000314
+/**
+ * @note Address: 0x80246DC0
+ * @note Size: 0x314
  */
 void RandMapUnit::setUnitDoorSorting(int kind)
 {
@@ -1358,10 +1341,9 @@ lbl_802470B0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802470D4
- * Size:	000164
+/**
+ * @note Address: 0x802470D4
+ * @note Size: 0x164
  */
 void RandMapUnit::setRandomDoorIndex(int* list, int max)
 {
@@ -1377,10 +1359,9 @@ void RandMapUnit::setRandomDoorIndex(int* list, int max)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80247238
- * Size:	000208
+/**
+ * @note Address: 0x80247238
+ * @note Size: 0x208
  */
 MapNode* RandMapUnit::getLoopRandMapUnit()
 {
@@ -1573,10 +1554,9 @@ lbl_8024742C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80247440
- * Size:	0000C8
+/**
+ * @note Address: 0x80247440
+ * @note Size: 0xC8
  */
 MapNode* RandMapUnit::getCalcDoorIndex(int& doorIdx, int& doorOffsetX, int& doorOffsetY, int targetDoorCount)
 {
@@ -1668,10 +1648,9 @@ lbl_802474F4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80247508
- * Size:	00012C
+/**
+ * @note Address: 0x80247508
+ * @note Size: 0x12C
  */
 MapNode* RandMapUnit::getLinkDoorNodeFirst(MapNode* tile, int a, int b, int c, int& d)
 {
@@ -1770,10 +1749,9 @@ MapNode* RandMapUnit::getLinkDoorNodeFirst(MapNode* tile, int a, int b, int c, i
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80247634
- * Size:	0000D0
+/**
+ * @note Address: 0x80247634
+ * @note Size: 0xD0
  */
 bool RandMapUnit::isInLinkArea(int, int, int, int, int)
 {
@@ -1845,10 +1823,9 @@ lbl_802476FC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80247704
- * Size:	000130
+/**
+ * @note Address: 0x80247704
+ * @note Size: 0x130
  */
 u32 RandMapUnit::getLoopMapNode(MapNode**)
 {
@@ -1944,10 +1921,9 @@ lbl_8024780C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80247834
- * Size:	0000EC
+/**
+ * @note Address: 0x80247834
+ * @note Size: 0xEC
  */
 int RandMapUnit::getLinkDoorDirection(MapNode*, int, MapNode*, int)
 {
@@ -2027,10 +2003,9 @@ int RandMapUnit::getLinkDoorDirection(MapNode*, int, MapNode*, int)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80247920
- * Size:	0000BC
+/**
+ * @note Address: 0x80247920
+ * @note Size: 0xBC
  */
 int RandMapUnit::getUpToLinkDoorDir(int, int, int)
 {
@@ -2107,10 +2082,9 @@ lbl_802479C0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802479DC
- * Size:	0000C4
+/**
+ * @note Address: 0x802479DC
+ * @note Size: 0xC4
  */
 int RandMapUnit::getRightToLinkDoorDir(int, int, int)
 {
@@ -2189,10 +2163,9 @@ lbl_80247A80:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80247AA0
- * Size:	0000BC
+/**
+ * @note Address: 0x80247AA0
+ * @note Size: 0xBC
  */
 int RandMapUnit::getDownToLinkDoorDir(int, int, int)
 {
@@ -2269,10 +2242,9 @@ lbl_80247B40:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80247B5C
- * Size:	0000C0
+/**
+ * @note Address: 0x80247B5C
+ * @note Size: 0xC0
  */
 int RandMapUnit::getLeftToLinkDoorDir(int, int, int)
 {
@@ -2350,10 +2322,9 @@ lbl_80247C00:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80247C1C
- * Size:	0002F0
+/**
+ * @note Address: 0x80247C1C
+ * @note Size: 0x2F0
  */
 MapNode* RandMapUnit::getLoopEndMapUnit()
 {
@@ -2597,10 +2568,9 @@ lbl_80247EE8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80247F0C
- * Size:	000070
+/**
+ * @note Address: 0x80247F0C
+ * @note Size: 0x70
  */
 int RandMapUnit::getPartsKindNum(int kind)
 {
@@ -2615,10 +2585,9 @@ int RandMapUnit::getPartsKindNum(int kind)
 	return counter;
 }
 
-/*
- * --INFO--
- * Address:	80247F7C
- * Size:	00008C
+/**
+ * @note Address: 0x80247F7C
+ * @note Size: 0x8C
  */
 int RandMapUnit::getOpenDoorNum()
 {
@@ -2635,10 +2604,9 @@ int RandMapUnit::getOpenDoorNum()
 	return counter;
 }
 
-/*
- * --INFO--
- * Address:	80248008
- * Size:	0000B4
+/**
+ * @note Address: 0x80248008
+ * @note Size: 0xB4
  */
 void RandMapUnit::addMap(UnitInfo* info, int x, int y, bool updatePriority)
 {
@@ -2656,10 +2624,9 @@ void RandMapUnit::addMap(UnitInfo* info, int x, int y, bool updatePriority)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802480BC
- * Size:	0003DC
+/**
+ * @note Address: 0x802480BC
+ * @note Size: 0x3DC
  */
 void RandMapUnit::changeMapPriority(UnitInfo* info)
 {
@@ -2966,10 +2933,9 @@ lbl_8024846C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80248498
- * Size:	00012C
+/**
+ * @note Address: 0x80248498
+ * @note Size: 0x12C
  */
 void RandMapUnit::moveCentre()
 {
@@ -3072,10 +3038,9 @@ lbl_802485B0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802485C4
- * Size:	000134
+/**
+ * @note Address: 0x802485C4
+ * @note Size: 0x134
  */
 void RandMapUnit::closeDoorCheck()
 {
@@ -3182,10 +3147,9 @@ lbl_802486DC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802486F8
- * Size:	000038
+/**
+ * @note Address: 0x802486F8
+ * @note Size: 0x38
  */
 void RandMapUnit::deleteMapNode(MapNode* tile)
 {
@@ -3193,10 +3157,9 @@ void RandMapUnit::deleteMapNode(MapNode* tile)
 	tile->del();
 }
 
-/*
- * --INFO--
- * Address:	80248730
- * Size:	000198
+/**
+ * @note Address: 0x80248730
+ * @note Size: 0x198
  */
 void RandMapUnit::createLoopMapNodeCheck()
 {
@@ -3338,10 +3301,9 @@ lbl_802488B4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802488C8
- * Size:	00004C
+/**
+ * @note Address: 0x802488C8
+ * @note Size: 0x4C
  */
 bool RandMapUnit::isLoopMapNodeCheck(MapNode* tile, int idx)
 {

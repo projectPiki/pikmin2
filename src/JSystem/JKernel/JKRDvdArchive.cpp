@@ -10,10 +10,9 @@ extern "C" {
 int abs(int);
 };
 
-/*
- * --INFO--
- * Address:	8001E57C
- * Size:	0000B0
+/**
+ * @note Address: 0x8001E57C
+ * @note Size: 0xB0
  * __ct__13JKRDvdArchiveFlQ210JKRArchive15EMountDirection
  */
 JKRDvdArchive::JKRDvdArchive(s32 entryNum, JKRArchive::EMountDirection mountDirection)
@@ -30,10 +29,9 @@ JKRDvdArchive::JKRDvdArchive(s32 entryNum, JKRArchive::EMountDirection mountDire
 	}
 }
 
-/*
- * --INFO--
- * Address:	8001E62C
- * Size:	00012C
+/**
+ * @note Address: 0x8001E62C
+ * @note Size: 0x12C
  * __dt__13JKRDvdArchiveFv
  */
 JKRDvdArchive::~JKRDvdArchive()
@@ -64,10 +62,9 @@ JKRDvdArchive::~JKRDvdArchive()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8001E758
- * Size:	0002AC
+/**
+ * @note Address: 0x8001E758
+ * @note Size: 0x2AC
  */
 bool JKRDvdArchive::open(s32 entryNum)
 {
@@ -138,10 +135,9 @@ cleanup:
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8001EA04
- * Size:	000128
+/**
+ * @note Address: 0x8001EA04
+ * @note Size: 0x128
  * fetchResource__13JKRDvdArchiveFPQ210JKRArchive12SDIFileEntryPUl
  */
 void* JKRDvdArchive::fetchResource(JKRArchive::SDIFileEntry* entry, u32* outSize)
@@ -175,10 +171,9 @@ void* JKRDvdArchive::fetchResource(JKRArchive::SDIFileEntry* entry, u32* outSize
 	return entry->mData;
 }
 
-/*
- * --INFO--
- * Address:	8001EB2C
- * Size:	0000FC
+/**
+ * @note Address: 0x8001EB2C
+ * @note Size: 0xFC
  * fetchResource__13JKRDvdArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl
  */
 void* JKRDvdArchive::fetchResource(void* data, u32 compressedSize, JKRArchive::SDIFileEntry* entry, u32* outSize)
@@ -212,10 +207,9 @@ void* JKRDvdArchive::fetchResource(void* data, u32 compressedSize, JKRArchive::S
 	return data;
 }
 
-/*
- * --INFO--
- * Address:	8001EC28
- * Size:	000200
+/**
+ * @note Address: 0x8001EC28
+ * @note Size: 0x200
  * fetchResource_subroutine__13JKRDvdArchiveFlUlUlPUcUlii
  */
 u32 JKRDvdArchive::fetchResource_subroutine(s32 entryNum, u32 offset, u32 size, u8* data, u32 expandSize, int fileCompression,
@@ -275,10 +269,9 @@ u32 JKRDvdArchive::fetchResource_subroutine(s32 entryNum, u32 offset, u32 size, 
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	8001EE28
- * Size:	00021C
+/**
+ * @note Address: 0x8001EE28
+ * @note Size: 0x21C
  * fetchResource_subroutine__13JKRDvdArchiveFlUlUlP7JKRHeapiiPPUc
  */
 u32 JKRDvdArchive::fetchResource_subroutine(s32 entryNum, u32 offset, u32 size, JKRHeap* heap, int fileCompression, int archiveCompression,
@@ -336,10 +329,9 @@ u32 JKRDvdArchive::fetchResource_subroutine(s32 entryNum, u32 offset, u32 size, 
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	8001F044
- * Size:	000144
+/**
+ * @note Address: 0x8001F044
+ * @note Size: 0x144
  * getExpandedResSize__13JKRDvdArchiveCFPCv
  */
 u32 JKRDvdArchive::getExpandedResSize(const void* resource) const

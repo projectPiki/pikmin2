@@ -25,10 +25,9 @@ f32 TDayEndCount::m2pOffsetY       = 170.0f;
 GXColor TDayEndCount::mColor       = { 0, 255, 0, 255 };
 GXColor TDayEndCount::mNumberColor = { 255, 100, 0, 255 };
 
-/*
- * --INFO--
- * Address:	80344088
- * Size:	0000E0
+/**
+ * @note Address: 0x80344088
+ * @note Size: 0xE0
  */
 TDayEndCount::TDayEndCount()
     : TTestBase("DayEndCount")
@@ -51,10 +50,9 @@ TDayEndCount::TDayEndCount()
 	mTestChangeColor = false;
 }
 
-/*
- * --INFO--
- * Address:	80344214
- * Size:	0002EC
+/**
+ * @note Address: 0x80344214
+ * @note Size: 0x2EC
  */
 void TDayEndCount::doCreate(JKRArchive* arc)
 {
@@ -100,10 +98,9 @@ void TDayEndCount::doCreate(JKRArchive* arc)
 	reset();
 }
 
-/*
- * --INFO--
- * Address:	80344500
- * Size:	000A88
+/**
+ * @note Address: 0x80344500
+ * @note Size: 0xA88
  */
 bool TDayEndCount::doUpdate()
 {
@@ -941,10 +938,9 @@ lbl_80344F64:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80344F88
- * Size:	000078
+/**
+ * @note Address: 0x80344F88
+ * @note Size: 0x78
  */
 void TDayEndCount::doDraw(Graphics& gfx)
 {
@@ -954,10 +950,9 @@ void TDayEndCount::doDraw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80345000
- * Size:	000414
+/**
+ * @note Address: 0x80345000
+ * @note Size: 0x414
  */
 void TDayEndCount::reset()
 {
@@ -1007,10 +1002,9 @@ void TDayEndCount::reset()
 	mDoPlaySE      = true;
 }
 
-/*
- * --INFO--
- * Address:	80345414
- * Size:	000104
+/**
+ * @note Address: 0x80345414
+ * @note Size: 0x104
  */
 TChallengeEndCount::TChallengeEndCount()
 {
@@ -1018,10 +1012,9 @@ TChallengeEndCount::TChallengeEndCount()
 	mIsChallenge = true;
 }
 
-/*
- * --INFO--
- * Address:	803455DC
- * Size:	000040
+/**
+ * @note Address: 0x803455DC
+ * @note Size: 0x40
  */
 void TChallengeEndCount::doCreate(JKRArchive* arc)
 {
@@ -1030,10 +1023,9 @@ void TChallengeEndCount::doCreate(JKRArchive* arc)
 	mTextPane->hide();
 }
 
-/*
- * --INFO--
- * Address:	8034561C
- * Size:	00013C
+/**
+ * @note Address: 0x8034561C
+ * @note Size: 0x13C
  */
 TChallengeEndCount1p::TChallengeEndCount1p()
 {
@@ -1042,10 +1034,9 @@ TChallengeEndCount1p::TChallengeEndCount1p()
 	mOffsetY = -m2pOffsetY;
 }
 
-/*
- * --INFO--
- * Address:	80345834
- * Size:	000034
+/**
+ * @note Address: 0x80345834
+ * @note Size: 0x34
  */
 bool TChallengeEndCount1p::doUpdate()
 {
@@ -1054,10 +1045,9 @@ bool TChallengeEndCount1p::doUpdate()
 	TDayEndCount::doUpdate();
 }
 
-/*
- * --INFO--
- * Address:	80345868
- * Size:	00013C
+/**
+ * @note Address: 0x80345868
+ * @note Size: 0x13C
  */
 TChallengeEndCount2p::TChallengeEndCount2p()
 {
@@ -1067,10 +1057,9 @@ TChallengeEndCount2p::TChallengeEndCount2p()
 	mSoundEnabled = false;
 }
 
-/*
- * --INFO--
- * Address:	803459A4
- * Size:	000030
+/**
+ * @note Address: 0x803459A4
+ * @note Size: 0x30
  */
 bool TChallengeEndCount2p::doUpdate()
 {
@@ -1079,10 +1068,9 @@ bool TChallengeEndCount2p::doUpdate()
 	TDayEndCount::doUpdate();
 }
 
-/*
- * --INFO--
- * Address:	803459D4
- * Size:	00048C
+/**
+ * @note Address: 0x803459D4
+ * @note Size: 0x48C
  */
 void TCountDownScene::doCreateObj(JKRArchive* arc)
 {
@@ -1111,10 +1099,9 @@ void TCountDownScene::doCreateObj(JKRArchive* arc)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80345E60
- * Size:	000064
+/**
+ * @note Address: 0x80345E60
+ * @note Size: 0x64
  */
 bool TCountDownScene::doStart(Screen::StartSceneArg* arg)
 {
@@ -1123,10 +1110,9 @@ bool TCountDownScene::doStart(Screen::StartSceneArg* arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80345F64
- * Size:	00000C
+/**
+ * @note Address: 0x80345F64
+ * @note Size: 0xC
  */
 void TTestBase::doUpdateFadeinFinish() { mCanInput = true; }
 

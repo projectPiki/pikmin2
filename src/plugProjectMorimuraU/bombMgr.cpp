@@ -3,10 +3,9 @@
 namespace Game {
 namespace Bomb {
 
-/*
- * --INFO--
- * Address:	80349DD8
- * Size:	000050
+/**
+ * @note Address: 0x80349DD8
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -14,17 +13,15 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "爆弾マネージャ"; // bomb manager
 }
 
-/*
- * --INFO--
- * Address:	80349E28
- * Size:	000048
+/**
+ * @note Address: 0x80349E28
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Parms); }
 
-/*
- * --INFO--
- * Address:	80349FC0
- * Size:	000020
+/**
+ * @note Address: 0x80349FC0
+ * @note Size: 0x20
  */
 EnemyBase* Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::birth(birthArg); }
 

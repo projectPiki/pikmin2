@@ -10,10 +10,9 @@ namespace PSSystem {
 
 BankMgr* BankMgr::sBankMgr;
 
-/*
- * --INFO--
- * Address:	8033D738
- * Size:	000064
+/**
+ * @note Address: 0x8033D738
+ * @note Size: 0x64
  */
 BankMgr* BankMgr::createInstance()
 {
@@ -23,10 +22,9 @@ BankMgr* BankMgr::createInstance()
 	return bankMgr;
 }
 
-/*
- * --INFO--
- * Address:	8033D79C
- * Size:	000058
+/**
+ * @note Address: 0x8033D79C
+ * @note Size: 0x58
  */
 BankMgr::BankMgr()
 {
@@ -38,20 +36,18 @@ BankMgr::BankMgr()
 	_19       = 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001C8
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C8
  */
 void BankMgr::setBankData(u32* data)
 {
 	// need to match using setBankDataS
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001C8
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C8
  */
 void BankMgr::setWsData(u32* data)
 {
@@ -68,10 +64,9 @@ void BankMgr::setWsData(u32* data)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8033D7F4
- * Size:	000094
+/**
+ * @note Address: 0x8033D7F4
+ * @note Size: 0x94
  */
 void BankMgr::preInit()
 {
@@ -84,10 +79,9 @@ void BankMgr::preInit()
 	JAInter::BankWave::setSecondLoadCallback(&secondLoadS);
 }
 
-/*
- * --INFO--
- * Address:	8033D888
- * Size:	000178
+/**
+ * @note Address: 0x8033D888
+ * @note Size: 0x178
  */
 void BankMgr::init()
 {
@@ -250,10 +244,9 @@ lbl_8033D9E8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033DA00
- * Size:	000078
+/**
+ * @note Address: 0x8033DA00
+ * @note Size: 0x78
  */
 void WaveScene::load(u16 p1, u16 p2, AreaArg areaArg, TaskChecker* taskChecker)
 {
@@ -261,10 +254,9 @@ void WaveScene::load(u16 p1, u16 p2, AreaArg areaArg, TaskChecker* taskChecker)
 	_18[areaArg].loadWave(p1, p2, taskChecker);
 }
 
-/*
- * --INFO--
- * Address:	8033DA78
- * Size:	000028
+/**
+ * @note Address: 0x8033DA78
+ * @note Size: 0x28
  */
 WaveScene::WaveArea::WaveArea()
 {
@@ -275,10 +267,9 @@ WaveScene::WaveArea::WaveArea()
 	_10      = 0;
 }
 
-/*
- * --INFO--
- * Address:	8033DAA0
- * Size:	000114
+/**
+ * @note Address: 0x8033DAA0
+ * @note Size: 0x114
  */
 bool WaveScene::WaveArea::loadWave(u16 bankIdx, u16 arcIdx, TaskChecker* checker)
 {
@@ -398,10 +389,9 @@ bool WaveScene::WaveArea::loadWave(u16 bankIdx, u16 arcIdx, TaskChecker* checker
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033DBB4
- * Size:	0000B0
+/**
+ * @note Address: 0x8033DBB4
+ * @note Size: 0xB0
  */
 void WaveScene::WaveArea::deleteWave()
 {
@@ -421,10 +411,9 @@ void WaveScene::WaveArea::deleteWave()
 	_10 = 0;
 }
 
-/*
- * --INFO--
- * Address:	8033DC64
- * Size:	00007C
+/**
+ * @note Address: 0x8033DC64
+ * @note Size: 0x7C
  */
 void WaveScene::WaveArea::waveLoadCallback(u32 areaLoader)
 {

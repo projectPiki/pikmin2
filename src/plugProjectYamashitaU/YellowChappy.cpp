@@ -3,10 +3,9 @@
 namespace Game {
 namespace YellowChappy {
 
-/*
- * --INFO--
- * Address:	8012C378
- * Size:	000154
+/**
+ * @note Address: 0x8012C378
+ * @note Size: 0x154
  */
 Obj::Obj()
 {
@@ -17,10 +16,9 @@ Obj::Obj()
 	createEffect();
 }
 
-/*
- * --INFO--
- * Address:	8012C4CC
- * Size:	000048
+/**
+ * @note Address: 0x8012C4CC
+ * @note Size: 0x48
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
@@ -30,10 +28,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mEffectAnimMgr = &static_cast<Mgr*>(mMgr)->mEffectAnimMgr;
 }
 
-/*
- * --INFO--
- * Address:	8012C514
- * Size:	0001B0
+/**
+ * @note Address: 0x8012C514
+ * @note Size: 0x1B0
  */
 void Obj::doUpdateCommon()
 {
@@ -77,10 +74,9 @@ void Obj::doUpdateCommon()
 	mEffectAnimMgr->update(mEfxTest, idx, frame);
 }
 
-/*
- * --INFO--
- * Address:	8012C6C4
- * Size:	000040
+/**
+ * @note Address: 0x8012C6C4
+ * @note Size: 0x40
  */
 void Obj::onKill(CreatureKillArg* killArg)
 {
@@ -88,10 +84,9 @@ void Obj::onKill(CreatureKillArg* killArg)
 	mEfxTest->forceKill();
 }
 
-/*
- * --INFO--
- * Address:	8012C704
- * Size:	000068
+/**
+ * @note Address: 0x8012C704
+ * @note Size: 0x68
  */
 void Obj::createEffect()
 {
@@ -99,10 +94,9 @@ void Obj::createEffect()
 	mEfxTest = new efx::TKechappyTest;
 }
 
-/*
- * --INFO--
- * Address:	8012C76C
- * Size:	0000B4
+/**
+ * @note Address: 0x8012C76C
+ * @note Size: 0xB4
  */
 void Obj::setupEffect()
 {
@@ -118,24 +112,21 @@ void Obj::setupEffect()
 	mEfxTest->create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8012C820
- * Size:	000028
+/**
+ * @note Address: 0x8012C820
+ * @note Size: 0x28
  */
 void Obj::doStartMovie() { mEfxTest->setGlobalAlpha(0); }
 
-/*
- * --INFO--
- * Address:	8012C848
- * Size:	000004
+/**
+ * @note Address: 0x8012C848
+ * @note Size: 0x4
  */
 void Obj::doEndMovie() { }
 
-/*
- * --INFO--
- * Address:	8012C84C
- * Size:	0002B0
+/**
+ * @note Address: 0x8012C84C
+ * @note Size: 0x2B0
  */
 void Obj::changeMaterial()
 {
@@ -173,10 +164,9 @@ void Obj::changeMaterial()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012CAFC
- * Size:	00004C
+/**
+ * @note Address: 0x8012CAFC
+ * @note Size: 0x4C
  */
 void Obj::doStartWaitingBirthTypeDrop()
 {
@@ -185,10 +175,9 @@ void Obj::doStartWaitingBirthTypeDrop()
 	mEfxTest->startDemoDrawOff();
 }
 
-/*
- * --INFO--
- * Address:	8012CB48
- * Size:	00004C
+/**
+ * @note Address: 0x8012CB48
+ * @note Size: 0x4C
  */
 void Obj::doFinishWaitingBirthTypeDrop()
 {

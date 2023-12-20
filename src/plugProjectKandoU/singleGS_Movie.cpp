@@ -55,10 +55,9 @@ const char* mezase_strings[] = { "Mezase Complete Movie", "", "", "", "", "", "(
 namespace Game {
 namespace SingleGame {
 
-/*
- * --INFO--
- * Address:	8021EED8
- * Size:	00008C
+/**
+ * @note Address: 0x8021EED8
+ * @note Size: 0x8C
  */
 MovieState::MovieState()
     : State(SGS_Movie)
@@ -68,10 +67,9 @@ MovieState::MovieState()
 	_18 = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8021EF64
- * Size:	000290
+/**
+ * @note Address: 0x8021EF64
+ * @note Size: 0x290
  */
 void MovieState::init(SingleGameSection* gs, StateArg* arg)
 {
@@ -110,10 +108,9 @@ void MovieState::init(SingleGameSection* gs, StateArg* arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8021F1F4
- * Size:	000114
+/**
+ * @note Address: 0x8021F1F4
+ * @note Size: 0x114
  */
 void MovieState::exec(SingleGameSection* gs)
 {
@@ -143,10 +140,9 @@ void MovieState::exec(SingleGameSection* gs)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8021F308
- * Size:	000040
+/**
+ * @note Address: 0x8021F308
+ * @note Size: 0x40
  */
 void MovieState::draw(SingleGameSection* gs, Graphics& gfx)
 {
@@ -155,10 +151,9 @@ void MovieState::draw(SingleGameSection* gs, Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8021F348
- * Size:	000048
+/**
+ * @note Address: 0x8021F348
+ * @note Size: 0x48
  */
 void MovieState::cleanup(SingleGameSection* gs)
 {

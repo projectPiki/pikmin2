@@ -13,17 +13,15 @@ namespace Game {
 
 static const char unusedGenEnemyName[] = "genEnemy";
 
-/*
- * --INFO--
- * Address:	80124778
- * Size:	00003C
+/**
+ * @note Address: 0x80124778
+ * @note Size: 0x3C
  */
 static GenObject* makeObjectEnemy() { return new GenObjectEnemy; }
 
-/*
- * --INFO--
- * Address:	801247B4
- * Size:	0000D0
+/**
+ * @note Address: 0x801247B4
+ * @note Size: 0xD0
  */
 GenObjectEnemy::GenObjectEnemy()
     : GenObject('teki', "object type", "“G‚ðƒZƒbƒg")
@@ -42,10 +40,9 @@ GenObjectEnemy::GenObjectEnemy()
 	mFlagBit.set(1);
 }
 
-/*
- * --INFO--
- * Address:	80124884
- * Size:	00008C
+/**
+ * @note Address: 0x80124884
+ * @note Size: 0x8C
  */
 void GenObjectEnemy::initialise()
 {
@@ -64,24 +61,21 @@ void GenObjectEnemy::initialise()
 	metafactory->mCount++;
 }
 
-/*
- * --INFO--
- * Address:	80124910
- * Size:	000004
+/**
+ * @note Address: 0x80124910
+ * @note Size: 0x4
  */
 void GenObjectEnemy::ramSaveParameters(Stream&) { }
 
-/*
- * --INFO--
- * Address:	80124914
- * Size:	000004
+/**
+ * @note Address: 0x80124914
+ * @note Size: 0x4
  */
 void GenObjectEnemy::ramLoadParameters(Stream&) { }
 
-/*
- * --INFO--
- * Address:	80124918
- * Size:	0006B4
+/**
+ * @note Address: 0x80124918
+ * @note Size: 0x6B4
  */
 Creature* GenObjectEnemy::generate(Game::Generator* gen)
 {
@@ -217,10 +211,9 @@ Creature* GenObjectEnemy::generate(Game::Generator* gen)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80124FCC
- * Size:	0000E0
+/**
+ * @note Address: 0x80124FCC
+ * @note Size: 0xE0
  */
 Creature* GenObjectEnemy::birth(Game::GenArg* genArg)
 {
@@ -243,10 +236,9 @@ Creature* GenObjectEnemy::birth(Game::GenArg* genArg)
 	return enemy;
 }
 
-/*
- * --INFO--
- * Address:	801250AC
- * Size:	000218
+/**
+ * @note Address: 0x801250AC
+ * @note Size: 0x218
  */
 void GenObjectEnemy::doWrite(Stream& stream)
 {
@@ -293,10 +285,9 @@ void GenObjectEnemy::doWrite(Stream& stream)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801252D4
- * Size:	0001E4
+/**
+ * @note Address: 0x801252D4
+ * @note Size: 0x1E4
  */
 void GenObjectEnemy::doRead(Stream& stream)
 {
@@ -342,10 +333,9 @@ void GenObjectEnemy::doRead(Stream& stream)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801254BC
- * Size:	000470
+/**
+ * @note Address: 0x801254BC
+ * @note Size: 0x470
  */
 void GenObjectEnemy::doReadOldVersion(Stream& stream)
 {
@@ -470,10 +460,9 @@ void GenObjectEnemy::doReadOldVersion(Stream& stream)
 		break;                                          \
 	}
 
-/*
- * --INFO--
- * Address:	8012592C
- * Size:	000E38
+/**
+ * @note Address: 0x8012592C
+ * @note Size: 0xE38
  * TODO: The EnemyGeneratorBase ctor shouldn't be inlined
  */
 EnemyGeneratorBase* GenObjectEnemy::createEnemyGenerator()
@@ -604,17 +593,15 @@ EnemyGeneratorBase* GenObjectEnemy::createEnemyGenerator()
 	return mEnemyGenerator;
 }
 
-/*
- * --INFO--
- * Address:	801267D0
- * Size:	00002C
+/**
+ * @note Address: 0x801267D0
+ * @note Size: 0x2C
  */
 J3DModelData* GenObjectEnemy::getShape() { return generalEnemyMgr->getJ3DModelData((int)mEnemyID); }
 
-/*
- * --INFO--
- * Address:	801267FC
- * Size:	000040
+/**
+ * @note Address: 0x801267FC
+ * @note Size: 0x40
  */
 void GenObjectEnemy::updateUseList(Game::Generator* gen, int listIdx)
 {
@@ -623,10 +610,9 @@ void GenObjectEnemy::updateUseList(Game::Generator* gen, int listIdx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012683C
- * Size:	00031C
+/**
+ * @note Address: 0x8012683C
+ * @note Size: 0x31C
  * TODO
  */
 void GenObjectEnemy::render(Graphics& gfx, Game::Generator* gen)

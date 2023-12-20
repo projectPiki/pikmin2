@@ -5,10 +5,9 @@ namespace BigTreasure {
 
 static const char bigTreasureShadowName[] = "246-BigTreasureShadow";
 
-/*
- * --INFO--
- * Address:	802DA5C8
- * Size:	000418
+/**
+ * @note Address: 0x802DA5C8
+ * @note Size: 0x418
  */
 BigTreasureShadowMgr::BigTreasureShadowMgr(Obj* obj)
 {
@@ -75,10 +74,9 @@ BigTreasureShadowMgr::BigTreasureShadowMgr(Obj* obj)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802DA9E0
- * Size:	0002B4
+/**
+ * @note Address: 0x802DA9E0
+ * @note Size: 0x2B4
  */
 void BigTreasure::BigTreasureShadowMgr::init()
 {
@@ -124,27 +122,24 @@ void BigTreasure::BigTreasureShadowMgr::init()
 	mRightAntennaMatrix[1] = model->getJoint("rantenna2")->getWorldMatrix();
 }
 
-/*
- * --INFO--
- * Address:	802DAC94
- * Size:	000008
+/**
+ * @note Address: 0x802DAC94
+ * @note Size: 0x8
  */
 void BigTreasureShadowMgr::setKosiJointPosPtr(Vector3f* posPtr) { mKosiPosition = posPtr; }
 
-/*
- * --INFO--
- * Address:	802DAC9C
- * Size:	000018
+/**
+ * @note Address: 0x802DAC9C
+ * @note Size: 0x18
  */
 void BigTreasureShadowMgr::setJointPosPtr(int jointIndex, int positionIndex, Vector3f* position)
 {
 	mJointPositions[jointIndex][positionIndex] = position;
 }
 
-/*
- * --INFO--
- * Address:	802DACB4
- * Size:	000510
+/**
+ * @note Address: 0x802DACB4
+ * @note Size: 0x510
  */
 void BigTreasureShadowMgr::update()
 {
@@ -230,10 +225,9 @@ void BigTreasureShadowMgr::update()
 	updateAntennaShadow(parm);
 }
 
-/*
- * --INFO--
- * Address:	802DB1C4
- * Size:	0000F4
+/**
+ * @note Address: 0x802DB1C4
+ * @note Size: 0xF4
  */
 void BigTreasureShadowMgr::updateTreasureShadow(JointShadowParm& parm)
 {
@@ -256,10 +250,9 @@ void BigTreasureShadowMgr::updateTreasureShadow(JointShadowParm& parm)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802DB2B8
- * Size:	000348
+/**
+ * @note Address: 0x802DB2B8
+ * @note Size: 0x348
  */
 void BigTreasureShadowMgr::updateHandShadow(JointShadowParm& parm)
 {
@@ -524,10 +517,9 @@ lbl_802DB384:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802DB600
- * Size:	000544
+/**
+ * @note Address: 0x802DB600
+ * @note Size: 0x544
  */
 void BigTreasureShadowMgr::updateAntennaShadow(JointShadowParm& parm)
 {

@@ -60,10 +60,9 @@ static CaveTitleMsgEntry CaveTitleMsg [] = {
 };
 // clang-format on
 
-/*
- * --INFO--
- * Address:	8031CD80
- * Size:	00009C
+/**
+ * @note Address: 0x8031CD80
+ * @note Size: 0x9C
  */
 u64 caveIDtoMsgID(u32 caveID)
 {
@@ -84,10 +83,9 @@ u64 caveIDtoMsgID(u32 caveID)
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
+/**
+ * @note Address: N/A
+ * @note Size: 0x94
  */
 void caveIDtoATB(u32 caveID, bool* isHazard1, bool* isHazard2, bool* isHazard3, bool* isHazard4)
 {
@@ -109,10 +107,9 @@ void caveIDtoATB(u32 caveID, bool* isHazard1, bool* isHazard2, bool* isHazard3, 
 	}
 }
 
-/*
- * --INFO--
- * Address:	8031CE1C
- * Size:	0000BC
+/**
+ * @note Address: 0x8031CE1C
+ * @note Size: 0xBC
  */
 ObjAnaDemo::ObjAnaDemo(const char* name)
 {
@@ -144,17 +141,15 @@ ObjAnaDemo::ObjAnaDemo(const char* name)
 	mTimer2 = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	8031CED8
- * Size:	0000AC
+/**
+ * @note Address: 0x8031CED8
+ * @note Size: 0xAC
  */
 ObjAnaDemo::~ObjAnaDemo() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B8
+/**
+ * @note Address: N/A
+ * @note Size: 0xB8
  */
 void ObjAnaDemo::setWindowMsg(u64 tagQ, u64 tagY, u64 tagN)
 {
@@ -163,10 +158,9 @@ void ObjAnaDemo::setWindowMsg(u64 tagQ, u64 tagY, u64 tagN)
 	mScreen->search('Tm00n')->setMsgID(tagN);
 }
 
-/*
- * --INFO--
- * Address:	8031CF84
- * Size:	001120
+/**
+ * @note Address: 0x8031CF84
+ * @note Size: 0x1120
  */
 void ObjAnaDemo::doCreate(JKRArchive* arc)
 {
@@ -416,10 +410,9 @@ void ObjAnaDemo::doCreate(JKRArchive* arc)
 	ogSound->setOpenDoukutu();
 }
 
-/*
- * --INFO--
- * Address:	8031E0A4
- * Size:	000094
+/**
+ * @note Address: 0x8031E0A4
+ * @note Size: 0x94
  */
 void ObjAnaDemo::setBlinkMenu()
 {
@@ -437,10 +430,9 @@ void ObjAnaDemo::setBlinkMenu()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8031E138
- * Size:	0005D4
+/**
+ * @note Address: 0x8031E138
+ * @note Size: 0x5D4
  */
 bool ObjAnaDemo::doUpdate()
 {
@@ -630,10 +622,9 @@ bool ObjAnaDemo::doUpdate()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	8031E70C
- * Size:	000080
+/**
+ * @note Address: 0x8031E70C
+ * @note Size: 0x80
  */
 void ObjAnaDemo::commonUpdate()
 {
@@ -649,10 +640,9 @@ void ObjAnaDemo::commonUpdate()
 	mScreen->update();
 }
 
-/*
- * --INFO--
- * Address:	8031E78C
- * Size:	000074
+/**
+ * @note Address: 0x8031E78C
+ * @note Size: 0x74
  */
 void ObjAnaDemo::doDraw(Graphics& gfx)
 {
@@ -668,10 +658,9 @@ void ObjAnaDemo::doDraw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8031E800
- * Size:	000018
+/**
+ * @note Address: 0x8031E800
+ * @note Size: 0x18
  */
 bool ObjAnaDemo::doStart(::Screen::StartSceneArg const*)
 {
@@ -680,31 +669,27 @@ bool ObjAnaDemo::doStart(::Screen::StartSceneArg const*)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8031E818
- * Size:	000008
+/**
+ * @note Address: 0x8031E818
+ * @note Size: 0x8
  */
 bool ObjAnaDemo::doEnd(::Screen::EndSceneArg const*) { return true; }
 
-/*
- * --INFO--
- * Address:	8031E820
- * Size:	000004
+/**
+ * @note Address: 0x8031E820
+ * @note Size: 0x4
  */
 void ObjAnaDemo::doUpdateFadeinFinish() { }
 
-/*
- * --INFO--
- * Address:	8031E824
- * Size:	00000C
+/**
+ * @note Address: 0x8031E824
+ * @note Size: 0xC
  */
 void ObjAnaDemo::doUpdateFinish() { mCloseTimer = 0.0f; }
 
-/*
- * --INFO--
- * Address:	8031E830
- * Size:	000094
+/**
+ * @note Address: 0x8031E830
+ * @note Size: 0x94
  */
 void ObjAnaDemo::doUpdateFadeoutFinish()
 {
@@ -718,10 +703,9 @@ void ObjAnaDemo::doUpdateFadeoutFinish()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8031E8C4
- * Size:	0000E4
+/**
+ * @note Address: 0x8031E8C4
+ * @note Size: 0xE4
  */
 bool ObjAnaDemo::doUpdateFadein()
 {
@@ -738,10 +722,9 @@ bool ObjAnaDemo::doUpdateFadein()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	8031E9A8
- * Size:	000084
+/**
+ * @note Address: 0x8031E9A8
+ * @note Size: 0x84
  */
 bool ObjAnaDemo::doUpdateFadeout()
 {

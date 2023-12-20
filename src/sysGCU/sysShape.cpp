@@ -18,10 +18,9 @@ namespace SysShape {
 
 bool Animator::verbose;
 
-/*
- * --INFO--
- * Address:	80428C50
- * Size:	000038
+/**
+ * @note Address: 0x80428C50
+ * @note Size: 0x38
  */
 void Model::clearAnimatorAll()
 {
@@ -30,20 +29,18 @@ void Model::clearAnimatorAll()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
+/**
+ * @note Address: N/A
+ * @note Size: 0x80
  */
 void Model::setAnimatorAll(BaseAnimator&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80428C88
- * Size:	0000C8
+/**
+ * @note Address: 0x80428C88
+ * @note Size: 0xC8
  */
 void Animator::startAnim(int animID, MotionListener* listener)
 {
@@ -62,10 +59,9 @@ void Animator::startAnim(int animID, MotionListener* listener)
 	mFlags = 0;
 }
 
-/*
- * --INFO--
- * Address:	80428D50
- * Size:	000068
+/**
+ * @note Address: 0x80428D50
+ * @note Size: 0x68
  */
 void Animator::startExAnim(AnimInfo* info)
 {
@@ -78,17 +74,15 @@ void Animator::startExAnim(AnimInfo* info)
 	JUT_ASSERTLINE(252, verbose == 0, "OKOK\n");
 }
 
-/*
- * --INFO--
- * Address:	80428DB8
- * Size:	000008
+/**
+ * @note Address: 0x80428DB8
+ * @note Size: 0x8
  */
 bool Animator::assertValid(Model* model) { return true; }
 
-/*
- * --INFO--
- * Address:	80428DC0
- * Size:	000040
+/**
+ * @note Address: 0x80428DC0
+ * @note Size: 0x40
  */
 void Animator::setCurrFrame(f32 timer)
 {
@@ -97,10 +91,9 @@ void Animator::setCurrFrame(f32 timer)
 	mFlags      = 0;
 }
 
-/*
- * --INFO--
- * Address:	80428E00
- * Size:	000100
+/**
+ * @note Address: 0x80428E00
+ * @note Size: 0x100
  */
 void Animator::setFrameByKeyType(u32 id)
 {
@@ -116,10 +109,9 @@ void Animator::setFrameByKeyType(u32 id)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80428F00
- * Size:	000078
+/**
+ * @note Address: 0x80428F00
+ * @note Size: 0x78
  */
 void Animator::setLastFrame()
 {
@@ -128,10 +120,9 @@ void Animator::setLastFrame()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80428F78
- * Size:	0002AC
+/**
+ * @note Address: 0x80428F78
+ * @note Size: 0x2AC
  */
 void Animator::animate(f32 timeFactor)
 {
@@ -382,10 +373,9 @@ lbl_8042920C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80429224
- * Size:	000080
+/**
+ * @note Address: 0x80429224
+ * @note Size: 0x80
  */
 BlendAnimator::BlendAnimator()
 {
@@ -397,10 +387,9 @@ BlendAnimator::BlendAnimator()
 	mIsBlendEnabled  = false;
 }
 
-/*
- * --INFO--
- * Address:	804292A4
- * Size:	000154
+/**
+ * @note Address: 0x804292A4
+ * @note Size: 0x154
  */
 void BlendAnimator::setAnimMgr(AnimMgr* mgr)
 {
@@ -426,10 +415,9 @@ void BlendAnimator::setAnimMgr(AnimMgr* mgr)
 	                             MTXCalc_0);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000124
+/**
+ * @note Address: N/A
+ * @note Size: 0x124
  */
 void BlendAnimator::setWeight(f32 weight)
 {
@@ -444,10 +432,9 @@ void BlendAnimator::setWeight(f32 weight)
 	mMtxCalc->setWeight(1, weight);
 }
 
-/*
- * --INFO--
- * Address:	804293F8
- * Size:	00015C
+/**
+ * @note Address: 0x804293F8
+ * @note Size: 0x15C
  */
 void BlendAnimator::startBlend(BlendFunction* func, f32 time, MotionListener* mlisten)
 {
@@ -461,10 +448,9 @@ void BlendAnimator::startBlend(BlendFunction* func, f32 time, MotionListener* ml
 	mIsBlendEnabled  = true;
 }
 
-/*
- * --INFO--
- * Address:	80429554
- * Size:	000018
+/**
+ * @note Address: 0x80429554
+ * @note Size: 0x18
  */
 void BlendAnimator::endBlend()
 {
@@ -473,10 +459,9 @@ void BlendAnimator::endBlend()
 	mTimer           = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	8042956C
- * Size:	000278
+/**
+ * @note Address: 0x8042956C
+ * @note Size: 0x278
  */
 void BlendAnimator::animate(BlendFunction* func, f32 a1, f32 a2, f32 a3)
 {
@@ -502,10 +487,9 @@ void BlendAnimator::animate(BlendFunction* func, f32 a1, f32 a2, f32 a3)
 	}
 }
 
-/*
- * --INFO--
- * Address:	804297E4
- * Size:	000040
+/**
+ * @note Address: 0x804297E4
+ * @note Size: 0x40
  */
 J3DMtxCalc* BlendAnimator::getCalc()
 {
@@ -515,10 +499,9 @@ J3DMtxCalc* BlendAnimator::getCalc()
 	return mAnimators[0].getCalc();
 }
 
-/*
- * --INFO--
- * Address:	80429824
- * Size:	00007C
+/**
+ * @note Address: 0x80429824
+ * @note Size: 0x7C
  */
 void Joint::init(u16 index, Model* model, J3DJoint* j3dJoint)
 {
@@ -534,47 +517,42 @@ void Joint::init(u16 index, Model* model, J3DJoint* j3dJoint)
 	mName       = model->mJ3dModel->mModelData->mJointTree.mNametab->getName(mJointIndex);
 }
 
-/*
- * --INFO--
- * Address:	804298A0
- * Size:	000020
+/**
+ * @note Address: 0x804298A0
+ * @note Size: 0x20
  */
 Matrixf* Joint::getWorldMatrix() { return mModel->getJ3DModel()->mMtxBuffer->getWorldMatrix(mJointIndex); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void Joint::setCallback(JointCallback* cb)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
+/**
+ * @note Address: N/A
+ * @note Size: 0x78
  */
 void JointCallback::calc()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
+/**
+ * @note Address: N/A
+ * @note Size: 0x5C
  */
 void AnimInfo::attach(Model*, void*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	804298C0
- * Size:	00006C
+/**
+ * @note Address: 0x804298C0
+ * @note Size: 0x6C
  * Returns the lowest anim key after the given minimum frame.
  */
 KeyEvent* AnimInfo::getLowestAnimKey(f32 minimumFrame)
@@ -629,30 +607,27 @@ lbl_8042991C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 void AnimInfo::dump()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 void AnimInfo::getLastLoopStart(f32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8042992C
- * Size:	000028
+/**
+ * @note Address: 0x8042992C
+ * @note Size: 0x28
  */
 KeyEvent* AnimInfo::getLastLoopStart(KeyEvent* key)
 {
@@ -665,10 +640,9 @@ KeyEvent* AnimInfo::getLastLoopStart(KeyEvent* key)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80429954
- * Size:	000028
+/**
+ * @note Address: 0x80429954
+ * @note Size: 0x28
  */
 KeyEvent* AnimInfo::getAnimKeyByType(u32 type)
 {
@@ -681,17 +655,15 @@ KeyEvent* AnimInfo::getAnimKeyByType(u32 type)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8042997C
- * Size:	000020
+/**
+ * @note Address: 0x8042997C
+ * @note Size: 0x20
  */
 void AnimInfo::read(Stream& input) { readEditor(input); }
 
-/*
- * --INFO--
- * Address:	8042999C
- * Size:	00010C
+/**
+ * @note Address: 0x8042999C
+ * @note Size: 0x10C
  */
 void AnimInfo::readEditor(Stream& input)
 {
@@ -710,10 +682,9 @@ void AnimInfo::readEditor(Stream& input)
 	JUT_PANICLINE(841, "reached eof\n");
 }
 
-/*
- * --INFO--
- * Address:	80429AA8
- * Size:	00013C
+/**
+ * @note Address: 0x80429AA8
+ * @note Size: 0x13C
  */
 AnimMgr* AnimMgr::load(char* path, J3DModelData* modelData, JKRFileLoader* fileLoader)
 {
@@ -730,10 +701,9 @@ AnimMgr* AnimMgr::load(char* path, J3DModelData* modelData, JKRFileLoader* fileL
 	return mgr;
 }
 
-/*
- * --INFO--
- * Address:	80429C68
- * Size:	000080
+/**
+ * @note Address: 0x80429C68
+ * @note Size: 0x80
  */
 void AnimMgr::dump()
 {
@@ -742,30 +712,27 @@ void AnimMgr::dump()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000CC
+/**
+ * @note Address: N/A
+ * @note Size: 0xCC
  */
 AnimMgr* AnimMgr::load(Stream&, Model*, JKRFileLoader*, char*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
+/**
+ * @note Address: N/A
+ * @note Size: 0x5C
  */
 JointCallback::~JointCallback()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void JointCallback::init(Vec const&, const Mtx&)
 {

@@ -5,10 +5,9 @@
 #include "JSystem/J3D/J3DTevBlock.h"
 #include "JSystem/J3D/J3DTypes.h"
 
-/*
- * --INFO--
- * Address:	80083794
- * Size:	000018
+/**
+ * @note Address: 0x80083794
+ * @note Size: 0x18
  */
 void J3DModelData::clear()
 {
@@ -18,10 +17,9 @@ void J3DModelData::clear()
 	mBillboardFlag    = 0;
 }
 
-/*
- * --INFO--
- * Address:	800837AC
- * Size:	000080
+/**
+ * @note Address: 0x800837AC
+ * @note Size: 0x80
  */
 J3DModelData::J3DModelData()
     : mJointTree()
@@ -32,10 +30,9 @@ J3DModelData::J3DModelData()
 	clear();
 }
 
-/*
- * --INFO--
- * Address:	800838D8
- * Size:	000094
+/**
+ * @note Address: 0x800838D8
+ * @note Size: 0x94
  */
 void J3DModelData::newSharedDisplayList(u32 flags)
 {
@@ -49,10 +46,9 @@ void J3DModelData::newSharedDisplayList(u32 flags)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8008396C
- * Size:	0000C4
+/**
+ * @note Address: 0x8008396C
+ * @note Size: 0xC4
  */
 void J3DModelData::indexToPtr()
 {
@@ -75,10 +71,9 @@ void J3DModelData::indexToPtr()
 	OSRestoreInterrupts(sInterruptFlag);
 }
 
-/*
- * --INFO--
- * Address:	80083A30
- * Size:	000080
+/**
+ * @note Address: 0x80083A30
+ * @note Size: 0x80
  */
 void J3DModelData::makeSharedDL()
 {
@@ -90,10 +85,9 @@ void J3DModelData::makeSharedDL()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80083AB0
- * Size:	0000C8
+/**
+ * @note Address: 0x80083AB0
+ * @note Size: 0xC8
  */
 void J3DModelData::simpleCalcMaterial(u16 jointIndex, Mtx mtx)
 {
@@ -107,10 +101,9 @@ void J3DModelData::simpleCalcMaterial(u16 jointIndex, Mtx mtx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80083B78
- * Size:	00003C
+/**
+ * @note Address: 0x80083B78
+ * @note Size: 0x3C
  */
 void J3DModelData::syncJ3DSysFlags() const
 {

@@ -10,10 +10,9 @@
 #include "JSystem/J3D/J3DTypes.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	8006A0F4
- * Size:	000070
+/**
+ * @note Address: 0x8006A0F4
+ * @note Size: 0x70
  * initialize__14J3DMaterialAnmFv
  */
 void J3DMaterialAnm::initialize()
@@ -35,10 +34,9 @@ void J3DMaterialAnm::initialize()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8006A164
- * Size:	0001EC
+/**
+ * @note Address: 0x8006A164
+ * @note Size: 0x1EC
  * calc__14J3DMaterialAnmCFP11J3DMaterial
  */
 void J3DMaterialAnm::calc(J3DMaterial* material) const

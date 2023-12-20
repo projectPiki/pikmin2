@@ -3,10 +3,9 @@
 namespace Game {
 namespace LeafChappy {
 
-/*
- * --INFO--
- * Address:	802C5918
- * Size:	000050
+/**
+ * @note Address: 0x802C5918
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -14,10 +13,9 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "葉っぱチャッピーマネージャ"; // leaf chappy manager
 }
 
-/*
- * --INFO--
- * Address:	802C5968
- * Size:	000048
+/**
+ * @note Address: 0x802C5968
+ * @note Size: 0x48
  */
 EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
 {
@@ -28,24 +26,21 @@ EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
 	return leafchappy;
 }
 
-/*
- * --INFO--
- * Address:	802C59B0
- * Size:	000048
+/**
+ * @note Address: 0x802C59B0
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new KumaChappy::Parms); }
 
-/*
- * --INFO--
- * Address:	802C59F8
- * Size:	000060
+/**
+ * @note Address: 0x802C59F8
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	802C5B48
- * Size:	000010
+/**
+ * @note Address: 0x802C5B48
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 

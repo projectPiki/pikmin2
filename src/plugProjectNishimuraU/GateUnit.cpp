@@ -3,10 +3,9 @@
 
 namespace Game {
 namespace Cave {
-/*
- * --INFO--
- * Address:	8024FCC8
- * Size:	00005C
+/**
+ * @note Address: 0x8024FCC8
+ * @note Size: 0x5C
  */
 GateNode::GateNode()
 {
@@ -15,10 +14,9 @@ GateNode::GateNode()
 	mDirection = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	8024FD24
- * Size:	00009C
+/**
+ * @note Address: 0x8024FD24
+ * @note Size: 0x9C
  */
 GateNode::GateNode(GateUnit* unit, int index, int dir)
 {
@@ -27,10 +25,9 @@ GateNode::GateNode(GateUnit* unit, int index, int dir)
 	mDirection = -HALF_PI * dir;
 }
 
-/*
- * --INFO--
- * Address:	8024FDC0
- * Size:	000020
+/**
+ * @note Address: 0x8024FDC0
+ * @note Size: 0x20
  */
 int GateNode::getObjectId()
 {
@@ -41,31 +38,27 @@ int GateNode::getObjectId()
 	return -1;
 }
 
-/*
- * --INFO--
- * Address:	8024FDE0
- * Size:	000008
+/**
+ * @note Address: 0x8024FDE0
+ * @note Size: 0x8
  */
 u32 GateNode::getObjectType() { return OBJLAYOUT_Gate; }
 
-/*
- * --INFO--
- * Address:	8024FDE8
- * Size:	000008
+/**
+ * @note Address: 0x8024FDE8
+ * @note Size: 0x8
  */
 int GateNode::getBirthCount() { return 1; }
 
-/*
- * --INFO--
- * Address:	8024FDF0
- * Size:	000008
+/**
+ * @note Address: 0x8024FDF0
+ * @note Size: 0x8
  */
 f32 GateNode::getDirection() { return mDirection; }
 
-/*
- * --INFO--
- * Address:	8024FDF8
- * Size:	000008
+/**
+ * @note Address: 0x8024FDF8
+ * @note Size: 0x8
  */
 int GateNode::getBirthDoorIndex() { return mIndex; }
 } // namespace Cave

@@ -7,10 +7,9 @@ namespace Game {
 
 static IKSystemMgr* gIKSystemMgr;
 
-/*
- * --INFO--
- * Address:	802A8A80
- * Size:	000038
+/**
+ * @note Address: 0x802A8A80
+ * @note Size: 0x38
  */
 static bool IKJointCallBack(J3DJoint* joint, int jointIdx)
 {
@@ -20,10 +19,9 @@ static bool IKJointCallBack(J3DJoint* joint, int jointIdx)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802A8AB8
- * Size:	00007C
+/**
+ * @note Address: 0x802A8AB8
+ * @note Size: 0x7C
  */
 IKSystemMgr::IKSystemMgr()
 {
@@ -32,10 +30,9 @@ IKSystemMgr::IKSystemMgr()
 	mJointGroundCallBack = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	802A8B34
- * Size:	000144
+/**
+ * @note Address: 0x802A8B34
+ * @note Size: 0x144
  */
 void IKSystemMgr::init(EnemyBase* obj, JointGroundCallBack* callback)
 {
@@ -62,10 +59,9 @@ void IKSystemMgr::init(EnemyBase* obj, JointGroundCallBack* callback)
 	mJointGroundCallBack = callback;
 }
 
-/*
- * --INFO--
- * Address:	802A8C78
- * Size:	00006C
+/**
+ * @note Address: 0x802A8C78
+ * @note Size: 0x6C
  */
 void IKSystemMgr::setupJoint(SysShape::Model* model, int id, char** names)
 {
@@ -74,10 +70,9 @@ void IKSystemMgr::setupJoint(SysShape::Model* model, int id, char** names)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A8CE4
- * Size:	000038
+/**
+ * @note Address: 0x802A8CE4
+ * @note Size: 0x38
  */
 void IKSystemMgr::setupCallBack(SysShape::Model* model, char* name)
 {
@@ -85,10 +80,9 @@ void IKSystemMgr::setupCallBack(SysShape::Model* model, char* name)
 	jnt->setCallBack(IKJointCallBack);
 }
 
-/*
- * --INFO--
- * Address:	802A8D1C
- * Size:	000064
+/**
+ * @note Address: 0x802A8D1C
+ * @note Size: 0x64
  */
 void IKSystemMgr::setParameters(IKSystemParms* parm)
 {
@@ -98,10 +92,9 @@ void IKSystemMgr::setParameters(IKSystemParms* parm)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A8D80
- * Size:	000188
+/**
+ * @note Address: 0x802A8D80
+ * @note Size: 0x188
  */
 void IKSystemMgr::startProgramedIK()
 {
@@ -126,10 +119,9 @@ void IKSystemMgr::startProgramedIK()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A8F08
- * Size:	000024
+/**
+ * @note Address: 0x802A8F08
+ * @note Size: 0x24
  */
 void IKSystemMgr::startIKMotion()
 {
@@ -140,17 +132,15 @@ void IKSystemMgr::startIKMotion()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A8F2C
- * Size:	00000C
+/**
+ * @note Address: 0x802A8F2C
+ * @note Size: 0xC
  */
 void IKSystemMgr::finishIKMotion() { mInMotion = false; }
 
-/*
- * --INFO--
- * Address:	802A8F38
- * Size:	000014
+/**
+ * @note Address: 0x802A8F38
+ * @note Size: 0x14
  */
 void IKSystemMgr::forceFinishIKMotion()
 {
@@ -158,10 +148,9 @@ void IKSystemMgr::forceFinishIKMotion()
 	mOnGround = true;
 }
 
-/*
- * --INFO--
- * Address:	802A8F4C
- * Size:	00005C
+/**
+ * @note Address: 0x802A8F4C
+ * @note Size: 0x5C
  */
 void IKSystemMgr::startBlendMotion()
 {
@@ -170,10 +159,9 @@ void IKSystemMgr::startBlendMotion()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A8FA8
- * Size:	00005C
+/**
+ * @note Address: 0x802A8FA8
+ * @note Size: 0x5C
  */
 void IKSystemMgr::finishBlendMotion()
 {
@@ -182,10 +170,9 @@ void IKSystemMgr::finishBlendMotion()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A9004
- * Size:	00005C
+/**
+ * @note Address: 0x802A9004
+ * @note Size: 0x5C
  */
 void IKSystemMgr::checkJointScaleOn()
 {
@@ -194,10 +181,9 @@ void IKSystemMgr::checkJointScaleOn()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A9060
- * Size:	000070
+/**
+ * @note Address: 0x802A9060
+ * @note Size: 0x70
  */
 bool IKSystemMgr::isFinishIKMotion()
 {
@@ -214,24 +200,21 @@ bool IKSystemMgr::isFinishIKMotion()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802A90D0
- * Size:	00000C
+/**
+ * @note Address: 0x802A90D0
+ * @note Size: 0xC
  */
 void IKSystemMgr::resetAnimationCallBack() { gIKSystemMgr = nullptr; }
 
-/*
- * --INFO--
- * Address:	802A90DC
- * Size:	000008
+/**
+ * @note Address: 0x802A90DC
+ * @note Size: 0x8
  */
 void IKSystemMgr::setAnimationCallBack() { gIKSystemMgr = this; }
 
-/*
- * --INFO--
- * Address:	802A90E4
- * Size:	00007C
+/**
+ * @note Address: 0x802A90E4
+ * @note Size: 0x7C
  */
 void IKSystemMgr::doUpdate()
 {
@@ -244,10 +227,9 @@ void IKSystemMgr::doUpdate()
 	calcTraceCentrePosition();
 }
 
-/*
- * --INFO--
- * Address:	802A9160
- * Size:	00005C
+/**
+ * @note Address: 0x802A9160
+ * @note Size: 0x5C
  */
 void IKSystemMgr::makeMatrix()
 {
@@ -256,17 +238,15 @@ void IKSystemMgr::makeMatrix()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A91BC
- * Size:	000038
+/**
+ * @note Address: 0x802A91BC
+ * @note Size: 0x38
  */
 Vector3f IKSystemMgr::getCollisionCentre(int i) { return mIKSystems[i].getCollisionCentre(); }
 
-/*
- * --INFO--
- * Address:	802A91F4
- * Size:	00010C
+/**
+ * @note Address: 0x802A91F4
+ * @note Size: 0x10C
  */
 bool IKSystemMgr::isCollisionCheck(CollPart* part)
 {
@@ -288,10 +268,9 @@ bool IKSystemMgr::isCollisionCheck(CollPart* part)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802A9300
- * Size:	000308
+/**
+ * @note Address: 0x802A9300
+ * @note Size: 0x308
  */
 void IKSystemMgr::updateController()
 {
@@ -357,10 +336,9 @@ void IKSystemMgr::updateController()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A9608
- * Size:	0003DC
+/**
+ * @note Address: 0x802A9608
+ * @note Size: 0x3DC
  */
 void IKSystemMgr::setNextCentrePosition()
 {
@@ -404,10 +382,9 @@ void IKSystemMgr::setNextCentrePosition()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A99E4
- * Size:	0000FC
+/**
+ * @note Address: 0x802A99E4
+ * @note Size: 0xFC
  */
 void IKSystemMgr::calcFaceDir()
 {
@@ -427,10 +404,9 @@ void IKSystemMgr::calcFaceDir()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A9AE0
- * Size:	000298
+/**
+ * @note Address: 0x802A9AE0
+ * @note Size: 0x298
  */
 void IKSystemMgr::calcCentrePosition()
 {
@@ -480,10 +456,9 @@ void IKSystemMgr::calcCentrePosition()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A9D78
- * Size:	0000E4
+/**
+ * @note Address: 0x802A9D78
+ * @note Size: 0xE4
  */
 void IKSystemMgr::calcTraceCentrePosition()
 {

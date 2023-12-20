@@ -14,10 +14,9 @@ namespace SysShape {
 static const char BLAH_[] = "\0\0\0\0\0\0\0\0";
 static const char BLAH[]  = "sysShapeModel";
 
-/*
- * --INFO--
- * Address:	8043DCDC
- * Size:	000080
+/**
+ * @note Address: 0x8043DCDC
+ * @note Size: 0x80
  */
 void AnimInfo::attach(J3DModelData* modelData, void* animData)
 {
@@ -27,10 +26,9 @@ void AnimInfo::attach(J3DModelData* modelData, void* animData)
 	mCalc = J3DNewMtxCalcAnm(modelData->mJointTree.mFlags & 0xf, mAnm);
 }
 
-/*
- * --INFO--
- * Address:	8043DD5C
- * Size:	000120
+/**
+ * @note Address: 0x8043DD5C
+ * @note Size: 0x120
  */
 AnimMgr* AnimMgr::load(JKRFileLoader* a1, char* a2, J3DModelData* a3, JKRFileLoader* a4, char* a5)
 {
@@ -48,10 +46,9 @@ AnimMgr* AnimMgr::load(JKRFileLoader* a1, char* a2, J3DModelData* a3, JKRFileLoa
 	return newMgr;
 }
 
-/*
- * --INFO--
- * Address:	8043DE7C
- * Size:	000110
+/**
+ * @note Address: 0x8043DE7C
+ * @note Size: 0x110
  */
 void AnimMgr::load(Stream& s, J3DModelData* md, JKRFileLoader* fl, char* folderName)
 {
@@ -77,10 +74,9 @@ void AnimMgr::load(Stream& s, J3DModelData* md, JKRFileLoader* fl, char* folderN
 	}
 }
 
-/*
- * --INFO--
- * Address:	8043DF8C
- * Size:	0000D8
+/**
+ * @note Address: 0x8043DF8C
+ * @note Size: 0xD8
  */
 void AnimMgr::read(Stream& s)
 {
@@ -98,10 +94,9 @@ void AnimMgr::read(Stream& s)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8043E064
- * Size:	0000F8
+/**
+ * @note Address: 0x8043E064
+ * @note Size: 0xF8
  */
 void AnimMgr::connectBasArc(char* a2, char* a3, JKRFileLoader* a4)
 {
@@ -132,10 +127,9 @@ void AnimMgr::connectBasArc(char* a2, char* a3, JKRFileLoader* a4)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8043E15C
- * Size:	000054
+/**
+ * @note Address: 0x8043E15C
+ * @note Size: 0x54
  */
 void AnimMgr::registerSoundViewer(PSGame::SoundCreatureMgr* scm)
 {

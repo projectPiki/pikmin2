@@ -3,10 +3,9 @@
 namespace Game {
 namespace FixMiniHoudai {
 
-/*
- * --INFO--
- * Address:	8030195C
- * Size:	000090
+/**
+ * @note Address: 0x8030195C
+ * @note Size: 0x90
  */
 Obj::Obj() { }
 

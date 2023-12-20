@@ -1,11 +1,10 @@
-/*
- * --INFO--
- * Address:	800CFA2C
- * Size:	000224
+/**
+ * @note Address: 0x800CFA2C
+ * @note Size: 0x224
  */
 
 /* @(#)e_sqrt.c 1.3 95/01/18 */
-/*
+/**
  * ====================================================
  * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
  *

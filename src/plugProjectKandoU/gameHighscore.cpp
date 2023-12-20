@@ -4,12 +4,11 @@
 
 namespace Game {
 
-/*
+/**
  * __ct
  *
- * --INFO--
- * Address:	80233CEC
- * Size:	00001C
+ * @note Address: 0x80233CEC
+ * @note Size: 0x1C
  */
 Highscore::Highscore()
 {
@@ -17,10 +16,9 @@ Highscore::Highscore()
 	mScores     = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80233D08
- * Size:	000044
+/**
+ * @note Address: 0x80233D08
+ * @note Size: 0x44
  */
 void Highscore::allocate(int count)
 {
@@ -29,10 +27,9 @@ void Highscore::allocate(int count)
 	clear();
 }
 
-/*
- * --INFO--
- * Address:	80233D4C
- * Size:	000088
+/**
+ * @note Address: 0x80233D4C
+ * @note Size: 0x88
  */
 int Highscore::getScore(int index)
 {
@@ -41,10 +38,9 @@ int Highscore::getScore(int index)
 	return mScores[index];
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00008C
+/**
+ * @note Address: N/A
+ * @note Size: 0x8C
  *          35(dec) instructions
  */
 inline void Highscore::newRecord(int)
@@ -52,10 +48,9 @@ inline void Highscore::newRecord(int)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80233DD4
- * Size:	000178
+/**
+ * @note Address: 0x80233DD4
+ * @note Size: 0x178
  */
 int Highscore::entryScore(int newScore)
 {
@@ -77,10 +72,9 @@ int Highscore::entryScore(int newScore)
 	return newIndex;
 }
 
-/*
- * --INFO--
- * Address:	80233F4C
- * Size:	00004C
+/**
+ * @note Address: 0x80233F4C
+ * @note Size: 0x4C
  */
 bool Highscore::higher(int a, int b)
 {
@@ -93,10 +87,9 @@ bool Highscore::higher(int a, int b)
 	return do_higher(a, b);
 }
 
-/*
- * --INFO--
- * Address:	80233FB0
- * Size:	0000B8
+/**
+ * @note Address: 0x80233FB0
+ * @note Size: 0xB8
  */
 void Highscore::read(Stream& input)
 {
@@ -107,10 +100,9 @@ void Highscore::read(Stream& input)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80234068
- * Size:	000074
+/**
+ * @note Address: 0x80234068
+ * @note Size: 0x74
  */
 void Highscore::write(Stream& output)
 {
@@ -119,10 +111,9 @@ void Highscore::write(Stream& output)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802340DC
- * Size:	000030
+/**
+ * @note Address: 0x802340DC
+ * @note Size: 0x30
  */
 void Highscore::clear()
 {

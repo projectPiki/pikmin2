@@ -18,10 +18,9 @@ static const int unusedArray[]     = { 0, 0, 0 };
 static const char unusedWeedName[] = "itemWeed";
 
 Mgr* mgr;
-/*
- * --INFO--
- * Address:	8020F280
- * Size:	000038
+/**
+ * @note Address: 0x8020F280
+ * @note Size: 0x38
  */
 Weed::Weed()
     : TFlock()
@@ -30,10 +29,9 @@ Weed::Weed()
 	mFlockMgr         = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  */
 void Weed::init(WeedMgr* mgr, Vector3f& vec)
 {
@@ -42,17 +40,15 @@ void Weed::init(WeedMgr* mgr, Vector3f& vec)
 	setPosition(vec);
 }
 
-/*
- * --INFO--
- * Address:	8020F2B8
- * Size:	000008
+/**
+ * @note Address: 0x8020F2B8
+ * @note Size: 0x8
  */
 bool Weed::damaged(f32) { return true; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
+/**
+ * @note Address: N/A
+ * @note Size: 0x44
  */
 void Weed::setPosition(Vector3f& vec)
 {
@@ -60,10 +56,9 @@ void Weed::setPosition(Vector3f& vec)
 	makeMatrix();
 }
 
-/*
- * --INFO--
- * Address:	8020F2C0
- * Size:	0000AC
+/**
+ * @note Address: 0x8020F2C0
+ * @note Size: 0xAC
  */
 void Weed::makeMatrix()
 {
@@ -73,17 +68,15 @@ void Weed::makeMatrix()
 	mTransformationMtx.makeSRT(scale, rot, translation);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void Weed::update() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E8
+/**
+ * @note Address: N/A
+ * @note Size: 0xE8
  */
 WeedMgr::WeedMgr(int count)
     : TFlockMgr()
@@ -92,10 +85,9 @@ WeedMgr::WeedMgr(int count)
 	mMaxAttackers = WEED_MAX_ATTACKERS;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
+/**
+ * @note Address: N/A
+ * @note Size: 0x5C
  */
 void WeedMgr::init(Sys::Sphere& sphere, cWeedType weedType)
 {
@@ -104,10 +96,9 @@ void WeedMgr::init(Sys::Sphere& sphere, cWeedType weedType)
 	resolveCollision(60.0f);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00022C
+/**
+ * @note Address: N/A
+ * @note Size: 0x22C
  */
 void WeedMgr::createWeeds(cWeedType weedType)
 {
@@ -129,17 +120,15 @@ void WeedMgr::createWeeds(cWeedType weedType)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8020F584
- * Size:	000004
+/**
+ * @note Address: 0x8020F584
+ * @note Size: 0x4
  */
 void WeedMgr::do_update_boundSphere() { }
 
-/*
- * --INFO--
- * Address:	8020F588
- * Size:	000018
+/**
+ * @note Address: 0x8020F588
+ * @note Size: 0x18
  */
 void WeedMgr::do_update()
 {
@@ -152,10 +141,9 @@ void WeedMgr::do_update()
 	return;
 }
 
-/*
- * --INFO--
- * Address:	8020F5A0
- * Size:	000084
+/**
+ * @note Address: 0x8020F5A0
+ * @note Size: 0x84
  */
 void FSM::init(Item* item)
 {
@@ -163,10 +151,9 @@ void FSM::init(Item* item)
 	registerState(new WaitState());
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00013C
+/**
+ * @note Address: N/A
+ * @note Size: 0x13C
  */
 Item::Item()
     : FSMItem(OBJTYPE_Weed)
@@ -180,10 +167,9 @@ Item::Item()
 	mWeedType = WEEDTYPE_Stone;
 }
 
-/*
- * --INFO--
- * Address:	8020F624
- * Size:	00015C
+/**
+ * @note Address: 0x8020F624
+ * @note Size: 0x15C
  */
 void Item::onInit(CreatureInitArg* initArg)
 {
@@ -197,10 +183,9 @@ void Item::onInit(CreatureInitArg* initArg)
 	setCollisionFlick(false);
 }
 
-/*
- * --INFO--
- * Address:	8020F7B4
- * Size:	000268
+/**
+ * @note Address: 0x8020F7B4
+ * @note Size: 0x268
  */
 void Item::onSetPosition()
 {
@@ -381,17 +366,15 @@ lbl_8020F9CC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8020FA1C
- * Size:	00003C
+/**
+ * @note Address: 0x8020FA1C
+ * @note Size: 0x3C
  */
 bool Item::ignoreAtari(Creature* other) { return !other->isPiki(); }
 
-/*
- * --INFO--
- * Address:	8020FA58
- * Size:	000078
+/**
+ * @note Address: 0x8020FA58
+ * @note Size: 0x78
  */
 void Item::updateBoundSphere()
 {
@@ -400,10 +383,9 @@ void Item::updateBoundSphere()
 	JUT_ASSERTLINE(225, isCollisionFlick() == false, "É_ÉÅÉbÉN\n"); // 'damek'
 }
 
-/*
- * --INFO--
- * Address:	8020FAD0
- * Size:	0002E0
+/**
+ * @note Address: 0x8020FAD0
+ * @note Size: 0x2E0
  */
 bool Item::interactFlockAttack(InteractFlockAttack& attack)
 {
@@ -436,10 +418,9 @@ bool Item::interactFlockAttack(InteractFlockAttack& attack)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8020FDEC
- * Size:	000084
+/**
+ * @note Address: 0x8020FDEC
+ * @note Size: 0x84
  */
 void Item::doAI()
 {
@@ -451,17 +432,15 @@ void Item::doAI()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8020FE78
- * Size:	00003C
+/**
+ * @note Address: 0x8020FE78
+ * @note Size: 0x3C
  */
 void Item::doSimpleDraw(Viewport* viewport) { mFlockMgr->doSimpleDraw(viewport, mgr->mModelData, mgr->mModelDataMax); }
 
-/*
- * --INFO--
- * Address:	8020FEB4
- * Size:	00013C
+/**
+ * @note Address: 0x8020FEB4
+ * @note Size: 0x13C
  */
 Mgr::Mgr()
     : TNodeItemMgr()
@@ -482,10 +461,9 @@ Mgr::Mgr()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8020FFF0
- * Size:	000200
+/**
+ * @note Address: 0x8020FFF0
+ * @note Size: 0x200
  */
 void Mgr::doSimpleDraw(Viewport* viewport)
 {
@@ -493,27 +471,24 @@ void Mgr::doSimpleDraw(Viewport* viewport)
 	CI_LOOP(iter) { static_cast<Item*>(*iter)->doSimpleDraw(viewport); }
 }
 
-/*
- * --INFO--
- * Address:	802101F0
- * Size:	000004
+/**
+ * @note Address: 0x802101F0
+ * @note Size: 0x4
  */
 void Mgr::onLoadResources() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000160
+/**
+ * @note Address: N/A
+ * @note Size: 0x160
  */
 Item* Mgr::birth()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	802101F4
- * Size:	000008
+/**
+ * @note Address: 0x802101F4
+ * @note Size: 0x8
  */
 char* Mgr::getCaveName(int)
 {
@@ -524,10 +499,9 @@ char* Mgr::getCaveName(int)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802101FC
- * Size:	00004C
+/**
+ * @note Address: 0x802101FC
+ * @note Size: 0x4C
  */
 int Mgr::getCaveID(char* p1)
 {
@@ -556,38 +530,33 @@ int Mgr::getCaveID(char* p1)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80210248
- * Size:	000004
+/**
+ * @note Address: 0x80210248
+ * @note Size: 0x4
  */
 void WaitState::init(Item*, StateArg*) { }
 
-/*
- * --INFO--
- * Address:	8021024C
- * Size:	000004
+/**
+ * @note Address: 0x8021024C
+ * @note Size: 0x4
  */
 void WaitState::exec(Item*) { }
 
-/*
- * --INFO--
- * Address:	80210250
- * Size:	000004
+/**
+ * @note Address: 0x80210250
+ * @note Size: 0x4
  */
 void WaitState::cleanup(Item*) { }
 
-/*
- * --INFO--
- * Address:	80210254
- * Size:	000054
+/**
+ * @note Address: 0x80210254
+ * @note Size: 0x54
  */
 GenItemParm* Mgr::generatorNewItemParm() { return new GenWeedParm(); }
 
-/*
- * --INFO--
- * Address:	802102A8
- * Size:	0000B0
+/**
+ * @note Address: 0x802102A8
+ * @note Size: 0xB0
  */
 void Mgr::generatorWrite(Stream& output, GenItemParm* genItemParm)
 {
@@ -601,10 +570,9 @@ void Mgr::generatorWrite(Stream& output, GenItemParm* genItemParm)
 	output.textWriteText("\t#êŒÇ©ëêÇ©\r\n"); // 'stone or grass'
 }
 
-/*
- * --INFO--
- * Address:	80210358
- * Size:	00008C
+/**
+ * @note Address: 0x80210358
+ * @note Size: 0x8C
  */
 void Mgr::generatorRead(Stream& input, GenItemParm* genItemParm, u32 version)
 {
@@ -616,10 +584,9 @@ void Mgr::generatorRead(Stream& input, GenItemParm* genItemParm, u32 version)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802103E4
- * Size:	0001DC
+/**
+ * @note Address: 0x802103E4
+ * @note Size: 0x1DC
  */
 BaseItem* Mgr::generatorBirth(Vector3f& position, Vector3f& p2, GenItemParm* genItemParm)
 {
@@ -633,17 +600,15 @@ BaseItem* Mgr::generatorBirth(Vector3f& position, Vector3f& p2, GenItemParm* gen
 	return item;
 }
 
-/*
- * --INFO--
- * Address:	802105CC
- * Size:	000134
+/**
+ * @note Address: 0x802105CC
+ * @note Size: 0x134
  */
 Mgr::~Mgr() { }
 
-/*
- * --INFO--
- * Address:	80210700
- * Size:	000148
+/**
+ * @note Address: 0x80210700
+ * @note Size: 0x148
  */
 BaseItem* Mgr::doNew()
 {
@@ -743,24 +708,21 @@ lbl_80210830:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80210848
- * Size:	00000C
+/**
+ * @note Address: 0x80210848
+ * @note Size: 0xC
  */
 u32 Mgr::generatorGetID() { return 'weed'; }
 
-/*
- * --INFO--
- * Address:	80210854
- * Size:	00000C
+/**
+ * @note Address: 0x80210854
+ * @note Size: 0xC
  */
 u32 Mgr::generatorLocalVersion() { return '0001'; }
 
-/*
- * --INFO--
- * Address:	80210860
- * Size:	000008
+/**
+ * @note Address: 0x80210860
+ * @note Size: 0x8
  */
 char* Item::getCreatureName()
 {
@@ -771,31 +733,27 @@ char* Item::getCreatureName()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80210868
- * Size:	000008
+/**
+ * @note Address: 0x80210868
+ * @note Size: 0x8
  */
 BaseFlockMgr* Item::getFlockMgr() { return mFlockMgr; }
 
-/*
- * --INFO--
- * Address:	80210870
- * Size:	000004
+/**
+ * @note Address: 0x80210870
+ * @note Size: 0x4
  */
 void Item::makeTrMatrix() { }
 
-/*
- * --INFO--
- * Address:	80210874
- * Size:	000008
+/**
+ * @note Address: 0x80210874
+ * @note Size: 0x8
  */
 Matrixf* Item::DummyShape::getMatrix(int) { return mMatrix; }
 
-/*
- * --INFO--
- * Address:	8021087C
- * Size:	000034
+/**
+ * @note Address: 0x8021087C
+ * @note Size: 0x34
  */
 // void doAI__Q24Game74FSMItem<Item, FSM, State> Fv()
 // {
@@ -817,10 +775,9 @@ Matrixf* Item::DummyShape::getMatrix(int) { return mMatrix; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	802108B0
- * Size:	000118
+/**
+ * @note Address: 0x802108B0
+ * @note Size: 0x118
  */
 WeedMgr::~WeedMgr()
 {
@@ -904,10 +861,9 @@ lbl_802109AC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802109C8
- * Size:	000088
+/**
+ * @note Address: 0x802109C8
+ * @note Size: 0x88
  */
 // void ObjectMgr<Weed>::~ObjectMgr()
 // {
@@ -953,17 +909,15 @@ lbl_802109AC:
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80210A50
- * Size:	000010
+/**
+ * @note Address: 0x80210A50
+ * @note Size: 0x10
  */
 bool Weed::isWeed() { return _40 == 0; }
 
-/*
- * --INFO--
- * Address:	80210A60
- * Size:	00002C
+/**
+ * @note Address: 0x80210A60
+ * @note Size: 0x2C
  */
 // void getNext__Q24Game32TFlockMgr<Weed> FPv()
 // {
@@ -982,10 +936,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80210A8C
- * Size:	00002C
+/**
+ * @note Address: 0x80210A8C
+ * @note Size: 0x2C
  */
 // void getStart__Q24Game32TFlockMgr<Weed> Fv()
 // {
@@ -1004,10 +957,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80210AB8
- * Size:	000024
+/**
+ * @note Address: 0x80210AB8
+ * @note Size: 0x24
  */
 // void killFlock__Q24Game32TFlockMgr<Weed> FPQ24Game6TFlock()
 // {
@@ -1021,80 +973,69 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80210ADC
- * Size:	000004
+/**
+ * @note Address: 0x80210ADC
+ * @note Size: 0x4
  */
 // void onDamage__Q24Game32ItemState<Item> FPQ34Game8ItemWeed4Itemf() { }
 
-/*
- * --INFO--
- * Address:	80210AE0
- * Size:	000004
+/**
+ * @note Address: 0x80210AE0
+ * @note Size: 0x4
  */
 // void onKeyEvent__Q24Game32ItemState<Item> FPQ34Game8ItemWeed4ItemRCQ28SysShape8KeyEvent() { }
 
-/*
- * --INFO--
- * Address:	80210AE4
- * Size:	000004
+/**
+ * @note Address: 0x80210AE4
+ * @note Size: 0x4
  */
 // void onBounce__Q24Game32ItemState<Item> FPQ34Game8ItemWeed4ItemPQ23Sys8Triangle() { }
 
-/*
- * --INFO--
- * Address:	80210AE8
- * Size:	000004
+/**
+ * @note Address: 0x80210AE8
+ * @note Size: 0x4
  */
 // void onPlatCollision__Q24Game32ItemState<Item> FPQ34Game8ItemWeed4ItemRQ24Game9PlatEvent() { }
 
-/*
- * --INFO--
- * Address:	80210AEC
- * Size:	000004
+/**
+ * @note Address: 0x80210AEC
+ * @note Size: 0x4
  */
 // void onCollision__Q24Game32ItemState<Item> FPQ34Game8ItemWeed4ItemRQ24Game9CollEvent() { }
 
-/*
- * --INFO--
- * Address:	80210AF0
- * Size:	000004
+/**
+ * @note Address: 0x80210AF0
+ * @note Size: 0x4
  */
 // void init__Q24Game31FSMState<Item> FPQ34Game8ItemWeed4ItemPQ24Game8StateArg() { }
 
-/*
- * --INFO--
- * Address:	80210AF4
- * Size:	000004
+/**
+ * @note Address: 0x80210AF4
+ * @note Size: 0x4
  */
 // void exec__Q24Game31FSMState<Item> FPQ34Game8ItemWeed4Item() { }
 
-/*
- * --INFO--
- * Address:	80210AF8
- * Size:	000004
+/**
+ * @note Address: 0x80210AF8
+ * @note Size: 0x4
  */
 // void cleanup__Q24Game31FSMState<Item> FPQ34Game8ItemWeed4Item() { }
 
-/*
- * --INFO--
- * Address:	80210AFC
- * Size:	000004
+/**
+ * @note Address: 0x80210AFC
+ * @note Size: 0x4
  */
 // void resume__Q24Game31FSMState<Item> FPQ34Game8ItemWeed4Item() { }
 
-/*
- * --INFO--
- * Address:	80210B00
- * Size:	000004
+/**
+ * @note Address: 0x80210B00
+ * @note Size: 0x4
  */
 // void restart__Q24Game31FSMState<Item> FPQ34Game8ItemWeed4Item() { }
 
-/*
- * --INFO--
- * Address:	80210B04
- * Size:	000030
+/**
+ * @note Address: 0x80210B04
+ * @note Size: 0x30
  */
 // void transit__Q24Game31FSMState<Item> FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg()
 // {
@@ -1115,17 +1056,15 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80210B34
- * Size:	000004
+/**
+ * @note Address: 0x80210B34
+ * @note Size: 0x4
  */
 // void init__Q24Game35StateMachine<Item> FPQ34Game8ItemWeed4Item() { }
 
-/*
- * --INFO--
- * Address:	80210B38
- * Size:	000064
+/**
+ * @note Address: 0x80210B38
+ * @note Size: 0x64
  */
 // void create__Q24Game35StateMachine<Item> Fi()
 // {
@@ -1158,10 +1097,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80210B9C
- * Size:	000060
+/**
+ * @note Address: 0x80210B9C
+ * @note Size: 0x60
  */
 // void MonoObjectMgr<Weed>::birth()
 // {
@@ -1197,10 +1135,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80210BFC
- * Size:	000054
+/**
+ * @note Address: 0x80210BFC
+ * @note Size: 0x54
  */
 // void MonoObjectMgr<Weed>::kill(Weed*)
 // {
@@ -1233,10 +1170,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80210C50
- * Size:	000040
+/**
+ * @note Address: 0x80210C50
+ * @note Size: 0x40
  */
 // void MonoObjectMgr<Weed>::getNext(void*)
 // {
@@ -1266,10 +1202,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80210C90
- * Size:	000030
+/**
+ * @note Address: 0x80210C90
+ * @note Size: 0x30
  */
 // void MonoObjectMgr<Weed>::getStart()
 // {
@@ -1289,10 +1224,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80210CC0
- * Size:	000008
+/**
+ * @note Address: 0x80210CC0
+ * @note Size: 0x8
  */
 // void MonoObjectMgr<Weed>::getEnd()
 // {
@@ -1302,10 +1236,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80210CC8
- * Size:	000008
+/**
+ * @note Address: 0x80210CC8
+ * @note Size: 0x8
  */
 // void MonoObjectMgr<Weed>::getTo()
 // {
@@ -1315,10 +1248,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80210CD0
- * Size:	000050
+/**
+ * @note Address: 0x80210CD0
+ * @note Size: 0x50
  */
 // void MonoObjectMgr<Weed>::doAnimation()
 // {
@@ -1352,10 +1284,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80210D20
- * Size:	000050
+/**
+ * @note Address: 0x80210D20
+ * @note Size: 0x50
  */
 // void MonoObjectMgr<Weed>::doEntry()
 // {
@@ -1389,10 +1320,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80210D70
- * Size:	000050
+/**
+ * @note Address: 0x80210D70
+ * @note Size: 0x50
  */
 // void MonoObjectMgr<Weed>::doSetView(int)
 // {
@@ -1426,10 +1356,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80210DC0
- * Size:	000050
+/**
+ * @note Address: 0x80210DC0
+ * @note Size: 0x50
  */
 // void MonoObjectMgr<Weed>::doViewCalc()
 // {
@@ -1463,10 +1392,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80210E10
- * Size:	000050
+/**
+ * @note Address: 0x80210E10
+ * @note Size: 0x50
  */
 // void MonoObjectMgr<Weed>::doSimulation(f32)
 // {
@@ -1500,10 +1428,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80210E60
- * Size:	000050
+/**
+ * @note Address: 0x80210E60
+ * @note Size: 0x50
  */
 // void MonoObjectMgr<Weed>::doDirectDraw(Graphics&)
 // {
@@ -1537,10 +1464,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80210EB0
- * Size:	000018
+/**
+ * @note Address: 0x80210EB0
+ * @note Size: 0x18
  */
 // void MonoObjectMgr<Weed>::resetMgr()
 // {
@@ -1554,10 +1480,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80210EC8
- * Size:	000030
+/**
+ * @note Address: 0x80210EC8
+ * @note Size: 0x30
  */
 // void MonoObjectMgr<Weed>::clearMgr()
 // {
@@ -1581,17 +1506,15 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80210EF8
- * Size:	000004
+/**
+ * @note Address: 0x80210EF8
+ * @note Size: 0x4
  */
 // void MonoObjectMgr<Weed>::onAlloc() { }
 
-/*
- * --INFO--
- * Address:	80210EFC
- * Size:	00003C
+/**
+ * @note Address: 0x80210EFC
+ * @note Size: 0x3C
  */
 // void MonoObjectMgr<Weed>::getEmptyIndex()
 // {
@@ -1620,10 +1543,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80210F38
- * Size:	000010
+/**
+ * @note Address: 0x80210F38
+ * @note Size: 0x10
  */
 // void MonoObjectMgr<Weed>::get(void*)
 // {
@@ -1635,10 +1557,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80210F48
- * Size:	00002C
+/**
+ * @note Address: 0x80210F48
+ * @note Size: 0x2C
  */
 // void Container<Weed>::getObject(void*)
 // {
@@ -1657,24 +1578,21 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80210F74
- * Size:	000008
+/**
+ * @note Address: 0x80210F74
+ * @note Size: 0x8
  */
 // u32 Container<Weed>::getAt(int) { return 0x0; }
 
-/*
- * --INFO--
- * Address:	80210F7C
- * Size:	000008
+/**
+ * @note Address: 0x80210F7C
+ * @note Size: 0x8
  */
 // u32 Container<Weed>::getTo() { return 0x0; }
 
-/*
- * --INFO--
- * Address:	80210F84
- * Size:	0001D4
+/**
+ * @note Address: 0x80210F84
+ * @note Size: 0x1D4
  */
 // void ObjectMgr<Weed>::doDirectDraw(Graphics&)
 // {
@@ -1815,10 +1733,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80211158
- * Size:	00004C
+/**
+ * @note Address: 0x80211158
+ * @note Size: 0x4C
  */
 // void Iterator<Weed>::isDone()
 // {
@@ -1845,10 +1762,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	802111A4
- * Size:	0001D4
+/**
+ * @note Address: 0x802111A4
+ * @note Size: 0x1D4
  */
 // void ObjectMgr<Weed>::doSimulation(f32)
 // {
@@ -1989,10 +1905,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80211378
- * Size:	0001D4
+/**
+ * @note Address: 0x80211378
+ * @note Size: 0x1D4
  */
 // void ObjectMgr<Weed>::doViewCalc()
 // {
@@ -2133,10 +2048,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	8021154C
- * Size:	0001D4
+/**
+ * @note Address: 0x8021154C
+ * @note Size: 0x1D4
  */
 // void ObjectMgr<Weed>::doSetView(int)
 // {
@@ -2277,10 +2191,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80211720
- * Size:	0001D4
+/**
+ * @note Address: 0x80211720
+ * @note Size: 0x1D4
  */
 // void ObjectMgr<Weed>::doEntry()
 // {
@@ -2421,10 +2334,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	802118F4
- * Size:	0001D4
+/**
+ * @note Address: 0x802118F4
+ * @note Size: 0x1D4
  */
 // void ObjectMgr<Weed>::doAnimation()
 // {
@@ -2565,10 +2477,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80211AC8
- * Size:	000188
+/**
+ * @note Address: 0x80211AC8
+ * @note Size: 0x188
  */
 // void MonoObjectMgr<Weed>::alloc(int)
 // {
@@ -2686,10 +2597,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80211C50
- * Size:	00009C
+/**
+ * @note Address: 0x80211C50
+ * @note Size: 0x9C
  */
 // void MonoObjectMgr<Weed>::MonoObjectMgr()
 // {
@@ -2736,10 +2646,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80211CEC
- * Size:	00009C
+/**
+ * @note Address: 0x80211CEC
+ * @note Size: 0x9C
  */
 // void transit__Q24Game35StateMachine<Item> FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg()
 // {
@@ -2793,10 +2702,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80211D88
- * Size:	000084
+/**
+ * @note Address: 0x80211D88
+ * @note Size: 0x84
  */
 // void registerState__Q24Game35StateMachine<Item> FPQ24Game31FSMState<Item>()
 // {
@@ -2844,10 +2752,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80211E0C
- * Size:	000038
+/**
+ * @note Address: 0x80211E0C
+ * @note Size: 0x38
  */
 // void exec__Q24Game35StateMachine<Item> FPQ34Game8ItemWeed4Item()
 // {
@@ -2872,10 +2779,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80211E44
- * Size:	000044
+/**
+ * @note Address: 0x80211E44
+ * @note Size: 0x44
  */
 // void onKeyEvent__Q24Game74FSMItem<Item, FSM, State> FRCQ28SysShape8KeyEvent()
 // {
@@ -2903,10 +2809,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80211E88
- * Size:	000044
+/**
+ * @note Address: 0x80211E88
+ * @note Size: 0x44
  */
 // void platCallback__Q24Game74FSMItem<Item, FSM, State> FRQ24Game9PlatEvent()
 // {
@@ -2934,10 +2839,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80211ECC
- * Size:	000044
+/**
+ * @note Address: 0x80211ECC
+ * @note Size: 0x44
  */
 // void collisionCallback__Q24Game74FSMItem<Item, FSM, State> FRQ24Game9CollEvent()
 // {
@@ -2965,10 +2869,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80211F10
- * Size:	000044
+/**
+ * @note Address: 0x80211F10
+ * @note Size: 0x44
  */
 // void bounceCallback__Q24Game74FSMItem<Item, FSM, State> FPQ23Sys8Triangle()
 // {
@@ -2996,10 +2899,9 @@ bool Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80211F54
- * Size:	000014
+/**
+ * @note Address: 0x80211F54
+ * @note Size: 0x14
  */
 // void isFlagAlive__Q24Game32TFlockMgr<Weed> Fi()
 // {

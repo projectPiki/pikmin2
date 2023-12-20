@@ -10,17 +10,15 @@
 namespace Game {
 namespace Hana {
 
-/*
- * --INFO--
- * Address:	802F3138
- * Size:	0000A4
+/**
+ * @note Address: 0x802F3138
+ * @note Size: 0xA4
  */
 Obj::Obj() { createEffect(); }
 
-/*
- * --INFO--
- * Address:	802F31E0
- * Size:	000064
+/**
+ * @note Address: 0x802F31E0
+ * @note Size: 0x64
  */
 void Obj::onInit(CreatureInitArg* arg)
 {
@@ -30,17 +28,15 @@ void Obj::onInit(CreatureInitArg* arg)
 	setupEffect();
 }
 
-/*
- * --INFO--
- * Address:	802F3248
- * Size:	000004
+/**
+ * @note Address: 0x802F3248
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	802F324C
- * Size:	0000E8
+/**
+ * @note Address: 0x802F324C
+ * @note Size: 0xE8
  */
 void Obj::getShadowParam(ShadowParam& param)
 {
@@ -64,10 +60,9 @@ void Obj::getShadowParam(ShadowParam& param)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802F3334
- * Size:	0000B4
+/**
+ * @note Address: 0x802F3334
+ * @note Size: 0xB4
  */
 void Obj::initMouthSlots()
 {
@@ -81,10 +76,9 @@ void Obj::initMouthSlots()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802F33E8
- * Size:	000080
+/**
+ * @note Address: 0x802F33E8
+ * @note Size: 0x80
  */
 bool Obj::isWakeup()
 {
@@ -103,10 +97,9 @@ bool Obj::isWakeup()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	802F3468
- * Size:	000084
+/**
+ * @note Address: 0x802F3468
+ * @note Size: 0x84
  */
 void Obj::flickStatePikmin()
 {
@@ -123,10 +116,9 @@ void Obj::flickStatePikmin()
 	                           parms->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802F34EC
- * Size:	0000F0
+/**
+ * @note Address: 0x802F34EC
+ * @note Size: 0xF0
  */
 void Obj::flickAttackBomb()
 {
@@ -141,10 +133,9 @@ void Obj::flickAttackBomb()
 	rumbleMgr->startRumble(11, pos, 2);
 }
 
-/*
- * --INFO--
- * Address:	802F35DC
- * Size:	00003C
+/**
+ * @note Address: 0x802F35DC
+ * @note Size: 0x3C
  */
 int Obj::eatAttackPikmin()
 {
@@ -152,10 +143,9 @@ int Obj::eatAttackPikmin()
 	return EnemyFunc::eatPikmin(this, &cond);
 }
 
-/*
- * --INFO--
- * Address:	802F3618
- * Size:	000070
+/**
+ * @note Address: 0x802F3618
+ * @note Size: 0x70
  */
 void Obj::resetUnderGround()
 {
@@ -167,10 +157,9 @@ void Obj::resetUnderGround()
 	setAtari(true);
 }
 
-/*
- * --INFO--
- * Address:	802F3688
- * Size:	000084
+/**
+ * @note Address: 0x802F3688
+ * @note Size: 0x84
  */
 void Obj::setUnderGround()
 {
@@ -185,10 +174,9 @@ void Obj::setUnderGround()
 	setAtari(false);
 }
 
-/*
- * --INFO--
- * Address:	802F370C
- * Size:	0001C0
+/**
+ * @note Address: 0x802F370C
+ * @note Size: 0x1C0
  */
 void Obj::createSmokeEffect()
 {

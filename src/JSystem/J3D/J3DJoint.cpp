@@ -124,10 +124,9 @@
         .4byte 0x00000000
 */
 
-/*
- * --INFO--
- * Address:	8006B200
- * Size:	000098
+/**
+ * @note Address: 0x8006B200
+ * @note Size: 0x98
  * init__25J3DMtxCalcJ3DSysInitBasicFRC3VecRA3_A4_Cf
  */
 void J3DMtxCalcJ3DSysInitBasic::init(const Vec& scale, const Mtx& mtx)
@@ -177,10 +176,9 @@ void J3DMtxCalcJ3DSysInitBasic::init(const Vec& scale, const Mtx& mtx)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006B298
- * Size:	000098
+/**
+ * @note Address: 0x8006B298
+ * @note Size: 0x98
  * init__24J3DMtxCalcJ3DSysInitMayaFRC3VecRA3_A4_Cf
  */
 void J3DMtxCalcJ3DSysInitMaya::init(const Vec& scale, const Mtx& mtx)
@@ -242,10 +240,9 @@ inline s32 checkScaleOne(const Vec& vec)
 
 J3DJoint* J3DMtxCalc::mJoint;
 
-/*
- * --INFO--
- * Address:	8006B330
- * Size:	000118
+/**
+ * @note Address: 0x8006B330
+ * @note Size: 0x118
  * calcTransform__28J3DMtxCalcCalcTransformBasicFRC16J3DTransformInfo
  */
 void J3DMtxCalcCalcTransformBasic::calcTransform(const J3DTransformInfo& transInfo)
@@ -351,10 +348,9 @@ lbl_8006B410:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006B448
- * Size:	000168
+/**
+ * @note Address: 0x8006B448
+ * @note Size: 0x168
  * calcTransform__32J3DMtxCalcCalcTransformSoftimageFRC16J3DTransformInfo
  */
 void J3DMtxCalcCalcTransformSoftimage::calcTransform(const J3DTransformInfo& transInfo)
@@ -486,10 +482,9 @@ lbl_8006B59C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006B5B0
- * Size:	000178
+/**
+ * @note Address: 0x8006B5B0
+ * @note Size: 0x178
  * calcTransform__27J3DMtxCalcCalcTransformMayaFRC16J3DTransformInfo
  */
 void J3DMtxCalcCalcTransformMaya::calcTransform(const J3DTransformInfo& transInfo)
@@ -636,10 +631,9 @@ lbl_8006B6D4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006B728
- * Size:	000104
+/**
+ * @note Address: 0x8006B728
+ * @note Size: 0x104
  * J3DNewMtxCalcAnm__FUlP15J3DAnmTransform
  */
 J3DMtxCalcAnmBase* J3DNewMtxCalcAnm(u32 type, J3DAnmTransform* p2)
@@ -659,18 +653,16 @@ J3DMtxCalcAnmBase* J3DNewMtxCalcAnm(u32 type, J3DAnmTransform* p2)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8006B82C
- * Size:	00005C
+/**
+ * @note Address: 0x8006B82C
+ * @note Size: 0x5C
  * __dt__17J3DMtxCalcAnmBaseFv
  */
 J3DMtxCalcAnmBase::~J3DMtxCalcAnmBase() { }
 
-/*
- * --INFO--
- * Address:	8006B888
- * Size:	000034
+/**
+ * @note Address: 0x8006B888
+ * @note Size: 0x34
  */
 void J3DJoint::appendChild(J3DJoint* newChild)
 {
@@ -689,10 +681,9 @@ struct copyhelper {
 	u32 x[8];
 };
 
-/*
- * --INFO--
- * Address:	8006B8BC
- * Size:	0000FC
+/**
+ * @note Address: 0x8006B8BC
+ * @note Size: 0xFC
  * __ct__8J3DJointFv
  */
 J3DJoint::J3DJoint()
@@ -717,10 +708,9 @@ J3DJoint::J3DJoint()
 	mMax      = init2;
 }
 
-/*
- * --INFO--
- * Address:	8006B9B8
- * Size:	00019C
+/**
+ * @note Address: 0x8006B9B8
+ * @note Size: 0x19C
  */
 void J3DJoint::entryIn()
 {
@@ -756,10 +746,9 @@ void J3DJoint::entryIn()
 
 J3DMtxCalc* J3DJoint::mCurrentMtxCalc;
 
-/*
- * --INFO--
- * Address:	8006BB54
- * Size:	0001A8
+/**
+ * @note Address: 0x8006BB54
+ * @note Size: 0x1A8
  */
 void J3DJoint::recursiveCalc()
 {

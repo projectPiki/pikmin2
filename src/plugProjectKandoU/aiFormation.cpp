@@ -24,10 +24,9 @@ namespace PikiAI {
 static const int someFormationArray[3] = { 0, 0, 0 };
 static const char formationName[]      = "actFormation";
 
-/*
- * --INFO--
- * Address:	8019CD70
- * Size:	0000F8
+/**
+ * @note Address: 0x8019CD70
+ * @note Size: 0xF8
  */
 ActFormation::ActFormation(Game::Piki* p)
     : Action(p)
@@ -39,24 +38,21 @@ ActFormation::ActFormation(Game::Piki* p)
 	mNavi   = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8019CE68
- * Size:	000008
+/**
+ * @note Address: 0x8019CE68
+ * @note Size: 0x8
  */
 void ActFormation::inform(int slotID) { mSlotID = slotID; }
 
-/*
- * --INFO--
- * Address:	8019CE70
- * Size:	00000C
+/**
+ * @note Address: 0x8019CE70
+ * @note Size: 0xC
  */
 void ActFormation::startSort() { mSortState = 2; }
 
-/*
- * --INFO--
- * Address:	8019CE7C
- * Size:	0001B4
+/**
+ * @note Address: 0x8019CE7C
+ * @note Size: 0x1B4
  */
 void ActFormation::init(ActionArg* initArg)
 {
@@ -114,10 +110,9 @@ void ActFormation::init(ActionArg* initArg)
 	mParent->setFreeLightEffect(false);
 }
 
-/*
- * --INFO--
- * Address:	8019D030
- * Size:	000058
+/**
+ * @note Address: 0x8019D030
+ * @note Size: 0x58
  */
 void ActFormation::wallCallback(Vector3f&)
 {
@@ -135,10 +130,9 @@ void ActFormation::wallCallback(Vector3f&)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8019D088
- * Size:	00045C
+/**
+ * @note Address: 0x8019D088
+ * @note Size: 0x45C
  */
 void ActFormation::setFormed()
 {
@@ -205,10 +199,9 @@ void ActFormation::setFormed()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8019D4E4
- * Size:	0000F8
+/**
+ * @note Address: 0x8019D4E4
+ * @note Size: 0xF8
  */
 void ActFormation::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 {
@@ -239,10 +232,9 @@ void ActFormation::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8019D5DC
- * Size:	0000A4
+/**
+ * @note Address: 0x8019D5DC
+ * @note Size: 0xA4
  */
 void ActFormation::cleanup()
 {
@@ -263,10 +255,9 @@ void ActFormation::cleanup()
 	mSlotID = -1;
 }
 
-/*
- * --INFO--
- * Address:	8019D680
- * Size:	0016E8
+/**
+ * @note Address: 0x8019D680
+ * @note Size: 0x16E8
  */
 int PikiAI::ActFormation::exec()
 {
@@ -2225,10 +2216,9 @@ lbl_8019ED1C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8019ED68
- * Size:	000074
+/**
+ * @note Address: 0x8019ED68
+ * @note Size: 0x74
  */
 void ActFormation::collisionCallback(Game::Piki* p, Game::CollEvent& collEvent)
 {
@@ -2244,10 +2234,9 @@ void ActFormation::collisionCallback(Game::Piki* p, Game::CollEvent& collEvent)
 	p->invokeAI(&collEvent, isBeingCommanded);
 }
 
-/*
- * --INFO--
- * Address:	8019EDDC
- * Size:	000058
+/**
+ * @note Address: 0x8019EDDC
+ * @note Size: 0x58
  */
 void ActFormation::platCallback(Game::Piki* p, Game::PlatEvent& platEvent)
 {
@@ -2257,17 +2246,15 @@ void ActFormation::platCallback(Game::Piki* p, Game::PlatEvent& platEvent)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8019EE34
- * Size:	000008
+/**
+ * @note Address: 0x8019EE34
+ * @note Size: 0x8
  */
 bool ActFormation::resumable() { return true; }
 
-/*
- * --INFO--
- * Address:	8019EE3C
- * Size:	000008
+/**
+ * @note Address: 0x8019EE3C
+ * @note Size: 0x8
  */
 u32 ActFormation::getNextAIType() { return mNextAIType; }
 

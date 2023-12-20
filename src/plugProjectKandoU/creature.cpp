@@ -43,10 +43,9 @@ inline void Creature::killInline(Game::CreatureKillArg* arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8013AE84
- * Size:	00012C
+/**
+ * @note Address: 0x8013AE84
+ * @note Size: 0x12C
  */
 Creature::Creature()
 {
@@ -67,10 +66,9 @@ Creature::Creature()
 	clearStick();
 }
 
-/*
- * --INFO--
- * Address:	8013AFC8
- * Size:	000120
+/**
+ * @note Address: 0x8013AFC8
+ * @note Size: 0x120
  */
 void Creature::init(CreatureInitArg* arg)
 {
@@ -97,10 +95,9 @@ void Creature::init(CreatureInitArg* arg)
 	onInitPost(arg);
 }
 
-/*
- * --INFO--
- * Address:	8013B0F0
- * Size:	0000B4
+/**
+ * @note Address: 0x8013B0F0
+ * @note Size: 0xB4
  */
 void Creature::kill(CreatureKillArg* arg) { killInline(arg); }
 
@@ -109,11 +106,9 @@ void Creature::kill(CreatureKillArg* arg) { killInline(arg); }
  *
  * @param position The new position of the Creature.
  * @param skipPostProc Flag indicating whether to skip post-processing steps.
- */
-/*
- * --INFO--
- * Address:	8013B1A8
- * Size:	0000C8
+ *
+ * @note Address: 0x8013B1A8
+ * @note Size: 0xC8
  */
 void Creature::setPosition(Vector3f& position, bool skipPostProc)
 {
@@ -140,11 +135,9 @@ void Creature::setPosition(Vector3f& position, bool skipPostProc)
  * Initializes the position of the Creature object.
  *
  * @param position The new position of the Creature.
- */
-/*
- * --INFO--
- * Address:	8013B274
- * Size:	0000CC
+ *
+ * @note Address: 0x8013B274
+ * @note Size: 0xCC
  */
 void Creature::initPosition(Vector3f& position)
 {
@@ -167,11 +160,9 @@ void Creature::initPosition(Vector3f& position)
  * @brief Gets the upward direction of the Creature's orientation.
  *
  * @param[out] outVector The output vector that will store the Y vector.
- */
-/*
- * --INFO--
- * Address:	8013B340
- * Size:	0000A0
+ *
+ * @note Address: 0x8013B340
+ * @note Size: 0xA0
  */
 void Creature::getYVector(Vector3f& outVector)
 {
@@ -185,11 +176,9 @@ void Creature::getYVector(Vector3f& outVector)
  * @brief Returns the radius of the creature's body.
  *
  * @return The radius of the creature's body.
- */
-/*
- * --INFO--
- * Address:	8013B3E0
- * Size:	000034
+ *
+ * @note Address: 0x8013B3E0
+ * @note Size: 0x34
  */
 f32 Creature::getBodyRadius()
 {
@@ -202,11 +191,9 @@ f32 Creature::getBodyRadius()
  * @brief Returns the cell radius of the creature.
  *
  * @return The cell radius of the creature.
- */
-/*
- * --INFO--
- * Address:	8013B414
- * Size:	000034
+ *
+ * @note Address: 0x8013B414
+ * @note Size: 0x34
  */
 f32 Creature::getCellRadius()
 {
@@ -215,10 +202,9 @@ f32 Creature::getCellRadius()
 	return boundingSphere.mRadius;
 }
 
-/*
- * --INFO--
- * Address:	8013B448
- * Size:	000024
+/**
+ * @note Address: 0x8013B448
+ * @note Size: 0x24
  */
 char* Creature::getTypeName() { return ObjType::getName(mObjectTypeID); }
 
@@ -228,11 +214,9 @@ char* Creature::getTypeName() { return ObjType::getName(mObjectTypeID); }
  * The shadow parameters include the position, size, and bounding sphere of the shadow.
  *
  * @param param The ShadowParam object to store the shadow parameters.
- */
-/*
- * --INFO--
- * Address:	8013B46C
- * Size:	00008C
+ *
+ * @note Address: 0x8013B46C
+ * @note Size: 0x8C
  */
 void Creature::getShadowParam(ShadowParam& param)
 {
@@ -243,10 +227,9 @@ void Creature::getShadowParam(ShadowParam& param)
 	param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 }
 
-/*
- * --INFO--
- * Address:	8013B4F8
- * Size:	00000C
+/**
+ * @note Address: 0x8013B4F8
+ * @note Size: 0xC
  */
 bool Creature::needShadow() { return mLod.isFlag(AILOD_IsVisible); }
 
@@ -254,11 +237,9 @@ bool Creature::needShadow() { return mLod.isFlag(AILOD_IsVisible); }
  * @brief Retrieves the parameters for the life gauge of the creature.
  *
  * @param param The LifeGaugeParam object to store the retrieved parameters.
- */
-/*
- * --INFO--
- * Address:	8013B504
- * Size:	000070
+ *
+ * @note Address: 0x8013B504
+ * @note Size: 0x70
  */
 void Creature::getLifeGaugeParam(LifeGaugeParam& param)
 {
@@ -273,11 +254,9 @@ void Creature::getLifeGaugeParam(LifeGaugeParam& param)
  *
  * @param output The Stream to save the Creature to.
  * @param flags The flags indicating which data to save.
- */
-/*
- * --INFO--
- * Address:	8013B574
- * Size:	000090
+ *
+ * @note Address: 0x8013B574
+ * @note Size: 0x90
  */
 void Creature::save(Stream& output, u8 flags)
 {
@@ -294,11 +273,9 @@ void Creature::save(Stream& output, u8 flags)
  *
  * @param input The input stream to read the data from.
  * @param flags The flags indicating which data to load.
- */
-/*
- * --INFO--
- * Address:	8013B604
- * Size:	0000E4
+ *
+ * @note Address: 0x8013B604
+ * @note Size: 0xE4
  */
 void Creature::load(Stream& input, u8 flags)
 {
@@ -316,11 +293,9 @@ void Creature::load(Stream& input, u8 flags)
  *
  * @param other A pointer to the other creature.
  * @return The distance between the bounding spheres of the two creatures.
- */
-/*
- * --INFO--
- * Address:	8013B6E8
- * Size:	0000BC
+ *
+ * @note Address: 0x8013B6E8
+ * @note Size: 0xBC
  */
 f32 Creature::calcSphereDistance(Creature* other)
 {
@@ -340,11 +315,9 @@ f32 Creature::calcSphereDistance(Creature* other)
  * @param drag The overall drag coefficient.
  * @param horizontalDrag The horizontal drag coefficient.
  * @param verticalDrag The vertical drag coefficient.
- */
-/*
- * --INFO--
- * Address:	8013B7A4
- * Size:	0000CC
+ *
+ * @note Address: 0x8013B7A4
+ * @note Size: 0xCC
  */
 void Creature::applyAirDrag(f32 drag, f32 horizontalDrag, f32 verticalDrag)
 {
@@ -357,10 +330,9 @@ void Creature::applyAirDrag(f32 drag, f32 horizontalDrag, f32 verticalDrag)
 	setVelocity(vel);
 }
 
-/*
- * --INFO--
- * Address:	8013B870
- * Size:	00003C
+/**
+ * @note Address: 0x8013B870
+ * @note Size: 0x3C
  */
 void Creature::doAnimation()
 {
@@ -369,10 +341,9 @@ void Creature::doAnimation()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8013B8AC
- * Size:	000004
+/**
+ * @note Address: 0x8013B8AC
+ * @note Size: 0x4
  */
 void Creature::doEntry() { }
 
@@ -381,11 +352,9 @@ void Creature::doEntry() { }
  *
  * @param viewportNumber The number of the viewport to set the view for.
  *                       Valid values are 0 and 1 for 2 player modes.
- */
-/*
- * --INFO--
- * Address:	8013B8B0
- * Size:	000108
+ *
+ * @note Address: 0x8013B8B0
+ * @note Size: 0x108
  */
 void Creature::doSetView(int viewportNumber)
 {
@@ -412,10 +381,9 @@ void Creature::doSetView(int viewportNumber)
 	mModel->showPackets();
 }
 
-/*
- * --INFO--
- * Address:	8013B9B8
- * Size:	00002C
+/**
+ * @note Address: 0x8013B9B8
+ * @note Size: 0x2C
  */
 void Creature::doViewCalc()
 {
@@ -424,45 +392,39 @@ void Creature::doViewCalc()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8013B9E4
- * Size:	000010
+/**
+ * @note Address: 0x8013B9E4
+ * @note Size: 0x10
  */
 bool Creature::isPiki() { return mObjectTypeID == OBJTYPE_Piki; }
 
-/*
- * --INFO--
- * Address:	8013B9F4
- * Size:	000014
+/**
+ * @note Address: 0x8013B9F4
+ * @note Size: 0x14
  */
 bool Creature::isNavi() { return mObjectTypeID == OBJTYPE_Navi; }
 
-/*
- * --INFO--
- * Address:	8013BA08
- * Size:	000014
+/**
+ * @note Address: 0x8013BA08
+ * @note Size: 0x14
  */
 bool Creature::isTeki() { return mObjectTypeID == OBJTYPE_Teki; }
 
-/*
- * --INFO--
- * Address:	8013BA1C
- * Size:	000014
+/**
+ * @note Address: 0x8013BA1C
+ * @note Size: 0x14
  */
 bool Creature::isPellet() { return mObjectTypeID == OBJTYPE_Pellet; }
 
-/*
- * --INFO--
- * Address:	8013BA30
- * Size:	000020
+/**
+ * @note Address: 0x8013BA30
+ * @note Size: 0x20
  */
 bool Creature::sound_culling() { return !(mLod.isFlag(AILOD_PikiInCell) || mLod.isFlag(AILOD_IsVisible)); }
 
-/*
- * --INFO--
- * Address:	8013BA50
- * Size:	00009C
+/**
+ * @note Address: 0x8013BA50
+ * @note Size: 0x9C
  */
 void Creature::movie_begin(bool isMainActor)
 {
@@ -479,10 +441,9 @@ void Creature::movie_begin(bool isMainActor)
 	on_movie_begin(isMainActor);
 }
 
-/*
- * --INFO--
- * Address:	8013BAEC
- * Size:	000050
+/**
+ * @note Address: 0x8013BAEC
+ * @note Size: 0x50
  */
 void Creature::movie_end(bool isMainActor)
 {
@@ -497,11 +458,9 @@ void Creature::movie_end(bool isMainActor)
  * @param waterBox The water box to check against.
  * @param boundSphere The bounding sphere to check.
  * @return The updated water box after checking.
- */
-/*
- * --INFO--
- * Address:	8013BB3C
- * Size:	0000E0
+ *
+ * @note Address: 0x8013BB3C
+ * @note Size: 0xE0
  */
 WaterBox* Creature::checkWater(WaterBox* waterBox, Sys::Sphere& boundSphere)
 {
@@ -531,11 +490,6 @@ WaterBox* Creature::checkWater(WaterBox* waterBox, Sys::Sphere& boundSphere)
 	return waterBox;
 }
 
-/*
- * --INFO--
- * Address:	8013BC24
- * Size:	000144
- */
 /**
  * Checks if the creature is in the "hell" area.
  *
@@ -544,6 +498,9 @@ WaterBox* Creature::checkWater(WaterBox* waterBox, Sys::Sphere& boundSphere)
  *         - CREATURE_HELL_DEATH if the creature is below -500.0f in the y-axis and is a Pikmin.
  *         - CREATURE_HELL_BELOWMAP if the creature is below -300.0f in the y-axis.
  *         - CREATURE_HELL_ALIVE if the creature is above -300.0f in the y-axis.
+ *
+ * @note Address: 0x8013BC24
+ * @note Size: 0x144
  */
 int Creature::checkHell(Creature::CheckHellArg& hellArg)
 {
@@ -564,10 +521,9 @@ int Creature::checkHell(Creature::CheckHellArg& hellArg)
 	return pos.y < -300.0f;
 }
 
-/*
- * --INFO--
- * Address:	8013BD68
- * Size:	000178
+/**
+ * @note Address: 0x8013BD68
+ * @note Size: 0x178
  */
 void Creature::updateCell()
 {
@@ -600,10 +556,9 @@ void Creature::updateCell()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8013BEE8
- * Size:	000044
+/**
+ * @note Address: 0x8013BEE8
+ * @note Size: 0x44
  */
 int Creature::getCellPikiCount()
 {
@@ -614,10 +569,9 @@ int Creature::getCellPikiCount()
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	8013BF2C
- * Size:	0000B0
+/**
+ * @note Address: 0x8013BF2C
+ * @note Size: 0xB0
  */
 void Creature::applyImpulse(Vector3f& unused, Vector3f& impulse)
 {
@@ -628,10 +582,9 @@ void Creature::applyImpulse(Vector3f& unused, Vector3f& impulse)
 	setVelocity(newVelocity);
 }
 
-/*
- * --INFO--
- * Address:	8013BFDC
- * Size:	0002E4
+/**
+ * @note Address: 0x8013BFDC
+ * @note Size: 0x2E4
  */
 void Creature::checkCollision(CellObject* other)
 {
@@ -695,10 +648,9 @@ void Creature::checkCollision(CellObject* other)
 	currOp           = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8013C2C0
- * Size:	0008CC
+/**
+ * @note Address: 0x8013C2C0
+ * @note Size: 0x8CC
  */
 void Creature::resolveOneColl(CollPart* source, CollPart* dest, Vector3f& direction)
 {

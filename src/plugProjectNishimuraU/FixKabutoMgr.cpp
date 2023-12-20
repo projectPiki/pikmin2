@@ -9,10 +9,9 @@ namespace {
 char* cKabutoChangeTexName = "/enemy/data/Kabuto/babykabuto_green_s3tc.bti";
 }
 
-/*
- * --INFO--
- * Address:	80300394
- * Size:	000050
+/**
+ * @note Address: 0x80300394
+ * @note Size: 0x50
  */
 Mgr::Mgr(int p1, u8 p2)
     : Kabuto::Mgr(p1, p2)
@@ -20,31 +19,27 @@ Mgr::Mgr(int p1, u8 p2)
 	mName = "固定カブトマネージャ"; // fixed beetle manager
 }
 
-/*
- * --INFO--
- * Address:	803003E4
- * Size:	000048
+/**
+ * @note Address: 0x803003E4
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Kabuto::Parms); }
 
-/*
- * --INFO--
- * Address:	8030042C
- * Size:	000060
+/**
+ * @note Address: 0x8030042C
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	8030057C
- * Size:	000010
+/**
+ * @note Address: 0x8030057C
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int idx) { return &mObj[idx]; }
 
-/*
- * --INFO--
- * Address:	8030058C
- * Size:	000080
+/**
+ * @note Address: 0x8030058C
+ * @note Size: 0x80
  */
 void Mgr::loadTexData()
 {

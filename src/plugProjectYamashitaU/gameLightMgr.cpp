@@ -22,10 +22,9 @@ static const char unusedGameLightName[] = "gameLightMgr";
 
 #define CAP_AT(val, limit) ((val) > (limit)) ? (limit) : (val)
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001FC
+/**
+ * @note Address: N/A
+ * @note Size: 0x1FC
  */
 void calcLightColor(Color4* lightColor, Color4& destColor, Color4& srcColor, f32 ratio)
 {
@@ -48,20 +47,18 @@ const char* GameLightMgrSettinglabel[SUNTIME_Count] = {
 };
 } // namespace
 
-/*
- * --INFO--
- * Address:	8011CCE0
- * Size:	000654
+/**
+ * @note Address: 0x8011CCE0
+ * @note Size: 0x654
  */
 GameLightTimeSetting::GameLightTimeSetting()
     : CNode("")
 {
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C0
+/**
+ * @note Address: N/A
+ * @note Size: 0xC0
  */
 void GameLightTimeSetting::read(Stream& stream)
 {
@@ -73,10 +70,9 @@ void GameLightTimeSetting::read(Stream& stream)
 	mShadow.read(stream);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001A8
+/**
+ * @note Address: N/A
+ * @note Size: 0x1A8
  */
 GameLightSunSetting::GameLightSunSetting(char* name)
     : CNode(name)
@@ -87,10 +83,9 @@ GameLightSunSetting::GameLightSunSetting(char* name)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E8
+/**
+ * @note Address: N/A
+ * @note Size: 0xE8
  */
 void GameLightSunSetting::read(Stream& stream)
 {
@@ -100,20 +95,18 @@ void GameLightSunSetting::read(Stream& stream)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8011D5EC
- * Size:	000738
+/**
+ * @note Address: 0x8011D5EC
+ * @note Size: 0x738
  */
 GameLightSpotSetting::GameLightSpotSetting(char* name)
     : CNode(name)
 {
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000CC
+/**
+ * @note Address: N/A
+ * @note Size: 0xCC
  */
 void GameLightSpotSetting::read(Stream& stream)
 {
@@ -126,10 +119,9 @@ void GameLightSpotSetting::read(Stream& stream)
 	mShadow.read(stream);
 }
 
-/*
- * --INFO--
- * Address:	8011DD68
- * Size:	0001E0
+/**
+ * @note Address: 0x8011DD68
+ * @note Size: 0x1E0
  */
 GameLightMgrSetting::GameLightMgrSetting()
     : CNode("ê›íË") // 'setting'
@@ -141,10 +133,9 @@ GameLightMgrSetting::GameLightMgrSetting()
 	updateNode();
 }
 
-/*
- * --INFO--
- * Address:	8011E024
- * Size:	000074
+/**
+ * @note Address: 0x8011E024
+ * @note Size: 0x74
  */
 void GameLightMgrSetting::updateNode()
 {
@@ -160,10 +151,9 @@ void GameLightMgrSetting::updateNode()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8011E098
- * Size:	0002F0
+/**
+ * @note Address: 0x8011E098
+ * @note Size: 0x2F0
  */
 void GameLightMgrSetting::read(Stream& stream)
 {
@@ -186,10 +176,9 @@ void GameLightMgrSetting::read(Stream& stream)
 	updateNode();
 }
 
-/*
- * --INFO--
- * Address:	8011E388
- * Size:	0001E0
+/**
+ * @note Address: 0x8011E388
+ * @note Size: 0x1E0
  */
 void GameLightMgrSetting::readOldVersion(ID32 version, Stream& stream)
 {
@@ -230,10 +219,9 @@ void GameLightEventNode::start(GameLightEventArg& eventArg)
 	mState      = LIGHTSTATE_Grow;
 }
 
-/*
- * --INFO--
- * Address:	8011E568
- * Size:	0001F4
+/**
+ * @note Address: 0x8011E568
+ * @note Size: 0x1F4
  */
 bool GameLightEventNode::update(GameLightMgr* lightMgr)
 {
@@ -299,10 +287,9 @@ bool GameLightEventNode::update(GameLightMgr* lightMgr)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	8011E75C
- * Size:	00037C
+/**
+ * @note Address: 0x8011E75C
+ * @note Size: 0x37C
  */
 void GameLightEventNode::updateCommon(GameLightMgr* lightMgr, bool check)
 {
@@ -373,10 +360,9 @@ void GameLightEventNode::updateCommon(GameLightMgr* lightMgr, bool check)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8011EAD8
- * Size:	000464
+/**
+ * @note Address: 0x8011EAD8
+ * @note Size: 0x464
  */
 void GameLightEventNode::calcColor(Color4* color)
 {
@@ -399,10 +385,9 @@ void GameLightEventNode::calcColor(Color4* color)
 	calcLightColor(color, tempColor, *color, mColorRatio);
 }
 
-/*
- * --INFO--
- * Address:	8011EF3C
- * Size:	000310
+/**
+ * @note Address: 0x8011EF3C
+ * @note Size: 0x310
  */
 GameLightMgr::GameLightMgr(char* name)
     : LightMgr(name)
@@ -454,10 +439,9 @@ GameLightMgr::GameLightMgr(char* name)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8011F4B8
- * Size:	00002C
+/**
+ * @note Address: 0x8011F4B8
+ * @note Size: 0x2C
  */
 void GameLightMgr::start()
 {
@@ -468,10 +452,9 @@ void GameLightMgr::start()
 	mStellarColorRatio = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	8011F4E4
- * Size:	0000BC
+/**
+ * @note Address: 0x8011F4E4
+ * @note Size: 0xBC
  */
 GameLightEventNode* GameLightMgr::createEventLight(GameLightEventArg& eventArg)
 {
@@ -486,10 +469,9 @@ GameLightEventNode* GameLightMgr::createEventLight(GameLightEventArg& eventArg)
 	return eventNode;
 }
 
-/*
- * --INFO--
- * Address:	8011F5A0
- * Size:	000048
+/**
+ * @note Address: 0x8011F5A0
+ * @note Size: 0x48
  */
 void GameLightMgr::loadParm(Stream& stream)
 {
@@ -501,10 +483,9 @@ void GameLightMgr::loadParm(Stream& stream)
 	mSettings.read(stream);
 }
 
-/*
- * --INFO--
- * Address:	8011F5E8
- * Size:	001AE8
+/**
+ * @note Address: 0x8011F5E8
+ * @note Size: 0x1AE8
  */
 void GameLightMgr::calcSetting(GameLightTimeSetting* time1, GameLightTimeSetting* time2, GameLightTimeSetting* time3)
 {
@@ -2566,10 +2547,9 @@ void GameLightMgr::calcSetting(GameLightTimeSetting* time1, GameLightTimeSetting
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801210D0
- * Size:	0001F0
+/**
+ * @note Address: 0x801210D0
+ * @note Size: 0x1F0
  */
 void GameLightMgr::updateSunType()
 {
@@ -2765,10 +2745,9 @@ lbl_801212A8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801212C0
- * Size:	000C00
+/**
+ * @note Address: 0x801212C0
+ * @note Size: 0xC00
  */
 void GameLightMgr::updateSpotType()
 {
@@ -2852,10 +2831,9 @@ void GameLightMgr::updateSpotType()
 	mSettings.mStellarSpotLight.mShadow.getColor(mShadowColor);
 }
 
-/*
- * --INFO--
- * Address:	80121EC0
- * Size:	000094
+/**
+ * @note Address: 0x80121EC0
+ * @note Size: 0x94
  */
 void GameLightMgr::update()
 {
@@ -2878,10 +2856,9 @@ void GameLightMgr::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80121F54
- * Size:	000054
+/**
+ * @note Address: 0x80121F54
+ * @note Size: 0x54
  */
 void GameLightMgr::set(Graphics& gfx)
 {
@@ -2892,10 +2869,9 @@ void GameLightMgr::set(Graphics& gfx)
 
 static const char unusedIniPath[] = "/user/Yamashita/testResource/light/light.ini";
 
-/*
- * --INFO--
- * Address:	80121FA8
- * Size:	0002C0
+/**
+ * @note Address: 0x80121FA8
+ * @note Size: 0x2C0
  */
 void GameLightMgr::updatePosition(Viewport* viewport)
 {
@@ -2952,10 +2928,9 @@ void GameLightMgr::updatePosition(Viewport* viewport)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012241C
- * Size:	00000C
+/**
+ * @note Address: 0x8012241C
+ * @note Size: 0xC
  */
 template <class T>
 T complement(T start, T end, T ratio)

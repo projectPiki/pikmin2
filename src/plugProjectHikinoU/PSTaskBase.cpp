@@ -6,10 +6,9 @@
 
 namespace PSSystem {
 
-/*
- * --INFO--
- * Address:	8033E1F8
- * Size:	000054
+/**
+ * @note Address: 0x8033E1F8
+ * @note Size: 0x54
  */
 TaskBase::TaskBase()
     : _04(this)
@@ -19,10 +18,9 @@ TaskBase::TaskBase()
 {
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000114
+/**
+ * @note Address: N/A
+ * @note Size: 0x114
  */
 bool TaskEntry::stackTask(JASTrack& track)
 {
@@ -56,24 +54,21 @@ bool TaskEntry::stackTask(JASTrack& track)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8033E24C
- * Size:	000024
+/**
+ * @note Address: 0x8033E24C
+ * @note Size: 0x24
  */
 void TaskEntry::append(PSSystem::TaskBase* task) { append_Lock(&task->_04); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void TaskEntry::remove(PSSystem::TaskBase* task) { remove_Lock(&task->_04); }
 
-/*
- * --INFO--
- * Address:	8033E270
- * Size:	000034
+/**
+ * @note Address: 0x8033E270
+ * @note Size: 0x34
  */
 bool TaskEntryMgr::isUnderTask_byDirector(PSSystem::DirectorBase* director)
 {
@@ -85,10 +80,9 @@ bool TaskEntryMgr::isUnderTask_byDirector(PSSystem::DirectorBase* director)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8033E2A4
- * Size:	000150
+/**
+ * @note Address: 0x8033E2A4
+ * @note Size: 0x150
  */
 void TaskEntryMgr::update()
 {
@@ -102,10 +96,9 @@ void TaskEntryMgr::update()
 	OSUnlockMutex(&mMutex);
 }
 
-/*
- * --INFO--
- * Address:	8033E3F4
- * Size:	0000A0
+/**
+ * @note Address: 0x8033E3F4
+ * @note Size: 0xA0
  */
 void TaskEntryMgr::appendEntry(PSSystem::TaskEntry* entry, PSSystem::DirectorBase* director)
 {
@@ -117,10 +110,9 @@ void TaskEntryMgr::appendEntry(PSSystem::TaskEntry* entry, PSSystem::DirectorBas
 	append_Lock(&entry->_28);
 }
 
-/*
- * --INFO--
- * Address:	8033E494
- * Size:	000074
+/**
+ * @note Address: 0x8033E494
+ * @note Size: 0x74
  */
 void TaskEntryMgr::removeEntry(PSSystem::TaskEntry* entry)
 {
@@ -138,10 +130,9 @@ void TaskEntryMgr::removeEntry(PSSystem::TaskEntry* entry)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8033E508
- * Size:	0000A4
+/**
+ * @note Address: 0x8033E508
+ * @note Size: 0xA4
  */
 void TaskEntryMgr::removeAllEntry()
 {

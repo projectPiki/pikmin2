@@ -12,10 +12,9 @@
 static const char name[] = "efx2dEffect";
 
 namespace efx2d {
-/*
- * --INFO--
- * Address:	803BA18C
- * Size:	00007C
+/**
+ * @note Address: 0x803BA18C
+ * @note Size: 0x7C
  */
 bool T2DCursor::create(Arg* arg)
 {
@@ -30,10 +29,9 @@ bool T2DCursor::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803BA208
- * Size:	00005C
+/**
+ * @note Address: 0x803BA208
+ * @note Size: 0x5C
  */
 bool T2DCountKira::create(Arg* arg)
 {
@@ -44,20 +42,18 @@ bool T2DCountKira::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E8
+/**
+ * @note Address: N/A
+ * @note Size: 0xE8
  */
 bool T2DSensorAct_forVS::create(Arg*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803BA264
- * Size:	0000D8
+/**
+ * @note Address: 0x803BA264
+ * @note Size: 0xD8
  */
 bool T2DSensorGet_forVS::create(Arg* arg)
 {
@@ -74,10 +70,9 @@ bool T2DSensorGet_forVS::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803BA33C
- * Size:	000140
+/**
+ * @note Address: 0x803BA33C
+ * @note Size: 0x140
  */
 bool T2DSprayset_forVS::create(Arg* arg)
 {
@@ -100,10 +95,9 @@ bool T2DSprayset_forVS::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803BA47C
- * Size:	0000C8
+/**
+ * @note Address: 0x803BA47C
+ * @note Size: 0xC8
  */
 bool FileSelect::T2DFilecopied::create(Arg* arg)
 {
@@ -119,10 +113,9 @@ bool FileSelect::T2DFilecopied::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803BA544
- * Size:	0000C8
+/**
+ * @note Address: 0x803BA544
+ * @note Size: 0xC8
  */
 bool FileSelect::T2DFiledelete::create(Arg* arg)
 {
@@ -138,10 +131,9 @@ bool FileSelect::T2DFiledelete::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803BA60C
- * Size:	0000C8
+/**
+ * @note Address: 0x803BA60C
+ * @note Size: 0xC8
  */
 bool FileSelect::T2DFiledeleteM::create(Arg* arg)
 {
@@ -157,10 +149,9 @@ bool FileSelect::T2DFiledeleteM::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803BA6D4
- * Size:	0001CC
+/**
+ * @note Address: 0x803BA6D4
+ * @note Size: 0x1CC
  */
 bool FileSelect::T2DFilecopyBase::create(Arg* arg)
 {
@@ -329,10 +320,9 @@ lbl_803BA87C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803BA8A0
- * Size:	0000DC
+/**
+ * @note Address: 0x803BA8A0
+ * @note Size: 0xDC
  */
 bool WorldMap::T2DShstar2::create(Arg* arg)
 {
@@ -351,10 +341,9 @@ bool WorldMap::T2DShstar2::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803BA97C
- * Size:	0000F4
+/**
+ * @note Address: 0x803BA97C
+ * @note Size: 0xF4
  */
 bool WorldMap::T2DNewmap::create(Arg* arg)
 {
@@ -374,10 +363,9 @@ bool WorldMap::T2DNewmap::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803BAA70
- * Size:	0000AC
+/**
+ * @note Address: 0x803BAA70
+ * @note Size: 0xAC
  */
 bool WorldMap::TSimple_ArgDirScale::create(Arg* arg)
 {
@@ -397,10 +385,9 @@ bool WorldMap::TSimple_ArgDirScale::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803BAB1C
- * Size:	00005C
+/**
+ * @note Address: 0x803BAB1C
+ * @note Size: 0x5C
  */
 bool WorldMap::T2DOnyonKira::create(Arg* arg)
 {
@@ -414,10 +401,9 @@ bool WorldMap::T2DOnyonKira::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803BAB78
- * Size:	000040
+/**
+ * @note Address: 0x803BAB78
+ * @note Size: 0x40
  */
 void WorldMap::T2DOnyonKira::setGlobalParticleScale(f32 scale)
 {
@@ -434,10 +420,9 @@ void WorldMap::T2DOnyonKira::setGlobalParticleScale(f32 scale)
 	mEmitter->setScaleMain(test.x, test.y, test.z);
 }
 
-/*
- * --INFO--
- * Address:	803BABB8
- * Size:	000018
+/**
+ * @note Address: 0x803BABB8
+ * @note Size: 0x18
  */
 void WorldMap::T2DRocketGlow::setGlobalParticleScale(f32 scale)
 {
@@ -448,10 +433,9 @@ void WorldMap::T2DRocketGlow::setGlobalParticleScale(f32 scale)
 	emit->setGlobalScale(scale);
 }
 
-/*
- * --INFO--
- * Address:	803BABD0
- * Size:	00005C
+/**
+ * @note Address: 0x803BABD0
+ * @note Size: 0x5C
  */
 bool WorldMap::T2DRocketB::create(Arg* arg)
 {
@@ -465,10 +449,9 @@ bool WorldMap::T2DRocketB::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803BAC2C
- * Size:	000040
+/**
+ * @note Address: 0x803BAC2C
+ * @note Size: 0x40
  */
 void WorldMap::T2DRocketB::setGlobalParticleScale(f32 scale)
 {

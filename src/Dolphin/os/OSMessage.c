@@ -2,10 +2,9 @@
 
 // TODO: this matches, but breaks JKRAramStream with types etc, need to fix both together
 
-/*
- * --INFO--
- * Address:	800EF4BC
- * Size:	000060
+/**
+ * @note Address: 0x800EF4BC
+ * @note Size: 0x60
  */
 void OSInitMessageQueue(OSMessageQueue* queue, OSMessage* msgArray, s32 msgCount)
 {
@@ -17,15 +16,14 @@ void OSInitMessageQueue(OSMessageQueue* queue, OSMessage* msgArray, s32 msgCount
 	queue->usedCount  = 0;
 }
 
-/*
+/**
  * When (`flags` & 1), then this function blocks execution of the current
  * thread if `queue` is full, until such a time that it is no longer full.
  * When not (`flags` & 1), this function returns `false` immediately if
  * `queue` is full. This function returns `true` when the message is
  * successfully queued.
- * --INFO--
- * Address:	800EF51C
- * Size:	0000C8
+ * @note Address: 0x800EF51C
+ * @note Size: 0xC8
  */
 BOOL OSSendMessage(OSMessageQueue* queue, void* msg, s32 flags)
 {
@@ -52,10 +50,9 @@ BOOL OSSendMessage(OSMessageQueue* queue, void* msg, s32 flags)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800EF5E4
- * Size:	0000DC
+/**
+ * @note Address: 0x800EF5E4
+ * @note Size: 0xDC
  */
 BOOL OSReceiveMessage(OSMessageQueue* queue, void** buffer, s32 flags)
 {
@@ -84,10 +81,9 @@ BOOL OSReceiveMessage(OSMessageQueue* queue, void** buffer, s32 flags)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800EF6C0
- * Size:	0000D4
+/**
+ * @note Address: 0x800EF6C0
+ * @note Size: 0xD4
  */
 BOOL OSJamMessage(OSMessageQueue* queue, void* msg, s32 flags)
 {

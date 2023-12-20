@@ -3,10 +3,9 @@
 
 namespace PSSystem {
 
-/*
- * --INFO--
- * Address:	803422A8
- * Size:	00002C
+/**
+ * @note Address: 0x803422A8
+ * @note Size: 0x2C
  */
 void BeatMgr::proc()
 {
@@ -17,10 +16,9 @@ void BeatMgr::proc()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803422D4
- * Size:	000028
+/**
+ * @note Address: 0x803422D4
+ * @note Size: 0x28
  */
 bool SeqTrackBase::update()
 {
@@ -28,24 +26,21 @@ bool SeqTrackBase::update()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803422FC
- * Size:	000008
+/**
+ * @note Address: 0x803422FC
+ * @note Size: 0x8
  */
 void SeqTrackBase::init(JASTrack* track) { mTaskEntryMgr.mTrack = track; }
 
-/*
- * --INFO--
- * Address:	80342304
- * Size:	000008
+/**
+ * @note Address: 0x80342304
+ * @note Size: 0x8
  */
 TaskEntryMgr* SeqTrackBase::getTaskEntryList() { return &mTaskEntryMgr; }
 
-/*
- * --INFO--
- * Address:	8034230C
- * Size:	0003A4
+/**
+ * @note Address: 0x8034230C
+ * @note Size: 0x3A4
  * __ct__Q28PSSystem12SeqTrackRootFv
  */
 SeqTrackRoot::SeqTrackRoot()
@@ -56,10 +51,9 @@ SeqTrackRoot::SeqTrackRoot()
 {
 }
 
-/*
- * --INFO--
- * Address:	803426B0
- * Size:	000078
+/**
+ * @note Address: 0x803426B0
+ * @note Size: 0x78
  */
 void SeqTrackRoot::init(JASTrack* track)
 {
@@ -71,10 +65,9 @@ void SeqTrackRoot::init(JASTrack* track)
 	initSwingRatio();
 }
 
-/*
- * --INFO--
- * Address:	80342728
- * Size:	00007C
+/**
+ * @note Address: 0x80342728
+ * @note Size: 0x7C
  */
 void SeqTrackRoot::initSwingRatio()
 {
@@ -82,10 +75,9 @@ void SeqTrackRoot::initSwingRatio()
 	_30 = _32 / _34;
 }
 
-/*
- * --INFO--
- * Address:	803427A4
- * Size:	000088
+/**
+ * @note Address: 0x803427A4
+ * @note Size: 0x88
  */
 void SeqTrackRoot::pitchModulation(float f1, float f2, u32 arg, PSSystem::DirectorBase* base)
 {
@@ -94,10 +86,9 @@ void SeqTrackRoot::pitchModulation(float f1, float f2, u32 arg, PSSystem::Direct
 	mTaskEntryMgr.appendEntry(&_16C, base);
 }
 
-/*
- * --INFO--
- * Address:	8034282C
- * Size:	000078
+/**
+ * @note Address: 0x8034282C
+ * @note Size: 0x78
  */
 void SeqTrackRoot::tempoChange(float tempo, u32 arg, PSSystem::DirectorBase* base)
 {
@@ -106,17 +97,15 @@ void SeqTrackRoot::tempoChange(float tempo, u32 arg, PSSystem::DirectorBase* bas
 	mTaskEntryMgr.appendEntry(&_40, base);
 }
 
-/*
- * --INFO--
- * Address:	803428A4
- * Size:	000024
+/**
+ * @note Address: 0x803428A4
+ * @note Size: 0x24
  */
 void SeqTrackRoot::onStopSeq() { mTaskEntryMgr.removeAllEntry(); }
 
-/*
- * --INFO--
- * Address:	803428C8
- * Size:	00009C
+/**
+ * @note Address: 0x803428C8
+ * @note Size: 0x9C
  */
 u16 SeqTrackRoot::beatUpdate()
 {
@@ -135,10 +124,9 @@ u16 SeqTrackRoot::beatUpdate()
 	return _3E;
 }
 
-/*
- * --INFO--
- * Address:	80342964
- * Size:	0002EC
+/**
+ * @note Address: 0x80342964
+ * @note Size: 0x2EC
  * __ct__Q28PSSystem13SeqTrackChildFRCQ28PSSystem12SeqTrackRoot
  */
 SeqTrackChild::SeqTrackChild(const PSSystem::SeqTrackRoot&)
@@ -146,10 +134,9 @@ SeqTrackChild::SeqTrackChild(const PSSystem::SeqTrackRoot&)
 {
 }
 
-/*
- * --INFO--
- * Address:	80342C50
- * Size:	000084
+/**
+ * @note Address: 0x80342C50
+ * @note Size: 0x84
  */
 void SeqTrackChild::muteOffAndFadeIn(float arg1, u32 arg2, PSSystem::DirectorBase* base)
 {
@@ -159,10 +146,9 @@ void SeqTrackChild::muteOffAndFadeIn(float arg1, u32 arg2, PSSystem::DirectorBas
 	mTaskEntryMgr.appendEntry(&_2C, base);
 }
 
-/*
- * --INFO--
- * Address:	80342CD4
- * Size:	000074
+/**
+ * @note Address: 0x80342CD4
+ * @note Size: 0x74
  */
 void SeqTrackChild::fadeoutAndMute(u32 arg, PSSystem::DirectorBase* base)
 {
@@ -172,10 +158,9 @@ void SeqTrackChild::fadeoutAndMute(u32 arg, PSSystem::DirectorBase* base)
 	mTaskEntryMgr.appendEntry(&_12C, base);
 }
 
-/*
- * --INFO--
- * Address:	80342D48
- * Size:	000078
+/**
+ * @note Address: 0x80342D48
+ * @note Size: 0x78
  */
 void SeqTrackChild::fade(float arg1, u32 arg2, PSSystem::DirectorBase* base)
 {
@@ -184,10 +169,9 @@ void SeqTrackChild::fade(float arg1, u32 arg2, PSSystem::DirectorBase* base)
 	mTaskEntryMgr.appendEntry(&_1B8, base);
 }
 
-/*
- * --INFO--
- * Address:	80342DC0
- * Size:	000068
+/**
+ * @note Address: 0x80342DC0
+ * @note Size: 0x68
  */
 void SeqTrackChild::setIdMask(u8 mask, PSSystem::DirectorBase* base)
 {
@@ -196,10 +180,9 @@ void SeqTrackChild::setIdMask(u8 mask, PSSystem::DirectorBase* base)
 	mTaskEntryMgr.appendEntry(&_224, base);
 }
 
-/*
- * --INFO--
- * Address:	80342E28
- * Size:	000024
+/**
+ * @note Address: 0x80342E28
+ * @note Size: 0x24
  */
 void SeqTrackChild::onStopSeq() { mTaskEntryMgr.removeAllEntry(); }
 } // namespace PSSystem

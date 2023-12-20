@@ -8,11 +8,10 @@
 
 namespace Game {
 
-/*
+/**
  * __ct
- * --INFO--
- * Address:	80165088
- * Size:	000034
+ * @note Address: 0x80165088
+ * @note Size: 0x34
  */
 NaviWhistle::NaviWhistle(Game::Navi* navi)
     : mNavi(navi)
@@ -20,10 +19,9 @@ NaviWhistle::NaviWhistle(Game::Navi* navi)
 	init();
 }
 
-/*
- * --INFO--
- * Address:	801650BC
- * Size:	000128
+/**
+ * @note Address: 0x801650BC
+ * @note Size: 0x128
  * TODO: Needs NaviParms
  */
 void NaviWhistle::init()
@@ -40,10 +38,9 @@ void NaviWhistle::init()
 	updatePosition();
 }
 
-/*
- * --INFO--
- * Address:	801651E4
- * Size:	000190
+/**
+ * @note Address: 0x801651E4
+ * @note Size: 0x190
  */
 void NaviWhistle::updatePosition()
 {
@@ -73,10 +70,9 @@ void NaviWhistle::updatePosition()
 	mPosition   = mPosition + mNormal;
 }
 
-/*
- * --INFO--
- * Address:	80165374
- * Size:	000078
+/**
+ * @note Address: 0x80165374
+ * @note Size: 0x78
  */
 void NaviWhistle::start()
 {
@@ -98,10 +94,9 @@ void NaviWhistle::start()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801653EC
- * Size:	000034
+/**
+ * @note Address: 0x801653EC
+ * @note Size: 0x34
  */
 
 void NaviWhistle::stop()
@@ -120,17 +115,15 @@ void NaviWhistle::stop()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80165420
- * Size:	000010
+/**
+ * @note Address: 0x80165420
+ * @note Size: 0x10
  */
 bool NaviWhistle::timeout() { return mState == Whistle_Inactive; }
 
-/*
- * --INFO--
- * Address:	80165430
- * Size:	0000F4
+/**
+ * @note Address: 0x80165430
+ * @note Size: 0xF4
  */
 void NaviWhistle::setFaceDir(f32 dir)
 {
@@ -139,10 +132,9 @@ void NaviWhistle::setFaceDir(f32 dir)
 	mNaviOffsetVec = Vector3f(dist * sinf(dir), 0.0f, dist * cosf(dir));
 }
 
-/*
- * --INFO--
- * Address:	80165524
- * Size:	0001F4
+/**
+ * @note Address: 0x80165524
+ * @note Size: 0x1F4
  */
 void NaviWhistle::updateWhistle()
 {
@@ -341,10 +333,9 @@ lbl_80165704:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80165718
- * Size:	0001D4
+/**
+ * @note Address: 0x80165718
+ * @note Size: 0x1D4
  */
 void NaviWhistle::update(Vector3f& stick, bool active)
 {

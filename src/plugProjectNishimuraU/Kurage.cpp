@@ -7,10 +7,9 @@
 namespace Game {
 namespace Kurage {
 
-/*
- * --INFO--
- * Address:	802AD6F0
- * Size:	000138
+/**
+ * @note Address: 0x802AD6F0
+ * @note Size: 0x138
  */
 Obj::Obj()
 {
@@ -19,17 +18,15 @@ Obj::Obj()
 	createEffect();
 }
 
-/*
- * --INFO--
- * Address:	802AD828
- * Size:	000004
+/**
+ * @note Address: 0x802AD828
+ * @note Size: 0x4
  */
 void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
-/*
- * --INFO--
- * Address:	802AD82C
- * Size:	0000A8
+/**
+ * @note Address: 0x802AD82C
+ * @note Size: 0xA8
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
@@ -50,10 +47,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mFsm->start(this, KURAGE_Wait, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802AD8D4
- * Size:	000054
+/**
+ * @note Address: 0x802AD8D4
+ * @note Size: 0x54
  */
 void Obj::onKill(CreatureKillArg* killArg)
 {
@@ -63,10 +59,9 @@ void Obj::onKill(CreatureKillArg* killArg)
 	EnemyBase::onKill(killArg);
 }
 
-/*
- * --INFO--
- * Address:	802AD928
- * Size:	000100
+/**
+ * @note Address: 0x802AD928
+ * @note Size: 0x100
  */
 void Obj::doUpdate()
 {
@@ -84,24 +79,21 @@ void Obj::doUpdate()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802ADA28
- * Size:	000004
+/**
+ * @note Address: 0x802ADA28
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	802ADA2C
- * Size:	000020
+/**
+ * @note Address: 0x802ADA2C
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	802ADA4C
- * Size:	00004C
+/**
+ * @note Address: 0x802ADA4C
+ * @note Size: 0x4C
  */
 void Obj::setFSM(FSM* fsm)
 {
@@ -110,10 +102,9 @@ void Obj::setFSM(FSM* fsm)
 	mCurrentLifecycleState = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	802ADA98
- * Size:	000118
+/**
+ * @note Address: 0x802ADA98
+ * @note Size: 0x118
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
@@ -139,10 +130,9 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 	shadowParam.mSize = 15.0f;
 }
 
-/*
- * --INFO--
- * Address:	802ADBB0
- * Size:	000038
+/**
+ * @note Address: 0x802ADBB0
+ * @note Size: 0x38
  */
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* part)
 {
@@ -154,10 +144,9 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* part)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802ADBE8
- * Size:	000044
+/**
+ * @note Address: 0x802ADBE8
+ * @note Size: 0x44
  */
 void Obj::doStartStoneState()
 {
@@ -167,10 +156,9 @@ void Obj::doStartStoneState()
 	finishSuckEffect();
 }
 
-/*
- * --INFO--
- * Address:	802ADC2C
- * Size:	00007C
+/**
+ * @note Address: 0x802ADC2C
+ * @note Size: 0x7C
  */
 void Obj::doFinishStoneState()
 {
@@ -184,10 +172,9 @@ void Obj::doFinishStoneState()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802ADCA8
- * Size:	000034
+/**
+ * @note Address: 0x802ADCA8
+ * @note Size: 0x34
  */
 void Obj::doStartWaitingBirthTypeDrop()
 {
@@ -195,10 +182,9 @@ void Obj::doStartWaitingBirthTypeDrop()
 	effectDrawOff();
 }
 
-/*
- * --INFO--
- * Address:	802ADCDC
- * Size:	000034
+/**
+ * @note Address: 0x802ADCDC
+ * @note Size: 0x34
  */
 void Obj::doFinishWaitingBirthTypeDrop()
 {
@@ -206,24 +192,21 @@ void Obj::doFinishWaitingBirthTypeDrop()
 	effectDrawOn();
 }
 
-/*
- * --INFO--
- * Address:	802ADD10
- * Size:	000020
+/**
+ * @note Address: 0x802ADD10
+ * @note Size: 0x20
  */
 void Obj::doStartMovie() { effectDrawOff(); }
 
-/*
- * --INFO--
- * Address:	802ADD30
- * Size:	000020
+/**
+ * @note Address: 0x802ADD30
+ * @note Size: 0x20
  */
 void Obj::doEndMovie() { effectDrawOn(); }
 
-/*
- * --INFO--
- * Address:	802ADD50
- * Size:	000098
+/**
+ * @note Address: 0x802ADD50
+ * @note Size: 0x98
  */
 f32 Obj::setHeightVelocity(f32 yOffset, f32 speedFactor)
 {
@@ -235,10 +218,9 @@ f32 Obj::setHeightVelocity(f32 yOffset, f32 speedFactor)
 	return mPosition.y - minY;
 }
 
-/*
- * --INFO--
- * Address:	802ADDE8
- * Size:	0001D8
+/**
+ * @note Address: 0x802ADDE8
+ * @note Size: 0x1D8
  */
 void Obj::setRandTarget()
 {
@@ -253,10 +235,9 @@ void Obj::setRandTarget()
 	mTargetPosition = Vector3f(randRadius * sinf(theta) + homePos.x, homePos.y, randRadius * cosf(theta) + homePos.z);
 }
 
-/*
- * --INFO--
- * Address:	802ADFC0
- * Size:	0000A4
+/**
+ * @note Address: 0x802ADFC0
+ * @note Size: 0xA4
  */
 f32 Obj::getMovePitchOffset()
 {
@@ -269,10 +250,9 @@ f32 Obj::getMovePitchOffset()
 	return 50.0f * sinf(_2C8);
 }
 
-/*
- * --INFO--
- * Address:	802AE064
- * Size:	0001A8
+/**
+ * @note Address: 0x802AE064
+ * @note Size: 0x1A8
  */
 f32 Obj::getAttackPitchOffset()
 {
@@ -298,10 +278,9 @@ f32 Obj::getAttackPitchOffset()
 	return attackOffset;
 }
 
-/*
- * --INFO--
- * Address:	802AE20C
- * Size:	0001A8
+/**
+ * @note Address: 0x802AE20C
+ * @note Size: 0x1A8
  */
 f32 Obj::getFlickPitchOffset()
 {
@@ -327,10 +306,9 @@ f32 Obj::getFlickPitchOffset()
 	return flickOffset;
 }
 
-/*
- * --INFO--
- * Address:	802AE3B4
- * Size:	000144
+/**
+ * @note Address: 0x802AE3B4
+ * @note Size: 0x144
  */
 f32 Obj::getTakeOffPitchOffset()
 {
@@ -356,10 +334,9 @@ f32 Obj::getTakeOffPitchOffset()
 	return takeOffOffset;
 }
 
-/*
- * --INFO--
- * Address:	802AE4F8
- * Size:	000168
+/**
+ * @note Address: 0x802AE4F8
+ * @note Size: 0x168
  */
 f32 Obj::getFallPitchOffset(f32 currFrame)
 {
@@ -384,10 +361,9 @@ f32 Obj::getFallPitchOffset(f32 currFrame)
 	return fallOffset;
 }
 
-/*
- * --INFO--
- * Address:	802AE660
- * Size:	000030
+/**
+ * @note Address: 0x802AE660
+ * @note Size: 0x30
  */
 void Obj::updateFallTimer()
 {
@@ -399,10 +375,9 @@ void Obj::updateFallTimer()
 	mFallTimer = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	802AE690
- * Size:	0000A4
+/**
+ * @note Address: 0x802AE690
+ * @note Size: 0xA4
  */
 StateID Obj::getFlyingNextState()
 {
@@ -425,10 +400,9 @@ StateID Obj::getFlyingNextState()
 	return KURAGE_NULL;
 }
 
-/*
- * --INFO--
- * Address:	802AE734
- * Size:	000448
+/**
+ * @note Address: 0x802AE734
+ * @note Size: 0x448
  */
 Creature* Obj::getSearchedTarget(f32 offset)
 {
@@ -469,10 +443,9 @@ Creature* Obj::getSearchedTarget(f32 offset)
 	return target;
 }
 
-/*
- * --INFO--
- * Address:	802AEB7C
- * Size:	00033C
+/**
+ * @note Address: 0x802AEB7C
+ * @note Size: 0x33C
  */
 bool Obj::isSuck(f32 offset, Creature* target)
 {
@@ -505,10 +478,9 @@ bool Obj::isSuck(f32 offset, Creature* target)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802AEEB8
- * Size:	000434
+/**
+ * @note Address: 0x802AEEB8
+ * @note Size: 0x434
  */
 bool Obj::suckPikmin(f32 offset)
 {
@@ -541,10 +513,9 @@ bool Obj::suckPikmin(f32 offset)
 	return mSuckedPiki >= C_PROPERPARMS.mMaxSuckPiki.mValue;
 }
 
-/*
- * --INFO--
- * Address:	802AF2EC
- * Size:	0002B4
+/**
+ * @note Address: 0x802AF2EC
+ * @note Size: 0x2B4
  */
 void Obj::createEffect()
 {
@@ -556,10 +527,9 @@ void Obj::createEffect()
 	mEfxDeadrun = new efx::TNewkurageDeadrun();
 }
 
-/*
- * --INFO--
- * Address:	802AF5A0
- * Size:	00008C
+/**
+ * @note Address: 0x802AF5A0
+ * @note Size: 0x8C
  */
 void Obj::setupEffect()
 {
@@ -569,10 +539,9 @@ void Obj::setupEffect()
 	mEfxDeadrun->mMtx = mModel->getJoint("center")->getWorldMatrix();
 }
 
-/*
- * --INFO--
- * Address:	802AF62C
- * Size:	000088
+/**
+ * @note Address: 0x802AF62C
+ * @note Size: 0x88
  */
 void Obj::startEyeHireBodyEffect()
 {
@@ -582,10 +551,9 @@ void Obj::startEyeHireBodyEffect()
 	mEfxKira->create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802AF6B4
- * Size:	00007C
+/**
+ * @note Address: 0x802AF6B4
+ * @note Size: 0x7C
  */
 void Obj::finishEyeBodyEffect()
 {
@@ -596,17 +564,15 @@ void Obj::finishEyeBodyEffect()
 	mEfxDeadrun->create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802AF730
- * Size:	000024
+/**
+ * @note Address: 0x802AF730
+ * @note Size: 0x24
  */
 void Obj::setHireEffectLife(s16 lifeTime) { mEfxHire->setLifeTime(lifeTime); }
 
-/*
- * --INFO--
- * Address:	802AF754
- * Size:	000050
+/**
+ * @note Address: 0x802AF754
+ * @note Size: 0x50
  */
 void Obj::finishHireEffect()
 {
@@ -614,10 +580,9 @@ void Obj::finishHireEffect()
 	mEfxDeadrun->fade();
 }
 
-/*
- * --INFO--
- * Address:	802AF7A4
- * Size:	000058
+/**
+ * @note Address: 0x802AF7A4
+ * @note Size: 0x58
  */
 void Obj::startSuckEffect(Vector3f& pos)
 {
@@ -625,24 +590,21 @@ void Obj::startSuckEffect(Vector3f& pos)
 	mEfxSui->create(&fxArg);
 }
 
-/*
- * --INFO--
- * Address:	802AF7FC
- * Size:	000024
+/**
+ * @note Address: 0x802AF7FC
+ * @note Size: 0x24
  */
 void Obj::updateSuckEffect(Vector3f& pos) { mEfxSui->setGlobalTranslation(pos); }
 
-/*
- * --INFO--
- * Address:	802AF820
- * Size:	000030
+/**
+ * @note Address: 0x802AF820
+ * @note Size: 0x30
  */
 void Obj::finishSuckEffect() { mEfxSui->fade(); }
 
-/*
- * --INFO--
- * Address:	802AF850
- * Size:	00009C
+/**
+ * @note Address: 0x802AF850
+ * @note Size: 0x9C
  */
 void Obj::createBodyBombEffect()
 {
@@ -655,17 +617,15 @@ void Obj::createBodyBombEffect()
 	bombFX.create(&fxArg);
 }
 
-/*
- * --INFO--
- * Address:	802AF8EC
- * Size:	000044
+/**
+ * @note Address: 0x802AF8EC
+ * @note Size: 0x44
  */
 void Obj::createDownEffect() { createBounceEffect(mPosition, getDownSmokeScale()); }
 
-/*
- * --INFO--
- * Address:	802AF938
- * Size:	0000A0
+/**
+ * @note Address: 0x802AF938
+ * @note Size: 0xA0
  */
 void Obj::effectDrawOn()
 {
@@ -677,10 +637,9 @@ void Obj::effectDrawOn()
 	mEfxDeadrun->endDemoDrawOn();
 }
 
-/*
- * --INFO--
- * Address:	802AF9D8
- * Size:	0000A0
+/**
+ * @note Address: 0x802AF9D8
+ * @note Size: 0xA0
  */
 void Obj::effectDrawOff()
 {

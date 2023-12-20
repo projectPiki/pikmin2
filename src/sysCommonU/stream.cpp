@@ -2,10 +2,9 @@
 #include "stream.h"
 #include "string.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 bool Stream::isSpace(char currByte)
 {
@@ -14,10 +13,9 @@ bool Stream::isSpace(char currByte)
 	        || (currByte == '}'));
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000EC
+/**
+ * @note Address: N/A
+ * @note Size: 0xEC
  */
 // INLINE
 char Stream::skipSpace()
@@ -54,17 +52,15 @@ char Stream::skipSpace()
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	80413DEC
- * Size:	000008
+/**
+ * @note Address: 0x80413DEC
+ * @note Size: 0x8
  */
 bool Stream::eof() { return false; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000214
+/**
+ * @note Address: N/A
+ * @note Size: 0x214
  */
 // INLINE
 inline void Stream::copyToTextBuffer()
@@ -108,10 +104,9 @@ inline void Stream::copyToTextBuffer()
 	JUT_PANICLINE(98, "Reached EOF\n");
 }
 
-/*
- * --INFO--
- * Address:	80413DF4
- * Size:	000228
+/**
+ * @note Address: 0x80413DF4
+ * @note Size: 0x228
  */
 char* Stream::getNextToken()
 {
@@ -133,10 +128,9 @@ char* Stream::getNextToken()
 	return mBuffer;
 }
 
-/*
- * --INFO--
- * Address:	8041401C
- * Size:	000084
+/**
+ * @note Address: 0x8041401C
+ * @note Size: 0x84
  */
 void Stream::textBeginGroup(char* groupName)
 {
@@ -150,10 +144,9 @@ void Stream::textBeginGroup(char* groupName)
 	}
 }
 
-/*
- * --INFO--
- * Address:	804140A0
- * Size:	000058
+/**
+ * @note Address: 0x804140A0
+ * @note Size: 0x58
  */
 void Stream::textEndGroup()
 {
@@ -165,10 +158,9 @@ void Stream::textEndGroup()
 	}
 }
 
-/*
- * --INFO--
- * Address:	804140F8
- * Size:	0000E4
+/**
+ * @note Address: 0x804140F8
+ * @note Size: 0xE4
  */
 void Stream::printf(char* format, ...)
 {
@@ -191,10 +183,9 @@ void Stream::printf(char* format, ...)
 	}
 }
 
-/*
- * --INFO--
- * Address:	804141DC
- * Size:	0000EC
+/**
+ * @note Address: 0x804141DC
+ * @note Size: 0xEC
  */
 void Stream::textWriteText(char* format, ...)
 {
@@ -219,30 +210,27 @@ void Stream::textWriteText(char* format, ...)
 	}
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000070
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x70
 //  */
 // void Stream::writePadding(u32)
 // {
 // 	// UNUSED FUNCTION - in stream.h header
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  */
 // void Stream::skipPadding(u32)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	804142C8
- * Size:	0000C4
+/**
+ * @note Address: 0x804142C8
+ * @note Size: 0xC4
  */
 void Stream::skipReading(u32 len)
 {
@@ -271,10 +259,9 @@ void Stream::skipReading(u32 len)
 	return;
 }
 
-/*
- * --INFO--
- * Address:	8041438C
- * Size:	0000A8
+/**
+ * @note Address: 0x8041438C
+ * @note Size: 0xA8
  */
 void Stream::skipReadingText()
 {
@@ -306,30 +293,27 @@ void Stream::skipReadingText()
 	return;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
+/**
+ * @note Address: N/A
+ * @note Size: 0x50
  */
 // void Stream::_read(void*, int)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
+/**
+ * @note Address: N/A
+ * @note Size: 0x50
  */
 // void Stream::_write(void*, int)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	80414434
- * Size:	000068
+/**
+ * @note Address: 0x80414434
+ * @note Size: 0x68
  */
 void Stream::textWriteTab(int tabCount)
 {
@@ -340,10 +324,9 @@ void Stream::textWriteTab(int tabCount)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8041449C
- * Size:	000278
+/**
+ * @note Address: 0x8041449C
+ * @note Size: 0x278
  */
 u8 Stream::readByte()
 {
@@ -373,10 +356,9 @@ u8 Stream::readByte()
 	return _readByte();
 }
 
-/*
- * --INFO--
- * Address:	80414714
- * Size:	000050
+/**
+ * @note Address: 0x80414714
+ * @note Size: 0x50
  */
 u8 Stream::_readByte()
 {
@@ -389,10 +371,9 @@ u8 Stream::_readByte()
 	return currByte;
 }
 
-/*
- * --INFO--
- * Address:	80414764
- * Size:	00032C
+/**
+ * @note Address: 0x80414764
+ * @note Size: 0x32C
  */
 short Stream::readShort()
 {
@@ -431,10 +412,9 @@ short Stream::readShort()
 	return outVal;
 }
 
-/*
- * --INFO--
- * Address:	80414A90
- * Size:	00031C
+/**
+ * @note Address: 0x80414A90
+ * @note Size: 0x31C
  */
 int Stream::readInt()
 {
@@ -475,10 +455,9 @@ int Stream::readInt()
 	return outVal;
 }
 
-/*
- * --INFO--
- * Address:	80414DAC
- * Size:	000328
+/**
+ * @note Address: 0x80414DAC
+ * @note Size: 0x328
  */
 float Stream::readFloat()
 {
@@ -520,10 +499,9 @@ float Stream::readFloat()
 	return outFloat;
 }
 
-/*
- * --INFO--
- * Address:	804150D4
- * Size:	0004F8
+/**
+ * @note Address: 0x804150D4
+ * @note Size: 0x4F8
  */
 // only final for loop not matching
 char* Stream::readString(char* str, int strLength)
@@ -586,10 +564,9 @@ char* Stream::readString(char* str, int strLength)
 	return outStr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00064C
+/**
+ * @note Address: N/A
+ * @note Size: 0x64C
  */
 // void Stream::readFixedString()
 // {
@@ -598,10 +575,9 @@ char* Stream::readString(char* str, int strLength)
 
 const char UNUSED_readFixedString[] = "can not use readFixedString in text mode\n";
 
-/*
- * --INFO--
- * Address:	804155CC
- * Size:	0000A4
+/**
+ * @note Address: 0x804155CC
+ * @note Size: 0xA4
  */
 void Stream::writeString(char* inputStr)
 {
@@ -624,10 +600,9 @@ void Stream::writeString(char* inputStr)
 	_writeByte(0);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000BC
+/**
+ * @note Address: N/A
+ * @note Size: 0xBC
  */
 // void Stream::writeFixedString(char*)
 // {
@@ -636,10 +611,9 @@ void Stream::writeString(char* inputStr)
 
 const char UNUSED_writeFixedString[] = "can not use writeFixedString in text mode\n";
 
-/*
- * --INFO--
- * Address:	80415670
- * Size:	000070
+/**
+ * @note Address: 0x80415670
+ * @note Size: 0x70
  */
 void Stream::writeByte(u8 c)
 {
@@ -654,10 +628,9 @@ void Stream::writeByte(u8 c)
 	}
 }
 
-/*
- * --INFO--
- * Address:	804156E0
- * Size:	000050
+/**
+ * @note Address: 0x804156E0
+ * @note Size: 0x50
  */
 void Stream::_writeByte(u8 c)
 {
@@ -668,10 +641,9 @@ void Stream::_writeByte(u8 c)
 	mPosition++;
 }
 
-/*
- * --INFO--
- * Address:	80415730
- * Size:	000090
+/**
+ * @note Address: 0x80415730
+ * @note Size: 0x90
  */
 void Stream::writeShort(short inputShort)
 {
@@ -696,10 +668,9 @@ void Stream::writeShort(short inputShort)
 	mPosition += 2;
 }
 
-/*
- * --INFO--
- * Address:	804157C0
- * Size:	000088
+/**
+ * @note Address: 0x804157C0
+ * @note Size: 0x88
  */
 void Stream::writeInt(int inputInt)
 {
@@ -727,10 +698,9 @@ void Stream::writeInt(int inputInt)
 	mPosition += 4;
 }
 
-/*
- * --INFO--
- * Address:	80415848
- * Size:	0000B0
+/**
+ * @note Address: 0x80415848
+ * @note Size: 0xB0
  */
 void Stream::writeFloat(float inputFloat)
 {
@@ -763,10 +733,9 @@ void Stream::writeFloat(float inputFloat)
 	mPosition += 4;
 }
 
-/*
- * --INFO--
- * Address:	804158F8
- * Size:	000050
+/**
+ * @note Address: 0x804158F8
+ * @note Size: 0x50
  */
 RamStream::RamStream(void* RamBufferPtr, int bounds)
 {
@@ -775,20 +744,18 @@ RamStream::RamStream(void* RamBufferPtr, int bounds)
 	mPosition       = 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 // void RamStream::set(u8*, int)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	80415948
- * Size:	000094
+/**
+ * @note Address: 0x80415948
+ * @note Size: 0x94
  */
 void RamStream::read(void* destMem, int numBytes)
 {
@@ -799,10 +766,9 @@ void RamStream::read(void* destMem, int numBytes)
 	memcpy(destMem, ((u8*)mRamBufferStart) + mPosition, numBytes);
 }
 
-/*
- * --INFO--
- * Address:	804159DC
- * Size:	000094
+/**
+ * @note Address: 0x804159DC
+ * @note Size: 0x94
  */
 
 void RamStream::write(void* srcMem, int numBytes)
@@ -814,10 +780,9 @@ void RamStream::write(void* srcMem, int numBytes)
 	memcpy(((u8*)mRamBufferStart) + mPosition, srcMem, numBytes);
 }
 
-/*
- * --INFO--
- * Address:	80415A70
- * Size:	00002C
+/**
+ * @note Address: 0x80415A70
+ * @note Size: 0x2C
  */
 bool RamStream::eof()
 {
@@ -828,9 +793,8 @@ bool RamStream::eof()
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	80415A9C
- * Size:	000008
+/**
+ * @note Address: 0x80415A9C
+ * @note Size: 0x8
  */
 u32 Stream::getPending() { return 0; }

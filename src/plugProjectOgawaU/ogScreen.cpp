@@ -21,17 +21,15 @@ void _Print(char* format, ...)
 	vprintf(buffer, args);
 }
 
-/*
- * --INFO--
- * Address:	80301EB8
- * Size:	000008
+/**
+ * @note Address: 0x80301EB8
+ * @note Size: 0x8
  */
 void ArrowAlphaBlink::setSpeed(f32 speed) { mSpeed = speed; }
 
-/*
- * --INFO--
- * Address:	80301EC0
- * Size:	0000C0
+/**
+ * @note Address: 0x80301EC0
+ * @note Size: 0xC0
  */
 f32 ArrowAlphaBlink::calc()
 {
@@ -46,10 +44,9 @@ f32 ArrowAlphaBlink::calc()
 	return (factor / 2) + mStart;
 }
 
-/*
- * --INFO--
- * Address:	80301F80
- * Size:	00021C
+/**
+ * @note Address: 0x80301F80
+ * @note Size: 0x21C
  */
 PictureTreeColorCaptureInfo* capturePictureTreeColor(J2DPane* picture, int count)
 {
@@ -91,10 +88,9 @@ PictureTreeColorCaptureInfo* capturePictureTreeColor(J2DPane* picture, int count
 	return captureInfo;
 }
 
-/*
- * --INFO--
- * Address:	803021D8
- * Size:	000154
+/**
+ * @note Address: 0x803021D8
+ * @note Size: 0x154
  */
 void blendColor(JUtility::TColor& color1, JUtility::TColor& color2, f32 blendFactor, JUtility::TColor* outColor)
 {
@@ -116,10 +112,9 @@ void blendColor(JUtility::TColor& color1, JUtility::TColor& color2, f32 blendFac
 	outColor->set(store.r, store.g, store.b, store.a);
 }
 
-/*
- * --INFO--
- * Address:	8030232C
- * Size:	000370
+/**
+ * @note Address: 0x8030232C
+ * @note Size: 0x370
  */
 void blendPictureTreeColor(PictureTreeColorCaptureInfo* captureInfo, JUtility::TColor& color1, JUtility::TColor& color2, f32 blendFactor)
 {
@@ -141,10 +136,9 @@ void blendPictureTreeColor(PictureTreeColorCaptureInfo* captureInfo, JUtility::T
 	}
 }
 
-/*
- * --INFO--
- * Address:	8030269C
- * Size:	0000C8
+/**
+ * @note Address: 0x8030269C
+ * @note Size: 0xC8
  */
 f32 calcSmooth0to1(f32 start, f32 end)
 {
@@ -165,10 +159,9 @@ f32 calcSmooth0to1(f32 start, f32 end)
 	return (0.19999999f * sinf(theta)) + 0.8f;
 }
 
-/*
- * --INFO--
- * Address:	80302764
- * Size:	0000B0
+/**
+ * @note Address: 0x80302764
+ * @note Size: 0xB0
  */
 void calcGlbCenter(J2DPane* pane, Vector2f* center)
 {
@@ -178,10 +171,9 @@ void calcGlbCenter(J2DPane* pane, Vector2f* center)
 	center->y     = (vec1.y + vec2.y) / 2;
 }
 
-/*
- * --INFO--
- * Address:	80302814
- * Size:	00010C
+/**
+ * @note Address: 0x80302814
+ * @note Size: 0x10C
  */
 u64 maskTag2(u64 tag, u16 num)
 {
@@ -201,10 +193,9 @@ u64 maskTag2(u64 tag, u16 num)
 	return maskedTag;
 }
 
-/*
- * --INFO--
- * Address:	80302920
- * Size:	0000A0
+/**
+ * @note Address: 0x80302920
+ * @note Size: 0xA0
  */
 u64 maskTag(u64 tag, u16 num, u16 mask)
 {
@@ -231,10 +222,9 @@ const char* PikiIconTextureName[]
 	    "yp_l64.bti",      "yp_b64.bti", "yp_f64.bti", "blp_l64.bti", "blp_b64.bti", "blp_f64.bti", "wp_l64.bti",
 	    "wp_b64.bti",      "wp_f64.bti", "cha_l.bti",  "cha_b.bti",   "cha_f.bti" };
 
-/*
- * --INFO--
- * Address:	803029C0
- * Size:	0000B4
+/**
+ * @note Address: 0x803029C0
+ * @note Size: 0xB4
  */
 u16 CalcKeta(u32 x)
 {
@@ -250,10 +240,9 @@ u16 CalcKeta(u32 x)
 	return keta;
 }
 
-/*
- * --INFO--
- * Address:	80302A74
- * Size:	000158
+/**
+ * @note Address: 0x80302A74
+ * @note Size: 0x158
  */
 u64 MojiToNum(u64 moji, int length)
 {
@@ -281,10 +270,9 @@ u64 MojiToNum(u64 moji, int length)
 	return num;
 }
 
-/*
- * --INFO--
- * Address:	80302BCC
- * Size:	000158
+/**
+ * @note Address: 0x80302BCC
+ * @note Size: 0x158
  */
 void TagToName(u64 tag, char* name)
 {
@@ -305,10 +293,9 @@ void TagToName(u64 tag, char* name)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80302D24
- * Size:	0000F4
+/**
+ * @note Address: 0x80302D24
+ * @note Size: 0xF4
  */
 u64 CharCodeToTag(char* code)
 {
@@ -324,10 +311,9 @@ u64 CharCodeToTag(char* code)
 	return tag;
 }
 
-/*
- * --INFO--
- * Address:	80302E18
- * Size:	000094
+/**
+ * @note Address: 0x80302E18
+ * @note Size: 0x94
  */
 void TagToHex(u64 tag, char* hex)
 {
@@ -342,10 +328,9 @@ void TagToHex(u64 tag, char* hex)
 	hex[16] = 0;
 }
 
-/*
- * --INFO--
- * Address:	80302EAC
- * Size:	00018C
+/**
+ * @note Address: 0x80302EAC
+ * @note Size: 0x18C
  */
 J2DPane* TagSearch(J2DScreen* screen, u64 tag)
 {
@@ -360,10 +345,9 @@ J2DPane* TagSearch(J2DScreen* screen, u64 tag)
 	return searchPane;
 }
 
-/*
- * --INFO--
- * Address:	80303038
- * Size:	000028
+/**
+ * @note Address: 0x80303038
+ * @note Size: 0x28
  */
 AlphaMgr::AlphaMgr()
 {
@@ -375,10 +359,9 @@ AlphaMgr::AlphaMgr()
 	mAlphaMax      = 1.0f;
 }
 
-/*
- * --INFO--
- * Address:	80303060
- * Size:	00000C
+/**
+ * @note Address: 0x80303060
+ * @note Size: 0xC
  */
 void AlphaMgr::setBlinkArea(f32 min, f32 max)
 {
@@ -386,10 +369,9 @@ void AlphaMgr::setBlinkArea(f32 min, f32 max)
 	mAlphaMax = max;
 }
 
-/*
- * --INFO--
- * Address:	8030306C
- * Size:	000064
+/**
+ * @note Address: 0x8030306C
+ * @note Size: 0x64
  */
 void AlphaMgr::in(f32 end)
 {
@@ -409,10 +391,9 @@ void AlphaMgr::in(f32 end)
 	mGrowRate  = (1.0f - mCurrAlpha) / (end / sys->mDeltaTime);
 }
 
-/*
- * --INFO--
- * Address:	803030D0
- * Size:	000064
+/**
+ * @note Address: 0x803030D0
+ * @note Size: 0x64
  */
 void AlphaMgr::out(f32 end)
 {
@@ -433,10 +414,9 @@ void AlphaMgr::out(f32 end)
 	mGrowRate = -mCurrAlpha / (end / sys->mDeltaTime);
 }
 
-/*
- * --INFO--
- * Address:	80303134
- * Size:	000050
+/**
+ * @note Address: 0x80303134
+ * @note Size: 0x50
  */
 void AlphaMgr::blink(f32 end)
 {
@@ -451,10 +431,9 @@ void AlphaMgr::blink(f32 end)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80303184
- * Size:	000190
+/**
+ * @note Address: 0x80303184
+ * @note Size: 0x190
  */
 u8 AlphaMgr::calc()
 {
@@ -509,10 +488,9 @@ u8 AlphaMgr::calc()
 	return 255.0f * mCurrAlpha;
 }
 
-/*
- * --INFO--
- * Address:	80303314
- * Size:	0001D4
+/**
+ * @note Address: 0x80303314
+ * @note Size: 0x1D4
  */
 void setAlphaScreen(J2DPane* pane)
 {
@@ -534,9 +512,8 @@ void setAlphaScreen(J2DPane* pane)
 /**
  * NOTE: SHOULD BE WEAK BUT REFUSES TO GENERATE OTHERWISE
  *
- * --INFO--
- * Address:	803034fc
- * Size:	000010
+ * @note Address: 0x803034fc
+ * @note Size: 0x10
  */
 u64 J2DPane::getTagName() const { return mTag; }
 

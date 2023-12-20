@@ -8,10 +8,9 @@ namespace {
 static const char* cKoganeChangeTexName = "/enemy/data/Fart/babakogane_s3tc.bti";
 } // namespace
 
-/*
- * --INFO--
- * Address:	802850F0
- * Size:	000050
+/**
+ * @note Address: 0x802850F0
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : Kogane::Mgr(objLimit, modelType)
@@ -19,31 +18,27 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "ババコガネマネージャ"; // baba kogane manager
 }
 
-/*
- * --INFO--
- * Address:	80285140
- * Size:	000048
+/**
+ * @note Address: 0x80285140
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Kogane::Parms); }
 
-/*
- * --INFO--
- * Address:	80285188
- * Size:	000060
+/**
+ * @note Address: 0x80285188
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	802852D8
- * Size:	000010
+/**
+ * @note Address: 0x802852D8
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
-/*
- * --INFO--
- * Address:	802852E8
- * Size:	000080
+/**
+ * @note Address: 0x802852E8
+ * @note Size: 0x80
  */
 void Mgr::loadTexData()
 {

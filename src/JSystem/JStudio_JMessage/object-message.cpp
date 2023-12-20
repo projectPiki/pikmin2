@@ -2,10 +2,9 @@
 #include "JSystem/JStudio_JMessage.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	80014D24
- * Size:	000038
+/**
+ * @note Address: 0x80014D24
+ * @note Size: 0x38
  */
 JStudio_JMessage::TAdaptor_message::TAdaptor_message(JMessage::TControl* control)
     : JStudio::TAdaptor_message()
@@ -13,18 +12,16 @@ JStudio_JMessage::TAdaptor_message::TAdaptor_message(JMessage::TControl* control
 {
 }
 
-/*
- * --INFO--
- * Address:	80014D5C
- * Size:	000060
+/**
+ * @note Address: 0x80014D5C
+ * @note Size: 0x60
  * __dt__
  */
 JStudio_JMessage::TAdaptor_message::~TAdaptor_message() { }
 
-/*
- * --INFO--
- * Address:	80014DBC
- * Size:	00003C
+/**
+ * @note Address: 0x80014DBC
+ * @note Size: 0x3C
  * TODO: Cleanup these strange casts, if possible.
  */
 void JStudio_JMessage::TAdaptor_message::adaptor_do_MESSAGE(JStudio::data::TEOperationData operation, const void* p2, u32 p3)

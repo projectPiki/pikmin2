@@ -9,10 +9,9 @@ const f32 cTubeShadowRadius[9]   = { 7.5f, 7.5f, 20.0f, 27.5f, 22.5f, 15.0f, 9.0
 } // namespace
 } // namespace SnakeWhole
 
-/*
- * --INFO--
- * Address:	802F89AC
- * Size:	00022C
+/**
+ * @note Address: 0x802F89AC
+ * @note Size: 0x22C
  */
 void SnakeWholeTubeShadowNode::makeShadowSRT(JointShadowParm& parm, Vector3f& pos1, Vector3f& pos2)
 {
@@ -193,10 +192,9 @@ void SnakeWholeTubeShadowNode::makeShadowSRT(JointShadowParm& parm, Vector3f& po
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802F8BD8
- * Size:	00012C
+/**
+ * @note Address: 0x802F8BD8
+ * @note Size: 0x12C
  */
 void SnakeWholeSphereShadowNode::makeShadowSRT(JointShadowParm& parm, Vector3f& pos)
 {
@@ -225,10 +223,9 @@ void SnakeWholeSphereShadowNode::makeShadowSRT(JointShadowParm& parm, Vector3f& 
 }
 
 namespace SnakeWhole {
-/*
- * --INFO--
- * Address:	802F8D04
- * Size:	0000EC
+/**
+ * @note Address: 0x802F8D04
+ * @note Size: 0xEC
  */
 SnakeWholeShadowMgr::SnakeWholeShadowMgr(Obj* owner)
 {
@@ -244,10 +241,9 @@ SnakeWholeShadowMgr::SnakeWholeShadowMgr(Obj* owner)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802F8DF0
- * Size:	0000C8
+/**
+ * @note Address: 0x802F8DF0
+ * @note Size: 0xC8
  */
 void SnakeWholeShadowMgr::init()
 {
@@ -260,10 +256,9 @@ void SnakeWholeShadowMgr::init()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802F8EB8
- * Size:	000078
+/**
+ * @note Address: 0x802F8EB8
+ * @note Size: 0x78
  */
 void SnakeWholeShadowMgr::startJointShadow()
 {
@@ -275,10 +270,9 @@ void SnakeWholeShadowMgr::startJointShadow()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802F8F30
- * Size:	000064
+/**
+ * @note Address: 0x802F8F30
+ * @note Size: 0x64
  */
 void SnakeWholeShadowMgr::finishJointShadow()
 {
@@ -290,10 +284,9 @@ void SnakeWholeShadowMgr::finishJointShadow()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802F8F94
- * Size:	00025C
+/**
+ * @note Address: 0x802F8F94
+ * @note Size: 0x25C
  */
 void SnakeWholeShadowMgr::update()
 {

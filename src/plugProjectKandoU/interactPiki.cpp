@@ -27,10 +27,9 @@ static const int unusedInteractPikiArray[] = { 0, 0, 0 };
 
 static const char interactPikiName[] = "interactPiki";
 
-/*
- * --INFO--
- * Address:	80192C84
- * Size:	0000E4
+/**
+ * @note Address: 0x80192C84
+ * @note Size: 0xE4
  */
 bool InteractFueFuki::actPiki(Game::Piki* piki)
 {
@@ -48,10 +47,9 @@ bool InteractFueFuki::actPiki(Game::Piki* piki)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80192D68
- * Size:	000BD0
+/**
+ * @note Address: 0x80192D68
+ * @note Size: 0xBD0
  */
 
 inline bool vsFlute(Piki* piki, Navi* navi)
@@ -216,10 +214,9 @@ bool InteractFue::actPiki(Game::Piki* piki)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80193938
- * Size:	00015C
+/**
+ * @note Address: 0x80193938
+ * @note Size: 0x15C
  */
 bool InteractDope::actPiki(Game::Piki* piki)
 {
@@ -246,10 +243,9 @@ bool InteractDope::actPiki(Game::Piki* piki)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80193A94
- * Size:	000100
+/**
+ * @note Address: 0x80193A94
+ * @note Size: 0x100
  */
 bool InteractWind::actPiki(Game::Piki* piki)
 {
@@ -271,10 +267,9 @@ bool InteractWind::actPiki(Game::Piki* piki)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80193B94
- * Size:	000120
+/**
+ * @note Address: 0x80193B94
+ * @note Size: 0x120
  */
 bool InteractHanaChirashi::actPiki(Game::Piki* piki)
 {
@@ -299,10 +294,9 @@ bool InteractHanaChirashi::actPiki(Game::Piki* piki)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80193CB4
- * Size:	00015C
+/**
+ * @note Address: 0x80193CB4
+ * @note Size: 0x15C
  */
 bool InteractBomb::actPiki(Game::Piki* piki)
 {
@@ -330,10 +324,9 @@ bool InteractBomb::actPiki(Game::Piki* piki)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80193E10
- * Size:	000114
+/**
+ * @note Address: 0x80193E10
+ * @note Size: 0x114
  */
 bool InteractDenki::actPiki(Game::Piki* piki)
 {
@@ -357,10 +350,9 @@ bool InteractDenki::actPiki(Game::Piki* piki)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80193F24
- * Size:	0000A0
+/**
+ * @note Address: 0x80193F24
+ * @note Size: 0xA0
  */
 bool InteractFallMeck::actPiki(Game::Piki* piki)
 {
@@ -375,10 +367,9 @@ bool InteractFallMeck::actPiki(Game::Piki* piki)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80193FC4
- * Size:	000288
+/**
+ * @note Address: 0x80193FC4
+ * @note Size: 0x288
  */
 bool InteractBury::actPiki(Game::Piki* piki)
 {
@@ -418,10 +409,9 @@ bool InteractBury::actPiki(Game::Piki* piki)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8019424C
- * Size:	0000DC
+/**
+ * @note Address: 0x8019424C
+ * @note Size: 0xDC
  */
 bool InteractSuikomi_Test::actPiki(Game::Piki* piki)
 {
@@ -440,10 +430,9 @@ bool InteractSuikomi_Test::actPiki(Game::Piki* piki)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80194328
- * Size:	000118
+/**
+ * @note Address: 0x80194328
+ * @note Size: 0x118
  */
 bool InteractFire::actPiki(Game::Piki* piki)
 {
@@ -469,10 +458,9 @@ bool InteractFire::actPiki(Game::Piki* piki)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80194440
- * Size:	000134
+/**
+ * @note Address: 0x80194440
+ * @note Size: 0x134
  */
 bool InteractAstonish::actPiki(Game::Piki* piki)
 {
@@ -500,10 +488,9 @@ bool InteractAstonish::actPiki(Game::Piki* piki)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80194574
- * Size:	000118
+/**
+ * @note Address: 0x80194574
+ * @note Size: 0x118
  */
 bool InteractBubble::actPiki(Game::Piki* piki)
 {
@@ -529,10 +516,9 @@ bool InteractBubble::actPiki(Game::Piki* piki)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8019468C
- * Size:	00013C
+/**
+ * @note Address: 0x8019468C
+ * @note Size: 0x13C
  */
 bool InteractGas::actPiki(Game::Piki* piki)
 {
@@ -562,10 +548,9 @@ bool InteractGas::actPiki(Game::Piki* piki)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	801947C8
- * Size:	0000C0
+/**
+ * @note Address: 0x801947C8
+ * @note Size: 0xC0
  */
 bool InteractBattle::actPiki(Game::Piki* piki)
 {
@@ -578,10 +563,9 @@ bool InteractBattle::actPiki(Game::Piki* piki)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80194888
- * Size:	000120
+/**
+ * @note Address: 0x80194888
+ * @note Size: 0x120
  */
 bool InteractPress::actPiki(Game::Piki* piki)
 {
@@ -605,10 +589,9 @@ bool InteractPress::actPiki(Game::Piki* piki)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	801949A8
- * Size:	000260
+/**
+ * @note Address: 0x801949A8
+ * @note Size: 0x260
  */
 bool InteractFlick::actPiki(Game::Piki* piki)
 {
@@ -638,10 +621,9 @@ bool InteractFlick::actPiki(Game::Piki* piki)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80194C08
- * Size:	0002EC
+/**
+ * @note Address: 0x80194C08
+ * @note Size: 0x2EC
  */
 bool InteractSwallow::actPiki(Game::Piki* piki)
 {
@@ -691,10 +673,9 @@ bool InteractSwallow::actPiki(Game::Piki* piki)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80194EF4
- * Size:	0000CC
+/**
+ * @note Address: 0x80194EF4
+ * @note Size: 0xCC
  */
 bool InteractKill::actPiki(Game::Piki* piki)
 {

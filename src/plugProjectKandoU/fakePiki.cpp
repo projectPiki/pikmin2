@@ -24,10 +24,9 @@ static const char fakePikiName[]       = "fakePiki";
 f32 FakePiki::sCurrNeckTheta = 0.0f;
 f32 FakePiki::sCurrNeckPhi   = 0.0f;
 
-/*
- * --INFO--
- * Address:	8013CC68
- * Size:	00012C
+/**
+ * @note Address: 0x8013CC68
+ * @note Size: 0x12C
  */
 FakePiki::FakePiki()
 {
@@ -54,10 +53,9 @@ FakePiki::FakePiki()
 	mNeckTheta            = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	8013CD94
- * Size:	0000B8
+/**
+ * @note Address: 0x8013CD94
+ * @note Size: 0xB8
  */
 void FakePiki::initFakePiki()
 {
@@ -81,17 +79,15 @@ void FakePiki::initFakePiki()
 	_184       = 0;
 }
 
-/*
- * --INFO--
- * Address:	8013CE4C
- * Size:	000028
+/**
+ * @note Address: 0x8013CE4C
+ * @note Size: 0x28
  */
 void FakePiki::killFakePiki() { shadowMgr->delShadow(this); }
 
-/*
- * --INFO--
- * Address:	8013CE74
- * Size:	0000B8
+/**
+ * @note Address: 0x8013CE74
+ * @note Size: 0xB8
  */
 void FakePiki::initAnimator()
 {
@@ -102,10 +98,9 @@ void FakePiki::initAnimator()
 	P2ASSERTLINE(459, mAnimator.mBoundAnimator.assertValid(mModel));
 }
 
-/*
- * --INFO--
- * Address:	8013CF2C
- * Size:	000028
+/**
+ * @note Address: 0x8013CF2C
+ * @note Size: 0x28
  * Returns whether the pikmin or captains current animation matches the given
  * animation ID
  */
@@ -121,10 +116,9 @@ bool FakePiki::assertMotion(int animIdx)
 	return (currIdx == animIdx);
 }
 
-/*
- * --INFO--
- * Address:	8013CF54
- * Size:	00006C
+/**
+ * @note Address: 0x8013CF54
+ * @note Size: 0x6C
  */
 void FakePiki::enableMotionBlend()
 {
@@ -141,10 +135,9 @@ void FakePiki::enableMotionBlend()
 	mAnimator.mBoundAnimator.setCurrFrame(10.0f);
 }
 
-/*
- * --INFO--
- * Address:	8013CFC0
- * Size:	000100
+/**
+ * @note Address: 0x8013CFC0
+ * @note Size: 0x100
  * This function is used to make a pikmin or captain start an animation
  */
 void FakePiki::startMotion(int selfAnimIdx, int boundAnimIdx, SysShape::MotionListener* selfListener,
@@ -172,10 +165,9 @@ void FakePiki::startMotion(int selfAnimIdx, int boundAnimIdx, SysShape::MotionLi
 	}
 }
 
-/*
- * --INFO--
- * Address:	8013D0C0
- * Size:	00001C
+/**
+ * @note Address: 0x8013D0C0
+ * @note Size: 0x1C
  */
 void FakePiki::finishMotion()
 {
@@ -183,31 +175,27 @@ void FakePiki::finishMotion()
 	mAnimator.mBoundAnimator.mFlags |= 0x2;
 }
 
-/*
- * --INFO--
- * Address:	8013D0DC
- * Size:	000008
+/**
+ * @note Address: 0x8013D0DC
+ * @note Size: 0x8
  */
 void FakePiki::movieSetFaceDir(f32 faceDir) { mFaceDir = faceDir; }
 
-/*
- * --INFO--
- * Address:	8013D0E4
- * Size:	000008
+/**
+ * @note Address: 0x8013D0E4
+ * @note Size: 0x8
  */
 void FakePiki::setDoAnimCallback(IDelegate* callback) { mDoAnimCallback = callback; }
 
-/*
- * --INFO--
- * Address:	8013D0EC
- * Size:	00000C
+/**
+ * @note Address: 0x8013D0EC
+ * @note Size: 0xC
  */
 void FakePiki::clearDoAnimCallback() { mDoAnimCallback = nullptr; }
 
-/*
- * --INFO--
- * Address:	8013D0F8
- * Size:	0003BC
+/**
+ * @note Address: 0x8013D0F8
+ * @note Size: 0x3BC
  */
 void FakePiki::updateWalkAnimation()
 {
@@ -628,10 +616,9 @@ lbl_8013D47C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8013D4B4
- * Size:	00023C
+/**
+ * @note Address: 0x8013D4B4
+ * @note Size: 0x23C
  */
 bool FakePiki::sNeckCallback(J3DJoint* joint, int jointIdx)
 {
@@ -671,10 +658,9 @@ bool FakePiki::sNeckCallback(J3DJoint* joint, int jointIdx)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8013D6F0
- * Size:	0000C0
+/**
+ * @note Address: 0x8013D6F0
+ * @note Size: 0xC0
  */
 void FakePiki::startLookCreature(Creature* creature)
 {
@@ -711,10 +697,9 @@ void FakePiki::startLookCreature(Creature* creature)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8013D7B0
- * Size:	000070
+/**
+ * @note Address: 0x8013D7B0
+ * @note Size: 0x70
  */
 void FakePiki::updateLookCreature()
 {
@@ -727,17 +712,15 @@ void FakePiki::updateLookCreature()
 	do_updateLookCreature();
 }
 
-/*
- * --INFO--
- * Address:	8013D820
- * Size:	000004
+/**
+ * @note Address: 0x8013D820
+ * @note Size: 0x4
  */
 void FakePiki::do_updateLookCreature() { }
 
-/*
- * --INFO--
- * Address:	8013D824
- * Size:	000018
+/**
+ * @note Address: 0x8013D824
+ * @note Size: 0x18
  */
 void FakePiki::finishLook()
 {
@@ -746,10 +729,9 @@ void FakePiki::finishLook()
 	mLookAtTargetCreature = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8013D83C
- * Size:	000398
+/**
+ * @note Address: 0x8013D83C
+ * @note Size: 0x398
  */
 void FakePiki::updateLook()
 {
@@ -1116,10 +1098,9 @@ lbl_8013DBA8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8013DBD4
- * Size:	000060
+/**
+ * @note Address: 0x8013DBD4
+ * @note Size: 0x60
  */
 void FakePiki::turnTo(Vector3f& targetPos)
 {
@@ -1129,10 +1110,9 @@ void FakePiki::turnTo(Vector3f& targetPos)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8013DC34
- * Size:	0003B4
+/**
+ * @note Address: 0x8013DC34
+ * @note Size: 0x3B4
  */
 void FakePiki::moveVelocity()
 {
@@ -1452,10 +1432,9 @@ lbl_8013DEFC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8013DFE8
- * Size:	0000B4
+/**
+ * @note Address: 0x8013DFE8
+ * @note Size: 0xB4
  */
 void FakePiki::moveRotation()
 {
@@ -1471,10 +1450,9 @@ void FakePiki::moveRotation()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8013E0B0
- * Size:	0006A4
+/**
+ * @note Address: 0x8013E0B0
+ * @note Size: 0x6A4
  */
 void FakePiki::move(f32 rate)
 {
@@ -2066,10 +2044,9 @@ lbl_8013E714:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8013E7C4
- * Size:	0000BC
+/**
+ * @note Address: 0x8013E7C4
+ * @note Size: 0xBC
  */
 void FakePiki::doEntry()
 {
@@ -2089,10 +2066,9 @@ void FakePiki::doEntry()
 	mModel->mJ3dModel->entry();
 }
 
-/*
- * --INFO--
- * Address:	8013E884
- * Size:	000494
+/**
+ * @note Address: 0x8013E884
+ * @note Size: 0x494
  */
 void FakePiki::doAnimation()
 {
@@ -2492,10 +2468,9 @@ lbl_8013ECEC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8013ED50
- * Size:	000078
+/**
+ * @note Address: 0x8013ED50
+ * @note Size: 0x78
  */
 void FakePiki::updateTrMatrix()
 {
@@ -2505,10 +2480,9 @@ void FakePiki::updateTrMatrix()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8013EDDC
- * Size:	000560
+/**
+ * @note Address: 0x8013EDDC
+ * @note Size: 0x560
  */
 void FakePiki::doSimulation(f32 rate)
 {
@@ -2617,31 +2591,27 @@ void FakePiki::doSimulation(f32 rate)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8013F358
- * Size:	00000C
+/**
+ * @note Address: 0x8013F358
+ * @note Size: 0xC
  */
 void FakePiki::initCaptureStomach() { mTargetCollObj = nullptr; }
 
-/*
- * --INFO--
- * Address:	8013F364
- * Size:	000008
+/**
+ * @note Address: 0x8013F364
+ * @note Size: 0x8
  */
 void FakePiki::startCaptureStomach(CollPart* collPart) { mTargetCollObj = collPart; }
 
-/*
- * --INFO--
- * Address:	8013F36C
- * Size:	00000C
+/**
+ * @note Address: 0x8013F36C
+ * @note Size: 0xC
  */
 void FakePiki::endCaptureStomach() { mTargetCollObj = nullptr; }
 
-/*
- * --INFO--
- * Address:	8013F378
- * Size:	000158
+/**
+ * @note Address: 0x8013F378
+ * @note Size: 0x158
  */
 void FakePiki::updateStomach()
 {
@@ -2764,10 +2734,9 @@ lbl_8013F400:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8013F4D0
- * Size:	000008
+/**
+ * @note Address: 0x8013F4D0
+ * @note Size: 0x8
  */
 bool FakePiki::debugShapeDL(char*) { return true; }
 

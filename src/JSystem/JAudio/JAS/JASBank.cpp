@@ -3,9 +3,8 @@
 extern JKRSolidHeap* JASDram;
 JKRHeap* JASBank::sCurrentHeap;
 
-/*
- * --INFO--
- * Address:	8009C2FC
- * Size:	000014
+/**
+ * @note Address: 0x8009C2FC
+ * @note Size: 0x14
  */
 JKRHeap* JASBank::getCurrentHeap() { return sCurrentHeap ? sCurrentHeap : JASDram; }

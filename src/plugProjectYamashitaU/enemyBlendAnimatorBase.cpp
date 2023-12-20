@@ -3,39 +3,34 @@
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	8012E0E8
- * Size:	000044
+/**
+ * @note Address: 0x8012E0E8
+ * @note Size: 0x44
  */
 EnemyBlendAnimatorBase::EnemyBlendAnimatorBase() { }
 
-/*
- * --INFO--
- * Address:	8012E12C
- * Size:	000024
+/**
+ * @note Address: 0x8012E12C
+ * @note Size: 0x24
  */
 void EnemyBlendAnimatorBase::setAnimMgr(SysShape::AnimMgr* mgr) { mAnimator.setAnimMgr(mgr); }
 
-/*
- * --INFO--
- * Address:	8012E150
- * Size:	000008
+/**
+ * @note Address: 0x8012E150
+ * @note Size: 0x8
  */
 SysShape::Animator& EnemyBlendAnimatorBase::getAnimator() { return *mAnimator.mAnimators; }
 
-/*
+/**
  * getAnimator__Q24Game22EnemyBlendAnimatorBaseFi
- * --INFO--
- * Address:	8012E158
- * Size:	000014
+ * @note Address: 0x8012E158
+ * @note Size: 0x14
  */
 SysShape::Animator& EnemyBlendAnimatorBase::getAnimator(int index) { return mAnimator.mAnimators[index]; }
 
-/*
- * --INFO--
- * Address:	8012E16C
- * Size:	00009C
+/**
+ * @note Address: 0x8012E16C
+ * @note Size: 0x9C
  */
 void EnemyBlendAnimatorBase::startBlend(int startAnim, int endAnim, SysShape::BlendFunction* function, f32 framerate,
                                         SysShape::MotionListener* listener)
@@ -45,18 +40,16 @@ void EnemyBlendAnimatorBase::startBlend(int startAnim, int endAnim, SysShape::Bl
 	mAnimator.startBlend(function, framerate, listener);
 }
 
-/*
- * --INFO--
- * Address:	8012E208
- * Size:	000024
+/**
+ * @note Address: 0x8012E208
+ * @note Size: 0x24
  */
 void EnemyBlendAnimatorBase::endBlend() { mAnimator.endBlend(); }
 
-/*
+/**
  * animate__Q24Game22EnemyBlendAnimatorBaseFPQ28SysShape13BlendFunctionfff
- * --INFO--
- * Address:	8012E22C
- * Size:	000048
+ * @note Address: 0x8012E22C
+ * @note Size: 0x48
  */
 void EnemyBlendAnimatorBase::animate(SysShape::BlendFunction* function, f32 p2, f32 p3, f32 p4)
 {
@@ -67,11 +60,10 @@ void EnemyBlendAnimatorBase::animate(SysShape::BlendFunction* function, f32 p2, 
 	}
 }
 
-/*
+/**
  * animate__Q24Game22EnemyBlendAnimatorBaseFf
- * --INFO--
- * Address:	8012E274
- * Size:	0000B0
+ * @note Address: 0x8012E274
+ * @note Size: 0xB0
  */
 void EnemyBlendAnimatorBase::animate(f32 p1)
 {
@@ -91,7 +83,7 @@ void EnemyBlendAnimatorBase::animate(f32 p1)
 	}
 }
 
-/*
+/**
  * Static Initializers
  */
 SysShape::BlendLinearFun EnemyBlendAnimatorBase::sBlendLinearFun;

@@ -133,10 +133,9 @@
         .4byte 0x447FC000
 */
 
-/*
- * --INFO--
- * Address:	80067678
- * Size:	000030
+/**
+ * @note Address: 0x80067678
+ * @note Size: 0x30
  */
 void J3DFrameCtrl::init(short i_end)
 {
@@ -149,10 +148,9 @@ void J3DFrameCtrl::init(short i_end)
 	mFrame     = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	800676A8
- * Size:	000474
+/**
+ * @note Address: 0x800676A8
+ * @note Size: 0x474
  */
 void J3DFrameCtrl::update()
 {
@@ -224,14 +222,13 @@ void J3DFrameCtrl::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80067B1C
- * Size:	000360
+/**
+ * @note Address: 0x80067B1C
+ * @note Size: 0x360
  */
 void J3DAnmTransformFull::getTransform(u16 p1, J3DTransformInfo* info) const
 {
-	/*
+	/**
 	u16 tableIndex                    = p1 * 3;
 	J3DAnmTransformFullTable::Row* v1 = _20->_00[tableIndex];
 	J3DAnmTransformFullTable::Row* v2 = _20->_00[tableIndex + 1];
@@ -299,15 +296,14 @@ void J3DAnmTransformFull::getTransform(u16 p1, J3DTransformInfo* info) const
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80067E7C
- * Size:	000420
+/**
+ * @note Address: 0x80067E7C
+ * @note Size: 0x420
  * TODO: Needs J3DGetKeyFrameAnimation to be defined.
  */
 void J3DAnmTransformKey::calcTransform(float p1, u16 p2, J3DTransformInfo* info) const
 {
-	/*
+	/**
 	u16 v0                 = p2 * 3;
 	J3DAnmKeyTableBase* v1 = _24[v0]._00;
 	J3DAnmKeyTableBase* v2 = _24[v0 + 1]._00;
@@ -762,14 +758,13 @@ void J3DAnmTransformKey::calcTransform(float p1, u16 p2, J3DTransformInfo* info)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006829C
- * Size:	000268
+/**
+ * @note Address: 0x8006829C
+ * @note Size: 0x268
  */
 void J3DAnmTextureSRTKey::calcTransform(float p1, u16 p2, J3DTextureSRTInfo* info) const
 {
-	/*
+	/**
 	u16 v0                 = p2 * 3;
 	J3DAnmKeyTableBase* v1 = _10[v0]._00;
 	J3DAnmKeyTableBase* v2 = _10[v0 + 1]._00;
@@ -1034,10 +1029,9 @@ void J3DAnmTextureSRTKey::calcTransform(float p1, u16 p2, J3DTextureSRTInfo* inf
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80068504
- * Size:	000094
+/**
+ * @note Address: 0x80068504
+ * @note Size: 0x94
  */
 float J3DAnmClusterFull::getWeight(u16 p1) const
 {
@@ -1135,10 +1129,9 @@ lbl_80068590:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80068598
- * Size:	000084
+/**
+ * @note Address: 0x80068598
+ * @note Size: 0x84
  * getWeight__16J3DAnmClusterKeyCFUs
  */
 float J3DAnmClusterKey::getWeight(u16 p1) const
@@ -1153,10 +1146,9 @@ float J3DAnmClusterKey::getWeight(u16 p1) const
 	}
 }
 
-/*
- * --INFO--
- * Address:	8006861C
- * Size:	000178
+/**
+ * @note Address: 0x8006861C
+ * @note Size: 0x178
  */
 void J3DAnmVtxColorFull::getColor(u8, u16, _GXColor*) const
 {
@@ -1277,10 +1269,9 @@ void J3DAnmVtxColorFull::getColor(u8, u16, _GXColor*) const
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80068794
- * Size:	0002F4
+/**
+ * @note Address: 0x80068794
+ * @note Size: 0x2F4
  */
 void J3DAnmVtxColorKey::getColor(u8, u16, _GXColor*) const
 {
@@ -1525,10 +1516,9 @@ lbl_80068A64:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80068A88
- * Size:	0000A8
+/**
+ * @note Address: 0x80068A88
+ * @note Size: 0xA8
  */
 void J3DAnmColor::searchUpdateMaterialID(J3DModelData* data)
 {
@@ -1543,10 +1533,9 @@ void J3DAnmColor::searchUpdateMaterialID(J3DModelData* data)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80068B30
- * Size:	000170
+/**
+ * @note Address: 0x80068B30
+ * @note Size: 0x170
  */
 void J3DAnmColorFull::getColor(u16 tableIndex, _GXColor* color) const
 {
@@ -1590,10 +1579,9 @@ void J3DAnmColorFull::getColor(u16 tableIndex, _GXColor* color) const
 	}
 }
 
-/*
- * --INFO--
- * Address:	80068CA0
- * Size:	0002CC
+/**
+ * @note Address: 0x80068CA0
+ * @note Size: 0x2CC
  */
 void J3DAnmColorKey::getColor(u16, _GXColor*) const
 {
@@ -1828,10 +1816,9 @@ lbl_80068F48:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80068F6C
- * Size:	0000B4
+/**
+ * @note Address: 0x80068F6C
+ * @note Size: 0xB4
  */
 void J3DAnmTexPattern::getTexNo(u16 p1, u16* p2) const
 {
@@ -1902,10 +1889,9 @@ lbl_80069018:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80069020
- * Size:	000124
+/**
+ * @note Address: 0x80069020
+ * @note Size: 0x124
  */
 void J3DAnmTextureSRTKey::searchUpdateMaterialID(J3DModelData*)
 {
@@ -2002,10 +1988,9 @@ lbl_80069110:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80069144
- * Size:	0002CC
+/**
+ * @note Address: 0x80069144
+ * @note Size: 0x2CC
  */
 void J3DAnmTevRegKey::getTevColorReg(u16 p1, _GXColorS10* color) const
 {
@@ -2244,10 +2229,9 @@ lbl_800693EC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80069410
- * Size:	0002CC
+/**
+ * @note Address: 0x80069410
+ * @note Size: 0x2CC
  */
 void J3DAnmTevRegKey::getTevKonstReg(u16, _GXColor*) const
 {
@@ -2482,10 +2466,9 @@ lbl_800696B8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800696DC
- * Size:	00010C
+/**
+ * @note Address: 0x800696DC
+ * @note Size: 0x10C
  * searchUpdateMaterialID__15J3DAnmTevRegKeyFP12J3DModelData
  */
 void J3DAnmTevRegKey::searchUpdateMaterialID(J3DModelData* data)
@@ -2511,152 +2494,132 @@ void J3DAnmTevRegKey::searchUpdateMaterialID(J3DModelData* data)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800697E8
- * Size:	000084
+/**
+ * @note Address: 0x800697E8
+ * @note Size: 0x84
  * __dt__14J3DAnmColorKeyFv
  */
 // J3DAnmColorKey::~J3DAnmColorKey() { }
 
-/*
- * --INFO--
- * Address:	8006986C
- * Size:	000008
+/**
+ * @note Address: 0x8006986C
+ * @note Size: 0x8
  */
 // J3DAnmKind J3DAnmColorKey::getKind() const { return J3DAnmKind_ColorKey; }
 
-/*
- * --INFO--
- * Address:	80069874
- * Size:	000048
+/**
+ * @note Address: 0x80069874
+ * @note Size: 0x48
  * __dt__10J3DAnmBaseFv
  */
 // J3DAnmBase::~J3DAnmBase() { }
 
-/*
- * --INFO--
- * Address:	800698BC
- * Size:	000074
+/**
+ * @note Address: 0x800698BC
+ * @note Size: 0x74
  * __dt__11J3DAnmColorFv
  */
 // J3DAnmColor::~J3DAnmColor() { }
 
-/*
- * --INFO--
- * Address:	80069930
- * Size:	000008
+/**
+ * @note Address: 0x80069930
+ * @note Size: 0x8
  */
 // J3DAnmKind J3DAnmColor::getKind() const { return J3DAnmKind_Color; }
 
-/*
- * --INFO--
- * Address:	80069938
- * Size:	000004
+/**
+ * @note Address: 0x80069938
+ * @note Size: 0x4
  */
 // void J3DAnmColor::getColor(u16, _GXColor*) const { }
 
-/*
- * --INFO--
- * Address:	8006993C
- * Size:	000084
+/**
+ * @note Address: 0x8006993C
+ * @note Size: 0x84
  * __dt__15J3DAnmColorFullFv
  */
 // J3DAnmColorFull::~J3DAnmColorFull() { }
 
-/*
- * --INFO--
- * Address:	800699C0
- * Size:	000008
+/**
+ * @note Address: 0x800699C0
+ * @note Size: 0x8
  */
 // J3DAnmKind J3DAnmColorFull::getKind() const { return J3DAnmKind_ColorFull; }
 
-/*
- * --INFO--
- * Address:	800699C8
- * Size:	00006C
+/**
+ * @note Address: 0x800699C8
+ * @note Size: 0x6C
  * __dt__17J3DAnmVtxColorKeyFv
  */
 // J3DAnmVtxColorKey::~J3DAnmVtxColorKey() { }
 
-/*
- * --INFO--
- * Address:	80069A34
- * Size:	000008
+/**
+ * @note Address: 0x80069A34
+ * @note Size: 0x8
  */
 // J3DAnmKind J3DAnmVtxColorKey::getKind() const { return J3DAnmKind_VtxColorKey; }
 
-/*
- * --INFO--
- * Address:	80069A3C
- * Size:	00005C
+/**
+ * @note Address: 0x80069A3C
+ * @note Size: 0x5C
  * __dt__14J3DAnmVtxColorFv
  */
 // J3DAnmVtxColor::~J3DAnmVtxColor() { }
 
-/*
- * --INFO--
- * Address:	80069A98
- * Size:	000008
+/**
+ * @note Address: 0x80069A98
+ * @note Size: 0x8
  */
 // J3DAnmKind J3DAnmVtxColor::getKind() const { return J3DAnmKind_VtxColor; }
 
-/*
- * --INFO--
- * Address:	80069AA0
- * Size:	000004
+/**
+ * @note Address: 0x80069AA0
+ * @note Size: 0x4
  */
 // void J3DAnmVtxColor::getColor(u8, u16, _GXColor*) const { }
 
-/*
- * --INFO--
- * Address:	80069AA4
- * Size:	00006C
+/**
+ * @note Address: 0x80069AA4
+ * @note Size: 0x6C
  * __dt__18J3DAnmVtxColorFullFv
  */
 // J3DAnmVtxColorFull::~J3DAnmVtxColorFull() { }
 
-/*
- * --INFO--
- * Address:	80069B10
- * Size:	000008
+/**
+ * @note Address: 0x80069B10
+ * @note Size: 0x8
  */
 // J3DAnmKind J3DAnmVtxColorFull::getKind() const { return J3DAnmKind_VtxColorFull; }
 
-/*
- * --INFO--
- * Address:	80069B18
- * Size:	00006C
+/**
+ * @note Address: 0x80069B18
+ * @note Size: 0x6C
  * __dt__16J3DAnmClusterKeyFv
  */
 // J3DAnmClusterKey::~J3DAnmClusterKey() { }
 
-/*
- * --INFO--
- * Address:	80069B84
- * Size:	000008
+/**
+ * @note Address: 0x80069B84
+ * @note Size: 0x8
  */
 // J3DAnmKind J3DAnmClusterKey::getKind() const { return J3DAnmKind_ClusterKey; }
 
-/*
- * --INFO--
- * Address:	80069B8C
- * Size:	00005C
+/**
+ * @note Address: 0x80069B8C
+ * @note Size: 0x5C
  * __dt__13J3DAnmClusterFv
  */
 // J3DAnmCluster::~J3DAnmCluster() { }
 
-/*
- * --INFO--
- * Address:	80069BE8
- * Size:	000008
+/**
+ * @note Address: 0x80069BE8
+ * @note Size: 0x8
  */
 // J3DAnmKind J3DAnmCluster::getKind() const { return J3DAnmKind_Cluster; }
 
-/*
- * --INFO--
- * Address:	80069BF0
- * Size:	000008
+/**
+ * @note Address: 0x80069BF0
+ * @note Size: 0x8
  */
 float J3DAnmCluster::getWeight(u16) const
 {
@@ -2666,55 +2629,48 @@ float J3DAnmCluster::getWeight(u16) const
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80069BF8
- * Size:	00006C
+/**
+ * @note Address: 0x80069BF8
+ * @note Size: 0x6C
  * __dt__17J3DAnmClusterFullFv
  */
 // J3DAnmClusterFull::~J3DAnmClusterFull() { }
 
-/*
- * --INFO--
- * Address:	80069C64
- * Size:	000008
+/**
+ * @note Address: 0x80069C64
+ * @note Size: 0x8
  */
 // J3DAnmKind J3DAnmClusterFull::getKind() const { return J3DAnmKind_ClusterFull; }
 
-/*
- * --INFO--
- * Address:	80069C6C
- * Size:	00006C
+/**
+ * @note Address: 0x80069C6C
+ * @note Size: 0x6C
  * __dt__19J3DAnmTransformFullFv
  */
 // J3DAnmTransformFull::~J3DAnmTransformFull() { }
 
-/*
- * --INFO--
- * Address:	80069CD8
- * Size:	000008
+/**
+ * @note Address: 0x80069CD8
+ * @note Size: 0x8
  */
 // J3DAnmKind J3DAnmTransformFull::getKind() const { return J3DAnmKind_TransformFull; }
 
-/*
- * --INFO--
- * Address:	80069CE0
- * Size:	00005C
+/**
+ * @note Address: 0x80069CE0
+ * @note Size: 0x5C
  * __dt__15J3DAnmTransformFv
  */
 // J3DAnmTransform::~J3DAnmTransform() { }
 
-/*
- * --INFO--
- * Address:	80069D3C
- * Size:	000008
+/**
+ * @note Address: 0x80069D3C
+ * @note Size: 0x8
  */
 // J3DAnmKind J3DAnmTransform::getKind() const { return J3DAnmKind_Transform; }
 
-/*
- * --INFO--
- * Address:	80069D44
- * Size:	000234
+/**
+ * @note Address: 0x80069D44
+ * @note Size: 0x234
  * J3DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs
  */
 // void J3DGetKeyFrameInterpolation<short>(float, J3DAnmKeyTableBase*, short*)
@@ -2882,10 +2838,9 @@ float J3DAnmCluster::getWeight(u16) const
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80069F78
- * Size:	00017C
+/**
+ * @note Address: 0x80069F78
+ * @note Size: 0x17C
  * J3DGetKeyFrameInterpolation<f>__FfP18J3DAnmKeyTableBasePf
  */
 // void J3DGetKeyFrameInterpolation<float>(float, J3DAnmKeyTableBase*, float*)

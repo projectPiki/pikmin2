@@ -6,10 +6,9 @@
 namespace Game {
 namespace ElecHiba {
 
-/*
- * --INFO--
- * Address:	8026DFD8
- * Size:	00017C
+/**
+ * @note Address: 0x8026DFD8
+ * @note Size: 0x17C
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -20,10 +19,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateAttack);
 }
 
-/*
- * --INFO--
- * Address:	8026E154
- * Size:	0002CC
+/**
+ * @note Address: 0x8026E154
+ * @note Size: 0x2CC
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -72,24 +70,21 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8026E428
- * Size:	000004
+/**
+ * @note Address: 0x8026E428
+ * @note Size: 0x4
  */
 void StateDead::exec(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8026E42C
- * Size:	000004
+/**
+ * @note Address: 0x8026E42C
+ * @note Size: 0x4
  */
 void StateDead::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8026E430
- * Size:	000070
+/**
+ * @note Address: 0x8026E430
+ * @note Size: 0x70
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -110,10 +105,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8026E4A0
- * Size:	0000E4
+/**
+ * @note Address: 0x8026E4A0
+ * @note Size: 0xE4
  */
 void StateWait::exec(EnemyBase* enemy)
 {
@@ -132,17 +126,15 @@ void StateWait::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8026E584
- * Size:	000004
+/**
+ * @note Address: 0x8026E584
+ * @note Size: 0x4
  */
 void StateWait::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8026E588
- * Size:	000088
+/**
+ * @note Address: 0x8026E588
+ * @note Size: 0x88
  */
 void StateSign::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -160,10 +152,9 @@ void StateSign::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8026E610
- * Size:	0000F8
+/**
+ * @note Address: 0x8026E610
+ * @note Size: 0xF8
  */
 void StateSign::exec(EnemyBase* enemy)
 {
@@ -184,10 +175,9 @@ void StateSign::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8026E708
- * Size:	000044
+/**
+ * @note Address: 0x8026E708
+ * @note Size: 0x44
  */
 void StateSign::cleanup(EnemyBase* enemy)
 {
@@ -201,10 +191,9 @@ void StateSign::cleanup(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8026E74C
- * Size:	000084
+/**
+ * @note Address: 0x8026E74C
+ * @note Size: 0x84
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -223,10 +212,9 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8026E7D0
- * Size:	000164
+/**
+ * @note Address: 0x8026E7D0
+ * @note Size: 0x164
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
@@ -254,10 +242,9 @@ void StateAttack::exec(EnemyBase* enemy)
 	elecHiba->getJAIObject()->startSound(PSSE_EN_ELEC_HIBA_SPARK, 0);
 }
 
-/*
- * --INFO--
- * Address:	8026E934
- * Size:	000060
+/**
+ * @note Address: 0x8026E934
+ * @note Size: 0x60
  */
 void StateAttack::cleanup(EnemyBase* enemy)
 {

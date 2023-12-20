@@ -23,10 +23,9 @@ static void __AIDHandler(s16 interrupt, OSContext* context);
 static void __AICallbackStackSwitch(register AIDCallback cb);
 static void __AI_SRC_INIT(void);
 
-/*
- * --INFO--
- * Address:	800F6864
- * Size:	000044
+/**
+ * @note Address: 0x800F6864
+ * @note Size: 0x44
  */
 AIDCallback AIRegisterDMACallback(AIDCallback callback)
 {
@@ -40,10 +39,9 @@ AIDCallback AIRegisterDMACallback(AIDCallback callback)
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	800F68A8
- * Size:	000088
+/**
+ * @note Address: 0x800F68A8
+ * @note Size: 0x88
  */
 void AIInitDMA(u32 addr, u32 length)
 {
@@ -55,71 +53,63 @@ void AIInitDMA(u32 addr, u32 length)
 	OSRestoreInterrupts(oldInts);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 BOOL AIGetDMAEnableFlag(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800F6930
- * Size:	000018
+/**
+ * @note Address: 0x800F6930
+ * @note Size: 0x18
  */
 void AIStartDMA(void) { __DSPRegs[27] |= 0x8000; }
 
-/*
- * --INFO--
- * Address:	800F6948
- * Size:	000018
+/**
+ * @note Address: 0x800F6948
+ * @note Size: 0x18
  */
 void AIStopDMA(void) { __DSPRegs[27] &= ~0x8000; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 u32 AIGetDMABytesLeft(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 u32 AIGetDMAStartAddr(void) { return (u32)((__DSPRegs[24] & 0x03ff) << 16) | (__DSPRegs[25] & 0xffe0); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 u32 AIGetDMALength(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 BOOL AICheckInit(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
+/**
+ * @note Address: N/A
+ * @note Size: 0x44
  */
 AISCallback AIRegisterStreamCallback(AISCallback callback)
 {
@@ -133,45 +123,40 @@ AISCallback AIRegisterStreamCallback(AISCallback callback)
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 u32 AIGetStreamSampleCount(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 void AIResetStreamSampleCount(void) { __AIRegs[0] = (__AIRegs[0] & ~0x20) | 0x20; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 
 void AISetStreamTrigger(u32 trigger) { __AIRegs[AI_INTRPT_TIMING] = trigger; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 u32 AIGetStreamTrigger(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800F6960
- * Size:	0000D8
+/**
+ * @note Address: 0x800F6960
+ * @note Size: 0xD8
  */
 void AISetStreamPlayState(u32 state)
 {
@@ -199,17 +184,15 @@ void AISetStreamPlayState(u32 state)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800F6A38
- * Size:	000010
+/**
+ * @note Address: 0x800F6A38
+ * @note Size: 0x10
  */
 u32 AIGetStreamPlayState(void) { return __AIRegs[AI_CONTROL] & 1; }
 
-/*
- * --INFO--
- * Address:	800F6A48
- * Size:	0000E0
+/**
+ * @note Address: 0x800F6A48
+ * @note Size: 0xE0
  */
 void AISetDSPSampleRate(u32 rate)
 {
@@ -243,37 +226,33 @@ void AISetDSPSampleRate(u32 rate)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800F6B28
- * Size:	000014
+/**
+ * @note Address: 0x800F6B28
+ * @note Size: 0x14
  */
 u32 AIGetDSPSampleRate(void) { return ((__AIRegs[AI_CONTROL] >> 6) & 1) ^ 1; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 void AISetStreamSampleRate(u32 rate)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 void __AI_DEBUG_set_stream_sample_rate(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800F6B3C
- * Size:	0000D4
+/**
+ * @note Address: 0x800F6B3C
+ * @note Size: 0xD4
  */
 static void __AI_set_stream_sample_rate(u32 rate)
 {
@@ -304,45 +283,39 @@ static void __AI_set_stream_sample_rate(u32 rate)
 	AISetStreamVolRight(right);
 }
 
-/*
- * --INFO--
- * Address:	800F6C10
- * Size:	000010
+/**
+ * @note Address: 0x800F6C10
+ * @note Size: 0x10
  */
 u32 AIGetStreamSampleRate(void) { return (__AIRegs[AI_CONTROL] >> 1) & 1; }
 
-/*
- * --INFO--
- * Address:	800F6C20
- * Size:	00001C
+/**
+ * @note Address: 0x800F6C20
+ * @note Size: 0x1C
  */
 void AISetStreamVolLeft(u8 volume) { __AIRegs[AI_VOLUME] = (__AIRegs[AI_VOLUME] & ~0xFF) | (volume & 0xFF); }
 
-/*
- * --INFO--
- * Address:	800F6C3C
- * Size:	000010
+/**
+ * @note Address: 0x800F6C3C
+ * @note Size: 0x10
  */
 u8 AIGetStreamVolLeft(void) { return __AIRegs[AI_VOLUME]; }
 
-/*
- * --INFO--
- * Address:	800F6C4C
- * Size:	00001C
+/**
+ * @note Address: 0x800F6C4C
+ * @note Size: 0x1C
  */
 void AISetStreamVolRight(u8 volume) { __AIRegs[AI_VOLUME] = (__AIRegs[AI_VOLUME] & ~0xFF00) | ((volume & 0xFF) << 8); }
 
-/*
- * --INFO--
- * Address:	800F6C68
- * Size:	000010
+/**
+ * @note Address: 0x800F6C68
+ * @note Size: 0x10
  */
 u8 AIGetStreamVolRight(void) { return __AIRegs[AI_VOLUME] >> 8; }
 
-/*
- * --INFO--
- * Address:	800F6C78
- * Size:	00016C
+/**
+ * @note Address: 0x800F6C78
+ * @note Size: 0x16C
  */
 void AIInit(u8* stack)
 {
@@ -373,20 +346,18 @@ void AIInit(u8* stack)
 	__AI_init_flag = TRUE;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void AIReset(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800F6DE4
- * Size:	00007C
+/**
+ * @note Address: 0x800F6DE4
+ * @note Size: 0x7C
  */
 static void __AISHandler(s16 interrupt, OSContext* context)
 {
@@ -401,10 +372,9 @@ static void __AISHandler(s16 interrupt, OSContext* context)
 	OSSetCurrentContext(context);
 }
 
-/*
- * --INFO--
- * Address:	800F6E60
- * Size:	0000AC
+/**
+ * @note Address: 0x800F6E60
+ * @note Size: 0xAC
  */
 static void __AIDHandler(s16 interrupt, OSContext* context)
 {
@@ -428,10 +398,9 @@ static void __AIDHandler(s16 interrupt, OSContext* context)
 	OSSetCurrentContext(context);
 }
 
-/*
- * --INFO--
- * Address:	800F6F0C
- * Size:	000058
+/**
+ * @note Address: 0x800F6F0C
+ * @note Size: 0x58
  */
 ASM static void __AICallbackStackSwitch(register AIDCallback cb)
 {
@@ -467,10 +436,9 @@ ASM static void __AICallbackStackSwitch(register AIDCallback cb)
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800F6F64
- * Size:	0001E4
+/**
+ * @note Address: 0x800F6F64
+ * @note Size: 0x1E4
  */
 static void __AI_SRC_INIT(void)
 {
@@ -533,10 +501,9 @@ static void __AI_SRC_INIT(void)
 		;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void __ai_src_get_time(void)
 {

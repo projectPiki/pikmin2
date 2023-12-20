@@ -6,10 +6,9 @@
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	8031EBE8
- * Size:	000064
+/**
+ * @note Address: 0x8031EBE8
+ * @note Size: 0x64
  */
 ObjChallenge2P::ObjChallenge2P(const char* name)
 {
@@ -19,17 +18,15 @@ ObjChallenge2P::ObjChallenge2P(const char* name)
 	mPokoScreen = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8031EC4C
- * Size:	000068
+/**
+ * @note Address: 0x8031EC4C
+ * @note Size: 0x68
  */
 ObjChallenge2P::~ObjChallenge2P() { }
 
-/*
- * --INFO--
- * Address:	8031ECB4
- * Size:	0006C4
+/**
+ * @note Address: 0x8031ECB4
+ * @note Size: 0x6C4
  */
 void ObjChallenge2P::doCreate(JKRArchive* arc)
 {
@@ -113,10 +110,9 @@ void ObjChallenge2P::doCreate(JKRArchive* arc)
 	doCreateAfter(arc, counter);
 }
 
-/*
- * --INFO--
- * Address:	8031F378
- * Size:	0002BC
+/**
+ * @note Address: 0x8031F378
+ * @note Size: 0x2BC
  */
 void ObjChallenge2P::ScreenSet::init(og::Screen::DataNavi* data, JKRArchive* arc, og::Screen::DispMemberChallenge2P* disp)
 {
@@ -149,10 +145,9 @@ void ObjChallenge2P::ScreenSet::init(og::Screen::DataNavi* data, JKRArchive* arc
 	og::Screen::setCallBack_DrawAfter(mScreen, 'mete');
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000EC
+/**
+ * @note Address: N/A
+ * @note Size: 0xEC
  */
 void ObjChallenge2P::ScreenSet::update(og::Screen::DataNavi& data)
 {
@@ -173,10 +168,9 @@ void ObjChallenge2P::ScreenSet::update(og::Screen::DataNavi& data)
 	dope->update();
 }
 
-/*
- * --INFO--
- * Address:	8031F634
- * Size:	000260
+/**
+ * @note Address: 0x8031F634
+ * @note Size: 0x260
  */
 void ObjChallenge2P::commonUpdate()
 {
@@ -192,10 +186,9 @@ void ObjChallenge2P::commonUpdate()
 	mBloGroup->update();
 }
 
-/*
- * --INFO--
- * Address:	8031F894
- * Size:	000024
+/**
+ * @note Address: 0x8031F894
+ * @note Size: 0x24
  */
 bool ObjChallenge2P::doUpdate()
 {
@@ -203,10 +196,9 @@ bool ObjChallenge2P::doUpdate()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8031F8B8
- * Size:	0001F8
+/**
+ * @note Address: 0x8031F8B8
+ * @note Size: 0x1F8
  */
 void ObjChallenge2P::doDraw(Graphics& gfx)
 {
@@ -227,31 +219,27 @@ void ObjChallenge2P::doDraw(Graphics& gfx)
 	mBloGroup->draw(graf);
 }
 
-/*
- * --INFO--
- * Address:	8031FAB0
- * Size:	000004
+/**
+ * @note Address: 0x8031FAB0
+ * @note Size: 0x4
  */
 void ObjChallenge2P::doUpdateFadeinFinish() { }
 
-/*
- * --INFO--
- * Address:	8031FAB4
- * Size:	00000C
+/**
+ * @note Address: 0x8031FAB4
+ * @note Size: 0xC
  */
 void ObjChallenge2P::doUpdateFinish() { mFadeLevel = 0.0f; }
 
-/*
- * --INFO--
- * Address:	8031FAC0
- * Size:	000004
+/**
+ * @note Address: 0x8031FAC0
+ * @note Size: 0x4
  */
 void ObjChallenge2P::doUpdateFadeoutFinish() { }
 
-/*
- * --INFO--
- * Address:	8031FAC4
- * Size:	000074
+/**
+ * @note Address: 0x8031FAC4
+ * @note Size: 0x74
  */
 bool ObjChallenge2P::doUpdateFadein()
 {
@@ -267,10 +255,9 @@ bool ObjChallenge2P::doUpdateFadein()
 	return check;
 }
 
-/*
- * --INFO--
- * Address:	8031FB38
- * Size:	00007C
+/**
+ * @note Address: 0x8031FB38
+ * @note Size: 0x7C
  */
 bool ObjChallenge2P::doUpdateFadeout()
 {
@@ -285,10 +272,9 @@ bool ObjChallenge2P::doUpdateFadeout()
 	return check;
 }
 
-/*
- * --INFO--
- * Address:	8031FBB4
- * Size:	000074
+/**
+ * @note Address: 0x8031FBB4
+ * @note Size: 0x74
  */
 bool ObjChallenge2P::doStart(::Screen::StartSceneArg const* arg)
 {

@@ -5,10 +5,9 @@
 namespace Game {
 namespace Ujib {
 
-/*
- * --INFO--
- * Address:	8025B1A8
- * Size:	000478
+/**
+ * @note Address: 0x8025B1A8
+ * @note Size: 0x478
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -29,10 +28,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateEat);
 }
 
-/*
- * --INFO--
- * Address:	8025B620
- * Size:	00005C
+/**
+ * @note Address: 0x8025B620
+ * @note Size: 0x5C
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -42,10 +40,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(UJIBANIM_Dead, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8025B67C
- * Size:	000044
+/**
+ * @note Address: 0x8025B67C
+ * @note Size: 0x44
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -54,17 +51,15 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8025B6C0
- * Size:	000004
+/**
+ * @note Address: 0x8025B6C0
+ * @note Size: 0x4
  */
 void StateDead::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8025B6C4
- * Size:	000064
+/**
+ * @note Address: 0x8025B6C4
+ * @note Size: 0x64
  */
 void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -75,10 +70,9 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(UJIBANIM_PressDead, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8025B728
- * Size:	000044
+/**
+ * @note Address: 0x8025B728
+ * @note Size: 0x44
  */
 void StatePress::exec(EnemyBase* enemy)
 {
@@ -87,17 +81,15 @@ void StatePress::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8025B76C
- * Size:	000004
+/**
+ * @note Address: 0x8025B76C
+ * @note Size: 0x4
  */
 void StatePress::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8025B770
- * Size:	0000BC
+/**
+ * @note Address: 0x8025B770
+ * @note Size: 0xBC
  */
 void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -116,10 +108,9 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	uji->stopMotion();
 }
 
-/*
- * --INFO--
- * Address:	8025B82C
- * Size:	0000B0
+/**
+ * @note Address: 0x8025B82C
+ * @note Size: 0xB0
  */
 void StateStay::exec(EnemyBase* enemy)
 {
@@ -134,10 +125,9 @@ void StateStay::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8025B8DC
- * Size:	000084
+/**
+ * @note Address: 0x8025B8DC
+ * @note Size: 0x84
  */
 void StateStay::cleanup(EnemyBase* enemy)
 {
@@ -151,10 +141,9 @@ void StateStay::cleanup(EnemyBase* enemy)
 	uji->disableEvent(0, EB_ModelHidden);
 }
 
-/*
- * --INFO--
- * Address:	8025B960
- * Size:	000080
+/**
+ * @note Address: 0x8025B960
+ * @note Size: 0x80
  */
 void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -169,10 +158,9 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	uji->createAppearEffect();
 }
 
-/*
- * --INFO--
- * Address:	8025B9E0
- * Size:	000080
+/**
+ * @note Address: 0x8025B9E0
+ * @note Size: 0x80
  */
 void StateAppear::exec(EnemyBase* enemy)
 {
@@ -187,10 +175,9 @@ void StateAppear::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8025BA60
- * Size:	00003C
+/**
+ * @note Address: 0x8025BA60
+ * @note Size: 0x3C
  */
 void StateAppear::cleanup(EnemyBase* enemy)
 {
@@ -198,10 +185,9 @@ void StateAppear::cleanup(EnemyBase* enemy)
 	enemy->disableEvent(0, EB_NoInterrupt);
 }
 
-/*
- * --INFO--
- * Address:	8025BA9C
- * Size:	00006C
+/**
+ * @note Address: 0x8025BA9C
+ * @note Size: 0x6C
  */
 void StateDive::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -214,10 +200,9 @@ void StateDive::init(EnemyBase* enemy, StateArg* stateArg)
 	uji->createDisAppearEffect();
 }
 
-/*
- * --INFO--
- * Address:	8025BB08
- * Size:	000050
+/**
+ * @note Address: 0x8025BB08
+ * @note Size: 0x50
  */
 void StateDive::exec(EnemyBase* enemy)
 {
@@ -226,10 +211,9 @@ void StateDive::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8025BB58
- * Size:	00003C
+/**
+ * @note Address: 0x8025BB58
+ * @note Size: 0x3C
  */
 void StateDive::cleanup(EnemyBase* enemy)
 {
@@ -237,10 +221,9 @@ void StateDive::cleanup(EnemyBase* enemy)
 	enemy->disableEvent(0, EB_BitterImmune);
 }
 
-/*
- * --INFO--
- * Address:	8025BB94
- * Size:	000034
+/**
+ * @note Address: 0x8025BB94
+ * @note Size: 0x34
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -249,10 +232,9 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	uji->startMotion(UJIBANIM_Move, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8025BBC8
- * Size:	0004C8
+/**
+ * @note Address: 0x8025BBC8
+ * @note Size: 0x4C8
  */
 void StateMove::exec(EnemyBase* enemy)
 {
@@ -684,17 +666,15 @@ lbl_8025C040:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8025C090
- * Size:	000004
+/**
+ * @note Address: 0x8025C090
+ * @note Size: 0x4
  */
 void StateMove::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8025C094
- * Size:	000034
+/**
+ * @note Address: 0x8025C094
+ * @note Size: 0x34
  */
 void StateMoveSide::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -703,10 +683,9 @@ void StateMoveSide::init(EnemyBase* enemy, StateArg* stateArg)
 	uji->startMotion(UJIBANIM_Move, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8025C0C8
- * Size:	000130
+/**
+ * @note Address: 0x8025C0C8
+ * @note Size: 0x130
  */
 void StateMoveSide::exec(EnemyBase* enemy)
 {
@@ -738,17 +717,15 @@ void StateMoveSide::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8025C1F8
- * Size:	000004
+/**
+ * @note Address: 0x8025C1F8
+ * @note Size: 0x4
  */
 void StateMoveSide::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8025C1FC
- * Size:	000034
+/**
+ * @note Address: 0x8025C1FC
+ * @note Size: 0x34
  */
 void StateMoveCentre::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -757,10 +734,9 @@ void StateMoveCentre::init(EnemyBase* enemy, StateArg* stateArg)
 	uji->startMotion(UJIBANIM_Move, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8025C230
- * Size:	000130
+/**
+ * @note Address: 0x8025C230
+ * @note Size: 0x130
  */
 void StateMoveCentre::exec(EnemyBase* enemy)
 {
@@ -792,17 +768,15 @@ void StateMoveCentre::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8025C360
- * Size:	000004
+/**
+ * @note Address: 0x8025C360
+ * @note Size: 0x4
  */
 void StateMoveCentre::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8025C364
- * Size:	000034
+/**
+ * @note Address: 0x8025C364
+ * @note Size: 0x34
  */
 void StateMoveTop::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -811,10 +785,9 @@ void StateMoveTop::init(EnemyBase* enemy, StateArg* stateArg)
 	uji->startMotion(UJIBANIM_Move, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8025C398
- * Size:	000130
+/**
+ * @note Address: 0x8025C398
+ * @note Size: 0x130
  */
 void StateMoveTop::exec(EnemyBase* enemy)
 {
@@ -846,17 +819,15 @@ void StateMoveTop::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8025C4C8
- * Size:	000004
+/**
+ * @note Address: 0x8025C4C8
+ * @note Size: 0x4
  */
 void StateMoveTop::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8025C4CC
- * Size:	000034
+/**
+ * @note Address: 0x8025C4CC
+ * @note Size: 0x34
  */
 void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -865,10 +836,9 @@ void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg)
 	uji->startMotion(UJIBANIM_Move, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8025C500
- * Size:	0001DC
+/**
+ * @note Address: 0x8025C500
+ * @note Size: 0x1DC
  */
 void StateGoHome::exec(EnemyBase* enemy)
 {
@@ -904,17 +874,15 @@ void StateGoHome::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8025C6DC
- * Size:	000004
+/**
+ * @note Address: 0x8025C6DC
+ * @note Size: 0x4
  */
 void StateGoHome::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8025C6E0
- * Size:	000058
+/**
+ * @note Address: 0x8025C6E0
+ * @note Size: 0x58
  */
 void StateAttack1::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -925,10 +893,9 @@ void StateAttack1::init(EnemyBase* enemy, StateArg* stateArg)
 	uji->createBridgeEffect();
 }
 
-/*
- * --INFO--
- * Address:	8025C738
- * Size:	000140
+/**
+ * @note Address: 0x8025C738
+ * @note Size: 0x140
  */
 void StateAttack1::exec(EnemyBase* enemy)
 {
@@ -963,17 +930,15 @@ void StateAttack1::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8025C878
- * Size:	000004
+/**
+ * @note Address: 0x8025C878
+ * @note Size: 0x4
  */
 void StateAttack1::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8025C87C
- * Size:	000048
+/**
+ * @note Address: 0x8025C87C
+ * @note Size: 0x48
  */
 void StateAttack2::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -983,10 +948,9 @@ void StateAttack2::init(EnemyBase* enemy, StateArg* stateArg)
 	uji->startMotion(UJIBANIM_Attack2, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8025C8C4
- * Size:	000218
+/**
+ * @note Address: 0x8025C8C4
+ * @note Size: 0x218
  */
 void StateAttack2::exec(EnemyBase* enemy)
 {
@@ -1030,17 +994,15 @@ void StateAttack2::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8025CADC
- * Size:	000010
+/**
+ * @note Address: 0x8025CADC
+ * @note Size: 0x10
  */
 void StateAttack2::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_NoInterrupt); }
 
-/*
- * --INFO--
- * Address:	8025CAEC
- * Size:	00003C
+/**
+ * @note Address: 0x8025CAEC
+ * @note Size: 0x3C
  */
 void StateEat::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1048,10 +1010,9 @@ void StateEat::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(UJIBANIM_Eat, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8025CB28
- * Size:	0001A8
+/**
+ * @note Address: 0x8025CB28
+ * @note Size: 0x1A8
  */
 void StateEat::exec(EnemyBase* enemy)
 {
@@ -1084,10 +1045,9 @@ void StateEat::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8025CCD0
- * Size:	000004
+/**
+ * @note Address: 0x8025CCD0
+ * @note Size: 0x4
  */
 void StateEat::cleanup(EnemyBase* enemy) { }
 

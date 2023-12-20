@@ -10,10 +10,9 @@ const char gameStages[] = "gameStages";
 namespace Game {
 Stages* stageList;
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000068
+/**
+ * @note Address: N/A
+ * @note Size: 0x68
  */
 inline CaveOtakara::CaveOtakara()
 {
@@ -22,10 +21,9 @@ inline CaveOtakara::CaveOtakara()
 	mFilename = "keigo_de_sox.txt";
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000090
+/**
+ * @note Address: N/A
+ * @note Size: 0x90
  */
 inline CaveOtakaraInfo::CaveOtakaraInfo()
 {
@@ -33,18 +31,16 @@ inline CaveOtakaraInfo::CaveOtakaraInfo()
 	mOwner.clearRelations();
 }
 
-/*
- * --INFO--
- * Address:	801AD378
- * Size:	000060
+/**
+ * @note Address: 0x801AD378
+ * @note Size: 0x60
  * AUTOGEN
  */
 CaveOtakara::~CaveOtakara() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000EC
+/**
+ * @note Address: N/A
+ * @note Size: 0xEC
  */
 inline void CaveOtakaraInfo::read(Stream& stream)
 {
@@ -58,10 +54,9 @@ inline void CaveOtakaraInfo::read(Stream& stream)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 inline int CaveOtakaraInfo::get_index(int)
 {
@@ -69,10 +64,9 @@ inline int CaveOtakaraInfo::get_index(int)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00008C
+/**
+ * @note Address: N/A
+ * @note Size: 0x8C
  */
 inline CaveOtakara* CaveOtakaraInfo::get_id(ID32& id)
 {
@@ -89,10 +83,9 @@ inline CaveOtakara* CaveOtakaraInfo::get_id(ID32& id)
 	return 0;
 };
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
+/**
+ * @note Address: N/A
+ * @note Size: 0x80
  */
 inline int CaveOtakaraInfo::getCaveIndex_FromID(ID32& id)
 {
@@ -107,10 +100,9 @@ inline int CaveOtakaraInfo::getCaveIndex_FromID(ID32& id)
 	return -1;
 };
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 inline ID32* CaveOtakaraInfo::getCaveID_FromIndex(int)
 {
@@ -118,10 +110,9 @@ inline ID32* CaveOtakaraInfo::getCaveID_FromIndex(int)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 inline LimitGenInfo::LimitGenInfo()
 {
@@ -129,18 +120,16 @@ inline LimitGenInfo::LimitGenInfo()
 	mOwner.clearRelations();
 }
 
-/*
- * --INFO--
- * Address:	801AD3D8
- * Size:	000060
+/**
+ * @note Address: 0x801AD3D8
+ * @note Size: 0x60
  * AUTOGEN
  */
 LimitGen::~LimitGen() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000CC
+/**
+ * @note Address: N/A
+ * @note Size: 0xCC
  */
 inline void LimitGenInfo::read(Stream& stream)
 {
@@ -155,10 +144,9 @@ inline void LimitGenInfo::read(Stream& stream)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801AD438
- * Size:	000154
+/**
+ * @note Address: 0x801AD438
+ * @note Size: 0x154
  */
 CourseInfo::CourseInfo()
 {
@@ -181,33 +169,29 @@ CourseInfo::CourseInfo()
 	mGroundOtakaraMax = 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  * AUTOGEN
  */
 inline CaveOtakaraInfo::~CaveOtakaraInfo() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  * AUTOGEN
  */
 inline LimitGenInfo::~LimitGenInfo() { }
 
-/*
- * --INFO--
- * Address:	801AD58C
- * Size:	000004
+/**
+ * @note Address: 0x801AD58C
+ * @note Size: 0x4
  */
 void CourseInfo::dump() { }
 
-/*
- * --INFO--
- * Address:	801AD590
- * Size:	0004C4
+/**
+ * @note Address: 0x801AD590
+ * @note Size: 0x4C4
  */
 void CourseInfo::read(Stream& stream)
 {
@@ -278,10 +262,9 @@ void CourseInfo::read(Stream& stream)
 	mGroundOtakaraMax = stream.readInt();
 }
 
-/*
- * --INFO--
- * Address:	801ADA54
- * Size:	000088
+/**
+ * @note Address: 0x801ADA54
+ * @note Size: 0x88
  */
 int CourseInfo::getOtakaraNum(ID32& id)
 {
@@ -290,10 +273,9 @@ int CourseInfo::getOtakaraNum(ID32& id)
 	return (caveNode) ? caveNode->mOtakaraCount : -1;
 }
 
-/*
- * --INFO--
- * Address:	801ADADC
- * Size:	000038
+/**
+ * @note Address: 0x801ADADC
+ * @note Size: 0x38
  */
 int CourseInfo::getOtakaraNum(int childIdx)
 {
@@ -306,17 +288,15 @@ int CourseInfo::getOtakaraNum(int childIdx)
 	return -1;
 }
 
-/*
- * --INFO--
- * Address:	801ADB14
- * Size:	00008C
+/**
+ * @note Address: 0x801ADB14
+ * @note Size: 0x8C
  */
 int CourseInfo::getCaveIndex_FromID(ID32& id) { return mCaveOtakaraInfo.getCaveIndex_FromID(id); }
 
-/*
- * --INFO--
- * Address:	801ADBA0
- * Size:	00009C
+/**
+ * @note Address: 0x801ADBA0
+ * @note Size: 0x9C
  */
 char* CourseInfo::getCaveinfoFilename_FromID(ID32& id)
 {
@@ -325,10 +305,9 @@ char* CourseInfo::getCaveinfoFilename_FromID(ID32& id)
 	return caveNode->mFilename;
 }
 
-/*
- * --INFO--
- * Address:	801ADC3C
- * Size:	00003C
+/**
+ * @note Address: 0x801ADC3C
+ * @note Size: 0x3C
  */
 ID32* CourseInfo::getCaveID_FromIndex(int childIdx)
 {
@@ -341,17 +320,15 @@ ID32* CourseInfo::getCaveID_FromIndex(int childIdx)
 	return (ID32*)'none';
 }
 
-/*
- * --INFO--
- * Address:	801ADC78
- * Size:	000008
+/**
+ * @note Address: 0x801ADC78
+ * @note Size: 0x8
  */
 int CourseInfo::getCaveNum() { return mCaveOtakaraInfo.mCount; }
 
-/*
- * --INFO--
- * Address:	801ADC80
- * Size:	0001EC
+/**
+ * @note Address: 0x801ADC80
+ * @note Size: 0x1EC
  */
 Stages::Stages()
 {
@@ -364,27 +341,24 @@ Stages::Stages()
 	loadAndRead(this, "user/Abe/stages.txt", nullptr, false);
 }
 
-/*
- * --INFO--
- * Address:	801ADE6C
- * Size:	0000D0
+/**
+ * @note Address: 0x801ADE6C
+ * @note Size: 0xD0
  */
 CourseInfo::~CourseInfo() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 inline void Stages::update()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	801ADF3C
- * Size:	000070
+/**
+ * @note Address: 0x801ADF3C
+ * @note Size: 0x70
  */
 CourseInfo* Stages::getCourseInfo(char* name)
 {
@@ -397,10 +371,9 @@ CourseInfo* Stages::getCourseInfo(char* name)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	801ADFAC
- * Size:	000074
+/**
+ * @note Address: 0x801ADFAC
+ * @note Size: 0x74
  */
 CourseInfo* Stages::getCourseInfo(int courseNum)
 {
@@ -411,20 +384,18 @@ CourseInfo* Stages::getCourseInfo(int courseNum)
 	return childInfo;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0003FC
+/**
+ * @note Address: N/A
+ * @note Size: 0x3FC
  */
 inline void Stages::draw2d()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	801AE020
- * Size:	000234
+/**
+ * @note Address: 0x801AE020
+ * @note Size: 0x234
  */
 void Stages::createMapMgr(Game::CourseInfo* info, Game::RouteMgr* routeMgr)
 {
@@ -476,30 +447,27 @@ void Stages::createMapMgr(Game::CourseInfo* info, Game::RouteMgr* routeMgr)
 
 } // namespace Game
 
-/*
- * --INFO--
- * Address:	801AE254
- * Size:	000060
+/**
+ * @note Address: 0x801AE254
+ * @note Size: 0x60
  * AUTOGEN
  */
 // MapCollision::~MapCollision() { }
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 inline void Stages::dump()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	801AE2B4
- * Size:	000194
+/**
+ * @note Address: 0x801AE2B4
+ * @note Size: 0x194
  */
 void Stages::read(Stream& stream)
 {

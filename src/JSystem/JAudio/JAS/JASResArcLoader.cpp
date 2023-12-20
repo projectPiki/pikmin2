@@ -5,10 +5,9 @@
 #include "JSystem/JKernel/JKRArchive.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	800A7670
- * Size:	000034
+/**
+ * @note Address: 0x800A7670
+ * @note Size: 0x34
  */
 size_t JASResArcLoader::getResSize(JKRArchive* archive, u16 resourceID)
 {
@@ -19,10 +18,9 @@ size_t JASResArcLoader::getResSize(JKRArchive* archive, u16 resourceID)
 	return file->getSize();
 }
 
-/*
- * --INFO--
- * Address:	800A76A4
- * Size:	00009C
+/**
+ * @note Address: 0x800A76A4
+ * @note Size: 0x9C
  */
 static void JASResArcLoader::loadResourceCallback(void* args)
 {
@@ -43,10 +41,9 @@ static void JASResArcLoader::loadResourceCallback(void* args)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800A7740
- * Size:	0000D0
+/**
+ * @note Address: 0x800A7740
+ * @note Size: 0xD0
  * loadResource__15JASResArcLoaderFP10JKRArchiveUsPUcUl
  */
 int JASResArcLoader::loadResource(JKRArchive* archive, u16 id, u8* buffer, u32 size)
@@ -67,10 +64,9 @@ int JASResArcLoader::loadResource(JKRArchive* archive, u16 id, u8* buffer, u32 s
 	return ((int)receiveBuffer != RESARCMSG_Success) ? 0 : size;
 }
 
-/*
- * --INFO--
- * Address:	800A7810
- * Size:	00005C
+/**
+ * @note Address: 0x800A7810
+ * @note Size: 0x5C
  */
 int JASResArcLoader::loadResourceAsync(JKRArchive* archive, u16 id, u8* buffer, u32 size, LoadCallback callback, u32 cbArg)
 {

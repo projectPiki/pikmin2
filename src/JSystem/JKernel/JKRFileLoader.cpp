@@ -7,10 +7,9 @@
 JSUList<JKRFileLoader> JKRFileLoader::sVolumeList;
 JKRFileLoader* JKRFileLoader::sCurrentVolume;
 
-/*
- * --INFO--
- * Address:	80022E98
- * Size:	000058
+/**
+ * @note Address: 0x80022E98
+ * @note Size: 0x58
  */
 JKRFileLoader::JKRFileLoader()
     : JKRDisposer()
@@ -21,10 +20,9 @@ JKRFileLoader::JKRFileLoader()
 {
 }
 
-/*
- * --INFO--
- * Address:	80022EF0
- * Size:	00008C
+/**
+ * @note Address: 0x80022EF0
+ * @note Size: 0x8C
  * __dt__13JKRFileLoaderFv
  */
 JKRFileLoader::~JKRFileLoader()
@@ -34,10 +32,9 @@ JKRFileLoader::~JKRFileLoader()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80022F7C
- * Size:	000050
+/**
+ * @note Address: 0x80022F7C
+ * @note Size: 0x50
  */
 void JKRFileLoader::unmount()
 {
@@ -48,10 +45,9 @@ void JKRFileLoader::unmount()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80022FCC
- * Size:	00004C
+/**
+ * @note Address: 0x80022FCC
+ * @note Size: 0x4C
  * getGlbResource__13JKRFileLoaderFPCc
  */
 void* JKRFileLoader::getGlbResource(const char* path)
@@ -62,10 +58,9 @@ void* JKRFileLoader::getGlbResource(const char* path)
 	return (loader == nullptr) ? nullptr : loader->getResource(components[0]);
 }
 
-/*
- * --INFO--
- * Address:	80023018
- * Size:	000098
+/**
+ * @note Address: 0x80023018
+ * @note Size: 0x98
  * getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
  */
 void* JKRFileLoader::getGlbResource(const char* name, JKRFileLoader* loader)
@@ -84,10 +79,9 @@ void* JKRFileLoader::getGlbResource(const char* name, JKRFileLoader* loader)
 	return resource;
 }
 
-/*
- * --INFO--
- * Address:	800230B0
- * Size:	00008C
+/**
+ * @note Address: 0x800230B0
+ * @note Size: 0x8C
  */
 JKRFileLoader* JKRFileLoader::findVolume(const char** volumeName)
 {
@@ -108,10 +102,9 @@ JKRFileLoader* JKRFileLoader::findVolume(const char** volumeName)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8002313C
- * Size:	0000E0
+/**
+ * @note Address: 0x8002313C
+ * @note Size: 0xE0
  */
 const char* JKRFileLoader::fetchVolumeName(char* nameBuffer, s32 bufferLength, const char* path)
 {

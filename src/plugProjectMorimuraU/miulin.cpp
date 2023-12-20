@@ -11,17 +11,15 @@
 namespace Game {
 namespace Miulin {
 
-/*
- * --INFO--
- * Address:	80364454
- * Size:	000020
+/**
+ * @note Address: 0x80364454
+ * @note Size: 0x20
  */
 void Obj::setParameters() { EnemyBase::setParameters(); }
 
-/*
- * --INFO--
- * Address:	80364474
- * Size:	0000B0
+/**
+ * @note Address: 0x80364474
+ * @note Size: 0xB0
  */
 void Obj::birth(Vector3f& position, f32 faceDirection)
 {
@@ -37,10 +35,9 @@ void Obj::birth(Vector3f& position, f32 faceDirection)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80364524
- * Size:	0000B4
+/**
+ * @note Address: 0x80364524
+ * @note Size: 0xB4
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
@@ -54,10 +51,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mFsm->start(this, MIULIN_Wait, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	803645D8
- * Size:	000140
+/**
+ * @note Address: 0x803645D8
+ * @note Size: 0x140
  */
 Obj::Obj()
 {
@@ -66,10 +62,9 @@ Obj::Obj()
 	setFSM(new FSM);
 }
 
-/*
- * --INFO--
- * Address:	80364764
- * Size:	000080
+/**
+ * @note Address: 0x80364764
+ * @note Size: 0x80
  */
 void Obj::doUpdate()
 {
@@ -81,24 +76,21 @@ void Obj::doUpdate()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803647E4
- * Size:	000004
+/**
+ * @note Address: 0x803647E4
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	803647E8
- * Size:	000020
+/**
+ * @note Address: 0x803647E8
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	80364808
- * Size:	000088
+/**
+ * @note Address: 0x80364808
+ * @note Size: 0x88
  */
 void Obj::getShadowParam(ShadowParam& param)
 {
@@ -109,10 +101,9 @@ void Obj::getShadowParam(ShadowParam& param)
 	param.mSize                     = 25.0f;
 }
 
-/*
- * --INFO--
- * Address:	80364890
- * Size:	000040
+/**
+ * @note Address: 0x80364890
+ * @note Size: 0x40
  */
 void Obj::doSimulation(f32 simSpeed)
 {
@@ -124,10 +115,9 @@ void Obj::doSimulation(f32 simSpeed)
 	EnemyBase::doSimulation(simSpeed);
 }
 
-/*
- * --INFO--
- * Address:	803648D0
- * Size:	00002C
+/**
+ * @note Address: 0x803648D0
+ * @note Size: 0x2C
  */
 void Obj::wallCallback(MoveInfo const& moveInfo)
 {
@@ -136,17 +126,15 @@ void Obj::wallCallback(MoveInfo const& moveInfo)
 	mGoalPosition   = mHomePosition;
 }
 
-/*
- * --INFO--
- * Address:	803648FC
- * Size:	000028
+/**
+ * @note Address: 0x803648FC
+ * @note Size: 0x28
  */
 void Obj::startCarcassMotion() { startMotion(MIULINANIM_Carry, nullptr); }
 
-/*
- * --INFO--
- * Address:	80364924
- * Size:	00006C
+/**
+ * @note Address: 0x80364924
+ * @note Size: 0x6C
  */
 void Obj::initWalkSmokeEffect()
 {
@@ -155,17 +143,15 @@ void Obj::initWalkSmokeEffect()
 	mWalkSmokeMgr.setup(1, mModel, "jnt_footL", 5.0f);
 }
 
-/*
- * --INFO--
- * Address:	80364990
- * Size:	000008
+/**
+ * @note Address: 0x80364990
+ * @note Size: 0x8
  */
 Game::WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
 
-/*
- * --INFO--
- * Address:	80364998
- * Size:	000534
+/**
+ * @note Address: 0x80364998
+ * @note Size: 0x534
  */
 bool Obj::isAttackStart()
 {
@@ -569,10 +555,9 @@ lbl_80364E80:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80364ECC
- * Size:	0004A4
+/**
+ * @note Address: 0x80364ECC
+ * @note Size: 0x4A4
  */
 bool Obj::isFindTarget()
 {
@@ -955,17 +940,15 @@ lbl_8036532C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80365370
- * Size:	00003C
+/**
+ * @note Address: 0x80365370
+ * @note Size: 0x3C
  */
 bool Obj::isOutOfTerritory() { return sqrDistanceXZ(mHomePosition, mPosition) > SQUARE(C_PARMS->mGeneral.mTerritoryRadius.mValue); }
 
-/*
- * --INFO--
- * Address:	803653AC
- * Size:	000088
+/**
+ * @note Address: 0x803653AC
+ * @note Size: 0x88
  */
 bool Obj::isProhibitedSearch()
 {
@@ -990,10 +973,9 @@ bool Obj::isProhibitedSearch()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80365434
- * Size:	0000AC
+/**
+ * @note Address: 0x80365434
+ * @note Size: 0xAC
  */
 bool Obj::isStartWalk()
 {
@@ -1014,10 +996,9 @@ bool Obj::isStartWalk()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803654E0
- * Size:	00002C
+/**
+ * @note Address: 0x803654E0
+ * @note Size: 0x2C
  */
 void Obj::setReturnState()
 {
@@ -1026,10 +1007,9 @@ void Obj::setReturnState()
 	mGoalPosition   = mHomePosition;
 }
 
-/*
- * --INFO--
- * Address:	8036550C
- * Size:	000270
+/**
+ * @note Address: 0x8036550C
+ * @note Size: 0x270
  */
 void Obj::walkFunc()
 {
@@ -1230,10 +1210,9 @@ lbl_80365748:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8036577C
- * Size:	00017C
+/**
+ * @note Address: 0x8036577C
+ * @note Size: 0x17C
  */
 f32 Obj::turnFunc(f32 factor)
 {
@@ -1248,10 +1227,9 @@ f32 Obj::turnFunc(f32 factor)
 	return FABS(angleDist);
 }
 
-/*
- * --INFO--
- * Address:	803658F8
- * Size:	000050
+/**
+ * @note Address: 0x803658F8
+ * @note Size: 0x50
  */
 bool Obj::isReachToGoal(f32 distance)
 {
@@ -1274,10 +1252,9 @@ static void fixData(f32& p1, f32& p2, f32& p3)
 	p3 = 325.9493f;
 }
 
-/*
- * --INFO--
- * Address:	80365948
- * Size:	00015C
+/**
+ * @note Address: 0x80365948
+ * @note Size: 0x15C
  */
 void Obj::setNextGoal()
 {
@@ -1294,10 +1271,9 @@ void Obj::setNextGoal()
 	mGoalPosition.z += radius * cosf(angle);
 }
 
-/*
- * --INFO--
- * Address:	80365AA4
- * Size:	0002E0
+/**
+ * @note Address: 0x80365AA4
+ * @note Size: 0x2E0
  */
 bool Obj::nextTargetTurnCheck()
 {
@@ -1519,10 +1495,9 @@ lbl_80365D4C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80365D84
- * Size:	0000D0
+/**
+ * @note Address: 0x80365D84
+ * @note Size: 0xD0
  */
 bool Obj::isNowCaution()
 {
@@ -1548,17 +1523,15 @@ bool Obj::isNowCaution()
 	return mAlertTimer < C_PARMS->mGeneral.mAlertDuration.mValue;
 }
 
-/*
- * --INFO--
- * Address:	80365E54
- * Size:	000028
+/**
+ * @note Address: 0x80365E54
+ * @note Size: 0x28
  */
 void Obj::landEffect() { EnemyBase::createBounceEffect(mPosition, 0.9f); }
 
-/*
- * --INFO--
- * Address:	80365E7C
- * Size:	000144
+/**
+ * @note Address: 0x80365E7C
+ * @note Size: 0x144
  */
 void Obj::attackEffect(Vector3f& effectPos)
 {

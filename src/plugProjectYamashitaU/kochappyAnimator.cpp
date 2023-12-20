@@ -2,17 +2,15 @@
 
 namespace Game {
 namespace KochappyBase {
-/*
- * --INFO--
- * Address:	8010F2A8
- * Size:	000008
+/**
+ * @note Address: 0x8010F2A8
+ * @note Size: 0x8
  */
 void ProperAnimator::setAnimMgr(SysShape::AnimMgr* mgr) { mAnimator.mAnimMgr = mgr; }
 
-/*
- * --INFO--
- * Address:	8010F2B0
- * Size:	000008
+/**
+ * @note Address: 0x8010F2B0
+ * @note Size: 0x8
  */
 SysShape::Animator& ProperAnimator::getAnimator(int idx) { return mAnimator; }
 } // namespace KochappyBase

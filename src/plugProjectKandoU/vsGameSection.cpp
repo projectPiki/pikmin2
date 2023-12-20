@@ -36,10 +36,9 @@ namespace VsGame {
 static const char someVsArray[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 static const char vsName[]      = "VsGameSection";
 
-/*
- * --INFO--
- * Address:	801C0DF8
- * Size:	0000D0
+/**
+ * @note Address: 0x801C0DF8
+ * @note Size: 0xD0
  */
 void FSM::init(VsGameSection* section)
 {
@@ -51,18 +50,16 @@ void FSM::init(VsGameSection* section)
 	registerState(new ResultState);
 }
 
-/*
- * --INFO--
- * Address: ........
- * Size:    000038
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  * --UNUSED--
  */
 void FSM::draw(VsGameSection* section, Graphics& gfx) { static_cast<State*>(mStates[0])->draw(section, gfx); }
 
-/*
- * --INFO--
- * Address:	801C0ECC
- * Size:	000020
+/**
+ * @note Address: 0x801C0ECC
+ * @note Size: 0x20
  */
 void FSM::transit(VsGameSection* section, int state, StateArg* arg) { StateMachine<VsGameSection>::transit(section, state, arg); }
 } // namespace VsGame
@@ -71,10 +68,9 @@ int VsGameSection::mRedWinCount;
 int VsGameSection::mBlueWinCount;
 int VsGameSection::mDrawCount;
 
-/*
- * --INFO--
- * Address:	801C0EEC
- * Size:	0000FC
+/**
+ * @note Address: 0x801C0EEC
+ * @note Size: 0xFC
  */
 
 VsGameSection::VsGameSection(JKRHeap* heap, bool gameMode)
@@ -103,10 +99,9 @@ VsGameSection::VsGameSection(JKRHeap* heap, bool gameMode)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C0FE8
- * Size:	0000CC
+/**
+ * @note Address: 0x801C0FE8
+ * @note Size: 0xCC
  */
 VsGameSection::~VsGameSection()
 {
@@ -123,10 +118,9 @@ VsGameSection::~VsGameSection()
 
 } // namespace Game
 
-/*
- * --INFO--
- * Address:	801C10B4
- * Size:	00005C
+/**
+ * @note Address: 0x801C10B4
+ * @note Size: 0x5C
  * TODO: should be weak
  */
 bool VSFifo::isGPActive()
@@ -137,17 +131,15 @@ bool VSFifo::isGPActive()
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	801C1110
- * Size:	000034
+/**
+ * @note Address: 0x801C1110
+ * @note Size: 0x34
  */
 void VsGameSection::section_fadeout() { mCurrentState->on_section_fadeout(this); }
 
-/*
- * --INFO--
- * Address:	801C1148
- * Size:	000090
+/**
+ * @note Address: 0x801C1148
+ * @note Size: 0x90
  */
 void VsGameSection::startMainBgm()
 {
@@ -156,10 +148,9 @@ void VsGameSection::startMainBgm()
 	sceneMgr->mScenes->mChild->startMainSeq();
 }
 
-/*
- * --INFO--
- * Address:	801C11D8
- * Size:	00020C
+/**
+ * @note Address: 0x801C11D8
+ * @note Size: 0x20C
  */
 void VsGameSection::onInit()
 {
@@ -220,10 +211,9 @@ void VsGameSection::onInit()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C13E4
- * Size:	000034
+/**
+ * @note Address: 0x801C13E4
+ * @note Size: 0x34
  */
 // void StateMachine<VsGameSection>::start(VsGameSection* section, int stateID, StateArg* arg)
 // {
@@ -231,17 +221,15 @@ void VsGameSection::onInit()
 // 	transit(section, stateID, arg);
 // }
 
-/*
- * --INFO--
- * Address:	801C1418
- * Size:	000008
+/**
+ * @note Address: 0x801C1418
+ * @note Size: 0x8
  */
 int VsGameSection::getCurrFloor() { return mCurrentFloor; }
 
-/*
- * --INFO--
- * Address:	801C1420
- * Size:	0001B8
+/**
+ * @note Address: 0x801C1420
+ * @note Size: 0x1B8
  */
 bool VsGameSection::doUpdate()
 {
@@ -286,10 +274,9 @@ bool VsGameSection::doUpdate()
 	return mIsMainActive;
 }
 
-/*
- * --INFO--
- * Address:	801C15D8
- * Size:	00003C
+/**
+ * @note Address: 0x801C15D8
+ * @note Size: 0x3C
  */
 void VsGameSection::pre2dDraw(Graphics& gfx)
 {
@@ -298,10 +285,9 @@ void VsGameSection::pre2dDraw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C1618
- * Size:	000050
+/**
+ * @note Address: 0x801C1618
+ * @note Size: 0x50
  */
 void VsGameSection::doDraw(Graphics& gfx)
 {
@@ -310,10 +296,9 @@ void VsGameSection::doDraw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C1668
- * Size:	0001DC
+/**
+ * @note Address: 0x801C1668
+ * @note Size: 0x1DC
  */
 void VsGameSection::onSetSoundScene()
 {
@@ -346,10 +331,9 @@ void VsGameSection::onSetSoundScene()
 	naviMgr->createPSMDirectorUpdator();
 }
 
-/*
- * --INFO--
- * Address:	801C1844
- * Size:	00005C
+/**
+ * @note Address: 0x801C1844
+ * @note Size: 0x5C
  */
 void VsGameSection::initPlayData()
 {
@@ -359,10 +343,9 @@ void VsGameSection::initPlayData()
 	playData->mNaviLifeMax[NAVIID_Louie]  = naviMgr->mNaviParms->mNaviParms.mMaxHealth.mValue;
 }
 
-/*
- * --INFO--
- * Address:	801C18A0
- * Size:	000168
+/**
+ * @note Address: 0x801C18A0
+ * @note Size: 0x168
  */
 
 void VsGameSection::onSetupFloatMemory()
@@ -389,10 +372,9 @@ void VsGameSection::onSetupFloatMemory()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C1A08
- * Size:	0000A0
+/**
+ * @note Address: 0x801C1A08
+ * @note Size: 0xA0
  */
 void VsGameSection::postSetupFloatMemory()
 {
@@ -415,10 +397,9 @@ void VsGameSection::postSetupFloatMemory()
 	BaseGameSection::postSetupFloatMemory();
 }
 
-/*
- * --INFO--
- * Address:	801C1AA8
- * Size:	000020
+/**
+ * @note Address: 0x801C1AA8
+ * @note Size: 0x20
  */
 void VsGameSection::onClearHeap()
 {
@@ -428,10 +409,9 @@ void VsGameSection::onClearHeap()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C1AC8
- * Size:	0000B0
+/**
+ * @note Address: 0x801C1AC8
+ * @note Size: 0xB0
  */
 void VsGameSection::loadChallengeStageList()
 {
@@ -448,10 +428,9 @@ void VsGameSection::loadChallengeStageList()
 	mChallengeStageList->read(ram);
 }
 
-/*
- * --INFO--
- * Address:	801C1B78
- * Size:	000098
+/**
+ * @note Address: 0x801C1B78
+ * @note Size: 0x98
  */
 void VsGameSection::loadVsStageList()
 {
@@ -468,10 +447,9 @@ void VsGameSection::loadVsStageList()
 	mVsStageList->read(ram);
 }
 
-/*
- * --INFO--
- * Address:	801C1C10
- * Size:	000044
+/**
+ * @note Address: 0x801C1C10
+ * @note Size: 0x44
  */
 void VsGameSection::gmOrimaDown(int arg)
 {
@@ -480,24 +458,21 @@ void VsGameSection::gmOrimaDown(int arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C1C58
- * Size:	000004
+/**
+ * @note Address: 0x801C1C58
+ * @note Size: 0x4
  */
 void VsGameSection::gmPikminZero() { }
 
-/*
- * --INFO--
- * Address:	801C1C5C
- * Size:	00003C
+/**
+ * @note Address: 0x801C1C5C
+ * @note Size: 0x3C
  */
 void VsGameSection::goNextFloor(ItemHole::Item* hole) { mCurrentState->onNextFloor(this, hole); }
 
-/*
- * --INFO--
- * Address:	801C1C9C
- * Size:	0001D8
+/**
+ * @note Address: 0x801C1C9C
+ * @note Size: 0x1D8
  */
 void VsGameSection::openCaveMoreMenu(ItemHole::Item* hole, Controller* controller)
 {
@@ -536,10 +511,9 @@ void VsGameSection::openCaveMoreMenu(ItemHole::Item* hole, Controller* controlle
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C1E7C
- * Size:	0001B0
+/**
+ * @note Address: 0x801C1E7C
+ * @note Size: 0x1B0
  */
 void VsGameSection::openKanketuMenu(ItemBigFountain::Item* fountain, Controller* controller)
 {
@@ -574,10 +548,9 @@ void VsGameSection::openKanketuMenu(ItemBigFountain::Item* fountain, Controller*
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C202C
- * Size:	000014
+/**
+ * @note Address: 0x801C202C
+ * @note Size: 0x14
  */
 void VsGameSection::clearCaveMenus()
 {
@@ -586,10 +559,9 @@ void VsGameSection::clearCaveMenus()
 	mFountain  = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	801C2040
- * Size:	0002A8
+/**
+ * @note Address: 0x801C2040
+ * @note Size: 0x2A8
  */
 bool VsGameSection::updateCaveMenus()
 {
@@ -650,10 +622,9 @@ bool VsGameSection::updateCaveMenus()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	801C22F0
- * Size:	0000DC
+/**
+ * @note Address: 0x801C22F0
+ * @note Size: 0xDC
  */
 void VsGameSection::onMovieStart(MovieConfig* movie, u32 param_2, u32 playerMode)
 {
@@ -672,10 +643,9 @@ void VsGameSection::onMovieStart(MovieConfig* movie, u32 param_2, u32 playerMode
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C23D0
- * Size:	000054
+/**
+ * @note Address: 0x801C23D0
+ * @note Size: 0x54
  */
 void VsGameSection::onMovieDone(MovieConfig* movie, u32 param_2, u32 param_3)
 {
@@ -684,10 +654,9 @@ void VsGameSection::onMovieDone(MovieConfig* movie, u32 param_2, u32 param_3)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C2428
- * Size:	000434
+/**
+ * @note Address: 0x801C2428
+ * @note Size: 0x434
  */
 void VsGameSection::createFallPikmins(PikiContainer& setPikmin, int param_2)
 {
@@ -726,10 +695,9 @@ void VsGameSection::createFallPikmins(PikiContainer& setPikmin, int param_2)
 	setPikmin.clear();
 }
 
-/*
- * --INFO--
- * Address:	801C285C
- * Size:	000564
+/**
+ * @note Address: 0x801C285C
+ * @note Size: 0x564
  */
 void VsGameSection::createVsPikmins()
 {
@@ -802,17 +770,15 @@ void VsGameSection::createVsPikmins()
 	luji->mSprayCounts[1]  = mVsStageData->mStartNumBitter;
 }
 
-/*
- * --INFO--
- * Address:	801C2DC0
- * Size:	000010
+/**
+ * @note Address: 0x801C2DC0
+ * @note Size: 0x10
  */
 void VsGameSection::addChallengeScore(int score) { mPokoCount += score; }
 
-/*
- * --INFO--
- * Address:	801C2DD0
- * Size:	00006C
+/**
+ * @note Address: 0x801C2DD0
+ * @note Size: 0x6C
  */
 bool VsGameSection::sendMessage(GameMessage& message)
 {
@@ -821,10 +787,9 @@ bool VsGameSection::sendMessage(GameMessage& message)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C2E3C
- * Size:	000040
+/**
+ * @note Address: 0x801C2E3C
+ * @note Size: 0x40
  */
 bool GameMessageVsGetDoping::actVs(VsGameSection* section)
 {
@@ -832,10 +797,9 @@ bool GameMessageVsGetDoping::actVs(VsGameSection* section)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801C2E7C
- * Size:	00004C
+/**
+ * @note Address: 0x801C2E7C
+ * @note Size: 0x4C
  */
 bool GameMessageVsBattleFinished::actVs(VsGameSection* section)
 {
@@ -845,10 +809,9 @@ bool GameMessageVsBattleFinished::actVs(VsGameSection* section)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801C2ECC
- * Size:	00004C
+/**
+ * @note Address: 0x801C2ECC
+ * @note Size: 0x4C
  */
 bool GameMessageVsRedOrSuckStart::actVs(VsGameSection* section)
 {
@@ -858,10 +821,9 @@ bool GameMessageVsRedOrSuckStart::actVs(VsGameSection* section)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801C2F1C
- * Size:	0000B8
+/**
+ * @note Address: 0x801C2F1C
+ * @note Size: 0xB8
  */
 bool GameMessageVsGetOtakara::actVs(VsGameSection* section)
 {
@@ -876,10 +838,9 @@ bool GameMessageVsGetOtakara::actVs(VsGameSection* section)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801C2FD4
- * Size:	000034
+/**
+ * @note Address: 0x801C2FD4
+ * @note Size: 0x34
  */
 bool GameMessageVsAddEnemy::actVs(VsGameSection* section)
 {
@@ -887,10 +848,9 @@ bool GameMessageVsAddEnemy::actVs(VsGameSection* section)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801C3008
- * Size:	000118
+/**
+ * @note Address: 0x801C3008
+ * @note Size: 0x118
  */
 bool GameMessagePelletBorn::actVs(VsGameSection* section)
 {
@@ -911,10 +871,9 @@ bool GameMessagePelletBorn::actVs(VsGameSection* section)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	801C3120
- * Size:	00008C
+/**
+ * @note Address: 0x801C3120
+ * @note Size: 0x8C
  */
 bool GameMessagePelletDead::actVs(VsGameSection* section)
 {
@@ -931,10 +890,9 @@ bool GameMessagePelletDead::actVs(VsGameSection* section)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	801C31AC
- * Size:	000228
+/**
+ * @note Address: 0x801C31AC
+ * @note Size: 0x228
  */
 bool GameMessageVsBirthTekiTreasure::actVs(VsGameSection* section)
 {
@@ -995,10 +953,9 @@ bool GameMessageVsBirthTekiTreasure::actVs(VsGameSection* section)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C33D4
- * Size:	00001C
+/**
+ * @note Address: 0x801C33D4
+ * @note Size: 0x1C
  */
 bool GameMessageVsPikminDead::actVs(VsGameSection* section)
 {
@@ -1007,10 +964,9 @@ bool GameMessageVsPikminDead::actVs(VsGameSection* section)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801C33F0
- * Size:	00007C
+/**
+ * @note Address: 0x801C33F0
+ * @note Size: 0x7C
  */
 bool GameMessageVsGotCard::actVs(VsGameSection* section)
 {
@@ -1022,10 +978,9 @@ bool GameMessageVsGotCard::actVs(VsGameSection* section)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801C346C
- * Size:	0000A8
+/**
+ * @note Address: 0x801C346C
+ * @note Size: 0xA8
  */
 bool GameMessageVsUseCard::actVs(VsGameSection* section)
 {
@@ -1044,10 +999,9 @@ bool GameMessageVsUseCard::actVs(VsGameSection* section)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000170
+/**
+ * @note Address: N/A
+ * @note Size: 0x170
  */
 Pellet* VsGameSection::createCardPellet()
 {
@@ -1075,10 +1029,9 @@ Pellet* VsGameSection::createCardPellet()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	801C352C
- * Size:	000190
+/**
+ * @note Address: 0x801C352C
+ * @note Size: 0x190
  */
 void VsGameSection::initCardPellets()
 {
@@ -1114,10 +1067,9 @@ void VsGameSection::initCardPellets()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C36BC
- * Size:	000014
+/**
+ * @note Address: 0x801C36BC
+ * @note Size: 0x14
  */
 void VsGameSection::initCardGeneration()
 {
@@ -1125,10 +1077,9 @@ void VsGameSection::initCardGeneration()
 	mSpawnTimer = 25.0f;
 }
 
-/*
- * --INFO--
- * Address:	801C36D0
- * Size:	0002D8
+/**
+ * @note Address: 0x801C36D0
+ * @note Size: 0x2D8
  */
 void VsGameSection::updateCardGeneration()
 {
@@ -1214,10 +1165,9 @@ void VsGameSection::updateCardGeneration()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C39A8
- * Size:	000018
+/**
+ * @note Address: 0x801C39A8
+ * @note Size: 0x18
  */
 void VsGameSection::useCard()
 {
@@ -1256,10 +1206,9 @@ void VsGameSection::dropCard(VsGameSection::DropCardArg& arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C3DB4
- * Size:	0001AC
+/**
+ * @note Address: 0x801C3DB4
+ * @note Size: 0x1AC
  */
 void VsGameSection::createYellowBedamas(int bedamas)
 {
@@ -1321,10 +1270,9 @@ void VsGameSection::createRedBlueBedamas(Vector3f& pos)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C40AC
- * Size:	000814
+/**
+ * @note Address: 0x801C40AC
+ * @note Size: 0x814
  */
 void VsGameSection::calcVsScores()
 {
@@ -1498,10 +1446,9 @@ void VsGameSection::calcVsScores()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C48C0
- * Size:	000018
+/**
+ * @note Address: 0x801C48C0
+ * @note Size: 0x18
  */
 void VsGameSection::clearGetDopeCount()
 {
@@ -1511,10 +1458,9 @@ void VsGameSection::clearGetDopeCount()
 	mDopeCounts[0][0] = 0;
 }
 
-/*
- * --INFO--
- * Address:	801C48D8
- * Size:	0000D0
+/**
+ * @note Address: 0x801C48D8
+ * @note Size: 0xD0
  */
 int& VsGameSection::getGetDopeCount(int player, int type)
 {
@@ -1523,10 +1469,9 @@ int& VsGameSection::getGetDopeCount(int player, int type)
 	return mDopeCounts[player][type];
 }
 
-/*
- * --INFO--
- * Address:	801C49A8
- * Size:	000010
+/**
+ * @note Address: 0x801C49A8
+ * @note Size: 0x10
  */
 void VsGameSection::clearGetCherryCount()
 {
@@ -1534,17 +1479,15 @@ void VsGameSection::clearGetCherryCount()
 	mPlayer2Cherries = 0;
 }
 
-/*
- * --INFO--
- * Address:	801C49E0
- * Size:	000004
+/**
+ * @note Address: 0x801C49E0
+ * @note Size: 0x4
  */
 // void StateMachine<VsGameSection>::init(VsGameSection*) { }
 
-/*
- * --INFO--
- * Address:	801C49E4
- * Size:	000064
+/**
+ * @note Address: 0x801C49E4
+ * @note Size: 0x64
  */
 // void StateMachine<VsGameSection>::create(int states)
 // {
@@ -1555,10 +1498,9 @@ void VsGameSection::clearGetCherryCount()
 // 	mIdToIndexArray = new int[mLimit];
 // }
 
-/*
- * --INFO--
- * Address:	801C4A48
- * Size:	00009C
+/**
+ * @note Address: 0x801C4A48
+ * @note Size: 0x9C
  */
 // void StateMachine<VsGameSection>::transit(VsGameSection* section, int stateID, StateArg* arg)
 // {
@@ -1578,10 +1520,9 @@ void VsGameSection::clearGetCherryCount()
 // 	state->init(section, arg);
 // }
 
-/*
- * --INFO--
- * Address:	801C4AEC
- * Size:	000084
+/**
+ * @note Address: 0x801C4AEC
+ * @note Size: 0x84
  */
 // void StateMachine<VsGameSection>::registerState(FSMState<VsGameSection>* state)
 // {
@@ -1606,10 +1547,9 @@ void VsGameSection::clearGetCherryCount()
 // 	mCount++;
 // }
 
-/*
- * --INFO--
- * Address:	801C4B70
- * Size:	000038
+/**
+ * @note Address: 0x801C4B70
+ * @note Size: 0x38
  */
 // void StateMachine<VsGameSection>::exec(VsGameSection* section)
 // {

@@ -8,10 +8,9 @@ LoadResource::Mgr* gLoadResourceMgr;
 
 namespace LoadResource {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
+/**
+ * @note Address: N/A
+ * @note Size: 0x78
  */
 Node::Node(char const* path)
     : CNode(const_cast<char*>(path))
@@ -20,10 +19,9 @@ Node::Node(char const* path)
 	mArchive = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8044C520
- * Size:	0000B8
+/**
+ * @note Address: 0x8044C520
+ * @note Size: 0xB8
  */
 Node::~Node()
 {
@@ -36,18 +34,16 @@ Node::~Node()
 		delete mName;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void Node::dump() { }
 
-/*
+/**
  * __ct__Q212LoadResource3ArgFPCc
- * --INFO--
- * Address:	8044C5D8
- * Size:	000044
+ * @note Address: 0x8044C5D8
+ * @note Size: 0x44
  */
 Arg::Arg(char const* p1)
     : mPath(p1)
@@ -66,11 +62,10 @@ Arg::Arg(char const* p1)
 {
 }
 
-/*
+/**
  * __ct__Q212LoadResource11ArgAramOnlyFPCc
- * --INFO--
- * Address:	8044C61C
- * Size:	000048
+ * @note Address: 0x8044C61C
+ * @note Size: 0x48
  */
 ArgAramOnly::ArgAramOnly(char const* p1)
     : Arg(p1)
@@ -78,11 +73,10 @@ ArgAramOnly::ArgAramOnly(char const* p1)
 	mUseDVD = 0;
 }
 
-/*
+/**
  * __ct__Q212LoadResource3MgrFv
- * --INFO--
- * Address:	........
- * Size:	00009C
+ * @note Address: N/A
+ * @note Size: 0x9C
  */
 Mgr::Mgr()
     : mAramRoot("AramRoot")
@@ -92,17 +86,15 @@ Mgr::Mgr()
 	gLoadResourceMgr = this;
 }
 
-/*
- * --INFO--
- * Address:	8044C664
- * Size:	0000B0
+/**
+ * @note Address: 0x8044C664
+ * @note Size: 0xB0
  */
 void Mgr::init() { new Mgr(); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B4
+/**
+ * @note Address: N/A
+ * @note Size: 0xB4
  */
 Node* Mgr::search(char const* path)
 {
@@ -127,20 +119,18 @@ Node* Mgr::search(char const* path)
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 void Mgr::dump()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8044C714
- * Size:	00008C
+/**
+ * @note Address: 0x8044C714
+ * @note Size: 0x8C
  */
 Node* Mgr::mountArchive(Arg& arg)
 {
@@ -158,10 +148,9 @@ Node* Mgr::mountArchive(Arg& arg)
 	return node;
 }
 
-/*
- * --INFO--
- * Address:	8044C7A0
- * Size:	000324
+/**
+ * @note Address: 0x8044C7A0
+ * @note Size: 0x324
  */
 Node* Mgr::load(Arg& arg)
 {

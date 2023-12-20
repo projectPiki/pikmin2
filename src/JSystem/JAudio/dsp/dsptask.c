@@ -16,10 +16,9 @@ u16 jdsp[3728] ATTRIBUTE_ALIGN(32)
     = { 0x29f, 0x12,  0,     0,    0x2ff,  0,     0x2ff, 0,      0x2ff, 0,      0x2ff, 0, 0x2ff, 0,
 	    0x29f, 0x5b8, 0x29f, 0x4e, 0x1205, 0x2bf, 0x57,  0x8100, 0x9f,  0x1000, 0x80,  0, 0x5f,  0x1b1e }; // placeholder
 
-/*
- * --INFO--
- * Address:	800AA900
- * Size:	000038
+/**
+ * @note Address: 0x800AA900
+ * @note Size: 0x38
  */
 static void DspHandShake(void* a1)
 {
@@ -31,10 +30,9 @@ static void DspHandShake(void* a1)
 	Dsp_Running_Start();
 }
 
-/*
- * --INFO--
- * Address:	800AA940
- * Size:	0000AC
+/**
+ * @note Address: 0x800AA940
+ * @note Size: 0xAC
  */
 void DspBoot(DSPCallback callback)
 {
@@ -102,10 +100,9 @@ void DspBoot(DSPCallback callback)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800AAA00
- * Size:	0000E8
+/**
+ * @note Address: 0x800AAA00
+ * @note Size: 0xE8
  */
 int DSPSendCommands2(u32* p1, u32 p2, void (*p3)(u16))
 {
@@ -221,10 +218,9 @@ int DSPSendCommands2(u32* p1, u32 p2, void (*p3)(u16))
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800AAB00
- * Size:	00002C
+/**
+ * @note Address: 0x800AAB00
+ * @note Size: 0x2C
  */
 void DspInitWork()
 {
@@ -253,10 +249,9 @@ void DspInitWork()
 static u32 taskreadp;
 static u32 taskwritep;
 
-/*
- * --INFO--
- * Address:	800AAB40
- * Size:	000048
+/**
+ * @note Address: 0x800AAB40
+ * @note Size: 0x48
  */
 int DspStartWork(u32 p1, void (*p2)(u16))
 {
@@ -272,10 +267,9 @@ int DspStartWork(u32 p1, void (*p2)(u16))
 	return taskWritePrev + 1;
 }
 
-/*
- * --INFO--
- * Address:	800AABA0
- * Size:	000068
+/**
+ * @note Address: 0x800AABA0
+ * @note Size: 0x68
  */
 void DspFinishWork(u16 p1)
 {

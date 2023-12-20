@@ -20,10 +20,9 @@ u64 map_icon_tag[22]
     = { 'oniyon_r', 'oniyon_b', 'oniyon_y', 'piki_r',   'piki__b', 'piki_y',   'piki_bl',  'piki_w',   'piki_fr', 'piki_me', 'kanketu',
 	    'cave',     'pot',      'luji_bs',  'orima_bs', 'ufo',     'takar_bs', 'takar_bs', 'takar_bs', 'cave',    'comp_c',  'cave' };
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000228
+/**
+ * @note Address: N/A
+ * @note Size: 0x228
  */
 Game::Navi* getNaviPtr(int index)
 {
@@ -39,10 +38,9 @@ Game::Navi* getNaviPtr(int index)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8030F6F0
- * Size:	000114
+/**
+ * @note Address: 0x8030F6F0
+ * @note Size: 0x114
  */
 ObjSMenuMap::ObjSMenuMap(char const* name)
 {
@@ -93,37 +91,33 @@ ObjSMenuMap::ObjSMenuMap(char const* name)
 	mCaveLabelTextBoxes[4]  = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8030F8B0
- * Size:	0000C4
+/**
+ * @note Address: 0x8030F8B0
+ * @note Size: 0xC4
  */
 ObjSMenuMap::~ObjSMenuMap() { }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000024
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x24
 //  */
 // void ObjSMenuMap::calcMapScale()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	0000AC
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0xAC
 //  */
 // void ObjSMenuMap::calcMapPos(Vector2f&)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	8030F974
- * Size:	00026C
+/**
+ * @note Address: 0x8030F974
+ * @note Size: 0x26C
  */
 void ObjSMenuMap::setMapTexture()
 {
@@ -164,30 +158,27 @@ void ObjSMenuMap::setMapTexture()
 	mMapTexPane->resize(mMapTextureDimensions.x, mMapTextureDimensions.y);
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	0001B0
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x1B0
 //  */
 // void ObjSMenuMap::setMapPos()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	0000BC
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0xBC
 //  */
 // void ObjSMenuMap::setCompass()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	8030FBE0
- * Size:	0001B8
+/**
+ * @note Address: 0x8030FBE0
+ * @note Size: 0x1B8
  */
 void ObjSMenuMap::tuningIcon()
 {
@@ -229,10 +220,9 @@ void ObjSMenuMap::tuningIcon()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8030FD98
- * Size:	000C74
+/**
+ * @note Address: 0x8030FD98
+ * @note Size: 0xC74
  */
 void ObjSMenuMap::initMapIcon(JKRArchive* arc)
 {
@@ -1285,10 +1275,9 @@ lbl_803109DC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80310A0C
- * Size:	0001E4
+/**
+ * @note Address: 0x80310A0C
+ * @note Size: 0x1E4
  */
 void ObjSMenuMap::appendCaveName(J2DPane* parent, u16 caveIndex, u64 tag)
 {
@@ -1444,20 +1433,18 @@ void ObjSMenuMap::appendCaveName(J2DPane* parent, u16 caveIndex, u64 tag)
 	*/
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000004
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x4
 //  */
 // void ObjSMenuMap::rotateMap()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	80310BF0
- * Size:	0002E8
+/**
+ * @note Address: 0x80310BF0
+ * @note Size: 0x2E8
  */
 void ObjSMenuMap::transMap()
 {
@@ -1753,40 +1740,36 @@ lbl_80310E9C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C4
+/**
+ * @note Address: N/A
+ * @note Size: 0xC4
  */
 void ObjSMenuMap::scaleMap()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B0
+/**
+ * @note Address: N/A
+ * @note Size: 0xB0
  */
 void ObjSMenuMap::setMapColor()
 {
 	// UNUSED FUNCTION
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000054
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x54
 //  */
 // void ObjSMenuMap::calcCaveNameAlpha()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	80310ED8
- * Size:	000960
+/**
+ * @note Address: 0x80310ED8
+ * @note Size: 0x960
  */
 void ObjSMenuMap::doCreate(JKRArchive* arc)
 {
@@ -2618,10 +2601,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80311838
- * Size:	000598
+/**
+ * @note Address: 0x80311838
+ * @note Size: 0x598
  */
 void ObjSMenuMap::updateMap()
 {
@@ -3088,10 +3070,9 @@ lbl_80311DA4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80311DD0
- * Size:	0000A8
+/**
+ * @note Address: 0x80311DD0
+ * @note Size: 0xA8
  */
 void ObjSMenuMap::commonUpdate()
 {
@@ -3107,10 +3088,9 @@ void ObjSMenuMap::commonUpdate()
 	mIconScreen->update();
 }
 
-/*
- * --INFO--
- * Address:	80311E78
- * Size:	00006C
+/**
+ * @note Address: 0x80311E78
+ * @note Size: 0x6C
  */
 void ObjSMenuMap::doUpdateLAction()
 {
@@ -3118,10 +3098,9 @@ void ObjSMenuMap::doUpdateLAction()
 	jump_L(arg);
 }
 
-/*
- * --INFO--
- * Address:	80311EE4
- * Size:	0000C4
+/**
+ * @note Address: 0x80311EE4
+ * @note Size: 0xC4
  */
 void ObjSMenuMap::doUpdateRAction()
 {
@@ -3134,10 +3113,9 @@ void ObjSMenuMap::doUpdateRAction()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80311FA8
- * Size:	00010C
+/**
+ * @note Address: 0x80311FA8
+ * @note Size: 0x10C
  */
 bool ObjSMenuMap::doUpdate()
 {
@@ -3170,10 +3148,9 @@ bool ObjSMenuMap::doUpdate()
 	return ObjSMenuBase::doUpdate();
 }
 
-/*
- * --INFO--
- * Address:	803120B4
- * Size:	000138
+/**
+ * @note Address: 0x803120B4
+ * @note Size: 0x138
  */
 void ObjSMenuMap::doDraw(Graphics& gfx)
 {
@@ -3193,10 +3170,9 @@ void ObjSMenuMap::doDraw(Graphics& gfx)
 	drawYaji(gfx);
 }
 
-/*
- * --INFO--
- * Address:	803121EC
- * Size:	00032C
+/**
+ * @note Address: 0x803121EC
+ * @note Size: 0x32C
  */
 void ObjSMenuMap::drawMap(Graphics& gfx)
 {
@@ -3247,10 +3223,9 @@ void ObjSMenuMap::drawMap(Graphics& gfx)
 	GXSetZMode(GX_TRUE, GX_LESS, GX_FALSE);
 }
 
-/*
- * --INFO--
- * Address:	80312518
- * Size:	0001E0
+/**
+ * @note Address: 0x80312518
+ * @note Size: 0x1E0
  */
 void ObjSMenuMap::drawRectZ(Graphics& gfx, Rectf& rect, Color4& color, f32 z)
 {
@@ -3407,10 +3382,9 @@ void ObjSMenuMap::drawRectZ(Graphics& gfx, Rectf& rect, Color4& color, f32 z)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803126F8
- * Size:	000214
+/**
+ * @note Address: 0x803126F8
+ * @note Size: 0x214
  */
 void ObjSMenuMap::drawVecZ(Graphics& gfx, Vec& vec1, Vec& vec2, Vec& vec3, Vec& vec4, Color4& color, f32 z)
 {
@@ -3582,10 +3556,9 @@ void ObjSMenuMap::drawVecZ(Graphics& gfx, Vec& vec1, Vec& vec2, Vec& vec3, Vec& 
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8031290C
- * Size:	0000A4
+/**
+ * @note Address: 0x8031290C
+ * @note Size: 0xA4
  */
 bool ObjSMenuMap::doStart(::Screen::StartSceneArg const* arg)
 {
@@ -3598,24 +3571,21 @@ bool ObjSMenuMap::doStart(::Screen::StartSceneArg const* arg)
 	start_LR(arg);
 }
 
-/*
- * --INFO--
- * Address:	803129B0
- * Size:	000008
+/**
+ * @note Address: 0x803129B0
+ * @note Size: 0x8
  */
 bool ObjSMenuMap::doEnd(::Screen::EndSceneArg const*) { return true; }
 
-/*
- * --INFO--
- * Address:	803129B8
- * Size:	000020
+/**
+ * @note Address: 0x803129B8
+ * @note Size: 0x20
  */
 void ObjSMenuMap::doUpdateFinish() { ObjSMenuBase::doUpdateFinish(); }
 
-/*
- * --INFO--
- * Address:	803129D8
- * Size:	00004C
+/**
+ * @note Address: 0x803129D8
+ * @note Size: 0x4C
  */
 bool ObjSMenuMap::doUpdateFadeout()
 {
@@ -3623,10 +3593,9 @@ bool ObjSMenuMap::doUpdateFadeout()
 	updateFadeOut();
 }
 
-/*
- * --INFO--
- * Address:	80312A24
- * Size:	000014
+/**
+ * @note Address: 0x80312A24
+ * @note Size: 0x14
  */
 void ObjSMenuMap::in_L()
 {
@@ -3634,10 +3603,9 @@ void ObjSMenuMap::in_L()
 	mAngle = 15.0f;
 }
 
-/*
- * --INFO--
- * Address:	80312A38
- * Size:	000014
+/**
+ * @note Address: 0x80312A38
+ * @note Size: 0x14
  */
 void ObjSMenuMap::in_R()
 {
@@ -3645,17 +3613,15 @@ void ObjSMenuMap::in_R()
 	mAngle = 15.0f;
 }
 
-/*
- * --INFO--
- * Address:	80312A4C
- * Size:	00000C
+/**
+ * @note Address: 0x80312A4C
+ * @note Size: 0xC
  */
 void ObjSMenuMap::wait() { mState = MENUSTATE_Default; }
 
-/*
- * --INFO--
- * Address:	80312A58
- * Size:	00002C
+/**
+ * @note Address: 0x80312A58
+ * @note Size: 0x2C
  */
 void ObjSMenuMap::out_L()
 {
@@ -3663,10 +3629,9 @@ void ObjSMenuMap::out_L()
 	ogSound->setSMenuLR();
 }
 
-/*
- * --INFO--
- * Address:	80312A84
- * Size:	00002C
+/**
+ * @note Address: 0x80312A84
+ * @note Size: 0x2C
  */
 void ObjSMenuMap::out_R()
 {

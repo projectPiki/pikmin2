@@ -8,10 +8,9 @@
 namespace PSM {
 namespace BossBgmFader {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C8
+/**
+ * @note Address: N/A
+ * @note Size: 0xC8
  */
 TypedProc::TypedProc(f32 farDist, f32 nearDist)
 {
@@ -26,10 +25,9 @@ TypedProc::TypedProc(f32 farDist, f32 nearDist)
 	P2ASSERTLINE(47, mNearDist > 0.0f);
 }
 
-/*
- * --INFO--
- * Address:	8046C6B8
- * Size:	0001D8
+/**
+ * @note Address: 0x8046C6B8
+ * @note Size: 0x1D8
  */
 void TypedProc::update()
 {
@@ -91,17 +89,15 @@ void TypedProc::update()
 	mMaxDistance = maxDist;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000100
+/**
+ * @note Address: N/A
+ * @note Size: 0x100
  */
 void TypedProc::getBossFadeVolume() { mNearDist = 1.0f; }
 
-/*
- * --INFO--
- * Address:	8046C890
- * Size:	00003C
+/**
+ * @note Address: 0x8046C890
+ * @note Size: 0x3C
  */
 void TypedProc_MidBoss::update()
 {
@@ -111,10 +107,9 @@ void TypedProc_MidBoss::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8046C8CC
- * Size:	0000EC
+/**
+ * @note Address: 0x8046C8CC
+ * @note Size: 0xEC
  */
 Mgr::Mgr()
     : PSSystem::SingletonBase<Mgr>(this)
@@ -123,17 +118,15 @@ Mgr::Mgr()
 	mTypedProc.mNeedJump = false;
 }
 
-/*
- * --INFO--
- * Address:	8046C9B8
- * Size:	000024
+/**
+ * @note Address: 0x8046C9B8
+ * @note Size: 0x24
  */
 void Mgr::appendTarget(JSULink<EnemyBoss>* obj) { mTypedProc.append(obj); }
 
-/*
- * --INFO--
- * Address:	8046C9DC
- * Size:	000768
+/**
+ * @note Address: 0x8046C9DC
+ * @note Size: 0x768
  */
 void Mgr::exec()
 {

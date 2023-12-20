@@ -2,15 +2,14 @@
 
 #include "JSystem/JSupport/JSUList.h"
 
-/*
+/**
  * Decompilation of this file is derived from https://github.com/shibbo/Petari
  */
 
-/*
+/**
  * __ct__10JSUPtrLinkFPv
- * --INFO--
- * Address:	800267B8
- * Size:	000018
+ * @note Address: 0x800267B8
+ * @note Size: 0x18
  */
 JSUPtrLink::JSUPtrLink(void* pData)
 {
@@ -20,11 +19,10 @@ JSUPtrLink::JSUPtrLink(void* pData)
 	mNext  = nullptr;
 }
 
-/*
+/**
  * __dt__10JSUPtrLinkFv
- * --INFO--
- * Address:	800267D0
- * Size:	000060
+ * @note Address: 0x800267D0
+ * @note Size: 0x60
  */
 JSUPtrLink::~JSUPtrLink()
 {
@@ -33,11 +31,10 @@ JSUPtrLink::~JSUPtrLink()
 	}
 }
 
-/*
+/**
  * __ct__10JSUPtrListFb
- * --INFO--
- * Address:	80026830
- * Size:	000038
+ * @note Address: 0x80026830
+ * @note Size: 0x38
  */
 JSUPtrList::JSUPtrList(bool doInitialize)
 {
@@ -46,11 +43,10 @@ JSUPtrList::JSUPtrList(bool doInitialize)
 	}
 }
 
-/*
+/**
  * __dt__10JSUPtrListFv
- * --INFO--
- * Address:	80026868
- * Size:	000068
+ * @note Address: 0x80026868
+ * @note Size: 0x68
  */
 JSUPtrList::~JSUPtrList()
 {
@@ -61,10 +57,9 @@ JSUPtrList::~JSUPtrList()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800268D0
- * Size:	000014
+/**
+ * @note Address: 0x800268D0
+ * @note Size: 0x14
  */
 void JSUPtrList::initiate()
 {
@@ -73,10 +68,9 @@ void JSUPtrList::initiate()
 	mLinkCount = 0;
 }
 
-/*
- * --INFO--
- * Address:	800268E4
- * Size:	0000B8
+/**
+ * @note Address: 0x800268E4
+ * @note Size: 0xB8
  */
 bool JSUPtrList::append(JSUPtrLink* pLink)
 {
@@ -106,10 +100,9 @@ bool JSUPtrList::append(JSUPtrLink* pLink)
 	return validity;
 }
 
-/*
- * --INFO--
- * Address:	8002699C
- * Size:	0000B8
+/**
+ * @note Address: 0x8002699C
+ * @note Size: 0xB8
  */
 bool JSUPtrList::prepend(JSUPtrLink* pLink)
 {
@@ -139,10 +132,9 @@ bool JSUPtrList::prepend(JSUPtrLink* pLink)
 	return validity;
 }
 
-/*
- * --INFO--
- * Address:	80026A54
- * Size:	0001D0
+/**
+ * @note Address: 0x80026A54
+ * @note Size: 0x1D0
  */
 bool JSUPtrList::insert(JSUPtrLink* pLink1, JSUPtrLink* pLink2)
 {
@@ -177,10 +169,9 @@ bool JSUPtrList::insert(JSUPtrLink* pLink1, JSUPtrLink* pLink2)
 	return validity;
 }
 
-/*
- * --INFO--
- * Address:	80026C24
- * Size:	0000B0
+/**
+ * @note Address: 0x80026C24
+ * @note Size: 0xB0
  */
 bool JSUPtrList::remove(JSUPtrLink* pLink)
 {
@@ -208,10 +199,9 @@ bool JSUPtrList::remove(JSUPtrLink* pLink)
 	return isSameList;
 }
 
-/*
- * --INFO--
- * Address:	80026CD4
- * Size:	000088
+/**
+ * @note Address: 0x80026CD4
+ * @note Size: 0x88
  */
 JSUPtrLink* JSUPtrList::getNthLink(u32 n) const
 {

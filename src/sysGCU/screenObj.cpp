@@ -4,10 +4,9 @@
 
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	80453AE8
- * Size:	000090
+/**
+ * @note Address: 0x80453AE8
+ * @note Size: 0x90
  */
 ObjBase::ObjBase()
     : IObjBase()
@@ -16,17 +15,15 @@ ObjBase::ObjBase()
 	mOwner    = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80453B78
- * Size:	00002C
+/**
+ * @note Address: 0x80453B78
+ * @note Size: 0x2C
  */
 void ObjBase::create(JKRArchive* archive) { doCreate(archive); }
 
-/*
- * --INFO--
- * Address:	80453BA4
- * Size:	0000AC
+/**
+ * @note Address: 0x80453BA4
+ * @note Size: 0xAC
  */
 bool ObjBase::start(StartSceneArg const* arg)
 {
@@ -50,10 +47,9 @@ bool ObjBase::start(StartSceneArg const* arg)
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	80453C50
- * Size:	000138
+/**
+ * @note Address: 0x80453C50
+ * @note Size: 0x138
  */
 bool ObjBase::end(EndSceneArg const* arg)
 {
@@ -89,10 +85,9 @@ bool ObjBase::end(EndSceneArg const* arg)
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	80453D88
- * Size:	000110
+/**
+ * @note Address: 0x80453D88
+ * @note Size: 0x110
  */
 bool ObjBase::update()
 {
@@ -123,10 +118,9 @@ bool ObjBase::update()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	80453E98
- * Size:	000038
+/**
+ * @note Address: 0x80453E98
+ * @note Size: 0x38
  */
 void ObjBase::draw(Graphics& gfx)
 {
@@ -135,10 +129,9 @@ void ObjBase::draw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80453ED0
- * Size:	0000D8
+/**
+ * @note Address: 0x80453ED0
+ * @note Size: 0xD8
  */
 void ObjBase::doDraw(Graphics& gfx)
 {
@@ -150,45 +143,39 @@ void ObjBase::doDraw(Graphics& gfx)
 	print.print(100.0f, 100.0f, mName);
 }
 
-/*
- * --INFO--
- * Address:	80453FA8
- * Size:	00000C
+/**
+ * @note Address: 0x80453FA8
+ * @note Size: 0xC
  */
 og::Screen::DispMemberBase* ObjBase::getDispMember() { return mOwner->mDispMember; }
 
-/*
- * --INFO--
- * Address:	80453FB4
- * Size:	00002C
+/**
+ * @note Address: 0x80453FB4
+ * @note Size: 0x2C
  */
 bool ObjBase::confirmSetScene(SetSceneArg& arg) { return doConfirmSetScene(arg); }
 
-/*
- * --INFO--
- * Address:	80453FE0
- * Size:	00002C
+/**
+ * @note Address: 0x80453FE0
+ * @note Size: 0x2C
  */
 bool ObjBase::confirmStartScene(StartSceneArg* arg) { return doConfirmStartScene(arg); }
 
-/*
- * --INFO--
- * Address:	8045400C
- * Size:	000034
+/**
+ * @note Address: 0x8045400C
+ * @note Size: 0x34
  */
 bool ObjBase::confirmEndScene(EndSceneArg* arg) { return doConfirmEndScene(arg); }
 
-/*
- * --INFO--
- * Address:	80454040
- * Size:	000030
+/**
+ * @note Address: 0x80454040
+ * @note Size: 0x30
  */
 Controller* ObjBase::getGamePad() const { return getOwner()->getGamePad(); }
 
-/*
- * --INFO--
- * Address:	80454070
- * Size:	000044
+/**
+ * @note Address: 0x80454070
+ * @note Size: 0x44
  */
 ObjMgrBase::ObjMgrBase()
     : mNode()
@@ -196,10 +183,9 @@ ObjMgrBase::ObjMgrBase()
 	mNode.clearRelations();
 }
 
-/*
- * --INFO--
- * Address:	804540B4
- * Size:	000058
+/**
+ * @note Address: 0x804540B4
+ * @note Size: 0x58
  */
 void ObjMgrBase::registObj(IObjBase* obj, SceneBase* scene)
 {
@@ -207,11 +193,10 @@ void ObjMgrBase::registObj(IObjBase* obj, SceneBase* scene)
 	mNode.add(obj);
 }
 
-/*
+/**
  * update__Q26Screen10ObjMgrBaseFv
- * --INFO--
- * Address:	8045410C
- * Size:	000068
+ * @note Address: 0x8045410C
+ * @note Size: 0x68
  */
 bool ObjMgrBase::update()
 {
@@ -227,11 +212,10 @@ bool ObjMgrBase::update()
 	return result;
 }
 
-/*
+/**
  * draw__Q26Screen10ObjMgrBaseFR8Graphics
- * --INFO--
- * Address:	80454174
- * Size:	00005C
+ * @note Address: 0x80454174
+ * @note Size: 0x5C
  */
 void ObjMgrBase::draw(Graphics& gfx)
 {
@@ -243,10 +227,9 @@ void ObjMgrBase::draw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	804541D0
- * Size:	000098
+/**
+ * @note Address: 0x804541D0
+ * @note Size: 0x98
  */
 IObjBase* ObjMgrBase::search(SceneBase* scene, char* name)
 {
@@ -261,10 +244,9 @@ IObjBase* ObjMgrBase::search(SceneBase* scene, char* name)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80454268
- * Size:	000078
+/**
+ * @note Address: 0x80454268
+ * @note Size: 0x78
  */
 bool ObjMgrBase::start(StartSceneArg* arg)
 {
@@ -280,10 +262,9 @@ bool ObjMgrBase::start(StartSceneArg* arg)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	804542E0
- * Size:	000078
+/**
+ * @note Address: 0x804542E0
+ * @note Size: 0x78
  */
 bool ObjMgrBase::end(EndSceneArg* arg)
 {
@@ -299,10 +280,9 @@ bool ObjMgrBase::end(EndSceneArg* arg)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80454358
- * Size:	00007C
+/**
+ * @note Address: 0x80454358
+ * @note Size: 0x7C
  */
 bool ObjMgrBase::confirmSetScene(SetSceneArg& arg)
 {
@@ -319,10 +299,9 @@ bool ObjMgrBase::confirmSetScene(SetSceneArg& arg)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	804543D4
- * Size:	00007C
+/**
+ * @note Address: 0x804543D4
+ * @note Size: 0x7C
  */
 bool ObjMgrBase::confirmStartScene(StartSceneArg* arg)
 {
@@ -339,10 +318,9 @@ bool ObjMgrBase::confirmStartScene(StartSceneArg* arg)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80454450
- * Size:	00007C
+/**
+ * @note Address: 0x80454450
+ * @note Size: 0x7C
  */
 bool ObjMgrBase::confirmEndScene(EndSceneArg* arg)
 {

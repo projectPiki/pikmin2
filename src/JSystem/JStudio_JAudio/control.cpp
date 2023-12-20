@@ -16,10 +16,9 @@ inline JStudio::TObject_sound* sound_creator(const JStudio::stb::data::TParse_TB
 	return object;
 }
 
-/*
- * --INFO--
- * Address:	80015C44
- * Size:	0000CC
+/**
+ * @note Address: 0x80015C44
+ * @note Size: 0xCC
  */
 JStudio::TObject* createObject_SOUND_JAI_(const JStudio::stb::data::TParse_TBlock_object& parseBlock, JAIBasic* sound,
                                           const JStage::TSystem* system)
@@ -33,17 +32,15 @@ JStudio::TObject* createObject_SOUND_JAI_(const JStudio::stb::data::TParse_TBloc
 }
 } // namespace
 
-/*
- * --INFO--
- * Address:	80015D10
- * Size:	000060
+/**
+ * @note Address: 0x80015D10
+ * @note Size: 0x60
  */
 TCreateObject::~TCreateObject() { }
 
-/*
- * --INFO--
- * Address:	80015D70
- * Size:	000078
+/**
+ * @note Address: 0x80015D70
+ * @note Size: 0x78
  */
 bool TCreateObject::create(JStudio::TObject** object, const JStudio::stb::data::TParse_TBlock_object& parseBlock)
 {

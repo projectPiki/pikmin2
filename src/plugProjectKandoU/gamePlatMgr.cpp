@@ -25,10 +25,9 @@ PlatMgr* platMgr;
 bool PlatInstance::useFixCollision = true;
 bool PlatMgr::mUseCellMgr          = true;
 
-/*
- * --INFO--
- * Address:	801C4BD4
- * Size:	000028
+/**
+ * @note Address: 0x801C4BD4
+ * @note Size: 0x28
  */
 void PlatInstance::setCollision(bool makeCollActive)
 {
@@ -39,10 +38,9 @@ void PlatInstance::setCollision(bool makeCollActive)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C4BFC
- * Size:	000020
+/**
+ * @note Address: 0x801C4BFC
+ * @note Size: 0x20
  */
 Vector3f PlatInstance::getPosition()
 {
@@ -51,17 +49,15 @@ Vector3f PlatInstance::getPosition()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	801C4C1C
- * Size:	000050
+/**
+ * @note Address: 0x801C4C1C
+ * @note Size: 0x50
  */
 void PlatInstance::getBoundingSphere(Sys::Sphere& sphere) { sphere = mPlatform->getTriDivider()->mRoot.mSphere; }
 
-/*
- * --INFO--
- * Address:	801C4C6C
- * Size:	000254
+/**
+ * @note Address: 0x801C4C6C
+ * @note Size: 0x254
  */
 void PlatInstance::getCurrTri(CurrTriInfo& info)
 {
@@ -101,10 +97,9 @@ void PlatInstance::getCurrTri(CurrTriInfo& info)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C4EC0
- * Size:	0002E4
+/**
+ * @note Address: 0x801C4EC0
+ * @note Size: 0x2E4
  */
 void PlatInstance::traceMove(MoveInfo& info, f32 step)
 {
@@ -185,10 +180,9 @@ void PlatInstance::traceMove(MoveInfo& info, f32 step)
 	Sys::OBBTree::debugTraceMove = false;
 }
 
-/*
- * --INFO--
- * Address:	801C51A4
- * Size:	000018
+/**
+ * @note Address: 0x801C51A4
+ * @note Size: 0x18
  */
 PlatInstanceAttacher::PlatInstanceAttacher()
     : mInstanceCount(0)
@@ -198,10 +192,9 @@ PlatInstanceAttacher::PlatInstanceAttacher()
 {
 }
 
-/*
- * --INFO--
- * Address:	801C51BC
- * Size:	0001B0
+/**
+ * @note Address: 0x801C51BC
+ * @note Size: 0x1B0
  */
 void PlatInstanceAttacher::addToMgr(Creature* obj, ID32& id, PlatAttacher* attacher, bool enableGlobalPlat)
 {
@@ -246,10 +239,9 @@ void PlatInstanceAttacher::addToMgr(Creature* obj, ID32& id, PlatAttacher* attac
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C536C
- * Size:	000094
+/**
+ * @note Address: 0x801C536C
+ * @note Size: 0x94
  */
 void PlatInstanceAttacher::setCollision(bool turnOnCollision, u16 jointIndex)
 {
@@ -265,10 +257,9 @@ void PlatInstanceAttacher::setCollision(bool turnOnCollision, u16 jointIndex)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C5400
- * Size:	00009C
+/**
+ * @note Address: 0x801C5400
+ * @note Size: 0x9C
  */
 void PlatInstanceAttacher::fixCollision(bool doFixCollision)
 {
@@ -283,10 +274,9 @@ void PlatInstanceAttacher::fixCollision(bool doFixCollision)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C549C
- * Size:	00008C
+/**
+ * @note Address: 0x801C549C
+ * @note Size: 0x8C
  */
 void PlatInstanceAttacher::setCode(ID32& id, u16 jointIdx)
 {
@@ -297,10 +287,9 @@ void PlatInstanceAttacher::setCode(ID32& id, u16 jointIdx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C5528
- * Size:	0000C0
+/**
+ * @note Address: 0x801C5528
+ * @note Size: 0xC0
  */
 void PlatInstanceAttacher::setShapeVisibility()
 {
@@ -315,17 +304,15 @@ void PlatInstanceAttacher::setShapeVisibility()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C55E8
- * Size:	0000B8
+/**
+ * @note Address: 0x801C55E8
+ * @note Size: 0xB8
  */
 PlatMgr::PlatMgr() { }
 
-/*
- * --INFO--
- * Address:	801C58C0
- * Size:	000064
+/**
+ * @note Address: 0x801C58C0
+ * @note Size: 0x64
  */
 PlatAddInstanceArg::PlatAddInstanceArg()
     : mId()
@@ -338,10 +325,9 @@ PlatAddInstanceArg::PlatAddInstanceArg()
 	mRadius           = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	801C5924
- * Size:	000270
+/**
+ * @note Address: 0x801C5924
+ * @note Size: 0x270
  */
 PlatInstance* PlatMgr::addInstance(PlatAddInstanceArg& arg)
 {
@@ -390,17 +376,15 @@ PlatInstance* PlatMgr::addInstance(PlatAddInstanceArg& arg)
 	return instance;
 }
 
-/*
- * --INFO--
- * Address:	801C5B98
- * Size:	000020
+/**
+ * @note Address: 0x801C5B98
+ * @note Size: 0x20
  */
 void PlatMgr::delInstance(PlatInstance* instance) { NodeObjectMgr::delNode(instance); }
 
-/*
- * --INFO--
- * Address:	801C5BB8
- * Size:	0002A4
+/**
+ * @note Address: 0x801C5BB8
+ * @note Size: 0x2A4
  */
 void PlatMgr::traceMove(MoveInfo& info, f32 step)
 {
@@ -428,10 +412,9 @@ void PlatMgr::traceMove(MoveInfo& info, f32 step)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C5EA8
- * Size:	0002B0
+/**
+ * @note Address: 0x801C5EA8
+ * @note Size: 0x2B0
  */
 void PlatMgr::getCurrTri(CurrTriInfo& info)
 {
@@ -464,10 +447,9 @@ void PlatMgr::getCurrTri(CurrTriInfo& info)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801C6158
- * Size:	000338
+/**
+ * @note Address: 0x801C6158
+ * @note Size: 0x338
  */
 bool PlatMgr::findRayIntersection(Sys::RayIntersectInfo& info)
 {
@@ -513,10 +495,9 @@ bool PlatMgr::findRayIntersection(Sys::RayIntersectInfo& info)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	801C6490
- * Size:	0001DC
+/**
+ * @note Address: 0x801C6490
+ * @note Size: 0x1DC
  */
 void PlatMgr::resetOnCount()
 {
@@ -524,10 +505,9 @@ void PlatMgr::resetOnCount()
 	CI_LOOP(iter) { (*iter)->mOnCount = 0; }
 }
 
-/*
- * --INFO--
- * Address:	801C666C
- * Size:	000004
+/**
+ * @note Address: 0x801C666C
+ * @note Size: 0x4
  */
 void PlatMgr::doDirectDraw(Graphics&) { }
 

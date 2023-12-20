@@ -6,10 +6,9 @@
 namespace Game {
 namespace Fuefuki {
 
-/*
- * --INFO--
- * Address:	8029A63C
- * Size:	000324
+/**
+ * @note Address: 0x8029A63C
+ * @note Size: 0x324
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -26,10 +25,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateStruggle);
 }
 
-/*
- * --INFO--
- * Address:	8029A960
- * Size:	00005C
+/**
+ * @note Address: 0x8029A960
+ * @note Size: 0x5C
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -39,10 +37,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(FUEFUKIANIM_Dead, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8029A9BC
- * Size:	000044
+/**
+ * @note Address: 0x8029A9BC
+ * @note Size: 0x44
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -51,17 +48,15 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8029AA00
- * Size:	000004
+/**
+ * @note Address: 0x8029AA00
+ * @note Size: 0x4
  */
 void StateDead::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8029AA04
- * Size:	0000A0
+/**
+ * @note Address: 0x8029AA04
+ * @note Size: 0xA0
  */
 void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -79,10 +74,9 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	fuefuki->stopMotion();
 }
 
-/*
- * --INFO--
- * Address:	8029AAA4
- * Size:	00005C
+/**
+ * @note Address: 0x8029AAA4
+ * @note Size: 0x5C
  */
 void StateStay::exec(EnemyBase* enemy)
 {
@@ -93,17 +87,15 @@ void StateStay::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8029AB00
- * Size:	000004
+/**
+ * @note Address: 0x8029AB00
+ * @note Size: 0x4
  */
 void StateStay::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8029AB04
- * Size:	00018C
+/**
+ * @note Address: 0x8029AB04
+ * @note Size: 0x18C
  */
 void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -132,10 +124,9 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8029AC90
- * Size:	000124
+/**
+ * @note Address: 0x8029AC90
+ * @note Size: 0x124
  */
 void StateLand::exec(EnemyBase* enemy)
 {
@@ -165,10 +156,9 @@ void StateLand::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8029ADB4
- * Size:	000050
+/**
+ * @note Address: 0x8029ADB4
+ * @note Size: 0x50
  */
 void StateLand::cleanup(EnemyBase* enemy)
 {
@@ -179,10 +169,9 @@ void StateLand::cleanup(EnemyBase* enemy)
 	fuefuki->setTargetPosition(false);
 }
 
-/*
- * --INFO--
- * Address:	8029AE04
- * Size:	00005C
+/**
+ * @note Address: 0x8029AE04
+ * @note Size: 0x5C
  */
 void StateJump::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -195,10 +184,9 @@ void StateJump::init(EnemyBase* enemy, StateArg* stateArg)
 	fuefuki->startMotion(FUEFUKIANIM_Jump, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8029AE60
- * Size:	00030C
+/**
+ * @note Address: 0x8029AE60
+ * @note Size: 0x30C
  */
 void StateJump::exec(EnemyBase* enemy)
 {
@@ -267,17 +255,15 @@ void StateJump::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8029B16C
- * Size:	000010
+/**
+ * @note Address: 0x8029B16C
+ * @note Size: 0x10
  */
 void StateJump::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_BitterImmune); }
 
-/*
- * --INFO--
- * Address:	8029B17C
- * Size:	000060
+/**
+ * @note Address: 0x8029B17C
+ * @note Size: 0x60
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -289,10 +275,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	fuefuki->startMotion(FUEFUKIANIM_Wait, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8029B1DC
- * Size:	00011C
+/**
+ * @note Address: 0x8029B1DC
+ * @note Size: 0x11C
  */
 void StateWait::exec(EnemyBase* enemy)
 {
@@ -325,17 +310,15 @@ void StateWait::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8029B2F8
- * Size:	000024
+/**
+ * @note Address: 0x8029B2F8
+ * @note Size: 0x24
  */
 void StateWait::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	8029B31C
- * Size:	000060
+/**
+ * @note Address: 0x8029B31C
+ * @note Size: 0x60
  */
 void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -347,10 +330,9 @@ void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 	fuefuki->startMotion(FUEFUKIANIM_Pivot, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8029B37C
- * Size:	000248
+/**
+ * @note Address: 0x8029B37C
+ * @note Size: 0x248
  */
 void StateTurn::exec(EnemyBase* enemy)
 {
@@ -388,17 +370,15 @@ void StateTurn::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8029B5C4
- * Size:	000024
+/**
+ * @note Address: 0x8029B5C4
+ * @note Size: 0x24
  */
 void StateTurn::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	8029B5E8
- * Size:	000050
+/**
+ * @note Address: 0x8029B5E8
+ * @note Size: 0x50
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -409,10 +389,9 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	fuefuki->startMotion(FUEFUKIANIM_Move, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8029B638
- * Size:	0001CC
+/**
+ * @note Address: 0x8029B638
+ * @note Size: 0x1CC
  */
 void StateWalk::exec(EnemyBase* enemy)
 {
@@ -466,10 +445,9 @@ void StateWalk::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8029B804
- * Size:	00003C
+/**
+ * @note Address: 0x8029B804
+ * @note Size: 0x3C
  */
 void StateWalk::cleanup(EnemyBase* enemy)
 {
@@ -478,10 +456,9 @@ void StateWalk::cleanup(EnemyBase* enemy)
 	fuefuki->setTargetPosition(false);
 }
 
-/*
- * --INFO--
- * Address:	8029B840
- * Size:	000068
+/**
+ * @note Address: 0x8029B840
+ * @note Size: 0x68
  */
 void StateWhisle::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -494,10 +471,9 @@ void StateWhisle::init(EnemyBase* enemy, StateArg* stateArg)
 	fuefuki->startMotion(FUEFUKIANIM_Whisle, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8029B8A8
- * Size:	00010C
+/**
+ * @note Address: 0x8029B8A8
+ * @note Size: 0x10C
  */
 void StateWhisle::exec(EnemyBase* enemy)
 {
@@ -530,10 +506,9 @@ void StateWhisle::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8029B9B4
- * Size:	000064
+/**
+ * @note Address: 0x8029B9B4
+ * @note Size: 0x64
  */
 void StateWhisle::cleanup(EnemyBase* enemy)
 {
@@ -543,10 +518,9 @@ void StateWhisle::cleanup(EnemyBase* enemy)
 	fuefuki->getJAIObject()->startSound(PSSE_EN_FUEFUKI_WHISTLE_ECHO, 0);
 }
 
-/*
- * --INFO--
- * Address:	8029BA18
- * Size:	000068
+/**
+ * @note Address: 0x8029BA18
+ * @note Size: 0x68
  */
 void StateStruggle::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -559,10 +533,9 @@ void StateStruggle::init(EnemyBase* enemy, StateArg* stateArg)
 	fuefuki->startMotion(FUEFUKIANIM_Struggle, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8029BA80
- * Size:	00010C
+/**
+ * @note Address: 0x8029BA80
+ * @note Size: 0x10C
  */
 void StateStruggle::exec(EnemyBase* enemy)
 {
@@ -586,10 +559,9 @@ void StateStruggle::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8029BB8C
- * Size:	000038
+/**
+ * @note Address: 0x8029BB8C
+ * @note Size: 0x38
  */
 void StateStruggle::cleanup(EnemyBase* enemy)
 {

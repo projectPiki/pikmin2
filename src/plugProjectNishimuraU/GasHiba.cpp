@@ -7,10 +7,9 @@
 namespace Game {
 namespace GasHiba {
 
-/*
- * --INFO--
- * Address:	8026D14C
- * Size:	000138
+/**
+ * @note Address: 0x8026D14C
+ * @note Size: 0x138
  */
 Obj::Obj()
 {
@@ -19,17 +18,15 @@ Obj::Obj()
 	createEffect();
 }
 
-/*
- * --INFO--
- * Address:	8026D284
- * Size:	000004
+/**
+ * @note Address: 0x8026D284
+ * @note Size: 0x4
  */
 void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
-/*
- * --INFO--
- * Address:	8026D288
- * Size:	000100
+/**
+ * @note Address: 0x8026D288
+ * @note Size: 0x100
  */
 void Obj::onInit(CreatureInitArg* args)
 {
@@ -53,31 +50,27 @@ void Obj::onInit(CreatureInitArg* args)
 	mFsm->start(this, GASHIBA_Wait, &arg);
 }
 
-/*
- * --INFO--
- * Address:	8026D388
- * Size:	000034
+/**
+ * @note Address: 0x8026D388
+ * @note Size: 0x34
  */
 void Obj::doUpdate() { mFsm->exec(this); }
 
-/*
- * --INFO--
- * Address:	8026D3BC
- * Size:	000004
+/**
+ * @note Address: 0x8026D3BC
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	8026D3C0
- * Size:	000020
+/**
+ * @note Address: 0x8026D3C0
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	8026D3E0
- * Size:	00004C
+/**
+ * @note Address: 0x8026D3E0
+ * @note Size: 0x4C
  */
 void Obj::setFSM(FSM* fsm)
 {
@@ -86,10 +79,9 @@ void Obj::setFSM(FSM* fsm)
 	mCurrentLifecycleState = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8026D42C
- * Size:	000038
+/**
+ * @note Address: 0x8026D42C
+ * @note Size: 0x38
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
@@ -99,10 +91,9 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 	shadowParam.mSize                     = 1.0f;
 }
 
-/*
- * --INFO--
- * Address:	8026D464
- * Size:	0000C8
+/**
+ * @note Address: 0x8026D464
+ * @note Size: 0xC8
  */
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
@@ -119,10 +110,9 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8026D52C
- * Size:	000030
+/**
+ * @note Address: 0x8026D52C
+ * @note Size: 0x30
  */
 bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
@@ -130,10 +120,9 @@ bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* collpart)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8026D55C
- * Size:	000030
+/**
+ * @note Address: 0x8026D55C
+ * @note Size: 0x30
  */
 bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
@@ -141,10 +130,9 @@ bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8026D58C
- * Size:	000034
+/**
+ * @note Address: 0x8026D58C
+ * @note Size: 0x34
  */
 bool Obj::bombCallBack(Creature* creature, Vector3f& vec, f32 damage)
 {
@@ -152,10 +140,9 @@ bool Obj::bombCallBack(Creature* creature, Vector3f& vec, f32 damage)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8026D5C0
- * Size:	0001D0
+/**
+ * @note Address: 0x8026D5C0
+ * @note Size: 0x1D0
  */
 void Obj::interactGasAttack()
 {
@@ -189,10 +176,9 @@ void Obj::interactGasAttack()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8026D790
- * Size:	000018
+/**
+ * @note Address: 0x8026D790
+ * @note Size: 0x18
  */
 void Obj::resetBridgeGateCheck()
 {
@@ -201,10 +187,9 @@ void Obj::resetBridgeGateCheck()
 	mGate         = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8026D7A8
- * Size:	0005B0
+/**
+ * @note Address: 0x8026D7A8
+ * @note Size: 0x5B0
  */
 void Obj::setInitLivingThing()
 {
@@ -277,10 +262,9 @@ void Obj::setInitLivingThing()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8026DD58
- * Size:	00009C
+/**
+ * @note Address: 0x8026DD58
+ * @note Size: 0x9C
  */
 void Obj::updateLivingThing()
 {
@@ -301,10 +285,9 @@ void Obj::updateLivingThing()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8026DDFC
- * Size:	000024
+/**
+ * @note Address: 0x8026DDFC
+ * @note Size: 0x24
  */
 void Obj::setupLodParms()
 {
@@ -313,24 +296,21 @@ void Obj::setupLodParms()
 	mLodParm.mIsCylinder = false;
 }
 
-/*
- * --INFO--
- * Address:	8026DE20
- * Size:	00002C
+/**
+ * @note Address: 0x8026DE20
+ * @note Size: 0x2C
  */
 void Obj::updateEfxLod() { mEfxGas->setRateLOD(mLod.isFlag(AILOD_IsMid | AILOD_IsFar)); }
 
-/*
- * --INFO--
- * Address:	8026DE4C
- * Size:	00005C
+/**
+ * @note Address: 0x8026DE4C
+ * @note Size: 0x5C
  */
 void Obj::createEffect() { mEfxGas = new efx::TGasuHiba; }
 
-/*
- * --INFO--
- * Address:	8026DEA8
- * Size:	0000A0
+/**
+ * @note Address: 0x8026DEA8
+ * @note Size: 0xA0
  */
 void Obj::startGasEffect()
 {
@@ -343,17 +323,15 @@ void Obj::startGasEffect()
 	mEfxGas->create(&arg);
 }
 
-/*
- * --INFO--
- * Address:	8026DF48
- * Size:	000030
+/**
+ * @note Address: 0x8026DF48
+ * @note Size: 0x30
  */
 void Obj::finishGasEffect() { mEfxGas->fade(); }
 
-/*
- * --INFO--
- * Address:	8026DF78
- * Size:	000044
+/**
+ * @note Address: 0x8026DF78
+ * @note Size: 0x44
  */
 void Obj::generatorKill()
 {

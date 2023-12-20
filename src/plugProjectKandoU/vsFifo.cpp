@@ -4,10 +4,9 @@
 
 u8 VSFifo::mGpStatus[5];
 
-/*
- * --INFO--
- * Address:	8023D64C
- * Size:	000090
+/**
+ * @note Address: 0x8023D64C
+ * @note Size: 0x90
  */
 VSFifo::VSFifo(size_t size)
 {
@@ -22,17 +21,15 @@ VSFifo::VSFifo(size_t size)
 	GXInitFifoPtrs(mFifo, mBase, mBase);
 }
 
-/*
- * --INFO--
- * Address:	8023D6DC
- * Size:	000048
+/**
+ * @note Address: 0x8023D6DC
+ * @note Size: 0x48
  */
 VSFifo::~VSFifo() { }
 
-/*
- * --INFO--
- * Address:	8023D724
- * Size:	00008C
+/**
+ * @note Address: 0x8023D724
+ * @note Size: 0x8C
  */
 void VSFifo::becomeCurrent()
 {

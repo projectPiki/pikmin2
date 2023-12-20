@@ -15,20 +15,18 @@ namespace Sys {
 
 bool Triangle::debug = false;
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000238
+/**
+ * @note Address: N/A
+ * @note Size: 0x238
  */
 void Edge::calcNearestEdgePoint(Vector3f&, Vector3f&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80415AA4
- * Size:	0000B4
+/**
+ * @note Address: 0x80415AA4
+ * @note Size: 0xB4
  */
 void Tube::getAxisVector(Vector3f& axisVector)
 {
@@ -48,20 +46,18 @@ void Tube::getAxisVector(Vector3f& axisVector)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 void Tube::getYRatio(f32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80415B58
- * Size:	00027C
+/**
+ * @note Address: 0x80415B58
+ * @note Size: 0x27C
  */
 // WIP: https://decomp.me/scratch/8Atgz
 // something around the coll_vec definition needs fixing
@@ -302,10 +298,9 @@ lbl_80415D84:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80415DD4
- * Size:	0000F4
+/**
+ * @note Address: 0x80415DD4
+ * @note Size: 0xF4
  */
 f32 Tube::getPosRatio(const Vector3f& point)
 {
@@ -326,30 +321,27 @@ f32 Tube::getPosRatio(const Vector3f& point)
 	return dot(axis, sep) / mag;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 // void Tube::getRatioRadius(f32)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000200
+/**
+ * @note Address: N/A
+ * @note Size: 0x200
  */
 // void Tube::getPosGradient(Vector3f&, f32, Vector3f&, Vector3f&)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	80415EC8
- * Size:	00004C
+/**
+ * @note Address: 0x80415EC8
+ * @note Size: 0x4C
  */
 Vector3f Tube::setPos(f32 frac)
 {
@@ -361,10 +353,9 @@ Vector3f Tube::setPos(f32 frac)
 	return mStartPos + diff;
 }
 
-/*
- * --INFO--
- * Address:	80415F14
- * Size:	000058
+/**
+ * @note Address: 0x80415F14
+ * @note Size: 0x58
  */
 bool Sphere::intersect(Sphere& ball)
 {
@@ -389,10 +380,9 @@ bool Sphere::intersect(Sphere& ball)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80415F6C
- * Size:	000120
+/**
+ * @note Address: 0x80415F6C
+ * @note Size: 0x120
  */
 bool Sys::Sphere::intersect(Sys::Sphere& ball, Vector3f& repulsionVec)
 {
@@ -416,10 +406,9 @@ bool Sys::Sphere::intersect(Sys::Sphere& ball, Vector3f& repulsionVec)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8041608C
- * Size:	000204
+/**
+ * @note Address: 0x8041608C
+ * @note Size: 0x204
  */
 bool Sphere::intersect(Edge& edge, f32& t)
 {
@@ -473,10 +462,9 @@ bool Sphere::intersect(Edge& edge, f32& t)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80416290
- * Size:	00028C
+/**
+ * @note Address: 0x80416290
+ * @note Size: 0x28C
  */
 bool Sphere::intersect(Edge& edge, f32& t, Vector3f& intersectPoint)
 {
@@ -538,10 +526,9 @@ bool Sphere::intersect(Edge& edge, f32& t, Vector3f& intersectPoint)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8041651C
- * Size:	0003D4
+/**
+ * @note Address: 0x8041651C
+ * @note Size: 0x3D4
  */
 bool Sphere::intersect(Edge& edge, f32& t, Vector3f& repulsionVec, f32& strength)
 {
@@ -631,37 +618,33 @@ bool Sphere::intersect(Edge& edge, f32& t, Vector3f& repulsionVec, f32& strength
 	return false; // not close enough to edge, no intersection
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D8
+/**
+ * @note Address: N/A
+ * @note Size: 0xD8
  */
 // bool Sphere::intersectRay(Vector3f&, Vector3f&)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	804168F0
- * Size:	000068
+/**
+ * @note Address: 0x804168F0
+ * @note Size: 0x68
  */
 Triangle::Triangle() { mCode.mContents = (bool)0; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00027C
+/**
+ * @note Address: N/A
+ * @note Size: 0x27C
  */
 // void Triangle::findNearestPoint(VertexTable&, Vector3f&, Vector3f&)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	80416958
- * Size:	000168
+/**
+ * @note Address: 0x80416958
+ * @note Size: 0x168
  */
 void Triangle::createSphere(VertexTable& vertTable)
 {
@@ -692,10 +675,9 @@ void Triangle::createSphere(VertexTable& vertTable)
 	mSphere.mPosition = center;
 }
 
-/*
- * --INFO--
- * Address:	80416AC0
- * Size:	000084
+/**
+ * @note Address: 0x80416AC0
+ * @note Size: 0x84
  */
 bool Triangle::fastIntersect(Sphere& ball)
 {
@@ -712,50 +694,45 @@ bool Triangle::fastIntersect(Sphere& ball)
 	return (dist <= radii);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000088
+/**
+ * @note Address: N/A
+ * @note Size: 0x88
  */
 // void Triangle::write(Stream&)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000088
+/**
+ * @note Address: N/A
+ * @note Size: 0x88
  */
 // void Triangle::read(Stream&)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  */
 // void Triangle::constructFromJ3D(Sys::VertexTable&, __J3DUTriangle&)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 // void Triangle::draw(Graphics&, Sys::VertexTable&, bool)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	80416B44
- * Size:	000104
+/**
+ * @note Address: 0x80416B44
+ * @note Size: 0x104
  */
 f32 Sys::Triangle::calcDist(Plane& plane, Sys::VertexTable& vertTable)
 {
@@ -798,30 +775,27 @@ f32 Sys::Triangle::calcDist(Plane& plane, Sys::VertexTable& vertTable)
 	return 0.0f; // if something's negative or one is zero, we're overlapping, so return 0 as distance
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001EC
+/**
+ * @note Address: N/A
+ * @note Size: 0x1EC
  */
 // bool Triangle::intersect(Sys::VertexTable&, BoundBox2d&)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0002F0
+/**
+ * @note Address: N/A
+ * @note Size: 0x2F0
  */
 // bool Triangle::intersect(Sys::Edge&, Vector3f&)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	80416C48
- * Size:	000334
+/**
+ * @note Address: 0x80416C48
+ * @note Size: 0x334
  */
 bool Triangle::intersect(Edge& edge, f32 cutoff, Vector3f& intersectionPoint)
 {
@@ -899,10 +873,9 @@ bool Triangle::intersect(Edge& edge, f32 cutoff, Vector3f& intersectionPoint)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80416F7C
- * Size:	000370
+/**
+ * @note Address: 0x80416F7C
+ * @note Size: 0x370
  */
 bool Sys::Triangle::intersect(Sys::Edge& edge, f32 cutoff, Vector3f& intersectionPoint, f32& distFromCutoff)
 {
@@ -984,10 +957,9 @@ bool Sys::Triangle::intersect(Sys::Edge& edge, f32 cutoff, Vector3f& intersectio
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	804172EC
- * Size:	0002AC
+/**
+ * @note Address: 0x804172EC
+ * @note Size: 0x2AC
  */
 bool Triangle::intersect(Sys::VertexTable& vertTable, Sys::Sphere& ball)
 {
@@ -1250,10 +1222,9 @@ lbl_8041757C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80417598
- * Size:	0002F8
+/**
+ * @note Address: 0x80417598
+ * @note Size: 0x2F8
  */
 bool Triangle::intersect(Sys::VertexTable& vertTable, Sys::Sphere& ball, Vector3f& intersectPoint)
 {
@@ -1534,10 +1505,9 @@ lbl_80417870:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80417890
- * Size:	0002F8
+/**
+ * @note Address: 0x80417890
+ * @note Size: 0x2F8
  */
 bool Triangle::intersectHard(Sys::VertexTable& vertTable, Sys::Sphere& ball, Vector3f& intersectPoint)
 {
@@ -1829,20 +1799,18 @@ lbl_80417B68:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00014C
+/**
+ * @note Address: N/A
+ * @note Size: 0x14C
  */
 bool Triangle::intersectOptimistic(Sys::Sphere&, Vector3f&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80417B88
- * Size:	0000EC
+/**
+ * @note Address: 0x80417B88
+ * @note Size: 0xEC
  */
 bool Triangle::insideXZ(Vector3f& point)
 {
@@ -1869,10 +1837,9 @@ bool Triangle::insideXZ(Vector3f& point)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80417C74
- * Size:	0004C8
+/**
+ * @note Address: 0x80417C74
+ * @note Size: 0x4C8
  */
 void Triangle::makePlanes(Sys::VertexTable& vertTable)
 {
@@ -2276,10 +2243,9 @@ lbl_8041806C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8041813C
- * Size:	000040
+/**
+ * @note Address: 0x8041813C
+ * @note Size: 0x40
  */
 bool RayIntersectInfo::condition(Sys::Triangle& triangle)
 {
@@ -2294,10 +2260,9 @@ bool RayIntersectInfo::condition(Sys::Triangle& triangle)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8041817C
- * Size:	000428
+/**
+ * @note Address: 0x8041817C
+ * @note Size: 0x428
  */
 void GridDivider::createTriangles(Sys::CreateTriangleArg& triArg)
 {
@@ -2656,10 +2621,9 @@ lbl_80418584:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	804185A4
- * Size:	0001D8
+/**
+ * @note Address: 0x804185A4
+ * @note Size: 0x1D8
  */
 f32 GridDivider::getMinY(Vector3f& inputPoint)
 {
@@ -2870,10 +2834,9 @@ lbl_80418774:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8041877C
- * Size:	000234
+/**
+ * @note Address: 0x8041877C
+ * @note Size: 0x234
  */
 void GridDivider::getCurrTri(Game::CurrTriInfo& inputInfo)
 {
@@ -3095,10 +3058,9 @@ lbl_804189A8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	804189B0
- * Size:	000230
+/**
+ * @note Address: 0x804189B0
+ * @note Size: 0x230
  */
 TriIndexList* GridDivider::findTriLists(Sys::Sphere& ball)
 {
@@ -3369,10 +3331,9 @@ lbl_80418BC8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80418BE0
- * Size:	00045C
+/**
+ * @note Address: 0x80418BE0
+ * @note Size: 0x45C
  */
 void GridDivider::create(BoundBox& box, int countX, int countZ, Sys::VertexTable* vertTable, Sys::TriangleTable* triTable)
 {
@@ -3740,30 +3701,27 @@ void GridDivider::create(BoundBox& box, int countX, int countZ, Sys::VertexTable
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  */
 void GridDivider::write(Stream&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C0
+/**
+ * @note Address: N/A
+ * @note Size: 0xC0
  */
 void GridInfo::write(Stream&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8041919C
- * Size:	000248
+/**
+ * @note Address: 0x8041919C
+ * @note Size: 0x248
  */
 void GridDivider::read(Stream& stream)
 {
@@ -3797,10 +3755,9 @@ void GridDivider::read(Stream& stream)
 	mTriangleTable->createTriangleSphere(*mVertexTable);
 };
 
-/*
- * --INFO--
- * Address:	80419498
- * Size:	000074
+/**
+ * @note Address: 0x80419498
+ * @note Size: 0x74
  */
 void TriangleTable::createTriangleSphere(Sys::VertexTable& arg0)
 {
@@ -3809,10 +3766,9 @@ void TriangleTable::createTriangleSphere(Sys::VertexTable& arg0)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8041950C
- * Size:	000088
+/**
+ * @note Address: 0x8041950C
+ * @note Size: 0x88
  */
 void TriIndexList::constructClone(Sys::TriangleTable& triTable)
 {
@@ -3822,10 +3778,9 @@ void TriIndexList::constructClone(Sys::TriangleTable& triTable)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80419594
- * Size:	000150
+/**
+ * @note Address: 0x80419594
+ * @note Size: 0x150
  */
 void TriIndexList::getMinMax(VertexTable& vertTable, TriangleTable& triTable, Vector3f& vec1, Vector3f& vec2, f32& min, f32& max)
 {
@@ -3851,10 +3806,9 @@ void TriIndexList::getMinMax(VertexTable& vertTable, TriangleTable& triTable, Ve
 	}
 }
 
-/*
- * --INFO--
- * Address:	804196E4
- * Size:	000294
+/**
+ * @note Address: 0x804196E4
+ * @note Size: 0x294
  */
 void TriIndexList::makeCovarianceMatrix(Sys::VertexTable& vertTable, Sys::TriangleTable& triTable, Matrix3f& covarM, Vector3f& vec)
 {
@@ -4116,34 +4070,30 @@ void TriIndexList::makeCovarianceMatrix(Sys::VertexTable& vertTable, Sys::Triang
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80419978
- * Size:	000004
+/**
+ * @note Address: 0x80419978
+ * @note Size: 0x4
  */
 void TriIndexList::draw(Graphics&, Sys::VertexTable&, Sys::TriangleTable&, bool) { }
 
-/*
- * --INFO--
- * Address:	8041997C
- * Size:	00007C
+/**
+ * @note Address: 0x8041997C
+ * @note Size: 0x7C
  */
 TriangleTable::TriangleTable() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
+/**
+ * @note Address: N/A
+ * @note Size: 0x60
  */
 void TriangleTable::findMaxVertexIndex()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80419AE8
- * Size:	00013C
+/**
+ * @note Address: 0x80419AE8
+ * @note Size: 0x13C
  */
 void VertexTable::transform(Matrixf& mat)
 {
@@ -4158,10 +4108,9 @@ void VertexTable::transform(Matrixf& mat)
 	includeVertices();
 }
 
-/*
- * --INFO--
- * Address:	80419C24
- * Size:	0000D4
+/**
+ * @note Address: 0x80419C24
+ * @note Size: 0xD4
  */
 void VertexTable::write(Stream& output)
 {
@@ -4178,10 +4127,9 @@ void VertexTable::write(Stream& output)
 	output.textEndGroup();
 }
 
-/*
- * --INFO--
- * Address:	80419CF8
- * Size:	000024
+/**
+ * @note Address: 0x80419CF8
+ * @note Size: 0x24
  */
 void VertexTable::writeObject(Stream& output, Vector3f& vertex) { vertex.write(output); }
 

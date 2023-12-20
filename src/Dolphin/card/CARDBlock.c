@@ -4,17 +4,15 @@ void WriteCallback(s32 channel, s32 result);
 void EraseCallback(s32 channel, s32 result);
 s32 __CARDUpdateFatBlock(s32 channel, CARDFatBlock* fat, CARDCallback callback);
 
-/*
- * --INFO--
- * Address:	800D6E00
- * Size:	000008
+/**
+ * @note Address: 0x800D6E00
+ * @note Size: 0x8
  */
 CARDFatBlock* __CARDGetFatBlock(CARDControl* card) { return card->currentFat; }
 
-/*
- * --INFO--
- * Address:	800D6E08
- * Size:	0000D4
+/**
+ * @note Address: 0x800D6E08
+ * @note Size: 0xD4
  */
 void WriteCallback(s32 channel, s32 result)
 {
@@ -49,10 +47,9 @@ void WriteCallback(s32 channel, s32 result)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800D6EDC
- * Size:	0000C8
+/**
+ * @note Address: 0x800D6EDC
+ * @note Size: 0xC8
  */
 void EraseCallback(s32 channel, s32 result)
 {
@@ -87,10 +84,9 @@ error:
 	}
 }
 
-/*
- * --INFO--
- * Address:	800D6FA4
- * Size:	000118
+/**
+ * @note Address: 0x800D6FA4
+ * @note Size: 0x118
  */
 s32 __CARDAllocBlock(s32 chan, u32 cBlock, CARDCallback callback)
 {
@@ -142,10 +138,9 @@ s32 __CARDAllocBlock(s32 chan, u32 cBlock, CARDCallback callback)
 	return __CARDUpdateFatBlock(chan, fat, callback);
 }
 
-/*
- * --INFO--
- * Address:	800D70BC
- * Size:	0000AC
+/**
+ * @note Address: 0x800D70BC
+ * @note Size: 0xAC
  */
 s32 __CARDUpdateFatBlock(s32 channel, CARDFatBlock* fat, CARDCallback callback)
 {

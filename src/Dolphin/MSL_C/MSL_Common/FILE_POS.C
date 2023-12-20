@@ -13,10 +13,9 @@
 #define SEEK_CUR (1)
 #define SEEK_END (2)
 
-/*
- * --INFO--
- * Address:	800C6BE0
- * Size:	0000E4
+/**
+ * @note Address: 0x800C6BE0
+ * @note Size: 0xE4
  */
 int ftell(FILE* stream)
 {
@@ -29,10 +28,9 @@ int ftell(FILE* stream)
 }
 
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000AC
+/**
+ * @note Address: N/A
+ * @note Size: 0xAC
  */
 int _ftell(FILE* file)
 {
@@ -67,10 +65,9 @@ int _ftell(FILE* file)
 	return (position);
 }
 
-/*
- * --INFO--
- * Address:	800C6970
- * Size:	000270
+/**
+ * @note Address: 0x800C6970
+ * @note Size: 0x270
  */
 int _fseek(FILE* file, u32 offset, int whence)
 {
@@ -159,10 +156,9 @@ int _fseek(FILE* file, u32 offset, int whence)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	800C6904
- * Size:	00006C
+/**
+ * @note Address: 0x800C6904
+ * @note Size: 0x6C
  */
 int fseek(FILE* stream, u32 offset, int whence)
 {

@@ -8,10 +8,9 @@ namespace Hanachirashi {
 
 static const char unusedName[] = "246-HanachirashiState";
 
-/*
- * --INFO--
- * Address:	8029F228
- * Size:	000480
+/**
+ * @note Address: 0x8029F228
+ * @note Size: 0x480
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -31,10 +30,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateLaugh);
 }
 
-/*
- * --INFO--
- * Address:	8029F6A8
- * Size:	0000AC
+/**
+ * @note Address: 0x8029F6A8
+ * @note Size: 0xAC
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -54,10 +52,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	hanachirashi->startDeadEffect();
 }
 
-/*
- * --INFO--
- * Address:	8029F754
- * Size:	0000B8
+/**
+ * @note Address: 0x8029F754
+ * @note Size: 0xB8
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -79,17 +76,15 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8029F80C
- * Size:	000004
+/**
+ * @note Address: 0x8029F80C
+ * @note Size: 0x4
  */
 void StateDead::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8029F810
- * Size:	000054
+/**
+ * @note Address: 0x8029F810
+ * @note Size: 0x54
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -101,10 +96,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	hanachirashi->startMotion(HANACHIANIM_WaitFly, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8029F864
- * Size:	000138
+/**
+ * @note Address: 0x8029F864
+ * @note Size: 0x138
  */
 void StateWait::exec(EnemyBase* enemy)
 {
@@ -138,17 +132,15 @@ void StateWait::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8029F99C
- * Size:	000004
+/**
+ * @note Address: 0x8029F99C
+ * @note Size: 0x4
  */
 void StateWait::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8029F9A0
- * Size:	00004C
+/**
+ * @note Address: 0x8029F9A0
+ * @note Size: 0x4C
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -159,10 +151,9 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	hanachirashi->enableEvent(0, EB_Untargetable);
 }
 
-/*
- * --INFO--
- * Address:	8029F9EC
- * Size:	0001A0
+/**
+ * @note Address: 0x8029F9EC
+ * @note Size: 0x1A0
  */
 void StateMove::exec(EnemyBase* enemy)
 {
@@ -318,17 +309,15 @@ lbl_8029FB6C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8029FB8C
- * Size:	000004
+/**
+ * @note Address: 0x8029FB8C
+ * @note Size: 0x4
  */
 void StateMove::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8029FB90
- * Size:	000030
+/**
+ * @note Address: 0x8029FB90
+ * @note Size: 0x30
  */
 void StateChase::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -336,10 +325,9 @@ void StateChase::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->setEmotionExcitement();
 }
 
-/*
- * --INFO--
- * Address:	8029FBC0
- * Size:	000530
+/**
+ * @note Address: 0x8029FBC0
+ * @note Size: 0x530
  */
 void StateChase::exec(EnemyBase* enemy)
 {
@@ -776,17 +764,15 @@ lbl_802A0084:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802A00F0
- * Size:	000024
+/**
+ * @note Address: 0x802A00F0
+ * @note Size: 0x24
  */
 void StateChase::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	802A0114
- * Size:	000124
+/**
+ * @note Address: 0x802A0114
+ * @note Size: 0x124
  */
 void StateChaseInside::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -810,10 +796,9 @@ void StateChaseInside::init(EnemyBase* enemy, StateArg* stateArg)
 	hanachirashi->setEmotionExcitement();
 }
 
-/*
- * --INFO--
- * Address:	802A0238
- * Size:	00037C
+/**
+ * @note Address: 0x802A0238
+ * @note Size: 0x37C
  */
 void StateChaseInside::exec(EnemyBase* enemy)
 {
@@ -850,17 +835,15 @@ void StateChaseInside::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A05B4
- * Size:	000024
+/**
+ * @note Address: 0x802A05B4
+ * @note Size: 0x24
  */
 void StateChaseInside::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	802A05D8
- * Size:	000090
+/**
+ * @note Address: 0x802A05D8
+ * @note Size: 0x90
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -877,10 +860,9 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	hanachirashi->createSuckEffect();
 }
 
-/*
- * --INFO--
- * Address:	802A0668
- * Size:	00011C
+/**
+ * @note Address: 0x802A0668
+ * @note Size: 0x11C
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
@@ -911,10 +893,9 @@ void StateAttack::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A0784
- * Size:	000054
+/**
+ * @note Address: 0x802A0784
+ * @note Size: 0x54
  */
 void StateAttack::cleanup(EnemyBase* enemy)
 {
@@ -926,10 +907,9 @@ void StateAttack::cleanup(EnemyBase* enemy)
 	hanachirashi->finishWindEffect();
 }
 
-/*
- * --INFO--
- * Address:	802A07D8
- * Size:	000068
+/**
+ * @note Address: 0x802A07D8
+ * @note Size: 0x68
  */
 void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -942,10 +922,9 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 	hanachirashi->startMotion(HANACHIANIM_Fall, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802A0840
- * Size:	0001A4
+/**
+ * @note Address: 0x802A0840
+ * @note Size: 0x1A4
  */
 void StateFall::exec(EnemyBase* enemy)
 {
@@ -982,10 +961,9 @@ void StateFall::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A09E4
- * Size:	000038
+/**
+ * @note Address: 0x802A09E4
+ * @note Size: 0x38
  */
 void StateFall::cleanup(EnemyBase* enemy)
 {
@@ -994,10 +972,9 @@ void StateFall::cleanup(EnemyBase* enemy)
 	hanachirashi->setEmotionCaution();
 }
 
-/*
- * --INFO--
- * Address:	802A0A1C
- * Size:	000070
+/**
+ * @note Address: 0x802A0A1C
+ * @note Size: 0x70
  */
 void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1011,10 +988,9 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 	hanachirashi->createDownEffect();
 }
 
-/*
- * --INFO--
- * Address:	802A0A8C
- * Size:	000080
+/**
+ * @note Address: 0x802A0A8C
+ * @note Size: 0x80
  */
 void StateLand::exec(EnemyBase* enemy)
 {
@@ -1028,17 +1004,15 @@ void StateLand::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A0B0C
- * Size:	000024
+/**
+ * @note Address: 0x802A0B0C
+ * @note Size: 0x24
  */
 void StateLand::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	802A0B30
- * Size:	000068
+/**
+ * @note Address: 0x802A0B30
+ * @note Size: 0x68
  */
 void StateGround::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1051,10 +1025,9 @@ void StateGround::init(EnemyBase* enemy, StateArg* stateArg)
 	hanachirashi->startMotion(HANACHIANIM_WaitGround, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802A0B98
- * Size:	000114
+/**
+ * @note Address: 0x802A0B98
+ * @note Size: 0x114
  */
 void StateGround::exec(EnemyBase* enemy)
 {
@@ -1079,17 +1052,15 @@ void StateGround::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A0CAC
- * Size:	000024
+/**
+ * @note Address: 0x802A0CAC
+ * @note Size: 0x24
  */
 void StateGround::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	802A0CD0
- * Size:	000064
+/**
+ * @note Address: 0x802A0CD0
+ * @note Size: 0x64
  */
 void StateTakeOff::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1101,10 +1072,9 @@ void StateTakeOff::init(EnemyBase* enemy, StateArg* stateArg)
 	hanachirashi->startMotion(HANACHIANIM_TakeOff, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802A0D34
- * Size:	0000EC
+/**
+ * @note Address: 0x802A0D34
+ * @note Size: 0xEC
  */
 void StateTakeOff::exec(EnemyBase* enemy)
 {
@@ -1128,10 +1098,9 @@ void StateTakeOff::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A0E20
- * Size:	000038
+/**
+ * @note Address: 0x802A0E20
+ * @note Size: 0x38
  */
 void StateTakeOff::cleanup(EnemyBase* enemy)
 {
@@ -1140,10 +1109,9 @@ void StateTakeOff::cleanup(EnemyBase* enemy)
 	hanachirashi->setEmotionCaution();
 }
 
-/*
- * --INFO--
- * Address:	802A0E58
- * Size:	000064
+/**
+ * @note Address: 0x802A0E58
+ * @note Size: 0x64
  */
 void StateFlyFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1155,10 +1123,9 @@ void StateFlyFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	hanachirashi->startMotion(HANACHIANIM_FlickFly, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802A0EBC
- * Size:	0000E4
+/**
+ * @note Address: 0x802A0EBC
+ * @note Size: 0xE4
  */
 void StateFlyFlick::exec(EnemyBase* enemy)
 {
@@ -1183,17 +1150,15 @@ void StateFlyFlick::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A0FA0
- * Size:	000024
+/**
+ * @note Address: 0x802A0FA0
+ * @note Size: 0x24
  */
 void StateFlyFlick::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	802A0FC4
- * Size:	000064
+/**
+ * @note Address: 0x802A0FC4
+ * @note Size: 0x64
  */
 void StateGroundFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1205,10 +1170,9 @@ void StateGroundFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	hanachirashi->startMotion(HANACHIANIM_FlickGround, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802A1028
- * Size:	000100
+/**
+ * @note Address: 0x802A1028
+ * @note Size: 0x100
  */
 void StateGroundFlick::exec(EnemyBase* enemy)
 {
@@ -1236,17 +1200,15 @@ void StateGroundFlick::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A1128
- * Size:	000024
+/**
+ * @note Address: 0x802A1128
+ * @note Size: 0x24
  */
 void StateGroundFlick::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	802A114C
- * Size:	000068
+/**
+ * @note Address: 0x802A114C
+ * @note Size: 0x68
  */
 void StateLaugh::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1259,10 +1221,9 @@ void StateLaugh::init(EnemyBase* enemy, StateArg* stateArg)
 	hanachirashi->startMotion(HANACHIANIM_Laugh, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802A11B4
- * Size:	0000DC
+/**
+ * @note Address: 0x802A11B4
+ * @note Size: 0xDC
  */
 void StateLaugh::exec(EnemyBase* enemy)
 {
@@ -1284,10 +1245,9 @@ void StateLaugh::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A1290
- * Size:	000024
+/**
+ * @note Address: 0x802A1290
+ * @note Size: 0x24
  */
 void StateLaugh::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 } // namespace Hanachirashi

@@ -11,10 +11,9 @@
 namespace Game {
 namespace BlackMan {
 
-/*
- * --INFO--
- * Address:	803A3AF0
- * Size:	000174
+/**
+ * @note Address: 0x803A3AF0
+ * @note Size: 0x174
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -30,10 +29,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateTired(WRAITH_Tired));
 }
 
-/*
- * --INFO--
- * Address:	803A3C64
- * Size:	00003C
+/**
+ * @note Address: 0x803A3C64
+ * @note Size: 0x3C
  */
 StateWalk::StateWalk(int stateID)
     : State(stateID)
@@ -41,10 +39,9 @@ StateWalk::StateWalk(int stateID)
 	mName = "walk";
 }
 
-/*
- * --INFO--
- * Address:	803A3CA0
- * Size:	000080
+/**
+ * @note Address: 0x803A3CA0
+ * @note Size: 0x80
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -65,10 +62,9 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	wraith->createTraceEffect();
 }
 
-/*
- * --INFO--
- * Address:	803A3D20
- * Size:	0001D4
+/**
+ * @note Address: 0x803A3D20
+ * @note Size: 0x1D4
  */
 void StateWalk::exec(EnemyBase* enemy)
 {
@@ -114,10 +110,9 @@ void StateWalk::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A3EF4
- * Size:	000024
+/**
+ * @note Address: 0x803A3EF4
+ * @note Size: 0x24
  */
 void StateWalk::cleanup(EnemyBase* enemy)
 {
@@ -125,10 +120,9 @@ void StateWalk::cleanup(EnemyBase* enemy)
 	wraith->fadeTraceEffect();
 }
 
-/*
- * --INFO--
- * Address:	803A3F18
- * Size:	00003C
+/**
+ * @note Address: 0x803A3F18
+ * @note Size: 0x3C
  */
 StateDead::StateDead(int stateID)
     : State(stateID)
@@ -136,10 +130,9 @@ StateDead::StateDead(int stateID)
 	mName = "dead";
 }
 
-/*
- * --INFO--
- * Address:	803A3F54
- * Size:	000064
+/**
+ * @note Address: 0x803A3F54
+ * @note Size: 0x64
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -152,10 +145,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	wraith->deathProcedure();
 }
 
-/*
- * --INFO--
- * Address:	803A3FB8
- * Size:	0000FC
+/**
+ * @note Address: 0x803A3FB8
+ * @note Size: 0xFC
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -181,10 +173,9 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A40B4
- * Size:	00003C
+/**
+ * @note Address: 0x803A40B4
+ * @note Size: 0x3C
  */
 StateFreeze::StateFreeze(int stateID)
     : State(stateID)
@@ -192,10 +183,9 @@ StateFreeze::StateFreeze(int stateID)
 	mName = "freeze";
 }
 
-/*
- * --INFO--
- * Address:	803A40F0
- * Size:	000090
+/**
+ * @note Address: 0x803A40F0
+ * @note Size: 0x90
  */
 void StateFreeze::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -215,10 +205,9 @@ void StateFreeze::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->mTargetVelocity  = Vector3f(0.0f);
 }
 
-/*
- * --INFO--
- * Address:	803A4180
- * Size:	0002F4
+/**
+ * @note Address: 0x803A4180
+ * @note Size: 0x2F4
  */
 void StateFreeze::exec(EnemyBase* enemy)
 {
@@ -255,10 +244,9 @@ void StateFreeze::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A4474
- * Size:	000024
+/**
+ * @note Address: 0x803A4474
+ * @note Size: 0x24
  */
 void StateFreeze::cleanup(EnemyBase* enemy)
 {
@@ -266,10 +254,9 @@ void StateFreeze::cleanup(EnemyBase* enemy)
 	wraith->collisionStOff();
 }
 
-/*
- * --INFO--
- * Address:	803A4498
- * Size:	00003C
+/**
+ * @note Address: 0x803A4498
+ * @note Size: 0x3C
  */
 StateBend::StateBend(int stateID)
     : State(stateID)
@@ -277,10 +264,9 @@ StateBend::StateBend(int stateID)
 	mName = "bend";
 }
 
-/*
- * --INFO--
- * Address:	803A44D4
- * Size:	000074
+/**
+ * @note Address: 0x803A44D4
+ * @note Size: 0x74
  */
 void StateBend::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -299,10 +285,9 @@ void StateBend::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A4548
- * Size:	0001E8
+/**
+ * @note Address: 0x803A4548
+ * @note Size: 0x1E8
  */
 void StateBend::exec(EnemyBase* enemy)
 {
@@ -347,10 +332,9 @@ void StateBend::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A4730
- * Size:	000024
+/**
+ * @note Address: 0x803A4730
+ * @note Size: 0x24
  */
 void StateBend::cleanup(EnemyBase* enemy)
 {
@@ -358,10 +342,9 @@ void StateBend::cleanup(EnemyBase* enemy)
 	wraith->collisionStOff();
 }
 
-/*
- * --INFO--
- * Address:	803A4754
- * Size:	00003C
+/**
+ * @note Address: 0x803A4754
+ * @note Size: 0x3C
  */
 StateEscape::StateEscape(int stateID)
     : State(stateID)
@@ -369,10 +352,9 @@ StateEscape::StateEscape(int stateID)
 	mName = "escape";
 }
 
-/*
- * --INFO--
- * Address:	803A4790
- * Size:	0000B0
+/**
+ * @note Address: 0x803A4790
+ * @note Size: 0xB0
  */
 void StateEscape::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -389,10 +371,9 @@ void StateEscape::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A4840
- * Size:	0002B4
+/**
+ * @note Address: 0x803A4840
+ * @note Size: 0x2B4
  */
 void StateEscape::exec(EnemyBase* enemy)
 {
@@ -429,10 +410,9 @@ void StateEscape::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A4AF4
- * Size:	00003C
+/**
+ * @note Address: 0x803A4AF4
+ * @note Size: 0x3C
  */
 StateFall::StateFall(int stateID)
     : State(stateID)
@@ -440,10 +420,9 @@ StateFall::StateFall(int stateID)
 	mName = "fall";
 }
 
-/*
- * --INFO--
- * Address:	803A4B30
- * Size:	00004C
+/**
+ * @note Address: 0x803A4B30
+ * @note Size: 0x4C
  */
 void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -452,10 +431,9 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->enableEvent(0, EB_NoInterrupt);
 }
 
-/*
- * --INFO--
- * Address:	803A4B7C
- * Size:	000178
+/**
+ * @note Address: 0x803A4B7C
+ * @note Size: 0x178
  */
 void StateFall::exec(EnemyBase* enemy)
 {
@@ -487,10 +465,9 @@ void StateFall::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A4CF4
- * Size:	00003C
+/**
+ * @note Address: 0x803A4CF4
+ * @note Size: 0x3C
  */
 StateRecover::StateRecover(int stateID)
     : State(stateID)
@@ -498,10 +475,9 @@ StateRecover::StateRecover(int stateID)
 	mName = "recover";
 }
 
-/*
- * --INFO--
- * Address:	803A4D30
- * Size:	0000C8
+/**
+ * @note Address: 0x803A4D30
+ * @note Size: 0xC8
  */
 void StateRecover::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -520,10 +496,9 @@ void StateRecover::init(EnemyBase* enemy, StateArg* stateArg)
 	wraith->tyreUpEffect();
 }
 
-/*
- * --INFO--
- * Address:	803A4DF8
- * Size:	00016C
+/**
+ * @note Address: 0x803A4DF8
+ * @note Size: 0x16C
  */
 void StateRecover::exec(EnemyBase* enemy)
 {
@@ -566,10 +541,9 @@ void StateRecover::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A4F64
- * Size:	00003C
+/**
+ * @note Address: 0x803A4F64
+ * @note Size: 0x3C
  */
 StateFlick::StateFlick(int stateID)
     : State(stateID)
@@ -577,10 +551,9 @@ StateFlick::StateFlick(int stateID)
 	mName = "flick";
 }
 
-/*
- * --INFO--
- * Address:	803A4FA0
- * Size:	000158
+/**
+ * @note Address: 0x803A4FA0
+ * @note Size: 0x158
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -610,10 +583,9 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	OBJ(enemy)->createFlickEffect();
 }
 
-/*
- * --INFO--
- * Address:	803A50F8
- * Size:	0000B8
+/**
+ * @note Address: 0x803A50F8
+ * @note Size: 0xB8
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
@@ -632,10 +604,9 @@ void StateFlick::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A51B0
- * Size:	000024
+/**
+ * @note Address: 0x803A51B0
+ * @note Size: 0x24
  */
 void StateFlick::cleanup(EnemyBase* enemy)
 {
@@ -643,10 +614,9 @@ void StateFlick::cleanup(EnemyBase* enemy)
 	wraith->fadeFlickEffect();
 }
 
-/*
- * --INFO--
- * Address:	803A51D4
- * Size:	00003C
+/**
+ * @note Address: 0x803A51D4
+ * @note Size: 0x3C
  */
 StateTired::StateTired(int stateID)
     : State(stateID)
@@ -654,10 +624,9 @@ StateTired::StateTired(int stateID)
 	mName = "tired";
 }
 
-/*
- * --INFO--
- * Address:	803A5210
- * Size:	00005C
+/**
+ * @note Address: 0x803A5210
+ * @note Size: 0x5C
  */
 void StateTired::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -666,10 +635,9 @@ void StateTired::init(EnemyBase* enemy, StateArg* stateArg)
 	_10                    = 0;
 }
 
-/*
- * --INFO--
- * Address:	803A526C
- * Size:	0000C0
+/**
+ * @note Address: 0x803A526C
+ * @note Size: 0xC0
  */
 void StateTired::exec(EnemyBase* enemy)
 {

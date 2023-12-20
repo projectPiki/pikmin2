@@ -12,10 +12,9 @@ namespace {
 static const char* cMatAnimBtkTexName = "/enemy/data/Queen/queenchappy_model.btk";
 } // namespace
 
-/*
- * --INFO--
- * Address:	80288EB4
- * Size:	000050
+/**
+ * @note Address: 0x80288EB4
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -23,31 +22,27 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "クィーンチャッピーマネージャ"; // queen chappy manager
 }
 
-/*
- * --INFO--
- * Address:	80288F04
- * Size:	000048
+/**
+ * @note Address: 0x80288F04
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Parms); }
 
-/*
- * --INFO--
- * Address:	802890D4
- * Size:	000060
+/**
+ * @note Address: 0x802890D4
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	802891F0
- * Size:	000010
+/**
+ * @note Address: 0x802891F0
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
-/*
- * --INFO--
- * Address:	80289200
- * Size:	000068
+/**
+ * @note Address: 0x80289200
+ * @note Size: 0x68
  */
 void Mgr::loadModelData()
 {
@@ -59,10 +54,9 @@ void Mgr::loadModelData()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80289268
- * Size:	0000B4
+/**
+ * @note Address: 0x80289268
+ * @note Size: 0xB4
  */
 void Mgr::loadTexData()
 {
@@ -79,10 +73,9 @@ void Mgr::loadTexData()
 	mTexAnimation->attachResource(btkFile, mModelData);
 }
 
-/*
- * --INFO--
- * Address:	8028931C
- * Size:	00007C
+/**
+ * @note Address: 0x8028931C
+ * @note Size: 0x7C
  */
 SysShape::Model* Mgr::createModel()
 {

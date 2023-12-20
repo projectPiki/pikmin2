@@ -43,10 +43,9 @@
         .4byte 0x00000000
 */
 
-/*
- * --INFO--
- * Address:	8008EFD0
- * Size:	0000DC
+/**
+ * @note Address: 0x8008EFD0
+ * @note Size: 0xDC
  */
 void JPAVolumePoint(JPAEmitterWorkData* workData)
 {
@@ -114,10 +113,9 @@ void JPAVolumePoint(JPAEmitterWorkData* workData)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008F0AC
- * Size:	00011C
+/**
+ * @note Address: 0x8008F0AC
+ * @note Size: 0x11C
  */
 void JPAVolumeLine(JPAEmitterWorkData* workData)
 {
@@ -209,10 +207,9 @@ lbl_8008F194:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008F1C8
- * Size:	0001B4
+/**
+ * @note Address: 0x8008F1C8
+ * @note Size: 0x1B4
  */
 void JPAVolumeCircle(JPAEmitterWorkData*)
 {
@@ -335,10 +332,9 @@ lbl_8008F2E8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008F37C
- * Size:	000118
+/**
+ * @note Address: 0x8008F37C
+ * @note Size: 0x118
  */
 void JPAVolumeCube(JPAEmitterWorkData*)
 {
@@ -416,10 +412,9 @@ void JPAVolumeCube(JPAEmitterWorkData*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008F494
- * Size:	00028C
+/**
+ * @note Address: 0x8008F494
+ * @note Size: 0x28C
  */
 void JPAVolumeSphere(JPAEmitterWorkData*)
 {
@@ -606,10 +601,9 @@ lbl_8008F674:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008F720
- * Size:	000184
+/**
+ * @note Address: 0x8008F720
+ * @note Size: 0x184
  */
 void JPAVolumeCylinder(JPAEmitterWorkData*)
 {
@@ -716,10 +710,9 @@ lbl_8008F7D0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008F8A4
- * Size:	000128
+/**
+ * @note Address: 0x8008F8A4
+ * @note Size: 0x128
  */
 void JPAVolumeTorus(JPAEmitterWorkData*)
 {
@@ -801,10 +794,9 @@ void JPAVolumeTorus(JPAEmitterWorkData*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008F9CC
- * Size:	000034
+/**
+ * @note Address: 0x8008F9CC
+ * @note Size: 0x34
  */
 JPADynamicsBlock::JPADynamicsBlock(const u8*)
 {
@@ -825,20 +817,18 @@ JPADynamicsBlock::JPADynamicsBlock(const u8*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001E0
+/**
+ * @note Address: N/A
+ * @note Size: 0x1E0
  */
 void JPADynamicsBlock::init_jpa(const u8*, JKRHeap*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8008FA00
- * Size:	00009C
+/**
+ * @note Address: 0x8008FA00
+ * @note Size: 0x9C
  */
 void JPADynamicsBlock::init()
 {
@@ -906,10 +896,9 @@ lbl_8008FA8C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008FA9C
- * Size:	000200
+/**
+ * @note Address: 0x8008FA9C
+ * @note Size: 0x200
  */
 void JPADynamicsBlock::create(JPAEmitterWorkData*)
 {

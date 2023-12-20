@@ -11,10 +11,9 @@ u8* JKRAramStream::transBuffer                  = nullptr;
 u32 JKRAramStream::transSize                    = nullptr;
 JKRHeap* JKRAramStream::transHeap               = nullptr;
 
-/*
- * --INFO--
- * Address:	80019F20
- * Size:	000070
+/**
+ * @note Address: 0x80019F20
+ * @note Size: 0x70
  */
 
 JKRAramStream* JKRAramStream::create(s32 prio)
@@ -26,10 +25,9 @@ JKRAramStream* JKRAramStream::create(s32 prio)
 	return JKRAramStream::sAramStreamObject;
 }
 
-/*
- * --INFO--
- * Address:	80019F90
- * Size:	000050
+/**
+ * @note Address: 0x80019F90
+ * @note Size: 0x50
  */
 JKRAramStream::JKRAramStream(s32 prio)
     : JKRThread(0x4000, 0x10, prio)
@@ -37,17 +35,15 @@ JKRAramStream::JKRAramStream(s32 prio)
 	OSResumeThread(mThread);
 }
 
-/*
- * --INFO--
- * Address:	80019FE0
- * Size:	000060
+/**
+ * @note Address: 0x80019FE0
+ * @note Size: 0x60
  */
 JKRAramStream::~JKRAramStream() { }
 
-/*
- * --INFO--
- * Address:	8001A040
- * Size:	000070
+/**
+ * @note Address: 0x8001A040
+ * @note Size: 0x70
  */
 void* JKRAramStream::run()
 {
@@ -68,17 +64,15 @@ void* JKRAramStream::run()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8001A0B0
- * Size:	000008
+/**
+ * @note Address: 0x8001A0B0
+ * @note Size: 0x8
  */
 u32 JKRAramStream::readFromAram() { return 1; } // probably a define evaluating to 1
 
-/*
- * --INFO--
- * Address:	8001A0B8
- * Size:	0001EC
+/**
+ * @note Address: 0x8001A0B8
+ * @note Size: 0x1EC
  */
 s32 JKRAramStream::writeToAram(JKRAramStreamCommand* command)
 {
@@ -150,10 +144,9 @@ s32 JKRAramStream::writeToAram(JKRAramStreamCommand* command)
 	return writtenLength;
 };
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A0
+/**
+ * @note Address: N/A
+ * @note Size: 0xA0
  * Unused function, made-up contents. Do not take this seriously!
  * While the function exists in the map, this is almost certainly incorrect.
  * Should exist to generate JSURandomInputStream::getAvailable() const afterwards.
@@ -182,20 +175,18 @@ JKRAramStreamCommand* JKRAramStream::write_StreamToAram_Async(JSUFileInputStream
 	return command;
 }
 
-/*
- * --INFO--
- * Address:	8001A2A4
- * Size:	00005C
+/**
+ * @note Address: 0x8001A2A4
+ * @note Size: 0x5C
  * int JSURandomInputStream::getAvailable() const
  * Weak function, should live in JSUStream.h
  */
 
 // int JSURandomInputStream::getAvailable() const { return getLength() - getPosition(); };
 
-/*
- * --INFO--
- * Address:	8001A300
- * Size:	0000C8
+/**
+ * @note Address: 0x8001A300
+ * @note Size: 0xC8
  */
 JKRAramStreamCommand* JKRAramStream::write_StreamToAram_Async(JSUFileInputStream* stream, u32 addr, u32 size, u32 offset, u32* returnSize)
 {
@@ -219,10 +210,9 @@ JKRAramStreamCommand* JKRAramStream::write_StreamToAram_Async(JSUFileInputStream
 	return command;
 }
 
-/*
- * --INFO--
- * Address:	8001A3C8
- * Size:	000094
+/**
+ * @note Address: 0x8001A3C8
+ * @note Size: 0x94
  */
 JKRAramStreamCommand* JKRAramStream::sync(JKRAramStreamCommand* command, BOOL isNonBlocking)
 {
@@ -249,10 +239,9 @@ JKRAramStreamCommand* JKRAramStream::sync(JKRAramStreamCommand* command, BOOL is
 	}
 }
 
-/*
- * --INFO--
- * Address:	8001A45C
- * Size:	000054
+/**
+ * @note Address: 0x8001A45C
+ * @note Size: 0x54
  */
 void JKRAramStream::setTransBuffer(u8* buffer, u32 bufferSize, JKRHeap* heap)
 {
@@ -273,10 +262,9 @@ void JKRAramStream::setTransBuffer(u8* buffer, u32 bufferSize, JKRHeap* heap)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8001A4B0
- * Size:	00000C
+/**
+ * @note Address: 0x8001A4B0
+ * @note Size: 0xC
  */
 JKRAramStreamCommand::JKRAramStreamCommand()
 {

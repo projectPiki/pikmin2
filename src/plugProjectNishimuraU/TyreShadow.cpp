@@ -3,10 +3,9 @@
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	803019EC
- * Size:	00025C
+/**
+ * @note Address: 0x803019EC
+ * @note Size: 0x25C
  */
 void TyreTubeShadowNode::makeShadowSRT(JointShadowParm& shadowParm, Matrixf* mat)
 {
@@ -212,10 +211,9 @@ lbl_80301BC4:
 
 namespace Tyre {
 
-/*
- * --INFO--
- * Address:	80301C48
- * Size:	0000E4
+/**
+ * @note Address: 0x80301C48
+ * @note Size: 0xE4
  */
 TyreShadowMgr::TyreShadowMgr(Obj* obj)
 {
@@ -232,10 +230,9 @@ TyreShadowMgr::TyreShadowMgr(Obj* obj)
 	mRootNode->add(mBackShadow);
 }
 
-/*
- * --INFO--
- * Address:	80301D2C
- * Size:	000068
+/**
+ * @note Address: 0x80301D2C
+ * @note Size: 0x68
  */
 void TyreShadowMgr::init()
 {
@@ -244,10 +241,9 @@ void TyreShadowMgr::init()
 	mBackMatrix            = model->getJoint("tyreback")->getWorldMatrix();
 }
 
-/*
- * --INFO--
- * Address:	80301D94
- * Size:	0000B4
+/**
+ * @note Address: 0x80301D94
+ * @note Size: 0xB4
  */
 void TyreShadowMgr::update()
 {

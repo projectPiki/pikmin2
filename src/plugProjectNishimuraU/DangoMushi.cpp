@@ -17,10 +17,9 @@
 namespace Game {
 namespace DangoMushi {
 
-/*
- * --INFO--
- * Address:	802FC3BC
- * Size:	000134
+/**
+ * @note Address: 0x802FC3BC
+ * @note Size: 0x134
  */
 Obj::Obj()
 {
@@ -30,17 +29,15 @@ Obj::Obj()
 	mMatLoopAnimator = new Sys::MatLoopAnimator;
 }
 
-/*
- * --INFO--
- * Address:	802FC4F0
- * Size:	000004
+/**
+ * @note Address: 0x802FC4F0
+ * @note Size: 0x4
  */
 void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
-/*
- * --INFO--
- * Address:	802FC4F4
- * Size:	000130
+/**
+ * @note Address: 0x802FC4F4
+ * @note Size: 0x130
  */
 void Obj::onInit(CreatureInitArg* arg)
 {
@@ -70,10 +67,9 @@ void Obj::onInit(CreatureInitArg* arg)
 	mMatLoopAnimator->start(C_MGR->mTevRegAnimation);
 }
 
-/*
- * --INFO--
- * Address:	802FC624
- * Size:	000044
+/**
+ * @note Address: 0x802FC624
+ * @note Size: 0x44
  */
 void Obj::onKill(CreatureKillArg* arg)
 {
@@ -81,10 +77,9 @@ void Obj::onKill(CreatureKillArg* arg)
 	EnemyBase::onKill(arg);
 }
 
-/*
- * --INFO--
- * Address:	802FC668
- * Size:	000050
+/**
+ * @note Address: 0x802FC668
+ * @note Size: 0x50
  */
 void Obj::doUpdate()
 {
@@ -93,10 +88,9 @@ void Obj::doUpdate()
 	createMoveHandEffect();
 }
 
-/*
- * --INFO--
- * Address:	802FC6B8
- * Size:	000044
+/**
+ * @note Address: 0x802FC6B8
+ * @note Size: 0x44
  */
 void Obj::doUpdateCommon()
 {
@@ -106,10 +100,9 @@ void Obj::doUpdateCommon()
 	updateBossBGM();
 }
 
-/*
- * --INFO--
- * Address:	802FC6FC
- * Size:	000094
+/**
+ * @note Address: 0x802FC6FC
+ * @note Size: 0x94
  */
 void Obj::doAnimationUpdateAnimator()
 {
@@ -122,10 +115,9 @@ void Obj::doAnimationUpdateAnimator()
 	    = (J3DMtxCalcAnmBase*)(static_cast<EnemyBlendAnimatorBase*>(mAnimator)->mAnimator.getCalc());
 }
 
-/*
- * --INFO--
- * Address:	802FC790
- * Size:	0000C4
+/**
+ * @note Address: 0x802FC790
+ * @note Size: 0xC4
  */
 void Obj::changeMaterial()
 {
@@ -142,24 +134,21 @@ void Obj::changeMaterial()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802FC854
- * Size:	000004
+/**
+ * @note Address: 0x802FC854
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics& gfx) { }
 
-/*
- * --INFO--
- * Address:	802FC858
- * Size:	000020
+/**
+ * @note Address: 0x802FC858
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	802FC878
- * Size:	00004C
+/**
+ * @note Address: 0x802FC878
+ * @note Size: 0x4C
  */
 void Obj::setFSM(FSM* fsm)
 {
@@ -168,10 +157,9 @@ void Obj::setFSM(FSM* fsm)
 	mCurrentLifecycleState = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	802FC8C4
- * Size:	0000B8
+/**
+ * @note Address: 0x802FC8C4
+ * @note Size: 0xB8
  */
 void Obj::getShadowParam(ShadowParam& param)
 {
@@ -187,10 +175,9 @@ void Obj::getShadowParam(ShadowParam& param)
 	param.mSize = 45.0f * mShadowScale;
 }
 
-/*
- * --INFO--
- * Address:	802FC97C
- * Size:	000070
+/**
+ * @note Address: 0x802FC97C
+ * @note Size: 0x70
  */
 bool Obj::needShadow()
 {
@@ -206,10 +193,9 @@ bool Obj::needShadow()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802FC9EC
- * Size:	0000EC
+/**
+ * @note Address: 0x802FC9EC
+ * @note Size: 0xEC
  */
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* part)
 {
@@ -230,17 +216,15 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* part)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802FCAD8
- * Size:	000008
+/**
+ * @note Address: 0x802FCAD8
+ * @note Size: 0x8
  */
 bool Obj::earthquakeCallBack(Creature*, f32) { return false; }
 
-/*
- * --INFO--
- * Address:	802FCAE0
- * Size:	000104
+/**
+ * @note Address: 0x802FCAE0
+ * @note Size: 0x104
  */
 void Obj::collisionCallback(CollEvent& evt)
 {
@@ -262,10 +246,9 @@ void Obj::collisionCallback(CollEvent& evt)
 	setCollEvent(evt);
 }
 
-/*
- * --INFO--
- * Address:	802FCBE4
- * Size:	00010C
+/**
+ * @note Address: 0x802FCBE4
+ * @note Size: 0x10C
  */
 void Obj::wallCallback(const MoveInfo& mvInfo)
 {
@@ -281,10 +264,9 @@ void Obj::wallCallback(const MoveInfo& mvInfo)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802FCCF0
- * Size:	000038
+/**
+ * @note Address: 0x802FCCF0
+ * @note Size: 0x38
  */
 void Obj::doStartStoneState()
 {
@@ -292,10 +274,9 @@ void Obj::doStartStoneState()
 	disableEvent(0, EB_Invulnerable);
 }
 
-/*
- * --INFO--
- * Address:	802FCD28
- * Size:	000074
+/**
+ * @note Address: 0x802FCD28
+ * @note Size: 0x74
  */
 void Obj::doFinishStoneState()
 {
@@ -307,31 +288,27 @@ void Obj::doFinishStoneState()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802FCD9C
- * Size:	000028
+/**
+ * @note Address: 0x802FCD9C
+ * @note Size: 0x28
  */
 void Obj::startCarcassMotion() { startMotion(DANGOANIM_Carry, nullptr); }
 
-/*
- * --INFO--
- * Address:	802FCDC4
- * Size:	000020
+/**
+ * @note Address: 0x802FCDC4
+ * @note Size: 0x20
  */
 void Obj::doStartMovie() { effectDrawOff(); }
 
-/*
- * --INFO--
- * Address:	802FCDE4
- * Size:	000020
+/**
+ * @note Address: 0x802FCDE4
+ * @note Size: 0x20
  */
 void Obj::doEndMovie() { effectDrawOn(); }
 
-/*
- * --INFO--
- * Address:	802FCE04
- * Size:	00004C
+/**
+ * @note Address: 0x802FCE04
+ * @note Size: 0x4C
  */
 void Obj::initWalkSmokeEffect()
 {
@@ -339,17 +316,15 @@ void Obj::initWalkSmokeEffect()
 	mWalkSmokeMgr.setup(0, mModel, "hand_L", 7.5f);
 }
 
-/*
- * --INFO--
- * Address:	802FCE50
- * Size:	000008
+/**
+ * @note Address: 0x802FCE50
+ * @note Size: 0x8
  */
 WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
 
-/*
- * --INFO--
- * Address:	802FCE58
- * Size:	000024
+/**
+ * @note Address: 0x802FCE58
+ * @note Size: 0x24
  */
 void Obj::getCommonEffectPos(Vector3f& vec)
 {
@@ -358,10 +333,9 @@ void Obj::getCommonEffectPos(Vector3f& vec)
 	vec.z = mPosition.z;
 }
 
-/*
- * --INFO--
- * Address:	802FCE7C
- * Size:	000050
+/**
+ * @note Address: 0x802FCE7C
+ * @note Size: 0x50
  */
 bool Obj::addShadowScale()
 {
@@ -379,10 +353,9 @@ bool Obj::addShadowScale()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802FCECC
- * Size:	000198
+/**
+ * @note Address: 0x802FCECC
+ * @note Size: 0x198
  */
 void Obj::setRandTarget()
 {
@@ -396,17 +369,15 @@ void Obj::setRandTarget()
 	mTargetPosition = Vector3f(randDist * sinf(angle) + mHomePosition.x, mHomePosition.y, randDist * cosf(angle) + mHomePosition.z);
 }
 
-/*
- * --INFO--
- * Address:	802FD064
- * Size:	000034
+/**
+ * @note Address: 0x802FD064
+ * @note Size: 0x34
  */
 bool Obj::isReachedTarget() { return sqrDistanceXZ(mPosition, mTargetPosition) < 625.0f; }
 
-/*
- * --INFO--
- * Address:	802FD098
- * Size:	000038
+/**
+ * @note Address: 0x802FD098
+ * @note Size: 0x38
  */
 Creature* Obj::getSearchedTarget()
 {
@@ -414,10 +385,9 @@ Creature* Obj::getSearchedTarget()
 	                                         nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802FD0D0
- * Size:	0002BC
+/**
+ * @note Address: 0x802FD0D0
+ * @note Size: 0x2BC
  */
 void Obj::rollingMove()
 {
@@ -654,10 +624,9 @@ lbl_802FD358:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802FD38C
- * Size:	0004E8
+/**
+ * @note Address: 0x802FD38C
+ * @note Size: 0x4E8
  */
 void Obj::createCrashEnemy()
 {
@@ -738,10 +707,9 @@ void Obj::createCrashEnemy()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802FD874
- * Size:	0000EC
+/**
+ * @note Address: 0x802FD874
+ * @note Size: 0xEC
  */
 int Obj::getFallEggNum()
 {
@@ -761,10 +729,9 @@ int Obj::getFallEggNum()
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	802FD960
- * Size:	000104
+/**
+ * @note Address: 0x802FD960
+ * @note Size: 0x104
  */
 Vector3f Obj::getFallPosition(int fallEnemyType)
 {
@@ -790,10 +757,9 @@ Vector3f Obj::getFallPosition(int fallEnemyType)
 	return fallPos;
 }
 
-/*
- * --INFO--
- * Address:	802FDA64
- * Size:	000038
+/**
+ * @note Address: 0x802FDA64
+ * @note Size: 0x38
  */
 void Obj::setupCollision()
 {
@@ -804,10 +770,9 @@ void Obj::setupCollision()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802FDA9C
- * Size:	000444
+/**
+ * @note Address: 0x802FDA9C
+ * @note Size: 0x444
  */
 void Obj::setBodyCollision(bool check)
 {
@@ -848,10 +813,9 @@ void Obj::setBodyCollision(bool check)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802FDEE0
- * Size:	0002AC
+/**
+ * @note Address: 0x802FDEE0
+ * @note Size: 0x2AC
  */
 void Obj::flickHandCollision(Creature* target)
 {
@@ -887,10 +851,9 @@ void Obj::flickHandCollision(Creature* target)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802FE18C
- * Size:	000058
+/**
+ * @note Address: 0x802FE18C
+ * @note Size: 0x58
  */
 bool Obj::isNoDamageCollision()
 {
@@ -901,10 +864,9 @@ bool Obj::isNoDamageCollision()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	802FE1E4
- * Size:	00002C
+/**
+ * @note Address: 0x802FE1E4
+ * @note Size: 0x2C
  */
 void Obj::resetMapCollisionSize(bool isBall)
 {
@@ -916,10 +878,9 @@ void Obj::resetMapCollisionSize(bool isBall)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802FE210
- * Size:	00008C
+/**
+ * @note Address: 0x802FE210
+ * @note Size: 0x8C
  */
 void Obj::updateMapCollisionSize()
 {
@@ -944,10 +905,9 @@ void Obj::updateMapCollisionSize()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802FE29C
- * Size:	0003AC
+/**
+ * @note Address: 0x802FE29C
+ * @note Size: 0x3AC
  * Collision of flicking hand after crab rights itself.
  * https://tenor.com/view/segmented-crawbster-crawbster-pikmin-pikmin-2-gif-13837251029309082326
  */
@@ -1258,10 +1218,9 @@ lbl_802FE5A8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802FE648
- * Size:	00011C
+/**
+ * @note Address: 0x802FE648
+ * @note Size: 0x11C
  */
 void Obj::startBlendAnimation(int animIdx, bool blendAnim)
 {
@@ -1294,10 +1253,9 @@ void Obj::startBlendAnimation(int animIdx, bool blendAnim)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802FE764
- * Size:	000098
+/**
+ * @note Address: 0x802FE764
+ * @note Size: 0x98
  */
 void Obj::endBlendAnimation()
 {
@@ -1315,10 +1273,9 @@ void Obj::endBlendAnimation()
 	setMotionFrame(frame);
 }
 
-/*
- * --INFO--
- * Address:	802FE7FC
- * Size:	0000C8
+/**
+ * @note Address: 0x802FE7FC
+ * @note Size: 0xC8
  */
 void Obj::startBossFlickBGM()
 {
@@ -1327,10 +1284,9 @@ void Obj::startBossFlickBGM()
 	soundObj->jumpRequest(4);
 }
 
-/*
- * --INFO--
- * Address:	802FE8C4
- * Size:	0000C8
+/**
+ * @note Address: 0x802FE8C4
+ * @note Size: 0xC8
  */
 void Obj::startBossAttackLoopBGM()
 {
@@ -1339,10 +1295,9 @@ void Obj::startBossAttackLoopBGM()
 	soundObj->jumpRequest(8);
 }
 
-/*
- * --INFO--
- * Address:	802FE98C
- * Size:	0000C8
+/**
+ * @note Address: 0x802FE98C
+ * @note Size: 0xC8
  */
 void Obj::finishBossAttackLoopBGM()
 {
@@ -1351,10 +1306,9 @@ void Obj::finishBossAttackLoopBGM()
 	soundObj->jumpRequest(1);
 }
 
-/*
- * --INFO--
- * Address:	802FEA54
- * Size:	0000FC
+/**
+ * @note Address: 0x802FEA54
+ * @note Size: 0xFC
  */
 void Obj::updateBossBGM()
 {
@@ -1368,10 +1322,9 @@ void Obj::updateBossBGM()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802FEB50
- * Size:	0000BC
+/**
+ * @note Address: 0x802FEB50
+ * @note Size: 0xBC
  */
 void Obj::resetBossAppearBGM()
 {
@@ -1380,10 +1333,9 @@ void Obj::resetBossAppearBGM()
 	soundObj->setAppearFlag(false);
 }
 
-/*
- * --INFO--
- * Address:	802FEC0C
- * Size:	0000BC
+/**
+ * @note Address: 0x802FEC0C
+ * @note Size: 0xBC
  */
 void Obj::setBossAppearBGM()
 {
@@ -1392,10 +1344,9 @@ void Obj::setBossAppearBGM()
 	soundObj->setAppearFlag(true);
 }
 
-/*
- * --INFO--
- * Address:	802FECC8
- * Size:	000170
+/**
+ * @note Address: 0x802FECC8
+ * @note Size: 0x170
  */
 void Obj::createEffect()
 {
@@ -1404,10 +1355,9 @@ void Obj::createEffect()
 	mEfxRun       = new efx::TDangoRun;
 }
 
-/*
- * --INFO--
- * Address:	802FEE38
- * Size:	000064
+/**
+ * @note Address: 0x802FEE38
+ * @note Size: 0x64
  */
 void Obj::setupEffect()
 {
@@ -1416,10 +1366,9 @@ void Obj::setupEffect()
 	mEfxRun->setPosptr(&mPosition);
 }
 
-/*
- * --INFO--
- * Address:	802FEE9C
- * Size:	00007C
+/**
+ * @note Address: 0x802FEE9C
+ * @note Size: 0x7C
  */
 void Obj::createDeadSmokeEffect()
 {
@@ -1428,10 +1377,9 @@ void Obj::createDeadSmokeEffect()
 	smokeEff.create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802FEF18
- * Size:	000088
+/**
+ * @note Address: 0x802FEF18
+ * @note Size: 0x88
  */
 void Obj::createDeadBombEffect()
 {
@@ -1440,10 +1388,9 @@ void Obj::createDeadBombEffect()
 	deadEff.create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802FEFA0
- * Size:	0000A0
+/**
+ * @note Address: 0x802FEFA0
+ * @note Size: 0xA0
  */
 void Obj::createBodyTurnEffect()
 {
@@ -1453,10 +1400,9 @@ void Obj::createBodyTurnEffect()
 	turnFX.create(&fxArg);
 }
 
-/*
- * --INFO--
- * Address:	802FF040
- * Size:	000054
+/**
+ * @note Address: 0x802FF040
+ * @note Size: 0x54
  */
 void Obj::createWallBreakEffect()
 {
@@ -1464,17 +1410,15 @@ void Obj::createWallBreakEffect()
 	mEfxAttack2->fade();
 }
 
-/*
- * --INFO--
- * Address:	802FF094
- * Size:	000034
+/**
+ * @note Address: 0x802FF094
+ * @note Size: 0x34
  */
 void Obj::createFlickAttackEffect() { mEfxAttack2->create(nullptr); }
 
-/*
- * --INFO--
- * Address:	802FF0C8
- * Size:	00007C
+/**
+ * @note Address: 0x802FF0C8
+ * @note Size: 0x7C
  * Creates the rainbow damage particles from the crab's guts when pikmin attack.
  */
 void Obj::createBodyDamageEffect()
@@ -1484,10 +1428,9 @@ void Obj::createBodyDamageEffect()
 	dmgEff.create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802FF144
- * Size:	0000CC
+/**
+ * @note Address: 0x802FF144
+ * @note Size: 0xCC
  * Creates particle effect when the enemy crashes into a wall.
  */
 void Obj::createBodyWallCrashEffect(Vector3f vec)
@@ -1506,31 +1449,27 @@ void Obj::createBodyWallCrashEffect(Vector3f vec)
 	crashFX.create(&fxArg);
 }
 
-/*
- * --INFO--
- * Address:	802FF210
- * Size:	000034
+/**
+ * @note Address: 0x802FF210
+ * @note Size: 0x34
  */
 void Obj::startRollingMoveEffect() { mEfxRun->create(nullptr); }
 
-/*
- * --INFO--
- * Address:	802FF244
- * Size:	000030
+/**
+ * @note Address: 0x802FF244
+ * @note Size: 0x30
  */
 void Obj::finishRollingMoveEffect() { mEfxRun->fade(); }
 
-/*
- * --INFO--
- * Address:	802FF274
- * Size:	000044
+/**
+ * @note Address: 0x802FF274
+ * @note Size: 0x44
  */
 void Obj::createEnemyBounceEffect() { createBounceEffect(mPosition, getDownSmokeScale()); }
 
-/*
- * --INFO--
- * Address:	802FF2C0
- * Size:	0001E8
+/**
+ * @note Address: 0x802FF2C0
+ * @note Size: 0x1E8
  */
 void Obj::createMoveHandEffect()
 {
@@ -1563,10 +1502,9 @@ void Obj::createMoveHandEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802FF4A8
- * Size:	000098
+/**
+ * @note Address: 0x802FF4A8
+ * @note Size: 0x98
  */
 void Obj::createAppearSmokeEffect()
 {
@@ -1575,10 +1513,9 @@ void Obj::createAppearSmokeEffect()
 	fly.create(&arg);
 }
 
-/*
- * --INFO--
- * Address:	802FF540
- * Size:	000064
+/**
+ * @note Address: 0x802FF540
+ * @note Size: 0x64
  */
 void Obj::effectDrawOn()
 {
@@ -1587,10 +1524,9 @@ void Obj::effectDrawOn()
 	mEfxRun->endDemoDrawOn();
 }
 
-/*
- * --INFO--
- * Address:	802FF5A4
- * Size:	000064
+/**
+ * @note Address: 0x802FF5A4
+ * @note Size: 0x64
  */
 void Obj::effectDrawOff()
 {

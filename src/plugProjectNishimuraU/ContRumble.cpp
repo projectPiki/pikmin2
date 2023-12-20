@@ -4,10 +4,9 @@
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	80252B20
- * Size:	000158
+/**
+ * @note Address: 0x80252B20
+ * @note Size: 0x158
  */
 ContRumble::ContRumble(int padChannel, int nodeCount)
     : mIsActive(true)
@@ -24,10 +23,9 @@ ContRumble::ContRumble(int padChannel, int nodeCount)
 	mDataMgr = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80252C78
- * Size:	00008C
+/**
+ * @note Address: 0x80252C78
+ * @note Size: 0x8C
  */
 void ContRumble::init()
 {
@@ -46,10 +44,9 @@ void ContRumble::init()
 	PADControlMotor(mPadChannel, 2);
 }
 
-/*
- * --INFO--
- * Address:	80252D04
- * Size:	000290
+/**
+ * @note Address: 0x80252D04
+ * @note Size: 0x290
  * TODO
  */
 void ContRumble::update()
@@ -142,10 +139,9 @@ void ContRumble::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80252F94
- * Size:	000058
+/**
+ * @note Address: 0x80252F94
+ * @note Size: 0x58
  */
 void ContRumble::setController(bool isActive)
 {
@@ -156,10 +152,9 @@ void ContRumble::setController(bool isActive)
 	mIsActive = isActive;
 }
 
-/*
- * --INFO--
- * Address:	80252FEC
- * Size:	000104
+/**
+ * @note Address: 0x80252FEC
+ * @note Size: 0x104
  * TODO
  */
 void ContRumble::startRumble(int idx, f32 intensity)
@@ -183,10 +178,9 @@ void ContRumble::startRumble(int idx, f32 intensity)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802530F0
- * Size:	000088
+/**
+ * @note Address: 0x802530F0
+ * @note Size: 0x88
  * TODO
  */
 void ContRumble::rumbleStop()
@@ -207,10 +201,9 @@ void ContRumble::rumbleStop()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80253178
- * Size:	000090
+/**
+ * @note Address: 0x80253178
+ * @note Size: 0x90
  */
 void ContRumble::rumbleStop(int idx)
 {
@@ -234,10 +227,9 @@ void ContRumble::rumbleStop(int idx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80253208
- * Size:	00009C
+/**
+ * @note Address: 0x80253208
+ * @note Size: 0x9C
  */
 void ContRumble::getRumbleParameter(int idx, f32& x, f32& y)
 {

@@ -11,10 +11,9 @@
 #include "JSystem/JUtility/JUTTexture.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	80051EA4
- * Size:	000120
+/**
+ * @note Address: 0x80051EA4
+ * @note Size: 0x120
  * __ct__11J2DMaterialFv
  */
 J2DMaterial::J2DMaterial()
@@ -31,10 +30,9 @@ J2DMaterial::J2DMaterial()
 	mIsVisible = 1;
 }
 
-/*
- * --INFO--
- * Address:	8005203C
- * Size:	00014C
+/**
+ * @note Address: 0x8005203C
+ * @note Size: 0x14C
  */
 J2DMaterial::J2DMaterial(u32 flag)
 {
@@ -48,10 +46,9 @@ J2DMaterial::J2DMaterial(u32 flag)
 	mMaterialAlphaCalc = 1;
 }
 
-/*
- * --INFO--
- * Address:	80052188
- * Size:	0000C0
+/**
+ * @note Address: 0x80052188
+ * @note Size: 0xC0
  */
 J2DMaterial::~J2DMaterial()
 {
@@ -60,10 +57,9 @@ J2DMaterial::~J2DMaterial()
 	delete mAnmPtr;
 }
 
-/*
- * --INFO--
- * Address:	80052248
- * Size:	000084
+/**
+ * @note Address: 0x80052248
+ * @note Size: 0x84
  */
 void J2DMaterial::setGX()
 {
@@ -85,10 +81,9 @@ void J2DMaterial::setGX()
 	mPeBlock.setGX();
 }
 
-/*
- * --INFO--
- * Address:	800522CC
- * Size:	0001B4
+/**
+ * @note Address: 0x800522CC
+ * @note Size: 0x1B4
  */
 J2DTevBlock* J2DMaterial::createTevBlock(int stageCount, bool p2)
 {
@@ -122,10 +117,9 @@ J2DTevBlock* J2DMaterial::createTevBlock(int stageCount, bool p2)
 	return new (-4) J2DTevBlock16();
 }
 
-/*
- * --INFO--
- * Address:	80052480
- * Size:	0001D8
+/**
+ * @note Address: 0x80052480
+ * @note Size: 0x1D8
  */
 J2DIndBlock* J2DMaterial::createIndBlock(int stageCount, bool p2)
 {
@@ -141,10 +135,9 @@ J2DIndBlock* J2DMaterial::createIndBlock(int stageCount, bool p2)
 	return new (-4) J2DIndBlockNull();
 }
 
-/*
- * --INFO--
- * Address:	800526C8
- * Size:	0000C8
+/**
+ * @note Address: 0x800526C8
+ * @note Size: 0xC8
  */
 void J2DMaterial::makeAnmPointer()
 {
@@ -153,10 +146,9 @@ void J2DMaterial::makeAnmPointer()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80052790
- * Size:	000144
+/**
+ * @note Address: 0x80052790
+ * @note Size: 0x144
  */
 void J2DMaterial::setAnimation(J2DAnmColor* animation)
 {
@@ -178,10 +170,9 @@ void J2DMaterial::setAnimation(J2DAnmColor* animation)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800528D4
- * Size:	0001A4
+/**
+ * @note Address: 0x800528D4
+ * @note Size: 0x1A4
  */
 void J2DMaterial::setAnimation(J2DAnmTextureSRTKey* animation)
 {
@@ -330,10 +321,9 @@ lbl_80052A60:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80052A78
- * Size:	000194
+/**
+ * @note Address: 0x80052A78
+ * @note Size: 0x194
  */
 void J2DMaterial::setAnimation(J2DAnmTexPattern* animation)
 {
@@ -479,10 +469,9 @@ lbl_80052BF4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80052C0C
- * Size:	0001FC
+/**
+ * @note Address: 0x80052C0C
+ * @note Size: 0x1FC
  */
 void J2DMaterial::setAnimation(J2DAnmTevRegKey* animation)
 {
@@ -675,10 +664,9 @@ lbl_80052DF0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80052E08
- * Size:	000470
+/**
+ * @note Address: 0x80052E08
+ * @note Size: 0x470
  */
 void J2DMaterial::animation()
 {

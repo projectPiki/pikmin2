@@ -32,20 +32,18 @@ GXRenderModeObj GXEurgb60Hz480IntDf = {
 };
 // clang-format on
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000144
+/**
+ * @note Address: N/A
+ * @note Size: 0x144
  */
 void GXAdjustForOverscan(GXRenderModeObj* rIn, GXRenderModeObj* rOut, u16 horiz, u16 vert)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800E5C44
- * Size:	00007C
+/**
+ * @note Address: 0x800E5C44
+ * @note Size: 0x7C
  */
 void GXSetDispCopySrc(u16 left, u16 top, u16 width, u16 height)
 {
@@ -60,10 +58,9 @@ void GXSetDispCopySrc(u16 left, u16 top, u16 width, u16 height)
 	GX_SET_REG(gx->cpDispSize, 0x4A, 0, 7);
 }
 
-/*
- * --INFO--
- * Address:	800E5CC0
- * Size:	00007C
+/**
+ * @note Address: 0x800E5CC0
+ * @note Size: 0x7C
  */
 void GXSetTexCopySrc(u16 left, u16 top, u16 width, u16 height)
 {
@@ -78,10 +75,9 @@ void GXSetTexCopySrc(u16 left, u16 top, u16 width, u16 height)
 	GX_SET_REG(gx->cpTexSize, 0x4A, 0, 7);
 }
 
-/*
- * --INFO--
- * Address:	800E5D3C
- * Size:	000034
+/**
+ * @note Address: 0x800E5D3C
+ * @note Size: 0x34
  */
 void GXSetDispCopyDst(u16 width, u16 height)
 {
@@ -91,10 +87,9 @@ void GXSetDispCopyDst(u16 width, u16 height)
 	GX_SET_REG(gx->cpDispStride, 0x4D, 0, 7);
 }
 
-/*
- * --INFO--
- * Address:	800E5D70
- * Size:	000130
+/**
+ * @note Address: 0x800E5D70
+ * @note Size: 0x130
  */
 void GXSetTexCopyDst(u16 width, u16 height, GXTexFmt format, GXBool useMIPmap)
 {
@@ -140,10 +135,9 @@ void GXSetTexCopyDst(u16 width, u16 height, GXTexFmt format, GXBool useMIPmap)
 	GX_SET_REG(gx->cpTex, depthRelated, 25, 27);
 }
 
-/*
- * --INFO--
- * Address:	800E5EA0
- * Size:	000024
+/**
+ * @note Address: 0x800E5EA0
+ * @note Size: 0x24
  */
 void GXSetDispCopyFrame2Field(GXCopyMode mode)
 {
@@ -151,10 +145,9 @@ void GXSetDispCopyFrame2Field(GXCopyMode mode)
 	GX_SET_REG(gx->cpTex, 0, 18, 19);
 }
 
-/*
- * --INFO--
- * Address:	800E5EC4
- * Size:	000058
+/**
+ * @note Address: 0x800E5EC4
+ * @note Size: 0x58
  */
 void GXSetCopyClamp(GXFBClamp clamp)
 {
@@ -166,10 +159,9 @@ void GXSetCopyClamp(GXFBClamp clamp)
 	GX_SET_REG(gx->cpTex, clamp2, 30, 30);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
+/**
+ * @note Address: N/A
+ * @note Size: 0x58
  */
 static u32 __GXGetNumXfbLines(u32 height, u32 scale)
 {
@@ -199,10 +191,9 @@ static u32 __GXGetNumXfbLines(u32 height, u32 scale)
 	return actualHeight;
 }
 
-/*
- * --INFO--
- * Address:	800E5F1C
- * Size:	000090
+/**
+ * @note Address: 0x800E5F1C
+ * @note Size: 0x90
  */
 u16 GXGetNumXfbLines(const u16 efbHeight, f32 yScale)
 {
@@ -211,10 +202,9 @@ u16 GXGetNumXfbLines(const u16 efbHeight, f32 yScale)
 	return __GXGetNumXfbLines(efbHeight, scale);
 }
 
-/*
- * --INFO--
- * Address:	800E5FAC
- * Size:	000238
+/**
+ * @note Address: 0x800E5FAC
+ * @note Size: 0x238
  */
 f32 GXGetYScaleFactor(u16 efbHeight, u16 xfbHeight)
 {
@@ -248,10 +238,9 @@ f32 GXGetYScaleFactor(u16 efbHeight, u16 xfbHeight)
 	return scale2;
 }
 
-/*
- * --INFO--
- * Address:	800E61E4
- * Size:	0000CC
+/**
+ * @note Address: 0x800E61E4
+ * @note Size: 0xCC
  */
 u32 GXSetDispCopyYScale(f32 vertScale)
 {
@@ -276,10 +265,9 @@ u32 GXSetDispCopyYScale(f32 vertScale)
 	return __GXGetNumXfbLines(height, scale);
 }
 
-/*
- * --INFO--
- * Address:	800E62B0
- * Size:	000078
+/**
+ * @note Address: 0x800E62B0
+ * @note Size: 0x78
  */
 void GXSetCopyClear(GXColor clearColor, u32 clearZ)
 {
@@ -303,10 +291,9 @@ void GXSetCopyClear(GXColor clearColor, u32 clearZ)
 	gx->bpSentNot = GX_FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800E6328
- * Size:	000208
+/**
+ * @note Address: 0x800E6328
+ * @note Size: 0x208
  */
 void GXSetCopyFilter(GXBool useAA, u8 samplePattern[12][2], GXBool doVertFilt, u8 vFilt[7])
 {
@@ -392,17 +379,15 @@ void GXSetCopyFilter(GXBool useAA, u8 samplePattern[12][2], GXBool doVertFilt, u
 	gx->bpSentNot = GX_FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800E6530
- * Size:	000014
+/**
+ * @note Address: 0x800E6530
+ * @note Size: 0x14
  */
 void GXSetDispCopyGamma(GXGamma gamma) { FAST_FLAG_SET(gx->cpDisp, gamma, 7, 2); }
 
-/*
- * --INFO--
- * Address:	800E6544
- * Size:	000168
+/**
+ * @note Address: 0x800E6544
+ * @note Size: 0x168
  */
 void GXCopyDisp(void* dest, GXBool doClear)
 {
@@ -457,10 +442,9 @@ void GXCopyDisp(void* dest, GXBool doClear)
 	gx->bpSentNot = GX_FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800E66AC
- * Size:	00018C
+/**
+ * @note Address: 0x800E66AC
+ * @note Size: 0x18C
  */
 void GXCopyTex(void* dest, GXBool doClear)
 {
@@ -524,10 +508,9 @@ void GXCopyTex(void* dest, GXBool doClear)
 	gx->bpSentNot = GX_FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800E6838
- * Size:	000038
+/**
+ * @note Address: 0x800E6838
+ * @note Size: 0x38
  */
 void GXClearBoundingBox(void)
 {
@@ -536,10 +519,9 @@ void GXClearBoundingBox(void)
 	gx->bpSentNot = GX_FALSE;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 void GXReadBoundingBox(u16* left, u16* top, u16* right, u16* bottom)
 {

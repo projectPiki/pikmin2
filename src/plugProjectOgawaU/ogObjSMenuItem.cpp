@@ -31,10 +31,9 @@ u64 ItemMsgID_List[12] = {
 	'6123_00'  // "Napsack"
 };
 
-/*
- * --INFO--
- * Address:	80312EF8
- * Size:	00007C
+/**
+ * @note Address: 0x80312EF8
+ * @note Size: 0x7C
  */
 ObjSMenuItem::ObjSMenuItem(char const* name)
 {
@@ -51,17 +50,15 @@ ObjSMenuItem::ObjSMenuItem(char const* name)
 	mName          = name;
 }
 
-/*
- * --INFO--
- * Address:	80312F74
- * Size:	0000C4
+/**
+ * @note Address: 0x80312F74
+ * @note Size: 0xC4
  */
 ObjSMenuItem::~ObjSMenuItem() { }
 
-/*
- * --INFO--
- * Address:	80313038
- * Size:	000924
+/**
+ * @note Address: 0x80313038
+ * @note Size: 0x924
  */
 void ObjSMenuItem::doCreate(JKRArchive* arc)
 {
@@ -808,10 +805,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8031395C
- * Size:	000128
+/**
+ * @note Address: 0x8031395C
+ * @note Size: 0x128
  */
 void ObjSMenuItem::doUpdateLAction()
 {
@@ -831,10 +827,9 @@ void ObjSMenuItem::doUpdateLAction()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80313A84
- * Size:	00006C
+/**
+ * @note Address: 0x80313A84
+ * @note Size: 0x6C
  */
 void ObjSMenuItem::doUpdateRAction()
 {
@@ -842,10 +837,9 @@ void ObjSMenuItem::doUpdateRAction()
 	jump_R(arg);
 }
 
-/*
- * --INFO--
- * Address:	80313AF0
- * Size:	0000E8
+/**
+ * @note Address: 0x80313AF0
+ * @note Size: 0xE8
  */
 void ObjSMenuItem::commonUpdate()
 {
@@ -860,10 +854,9 @@ void ObjSMenuItem::commonUpdate()
 	mScreenSprays->update();
 }
 
-/*
- * --INFO--
- * Address:	80313BD8
- * Size:	000054
+/**
+ * @note Address: 0x80313BD8
+ * @note Size: 0x54
  */
 bool ObjSMenuItem::doUpdate()
 {
@@ -873,10 +866,9 @@ bool ObjSMenuItem::doUpdate()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	80313C2C
- * Size:	0000D4
+/**
+ * @note Address: 0x80313C2C
+ * @note Size: 0xD4
  */
 void ObjSMenuItem::doDraw(Graphics& gfx)
 {
@@ -893,10 +885,9 @@ void ObjSMenuItem::doDraw(Graphics& gfx)
 	drawYaji(gfx);
 }
 
-/*
- * --INFO--
- * Address:	80313D00
- * Size:	000014
+/**
+ * @note Address: 0x80313D00
+ * @note Size: 0x14
  */
 void ObjSMenuItem::in_L()
 {
@@ -904,10 +895,9 @@ void ObjSMenuItem::in_L()
 	mAngle = 15.0f;
 }
 
-/*
- * --INFO--
- * Address:	80313D14
- * Size:	000014
+/**
+ * @note Address: 0x80313D14
+ * @note Size: 0x14
  */
 void ObjSMenuItem::in_R()
 {
@@ -915,17 +905,15 @@ void ObjSMenuItem::in_R()
 	mAngle = 15.0f;
 }
 
-/*
- * --INFO--
- * Address:	80313D28
- * Size:	00000C
+/**
+ * @note Address: 0x80313D28
+ * @note Size: 0xC
  */
 void ObjSMenuItem::wait() { mState = MENUSTATE_Default; }
 
-/*
- * --INFO--
- * Address:	80313D34
- * Size:	00002C
+/**
+ * @note Address: 0x80313D34
+ * @note Size: 0x2C
  */
 void ObjSMenuItem::out_L()
 {
@@ -933,10 +921,9 @@ void ObjSMenuItem::out_L()
 	ogSound->setSMenuLR();
 }
 
-/*
- * --INFO--
- * Address:	80313D60
- * Size:	00002C
+/**
+ * @note Address: 0x80313D60
+ * @note Size: 0x2C
  */
 void ObjSMenuItem::out_R()
 {
@@ -944,10 +931,9 @@ void ObjSMenuItem::out_R()
 	ogSound->setSMenuLR();
 }
 
-/*
- * --INFO--
- * Address:	80313D8C
- * Size:	0000D0
+/**
+ * @note Address: 0x80313D8C
+ * @note Size: 0xD0
  */
 bool ObjSMenuItem::doStart(::Screen::StartSceneArg const* arg)
 {
@@ -966,24 +952,21 @@ bool ObjSMenuItem::doStart(::Screen::StartSceneArg const* arg)
 	return start_LR(arg);
 }
 
-/*
- * --INFO--
- * Address:	80313E5C
- * Size:	000008
+/**
+ * @note Address: 0x80313E5C
+ * @note Size: 0x8
  */
 bool ObjSMenuItem::doEnd(::Screen::EndSceneArg const*) { return true; }
 
-/*
- * --INFO--
- * Address:	80313E64
- * Size:	000020
+/**
+ * @note Address: 0x80313E64
+ * @note Size: 0x20
  */
 void ObjSMenuItem::doUpdateFinish() { ObjSMenuBase::doUpdateFinish(); }
 
-/*
- * --INFO--
- * Address:	80313E84
- * Size:	00004C
+/**
+ * @note Address: 0x80313E84
+ * @note Size: 0x4C
  */
 bool ObjSMenuItem::doUpdateFadeout()
 {
@@ -991,10 +974,9 @@ bool ObjSMenuItem::doUpdateFadeout()
 	return updateFadeOut();
 }
 
-/*
- * --INFO--
- * Address:	80313ED0
- * Size:	000004
+/**
+ * @note Address: 0x80313ED0
+ * @note Size: 0x4
  */
 void ObjSMenuItem::doUpdateCancelAction() { }
 

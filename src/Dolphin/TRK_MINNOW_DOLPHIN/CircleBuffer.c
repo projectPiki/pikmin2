@@ -1,23 +1,20 @@
 #include "PowerPC_EABI_Support/MetroTRK/custconn/CircleBuffer.h"
 
-/*
- * --INFO--
- * Address:	800C11F4
- * Size:	000008
+/**
+ * @note Address: 0x800C11F4
+ * @note Size: 0x8
  */
 u32 CBGetBytesAvailableForRead(CircleBuffer* cb) { return cb->mBytesToRead; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 u32 CBGetBytesAvailableForWrite(CircleBuffer* cb) { return cb->mBytesToWrite; }
 
-/*
- * --INFO--
- * Address:	800C11A4
- * Size:	000050
+/**
+ * @note Address: 0x800C11A4
+ * @note Size: 0x50
  */
 void CircleBufferInitialize(CircleBuffer* cb, u8* buf, u32 size)
 {
@@ -30,20 +27,18 @@ void CircleBufferInitialize(CircleBuffer* cb, u8* buf, u32 size)
 	MWInitializeCriticalSection(&cb->mSection);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 void CircleBufferTerminate(CircleBuffer* cb)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800C109C
- * Size:	000108
+/**
+ * @note Address: 0x800C109C
+ * @note Size: 0x108
  */
 int CircleBufferWriteBytes(CircleBuffer* cb, u8* buf, u32 size)
 {
@@ -73,10 +68,9 @@ int CircleBufferWriteBytes(CircleBuffer* cb, u8* buf, u32 size)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	800C0F94
- * Size:	000108
+/**
+ * @note Address: 0x800C0F94
+ * @note Size: 0x108
  */
 int CircleBufferReadBytes(CircleBuffer* cb, u8* buf, u32 size)
 {

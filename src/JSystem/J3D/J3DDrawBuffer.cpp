@@ -98,10 +98,9 @@ void J3DDrawBuffer::calcZRatio() { mZRatio = (mZFar - mZNear) / (f32)mBufferSize
         .4byte 0x00000000
 */
 
-/*
- * --INFO--
- * Address:	800659A4
- * Size:	000068
+/**
+ * @note Address: 0x800659A4
+ * @note Size: 0x68
  */
 void J3DDrawBuffer::initialize()
 {
@@ -115,10 +114,9 @@ void J3DDrawBuffer::initialize()
 	calcZRatio();
 }
 
-/*
- * --INFO--
- * Address:	80065A0C
- * Size:	000084
+/**
+ * @note Address: 0x80065A0C
+ * @note Size: 0x84
  */
 J3DErrType J3DDrawBuffer::allocBuffer(u32 bufSize)
 {
@@ -132,10 +130,9 @@ J3DErrType J3DDrawBuffer::allocBuffer(u32 bufSize)
 	return JET_Success;
 }
 
-/*
- * --INFO--
- * Address:	80065A90
- * Size:	0000EC
+/**
+ * @note Address: 0x80065A90
+ * @note Size: 0xEC
  */
 void J3DDrawBuffer::frameInit()
 {
@@ -146,10 +143,9 @@ void J3DDrawBuffer::frameInit()
 	mCallBackPacket = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80065B7C
- * Size:	000158
+/**
+ * @note Address: 0x80065B7C
+ * @note Size: 0x158
  */
 bool J3DDrawBuffer::entryMatSort(J3DMatPacket* packet)
 {
@@ -189,10 +185,9 @@ bool J3DDrawBuffer::entryMatSort(J3DMatPacket* packet)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80065CE0
- * Size:	0001E8
+/**
+ * @note Address: 0x80065CE0
+ * @note Size: 0x1E8
  */
 bool J3DDrawBuffer::entryMatAnmSort(J3DMatPacket* packet)
 {
@@ -222,10 +217,9 @@ bool J3DDrawBuffer::entryMatAnmSort(J3DMatPacket* packet)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80065EC8
- * Size:	00011C
+/**
+ * @note Address: 0x80065EC8
+ * @note Size: 0x11C
  */
 bool J3DDrawBuffer::entryZSort(J3DMatPacket* i_packet)
 {
@@ -336,10 +330,9 @@ lbl_80065FA4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80065FE4
- * Size:	000050
+/**
+ * @note Address: 0x80065FE4
+ * @note Size: 0x50
  */
 bool J3DDrawBuffer::entryModelSort(J3DMatPacket* i_packet)
 {
@@ -354,10 +347,9 @@ bool J3DDrawBuffer::entryModelSort(J3DMatPacket* i_packet)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80066034
- * Size:	000054
+/**
+ * @note Address: 0x80066034
+ * @note Size: 0x54
  */
 bool J3DDrawBuffer::entryInvalidSort(J3DMatPacket* i_packet)
 {
@@ -372,10 +364,9 @@ bool J3DDrawBuffer::entryInvalidSort(J3DMatPacket* i_packet)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80066088
- * Size:	000034
+/**
+ * @note Address: 0x80066088
+ * @note Size: 0x34
  */
 bool J3DDrawBuffer::entryNonSort(J3DMatPacket* i_packet)
 {
@@ -388,10 +379,9 @@ bool J3DDrawBuffer::entryNonSort(J3DMatPacket* i_packet)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	800660BC
- * Size:	000054
+/**
+ * @note Address: 0x800660BC
+ * @note Size: 0x54
  */
 void J3DDrawBuffer::draw() const
 {
@@ -399,10 +389,9 @@ void J3DDrawBuffer::draw() const
 	(this->*func)();
 }
 
-/*
- * --INFO--
- * Address:	80066110
- * Size:	000084
+/**
+ * @note Address: 0x80066110
+ * @note Size: 0x84
  */
 void J3DDrawBuffer::drawHead() const
 {
@@ -416,10 +405,9 @@ void J3DDrawBuffer::drawHead() const
 	}
 }
 
-/*
- * --INFO--
- * Address:	80066194
- * Size:	000084
+/**
+ * @note Address: 0x80066194
+ * @note Size: 0x84
  */
 void J3DDrawBuffer::drawTail() const
 {

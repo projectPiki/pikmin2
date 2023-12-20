@@ -11,10 +11,9 @@
 u8* J3DShape::sOldVcdVatCmd;
 u8 J3DShape::sEnvelopeFlag;
 
-/*
- * --INFO--
- * Address:	80060850
- * Size:	000070
+/**
+ * @note Address: 0x80060850
+ * @note Size: 0x70
  */
 void J3DShape::initialize()
 {
@@ -38,10 +37,9 @@ void J3DShape::initialize()
 	mHasPNMTXIdx       = false;
 }
 
-/*
- * --INFO--
- * Address:	800608C0
- * Size:	000078
+/**
+ * @note Address: 0x800608C0
+ * @note Size: 0x78
  */
 void J3DShape::calcNBTScale(const Vec& p1, Mtx33 p2[3], Mtx33 p3[3])
 {
@@ -50,10 +48,9 @@ void J3DShape::calcNBTScale(const Vec& p1, Mtx33 p2[3], Mtx33 p3[3])
 	}
 }
 
-/*
- * --INFO--
- * Address:	80060938
- * Size:	000080
+/**
+ * @note Address: 0x80060938
+ * @note Size: 0x80
  */
 int J3DShape::countBumpMtxNum() const
 {
@@ -64,10 +61,9 @@ int J3DShape::countBumpMtxNum() const
 	return count;
 }
 
-/*
- * --INFO--
- * Address:	800609B8
- * Size:	0000EC
+/**
+ * @note Address: 0x800609B8
+ * @note Size: 0xEC
  */
 bool J3DShape::isSameVcdVatCmd(J3DShape* other)
 {
@@ -82,10 +78,9 @@ bool J3DShape::isSameVcdVatCmd(J3DShape* other)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80060AA4
- * Size:	0002FC
+/**
+ * @note Address: 0x80060AA4
+ * @note Size: 0x2FC
  */
 void J3DShape::makeVtxArrayCmd()
 {
@@ -162,10 +157,9 @@ void J3DShape::makeVtxArrayCmd()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80060DA0
- * Size:	0000A0
+/**
+ * @note Address: 0x80060DA0
+ * @note Size: 0xA0
  */
 void J3DShape::makeVcdVatCmd()
 {
@@ -191,10 +185,9 @@ void J3DShape::makeVcdVatCmd()
 	OSRestoreInterrupts(sInterruptFlag);
 }
 
-/*
- * --INFO--
- * Address:	80060E40
- * Size:	0000A0
+/**
+ * @note Address: 0x80060E40
+ * @note Size: 0xA0
  */
 void J3DShape::loadPreDrawSetting() const
 {
@@ -263,10 +256,9 @@ static void J3DLoadArrayBasePtr(_GXAttr attr, void* data)
 	J3DLoadCPCmd(0xA0 + idx, ((u32)data & 0x7FFFFFFF));
 }
 
-/*
- * --INFO--
- * Address:	80060EE0
- * Size:	000278
+/**
+ * @note Address: 0x80060EE0
+ * @note Size: 0x278
  */
 void J3DShape::drawFast() const
 {
@@ -504,10 +496,9 @@ void J3DShape::drawFast() const
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80061158
- * Size:	0000B8
+/**
+ * @note Address: 0x80061158
+ * @note Size: 0xB8
  * draw__8J3DShapeCFv
  */
 void J3DShape::draw() const
@@ -567,10 +558,9 @@ lbl_80061190:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80061210
- * Size:	000160
+/**
+ * @note Address: 0x80061210
+ * @note Size: 0x160
  */
 void J3DShape::simpleDraw() const
 {
@@ -693,10 +683,9 @@ lbl_80061348:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80061370
- * Size:	000170
+/**
+ * @note Address: 0x80061370
+ * @note Size: 0x170
  */
 void J3DShape::simpleDrawCache() const
 {

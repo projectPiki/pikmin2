@@ -6,20 +6,18 @@
 #include "JSystem/JKernel/JKRFileFinder.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 JKRArchive* JKRArchive::check_mount_already(s32 entryNum)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  */
 JKRArchive* JKRArchive::check_mount_already(s32 entryNum, JKRHeap* pHeap)
 {
@@ -43,10 +41,9 @@ JKRArchive* JKRArchive::check_mount_already(s32 entryNum, JKRHeap* pHeap)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8001B130
- * Size:	000064
+/**
+ * @note Address: 0x8001B130
+ * @note Size: 0x64
  */
 JKRArchive* JKRArchive::mount(const char* path, EMountMode mode, JKRHeap* heap, EMountDirection direction)
 {
@@ -54,10 +51,9 @@ JKRArchive* JKRArchive::mount(const char* path, EMountMode mode, JKRHeap* heap, 
 	return (entryNum < 0) ? nullptr : mount(entryNum, mode, heap, direction);
 }
 
-/*
- * --INFO--
- * Address:	8001B194
- * Size:	0000D8
+/**
+ * @note Address: 0x8001B194
+ * @note Size: 0xD8
  */
 JKRArchive* JKRArchive::mount(void* mem, JKRHeap* heap, EMountDirection mountDirection)
 {
@@ -68,10 +64,9 @@ JKRArchive* JKRArchive::mount(void* mem, JKRHeap* heap, EMountDirection mountDir
 	return new (heap, (mountDirection == EMD_Head) ? 4 : -4) JKRMemArchive(mem, 0xFFFF, MBF_0);
 }
 
-/*
- * --INFO--
- * Address:	8001B26C
- * Size:	0001D8
+/**
+ * @note Address: 0x8001B26C
+ * @note Size: 0x1D8
  */
 JKRArchive* JKRArchive::mount(s32 entryNum, EMountMode mountMode, JKRHeap* heap, EMountDirection mountDirection)
 {
@@ -103,10 +98,9 @@ JKRArchive* JKRArchive::mount(s32 entryNum, EMountMode mountMode, JKRHeap* heap,
 	}
 }
 
-/*
- * --INFO--
- * Address:	8001B444
- * Size:	000088
+/**
+ * @note Address: 0x8001B444
+ * @note Size: 0x88
  */
 bool JKRArchive::becomeCurrent(const char* path)
 {
@@ -128,10 +122,9 @@ bool JKRArchive::becomeCurrent(const char* path)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	8001B4CC
- * Size:	000078
+/**
+ * @note Address: 0x8001B4CC
+ * @note Size: 0x78
  */
 bool JKRArchive::getDirEntry(JKRArchive::SDirEntry* dirEntry, u32 index) const
 {
@@ -146,10 +139,9 @@ bool JKRArchive::getDirEntry(JKRArchive::SDirEntry* dirEntry, u32 index) const
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8001B544
- * Size:	0000B8
+/**
+ * @note Address: 0x8001B544
+ * @note Size: 0xB8
  */
 void* JKRArchive::getGlbResource(u32 type, const char* name, JKRArchive* archive)
 {
@@ -165,10 +157,9 @@ void* JKRArchive::getGlbResource(u32 type, const char* name, JKRArchive* archive
 	return resource;
 }
 
-/*
- * --INFO--
- * Address:	8001B5FC
- * Size:	00007C
+/**
+ * @note Address: 0x8001B5FC
+ * @note Size: 0x7C
  */
 void* JKRArchive::getResource(const char* path)
 {
@@ -181,10 +172,9 @@ void* JKRArchive::getResource(const char* path)
 	return (fileEntry != nullptr) ? (void*)fetchResource(fileEntry, nullptr) : nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8001B678
- * Size:	000080
+/**
+ * @note Address: 0x8001B678
+ * @note Size: 0x80
  */
 void* JKRArchive::getResource(u32 type, const char* name)
 {
@@ -197,10 +187,9 @@ void* JKRArchive::getResource(u32 type, const char* name)
 	return (fileEntry != nullptr) ? (void*)fetchResource(fileEntry, nullptr) : nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8001B6F8
- * Size:	000054
+/**
+ * @note Address: 0x8001B6F8
+ * @note Size: 0x54
  */
 void* JKRArchive::getIdxResource(u32 index)
 {
@@ -208,10 +197,9 @@ void* JKRArchive::getIdxResource(u32 index)
 	return (fileEntry != nullptr) ? (void*)fetchResource(fileEntry, nullptr) : nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8001B74C
- * Size:	0000AC
+/**
+ * @note Address: 0x8001B74C
+ * @note Size: 0xAC
  */
 u32 JKRArchive::readResource(void* resourceBuffer, u32 bufferSize, u32 type, const char* name)
 {
@@ -229,10 +217,9 @@ u32 JKRArchive::readResource(void* resourceBuffer, u32 bufferSize, u32 type, con
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	8001B7F8
- * Size:	0000A4
+/**
+ * @note Address: 0x8001B7F8
+ * @note Size: 0xA4
  * Returns the size of the resource at the given path, or 0 if not found.
  */
 u32 JKRArchive::readResource(void* resourceBuffer, u32 bufferSize, const char* path)
@@ -251,10 +238,9 @@ u32 JKRArchive::readResource(void* resourceBuffer, u32 bufferSize, const char* p
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	8001B89C
- * Size:	00007C
+/**
+ * @note Address: 0x8001B89C
+ * @note Size: 0x7C
  * Returns the size of the resource with the given ID, or 0 if not found.
  */
 u32 JKRArchive::readResource(void* resourceBuffer, u32 bufferSize, u16 id)
@@ -268,10 +254,9 @@ u32 JKRArchive::readResource(void* resourceBuffer, u32 bufferSize, u16 id)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	8001B918
- * Size:	000098
+/**
+ * @note Address: 0x8001B918
+ * @note Size: 0x98
  */
 void JKRArchive::removeResourceAll()
 {
@@ -287,10 +272,9 @@ void JKRArchive::removeResourceAll()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8001B9B0
- * Size:	000060
+/**
+ * @note Address: 0x8001B9B0
+ * @note Size: 0x60
  */
 bool JKRArchive::removeResource(void* resource)
 {
@@ -303,10 +287,9 @@ bool JKRArchive::removeResource(void* resource)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8001BA10
- * Size:	00003C
+/**
+ * @note Address: 0x8001BA10
+ * @note Size: 0x3C
  */
 bool JKRArchive::detachResource(void* resource)
 {
@@ -318,10 +301,9 @@ bool JKRArchive::detachResource(void* resource)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8001BA4C
- * Size:	000034
+/**
+ * @note Address: 0x8001BA4C
+ * @note Size: 0x34
  */
 long JKRArchive::getResSize(const void* resource) const
 {
@@ -329,10 +311,9 @@ long JKRArchive::getResSize(const void* resource) const
 	return (entry == nullptr) ? -1 : entry->getSize();
 }
 
-/*
- * --INFO--
- * Address:	8001BA80
- * Size:	000060
+/**
+ * @note Address: 0x8001BA80
+ * @note Size: 0x60
  */
 u32 JKRArchive::countFile(const char* path) const
 {
@@ -349,10 +330,9 @@ u32 JKRArchive::countFile(const char* path) const
 	return (dirEntry) ? dirEntry->mNum : 0;
 }
 
-/*
- * --INFO--
- * Address:	8001BAE0
- * Size:	0000AC
+/**
+ * @note Address: 0x8001BAE0
+ * @note Size: 0xAC
  */
 JKRFileFinder* JKRArchive::getFirstFile(const char* path) const
 {
@@ -372,9 +352,8 @@ JKRFileFinder* JKRArchive::getFirstFile(const char* path) const
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8001BB8C
- * Size:	00002C
+/**
+ * @note Address: 0x8001BB8C
+ * @note Size: 0x2C
  */
 u32 JKRArchive::getExpandedResSize(const void* resource) const { return getResSize(resource); }

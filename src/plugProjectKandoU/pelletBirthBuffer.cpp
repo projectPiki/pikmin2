@@ -5,17 +5,15 @@ namespace Game {
 int PelletBirthBuffer::sNum;
 PelletInitArg PelletBirthBuffer::sArgs[MAX_PELLET_COUNT];
 
-/*
- * --INFO--
- * Address:	8023D41C
- * Size:	00000C
+/**
+ * @note Address: 0x8023D41C
+ * @note Size: 0xC
  */
 void PelletBirthBuffer::clear() { PelletBirthBuffer::sNum = 0; }
 
-/*
- * --INFO--
- * Address:	8023D428
- * Size:	0000F0
+/**
+ * @note Address: 0x8023D428
+ * @note Size: 0xF0
  */
 void PelletBirthBuffer::entry(Game::PelletInitArg& initArg)
 {
@@ -34,10 +32,9 @@ void PelletBirthBuffer::entry(Game::PelletInitArg& initArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8023D518
- * Size:	0000A0
+/**
+ * @note Address: 0x8023D518
+ * @note Size: 0xA0
  */
 void PelletBirthBuffer::birthAll()
 {

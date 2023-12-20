@@ -10,10 +10,9 @@
 #include "JSystem/JSupport/JSUList.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	800219C4
- * Size:	0000F8
+/**
+ * @note Address: 0x800219C4
+ * @note Size: 0xF8
  */
 JKRFileCache* JKRFileCache::mount(const char* path, JKRHeap* heap, const char* volume)
 {
@@ -37,10 +36,9 @@ JKRFileCache* JKRFileCache::mount(const char* path, JKRHeap* heap, const char* v
 	return new (heap, 0) JKRFileCache(path, volume);
 }
 
-/*
- * --INFO--
- * Address:	80021ABC
- * Size:	0001C0
+/**
+ * @note Address: 0x80021ABC
+ * @note Size: 0x1C0
  */
 JKRFileCache::JKRFileCache(const char* path, const char* volume)
     : JKRFileLoader()
@@ -89,10 +87,9 @@ JKRFileCache::JKRFileCache(const char* path, const char* volume)
 	mIsMounted = true;
 }
 
-/*
- * --INFO--
- * Address:	80021C7C
- * Size:	0000D4
+/**
+ * @note Address: 0x80021C7C
+ * @note Size: 0xD4
  */
 JKRFileCache::~JKRFileCache()
 {
@@ -109,10 +106,9 @@ JKRFileCache::~JKRFileCache()
 	sVolumeList.remove(&mFileLoaderLink);
 }
 
-/*
- * --INFO--
- * Address:	80021D50
- * Size:	000098
+/**
+ * @note Address: 0x80021D50
+ * @note Size: 0x98
  */
 bool JKRFileCache::becomeCurrent(const char* path)
 {
@@ -131,10 +127,9 @@ bool JKRFileCache::becomeCurrent(const char* path)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80021DE8
- * Size:	000118
+/**
+ * @note Address: 0x80021DE8
+ * @note Size: 0x118
  */
 void* JKRFileCache::getResource(const char* path)
 {
@@ -160,10 +155,9 @@ void* JKRFileCache::getResource(const char* path)
 	return resource;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  * getRelResource__12JKRFileCacheFPCc
  */
 void* JKRFileCache::getRelResource(const char* path)
@@ -171,10 +165,9 @@ void* JKRFileCache::getRelResource(const char* path)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80021F00
- * Size:	000090
+/**
+ * @note Address: 0x80021F00
+ * @note Size: 0x90
  * getResource__12JKRFileCacheFUlPCc
  */
 void* JKRFileCache::getResource(u32 type, const char* fileName)
@@ -189,10 +182,9 @@ void* JKRFileCache::getResource(u32 type, const char* fileName)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80021F90
- * Size:	0000D4
+/**
+ * @note Address: 0x80021F90
+ * @note Size: 0xD4
  */
 size_t JKRFileCache::readResource(void* resourceBuffer, u32 bufferSize, const char* path)
 {
@@ -219,20 +211,18 @@ size_t JKRFileCache::readResource(void* resourceBuffer, u32 bufferSize, const ch
 	return consumedSize;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 size_t JKRFileCache::readRelResource(void* p1, u32 p2, const char* p3)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80022064
- * Size:	000090
+/**
+ * @note Address: 0x80022064
+ * @note Size: 0x90
  */
 size_t JKRFileCache::readResource(void* resourceBuffer, u32 bufferSize, u32 type, const char* fileName)
 {
@@ -246,10 +236,9 @@ size_t JKRFileCache::readResource(void* resourceBuffer, u32 bufferSize, u32 type
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	800220F4
- * Size:	000090
+/**
+ * @note Address: 0x800220F4
+ * @note Size: 0x90
  */
 void JKRFileCache::removeResourceAll()
 {
@@ -260,10 +249,9 @@ void JKRFileCache::removeResourceAll()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80022184
- * Size:	00009C
+/**
+ * @note Address: 0x80022184
+ * @note Size: 0x9C
  * removeResource__12JKRFileCacheFPv
  */
 bool JKRFileCache::removeResource(void* resource)
@@ -280,10 +268,9 @@ bool JKRFileCache::removeResource(void* resource)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80022220
- * Size:	000074
+/**
+ * @note Address: 0x80022220
+ * @note Size: 0x74
  */
 bool JKRFileCache::detachResource(void* resource)
 {
@@ -296,10 +283,9 @@ bool JKRFileCache::detachResource(void* resource)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80022294
- * Size:	000034
+/**
+ * @note Address: 0x80022294
+ * @note Size: 0x34
  */
 long JKRFileCache::getResSize(const void* resource) const
 {
@@ -307,10 +293,9 @@ long JKRFileCache::getResSize(const void* resource) const
 	return (block == nullptr) ? -1 : block->mFileSize;
 }
 
-/*
- * --INFO--
- * Address:	800222C8
- * Size:	00007C
+/**
+ * @note Address: 0x800222C8
+ * @note Size: 0x7C
  */
 u32 JKRFileCache::countFile(const char* path) const
 {
@@ -328,10 +313,9 @@ u32 JKRFileCache::countFile(const char* path) const
 	return count;
 }
 
-/*
- * --INFO--
- * Address:	80022344
- * Size:	00009C
+/**
+ * @note Address: 0x80022344
+ * @note Size: 0x9C
  */
 JKRFileFinder* JKRFileCache::getFirstFile(const char* path) const
 {
@@ -345,10 +329,9 @@ JKRFileFinder* JKRFileCache::getFirstFile(const char* path) const
 	return finder;
 }
 
-/*
- * --INFO--
- * Address:	80022428
- * Size:	00002C
+/**
+ * @note Address: 0x80022428
+ * @note Size: 0x2C
  */
 JKRFileCache::CCacheBlock* JKRFileCache::findCacheBlock(const void* resource) const
 {
@@ -360,10 +343,9 @@ JKRFileCache::CCacheBlock* JKRFileCache::findCacheBlock(const void* resource) co
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80022454
- * Size:	00002C
+/**
+ * @note Address: 0x80022454
+ * @note Size: 0x2C
  * findCacheBlock__12JKRFileCacheCFUl
  */
 JKRFileCache::CCacheBlock* JKRFileCache::findCacheBlock(u32 id) const
@@ -376,10 +358,9 @@ JKRFileCache::CCacheBlock* JKRFileCache::findCacheBlock(u32 id) const
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80022480
- * Size:	0003E8
+/**
+ * @note Address: 0x80022480
+ * @note Size: 0x3E8
  */
 bool JKRFileCache::findFile(char* directoryPath, const char* fileName) const
 {
@@ -414,10 +395,9 @@ bool JKRFileCache::findFile(char* directoryPath, const char* fileName) const
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80022868
- * Size:	000110
+/**
+ * @note Address: 0x80022868
+ * @note Size: 0x110
  */
 char* JKRFileCache::getDvdPathName(const char* path) const
 {
@@ -447,10 +427,9 @@ char* JKRFileCache::getDvdPathName(const char* path) const
 	return dvdPathName;
 }
 
-/*
- * --INFO--
- * Address:	80022978
- * Size:	000048
+/**
+ * @note Address: 0x80022978
+ * @note Size: 0x48
  */
 void JKRFileCache::convStrLower(char* str) const
 {
@@ -460,10 +439,9 @@ void JKRFileCache::convStrLower(char* str) const
 	}
 }
 
-/*
- * --INFO--
- * Address:	800229C0
- * Size:	00006C
+/**
+ * @note Address: 0x800229C0
+ * @note Size: 0x6C
  * __ct__Q212JKRFileCache11CCacheBlockFUlUlPCv
  */
 JKRFileCache::CCacheBlock::CCacheBlock(u32 fileID, u32 size, const void* resource)

@@ -79,10 +79,9 @@
         .float 1.0
 */
 
-/*
- * --INFO--
- * Address:	8003D750
- * Size:	000094
+/**
+ * @note Address: 0x8003D750
+ * @note Size: 0x94
  */
 J2DPrint::J2DPrint(JUTFont*, float)
 {
@@ -128,10 +127,9 @@ J2DPrint::J2DPrint(JUTFont*, float)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8003D7E4
- * Size:	000098
+/**
+ * @note Address: 0x8003D7E4
+ * @note Size: 0x98
  */
 J2DPrint::J2DPrint(JUTFont*, JUtility::TColor, JUtility::TColor)
 {
@@ -178,10 +176,9 @@ J2DPrint::J2DPrint(JUTFont*, JUtility::TColor, JUtility::TColor)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8003D87C
- * Size:	000094
+/**
+ * @note Address: 0x8003D87C
+ * @note Size: 0x94
  */
 J2DPrint::J2DPrint(JUTFont*, float, float, JUtility::TColor, JUtility::TColor, JUtility::TColor, JUtility::TColor)
 {
@@ -227,10 +224,9 @@ J2DPrint::J2DPrint(JUTFont*, float, float, JUtility::TColor, JUtility::TColor, J
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8003D910
- * Size:	000048
+/**
+ * @note Address: 0x8003D910
+ * @note Size: 0x48
  */
 J2DPrint::~J2DPrint()
 {
@@ -258,10 +254,9 @@ lbl_8003D940:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8003D958
- * Size:	000054
+/**
+ * @note Address: 0x8003D958
+ * @note Size: 0x54
  */
 void J2DPrint::initiate()
 {
@@ -292,10 +287,9 @@ lbl_8003D99C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8003D9AC
- * Size:	0001E8
+/**
+ * @note Address: 0x8003D9AC
+ * @note Size: 0x1E8
  */
 void J2DPrint::private_initiate(JUTFont*, float, float, JUtility::TColor, JUtility::TColor, JUtility::TColor, JUtility::TColor, bool)
 {
@@ -440,10 +434,9 @@ void J2DPrint::private_initiate(JUTFont*, float, float, JUtility::TColor, JUtili
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8003DB94
- * Size:	000044
+/**
+ * @note Address: 0x8003DB94
+ * @note Size: 0x44
  */
 JUTFont* J2DPrint::setFont(JUTFont* font)
 {
@@ -472,10 +465,9 @@ lbl_8003DBC0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8003DBD8
- * Size:	00006C
+/**
+ * @note Address: 0x8003DBD8
+ * @note Size: 0x6C
  */
 void J2DPrint::setBuffer(u32)
 {
@@ -512,10 +504,9 @@ lbl_8003DC08:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8003DC44
- * Size:	000098
+/**
+ * @note Address: 0x8003DC44
+ * @note Size: 0x98
  */
 void J2DPrint::setFontSize()
 {
@@ -563,10 +554,9 @@ lbl_8003DCC8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8003DCDC
- * Size:	00001C
+/**
+ * @note Address: 0x8003DCDC
+ * @note Size: 0x1C
  */
 void J2DPrint::locate(float, float)
 {
@@ -581,10 +571,9 @@ void J2DPrint::locate(float, float)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8003DCF8
- * Size:	000114
+/**
+ * @note Address: 0x8003DCF8
+ * @note Size: 0x114
  */
 double J2DPrint::print(float, float, const char*, ...)
 {
@@ -669,10 +658,9 @@ lbl_8003DDF4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8003DE0C
- * Size:	000120
+/**
+ * @note Address: 0x8003DE0C
+ * @note Size: 0x120
  */
 void J2DPrint::print(float, float, u8, const char*, ...)
 {
@@ -760,10 +748,9 @@ lbl_8003DF10:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8003DF2C
- * Size:	0000EC
+/**
+ * @note Address: 0x8003DF2C
+ * @note Size: 0xEC
  */
 f32 J2DPrint::getWidth(const char*, ...)
 {
@@ -836,10 +823,9 @@ lbl_8003DFD8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8003E018
- * Size:	00031C
+/**
+ * @note Address: 0x8003E018
+ * @note Size: 0x31C
  */
 void J2DPrint::printReturn(const char*, float, float, J2DTextBoxHBinding, J2DTextBoxVBinding, float, float, u8)
 {
@@ -1071,10 +1057,9 @@ void J2DPrint::printReturn(const char*, float, float, J2DTextBoxHBinding, J2DTex
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8003E334
- * Size:	0007BC
+/**
+ * @note Address: 0x8003E334
+ * @note Size: 0x7BC
  */
 void J2DPrint::parse(const u8*, int, int, u16*, J2DPrint::TSize&, u8, bool)
 {
@@ -1644,10 +1629,9 @@ void J2DPrint::parse(const u8*, int, int, u16*, J2DPrint::TSize&, u8, bool)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8003EAF0
- * Size:	000128
+/**
+ * @note Address: 0x8003EAF0
+ * @note Size: 0x128
  */
 void J2DPrint::doCtrlCode(int)
 {
@@ -1756,10 +1740,9 @@ lbl_8003EC10:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8003EC18
- * Size:	0005A0
+/**
+ * @note Address: 0x8003EC18
+ * @note Size: 0x5A0
  */
 void J2DPrint::doEscapeCode(const u8**, u8)
 {
@@ -2191,10 +2174,9 @@ lbl_8003F1A4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8003F1B8
- * Size:	000074
+/**
+ * @note Address: 0x8003F1B8
+ * @note Size: 0x74
  */
 void J2DPrint::initchar()
 {
@@ -2231,10 +2213,9 @@ void J2DPrint::initchar()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8003F22C
- * Size:	000114
+/**
+ * @note Address: 0x8003F22C
+ * @note Size: 0x114
  */
 void J2DPrint::getNumberS32(const u8**, long, long, int)
 {
@@ -2325,10 +2306,9 @@ lbl_8003F320:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8003F340
- * Size:	000134
+/**
+ * @note Address: 0x8003F340
+ * @note Size: 0x134
  */
 void J2DPrint::getNumberF32(const u8**, float, float, int)
 {

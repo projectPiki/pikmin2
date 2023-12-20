@@ -1,6 +1,6 @@
 
 /* @(#)e_rem_pio2.c 1.4 95/01/18 */
-/*
+/**
  * ====================================================
  * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
  *
@@ -21,7 +21,7 @@
 #include "fdlibm.h"
 #include "Dolphin/math.h"
 
-/*
+/**
  * Table of constants for 2/pi, 396 Hex digits (476 decimal) of 2/pi
  */
 #ifdef __STDC__
@@ -47,7 +47,7 @@ static int npio2_hw[] = {
 	0x4042106C, 0x4042D97C, 0x4043A28C, 0x40446B9C, 0x404534AC, 0x4045FDBB, 0x4046C6CB, 0x40478FDB, 0x404858EB, 0x404921FB,
 };
 
-/*
+/**
  * invpio2:  53 bits of 2/pi
  * pio2_1:   first  33 bit of pi/2
  * pio2_1t:  pi/2 - pio2_1
@@ -152,7 +152,7 @@ int __ieee754_rem_pio2(x, y) double x, y[];
 		} else
 			return n;
 	}
-	/*
+	/**
 	 * all other (large) arguments
 	 */
 	if (ix >= 0x7ff00000) { /* x is inf or NaN */

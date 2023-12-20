@@ -317,10 +317,9 @@ static const u32 padding[] = { 0, 0, 0 };
 
 namespace PSM {
 
-/*
- * --INFO--
- * Address:	80459BD4
- * Size:	000274
+/**
+ * @note Address: 0x80459BD4
+ * @note Size: 0x274
  */
 JAISound* Env_Pollutin::play()
 {
@@ -349,10 +348,9 @@ JAISound* Env_Pollutin::play()
 	return mSound;
 }
 
-/*
- * --INFO--
- * Address:	80459E48
- * Size:	000280
+/**
+ * @note Address: 0x80459E48
+ * @note Size: 0x280
  */
 JAISound* EnvSe_Perspective_AvoidY::play()
 {
@@ -554,17 +552,15 @@ lbl_8045A0A8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045A0C8
- * Size:	0000A0
+/**
+ * @note Address: 0x8045A0C8
+ * @note Size: 0xA0
  */
 PSGame::EnvSe_Perspective* EnvSeObjBuilder::newSeObj(u32 a1, f32 a2, Vec a3) { return new EnvSe_Perspective_AvoidY(a1, a2, a3); }
 
-/*
- * --INFO--
- * Address:	8045A168
- * Size:	00005C
+/**
+ * @note Address: 0x8045A168
+ * @note Size: 0x5C
  */
 void EnvSeObjBuilder::onBuild(PSSystem::EnvSeBase* se)
 {
@@ -573,10 +569,9 @@ void EnvSeObjBuilder::onBuild(PSSystem::EnvSeBase* se)
 	sound->mInfo                    = info;
 }
 
-/*
- * --INFO--
- * Address:	8045A1C4
- * Size:	00003C
+/**
+ * @note Address: 0x8045A1C4
+ * @note Size: 0x3C
  */
 SceneMgr::SceneMgr()
     : _10(0)
@@ -600,10 +595,9 @@ SceneMgr::SceneMgr()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045A200
- * Size:	0000D8
+/**
+ * @note Address: 0x8045A200
+ * @note Size: 0xD8
  */
 PSSystem::BgmSeq* SceneMgr::newMainBgm(const char* name, JAInter::SoundInfo& info)
 {
@@ -680,17 +674,15 @@ lbl_8045A28C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045A2D8
- * Size:	000014
+/**
+ * @note Address: 0x8045A2D8
+ * @note Size: 0x14
  */
 bool SceneMgr::curSceneIsBigBossFloor() { return EnemyBigBoss::sBigBoss != nullptr; }
 
-/*
- * --INFO--
- * Address:	8045A2EC
- * Size:	0001C0
+/**
+ * @note Address: 0x8045A2EC
+ * @note Size: 0x1C0
  */
 PSSystem::BgmSeq* SceneMgr::newDirectedBgm(const char* name, JAInter::SoundInfo& info)
 {
@@ -718,10 +710,9 @@ PSSystem::BgmSeq* SceneMgr::newDirectedBgm(const char* name, JAInter::SoundInfo&
 	return seq;
 }
 
-/*
- * --INFO--
- * Address:	8045A4AC
- * Size:	0001F4
+/**
+ * @note Address: 0x8045A4AC
+ * @note Size: 0x1F4
  */
 PSSystem::Scene* SceneMgr::newGameScene(u8 wscene, PSGame::SceneInfo* info)
 {
@@ -932,10 +923,9 @@ lbl_8045A66C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045A6A0
- * Size:	0018BC
+/**
+ * @note Address: 0x8045A6A0
+ * @note Size: 0x18BC
  */
 void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 {
@@ -2893,10 +2883,9 @@ lbl_8045BF30:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045BF5C
- * Size:	00008C
+/**
+ * @note Address: 0x8045BF5C
+ * @note Size: 0x8C
  */
 void SetBossBgmMuteVol(PSSystem::EnvSeMgr* mgr, u32 id, f32 vol)
 {
@@ -2951,10 +2940,9 @@ lbl_8045BFC0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045BFE8
- * Size:	000074
+/**
+ * @note Address: 0x8045BFE8
+ * @note Size: 0x74
  */
 void SetNoYOfset(PSSystem::EnvSeMgr* mgr)
 {
@@ -2965,17 +2953,15 @@ void SetNoYOfset(PSSystem::EnvSeMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8045C05C
- * Size:	00002C
+/**
+ * @note Address: 0x8045C05C
+ * @note Size: 0x2C
  */
 void EnvSeObjBuilder::setInfo(PersEnvInfo info) { mPersEnvInfo = info; }
 
-/*
- * --INFO--
- * Address:	8045C088
- * Size:	000070
+/**
+ * @note Address: 0x8045C088
+ * @note Size: 0x70
  */
 EnvSeObjBuilder::EnvSeObjBuilder(JGeometry::TBox3f p1)
     : PSGame::Builder_EvnSe_Perspective(p1)
@@ -3012,10 +2998,9 @@ EnvSeObjBuilder::EnvSeObjBuilder(JGeometry::TBox3f p1)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045C12C
- * Size:	000164
+/**
+ * @note Address: 0x8045C12C
+ * @note Size: 0x164
  */
 PSSystem::BgmSeq* SceneMgr::newAutoBgm(const char* bmsname, const char* cndname, JAInter::SoundInfo& info, JADUtility::AccessMode mode,
                                        PSGame::SceneInfo& sceneinfo, PSSystem::DirectorMgrBase* mgr)
@@ -3133,10 +3118,9 @@ PSSystem::BgmSeq* SceneMgr::newAutoBgm(const char* bmsname, const char* cndname,
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045C290
- * Size:	000060
+/**
+ * @note Address: 0x8045C290
+ * @note Size: 0x60
  */
 MiddleBossSeq::MiddleBossSeq(const char* p1, const JAInter::SoundInfo& info, PSSystem::DirectorMgrBase* directorMgr)
     : PSSystem::JumpBgmSeq(p1, info, directorMgr)
@@ -3175,10 +3159,9 @@ MiddleBossSeq::MiddleBossSeq(const char* p1, const JAInter::SoundInfo& info, PSS
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045C2F0
- * Size:	000094
+/**
+ * @note Address: 0x8045C2F0
+ * @note Size: 0x94
  */
 void MiddleBossSeq::onJump(u16 track)
 {
@@ -3245,10 +3228,9 @@ lbl_8045C370:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045C384
- * Size:	000040
+/**
+ * @note Address: 0x8045C384
+ * @note Size: 0x40
  */
 void MiddleBossSeq::exec()
 {
@@ -3258,10 +3240,9 @@ void MiddleBossSeq::exec()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8045C3C4
- * Size:	00005C
+/**
+ * @note Address: 0x8045C3C4
+ * @note Size: 0x5C
  */
 void MiddleBossSeq::requestJumpBgmQuickly(u16 flag)
 {
@@ -3299,10 +3280,9 @@ lbl_8045C40C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045C420
- * Size:	00005C
+/**
+ * @note Address: 0x8045C420
+ * @note Size: 0x5C
  */
 void MiddleBossSeq::requestJumpBgmOnBeat(u16 flag)
 {
@@ -3340,10 +3320,9 @@ lbl_8045C468:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045C47C
- * Size:	00005C
+/**
+ * @note Address: 0x8045C47C
+ * @note Size: 0x5C
  */
 void MiddleBossSeq::requestJumpBgmEveryBeat(u16 flag)
 {
@@ -3381,10 +3360,9 @@ lbl_8045C4C4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045C4D8
- * Size:	000214
+/**
+ * @note Address: 0x8045C4D8
+ * @note Size: 0x214
  */
 u32 MiddleBossSeq::jumpCheck(u16)
 {
@@ -3565,10 +3543,9 @@ lbl_8045C6D4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045C6EC
- * Size:	00006C
+/**
+ * @note Address: 0x8045C6EC
+ * @note Size: 0x6C
  */
 BigBossSeq::BigBossSeq(const char* p1, const JAInter::SoundInfo& info, PSSystem::DirectorMgrBase* directorMgr)
     : MiddleBossSeq(p1, info, directorMgr)
@@ -3605,10 +3582,9 @@ BigBossSeq::BigBossSeq(const char* p1, const JAInter::SoundInfo& info, PSSystem:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045C758
- * Size:	000080
+/**
+ * @note Address: 0x8045C758
+ * @note Size: 0x80
  */
 MiddleBossSeq::~MiddleBossSeq()
 {
@@ -3652,10 +3628,9 @@ lbl_8045C7BC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045C7D8
- * Size:	0001B4
+/**
+ * @note Address: 0x8045C7D8
+ * @note Size: 0x1B4
  */
 u32 BigBossSeq::jumpCheck(u16)
 {
@@ -3810,10 +3785,9 @@ lbl_8045C974:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045C98C
- * Size:	000098
+/**
+ * @note Address: 0x8045C98C
+ * @note Size: 0x98
  */
 void BigBossSeq::onJump(u16)
 {
@@ -3869,10 +3843,9 @@ lbl_8045CA10:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045CA24
- * Size:	000058
+/**
+ * @note Address: 0x8045CA24
+ * @note Size: 0x58
  */
 PersEnvManager::PersEnvManager(PSSystem::EnvSeMgr* mgr)
 {
@@ -3883,10 +3856,9 @@ PersEnvManager::PersEnvManager(PSSystem::EnvSeMgr* mgr)
 	_10       = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	8045CA7C
- * Size:	000040
+/**
+ * @note Address: 0x8045CA7C
+ * @note Size: 0x40
  */
 bool PersEnvManager::playOk(EnvSe_Perspective_AvoidY* se)
 {
@@ -3898,10 +3870,9 @@ bool PersEnvManager::playOk(EnvSe_Perspective_AvoidY* se)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8045CABC
- * Size:	0001C4
+/**
+ * @note Address: 0x8045CABC
+ * @note Size: 0x1C4
  */
 void PersEnvManager::exec()
 {

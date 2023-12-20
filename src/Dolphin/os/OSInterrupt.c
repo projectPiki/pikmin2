@@ -27,10 +27,9 @@ volatile OSTime __OSLastInterruptTime;
 volatile __OSInterrupt __OSLastInterrupt;
 volatile u32 __OSLastInterruptSrr0;
 
-/*
- * --INFO--
- * Address:	800EEC38
- * Size:	000014
+/**
+ * @note Address: 0x800EEC38
+ * @note Size: 0x14
  */
 ASM BOOL OSDisableInterrupts() {
 #ifdef __MWERKS__ // clang-format off
@@ -45,10 +44,9 @@ entry    __RAS_OSDisableInterrupts_end
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800EEC4C
- * Size:	000014
+/**
+ * @note Address: 0x800EEC4C
+ * @note Size: 0x14
  */
 ASM BOOL OSEnableInterrupts() {
 #ifdef __MWERKS__ // clang-format off
@@ -62,10 +60,9 @@ ASM BOOL OSEnableInterrupts() {
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800EEC60
- * Size:	000024
+/**
+ * @note Address: 0x800EEC60
+ * @note Size: 0x24
  */
 ASM BOOL OSRestoreInterrupts(register BOOL level) {
 #ifdef __MWERKS__ // clang-format off
@@ -85,10 +82,9 @@ _restore:
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800EEC84
- * Size:	00001C
+/**
+ * @note Address: 0x800EEC84
+ * @note Size: 0x1C
  */
 __OSInterruptHandler __OSSetInterruptHandler(__OSInterrupt interrupt, __OSInterruptHandler handler)
 {
@@ -99,17 +95,15 @@ __OSInterruptHandler __OSSetInterruptHandler(__OSInterrupt interrupt, __OSInterr
 	return oldHandler;
 }
 
-/*
- * --INFO--
- * Address:	800EECA0
- * Size:	000014
+/**
+ * @note Address: 0x800EECA0
+ * @note Size: 0x14
  */
 __OSInterruptHandler __OSGetInterruptHandler(__OSInterrupt interrupt) { return InterruptHandlerTable[interrupt]; }
 
-/*
- * --INFO--
- * Address:	800EECB4
- * Size:	000074
+/**
+ * @note Address: 0x800EECB4
+ * @note Size: 0x74
  */
 void __OSInterruptInit()
 {
@@ -127,10 +121,9 @@ void __OSInterruptInit()
 	__OSSetExceptionHandler(4, ExternalInterruptHandler);
 }
 
-/*
- * --INFO--
- * Address:	800EED28
- * Size:	0002D8
+/**
+ * @note Address: 0x800EED28
+ * @note Size: 0x2D8
  */
 static u32 SetInterruptMask(OSInterruptMask mask, OSInterruptMask current)
 {
@@ -295,10 +288,9 @@ static u32 SetInterruptMask(OSInterruptMask mask, OSInterruptMask current)
 	return mask;
 }
 
-/*
- * --INFO--
- * Address:	800EF000
- * Size:	000088
+/**
+ * @note Address: 0x800EF000
+ * @note Size: 0x88
  */
 OSInterruptMask __OSMaskInterrupts(OSInterruptMask global)
 {
@@ -320,10 +312,9 @@ OSInterruptMask __OSMaskInterrupts(OSInterruptMask global)
 	return prev;
 }
 
-/*
- * --INFO--
- * Address:	800EF088
- * Size:	000088
+/**
+ * @note Address: 0x800EF088
+ * @note Size: 0x88
  */
 OSInterruptMask __OSUnmaskInterrupts(OSInterruptMask global)
 {
@@ -345,10 +336,9 @@ OSInterruptMask __OSUnmaskInterrupts(OSInterruptMask global)
 	return prev;
 }
 
-/*
- * --INFO--
- * Address:	800EF110
- * Size:	000344
+/**
+ * @note Address: 0x800EF110
+ * @note Size: 0x344
  */
 void __OSDispatchInterrupt(__OSException exception, OSContext* context)
 {
@@ -471,10 +461,9 @@ void __OSDispatchInterrupt(__OSException exception, OSContext* context)
 	OSLoadContext(context);
 }
 
-/*
- * --INFO--
- * Address:	800EF454
- * Size:	000050
+/**
+ * @note Address: 0x800EF454
+ * @note Size: 0x50
  */
 ASM static void ExternalInterruptHandler(register __OSException exception, register OSContext* context)
 {

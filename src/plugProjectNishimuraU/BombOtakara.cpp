@@ -4,17 +4,15 @@
 
 namespace Game {
 namespace BombOtakara {
-/*
- * --INFO--
- * Address:	802F9624
- * Size:	000090
+/**
+ * @note Address: 0x802F9624
+ * @note Size: 0x90
  */
 Obj::Obj() { }
 
-/*
- * --INFO--
- * Address:	802F96B4
- * Size:	0001A4
+/**
+ * @note Address: 0x802F96B4
+ * @note Size: 0x1A4
  */
 void Obj::changeMaterial()
 {
@@ -42,10 +40,9 @@ void Obj::changeMaterial()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802F9858
- * Size:	0000B4
+/**
+ * @note Address: 0x802F9858
+ * @note Size: 0xB4
  */
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
@@ -63,17 +60,15 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802F990C
- * Size:	00002C
+/**
+ * @note Address: 0x802F990C
+ * @note Size: 0x2C
  */
 bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart) { return damageCallBack(creature, damage, collpart); }
 
-/*
- * --INFO--
- * Address:	802F9938
- * Size:	00007C
+/**
+ * @note Address: 0x802F9938
+ * @note Size: 0x7C
  */
 bool Obj::earthquakeCallBack(Creature* creature, f32 p1)
 {
@@ -84,17 +79,15 @@ bool Obj::earthquakeCallBack(Creature* creature, f32 p1)
 	return EnemyBase::earthquakeCallBack(creature, p1);
 }
 
-/*
- * --INFO--
- * Address:	802F99B4
- * Size:	000030
+/**
+ * @note Address: 0x802F99B4
+ * @note Size: 0x30
  */
 bool Obj::bombCallBack(Creature* creature, Vector3f& vec, f32 damage) { return damageCallBack(creature, damage, nullptr); }
 
-/*
- * --INFO--
- * Address:	802F99E4
- * Size:	00007C
+/**
+ * @note Address: 0x802F99E4
+ * @note Size: 0x7C
  */
 void Obj::startEscapeSE()
 {

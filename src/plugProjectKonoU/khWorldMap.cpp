@@ -23,10 +23,9 @@ namespace Screen {
 const f32 cOpenMinFrm[4] = { 0.0f, 300.0f, 600.0f, 900.0f };
 const f32 cOpenMaxFrm[4] = { 300.0f, 600.0f, 900.0f, 1100.0f };
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B8
+/**
+ * @note Address: N/A
+ * @note Size: 0xB8
  */
 void khUtilFadePaneWM::create(P2DScreen::Mgr* mgr, u64, u8)
 {
@@ -35,20 +34,18 @@ void khUtilFadePaneWM::create(P2DScreen::Mgr* mgr, u64, u8)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B8
+/**
+ * @note Address: N/A
+ * @note Size: 0xB8
  */
 void khUtilFadePaneWM::create(P2DScreen::Mgr*, J2DPane*, u8)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803F1BA0
- * Size:	000058
+/**
+ * @note Address: 0x803F1BA0
+ * @note Size: 0x58
  */
 void khUtilFadePaneWM::fadeout_finish()
 {
@@ -61,10 +58,9 @@ void khUtilFadePaneWM::fadeout_finish()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
+/**
+ * @note Address: N/A
+ * @note Size: 0x60
  */
 khUtilColorAnmWM::khUtilColorAnmWM(P2DScreen::Mgr* screen, u64 tag, int i1, int i2)
     : khUtilColorAnm(screen, tag, i1, i2)
@@ -72,40 +68,36 @@ khUtilColorAnmWM::khUtilColorAnmWM(P2DScreen::Mgr* screen, u64 tag, int i1, int 
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00010C
+/**
+ * @note Address: N/A
+ * @note Size: 0x10C
  */
 void khUtilColorAnmWM::my_init(J2DPicture**, og::Screen::CallBack_CounterRV**)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000110
+/**
+ * @note Address: N/A
+ * @note Size: 0x110
  */
 void khUtilColorAnmWM::effect_on(u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
+/**
+ * @note Address: N/A
+ * @note Size: 0x84
  */
 void khUtilColorAnmWM::effect_off()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803F1C78
- * Size:	00007C
+/**
+ * @note Address: 0x803F1C78
+ * @note Size: 0x7C
  */
 void khUtilColorAnmWM::do_update()
 {
@@ -117,10 +109,9 @@ void khUtilColorAnmWM::do_update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803F1CF4
- * Size:	0001E8
+/**
+ * @note Address: 0x803F1CF4
+ * @note Size: 0x1E8
  */
 WorldMap::WorldMap()
 {
@@ -336,10 +327,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803F1F3C
- * Size:	0000CC
+/**
+ * @note Address: 0x803F1F3C
+ * @note Size: 0xCC
  */
 void WorldMap::init(::Game::WorldMap::InitArg& arg)
 {
@@ -357,10 +347,9 @@ void WorldMap::init(::Game::WorldMap::InitArg& arg)
 // clearly so because theres some nonsense at the top of loadResource that seems to be what generates it
 static const int someDumbUnusedArray[0x20] = { 0 };
 
-/*
- * --INFO--
- * Address:	803F2008
- * Size:	001790
+/**
+ * @note Address: 0x803F2008
+ * @note Size: 0x1790
  */
 void WorldMap::loadResource()
 {
@@ -2192,10 +2181,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803F37D4
- * Size:	001C20
+/**
+ * @note Address: 0x803F37D4
+ * @note Size: 0x1C20
  */
 void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 {
@@ -4701,10 +4689,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803F53F4
- * Size:	000198
+/**
+ * @note Address: 0x803F53F4
+ * @note Size: 0x198
  */
 void WorldMap::draw1st(Graphics& gfx)
 {
@@ -4720,10 +4707,9 @@ void WorldMap::draw1st(Graphics& gfx)
 	mScreenKitagawa->draw(gfx, gfx.mPerspGraph);
 }
 
-/*
- * --INFO--
- * Address:	803F558C
- * Size:	000064
+/**
+ * @note Address: 0x803F558C
+ * @note Size: 0x64
  */
 void WorldMap::draw2nd(Graphics& gfx)
 {
@@ -4731,10 +4717,9 @@ void WorldMap::draw2nd(Graphics& gfx)
 	mScreenRocket->draw(gfx, gfx.mPerspGraph);
 }
 
-/*
- * --INFO--
- * Address:	803F55F0
- * Size:	0002A0
+/**
+ * @note Address: 0x803F55F0
+ * @note Size: 0x2A0
  */
 void WorldMap::draw3rd(Graphics& gfx)
 {
@@ -4761,10 +4746,9 @@ void WorldMap::draw3rd(Graphics& gfx)
 	mScreenInfo->draw(gfx, gfx.mPerspGraph);
 }
 
-/*
- * --INFO--
- * Address:	803F5890
- * Size:	000110
+/**
+ * @note Address: 0x803F5890
+ * @note Size: 0x110
  */
 void WorldMap::draw4th(Graphics& gfx)
 {
@@ -4779,10 +4763,9 @@ void WorldMap::draw4th(Graphics& gfx)
 	::Screen::gGame2DMgr->draw(gfx);
 }
 
-/*
- * --INFO--
- * Address:	803F59A0
- * Size:	000330
+/**
+ * @note Address: 0x803F59A0
+ * @note Size: 0x330
  */
 f32 WorldMap::rocketMove(J2DPane* pane, bool flag)
 {
@@ -5065,10 +5048,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803F5CD0
- * Size:	000404
+/**
+ * @note Address: 0x803F5CD0
+ * @note Size: 0x404
  */
 void WorldMap::rocketUpdate(J2DPane* pane)
 {
@@ -5364,10 +5346,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803F60D4
- * Size:	000090
+/**
+ * @note Address: 0x803F60D4
+ * @note Size: 0x90
  */
 void WorldMap::onyonMove()
 {
@@ -5381,10 +5362,9 @@ void WorldMap::onyonMove()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803F6164
- * Size:	000068
+/**
+ * @note Address: 0x803F6164
+ * @note Size: 0x68
  */
 void WorldMap::onyonUpdate()
 {
@@ -5393,10 +5373,9 @@ void WorldMap::onyonUpdate()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803F61CC
- * Size:	0001F4
+/**
+ * @note Address: 0x803F61CC
+ * @note Size: 0x1F4
  */
 void WorldMap::postureControl(J2DPane* pane)
 {
@@ -5576,10 +5555,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803F63C0
- * Size:	000230
+/**
+ * @note Address: 0x803F63C0
+ * @note Size: 0x230
  */
 bool WorldMap::changeState()
 {
@@ -5627,10 +5605,9 @@ bool WorldMap::changeState()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	803F65F0
- * Size:	0000C0
+/**
+ * @note Address: 0x803F65F0
+ * @note Size: 0xC0
  */
 f32 WorldMap::tag2num(u64 tag)
 {
@@ -5697,10 +5674,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803F66B0
- * Size:	00008C
+/**
+ * @note Address: 0x803F66B0
+ * @note Size: 0x8C
  */
 void WorldMap::finish()
 {
@@ -5711,10 +5687,9 @@ void WorldMap::finish()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803F673C
- * Size:	00007C
+/**
+ * @note Address: 0x803F673C
+ * @note Size: 0x7C
  */
 bool WorldMap::newMapOpen()
 {
@@ -5731,10 +5706,9 @@ bool WorldMap::newMapOpen()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803F67B8
- * Size:	00013C
+/**
+ * @note Address: 0x803F67B8
+ * @note Size: 0x13C
  */
 int WorldMap::getTarget()
 {
@@ -5792,10 +5766,9 @@ int WorldMap::getTarget()
 	return newMap;
 }
 
-/*
- * --INFO--
- * Address:	803F68F4
- * Size:	000174
+/**
+ * @note Address: 0x803F68F4
+ * @note Size: 0x174
  */
 void WorldMap::getRotDir(const JGeometry::TVec2f& pos, f32 max)
 {
@@ -5964,10 +5937,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803F6A68
- * Size:	000A4C
+/**
+ * @note Address: 0x803F6A68
+ * @note Size: 0xA4C
  */
 void WorldMap::changeInfo()
 {
@@ -6818,10 +6790,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803F74B4
- * Size:	000550
+/**
+ * @note Address: 0x803F74B4
+ * @note Size: 0x550
  */
 void WorldMap::effectFirstTime()
 {
@@ -7282,10 +7253,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803F7A04
- * Size:	000044
+/**
+ * @note Address: 0x803F7A04
+ * @note Size: 0x44
  */
 WorldMap::OnyonDynamics::OnyonDynamics()
 {
@@ -7301,10 +7271,9 @@ WorldMap::OnyonDynamics::OnyonDynamics()
 	mAngle = Vector2f(0.0f, -1.0f);
 }
 
-/*
- * --INFO--
- * Address:	803F7A48
- * Size:	0000F8
+/**
+ * @note Address: 0x803F7A48
+ * @note Size: 0xF8
  */
 void WorldMap::OnyonDynamics::initPtcl()
 {
@@ -7313,10 +7282,9 @@ void WorldMap::OnyonDynamics::initPtcl()
 	mOnyonKira->create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	803F7B40
- * Size:	000458
+/**
+ * @note Address: 0x803F7B40
+ * @note Size: 0x458
  */
 Vector2f WorldMap::OnyonDynamics::move(WorldMap* wmap, const JGeometry::TVec2f& pos)
 {
@@ -7684,10 +7652,9 @@ Vector2f WorldMap::OnyonDynamics::move(WorldMap* wmap, const JGeometry::TVec2f& 
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803F7F98
- * Size:	00012C
+/**
+ * @note Address: 0x803F7F98
+ * @note Size: 0x12C
  */
 void WorldMap::OnyonDynamics::update(WorldMap* map)
 {
@@ -7780,10 +7747,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803F80C4
- * Size:	000030
+/**
+ * @note Address: 0x803F80C4
+ * @note Size: 0x30
  */
 void WorldMap::OnyonDynamics::kill() { mOnyonKira->kill(); }
 

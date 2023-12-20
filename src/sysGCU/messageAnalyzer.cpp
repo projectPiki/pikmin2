@@ -4,27 +4,24 @@
 
 namespace P2JME {
 
-/*
- * --INFO--
- * Address:	804560C8
- * Size:	00003C
+/**
+ * @note Address: 0x804560C8
+ * @note Size: 0x3C
  */
 Analyzer::Analyzer(JMessage::TReference const* ref)
     : TRenderingProcessorBase(ref)
 {
 }
 
-/*
- * --INFO--
- * Address:	80456104
- * Size:	000004
+/**
+ * @note Address: 0x80456104
+ * @note Size: 0x4
  */
 void Analyzer::do_character(int) { }
 
-/*
- * --INFO--
- * Address:	80456108
- * Size:	00007C
+/**
+ * @note Address: 0x80456108
+ * @note Size: 0x7C
  */
 void Analyzer::exec(char* msg)
 {
@@ -40,20 +37,18 @@ void Analyzer::exec(char* msg)
 	process(0);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 // void Analyzer::exec(u16, u16)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
+/**
+ * @note Address: N/A
+ * @note Size: 0x58
  */
 // void Analyzer::exec(u32)
 // {

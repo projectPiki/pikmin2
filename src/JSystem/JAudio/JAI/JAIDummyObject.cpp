@@ -8,10 +8,9 @@ JAInter::DummyObjectMgr::DummyObject* JAInter::DummyObjectMgr::deadObjectFreePoi
 JAInter::DummyObjectMgr::DummyObject* JAInter::DummyObjectMgr::deadObjectUsedPointer;
 JAInter::DummyObjectMgr::DummyObject* JAInter::DummyObjectMgr::deadObjectObject;
 
-/*
- * --INFO--
- * Address:	800AD490
- * Size:	0000DC
+/**
+ * @note Address: 0x800AD490
+ * @note Size: 0xDC
  */
 void JAInter::DummyObjectMgr::init()
 {
@@ -30,10 +29,9 @@ void JAInter::DummyObjectMgr::init()
 	deadObjectObject[i].mNext = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	800AD56C
- * Size:	000068
+/**
+ * @note Address: 0x800AD56C
+ * @note Size: 0x68
  */
 JAInter::DummyObjectMgr::DummyObject* JAInter::DummyObjectMgr::getPointer(u32 lifeTime)
 {
@@ -63,20 +61,18 @@ JAInter::DummyObjectMgr::DummyObject* JAInter::DummyObjectMgr::getPointer(u32 li
 	return target;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 void JAInter::DummyObjectMgr::releasePointer(JAInter::DummyVec*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800AD5D4
- * Size:	0000F8
+/**
+ * @note Address: 0x800AD5D4
+ * @note Size: 0xF8
  */
 void JAInter::DummyObjectMgr::check()
 {

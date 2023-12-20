@@ -23,10 +23,9 @@ namespace Pikmin {
 struct TMgr;
 
 struct TParam : public TParamBase {
-	/*
-	 * --INFO--
-	 * Address:	803E6F10
-	 * Size:	000418
+	/**
+	 * @note Address: 0x803E6F10
+	 * @note Size: 0x418
 	 */
 	TParam()
 	    : mIntScale(this, 'pk00', "海外版スケール", 2.4f, 0.0f, 10.0f)                      // 'overseas version scale'

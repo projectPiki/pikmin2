@@ -1,10 +1,9 @@
 #include "types.h"
 #include "SweepPrune.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 inline void SweepPrune::Node::insertBefore(SweepPrune::Node* prev)
 {
@@ -21,10 +20,9 @@ inline void SweepPrune::Node::insertBefore(SweepPrune::Node* prev)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 inline void SweepPrune::Node::insertAfter(SweepPrune::Node* next)
 {
@@ -38,13 +36,12 @@ inline void SweepPrune::Node::insertAfter(SweepPrune::Node* next)
 	}
 }
 
-/*
+/**
  * Inserts `this` into the node chain `chain` according to its
  * radius. The chain is assumed to be pre-sorted as such.
  *
- * --INFO--
- * Address:	8023C5B0
- * Size:	0001C8
+ * @note Address: 0x8023C5B0
+ * @note Size: 0x1C8
  */
 void SweepPrune::Node::insertSort(SweepPrune::Node& chain)
 {
@@ -111,12 +108,11 @@ void SweepPrune::Node::insertSort(SweepPrune::Node& chain)
 	insertAfter(next);
 }
 
-/*
+/**
  * __ct
  *
- * --INFO--
- * Address:	8023C778
- * Size:	000070
+ * @note Address: 0x8023C778
+ * @note Size: 0x70
  */
 SweepPrune::Object::Object()
 {
@@ -146,12 +142,11 @@ SweepPrune::Object::Object()
 	mMinX.mObject = this;
 }
 
-/*
+/**
  * __ct__Q210SweepPrune5WorldFv
  *
- * --INFO--
- * Address:	8023C7E8
- * Size:	00002C
+ * @note Address: 0x8023C7E8
+ * @note Size: 0x2C
  */
 SweepPrune::World::World()
 {
@@ -165,20 +160,18 @@ SweepPrune::World::World()
 	mZNode.mPrev   = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 SweepPrune::World::~World()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8023C814
- * Size:	000148
+/**
+ * @note Address: 0x8023C814
+ * @note Size: 0x148
  */
 void SweepPrune::World::resolve(SweepPrune::World::ResolveArg& arg)
 {

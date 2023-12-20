@@ -11,10 +11,9 @@
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	80324F2C
- * Size:	000080
+/**
+ * @note Address: 0x80324F2C
+ * @note Size: 0x80
  */
 ObjFinalMsg::ObjFinalMsg(const char* name)
 {
@@ -31,17 +30,15 @@ ObjFinalMsg::ObjFinalMsg(const char* name)
 	mMovePos   = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	80324FAC
- * Size:	0000AC
+/**
+ * @note Address: 0x80324FAC
+ * @note Size: 0xAC
  */
 ObjFinalMsg::~ObjFinalMsg() { }
 
-/*
- * --INFO--
- * Address:	80325058
- * Size:	0002CC
+/**
+ * @note Address: 0x80325058
+ * @note Size: 0x2CC
  */
 void ObjFinalMsg::doCreate(JKRArchive* arc)
 {
@@ -75,10 +72,9 @@ void ObjFinalMsg::doCreate(JKRArchive* arc)
 	blink_Menu(mCurrSel);
 }
 
-/*
- * --INFO--
- * Address:	80325324
- * Size:	000070
+/**
+ * @note Address: 0x80325324
+ * @note Size: 0x70
  */
 void ObjFinalMsg::blink_Menu(int sel)
 {
@@ -96,10 +92,9 @@ void ObjFinalMsg::blink_Menu(int sel)
 	mAnimTextN->blink(blink2, 0.0f);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 void ObjFinalMsg::commonUpdate()
 {
@@ -107,10 +102,9 @@ void ObjFinalMsg::commonUpdate()
 	mScreen->update();
 }
 
-/*
- * --INFO--
- * Address:	80325394
- * Size:	000068
+/**
+ * @note Address: 0x80325394
+ * @note Size: 0x68
  */
 bool ObjFinalMsg::doUpdate()
 {
@@ -118,10 +112,9 @@ bool ObjFinalMsg::doUpdate()
 	return menu();
 }
 
-/*
- * --INFO--
- * Address:	803253FC
- * Size:	0001C0
+/**
+ * @note Address: 0x803253FC
+ * @note Size: 0x1C0
  */
 bool ObjFinalMsg::menu()
 {
@@ -161,10 +154,9 @@ bool ObjFinalMsg::menu()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	803255BC
- * Size:	000060
+/**
+ * @note Address: 0x803255BC
+ * @note Size: 0x60
  */
 void ObjFinalMsg::doDraw(Graphics& gfx)
 {
@@ -175,10 +167,9 @@ void ObjFinalMsg::doDraw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8032561C
- * Size:	000060
+/**
+ * @note Address: 0x8032561C
+ * @note Size: 0x60
  */
 bool ObjFinalMsg::doStart(::Screen::StartSceneArg const*)
 {
@@ -189,17 +180,15 @@ bool ObjFinalMsg::doStart(::Screen::StartSceneArg const*)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8032567C
- * Size:	000008
+/**
+ * @note Address: 0x8032567C
+ * @note Size: 0x8
  */
 bool ObjFinalMsg::doEnd(::Screen::EndSceneArg const*) { return true; }
 
-/*
- * --INFO--
- * Address:	80325684
- * Size:	0000B8
+/**
+ * @note Address: 0x80325684
+ * @note Size: 0xB8
  */
 bool ObjFinalMsg::doUpdateFadein()
 {
@@ -213,10 +202,9 @@ bool ObjFinalMsg::doUpdateFadein()
 	return check;
 }
 
-/*
- * --INFO--
- * Address:	8032573C
- * Size:	00003C
+/**
+ * @note Address: 0x8032573C
+ * @note Size: 0x3C
  */
 void ObjFinalMsg::doUpdateFadeinFinish()
 {
@@ -224,10 +212,9 @@ void ObjFinalMsg::doUpdateFadeinFinish()
 	wait();
 }
 
-/*
- * --INFO--
- * Address:	80325778
- * Size:	000038
+/**
+ * @note Address: 0x80325778
+ * @note Size: 0x38
  */
 void ObjFinalMsg::doUpdateFinish()
 {
@@ -235,10 +222,9 @@ void ObjFinalMsg::doUpdateFinish()
 	mFadeLevel = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	803257B0
- * Size:	0000B0
+/**
+ * @note Address: 0x803257B0
+ * @note Size: 0xB0
  */
 bool ObjFinalMsg::doUpdateFadeout()
 {
@@ -252,17 +238,15 @@ bool ObjFinalMsg::doUpdateFadeout()
 	return check;
 }
 
-/*
- * --INFO--
- * Address:	80325860
- * Size:	000034
+/**
+ * @note Address: 0x80325860
+ * @note Size: 0x34
  */
 void ObjFinalMsg::doUpdateFadeoutFinish() { getOwner()->endScene(nullptr); }
 
-/*
- * --INFO--
- * Address:	80325894
- * Size:	00004C
+/**
+ * @note Address: 0x80325894
+ * @note Size: 0x4C
  */
 void ObjFinalMsg::wait()
 {

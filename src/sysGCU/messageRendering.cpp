@@ -157,20 +157,18 @@ namespace P2JME {
 
 u32 TRenderingProcessor::cPageInfoBufferNum = 0xA;
 
-/*
- * --INFO--
- * Address:	804391F0
- * Size:	00003C
+/**
+ * @note Address: 0x804391F0
+ * @note Size: 0x3C
  */
 TRenderingProcessorBase::TRenderingProcessorBase(JMessage::TReference const* ref)
     : JMessage::TRenderingProcessor(ref)
 {
 }
 
-/*
- * --INFO--
- * Address:	8043922C
- * Size:	000174
+/**
+ * @note Address: 0x8043922C
+ * @note Size: 0x174
  */
 bool TRenderingProcessorBase::do_tag(u32 type, void const* a1, u32 a2)
 {
@@ -326,66 +324,57 @@ bool TRenderingProcessorBase::do_tag(u32 type, void const* a1, u32 a2)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	804393A0
- * Size:	000008
+/**
+ * @note Address: 0x804393A0
+ * @note Size: 0x8
  */
 bool TRenderingProcessorBase::tagFont(void const*, u32) { return true; }
 
-/*
- * --INFO--
- * Address:	804393A8
- * Size:	000008
+/**
+ * @note Address: 0x804393A8
+ * @note Size: 0x8
  */
 bool TRenderingProcessorBase::tagRuby(void const*, u32) { return true; }
 
-/*
- * --INFO--
- * Address:	804393B0
- * Size:	000008
+/**
+ * @note Address: 0x804393B0
+ * @note Size: 0x8
  */
 bool TRenderingProcessorBase::tagSize(void const*, u32) { return true; }
 
-/*
- * --INFO--
- * Address:	804393B8
- * Size:	000008
+/**
+ * @note Address: 0x804393B8
+ * @note Size: 0x8
  */
 bool TRenderingProcessorBase::tagColor(void const*, u32) { return true; }
 
-/*
- * --INFO--
- * Address:	804393C0
- * Size:	000008
+/**
+ * @note Address: 0x804393C0
+ * @note Size: 0x8
  */
 bool TRenderingProcessorBase::tagPosition(u16, void const*, u32) { return true; }
 
-/*
- * --INFO--
- * Address:	804393C8
- * Size:	000008
+/**
+ * @note Address: 0x804393C8
+ * @note Size: 0x8
  */
 bool TRenderingProcessorBase::tagControl(u16, void const*, u32) { return true; }
 
-/*
- * --INFO--
- * Address:	804393D0
- * Size:	000008
+/**
+ * @note Address: 0x804393D0
+ * @note Size: 0x8
  */
 bool TRenderingProcessorBase::tagColorEX(u16, void const*, u32) { return true; }
 
-/*
- * --INFO--
- * Address:	804393D8
- * Size:	000008
+/**
+ * @note Address: 0x804393D8
+ * @note Size: 0x8
  */
 bool TRenderingProcessorBase::tagImage(u16, void const*, u32) { return true; }
 
-/*
- * --INFO--
- * Address:	804393E0
- * Size:	000218
+/**
+ * @note Address: 0x804393E0
+ * @note Size: 0x218
  */
 TRenderingProcessor::TRenderingProcessor(JMessage::TReference const* ref)
     : TRenderingProcessorBase(ref)
@@ -553,30 +542,27 @@ TRenderingProcessor::TRenderingProcessor(JMessage::TReference const* ref)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
+/**
+ * @note Address: N/A
+ * @note Size: 0x7C
  */
 void TRenderingProcessor::setDrawLocateX()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000338
+/**
+ * @note Address: N/A
+ * @note Size: 0x338
  */
 void TRenderingProcessor::setDrawLocateY()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80439658
- * Size:	0000E8
+/**
+ * @note Address: 0x80439658
+ * @note Size: 0xE8
  */
 void TRenderingProcessor::do_begin(void const* p1, char const* p2)
 {
@@ -600,10 +586,9 @@ void TRenderingProcessor::do_begin(void const* p1, char const* p2)
 	mMainFont->setGX(_CC, _D0);
 }
 
-/*
- * --INFO--
- * Address:	80439740
- * Size:	0003B0
+/**
+ * @note Address: 0x80439740
+ * @note Size: 0x3B0
  */
 void TRenderingProcessor::setDrawLocate()
 {
@@ -869,10 +854,9 @@ lbl_80439AC4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
+/**
+ * @note Address: N/A
+ * @note Size: 0x50
  */
 void TRenderingProcessor::addDrawLines()
 {
@@ -884,10 +868,9 @@ void TRenderingProcessor::addDrawLines()
 	mFlags &= 0x10000000;
 }
 
-/*
- * --INFO--
- * Address:	80439AF0
- * Size:	0000DC
+/**
+ * @note Address: 0x80439AF0
+ * @note Size: 0xDC
  */
 void TRenderingProcessor::newParagraph()
 {
@@ -966,10 +949,9 @@ lbl_80439BAC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80439BCC
- * Size:	00031C
+/**
+ * @note Address: 0x80439BCC
+ * @note Size: 0x31C
  */
 void TRenderingProcessor::do_character(int)
 {
@@ -1210,20 +1192,18 @@ lbl_80439EBC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B0
+/**
+ * @note Address: N/A
+ * @note Size: 0xB0
  */
 void TRenderingProcessor::mf()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80439EE8
- * Size:	0000B8
+/**
+ * @note Address: 0x80439EE8
+ * @note Size: 0xB8
  */
 void TRenderingProcessor::do_select_begin(u32)
 {
@@ -1232,10 +1212,9 @@ void TRenderingProcessor::do_select_begin(u32)
 	mLocate.i.y = mLocate.f.y + (mMainFont->getHeight() * int(_A0 + 3));
 }
 
-/*
- * --INFO--
- * Address:	80439FA0
- * Size:	00006C
+/**
+ * @note Address: 0x80439FA0
+ * @note Size: 0x6C
  */
 void TRenderingProcessor::do_select_end()
 {
@@ -1243,10 +1222,9 @@ void TRenderingProcessor::do_select_end()
 	mLocate.i.y = mLocate.f.y + mMainFont->getHeight();
 }
 
-/*
- * --INFO--
- * Address:	8043A00C
- * Size:	0000BC
+/**
+ * @note Address: 0x8043A00C
+ * @note Size: 0xBC
  */
 void TRenderingProcessor::do_select_separate()
 {
@@ -1255,10 +1233,9 @@ void TRenderingProcessor::do_select_separate()
 	mLocate.i.y = mLocate.f.y + (mMainFont->getHeight() * int(_A0 + 3));
 }
 
-/*
- * --INFO--
- * Address:	8043A0C8
- * Size:	000174
+/**
+ * @note Address: 0x8043A0C8
+ * @note Size: 0x174
  */
 bool TRenderingProcessor::do_tag(u32 type, void const* a1, u32 a2)
 {
@@ -1386,17 +1363,15 @@ lbl_8043A228:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8043A23C
- * Size:	000008
+/**
+ * @note Address: 0x8043A23C
+ * @note Size: 0x8
  */
 bool TRenderingProcessor::do_systemTagCode(u16, void const*, u32) { return false; }
 
-/*
- * --INFO--
- * Address:	8043A244
- * Size:	00002C
+/**
+ * @note Address: 0x8043A244
+ * @note Size: 0x2C
  */
 bool TRenderingProcessor::tagColor(void const* p1, u32 p2)
 {
@@ -1411,10 +1386,9 @@ bool TRenderingProcessor::tagColor(void const* p1, u32 p2)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8043A270
- * Size:	00003C
+/**
+ * @note Address: 0x8043A270
+ * @note Size: 0x3C
  */
 bool TRenderingProcessor::tagSize(void const* p1, u32 p2)
 {
@@ -1424,10 +1398,9 @@ bool TRenderingProcessor::tagSize(void const* p1, u32 p2)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8043A2AC
- * Size:	000164
+/**
+ * @note Address: 0x8043A2AC
+ * @note Size: 0x164
  */
 bool TRenderingProcessor::tagRuby(void const*, u32)
 {
@@ -1532,17 +1505,15 @@ lbl_8043A3F0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8043A410
- * Size:	000008
+/**
+ * @note Address: 0x8043A410
+ * @note Size: 0x8
  */
 bool TRenderingProcessor::tagFont(void const*, u32) { return true; }
 
-/*
- * --INFO--
- * Address:	8043A418
- * Size:	000024
+/**
+ * @note Address: 0x8043A418
+ * @note Size: 0x24
  */
 bool TRenderingProcessor::tagColorEX(u16 id, void const* p1, u32)
 {
@@ -1556,10 +1527,9 @@ bool TRenderingProcessor::tagColorEX(u16 id, void const* p1, u32)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8043A43C
- * Size:	00006C
+/**
+ * @note Address: 0x8043A43C
+ * @note Size: 0x6C
  */
 bool TRenderingProcessor::tagControl(u16 p1, void const* p2, u32 p3)
 {
@@ -1577,10 +1547,9 @@ bool TRenderingProcessor::tagControl(u16 p1, void const* p2, u32 p3)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	8043A4A8
- * Size:	000014
+/**
+ * @note Address: 0x8043A4A8
+ * @note Size: 0x14
  */
 bool TRenderingProcessor::doTagControlAbtnWait()
 {
@@ -1588,10 +1557,9 @@ bool TRenderingProcessor::doTagControlAbtnWait()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8043A4BC
- * Size:	00071C
+/**
+ * @note Address: 0x8043A4BC
+ * @note Size: 0x71C
  */
 bool TRenderingProcessor::tagPosition(u16, void const*, u32)
 {
@@ -2081,10 +2049,9 @@ bool TRenderingProcessor::tagPosition(u16, void const*, u32)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8043ABD8
- * Size:	00001C
+/**
+ * @note Address: 0x8043ABD8
+ * @note Size: 0x1C
  */
 void TRenderingProcessor::initRuby()
 {
@@ -2094,10 +2061,9 @@ void TRenderingProcessor::initRuby()
 	*mRubyBuffer = 0;
 }
 
-/*
- * --INFO--
- * Address:	8043ABF4
- * Size:	000360
+/**
+ * @note Address: 0x8043ABF4
+ * @note Size: 0x360
  */
 void TRenderingProcessor::drawRuby()
 {
@@ -2345,10 +2311,9 @@ lbl_8043AF18:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8043AF54
- * Size:	000438
+/**
+ * @note Address: 0x8043AF54
+ * @note Size: 0x438
  */
 bool TRenderingProcessor::tagImage(u16, void const*, u32)
 {
@@ -2668,20 +2633,18 @@ lbl_8043B314:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001B8
+/**
+ * @note Address: N/A
+ * @note Size: 0x1B8
  */
 void TRenderingProcessor::calcColorCoe(JUtility::TColor const&, JUtility::TColor*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8043B38C
- * Size:	000440
+/**
+ * @note Address: 0x8043B38C
+ * @note Size: 0x440
  */
 f32 TRenderingProcessor::doDrawLetter(f32, f32, f32, f32, int, bool)
 {
@@ -3009,10 +2972,9 @@ lbl_8043B728:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8043B7CC
- * Size:	00029C
+/**
+ * @note Address: 0x8043B7CC
+ * @note Size: 0x29C
  */
 f32 TRenderingProcessor::doDrawRuby(f32, f32, f32, f32, int, bool)
 {
@@ -3211,10 +3173,9 @@ lbl_8043B9D0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8043BA68
- * Size:	000074
+/**
+ * @note Address: 0x8043BA68
+ * @note Size: 0x74
  */
 void TRenderingProcessor::doDrawImage(JUTTexture* texture, f32 p2, f32 p3, f32 p4, f32 p5)
 {
@@ -3222,10 +3183,9 @@ void TRenderingProcessor::doDrawImage(JUTTexture* texture, f32 p2, f32 p3, f32 p
 	drawImage(texture, p2, p3, p4, p5);
 }
 
-/*
- * --INFO--
- * Address:	8043BADC
- * Size:	000334
+/**
+ * @note Address: 0x8043BADC
+ * @note Size: 0x334
  */
 void TRenderingProcessor::setImageGX()
 {
@@ -3442,10 +3402,9 @@ lbl_8043BDFC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8043BE10
- * Size:	0004F4
+/**
+ * @note Address: 0x8043BE10
+ * @note Size: 0x4F4
  */
 void TRenderingProcessor::drawImage(JUTTexture*, f32, f32, f32, f32)
 {
@@ -3818,10 +3777,9 @@ lbl_8043C1E4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8043C304
- * Size:	000010
+/**
+ * @note Address: 0x8043C304
+ * @note Size: 0x10
  */
 void TRenderingProcessor::reset()
 {
@@ -3829,10 +3787,9 @@ void TRenderingProcessor::reset()
 	_58 = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	8043C314
- * Size:	000128
+/**
+ * @note Address: 0x8043C314
+ * @note Size: 0x128
  */
 f32 TRenderingProcessor::calcWidth(JUTFont* font, int p2, f32 p3, bool p4)
 {
@@ -3930,10 +3887,9 @@ lbl_8043C418:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8043C43C
- * Size:	000024
+/**
+ * @note Address: 0x8043C43C
+ * @note Size: 0x24
  */
 void TRenderingProcessor::setLineWidth()
 {
@@ -3943,10 +3899,9 @@ void TRenderingProcessor::setLineWidth()
 	mLineWidths[mCurrLine] = mLocate.i.x;
 }
 
-/*
- * --INFO--
- * Address:	8043C460
- * Size:	0000D8
+/**
+ * @note Address: 0x8043C460
+ * @note Size: 0xD8
  */
 void TRenderingProcessor::resetLineWidth()
 {
@@ -3955,10 +3910,9 @@ void TRenderingProcessor::resetLineWidth()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8043C538
- * Size:	000040
+/**
+ * @note Address: 0x8043C538
+ * @note Size: 0x40
  */
 void TRenderingProcessor::setOnePageLine()
 {
@@ -3972,10 +3926,9 @@ void TRenderingProcessor::setOnePageLine()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8043C578
- * Size:	0000D8
+/**
+ * @note Address: 0x8043C578
+ * @note Size: 0xD8
  */
 void TRenderingProcessor::resetOnePageLine()
 {
@@ -3984,20 +3937,18 @@ void TRenderingProcessor::resetOnePageLine()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A0
+/**
+ * @note Address: N/A
+ * @note Size: 0xA0
  */
 void TRenderingProcessor::resetPageInfo()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8043C650
- * Size:	00008C
+/**
+ * @note Address: 0x8043C650
+ * @note Size: 0x8C
  */
 void TRenderingProcessor::setPageInfo()
 {
@@ -4008,24 +3959,21 @@ void TRenderingProcessor::setPageInfo()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8043C6DC
- * Size:	000020
+/**
+ * @note Address: 0x8043C6DC
+ * @note Size: 0x20
  */
 void TRenderingProcessor::preProcCode(uint p1) { preProcCenteringCode(p1); }
 
-/*
- * --INFO--
- * Address:	8043C6FC
- * Size:	000020
+/**
+ * @note Address: 0x8043C6FC
+ * @note Size: 0x20
  */
 void TRenderingProcessor::preProcID(uint p1, uint p2) { preProcCenteringID(p1, p2); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000260
+/**
+ * @note Address: N/A
+ * @note Size: 0x260
  */
 void TRenderingProcessor::preProcCenteringPre()
 {
@@ -4039,10 +3987,9 @@ void TRenderingProcessor::preProcCenteringPre()
 	reset_(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00011C
+/**
+ * @note Address: N/A
+ * @note Size: 0x11C
  */
 void TRenderingProcessor::preProcCenteringPost()
 {
@@ -4058,10 +4005,9 @@ void TRenderingProcessor::preProcCenteringPost()
 	_B4 = mLocate.i.y;
 }
 
-/*
- * --INFO--
- * Address:	8043C71C
- * Size:	00039C
+/**
+ * @note Address: 0x8043C71C
+ * @note Size: 0x39C
  */
 void TRenderingProcessor::preProcCenteringCode(uint p1)
 {
@@ -4323,10 +4269,9 @@ lbl_8043CA8C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8043CAB8
- * Size:	0003AC
+/**
+ * @note Address: 0x8043CAB8
+ * @note Size: 0x3AC
  */
 void TRenderingProcessor::preProcCenteringID(uint p1, uint p2)
 {
@@ -4592,17 +4537,15 @@ lbl_8043CE34:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8043CE64
- * Size:	000008
+/**
+ * @note Address: 0x8043CE64
+ * @note Size: 0x8
  */
 void TRenderingProcessor::setFont(JUTFont* font) { mMainFont = font; }
 
-/*
- * --INFO--
- * Address:	8043CE6C
- * Size:	00044C
+/**
+ * @note Address: 0x8043CE6C
+ * @note Size: 0x44C
  */
 void TRenderingProcessor::setTextBoxInfo(J2DPane*)
 {

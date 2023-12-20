@@ -23,10 +23,9 @@ THPDemoDinamics sTHPDemoDinamics[THP_COUNT]
 		{ 0.7f,  1.00f, 1.00f, false, "Crime" }, };
 // clang-format on
 
-/*
- * --INFO--
- * Address:	804724A0
- * Size:	000070
+/**
+ * @note Address: 0x804724A0
+ * @note Size: 0x70
  */
 void THPDinamicsProc::setSetting(THP_ID id)
 {
@@ -40,10 +39,9 @@ const f32 CreaturePrm::cVolZeroDist_Kehai[7]           = { 300.0f, 200.0f, 1000.
 const f32 CreaturePrm::cVolZeroDist_Battle[7]          = { 420.0f, 280.0f, 1400.0f, 1400.0f, 1680.0f, 2240.0f, 840.0f };
 const f32 CreaturePrm::cVolZeroDist_InnerSize_Kehai[7] = { 233.99998f, 156.0f, 780.0f, 780.0f, 935.99996f, 1248.0f, 467.99998f };
 
-/*
- * --INFO--
- * Address:	80472510
- * Size:	000110
+/**
+ * @note Address: 0x80472510
+ * @note Size: 0x110
  */
 void THPDinamicsProc::setSetting(THPDemoDinamics* dyn)
 {
@@ -54,10 +52,9 @@ void THPDinamicsProc::setSetting(THPDemoDinamics* dyn)
 	P2ASSERTLINE(128, dyn->_00 > 0.0f);
 }
 
-/*
- * --INFO--
- * Address:	80472620
- * Size:	000130
+/**
+ * @note Address: 0x80472620
+ * @note Size: 0x130
  */
 f32 THPDinamicsProc::dinamics(f32 input)
 {

@@ -73,10 +73,9 @@ static ProcessInfo fragmentinfo[MAXFRAGMENTS];
 
 typedef void (*DeleteFunc)(void*);
 
-/*
- * --INFO--
- * Address:	800C2374
- * Size:	000034
+/**
+ * @note Address: 0x800C2374
+ * @note Size: 0x34
  */
 int __register_fragment(struct __eti_init_info* info, char* TOC)
 {
@@ -96,10 +95,9 @@ int __register_fragment(struct __eti_init_info* info, char* TOC)
 	return -1;
 }
 
-/*
- * --INFO--
- * Address:	800C2340
- * Size:	000034
+/**
+ * @note Address: 0x800C2340
+ * @note Size: 0x34
  */
 void __unregister_fragment(int fragmentID)
 {
@@ -113,10 +111,9 @@ void __unregister_fragment(int fragmentID)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000088
+/**
+ * @note Address: N/A
+ * @note Size: 0x88
  */
 static int ExPPC_FindExceptionFragment(char* returnaddr, FragmentInfo* frag)
 {
@@ -149,10 +146,9 @@ static int ExPPC_FindExceptionFragment(char* returnaddr, FragmentInfo* frag)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000204
+/**
+ * @note Address: N/A
+ * @note Size: 0x204
  */
 static void ExPPC_FindExceptionRecord(char* returnaddr, MWExceptionInfo* info)
 {
@@ -218,10 +214,9 @@ static void ExPPC_FindExceptionRecord(char* returnaddr, MWExceptionInfo* info)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 static long ExPPC_PopR31(char* SP, MWExceptionInfo* info)
 {
@@ -237,10 +232,9 @@ static long ExPPC_PopR31(char* SP, MWExceptionInfo* info)
 	return GPR_save_area[-1];
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 static exaction_type ExPPC_CurrentAction(const ActionIterator* iter)
 {
@@ -251,10 +245,9 @@ static exaction_type ExPPC_CurrentAction(const ActionIterator* iter)
 	return ((ex_destroylocal*)iter->info.action_pointer)->action & EXACTION_MASK;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001C0
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C0
  */
 static exaction_type ExPPC_NextAction(ActionIterator* iter)
 {
@@ -341,10 +334,9 @@ static exaction_type ExPPC_NextAction(ActionIterator* iter)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000248
+/**
+ * @note Address: N/A
+ * @note Size: 0x248
  */
 static char* ExPPC_PopStackFrame(ThrowContext* context, MWExceptionInfo* info)
 {
@@ -390,17 +382,15 @@ static char* ExPPC_PopStackFrame(ThrowContext* context, MWExceptionInfo* info)
 	return *(char**)(callers_SP + RETURN_ADDRESS);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 static void ExPPC_DestroyLocal(ThrowContext* context, const ex_destroylocal* ex) { DTORCALL_COMPLETE(ex->dtor, context->FP + ex->local); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 static void ExPPC_DestroyLocalCond(ThrowContext* context, const ex_destroylocalcond* ex)
 {
@@ -412,10 +402,9 @@ static void ExPPC_DestroyLocalCond(ThrowContext* context, const ex_destroylocalc
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
+/**
+ * @note Address: N/A
+ * @note Size: 0x58
  */
 static void ExPPC_DestroyLocalPointer(ThrowContext* context, const ex_destroylocalpointer* ex)
 {
@@ -425,10 +414,9 @@ static void ExPPC_DestroyLocalPointer(ThrowContext* context, const ex_destroyloc
 	DTORCALL_COMPLETE(ex->dtor, pointer);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
+/**
+ * @note Address: N/A
+ * @note Size: 0x84
  */
 static void ExPPC_DestroyLocalArray(ThrowContext* context, const ex_destroylocalarray* ex)
 {
@@ -442,10 +430,9 @@ static void ExPPC_DestroyLocalArray(ThrowContext* context, const ex_destroylocal
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 static void ExPPC_DestroyMember(ThrowContext* context, const ex_destroymember* ex)
 {
@@ -455,10 +442,9 @@ static void ExPPC_DestroyMember(ThrowContext* context, const ex_destroymember* e
 	DTORCALL_COMPLETE(ex->dtor, objectptr + ex->offset);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 static void ExPPC_DestroyBase(ThrowContext* context, const ex_destroymember* ex)
 {
@@ -468,10 +454,9 @@ static void ExPPC_DestroyBase(ThrowContext* context, const ex_destroymember* ex)
 	DTORCALL_PARTIAL(ex->dtor, objectptr + ex->offset);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000098
+/**
+ * @note Address: N/A
+ * @note Size: 0x98
  */
 static void ExPPC_DestroyMemberCond(ThrowContext* context, const ex_destroymembercond* ex)
 {
@@ -485,10 +470,9 @@ static void ExPPC_DestroyMemberCond(ThrowContext* context, const ex_destroymembe
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000AC
+/**
+ * @note Address: N/A
+ * @note Size: 0xAC
  */
 static void ExPPC_DestroyMemberArray(ThrowContext* context, const ex_destroymemberarray* ex)
 {
@@ -505,10 +489,9 @@ static void ExPPC_DestroyMemberArray(ThrowContext* context, const ex_destroymemb
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 static void ExPPC_DeletePointer(ThrowContext* context, const ex_deletepointer* ex)
 {
@@ -518,10 +501,9 @@ static void ExPPC_DeletePointer(ThrowContext* context, const ex_deletepointer* e
 	((DeleteFunc)ex->deletefunc)(objectptr);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00008C
+/**
+ * @note Address: N/A
+ * @note Size: 0x8C
  */
 static void ExPPC_DeletePointerCond(ThrowContext* context, const ex_deletepointercond* ex)
 {
@@ -535,10 +517,9 @@ static void ExPPC_DeletePointerCond(ThrowContext* context, const ex_deletepointe
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00050C
+/**
+ * @note Address: N/A
+ * @note Size: 0x50C
  */
 static void ExPPC_UnwindStack(ThrowContext* context, MWExceptionInfo* info, void* catcher)
 {
@@ -645,10 +626,9 @@ static void ExPPC_UnwindStack(ThrowContext* context, MWExceptionInfo* info, void
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000088
+/**
+ * @note Address: N/A
+ * @note Size: 0x88
  */
 static int ExPPC_IsInSpecification(char* extype, ex_specification* spec)
 {
@@ -662,10 +642,9 @@ static int ExPPC_IsInSpecification(char* extype, ex_specification* spec)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001B4
+/**
+ * @note Address: N/A
+ * @note Size: 0x1B4
  */
 extern void __unexpected(CatchInfo* catchinfo)
 {
@@ -689,10 +668,9 @@ extern void __unexpected(CatchInfo* catchinfo)
 	terminate();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000104
+/**
+ * @note Address: N/A
+ * @note Size: 0x104
  */
 ASM static void ExPPC_LongJump(register ThrowContext* context, register void* newRTOC, register void* newPC)
 {
@@ -788,10 +766,9 @@ ASM static void ExPPC_LongJump(register ThrowContext* context, register void* ne
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
+/**
+ * @note Address: N/A
+ * @note Size: 0x84
  */
 static void ExPPC_HandleUnexpected(ThrowContext* context, MWExceptionInfo* info, ex_specification* unexp)
 {
@@ -810,10 +787,9 @@ static void ExPPC_HandleUnexpected(ThrowContext* context, MWExceptionInfo* info,
 	ExPPC_LongJump(context, info->TOC, info->current_function + unexp->pcoffset);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000410
+/**
+ * @note Address: N/A
+ * @note Size: 0x410
  */
 static void ExPPC_ThrowHandler(ThrowContext* context)
 {
@@ -955,10 +931,9 @@ static void ExPPC_ThrowHandler(ThrowContext* context)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
+/**
+ * @note Address: N/A
+ * @note Size: 0x44
  */
 void __end__catch(CatchInfo* catchinfo)
 {
@@ -967,10 +942,9 @@ void __end__catch(CatchInfo* catchinfo)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000144
+/**
+ * @note Address: N/A
+ * @note Size: 0x144
  */
 ASM void __throw(char* throwtype, void* location, void* dtor)
 {

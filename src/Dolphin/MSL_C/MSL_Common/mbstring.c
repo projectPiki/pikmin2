@@ -1,19 +1,17 @@
 #include "PowerPC_EABI_Support/MSL_C/MSL_Common/mbstring.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00011C
+/**
+ * @note Address: N/A
+ * @note Size: 0x11C
  */
 // void mblen(void)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	800C6EFC
- * Size:	0000EC
+/**
+ * @note Address: 0x800C6EFC
+ * @note Size: 0xEC
  */
 static int is_utf8_complete(const char* s, size_t n)
 {
@@ -52,27 +50,24 @@ static int is_utf8_complete(const char* s, size_t n)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000120
+/**
+ * @note Address: N/A
+ * @note Size: 0x120
  */
 // void utf8_to_unicode(void)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	800C6DDC
- * Size:	000120
+/**
+ * @note Address: 0x800C6DDC
+ * @note Size: 0x120
  */
 int mbtowc(wchar_t* pwc, const char* s, size_t n) { return mbstowcs(pwc, s, n); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A4
+/**
+ * @note Address: N/A
+ * @note Size: 0xA4
  */
 inline static int unicode_to_UTF8(char* s, wchar_t wchar)
 {
@@ -108,17 +103,15 @@ inline static int unicode_to_UTF8(char* s, wchar_t wchar)
 	return number_of_bytes;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A4
+/**
+ * @note Address: N/A
+ * @note Size: 0xA4
  */
 inline int wctomb(char* s, wchar_t wchar) { return (unicode_to_UTF8(s, wchar)); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000188
+/**
+ * @note Address: N/A
+ * @note Size: 0x188
  */
 inline int mbstowcs(wchar_t* pwc, const char* s, size_t n)
 {
@@ -181,10 +174,9 @@ inline int mbstowcs(wchar_t* pwc, const char* s, size_t n)
 	return isUTF8;
 }
 
-/*
- * --INFO--
- * Address:	800C6CC4
- * Size:	000118
+/**
+ * @note Address: 0x800C6CC4
+ * @note Size: 0x118
  */
 size_t wcstombs(char* s, const wchar_t* pwcs, size_t n)
 {
@@ -214,50 +206,45 @@ size_t wcstombs(char* s, const wchar_t* pwcs, size_t n)
 	return chars_written;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 // void mbrlen(void)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000188
+/**
+ * @note Address: N/A
+ * @note Size: 0x188
  */
 // void mbrtowc(void)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B0
+/**
+ * @note Address: N/A
+ * @note Size: 0xB0
  */
 // void wcrtomb(void)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001E0
+/**
+ * @note Address: N/A
+ * @note Size: 0x1E0
  */
 // void mbsrtowcs(void)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000114
+/**
+ * @note Address: N/A
+ * @note Size: 0x114
  */
 // void wcsrtombs(void)
 // {

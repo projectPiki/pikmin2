@@ -5,30 +5,27 @@
 #define srcLongPtr  ((unsigned long*)pSrc)
 #define destLongPtr ((unsigned long*)pDest)
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
+/**
+ * @note Address: N/A
+ * @note Size: 0x60
  */
 void __copy_mem(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001FC
+/**
+ * @note Address: N/A
+ * @note Size: 0x1FC
  */
 void __move_mem(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800C736C
- * Size:	0000BC
+/**
+ * @note Address: 0x800C736C
+ * @note Size: 0xBC
  */
 void __copy_longs_aligned(void* pDest, const void* pSrc, unsigned long len)
 {
@@ -82,10 +79,9 @@ void __copy_longs_aligned(void* pDest, const void* pSrc, unsigned long len)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800C72C4
- * Size:	0000A8
+/**
+ * @note Address: 0x800C72C4
+ * @note Size: 0xA8
  */
 void __copy_longs_rev_aligned(void* pDest, const void* pSrc, unsigned long len)
 {
@@ -134,10 +130,9 @@ void __copy_longs_rev_aligned(void* pDest, const void* pSrc, unsigned long len)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800C7204
- * Size:	0000C0
+/**
+ * @note Address: 0x800C7204
+ * @note Size: 0xC0
  */
 void __copy_longs_unaligned(void* pDest, const void* pSrc, unsigned long len)
 {
@@ -193,10 +188,9 @@ void __copy_longs_unaligned(void* pDest, const void* pSrc, unsigned long len)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800C7158
- * Size:	0000AC
+/**
+ * @note Address: 0x800C7158
+ * @note Size: 0xAC
  */
 void __copy_longs_rev_unaligned(void* pDest, const void* pSrc, unsigned long len)
 {

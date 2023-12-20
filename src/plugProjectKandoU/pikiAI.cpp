@@ -26,10 +26,9 @@ namespace Game {
 
 u8 Piki::sGraspSituationOptimise = 1;
 
-/*
- * --INFO--
- * Address:	801B07C0
- * Size:	000BA0
+/**
+ * @note Address: 0x801B07C0
+ * @note Size: 0xBA0
  */
 int Piki::graspSituation_Fast(Game::Creature** outTarget)
 {
@@ -277,10 +276,9 @@ int Piki::graspSituation_Fast(Game::Creature** outTarget)
 	return action;
 }
 
-/*
- * --INFO--
- * Address:	801B1360
- * Size:	001A04
+/**
+ * @note Address: 0x801B1360
+ * @note Size: 0x1A04
  */
 int Piki::graspSituation(Game::Creature** outTarget)
 {
@@ -591,10 +589,9 @@ int Piki::graspSituation(Game::Creature** outTarget)
 	return action;
 }
 
-/*
- * --INFO--
- * Address:	801B2DB0
- * Size:	0007D4
+/**
+ * @note Address: 0x801B2DB0
+ * @note Size: 0x7D4
  */
 bool Piki::invokeAI(Game::CollEvent* event, bool check)
 {
@@ -758,10 +755,9 @@ bool Piki::invokeAI(Game::CollEvent* event, bool check)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	801B3584
- * Size:	0002C4
+/**
+ * @note Address: 0x801B3584
+ * @note Size: 0x2C4
  */
 bool Piki::invokeAI(Game::PlatEvent* event)
 {
@@ -820,10 +816,9 @@ bool Piki::invokeAI(Game::PlatEvent* event)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	801B3848
- * Size:	0000B0
+/**
+ * @note Address: 0x801B3848
+ * @note Size: 0xB0
  */
 bool Piki::invokeAIFree(Game::Piki::InvokeAIFreeArg& arg)
 {
@@ -837,10 +832,9 @@ bool Piki::invokeAIFree(Game::Piki::InvokeAIFreeArg& arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	801B38F8
- * Size:	000310
+/**
+ * @note Address: 0x801B38F8
+ * @note Size: 0x310
  */
 bool Piki::checkInvokeAI(bool isSimpleCheck)
 {
@@ -919,10 +913,9 @@ bool Piki::checkInvokeAI(bool isSimpleCheck)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	801B3C08
- * Size:	000054
+/**
+ * @note Address: 0x801B3C08
+ * @note Size: 0x54
  */
 bool Piki::invokeAI()
 {
@@ -934,10 +927,9 @@ bool Piki::invokeAI()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801B3C5C
- * Size:	000028
+/**
+ * @note Address: 0x801B3C5C
+ * @note Size: 0x28
  */
 bool Piki::setActTransportArg(PikiAI::ActTransportArg& actTransportArg)
 {

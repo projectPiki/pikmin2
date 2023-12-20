@@ -7,10 +7,9 @@ namespace OtakaraBase {
 
 static const char otakaraBaseMgrName[] = "246-OtakaraBaseMgr";
 
-/*
- * --INFO--
- * Address:	802B5E98
- * Size:	000050
+/**
+ * @note Address: 0x802B5E98
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -18,10 +17,9 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "オタカラムシマネージャ"; // otakara manager
 }
 
-/*
- * --INFO--
- * Address:	802B5EE8
- * Size:	0000BC
+/**
+ * @note Address: 0x802B5EE8
+ * @note Size: 0xBC
  */
 void Mgr::loadModelData()
 {
@@ -45,10 +43,9 @@ void Mgr::loadModelData()
 	EnemyMgrBase::loadModelData();
 }
 
-/*
- * --INFO--
- * Address:	802B5FA4
- * Size:	0000B0
+/**
+ * @note Address: 0x802B5FA4
+ * @note Size: 0xB0
  */
 void Mgr::loadAnimData()
 {
@@ -71,10 +68,9 @@ void Mgr::loadAnimData()
 	EnemyMgrBase::loadAnimData();
 }
 
-/*
- * --INFO--
- * Address:	802B6054
- * Size:	000138
+/**
+ * @note Address: 0x802B6054
+ * @note Size: 0x138
  */
 SysShape::Model* Mgr::createModel()
 {

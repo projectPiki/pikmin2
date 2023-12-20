@@ -8,10 +8,9 @@
 namespace Game {
 namespace P2JST {
 
-/*
- * --INFO--
- * Address:	80437400
- * Size:	000058
+/**
+ * @note Address: 0x80437400
+ * @note Size: 0x58
  */
 ObjectSpecialActor::ObjectSpecialActor(const char* name, MoviePlayer* movie)
     : ObjectActor(name, movie)
@@ -19,10 +18,9 @@ ObjectSpecialActor::ObjectSpecialActor(const char* name, MoviePlayer* movie)
 	reset();
 }
 
-/*
- * --INFO--
- * Address:	80437458
- * Size:	00005C
+/**
+ * @note Address: 0x80437458
+ * @note Size: 0x5C
  */
 void ObjectSpecialActor::reset()
 {
@@ -34,17 +32,15 @@ void ObjectSpecialActor::reset()
 	mTimer      = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	804374B4
- * Size:	000004
+/**
+ * @note Address: 0x804374B4
+ * @note Size: 0x4
  */
 void ObjectSpecialActor::stop() { }
 
-/*
- * --INFO--
- * Address:	804374B8
- * Size:	000254
+/**
+ * @note Address: 0x804374B8
+ * @note Size: 0x254
  */
 void ObjectSpecialActor::update()
 {
@@ -115,10 +111,9 @@ void ObjectSpecialActor::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8043770C
- * Size:	000084
+/**
+ * @note Address: 0x8043770C
+ * @note Size: 0x84
  */
 void ObjectSpecialActor::JSGSetAnimation(u32 commandID)
 {
@@ -127,10 +122,9 @@ void ObjectSpecialActor::JSGSetAnimation(u32 commandID)
 	mCommands[mCurrCommandCount++] = commandID;
 }
 
-/*
- * --INFO--
- * Address:	80437790
- * Size:	000004
+/**
+ * @note Address: 0x80437790
+ * @note Size: 0x4
  */
 void ObjectSpecialActor::parseUserData_(u32, const void*) { }
 

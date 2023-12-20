@@ -1,10 +1,9 @@
 #include "JSystem/J3D/J3DShape.h"
 #include "Dolphin/gx.h"
 
-/*
- * --INFO--
- * Address:	8008884C
- * Size:	000018
+/**
+ * @note Address: 0x8008884C
+ * @note Size: 0x18
  */
 J3DShapeDraw::J3DShapeDraw(const u8* dl, u32 size)
 {
@@ -12,16 +11,14 @@ J3DShapeDraw::J3DShapeDraw(const u8* dl, u32 size)
 	mDlSize      = size;
 }
 
-/*
- * --INFO--
- * Address:	80088864
- * Size:	00002C
+/**
+ * @note Address: 0x80088864
+ * @note Size: 0x2C
  */
 void J3DShapeDraw::draw() const { GXCallDisplayList((void*)mDisplayList, mDlSize); }
 
-/*
- * --INFO--
- * Address:	80088890
- * Size:	000048
+/**
+ * @note Address: 0x80088890
+ * @note Size: 0x48
  */
 J3DShapeDraw::~J3DShapeDraw() { }

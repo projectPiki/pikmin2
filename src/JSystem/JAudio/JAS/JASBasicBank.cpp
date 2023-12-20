@@ -3,10 +3,9 @@
 #include "JSystem/JAudio/JAS/JASInst.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	800996FC
- * Size:	00002C
+/**
+ * @note Address: 0x800996FC
+ * @note Size: 0x2C
  * __ct__12JASBasicBankFv
  */
 JASBasicBank::JASBasicBank()
@@ -16,18 +15,16 @@ JASBasicBank::JASBasicBank()
 {
 }
 
-/*
- * --INFO--
- * Address:	80099770
- * Size:	000074
+/**
+ * @note Address: 0x80099770
+ * @note Size: 0x74
  * __dt__12JASBasicBankFv
  */
 JASBasicBank::~JASBasicBank() { delete[] mInsts; }
 
-/*
- * --INFO--
- * Address:	800997E4
- * Size:	000064
+/**
+ * @note Address: 0x800997E4
+ * @note Size: 0x64
  * setInstCount__12JASBasicBankFUl
  */
 void JASBasicBank::setInstCount(u32 count)
@@ -38,18 +35,16 @@ void JASBasicBank::setInstCount(u32 count)
 	mInstCount = count;
 }
 
-/*
- * --INFO--
- * Address:	80099848
- * Size:	000010
+/**
+ * @note Address: 0x80099848
+ * @note Size: 0x10
  * setInst__12JASBasicBankFiP7JASInst
  */
 void JASBasicBank::setInst(int index, JASInst* inst) { mInsts[index] = inst; }
 
-/*
- * --INFO--
- * Address:	80099858
- * Size:	000024
+/**
+ * @note Address: 0x80099858
+ * @note Size: 0x24
  * getInst__12JASBasicBankCFi
  */
 JASInst* JASBasicBank::getInst(int index) const { return (index >= mInstCount) ? nullptr : mInsts[index]; }

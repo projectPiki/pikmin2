@@ -45,10 +45,9 @@ u32 __PADSpec;
 // useful macros
 #define offsetof(type, memb) ((u32) & ((type*)0)->memb)
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
+/**
+ * @note Address: N/A
+ * @note Size: 0x60
  */
 static void PADEnable(s32 chan)
 {
@@ -64,10 +63,9 @@ static void PADEnable(s32 chan)
 	SIEnablePolling(EnabledBits);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A4
+/**
+ * @note Address: N/A
+ * @note Size: 0xA4
  */
 static void PADDisable(s32 chan)
 {
@@ -88,10 +86,9 @@ static void PADDisable(s32 chan)
 	OSRestoreInterrupts(enabled);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
+/**
+ * @note Address: N/A
+ * @note Size: 0x70
  */
 static void DoReset(void)
 {
@@ -111,10 +108,9 @@ static void DoReset(void)
 	SIGetTypeAsync(ResettingChan, (SITypeAndStatusCallback)PADTypeAndStatusCallback);
 }
 
-/*
- * --INFO--
- * Address:	800F3540
- * Size:	0001A4
+/**
+ * @note Address: 0x800F3540
+ * @note Size: 0x1A4
  */
 static void UpdateOrigin(s32 chan)
 {
@@ -162,10 +158,9 @@ static void UpdateOrigin(s32 chan)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800F36E4
- * Size:	0000C4
+/**
+ * @note Address: 0x800F36E4
+ * @note Size: 0xC4
  */
 static void PADOriginCallback(s32 chan, u32 error, OSContext* context)
 {
@@ -178,10 +173,9 @@ static void PADOriginCallback(s32 chan, u32 error, OSContext* context)
 	DoReset();
 }
 
-/*
- * --INFO--
- * Address:	800F37A8
- * Size:	0000CC
+/**
+ * @note Address: 0x800F37A8
+ * @note Size: 0xCC
  */
 static void PADOriginUpdateCallback(s32 chan, u32 error, OSContext* context)
 {
@@ -200,10 +194,9 @@ static void PADOriginUpdateCallback(s32 chan, u32 error, OSContext* context)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800F3874
- * Size:	0000D8
+/**
+ * @note Address: 0x800F3874
+ * @note Size: 0xD8
  */
 static void PADProbeCallback(s32 chan, u32 error, OSContext* context)
 {
@@ -217,10 +210,9 @@ static void PADProbeCallback(s32 chan, u32 error, OSContext* context)
 	DoReset();
 }
 
-/*
- * --INFO--
- * Address:	800F394C
- * Size:	00032C
+/**
+ * @note Address: 0x800F394C
+ * @note Size: 0x32C
  */
 static void PADTypeAndStatusCallback(s32 chan, u32 type)
 {
@@ -277,10 +269,9 @@ static void PADTypeAndStatusCallback(s32 chan, u32 type)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800F3C78
- * Size:	000140
+/**
+ * @note Address: 0x800F3C78
+ * @note Size: 0x140
  */
 static void PADReceiveCheckCallback(s32 chan, u32 type)
 {
@@ -307,10 +298,9 @@ static void PADReceiveCheckCallback(s32 chan, u32 type)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800F3DB8
- * Size:	000110
+/**
+ * @note Address: 0x800F3DB8
+ * @note Size: 0x110
  */
 BOOL PADReset(u32 mask)
 {
@@ -342,10 +332,9 @@ BOOL PADReset(u32 mask)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800F3EC8
- * Size:	000114
+/**
+ * @note Address: 0x800F3EC8
+ * @note Size: 0x114
  */
 BOOL PADRecalibrate(u32 mask)
 {
@@ -375,10 +364,9 @@ BOOL PADRecalibrate(u32 mask)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800F3FDC
- * Size:	000150
+/**
+ * @note Address: 0x800F3FDC
+ * @note Size: 0x150
  */
 BOOL PADInit(void)
 {
@@ -411,10 +399,9 @@ BOOL PADInit(void)
 	return PADReset(PAD_CHAN0_BIT | PAD_CHAN1_BIT | PAD_CHAN2_BIT | PAD_CHAN3_BIT);
 }
 
-/*
- * --INFO--
- * Address:	800F412C
- * Size:	000300
+/**
+ * @note Address: 0x800F412C
+ * @note Size: 0x300
  */
 u32 PADRead(PADStatus* status)
 {
@@ -520,10 +507,9 @@ u32 PADRead(PADStatus* status)
 	return motor;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000CC
+/**
+ * @note Address: N/A
+ * @note Size: 0xCC
  */
 void PADControlAllMotors(u32* commandArray)
 {
@@ -553,10 +539,9 @@ void PADControlAllMotors(u32* commandArray)
 	OSRestoreInterrupts(enabled);
 }
 
-/*
- * --INFO--
- * Address:	800F442C
- * Size:	0000B8
+/**
+ * @note Address: 0x800F442C
+ * @note Size: 0xB8
  */
 void PADControlMotor(s32 chan, u32 command)
 {
@@ -579,10 +564,9 @@ void PADControlMotor(s32 chan, u32 command)
 	OSRestoreInterrupts(enabled);
 }
 
-/*
- * --INFO--
- * Address:	800F44E4
- * Size:	000060
+/**
+ * @note Address: 0x800F44E4
+ * @note Size: 0x60
  */
 void PADSetSpec(u32 spec)
 {
@@ -604,17 +588,15 @@ void PADSetSpec(u32 spec)
 	Spec = spec;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 u32 PADGetSpec(void) { return Spec; }
 
-/*
- * --INFO--
- * Address:	800F4544
- * Size:	000174
+/**
+ * @note Address: 0x800F4544
+ * @note Size: 0x174
  */
 static void SPEC0_MakeStatus(s32 chan, PADStatus* status, u32 data[2])
 {
@@ -644,10 +626,9 @@ static void SPEC0_MakeStatus(s32 chan, PADStatus* status, u32 data[2])
 	status->substickY -= 128;
 }
 
-/*
- * --INFO--
- * Address:	800F46B8
- * Size:	000174
+/**
+ * @note Address: 0x800F46B8
+ * @note Size: 0x174
  */
 static void SPEC1_MakeStatus(s32 chan, PADStatus* status, u32 data[2])
 {
@@ -682,10 +663,9 @@ static void SPEC1_MakeStatus(s32 chan, PADStatus* status, u32 data[2])
 	status->substickY -= 128;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 static s8 ClampS8(s8 var, s8 org)
 {
@@ -703,10 +683,9 @@ static s8 ClampS8(s8 var, s8 org)
 	return var -= org;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 static u8 ClampU8(u8 var, u8 org)
 {
@@ -716,10 +695,9 @@ static u8 ClampU8(u8 var, u8 org)
 	return var -= org;
 }
 
-/*
- * --INFO--
- * Address:	800F482C
- * Size:	000470
+/**
+ * @note Address: 0x800F482C
+ * @note Size: 0x470
  */
 static void SPEC2_MakeStatus(s32 chan, PADStatus* status, u32 data[2])
 {
@@ -1130,10 +1108,9 @@ static void SPEC2_MakeStatus(s32 chan, PADStatus* status, u32 data[2])
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 BOOL PADGetType(s32 chan, u32* type)
 {
@@ -1147,17 +1124,15 @@ BOOL PADGetType(s32 chan, u32* type)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 BOOL PADSync(void) { return ResettingBits == 0 && ResettingChan == 32 && !SIBusy(); }
 
-/*
- * --INFO--
- * Address:	800F4C9C
- * Size:	000074
+/**
+ * @note Address: 0x800F4C9C
+ * @note Size: 0x74
  */
 void PADSetAnalogMode(u32 mode)
 {
@@ -1176,10 +1151,9 @@ void PADSetAnalogMode(u32 mode)
 	OSRestoreInterrupts(enabled);
 }
 
-/*
- * --INFO--
- * Address:	800F4D10
- * Size:	0000BC
+/**
+ * @note Address: 0x800F4D10
+ * @note Size: 0xBC
  */
 static BOOL OnReset(BOOL f)
 {
@@ -1266,17 +1240,15 @@ static BOOL OnReset(BOOL f)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void __PADDisableXPatch(void) { XPatchBits = 0; }
 
-/*
- * --INFO--
- * Address:	800F4DCC
- * Size:	000060
+/**
+ * @note Address: 0x800F4DCC
+ * @note Size: 0x60
  */
 static void SamplingHandler(__OSInterrupt interrupt, OSContext* context)
 {
@@ -1291,10 +1263,9 @@ static void SamplingHandler(__OSInterrupt interrupt, OSContext* context)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800F4E2C
- * Size:	000054
+/**
+ * @note Address: 0x800F4E2C
+ * @note Size: 0x54
  */
 PADSamplingCallback PADSetSamplingCallback(PADSamplingCallback callback)
 {
@@ -1310,10 +1281,9 @@ PADSamplingCallback PADSetSamplingCallback(PADSamplingCallback callback)
 	return prev;
 }
 
-/*
- * --INFO--
- * Address:	800F4E80
- * Size:	00007C
+/**
+ * @note Address: 0x800F4E80
+ * @note Size: 0x7C
  */
 BOOL __PADDisableRecalibration(BOOL disable)
 {

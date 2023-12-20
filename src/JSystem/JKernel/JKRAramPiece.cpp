@@ -8,10 +8,9 @@
 JSUList<JKRAMCommand> JKRAramPiece::sAramPieceCommandList;
 OSMutex JKRAramPiece::mMutex;
 
-/*
- * --INFO--
- * Address:	80019AD8
- * Size:	000020
+/**
+ * @note Address: 0x80019AD8
+ * @note Size: 0x20
  */
 void JKRAramPiece::sendCommand(JKRAMCommand* command) { startDMA(command); }
 
@@ -20,10 +19,9 @@ struct OrderSyncMsg {
 	JKRAMCommand* _04;
 };
 
-/*
- * --INFO--
- * Address:	80019AF8
- * Size:	0001AC
+/**
+ * @note Address: 0x80019AF8
+ * @note Size: 0x1AC
  */
 bool JKRAramPiece::orderSync(int direction, u32 source, u32 destination, u32 length, JKRAramBlock* block)
 {
@@ -66,10 +64,9 @@ bool JKRAramPiece::orderSync(int direction, u32 source, u32 destination, u32 len
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80019CA4
- * Size:	000078
+/**
+ * @note Address: 0x80019CA4
+ * @note Size: 0x78
  */
 void JKRAramPiece::startDMA(JKRAMCommand* cmd)
 {
@@ -81,10 +78,9 @@ void JKRAramPiece::startDMA(JKRAMCommand* cmd)
 	ARQPostRequest(cmd, 0, cmd->mDirection, 0, cmd->mSource, cmd->mDestination, cmd->mLength, doneDMA);
 }
 
-/*
- * --INFO--
- * Address:	80019D1C
- * Size:	0000A8
+/**
+ * @note Address: 0x80019D1C
+ * @note Size: 0xA8
  */
 void JKRAramPiece::doneDMA(u32 cmdAddr)
 {
@@ -109,10 +105,9 @@ void JKRAramPiece::doneDMA(u32 cmdAddr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80019DC4
- * Size:	000070
+/**
+ * @note Address: 0x80019DC4
+ * @note Size: 0x70
  * __ct__12JKRAMCommandFv
  */
 JKRAMCommand::JKRAMCommand()
@@ -128,10 +123,9 @@ JKRAMCommand::JKRAMCommand()
 	_94       = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80019E34
- * Size:	0000A8
+/**
+ * @note Address: 0x80019E34
+ * @note Size: 0xA8
  * __dt__12JKRAMCommandFv
  */
 JKRAMCommand::~JKRAMCommand()

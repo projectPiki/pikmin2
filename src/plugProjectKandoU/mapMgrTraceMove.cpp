@@ -8,10 +8,9 @@ namespace Game {
 
 u8 MapMgr::mTraceMoveOptLevel = 1;
 
-/*
- * --INFO--
- * Address:	8020508C
- * Size:	000114
+/**
+ * @note Address: 0x8020508C
+ * @note Size: 0x114
  * TODO: 57%
  */
 Sys::TriIndexList* ShapeMapMgr::traceMove(Game::MoveInfo& info, f32 stepLength)
@@ -42,30 +41,27 @@ Sys::TriIndexList* ShapeMapMgr::traceMove(Game::MoveInfo& info, f32 stepLength)
 	return triList;
 }
 
-/*
- * --INFO--
- * Address:	802051A0
- * Size:	000020
+/**
+ * @note Address: 0x802051A0
+ * @note Size: 0x20
  */
 Sys::TriIndexList* MapMgr::traceMove(MapCollision& coll, Game::MoveInfo& info, f32 p1)
 {
 	return traceMove_test1203_cylinder(coll, info, p1);
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	00030C
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x30C
 //  */
 // void MapMgr::traceMove_test1030_1(MapCollision&, Game::MoveInfo&, f32)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	802051C0
- * Size:	0003BC
+/**
+ * @note Address: 0x802051C0
+ * @note Size: 0x3BC
  */
 Sys::TriIndexList* MapMgr::traceMove_test1203_cylinder(MapCollision& coll, Game::MoveInfo& info, f32 deltaTime)
 {

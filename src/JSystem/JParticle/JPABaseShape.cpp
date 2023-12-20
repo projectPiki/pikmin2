@@ -226,24 +226,21 @@ typedef u32 JPAClrAnmKeyData; /** TODO: Remove and replace this. */
         .4byte 0x40400000
 */
 
-/*
- * --INFO--
- * Address:	8008B114
- * Size:	00003C
+/**
+ * @note Address: 0x8008B114
+ * @note Size: 0x3C
  */
 void JPASetPointSize(JPAEmitterWorkData* workData) { GXSetPointSize(workData->mGlobalPtclScl.x * 25.0f, GX_TO_ONE); }
 
-/*
- * --INFO--
- * Address:	8008B150
- * Size:	00003C
+/**
+ * @note Address: 0x8008B150
+ * @note Size: 0x3C
  */
 void JPASetLineWidth(JPAEmitterWorkData* workData) { GXSetLineWidth(workData->mGlobalPtclScl.x * 25.0f, GX_TO_ONE); }
 
-/*
- * --INFO--
- * Address:	8008B18C
- * Size:	000044
+/**
+ * @note Address: 0x8008B18C
+ * @note Size: 0x44
  */
 void JPASetPointSize(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
@@ -269,10 +266,9 @@ void JPASetPointSize(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008B1D0
- * Size:	000044
+/**
+ * @note Address: 0x8008B1D0
+ * @note Size: 0x44
  * JPASetLineWidth__FP18JPAEmitterWorkDataP15JPABaseParticle
  */
 void JPASetLineWidth(JPAEmitterWorkData* workData, JPABaseParticle* particle)
@@ -299,10 +295,9 @@ void JPASetLineWidth(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008B214
- * Size:	00009C
+/**
+ * @note Address: 0x8008B214
+ * @note Size: 0x9C
  */
 void JPARegistPrm(JPAEmitterWorkData* work)
 {
@@ -315,10 +310,9 @@ void JPARegistPrm(JPAEmitterWorkData* work)
 	GXSetTevColor(GX_TEVREG0, prm);
 }
 
-/*
- * --INFO--
- * Address:	8008B2B0
- * Size:	000084
+/**
+ * @note Address: 0x8008B2B0
+ * @note Size: 0x84
  */
 void JPARegistEnv(JPAEmitterWorkData* work)
 {
@@ -330,10 +324,9 @@ void JPARegistEnv(JPAEmitterWorkData* work)
 	GXSetTevColor(GX_TEVREG1, env);
 }
 
-/*
- * --INFO--
- * Address:	8008B334
- * Size:	000118
+/**
+ * @note Address: 0x8008B334
+ * @note Size: 0x118
  */
 void JPARegistPrmEnv(JPAEmitterWorkData* work)
 {
@@ -351,10 +344,9 @@ void JPARegistPrmEnv(JPAEmitterWorkData* work)
 	GXSetTevColor(GX_TEVREG1, env);
 }
 
-/*
- * --INFO--
- * Address:	8008B44C
- * Size:	0000B0
+/**
+ * @note Address: 0x8008B44C
+ * @note Size: 0xB0
  */
 void JPARegistAlpha(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -368,10 +360,9 @@ void JPARegistAlpha(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 	GXSetTevColor(GX_TEVREG0, prm);
 }
 
-/*
- * --INFO--
- * Address:	8008B4FC
- * Size:	0000B0
+/**
+ * @note Address: 0x8008B4FC
+ * @note Size: 0xB0
  */
 void JPARegistPrmAlpha(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -385,10 +376,9 @@ void JPARegistPrmAlpha(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 	GXSetTevColor(GX_TEVREG0, prm);
 }
 
-/*
- * --INFO--
- * Address:	8008B5AC
- * Size:	000134
+/**
+ * @note Address: 0x8008B5AC
+ * @note Size: 0x134
  */
 void JPARegistPrmAlphaEnv(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -407,10 +397,9 @@ void JPARegistPrmAlphaEnv(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 	GXSetTevColor(GX_TEVREG1, env);
 }
 
-/*
- * --INFO--
- * Address:	8008B6E0
- * Size:	000124
+/**
+ * @note Address: 0x8008B6E0
+ * @note Size: 0x124
  */
 void JPARegistAlphaEnv(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -429,10 +418,9 @@ void JPARegistAlphaEnv(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 	GXSetTevColor(GX_TEVREG1, env);
 }
 
-/*
- * --INFO--
- * Address:	8008B804
- * Size:	000084
+/**
+ * @note Address: 0x8008B804
+ * @note Size: 0x84
  */
 void JPARegistEnv(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -444,10 +432,9 @@ void JPARegistEnv(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 	GXSetTevColor(GX_TEVREG1, env);
 }
 
-/*
- * --INFO--
- * Address:	8008B888
- * Size:	00002C
+/**
+ * @note Address: 0x8008B888
+ * @note Size: 0x2C
  */
 void JPACalcClrIdxNormal(JPAEmitterWorkData* work)
 {
@@ -476,10 +463,9 @@ lbl_8008B8AC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008B8B4
- * Size:	000028
+/**
+ * @note Address: 0x8008B8B4
+ * @note Size: 0x28
  */
 void JPACalcClrIdxNormal(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -509,10 +495,9 @@ lbl_8008B8D4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008B8DC
- * Size:	000030
+/**
+ * @note Address: 0x8008B8DC
+ * @note Size: 0x30
  */
 void JPACalcClrIdxRepeat(JPAEmitterWorkData* work)
 {
@@ -520,10 +505,9 @@ void JPACalcClrIdxRepeat(JPAEmitterWorkData* work)
 	work->mClrKeyFrame  = work->mEmitter->mTick % (shape->getClrAnmMaxFrm() + 1);
 }
 
-/*
- * --INFO--
- * Address:	8008B90C
- * Size:	00003C
+/**
+ * @note Address: 0x8008B90C
+ * @note Size: 0x3C
  */
 void JPACalcClrIdxRepeat(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -533,10 +517,9 @@ void JPACalcClrIdxRepeat(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 	work->mClrKeyFrame  = tick % (shape->getClrAnmMaxFrm() + 1);
 }
 
-/*
- * --INFO--
- * Address:	8008B948
- * Size:	000040
+/**
+ * @note Address: 0x8008B948
+ * @note Size: 0x40
  */
 void JPACalcClrIdxReverse(JPAEmitterWorkData* work)
 {
@@ -567,10 +550,9 @@ void JPACalcClrIdxReverse(JPAEmitterWorkData* work)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008B988
- * Size:	00004C
+/**
+ * @note Address: 0x8008B988
+ * @note Size: 0x4C
  */
 void JPACalcClrIdxReverse(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -602,17 +584,15 @@ void JPACalcClrIdxReverse(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008B9D4
- * Size:	00000C
+/**
+ * @note Address: 0x8008B9D4
+ * @note Size: 0xC
  */
 void JPACalcClrIdxMerge(JPAEmitterWorkData* workData) { workData->mClrKeyFrame = 0; }
 
-/*
- * --INFO--
- * Address:	8008B9E0
- * Size:	000070
+/**
+ * @note Address: 0x8008B9E0
+ * @note Size: 0x70
  */
 void JPACalcClrIdxMerge(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -622,17 +602,15 @@ void JPACalcClrIdxMerge(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 	work->mClrKeyFrame  = tick % maxFrm;
 }
 
-/*
- * --INFO--
- * Address:	8008BA50
- * Size:	00000C
+/**
+ * @note Address: 0x8008BA50
+ * @note Size: 0xC
  */
 void JPACalcClrIdxRandom(JPAEmitterWorkData* workData) { workData->mClrKeyFrame = 0; }
 
-/*
- * --INFO--
- * Address:	8008BA5C
- * Size:	000034
+/**
+ * @note Address: 0x8008BA5C
+ * @note Size: 0x34
  */
 void JPACalcClrIdxRandom(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -642,44 +620,39 @@ void JPACalcClrIdxRandom(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 	work->mClrKeyFrame  = tick % maxFrm;
 }
 
-/*
- * --INFO--
- * Address:	8008BA90
- * Size:	000040
+/**
+ * @note Address: 0x8008BA90
+ * @note Size: 0x40
  */
 void JPACalcPrm(JPAEmitterWorkData* work) { work->mResource->getBsp()->getPrmClr(work->mClrKeyFrame, &work->mEmitter->mPrmClr); }
 
-/*
- * --INFO--
- * Address:	8008BAD0
- * Size:	00003C
+/**
+ * @note Address: 0x8008BAD0
+ * @note Size: 0x3C
  */
 void JPACalcPrm(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
 	work->mResource->getBsp()->getPrmClr(work->mClrKeyFrame, &ptcl->mPrmClr);
 }
 
-/*
- * --INFO--
- * Address:	8008BB0C
- * Size:	000040
+/**
+ * @note Address: 0x8008BB0C
+ * @note Size: 0x40
  */
 void JPACalcEnv(JPAEmitterWorkData* work) { work->mResource->getBsp()->getEnvClr(work->mClrKeyFrame, &work->mEmitter->mEnvClr); }
 
-/*
- * --INFO--
- * Address:	8008BB4C
- * Size:	00003C
+/**
+ * @note Address: 0x8008BB4C
+ * @note Size: 0x3C
  */
 void JPACalcEnv(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
 	work->mResource->getBsp()->getEnvClr(work->mClrKeyFrame, &ptcl->mEnvClr);
 }
 
-/*
- * --INFO--
- * Address:	8008BB88
- * Size:	000048
+/**
+ * @note Address: 0x8008BB88
+ * @note Size: 0x48
  */
 void JPACalcColorCopy(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -688,40 +661,36 @@ void JPACalcColorCopy(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 	ptcl->mEnvClr        = emtr->mEnvClr;
 }
 
-/*
- * --INFO--
- * Address:	8008BBD0
- * Size:	000038
+/**
+ * @note Address: 0x8008BBD0
+ * @note Size: 0x38
  */
 void JPAGenTexCrdMtxIdt(JPAEmitterWorkData*)
 {
 	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEX0, GX_IDENTITY, GX_FALSE, GX_PTIDENTITY);
 }
 
-/*
- * --INFO--
- * Address:	8008BC08
- * Size:	000038
+/**
+ * @note Address: 0x8008BC08
+ * @note Size: 0x38
  */
 void JPAGenTexCrdMtxAnm(JPAEmitterWorkData*)
 {
 	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEX0, GX_TEXMTX0, GX_FALSE, GX_PTIDENTITY);
 }
 
-/*
- * --INFO--
- * Address:	8008BC40
- * Size:	000038
+/**
+ * @note Address: 0x8008BC40
+ * @note Size: 0x38
  */
 void JPAGenTexCrdMtxPrj(JPAEmitterWorkData*)
 {
 	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2X4, GX_TG_POS, GX_TEXMTX0, GX_FALSE, GX_PTIDENTITY);
 }
 
-/*
- * --INFO--
- * Address:	8008BC78
- * Size:	000198
+/**
+ * @note Address: 0x8008BC78
+ * @note Size: 0x198
  */
 void JPAGenCalcTexCrdMtxAnm(JPAEmitterWorkData*)
 {
@@ -831,10 +800,9 @@ void JPAGenCalcTexCrdMtxAnm(JPAEmitterWorkData*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008BE10
- * Size:	000170
+/**
+ * @note Address: 0x8008BE10
+ * @note Size: 0x170
  */
 void JPALoadCalcTexCrdMtxAnm(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
@@ -934,10 +902,9 @@ void JPALoadCalcTexCrdMtxAnm(JPAEmitterWorkData* workData, JPABaseParticle* part
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008BF80
- * Size:	000054
+/**
+ * @note Address: 0x8008BF80
+ * @note Size: 0x54
  */
 void JPALoadTex(JPAEmitterWorkData* work)
 {
@@ -967,20 +934,18 @@ void JPALoadTex(JPAEmitterWorkData* work)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008BFD4
- * Size:	000050
+/**
+ * @note Address: 0x8008BFD4
+ * @note Size: 0x50
  */
 void JPALoadTexAnm(JPAEmitterWorkData* work)
 {
 	work->mResourceMgr->load(work->mResource->getTexIdx(work->mEmitter->mTexAnmIdx), GX_TEXMAP0);
 }
 
-/*
- * --INFO--
- * Address:	8008C024
- * Size:	00004C
+/**
+ * @note Address: 0x8008C024
+ * @note Size: 0x4C
  * JPALoadTexAnm__FP18JPAEmitterWorkDataP15JPABaseParticle
  */
 void JPALoadTexAnm(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
@@ -988,10 +953,9 @@ void JPALoadTexAnm(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 	work->mResourceMgr->load(work->mResource->getTexIdx(ptcl->mTexAnmIdx), GX_TEXMAP0);
 }
 
-/*
- * --INFO--
- * Address:	8008C070
- * Size:	00003C
+/**
+ * @note Address: 0x8008C070
+ * @note Size: 0x3C
  */
 void JPACalcTexIdxNormal(JPAEmitterWorkData* work)
 {
@@ -1000,10 +964,9 @@ void JPACalcTexIdxNormal(JPAEmitterWorkData* work)
 	work->mEmitter->mTexAnmIdx = shape->getTexIdx(tick);
 }
 
-/*
- * --INFO--
- * Address:	8008C0AC
- * Size:	000038
+/**
+ * @note Address: 0x8008C0AC
+ * @note Size: 0x38
  */
 void JPACalcTexIdxNormal(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -1030,10 +993,9 @@ lbl_8008C0D0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008C0E4
- * Size:	000038
+/**
+ * @note Address: 0x8008C0E4
+ * @note Size: 0x38
  */
 void JPACalcTexIdxRepeat(JPAEmitterWorkData* work)
 {
@@ -1041,10 +1003,9 @@ void JPACalcTexIdxRepeat(JPAEmitterWorkData* work)
 	work->mEmitter->mTexAnmIdx = shape->getTexIdx(work->mEmitter->mTick % shape->getTexAnmKeyNum());
 }
 
-/*
- * --INFO--
- * Address:	8008C11C
- * Size:	000044
+/**
+ * @note Address: 0x8008C11C
+ * @note Size: 0x44
  */
 void JPACalcTexIdxRepeat(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -1071,10 +1032,9 @@ void JPACalcTexIdxRepeat(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008C160
- * Size:	000050
+/**
+ * @note Address: 0x8008C160
+ * @note Size: 0x50
  */
 void JPACalcTexIdxReverse(JPAEmitterWorkData* work)
 {
@@ -1086,10 +1046,9 @@ void JPACalcTexIdxReverse(JPAEmitterWorkData* work)
 	work->mEmitter->mTexAnmIdx = shape->getTexIdx(rem + (div & 1) * (keyNum - rem * 2));
 }
 
-/*
- * --INFO--
- * Address:	8008C1B0
- * Size:	00005C
+/**
+ * @note Address: 0x8008C1B0
+ * @note Size: 0x5C
  */
 void JPACalcTexIdxReverse(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -1126,17 +1085,15 @@ void JPACalcTexIdxReverse(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008C20C
- * Size:	00001C
+/**
+ * @note Address: 0x8008C20C
+ * @note Size: 0x1C
  */
 void JPACalcTexIdxMerge(JPAEmitterWorkData* workData) { workData->mEmitter->mTexAnmIdx = workData->mResource->mBaseShape->getTexIdx(); }
 
-/*
- * --INFO--
- * Address:	8008C228
- * Size:	000078
+/**
+ * @note Address: 0x8008C228
+ * @note Size: 0x78
  */
 void JPACalcTexIdxMerge(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -1178,17 +1135,15 @@ void JPACalcTexIdxMerge(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008C2A0
- * Size:	00001C
+/**
+ * @note Address: 0x8008C2A0
+ * @note Size: 0x1C
  */
 void JPACalcTexIdxRandom(JPAEmitterWorkData* work) { work->mEmitter->mTexAnmIdx = work->mResource->getBsp()->getTexIdx(); }
 
-/*
- * --INFO--
- * Address:	8008C2BC
- * Size:	00003C
+/**
+ * @note Address: 0x8008C2BC
+ * @note Size: 0x3C
  */
 void JPACalcTexIdxRandom(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -1213,24 +1168,21 @@ void JPACalcTexIdxRandom(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008C2F8
- * Size:	000028
+/**
+ * @note Address: 0x8008C2F8
+ * @note Size: 0x28
  */
 void JPALoadPosMtxCam(JPAEmitterWorkData* work) { GXLoadPosMtxImm(work->mPosCamMtx, GX_PNMTX0); }
 
-/*
- * --INFO--
- * Address:	8008C320
- * Size:	000004
+/**
+ * @note Address: 0x8008C320
+ * @note Size: 0x4
  */
 void noLoadPrj(const JPAEmitterWorkData* workData, const Mtx mtx) { }
 
-/*
- * --INFO--
- * Address:	8008C324
- * Size:	000038
+/**
+ * @note Address: 0x8008C324
+ * @note Size: 0x38
  * loadPrj__FPC18JPAEmitterWorkDataPA4_Cf
  */
 void loadPrj(const JPAEmitterWorkData* workData, const Mtx p2)
@@ -1240,10 +1192,9 @@ void loadPrj(const JPAEmitterWorkData* workData, const Mtx p2)
 	GXLoadTexMtxImm(v1, 0x1E, GX_MTX3x4);
 }
 
-/*
- * --INFO--
- * Address:	8008C35C
- * Size:	0001AC
+/**
+ * @note Address: 0x8008C35C
+ * @note Size: 0x1AC
  */
 void loadPrjAnm(const JPAEmitterWorkData* workData, const Mtx p2)
 {
@@ -1359,9 +1310,8 @@ void loadPrjAnm(const JPAEmitterWorkData* workData, const Mtx p2)
 }
 
 /**
- * --INFO--
- * Address:	8008C508
- * Size:	0000E8
+ * @note Address: 0x8008C508
+ * @note Size: 0xE8
  */
 void JPADrawBillboard(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -1449,10 +1399,9 @@ lbl_8008C5D8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008C5F0
- * Size:	000118
+/**
+ * @note Address: 0x8008C5F0
+ * @note Size: 0x118
  */
 void JPADrawRotBillboard(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
@@ -1532,10 +1481,9 @@ lbl_8008C6F0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008C708
- * Size:	0000FC
+/**
+ * @note Address: 0x8008C708
+ * @note Size: 0xFC
  */
 void JPADrawYBillboard(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
@@ -1608,10 +1556,9 @@ lbl_8008C7EC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008C804
- * Size:	000130
+/**
+ * @note Address: 0x8008C804
+ * @note Size: 0x130
  */
 void JPADrawRotYBillboard(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
@@ -1697,30 +1644,27 @@ lbl_8008C91C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008C934
- * Size:	00001C
+/**
+ * @note Address: 0x8008C934
+ * @note Size: 0x1C
  */
 void dirTypeVel(const JPAEmitterWorkData* workData, const JPABaseParticle* particle, JGeometry::TVec3f* direction)
 {
 	particle->getVelVec(*direction);
 }
 
-/*
- * --INFO--
- * Address:	8008C950
- * Size:	00001C
+/**
+ * @note Address: 0x8008C950
+ * @note Size: 0x1C
  */
 void dirTypePos(const JPAEmitterWorkData* workData, const JPABaseParticle* particle, JGeometry::TVec3<float>* direction)
 {
 	*direction = particle->mPosition;
 }
 
-/*
- * --INFO--
- * Address:	8008C96C
- * Size:	000040
+/**
+ * @note Address: 0x8008C96C
+ * @note Size: 0x40
  */
 void dirTypePosInv(const JPAEmitterWorkData* workData, const JPABaseParticle* particle, JGeometry::TVec3f* direction)
 {
@@ -1730,20 +1674,18 @@ void dirTypePosInv(const JPAEmitterWorkData* workData, const JPABaseParticle* pa
 	direction->z = -direction->z;
 }
 
-/*
- * --INFO--
- * Address:	8008C9AC
- * Size:	00001C
+/**
+ * @note Address: 0x8008C9AC
+ * @note Size: 0x1C
  */
 void dirTypeEmtrDir(const JPAEmitterWorkData* workData, const JPABaseParticle* particle, JGeometry::TVec3f* direction)
 {
 	*direction = workData->mGlobalEmtrDir;
 }
 
-/*
- * --INFO--
- * Address:	8008C9C8
- * Size:	0000C0
+/**
+ * @note Address: 0x8008C9C8
+ * @note Size: 0xC0
  */
 void dirTypePrevPtcl(const JPAEmitterWorkData* work, const JPABaseParticle* ptcl, JGeometry::TVec3f* direction)
 {
@@ -1816,10 +1758,9 @@ void dirTypePrevPtcl(const JPAEmitterWorkData* work, const JPABaseParticle* ptcl
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008CA88
- * Size:	000040
+/**
+ * @note Address: 0x8008CA88
+ * @note Size: 0x40
  */
 void rotTypeY(float, float, float (&)[3][4])
 {
@@ -1843,10 +1784,9 @@ void rotTypeY(float, float, float (&)[3][4])
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008CAC8
- * Size:	000040
+/**
+ * @note Address: 0x8008CAC8
+ * @note Size: 0x40
  */
 void rotTypeX(float, float, float (&)[3][4])
 {
@@ -1870,10 +1810,9 @@ void rotTypeX(float, float, float (&)[3][4])
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008CB08
- * Size:	000040
+/**
+ * @note Address: 0x8008CB08
+ * @note Size: 0x40
  */
 void rotTypeZ(float, float, float (&)[3][4])
 {
@@ -1897,10 +1836,9 @@ void rotTypeZ(float, float, float (&)[3][4])
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008CB48
- * Size:	00005C
+/**
+ * @note Address: 0x8008CB48
+ * @note Size: 0x5C
  */
 void rotTypeXYZ(float, float, float (&)[3][4])
 {
@@ -1931,10 +1869,9 @@ void rotTypeXYZ(float, float, float (&)[3][4])
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008CBA4
- * Size:	00004C
+/**
+ * @note Address: 0x8008CBA4
+ * @note Size: 0x4C
  */
 void basePlaneTypeXY(Mtx mtx, f32 x, f32 y)
 {
@@ -1946,10 +1883,9 @@ void basePlaneTypeXY(Mtx mtx, f32 x, f32 y)
 	mtx[2][1] *= y;
 }
 
-/*
- * --INFO--
- * Address:	8008CBF0
- * Size:	00004C
+/**
+ * @note Address: 0x8008CBF0
+ * @note Size: 0x4C
  */
 void basePlaneTypeXZ(Mtx mtx, f32 x, f32 z)
 {
@@ -1961,10 +1897,9 @@ void basePlaneTypeXZ(Mtx mtx, f32 x, f32 z)
 	mtx[2][2] *= z;
 }
 
-/*
- * --INFO--
- * Address:	8008CC3C
- * Size:	000070
+/**
+ * @note Address: 0x8008CC3C
+ * @note Size: 0x70
  */
 void basePlaneTypeX(Mtx mtx, f32 xz, f32 y)
 {
@@ -1979,10 +1914,9 @@ void basePlaneTypeX(Mtx mtx, f32 xz, f32 y)
 	mtx[2][2] *= xz;
 }
 
-/*
- * --INFO--
- * Address:	8008CCAC
- * Size:	000350
+/**
+ * @note Address: 0x8008CCAC
+ * @note Size: 0x350
  */
 void JPADrawDirection(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
@@ -2222,10 +2156,9 @@ lbl_8008CFE0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008CFFC
- * Size:	0003FC
+/**
+ * @note Address: 0x8008CFFC
+ * @note Size: 0x3FC
  */
 void JPADrawRotDirection(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
@@ -2508,10 +2441,9 @@ lbl_8008D3B4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008D3F8
- * Size:	000208
+/**
+ * @note Address: 0x8008D3F8
+ * @note Size: 0x208
  */
 void JPADrawDBillboard(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
@@ -2657,10 +2589,9 @@ lbl_8008D5E4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008D600
- * Size:	000150
+/**
+ * @note Address: 0x8008D600
+ * @note Size: 0x150
  */
 void JPADrawRotation(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -2770,10 +2701,9 @@ lbl_8008D724:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008D750
- * Size:	00009C
+/**
+ * @note Address: 0x8008D750
+ * @note Size: 0x9C
  */
 void JPADrawPoint(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -2790,10 +2720,9 @@ void JPADrawPoint(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 	GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
 }
 
-/*
- * --INFO--
- * Address:	8008D7EC
- * Size:	0001B8
+/**
+ * @note Address: 0x8008D7EC
+ * @note Size: 0x1B8
  */
 void JPADrawLine(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -2919,10 +2848,9 @@ void JPADrawLine(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008D9A4
- * Size:	000008
+/**
+ * @note Address: 0x8008D9A4
+ * @note Size: 0x8
  */
 void getNext(JPANode<JPABaseParticle>*)
 {
@@ -2932,10 +2860,9 @@ void getNext(JPANode<JPABaseParticle>*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008D9AC
- * Size:	000008
+/**
+ * @note Address: 0x8008D9AC
+ * @note Size: 0x8
  */
 void getPrev(JPANode<JPABaseParticle>*)
 {
@@ -2945,10 +2872,9 @@ void getPrev(JPANode<JPABaseParticle>*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008D9B4
- * Size:	000588
+/**
+ * @note Address: 0x8008D9B4
+ * @note Size: 0x588
  */
 void JPADrawStripe(JPAEmitterWorkData*)
 {
@@ -3342,10 +3268,9 @@ lbl_8008DED8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008DF3C
- * Size:	0009AC
+/**
+ * @note Address: 0x8008DF3C
+ * @note Size: 0x9AC
  */
 void JPADrawStripeX(JPAEmitterWorkData*)
 {
@@ -4030,10 +3955,9 @@ lbl_8008E86C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008E8E8
- * Size:	00003C
+/**
+ * @note Address: 0x8008E8E8
+ * @note Size: 0x3C
  */
 void JPADrawEmitterCallBackB(JPAEmitterWorkData* workData)
 {
@@ -4042,10 +3966,9 @@ void JPADrawEmitterCallBackB(JPAEmitterWorkData* workData)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8008E924
- * Size:	000044
+/**
+ * @note Address: 0x8008E924
+ * @note Size: 0x44
  */
 void JPADrawParticleCallBack(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
@@ -4054,17 +3977,15 @@ void JPADrawParticleCallBack(JPAEmitterWorkData* workData, JPABaseParticle* part
 	}
 }
 
-/*
- * --INFO--
- * Address:	8008E968
- * Size:	000004
+/**
+ * @note Address: 0x8008E968
+ * @note Size: 0x4
  */
 void JPAParticleCallBack::draw(JPABaseEmitter*, JPABaseParticle* particle) { }
 
-/*
- * --INFO--
- * Address:	8008E96C
- * Size:	000284
+/**
+ * @note Address: 0x8008E96C
+ * @note Size: 0x284
  */
 void makeColorTable(_GXColor**, const JPAClrAnmKeyData*, u8, short, JKRHeap*)
 {
@@ -4244,10 +4165,9 @@ void makeColorTable(_GXColor**, const JPAClrAnmKeyData*, u8, short, JKRHeap*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008EBF0
- * Size:	000114
+/**
+ * @note Address: 0x8008EBF0
+ * @note Size: 0x114
  */
 JPABaseShape::JPABaseShape(const u8* data, JKRHeap* heap)
 {
@@ -4372,20 +4292,18 @@ lbl_8008ECE4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0003F4
+/**
+ * @note Address: N/A
+ * @note Size: 0x3F4
  */
 void JPABaseShape::init_jpa(const u8*, JKRHeap*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8008ED04
- * Size:	000140
+/**
+ * @note Address: 0x8008ED04
+ * @note Size: 0x140
  */
 void JPABaseShape::setGX(JPAEmitterWorkData* work) const
 {

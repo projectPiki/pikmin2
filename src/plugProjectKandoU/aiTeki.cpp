@@ -8,10 +8,9 @@
 #define FOLLOW_DISTANCE 100.0f
 
 namespace PikiAI {
-/*
- * --INFO--
- * Address:	8021295C
- * Size:	000090
+/**
+ * @note Address: 0x8021295C
+ * @note Size: 0x90
  */
 ActTeki::ActTeki(Game::Piki* piki)
     : Action(piki)
@@ -21,10 +20,9 @@ ActTeki::ActTeki(Game::Piki* piki)
 	mTargetFootprint = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	802129EC
- * Size:	00010C
+/**
+ * @note Address: 0x802129EC
+ * @note Size: 0x10C
  */
 void ActTeki::init(PikiAI::ActionArg* arg)
 {
@@ -57,10 +55,9 @@ void ActTeki::init(PikiAI::ActionArg* arg)
 	mParent->startMotion(30, 30, nullptr, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80212AF8
- * Size:	000178
+/**
+ * @note Address: 0x80212AF8
+ * @note Size: 0x178
  */
 int ActTeki::exec()
 {
@@ -103,10 +100,9 @@ int ActTeki::exec()
 	return ACTEXEC_Continue;
 }
 
-/*
- * --INFO--
- * Address:	80212C70
- * Size:	000050
+/**
+ * @note Address: 0x80212C70
+ * @note Size: 0x50
  */
 void ActTeki::emotion_success()
 {
@@ -116,10 +112,9 @@ void ActTeki::emotion_success()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80212CC0
- * Size:	000314
+/**
+ * @note Address: 0x80212CC0
+ * @note Size: 0x314
  */
 void ActTeki::makeTarget()
 {
@@ -176,10 +171,9 @@ void ActTeki::makeTarget()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80212FD4
- * Size:	000344
+/**
+ * @note Address: 0x80212FD4
+ * @note Size: 0x344
  */
 void ActTeki::test_0()
 {
@@ -244,10 +238,9 @@ void ActTeki::test_0()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80213318
- * Size:	000058
+/**
+ * @note Address: 0x80213318
+ * @note Size: 0x58
  */
 void ActTeki::doDirectDraw(Graphics& gfx)
 {
@@ -257,10 +250,9 @@ void ActTeki::doDirectDraw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80213370
- * Size:	000130
+/**
+ * @note Address: 0x80213370
+ * @note Size: 0x130
  */
 void ActTeki::setTimer()
 {
@@ -279,17 +271,15 @@ void ActTeki::setTimer()
 	mParentFollowTimer = weight * (0.5f * randFloat() + 1.0f);
 }
 
-/*
- * --INFO--
- * Address:	802134A0
- * Size:	000004
+/**
+ * @note Address: 0x802134A0
+ * @note Size: 0x4
  */
 void ActTeki::cleanup() { }
 
-/*
- * --INFO--
- * Address:	802134A4
- * Size:	0000E8
+/**
+ * @note Address: 0x802134A4
+ * @note Size: 0xE8
  */
 void ActTeki::collisionCallback(Game::Piki* piki, Game::CollEvent& event)
 {

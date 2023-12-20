@@ -4,17 +4,15 @@
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	8012E510
- * Size:	000134
+/**
+ * @note Address: 0x8012E510
+ * @note Size: 0x134
  */
 EnemyEffectNodeHamon::EnemyEffectNodeHamon() { }
 
-/*
- * --INFO--
- * Address:	8012E7DC
- * Size:	00011C
+/**
+ * @note Address: 0x8012E7DC
+ * @note Size: 0x11C
  */
 void EnemyEffectNodeHamon::create(EnemyBase* enemy)
 {
@@ -26,24 +24,21 @@ void EnemyEffectNodeHamon::create(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012E8F8
- * Size:	00002C
+/**
+ * @note Address: 0x8012E8F8
+ * @note Size: 0x2C
  */
 void EnemyEffectNodeHamon::fade(EnemyBase* enemy) { mEnemyHamon.fade(); }
 
-/*
- * --INFO--
- * Address:	8012E9B8
- * Size:	00002C
+/**
+ * @note Address: 0x8012E9B8
+ * @note Size: 0x2C
  */
 void EnemyEffectNodeHamon::forceKill(EnemyBase* enemy) { mEnemyHamon.forceKill(); }
 
-/*
- * --INFO--
- * Address:	8012EA78
- * Size:	00004C
+/**
+ * @note Address: 0x8012EA78
+ * @note Size: 0x4C
  */
 void EnemyEffectNodeHamon::update(EnemyBase* enemy)
 {

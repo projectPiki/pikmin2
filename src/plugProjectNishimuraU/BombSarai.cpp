@@ -9,10 +9,9 @@ static const char bombSaraiName[] = "246-BombSarai";
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	802B27CC
- * Size:	000138
+/**
+ * @note Address: 0x802B27CC
+ * @note Size: 0x138
  */
 BombSarai::Obj::Obj()
 {
@@ -21,17 +20,15 @@ BombSarai::Obj::Obj()
 	createEffect();
 }
 
-/*
- * --INFO--
- * Address:	802B2904
- * Size:	000004
+/**
+ * @note Address: 0x802B2904
+ * @note Size: 0x4
  */
 void BombSarai::Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
-/*
- * --INFO--
- * Address:	802B2908
- * Size:	000098
+/**
+ * @note Address: 0x802B2908
+ * @note Size: 0x98
  */
 void BombSarai::Obj::onInit(CreatureInitArg* initArg)
 {
@@ -51,10 +48,9 @@ void BombSarai::Obj::onInit(CreatureInitArg* initArg)
 	mFsm->start(this, BOMBSARAI_Wait, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802B29A0
- * Size:	000050
+/**
+ * @note Address: 0x802B29A0
+ * @note Size: 0x50
  */
 void BombSarai::Obj::onKill(CreatureKillArg* killArg)
 {
@@ -62,10 +58,9 @@ void BombSarai::Obj::onKill(CreatureKillArg* killArg)
 	EnemyBase::onKill(killArg);
 }
 
-/*
- * --INFO--
- * Address:	802B29F0
- * Size:	0000A4
+/**
+ * @note Address: 0x802B29F0
+ * @note Size: 0xA4
  */
 void BombSarai::Obj::doUpdate()
 {
@@ -75,24 +70,21 @@ void BombSarai::Obj::doUpdate()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802B2A94
- * Size:	000004
+/**
+ * @note Address: 0x802B2A94
+ * @note Size: 0x4
  */
 void BombSarai::Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	802B2A98
- * Size:	000020
+/**
+ * @note Address: 0x802B2A98
+ * @note Size: 0x20
  */
 void BombSarai::Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	802B2AB8
- * Size:	00004C
+/**
+ * @note Address: 0x802B2AB8
+ * @note Size: 0x4C
  */
 void BombSarai::Obj::setFSM(BombSarai::FSM* fsm)
 {
@@ -101,10 +93,9 @@ void BombSarai::Obj::setFSM(BombSarai::FSM* fsm)
 	mCurrentLifecycleState = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	802B2B04
- * Size:	0000D4
+/**
+ * @note Address: 0x802B2B04
+ * @note Size: 0xD4
  */
 void BombSarai::Obj::getShadowParam(ShadowParam& shadowParam)
 {
@@ -122,10 +113,9 @@ void BombSarai::Obj::getShadowParam(ShadowParam& shadowParam)
 	shadowParam.mSize                     = 17.5f;
 }
 
-/*
- * --INFO--
- * Address:	802B2BD8
- * Size:	00003C
+/**
+ * @note Address: 0x802B2BD8
+ * @note Size: 0x3C
  */
 bool BombSarai::Obj::bombCallBack(Creature* creature, Vector3f& vec, f32 damage)
 {
@@ -137,10 +127,9 @@ bool BombSarai::Obj::bombCallBack(Creature* creature, Vector3f& vec, f32 damage)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802B2C14
- * Size:	00008C
+/**
+ * @note Address: 0x802B2C14
+ * @note Size: 0x8C
  */
 void BombSarai::Obj::doFinishStoneState()
 {
@@ -152,10 +141,9 @@ void BombSarai::Obj::doFinishStoneState()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802B2CA0
- * Size:	000034
+/**
+ * @note Address: 0x802B2CA0
+ * @note Size: 0x34
  */
 void BombSarai::Obj::doStartWaitingBirthTypeDrop()
 {
@@ -163,10 +151,9 @@ void BombSarai::Obj::doStartWaitingBirthTypeDrop()
 	effectDrawOff();
 }
 
-/*
- * --INFO--
- * Address:	802B2CD4
- * Size:	000034
+/**
+ * @note Address: 0x802B2CD4
+ * @note Size: 0x34
  */
 void BombSarai::Obj::doFinishWaitingBirthTypeDrop()
 {
@@ -174,31 +161,27 @@ void BombSarai::Obj::doFinishWaitingBirthTypeDrop()
 	effectDrawOn();
 }
 
-/*
- * --INFO--
- * Address:	802B2D08
- * Size:	000028
+/**
+ * @note Address: 0x802B2D08
+ * @note Size: 0x28
  */
 void BombSarai::Obj::startCarcassMotion() { startMotion(BOMBSARAIANIM_Carry, nullptr); }
 
-/*
- * --INFO--
- * Address:	802B2D30
- * Size:	000020
+/**
+ * @note Address: 0x802B2D30
+ * @note Size: 0x20
  */
 void BombSarai::Obj::doStartMovie() { effectDrawOff(); }
 
-/*
- * --INFO--
- * Address:	802B2D50
- * Size:	000020
+/**
+ * @note Address: 0x802B2D50
+ * @note Size: 0x20
  */
 void BombSarai::Obj::doEndMovie() { effectDrawOn(); }
 
-/*
- * --INFO--
- * Address:	802B2D70
- * Size:	0001A0
+/**
+ * @note Address: 0x802B2D70
+ * @note Size: 0x1A0
  */
 f32 BombSarai::Obj::setHeightVelocity(bool isFastTakeOff)
 {
@@ -224,10 +207,9 @@ f32 BombSarai::Obj::setHeightVelocity(bool isFastTakeOff)
 	return mPosition.y - minY;
 }
 
-/*
- * --INFO--
- * Address:	802B2F10
- * Size:	0001E8
+/**
+ * @note Address: 0x802B2F10
+ * @note Size: 0x1E8
  */
 void BombSarai::Obj::setRandTarget()
 {
@@ -246,10 +228,9 @@ void BombSarai::Obj::setRandTarget()
 	mTargetPosition = Vector3f(randAmp * sinf(theta) + mHomePosition.x, mHomePosition.y, randAmp * cosf(theta) + mHomePosition.z);
 }
 
-/*
- * --INFO--
- * Address:	802B30F8
- * Size:	000038
+/**
+ * @note Address: 0x802B30F8
+ * @note Size: 0x38
  */
 void BombSarai::Obj::addPitchRatio()
 {
@@ -259,10 +240,9 @@ void BombSarai::Obj::addPitchRatio()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802B3130
- * Size:	0000C8
+/**
+ * @note Address: 0x802B3130
+ * @note Size: 0xC8
  */
 void BombSarai::Obj::supplyBomb()
 {
@@ -282,10 +262,9 @@ void BombSarai::Obj::supplyBomb()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802B31F8
- * Size:	000078
+/**
+ * @note Address: 0x802B31F8
+ * @note Size: 0x78
  */
 void BombSarai::Obj::throwBomb(Vector3f& velocity)
 {
@@ -298,10 +277,9 @@ void BombSarai::Obj::throwBomb(Vector3f& velocity)
 	mHeldBomb = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	802B3270
- * Size:	000070
+/**
+ * @note Address: 0x802B3270
+ * @note Size: 0x70
  */
 Creature* BombSarai::Obj::getAttackablePikmin()
 {
@@ -313,10 +291,9 @@ Creature* BombSarai::Obj::getAttackablePikmin()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	802B32E0
- * Size:	000144
+/**
+ * @note Address: 0x802B32E0
+ * @note Size: 0x144
  */
 BombSarai::StateID BombSarai::Obj::getNextStateOnHeight()
 {
@@ -346,31 +323,27 @@ BombSarai::StateID BombSarai::Obj::getNextStateOnHeight()
 	return BOMBSARAI_NULL;
 }
 
-/*
- * --INFO--
- * Address:	802B3424
- * Size:	0000B0
+/**
+ * @note Address: 0x802B3424
+ * @note Size: 0xB0
  */
 void BombSarai::Obj::createEffect() { mEfxSupli = new efx::TBsaraiSupli(); }
 
-/*
- * --INFO--
- * Address:	802B34D4
- * Size:	000044
+/**
+ * @note Address: 0x802B34D4
+ * @note Size: 0x44
  */
 void BombSarai::Obj::setupEffect() { mEfxSupli->mMtx = mModel->getJoint("kuti_joint1")->getWorldMatrix(); }
 
-/*
- * --INFO--
- * Address:	802B3518
- * Size:	000034
+/**
+ * @note Address: 0x802B3518
+ * @note Size: 0x34
  */
 void BombSarai::Obj::createSupliEffect() { mEfxSupli->create(nullptr); }
 
-/*
- * --INFO--
- * Address:	802B354C
- * Size:	00011C
+/**
+ * @note Address: 0x802B354C
+ * @note Size: 0x11C
  */
 void BombSarai::Obj::createBalloonEffect(int balloon)
 {
@@ -402,24 +375,21 @@ void BombSarai::Obj::createBalloonEffect(int balloon)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802B3668
- * Size:	000024
+/**
+ * @note Address: 0x802B3668
+ * @note Size: 0x24
  */
 void BombSarai::Obj::createDownEffect(f32 p1) { createBounceEffect(mPosition, p1); }
 
-/*
- * --INFO--
- * Address:	802B368C
- * Size:	000030
+/**
+ * @note Address: 0x802B368C
+ * @note Size: 0x30
  */
 void BombSarai::Obj::effectDrawOn() { mEfxSupli->endDemoDrawOn(); }
 
-/*
- * --INFO--
- * Address:	802B36BC
- * Size:	000030
+/**
+ * @note Address: 0x802B36BC
+ * @note Size: 0x30
  */
 void BombSarai::Obj::effectDrawOff() { mEfxSupli->startDemoDrawOff(); }
 

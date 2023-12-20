@@ -5,10 +5,9 @@ namespace Tobi {
 
 static const char tobiMgrName[] = "246-TobiMgr";
 
-/*
- * --INFO--
- * Address:	80269448
- * Size:	000050
+/**
+ * @note Address: 0x80269448
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -16,24 +15,21 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "トビンコマネージャ"; // tobinko manager
 }
 
-/*
- * --INFO--
- * Address:	80269498
- * Size:	000048
+/**
+ * @note Address: 0x80269498
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Parms); }
 
-/*
- * --INFO--
- * Address:	80269670
- * Size:	000060
+/**
+ * @note Address: 0x80269670
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	8026978C
- * Size:	000010
+/**
+ * @note Address: 0x8026978C
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 

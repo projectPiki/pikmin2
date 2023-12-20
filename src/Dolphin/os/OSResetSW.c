@@ -7,10 +7,9 @@ static BOOL LastState;
 static OSTime HoldUp;
 static OSTime HoldDown;
 
-/*
- * --INFO--
- * Address:	800F06D0
- * Size:	0000F4
+/**
+ * @note Address: 0x800F06D0
+ * @note Size: 0xF4
  */
 void __OSResetSWInterruptHandler(__OSInterrupt interrupt, OSContext* context)
 {
@@ -32,10 +31,9 @@ void __OSResetSWInterruptHandler(__OSInterrupt interrupt, OSContext* context)
 	__PIRegs[PI_INTRPT_SRC] = 2;
 }
 
-/*
- * --INFO--
- * Address:	800F07C4
- * Size:	000298
+/**
+ * @note Address: 0x800F07C4
+ * @note Size: 0x298
  */
 BOOL OSGetResetButtonState()
 {
@@ -92,9 +90,8 @@ BOOL OSGetResetButtonState()
 	return state;
 }
 
-/*
- * --INFO--
- * Address:	800F0A5C
- * Size:	000020
+/**
+ * @note Address: 0x800F0A5C
+ * @note Size: 0x20
  */
 BOOL OSGetResetSwitchState() { return OSGetResetButtonState(); }

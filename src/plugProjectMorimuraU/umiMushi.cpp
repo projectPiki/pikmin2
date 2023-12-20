@@ -16,10 +16,9 @@ static const char unusedString[] = "umiMushi";
 
 Obj* curU;
 
-/*
- * --INFO--
- * Address:	80383100
- * Size:	000038
+/**
+ * @note Address: 0x80383100
+ * @note Size: 0x38
  */
 
 static bool eyeScaleCallBack(J3DJoint* joint, int t)
@@ -30,10 +29,9 @@ static bool eyeScaleCallBack(J3DJoint* joint, int t)
 	return true;
 };
 
-/*
- * --INFO--
- * Address:	80383138
- * Size:	000038
+/**
+ * @note Address: 0x80383138
+ * @note Size: 0x38
  */
 static bool weakScaleCallBack(J3DJoint* joint, int t)
 {
@@ -43,10 +41,9 @@ static bool weakScaleCallBack(J3DJoint* joint, int t)
 	return true;
 };
 
-/*
- * --INFO--
- * Address:	80383170
- * Size:	0000B4
+/**
+ * @note Address: 0x80383170
+ * @note Size: 0xB4
  */
 void Obj::setParameters()
 {
@@ -65,10 +62,9 @@ void Obj::setParameters()
 	mCollTree->getCollPart('weak')->setScale(C_PARMS->_A34); // scale of weak point (tail bulb)
 }
 
-/*
- * --INFO--
- * Address:	80383224
- * Size:	000030
+/**
+ * @note Address: 0x80383224
+ * @note Size: 0x30
  */
 f32 Obj::getBodyRadius()
 {
@@ -81,17 +77,15 @@ f32 Obj::getBodyRadius()
 	return 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	80383254
- * Size:	000020
+/**
+ * @note Address: 0x80383254
+ * @note Size: 0x20
  */
 void Obj::birth(Vector3f& position, f32 faceDirection) { EnemyBase::birth(position, faceDirection); }
 
-/*
- * --INFO--
- * Address:	80383274
- * Size:	0005A8
+/**
+ * @note Address: 0x80383274
+ * @note Size: 0x5A8
  */
 
 void Obj::onInit(CreatureInitArg* initArg)
@@ -211,10 +205,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mEfxBubble->mMtx = _388;
 }
 
-/*
- * --INFO--
- * Address:	8038381C
- * Size:	000428
+/**
+ * @note Address: 0x8038381C
+ * @note Size: 0x428
  */
 Obj::Obj()
     : mHeadJoint(nullptr)
@@ -256,10 +249,9 @@ Obj::Obj()
 	mEfxBubble = new efx::TUmiDeadawa;
 }
 
-/*
- * --INFO--
- * Address:	80383C44
- * Size:	00004C
+/**
+ * @note Address: 0x80383C44
+ * @note Size: 0x4C
  */
 void Obj::setFSM(FSM* fsm)
 {
@@ -268,10 +260,9 @@ void Obj::setFSM(FSM* fsm)
 	mCurrentLifecycleState = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80383C90
- * Size:	000090
+/**
+ * @note Address: 0x80383C90
+ * @note Size: 0x90
  */
 void Obj::doUpdate()
 {
@@ -285,10 +276,9 @@ void Obj::doUpdate()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80383D20
- * Size:	0004B0
+/**
+ * @note Address: 0x80383D20
+ * @note Size: 0x4B0
  */
 void Obj::doAnimationCullingOff()
 {
@@ -366,10 +356,9 @@ void Obj::doAnimationCullingOff()
 	curU = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	803841D0
- * Size:	000034
+/**
+ * @note Address: 0x803841D0
+ * @note Size: 0x34
  */
 void Obj::doAnimationCullingOn()
 {
@@ -377,24 +366,21 @@ void Obj::doAnimationCullingOn()
 	createColorEffect();
 }
 
-/*
- * --INFO--
- * Address:	80384204
- * Size:	000004
+/**
+ * @note Address: 0x80384204
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics& gfx) { }
 
-/*
- * --INFO--
- * Address:	80384208
- * Size:	000020
+/**
+ * @note Address: 0x80384208
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	80384228
- * Size:	000098
+/**
+ * @note Address: 0x80384228
+ * @note Size: 0x98
  */
 void Obj::changeMaterial()
 {
@@ -404,10 +390,9 @@ void Obj::changeMaterial()
 	_354->animate(30.0f);
 }
 
-/*
- * --INFO--
- * Address:	803842C0
- * Size:	0000DC
+/**
+ * @note Address: 0x803842C0
+ * @note Size: 0xDC
  */
 void Obj::doStartMovie()
 {
@@ -422,10 +407,9 @@ void Obj::doStartMovie()
 	mEfxBubble->startDemoDrawOff();
 }
 
-/*
- * --INFO--
- * Address:	8038439C
- * Size:	0000DC
+/**
+ * @note Address: 0x8038439C
+ * @note Size: 0xDC
  */
 void Obj::doEndMovie()
 {
@@ -440,10 +424,9 @@ void Obj::doEndMovie()
 	mEfxBubble->endDemoDrawOn();
 }
 
-/*
- * --INFO--
- * Address:	80384478
- * Size:	000090
+/**
+ * @note Address: 0x80384478
+ * @note Size: 0x90
  */
 void Obj::getShadowParam(ShadowParam& parms)
 {
@@ -456,10 +439,9 @@ void Obj::getShadowParam(ShadowParam& parms)
 	parms.mSize                       = mScaleModifier * 80.0f;
 }
 
-/*
- * --INFO--
- * Address:	80384508
- * Size:	000040
+/**
+ * @note Address: 0x80384508
+ * @note Size: 0x40
  */
 void Obj::doSimulation(f32 speed)
 {
@@ -470,10 +452,9 @@ void Obj::doSimulation(f32 speed)
 	EnemyBase::doSimulation(speed);
 }
 
-/*
- * --INFO--
- * Address:	80384548
- * Size:	000164
+/**
+ * @note Address: 0x80384548
+ * @note Size: 0x164
  */
 bool Obj::damageCallBack(Creature* creature, f32 strength, CollPart* part)
 {
@@ -498,10 +479,9 @@ bool Obj::damageCallBack(Creature* creature, f32 strength, CollPart* part)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803846AC
- * Size:	0000BC
+/**
+ * @note Address: 0x803846AC
+ * @note Size: 0xBC
  */
 bool Obj::pressCallBack(Creature* creature, f32 strength, CollPart* part)
 {
@@ -517,10 +497,9 @@ bool Obj::pressCallBack(Creature* creature, f32 strength, CollPart* part)
 	return EnemyBase::pressCallBack(creature, strength, part);
 }
 
-/*
- * --INFO--
- * Address:	80384768
- * Size:	0000BC
+/**
+ * @note Address: 0x80384768
+ * @note Size: 0xBC
  */
 bool Obj::hipdropCallBack(Creature* creature, f32 strength, CollPart* part)
 {
@@ -535,10 +514,9 @@ bool Obj::hipdropCallBack(Creature* creature, f32 strength, CollPart* part)
 	return EnemyBase::hipdropCallBack(creature, strength, part);
 }
 
-/*
- * --INFO--
- * Address:	80384824
- * Size:	0000AC
+/**
+ * @note Address: 0x80384824
+ * @note Size: 0xAC
  */
 bool Obj::earthquakeCallBack(Creature* creature, f32 damage)
 {
@@ -550,17 +528,15 @@ bool Obj::earthquakeCallBack(Creature* creature, f32 damage)
 	return EnemyBase::earthquakeCallBack(creature, damage);
 }
 
-/*
- * --INFO--
- * Address:	803848D0
- * Size:	000020
+/**
+ * @note Address: 0x803848D0
+ * @note Size: 0x20
  */
 void Obj::collisionCallback(CollEvent& event) { EnemyBase::collisionCallback(event); }
 
-/*
- * --INFO--
- * Address:	803848F0
- * Size:	000130
+/**
+ * @note Address: 0x803848F0
+ * @note Size: 0x130
  */
 void Obj::initMouthSlots()
 {
@@ -580,10 +556,9 @@ void Obj::initMouthSlots()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80384A20
- * Size:	000094
+/**
+ * @note Address: 0x80384A20
+ * @note Size: 0x94
  */
 void Obj::doStartStoneState()
 {
@@ -594,10 +569,9 @@ void Obj::doStartStoneState()
 	fadeAllEffect();
 }
 
-/*
- * --INFO--
- * Address:	80384AB4
- * Size:	0000BC
+/**
+ * @note Address: 0x80384AB4
+ * @note Size: 0xBC
  */
 void Obj::doFinishStoneState()
 {
@@ -611,17 +585,15 @@ void Obj::doFinishStoneState()
 	createColorEffect();
 }
 
-/*
- * --INFO--
- * Address:	80384B70
- * Size:	000028
+/**
+ * @note Address: 0x80384B70
+ * @note Size: 0x28
  */
 void Obj::startCarcassMotion() { EnemyBase::startMotion(UMIANIM_Carry, nullptr); }
 
-/*
- * --INFO--
- * Address:	80384B98
- * Size:	00004C
+/**
+ * @note Address: 0x80384B98
+ * @note Size: 0x4C
  */
 void Obj::doGetLifeGaugeParam(LifeGaugeParam& settings)
 {
@@ -631,10 +603,9 @@ void Obj::doGetLifeGaugeParam(LifeGaugeParam& settings)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80384BE4
- * Size:	00005C
+/**
+ * @note Address: 0x80384BE4
+ * @note Size: 0x5C
  */
 bool Obj::isReachToGoal(f32 radius)
 {
@@ -646,10 +617,9 @@ bool Obj::isReachToGoal(f32 radius)
 	return sqrDistanceXZ(mPosition, mGoalPosition) < SQUARE(radius); // how is this not matching >:O
 }
 
-/*
- * --INFO--
- * Address:	80384C40
- * Size:	000358
+/**
+ * @note Address: 0x80384C40
+ * @note Size: 0x358
  */
 void Obj::walkFunc()
 {
@@ -699,10 +669,9 @@ void Obj::walkFunc()
 	mSoundObj->startSound(PSSE_EN_UMI_ZURUZURU, 0);
 }
 
-/*
- * --INFO--
- * Address:	80384F98
- * Size:	000150
+/**
+ * @note Address: 0x80384F98
+ * @note Size: 0x150
  */
 void Obj::setNextGoal()
 {
@@ -717,10 +686,9 @@ void Obj::setNextGoal()
 	mGoalPosition.z += rad * cosf(randAngle);
 }
 
-/*
- * --INFO--
- * Address:	803850E8
- * Size:	000810
+/**
+ * @note Address: 0x803850E8
+ * @note Size: 0x810
  */
 void Obj::changeColor()
 {
@@ -802,10 +770,9 @@ void Obj::changeColor()
 	_314.b = weight2 * ((f32)mNormalColor2.b) + weight1 * ((f32)mNormalColor1.b);
 }
 
-/*
- * --INFO--
- * Address:	803858F8
- * Size:	0001C0
+/**
+ * @note Address: 0x803858F8
+ * @note Size: 0x1C0
  */
 void Obj::resetColor()
 {
@@ -823,10 +790,9 @@ void Obj::resetColor()
 	_314.b = weight2 * ((f32)mNormalColor1.b) + weight1 * ((f32)_31C.b);
 }
 
-/*
- * --INFO--
- * Address:	80385AB8
- * Size:	0001BC
+/**
+ * @note Address: 0x80385AB8
+ * @note Size: 0x1BC
  */
 f32 Obj::turnFunc()
 {
@@ -970,10 +936,9 @@ lbl_80385C10:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80385C74
- * Size:	000014
+/**
+ * @note Address: 0x80385C74
+ * @note Size: 0x14
  */
 void Obj::resetWalkParm()
 {
@@ -981,10 +946,9 @@ void Obj::resetWalkParm()
 	_2FC = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	80385C88
- * Size:	000248
+/**
+ * @note Address: 0x80385C88
+ * @note Size: 0x248
  */
 bool Obj::isChangeNavi()
 {
@@ -1199,10 +1163,9 @@ lbl_80385EA0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80385ED0
- * Size:	0001D8
+/**
+ * @note Address: 0x80385ED0
+ * @note Size: 0x1D8
  */
 bool Obj::isFindTarget()
 {
@@ -1375,10 +1338,9 @@ lbl_80386074:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803860A8
- * Size:	000240
+/**
+ * @note Address: 0x803860A8
+ * @note Size: 0x240
  */
 bool Obj::isAttackStart()
 {
@@ -1567,10 +1529,9 @@ lbl_803862AC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803862E8
- * Size:	0001B4
+/**
+ * @note Address: 0x803862E8
+ * @note Size: 0x1B4
  */
 bool Obj::isNeedTurn()
 {
@@ -1590,10 +1551,9 @@ bool Obj::isNeedTurn()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8038649C
- * Size:	00005C
+/**
+ * @note Address: 0x8038649C
+ * @note Size: 0x5C
  */
 bool Obj::isOutOfTerritory(f32 scale)
 {
@@ -1607,20 +1567,18 @@ bool Obj::isOutOfTerritory(f32 scale)
 	return (u8)(sqrDistanceXZ(mHomePosition, mPosition) > scaledRad);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
+/**
+ * @note Address: N/A
+ * @note Size: 0x44
  */
 void Obj::returnHome()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803864F8
- * Size:	00012C
+/**
+ * @note Address: 0x803864F8
+ * @note Size: 0x12C
  */
 bool Obj::canMove()
 {
@@ -1729,10 +1687,9 @@ lbl_80386608:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80386624
- * Size:	000490
+/**
+ * @note Address: 0x80386624
+ * @note Size: 0x490
  */
 bool Obj::outMove()
 {
@@ -2112,10 +2069,9 @@ lbl_80386A70:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80386AB4
- * Size:	000080
+/**
+ * @note Address: 0x80386AB4
+ * @note Size: 0x80
  */
 void Obj::setFindAnim()
 {
@@ -2128,10 +2084,9 @@ void Obj::setFindAnim()
 	startMotion(UMIANIM_Search, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80386B34
- * Size:	000044
+/**
+ * @note Address: 0x80386B34
+ * @note Size: 0x44
  */
 void Obj::fadeAllEffect()
 {
@@ -2139,10 +2094,9 @@ void Obj::fadeAllEffect()
 	fadeColorEffect();
 }
 
-/*
- * --INFO--
- * Address:	80386B78
- * Size:	0000A8
+/**
+ * @note Address: 0x80386B78
+ * @note Size: 0xA8
  */
 void Obj::fadeColorEffect()
 {
@@ -2155,10 +2109,9 @@ void Obj::fadeColorEffect()
 	_2DC = false;
 }
 
-/*
- * --INFO--
- * Address:	80386C20
- * Size:	00010C
+/**
+ * @note Address: 0x80386C20
+ * @note Size: 0x10C
  */
 void Obj::createColorEffect()
 {
@@ -2178,10 +2131,9 @@ void Obj::createColorEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80386D2C
- * Size:	0000C0
+/**
+ * @note Address: 0x80386D2C
+ * @note Size: 0xC0
  */
 void Obj::attackEffect()
 {
@@ -2191,10 +2143,9 @@ void Obj::attackEffect()
 	attackFX.create(&fxArg);
 }
 
-/*
- * --INFO--
- * Address:	80386DEC
- * Size:	0000C0
+/**
+ * @note Address: 0x80386DEC
+ * @note Size: 0xC0
  */
 void Obj::meltEffect()
 {
@@ -2205,10 +2156,9 @@ void Obj::meltEffect()
 	_2DD = 1;
 }
 
-/*
- * --INFO--
- * Address:	80386EAC
- * Size:	00010C
+/**
+ * @note Address: 0x80386EAC
+ * @note Size: 0x10C
  */
 void Obj::flickEffect()
 {
@@ -2225,10 +2175,9 @@ void Obj::flickEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80386FB8
- * Size:	000070
+/**
+ * @note Address: 0x80386FB8
+ * @note Size: 0x70
  */
 void Obj::eatEffect()
 {
@@ -2237,10 +2186,9 @@ void Obj::eatEffect()
 	mEfxEat->setGlobalScale(mScaleModifier);
 }
 
-/*
- * --INFO--
- * Address:	80387028
- * Size:	000070
+/**
+ * @note Address: 0x80387028
+ * @note Size: 0x70
  */
 void Obj::bubbleEffect()
 {
@@ -2249,17 +2197,15 @@ void Obj::bubbleEffect()
 	mEfxBubble->setGlobalScale(mScaleModifier);
 }
 
-/*
- * --INFO--
- * Address:	80387098
- * Size:	000028
+/**
+ * @note Address: 0x80387098
+ * @note Size: 0x28
  */
 void Obj::delShadow() { shadowMgr->delNormalShadow(this); }
 
-/*
- * --INFO--
- * Address:	803870C0
- * Size:	0002C8
+/**
+ * @note Address: 0x803870C0
+ * @note Size: 0x2C8
  */
 void Obj::eyeScaleMtxCalc()
 {
@@ -2510,10 +2456,9 @@ lbl_80387358:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80387388
- * Size:	000184
+/**
+ * @note Address: 0x80387388
+ * @note Size: 0x184
  */
 void Obj::weakScaleMtxCalc()
 {

@@ -17,17 +17,15 @@
         .4byte 0x00000000
 */
 
-/*
- * --INFO--
- * Address:	800A8504
- * Size:	000030
+/**
+ * @note Address: 0x800A8504
+ * @note Size: 0x30
  */
 JASChannelUpdater::JASChannelUpdater() { init(); }
 
-/*
- * --INFO--
- * Address:	800A8534
- * Size:	0000C0
+/**
+ * @note Address: 0x800A8534
+ * @note Size: 0xC0
  */
 void JASChannelUpdater::init()
 {
@@ -70,10 +68,9 @@ void JASChannelUpdater::init()
 	_4C    = 0xD;
 }
 
-/*
- * --INFO--
- * Address:	800A85F4
- * Size:	000164
+/**
+ * @note Address: 0x800A85F4
+ * @note Size: 0x164
  */
 void JASChannelUpdater::initialUpdateChannel(JASChannel* p1, JASDsp::TChannel* p2)
 {
@@ -109,10 +106,9 @@ void JASChannelUpdater::initialUpdateChannel(JASChannel* p1, JASDsp::TChannel* p
 	p2->setDistFilter(_34);
 }
 
-/*
- * --INFO--
- * Address:	800A8758
- * Size:	0000E8
+/**
+ * @note Address: 0x800A8758
+ * @note Size: 0xE8
  * updateChannel__17JASChannelUpdaterFP10JASChannelPQ26JASDsp8TChannel
  */
 void JASChannelUpdater::updateChannel(JASChannel* p1, JASDsp::TChannel* p2)

@@ -4,17 +4,15 @@
 
 CellMgrParms* CellMgrParms::mInstance;
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
+/**
+ * @note Address: N/A
+ * @note Size: 0xE4
  */
 static void _Print(char* format, ...) { OSReport(format, "CellMgrParms"); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00015C
+/**
+ * @note Address: N/A
+ * @note Size: 0x15C
  */
 CellMgrParms::CellMgrParms()
     : Parameters(nullptr, "CellMgr")
@@ -23,17 +21,15 @@ CellMgrParms::CellMgrParms()
 {
 }
 
-/*
- * --INFO--
- * Address:	8022E188
- * Size:	000074
+/**
+ * @note Address: 0x8022E188
+ * @note Size: 0x74
  */
 CellMgrParms::~CellMgrParms() { mInstance = nullptr; }
 
-/*
- * --INFO--
- * Address:	8022E1FC
- * Size:	000168
+/**
+ * @note Address: 0x8022E1FC
+ * @note Size: 0x168
  */
 void CellMgrParms::globalInstance()
 {

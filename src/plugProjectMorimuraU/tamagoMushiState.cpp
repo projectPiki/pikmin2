@@ -8,10 +8,9 @@
 namespace Game {
 namespace TamagoMushi {
 
-/*
- * --INFO--
- * Address:	8036CCF0
- * Size:	000108
+/**
+ * @note Address: 0x8036CCF0
+ * @note Size: 0x108
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -24,10 +23,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateWait(TAMAGOMUSHI_Wait));
 }
 
-/*
- * --INFO--
- * Address:	8036CDF8
- * Size:	00003C
+/**
+ * @note Address: 0x8036CDF8
+ * @note Size: 0x3C
  */
 StateWalk::StateWalk(int stateID)
     : State(stateID)
@@ -35,10 +33,9 @@ StateWalk::StateWalk(int stateID)
 	mName = "walk";
 }
 
-/*
- * --INFO--
- * Address:	8036CE34
- * Size:	000108
+/**
+ * @note Address: 0x8036CE34
+ * @note Size: 0x108
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -58,10 +55,9 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	mitite->setAlive(true);
 }
 
-/*
- * --INFO--
- * Address:	8036CF3C
- * Size:	0000EC
+/**
+ * @note Address: 0x8036CF3C
+ * @note Size: 0xEC
  */
 void StateWalk::exec(EnemyBase* enemy)
 {
@@ -85,10 +81,9 @@ void StateWalk::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8036D028
- * Size:	00003C
+/**
+ * @note Address: 0x8036D028
+ * @note Size: 0x3C
  */
 StateTurn::StateTurn(int stateID)
     : State(stateID)
@@ -96,10 +91,9 @@ StateTurn::StateTurn(int stateID)
 	mName = "turn";
 }
 
-/*
- * --INFO--
- * Address:	8036D064
- * Size:	000054
+/**
+ * @note Address: 0x8036D064
+ * @note Size: 0x54
  */
 void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -108,10 +102,9 @@ void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->mCurrentVelocity = Vector3f(0.0f);
 }
 
-/*
- * --INFO--
- * Address:	8036D0B8
- * Size:	000088
+/**
+ * @note Address: 0x8036D0B8
+ * @note Size: 0x88
  */
 void StateTurn::exec(EnemyBase* enemy)
 {
@@ -125,10 +118,9 @@ void StateTurn::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8036D140
- * Size:	00003C
+/**
+ * @note Address: 0x8036D140
+ * @note Size: 0x3C
  */
 StateAppear::StateAppear(int stateID)
     : State(stateID)
@@ -136,10 +128,9 @@ StateAppear::StateAppear(int stateID)
 	mName = "appear";
 }
 
-/*
- * --INFO--
- * Address:	8036D17C
- * Size:	000160
+/**
+ * @note Address: 0x8036D17C
+ * @note Size: 0x160
  */
 void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -169,10 +160,9 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	mAppearFrame = 15.0f * randFloat();
 }
 
-/*
- * --INFO--
- * Address:	8036D2DC
- * Size:	0001AC
+/**
+ * @note Address: 0x8036D2DC
+ * @note Size: 0x1AC
  */
 void StateAppear::exec(EnemyBase* enemy)
 {
@@ -213,10 +203,9 @@ void StateAppear::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8036D488
- * Size:	00003C
+/**
+ * @note Address: 0x8036D488
+ * @note Size: 0x3C
  */
 StateHide::StateHide(int stateID)
     : State(stateID)
@@ -224,10 +213,9 @@ StateHide::StateHide(int stateID)
 	mName = "hide";
 }
 
-/*
- * --INFO--
- * Address:	8036D4C4
- * Size:	00006C
+/**
+ * @note Address: 0x8036D4C4
+ * @note Size: 0x6C
  */
 void StateHide::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -242,10 +230,9 @@ void StateHide::init(EnemyBase* enemy, StateArg* stateArg)
 	mitite->createHideEffect();
 }
 
-/*
- * --INFO--
- * Address:	8036D530
- * Size:	000044
+/**
+ * @note Address: 0x8036D530
+ * @note Size: 0x44
  */
 void StateHide::exec(EnemyBase* enemy)
 {
@@ -254,10 +241,9 @@ void StateHide::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8036D574
- * Size:	00003C
+/**
+ * @note Address: 0x8036D574
+ * @note Size: 0x3C
  */
 StateDead::StateDead(int stateID)
     : State(stateID)
@@ -265,10 +251,9 @@ StateDead::StateDead(int stateID)
 	mName = "dead";
 }
 
-/*
- * --INFO--
- * Address:	8036D5B0
- * Size:	000108
+/**
+ * @note Address: 0x8036D5B0
+ * @note Size: 0x108
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -287,10 +272,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	bombFx.create(&arg);
 }
 
-/*
- * --INFO--
- * Address:	8036D6B8
- * Size:	000114
+/**
+ * @note Address: 0x8036D6B8
+ * @note Size: 0x114
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -309,10 +293,9 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8036D7CC
- * Size:	00003C
+/**
+ * @note Address: 0x8036D7CC
+ * @note Size: 0x3C
  */
 StateWait::StateWait(int stateID)
     : State(stateID)
@@ -320,10 +303,9 @@ StateWait::StateWait(int stateID)
 	mName = "Wait";
 }
 
-/*
- * --INFO--
- * Address:	8036D808
- * Size:	000074
+/**
+ * @note Address: 0x8036D808
+ * @note Size: 0x74
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -337,10 +319,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	mitite->_300 = 1;
 }
 
-/*
- * --INFO--
- * Address:	8036D87C
- * Size:	000098
+/**
+ * @note Address: 0x8036D87C
+ * @note Size: 0x98
  */
 void StateWait::exec(EnemyBase* enemy)
 {

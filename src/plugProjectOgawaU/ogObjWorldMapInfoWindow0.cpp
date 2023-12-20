@@ -9,20 +9,18 @@
 #include "trig.h"
 #include "System.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
+/**
+ * @note Address: N/A
+ * @note Size: 0xE4
  */
 static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	8032B340
- * Size:	000084
+/**
+ * @note Address: 0x8032B340
+ * @note Size: 0x84
  */
 ObjWorldMapInfoWindow0::ObjWorldMapInfoWindow0(char const* name)
     : ObjSMenuPauseVS("SMenuPauseVS screen")
@@ -37,10 +35,9 @@ ObjWorldMapInfoWindow0::ObjWorldMapInfoWindow0(char const* name)
 	mCurrMenuSel = mPrevSel;
 }
 
-/*
- * --INFO--
- * Address:	8032B3C4
- * Size:	0003C4
+/**
+ * @note Address: 0x8032B3C4
+ * @note Size: 0x3C4
  */
 void ObjWorldMapInfoWindow0::doCreate(JKRArchive* arc)
 {
@@ -80,10 +77,9 @@ void ObjWorldMapInfoWindow0::doCreate(JKRArchive* arc)
 	mAnimText2->open(0.6f);
 }
 
-/*
- * --INFO--
- * Address:	8032B788
- * Size:	00008C
+/**
+ * @note Address: 0x8032B788
+ * @note Size: 0x8C
  */
 bool ObjWorldMapInfoWindow0::doStart(::Screen::StartSceneArg const*)
 {
@@ -98,10 +94,9 @@ bool ObjWorldMapInfoWindow0::doStart(::Screen::StartSceneArg const*)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8032B814
- * Size:	000090
+/**
+ * @note Address: 0x8032B814
+ * @note Size: 0x90
  */
 bool ObjWorldMapInfoWindow0::doUpdateFadein()
 {
@@ -115,17 +110,15 @@ bool ObjWorldMapInfoWindow0::doUpdateFadein()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	8032B8A4
- * Size:	000020
+/**
+ * @note Address: 0x8032B8A4
+ * @note Size: 0x20
  */
 void ObjWorldMapInfoWindow0::commonUpdate() { ObjSMenuPauseVS::commonUpdate(); }
 
-/*
- * --INFO--
- * Address:	8032B8C4
- * Size:	000038
+/**
+ * @note Address: 0x8032B8C4
+ * @note Size: 0x38
  */
 void ObjWorldMapInfoWindow0::out_cancel()
 {
@@ -133,10 +126,9 @@ void ObjWorldMapInfoWindow0::out_cancel()
 	out_L();
 }
 
-/*
- * --INFO--
- * Address:	8032B8FC
- * Size:	000038
+/**
+ * @note Address: 0x8032B8FC
+ * @note Size: 0x38
  */
 void ObjWorldMapInfoWindow0::out_menu_0()
 {
@@ -144,10 +136,9 @@ void ObjWorldMapInfoWindow0::out_menu_0()
 	out_L();
 }
 
-/*
- * --INFO--
- * Address:	8032B934
- * Size:	000038
+/**
+ * @note Address: 0x8032B934
+ * @note Size: 0x38
  */
 void ObjWorldMapInfoWindow0::out_menu_1()
 {
@@ -155,17 +146,15 @@ void ObjWorldMapInfoWindow0::out_menu_1()
 	out_L();
 }
 
-/*
- * --INFO--
- * Address:	8032B96C
- * Size:	00000C
+/**
+ * @note Address: 0x8032B96C
+ * @note Size: 0xC
  */
 void ObjWorldMapInfoWindow0::out_L() { mState = 2; }
 
-/*
- * --INFO--
- * Address:	8032B978
- * Size:	000088
+/**
+ * @note Address: 0x8032B978
+ * @note Size: 0x88
  */
 void ObjWorldMapInfoWindow0::doUpdateFadeoutFinish()
 {
@@ -175,10 +164,9 @@ void ObjWorldMapInfoWindow0::doUpdateFadeoutFinish()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8032BA00
- * Size:	00000C
+/**
+ * @note Address: 0x8032BA00
+ * @note Size: 0xC
  */
 int ObjWorldMapInfoWindow0::getResult() { return mDispWmap->mResult; }
 

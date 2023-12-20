@@ -16,10 +16,9 @@ namespace Screen {
 const char* cpNumTexLargeName[]
     = { "0_48.bti", "1_48.bti", "2_48.bti", "3_48.bti", "4_48.bti", "5_48.bti", "6_48.bti", "7_48.bti", "8_48.bti", "9_48.bti" };
 
-/*
- * --INFO--
- * Address:	8040F1E0
- * Size:	00002C
+/**
+ * @note Address: 0x8040F1E0
+ * @note Size: 0x2C
  */
 DispPayDept::DispPayDept(PayDeptType type, int level)
 {
@@ -27,10 +26,9 @@ DispPayDept::DispPayDept(PayDeptType type, int level)
 	mPercentLevel = level;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
+/**
+ * @note Address: N/A
+ * @note Size: 0x60
  */
 ObjPayDept::ObjPayDept()
 {
@@ -41,10 +39,9 @@ ObjPayDept::ObjPayDept()
 	mAnimTime1 = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	8040F20C
- * Size:	00025C
+/**
+ * @note Address: 0x8040F20C
+ * @note Size: 0x25C
  */
 void ObjPayDept::doCreate(JKRArchive* arc)
 {
@@ -96,10 +93,9 @@ void ObjPayDept::doCreate(JKRArchive* arc)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8040F468
- * Size:	0000CC
+/**
+ * @note Address: 0x8040F468
+ * @note Size: 0xCC
  */
 bool ObjPayDept::doUpdateFadein()
 {
@@ -127,17 +123,15 @@ bool ObjPayDept::doUpdateFadein()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8040F534
- * Size:	000020
+/**
+ * @note Address: 0x8040F534
+ * @note Size: 0x20
  */
 bool ObjPayDept::doUpdate() { return updateAnimation(); }
 
-/*
- * --INFO--
- * Address:	8040F554
- * Size:	0000C0
+/**
+ * @note Address: 0x8040F554
+ * @note Size: 0xC0
  */
 void ObjPayDept::doUpdateFadeoutFinish()
 {
@@ -155,10 +149,9 @@ void ObjPayDept::doUpdateFadeoutFinish()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8040F614
- * Size:	000064
+/**
+ * @note Address: 0x8040F614
+ * @note Size: 0x64
  */
 void ObjPayDept::doDraw(Graphics& gfx)
 {
@@ -166,10 +159,9 @@ void ObjPayDept::doDraw(Graphics& gfx)
 	mScreen->draw(gfx, gfx.mOrthoGraph);
 }
 
-/*
- * --INFO--
- * Address:	8040F678
- * Size:	0000DC
+/**
+ * @note Address: 0x8040F678
+ * @note Size: 0xDC
  */
 bool ObjPayDept::updateAnimation()
 {
@@ -187,10 +179,9 @@ bool ObjPayDept::updateAnimation()
 
 inline u64 J2DPane::getTagName() const { return mTag; }
 
-/*
- * --INFO--
- * Address:	8040F754
- * Size:	00031C
+/**
+ * @note Address: 0x8040F754
+ * @note Size: 0x31C
  */
 void ObjPayDept::searchNumPane(J2DPane* pane, int id1, int id2)
 {
@@ -208,10 +199,9 @@ void ObjPayDept::searchNumPane(J2DPane* pane, int id1, int id2)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8040FA70
- * Size:	00015C
+/**
+ * @note Address: 0x8040FA70
+ * @note Size: 0x15C
  */
 void ScenePayDept::doUserCallBackFunc(Resource::MgrCommand*)
 {

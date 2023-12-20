@@ -12,17 +12,15 @@ namespace Game {
 
 CameraMgr* cameraMgr;
 
-/*
- * --INFO--
- * Address:	80250988
- * Size:	000048
+/**
+ * @note Address: 0x80250988
+ * @note Size: 0x48
  */
 CameraMgr::CameraMgr() { setName("CameraMgr"); }
 
-/*
- * --INFO--
- * Address:	802509D0
- * Size:	00012C
+/**
+ * @note Address: 0x802509D0
+ * @note Size: 0x12C
  */
 void CameraMgr::loadResource()
 {
@@ -47,10 +45,9 @@ void CameraMgr::loadResource()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80251E44
- * Size:	0000A8
+/**
+ * @note Address: 0x80251E44
+ * @note Size: 0xA8
  */
 void CameraMgr::setViewport(Viewport* vp, int id)
 {
@@ -60,10 +57,9 @@ void CameraMgr::setViewport(Viewport* vp, int id)
 	P2ASSERTLINE(85, mCameraObjList[id]);
 }
 
-/*
- * --INFO--
- * Address:	80251EEC
- * Size:	00014C
+/**
+ * @note Address: 0x80251EEC
+ * @note Size: 0x14C
  */
 void CameraMgr::init(int state)
 {
@@ -90,10 +86,9 @@ void CameraMgr::init(int state)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80252038
- * Size:	000094
+/**
+ * @note Address: 0x80252038
+ * @note Size: 0x94
  */
 void CameraMgr::setCameraAngle(f32 angle, int id)
 {
@@ -108,10 +103,9 @@ void CameraMgr::setCameraAngle(f32 angle, int id)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802520CC
- * Size:	000170
+/**
+ * @note Address: 0x802520CC
+ * @note Size: 0x170
  */
 void CameraMgr::update()
 {
@@ -148,10 +142,9 @@ void CameraMgr::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8025223C
- * Size:	000154
+/**
+ * @note Address: 0x8025223C
+ * @note Size: 0x154
  */
 void CameraMgr::startVibration(int type, Vector3f& pos, int camID)
 {
@@ -174,10 +167,9 @@ void CameraMgr::startVibration(int type, Vector3f& pos, int camID)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80252390
- * Size:	0000DC
+/**
+ * @note Address: 0x80252390
+ * @note Size: 0xDC
  */
 void CameraMgr::startVibration(int type, int camID)
 {
@@ -195,10 +187,9 @@ void CameraMgr::startVibration(int type, int camID)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8025246C
- * Size:	000070
+/**
+ * @note Address: 0x8025246C
+ * @note Size: 0x70
  */
 void CameraMgr::controllerLock(int camID)
 {
@@ -210,10 +201,9 @@ void CameraMgr::controllerLock(int camID)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802524DC
- * Size:	000070
+/**
+ * @note Address: 0x802524DC
+ * @note Size: 0x70
  */
 void CameraMgr::controllerUnLock(int camID)
 {
@@ -225,10 +215,9 @@ void CameraMgr::controllerUnLock(int camID)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8025254C
- * Size:	000090
+/**
+ * @note Address: 0x8025254C
+ * @note Size: 0x90
  */
 void CameraMgr::startDemoCamera(int camID, int type)
 {
@@ -240,10 +229,9 @@ void CameraMgr::startDemoCamera(int camID, int type)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802525DC
- * Size:	00007C
+/**
+ * @note Address: 0x802525DC
+ * @note Size: 0x7C
  */
 void CameraMgr::finishDemoCamera(int camID)
 {
@@ -255,10 +243,9 @@ void CameraMgr::finishDemoCamera(int camID)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80252658
- * Size:	000160
+/**
+ * @note Address: 0x80252658
+ * @note Size: 0x160
  */
 void CameraMgr::changePlayerMode(int state, IDelegate1<Game::CameraArg*>* delegate)
 {
@@ -298,10 +285,9 @@ void CameraMgr::changePlayerMode(int state, IDelegate1<Game::CameraArg*>* delega
 	mDelegate       = delegate;
 }
 
-/*
- * --INFO--
- * Address:	802527B8
- * Size:	000058
+/**
+ * @note Address: 0x802527B8
+ * @note Size: 0x58
  */
 bool CameraMgr::isChangePlayer()
 {
@@ -320,10 +306,9 @@ bool CameraMgr::isChangePlayer()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80252810
- * Size:	000058
+/**
+ * @note Address: 0x80252810
+ * @note Size: 0x58
  */
 void CameraMgr::setZukanCamera(LookAtCamera* cam)
 {
@@ -334,10 +319,9 @@ void CameraMgr::setZukanCamera(LookAtCamera* cam)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80252868
- * Size:	000028
+/**
+ * @note Address: 0x80252868
+ * @note Size: 0x28
  */
 bool CameraMgr::isCameraUpdateOn()
 {
@@ -347,10 +331,9 @@ bool CameraMgr::isCameraUpdateOn()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80252890
- * Size:	000068
+/**
+ * @note Address: 0x80252890
+ * @note Size: 0x68
  */
 bool CameraMgr::isStartAndEnd(int* data, int type)
 {
@@ -372,10 +355,9 @@ bool CameraMgr::isStartAndEnd(int* data, int type)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802528F8
- * Size:	000084
+/**
+ * @note Address: 0x802528F8
+ * @note Size: 0x84
  */
 bool CameraMgr::isVibrationStart(int type, int camID)
 {
@@ -391,10 +373,9 @@ bool CameraMgr::isVibrationStart(int type, int camID)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8025297C
- * Size:	0000A8
+/**
+ * @note Address: 0x8025297C
+ * @note Size: 0xA8
  */
 void CameraMgr::readCameraParms(char* path)
 {
@@ -408,10 +389,9 @@ void CameraMgr::readCameraParms(char* path)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80252A24
- * Size:	000074
+/**
+ * @note Address: 0x80252A24
+ * @note Size: 0x74
  */
 void CameraMgr::readParameter(Stream& stream)
 {

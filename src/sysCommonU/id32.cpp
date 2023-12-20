@@ -2,31 +2,27 @@
 
 ID32 ID32::eof('_eof');
 
-/*
- * --INFO--
- * Address:	80413254
- * Size:	00001C
+/**
+ * @note Address: 0x80413254
+ * @note Size: 0x1C
  */
 bool ID32::isEof() { return mId.mIntView == '_eof'; }
 
-/*
- * --INFO--
- * Address:	80413270
- * Size:	000038
+/**
+ * @note Address: 0x80413270
+ * @note Size: 0x38
  */
 ID32::ID32() { setID('none'); }
 
-/*
- * --INFO--
- * Address:	804132A8
- * Size:	000030
+/**
+ * @note Address: 0x804132A8
+ * @note Size: 0x30
  */
 ID32::ID32(u32 id) { setID(id); }
 
-/*
- * --INFO--
- * Address:	804132D8
- * Size:	000024
+/**
+ * @note Address: 0x804132D8
+ * @note Size: 0x24
  */
 void ID32::setID(u32 set_id)
 {
@@ -40,11 +36,9 @@ void ID32::setID(u32 set_id)
  * @param _id The ID to be checked.
  * @param exception The character that is exempted from the comparison.
  * @return true if the ID matches the stored ID, false otherwise.
- */
-/*
- * --INFO--
- * Address:	804132FC
- * Size:	0000B8
+ *
+ * @note Address: 0x804132FC
+ * @note Size: 0xB8
  */
 bool ID32::match(u32 id, char exception)
 {
@@ -62,11 +56,9 @@ bool ID32::match(u32 id, char exception)
 
 /**
  * @brief Updates the number ID using the string ID.
- */
-/*
- * --INFO--
- * Address:	804133B4
- * Size:	000024
+ *
+ * @note Address: 0x804133B4
+ * @note Size: 0x24
  */
 void ID32::updateID()
 {
@@ -75,10 +67,9 @@ void ID32::updateID()
 	}
 }
 
-/*
- * --INFO--
- * Address:	804133D8
- * Size:	00002C
+/**
+ * @note Address: 0x804133D8
+ * @note Size: 0x2C
  */
 void ID32::updateString()
 {
@@ -90,27 +81,25 @@ void ID32::updateString()
 	mStringID[4] = '\0';
 }
 
-/*
- * --INFO--
- * Address:	80413404
- * Size:	000030
+/**
+ * @note Address: 0x80413404
+ * @note Size: 0x30
  */
 void ID32::operator=(u32 id)
 {
 	mId.mIntView = id;
 	updateString();
 }
-/*
- * --INFO--
- * Address:	80413434
- * Size:	000014
+
+/**
+ * @note Address: 0x80413434
+ * @note Size: 0x14
  */
 bool ID32::operator==(u32 id) { return mId.mIntView == id; }
 
-/*
- * --INFO--
- * Address:	80413448
- * Size:	000018
+/**
+ * @note Address: 0x80413448
+ * @note Size: 0x18
  */
 bool ID32::operator!=(u32 id) { return mId.mIntView != id; }
 
@@ -120,11 +109,9 @@ bool ID32::operator!=(u32 id) { return mId.mIntView != id; }
  * @note If in text mode, it converts to a string and writes in the format "{str}". Otherwise, 4 bytes are written.
  *
  * @param stream The stream to write the ID32 object to.
- */
-/*
- * --INFO--
- * Address:	80413460
- * Size:	000090
+ *
+ * @note Address: 0x80413460
+ * @note Size: 0x90
  */
 void ID32::write(Stream& stream)
 {
@@ -147,11 +134,9 @@ void ID32::write(Stream& stream)
  * @note If in text mode, the function reads the next token to update the ID32 string. Otherwise, it reads four bytes.
  *
  * @param stream The stream to read from.
- */
-/*
- * --INFO--
- * Address:	804134F0
- * Size:	0000EC
+ *
+ * @note Address: 0x804134F0
+ * @note Size: 0xEC
  */
 void ID32::read(Stream& stream)
 {
@@ -172,10 +157,9 @@ void ID32::read(Stream& stream)
 	updateString();
 }
 
-/*
- * --INFO--
- * Address:	804135DC
- * Size:	000004
+/**
+ * @note Address: 0x804135DC
+ * @note Size: 0x4
  */
 void ID32::print() { }
 
@@ -185,11 +169,9 @@ void ID32::print() { }
  * @note The resulting string will be null-terminated.
  *
  * @param output The character array to store the string representation.
- */
-/*
- * --INFO--
- * Address:	804135E0
- * Size:	000038
+ *
+ * @note Address: 0x804135E0
+ * @note Size: 0x38
  */
 void ID32::sprint(char* output)
 {

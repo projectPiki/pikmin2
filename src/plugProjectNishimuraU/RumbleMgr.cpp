@@ -11,10 +11,9 @@ static const char unusedRumbleName[] = "246-RumbleMgr";
 
 RumbleMgr* rumbleMgr;
 
-/*
- * --INFO--
- * Address:	80253304
- * Size:	000048
+/**
+ * @note Address: 0x80253304
+ * @note Size: 0x48
  */
 RumbleMgr::RumbleMgr()
     : CNode()
@@ -22,10 +21,9 @@ RumbleMgr::RumbleMgr()
 	mName = "RumbleMgr";
 }
 
-/*
- * --INFO--
- * Address:	8025334C
- * Size:	000158
+/**
+ * @note Address: 0x8025334C
+ * @note Size: 0x158
  */
 void RumbleMgr::loadResource()
 {
@@ -48,10 +46,9 @@ void RumbleMgr::loadResource()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802534A4
- * Size:	000108
+/**
+ * @note Address: 0x802534A4
+ * @note Size: 0x108
  */
 void RumbleMgr::init()
 {
@@ -77,10 +74,9 @@ void RumbleMgr::init()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802535AC
- * Size:	0001D4
+/**
+ * @note Address: 0x802535AC
+ * @note Size: 0x1D4
  */
 void RumbleMgr::update()
 {
@@ -121,10 +117,9 @@ void RumbleMgr::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80253780
- * Size:	0001A4
+/**
+ * @note Address: 0x80253780
+ * @note Size: 0x1A4
  */
 void RumbleMgr::startRumble(int type, Vector3f& pos, int rumbleID)
 {
@@ -153,10 +148,9 @@ void RumbleMgr::startRumble(int type, Vector3f& pos, int rumbleID)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80253924
- * Size:	0000B8
+/**
+ * @note Address: 0x80253924
+ * @note Size: 0xB8
  */
 void RumbleMgr::startRumble(int type, int rumbleID)
 {
@@ -174,10 +168,9 @@ void RumbleMgr::startRumble(int type, int rumbleID)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802539DC
- * Size:	000094
+/**
+ * @note Address: 0x802539DC
+ * @note Size: 0x94
  */
 void RumbleMgr::stopRumble(int type, int rumbleID)
 {
@@ -191,10 +184,9 @@ void RumbleMgr::stopRumble(int type, int rumbleID)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80253A70
- * Size:	000088
+/**
+ * @note Address: 0x80253A70
+ * @note Size: 0x88
  */
 void RumbleMgr::stopRumble(int rumbleID)
 {
@@ -208,10 +200,9 @@ void RumbleMgr::stopRumble(int rumbleID)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80253AF8
- * Size:	00007C
+/**
+ * @note Address: 0x80253AF8
+ * @note Size: 0x7C
  */
 bool RumbleMgr::isRumbleUpdateOn()
 {
@@ -226,10 +217,9 @@ bool RumbleMgr::isRumbleUpdateOn()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80253B74
- * Size:	00005C
+/**
+ * @note Address: 0x80253B74
+ * @note Size: 0x5C
  */
 void RumbleMgr::setZukanRumble(Controller* controller, Vector3f* zukanPos)
 {
@@ -241,10 +231,9 @@ void RumbleMgr::setZukanRumble(Controller* controller, Vector3f* zukanPos)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80253BD0
- * Size:	000068
+/**
+ * @note Address: 0x80253BD0
+ * @note Size: 0x68
  */
 bool RumbleMgr::isStartAndEnd(int* startEndArray, int rumbleID)
 {
@@ -270,10 +259,9 @@ bool RumbleMgr::isStartAndEnd(int* startEndArray, int rumbleID)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80253C38
- * Size:	0000C0
+/**
+ * @note Address: 0x80253C38
+ * @note Size: 0xC0
  */
 void RumbleMgr::readRumbleParms(char* fileName)
 {
@@ -288,10 +276,9 @@ void RumbleMgr::readRumbleParms(char* fileName)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80253CF8
- * Size:	0000C0
+/**
+ * @note Address: 0x80253CF8
+ * @note Size: 0xC0
  */
 void RumbleMgr::readRumbleData(char* fileName)
 {

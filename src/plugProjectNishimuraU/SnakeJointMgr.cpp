@@ -8,10 +8,9 @@ const f32 cJointModRatio[6] = { 0.0f, 0.2f, 0.4f, 0.6f, 0.8f, 1.0f };
 
 static SnakeJointMgr* sSnakeJointMgr;
 
-/*
- * --INFO--
- * Address:	802D1634
- * Size:	000038
+/**
+ * @note Address: 0x802D1634
+ * @note Size: 0x38
  */
 static bool SnakeJointCallBack(J3DJoint* joint, int idx)
 {
@@ -22,10 +21,9 @@ static bool SnakeJointCallBack(J3DJoint* joint, int idx)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802D166C
- * Size:	00003C
+/**
+ * @note Address: 0x802D166C
+ * @note Size: 0x3C
  */
 SnakeJointMgr::SnakeJointMgr(EnemyBase* enemy)
 {
@@ -40,10 +38,9 @@ SnakeJointMgr::SnakeJointMgr(EnemyBase* enemy)
 	_24    = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	802D16A8
- * Size:	0000B8
+/**
+ * @note Address: 0x802D16A8
+ * @note Size: 0xB8
  */
 void SnakeJointMgr::setupCallBackJoint()
 {
@@ -60,10 +57,9 @@ void SnakeJointMgr::setupCallBackJoint()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802D1760
- * Size:	000020
+/**
+ * @note Address: 0x802D1760
+ * @note Size: 0x20
  */
 void SnakeJointMgr::startModify(f32 p1, f32 p2)
 {
@@ -74,10 +70,9 @@ void SnakeJointMgr::startModify(f32 p1, f32 p2)
 	_2C    = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	802D1780
- * Size:	00001C
+/**
+ * @note Address: 0x802D1780
+ * @note Size: 0x1C
  */
 void SnakeJointMgr::returnModify(f32 p1)
 {
@@ -87,17 +82,15 @@ void SnakeJointMgr::returnModify(f32 p1)
 	_2C    = 1.0f;
 }
 
-/*
- * --INFO--
- * Address:	802D179C
- * Size:	00000C
+/**
+ * @note Address: 0x802D179C
+ * @note Size: 0xC
  */
 void SnakeJointMgr::finishModify() { mState = SNAKEJOINT_Finish; }
 
-/*
- * --INFO--
- * Address:	802D17A8
- * Size:	000080
+/**
+ * @note Address: 0x802D17A8
+ * @note Size: 0x80
  */
 void SnakeJointMgr::doAnimation()
 {
@@ -121,17 +114,15 @@ void SnakeJointMgr::doAnimation()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802D1828
- * Size:	00000C
+/**
+ * @note Address: 0x802D1828
+ * @note Size: 0xC
  */
 void SnakeJointMgr::finishAnimation() { sSnakeJointMgr = nullptr; }
 
-/*
- * --INFO--
- * Address:	802D1834
- * Size:	0002AC
+/**
+ * @note Address: 0x802D1834
+ * @note Size: 0x2AC
  */
 void SnakeJointMgr::makeMatrix()
 {

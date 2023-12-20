@@ -13,10 +13,9 @@ static const char* cMatAnimBtkTexName = "/enemy/data/Damagumo/damagumo_model.btk
 static const char* cMatAnimBrkTexName = "/enemy/data/Damagumo/damagumo_model.brk";
 } // namespace
 
-/*
- * --INFO--
- * Address:	802A50CC
- * Size:	000050
+/**
+ * @note Address: 0x802A50CC
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -24,31 +23,27 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "ダマグモマネージャ"; // damagumo manager
 }
 
-/*
- * --INFO--
- * Address:	802A511C
- * Size:	000048
+/**
+ * @note Address: 0x802A511C
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Parms); }
 
-/*
- * --INFO--
- * Address:	802A532C
- * Size:	000060
+/**
+ * @note Address: 0x802A532C
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	802A5448
- * Size:	000010
+/**
+ * @note Address: 0x802A5448
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
-/*
- * --INFO--
- * Address:	802A5458
- * Size:	000068
+/**
+ * @note Address: 0x802A5458
+ * @note Size: 0x68
  */
 void Mgr::loadModelData()
 {
@@ -60,10 +55,9 @@ void Mgr::loadModelData()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A54C0
- * Size:	00012C
+/**
+ * @note Address: 0x802A54C0
+ * @note Size: 0x12C
  */
 void Mgr::loadTexData()
 {
@@ -92,10 +86,9 @@ void Mgr::loadTexData()
 	mTevRegAnimation->attachResource(brkFile, mModelData);
 }
 
-/*
- * --INFO--
- * Address:	802A55EC
- * Size:	00007C
+/**
+ * @note Address: 0x802A55EC
+ * @note Size: 0x7C
  */
 SysShape::Model* Mgr::createModel()
 {

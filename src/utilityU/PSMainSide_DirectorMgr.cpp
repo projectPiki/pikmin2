@@ -6,10 +6,9 @@
 
 namespace PSM {
 
-/*
- * --INFO--
- * Address:	8046F2BC
- * Size:	0002D8
+/**
+ * @note Address: 0x8046F2BC
+ * @note Size: 0x2D8
  */
 DirectorMgr_Scene::DirectorMgr_Scene(DirectorMgr_Scene* owner, u8 type)
     : ::PSSystem::DirectorMgrBase(type)
@@ -45,17 +44,15 @@ DirectorMgr_Scene::DirectorMgr_Scene(DirectorMgr_Scene* owner, u8 type)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8046F594
- * Size:	00008C
+/**
+ * @note Address: 0x8046F594
+ * @note Size: 0x8C
  */
 DirectorMgr_Scene::~DirectorMgr_Scene() { }
 
-/*
- * --INFO--
- * Address:	8046F620
- * Size:	000294
+/**
+ * @note Address: 0x8046F620
+ * @note Size: 0x294
  */
 void DirectorMgr_Scene::initTrackMap(::PSSystem::DirectedBgm& bgm)
 {
@@ -86,10 +83,9 @@ void DirectorMgr_Scene::initTrackMap(::PSSystem::DirectedBgm& bgm)
 	mBgmTrackMap = file.readTrackMap(bms);
 }
 
-/*
- * --INFO--
- * Address:	8046F8B4
- * Size:	000770
+/**
+ * @note Address: 0x8046F8B4
+ * @note Size: 0x770
  */
 ::PSSystem::DirectorBase* DirectorMgr_Scene::newDirector(u8 type, ::PSSystem::DirectedBgm& bgm)
 {
@@ -782,10 +778,9 @@ r3, r22 lmw      r22, 8(r1) lwz      r0, 0x34(r1) mtlr     r0 addi     r1, r1,
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80470024
- * Size:	0000A8
+/**
+ * @note Address: 0x80470024
+ * @note Size: 0xA8
  */
 void DirectorMgr_Scene::adaptDirectorActor(::PSSystem::DirectorBase* director, u8 type)
 {
@@ -820,10 +815,9 @@ void DirectorMgr_Scene::adaptDirectorActor(::PSSystem::DirectorBase* director, u
 	}
 }
 
-/*
- * --INFO--
- * Address:	804700CC
- * Size:	000094
+/**
+ * @note Address: 0x804700CC
+ * @note Size: 0x94
  */
 PikminNumberDirector* DirectorMgr_Scene::newPikminNumberDirector(int pikNum, u8 pikMask, ::PSSystem::DirectedBgm& bgm)
 {
@@ -832,10 +826,9 @@ PikminNumberDirector* DirectorMgr_Scene::newPikminNumberDirector(int pikNum, u8 
 	return director;
 }
 
-/*
- * --INFO--
- * Address:	80470160
- * Size:	000090
+/**
+ * @note Address: 0x80470160
+ * @note Size: 0x90
  */
 PikminNumberDirector* DirectorMgr_Scene_AutoBgm::newPikminNumberDirector(int pikNum, u8 pikMask, ::PSSystem::DirectedBgm& bgm)
 {
@@ -844,20 +837,18 @@ PikminNumberDirector* DirectorMgr_Scene_AutoBgm::newPikminNumberDirector(int pik
 	return director;
 }
 
-/*
- * --INFO--
- * Address:	804701F0
- * Size:	000050
+/**
+ * @note Address: 0x804701F0
+ * @note Size: 0x50
  */
 DirectorMgr_Battle::DirectorMgr_Battle()
     : ::PSSystem::DirectorMgrBase(::PSSystem::DirectedBgm::BgmType_Battle)
 {
 }
 
-/*
- * --INFO--
- * Address:	80470240
- * Size:	000244
+/**
+ * @note Address: 0x80470240
+ * @note Size: 0x244
  */
 ::PSSystem::DirectorBase* DirectorMgr_Battle::newDirector(u8 flag, ::PSSystem::DirectedBgm& bgm)
 {
@@ -1075,20 +1066,18 @@ lbl_80470460:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80470484
- * Size:	000050
+/**
+ * @note Address: 0x80470484
+ * @note Size: 0x50
  */
 DirectorMgr_2PBattle::DirectorMgr_2PBattle()
     : ::PSSystem::DirectorMgrBase(::PSSystem::DirectedBgm::BgmType_2PBattle)
 {
 }
 
-/*
- * --INFO--
- * Address:	804704D4
- * Size:	0006B8
+/**
+ * @note Address: 0x804704D4
+ * @note Size: 0x6B8
  */
 ::PSSystem::DirectorBase* DirectorMgr_2PBattle::newDirector(u8 type, ::PSSystem::DirectedBgm& bgm)
 {

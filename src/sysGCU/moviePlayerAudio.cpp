@@ -2,10 +2,9 @@
 #include "Game/P2JST/ObjectSystem.h"
 #include "nans.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000CC
+/**
+ * @note Address: N/A
+ * @note Size: 0xCC
  */
 /* void @unnamed @moviePlayerAudio_cpp
     @ ::createObject_SOUND_JAI_(const JStudio::stb::data::TParse_TBlock_object&, JAIBasic*, const JStage::TSystem*)
@@ -13,20 +12,18 @@
     // UNUSED FUNCTION
 } */
 
-/*
- * --INFO--
- * Address:	80454D30
- * Size:	00003C
+/**
+ * @note Address: 0x80454D30
+ * @note Size: 0x3C
  */
 Pikmin_TCreateObject_JAudio::Pikmin_TCreateObject_JAudio(JAIBasic* jai, const JStage::TSystem* system)
     : JStudio_JAudio::TCreateObject(jai, system)
 {
 }
 
-/*
- * --INFO--
- * Address:	80454D6C
- * Size:	000194
+/**
+ * @note Address: 0x80454D6C
+ * @note Size: 0x194
  */
 bool Pikmin_TCreateObject_JAudio::create(JStudio::TObject** newObject, const JStudio::stb::data::TParse_TBlock_object& data)
 {

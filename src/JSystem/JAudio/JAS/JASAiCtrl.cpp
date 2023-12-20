@@ -32,10 +32,9 @@ static int sSubFrames        = 7;
 static JASMixMode sMixMode   = MixMode_Extra;
 static f32 sDacRate          = 32028.5f;
 
-/*
- * --INFO--
- * Address:	800A7968
- * Size:	00013C
+/**
+ * @note Address: 0x800A7968
+ * @note Size: 0x13C
  */
 void initAI(AIDCallback callback)
 {
@@ -61,34 +60,30 @@ void initAI(AIDCallback callback)
 	AIRegisterDMACallback(callback);
 }
 
-/*
- * --INFO--
- * Address:	800A7AA4
- * Size:	000020
+/**
+ * @note Address: 0x800A7AA4
+ * @note Size: 0x20
  */
 void startDMA() { AIStartDMA(); }
 
-/*
- * --INFO--
- * Address:	800A7AC4
- * Size:	000020
+/**
+ * @note Address: 0x800A7AC4
+ * @note Size: 0x20
  */
 void stopDMA() { AIStopDMA(); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 void setOutputRate(JASOutputRate)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800A7AE4
- * Size:	00015C
+/**
+ * @note Address: 0x800A7AE4
+ * @note Size: 0x15C
  */
 void updateDac()
 {
@@ -125,10 +120,9 @@ void updateDac()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800A7C40
- * Size:	0000F0
+/**
+ * @note Address: 0x800A7C40
+ * @note Size: 0xF0
  */
 void updateDSP()
 {
@@ -153,10 +147,9 @@ void updateDSP()
 	JASKernel::probeFinish(3);
 }
 
-/*
- * --INFO--
- * Address:	800A7D30
- * Size:	000310
+/**
+ * @note Address: 0x800A7D30
+ * @note Size: 0x310
  */
 void readDspBuffer(s16* param_0, u32 param_1)
 {
@@ -398,10 +391,9 @@ lbl_800A8008:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A8040
- * Size:	0001A4
+/**
+ * @note Address: 0x800A8040
+ * @note Size: 0x1A4
  */
 void finishDSPFrame()
 {
@@ -425,10 +417,9 @@ void finishDSPFrame()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void setSubFrames(u32 subframes)
 {
@@ -436,20 +427,18 @@ void setSubFrames(u32 subframes)
 	// sSubFrames = subframes;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void setNumDSPBuffer(u8)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800A81E4
- * Size:	00000C
+/**
+ * @note Address: 0x800A81E4
+ * @note Size: 0xC
  */
 void registerMixCallback(short* (*mixCallback)(long), JASMixMode mode)
 {
@@ -457,58 +446,51 @@ void registerMixCallback(short* (*mixCallback)(long), JASMixMode mode)
 	sMixMode       = mode;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void registerDacCallback(void (*)(short*, u32))
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void registDSPBufCallback(void (*)(short*, u32))
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800A81F0
- * Size:	000008
+/**
+ * @note Address: 0x800A81F0
+ * @note Size: 0x8
  */
 f32 getDacRate() { return sDacRate; }
 
-/*
- * --INFO--
- * Address:	800A81F8
- * Size:	000008
+/**
+ * @note Address: 0x800A81F8
+ * @note Size: 0x8
  */
 int getSubFrames() { return sSubFrames; }
 
-/*
- * --INFO--
- * Address:	800A8200
- * Size:	00000C
+/**
+ * @note Address: 0x800A8200
+ * @note Size: 0xC
  */
 static int getDacSize() { return sSubFrames * 0xA0; }
 
-/*
- * --INFO--
- * Address:	800A820C
- * Size:	00000C
+/**
+ * @note Address: 0x800A820C
+ * @note Size: 0xC
  */
 static int getFrameSamples() { return sSubFrames * 0x50; }
 
-/*
- * --INFO--
- * Address:	800A8218
- * Size:	0000C0
+/**
+ * @note Address: 0x800A8218
+ * @note Size: 0xC0
  */
 static void mixMonoTrack(s16* p1, u32 p2, MixCallback callback)
 {
@@ -581,10 +563,9 @@ lbl_800A82B8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A82D8
- * Size:	0000C0
+/**
+ * @note Address: 0x800A82D8
+ * @note Size: 0xC0
  */
 void mixMonoTrackWide(s16* p1, u32 p2, MixCallback callback)
 {
@@ -658,10 +639,9 @@ lbl_800A8378:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A8398
- * Size:	0000E0
+/**
+ * @note Address: 0x800A8398
+ * @note Size: 0xE0
  */
 void mixExtraTrack(s16* p1, u32 p2, MixCallback callback)
 {
@@ -748,10 +728,9 @@ lbl_800A8458:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A8478
- * Size:	00008C
+/**
+ * @note Address: 0x800A8478
+ * @note Size: 0x8C
  */
 void mixInterleaveTrack(s16* p1, u32 p2, MixCallback callback)
 {

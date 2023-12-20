@@ -8,10 +8,9 @@ static const char className[] = "generatorCache";
 
 GeneratorCache* generatorCache;
 
-/*
- * --INFO--
- * Address:	801F1908
- * Size:	000088
+/**
+ * @note Address: 0x801F1908
+ * @note Size: 0x88
  */
 GeneratorCache::GeneratorCache()
     : mRootCache(-1)
@@ -26,10 +25,9 @@ GeneratorCache::GeneratorCache()
 	clearGeneratorList();
 }
 
-/*
- * --INFO--
- * Address:	801F19F0
- * Size:	000098
+/**
+ * @note Address: 0x801F19F0
+ * @note Size: 0x98
  */
 void GeneratorCache::clearCache()
 {
@@ -47,17 +45,15 @@ void GeneratorCache::clearCache()
 	mCurrentCache = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	801F1A88
- * Size:	000018
+/**
+ * @note Address: 0x801F1A88
+ * @note Size: 0x18
  */
 void GeneratorCache::clearGeneratorList() { mGenerator.clearRelations(); }
 
-/*
- * --INFO--
- * Address:	801F1AA0
- * Size:	000078
+/**
+ * @note Address: 0x801F1AA0
+ * @note Size: 0x78
  */
 void GeneratorCache::addGenerator(Game::Generator* newGenerator)
 {
@@ -75,17 +71,15 @@ void GeneratorCache::addGenerator(Game::Generator* newGenerator)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801F1B18
- * Size:	000008
+/**
+ * @note Address: 0x801F1B18
+ * @note Size: 0x8
  */
 Generator* GeneratorCache::getFirstGenerator() { return (Generator*)mGenerator.mChild; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 Generator* GeneratorCache::findRamGenerator(int index)
 {
@@ -99,10 +93,9 @@ Generator* GeneratorCache::findRamGenerator(int index)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	801F1B20
- * Size:	000024
+/**
+ * @note Address: 0x801F1B20
+ * @note Size: 0x24
  */
 int GeneratorCache::getTotalMePikmins()
 {
@@ -111,10 +104,9 @@ int GeneratorCache::getTotalMePikmins()
 	return count;
 }
 
-/*
- * --INFO--
- * Address:	801F1B44
- * Size:	000074
+/**
+ * @note Address: 0x801F1B44
+ * @note Size: 0x74
  */
 int GeneratorCache::getColorMePikmins(int pikminType)
 {
@@ -123,12 +115,11 @@ int GeneratorCache::getColorMePikmins(int pikminType)
 	return count;
 }
 
-/*
+/**
  * getColorMePikmins__Q24Game11CourseCacheFPUci
  *
- * --INFO--
- * Address:	801F1BB8
- * Size:	00009C
+ * @note Address: 0x801F1BB8
+ * @note Size: 0x9C
  */
 int CourseCache::getColorMePikmins(u8* buffer, int pikminType)
 {
@@ -194,10 +185,9 @@ lbl_801F1C30:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801F1C54
- * Size:	00009C
+/**
+ * @note Address: 0x801F1C54
+ * @note Size: 0x9C
  */
 void GeneratorCache::createHeap()
 {
@@ -210,20 +200,18 @@ void GeneratorCache::createHeap()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void GeneratorCache::destroyHeap()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	801F1CF0
- * Size:	000038
+/**
+ * @note Address: 0x801F1CF0
+ * @note Size: 0x38
  */
 CourseCache* GeneratorCache::findCache(Game::CourseCache& haystack, int courseIndex)
 {
@@ -240,10 +228,9 @@ CourseCache* GeneratorCache::findCache(Game::CourseCache& haystack, int courseIn
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	801F1D28
- * Size:	000128
+/**
+ * @note Address: 0x801F1D28
+ * @note Size: 0x128
  */
 void GeneratorCache::loadGenerators(int courseIndex)
 {
@@ -378,10 +365,9 @@ lbl_801F1E34:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801F1E50
- * Size:	0001B8
+/**
+ * @note Address: 0x801F1E50
+ * @note Size: 0x1B8
  */
 void GeneratorCache::loadCreatures(int courseIndex)
 {
@@ -552,10 +538,9 @@ lbl_801F1FF4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801F2008
- * Size:	000114
+/**
+ * @note Address: 0x801F2008
+ * @note Size: 0x114
  */
 void GeneratorCache::loadPikiheads()
 {
@@ -646,10 +631,9 @@ lbl_801F20F0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801F211C
- * Size:	0000C0
+/**
+ * @note Address: 0x801F211C
+ * @note Size: 0xC0
  */
 void GeneratorCache::slideCache()
 {
@@ -724,10 +708,9 @@ lbl_801F218C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801F21DC
- * Size:	00004C
+/**
+ * @note Address: 0x801F21DC
+ * @note Size: 0x4C
  */
 void GeneratorCache::updateUseList()
 {
@@ -738,10 +721,9 @@ void GeneratorCache::updateUseList()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801F2228
- * Size:	000078
+/**
+ * @note Address: 0x801F2228
+ * @note Size: 0x78
  */
 void GeneratorCache::createNumberGenerators()
 {
@@ -754,10 +736,9 @@ void GeneratorCache::createNumberGenerators()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801F22A0
- * Size:	0000F8
+/**
+ * @note Address: 0x801F22A0
+ * @note Size: 0xF8
  */
 void GeneratorCache::beginSave(int courseIndex)
 {
@@ -776,10 +757,9 @@ void GeneratorCache::beginSave(int courseIndex)
 	mCurrentCache->beginSave(mFreeOffset);
 }
 
-/*
- * --INFO--
- * Address:	801F2398
- * Size:	0000C8
+/**
+ * @note Address: 0x801F2398
+ * @note Size: 0xC8
  */
 void GeneratorCache::endSave()
 {
@@ -789,10 +769,9 @@ void GeneratorCache::endSave()
 	mRootCache.add(mCurrentCache);
 }
 
-/*
- * --INFO--
- * Address:	801F2460
- * Size:	0000F0
+/**
+ * @note Address: 0x801F2460
+ * @note Size: 0xF0
  */
 void GeneratorCache::saveGenerator(Generator* generator)
 {
@@ -878,10 +857,9 @@ lbl_801F2538:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801F2550
- * Size:	000140
+/**
+ * @note Address: 0x801F2550
+ * @note Size: 0x140
  */
 void GeneratorCache::saveCreature(Generator* gen)
 {
@@ -997,10 +975,9 @@ lbl_801F2678:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801F2690
- * Size:	0002D0
+/**
+ * @note Address: 0x801F2690
+ * @note Size: 0x2D0
  */
 void GeneratorCache::savePikiheads()
 {
@@ -1232,20 +1209,18 @@ lbl_801F2924:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
+/**
+ * @note Address: N/A
+ * @note Size: 0x30
  */
 void GeneratorCache::checkOverflow()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	801F2960
- * Size:	000070
+/**
+ * @note Address: 0x801F2960
+ * @note Size: 0x70
  */
 CourseCache::CourseCache(int courseIndex)
 {
@@ -1260,11 +1235,10 @@ CourseCache::CourseCache(int courseIndex)
 	mPikiheadSize   = 0;
 }
 
-/*
+/**
  * beginSave__Q24Game11CourseCacheFi
- * --INFO--
- * Address:	801F29D0
- * Size:	000028
+ * @note Address: 0x801F29D0
+ * @note Size: 0x28
  */
 void CourseCache::beginSave(int offset)
 {
@@ -1278,10 +1252,9 @@ void CourseCache::beginSave(int offset)
 	mPikiheadSize   = 0;
 }
 
-/*
- * --INFO--
- * Address:	801F29F8
- * Size:	000234
+/**
+ * @note Address: 0x801F29F8
+ * @note Size: 0x234
  */
 void GeneratorCache::write(Stream& output)
 {
@@ -1508,10 +1481,9 @@ lbl_801F2C10:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801F2C2C
- * Size:	0002B0
+/**
+ * @note Address: 0x801F2C2C
+ * @note Size: 0x2B0
  */
 void GeneratorCache::read(Stream& input)
 {
@@ -1785,11 +1757,10 @@ lbl_801F2EA4:
 	*/
 }
 
-/*
+/**
  * write__Q24Game11CourseCacheFR6Stream
- * --INFO--
- * Address:	801F2EDC
- * Size:	0001D4
+ * @note Address: 0x801F2EDC
+ * @note Size: 0x1D4
  */
 void CourseCache::write(Stream& output)
 {
@@ -1837,11 +1808,10 @@ void CourseCache::write(Stream& output)
 	output.textEndGroup();
 }
 
-/*
+/**
  * read__Q24Game11CourseCacheFR6Stream
- * --INFO--
- * Address:	801F30B0
- * Size:	0000BC
+ * @note Address: 0x801F30B0
+ * @note Size: 0xBC
  */
 void CourseCache::read(Stream& input)
 {

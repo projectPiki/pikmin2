@@ -52,10 +52,9 @@
         .4byte 0
 */
 
-/*
- * --INFO--
- * Address:	800063C4
- * Size:	0001E4
+/**
+ * @note Address: 0x800063C4
+ * @note Size: 0x1E4
  */
 s16 JMessage::TResource::toMessageIndex_messageID(u32, u32, bool*) const
 {
@@ -237,10 +236,9 @@ s16 JMessage::TResource::toMessageIndex_messageID(u32, u32, bool*) const
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800065A8
- * Size:	000074
+/**
+ * @note Address: 0x800065A8
+ * @note Size: 0x74
  */
 JMessage::TResourceContainer::TCResource::~TCResource()
 {
@@ -280,10 +278,9 @@ lbl_80006600:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8000661C
- * Size:	000084
+/**
+ * @note Address: 0x8000661C
+ * @note Size: 0x84
  */
 void JMessage::TResourceContainer::TCResource::Get_groupID(u16)
 {
@@ -332,10 +329,9 @@ lbl_80006698:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800066A0
- * Size:	00004C
+/**
+ * @note Address: 0x800066A0
+ * @note Size: 0x4C
  */
 JMessage::TResource* JMessage::TResourceContainer::TCResource::Do_create()
 {
@@ -364,10 +360,9 @@ lbl_800066DC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800066EC
- * Size:	000024
+/**
+ * @note Address: 0x800066EC
+ * @note Size: 0x24
  */
 void JMessage::TResourceContainer::TCResource::Do_destroy(JMessage::TResource*)
 {
@@ -384,10 +379,9 @@ void JMessage::TResourceContainer::TCResource::Do_destroy(JMessage::TResource*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80006710
- * Size:	000048
+/**
+ * @note Address: 0x80006710
+ * @note Size: 0x48
  */
 JMessage::TResourceContainer::TResourceContainer()
 {
@@ -412,24 +406,21 @@ JMessage::TResourceContainer::TResourceContainer()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80006758
- * Size:	000008
+/**
+ * @note Address: 0x80006758
+ * @note Size: 0x8
  */
 bool JUTFont::isLeadByte_1Byte(int) { return 0x0; }
 
-/*
- * --INFO--
- * Address:	80006760
- * Size:	000008
+/**
+ * @note Address: 0x80006760
+ * @note Size: 0x8
  */
 bool JUTFont::isLeadByte_2Byte(int) { return 0x1; }
 
-/*
- * --INFO--
- * Address:	80006768
- * Size:	000030
+/**
+ * @note Address: 0x80006768
+ * @note Size: 0x30
  */
 bool JUTFont::isLeadByte_ShiftJIS(int)
 {
@@ -455,10 +446,9 @@ lbl_80006790:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80006798
- * Size:	000028
+/**
+ * @note Address: 0x80006798
+ * @note Size: 0x28
  */
 JMessage::TParse::TParse(JMessage::TResourceContainer*)
 {
@@ -476,10 +466,9 @@ JMessage::TParse::TParse(JMessage::TResourceContainer*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800067C0
- * Size:	000060
+/**
+ * @note Address: 0x800067C0
+ * @note Size: 0x60
  */
 JMessage::TParse::~TParse()
 {
@@ -513,10 +502,9 @@ lbl_80006804:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80006820
- * Size:	00018C
+/**
+ * @note Address: 0x80006820
+ * @note Size: 0x18C
  */
 bool JMessage::TParse::parseHeader_next(const void**, u32*, u32)
 {
@@ -646,10 +634,9 @@ bool JMessage::TParse::parseHeader_next(const void**, u32*, u32)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800069AC
- * Size:	00017C
+/**
+ * @note Address: 0x800069AC
+ * @note Size: 0x17C
  */
 bool JMessage::TParse::parseBlock_next(const void**, u32*, u32)
 {
@@ -775,10 +762,9 @@ bool JMessage::TParse::parseBlock_next(const void**, u32*, u32)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80006B28
- * Size:	000020
+/**
+ * @note Address: 0x80006B28
+ * @note Size: 0x20
  */
 JMessage::TParse_color::TParse_color(JMessage::TResourceContainer*)
 {
@@ -794,10 +780,9 @@ JMessage::TParse_color::TParse_color(JMessage::TResourceContainer*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80006B48
- * Size:	000060
+/**
+ * @note Address: 0x80006B48
+ * @note Size: 0x60
  */
 JMessage::TParse_color::~TParse_color()
 {
@@ -831,10 +816,9 @@ lbl_80006B8C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80006BA8
- * Size:	0000BC
+/**
+ * @note Address: 0x80006BA8
+ * @note Size: 0xBC
  */
 bool JMessage::TParse_color::parseHeader_next(const void**, u32*, u32)
 {
@@ -898,10 +882,9 @@ bool JMessage::TParse_color::parseHeader_next(const void**, u32*, u32)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80006C64
- * Size:	000054
+/**
+ * @note Address: 0x80006C64
+ * @note Size: 0x54
  */
 bool JMessage::TParse_color::parseBlock_next(const void**, u32*, u32)
 {
@@ -937,10 +920,9 @@ bool JMessage::TParse_color::parseBlock_next(const void**, u32*, u32)
 	*/
 }
 
-// /*
-//  * --INFO--
-//  * Address:	80006CB8
-//  * Size:	000054
+// /**
+//  * @note Address: 0x80006CB8
+//  * @note Size: 0x54
 //  */
 // void std::lower_bound<const u32*, u32>(const u32*, const u32*, const u32&)
 // {

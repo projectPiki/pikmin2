@@ -7,10 +7,9 @@
 JUTFont::IsLeadByte const JUTResFont::saoAboutEncoding_[3]
     = { JUTFont::isLeadByte_1Byte, JUTFont::isLeadByte_2Byte, JUTFont::isLeadByte_ShiftJIS };
 
-/*
- * --INFO--
- * Address:	80031180
- * Size:	00004C
+/**
+ * @note Address: 0x80031180
+ * @note Size: 0x4C
  * Matches
  */
 JUTResFont::JUTResFont()
@@ -19,10 +18,9 @@ JUTResFont::JUTResFont()
 	JUTFont::initialize_state();
 }
 
-/*
- * --INFO--
- * Address:	800311CC
- * Size:	000074
+/**
+ * @note Address: 0x800311CC
+ * @note Size: 0x74
  * Matches
  */
 JUTResFont::JUTResFont(const ResFONT* resource, JKRHeap* heap)
@@ -32,10 +30,9 @@ JUTResFont::JUTResFont(const ResFONT* resource, JKRHeap* heap)
 	JUTResFont::initiate(resource, heap);
 }
 
-/*
- * --INFO--
- * Address:	80031240
- * Size:	00008C
+/**
+ * @note Address: 0x80031240
+ * @note Size: 0x8C
  * Matches
  */
 JUTResFont::~JUTResFont()
@@ -47,18 +44,16 @@ JUTResFont::~JUTResFont()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800312CC
- * Size:	000024
+/**
+ * @note Address: 0x800312CC
+ * @note Size: 0x24
  * Matches
  */
 void JUTResFont::deleteMemBlocks_ResFont() { delete[] mMemBlocks; }
 
-/*
- * --INFO--
- * Address:	800312F0
- * Size:	00002C
+/**
+ * @note Address: 0x800312F0
+ * @note Size: 0x2C
  * Matches
  */
 void JUTResFont::initialize_state()
@@ -73,10 +68,9 @@ void JUTResFont::initialize_state()
 	mTexPageIdx  = -1;
 }
 
-/*
- * --INFO--
- * Address:	8003131C
- * Size:	000080
+/**
+ * @note Address: 0x8003131C
+ * @note Size: 0x80
  * Matches
  */
 bool JUTResFont::initiate(const ResFONT* resource, JKRHeap* heap)
@@ -91,10 +85,9 @@ bool JUTResFont::initiate(const ResFONT* resource, JKRHeap* heap)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8003139C
- * Size:	000138
+/**
+ * @note Address: 0x8003139C
+ * @note Size: 0x138
  */
 bool JUTResFont::protected_initiate(const ResFONT* resource, JKRHeap* heap)
 {
@@ -139,10 +132,9 @@ bool JUTResFont::protected_initiate(const ResFONT* resource, JKRHeap* heap)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	800314D4
- * Size:	00010C
+/**
+ * @note Address: 0x800314D4
+ * @note Size: 0x10C
  * Matches
  */
 void JUTResFont::countBlock()
@@ -177,10 +169,9 @@ void JUTResFont::countBlock()
 	};
 }
 
-/*
- * --INFO--
- * Address:	800315E0
- * Size:	00013C
+/**
+ * @note Address: 0x800315E0
+ * @note Size: 0x13C
  */
 void JUTResFont::setBlock()
 {
@@ -222,10 +213,9 @@ void JUTResFont::setBlock()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8003171C
- * Size:	0000F8
+/**
+ * @note Address: 0x8003171C
+ * @note Size: 0xF8
  * Matches
  */
 void JUTResFont::setGX()
@@ -250,10 +240,9 @@ void JUTResFont::setGX()
 	GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
 }
 
-/*
- * --INFO--
- * Address:	80031814
- * Size:	000240
+/**
+ * @note Address: 0x80031814
+ * @note Size: 0x240
  */
 void JUTResFont::setGX(JUtility::TColor color0, JUtility::TColor color1)
 {
@@ -294,10 +283,9 @@ void JUTResFont::setGX(JUtility::TColor color0, JUtility::TColor color1)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80031A54
- * Size:	000404
+/**
+ * @note Address: 0x80031A54
+ * @note Size: 0x404
  * TODO: better variable names
  */
 f32 JUTResFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, int chr, bool flag)
@@ -374,10 +362,9 @@ f32 JUTResFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, i
 	return retval;
 }
 
-/*
- * --INFO--
- * Address:	80031ECC
- * Size:	000088
+/**
+ * @note Address: 0x80031ECC
+ * @note Size: 0x88
  */
 void JUTResFont::loadFont(int chr, GXTexMapID id, JUTFont::TWidth* width)
 {
@@ -388,10 +375,9 @@ void JUTResFont::loadFont(int chr, GXTexMapID id, JUTFont::TWidth* width)
 	loadImage(fontcode, id);
 }
 
-/*
- * --INFO--
- * Address:	80031F54
- * Size:	0000C0
+/**
+ * @note Address: 0x80031F54
+ * @note Size: 0xC0
  */
 void JUTResFont::getWidthEntry(int chr, JUTFont::TWidth* width) const
 {
@@ -415,10 +401,9 @@ void JUTResFont::getWidthEntry(int chr, JUTFont::TWidth* width) const
 	return;
 }
 
-/*
- * --INFO--
- * Address:	80032014
- * Size:	00004C
+/**
+ * @note Address: 0x80032014
+ * @note Size: 0x4C
  */
 int JUTResFont::getCellWidth() const
 {
@@ -435,10 +420,9 @@ int JUTResFont::getCellWidth() const
 	return getWidth();
 }
 
-/*
- * --INFO--
- * Address:	8003206C
- * Size:	00004C
+/**
+ * @note Address: 0x8003206C
+ * @note Size: 0x4C
  */
 int JUTResFont::getCellHeight() const
 {
@@ -455,17 +439,15 @@ int JUTResFont::getCellHeight() const
 	return getHeight();
 }
 
-/*
- * --INFO--
- * Address:	800320B8
- * Size:	000030
+/**
+ * @note Address: 0x800320B8
+ * @note Size: 0x30
  */
 bool JUTResFont::isLeadByte(int chr) const { return (*mIsLeadByte)(chr); }
 
-/*
- * --INFO--
- * Address:	800320E8
- * Size:	0001AC
+/**
+ * @note Address: 0x800320E8
+ * @note Size: 0x1AC
  * TODO: cleanup of variable names
  */
 
@@ -531,10 +513,9 @@ int JUTResFont::getFontCode(int chr) const
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	800322A0
- * Size:	000180
+/**
+ * @note Address: 0x800322A0
+ * @note Size: 0x180
  */
 void JUTResFont::loadImage(int code, GXTexMapID id)
 {
@@ -570,10 +551,9 @@ void JUTResFont::loadImage(int code, GXTexMapID id)
 	GXLoadTexObj(&mTexObj, id);
 }
 
-/*
- * --INFO--
- * Address:	80032420
- * Size:	000044
+/**
+ * @note Address: 0x80032420
+ * @note Size: 0x44
  */
 int JUTResFont::convertSjis(int inChr, u16* inLead) const
 {

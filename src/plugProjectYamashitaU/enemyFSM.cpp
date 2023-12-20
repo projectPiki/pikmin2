@@ -4,24 +4,21 @@
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	8013070C
- * Size:	000030
+/**
+ * @note Address: 0x8013070C
+ * @note Size: 0x30
  */
 void EnemyFSMState::transit(EnemyBase* obj, int id, StateArg* arg) { mStateMachine->transit(obj, id, arg); }
 
-/*
- * --INFO--
- * Address:	8013073C
- * Size:	00005C
+/**
+ * @note Address: 0x8013073C
+ * @note Size: 0x5C
  */
 void EnemyStateMachine::doDirectDraw(EnemyBase* obj, Graphics& gfx) { getCurrState(obj)->doDirectDraw(obj, gfx); }
 
-/*
- * --INFO--
- * Address:	80130798
- * Size:	000080
+/**
+ * @note Address: 0x80130798
+ * @note Size: 0x80
  */
 void EnemyStateMachine::start(EnemyBase* obj, int id, StateArg* arg)
 {
@@ -29,11 +26,10 @@ void EnemyStateMachine::start(EnemyBase* obj, int id, StateArg* arg)
 	transit(obj, id, arg);
 }
 
-/*
+/**
  * @matchedSize
- * --INFO--
- * Address:	........
- * Size:	00004C
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 void EnemyStateMachine::resume(EnemyBase* obj)
 {
@@ -41,11 +37,10 @@ void EnemyStateMachine::resume(EnemyBase* obj)
 	getCurrState(obj)->resume(obj);
 }
 
-/*
+/**
  * @matchedSize
- * --INFO--
- * Address:	........
- * Size:	00004C
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 void EnemyStateMachine::restart(EnemyBase* obj)
 {
@@ -53,17 +48,15 @@ void EnemyStateMachine::restart(EnemyBase* obj)
 	getCurrState(obj)->restart(obj);
 }
 
-/*
- * --INFO--
- * Address:	80130818
- * Size:	00004C
+/**
+ * @note Address: 0x80130818
+ * @note Size: 0x4C
  */
 void EnemyStateMachine::exec(EnemyBase* obj) { getCurrState(obj)->exec(obj); }
 
-/*
- * --INFO--
- * Address:	80130864
- * Size:	0000A4
+/**
+ * @note Address: 0x80130864
+ * @note Size: 0xA4
  */
 void EnemyStateMachine::create(int limit)
 {
@@ -79,10 +72,9 @@ void EnemyStateMachine::create(int limit)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80130908
- * Size:	000084
+/**
+ * @note Address: 0x80130908
+ * @note Size: 0x84
  */
 void EnemyStateMachine::registerState(EnemyFSMState* newState)
 {
@@ -106,10 +98,9 @@ void EnemyStateMachine::registerState(EnemyFSMState* newState)
 	mCount++;
 }
 
-/*
- * --INFO--
- * Address:	8013098C
- * Size:	000070
+/**
+ * @note Address: 0x8013098C
+ * @note Size: 0x70
  */
 int EnemyStateMachine::getCurrID(EnemyBase* obj)
 {
@@ -119,10 +110,9 @@ int EnemyStateMachine::getCurrID(EnemyBase* obj)
 	return -1;
 }
 
-/*
- * --INFO--
- * Address:	801309FC
- * Size:	000070
+/**
+ * @note Address: 0x801309FC
+ * @note Size: 0x70
  */
 const char* EnemyStateMachine::getCurrName(EnemyBase* obj)
 {
@@ -132,10 +122,9 @@ const char* EnemyStateMachine::getCurrName(EnemyBase* obj)
 	return "no name";
 }
 
-/*
- * --INFO--
- * Address:	80130A6C
- * Size:	00011C
+/**
+ * @note Address: 0x80130A6C
+ * @note Size: 0x11C
  */
 void EnemyStateMachine::transit(EnemyBase* obj, int id, StateArg* arg)
 {
@@ -150,24 +139,21 @@ void EnemyStateMachine::transit(EnemyBase* obj, int id, StateArg* arg)
 	getCurrState(obj)->init(obj, arg);
 }
 
-/*
- * --INFO--
- * Address:	80130B88
- * Size:	000008
+/**
+ * @note Address: 0x80130B88
+ * @note Size: 0x8
  */
 void EnemyStateMachine::setCurrState(EnemyBase* obj, EnemyFSMState* state) { obj->mCurrentLifecycleState = state; }
 
-/*
- * --INFO--
- * Address:	80130B90
- * Size:	000008
+/**
+ * @note Address: 0x80130B90
+ * @note Size: 0x8
  */
 EnemyFSMState* EnemyStateMachine::getCurrState(EnemyBase* obj) { return obj->mCurrentLifecycleState; }
 
-/*
- * --INFO--
- * Address:	80130B98
- * Size:	000004
+/**
+ * @note Address: 0x80130B98
+ * @note Size: 0x4
  */
 void EnemyStateMachine::init(EnemyBase*) { }
 } // namespace Game

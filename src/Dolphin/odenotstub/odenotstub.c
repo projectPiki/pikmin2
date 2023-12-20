@@ -1,8 +1,7 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	800EAFC0
- * Size:	000008
+/**
+ * @note Address: 0x800EAFC0
+ * @note Size: 0x8
  */
 WEAKFUNC BOOL Hu_IsStub(void) { return FALSE; }

@@ -7,10 +7,9 @@
 namespace og {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B4
+/**
+ * @note Address: N/A
+ * @note Size: 0xB4
  */
 CallBack_Furiko::CallBack_Furiko()
 {
@@ -29,10 +28,9 @@ CallBack_Furiko::CallBack_Furiko()
 	mCurrPaneAngle    = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	80329F18
- * Size:	000040
+/**
+ * @note Address: 0x80329F18
+ * @note Size: 0x40
  */
 void CallBack_Furiko::stop()
 {
@@ -44,10 +42,9 @@ void CallBack_Furiko::stop()
 	mChangeModifier = Vector2f(0.0f);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F4
+/**
+ * @note Address: N/A
+ * @note Size: 0xF4
  */
 void CallBack_Furiko::init(J2DPane* pane, f32 a, f32 b, f32 c)
 {
@@ -71,10 +68,9 @@ void CallBack_Furiko::init(J2DPane* pane, f32 a, f32 b, f32 c)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80329F58
- * Size:	000010
+/**
+ * @note Address: 0x80329F58
+ * @note Size: 0x10
  */
 void CallBack_Furiko::setParam(f32 p1, f32 p2, f32 p3)
 {
@@ -83,10 +79,9 @@ void CallBack_Furiko::setParam(f32 p1, f32 p2, f32 p3)
 	mParam2 = p3;
 }
 
-/*
- * --INFO--
- * Address:	80329F68
- * Size:	000168
+/**
+ * @note Address: 0x80329F68
+ * @note Size: 0x168
  */
 void CallBack_Furiko::update()
 {
@@ -213,10 +208,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8032A0D0
- * Size:	0001A0
+/**
+ * @note Address: 0x8032A0D0
+ * @note Size: 0x1A0
  */
 void CallBack_Furiko::draw(Graphics& gfx, J2DGrafContext& calc)
 {
@@ -261,10 +255,9 @@ void CallBack_Furiko::draw(Graphics& gfx, J2DGrafContext& calc)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8032A270
- * Size:	0001D0
+/**
+ * @note Address: 0x8032A270
+ * @note Size: 0x1D0
  */
 CallBack_Furiko* setCallBack_Furiko(P2DScreen::Mgr* screen, u64 tag)
 {
@@ -280,10 +273,9 @@ CallBack_Furiko* setCallBack_Furiko(P2DScreen::Mgr* screen, u64 tag)
 	return furiko;
 }
 
-/*
- * --INFO--
- * Address:	8032A440
- * Size:	000270
+/**
+ * @note Address: 0x8032A440
+ * @note Size: 0x270
  */
 void setFurikoScreen(P2DScreen::Mgr* screen)
 {
@@ -468,10 +460,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8032A6B0
- * Size:	000024
+/**
+ * @note Address: 0x8032A6B0
+ * @note Size: 0x24
  */
 CallBack_Furiko* getFurikoPtr(P2DScreen::Mgr* screen, u64 tag)
 {

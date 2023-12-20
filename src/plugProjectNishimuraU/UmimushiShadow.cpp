@@ -2,10 +2,9 @@
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	802F27DC
- * Size:	0001DC
+/**
+ * @note Address: 0x802F27DC
+ * @note Size: 0x1DC
  */
 void UmimushiTubeShadowNode::makeShadowSRT(JointShadowParm& parm, Matrixf* mat, Vector3f& vec1, Vector3f& vec2)
 {
@@ -156,10 +155,9 @@ void UmimushiTubeShadowNode::makeShadowSRT(JointShadowParm& parm, Matrixf* mat, 
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802F29B8
- * Size:	0000CC
+/**
+ * @note Address: 0x802F29B8
+ * @note Size: 0xCC
  */
 void UmimushiSphereShadowNode::makeShadowSRT(JointShadowParm& parm, Matrixf* mat, Vector3f& vec, bool isAlive)
 {
@@ -245,10 +243,9 @@ void UmimushiSphereShadowNode::makeShadowSRT(JointShadowParm& parm, Matrixf* mat
 
 namespace UmiMushi {
 
-/*
- * --INFO--
- * Address:	802F2A84
- * Size:	0000C4
+/**
+ * @note Address: 0x802F2A84
+ * @note Size: 0xC4
  */
 UmimushiShadowMgr::UmimushiShadowMgr(Obj* obj)
 {
@@ -260,10 +257,9 @@ UmimushiShadowMgr::UmimushiShadowMgr(Obj* obj)
 	mRootNode->add(mSphereShadow);
 }
 
-/*
- * --INFO--
- * Address:	802F2B48
- * Size:	000068
+/**
+ * @note Address: 0x802F2B48
+ * @note Size: 0x68
  */
 void UmimushiShadowMgr::init()
 {
@@ -272,10 +268,9 @@ void UmimushiShadowMgr::init()
 	mWeakMatrix2           = model->getJoint("weak_joint2")->getWorldMatrix();
 }
 
-/*
- * --INFO--
- * Address:	802F2BB0
- * Size:	00015C
+/**
+ * @note Address: 0x802F2BB0
+ * @note Size: 0x15C
  */
 void UmimushiShadowMgr::update()
 {

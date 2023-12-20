@@ -3,10 +3,9 @@
 #include "nans.h"
 
 namespace PikiAI {
-/*
- * --INFO--
- * Address:	80196A18
- * Size:	00001C
+/**
+ * @note Address: 0x80196A18
+ * @note Size: 0x1C
  */
 Action::Action(Game::Piki* piki)
 {
@@ -14,17 +13,15 @@ Action::Action(Game::Piki* piki)
 	mName   = "Action";
 }
 
-/*
- * --INFO--
- * Address:	80196A34
- * Size:	000030
+/**
+ * @note Address: 0x80196A34
+ * @note Size: 0x30
  */
 void Action::getInfo(char* dest) { sprintf(dest, "%s", mName); }
 
-/*
- * --INFO--
- * Address:	80196A64
- * Size:	000280
+/**
+ * @note Address: 0x80196A64
+ * @note Size: 0x280
  */
 Brain::Brain(Game::Piki* piki)
 {
@@ -49,17 +46,15 @@ Brain::Brain(Game::Piki* piki)
 	mPiki     = piki;
 }
 
-/*
- * --INFO--
- * Address:	80196CE4
- * Size:	00001C
+/**
+ * @note Address: 0x80196CE4
+ * @note Size: 0x1C
  */
 void Brain::addAction(Action* action) { mActions[mActionCnt++] = action; }
 
-/*
- * --INFO--
- * Address:	80196D00
- * Size:	000024
+/**
+ * @note Address: 0x80196D00
+ * @note Size: 0x24
  */
 Action* Brain::getCurrAction()
 {
@@ -69,10 +64,9 @@ Action* Brain::getCurrAction()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80196D24
- * Size:	000258
+/**
+ * @note Address: 0x80196D24
+ * @note Size: 0x258
  *
  * Executes the current action of a Pikmin's AI and manages its behavior.
  *
@@ -140,10 +134,9 @@ void Brain::exec()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80196F94
- * Size:	000100
+/**
+ * @note Address: 0x80196F94
+ * @note Size: 0x100
  *
  * The function checks if the Pikmin is alive, cleans up the current action, and sets up the next action.
  * Returns `true` if the new action is applicable
@@ -186,10 +179,9 @@ bool Brain::start(int nextID, ActionArg* actionArg)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801970A0
- * Size:	000210
+/**
+ * @note Address: 0x801970A0
+ * @note Size: 0x210
  *
  * Searches for a player within a radius of 300 units around the pikmin's position.
  * If the game is in versus mode, it ensures the pikmin and player's team's match (Olimar needs red, others need blue).

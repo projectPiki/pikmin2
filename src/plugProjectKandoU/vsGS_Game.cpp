@@ -28,10 +28,9 @@ namespace VsGame {
 static const char unusedVsGSGameArray[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 static const char vsGSGameName[]        = "vsGS_Game";
 
-/*
- * --INFO--
- * Address:	802292A4
- * Size:	0000A4
+/**
+ * @note Address: 0x802292A4
+ * @note Size: 0xA4
  */
 GameState::GameState()
     : State(VGS_Game)
@@ -39,10 +38,9 @@ GameState::GameState()
 	mController = new Controller(JUTGamePad::PORT_0);
 }
 
-/*
- * --INFO--
- * Address:	80229354
- * Size:	0001AC
+/**
+ * @note Address: 0x80229354
+ * @note Size: 0x1AC
  */
 void GameState::init(VsGameSection* section, StateArg* stateArg)
 {
@@ -83,10 +81,9 @@ void GameState::init(VsGameSection* section, StateArg* stateArg)
 	section->mGhostIconTimers[0]    = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	80229500
- * Size:	000014
+/**
+ * @note Address: 0x80229500
+ * @note Size: 0x14
  */
 void GameState::clearLoseCauses()
 {
@@ -95,10 +92,9 @@ void GameState::clearLoseCauses()
 	_16 = 0;
 }
 
-/*
- * --INFO--
- * Address:	80229514
- * Size:	0001D4
+/**
+ * @note Address: 0x80229514
+ * @note Size: 0x1D4
  */
 void GameState::do_init(VsGameSection* section)
 {
@@ -139,24 +135,22 @@ void GameState::do_init(VsGameSection* section)
 	static_cast<newScreen::Mgr*>(Screen::gGame2DMgr->mScreenMgr)->mInCave = 1;
 }
 
-/*
- * --INFO--
- * Address:	802296E8
- * Size:	00000C
+/**
+ * @note Address: 0x802296E8
+ * @note Size: 0xC
  */
 bool GameState::goingToCave(VsGameSection* section) { return isFlag(VSGS_Unk1); }
 
-/*
+/**
  * This fake function is here to generate the vtables in the correct order
  * - I cannot see a way for them to generate correctly without something here to
  * spawn DispMemberChallenge2P 'before' (after) DispWinLose, so this will have to suffice. - HP
  */
 static void fakeFuncVsGsGame() { og::Screen::DispMemberChallenge2P disp; }
 
-/*
- * --INFO--
- * Address:	802296F4
- * Size:	0008FC
+/**
+ * @note Address: 0x802296F4
+ * @note Size: 0x8FC
  */
 void GameState::exec(VsGameSection* section)
 {
@@ -380,10 +374,9 @@ void GameState::exec(VsGameSection* section)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80229FF0
- * Size:	000388
+/**
+ * @note Address: 0x80229FF0
+ * @note Size: 0x388
  */
 void GameState::checkFindKeyDemo(VsGameSection* section)
 {
@@ -417,10 +410,9 @@ void GameState::checkFindKeyDemo(VsGameSection* section)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8022A378
- * Size:	0003E4
+/**
+ * @note Address: 0x8022A378
+ * @note Size: 0x3E4
  */
 void GameState::checkSMenu(VsGameSection* section)
 {
@@ -503,10 +495,9 @@ void GameState::checkSMenu(VsGameSection* section)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8022A75C
- * Size:	000050
+/**
+ * @note Address: 0x8022A75C
+ * @note Size: 0x50
  */
 void GameState::pre2dDraw(Graphics& gfx, VsGameSection* section)
 {
@@ -515,10 +506,9 @@ void GameState::pre2dDraw(Graphics& gfx, VsGameSection* section)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8022A7AC
- * Size:	000034
+/**
+ * @note Address: 0x8022A7AC
+ * @note Size: 0x34
  */
 void GameState::draw(VsGameSection* section, Graphics& gfx)
 {
@@ -527,10 +517,9 @@ void GameState::draw(VsGameSection* section, Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8022A7E0
- * Size:	000044
+/**
+ * @note Address: 0x8022A7E0
+ * @note Size: 0x44
  */
 void GameState::cleanup(VsGameSection* section)
 {
@@ -539,10 +528,9 @@ void GameState::cleanup(VsGameSection* section)
 	PSMCancelToPauseOffMainBgm();
 }
 
-/*
- * --INFO--
- * Address:	8022A824
- * Size:	000034
+/**
+ * @note Address: 0x8022A824
+ * @note Size: 0x34
  */
 void GameState::onBattleFinished(VsGameSection* section, int winnerMaybe, bool check)
 {
@@ -557,17 +545,15 @@ void GameState::onBattleFinished(VsGameSection* section, int winnerMaybe, bool c
 	}
 }
 
-/*
- * --INFO--
- * Address:	8022A858
- * Size:	000010
+/**
+ * @note Address: 0x8022A858
+ * @note Size: 0x10
  */
 bool GameState::isCardUsable(VsGameSection* section) { return (u32) !(_16); }
 
-/*
- * --INFO--
- * Address:	8022A868
- * Size:	00014C
+/**
+ * @note Address: 0x8022A868
+ * @note Size: 0x14C
  */
 void GameState::onRedOrBlueSuckStart(VsGameSection* section, int player, bool isYellow)
 {
@@ -603,10 +589,9 @@ void GameState::onRedOrBlueSuckStart(VsGameSection* section, int player, bool is
 	moviePlayer->play(movieArgs);
 }
 
-/*
- * --INFO--
- * Address:	8022A9B4
- * Size:	000188
+/**
+ * @note Address: 0x8022A9B4
+ * @note Size: 0x188
  */
 void GameState::checkPikminZero(VsGameSection* section)
 {
@@ -633,10 +618,9 @@ void GameState::checkPikminZero(VsGameSection* section)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8022AB3C
- * Size:	000474
+/**
+ * @note Address: 0x8022AB3C
+ * @note Size: 0x474
  */
 void GameState::onMovieStart(VsGameSection* section, MovieConfig* config, u32 p1, u32 p2)
 {
@@ -698,10 +682,9 @@ void GameState::onMovieStart(VsGameSection* section, MovieConfig* config, u32 p1
 	}
 }
 
-/*
- * --INFO--
- * Address:	8022AFB0
- * Size:	0009D0
+/**
+ * @note Address: 0x8022AFB0
+ * @note Size: 0x9D0
  */
 void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 p1, u32 p2)
 {
@@ -858,10 +841,9 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 p1,
 	}
 }
 
-/*
- * --INFO--
- * Address:	8022B980
- * Size:	0000E4
+/**
+ * @note Address: 0x8022B980
+ * @note Size: 0xE4
  */
 void GameState::onNextFloor(VsGameSection* section, ItemHole::Item* hole)
 {
@@ -876,10 +858,9 @@ void GameState::onNextFloor(VsGameSection* section, ItemHole::Item* hole)
 	moviePlayer->play(movieArg);
 }
 
-/*
- * --INFO--
- * Address:	8022BA64
- * Size:	00019C
+/**
+ * @note Address: 0x8022BA64
+ * @note Size: 0x19C
  */
 void GameState::onOrimaDown(VsGameSection* section, int naviIdx)
 {
@@ -907,10 +888,9 @@ void GameState::onOrimaDown(VsGameSection* section, int naviIdx)
 	moviePlayer->play(movieArg);
 }
 
-/*
- * --INFO--
- * Address:	8022BC00
- * Size:	00033C
+/**
+ * @note Address: 0x8022BC00
+ * @note Size: 0x33C
  */
 void GameState::open_GameChallenge(VsGameSection* section, int in)
 {
@@ -932,10 +912,9 @@ void GameState::open_GameChallenge(VsGameSection* section, int in)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8022BF3C
- * Size:	0007D0
+/**
+ * @note Address: 0x8022BF3C
+ * @note Size: 0x7D0
  */
 void GameState::update_GameChallenge(VsGameSection* section)
 {
@@ -1073,10 +1052,9 @@ void GameState::update_GameChallenge(VsGameSection* section)
 	Screen::gGame2DMgr->setDispMember(&disp);
 }
 
-/*
- * --INFO--
- * Address:	8022C70C
- * Size:	000004
+/**
+ * @note Address: 0x8022C70C
+ * @note Size: 0x4
  */
 void GameState::drawStatus(Graphics&, VsGameSection* section) { }
 

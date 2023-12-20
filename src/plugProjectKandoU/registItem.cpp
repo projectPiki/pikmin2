@@ -18,10 +18,9 @@ inline void GenerateMgr(T2& mgr, char* name)
 	sys->heapStatusEnd(name);
 }
 
-/*
- * --INFO--
- * Address:	801E4B98
- * Size:	000664
+/**
+ * @note Address: 0x801E4B98
+ * @note Size: 0x664
  */
 void ItemMgr::createManagers(u32 flags)
 {
@@ -129,10 +128,9 @@ void ItemMgr::createManagers(u32 flags)
 	sys->heapStatusEnd("-DengekiGate-");
 }
 
-/*
- * --INFO--
- * Address:	801E51FC
- * Size:	000048
+/**
+ * @note Address: 0x801E51FC
+ * @note Size: 0x48
  */
 void ItemMgr::clearGlobalPointers()
 {
@@ -154,10 +152,9 @@ void ItemMgr::clearGlobalPointers()
 	ItemDengekiGate::mgr = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	801E5244
- * Size:	0000E8
+/**
+ * @note Address: 0x801E5244
+ * @note Size: 0xE8
  */
 void ItemMgr::killAllExceptOnyonMgr()
 {

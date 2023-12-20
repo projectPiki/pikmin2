@@ -23,17 +23,15 @@ static inline void SetCurrentThread(OSThread* thread)
 	__OSCurrentThread = thread;
 }
 
-/*
- * --INFO--
- * Address:	800F1858
- * Size:	000004
+/**
+ * @note Address: 0x800F1858
+ * @note Size: 0x4
  */
 static void DefaultSwitchThreadCallback(OSThread* from, OSThread* to) { }
 
-/*
- * --INFO--
- * Address:	800F185C
- * Size:	000158
+/**
+ * @note Address: 0x800F185C
+ * @note Size: 0x158
  */
 void __OSThreadInit()
 {
@@ -72,24 +70,21 @@ void __OSThreadInit()
 	Reschedule = 0;
 }
 
-/*
- * --INFO--
- * Address:	800F19B4
- * Size:	000010
+/**
+ * @note Address: 0x800F19B4
+ * @note Size: 0x10
  */
 void OSInitThreadQueue(OSThreadQueue* threadQueue) { threadQueue->head = threadQueue->tail = nullptr; }
 
-/*
- * --INFO--
- * Address:	800F19C4
- * Size:	00000C
+/**
+ * @note Address: 0x800F19C4
+ * @note Size: 0xC
  */
 OSThread* OSGetCurrentThread() { return __OSCurrentThread; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
+/**
+ * @note Address: N/A
+ * @note Size: 0x5C
  */
 static void __OSSwitchThread(OSThread* nextThread)
 {
@@ -99,20 +94,18 @@ static void __OSSwitchThread(OSThread* nextThread)
 	OSLoadContext(&nextThread->context);
 }
 
-/*
- * --INFO--
- * Address:	800F19D0
- * Size:	000034
+/**
+ * @note Address: 0x800F19D0
+ * @note Size: 0x34
  */
 BOOL OSIsThreadTerminated(OSThread* thread)
 {
 	return (thread->state == OS_THREAD_STATE_MORIBUND || thread->state == OS_THREAD_STATE_NULL) ? TRUE : FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800F1A04
- * Size:	000040
+/**
+ * @note Address: 0x800F1A04
+ * @note Size: 0x40
  */
 s32 OSDisableScheduler()
 {
@@ -125,10 +118,9 @@ s32 OSDisableScheduler()
 	return count;
 }
 
-/*
- * --INFO--
- * Address:	800F1A44
- * Size:	000040
+/**
+ * @note Address: 0x800F1A44
+ * @note Size: 0x40
  */
 s32 OSEnableScheduler()
 {
@@ -141,10 +133,9 @@ s32 OSEnableScheduler()
 	return count;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  */
 static void SetRun(OSThread* thread)
 {
@@ -155,10 +146,9 @@ static void SetRun(OSThread* thread)
 }
 
 #pragma dont_inline on
-/*
- * --INFO--
- * Address:	800F1A84
- * Size:	000068
+/**
+ * @note Address: 0x800F1A84
+ * @note Size: 0x68
  */
 static void UnsetRun(OSThread* thread)
 {
@@ -171,10 +161,9 @@ static void UnsetRun(OSThread* thread)
 }
 #pragma dont_inline reset
 
-/*
- * --INFO--
- * Address:	800F1AEC
- * Size:	00003C
+/**
+ * @note Address: 0x800F1AEC
+ * @note Size: 0x3C
  */
 OSPriority __OSGetEffectivePriority(OSThread* thread)
 {
@@ -192,10 +181,9 @@ OSPriority __OSGetEffectivePriority(OSThread* thread)
 	return priority;
 }
 
-/*
- * --INFO--
- * Address:	800F1B28
- * Size:	0001C0
+/**
+ * @note Address: 0x800F1B28
+ * @note Size: 0x1C0
  */
 static OSThread* SetEffectivePriority(OSThread* thread, OSPriority priority)
 {
@@ -223,10 +211,9 @@ static OSThread* SetEffectivePriority(OSThread* thread, OSPriority priority)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
+/**
+ * @note Address: N/A
+ * @note Size: 0x78
  */
 static void UpdatePriority(OSThread* thread)
 {
@@ -244,10 +231,9 @@ static void UpdatePriority(OSThread* thread)
 	} while (thread);
 }
 
-/*
- * --INFO--
- * Address:	800F1CE8
- * Size:	000050
+/**
+ * @note Address: 0x800F1CE8
+ * @note Size: 0x50
  */
 void __OSPromoteThread(OSThread* thread, OSPriority priority)
 {
@@ -263,10 +249,9 @@ void __OSPromoteThread(OSThread* thread, OSPriority priority)
 	} while (thread);
 }
 
-/*
- * --INFO--
- * Address:	800F1D38
- * Size:	000228
+/**
+ * @note Address: 0x800F1D38
+ * @note Size: 0x228
  */
 static OSThread* SelectThread(BOOL yield)
 {
@@ -331,10 +316,9 @@ static OSThread* SelectThread(BOOL yield)
 	return nextThread;
 }
 
-/*
- * --INFO--
- * Address:	800F1F60
- * Size:	000030
+/**
+ * @note Address: 0x800F1F60
+ * @note Size: 0x30
  */
 void __OSReschedule()
 {
@@ -345,10 +329,9 @@ void __OSReschedule()
 	SelectThread(FALSE);
 }
 
-/*
- * --INFO--
- * Address:	800F1F90
- * Size:	00003C
+/**
+ * @note Address: 0x800F1F90
+ * @note Size: 0x3C
  */
 void OSYieldThread()
 {
@@ -359,10 +342,9 @@ void OSYieldThread()
 	OSRestoreInterrupts(enabled);
 }
 
-/*
- * --INFO--
- * Address:	800F1FCC
- * Size:	0001E8
+/**
+ * @note Address: 0x800F1FCC
+ * @note Size: 0x1E8
  */
 BOOL OSCreateThread(OSThread* thread, OSThreadStartFunction func, void* param, void* stack, u32 stackSize, OSPriority priority, u16 attr)
 {
@@ -417,10 +399,9 @@ BOOL OSCreateThread(OSThread* thread, OSThreadStartFunction func, void* param, v
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800F21B4
- * Size:	0000E4
+/**
+ * @note Address: 0x800F21B4
+ * @note Size: 0xE4
  */
 void OSExitThread(void* val)
 {
@@ -450,10 +431,9 @@ void OSExitThread(void* val)
 	OSRestoreInterrupts(enable);
 }
 
-/*
- * --INFO--
- * Address:	800F2298
- * Size:	0001BC
+/**
+ * @note Address: 0x800F2298
+ * @note Size: 0x1BC
  */
 void OSCancelThread(OSThread* thread)
 {
@@ -500,10 +480,9 @@ void OSCancelThread(OSThread* thread)
 	return;
 }
 
-/*
- * --INFO--
- * Address:	800F2454
- * Size:	0000A0
+/**
+ * @note Address: 0x800F2454
+ * @note Size: 0xA0
  */
 void OSDetachThread(OSThread* thread)
 {
@@ -520,10 +499,9 @@ void OSDetachThread(OSThread* thread)
 	OSRestoreInterrupts(enable);
 }
 
-/*
- * --INFO--
- * Address:	800F24F4
- * Size:	000288
+/**
+ * @note Address: 0x800F24F4
+ * @note Size: 0x288
  */
 s32 OSResumeThread(OSThread* thread)
 {
@@ -555,10 +533,9 @@ s32 OSResumeThread(OSThread* thread)
 	return suspendCount;
 }
 
-/*
- * --INFO--
- * Address:	800F277C
- * Size:	000170
+/**
+ * @note Address: 0x800F277C
+ * @note Size: 0x170
  */
 s32 OSSuspendThread(OSThread* thread)
 {
@@ -592,10 +569,9 @@ s32 OSSuspendThread(OSThread* thread)
 	return suspendCount;
 }
 
-/*
- * --INFO--
- * Address:	800F28EC
- * Size:	0000EC
+/**
+ * @note Address: 0x800F28EC
+ * @note Size: 0xEC
  */
 void OSSleepThread(OSThreadQueue* threadQueue)
 {
@@ -613,10 +589,9 @@ void OSSleepThread(OSThreadQueue* threadQueue)
 	OSRestoreInterrupts(enabled);
 }
 
-/*
- * --INFO--
- * Address:	800F29D8
- * Size:	000104
+/**
+ * @note Address: 0x800F29D8
+ * @note Size: 0x104
  */
 void OSWakeupThread(OSThreadQueue* threadQueue)
 {
@@ -635,17 +610,15 @@ void OSWakeupThread(OSThreadQueue* threadQueue)
 	OSRestoreInterrupts(enabled);
 }
 
-/*
- * --INFO--
- * Address:	800F2ADC
- * Size:	000008
+/**
+ * @note Address: 0x800F2ADC
+ * @note Size: 0x8
  */
 OSPriority OSGetThreadPriority(OSThread* thread) { return thread->base; }
 
-/*
- * --INFO--
- * Address:	800F2AE4
- * Size:	0000AC
+/**
+ * @note Address: 0x800F2AE4
+ * @note Size: 0xAC
  */
 void OSClearStack(u8 val)
 {

@@ -3,10 +3,9 @@
 #include "JSystem/JKernel/JKRArchive.h"
 #include "mem.h"
 
-/*
- * --INFO--
- * Address:	80032478
- * Size:	0000B8
+/**
+ * @note Address: 0x80032478
+ * @note Size: 0xB8
  */
 void* JUTResReference::getResource(JSUInputStream* stream, u32 resType, JKRArchive* archive)
 {
@@ -21,10 +20,9 @@ void* JUTResReference::getResource(JSUInputStream* stream, u32 resType, JKRArchi
 	return getResource(resType, archive);
 }
 
-/*
- * --INFO--
- * Address:	80032530
- * Size:	0000A4
+/**
+ * @note Address: 0x80032530
+ * @note Size: 0xA4
  */
 void* JUTResReference::getResource(const void* data, u32 resType, JKRArchive* archive)
 {
@@ -41,10 +39,9 @@ void* JUTResReference::getResource(const void* data, u32 resType, JKRArchive* ar
 	return getResource(resType, archive);
 }
 
-/*
- * --INFO--
- * Address:	800325D4
- * Size:	000078
+/**
+ * @note Address: 0x800325D4
+ * @note Size: 0x78
  */
 void* JUTResReference::getResource(u32 resType, JKRArchive* archive)
 {

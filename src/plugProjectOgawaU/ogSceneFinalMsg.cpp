@@ -3,24 +3,21 @@
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	803258E8
- * Size:	00003C
+/**
+ * @note Address: 0x803258E8
+ * @note Size: 0x3C
  */
 FinalMsg::FinalMsg() { }
 
-/*
- * --INFO--
- * Address:	80325924
- * Size:	000004
+/**
+ * @note Address: 0x80325924
+ * @note Size: 0x4
  */
 void FinalMsg::doUserCallBackFunc(Resource::MgrCommand*) { }
 
-/*
- * --INFO--
- * Address:	80325928
- * Size:	000078
+/**
+ * @note Address: 0x80325928
+ * @note Size: 0x78
  */
 void FinalMsg::doCreateObj(JKRArchive* archive)
 {
@@ -28,10 +25,9 @@ void FinalMsg::doCreateObj(JKRArchive* archive)
 	setColorBG(0, 0, 0, 180);
 }
 
-/*
- * --INFO--
- * Address:	803259A0
- * Size:	000064
+/**
+ * @note Address: 0x803259A0
+ * @note Size: 0x64
  */
 int FinalMsg::doGetFinishState()
 {

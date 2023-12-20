@@ -13,10 +13,9 @@ namespace {
 static const char* cMatAnimBrkTexName = "/enemy/data/DangoMushi/dangomushi.brk";
 } // namespace
 
-/*
- * --INFO--
- * Address:	802FBD1C
- * Size:	000050
+/**
+ * @note Address: 0x802FBD1C
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -24,31 +23,27 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "ダンゴムシマネージャ"; // pill bug manager
 }
 
-/*
- * --INFO--
- * Address:	802FBD6C
- * Size:	000048
+/**
+ * @note Address: 0x802FBD6C
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Parms); }
 
-/*
- * --INFO--
- * Address:	802FBF08
- * Size:	000060
+/**
+ * @note Address: 0x802FBF08
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	802FC024
- * Size:	000010
+/**
+ * @note Address: 0x802FC024
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
-/*
- * --INFO--
- * Address:	802FC034
- * Size:	000068
+/**
+ * @note Address: 0x802FC034
+ * @note Size: 0x68
  */
 void Mgr::loadModelData()
 {
@@ -60,10 +55,9 @@ void Mgr::loadModelData()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802FC09C
- * Size:	0000B4
+/**
+ * @note Address: 0x802FC09C
+ * @note Size: 0xB4
  */
 void Mgr::loadTexData()
 {
@@ -80,10 +74,9 @@ void Mgr::loadTexData()
 	mTevRegAnimation->attachResource(brkFile, mModelData);
 }
 
-/*
- * --INFO--
- * Address:	802FC150
- * Size:	000130
+/**
+ * @note Address: 0x802FC150
+ * @note Size: 0x130
  */
 SysShape::Model* Mgr::createModel()
 {

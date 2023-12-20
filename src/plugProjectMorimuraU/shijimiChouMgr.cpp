@@ -7,10 +7,9 @@ namespace ShijimiChou {
 
 static const char shijimiChouMgrName[] = "shijimiChouMgr";
 
-/*
- * --INFO--
- * Address:	803884C0
- * Size:	00005C
+/**
+ * @note Address: 0x803884C0
+ * @note Size: 0x5C
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -20,10 +19,9 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName        = "シジミ蝶マネージャ"; // clam butterfly manager
 }
 
-/*
- * --INFO--
- * Address:	8038851C
- * Size:	000150
+/**
+ * @note Address: 0x8038851C
+ * @note Size: 0x150
  */
 void Mgr::doAlloc()
 {
@@ -37,10 +35,9 @@ void Mgr::doAlloc()
 	mMtxCacheRef = new J3DUMtxCacheRef<J3DUMtxAnmCacheTable>(getCacheTable(getModel(), getTransform()));
 }
 
-/*
- * --INFO--
- * Address:	80388964
- * Size:	000038
+/**
+ * @note Address: 0x80388964
+ * @note Size: 0x38
  */
 void Mgr::loadModelData()
 {
@@ -48,10 +45,9 @@ void Mgr::loadModelData()
 	mModelData->newSharedDisplayList(0x00040000);
 }
 
-/*
- * --INFO--
- * Address:	8038899C
- * Size:	000138
+/**
+ * @note Address: 0x8038899C
+ * @note Size: 0x138
  */
 SysShape::Model* Mgr::createModel()
 {
@@ -69,10 +65,9 @@ SysShape::Model* Mgr::createModel()
 	return model;
 }
 
-/*
- * --INFO--
- * Address:	80388AD4
- * Size:	0000C8
+/**
+ * @note Address: 0x80388AD4
+ * @note Size: 0xC8
  */
 EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
 {
@@ -97,10 +92,9 @@ EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80388B9C
- * Size:	000050
+/**
+ * @note Address: 0x80388B9C
+ * @note Size: 0x50
  */
 void Mgr::doAnimation()
 {
@@ -110,10 +104,9 @@ void Mgr::doAnimation()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80388BEC
- * Size:	000058
+/**
+ * @note Address: 0x80388BEC
+ * @note Size: 0x58
  */
 void Mgr::fetch(J3DModel* model, f32 p1)
 {
@@ -123,10 +116,9 @@ void Mgr::fetch(J3DModel* model, f32 p1)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80388C44
- * Size:	0004BC
+/**
+ * @note Address: 0x80388C44
+ * @note Size: 0x4BC
  */
 void Mgr::createGroup(Obj* leader, int count)
 {
@@ -203,10 +195,9 @@ void Mgr::createGroup(Obj* leader, int count)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80389100
- * Size:	0000B8
+/**
+ * @note Address: 0x80389100
+ * @note Size: 0xB8
  */
 void Mgr::createGroupByBigFoot(EnemyBirthArg& birthArg, int count)
 {
@@ -226,10 +217,9 @@ void Mgr::createGroupByBigFoot(EnemyBirthArg& birthArg, int count)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803891B8
- * Size:	0000B8
+/**
+ * @note Address: 0x803891B8
+ * @note Size: 0xB8
  */
 void Mgr::createGroupByPlants(EnemyBirthArg& birthArg, int count)
 {
@@ -249,10 +239,9 @@ void Mgr::createGroupByPlants(EnemyBirthArg& birthArg, int count)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80389270
- * Size:	000198
+/**
+ * @note Address: 0x80389270
+ * @note Size: 0x198
  */
 void Mgr::createGroupByEnemy(EnemyBirthArg& birthArg, EnemyBase* enemy, int count, bool check)
 {

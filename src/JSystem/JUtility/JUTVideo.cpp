@@ -11,10 +11,9 @@ s32 JUTVideo::sVideoLastTick;
 u32 JUTVideo::sVideoInterval;
 static bool sDrawWaiting;
 
-/*
- * --INFO--
- * Address:	80033744
- * Size:	000058
+/**
+ * @note Address: 0x80033744
+ * @note Size: 0x58
  */
 JUTVideo* JUTVideo::createManager(const _GXRenderModeObj* renderModeObj)
 {
@@ -24,10 +23,9 @@ JUTVideo* JUTVideo::createManager(const _GXRenderModeObj* renderModeObj)
 	return sManager;
 }
 
-/*
- * --INFO--
- * Address:	8003379C
- * Size:	000048
+/**
+ * @note Address: 0x8003379C
+ * @note Size: 0x48
  */
 void JUTVideo::destroyManager()
 {
@@ -37,10 +35,9 @@ void JUTVideo::destroyManager()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800337E4
- * Size:	0000F4
+/**
+ * @note Address: 0x800337E4
+ * @note Size: 0xF4
  * __ct
  */
 JUTVideo::JUTVideo(const _GXRenderModeObj* renderModeObj)
@@ -66,10 +63,9 @@ JUTVideo::JUTVideo(const _GXRenderModeObj* renderModeObj)
 	GXSetDrawDoneCallback(drawDoneCallback);
 }
 
-/*
- * --INFO--
- * Address:	800338D8
- * Size:	000068
+/**
+ * @note Address: 0x800338D8
+ * @note Size: 0x68
  * __dt
  */
 JUTVideo::~JUTVideo()
@@ -78,10 +74,9 @@ JUTVideo::~JUTVideo()
 	VISetPostRetraceCallback(mPreviousPostRetraceCallback);
 }
 
-/*
- * --INFO--
- * Address:	80033940
- * Size:	000228
+/**
+ * @note Address: 0x80033940
+ * @note Size: 0x228
  */
 void JUTVideo::preRetraceProc(u32 p1)
 {
@@ -156,10 +151,9 @@ void JUTVideo::preRetraceProc(u32 p1)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80033B68
- * Size:	000028
+/**
+ * @note Address: 0x80033B68
+ * @note Size: 0x28
  */
 void JUTVideo::drawDoneStart()
 {
@@ -167,17 +161,15 @@ void JUTVideo::drawDoneStart()
 	GXSetDrawDone();
 }
 
-/*
- * --INFO--
- * Address:	80033B90
- * Size:	00000C
+/**
+ * @note Address: 0x80033B90
+ * @note Size: 0xC
  */
 void JUTVideo::dummyNoDrawWait() { sDrawWaiting = false; }
 
-/*
- * --INFO--
- * Address:	80033B9C
- * Size:	000088
+/**
+ * @note Address: 0x80033B9C
+ * @note Size: 0x88
  */
 void JUTVideo::drawDoneCallback()
 {
@@ -197,10 +189,9 @@ void JUTVideo::drawDoneCallback()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80033C24
- * Size:	00004C
+/**
+ * @note Address: 0x80033C24
+ * @note Size: 0x4C
  */
 void JUTVideo::postRetraceProc(u32 p1)
 {
@@ -211,10 +202,9 @@ void JUTVideo::postRetraceProc(u32 p1)
 	OSSendMessage(&sManager->mMessageQueue, (void*)retraceCount, OS_MESSAGE_NOBLOCK);
 }
 
-/*
- * --INFO--
- * Address:	80033C70
- * Size:	000078
+/**
+ * @note Address: 0x80033C70
+ * @note Size: 0x78
  */
 void JUTVideo::setRenderMode(const GXRenderModeObj* newRenderModeObj)
 {
@@ -233,17 +223,15 @@ void JUTVideo::setRenderMode(const GXRenderModeObj* newRenderModeObj)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80033CE8
- * Size:	000004
+/**
+ * @note Address: 0x80033CE8
+ * @note Size: 0x4
  */
 void JUTVideo::waitRetraceIfNeed() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 VIRetraceCallback JUTVideo::setPreRetraceCallback(VIRetraceCallback newCB)
 {
@@ -252,10 +240,9 @@ VIRetraceCallback JUTVideo::setPreRetraceCallback(VIRetraceCallback newCB)
 	return oldCB;
 }
 
-/*
- * --INFO--
- * Address:	80033CEC
- * Size:	000010
+/**
+ * @note Address: 0x80033CEC
+ * @note Size: 0x10
  */
 VIRetraceCallback JUTVideo::setPostRetraceCallback(VIRetraceCallback newCB)
 {

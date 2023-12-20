@@ -1,9 +1,8 @@
 extern double __ieee754_fmod();
 
-/*
- * --INFO--
- * Address:	800CF9CC
- * Size:	000020
+/**
+ * @note Address: 0x800CF9CC
+ * @note Size: 0x20
  */
 
 double fmod(double __x, double __y) { return (double)__ieee754_fmod(); }

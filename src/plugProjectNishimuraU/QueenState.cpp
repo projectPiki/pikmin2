@@ -7,10 +7,9 @@
 
 namespace Game {
 namespace Queen {
-/*
- * --INFO--
- * Address:	80287B70
- * Size:	000278
+/**
+ * @note Address: 0x80287B70
+ * @note Size: 0x278
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -24,10 +23,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateBorn);
 }
 
-/*
- * --INFO--
- * Address:	80287DE8
- * Size:	000058
+/**
+ * @note Address: 0x80287DE8
+ * @note Size: 0x58
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -38,10 +36,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	queen->startMotion(QUEENANIM_Dead, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80287E40
- * Size:	0000B8
+/**
+ * @note Address: 0x80287E40
+ * @note Size: 0xB8
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -58,17 +55,15 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80287EF8
- * Size:	000004
+/**
+ * @note Address: 0x80287EF8
+ * @note Size: 0x4
  */
 void StateDead::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	80287EFC
- * Size:	000070
+/**
+ * @note Address: 0x80287EFC
+ * @note Size: 0x70
  */
 void StateSleep::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -82,10 +77,9 @@ void StateSleep::init(EnemyBase* enemy, StateArg* stateArg)
 	queen->startMotion(QUEENANIM_Sleep, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80287F6C
- * Size:	000154
+/**
+ * @note Address: 0x80287F6C
+ * @note Size: 0x154
  */
 void StateSleep::exec(EnemyBase* enemy)
 {
@@ -119,10 +113,9 @@ void StateSleep::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802880C0
- * Size:	000040
+/**
+ * @note Address: 0x802880C0
+ * @note Size: 0x40
  */
 void StateSleep::cleanup(EnemyBase* enemy)
 {
@@ -132,10 +125,9 @@ void StateSleep::cleanup(EnemyBase* enemy)
 	queen->setMidBossAppearBGM();
 }
 
-/*
- * --INFO--
- * Address:	80288100
- * Size:	000070
+/**
+ * @note Address: 0x80288100
+ * @note Size: 0x70
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -149,10 +141,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	queen->startMotion(QUEENANIM_Wait, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80288170
- * Size:	00013C
+/**
+ * @note Address: 0x80288170
+ * @note Size: 0x13C
  */
 void StateWait::exec(EnemyBase* enemy)
 {
@@ -189,17 +180,15 @@ void StateWait::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802882AC
- * Size:	000024
+/**
+ * @note Address: 0x802882AC
+ * @note Size: 0x24
  */
 void StateWait::cleanup(EnemyBase* enemy) { enemy->hardConstraintOff(); }
 
-/*
- * --INFO--
- * Address:	802882D0
- * Size:	000078
+/**
+ * @note Address: 0x802882D0
+ * @note Size: 0x78
  */
 void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -214,10 +203,9 @@ void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 	queen->startMotion(QUEENANIM_Damage, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80288348
- * Size:	0000F4
+/**
+ * @note Address: 0x80288348
+ * @note Size: 0xF4
  */
 void StateDamage::exec(EnemyBase* enemy)
 {
@@ -248,10 +236,9 @@ void StateDamage::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8028843C
- * Size:	000040
+/**
+ * @note Address: 0x8028843C
+ * @note Size: 0x40
  */
 void StateDamage::cleanup(EnemyBase* enemy)
 {
@@ -261,10 +248,9 @@ void StateDamage::cleanup(EnemyBase* enemy)
 	queen->setEmotionCaution();
 }
 
-/*
- * --INFO--
- * Address:	8028847C
- * Size:	000080
+/**
+ * @note Address: 0x8028847C
+ * @note Size: 0x80
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -280,10 +266,9 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	queen->startBossChargeBGM();
 }
 
-/*
- * --INFO--
- * Address:	802884FC
- * Size:	0000FC
+/**
+ * @note Address: 0x802884FC
+ * @note Size: 0xFC
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
@@ -303,10 +288,9 @@ void StateFlick::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802885F8
- * Size:	000038
+/**
+ * @note Address: 0x802885F8
+ * @note Size: 0x38
  */
 void StateFlick::cleanup(EnemyBase* enemy)
 {
@@ -314,10 +298,9 @@ void StateFlick::cleanup(EnemyBase* enemy)
 	enemy->setEmotionCaution();
 }
 
-/*
- * --INFO--
- * Address:	80288630
- * Size:	000088
+/**
+ * @note Address: 0x80288630
+ * @note Size: 0x88
  */
 void StateRolling::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -334,10 +317,9 @@ void StateRolling::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802886B8
- * Size:	0005BC
+/**
+ * @note Address: 0x802886B8
+ * @note Size: 0x5BC
  */
 void StateRolling::exec(EnemyBase* enemy)
 {
@@ -881,10 +863,9 @@ lbl_80288C44:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80288C74
- * Size:	00004C
+/**
+ * @note Address: 0x80288C74
+ * @note Size: 0x4C
  */
 void StateRolling::cleanup(EnemyBase* enemy)
 {
@@ -896,10 +877,9 @@ void StateRolling::cleanup(EnemyBase* enemy)
 	queen->mIsRolling  = false;
 }
 
-/*
- * --INFO--
- * Address:	80288CC0
- * Size:	000070
+/**
+ * @note Address: 0x80288CC0
+ * @note Size: 0x70
  */
 void StateBorn::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -913,10 +893,9 @@ void StateBorn::init(EnemyBase* enemy, StateArg* stateArg)
 	queen->setEmotionExcitement();
 }
 
-/*
- * --INFO--
- * Address:	80288D30
- * Size:	0000A8
+/**
+ * @note Address: 0x80288D30
+ * @note Size: 0xA8
  */
 void StateBorn::exec(EnemyBase* enemy)
 {
@@ -935,10 +914,9 @@ void StateBorn::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80288DD8
- * Size:	000040
+/**
+ * @note Address: 0x80288DD8
+ * @note Size: 0x40
  */
 void StateBorn::cleanup(EnemyBase* enemy)
 {

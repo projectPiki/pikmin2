@@ -6,10 +6,9 @@
 
 namespace Sys {
 
-/*
- * --INFO--
- * Address:	80421ACC
- * Size:	000120
+/**
+ * @note Address: 0x80421ACC
+ * @note Size: 0x120
  */
 TriDivider* TriDivider::clone(Matrixf& transformationMtx)
 {
@@ -22,10 +21,9 @@ TriDivider* TriDivider::clone(Matrixf& transformationMtx)
 	return do_clone(transformationMtx, vtxTable, triTable);
 }
 
-/*
- * --INFO--
- * Address:	80421BEC
- * Size:	000160
+/**
+ * @note Address: 0x80421BEC
+ * @note Size: 0x160
  */
 void VertexTable::cloneFrom(Matrixf& transformationMtx, VertexTable* vtxTable)
 {
@@ -43,10 +41,9 @@ void VertexTable::cloneFrom(Matrixf& transformationMtx, VertexTable* vtxTable)
 	includeVertices();
 }
 
-/*
- * --INFO--
- * Address:	80421D4C
- * Size:	0000B4
+/**
+ * @note Address: 0x80421D4C
+ * @note Size: 0xB4
  */
 void TriangleTable::cloneFrom(Matrixf& transformationMtx, TriangleTable* triTable, VertexTable* vtxTable)
 {
@@ -57,10 +54,9 @@ void TriangleTable::cloneFrom(Matrixf& transformationMtx, TriangleTable* triTabl
 	}
 }
 
-/*
- * --INFO--
- * Address:	80421E00
- * Size:	0000C4
+/**
+ * @note Address: 0x80421E00
+ * @note Size: 0xC4
  */
 TriDivider* GridDivider::do_clone(Matrixf& transformationMtx, VertexTable* vtxTable, TriangleTable* triTable)
 {

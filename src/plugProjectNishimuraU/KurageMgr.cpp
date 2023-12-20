@@ -5,10 +5,9 @@ namespace Kurage {
 
 static const char kurageMgrName[] = "246-KurageMgr";
 
-/*
- * --INFO--
- * Address:	802AD104
- * Size:	000050
+/**
+ * @note Address: 0x802AD104
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -16,31 +15,27 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "クラゲドックリマネージャ"; // jellyfish manager
 }
 
-/*
- * --INFO--
- * Address:	802AD154
- * Size:	000048
+/**
+ * @note Address: 0x802AD154
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Parms); }
 
-/*
- * --INFO--
- * Address:	802AD420
- * Size:	000060
+/**
+ * @note Address: 0x802AD420
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	802AD53C
- * Size:	000010
+/**
+ * @note Address: 0x802AD53C
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
-/*
- * --INFO--
- * Address:	802AD54C
- * Size:	000068
+/**
+ * @note Address: 0x802AD54C
+ * @note Size: 0x68
  */
 void Mgr::loadModelData()
 {

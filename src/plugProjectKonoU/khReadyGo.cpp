@@ -15,10 +15,9 @@ static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 namespace kh {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	80401268
- * Size:	0000A4
+/**
+ * @note Address: 0x80401268
+ * @note Size: 0xA4
  */
 bool ObjReadyGo::doUpdateFadein()
 {
@@ -36,10 +35,9 @@ bool ObjReadyGo::doUpdateFadein()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8040130C
- * Size:	0001D4
+/**
+ * @note Address: 0x8040130C
+ * @note Size: 0x1D4
  */
 void ObjReadyGo::doCreate(JKRArchive* arc)
 {
@@ -79,17 +77,15 @@ void ObjReadyGo::doCreate(JKRArchive* arc)
 	}
 }
 
-/*
- * --INFO--
- * Address:	804014E0
- * Size:	000020
+/**
+ * @note Address: 0x804014E0
+ * @note Size: 0x20
  */
 bool ObjReadyGo::doUpdate() { return updateAnimation(); }
 
-/*
- * --INFO--
- * Address:	80401500
- * Size:	0000DC
+/**
+ * @note Address: 0x80401500
+ * @note Size: 0xDC
  */
 void ObjReadyGo::doDraw(Graphics& gfx)
 {
@@ -101,10 +97,9 @@ void ObjReadyGo::doDraw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	804015DC
- * Size:	00018C
+/**
+ * @note Address: 0x804015DC
+ * @note Size: 0x18C
  */
 bool ObjReadyGo::doUpdateFadeout()
 {
@@ -132,10 +127,9 @@ bool ObjReadyGo::doUpdateFadeout()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80401768
- * Size:	000384
+/**
+ * @note Address: 0x80401768
+ * @note Size: 0x384
  *
  * Updates the ready-go screen animation by changing its frame, advancing its time by msVal.mAnimSpeed, and creating an effect if necessary.
  * Once the animation is complete, the display status is set to 1 and the main background music is started.
@@ -196,10 +190,9 @@ bool ObjReadyGo::updateAnimation()
 	return done;
 }
 
-/*
- * --INFO--
- * Address:	80401AEC
- * Size:	000040
+/**
+ * @note Address: 0x80401AEC
+ * @note Size: 0x40
  */
 bool SceneReadyGo::doConfirmSetScene(::Screen::SetSceneArg& arg) { return arg.getSceneType() != SCENE_PAUSE_MENU; }
 

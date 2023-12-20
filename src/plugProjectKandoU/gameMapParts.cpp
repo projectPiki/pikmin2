@@ -22,17 +22,15 @@ static const char unusedName[] = "gameMapParts";
 int RoomMapMgr::numRoomCulled            = 0;
 bool RoomMapMgr::mUseCylinderViewCulling = false;
 
-/*
- * --INFO--
- * Address:	801B6468
- * Size:	000024
+/**
+ * @note Address: 0x801B6468
+ * @note Size: 0x24
  */
 Door* MapUnitInterface::getDoor(int idx) { return (Door*)mDoor.getChildAt(idx); }
 
-/*
- * --INFO--
- * Address:	801B648C
- * Size:	00001C
+/**
+ * @note Address: 0x801B648C
+ * @note Size: 0x1C
  */
 void MapUnitInterface::getCellSize(int& x, int& y)
 {
@@ -40,17 +38,15 @@ void MapUnitInterface::getCellSize(int& x, int& y)
 	y = mMapUnit->mCellSize.y;
 }
 
-/*
- * --INFO--
- * Address:	801B64A8
- * Size:	000024
+/**
+ * @note Address: 0x801B64A8
+ * @note Size: 0x24
  */
 DoorLink* Door::getLink(int idx) { return static_cast<DoorLink*>(mRootLink.getChildAt(idx)); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
+/**
+ * @note Address: N/A
+ * @note Size: 0x78
  */
 void DoorLink::write(Stream& stream)
 {
@@ -61,10 +57,9 @@ void DoorLink::write(Stream& stream)
 	stream.textWriteText("\t# dist/door-id/tekiflag\r\n");
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 void DoorLink::read(Stream& stream)
 {
@@ -74,10 +69,9 @@ void DoorLink::read(Stream& stream)
 	mTekiFlags = v0 != 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000124
+/**
+ * @note Address: N/A
+ * @note Size: 0x124
  */
 void Door::write(Stream& stream)
 {
@@ -96,10 +90,9 @@ void Door::write(Stream& stream)
 	stream.textWriteText("\t# door links\r\n");
 }
 
-/*
- * --INFO--
- * Address:	801B64CC
- * Size:	000104
+/**
+ * @note Address: 0x801B64CC
+ * @note Size: 0x104
  */
 void Door::read(Stream& stream)
 {
@@ -116,10 +109,9 @@ void Door::read(Stream& stream)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801B65D0
- * Size:	0000AC
+/**
+ * @note Address: 0x801B65D0
+ * @note Size: 0xAC
  */
 MapUnit::MapUnit()
 {
@@ -132,10 +124,9 @@ MapUnit::MapUnit()
 	mImgResource = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000CC
+/**
+ * @note Address: N/A
+ * @note Size: 0xCC
  */
 void MapUnit::setupSizeInfo()
 {
@@ -144,10 +135,9 @@ void MapUnit::setupSizeInfo()
 	                              // UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
+/**
+ * @note Address: N/A
+ * @note Size: 0x80
  */
 void MapUnit::save(Stream& stream)
 {
@@ -157,10 +147,9 @@ void MapUnit::save(Stream& stream)
 	stream.textWriteText("\t# dX/dZ ; cell size\r\n");
 }
 
-/*
- * --INFO--
- * Address:	801B66AC
- * Size:	00004C
+/**
+ * @note Address: 0x801B66AC
+ * @note Size: 0x4C
  */
 void MapUnit::load(Stream& stream)
 {
@@ -168,20 +157,18 @@ void MapUnit::load(Stream& stream)
 	mCellSize.y = stream.readShort();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B8
+/**
+ * @note Address: N/A
+ * @note Size: 0xB8
  */
 MapUnitMgr::MapUnitMgr()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	801B6918
- * Size:	000088
+/**
+ * @note Address: 0x801B6918
+ * @note Size: 0x88
  */
 MapUnit* MapUnitMgr::getAt(int idx)
 {
@@ -197,10 +184,9 @@ MapUnit* MapUnitMgr::getAt(int idx)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00020C
+/**
+ * @note Address: N/A
+ * @note Size: 0x20C
  */
 MapUnit* MapUnitMgr::findMapUnit(char* unitName)
 {
@@ -217,10 +203,10 @@ MapUnit* MapUnitMgr::findMapUnit(char* unitName)
 
 	return nullptr;
 }
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  */
 void MapUnitMgr::testConstruct()
 {
@@ -229,20 +215,18 @@ void MapUnitMgr::testConstruct()
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000068
+/**
+ * @note Address: N/A
+ * @note Size: 0x68
  */
 void MapUnitMgr::loadShape(char*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	801B69EC
- * Size:	000440
+/**
+ * @note Address: 0x801B69EC
+ * @note Size: 0x440
  * TODO
  */
 void MapUnitMgr::makeUnit(MapUnit* unit, char* folder)
@@ -363,20 +347,18 @@ void MapUnitMgr::makeUnit(MapUnit* unit, char* folder)
 	archive->unmount();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 void MapUnitMgr::load(char*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	801B6E2C
- * Size:	0000DC
+/**
+ * @note Address: 0x801B6E2C
+ * @note Size: 0xDC
  */
 MapRoom::MapRoom()
 {
@@ -390,30 +372,27 @@ MapRoom::MapRoom()
 	mInterface = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000FC
+/**
+ * @note Address: N/A
+ * @note Size: 0xFC
  */
 void MapRoom::countItems()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000170
+/**
+ * @note Address: N/A
+ * @note Size: 0x170
  */
 void MapRoom::countEnemys()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	801B6F10
- * Size:	0007B8
+/**
+ * @note Address: 0x801B6F10
+ * @note Size: 0x7B8
  */
 void MapRoom::placeObjects(Cave::FloorInfo* floorInfo, bool isFinalFloor)
 {
@@ -592,47 +571,42 @@ void MapRoom::placeObjects(Cave::FloorInfo* floorInfo, bool isFinalFloor)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 void MapRoom::getCenterPosition(Vector3f&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00016C
+/**
+ * @note Address: N/A
+ * @note Size: 0x16C
  */
 void MapRoom::create(MapUnit*, Matrixf&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 RoomDoorInfo* MapRoom::createDoorInfo(MapUnitInterface*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	801B76E4
- * Size:	000004
+/**
+ * @note Address: 0x801B76E4
+ * @note Size: 0x4
  */
 RoomDoorInfo::RoomDoorInfo() { }
 
-/*
- * --INFO--
- * Address:	801B76E8
- * Size:	0000D4
+/**
+ * @note Address: 0x801B76E8
+ * @note Size: 0xD4
  */
 void MapRoom::doAnimation()
 {
@@ -654,10 +628,9 @@ void MapRoom::doAnimation()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801B77BC
- * Size:	0001F4
+/**
+ * @note Address: 0x801B77BC
+ * @note Size: 0x1F4
  */
 void MapRoom::doEntry()
 {
@@ -872,10 +845,9 @@ lbl_801B799C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801B79B0
- * Size:	000124
+/**
+ * @note Address: 0x801B79B0
+ * @note Size: 0x124
  */
 void MapRoom::doSetView(int viewportNumber)
 {
@@ -916,31 +888,27 @@ void MapRoom::doSetView(int viewportNumber)
 	mModel->showPackets();
 }
 
-/*
- * --INFO--
- * Address:	801B7AD4
- * Size:	000024
+/**
+ * @note Address: 0x801B7AD4
+ * @note Size: 0x24
  */
 void MapRoom::doViewCalc() { mModel->viewCalc(); }
 
-/*
- * --INFO--
- * Address:	801B7AF8
- * Size:	000004
+/**
+ * @note Address: 0x801B7AF8
+ * @note Size: 0x4
  */
 void MapRoom::doSimulation(f32) { }
 
-/*
- * --INFO--
- * Address:	801B7AFC
- * Size:	000004
+/**
+ * @note Address: 0x801B7AFC
+ * @note Size: 0x4
  */
 void MapRoom::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	801B7B00
- * Size:	0001E8
+/**
+ * @note Address: 0x801B7B00
+ * @note Size: 0x1E8
  */
 RoomMapMgr::RoomMapMgr(Cave::CaveInfo* info)
 {
@@ -962,10 +930,9 @@ RoomMapMgr::RoomMapMgr(Cave::CaveInfo* info)
 	mWraith = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	801B7D88
- * Size:	0001FC
+/**
+ * @note Address: 0x801B7D88
+ * @note Size: 0x1FC
  */
 MapRoom* RoomMapMgr::getMapRoom(s16 idx)
 {
@@ -981,17 +948,15 @@ MapRoom* RoomMapMgr::getMapRoom(s16 idx)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	801B7FD0
- * Size:	00000C
+/**
+ * @note Address: 0x801B7FD0
+ * @note Size: 0xC
  */
 CaveVRBox::CaveVRBox() { mModel = nullptr; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000158
+/**
+ * @note Address: N/A
+ * @note Size: 0x158
  */
 void CaveVRBox::create(char* name)
 {
@@ -1021,10 +986,9 @@ void CaveVRBox::create(char* name)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801B7FDC
- * Size:	000A48
+/**
+ * @note Address: 0x801B7FDC
+ * @note Size: 0xA48
  */
 void RoomMapMgr::createRandomMap(int floorNum, Cave::EditMapUnit* edit)
 {
@@ -1928,10 +1892,9 @@ lbl_801B8A08:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801B8C28
- * Size:	000224
+/**
+ * @note Address: 0x801B8C28
+ * @note Size: 0x224
  */
 void RoomMapMgr::completeUnitData()
 {
@@ -1945,10 +1908,9 @@ void RoomMapMgr::completeUnitData()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801B8E4C
- * Size:	000234
+/**
+ * @note Address: 0x801B8E4C
+ * @note Size: 0x234
  */
 void RoomMapMgr::setupJUTTextures()
 {
@@ -1962,10 +1924,9 @@ void RoomMapMgr::setupJUTTextures()
 	nishimuraSetTexture();
 }
 
-/*
- * --INFO--
- * Address:	801B9080
- * Size:	0002BC
+/**
+ * @note Address: 0x801B9080
+ * @note Size: 0x2BC
  */
 void RoomMapMgr::useUnit(char* unitName)
 {
@@ -1989,10 +1950,9 @@ void RoomMapMgr::useUnit(char* unitName)
 	mMapUnitMgr->mNode.add(node);
 }
 
-/*
- * --INFO--
- * Address:	801B933C
- * Size:	000210
+/**
+ * @note Address: 0x801B933C
+ * @note Size: 0x210
  */
 JUTTexture* RoomMapMgr::getTexture(char* unitName)
 {
@@ -2008,10 +1968,9 @@ JUTTexture* RoomMapMgr::getTexture(char* unitName)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	801B954C
- * Size:	0001F4
+/**
+ * @note Address: 0x801B954C
+ * @note Size: 0x1F4
  */
 void RoomMapMgr::allocRooms(int count)
 {
@@ -2020,20 +1979,18 @@ void RoomMapMgr::allocRooms(int count)
 	CI_LOOP(iter) { (*iter)->mIndex = -1; }
 }
 
-/*
- * --INFO--
- * Address:	801B9740
- * Size:	000050
+/**
+ * @note Address: 0x801B9740
+ * @note Size: 0x50
  */
 void RoomMapMgr::makeRoom(char* unitName, f32 centreX, f32 centreY, int direction, int index, RoomLink* link, ObjectLayoutInfo* layoutInfo)
 {
 	makeOneRoom(centreX, centreY, -90.0f * (f32)direction, unitName, index, link, layoutInfo);
 }
 
-/*
- * --INFO--
- * Address:	801B9790
- * Size:	0003B4
+/**
+ * @note Address: 0x801B9790
+ * @note Size: 0x3B4
  */
 void RoomMapMgr::placeObjects()
 {
@@ -2352,10 +2309,9 @@ lbl_801B9B20:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801B9B44
- * Size:	000024
+/**
+ * @note Address: 0x801B9B44
+ * @note Size: 0x24
  */
 void RoomMapMgr::getBoundBox2d(BoundBox2d& boundbox)
 {
@@ -2363,24 +2319,21 @@ void RoomMapMgr::getBoundBox2d(BoundBox2d& boundbox)
 	boundbox.mMax = Vector2f(mBoundbox.mMax.x, mBoundbox.mMax.z);
 }
 
-/*
- * --INFO--
- * Address:	801B9B68
- * Size:	000034
+/**
+ * @note Address: 0x801B9B68
+ * @note Size: 0x34
  */
 void RoomMapMgr::getBoundBox(BoundBox& boundbox) { boundbox = mBoundbox; }
 
-/*
- * --INFO--
- * Address:	801B9B9C
- * Size:	000004
+/**
+ * @note Address: 0x801B9B9C
+ * @note Size: 0x4
  */
 void RoomMapMgr::drawCollision(Graphics&, Sys::Sphere&) { }
 
-/*
- * --INFO--
- * Address:	801B9BA0
- * Size:	0001F0
+/**
+ * @note Address: 0x801B9BA0
+ * @note Size: 0x1F0
  */
 Sys::TriIndexList* RoomMapMgr::traceMove(MoveInfo& moveInfo, f32 rate)
 {
@@ -2569,17 +2522,15 @@ lbl_801B9D70:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801B9D90
- * Size:	000024
+/**
+ * @note Address: 0x801B9D90
+ * @note Size: 0x24
  */
 bool RoomMapMgr::hasHiddenCollision() { return mFloorInfo->hasHiddenCollision(); }
 
-/*
- * --INFO--
- * Address:	801B9DB4
- * Size:	00008C
+/**
+ * @note Address: 0x801B9DB4
+ * @note Size: 0x8C
  */
 void RoomMapMgr::constraintBoundBox(Sys::Sphere& boundSphere)
 {
@@ -2596,10 +2547,9 @@ void RoomMapMgr::constraintBoundBox(Sys::Sphere& boundSphere)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801B9E40
- * Size:	0001F4
+/**
+ * @note Address: 0x801B9E40
+ * @note Size: 0x1F4
  */
 void RoomMapMgr::entryToMapRoomCellMgr()
 {
@@ -2613,10 +2563,9 @@ void RoomMapMgr::entryToMapRoomCellMgr()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801BA034
- * Size:	000128
+/**
+ * @note Address: 0x801BA034
+ * @note Size: 0x128
  */
 s16 RoomMapMgr::findRoomIndex(Sys::Sphere& sphere)
 {
@@ -2645,20 +2594,18 @@ s16 RoomMapMgr::findRoomIndex(Sys::Sphere& sphere)
 	return -1;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 void MapRoom::createGlobalCollision()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	801BA15C
- * Size:	0009FC
+/**
+ * @note Address: 0x801BA15C
+ * @note Size: 0x9FC
  */
 void RoomMapMgr::createGlobalCollision()
 {
@@ -3427,10 +3374,9 @@ lbl_801BAB44:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801BAD60
- * Size:	000328
+/**
+ * @note Address: 0x801BAD60
+ * @note Size: 0x328
  */
 Sys::TriIndexList* RoomMapMgr::traceMove_new(MoveInfo&, f32)
 {
@@ -3659,10 +3605,9 @@ lbl_801BB038:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801BB088
- * Size:	000740
+/**
+ * @note Address: 0x801BB088
+ * @note Size: 0x740
  */
 void RoomMapMgr::traceMove_original(MoveInfo&, f32)
 {
@@ -4194,10 +4139,9 @@ lbl_801BB7B4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801BB7C8
- * Size:	0004F0
+/**
+ * @note Address: 0x801BB7C8
+ * @note Size: 0x4F0
  */
 bool RoomMapMgr::findRayIntersection(Sys::RayIntersectInfo&)
 {
@@ -4553,10 +4497,9 @@ lbl_801BBC1C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801BBCB8
- * Size:	00008C
+/**
+ * @note Address: 0x801BBCB8
+ * @note Size: 0x8C
  */
 f32 RoomMapMgr::getMinY(Vector3f& pos)
 {
@@ -4567,10 +4510,9 @@ f32 RoomMapMgr::getMinY(Vector3f& pos)
 	return info.mMinY;
 }
 
-/*
- * --INFO--
- * Address:	801BBD44
- * Size:	000770
+/**
+ * @note Address: 0x801BBD44
+ * @note Size: 0x770
  */
 void RoomMapMgr::createTriangles(Sys::CreateTriangleArg&)
 {
@@ -5105,10 +5047,9 @@ lbl_801BC490:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801BC4B4
- * Size:	000460
+/**
+ * @note Address: 0x801BC4B4
+ * @note Size: 0x460
  */
 void RoomMapMgr::getCurrTri(CurrTriInfo&)
 {
@@ -5430,10 +5371,9 @@ lbl_801BC900:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801BC914
- * Size:	0016B8
+/**
+ * @note Address: 0x801BC914
+ * @note Size: 0x16B8
  */
 void RoomMapMgr::makeOneRoom(f32 centreX, f32 centreY, f32 direction, char* unitName, s16 roomIdx, RoomLink* link,
                              ObjectLayoutInfo* layoutInfo)
@@ -7394,10 +7334,9 @@ void RoomMapMgr::makeOneRoom(f32 centreX, f32 centreY, f32 direction, char* unit
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801BDFCC
- * Size:	0001F4
+/**
+ * @note Address: 0x801BDFCC
+ * @note Size: 0x1F4
  */
 void RoomMapMgr::deleteTemp()
 {
@@ -7410,10 +7349,9 @@ void RoomMapMgr::deleteTemp()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801BE1C0
- * Size:	000094
+/**
+ * @note Address: 0x801BE1C0
+ * @note Size: 0x94
  */
 MapUnitInterface* RoomMapMgr::getMUI(MapUnit* unit)
 {
@@ -7426,10 +7364,9 @@ MapUnitInterface* RoomMapMgr::getMUI(MapUnit* unit)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	801BE254
- * Size:	000060
+/**
+ * @note Address: 0x801BE254
+ * @note Size: 0x60
  */
 void RoomMapMgr::doAnimation()
 {
@@ -7440,10 +7377,9 @@ void RoomMapMgr::doAnimation()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801BE2B4
- * Size:	0000DC
+/**
+ * @note Address: 0x801BE2B4
+ * @note Size: 0xDC
  */
 void RoomMapMgr::doEntry()
 {
@@ -7468,10 +7404,9 @@ void RoomMapMgr::doEntry()
 	sys->mTimers->_stop("ENT-MAP");
 }
 
-/*
- * --INFO--
- * Address:	801BE390
- * Size:	00007C
+/**
+ * @note Address: 0x801BE390
+ * @note Size: 0x7C
  */
 void RoomMapMgr::doSetView(int viewportNumber)
 {
@@ -7485,10 +7420,9 @@ void RoomMapMgr::doSetView(int viewportNumber)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801BE40C
- * Size:	000068
+/**
+ * @note Address: 0x801BE40C
+ * @note Size: 0x68
  */
 void RoomMapMgr::doViewCalc()
 {
@@ -7502,17 +7436,15 @@ void RoomMapMgr::doViewCalc()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801BE474
- * Size:	000004
+/**
+ * @note Address: 0x801BE474
+ * @note Size: 0x4
  */
 void RoomMapMgr::doSimulation(f32) { }
 
-/*
- * --INFO--
- * Address:	801BE478
- * Size:	000210
+/**
+ * @note Address: 0x801BE478
+ * @note Size: 0x210
  */
 void RoomMapMgr::doDirectDraw(Graphics& gfx)
 {

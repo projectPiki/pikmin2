@@ -2,10 +2,9 @@
 #include "string.h"
 #include "JSystem/J2D/J2DManage.h"
 
-/*
- * --INFO--
- * Address:	8004985C
- * Size:	000064
+/**
+ * @note Address: 0x8004985C
+ * @note Size: 0x64
  */
 void* J2DDataManage::get(const char* name)
 {
@@ -17,10 +16,9 @@ void* J2DDataManage::get(const char* name)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	800498C0
- * Size:	0000C8
+/**
+ * @note Address: 0x800498C0
+ * @note Size: 0xC8
  */
 void* J2DDataManage::get(JSUInputStream* stream)
 {
@@ -38,10 +36,9 @@ void* J2DDataManage::get(JSUInputStream* stream)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80049988
- * Size:	000034
+/**
+ * @note Address: 0x80049988
+ * @note Size: 0x34
  */
 s8* J2DResReference::getResReference(u16 idx) const
 {
@@ -52,10 +49,9 @@ s8* J2DResReference::getResReference(u16 idx) const
 	return (((s8*)this) + mOffsets[idx]);
 }
 
-/*
- * --INFO--
- * Address:	800499BC
- * Size:	000164
+/**
+ * @note Address: 0x800499BC
+ * @note Size: 0x164
  */
 char* J2DResReference::getName(u16 idx) const
 {

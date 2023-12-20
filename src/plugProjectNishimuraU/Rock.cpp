@@ -7,10 +7,9 @@
 namespace Game {
 namespace Rock {
 
-/*
- * --INFO--
- * Address:	80262FF0
- * Size:	000138
+/**
+ * @note Address: 0x80262FF0
+ * @note Size: 0x138
  */
 Obj::Obj()
 {
@@ -19,10 +18,9 @@ Obj::Obj()
 	createEffect();
 }
 
-/*
- * --INFO--
- * Address:	80263128
- * Size:	00005C
+/**
+ * @note Address: 0x80263128
+ * @note Size: 0x5C
  */
 void Obj::birth(Vector3f& pos, f32 angle)
 {
@@ -31,10 +29,9 @@ void Obj::birth(Vector3f& pos, f32 angle)
 	setInitialSetting(&params);
 }
 
-/*
- * --INFO--
- * Address:	80263184
- * Size:	000028
+/**
+ * @note Address: 0x80263184
+ * @note Size: 0x28
  */
 void Obj::setInitialSetting(EnemyInitialParamBase* param)
 {
@@ -43,10 +40,9 @@ void Obj::setInitialSetting(EnemyInitialParamBase* param)
 	mScaleUpRate = C_PARMS->mGeneral.mSearchAngle;
 }
 
-/*
- * --INFO--
- * Address:	802631AC
- * Size:	0001E0
+/**
+ * @note Address: 0x802631AC
+ * @note Size: 0x1E0
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
@@ -97,10 +93,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80263394
- * Size:	000054
+/**
+ * @note Address: 0x80263394
+ * @note Size: 0x54
  */
 void Obj::onKill(CreatureKillArg* arg)
 {
@@ -110,17 +105,15 @@ void Obj::onKill(CreatureKillArg* arg)
 	EnemyBase::onKill(arg);
 }
 
-/*
- * --INFO--
- * Address:	802633E8
- * Size:	000034
+/**
+ * @note Address: 0x802633E8
+ * @note Size: 0x34
  */
 void Obj::doUpdate() { mFsm->exec(this); }
 
-/*
- * --INFO--
- * Address:	8026341C
- * Size:	00004C
+/**
+ * @note Address: 0x8026341C
+ * @note Size: 0x4C
  */
 void Obj::setFSM(FSM* fsm)
 {
@@ -129,24 +122,21 @@ void Obj::setFSM(FSM* fsm)
 	mCurrentLifecycleState = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80263468
- * Size:	000004
+/**
+ * @note Address: 0x80263468
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics& gfx) { }
 
-/*
- * --INFO--
- * Address:	8026346C
- * Size:	000020
+/**
+ * @note Address: 0x8026346C
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	8026348C
- * Size:	0000E4
+/**
+ * @note Address: 0x8026348C
+ * @note Size: 0xE4
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
@@ -167,10 +157,9 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 	shadowParam.mSize                     = 25.0f * mScaleModifier;
 }
 
-/*
- * --INFO--
- * Address:	80263570
- * Size:	000060
+/**
+ * @note Address: 0x80263570
+ * @note Size: 0x60
  */
 bool Obj::needShadow()
 {
@@ -186,10 +175,9 @@ bool Obj::needShadow()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802635D0
- * Size:	000088
+/**
+ * @note Address: 0x802635D0
+ * @note Size: 0x88
  */
 bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* part)
 {
@@ -201,10 +189,9 @@ bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* part)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80263658
- * Size:	0001A4
+/**
+ * @note Address: 0x80263658
+ * @note Size: 0x1A4
  */
 void Obj::collisionCallback(CollEvent& event)
 {
@@ -242,10 +229,9 @@ void Obj::collisionCallback(CollEvent& event)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802637FC
- * Size:	000054
+/**
+ * @note Address: 0x802637FC
+ * @note Size: 0x54
  */
 void Obj::wallCallback(const MoveInfo& info)
 {
@@ -254,10 +240,9 @@ void Obj::wallCallback(const MoveInfo& info)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80263850
- * Size:	00006C
+/**
+ * @note Address: 0x80263850
+ * @note Size: 0x6C
  */
 void Obj::inWaterCallback(WaterBox* wbox)
 {
@@ -268,10 +253,9 @@ void Obj::inWaterCallback(WaterBox* wbox)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802638BC
- * Size:	000060
+/**
+ * @note Address: 0x802638BC
+ * @note Size: 0x60
  */
 void Obj::outWaterCallback()
 {
@@ -281,24 +265,21 @@ void Obj::outWaterCallback()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8026391C
- * Size:	000020
+/**
+ * @note Address: 0x8026391C
+ * @note Size: 0x20
  */
 void Obj::doStartMovie() { effectDrawOff(); }
 
-/*
- * --INFO--
- * Address:	8026393C
- * Size:	000020
+/**
+ * @note Address: 0x8026393C
+ * @note Size: 0x20
  */
 void Obj::doEndMovie() { effectDrawOn(); }
 
-/*
- * --INFO--
- * Address:	8026395C
- * Size:	00002C
+/**
+ * @note Address: 0x8026395C
+ * @note Size: 0x2C
  */
 bool Obj::ignoreAtari(Creature* creature)
 {
@@ -308,10 +289,9 @@ bool Obj::ignoreAtari(Creature* creature)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80263988
- * Size:	00007C
+/**
+ * @note Address: 0x80263988
+ * @note Size: 0x7C
  */
 bool Obj::fallRockScaleUp()
 {
@@ -332,10 +312,9 @@ bool Obj::fallRockScaleUp()
 	return isDone;
 }
 
-/*
- * --INFO--
- * Address:	80263A04
- * Size:	00007C
+/**
+ * @note Address: 0x80263A04
+ * @note Size: 0x7C
  */
 bool Obj::moveRockScaleUp()
 {
@@ -356,10 +335,9 @@ bool Obj::moveRockScaleUp()
 	return isDone;
 }
 
-/*
- * --INFO--
- * Address:	80263A80
- * Size:	000100
+/**
+ * @note Address: 0x80263A80
+ * @note Size: 0x100
  */
 void Obj::initMoveVelocity()
 {
@@ -445,10 +423,9 @@ lbl_80263B14:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80263B80
- * Size:	0003A0
+/**
+ * @note Address: 0x80263B80
+ * @note Size: 0x3A0
  */
 void Obj::updateMoveVelocity()
 {
@@ -754,10 +731,9 @@ lbl_80263EEC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80263F20
- * Size:	0001A4
+/**
+ * @note Address: 0x80263F20
+ * @note Size: 0x1A4
  */
 void Obj::createEffect()
 {
@@ -766,10 +742,9 @@ void Obj::createEffect()
 	mEfxWaterRun  = new efx::TRockWRun();
 }
 
-/*
- * --INFO--
- * Address:	802640C4
- * Size:	000018
+/**
+ * @note Address: 0x802640C4
+ * @note Size: 0x18
  */
 void Obj::setupEffect()
 {
@@ -777,38 +752,33 @@ void Obj::setupEffect()
 	mEfxGroundRun->mPosition = &mPosition;
 }
 
-/*
- * --INFO--
- * Address:	802640DC
- * Size:	000034
+/**
+ * @note Address: 0x802640DC
+ * @note Size: 0x34
  */
 void Obj::startFallEffect() { mEfxRun->create(nullptr); }
 
-/*
- * --INFO--
- * Address:	80264110
- * Size:	000030
+/**
+ * @note Address: 0x80264110
+ * @note Size: 0x30
  */
 void Obj::finishFallEffect() { mEfxRun->fade(); }
 
-/*
- * --INFO--
- * Address:	80264140
- * Size:	000034
+/**
+ * @note Address: 0x80264140
+ * @note Size: 0x34
  */
 void Obj::startRollingGroundEffect() { mEfxGroundRun->create(nullptr); }
 
-/*
- * --INFO--
- * Address:	80264174
- * Size:	000030
+/**
+ * @note Address: 0x80264174
+ * @note Size: 0x30
  */
 void Obj::finishRollingGroundEffect() { mEfxGroundRun->fade(); }
 
-/*
- * --INFO--
- * Address:	802641A4
- * Size:	0000E8
+/**
+ * @note Address: 0x802641A4
+ * @note Size: 0xE8
  */
 void Obj::startRollingWaterEffect()
 {
@@ -833,17 +803,15 @@ void Obj::startRollingWaterEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8026429C
- * Size:	000030
+/**
+ * @note Address: 0x8026429C
+ * @note Size: 0x30
  */
 void Obj::finishRollingWaterEffect() { mEfxWaterRun->fade(); }
 
-/*
- * --INFO--
- * Address:	80264310
- * Size:	0000A4
+/**
+ * @note Address: 0x80264310
+ * @note Size: 0xA4
  */
 void Obj::updateWaterEffectPosition()
 {
@@ -859,10 +827,9 @@ void Obj::updateWaterEffectPosition()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802643B4
- * Size:	000098
+/**
+ * @note Address: 0x802643B4
+ * @note Size: 0x98
  */
 void Obj::createRockDeadEffect()
 {
@@ -872,10 +839,9 @@ void Obj::createRockDeadEffect()
 	deadFX.create(&fxArg);
 }
 
-/*
- * --INFO--
- * Address:	8026444C
- * Size:	000064
+/**
+ * @note Address: 0x8026444C
+ * @note Size: 0x64
  */
 void Obj::effectDrawOn()
 {
@@ -884,10 +850,9 @@ void Obj::effectDrawOn()
 	mEfxWaterRun->mChasePos.endDemoDrawOn();
 }
 
-/*
- * --INFO--
- * Address:	802644B0
- * Size:	000064
+/**
+ * @note Address: 0x802644B0
+ * @note Size: 0x64
  */
 void Obj::effectDrawOff()
 {

@@ -8,20 +8,18 @@
 
 namespace Sys {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 // MatBaseAnimation::MatBaseAnimation()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	80434020
- * Size:	000084
+/**
+ * @note Address: 0x80434020
+ * @note Size: 0x84
  */
 void MatBaseAnimation::attachResource(void* resource, J3DModelData* modelData)
 {
@@ -30,10 +28,9 @@ void MatBaseAnimation::attachResource(void* resource, J3DModelData* modelData)
 	onAttachResource(resource);
 }
 
-/*
- * --INFO--
- * Address:	804340A4
- * Size:	000090
+/**
+ * @note Address: 0x804340A4
+ * @note Size: 0x90
  */
 f32 MatBaseAnimation::getFrameMax()
 {
@@ -41,10 +38,9 @@ f32 MatBaseAnimation::getFrameMax()
 	return getAnmBase()->mMaxFrame;
 }
 
-/*
- * --INFO--
- * Address:	80434134
- * Size:	00002C
+/**
+ * @note Address: 0x80434134
+ * @note Size: 0x2C
  */
 MatTexAnimation::MatTexAnimation()
     : mAnmSRT(nullptr)
@@ -52,10 +48,9 @@ MatTexAnimation::MatTexAnimation()
 {
 }
 
-/*
- * --INFO--
- * Address:	80434160
- * Size:	000088
+/**
+ * @note Address: 0x80434160
+ * @note Size: 0x88
  */
 void MatTexAnimation::onAttachResource(void* resource)
 {
@@ -67,24 +62,21 @@ void MatTexAnimation::onAttachResource(void* resource)
 	model->getMaterialTable().allocTexMtxAnimator(mAnmSRT, &mAnmMtx);
 }
 
-/*
- * --INFO--
- * Address:	804341E8
- * Size:	00002C
+/**
+ * @note Address: 0x804341E8
+ * @note Size: 0x2C
  */
 void MatTexAnimation::set() { mModelData->getMaterialTable().entryTexMtxAnimator(mAnmSRT); }
 
-/*
- * --INFO--
- * Address:	80434214
- * Size:	00002C
+/**
+ * @note Address: 0x80434214
+ * @note Size: 0x2C
  */
 bool MatTexAnimation::remove() { return mModelData->getMaterialTable().removeTexMtxAnimator(mAnmSRT); }
 
-/*
- * --INFO--
- * Address:	80434240
- * Size:	000030
+/**
+ * @note Address: 0x80434240
+ * @note Size: 0x30
  */
 MatTevRegAnimation::MatTevRegAnimation()
     : mAnmTevRegKey(nullptr)
@@ -93,10 +85,9 @@ MatTevRegAnimation::MatTevRegAnimation()
 {
 }
 
-/*
- * --INFO--
- * Address:	80434270
- * Size:	00008C
+/**
+ * @note Address: 0x80434270
+ * @note Size: 0x8C
  */
 void MatTevRegAnimation::onAttachResource(void* resource)
 {
@@ -108,34 +99,30 @@ void MatTevRegAnimation::onAttachResource(void* resource)
 	model->getMaterialTable().allocTevRegAnimator(mAnmTevRegKey, &mTevColorAnm, &mTevKColorAnm);
 }
 
-/*
- * --INFO--
- * Address:	804342FC
- * Size:	00002C
+/**
+ * @note Address: 0x804342FC
+ * @note Size: 0x2C
  */
 void MatTevRegAnimation::set() { mModelData->getMaterialTable().entryTevRegAnimator(mAnmTevRegKey); }
 
-/*
- * --INFO--
- * Address:	80434328
- * Size:	00002C
+/**
+ * @note Address: 0x80434328
+ * @note Size: 0x2C
  */
 bool MatTevRegAnimation::remove() { return mModelData->getMaterialTable().removeTevRegAnimator(mAnmTevRegKey); }
 
-/*
- * --INFO--
- * Address:	80434354
- * Size:	000018
+/**
+ * @note Address: 0x80434354
+ * @note Size: 0x18
  */
 MatBaseAnimator::MatBaseAnimator()
     : mAnimation(nullptr)
 {
 }
 
-/*
- * --INFO--
- * Address:	8043436C
- * Size:	000070
+/**
+ * @note Address: 0x8043436C
+ * @note Size: 0x70
  */
 void MatBaseAnimator::start(Sys::MatBaseAnimation* animation)
 {
@@ -147,20 +134,18 @@ void MatBaseAnimator::start(Sys::MatBaseAnimation* animation)
 	mCurrFrame = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 void MatBaseAnimator::removeMotion()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001A4
+/**
+ * @note Address: N/A
+ * @note Size: 0x1A4
  */
 f32 MatBaseAnimator::forward(f32 frame)
 {
@@ -172,10 +157,9 @@ f32 MatBaseAnimator::forward(f32 frame)
 	return frame;
 }
 
-/*
- * --INFO--
- * Address:	804343DC
- * Size:	000170
+/**
+ * @note Address: 0x804343DC
+ * @note Size: 0x170
  */
 void MatBaseAnimator::setCurrentFrame(f32 frame)
 {
@@ -183,10 +167,9 @@ void MatBaseAnimator::setCurrentFrame(f32 frame)
 	mCurrFrame = forward(frame);
 }
 
-/*
- * --INFO--
- * Address:	8043454C
- * Size:	000078
+/**
+ * @note Address: 0x8043454C
+ * @note Size: 0x78
  */
 void MatBaseAnimator::animate(f32 rate)
 {
@@ -197,17 +180,15 @@ void MatBaseAnimator::animate(f32 rate)
 	do_animate(rate);
 }
 
-/*
- * --INFO--
- * Address:	804345C4
- * Size:	000004
+/**
+ * @note Address: 0x804345C4
+ * @note Size: 0x4
  */
 void MatBaseAnimator::do_animate(f32) { }
 
-/*
- * --INFO--
- * Address:	804345C8
- * Size:	0001B0
+/**
+ * @note Address: 0x804345C8
+ * @note Size: 0x1B0
  */
 void MatLoopAnimator::do_animate(f32 rate)
 {
@@ -358,17 +339,15 @@ lbl_80434754:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80434778
- * Size:	00000C
+/**
+ * @note Address: 0x80434778
+ * @note Size: 0xC
  */
 void MatRepeatAnimator::onStart() { _0C = 1; }
 
-/*
- * --INFO--
- * Address:	80434784
- * Size:	000328
+/**
+ * @note Address: 0x80434784
+ * @note Size: 0x328
  */
 void MatRepeatAnimator::do_animate(f32 rate)
 {
@@ -647,24 +626,21 @@ lbl_80434A88:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80434AAC
- * Size:	000004
+/**
+ * @note Address: 0x80434AAC
+ * @note Size: 0x4
  */
 void MatBaseAnimator::onStart() { }
 
-/*
- * --INFO--
- * Address:	80434AB0
- * Size:	000008
+/**
+ * @note Address: 0x80434AB0
+ * @note Size: 0x8
  */
 J3DAnmBase* MatTevRegAnimation::getAnmBase() { return mAnmTevRegKey; }
 
-/*
- * --INFO--
- * Address:	80434AB8
- * Size:	000008
+/**
+ * @note Address: 0x80434AB8
+ * @note Size: 0x8
  */
 J3DAnmBase* MatTexAnimation::getAnmBase() { return mAnmSRT; }
 } // namespace Sys

@@ -43,20 +43,18 @@ inline void DemoInitiator::setDefaultValues()
 
 inline bool DemoInitiator::isInitialized() { return mByte && mName; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
+/**
+ * @note Address: N/A
+ * @note Size: 0x78
  */
 void DemoInitiator::equalSet(const char*, const char*, u8)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 void DemoInitiator::equalSetStream(const char* buffer, u32 AST_ID, u8 byte)
 {
@@ -72,50 +70,45 @@ void DemoInitiator::equalSetStream(const char* buffer, u32 AST_ID, u8 byte)
 	*mByte = byte;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
+/**
+ * @note Address: N/A
+ * @note Size: 0x80
  */
 void DemoInitiator::equalSetEx(const char*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
+/**
+ * @note Address: N/A
+ * @note Size: 0x7C
  */
 void DemoInitiator::equalSetExStream(const char*, bool, u32, u8)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
+/**
+ * @note Address: N/A
+ * @note Size: 0x58
  */
 void DemoInitiator::is(const char*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
+/**
+ * @note Address: N/A
+ * @note Size: 0x7C
  */
 void DemoInitiator::numberSet(const char*, const char*, u8)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 
 inline void DemoInitiator::setDefault(const char* comp, u32 id, bool extraCondition)
@@ -128,10 +121,9 @@ inline void DemoInitiator::setDefault(const char* comp, u32 id, bool extraCondit
 	}
 }
 
-/*
- * --INFO--
- * Address:	80463FE8
- * Size:	00005C
+/**
+ * @note Address: 0x80463FE8
+ * @note Size: 0x5C
  */
 Demo::Demo()
 {
@@ -142,10 +134,9 @@ Demo::Demo()
 	mFuncptr          = nullptr;
 };
 
-/*
- * --INFO--
- * Address:	80464044
- * Size:	00020C
+/**
+ * @note Address: 0x80464044
+ * @note Size: 0x20C
  */
 void Demo::init(Vec* cam1pos, Vec* cam2pos, Mtx mtx, DemoArg arg)
 {
@@ -180,10 +171,9 @@ void Demo::init(Vec* cam1pos, Vec* cam2pos, Mtx mtx, DemoArg arg)
 	demo1stLoadSync();
 }
 
-/*
- * --INFO--
- * Address:	80464250
- * Size:	0000EC
+/**
+ * @note Address: 0x80464250
+ * @note Size: 0xEC
  */
 void Demo::demo1stLoadSync()
 {
@@ -194,10 +184,9 @@ void Demo::demo1stLoadSync()
 	scene->mChild->scene1stLoadSync();
 }
 
-/*
- * --INFO--
- * Address:	8046433C
- * Size:	000048
+/**
+ * @note Address: 0x8046433C
+ * @note Size: 0x48
  */
 void Demo::initDemoScene(PSM::DemoArg& arg, PSM::Scene_Demo* scene)
 {
@@ -206,10 +195,9 @@ void Demo::initDemoScene(PSM::DemoArg& arg, PSM::Scene_Demo* scene)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80464384
- * Size:	001DA4
+/**
+ * @note Address: 0x80464384
+ * @note Size: 0x1DA4
  */
 PSSystem::BgmSeq* Demo::initiate(DemoArg demoArg, u8* unk)
 {
@@ -424,10 +412,9 @@ PSSystem::BgmSeq* Demo::initiate(DemoArg demoArg, u8* unk)
 	return seq;
 }
 
-/*
- * --INFO--
- * Address:	80466128
- * Size:	000184
+/**
+ * @note Address: 0x80466128
+ * @note Size: 0x184
  */
 Demo::~Demo()
 {
@@ -442,10 +429,9 @@ Demo::~Demo()
 	delete scene;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000124
+/**
+ * @note Address: N/A
+ * @note Size: 0x124
  */
 void Demo::becomeDemoCamera()
 {
@@ -456,10 +442,9 @@ void Demo::becomeDemoCamera()
 	PSSystem::SingletonBase<ObjCalcBase>::getInstance()->setMode(ObjCalcBase::OBJCALC_0);
 }
 
-/*
- * --INFO--
- * Address:	804662AC
- * Size:	0006C0
+/**
+ * @note Address: 0x804662AC
+ * @note Size: 0x6C0
  */
 void Demo::onDemoTop()
 {
@@ -525,10 +510,9 @@ void Demo::onDemoTop()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8046696C
- * Size:	000104
+/**
+ * @note Address: 0x8046696C
+ * @note Size: 0x104
  */
 void Demo::becomeSceneCamera()
 {
@@ -536,10 +520,9 @@ void Demo::becomeSceneCamera()
 	PSSystem::SingletonBase<ObjCalcBase>::getInstance()->setMode(ObjCalcBase::OBJCALC_0);
 }
 
-/*
- * --INFO--
- * Address:	80466A70
- * Size:	0000FC
+/**
+ * @note Address: 0x80466A70
+ * @note Size: 0xFC
  */
 void Demo::onDemoFadeoutStart(u32 flag)
 {
@@ -549,10 +532,9 @@ void Demo::onDemoFadeoutStart(u32 flag)
 	PSSystem::stopChildSeq(scene, flag - 2);
 }
 
-/*
- * --INFO--
- * Address:	80466B6C
- * Size:	000664
+/**
+ * @note Address: 0x80466B6C
+ * @note Size: 0x664
  */
 void Demo::onDemoEnd()
 {
@@ -1089,10 +1071,9 @@ lbl_804671BC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	804671D0
- * Size:	000268
+/**
+ * @note Address: 0x804671D0
+ * @note Size: 0x268
  */
 void Demo::onMessageEnd(int id)
 {
@@ -1120,10 +1101,9 @@ void Demo::onMessageEnd(int id)
 
 } // namespace PSM
 
-/*
- * --INFO--
- * Address:	80467438
- * Size:	0000E4
+/**
+ * @note Address: 0x80467438
+ * @note Size: 0xE4
  */
 void PSMCancelToPauseOffMainBgm()
 {
@@ -1137,10 +1117,9 @@ void PSMCancelToPauseOffMainBgm()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8046751C
- * Size:	0000EC
+/**
+ * @note Address: 0x8046751C
+ * @note Size: 0xEC
  */
 PSM::Scene_Game* PSMGetGameSceneA()
 {

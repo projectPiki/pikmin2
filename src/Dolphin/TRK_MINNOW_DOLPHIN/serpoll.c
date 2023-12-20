@@ -3,10 +3,9 @@
 static TRKFramingState gTRKFramingState;
 void* gTRKInputPendingPtr;
 
-/*
- * --INFO--
- * Address:	800BC244
- * Size:	00013C
+/**
+ * @note Address: 0x800BC244
+ * @note Size: 0x13C
  */
 MessageBufferID TRKTestForPacket()
 {
@@ -51,10 +50,9 @@ MessageBufferID TRKTestForPacket()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	800BC1E4
- * Size:	000060
+/**
+ * @note Address: 0x800BC1E4
+ * @note Size: 0x60
  */
 void TRKGetInput(void)
 {
@@ -69,10 +67,9 @@ void TRKGetInput(void)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800BC194
- * Size:	000050
+/**
+ * @note Address: 0x800BC194
+ * @note Size: 0x50
  */
 void TRKProcessInput(int bufferIdx)
 {
@@ -84,10 +81,9 @@ void TRKProcessInput(int bufferIdx)
 	TRKPostEvent(&event);
 }
 
-/*
- * --INFO--
- * Address:	800BC0D0
- * Size:	0000C4
+/**
+ * @note Address: 0x800BC0D0
+ * @note Size: 0xC4
  */
 DSError TRKInitializeSerialHandler()
 {
@@ -105,9 +101,8 @@ DSError TRKInitializeSerialHandler()
 	return DS_NoError;
 }
 
-/*
- * --INFO--
- * Address:	800BC0C8
- * Size:	000008
+/**
+ * @note Address: 0x800BC0C8
+ * @note Size: 0x8
  */
 DSError TRKTerminateSerialHandler(void) { return DS_NoError; }

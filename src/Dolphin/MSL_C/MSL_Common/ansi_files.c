@@ -113,10 +113,9 @@ FILE __files[4] =
 };
 // clang-format on
 
-/*
- * --INFO--
- * Address:	800C2A74
- * Size:	0000A8
+/**
+ * @note Address: 0x800C2A74
+ * @note Size: 0xA8
  */
 void __close_all()
 {
@@ -144,10 +143,9 @@ void __close_all()
 	__end_critical_region(stdin_access);
 }
 
-/*
- * --INFO--
- * Address:	800C2A04
- * Size:	000070
+/**
+ * @note Address: 0x800C2A04
+ * @note Size: 0x70
  */
 
 u32 __flush_all()

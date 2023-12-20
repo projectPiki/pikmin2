@@ -2,10 +2,9 @@
 
 namespace ebi {
 
-/*
- * --INFO--
- * Address:	803C9D10
- * Size:	000104
+/**
+ * @note Address: 0x803C9D10
+ * @note Size: 0x104
  */
 void E3DAnimRes::load(J3DModelData* modelData, JKRArchive* archive, char* resourcePath)
 {
@@ -26,10 +25,9 @@ void E3DAnimRes::load(J3DModelData* modelData, JKRArchive* archive, char* resour
 	mMode      = 0;
 }
 
-/*
- * --INFO--
- * Address:	803C9E14
- * Size:	000058
+/**
+ * @note Address: 0x803C9E14
+ * @note Size: 0x58
  */
 void E3DAnimCtrl::setAnimFolder(E3DAnimFolderBase* animFolder)
 {
@@ -37,10 +35,9 @@ void E3DAnimCtrl::setAnimFolder(E3DAnimFolderBase* animFolder)
 	mAnimFolder = animFolder;
 }
 
-/*
- * --INFO--
- * Address:	803C9E6C
- * Size:	0000A4
+/**
+ * @note Address: 0x803C9E6C
+ * @note Size: 0xA4
  */
 void E3DAnimCtrl::init(long id, float timeStep)
 {
@@ -51,20 +48,18 @@ void E3DAnimCtrl::init(long id, float timeStep)
 	mState         = 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 void E3DAnimCtrl::setStartFrame()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803C9F10
- * Size:	000080
+/**
+ * @note Address: 0x803C9F10
+ * @note Size: 0x80
  */
 void E3DAnimCtrl::play()
 {
@@ -74,10 +69,9 @@ void E3DAnimCtrl::play()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803C9F90
- * Size:	000064
+/**
+ * @note Address: 0x803C9F90
+ * @note Size: 0x64
  */
 void E3DAnimCtrl::playStopEnd()
 {
@@ -87,10 +81,9 @@ void E3DAnimCtrl::playStopEnd()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 void E3DAnimCtrl::stop()
 {

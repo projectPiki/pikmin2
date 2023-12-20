@@ -11,10 +11,9 @@
 #include "stdarg.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	80040F74
- * Size:	000078
+/**
+ * @note Address: 0x80040F74
+ * @note Size: 0x78
  */
 J2DTextBox::J2DTextBox()
     : J2DPane()
@@ -28,10 +27,9 @@ J2DTextBox::J2DTextBox()
 	initiate(nullptr, nullptr, 0, J2DHBIND_Left, J2DVBIND_Top);
 }
 
-/*
- * --INFO--
- * Address:	80040FEC
- * Size:	000094
+/**
+ * @note Address: 0x80040FEC
+ * @note Size: 0x94
  * __ct__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamP10JKRArchive
  */
 J2DTextBox::J2DTextBox(J2DPane* parent, JSURandomInputStream* input, JKRArchive* archive)
@@ -46,10 +44,9 @@ J2DTextBox::J2DTextBox(J2DPane* parent, JSURandomInputStream* input, JKRArchive*
 	private_readStream(parent, input, archive);
 }
 
-/*
- * --INFO--
- * Address:	80041080
- * Size:	000460
+/**
+ * @note Address: 0x80041080
+ * @note Size: 0x460
  * __ct__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial
  */
 J2DTextBox::J2DTextBox(J2DPane* parent, JSURandomInputStream* input, u32 flags, J2DMaterial* materials)
@@ -162,10 +159,9 @@ J2DTextBox::J2DTextBox(J2DPane* parent, JSURandomInputStream* input, u32 flags, 
 	mIsTextFontOwned = true;
 }
 
-/*
- * --INFO--
- * Address:	800414EC
- * Size:	00008C
+/**
+ * @note Address: 0x800414EC
+ * @note Size: 0x8C
  */
 J2DTextBox::J2DTextBox(u64 tag, const JGeometry::TBox2f& box, const ResFONT* resFont, const char* str, s16 strLength, J2DTextBoxHBinding hb,
                        J2DTextBoxVBinding vb)
@@ -180,10 +176,9 @@ J2DTextBox::J2DTextBox(u64 tag, const JGeometry::TBox2f& box, const ResFONT* res
 	initiate(resFont, str, strLength, hb, vb);
 }
 
-/*
- * --INFO--
- * Address:	80041578
- * Size:	000228
+/**
+ * @note Address: 0x80041578
+ * @note Size: 0x228
  */
 void J2DTextBox::initiate(const ResFONT* resFont, const char* str, s16 strLength, J2DTextBoxHBinding hb, J2DTextBoxVBinding vb)
 {
@@ -222,10 +217,9 @@ void J2DTextBox::initiate(const ResFONT* resFont, const char* str, s16 strLength
 	mIsTextFontOwned = true;
 }
 
-/*
- * --INFO--
- * Address:	800417A0
- * Size:	000350
+/**
+ * @note Address: 0x800417A0
+ * @note Size: 0x350
  */
 void J2DTextBox::private_readStream(J2DPane* parent, JSURandomInputStream* input, JKRArchive* archive)
 {
@@ -290,10 +284,9 @@ void J2DTextBox::private_readStream(J2DPane* parent, JSURandomInputStream* input
 	mIsTextFontOwned = true;
 }
 
-/*
- * --INFO--
- * Address:	80041AF0
- * Size:	000098
+/**
+ * @note Address: 0x80041AF0
+ * @note Size: 0x98
  * __dt__10J2DTextBoxFv
  */
 J2DTextBox::~J2DTextBox()
@@ -304,10 +297,9 @@ J2DTextBox::~J2DTextBox()
 	delete[] mStringPtr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C8
+/**
+ * @note Address: N/A
+ * @note Size: 0xC8
  */
 void J2DTextBox::setFontSize()
 {
@@ -317,10 +309,9 @@ void J2DTextBox::setFontSize()
 	// more code here.
 }
 
-/*
- * --INFO--
- * Address:	80041B90
- * Size:	000070
+/**
+ * @note Address: 0x80041B90
+ * @note Size: 0x70
  * setFont__10J2DTextBoxFP7JUTFont
  */
 void J2DTextBox::setFont(JUTFont* font)
@@ -335,10 +326,9 @@ void J2DTextBox::setFont(JUTFont* font)
 	mIsTextFontOwned = false;
 }
 
-/*
- * --INFO--
- * Address:	80041C00
- * Size:	0001A4
+/**
+ * @note Address: 0x80041C00
+ * @note Size: 0x1A4
  * draw__10J2DTextBoxFff
  */
 void J2DTextBox::draw(f32 x, f32 y)
@@ -370,10 +360,9 @@ void J2DTextBox::draw(f32 x, f32 y)
 	GXLoadPosMtxImm(mtx, GX_PNMTX0);
 }
 
-/*
- * --INFO--
- * Address:	80041DA4
- * Size:	0001D0
+/**
+ * @note Address: 0x80041DA4
+ * @note Size: 0x1D0
  * draw__10J2DTextBoxFfff18J2DTextBoxHBinding
  */
 void J2DTextBox::draw(f32 x, f32 y, f32 p3, J2DTextBoxHBinding hb)
@@ -403,10 +392,9 @@ void J2DTextBox::draw(f32 x, f32 y, f32 p3, J2DTextBoxHBinding hb)
 	GXLoadPosMtxImm(mtx, GX_PNMTX0);
 }
 
-/*
- * --INFO--
- * Address:	80041F74
- * Size:	0000F4
+/**
+ * @note Address: 0x80041F74
+ * @note Size: 0xF4
  */
 size_t J2DTextBox::setString(const char* format, ...)
 {
@@ -429,10 +417,9 @@ size_t J2DTextBox::setString(const char* format, ...)
 	return length;
 }
 
-/*
- * --INFO--
- * Address:	80042068
- * Size:	000078
+/**
+ * @note Address: 0x80042068
+ * @note Size: 0x78
  */
 bool J2DTextBox::setConnectParent(bool isConnected)
 {
@@ -448,10 +435,9 @@ bool J2DTextBox::setConnectParent(bool isConnected)
 	return isConnected;
 }
 
-/*
- * --INFO--
- * Address:	800420E0
- * Size:	000068
+/**
+ * @note Address: 0x800420E0
+ * @note Size: 0x68
  */
 void J2DTextBox::drawSelf(f32 x, f32 y)
 {
@@ -460,10 +446,9 @@ void J2DTextBox::drawSelf(f32 x, f32 y)
 	drawSelf(x, y, &mtx);
 }
 
-/*
- * --INFO--
- * Address:	80042148
- * Size:	0001A8
+/**
+ * @note Address: 0x80042148
+ * @note Size: 0x1A8
  * drawSelf__10J2DTextBoxFffPA3_A4_f
  */
 void J2DTextBox::drawSelf(f32 x, f32 y, Mtx* mtx)
@@ -487,10 +472,9 @@ void J2DTextBox::drawSelf(f32 x, f32 y, Mtx* mtx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800422F0
- * Size:	000104
+/**
+ * @note Address: 0x800422F0
+ * @note Size: 0x104
  */
 void J2DTextBox::resize(f32 width, f32 height)
 {
@@ -508,10 +492,9 @@ void J2DTextBox::resize(f32 width, f32 height)
 	J2DPane::resize(width, height);
 }
 
-/*
- * --INFO--
- * Address:	800423F4
- * Size:	00006C
+/**
+ * @note Address: 0x800423F4
+ * @note Size: 0x6C
  */
 bool J2DTextBox::isUsed(const ResFONT* resFont)
 {

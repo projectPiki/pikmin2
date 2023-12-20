@@ -22,10 +22,9 @@ static GXColor mMatKColorY;
 static GXColor mMatKColorR;
 static GXColor mMatKColorB;
 
-/*
- * --INFO--
- * Address:	80389634
- * Size:	0000A4
+/**
+ * @note Address: 0x80389634
+ * @note Size: 0xA4
  */
 void Obj::setParameters()
 {
@@ -38,17 +37,15 @@ void Obj::setParameters()
 	mCollTree->mPart->setScale(randScale);
 }
 
-/*
- * --INFO--
- * Address:	803896D8
- * Size:	000020
+/**
+ * @note Address: 0x803896D8
+ * @note Size: 0x20
  */
 void Obj::birth(Vector3f& pos, f32 faceDir) { EnemyBase::birth(pos, faceDir); }
 
-/*
- * --INFO--
- * Address:	803896F8
- * Size:	00024C
+/**
+ * @note Address: 0x803896F8
+ * @note Size: 0x24C
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
@@ -114,10 +111,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mIsFallVertical = false;
 }
 
-/*
- * --INFO--
- * Address:	80389944
- * Size:	000250
+/**
+ * @note Address: 0x80389944
+ * @note Size: 0x250
  */
 Obj::Obj()
     : mSpecType(SHIJIMITYPE_Yellow)
@@ -143,10 +139,9 @@ Obj::Obj()
 	P2ASSERTLINE(143, mSoundCluster);
 }
 
-/*
- * --INFO--
- * Address:	80389BE0
- * Size:	0000AC
+/**
+ * @note Address: 0x80389BE0
+ * @note Size: 0xAC
  */
 void Obj::doUpdate()
 {
@@ -154,31 +149,27 @@ void Obj::doUpdate()
 	mPitchAmp = sinf(TAU * mPitchRate);
 }
 
-/*
- * --INFO--
- * Address:	80389C8C
- * Size:	000004
+/**
+ * @note Address: 0x80389C8C
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	80389C90
- * Size:	000020
+/**
+ * @note Address: 0x80389C90
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	80389CB0
- * Size:	000020
+/**
+ * @note Address: 0x80389CB0
+ * @note Size: 0x20
  */
 void Obj::doAnimation() { EnemyBase::doAnimation(); }
 
-/*
- * --INFO--
- * Address:	80389CD0
- * Size:	00004C
+/**
+ * @note Address: 0x80389CD0
+ * @note Size: 0x4C
  */
 void Obj::doEntry()
 {
@@ -191,10 +182,9 @@ void Obj::doEntry()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80389D1C
- * Size:	0001A0
+/**
+ * @note Address: 0x80389D1C
+ * @note Size: 0x1A0
  */
 void Obj::doAnimationCullingOff()
 {
@@ -233,10 +223,9 @@ void Obj::doAnimationCullingOff()
 	updateCluster();
 }
 
-/*
- * --INFO--
- * Address:	80389EBC
- * Size:	0000B8
+/**
+ * @note Address: 0x80389EBC
+ * @note Size: 0xB8
  */
 void Obj::doAnimationCullingOn()
 {
@@ -252,10 +241,9 @@ void Obj::doAnimationCullingOn()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80389F74
- * Size:	000084
+/**
+ * @note Address: 0x80389F74
+ * @note Size: 0x84
  */
 void Obj::onKill(CreatureKillArg* killArg)
 {
@@ -269,10 +257,9 @@ void Obj::onKill(CreatureKillArg* killArg)
 	EnemyBase::onKill(killArg);
 }
 
-/*
- * --INFO--
- * Address:	80389FF8
- * Size:	000438
+/**
+ * @note Address: 0x80389FF8
+ * @note Size: 0x438
  */
 void Obj::doSimulation(f32 simSpeed)
 {
@@ -322,10 +309,9 @@ void Obj::doSimulation(f32 simSpeed)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8038A430
- * Size:	00026C
+/**
+ * @note Address: 0x8038A430
+ * @note Size: 0x26C
  */
 void Obj::changeMaterial()
 {
@@ -352,24 +338,21 @@ void Obj::changeMaterial()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8038A69C
- * Size:	000030
+/**
+ * @note Address: 0x8038A69C
+ * @note Size: 0x30
  */
 void Obj::doStartMovie() { mEfxDown->startDemoDrawOff(); }
 
-/*
- * --INFO--
- * Address:	8038A6CC
- * Size:	000030
+/**
+ * @note Address: 0x8038A6CC
+ * @note Size: 0x30
  */
 void Obj::doEndMovie() { mEfxDown->endDemoDrawOn(); }
 
-/*
- * --INFO--
- * Address:	8038A6FC
- * Size:	000034
+/**
+ * @note Address: 0x8038A6FC
+ * @note Size: 0x34
  */
 void Obj::doStartStoneState()
 {
@@ -377,17 +360,15 @@ void Obj::doStartStoneState()
 	hardConstraintOff();
 }
 
-/*
- * --INFO--
- * Address:	8038A730
- * Size:	000008
+/**
+ * @note Address: 0x8038A730
+ * @note Size: 0x8
  */
 bool Obj::damageCallBack(Creature*, f32, CollPart*) { return false; }
 
-/*
- * --INFO--
- * Address:	8038A738
- * Size:	000094
+/**
+ * @note Address: 0x8038A738
+ * @note Size: 0x94
  */
 void Obj::wallCallback(const MoveInfo& moveInfo)
 {
@@ -447,10 +428,9 @@ lbl_8038A7B4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8038A7CC
- * Size:	000064
+/**
+ * @note Address: 0x8038A7CC
+ * @note Size: 0x64
  */
 void Obj::collisionCallback(CollEvent& event)
 {
@@ -459,17 +439,15 @@ void Obj::collisionCallback(CollEvent& event)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8038A830
- * Size:	000028
+/**
+ * @note Address: 0x8038A830
+ * @note Size: 0x28
  */
 void Obj::startCarcassMotion() { startMotion(SHIJIMIANIM_Carry, nullptr); }
 
-/*
- * --INFO--
- * Address:	8038A858
- * Size:	000124
+/**
+ * @note Address: 0x8038A858
+ * @note Size: 0x124
  */
 void Obj::getShadowParam(ShadowParam& param)
 {
@@ -498,10 +476,9 @@ void Obj::getShadowParam(ShadowParam& param)
 	param.mSize = 7.0f * sizeFactor;
 }
 
-/*
- * --INFO--
- * Address:	8038A97C
- * Size:	00023C
+/**
+ * @note Address: 0x8038A97C
+ * @note Size: 0x23C
  */
 void Obj::genItem()
 {
@@ -535,10 +512,9 @@ void Obj::genItem()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8038ABB8
- * Size:	000080
+/**
+ * @note Address: 0x8038ABB8
+ * @note Size: 0x80
  */
 bool Obj::checkFlyStart()
 {
@@ -557,10 +533,9 @@ bool Obj::checkFlyStart()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8038AC38
- * Size:	0003BC
+/**
+ * @note Address: 0x8038AC38
+ * @note Size: 0x3BC
  */
 void Obj::fly()
 {
@@ -892,10 +867,9 @@ lbl_8038AFB8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8038AFF4
- * Size:	000108
+/**
+ * @note Address: 0x8038AFF4
+ * @note Size: 0x108
  */
 void Obj::restFly()
 {
@@ -923,10 +897,9 @@ void Obj::restFly()
 	mPosition.y += 0.05f * (mGoalPosition.y - mPosition.y);
 }
 
-/*
- * --INFO--
- * Address:	8038B0FC
- * Size:	0000B4
+/**
+ * @note Address: 0x8038B0FC
+ * @note Size: 0xB4
  */
 void Obj::restCheck()
 {
@@ -941,10 +914,9 @@ void Obj::restCheck()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8038B1B0
- * Size:	000370
+/**
+ * @note Address: 0x8038B1B0
+ * @note Size: 0x370
  */
 bool Obj::checkRestOn()
 {
@@ -1229,10 +1201,9 @@ lbl_8038B4FC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8038B520
- * Size:	0002AC
+/**
+ * @note Address: 0x8038B520
+ * @note Size: 0x2AC
  */
 bool Obj::checkRestOff()
 {
@@ -1454,10 +1425,9 @@ lbl_8038B7B8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8038B7CC
- * Size:	0000FC
+/**
+ * @note Address: 0x8038B7CC
+ * @note Size: 0xFC
  */
 void Obj::resetRestPos()
 {
@@ -1470,10 +1440,9 @@ void Obj::resetRestPos()
 	mPosition -= vec;
 }
 
-/*
- * --INFO--
- * Address:	8038B8C8
- * Size:	000174
+/**
+ * @note Address: 0x8038B8C8
+ * @note Size: 0x174
  */
 void Obj::leave()
 {
@@ -1610,10 +1579,9 @@ lbl_8038BA28:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8038BA3C
- * Size:	0001AC
+/**
+ * @note Address: 0x8038BA3C
+ * @note Size: 0x1AC
  */
 void Obj::leaveInit()
 {
@@ -1635,10 +1603,9 @@ void Obj::leaveInit()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8038BBE8
- * Size:	000210
+/**
+ * @note Address: 0x8038BBE8
+ * @note Size: 0x210
  */
 void Obj::setNextGoal()
 {
@@ -1665,10 +1632,9 @@ void Obj::setNextGoal()
 	mGoalPosition.z += radius * cosf(randAngle);
 }
 
-/*
- * --INFO--
- * Address:	8038BDF8
- * Size:	000100
+/**
+ * @note Address: 0x8038BDF8
+ * @note Size: 0x100
  */
 void Obj::setTraceGoal()
 {
@@ -1760,10 +1726,9 @@ lbl_8038BEDC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8038BEF8
- * Size:	000060
+/**
+ * @note Address: 0x8038BEF8
+ * @note Size: 0x60
  */
 bool Obj::isFallEnd()
 {
@@ -1775,17 +1740,15 @@ bool Obj::isFallEnd()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8038BF58
- * Size:	000028
+/**
+ * @note Address: 0x8038BF58
+ * @note Size: 0x28
  */
 void Obj::deadEffect() { createBounceEffect(mPosition, 0.35f); }
 
-/*
- * --INFO--
- * Address:	8038BF80
- * Size:	0001C4
+/**
+ * @note Address: 0x8038BF80
+ * @note Size: 0x1C4
  */
 void Obj::fallBehavior()
 {
@@ -1819,10 +1782,9 @@ void Obj::fallBehavior()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8038C144
- * Size:	0000B0
+/**
+ * @note Address: 0x8038C144
+ * @note Size: 0xB0
  */
 void Obj::updateCluster()
 {
@@ -1843,10 +1805,9 @@ void Obj::updateCluster()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8038C1F4
- * Size:	000020
+/**
+ * @note Address: 0x8038C1F4
+ * @note Size: 0x20
  */
 int Obj::getFlyType()
 {
@@ -1857,10 +1818,9 @@ int Obj::getFlyType()
 	return mFlyType;
 }
 
-/*
- * --INFO--
- * Address:	8038C214
- * Size:	00006C
+/**
+ * @note Address: 0x8038C214
+ * @note Size: 0x6C
  */
 void Obj::leaderInit()
 {
@@ -1872,10 +1832,9 @@ void Obj::leaderInit()
 	shadowMgr->delNormalShadow(this);
 }
 
-/*
- * --INFO--
- * Address:	8038C280
- * Size:	0000A8
+/**
+ * @note Address: 0x8038C280
+ * @note Size: 0xA8
  */
 void Obj::createAppearEffect()
 {
@@ -1891,10 +1850,9 @@ void Obj::createAppearEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8038C328
- * Size:	000030
+/**
+ * @note Address: 0x8038C328
+ * @note Size: 0x30
  */
 void Obj::fadeAppearEffect() { mEfxDown->fade(); }
 

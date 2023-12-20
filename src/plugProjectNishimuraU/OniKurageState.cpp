@@ -11,10 +11,9 @@
 namespace Game {
 namespace OniKurage {
 
-/*
- * --INFO--
- * Address:	802D1AE0
- * Size:	000424
+/**
+ * @note Address: 0x802D1AE0
+ * @note Size: 0x424
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -33,10 +32,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateGroundFlick);
 }
 
-/*
- * --INFO--
- * Address:	802D1F04
- * Size:	0000CC
+/**
+ * @note Address: 0x802D1F04
+ * @note Size: 0xCC
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -58,10 +56,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->mSoundObj->setKilled();
 }
 
-/*
- * --INFO--
- * Address:	802D1FD0
- * Size:	00018C
+/**
+ * @note Address: 0x802D1FD0
+ * @note Size: 0x18C
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -96,17 +93,15 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802D215C
- * Size:	000004
+/**
+ * @note Address: 0x802D215C
+ * @note Size: 0x4
  */
 void StateDead::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802D2160
- * Size:	00005C
+/**
+ * @note Address: 0x802D2160
+ * @note Size: 0x5C
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -119,10 +114,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->startMotion(ONIKURAGEANIM_Move, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802D21BC
- * Size:	000148
+/**
+ * @note Address: 0x802D21BC
+ * @note Size: 0x148
  */
 void StateWait::exec(EnemyBase* enemy)
 {
@@ -158,17 +152,15 @@ void StateWait::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802D2304
- * Size:	000004
+/**
+ * @note Address: 0x802D2304
+ * @note Size: 0x4
  */
 void StateWait::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802D2308
- * Size:	000074
+/**
+ * @note Address: 0x802D2308
+ * @note Size: 0x74
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -182,10 +174,9 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->startMotion(ONIKURAGEANIM_Move, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802D237C
- * Size:	0001DC
+/**
+ * @note Address: 0x802D237C
+ * @note Size: 0x1DC
  */
 void StateMove::exec(EnemyBase* enemy)
 {
@@ -234,17 +225,15 @@ void StateMove::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802D2558
- * Size:	000004
+/**
+ * @note Address: 0x802D2558
+ * @note Size: 0x4
  */
 void StateMove::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802D255C
- * Size:	00006C
+/**
+ * @note Address: 0x802D255C
+ * @note Size: 0x6C
  */
 void StateChase::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -257,10 +246,9 @@ void StateChase::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->startMotion(ONIKURAGEANIM_Move, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802D25C8
- * Size:	00015C
+/**
+ * @note Address: 0x802D25C8
+ * @note Size: 0x15C
  */
 void StateChase::exec(EnemyBase* enemy)
 {
@@ -299,17 +287,15 @@ void StateChase::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802D2724
- * Size:	000024
+/**
+ * @note Address: 0x802D2724
+ * @note Size: 0x24
  */
 void StateChase::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	802D2748
- * Size:	000080
+/**
+ * @note Address: 0x802D2748
+ * @note Size: 0x80
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -325,10 +311,9 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->startMotion(ONIKURAGEANIM_Attack, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802D27C8
- * Size:	000320
+/**
+ * @note Address: 0x802D27C8
+ * @note Size: 0x320
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
@@ -399,10 +384,9 @@ void StateAttack::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802D2AE8
- * Size:	000044
+/**
+ * @note Address: 0x802D2AE8
+ * @note Size: 0x44
  */
 void StateAttack::cleanup(EnemyBase* enemy)
 {
@@ -413,10 +397,9 @@ void StateAttack::cleanup(EnemyBase* enemy)
 	kurage->setEmotionCaution();
 }
 
-/*
- * --INFO--
- * Address:	802D2B2C
- * Size:	000068
+/**
+ * @note Address: 0x802D2B2C
+ * @note Size: 0x68
  */
 void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -429,10 +412,9 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->startMotion(ONIKURAGEANIM_Fall, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802D2B94
- * Size:	000180
+/**
+ * @note Address: 0x802D2B94
+ * @note Size: 0x180
  */
 void StateFall::exec(EnemyBase* enemy)
 {
@@ -463,17 +445,15 @@ void StateFall::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802D2D14
- * Size:	000024
+/**
+ * @note Address: 0x802D2D14
+ * @note Size: 0x24
  */
 void StateFall::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	802D2D38
- * Size:	000094
+/**
+ * @note Address: 0x802D2D38
+ * @note Size: 0x94
  */
 void StateDrop::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -487,10 +467,9 @@ void StateDrop::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->getJAIObject()->startSound(PSSE_EN_ONIKURAGE_BOWEL, 0);
 }
 
-/*
- * --INFO--
- * Address:	802D2DCC
- * Size:	000164
+/**
+ * @note Address: 0x802D2DCC
+ * @note Size: 0x164
  */
 void StateDrop::exec(EnemyBase* enemy)
 {
@@ -513,17 +492,15 @@ void StateDrop::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802D2F30
- * Size:	000024
+/**
+ * @note Address: 0x802D2F30
+ * @note Size: 0x24
  */
 void StateDrop::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	802D2F54
- * Size:	0000C0
+/**
+ * @note Address: 0x802D2F54
+ * @note Size: 0xC0
  */
 void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -540,10 +517,9 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 	rumbleMgr->startRumble(9, position, 2);
 }
 
-/*
- * --INFO--
- * Address:	802D3014
- * Size:	000080
+/**
+ * @note Address: 0x802D3014
+ * @note Size: 0x80
  */
 void StateLand::exec(EnemyBase* enemy)
 {
@@ -557,17 +533,15 @@ void StateLand::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802D3094
- * Size:	000024
+/**
+ * @note Address: 0x802D3094
+ * @note Size: 0x24
  */
 void StateLand::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	802D30B8
- * Size:	000068
+/**
+ * @note Address: 0x802D30B8
+ * @note Size: 0x68
  */
 void StateTakeOff::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -580,10 +554,9 @@ void StateTakeOff::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->startMotion(ONIKURAGEANIM_TakeOff, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802D3120
- * Size:	0000F0
+/**
+ * @note Address: 0x802D3120
+ * @note Size: 0xF0
  */
 void StateTakeOff::exec(EnemyBase* enemy)
 {
@@ -606,17 +579,15 @@ void StateTakeOff::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802D3210
- * Size:	000024
+/**
+ * @note Address: 0x802D3210
+ * @note Size: 0x24
  */
 void StateTakeOff::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	802D3234
- * Size:	000060
+/**
+ * @note Address: 0x802D3234
+ * @note Size: 0x60
  */
 void StateGround::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -628,10 +599,9 @@ void StateGround::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->startMotion(ONIKURAGEANIM_Wait, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802D3294
- * Size:	000138
+/**
+ * @note Address: 0x802D3294
+ * @note Size: 0x138
  */
 void StateGround::exec(EnemyBase* enemy)
 {
@@ -654,17 +624,15 @@ void StateGround::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802D33CC
- * Size:	000024
+/**
+ * @note Address: 0x802D33CC
+ * @note Size: 0x24
  */
 void StateGround::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	802D33F0
- * Size:	0000E0
+/**
+ * @note Address: 0x802D33F0
+ * @note Size: 0xE0
  */
 void StateFlyFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -681,10 +649,9 @@ void StateFlyFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	flickFx.create(&fxArg);
 }
 
-/*
- * --INFO--
- * Address:	802D34D0
- * Size:	00017C
+/**
+ * @note Address: 0x802D34D0
+ * @note Size: 0x17C
  */
 void StateFlyFlick::exec(EnemyBase* enemy)
 {
@@ -714,17 +681,15 @@ void StateFlyFlick::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802D364C
- * Size:	000024
+/**
+ * @note Address: 0x802D364C
+ * @note Size: 0x24
  */
 void StateFlyFlick::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	802D3670
- * Size:	0000DC
+/**
+ * @note Address: 0x802D3670
+ * @note Size: 0xDC
  */
 void StateGroundFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -741,10 +706,9 @@ void StateGroundFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	flickFx.create(&fxArg);
 }
 
-/*
- * --INFO--
- * Address:	802D374C
- * Size:	00018C
+/**
+ * @note Address: 0x802D374C
+ * @note Size: 0x18C
  */
 void StateGroundFlick::exec(EnemyBase* enemy)
 {
@@ -782,10 +746,9 @@ void StateGroundFlick::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802D38D8
- * Size:	000024
+/**
+ * @note Address: 0x802D38D8
+ * @note Size: 0x24
  */
 void StateGroundFlick::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 

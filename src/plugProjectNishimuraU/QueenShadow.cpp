@@ -4,10 +4,9 @@
 namespace Game {
 namespace Queen {
 
-/*
- * --INFO--
- * Address:	8028EB68
- * Size:	0001AC
+/**
+ * @note Address: 0x8028EB68
+ * @note Size: 0x1AC
  */
 void QueenShadowNode::makeShadowSRT()
 {
@@ -43,10 +42,9 @@ void QueenShadowNode::makeShadowSRT()
 	mMainMtx->setBasis(3, matVecs[3]);
 }
 
-/*
- * --INFO--
- * Address:	8028ED14
- * Size:	0000B4
+/**
+ * @note Address: 0x8028ED14
+ * @note Size: 0xB4
  */
 QueenShadowMgr::QueenShadowMgr(Obj* obj)
 {
@@ -59,10 +57,9 @@ QueenShadowMgr::QueenShadowMgr(Obj* obj)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8028EDC8
- * Size:	0002A4
+/**
+ * @note Address: 0x8028EDC8
+ * @note Size: 0x2A4
  */
 void QueenShadowMgr::init()
 {
@@ -194,10 +191,9 @@ void QueenShadowMgr::init()
 	PSMTXCopy(mat.mMatrix.mtxView, body4->_28.mMatrix.mtxView);
 }
 
-/*
- * --INFO--
- * Address:	8028F06C
- * Size:	00005C
+/**
+ * @note Address: 0x8028F06C
+ * @note Size: 0x5C
  */
 void QueenShadowMgr::update()
 {

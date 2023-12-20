@@ -1,16 +1,14 @@
 #include "Dolphin/card.h"
 
-/*
- * --INFO--
- * Address:	800D7168
- * Size:	000008
+/**
+ * @note Address: 0x800D7168
+ * @note Size: 0x8
  */
 CARDDirectoryBlock* __CARDGetDirBlock(CARDControl* card) { return card->currentDir; }
 
-/*
- * --INFO--
- * Address:	800D7170
- * Size:	0000D0
+/**
+ * @note Address: 0x800D7170
+ * @note Size: 0xD0
  */
 static void WriteCallback(s32 channel, s32 result)
 {
@@ -42,10 +40,9 @@ error:
 	}
 }
 
-/*
- * --INFO--
- * Address:	800D7240
- * Size:	0000C8
+/**
+ * @note Address: 0x800D7240
+ * @note Size: 0xC8
  */
 static void EraseCallback(s32 channel, s32 result)
 {
@@ -80,10 +77,9 @@ error:
 	}
 }
 
-/*
- * --INFO--
- * Address:	800D7308
- * Size:	0000C4
+/**
+ * @note Address: 0x800D7308
+ * @note Size: 0xC4
  */
 s32 __CARDUpdateDir(s32 channel, CARDCallback callback)
 {

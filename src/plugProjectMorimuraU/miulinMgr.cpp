@@ -5,10 +5,9 @@ namespace Miulin {
 
 static const char miulinMgrName[] = "miulinMgr";
 
-/*
- * --INFO--
- * Address:	80363F58
- * Size:	000050
+/**
+ * @note Address: 0x80363F58
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -16,17 +15,15 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "ミウリンマネージャ"; // miulin manager
 }
 
-/*
- * --INFO--
- * Address:	80363FA8
- * Size:	000048
+/**
+ * @note Address: 0x80363FA8
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Parms); }
 
-/*
- * --INFO--
- * Address:	803641F8
- * Size:	000020
+/**
+ * @note Address: 0x803641F8
+ * @note Size: 0x20
  */
 EnemyBase* Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::birth(birthArg); }
 

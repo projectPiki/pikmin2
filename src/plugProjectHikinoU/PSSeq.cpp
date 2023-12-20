@@ -9,10 +9,9 @@
 
 namespace PSSystem {
 
-/*
- * --INFO--
- * Address:	80330D20
- * Size:	000060
+/**
+ * @note Address: 0x80330D20
+ * @note Size: 0x60
  */
 SeqDataList::SeqDataList()
 {
@@ -47,17 +46,15 @@ lbl_80330D50:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80330D80
- * Size:	000088
+/**
+ * @note Address: 0x80330D80
+ * @note Size: 0x88
  */
 SeqDataList::~SeqDataList() { }
 
-/*
- * --INFO--
- * Address:	80330E08
- * Size:	000108
+/**
+ * @note Address: 0x80330E08
+ * @note Size: 0x108
  */
 int SeqDataList::getSeqVolume(char const* bmsname)
 {
@@ -160,10 +157,9 @@ lbl_80330EF4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80330F10
- * Size:	000060
+/**
+ * @note Address: 0x80330F10
+ * @note Size: 0x60
  */
 StreamDataList::StreamDataList()
 {
@@ -198,10 +194,9 @@ lbl_80330F40:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80330F70
- * Size:	000088
+/**
+ * @note Address: 0x80330F70
+ * @note Size: 0x88
  */
 StreamDataList::~StreamDataList()
 {
@@ -248,10 +243,9 @@ lbl_80330FDC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80330FF8
- * Size:	000110
+/**
+ * @note Address: 0x80330FF8
+ * @note Size: 0x110
  */
 int StreamDataList::getStreamVolume(u32 id)
 {
@@ -358,10 +352,9 @@ lbl_803310EC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80331108
- * Size:	000094
+/**
+ * @note Address: 0x80331108
+ * @note Size: 0x94
  */
 void SeqSoundBase::stop(u32 type)
 {
@@ -372,24 +365,21 @@ void SeqSoundBase::stop(u32 type)
 	OSUnlockMutex(mutex);
 }
 
-/*
- * --INFO--
- * Address:	8033119C
- * Size:	000020
+/**
+ * @note Address: 0x8033119C
+ * @note Size: 0x20
  */
 void SeqSound::stopInner(u32 type) { JAInter::SequenceMgr::releaseSeqBuffer(this, type); }
 
-/*
- * --INFO--
- * Address:	803311BC
- * Size:	000020
+/**
+ * @note Address: 0x803311BC
+ * @note Size: 0x20
  */
 void StreamSound::stopInner(u32 type) { JAInter::StreamMgr::releaseStreamBuffer(this, type); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000EC
+/**
+ * @note Address: N/A
+ * @note Size: 0xEC
  */
 SeqHeap::SeqHeap(u32 entry, SeqBase* seq)
 {
@@ -407,17 +397,15 @@ SeqHeap::SeqHeap(u32 entry, SeqBase* seq)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803311DC
- * Size:	000060
+/**
+ * @note Address: 0x803311DC
+ * @note Size: 0x60
  */
 SeqHeap::~SeqHeap() { delete[] mFileData; }
 
-/*
- * --INFO--
- * Address:	8033123C
- * Size:	000200
+/**
+ * @note Address: 0x8033123C
+ * @note Size: 0x200
  */
 void SeqHeap::requestCallback(u32, u16, JAISequence*)
 {
@@ -581,10 +569,9 @@ lbl_80331420:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033143C
- * Size:	0000D4
+/**
+ * @note Address: 0x8033143C
+ * @note Size: 0xD4
  */
 void SeqHeap::loadSeqAsync(TaskChecker* task)
 {
@@ -668,10 +655,9 @@ lbl_803314FC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80331510
- * Size:	000098
+/**
+ * @note Address: 0x80331510
+ * @note Size: 0x98
  */
 void SeqHeap::loadedCallback(u32 arg1, u32)
 {
@@ -733,24 +719,21 @@ lbl_80331590:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803315A8
- * Size:	000030
+/**
+ * @note Address: 0x803315A8
+ * @note Size: 0x30
  */
 void SeqPlayReservator::reservatorTask() { mSequence->startSeq(); }
 
-/*
- * --INFO--
- * Address:	803315D8
- * Size:	000030
+/**
+ * @note Address: 0x803315D8
+ * @note Size: 0x30
  */
 void SeqPauseOffReservator::reservatorTask() { mSequence->pauseOff(); }
 
-/*
- * --INFO--
- * Address:	80331608
- * Size:	000100
+/**
+ * @note Address: 0x80331608
+ * @note Size: 0x100
  */
 SeqBase::SeqBase(char const* bmsFileName, JAInter::SoundInfo const& info)
     : JSULink<SeqBase>(this)
@@ -770,20 +753,18 @@ SeqBase::SeqBase(char const* bmsFileName, JAInter::SoundInfo const& info)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 // void JSULink<PSSystem::SeqBase>::~JSULink()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	80331708
- * Size:	000134
+/**
+ * @note Address: 0x80331708
+ * @note Size: 0x134
  */
 void SeqBase::init()
 {
@@ -885,10 +866,9 @@ lbl_80331820:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033183C
- * Size:	000098
+/**
+ * @note Address: 0x8033183C
+ * @note Size: 0x98
  */
 SeqBase::~SeqBase()
 {
@@ -898,10 +878,9 @@ SeqBase::~SeqBase()
 	delete[] mBmsFileName;
 }
 
-/*
- * --INFO--
- * Address:	803318D4
- * Size:	00003C
+/**
+ * @note Address: 0x803318D4
+ * @note Size: 0x3C
  */
 bool SeqBase::isPlaying()
 {
@@ -915,10 +894,9 @@ bool SeqBase::isPlaying()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80331910
- * Size:	000090
+/**
+ * @note Address: 0x80331910
+ * @note Size: 0x90
  */
 void* SeqBase::getFileEntry()
 {
@@ -928,10 +906,9 @@ void* SeqBase::getFileEntry()
 	return file;
 }
 
-/*
- * --INFO--
- * Address:	803319A0
- * Size:	0001D4
+/**
+ * @note Address: 0x803319A0
+ * @note Size: 0x1D4
  */
 void SeqBase::pauseOn(PauseMode pause)
 {
@@ -1134,10 +1111,9 @@ lbl_80331B58:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80331B74
- * Size:	00013C
+/**
+ * @note Address: 0x80331B74
+ * @note Size: 0x13C
  */
 void SeqBase::pauseOff()
 {
@@ -1249,10 +1225,9 @@ lbl_80331C94:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80331CB0
- * Size:	0000D4
+/**
+ * @note Address: 0x80331CB0
+ * @note Size: 0xD4
  */
 void SeqBase::exec()
 {
@@ -1336,17 +1311,15 @@ lbl_80331D70:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80331D84
- * Size:	000004
+/**
+ * @note Address: 0x80331D84
+ * @note Size: 0x4
  */
 void SeqBase::onPlayingFrame() { }
 
-/*
- * --INFO--
- * Address:	80331D88
- * Size:	000154
+/**
+ * @note Address: 0x80331D88
+ * @note Size: 0x154
  */
 void SeqBase::startSeq()
 {
@@ -1463,10 +1436,9 @@ lbl_80331E98:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80331EDC
- * Size:	0000D0
+/**
+ * @note Address: 0x80331EDC
+ * @note Size: 0xD0
  */
 void SeqBase::setConfigVolume()
 {
@@ -1531,10 +1503,9 @@ lbl_80331F20:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80331FAC
- * Size:	000038
+/**
+ * @note Address: 0x80331FAC
+ * @note Size: 0x38
  */
 void SeqBase::scene1st(TaskChecker* task)
 {
@@ -1543,10 +1514,9 @@ void SeqBase::scene1st(TaskChecker* task)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80331FE4
- * Size:	000060
+/**
+ * @note Address: 0x80331FE4
+ * @note Size: 0x60
  */
 void SeqBase::stopSeq(u32 type)
 {
@@ -1583,10 +1553,9 @@ lbl_80332030:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80332044
- * Size:	000114
+/**
+ * @note Address: 0x80332044
+ * @note Size: 0x114
  */
 BgmSeq::BgmSeq(char const* bmsFileName, JAInter::SoundInfo const& info)
     : SeqBase(bmsFileName, info)
@@ -1594,17 +1563,15 @@ BgmSeq::BgmSeq(char const* bmsFileName, JAInter::SoundInfo const& info)
 {
 }
 
-/*
- * --INFO--
- * Address:	80332158
- * Size:	0000C0
+/**
+ * @note Address: 0x80332158
+ * @note Size: 0xC0
  */
 BgmSeq::~BgmSeq() { stopSeq(0); }
 
-/*
- * --INFO--
- * Address:	80332218
- * Size:	000100
+/**
+ * @note Address: 0x80332218
+ * @note Size: 0x100
  */
 StreamBgm::StreamBgm(u32 id, const JAInter::SoundInfo& info)
     : BgmSeq(static_cast<const char*>(nullptr), info)
@@ -1613,31 +1580,27 @@ StreamBgm::StreamBgm(u32 id, const JAInter::SoundInfo& info)
 {
 }
 
-/*
- * --INFO--
- * Address:	80332318
- * Size:	000004
+/**
+ * @note Address: 0x80332318
+ * @note Size: 0x4
  */
 void StreamBgm::init() { }
 
-/*
- * --INFO--
- * Address:	8033231C
- * Size:	0000EC
+/**
+ * @note Address: 0x8033231C
+ * @note Size: 0xEC
  */
 StreamBgm::~StreamBgm() { stopSeq(0); }
 
-/*
- * --INFO--
- * Address:	80332408
- * Size:	000008
+/**
+ * @note Address: 0x80332408
+ * @note Size: 0x8
  */
 void StreamBgm::setId(u32 a1) { mId = a1; }
 
-/*
- * --INFO--
- * Address:	80332410
- * Size:	00015C
+/**
+ * @note Address: 0x80332410
+ * @note Size: 0x15C
  */
 void StreamBgm::startSeq()
 {
@@ -1759,10 +1722,9 @@ lbl_80332558:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033256C
- * Size:	0000D0
+/**
+ * @note Address: 0x8033256C
+ * @note Size: 0xD0
  */
 void StreamBgm::setConfigVolume()
 {
@@ -1827,31 +1789,27 @@ lbl_803325B0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033263C
- * Size:	000014
+/**
+ * @note Address: 0x8033263C
+ * @note Size: 0x14
  */
 bool StreamBgm::isPlaying() { return mJaiSound != 0; }
 
-/*
- * --INFO--
- * Address:	80332650
- * Size:	0000C0
+/**
+ * @note Address: 0x80332650
+ * @note Size: 0xC0
  */
 SeSeq::~SeSeq() { stopSeq(0); }
 
-/*
- * --INFO--
- * Address:	80332710
- * Size:	00002C
+/**
+ * @note Address: 0x80332710
+ * @note Size: 0x2C
  */
 void SeSeq::seqLoadAfter() { startSeq(); }
 
-/*
- * --INFO--
- * Address:	8033273C
- * Size:	0000D0
+/**
+ * @note Address: 0x8033273C
+ * @note Size: 0xD0
  */
 void SeSeq::setConfigVolume()
 {
@@ -1916,10 +1874,9 @@ lbl_80332780:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033280C
- * Size:	0000A4
+/**
+ * @note Address: 0x8033280C
+ * @note Size: 0xA4
  */
 void SeSeq::stopSeq(u32 type)
 {
@@ -1980,10 +1937,9 @@ lbl_80332894:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803328B0
- * Size:	000138
+/**
+ * @note Address: 0x803328B0
+ * @note Size: 0x138
  */
 DirectedBgm::DirectedBgm(char const* bmsFileName, JAInter::SoundInfo const& info, DirectorMgrBase* directorMgr)
     : BgmSeq(bmsFileName, info)
@@ -1993,10 +1949,9 @@ DirectedBgm::DirectedBgm(char const* bmsFileName, JAInter::SoundInfo const& info
 {
 }
 
-/*
- * --INFO--
- * Address:	803329E8
- * Size:	0000C0
+/**
+ * @note Address: 0x803329E8
+ * @note Size: 0xC0
  */
 void DirectedBgm::initRootTrack_onPlaying(JASTrack* track)
 {
@@ -2009,10 +1964,9 @@ void DirectedBgm::initRootTrack_onPlaying(JASTrack* track)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80332AA8
- * Size:	0000D4
+/**
+ * @note Address: 0x80332AA8
+ * @note Size: 0xD4
  */
 void DirectedBgm::initChildTrack_onPlaying(JASTrack* track, u8 id)
 {
@@ -2025,20 +1979,18 @@ void DirectedBgm::initChildTrack_onPlaying(JASTrack* track, u8 id)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000098
+/**
+ * @note Address: N/A
+ * @note Size: 0x98
  */
 void DirectedBgm::getDirector(u8)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80332B7C
- * Size:	000098
+/**
+ * @note Address: 0x80332B7C
+ * @note Size: 0x98
  */
 DirectorBase* DirectedBgm::getDirectorP(u8 id)
 {
@@ -2046,10 +1998,9 @@ DirectorBase* DirectedBgm::getDirectorP(u8 id)
 	return mDirectorMgr->getDirector(id);
 }
 
-/*
- * --INFO--
- * Address:	80332C14
- * Size:	000064
+/**
+ * @note Address: 0x80332C14
+ * @note Size: 0x64
  */
 SeqTrackRoot* DirectedBgm::newSeqTrackRoot()
 {
@@ -2089,10 +2040,9 @@ lbl_80332C60:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80332C78
- * Size:	000074
+/**
+ * @note Address: 0x80332C78
+ * @note Size: 0x74
  */
 SeqTrackChild* DirectedBgm::newSeqTrackChild(u8, SeqTrackRoot& track)
 {
@@ -2101,10 +2051,9 @@ SeqTrackChild* DirectedBgm::newSeqTrackChild(u8, SeqTrackRoot& track)
 	return newtrack;
 }
 
-/*
- * --INFO--
- * Address:	80332CEC
- * Size:	0001F0
+/**
+ * @note Address: 0x80332CEC
+ * @note Size: 0x1F0
  */
 void DirectedBgm::init()
 {
@@ -2264,10 +2213,9 @@ lbl_80332EA8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80332EDC
- * Size:	000154
+/**
+ * @note Address: 0x80332EDC
+ * @note Size: 0x154
  */
 void DirectedBgm::startSeq()
 {
@@ -2370,10 +2318,9 @@ lbl_80332FEC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80333030
- * Size:	0000F0
+/**
+ * @note Address: 0x80333030
+ * @note Size: 0xF0
  */
 void DirectedBgm::stopSeq(u32 type)
 {
@@ -2461,10 +2408,9 @@ lbl_80333104:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80333120
- * Size:	00002C
+/**
+ * @note Address: 0x80333120
+ * @note Size: 0x2C
  */
 void DirectedBgm::onPlayingFrame()
 {
@@ -2473,10 +2419,9 @@ void DirectedBgm::onPlayingFrame()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8033314C
- * Size:	00002C
+/**
+ * @note Address: 0x8033314C
+ * @note Size: 0x2C
  */
 void SeqTrackRoot_JumpBgm::onBeatTop()
 {
@@ -2496,20 +2441,18 @@ void SeqTrackRoot_JumpBgm::onBeatTop()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
+/**
+ * @note Address: N/A
+ * @note Size: 0x84
  */
 JumpBgmPort::JumpBgmPort(JumpBgmSeq*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80333178
- * Size:	0000B8
+/**
+ * @note Address: 0x80333178
+ * @note Size: 0xB8
  */
 void JumpBgmPort::onBeatTop(BeatMgr& mgr)
 {
@@ -2568,50 +2511,45 @@ lbl_80333218:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 void JumpBgmPort::requestQuickly(u16)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 void JumpBgmPort::requestOnBeat(u16)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
+/**
+ * @note Address: N/A
+ * @note Size: 0x44
  */
 void JumpBgmPort::requestEveryBeat(u16)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000AC
+/**
+ * @note Address: N/A
+ * @note Size: 0xAC
  */
 void JumpBgmPort::output()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80333230
- * Size:	000190
+/**
+ * @note Address: 0x80333230
+ * @note Size: 0x190
  */
 JumpBgmSeq::JumpBgmSeq(char const* bmsFileName, JAInter::SoundInfo const& info, PSSystem::DirectorMgrBase* directorMgr)
     : DirectedBgm(bmsFileName, info, directorMgr)
@@ -2735,10 +2673,9 @@ JumpBgmSeq::JumpBgmSeq(char const* bmsFileName, JAInter::SoundInfo const& info, 
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803333C0
- * Size:	000080
+/**
+ * @note Address: 0x803333C0
+ * @note Size: 0x80
  */
 SeqTrackRoot* JumpBgmSeq::newSeqTrackRoot()
 {
@@ -2785,20 +2722,18 @@ lbl_80333424:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000420
+/**
+ * @note Address: N/A
+ * @note Size: 0x420
  */
 // SeqTrackRoot::~SeqTrackRoot()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	80333440
- * Size:	000170
+/**
+ * @note Address: 0x80333440
+ * @note Size: 0x170
  */
 void JumpBgmSeq::startSeq()
 {
@@ -2908,10 +2843,9 @@ lbl_80333550:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803335B0
- * Size:	000178
+/**
+ * @note Address: 0x803335B0
+ * @note Size: 0x178
  */
 void JumpBgmSeq::startSeq(u16)
 {
@@ -3023,10 +2957,9 @@ lbl_803336C8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80333728
- * Size:	000060
+/**
+ * @note Address: 0x80333728
+ * @note Size: 0x60
  */
 void JumpBgmSeq::requestJumpBgmQuickly(u16 jump)
 {
@@ -3065,10 +2998,9 @@ lbl_8033376C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80333788
- * Size:	000060
+/**
+ * @note Address: 0x80333788
+ * @note Size: 0x60
  */
 void JumpBgmSeq::requestJumpBgmOnBeat(u16 jump)
 {
@@ -3107,10 +3039,9 @@ lbl_803337CC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803337E8
- * Size:	000054
+/**
+ * @note Address: 0x803337E8
+ * @note Size: 0x54
  */
 void JumpBgmSeq::requestJumpBgmEveryBeat(u16 jump)
 {
@@ -3146,10 +3077,9 @@ lbl_80333824:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033383C
- * Size:	00004C
+/**
+ * @note Address: 0x8033383C
+ * @note Size: 0x4C
  */
 void JumpBgmSeq::onPlayingFrame()
 {
@@ -3159,10 +3089,9 @@ void JumpBgmSeq::onPlayingFrame()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80333888
- * Size:	0000C8
+/**
+ * @note Address: 0x80333888
+ * @note Size: 0xC8
  */
 void JumpBgmSeq::outputJumpRequest()
 {
@@ -3226,10 +3155,9 @@ lbl_80333930:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80333950
- * Size:	000040
+/**
+ * @note Address: 0x80333950
+ * @note Size: 0x40
  */
 int JumpBgmSeq::getSeqStartPoint()
 {
@@ -3238,10 +3166,9 @@ int JumpBgmSeq::getSeqStartPoint()
 	return start;
 }
 
-/*
- * --INFO--
- * Address:	80333990
- * Size:	000014
+/**
+ * @note Address: 0x80333990
+ * @note Size: 0x14
  */
 void JumpBgmSeq::setAvoidJumpTimer_Checked(u32 time)
 {
@@ -3250,10 +3177,9 @@ void JumpBgmSeq::setAvoidJumpTimer_Checked(u32 time)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803339A4
- * Size:	000060
+/**
+ * @note Address: 0x803339A4
+ * @note Size: 0x60
  */
 bool SeqMgr::isPlaying()
 {
@@ -3294,10 +3220,9 @@ lbl_803339F0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80333A04
- * Size:	0000C8
+/**
+ * @note Address: 0x80333A04
+ * @note Size: 0xC8
  */
 SeqMgr::~SeqMgr()
 {
@@ -3365,10 +3290,9 @@ lbl_80333AA8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80333ACC
- * Size:	00005C
+/**
+ * @note Address: 0x80333ACC
+ * @note Size: 0x5C
  */
 void SeqMgr::pauseOnAllSeq(SeqBase::PauseMode)
 {
@@ -3403,10 +3327,9 @@ lbl_80333B08:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80333B28
- * Size:	00004C
+/**
+ * @note Address: 0x80333B28
+ * @note Size: 0x4C
  */
 void SeqMgr::pauseOffAllSeq()
 {
@@ -3437,10 +3360,9 @@ lbl_80333B58:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80333B74
- * Size:	000024
+/**
+ * @note Address: 0x80333B74
+ * @note Size: 0x24
  */
 void SeqMgr::reservePauseOffAllSeq()
 {
@@ -3461,10 +3383,9 @@ lbl_80333B8C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80333B98
- * Size:	000024
+/**
+ * @note Address: 0x80333B98
+ * @note Size: 0x24
  */
 void SeqMgr::cancelPauseOffAllSeq()
 {
@@ -3485,10 +3406,9 @@ lbl_80333BB0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80333BBC
- * Size:	000080
+/**
+ * @note Address: 0x80333BBC
+ * @note Size: 0x80
  */
 void SeqMgr::exec()
 {
@@ -3534,10 +3454,9 @@ lbl_80333C20:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80333C3C
- * Size:	00005C
+/**
+ * @note Address: 0x80333C3C
+ * @note Size: 0x5C
  */
 void SeqMgr::stopAllSound(u32)
 {
@@ -3572,10 +3491,9 @@ lbl_80333C78:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80333C98
- * Size:	00005C
+/**
+ * @note Address: 0x80333C98
+ * @note Size: 0x5C
  */
 void SeqMgr::scene1st(TaskChecker*)
 {
@@ -3610,10 +3528,9 @@ lbl_80333CD4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80333CF4
- * Size:	0000E8
+/**
+ * @note Address: 0x80333CF4
+ * @note Size: 0xE8
  */
 SeqBase* SeqMgr::findSeq(JASTrack*)
 {
@@ -3695,10 +3612,9 @@ lbl_80333DC4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80333DDC
- * Size:	000080
+/**
+ * @note Address: 0x80333DDC
+ * @note Size: 0x80
  */
 SeqBase* SeqMgr::getPlayingSeq(JASTrack*)
 {
@@ -3746,10 +3662,9 @@ lbl_80333E44:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80333E5C
- * Size:	00001C
+/**
+ * @note Address: 0x80333E5C
+ * @note Size: 0x1C
  */
 SeqBase* SeqMgr::getFirstSeq()
 {
@@ -3766,17 +3681,15 @@ lbl_80333E70:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80333E78
- * Size:	000024
+/**
+ * @note Address: 0x80333E78
+ * @note Size: 0x24
  */
 SeqBase* SeqMgr::getFirstSeqA() { return getSeq(0); }
 
-/*
- * --INFO--
- * Address:	80333E9C
- * Size:	000034
+/**
+ * @note Address: 0x80333E9C
+ * @note Size: 0x34
  */
 SeqBase* SeqMgr::getSeq(u32)
 {

@@ -1,10 +1,9 @@
 #include "types.h"
 #include "Dolphin/gx.h"
 
-/*
- * --INFO--
- * Address:	800E7F40
- * Size:	00006C
+/**
+ * @note Address: 0x800E7F40
+ * @note Size: 0x6C
  */
 // modified from Open_RVL
 void GXSetTevIndirect(GXTevStageID tevStage, GXIndTexStageID texStage, GXIndTexFormat texFmt, GXIndTexBiasSel biasSel, GXIndTexMtxID mtxId,
@@ -28,10 +27,9 @@ void GXSetTevIndirect(GXTevStageID tevStage, GXIndTexStageID texStage, GXIndTexF
 	gx->bpSentNot = GX_FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800E7FAC
- * Size:	000178
+/**
+ * @note Address: 0x800E7FAC
+ * @note Size: 0x178
  */
 // modified from Open_RVL
 void GXSetIndTexMtx(GXIndTexMtxID id, const Mtx23 mtx, s8 scale_exp)
@@ -91,10 +89,9 @@ void GXSetIndTexMtx(GXIndTexMtxID id, const Mtx23 mtx, s8 scale_exp)
 	gx->bpSentNot = GX_FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800E8124
- * Size:	000144
+/**
+ * @note Address: 0x800E8124
+ * @note Size: 0x144
  */
 // modified from Open_RVL
 void GXSetIndTexCoordScale(GXIndTexStageID stage, GXIndTexScale scaleS, GXIndTexScale scaleT)
@@ -137,10 +134,9 @@ void GXSetIndTexCoordScale(GXIndTexStageID stage, GXIndTexScale scaleS, GXIndTex
 	gx->bpSentNot = GX_FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800E8268
- * Size:	0000EC
+/**
+ * @note Address: 0x800E8268
+ * @note Size: 0xEC
  */
 // modified from Open_RVL
 void GXSetIndTexOrder(GXIndTexStageID stage, GXTexCoordID coord, GXTexMapID map)
@@ -182,10 +178,9 @@ void GXSetIndTexOrder(GXIndTexStageID stage, GXTexCoordID coord, GXTexMapID map)
 	gx->bpSentNot = GX_FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800E8354
- * Size:	000024
+/**
+ * @note Address: 0x800E8354
+ * @note Size: 0x24
  */
 // modified from Open_RVL
 void GXSetNumIndStages(u8 num)
@@ -194,10 +189,9 @@ void GXSetNumIndStages(u8 num)
 	gx->dirtyState |= (GX_DIRTY_BP_MASK | GX_DIRTY_GEN_MODE);
 }
 
-/*
- * --INFO--
- * Address:	800E8378
- * Size:	000048
+/**
+ * @note Address: 0x800E8378
+ * @note Size: 0x48
  */
 // modified from Open_RVL
 void GXSetTevDirect(GXTevStageID stage)
@@ -205,10 +199,9 @@ void GXSetTevDirect(GXTevStageID stage)
 	GXSetTevIndirect(stage, GX_IND_TEX_STAGE_0, GX_ITF_8, GX_ITB_NONE, GX_ITM_OFF, GX_ITW_OFF, GX_ITW_OFF, FALSE, FALSE, GX_ITBA_OFF);
 }
 
-/*
- * --INFO--
- * Address:	800E83C0
- * Size:	000064
+/**
+ * @note Address: 0x800E83C0
+ * @note Size: 0x64
  */
 void GXSetTevIndWarp(GXTevStageID stage, GXIndTexStageID indStage, GXBool doSignedBias, GXBool doWrap, GXIndTexMtxID mtxID)
 {
@@ -218,17 +211,15 @@ void GXSetTevIndWarp(GXTevStageID stage, GXIndTexStageID indStage, GXBool doSign
 	                 GX_ITBA_OFF);
 }
 
-/*
- * --INFO--
- * Address:	800E8424
- * Size:	000004
+/**
+ * @note Address: 0x800E8424
+ * @note Size: 0x4
  */
 void __GXUpdateBPMask() { }
 
-/*
- * --INFO--
- * Address:	800E8428
- * Size:	000030
+/**
+ * @note Address: 0x800E8428
+ * @note Size: 0x30
  */
 // modified from Open_RVL
 void __GXSetIndirectMask(u32 mask)
@@ -238,10 +229,9 @@ void __GXSetIndirectMask(u32 mask)
 	gx->bpSentNot = GX_FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800E8458
- * Size:	000024
+/**
+ * @note Address: 0x800E8458
+ * @note Size: 0x24
  */
 void __GXFlushTextureState()
 {

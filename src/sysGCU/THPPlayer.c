@@ -54,10 +54,9 @@ static void PushUsedTextureSet(OSMessage msg);
 static OSMessage PopUsedTextureSet();
 static void MixAudio(s16*, s16*, u32);
 
-/*
- * --INFO--
- * Address:	8044DE38
- * Size:	0000A8
+/**
+ * @note Address: 0x8044DE38
+ * @note Size: 0xA8
  */
 static s16* audioCallbackWithMSound(s32 p1)
 {
@@ -73,24 +72,21 @@ static s16* audioCallbackWithMSound(s32 p1)
 	return SoundBuffer[SoundBufferIndex];
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 static void audioInitWithMSound() { JASDriver::registerMixCallback(audioCallbackWithMSound, MixMode_InterLeave); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 static void audioQuitWithMSound() { JASDriver::registerMixCallback(nullptr, MixMode_Mono); }
 
-/*
- * --INFO--
- * Address:	8044DEE0
- * Size:	0000D8
+/**
+ * @note Address: 0x8044DEE0
+ * @note Size: 0xD8
  */
 BOOL THPPlayerInit(int _)
 {
@@ -118,10 +114,9 @@ BOOL THPPlayerInit(int _)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	8044DFB8
- * Size:	000034
+/**
+ * @note Address: 0x8044DFB8
+ * @note Size: 0x34
  */
 void THPPlayerQuit()
 {
@@ -130,10 +125,9 @@ void THPPlayerQuit()
 	Initialized = FALSE;
 }
 
-/*
- * --INFO--
- * Address:	8044DFEC
- * Size:	000334
+/**
+ * @note Address: 0x8044DFEC
+ * @note Size: 0x334
  */
 BOOL THPPlayerOpen(const char* fileName, BOOL onMemory)
 {
@@ -231,10 +225,9 @@ BOOL THPPlayerOpen(const char* fileName, BOOL onMemory)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	8044E320
- * Size:	000054
+/**
+ * @note Address: 0x8044E320
+ * @note Size: 0x54
  */
 BOOL THPPlayerClose()
 {
@@ -247,10 +240,9 @@ BOOL THPPlayerClose()
 	return FALSE;
 }
 
-/*
- * --INFO--
- * Address:	8044E374
- * Size:	0000B0
+/**
+ * @note Address: 0x8044E374
+ * @note Size: 0xB0
  */
 u32 THPPlayerCalcNeedMemory()
 {
@@ -272,10 +264,9 @@ u32 THPPlayerCalcNeedMemory()
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	8044E424
- * Size:	000210
+/**
+ * @note Address: 0x8044E424
+ * @note Size: 0x210
  */
 BOOL THPPlayerSetBuffer(u8* data)
 {
@@ -330,10 +321,9 @@ BOOL THPPlayerSetBuffer(u8* data)
 	return FALSE;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D0
+/**
+ * @note Address: N/A
+ * @note Size: 0xD0
  */
 void InitAllMessageQueue()
 {
@@ -356,10 +346,9 @@ void InitAllMessageQueue()
 	OSInitMessageQueue(&PrepareReadyQueue, &PrepareReadyMessage, 1);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 BOOL WaitUntilPrepare()
 {
@@ -374,17 +363,15 @@ BOOL WaitUntilPrepare()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8044E634
- * Size:	000030
+/**
+ * @note Address: 0x8044E634
+ * @note Size: 0x30
  */
 void PrepareReady(int msg) { OSSendMessage(&PrepareReadyQueue, (OSMessage)msg, OS_MESSAGE_BLOCK); }
 
-/*
- * --INFO--
- * Address:	8044E664
- * Size:	000394
+/**
+ * @note Address: 0x8044E664
+ * @note Size: 0x394
  */
 BOOL THPPlayerPrepare(int frame, u8 flag, int audioTrack)
 {
@@ -488,10 +475,9 @@ BOOL THPPlayerPrepare(int frame, u8 flag, int audioTrack)
 	return FALSE;
 }
 
-/*
- * --INFO--
- * Address:	8044E9F8
- * Size:	000060
+/**
+ * @note Address: 0x8044E9F8
+ * @note Size: 0x60
  */
 BOOL THPPlayerPlay()
 {
@@ -506,10 +492,9 @@ BOOL THPPlayerPlay()
 	return FALSE;
 }
 
-/*
- * --INFO--
- * Address:	8044EA58
- * Size:	0000D0
+/**
+ * @note Address: 0x8044EA58
+ * @note Size: 0xD0
  */
 void THPPlayerStop()
 {
@@ -544,10 +529,9 @@ void THPPlayerStop()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8044EB28
- * Size:	00003C
+/**
+ * @note Address: 0x8044EB28
+ * @note Size: 0x3C
  */
 BOOL THPPlayerPause()
 {
@@ -559,10 +543,9 @@ BOOL THPPlayerPause()
 	return FALSE;
 }
 
-/*
- * --INFO--
- * Address:	8044EB64
- * Size:	0002B8
+/**
+ * @note Address: 0x8044EB64
+ * @note Size: 0x2B8
  */
 static void PlayControl(u32 retraceCnt)
 {
@@ -646,10 +629,9 @@ static void PlayControl(u32 retraceCnt)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8044EE1C
- * Size:	00006C
+/**
+ * @note Address: 0x8044EE1C
+ * @note Size: 0x6C
  */
 static BOOL ProperTimingForStart()
 {
@@ -668,10 +650,9 @@ static BOOL ProperTimingForStart()
 	return FALSE;
 }
 
-/*
- * --INFO--
- * Address:	8044EE88
- * Size:	000140
+/**
+ * @note Address: 0x8044EE88
+ * @note Size: 0x140
  */
 static BOOL ProperTimingForGettingNextFrame()
 {
@@ -700,10 +681,9 @@ static BOOL ProperTimingForGettingNextFrame()
 	return FALSE;
 }
 
-/*
- * --INFO--
- * Address:	8044EFC8
- * Size:	0000D8
+/**
+ * @note Address: 0x8044EFC8
+ * @note Size: 0xD8
  */
 int THPPlayerDrawCurrentFrame(GXRenderModeObj* obj, int x, int y, int polyWidth, int polyHeight)
 {
@@ -721,10 +701,9 @@ int THPPlayerDrawCurrentFrame(GXRenderModeObj* obj, int x, int y, int polyWidth,
 	return frame;
 }
 
-/*
- * --INFO--
- * Address:	8044F0A0
- * Size:	000048
+/**
+ * @note Address: 0x8044F0A0
+ * @note Size: 0x48
  */
 BOOL THPPlayerGetVideoInfo(void* dst)
 {
@@ -736,10 +715,9 @@ BOOL THPPlayerGetVideoInfo(void* dst)
 	return FALSE;
 }
 
-/*
- * --INFO--
- * Address:	8044F0E8
- * Size:	000048
+/**
+ * @note Address: 0x8044F0E8
+ * @note Size: 0x48
  */
 BOOL THPPlayerGetAudioInfo(void* dst)
 {
@@ -751,10 +729,9 @@ BOOL THPPlayerGetAudioInfo(void* dst)
 	return FALSE;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 u32 THPPlayerGetTotalFrame()
 {
@@ -765,24 +742,21 @@ u32 THPPlayerGetTotalFrame()
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 u8 THPPlayerGetState(void) { return ActivePlayer.mState; }
 
-/*
- * --INFO--
- * Address:	8044F130
- * Size:	000030
+/**
+ * @note Address: 0x8044F130
+ * @note Size: 0x30
  */
 static void PushUsedTextureSet(OSMessage msg) { OSSendMessage(&UsedTextureSetQueue, msg, OS_MESSAGE_NOBLOCK); }
 
-/*
- * --INFO--
- * Address:	8044F160
- * Size:	000044
+/**
+ * @note Address: 0x8044F160
+ * @note Size: 0x44
  */
 static OSMessage PopUsedTextureSet()
 {
@@ -793,10 +767,9 @@ static OSMessage PopUsedTextureSet()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8044F1A4
- * Size:	000070
+/**
+ * @note Address: 0x8044F1A4
+ * @note Size: 0x70
  */
 void THPPlayerDrawDone()
 {
@@ -813,10 +786,9 @@ void THPPlayerDrawDone()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8044F214
- * Size:	000250
+/**
+ * @note Address: 0x8044F214
+ * @note Size: 0x250
  */
 static void MixAudio(s16* buf, s16* buf2, u32 n)
 {
@@ -900,10 +872,9 @@ static void MixAudio(s16* buf, s16* buf2, u32 n)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8044F464
- * Size:	000128
+/**
+ * @note Address: 0x8044F464
+ * @note Size: 0x128
  */
 BOOL THPPlayerSetVolume(int vol, int duration)
 {

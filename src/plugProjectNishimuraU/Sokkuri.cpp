@@ -7,10 +7,9 @@
 namespace Game {
 namespace Sokkuri {
 
-/*
- * --INFO--
- * Address:	802F1264
- * Size:	000130
+/**
+ * @note Address: 0x802F1264
+ * @note Size: 0x130
  */
 Obj::Obj()
 {
@@ -18,17 +17,15 @@ Obj::Obj()
 	setFSM(new FSM);
 }
 
-/*
- * --INFO--
- * Address:	802F1394
- * Size:	000004
+/**
+ * @note Address: 0x802F1394
+ * @note Size: 0x4
  */
 void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
-/*
- * --INFO--
- * Address:	802F1398
- * Size:	00008C
+/**
+ * @note Address: 0x802F1398
+ * @note Size: 0x8C
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
@@ -42,31 +39,27 @@ void Obj::onInit(CreatureInitArg* initArg)
 	doAnimationCullingOff();
 }
 
-/*
- * --INFO--
- * Address:	802F1424
- * Size:	000034
+/**
+ * @note Address: 0x802F1424
+ * @note Size: 0x34
  */
 void Obj::doUpdate() { mFsm->exec(this); }
 
-/*
- * --INFO--
- * Address:	802F1458
- * Size:	000004
+/**
+ * @note Address: 0x802F1458
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	802F145C
- * Size:	000020
+/**
+ * @note Address: 0x802F145C
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	802F147C
- * Size:	00004C
+/**
+ * @note Address: 0x802F147C
+ * @note Size: 0x4C
  */
 void Obj::setFSM(FSM* fsm)
 {
@@ -75,10 +68,9 @@ void Obj::setFSM(FSM* fsm)
 	mCurrentLifecycleState = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	802F14C8
- * Size:	000118
+/**
+ * @note Address: 0x802F14C8
+ * @note Size: 0x118
  */
 void Obj::getShadowParam(ShadowParam& param)
 {
@@ -102,10 +94,9 @@ void Obj::getShadowParam(ShadowParam& param)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802F15E8
- * Size:	00009C
+/**
+ * @note Address: 0x802F15E8
+ * @note Size: 0x9C
  */
 bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
@@ -120,10 +111,9 @@ bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* collpart)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802F1684
- * Size:	00009C
+/**
+ * @note Address: 0x802F1684
+ * @note Size: 0x9C
  */
 bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
@@ -138,10 +128,9 @@ bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802F1720
- * Size:	0000FC
+/**
+ * @note Address: 0x802F1720
+ * @note Size: 0xFC
  */
 void Obj::wallCallback(const MoveInfo& moveInfo)
 {
@@ -154,10 +143,9 @@ void Obj::wallCallback(const MoveInfo& moveInfo)
 	mTargetPosition += mPosition;
 }
 
-/*
- * --INFO--
- * Address:	802F181C
- * Size:	000040
+/**
+ * @note Address: 0x802F181C
+ * @note Size: 0x40
  */
 void Obj::doStartStoneState()
 {
@@ -166,24 +154,21 @@ void Obj::doStartStoneState()
 	mIsHiding = false;
 }
 
-/*
- * --INFO--
- * Address:	802F185C
- * Size:	000020
+/**
+ * @note Address: 0x802F185C
+ * @note Size: 0x20
  */
 void Obj::doFinishStoneState() { EnemyBase::doFinishStoneState(); }
 
-/*
- * --INFO--
- * Address:	802F187C
- * Size:	000028
+/**
+ * @note Address: 0x802F187C
+ * @note Size: 0x28
  */
 void Obj::startCarcassMotion() { startMotion(SOKKURIANIM_Carry, nullptr); }
 
-/*
- * --INFO--
- * Address:	802F18A4
- * Size:	0000AC
+/**
+ * @note Address: 0x802F18A4
+ * @note Size: 0xAC
  */
 Vector3f Obj::getOffsetForMapCollision()
 {
@@ -198,10 +183,9 @@ Vector3f Obj::getOffsetForMapCollision()
 	return offset;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000068
+/**
+ * @note Address: N/A
+ * @note Size: 0x68
  */
 Creature* Obj::getSearchedTarget()
 {
@@ -213,10 +197,9 @@ Creature* Obj::getSearchedTarget()
 	return EnemyFunc::getNearestNavi(this, C_PARMS->mGeneral.mViewAngle.mValue, C_PARMS->mGeneral.mSightRadius.mValue, nullptr, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802F1950
- * Size:	00007C
+/**
+ * @note Address: 0x802F1950
+ * @note Size: 0x7C
  */
 bool Obj::isAppear()
 {
@@ -227,10 +210,9 @@ bool Obj::isAppear()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802F19CC
- * Size:	0000A8
+/**
+ * @note Address: 0x802F19CC
+ * @note Size: 0xA8
  */
 bool Obj::isDisappear()
 {
@@ -243,10 +225,9 @@ bool Obj::isDisappear()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802F1A74
- * Size:	0001E0
+/**
+ * @note Address: 0x802F1A74
+ * @note Size: 0x1E0
  */
 void Obj::setNextMoveInfo()
 {
@@ -269,10 +250,9 @@ void Obj::setNextMoveInfo()
 	mTargetPosition.z = 1000.0f * cosf(randAngle) + mPosition.z;
 }
 
-/*
- * --INFO--
- * Address:	802F1C54
- * Size:	00016C
+/**
+ * @note Address: 0x802F1C54
+ * @note Size: 0x16C
  */
 void Obj::updateMoveState()
 {
@@ -293,10 +273,9 @@ void Obj::updateMoveState()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802F1DC0
- * Size:	00002C
+/**
+ * @note Address: 0x802F1DC0
+ * @note Size: 0x2C
  */
 void Obj::resetMoveVelocity()
 {
@@ -308,10 +287,9 @@ void Obj::resetMoveVelocity()
 	mMoveVelocity = C_PARMS->mGeneral.mMoveSpeed.mValue;
 }
 
-/*
- * --INFO--
- * Address:	802F1DEC
- * Size:	000078
+/**
+ * @note Address: 0x802F1DEC
+ * @note Size: 0x78
  */
 void Obj::setNextWaitInfo()
 {
@@ -319,10 +297,9 @@ void Obj::setNextWaitInfo()
 	mTimer       = randWeightFloat(waitTime);
 }
 
-/*
- * --INFO--
- * Address:	802F1E64
- * Size:	0000C4
+/**
+ * @note Address: 0x802F1E64
+ * @note Size: 0xC4
  */
 void Obj::createDownEffect(f32 groundScale, f32 waterScale)
 {
@@ -339,10 +316,9 @@ void Obj::createDownEffect(f32 groundScale, f32 waterScale)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802F1F28
- * Size:	0000C0
+/**
+ * @note Address: 0x802F1F28
+ * @note Size: 0xC0
  */
 void Obj::createBubbleEffect()
 {
@@ -355,10 +331,9 @@ void Obj::createBubbleEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802F1FE8
- * Size:	000048
+/**
+ * @note Address: 0x802F1FE8
+ * @note Size: 0x48
  */
 void Obj::createEfxHamon()
 {

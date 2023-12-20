@@ -4,10 +4,9 @@
 namespace Game {
 namespace Tank {
 
-/*
- * --INFO--
- * Address:	80275D8C
- * Size:	000138
+/**
+ * @note Address: 0x80275D8C
+ * @note Size: 0x138
  */
 Obj::Obj()
 {
@@ -15,17 +14,15 @@ Obj::Obj()
 	setFSM(new FSM);
 }
 
-/*
- * --INFO--
- * Address:	80275EC4
- * Size:	000004
+/**
+ * @note Address: 0x80275EC4
+ * @note Size: 0x4
  */
 void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
-/*
- * --INFO--
- * Address:	80275EC8
- * Size:	00009C
+/**
+ * @note Address: 0x80275EC8
+ * @note Size: 0x9C
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
@@ -44,10 +41,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mFsm->start(this, TANK_Wait, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80275F68
- * Size:	000050
+/**
+ * @note Address: 0x80275F68
+ * @note Size: 0x50
  */
 void Obj::onKill(CreatureKillArg* killArg)
 {
@@ -55,10 +51,9 @@ void Obj::onKill(CreatureKillArg* killArg)
 	EnemyBase::onKill(killArg);
 }
 
-/*
- * --INFO--
- * Address:	80275FB8
- * Size:	00004C
+/**
+ * @note Address: 0x80275FB8
+ * @note Size: 0x4C
  */
 void Obj::doUpdate()
 {
@@ -67,24 +62,21 @@ void Obj::doUpdate()
 	mFsm->exec(this);
 }
 
-/*
- * --INFO--
- * Address:	80276004
- * Size:	000004
+/**
+ * @note Address: 0x80276004
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	80276008
- * Size:	000020
+/**
+ * @note Address: 0x80276008
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	80276028
- * Size:	00004C
+/**
+ * @note Address: 0x80276028
+ * @note Size: 0x4C
  */
 void Obj::setFSM(FSM* fsm)
 {
@@ -93,10 +85,9 @@ void Obj::setFSM(FSM* fsm)
 	mCurrentLifecycleState = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80276074
- * Size:	000090
+/**
+ * @note Address: 0x80276074
+ * @note Size: 0x90
  */
 void Obj::getShadowParam(ShadowParam& param)
 {
@@ -112,10 +103,9 @@ void Obj::getShadowParam(ShadowParam& param)
 	param.mSize = 15.0f;
 }
 
-/*
- * --INFO--
- * Address:	80276104
- * Size:	000054
+/**
+ * @note Address: 0x80276104
+ * @note Size: 0x54
  */
 void Obj::doStartStoneState()
 {
@@ -126,10 +116,9 @@ void Obj::doStartStoneState()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80276158
- * Size:	00004C
+/**
+ * @note Address: 0x80276158
+ * @note Size: 0x4C
  */
 void Obj::doFinishStoneState()
 {
@@ -139,10 +128,9 @@ void Obj::doFinishStoneState()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802761A4
- * Size:	000054
+/**
+ * @note Address: 0x802761A4
+ * @note Size: 0x54
  */
 void Obj::doStartEarthquakeFitState()
 {
@@ -153,10 +141,9 @@ void Obj::doStartEarthquakeFitState()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802761F8
- * Size:	00004C
+/**
+ * @note Address: 0x802761F8
+ * @note Size: 0x4C
  */
 void Obj::doFinishEarthquakeFitState()
 {
@@ -166,10 +153,9 @@ void Obj::doFinishEarthquakeFitState()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80276244
- * Size:	000040
+/**
+ * @note Address: 0x80276244
+ * @note Size: 0x40
  */
 void Obj::doStartWaitingBirthTypeDrop()
 {
@@ -177,10 +163,9 @@ void Obj::doStartWaitingBirthTypeDrop()
 	effectDrawOff();
 }
 
-/*
- * --INFO--
- * Address:	80276288
- * Size:	000040
+/**
+ * @note Address: 0x80276288
+ * @note Size: 0x40
  */
 void Obj::doFinishWaitingBirthTypeDrop()
 {
@@ -188,31 +173,27 @@ void Obj::doFinishWaitingBirthTypeDrop()
 	effectDrawOn();
 }
 
-/*
- * --INFO--
- * Address:	802762CC
- * Size:	000028
+/**
+ * @note Address: 0x802762CC
+ * @note Size: 0x28
  */
 void Obj::startCarcassMotion() { startMotion(TANKANIM_Carry, nullptr); }
 
-/*
- * --INFO--
- * Address:	802762F4
- * Size:	00002C
+/**
+ * @note Address: 0x802762F4
+ * @note Size: 0x2C
  */
 void Obj::doStartMovie() { effectDrawOff(); }
 
-/*
- * --INFO--
- * Address:	80276320
- * Size:	00002C
+/**
+ * @note Address: 0x80276320
+ * @note Size: 0x2C
  */
 void Obj::doEndMovie() { effectDrawOn(); }
 
-/*
- * --INFO--
- * Address:	8027634C
- * Size:	0000C4
+/**
+ * @note Address: 0x8027634C
+ * @note Size: 0xC4
  */
 Vector3f Obj::getOffsetForMapCollision()
 {
@@ -228,10 +209,9 @@ Vector3f Obj::getOffsetForMapCollision()
 	return effectPos;
 }
 
-/*
- * --INFO--
- * Address:	80276410
- * Size:	000094
+/**
+ * @note Address: 0x80276410
+ * @note Size: 0x94
  */
 void Obj::initWalkSmokeEffect()
 {
@@ -243,17 +223,15 @@ void Obj::initWalkSmokeEffect()
 	mWalkSmokeMgr.setup(3, mModel, "fsuneL", 3.0f);
 }
 
-/*
- * --INFO--
- * Address:	802764A4
- * Size:	000008
+/**
+ * @note Address: 0x802764A4
+ * @note Size: 0x8
  */
 WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
 
-/*
- * --INFO--
- * Address:	802764AC
- * Size:	000054
+/**
+ * @note Address: 0x802764AC
+ * @note Size: 0x54
  */
 void Obj::getCommonEffectPos(Vector3f& pos)
 {
@@ -262,10 +240,9 @@ void Obj::getCommonEffectPos(Vector3f& pos)
 	pos = sphere.mPosition;
 }
 
-/*
- * --INFO--
- * Address:	80276500
- * Size:	000338
+/**
+ * @note Address: 0x80276500
+ * @note Size: 0x338
  */
 bool Obj::isAttackable(bool check)
 {
@@ -322,10 +299,9 @@ bool Obj::isAttackable(bool check)
 	return check;
 }
 
-/*
- * --INFO--
- * Address:	8027683C
- * Size:	000228
+/**
+ * @note Address: 0x8027683C
+ * @note Size: 0x228
  */
 f32 Obj::emitCollideRatio(Vector3f& dir, Vector3f& pos, f32 range)
 {
@@ -372,10 +348,9 @@ f32 Obj::emitCollideRatio(Vector3f& dir, Vector3f& pos, f32 range)
 	return range;
 }
 
-/*
- * --INFO--
- * Address:	80276A68
- * Size:	000130
+/**
+ * @note Address: 0x80276A68
+ * @note Size: 0x130
  */
 void Obj::updateEmit()
 {
@@ -394,10 +369,9 @@ void Obj::updateEmit()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80276B98
- * Size:	000050
+/**
+ * @note Address: 0x80276B98
+ * @note Size: 0x50
  */
 void Obj::updateCaution()
 {
@@ -410,10 +384,9 @@ void Obj::updateCaution()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80276BE8
- * Size:	000024
+/**
+ * @note Address: 0x80276BE8
+ * @note Size: 0x24
  */
 f32 Obj::getViewAngle()
 {

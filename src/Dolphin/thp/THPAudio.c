@@ -1,9 +1,8 @@
 #include "THP/THPAudio.h"
 
-/*
- * --INFO--
- * Address:	800FE6B0
- * Size:	0003B0
+/**
+ * @note Address: 0x800FE6B0
+ * @note Size: 0x3B0
  */
 u32 THPAudioDecode(s16* audioBuffer, u8* audioFrame, s32 flag)
 {
@@ -125,10 +124,9 @@ u32 THPAudioDecode(s16* audioBuffer, u8* audioFrame, s32 flag)
 	return header->sampleSize;
 }
 
-/*
- * --INFO--
- * Address:	800FEA60
- * Size:	000090
+/**
+ * @note Address: 0x800FEA60
+ * @note Size: 0x90
  */
 static s32 __THPAudioGetNewSample(THPAudioDecodeInfo* info)
 {
@@ -152,10 +150,9 @@ static s32 __THPAudioGetNewSample(THPAudioDecodeInfo* info)
 	return sample;
 }
 
-/*
- * --INFO--
- * Address:	800FEAF0
- * Size:	00003C
+/**
+ * @note Address: 0x800FEAF0
+ * @note Size: 0x3C
  */
 static void __THPAudioInitialize(THPAudioDecodeInfo* info, u8* ptr)
 {

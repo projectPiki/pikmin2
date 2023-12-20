@@ -4,10 +4,9 @@
 
 JASDSPChannel* JASDSPChannel::sDspChannels;
 
-/*
- * --INFO--
- * Address:	800A4B48
- * Size:	00002C
+/**
+ * @note Address: 0x800A4B48
+ * @note Size: 0x2C
  */
 JASDSPChannel::JASDSPChannel()
 {
@@ -20,10 +19,9 @@ JASDSPChannel::JASDSPChannel()
 	_18 = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	800A4B74
- * Size:	000010
+/**
+ * @note Address: 0x800A4B74
+ * @note Size: 0x10
  */
 void JASDSPChannel::free()
 {
@@ -31,17 +29,15 @@ void JASDSPChannel::free()
 	_14 = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	800A4B84
- * Size:	000010
+/**
+ * @note Address: 0x800A4B84
+ * @note Size: 0x10
  */
 void JASDSPChannel::start() { _08 |= 1; }
 
-/*
- * --INFO--
- * Address:	800A4B94
- * Size:	000088
+/**
+ * @note Address: 0x800A4B94
+ * @note Size: 0x88
  */
 void JASDSPChannel::drop()
 {
@@ -58,10 +54,9 @@ void JASDSPChannel::drop()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800A4C1C
- * Size:	000084
+/**
+ * @note Address: 0x800A4C1C
+ * @note Size: 0x84
  */
 void JASDSPChannel::initAll()
 {
@@ -71,10 +66,9 @@ void JASDSPChannel::initAll()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800A4CA0
- * Size:	0000DC
+/**
+ * @note Address: 0x800A4CA0
+ * @note Size: 0xDC
  */
 JASDSPChannel* JASDSPChannel::alloc(u8 index, long (*cb)(u32, JASDsp::TChannel*, void*), void* p3)
 {
@@ -100,10 +94,9 @@ JASDSPChannel* JASDSPChannel::alloc(u8 index, long (*cb)(u32, JASDsp::TChannel*,
 	return channel;
 }
 
-/*
- * --INFO--
- * Address:	800A4D7C
- * Size:	0000E4
+/**
+ * @note Address: 0x800A4D7C
+ * @note Size: 0xE4
  */
 JASDSPChannel* JASDSPChannel::allocForce(u8 index, long (*cb)(u32, JASDsp::TChannel*, void*), void* p3)
 {
@@ -130,17 +123,15 @@ JASDSPChannel* JASDSPChannel::allocForce(u8 index, long (*cb)(u32, JASDsp::TChan
 	return channel;
 }
 
-/*
- * --INFO--
- * Address:	800A4E60
- * Size:	00000C
+/**
+ * @note Address: 0x800A4E60
+ * @note Size: 0xC
  */
 void JASDSPChannel::setPriority(u8 priority) { _04 = priority; }
 
-/*
- * --INFO--
- * Address:	800A4E6C
- * Size:	0000DC
+/**
+ * @note Address: 0x800A4E6C
+ * @note Size: 0xDC
  */
 JASDSPChannel* JASDSPChannel::getLowestChannel(int threshold)
 {
@@ -239,20 +230,18 @@ lbl_800A4F3C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000CC
+/**
+ * @note Address: N/A
+ * @note Size: 0xCC
  */
 JASDSPChannel* JASDSPChannel::getLowestActiveChannel()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800A4F48
- * Size:	0001E4
+/**
+ * @note Address: 0x800A4F48
+ * @note Size: 0x1E4
  */
 void JASDSPChannel::updateProc()
 {
@@ -468,10 +457,9 @@ lbl_800A5118:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A512C
- * Size:	000074
+/**
+ * @note Address: 0x800A512C
+ * @note Size: 0x74
  */
 void JASDSPChannel::updateAll()
 {
@@ -484,10 +472,9 @@ void JASDSPChannel::updateAll()
 	JASDsp::releaseHalt(3);
 }
 
-/*
- * --INFO--
- * Address:	800A51A0
- * Size:	000160
+/**
+ * @note Address: 0x800A51A0
+ * @note Size: 0x160
  */
 bool JASDSPChannel::killActiveChannel()
 {
@@ -621,37 +608,33 @@ lbl_800A52EC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A5300
- * Size:	000010
+/**
+ * @note Address: 0x800A5300
+ * @note Size: 0x10
  */
 JASDSPChannel* JASDSPChannel::getHandle(u32 index) { return sDspChannels + index; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A4
+/**
+ * @note Address: N/A
+ * @note Size: 0xA4
  */
 void JASDSPChannel::getNumUse()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A4
+/**
+ * @note Address: N/A
+ * @note Size: 0xA4
  */
 void JASDSPChannel::getNumFree()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A4
+/**
+ * @note Address: N/A
+ * @note Size: 0xA4
  */
 void JASDSPChannel::getNumBreak()
 {

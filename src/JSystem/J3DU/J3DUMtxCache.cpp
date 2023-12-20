@@ -3,10 +3,9 @@
 #include "JSystem/J3D/J3DAnmLoader.h"
 
 namespace {
-/*
- * --INFO--
- * Address:	800178CC
- * Size:	000144
+/**
+ * @note Address: 0x800178CC
+ * @note Size: 0x144
  */
 template <typename T>
 void init(J3DModel* model, J3DAnmTransform* transform, T* table)
@@ -38,10 +37,9 @@ void init(J3DModel* model, J3DAnmTransform* transform, T* table)
 }
 } // namespace
 
-/*
- * --INFO--
- * Address:	800177EC
- * Size:	00005C
+/**
+ * @note Address: 0x800177EC
+ * @note Size: 0x5C
  */
 J3DUMtxAnmCacheTableBase::~J3DUMtxAnmCacheTableBase()
 {
@@ -50,10 +48,9 @@ J3DUMtxAnmCacheTableBase::~J3DUMtxAnmCacheTableBase()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80017848
- * Size:	000084
+/**
+ * @note Address: 0x80017848
+ * @note Size: 0x84
  */
 J3DUMtxAnmCacheTable::J3DUMtxAnmCacheTable(J3DModel* model, J3DAnmTransform* transform)
 {

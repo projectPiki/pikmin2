@@ -8,10 +8,9 @@
 namespace Game {
 namespace Ujia {
 
-/*
- * --INFO--
- * Address:	80266080
- * Size:	000130
+/**
+ * @note Address: 0x80266080
+ * @note Size: 0x130
  */
 Obj::Obj()
 {
@@ -19,17 +18,15 @@ Obj::Obj()
 	setFSM(new FSM);
 }
 
-/*
- * --INFO--
- * Address:	802661B0
- * Size:	000004
+/**
+ * @note Address: 0x802661B0
+ * @note Size: 0x4
  */
 void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
-/*
- * --INFO--
- * Address:	802661B4
- * Size:	000098
+/**
+ * @note Address: 0x802661B4
+ * @note Size: 0x98
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
@@ -44,31 +41,27 @@ void Obj::onInit(CreatureInitArg* initArg)
 	doAnimationCullingOff();
 }
 
-/*
- * --INFO--
- * Address:	8026624C
- * Size:	000034
+/**
+ * @note Address: 0x8026624C
+ * @note Size: 0x34
  */
 void Obj::doUpdate() { mFsm->exec(this); }
 
-/*
- * --INFO--
- * Address:	80266280
- * Size:	000004
+/**
+ * @note Address: 0x80266280
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	80266284
- * Size:	000020
+/**
+ * @note Address: 0x80266284
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	802662A4
- * Size:	00004C
+/**
+ * @note Address: 0x802662A4
+ * @note Size: 0x4C
  */
 void Obj::setFSM(FSM* fsm)
 {
@@ -77,10 +70,9 @@ void Obj::setFSM(FSM* fsm)
 	mCurrentLifecycleState = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	802662F0
- * Size:	0000A8
+/**
+ * @note Address: 0x802662F0
+ * @note Size: 0xA8
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
@@ -96,10 +88,9 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 	shadowParam.mSize = 8.0f;
 }
 
-/*
- * --INFO--
- * Address:	80266398
- * Size:	000094
+/**
+ * @note Address: 0x80266398
+ * @note Size: 0x94
  */
 bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* part)
 {
@@ -112,24 +103,21 @@ bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* part)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8026642C
- * Size:	00002C
+/**
+ * @note Address: 0x8026642C
+ * @note Size: 0x2C
  */
 bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* part) { return pressCallBack(creature, damage, part); }
 
-/*
- * --INFO--
- * Address:	80266458
- * Size:	000028
+/**
+ * @note Address: 0x80266458
+ * @note Size: 0x28
  */
 void Obj::startCarcassMotion() { startMotion(UJIAANIM_Carry, nullptr); }
 
-/*
- * --INFO--
- * Address:	80266480
- * Size:	000030
+/**
+ * @note Address: 0x80266480
+ * @note Size: 0x30
  */
 void Obj::lifeIncrement()
 {
@@ -140,10 +128,9 @@ void Obj::lifeIncrement()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802664B0
- * Size:	000034
+/**
+ * @note Address: 0x802664B0
+ * @note Size: 0x34
  */
 void Obj::setInWaterDamage()
 {
@@ -152,10 +139,9 @@ void Obj::setInWaterDamage()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802664E4
- * Size:	0000B4
+/**
+ * @note Address: 0x802664E4
+ * @note Size: 0xB4
  */
 
 void Obj::resetAppearCheck()
@@ -169,10 +155,9 @@ void Obj::resetAppearCheck()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80266598
- * Size:	000048
+/**
+ * @note Address: 0x80266598
+ * @note Size: 0x48
  */
 bool Obj::isAppearCheck()
 {
@@ -188,10 +173,9 @@ bool Obj::isAppearCheck()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	802665E0
- * Size:	000020
+/**
+ * @note Address: 0x802665E0
+ * @note Size: 0x20
  */
 void Obj::resetBridgeSearch()
 {
@@ -201,10 +185,9 @@ void Obj::resetBridgeSearch()
 	_2D0    = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	80266600
- * Size:	000048
+/**
+ * @note Address: 0x80266600
+ * @note Size: 0x48
  */
 void Obj::setBridgeSearch()
 {
@@ -215,10 +198,9 @@ void Obj::setBridgeSearch()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80266648
- * Size:	0002C0
+/**
+ * @note Address: 0x80266648
+ * @note Size: 0x2C0
  */
 void Obj::setNearestBridge()
 {
@@ -248,17 +230,15 @@ void Obj::setNearestBridge()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80266908
- * Size:	000004
+/**
+ * @note Address: 0x80266908
+ * @note Size: 0x4
  */
 void Obj::setCullingCheck() { }
 
-/*
- * --INFO--
- * Address:	8026690C
- * Size:	0001B4
+/**
+ * @note Address: 0x8026690C
+ * @note Size: 0x1B4
  */
 int Obj::checkBreakOrMove()
 {
@@ -298,10 +278,9 @@ int Obj::checkBreakOrMove()
 	return UJIA_MoveCentre;
 }
 
-/*
- * --INFO--
- * Address:	80266AC0
- * Size:	000028
+/**
+ * @note Address: 0x80266AC0
+ * @note Size: 0x28
  */
 bool Obj::isBreakBridge()
 {
@@ -312,10 +291,9 @@ bool Obj::isBreakBridge()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80266AE8
- * Size:	0002A8
+/**
+ * @note Address: 0x80266AE8
+ * @note Size: 0x2A8
  */
 bool Obj::moveBridgeSide()
 {
@@ -537,10 +515,9 @@ lbl_80266D5C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80266D90
- * Size:	000288
+/**
+ * @note Address: 0x80266D90
+ * @note Size: 0x288
  */
 bool Obj::moveBridgeCentre()
 {
@@ -751,10 +728,9 @@ lbl_80266FE4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80267018
- * Size:	0002F0
+/**
+ * @note Address: 0x80267018
+ * @note Size: 0x2F0
  */
 bool Obj::moveBridgeTop()
 {
@@ -1008,10 +984,9 @@ lbl_802672C8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80267308
- * Size:	00005C
+/**
+ * @note Address: 0x80267308
+ * @note Size: 0x5C
  */
 void Obj::breakTargetBridge()
 {
@@ -1019,10 +994,9 @@ void Obj::breakTargetBridge()
 	mBridge->stimulate(breakBridge);
 }
 
-/*
- * --INFO--
- * Address:	80267364
- * Size:	00008C
+/**
+ * @note Address: 0x80267364
+ * @note Size: 0x8C
  */
 void Obj::createAppearEffect()
 {
@@ -1031,10 +1005,9 @@ void Obj::createAppearEffect()
 	appearFX.create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802673F0
- * Size:	00008C
+/**
+ * @note Address: 0x802673F0
+ * @note Size: 0x8C
  */
 void Obj::createDisAppearEffect()
 {
@@ -1043,10 +1016,9 @@ void Obj::createDisAppearEffect()
 	hideFX.create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8026747C
- * Size:	000090
+/**
+ * @note Address: 0x8026747C
+ * @note Size: 0x90
  */
 void Obj::createBridgeEffect()
 {
@@ -1056,24 +1028,21 @@ void Obj::createBridgeEffect()
 	eatFX.create(&fxArg);
 }
 
-/*
- * --INFO--
- * Address:	8026750C
- * Size:	000008
+/**
+ * @note Address: 0x8026750C
+ * @note Size: 0x8
  */
 bool Obj::isUnderground() { return mIsUnderground; }
 
-/*
- * --INFO--
- * Address:	80267514
- * Size:	000008
+/**
+ * @note Address: 0x80267514
+ * @note Size: 0x8
  */
 f32 Obj::getDownSmokeScale() { return 0.35f; }
 
-/*
- * --INFO--
- * Address:	8026751C
- * Size:	000008
+/**
+ * @note Address: 0x8026751C
+ * @note Size: 0x8
  */
 EnemyTypeID::EEnemyTypeID Obj::getEnemyTypeID() { return EnemyTypeID::EnemyID_UjiA; }
 

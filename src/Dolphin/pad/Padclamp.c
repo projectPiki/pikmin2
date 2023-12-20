@@ -35,10 +35,9 @@ static const PADClampRegion ClampRegion = {
 	44,
 };
 
-/*
- * --INFO--
- * Address:	800F3048
- * Size:	000130
+/**
+ * @note Address: 0x800F3048
+ * @note Size: 0x130
  */
 void ClampStick(s8* px, s8* py, s8 max, s8 xy, s8 min)
 {
@@ -96,10 +95,9 @@ void ClampStick(s8* px, s8* py, s8 max, s8 xy, s8 min)
 	*py = (s8)(signY * y);
 }
 
-/*
- * --INFO--
- * Address:	800F3178
- * Size:	0001A8
+/**
+ * @note Address: 0x800F3178
+ * @note Size: 0x1A8
  */
 void ClampCircle(s8* px, s8* py, s8 radius, s8 min)
 {
@@ -135,10 +133,9 @@ void ClampCircle(s8* px, s8* py, s8 radius, s8 min)
 	*py = y;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 inline void ClampTrigger(u8* trigger, u8 min, u8 max)
 {
@@ -152,10 +149,9 @@ inline void ClampTrigger(u8* trigger, u8 min, u8 max)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800F3320
- * Size:	000114
+/**
+ * @note Address: 0x800F3320
+ * @note Size: 0x114
  */
 void PADClamp(PADStatus* status)
 {
@@ -172,10 +168,9 @@ void PADClamp(PADStatus* status)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800F3434
- * Size:	00010C
+/**
+ * @note Address: 0x800F3434
+ * @note Size: 0x10C
  */
 void PADClampCircle(PADStatus* status)
 {

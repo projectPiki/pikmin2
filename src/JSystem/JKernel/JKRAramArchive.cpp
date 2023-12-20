@@ -10,10 +10,9 @@
 #include "stl/limits.h"
 #include "stl/mem.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  * UNUSED
  */
 JKRAramArchive::JKRAramArchive()
@@ -21,10 +20,9 @@ JKRAramArchive::JKRAramArchive()
 {
 }
 
-/*
- * --INFO--
- * Address:	80018958
- * Size:	0000B0
+/**
+ * @note Address: 0x80018958
+ * @note Size: 0xB0
  * __ct
  */
 JKRAramArchive::JKRAramArchive(s32 entryNum, JKRArchive::EMountDirection mountDirection)
@@ -41,10 +39,9 @@ JKRAramArchive::JKRAramArchive(s32 entryNum, JKRArchive::EMountDirection mountDi
 	}
 }
 
-/*
- * --INFO--
- * Address:	80018A08
- * Size:	000150
+/**
+ * @note Address: 0x80018A08
+ * @note Size: 0x150
  */
 
 JKRAramArchive::~JKRAramArchive()
@@ -79,10 +76,9 @@ JKRAramArchive::~JKRAramArchive()
 }
 // TODO: get the JKRFile dtor to generate naturally
 
-/*
- * --INFO--
- * Address:	80018BB8
- * Size:	000334
+/**
+ * @note Address: 0x80018BB8
+ * @note Size: 0x334
  */
 bool JKRAramArchive::open(s32 entryNum)
 {
@@ -170,10 +166,9 @@ cleanup:
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80018EEC
- * Size:	000124
+/**
+ * @note Address: 0x80018EEC
+ * @note Size: 0x124
  */
 void* JKRAramArchive::fetchResource(JKRArchive::SDIFileEntry* entry, u32* pSize)
 {
@@ -208,10 +203,9 @@ void* JKRAramArchive::fetchResource(JKRArchive::SDIFileEntry* entry, u32* pSize)
 	return entry->mData;
 }
 
-/*
- * --INFO--
- * Address:	80019010
- * Size:	0000F8
+/**
+ * @note Address: 0x80019010
+ * @note Size: 0xF8
  */
 void* JKRAramArchive::fetchResource(void* data, u32 compressedSize, SDIFileEntry* fileEntry, u32* pSize)
 {
@@ -244,10 +238,9 @@ void* JKRAramArchive::fetchResource(void* data, u32 compressedSize, SDIFileEntry
 	return data;
 }
 
-/*
- * --INFO--
- * Address:	80019108
- * Size:	0000BC
+/**
+ * @note Address: 0x80019108
+ * @note Size: 0xBC
  */
 u32 JKRAramArchive::fetchResource_subroutine(u32 srcAram, u32 size, u8* buf, u32 expandSize, int compression)
 {
@@ -270,10 +263,9 @@ u32 JKRAramArchive::fetchResource_subroutine(u32 srcAram, u32 size, u8* buf, u32
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	800191C4
- * Size:	00014C
+/**
+ * @note Address: 0x800191C4
+ * @note Size: 0x14C
  */
 u32 JKRAramArchive::fetchResource_subroutine(u32 srcAram, u32 size, JKRHeap* heap, int compression, u8** pBuf)
 {
@@ -304,10 +296,9 @@ u32 JKRAramArchive::fetchResource_subroutine(u32 srcAram, u32 size, JKRHeap* hea
 	}
 }
 
-/*
- * --INFO--
- * Address:	80019310
- * Size:	000134
+/**
+ * @note Address: 0x80019310
+ * @note Size: 0x134
  */
 size_t JKRAramArchive::getExpandedResSize(const void* resource) const
 {

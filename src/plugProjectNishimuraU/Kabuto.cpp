@@ -7,10 +7,9 @@
 
 namespace Game {
 namespace Kabuto {
-/*
- * --INFO--
- * Address:	802E4178
- * Size:	00014C
+/**
+ * @note Address: 0x802E4178
+ * @note Size: 0x14C
  */
 Obj::Obj()
 {
@@ -19,17 +18,15 @@ Obj::Obj()
 	createEffect();
 }
 
-/*
- * --INFO--
- * Address:	802E42C8
- * Size:	000004
+/**
+ * @note Address: 0x802E42C8
+ * @note Size: 0x4
  */
 void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
-/*
- * --INFO--
- * Address:	802E42CC
- * Size:	000108
+/**
+ * @note Address: 0x802E42CC
+ * @note Size: 0x108
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
@@ -55,10 +52,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E43D8
- * Size:	000044
+/**
+ * @note Address: 0x802E43D8
+ * @note Size: 0x44
  */
 void Obj::doUpdate()
 {
@@ -66,24 +62,21 @@ void Obj::doUpdate()
 	mFsm->exec(this);
 }
 
-/*
- * --INFO--
- * Address:	802E441C
- * Size:	000004
+/**
+ * @note Address: 0x802E441C
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	802E4420
- * Size:	000020
+/**
+ * @note Address: 0x802E4420
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	802E4440
- * Size:	00004C
+/**
+ * @note Address: 0x802E4440
+ * @note Size: 0x4C
  */
 void Obj::setFSM(FSM* fsm)
 {
@@ -92,10 +85,9 @@ void Obj::setFSM(FSM* fsm)
 	mCurrentLifecycleState = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	802E448C
- * Size:	0000A8
+/**
+ * @note Address: 0x802E448C
+ * @note Size: 0xA8
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
@@ -112,10 +104,9 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 	shadowParam.mSize = 25.0f;
 }
 
-/*
- * --INFO--
- * Address:	802E4534
- * Size:	000054
+/**
+ * @note Address: 0x802E4534
+ * @note Size: 0x54
  */
 void Obj::doStartStoneState()
 {
@@ -124,10 +115,9 @@ void Obj::doStartStoneState()
 	finishWaitEffect();
 }
 
-/*
- * --INFO--
- * Address:	802E4588
- * Size:	0000B0
+/**
+ * @note Address: 0x802E4588
+ * @note Size: 0xB0
  */
 void Obj::doFinishStoneState()
 {
@@ -145,31 +135,27 @@ void Obj::doFinishStoneState()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E4638
- * Size:	000028
+/**
+ * @note Address: 0x802E4638
+ * @note Size: 0x28
  */
 void Obj::startCarcassMotion() { startMotion(KABUTOANIM_Carry, nullptr); }
 
-/*
- * --INFO--
- * Address:	802E4660
- * Size:	00002C
+/**
+ * @note Address: 0x802E4660
+ * @note Size: 0x2C
  */
 void Obj::doStartMovie() { effectDrawOff(); }
 
-/*
- * --INFO--
- * Address:	802E4690
- * Size:	00002C
+/**
+ * @note Address: 0x802E4690
+ * @note Size: 0x2C
  */
 void Obj::doEndMovie() { effectDrawOn(); }
 
-/*
- * --INFO--
- * Address:	802E46C0
- * Size:	000094
+/**
+ * @note Address: 0x802E46C0
+ * @note Size: 0x94
  */
 void Obj::initWalkSmokeEffect()
 {
@@ -180,17 +166,15 @@ void Obj::initWalkSmokeEffect()
 	mWalkSmokeMgr.setup(3, mModel, "lleg", 16.0f);
 }
 
-/*
- * --INFO--
- * Address:	802E4754
- * Size:	000008
+/**
+ * @note Address: 0x802E4754
+ * @note Size: 0x8
  */
 WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
 
-/*
- * --INFO--
- * Address:	802E475C
- * Size:	000198
+/**
+ * @note Address: 0x802E475C
+ * @note Size: 0x198
  */
 void Obj::setRandTarget()
 {
@@ -202,10 +186,9 @@ void Obj::setRandTarget()
 	mTargetPosition = Vector3f(randRadius * sinf(angle) + mHomePosition.x, mHomePosition.y, randRadius * cosf(angle) + mHomePosition.z);
 }
 
-/*
- * --INFO--
- * Address:	802E48F4
- * Size:	000058
+/**
+ * @note Address: 0x802E48F4
+ * @note Size: 0x58
  */
 Creature* Obj::getSearchedTarget()
 {
@@ -217,10 +200,9 @@ Creature* Obj::getSearchedTarget()
 	return target;
 }
 
-/*
- * --INFO--
- * Address:	802E494C
- * Size:	0002BC
+/**
+ * @note Address: 0x802E494C
+ * @note Size: 0x2BC
  */
 bool Obj::isAttackableTarget()
 {
@@ -464,10 +446,9 @@ lbl_802E4BD4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802E4C08
- * Size:	0000E4
+/**
+ * @note Address: 0x802E4C08
+ * @note Size: 0xE4
  */
 void Obj::createStoneAttack()
 {
@@ -493,10 +474,9 @@ void Obj::createStoneAttack()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E4CEC
- * Size:	000050
+/**
+ * @note Address: 0x802E4CEC
+ * @note Size: 0x50
  */
 void Obj::updateCaution()
 {
@@ -509,10 +489,9 @@ void Obj::updateCaution()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E4D3C
- * Size:	000024
+/**
+ * @note Address: 0x802E4D3C
+ * @note Size: 0x24
  */
 f32 Obj::getViewAngle()
 {
@@ -523,10 +502,9 @@ f32 Obj::getViewAngle()
 	return C_PARMS->mGeneral.mViewAngle.mValue;
 }
 
-/*
- * --INFO--
- * Address:	802E4D60
- * Size:	000040
+/**
+ * @note Address: 0x802E4D60
+ * @note Size: 0x40
  */
 void Obj::lifeIncrement()
 {
@@ -538,10 +516,9 @@ void Obj::lifeIncrement()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E4DA0
- * Size:	00007C
+/**
+ * @note Address: 0x802E4DA0
+ * @note Size: 0x7C
  */
 void Obj::createRockEmitEffect()
 {

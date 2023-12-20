@@ -19,18 +19,16 @@
 #include "types.h"
 #include "Vector3.h"
 
-/*
+/**
  * __ct__8PlatformFv
- * --INFO--
- * Address:	801336A8
- * Size:	000044
+ * @note Address: 0x801336A8
+ * @note Size: 0x44
  */
 Platform::Platform() { mTriDivider = nullptr; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void Platform::setTriDivider(Sys::TriDivider* triDivider)
 {
@@ -38,18 +36,16 @@ void Platform::setTriDivider(Sys::TriDivider* triDivider)
 	mTriDivider = (Sys::OBBTree*)triDivider;
 }
 
-/*
- * --INFO--
- * Address:	801336EC
- * Size:	000008
+/**
+ * @note Address: 0x801336EC
+ * @note Size: 0x8
  */
 Sys::OBBTree* Platform::getTriDivider() { return mTriDivider; }
 
-/*
+/**
  * read__8PlatformFR6Stream
- * --INFO--
- * Address:	........
- * Size:	000068
+ * @note Address: N/A
+ * @note Size: 0x68
  */
 void Platform::read(Stream& input)
 {
@@ -58,10 +54,9 @@ void Platform::read(Stream& input)
 	getTriDivider()->read(input);
 }
 
-/*
- * --INFO--
- * Address:	801336F4
- * Size:	00003C
+/**
+ * @note Address: 0x801336F4
+ * @note Size: 0x3C
  */
 void Platform::setMapCodeAll(MapCode::Code& code)
 {
@@ -71,10 +66,9 @@ void Platform::setMapCodeAll(MapCode::Code& code)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80133730
- * Size:	000084
+/**
+ * @note Address: 0x80133730
+ * @note Size: 0x84
  */
 Platform* Platform::clone(Matrixf& matrix)
 {
@@ -83,11 +77,10 @@ Platform* Platform::clone(Matrixf& matrix)
 	return copy;
 }
 
-/*
+/**
  * load__8PlatformFP13JKRFileLoaderPc
- * --INFO--
- * Address:	801337B4
- * Size:	0000AC
+ * @note Address: 0x801337B4
+ * @note Size: 0xAC
  */
 void Platform::load(JKRFileLoader* loader, char* path)
 {
@@ -100,10 +93,9 @@ void Platform::load(JKRFileLoader* loader, char* path)
 	read(input);
 }
 
-/*
- * --INFO--
- * Address:	80133860
- * Size:	000014
+/**
+ * @note Address: 0x80133860
+ * @note Size: 0x14
  */
 PlatAttacher::PlatAttacher()
     : mNumShapes(0)
@@ -112,11 +104,10 @@ PlatAttacher::PlatAttacher()
 {
 }
 
-/*
+/**
  * setMapCodeAll__12PlatAttacherFRQ27MapCode4Code
- * --INFO--
- * Address:	80133874
- * Size:	000064
+ * @note Address: 0x80133874
+ * @note Size: 0x64
  */
 void PlatAttacher::setMapCodeAll(MapCode::Code& code)
 {
@@ -125,10 +116,9 @@ void PlatAttacher::setMapCodeAll(MapCode::Code& code)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000178
+/**
+ * @note Address: N/A
+ * @note Size: 0x178
  * Should be 0x178, is 0x68.
  */
 void PlatAttacher::alloc(int count, u16* indices)
@@ -139,11 +129,10 @@ void PlatAttacher::alloc(int count, u16* indices)
 	// more here, probably some loop of setMapCodeAll
 }
 
-/*
+/**
  * read__12PlatAttacherFR6Stream
- * --INFO--
- * Address:	80133938
- * Size:	000190
+ * @note Address: 0x80133938
+ * @note Size: 0x190
  */
 void PlatAttacher::read(Stream& input)
 {
@@ -164,17 +153,15 @@ void PlatAttacher::read(Stream& input)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80133CD4
- * Size:	000008
+/**
+ * @note Address: 0x80133CD4
+ * @note Size: 0x8
  */
 int PlatAttacher::getNumShapes() { return mNumShapes; }
 
-/*
- * --INFO--
- * Address:	80133CDC
- * Size:	00007C
+/**
+ * @note Address: 0x80133CDC
+ * @note Size: 0x7C
  */
 u16 PlatAttacher::getJointIndex(int i)
 {
@@ -182,10 +169,9 @@ u16 PlatAttacher::getJointIndex(int i)
 	return mJointIndices[i];
 }
 
-/*
- * --INFO--
- * Address:	80133D58
- * Size:	00007C
+/**
+ * @note Address: 0x80133D58
+ * @note Size: 0x7C
  */
 Platform* PlatAttacher::getPlatform(int i)
 {
@@ -193,20 +179,18 @@ Platform* PlatAttacher::getPlatform(int i)
 	return &mPlatforms[i];
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C8
+/**
+ * @note Address: N/A
+ * @note Size: 0xC8
  */
 AgePlatform::AgePlatform()
 {
 	mTriDivider = new Sys::OBBTree[2]; // something here has to generate four weak dtors
 }
 
-/*
- * --INFO--
- * Address:	8013405C
- * Size:	000010
+/**
+ * @note Address: 0x8013405C
+ * @note Size: 0x10
  */
 CollTree::CollTree()
     : mPart(nullptr)
@@ -214,10 +198,9 @@ CollTree::CollTree()
 {
 }
 
-/*
- * --INFO--
- * Address:	8013406C
- * Size:	000044
+/**
+ * @note Address: 0x8013406C
+ * @note Size: 0x44
  */
 void CollTree::createFromFactory(SysShape::MtxObject* mtxObject, CollPartFactory* factory, CollPartMgr* mgr)
 {
@@ -227,10 +210,9 @@ void CollTree::createFromFactory(SysShape::MtxObject* mtxObject, CollPartFactory
 	}
 }
 
-/*
- * --INFO--
- * Address:	801340B0
- * Size:	000104
+/**
+ * @note Address: 0x801340B0
+ * @note Size: 0x104
  */
 void CollTree::createSingleSphere(SysShape::MtxObject* mtxObject, int jointIndex, Sys::Sphere& sphere, CollPartMgr* mgr)
 {
@@ -250,10 +232,9 @@ void CollTree::createSingleSphere(SysShape::MtxObject* mtxObject, int jointIndex
 	mPart->mCurrentID.setID('root');
 }
 
-/*
- * --INFO--
- * Address:	801341B4
- * Size:	000044
+/**
+ * @note Address: 0x801341B4
+ * @note Size: 0x44
  */
 void CollTree::release()
 {
@@ -263,10 +244,9 @@ void CollTree::release()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801341F8
- * Size:	000348
+/**
+ * @note Address: 0x801341F8
+ * @note Size: 0x348
  */
 // matches so long as kill isn't in the header........
 void CollTree::releaseRec(CollPart* part)
@@ -285,20 +265,18 @@ void CollTree::releaseRec(CollPart* part)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80134550
- * Size:	00003C
+/**
+ * @note Address: 0x80134550
+ * @note Size: 0x3C
  */
 bool CollTree::checkCollision(CollTree* other, CollPart** collA, CollPart** collB, Vector3f& hitPosition)
 {
 	return checkCollisionRec(mPart, other->mPart, collA, collB, hitPosition);
 }
 
-/*
- * --INFO--
- * Address:	8013458C
- * Size:	000604
+/**
+ * @note Address: 0x8013458C
+ * @note Size: 0x604
  */
 bool CollTree::checkCollisionRec(CollPart* a, CollPart* b, CollPart** collA, CollPart** collB, Vector3f& hitPosition)
 {
@@ -331,11 +309,10 @@ bool CollTree::checkCollisionRec(CollPart* a, CollPart* b, CollPart** collA, Col
 	return false;
 }
 
-/*
+/**
  * checkCollision__8CollTreeFRQ23Sys6SphereP22IDelegate1<P8CollPart>
- * --INFO--
- * Address:	80134BD0
- * Size:	00002C
+ * @note Address: 0x80134BD0
+ * @note Size: 0x2C
  */
 void CollTree::checkCollision(Sys::Sphere& sphere, IDelegate1<CollPart*>* delegate)
 {
@@ -350,11 +327,9 @@ void CollTree::checkCollision(Sys::Sphere& sphere, IDelegate1<CollPart*>* delega
  *
  * @param sphere The sphere to check for collision with.
  * @param onCollidedCallback The callback function to invoke when a collision is detected.
- */
-/*
- * --INFO--
- * Address:	80134BFC
- * Size:	0008B8
+ *
+ * @note Address: 0x80134BFC
+ * @note Size: 0x8B8
  */
 void CollPart::checkCollision(Sys::Sphere& sphere, IDelegate1<CollPart*>* onCollidedCallback)
 {
@@ -383,11 +358,10 @@ void CollPart::checkCollision(Sys::Sphere& sphere, IDelegate1<CollPart*>* onColl
 	}
 }
 
-/*
+/**
  * checkCollisionMulti__8CollTreeFP8CollTreeP47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>
- * --INFO--
- * Address:	80135564
- * Size:	000198
+ * @note Address: 0x80135564
+ * @note Size: 0x198
  */
 void CollTree::checkCollisionMulti(CollTree* other, IDelegate3<CollPart*, CollPart*, Vector3f&>* delegate)
 {
@@ -425,11 +399,10 @@ void CollTree::checkCollisionMulti(CollTree* other, IDelegate3<CollPart*, CollPa
 	}
 }
 
-/*
+/**
  * checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>
- * --INFO--
- * Address:	801356FC
- * Size:	0001F0
+ * @note Address: 0x801356FC
+ * @note Size: 0x1F0
  */
 void CollPart::checkCollisionMulti(CollPart* other, IDelegate3<CollPart*, CollPart*, Vector3f&>* onCollidedCallback)
 {
@@ -473,11 +446,9 @@ void CollPart::checkCollisionMulti(CollPart* other, IDelegate3<CollPart*, CollPa
  * @param other The other CollPart to check for collision with.
  * @param hitPosition The position of the collision, if one occurs.
  * @return True if a collision occurs, false otherwise.
- */
-/*
- * --INFO--
- * Address:	801358EC
- * Size:	0001B0
+ *
+ * @note Address: 0x801358EC
+ * @note Size: 0x1B0
  */
 bool CollPart::collide(CollPart* other, Vector3f& hitPosition)
 {
@@ -499,11 +470,10 @@ bool CollPart::collide(CollPart* other, Vector3f& hitPosition)
 	return false;
 }
 
-/*
+/**
  * update__8CollTreeFv
- * --INFO--
- * Address:	80135A9C
- * Size:	00002C
+ * @note Address: 0x80135A9C
+ * @note Size: 0x2C
  */
 void CollTree::update()
 {
@@ -512,11 +482,10 @@ void CollTree::update()
 	}
 }
 
-/*
+/**
  * attachModel__8CollTreeFPQ28SysShape9MtxObject
- * --INFO--
- * Address:	80135AC8
- * Size:	00002C
+ * @note Address: 0x80135AC8
+ * @note Size: 0x2C
  */
 void CollTree::attachModel(SysShape::MtxObject* mtxObject)
 {
@@ -525,11 +494,10 @@ void CollTree::attachModel(SysShape::MtxObject* mtxObject)
 	}
 }
 
-/*
+/**
  * attachModel__8CollPartFPQ28SysShape9MtxObject
- * --INFO--
- * Address:	80135AF4
- * Size:	000350
+ * @note Address: 0x80135AF4
+ * @note Size: 0x350
  */
 void CollPart::attachModel(SysShape::MtxObject* mtxObject)
 {
@@ -542,19 +510,17 @@ void CollPart::attachModel(SysShape::MtxObject* mtxObject)
 	}
 }
 
-/*
+/**
  * getCollPart__8CollTreeFUl
- * --INFO--
- * Address:	80135E44
- * Size:	000034
+ * @note Address: 0x80135E44
+ * @note Size: 0x34
  */
 CollPart* CollTree::getCollPart(u32 partID) { return (mPart != nullptr) ? mPart->getCollPart(partID) : nullptr; }
 
-/*
+/**
  * getCollPart__8CollPartFUl
- * --INFO--
- * Address:	80135E78
- * Size:	000640
+ * @note Address: 0x80135E78
+ * @note Size: 0x640
  */
 CollPart* CollPart::getCollPart(u32 partID)
 {
@@ -585,11 +551,9 @@ CollPart* CollPart::getCollPart(u32 partID)
  * @param limit The maximum number of CollPart objects that can be stored in the array.
  * @param count The current count of CollPart objects in the array.
  * @return The final count of CollPart objects in the array after the collection.
- */
-/*
- * --INFO--
- * Address:	801364B8
- * Size:	00054C
+ *
+ * @note Address: 0x801364B8
+ * @note Size: 0x54C
  */
 int CollPart::getAllCollPartToArray(CollPart** outputArray, int limit, int& count)
 {
@@ -633,10 +597,9 @@ int CollPart::getAllCollPartToArray(CollPart** outputArray, int limit, int& coun
 	return count;
 }
 
-/*
- * --INFO--
- * Address:	80136A04
- * Size:	000118
+/**
+ * @note Address: 0x80136A04
+ * @note Size: 0x118
  */
 CollPart* CollTree::findCollPart(FindCollPartArg& findArg)
 {
@@ -747,10 +710,9 @@ lbl_80136B00:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80136B1C
- * Size:	000124
+/**
+ * @note Address: 0x80136B1C
+ * @note Size: 0x124
  */
 CollPart* CollTree::getRandomCollPart()
 {
@@ -771,10 +733,9 @@ CollPart* CollTree::getRandomCollPart()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80136C40
- * Size:	000034
+/**
+ * @note Address: 0x80136C40
+ * @note Size: 0x34
  */
 void CollTree::getBoundingSphere(Sys::Sphere& sphere)
 {
@@ -785,26 +746,23 @@ void CollTree::getBoundingSphere(Sys::Sphere& sphere)
 	sphere.mRadius   = mPart->mRadius;
 }
 
-/*
+/**
  * __ct__8CollPartFPQ28SysShape9MtxObject
- * --INFO--
- * Address:	80136C74
- * Size:	000064
+ * @note Address: 0x80136C74
+ * @note Size: 0x64
  */
 CollPart::CollPart(SysShape::MtxObject* mtxObject) { init(mtxObject); }
 
-/*
+/**
  * __ct__8CollPartFv
- * --INFO--
- * Address:	80136CD8
- * Size:	000058
+ * @note Address: 0x80136CD8
+ * @note Size: 0x58
  */
 CollPart::CollPart() { init(nullptr); }
 
-/*
- * --INFO--
- * Address:	80136D30
- * Size:	000080
+/**
+ * @note Address: 0x80136D30
+ * @note Size: 0x80
  */
 void CollPart::init(SysShape::MtxObject* mtxObject)
 {
@@ -821,18 +779,16 @@ void CollPart::init(SysShape::MtxObject* mtxObject)
 	mSpecialID.setID('____');
 }
 
-/*
- * --INFO--
- * Address:	80136DB0
- * Size:	000030
+/**
+ * @note Address: 0x80136DB0
+ * @note Size: 0x30
  */
 bool CollPart::isStickable() { return mSpecialID.match('s***', '*'); }
 
-/*
+/**
  * update__8CollPartFv
- * --INFO--
- * Address:	80136DE0
- * Size:	0004E0
+ * @note Address: 0x80136DE0
+ * @note Size: 0x4E0
  */
 void CollPart::update()
 {
@@ -847,10 +803,9 @@ void CollPart::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80137318
- * Size:	000084
+/**
+ * @note Address: 0x80137318
+ * @note Size: 0x84
  */
 void CollPart::makeMatrixTo(Matrixf& target)
 {
@@ -862,10 +817,9 @@ void CollPart::makeMatrixTo(Matrixf& target)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8013739C
- * Size:	000214
+/**
+ * @note Address: 0x8013739C
+ * @note Size: 0x214
  */
 void CollPart::makeTubeTree()
 {
@@ -887,11 +841,9 @@ void CollPart::makeTubeTree()
  *
  * @param globalPosition The global stick position.
  * @param localPosition  [out] The calculated local stick position.
- */
-/*
- * --INFO--
- * Address:	801375B0
- * Size:	00022C
+ *
+ * @note Address: 0x801375B0
+ * @note Size: 0x22C
  */
 void CollPart::calcStickLocal(Vector3f& input, Vector3f& localPosition)
 {
@@ -1095,11 +1047,9 @@ lbl_801377B8:
  *
  * @param input The input vector.
  * @param globalPosition The calculated global position.
- */
-/*
- * --INFO--
- * Address:	801377DC
- * Size:	000168
+ *
+ * @note Address: 0x801377DC
+ * @note Size: 0x168
  */
 void CollPart::calcStickGlobal(Vector3f& input, Vector3f& globalPosition)
 {
@@ -1135,11 +1085,9 @@ void CollPart::calcStickGlobal(Vector3f& input, Vector3f& globalPosition)
  *
  * @param input The target position to pose toward.
  * @param poseMatrix The resulting pose matrix.
- */
-/*
- * --INFO--
- * Address:	80137944
- * Size:	0004C8
+ *
+ * @note Address: 0x80137944
+ * @note Size: 0x4C8
  */
 // WIP: https://decomp.me/scratch/rvuzC
 void CollPart::calcPoseMatrix(Vector3f& input, Matrixf& poseMatrix)
@@ -1571,10 +1519,9 @@ lbl_80137DF0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80137E0C
- * Size:	0003F0
+/**
+ * @note Address: 0x80137E0C
+ * @note Size: 0x3F0
  */
 void CollPart::setScale(f32 scale)
 {
@@ -1587,10 +1534,9 @@ void CollPart::setScale(f32 scale)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801381FC
- * Size:	00007C
+/**
+ * @note Address: 0x801381FC
+ * @note Size: 0x7C
  */
 void CollPart::getSphere(Sys::Sphere& sphere)
 {
@@ -1600,10 +1546,9 @@ void CollPart::getSphere(Sys::Sphere& sphere)
 	sphere.mRadius   = radius;
 }
 
-/*
- * --INFO--
- * Address:	80138278
- * Size:	0000B8
+/**
+ * @note Address: 0x80138278
+ * @note Size: 0xB8
  */
 void CollPart::getTube(Sys::Tube& tube)
 {
@@ -1618,18 +1563,16 @@ void CollPart::getTube(Sys::Tube& tube)
 	tube.mEndRadius   = v2;
 }
 
-/*
- * --INFO--
- * Address:	80138330
- * Size:	000004
+/**
+ * @note Address: 0x80138330
+ * @note Size: 0x4
  */
 void CollPart::draw(Graphics&) { }
 
-/*
+/**
  * __ct__13MouthCollPartFv
- * --INFO--
- * Address:	80138334
- * Size:	000134
+ * @note Address: 0x80138334
+ * @note Size: 0x134
  */
 MouthCollPart::MouthCollPart()
 {
@@ -1648,12 +1591,11 @@ MouthCollPart::MouthCollPart()
 	_6C            = 0;
 }
 
-/*
+/**
  * --INLINED--
  * setup__13MouthCollPartFPQ28SysShape5ModelPcR10Vector3<f>
- * --INFO--
- * Address: ........
- * Size:    000080
+ * @note Address: N/A
+ * @note Size: 0x80
  */
 
 inline void MouthCollPart::setup(SysShape::Model* model, char* jointName, Vector3f& vector)
@@ -1666,26 +1608,23 @@ inline void MouthCollPart::setup(SysShape::Model* model, char* jointName, Vector
 	mStuckCreature = nullptr;
 }
 
-/*
+/**
  * getPosition__13MouthCollPartFR10Vector3<f>
- * --INFO--
- * Address:	801384C8
- * Size:	000048
+ * @note Address: 0x801384C8
+ * @note Size: 0x48
  */
 void MouthCollPart::getPosition(Vector3f& outPosition) { mMouthJoint->getWorldMatrix()->getTranslation(outPosition); }
 
-/*
- * --INFO--
- * Address:	80138510
- * Size:	000038
+/**
+ * @note Address: 0x80138510
+ * @note Size: 0x38
  */
 void MouthCollPart::copyMatrixTo(Matrixf& outMtx) { PSMTXCopy(mMouthJoint->getWorldMatrix()->mMatrix.mtxView, outMtx.mMatrix.mtxView); }
 
-/*
+/**
  * __ct__10MouthSlotsFv
- * --INFO--
- * Address:	80138548
- * Size:	000010
+ * @note Address: 0x80138548
+ * @note Size: 0x10
  */
 MouthSlots::MouthSlots()
     : mMax(0)
@@ -1693,11 +1632,10 @@ MouthSlots::MouthSlots()
 {
 }
 
-/*
+/**
  * alloc__10MouthSlotsFi
- * --INFO--
- * Address:	80138558
- * Size:	000064
+ * @note Address: 0x80138558
+ * @note Size: 0x64
  */
 void MouthSlots::alloc(int count)
 {
@@ -1705,11 +1643,10 @@ void MouthSlots::alloc(int count)
 	mSlots = new MouthCollPart[count];
 }
 
-/*
+/**
  * update__10MouthSlotsFv
- * --INFO--
- * Address:	8013862C
- * Size:	000064
+ * @note Address: 0x8013862C
+ * @note Size: 0x64
  */
 void MouthSlots::update()
 {
@@ -1718,11 +1655,10 @@ void MouthSlots::update()
 	}
 }
 
-/*
+/**
  * setup__10MouthSlotsFiPQ28SysShape5ModelPc
- * --INFO--
- * Address:	80138690
- * Size:	0000E8
+ * @note Address: 0x80138690
+ * @note Size: 0xE8
  */
 void MouthSlots::setup(int slotIndex, SysShape::Model* model, char* jointName)
 {
@@ -1730,10 +1666,9 @@ void MouthSlots::setup(int slotIndex, SysShape::Model* model, char* jointName)
 	mSlots[slotIndex].setup(model, jointName, Vector3f::zero);
 }
 
-/*
- * --INFO--
- * Address:	80138778
- * Size:	00007C
+/**
+ * @note Address: 0x80138778
+ * @note Size: 0x7C
  */
 MouthCollPart* MouthSlots::getSlot(int slotIndex)
 {
@@ -1741,11 +1676,10 @@ MouthCollPart* MouthSlots::getSlot(int slotIndex)
 	return &mSlots[slotIndex];
 }
 
-/*
+/**
  * load__15CollPartFactoryFPc
- * --INFO--
- * Address:	801387F4
- * Size:	000150
+ * @note Address: 0x801387F4
+ * @note Size: 0x150
  */
 CollPartFactory* CollPartFactory::load(char* path)
 {
@@ -1766,11 +1700,10 @@ CollPartFactory* CollPartFactory::load(char* path)
 	return factory;
 }
 
-/*
+/**
  * load__15CollPartFactoryFP13JKRFileLoaderPc
- * --INFO--
- * Address:	80138944
- * Size:	000128
+ * @note Address: 0x80138944
+ * @note Size: 0x128
  */
 CollPartFactory* CollPartFactory::load(JKRFileLoader* loader, char* path)
 {
@@ -1789,17 +1722,15 @@ CollPartFactory* CollPartFactory::load(JKRFileLoader* loader, char* path)
 	return factory;
 }
 
-/*
- * --INFO--
- * Address:	80138A6C
- * Size:	000020
+/**
+ * @note Address: 0x80138A6C
+ * @note Size: 0x20
  */
 CollPart* CollPartFactory::createInstance(SysShape::MtxObject* mtxObject, CollPartMgr* mgr) { return clone(mtxObject, mgr); }
 
-/*
- * --INFO--
- * Address:	80138A8C
- * Size:	0000AC
+/**
+ * @note Address: 0x80138A8C
+ * @note Size: 0xAC
  */
 CollPart* CollPartMgr::createOne(SysShape::MtxObject* mtxObject)
 {
@@ -1810,11 +1741,10 @@ CollPart* CollPartMgr::createOne(SysShape::MtxObject* mtxObject)
 	return part;
 }
 
-/*
+/**
  * clone__8CollPartFPQ28SysShape9MtxObjectP11CollPartMgr
- * --INFO--
- * Address:	80138B38
- * Size:	0002A8
+ * @note Address: 0x80138B38
+ * @note Size: 0x2A8
  */
 CollPart* CollPart::clone(SysShape::MtxObject* mtxObject, CollPartMgr* mgr)
 {
@@ -1852,11 +1782,10 @@ CollPart* CollPart::clone(SysShape::MtxObject* mtxObject, CollPartMgr* mgr)
 	return copy;
 }
 
-/*
+/**
  * read__8CollPartFR6Streamb
- * --INFO--
- * Address:	80138E00
- * Size:	00035C
+ * @note Address: 0x80138E00
+ * @note Size: 0x35C
  */
 void CollPart::read(Stream& input, bool isAgeCollPart)
 {
@@ -1881,10 +1810,9 @@ void CollPart::read(Stream& input, bool isAgeCollPart)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801391A8
- * Size:	00010C
+/**
+ * @note Address: 0x801391A8
+ * @note Size: 0x10C
  */
 void AgeCollPart::draw(Graphics& graphics)
 {
@@ -1907,11 +1835,10 @@ void AgeCollPart::draw(Graphics& graphics)
 	}
 }
 
-/*
+/**
  * __ct__11AgeCollPartFPQ28SysShape5Model
- * --INFO--
- * Address:	801392B4
- * Size:	0000CC
+ * @note Address: 0x801392B4
+ * @note Size: 0xCC
  */
 AgeCollPart::AgeCollPart(SysShape::Model* model)
     : CollPart(model)

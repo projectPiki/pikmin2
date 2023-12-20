@@ -2,10 +2,9 @@
 #include "JSystem/J3D/J3DJoint.h"
 #include "JSystem/JSupport/JSU.h"
 
-/*
- * --INFO--
- * Address:	80071B20
- * Size:	000058
+/**
+ * @note Address: 0x80071B20
+ * @note Size: 0x58
  */
 J3DJointFactory::J3DJointFactory(const J3DJointBlock& block)
 {
@@ -13,10 +12,9 @@ J3DJointFactory::J3DJointFactory(const J3DJointBlock& block)
 	mIndexMap = JSUConvertOffsetToPtr<u16>(&block, block.mRemapTableOffset);
 }
 
-/*
- * --INFO--
- * Address:	80071B78
- * Size:	000180
+/**
+ * @note Address: 0x80071B78
+ * @note Size: 0x180
  */
 J3DJoint* J3DJointFactory::create(int jointIndex)
 {

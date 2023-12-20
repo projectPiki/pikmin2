@@ -28,10 +28,9 @@ static const char className[] = "singleGS_DayEnd";
 namespace Game {
 namespace SingleGame {
 
-/*
- * --INFO--
- * Address:	8023A250
- * Size:	0004A0
+/**
+ * @note Address: 0x8023A250
+ * @note Size: 0x4A0
  */
 void DayEndState::init(SingleGameSection* game, StateArg* arg)
 {
@@ -87,10 +86,9 @@ void DayEndState::init(SingleGameSection* game, StateArg* arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8023A6F0
- * Size:	00040C
+/**
+ * @note Address: 0x8023A6F0
+ * @note Size: 0x40C
  */
 void DayEndState::exec(SingleGameSection* game)
 {
@@ -467,10 +465,9 @@ lbl_8023AAE8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8023AAFC
- * Size:	0005B8
+/**
+ * @note Address: 0x8023AAFC
+ * @note Size: 0x5B8
  */
 void DayEndState::onMovieStart(SingleGameSection* game, MovieConfig* config, u32 p3, u32 p4)
 {
@@ -942,10 +939,9 @@ void DayEndState::onMovieStart(SingleGameSection* game, MovieConfig* config, u32
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8023B0B4
- * Size:	0000F4
+/**
+ * @note Address: 0x8023B0B4
+ * @note Size: 0xF4
  */
 void DayEndState::onMovieDone(SingleGameSection* section, MovieConfig* cfg, u32 p3, u32 p4)
 {
@@ -963,10 +959,9 @@ void DayEndState::onMovieDone(SingleGameSection* section, MovieConfig* cfg, u32 
 	}
 }
 
-/*
- * --INFO--
- * Address:	8023B1A8
- * Size:	0002C0
+/**
+ * @note Address: 0x8023B1A8
+ * @note Size: 0x2C0
  */
 void DayEndState::onMovieCommand(SingleGameSection* game, int id)
 {
@@ -1208,17 +1203,15 @@ lbl_8023B454:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8023B468
- * Size:	000028
+/**
+ * @note Address: 0x8023B468
+ * @note Size: 0x28
  */
 void DayEndState::draw(SingleGameSection* game, Graphics& gfx) { game->BaseGameSection::doDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	8023B490
- * Size:	00007C
+/**
+ * @note Address: 0x8023B490
+ * @note Size: 0x7C
  */
 void DayEndState::cleanup(SingleGameSection* game)
 {

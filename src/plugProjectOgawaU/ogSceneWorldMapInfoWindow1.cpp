@@ -4,17 +4,15 @@
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	8032C208
- * Size:	00003C
+/**
+ * @note Address: 0x8032C208
+ * @note Size: 0x3C
  */
 WorldMapInfoWindow1::WorldMapInfoWindow1() { }
 
-/*
- * --INFO--
- * Address:	8032C244
- * Size:	0000A4
+/**
+ * @note Address: 0x8032C244
+ * @note Size: 0xA4
  */
 void WorldMapInfoWindow1::doCreateObj(JKRArchive* archive)
 {
@@ -26,17 +24,15 @@ void WorldMapInfoWindow1::doCreateObj(JKRArchive* archive)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8032C2E8
- * Size:	000008
+/**
+ * @note Address: 0x8032C2E8
+ * @note Size: 0x8
  */
 bool WorldMapInfoWindow1::doConfirmSetScene(::Screen::SetSceneArg&) { return true; }
 
-/*
- * --INFO--
- * Address:	8032C2F0
- * Size:	000064
+/**
+ * @note Address: 0x8032C2F0
+ * @note Size: 0x64
  */
 int WorldMapInfoWindow1::doGetFinishState()
 {

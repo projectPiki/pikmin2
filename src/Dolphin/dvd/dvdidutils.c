@@ -1,20 +1,18 @@
 #include "types.h"
 #include "string.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  */
 void strnlen(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800DF7EC
- * Size:	0000F8
+/**
+ * @note Address: 0x800DF7EC
+ * @note Size: 0xF8
  */
 BOOL DVDCompareDiskID(const char* arg0, const char* arg1) // these are probably pointers to dvd id structs
 {
@@ -46,10 +44,9 @@ BOOL DVDCompareDiskID(const char* arg0, const char* arg1) // these are probably 
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
+/**
+ * @note Address: N/A
+ * @note Size: 0x80
  */
 void DVDGenerateDiskID(void)
 {

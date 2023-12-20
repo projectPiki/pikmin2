@@ -13,10 +13,9 @@
 namespace Game {
 namespace VsGame {
 
-/*
- * --INFO--
- * Address:	8022D0E8
- * Size:	0000F0
+/**
+ * @note Address: 0x8022D0E8
+ * @note Size: 0xF0
  */
 LoadState::LoadState()
     : State(VGS_Load)
@@ -28,10 +27,9 @@ LoadState::LoadState()
 	mDelegate   = new Delegate<Game::VsGame::LoadState>(this, &dvdLoad);
 }
 
-/*
- * --INFO--
- * Address:	8022D1D8
- * Size:	0000D0
+/**
+ * @note Address: 0x8022D1D8
+ * @note Size: 0xD0
  */
 void LoadState::init(Game::VsGameSection* section, StateArg* args)
 {
@@ -58,17 +56,15 @@ void LoadState::init(Game::VsGameSection* section, StateArg* args)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8022D2A8
- * Size:	000024
+/**
+ * @note Address: 0x8022D2A8
+ * @note Size: 0x24
  */
 void LoadState::dvdLoad() { mSection->setupFloatMemory(); }
 
-/*
- * --INFO--
- * Address:	8022D2CC
- * Size:	0002C4
+/**
+ * @note Address: 0x8022D2CC
+ * @note Size: 0x2C4
  */
 void LoadState::exec(VsGameSection* section)
 {
@@ -122,10 +118,9 @@ void LoadState::exec(VsGameSection* section)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8022D590
- * Size:	00007C
+/**
+ * @note Address: 0x8022D590
+ * @note Size: 0x7C
  */
 void LoadState::draw(VsGameSection* section, Graphics& graphic)
 {
@@ -136,10 +131,9 @@ void LoadState::draw(VsGameSection* section, Graphics& graphic)
 	particle2dMgr->draw(0, 0);
 }
 
-/*
- * --INFO--
- * Address:	8022D60C
- * Size:	000004
+/**
+ * @note Address: 0x8022D60C
+ * @note Size: 0x4
  */
 void LoadState::cleanup(VsGameSection*) { }
 

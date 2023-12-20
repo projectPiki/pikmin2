@@ -24,10 +24,9 @@ volatile OSHeapHandle __OSCurrHeap = -1;
 #define ALIGNMENT  32
 #define MINOBJSIZE 64
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  * inserts 'cell' before 'neighbor' and returns 'cell'
  */
 static inline void* DLAddFront(struct HeapCell* neighbor, struct HeapCell* cell)
@@ -39,20 +38,18 @@ static inline void* DLAddFront(struct HeapCell* neighbor, struct HeapCell* cell)
 	return cell;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 void DLLookup(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  * removes 'cell' from 'list' and returns 'list'
  */
 static inline HeapCell* DLExtract(struct HeapCell* list, struct HeapCell* cell)
@@ -66,10 +63,9 @@ static inline HeapCell* DLExtract(struct HeapCell* list, struct HeapCell* cell)
 	return list;
 }
 
-/*
- * --INFO--
- * Address:	800EC210
- * Size:	0000AC
+/**
+ * @note Address: 0x800EC210
+ * @note Size: 0xAC
  */
 static HeapCell* DLInsert(HeapCell* list, HeapCell* cell, void* unused /* needed to match OSFreeToHeap */)
 {
@@ -106,30 +102,28 @@ static HeapCell* DLInsert(HeapCell* list, HeapCell* cell, void* unused /* needed
 	}
 	return cell;
 }
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 void DLOverlap(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void DLSize(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000FC
+/**
+ * @note Address: N/A
+ * @note Size: 0xFC
  */
 void* OSAllocFromHeap(OSHeapHandle heap, u32 size)
 {
@@ -173,20 +167,18 @@ void* OSAllocFromHeap(OSHeapHandle heap, u32 size)
 	return (u8*)cell + ALIGNMENT;
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000284
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x284
 //  */
 // void OSAllocFixed(void)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	800EC2BC
- * Size:	00007C
+/**
+ * @note Address: 0x800EC2BC
+ * @note Size: 0x7C
  */
 void OSFreeToHeap(OSHeapHandle heap, void* ptr)
 {
@@ -206,10 +198,9 @@ void OSFreeToHeap(OSHeapHandle heap, void* ptr)
 	hd->free      = DLInsert(hd->free, cell, list);
 }
 
-/*
- * --INFO--
- * Address:	800EC338
- * Size:	000010
+/**
+ * @note Address: 0x800EC338
+ * @note Size: 0x10
  */
 OSHeapHandle OSSetCurrentHeap(OSHeapHandle heap)
 {
@@ -219,10 +210,9 @@ OSHeapHandle OSSetCurrentHeap(OSHeapHandle heap)
 	return old;
 }
 
-/*
- * --INFO--
- * Address:	800EC348
- * Size:	000070
+/**
+ * @note Address: 0x800EC348
+ * @note Size: 0x70
  */
 void* OSInitAlloc(void* arenaStart, void* arenaEnd, int maxHeaps)
 {
@@ -250,10 +240,9 @@ void* OSInitAlloc(void* arenaStart, void* arenaEnd, int maxHeaps)
 	return arenaStart;
 }
 
-/*
- * --INFO--
- * Address:	800EC3B8
- * Size:	00006C
+/**
+ * @note Address: 0x800EC3B8
+ * @note Size: 0x6C
  */
 OSHeapHandle OSCreateHeap(void* start, void* end)
 {
@@ -277,60 +266,54 @@ OSHeapHandle OSCreateHeap(void* start, void* end)
 	return -1;
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000014
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x14
 //  */
 // void OSDestroyHeap(void)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000060
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x60
 //  */
 // void OSAddToHeap(void)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000360
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x360
 //  */
 // s32 OSCheckHeap(int)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	00000C
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0xC
 //  */
 // void OSReferentSize(void)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000104
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x104
 //  */
 // void OSDumpHeap(void)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	00009C
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x9C
 //  */
 // void OSVisitAllocated(void)
 // {

@@ -10,10 +10,9 @@ namespace EnemyStone {
 
 EnemyBase* DrawInfo::sOwnerEnemy;
 
-/*
- * --INFO--
- * Address:	80128280
- * Size:	0002D4
+/**
+ * @note Address: 0x80128280
+ * @note Size: 0x2D4
  */
 void StateMachine::init(DrawInfo* drawInfo)
 {
@@ -29,10 +28,9 @@ void StateMachine::init(DrawInfo* drawInfo)
 	registerState(new FSMStateDead);
 }
 
-/*
- * --INFO--
- * Address:	80128554
- * Size:	000038
+/**
+ * @note Address: 0x80128554
+ * @note Size: 0x38
  */
 void StateMachine::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 {
@@ -41,17 +39,15 @@ void StateMachine::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012858C
- * Size:	000024
+/**
+ * @note Address: 0x8012858C
+ * @note Size: 0x24
  */
 void FSMState::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx) { PSMTXIdentity(mtx->mMatrix.mtxView); }
 
-/*
- * --INFO--
- * Address:	801285B0
- * Size:	000014
+/**
+ * @note Address: 0x801285B0
+ * @note Size: 0x14
  */
 void FSMStateExpansion::init(DrawInfo* drawInfo, StateArg* stateArg)
 {
@@ -59,10 +55,9 @@ void FSMStateExpansion::init(DrawInfo* drawInfo, StateArg* stateArg)
 	_10           = 0;
 }
 
-/*
- * --INFO--
- * Address:	801285C4
- * Size:	0001BC
+/**
+ * @note Address: 0x801285C4
+ * @note Size: 0x1BC
  */
 void FSMStateExpansion::exec(DrawInfo* drawInfo)
 {
@@ -95,10 +90,9 @@ void FSMStateExpansion::exec(DrawInfo* drawInfo)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801287B0
- * Size:	000004
+/**
+ * @note Address: 0x801287B0
+ * @note Size: 0x4
  */
 void FSMStateExpansion::cleanup(DrawInfo* drawInfo) { }
 
@@ -120,10 +114,9 @@ f32 pikmin2_sinf(f32 x)
 	return JMath::sincosTable_.mTable[((int)(x *= 325.9493f) & 0x7ffU)].first;
 }
 
-/*
- * --INFO--
- * Address:	801287B4
- * Size:	000140
+/**
+ * @note Address: 0x801287B4
+ * @note Size: 0x140
  */
 void FSMStateExpansion::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 {
@@ -136,10 +129,9 @@ void FSMStateExpansion::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 	scaleMatrix(mtx, sinTheta);
 }
 
-/*
- * --INFO--
- * Address:	801288F4
- * Size:	0000A0
+/**
+ * @note Address: 0x801288F4
+ * @note Size: 0xA0
  */
 void FSMStateExpansionFull::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 {
@@ -147,10 +139,9 @@ void FSMStateExpansionFull::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 	scaleMatrix(mtx, 1.0f);
 }
 
-/*
- * --INFO--
- * Address:	80128994
- * Size:	000014
+/**
+ * @note Address: 0x80128994
+ * @note Size: 0x14
  */
 void FSMStateFit::init(DrawInfo* drawInfo, StateArg* stateArg)
 {
@@ -158,10 +149,9 @@ void FSMStateFit::init(DrawInfo* drawInfo, StateArg* stateArg)
 	drawInfo->_3C = 1.0f / 30.0f;
 }
 
-/*
- * --INFO--
- * Address:	801289A8
- * Size:	00005C
+/**
+ * @note Address: 0x801289A8
+ * @note Size: 0x5C
  */
 void FSMStateFit::exec(DrawInfo* drawInfo)
 {
@@ -172,17 +162,15 @@ void FSMStateFit::exec(DrawInfo* drawInfo)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80128A04
- * Size:	000004
+/**
+ * @note Address: 0x80128A04
+ * @note Size: 0x4
  */
 void FSMStateFit::cleanup(DrawInfo* drawInfo) { }
 
-/*
- * --INFO--
- * Address:	80128A08
- * Size:	0000DC
+/**
+ * @note Address: 0x80128A08
+ * @note Size: 0xDC
  */
 void FSMStateFit::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 {
@@ -195,10 +183,9 @@ void FSMStateFit::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 	scaleMatrix(mtx, 1.0f);
 }
 
-/*
- * --INFO--
- * Address:	80128AE4
- * Size:	000024
+/**
+ * @note Address: 0x80128AE4
+ * @note Size: 0x24
  */
 void FSMStateShake::init(DrawInfo* drawInfo, StateArg* stateArg)
 {
@@ -207,10 +194,9 @@ void FSMStateShake::init(DrawInfo* drawInfo, StateArg* stateArg)
 	_10           = 0;
 }
 
-/*
- * --INFO--
- * Address:	80128B08
- * Size:	000278
+/**
+ * @note Address: 0x80128B08
+ * @note Size: 0x278
  */
 void FSMStateShake::exec(DrawInfo* drawInfo)
 {
@@ -267,17 +253,15 @@ void FSMStateShake::exec(DrawInfo* drawInfo)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80128D80
- * Size:	000004
+/**
+ * @note Address: 0x80128D80
+ * @note Size: 0x4
  */
 void FSMStateShake::cleanup(DrawInfo* drawInfo) { }
 
-/*
- * --INFO--
- * Address:	80128D84
- * Size:	0002E4
+/**
+ * @note Address: 0x80128D84
+ * @note Size: 0x2E4
  */
 void FSMStateShake::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 {
@@ -537,10 +521,9 @@ void FSMStateShake::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80129068
- * Size:	00011C
+/**
+ * @note Address: 0x80129068
+ * @note Size: 0x11C
  */
 void FSMStateBreakable::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 {
@@ -551,24 +534,21 @@ void FSMStateBreakable::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 	mtx->makeTR(translation, rotation);
 }
 
-/*
- * --INFO--
- * Address:	80129184
- * Size:	00000C
+/**
+ * @note Address: 0x80129184
+ * @note Size: 0xC
  */
 void FSMStateBreakable::init(DrawInfo* drawInfo, StateArg* stateArg) { drawInfo->_38 = 0.0f; }
 
-/*
- * --INFO--
- * Address:	80129190
- * Size:	000018
+/**
+ * @note Address: 0x80129190
+ * @note Size: 0x18
  */
 void FSMStateBreakable::exec(DrawInfo* drawInfo) { drawInfo->_38 += sys->mDeltaTime; }
 
-/*
- * --INFO--
- * Address:	801291A8
- * Size:	000144
+/**
+ * @note Address: 0x801291A8
+ * @note Size: 0x144
  */
 void FSMStateDisappear::init(DrawInfo* drawInfo, StateArg* stateArg)
 {
@@ -594,31 +574,27 @@ void FSMStateDisappear::init(DrawInfo* drawInfo, StateArg* stateArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801292EC
- * Size:	000004
+/**
+ * @note Address: 0x801292EC
+ * @note Size: 0x4
  */
 void FSMStateDisappear::cleanup(DrawInfo* drawInfo) { }
 
-/*
- * --INFO--
- * Address:	801292F0
- * Size:	000004
+/**
+ * @note Address: 0x801292F0
+ * @note Size: 0x4
  */
 void FSMStateDisappear::exec(DrawInfo* drawInfo) { }
 
-/*
- * --INFO--
- * Address:	801292F4
- * Size:	000024
+/**
+ * @note Address: 0x801292F4
+ * @note Size: 0x24
  */
 void FSMStateDisappear::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx) { PSMTXIdentity(mtx->mMatrix.mtxView); }
 
-/*
- * --INFO--
- * Address:	80129318
- * Size:	000144
+/**
+ * @note Address: 0x80129318
+ * @note Size: 0x144
  */
 void FSMStateDead::init(DrawInfo* drawInfo, StateArg* stateArg)
 {
@@ -644,17 +620,15 @@ void FSMStateDead::init(DrawInfo* drawInfo, StateArg* stateArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012945C
- * Size:	000024
+/**
+ * @note Address: 0x8012945C
+ * @note Size: 0x24
  */
 void FSMStateDead::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx) { PSMTXIdentity(mtx->mMatrix.mtxView); }
 
-/*
- * --INFO--
- * Address:	80129480
- * Size:	0000BC
+/**
+ * @note Address: 0x80129480
+ * @note Size: 0xBC
  */
 DrawInfo::DrawInfo(bool doInitFSM)
     : CNode("")
@@ -670,10 +644,9 @@ DrawInfo::DrawInfo(bool doInitFSM)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012953C
- * Size:	000064
+/**
+ * @note Address: 0x8012953C
+ * @note Size: 0x64
  */
 void DrawInfo::reset()
 {
@@ -685,10 +658,9 @@ void DrawInfo::reset()
 	mFsm.start(this, STONESTATE_BaseState0, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	801295D4
- * Size:	000044
+/**
+ * @note Address: 0x801295D4
+ * @note Size: 0x44
  */
 void DrawInfo::update(EnemyBase* enemy)
 {
@@ -697,10 +669,9 @@ void DrawInfo::update(EnemyBase* enemy)
 	sOwnerEnemy = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80129618
- * Size:	0000A8
+/**
+ * @note Address: 0x80129618
+ * @note Size: 0xA8
  */
 bool DrawInfo::makeMatrix(Matrixf* mtx, bool doFSMMatrix)
 {
@@ -719,17 +690,15 @@ bool DrawInfo::makeMatrix(Matrixf* mtx, bool doFSMMatrix)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	801296C0
- * Size:	00000C
+/**
+ * @note Address: 0x801296C0
+ * @note Size: 0xC
  */
 int DrawInfo::getStateID() { return mCurrentState->mId; }
 
-/*
- * --INFO--
- * Address:	801296CC
- * Size:	000114
+/**
+ * @note Address: 0x801296CC
+ * @note Size: 0x114
  */
 bool DrawInfo::getPosAndScale(Vector3f* pos, f32* scale)
 {
@@ -837,10 +806,9 @@ lbl_801297C4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801297E0
- * Size:	00004C
+/**
+ * @note Address: 0x801297E0
+ * @note Size: 0x4C
  */
 void DrawInfo::appear(EnemyBase* enemy, f32 p1)
 {
@@ -850,10 +818,9 @@ void DrawInfo::appear(EnemyBase* enemy, f32 p1)
 	sOwnerEnemy = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8012982C
- * Size:	00004C
+/**
+ * @note Address: 0x8012982C
+ * @note Size: 0x4C
  */
 void DrawInfo::fit(EnemyBase* enemy)
 {
@@ -862,10 +829,9 @@ void DrawInfo::fit(EnemyBase* enemy)
 	sOwnerEnemy = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80129878
- * Size:	00004C
+/**
+ * @note Address: 0x80129878
+ * @note Size: 0x4C
  */
 void DrawInfo::shake(EnemyBase* enemy, f32 p1)
 {
@@ -875,10 +841,9 @@ void DrawInfo::shake(EnemyBase* enemy, f32 p1)
 	sOwnerEnemy = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	801298C4
- * Size:	00004C
+/**
+ * @note Address: 0x801298C4
+ * @note Size: 0x4C
  */
 void DrawInfo::disappear(EnemyBase* enemy)
 {
@@ -887,10 +852,9 @@ void DrawInfo::disappear(EnemyBase* enemy)
 	sOwnerEnemy = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80129910
- * Size:	00004C
+/**
+ * @note Address: 0x80129910
+ * @note Size: 0x4C
  */
 void DrawInfo::dead(EnemyBase* enemy)
 {

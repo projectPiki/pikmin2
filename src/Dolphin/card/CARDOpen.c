@@ -1,9 +1,8 @@
 #include "Dolphin/card.h"
 
-/*
- * --INFO--
- * Address:	800D961C
- * Size:	000068
+/**
+ * @note Address: 0x800D961C
+ * @note Size: 0x68
  */
 BOOL __CARDCompareFileName(CARDDir* entry, const char* fileName)
 {
@@ -29,10 +28,9 @@ BOOL __CARDCompareFileName(CARDDir* entry, const char* fileName)
 	return FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800D9684
- * Size:	000094
+/**
+ * @note Address: 0x800D9684
+ * @note Size: 0x94
  */
 s32 __CARDAccess(CARDControl* card, CARDDir* entry)
 {
@@ -49,10 +47,9 @@ s32 __CARDAccess(CARDControl* card, CARDDir* entry)
 	return CARD_RESULT_NOPERM;
 }
 
-/*
- * --INFO--
- * Address:	800D9718
- * Size:	000134
+/**
+ * @note Address: 0x800D9718
+ * @note Size: 0x134
  */
 s32 __CARDIsWritable(CARDControl* card, CARDDir* entry)
 {
@@ -77,10 +74,9 @@ s32 __CARDIsWritable(CARDControl* card, CARDDir* entry)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	800D984C
- * Size:	0000F4
+/**
+ * @note Address: 0x800D984C
+ * @note Size: 0xF4
  */
 s32 __CARDIsReadable(CARDControl* card, CARDDir* entry)
 {
@@ -93,10 +89,9 @@ s32 __CARDIsReadable(CARDControl* card, CARDDir* entry)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000150
+/**
+ * @note Address: N/A
+ * @note Size: 0x150
  */
 static s32 __CARDGetFileNo(CARDControl* card, char* fileName, s32* outFileNo)
 {
@@ -125,10 +120,9 @@ static s32 __CARDGetFileNo(CARDControl* card, char* fileName, s32* outFileNo)
 	return CARD_RESULT_NOFILE;
 }
 
-/*
- * --INFO--
- * Address:	800D9940
- * Size:	00011C
+/**
+ * @note Address: 0x800D9940
+ * @note Size: 0x11C
  */
 s32 CARDOpen(s32 chan, char* fileName, CARDFileInfo* fileInfo)
 {
@@ -159,10 +153,9 @@ s32 CARDOpen(s32 chan, char* fileName, CARDFileInfo* fileInfo)
 	return __CARDPutControlBlock(card, result);
 }
 
-/*
- * --INFO--
- * Address:	800D9A5C
- * Size:	000054
+/**
+ * @note Address: 0x800D9A5C
+ * @note Size: 0x54
  */
 s32 CARDClose(CARDFileInfo* fileInfo)
 {

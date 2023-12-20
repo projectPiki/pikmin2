@@ -2,10 +2,9 @@
 
 static BOOL IsTRKConnected;
 
-/*
- * --INFO--
- * Address:	800BD54C
- * Size:	0000A8
+/**
+ * @note Address: 0x800BD54C
+ * @note Size: 0xA8
  */
 void OutputData(void* data, int length)
 {
@@ -73,34 +72,30 @@ void OutputData(void* data, int length)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BD53C
- * Size:	000010
+/**
+ * @note Address: 0x800BD53C
+ * @note Size: 0x10
  */
 int GetTRKConnected(void) { return IsTRKConnected; }
 
-/*
- * --INFO--
- * Address:	800BD530
- * Size:	00000C
+/**
+ * @note Address: 0x800BD530
+ * @note Size: 0xC
  */
 void SetTRKConnected(int isConnected) { IsTRKConnected = isConnected; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000098
+/**
+ * @note Address: N/A
+ * @note Size: 0x98
  */
 void TRKMessageIntoReply(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 DSError TRKSendACK(MessageBuffer* buffer)
 {
@@ -111,10 +106,9 @@ DSError TRKSendACK(MessageBuffer* buffer)
 	return err;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 DSError TRKStandardACK(MessageBuffer* buffer, MessageCommandID commandID, DSReplyError replyError)
 {
@@ -129,30 +123,27 @@ DSError TRKStandardACK(MessageBuffer* buffer, MessageCommandID commandID, DSRepl
 	return DS_NoError;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void TRKDoError(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 void TRKDoUnsupported(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800BD4CC
- * Size:	000064
+/**
+ * @note Address: 0x800BD4CC
+ * @note Size: 0x64
  */
 DSError TRKDoConnect(MessageBuffer* buffer)
 {
@@ -160,10 +151,9 @@ DSError TRKDoConnect(MessageBuffer* buffer)
 	return TRKStandardACK(buffer, 0x80, DSREPLY_NoError);
 }
 
-/*
- * --INFO--
- * Address:	800BD454
- * Size:	000078
+/**
+ * @note Address: 0x800BD454
+ * @note Size: 0x78
  */
 DSError TRKDoDisconnect(MessageBuffer* buffer)
 {
@@ -176,10 +166,9 @@ DSError TRKDoDisconnect(MessageBuffer* buffer)
 	return DS_NoError;
 }
 
-/*
- * --INFO--
- * Address:	800BD3FC
- * Size:	000058
+/**
+ * @note Address: 0x800BD3FC
+ * @note Size: 0x58
  */
 DSError TRKDoReset(MessageBuffer* buffer)
 {
@@ -188,10 +177,9 @@ DSError TRKDoReset(MessageBuffer* buffer)
 	return DS_NoError;
 }
 
-/*
- * --INFO--
- * Address:	800BD3A4
- * Size:	000058
+/**
+ * @note Address: 0x800BD3A4
+ * @note Size: 0x58
  */
 DSError TRKDoOverride(MessageBuffer* buffer)
 {
@@ -200,34 +188,30 @@ DSError TRKDoOverride(MessageBuffer* buffer)
 	return DS_NoError;
 }
 
-/*
- * --INFO--
- * Address:	800BD39C
- * Size:	000008
+/**
+ * @note Address: 0x800BD39C
+ * @note Size: 0x8
  */
 DSError TRKDoVersions(MessageBuffer*) { return DS_NoError; }
 
-/*
- * --INFO--
- * Address:	800BD394
- * Size:	000008
+/**
+ * @note Address: 0x800BD394
+ * @note Size: 0x8
  */
 DSError TRKDoSupportMask(MessageBuffer*) { return DS_NoError; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void TRKDoCPUType(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800BD150
- * Size:	000244
+/**
+ * @note Address: 0x800BD150
+ * @note Size: 0x244
  */
 DSError TRKDoReadMemory(MessageBuffer* buffer)
 {
@@ -466,10 +450,9 @@ DSError TRKDoReadMemory(MessageBuffer* buffer)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BCF14
- * Size:	00023C
+/**
+ * @note Address: 0x800BCF14
+ * @note Size: 0x23C
  */
 DSError TRKDoWriteMemory(MessageBuffer*)
 {
@@ -637,10 +620,9 @@ DSError TRKDoWriteMemory(MessageBuffer*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BCC34
- * Size:	0002E0
+/**
+ * @note Address: 0x800BCC34
+ * @note Size: 0x2E0
  */
 DSError TRKDoReadRegisters(MessageBuffer*)
 {
@@ -863,10 +845,9 @@ DSError TRKDoReadRegisters(MessageBuffer*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BC9A4
- * Size:	000290
+/**
+ * @note Address: 0x800BC9A4
+ * @note Size: 0x290
  */
 DSError TRKDoWriteRegisters(MessageBuffer*)
 {
@@ -1081,20 +1062,18 @@ DSError TRKDoWriteRegisters(MessageBuffer*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000250
+/**
+ * @note Address: N/A
+ * @note Size: 0x250
  */
 void TRKDoFlushCache(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800BC8F4
- * Size:	0000B0
+/**
+ * @note Address: 0x800BC8F4
+ * @note Size: 0xB0
  */
 DSError TRKDoContinue(MessageBuffer*)
 {
@@ -1151,10 +1130,9 @@ DSError TRKDoContinue(MessageBuffer*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BC6D4
- * Size:	000220
+/**
+ * @note Address: 0x800BC6D4
+ * @note Size: 0x220
  */
 DSError TRKDoStep(MessageBuffer*)
 {
@@ -1321,10 +1299,9 @@ DSError TRKDoStep(MessageBuffer*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BC62C
- * Size:	0000A8
+/**
+ * @note Address: 0x800BC62C
+ * @note Size: 0xA8
  */
 DSError TRKDoStop(MessageBuffer*)
 {
@@ -1389,10 +1366,9 @@ DSError TRKDoStop(MessageBuffer*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800BC584
- * Size:	0000A8
+/**
+ * @note Address: 0x800BC584
+ * @note Size: 0xA8
  */
 DSError TRKDoSetOption(MessageBuffer*)
 {

@@ -5,10 +5,9 @@ namespace Game {
 
 UpdateMgr* collisionUpdateMgr;
 
-/*
- * --INFO--
- * Address:	80196670
- * Size:	000018
+/**
+ * @note Address: 0x80196670
+ * @note Size: 0x18
  */
 UpdateContext::UpdateContext()
     : mMgr(0)
@@ -17,11 +16,10 @@ UpdateContext::UpdateContext()
 {
 }
 
-/*
+/**
  * updatable__Q24Game13UpdateContextFv
- * --INFO--
- * Address:	80196688
- * Size:	00005C
+ * @note Address: 0x80196688
+ * @note Size: 0x5C
  */
 bool UpdateContext::updatable()
 {
@@ -36,10 +34,9 @@ bool UpdateContext::updatable()
 	return !!mMgr->updatable(this);
 }
 
-/*
- * --INFO--
- * Address:	801966E4
- * Size:	00003C
+/**
+ * @note Address: 0x801966E4
+ * @note Size: 0x3C
  */
 void UpdateContext::init(UpdateMgr* mgr)
 {
@@ -49,10 +46,9 @@ void UpdateContext::init(UpdateMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80196720
- * Size:	000058
+/**
+ * @note Address: 0x80196720
+ * @note Size: 0x58
  */
 void UpdateContext::exit()
 {
@@ -65,10 +61,9 @@ void UpdateContext::exit()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80196778
- * Size:	00001C
+/**
+ * @note Address: 0x80196778
+ * @note Size: 0x1C
  */
 UpdateMgr::UpdateMgr()
 {
@@ -79,11 +74,10 @@ UpdateMgr::UpdateMgr()
 	_10 = 0;
 }
 
-/*
+/**
  * update__Q24Game9UpdateMgrFv
- * --INFO--
- * Address:	80196794
- * Size:	000024
+ * @note Address: 0x80196794
+ * @note Size: 0x24
  */
 void UpdateMgr::update()
 {
@@ -94,11 +88,10 @@ void UpdateMgr::update()
 	_10 = 0;
 }
 
-/*
+/**
  * updatable__Q24Game9UpdateMgrFPQ24Game13UpdateContext
- * --INFO--
- * Address:	801967B8
- * Size:	000028
+ * @note Address: 0x801967B8
+ * @note Size: 0x28
  */
 bool UpdateMgr::updatable(UpdateContext* context)
 {
@@ -108,10 +101,9 @@ bool UpdateMgr::updatable(UpdateContext* context)
 	return (u8)(context->_04 == _10);
 }
 
-/*
- * --INFO--
- * Address:	801967E0
- * Size:	0000A0
+/**
+ * @note Address: 0x801967E0
+ * @note Size: 0xA0
  */
 void UpdateMgr::create(int count)
 {
@@ -130,10 +122,9 @@ void UpdateMgr::create(int count)
 	_14 = 0;
 }
 
-/*
- * --INFO--
- * Address:	80196880
- * Size:	0000D0
+/**
+ * @note Address: 0x80196880
+ * @note Size: 0xD0
  */
 void UpdateMgr::addClient(UpdateContext* context)
 {
@@ -159,10 +150,9 @@ void UpdateMgr::addClient(UpdateContext* context)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80196950
- * Size:	0000C8
+/**
+ * @note Address: 0x80196950
+ * @note Size: 0xC8
  */
 void UpdateMgr::removeClient(UpdateContext* context)
 {

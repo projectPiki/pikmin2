@@ -5,10 +5,9 @@ namespace Sarai {
 
 static const char saraiMgrName[] = "246-SaraiMgr";
 
-/*
- * --INFO--
- * Address:	80272504
- * Size:	000050
+/**
+ * @note Address: 0x80272504
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -16,24 +15,21 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "サライムシマネージャ"; // saraimushi/salamander manager (lol?)
 }
 
-/*
- * --INFO--
- * Address:	80272554
- * Size:	000048
+/**
+ * @note Address: 0x80272554
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Parms); }
 
-/*
- * --INFO--
- * Address:	80272988
- * Size:	000060
+/**
+ * @note Address: 0x80272988
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	80272AA4
- * Size:	000010
+/**
+ * @note Address: 0x80272AA4
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 

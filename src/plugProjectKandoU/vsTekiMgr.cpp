@@ -6,17 +6,15 @@
 namespace Game {
 namespace VsGame {
 
-/*
- * --INFO--
- * Address:	802352F0
- * Size:	000044
+/**
+ * @note Address: 0x802352F0
+ * @note Size: 0x44
  */
 TekiMgr::TekiMgr() { mNodeCount = 0; }
 
-/*
- * --INFO--
- * Address:	80235394
- * Size:	0000A0
+/**
+ * @note Address: 0x80235394
+ * @note Size: 0xA0
  */
 void TekiMgr::entry(EnemyTypeID::EEnemyTypeID id, int a2)
 {
@@ -29,17 +27,15 @@ void TekiMgr::entry(EnemyTypeID::EEnemyTypeID id, int a2)
 	generalEnemyMgr->addEnemyNum(id, a2, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 TekiNode* TekiMgr::getNode(int idx) { return static_cast<TekiNode*>(mNode.getChildAt(idx)); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  * Speculation: possibly inlined into TekiMgr::birth
  * Unknown return type
  */
@@ -50,10 +46,9 @@ bool TekiMgr::birthable(int)
 }
 */
 
-/*
- * --INFO--
- * Address:	80235434
- * Size:	0000D8
+/**
+ * @note Address: 0x80235434
+ * @note Size: 0xD8
  */
 EnemyBase* TekiMgr::birth(int idx, Vector3f& position, bool check)
 {
@@ -74,10 +69,9 @@ EnemyBase* TekiMgr::birth(int idx, Vector3f& position, bool check)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  * Unknown return type. Likely int or EnemyTypeID::EEnemyTypeID
  */
 /*

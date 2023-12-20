@@ -5,17 +5,15 @@
 #include "Viewport.h"
 #include "nans.h"
 
-/*
- * --INFO--
- * Address:	80119BFC
- * Size:	000034
+/**
+ * @note Address: 0x80119BFC
+ * @note Size: 0x34
  */
 LifeGauge::LifeGauge() { init(LIFEGAUGE_SEGMENTS); }
 
-/*
- * --INFO--
- * Address:	80119C30
- * Size:	000014
+/**
+ * @note Address: 0x80119C30
+ * @note Size: 0x14
  */
 void LifeGauge::init(u8 c)
 {
@@ -24,10 +22,9 @@ void LifeGauge::init(u8 c)
 	mSegmentCount = c;
 }
 
-/*
- * --INFO--
- * Address:	80119C44
- * Size:	0001CC
+/**
+ * @note Address: 0x80119C44
+ * @note Size: 0x1CC
  */
 void LifeGauge::update(f32 newFullness)
 {
@@ -81,10 +78,9 @@ void LifeGauge::update(f32 newFullness)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80119E10
- * Size:	0001BC
+/**
+ * @note Address: 0x80119E10
+ * @note Size: 0x1BC
  * TODO
  */
 void LifeGauge::draw(f32 a2, f32 a3, f32 a4)
@@ -115,10 +111,9 @@ void LifeGauge::draw(f32 a2, f32 a3, f32 a4)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80119FCC
- * Size:	000110
+/**
+ * @note Address: 0x80119FCC
+ * @note Size: 0x110
  */
 void LifeGauge::initLifeGaugeDraw()
 {
@@ -143,10 +138,9 @@ void LifeGauge::initLifeGaugeDraw()
 	GXLoadTexMtxImm(mtx, GX_TEXMTX0, GX_MTX2x4);
 }
 
-/*
- * --INFO--
- * Address:	8011A0DC
- * Size:	0000F0
+/**
+ * @note Address: 0x8011A0DC
+ * @note Size: 0xF0
  * TODO
  */
 void LifeGauge::drawOneTri(Vector3f* pos, Color4& clr)
@@ -163,10 +157,9 @@ void LifeGauge::drawOneTri(Vector3f* pos, Color4& clr)
 	GXWGFifo.u8 = clr.a;
 }
 
-/*
- * --INFO--
- * Address:	8011A1CC
- * Size:	000604
+/**
+ * @note Address: 0x8011A1CC
+ * @note Size: 0x604
  * TODO
  */
 void LifeGaugeList::draw(Graphics& gfx)
@@ -250,18 +243,16 @@ void LifeGaugeList::draw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8011A7D0
- * Size:	0000DC
+/**
+ * @note Address: 0x8011A7D0
+ * @note Size: 0xDC
  * TODO
  */
 LifeGaugeMgr::LifeGaugeMgr() { }
 
-/*
- * --INFO--
- * Address:	8011A944
- * Size:	000150
+/**
+ * @note Address: 0x8011A944
+ * @note Size: 0x150
  */
 LifeGaugeList* LifeGaugeMgr::createLifeGauge(Game::Creature* obj)
 {
@@ -390,10 +381,9 @@ lbl_8011AA78:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8011AA94
- * Size:	0000E4
+/**
+ * @note Address: 0x8011AA94
+ * @note Size: 0xE4
  */
 void LifeGaugeMgr::activeLifeGauge(Game::Creature* obj, f32)
 {
@@ -485,10 +475,9 @@ lbl_8011AB70:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8011AB78
- * Size:	0000A8
+/**
+ * @note Address: 0x8011AB78
+ * @note Size: 0xA8
  */
 void LifeGaugeMgr::inactiveLifeGauge(Game::Creature* obj)
 {
@@ -563,10 +552,9 @@ lbl_8011AC18:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8011AC20
- * Size:	000270
+/**
+ * @note Address: 0x8011AC20
+ * @note Size: 0x270
  */
 void LifeGaugeMgr::update()
 {
@@ -765,10 +753,9 @@ lbl_8011AE6C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8011AE90
- * Size:	000080
+/**
+ * @note Address: 0x8011AE90
+ * @note Size: 0x80
  */
 void LifeGaugeMgr::draw(Graphics& gfx)
 {
@@ -824,10 +811,9 @@ lbl_8011AEF8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8011AF10
- * Size:	000098
+/**
+ * @note Address: 0x8011AF10
+ * @note Size: 0x98
  */
 void LifeGaugeMgr::loadResource()
 {

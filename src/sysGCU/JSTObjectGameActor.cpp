@@ -10,10 +10,9 @@ static const char className[] = "ObjectGameActor";
 namespace Game {
 namespace P2JST {
 
-/*
- * --INFO--
- * Address:	8042FDA8
- * Size:	000094
+/**
+ * @note Address: 0x8042FDA8
+ * @note Size: 0x94
  */
 ObjectGameActor::ObjectGameActor(char const* name, MoviePlayer* movie, Creature* obj)
     : ObjectActor(name, movie)
@@ -26,10 +25,9 @@ ObjectGameActor::ObjectGameActor(char const* name, MoviePlayer* movie, Creature*
 	mRotation2 = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	8042FE3C
- * Size:	000054
+/**
+ * @note Address: 0x8042FE3C
+ * @note Size: 0x54
  */
 void ObjectGameActor::reset()
 {
@@ -44,10 +42,9 @@ void ObjectGameActor::reset()
 	mRotation2 = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	8042FE90
- * Size:	000124
+/**
+ * @note Address: 0x8042FE90
+ * @note Size: 0x124
  */
 void ObjectGameActor::stop()
 {
@@ -75,10 +72,9 @@ void ObjectGameActor::stop()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8042FFB4
- * Size:	0004D8
+/**
+ * @note Address: 0x8042FFB4
+ * @note Size: 0x4D8
  */
 void ObjectGameActor::update()
 {
@@ -168,10 +164,9 @@ void ObjectGameActor::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8043048C
- * Size:	000074
+/**
+ * @note Address: 0x8043048C
+ * @note Size: 0x74
  */
 void ObjectGameActor::JSGSetAnimation(u32 id)
 {
@@ -179,24 +174,21 @@ void ObjectGameActor::JSGSetAnimation(u32 id)
 	mCommandIDs[mCurrCommandCount++] = id;
 }
 
-/*
- * --INFO--
- * Address:	80430500
- * Size:	000008
+/**
+ * @note Address: 0x80430500
+ * @note Size: 0x8
  */
 void ObjectGameActor::JSGSetShape(u32 command) { mSRTCommand = command; }
 
-/*
- * --INFO--
- * Address:	80430508
- * Size:	00001C
+/**
+ * @note Address: 0x80430508
+ * @note Size: 0x1C
  */
 void ObjectGameActor::JSGSetTranslation(Vec const& pos) { mTranslation2 = pos; }
 
-/*
- * --INFO--
- * Address:	80430524
- * Size:	000058
+/**
+ * @note Address: 0x80430524
+ * @note Size: 0x58
  */
 void ObjectGameActor::JSGGetTranslation(Vec* pos) const
 {
@@ -206,17 +198,15 @@ void ObjectGameActor::JSGGetTranslation(Vec* pos) const
 	pos->z        = pos2.z;
 }
 
-/*
- * --INFO--
- * Address:	8043057C
- * Size:	00001C
+/**
+ * @note Address: 0x8043057C
+ * @note Size: 0x1C
  */
 void ObjectGameActor::JSGSetRotation(Vec const& rot) { mRotation2 = rot; }
 
-/*
- * --INFO--
- * Address:	80430598
- * Size:	00001C
+/**
+ * @note Address: 0x80430598
+ * @note Size: 0x1C
  */
 void ObjectGameActor::JSGGetRotation(Vec* rot) const
 {
@@ -225,10 +215,9 @@ void ObjectGameActor::JSGGetRotation(Vec* rot) const
 	rot->z = mRotation2.z;
 }
 
-/*
- * --INFO--
- * Address:	804305B4
- * Size:	0000E0
+/**
+ * @note Address: 0x804305B4
+ * @note Size: 0xE0
  */
 int ObjectGameActor::JSGFindNodeID(char const* name) const
 {
@@ -239,10 +228,9 @@ int ObjectGameActor::JSGFindNodeID(char const* name) const
 	return joint->mJ3d->mJointIdx;
 }
 
-/*
- * --INFO--
- * Address:	80430694
- * Size:	0000D8
+/**
+ * @note Address: 0x80430694
+ * @note Size: 0xD8
  */
 bool ObjectGameActor::JSGGetNodeTransformation(u32 id, Mtx mtx) const
 {
@@ -254,10 +242,9 @@ bool ObjectGameActor::JSGGetNodeTransformation(u32 id, Mtx mtx) const
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8043076C
- * Size:	000138
+/**
+ * @note Address: 0x8043076C
+ * @note Size: 0x138
  */
 void ObjectGameActor::parseUserData_(u32 data1, void const* data2)
 {

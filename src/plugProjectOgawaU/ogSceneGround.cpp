@@ -11,18 +11,16 @@ namespace newScreen {
 
 bool sGameFlag_MainBgm_Evening;
 
-/*
- * --INFO--
- * Address:	8030DA00
- * Size:	00000C
+/**
+ * @note Address: 0x8030DA00
+ * @note Size: 0xC
  */
 void initGround() { sGameFlag_MainBgm_Evening = false; }
 
-/*
+/**
  * __ct
- * --INFO--
- * Address:	8030DA0C
- * Size:	000054
+ * @note Address: 0x8030DA0C
+ * @note Size: 0x54
  */
 Ground::Ground()
 {
@@ -33,24 +31,21 @@ Ground::Ground()
 	mDoStartFadeOutSunsetBgm = false;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 Ground::~Ground() { }
 
-/*
- * --INFO--
- * Address:	8030DA60
- * Size:	000004
+/**
+ * @note Address: 0x8030DA60
+ * @note Size: 0x4
  */
 void Ground::doUserCallBackFunc(Resource::MgrCommand*) { }
 
-/*
- * --INFO--
- * Address:	8030DA64
- * Size:	0000C0
+/**
+ * @note Address: 0x8030DA64
+ * @note Size: 0xC0
  */
 void Ground::doCreateObj(JKRArchive* archive)
 {
@@ -63,10 +58,9 @@ void Ground::doCreateObj(JKRArchive* archive)
 	setColorBG(0, 0, 0, 0);
 }
 
-/*
- * --INFO--
- * Address:	8030DB24
- * Size:	00004C
+/**
+ * @note Address: 0x8030DB24
+ * @note Size: 0x4C
  */
 bool Ground::doStart(::Screen::StartSceneArg* arg)
 {
@@ -74,10 +68,9 @@ bool Ground::doStart(::Screen::StartSceneArg* arg)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8030DB70
- * Size:	000310
+/**
+ * @note Address: 0x8030DB70
+ * @note Size: 0x310
  */
 void Ground::doUpdateActive()
 {

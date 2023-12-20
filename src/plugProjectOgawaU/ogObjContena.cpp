@@ -13,10 +13,9 @@
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 void ObjContena::setStartPos()
 {
@@ -27,10 +26,9 @@ void ObjContena::setStartPos()
 	mSpotY         = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	8031FF44
- * Size:	0001C0
+/**
+ * @note Address: 0x8031FF44
+ * @note Size: 0x1C0
  */
 ObjContena::ObjContena(char const* name)
 {
@@ -102,17 +100,15 @@ ObjContena::ObjContena(char const* name)
 	mDoDraw             = false;
 }
 
-/*
- * --INFO--
- * Address:	80320104
- * Size:	0000AC
+/**
+ * @note Address: 0x80320104
+ * @note Size: 0xAC
  */
 ObjContena::~ObjContena() { }
 
-/*
- * --INFO--
- * Address:	803201B0
- * Size:	000934
+/**
+ * @note Address: 0x803201B0
+ * @note Size: 0x934
  */
 void ObjContena::doCreate(JKRArchive* arc)
 {
@@ -278,20 +274,18 @@ void ObjContena::doCreate(JKRArchive* arc)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
+/**
+ * @note Address: N/A
+ * @note Size: 0x5C
  */
 void ObjContena::tairetuOnOff()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
+/**
+ * @note Address: N/A
+ * @note Size: 0x70
  */
 void ObjContena::changeMessage(u32 mesg)
 {
@@ -302,20 +296,18 @@ void ObjContena::changeMessage(u32 mesg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 void ObjContena::isMessage(int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 void ObjContena::setStickUp()
 {
@@ -324,10 +316,9 @@ void ObjContena::setStickUp()
 	mStickAnimMgr->stickUp();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 void ObjContena::setStickDown()
 {
@@ -336,10 +327,9 @@ void ObjContena::setStickDown()
 	mStickAnimMgr->stickDown();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 void ObjContena::setStickUpDown()
 {
@@ -348,10 +338,9 @@ void ObjContena::setStickUpDown()
 	mStickAnimMgr->stickUpDown();
 }
 
-/*
- * --INFO--
- * Address:	80320AE4
- * Size:	000284
+/**
+ * @note Address: 0x80320AE4
+ * @note Size: 0x284
  */
 void ObjContena::putinPiki(bool soundType)
 {
@@ -578,10 +567,9 @@ lbl_80320D4C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80320D68
- * Size:	000320
+/**
+ * @note Address: 0x80320D68
+ * @note Size: 0x320
  */
 void ObjContena::takeoutPiki(bool soundType)
 {
@@ -867,10 +855,9 @@ lbl_8032106C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80321088
- * Size:	00033C
+/**
+ * @note Address: 0x80321088
+ * @note Size: 0x33C
  */
 bool ObjContena::moveContena()
 {
@@ -1219,10 +1206,9 @@ lbl_803213A0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803213C4
- * Size:	0005FC
+/**
+ * @note Address: 0x803213C4
+ * @note Size: 0x5FC
  */
 void ObjContena::commonUpdate()
 {
@@ -1734,10 +1720,9 @@ lbl_803218D8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803219C0
- * Size:	000040
+/**
+ * @note Address: 0x803219C0
+ * @note Size: 0x40
  */
 bool ObjContena::doUpdate()
 {
@@ -1746,10 +1731,9 @@ bool ObjContena::doUpdate()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	80321A00
- * Size:	000174
+/**
+ * @note Address: 0x80321A00
+ * @note Size: 0x174
  */
 void ObjContena::doDraw(Graphics& gfx)
 {
@@ -1771,10 +1755,9 @@ void ObjContena::doDraw(Graphics& gfx)
 	mScreenSpot->draw(gfx, *graf);
 }
 
-/*
- * --INFO--
- * Address:	80321B74
- * Size:	000044
+/**
+ * @note Address: 0x80321B74
+ * @note Size: 0x44
  */
 bool ObjContena::doStart(::Screen::StartSceneArg const*)
 {
@@ -1786,38 +1769,33 @@ bool ObjContena::doStart(::Screen::StartSceneArg const*)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80321BB8
- * Size:	000008
+/**
+ * @note Address: 0x80321BB8
+ * @note Size: 0x8
  */
 bool ObjContena::doEnd(::Screen::EndSceneArg const*) { return true; }
 
-/*
- * --INFO--
- * Address:	80321BC0
- * Size:	000004
+/**
+ * @note Address: 0x80321BC0
+ * @note Size: 0x4
  */
 void ObjContena::doUpdateFadeinFinish() { }
 
-/*
- * --INFO--
- * Address:	80321BC4
- * Size:	00000C
+/**
+ * @note Address: 0x80321BC4
+ * @note Size: 0xC
  */
 void ObjContena::doUpdateFinish() { mFadeLevel = 0.0f; }
 
-/*
- * --INFO--
- * Address:	80321BD0
- * Size:	000004
+/**
+ * @note Address: 0x80321BD0
+ * @note Size: 0x4
  */
 void ObjContena::doUpdateFadeoutFinish() { }
 
-/*
- * --INFO--
- * Address:	80321BD4
- * Size:	0000A8
+/**
+ * @note Address: 0x80321BD4
+ * @note Size: 0xA8
  */
 bool ObjContena::doUpdateFadein()
 {
@@ -1879,10 +1857,9 @@ lbl_80321C5C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80321C7C
- * Size:	0001DC
+/**
+ * @note Address: 0x80321C7C
+ * @note Size: 0x1DC
  */
 bool ObjContena::doUpdateFadeout()
 {

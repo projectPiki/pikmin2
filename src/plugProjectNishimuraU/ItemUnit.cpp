@@ -2,10 +2,9 @@
 
 namespace Game {
 namespace Cave {
-/*
- * --INFO--
- * Address:	8024E170
- * Size:	00006C
+/**
+ * @note Address: 0x8024E170
+ * @note Size: 0x6C
  */
 ItemNode::ItemNode()
 {
@@ -20,10 +19,9 @@ ItemNode::ItemNode()
 	mPosition.x = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	8024E1DC
- * Size:	00008C
+/**
+ * @note Address: 0x8024E1DC
+ * @note Size: 0x8C
  */
 ItemNode::ItemNode(ItemUnit* unit, BaseGen* spawn, int count)
 {
@@ -38,10 +36,9 @@ ItemNode::ItemNode(ItemUnit* unit, BaseGen* spawn, int count)
 	mPosition.x = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	8024E268
- * Size:	000068
+/**
+ * @note Address: 0x8024E268
+ * @note Size: 0x68
  */
 void ItemNode::makeGlobalData(MapNode* mapTile)
 {
@@ -49,10 +46,9 @@ void ItemNode::makeGlobalData(MapNode* mapTile)
 	mDirection = mapTile->getBaseGenGlobalDirection(mSpawn);
 }
 
-/*
- * --INFO--
- * Address:	8024E2D0
- * Size:	000020
+/**
+ * @note Address: 0x8024E2D0
+ * @note Size: 0x20
  */
 int ItemNode::getObjectId()
 {
@@ -63,24 +59,21 @@ int ItemNode::getObjectId()
 	return -1;
 }
 
-/*
- * --INFO--
- * Address:	8024E2F0
- * Size:	000008
+/**
+ * @note Address: 0x8024E2F0
+ * @note Size: 0x8
  */
 u32 ItemNode::getObjectType() { return OBJLAYOUT_Item; }
 
-/*
- * --INFO--
- * Address:	8024E2F8
- * Size:	000008
+/**
+ * @note Address: 0x8024E2F8
+ * @note Size: 0x8
  */
 int ItemNode::getBirthCount() { return mBirthCount; }
 
-/*
- * --INFO--
- * Address:	8024E300
- * Size:	000014
+/**
+ * @note Address: 0x8024E300
+ * @note Size: 0x14
  */
 void ItemNode::getBirthPosition(f32& x, f32& y)
 {
@@ -88,10 +81,9 @@ void ItemNode::getBirthPosition(f32& x, f32& y)
 	y = mPosition.z;
 }
 
-/*
- * --INFO--
- * Address:	8024E314
- * Size:	000008
+/**
+ * @note Address: 0x8024E314
+ * @note Size: 0x8
  */
 f32 ItemNode::getDirection() { return mDirection; }
 } // namespace Cave

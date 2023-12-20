@@ -4,17 +4,15 @@
 #include "TagParm.h"
 #include "string.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 void TagParm::read(Stream& input) { doRead(input); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
+/**
+ * @note Address: N/A
+ * @note Size: 0x84
  */
 void TagParm::write(Stream& output)
 {
@@ -22,17 +20,15 @@ void TagParm::write(Stream& output)
 	doWrite(output);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 void TagParm::dump() { doDump(); }
 
-/*
- * --INFO--
- * Address:	8041BD38
- * Size:	000034
+/**
+ * @note Address: 0x8041BD38
+ * @note Size: 0x34
  */
 template <>
 void PrimTagParm<int>::doRead(Stream& stream)
@@ -40,10 +36,9 @@ void PrimTagParm<int>::doRead(Stream& stream)
 	mData = stream.readInt();
 }
 
-/*
- * --INFO--
- * Address:	8041BD6C
- * Size:	00002C
+/**
+ * @note Address: 0x8041BD6C
+ * @note Size: 0x2C
  */
 template <>
 void PrimTagParm<int>::doWrite(Stream& stream)
@@ -51,20 +46,18 @@ void PrimTagParm<int>::doWrite(Stream& stream)
 	stream.writeInt(mData);
 }
 
-/*
- * --INFO--
- * Address:	8041BD98
- * Size:	000004
+/**
+ * @note Address: 0x8041BD98
+ * @note Size: 0x4
  */
 template <>
 void PrimTagParm<int>::doDump()
 {
 }
 
-/*
- * --INFO--
- * Address:	8041BD9C
- * Size:	000034
+/**
+ * @note Address: 0x8041BD9C
+ * @note Size: 0x34
  */
 template <>
 void PrimTagParm<u16>::doRead(Stream& stream)
@@ -72,10 +65,9 @@ void PrimTagParm<u16>::doRead(Stream& stream)
 	mData = stream.readShort();
 }
 
-/*
- * --INFO--
- * Address:	8041BDD0
- * Size:	00002C
+/**
+ * @note Address: 0x8041BDD0
+ * @note Size: 0x2C
  */
 template <>
 void PrimTagParm<u16>::doWrite(Stream& stream)
@@ -83,20 +75,18 @@ void PrimTagParm<u16>::doWrite(Stream& stream)
 	stream.writeShort(mData);
 }
 
-/*
- * --INFO--
- * Address:	8041BDFC
- * Size:	000004
+/**
+ * @note Address: 0x8041BDFC
+ * @note Size: 0x4
  */
 template <>
 void PrimTagParm<u16>::doDump()
 {
 }
 
-/*
- * --INFO--
- * Address: 8041BE00
- * Size:    000078
+/**
+ * @note Address: 0x8041BE00
+ * @note Size: 0x78
  */
 template <>
 void PrimTagParm<u64>::doRead(Stream& stream)
@@ -107,10 +97,9 @@ void PrimTagParm<u64>::doRead(Stream& stream)
 	}
 }
 
-/*
- * --INFO--
- * Address: 8041BE78
- * Size:    00006C
+/**
+ * @note Address: 0x8041BE78
+ * @note Size: 0x6C
  */
 template <>
 void PrimTagParm<u64>::doWrite(Stream& stream)
@@ -122,20 +111,18 @@ void PrimTagParm<u64>::doWrite(Stream& stream)
 	stream.writeString(data);
 }
 
-/*
- * --INFO--
- * Address:	8041BEE4
- * Size:	000004
+/**
+ * @note Address: 0x8041BEE4
+ * @note Size: 0x4
  */
 template <>
 void PrimTagParm<u64>::doDump()
 {
 }
 
-/*
- * --INFO--
- * Address:	8041BEE8
- * Size:	000034
+/**
+ * @note Address: 0x8041BEE8
+ * @note Size: 0x34
  */
 template <>
 void PrimTagParm<f32>::doRead(Stream& stream)
@@ -143,10 +130,9 @@ void PrimTagParm<f32>::doRead(Stream& stream)
 	mData = stream.readFloat();
 }
 
-/*
- * --INFO--
- * Address:	8041BF1C
- * Size:	000028
+/**
+ * @note Address: 0x8041BF1C
+ * @note Size: 0x28
  */
 template <>
 void PrimTagParm<f32>::doWrite(Stream& stream)
@@ -154,20 +140,18 @@ void PrimTagParm<f32>::doWrite(Stream& stream)
 	stream.writeFloat(mData);
 }
 
-/*
- * --INFO--
- * Address:	8041BF44
- * Size:	000004
+/**
+ * @note Address: 0x8041BF44
+ * @note Size: 0x4
  */
 template <>
 void PrimTagParm<f32>::doDump()
 {
 }
 
-/*
- * --INFO--
- * Address:	8041BF48
- * Size:	000024
+/**
+ * @note Address: 0x8041BF48
+ * @note Size: 0x24
  */
 template <>
 void PrimTagParm<Vector3f>::doRead(Stream& stream)
@@ -175,10 +159,9 @@ void PrimTagParm<Vector3f>::doRead(Stream& stream)
 	mData.read(stream);
 }
 
-/*
- * --INFO--
- * Address:	8041BF6C
- * Size:	000024
+/**
+ * @note Address: 0x8041BF6C
+ * @note Size: 0x24
  */
 template <>
 void PrimTagParm<Vector3f>::doWrite(Stream& stream)
@@ -186,20 +169,18 @@ void PrimTagParm<Vector3f>::doWrite(Stream& stream)
 	mData.write(stream);
 }
 
-/*
- * --INFO--
- * Address:	8041BF90
- * Size:	000004
+/**
+ * @note Address: 0x8041BF90
+ * @note Size: 0x4
  */
 template <>
 void PrimTagParm<Vector3f>::doDump()
 {
 }
 
-/*
- * --INFO--
- * Address:	8041BF94
- * Size:	000044
+/**
+ * @note Address: 0x8041BF94
+ * @note Size: 0x44
  */
 StringTagParm::StringTagParm(TagParameters* params, char* name)
     : TagParm(params, name)
@@ -207,38 +188,33 @@ StringTagParm::StringTagParm(TagParameters* params, char* name)
 	mData = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8041BFD8
- * Size:	000004
+/**
+ * @note Address: 0x8041BFD8
+ * @note Size: 0x4
  */
 void StringTagParm::flushValue() { }
 
-/*
- * --INFO--
- * Address:	8041BFDC
- * Size:	00003C
+/**
+ * @note Address: 0x8041BFDC
+ * @note Size: 0x3C
  */
 void StringTagParm::doRead(Stream& stream) { mData = stream.readString(nullptr, 0); }
 
-/*
- * --INFO--
- * Address:	8041C018
- * Size:	00002C
+/**
+ * @note Address: 0x8041C018
+ * @note Size: 0x2C
  */
 void StringTagParm::doWrite(Stream& stream) { stream.writeString(mData); }
 
-/*
- * --INFO--
- * Address:	8041C044
- * Size:	000004
+/**
+ * @note Address: 0x8041C044
+ * @note Size: 0x4
  */
 void StringTagParm::doDump() { }
 
-/*
- * --INFO--
- * Address:	8041C048
- * Size:	000054
+/**
+ * @note Address: 0x8041C048
+ * @note Size: 0x54
  */
 TagParameters::TagParameters(char* name)
 {
@@ -246,28 +222,25 @@ TagParameters::TagParameters(char* name)
 	mName = name;
 }
 
-/*
+/**
  * @matchedSize
- * --INFO--
- * Address:	........
- * Size:	000048
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 // bool TagParameters::isEndToken(char* token)
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 void TagParameters::add(TagParm*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8041C09C
- * Size:	000038
+/**
+ * @note Address: 0x8041C09C
+ * @note Size: 0x38
  */
 TagParm::TagParm(TagParameters* container, char* name)
 {
@@ -282,11 +255,10 @@ TagParm::TagParm(TagParameters* container, char* name)
 	container->mHead = this;
 }
 
-/*
+/**
  * TODO: This probably uses isEndToken, but IDK how.
- * --INFO--
- * Address:	8041C0D4
- * Size:	0000D4
+ * @note Address: 0x8041C0D4
+ * @note Size: 0xD4
  */
 
 void TagParameters::read(Stream& stream)
@@ -318,20 +290,18 @@ void TagParameters::read(Stream& stream)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C8
+/**
+ * @note Address: N/A
+ * @note Size: 0xC8
  */
 void TagParameters::write(Stream&)
 {
 	// Unused/inlined
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 void TagParameters::dump()
 {

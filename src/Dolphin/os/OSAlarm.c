@@ -10,10 +10,9 @@ static BOOL OnReset(BOOL final);
 
 static OSResetFunctionInfo ResetFunctionInfo = { OnReset, OS_RESET_PRIO_ALARM };
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000098
+/**
+ * @note Address: N/A
+ * @note Size: 0x98
  */
 static void SetTimer(OSAlarm* alarm)
 {
@@ -29,10 +28,9 @@ static void SetTimer(OSAlarm* alarm)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800EBAB4
- * Size:	000058
+/**
+ * @note Address: 0x800EBAB4
+ * @note Size: 0x58
  */
 void OSInitAlarm()
 {
@@ -43,10 +41,9 @@ void OSInitAlarm()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800EBB0C
- * Size:	000010
+/**
+ * @note Address: 0x800EBB0C
+ * @note Size: 0x10
  */
 void OSCreateAlarm(OSAlarm* alarm)
 {
@@ -54,10 +51,9 @@ void OSCreateAlarm(OSAlarm* alarm)
 	alarm->tag     = 0;
 }
 
-/*
- * --INFO--
- * Address:	800EBB1C
- * Size:	000250
+/**
+ * @note Address: 0x800EBB1C
+ * @note Size: 0x250
  */
 static void InsertAlarm(OSAlarm* alarm, OSTime fire, OSAlarmHandler handler)
 {
@@ -105,10 +101,9 @@ static void InsertAlarm(OSAlarm* alarm, OSTime fire, OSAlarmHandler handler)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800EBD6C
- * Size:	000068
+/**
+ * @note Address: 0x800EBD6C
+ * @note Size: 0x68
  */
 void OSSetAlarm(OSAlarm* alarm, OSTime tick, OSAlarmHandler handler)
 {
@@ -119,10 +114,9 @@ void OSSetAlarm(OSAlarm* alarm, OSTime tick, OSAlarmHandler handler)
 	OSRestoreInterrupts(enabled);
 }
 
-/*
- * --INFO--
- * Address:	800EBDD4
- * Size:	00011C
+/**
+ * @note Address: 0x800EBDD4
+ * @note Size: 0x11C
  */
 void OSCancelAlarm(OSAlarm* alarm)
 {
@@ -155,10 +149,9 @@ void OSCancelAlarm(OSAlarm* alarm)
 	OSRestoreInterrupts(enabled);
 }
 
-/*
- * --INFO--
- * Address:	800EBEF0
- * Size:	000230
+/**
+ * @note Address: 0x800EBEF0
+ * @note Size: 0x230
  */
 static void DecrementerExceptionCallback(__OSException exception, OSContext* context)
 {
@@ -207,10 +200,9 @@ static void DecrementerExceptionCallback(__OSException exception, OSContext* con
 	OSLoadContext(context);
 }
 
-/*
- * --INFO--
- * Address:	800EC120
- * Size:	000050
+/**
+ * @note Address: 0x800EC120
+ * @note Size: 0x50
  */
 ASM static void DecrementerExceptionHandler(register __OSException exception, register OSContext* context)
 {
@@ -222,10 +214,9 @@ ASM static void DecrementerExceptionHandler(register __OSException exception, re
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800EC170
- * Size:	0000A0
+/**
+ * @note Address: 0x800EC170
+ * @note Size: 0xA0
  */
 static BOOL OnReset(BOOL final)
 {

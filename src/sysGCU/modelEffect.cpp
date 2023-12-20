@@ -2,10 +2,9 @@
 #include "ParticleMgr.h"
 #include "nans.h"
 
-/*
- * --INFO--
- * Address:	8043D49C
- * Size:	00006C
+/**
+ * @note Address: 0x8043D49C
+ * @note Size: 0x6C
  */
 void ModelEffectData::entry()
 {
@@ -14,10 +13,9 @@ void ModelEffectData::entry()
 	particleMgr->entryModelEffect(this);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000090
+/**
+ * @note Address: N/A
+ * @note Size: 0x90
  */
 ModelEffect* ModelEffectData::create(ModelEffectCreateArg* arg)
 {
@@ -30,10 +28,9 @@ ModelEffect* ModelEffectData::create(ModelEffectCreateArg* arg)
 	return efx;
 }
 
-/*
- * --INFO--
- * Address:	8043D508
- * Size:	00010C
+/**
+ * @note Address: 0x8043D508
+ * @note Size: 0x10C
  */
 void ModelEffectData::allocModelData(int count)
 {
@@ -44,17 +41,15 @@ void ModelEffectData::allocModelData(int count)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8043D614
- * Size:	000024
+/**
+ * @note Address: 0x8043D614
+ * @note Size: 0x24
  */
 void ParticleMgr::entryModelEffect(ModelEffectData* data) { mModelEffectDataRoot.add(data); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
+/**
+ * @note Address: N/A
+ * @note Size: 0x80
  */
 ModelEffectData* ParticleMgr::getModelEffectData(u64 id)
 {
@@ -67,10 +62,9 @@ ModelEffectData* ParticleMgr::getModelEffectData(u64 id)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8043D638
- * Size:	00011C
+/**
+ * @note Address: 0x8043D638
+ * @note Size: 0x11C
  */
 ModelEffect* ParticleMgr::createModelEffect(ModelEffectCreateArg* arg)
 {
@@ -81,20 +75,18 @@ ModelEffect* ParticleMgr::createModelEffect(ModelEffectCreateArg* arg)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000178
+/**
+ * @note Address: N/A
+ * @note Size: 0x178
  */
 void ParticleMgr::testCreateModelEffect(int, int, Vector3f&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8043D754
- * Size:	0001A8
+/**
+ * @note Address: 0x8043D754
+ * @note Size: 0x1A8
  */
 void ModelEffect::doAnimation()
 {
@@ -137,24 +129,21 @@ void ModelEffect::doAnimation()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8043D8FC
- * Size:	000004
+/**
+ * @note Address: 0x8043D8FC
+ * @note Size: 0x4
  */
 void ModelEffect::getLODCylinder(Sys::Cylinder&) { }
 
-/*
- * --INFO--
- * Address:	8043D900
- * Size:	000008
+/**
+ * @note Address: 0x8043D900
+ * @note Size: 0x8
  */
 bool ModelEffect::useCylinderLOD() { return false; }
 
-/*
- * --INFO--
- * Address:	8043D908
- * Size:	000098
+/**
+ * @note Address: 0x8043D908
+ * @note Size: 0x98
  */
 void ModelEffect::doEntry()
 {
@@ -167,17 +156,15 @@ void ModelEffect::doEntry()
 	mModel->getJ3DModel()->entry();
 }
 
-/*
- * --INFO--
- * Address:	8043D9A0
- * Size:	000004
+/**
+ * @note Address: 0x8043D9A0
+ * @note Size: 0x4
  */
 void ModelEffect::changeMaterial() { }
 
-/*
- * --INFO--
- * Address:	8043D9A4
- * Size:	000078
+/**
+ * @note Address: 0x8043D9A4
+ * @note Size: 0x78
  */
 void ModelEffect::doSetView(int viewportNumber)
 {
@@ -189,37 +176,32 @@ void ModelEffect::doSetView(int viewportNumber)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8043DA1C
- * Size:	000024
+/**
+ * @note Address: 0x8043DA1C
+ * @note Size: 0x24
  */
 void ModelEffect::doViewCalc() { mModel->viewCalc(); }
 
-/*
- * --INFO--
- * Address:	8043DA40
- * Size:	00002C
+/**
+ * @note Address: 0x8043DA40
+ * @note Size: 0x2C
  */
 void ParticleMgr::doAnimation() { mModelEffectMgr.doAnimation(); }
 
-/*
- * --INFO--
- * Address:	8043DA6C
- * Size:	00002C
+/**
+ * @note Address: 0x8043DA6C
+ * @note Size: 0x2C
  */
 void ParticleMgr::doEntry() { mModelEffectMgr.doEntry(); }
 
-/*
- * --INFO--
- * Address:	8043DA98
- * Size:	00002C
+/**
+ * @note Address: 0x8043DA98
+ * @note Size: 0x2C
  */
 void ParticleMgr::doSetView(int viewportNumber) { mModelEffectMgr.doSetView(viewportNumber); }
 
-/*
- * --INFO--
- * Address:	8043DAC4
- * Size:	00002C
+/**
+ * @note Address: 0x8043DAC4
+ * @note Size: 0x2C
  */
 void ParticleMgr::doViewCalc() { mModelEffectMgr.doViewCalc(); }

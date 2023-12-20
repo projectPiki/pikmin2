@@ -4,40 +4,36 @@
 extern TRKEventQueue gTRKEventQueue;
 extern TRKState gTRKState;
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 void TRKHandleRequestEvent(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 void TRKHandleSupportEvent(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 void TRKIdle(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800BB390
- * Size:	0000F8
+/**
+ * @note Address: 0x800BB390
+ * @note Size: 0xF8
  */
 void TRKNubMainLoop(void)
 {

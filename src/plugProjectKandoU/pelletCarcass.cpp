@@ -5,20 +5,18 @@ namespace PelletCarcass {
 
 Mgr* mgr;
 
-/*
- * --INFO--
- * Address:	801FB8CC
- * Size:	0000B0
+/**
+ * @note Address: 0x801FB8CC
+ * @note Size: 0xB0
  */
 Mgr::Mgr()
     : FixedSizePelletMgr<Object>(PelletList::CARCASS)
 {
 }
 
-/*
- * --INFO--
- * Address:	801FBC28
- * Size:	000064
+/**
+ * @note Address: 0x801FBC28
+ * @note Size: 0x64
  */
 void Mgr::setupResources()
 {

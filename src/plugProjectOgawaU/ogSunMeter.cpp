@@ -7,10 +7,9 @@
 
 namespace og {
 namespace Screen {
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B4
+/**
+ * @note Address: N/A
+ * @note Size: 0xB4
  */
 CallBack_SunMeter::CallBack_SunMeter()
 {
@@ -27,10 +26,9 @@ CallBack_SunMeter::CallBack_SunMeter()
 	mScaleMgr         = new ScaleMgr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000108
+/**
+ * @note Address: N/A
+ * @note Size: 0x108
  */
 void CallBack_SunMeter::init(J2DScreen* canvas, f32* time)
 {
@@ -46,10 +44,9 @@ void CallBack_SunMeter::init(J2DScreen* canvas, f32* time)
 	mSuniPane->setBasePosition(J2DPOS_Center);
 }
 
-/*
- * --INFO--
- * Address:	80307294
- * Size:	00023C
+/**
+ * @note Address: 0x80307294
+ * @note Size: 0x23C
  */
 void CallBack_SunMeter::update()
 {
@@ -92,24 +89,21 @@ void CallBack_SunMeter::update()
 	mSuniPane->updateScale(mScaleMgr->calc());
 }
 
-/*
- * --INFO--
- * Address:	803074D0
- * Size:	000034
+/**
+ * @note Address: 0x803074D0
+ * @note Size: 0x34
  */
 void CallBack_SunMeter::startEffectChime() { mScaleMgr->up(0.3f, 30.0f, 0.7f, 0.0f); }
 
-/*
- * --INFO--
- * Address:	80307504
- * Size:	000044
+/**
+ * @note Address: 0x80307504
+ * @note Size: 0x44
  */
 SunMeter::SunMeter() { mCurrentTime = 0.0f; }
 
-/*
- * --INFO--
- * Address:	80307548
- * Size:	0001B4
+/**
+ * @note Address: 0x80307548
+ * @note Size: 0x1B4
  */
 void SunMeter::setCallBack()
 {

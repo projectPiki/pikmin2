@@ -111,10 +111,9 @@ f32 JAIBasic::msDspDif;
 
 u8 JAIBasic::msStopStatus = 3;
 
-/*
- * --INFO--
- * Address:	800AC158
- * Size:	00007C
+/**
+ * @note Address: 0x800AC158
+ * @note Size: 0x7C
  */
 JAIBasic::JAIBasic()
 {
@@ -134,34 +133,30 @@ JAIBasic::JAIBasic()
 	msCurrentHeap = JASDram;
 }
 
-/*
- * --INFO--
- * Address:	800AC1D4
- * Size:	000020
+/**
+ * @note Address: 0x800AC1D4
+ * @note Size: 0x20
  */
 void JAIBasic::initDriver(JKRSolidHeap* heap, u32 p2, u8 p3) { initAudioThread(heap, p2, p3); }
 
-/*
- * --INFO--
- * Address:	800AC1F4
- * Size:	000020
+/**
+ * @note Address: 0x800AC1F4
+ * @note Size: 0x20
  */
 void JAIBasic::initInterface(u8) { initInterfaceMain(); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 void JAIBasic::bootDSP()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800AC214
- * Size:	0000C0
+/**
+ * @note Address: 0x800AC214
+ * @note Size: 0xC0
  */
 void JAIBasic::initInterfaceMain()
 {
@@ -187,10 +182,9 @@ void JAIBasic::initInterfaceMain()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800AC2D4
- * Size:	00005C
+/**
+ * @note Address: 0x800AC2D4
+ * @note Size: 0x5C
  */
 void JAIBasic::initHeap()
 {
@@ -202,10 +196,9 @@ void JAIBasic::initHeap()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800AC330
- * Size:	00004C
+/**
+ * @note Address: 0x800AC330
+ * @note Size: 0x4C
  */
 JKRArchive* JAIBasic::initArchive()
 {
@@ -219,10 +212,9 @@ JKRArchive* JAIBasic::initArchive()
 	return archive;
 }
 
-/*
- * --INFO--
- * Address:	800AC37C
- * Size:	0000C8
+/**
+ * @note Address: 0x800AC37C
+ * @note Size: 0xC8
  */
 void JAIBasic::initResourcePath()
 {
@@ -292,10 +284,9 @@ lbl_800AC430:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800AC444
- * Size:	000034
+/**
+ * @note Address: 0x800AC444
+ * @note Size: 0x34
  */
 void JAIBasic::setCameraInfo(Vec* p1, Vec* p2, f32 (*p3)[4], u32 index)
 {
@@ -307,17 +298,15 @@ void JAIBasic::setCameraInfo(Vec* p1, Vec* p2, f32 (*p3)[4], u32 index)
 	mCameras[index].mMtx  = (Mtx*)p3;
 }
 
-/*
- * --INFO--
- * Address:	800AC478
- * Size:	000028
+/**
+ * @note Address: 0x800AC478
+ * @note Size: 0x28
  */
 void JAIBasic::setRegisterTrackCallback() { JASTrack::registerSeqCallback(setParameterSeqSync); }
 
-/*
- * --INFO--
- * Address:	800AC4A0
- * Size:	000098
+/**
+ * @note Address: 0x800AC4A0
+ * @note Size: 0x98
  */
 void JAIBasic::initAudioThread(JKRSolidHeap* rootHeap, u32 p2, u8 p3)
 {
@@ -331,10 +320,9 @@ void JAIBasic::initAudioThread(JKRSolidHeap* rootHeap, u32 p2, u8 p3)
 	msStopStatus = 0;
 }
 
-/*
- * --INFO--
- * Address:	800AC538
- * Size:	000158
+/**
+ * @note Address: 0x800AC538
+ * @note Size: 0x158
  */
 void JAIBasic::initCamera()
 {
@@ -456,17 +444,15 @@ lbl_800AC678:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800AC690
- * Size:	000014
+/**
+ * @note Address: 0x800AC690
+ * @note Size: 0x14
  */
 // void JAInter::Camera::__defctor() { }
 
-/*
- * --INFO--
- * Address:	800AC6A4
- * Size:	000008
+/**
+ * @note Address: 0x800AC6A4
+ * @note Size: 0x8
  */
 void JAIBasic::setInitFileLoadSwitch(u8 a1)
 {
@@ -474,10 +460,9 @@ void JAIBasic::setInitFileLoadSwitch(u8 a1)
 	_0C = a1;
 }
 
-/*
- * --INFO--
- * Address:	800AC6AC
- * Size:	00006C
+/**
+ * @note Address: 0x800AC6AC
+ * @note Size: 0x6C
  */
 BOOL JAIBasic::initReadFile()
 {
@@ -499,10 +484,9 @@ BOOL JAIBasic::initReadFile()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	800AC718
- * Size:	000064
+/**
+ * @note Address: 0x800AC718
+ * @note Size: 0x64
  */
 void JAIBasic::processFrameWork()
 {
@@ -518,10 +502,9 @@ void JAIBasic::processFrameWork()
 	_10++;
 }
 
-/*
- * --INFO--
- * Address:	800AC77C
- * Size:	000064
+/**
+ * @note Address: 0x800AC77C
+ * @note Size: 0x64
  * startSoundBasic__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUcPQ27JAInter9SoundInfo
  */
 void JAIBasic::startSoundBasic(u32 id, JAISound** handlePtr, JAInter::Actor* actor, u32 p4, u8 p5, JAInter::SoundInfo* info)
@@ -539,10 +522,9 @@ void JAIBasic::startSoundBasic(u32 id, JAISound** handlePtr, JAInter::Actor* act
 	}
 }
 
-/*
- * --INFO--
- * Address:	800AC7E0
- * Size:	000084
+/**
+ * @note Address: 0x800AC7E0
+ * @note Size: 0x84
  * startSoundBasic__8JAIBasicFUlPP11JAISequencePQ27JAInter5ActorUlUcPQ27JAInter9SoundInfo
  */
 void JAIBasic::startSoundBasic(u32 id, JAISequence** handlePtr, JAInter::Actor* actor, u32 p4, u8 p5, JAInter::SoundInfo* info)
@@ -555,10 +537,9 @@ void JAIBasic::startSoundBasic(u32 id, JAISequence** handlePtr, JAInter::Actor* 
 	}
 }
 
-/*
- * --INFO--
- * Address:	800AC864
- * Size:	000064
+/**
+ * @note Address: 0x800AC864
+ * @note Size: 0x64
  * startSoundBasic__8JAIBasicFUlPP5JAISePQ27JAInter5ActorUlUcPQ27JAInter9SoundInfo
  */
 void JAIBasic::startSoundBasic(u32 id, JAISe** handlePtr, JAInter::Actor* actor, u32 p4, u8 p5, JAInter::SoundInfo* info)
@@ -570,10 +551,9 @@ void JAIBasic::startSoundBasic(u32 id, JAISe** handlePtr, JAInter::Actor* actor,
 	}
 }
 
-/*
- * --INFO--
- * Address:	800AC8C8
- * Size:	000058
+/**
+ * @note Address: 0x800AC8C8
+ * @note Size: 0x58
  * startSoundBasic__8JAIBasicFUlPP9JAIStreamPQ27JAInter5ActorUlUcPQ27JAInter9SoundInfo
  */
 void JAIBasic::startSoundBasic(u32 id, JAIStream** handlePtr, JAInter::Actor* actor, u32 p4, u8 p5, JAInter::SoundInfo* info)
@@ -583,20 +563,18 @@ void JAIBasic::startSoundBasic(u32 id, JAIStream** handlePtr, JAInter::Actor* ac
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
+/**
+ * @note Address: N/A
+ * @note Size: 0x80
  */
 void JAIBasic::getPlayingSoundHandle(JAISound**, u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800AC920
- * Size:	000088
+/**
+ * @note Address: 0x800AC920
+ * @note Size: 0x88
  */
 void JAIBasic::stopSoundHandle(JAISound* handle, u32 p2)
 {
@@ -616,60 +594,54 @@ void JAIBasic::stopSoundHandle(JAISound* handle, u32 p2)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
+/**
+ * @note Address: N/A
+ * @note Size: 0x84
  */
 void JAIBasic::stopPlayingObjectSe(void*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
+/**
+ * @note Address: N/A
+ * @note Size: 0xE4
  */
 void JAIBasic::stopPlayingIDObjectSe(u32, void*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B0
+/**
+ * @note Address: N/A
+ * @note Size: 0xB0
  */
 void JAIBasic::stopPlayingCategorySe(u8)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 void JAIBasic::stopPlayingCategoryObjectSe(u8, void*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
+/**
+ * @note Address: N/A
+ * @note Size: 0x80
  */
 void JAIBasic::stopAllSe(void*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800AC9A8
- * Size:	0000AC
+/**
+ * @note Address: 0x800AC9A8
+ * @note Size: 0xAC
  * stopAllSe__8JAIBasicFUc
  */
 void JAIBasic::stopAllSe(u8 p1)
@@ -682,167 +654,149 @@ void JAIBasic::stopAllSe(u8 p1)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
+/**
+ * @note Address: N/A
+ * @note Size: 0x70
  */
 void JAIBasic::stopAllSe(u8, void*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 void JAIBasic::stopAllSeq(void*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
+/**
+ * @note Address: N/A
+ * @note Size: 0x70
  */
 void JAIBasic::stopActorSoundOneBuffer(void*, JSULink<JAISound>*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B0
+/**
+ * @note Address: N/A
+ * @note Size: 0xB0
  */
 void JAIBasic::stopIDSoundOneBuffer(u32, JSULink<JAISound>*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C8
+/**
+ * @note Address: N/A
+ * @note Size: 0xC8
  */
 void JAIBasic::stopIDActorSoundOneBuffer(u32, void*, JSULink<JAISound>*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F4
+/**
+ * @note Address: N/A
+ * @note Size: 0xF4
  */
 void JAIBasic::stopAllSound(void*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 void JAIBasic::getPlayingSoundLinkHeadPointer(u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001D0
+/**
+ * @note Address: N/A
+ * @note Size: 0x1D0
  */
 void JAIBasic::stopAllSound(u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000204
+/**
+ * @note Address: N/A
+ * @note Size: 0x204
  */
 void JAIBasic::stopAllSound(u32, void*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000174
+/**
+ * @note Address: N/A
+ * @note Size: 0x174
  */
 void JAIBasic::deleteObject(void*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A0
+/**
+ * @note Address: N/A
+ * @note Size: 0xA0
  */
 void JAIBasic::setPauseFlagAll(u8)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001B0
+/**
+ * @note Address: N/A
+ * @note Size: 0x1B0
  */
 void JAIBasic::changeSoundScene(u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800ACA54
- * Size:	000020
+/**
+ * @note Address: 0x800ACA54
+ * @note Size: 0x20
  * stop__9JAIStreamFUl
  */
 void JAIStream::stop(u32 p1) { JAInter::StreamMgr::releaseStreamBuffer(this, p1); }
 
-/*
- * --INFO--
- * Address:	800ACA74
- * Size:	000020
+/**
+ * @note Address: 0x800ACA74
+ * @note Size: 0x20
  * stop__11JAISequenceFUl
  */
 void JAISequence::stop(u32 p1) { JAInter::SequenceMgr::releaseSeqBuffer(this, p1); }
 
-/*
- * --INFO--
- * Address:	800ACA94
- * Size:	000010
+/**
+ * @note Address: 0x800ACA94
+ * @note Size: 0x10
  */
 BOOL JAIBasic::getMapInfoFxline(u32 p1) { return p1 != 0; }
 
-/*
- * --INFO--
- * Address:	800ACAA4
- * Size:	000010
+/**
+ * @note Address: 0x800ACAA4
+ * @note Size: 0x10
  */
 BOOL JAIBasic::getMapInfoGround(u32 p1) { return p1 != 0; }
 
-/*
- * --INFO--
- * Address:	800ACAB4
- * Size:	000018
+/**
+ * @note Address: 0x800ACAB4
+ * @note Size: 0x18
  */
 f32 JAIBasic::getMapInfoFxParameter(u32 p1) { return (p1 == 0) ? 0.0f : 1.0f; }
 
-/*
- * --INFO--
- * Address:	800ACACC
- * Size:	000050
+/**
+ * @note Address: 0x800ACACC
+ * @note Size: 0x50
  */
 u16 JAIBasic::getSoundOffsetNumberFromID(u32 id)
 {
@@ -881,30 +835,27 @@ lbl_800ACB08:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 void JAIBasic::setSeCancelSwitch(u8, u8)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 void JAIBasic::setSeCategoryVolume(u8, u8)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800ACB1C
- * Size:	0001DC
+/**
+ * @note Address: 0x800ACB1C
+ * @note Size: 0x1DC
  */
 u16 JAIBasic::setParameterSeqSync(JASTrack* p1, u16 p2)
 {
@@ -1096,10 +1047,9 @@ lbl_800ACCE0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800ACCF8
- * Size:	000104
+/**
+ * @note Address: 0x800ACCF8
+ * @note Size: 0x104
  */
 void JAIBasic::setSeExtParameter(JAISound* handle)
 {
@@ -1118,10 +1068,9 @@ void JAIBasic::setSeExtParameter(JAISound* handle)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800ACDFC
- * Size:	000070
+/**
+ * @note Address: 0x800ACDFC
+ * @note Size: 0x70
  */
 JAISequence* JAIBasic::makeSequence()
 {
@@ -1131,10 +1080,9 @@ JAISequence* JAIBasic::makeSequence()
 	return new (JASDram, 0) JAISequence();
 }
 
-/*
- * --INFO--
- * Address:	800ACE6C
- * Size:	000070
+/**
+ * @note Address: 0x800ACE6C
+ * @note Size: 0x70
  * makeSe__8JAIBasicFv
  */
 JAISe* JAIBasic::makeSe()
@@ -1145,10 +1093,9 @@ JAISe* JAIBasic::makeSe()
 	return new (JASDram, 0) JAISe();
 }
 
-/*
- * --INFO--
- * Address:	800ACEDC
- * Size:	000070
+/**
+ * @note Address: 0x800ACEDC
+ * @note Size: 0x70
  */
 JAIStream* JAIBasic::makeStream()
 {
@@ -1158,30 +1105,27 @@ JAIStream* JAIBasic::makeStream()
 	return new (JASDram, 0) JAIStream();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void JAIBasic::allocStreamBuffer(void*, long)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void JAIBasic::deallocStreamBuffer()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800ACF4C
- * Size:	0000DC
+/**
+ * @note Address: 0x800ACF4C
+ * @note Size: 0xDC
  */
 void JAIBasic::stopAudio(u32 p1, bool p2)
 {
@@ -1262,10 +1206,9 @@ lbl_800AD014:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800AD028
- * Size:	000034
+/**
+ * @note Address: 0x800AD028
+ * @note Size: 0x34
  */
 u8 JAIBasic::checkAudioStopStatus()
 {
@@ -1280,20 +1223,18 @@ u8 JAIBasic::checkAudioStopStatus()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 void JAIBasic::resumeAudio()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800AD05C
- * Size:	000168
+/**
+ * @note Address: 0x800AD05C
+ * @note Size: 0x168
  */
 long JAIBasic::stopCallBack(void*)
 {

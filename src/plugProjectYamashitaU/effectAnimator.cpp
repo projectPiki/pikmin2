@@ -57,10 +57,9 @@ ObjMgrData* sEffectAnimData[] = { sAttack, nullptr, sFlick, sMove1, sType1, null
 
 } // namespace
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
+/**
+ * @note Address: N/A
+ * @note Size: 0x44
  */
 Obj::Obj()
     : CNode("effectObj")
@@ -69,10 +68,9 @@ Obj::Obj()
 {
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000088
+/**
+ * @note Address: N/A
+ * @note Size: 0x88
  */
 void Obj::setup(KeyData* data)
 {
@@ -87,10 +85,9 @@ void Obj::setup(KeyData* data)
 	for (int i = 0; i < mCount; i++) { }
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000104
+/**
+ * @note Address: N/A
+ * @note Size: 0x104
  */
 f32 Obj::calcValue(f32 keyFrame)
 {
@@ -150,27 +147,24 @@ struct VibrationObj : public Obj {
 	// _00-_20 = Obj
 };
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
+/**
+ * @note Address: N/A
+ * @note Size: 0x44
  */
 ObjMgr::ObjMgr() { mNodes.clearRelations(); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  */
 void ObjMgr::update(efx::TKechappyTest* testFX, f32 keyFrame)
 {
 	FOREACH_NODE(Obj, mNodes.mChild, obj) { obj->update(testFX, keyFrame); }
 }
 
-/*
- * --INFO--
- * Address:	80132CB8
- * Size:	0002F8
+/**
+ * @note Address: 0x80132CB8
+ * @note Size: 0x2F8
  */
 void ObjMgr::setup(ObjMgrData* mgrData)
 {
@@ -187,17 +181,15 @@ void ObjMgr::setup(ObjMgrData* mgrData)
 	mNodes.add(length);
 }
 
-/*
- * --INFO--
- * Address:	80133010
- * Size:	00000C
+/**
+ * @note Address: 0x80133010
+ * @note Size: 0xC
  */
 Mgr::Mgr() { mMgrs = nullptr; }
 
-/*
- * --INFO--
- * Address:	8013301C
- * Size:	0000B4
+/**
+ * @note Address: 0x8013301C
+ * @note Size: 0xB4
  */
 void Mgr::setup()
 {
@@ -212,10 +204,9 @@ void Mgr::setup()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801330D0
- * Size:	0000E4
+/**
+ * @note Address: 0x801330D0
+ * @note Size: 0xE4
  */
 void Mgr::update(efx::TKechappyTest* testFX, int index, f32 keyFrame)
 {

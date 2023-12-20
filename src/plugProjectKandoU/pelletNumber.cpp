@@ -8,17 +8,15 @@ namespace PelletNumber {
 
 Mgr* mgr;
 
-/*
- * --INFO--
- * Address:	801F90D4
- * Size:	000004
+/**
+ * @note Address: 0x801F90D4
+ * @note Size: 0x4
  */
 void Object::do_onInit(CreatureInitArg*) { }
 
-/*
- * --INFO--
- * Address:	801F90D8
- * Size:	0000C0
+/**
+ * @note Address: 0x801F90D8
+ * @note Size: 0xC0
  */
 void Object::constructor()
 {
@@ -27,10 +25,9 @@ void Object::constructor()
 	shadowMgr->createShadow(this);
 }
 
-/*
- * --INFO--
- * Address:	801F9198
- * Size:	00006C
+/**
+ * @note Address: 0x801F9198
+ * @note Size: 0x6C
  */
 void Object::createKiraEffect(Vector3f& pos)
 {
@@ -38,10 +35,9 @@ void Object::createKiraEffect(Vector3f& pos)
 	mPelkira->create(&arg);
 }
 
-/*
- * --INFO--
- * Address:	801F9204
- * Size:	000108
+/**
+ * @note Address: 0x801F9204
+ * @note Size: 0x108
  */
 void Object::changeMaterial()
 {
@@ -74,20 +70,18 @@ void Object::changeMaterial()
 	mModel->mJ3dModel->diff();
 }
 
-/*
- * --INFO--
- * Address:	801F930C
- * Size:	0000B0
+/**
+ * @note Address: 0x801F930C
+ * @note Size: 0xB0
  */
 Mgr::Mgr()
     : FixedSizePelletMgr(PelletList::NUMBER_PELLET)
 {
 }
 
-/*
- * --INFO--
- * Address:	801F9668
- * Size:	0000F4
+/**
+ * @note Address: 0x801F9668
+ * @note Size: 0xF4
  */
 void Mgr::setupResources()
 {
@@ -108,10 +102,9 @@ void Mgr::setupResources()
 	sys->heapStatusEnd("NumberPellet");
 }
 
-/*
- * --INFO--
- * Address:	801F975C
- * Size:	00007C
+/**
+ * @note Address: 0x801F975C
+ * @note Size: 0x7C
  */
 void Mgr::onCreateModel(SysShape::Model* model)
 {
@@ -123,17 +116,15 @@ void Mgr::onCreateModel(SysShape::Model* model)
 	model->mJ3dModel->lock();
 }
 
-/*
- * --INFO--
- * Address:	801F97D8
- * Size:	00003C
+/**
+ * @note Address: 0x801F97D8
+ * @note Size: 0x3C
  */
 GenPelletParm* Mgr::generatorNewPelletParm() { return new GenNumberPelletParm(PELCOLOR_BLUE, PELLET_NUMBER_ONE); }
 
-/*
- * --INFO--
- * Address:	801F9814
- * Size:	0000D8
+/**
+ * @note Address: 0x801F9814
+ * @note Size: 0xD8
  */
 Pellet* Mgr::generatorBirth(Vector3f& pos, Vector3f& angle, GenPelletParm* parm)
 {
@@ -153,10 +144,9 @@ Pellet* Mgr::generatorBirth(Vector3f& pos, Vector3f& angle, GenPelletParm* parm)
 	return pelt;
 }
 
-/*
- * --INFO--
- * Address:	801F98EC
- * Size:	000054
+/**
+ * @note Address: 0x801F98EC
+ * @note Size: 0x54
  */
 void Mgr::generatorWrite(Stream& stream, GenPelletParm* parm)
 {
@@ -165,10 +155,9 @@ void Mgr::generatorWrite(Stream& stream, GenPelletParm* parm)
 	stream.writeByte(nparm->mSize);
 }
 
-/*
- * --INFO--
- * Address:	801F9940
- * Size:	0000C4
+/**
+ * @note Address: 0x801F9940
+ * @note Size: 0xC4
  */
 void Mgr::generatorRead(Stream& stream, GenPelletParm* parm, u32 flag)
 {

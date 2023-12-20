@@ -1,9 +1,8 @@
 #include "JSystem/J3D/J3DShape.h"
 
-/*
- * --INFO--
- * Address:	80074438
- * Size:	000008
+/**
+ * @note Address: 0x80074438
+ * @note Size: 0x8
  * Fabricated to generate the getUseMtxIndex weak.
  * Should generate from a stripped struct, easier to just fakeFunc it.
  */

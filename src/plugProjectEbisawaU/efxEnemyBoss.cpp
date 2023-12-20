@@ -9,10 +9,9 @@
 
 namespace efx {
 
-/*
- * --INFO--
- * Address:	803EB360
- * Size:	0001A8
+/**
+ * @note Address: 0x803EB360
+ * @note Size: 0x1A8
  */
 bool TDangoCrash::create(Arg* arg)
 {
@@ -38,10 +37,9 @@ bool TDangoCrash::create(Arg* arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803EB508
- * Size:	00011C
+/**
+ * @note Address: 0x803EB508
+ * @note Size: 0x11C
  */
 bool TDangoTurn::create(Arg* arg)
 {
@@ -69,10 +67,9 @@ bool TDangoTurn::create(Arg* arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803EB624
- * Size:	000030
+/**
+ * @note Address: 0x803EB624
+ * @note Size: 0x30
  */
 void TKageMove::setGlobalPrmColor(Color4& color)
 {
@@ -82,10 +79,9 @@ void TKageMove::setGlobalPrmColor(Color4& color)
 	mEmitter->setPrmColor(*(JUtility::TColor*)(&color));
 }
 
-/*
- * --INFO--
- * Address:	803EB654
- * Size:	000030
+/**
+ * @note Address: 0x803EB654
+ * @note Size: 0x30
  */
 void TKageRun::setGlobalPrmColor(Color4& color)
 {
@@ -95,10 +91,9 @@ void TKageRun::setGlobalPrmColor(Color4& color)
 	mEmitter->setPrmColor(*(JUtility::TColor*)(&color));
 }
 
-/*
- * --INFO--
- * Address:	803EB684
- * Size:	000030
+/**
+ * @note Address: 0x803EB684
+ * @note Size: 0x30
  */
 void TKageDead1::setGlobalPrmColor(Color4& color)
 {
@@ -108,10 +103,9 @@ void TKageDead1::setGlobalPrmColor(Color4& color)
 	mEmitter->setPrmColor(*(JUtility::TColor*)(&color));
 }
 
-/*
- * --INFO--
- * Address:	803EB6B4
- * Size:	0000CC
+/**
+ * @note Address: 0x803EB6B4
+ * @note Size: 0xCC
  */
 bool TKageDead2::create(Arg* arg)
 {
@@ -188,20 +182,18 @@ lbl_803EB764:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 void TOootaParticle::setGlobalDynamicsScale(f32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803EB780
- * Size:	000174
+/**
+ * @note Address: 0x803EB780
+ * @note Size: 0x174
  */
 bool TOootaBombLeg::create(Arg* arg)
 {
@@ -331,10 +323,9 @@ lbl_803EB8D0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803EB8F4
- * Size:	000150
+/**
+ * @note Address: 0x803EB8F4
+ * @note Size: 0x150
  */
 bool TOootaFire::create(Arg* arg)
 {
@@ -354,10 +345,9 @@ bool TOootaFire::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803EBA44
- * Size:	000154
+/**
+ * @note Address: 0x803EBA44
+ * @note Size: 0x154
  */
 bool TKchFlickSand::create(Arg* arg)
 {
@@ -387,10 +377,9 @@ bool TKchFlickSand::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803EBB98
- * Size:	000154
+/**
+ * @note Address: 0x803EBB98
+ * @note Size: 0x154
  */
 bool TKchApSand::create(Arg* arg)
 {
@@ -420,10 +409,9 @@ bool TKchApSand::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803EBCEC
- * Size:	000154
+/**
+ * @note Address: 0x803EBCEC
+ * @note Size: 0x154
  */
 bool TKchApWat::create(Arg* arg)
 {
@@ -453,10 +441,9 @@ bool TKchApWat::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803EBE40
- * Size:	000040
+/**
+ * @note Address: 0x803EBE40
+ * @note Size: 0x40
  */
 void TKchDiveSand::setGlobalScale(f32 scale)
 {
@@ -467,10 +454,9 @@ void TKchDiveSand::setGlobalScale(f32 scale)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803EBE80
- * Size:	000040
+/**
+ * @note Address: 0x803EBE80
+ * @note Size: 0x40
  */
 void TKchDiveWat::setGlobalScale(f32 scale)
 {
@@ -481,10 +467,9 @@ void TKchDiveWat::setGlobalScale(f32 scale)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803EBEC0
- * Size:	00002C
+/**
+ * @note Address: 0x803EBEC0
+ * @note Size: 0x2C
  */
 void TKchCryAB::setGlobalScale(f32 scale)
 {
@@ -495,10 +480,9 @@ void TKchCryAB::setGlobalScale(f32 scale)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803EBEEC
- * Size:	000018
+/**
+ * @note Address: 0x803EBEEC
+ * @note Size: 0x18
  */
 void TKchCryInd::setGlobalScale(f32 scale)
 {
@@ -507,10 +491,9 @@ void TKchCryInd::setGlobalScale(f32 scale)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803EBF04
- * Size:	000118
+/**
+ * @note Address: 0x803EBF04
+ * @note Size: 0x118
  */
 bool TKchDamage::create(Arg* arg)
 {
@@ -530,10 +513,9 @@ bool TKchDamage::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803EC01C
- * Size:	000018
+/**
+ * @note Address: 0x803EC01C
+ * @note Size: 0x18
  */
 void TKchSmokeHana::setGlobalScale(f32 scale)
 {
@@ -542,10 +524,9 @@ void TKchSmokeHana::setGlobalScale(f32 scale)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803EC034
- * Size:	0000D0
+/**
+ * @note Address: 0x803EC034
+ * @note Size: 0xD0
  */
 bool TKchDownsmoke::create(Arg* arg)
 {
@@ -563,10 +544,9 @@ bool TKchDownsmoke::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803EC104
- * Size:	00002C
+/**
+ * @note Address: 0x803EC104
+ * @note Size: 0x2C
  */
 void TKchDeadHana::setGlobalScale(f32 scale)
 {
@@ -577,17 +557,15 @@ void TKchDeadHana::setGlobalScale(f32 scale)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803EC130
- * Size:	000004
+/**
+ * @note Address: 0x803EC130
+ * @note Size: 0x4
  */
 void TParticleCallBack_KchYodare::init(JPABaseEmitter*, JPABaseParticle*) { }
 
-/*
- * --INFO--
- * Address:	803EC134
- * Size:	00017C
+/**
+ * @note Address: 0x803EC134
+ * @note Size: 0x17C
  */
 void TParticleCallBack_KchYodare::execute(JPABaseEmitter* emit, JPABaseParticle* ptcl)
 {
@@ -622,10 +600,9 @@ void TParticleCallBack_KchYodare::execute(JPABaseEmitter* emit, JPABaseParticle*
 	// }
 }
 
-/*
- * --INFO--
- * Address:	803EC2B0
- * Size:	000108
+/**
+ * @note Address: 0x803EC2B0
+ * @note Size: 0x108
  */
 bool TKchYodareBaseChaseMtx::create(Arg* arg)
 {
@@ -645,10 +622,9 @@ bool TKchYodareBaseChaseMtx::create(Arg* arg)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	803EC3B8
- * Size:	000018
+/**
+ * @note Address: 0x803EC3B8
+ * @note Size: 0x18
  */
 void TKchYodareBaseChaseMtx::setGlobalScale(f32 scale)
 {
@@ -657,10 +633,9 @@ void TKchYodareBaseChaseMtx::setGlobalScale(f32 scale)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803EC3D0
- * Size:	000108
+/**
+ * @note Address: 0x803EC3D0
+ * @note Size: 0x108
  */
 void efx::THdamaSight::setPosNrm(Vector3f& pos, Vector3f& angle)
 {
@@ -750,10 +725,9 @@ lbl_803EC4C8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803EC4D8
- * Size:	0000D0
+/**
+ * @note Address: 0x803EC4D8
+ * @note Size: 0xD0
  */
 bool THdamaShell::create(efx::Arg* arg)
 {
@@ -776,10 +750,9 @@ bool THdamaShell::create(efx::Arg* arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803EC5A8
- * Size:	0001BC
+/**
+ * @note Address: 0x803EC5A8
+ * @note Size: 0x1BC
  */
 bool THdamaHit2W::create(efx::Arg* arg)
 {
@@ -932,10 +905,9 @@ lbl_803EC730:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803EC764
- * Size:	000174
+/**
+ * @note Address: 0x803EC764
+ * @note Size: 0x174
  */
 bool THdamaDeadHahen1::create(efx::Arg* arg)
 {
@@ -1065,10 +1037,9 @@ lbl_803EC8B4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803EC8D8
- * Size:	00018C
+/**
+ * @note Address: 0x803EC8D8
+ * @note Size: 0x18C
  */
 bool THdamaDeadHahen2::create(efx::Arg* arg)
 {
@@ -1208,10 +1179,9 @@ lbl_803ECA40:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803ECA64
- * Size:	000018
+/**
+ * @note Address: 0x803ECA64
+ * @note Size: 0x18
  */
 void TOdamaFur1::setGlobalScale(f32 scale)
 {
@@ -1220,10 +1190,9 @@ void TOdamaFur1::setGlobalScale(f32 scale)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803ECA7C
- * Size:	000018
+/**
+ * @note Address: 0x803ECA7C
+ * @note Size: 0x18
  */
 void TOdamaFur2::setGlobalScale(f32 scale)
 {

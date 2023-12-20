@@ -12,10 +12,9 @@ namespace PikiAI {
 
 static const char unusedName[] = "actTransport";
 
-/*
- * --INFO--
- * Address:	801A1914
- * Size:	000064
+/**
+ * @note Address: 0x801A1914
+ * @note Size: 0x64
  */
 void ActTransport::getInfo(char* infoStringBuffer)
 {
@@ -23,10 +22,9 @@ void ActTransport::getInfo(char* infoStringBuffer)
 	sprintf(infoStringBuffer, "CARRY %s", stateName[mState]);
 }
 
-/*
- * --INFO--
- * Address:	801A1978
- * Size:	0000D0
+/**
+ * @note Address: 0x801A1978
+ * @note Size: 0xD0
  */
 ActTransport::ActTransport(Game::Piki* parent)
     : Action(parent)
@@ -36,10 +34,9 @@ ActTransport::ActTransport(Game::Piki* parent)
 	mName = "Carry";
 }
 
-/*
- * --INFO--
- * Address:	801A1A48
- * Size:	00017C
+/**
+ * @note Address: 0x801A1A48
+ * @note Size: 0x17C
  */
 void ActTransport::init(ActionArg* settings)
 {
@@ -74,10 +71,9 @@ void ActTransport::init(ActionArg* settings)
 	mIsCaptured       = true;
 }
 
-/*
- * --INFO--
- * Address:	801A1BC4
- * Size:	000044
+/**
+ * @note Address: 0x801A1BC4
+ * @note Size: 0x44
  */
 void ActTransport::emotion_success()
 {
@@ -85,17 +81,15 @@ void ActTransport::emotion_success()
 	mParent->mFsm->transit(mParent, Game::PIKISTATE_Emotion, &emotionArg);
 }
 
-/*
- * --INFO--
- * Address:	801A1C08
- * Size:	000004
+/**
+ * @note Address: 0x801A1C08
+ * @note Size: 0x4
  */
 void ActTransport::emotion_fail() { }
 
-/*
- * --INFO--
- * Address:	801A1C0C
- * Size:	0003E8
+/**
+ * @note Address: 0x801A1C0C
+ * @note Size: 0x3E8
  */
 int ActTransport::exec()
 {
@@ -200,10 +194,9 @@ int ActTransport::exec()
 	return ACTEXEC_Continue;
 }
 
-/*
- * --INFO--
- * Address:	801A1FF4
- * Size:	000078
+/**
+ * @note Address: 0x801A1FF4
+ * @note Size: 0x78
  */
 void ActTransport::cleanup()
 {
@@ -216,10 +209,9 @@ void ActTransport::cleanup()
 	P2DEBUG("ActTransport stopped at {%d, %d, %d}!", position.x, position.y, position.z);
 }
 
-/*
- * --INFO--
- * Address:	801A206C
- * Size:	00011C
+/**
+ * @note Address: 0x801A206C
+ * @note Size: 0x11C
  */
 void ActTransport::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 {
@@ -260,10 +252,9 @@ void ActTransport::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801A2188
- * Size:	00009C
+/**
+ * @note Address: 0x801A2188
+ * @note Size: 0x9C
  */
 bool ActTransport::isStickLeader()
 {
@@ -282,10 +273,9 @@ bool ActTransport::isStickLeader()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	801A2224
- * Size:	0000BC
+/**
+ * @note Address: 0x801A2224
+ * @note Size: 0xBC
  */
 void ActTransport::initLift()
 {
@@ -296,10 +286,9 @@ void ActTransport::initLift()
 	mParent->startSound(mPellet, PSSE_PK_VC_LIFT_TRY, PSGame::SeMgr::SETSE_PikiCarry);
 }
 
-/*
- * --INFO--
- * Address:	801A22E0
- * Size:	000414
+/**
+ * @note Address: 0x801A22E0
+ * @note Size: 0x414
  */
 int ActTransport::execLift()
 {

@@ -20,10 +20,9 @@ static JKRHeap* theTekiHeap;
 namespace Game {
 namespace SingleGame {
 
-/*
- * --INFO--
- * Address:	80219F48
- * Size:	000150
+/**
+ * @note Address: 0x80219F48
+ * @note Size: 0x150
  */
 MainResultState::MainResultState()
     : State(SGS_MainResult)
@@ -33,10 +32,9 @@ MainResultState::MainResultState()
 	mBeforeSaveDelegate = new Delegate<MainResultState>(this, beforeSave);
 }
 
-/*
- * --INFO--
- * Address:	8021A0F8
- * Size:	000104
+/**
+ * @note Address: 0x8021A0F8
+ * @note Size: 0x104
  */
 void MainResultState::init(SingleGameSection* game, StateArg* arg)
 {
@@ -61,17 +59,15 @@ void MainResultState::init(SingleGameSection* game, StateArg* arg)
 	mPelletMgr = gameSystem->detachObjectMgr_reuse(pelletMgr);
 }
 
-/*
- * --INFO--
- * Address:	8021A1FC
- * Size:	000024
+/**
+ * @note Address: 0x8021A1FC
+ * @note Size: 0x24
  */
 void MainResultState::beforeSave() { playData->setPikminCounts_Yesterday(); }
 
-/*
- * --INFO--
- * Address:	8021A220
- * Size:	000088
+/**
+ * @note Address: 0x8021A220
+ * @note Size: 0x88
  */
 void MainResultState::loadResource()
 {
@@ -87,20 +83,18 @@ void MainResultState::loadResource()
 	shadowMgr->killAll();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000148
+/**
+ * @note Address: N/A
+ * @note Size: 0x148
  */
 unknown MainResultState::open2D(SingleGameSection* game)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8021A2A8
- * Size:	0003E8
+/**
+ * @note Address: 0x8021A2A8
+ * @note Size: 0x3E8
  */
 void MainResultState::exec(SingleGameSection* game)
 {
@@ -489,10 +483,9 @@ lbl_8021A67C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8021A690
- * Size:	000030
+/**
+ * @note Address: 0x8021A690
+ * @note Size: 0x30
  */
 void MainResultState::onMovieDone(SingleGameSection*, MovieConfig*, u32, u32)
 {
@@ -501,10 +494,9 @@ void MainResultState::onMovieDone(SingleGameSection*, MovieConfig*, u32, u32)
 	PSMCancelToPauseOffMainBgm();
 }
 
-/*
- * --INFO--
- * Address:	8021A6C0
- * Size:	00035C
+/**
+ * @note Address: 0x8021A6C0
+ * @note Size: 0x35C
  */
 void MainResultState::createResultNodes()
 {
@@ -814,10 +806,9 @@ lbl_8021A9E8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8021AA1C
- * Size:	000094
+/**
+ * @note Address: 0x8021AA1C
+ * @note Size: 0x94
  */
 void MainResultState::draw(SingleGameSection* game, Graphics& gfx)
 {
@@ -829,10 +820,9 @@ void MainResultState::draw(SingleGameSection* game, Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8021AAB0
- * Size:	00007C
+/**
+ * @note Address: 0x8021AAB0
+ * @note Size: 0x7C
  */
 void MainResultState::cleanup(SingleGameSection* game)
 {

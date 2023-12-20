@@ -6,17 +6,15 @@
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	80324DB4
- * Size:	00003C
+/**
+ * @note Address: 0x80324DB4
+ * @note Size: 0x3C
  */
 Save::Save() { }
 
-/*
- * --INFO--
- * Address:	80324DF0
- * Size:	000078
+/**
+ * @note Address: 0x80324DF0
+ * @note Size: 0x78
  */
 void Save::doUserCallBackFunc(Resource::MgrCommand*)
 {
@@ -29,17 +27,15 @@ void Save::doUserCallBackFunc(Resource::MgrCommand*)
 	doCreateObjUserCallBackFunc(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80324E68
- * Size:	000030
+/**
+ * @note Address: 0x80324E68
+ * @note Size: 0x30
  */
 void Save::doCreateObj(JKRArchive*) { setColorBG(0, 0, 255, 255); }
 
-/*
- * --INFO--
- * Address:	80324E98
- * Size:	000068
+/**
+ * @note Address: 0x80324E98
+ * @note Size: 0x68
  */
 void Save::doCreateObjUserCallBackFunc(JKRArchive* archive)
 {

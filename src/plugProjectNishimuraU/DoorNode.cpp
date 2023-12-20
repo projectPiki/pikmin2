@@ -2,10 +2,9 @@
 
 namespace Game {
 namespace Cave {
-/*
- * --INFO--
- * Address:	8024B874
- * Size:	000014
+/**
+ * @note Address: 0x8024B874
+ * @note Size: 0x14
  */
 Adjust::Adjust()
     : mDoorID(-1)
@@ -14,24 +13,21 @@ Adjust::Adjust()
 {
 }
 
-/*
- * --INFO--
- * Address:	8024B888
- * Size:	000044
+/**
+ * @note Address: 0x8024B888
+ * @note Size: 0x44
  */
 AdjustNode::AdjustNode() { mAdjust = nullptr; }
 
-/*
- * --INFO--
- * Address:	8024B8CC
- * Size:	00004C
+/**
+ * @note Address: 0x8024B8CC
+ * @note Size: 0x4C
  */
 AdjustNode::AdjustNode(Adjust* adj) { mAdjust = adj; }
 
-/*
- * --INFO--
- * Address:	8024B918
- * Size:	000010
+/**
+ * @note Address: 0x8024B918
+ * @note Size: 0x10
  */
 Door::Door()
     : mDirection(-1)
@@ -39,17 +35,15 @@ Door::Door()
 {
 }
 
-/*
- * --INFO--
- * Address:	8024B928
- * Size:	000050
+/**
+ * @note Address: 0x8024B928
+ * @note Size: 0x50
  */
 DoorNode::DoorNode() { reset(); }
 
-/*
- * --INFO--
- * Address:	8024B978
- * Size:	000064
+/**
+ * @note Address: 0x8024B978
+ * @note Size: 0x64
  */
 DoorNode::DoorNode(Door& door)
 {
@@ -57,10 +51,9 @@ DoorNode::DoorNode(Door& door)
 	mDoor.mOffset    = door.mOffset;
 }
 
-/*
- * --INFO--
- * Address:	8024B9DC
- * Size:	000070
+/**
+ * @note Address: 0x8024B9DC
+ * @note Size: 0x70
  */
 bool DoorNode::isDoorAdjust(DoorNode* other)
 {

@@ -58,9 +58,9 @@ const extern char DEM_GER_DiscReadFail[] = { "Diese Game Disc kann nicht gelesen
 
 const extern char DEM_GER_DiscAskInsert[] = { "Bitte legen Sie die PIKMIN 2 Game Disc ein." };
 
-/*
- * Der Disc-Deckel ist geï¿½FFnet.
- * Bitte den Disc-Deckel schlieï¿½en,
+/**
+ * Der Disc-Deckel ist ge?¿½FFnet.
+ * Bitte den Disc-Deckel schlie?¿½en,
  * um mit dem Spiel fortzufahren.
  */
 const extern u32 DEM_GER_DiscCoverOpen[]

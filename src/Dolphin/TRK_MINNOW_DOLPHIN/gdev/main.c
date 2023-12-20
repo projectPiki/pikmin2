@@ -9,10 +9,9 @@ static CircleBuffer gRecvCB;
 static u8 gRecvBuf[GDEV_BUF_SIZE];
 static BOOL gIsInitialized;
 
-/*
- * --INFO--
- * Address:	800C14C0
- * Size:	000088
+/**
+ * @note Address: 0x800C14C0
+ * @note Size: 0x88
  */
 BOOL gdev_cc_initialize(vu8** inputPendingPtrRef, AmcEXICallback monitorCallback)
 {
@@ -23,17 +22,15 @@ BOOL gdev_cc_initialize(vu8** inputPendingPtrRef, AmcEXICallback monitorCallback
 	return FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800C14B8
- * Size:	000008
+/**
+ * @note Address: 0x800C14B8
+ * @note Size: 0x8
  */
 BOOL gdev_cc_shutdown() { return FALSE; }
 
-/*
- * --INFO--
- * Address:	800C1494
- * Size:	000024
+/**
+ * @note Address: 0x800C1494
+ * @note Size: 0x24
  */
 int gdev_cc_open()
 {
@@ -45,17 +42,15 @@ int gdev_cc_open()
 	return FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800C148C
- * Size:	000008
+/**
+ * @note Address: 0x800C148C
+ * @note Size: 0x8
  */
 BOOL gdev_cc_close() { return FALSE; }
 
-/*
- * --INFO--
- * Address:	800C1398
- * Size:	0000F4
+/**
+ * @note Address: 0x800C1398
+ * @note Size: 0xF4
  */
 u32 gdev_cc_read(u8* data, u32 size)
 {
@@ -93,10 +88,9 @@ u32 gdev_cc_read(u8* data, u32 size)
 	return retval;
 }
 
-/*
- * --INFO--
- * Address:	800C12D8
- * Size:	0000C0
+/**
+ * @note Address: 0x800C12D8
+ * @note Size: 0xC0
  */
 int gdev_cc_write(int bytes, int length)
 {
@@ -127,10 +121,9 @@ int gdev_cc_write(int bytes, int length)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	800C12B4
- * Size:	000024
+/**
+ * @note Address: 0x800C12B4
+ * @note Size: 0x24
  */
 BOOL gdev_cc_pre_continue()
 {
@@ -138,10 +131,9 @@ BOOL gdev_cc_pre_continue()
 	return FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800C1290
- * Size:	000024
+/**
+ * @note Address: 0x800C1290
+ * @note Size: 0x24
  */
 BOOL gdev_cc_post_stop()
 {
@@ -149,10 +141,9 @@ BOOL gdev_cc_post_stop()
 	return FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800C1220
- * Size:	000070
+/**
+ * @note Address: 0x800C1220
+ * @note Size: 0x70
  */
 int gdev_cc_peek()
 {
@@ -173,10 +164,9 @@ int gdev_cc_peek()
 	return poll;
 }
 
-/*
- * --INFO--
- * Address:	800C11FC
- * Size:	000024
+/**
+ * @note Address: 0x800C11FC
+ * @note Size: 0x24
  */
 BOOL gdev_cc_initinterrupts()
 {

@@ -41,10 +41,9 @@ static u8* firstSrcData();
 static u8* nextSrcData(u8*);
 static u32 dmaBufferFlush(u32);
 
-/*
- * --INFO--
- * Address:	8001D6F0
- * Size:	00009C
+/**
+ * @note Address: 0x8001D6F0
+ * @note Size: 0x9C
  * loadToAram__16JKRDvdAramRipperFPCcUl15JKRExpandSwitchUlUlPUl
  */
 JKRAramBlock* JKRDvdAramRipper::loadToAram(const char* path, u32 addr, JKRExpandSwitch expandSwitch, u32 offset, u32 size, u32* sizePtr)
@@ -56,10 +55,9 @@ JKRAramBlock* JKRDvdAramRipper::loadToAram(const char* path, u32 addr, JKRExpand
 	return loadToAram(&file, addr, expandSwitch, offset, size, sizePtr);
 }
 
-/*
- * --INFO--
- * Address:	8001D78C
- * Size:	00009C
+/**
+ * @note Address: 0x8001D78C
+ * @note Size: 0x9C
  * loadToAram__16JKRDvdAramRipperFlUl15JKRExpandSwitchUlUlPUl
  */
 JKRAramBlock* JKRDvdAramRipper::loadToAram(s32 entryNum, u32 addr, JKRExpandSwitch expandSwitch, u32 offset, u32 size, u32* sizePtr)
@@ -71,10 +69,9 @@ JKRAramBlock* JKRDvdAramRipper::loadToAram(s32 entryNum, u32 addr, JKRExpandSwit
 	return loadToAram(&file, addr, expandSwitch, offset, size, sizePtr);
 }
 
-/*
- * --INFO--
- * Address:	8001D828
- * Size:	0000A4
+/**
+ * @note Address: 0x8001D828
+ * @note Size: 0xA4
  * loadToAram__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchUlUlPUl
  */
 JKRAramBlock* JKRDvdAramRipper::loadToAram(JKRDvdFile* file, u32 addr, JKRExpandSwitch expandSwitch, u32 offset, u32 size, u32* sizePtr)
@@ -94,10 +91,9 @@ JKRAramBlock* JKRDvdAramRipper::loadToAram(JKRDvdFile* file, u32 addr, JKRExpand
 	return outBlock;
 }
 
-/*
- * --INFO--
- * Address:	8001D8CC
- * Size:	0000AC
+/**
+ * @note Address: 0x8001D8CC
+ * @note Size: 0xAC
  * loadToAram_Async__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchPFUl_vUlUlPUl
  */
 JKRADCommand* JKRDvdAramRipper::loadToAram_Async(JKRDvdFile* file, u32 addr, JKRExpandSwitch expandSwitch, LoadCallback callback,
@@ -119,10 +115,9 @@ JKRADCommand* JKRDvdAramRipper::loadToAram_Async(JKRDvdFile* file, u32 addr, JKR
 	return command;
 }
 
-/*
- * --INFO--
- * Address:	8001D978
- * Size:	000350
+/**
+ * @note Address: 0x8001D978
+ * @note Size: 0x350
  */
 JKRADCommand* JKRDvdAramRipper::callCommand_Async(JKRADCommand* command)
 {
@@ -232,10 +227,9 @@ JKRADCommand* JKRDvdAramRipper::callCommand_Async(JKRADCommand* command)
 	return isCmdTrdNull == true ? command : nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8001DD38
- * Size:	0000E0
+/**
+ * @note Address: 0x8001DD38
+ * @note Size: 0xE0
  */
 bool JKRDvdAramRipper::syncAram(JKRADCommand* command, BOOL isNonBlocking)
 {
@@ -260,10 +254,9 @@ bool JKRDvdAramRipper::syncAram(JKRADCommand* command, BOOL isNonBlocking)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8001DE18
- * Size:	000040
+/**
+ * @note Address: 0x8001DE18
+ * @note Size: 0x40
  * __ct__12JKRADCommandFv
  */
 JKRADCommand::JKRADCommand()
@@ -273,10 +266,9 @@ JKRADCommand::JKRADCommand()
 {
 }
 
-/*
- * --INFO--
- * Address:	8001DE58
- * Size:	00008C
+/**
+ * @note Address: 0x8001DE58
+ * @note Size: 0x8C
  * __dt__12JKRADCommandFv
  */
 JKRADCommand::~JKRADCommand()
@@ -286,10 +278,9 @@ JKRADCommand::~JKRADCommand()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8001DEE4
- * Size:	000178
+/**
+ * @note Address: 0x8001DEE4
+ * @note Size: 0x178
  */
 int JKRDecompressFromDVDToAram(JKRDvdFile* dvdFile, u32 dmaAddr, u32 fileSize, u32 decompressedSize, u32 inFileOffset, u32 inSrcOffset,
                                u32* inTSPtr)
@@ -335,10 +326,9 @@ int JKRDecompressFromDVDToAram(JKRDvdFile* dvdFile, u32 dmaAddr, u32 fileSize, u
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	8001E05C
- * Size:	000280
+/**
+ * @note Address: 0x8001E05C
+ * @note Size: 0x280
  */
 static int decompSZS_subroutine(u8* src, u32 dmaAddr)
 {
@@ -446,10 +436,9 @@ static int decompSZS_subroutine(u8* src, u32 dmaAddr)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	8001E2DC
- * Size:	0000B4
+/**
+ * @note Address: 0x8001E2DC
+ * @note Size: 0xB4
  */
 static u8* firstSrcData()
 {
@@ -472,10 +461,9 @@ static u8* firstSrcData()
 	return buf;
 }
 
-/*
- * --INFO--
- * Address:	8001E390
- * Size:	0000EC
+/**
+ * @note Address: 0x8001E390
+ * @note Size: 0xEC
  */
 static u8* nextSrcData(u8* src)
 {
@@ -515,10 +503,9 @@ static u8* nextSrcData(u8* src)
 	return buf;
 }
 
-/*
- * --INFO--
- * Address:	8001E47C
- * Size:	000068
+/**
+ * @note Address: 0x8001E47C
+ * @note Size: 0x68
  */
 static u32 dmaBufferFlush(u32 src)
 {

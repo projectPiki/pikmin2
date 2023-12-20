@@ -11,10 +11,9 @@ static const char* SDATA2_FIX = "";
 #endif
 
 namespace ARAM {
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 inline Node::Node()
     : CNode("")
@@ -69,24 +68,21 @@ void* Node::aramToMainRam(u8* buf, u32 address, u32 offset, JKRExpandSwitch expa
 	return addr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 inline void Node::dump() { }
 
-/*
- * --INFO--
- * Address:	80432B18
- * Size:	000030
+/**
+ * @note Address: 0x80432B18
+ * @note Size: 0x30
  */
 void Mgr::init() { new Mgr(); }
 
-/*
- * --INFO--
- * Address:	80432B48
- * Size:	000080
+/**
+ * @note Address: 0x80432B48
+ * @note Size: 0x80
  */
 Mgr::Mgr()
     : mRootNode("root")
@@ -95,10 +91,9 @@ Mgr::Mgr()
 	gAramMgr = this;
 }
 
-/*
- * --INFO--
- * Address:	80432BC8
- * Size:	00024C
+/**
+ * @note Address: 0x80432BC8
+ * @note Size: 0x24C
  */
 u32 Mgr::dvdToAram(char const* name, bool forceAddNode)
 {
@@ -135,10 +130,9 @@ u32 Mgr::dvdToAram(char const* name, bool forceAddNode)
 	return success;
 }
 
-/*
- * --INFO--
- * Address:	80432E74
- * Size:	000154
+/**
+ * @note Address: 0x80432E74
+ * @note Size: 0x154
  * TODO: Match
  */
 inline u32* validPointer(u32* p)
@@ -165,10 +159,9 @@ void* Mgr::aramToMainRam(char const* name, u8* buf, u32 address, u32 offset, JKR
 	return mem;
 }
 
-/*
- * --INFO--
- * Address:	80432FC8
- * Size:	0000A0
+/**
+ * @note Address: 0x80432FC8
+ * @note Size: 0xA0
  */
 void ARAM::Mgr::dump()
 {
@@ -189,10 +182,9 @@ void ARAM::Mgr::dump()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80433068
- * Size:	000070
+/**
+ * @note Address: 0x80433068
+ * @note Size: 0x70
  */
 Node* ARAM::Mgr::search(char const* str)
 {

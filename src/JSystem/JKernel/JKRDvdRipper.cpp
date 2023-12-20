@@ -47,11 +47,9 @@ int JKRDvdRipper::sSZSBufferSize = 0x400;
  * @param fileCompression Pointer to store the file compression type.
  * @param newSize Pointer to store the new size of the file data.
  * @return A pointer to the loaded file data in main RAM, or nullptr if loading failed.
- */
-/*
- * --INFO--
- * Address:	8001F188
- * Size:	0000B4
+ *
+ * @note Address: 0x8001F188
+ * @note Size: 0xB4
  */
 void* JKRDvdRipper::loadToMainRAM(const char* path, u8* fileData, JKRExpandSwitch expSwitch, u32 fileSize, JKRHeap* heap,
                                   EAllocDirection allocDir, u32 startOffset, int* fileCompression, u32* newSize)
@@ -76,11 +74,9 @@ void* JKRDvdRipper::loadToMainRAM(const char* path, u8* fileData, JKRExpandSwitc
  * @param fileCompression Pointer to store the file compression type.
  * @param newSize Pointer to store the new size of the file data.
  * @return A pointer to the loaded file data in the main RAM, or nullptr if loading failed.
- */
-/*
- * --INFO--
- * Address:	8001F23C
- * Size:	0000B4
+ *
+ * @note Address: 0x8001F23C
+ * @note Size: 0xB4
  */
 void* JKRDvdRipper::loadToMainRAM(long entryNum, u8* fileData, JKRExpandSwitch expSwitch, u32 fileSize, JKRHeap* heap,
                                   EAllocDirection allocDir, u32 startOffset, int* fileCompression, u32* newSize)
@@ -105,11 +101,9 @@ void* JKRDvdRipper::loadToMainRAM(long entryNum, u8* fileData, JKRExpandSwitch e
  * @param fileCompression A pointer to store the compression type of the loaded file.
  * @param newSize A pointer to store the size of the loaded file after decompression.
  * @return A pointer to the loaded file data, or nullptr if loading failed.
- */
-/*
- * --INFO--
- * Address:	8001F2F0
- * Size:	0004AC
+ *
+ * @note Address: 0x8001F2F0
+ * @note Size: 0x4AC
  * loadToMainRAM__12JKRDvdRipperFP10JKRDvdFilePUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
  */
 void* JKRDvdRipper::loadToMainRAM(JKRDvdFile* jkrDvdFile, u8* file, JKRExpandSwitch expandSwitch, u32 fileSize, JKRHeap* heap,
@@ -297,10 +291,9 @@ void* JKRDvdRipper::loadToMainRAM(JKRDvdFile* jkrDvdFile, u8* file, JKRExpandSwi
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8001F79C
- * Size:	000174
+/**
+ * @note Address: 0x8001F79C
+ * @note Size: 0x174
  */
 int JKRDecompressFromDVD(JKRDvdFile* file, void* destinationBuf, u32 size, u32 inMaxDest, u32 inFileOffset, u32 inSrcOffset, u32* inTsPtr)
 {
@@ -353,10 +346,9 @@ int JKRDecompressFromDVD(JKRDvdFile* file, void* destinationBuf, u32 size, u32 i
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	8001F910
- * Size:	0002B8
+/**
+ * @note Address: 0x8001F910
+ * @note Size: 0x2B8
  */
 static int decompSZS_subroutine(u8* src, u8* dest)
 {
@@ -503,10 +495,9 @@ static int decompSZS_subroutine(u8* src, u8* dest)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	8001FBC8
- * Size:	0000D4
+/**
+ * @note Address: 0x8001FBC8
+ * @note Size: 0xD4
  */
 static u8* firstSrcData()
 {
@@ -532,10 +523,9 @@ static u8* firstSrcData()
 	return buf;
 }
 
-/*
- * --INFO--
- * Address:	8001FC9C
- * Size:	00010C
+/**
+ * @note Address: 0x8001FC9C
+ * @note Size: 0x10C
  */
 static u8* nextSrcData(u8* src)
 {

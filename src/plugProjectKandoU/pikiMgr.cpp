@@ -21,10 +21,9 @@ bool PikiMgr::throwPikiDebug;
 PikiMgr* pikiMgr;
 int PikiMgr::mBirthMode;
 
-/*
- * --INFO--
- * Address:	8015CD14
- * Size:	0000B4
+/**
+ * @note Address: 0x8015CD14
+ * @note Size: 0xB4
  */
 PikiMgr::PikiMgr()
 {
@@ -42,10 +41,9 @@ PikiMgr::PikiMgr()
 	mFlags[1] = 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
+/**
+ * @note Address: N/A
+ * @note Size: 0x50
  */
 void PikiMgr::init()
 {
@@ -54,10 +52,9 @@ void PikiMgr::init()
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8015E68C
- * Size:	000038
+/**
+ * @note Address: 0x8015E68C
+ * @note Size: 0x38
  */
 void PikiMgr::resetMgr()
 {
@@ -66,10 +63,9 @@ void PikiMgr::resetMgr()
 	mFlags[0]   = 0;
 }
 
-/*
- * --INFO--
- * Address:	8015E6C4
- * Size:	000064
+/**
+ * @note Address: 0x8015E6C4
+ * @note Size: 0x64
  */
 void PikiMgr::onAlloc()
 {
@@ -78,10 +74,9 @@ void PikiMgr::onAlloc()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8015E738
- * Size:	000060
+/**
+ * @note Address: 0x8015E738
+ * @note Size: 0x60
  */
 void PikiMgr::setupPiki(Piki* piki)
 {
@@ -90,10 +85,9 @@ void PikiMgr::setupPiki(Piki* piki)
 	piki->mParms     = mParms;
 }
 
-/*
- * --INFO--
- * Address:	8015E798
- * Size:	000324
+/**
+ * @note Address: 0x8015E798
+ * @note Size: 0x324
  */
 Piki* PikiMgr::birth()
 {
@@ -154,10 +148,9 @@ Piki* PikiMgr::birth()
 	return MonoObjectMgr::birth();
 }
 
-/*
- * --INFO--
- * Address:	8015EABC
- * Size:	0000CC
+/**
+ * @note Address: 0x8015EABC
+ * @note Size: 0xCC
  */
 void PikiMgr::loadResources(int modelFlag)
 {
@@ -172,10 +165,9 @@ void PikiMgr::loadResources(int modelFlag)
 	load(modelFlag);
 }
 
-/*
- * --INFO--
- * Address:	8015EBD8
- * Size:	000298
+/**
+ * @note Address: 0x8015EBD8
+ * @note Size: 0x298
  */
 void PikiMgr::load(int modelFlag)
 {
@@ -212,10 +204,9 @@ void PikiMgr::load(int modelFlag)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8015EE70
- * Size:	000098
+/**
+ * @note Address: 0x8015EE70
+ * @note Size: 0x98
  */
 void PikiMgr::loadBmd(int id, char* name)
 {
@@ -227,10 +218,9 @@ void PikiMgr::loadBmd(int id, char* name)
 	(&mBluPikiModel)[id] = data;
 }
 
-/*
- * --INFO--
- * Address:	8015EF08
- * Size:	00004C
+/**
+ * @note Address: 0x8015EF08
+ * @note Size: 0x4C
  */
 void PikiMgr::createModelCallback(SysShape::Model* model)
 {
@@ -239,24 +229,21 @@ void PikiMgr::createModelCallback(SysShape::Model* model)
 	model->mJ3dModel->lock();
 }
 
-/*
- * --INFO--
- * Address:	8015EF54
- * Size:	000024
+/**
+ * @note Address: 0x8015EF54
+ * @note Size: 0x24
  */
 SysShape::Model* PikiMgr::createModel(int id, int num) { return mModelMgr->createModel(id, num); }
 
-/*
- * --INFO--
- * Address:	8015EF78
- * Size:	000008
+/**
+ * @note Address: 0x8015EF78
+ * @note Size: 0x8
  */
 SysShape::Model* PikiMgr::createLeafModel(int id, int num) { return nullptr; }
 
-/*
- * --INFO--
- * Address:	8015EF80
- * Size:	000280
+/**
+ * @note Address: 0x8015EF80
+ * @note Size: 0x280
  */
 void PikiMgr::setMovieDraw(bool drawOn)
 {
@@ -467,10 +454,9 @@ lbl_8015F1E0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8015F200
- * Size:	000084
+/**
+ * @note Address: 0x8015F200
+ * @note Size: 0x84
  */
 void PikiMgr::debugShapeDL(char* text)
 {
@@ -481,10 +467,9 @@ void PikiMgr::debugShapeDL(char* text)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8015F284
- * Size:	000198
+/**
+ * @note Address: 0x8015F284
+ * @note Size: 0x198
  */
 void PikiMgr::doSimpleDraw(Viewport* vp)
 {
@@ -645,10 +630,9 @@ lbl_8015F3F0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8015F41C
- * Size:	0001D8
+/**
+ * @note Address: 0x8015F41C
+ * @note Size: 0x1D8
  */
 void PikiMgr::doAnimation()
 {
@@ -684,10 +668,9 @@ void PikiMgr::doAnimation()
 	sys->mTimers->_stop("doaPIKI");
 }
 
-/*
- * --INFO--
- * Address:	8015F5F4
- * Size:	000058
+/**
+ * @note Address: 0x8015F5F4
+ * @note Size: 0x58
  */
 void PikiMgr::setVsXlu(int p1, bool p2)
 {
@@ -706,10 +689,9 @@ void PikiMgr::setVsXlu(int p1, bool p2)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8015F64C
- * Size:	0001FC
+/**
+ * @note Address: 0x8015F64C
+ * @note Size: 0x1FC
  */
 void PikiMgr::doEntry()
 {
@@ -905,17 +887,15 @@ lbl_8015F828:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8015F848
- * Size:	000004
+/**
+ * @note Address: 0x8015F848
+ * @note Size: 0x4
  */
 void PikiMgr::setupSoundViewerAndBas() { }
 
-/*
- * --INFO--
- * Address:	8015F84C
- * Size:	000074
+/**
+ * @note Address: 0x8015F84C
+ * @note Size: 0x74
  */
 int PikiMgr::getColorTransportScale(int color)
 {
@@ -927,10 +907,9 @@ int PikiMgr::getColorTransportScale(int color)
 	return 1;
 }
 
-/*
- * --INFO--
- * Address:	8015F8C0
- * Size:	00003C
+/**
+ * @note Address: 0x8015F8C0
+ * @note Size: 0x3C
  */
 void PikiMgr::allocStorePikmins()
 {
@@ -938,10 +917,9 @@ void PikiMgr::allocStorePikmins()
 	clearStorePikmins();
 }
 
-/*
- * --INFO--
- * Address:	8015F8FC
- * Size:	00006C
+/**
+ * @note Address: 0x8015F8FC
+ * @note Size: 0x6C
  */
 void PikiMgr::clearStorePikmins()
 {
@@ -950,10 +928,9 @@ void PikiMgr::clearStorePikmins()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0002C0
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C0
  */
 // void saveStorePikmins__Q24Game7PikiMgrFP23Condition<Game::Piki>()
 void PikiMgr::saveStorePikmins(Condition<Piki>*)
@@ -961,20 +938,18 @@ void PikiMgr::saveStorePikmins(Condition<Piki>*)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C8
+/**
+ * @note Address: N/A
+ * @note Size: 0xC8
  */
 void PikiMgr::getStorePikmin(int, int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8015F968
- * Size:	00034C
+/**
+ * @note Address: 0x8015F968
+ * @note Size: 0x34C
  */
 // void moveAllPikmins__Q24Game7PikiMgrFR10Vector3f
 // fP23Condition<Game::Piki>()
@@ -1234,10 +1209,9 @@ lbl_8015FC58:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8015FCB4
- * Size:	000298
+/**
+ * @note Address: 0x8015FCB4
+ * @note Size: 0x298
  */
 void PikiMgr::forceEnterPikmins(u8 check)
 {
@@ -1442,10 +1416,9 @@ lbl_8015FF14:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8015FF4C
- * Size:	00060C
+/**
+ * @note Address: 0x8015FF4C
+ * @note Size: 0x60C
  */
 void PikiMgr::killDayEndPikmins(PikiContainer& container)
 {
@@ -1931,10 +1904,9 @@ lbl_8016050C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80160558
- * Size:	000258
+/**
+ * @note Address: 0x80160558
+ * @note Size: 0x258
  */
 void PikiMgr::killAllPikmins()
 {
@@ -1956,10 +1928,9 @@ void PikiMgr::killAllPikmins()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801607B0
- * Size:	0002C8
+/**
+ * @note Address: 0x801607B0
+ * @note Size: 0x2C8
  */
 void PikiMgr::caveSaveFormationPikmins(bool doKill)
 {
@@ -2194,10 +2165,9 @@ lbl_80160A48:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80160A78
- * Size:	0002C4
+/**
+ * @note Address: 0x80160A78
+ * @note Size: 0x2C4
  */
 void PikiMgr::caveSaveAllPikmins(bool check1, bool check2)
 {
@@ -2221,20 +2191,18 @@ void PikiMgr::caveSaveAllPikmins(bool check1, bool check2)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000290
+/**
+ * @note Address: N/A
+ * @note Size: 0x290
  */
 void PikiMgr::saveFormationPikmins(PikiContainer&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80160D3C
- * Size:	0002A8
+/**
+ * @note Address: 0x80160D3C
+ * @note Size: 0x2A8
  */
 void PikiMgr::saveAllPikmins(PikiContainer& container)
 {

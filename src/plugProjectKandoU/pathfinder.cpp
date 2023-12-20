@@ -8,10 +8,9 @@ namespace Game {
 Pathfinder* testPathfinder;
 Game::RouteMgr* Game::PathfindContext::routeMgr;
 
-/*
- * --INFO--
- * Address:	801A35EC
- * Size:	000060
+/**
+ * @note Address: 0x801A35EC
+ * @note Size: 0x60
  */
 Pathfinder::Pathfinder()
 {
@@ -22,10 +21,9 @@ Pathfinder::Pathfinder()
 	mCounter           = 1;
 }
 
-/*
- * --INFO--
- * Address:	801A364C
- * Size:	0000C4
+/**
+ * @note Address: 0x801A364C
+ * @note Size: 0xC4
  */
 void Pathfinder::create(int contextCount, Game::RouteMgr* routeMgr)
 {
@@ -40,17 +38,15 @@ void Pathfinder::create(int contextCount, Game::RouteMgr* routeMgr)
 	sys->heapStatusEnd("pathfinder");
 }
 
-/*
- * --INFO--
- * Address:	801A3710
- * Size:	000020
+/**
+ * @note Address: 0x801A3710
+ * @note Size: 0x20
  */
 // AStarContext::AStarContext() { }
 
-/*
- * --INFO--
- * Address:	801A3730
- * Size:	000124
+/**
+ * @note Address: 0x801A3730
+ * @note Size: 0x124
  */
 void Pathfinder::update()
 {
@@ -74,20 +70,18 @@ void Pathfinder::update()
 	sys->mTimers->_stop("path");
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void Pathfinder::getFreeContext()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 AStarContext* Pathfinder::getContext(u32 handle)
 {
@@ -98,10 +92,10 @@ AStarContext* Pathfinder::getContext(u32 handle)
 	}
 	return nullptr;
 }
-/*
- * --INFO--
- * Address:	801A3854
- * Size:	00014C
+
+/**
+ * @note Address: 0x801A3854
+ * @note Size: 0x14C
  */
 int Pathfinder::start(PathfindRequest& request)
 {
@@ -129,10 +123,9 @@ int Pathfinder::start(PathfindRequest& request)
 	return contextNum;
 }
 
-/*
- * --INFO--
- * Address:	801A39A0
- * Size:	0000C0
+/**
+ * @note Address: 0x801A39A0
+ * @note Size: 0xC0
  */
 int Pathfinder::makepath(u32 handle, Game::PathNode** path)
 {
@@ -152,20 +145,18 @@ int Pathfinder::makepath(u32 handle, Game::PathNode** path)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C8
+/**
+ * @note Address: N/A
+ * @note Size: 0xC8
  */
 int Pathfinder::makepath(u32, s16*, int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	801A3A60
- * Size:	000070
+/**
+ * @note Address: 0x801A3A60
+ * @note Size: 0x70
  */
 void Pathfinder::release(u32 handle)
 {
@@ -176,10 +167,9 @@ void Pathfinder::release(u32 handle)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801A3AD0
- * Size:	000098
+/**
+ * @note Address: 0x801A3AD0
+ * @note Size: 0x98
  */
 int Pathfinder::check(u32 handle)
 {
@@ -191,10 +181,9 @@ int Pathfinder::check(u32 handle)
 	return PATHFIND_NoHandle;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 void PathNode::initNode()
 {
@@ -207,10 +196,9 @@ void PathNode::initNode()
 	mNext     = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  */
 void PathNode::add(Game::PathNode* newNode)
 {
@@ -227,50 +215,45 @@ void PathNode::add(Game::PathNode* newNode)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000098
+/**
+ * @note Address: N/A
+ * @note Size: 0x98
  */
 void PathNode::del()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 void PathNode::dump(char*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000DC
+/**
+ * @note Address: N/A
+ * @note Size: 0xDC
  */
 void PathNode::pop()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  */
 void PathNode::countLinks(Game::PathNode**)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	801A3B68
- * Size:	000078
+/**
+ * @note Address: 0x801A3B68
+ * @note Size: 0x78
  */
 void AStarContext::init(RouteMgr* mgr, int wpNum)
 {
@@ -287,24 +270,21 @@ void AStarContext::init(RouteMgr* mgr, int wpNum)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801A3BE0
- * Size:	00000C
+/**
+ * @note Address: 0x801A3BE0
+ * @note Size: 0xC
  */
 AStarPathfinder::AStarPathfinder() { mContext = nullptr; }
 
-/*
- * --INFO--
- * Address:	801A3BEC
- * Size:	000008
+/**
+ * @note Address: 0x801A3BEC
+ * @note Size: 0x8
  */
 void AStarPathfinder::setContext(AStarContext* context) { mContext = context; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A0
+/**
+ * @note Address: N/A
+ * @note Size: 0xA0
  */
 PathNode* AStarContext::getNode(s16 wpID)
 {
@@ -325,30 +305,27 @@ PathNode* AStarContext::getNode(s16 wpID)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000558
+/**
+ * @note Address: N/A
+ * @note Size: 0x558
  */
 void AStarPathfinder::search(s16, s16, s16*, int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00057C
+/**
+ * @note Address: N/A
+ * @note Size: 0x57C
  */
 void AStarPathfinder::search(Game::AStarContext*, s16, s16, s16*, int, int, int&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	801A3BF4
- * Size:	00017C
+/**
+ * @note Address: 0x801A3BF4
+ * @note Size: 0x17C
  */
 void AStarPathfinder::initsearch(Game::AStarContext* context)
 {
@@ -490,11 +467,9 @@ lbl_801A3D54:
  * @param maxIterations The maximum number of iterations to perform.
  * @param path A pointer to store the resulting path.
  * @return Returns 0 if a path is found, 1 if no path is found, and 2 if the maximum number of iterations is reached.
- */
-/*
- * --INFO--
- * Address:	801A3D70
- * Size:	0004B8
+ *
+ * @note Address: 0x801A3D70
+ * @note Size: 0x4B8
  */
 int AStarPathfinder::search(Game::AStarContext* context, int maxIterations, Game::PathNode** path)
 {
@@ -975,10 +950,9 @@ lbl_801A4214:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801A4228
- * Size:	0000B4
+/**
+ * @note Address: 0x801A4228
+ * @note Size: 0xB4
  */
 f32 AStarPathfinder::estimate(s16 wpID1, s16 wpID2)
 {
@@ -990,10 +964,9 @@ f32 AStarPathfinder::estimate(s16 wpID1, s16 wpID2)
 	return _distanceBetween(pos1, pos2);
 }
 
-/*
- * --INFO--
- * Address:	801A42DC
- * Size:	000034
+/**
+ * @note Address: 0x801A42DC
+ * @note Size: 0x34
  */
 int AStarContext::makepath(PathNode* newNode, PathNode** nodePtr)
 {
@@ -1011,10 +984,9 @@ int AStarContext::makepath(PathNode* newNode, PathNode** nodePtr)
 	return i;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
+/**
+ * @note Address: N/A
+ * @note Size: 0x70
  */
 void AStarPathfinder::constructPath(Game::PathNode*, s16*, int)
 {

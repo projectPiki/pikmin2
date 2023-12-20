@@ -2,10 +2,9 @@
 #include "JSystem/J2D/J2DGrafContext.h"
 #include "Dolphin/math.h"
 
-/*
- * --INFO--
- * Address:	80036074
- * Size:	0000AC
+/**
+ * @note Address: 0x80036074
+ * @note Size: 0xAC
  */
 J2DGrafContext::J2DGrafContext(f32 left, f32 top, f32 right, f32 bottom)
     : mBounds(left, top, left + right, top + bottom)
@@ -16,10 +15,9 @@ J2DGrafContext::J2DGrafContext(f32 left, f32 top, f32 right, f32 bottom)
 	setLineWidth(6);
 }
 
-/*
- * --INFO--
- * Address:	80036120
- * Size:	000090
+/**
+ * @note Address: 0x80036120
+ * @note Size: 0x90
  */
 void J2DGrafContext::setPort()
 {
@@ -42,10 +40,9 @@ void J2DGrafContext::setPort()
 	GXSetViewport(x0, y0, x1 - x0, y1 - y0, 0.0f, 1.0f);
 }
 
-/*
- * --INFO--
- * Address:	800361B0
- * Size:	0001DC
+/**
+ * @note Address: 0x800361B0
+ * @note Size: 0x1DC
  */
 void J2DGrafContext::setup2D()
 {
@@ -89,10 +86,9 @@ void J2DGrafContext::setup2D()
 	GXSetVtxDesc(GX_VA_TEX0, GX_NONE);
 }
 
-/*
- * --INFO--
- * Address:	8003638C
- * Size:	0002A8
+/**
+ * @note Address: 0x8003638C
+ * @note Size: 0x2A8
  */
 void J2DGrafContext::setScissor()
 {
@@ -113,17 +109,15 @@ void J2DGrafContext::setScissor()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80036634
- * Size:	000024
+/**
+ * @note Address: 0x80036634
+ * @note Size: 0x24
  */
 void J2DGrafContext::scissor(const JGeometry::TBox2f& bounds) { mScissorBounds = bounds; }
 
-/*
- * --INFO--
- * Address:	80036658
- * Size:	000034
+/**
+ * @note Address: 0x80036658
+ * @note Size: 0x34
  */
 void J2DGrafContext::place(const JGeometry::TBox2f& bounds)
 {
@@ -131,10 +125,9 @@ void J2DGrafContext::place(const JGeometry::TBox2f& bounds)
 	mScissorBounds = bounds;
 }
 
-/*
- * --INFO--
- * Address:	8003668C
- * Size:	00011C
+/**
+ * @note Address: 0x8003668C
+ * @note Size: 0x11C
  */
 void J2DGrafContext::setColor(JUtility::TColor colorTL, JUtility::TColor colorTR, JUtility::TColor colorBR, JUtility::TColor colorBL)
 {
@@ -183,10 +176,9 @@ void J2DGrafContext::setColor(JUtility::TColor colorTL, JUtility::TColor colorTR
 	mBoxPart.mDestFactor = 0;
 }
 
-/*
- * --INFO--
- * Address:	800367A8
- * Size:	00002C
+/**
+ * @note Address: 0x800367A8
+ * @note Size: 0x2C
  */
 void J2DGrafContext::setLineWidth(u8 width)
 {
@@ -194,10 +186,9 @@ void J2DGrafContext::setLineWidth(u8 width)
 	GXSetLineWidth(mLineWidth, GX_TO_ZERO);
 }
 
-/*
- * --INFO--
- * Address:	800367D4
- * Size:	0000FC
+/**
+ * @note Address: 0x800367D4
+ * @note Size: 0xFC
  */
 void J2DGrafContext::fillBox(const JGeometry::TBox2f& box)
 {
@@ -220,10 +211,9 @@ void J2DGrafContext::fillBox(const JGeometry::TBox2f& box)
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGBA4, 0);
 }
 
-/*
- * --INFO--
- * Address:	800368D0
- * Size:	000110
+/**
+ * @note Address: 0x800368D0
+ * @note Size: 0x110
  */
 void J2DGrafContext::drawFrame(const JGeometry::TBox2f& box)
 {
@@ -248,12 +238,11 @@ void J2DGrafContext::drawFrame(const JGeometry::TBox2f& box)
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGBA4, 0);
 }
 
-/*
+/**
  * --INLINED--
  *
- * --INFO--
- * Address:	--------
- * Size:	0000e0
+ * @note Address: --------
+ * @note Size: 0xe0
  */
 inline void J2DGrafContext::line(JGeometry::TVec2f start, JGeometry::TVec2f end)
 {
@@ -272,10 +261,9 @@ inline void J2DGrafContext::line(JGeometry::TVec2f start, JGeometry::TVec2f end)
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGBA4, 0);
 }
 
-/*
- * --INFO--
- * Address:	800369E0
- * Size:	000104
+/**
+ * @note Address: 0x800369E0
+ * @note Size: 0x104
  */
 void J2DGrafContext::lineTo(JGeometry::TVec2f pos)
 {

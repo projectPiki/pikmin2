@@ -10,10 +10,9 @@
 template <class T>
 f32 J2DGetKeyFrameInterpolation(f32, J3DAnmKeyTableBase*, T*);
 
-/*
- * --INFO--
- * Address:	8005AF0C
- * Size:	00056C
+/**
+ * @note Address: 0x8005AF0C
+ * @note Size: 0x56C
  */
 void J2DAnmTransformFull::getTransform(u16 p1, J3DTransformInfo* transformInfo) const
 {
@@ -95,10 +94,9 @@ void J2DAnmTransformFull::getTransform(u16 p1, J3DTransformInfo* transformInfo) 
 	}
 }
 
-/*
- * --INFO--
- * Address:	8005B478
- * Size:	000420
+/**
+ * @note Address: 0x8005B478
+ * @note Size: 0x420
  */
 void J2DAnmTransformKey::calcTransform(f32 p1, u16 p2, J3DTransformInfo* transformInfo) const
 {
@@ -216,10 +214,9 @@ void J2DAnmTransformKey::calcTransform(f32 p1, u16 p2, J3DTransformInfo* transfo
 	}
 }
 
-/*
- * --INFO--
- * Address:	8005B898
- * Size:	0000AC
+/**
+ * @note Address: 0x8005B898
+ * @note Size: 0xAC
  */
 void J2DAnmColor::searchUpdateMaterialID(J2DScreen* screen)
 {
@@ -235,10 +232,9 @@ void J2DAnmColor::searchUpdateMaterialID(J2DScreen* screen)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8005B944
- * Size:	000238
+/**
+ * @note Address: 0x8005B944
+ * @note Size: 0x238
  */
 void J2DAnmColorFull::getColor(u16 idx, GXColor* color) const
 {
@@ -281,10 +277,9 @@ void J2DAnmColorFull::getColor(u16 idx, GXColor* color) const
 	}
 }
 
-/*
- * --INFO--
- * Address:	8005BB7C
- * Size:	0002CC
+/**
+ * @note Address: 0x8005BB7C
+ * @note Size: 0x2CC
  */
 void J2DAnmColorKey::getColor(u16 idx, GXColor* color) const
 {
@@ -361,10 +356,9 @@ void J2DAnmColorKey::getColor(u16 idx, GXColor* color) const
 	}
 }
 
-/*
- * --INFO--
- * Address:	8005BE48
- * Size:	000240
+/**
+ * @note Address: 0x8005BE48
+ * @note Size: 0x240
  */
 void J2DAnmVtxColorFull::getColor(u8 tableIdx, u16 idx, GXColor* color) const
 {
@@ -406,10 +400,9 @@ void J2DAnmVtxColorFull::getColor(u8 tableIdx, u16 idx, GXColor* color) const
 	}
 }
 
-/*
- * --INFO--
- * Address:	8005C088
- * Size:	0002F4
+/**
+ * @note Address: 0x8005C088
+ * @note Size: 0x2F4
  */
 void J2DAnmVtxColorKey::getColor(u8 tableIdx, u16 idx, GXColor* color) const
 {
@@ -485,10 +478,9 @@ void J2DAnmVtxColorKey::getColor(u8 tableIdx, u16 idx, GXColor* color) const
 	}
 }
 
-/*
- * --INFO--
- * Address:	8005C37C
- * Size:	000268
+/**
+ * @note Address: 0x8005C37C
+ * @note Size: 0x268
  */
 void J2DAnmTextureSRTKey::calcTransform(f32 frame, u16 inputIdx, J3DTextureSRTInfo* texInfo) const
 {
@@ -552,20 +544,18 @@ void J2DAnmTextureSRTKey::calcTransform(f32 frame, u16 inputIdx, J3DTextureSRTIn
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000274
+/**
+ * @note Address: N/A
+ * @note Size: 0x274
  */
 void J2DAnmTextureSRTKey::calcPostTransform(f32, u16, J3DTextureSRTInfo*) const
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8005C5E4
- * Size:	0000CC
+/**
+ * @note Address: 0x8005C5E4
+ * @note Size: 0xCC
  * searchUpdateMaterialID__19J2DAnmTextureSRTKeyFP9J2DScreen
  */
 void J2DAnmTextureSRTKey::searchUpdateMaterialID(J2DScreen* screen)
@@ -582,10 +572,9 @@ void J2DAnmTextureSRTKey::searchUpdateMaterialID(J2DScreen* screen)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8005C6B0
- * Size:	0001D4
+/**
+ * @note Address: 0x8005C6B0
+ * @note Size: 0x1D4
  * searchUpdateMaterialID__16J2DAnmTexPatternFP9J2DScreen
  */
 void J2DAnmTexPattern::searchUpdateMaterialID(J2DScreen* screen)
@@ -624,10 +613,9 @@ void J2DAnmTexPattern::searchUpdateMaterialID(J2DScreen* screen)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8005C884
- * Size:	000010
+/**
+ * @note Address: 0x8005C884
+ * @note Size: 0x10
  * __ct__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv
  */
 J2DAnmTexPattern::J2DAnmTexPatternTIMGPointer::J2DAnmTexPatternTIMGPointer()
@@ -636,18 +624,16 @@ J2DAnmTexPattern::J2DAnmTexPatternTIMGPointer::J2DAnmTexPatternTIMGPointer()
 {
 }
 
-/*
- * --INFO--
- * Address:	8005C894
- * Size:	000054
+/**
+ * @note Address: 0x8005C894
+ * @note Size: 0x54
  * __dt__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv
  */
 J2DAnmTexPattern::J2DAnmTexPatternTIMGPointer::~J2DAnmTexPatternTIMGPointer() { delete mPalette; }
 
-/*
- * --INFO--
- * Address:	8005C8E8
- * Size:	0000B4
+/**
+ * @note Address: 0x8005C8E8
+ * @note Size: 0xB4
  */
 void J2DAnmTexPattern::getTexNo(u16 idx, u16* texNo) const
 {
@@ -662,10 +648,9 @@ void J2DAnmTexPattern::getTexNo(u16 idx, u16* texNo) const
 	}
 }
 
-/*
- * --INFO--
- * Address:	8005C99C
- * Size:	0000C4
+/**
+ * @note Address: 0x8005C99C
+ * @note Size: 0xC4
  */
 ResTIMG* J2DAnmTexPattern::getResTIMG(u16 idx) const
 {
@@ -678,10 +663,9 @@ ResTIMG* J2DAnmTexPattern::getResTIMG(u16 idx) const
 	}
 }
 
-/*
- * --INFO--
- * Address:	8005CA60
- * Size:	0000C8
+/**
+ * @note Address: 0x8005CA60
+ * @note Size: 0xC8
  */
 JUTPalette* J2DAnmTexPattern::getPalette(u16 idx) const
 {
@@ -694,10 +678,9 @@ JUTPalette* J2DAnmTexPattern::getPalette(u16 idx) const
 	}
 }
 
-/*
- * --INFO--
- * Address:	8005CB28
- * Size:	0000A8
+/**
+ * @note Address: 0x8005CB28
+ * @note Size: 0xA8
  */
 void J2DAnmVisibilityFull::getVisibility(u16 p1, u8* visibility) const
 {
@@ -712,10 +695,9 @@ void J2DAnmVisibilityFull::getVisibility(u16 p1, u8* visibility) const
 	}
 }
 
-/*
- * --INFO--
- * Address:	8005CBD0
- * Size:	0002CC
+/**
+ * @note Address: 0x8005CBD0
+ * @note Size: 0x2CC
  */
 void J2DAnmTevRegKey::getTevColorReg(u16 idx, GXColorS10* color) const
 {
@@ -791,10 +773,9 @@ void J2DAnmTevRegKey::getTevColorReg(u16 idx, GXColorS10* color) const
 	}
 }
 
-/*
- * --INFO--
- * Address:	8005CE9C
- * Size:	0002CC
+/**
+ * @note Address: 0x8005CE9C
+ * @note Size: 0x2CC
  */
 void J2DAnmTevRegKey::getTevKonstReg(u16 idx, GXColor* color) const
 {
@@ -870,10 +851,9 @@ void J2DAnmTevRegKey::getTevKonstReg(u16 idx, GXColor* color) const
 	}
 }
 
-/*
- * --INFO--
- * Address:	8005D168
- * Size:	00010C
+/**
+ * @note Address: 0x8005D168
+ * @note Size: 0x10C
  * searchUpdateMaterialID__15J2DAnmTevRegKeyFP9J2DScreen
  */
 void J2DAnmTevRegKey::searchUpdateMaterialID(J2DScreen* screen)

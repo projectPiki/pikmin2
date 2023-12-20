@@ -6,20 +6,18 @@ namespace JStudio {
 namespace stb {
 namespace data {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
+/**
+ * @note Address: N/A
+ * @note Size: 0x50
  */
 void toString_block(char*, u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8000893C
- * Size:	00004C
+/**
+ * @note Address: 0x8000893C
+ * @note Size: 0x4C
  * Matching!
  */
 void TParse_TSequence::getData(TParse_TSequence::TData* data) const
@@ -42,10 +40,9 @@ void TParse_TSequence::getData(TParse_TSequence::TData* data) const
 	data->next    = (u8*)next + (flag & 0xffffff);
 }
 
-/*
- * --INFO--
- * Address:	80008988
- * Size:	000078
+/**
+ * @note Address: 0x80008988
+ * @note Size: 0x78
  * Matching!
  */
 void TParse_TParagraph::getData(TParse_TParagraph::TData* data) const
@@ -62,10 +59,9 @@ void TParse_TParagraph::getData(TParse_TParagraph::TData* data) const
 	}
 }
 
-/*
- * --INFO--
- * Address:	80008A00
- * Size:	000080
+/**
+ * @note Address: 0x80008A00
+ * @note Size: 0x80
  * Matching!
  */
 void TParse_TParagraph_data::getData(TParse_TParagraph_data::TData* data) const

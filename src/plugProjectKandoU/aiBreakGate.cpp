@@ -8,10 +8,9 @@ namespace PikiAI {
 
 static const char breakGateName[] = "actBreakWall";
 
-/*
- * --INFO--
- * Address:	801D04E8
- * Size:	0000F8
+/**
+ * @note Address: 0x801D04E8
+ * @note Size: 0xF8
  */
 ActBreakGate::ActBreakGate(Game::Piki* parent)
     : Action(parent)
@@ -23,10 +22,9 @@ ActBreakGate::ActBreakGate(Game::Piki* parent)
 	mName = "BreakGate";
 }
 
-/*
- * --INFO--
- * Address:	801D05E0
- * Size:	0000C8
+/**
+ * @note Address: 0x801D05E0
+ * @note Size: 0xC8
  */
 void ActBreakGate::init(ActionArg* actionArg)
 {
@@ -48,10 +46,9 @@ void ActBreakGate::init(ActionArg* actionArg)
 	initFollow();
 }
 
-/*
- * --INFO--
- * Address:	801D06A8
- * Size:	000068
+/**
+ * @note Address: 0x801D06A8
+ * @note Size: 0x68
  */
 void ActBreakGate::initFollow()
 {
@@ -60,10 +57,9 @@ void ActBreakGate::initFollow()
 	mState = 1;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00009C
+/**
+ * @note Address: N/A
+ * @note Size: 0x9C
  */
 void ActBreakGate::initGoto()
 {
@@ -72,10 +68,9 @@ void ActBreakGate::initGoto()
 	mState = 1;
 }
 
-/*
- * --INFO--
- * Address:	--------
- * Size:	000114
+/**
+ * @note Address: 0x--------
+ * @note Size: 0x114
  * --INLINE--
  */
 void ActBreakGate::initStickAttack()
@@ -101,10 +96,9 @@ void ActBreakGate::initStickAttack()
 	mState = 2;
 }
 
-/*
- * --INFO--
- * Address:	801D0710
- * Size:	000498
+/**
+ * @note Address: 0x801D0710
+ * @note Size: 0x498
  */
 int ActBreakGate::exec()
 {
@@ -490,10 +484,9 @@ lbl_801D0B90:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D0BA8
- * Size:	00005C
+/**
+ * @note Address: 0x801D0BA8
+ * @note Size: 0x5C
  */
 void ActBreakGate::cleanup()
 {
@@ -505,10 +498,9 @@ void ActBreakGate::cleanup()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801D0C04
- * Size:	000044
+/**
+ * @note Address: 0x801D0C04
+ * @note Size: 0x44
  */
 void ActBreakGate::emotion_success()
 {
@@ -516,10 +508,9 @@ void ActBreakGate::emotion_success()
 	mParent->mFsm->transit(mParent, Game::PIKISTATE_Emotion, &emotionArg);
 }
 
-/*
- * --INFO--
- * Address:	801D0C48
- * Size:	000144
+/**
+ * @note Address: 0x801D0C48
+ * @note Size: 0x144
  */
 void ActBreakGate::platCallback(Game::Piki* p, Game::PlatEvent& platEvent)
 {
@@ -631,24 +622,21 @@ lbl_801D0D74:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D0D8C
- * Size:	000004
+/**
+ * @note Address: 0x801D0D8C
+ * @note Size: 0x4
  */
 void ActBreakGate::collisionCallback(Game::Piki*, Game::CollEvent&) { }
 
-/*
- * --INFO--
- * Address:	801D0D90
- * Size:	000004
+/**
+ * @note Address: 0x801D0D90
+ * @note Size: 0x4
  */
 void ActBreakGate::bounceCallback(Game::Piki*, Sys::Triangle*) { }
 
-/*
- * --INFO--
- * Address:	801D0D94
- * Size:	000004
+/**
+ * @note Address: 0x801D0D94
+ * @note Size: 0x4
  */
 void ActBreakGate::onKeyEvent(const SysShape::KeyEvent&) { }
 

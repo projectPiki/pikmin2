@@ -84,10 +84,9 @@ namespace Screen {
 
 int UfoMenuResult[4] = { 1, 2, 3, 0 };
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000CC
+/**
+ * @note Address: N/A
+ * @note Size: 0xCC
  */
 void setBlendPane(J2DBlendInfo, J2DScreen*, u64*)
 {
@@ -107,10 +106,9 @@ namespace Game {
 
 u8 BaseGameSection::sOptDraw = 3;
 
-/*
- * --INFO--
- * Address:	8014ADA0
- * Size:	00021C
+/**
+ * @note Address: 0x8014ADA0
+ * @note Size: 0x21C
  */
 BaseGameSection::BaseGameSection(JKRHeap* heap)
     : BaseHIOSection(heap)
@@ -148,10 +146,9 @@ BaseGameSection::BaseGameSection(JKRHeap* heap)
 	mWipeOutInFader     = new WipeOutInFader;
 }
 
-/*
- * --INFO--
- * Address:	8014B0FC
- * Size:	000074
+/**
+ * @note Address: 0x8014B0FC
+ * @note Size: 0x74
  */
 void BaseGameSection::useSpecificFBTexture(JUTTexture* texture)
 {
@@ -161,10 +158,9 @@ void BaseGameSection::useSpecificFBTexture(JUTTexture* texture)
 	Game::gameSystem->mXfbTexture = mXfbImage;
 }
 
-/*
- * --INFO--
- * Address:	8014B170
- * Size:	00006C
+/**
+ * @note Address: 0x8014B170
+ * @note Size: 0x6C
  */
 void BaseGameSection::restoreFBTexture()
 {
@@ -174,10 +170,9 @@ void BaseGameSection::restoreFBTexture()
 	Game::gameSystem->mXfbTexture = mXfbImage;
 }
 
-/*
- * --INFO--
- * Address:	8014B1DC
- * Size:	000114
+/**
+ * @note Address: 0x8014B1DC
+ * @note Size: 0x114
  */
 BaseGameSection::~BaseGameSection()
 {
@@ -198,10 +193,9 @@ BaseGameSection::~BaseGameSection()
 	PelletCarcass::mgr = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8014B2F0
- * Size:	000050
+/**
+ * @note Address: 0x8014B2F0
+ * @note Size: 0x50
  */
 void BaseGameSection::loadSync(IDelegate* delegate, bool p2)
 {
@@ -209,10 +203,9 @@ void BaseGameSection::loadSync(IDelegate* delegate, bool p2)
 	waitSyncLoad(p2);
 }
 
-/*
- * --INFO--
- * Address:	8014B340
- * Size:	000120
+/**
+ * @note Address: 0x8014B340
+ * @note Size: 0x120
  */
 
 u32 BaseGameSection::waitSyncLoad(bool dontPause)
@@ -253,10 +246,9 @@ u32 BaseGameSection::waitSyncLoad(bool dontPause)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8014B460
- * Size:	000050
+/**
+ * @note Address: 0x8014B460
+ * @note Size: 0x50
  */
 void BaseGameSection::dvdloadGameSystem()
 {
@@ -265,10 +257,9 @@ void BaseGameSection::dvdloadGameSystem()
 	game->init();
 }
 
-/*
- * --INFO--
- * Address:	8014B4B0
- * Size:	000390
+/**
+ * @note Address: 0x8014B4B0
+ * @note Size: 0x390
  */
 void BaseGameSection::init()
 {
@@ -321,10 +312,9 @@ void BaseGameSection::init()
 	mTreasureGetState = false;
 }
 
-/*
- * --INFO--
- * Address:	8014B844
- * Size:	000034
+/**
+ * @note Address: 0x8014B844
+ * @note Size: 0x34
  */
 void BaseGameSection::drawInit(Graphics& gfx, Section::EDrawInitMode mode)
 {
@@ -333,10 +323,9 @@ void BaseGameSection::drawInit(Graphics& gfx, Section::EDrawInitMode mode)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8014B87C
- * Size:	0003A8
+/**
+ * @note Address: 0x8014B87C
+ * @note Size: 0x3A8
  */
 bool BaseGameSection::doUpdate()
 {
@@ -423,10 +412,9 @@ bool BaseGameSection::doUpdate()
 	return mIsMainActive;
 }
 
-/*
- * --INFO--
- * Address:	8014BC28
- * Size:	000170
+/**
+ * @note Address: 0x8014BC28
+ * @note Size: 0x170
  */
 void BaseGameSection::doDraw(Graphics& gfx)
 {
@@ -460,10 +448,9 @@ void BaseGameSection::doDraw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8014BD9C
- * Size:	000078
+/**
+ * @note Address: 0x8014BD9C
+ * @note Size: 0x78
  */
 void BaseGameSection::movieDone(MovieConfig* config, u32 id1, u32 id2)
 {
@@ -478,10 +465,9 @@ void BaseGameSection::movieDone(MovieConfig* config, u32 id1, u32 id2)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8014BE18
- * Size:	00008C
+/**
+ * @note Address: 0x8014BE18
+ * @note Size: 0x8C
  */
 void BaseGameSection::onMovieCommand(int cmd)
 {
@@ -501,10 +487,9 @@ void BaseGameSection::onMovieCommand(int cmd)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8014BEA4
- * Size:	000450
+/**
+ * @note Address: 0x8014BEA4
+ * @note Size: 0x450
  */
 
 // unfortunatly this probably isn't real inline, however I'm not writing the full code out bc that's stupid
@@ -603,10 +588,9 @@ void BaseGameSection::initJ3D()
 	System::FragmentationChecker frag("poyol", false);
 }
 
-/*
- * --INFO--
- * Address:	8014C2F4
- * Size:	000034
+/**
+ * @note Address: 0x8014C2F4
+ * @note Size: 0x34
  */
 void BaseGameSection::initResources()
 {
@@ -618,10 +602,9 @@ Vector2f getRectSkew() { return Vector2f(0.0f, -80.0f); }
 
 Vector2f getBottomLeft() { return Vector2f(0.0f, 0.0f); }
 
-/*
- * --INFO--
- * Address:	8014C328
- * Size:	0001E4
+/**
+ * @note Address: 0x8014C328
+ * @note Size: 0x1E4
  */
 void BaseGameSection::initViewports(Graphics& gfx)
 {
@@ -656,10 +639,9 @@ void BaseGameSection::initViewports(Graphics& gfx)
 	mTreasureGetViewport->setCamera(mTreasureZoomCamera);
 }
 
-/*
- * --INFO--
- * Address:	8014C5CC
- * Size:	001120
+/**
+ * @note Address: 0x8014C5CC
+ * @note Size: 0x1120
  */
 #define LoadTextFile(x) JKRDvdRipper::loadToMainRAM(x, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 
@@ -1072,20 +1054,18 @@ void BaseGameSection::pmTogglePlayer()
 	onTogglePlayer();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 void BaseGameSection::pmPlayerJoin()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8014D918
- * Size:	0002B8
+/**
+ * @note Address: 0x8014D918
+ * @note Size: 0x2B8
  */
 void BaseGameSection::setPlayerMode(int mode)
 {
@@ -1153,10 +1133,9 @@ void BaseGameSection::setPlayerMode(int mode)
 	mPrevNaviIdx = mode;
 }
 
-/*
- * --INFO--
- * Address:	8014DBD4
- * Size:	00014C
+/**
+ * @note Address: 0x8014DBD4
+ * @note Size: 0x14C
  */
 void BaseGameSection::onCameraBlendFinished(CameraArg* arg)
 {
@@ -1173,10 +1152,10 @@ void BaseGameSection::onCameraBlendFinished(CameraArg* arg)
 		}
 	}
 }
-/*
- * --INFO--
- * Address:	8014DD20
- * Size:	000068
+
+/**
+ * @note Address: 0x8014DD20
+ * @note Size: 0x68
  */
 void BaseGameSection::setFixNearFar(bool b, f32 near, f32 far)
 {
@@ -1184,10 +1163,9 @@ void BaseGameSection::setFixNearFar(bool b, f32 near, f32 far)
 	mLouieCamera->setFixNearFar(b, near, far);
 }
 
-/*
- * --INFO--
- * Address:	8014DD88
- * Size:	000210
+/**
+ * @note Address: 0x8014DD88
+ * @note Size: 0x210
  */
 void BaseGameSection::setCamController()
 {
@@ -1256,30 +1234,27 @@ void BaseGameSection::setCamController()
 	on_setCamController(mPrevNaviIdx);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 int BaseGameSection::getNumWindows()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 int BaseGameSection::getActivePlayerID()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8014DF9C
- * Size:	000184
+/**
+ * @note Address: 0x8014DF9C
+ * @note Size: 0x184
  */
 void BaseGameSection::setDefaultPSSceneInfo(PSGame::SceneInfo& sceneInfo)
 {
@@ -1308,10 +1283,9 @@ void BaseGameSection::setDefaultPSSceneInfo(PSGame::SceneInfo& sceneInfo)
 	sceneInfo.mBounds.maxZ = max.z;
 }
 
-/*
- * --INFO--
- * Address:	8014E130
- * Size:	00068C
+/**
+ * @note Address: 0x8014E130
+ * @note Size: 0x68C
  */
 // void prepareHoleIn__Q24Game15BaseGameSectionFR10Vector3f b()
 void BaseGameSection::prepareHoleIn(Vector3f& suroundPos, bool killPikihead)
@@ -1366,10 +1340,10 @@ void BaseGameSection::prepareHoleIn(Vector3f& suroundPos, bool killPikihead)
 		aliveOrima->demowaitAllPikis();
 	}
 }
-/*
- * --INFO--
- * Address:	8014E7BC
- * Size:	000714
+
+/**
+ * @note Address: 0x8014E7BC
+ * @note Size: 0x714
  */
 // void prepareFountainOn__Q24Game15BaseGameSectionFR10Vector3f()
 void BaseGameSection::prepareFountainOn(Vector3f& suroundPos)
@@ -1422,10 +1396,9 @@ void BaseGameSection::prepareFountainOn(Vector3f& suroundPos)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8014EED0
- * Size:	000074
+/**
+ * @note Address: 0x8014EED0
+ * @note Size: 0x74
  */
 void BaseGameSection::initLights()
 {
@@ -1435,17 +1408,15 @@ void BaseGameSection::initLights()
 	particleMgr->mLightMgr = mLightMgr;
 }
 
-/*
- * --INFO--
- * Address:	8014EF44
- * Size:	000020
+/**
+ * @note Address: 0x8014EF44
+ * @note Size: 0x20
  */
 void BaseGameSection::draw3D(Graphics& gfx) { newdraw_draw3D_all(gfx); }
 
-/*
- * --INFO--
- * Address:	8014EF64
- * Size:	0001D4
+/**
+ * @note Address: 0x8014EF64
+ * @note Size: 0x1D4
  */
 void BaseGameSection::drawParticle(Graphics& gfx, int viewport)
 {
@@ -1478,10 +1449,9 @@ void BaseGameSection::drawParticle(Graphics& gfx, int viewport)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8014F138
- * Size:	0000A0
+/**
+ * @note Address: 0x8014F138
+ * @note Size: 0xA0
  */
 void BaseGameSection::draw_Ogawa2D(Graphics& gfx)
 {
@@ -1494,17 +1464,15 @@ void BaseGameSection::draw_Ogawa2D(Graphics& gfx)
 	particle2dMgr->draw(false, 0);
 }
 
-/*
- * --INFO--
- * Address:	8014F1D8
- * Size:	000004
+/**
+ * @note Address: 0x8014F1D8
+ * @note Size: 0x4
  */
 void BaseGameSection::test_draw_treasure_detector() { }
 
-/*
- * --INFO--
- * Address:	8014F1DC
- * Size:	0001BC
+/**
+ * @note Address: 0x8014F1DC
+ * @note Size: 0x1BC
  */
 void BaseGameSection::draw2D(Graphics& gfx)
 {
@@ -1530,10 +1498,9 @@ void BaseGameSection::draw2D(Graphics& gfx)
 	// print was likely showing how much head space was left
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void BaseGameSection::setupViewportMatrix(Graphics&)
 {
@@ -1542,10 +1509,9 @@ void BaseGameSection::setupViewportMatrix(Graphics&)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8014F398
- * Size:	0000B8
+/**
+ * @note Address: 0x8014F398
+ * @note Size: 0xB8
  */
 void BaseGameSection::directDraw(Graphics& gfx, Viewport* vp)
 {
@@ -1560,10 +1526,9 @@ void BaseGameSection::directDraw(Graphics& gfx, Viewport* vp)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8014F450
- * Size:	000078
+/**
+ * @note Address: 0x8014F450
+ * @note Size: 0x78
  */
 void BaseGameSection::directDrawPost(Graphics& gfx, Viewport* vp)
 {
@@ -1573,60 +1538,54 @@ void BaseGameSection::directDrawPost(Graphics& gfx, Viewport* vp)
 	doDirectDrawPost(gfx, vp);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000140
+/**
+ * @note Address: N/A
+ * @note Size: 0x140
  */
 void BaseGameSection::j3dDraw(Viewport*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void BaseGameSection::j3dDrawPostShadow(Viewport*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void BaseGameSection::j3dDrawObjectLast(Viewport*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void BaseGameSection::j3dDrawPost(Viewport*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void BaseGameSection::j3dDrawLast(Viewport*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8014F4C8
- * Size:	000054
+/**
+ * @note Address: 0x8014F4C8
+ * @note Size: 0x54
  */
 void BaseGameSection::j3dSetView(Viewport* vp, bool b)
 {
@@ -1635,34 +1594,30 @@ void BaseGameSection::j3dSetView(Viewport* vp, bool b)
 	doViewCalc();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000068
+/**
+ * @note Address: N/A
+ * @note Size: 0x68
  */
 void BaseGameSection::j3dViewCalc(Viewport*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8014F51C
- * Size:	000030
+/**
+ * @note Address: 0x8014F51C
+ * @note Size: 0x30
  */
 void BaseGameSection::doSimulation(float rate) { gameSystem->doSimulation(rate); }
 
-/*
- * --INFO--
- * Address:	8014F54C
- * Size:	000030
+/**
+ * @note Address: 0x8014F54C
+ * @note Size: 0x30
  */
 void BaseGameSection::doSimpleDraw(Viewport* vp) { gameSystem->doSimpleDraw(vp); }
 
-/*
- * --INFO--
- * Address:	8014F57C
- * Size:	0001D8
+/**
+ * @note Address: 0x8014F57C
+ * @note Size: 0x1D8
  */
 void BaseGameSection::doAnimation()
 {
@@ -1701,17 +1656,15 @@ void BaseGameSection::doAnimation()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8014F754
- * Size:	00004C
+/**
+ * @note Address: 0x8014F754
+ * @note Size: 0x4C
  */
 void BaseGameSection::changeGeneratorCursor(Vector3f& vec) { naviMgr->getAt(NAVIID_Olimar)->setPosition(vec, false); }
 
-/*
- * --INFO--
- * Address:	8014F7A0
- * Size:	0000C8
+/**
+ * @note Address: 0x8014F7A0
+ * @note Size: 0xC8
  */
 void BaseGameSection::doEntry()
 {
@@ -1727,10 +1680,9 @@ void BaseGameSection::doEntry()
 	sys->mTimers->_stop("ENT-REST");
 }
 
-/*
- * --INFO--
- * Address:	8014F868
- * Size:	000100
+/**
+ * @note Address: 0x8014F868
+ * @note Size: 0x100
  */
 void BaseGameSection::doSetView(int viewportNumber)
 {
@@ -1750,10 +1702,9 @@ void BaseGameSection::doSetView(int viewportNumber)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8014F968
- * Size:	0000C8
+/**
+ * @note Address: 0x8014F968
+ * @note Size: 0xC8
  */
 void BaseGameSection::doViewCalc()
 {
@@ -1770,20 +1721,18 @@ void BaseGameSection::doViewCalc()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 void BaseGameSection::initBlendCamera()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8014FA30
- * Size:	000174
+/**
+ * @note Address: 0x8014FA30
+ * @note Size: 0x174
  */
 void BaseGameSection::updateBlendCamera()
 {
@@ -1819,30 +1768,27 @@ void BaseGameSection::updateBlendCamera()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000DC
+/**
+ * @note Address: N/A
+ * @note Size: 0xDC
  */
 void BaseGameSection::blend1to2()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000DC
+/**
+ * @note Address: N/A
+ * @note Size: 0xDC
  */
 void BaseGameSection::blend2to1()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8014FBA4
- * Size:	00006C
+/**
+ * @note Address: 0x8014FBA4
+ * @note Size: 0x6C
  */
 void BaseGameSection::setSplitter(bool flag)
 {
@@ -1857,40 +1803,36 @@ void BaseGameSection::setSplitter(bool flag)
 	mSplitter->split2(mSecondViewportHeight);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void BaseGameSection::startSplit()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void BaseGameSection::changeSplit()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void BaseGameSection::endSplit()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8014FC10
- * Size:	000134
+/**
+ * @note Address: 0x8014FC10
+ * @note Size: 0x134
  */
 void BaseGameSection::updateSplitter()
 {
@@ -1921,10 +1863,9 @@ void BaseGameSection::updateSplitter()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8014FD44
- * Size:	000058
+/**
+ * @note Address: 0x8014FD44
+ * @note Size: 0x58
  */
 void BaseGameSection::doDirectDrawPost(Graphics& gfx, Viewport*)
 {
@@ -1936,27 +1877,24 @@ void BaseGameSection::doDirectDrawPost(Graphics& gfx, Viewport*)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8014FD9C
- * Size:	000004
+/**
+ * @note Address: 0x8014FD9C
+ * @note Size: 0x4
  */
 void BaseGameSection::doDirectDraw(Graphics&, Viewport*) { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
+/**
+ * @note Address: N/A
+ * @note Size: 0x78
  */
 void BaseGameSection::startHeap()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8014FDA4
- * Size:	0002A8
+/**
+ * @note Address: 0x8014FDA4
+ * @note Size: 0x2A8
  */
 void BaseGameSection::clearHeap()
 {
@@ -2030,10 +1968,9 @@ void BaseGameSection::clearHeap()
 	JKRGetCurrentHeap()->getFreeSize();
 }
 
-/*
- * --INFO--
- * Address:	801500B0
- * Size:	00002C
+/**
+ * @note Address: 0x801500B0
+ * @note Size: 0x2C
  */
 void BaseGameSection::startFadeout(f32 time)
 {
@@ -2041,10 +1978,9 @@ void BaseGameSection::startFadeout(f32 time)
 	mWipeOutFader->start(time);
 }
 
-/*
- * --INFO--
- * Address:	801500DC
- * Size:	00002C
+/**
+ * @note Address: 0x801500DC
+ * @note Size: 0x2C
  */
 void BaseGameSection::startFadein(f32 time)
 {
@@ -2052,10 +1988,9 @@ void BaseGameSection::startFadein(f32 time)
 	mWipeInFader->start(time);
 }
 
-/*
- * --INFO--
- * Address:	80150108
- * Size:	00002C
+/**
+ * @note Address: 0x80150108
+ * @note Size: 0x2C
  */
 void BaseGameSection::startFadeoutin(f32 time)
 {
@@ -2063,10 +1998,9 @@ void BaseGameSection::startFadeoutin(f32 time)
 	mWipeOutInFader->start(time);
 }
 
-/*
- * --INFO--
- * Address:	80150134
- * Size:	00003C
+/**
+ * @note Address: 0x80150134
+ * @note Size: 0x3C
  */
 void BaseGameSection::startFadeblack()
 {
@@ -2075,10 +2009,9 @@ void BaseGameSection::startFadeblack()
 	mBlackFader->start(999.0f);
 }
 
-/*
- * --INFO--
- * Address:	80150170
- * Size:	00003C
+/**
+ * @note Address: 0x80150170
+ * @note Size: 0x3C
  */
 void BaseGameSection::startFadewhite()
 {
@@ -2087,10 +2020,9 @@ void BaseGameSection::startFadewhite()
 	mBlackFader->start(999.0f);
 }
 
-/*
- * --INFO--
- * Address:	801501AC
- * Size:	0001C0
+/**
+ * @note Address: 0x801501AC
+ * @note Size: 0x1C0
  */
 void BaseGameSection::setupFixMemory()
 {
@@ -2106,10 +2038,9 @@ void BaseGameSection::setupFixMemory()
 	waitSyncLoad(false); // inlines waitSyncLoad
 }
 
-/*
- * --INFO--
- * Address:	8015036C
- * Size:	000334
+/**
+ * @note Address: 0x8015036C
+ * @note Size: 0x334
  */
 void BaseGameSection::setupFixMemory_dvdload()
 {
@@ -2399,10 +2330,9 @@ lbl_80150664:
 
 } // namespace Game
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
+/**
+ * @note Address: N/A
+ * @note Size: 0x50
  */
 void BaseGameAllocCallback(u32, int, JKRHeap*, void*)
 {
@@ -2412,34 +2342,30 @@ void BaseGameAllocCallback(u32, int, JKRHeap*, void*)
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	80150700
- * Size:	000008
+/**
+ * @note Address: 0x80150700
+ * @note Size: 0x8
  */
 bool BaseGameSection::enableAllocHalt() { return false; }
 
-/*
- * --INFO--
- * Address:	80150708
- * Size:	000008
+/**
+ * @note Address: 0x80150708
+ * @note Size: 0x8
  */
 bool BaseGameSection::disableAllocHalt() { return false; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 bool BaseGameSection::isAllocHalt()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80150710
- * Size:	000CC0
+/**
+ * @note Address: 0x80150710
+ * @note Size: 0xCC0
  */
 void BaseGameSection::setupFloatMemory()
 {
@@ -3577,10 +3503,9 @@ lbl_801513A8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8015145C
- * Size:	0000A4
+/**
+ * @note Address: 0x8015145C
+ * @note Size: 0xA4
  */
 void BaseGameSection::setDrawBuffer(int index)
 {
@@ -3589,17 +3514,15 @@ void BaseGameSection::setDrawBuffer(int index)
 	j3dSys.mDrawBuffer[1] = mDrawBuffer2->get(index)->mBuffer;
 }
 
-/*
- * --INFO--
- * Address:	80151500
- * Size:	000030
+/**
+ * @note Address: 0x80151500
+ * @note Size: 0x30
  */
 void BaseGameSection::postSetupFloatMemory() { mapMgr->setupJUTTextures(); }
 
-/*
- * --INFO--
- * Address:	80151534
- * Size:	000200
+/**
+ * @note Address: 0x80151534
+ * @note Size: 0x200
  */
 void BaseGameSection::createFallPikminSound()
 {
@@ -3612,17 +3535,15 @@ void BaseGameSection::createFallPikminSound()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80151734
- * Size:	000004
+/**
+ * @note Address: 0x80151734
+ * @note Size: 0x4
  */
 void BaseGameSection::captureRadarmap(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void BaseGameSection::drawRadarmap(Graphics&)
 {

@@ -12,10 +12,9 @@
 
 namespace PikiAI {
 
-/*
- * --INFO--
- * Address:	8019FF38
- * Size:	0000D0
+/**
+ * @note Address: 0x8019FF38
+ * @note Size: 0xD0
  */
 ActFree::ActFree(Game::Piki* p)
     : Action(p)
@@ -25,10 +24,9 @@ ActFree::ActFree(Game::Piki* p)
 	mName = "Free";
 }
 
-/*
- * --INFO--
- * Address:	801A0008
- * Size:	000190
+/**
+ * @note Address: 0x801A0008
+ * @note Size: 0x190
  */
 void ActFree::init(ActionArg* settings)
 {
@@ -67,10 +65,9 @@ void ActFree::init(ActionArg* settings)
 	mDelayTimer = 0;
 }
 
-/*
- * --INFO--
- * Address:	801A0198
- * Size:	0001D0
+/**
+ * @note Address: 0x801A0198
+ * @note Size: 0x1D0
  */
 int ActFree::exec()
 {
@@ -130,10 +127,9 @@ int ActFree::exec()
 	return ACTEXEC_Continue;
 }
 
-/*
- * --INFO--
- * Address:	801A0368
- * Size:	00004C
+/**
+ * @note Address: 0x801A0368
+ * @note Size: 0x4C
  */
 void ActFree::cleanup()
 {
@@ -142,17 +138,15 @@ void ActFree::cleanup()
 	mParent->mSoundObj->becomeNotFree();
 }
 
-/*
- * --INFO--
- * Address:	801A03B4
- * Size:	000004
+/**
+ * @note Address: 0x801A03B4
+ * @note Size: 0x4
  */
 void ActFree::onKeyEvent(SysShape::KeyEvent const&) { }
 
-/*
- * --INFO--
- * Address:	801A03B8
- * Size:	0000EC
+/**
+ * @note Address: 0x801A03B8
+ * @note Size: 0xEC
  */
 void ActFree::collisionCallback(Game::Piki* p, Game::CollEvent& event)
 {

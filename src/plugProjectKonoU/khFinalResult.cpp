@@ -20,10 +20,9 @@ char* bloNames[16] = { "result_final_image00.blo", "result_final_image01.blo", "
 namespace kh {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	8040C1E8
- * Size:	000034
+/**
+ * @note Address: 0x8040C1E8
+ * @note Size: 0x34
  */
 DispFinalResult::DispFinalResult(TotalResultData* data, DispFinalResult::ResultType type, JKRHeap* heap)
 {
@@ -33,10 +32,9 @@ DispFinalResult::DispFinalResult(TotalResultData* data, DispFinalResult::ResultT
 	mHeap            = heap;
 }
 
-/*
- * --INFO--
- * Address:	8040C21C
- * Size:	0001A0
+/**
+ * @note Address: 0x8040C21C
+ * @note Size: 0x1A0
  */
 ObjFinalResult::ObjFinalResult()
 {
@@ -195,10 +193,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8040C3BC
- * Size:	000B8C
+/**
+ * @note Address: 0x8040C3BC
+ * @note Size: 0xB8C
  */
 void ObjFinalResult::doCreate(JKRArchive* arc)
 {
@@ -1084,10 +1081,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8040CF48
- * Size:	0001BC
+/**
+ * @note Address: 0x8040CF48
+ * @note Size: 0x1BC
  */
 bool ObjFinalResult::doUpdate()
 {
@@ -1140,10 +1136,9 @@ bool ObjFinalResult::doUpdate()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8040D104
- * Size:	00007C
+/**
+ * @note Address: 0x8040D104
+ * @note Size: 0x7C
  */
 bool ObjFinalResult::doUpdateFadein()
 {
@@ -1160,10 +1155,9 @@ bool ObjFinalResult::doUpdateFadein()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8040D180
- * Size:	00006C
+/**
+ * @note Address: 0x8040D180
+ * @note Size: 0x6C
  */
 bool ObjFinalResult::doUpdateFadeout()
 {
@@ -1176,10 +1170,9 @@ bool ObjFinalResult::doUpdateFadeout()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8040D1EC
- * Size:	0003F0
+/**
+ * @note Address: 0x8040D1EC
+ * @note Size: 0x3F0
  */
 void ObjFinalResult::doDraw(Graphics& gfx)
 {
@@ -1519,10 +1512,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8040D5DC
- * Size:	0005F4
+/**
+ * @note Address: 0x8040D5DC
+ * @note Size: 0x5F4
  */
 void ObjFinalResult::updateCommon()
 {
@@ -1614,10 +1606,9 @@ void ObjFinalResult::updateCommon()
 	mScreen->update();
 }
 
-/*
- * --INFO--
- * Address:	8040DBD0
- * Size:	0003A4
+/**
+ * @note Address: 0x8040DBD0
+ * @note Size: 0x3A4
  */
 void ObjFinalResult::statusNormal()
 {
@@ -1666,10 +1657,9 @@ void ObjFinalResult::statusNormal()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8040DF74
- * Size:	00008C
+/**
+ * @note Address: 0x8040DF74
+ * @note Size: 0x8C
  */
 void ObjFinalResult::statusScrollUp()
 {
@@ -1682,10 +1672,9 @@ void ObjFinalResult::statusScrollUp()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8040E000
- * Size:	000090
+/**
+ * @note Address: 0x8040E000
+ * @note Size: 0x90
  */
 void ObjFinalResult::statusScrollDown()
 {
@@ -1698,10 +1687,9 @@ void ObjFinalResult::statusScrollDown()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8040E090
- * Size:	0001B8
+/**
+ * @note Address: 0x8040E090
+ * @note Size: 0x1B8
  */
 void ObjFinalResult::statusForceScroll()
 {
@@ -1731,10 +1719,9 @@ void ObjFinalResult::statusForceScroll()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8040E248
- * Size:	0008C0
+/**
+ * @note Address: 0x8040E248
+ * @note Size: 0x8C0
  */
 void ObjFinalResult::drawReplace(Graphics& gfx, int id)
 {
@@ -2348,10 +2335,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8040EB08
- * Size:	000128
+/**
+ * @note Address: 0x8040EB08
+ * @note Size: 0x128
  */
 JUtility::TColor ObjFinalResult::getClr(const JUtility::TColor& col1, const JUtility::TColor& col2, f32 factor)
 {
@@ -2359,10 +2345,9 @@ JUtility::TColor ObjFinalResult::getClr(const JUtility::TColor& col1, const JUti
 	                        (factor * (f32)(col2.b - col1.b) + (f32)col1.b), (factor * (f32)(col2.a - col1.a) + (f32)col1.a));
 }
 
-/*
- * --INFO--
- * Address:	8040EC30
- * Size:	0000D8
+/**
+ * @note Address: 0x8040EC30
+ * @note Size: 0xD8
  */
 void SceneFinalResult::doUserCallBackFunc(Resource::MgrCommand*)
 {
@@ -2444,10 +2429,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8040ED08
- * Size:	0002E4
+/**
+ * @note Address: 0x8040ED08
+ * @note Size: 0x2E4
  */
 TotalResultData* SceneFinalResult::createDispMember(const int*, const int*, Game::Highscore** scores)
 {

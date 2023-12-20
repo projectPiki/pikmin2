@@ -12,10 +12,9 @@ static const char* cMatAnimBtkTexName = "/enemy/data/Hanachirashi/hanachirashi_m
 static const char* cMatAnimBrkTexName = "/enemy/data/Hanachirashi/hanachirashi_model.brk";
 } // namespace
 
-/*
- * --INFO--
- * Address:	802A1328
- * Size:	000050
+/**
+ * @note Address: 0x802A1328
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -23,31 +22,27 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "フウセンハナチラシマネージャ"; // blossom-scattering blimp manager
 }
 
-/*
- * --INFO--
- * Address:	802A1378
- * Size:	000048
+/**
+ * @note Address: 0x802A1378
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Parms); }
 
-/*
- * --INFO--
- * Address:	802A1644
- * Size:	000060
+/**
+ * @note Address: 0x802A1644
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	802A1760
- * Size:	000010
+/**
+ * @note Address: 0x802A1760
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
-/*
- * --INFO--
- * Address:	802A1770
- * Size:	00012C
+/**
+ * @note Address: 0x802A1770
+ * @note Size: 0x12C
  */
 void Mgr::loadTexData()
 {
@@ -75,10 +70,9 @@ void Mgr::loadTexData()
 	mTevRegAnimation->attachResource(brkFile, mModelData);
 }
 
-/*
- * --INFO--
- * Address:	802A189C
- * Size:	00013C
+/**
+ * @note Address: 0x802A189C
+ * @note Size: 0x13C
  */
 SysShape::Model* Mgr::createModel()
 {

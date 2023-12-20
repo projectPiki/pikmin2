@@ -2,10 +2,9 @@
 #include "JSystem/J2D/J2DPrint.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	800596A8
- * Size:	000330
+/**
+ * @note Address: 0x800596A8
+ * @note Size: 0x330
  */
 J2DTextBoxEx::J2DTextBoxEx(J2DPane* parent, JSURandomInputStream* input, u32 flags, J2DMaterial* materials)
 {
@@ -88,10 +87,9 @@ J2DTextBoxEx::J2DTextBoxEx(J2DPane* parent, JSURandomInputStream* input, u32 fla
 	_140             = 0;
 }
 
-/*
- * --INFO--
- * Address:	800599D8
- * Size:	000090
+/**
+ * @note Address: 0x800599D8
+ * @note Size: 0x90
  */
 J2DTextBoxEx::~J2DTextBoxEx()
 {
@@ -100,10 +98,9 @@ J2DTextBoxEx::~J2DTextBoxEx()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80059A68
- * Size:	000300
+/**
+ * @note Address: 0x80059A68
+ * @note Size: 0x300
  */
 void J2DTextBoxEx::drawSelf(f32 x, f32 y, Mtx* mtx)
 {
@@ -146,10 +143,9 @@ void J2DTextBoxEx::drawSelf(f32 x, f32 y, Mtx* mtx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80059D68
- * Size:	000240
+/**
+ * @note Address: 0x80059D68
+ * @note Size: 0x240
  */
 void J2DTextBoxEx::draw(f32 x, f32 y)
 {
@@ -206,10 +202,9 @@ void J2DTextBoxEx::draw(f32 x, f32 y)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80059FA8
- * Size:	00026C
+/**
+ * @note Address: 0x80059FA8
+ * @note Size: 0x26C
  */
 void J2DTextBoxEx::draw(f32 x, f32 y, f32 p3, J2DTextBoxHBinding hb)
 {
@@ -266,10 +261,9 @@ void J2DTextBoxEx::draw(f32 x, f32 y, f32 p3, J2DTextBoxHBinding hb)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8005A214
- * Size:	000064
+/**
+ * @note Address: 0x8005A214
+ * @note Size: 0x64
  */
 void J2DTextBoxEx::setFont(JUTFont* font)
 {
@@ -279,10 +273,9 @@ void J2DTextBoxEx::setFont(JUTFont* font)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8005A278
- * Size:	00004C
+/**
+ * @note Address: 0x8005A278
+ * @note Size: 0x4C
  */
 JUTResFont* J2DTextBoxEx::getFont() const
 {
@@ -293,10 +286,9 @@ JUTResFont* J2DTextBoxEx::getFont() const
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8005A2C4
- * Size:	0000A4
+/**
+ * @note Address: 0x8005A2C4
+ * @note Size: 0xA4
  */
 void J2DTextBoxEx::setTevStage(bool doBeyondStage0)
 {
@@ -309,10 +301,9 @@ void J2DTextBoxEx::setTevStage(bool doBeyondStage0)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8005A368
- * Size:	0002B0
+/**
+ * @note Address: 0x8005A368
+ * @note Size: 0x2B0
  */
 void J2DTextBoxEx::setStage(J2DTevStage* stage, J2DTextBoxEx::stage_enum stageNum)
 {
@@ -500,10 +491,9 @@ lbl_8005A5E8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005A618
- * Size:	000088
+/**
+ * @note Address: 0x8005A618
+ * @note Size: 0x88
  */
 bool J2DTextBoxEx::setBlack(JUtility::TColor black)
 {
@@ -517,10 +507,9 @@ bool J2DTextBoxEx::setBlack(JUtility::TColor black)
 	setBlackWhite(black, currWhite);
 }
 
-/*
- * --INFO--
- * Address:	8005A6A0
- * Size:	000088
+/**
+ * @note Address: 0x8005A6A0
+ * @note Size: 0x88
  */
 bool J2DTextBoxEx::setWhite(JUtility::TColor white)
 {
@@ -534,10 +523,9 @@ bool J2DTextBoxEx::setWhite(JUtility::TColor white)
 	setBlackWhite(currBlack, white);
 }
 
-/*
- * --INFO--
- * Address:	8005A728
- * Size:	000224
+/**
+ * @note Address: 0x8005A728
+ * @note Size: 0x224
  */
 bool J2DTextBoxEx::setBlackWhite(JUtility::TColor black, JUtility::TColor white)
 {
@@ -706,10 +694,9 @@ lbl_8005A938:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005A94C
- * Size:	000194
+/**
+ * @note Address: 0x8005A94C
+ * @note Size: 0x194
  */
 bool J2DTextBoxEx::getBlackWhite(JUtility::TColor*, JUtility::TColor*) const
 {
@@ -826,10 +813,9 @@ lbl_8005AACC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005AAE0
- * Size:	000094
+/**
+ * @note Address: 0x8005AAE0
+ * @note Size: 0x94
  */
 void J2DTextBoxEx::isSetBlackWhite(JUtility::TColor, JUtility::TColor) const
 {
@@ -880,10 +866,9 @@ lbl_8005AB60:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005AB74
- * Size:	000060
+/**
+ * @note Address: 0x8005AB74
+ * @note Size: 0x60
  */
 JUtility::TColor J2DTextBoxEx::getBlack() const
 {
@@ -918,10 +903,9 @@ JUtility::TColor J2DTextBoxEx::getBlack() const
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005ABD4
- * Size:	000060
+/**
+ * @note Address: 0x8005ABD4
+ * @note Size: 0x60
  */
 JUtility::TColor J2DTextBoxEx::getWhite() const
 {
@@ -956,10 +940,9 @@ JUtility::TColor J2DTextBoxEx::getWhite() const
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005AC34
- * Size:	000020
+/**
+ * @note Address: 0x8005AC34
+ * @note Size: 0x20
  */
 void J2DTextBoxEx::setAlpha(u8)
 {
@@ -976,10 +959,9 @@ void J2DTextBoxEx::setAlpha(u8)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005AC54
- * Size:	000034
+/**
+ * @note Address: 0x8005AC54
+ * @note Size: 0x34
  */
 void J2DTextBoxEx::setCullBack(_GXCullMode)
 {
@@ -1002,10 +984,9 @@ void J2DTextBoxEx::setCullBack(_GXCullMode)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005AC88
- * Size:	000018
+/**
+ * @note Address: 0x8005AC88
+ * @note Size: 0x18
  */
 void J2DTextBoxEx::rewriteAlpha()
 {
@@ -1020,10 +1001,9 @@ void J2DTextBoxEx::rewriteAlpha()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005ACA0
- * Size:	00008C
+/**
+ * @note Address: 0x8005ACA0
+ * @note Size: 0x8C
  */
 bool J2DTextBoxEx::isUsed(const ResFONT*)
 {
@@ -1069,10 +1049,9 @@ bool J2DTextBoxEx::isUsed(const ResFONT*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005AD2C
- * Size:	00002C
+/**
+ * @note Address: 0x8005AD2C
+ * @note Size: 0x2C
  */
 void J2DTextBoxEx::setAnimation(J2DAnmColor*)
 {
@@ -1093,10 +1072,9 @@ void J2DTextBoxEx::setAnimation(J2DAnmColor*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005AD58
- * Size:	00002C
+/**
+ * @note Address: 0x8005AD58
+ * @note Size: 0x2C
  */
 void J2DTextBoxEx::setAnimation(J2DAnmTextureSRTKey*)
 {
@@ -1117,10 +1095,9 @@ void J2DTextBoxEx::setAnimation(J2DAnmTextureSRTKey*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005AD84
- * Size:	00002C
+/**
+ * @note Address: 0x8005AD84
+ * @note Size: 0x2C
  */
 void J2DTextBoxEx::setAnimation(J2DAnmTexPattern*)
 {
@@ -1141,10 +1118,9 @@ void J2DTextBoxEx::setAnimation(J2DAnmTexPattern*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005ADB0
- * Size:	00002C
+/**
+ * @note Address: 0x8005ADB0
+ * @note Size: 0x2C
  */
 void J2DTextBoxEx::setAnimation(J2DAnmTevRegKey*)
 {
@@ -1165,10 +1141,9 @@ void J2DTextBoxEx::setAnimation(J2DAnmTevRegKey*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005ADDC
- * Size:	000008
+/**
+ * @note Address: 0x8005ADDC
+ * @note Size: 0x8
  */
 void J2DTextBoxEx::setAnimation(J2DAnmVisibilityFull*)
 {
@@ -1179,10 +1154,9 @@ void J2DTextBoxEx::setAnimation(J2DAnmVisibilityFull*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005ADE4
- * Size:	000080
+/**
+ * @note Address: 0x8005ADE4
+ * @note Size: 0x80
  */
 const J2DAnmTransform* J2DTextBoxEx::animationPane(const J2DAnmTransform*)
 {
@@ -1225,10 +1199,9 @@ const J2DAnmTransform* J2DTextBoxEx::animationPane(const J2DAnmTransform*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005AE64
- * Size:	000008
+/**
+ * @note Address: 0x8005AE64
+ * @note Size: 0x8
  */
 J2DMaterial* J2DTextBoxEx::getMaterial() const
 {
@@ -1239,10 +1212,9 @@ J2DMaterial* J2DTextBoxEx::getMaterial() const
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005AE6C
- * Size:	00003C
+/**
+ * @note Address: 0x8005AE6C
+ * @note Size: 0x3C
  */
 void J2DTextBoxEx::setCullBack(bool)
 {
@@ -1267,10 +1239,9 @@ void J2DTextBoxEx::setCullBack(bool)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005AEA8
- * Size:	000020
+/**
+ * @note Address: 0x8005AEA8
+ * @note Size: 0x20
  */
 bool J2DTextBoxEx::isUsed(const ResTIMG*)
 {
@@ -1287,10 +1258,9 @@ bool J2DTextBoxEx::isUsed(const ResTIMG*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005AEC8
- * Size:	000004
+/**
+ * @note Address: 0x8005AEC8
+ * @note Size: 0x4
  */
 void J2DTextBoxEx::setAnimation(J2DAnmVtxColor*)
 {
@@ -1300,10 +1270,9 @@ void J2DTextBoxEx::setAnimation(J2DAnmVtxColor*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005AECC
- * Size:	000020
+/**
+ * @note Address: 0x8005AECC
+ * @note Size: 0x20
  */
 void J2DTextBoxEx::setAnimation(J2DAnmTransform*)
 {
@@ -1320,10 +1289,9 @@ void J2DTextBoxEx::setAnimation(J2DAnmTransform*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005AEEC
- * Size:	000020
+/**
+ * @note Address: 0x8005AEEC
+ * @note Size: 0x20
  */
 void J2DTextBoxEx::setAnimation(J2DAnmBase*)
 {

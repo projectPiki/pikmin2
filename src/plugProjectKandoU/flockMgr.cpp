@@ -9,10 +9,9 @@
 #include "nans.h"
 
 namespace Game {
-/*
- * --INFO--
- * Address:	8020EADC
- * Size:	0000E0
+/**
+ * @note Address: 0x8020EADC
+ * @note Size: 0xE0
  */
 void BaseFlockMgr::update()
 {
@@ -37,10 +36,9 @@ void BaseFlockMgr::update()
 	do_update();
 }
 
-/*
- * --INFO--
- * Address:	8020EBBC
- * Size:	000154
+/**
+ * @note Address: 0x8020EBBC
+ * @note Size: 0x154
  */
 int BaseFlockMgr::getNearestFlock(Vector3f& pos)
 {
@@ -61,20 +59,18 @@ int BaseFlockMgr::getNearestFlock(Vector3f& pos)
 	return idx;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000140
+/**
+ * @note Address: N/A
+ * @note Size: 0x140
  */
 // void BaseFlockMgr::getRandomFlock()
 // {
 // UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	8020ED10
- * Size:	00011C
+/**
+ * @note Address: 0x8020ED10
+ * @note Size: 0x11C
  */
 int BaseFlockMgr::attackFlock(int idx, f32 damage)
 {
@@ -90,10 +86,9 @@ int BaseFlockMgr::attackFlock(int idx, f32 damage)
 	return 2;
 }
 
-/*
- * --INFO--
- * Address:	8020EE2C
- * Size:	000294
+/**
+ * @note Address: 0x8020EE2C
+ * @note Size: 0x294
  */
 void BaseFlockMgr::resolveCollision(f32 p1)
 {
@@ -322,10 +317,9 @@ void BaseFlockMgr::resolveCollision(f32 p1)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8020F0C0
- * Size:	000198
+/**
+ * @note Address: 0x8020F0C0
+ * @note Size: 0x198
  */
 void BaseFlockMgr::doSimpleDraw(Viewport* vp, J3DModelData** models, int p1)
 {

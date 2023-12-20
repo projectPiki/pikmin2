@@ -12,10 +12,9 @@ static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 namespace kh {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	80410714
- * Size:	0000CC
+/**
+ * @note Address: 0x80410714
+ * @note Size: 0xCC
  */
 void ObjWinLoseReason::doCreate(JKRArchive* arc)
 {
@@ -29,24 +28,21 @@ void ObjWinLoseReason::doCreate(JKRArchive* arc)
 	mScreen->setAnimation(mAnim2);
 }
 
-/*
- * --INFO--
- * Address:	804107E0
- * Size:	000008
+/**
+ * @note Address: 0x804107E0
+ * @note Size: 0x8
  */
 bool ObjWinLoseReason::doUpdate() { return false; }
 
-/*
- * --INFO--
- * Address:	804107E8
- * Size:	000004
+/**
+ * @note Address: 0x804107E8
+ * @note Size: 0x4
  */
 void ObjWinLoseReason::doDraw(Graphics& gfx) { }
 
-/*
- * --INFO--
- * Address:	804107EC
- * Size:	000060
+/**
+ * @note Address: 0x804107EC
+ * @note Size: 0x60
  */
 SceneWinLoseReason::SceneWinLoseReason()
 {
@@ -59,10 +55,9 @@ SceneWinLoseReason::SceneWinLoseReason()
 	mCounter      = 0;
 }
 
-/*
- * --INFO--
- * Address:	8041084C
- * Size:	000588
+/**
+ * @note Address: 0x8041084C
+ * @note Size: 0x588
  */
 void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 {
@@ -196,10 +191,9 @@ void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80410DD4
- * Size:	0000CC
+/**
+ * @note Address: 0x80410DD4
+ * @note Size: 0xCC
  */
 void SceneWinLoseReason::doUpdateActive()
 {
@@ -220,10 +214,9 @@ void SceneWinLoseReason::doUpdateActive()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80410EA0
- * Size:	000020
+/**
+ * @note Address: 0x80410EA0
+ * @note Size: 0x20
  */
 bool SceneWinLoseReason::doEnd(::Screen::EndSceneArg* arg) { return SceneBase::doEnd(arg); }
 

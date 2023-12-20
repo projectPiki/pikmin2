@@ -22,37 +22,33 @@ static const char* sMesResName[]
 static const char* cBtnTexName[] = { "a_btn.bti", "b_btn.bti", "c_btn.bti",  "x_btn.bti",  "y_btn.bti", "z_btn.bti",
 	                                 "l_btn.bti", "r_btn.bti", "3d_btn.bti", "st_btn.bti", "t_btn.bti" };
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 void getCurrentFontResName()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 void getCurrentMesResName()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80437EAC
- * Size:	000040
+/**
+ * @note Address: 0x80437EAC
+ * @note Size: 0x40
  */
 Mgr* Mgr::create(JKRExpHeap* heap) { new Mgr(heap); }
 
-/*
- * --INFO--
- * Address:	80437EEC
- * Size:	000170
+/**
+ * @note Address: 0x80437EEC
+ * @note Size: 0x170
  */
 Mgr::Mgr(JKRExpHeap* heap)
     : mRubyFont(nullptr)
@@ -91,27 +87,24 @@ Mgr::Mgr(JKRExpHeap* heap)
 	_28 = 1;
 }
 
-/*
- * --INFO--
- * Address:	8043805C
- * Size:	000068
+/**
+ * @note Address: 0x8043805C
+ * @note Size: 0x68
  */
 Mgr::~Mgr() { gP2JMEMgr = nullptr; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void Mgr::reloadMessageResource()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	804380C4
- * Size:	000100
+/**
+ * @note Address: 0x804380C4
+ * @note Size: 0x100
  */
 void Mgr::setupMessage()
 {
@@ -126,10 +119,9 @@ void Mgr::setupMessage()
 	setupColor(msgarc, "pikmin2.bmc");
 }
 
-/*
- * --INFO--
- * Address:	804381C4
- * Size:	0000F8
+/**
+ * @note Address: 0x804381C4
+ * @note Size: 0xF8
  */
 void Mgr::setupTex()
 {
@@ -143,10 +135,9 @@ void Mgr::setupTex()
 	}
 }
 
-/*
- * --INFO--
- * Address:	804382BC
- * Size:	000248
+/**
+ * @note Address: 0x804382BC
+ * @note Size: 0x248
  */
 void Mgr::setupFont(char const* path, JKRExpHeap* heap)
 {
@@ -188,10 +179,9 @@ void Mgr::setupFont(char const* path, JKRExpHeap* heap)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80438504
- * Size:	0001A8
+/**
+ * @note Address: 0x80438504
+ * @note Size: 0x1A8
  */
 void Mgr::createImage(ImageGroup::EID group, int max)
 {
@@ -205,10 +195,9 @@ void Mgr::createImage(ImageGroup::EID group, int max)
 	}
 }
 
-/*
- * --INFO--
- * Address:	804386AC
- * Size:	0000C4
+/**
+ * @note Address: 0x804386AC
+ * @note Size: 0xC4
  */
 void Mgr::setImage(ImageGroup::EID group, int id, JUTTexture* tex)
 {
@@ -218,10 +207,9 @@ void Mgr::setImage(ImageGroup::EID group, int id, JUTTexture* tex)
 	mImageLists[group][id] = tex;
 }
 
-/*
- * --INFO--
- * Address:	80438770
- * Size:	0000B8
+/**
+ * @note Address: 0x80438770
+ * @note Size: 0xB8
  */
 JUTTexture* Mgr::getImage(ImageGroup::EID group, int id)
 {
@@ -231,10 +219,9 @@ JUTTexture* Mgr::getImage(ImageGroup::EID group, int id)
 	return mImageLists[group][id];
 }
 
-/*
- * --INFO--
- * Address:	80438828
- * Size:	000104
+/**
+ * @note Address: 0x80438828
+ * @note Size: 0x104
  */
 void Mgr::setupMessageResource(JKRArchive* arc, char const* path)
 {
@@ -249,10 +236,9 @@ void Mgr::setupMessageResource(JKRArchive* arc, char const* path)
 	sys->heapStatusEnd("メッセージのパース");
 }
 
-/*
- * --INFO--
- * Address:	8043892C
- * Size:	0000E0
+/**
+ * @note Address: 0x8043892C
+ * @note Size: 0xE0
  */
 void Mgr::setupColor(JKRArchive* arc, char const* path)
 {

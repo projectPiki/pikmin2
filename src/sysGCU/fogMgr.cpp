@@ -8,12 +8,11 @@
 #include "Viewport.h"
 #include "nans.h"
 
-/*
+/**
  * __ct
  *
- * --INFO--
- * Address:	80432948
- * Size:	000074
+ * @note Address: 0x80432948
+ * @note Size: 0x74
  */
 FogMgr::FogMgr()
     : CNode("フォグマネージャ")
@@ -24,17 +23,15 @@ FogMgr::FogMgr()
 {
 }
 
-/*
- * --INFO--
- * Address:	804329BC
- * Size:	000040
+/**
+ * @note Address: 0x804329BC
+ * @note Size: 0x40
  */
 void FogMgr::off(Graphics&) { GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, mColor.GXColorView); }
 
-/*
- * --INFO--
- * Address:	804329FC
- * Size:	0000AC
+/**
+ * @note Address: 0x804329FC
+ * @note Size: 0xAC
  */
 void FogMgr::set(Graphics& graphics)
 {
@@ -50,16 +47,14 @@ void FogMgr::set(Graphics& graphics)
 	GXSetFogRangeAdj(GX_TRUE, width / 2, &table);
 }
 
-/*
- * --INFO--
- * Address:	80432AA8
- * Size:	000024
+/**
+ * @note Address: 0x80432AA8
+ * @note Size: 0x24
  */
 void FogMgr::setColor(Color4& color) { mColor.colorView = color; }
 
-/*
- * --INFO--
- * Address:	80432ACC
- * Size:	000024
+/**
+ * @note Address: 0x80432ACC
+ * @note Size: 0x24
  */
 void FogMgr::getColor(Color4& color) { color = mColor.colorView; }

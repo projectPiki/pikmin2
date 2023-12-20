@@ -5,10 +5,9 @@ namespace Damagumo {
 
 static const char damagumoShadowName[] = "246-DamagumoShadow";
 
-/*
- * --INFO--
- * Address:	802AAD94
- * Size:	00020C
+/**
+ * @note Address: 0x802AAD94
+ * @note Size: 0x20C
  */
 DamagumoShadowMgr::DamagumoShadowMgr(Obj* obj)
 {
@@ -38,10 +37,9 @@ DamagumoShadowMgr::DamagumoShadowMgr(Obj* obj)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802AAFA0
- * Size:	00014C
+/**
+ * @note Address: 0x802AAFA0
+ * @note Size: 0x14C
  */
 void DamagumoShadowMgr::init()
 {
@@ -66,17 +64,15 @@ void DamagumoShadowMgr::init()
 	mLegTubeShadow3[3]->mJoint = model->getJoint("lfoot3jnt");
 }
 
-/*
- * --INFO--
- * Address:	802AB0EC
- * Size:	000018
+/**
+ * @note Address: 0x802AB0EC
+ * @note Size: 0x18
  */
 void DamagumoShadowMgr::setJointPosPtr(int p1, int p2, Vector3f* posPtr) { mJointPosPtrs[p1][p2] = posPtr; }
 
-/*
- * --INFO--
- * Address:	802AB104
- * Size:	00039C
+/**
+ * @note Address: 0x802AB104
+ * @note Size: 0x39C
  */
 void DamagumoShadowMgr::update()
 {

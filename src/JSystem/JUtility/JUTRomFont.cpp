@@ -9,24 +9,21 @@ u32 JUTRomFont::suFontHeaderRefered_; // they misspelled referred
 JUTRomFont::AboutEncoding JUTRomFont::saoAboutEncoding_[2]
     = { 0, 0x00020120, &JUTFont::isLeadByte_1Byte, 2, 0x00120F00, &JUTFont::isLeadByte_ShiftJIS };
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 JUTRomFont::JUTRomFont() { }
 
-/*
- * --INFO--
- * Address:	8003264C
- * Size:	000054
+/**
+ * @note Address: 0x8003264C
+ * @note Size: 0x54
  */
 JUTRomFont::JUTRomFont(JKRHeap* heap) { initiate(heap); }
 
-/*
- * --INFO--
- * Address:	800326A0
- * Size:	000054
+/**
+ * @note Address: 0x800326A0
+ * @note Size: 0x54
  */
 void JUTRomFont::initiate(JKRHeap* heap)
 {
@@ -36,10 +33,9 @@ void JUTRomFont::initiate(JKRHeap* heap)
 	mIsValid = true;
 }
 
-/*
- * --INFO--
- * Address:	800326F4
- * Size:	00009C
+/**
+ * @note Address: 0x800326F4
+ * @note Size: 0x9C
  */
 JUTRomFont::~JUTRomFont()
 {
@@ -51,10 +47,9 @@ JUTRomFont::~JUTRomFont()
 	mIsValid = false;
 }
 
-/*
- * --INFO--
- * Address:	80032790
- * Size:	0000CC
+/**
+ * @note Address: 0x80032790
+ * @note Size: 0xCC
  */
 void JUTRomFont::loadImage(JKRHeap* heap)
 {
@@ -76,10 +71,9 @@ void JUTRomFont::loadImage(JKRHeap* heap)
 	suFontHeaderRefered_++;
 }
 
-/*
- * --INFO--
- * Address:	8003285C
- * Size:	0000F8
+/**
+ * @note Address: 0x8003285C
+ * @note Size: 0xF8
  */
 void JUTRomFont::setGX()
 {
@@ -103,10 +97,9 @@ void JUTRomFont::setGX()
 	GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
 }
 
-/*
- * --INFO--
- * Address:	80032954
- * Size:	000480
+/**
+ * @note Address: 0x80032954
+ * @note Size: 0x480
  */
 f32 JUTRomFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, int chr, bool flag)
 {
@@ -179,10 +172,9 @@ f32 JUTRomFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, i
 	return xScale * (width + shift);
 }
 
-/*
- * --INFO--
- * Address:	80032E60
- * Size:	000060
+/**
+ * @note Address: 0x80032E60
+ * @note Size: 0x60
  */
 void JUTRomFont::getWidthEntry(int chr, JUTFont::TWidth* width) const
 {
@@ -202,9 +194,8 @@ void JUTRomFont::getWidthEntry(int chr, JUTFont::TWidth* width) const
 	width->w0 = 0;
 }
 
-/*
- * --INFO--
- * Address:	80032EC0
- * Size:	000030
+/**
+ * @note Address: 0x80032EC0
+ * @note Size: 0x30
  */
 bool JUTRomFont::isLeadByte(int chr) const { return spAboutEncoding_->mIsLeadByteFunction(chr); }

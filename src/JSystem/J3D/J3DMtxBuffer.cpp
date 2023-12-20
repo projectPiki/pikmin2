@@ -38,10 +38,9 @@
         .4byte 0x00000000
 */
 
-/*
- * --INFO--
- * Address:	800888D8
- * Size:	000040
+/**
+ * @note Address: 0x800888D8
+ * @note Size: 0x40
  */
 void J3DMtxBuffer::initialize()
 {
@@ -60,10 +59,9 @@ void J3DMtxBuffer::initialize()
 	mCurrentViewNumber      = 0;
 }
 
-/*
- * --INFO--
- * Address:	80088918
- * Size:	00011C
+/**
+ * @note Address: 0x80088918
+ * @note Size: 0x11C
  */
 int J3DMtxBuffer::create(J3DModelData* data, u32 modelType)
 {
@@ -104,10 +102,9 @@ int J3DMtxBuffer::create(J3DModelData* data, u32 modelType)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80088A34
- * Size:	00005C
+/**
+ * @note Address: 0x80088A34
+ * @note Size: 0x5C
  */
 int J3DMtxBuffer::createAnmMtx(J3DModelData* data)
 {
@@ -118,10 +115,9 @@ int J3DMtxBuffer::createAnmMtx(J3DModelData* data)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	80088A90
- * Size:	00005C
+/**
+ * @note Address: 0x80088A90
+ * @note Size: 0x5C
  */
 int J3DMtxBuffer::createWeightEnvelopeMtx(J3DModelData* data)
 {
@@ -132,10 +128,9 @@ int J3DMtxBuffer::createWeightEnvelopeMtx(J3DModelData* data)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	80088AEC
- * Size:	00002C
+/**
+ * @note Address: 0x80088AEC
+ * @note Size: 0x2C
  */
 int J3DMtxBuffer::setNoUseDrawMtx()
 {
@@ -189,10 +184,9 @@ int J3DMtxBuffer::setNoUseDrawMtx()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80088B18
- * Size:	0000E0
+/**
+ * @note Address: 0x80088B18
+ * @note Size: 0xE0
  */
 int J3DMtxBuffer::createDoubleDrawMtx(J3DModelData* data, u32 p2)
 {
@@ -214,10 +208,9 @@ int J3DMtxBuffer::createDoubleDrawMtx(J3DModelData* data, u32 p2)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	80088BF8
- * Size:	000214
+/**
+ * @note Address: 0x80088BF8
+ * @note Size: 0x214
  */
 int J3DMtxBuffer::createBumpMtxArray(J3DModelData* data, u32 p2)
 {
@@ -436,10 +429,9 @@ lbl_80088DF4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80088E0C
- * Size:	000220
+/**
+ * @note Address: 0x80088E0C
+ * @note Size: 0x220
  */
 void J3DMtxBuffer::calcWeightEnvelopeMtx()
 {
@@ -589,10 +581,9 @@ lbl_80088FC8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008902C
- * Size:	000304
+/**
+ * @note Address: 0x8008902C
+ * @note Size: 0x304
  */
 void J3DMtxBuffer::calcDrawMtx(u32 p1, const Vec& vec, const Mtx& mtx)
 {
@@ -821,10 +812,9 @@ lbl_80089310:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80089330
- * Size:	0001BC
+/**
+ * @note Address: 0x80089330
+ * @note Size: 0x1BC
  */
 void J3DMtxBuffer::calcNrmMtx()
 {
@@ -955,10 +945,9 @@ lbl_800894C4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800894EC
- * Size:	000178
+/**
+ * @note Address: 0x800894EC
+ * @note Size: 0x178
  */
 void J3DMtxBuffer::calcBBoardMtx()
 {

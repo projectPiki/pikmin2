@@ -1,9 +1,8 @@
 #include "Dolphin/os.h"
 
-/*
- * --INFO--
- * Address:	800EFB30
- * Size:	000038
+/**
+ * @note Address: 0x800EFB30
+ * @note Size: 0x38
  */
 void OSInitMutex(OSMutex* mutex)
 {
@@ -12,10 +11,9 @@ void OSInitMutex(OSMutex* mutex)
 	mutex->count  = 0;
 }
 
-/*
- * --INFO--
- * Address:	800EFB68
- * Size:	0000DC
+/**
+ * @note Address: 0x800EFB68
+ * @note Size: 0xDC
  */
 void OSLockMutex(OSMutex* mutex)
 {
@@ -43,10 +41,9 @@ void OSLockMutex(OSMutex* mutex)
 	OSRestoreInterrupts(enabled);
 }
 
-/*
- * --INFO--
- * Address:	800EFC44
- * Size:	0000C8
+/**
+ * @note Address: 0x800EFC44
+ * @note Size: 0xC8
  */
 void OSUnlockMutex(OSMutex* mutex)
 {
@@ -65,10 +62,9 @@ void OSUnlockMutex(OSMutex* mutex)
 	OSRestoreInterrupts(enabled);
 }
 
-/*
- * --INFO--
- * Address:	800EFD0C
- * Size:	000070
+/**
+ * @note Address: 0x800EFD0C
+ * @note Size: 0x70
  */
 void __OSUnlockAllMutex(OSThread* thread)
 {
@@ -82,10 +78,9 @@ void __OSUnlockAllMutex(OSThread* thread)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800EFD7C
- * Size:	0000BC
+/**
+ * @note Address: 0x800EFD7C
+ * @note Size: 0xBC
  */
 BOOL OSTryLockMutex(OSMutex* mutex)
 {
@@ -111,17 +106,15 @@ BOOL OSTryLockMutex(OSMutex* mutex)
 	return locked;
 }
 
-/*
- * --INFO--
- * Address:	800EFE38
- * Size:	000020
+/**
+ * @note Address: 0x800EFE38
+ * @note Size: 0x20
  */
 void OSInitCond(OSCond* cond) { OSInitThreadQueue(&cond->queue); }
 
-/*
- * --INFO--
- * Address:	800EFE58
- * Size:	0000D4
+/**
+ * @note Address: 0x800EFE58
+ * @note Size: 0xD4
  */
 void OSWaitCond(OSCond* cond, OSMutex* mutex)
 {
@@ -150,9 +143,8 @@ void OSWaitCond(OSCond* cond, OSMutex* mutex)
 	OSRestoreInterrupts(enabled);
 }
 
-/*
- * --INFO--
- * Address:	800EFF2C
- * Size:	000020
+/**
+ * @note Address: 0x800EFF2C
+ * @note Size: 0x20
  */
 void OSSignalCond(OSCond* cond) { OSWakeupThread(&cond->queue); }

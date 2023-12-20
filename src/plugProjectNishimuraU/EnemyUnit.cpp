@@ -7,10 +7,9 @@
 namespace Game {
 namespace Cave {
 
-/*
- * --INFO--
- * Address:	802440F4
- * Size:	000074
+/**
+ * @note Address: 0x802440F4
+ * @note Size: 0x74
  */
 EnemyNode::EnemyNode()
 {
@@ -26,10 +25,9 @@ EnemyNode::EnemyNode()
 	mBirthPos.x = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	802441C8
- * Size:	000094
+/**
+ * @note Address: 0x802441C8
+ * @note Size: 0x94
  */
 EnemyNode::EnemyNode(EnemyUnit* unit, BaseGen* spawn, int count)
 {
@@ -45,10 +43,9 @@ EnemyNode::EnemyNode(EnemyUnit* unit, BaseGen* spawn, int count)
 	mBirthPos.x = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	8024425C
- * Size:	0001A8
+/**
+ * @note Address: 0x8024425C
+ * @note Size: 0x1A8
  */
 void EnemyNode::makeGlobalData(MapNode* mapTile)
 {
@@ -71,10 +68,9 @@ void EnemyNode::makeGlobalData(MapNode* mapTile)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80244404
- * Size:	000020
+/**
+ * @note Address: 0x80244404
+ * @note Size: 0x20
  */
 void EnemyNode::setGlobalData(Vector3f& pos, f32 direction)
 {
@@ -82,17 +78,15 @@ void EnemyNode::setGlobalData(Vector3f& pos, f32 direction)
 	mDirection = direction;
 }
 
-/*
- * --INFO--
- * Address:	80244424
- * Size:	000008
+/**
+ * @note Address: 0x80244424
+ * @note Size: 0x8
  */
 void EnemyNode::setBirthDoorIndex(int idx) { mBirthDoorIndex = idx; }
 
-/*
- * --INFO--
- * Address:	8024442C
- * Size:	000020
+/**
+ * @note Address: 0x8024442C
+ * @note Size: 0x20
  */
 int EnemyNode::getObjectId()
 {
@@ -103,10 +97,9 @@ int EnemyNode::getObjectId()
 	return -1;
 }
 
-/*
- * --INFO--
- * Address:	8024444C
- * Size:	000020
+/**
+ * @note Address: 0x8024444C
+ * @note Size: 0x20
  */
 u32 EnemyNode::getExtraCode()
 {
@@ -117,10 +110,9 @@ u32 EnemyNode::getExtraCode()
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	8024446C
- * Size:	000020
+/**
+ * @note Address: 0x8024446C
+ * @note Size: 0x20
  */
 u32 EnemyNode::getObjectType()
 {
@@ -132,17 +124,15 @@ u32 EnemyNode::getObjectType()
 	return DROP_NoDrop;
 }
 
-/*
- * --INFO--
- * Address:	8024448C
- * Size:	000008
+/**
+ * @note Address: 0x8024448C
+ * @note Size: 0x8
  */
 int EnemyNode::getBirthCount() { return mBirthCount; }
 
-/*
- * --INFO--
- * Address:	80244494
- * Size:	000014
+/**
+ * @note Address: 0x80244494
+ * @note Size: 0x14
  */
 void EnemyNode::getBirthPosition(f32& x, f32& y)
 {
@@ -150,17 +140,15 @@ void EnemyNode::getBirthPosition(f32& x, f32& y)
 	y = mBirthPos.z;
 }
 
-/*
- * --INFO--
- * Address:	802444A8
- * Size:	000008
+/**
+ * @note Address: 0x802444A8
+ * @note Size: 0x8
  */
 f32 EnemyNode::getDirection() { return mDirection; }
 
-/*
- * --INFO--
- * Address:	802444B0
- * Size:	000008
+/**
+ * @note Address: 0x802444B0
+ * @note Size: 0x8
  */
 int EnemyNode::getBirthDoorIndex() { return mBirthDoorIndex; }
 } // namespace Cave

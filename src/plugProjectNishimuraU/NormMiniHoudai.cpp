@@ -3,10 +3,9 @@
 namespace Game {
 namespace NormMiniHoudai {
 
-/*
- * --INFO--
- * Address:	803015F8
- * Size:	000090
+/**
+ * @note Address: 0x803015F8
+ * @note Size: 0x90
  */
 Obj::Obj() { }
 

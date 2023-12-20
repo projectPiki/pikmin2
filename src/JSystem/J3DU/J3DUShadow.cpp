@@ -4,10 +4,9 @@
 #ifdef MATCHING
 // Function contents here are all made up for the sake of matching.
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000FC
+/**
+ * @note Address: N/A
+ * @note Size: 0xFC
  */
 inline J3DUMultiTexture::J3DUMultiTexture(u32 count, u8)
 {
@@ -16,10 +15,9 @@ inline J3DUMultiTexture::J3DUMultiTexture(u32 count, u8)
 	mTextures = new JUTTexture[mCount];
 }
 
-// /*
-//  * --INFO--
-//  * Address:	800177D0
-//  * Size:	00001C
+// /**
+//  * @note Address: 0x800177D0
+//  * @note Size: 0x1C
 //  */
 // JUTTexture::JUTTexture()
 // {
@@ -28,92 +26,83 @@ inline J3DUMultiTexture::J3DUMultiTexture(u32 count, u8)
 // 	_20 = 0;
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 J3DUMultiTexture::~J3DUMultiTexture()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
+/**
+ * @note Address: N/A
+ * @note Size: 0x60
  */
 void J3DUMultiTexture::initResTIMG(u8, _GXTexFmt)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C8
+/**
+ * @note Address: N/A
+ * @note Size: 0xC8
  */
 void J3DUMultiTexture::allocateTexture(u8, u16, u16, _GXTexFmt)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0002B8
+/**
+ * @note Address: N/A
+ * @note Size: 0x2B8
  */
 void J3DUMultiTexture::draw(u8, u32, u32, _GXTevColorArg, u32, u32) const
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000140
+/**
+ * @note Address: N/A
+ * @note Size: 0x140
  */
 void calcSphereIncludingTwoSpheres(Vec*, float, Vec*, float, Vec*, float*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000FC
+/**
+ * @note Address: N/A
+ * @note Size: 0xFC
  */
 void calcSphereIncludingTwoSpheres(Vec*, float, Vec*, float*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000214
+/**
+ * @note Address: N/A
+ * @note Size: 0x214
  */
 void calcSphereIncludingModel(const J3DModel*, Vec*, float*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 void J3DUShadowManager::getFormatCoefficient(_GXTexFmt) const
 {
 	// UNUSED FUNCTION
 }
 
-/*
+/**
  * __ct__17J3DUShadowManagerFUl9_GXTexFmtUcb
  *
- * --INFO--
- * Address:	........
- * Size:	00021C
+ * @note Address: N/A
+ * @note Size: 0x21C
  */
 J3DUShadowManager::J3DUShadowManager(u32 p1, _GXTexFmt p2, u8 p3, bool p4)
     : mMultiTexture(p1, p3)
@@ -121,140 +110,126 @@ J3DUShadowManager::J3DUShadowManager(u32 p1, _GXTexFmt p2, u8 p3, bool p4)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A4
+/**
+ * @note Address: N/A
+ * @note Size: 0xA4
  */
 J3DUShadowManager::~J3DUShadowManager()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001D8
+/**
+ * @note Address: N/A
+ * @note Size: 0x1D8
  */
 void J3DUShadowManager::calc(const Vec&, J3DUShadowTextureSizeRatioCalcBase*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001E4
+/**
+ * @note Address: N/A
+ * @note Size: 0x1E4
  */
 void J3DUShadowManager::capture()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
+/**
+ * @note Address: N/A
+ * @note Size: 0x50
  */
 ProjectionBackup::~ProjectionBackup()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
+/**
+ * @note Address: N/A
+ * @note Size: 0x60
  */
 ScissorBackup::~ScissorBackup()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000068
+/**
+ * @note Address: N/A
+ * @note Size: 0x68
  */
 ViewportBackup::~ViewportBackup()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
+/**
+ * @note Address: N/A
+ * @note Size: 0x94
  */
 void J3DUShadowTextureSizeRatioCalcDefault::operator()(const Vec&, J3DUShadowInfo*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000288
+/**
+ * @note Address: N/A
+ * @note Size: 0x288
  */
 void J3DUShadowCameraPolicyUsingSphere::operator()(J3DModel*, const Vec&, _GXProjectionType, J3DUShadowInfo*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E8
+/**
+ * @note Address: N/A
+ * @note Size: 0xE8
  */
 void J3DUShadowInfo::setViewportAndScissor(bool) const
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00013C
+/**
+ * @note Address: N/A
+ * @note Size: 0x13C
  */
 void J3DUShadowInfo::gxConfig(const _GXColor&, _GXTevColorArg, _GXTevAlphaArg) const
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
+/**
+ * @note Address: N/A
+ * @note Size: 0x94
  */
 void J3DUShadowInfo::renderShape() const
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C4
+/**
+ * @note Address: N/A
+ * @note Size: 0xC4
  */
 void J3DUShadowInfo::getTexMtx(float (*)[4]) const
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B8
+/**
+ * @note Address: N/A
+ * @note Size: 0xB8
  */
 void J3DUShadowInfo::getTexMtxForGX(float (*)[4]) const
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000834
+/**
+ * @note Address: N/A
+ * @note Size: 0x834
  */
 void J3DUIsShadowInViewFrustum(const J3DUShadowInfo&, float (*)[4], const J3DUClipper&, const Vec&, const JGeometry::TPartition3<float>&)
 {

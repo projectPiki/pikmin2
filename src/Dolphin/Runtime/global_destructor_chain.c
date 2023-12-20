@@ -2,10 +2,9 @@
 
 DestructorChain* __global_destructor_chain;
 
-/*
- * --INFO--
- * Address:	800C1700
- * Size:	000018
+/**
+ * @note Address: 0x800C1700
+ * @note Size: 0x18
  */
 void* __register_global_object(void* object, void* destructor, void* regmem)
 {
@@ -17,10 +16,9 @@ void* __register_global_object(void* object, void* destructor, void* regmem)
 	return object;
 }
 
-/*
- * --INFO--
- * Address:	800C16B8
- * Size:	000048
+/**
+ * @note Address: 0x800C16B8
+ * @note Size: 0x48
  */
 void __destroy_global_chain(void)
 {

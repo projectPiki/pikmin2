@@ -13,10 +13,9 @@
 
 namespace Game {
 namespace Pelplant {
-/*
- * --INFO--
- * Address:	8010AB38
- * Size:	0001E0
+/**
+ * @note Address: 0x8010AB38
+ * @note Size: 0x1E0
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -37,12 +36,11 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateWither(PELPLANT_WitherSmall, PELPLANT_WaitSmall, PELPLANTANIM_WaitSmall, PELPLANTANIM_WaitSmall));
 }
 
-/*
+/**
  * --INLINED--
  * NB: required to generate vtables in correct order.
- * --INFO--
- * Address:	........
- * Size:	000040
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 StateBlendAnim::StateBlendAnim(int stateID, int nextState, int startAnimIdx, int endAnimIdx)
     : State(stateID)
@@ -52,20 +50,18 @@ StateBlendAnim::StateBlendAnim(int stateID, int nextState, int startAnimIdx, int
 {
 }
 
-/*
- * --INFO--
- * Address:	8010AD18
- * Size:	00003C
+/**
+ * @note Address: 0x8010AD18
+ * @note Size: 0x3C
  */
 void StateBlendAnim::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->startBlend(mStartAnimIdx, mEndAnimIdx, &EnemyBlendAnimatorBase::sBlendQuadraticFun, 30.0f, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8010AD54
- * Size:	00007C
+/**
+ * @note Address: 0x8010AD54
+ * @note Size: 0x7C
  */
 void StateBlendAnim::exec(EnemyBase* enemy)
 {
@@ -78,10 +74,9 @@ void StateBlendAnim::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8010ADD0
- * Size:	000098
+/**
+ * @note Address: 0x8010ADD0
+ * @note Size: 0x98
  */
 StateWither::StateWither(int stateID, int nextState, int startAnimIdx, int endAnimIdx)
     : StateBlendAnim(stateID, nextState, startAnimIdx, endAnimIdx)
@@ -99,10 +94,9 @@ StateWither::StateWither(int stateID, int nextState, int startAnimIdx, int endAn
 	}
 }
 
-/*
- * --INFO--
- * Address:	8010AE68
- * Size:	000070
+/**
+ * @note Address: 0x8010AE68
+ * @note Size: 0x70
  */
 void StateWither::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -111,10 +105,9 @@ void StateWither::init(EnemyBase* enemy, StateArg* stateArg)
 	EnemyFunc::flickStickPikmin(enemy, 1.0f, 10.0f, 0.0f, FLICK_BACKWARD_ANGLE, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8010AED8
- * Size:	00007C
+/**
+ * @note Address: 0x8010AED8
+ * @note Size: 0x7C
  */
 void StateWither::exec(EnemyBase* enemy)
 {
@@ -127,17 +120,15 @@ void StateWither::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8010AF54
- * Size:	000028
+/**
+ * @note Address: 0x8010AF54
+ * @note Size: 0x28
  */
 void StateWither::cleanup(EnemyBase* enemy) { OBJ(enemy)->updateLODSphereRadius(PELPLANTSIZE_Small); }
 
-/*
- * --INFO--
- * Address:	8010AF7C
- * Size:	000088
+/**
+ * @note Address: 0x8010AF7C
+ * @note Size: 0x88
  */
 StateWait::StateWait(int stateID, int pelSize)
     : State(stateID)
@@ -156,10 +147,9 @@ StateWait::StateWait(int stateID, int pelSize)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8010B004
- * Size:	000144
+/**
+ * @note Address: 0x8010B004
+ * @note Size: 0x144
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -193,10 +183,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj::sCurrentObj = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8010B148
- * Size:	000278
+/**
+ * @note Address: 0x8010B148
+ * @note Size: 0x278
  */
 void StateWait::exec(EnemyBase* enemy)
 {
@@ -264,17 +253,15 @@ void StateWait::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8010B3C0
- * Size:	000004
+/**
+ * @note Address: 0x8010B3C0
+ * @note Size: 0x4
  */
 void StateWait::cleanup(EnemyBase*) { }
 
-/*
- * --INFO--
- * Address:	8010B3C4
- * Size:	000044
+/**
+ * @note Address: 0x8010B3C4
+ * @note Size: 0x44
  */
 StateGrow::StateGrow(int stateID, int animIdx, int nextState)
     : State(stateID)
@@ -284,10 +271,9 @@ StateGrow::StateGrow(int stateID, int animIdx, int nextState)
 	mName      = "grow";
 }
 
-/*
- * --INFO--
- * Address:	8010B408
- * Size:	0002E0
+/**
+ * @note Address: 0x8010B408
+ * @note Size: 0x2E0
  */
 void StateGrow::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -336,10 +322,9 @@ void StateGrow::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8010B6E8
- * Size:	000060
+/**
+ * @note Address: 0x8010B6E8
+ * @note Size: 0x60
  */
 void StateGrow::exec(EnemyBase* enemy)
 {
@@ -352,17 +337,15 @@ void StateGrow::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8010B748
- * Size:	000004
+/**
+ * @note Address: 0x8010B748
+ * @note Size: 0x4
  */
 void StateGrow::cleanup(Game::EnemyBase*) { }
 
-/*
- * --INFO--
- * Address:	8010B74C
- * Size:	000040
+/**
+ * @note Address: 0x8010B74C
+ * @note Size: 0x40
  */
 StateDamage::StateDamage(int stateID, int animIdx)
     : State(stateID)
@@ -371,10 +354,9 @@ StateDamage::StateDamage(int stateID, int animIdx)
 	mAnimIdx = animIdx;
 }
 
-/*
- * --INFO--
- * Address:	8010B78C
- * Size:	00008C
+/**
+ * @note Address: 0x8010B78C
+ * @note Size: 0x8C
  */
 void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -391,10 +373,9 @@ void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->disableEvent(0, EB_Invulnerable);
 }
 
-/*
- * --INFO--
- * Address:	8010B818
- * Size:	000068
+/**
+ * @note Address: 0x8010B818
+ * @note Size: 0x68
  */
 void StateDamage::exec(Game::EnemyBase* enemy)
 {
@@ -404,17 +385,15 @@ void StateDamage::exec(Game::EnemyBase* enemy)
 	OBJ(enemy)->changePelletColor();
 }
 
-/*
- * --INFO--
- * Address:	8010B880
- * Size:	000010
+/**
+ * @note Address: 0x8010B880
+ * @note Size: 0x10
  */
 void StateDamage::cleanup(EnemyBase* enemy) { enemy->enableEvent(0, EB_Invulnerable); }
 
-/*
- * --INFO--
- * Address:	8010B890
- * Size:	000040
+/**
+ * @note Address: 0x8010B890
+ * @note Size: 0x40
  */
 StateDead::StateDead(int stateID, int animIdx)
     : State(stateID)
@@ -423,10 +402,9 @@ StateDead::StateDead(int stateID, int animIdx)
 	mAnimIdx = animIdx;
 }
 
-/*
- * --INFO--
- * Address:	8010B8D0
- * Size:	0000B4
+/**
+ * @note Address: 0x8010B8D0
+ * @note Size: 0xB4
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -448,10 +426,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8010B984
- * Size:	000068
+/**
+ * @note Address: 0x8010B984
+ * @note Size: 0x68
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -464,10 +441,9 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8010B9EC
- * Size:	000004
+/**
+ * @note Address: 0x8010B9EC
+ * @note Size: 0x4
  */
 void StateDead::cleanup(Game::EnemyBase*) { }
 
