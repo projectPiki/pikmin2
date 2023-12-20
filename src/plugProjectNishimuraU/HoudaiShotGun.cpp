@@ -1,4 +1,8 @@
 #include "Game/Entities/Houdai.h"
+#include "Game/MapMgr.h"
+#include "Game/rumble.h"
+#include "Dolphin/rand.h"
+#include "PS.h"
 
 namespace Game {
 namespace Houdai {
@@ -35,11 +39,198 @@ static bool verticalRotationCallBack(J3DJoint* joint, int idx)
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	00004C
+ */
+HoudaiShotGunNode::HoudaiShotGunNode(Obj* owner)
+    : mOwner(owner)
+{
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000E8
+ */
+void HoudaiShotGunNode::create()
+{
+	mVelocity = Vector3f(0.0f, 1.0f, 0.0f); // fake just to line up sdata
+	                                        // UNUSED/INLINED
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00001C
+ */
+void HoudaiShotGunNode::setPosition(Vector3f& pos) { mPosition = pos; }
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00001C
+ */
+void HoudaiShotGunNode::setVelocity(Vector3f& vel) { mVelocity = vel; }
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000D8
+ */
+void HoudaiShotGunNode::startShotGun()
+{
+	// UNUSED/INLINED
+}
+
+/*
+ * --INFO--
  * Address:	802C39C4
  * Size:	000B10
  */
 bool HoudaiShotGunNode::update()
 {
+	bool result       = false;               // r30
+	Vector3f startPos = mPosition;           // f16, f24, f15
+	Sys::Sphere moveSphere(startPos, 10.0f); // 0x78
+
+	MoveInfo moveInfo(&moveSphere, &mVelocity, 0.0f); // 0x1B0
+	moveInfo.mInfoOrigin = mOwner;
+	mapMgr->traceMove(moveInfo, sys->mDeltaTime);
+
+	setPosition(moveSphere.mPosition);
+
+	if (moveInfo.mBounceTriangle || moveInfo.mWallTriangle) {
+		Vector3f groundPos = mPosition;
+		groundPos.y        = mapMgr->getMinY(groundPos);
+
+		if (mPosition.y - groundPos.y < 20.0f) {
+			mPosition.y = 10.0f + groundPos.y;
+		}
+
+		Vector3f effectPos = mPosition;
+		effectPos.y -= 10.0f;
+
+		WaterBox* wbox = mapMgr->findWater(moveSphere);
+
+		if (wbox) {
+			effectPos.y = *wbox->getSeaHeightPtr();
+			efx::Arg fxArg(effectPos);
+			efx::THdamaHit3 hitFX;
+			hitFX.create(&fxArg);
+
+		} else if (moveInfo.mBounceTriangle) {
+			if (moveInfo.mMapCode.getAttribute() == (MapCode::Code::Attribute2 + MapCode::Code::Attribute3)) {
+				efx::Arg fxArg(effectPos);
+				efx::THdamaHit2 hitFX;
+				hitFX.create(&fxArg);
+			} else {
+				efx::Arg fxArg(effectPos);
+				efx::THdamaHit1 hitFX;
+				hitFX.create(&fxArg);
+			}
+
+		} else if (moveInfo.mWallTriangle) {
+			efx::ArgDir fxArg(effectPos);
+			fxArg.mAngle = moveInfo.mReflectPosition;
+			efx::THdamaHit2W hitFX;
+			hitFX.create(&fxArg);
+		}
+
+		mEfxShell->fade();
+		result = true;
+		if (wbox) {
+			PSStartSoundVec(PSSE_EN_HOUDAI_WATER_IMPACT, (Vec*)&mPosition);
+		} else {
+			PSStartSoundVec(PSSE_EN_HOUDAI_IMPACT, (Vec*)&mPosition);
+		}
+
+		rumbleMgr->startRumble(11, effectPos, 2);
+
+	} else {
+		Vector3f houdaiPos = mOwner->getPosition();
+		if (absVal(houdaiPos.x - mPosition.x) > 1500.0f || absVal(houdaiPos.y - mPosition.y) > 1000.0f
+		    || absVal(houdaiPos.z - mPosition.z) > 1500.0f) {
+			mEfxShell->fade();
+			result = true;
+		}
+	}
+
+	Vector3f newPos = mPosition;
+	startPos.y -= 10.0f;
+	newPos.y -= 10.0f;
+
+	f32 dist   = startPos.distance(newPos);
+	f32 radius = CG_PARMS(mOwner)->mGeneral.mAttackRadius();
+
+	if (dist > 0.0f) {
+		Vector3f searchCenter((newPos.x + startPos.x) * 0.5f, (newPos.y + startPos.y) * 0.5f, (newPos.z + startPos.z) * 0.5f);
+		f32 searchRadius = dist + radius;
+		Vector3f vec1    = newPos - startPos; // f29, f28, f30
+		vec1.normalise();
+
+		Vector3f yAxis(0.0f, 1.0f, 0.0f);
+
+		Vector3f vec2 = cross(yAxis, vec1); // f27, f26, f25
+		vec2.normalise();
+
+		Vector3f vec3 = cross(vec1, vec2); // f23, f22, f21
+		vec3.normalise();
+
+		Sys::Sphere searchSphere(searchCenter, searchRadius);
+		CellIteratorArg iterArg(searchSphere);
+		iterArg.mIsSphereCollisionDisabled = true;
+
+		CellIterator iter(iterArg);
+		CI_LOOP(iter)
+		{
+			Creature* target = static_cast<Creature*>(*iter);
+			if (!target->isAlive()) {
+				continue;
+			}
+
+			Vector3f creaturePos = target->getPosition();
+			Vector3f sep         = creaturePos - startPos;
+
+			f32 dot2 = dot(vec2, sep);
+			if (!(absVal(dot2) < radius)) {
+				continue;
+			}
+
+			f32 dot3 = dot(vec3, sep);
+			if (!(absVal(dot3) < radius)) {
+				continue;
+			}
+
+			f32 dot1 = dot(vec1, sep);
+			if (!(dot1 > -radius)) {
+				continue;
+			}
+
+			if (!(dot1 < searchRadius)) {
+				continue;
+			}
+
+			if (target->isNavi() || (target->isPiki() && static_cast<Piki*>(target)->isPikmin())) {
+				Vector3f blastDir(dot2 * vec2.x, 0.0f, dot2 * vec2.z);
+				blastDir.normalise();
+
+				blastDir.x *= 100.0f;
+				if (target->isPiki()) {
+					blastDir.y = 100.0f;
+				}
+				blastDir.z *= 100.0f;
+				InteractBomb blast(mOwner, CG_PARMS(mOwner)->mGeneral.mAttackDamage(), &blastDir);
+				target->stimulate(blast);
+				continue;
+			}
+
+			if (target->isTeki() && target != mOwner) {
+				InteractBomb blast(mOwner, 500.0f, &Vector3f::zero);
+				target->stimulate(blast);
+			}
+		}
+	}
+	return result;
 	/*
 	stwu     r1, -0x380(r1)
 	mflr     r0
@@ -847,18 +1038,18 @@ HoudaiShotGunMgr::HoudaiShotGunMgr(Obj* houdai)
     , mIsShotGunLockedOn(false)
     , mIsShotGunFinished(false)
 {
-	_0C = 0.0f;
-	_08 = 0.0f;
-	_34 = new HoudaiShotGunNode(mOwner);
-	_38 = new HoudaiShotGunNode(mOwner);
+	_0C            = 0.0f;
+	_08            = 0.0f;
+	mActiveNodes   = new HoudaiShotGunNode(mOwner);
+	mInactiveNodes = new HoudaiShotGunNode(mOwner);
 
 	for (int i = 0; i < 10; i++) {
 		HoudaiShotGunNode* node = new HoudaiShotGunNode(mOwner);
 		node->mEfxShell         = new efx::THdamaShell;
-		node->_20               = Vector3f::zero;
-		node->_2C               = Vector3f::zero;
+		node->mPosition         = Vector3f::zero;
+		node->mVelocity         = Vector3f::zero;
 
-		_38->add(node);
+		mInactiveNodes->add(node);
 	}
 
 	mEfxSight = new efx::THdamaSight();
@@ -963,6 +1154,42 @@ void HoudaiShotGunMgr::setShotGunTarget(Vector3f& pos) { mTargetPosition = pos; 
  */
 void HoudaiShotGunMgr::emitShotGun()
 {
+	HoudaiShotGunNode* node = static_cast<HoudaiShotGunNode*>(mInactiveNodes->mChild);
+	if (!node) {
+		return;
+	}
+
+	Vector3f xVec   = mGunMtx->getBasis(0);
+	Vector3f gunPos = mGunMtx->getBasis(3);
+
+	xVec.normalise();
+
+	f32 factor = 2.0f * CG_PARMS(mOwner)->mGeneral.mAttackHitAngle();
+
+	xVec.x += randWeightFloat(factor) - CG_PARMS(mOwner)->mGeneral.mAttackHitAngle();
+	xVec.y += randWeightFloat(factor) - CG_PARMS(mOwner)->mGeneral.mAttackHitAngle();
+	xVec.z += randWeightFloat(factor) - CG_PARMS(mOwner)->mGeneral.mAttackHitAngle();
+
+	xVec.normalise();
+
+	node->mPosition = gunPos + (xVec * 45.0f);
+	node->mVelocity = xVec * 600.0f;
+
+	Vector3f dir = node->mVelocity;
+	dir.normalise();
+
+	efx::ArgDir fxArg(node->mPosition);
+	fxArg.mAngle = dir;
+
+	node->mEfxShell->mPosition = &node->mPosition;
+	node->mEfxShell->create(&fxArg);
+
+	node->del();
+
+	mActiveNodes->add(node);
+
+	efx::THdamaShoot shootFX(mGunMtx);
+	shootFX.create(nullptr);
 	/*
 	stwu     r1, -0xe0(r1)
 	mflr     r0
@@ -1262,12 +1489,12 @@ void HoudaiShotGunMgr::doUpdate()
 void HoudaiShotGunMgr::doUpdateCommon()
 {
 	HoudaiShotGunNode* next;
-	HoudaiShotGunNode* node = static_cast<HoudaiShotGunNode*>(_34->mChild);
+	HoudaiShotGunNode* node = static_cast<HoudaiShotGunNode*>(mActiveNodes->mChild);
 	while (node) {
 		next = static_cast<HoudaiShotGunNode*>(node->mNext);
 		if (node->update()) {
 			node->del();
-			_38->add(node);
+			mInactiveNodes->add(node);
 		}
 		node = next;
 	}
@@ -1281,12 +1508,12 @@ void HoudaiShotGunMgr::doUpdateCommon()
 void HoudaiShotGunMgr::forceFinishShotGun()
 {
 	HoudaiShotGunNode* next;
-	HoudaiShotGunNode* node = static_cast<HoudaiShotGunNode*>(_34->mChild);
+	HoudaiShotGunNode* node = static_cast<HoudaiShotGunNode*>(mActiveNodes->mChild);
 	while (node) {
 		next = static_cast<HoudaiShotGunNode*>(node->mNext);
 		node->mEfxShell->fade();
 		node->del();
-		_38->add(node);
+		mInactiveNodes->add(node);
 		node = next;
 	}
 
@@ -1300,6 +1527,36 @@ void HoudaiShotGunMgr::forceFinishShotGun()
  */
 bool HoudaiShotGunMgr::searchShotGunRotation()
 {
+	Vector3f sep  = mTargetPosition - mGunMtx->getBasis(3);
+	f32 headPitch = JMAAtan2Radian(mHeadMtx->mMatrix.mtxView[0][1], mHeadMtx->mMatrix.mtxView[2][1]);
+	f32 turnAngle = JMAAtan2Radian(-sep.x, -sep.z);
+	f32 angleDist = angDist(headPitch, turnAngle);
+
+	f32 absDist = absVal(angleDist);
+
+	if (absDist > 0.05f) {
+		_08 -= 0.05f * (angleDist / absDist);
+	} else {
+		_08 -= angleDist;
+	}
+
+	_08 = (_08 < 0.0f) ? TAU + _08 : (_08 >= TAU) ? _08 - TAU : _08;
+
+	f32 dist2D = sep.length2D();
+	f32 ang    = JMAAtan2Radian(dist2D, sep.y);
+	f32 ang2   = PI + ang;
+	clampAngle(ang2);
+
+	f32 angleDist2 = angDist(_0C, ang2);
+	f32 absDist2   = absVal(angleDist2);
+	if (absDist2 > 0.05f) {
+		_0C -= 0.05f * (angleDist2 / absDist2);
+	} else {
+		_0C -= angleDist2;
+	}
+
+	_0C = (_0C < 0.0f) ? TAU + _0C : (_0C >= TAU) ? _0C - TAU : _0C;
+	return true;
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -2012,7 +2269,7 @@ lbl_802C5634:
 void HoudaiShotGunMgr::effectDrawOn()
 {
 	HoudaiShotGunNode* next1;
-	HoudaiShotGunNode* node1 = static_cast<HoudaiShotGunNode*>(_34->mChild);
+	HoudaiShotGunNode* node1 = static_cast<HoudaiShotGunNode*>(mActiveNodes->mChild);
 	while (node1) {
 		node1->mEfxShell->endDemoDrawOn();
 		next1 = static_cast<HoudaiShotGunNode*>(node1->mNext);
@@ -2020,7 +2277,7 @@ void HoudaiShotGunMgr::effectDrawOn()
 	}
 
 	HoudaiShotGunNode* next2;
-	HoudaiShotGunNode* node2 = static_cast<HoudaiShotGunNode*>(_38->mChild);
+	HoudaiShotGunNode* node2 = static_cast<HoudaiShotGunNode*>(mInactiveNodes->mChild);
 	while (node2) {
 		node2->mEfxShell->endDemoDrawOn();
 		next2 = static_cast<HoudaiShotGunNode*>(node2->mNext);
@@ -2038,7 +2295,7 @@ void HoudaiShotGunMgr::effectDrawOn()
 void HoudaiShotGunMgr::effectDrawOff()
 {
 	HoudaiShotGunNode* next1;
-	HoudaiShotGunNode* node1 = static_cast<HoudaiShotGunNode*>(_34->mChild);
+	HoudaiShotGunNode* node1 = static_cast<HoudaiShotGunNode*>(mActiveNodes->mChild);
 	while (node1) {
 		node1->mEfxShell->startDemoDrawOff();
 		next1 = static_cast<HoudaiShotGunNode*>(node1->mNext);
@@ -2046,7 +2303,7 @@ void HoudaiShotGunMgr::effectDrawOff()
 	}
 
 	HoudaiShotGunNode* next2;
-	HoudaiShotGunNode* node2 = static_cast<HoudaiShotGunNode*>(_38->mChild);
+	HoudaiShotGunNode* node2 = static_cast<HoudaiShotGunNode*>(mInactiveNodes->mChild);
 	while (node2) {
 		node2->mEfxShell->startDemoDrawOff();
 		next2 = static_cast<HoudaiShotGunNode*>(node2->mNext);

@@ -77,7 +77,7 @@ struct THdamaHahen : public TChasePosPos {
 
 struct THdamaHit1 : public TSimple5 {
 	inline THdamaHit1() // needs fixing
-	    : TSimple5(PID_HDamaHit1_1, PID_HDamaHit1_2, PID_HDamaHit1_3, PID_HDamaHit1_4, PID_HDamaHit1_1)
+	    : TSimple5(PID_HDamaHit1_1, PID_HDamaHit1_2, PID_HDamaHit1_3, PID_HDamaHit1_4, PID_HDamaShootA)
 	{
 	}
 
@@ -87,7 +87,7 @@ struct THdamaHit1 : public TSimple5 {
 
 struct THdamaHit2 : public TSimple4 {
 	inline THdamaHit2() // needs fixing
-	    : TSimple4(PID_HDamaHit2_1, PID_HDamaHit2_1, PID_HDamaHit2_1, PID_HDamaHit2_1)
+	    : TSimple4(PID_HDamaHit2_1, PID_HDamaHit2_2, PID_HDamaHit2_3, PID_HDamaShootA)
 	{
 	}
 
@@ -109,7 +109,7 @@ struct THdamaHit2W : public TSimple3 {
 
 struct THdamaHit3 : public TSimple4 {
 	inline THdamaHit3() // needs fixing
-	    : TSimple4(PID_HDamaHit3_1, PID_HDamaHit3_1, PID_HDamaHit3_1, PID_HDamaHit3_1)
+	    : TSimple4(PID_HDamaHit3_1, PID_HDamaHit3_2, PID_HDamaHit3_3, PID_HDamaHit3_4)
 	{
 	}
 
@@ -197,8 +197,8 @@ struct THdamaShell : public TChasePos {
 };
 
 struct THdamaShoot : public TSimpleMtx3 {
-	inline THdamaShoot()
-	    : TSimpleMtx3(nullptr, PID_HDamaShoot_1, PID_HDamaShoot_2, PID_HDamaShoot_3)
+	inline THdamaShoot(Matrixf* mtx)
+	    : TSimpleMtx3(mtx, PID_HDamaShoot_1, PID_HDamaShoot_2, PID_HDamaShoot_3)
 	{
 	}
 

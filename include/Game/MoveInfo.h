@@ -3,6 +3,7 @@
 
 #include "IDelegate.h"
 #include "Sys/Sphere.h"
+#include "mapCode.h"
 #include "Vector3.h"
 #include "types.h"
 
@@ -30,7 +31,7 @@ struct MoveInfo {
 		_18                  = 0;
 		mWallTriangle        = nullptr;
 		mInfoOrigin          = nullptr;
-		_90                  = 0;
+		mMapCode.mContents   = 0;
 		mTriangleArray       = nullptr;
 		mWallThreshold       = JMath::sincosTable_.mTable[256].first; // pi/2
 		mBounceThreshold     = 0.6f;
@@ -64,7 +65,7 @@ struct MoveInfo {
 	u8 _74;                                                           // _74
 	Vector3f mUpDirection;                                            // _78
 	Vector3f mBaseSpherePos;                                          // _84, the bottom of the move sphere
-	u8 _90;                                                           // _90
+	MapCode::Code mMapCode;                                           // _90
 	TDispTriangleArray* mTriangleArray;                               // _94
 	int mRoomIndex;                                                   // _98
 };

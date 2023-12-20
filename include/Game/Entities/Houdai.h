@@ -297,21 +297,23 @@ struct HoudaiGroundCallBack : public JointGroundCallBack {
 };
 
 struct HoudaiShotGunNode : public CNode {
-	inline HoudaiShotGunNode(Obj* houdai)
-	    : mOwner(houdai)
-	{
-	}
+	HoudaiShotGunNode(Obj* houdai);
 
 	virtual ~HoudaiShotGunNode() { } // _08 (weak)
 
 	bool update();
 
+	void create();
+	void setPosition(Vector3f& pos);
+	void setVelocity(Vector3f& vel);
+	void startShotGun();
+
 	// _00		= VTBL
 	// _00-_18 	= CNode
 	Obj* mOwner;                 // _18
 	efx::THdamaShell* mEfxShell; // _1C
-	Vector3f _20;                // _20
-	Vector3f _2C;                // _2C
+	Vector3f mPosition;          // _20
+	Vector3f mVelocity;          // _2C
 };
 
 struct HoudaiShotGunMgr {
@@ -342,19 +344,19 @@ struct HoudaiShotGunMgr {
 	void startStoneStateEffectOn();
 	void finishStoneStateEffectOn();
 
-	Obj* mOwner;                 // _00
-	bool mIsShotGunRotation;     // _04
-	bool mIsShotGunLockedOn;     // _05
-	bool mIsShotGunFinished;     // _06
-	f32 _08;                     // _08
-	f32 _0C;                     // _0C
-	Matrixf* mHeadMtx;           // _10, world matrix for head joint
-	Matrixf* mGunMtx;            // _14, world matrix for gun joint
-	Vector3f mTargetPosition;    // _18
-	u8 _24[0xC];                 // _24, unknown
-	efx::THdamaSight* mEfxSight; // _30
-	HoudaiShotGunNode* _34;      // _34
-	HoudaiShotGunNode* _38;      // _38
+	Obj* mOwner;                       // _00
+	bool mIsShotGunRotation;           // _04
+	bool mIsShotGunLockedOn;           // _05
+	bool mIsShotGunFinished;           // _06
+	f32 _08;                           // _08
+	f32 _0C;                           // _0C
+	Matrixf* mHeadMtx;                 // _10, world matrix for head joint
+	Matrixf* mGunMtx;                  // _14, world matrix for gun joint
+	Vector3f mTargetPosition;          // _18
+	u8 _24[0xC];                       // _24, unknown
+	efx::THdamaSight* mEfxSight;       // _30
+	HoudaiShotGunNode* mActiveNodes;   // _34
+	HoudaiShotGunNode* mInactiveNodes; // _38
 };
 
 // static bool levelRotationCallBack(J3DJoint*, int);

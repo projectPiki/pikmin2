@@ -28,18 +28,18 @@ struct Arg {
 	Arg(char const*);
 
 	const char* mPath;                       // _00
-	u8* mBuffer;                                 // _04
-	u32 mAddress;                                 // _08
-	u32 mOffset;                                 // _0C
+	u8* mBuffer;                             // _04
+	u32 mAddress;                            // _08
+	u32 mOffset;                             // _0C
 	JKRExpandSwitch mExpandSwitch;           // _10
-	u32 mMaxExpandSize;                                 // _14
+	u32 mMaxExpandSize;                      // _14
 	JKRHeap* mHeap;                          // _18
 	JKRDvdRipper::EAllocDirection mAllocDir; // _1C
-	int mAramID;                                 // _20
-	int* mDvdFileCompression;                                // _24
-	u32* mNewSize;                                // _28
-	u8 mUseAram;                                  // _2C
-	u8 mUseDVD;                                  // _2D
+	int mAramID;                             // _20
+	int* mDvdFileCompression;                // _24
+	u32* mNewSize;                           // _28
+	u8 mUseAram;                             // _2C
+	u8 mUseDVD;                              // _2D
 };
 
 struct ArgAramOnly : Arg {
