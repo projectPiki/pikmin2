@@ -1,5 +1,8 @@
 #include "types.h"
 
+static void (*MTRCallback)(int);
+static u8 EXIInputFlag;
+
 /**
  * @note Address: N/A
  * @note Size: 0x34
@@ -534,28 +537,13 @@ void DBGReadStatus(void)
  * @note Address: 0x800D0204
  * @note Size: 0x3C
  */
-void MWCallback(void)
-{
-	/*
-	.loc_0x0:
-	 mflr      r0
-	 stw       r0, 0x4(r1)
-	 li        r0, 0x1
-	 stwu      r1, -0x8(r1)
-	 lwz       r12, -0x7320(r13)
-	 stb       r0, -0x730C(r13)
-	 cmplwi    r12, 0
-	 beq-      .loc_0x2C
-	 mtlr      r12
-	 li        r3, 0
-	 blrl
 
-	.loc_0x2C:
-	 lwz       r0, 0xC(r1)
-	 addi      r1, r1, 0x8
-	 mtlr      r0
-	 blr
-	*/
+static void MWCallback(void)
+{
+	EXIInputFlag = TRUE;
+	if (MTRCallback) {
+		MTRCallback(0);
+	}
 }
 
 /**

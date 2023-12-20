@@ -505,8 +505,9 @@ char* Mgr::getCaveName(int)
  */
 int Mgr::getCaveID(char* p1)
 {
-	int comp = (strncmp("weed", p1, strlen("weed"))) != 0;
-	return comp;
+	return strncmp("weed", p1, strlen("weed")) != 0;
+
+	// return ((bool)strncmp("weed", p1, strlen("weed")));
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
