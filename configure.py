@@ -1175,7 +1175,7 @@ LIBS = [
             ["plugProjectNishimuraU/DamagumoMgr", True],
             ["plugProjectNishimuraU/Damagumo", True],
             ["plugProjectNishimuraU/IKSystemMgr", True],
-            ["plugProjectNishimuraU/IKSystemBase", False],
+            ["plugProjectNishimuraU/IKSystemBase", True],
             ["plugProjectNishimuraU/DamagumoShadow", True],
             ["plugProjectNishimuraU/KurageState", True],
             ["plugProjectNishimuraU/KurageAnimator", True],

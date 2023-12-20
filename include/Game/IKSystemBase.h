@@ -67,6 +67,12 @@ struct IKSystemParms {
 };
 
 struct IKSystemBase {
+	enum Positions {
+		TOP    = 0,
+		MIDDLE = 1,
+		BOTTOM = 2,
+	};
+
 	IKSystemBase();
 
 	void init();
@@ -95,22 +101,20 @@ struct IKSystemBase {
 	void makeBottomMatrix(Vector3f&);
 	bool onGround();
 
-	bool mEnabled;               // _00
-	bool mBlendMotion;           // _01
-	bool mOnGround;              // _02
-	bool _03;                    // _03
-	bool mScaleJoints;           // _04
-	f32 mBendRatio;              // _08, aka rotation in radians
-	f32 mMoveRatio;              // _0C
-	f32 mTimer;                  // _10
-	f32 mDistance1;              // _14, some distance I'm not sure of
-	f32 mDistance2;              // _18, same as above
-	Vector3f mTargetPosition;    // _1C
-	Vector3f mIkPositions[3];    // _28
-	Matrixf** mLegJointMatrices; // _4C
-	Matrixf* _50;                // _50
-	Matrixf* mBottomMtx;         // _54
-	IKSystemParms* mParameters;  // _58
+	bool mIsIKEnabled;             // _00
+	bool mIsBlendMotionActive;     // _01
+	bool mIsOnGround;              // _02
+	bool _03;                      // _03
+	bool mScaleJoints;             // _04
+	f32 mBendRatio;                // _08, aka rotation in radians
+	f32 mMoveRatio;                // _0C
+	f32 mTimer;                    // _10
+	f32 mDistance1;                // _14, some distance I'm not sure of
+	f32 mDistance2;                // _18, same as above
+	Vector3f mTargetPosition;      // _1C
+	Vector3f mIkPositions[3];      // _28
+	Matrixf* mLegJointMatrices[3]; // _4C
+	IKSystemParms* mParams;        // _58
 };
 
 struct IKSystemMgr {

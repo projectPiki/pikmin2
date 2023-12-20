@@ -152,5 +152,6 @@ inline Vector3f getDirectionMori(f32 angle)
 }
 
 inline f32 boundAboveBelow(f32 angle, f32 limit) { return (angle < -limit) ? -limit : (angle > limit) ? limit : angle; }
+inline f32 boundAboveBelow(f32 angle, f32 min, f32 max) { return (angle < min) ? min : (angle > max) ? max : angle; }
 
 #endif

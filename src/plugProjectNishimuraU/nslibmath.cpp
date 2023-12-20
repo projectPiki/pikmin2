@@ -1,21 +1,6 @@
 #include "types.h"
 #include "Vector3.h"
 
-/*
-    Generated from dpostproc
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    lbl_8051A600:
-        .float 1.0
-    lbl_8051A604:
-        .float 2.0
-    lbl_8051A608:
-        .float 0.5
-    lbl_8051A60C:
-        .float 1.0E-6
-    lbl_8051A610:
-        .float 0.0
-*/
 namespace Game {
 namespace NsMathExp {
 /*
