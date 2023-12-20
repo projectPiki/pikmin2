@@ -41,7 +41,14 @@
  * @note Size: 0xB0
  */
 HeapStatus::HeapStatus()
+    : mHeapInfo("root")
 {
+	mHeapInfo._3C = 0;
+	mHeapInfo._40 = -1;
+	mHeapInfo._44 = 0;
+	mHeapInfo._48 = this;
+	mHeapInfo._50 = 0;
+	mHeapInfo._4C = this;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -458,7 +465,7 @@ void HeapInfo::dump(int, bool)
  * @note Address: 0x8042B28C
  * @note Size: 0x1D8
  */
-void HeapInfo::search(HeapInfo*)
+void HeapInfo::search(HeapInfo* info)
 {
 	/*
 	stwu     r1, -0x30(r1)
