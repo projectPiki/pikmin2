@@ -2,24 +2,21 @@
 #include "Game/EnemyBase.h"
 
 namespace Game {
-/*
- * --INFO--
- * Address:	80127884
- * Size:	00005C
+/**
+ * @note Address: 0x80127884
+ * @note Size: 0x5C
  */
 bool InteractFarmKarero::actEnemy(EnemyBase* base) { return base->farmCallBack(mCreature, -_08); }
 
-/*
- * --INFO--
- * Address:	801278E0
- * Size:	000058
+/**
+ * @note Address: 0x801278E0
+ * @note Size: 0x58
  */
 bool InteractFarmHaero::actEnemy(EnemyBase* base) { return base->farmCallBack(mCreature, _08); }
 
-/*
- * --INFO--
- * Address:	80127938
- * Size:	00003C
+/**
+ * @note Address: 0x80127938
+ * @note Size: 0x3C
  */
 bool InteractDope::actEnemy(EnemyBase* base) { return base->dopeCallBack(mCreature, mSprayType); }
 } // namespace Game

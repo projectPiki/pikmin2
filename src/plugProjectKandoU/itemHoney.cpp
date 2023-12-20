@@ -8,19 +8,17 @@
 namespace Game {
 namespace ItemHoney {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
+/**
+ * @note Address: N/A
+ * @note Size: 0xE4
  */
 static void _Printf(char* format) { OSReport(format, "itemHoney"); }
 
 Mgr* mgr;
 
-/*
- * --INFO--
- * Address:	801D2D6C
- * Size:	00023C
+/**
+ * @note Address: 0x801D2D6C
+ * @note Size: 0x23C
  */
 void FSM::init(CFSMItem*)
 {
@@ -33,38 +31,33 @@ void FSM::init(CFSMItem*)
 	registerState(new DemoState());
 }
 
-/*
- * --INFO--
- * Address:	801D2FA8
- * Size:	000004
+/**
+ * @note Address: 0x801D2FA8
+ * @note Size: 0x4
  */
 void FallState::init(CFSMItem*, StateArg*) { }
 
-/*
- * --INFO--
- * Address:	801D2FAC
- * Size:	000004
+/**
+ * @note Address: 0x801D2FAC
+ * @note Size: 0x4
  */
 void FallState::exec(CFSMItem*) { }
 
-/*
- * --INFO--
- * Address:	801D2FB0
- * Size:	000004
+/**
+ * @note Address: 0x801D2FB0
+ * @note Size: 0x4
  */
 void FallState::cleanup(CFSMItem*) { }
 
-/*
- * --INFO--
- * Address:	801D2FB4
- * Size:	000034
+/**
+ * @note Address: 0x801D2FB4
+ * @note Size: 0x34
  */
 void FallState::onBounce(CFSMItem* item, Sys::Triangle* tri) { transit(item, HONEY_Bounce, nullptr); }
 
-/*
- * --INFO--
- * Address:	801D2FE8
- * Size:	0001C4
+/**
+ * @note Address: 0x801D2FE8
+ * @note Size: 0x1C4
  */
 void BounceState::init(CFSMItem* item, StateArg* arg)
 {
@@ -95,52 +88,45 @@ void BounceState::init(CFSMItem* item, StateArg* arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801D31AC
- * Size:	000004
+/**
+ * @note Address: 0x801D31AC
+ * @note Size: 0x4
  */
 void BounceState::exec(CFSMItem*) { }
 
-/*
- * --INFO--
- * Address:	801D31B0
- * Size:	000004
+/**
+ * @note Address: 0x801D31B0
+ * @note Size: 0x4
  */
 void BounceState::cleanup(CFSMItem*) { }
 
-/*
- * --INFO--
- * Address:	801D31B4
- * Size:	000034
+/**
+ * @note Address: 0x801D31B4
+ * @note Size: 0x34
  */
 void BounceState::onKeyEvent(CFSMItem* item, const SysShape::KeyEvent& keyEvent) { transit(item, HONEY_Wait, nullptr); }
 
-/*
- * --INFO--
- * Address:	801D31E8
- * Size:	000038
+/**
+ * @note Address: 0x801D31E8
+ * @note Size: 0x38
  */
 void WaitState::init(CFSMItem* item, StateArg* arg) { item->mAnimator.startAnim(4, item); }
 
-/*
- * --INFO--
- * Address:	801D3220
- * Size:	000004
+/**
+ * @note Address: 0x801D3220
+ * @note Size: 0x4
  */
 void WaitState::exec(CFSMItem*) { }
 
-/*
- * --INFO--
- * Address:	801D3224
- * Size:	000004
+/**
+ * @note Address: 0x801D3224
+ * @note Size: 0x4
  */
 void WaitState::cleanup(CFSMItem*) { }
 
-/*
- * --INFO--
- * Address:	801D3228
- * Size:	00011C
+/**
+ * @note Address: 0x801D3228
+ * @note Size: 0x11C
  */
 void WaitState::collisionCallback(CFSMItem* item, CollEvent& event)
 {
@@ -162,10 +148,9 @@ void WaitState::collisionCallback(CFSMItem* item, CollEvent& event)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801D3344
- * Size:	000038
+/**
+ * @note Address: 0x801D3344
+ * @note Size: 0x38
  */
 bool WaitState::interactAbsorb(CFSMItem* item, InteractAbsorb& interaction)
 {
@@ -173,31 +158,27 @@ bool WaitState::interactAbsorb(CFSMItem* item, InteractAbsorb& interaction)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801D337C
- * Size:	000038
+/**
+ * @note Address: 0x801D337C
+ * @note Size: 0x38
  */
 void ShrinkState::init(CFSMItem* item, StateArg* arg) { item->mAnimator.startAnim(6, item); }
 
-/*
- * --INFO--
- * Address:	801D33B4
- * Size:	000004
+/**
+ * @note Address: 0x801D33B4
+ * @note Size: 0x4
  */
 void ShrinkState::exec(CFSMItem*) { }
 
-/*
- * --INFO--
- * Address:	801D33B8
- * Size:	000004
+/**
+ * @note Address: 0x801D33B8
+ * @note Size: 0x4
  */
 void ShrinkState::cleanup(CFSMItem*) { }
 
-/*
- * --INFO--
- * Address:	801D33BC
- * Size:	000064
+/**
+ * @note Address: 0x801D33BC
+ * @note Size: 0x64
  */
 void ShrinkState::onKeyEvent(CFSMItem* item, const SysShape::KeyEvent&)
 {
@@ -206,10 +187,9 @@ void ShrinkState::onKeyEvent(CFSMItem* item, const SysShape::KeyEvent&)
 	mgr->kill(static_cast<Item*>(item));
 }
 
-/*
- * --INFO--
- * Address:	801D3444
- * Size:	00004C
+/**
+ * @note Address: 0x801D3444
+ * @note Size: 0x4C
  */
 void TouchState::init(CFSMItem* item, StateArg* arg)
 {
@@ -217,24 +197,21 @@ void TouchState::init(CFSMItem* item, StateArg* arg)
 	mIsJiggling = false;
 }
 
-/*
- * --INFO--
- * Address:	801D3490
- * Size:	000004
+/**
+ * @note Address: 0x801D3490
+ * @note Size: 0x4
  */
 void TouchState::exec(CFSMItem*) { }
 
-/*
- * --INFO--
- * Address:	801D3494
- * Size:	000004
+/**
+ * @note Address: 0x801D3494
+ * @note Size: 0x4
  */
 void TouchState::cleanup(CFSMItem*) { }
 
-/*
- * --INFO--
- * Address:	801D3498
- * Size:	000038
+/**
+ * @note Address: 0x801D3498
+ * @note Size: 0x38
  */
 bool TouchState::interactAbsorb(CFSMItem* item, InteractAbsorb& interaction)
 {
@@ -242,17 +219,15 @@ bool TouchState::interactAbsorb(CFSMItem* item, InteractAbsorb& interaction)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801D34D0
- * Size:	000034
+/**
+ * @note Address: 0x801D34D0
+ * @note Size: 0x34
  */
 void TouchState::onKeyEvent(CFSMItem* item, const SysShape::KeyEvent& keyEvent) { transit(item, HONEY_Wait, nullptr); }
 
-/*
- * --INFO--
- * Address:	801D3504
- * Size:	000080
+/**
+ * @note Address: 0x801D3504
+ * @note Size: 0x80
  */
 void TouchState::collisionCallback(CFSMItem* item, CollEvent& collEvent)
 {
@@ -263,38 +238,33 @@ void TouchState::collisionCallback(CFSMItem* item, CollEvent& collEvent)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801D3584
- * Size:	000038
+/**
+ * @note Address: 0x801D3584
+ * @note Size: 0x38
  */
 void DemoState::init(CFSMItem* item, StateArg* arg) { item->mAnimator.startAnim(5, item); }
 
-/*
- * --INFO--
- * Address:	801D35BC
- * Size:	000004
+/**
+ * @note Address: 0x801D35BC
+ * @note Size: 0x4
  */
 void DemoState::exec(CFSMItem*) { }
 
-/*
- * --INFO--
- * Address:	801D35C0
- * Size:	000004
+/**
+ * @note Address: 0x801D35C0
+ * @note Size: 0x4
  */
 void DemoState::cleanup(CFSMItem*) { }
 
-/*
- * --INFO--
- * Address:	801D35C4
- * Size:	000038
+/**
+ * @note Address: 0x801D35C4
+ * @note Size: 0x38
  */
 void DemoState::onKeyEvent(CFSMItem* item, const SysShape::KeyEvent& keyEvent) { item->mAnimator.startAnim(5, item); }
 
-/*
- * --INFO--
- * Address:	801D35FC
- * Size:	00003C
+/**
+ * @note Address: 0x801D35FC
+ * @note Size: 0x3C
  */
 bool Item::demoOK()
 {
@@ -306,10 +276,9 @@ bool Item::demoOK()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	801D3638
- * Size:	000088
+/**
+ * @note Address: 0x801D3638
+ * @note Size: 0x88
  */
 Item::Item()
     : CFSMItem(OBJTYPE_Honey)
@@ -318,17 +287,15 @@ Item::Item()
 	mCollTree->createSingleSphere(mModel, 0, mBoundingSphere, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	801D36C0
- * Size:	000058
+/**
+ * @note Address: 0x801D36C0
+ * @note Size: 0x58
  */
 CItemFSM* Item::createFSM() { return new FSM(); }
 
-/*
- * --INFO--
- * Address:	801D3718
- * Size:	000040
+/**
+ * @note Address: 0x801D3718
+ * @note Size: 0x40
  */
 void Item::doAI()
 {
@@ -337,10 +304,9 @@ void Item::doAI()
 	checkHell(hellArg);
 }
 
-/*
- * --INFO--
- * Address:	801D3758
- * Size:	000158
+/**
+ * @note Address: 0x801D3758
+ * @note Size: 0x158
  */
 void Item::onInit(CreatureInitArg* initArg)
 {
@@ -371,24 +337,21 @@ void Item::onInit(CreatureInitArg* initArg)
 	setAlive(true);
 }
 
-/*
- * --INFO--
- * Address:	801D38B0
- * Size:	000004
+/**
+ * @note Address: 0x801D38B0
+ * @note Size: 0x4
  */
 void Item::onSetPosition() { }
 
-/*
- * --INFO--
- * Address:	801D38B4
- * Size:	000008
+/**
+ * @note Address: 0x801D38B4
+ * @note Size: 0x8
  */
 f32 Item::getMapCollisionRadius() { return 7.5f; }
 
-/*
- * --INFO--
- * Address:	801D38BC
- * Size:	000130
+/**
+ * @note Address: 0x801D38BC
+ * @note Size: 0x130
  */
 void Item::changeMaterial()
 {
@@ -424,10 +387,9 @@ void Item::changeMaterial()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801D39EC
- * Size:	000038
+/**
+ * @note Address: 0x801D39EC
+ * @note Size: 0x38
  */
 void Item::updateBoundSphere()
 {
@@ -435,10 +397,9 @@ void Item::updateBoundSphere()
 	updateCollTree();
 }
 
-/*
- * --INFO--
- * Address:	801D3A24
- * Size:	000094
+/**
+ * @note Address: 0x801D3A24
+ * @note Size: 0x94
  */
 void Item::doSimulation(f32 rate)
 {
@@ -452,10 +413,9 @@ void Item::doSimulation(f32 rate)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801D3AB8
- * Size:	000054
+/**
+ * @note Address: 0x801D3AB8
+ * @note Size: 0x54
  */
 bool Item::absorbable()
 {
@@ -465,10 +425,9 @@ bool Item::absorbable()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	801D3B14
- * Size:	000060
+/**
+ * @note Address: 0x801D3B14
+ * @note Size: 0x60
  */
 void Item::onKeyEvent(const SysShape::KeyEvent& keyEvent)
 {
@@ -477,10 +436,9 @@ void Item::onKeyEvent(const SysShape::KeyEvent& keyEvent)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801D3B74
- * Size:	000060
+/**
+ * @note Address: 0x801D3B74
+ * @note Size: 0x60
  */
 void Item::collisionCallback(CollEvent& collEvent)
 {
@@ -489,10 +447,9 @@ void Item::collisionCallback(CollEvent& collEvent)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801D3BD8
- * Size:	000068
+/**
+ * @note Address: 0x801D3BD8
+ * @note Size: 0x68
  */
 bool Item::interactAbsorb(InteractAbsorb& interaction)
 {
@@ -502,17 +459,15 @@ bool Item::interactAbsorb(InteractAbsorb& interaction)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	801D3C48
- * Size:	000004
+/**
+ * @note Address: 0x801D3C48
+ * @note Size: 0x4
  */
 void Item::doDirectDraw(Graphics& gfx) { }
 
-/*
- * --INFO--
- * Address:	801D3C4C
- * Size:	00006C
+/**
+ * @note Address: 0x801D3C4C
+ * @note Size: 0x6C
  */
 void Item::makeTrMatrix()
 {
@@ -527,17 +482,15 @@ void Item::makeTrMatrix()
 	mBaseTrMatrix.makeST(scale, mPosition);
 }
 
-/*
- * --INFO--
- * Address:	801D3CB8
- * Size:	00003C
+/**
+ * @note Address: 0x801D3CB8
+ * @note Size: 0x3C
  */
 void Item::onStartCapture() { mFsm->start(this, HONEY_Fall, nullptr); }
 
-/*
- * --INFO--
- * Address:	801D3CF4
- * Size:	000054
+/**
+ * @note Address: 0x801D3CF4
+ * @note Size: 0x54
  */
 void Item::onUpdateCapture(Matrixf& mtx)
 {
@@ -546,31 +499,27 @@ void Item::onUpdateCapture(Matrixf& mtx)
 	entryShape();
 }
 
-/*
- * --INFO--
- * Address:	801D3D48
- * Size:	000028
+/**
+ * @note Address: 0x801D3D48
+ * @note Size: 0x28
  */
 void Item::onEndCapture() { setPosition(mPosition, false); }
 
-/*
- * --INFO--
- * Address:	801D3D70
- * Size:	00002C
+/**
+ * @note Address: 0x801D3D70
+ * @note Size: 0x2C
  */
 void Item::on_movie_end(bool shouldResetAnims) { mAnimator.startAnim(4, nullptr); }
 
-/*
- * --INFO--
- * Address:	801D3D9C
- * Size:	00002C
+/**
+ * @note Address: 0x801D3D9C
+ * @note Size: 0x2C
  */
 bool Item::isShrinking() { return getStateID() == HONEY_Shrink; }
 
-/*
- * --INFO--
- * Address:	801D3DC8
- * Size:	0000D0
+/**
+ * @note Address: 0x801D3DC8
+ * @note Size: 0xD0
  */
 Mgr::Mgr()
 {
@@ -579,10 +528,9 @@ Mgr::Mgr()
 	mItemName            = "Honey";
 }
 
-/*
- * --INFO--
- * Address:	801D40A8
- * Size:	000070
+/**
+ * @note Address: 0x801D40A8
+ * @note Size: 0x70
  */
 void Mgr::onCreateModel(SysShape::Model* model)
 {
@@ -593,10 +541,9 @@ void Mgr::onCreateModel(SysShape::Model* model)
 	model->getJ3DModel()->lock();
 }
 
-/*
- * --INFO--
- * Address:	801D4118
- * Size:	0000CC
+/**
+ * @note Address: 0x801D4118
+ * @note Size: 0xCC
  */
 void Mgr::onLoadResources()
 {
@@ -611,17 +558,15 @@ void Mgr::onLoadResources()
 	sys->heapStatusEnd("itemHoney");
 }
 
-/*
- * --INFO--
- * Address:	801D41E4
- * Size:	00002C
+/**
+ * @note Address: 0x801D41E4
+ * @note Size: 0x2C
  */
 Item* Mgr::birth() { return mMonoObjectMgr.birth(); }
 
-/*
- * --INFO--
- * Address:	801D4210
- * Size:	000060
+/**
+ * @note Address: 0x801D4210
+ * @note Size: 0x60
  */
 Item* Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenItemParm* genParm)
 {

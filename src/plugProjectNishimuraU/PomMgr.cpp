@@ -13,10 +13,9 @@ namespace Pom {
 static const int somePomArray[] = { 0, 0, 0 };
 static const char pomMgrName[]  = "246-PomMgr";
 
-/*
- * --INFO--
- * Address:	80253E8C
- * Size:	000050
+/**
+ * @note Address: 0x80253E8C
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -24,10 +23,9 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "ポンガシ草マネージャ"; // pongashi plant manager
 }
 
-/*
- * --INFO--
- * Address:	80253EDC
- * Size:	0001F4
+/**
+ * @note Address: 0x80253EDC
+ * @note Size: 0x1F4
  */
 EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
 {
@@ -81,17 +79,15 @@ EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
 	return EnemyMgrBase::birth(birthArg);
 }
 
-/*
- * --INFO--
- * Address:	802540D0
- * Size:	000048
+/**
+ * @note Address: 0x802540D0
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Parms); }
 
-/*
- * --INFO--
- * Address:	802542E0
- * Size:	000188
+/**
+ * @note Address: 0x802542E0
+ * @note Size: 0x188
  */
 void Mgr::createObj(int count)
 {
@@ -109,17 +105,15 @@ void Mgr::createObj(int count)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80254524
- * Size:	000010
+/**
+ * @note Address: 0x80254524
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
-/*
- * --INFO--
- * Address:	80254534
- * Size:	000138
+/**
+ * @note Address: 0x80254534
+ * @note Size: 0x138
  */
 SysShape::Model* Mgr::createModel()
 {

@@ -5,10 +5,9 @@
 namespace og {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	8030F31C
- * Size:	000080
+/**
+ * @note Address: 0x8030F31C
+ * @note Size: 0x80
  */
 bool DispMemberBase::isID(u32 ownerID, u64 memberID)
 {
@@ -20,17 +19,15 @@ bool DispMemberBase::isID(u32 ownerID, u64 memberID)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8030F39C
- * Size:	000040
+/**
+ * @note Address: 0x8030F39C
+ * @note Size: 0x40
  */
 void DispMemberBase::getMemberName(char* outName) { og::Screen::TagToName(getMemberID(), outName); }
 
-/*
- * --INFO--
- * Address:	8030F3DC
- * Size:	0000E4
+/**
+ * @note Address: 0x8030F3DC
+ * @note Size: 0xE4
  */
 bool DispMemberBase::setSubMember(og::Screen::DispMemberBase* newSubMember)
 {
@@ -54,10 +51,9 @@ bool DispMemberBase::setSubMember(og::Screen::DispMemberBase* newSubMember)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8030F4C0
- * Size:	00010C
+/**
+ * @note Address: 0x8030F4C0
+ * @note Size: 0x10C
  */
 DispMemberBase* DispMemberBase::getSubMember(u32 ownerID, u64 memberID)
 {
@@ -83,10 +79,9 @@ DispMemberBase* DispMemberBase::getSubMember(u32 ownerID, u64 memberID)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8030F5CC
- * Size:	000034
+/**
+ * @note Address: 0x8030F5CC
+ * @note Size: 0x34
  */
 void DispMemberBase::setSubMemberAll()
 {

@@ -6,10 +6,9 @@
 namespace Game {
 namespace ElecHiba {
 
-/*
- * --INFO--
- * Address:	8026F258
- * Size:	000150
+/**
+ * @note Address: 0x8026F258
+ * @note Size: 0x150
  */
 Obj::Obj()
 {
@@ -17,10 +16,9 @@ Obj::Obj()
 	setFSM(new FSM);
 }
 
-/*
- * --INFO--
- * Address:	8026F3A8
- * Size:	000038
+/**
+ * @note Address: 0x8026F3A8
+ * @note Size: 0x38
  */
 void Obj::birth(Vector3f& position, f32 faceDirection)
 {
@@ -29,10 +27,9 @@ void Obj::birth(Vector3f& position, f32 faceDirection)
 	mTeamList.mChildObjPtr = this;
 }
 
-/*
- * --INFO--
- * Address:	8026F3E0
- * Size:	000080
+/**
+ * @note Address: 0x8026F3E0
+ * @note Size: 0x80
  */
 void Obj::setInitialSetting(EnemyInitialParamBase* param)
 {
@@ -49,10 +46,9 @@ void Obj::setInitialSetting(EnemyInitialParamBase* param)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8026F460
- * Size:	000144
+/**
+ * @note Address: 0x8026F460
+ * @note Size: 0x144
  */
 void Obj::onInit(CreatureInitArg* args)
 {
@@ -85,10 +81,9 @@ void Obj::onInit(CreatureInitArg* args)
 	mFsm->start(this, ELECHIBA_Wait, &arg);
 }
 
-/*
- * --INFO--
- * Address:	8026F5A4
- * Size:	000040
+/**
+ * @note Address: 0x8026F5A4
+ * @note Size: 0x40
  */
 void Obj::doUpdate()
 {
@@ -97,24 +92,21 @@ void Obj::doUpdate()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8026F5E4
- * Size:	000004
+/**
+ * @note Address: 0x8026F5E4
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics& gfx) { }
 
-/*
- * --INFO--
- * Address:	8026F5E8
- * Size:	000020
+/**
+ * @note Address: 0x8026F5E8
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	8026F608
- * Size:	00004C
+/**
+ * @note Address: 0x8026F608
+ * @note Size: 0x4C
  */
 void Obj::setFSM(FSM* fsm)
 {
@@ -123,10 +115,9 @@ void Obj::setFSM(FSM* fsm)
 	mCurrentLifecycleState = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8026F654
- * Size:	000038
+/**
+ * @note Address: 0x8026F654
+ * @note Size: 0x38
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
@@ -136,10 +127,9 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 	shadowParam.mSize                     = 1.0f;
 }
 
-/*
- * --INFO--
- * Address:	8026F68C
- * Size:	0000CC
+/**
+ * @note Address: 0x8026F68C
+ * @note Size: 0xCC
  */
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
@@ -162,10 +152,9 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8026F758
- * Size:	000030
+/**
+ * @note Address: 0x8026F758
+ * @note Size: 0x30
  */
 bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
@@ -173,10 +162,9 @@ bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* collpart)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8026F788
- * Size:	000030
+/**
+ * @note Address: 0x8026F788
+ * @note Size: 0x30
  */
 bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
@@ -184,10 +172,9 @@ bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8026F7B8
- * Size:	000034
+/**
+ * @note Address: 0x8026F7B8
+ * @note Size: 0x34
  */
 bool Obj::bombCallBack(Creature* creature, Vector3f& vec, f32 damage)
 {
@@ -195,10 +182,9 @@ bool Obj::bombCallBack(Creature* creature, Vector3f& vec, f32 damage)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8026F7EC
- * Size:	000100
+/**
+ * @note Address: 0x8026F7EC
+ * @note Size: 0x100
  */
 void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
 {
@@ -222,10 +208,9 @@ void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8026F8EC
- * Size:	00004C
+/**
+ * @note Address: 0x8026F8EC
+ * @note Size: 0x4C
  */
 bool Obj::injure()
 {
@@ -240,10 +225,9 @@ bool Obj::injure()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8026F938
- * Size:	00001C
+/**
+ * @note Address: 0x8026F938
+ * @note Size: 0x1C
  */
 Obj* Obj::getChildObjPtr()
 {
@@ -253,10 +237,9 @@ Obj* Obj::getChildObjPtr()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8026F954
- * Size:	000170
+/**
+ * @note Address: 0x8026F954
+ * @note Size: 0x170
  */
 void Obj::setElecHibaPosition(InitialParam* param, f32 p1)
 {
@@ -269,10 +252,9 @@ void Obj::setElecHibaPosition(InitialParam* param, f32 p1)
 	setPosition(finalPos, false);
 }
 
-/*
- * --INFO--
- * Address:	8026FAC4
- * Size:	0005C8
+/**
+ * @note Address: 0x8026FAC4
+ * @note Size: 0x5C8
  */
 void Obj::interactDenkiAttack(Vector3f& position)
 {
@@ -754,10 +736,9 @@ lbl_8026FFD4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8027008C
- * Size:	00004C
+/**
+ * @note Address: 0x8027008C
+ * @note Size: 0x4C
  */
 void Obj::addDamageMyself(f32 damage)
 {
@@ -772,10 +753,9 @@ void Obj::addDamageMyself(f32 damage)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802700D8
- * Size:	00002C
+/**
+ * @note Address: 0x802700D8
+ * @note Size: 0x2C
  */
 void Obj::damageIncrement(f32 damage)
 {
@@ -786,10 +766,9 @@ void Obj::damageIncrement(f32 damage)
 	mFlickTimer += 1.0f;
 }
 
-/*
- * --INFO--
- * Address:	80270104
- * Size:	000024
+/**
+ * @note Address: 0x80270104
+ * @note Size: 0x24
  */
 void Obj::setupLodParms()
 {
@@ -798,10 +777,9 @@ void Obj::setupLodParms()
 	mLodParm.mIsCylinder = false;
 }
 
-/*
- * --INFO--
- * Address:	80270128
- * Size:	000038
+/**
+ * @note Address: 0x80270128
+ * @note Size: 0x38
  */
 void Obj::updateEfxLod()
 {
@@ -810,10 +788,9 @@ void Obj::updateEfxLod()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80270160
- * Size:	0000DC
+/**
+ * @note Address: 0x80270160
+ * @note Size: 0xDC
  */
 void Obj::createEffect(bool check)
 {
@@ -824,10 +801,9 @@ void Obj::createEffect(bool check)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80270418
- * Size:	000110
+/**
+ * @note Address: 0x80270418
+ * @note Size: 0x110
  */
 void Obj::startChargeEffect(Creature* creature)
 {
@@ -838,10 +814,9 @@ void Obj::startChargeEffect(Creature* creature)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80270528
- * Size:	000038
+/**
+ * @note Address: 0x80270528
+ * @note Size: 0x38
  */
 void Obj::finishChargeEffect()
 {
@@ -850,10 +825,9 @@ void Obj::finishChargeEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80270560
- * Size:	000070
+/**
+ * @note Address: 0x80270560
+ * @note Size: 0x70
  */
 void Obj::startDisChargeEffect()
 {
@@ -877,10 +851,9 @@ void Obj::startDisChargeEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802705D0
- * Size:	000038
+/**
+ * @note Address: 0x802705D0
+ * @note Size: 0x38
  */
 void Obj::finishDisChargeEffect()
 {
@@ -889,10 +862,9 @@ void Obj::finishDisChargeEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80270608
- * Size:	000044
+/**
+ * @note Address: 0x80270608
+ * @note Size: 0x44
  */
 void Obj::generatorKill()
 {
@@ -902,10 +874,9 @@ void Obj::generatorKill()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8027064C
- * Size:	00006C
+/**
+ * @note Address: 0x8027064C
+ * @note Size: 0x6C
  */
 void Obj::setVersusHibaOnOff()
 {
@@ -917,10 +888,9 @@ void Obj::setVersusHibaOnOff()
 	mIsVersusModeHiba = false;
 }
 
-/*
- * --INFO--
- * Address:	802706B8
- * Size:	00002C
+/**
+ * @note Address: 0x802706B8
+ * @note Size: 0x2C
  */
 void Obj::setVersusHibaType()
 {
@@ -933,10 +903,9 @@ void Obj::setVersusHibaType()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802706E4
- * Size:	000010
+/**
+ * @note Address: 0x802706E4
+ * @note Size: 0x10
  */
 void Obj::resetAttrHitCount()
 {
@@ -944,10 +913,9 @@ void Obj::resetAttrHitCount()
 	mBlueAttrAttackCount = 0;
 }
 
-/*
- * --INFO--
- * Address:	802706F4
- * Size:	000070
+/**
+ * @note Address: 0x802706F4
+ * @note Size: 0x70
  */
 void Obj::addAttrAttackCount(Piki* piki)
 {
@@ -962,10 +930,9 @@ void Obj::addAttrAttackCount(Piki* piki)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80270764
- * Size:	000040
+/**
+ * @note Address: 0x80270764
+ * @note Size: 0x40
  */
 bool Obj::isWaitFinish()
 {
@@ -975,10 +942,9 @@ bool Obj::isWaitFinish()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802707A4
- * Size:	000058
+/**
+ * @note Address: 0x802707A4
+ * @note Size: 0x58
  */
 bool Obj::isAttackFinish()
 {

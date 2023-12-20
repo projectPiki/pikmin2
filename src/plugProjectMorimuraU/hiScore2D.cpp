@@ -44,20 +44,18 @@ int THiScore::mHiscoreDataOrder[16] = {
 	0, 8, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 9, 13, 12, 15,
 };
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000254
+/**
+ * @note Address: N/A
+ * @note Size: 0x254
  */
 void setScreenAlpha(J2DPane*, u8)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8037C9AC
- * Size:	000214
+/**
+ * @note Address: 0x8037C9AC
+ * @note Size: 0x214
  */
 void THiScoreIndPane::draw()
 {
@@ -95,10 +93,9 @@ void THiScoreIndPane::draw()
 	TIndPane::draw();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
+/**
+ * @note Address: N/A
+ * @note Size: 0x30
  */
 void THiScoreIndPane::setRadius(s16 p1, f32 radius)
 {
@@ -109,10 +106,9 @@ void THiScoreIndPane::setRadius(s16 p1, f32 radius)
 	_40 = (radius * 360.0f) / TAU;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 THiScoreListScreen::THiScoreListScreen(JKRArchive* arc, int)
     : TListScreen(arc, 0)
@@ -120,10 +116,9 @@ THiScoreListScreen::THiScoreListScreen(JKRArchive* arc, int)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8037CBC0
- * Size:	00032C
+/**
+ * @note Address: 0x8037CBC0
+ * @note Size: 0x32C
  */
 void THiScoreListScreen::create(char const* path, u32 screenFlags)
 {
@@ -374,10 +369,9 @@ lbl_8037CE70:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8037CEEC
- * Size:	0001CC
+/**
+ * @note Address: 0x8037CEEC
+ * @note Size: 0x1CC
  */
 THiScore::THiScore()
     : TScrollList("hiscore")
@@ -433,10 +427,9 @@ THiScore::THiScore()
 	mScrollParm._10 = 2.0f;
 }
 
-/*
- * --INFO--
- * Address:	8037D0BC
- * Size:	00105C
+/**
+ * @note Address: 0x8037D0BC
+ * @note Size: 0x105C
  */
 void THiScore::doCreate(JKRArchive* arc)
 {
@@ -1757,17 +1750,16 @@ lbl_8037E030:
 	blr
 	*/
 }
-/*
- * --INFO--
- * Address:	8037E178
- * Size:	00001C
+
+/**
+ * @note Address: 0x8037E178
+ * @note Size: 0x1C
  */
 u64 THiScore::getNameID(int id) { return mNameID[id]; }
 
-/*
- * --INFO--
- * Address:	8037E194
- * Size:	0009F0
+/**
+ * @note Address: 0x8037E194
+ * @note Size: 0x9F0
  */
 bool THiScore::doUpdate()
 {
@@ -2706,17 +2698,15 @@ lbl_8037EB44:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8037EB84
- * Size:	000030
+/**
+ * @note Address: 0x8037EB84
+ * @note Size: 0x30
  */
 void THiScoreListScreen::update() { mScreenObj->update(); }
 
-/*
- * --INFO--
- * Address:	8037EBB4
- * Size:	0001A8
+/**
+ * @note Address: 0x8037EBB4
+ * @note Size: 0x1A8
  */
 void THiScore::doDraw(Graphics& gfx)
 {
@@ -2743,10 +2733,9 @@ void THiScore::doDraw(Graphics& gfx)
 	GXSetAlphaUpdate(GX_TRUE);
 }
 
-/*
- * --INFO--
- * Address:	8037ED5C
- * Size:	000358
+/**
+ * @note Address: 0x8037ED5C
+ * @note Size: 0x358
  */
 void THiScore::paneInit()
 {
@@ -2797,10 +2786,9 @@ void THiScore::paneInit()
 	_AC      = mYOffset + y;
 }
 
-/*
- * --INFO--
- * Address:	8037F0B4
- * Size:	00005C
+/**
+ * @note Address: 0x8037F0B4
+ * @note Size: 0x5C
  */
 void THiScore::doUpdateFadeinFinish()
 {
@@ -2811,10 +2799,9 @@ void THiScore::doUpdateFadeinFinish()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8037F110
- * Size:	00001C
+/**
+ * @note Address: 0x8037F110
+ * @note Size: 0x1C
  */
 void THiScore::doUpdateFadeoutFinish()
 {
@@ -2824,10 +2811,9 @@ void THiScore::doUpdateFadeoutFinish()
 	mDisp->_0C = 1;
 }
 
-/*
- * --INFO--
- * Address:	8037F12C
- * Size:	0005C4
+/**
+ * @note Address: 0x8037F12C
+ * @note Size: 0x5C4
  */
 void THiScore::changePaneInfo()
 {
@@ -3367,10 +3353,9 @@ lbl_8037F6CC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8037F6F0
- * Size:	000124
+/**
+ * @note Address: 0x8037F6F0
+ * @note Size: 0x124
  */
 void THiScore::setPaneCharacter(int id)
 {
@@ -3466,10 +3451,9 @@ lbl_8037F7F4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8037F814
- * Size:	00044C
+/**
+ * @note Address: 0x8037F814
+ * @note Size: 0x44C
  */
 int THiScore::getRecord(int type, int id)
 {
@@ -3548,10 +3532,9 @@ int THiScore::getRecord(int type, int id)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	8037FC60
- * Size:	00043C
+/**
+ * @note Address: 0x8037FC60
+ * @note Size: 0x43C
  */
 void THiScore::changeTextTevBlock(int p1)
 {
@@ -3877,10 +3860,9 @@ lbl_80380088:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8038009C
- * Size:	00021C
+/**
+ * @note Address: 0x8038009C
+ * @note Size: 0x21C
  */
 void THiScore::copyTevBlock(J2DTevBlock* tevA, J2DTevBlock* tevB)
 {
@@ -3896,10 +3878,9 @@ void THiScore::copyTevBlock(J2DTevBlock* tevA, J2DTevBlock* tevB)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803802B8
- * Size:	00021C
+/**
+ * @note Address: 0x803802B8
+ * @note Size: 0x21C
  */
 void THiScore::changeTevBlock(J2DTevBlock* tevB, J2DTevBlock* tevA)
 {
@@ -3915,10 +3896,9 @@ void THiScore::changeTevBlock(J2DTevBlock* tevB, J2DTevBlock* tevA)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803804D4
- * Size:	000080
+/**
+ * @note Address: 0x803804D4
+ * @note Size: 0x80
  */
 void THiScore::copyColorBlock(J2DColorBlock* colorA, J2DColorBlock* colorB)
 {
@@ -3932,10 +3912,9 @@ void THiScore::copyColorBlock(J2DColorBlock* colorA, J2DColorBlock* colorB)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80380554
- * Size:	000080
+/**
+ * @note Address: 0x80380554
+ * @note Size: 0x80
  */
 void THiScore::changeColorBlock(J2DColorBlock* colorB, J2DColorBlock* colorA)
 {
@@ -3949,10 +3928,9 @@ void THiScore::changeColorBlock(J2DColorBlock* colorB, J2DColorBlock* colorA)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803805D4
- * Size:	000180
+/**
+ * @note Address: 0x803805D4
+ * @note Size: 0x180
  */
 void THiScore::updateLayout()
 {
@@ -4077,17 +4055,15 @@ lbl_8038071C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80380754
- * Size:	000050
+/**
+ * @note Address: 0x80380754
+ * @note Size: 0x50
  */
 THiScoreScene::THiScoreScene() { }
 
-/*
- * --INFO--
- * Address:	803807B0
- * Size:	000068
+/**
+ * @note Address: 0x803807B0
+ * @note Size: 0x68
  */
 void THiScoreScene::doCreateObj(JKRArchive* arc)
 {

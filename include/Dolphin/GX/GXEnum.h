@@ -467,7 +467,7 @@ typedef enum _GXTexMapID {
 } GXTexMapID;
 
 // Texture format types.
-/*
+/**
  * RGB, RGBA, Intensity, Intensity/Alpha, Compressed, and Z texture format
  * types. See GXCITexFmt for information on color index formats. The CTF format
  * is used only by the GXSetTexCopyDst function to specify how data is copied
@@ -607,7 +607,7 @@ typedef enum _GXTexCacheSize {
 
 ////////// TEXTURE LOOK-UP TABLES //////////
 // Texture look-up table (Tlut) names.
-/*
+/**
  * Names of texture lookup tables (TLUTs) in texture memory.
  * Each table GX_TLUT0 through GX_TLUT15 contains 256 entries, at 16 bits per
  * entry. Each table GX_BIGTLUT0 through BIGTLUT3 contains 1024 entries, at 16

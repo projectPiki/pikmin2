@@ -3,10 +3,9 @@
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	802350A0
- * Size:	000064
+/**
+ * @note Address: 0x802350A0
+ * @note Size: 0x64
  */
 Challenge2D_TitleInfo::Challenge2D_TitleInfo(int count)
 {
@@ -14,10 +13,9 @@ Challenge2D_TitleInfo::Challenge2D_TitleInfo(int count)
 	mCount     = count;
 }
 
-/*
- * --INFO--
- * Address:	80235104
- * Size:	000030
+/**
+ * @note Address: 0x80235104
+ * @note Size: 0x30
  */
 Challenge2D_TitleInfo::Info::Info()
 {
@@ -32,10 +30,9 @@ Challenge2D_TitleInfo::Info::Info()
 	mDisplayFlag.clear();
 }
 
-/*
- * --INFO--
- * Address:	80235134
- * Size:	00007C
+/**
+ * @note Address: 0x80235134
+ * @note Size: 0x7C
  */
 Challenge2D_TitleInfo::Info* Challenge2D_TitleInfo::operator()(int count)
 {
@@ -43,10 +40,9 @@ Challenge2D_TitleInfo::Info* Challenge2D_TitleInfo::operator()(int count)
 	return &pInfoArray[count];
 }
 
-/*
- * --INFO--
- * Address:	802351B0
- * Size:	000064
+/**
+ * @note Address: 0x802351B0
+ * @note Size: 0x64
  */
 Vs2D_TitleInfo::Vs2D_TitleInfo(int count)
 {
@@ -54,17 +50,15 @@ Vs2D_TitleInfo::Vs2D_TitleInfo(int count)
 	mInfoCount = count;
 }
 
-/*
- * --INFO--
- * Address:	80235214
- * Size:	00000C
+/**
+ * @note Address: 0x80235214
+ * @note Size: 0xC
  */
 Vs2D_TitleInfo::Info::Info() { mInfo = 0; }
 
-/*
- * --INFO--
- * Address:	80235220
- * Size:	0000A8
+/**
+ * @note Address: 0x80235220
+ * @note Size: 0xA8
  */
 Vs2D_TitleInfo::Info* Vs2D_TitleInfo::operator()(int infoIndex)
 {
@@ -74,10 +68,9 @@ Vs2D_TitleInfo::Info* Vs2D_TitleInfo::operator()(int infoIndex)
 	return &pInfoArray[infoIndex];
 }
 
-/*
- * --INFO--
- * Address:	802352C8
- * Size:	000028
+/**
+ * @note Address: 0x802352C8
+ * @note Size: 0x28
  */
 Challenge2D_ResultInfo::Challenge2D_ResultInfo()
 {

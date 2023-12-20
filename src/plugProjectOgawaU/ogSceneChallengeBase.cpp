@@ -3,24 +3,21 @@
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	8032CD30
- * Size:	000044
+/**
+ * @note Address: 0x8032CD30
+ * @note Size: 0x44
  */
 ChallengeBase::ChallengeBase() { isCountingDown = false; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 ChallengeBase::~ChallengeBase() { }
 
-/*
- * --INFO--
- * Address:	8032CD74
- * Size:	0000A4
+/**
+ * @note Address: 0x8032CD74
+ * @note Size: 0xA4
  */
 void ChallengeBase::updateCountDown(f32 value, Screen::DispMemberDayEndCount* count)
 {

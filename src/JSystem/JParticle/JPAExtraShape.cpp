@@ -2,10 +2,9 @@
 #include "JSystem/JParticle/JPAEmitter.h"
 #include "JSystem/JParticle/JPAShape.h"
 
-/*
- * --INFO--
- * Address:	80091030
- * Size:	000070
+/**
+ * @note Address: 0x80091030
+ * @note Size: 0x70
  */
 void JPACalcScaleX(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -19,10 +18,9 @@ void JPACalcScaleX(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800910A0
- * Size:	000070
+/**
+ * @note Address: 0x800910A0
+ * @note Size: 0x70
  */
 void JPACalcScaleY(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -36,10 +34,9 @@ void JPACalcScaleY(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80091110
- * Size:	00000C
+/**
+ * @note Address: 0x80091110
+ * @note Size: 0xC
  */
 void JPACalcScaleCopy(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -47,17 +44,15 @@ void JPACalcScaleCopy(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 	ptcl->mParticleScaleY = ptcl->mParticleScaleX;
 }
 
-/*
- * --INFO--
- * Address:	8009111C
- * Size:	00000C
+/**
+ * @note Address: 0x8009111C
+ * @note Size: 0xC
  */
 void JPACalcScaleAnmNormal(JPAEmitterWorkData* work, JPABaseParticle* ptcl) { work->mScaleAnm = ptcl->mTime; }
 
-/*
- * --INFO--
- * Address:	80091128
- * Size:	000064
+/**
+ * @note Address: 0x80091128
+ * @note Size: 0x64
  */
 void JPACalcScaleAnmRepeatX(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -65,10 +60,9 @@ void JPACalcScaleAnmRepeatX(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 	work->mScaleAnm    = (ptcl->mAge % esp->getScaleAnmCycleX()) / (f32)esp->getScaleAnmCycleX();
 }
 
-/*
- * --INFO--
- * Address:	8009118C
- * Size:	000064
+/**
+ * @note Address: 0x8009118C
+ * @note Size: 0x64
  */
 void JPACalcScaleAnmRepeatY(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -76,10 +70,9 @@ void JPACalcScaleAnmRepeatY(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 	work->mScaleAnm    = (ptcl->mAge % esp->getScaleAnmCycleY()) / (f32)esp->getScaleAnmCycleY();
 }
 
-/*
- * --INFO--
- * Address:	800911F0
- * Size:	00008C
+/**
+ * @note Address: 0x800911F0
+ * @note Size: 0x8C
  */
 void JPACalcScaleAnmReverseX(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -89,10 +82,9 @@ void JPACalcScaleAnmReverseX(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 	work->mScaleAnm    = base + ((cycle & 1) * (1.0f - base * 2.0f));
 }
 
-/*
- * --INFO--
- * Address:	8009127C
- * Size:	00008C
+/**
+ * @note Address: 0x8009127C
+ * @note Size: 0x8C
  */
 void JPACalcScaleAnmReverseY(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -102,10 +94,9 @@ void JPACalcScaleAnmReverseY(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 	work->mScaleAnm    = base + ((cycle & 1) * (1.0f - base * 2.0f));
 }
 
-/*
- * --INFO--
- * Address:	80091308
- * Size:	000080
+/**
+ * @note Address: 0x80091308
+ * @note Size: 0x80
  */
 void JPACalcAlphaAnm(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -121,10 +112,9 @@ void JPACalcAlphaAnm(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 	OSf32tou8(&alpha, &ptcl->mPrmColorAlphaAnm);
 }
 
-/*
- * --INFO--
- * Address:	80091388
- * Size:	0000E4
+/**
+ * @note Address: 0x80091388
+ * @note Size: 0xE4
  */
 void JPACalcAlphaFlickAnm(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -143,10 +133,9 @@ void JPACalcAlphaFlickAnm(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 	OSf32tou8(&alpha, &ptcl->mPrmColorAlphaAnm);
 }
 
-/*
- * --INFO--
- * Address:	8009146C
- * Size:	000034
+/**
+ * @note Address: 0x8009146C
+ * @note Size: 0x34
  * __ct
  */
 JPAExtraShape::JPAExtraShape(const u8* data)
@@ -155,20 +144,18 @@ JPAExtraShape::JPAExtraShape(const u8* data)
 	init();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001FC
+/**
+ * @note Address: N/A
+ * @note Size: 0x1FC
  */
 void JPAExtraShape::init_jpa(const u8*, JKRHeap*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800914A0
- * Size:	000100
+/**
+ * @note Address: 0x800914A0
+ * @note Size: 0x100
  * init__13JPAExtraShapeFv
  */
 void JPAExtraShape::init()

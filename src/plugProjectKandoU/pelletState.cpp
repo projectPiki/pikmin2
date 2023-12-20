@@ -24,10 +24,9 @@ namespace Game {
 static const u32 padding[]    = { 0, 0, 0 };
 static const char className[] = "pelletState";
 
-/*
- * --INFO--
- * Address:	801A4310
- * Size:	0002AC
+/**
+ * @note Address: 0x801A4310
+ * @note Size: 0x2AC
  */
 void PelletFSM::init(Pellet* obj)
 {
@@ -43,31 +42,27 @@ void PelletFSM::init(Pellet* obj)
 	registerState(new PelletReturnState);
 }
 
-/*
- * --INFO--
- * Address:	801A45BC
- * Size:	000004
+/**
+ * @note Address: 0x801A45BC
+ * @note Size: 0x4
  */
 void PelletNormalState::init(Pellet*, StateArg*) { }
 
-/*
- * --INFO--
- * Address:	801A45C0
- * Size:	000004
+/**
+ * @note Address: 0x801A45C0
+ * @note Size: 0x4
  */
 void PelletNormalState::exec(Pellet*) { }
 
-/*
- * --INFO--
- * Address:	801A45C4
- * Size:	000004
+/**
+ * @note Address: 0x801A45C4
+ * @note Size: 0x4
  */
 void PelletNormalState::cleanup(Pellet*) { }
 
-/*
- * --INFO--
- * Address:	801A45C8
- * Size:	00007C
+/**
+ * @note Address: 0x801A45C8
+ * @note Size: 0x7C
  */
 void PelletGoalWaitState::init(Pellet* pelt, StateArg* arg)
 {
@@ -79,10 +74,9 @@ void PelletGoalWaitState::init(Pellet* pelt, StateArg* arg)
 	pelt->getCreatureName();
 }
 
-/*
- * --INFO--
- * Address:	801A4644
- * Size:	000060
+/**
+ * @note Address: 0x801A4644
+ * @note Size: 0x60
  * This whole state exists solely to delay pellets being sucked into the ship
  * until after a cutscene isnt playing
  */
@@ -94,26 +88,23 @@ void PelletGoalWaitState::exec(Pellet* pelt)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801A46A4
- * Size:	000030
+/**
+ * @note Address: 0x801A46A4
+ * @note Size: 0x30
  */
 // void FSMState<Game::Pellet>::transit(Pellet*, int, StateArg*)
 //{
 //}
 
-/*
- * --INFO--
- * Address:	801A46D4
- * Size:	000004
+/**
+ * @note Address: 0x801A46D4
+ * @note Size: 0x4
  */
 void PelletGoalWaitState::cleanup(Pellet*) { }
 
-/*
- * --INFO--
- * Address:	801A46D8
- * Size:	000680
+/**
+ * @note Address: 0x801A46D8
+ * @note Size: 0x680
  */
 void PelletGoalState::init(Pellet* pellet, StateArg* arg)
 {
@@ -213,10 +204,9 @@ void PelletGoalState::init(Pellet* pellet, StateArg* arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801A4D58
- * Size:	000D6C
+/**
+ * @note Address: 0x801A4D58
+ * @note Size: 0xD6C
  */
 bool PelletGoalState::checkMovie(Pellet* pelt)
 {
@@ -466,10 +456,9 @@ static void weirdFixFunc(f32* p1, f32* p2, f32* p3, f32* p4, f32* p5, f32* p6)
 	*p6 = TAU;
 }
 
-/*
- * --INFO--
- * Address:	801A5AC4
- * Size:	000B34
+/**
+ * @note Address: 0x801A5AC4
+ * @note Size: 0xB34
  */
 void PelletGoalState::exec(Pellet* pelt)
 {
@@ -1429,17 +1418,15 @@ lbl_801A65C0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801A65F8
- * Size:	000004
+/**
+ * @note Address: 0x801A65F8
+ * @note Size: 0x4
  */
 void PelletGoalState::cleanup(Pellet*) { }
 
-/*
- * --INFO--
- * Address:	801A65FC
- * Size:	000144
+/**
+ * @note Address: 0x801A65FC
+ * @note Size: 0x144
  */
 void PelletAppearState::init(Pellet* pelt, StateArg*)
 {
@@ -1456,10 +1443,9 @@ void PelletAppearState::init(Pellet* pelt, StateArg*)
 	mEfxMade = false;
 }
 
-/*
- * --INFO--
- * Address:	801A6740
- * Size:	000240
+/**
+ * @note Address: 0x801A6740
+ * @note Size: 0x240
  */
 void PelletAppearState::exec(Pellet* pelt)
 {
@@ -1498,17 +1484,15 @@ void PelletAppearState::exec(Pellet* pelt)
 	pelt->mScale = scale;
 }
 
-/*
- * --INFO--
- * Address:	801A6980
- * Size:	000004
+/**
+ * @note Address: 0x801A6980
+ * @note Size: 0x4
  */
 void PelletAppearState::cleanup(Pellet*) { }
 
-/*
- * --INFO--
- * Address:	801A6984
- * Size:	000130
+/**
+ * @note Address: 0x801A6984
+ * @note Size: 0x130
  */
 void PelletScaleAppearState::init(Pellet* pelt, StateArg*)
 {
@@ -1526,10 +1510,9 @@ void PelletScaleAppearState::init(Pellet* pelt, StateArg*)
 	pelt->setCollisionFlick(false);
 }
 
-/*
- * --INFO--
- * Address:	801A6AB4
- * Size:	0001BC
+/**
+ * @note Address: 0x801A6AB4
+ * @note Size: 0x1BC
  * This state is mostly identical to PelletAppearState but without the particle/sound
  */
 void PelletScaleAppearState::exec(Pellet* pelt)
@@ -1563,38 +1546,33 @@ void PelletScaleAppearState::exec(Pellet* pelt)
 	pelt->mScale = scale;
 }
 
-/*
- * --INFO--
- * Address:	801A6C70
- * Size:	000034
+/**
+ * @note Address: 0x801A6C70
+ * @note Size: 0x34
  */
 void PelletScaleAppearState::cleanup(Pellet* pelt) { pelt->setCollisionFlick(true); }
 
-/*
- * --INFO--
- * Address:	801A6CA4
- * Size:	000024
+/**
+ * @note Address: 0x801A6CA4
+ * @note Size: 0x24
  */
 void PelletBuryState::init(Pellet* pelt, StateArg*) { pelt->clearClaim(); }
 
-/*
- * --INFO--
- * Address:	801A6CC8
- * Size:	000004
+/**
+ * @note Address: 0x801A6CC8
+ * @note Size: 0x4
  */
 void PelletBuryState::exec(Pellet*) { }
 
-/*
- * --INFO--
- * Address:	801A6CCC
- * Size:	000004
+/**
+ * @note Address: 0x801A6CCC
+ * @note Size: 0x4
  */
 void PelletBuryState::cleanup(Pellet*) { }
 
-/*
- * --INFO--
- * Address:	801A6CD0
- * Size:	000038
+/**
+ * @note Address: 0x801A6CD0
+ * @note Size: 0x38
  */
 void PelletZukanState::init(Pellet* pelt, StateArg*)
 {
@@ -1602,10 +1580,9 @@ void PelletZukanState::init(Pellet* pelt, StateArg*)
 	mTimer = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	801A6D08
- * Size:	000094
+/**
+ * @note Address: 0x801A6D08
+ * @note Size: 0x94
  */
 void PelletZukanState::exec(Pellet* pelt)
 {
@@ -1617,38 +1594,33 @@ void PelletZukanState::exec(Pellet* pelt)
 	pelt->mBaseTrMatrix.makeT(pos);
 }
 
-/*
- * --INFO--
- * Address:	801A6D9C
- * Size:	000004
+/**
+ * @note Address: 0x801A6D9C
+ * @note Size: 0x4
  */
 void PelletZukanState::cleanup(Pellet*) { }
 
-/*
- * --INFO--
- * Address:	801A6DA0
- * Size:	000024
+/**
+ * @note Address: 0x801A6DA0
+ * @note Size: 0x24
  */
 void PelletUpState::init(Pellet* pelt, StateArg*) { pelt->clearClaim(); }
 
-/*
- * --INFO--
- * Address:	801A6DC4
- * Size:	000004
+/**
+ * @note Address: 0x801A6DC4
+ * @note Size: 0x4
  */
 void PelletUpState::exec(Pellet*) { }
 
-/*
- * --INFO--
- * Address:	801A6DC8
- * Size:	000004
+/**
+ * @note Address: 0x801A6DC8
+ * @note Size: 0x4
  */
 void PelletUpState::cleanup(Pellet*) { }
 
-/*
- * --INFO--
- * Address:	801A6DCC
- * Size:	0000F0
+/**
+ * @note Address: 0x801A6DCC
+ * @note Size: 0xF0
  */
 PelletReturnState::PelletReturnState()
     : PelletState(PELSTATE_Return)
@@ -1661,10 +1633,9 @@ PelletReturnState::PelletReturnState()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801A6EBC
- * Size:	000318
+/**
+ * @note Address: 0x801A6EBC
+ * @note Size: 0x318
  */
 void PelletReturnState::init(Pellet* pelt, StateArg* arg)
 {
@@ -1707,10 +1678,9 @@ void PelletReturnState::init(Pellet* pelt, StateArg* arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000280
+/**
+ * @note Address: N/A
+ * @note Size: 0x280
  */
 void PelletReturnState::flick(Pellet* pelt)
 {
@@ -1727,10 +1697,9 @@ void PelletReturnState::flick(Pellet* pelt)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801A71D4
- * Size:	0000D8
+/**
+ * @note Address: 0x801A71D4
+ * @note Size: 0xD8
  */
 void PelletReturnState::exec(Pellet* pelt)
 {
@@ -1763,10 +1732,9 @@ void PelletReturnState::exec(Pellet* pelt)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801A72AC
- * Size:	00009C
+/**
+ * @note Address: 0x801A72AC
+ * @note Size: 0x9C
  */
 void PelletReturnState::cleanup(Pellet* pelt)
 {
@@ -1781,10 +1749,9 @@ void PelletReturnState::cleanup(Pellet* pelt)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801A7348
- * Size:	0001B4
+/**
+ * @note Address: 0x801A7348
+ * @note Size: 0x1B4
  */
 int PelletReturnState::initPathfinding(Pellet* pelt)
 {
@@ -1831,10 +1798,9 @@ int PelletReturnState::initPathfinding(Pellet* pelt)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801A74FC
- * Size:	000090
+/**
+ * @note Address: 0x801A74FC
+ * @note Size: 0x90
  */
 u32 PelletReturnState::execPathfinding(Pellet* pelt)
 {
@@ -1855,10 +1821,9 @@ u32 PelletReturnState::execPathfinding(Pellet* pelt)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	801A758C
- * Size:	000858
+/**
+ * @note Address: 0x801A758C
+ * @note Size: 0x858
  */
 u32 PelletReturnState::execMove(Pellet* pelt)
 {
@@ -2534,17 +2499,15 @@ lbl_801A7D8C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801A7DE4
- * Size:	000008
+/**
+ * @note Address: 0x801A7DE4
+ * @note Size: 0x8
  */
 u32 PelletReturnState::execMoveGoal(Pellet*) { return 0; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void PelletReturnState::getWayPont(int)
 {

@@ -94,20 +94,18 @@ BOOL __OSInIPL;
 void* __OSSavedRegionStart;
 void* __OSSavedRegionEnd;
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void __OSIsDebuggerPresent(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800EAFC8
- * Size:	000128
+/**
+ * @note Address: 0x800EAFC8
+ * @note Size: 0x128
  */
 ASM void __OSFPRInit(void)
 {
@@ -196,20 +194,19 @@ SkipPairedSingles:
 	blr
 #endif // clang-format on
 }
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 void DisableWriteGatherPipe(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800EB0F0
- * Size:	000028
+/**
+ * @note Address: 0x800EB0F0
+ * @note Size: 0x28
  */
 u32 OSGetConsoleType()
 {
@@ -225,10 +222,9 @@ void* __OSSavedRegionEnd;
 extern u32 BOOT_REGION_START : 0x812FDFF0; //(*(u32 *)0x812fdff0)
 extern u32 BOOT_REGION_END : 0x812FDFEC;   //(*(u32 *)0x812fdfec)
 
-/*
- * --INFO--
- * Address:	800EB118
- * Size:	000128
+/**
+ * @note Address: 0x800EB118
+ * @note Size: 0x128
  */
 void ClearArena(void)
 {
@@ -256,10 +252,9 @@ void ClearArena(void)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800EB240
- * Size:	00003C
+/**
+ * @note Address: 0x800EB240
+ * @note Size: 0x3C
  */
 static void InquiryCallback(s32 result, DVDCommandBlock* block)
 {
@@ -273,10 +268,9 @@ static void InquiryCallback(s32 result, DVDCommandBlock* block)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800EB27C
- * Size:	0003D8
+/**
+ * @note Address: 0x800EB27C
+ * @note Size: 0x3D8
  */
 void OSInit(void)
 {
@@ -480,10 +474,9 @@ void __OSDBJUMPEND(void);
 
 #define NOP 0x60000000
 
-/*
- * --INFO--
- * Address:	800EB654
- * Size:	000280
+/**
+ * @note Address: 0x800EB654
+ * @note Size: 0x280
  */
 static void OSExceptionInit(void)
 {
@@ -565,10 +558,9 @@ static void OSExceptionInit(void)
 	DBPrintf("Exceptions initialized...\n");
 }
 
-/*
- * --INFO--
- * Address:	800EB8D4
- * Size:	000024
+/**
+ * @note Address: 0x800EB8D4
+ * @note Size: 0x24
  */
 ASM static void __OSDBIntegrator(void) {
 #ifdef __MWERKS__ // clang-format off
@@ -587,10 +579,9 @@ entry __OSDBINTEND
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800EB8F8
- * Size:	000004
+/**
+ * @note Address: 0x800EB8F8
+ * @note Size: 0x4
  */
 ASM static void __OSDBJump(void) {
 #ifdef __MWERKS__ // clang-format off
@@ -601,10 +592,9 @@ entry __OSDBJUMPEND
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800EB8FC
- * Size:	00001C
+/**
+ * @note Address: 0x800EB8FC
+ * @note Size: 0x1C
  */
 __OSExceptionHandler __OSSetExceptionHandler(__OSException exception, __OSExceptionHandler handler)
 {
@@ -614,17 +604,15 @@ __OSExceptionHandler __OSSetExceptionHandler(__OSException exception, __OSExcept
 	return oldHandler;
 }
 
-/*
- * --INFO--
- * Address:	800EB918
- * Size:	000014
+/**
+ * @note Address: 0x800EB918
+ * @note Size: 0x14
  */
 __OSExceptionHandler __OSGetExceptionHandler(__OSException exception) { return OSExceptionTable[exception]; }
 
-/*
- * --INFO--
- * Address:	800EB92C
- * Size:	00009C
+/**
+ * @note Address: 0x800EB92C
+ * @note Size: 0x9C
  */
 ASM static void OSExceptionVector(void)
 {
@@ -711,10 +699,9 @@ entry __OSEVEnd
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800EB9C8
- * Size:	000058
+/**
+ * @note Address: 0x800EB9C8
+ * @note Size: 0x58
  */
 ASM void OSDefaultExceptionHandler(register __OSException exception, register OSContext* context)
 {
@@ -732,10 +719,9 @@ ASM void OSDefaultExceptionHandler(register __OSException exception, register OS
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800EBA20
- * Size:	000054
+/**
+ * @note Address: 0x800EBA20
+ * @note Size: 0x54
  */
 void __OSPSInit(void)
 {
@@ -757,19 +743,17 @@ void __OSPSInit(void)
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800EBA74
- * Size:	000014
+/**
+ * @note Address: 0x800EBA74
+ * @note Size: 0x14
  */
 extern volatile u32 __DIRegs[];
 #define DI_CONFIG_IDX         0x9
 #define DI_CONFIG_CONFIG_MASK 0xFF
 u32 __OSGetDIConfig(void) { return (__DIRegs[DI_CONFIG_IDX] & DI_CONFIG_CONFIG_MASK); }
 
-/*
- * --INFO--
- * Address:	800EBA88
- * Size:	00002C
+/**
+ * @note Address: 0x800EBA88
+ * @note Size: 0x2C
  */
 void OSRegisterVersion(const char* id) { OSReport("%s\n", id); }

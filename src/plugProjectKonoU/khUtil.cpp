@@ -4,31 +4,27 @@
 namespace kh {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	8040B3F4
- * Size:	00004C
+/**
+ * @note Address: 0x8040B3F4
+ * @note Size: 0x4C
  */
 u64 getSerialTagName(u64 tag, int offs) { return tag + (offs / 10 * 0x100) + offs % 10; }
 
-/*
- * --INFO--
- * Address:	8040B440
- * Size:	000050
+/**
+ * @note Address: 0x8040B440
+ * @note Size: 0x50
  */
 void setTex(J2DScreen* screen, u64 tag, const ResTIMG* tex) { static_cast<J2DPicture*>(screen->search(tag))->changeTexture(tex, '\0'); }
 
-/*
- * --INFO--
- * Address:	8040B490
- * Size:	000050
+/**
+ * @note Address: 0x8040B490
+ * @note Size: 0x50
  */
 void setTex(J2DScreen* screen, u64 tag, const char* str) { static_cast<J2DPicture*>(screen->search(tag))->changeTexture(str, '\0'); }
 
-/*
- * --INFO--
- * Address:	8040B4E0
- * Size:	000210
+/**
+ * @note Address: 0x8040B4E0
+ * @note Size: 0x210
  */
 void setMatAnm(J2DPane* pane, J2DAnmBase* anm)
 {
@@ -41,10 +37,9 @@ void setMatAnm(J2DPane* pane, J2DAnmBase* anm)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8040B6F0
- * Size:	00021C
+/**
+ * @note Address: 0x8040B6F0
+ * @note Size: 0x21C
  */
 void setInfAlpha(J2DPane* pane)
 {
@@ -57,10 +52,9 @@ void setInfAlpha(J2DPane* pane)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8040B90C
- * Size:	0000EC
+/**
+ * @note Address: 0x8040B90C
+ * @note Size: 0xEC
  */
 f32 getPaneCenterX(J2DPane* pane)
 {
@@ -72,10 +66,9 @@ f32 getPaneCenterX(J2DPane* pane)
 	return (vec1.x + vec2.x + vec3.x + vec4.x) * 0.25f;
 }
 
-/*
- * --INFO--
- * Address:	8040B9F8
- * Size:	0000EC
+/**
+ * @note Address: 0x8040B9F8
+ * @note Size: 0xEC
  */
 f32 getPaneCenterY(J2DPane* pane)
 {
@@ -87,10 +80,9 @@ f32 getPaneCenterY(J2DPane* pane)
 	return (vec1.y + vec2.y + vec3.y + vec4.y) * 0.25f;
 }
 
-/*
- * --INFO--
- * Address:	8040BAE4
- * Size:	0000A4
+/**
+ * @note Address: 0x8040BAE4
+ * @note Size: 0xA4
  */
 khUtilFadePane* khUtilFadePane::create(P2DScreen::Mgr* mgr, u64 tag, u8 c)
 {
@@ -103,10 +95,9 @@ khUtilFadePane* khUtilFadePane::create(P2DScreen::Mgr* mgr, u64 tag, u8 c)
 	return pane;
 }
 
-/*
- * --INFO--
- * Address:	8040BB88
- * Size:	000088
+/**
+ * @note Address: 0x8040BB88
+ * @note Size: 0x88
  */
 khUtilFadePane::khUtilFadePane(u8 c)
     : CallBackNode()
@@ -117,10 +108,9 @@ khUtilFadePane::khUtilFadePane(u8 c)
 {
 }
 
-/*
- * --INFO--
- * Address:	8040BC10
- * Size:	000104
+/**
+ * @note Address: 0x8040BC10
+ * @note Size: 0x104
  */
 void khUtilFadePane::update()
 {
@@ -148,10 +138,9 @@ void khUtilFadePane::update()
 	FOREACH_NODE(khPaneNode, mPaneNode.mNext, node) { node->mPane->setAlpha(mCurrentAlpha); }
 }
 
-/*
- * --INFO--
- * Address:	8040BD18
- * Size:	0000B8
+/**
+ * @note Address: 0x8040BD18
+ * @note Size: 0xB8
  */
 bool khUtilFadePane::add(J2DPane* pane)
 {
@@ -164,10 +153,9 @@ bool khUtilFadePane::add(J2DPane* pane)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	8040BDD0
- * Size:	000020
+/**
+ * @note Address: 0x8040BDD0
+ * @note Size: 0x20
  */
 void khUtilFadePane::fadein()
 {
@@ -175,10 +163,9 @@ void khUtilFadePane::fadein()
 		mState = 0;
 }
 
-/*
- * --INFO--
- * Address:	8040BDF0
- * Size:	000020
+/**
+ * @note Address: 0x8040BDF0
+ * @note Size: 0x20
  */
 void khUtilFadePane::fadeout()
 {
@@ -186,10 +173,9 @@ void khUtilFadePane::fadeout()
 		mState = 2;
 }
 
-/*
- * --INFO--
- * Address:	8040BE10
- * Size:	000060
+/**
+ * @note Address: 0x8040BE10
+ * @note Size: 0x60
  */
 void khUtilFadePane::set_init_alpha(u8 a)
 {
@@ -197,10 +183,9 @@ void khUtilFadePane::set_init_alpha(u8 a)
 	FOREACH_NODE(khPaneNode, mPaneNode.mNext, node) { node->mPane->setAlpha(mCurrentAlpha); }
 }
 
-/*
- * --INFO--
- * Address:	8040BE70
- * Size:	000158
+/**
+ * @note Address: 0x8040BE70
+ * @note Size: 0x158
  */
 khUtilColorAnm::khUtilColorAnm(P2DScreen::Mgr* screen, u64 tag, int panes, int frames)
 {
@@ -219,10 +204,9 @@ khUtilColorAnm::khUtilColorAnm(P2DScreen::Mgr* screen, u64 tag, int panes, int f
 	}
 }
 
-/*
- * --INFO--
- * Address:	8040BFC8
- * Size:	00021C
+/**
+ * @note Address: 0x8040BFC8
+ * @note Size: 0x21C
  *
  * This function updates the color animation based on the current frame and update mode.
  * If update mode is true, calculate new color by interpolating between two colors

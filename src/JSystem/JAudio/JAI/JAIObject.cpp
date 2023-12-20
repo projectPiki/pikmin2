@@ -7,10 +7,9 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C8
+/**
+ * @note Address: N/A
+ * @note Size: 0xC8
  */
 JAInter::ObjectBase::ObjectBase(Vec* p1, JKRHeap* heap, u8 handleCount)
     : JKRDisposer()
@@ -30,18 +29,16 @@ JAInter::ObjectBase::ObjectBase(Vec* p1, JKRHeap* heap, u8 handleCount)
 	mIsEnabled     = true;
 }
 
-/*
- * --INFO--
- * Address:	800B95FC
- * Size:	000074
+/**
+ * @note Address: 0x800B95FC
+ * @note Size: 0x74
  * __dt__Q27JAInter10ObjectBaseFv
  */
 JAInter::ObjectBase::~ObjectBase() { dispose(); }
 
-/*
- * --INFO--
- * Address:	800B9670
- * Size:	000164
+/**
+ * @note Address: 0x800B9670
+ * @note Size: 0x164
  */
 JAISound* JAInter::ObjectBase::startSound(u32 id, u32 p2)
 {
@@ -76,10 +73,9 @@ JAISound* JAInter::ObjectBase::startSound(u32 id, u32 p2)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	800B97D4
- * Size:	000044
+/**
+ * @note Address: 0x800B97D4
+ * @note Size: 0x44
  */
 void JAInter::ObjectBase::handleStop(u8 handleNo, u32 p2)
 {
@@ -88,30 +84,27 @@ void JAInter::ObjectBase::handleStop(u8 handleNo, u32 p2)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800B9818
- * Size:	000048
+/**
+ * @note Address: 0x800B9818
+ * @note Size: 0x48
  */
 void JAInter::ObjectBase::startSound(u8 handleNo, u32 id, u32 p3)
 {
 	JAIBasic::msBasic->startSoundVecT(id, mSounds + handleNo, _24, p3, 0, 4);
 }
 
-/*
- * --INFO--
- * Address:	800B9860
- * Size:	000044
+/**
+ * @note Address: 0x800B9860
+ * @note Size: 0x44
  */
 void JAInter::ObjectBase::startSound(JAISound** handlePtr, u32 id, u32 p3)
 {
 	JAIBasic::msBasic->startSoundVecT(id, handlePtr, _24, p3, 0, 4);
 }
 
-/*
- * --INFO--
- * Address:	800B98A4
- * Size:	000060
+/**
+ * @note Address: 0x800B98A4
+ * @note Size: 0x60
  */
 void JAInter::ObjectBase::stopSound(u32 id, u32 p2)
 {
@@ -121,10 +114,9 @@ void JAInter::ObjectBase::stopSound(u32 id, u32 p2)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800B9904
- * Size:	000068
+/**
+ * @note Address: 0x800B9904
+ * @note Size: 0x68
  */
 void JAInter::ObjectBase::stopAllSound()
 {
@@ -133,10 +125,9 @@ void JAInter::ObjectBase::stopAllSound()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800B996C
- * Size:	000044
+/**
+ * @note Address: 0x800B996C
+ * @note Size: 0x44
  */
 void JAInter::ObjectBase::disable()
 {
@@ -145,10 +136,9 @@ void JAInter::ObjectBase::disable()
 	mUseHandleFlag = 0;
 }
 
-/*
- * --INFO--
- * Address:	800B99B0
- * Size:	000040
+/**
+ * @note Address: 0x800B99B0
+ * @note Size: 0x40
  */
 void JAInter::ObjectBase::dispose()
 {
@@ -156,10 +146,9 @@ void JAInter::ObjectBase::dispose()
 	delete[] mSounds;
 }
 
-/*
- * --INFO--
- * Address:	800B99F0
- * Size:	00005C
+/**
+ * @note Address: 0x800B99F0
+ * @note Size: 0x5C
  */
 JAISound** JAInter::ObjectBase::getFreeSoundHandlePointer()
 {
@@ -171,10 +160,9 @@ JAISound** JAInter::ObjectBase::getFreeSoundHandlePointer()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
+/**
+ * @note Address: N/A
+ * @note Size: 0x58
  */
 u8 JAInter::ObjectBase::getFreeSoundHandleNo()
 {
@@ -187,10 +175,9 @@ u8 JAInter::ObjectBase::getFreeSoundHandleNo()
 	return JAI_NULL_HANDLE_ID;
 }
 
-/*
- * --INFO--
- * Address:	800B9A4C
- * Size:	000054
+/**
+ * @note Address: 0x800B9A4C
+ * @note Size: 0x54
  */
 JAISound** JAInter::ObjectBase::getUseSoundHandlePointer(u32 id)
 {
@@ -202,10 +189,9 @@ JAISound** JAInter::ObjectBase::getUseSoundHandlePointer(u32 id)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	800B9AA0
- * Size:	00004C
+/**
+ * @note Address: 0x800B9AA0
+ * @note Size: 0x4C
  */
 u8 JAInter::ObjectBase::getUseSoundHandleNo(u32 id)
 {
@@ -217,30 +203,27 @@ u8 JAInter::ObjectBase::getUseSoundHandleNo(u32 id)
 	return JAI_NULL_HANDLE_ID;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  */
 void JAInter::ObjectBase::reserveSoundHandle(u8)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 void JAInter::ObjectBase::cancelSoundHandle(u8)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800B9AEC
- * Size:	0000F4
+/**
+ * @note Address: 0x800B9AEC
+ * @note Size: 0xF4
  * __ct__Q27JAInter6ObjectFP3VecP7JKRHeapUc
  */
 JAInter::Object::Object(Vec* p1, JKRHeap* heap, u8 handleCount)
@@ -254,18 +237,16 @@ JAInter::Object::Object(Vec* p1, JKRHeap* heap, u8 handleCount)
 	_3C   = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	800B9BE0
- * Size:	000084
+/**
+ * @note Address: 0x800B9BE0
+ * @note Size: 0x84
  * __dt__Q27JAInter6ObjectFv
  */
 JAInter::Object::~Object() { }
 
-/*
- * --INFO--
- * Address:	800B9C64
- * Size:	00021C
+/**
+ * @note Address: 0x800B9C64
+ * @note Size: 0x21C
  */
 JAISound* JAInter::Object::startSound(u32 id, u32 p2)
 {
@@ -308,10 +289,9 @@ JAISound* JAInter::Object::startSound(u32 id, u32 p2)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	800B9E80
- * Size:	000158
+/**
+ * @note Address: 0x800B9E80
+ * @note Size: 0x158
  */
 void JAInter::Object::disable()
 {
@@ -349,10 +329,9 @@ void JAInter::Object::disable()
 	mIsEnabled = false;
 }
 
-/*
- * --INFO--
- * Address:	800B9FD8
- * Size:	000214
+/**
+ * @note Address: 0x800B9FD8
+ * @note Size: 0x214
  */
 void JAInter::Object::loop()
 {

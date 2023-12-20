@@ -29,10 +29,9 @@
         .4byte 0x00000000
 */
 
-/*
- * --INFO--
- * Address:	8009B58C
- * Size:	000124
+/**
+ * @note Address: 0x8009B58C
+ * @note Size: 0x124
  */
 float JASInstSense::getY(int p1, int p2) const
 {
@@ -161,10 +160,9 @@ lbl_8009B6A8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8009B6B0
- * Size:	000014
+/**
+ * @note Address: 0x8009B6B0
+ * @note Size: 0x14
  */
 void JASInstSense::setParams(int p1, int p2, float p3, float p4)
 {

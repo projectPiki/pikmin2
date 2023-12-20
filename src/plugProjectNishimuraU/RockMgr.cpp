@@ -6,10 +6,9 @@ namespace Rock {
 
 static const char rockMgrName[] = "246-RockMgr";
 
-/*
- * --INFO--
- * Address:	802628F0
- * Size:	00009C
+/**
+ * @note Address: 0x802628F0
+ * @note Size: 0x9C
  */
 Generator::Generator()
     : EnemyGeneratorBase("落石ジェネレータ") // falling rock generator
@@ -19,17 +18,15 @@ Generator::Generator()
 {
 }
 
-/*
- * --INFO--
- * Address:	8026298C
- * Size:	00000C
+/**
+ * @note Address: 0x8026298C
+ * @note Size: 0xC
  */
 u32 Generator::getLatestVersion() { return '0000'; }
 
-/*
- * --INFO--
- * Address:	80262998
- * Size:	000074
+/**
+ * @note Address: 0x80262998
+ * @note Size: 0x74
  */
 void Generator::doRead(Stream& stream)
 {
@@ -41,10 +38,9 @@ void Generator::doRead(Stream& stream)
 	doReadOldVersion(stream);
 }
 
-/*
- * --INFO--
- * Address:	80262A0C
- * Size:	0000A4
+/**
+ * @note Address: 0x80262A0C
+ * @note Size: 0xA4
  */
 void Generator::doWrite(Stream& stream)
 {
@@ -57,10 +53,9 @@ void Generator::doWrite(Stream& stream)
 	stream.textWriteText("\t\t# scale \r\n");
 }
 
-/*
- * --INFO--
- * Address:	80262AB0
- * Size:	000058
+/**
+ * @note Address: 0x80262AB0
+ * @note Size: 0x58
  */
 void Generator::doReadLatestVersion(Stream& stream)
 {
@@ -69,17 +64,15 @@ void Generator::doReadLatestVersion(Stream& stream)
 	mScale  = stream.readFloat();
 }
 
-/*
- * --INFO--
- * Address:	80262B08
- * Size:	000004
+/**
+ * @note Address: 0x80262B08
+ * @note Size: 0x4
  */
 void Generator::doReadOldVersion(Stream&) { }
 
-/*
- * --INFO--
- * Address:	80262B0C
- * Size:	000050
+/**
+ * @note Address: 0x80262B0C
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -87,17 +80,15 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "落石マネージャ"; // rockfall manager
 }
 
-/*
- * --INFO--
- * Address:	80262B5C
- * Size:	000048
+/**
+ * @note Address: 0x80262B5C
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Parms); }
 
-/*
- * --INFO--
- * Address:	80262C3C
- * Size:	000160
+/**
+ * @note Address: 0x80262C3C
+ * @note Size: 0x160
  */
 void Mgr::createObj(int count)
 {
@@ -115,10 +106,9 @@ void Mgr::createObj(int count)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80262E58
- * Size:	000010
+/**
+ * @note Address: 0x80262E58
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 

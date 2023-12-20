@@ -16,10 +16,9 @@ static const char className[] = "SingleGS_Ending";
 namespace Game {
 namespace SingleGame {
 
-/*
- * --INFO--
- * Address:	802326A8
- * Size:	0000E0
+/**
+ * @note Address: 0x802326A8
+ * @note Size: 0xE0
  */
 EndingState::EndingState()
     : State(SGS_Ending)
@@ -29,10 +28,9 @@ EndingState::EndingState()
 	mDelegate   = new Delegate<EndingState>(this, dvdload);
 }
 
-/*
- * --INFO--
- * Address:	80232788
- * Size:	0000D4
+/**
+ * @note Address: 0x80232788
+ * @note Size: 0xD4
  */
 void EndingState::init(SingleGameSection* game, StateArg* arg)
 {
@@ -59,20 +57,18 @@ void EndingState::init(SingleGameSection* game, StateArg* arg)
 	naviMgr->clearDeadCount();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000BC
+/**
+ * @note Address: N/A
+ * @note Size: 0xBC
  */
 void EndingState::initNext(SingleGameSection*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8023285C
- * Size:	0001C8
+/**
+ * @note Address: 0x8023285C
+ * @note Size: 0x1C8
  */
 void EndingState::dvdload()
 {
@@ -110,17 +106,15 @@ void EndingState::dvdload()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80232A24
- * Size:	000004
+/**
+ * @note Address: 0x80232A24
+ * @note Size: 0x4
  */
 void EndingState::do_dvdload() { }
 
-/*
- * --INFO--
- * Address:	80232A28
- * Size:	000850
+/**
+ * @note Address: 0x80232A28
+ * @note Size: 0x850
  */
 void EndingState::exec(SingleGameSection* game)
 {
@@ -315,10 +309,9 @@ void EndingState::exec(SingleGameSection* game)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80233278
- * Size:	0000D4
+/**
+ * @note Address: 0x80233278
+ * @note Size: 0xD4
  */
 void EndingState::draw(SingleGameSection* game, Graphics& gfx)
 {
@@ -335,10 +328,9 @@ void EndingState::draw(SingleGameSection* game, Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8023334C
- * Size:	0000B8
+/**
+ * @note Address: 0x8023334C
+ * @note Size: 0xB8
  */
 void EndingState::cleanup(SingleGameSection* game)
 {

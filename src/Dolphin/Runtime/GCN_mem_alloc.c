@@ -22,10 +22,9 @@ inline static void InitDefaultHeap()
 	OSSetArenaLo(arenaLo = arenaHi);
 }
 
-/*
- * --INFO--
- * Address:	800C23A8
- * Size:	0000B8
+/**
+ * @note Address: 0x800C23A8
+ * @note Size: 0xB8
  */
 WEAKFUNC extern void __sys_free(void* ptr)
 {

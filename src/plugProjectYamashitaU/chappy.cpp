@@ -3,10 +3,9 @@
 namespace Game {
 namespace Chappy {
 
-/*
- * --INFO--
- * Address:	80115F90
- * Size:	000144
+/**
+ * @note Address: 0x80115F90
+ * @note Size: 0x144
  */
 Obj::Obj()
 {
@@ -15,10 +14,9 @@ Obj::Obj()
 	createEffect();
 }
 
-/*
- * --INFO--
- * Address:	801161DC
- * Size:	0002B0
+/**
+ * @note Address: 0x801161DC
+ * @note Size: 0x2B0
  */
 void Obj::changeMaterial()
 {

@@ -21,10 +21,9 @@ JSUList<JFWAlarm> JFWAlarm::sList(false);
 
 JFWDisplay* JFWDisplay::sManager;
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A0
+/**
+ * @note Address: N/A
+ * @note Size: 0xA0
  */
 void JFWDisplay::ctor_subroutine(bool doEnableAlpha)
 {
@@ -48,10 +47,9 @@ void JFWDisplay::ctor_subroutine(bool doEnableAlpha)
 	JUTProcBar::clear();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
+/**
+ * @note Address: N/A
+ * @note Size: 0xE0
  */
 JFWDisplay::JFWDisplay(JKRHeap* heap, JUTXfb::EXfbNumber bufferCount, bool doEnableAlpha)
 {
@@ -59,40 +57,36 @@ JFWDisplay::JFWDisplay(JKRHeap* heap, JUTXfb::EXfbNumber bufferCount, bool doEna
 	mXfb = JUTXfb::createManager(heap, bufferCount);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D0
+/**
+ * @note Address: N/A
+ * @note Size: 0xD0
  */
 JFWDisplay::JFWDisplay(void*, bool)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
+/**
+ * @note Address: N/A
+ * @note Size: 0xE0
  */
 JFWDisplay::JFWDisplay(void*, void*, bool)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F0
+/**
+ * @note Address: N/A
+ * @note Size: 0xF0
  */
 JFWDisplay::JFWDisplay(void*, void*, void*, bool)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80089AAC
- * Size:	00007C
+/**
+ * @note Address: 0x80089AAC
+ * @note Size: 0x7C
  */
 JFWDisplay::~JFWDisplay()
 {
@@ -104,10 +98,9 @@ JFWDisplay::~JFWDisplay()
 	mXfb = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80089B28
- * Size:	00011C
+/**
+ * @note Address: 0x80089B28
+ * @note Size: 0x11C
  */
 JFWDisplay* JFWDisplay::createManager(const _GXRenderModeObj* renderModeObj, JKRHeap* heap, JUTXfb::EXfbNumber bufferCount,
                                       bool doEnableAlpha)
@@ -121,40 +114,36 @@ JFWDisplay* JFWDisplay::createManager(const _GXRenderModeObj* renderModeObj, JKR
 	return sManager;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00010C
+/**
+ * @note Address: N/A
+ * @note Size: 0x10C
  */
 JFWDisplay* JFWDisplay::createManager(const _GXRenderModeObj*, void*, bool)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00011C
+/**
+ * @note Address: N/A
+ * @note Size: 0x11C
  */
 JFWDisplay* JFWDisplay::createManager(const _GXRenderModeObj*, void*, void*, bool)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00010C
+/**
+ * @note Address: N/A
+ * @note Size: 0x10C
  */
 JFWDisplay* JFWDisplay::createManager(const _GXRenderModeObj*, void*, void*, void*, bool)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80089C44
- * Size:	000044
+/**
+ * @note Address: 0x80089C44
+ * @note Size: 0x44
  */
 void JFWDisplay::destroyManager()
 {
@@ -162,10 +151,9 @@ void JFWDisplay::destroyManager()
 	sManager = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
+/**
+ * @note Address: N/A
+ * @note Size: 0x58
  */
 void callDirectDraw()
 {
@@ -174,10 +162,9 @@ void callDirectDraw()
 	JUTAssertion::flushMessage();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000104
+/**
+ * @note Address: N/A
+ * @note Size: 0x104
  */
 void JFWDisplay::prepareCopyDisp()
 {
@@ -207,10 +194,9 @@ void JFWGXAbortAlarmHandler(OSAlarm* alarm, OSContext* context);
 void waitForTick(u32, u16);
 void diagnoseGpHang();
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00010C
+/**
+ * @note Address: N/A
+ * @note Size: 0x10C
  */
 void JFWDisplay::drawendXfb_single()
 {
@@ -223,10 +209,9 @@ void JFWDisplay::drawendXfb_single()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001E0
+/**
+ * @note Address: N/A
+ * @note Size: 0x1E0
  */
 void JFWDisplay::exchangeXfb_double()
 {
@@ -259,10 +244,9 @@ void JFWDisplay::exchangeXfb_double()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A8
+/**
+ * @note Address: N/A
+ * @note Size: 0xA8
  */
 
 void JFWDisplay::exchangeXfb_triple()
@@ -284,10 +268,9 @@ void JFWDisplay::exchangeXfb_triple()
 	xfbMng->setDrawingXfbIndex(drawing_idx);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000124
+/**
+ * @note Address: N/A
+ * @note Size: 0x124
  */
 void JFWDisplay::copyXfb_triple()
 {
@@ -300,10 +283,9 @@ void JFWDisplay::copyXfb_triple()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
+/**
+ * @note Address: N/A
+ * @note Size: 0x94
  */
 void JFWDisplay::preGX()
 {
@@ -324,10 +306,9 @@ void JFWDisplay::preGX()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00010C
+/**
+ * @note Address: N/A
+ * @note Size: 0x10C
  */
 void JFWDisplay::endGX()
 {
@@ -357,10 +338,9 @@ void JFWDisplay::endGX()
 	GXFlush();
 }
 
-/*
- * --INFO--
- * Address:	80089C88
- * Size:	000478
+/**
+ * @note Address: 0x80089C88
+ * @note Size: 0x478
  */
 void JFWDisplay::beginRender()
 {
@@ -403,10 +383,9 @@ void JFWDisplay::beginRender()
 	preGX();
 }
 
-/*
- * --INFO--
- * Address:	8008A100
- * Size:	000340
+/**
+ * @note Address: 0x8008A100
+ * @note Size: 0x340
  */
 void JFWDisplay::endRender()
 {
@@ -427,10 +406,9 @@ void JFWDisplay::endRender()
 	calcCombinationRatio();
 }
 
-/*
- * --INFO--
- * Address:	8008A440
- * Size:	000198
+/**
+ * @note Address: 0x8008A440
+ * @note Size: 0x198
  */
 void JFWDisplay::endFrame()
 {
@@ -462,10 +440,9 @@ void JFWDisplay::endFrame()
 	prevFrame = retrace_cnt;
 }
 
-/*
- * --INFO--
- * Address:	8008A5D8
- * Size:	000050
+/**
+ * @note Address: 0x8008A5D8
+ * @note Size: 0x50
  */
 void JFWDisplay::waitBlanking(int blankTime)
 {
@@ -474,10 +451,9 @@ void JFWDisplay::waitBlanking(int blankTime)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8008A628
- * Size:	000120
+/**
+ * @note Address: 0x8008A628
+ * @note Size: 0x120
  */
 void waitForTick(u32 sleepTime, u16 msgTime)
 {
@@ -504,10 +480,9 @@ void waitForTick(u32 sleepTime, u16 msgTime)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8008A748
- * Size:	000040
+/**
+ * @note Address: 0x8008A748
+ * @note Size: 0x40
  */
 void JFWThreadAlarmHandler(OSAlarm* p_alarm, OSContext* p_ctx)
 {
@@ -516,10 +491,9 @@ void JFWThreadAlarmHandler(OSAlarm* p_alarm, OSContext* p_ctx)
 	OSResumeThread(alarm->getThread());
 }
 
-/*
- * --INFO--
- * Address:	8008A788
- * Size:	0000BC
+/**
+ * @note Address: 0x8008A788
+ * @note Size: 0xBC
  */
 void JFWDisplay::threadSleep(s64 time)
 {
@@ -534,70 +508,63 @@ void JFWDisplay::threadSleep(s64 time)
 	OSRestoreInterrupts(status);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 // void JSULink<JFWAlarm>::~JSULink()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000158
+/**
+ * @note Address: N/A
+ * @note Size: 0x158
  */
 void JFWDisplay::changeToSingleXfb(int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000090
+/**
+ * @note Address: N/A
+ * @note Size: 0x90
  */
 void JFWDisplay::changeToDoubleXfb()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00019C
+/**
+ * @note Address: N/A
+ * @note Size: 0x19C
  */
 void JFWDisplay::deleteToSingleXfb(int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001C8
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C8
  */
 void JFWDisplay::deleteToSingleXfb(void*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
+/**
+ * @note Address: N/A
+ * @note Size: 0x70
  */
 void JFWDisplay::addToDoubleXfb(void*, bool)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
+/**
+ * @note Address: N/A
+ * @note Size: 0x70
  */
 void JFWDisplay::addToDoubleXfb(JKRHeap*)
 {
@@ -610,10 +577,9 @@ static u8 clear_z_TX[] __attribute__((aligned(32)))
 	0x00, 0xff, 0x00, 0xff, 0x00, 0xff, 0x00, 0xff, 0x00, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
 	0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff };
 
-/*
- * --INFO--
- * Address:	8008A844
- * Size:	000074
+/**
+ * @note Address: 0x8008A844
+ * @note Size: 0x74
  */
 void JFWDisplay::clearEfb_init()
 {
@@ -621,17 +587,15 @@ void JFWDisplay::clearEfb_init()
 	GXInitTexObjLOD(&clear_z_tobj, GX_NEAR, GX_NEAR, 0.0f, 0.0f, 0.0f, GX_FALSE, GX_FALSE, GX_ANISO_1);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 void JFWDisplay::clearEfb() { clearEfb(mClearColor); }
 
-/*
- * --INFO--
- * Address:	8008A8B8
- * Size:	000044
+/**
+ * @note Address: 0x8008A8B8
+ * @note Size: 0x44
  */
 void JFWDisplay::clearEfb(_GXColor color)
 {
@@ -641,10 +605,9 @@ void JFWDisplay::clearEfb(_GXColor color)
 	clearEfb(0, 0, width, height, color);
 }
 
-/*
- * --INFO--
- * Address:	8008A8FC
- * Size:	000370
+/**
+ * @note Address: 0x8008A8FC
+ * @note Size: 0x370
  */
 void JFWDisplay::clearEfb(int xMin, int yMin, int xDelta, int yDelta, _GXColor color)
 {
@@ -714,20 +677,18 @@ void JFWDisplay::clearEfb(int xMin, int yMin, int xDelta, int yDelta, _GXColor c
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001D4
+/**
+ * @note Address: N/A
+ * @note Size: 0x1D4
  */
 void JFWDisplay::clearAllXfb()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8008AC6C
- * Size:	00008C
+/**
+ * @note Address: 0x8008AC6C
+ * @note Size: 0x8C
  */
 void JFWDisplay::calcCombinationRatio()
 {
@@ -747,20 +708,18 @@ void JFWDisplay::calcCombinationRatio()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 void JFWDisplay::frameToTick(f32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8008ACF8
- * Size:	0000F0
+/**
+ * @note Address: 0x8008ACF8
+ * @note Size: 0xF0
  */
 void JFWDrawDoneAlarm()
 {
@@ -778,10 +737,9 @@ void JFWDrawDoneAlarm()
 	OSRestoreInterrupts(status);
 }
 
-/*
- * --INFO--
- * Address:	8008ADE8
- * Size:	000040
+/**
+ * @note Address: 0x8008ADE8
+ * @note Size: 0x40
  */
 void JFWGXAbortAlarmHandler(OSAlarm*, OSContext*)
 {
@@ -792,10 +750,9 @@ void JFWGXAbortAlarmHandler(OSAlarm*, OSContext*)
 	GXSetDrawDone();
 }
 
-/*
- * --INFO--
- * Address:	8008AE28
- * Size:	0001BC
+/**
+ * @note Address: 0x8008AE28
+ * @note Size: 0x1BC
  */
 void diagnoseGpHang()
 {
@@ -827,10 +784,9 @@ void diagnoseGpHang()
 		OSReport("GP is in unknown state.\n");
 }
 
-/*
- * --INFO--
- * Address:	8008AFE4
- * Size:	000094
+/**
+ * @note Address: 0x8008AFE4
+ * @note Size: 0x94
  */
 void JFWDisplay::setForOSResetSystem()
 {

@@ -13,10 +13,9 @@
     Generated from dpostproc
 */
 
-/*
- * --INFO--
- * Address:	80087900
- * Size:	000040
+/**
+ * @note Address: 0x80087900
+ * @note Size: 0x40
  */
 u16 J3DModelLoader::countMaterialNum(const void* stream)
 {
@@ -31,10 +30,9 @@ u16 J3DModelLoader::countMaterialNum(const void* stream)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	80087940
- * Size:	0001B0
+/**
+ * @note Address: 0x80087940
+ * @note Size: 0x1B0
  */
 int J3DModelLoader::calcLoadSize(const void* stream, u32 flags)
 {
@@ -215,10 +213,9 @@ lbl_80087AD0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80087AF0
- * Size:	0000CC
+/**
+ * @note Address: 0x80087AF0
+ * @note Size: 0xCC
  */
 int J3DModelLoader::calcLoadMaterialTableSize(const void* stream)
 {
@@ -316,10 +313,9 @@ lbl_80087BA4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80087BBC
- * Size:	000210
+/**
+ * @note Address: 0x80087BBC
+ * @note Size: 0x210
  */
 int J3DModelLoader::calcLoadBinaryDisplayListSize(const void* stream, u32 flags)
 {
@@ -538,10 +534,9 @@ lbl_80087DAC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80087DCC
- * Size:	000090
+/**
+ * @note Address: 0x80087DCC
+ * @note Size: 0x90
  */
 int J3DModelLoader::calcSizeInformation(const J3DModelInfoBlock* block, u32 flags)
 {
@@ -563,10 +558,9 @@ int J3DModelLoader::calcSizeInformation(const J3DModelInfoBlock* block, u32 flag
 	return size;
 }
 
-/*
- * --INFO--
- * Address:	80087E5C
- * Size:	00002C
+/**
+ * @note Address: 0x80087E5C
+ * @note Size: 0x2C
  */
 int J3DModelLoader::calcSizeJoint(const J3DJointBlock* block)
 {
@@ -579,10 +573,9 @@ int J3DModelLoader::calcSizeJoint(const J3DJointBlock* block)
 	return size;
 }
 
-/*
- * --INFO--
- * Address:	80087E88
- * Size:	000010
+/**
+ * @note Address: 0x80087E88
+ * @note Size: 0x10
  */
 int J3DModelLoader::calcSizeEnvelope(const J3DEnvelopeBlock* block)
 {
@@ -590,17 +583,15 @@ int J3DModelLoader::calcSizeEnvelope(const J3DEnvelopeBlock* block)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	80087E98
- * Size:	000014
+/**
+ * @note Address: 0x80087E98
+ * @note Size: 0x14
  */
 int J3DModelLoader::calcSizeDraw(const J3DDrawBlock* block) { return (block->mCount - _1A) * 2; }
 
-/*
- * --INFO--
- * Address:	80087EAC
- * Size:	0000E4
+/**
+ * @note Address: 0x80087EAC
+ * @note Size: 0xE4
  */
 size_t J3DModelLoader_v26::calcSizeMaterial(const J3DMaterialBlock* block, u32 flags)
 {
@@ -700,10 +691,9 @@ size_t J3DModelLoader_v26::calcSizeMaterial(const J3DMaterialBlock* block, u32 f
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80087F90
- * Size:	0000B4
+/**
+ * @note Address: 0x80087F90
+ * @note Size: 0xB4
  */
 int J3DModelLoader::calcSizeShape(const J3DShapeBlock* block, u32 flags)
 {
@@ -723,10 +713,9 @@ int J3DModelLoader::calcSizeShape(const J3DShapeBlock* block, u32 flags)
 	return size;
 }
 
-/*
- * --INFO--
- * Address:	80088044
- * Size:	00001C
+/**
+ * @note Address: 0x80088044
+ * @note Size: 0x1C
  */
 int J3DModelLoader::calcSizeTexture(const J3DTextureBlock* block)
 {
@@ -747,10 +736,9 @@ inline size_t calcSizeForCount(J3DMaterialFactory& factory, u16 count, u32 flags
 	return size;
 }
 
-/*
- * --INFO--
- * Address:	80088060
- * Size:	0000A0
+/**
+ * @note Address: 0x80088060
+ * @note Size: 0xA0
  */
 size_t J3DModelLoader_v26::calcSizeMaterialTable(const J3DMaterialBlock* block, u32 flags)
 {
@@ -768,10 +756,9 @@ size_t J3DModelLoader_v26::calcSizeMaterialTable(const J3DMaterialBlock* block, 
 	return size;
 }
 
-/*
- * --INFO--
- * Address:	80088100
- * Size:	00001C
+/**
+ * @note Address: 0x80088100
+ * @note Size: 0x1C
  */
 int J3DModelLoader::calcSizeTextureTable(const J3DTextureBlock* block)
 {
@@ -783,10 +770,9 @@ int J3DModelLoader::calcSizeTextureTable(const J3DTextureBlock* block)
 	return padding + 0xC;
 }
 
-/*
- * --INFO--
- * Address:	8008811C
- * Size:	0000A0
+/**
+ * @note Address: 0x8008811C
+ * @note Size: 0xA0
  */
 int J3DModelLoader::calcSizePatchedMaterial(const J3DMaterialBlock* block, u32 flags)
 {
@@ -804,10 +790,9 @@ int J3DModelLoader::calcSizePatchedMaterial(const J3DMaterialBlock* block, u32 f
 	return size;
 }
 
-/*
- * --INFO--
- * Address:	800881BC
- * Size:	0000D0
+/**
+ * @note Address: 0x800881BC
+ * @note Size: 0xD0
  */
 int J3DModelLoader::calcSizeMaterialDL(const J3DMaterialDLBlock* block, u32 flags)
 {

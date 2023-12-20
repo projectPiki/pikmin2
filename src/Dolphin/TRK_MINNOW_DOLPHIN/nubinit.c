@@ -2,10 +2,9 @@
 
 BOOL gTRKBigEndian;
 
-/*
- * --INFO--
- * Address:	800BB6FC
- * Size:	00014C
+/**
+ * @note Address: 0x800BB6FC
+ * @note Size: 0x14C
  */
 DSError TRKInitializeNub(void)
 {
@@ -45,10 +44,9 @@ DSError TRKInitializeNub(void)
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	800BB6D8
- * Size:	000024
+/**
+ * @note Address: 0x800BB6D8
+ * @note Size: 0x24
  */
 DSError TRKTerminateNub(void)
 {
@@ -56,10 +54,9 @@ DSError TRKTerminateNub(void)
 	return DS_NoError;
 }
 
-/*
- * --INFO--
- * Address:	800BB6B0
- * Size:	000028
+/**
+ * @note Address: 0x800BB6B0
+ * @note Size: 0x28
  */
 void TRKNubWelcome(void)
 {
@@ -67,10 +64,9 @@ void TRKNubWelcome(void)
 	return;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
+/**
+ * @note Address: N/A
+ * @note Size: 0x70
  */
 BOOL TRKInitializeEndian(void)
 {

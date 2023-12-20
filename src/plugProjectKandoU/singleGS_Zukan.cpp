@@ -679,10 +679,9 @@ const char* sDirName[4] = { "tutorial", "forest", "yakushima", "last" };
 namespace Game {
 namespace IllustratedBook {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000098
+/**
+ * @note Address: N/A
+ * @note Size: 0x98
  */
 DebugParms::DebugParms()
     : CNode("図鑑デバッグ") // "Illustrated Book Debugging"
@@ -697,20 +696,18 @@ DebugParms::DebugParms()
 	_1C[5] = 100.0f;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
+/**
+ * @note Address: N/A
+ * @note Size: 0x44
  */
 EnemyTexMgr::EnemyTexMgr()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F0
+/**
+ * @note Address: N/A
+ * @note Size: 0xF0
  */
 unknown EnemyTexMgr::create()
 {
@@ -735,10 +732,9 @@ unknown EnemyTexMgr::create()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80221028
- * Size:	000284
+/**
+ * @note Address: 0x80221028
+ * @note Size: 0x284
  */
 Camera::Camera(Controller* input)
     : mController(input)
@@ -793,10 +789,9 @@ Camera::Camera(Controller* input)
 	_320 = 0.5f;
 }
 
-/*
- * --INFO--
- * Address:	802212AC
- * Size:	0001D8
+/**
+ * @note Address: 0x802212AC
+ * @note Size: 0x1D8
  */
 void Camera::startVibration(int type)
 {
@@ -945,20 +940,18 @@ lbl_80221420:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000184
+/**
+ * @note Address: N/A
+ * @note Size: 0x184
  */
 void Camera::debugDraw(Graphics&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80221484
- * Size:	000088
+/**
+ * @note Address: 0x80221484
+ * @note Size: 0x88
  */
 void Camera::move(const Vector3f& pos)
 {
@@ -970,10 +963,9 @@ void Camera::move(const Vector3f& pos)
 	resetControl();
 }
 
-/*
- * --INFO--
- * Address:	8022150C
- * Size:	000128
+/**
+ * @note Address: 0x8022150C
+ * @note Size: 0x128
  */
 void Camera::setTarget(Creature* obj)
 {
@@ -991,10 +983,9 @@ void Camera::setTarget(Creature* obj)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80221634
- * Size:	000274
+/**
+ * @note Address: 0x80221634
+ * @note Size: 0x274
  */
 void Camera::resetControl()
 {
@@ -1017,10 +1008,9 @@ void Camera::resetControl()
 	_2C4            = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 void Camera::setAtOffset(const Vector3f& vec)
 {
@@ -1030,10 +1020,9 @@ void Camera::setAtOffset(const Vector3f& vec)
 	mObjectOffset.z = vec.z;
 }
 
-/*
- * --INFO--
- * Address:	802218A8
- * Size:	000904
+/**
+ * @note Address: 0x802218A8
+ * @note Size: 0x904
  */
 bool Camera::doUpdate()
 {
@@ -1658,10 +1647,9 @@ lbl_802220FC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802221AC
- * Size:	000204
+/**
+ * @note Address: 0x802221AC
+ * @note Size: 0x204
  */
 void Camera::updateCameraShake()
 {
@@ -1802,10 +1790,9 @@ lbl_802222E4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802223B0
- * Size:	0000E8
+/**
+ * @note Address: 0x802223B0
+ * @note Size: 0xE8
  */
 void Camera::updateFocus()
 {
@@ -1879,20 +1866,18 @@ lbl_80222460:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 unknown Camera::getFocus()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80222498
- * Size:	000054
+/**
+ * @note Address: 0x80222498
+ * @note Size: 0x54
  */
 void Camera::addFovy(f32)
 {
@@ -1929,10 +1914,9 @@ lbl_802224D0:
 
 namespace SingleGame {
 
-/*
- * --INFO--
- * Address:	802224EC
- * Size:	0000EC
+/**
+ * @note Address: 0x802224EC
+ * @note Size: 0xEC
  */
 ZukanState::ZukanState()
     : State(SGS_Zukan)
@@ -1957,10 +1941,9 @@ ZukanState::ZukanState()
 	setMode(ModeNone);
 }
 
-/*
- * --INFO--
- * Address:	802225D8
- * Size:	00036C
+/**
+ * @note Address: 0x802225D8
+ * @note Size: 0x36C
  */
 void ZukanState::init(SingleGameSection* game, StateArg* arg)
 {
@@ -2003,30 +1986,27 @@ void ZukanState::init(SingleGameSection* game, StateArg* arg)
 	gameSystem->mTimeMgr->resetFlag(1);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
+/**
+ * @note Address: N/A
+ * @note Size: 0xE4
  */
 unknown ZukanState::startTekiMode(bool)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
+/**
+ * @note Address: N/A
+ * @note Size: 0xE4
  */
 unknown ZukanState::startPelletMode(bool)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80222944
- * Size:	000014
+/**
+ * @note Address: 0x80222944
+ * @note Size: 0x14
  */
 void ZukanState::setMode(CMode mode)
 {
@@ -2037,10 +2017,9 @@ void ZukanState::setMode(CMode mode)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80222958
- * Size:	00072C
+/**
+ * @note Address: 0x80222958
+ * @note Size: 0x72C
  */
 void ZukanState::exec(SingleGameSection* game)
 {
@@ -2740,10 +2719,9 @@ lbl_80223064:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80223084
- * Size:	00016C
+/**
+ * @note Address: 0x80223084
+ * @note Size: 0x16C
  */
 void ZukanState::execModeChange(SingleGameSection* game, CMode mode)
 {
@@ -2786,10 +2764,9 @@ void ZukanState::execModeChange(SingleGameSection* game, CMode mode)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802231F0
- * Size:	0000E0
+/**
+ * @note Address: 0x802231F0
+ * @note Size: 0xE0
  */
 void ZukanState::execChangeTeki(SingleGameSection* game)
 {
@@ -2817,10 +2794,9 @@ void ZukanState::execChangeTeki(SingleGameSection* game)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802232D0
- * Size:	0005A4
+/**
+ * @note Address: 0x802232D0
+ * @note Size: 0x5A4
  */
 unknown ZukanState::execTeki(SingleGameSection* game)
 {
@@ -3236,10 +3212,9 @@ lbl_80223820:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80223874
- * Size:	000018
+/**
+ * @note Address: 0x80223874
+ * @note Size: 0x18
  */
 void ZukanState::startWipe(f32 time)
 {
@@ -3248,10 +3223,9 @@ void ZukanState::startWipe(f32 time)
 	mChangeSelMaxTime = time;
 }
 
-/*
- * --INFO--
- * Address:	8022388C
- * Size:	00003C
+/**
+ * @note Address: 0x8022388C
+ * @note Size: 0x3C
  */
 void ZukanState::createEnemy(int id)
 {
@@ -3267,20 +3241,18 @@ void ZukanState::createEnemy(int id)
 	mChangeSelMaxTime = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 void ZukanState::createItem(int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	802238C8
- * Size:	0000EC
+/**
+ * @note Address: 0x802238C8
+ * @note Size: 0xEC
  */
 void SingleGame::ZukanState::execChangePellet(SingleGameSection* game)
 {
@@ -3310,10 +3282,9 @@ void SingleGame::ZukanState::execChangePellet(SingleGameSection* game)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802239B4
- * Size:	0000B4
+/**
+ * @note Address: 0x802239B4
+ * @note Size: 0xB4
  */
 unknown ZukanState::execPellet(SingleGameSection* game)
 {
@@ -3336,17 +3307,15 @@ unknown ZukanState::execPellet(SingleGameSection* game)
 	game->BaseGameSection::doUpdate();
 }
 
-/*
- * --INFO--
- * Address:	80223A68
- * Size:	00003C
+/**
+ * @note Address: 0x80223A68
+ * @note Size: 0x3C
  */
 int ZukanState::getMaxPelletID() { return PelletList::Mgr::getCount(PelletList::ITEM) + PelletList::Mgr::getCount(PelletList::OTAKARA); }
 
-/*
- * --INFO--
- * Address:	80223AA4
- * Size:	00007C
+/**
+ * @note Address: 0x80223AA4
+ * @note Size: 0x7C
  */
 PelletConfig* ZukanState::getCurrentPelletConfig(int id)
 {
@@ -3361,10 +3330,9 @@ PelletConfig* ZukanState::getCurrentPelletConfig(int id)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80223B20
- * Size:	000080
+/**
+ * @note Address: 0x80223B20
+ * @note Size: 0x80
  */
 PelletList::cKind ZukanState::convertPelletID(int& ret, int id)
 {
@@ -3383,10 +3351,9 @@ PelletList::cKind ZukanState::convertPelletID(int& ret, int id)
 	return kind;
 }
 
-/*
- * --INFO--
- * Address:	80223BA0
- * Size:	000274
+/**
+ * @note Address: 0x80223BA0
+ * @note Size: 0x274
  */
 void ZukanState::draw(SingleGameSection* game, Graphics& gfx)
 {
@@ -3573,10 +3540,9 @@ lbl_80223D64:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80223E14
- * Size:	000578
+/**
+ * @note Address: 0x80223E14
+ * @note Size: 0x578
  */
 void ZukanState::drawGradationEffect(SingleGameSection*, Graphics& gfx)
 {
@@ -3943,10 +3909,9 @@ void ZukanState::drawGradationEffect(SingleGameSection*, Graphics& gfx)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8022438C
- * Size:	0007C0
+/**
+ * @note Address: 0x8022438C
+ * @note Size: 0x7C0
  */
 void ZukanState::drawLightEffect(SingleGameSection* game, Graphics& gfx)
 {
@@ -4479,20 +4444,18 @@ void ZukanState::drawLightEffect(SingleGameSection* game, Graphics& gfx)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000404
+/**
+ * @note Address: N/A
+ * @note Size: 0x404
  */
 unknown ZukanState::debugDraw(Graphics&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80224B4C
- * Size:	000994
+/**
+ * @note Address: 0x80224B4C
+ * @note Size: 0x994
  */
 void ZukanState::dvdloadA()
 {
@@ -5294,10 +5257,9 @@ lbl_802254A0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802254E0
- * Size:	0000E4
+/**
+ * @note Address: 0x802254E0
+ * @note Size: 0xE4
  */
 void ZukanState::createTeki(int)
 {
@@ -5310,10 +5272,9 @@ void ZukanState::createTeki(int)
 	mDoDraw = false;
 }
 
-/*
- * --INFO--
- * Address:	802255C4
- * Size:	000040
+/**
+ * @note Address: 0x802255C4
+ * @note Size: 0x40
  */
 void ZukanState::createPellet(int)
 {
@@ -5321,10 +5282,9 @@ void ZukanState::createPellet(int)
 	mDoDraw = false;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
+/**
+ * @note Address: N/A
+ * @note Size: 0xE4
  */
 void ZukanState::dvdloadB_common()
 {
@@ -5349,10 +5309,9 @@ void ZukanState::dvdloadB_common()
 	particleMgr->start();
 }
 
-/*
- * --INFO--
- * Address:	80225604
- * Size:	000CDC
+/**
+ * @note Address: 0x80225604
+ * @note Size: 0xCDC
  */
 void ZukanState::dvdloadB_teki()
 {
@@ -6397,10 +6356,9 @@ lbl_8022629C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802262E0
- * Size:	0004B0
+/**
+ * @note Address: 0x802262E0
+ * @note Size: 0x4B0
  */
 void ZukanState::dvdloadB_pellet()
 {
@@ -6796,10 +6754,9 @@ lbl_802266F0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80226790
- * Size:	000090
+/**
+ * @note Address: 0x80226790
+ * @note Size: 0x90
  */
 void ZukanState::clearHeapB_common()
 {
@@ -6818,10 +6775,9 @@ void ZukanState::clearHeapB_common()
 	mCurrObjHeap = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80226820
- * Size:	0003BC
+/**
+ * @note Address: 0x80226820
+ * @note Size: 0x3BC
  */
 void ZukanState::clearHeapB_teki()
 {
@@ -7145,10 +7101,9 @@ lbl_80226BC0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80226BDC
- * Size:	000174
+/**
+ * @note Address: 0x80226BDC
+ * @note Size: 0x174
  */
 void ZukanState::clearHeapB_pellet()
 {
@@ -7179,10 +7134,9 @@ void ZukanState::clearHeapB_pellet()
 	mMainHeap->becomeCurrentHeap();
 }
 
-/*
- * --INFO--
- * Address:	80226D50
- * Size:	0003AC
+/**
+ * @note Address: 0x80226D50
+ * @note Size: 0x3AC
  */
 unknown ZukanState::clearHeaps()
 {
@@ -7534,10 +7488,9 @@ lbl_802270D8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802270FC
- * Size:	0000A8
+/**
+ * @note Address: 0x802270FC
+ * @note Size: 0xA8
  */
 void ZukanState::cleanup(SingleGameSection* game)
 {

@@ -4,10 +4,9 @@
 Resource::Mgr2D* gResMgr2D;
 
 namespace Resource {
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A0
+/**
+ * @note Address: N/A
+ * @note Size: 0xA0
  */
 // INLINE
 inline Mgr2D::Mgr2D(JKRHeap* heap)
@@ -20,10 +19,9 @@ inline Mgr2D::Mgr2D(JKRHeap* heap)
 	gResMgr2D = this;
 }
 
-/*
- * --INFO--
- * Address:	80433F70
- * Size:	0000B0
+/**
+ * @note Address: 0x80433F70
+ * @note Size: 0xB0
  */
 void Mgr2D::init(JKRHeap* heap) { new Mgr2D(heap); }
 } // namespace Resource

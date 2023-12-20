@@ -10,10 +10,9 @@
 OSErrorHandler __OSErrorTable[OS_ERROR_MAX];
 u32 __OSFpscrEnableBits = FPSCR_ENABLE;
 
-/*
- * --INFO--
- * Address:	800ED6EC
- * Size:	000080
+/**
+ * @note Address: 0x800ED6EC
+ * @note Size: 0x80
  */
 WEAKFUNC void OSReport(const char* msg, ...)
 {
@@ -24,18 +23,16 @@ WEAKFUNC void OSReport(const char* msg, ...)
 	va_end(marker);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  * same as OSReport but without va start/end
  */
 WEAKFUNC void OSVReport(const char* msg, va_list list) { vprintf(msg, list); }
 
-/*
- * --INFO--
- * Address:	800ED76C
- * Size:	00012C
+/**
+ * @note Address: 0x800ED76C
+ * @note Size: 0x12C
  */
 WEAKFUNC void OSPanic(const char* file, int line, const char* msg, ...)
 {
@@ -60,10 +57,9 @@ WEAKFUNC void OSPanic(const char* file, int line, const char* msg, ...)
 	PPCHalt();
 }
 
-/*
- * --INFO--
- * Address:	800ED898
- * Size:	000218
+/**
+ * @note Address: 0x800ED898
+ * @note Size: 0x218
  */
 OSErrorHandler OSSetErrorHandler(OSError error, OSErrorHandler handler)
 {
@@ -121,10 +117,9 @@ OSErrorHandler OSSetErrorHandler(OSError error, OSErrorHandler handler)
 	return oldHandler;
 }
 
-/*
- * --INFO--
- * Address:	800EDAB0
- * Size:	0002E8
+/**
+ * @note Address: 0x800EDAB0
+ * @note Size: 0x2E8
  */
 void __OSUnhandledException(__OSException exception, OSContext* context, u32 dsisr, u32 dar)
 {

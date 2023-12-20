@@ -19,10 +19,9 @@ static void __ARHandler(__OSInterrupt interrupt, OSContext* context);
 static void __ARChecksize(void);
 static void __ARClearArea(u32 start_addr, u32 length);
 
-/*
- * --INFO--
- * Address:	800D2674
- * Size:	000044
+/**
+ * @note Address: 0x800D2674
+ * @note Size: 0x44
  */
 ARCallback ARRegisterDMACallback(ARCallback callback)
 {
@@ -35,10 +34,9 @@ ARCallback ARRegisterDMACallback(ARCallback callback)
 	return oldCb;
 }
 
-/*
- * --INFO--
- * Address:	800D26B8
- * Size:	00003C
+/**
+ * @note Address: 0x800D26B8
+ * @note Size: 0x3C
  */
 u32 ARGetDMAStatus()
 {
@@ -50,10 +48,9 @@ u32 ARGetDMAStatus()
 	return val;
 }
 
-/*
- * --INFO--
- * Address:	800D26F4
- * Size:	0000F0
+/**
+ * @note Address: 0x800D26F4
+ * @note Size: 0xF0
  */
 void ARStartDMA(u32 type, u32 mainmem_addr, u32 aram_addr, u32 length)
 {
@@ -77,10 +74,9 @@ void ARStartDMA(u32 type, u32 mainmem_addr, u32 aram_addr, u32 length)
 	OSRestoreInterrupts(enabled);
 }
 
-/*
- * --INFO--
- * Address:	800D27E4
- * Size:	000068
+/**
+ * @note Address: 0x800D27E4
+ * @note Size: 0x68
  */
 u32 ARAlloc(u32 length)
 {
@@ -98,10 +94,9 @@ u32 ARAlloc(u32 length)
 	return oldStackPtr;
 }
 
-/*
- * --INFO--
- * Address:	800D284C
- * Size:	0000C4
+/**
+ * @note Address: 0x800D284C
+ * @note Size: 0xC4
  */
 u32 ARInit(u32* stack_index_addr, u32 num_entries)
 {
@@ -138,24 +133,21 @@ u32 ARInit(u32* stack_index_addr, u32 num_entries)
 	return __AR_StackPointer;
 }
 
-/*
- * --INFO--
- * Address:	800D2910
- * Size:	000008
+/**
+ * @note Address: 0x800D2910
+ * @note Size: 0x8
  */
 u32 ARGetBaseAddress() { return __AR_ARAM_USR_BASE_ADDR; }
 
-/*
- * --INFO--
- * Address:	800D2918
- * Size:	000008
+/**
+ * @note Address: 0x800D2918
+ * @note Size: 0x8
  */
 u32 ARGetSize() { return __AR_Size; }
 
-/*
- * --INFO--
- * Address:	800D2920
- * Size:	000078
+/**
+ * @note Address: 0x800D2920
+ * @note Size: 0x78
  */
 void __ARHandler(__OSInterrupt interrupt, OSContext* context)
 {
@@ -177,10 +169,9 @@ void __ARHandler(__OSInterrupt interrupt, OSContext* context)
 	OSSetCurrentContext(context);
 }
 
-/*
- * --INFO--
- * Address:	800D2998
- * Size:	000020
+/**
+ * @note Address: 0x800D2998
+ * @note Size: 0x20
  */
 void __ARClearInterrupt()
 {
@@ -190,27 +181,24 @@ void __ARClearInterrupt()
 	__DSPRegs[DSP_CONTROL_STATUS] = tmp;
 }
 
-/*
- * --INFO--
- * Address:	800D29B8
- * Size:	000010
+/**
+ * @note Address: 0x800D29B8
+ * @note Size: 0x10
  */
 u16 __ARGetInterruptStatus() { return ((u16)(__DSPRegs[DSP_CONTROL_STATUS] & 0x20)); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 void __ARWaitForDMA()
 {
 	while (__DSPRegs[DSP_CONTROL_STATUS] & 0x0200) { }
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B0
+/**
+ * @note Address: N/A
+ * @note Size: 0xB0
  */
 void __ARWriteDMA(u32 mmem_addr, u32 aram_addr, u32 length)
 {
@@ -233,10 +221,9 @@ void __ARWriteDMA(u32 mmem_addr, u32 aram_addr, u32 length)
 	__ARClearInterrupt();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B0
+/**
+ * @note Address: N/A
+ * @note Size: 0xB0
  */
 void __ARReadDMA(u32 mmem_addr, u32 aram_addr, u32 length)
 {
@@ -259,10 +246,9 @@ void __ARReadDMA(u32 mmem_addr, u32 aram_addr, u32 length)
 	__ARClearInterrupt();
 }
 
-/*
- * --INFO--
- * Address:	800D29C8
- * Size:	0017F4
+/**
+ * @note Address: 0x800D29C8
+ * @note Size: 0x17F4
  */
 void __ARChecksize()
 {

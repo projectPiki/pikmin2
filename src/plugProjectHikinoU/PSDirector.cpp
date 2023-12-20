@@ -4,10 +4,9 @@ namespace PSSystem {
 
 u8 DirectorBase::sToolMode;
 
-/*
- * --INFO--
- * Address:	80342EB4
- * Size:	000214
+/**
+ * @note Address: 0x80342EB4
+ * @note Size: 0x214
  */
 DirectorBase::DirectorBase(int tracks, const char*)
     : JADHioNode(nullptr)
@@ -29,17 +28,15 @@ DirectorBase::DirectorBase(int tracks, const char*)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803430C8
- * Size:	000010
+/**
+ * @note Address: 0x803430C8
+ * @note Size: 0x10
  */
 bool DirectorBase::isUnderDirection() { return mState == 0; }
 
-/*
- * --INFO--
- * Address:	803430D8
- * Size:	0000A4
+/**
+ * @note Address: 0x803430D8
+ * @note Size: 0xA4
  */
 void DirectorBase::setTrack(u8 id, SeqTrackBase* track)
 {
@@ -48,10 +45,9 @@ void DirectorBase::setTrack(u8 id, SeqTrackBase* track)
 	mTracks[id] = track;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
+/**
+ * @note Address: N/A
+ * @note Size: 0x94
  */
 void DirectorBase::initCheck()
 {
@@ -60,10 +56,9 @@ void DirectorBase::initCheck()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8034317C
- * Size:	00014C
+/**
+ * @note Address: 0x8034317C
+ * @note Size: 0x14C
  */
 void DirectorBase::exec()
 {
@@ -91,10 +86,9 @@ void DirectorBase::exec()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803432C8
- * Size:	000074
+/**
+ * @note Address: 0x803432C8
+ * @note Size: 0x74
  */
 void DirectorBase::playInit(JASTrack* track)
 {
@@ -115,10 +109,9 @@ void DirectorBase::playInit(JASTrack* track)
 	OSUnlockMutex(&mMutex2);
 }
 
-/*
- * --INFO--
- * Address:	803432C8
- * Size:	000074
+/**
+ * @note Address: 0x803432C8
+ * @note Size: 0x74
  */
 void DirectorBase::directOn()
 {
@@ -128,10 +121,9 @@ void DirectorBase::directOn()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8034333C
- * Size:	0000B0
+/**
+ * @note Address: 0x8034333C
+ * @note Size: 0xB0
  */
 void DirectorBase::directOnInner()
 {
@@ -150,10 +142,9 @@ void DirectorBase::directOnInner()
 	mState = 0;
 }
 
-/*
- * --INFO--
- * Address:	803433EC
- * Size:	000080
+/**
+ * @note Address: 0x803433EC
+ * @note Size: 0x80
  */
 void DirectorBase::directOff()
 {
@@ -168,10 +159,9 @@ void DirectorBase::directOff()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8034346C
- * Size:	0000B0
+/**
+ * @note Address: 0x8034346C
+ * @note Size: 0xB0
  */
 void DirectorBase::directOffInner()
 {
@@ -190,17 +180,15 @@ void DirectorBase::directOffInner()
 	mState = 1;
 }
 
-/*
- * --INFO--
- * Address:	8034351C
- * Size:	000004
+/**
+ * @note Address: 0x8034351C
+ * @note Size: 0x4
  */
 void DirectorBase::doUpdateRequest() { }
 
-/*
- * --INFO--
- * Address:	80343520
- * Size:	000040
+/**
+ * @note Address: 0x80343520
+ * @note Size: 0x40
  */
 void DirectorBase::powerOn()
 {
@@ -209,10 +197,9 @@ void DirectorBase::powerOn()
 	OSUnlockMutex(&mMutex1);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000068
+/**
+ * @note Address: N/A
+ * @note Size: 0x68
  */
 void DirectorBase::powerOff()
 {
@@ -224,10 +211,9 @@ void DirectorBase::powerOff()
 	OSUnlockMutex(&mMutex1);
 }
 
-/*
- * --INFO--
- * Address:	80343560
- * Size:	000150
+/**
+ * @note Address: 0x80343560
+ * @note Size: 0x150
  */
 void OneShotDirector::exec()
 {
@@ -255,10 +241,9 @@ void OneShotDirector::exec()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803436B0
- * Size:	000198
+/**
+ * @note Address: 0x803436B0
+ * @note Size: 0x198
  */
 void SwitcherDirector::doUpdateRequest()
 {
@@ -271,10 +256,9 @@ void SwitcherDirector::doUpdateRequest()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80343848
- * Size:	000088
+/**
+ * @note Address: 0x80343848
+ * @note Size: 0x88
  */
 DirectorMgrBase::DirectorMgrBase(u8 type)
     : JADHioNode("ディレクターマネージャ") // "Director Manager"
@@ -284,10 +268,9 @@ DirectorMgrBase::DirectorMgrBase(u8 type)
 	P2ASSERTLINE(394, mDirectorCount != 0);
 }
 
-/*
- * --INFO--
- * Address:	803438D0
- * Size:	00012C
+/**
+ * @note Address: 0x803438D0
+ * @note Size: 0x12C
  */
 void DirectorMgrBase::initAndAdaptToBgm(DirectedBgm& bgm)
 {
@@ -300,10 +283,9 @@ void DirectorMgrBase::initAndAdaptToBgm(DirectedBgm& bgm)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803439FC
- * Size:	000164
+/**
+ * @note Address: 0x803439FC
+ * @note Size: 0x164
  */
 void DirectorMgrBase::playInit(JASTrack* track)
 {
@@ -318,10 +300,9 @@ void DirectorMgrBase::playInit(JASTrack* track)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80343B60
- * Size:	000068
+/**
+ * @note Address: 0x80343B60
+ * @note Size: 0x68
  */
 void DirectorMgrBase::exec()
 {
@@ -330,10 +311,9 @@ void DirectorMgrBase::exec()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
+/**
+ * @note Address: N/A
+ * @note Size: 0x60
  */
 void DirectorMgrBase::lock()
 {
@@ -342,10 +322,9 @@ void DirectorMgrBase::lock()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
+/**
+ * @note Address: N/A
+ * @note Size: 0x60
  */
 void DirectorMgrBase::unlock()
 {
@@ -354,10 +333,9 @@ void DirectorMgrBase::unlock()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80343BC8
- * Size:	0001BC
+/**
+ * @note Address: 0x80343BC8
+ * @note Size: 0x1BC
  */
 void DirectorMgrBase::off(DirectedBgm* bgm)
 {
@@ -513,10 +491,9 @@ lbl_80343D60:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80343D84
- * Size:	000024
+/**
+ * @note Address: 0x80343D84
+ * @note Size: 0x24
  */
 DirectorCopyActor::DirectorCopyActor(DirectorBase* child, DirectorBase* parent)
 {
@@ -524,10 +501,9 @@ DirectorCopyActor::DirectorCopyActor(DirectorBase* child, DirectorBase* parent)
 	mDirectorParent = parent;
 }
 
-/*
- * --INFO--
- * Address:	80343DA8
- * Size:	000120
+/**
+ * @note Address: 0x80343DA8
+ * @note Size: 0x120
  */
 void DirectorCopyActor::exec(DirectorBase* director)
 {

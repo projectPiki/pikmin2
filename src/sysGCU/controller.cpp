@@ -1,9 +1,8 @@
 #include "Controller.h"
 
-/*
- * --INFO--
- * Address:	80424E54
- * Size:	00003C
+/**
+ * @note Address: 0x80424E54
+ * @note Size: 0x3C
  */
 Controller::Controller(JUTGamePad::EPadPort port)
     : JUTGamePad(port)

@@ -6,10 +6,9 @@
 
 namespace Sys {
 
-/*
- * --INFO--
- * Address:	8041C9CC
- * Size:	0004F0
+/**
+ * @note Address: 0x8041C9CC
+ * @note Size: 0x4F0
  */
 bool Triangle::intersect(Sys::VertexTable& vtxTable, Sys::Triangle::SphereSweep& sweep)
 {

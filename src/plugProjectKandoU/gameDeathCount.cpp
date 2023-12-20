@@ -17,10 +17,9 @@ int Game::DeathMgr::mSoundDeathCount;
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
+/**
+ * @note Address: N/A
+ * @note Size: 0x30
  */
 // BirthCounter::BirthCounter()
 // {
@@ -28,10 +27,9 @@ namespace Game {
 // 	reset();
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void BirthCounter::reset()
 {
@@ -42,10 +40,9 @@ void BirthCounter::reset()
 	mTotal = 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
+/**
+ * @note Address: N/A
+ * @note Size: 0x78
  */
 int& BirthCounter::operator()(int pikiColor)
 {
@@ -62,10 +59,9 @@ int& BirthCounter::operator()(int pikiColor)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
+/**
+ * @note Address: N/A
+ * @note Size: 0x5C
  */
 void BirthCounter::read(Stream& input)
 {
@@ -75,10 +71,9 @@ void BirthCounter::read(Stream& input)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000090
+/**
+ * @note Address: N/A
+ * @note Size: 0x90
  */
 void BirthCounter::write(Stream& output)
 {
@@ -92,20 +87,18 @@ void BirthCounter::write(Stream& output)
 	output.textEndGroup();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
+/**
+ * @note Address: N/A
+ * @note Size: 0x30
  */
 BirthMgr::BirthMgr()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8022F9FC
- * Size:	000068
+/**
+ * @note Address: 0x8022F9FC
+ * @note Size: 0x68
  */
 void BirthMgr::clear()
 {
@@ -114,10 +107,9 @@ void BirthMgr::clear()
 	mTotal.reset();
 }
 
-/*
- * --INFO--
- * Address:	8022FA64
- * Size:	000048
+/**
+ * @note Address: 0x8022FA64
+ * @note Size: 0x48
  * inc__Q24Game8BirthMgrFi
  */
 void BirthMgr::inc(int pikiColor)
@@ -131,10 +123,9 @@ void BirthMgr::inc(int pikiColor)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8022FAAC
- * Size:	000048
+/**
+ * @note Address: 0x8022FAAC
+ * @note Size: 0x48
  * dec__Q24Game8BirthMgrFi
  */
 void BirthMgr::dec(int pikiColor)
@@ -148,10 +139,9 @@ void BirthMgr::dec(int pikiColor)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8022FAF4
- * Size:	0000D0
+/**
+ * @note Address: 0x8022FAF4
+ * @note Size: 0xD0
  */
 void BirthMgr::inc_today(int pikiColor)
 {
@@ -161,10 +151,9 @@ void BirthMgr::inc_today(int pikiColor)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8022FBC4
- * Size:	0000D0
+/**
+ * @note Address: 0x8022FBC4
+ * @note Size: 0xD0
  */
 void BirthMgr::inc_cave(int pikiColor)
 {
@@ -174,10 +163,9 @@ void BirthMgr::inc_cave(int pikiColor)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8022FC94
- * Size:	0000D0
+/**
+ * @note Address: 0x8022FC94
+ * @note Size: 0xD0
  */
 void BirthMgr::dec_today(int pikiColor)
 {
@@ -187,10 +175,9 @@ void BirthMgr::dec_today(int pikiColor)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8022FD64
- * Size:	0000D0
+/**
+ * @note Address: 0x8022FD64
+ * @note Size: 0xD0
  */
 void BirthMgr::dec_cave(int pikiColor)
 {
@@ -200,10 +187,9 @@ void BirthMgr::dec_cave(int pikiColor)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8022FE34
- * Size:	000140
+/**
+ * @note Address: 0x8022FE34
+ * @note Size: 0x140
  */
 void BirthMgr::account_cave()
 {
@@ -213,10 +199,9 @@ void BirthMgr::account_cave()
 	mCave.reset();
 }
 
-/*
- * --INFO--
- * Address:	8022FF74
- * Size:	0002B4
+/**
+ * @note Address: 0x8022FF74
+ * @note Size: 0x2B4
  */
 void BirthMgr::account_today_adjust()
 {
@@ -233,10 +218,9 @@ void BirthMgr::account_today_adjust()
 	mToday(AllPikmin) = a;
 }
 
-/*
- * --INFO--
- * Address:	80230228
- * Size:	000204
+/**
+ * @note Address: 0x80230228
+ * @note Size: 0x204
  * account_today__Q24Game8BirthMgrFv
  */
 void BirthMgr::account_today()
@@ -252,10 +236,9 @@ void BirthMgr::account_today()
 	mToday.reset();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
+/**
+ * @note Address: N/A
+ * @note Size: 0x70
  */
 int BirthMgr::get_cave(int pikiColor)
 {
@@ -263,10 +246,9 @@ int BirthMgr::get_cave(int pikiColor)
 	return mCave(pikiColor);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
+/**
+ * @note Address: N/A
+ * @note Size: 0x70
  */
 int BirthMgr::get_today(int pikiColor)
 {
@@ -274,17 +256,15 @@ int BirthMgr::get_today(int pikiColor)
 	return mToday(pikiColor);
 }
 
-/*
- * --INFO--
- * Address:	8023042C
- * Size:	000070
+/**
+ * @note Address: 0x8023042C
+ * @note Size: 0x70
  */
 int BirthMgr::get_total(int pikiColor) { return mTotal(pikiColor); }
 
-/*
- * --INFO--
- * Address:	8023049C
- * Size:	0000B0
+/**
+ * @note Address: 0x8023049C
+ * @note Size: 0xB0
  * read__Q24Game8BirthMgrFR6Stream
  */
 void BirthMgr::read(Stream& input)
@@ -294,10 +274,9 @@ void BirthMgr::read(Stream& input)
 	mTotal.read(input);
 }
 
-/*
- * --INFO--
- * Address:	8023054C
- * Size:	000148
+/**
+ * @note Address: 0x8023054C
+ * @note Size: 0x148
  * write__Q24Game8BirthMgrFR6Stream
  */
 void BirthMgr::write(Stream& output)
@@ -307,10 +286,9 @@ void BirthMgr::write(Stream& output)
 	mTotal.write(output);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
+/**
+ * @note Address: N/A
+ * @note Size: 0x30
  */
 // DeathCounter::DeathCounter()
 // {
@@ -318,10 +296,9 @@ void BirthMgr::write(Stream& output)
 // 	reset();
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 void DeathCounter::reset()
 {
@@ -332,10 +309,9 @@ void DeathCounter::reset()
 	mTotal = 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000100
+/**
+ * @note Address: N/A
+ * @note Size: 0x100
  */
 int& DeathCounter::operator()(int cod)
 {
@@ -353,10 +329,9 @@ int& DeathCounter::operator()(int cod)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
+/**
+ * @note Address: N/A
+ * @note Size: 0x5C
  */
 void DeathCounter::read(Stream& input)
 {
@@ -366,10 +341,9 @@ void DeathCounter::read(Stream& input)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000090
+/**
+ * @note Address: N/A
+ * @note Size: 0x90
  */
 void DeathCounter::write(Stream& output)
 {
@@ -383,20 +357,18 @@ void DeathCounter::write(Stream& output)
 	output.textEndGroup();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
+/**
+ * @note Address: N/A
+ * @note Size: 0x30
  */
 DeathMgr::DeathMgr()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80230694
- * Size:	000084
+/**
+ * @note Address: 0x80230694
+ * @note Size: 0x84
  * clear__Q24Game8DeathMgrFv
  */
 void DeathMgr::clear()
@@ -407,10 +379,9 @@ void DeathMgr::clear()
 	mSoundDeathCount = 0;
 }
 
-/*
- * --INFO--
- * Address:	80230718
- * Size:	00005C
+/**
+ * @note Address: 0x80230718
+ * @note Size: 0x5C
  * inc__Q24Game8DeathMgrFi
  */
 void DeathMgr::inc(int cod)
@@ -425,10 +396,9 @@ void DeathMgr::inc(int cod)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80230774
- * Size:	0000FC
+/**
+ * @note Address: 0x80230774
+ * @note Size: 0xFC
  * inc_today__Q24Game8DeathMgrFi
  */
 void DeathMgr::inc_today(int cod)
@@ -437,10 +407,9 @@ void DeathMgr::inc_today(int cod)
 	mSoundDeathCount++;
 }
 
-/*
- * --INFO--
- * Address:	80230870
- * Size:	0000FC
+/**
+ * @note Address: 0x80230870
+ * @note Size: 0xFC
  * inc_cave__Q24Game8DeathMgrFi
  */
 void DeathMgr::inc_cave(int cod)
@@ -449,10 +418,9 @@ void DeathMgr::inc_cave(int cod)
 	mSoundDeathCount++;
 }
 
-/*
- * --INFO--
- * Address:	8023096C
- * Size:	0001FC
+/**
+ * @note Address: 0x8023096C
+ * @note Size: 0x1FC
  * account_cave__Q24Game8DeathMgrFv
  */
 void DeathMgr::account_cave()
@@ -463,10 +431,9 @@ void DeathMgr::account_cave()
 	mCave.reset();
 }
 
-/*
- * --INFO--
- * Address:	80230B68
- * Size:	0001FC
+/**
+ * @note Address: 0x80230B68
+ * @note Size: 0x1FC
  * account_today__Q24Game8DeathMgrFv
  */
 void DeathMgr::account_today()
@@ -477,34 +444,30 @@ void DeathMgr::account_today()
 	mToday.reset();
 }
 
-/*
- * --INFO--
- * Address:	80230D64
- * Size:	0000E8
+/**
+ * @note Address: 0x80230D64
+ * @note Size: 0xE8
  * get_cave__Q24Game8DeathMgrFi
  */
 int DeathMgr::get_cave(int cod) { return mCave(cod); }
 
-/*
- * --INFO--
- * Address:	80230E4C
- * Size:	0000E8
+/**
+ * @note Address: 0x80230E4C
+ * @note Size: 0xE8
  * get_today__Q24Game8DeathMgrFi
  */
 int DeathMgr::get_today(int cod) { return mToday(cod); }
 
-/*
- * --INFO--
- * Address:	80230F34
- * Size:	0000E8
+/**
+ * @note Address: 0x80230F34
+ * @note Size: 0xE8
  * get_total__Q24Game8DeathMgrFi
  */
 int DeathMgr::get_total(int cod) { return mTotal(cod); }
 
-/*
- * --INFO--
- * Address:	8023101C
- * Size:	0000B0
+/**
+ * @note Address: 0x8023101C
+ * @note Size: 0xB0
  * read__Q24Game8DeathMgrFR6Stream
  */
 void DeathMgr::read(Stream& input)
@@ -514,10 +477,9 @@ void DeathMgr::read(Stream& input)
 	mTotal.read(input);
 }
 
-/*
- * --INFO--
- * Address:	802310CC
- * Size:	000148
+/**
+ * @note Address: 0x802310CC
+ * @note Size: 0x148
  * write__Q24Game8DeathMgrFR6Stream
  */
 void DeathMgr::write(Stream& output)

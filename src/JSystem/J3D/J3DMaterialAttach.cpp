@@ -5,10 +5,9 @@
 #include "JSystem/J3D/J3DTypes.h"
 #include "JSystem/J3D/J3DTexMtx.h"
 
-/*
- * --INFO--
- * Address:	80083C4C
- * Size:	000028
+/**
+ * @note Address: 0x80083C4C
+ * @note Size: 0x28
  */
 void J3DMaterialTable::clear()
 {
@@ -22,26 +21,23 @@ void J3DMaterialTable::clear()
 	_1C                = 0;
 }
 
-/*
- * --INFO--
- * Address:	80083C74
- * Size:	000034
+/**
+ * @note Address: 0x80083C74
+ * @note Size: 0x34
  * __ct
  */
 J3DMaterialTable::J3DMaterialTable() { clear(); }
 
-/*
- * --INFO--
- * Address:	80083CA8
- * Size:	000048
+/**
+ * @note Address: 0x80083CA8
+ * @note Size: 0x48
  * __dt
  */
 J3DMaterialTable::~J3DMaterialTable() { }
 
-/*
- * --INFO--
- * Address:	80083CF0
- * Size:	000018
+/**
+ * @note Address: 0x80083CF0
+ * @note Size: 0x18
  */
 J3DMatColorAnm::J3DMatColorAnm()
     : mIndex(0)
@@ -50,10 +46,9 @@ J3DMatColorAnm::J3DMatColorAnm()
 {
 }
 
-/*
- * --INFO--
- * Address:	80083D08
- * Size:	000024
+/**
+ * @note Address: 0x80083D08
+ * @note Size: 0x24
  */
 J3DTexNoAnm::J3DTexNoAnm()
     : mIndex(0)
@@ -62,10 +57,9 @@ J3DTexNoAnm::J3DTexNoAnm()
 {
 }
 
-/*
- * --INFO--
- * Address:	80083D2C
- * Size:	0001C4
+/**
+ * @note Address: 0x80083D2C
+ * @note Size: 0x1C4
  */
 J3DErrType J3DMaterialTable::allocTexMtxAnimator(J3DAnmTextureSRTKey* p1, J3DTexMtxAnm** p2)
 {
@@ -227,10 +221,9 @@ lbl_80083EDC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80083EF0
- * Size:	000018
+/**
+ * @note Address: 0x80083EF0
+ * @note Size: 0x18
  */
 J3DTexMtxAnm::J3DTexMtxAnm()
     : mIndex(0)
@@ -289,10 +282,9 @@ J3DTexMtxAnm::J3DTexMtxAnm()
 // 	return 0;
 // }
 
-/*
- * --INFO--
- * Address:	80083F08
- * Size:	00032C
+/**
+ * @note Address: 0x80083F08
+ * @note Size: 0x32C
  */
 J3DErrType J3DMaterialTable::allocTevRegAnimator(J3DAnmTevRegKey* tevRegKey, J3DTevColorAnm** tevColorAnms, J3DTevKColorAnm** tevKColorAnms)
 {
@@ -562,10 +554,9 @@ J3DErrType J3DMaterialTable::allocTevRegAnimator(J3DAnmTevRegKey* tevRegKey, J3D
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80084234
- * Size:	000018
+/**
+ * @note Address: 0x80084234
+ * @note Size: 0x18
  */
 J3DTevKColorAnm::J3DTevKColorAnm()
     : mIndex(0)
@@ -582,10 +573,9 @@ J3DTevKColorAnm::J3DTevKColorAnm()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008424C
- * Size:	000018
+/**
+ * @note Address: 0x8008424C
+ * @note Size: 0x18
  */
 J3DTevColorAnm::J3DTevColorAnm()
     : mIndex(0)
@@ -602,10 +592,9 @@ J3DTevColorAnm::J3DTevColorAnm()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80084264
- * Size:	0000AC
+/**
+ * @note Address: 0x80084264
+ * @note Size: 0xAC
  */
 bool J3DMaterialTable::removeTexMtxAnimator(J3DAnmTextureSRTKey* anm)
 {
@@ -630,10 +619,9 @@ bool J3DMaterialTable::removeTexMtxAnimator(J3DAnmTextureSRTKey* anm)
 	return found;
 }
 
-/*
- * --INFO--
- * Address:	80084310
- * Size:	00011C
+/**
+ * @note Address: 0x80084310
+ * @note Size: 0x11C
  */
 bool J3DMaterialTable::removeTevRegAnimator(J3DAnmTevRegKey* anm)
 {
@@ -768,10 +756,9 @@ lbl_80084418:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008442C
- * Size:	0000BC
+/**
+ * @note Address: 0x8008442C
+ * @note Size: 0xBC
  */
 J3DErrType J3DMaterialTable::entryMatColorAnimator(J3DAnmColor* anm)
 {
@@ -871,10 +858,9 @@ lbl_800844E0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800844E8
- * Size:	000380
+/**
+ * @note Address: 0x800844E8
+ * @note Size: 0x380
  */
 J3DErrType J3DMaterialTable::entryTexMtxAnimator(J3DAnmTextureSRTKey* anm)
 {
@@ -1213,10 +1199,9 @@ lbl_80084854:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80084868
- * Size:	000198
+/**
+ * @note Address: 0x80084868
+ * @note Size: 0x198
  */
 J3DErrType J3DMaterialTable::entryTevRegAnimator(J3DAnmTevRegKey* anm)
 {

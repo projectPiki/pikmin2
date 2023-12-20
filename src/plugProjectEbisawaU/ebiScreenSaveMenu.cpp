@@ -10,10 +10,9 @@ static const char name[] = "ebiScreenSaveMenu";
 namespace ebi {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	803DD0A8
- * Size:	000350
+/**
+ * @note Address: 0x803DD0A8
+ * @note Size: 0x350
  */
 void TSaveMenu::doSetArchive(JKRArchive* arc)
 {
@@ -54,10 +53,9 @@ void TSaveMenu::doSetArchive(JKRArchive* arc)
 	mFuriko = og::Screen::setCallBack_Furiko(mScreenObj, 'furiko00');
 }
 
-/*
- * --INFO--
- * Address:	803DD3F8
- * Size:	00007C
+/**
+ * @note Address: 0x803DD3F8
+ * @note Size: 0x7C
  */
 void TSaveMenu::doOpenScreen(ArgOpen*)
 {
@@ -72,10 +70,9 @@ void TSaveMenu::doOpenScreen(ArgOpen*)
 	PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
 }
 
-/*
- * --INFO--
- * Address:	803DD474
- * Size:	000064
+/**
+ * @note Address: 0x803DD474
+ * @note Size: 0x64
  */
 void TSaveMenu::doCloseScreen(ArgClose*)
 {
@@ -87,10 +84,9 @@ void TSaveMenu::doCloseScreen(ArgClose*)
 	PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
 }
 
-/*
- * --INFO--
- * Address:	803DD4D8
- * Size:	000084
+/**
+ * @note Address: 0x803DD4D8
+ * @note Size: 0x84
  */
 void TSaveMenu::doKillScreen()
 {
@@ -103,10 +99,9 @@ void TSaveMenu::doKillScreen()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803DD55C
- * Size:	0000DC
+/**
+ * @note Address: 0x803DD55C
+ * @note Size: 0xDC
  */
 bool TSaveMenu::doUpdateStateOpen()
 {
@@ -125,10 +120,9 @@ bool TSaveMenu::doUpdateStateOpen()
 	return u8(mScreenMovePos <= 0.0f);
 }
 
-/*
- * --INFO--
- * Address:	803DD638
- * Size:	000074
+/**
+ * @note Address: 0x803DD638
+ * @note Size: 0x74
  */
 bool TSaveMenu::doUpdateStateWait()
 {
@@ -142,10 +136,9 @@ bool TSaveMenu::doUpdateStateWait()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803DD6AC
- * Size:	0000D4
+/**
+ * @note Address: 0x803DD6AC
+ * @note Size: 0xD4
  */
 bool TSaveMenu::doUpdateStateClose()
 {
@@ -164,10 +157,9 @@ bool TSaveMenu::doUpdateStateClose()
 	return u8(mFadeTimer > 0.3f);
 }
 
-/*
- * --INFO--
- * Address:	803DD780
- * Size:	000234
+/**
+ * @note Address: 0x803DD780
+ * @note Size: 0x234
  */
 void TSaveMenu::doDraw()
 {
@@ -214,10 +206,9 @@ void TSaveMenu::doDraw()
 	mScreenObj->draw(*gfx, *graf);
 }
 
-/*
- * --INFO--
- * Address:	803DD9B4
- * Size:	0000B0
+/**
+ * @note Address: 0x803DD9B4
+ * @note Size: 0xB0
  */
 void TSaveMenu::loadResource()
 {
@@ -232,10 +223,9 @@ void TSaveMenu::loadResource()
 	setArchive(arc);
 }
 
-/*
- * --INFO--
- * Address:	803DDA64
- * Size:	000094
+/**
+ * @note Address: 0x803DDA64
+ * @note Size: 0x94
  */
 bool TSaveMenu::openMsg(long id)
 {
@@ -249,10 +239,9 @@ bool TSaveMenu::openMsg(long id)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	803DDAF8
- * Size:	00003C
+/**
+ * @note Address: 0x803DDAF8
+ * @note Size: 0x3C
  */
 bool TSaveMenu::closeMsg()
 {
@@ -263,10 +252,9 @@ bool TSaveMenu::closeMsg()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	803DDB34
- * Size:	000054
+/**
+ * @note Address: 0x803DDB34
+ * @note Size: 0x54
  */
 void TSaveMenu::noMsg()
 {
@@ -276,17 +264,15 @@ void TSaveMenu::noMsg()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803DDB88
- * Size:	000010
+/**
+ * @note Address: 0x803DDB88
+ * @note Size: 0x10
  */
 bool TSaveMenu::isFinishMsg() { return u8(mStateID == MSG_Kill); }
 
-/*
- * --INFO--
- * Address:	803DDB98
- * Size:	0003B4
+/**
+ * @note Address: 0x803DDB98
+ * @note Size: 0x3B4
  */
 void TSaveMenu::startMsgState_(enumMsgState state)
 {
@@ -365,10 +351,9 @@ void TSaveMenu::startMsgState_(enumMsgState state)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803DDF4C
- * Size:	000368
+/**
+ * @note Address: 0x803DDF4C
+ * @note Size: 0x368
  */
 void TSaveMenu::updateMsg_()
 {

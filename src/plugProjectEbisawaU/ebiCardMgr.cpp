@@ -8,10 +8,9 @@ namespace CardError {
 
 static const char unusedCardMgrName[] = "ebiCardMgr";
 
-/*
- * --INFO--
- * Address:	803D1104
- * Size:	000A2C
+/**
+ * @note Address: 0x803D1104
+ * @note Size: 0xA2C
  */
 void FSMStateMachine::init(TMgr* mgr)
 {
@@ -46,24 +45,21 @@ void FSMStateMachine::init(TMgr* mgr)
 	registerState(new FSMState_WN1_NowCreateNewFile);
 }
 
-/*
- * --INFO--
- * Address:	803D1B30
- * Size:	00002C
+/**
+ * @note Address: 0x803D1B30
+ * @note Size: 0x2C
  */
 void FSMState::init(TMgr* mgr, Game::StateArg* arg) { do_init(mgr, arg); }
 
-/*
- * --INFO--
- * Address:	803D1B60
- * Size:	00002C
+/**
+ * @note Address: 0x803D1B60
+ * @note Size: 0x2C
  */
 void FSMState::exec(TMgr* mgr) { do_exec(mgr); }
 
-/*
- * --INFO--
- * Address:	803D1B90
- * Size:	000084
+/**
+ * @note Address: 0x803D1B90
+ * @note Size: 0x84
  */
 void FSMState_Warning::do_init(TMgr* mgr, Game::StateArg*)
 {
@@ -79,10 +75,9 @@ void FSMState_Warning::do_init(TMgr* mgr, Game::StateArg*)
 	do_open(mgr);
 }
 
-/*
- * --INFO--
- * Address:	803D1C14
- * Size:	0000A4
+/**
+ * @note Address: 0x803D1C14
+ * @note Size: 0xA4
  */
 void FSMState_Warning::do_exec(TMgr* mgr)
 {
@@ -100,10 +95,9 @@ void FSMState_Warning::do_exec(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D1CB8
- * Size:	00003C
+/**
+ * @note Address: 0x803D1CB8
+ * @note Size: 0x3C
  */
 void FSMState_Question::do_init(TMgr* mgr, Game::StateArg*)
 {
@@ -112,10 +106,9 @@ void FSMState_Question::do_init(TMgr* mgr, Game::StateArg*)
 	do_open(mgr);
 }
 
-/*
- * --INFO--
- * Address:	803D1CF4
- * Size:	000098
+/**
+ * @note Address: 0x803D1CF4
+ * @note Size: 0x98
  */
 void FSMState_Question::do_exec(TMgr* mgr)
 {
@@ -132,10 +125,9 @@ void FSMState_Question::do_exec(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D1D8C
- * Size:	000074
+/**
+ * @note Address: 0x803D1D8C
+ * @note Size: 0x74
  */
 void FSMState_CardRequest::do_init(TMgr* mgr, Game::StateArg*)
 {
@@ -149,10 +141,9 @@ void FSMState_CardRequest::do_init(TMgr* mgr, Game::StateArg*)
 	do_open(mgr);
 }
 
-/*
- * --INFO--
- * Address:	803D1E00
- * Size:	000350
+/**
+ * @note Address: 0x803D1E00
+ * @note Size: 0x350
  */
 void FSMState_CardRequest::do_exec(TMgr* mgr)
 {
@@ -242,10 +233,9 @@ void FSMState_CardRequest::do_exec(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D2150
- * Size:	000064
+/**
+ * @note Address: 0x803D2150
+ * @note Size: 0x64
  */
 void FSMState_CardRequest::do_transitCardNoCard(TMgr* mgr)
 {
@@ -256,10 +246,9 @@ void FSMState_CardRequest::do_transitCardNoCard(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D21E4
- * Size:	000064
+/**
+ * @note Address: 0x803D21E4
+ * @note Size: 0x64
  */
 void FSMState_CardRequest::do_transitCardIOError(TMgr* mgr)
 {
@@ -270,10 +259,9 @@ void FSMState_CardRequest::do_transitCardIOError(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D2248
- * Size:	000064
+/**
+ * @note Address: 0x803D2248
+ * @note Size: 0x64
  */
 void FSMState_CardRequest::do_transitCardWrongDevice(TMgr* mgr)
 {
@@ -284,10 +272,9 @@ void FSMState_CardRequest::do_transitCardWrongDevice(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D22AC
- * Size:	000064
+/**
+ * @note Address: 0x803D22AC
+ * @note Size: 0x64
  */
 void FSMState_CardRequest::do_transitCardWrongSector(TMgr* mgr)
 {
@@ -298,10 +285,9 @@ void FSMState_CardRequest::do_transitCardWrongSector(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D2310
- * Size:	000064
+/**
+ * @note Address: 0x803D2310
+ * @note Size: 0x64
  */
 void FSMState_CardRequest::do_transitCardBroken(TMgr* mgr)
 {
@@ -312,10 +298,9 @@ void FSMState_CardRequest::do_transitCardBroken(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D2374
- * Size:	000064
+/**
+ * @note Address: 0x803D2374
+ * @note Size: 0x64
  */
 void FSMState_CardRequest::do_transitCardEncoding(TMgr* mgr)
 {
@@ -326,10 +311,9 @@ void FSMState_CardRequest::do_transitCardEncoding(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D23D8
- * Size:	000064
+/**
+ * @note Address: 0x803D23D8
+ * @note Size: 0x64
  */
 void FSMState_CardRequest::do_transitCardNoFileSpace(TMgr* mgr)
 {
@@ -340,10 +324,9 @@ void FSMState_CardRequest::do_transitCardNoFileSpace(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D243C
- * Size:	000064
+/**
+ * @note Address: 0x803D243C
+ * @note Size: 0x64
  */
 void FSMState_CardRequest::do_transitCardNoFileEntry(TMgr* mgr)
 {
@@ -354,10 +337,9 @@ void FSMState_CardRequest::do_transitCardNoFileEntry(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D24A0
- * Size:	000064
+/**
+ * @note Address: 0x803D24A0
+ * @note Size: 0x64
  */
 void FSMState_CardRequest::do_transitCardFileOpenError(TMgr* mgr)
 {
@@ -368,10 +350,9 @@ void FSMState_CardRequest::do_transitCardFileOpenError(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D2504
- * Size:	000068
+/**
+ * @note Address: 0x803D2504
+ * @note Size: 0x68
  */
 void FSMState_CardRequest::do_transitCardSerialNoError(TMgr* mgr)
 {
@@ -382,10 +363,9 @@ void FSMState_CardRequest::do_transitCardSerialNoError(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D256C
- * Size:	000034
+/**
+ * @note Address: 0x803D256C
+ * @note Size: 0x34
  */
 void FSMState_NoCard::do_init(TMgr* mgr, Game::StateArg*)
 {
@@ -393,10 +373,9 @@ void FSMState_NoCard::do_init(TMgr* mgr, Game::StateArg*)
 	do_open(mgr);
 }
 
-/*
- * --INFO--
- * Address:	803D25A0
- * Size:	0000B0
+/**
+ * @note Address: 0x803D25A0
+ * @note Size: 0xB0
  */
 void FSMState_NoCard::do_exec(TMgr* mgr)
 {
@@ -415,10 +394,9 @@ void FSMState_NoCard::do_exec(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D2650
- * Size:	000094
+/**
+ * @note Address: 0x803D2650
+ * @note Size: 0x94
  */
 TMgr::TMgr()
     : mCounter(0)
@@ -432,17 +410,15 @@ TMgr::TMgr()
 
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	803D2718
- * Size:	000460
+/**
+ * @note Address: 0x803D2718
+ * @note Size: 0x460
  */
 TMemoryCard::~TMemoryCard() { }
 
-/*
- * --INFO--
- * Address:	803D2B78
- * Size:	0004C8
+/**
+ * @note Address: 0x803D2B78
+ * @note Size: 0x4C8
  */
 TMemoryCard::TMemoryCard()
     : mState(0)
@@ -462,10 +438,9 @@ TMemoryCard::TMemoryCard()
 
 namespace CardError {
 
-/*
- * --INFO--
- * Address:	803D3040
- * Size:	000378
+/**
+ * @note Address: 0x803D3040
+ * @note Size: 0x378
  */
 void TMgr::startSeq(enumStart id)
 {
@@ -543,10 +518,9 @@ void TMgr::startSeq(enumStart id)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D33B8
- * Size:	000050
+/**
+ * @note Address: 0x803D33B8
+ * @note Size: 0x50
  */
 void TMgr::forceQuitSeq()
 {
@@ -554,10 +528,9 @@ void TMgr::forceQuitSeq()
 	mScreen.killScreen();
 }
 
-/*
- * --INFO--
- * Address:	803D3408
- * Size:	000044
+/**
+ * @note Address: 0x803D3408
+ * @note Size: 0x44
  */
 void TMgr::goEnd_(enumEnd end)
 {
@@ -565,10 +538,9 @@ void TMgr::goEnd_(enumEnd end)
 	mStateMachine.transit(this, CARDERROR_EmptyScreen, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	803D344C
- * Size:	0000E0
+/**
+ * @note Address: 0x803D344C
+ * @note Size: 0xE0
  */
 void TMgr::checkAndTransitNoCard_()
 {
@@ -588,10 +560,9 @@ void TMgr::checkAndTransitNoCard_()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D352C
- * Size:	00006C
+/**
+ * @note Address: 0x803D352C
+ * @note Size: 0x6C
  */
 void TMgr::update()
 {
@@ -606,10 +577,9 @@ void TMgr::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D3598
- * Size:	00003C
+/**
+ * @note Address: 0x803D3598
+ * @note Size: 0x3C
  */
 void TMgr::draw()
 {
@@ -618,10 +588,9 @@ void TMgr::draw()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D35D4
- * Size:	000050
+/**
+ * @note Address: 0x803D35D4
+ * @note Size: 0x50
  */
 bool TMgr::isGetEnd()
 {
@@ -632,30 +601,27 @@ bool TMgr::isGetEnd()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 bool TMgr::isFinish()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void TMgr::showInfo(long, long, long, long)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803D3624
- * Size:	000058
+/**
+ * @note Address: 0x803D3624
+ * @note Size: 0x58
  */
 int TMgr::getStateID()
 {

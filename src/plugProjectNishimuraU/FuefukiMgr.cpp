@@ -5,10 +5,9 @@ namespace Fuefuki {
 
 static const char fuefukiMgrName[] = "246-FuefukiMgr";
 
-/*
- * --INFO--
- * Address:	8029BC38
- * Size:	000050
+/**
+ * @note Address: 0x8029BC38
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -16,24 +15,21 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "フエフキムシマネージャ"; // flute player manager
 }
 
-/*
- * --INFO--
- * Address:	8029BC88
- * Size:	000048
+/**
+ * @note Address: 0x8029BC88
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Parms); }
 
-/*
- * --INFO--
- * Address:	8029BF88
- * Size:	000060
+/**
+ * @note Address: 0x8029BF88
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	8029C0A4
- * Size:	000010
+/**
+ * @note Address: 0x8029C0A4
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 

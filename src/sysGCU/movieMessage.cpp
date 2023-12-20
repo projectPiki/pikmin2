@@ -14,10 +14,9 @@ static const char name[]       = "movieMessage";
 namespace P2JME {
 namespace Movie {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B8
+/**
+ * @note Address: N/A
+ * @note Size: 0xB8
  */
 WindowPane::WindowPane()
 {
@@ -28,17 +27,15 @@ WindowPane::WindowPane()
 	mCurrPosition    = Vector3f::zero;
 }
 
-/*
- * --INFO--
- * Address:	80434F5C
- * Size:	000020
+/**
+ * @note Address: 0x80434F5C
+ * @note Size: 0x20
  */
 void WindowPane::doInit() { mInitialPosition = Vector3f(mPane->mOffset.x, mPane->mOffset.y, 0.0f); }
 
-/*
- * --INFO--
- * Address:	80434F7C
- * Size:	000164
+/**
+ * @note Address: 0x80434F7C
+ * @note Size: 0x164
  */
 void WindowPane::update()
 {
@@ -69,10 +66,9 @@ void WindowPane::update()
 	moveWindow(false);
 }
 
-/*
- * --INFO--
- * Address:	804350E0
- * Size:	000278
+/**
+ * @note Address: 0x804350E0
+ * @note Size: 0x278
  */
 void WindowPane::moveWindow(bool flag)
 {
@@ -273,10 +269,9 @@ lbl_80435288:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80435358
- * Size:	000048
+/**
+ * @note Address: 0x80435358
+ * @note Size: 0x48
  */
 void WindowPane::open(f32 duration)
 {
@@ -288,10 +283,9 @@ void WindowPane::open(f32 duration)
 	moveWindow(true);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void WindowPane::close(f32 duration)
 {
@@ -302,10 +296,9 @@ void WindowPane::close(f32 duration)
 	mCurrAngle = 90.0f;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A4
+/**
+ * @note Address: N/A
+ * @note Size: 0xA4
  */
 AbtnPane::AbtnPane(u8 state)
 {
@@ -315,10 +308,9 @@ AbtnPane::AbtnPane(u8 state)
 	mTimer1 = -0.0f;
 }
 
-/*
- * --INFO--
- * Address:	804353A0
- * Size:	000054
+/**
+ * @note Address: 0x804353A0
+ * @note Size: 0x54
  */
 void AbtnPane::doInit()
 {
@@ -327,10 +319,9 @@ void AbtnPane::doInit()
 	mState = 0;
 }
 
-/*
- * --INFO--
- * Address:	804353F4
- * Size:	000170
+/**
+ * @note Address: 0x804353F4
+ * @note Size: 0x170
  */
 void AbtnPane::update()
 {
@@ -363,10 +354,9 @@ void AbtnPane::update()
 	pane->setAlphaFromFloat(alpha);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000CC
+/**
+ * @note Address: N/A
+ * @note Size: 0xCC
  */
 PodIconScreen::PodIconScreen()
 {
@@ -381,10 +371,9 @@ PodIconScreen::PodIconScreen()
 	disappear();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
+/**
+ * @note Address: N/A
+ * @note Size: 0x78
  */
 void PodIconScreen::setTrans()
 {
@@ -395,10 +384,9 @@ void PodIconScreen::setTrans()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000168
+/**
+ * @note Address: N/A
+ * @note Size: 0x168
  */
 void PodIconScreen::reset()
 {
@@ -407,10 +395,9 @@ void PodIconScreen::reset()
 	mInitialPos = Vector3f(x * 0.75f, y, 100.0f);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001E0
+/**
+ * @note Address: N/A
+ * @note Size: 0x1E0
  */
 void PodIconScreen::set(JKRArchive* arc)
 {
@@ -436,10 +423,9 @@ void PodIconScreen::set(JKRArchive* arc)
 	setAnimation(mAnmColor);
 }
 
-/*
- * --INFO--
- * Address:	80435564
- * Size:	000438
+/**
+ * @note Address: 0x80435564
+ * @note Size: 0x438
  */
 void PodIconScreen::update()
 {
@@ -827,10 +813,9 @@ lbl_80435980:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00026C
+/**
+ * @note Address: N/A
+ * @note Size: 0x26C
  */
 void MessageWindowScreen::set(JKRArchive* arc)
 {
@@ -846,10 +831,9 @@ void MessageWindowScreen::set(JKRArchive* arc)
 	search('PICT_001')->setInfluencedAlpha(true, false);
 }
 
-/*
- * --INFO--
- * Address:	8043599C
- * Size:	000080
+/**
+ * @note Address: 0x8043599C
+ * @note Size: 0x80
  */
 TControl::TControl()
 {
@@ -869,10 +853,9 @@ TControl::TControl()
 	mFlags.dwordView |= 1;
 }
 
-/*
- * --INFO--
- * Address:	80435A8C
- * Size:	0007B0
+/**
+ * @note Address: 0x80435A8C
+ * @note Size: 0x7B0
  */
 bool TControl::onInit()
 {
@@ -1464,10 +1447,9 @@ lbl_804361D8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8043623C
- * Size:	000038
+/**
+ * @note Address: 0x8043623C
+ * @note Size: 0x38
  */
 void TControl::reset()
 {
@@ -1475,10 +1457,9 @@ void TControl::reset()
 	setMode(MODEFLAG_Inactive);
 }
 
-/*
- * --INFO--
- * Address:	80436274
- * Size:	0004E0
+/**
+ * @note Address: 0x80436274
+ * @note Size: 0x4E0
  */
 TControl::EModeFlag TControl::setMode(EModeFlag mode)
 {
@@ -1855,17 +1836,15 @@ lbl_80436728:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80436754
- * Size:	000024
+/**
+ * @note Address: 0x80436754
+ * @note Size: 0x24
  */
 void MessageWindowScreen::open(f32 duration) { mWindowPane->open(duration); }
 
-/*
- * --INFO--
- * Address:	80436778
- * Size:	000228
+/**
+ * @note Address: 0x80436778
+ * @note Size: 0x228
  */
 bool TControl::update(Controller* pad1, Controller* pad2)
 {
@@ -1930,10 +1909,9 @@ bool TControl::update(Controller* pad1, Controller* pad2)
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	804369A0
- * Size:	0000CC
+/**
+ * @note Address: 0x804369A0
+ * @note Size: 0xCC
  */
 void TControl::draw(Graphics& gfx)
 {

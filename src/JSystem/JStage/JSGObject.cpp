@@ -3,87 +3,75 @@
 
 namespace JStage {
 
-/*
- * --INFO--
- * Address:	800988D4
- * Size:	000048
+/**
+ * @note Address: 0x800988D4
+ * @note Size: 0x48
  */
 TObject::~TObject() { }
 
-/*
- * --INFO--
- * Address:	8009891C
- * Size:	000008
+/**
+ * @note Address: 0x8009891C
+ * @note Size: 0x8
  */
 char const* TObject::JSGGetName() const { return nullptr; }
 
-/*
- * --INFO--
- * Address:	80098924
- * Size:	000004
+/**
+ * @note Address: 0x80098924
+ * @note Size: 0x4
  */
 void TObject::JSGUpdate() { }
 
-/*
- * --INFO--
- * Address:	80098928
- * Size:	000008
+/**
+ * @note Address: 0x80098928
+ * @note Size: 0x8
  */
 u32 TObject::JSGGetFlag() const { return 0; }
 
-/*
- * --INFO--
- * Address:	80098930
- * Size:	000004
+/**
+ * @note Address: 0x80098930
+ * @note Size: 0x4
  */
 void TObject::JSGSetFlag(u32) { }
 
-/*
- * --INFO--
- * Address:	80098934
- * Size:	000008
+/**
+ * @note Address: 0x80098934
+ * @note Size: 0x8
  */
 void* TObject::JSGGetData(u32, void*, u32) const { return nullptr; }
 
-/*
- * --INFO--
- * Address:	8009893C
- * Size:	000004
+/**
+ * @note Address: 0x8009893C
+ * @note Size: 0x4
  */
 void TObject::JSGSetData(u32, void const*, u32) { }
 
-/*
- * --INFO--
- * Address:	80098940
- * Size:	000004
+/**
+ * @note Address: 0x80098940
+ * @note Size: 0x4
  */
 void TObject::JSGGetParent(TObject**, u32*) const { }
 
-/*
- * --INFO--
- * Address:	80098944
- * Size:	000004
+/**
+ * @note Address: 0x80098944
+ * @note Size: 0x4
  */
 void TObject::JSGSetParent(TObject*, u32) { }
 
-/*
- * --INFO--
- * Address:	80098948
- * Size:	000004
+/**
+ * @note Address: 0x80098948
+ * @note Size: 0x4
  */
 void TObject::JSGSetRelation(bool, TObject*, u32) { }
 
-/*
- * --INFO--
- * Address:	8009894C
- * Size:	000008
+/**
+ * @note Address: 0x8009894C
+ * @note Size: 0x8
  */
 int TObject::JSGFindNodeID(const char*) const { return -1; }
 
-/*
- * --INFO--
- * Address:	80098954
- * Size:	00003C
+/**
+ * @note Address: 0x80098954
+ * @note Size: 0x3C
  */
 bool TObject::JSGGetNodeTransformation(u32, Mtx mtx) const
 {

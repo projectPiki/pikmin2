@@ -5,17 +5,15 @@
 namespace Game {
 namespace RedKabuto {
 
-/*
- * --INFO--
- * Address:	80300158
- * Size:	000090
+/**
+ * @note Address: 0x80300158
+ * @note Size: 0x90
  */
 Obj::Obj() { }
 
-/*
- * --INFO--
- * Address:	803001E8
- * Size:	0001A4
+/**
+ * @note Address: 0x803001E8
+ * @note Size: 0x1A4
  */
 void Obj::changeMaterial()
 {

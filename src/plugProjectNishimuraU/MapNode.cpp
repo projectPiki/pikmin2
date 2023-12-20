@@ -2,10 +2,9 @@
 
 namespace Game {
 namespace Cave {
-/*
- * --INFO--
- * Address:	80242D58
- * Size:	000018
+/**
+ * @note Address: 0x80242D58
+ * @note Size: 0x18
  */
 AdjustInfo::AdjustInfo()
 {
@@ -14,10 +13,9 @@ AdjustInfo::AdjustInfo()
 	mDoorScore      = -1;
 }
 
-/*
- * --INFO--
- * Address:	80242D70
- * Size:	0002AC
+/**
+ * @note Address: 0x80242D70
+ * @note Size: 0x2AC
  */
 MapNode::MapNode(UnitInfo* info)
     : mUnitInfo(nullptr)
@@ -46,10 +44,9 @@ MapNode::MapNode(UnitInfo* info)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8024301C
- * Size:	00000C
+/**
+ * @note Address: 0x8024301C
+ * @note Size: 0xC
  */
 void MapNode::setOffset(int x, int y)
 {
@@ -57,17 +54,15 @@ void MapNode::setOffset(int x, int y)
 	mYGridOffset = y;
 }
 
-/*
- * --INFO--
- * Address:	80243028
- * Size:	000024
+/**
+ * @note Address: 0x80243028
+ * @note Size: 0x24
  */
 int MapNode::getDoorDirect(int idx) { return getDoorNode(idx)->mDoor.mDirection; }
 
-/*
- * --INFO--
- * Address:	8024304C
- * Size:	000100
+/**
+ * @note Address: 0x8024304C
+ * @note Size: 0x100
  */
 void MapNode::getDoorOffset(int idx, int& x, int& y)
 {
@@ -118,11 +113,9 @@ void MapNode::getDoorOffset(int idx, int& x, int& y)
  * @param y The y-coordinate of the position.
  * @param idx The index of the door node.
  * @return True if a door is set at the position and the offsets are adjusted, false otherwise.
- */
-/*
- * --INFO--
- * Address:	8024314C
- * Size:	0000FC
+ *
+ * @note Address: 0x8024314C
+ * @note Size: 0xFC
  */
 bool MapNode::isDoorSet(DoorNode* testDoor, int x, int y, int idx)
 {
@@ -151,10 +144,9 @@ bool MapNode::isDoorSet(DoorNode* testDoor, int x, int y, int idx)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80243248
- * Size:	000034
+/**
+ * @note Address: 0x80243248
+ * @note Size: 0x34
  */
 void MapNode::setDoorClose(int idx, MapNode* partner, int partnerIdx)
 {
@@ -165,10 +157,9 @@ void MapNode::setDoorClose(int idx, MapNode* partner, int partnerIdx)
 	partner->mAdjustInfo[partnerIdx].mBirthDoorIndex = idx;
 }
 
-/*
- * --INFO--
- * Address:	8024327C
- * Size:	00009C
+/**
+ * @note Address: 0x8024327C
+ * @note Size: 0x9C
  */
 void MapNode::detachDoorClose()
 {
@@ -187,17 +178,15 @@ void MapNode::detachDoorClose()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80243318
- * Size:	00001C
+/**
+ * @note Address: 0x80243318
+ * @note Size: 0x1C
  */
 bool MapNode::isDoorClose(int idx) { return mAdjustInfo[idx].mMapTile; }
 
-/*
- * --INFO--
- * Address:	80243334
- * Size:	000100
+/**
+ * @note Address: 0x80243334
+ * @note Size: 0x100
  */
 void MapNode::resetDoorScore()
 {
@@ -207,10 +196,9 @@ void MapNode::resetDoorScore()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80243434
- * Size:	000034
+/**
+ * @note Address: 0x80243434
+ * @note Size: 0x34
  */
 void MapNode::setDoorScore(int idx, int score)
 {
@@ -220,31 +208,27 @@ void MapNode::setDoorScore(int idx, int score)
 	mAdjustInfo[idx].mMapTile->mAdjustInfo[mAdjustInfo[idx].mBirthDoorIndex].mDoorScore = score;
 }
 
-/*
- * --INFO--
- * Address:	80243468
- * Size:	00001C
+/**
+ * @note Address: 0x80243468
+ * @note Size: 0x1C
  */
 bool MapNode::isDoorScoreSetDone(int idx) { return (mAdjustInfo[idx].mDoorScore >= 0); }
 
-/*
- * --INFO--
- * Address:	80243484
- * Size:	000024
+/**
+ * @note Address: 0x80243484
+ * @note Size: 0x24
  */
 DoorNode* MapNode::getDoorNode(int idx) { return mUnitInfo->getDoorNode(idx); }
 
-/*
- * --INFO--
- * Address:	802434A8
- * Size:	000014
+/**
+ * @note Address: 0x802434A8
+ * @note Size: 0x14
  */
 AdjustNode* MapNode::getAdjustNode(int idx) { return &mUnitInfo->mDoorCounts[idx]; }
 
-/*
- * --INFO--
- * Address:	802434BC
- * Size:	000164
+/**
+ * @note Address: 0x802434BC
+ * @note Size: 0x164
  */
 bool MapNode::isGateSetDoor(int idx)
 {
@@ -283,10 +267,9 @@ bool MapNode::isGateSetDoor(int idx)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80243620
- * Size:	000198
+/**
+ * @note Address: 0x80243620
+ * @note Size: 0x198
  */
 int MapNode::getGateScore(int idx)
 {
@@ -339,10 +322,9 @@ int MapNode::getGateScore(int idx)
 	return gateScore;
 }
 
-/*
- * --INFO--
- * Address:	802437B8
- * Size:	0000AC
+/**
+ * @note Address: 0x802437B8
+ * @note Size: 0xAC
  */
 void MapNode::setEnemyScore()
 {
@@ -364,31 +346,27 @@ void MapNode::setEnemyScore()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80243864
- * Size:	000008
+/**
+ * @note Address: 0x80243864
+ * @note Size: 0x8
  */
 void MapNode::setNodeScore(int score) { mNodeScore = score; }
 
-/*
- * --INFO--
- * Address:	8024386C
- * Size:	00000C
+/**
+ * @note Address: 0x8024386C
+ * @note Size: 0xC
  */
 void MapNode::copyNodeScoreToVersusScore() { mVsScore = mNodeScore; }
 
-/*
- * --INFO--
- * Address:	80243878
- * Size:	000014
+/**
+ * @note Address: 0x80243878
+ * @note Size: 0x14
  */
 void MapNode::subNodeScoreToVersusScore() { mVsScore -= mNodeScore; }
 
-/*
- * --INFO--
- * Address:	8024388C
- * Size:	000110
+/**
+ * @note Address: 0x8024388C
+ * @note Size: 0x110
  */
 void MapNode::draw(f32 x, f32 y, f32 scale)
 {
@@ -401,52 +379,45 @@ void MapNode::draw(f32 x, f32 y, f32 scale)
 	mUnitInfo->draw(x0, y0, x1, y1);
 }
 
-/*
- * --INFO--
- * Address:	8024399C
- * Size:	000008
+/**
+ * @note Address: 0x8024399C
+ * @note Size: 0x8
  */
 int MapNode::getNodeOffsetX() { return mXGridOffset; }
 
-/*
- * --INFO--
- * Address:	802439A4
- * Size:	000008
+/**
+ * @note Address: 0x802439A4
+ * @note Size: 0x8
  */
 int MapNode::getNodeOffsetY() { return mYGridOffset; }
 
-/*
- * --INFO--
- * Address:	802439AC
- * Size:	000008
+/**
+ * @note Address: 0x802439AC
+ * @note Size: 0x8
  */
 int MapNode::getEnemyScore() { return mEnemyScore; }
 
-/*
- * --INFO--
- * Address:	802439B4
- * Size:	000008
+/**
+ * @note Address: 0x802439B4
+ * @note Size: 0x8
  */
 int MapNode::getNodeScore() { return mNodeScore; }
 
-/*
- * --INFO--
- * Address:	802439BC
- * Size:	000008
+/**
+ * @note Address: 0x802439BC
+ * @note Size: 0x8
  */
 int MapNode::getVersusScore() { return mVsScore; }
 
-/*
- * --INFO--
- * Address:	802439C4
- * Size:	000024
+/**
+ * @note Address: 0x802439C4
+ * @note Size: 0x24
  */
 char* MapNode::getUnitName() { return mUnitInfo->getUnitName(); }
 
-/*
- * --INFO--
- * Address:	802439E8
- * Size:	0000D0
+/**
+ * @note Address: 0x802439E8
+ * @note Size: 0xD0
  */
 void MapNode::getNodeCentreOffset(f32& x, f32& y)
 {
@@ -454,17 +425,15 @@ void MapNode::getNodeCentreOffset(f32& x, f32& y)
 	y = (f32)mUnitInfo->getUnitSizeY() / 2 + getNodeOffsetY();
 }
 
-/*
- * --INFO--
- * Address:	80243AB8
- * Size:	000024
+/**
+ * @note Address: 0x80243AB8
+ * @note Size: 0x24
  */
 int MapNode::getDirection() { return mUnitInfo->getUnitRotation(); }
 
-/*
- * --INFO--
- * Address:	80243ADC
- * Size:	0001C4
+/**
+ * @note Address: 0x80243ADC
+ * @note Size: 0x1C4
  */
 Vector3f Cave::MapNode::getBaseGenGlobalPosition(BaseGen* testGen)
 {
@@ -510,10 +479,9 @@ Vector3f Cave::MapNode::getBaseGenGlobalPosition(BaseGen* testGen)
 	return Vector3f(x, height, y);
 }
 
-/*
- * --INFO--
- * Address:	80243CA0
- * Size:	00025C
+/**
+ * @note Address: 0x80243CA0
+ * @note Size: 0x25C
  */
 Vector3f MapNode::getDoorGlobalPosition(int idx)
 {
@@ -556,10 +524,9 @@ Vector3f MapNode::getDoorGlobalPosition(int idx)
 	return Vector3f(x, 0.0f, y);
 }
 
-/*
- * --INFO--
- * Address:	80243EFC
- * Size:	0000EC
+/**
+ * @note Address: 0x80243EFC
+ * @note Size: 0xEC
  */
 f32 MapNode::getBaseGenGlobalDirection(BaseGen* testGen)
 {
@@ -582,10 +549,9 @@ f32 MapNode::getBaseGenGlobalDirection(BaseGen* testGen)
 	return globalDir;
 }
 
-/*
- * --INFO--
- * Address:	80243FE8
- * Size:	000078
+/**
+ * @note Address: 0x80243FE8
+ * @note Size: 0x78
  */
 f32 MapNode::getDoorGlobalDirection(int idx)
 {
@@ -599,10 +565,9 @@ f32 MapNode::getDoorGlobalDirection(int idx)
 	return dir;
 }
 
-/*
- * --INFO--
- * Address:	80244060
- * Size:	000034
+/**
+ * @note Address: 0x80244060
+ * @note Size: 0x34
  */
 int MapNode::getNumDoors() { return mUnitInfo->mDoorNode->getChildCount(); }
 } // namespace Cave

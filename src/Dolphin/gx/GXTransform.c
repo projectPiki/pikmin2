@@ -1,19 +1,17 @@
 #include "Dolphin/gx.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000174
+/**
+ * @note Address: N/A
+ * @note Size: 0x174
  */
 void GXProject(f32 x, f32 y, f32 z, Mtx viewMtx, f32* projMtx, f32* viewport, f32* screenX, f32* screenY, f32* screenZ)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 static void WriteProjPS(const register f32 src[6], register volatile void* dst)
 {
@@ -31,10 +29,9 @@ static void WriteProjPS(const register f32 src[6], register volatile void* dst)
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 static void Copy6Floats(const register f32 src[6], register f32 dst[6])
 {
@@ -52,10 +49,9 @@ static void Copy6Floats(const register f32 src[6], register f32 dst[6])
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 void __GXSetProjection(void)
 {
@@ -64,10 +60,9 @@ void __GXSetProjection(void)
 	GX_WRITE_U32(gx->projType);
 }
 
-/*
- * --INFO--
- * Address:	800E9448
- * Size:	0000A4
+/**
+ * @note Address: 0x800E9448
+ * @note Size: 0xA4
  */
 void GXSetProjection(const Mtx44 proj, GXProjectionType type)
 {
@@ -91,10 +86,9 @@ void GXSetProjection(const Mtx44 proj, GXProjectionType type)
 	gx->bpSentNot = GX_TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800E94EC
- * Size:	00008C
+/**
+ * @note Address: 0x800E94EC
+ * @note Size: 0x8C
  */
 void GXSetProjectionv(const f32* proj)
 {
@@ -105,20 +99,18 @@ void GXSetProjectionv(const f32* proj)
 	gx->bpSentNot = GX_TRUE;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 void GXGetProjectionv(f32* ptr)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 void WriteMTXPS4x3(register volatile void* dst, register const Mtx src)
 {
@@ -143,20 +135,18 @@ void WriteMTXPS4x3(register volatile void* dst, register const Mtx src)
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 void WriteMTXPS3x3from3x4(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 void WriteMTXPS3x3(register volatile void* dst, register const Mtx src)
 {
@@ -181,10 +171,9 @@ void WriteMTXPS3x3(register volatile void* dst, register const Mtx src)
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void WriteMTXPS4x2(register volatile void* dst, register const Mtx src)
 {
@@ -205,10 +194,9 @@ void WriteMTXPS4x2(register volatile void* dst, register const Mtx src)
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800E9578
- * Size:	000050
+/**
+ * @note Address: 0x800E9578
+ * @note Size: 0x50
  */
 void GXLoadPosMtxImm(Mtx mtx, u32 id)
 {
@@ -216,20 +204,18 @@ void GXLoadPosMtxImm(Mtx mtx, u32 id)
 	WriteMTXPS4x3(&GXWGFifo, mtx);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
+/**
+ * @note Address: N/A
+ * @note Size: 0x30
  */
 void GXLoadPosMtxIndx(u16 index, u32 id)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800E95C8
- * Size:	000050
+/**
+ * @note Address: 0x800E95C8
+ * @note Size: 0x50
  */
 void GXLoadNrmMtxImm(Mtx mtx, u32 id)
 {
@@ -237,30 +223,27 @@ void GXLoadNrmMtxImm(Mtx mtx, u32 id)
 	WriteMTXPS3x3(&GXWGFifo, mtx);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 void GXLoadNrmMtxImm3x3(Mtx33, u32 id)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 void GXLoadNrmMtxIndx3x3(u16 index, u32 id)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800E9618
- * Size:	000034
+/**
+ * @note Address: 0x800E9618
+ * @note Size: 0x34
  */
 void GXSetCurrentMtx(u32 id)
 {
@@ -268,10 +251,9 @@ void GXSetCurrentMtx(u32 id)
 	__GXSetMatrixIndex(GX_VA_PNMTXIDX);
 }
 
-/*
- * --INFO--
- * Address:	800E964C
- * Size:	0000B4
+/**
+ * @note Address: 0x800E964C
+ * @note Size: 0xB4
  */
 void GXLoadTexMtxImm(const Mtx mtx, u32 id, GXTexMtxType type)
 {
@@ -296,20 +278,18 @@ void GXLoadTexMtxImm(const Mtx mtx, u32 id, GXTexMtxType type)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
+/**
+ * @note Address: N/A
+ * @note Size: 0x58
  */
 void GXLoadTexMtxIndx(u16 index, u32 id, GXTexMtxType type)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800E9700
- * Size:	000090
+/**
+ * @note Address: 0x800E9700
+ * @note Size: 0x90
  */
 void __GXSetViewport(void)
 {
@@ -336,20 +316,18 @@ void __GXSetViewport(void)
 	GX_WRITE_F32(f);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
+/**
+ * @note Address: N/A
+ * @note Size: 0x58
  */
 void GXSetViewportJitter(f32 left, f32 top, f32 width, f32 height, f32 nearZ, f32 farZ, u32 field)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800E9790
- * Size:	000048
+/**
+ * @note Address: 0x800E9790
+ * @note Size: 0x48
  */
 void GXSetViewport(f32 left, f32 top, f32 width, f32 height, f32 nearZ, f32 farZ)
 {
@@ -363,30 +341,27 @@ void GXSetViewport(f32 left, f32 top, f32 width, f32 height, f32 nearZ, f32 farZ
 	gx->bpSentNot = GX_TRUE;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void GXGetViewportv(f32* viewport)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  */
 void GXSetZScaleOffset(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800E97D8
- * Size:	000078
+/**
+ * @note Address: 0x800E97D8
+ * @note Size: 0x78
  */
 void GXSetScissor(u32 left, u32 top, u32 width, u32 height)
 {
@@ -410,10 +385,9 @@ void GXSetScissor(u32 left, u32 top, u32 width, u32 height)
 	gx->bpSentNot = FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800E9850
- * Size:	000048
+/**
+ * @note Address: 0x800E9850
+ * @note Size: 0x48
  */
 void GXGetScissor(u32* left, u32* top, u32* width, u32* height)
 {
@@ -451,10 +425,9 @@ void GXGetScissor(u32* left, u32* top, u32* width, u32* height)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800E9898
- * Size:	000040
+/**
+ * @note Address: 0x800E9898
+ * @note Size: 0x40
  */
 void GXSetScissorBoxOffset(s32 x, s32 y)
 {
@@ -473,10 +446,9 @@ void GXSetScissorBoxOffset(s32 x, s32 y)
 	gx->bpSentNot = GX_FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800E98D8
- * Size:	000028
+/**
+ * @note Address: 0x800E98D8
+ * @note Size: 0x28
  */
 void GXSetClipMode(GXClipMode mode)
 {
@@ -484,10 +456,9 @@ void GXSetClipMode(GXClipMode mode)
 	gx->bpSentNot = GX_TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800E9900
- * Size:	000084
+/**
+ * @note Address: 0x800E9900
+ * @note Size: 0x84
  */
 void __GXSetMatrixIndex(GXAttr index)
 {

@@ -6,17 +6,15 @@
 namespace Game {
 namespace Wealthy {
 
-/*
- * --INFO--
- * Address:	80284A9C
- * Size:	000098
+/**
+ * @note Address: 0x80284A9C
+ * @note Size: 0x98
  */
 Obj::Obj() { createEffect(); }
 
-/*
- * --INFO--
- * Address:	80284B34
- * Size:	0001F0
+/**
+ * @note Address: 0x80284B34
+ * @note Size: 0x1F0
  */
 void Obj::changeMaterial()
 {
@@ -52,10 +50,9 @@ void Obj::changeMaterial()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80284D24
- * Size:	000144
+/**
+ * @note Address: 0x80284D24
+ * @note Size: 0x144
  */
 void Obj::createItem()
 {
@@ -116,17 +113,15 @@ void Obj::createItem()
 	mHitCount++;
 }
 
-/*
- * --INFO--
- * Address:	80284E68
- * Size:	0000B0
+/**
+ * @note Address: 0x80284E68
+ * @note Size: 0xB0
  */
 void Obj::createEffect() { mBodyEffect = new efx::TOoganeKira; }
 
-/*
- * --INFO--
- * Address:	80284F18
- * Size:	000058
+/**
+ * @note Address: 0x80284F18
+ * @note Size: 0x58
  */
 void Obj::startBodyEffect()
 {
@@ -135,31 +130,27 @@ void Obj::startBodyEffect()
 	mBodyEffect->create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80284F70
- * Size:	000030
+/**
+ * @note Address: 0x80284F70
+ * @note Size: 0x30
  */
 void Obj::finishBodyEffect() { mBodyEffect->fade(); }
 
-/*
- * --INFO--
- * Address:	80284FA0
- * Size:	000030
+/**
+ * @note Address: 0x80284FA0
+ * @note Size: 0x30
  */
 void Obj::effectDrawOn() { mBodyEffect->endDemoDrawOn(); }
 
-/*
- * --INFO--
- * Address:	80284FD0
- * Size:	000030
+/**
+ * @note Address: 0x80284FD0
+ * @note Size: 0x30
  */
 void Obj::effectDrawOff() { mBodyEffect->startDemoDrawOff(); }
 
-/*
- * --INFO--
- * Address:	80285000
- * Size:	000044
+/**
+ * @note Address: 0x80285000
+ * @note Size: 0x44
  */
 void Obj::createPressSENormal() { getJAIObject()->startSound(PSSE_EN_OOGANE_HIT, 0); }
 

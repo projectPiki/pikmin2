@@ -8,10 +8,9 @@
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	8032C8A0
- * Size:	000098
+/**
+ * @note Address: 0x8032C8A0
+ * @note Size: 0x98
  */
 ObjChallengeBase::ObjChallengeBase()
     : mFadeLevel(0.0f)
@@ -26,17 +25,15 @@ ObjChallengeBase::ObjChallengeBase()
 	mBlack.set(0, 0, 0, 0);
 }
 
-/*
- * --INFO--
- * Address:	8032C938
- * Size:	0000AC
+/**
+ * @note Address: 0x8032C938
+ * @note Size: 0xAC
  */
 ObjChallengeBase::~ObjChallengeBase() { }
 
-/*
- * --INFO--
- * Address:	8032C9E4
- * Size:	0000A0
+/**
+ * @note Address: 0x8032C9E4
+ * @note Size: 0xA0
  */
 void ObjChallengeBase::doCreateAfter(JKRArchive* arc, og::Screen::CallBack_CounterRV* timer)
 {
@@ -45,10 +42,9 @@ void ObjChallengeBase::doCreateAfter(JKRArchive* arc, og::Screen::CallBack_Count
 	mBlack    = mPaneTime->getBlack();
 }
 
-/*
- * --INFO--
- * Address:	8032CA84
- * Size:	000014
+/**
+ * @note Address: 0x8032CA84
+ * @note Size: 0x14
  */
 bool ObjChallengeBase::doStart(::Screen::StartSceneArg const*)
 {
@@ -57,10 +53,9 @@ bool ObjChallengeBase::doStart(::Screen::StartSceneArg const*)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8032CA98
- * Size:	000010
+/**
+ * @note Address: 0x8032CA98
+ * @note Size: 0x10
  */
 bool ObjChallengeBase::doEnd(::Screen::EndSceneArg const*)
 {
@@ -68,10 +63,9 @@ bool ObjChallengeBase::doEnd(::Screen::EndSceneArg const*)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8032CAA8
- * Size:	0001D0
+/**
+ * @note Address: 0x8032CAA8
+ * @note Size: 0x1D0
  */
 void ObjChallengeBase::updateTimer(f32 set, f32 dec)
 {
@@ -111,10 +105,9 @@ void ObjChallengeBase::updateTimer(f32 set, f32 dec)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8032CC78
- * Size:	000008
+/**
+ * @note Address: 0x8032CC78
+ * @note Size: 0x8
  */
 void ObjChallengeBase::setSubLevel(u32 a1) { mSubLevel = a1; }
 

@@ -14,19 +14,18 @@
 #define FP11  fp11
 #define FP12  fp12
 #define FP13  fp13
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 void C_VECAdd(void)
 {
 	// UNUSED FUNCTION
 }
-/*
- * --INFO--
- * Address:	800EAEB4
- * Size:	000024
+
+/**
+ * @note Address: 0x800EAEB4
+ * @note Size: 0x24
  */
 ASM void PSVECAdd(const register Vec* vec1, const register Vec* vec2, register Vec* ret)
 {
@@ -43,19 +42,19 @@ ASM void PSVECAdd(const register Vec* vec1, const register Vec* vec2, register V
 	blr
 #endif // clang-format on
 }
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 void C_VECSubtract(void)
 {
 	// UNUSED FUNCTION
 }
-/*
- * --INFO--
- * Address:	800EAED8
- * Size:	000024
+
+/**
+ * @note Address: 0x800EAED8
+ * @note Size: 0x24
  */
 ASM void PSVECSubtract(const register Vec* vec1, const register Vec* vec2, register Vec* ret)
 {
@@ -72,37 +71,37 @@ ASM void PSVECSubtract(const register Vec* vec1, const register Vec* vec2, regis
 	blr
 #endif // clang-format on
 }
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 void C_VECScale(void)
 {
 	// UNUSED FUNCTION
 }
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 void PSVECScale(void)
 {
 	// UNUSED FUNCTION
 }
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C8
+
+/**
+ * @note Address: N/A
+ * @note Size: 0xC8
  */
 void C_VECNormalize(void)
 {
 	// UNUSED FUNCTION
 }
-/*
- * --INFO--
- * Address:	800EAEFC
- * Size:	000044
+
+/**
+ * @note Address: 0x800EAEFC
+ * @note Size: 0x44
  */
 void PSVECNormalize(const register Vec* vec1, register Vec* ret)
 {
@@ -131,37 +130,37 @@ void PSVECNormalize(const register Vec* vec1, register Vec* ret)
 	}
 #endif // clang-format on
 }
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void C_VECSquareMag(void)
 {
 	// UNUSED FUNCTION
 }
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 void PSVECSquareMag(void)
 {
 	// UNUSED FUNCTION
 }
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x94
  */
 void C_VECMag(void)
 {
 	// UNUSED FUNCTION
 }
-/*
- * --INFO--
- * Address:	800EAF40
- * Size:	000044
+
+/**
+ * @note Address: 0x800EAF40
+ * @note Size: 0x44
  */
 f32 PSVECMag(const register Vec* v)
 {
@@ -195,37 +194,37 @@ f32 PSVECMag(const register Vec* v)
 #endif // clang-format on
 	return square_mag;
 }
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x30
  */
 void C_VECDotProduct(void)
 {
 	// UNUSED FUNCTION
 }
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 void PSVECDotProduct(void)
 {
 	// UNUSED FUNCTION
 }
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 void C_VECCrossProduct(void)
 {
 	// UNUSED FUNCTION
 }
-/*
- * --INFO--
- * Address:	800EAF84
- * Size:	00003C
+
+/**
+ * @note Address: 0x800EAF84
+ * @note Size: 0x3C
  */
 ASM void PSVECCrossProduct(const register Vec* vec1, const register Vec* vec2, register Vec* ret)
 {
@@ -248,55 +247,55 @@ ASM void PSVECCrossProduct(const register Vec* vec1, const register Vec* vec2, r
 	blr;
 #endif // clang-format on
 }
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D8
+
+/**
+ * @note Address: N/A
+ * @note Size: 0xD8
  */
 void C_VECHalfAngle(void)
 {
 	// UNUSED FUNCTION
 }
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D4
+
+/**
+ * @note Address: N/A
+ * @note Size: 0xD4
  */
 void C_VECReflect(void)
 {
 	// UNUSED FUNCTION
 }
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 void C_VECSquareDistance(void)
 {
 	// UNUSED FUNCTION
 }
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 void PSVECSquareDistance(void)
 {
 	// UNUSED FUNCTION
 }
-/*
- * --INFO--
- * Address:	........
- * Size:	0000AC
+
+/**
+ * @note Address: N/A
+ * @note Size: 0xAC
  */
 void C_VECDistance(void)
 {
 	// UNUSED FUNCTION
 }
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 void PSVECDistance(void)
 {

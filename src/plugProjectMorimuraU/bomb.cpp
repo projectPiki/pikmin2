@@ -7,17 +7,15 @@
 
 namespace Game {
 namespace Bomb {
-/*
- * --INFO--
- * Address:	8034A21C
- * Size:	000020
+/**
+ * @note Address: 0x8034A21C
+ * @note Size: 0x20
  */
 void Obj::setParameters() { EnemyBase::setParameters(); }
 
-/*
- * --INFO--
- * Address:	8034A23C
- * Size:	0000EC
+/**
+ * @note Address: 0x8034A23C
+ * @note Size: 0xEC
  */
 void Obj::onStartCapture()
 {
@@ -38,10 +36,9 @@ void Obj::onStartCapture()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8034A328
- * Size:	000048
+/**
+ * @note Address: 0x8034A328
+ * @note Size: 0x48
  */
 void Obj::onEndCapture()
 {
@@ -51,17 +48,15 @@ void Obj::onEndCapture()
 	mCaptureMatrix = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8034A370
- * Size:	000020
+/**
+ * @note Address: 0x8034A370
+ * @note Size: 0x20
  */
 void Obj::birth(Vector3f& position, f32 p1) { EnemyBase::birth(position, p1); }
 
-/*
- * --INFO--
- * Address:	8034A390
- * Size:	000168
+/**
+ * @note Address: 0x8034A390
+ * @note Size: 0x168
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
@@ -99,10 +94,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mEfxLight->mMtx = mModel->getJoint("core1")->getWorldMatrix();
 }
 
-/*
- * --INFO--
- * Address:	8034A4F8
- * Size:	0001DC
+/**
+ * @note Address: 0x8034A4F8
+ * @note Size: 0x1DC
  */
 Obj::Obj()
 {
@@ -119,10 +113,9 @@ Obj::Obj()
 	mEfxLight = new efx::TBombrockLight;
 }
 
-/*
- * --INFO--
- * Address:	8034A720
- * Size:	0000D4
+/**
+ * @note Address: 0x8034A720
+ * @note Size: 0xD4
  */
 void Obj::doUpdate()
 {
@@ -144,24 +137,21 @@ void Obj::doUpdate()
 	mFsm->exec(this);
 }
 
-/*
- * --INFO--
- * Address:	8034A7F4
- * Size:	000004
+/**
+ * @note Address: 0x8034A7F4
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	8034A7F8
- * Size:	000004
+/**
+ * @note Address: 0x8034A7F8
+ * @note Size: 0x4
  */
 void Obj::doDebugDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	8034A7FC
- * Size:	00002C
+/**
+ * @note Address: 0x8034A7FC
+ * @note Size: 0x2C
  */
 void Obj::doEntry()
 {
@@ -170,10 +160,9 @@ void Obj::doEntry()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8034A828
- * Size:	0001F4
+/**
+ * @note Address: 0x8034A828
+ * @note Size: 0x1F4
  */
 void Obj::doAnimationCullingOff()
 {
@@ -208,10 +197,9 @@ void Obj::doAnimationCullingOff()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8034AA1C
- * Size:	00004C
+/**
+ * @note Address: 0x8034AA1C
+ * @note Size: 0x4C
  */
 void Obj::doAnimationCullingOn()
 {
@@ -222,10 +210,9 @@ void Obj::doAnimationCullingOn()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8034AA68
- * Size:	000134
+/**
+ * @note Address: 0x8034AA68
+ * @note Size: 0x134
  */
 void Obj::doSimulation(f32 simSpeed)
 {
@@ -241,10 +228,9 @@ void Obj::doSimulation(f32 simSpeed)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8034AB9C
- * Size:	000050
+/**
+ * @note Address: 0x8034AB9C
+ * @note Size: 0x50
  */
 void Obj::getShadowParam(ShadowParam& param)
 {
@@ -256,17 +242,15 @@ void Obj::getShadowParam(ShadowParam& param)
 	param.mSize                     = 10.0f;
 }
 
-/*
- * --INFO--
- * Address:	8034ABEC
- * Size:	000048
+/**
+ * @note Address: 0x8034ABEC
+ * @note Size: 0x48
  */
 bool Obj::needShadow() { return (!EnemyBase::needShadow()) ? false : mCaptureMatrix == nullptr; }
 
-/*
- * --INFO--
- * Address:	8034AC34
- * Size:	000080
+/**
+ * @note Address: 0x8034AC34
+ * @note Size: 0x80
  */
 void Obj::doFinishStoneState()
 {
@@ -279,10 +263,9 @@ void Obj::doFinishStoneState()
 	mTargetVelocity = Vector3f(0.0f);
 }
 
-/*
- * --INFO--
- * Address:	8034ACB4
- * Size:	000048
+/**
+ * @note Address: 0x8034ACB4
+ * @note Size: 0x48
  */
 void Obj::doStartStoneState()
 {
@@ -291,10 +274,9 @@ void Obj::doStartStoneState()
 	_2C8 = 0;
 }
 
-/*
- * --INFO--
- * Address:	8034ACFC
- * Size:	000084
+/**
+ * @note Address: 0x8034ACFC
+ * @note Size: 0x84
  */
 void Obj::onKill(CreatureKillArg* killArg)
 {
@@ -306,24 +288,21 @@ void Obj::onKill(CreatureKillArg* killArg)
 	EnemyBase::onKill(killArg);
 }
 
-/*
- * --INFO--
- * Address:	8034AD80
- * Size:	000030
+/**
+ * @note Address: 0x8034AD80
+ * @note Size: 0x30
  */
 void Obj::doStartMovie() { mEfxLight->startDemoDrawOff(); }
 
-/*
- * --INFO--
- * Address:	8034ADB0
- * Size:	000030
+/**
+ * @note Address: 0x8034ADB0
+ * @note Size: 0x30
  */
 void Obj::doEndMovie() { mEfxLight->endDemoDrawOn(); }
 
-/*
- * --INFO--
- * Address:	8034ADE0
- * Size:	000074
+/**
+ * @note Address: 0x8034ADE0
+ * @note Size: 0x74
  */
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
@@ -342,10 +321,9 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8034AE54
- * Size:	000160
+/**
+ * @note Address: 0x8034AE54
+ * @note Size: 0x160
  */
 bool Obj::bombCallBack(Creature* creature, Vector3f& direction, f32 damage)
 {
@@ -369,17 +347,15 @@ bool Obj::bombCallBack(Creature* creature, Vector3f& direction, f32 damage)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8034AFB4
- * Size:	000008
+/**
+ * @note Address: 0x8034AFB4
+ * @note Size: 0x8
  */
 bool Obj::pressCallBack(Creature*, f32, CollPart*) { return false; }
 
-/*
- * --INFO--
- * Address:	8034AFBC
- * Size:	000078
+/**
+ * @note Address: 0x8034AFBC
+ * @note Size: 0x78
  */
 void Obj::bounceCallback(Sys::Triangle* triangle)
 {
@@ -394,10 +370,9 @@ void Obj::bounceCallback(Sys::Triangle* triangle)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8034B034
- * Size:	00009C
+/**
+ * @note Address: 0x8034B034
+ * @note Size: 0x9C
  */
 void Obj::collisionCallback(CollEvent& collEvent)
 {
@@ -409,10 +384,9 @@ void Obj::collisionCallback(CollEvent& collEvent)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8034B0D0
- * Size:	000060
+/**
+ * @note Address: 0x8034B0D0
+ * @note Size: 0x60
  */
 void Obj::forceBomb()
 {
@@ -422,27 +396,24 @@ void Obj::forceBomb()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 bool Obj::isBombStart()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8034B130
- * Size:	000028
+/**
+ * @note Address: 0x8034B130
+ * @note Size: 0x28
  */
 void Obj::bombEffInWater() { EnemyBase::createSplashDownEffect(mPosition, 1.3f); }
 
-/*
- * --INFO--
- * Address:	8034B158
- * Size:	00005C
+/**
+ * @note Address: 0x8034B158
+ * @note Size: 0x5C
  */
 bool Obj::canEat()
 {
@@ -453,10 +424,9 @@ bool Obj::canEat()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8034B1B4
- * Size:	0000D8
+/**
+ * @note Address: 0x8034B1B4
+ * @note Size: 0xD8
  */
 bool Obj::isAnimStart()
 {

@@ -5,10 +5,9 @@ namespace Qurione {
 
 static const char qurioneMgrName[] = "246-QurioneMgr";
 
-/*
- * --INFO--
- * Address:	8025FA8C
- * Size:	000094
+/**
+ * @note Address: 0x8025FA8C
+ * @note Size: 0x94
  */
 Generator::Generator()
     : EnemyGeneratorBase("クリオネジェネレータ") // clione (sea angel) generator
@@ -16,17 +15,15 @@ Generator::Generator()
 {
 }
 
-/*
- * --INFO--
- * Address:	8025FB20
- * Size:	00000C
+/**
+ * @note Address: 0x8025FB20
+ * @note Size: 0xC
  */
 u32 Generator::getLatestVersion() { return '0000'; }
 
-/*
- * --INFO--
- * Address:	8025FB2C
- * Size:	000074
+/**
+ * @note Address: 0x8025FB2C
+ * @note Size: 0x74
  */
 void Generator::doRead(Stream& stream)
 {
@@ -38,10 +35,9 @@ void Generator::doRead(Stream& stream)
 	doReadOldVersion(stream);
 }
 
-/*
- * --INFO--
- * Address:	8025FBA0
- * Size:	000080
+/**
+ * @note Address: 0x8025FBA0
+ * @note Size: 0x80
  */
 void Generator::doWrite(Stream& stream)
 {
@@ -52,10 +48,9 @@ void Generator::doWrite(Stream& stream)
 	stream.textWriteText("\t\t# slide \r\n");
 }
 
-/*
- * --INFO--
- * Address:	8025FC20
- * Size:	00004C
+/**
+ * @note Address: 0x8025FC20
+ * @note Size: 0x4C
  */
 void Generator::doReadLatestVersion(Stream& stream)
 {
@@ -63,17 +58,15 @@ void Generator::doReadLatestVersion(Stream& stream)
 	mInitialParam.mSlideDist = stream.readFloat();
 }
 
-/*
- * --INFO--
- * Address:	8025FC6C
- * Size:	000004
+/**
+ * @note Address: 0x8025FC6C
+ * @note Size: 0x4
  */
 void Generator::doReadOldVersion(Stream&) { }
 
-/*
- * --INFO--
- * Address:	8025FC70
- * Size:	000050
+/**
+ * @note Address: 0x8025FC70
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -81,24 +74,21 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "クリオネマネージャ"; // clione (sea angel) manager
 }
 
-/*
- * --INFO--
- * Address:	8025FCC0
- * Size:	000048
+/**
+ * @note Address: 0x8025FCC0
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Parms); }
 
-/*
- * --INFO--
- * Address:	8025FE98
- * Size:	000060
+/**
+ * @note Address: 0x8025FE98
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	8025FFB4
- * Size:	000010
+/**
+ * @note Address: 0x8025FFB4
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 

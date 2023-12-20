@@ -8,10 +8,9 @@ namespace PikiAI {
 
 static const char breakRockName[] = "actBreakWall";
 
-/*
- * --INFO--
- * Address:	801E36A0
- * Size:	0000F8
+/**
+ * @note Address: 0x801E36A0
+ * @note Size: 0xF8
  */
 ActBreakRock::ActBreakRock(Game::Piki* parent)
     : Action(parent)
@@ -23,10 +22,9 @@ ActBreakRock::ActBreakRock(Game::Piki* parent)
 	mName = "BreakRock";
 }
 
-/*
- * --INFO--
- * Address:	801E3798
- * Size:	0000C0
+/**
+ * @note Address: 0x801E3798
+ * @note Size: 0xC0
  */
 void ActBreakRock::init(ActionArg* actionArg)
 {
@@ -47,10 +45,9 @@ void ActBreakRock::init(ActionArg* actionArg)
 	initFollow();
 }
 
-/*
- * --INFO--
- * Address:	801E3858
- * Size:	000068
+/**
+ * @note Address: 0x801E3858
+ * @note Size: 0x68
  */
 void ActBreakRock::initFollow()
 {
@@ -59,10 +56,9 @@ void ActBreakRock::initFollow()
 	mState = 1;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00009C
+/**
+ * @note Address: N/A
+ * @note Size: 0x9C
  */
 void ActBreakRock::initGoto()
 {
@@ -71,10 +67,9 @@ void ActBreakRock::initGoto()
 	mState = 1;
 }
 
-/*
- * --INFO--
- * Address:	--------
- * Size:	0000E4
+/**
+ * @note Address: 0x--------
+ * @note Size: 0xE4
  * --INLINE--
  */
 void ActBreakRock::initStickAttack()
@@ -101,10 +96,9 @@ void ActBreakRock::initStickAttack()
 	mState = 2;
 }
 
-/*
- * --INFO--
- * Address:	801E38C0
- * Size:	00032C
+/**
+ * @note Address: 0x801E38C0
+ * @note Size: 0x32C
  */
 int ActBreakRock::exec()
 {
@@ -144,10 +138,9 @@ int ActBreakRock::exec()
 	return 1;
 }
 
-/*
- * --INFO--
- * Address:	801E3BEC
- * Size:	00005C
+/**
+ * @note Address: 0x801E3BEC
+ * @note Size: 0x5C
  */
 void ActBreakRock::cleanup()
 {
@@ -159,10 +152,9 @@ void ActBreakRock::cleanup()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E3C48
- * Size:	0000F0
+/**
+ * @note Address: 0x801E3C48
+ * @note Size: 0xF0
  */
 void ActBreakRock::platCallback(Game::Piki* p, Game::PlatEvent& platEvent)
 {
@@ -171,10 +163,9 @@ void ActBreakRock::platCallback(Game::Piki* p, Game::PlatEvent& platEvent)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E3D38
- * Size:	0000FC
+/**
+ * @note Address: 0x801E3D38
+ * @note Size: 0xFC
  */
 void ActBreakRock::collisionCallback(Game::Piki* p, Game::CollEvent& collEvent)
 {
@@ -183,10 +174,9 @@ void ActBreakRock::collisionCallback(Game::Piki* p, Game::CollEvent& collEvent)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E3E34
- * Size:	000004
+/**
+ * @note Address: 0x801E3E34
+ * @note Size: 0x4
  */
 void ActBreakRock::bounceCallback(Game::Piki*, Sys::Triangle*) { }
 

@@ -8,9 +8,8 @@ JUTGraphFifo* JUTGraphFifo::sCurrentFifo;
 GXBool JUTGraphFifo::mGpStatus[5];
 
 /**
- * --INFO--
- * Address:	8002EB34
- * Size:	0000DC
+ * @note Address: 0x8002EB34
+ * @note Size: 0xDC
  */
 JUTGraphFifo::JUTGraphFifo(u32 size)
 {
@@ -31,10 +30,9 @@ JUTGraphFifo::JUTGraphFifo(u32 size)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8002EC10
- * Size:	0000BC
+/**
+ * @note Address: 0x8002EC10
+ * @note Size: 0xBC
  */
 JUTGraphFifo::~JUTGraphFifo()
 {

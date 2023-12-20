@@ -12,10 +12,9 @@
         .4byte 0x80000000
 */
 
-/*
- * --INFO--
- * Address:	80093A40
- * Size:	000010
+/**
+ * @note Address: 0x80093A40
+ * @note Size: 0x10
  */
 JPAKeyBlock::JPAKeyBlock(const u8* data)
     : mDataStart(data)
@@ -23,21 +22,19 @@ JPAKeyBlock::JPAKeyBlock(const u8* data)
 {
 }
 
-/*
+/**
  * @notDone
- * --INFO--
- * Address:	........
- * Size:	0000C4
+ * @note Address: N/A
+ * @note Size: 0xC4
  */
 void JPAKeyBlock::init_jpa(const u8*, JKRHeap*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80093A50
- * Size:	000094
+/**
+ * @note Address: 0x80093A50
+ * @note Size: 0x94
  */
 void JPAKeyBlock::calc(float p1)
 {

@@ -3,24 +3,21 @@
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	80319BDC
- * Size:	000044
+/**
+ * @note Address: 0x80319BDC
+ * @note Size: 0x44
  */
 KanteiDemo::KanteiDemo() { mObjBase = nullptr; }
 
-/*
- * --INFO--
- * Address:	80319C20
- * Size:	000004
+/**
+ * @note Address: 0x80319C20
+ * @note Size: 0x4
  */
 void KanteiDemo::doUserCallBackFunc(Resource::MgrCommand*) { }
 
-/*
- * --INFO--
- * Address:	80319C24
- * Size:	000068
+/**
+ * @note Address: 0x80319C24
+ * @note Size: 0x68
  */
 void KanteiDemo::doCreateObj(JKRArchive* archive)
 {

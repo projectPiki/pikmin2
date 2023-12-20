@@ -7,10 +7,9 @@ namespace UmiMushi {
 
 static const char umiMushiMgrName[] = "umiMushiMgr";
 
-/*
- * --INFO--
- * Address:	8038273C
- * Size:	000050
+/**
+ * @note Address: 0x8038273C
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -18,24 +17,21 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "ウミムシマネージャ"; // sea worm manager
 }
 
-/*
- * --INFO--
- * Address:	8038278C
- * Size:	000048
+/**
+ * @note Address: 0x8038278C
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Parms); }
 
-/*
- * --INFO--
- * Address:	80382BD8
- * Size:	000020
+/**
+ * @note Address: 0x80382BD8
+ * @note Size: 0x20
  */
 EnemyBase* Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::birth(birthArg); }
 
-/*
- * --INFO--
- * Address:	80382BF8
- * Size:	000068
+/**
+ * @note Address: 0x80382BF8
+ * @note Size: 0x68
  */
 void Mgr::loadModelData()
 {
@@ -47,10 +43,9 @@ void Mgr::loadModelData()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80382C60
- * Size:	0000BC
+/**
+ * @note Address: 0x80382C60
+ * @note Size: 0xBC
  */
 void Mgr::loadTexData()
 {
@@ -67,10 +62,9 @@ void Mgr::loadTexData()
 	mTexAnimation->attachResource(btkFile, mModelData);
 }
 
-/*
- * --INFO--
- * Address:	80382D1C
- * Size:	00007C
+/**
+ * @note Address: 0x80382D1C
+ * @note Size: 0x7C
  */
 SysShape::Model* Mgr::createModel()
 {
@@ -79,10 +73,9 @@ SysShape::Model* Mgr::createModel()
 	return model;
 }
 
-/*
- * --INFO--
- * Address:	80382D98
- * Size:	000160
+/**
+ * @note Address: 0x80382D98
+ * @note Size: 0x160
  */
 void Mgr::createObj(int count)
 {

@@ -13,10 +13,9 @@
 namespace Game {
 namespace Farm {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 Plant::Plant(Creature* creature)
     : CNode("")
@@ -25,10 +24,9 @@ Plant::Plant(Creature* creature)
 {
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A4
+/**
+ * @note Address: N/A
+ * @note Size: 0xA4
  */
 void Plant::sendInteraction()
 {
@@ -42,17 +40,15 @@ void Plant::sendInteraction()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void Plant::doDebugDraw(Graphics& gfx) { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F0
+/**
+ * @note Address: N/A
+ * @note Size: 0xF0
  */
 Obstacle::Obstacle(Farm* farm, FieldVtxColorMgr* vtxColorMgr, Game::Creature* creature, f32 radius, f32 power)
     : CNode("")
@@ -63,10 +59,9 @@ Obstacle::Obstacle(Farm* farm, FieldVtxColorMgr* vtxColorMgr, Game::Creature* cr
 	mVtxColorControl  = vtxColorMgr->createNewControl(position, radius, power);
 }
 
-/*
- * --INFO--
- * Address:	801234F8
- * Size:	000030
+/**
+ * @note Address: 0x801234F8
+ * @note Size: 0x30
  */
 void Obstacle::setPower(f32 power)
 {
@@ -74,10 +69,9 @@ void Obstacle::setPower(f32 power)
 	mFarm->updateObjectRelation(true);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C0
+/**
+ * @note Address: N/A
+ * @note Size: 0xC0
  */
 void Obstacle::doDebugDraw(Graphics& gfx)
 {
@@ -93,11 +87,10 @@ void Obstacle::doDebugDraw(Graphics& gfx)
 	gfx.drawSphere(creaturePos, power);
 }
 
-/*
+/**
  * __ct__Q34Game4Farm4FarmFv
- * --INFO--
- * Address:	80123528
- * Size:	0000BC
+ * @note Address: 0x80123528
+ * @note Size: 0xBC
  */
 Farm::Farm()
     : CNode("”_k")
@@ -110,10 +103,9 @@ Farm::Farm()
 	add(&mPlantRootNode);
 }
 
-/*
- * --INFO--
- * Address:	801235E4
- * Size:	000200
+/**
+ * @note Address: 0x801235E4
+ * @note Size: 0x200
  */
 void Farm::loadResource(u32 modelType, void* mdlData)
 {
@@ -147,45 +139,39 @@ void Farm::loadResource(u32 modelType, void* mdlData)
 	sys->heapStatusEnd("Farm resource");
 }
 
-/*
- * --INFO--
- * Address:	801237E4
- * Size:	000004
+/**
+ * @note Address: 0x801237E4
+ * @note Size: 0x4
  */
 void Farm::update() { }
 
-/*
- * --INFO--
- * Address:	801237E8
- * Size:	000034
+/**
+ * @note Address: 0x801237E8
+ * @note Size: 0x34
  */
 void Farm::doAnimation() { mModel->mJ3dModel->calc(); }
 
-/*
- * --INFO--
- * Address:	8012381C
- * Size:	000034
+/**
+ * @note Address: 0x8012381C
+ * @note Size: 0x34
  */
 void Farm::doEntry() { mModel->mJ3dModel->entry(); }
 
-/*
- * --INFO--
- * Address:	80123850
- * Size:	000024
+/**
+ * @note Address: 0x80123850
+ * @note Size: 0x24
  */
 void Farm::doSetView(u32 viewNumber) { mModel->setCurrentViewNo(viewNumber); }
 
-/*
- * --INFO--
- * Address:	80123874
- * Size:	000024
+/**
+ * @note Address: 0x80123874
+ * @note Size: 0x24
  */
 void Farm::doViewCalc() { mModel->viewCalc(); }
 
-/*
- * --INFO--
- * Address:	80123898
- * Size:	000070
+/**
+ * @note Address: 0x80123898
+ * @note Size: 0x70
  */
 Obstacle* Farm::addObstacle(Creature* creature, f32 radius, f32 power)
 {
@@ -196,10 +182,9 @@ Obstacle* Farm::addObstacle(Creature* creature, f32 radius, f32 power)
 	return obstacle;
 }
 
-/*
- * --INFO--
- * Address:	80123914
- * Size:	000114
+/**
+ * @note Address: 0x80123914
+ * @note Size: 0x114
  */
 Obstacle* Farm::createNewObstacle(Creature* creature, f32 radius, f32 power)
 {
@@ -208,10 +193,9 @@ Obstacle* Farm::createNewObstacle(Creature* creature, f32 radius, f32 power)
 	return obstacle;
 }
 
-/*
- * --INFO--
- * Address:	80123A28
- * Size:	000044
+/**
+ * @note Address: 0x80123A28
+ * @note Size: 0x44
  */
 Plant* Farm::addPlant(Creature* creature)
 {
@@ -220,10 +204,9 @@ Plant* Farm::addPlant(Creature* creature)
 	return plant;
 }
 
-/*
- * --INFO--
- * Address:	80123A6C
- * Size:	0000B0
+/**
+ * @note Address: 0x80123A6C
+ * @note Size: 0xB0
  */
 Plant* Farm::createNewPlant(Creature* creature)
 {
@@ -233,10 +216,9 @@ Plant* Farm::createNewPlant(Creature* creature)
 	return plant;
 }
 
-/*
- * --INFO--
- * Address:	80123B1C
- * Size:	0001DC
+/**
+ * @note Address: 0x80123B1C
+ * @note Size: 0x1DC
  */
 void Farm::updateObjectRelation(bool doInteract)
 {
@@ -266,10 +248,9 @@ void Farm::updateObjectRelation(bool doInteract)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80123CF8
- * Size:	000108
+/**
+ * @note Address: 0x80123CF8
+ * @note Size: 0x108
  */
 void Farm::doDebugDraw(Graphics& gfx)
 {
@@ -280,10 +261,9 @@ void Farm::doDebugDraw(Graphics& gfx)
 	FOREACH_NODE(Obstacle, mObstacleRootNode.mChild, obstacle2) { }
 }
 
-/*
- * --INFO--
- * Address:	80123E00
- * Size:	0000DC
+/**
+ * @note Address: 0x80123E00
+ * @note Size: 0xDC
  */
 void Farm::initAllObjectNodes()
 {
@@ -309,24 +289,21 @@ void Farm::initAllObjectNodes()
 
 // TODO: Make the below functions weak in headers
 
-/*
- * --INFO--
- * Address:	80123EDC
- * Size:	000060
+/**
+ * @note Address: 0x80123EDC
+ * @note Size: 0x60
  */
 Plant::~Plant() { }
 
-/*
- * --INFO--
- * Address:	80123F3C
- * Size:	000060
+/**
+ * @note Address: 0x80123F3C
+ * @note Size: 0x60
  */
 Obstacle::~Obstacle() { }
 
-/*
- * --INFO--
- * Address:	80123F9C
- * Size:	00007C
+/**
+ * @note Address: 0x80123F9C
+ * @note Size: 0x7C
  */
 Farm::~Farm() { }
 

@@ -10,10 +10,9 @@ static const char unusedName[] = "texCaster";
 
 Mgr* Mgr::sInstance;
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 Caster::Caster()
 {
@@ -27,27 +26,24 @@ Caster::Caster()
 	mChangeRate       = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	8023C95C
- * Size:	000060
+/**
+ * @note Address: 0x8023C95C
+ * @note Size: 0x60
  */
 Caster::~Caster() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 void Caster::show()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8023C9BC
- * Size:	000014
+/**
+ * @note Address: 0x8023C9BC
+ * @note Size: 0x14
  */
 void Caster::hide()
 {
@@ -55,10 +51,9 @@ void Caster::hide()
 	mStatus = CS_Hidden;
 }
 
-/*
- * --INFO--
- * Address:	8023C9D0
- * Size:	000080
+/**
+ * @note Address: 0x8023C9D0
+ * @note Size: 0x80
  */
 void Caster::fadein(f32 duration)
 {
@@ -68,30 +63,27 @@ void Caster::fadein(f32 duration)
 	mStatus     = CS_Increasing;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
+/**
+ * @note Address: N/A
+ * @note Size: 0x7C
  */
 void Caster::fadeout(f32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000150
+/**
+ * @note Address: N/A
+ * @note Size: 0x150
  */
 void Caster::makeDL()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
+/**
+ * @note Address: N/A
+ * @note Size: 0x94
  */
 void Caster::update()
 {
@@ -115,10 +107,9 @@ void Caster::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000138
+/**
+ * @note Address: N/A
+ * @note Size: 0x138
  */
 void Caster::draw(Graphics& gfx)
 {
@@ -137,17 +128,15 @@ void Caster::draw(Graphics& gfx)
 	GXCallDisplayList((void*)mDisplayList, mDisplayListSize);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void Caster::drawLine(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
+/**
+ * @note Address: N/A
+ * @note Size: 0x80
  */
 Mgr::Mgr()
     : mTextureCount(0)
@@ -156,17 +145,15 @@ Mgr::Mgr()
 {
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 Mgr::~Mgr() { sInstance = nullptr; }
 
-/*
- * --INFO--
- * Address:	8023CA50
- * Size:	0000A0
+/**
+ * @note Address: 0x8023CA50
+ * @note Size: 0xA0
  */
 void Mgr::globalInstance()
 {
@@ -176,10 +163,9 @@ void Mgr::globalInstance()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8023CAF0
- * Size:	00006C
+/**
+ * @note Address: 0x8023CAF0
+ * @note Size: 0x6C
  */
 void Mgr::deleteInstance()
 {
@@ -189,10 +175,9 @@ void Mgr::deleteInstance()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8023CB5C
- * Size:	0000E8
+/**
+ * @note Address: 0x8023CB5C
+ * @note Size: 0xE8
  */
 void Mgr::loadResource()
 {
@@ -205,10 +190,9 @@ void Mgr::loadResource()
 	mTextures[0] = new JUTTexture(res);
 }
 
-/*
- * --INFO--
- * Address:	8023CC44
- * Size:	000550
+/**
+ * @note Address: 0x8023CC44
+ * @note Size: 0x550
  */
 Caster* Mgr::create(Sys::Sphere& sphere, f32 p1)
 {
@@ -618,10 +602,9 @@ lbl_8023D104:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
+/**
+ * @note Address: N/A
+ * @note Size: 0x7C
  */
 void Mgr::getTexture(int idx)
 {
@@ -629,10 +612,9 @@ void Mgr::getTexture(int idx)
 	mTextures[idx]->load(GX_TEXMAP0);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000118
+/**
+ * @note Address: N/A
+ * @note Size: 0x118
  */
 void Mgr::drawInit(Graphics& gfx)
 {
@@ -652,10 +634,9 @@ void Mgr::drawInit(Graphics& gfx)
 	GXSetZMode(GX_TRUE, GX_LEQUAL, GX_FALSE);
 }
 
-/*
- * --INFO--
- * Address:	8023D194
- * Size:	000288
+/**
+ * @note Address: 0x8023D194
+ * @note Size: 0x288
  */
 void Mgr::draw(Graphics& gfx)
 {

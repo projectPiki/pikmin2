@@ -1,9 +1,8 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	800BDDB8
- * Size:	000038
+/**
+ * @note Address: 0x800BDDB8
+ * @note Size: 0x38
  */
 ASM void TRK_flush_cache(u32 param_1, int param_2)
 {

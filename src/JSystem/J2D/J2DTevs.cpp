@@ -10,16 +10,15 @@ const u32 j2dDefaultColInfo                        = 0xFFFFFFFF;
 const J2DTevOrderInfo j2dDefaultTevOrderInfoNull   = { 0xFF, 0xFF, 0xFF, 0 };
 const J2DIndTexOrderNull j2dDefaultIndTexOrderNull = { 0xFF, 0xFF };
 
-/*
- * --INFO--
- * Address:	8005921C
- * Size:	000030
+/**
+ * @note Address: 0x8005921C
+ * @note Size: 0x30
  */
 void J2DTexMtx::load(u32 size) { GXLoadTexMtxImm(mMtx, size * 3 + 30, (GXTexMtxType)mInfo.getTexMtxType()); }
-/*
- * --INFO--
- * Address:	8005924C
- * Size:	000068
+
+/**
+ * @note Address: 0x8005924C
+ * @note Size: 0x68
  */
 void J2DTexMtx::calc()
 {
@@ -30,10 +29,9 @@ void J2DTexMtx::calc()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800592B4
- * Size:	000190
+/**
+ * @note Address: 0x800592B4
+ * @note Size: 0x190
  */
 void J2DTexMtx::getTextureMtx(const J2DTextureSRTInfo& info, Vec p2, Mtx mtx)
 {
@@ -155,10 +153,9 @@ void J2DTexMtx::getTextureMtx(const J2DTextureSRTInfo& info, Vec p2, Mtx mtx)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80059444
- * Size:	000180
+/**
+ * @note Address: 0x80059444
+ * @note Size: 0x180
  */
 void J2DTexMtx::getTextureMtxMaya(const J2DTextureSRTInfo& info, Mtx mtx)
 {
@@ -275,10 +272,9 @@ void J2DTexMtx::getTextureMtxMaya(const J2DTextureSRTInfo& info, Mtx mtx)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800595C4
- * Size:	000054
+/**
+ * @note Address: 0x800595C4
+ * @note Size: 0x54
  */
 void J2DIndTevStage::load(u8 tevStage)
 {
@@ -309,23 +305,20 @@ void J2DIndTevStage::load(u8 tevStage)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80059618
- * Size:	000030
+/**
+ * @note Address: 0x80059618
+ * @note Size: 0x30
  */
 void J2DIndTexMtx::load(u8 mtxID) { GXSetIndTexMtx((GXIndTexMtxID)(mtxID + 1), mMtxInfo.mMtx, mMtxInfo.mScale); }
 
-/*
- * --INFO--
- * Address:	80059648
- * Size:	000030
+/**
+ * @note Address: 0x80059648
+ * @note Size: 0x30
  */
 void J2DIndTexCoordScale::load(u8 stage) { GXSetIndTexCoordScale((GXIndTexStageID)stage, mScaleInfo.getScaleS(), mScaleInfo.getScaleT()); }
 
-/*
- * --INFO--
- * Address:	80059678
- * Size:	000030
+/**
+ * @note Address: 0x80059678
+ * @note Size: 0x30
  */
 void J2DIndTexOrder::load(u8 stage) { GXSetIndTexOrder((GXIndTexStageID)stage, (GXTexCoordID)mOrder.mCoord, (GXTexMapID)mOrder.mMap); }

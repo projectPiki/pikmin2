@@ -32,10 +32,9 @@
         .float 1.0
 */
 
-/*
- * --INFO--
- * Address:	8009B4E8
- * Size:	0000A4
+/**
+ * @note Address: 0x8009B4E8
+ * @note Size: 0xA4
  */
 float JASInstRand::getY(int, int) const
 {

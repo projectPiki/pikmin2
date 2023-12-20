@@ -1,6 +1,6 @@
 
 /* @(#)s_floor.c 1.3 95/01/18 */
-/*
+/**
  * ====================================================
  * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
  *
@@ -11,7 +11,7 @@
  * ====================================================
  */
 
-/*
+/**
  * floor(x)
  * Return x rounded toward -inf to integral value
  * Method:

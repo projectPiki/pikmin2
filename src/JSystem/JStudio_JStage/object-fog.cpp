@@ -73,10 +73,9 @@ const TAdaptor_fog::TVVOutput TAdaptor_fog::saoVVOutput_[3]
     = { TVVOutput(4, &JStage::TFog::virtual_48, &JStage::TFog::virtual_44),
 	    TVVOutput(5, &JStage::TFog::virtual_50, &JStage::TFog::virtual_4C), TVVOutput(-1, nullptr, nullptr) };
 
-/*
- * --INFO--
- * Address:	80014134
- * Size:	0000A0
+/**
+ * @note Address: 0x80014134
+ * @note Size: 0xA0
  */
 TAdaptor_fog::TAdaptor_fog(const JStage::TSystem* system, JStage::TFog* fog)
     : JStudio::TAdaptor_fog()
@@ -85,18 +84,16 @@ TAdaptor_fog::TAdaptor_fog(const JStage::TSystem* system, JStage::TFog* fog)
 {
 }
 
-/*
- * --INFO--
- * Address:	800141D4
- * Size:	000078
+/**
+ * @note Address: 0x800141D4
+ * @note Size: 0x78
  * __dt
  */
 TAdaptor_fog::~TAdaptor_fog() { adaptor_do_end(nullptr); }
 
-/*
- * --INFO--
- * Address:	8001424C
- * Size:	000048
+/**
+ * @note Address: 0x8001424C
+ * @note Size: 0x48
  */
 void TAdaptor_fog::adaptor_do_prepare(const JStudio::TObject*)
 {
@@ -105,10 +102,9 @@ void TAdaptor_fog::adaptor_do_prepare(const JStudio::TObject*)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80014294
- * Size:	0000F4
+/**
+ * @note Address: 0x80014294
+ * @note Size: 0xF4
  */
 void TAdaptor_fog::adaptor_do_begin(const JStudio::TObject*)
 {
@@ -119,17 +115,15 @@ void TAdaptor_fog::adaptor_do_begin(const JStudio::TObject*)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80014388
- * Size:	000054
+/**
+ * @note Address: 0x80014388
+ * @note Size: 0x54
  */
 void TAdaptor_fog::adaptor_do_end(const JStudio::TObject*) { mObject->setFlagOff(1); }
 
-/*
- * --INFO--
- * Address:	800143DC
- * Size:	00006C
+/**
+ * @note Address: 0x800143DC
+ * @note Size: 0x6C
  */
 void TAdaptor_fog::adaptor_do_update(const JStudio::TObject*, u32)
 {
@@ -139,20 +133,18 @@ void TAdaptor_fog::adaptor_do_update(const JStudio::TObject*, u32)
 	mObject->JSGUpdate();
 }
 
-/*
- * --INFO--
- * Address:	80014448
- * Size:	000034
+/**
+ * @note Address: 0x80014448
+ * @note Size: 0x34
  */
 void TAdaptor_fog::adaptor_do_data(const JStudio::TObject* object, const void* p2, u32 p3, const void* p4, u32 p5)
 {
 	TAdaptor_object_::adaptor_data_(mObject, p2, p3, p4, p5);
 }
 
-/*
- * --INFO--
- * Address:	8001447C
- * Size:	000228
+/**
+ * @note Address: 0x8001447C
+ * @note Size: 0x228
  * sinit
  */
 // void __sinit_object - fog_cpp()
@@ -317,18 +309,16 @@ void TAdaptor_fog::adaptor_do_data(const JStudio::TObject* object, const void* p
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	800146A4
- * Size:	000060
+/**
+ * @note Address: 0x800146A4
+ * @note Size: 0x60
  * __dt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>Fv
  */
 // void TVariableValueOutput_object_<TAdaptor_fog, JStage::TFog>::~TVariableValueOutput_object_() { }
 
-/*
- * --INFO--
- * Address:	80014704
- * Size:	000030
+/**
+ * @note Address: 0x80014704
+ * @note Size: 0x30
  * __cl__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>CFfPQ27JStudio8TAdaptor
  */
 // void TVariableValueOutput_object_<TAdaptor_fog, JStage::TFog>::operator()(float, JStudio::TAdaptor*) const { }

@@ -10,10 +10,9 @@ static const char className[] = "ebiScreenProgre";
 
 namespace ebi {
 
-/*
- * --INFO--
- * Address:	803CD6D8
- * Size:	0000B0
+/**
+ * @note Address: 0x803CD6D8
+ * @note Size: 0xB0
  */
 void TScreenProgre::loadResource()
 {
@@ -26,10 +25,9 @@ void TScreenProgre::loadResource()
 	setArchive(arc);
 }
 
-/*
- * --INFO--
- * Address:	803CD788
- * Size:	000318
+/**
+ * @note Address: 0x803CD788
+ * @note Size: 0x318
  */
 void TScreenProgre::setArchive(JKRArchive* arc)
 {
@@ -81,10 +79,9 @@ void TScreenProgre::setArchive(JKRArchive* arc)
 	sys->heapStatusEnd("TScreenProgre::setArchive");
 }
 
-/*
- * --INFO--
- * Address:	803CDAA0
- * Size:	0003E4
+/**
+ * @note Address: 0x803CDAA0
+ * @note Size: 0x3E4
  */
 void TScreenProgre::startScreen(long state, u32 timer)
 {
@@ -130,10 +127,9 @@ void TScreenProgre::startScreen(long state, u32 timer)
 	startState(Progre_Fadein, timer);
 }
 
-/*
- * --INFO--
- * Address:	803CDE84
- * Size:	000054
+/**
+ * @note Address: 0x803CDE84
+ * @note Size: 0x54
  */
 bool TScreenProgre::fadeout(u32 timer)
 {
@@ -148,10 +144,9 @@ bool TScreenProgre::fadeout(u32 timer)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803CDED8
- * Size:	000028
+/**
+ * @note Address: 0x803CDED8
+ * @note Size: 0x28
  */
 bool TScreenProgre::isFinish()
 {
@@ -161,20 +156,18 @@ bool TScreenProgre::isFinish()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
+/**
+ * @note Address: N/A
+ * @note Size: 0x60
  */
 void TScreenProgre::killScreen()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803CDF00
- * Size:	0000C0
+/**
+ * @note Address: 0x803CDF00
+ * @note Size: 0xC0
  */
 void TScreenProgre::startState(enumState state, u32 timer)
 {
@@ -197,10 +190,9 @@ void TScreenProgre::startState(enumState state, u32 timer)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803CDFC0
- * Size:	000554
+/**
+ * @note Address: 0x803CDFC0
+ * @note Size: 0x554
  */
 void TScreenProgre::update()
 {
@@ -312,10 +304,9 @@ void TScreenProgre::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803CE514
- * Size:	0000DC
+/**
+ * @note Address: 0x803CE514
+ * @note Size: 0xDC
  */
 void TScreenProgre::draw()
 {
@@ -327,10 +318,9 @@ void TScreenProgre::draw()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803CE5F0
- * Size:	000308
+/**
+ * @note Address: 0x803CE5F0
+ * @note Size: 0x308
  */
 void TScreenProgre::setDecide()
 {

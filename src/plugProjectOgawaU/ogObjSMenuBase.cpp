@@ -6,20 +6,18 @@
 #include "System.h"
 #include "trig.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
+/**
+ * @note Address: N/A
+ * @note Size: 0xE4
  */
 static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	80316210
- * Size:	0000EC
+/**
+ * @note Address: 0x80316210
+ * @note Size: 0xEC
  */
 ObjSMenuBase::ObjSMenuBase()
 {
@@ -51,10 +49,9 @@ ObjSMenuBase::ObjSMenuBase()
 	mArrowBlink = new og::Screen::ArrowAlphaBlink;
 }
 
-/*
- * --INFO--
- * Address:	803162FC
- * Size:	00003C
+/**
+ * @note Address: 0x803162FC
+ * @note Size: 0x3C
  */
 void ObjSMenuBase::setFinishState(long id)
 {
@@ -62,10 +59,9 @@ void ObjSMenuBase::setFinishState(long id)
 	scene->mFinishState   = id;
 }
 
-/*
- * --INFO--
- * Address:	80316338
- * Size:	000040
+/**
+ * @note Address: 0x80316338
+ * @note Size: 0x40
  */
 void ObjSMenuBase::setSMenuScale(f32 x, f32 y)
 {
@@ -73,10 +69,9 @@ void ObjSMenuBase::setSMenuScale(f32 x, f32 y)
 		mPaneNsize->updateScale(x, y);
 }
 
-/*
- * --INFO--
- * Address:	80316378
- * Size:	0001C4
+/**
+ * @note Address: 0x80316378
+ * @note Size: 0x1C4
  */
 void ObjSMenuBase::doCreateAfter(JKRArchive* arc, P2DScreen::Mgr* scrn)
 {
@@ -104,17 +99,15 @@ void ObjSMenuBase::doCreateAfter(JKRArchive* arc, P2DScreen::Mgr* scrn)
 	og::Screen::setCallBackMessage(mScreenLR);
 }
 
-/*
- * --INFO--
- * Address:	8031653C
- * Size:	000020
+/**
+ * @note Address: 0x8031653C
+ * @note Size: 0x20
  */
 void ObjSMenuBase::commonUpdateBase() { updateYaji(); }
 
-/*
- * --INFO--
- * Address:	8031655C
- * Size:	00012C
+/**
+ * @note Address: 0x8031655C
+ * @note Size: 0x12C
  */
 bool ObjSMenuBase::doUpdate()
 {
@@ -145,10 +138,9 @@ bool ObjSMenuBase::doUpdate()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	80316688
- * Size:	0000D0
+/**
+ * @note Address: 0x80316688
+ * @note Size: 0xD0
  */
 void ObjSMenuBase::doUpdateFinish()
 {
@@ -176,10 +168,9 @@ void ObjSMenuBase::doUpdateFinish()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80316758
- * Size:	000074
+/**
+ * @note Address: 0x80316758
+ * @note Size: 0x74
  */
 void ObjSMenuBase::startBackupScene()
 {
@@ -189,10 +180,9 @@ void ObjSMenuBase::startBackupScene()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000EC
+/**
+ * @note Address: N/A
+ * @note Size: 0xEC
  */
 void ObjSMenuBase::jump_LR(::Screen::SetSceneArg& arg, bool flag)
 {
@@ -209,10 +199,9 @@ void ObjSMenuBase::jump_LR(::Screen::SetSceneArg& arg, bool flag)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803167CC
- * Size:	00002C
+/**
+ * @note Address: 0x803167CC
+ * @note Size: 0x2C
  */
 void ObjSMenuBase::close_L()
 {
@@ -220,24 +209,21 @@ void ObjSMenuBase::close_L()
 	ogSound->setClose();
 }
 
-/*
- * --INFO--
- * Address:	803167F8
- * Size:	0000E4
+/**
+ * @note Address: 0x803167F8
+ * @note Size: 0xE4
  */
 void ObjSMenuBase::jump_L(::Screen::SetSceneArg& arg) { jump_LR(arg, false); }
 
-/*
- * --INFO--
- * Address:	803168DC
- * Size:	0000E4
+/**
+ * @note Address: 0x803168DC
+ * @note Size: 0xE4
  */
 void ObjSMenuBase::jump_R(::Screen::SetSceneArg& arg) { jump_LR(arg, true); }
 
-/*
- * --INFO--
- * Address:	803169C0
- * Size:	000150
+/**
+ * @note Address: 0x803169C0
+ * @note Size: 0x150
  */
 bool ObjSMenuBase::start_LR(::Screen::StartSceneArg const* arg)
 {
@@ -266,10 +252,9 @@ bool ObjSMenuBase::start_LR(::Screen::StartSceneArg const* arg)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80316B10
- * Size:	000068
+/**
+ * @note Address: 0x80316B10
+ * @note Size: 0x68
  */
 void ObjSMenuBase::setYajiName(u64 tag1, u64 tag2, u64 tag3)
 {
@@ -281,31 +266,27 @@ void ObjSMenuBase::setYajiName(u64 tag1, u64 tag2, u64 tag3)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80316B78
- * Size:	000004
+/**
+ * @note Address: 0x80316B78
+ * @note Size: 0x4
  */
 void ObjSMenuBase::loop() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void ObjSMenuBase::startYaji() { mEnableYaji = true; }
 
-/*
- * --INFO--
- * Address:	80316B7C
- * Size:	00000C
+/**
+ * @note Address: 0x80316B7C
+ * @note Size: 0xC
  */
 void ObjSMenuBase::stopYaji() { mEnableYaji = false; }
 
-/*
- * --INFO--
- * Address:	80316B88
- * Size:	000304
+/**
+ * @note Address: 0x80316B88
+ * @note Size: 0x304
  */
 void ObjSMenuBase::updateYaji()
 {
@@ -372,17 +353,15 @@ void ObjSMenuBase::updateYaji()
 	mScreenLR->update();
 }
 
-/*
- * --INFO--
- * Address:	80316E8C
- * Size:	000034
+/**
+ * @note Address: 0x80316E8C
+ * @note Size: 0x34
  */
 void ObjSMenuBase::drawYaji(Graphics& gfx) { mScreenLR->draw(gfx, gfx.mPerspGraph); }
 
-/*
- * --INFO--
- * Address:	80316EC0
- * Size:	000170
+/**
+ * @note Address: 0x80316EC0
+ * @note Size: 0x170
  */
 bool ObjSMenuBase::updateFadeIn()
 {
@@ -422,10 +401,9 @@ bool ObjSMenuBase::updateFadeIn()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	80317030
- * Size:	0000A8
+/**
+ * @note Address: 0x80317030
+ * @note Size: 0xA8
  */
 bool ObjSMenuBase::doUpdateFadein()
 {
@@ -443,10 +421,9 @@ bool ObjSMenuBase::doUpdateFadein()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	803170D8
- * Size:	000054
+/**
+ * @note Address: 0x803170D8
+ * @note Size: 0x54
  */
 void ObjSMenuBase::doUpdateFadeinFinish()
 {
@@ -457,10 +434,9 @@ void ObjSMenuBase::doUpdateFadeinFinish()
 	mFadeLevel = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	8031712C
- * Size:	000104
+/**
+ * @note Address: 0x8031712C
+ * @note Size: 0x104
  */
 bool ObjSMenuBase::updateFadeOut()
 {
@@ -491,10 +467,9 @@ bool ObjSMenuBase::updateFadeOut()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	80317230
- * Size:	000164
+/**
+ * @note Address: 0x80317230
+ * @note Size: 0x164
  */
 void ObjSMenuBase::doUpdateFadeoutFinish()
 {

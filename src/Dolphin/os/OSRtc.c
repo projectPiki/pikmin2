@@ -5,10 +5,9 @@ static BOOL WriteSram(void* buffer, u32 offset, u32 size);
 
 static SramControlBlock Scb ATTRIBUTE_ALIGN(32);
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000118
+/**
+ * @note Address: N/A
+ * @note Size: 0x118
  */
 static BOOL GetRTC(u32* rtc)
 {
@@ -37,10 +36,9 @@ static BOOL GetRTC(u32* rtc)
 	return !err;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00022C
+/**
+ * @note Address: N/A
+ * @note Size: 0x22C
  */
 static BOOL __OSGetRTC(u32* rtc)
 {
@@ -64,10 +62,9 @@ static BOOL __OSGetRTC(u32* rtc)
 	return FALSE;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000108
+/**
+ * @note Address: N/A
+ * @note Size: 0x108
  */
 static BOOL __OSSetRTC(u32 rtc)
 {
@@ -94,10 +91,9 @@ static BOOL __OSSetRTC(u32 rtc)
 	return !err;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00011C
+/**
+ * @note Address: N/A
+ * @note Size: 0x11C
  */
 static BOOL ReadSram(void* buffer)
 {
@@ -126,10 +122,9 @@ static BOOL ReadSram(void* buffer)
 	return !err;
 }
 
-/*
- * --INFO--
- * Address:	800F0A7C
- * Size:	000060
+/**
+ * @note Address: 0x800F0A7C
+ * @note Size: 0x60
  */
 static void WriteSramCallback(s32 channel, OSContext* context)
 {
@@ -139,10 +134,9 @@ static void WriteSramCallback(s32 channel, OSContext* context)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800F0ADC
- * Size:	000118
+/**
+ * @note Address: 0x800F0ADC
+ * @note Size: 0x118
  */
 static BOOL WriteSram(void* buffer, u32 offset, u32 size)
 {
@@ -169,10 +163,9 @@ static BOOL WriteSram(void* buffer, u32 offset, u32 size)
 	return !err;
 }
 
-/*
- * --INFO--
- * Address:	800F0BF4
- * Size:	00013C
+/**
+ * @note Address: 0x800F0BF4
+ * @note Size: 0x13C
  */
 void __OSInitSram()
 {
@@ -182,10 +175,9 @@ void __OSInitSram()
 	OSSetGbsMode(OSGetGbsMode());
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000068
+/**
+ * @note Address: N/A
+ * @note Size: 0x68
  */
 static void* LockSram(u32 offset)
 {
@@ -203,24 +195,21 @@ static void* LockSram(u32 offset)
 	return Scb.sram + offset;
 }
 
-/*
- * --INFO--
- * Address:	800F0D30
- * Size:	00005C
+/**
+ * @note Address: 0x800F0D30
+ * @note Size: 0x5C
  */
 OSSram* __OSLockSram() { return LockSram(0); }
 
-/*
- * --INFO--
- * Address:	800F0D8C
- * Size:	00005C
+/**
+ * @note Address: 0x800F0D8C
+ * @note Size: 0x5C
  */
 OSSramEx* __OSLockSramEx() { return LockSram(sizeof(OSSram)); }
 
-/*
- * --INFO--
- * Address:	800F0DE8
- * Size:	00033C
+/**
+ * @note Address: 0x800F0DE8
+ * @note Size: 0x33C
  */
 static BOOL UnlockSram(BOOL commit, u32 offset)
 {
@@ -266,31 +255,27 @@ static BOOL UnlockSram(BOOL commit, u32 offset)
 	return Scb.sync;
 }
 
-/*
- * --INFO--
- * Address:	800F1124
- * Size:	000024
+/**
+ * @note Address: 0x800F1124
+ * @note Size: 0x24
  */
 BOOL __OSUnlockSram(BOOL commit) { return UnlockSram(commit, 0); }
 
-/*
- * --INFO--
- * Address:	800F1148
- * Size:	000024
+/**
+ * @note Address: 0x800F1148
+ * @note Size: 0x24
  */
 BOOL __OSUnlockSramEx(BOOL commit) { return UnlockSram(commit, sizeof(OSSram)); }
 
-/*
- * --INFO--
- * Address:	800F116C
- * Size:	000010
+/**
+ * @note Address: 0x800F116C
+ * @note Size: 0x10
  */
 BOOL __OSSyncSram() { return Scb.sync; }
 
-/*
- * --INFO--
- * Address:	800F117C
- * Size:	000124
+/**
+ * @note Address: 0x800F117C
+ * @note Size: 0x124
  */
 BOOL __OSReadROM(void* buffer, s32 length, s32 offset)
 {
@@ -319,10 +304,9 @@ BOOL __OSReadROM(void* buffer, s32 length, s32 offset)
 	return !err;
 }
 
-/*
- * --INFO--
- * Address:	800F12A0
- * Size:	000080
+/**
+ * @note Address: 0x800F12A0
+ * @note Size: 0x80
  */
 u32 OSGetSoundMode()
 {
@@ -336,10 +320,9 @@ u32 OSGetSoundMode()
 	return mode;
 }
 
-/*
- * --INFO--
- * Address:	800F1320
- * Size:	0000A4
+/**
+ * @note Address: 0x800F1320
+ * @note Size: 0xA4
  */
 void OSSetSoundMode(u32 mode)
 {
@@ -360,10 +343,9 @@ void OSSetSoundMode(u32 mode)
 	__OSUnlockSram(TRUE);
 }
 
-/*
- * --INFO--
- * Address:	800F13C4
- * Size:	000070
+/**
+ * @note Address: 0x800F13C4
+ * @note Size: 0x70
  */
 u32 OSGetProgressiveMode()
 {
@@ -377,10 +359,9 @@ u32 OSGetProgressiveMode()
 	return mode;
 }
 
-/*
- * --INFO--
- * Address:	800F1434
- * Size:	0000A4
+/**
+ * @note Address: 0x800F1434
+ * @note Size: 0xA4
  */
 void OSSetProgressiveMode(u32 mode)
 {
@@ -401,10 +382,9 @@ void OSSetProgressiveMode(u32 mode)
 	__OSUnlockSram(TRUE);
 }
 
-/*
- * --INFO--
- * Address:	800F14D8
- * Size:	0000A4
+/**
+ * @note Address: 0x800F14D8
+ * @note Size: 0xA4
  */
 void OSSetEuRgb60Mode(u32 on)
 {
@@ -425,10 +405,9 @@ void OSSetEuRgb60Mode(u32 on)
 	__OSUnlockSram(TRUE);
 }
 
-/*
- * --INFO--
- * Address:	800F157C
- * Size:	000084
+/**
+ * @note Address: 0x800F157C
+ * @note Size: 0x84
  */
 u16 OSGetWirelessID(s32 channel)
 {
@@ -441,10 +420,9 @@ u16 OSGetWirelessID(s32 channel)
 	return id;
 }
 
-/*
- * --INFO--
- * Address:	800F1600
- * Size:	0000AC
+/**
+ * @note Address: 0x800F1600
+ * @note Size: 0xAC
  */
 void OSSetWirelessID(s32 channel, u16 id)
 {
@@ -460,10 +438,9 @@ void OSSetWirelessID(s32 channel, u16 id)
 	__OSUnlockSramEx(FALSE);
 }
 
-/*
- * --INFO--
- * Address:	800F16AC
- * Size:	000070
+/**
+ * @note Address: 0x800F16AC
+ * @note Size: 0x70
  */
 u16 OSGetGbsMode()
 {
@@ -476,10 +453,9 @@ u16 OSGetGbsMode()
 	return id;
 }
 
-/*
- * --INFO--
- * Address:	800F171C
- * Size:	0000B8
+/**
+ * @note Address: 0x800F171C
+ * @note Size: 0xB8
  */
 void OSSetGbsMode(u16 mode)
 {

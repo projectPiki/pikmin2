@@ -17,10 +17,9 @@ enum LanguageID { LANG_ENGLISH = 0, LANG_FRENCH, LANG_GERMAN, LANG_HOL_UNUSED, L
 
 const char* filler1 = "dvdStatus";
 
-/*
- * --INFO--
- * Address:	8042A314
- * Size:	000014
+/**
+ * @note Address: 0x8042A314
+ * @note Size: 0x14
  */
 DvdStatus::DvdStatus()
 {
@@ -28,10 +27,9 @@ DvdStatus::DvdStatus()
 	_00    = -1;
 }
 
-/*
- * --INFO--
- * Address:	8042A328
- * Size:	00002C
+/**
+ * @note Address: 0x8042A328
+ * @note Size: 0x2C
  */
 bool DvdStatus::isErrorOccured()
 {
@@ -42,10 +40,9 @@ bool DvdStatus::isErrorOccured()
 	return retval;
 }
 
-/*
- * --INFO--
- * Address:	8042A354
- * Size:	0001F0
+/**
+ * @note Address: 0x8042A354
+ * @note Size: 0x1F0
  */
 bool DvdStatus::update()
 {
@@ -101,10 +98,9 @@ bool DvdStatus::update()
 	return mFader != nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8042A544
- * Size:	0002B8
+/**
+ * @note Address: 0x8042A544
+ * @note Size: 0x2B8
  */
 void DvdStatus::draw()
 {

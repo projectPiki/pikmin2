@@ -3,10 +3,9 @@
 namespace Game {
 namespace Hana {
 
-/*
- * --INFO--
- * Address:	802F2DEC
- * Size:	000050
+/**
+ * @note Address: 0x802F2DEC
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -14,31 +13,27 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "ハナドックリマネージャ"; // hanadokkuri manager
 }
 
-/*
- * --INFO--
- * Address:	802F2E3C
- * Size:	000048
+/**
+ * @note Address: 0x802F2E3C
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new ChappyBase::Parms); }
 
-/*
- * --INFO--
- * Address:	802F2E84
- * Size:	000060
+/**
+ * @note Address: 0x802F2E84
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	802F2FD4
- * Size:	000010
+/**
+ * @note Address: 0x802F2FD4
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
-/*
- * --INFO--
- * Address:	802F2FE4
- * Size:	000068
+/**
+ * @note Address: 0x802F2FE4
+ * @note Size: 0x68
  */
 void Mgr::loadModelData()
 {

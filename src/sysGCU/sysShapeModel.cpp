@@ -9,10 +9,9 @@ namespace SysShape {
 u8 Model::viewCalcMode = true;
 int Model::cullCount;
 
-/*
- * --INFO--
- * Address:	8043E1D8
- * Size:	0000C4
+/**
+ * @note Address: 0x8043E1D8
+ * @note Size: 0xC4
  */
 Model::Model(J3DModelData* data, u32 flags, u32 modelType)
 {
@@ -24,10 +23,9 @@ Model::Model(J3DModelData* data, u32 flags, u32 modelType)
 	clearAnimatorAll();
 }
 
-/*
- * --INFO--
- * Address:	8043E29C
- * Size:	00017C
+/**
+ * @note Address: 0x8043E29C
+ * @note Size: 0x17C
  */
 void Model::enableMaterialAnim(J3DModelData* data, int p2)
 {
@@ -44,10 +42,9 @@ void Model::enableMaterialAnim(J3DModelData* data, int p2)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8043E418
- * Size:	000174
+/**
+ * @note Address: 0x8043E418
+ * @note Size: 0x174
  */
 void Model::enableMaterialAnim(int p1)
 {
@@ -66,10 +63,9 @@ void Model::enableMaterialAnim(int p1)
 	mIsAnimating = true;
 }
 
-/*
- * --INFO--
- * Address:	8043E58C
- * Size:	000048
+/**
+ * @note Address: 0x8043E58C
+ * @note Size: 0x48
  */
 Matrixf* Model::getMatrix(int jointIndex)
 {
@@ -79,10 +75,9 @@ Matrixf* Model::getMatrix(int jointIndex)
 	return (mJoints + jointIndex != nullptr) ? mJoints[jointIndex].getWorldMatrix() : nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8043E5D4
- * Size:	00015C
+/**
+ * @note Address: 0x8043E5D4
+ * @note Size: 0x15C
  */
 f32 Model::getRoughBoundingRadius()
 {
@@ -235,10 +230,9 @@ lbl_8043E71C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8043E730
- * Size:	000174
+/**
+ * @note Address: 0x8043E730
+ * @note Size: 0x174
  */
 Vector3f Model::getRoughCenter()
 {
@@ -270,20 +264,18 @@ Vector3f Model::getRoughCenter()
 	return Vector3f(result_max + result_min) * 0.5f;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A4
+/**
+ * @note Address: N/A
+ * @note Size: 0xA4
  */
 void Model::entry(Sys::Sphere&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8043E8A4
- * Size:	000098
+/**
+ * @note Address: 0x8043E8A4
+ * @note Size: 0x98
  */
 bool Model::isVisible(Sys::Sphere& sphere)
 {
@@ -299,10 +291,9 @@ bool Model::isVisible(Sys::Sphere& sphere)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8043E93C
- * Size:	000080
+/**
+ * @note Address: 0x8043E93C
+ * @note Size: 0x80
  */
 void Model::jointVisible(bool newVisibility, int jointIndex)
 {
@@ -319,10 +310,9 @@ void Model::jointVisible(bool newVisibility, int jointIndex)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8043E9BC
- * Size:	000058
+/**
+ * @note Address: 0x8043E9BC
+ * @note Size: 0x58
  * Matching! https://decomp.me/scratch/ZILok
  */
 void Model::hide()
@@ -335,10 +325,9 @@ void Model::hide()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8043EA14
- * Size:	000058
+/**
+ * @note Address: 0x8043EA14
+ * @note Size: 0x58
  */
 void Model::show()
 {
@@ -350,10 +339,9 @@ void Model::show()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8043EA6C
- * Size:	000044
+/**
+ * @note Address: 0x8043EA6C
+ * @note Size: 0x44
  */
 void Model::hidePackets()
 {
@@ -362,10 +350,9 @@ void Model::hidePackets()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8043EAB0
- * Size:	000044
+/**
+ * @note Address: 0x8043EAB0
+ * @note Size: 0x44
  */
 void Model::showPackets()
 {
@@ -374,10 +361,9 @@ void Model::showPackets()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8043EAF4
- * Size:	0000BC
+/**
+ * @note Address: 0x8043EAF4
+ * @note Size: 0xBC
  */
 void Model::initJoints()
 {
@@ -388,10 +374,9 @@ void Model::initJoints()
 	initJointsRec(0, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8043EC10
- * Size:	00005C
+/**
+ * @note Address: 0x8043EC10
+ * @note Size: 0x5C
  */
 Joint::Joint()
 {
@@ -399,10 +384,9 @@ Joint::Joint()
 	mMax = -32768.0f;
 }
 
-/*
- * --INFO--
- * Address:	8043EC6C
- * Size:	000330
+/**
+ * @note Address: 0x8043EC6C
+ * @note Size: 0x330
  */
 void Model::initJointsRec(int id, Joint* jnt)
 {
@@ -646,17 +630,15 @@ lbl_8043EF88:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8043EFB4
- * Size:	000030
+/**
+ * @note Address: 0x8043EFB4
+ * @note Size: 0x30
  */
 u16 Model::getJointIndex(char* name) { return mJ3dModel->mModelData->mJointTree.mNametab->getIndex(name); }
 
-/*
- * --INFO--
- * Address:	8043EFE4
- * Size:	00005C
+/**
+ * @note Address: 0x8043EFE4
+ * @note Size: 0x5C
  */
 Joint* Model::getJoint(char* name)
 {
@@ -667,34 +649,30 @@ Joint* Model::getJoint(char* name)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
+/**
+ * @note Address: N/A
+ * @note Size: 0x50
  */
 void Model::update()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8043F040
- * Size:	00000C
+/**
+ * @note Address: 0x8043F040
+ * @note Size: 0xC
  */
 void Model::setViewCalcModeImm() { viewCalcMode = false; }
 
-/*
- * --INFO--
- * Address:	8043F04C
- * Size:	00000C
+/**
+ * @note Address: 0x8043F04C
+ * @note Size: 0xC
  */
 void Model::setViewCalcModeInd() { viewCalcMode = true; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 bool Model::needViewCalc()
 {
@@ -707,10 +685,9 @@ bool Model::needViewCalc()
 	return calc;
 }
 
-/*
- * --INFO--
- * Address:	8043F058
- * Size:	000068
+/**
+ * @note Address: 0x8043F058
+ * @note Size: 0x68
  */
 void Model::viewCalc()
 {
@@ -754,10 +731,9 @@ lbl_8043F0AC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8043F0C0
- * Size:	00004C
+/**
+ * @note Address: 0x8043F0C0
+ * @note Size: 0x4C
  */
 void Model::setCurrentViewNo(u32 viewportNumber)
 {
@@ -766,17 +742,15 @@ void Model::setCurrentViewNo(u32 viewportNumber)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8043F10C
- * Size:	000014
+/**
+ * @note Address: 0x8043F10C
+ * @note Size: 0x14
  */
 bool Model::isMtxImmediate() { return mJ3dModel->mModelData->mModelLoaderFlags >> 4 & 1; }
 
-/*
- * --INFO--
- * Address:	8043F130
- * Size:	000030
+/**
+ * @note Address: 0x8043F130
+ * @note Size: 0x30
  */
 void Model::jointVisible(bool flag, Joint* joint) { jointVisible(flag, joint->mJointIndex); }
 

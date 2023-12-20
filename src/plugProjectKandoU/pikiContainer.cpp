@@ -9,10 +9,9 @@
 static const char fakeMatch__UnitName[] = "pikiContainer";
 
 namespace Game {
-/*
- * --INFO--
- * Address:	801F1240
- * Size:	00004C
+/**
+ * @note Address: 0x801F1240
+ * @note Size: 0x4C
  */
 PikiContainer::PikiContainer()
 {
@@ -20,10 +19,9 @@ PikiContainer::PikiContainer()
 	clear();
 }
 
-/*
- * --INFO--
- * Address:	801F128C
- * Size:	00006C
+/**
+ * @note Address: 0x801F128C
+ * @note Size: 0x6C
  */
 void PikiContainer::clear()
 {
@@ -32,11 +30,10 @@ void PikiContainer::clear()
 	}
 }
 
-/*
+/**
  * as__
- * --INFO--
- * Address:	801F12F8
- * Size:	0000B0
+ * @note Address: 0x801F12F8
+ * @note Size: 0xB0
  */
 void PikiContainer::operator=(Game::PikiContainer& other)
 {
@@ -47,9 +44,8 @@ void PikiContainer::operator=(Game::PikiContainer& other)
 
 /**
  * @param sourceOfCall A string loosely identifying the caller in some way.
- * --INFO--
- * Address:	801F13A8
- * Size:	000074
+ * @note Address: 0x801F13A8
+ * @note Size: 0x74
  */
 void PikiContainer::dump(char* sourceOfCall)
 {
@@ -68,10 +64,9 @@ void PikiContainer::dump(char* sourceOfCall)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801F141C
- * Size:	0000C8
+/**
+ * @note Address: 0x801F141C
+ * @note Size: 0xC8
  */
 int& PikiContainer::getCount(int color, int headType)
 {
@@ -80,11 +75,10 @@ int& PikiContainer::getCount(int color, int headType)
 	return mContainer[headType + color * PikiGrowthStageCount];
 }
 
-/*
+/**
  * cl__
- * --INFO--
- * Address:	801F14E4
- * Size:	0000CC
+ * @note Address: 0x801F14E4
+ * @note Size: 0xCC
  */
 int& PikiContainer::operator()(Game::Piki* p)
 {
@@ -93,10 +87,9 @@ int& PikiContainer::operator()(Game::Piki* p)
 	return getCount(type, happa);
 }
 
-/*
- * --INFO--
- * Address:	801F15B0
- * Size:	0000D4
+/**
+ * @note Address: 0x801F15B0
+ * @note Size: 0xD4
  */
 int PikiContainer::getColorSum(int type)
 {
@@ -107,10 +100,9 @@ int PikiContainer::getColorSum(int type)
 	return sum;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D0
+/**
+ * @note Address: N/A
+ * @note Size: 0xD0
  */
 int PikiContainer::getHappaSum(int happa)
 {
@@ -122,10 +114,9 @@ int PikiContainer::getHappaSum(int happa)
 	return sum;
 }
 
-/*
- * --INFO--
- * Address:	801F1684
- * Size:	0000E4
+/**
+ * @note Address: 0x801F1684
+ * @note Size: 0xE4
  */
 int PikiContainer::getTotalSum()
 {
@@ -138,10 +129,9 @@ int PikiContainer::getTotalSum()
 	return sum;
 }
 
-/*
- * --INFO--
- * Address:	801F1768
- * Size:	000134
+/**
+ * @note Address: 0x801F1768
+ * @note Size: 0x134
  */
 void PikiContainer::write(Stream& output)
 {
@@ -158,10 +148,9 @@ void PikiContainer::write(Stream& output)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801F189C
- * Size:	00006C
+/**
+ * @note Address: 0x801F189C
+ * @note Size: 0x6C
  */
 void PikiContainer::read(Stream& input)
 {

@@ -5,10 +5,9 @@
 #include "JSystem/JAudio/JAS/JASOscillator.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	8009B0B8
- * Size:	0001FC
+/**
+ * @note Address: 0x8009B0B8
+ * @note Size: 0x1FC
  */
 bool JASDrumSet::getParam(int percIndex, int p2, JASInstParam* instParam) const
 {
@@ -68,18 +67,16 @@ bool JASDrumSet::getParam(int percIndex, int p2, JASInstParam* instParam) const
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8009B2B4
- * Size:	000014
+/**
+ * @note Address: 0x8009B2B4
+ * @note Size: 0x14
  * getPerc__10JASDrumSetFi
  */
 JASDrumSet::TPerc* JASDrumSet::getPerc(int index) { return mPercs + index; }
 
-/*
- * --INFO--
- * Address:	8009B2C8
- * Size:	000034
+/**
+ * @note Address: 0x8009B2C8
+ * @note Size: 0x34
  * __ct__Q210JASDrumSet5TPercFv
  */
 JASDrumSet::TPerc::TPerc()
@@ -94,10 +91,9 @@ JASDrumSet::TPerc::TPerc()
 {
 }
 
-/*
- * --INFO--
- * Address:	8009B2FC
- * Size:	00005C
+/**
+ * @note Address: 0x8009B2FC
+ * @note Size: 0x5C
  * __dt__Q210JASDrumSet5TPercFv
  */
 JASDrumSet::TPerc::~TPerc()
@@ -106,10 +102,9 @@ JASDrumSet::TPerc::~TPerc()
 	delete[] mVeloRegions;
 }
 
-/*
- * --INFO--
- * Address:	8009B358
- * Size:	000078
+/**
+ * @note Address: 0x8009B358
+ * @note Size: 0x78
  */
 void JASDrumSet::TPerc::setEffectCount(u32 count)
 {
@@ -123,10 +118,9 @@ void JASDrumSet::TPerc::setEffectCount(u32 count)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8009B3D0
- * Size:	000058
+/**
+ * @note Address: 0x8009B3D0
+ * @note Size: 0x58
  */
 void JASDrumSet::TPerc::setVeloRegionCount(u32 count)
 {
@@ -135,25 +129,22 @@ void JASDrumSet::TPerc::setVeloRegionCount(u32 count)
 	mVeloRegionCount = count;
 }
 
-/*
- * --INFO--
- * Address:	8009B428
- * Size:	000010
+/**
+ * @note Address: 0x8009B428
+ * @note Size: 0x10
  * getVeloRegion__Q210JASDrumSet5TPercFi
  */
 JASInst::TVeloRegion* JASDrumSet::TPerc::getVeloRegion(int index) { return mVeloRegions + index; }
 
-/*
- * --INFO--
- * Address:	8009B438
- * Size:	000010
+/**
+ * @note Address: 0x8009B438
+ * @note Size: 0x10
  * setEffect__Q210JASDrumSet5TPercFiP13JASInstEffect
  */
 void JASDrumSet::TPerc::setEffect(int index, JASInstEffect* effect) { mEffects[index] = effect; }
 
-/*
- * --INFO--
- * Address:	8009B448
- * Size:	000008
+/**
+ * @note Address: 0x8009B448
+ * @note Size: 0x8
  */
 void JASDrumSet::TPerc::setRelease(u32 release) { mRelease = release; }

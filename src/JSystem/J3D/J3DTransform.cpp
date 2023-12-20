@@ -59,10 +59,9 @@
         .4byte 0x00000000
 */
 
-/*
- * --INFO--
- * Address:	8005EE78
- * Size:	0000F0
+/**
+ * @note Address: 0x8005EE78
+ * @note Size: 0xF0
  */
 void J3DCalcBBoardMtx(Mtx mtx)
 {
@@ -167,10 +166,9 @@ lbl_8005EF44:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005EF68
- * Size:	00013C
+/**
+ * @note Address: 0x8005EF68
+ * @note Size: 0x13C
  */
 void J3DCalcYBBoardMtx(Mtx mtx)
 {
@@ -289,10 +287,9 @@ lbl_8005F014:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005F0A4
- * Size:	0000C8
+/**
+ * @note Address: 0x8005F0A4
+ * @note Size: 0xC8
  */
 void J3DPSCalcInverseTranspose(Mtx, Mtx33)
 {
@@ -352,10 +349,9 @@ lbl_8005F118:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005F16C
- * Size:	0000B0
+/**
+ * @note Address: 0x8005F16C
+ * @note Size: 0xB0
  */
 void J3DGetTranslateRotateMtx(const J3DTransformInfo&, Mtx)
 {
@@ -407,10 +403,9 @@ void J3DGetTranslateRotateMtx(const J3DTransformInfo&, Mtx)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005F21C
- * Size:	0000B0
+/**
+ * @note Address: 0x8005F21C
+ * @note Size: 0xB0
  */
 void J3DGetTranslateRotateMtx(s16, s16, s16, f32, f32, f32, Mtx)
 {
@@ -463,10 +458,9 @@ void J3DGetTranslateRotateMtx(s16, s16, s16, f32, f32, f32, Mtx)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005F2CC
- * Size:	0000AC
+/**
+ * @note Address: 0x8005F2CC
+ * @note Size: 0xAC
  */
 void J3DGetTextureMtx(const J3DTextureSRTInfo&, const Vec&, Mtx)
 {
@@ -517,10 +511,9 @@ void J3DGetTextureMtx(const J3DTextureSRTInfo&, const Vec&, Mtx)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005F378
- * Size:	0000AC
+/**
+ * @note Address: 0x8005F378
+ * @note Size: 0xAC
  */
 void J3DGetTextureMtxOld(const J3DTextureSRTInfo&, const Vec&, Mtx)
 {
@@ -571,10 +564,9 @@ void J3DGetTextureMtxOld(const J3DTextureSRTInfo&, const Vec&, Mtx)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005F424
- * Size:	0000A8
+/**
+ * @note Address: 0x8005F424
+ * @note Size: 0xA8
  */
 void J3DGetTextureMtxMaya(const J3DTextureSRTInfo&, Mtx)
 {
@@ -624,10 +616,9 @@ void J3DGetTextureMtxMaya(const J3DTextureSRTInfo&, Mtx)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005F4CC
- * Size:	0000A8
+/**
+ * @note Address: 0x8005F4CC
+ * @note Size: 0xA8
  */
 void J3DGetTextureMtxMayaOld(const J3DTextureSRTInfo&, Mtx)
 {
@@ -677,10 +668,9 @@ void J3DGetTextureMtxMayaOld(const J3DTextureSRTInfo&, Mtx)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005F574
- * Size:	000064
+/**
+ * @note Address: 0x8005F574
+ * @note Size: 0x64
  */
 void J3DScaleNrmMtx(Mtx, const Vec&)
 {
@@ -713,10 +703,9 @@ void J3DScaleNrmMtx(Mtx, const Vec&)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005F5D8
- * Size:	000054
+/**
+ * @note Address: 0x8005F5D8
+ * @note Size: 0x54
  */
 void J3DScaleNrmMtx33(Mtx33, const Vec&)
 {
@@ -745,10 +734,9 @@ void J3DScaleNrmMtx33(Mtx33, const Vec&)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005F62C
- * Size:	000124
+/**
+ * @note Address: 0x8005F62C
+ * @note Size: 0x124
  */
 void J3DMtxProjConcat(Mtx, Mtx, Mtx)
 {
@@ -829,10 +817,9 @@ void J3DMtxProjConcat(Mtx, Mtx, Mtx)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005F750
- * Size:	0000DC
+/**
+ * @note Address: 0x8005F750
+ * @note Size: 0xDC
  */
 void J3DPSMtxArrayConcat(Mtx, Mtx, Mtx, u32)
 {

@@ -4,10 +4,9 @@
 namespace P2JME {
 namespace Caption {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
+/**
+ * @note Address: N/A
+ * @note Size: 0x44
  */
 TRenderingProcessor::TRenderingProcessor(JMessage::TReference* ref)
     : Window::TRenderingProcessor(ref)
@@ -15,17 +14,15 @@ TRenderingProcessor::TRenderingProcessor(JMessage::TReference* ref)
 	_144 = 1.0f;
 }
 
-/*
- * --INFO--
- * Address:	80450FC0
- * Size:	00000C
+/**
+ * @note Address: 0x80450FC0
+ * @note Size: 0xC
  */
 void TRenderingProcessor::doGetDrawInfo(Window::DrawInfo* info) { info->_20 = 0.266667f; }
 
-/*
- * --INFO--
- * Address:	80450FCC
- * Size:	0001EC
+/**
+ * @note Address: 0x80450FCC
+ * @note Size: 0x1EC
  */
 BOOL TRenderingProcessor::doDrawCommon(f32 x, f32 y, Matrixf* mtx1, Matrixf* mtx2)
 {
@@ -96,10 +93,9 @@ BOOL TRenderingProcessor::doDrawCommon(f32 x, f32 y, Matrixf* mtx1, Matrixf* mtx
 	return (u8)((ret >= 0.0f) ? ret + 0.5f : ret - 0.5f);
 }
 
-/*
- * --INFO--
- * Address:	804511B8
- * Size:	000054
+/**
+ * @note Address: 0x804511B8
+ * @note Size: 0x54
  */
 TControl::TControl()
 {
@@ -109,10 +105,9 @@ TControl::TControl()
 	_68         = 6;
 }
 
-/*
- * --INFO--
- * Address:	8045120C
- * Size:	0000E8
+/**
+ * @note Address: 0x8045120C
+ * @note Size: 0xE8
  */
 bool TControl::onInit()
 {
@@ -131,10 +126,9 @@ bool TControl::onInit()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	804512F4
- * Size:	000034
+/**
+ * @note Address: 0x804512F4
+ * @note Size: 0x34
  */
 void TControl::reset()
 {
@@ -142,10 +136,9 @@ void TControl::reset()
 	mState = 0;
 }
 
-/*
- * --INFO--
- * Address:	80451328
- * Size:	000128
+/**
+ * @note Address: 0x80451328
+ * @note Size: 0x128
  */
 bool TControl::updateSetFrame(long frame)
 {
@@ -171,10 +164,9 @@ bool TControl::updateSetFrame(long frame)
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	80451450
- * Size:	000084
+/**
+ * @note Address: 0x80451450
+ * @note Size: 0x84
  */
 void TControl::draw(Graphics& gfx)
 {
@@ -187,10 +179,9 @@ void TControl::draw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	804514D4
- * Size:	000058
+/**
+ * @note Address: 0x804514D4
+ * @note Size: 0x58
  */
 void TControl::start(char* name, long start, long end)
 {

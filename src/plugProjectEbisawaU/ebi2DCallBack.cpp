@@ -9,10 +9,9 @@
 
 namespace ebi {
 
-/*
- * --INFO--
- * Address:	803D068C
- * Size:	000060
+/**
+ * @note Address: 0x803D068C
+ * @note Size: 0x60
  */
 void E2DCallBack_Purupuru::do_update()
 {
@@ -22,10 +21,9 @@ void E2DCallBack_Purupuru::do_update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D06EC
- * Size:	0002CC
+/**
+ * @note Address: 0x803D06EC
+ * @note Size: 0x2CC
  */
 void E2DCallBack_BlinkFontColor::do_update()
 {
@@ -255,10 +253,9 @@ lbl_803D0994:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803D09B8
- * Size:	000118
+/**
+ * @note Address: 0x803D09B8
+ * @note Size: 0x118
  */
 void E2DCallBack_BlinkAlpha::do_update()
 {
@@ -283,10 +280,9 @@ void E2DCallBack_BlinkAlpha::do_update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D0AD0
- * Size:	0000C8
+/**
+ * @note Address: 0x803D0AD0
+ * @note Size: 0xC8
  */
 void E2DCallBack_AnmBase::loadAnm(char* path, JKRArchive* archive, s32 frame, s32 maxFrame)
 {
@@ -303,10 +299,9 @@ void E2DCallBack_AnmBase::loadAnm(char* path, JKRArchive* archive, s32 frame, s3
 	mFrameCtrl.mEnd = maxFrame;
 }
 
-/*
- * --INFO--
- * Address:	803D0B98
- * Size:	00010C
+/**
+ * @note Address: 0x803D0B98
+ * @note Size: 0x10C
  */
 void E2DCallBack_AnmBase::play(f32 speed, J3DAnmAttr attr, bool doPlayFromStart)
 {
@@ -325,10 +320,9 @@ void E2DCallBack_AnmBase::play(f32 speed, J3DAnmAttr attr, bool doPlayFromStart)
 	mIsFinished          = false;
 }
 
-/*
- * --INFO--
- * Address:	803D0CA4
- * Size:	000110
+/**
+ * @note Address: 0x803D0CA4
+ * @note Size: 0x110
  */
 void E2DCallBack_AnmBase::playBack(f32 speed, bool doPlayFromEnd)
 {
@@ -346,10 +340,9 @@ void E2DCallBack_AnmBase::playBack(f32 speed, bool doPlayFromEnd)
 	mIsFinished          = false;
 }
 
-/*
- * --INFO--
- * Address:	803D0DB4
- * Size:	000014
+/**
+ * @note Address: 0x803D0DB4
+ * @note Size: 0x14
  */
 void E2DCallBack_AnmBase::stop()
 {
@@ -357,20 +350,18 @@ void E2DCallBack_AnmBase::stop()
 	mIsFinished = true;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
+/**
+ * @note Address: N/A
+ * @note Size: 0x50
  */
 void E2DCallBack_AnmBase::disconnect()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803D0DC8
- * Size:	00003C
+/**
+ * @note Address: 0x803D0DC8
+ * @note Size: 0x3C
  */
 void E2DCallBack_AnmBase::setStartFrame()
 {
@@ -378,10 +369,9 @@ void E2DCallBack_AnmBase::setStartFrame()
 	mAnim->mCurrentFrame = mFrameCtrl.mFrame;
 }
 
-/*
- * --INFO--
- * Address:	803D0E04
- * Size:	00003C
+/**
+ * @note Address: 0x803D0E04
+ * @note Size: 0x3C
  */
 void E2DCallBack_AnmBase::setEndFrame()
 {
@@ -389,10 +379,9 @@ void E2DCallBack_AnmBase::setEndFrame()
 	mAnim->mCurrentFrame = mFrameCtrl.mFrame;
 }
 
-/*
- * --INFO--
- * Address:	803D0E40
- * Size:	0000C0
+/**
+ * @note Address: 0x803D0E40
+ * @note Size: 0xC0
  */
 void E2DCallBack_AnmBase::setRandFrame()
 {
@@ -402,10 +391,9 @@ void E2DCallBack_AnmBase::setRandFrame()
 	mAnim->mCurrentFrame = mFrameCtrl.mFrame;
 }
 
-/*
- * --INFO--
- * Address:	803D0F00
- * Size:	000054
+/**
+ * @note Address: 0x803D0F00
+ * @note Size: 0x54
  */
 f32 E2DCallBack_AnmBase::getPlayFinRate()
 {
@@ -414,10 +402,9 @@ f32 E2DCallBack_AnmBase::getPlayFinRate()
 	return (mFrameCtrl.mFrame - startFrame) / (endFrame - startFrame);
 }
 
-/*
- * --INFO--
- * Address:	803D0F54
- * Size:	00005C
+/**
+ * @note Address: 0x803D0F54
+ * @note Size: 0x5C
  */
 void E2DCallBack_AnmBase::do_update()
 {
@@ -430,17 +417,15 @@ void E2DCallBack_AnmBase::do_update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D0FB0
- * Size:	000008
+/**
+ * @note Address: 0x803D0FB0
+ * @note Size: 0x8
  */
 bool E2DCallBack_AnmBase::isFinish() { return mIsFinished; }
 
-/*
- * --INFO--
- * Address:	803D0FB8
- * Size:	00014C
+/**
+ * @note Address: 0x803D0FB8
+ * @note Size: 0x14C
  */
 void E2DCallBack_WindowCursor::do_update()
 {

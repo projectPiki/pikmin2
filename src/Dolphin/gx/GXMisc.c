@@ -7,10 +7,9 @@ static GXDrawDoneCallback DrawDoneCB;
 static GXBool DrawDone;
 static OSThreadQueue FinishQueue;
 
-/*
- * --INFO--
- * Address:	800E4FD8
- * Size:	000094
+/**
+ * @note Address: 0x800E4FD8
+ * @note Size: 0x94
  */
 void GXSetMisc(GXMiscToken token, u32 val)
 {
@@ -38,10 +37,9 @@ void GXSetMisc(GXMiscToken token, u32 val)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800E506C
- * Size:	00005C
+/**
+ * @note Address: 0x800E506C
+ * @note Size: 0x5C
  */
 void GXFlush(void)
 {
@@ -59,20 +57,18 @@ void GXFlush(void)
 	PPCSync();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 void GXResetWriteGatherPipe(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
+/**
+ * @note Address: N/A
+ * @note Size: 0x7C
  */
 static void __GXAbortWait(u32 clocks)
 {
@@ -84,10 +80,9 @@ static void __GXAbortWait(u32 clocks)
 	} while (time1 - time0 <= clocks / 4);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C4
+/**
+ * @note Address: N/A
+ * @note Size: 0xC4
  */
 static void __GXAbortWaitPECopyDone(void)
 {
@@ -102,10 +97,9 @@ static void __GXAbortWaitPECopyDone(void)
 	} while (peCnt0 != peCnt1);
 }
 
-/*
- * --INFO--
- * Address:	800E50C8
- * Size:	00016C
+/**
+ * @note Address: 0x800E50C8
+ * @note Size: 0x16C
  */
 void __GXAbort(void)
 {
@@ -119,10 +113,9 @@ void __GXAbort(void)
 	__GXAbortWait(20);
 }
 
-/*
- * --INFO--
- * Address:	800E5234
- * Size:	000170
+/**
+ * @note Address: 0x800E5234
+ * @note Size: 0x170
  */
 void GXAbortFrame(void)
 {
@@ -130,10 +123,9 @@ void GXAbortFrame(void)
 	__GXCleanGPFifo();
 }
 
-/*
- * --INFO--
- * Address:	800E53A4
- * Size:	0000B4
+/**
+ * @note Address: 0x800E53A4
+ * @note Size: 0xB4
  */
 void GXSetDrawSync(u16 token)
 {
@@ -152,20 +144,18 @@ void GXSetDrawSync(u16 token)
 	gx->bpSentNot = GX_FALSE;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void GXReadDrawSync(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800E5458
- * Size:	000098
+/**
+ * @note Address: 0x800E5458
+ * @note Size: 0x98
  */
 void GXSetDrawDone(void)
 {
@@ -181,10 +171,9 @@ void GXSetDrawDone(void)
 	OSRestoreInterrupts(interrupts);
 }
 
-/*
- * --INFO--
- * Address:	800E54F0
- * Size:	00004C
+/**
+ * @note Address: 0x800E54F0
+ * @note Size: 0x4C
  */
 void GXWaitDrawDone(void)
 {
@@ -197,10 +186,9 @@ void GXWaitDrawDone(void)
 	OSRestoreInterrupts(interrupts);
 }
 
-/*
- * --INFO--
- * Address:	800E553C
- * Size:	000080
+/**
+ * @note Address: 0x800E553C
+ * @note Size: 0x80
  */
 void GXDrawDone(void)
 {
@@ -208,10 +196,9 @@ void GXDrawDone(void)
 	GXWaitDrawDone();
 }
 
-/*
- * --INFO--
- * Address:	800E55BC
- * Size:	000024
+/**
+ * @note Address: 0x800E55BC
+ * @note Size: 0x24
  */
 void GXPixModeSync(void)
 {
@@ -219,27 +206,24 @@ void GXPixModeSync(void)
 	gx->bpSentNot = GX_FALSE;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void GXTexModeSync(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800E55E0
- * Size:	000014
+/**
+ * @note Address: 0x800E55E0
+ * @note Size: 0x14
  */
 void GXPokeAlphaMode(GXCompare func, u8 threshold) { GX_SET_PE_REG(3, func << 8 | threshold); }
 
-/*
- * --INFO--
- * Address:	800E55F4
- * Size:	000020
+/**
+ * @note Address: 0x800E55F4
+ * @note Size: 0x20
  */
 void GXPokeAlphaRead(GXAlphaReadMode mode)
 {
@@ -249,10 +233,9 @@ void GXPokeAlphaRead(GXAlphaReadMode mode)
 	GX_SET_PE_REG(4, reg);
 }
 
-/*
- * --INFO--
- * Address:	800E5614
- * Size:	000018
+/**
+ * @note Address: 0x800E5614
+ * @note Size: 0x18
  */
 void GXPokeAlphaUpdate(GXBool doUpdate)
 {
@@ -262,10 +245,9 @@ void GXPokeAlphaUpdate(GXBool doUpdate)
 	GX_SET_PE_REG(1, reg);
 }
 
-/*
- * --INFO--
- * Address:	800E562C
- * Size:	000064
+/**
+ * @note Address: 0x800E562C
+ * @note Size: 0x64
  */
 void GXPokeBlendMode(GXBlendMode mode, GXBlendFactor srcFactor, GXBlendFactor destFactor, GXLogicOp op)
 {
@@ -282,10 +264,9 @@ void GXPokeBlendMode(GXBlendMode mode, GXBlendFactor srcFactor, GXBlendFactor de
 	GX_SET_PE_REG(1, reg);
 }
 
-/*
- * --INFO--
- * Address:	800E5690
- * Size:	000018
+/**
+ * @note Address: 0x800E5690
+ * @note Size: 0x18
  */
 void GXPokeColorUpdate(GXBool doUpdate)
 {
@@ -295,10 +276,9 @@ void GXPokeColorUpdate(GXBool doUpdate)
 	GX_SET_PE_REG(1, reg);
 }
 
-/*
- * --INFO--
- * Address:	800E56A8
- * Size:	000024
+/**
+ * @note Address: 0x800E56A8
+ * @note Size: 0x24
  */
 void GXPokeDstAlpha(GXBool doEnable, u8 alpha)
 {
@@ -309,10 +289,9 @@ void GXPokeDstAlpha(GXBool doEnable, u8 alpha)
 	GX_SET_PE_REG(2, reg);
 }
 
-/*
- * --INFO--
- * Address:	800E56CC
- * Size:	000018
+/**
+ * @note Address: 0x800E56CC
+ * @note Size: 0x18
  */
 void GXPokeDither(GXBool doDither)
 {
@@ -322,10 +301,9 @@ void GXPokeDither(GXBool doDither)
 	GX_SET_PE_REG(1, reg);
 }
 
-/*
- * --INFO--
- * Address:	800E56E4
- * Size:	000020
+/**
+ * @note Address: 0x800E56E4
+ * @note Size: 0x20
  */
 void GXPokeZMode(GXBool doCompare, GXCompare func, GXBool doUpdate)
 {
@@ -337,50 +315,45 @@ void GXPokeZMode(GXBool doCompare, GXCompare func, GXBool doUpdate)
 	GX_SET_PE_REG(0, reg);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void GXPeekARGB(u16 x, u16 y, u32* color)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 void GXPokeARGB(u16 x, u16 y, u32 color)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void GXPeekZ(u16 x, u16 y, u32* z)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 void GXPokeZ(u16 x, u16 y, u32 z)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800E5704
- * Size:	000044
+/**
+ * @note Address: 0x800E5704
+ * @note Size: 0x44
  */
 GXDrawSyncCallback GXSetDrawSyncCallback(GXDrawSyncCallback callback)
 {
@@ -394,10 +367,9 @@ GXDrawSyncCallback GXSetDrawSyncCallback(GXDrawSyncCallback callback)
 	return prevCB;
 }
 
-/*
- * --INFO--
- * Address:	800E5748
- * Size:	000088
+/**
+ * @note Address: 0x800E5748
+ * @note Size: 0x88
  */
 static void GXTokenInterruptHandler(__OSInterrupt interrupt, OSContext* context)
 {
@@ -420,10 +392,9 @@ static void GXTokenInterruptHandler(__OSInterrupt interrupt, OSContext* context)
 	GX_SET_PE_REG(5, reg);
 }
 
-/*
- * --INFO--
- * Address:	800E57D0
- * Size:	000044
+/**
+ * @note Address: 0x800E57D0
+ * @note Size: 0x44
  */
 GXDrawDoneCallback GXSetDrawDoneCallback(GXDrawDoneCallback callback)
 {
@@ -437,10 +408,9 @@ GXDrawDoneCallback GXSetDrawDoneCallback(GXDrawDoneCallback callback)
 	return prevCB;
 }
 
-/*
- * --INFO--
- * Address:	800E5814
- * Size:	000080
+/**
+ * @note Address: 0x800E5814
+ * @note Size: 0x80
  */
 static void GXFinishInterruptHandler(__OSInterrupt interrupt, OSContext* context)
 {
@@ -464,10 +434,9 @@ static void GXFinishInterruptHandler(__OSInterrupt interrupt, OSContext* context
 	OSWakeupThread(&FinishQueue);
 }
 
-/*
- * --INFO--
- * Address:	800E5894
- * Size:	000074
+/**
+ * @note Address: 0x800E5894
+ * @note Size: 0x74
  */
 void __GXPEInit(void)
 {
@@ -489,20 +458,18 @@ void __GXPEInit(void)
 	GX_SET_PE_REG(5, reg);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000134
+/**
+ * @note Address: N/A
+ * @note Size: 0x134
  */
 u32 GXCompressZ16(u32 z24, GXZFmt16 zFormat)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00011C
+/**
+ * @note Address: N/A
+ * @note Size: 0x11C
  */
 u32 GXDecompressZ16(u32 z16, GXZFmt16 zFormat)
 {

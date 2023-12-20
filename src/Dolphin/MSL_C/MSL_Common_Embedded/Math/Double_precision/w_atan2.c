@@ -1,9 +1,8 @@
 extern double __ieee754_atan2();
 
-/*
- * --INFO--
- * Address:	800CF98C
- * Size:	000020
+/**
+ * @note Address: 0x800CF98C
+ * @note Size: 0x20
  */
 
 double atan2(double __x, double __y) { return (double)__ieee754_atan2(); }

@@ -31,10 +31,9 @@ static u32 next = 1;
 #define SEC_AD3(x) ((u8)(((x) >> 19) & 0x03))
 #define SEC_BA(x)  ((u8)(((x) >> 12) & 0x7f))
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 int CARDRand()
 {
@@ -42,20 +41,18 @@ int CARDRand()
 	return (int)((u32)(next / 65536) % 32768);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  * Fun fact: making the argument of this a u32 instead of uint
  * makes the inlined versions of this not match (:
  * LOVE this compiler.
  */
 void CARDSrand(uint seed) { next = seed; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000174
+/**
+ * @note Address: N/A
+ * @note Size: 0x174
  */
 u32 exnor_1st(u32 data, u32 rshift)
 {
@@ -71,10 +68,9 @@ u32 exnor_1st(u32 data, u32 rshift)
 	return w;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000174
+/**
+ * @note Address: N/A
+ * @note Size: 0x174
  */
 u32 exnor(u32 data, u32 lshift)
 {
@@ -91,10 +87,9 @@ u32 exnor(u32 data, u32 lshift)
 	return w;
 }
 
-/*
- * --INFO--
- * Address:	800D5920
- * Size:	00016C
+/**
+ * @note Address: 0x800D5920
+ * @note Size: 0x16C
  */
 u32 bitrev(u32 data)
 {
@@ -120,10 +115,9 @@ u32 bitrev(u32 data)
 	return wk;
 }
 
-/*
- * --INFO--
- * Address:	800D5A8C
- * Size:	000144
+/**
+ * @note Address: 0x800D5A8C
+ * @note Size: 0x144
  */
 s32 ReadArrayUnlock(s32 channel, u32 data, void* buffer, s32 rlen, s32 mode)
 {
@@ -158,10 +152,9 @@ s32 ReadArrayUnlock(s32 channel, u32 data, void* buffer, s32 rlen, s32 mode)
 	return err ? CARD_RESULT_NOCARD : CARD_RESULT_READY;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 u32 GetInitVal()
 {
@@ -176,10 +169,9 @@ u32 GetInitVal()
 	return tmp;
 }
 
-/*
- * --INFO--
- * Address:	800D5BD0
- * Size:	0000C4
+/**
+ * @note Address: 0x800D5BD0
+ * @note Size: 0xC4
  */
 s32 DummyLen()
 {
@@ -216,10 +208,9 @@ s32 DummyLen()
 	return tmp;
 }
 
-/*
- * --INFO--
- * Address:	800D5C94
- * Size:	000B58
+/**
+ * @note Address: 0x800D5C94
+ * @note Size: 0xB58
  */
 s32 __CARDUnlock(s32 channel, u8 flashID[12])
 {
@@ -341,10 +332,9 @@ s32 __CARDUnlock(s32 channel, u8 flashID[12])
 	return CARD_RESULT_READY;
 }
 
-/*
- * --INFO--
- * Address:	800D67EC
- * Size:	000070
+/**
+ * @note Address: 0x800D67EC
+ * @note Size: 0x70
  */
 void InitCallback(void* dspTask)
 {
@@ -369,10 +359,9 @@ void InitCallback(void* dspTask)
 	while (DSPCheckMailToDSP()) { }
 }
 
-/*
- * --INFO--
- * Address:	800D685C
- * Size:	000324
+/**
+ * @note Address: 0x800D685C
+ * @note Size: 0x324
  */
 void DoneCallback(void* dspTask)
 {

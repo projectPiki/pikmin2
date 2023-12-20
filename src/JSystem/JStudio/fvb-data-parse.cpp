@@ -5,10 +5,9 @@
 namespace JStudio {
 namespace fvb {
 namespace data {
-/*
- * --INFO--
- * Address:	8000CA3C
- * Size:	000068
+/**
+ * @note Address: 0x8000CA3C
+ * @note Size: 0x68
  */
 void TParse_TParagraph::getData(TParse_TParagraph::TData* data) const
 {

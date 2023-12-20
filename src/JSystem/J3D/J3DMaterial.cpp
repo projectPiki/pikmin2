@@ -14,10 +14,9 @@
 #include "JSystem/J3D/J3DTexMtx.h"
 #include "JSystem/J3D/J3DTypes.h"
 
-/*
- * --INFO--
- * Address:	800614E0
- * Size:	000200
+/**
+ * @note Address: 0x800614E0
+ * @note Size: 0x200
  */
 J3DColorBlock* J3DMaterial::createColorBlock(u32 type)
 {
@@ -36,10 +35,9 @@ J3DColorBlock* J3DMaterial::createColorBlock(u32 type)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	8006173C
- * Size:	0000B4
+/**
+ * @note Address: 0x8006173C
+ * @note Size: 0xB4
  * __ct__12J3DColorChanFv
  */
 J3DColorChan::J3DColorChan()
@@ -93,10 +91,9 @@ J3DColorChan::J3DColorChan()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006183C
- * Size:	000164
+/**
+ * @note Address: 0x8006183C
+ * @note Size: 0x164
  */
 J3DTexGenBlock* J3DMaterial::createTexGenBlock(u32 flags)
 {
@@ -110,10 +107,9 @@ J3DTexGenBlock* J3DMaterial::createTexGenBlock(u32 flags)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80061A6C
- * Size:	000374
+/**
+ * @note Address: 0x80061A6C
+ * @note Size: 0x374
  */
 J3DTevBlock* J3DMaterial::createTevBlock(int stageCount)
 {
@@ -130,17 +126,15 @@ J3DTevBlock* J3DMaterial::createTevBlock(int stageCount)
 	return block;
 }
 
-/*
- * --INFO--
- * Address:	80061DE0
- * Size:	00000C
+/**
+ * @note Address: 0x80061DE0
+ * @note Size: 0xC
  */
 J3DTevSwapModeTable::J3DTevSwapModeTable() { _00 = j3dDefaultTevSwapTableID; }
 
-/*
- * --INFO--
- * Address:	80061DF0
- * Size:	0000E4
+/**
+ * @note Address: 0x80061DF0
+ * @note Size: 0xE4
  * __ct__14J3DIndTevStageFv
  */
 J3DIndTevStage::J3DIndTevStage()
@@ -214,10 +208,9 @@ J3DIndTevStage::J3DIndTevStage()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80061ED4
- * Size:	000068
+/**
+ * @note Address: 0x80061ED4
+ * @note Size: 0x68
  * __ct__11J3DTevStageFv
  */
 J3DTevStage::J3DTevStage()
@@ -252,10 +245,9 @@ J3DTevStage::J3DTevStage()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80061F3C
- * Size:	0001D8
+/**
+ * @note Address: 0x80061F3C
+ * @note Size: 0x1D8
  */
 void J3DTevStage::setTevStageInfo(const J3DTevStageInfo&)
 {
@@ -389,10 +381,9 @@ lbl_800620E4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8006217C
- * Size:	0000E8
+/**
+ * @note Address: 0x8006217C
+ * @note Size: 0xE8
  */
 J3DIndBlock* J3DMaterial::createIndBlock(int stageCount)
 {
@@ -402,10 +393,9 @@ J3DIndBlock* J3DMaterial::createIndBlock(int stageCount)
 	return new J3DIndBlockNull();
 }
 
-/*
- * --INFO--
- * Address:	800622A0
- * Size:	000018
+/**
+ * @note Address: 0x800622A0
+ * @note Size: 0x18
  * __ct__19J3DIndTexCoordScaleFv
  */
 J3DIndTexCoordScale::J3DIndTexCoordScale()
@@ -420,10 +410,9 @@ J3DIndTexCoordScale::J3DIndTexCoordScale()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80062394
- * Size:	00027C
+/**
+ * @note Address: 0x80062394
+ * @note Size: 0x27C
  */
 J3DPEBlock* J3DMaterial::createPEBlock(u32 a1, u32 a2)
 {
@@ -623,18 +612,16 @@ lbl_800625FC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80062610
- * Size:	000048
+/**
+ * @note Address: 0x80062610
+ * @note Size: 0x48
  * __dt__10J3DPEBlockFv
  */
 // J3DPEBlock::~J3DPEBlock() { }
 
-/*
- * --INFO--
- * Address:	80062658
- * Size:	000050
+/**
+ * @note Address: 0x80062658
+ * @note Size: 0x50
  */
 u32 J3DMaterial::calcSizeColorBlock(u32 flags)
 {
@@ -653,10 +640,9 @@ u32 J3DMaterial::calcSizeColorBlock(u32 flags)
 	return size;
 }
 
-/*
- * --INFO--
- * Address:	800626A8
- * Size:	00002C
+/**
+ * @note Address: 0x800626A8
+ * @note Size: 0x2C
  */
 u32 J3DMaterial::calcSizeTexGenBlock(u32 flags)
 {
@@ -669,10 +655,9 @@ u32 J3DMaterial::calcSizeTexGenBlock(u32 flags)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800626D4
- * Size:	000048
+/**
+ * @note Address: 0x800626D4
+ * @note Size: 0x48
  */
 u32 J3DMaterial::calcSizeTevBlock(int count)
 {
@@ -716,10 +701,9 @@ u32 J3DMaterial::calcSizeTevBlock(int count)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	8006271C
- * Size:	000014
+/**
+ * @note Address: 0x8006271C
+ * @note Size: 0x14
  */
 u32 J3DMaterial::calcSizeIndBlock(int count)
 {
@@ -730,10 +714,9 @@ u32 J3DMaterial::calcSizeIndBlock(int count)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80062730
- * Size:	000068
+/**
+ * @note Address: 0x80062730
+ * @note Size: 0x68
  * TODO: Sizeofs with the correct types
  */
 u32 J3DMaterial::calcSizePEBlock(u32 flags, u32 p2)
@@ -755,10 +738,9 @@ u32 J3DMaterial::calcSizePEBlock(u32 flags, u32 p2)
 	return size;
 }
 
-/*
- * --INFO--
- * Address:	80062798
- * Size:	000050
+/**
+ * @note Address: 0x80062798
+ * @note Size: 0x50
  * initialize__11J3DMaterialFv
  */
 void J3DMaterial::initialize()
@@ -780,10 +762,9 @@ void J3DMaterial::initialize()
 	mSharedDLObj  = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	800627E8
- * Size:	0000BC
+/**
+ * @note Address: 0x800627E8
+ * @note Size: 0xBC
  * countDLSize__11J3DMaterialFv
  */
 u32 J3DMaterial::countDLSize()
@@ -809,10 +790,9 @@ void J3DMaterial::makeDisplayList_private(J3DDisplayListObj* obj)
 	obj->endDL();
 }
 
-/*
- * --INFO--
- * Address:	800628EC
- * Size:	0002F8
+/**
+ * @note Address: 0x800628EC
+ * @note Size: 0x2F8
  */
 void J3DMaterial::makeDisplayList()
 {
@@ -822,17 +802,15 @@ void J3DMaterial::makeDisplayList()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80062BE4
- * Size:	0002D4
+/**
+ * @note Address: 0x80062BE4
+ * @note Size: 0x2D4
  */
 void J3DMaterial::makeSharedDisplayList() { makeDisplayList_private(mSharedDLObj); }
 
-/*
- * --INFO--
- * Address:	80062EB8
- * Size:	000050
+/**
+ * @note Address: 0x80062EB8
+ * @note Size: 0x50
  * load__11J3DMaterialFv
  */
 void J3DMaterial::load()
@@ -843,10 +821,9 @@ void J3DMaterial::load()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80062F10
- * Size:	000064
+/**
+ * @note Address: 0x80062F10
+ * @note Size: 0x64
  * loadSharedDL__11J3DMaterialFv
  */
 void J3DMaterial::loadSharedDL()
@@ -858,10 +835,9 @@ void J3DMaterial::loadSharedDL()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80062F74
- * Size:	000098
+/**
+ * @note Address: 0x80062F74
+ * @note Size: 0x98
  * patch__11J3DMaterialFv
  */
 void J3DMaterial::patch()
@@ -874,10 +850,9 @@ void J3DMaterial::patch()
 	j3dSys.getMatPacket()->endPatch();
 }
 
-/*
- * --INFO--
- * Address:	80063014
- * Size:	0001FC
+/**
+ * @note Address: 0x80063014
+ * @note Size: 0x1FC
  */
 void J3DMaterial::diff(u32 p1)
 {
@@ -896,10 +871,9 @@ void J3DMaterial::diff(u32 p1)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80063218
- * Size:	000078
+/**
+ * @note Address: 0x80063218
+ * @note Size: 0x78
  * calc__11J3DMaterialFPA4_Cf
  */
 void J3DMaterial::calc(const Mtx mtx)
@@ -914,10 +888,9 @@ void J3DMaterial::calc(const Mtx mtx)
 	setCurrentMtx();
 }
 
-/*
- * --INFO--
- * Address:	80063290
- * Size:	00005C
+/**
+ * @note Address: 0x80063290
+ * @note Size: 0x5C
  * calcDiffTexMtx__11J3DMaterialFPA4_Cf
  */
 void J3DMaterial::calcDiffTexMtx(const Mtx mtx)
@@ -929,18 +902,16 @@ void J3DMaterial::calcDiffTexMtx(const Mtx mtx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800632EC
- * Size:	000018
+/**
+ * @note Address: 0x800632EC
+ * @note Size: 0x18
  * setCurrentMtx__11J3DMaterialFv
  */
 void J3DMaterial::setCurrentMtx() { mShape->setCurrentMtx(mCurrentMtx); }
 
-/*
- * --INFO--
- * Address:	80063304
- * Size:	000294
+/**
+ * @note Address: 0x80063304
+ * @note Size: 0x294
  */
 void J3DMaterial::calcCurrentMtx()
 {
@@ -1128,10 +1099,9 @@ lbl_80063584:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800635B4
- * Size:	0000E4
+/**
+ * @note Address: 0x800635B4
+ * @note Size: 0xE4
  * reset__11J3DMaterialFv
  */
 void J3DMaterial::reset()
@@ -1145,10 +1115,9 @@ void J3DMaterial::reset()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80063698
- * Size:	000020
+/**
+ * @note Address: 0x80063698
+ * @note Size: 0x20
  */
 void J3DMaterial::change()
 {
@@ -1158,10 +1127,9 @@ void J3DMaterial::change()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800636B8
- * Size:	000094
+/**
+ * @note Address: 0x800636B8
+ * @note Size: 0x94
  */
 J3DErrType J3DMaterial::newSharedDisplayList(u32 p1)
 {
@@ -1181,10 +1149,9 @@ J3DErrType J3DMaterial::newSharedDisplayList(u32 p1)
 	return JET_Success;
 }
 
-/*
- * --INFO--
- * Address:	8006374C
- * Size:	000094
+/**
+ * @note Address: 0x8006374C
+ * @note Size: 0x94
  */
 J3DErrType J3DMaterial::newSingleSharedDisplayList(u32 p1)
 {
@@ -1204,32 +1171,28 @@ J3DErrType J3DMaterial::newSingleSharedDisplayList(u32 p1)
 	return JET_Success;
 }
 
-/*
- * --INFO--
- * Address:	800637E0
- * Size:	000050
+/**
+ * @note Address: 0x800637E0
+ * @note Size: 0x50
  * initialize__18J3DPatchedMaterialFv
  */
 void J3DPatchedMaterial::initialize() { J3DMaterial::initialize(); }
 
-/*
- * --INFO--
- * Address:	80063830
- * Size:	000004
+/**
+ * @note Address: 0x80063830
+ * @note Size: 0x4
  */
 void J3DPatchedMaterial::makeDisplayList() { }
 
-/*
- * --INFO--
- * Address:	80063834
- * Size:	000004
+/**
+ * @note Address: 0x80063834
+ * @note Size: 0x4
  */
 void J3DPatchedMaterial::makeSharedDisplayList() { }
 
-/*
- * --INFO--
- * Address:	80063838
- * Size:	00001C
+/**
+ * @note Address: 0x80063838
+ * @note Size: 0x1C
  * load__18J3DPatchedMaterialFv
  */
 void J3DPatchedMaterial::load()
@@ -1240,10 +1203,9 @@ void J3DPatchedMaterial::load()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80063854
- * Size:	000040
+/**
+ * @note Address: 0x80063854
+ * @note Size: 0x40
  * loadSharedDL__18J3DPatchedMaterialFv
  */
 void J3DPatchedMaterial::loadSharedDL()
@@ -1253,46 +1215,40 @@ void J3DPatchedMaterial::loadSharedDL()
 		mSharedDLObj->callDL();
 }
 
-/*
- * --INFO--
- * Address:	80063894
- * Size:	000004
+/**
+ * @note Address: 0x80063894
+ * @note Size: 0x4
  */
 void J3DPatchedMaterial::reset() { }
 
-/*
- * --INFO--
- * Address:	80063898
- * Size:	000004
+/**
+ * @note Address: 0x80063898
+ * @note Size: 0x4
  */
 void J3DPatchedMaterial::change() { }
 
-/*
- * --INFO--
- * Address:	8006389C
- * Size:	000050
+/**
+ * @note Address: 0x8006389C
+ * @note Size: 0x50
  * initialize__17J3DLockedMaterialFv
  */
 void J3DLockedMaterial::initialize() { J3DMaterial::initialize(); }
 
-/*
- * --INFO--
- * Address:	800638EC
- * Size:	000004
+/**
+ * @note Address: 0x800638EC
+ * @note Size: 0x4
  */
 void J3DLockedMaterial::makeDisplayList() { }
 
-/*
- * --INFO--
- * Address:	800638F0
- * Size:	000004
+/**
+ * @note Address: 0x800638F0
+ * @note Size: 0x4
  */
 void J3DLockedMaterial::makeSharedDisplayList() { }
 
-/*
- * --INFO--
- * Address:	800638F4
- * Size:	00001C
+/**
+ * @note Address: 0x800638F4
+ * @note Size: 0x1C
  * load__17J3DLockedMaterialFv
  */
 void J3DLockedMaterial::load()
@@ -1303,10 +1259,9 @@ void J3DLockedMaterial::load()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80063910
- * Size:	000040
+/**
+ * @note Address: 0x80063910
+ * @note Size: 0x40
  * loadSharedDL__17J3DLockedMaterialFv
  */
 void J3DLockedMaterial::loadSharedDL()
@@ -1316,37 +1271,32 @@ void J3DLockedMaterial::loadSharedDL()
 		mSharedDLObj->callDL();
 }
 
-/*
- * --INFO--
- * Address:	80063950
- * Size:	000004
+/**
+ * @note Address: 0x80063950
+ * @note Size: 0x4
  */
 void J3DLockedMaterial::patch() { }
 
-/*
- * --INFO--
- * Address:	80063954
- * Size:	000004
+/**
+ * @note Address: 0x80063954
+ * @note Size: 0x4
  */
 void J3DLockedMaterial::diff(u32) { }
 
-/*
- * --INFO--
- * Address:	80063958
- * Size:	000004
+/**
+ * @note Address: 0x80063958
+ * @note Size: 0x4
  */
 void J3DLockedMaterial::calc(const Mtx) { }
 
-/*
- * --INFO--
- * Address:	8006395C
- * Size:	000004
+/**
+ * @note Address: 0x8006395C
+ * @note Size: 0x4
  */
 void J3DLockedMaterial::reset() { }
 
-/*
- * --INFO--
- * Address:	80063960
- * Size:	000004
+/**
+ * @note Address: 0x80063960
+ * @note Size: 0x4
  */
 void J3DLockedMaterial::change() { }

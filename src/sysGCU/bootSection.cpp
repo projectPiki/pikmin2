@@ -26,10 +26,9 @@ static const u32 padding[]        = { 0, 0, 0 };
 u32 TinyPikminMgr::sTinyPikminNum = 10;
 J2DPicture* TinyPikminMgr::sPikminTex[6];
 
-/*
- * --INFO--
- * Address:	804473BC
- * Size:	000030
+/**
+ * @note Address: 0x804473BC
+ * @note Size: 0x30
  */
 TinyPikmin::TinyPikmin()
 {
@@ -43,30 +42,27 @@ TinyPikmin::TinyPikmin()
 	_24     = 1.0f;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000110
+/**
+ * @note Address: N/A
+ * @note Size: 0x110
  */
 void TinyPikmin::init(int, f32, f32, f32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000090
+/**
+ * @note Address: N/A
+ * @note Size: 0x90
  */
 void TinyPikmin::wind(f32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 void TinyPikmin::appear()
 {
@@ -76,20 +72,18 @@ void TinyPikmin::appear()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 void TinyPikmin::disappear()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	804473EC
- * Size:	0004B8
+/**
+ * @note Address: 0x804473EC
+ * @note Size: 0x4B8
  */
 void TinyPikmin::update()
 {
@@ -193,10 +187,9 @@ void TinyPikmin::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000180
+/**
+ * @note Address: N/A
+ * @note Size: 0x180
  */
 void TinyPikmin::draw()
 {
@@ -225,20 +218,18 @@ void TinyPikmin::draw()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000100
+/**
+ * @note Address: N/A
+ * @note Size: 0x100
  */
 void TinyPikmin::drawPikmin(f32, f32, f32, f32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000198
+/**
+ * @note Address: N/A
+ * @note Size: 0x198
  */
 TinyPikminMgr::TinyPikminMgr()
 {
@@ -267,10 +258,9 @@ TinyPikminMgr::TinyPikminMgr()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000124
+/**
+ * @note Address: N/A
+ * @note Size: 0x124
  */
 void TinyPikminMgr::loadResource(JKRArchive* arc)
 {
@@ -287,10 +277,9 @@ void TinyPikminMgr::loadResource(JKRArchive* arc)
 	}
 }
 
-/*
- * --INFO--
- * Address:	804478A4
- * Size:	0004C8
+/**
+ * @note Address: 0x804478A4
+ * @note Size: 0x4C8
  */
 void TinyPikminMgr::init()
 {
@@ -369,10 +358,9 @@ void TinyPikminMgr::init()
 	delete[] values;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 void TinyPikminMgr::update()
 {
@@ -381,10 +369,9 @@ void TinyPikminMgr::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000274
+/**
+ * @note Address: N/A
+ * @note Size: 0x274
  */
 void TinyPikminMgr::draw()
 {
@@ -393,10 +380,9 @@ void TinyPikminMgr::draw()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 void TinyPikminMgr::appear()
 {
@@ -405,20 +391,18 @@ void TinyPikminMgr::appear()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B4
+/**
+ * @note Address: N/A
+ * @note Size: 0xB4
  */
 void TinyPikminMgr::disappear()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80447D6C
- * Size:	000348
+/**
+ * @note Address: 0x80447D6C
+ * @note Size: 0x348
  */
 BootSection::BootSection(JKRHeap* heap)
     : BaseHIOSection(heap)
@@ -453,24 +437,21 @@ BootSection::BootSection(JKRHeap* heap)
 	mTimeStep = 0.5f;
 }
 
-/*
- * --INFO--
- * Address:	804480B4
- * Size:	000084
+/**
+ * @note Address: 0x804480B4
+ * @note Size: 0x84
  */
 BootSection::~BootSection() { sys->destroyRomFont(); }
 
-/*
- * --INFO--
- * Address:	80448138
- * Size:	000004
+/**
+ * @note Address: 0x80448138
+ * @note Size: 0x4
  */
 void BootSection::init() { }
 
-/*
- * --INFO--
- * Address:	8044813C
- * Size:	0002B8
+/**
+ * @note Address: 0x8044813C
+ * @note Size: 0x2B8
  * Figure out how the JKR inlines are being used
  */
 void BootSection::loadBootResource()
@@ -498,10 +479,9 @@ void BootSection::loadBootResource()
 	sTinyPikminMgr->loadResource(arc);
 }
 
-/*
- * --INFO--
- * Address:	804483F4
- * Size:	000128
+/**
+ * @note Address: 0x804483F4
+ * @note Size: 0x128
  */
 void BootSection::load2DResource()
 {
@@ -528,10 +508,9 @@ void BootSection::load2DResource()
 	sys->heapStatusEnd("ebiScreen");
 }
 
-/*
- * --INFO--
- * Address:	804487B0
- * Size:	000044
+/**
+ * @note Address: 0x804487B0
+ * @note Size: 0x44
  */
 void BootSection::loadResident()
 {
@@ -541,20 +520,18 @@ void BootSection::loadResident()
 	backup->becomeCurrentHeap();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00008C
+/**
+ * @note Address: N/A
+ * @note Size: 0x8C
  */
 void BootSection::drawScreenProgre(Graphics&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	804487F4
- * Size:	00019C
+/**
+ * @note Address: 0x804487F4
+ * @note Size: 0x19C
  */
 void BootSection::doDraw(Graphics& gfx)
 {
@@ -604,41 +581,36 @@ void BootSection::doDraw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void BootSection::drawDebugInfo(Graphics&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80448990
- * Size:	000020
+/**
+ * @note Address: 0x80448990
+ * @note Size: 0x20
  */
 void BootSection::drawProgressive(Graphics& gfx) { drawNintendoLogo(gfx); }
 
-/*
- * --INFO--
- * Address:	804489B0
- * Size:	000020
+/**
+ * @note Address: 0x804489B0
+ * @note Size: 0x20
  */
 void BootSection::drawSetProgressive(Graphics& gfx) { drawNintendoLogo(gfx); }
 
-/*
- * --INFO--
- * Address:	804489D0
- * Size:	000020
+/**
+ * @note Address: 0x804489D0
+ * @note Size: 0x20
  */
 void BootSection::drawSetInterlace(Graphics& gfx) { drawNintendoLogo(gfx); }
 
-/*
- * --INFO--
- * Address:	804489F0
- * Size:	0003E0
+/**
+ * @note Address: 0x804489F0
+ * @note Size: 0x3E0
  */
 void BootSection::drawNintendoLogo(Graphics& gfx)
 {
@@ -661,10 +633,9 @@ void BootSection::drawNintendoLogo(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80448DD0
- * Size:	0000B4
+/**
+ * @note Address: 0x80448DD0
+ * @note Size: 0xB4
  */
 void BootSection::drawDolbyLogo(Graphics& gfx)
 {
@@ -676,10 +647,9 @@ void BootSection::drawDolbyLogo(Graphics& gfx)
 	pic.draw(DOLBYLOGO_XPOS, DOLBYLOGO_YPOS, DOLBYLOGO_WIDTH, DOLBYLOGO_HEIGHT, false, false, false);
 }
 
-/*
- * --INFO--
- * Address:	80448E84
- * Size:	000188
+/**
+ * @note Address: 0x80448E84
+ * @note Size: 0x188
  */
 void BootSection::drawEpilepsy(Graphics& gfx)
 {
@@ -806,20 +776,18 @@ lbl_80448FEC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 void BootSection::changeRenderModeProgressive()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8044900C
- * Size:	000694
+/**
+ * @note Address: 0x8044900C
+ * @note Size: 0x694
  */
 bool BootSection::doUpdate()
 {
@@ -1452,10 +1420,9 @@ lbl_80449680:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	804496A0
- * Size:	00009C
+/**
+ * @note Address: 0x804496A0
+ * @note Size: 0x9C
  */
 void BootSection::updateLoadResourceFirst()
 {
@@ -1478,10 +1445,9 @@ void BootSection::updateLoadResourceFirst()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8044973C
- * Size:	00013C
+/**
+ * @note Address: 0x8044973C
+ * @note Size: 0x13C
  */
 void BootSection::updateLoadMemoryCard()
 {
@@ -1502,10 +1468,9 @@ void BootSection::updateLoadMemoryCard()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80449878
- * Size:	000288
+/**
+ * @note Address: 0x80449878
+ * @note Size: 0x288
  */
 void BootSection::updateNintendoLogo()
 {
@@ -1555,10 +1520,9 @@ void BootSection::updateNintendoLogo()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80449B00
- * Size:	000180
+/**
+ * @note Address: 0x80449B00
+ * @note Size: 0x180
  */
 void BootSection::updateProgressive()
 {
@@ -1590,10 +1554,9 @@ void BootSection::updateProgressive()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80449C80
- * Size:	000064
+/**
+ * @note Address: 0x80449C80
+ * @note Size: 0x64
  */
 void BootSection::updateWaitProgressive()
 {
@@ -1606,10 +1569,9 @@ void BootSection::updateWaitProgressive()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80449CE4
- * Size:	000120
+/**
+ * @note Address: 0x80449CE4
+ * @note Size: 0x120
  */
 void BootSection::run()
 {
@@ -1625,10 +1587,9 @@ void BootSection::run()
 	mIsMainActive = false;
 }
 
-/*
- * --INFO--
- * Address:	80449E04
- * Size:	00009C
+/**
+ * @note Address: 0x80449E04
+ * @note Size: 0x9C
  */
 void BootSection::runWait(RunWaitCallback func)
 {
@@ -1643,37 +1604,33 @@ void BootSection::runWait(RunWaitCallback func)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000090
+/**
+ * @note Address: N/A
+ * @note Size: 0x90
  */
 void BootSection::waitLoadGameOption()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 void BootSection::waitSystemDvdLoad()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80449EA0
- * Size:	000030
+/**
+ * @note Address: 0x80449EA0
+ * @note Size: 0x30
  */
 bool BootSection::waitLoadResource() { return sys->dvdLoadSyncAllNoBlock() != 0; }
 
-/*
- * --INFO--
- * Address:	80449ED0
- * Size:	000084
+/**
+ * @note Address: 0x80449ED0
+ * @note Size: 0x84
  */
 void BootSection::setMode(int id)
 {
@@ -1688,19 +1645,17 @@ void BootSection::setMode(int id)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void BootSection::getModeEpilepsy()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80449F54
- * Size:	000088
+/**
+ * @note Address: 0x80449F54
+ * @note Size: 0x88
  */
 void BootSection::setModeEpilepsy() { setMode(SID_INIT_NINTENDO_LOGO); }

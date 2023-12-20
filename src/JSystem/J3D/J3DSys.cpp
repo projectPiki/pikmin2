@@ -17,10 +17,9 @@ static u8 NullTexData[0x10] = { 0x0 };
 
 s32 j3dDefaultViewNo;
 
-/*
- * --INFO--
- * Address:	8005DAAC
- * Size:	000114
+/**
+ * @note Address: 0x8005DAAC
+ * @note Size: 0x114
  */
 J3DSys::J3DSys()
 {
@@ -54,10 +53,9 @@ J3DSys::J3DSys()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8005DBC0
- * Size:	000024
+/**
+ * @note Address: 0x8005DBC0
+ * @note Size: 0x24
  */
 void J3DSys::loadPosMtxIndx(int p1, u16 p2) const
 {
@@ -66,10 +64,9 @@ void J3DSys::loadPosMtxIndx(int p1, u16 p2) const
 	GXWGFifo.u16 = (u16)(p1 * 0xC) | 0xB000;
 }
 
-/*
- * --INFO--
- * Address:	8005DBE4
- * Size:	000028
+/**
+ * @note Address: 0x8005DBE4
+ * @note Size: 0x28
  */
 void J3DSys::loadNrmMtxIndx(int p1, u16 p2) const
 {
@@ -113,10 +110,9 @@ void J3DSys::setTexCacheRegion(GXTexCacheSize size)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8005DC0C
- * Size:	0007B8
+/**
+ * @note Address: 0x8005DC0C
+ * @note Size: 0x7B8
  */
 void J3DSys::drawInit()
 {
@@ -221,10 +217,9 @@ void J3DSys::drawInit()
 	setTexCacheRegion(GX_TEXCACHE_32K);
 }
 
-/*
- * --INFO--
- * Address:	8005E3C4
- * Size:	00005C
+/**
+ * @note Address: 0x8005E3C4
+ * @note Size: 0x5C
  */
 void J3DSys::reinitGX()
 {
@@ -237,10 +232,9 @@ void J3DSys::reinitGX()
 	reinitPixelProc();
 }
 
-/*
- * --INFO--
- * Address:	8005E420
- * Size:	00004C
+/**
+ * @note Address: 0x8005E420
+ * @note Size: 0x4C
  */
 void J3DSys::reinitGenMode()
 {
@@ -252,10 +246,9 @@ void J3DSys::reinitGenMode()
 	GXSetCoPlanar(GX_FALSE);
 }
 
-/*
- * --INFO--
- * Address:	8005E46C
- * Size:	0000AC
+/**
+ * @note Address: 0x8005E46C
+ * @note Size: 0xAC
  */
 void J3DSys::reinitLighting()
 {
@@ -267,10 +260,9 @@ void J3DSys::reinitLighting()
 	GXSetChanMatColor(GX_COLOR1A1, ColorWhite);
 }
 
-/*
- * --INFO--
- * Address:	8005E518
- * Size:	000104
+/**
+ * @note Address: 0x8005E518
+ * @note Size: 0x104
  */
 void J3DSys::reinitTransform()
 {
@@ -285,10 +277,9 @@ void J3DSys::reinitTransform()
 	GXSetTexCoordGen2(GX_TEXCOORD7, GX_TG_MTX3X4, GX_TG_TEX7, 0x3C, GX_FALSE, 0x7D);
 }
 
-/*
- * --INFO--
- * Address:	8005E61C
- * Size:	0000A4
+/**
+ * @note Address: 0x8005E61C
+ * @note Size: 0xA4
  */
 void J3DSys::reinitTexture()
 {
@@ -304,10 +295,9 @@ void J3DSys::reinitTexture()
 	GXLoadTexObj(&texObj, GX_TEXMAP7);
 }
 
-/*
- * --INFO--
- * Address:	8005E6C0
- * Size:	000308
+/**
+ * @note Address: 0x8005E6C0
+ * @note Size: 0x308
  */
 void J3DSys::reinitTevStages()
 {
@@ -352,10 +342,9 @@ void J3DSys::reinitTevStages()
 
 static Mtx23 IndMtx = { 0.5f, 0.0f, 0.0f, 0.0f, 0.5f, 0.0f };
 
-/*
- * --INFO--
- * Address:	8005E9C8
- * Size:	0000F8
+/**
+ * @note Address: 0x8005E9C8
+ * @note Size: 0xF8
  */
 void J3DSys::reinitIndStages()
 {
@@ -375,10 +364,9 @@ void J3DSys::reinitIndStages()
 	GXSetIndTexMtx(GX_ITM_2, IndMtx, 1);
 }
 
-/*
- * --INFO--
- * Address:	8005EAC0
- * Size:	000094
+/**
+ * @note Address: 0x8005EAC0
+ * @note Size: 0x94
  */
 void J3DSys::reinitPixelProc()
 {
@@ -404,9 +392,8 @@ static void fakeFunc()
 		             "J3DErrType : Data is Invalid\n" };
 }
 
-/*
- * --INFO--
- * Address:	8005EB54
- * Size:	000004
+/**
+ * @note Address: 0x8005EB54
+ * @note Size: 0x4
  */
 void J3DSys::ErrorReport(J3DErrType) const { }

@@ -9,10 +9,9 @@ static const char className[] = "ebiP2TitleUnit";
 namespace ebi {
 namespace title {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A8
+/**
+ * @note Address: N/A
+ * @note Size: 0xA8
  */
 void E3DModel_set2DCoordToBaseTRMatrix_(J3DModel* model, Vector2f& pos, Vector2f& angle, f32 scale)
 {
@@ -42,10 +41,9 @@ void E3DModel_set2DCoordToBaseTRMatrix_(J3DModel* model, Vector2f& pos, Vector2f
 	PSMTXConcat(mtx, temp, mtx);
 }
 
-/*
- * --INFO--
- * Address:	803C0AF8
- * Size:	000088
+/**
+ * @note Address: 0x803C0AF8
+ * @note Size: 0x88
  */
 bool TParamBase::loadSettingFile(JKRArchive* arc, char* path)
 {
@@ -59,27 +57,24 @@ bool TParamBase::loadSettingFile(JKRArchive* arc, char* path)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803C0B80
- * Size:	0000B0
+/**
+ * @note Address: 0x803C0B80
+ * @note Size: 0xB0
  */
 void TObjBase::calcModelBaseMtx_() { E3DModel_set2DCoordToBaseTRMatrix_(mModel, mPosition, mAngle, mParms[1]); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 void TObjBase::pushOut_(Vector2f&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803C0C30
- * Size:	000094
+/**
+ * @note Address: 0x803C0C30
+ * @note Size: 0x94
  */
 void TObjBase::pushOut(TObjBase* otherObj)
 {
@@ -91,10 +86,9 @@ void TObjBase::pushOut(TObjBase* otherObj)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803C0CC4
- * Size:	000220
+/**
+ * @note Address: 0x803C0CC4
+ * @note Size: 0x220
  */
 void TMapBase::setArchive(JKRArchive* arc)
 {
@@ -130,10 +124,9 @@ void TMapBase::setArchive(JKRArchive* arc)
 	mFrameCtrlWind.mRate      = sys->mDeltaTime * 60.0f * 0.5f;
 }
 
-/*
- * --INFO--
- * Address:	803C0EE4
- * Size:	000048
+/**
+ * @note Address: 0x803C0EE4
+ * @note Size: 0x48
  */
 void TMapBase::startWind(f32 time)
 {
@@ -143,10 +136,9 @@ void TMapBase::startWind(f32 time)
 	mWindTimerMax = wind;
 }
 
-/*
- * --INFO--
- * Address:	803C0F2C
- * Size:	00027C
+/**
+ * @note Address: 0x803C0F2C
+ * @note Size: 0x27C
  */
 void TMapBase::update()
 {
@@ -191,10 +183,9 @@ void TMapBase::update()
 	mModel->viewCalc();
 }
 
-/*
- * --INFO--
- * Address:	803C11A8
- * Size:	000150
+/**
+ * @note Address: 0x803C11A8
+ * @note Size: 0x150
  */
 void TBGEnemyBase::setArchive(JKRArchive* arc)
 {
@@ -216,10 +207,9 @@ void TBGEnemyBase::setArchive(JKRArchive* arc)
 	mModel = new J3DModel(mMainModelData, 0x20000, 1);
 }
 
-/*
- * --INFO--
- * Address:	803C12F8
- * Size:	00005C
+/**
+ * @note Address: 0x803C12F8
+ * @note Size: 0x5C
  */
 void TBGEnemyBase::start()
 {
@@ -228,10 +218,9 @@ void TBGEnemyBase::start()
 	mFrameCtrl.mRate      = sys->mDeltaTime * 60.0f * 0.5f;
 }
 
-/*
- * --INFO--
- * Address:	803C1354
- * Size:	000124
+/**
+ * @note Address: 0x803C1354
+ * @note Size: 0x124
  */
 void TBGEnemyBase::update()
 {
@@ -246,10 +235,9 @@ void TBGEnemyBase::update()
 	mModel->viewCalc();
 }
 
-/*
- * --INFO--
- * Address:	803C1478
- * Size:	0002D8
+/**
+ * @note Address: 0x803C1478
+ * @note Size: 0x2D8
  */
 void TBlackPlane::setArchive(JKRArchive* arc)
 {
@@ -282,10 +270,9 @@ void TBlackPlane::setArchive(JKRArchive* arc)
 	j3dSys.ErrorReport(mModel->mModelData->getMaterialTable().entryTevRegAnimator(mAnimColor));
 }
 
-/*
- * --INFO--
- * Address:	803C1750
- * Size:	0000A0
+/**
+ * @note Address: 0x803C1750
+ * @note Size: 0xA0
  */
 void TBlackPlane::start()
 {
@@ -298,10 +285,9 @@ void TBlackPlane::start()
 	mFrameCtrlColor.mRate      = sys->mDeltaTime * 60.0f * 0.5f;
 }
 
-/*
- * --INFO--
- * Address:	803C17F0
- * Size:	000110
+/**
+ * @note Address: 0x803C17F0
+ * @note Size: 0x110
  */
 void TBlackPlane::updateBeforeCamera()
 {
@@ -317,10 +303,9 @@ void TBlackPlane::updateBeforeCamera()
 	mModel->calc();
 }
 
-/*
- * --INFO--
- * Address:	803C1900
- * Size:	000050
+/**
+ * @note Address: 0x803C1900
+ * @note Size: 0x50
  */
 void TBlackPlane::updateAfterCamera()
 {
@@ -328,10 +313,9 @@ void TBlackPlane::updateAfterCamera()
 	mModel->viewCalc();
 }
 
-/*
- * --INFO--
- * Address:	803C1950
- * Size:	00004C
+/**
+ * @note Address: 0x803C1950
+ * @note Size: 0x4C
  */
 void TBlackPlane::setLogo()
 {
@@ -339,10 +323,9 @@ void TBlackPlane::setLogo()
 	mFrameCtrlColor.mFrame = mFrameCtrlColor.mEnd;
 }
 
-/*
- * --INFO--
- * Address:	803C199C
- * Size:	000078
+/**
+ * @note Address: 0x803C199C
+ * @note Size: 0x78
  */
 Vector3f TBlackPlane::getCameraPos()
 {

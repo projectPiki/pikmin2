@@ -8,10 +8,9 @@ namespace {
 static const char* cTankChangeTexName = "/enemy/data/Tank/fire_butadokkuri_main_s3tc.bti";
 } // namespace
 
-/*
- * --INFO--
- * Address:	8029E12C
- * Size:	000050
+/**
+ * @note Address: 0x8029E12C
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : Tank::Mgr(objLimit, modelType)
@@ -19,31 +18,27 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "ブタドックリマネージャ"; // pig dog manager
 }
 
-/*
- * --INFO--
- * Address:	8029E17C
- * Size:	000048
+/**
+ * @note Address: 0x8029E17C
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Tank::Parms); }
 
-/*
- * --INFO--
- * Address:	8029E1C4
- * Size:	000060
+/**
+ * @note Address: 0x8029E1C4
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	8029E314
- * Size:	000010
+/**
+ * @note Address: 0x8029E314
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
-/*
- * --INFO--
- * Address:	8029E324
- * Size:	000080
+/**
+ * @note Address: 0x8029E324
+ * @note Size: 0x80
  */
 void Mgr::loadTexData()
 {

@@ -9,10 +9,9 @@ namespace Kabuto {
 
 const char filename[] = "246-KabutoMgr";
 
-/*
- * --INFO--
- * Address:	802E3D68
- * Size:	000050
+/**
+ * @note Address: 0x802E3D68
+ * @note Size: 0x50
  */
 Mgr::Mgr(int p1, u8 p2)
     : EnemyMgrBase(p1, p2)
@@ -20,10 +19,9 @@ Mgr::Mgr(int p1, u8 p2)
 	mName = "カブトマネージャ"; // beetle manager
 }
 
-/*
- * --INFO--
- * Address:	802E3DB8
- * Size:	0000E8
+/**
+ * @note Address: 0x802E3DB8
+ * @note Size: 0xE8
  */
 void Mgr::loadModelData()
 {
@@ -48,10 +46,9 @@ void Mgr::loadModelData()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E3EA0
- * Size:	0000A0
+/**
+ * @note Address: 0x802E3EA0
+ * @note Size: 0xA0
  */
 void Mgr::loadAnimData()
 {
@@ -71,10 +68,9 @@ void Mgr::loadAnimData()
 	EnemyMgrBase::loadAnimData();
 }
 
-/*
- * --INFO--
- * Address:	802E3F40
- * Size:	00014C
+/**
+ * @note Address: 0x802E3F40
+ * @note Size: 0x14C
  */
 SysShape::Model* Mgr::createModel()
 {

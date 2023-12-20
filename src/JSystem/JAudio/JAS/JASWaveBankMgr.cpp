@@ -6,10 +6,9 @@
 int JASWaveBankMgr::sTableSize;
 JASWaveBank** JASWaveBankMgr::sWaveBank;
 
-/*
- * --INFO--
- * Address:	8009C044
- * Size:	000054
+/**
+ * @note Address: 0x8009C044
+ * @note Size: 0x54
  */
 void JASWaveBankMgr::init(int tableSize)
 {
@@ -18,10 +17,9 @@ void JASWaveBankMgr::init(int tableSize)
 	sTableSize = tableSize;
 }
 
-/*
- * --INFO--
- * Address:	8009C098
- * Size:	000034
+/**
+ * @note Address: 0x8009C098
+ * @note Size: 0x34
  */
 JASWaveBank* JASWaveBankMgr::getWaveBank(int bankIndex)
 {
@@ -34,10 +32,9 @@ JASWaveBank* JASWaveBankMgr::getWaveBank(int bankIndex)
 	return sWaveBank[bankIndex];
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 bool JASWaveBankMgr::registWaveBank(int bankIndex, JASWaveBank* bank)
 {
@@ -46,10 +43,9 @@ bool JASWaveBankMgr::registWaveBank(int bankIndex, JASWaveBank* bank)
 	return false; // fake
 }
 
-/*
- * --INFO--
- * Address:	8009C0CC
- * Size:	000080
+/**
+ * @note Address: 0x8009C0CC
+ * @note Size: 0x80
  */
 bool JASWaveBankMgr::registWaveBankWS(int index, void* data)
 {
@@ -66,10 +62,9 @@ bool JASWaveBankMgr::registWaveBankWS(int index, void* data)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  */
 JASWaveArc* JASWaveBankMgr::getWaveArc(int bankIndex, int arcIndex)
 {
@@ -81,10 +76,9 @@ JASWaveArc* JASWaveBankMgr::getWaveArc(int bankIndex, int arcIndex)
 	return bank->getWaveArc(arcIndex);
 }
 
-/*
- * --INFO--
- * Address:	8009C14C
- * Size:	000090
+/**
+ * @note Address: 0x8009C14C
+ * @note Size: 0x90
  */
 bool JASWaveBankMgr::loadWave(int bankIndex, int arcIndex, JASHeap* heap)
 {
@@ -95,10 +89,9 @@ bool JASWaveBankMgr::loadWave(int bankIndex, int arcIndex, JASHeap* heap)
 	return arc->load(heap);
 }
 
-/*
- * --INFO--
- * Address:	8009C1DC
- * Size:	000090
+/**
+ * @note Address: 0x8009C1DC
+ * @note Size: 0x90
  */
 bool JASWaveBankMgr::loadWaveTail(int bankIndex, int arcIndex, JASHeap* heap)
 {
@@ -109,10 +102,9 @@ bool JASWaveBankMgr::loadWaveTail(int bankIndex, int arcIndex, JASHeap* heap)
 	return arc->loadTail(heap);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000090
+/**
+ * @note Address: N/A
+ * @note Size: 0x90
  */
 bool JASWaveBankMgr::loadWaveBlock(int bankIndex, int arcIndex, JASHeap* heap)
 {
@@ -124,10 +116,9 @@ bool JASWaveBankMgr::loadWaveBlock(int bankIndex, int arcIndex, JASHeap* heap)
 	return arc->loadBlock(heap);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000090
+/**
+ * @note Address: N/A
+ * @note Size: 0x90
  */
 bool JASWaveBankMgr::loadWaveBlockTail(int bankIndex, int arcIndex, JASHeap* heap)
 {
@@ -139,10 +130,9 @@ bool JASWaveBankMgr::loadWaveBlockTail(int bankIndex, int arcIndex, JASHeap* hea
 	return arc->loadBlockTail(heap);
 }
 
-/*
- * --INFO--
- * Address:	8009C26C
- * Size:	000090
+/**
+ * @note Address: 0x8009C26C
+ * @note Size: 0x90
  */
 bool JASWaveBankMgr::eraseWave(int bankIndex, int arcIndex)
 {
@@ -153,10 +143,9 @@ bool JASWaveBankMgr::eraseWave(int bankIndex, int arcIndex)
 	return arc->erase() != false;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 size_t JASWaveBankMgr::getUsedHeapSize()
 {

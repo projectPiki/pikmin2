@@ -5,10 +5,9 @@
 namespace Game {
 namespace Tobi {
 
-/*
- * --INFO--
- * Address:	8026759C
- * Size:	0004CC
+/**
+ * @note Address: 0x8026759C
+ * @note Size: 0x4CC
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -30,10 +29,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateEat);
 }
 
-/*
- * --INFO--
- * Address:	80267A68
- * Size:	000070
+/**
+ * @note Address: 0x80267A68
+ * @note Size: 0x70
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -45,10 +43,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(TOBIANIM_Dead, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80267AD8
- * Size:	000044
+/**
+ * @note Address: 0x80267AD8
+ * @note Size: 0x44
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -57,17 +54,15 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80267B1C
- * Size:	000004
+/**
+ * @note Address: 0x80267B1C
+ * @note Size: 0x4
  */
 void StateDead::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	80267B20
- * Size:	000070
+/**
+ * @note Address: 0x80267B20
+ * @note Size: 0x70
  */
 void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -79,10 +74,9 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(TOBIANIM_PressDead, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80267B90
- * Size:	000044
+/**
+ * @note Address: 0x80267B90
+ * @note Size: 0x44
  */
 void StatePress::exec(EnemyBase* enemy)
 {
@@ -91,17 +85,15 @@ void StatePress::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80267BD4
- * Size:	000004
+/**
+ * @note Address: 0x80267BD4
+ * @note Size: 0x4
  */
 void StatePress::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	80267BD8
- * Size:	0000BC
+/**
+ * @note Address: 0x80267BD8
+ * @note Size: 0xBC
  */
 void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -120,10 +112,9 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	tobi->stopMotion();
 }
 
-/*
- * --INFO--
- * Address:	80267C94
- * Size:	0000B0
+/**
+ * @note Address: 0x80267C94
+ * @note Size: 0xB0
  */
 void StateStay::exec(EnemyBase* enemy)
 {
@@ -138,10 +129,9 @@ void StateStay::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80267D44
- * Size:	000084
+/**
+ * @note Address: 0x80267D44
+ * @note Size: 0x84
  */
 void StateStay::cleanup(EnemyBase* enemy)
 {
@@ -155,10 +145,9 @@ void StateStay::cleanup(EnemyBase* enemy)
 	tobi->disableEvent(0, EB_ModelHidden);
 }
 
-/*
- * --INFO--
- * Address:	80267DC8
- * Size:	000080
+/**
+ * @note Address: 0x80267DC8
+ * @note Size: 0x80
  */
 void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -173,10 +162,9 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	tobi->createAppearEffect();
 }
 
-/*
- * --INFO--
- * Address:	80267E48
- * Size:	000080
+/**
+ * @note Address: 0x80267E48
+ * @note Size: 0x80
  */
 void StateAppear::exec(EnemyBase* enemy)
 {
@@ -191,10 +179,9 @@ void StateAppear::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80267EC8
- * Size:	00003C
+/**
+ * @note Address: 0x80267EC8
+ * @note Size: 0x3C
  */
 void StateAppear::cleanup(EnemyBase* enemy)
 {
@@ -202,10 +189,9 @@ void StateAppear::cleanup(EnemyBase* enemy)
 	enemy->disableEvent(0, EB_NoInterrupt);
 }
 
-/*
- * --INFO--
- * Address:	80267F04
- * Size:	00006C
+/**
+ * @note Address: 0x80267F04
+ * @note Size: 0x6C
  */
 void StateDive::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -218,10 +204,9 @@ void StateDive::init(EnemyBase* enemy, StateArg* stateArg)
 	tobi->createDisAppearEffect();
 }
 
-/*
- * --INFO--
- * Address:	80267F70
- * Size:	000050
+/**
+ * @note Address: 0x80267F70
+ * @note Size: 0x50
  */
 void StateDive::exec(EnemyBase* enemy)
 {
@@ -230,10 +215,9 @@ void StateDive::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80267FC0
- * Size:	00003C
+/**
+ * @note Address: 0x80267FC0
+ * @note Size: 0x3C
  */
 void StateDive::cleanup(EnemyBase* enemy)
 {
@@ -241,10 +225,9 @@ void StateDive::cleanup(EnemyBase* enemy)
 	enemy->disableEvent(0, EB_BitterImmune);
 }
 
-/*
- * --INFO--
- * Address:	80267FFC
- * Size:	000034
+/**
+ * @note Address: 0x80267FFC
+ * @note Size: 0x34
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -253,10 +236,9 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	tobi->startMotion(TOBIANIM_Move, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80268030
- * Size:	0004E8
+/**
+ * @note Address: 0x80268030
+ * @note Size: 0x4E8
  */
 void StateMove::exec(EnemyBase* enemy)
 {
@@ -666,17 +648,15 @@ lbl_802684C8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80268518
- * Size:	000004
+/**
+ * @note Address: 0x80268518
+ * @note Size: 0x4
  */
 void StateMove::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8026851C
- * Size:	000034
+/**
+ * @note Address: 0x8026851C
+ * @note Size: 0x34
  */
 void StateMoveSide::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -685,10 +665,9 @@ void StateMoveSide::init(EnemyBase* enemy, StateArg* stateArg)
 	tobi->startMotion(TOBIANIM_Move, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80268550
- * Size:	000150
+/**
+ * @note Address: 0x80268550
+ * @note Size: 0x150
  */
 void StateMoveSide::exec(EnemyBase* enemy)
 {
@@ -725,17 +704,15 @@ void StateMoveSide::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802686A0
- * Size:	000004
+/**
+ * @note Address: 0x802686A0
+ * @note Size: 0x4
  */
 void StateMoveSide::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802686A4
- * Size:	000034
+/**
+ * @note Address: 0x802686A4
+ * @note Size: 0x34
  */
 void StateMoveCentre::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -744,10 +721,9 @@ void StateMoveCentre::init(EnemyBase* enemy, StateArg* stateArg)
 	tobi->startMotion(TOBIANIM_Move, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802686D8
- * Size:	000150
+/**
+ * @note Address: 0x802686D8
+ * @note Size: 0x150
  */
 void StateMoveCentre::exec(EnemyBase* enemy)
 {
@@ -784,17 +760,15 @@ void StateMoveCentre::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80268828
- * Size:	000004
+/**
+ * @note Address: 0x80268828
+ * @note Size: 0x4
  */
 void StateMoveCentre::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8026882C
- * Size:	000034
+/**
+ * @note Address: 0x8026882C
+ * @note Size: 0x34
  */
 void StateMoveTop::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -803,10 +777,9 @@ void StateMoveTop::init(EnemyBase* enemy, StateArg* stateArg)
 	tobi->startMotion(TOBIANIM_Move, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80268860
- * Size:	000150
+/**
+ * @note Address: 0x80268860
+ * @note Size: 0x150
  */
 void StateMoveTop::exec(EnemyBase* enemy)
 {
@@ -843,17 +816,15 @@ void StateMoveTop::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802689B0
- * Size:	000004
+/**
+ * @note Address: 0x802689B0
+ * @note Size: 0x4
  */
 void StateMoveTop::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802689B4
- * Size:	000034
+/**
+ * @note Address: 0x802689B4
+ * @note Size: 0x34
  */
 void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -862,10 +833,9 @@ void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg)
 	tobi->startMotion(TOBIANIM_Move, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802689E8
- * Size:	0001FC
+/**
+ * @note Address: 0x802689E8
+ * @note Size: 0x1FC
  */
 void StateGoHome::exec(EnemyBase* enemy)
 {
@@ -906,17 +876,15 @@ void StateGoHome::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80268BE4
- * Size:	000004
+/**
+ * @note Address: 0x80268BE4
+ * @note Size: 0x4
  */
 void StateGoHome::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	80268BE8
- * Size:	000094
+/**
+ * @note Address: 0x80268BE8
+ * @note Size: 0x94
  */
 void StateFly::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -929,10 +897,9 @@ void StateFly::init(EnemyBase* enemy, StateArg* stateArg)
 	tobi->startMotion(TOBIANIM_Fly, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80268C7C
- * Size:	000130
+/**
+ * @note Address: 0x80268C7C
+ * @note Size: 0x130
  */
 void StateFly::exec(EnemyBase* enemy)
 {
@@ -956,10 +923,9 @@ void StateFly::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80268DAC
- * Size:	00001C
+/**
+ * @note Address: 0x80268DAC
+ * @note Size: 0x1C
  */
 void StateFly::cleanup(EnemyBase* enemy)
 {
@@ -967,10 +933,9 @@ void StateFly::cleanup(EnemyBase* enemy)
 	enemy->disableEvent(0, EB_Invulnerable);
 }
 
-/*
- * --INFO--
- * Address:	80268DC8
- * Size:	000058
+/**
+ * @note Address: 0x80268DC8
+ * @note Size: 0x58
  */
 void StateAttack1::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -981,10 +946,9 @@ void StateAttack1::init(EnemyBase* enemy, StateArg* stateArg)
 	tobi->createBridgeEffect();
 }
 
-/*
- * --INFO--
- * Address:	80268E20
- * Size:	000158
+/**
+ * @note Address: 0x80268E20
+ * @note Size: 0x158
  */
 void StateAttack1::exec(EnemyBase* enemy)
 {
@@ -1023,17 +987,15 @@ void StateAttack1::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80268F78
- * Size:	000004
+/**
+ * @note Address: 0x80268F78
+ * @note Size: 0x4
  */
 void StateAttack1::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	80268F7C
- * Size:	000048
+/**
+ * @note Address: 0x80268F7C
+ * @note Size: 0x48
  */
 void StateAttack2::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1043,10 +1005,9 @@ void StateAttack2::init(EnemyBase* enemy, StateArg* stateArg)
 	tobi->startMotion(TOBIANIM_Attack2, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80268FC4
- * Size:	000218
+/**
+ * @note Address: 0x80268FC4
+ * @note Size: 0x218
  */
 void StateAttack2::exec(EnemyBase* enemy)
 {
@@ -1090,17 +1051,15 @@ void StateAttack2::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802691DC
- * Size:	000010
+/**
+ * @note Address: 0x802691DC
+ * @note Size: 0x10
  */
 void StateAttack2::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_NoInterrupt); }
 
-/*
- * --INFO--
- * Address:	802691EC
- * Size:	00003C
+/**
+ * @note Address: 0x802691EC
+ * @note Size: 0x3C
  */
 void StateEat::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1108,10 +1067,9 @@ void StateEat::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(TOBIANIM_Eat, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80269228
- * Size:	0001A8
+/**
+ * @note Address: 0x80269228
+ * @note Size: 0x1A8
  */
 void StateEat::exec(EnemyBase* enemy)
 {
@@ -1144,10 +1102,9 @@ void StateEat::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802693D0
- * Size:	000004
+/**
+ * @note Address: 0x802693D0
+ * @note Size: 0x4
  */
 void StateEat::cleanup(EnemyBase* enemy) { }
 } // namespace Tobi

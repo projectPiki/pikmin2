@@ -14,10 +14,9 @@ static OSMessage DecodedAudioBufferMessage[BUFFER_COUNT];
 
 static BOOL AudioDecodeThreadCreated;
 
-/*
- * --INFO--
- * Address:	8044D2C4
- * Size:	0000D4
+/**
+ * @note Address: 0x8044D2C4
+ * @note Size: 0xD4
  */
 BOOL CreateAudioDecodeThread(OSPriority prio, void* param)
 {
@@ -40,10 +39,9 @@ BOOL CreateAudioDecodeThread(OSPriority prio, void* param)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	8044D398
- * Size:	000034
+/**
+ * @note Address: 0x8044D398
+ * @note Size: 0x34
  */
 void AudioDecodeThreadStart()
 {
@@ -52,10 +50,9 @@ void AudioDecodeThreadStart()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8044D3CC
- * Size:	00003C
+/**
+ * @note Address: 0x8044D3CC
+ * @note Size: 0x3C
  */
 void AudioDecodeThreadCancel()
 {
@@ -65,10 +62,9 @@ void AudioDecodeThreadCancel()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8044D408
- * Size:	000028
+/**
+ * @note Address: 0x8044D408
+ * @note Size: 0x28
  */
 static void* AudioDecoder(void* _)
 {
@@ -80,10 +76,9 @@ static void* AudioDecoder(void* _)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8044D430
- * Size:	0000A8
+/**
+ * @note Address: 0x8044D430
+ * @note Size: 0xA8
  */
 static void* AudioDecoderForOnMemory(void* bufPtr)
 {
@@ -118,10 +113,9 @@ static void* AudioDecoderForOnMemory(void* bufPtr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8044D4D8
- * Size:	0000D4
+/**
+ * @note Address: 0x8044D4D8
+ * @note Size: 0xD4
  */
 static void AudioDecode(THPReadBuffer* readBuffer)
 {
@@ -149,10 +143,9 @@ static void AudioDecode(THPReadBuffer* readBuffer)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8044D5AC
- * Size:	000034
+/**
+ * @note Address: 0x8044D5AC
+ * @note Size: 0x34
  */
 void* PopFreeAudioBuffer()
 {
@@ -161,17 +154,15 @@ void* PopFreeAudioBuffer()
 	return buf;
 }
 
-/*
- * --INFO--
- * Address:	8044D5E0
- * Size:	000030
+/**
+ * @note Address: 0x8044D5E0
+ * @note Size: 0x30
  */
 void PushFreeAudioBuffer(void* buf) { OSSendMessage(&FreeAudioBufferQueue, buf, OS_MESSAGE_NOBLOCK); }
 
-/*
- * --INFO--
- * Address:	8044D610
- * Size:	000044
+/**
+ * @note Address: 0x8044D610
+ * @note Size: 0x44
  */
 void* PopDecodedAudioBuffer(s32 flags)
 {
@@ -183,9 +174,8 @@ void* PopDecodedAudioBuffer(s32 flags)
 	return NULL;
 }
 
-/*
- * --INFO--
- * Address:	8044D654
- * Size:	000030
+/**
+ * @note Address: 0x8044D654
+ * @note Size: 0x30
  */
 void PushDecodedAudioBuffer(void* buf) { OSSendMessage(&DecodedAudioBufferQueue, buf, 1); }

@@ -6,30 +6,27 @@ static int AUDIO_UPDATE_REQUEST;
 DSPTaskInfo* DSP_prior_task;
 static u32 sync_stack[3];
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void DebugPrint_TaskInfo(DSPTaskInfo* task)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 void Check_Broken(DSPTaskInfo* task)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
+/**
+ * @note Address: N/A
+ * @note Size: 0x5C
  */
 void Check_PriorBroken()
 {
@@ -39,10 +36,9 @@ void Check_PriorBroken()
 #ifdef __cplusplus
 extern "C" {
 #endif // ifdef __cplusplus
-/*
- * --INFO--
- * Address:	800AAD00
- * Size:	000304
+/**
+ * @note Address: 0x800AAD00
+ * @note Size: 0x304
  */
 void __DSPHandler(__OSInterrupt interrupt, OSContext* context)
 {
@@ -146,10 +142,9 @@ void __DSPHandler(__OSInterrupt interrupt, OSContext* context)
 }
 #endif // ifdef __cplusplus
 
-/*
- * --INFO--
- * Address:	800AB020
- * Size:	000050
+/**
+ * @note Address: 0x800AB020
+ * @note Size: 0x50
  */
 void DsyncFrame2(u32 p1, u32 p2, u32 p3)
 {
@@ -164,10 +159,9 @@ void DsyncFrame2(u32 p1, u32 p2, u32 p3)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800AB080
- * Size:	000040
+/**
+ * @note Address: 0x800AB080
+ * @note Size: 0x40
  */
 static void Dsp_Update_Request()
 {
@@ -176,16 +170,14 @@ static void Dsp_Update_Request()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800AB0C0
- * Size:	000014
+/**
+ * @note Address: 0x800AB0C0
+ * @note Size: 0x14
  */
 BOOL Dsp_Running_Check() { return (DSP_prior_yield == TRUE) ? TRUE : FALSE; }
 
-/*
- * --INFO--
- * Address:	800AB0E0
- * Size:	00000C
+/**
+ * @note Address: 0x800AB0E0
+ * @note Size: 0xC
  */
 void Dsp_Running_Start() { DSP_prior_yield = 1; }

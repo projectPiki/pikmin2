@@ -63,10 +63,9 @@
 
 namespace JStudio {
 
-/*
- * --INFO--
- * Address:	8000CAA4
- * Size:	000090
+/**
+ * @note Address: 0x8000CAA4
+ * @note Size: 0x90
  */
 TControl::TControl()
     : stb::TControl()
@@ -117,18 +116,16 @@ TControl::TControl()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8000CB34
- * Size:	000070
+/**
+ * @note Address: 0x8000CB34
+ * @note Size: 0x70
  * __dt
  */
 TControl::~TControl() { }
 
-/*
- * --INFO--
- * Address:	8000CBA4
- * Size:	000080
+/**
+ * @note Address: 0x8000CBA4
+ * @note Size: 0x80
  */
 void TControl::transformOnSet_setOrigin(Vec const& p1, float p2)
 {
@@ -139,10 +136,9 @@ void TControl::transformOnSet_setOrigin(Vec const& p1, float p2)
 	PSMTXTransApply(mtx, _98, p1.x, p1.y, p1.z);
 }
 
-/*
- * --INFO--
- * Address:	8000CC24
- * Size:	000094
+/**
+ * @note Address: 0x8000CC24
+ * @note Size: 0x94
  */
 void TControl::transformOnGet_setOrigin(Vec const& p1, float p2)
 {
@@ -155,28 +151,25 @@ void TControl::transformOnGet_setOrigin(Vec const& p1, float p2)
 	PSMTXConcat(v2, v1, _C8);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000090
+/**
+ * @note Address: N/A
+ * @note Size: 0x90
  */
 void TControl::forward_value(u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8000CCB8
- * Size:	000048
+/**
+ * @note Address: 0x8000CCB8
+ * @note Size: 0x48
  * __dt__Q27JStudio13TCreateObjectFv
  */
 TCreateObject::~TCreateObject() { }
 
-/*
- * --INFO--
- * Address:	8000CD00
- * Size:	000084
+/**
+ * @note Address: 0x8000CD00
+ * @note Size: 0x84
  * __dt__Q27JStudio8TFactoryFv
  */
 TFactory::~TFactory()
@@ -222,10 +215,9 @@ lbl_8000CD68:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8000CD84
- * Size:	000050
+/**
+ * @note Address: 0x8000CD84
+ * @note Size: 0x50
  */
 void TFactory::appendCreateObject(JStudio::TCreateObject*)
 {
@@ -254,30 +246,27 @@ void TFactory::appendCreateObject(JStudio::TCreateObject*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 void TFactory::removeCreateObject(JStudio::TCreateObject*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void TFactory::removeCreateObject_all()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8000CDD4
- * Size:	0000B4
+/**
+ * @note Address: 0x8000CDD4
+ * @note Size: 0xB4
  */
 int TFactory::create(JStudio::stb::data::TParse_TBlock_object const&)
 {
@@ -336,10 +325,9 @@ lbl_8000CE74:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8000CE88
- * Size:	000054
+/**
+ * @note Address: 0x8000CE88
+ * @note Size: 0x54
  * __ct__Q27JStudio6TParseFPQ27JStudio8TControl
  */
 TParse::TParse(JStudio::TControl* control)
@@ -348,18 +336,16 @@ TParse::TParse(JStudio::TControl* control)
 {
 }
 
-/*
- * --INFO--
- * Address:	8000CEDC
- * Size:	000070
+/**
+ * @note Address: 0x8000CEDC
+ * @note Size: 0x70
  * __dt__Q27JStudio6TParseFv
  */
 TParse::~TParse() { }
 
-/*
- * --INFO--
- * Address:	8000CF4C
- * Size:	000078
+/**
+ * @note Address: 0x8000CF4C
+ * @note Size: 0x78
  * parseHeader__Q27JStudio6TParseFRCQ47JStudio3stb4data14TParse_THeaderUl
  */
 bool TParse::parseHeader(JStudio::stb::data::TParse_THeader const&, u32)
@@ -405,10 +391,9 @@ bool TParse::parseHeader(JStudio::stb::data::TParse_THeader const&, u32)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8000CFC4
- * Size:	000044
+/**
+ * @note Address: 0x8000CFC4
+ * @note Size: 0x44
  * parseBlock_block__Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl
  */
 void TParse::parseBlock_block(JStudio::stb::data::TParse_TBlock const&, u32)
@@ -443,10 +428,9 @@ void TParse::parseBlock_block(JStudio::stb::data::TParse_TBlock const&, u32)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8000D008
- * Size:	000060
+/**
+ * @note Address: 0x8000D008
+ * @note Size: 0x60
  * parseBlock_block_fvb___Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl
  */
 void TParse::parseBlock_block_fvb_(JStudio::stb::data::TParse_TBlock const&, u32)

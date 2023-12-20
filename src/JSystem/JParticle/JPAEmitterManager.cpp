@@ -3,10 +3,9 @@
 #include "JSystem/JParticle/JPANode.h"
 #include "JSystem/JMath.h"
 
-/*
- * --INFO--
- * Address:	80090538
- * Size:	0001FC
+/**
+ * @note Address: 0x80090538
+ * @note Size: 0x1FC
  */
 JPAEmitterManager::JPAEmitterManager(u32 ptclNum, u32 emtrNum, JKRHeap* heap, u8 groups, u8 resnum)
 {
@@ -34,50 +33,45 @@ JPAEmitterManager::JPAEmitterManager(u32 ptclNum, u32 emtrNum, JKRHeap* heap, u8
 	mWorkData = new (heap, 0) JPAEmitterWorkData;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 // JPARandom::~JPARandom()
 //{
 // UNUSED FUNCTION
 //}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 // JPABaseParticle::~JPABaseParticle()
 //{
 // UNUSED FUNCTION
 //}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 // JSULink<JPABaseEmitter>::~JSULink()
 //{
 // UNUSED FUNCTION
 //}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 // JPAList<JPABaseParticle>::~JPAList()
 //{
 // UNUSED FUNCTION
 //}
 
-/*
- * --INFO--
- * Address:	800908BC
- * Size:	0000DC
+/**
+ * @note Address: 0x800908BC
+ * @note Size: 0xDC
  */
 JPABaseEmitter* JPAEmitterManager::createSimpleEmitterID(const JGeometry::TVec3f& pos, u16 resID, u8 groupID, u8 resMgrID,
                                                          JPAEmitterCallBack* ecback, JPAParticleCallBack* pcback)
@@ -103,30 +97,27 @@ JPABaseEmitter* JPAEmitterManager::createSimpleEmitterID(const JGeometry::TVec3f
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C8
+/**
+ * @note Address: N/A
+ * @note Size: 0xC8
  */
 void JPAEmitterManager::createSimpleEmitter(const JGeometry::TVec3f&, u16, JPAEmitterCallBack*, JPAParticleCallBack*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000090
+/**
+ * @note Address: N/A
+ * @note Size: 0x90
  */
 void JPAEmitterManager::calc(u8)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80090998
- * Size:	0000B0
+/**
+ * @note Address: 0x80090998
+ * @note Size: 0xB0
  */
 void JPAEmitterManager::calc()
 {
@@ -197,10 +188,9 @@ lbl_80090A18:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80090A48
- * Size:	000200
+/**
+ * @note Address: 0x80090A48
+ * @note Size: 0x200
  */
 void JPAEmitterManager::draw(const JPADrawInfo* info, u8 id)
 {
@@ -237,40 +227,36 @@ void JPAEmitterManager::draw(const JPADrawInfo* info, u8 id)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
+/**
+ * @note Address: N/A
+ * @note Size: 0x5C
  */
 void JPAEmitterManager::draw(float (*)[4], u8)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000068
+/**
+ * @note Address: N/A
+ * @note Size: 0x68
  */
 void JPAEmitterManager::draw(const JPADrawInfo*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
+/**
+ * @note Address: N/A
+ * @note Size: 0x70
  */
 void JPAEmitterManager::draw(float (*)[4])
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80090C48
- * Size:	000058
+/**
+ * @note Address: 0x80090C48
+ * @note Size: 0x58
  */
 void JPAEmitterManager::forceDeleteAllEmitter()
 {
@@ -279,10 +265,9 @@ void JPAEmitterManager::forceDeleteAllEmitter()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80090CA0
- * Size:	000060
+/**
+ * @note Address: 0x80090CA0
+ * @note Size: 0x60
  */
 void JPAEmitterManager::forceDeleteGroupEmitter(u8 grp)
 {
@@ -291,10 +276,9 @@ void JPAEmitterManager::forceDeleteGroupEmitter(u8 grp)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80090D00
- * Size:	00006C
+/**
+ * @note Address: 0x80090D00
+ * @note Size: 0x6C
  */
 void JPAEmitterManager::forceDeleteEmitter(JPABaseEmitter* emit)
 {
@@ -304,17 +288,15 @@ void JPAEmitterManager::forceDeleteEmitter(JPABaseEmitter* emit)
 	mFreeEmtrList.prepend(&emit->mLink);
 }
 
-/*
- * --INFO--
- * Address:	80090D6C
- * Size:	000010
+/**
+ * @note Address: 0x80090D6C
+ * @note Size: 0x10
  */
 void JPAEmitterManager::entryResourceManager(JPAResourceManager* mgr, u8 grpID) { mResMgrAry[grpID] = mgr; }
 
-/*
- * --INFO--
- * Address:	80090D7C
- * Size:	0000C8
+/**
+ * @note Address: 0x80090D7C
+ * @note Size: 0xC8
  */
 void JPAEmitterManager::clearResourceManager(u8 id)
 {
@@ -393,10 +375,9 @@ lbl_80090E10:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80090E44
- * Size:	0000E8
+/**
+ * @note Address: 0x80090E44
+ * @note Size: 0xE8
  */
 void JPAEmitterManager::calcYBBCam()
 {

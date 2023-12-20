@@ -5,10 +5,9 @@ namespace BigFoot {
 
 static const char bigFootShadowName[] = "246-BigFootShadow";
 
-/*
- * --INFO--
- * Address:	802C7810
- * Size:	00020C
+/**
+ * @note Address: 0x802C7810
+ * @note Size: 0x20C
  */
 BigFootShadowMgr::BigFootShadowMgr(Obj* obj)
 {
@@ -38,10 +37,9 @@ BigFootShadowMgr::BigFootShadowMgr(Obj* obj)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802C7A1C
- * Size:	00014C
+/**
+ * @note Address: 0x802C7A1C
+ * @note Size: 0x14C
  */
 void BigFootShadowMgr::init()
 {
@@ -66,17 +64,15 @@ void BigFootShadowMgr::init()
 	mLegTubeShadow3[3]->mJoint = model->getJoint("lfoot3jnt");
 }
 
-/*
- * --INFO--
- * Address:	802C7B68
- * Size:	000018
+/**
+ * @note Address: 0x802C7B68
+ * @note Size: 0x18
  */
 void BigFootShadowMgr::setJointPosPtr(int p1, int p2, Vector3f* posPtr) { mJointPosPtrs[p1][p2] = posPtr; }
 
-/*
- * --INFO--
- * Address:	802C7B80
- * Size:	000370
+/**
+ * @note Address: 0x802C7B80
+ * @note Size: 0x370
  */
 void BigFootShadowMgr::update()
 {

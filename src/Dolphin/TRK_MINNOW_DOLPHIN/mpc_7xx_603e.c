@@ -1,9 +1,8 @@
 #include "PowerPC_EABI_Support/MetroTRK/trk.h"
 
-/*
- * --INFO--
- * Address:	800BFA60
- * Size:	0001B8
+/**
+ * @note Address: 0x800BFA60
+ * @note Size: 0x1B8
  */
 ASM void TRKSaveExtended1Block(void)
 {
@@ -125,10 +124,9 @@ loc_0x150:
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800BFC18
- * Size:	0001B8
+/**
+ * @note Address: 0x800BFC18
+ * @note Size: 0x1B8
  */
 ASM void TRKRestoreExtended1Block()
 {

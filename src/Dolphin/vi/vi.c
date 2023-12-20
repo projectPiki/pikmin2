@@ -84,20 +84,18 @@ static u16 taps[26] = { 496, 476, 430, 372, 297, 219, 142, 70, 12, 226, 203, 192
 // forward declaring statics
 static u32 getCurrentFieldEvenOdd();
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 static void getEncoderType(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
+/**
+ * @note Address: N/A
+ * @note Size: 0x5C
  */
 static int cntlzd(u64 bit)
 {
@@ -115,10 +113,9 @@ static int cntlzd(u64 bit)
 	return (32 + __cntlzw(lo));
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000120
+/**
+ * @note Address: N/A
+ * @note Size: 0x120
  */
 static BOOL VISetRegs(void)
 {
@@ -141,10 +138,9 @@ static BOOL VISetRegs(void)
 	return FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800D07E8
- * Size:	000274
+/**
+ * @note Address: 0x800D07E8
+ * @note Size: 0x274
  */
 static void __VIRetraceHandler(__OSInterrupt interrupt, OSContext* context)
 {
@@ -214,10 +210,9 @@ static void __VIRetraceHandler(__OSInterrupt interrupt, OSContext* context)
 	OSSetCurrentContext(context);
 }
 
-/*
- * --INFO--
- * Address:	800D0A5C
- * Size:	000044
+/**
+ * @note Address: 0x800D0A5C
+ * @note Size: 0x44
  */
 VIRetraceCallback VISetPreRetraceCallback(VIRetraceCallback callback)
 {
@@ -233,10 +228,9 @@ VIRetraceCallback VISetPreRetraceCallback(VIRetraceCallback callback)
 	return oldCallback;
 }
 
-/*
- * --INFO--
- * Address:	800D0AA0
- * Size:	000044
+/**
+ * @note Address: 0x800D0AA0
+ * @note Size: 0x44
  */
 VIRetraceCallback VISetPostRetraceCallback(VIRetraceCallback callback)
 {
@@ -252,10 +246,9 @@ VIRetraceCallback VISetPostRetraceCallback(VIRetraceCallback callback)
 	return oldCallback;
 }
 
-/*
- * --INFO--
- * Address:	800D0AE4
- * Size:	0000A0
+/**
+ * @note Address: 0x800D0AE4
+ * @note Size: 0xA0
  */
 static VITimingInfo* getTiming(VITVMode mode)
 {
@@ -299,10 +292,9 @@ static VITimingInfo* getTiming(VITVMode mode)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	800D0B84
- * Size:	000200
+/**
+ * @note Address: 0x800D0B84
+ * @note Size: 0x200
  */
 void __VIInit(VITVMode mode)
 {
@@ -367,10 +359,9 @@ void __VIInit(VITVMode mode)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000160
+/**
+ * @note Address: N/A
+ * @note Size: 0x160
  */
 static void AdjustPosition(u16 acv)
 {
@@ -392,10 +383,9 @@ static void AdjustPosition(u16 acv)
 	                           - MAX((s16)HorVer.dispPosY + (s16)HorVer.dispSizeY + displayOffsetV - ((s16)acv * 2 - frac), 0) / coeff);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 static void ImportAdjustingValues(void)
 {
@@ -404,10 +394,9 @@ static void ImportAdjustingValues(void)
 	__OSUnlockSram(FALSE);
 }
 
-/*
- * --INFO--
- * Address:	800D0D84
- * Size:	0004B0
+/**
+ * @note Address: 0x800D0D84
+ * @note Size: 0x4B0
  */
 void VIInit(void)
 {
@@ -505,10 +494,9 @@ void VIInit(void)
 	__OSUnmaskInterrupts((0x80000000u >> (24)));
 }
 
-/*
- * --INFO--
- * Address:	800D1234
- * Size:	000054
+/**
+ * @note Address: 0x800D1234
+ * @note Size: 0x54
  */
 void VIWaitForRetrace(void)
 {
@@ -523,10 +511,9 @@ void VIWaitForRetrace(void)
 	OSRestoreInterrupts(interrupt);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
+/**
+ * @note Address: N/A
+ * @note Size: 0x7C
  */
 static void setInterruptRegs(VITimingInfo* tm)
 {
@@ -546,10 +533,9 @@ static void setInterruptRegs(VITimingInfo* tm)
 	changed |= VI_BITMASK(VI_DISP_INT_0);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000098
+/**
+ * @note Address: N/A
+ * @note Size: 0x98
  */
 static void setPicConfig(u16 fbSizeX, VIXFBMode xfbMode, u16 panPosX, u16 panSizeX, u8* wordPerLine, u8* std, u8* wpl, u8* xof)
 {
@@ -562,10 +548,9 @@ static void setPicConfig(u16 fbSizeX, VIXFBMode xfbMode, u16 panPosX, u16 panSiz
 	changed |= VI_BITMASK(VI_HSW);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000BC
+/**
+ * @note Address: N/A
+ * @note Size: 0xBC
  */
 static void setBBIntervalRegs(VITimingInfo* tm)
 {
@@ -588,10 +573,9 @@ static void setBBIntervalRegs(VITimingInfo* tm)
 	changed |= VI_BITMASK(VI_BBI_EVEN);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00009C
+/**
+ * @note Address: N/A
+ * @note Size: 0x9C
  */
 static void setScalingRegs(u16 panSizeX, u16 dispSizeX, BOOL is3D)
 {
@@ -613,10 +597,9 @@ static void setScalingRegs(u16 panSizeX, u16 dispSizeX, BOOL is3D)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
+/**
+ * @note Address: N/A
+ * @note Size: 0x80
  */
 static void calcFbbs(u32 bufAddr, u16 panPosX, u16 panPosY, u8 wordPerLine, VIXFBMode xfbMode, u16 dispPosY, u32* tfbb, u32* bfbb)
 {
@@ -637,10 +620,9 @@ static void calcFbbs(u32 bufAddr, u16 panPosX, u16 panPosY, u8 wordPerLine, VIXF
 	*bfbb = ToPhysical(*bfbb);
 }
 
-/*
- * --INFO--
- * Address:	800D1288
- * Size:	0002D4
+/**
+ * @note Address: 0x800D1288
+ * @note Size: 0x2D4
  */
 static void setFbbRegs(VIPositionInfo* hv, u32* tfbb, u32* bfbb, u32* rtfbb, u32* rbfbb)
 {
@@ -691,10 +673,9 @@ static void setFbbRegs(VIPositionInfo* hv, u32* tfbb, u32* bfbb, u32* rtfbb, u32
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000CC
+/**
+ * @note Address: N/A
+ * @note Size: 0xCC
  */
 static void setHorizontalRegs(VITimingInfo* tm, u16 dispPosX, u16 dispSizeX)
 {
@@ -719,10 +700,9 @@ static void setHorizontalRegs(VITimingInfo* tm, u16 dispPosX, u16 dispSizeX)
 	changed |= VI_BITMASK(VI_HORIZ_TIMING_1L);
 }
 
-/*
- * --INFO--
- * Address:	800D155C
- * Size:	0001A0
+/**
+ * @note Address: 0x800D155C
+ * @note Size: 0x1A0
  */
 static void setVerticalRegs(u16 dispPosY, u16 dispSizeY, u8 equ, u16 acv, u16 prbOdd, u16 prbEven, u16 psbOdd, u16 psbEven, BOOL black)
 {
@@ -774,10 +754,9 @@ static void setVerticalRegs(u16 dispPosY, u16 dispSizeY, u8 equ, u16 acv, u16 pr
 	changed |= VI_BITMASK(VI_VERT_TIMING_EVEN);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
+/**
+ * @note Address: N/A
+ * @note Size: 0x94
  */
 static void PrintDebugPalCaution(void)
 {
@@ -795,10 +774,9 @@ static void PrintDebugPalCaution(void)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800D16FC
- * Size:	000828
+/**
+ * @note Address: 0x800D16FC
+ * @note Size: 0x828
  */
 void VIConfigure(const GXRenderModeObj* obj)
 {
@@ -923,20 +901,18 @@ void VIConfigure(const GXRenderModeObj* obj)
 	OSRestoreInterrupts(enabled);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000394
+/**
+ * @note Address: N/A
+ * @note Size: 0x394
  */
 void VIConfigurePan(u16 panPosX, u16 panPosY, u16 panSizeX, u16 panSizeY)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800D1F24
- * Size:	000130
+/**
+ * @note Address: 0x800D1F24
+ * @note Size: 0x130
  */
 void VIFlush(void)
 {
@@ -960,10 +936,9 @@ void VIFlush(void)
 	OSRestoreInterrupts(enabled);
 }
 
-/*
- * --INFO--
- * Address:	800D2054
- * Size:	00006C
+/**
+ * @note Address: 0x800D2054
+ * @note Size: 0x6C
  */
 void VISetNextFrameBuffer(void* fb)
 {
@@ -974,37 +949,33 @@ void VISetNextFrameBuffer(void* fb)
 	OSRestoreInterrupts(enabled);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void* VIGetNextFrameBuffer()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800D20C0
- * Size:	000008
+/**
+ * @note Address: 0x800D20C0
+ * @note Size: 0x8
  */
 void* VIGetCurrentFrameBuffer(void) { return (void*)CurrBufAddr; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  */
 void VISetNextRightFrameBuffer(void* fb)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800D20C8
- * Size:	00007C
+/**
+ * @note Address: 0x800D20C8
+ * @note Size: 0x7C
  */
 void VISetBlack(BOOL isBlack)
 {
@@ -1019,27 +990,24 @@ void VISetBlack(BOOL isBlack)
 	OSRestoreInterrupts(interrupt);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000100
+/**
+ * @note Address: N/A
+ * @note Size: 0x100
  */
 void VISet3D(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800D2144
- * Size:	000008
+/**
+ * @note Address: 0x800D2144
+ * @note Size: 0x8
  */
 u32 VIGetRetraceCount(void) { return retraceCount; }
 
-/*
- * --INFO--
- * Address:	800D214C
- * Size:	00003C
+/**
+ * @note Address: 0x800D214C
+ * @note Size: 0x3C
  */
 static void GetCurrentDisplayPosition(u32* hct, u32* vct)
 {
@@ -1056,10 +1024,9 @@ static void GetCurrentDisplayPosition(u32* hct, u32* vct)
 	*vct = vcount;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
+/**
+ * @note Address: N/A
+ * @note Size: 0x50
  */
 static u32 getCurrentHalfLine(void)
 {
@@ -1069,17 +1036,15 @@ static u32 getCurrentHalfLine(void)
 	return ((vcount - 1) << 1) + ((hcount - 1) / CurrTiming->hlw);
 }
 
-/*
- * --INFO--
- * Address:	800D2188
- * Size:	000068
+/**
+ * @note Address: 0x800D2188
+ * @note Size: 0x68
  */
 static u32 getCurrentFieldEvenOdd() { return (getCurrentHalfLine() < CurrTiming->numHalfLines) ? 1 : 0; }
 
-/*
- * --INFO--
- * Address:	800D21F0
- * Size:	00009C
+/**
+ * @note Address: 0x800D21F0
+ * @note Size: 0x9C
  */
 u32 VIGetNextField(void)
 {
@@ -1092,10 +1057,9 @@ u32 VIGetNextField(void)
 	return nextField ^ (HorVer.adjDispPosY & 1);
 }
 
-/*
- * --INFO--
- * Address:	800D228C
- * Size:	000098
+/**
+ * @note Address: 0x800D228C
+ * @note Size: 0x98
  */
 u32 VIGetCurrentLine(void)
 {
@@ -1115,10 +1079,9 @@ u32 VIGetCurrentLine(void)
 	return (line >> 1);
 }
 
-/*
- * --INFO--
- * Address:	800D2324
- * Size:	000068
+/**
+ * @note Address: 0x800D2324
+ * @note Size: 0x68
  */
 u32 VIGetTvFormat(void)
 {
@@ -1147,10 +1110,9 @@ u32 VIGetTvFormat(void)
 	return fmt;
 }
 
-/*
- * --INFO--
- * Address:	800D238C
- * Size:	00003C
+/**
+ * @note Address: 0x800D238C
+ * @note Size: 0x3C
  */
 u32 VIGetDTVStatus(void)
 {
@@ -1163,10 +1125,9 @@ u32 VIGetDTVStatus(void)
 	return (stat & 1);
 }
 
-/*
- * --INFO--
- * Address:	800D23C8
- * Size:	00021C
+/**
+ * @note Address: 0x800D23C8
+ * @note Size: 0x21C
  */
 void __VIDisplayPositionToXY(u32 hcount, u32 vcount, s16* x, s16* y)
 {
@@ -1228,10 +1189,9 @@ void __VIDisplayPositionToXY(u32 hcount, u32 vcount, s16* x, s16* y)
 	*x = (s16)(hcount - 1);
 }
 
-/*
- * --INFO--
- * Address:	800D25E4
- * Size:	000060
+/**
+ * @note Address: 0x800D25E4
+ * @note Size: 0x60
  */
 void __VIGetCurrentPosition(s16* x, s16* y)
 {

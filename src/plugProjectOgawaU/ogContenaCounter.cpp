@@ -5,10 +5,9 @@
 namespace og {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	80307B58
- * Size:	000090
+/**
+ * @note Address: 0x80307B58
+ * @note Size: 0x90
  */
 ContenaCounter::ContenaCounter(DispMemberContena* contena)
 {
@@ -23,10 +22,9 @@ ContenaCounter::ContenaCounter(DispMemberContena* contena)
 	mCounter4   = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80307BE8
- * Size:	000140
+/**
+ * @note Address: 0x80307BE8
+ * @note Size: 0x140
  */
 void ContenaCounter::setblo(char* filename, JKRArchive* archive)
 {

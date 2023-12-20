@@ -3,24 +3,21 @@
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	80327C5C
- * Size:	00003C
+/**
+ * @note Address: 0x80327C5C
+ * @note Size: 0x3C
  */
 Vs::Vs() { }
 
-/*
- * --INFO--
- * Address:	80327C98
- * Size:	000004
+/**
+ * @note Address: 0x80327C98
+ * @note Size: 0x4
  */
 void Vs::doUserCallBackFunc(Resource::MgrCommand*) { }
 
-/*
- * --INFO--
- * Address:	80327C9C
- * Size:	000078
+/**
+ * @note Address: 0x80327C9C
+ * @note Size: 0x78
  */
 void Vs::doCreateObj(JKRArchive* archive)
 {

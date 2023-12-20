@@ -12,24 +12,21 @@ namespace Game {
 namespace TamagoMushi {
 static const char unusedName[] = "tamagoMushi";
 
-/*
- * --INFO--
- * Address:	8036EBA8
- * Size:	000020
+/**
+ * @note Address: 0x8036EBA8
+ * @note Size: 0x20
  */
 void Obj::setParameters() { EnemyBase::setParameters(); }
 
-/*
- * --INFO--
- * Address:	8036EBC8
- * Size:	000020
+/**
+ * @note Address: 0x8036EBC8
+ * @note Size: 0x20
  */
 void Obj::birth(Vector3f& pos, f32 faceDir) { EnemyBase::birth(pos, faceDir); }
 
-/*
- * --INFO--
- * Address:	8036EBE8
- * Size:	0002D0
+/**
+ * @note Address: 0x8036EBE8
+ * @note Size: 0x2D0
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
@@ -64,10 +61,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mFsm->start(this, TAMAGOMUSHI_Appear, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8036EEB8
- * Size:	00013C
+/**
+ * @note Address: 0x8036EEB8
+ * @note Size: 0x13C
  */
 Obj::Obj()
 {
@@ -77,10 +73,9 @@ Obj::Obj()
 	setFSM(new FSM);
 }
 
-/*
- * --INFO--
- * Address:	8036F040
- * Size:	0000A0
+/**
+ * @note Address: 0x8036F040
+ * @note Size: 0xA0
  */
 void Obj::doUpdate()
 {
@@ -96,10 +91,9 @@ void Obj::doUpdate()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8036F0E0
- * Size:	000158
+/**
+ * @note Address: 0x8036F0E0
+ * @note Size: 0x158
  */
 void Obj::doAnimationCullingOff()
 {
@@ -133,24 +127,21 @@ void Obj::doAnimationCullingOff()
 	mCollTree->update();
 }
 
-/*
- * --INFO--
- * Address:	8036F238
- * Size:	000004
+/**
+ * @note Address: 0x8036F238
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	8036F23C
- * Size:	000020
+/**
+ * @note Address: 0x8036F23C
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	8036F25C
- * Size:	0000DC
+/**
+ * @note Address: 0x8036F25C
+ * @note Size: 0xDC
  */
 bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* part)
 {
@@ -176,10 +167,9 @@ bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* part)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8036F338
- * Size:	0000BC
+/**
+ * @note Address: 0x8036F338
+ * @note Size: 0xBC
  */
 bool Obj::bombCallBack(Creature* creature, Vector3f& direction, f32 damage)
 {
@@ -195,10 +185,9 @@ bool Obj::bombCallBack(Creature* creature, Vector3f& direction, f32 damage)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8036F3F4
- * Size:	000134
+/**
+ * @note Address: 0x8036F3F4
+ * @note Size: 0x134
  */
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* part)
 {
@@ -228,10 +217,9 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* part)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8036F528
- * Size:	0000F8
+/**
+ * @note Address: 0x8036F528
+ * @note Size: 0xF8
  */
 void Obj::collisionCallback(CollEvent& event)
 {
@@ -251,10 +239,9 @@ void Obj::collisionCallback(CollEvent& event)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8036F620
- * Size:	000178
+/**
+ * @note Address: 0x8036F620
+ * @note Size: 0x178
  */
 void Obj::bounceCallback(Sys::Triangle* tri)
 {
@@ -274,24 +261,21 @@ void Obj::bounceCallback(Sys::Triangle* tri)
 	_300 = false;
 }
 
-/*
- * --INFO--
- * Address:	8036F798
- * Size:	00002C
+/**
+ * @note Address: 0x8036F798
+ * @note Size: 0x2C
  */
 bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* part) { return pressCallBack(creature, damage, part); }
 
-/*
- * --INFO--
- * Address:	8036F7C4
- * Size:	000030
+/**
+ * @note Address: 0x8036F7C4
+ * @note Size: 0x30
  */
 bool Obj::earthquakeCallBack(Creature* creature, f32 damage) { return pressCallBack(creature, damage, nullptr); }
 
-/*
- * --INFO--
- * Address:	8036F7F4
- * Size:	0000A8
+/**
+ * @note Address: 0x8036F7F4
+ * @note Size: 0xA8
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
@@ -305,20 +289,18 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 	shadowParam.mSize                     = 12.0f;
 }
 
-/*
- * --INFO--
- * Address:	8036F89C
- * Size:	000030
+/**
+ * @note Address: 0x8036F89C
+ * @note Size: 0x30
  */
 bool Obj::needShadow()
 {
 	return EnemyBase::needShadow() > 0; // WHY MAN.
 }
 
-/*
- * --INFO--
- * Address:	8036F8CC
- * Size:	000208
+/**
+ * @note Address: 0x8036F8CC
+ * @note Size: 0x208
  */
 void Obj::genItem()
 {
@@ -343,10 +325,9 @@ void Obj::genItem()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8036FAD4
- * Size:	000310
+/**
+ * @note Address: 0x8036FAD4
+ * @note Size: 0x310
  */
 void Obj::walkFunc()
 {
@@ -410,10 +391,9 @@ void Obj::walkFunc()
 	mTargetVelocity = Vector3f(x, y, z);
 }
 
-/*
- * --INFO--
- * Address:	8036FDE4
- * Size:	000168
+/**
+ * @note Address: 0x8036FDE4
+ * @note Size: 0x168
  */
 void Obj::setGoalRandom()
 {
@@ -428,10 +408,9 @@ void Obj::setGoalRandom()
 	mGoalPosition.z += val * cosf(randAngle);
 }
 
-/*
- * --INFO--
- * Address:	8036FF4C
- * Size:	0000B8
+/**
+ * @note Address: 0x8036FF4C
+ * @note Size: 0xB8
  */
 void Obj::setGoalDirect(Vector3f& pos)
 {
@@ -444,10 +423,9 @@ void Obj::setGoalDirect(Vector3f& pos)
 	mGoalPosition.z += val * pos.z;
 }
 
-/*
- * --INFO--
- * Address:	80370004
- * Size:	00015C
+/**
+ * @note Address: 0x80370004
+ * @note Size: 0x15C
  */
 bool Obj::turnFunc()
 {
@@ -459,10 +437,9 @@ bool Obj::turnFunc()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80370160
- * Size:	000034
+/**
+ * @note Address: 0x80370160
+ * @note Size: 0x34
  */
 bool Obj::isReachToGoal(f32 goalRadius)
 {
@@ -484,10 +461,9 @@ bool Obj::isReachToGoal(f32 goalRadius)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80370194
- * Size:	00002C
+/**
+ * @note Address: 0x80370194
+ * @note Size: 0x2C
  */
 void Obj::resetWalkParm()
 {
@@ -498,17 +474,15 @@ void Obj::resetWalkParm()
 	_2EC = mFaceDir;
 }
 
-/*
- * --INFO--
- * Address:	803701C0
- * Size:	000028
+/**
+ * @note Address: 0x803701C0
+ * @note Size: 0x28
  */
 void Obj::startCarcassMotion() { startMotion(TAMAGOANIM_Carry, nullptr); }
 
-/*
- * --INFO--
- * Address:	803701E8
- * Size:	000058
+/**
+ * @note Address: 0x803701E8
+ * @note Size: 0x58
  */
 void Obj::setLeader(Obj* leader)
 {
@@ -521,10 +495,9 @@ void Obj::setLeader(Obj* leader)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80370240
- * Size:	000054
+/**
+ * @note Address: 0x80370240
+ * @note Size: 0x54
  */
 void Obj::setTypeBall()
 {
@@ -533,10 +506,9 @@ void Obj::setTypeBall()
 	_300 = true;
 }
 
-/*
- * --INFO--
- * Address:	80370294
- * Size:	000344
+/**
+ * @note Address: 0x80370294
+ * @note Size: 0x344
  */
 void Obj::appearPanic()
 {
@@ -558,10 +530,9 @@ void Obj::appearPanic()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803705D8
- * Size:	0003BC
+/**
+ * @note Address: 0x803705D8
+ * @note Size: 0x3BC
  */
 bool Obj::isFound()
 {
@@ -585,10 +556,9 @@ bool Obj::isFound()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803709B0
- * Size:	000044
+/**
+ * @note Address: 0x803709B0
+ * @note Size: 0x44
  */
 void Obj::createFellow()
 {
@@ -597,10 +567,9 @@ void Obj::createFellow()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803709F4
- * Size:	00009C
+/**
+ * @note Address: 0x803709F4
+ * @note Size: 0x9C
  */
 void Obj::ballMove()
 {
@@ -614,10 +583,9 @@ void Obj::ballMove()
 	mRotation.z *= 0.95f;
 }
 
-/*
- * --INFO--
- * Address:	80370A90
- * Size:	0000A8
+/**
+ * @note Address: 0x80370A90
+ * @note Size: 0xA8
  */
 void Obj::createHideEffect()
 {
@@ -626,10 +594,9 @@ void Obj::createHideEffect()
 	effect.create(&arg);
 }
 
-/*
- * --INFO--
- * Address:	80370B38
- * Size:	0000A8
+/**
+ * @note Address: 0x80370B38
+ * @note Size: 0xA8
  */
 void Obj::createAppearEffect()
 {

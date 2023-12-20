@@ -11,24 +11,21 @@ static OSResetFunctionInfo ResetFunctionInfo = { OnReset, OS_RESET_PRIO_MEM };
 #define TRUNC(n, a) (((u32)(n)) & ~((a)-1))
 #define ROUND(n, a) (((u32)(n) + (a)-1) & ~((a)-1))
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 static u32 OSGetPhysicalMemSize() { return *(u32*)(OSPhysicalToCached(0x28)); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 static u32 OSGetConsoleSimulatedMemSize() { return *(u32*)(OSPhysicalToCached(0xF0)); }
 
-/*
- * --INFO--
- * Address:	800EF794
- * Size:	00003C
+/**
+ * @note Address: 0x800EF794
+ * @note Size: 0x3C
  */
 static BOOL OnReset(BOOL final)
 {
@@ -39,10 +36,9 @@ static BOOL OnReset(BOOL final)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800EF7D0
- * Size:	00006C
+/**
+ * @note Address: 0x800EF7D0
+ * @note Size: 0x6C
  */
 static void MEMIntrruptHandler(__OSInterrupt interrupt, OSContext* context)
 {
@@ -61,10 +57,9 @@ static void MEMIntrruptHandler(__OSInterrupt interrupt, OSContext* context)
 	__OSUnhandledException(OS_ERROR_PROTECTION, context, cause, addr);
 }
 
-/*
- * --INFO--
- * Address:	800EF83C
- * Size:	0000C4
+/**
+ * @note Address: 0x800EF83C
+ * @note Size: 0xC4
  */
 void OSProtectRange(u32 channel, void* addr, u32 numBytes, u32 control)
 {
@@ -103,10 +98,9 @@ void OSProtectRange(u32 channel, void* addr, u32 numBytes, u32 control)
 	OSRestoreInterrupts(enabled);
 }
 
-/*
- * --INFO--
- * Address:	800EF900
- * Size:	000080
+/**
+ * @note Address: 0x800EF900
+ * @note Size: 0x80
  */
 ASM static void Config24MB()
 {
@@ -157,10 +151,9 @@ ASM static void Config24MB()
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800EF980
- * Size:	000080
+/**
+ * @note Address: 0x800EF980
+ * @note Size: 0x80
  */
 ASM static void Config48MB()
 {
@@ -211,10 +204,9 @@ ASM static void Config48MB()
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800EFA00
- * Size:	000018
+/**
+ * @note Address: 0x800EFA00
+ * @note Size: 0x18
  */
 ASM static void RealMode(register u32 addr)
 {
@@ -229,10 +221,9 @@ ASM static void RealMode(register u32 addr)
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800EFA18
- * Size:	000118
+/**
+ * @note Address: 0x800EFA18
+ * @note Size: 0x118
  */
 void __OSInitMemoryProtection()
 {

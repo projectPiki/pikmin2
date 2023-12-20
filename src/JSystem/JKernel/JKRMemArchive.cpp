@@ -7,17 +7,15 @@
 #include "stl/mem.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 JKRMemArchive::JKRMemArchive() { }
 
-/*
- * --INFO--
- * Address:	80024644
- * Size:	0000BC
+/**
+ * @note Address: 0x80024644
+ * @note Size: 0xBC
  * __ct__13JKRMemArchiveFlQ210JKRArchive15EMountDirection
  */
 JKRMemArchive::JKRMemArchive(s32 entryNum, JKRArchive::EMountDirection mountDirection)
@@ -35,10 +33,9 @@ JKRMemArchive::JKRMemArchive(s32 entryNum, JKRArchive::EMountDirection mountDire
 	}
 }
 
-/*
- * --INFO--
- * Address:	80024700
- * Size:	0000C8
+/**
+ * @note Address: 0x80024700
+ * @note Size: 0xC8
  * __ct__13JKRMemArchiveFPvUl15JKRMemBreakFlag
  */
 JKRMemArchive::JKRMemArchive(void* mem, u32 size, JKRMemBreakFlag flag)
@@ -55,10 +52,9 @@ JKRMemArchive::JKRMemArchive(void* mem, u32 size, JKRMemBreakFlag flag)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000BC
+/**
+ * @note Address: N/A
+ * @note Size: 0xBC
  * __ct__13JKRMemArchiveFPCcQ210JKRArchive15EMountDirection
  */
 JKRMemArchive::JKRMemArchive(const char*, EMountDirection)
@@ -66,10 +62,9 @@ JKRMemArchive::JKRMemArchive(const char*, EMountDirection)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800247C8
- * Size:	0000A8
+/**
+ * @note Address: 0x800247C8
+ * @note Size: 0xA8
  * __dt__13JKRMemArchiveFv
  */
 JKRMemArchive::~JKRMemArchive()
@@ -83,10 +78,9 @@ JKRMemArchive::~JKRMemArchive()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  * fixedInit__13JKRMemArchiveFl
  */
 void JKRMemArchive::fixedInit(long)
@@ -94,10 +88,9 @@ void JKRMemArchive::fixedInit(long)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000108
+/**
+ * @note Address: N/A
+ * @note Size: 0x108
  * mountFixed__13JKRMemArchiveFlQ210JKRArchive15EMountDirection
  */
 void JKRMemArchive::mountFixed(long, EMountDirection)
@@ -105,10 +98,9 @@ void JKRMemArchive::mountFixed(long, EMountDirection)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00010C
+/**
+ * @note Address: N/A
+ * @note Size: 0x10C
  * mountFixed__13JKRMemArchiveFPCcQ210JKRArchive15EMountDirection
  */
 void JKRMemArchive::mountFixed(const char*, EMountDirection)
@@ -116,10 +108,9 @@ void JKRMemArchive::mountFixed(const char*, EMountDirection)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000108
+/**
+ * @note Address: N/A
+ * @note Size: 0x108
  * mountFixed__13JKRMemArchiveFPv15JKRMemBreakFlag
  */
 void JKRMemArchive::mountFixed(void*, JKRMemBreakFlag)
@@ -127,10 +118,9 @@ void JKRMemArchive::mountFixed(void*, JKRMemBreakFlag)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  * unmountFixed__13JKRMemArchiveFv
  */
 void JKRMemArchive::unmountFixed()
@@ -138,10 +128,9 @@ void JKRMemArchive::unmountFixed()
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80024870
- * Size:	000168
+/**
+ * @note Address: 0x80024870
+ * @note Size: 0x168
  */
 bool JKRMemArchive::open(s32 entryNum, EMountDirection mountDirection)
 {
@@ -184,10 +173,9 @@ bool JKRMemArchive::open(s32 entryNum, EMountDirection mountDirection)
 	return (mMountMode == EMM_Unk0) ? false : true;
 }
 
-/*
- * --INFO--
- * Address:	800249D8
- * Size:	0000AC
+/**
+ * @note Address: 0x800249D8
+ * @note Size: 0xAC
  * open__13JKRMemArchiveFPvUl15JKRMemBreakFlag
  */
 bool JKRMemArchive::open(void* buffer, u32 bufferSize, JKRMemBreakFlag flag)
@@ -205,10 +193,9 @@ bool JKRMemArchive::open(void* buffer, u32 bufferSize, JKRMemBreakFlag flag)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
+/**
+ * @note Address: N/A
+ * @note Size: 0x50
  * open__13JKRMemArchiveFPCcQ210JKRArchive15EMountDirection
  */
 void JKRMemArchive::open(const char*, EMountDirection)
@@ -216,10 +203,9 @@ void JKRMemArchive::open(const char*, EMountDirection)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80024A84
- * Size:	000034
+/**
+ * @note Address: 0x80024A84
+ * @note Size: 0x34
  * fetchResource__13JKRMemArchiveFPQ210JKRArchive12SDIFileEntryPUl
  */
 void* JKRMemArchive::fetchResource(JKRArchive::SDIFileEntry* entry, u32* resourceSize)
@@ -233,10 +219,9 @@ void* JKRMemArchive::fetchResource(JKRArchive::SDIFileEntry* entry, u32* resourc
 	return entry->mData;
 }
 
-/*
- * --INFO--
- * Address:	80024AB8
- * Size:	0000C8
+/**
+ * @note Address: 0x80024AB8
+ * @note Size: 0xC8
  * fetchResource__13JKRMemArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl
  */
 void* JKRMemArchive::fetchResource(void* buffer, u32 bufferSize, JKRArchive::SDIFileEntry* entry, u32* resourceSize)
@@ -262,9 +247,8 @@ void* JKRMemArchive::fetchResource(void* buffer, u32 bufferSize, JKRArchive::SDI
 }
 
 /**
- * --INFO--
- * Address:	80024B80
- * Size:	000050
+ * @note Address: 0x80024B80
+ * @note Size: 0x50
  * @warning This method does not actually iterate through mFileEntries. This feels like a bug.
  */
 void JKRMemArchive::removeResourceAll()
@@ -282,10 +266,9 @@ void JKRMemArchive::removeResourceAll()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80024BD0
- * Size:	00003C
+/**
+ * @note Address: 0x80024BD0
+ * @note Size: 0x3C
  * removeResource__13JKRMemArchiveFPv
  */
 bool JKRMemArchive::removeResource(void* resource)
@@ -298,10 +281,9 @@ bool JKRMemArchive::removeResource(void* resource)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80024C0C
- * Size:	0000D4
+/**
+ * @note Address: 0x80024C0C
+ * @note Size: 0xD4
  */
 u32 JKRMemArchive::fetchResource_subroutine(u8* src, u32 srcLength, u8* dst, u32 dstLength, int compression)
 {
@@ -332,10 +314,9 @@ u32 JKRMemArchive::fetchResource_subroutine(u8* src, u32 srcLength, u8* dst, u32
 	return srcLength;
 }
 
-/*
- * --INFO--
- * Address:	80024CE0
- * Size:	000090
+/**
+ * @note Address: 0x80024CE0
+ * @note Size: 0x90
  */
 u32 JKRMemArchive::getExpandedResSize(const void* resource) const
 {

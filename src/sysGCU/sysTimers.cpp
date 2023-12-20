@@ -5,10 +5,9 @@
 
 u8 SysTimers::drawFlag;
 
-/*
- * --INFO--
- * Address:	8042A7FC
- * Size:	0000E0
+/**
+ * @note Address: 0x8042A7FC
+ * @note Size: 0xE0
  */
 SysTimers::SysTimers()
     : mFrameCount(-1)
@@ -27,17 +26,15 @@ SysTimers::SysTimers()
 	mName = "sysTimers";
 }
 
-/*
- * --INFO--
- * Address:	8042A948
- * Size:	000068
+/**
+ * @note Address: 0x8042A948
+ * @note Size: 0x68
  */
 SysTimers::~SysTimers() { reset(); }
 
-/*
- * --INFO--
- * Address:	8042A9B0
- * Size:	00007C
+/**
+ * @note Address: 0x8042A9B0
+ * @note Size: 0x7C
  */
 TimerInf* SysTimers::get(int idx)
 {
@@ -45,44 +42,38 @@ TimerInf* SysTimers::get(int idx)
 	return &mTimers[idx];
 }
 
-/*
- * --INFO--
- * Address:	8042AA2C
- * Size:	000074
+/**
+ * @note Address: 0x8042AA2C
+ * @note Size: 0x74
  */
 TimerInf::~TimerInf() { sys->mTimers->remove(this); }
 
-/*
- * --INFO--
- * Address:	8042AAA0
- * Size:	000038
+/**
+ * @note Address: 0x8042AAA0
+ * @note Size: 0x38
  */
 void SysTimers::reset() { JUT_PANICLINE(136, "有りえないー　有りえない―\ ザマシメック！！\n"); }
 
-/*
- * --INFO--
- * Address:	8042AAD8
- * Size:	000010
+/**
+ * @note Address: 0x8042AAD8
+ * @note Size: 0x10
  */
 void SysTimers::newFrame() { mFrameCount++; }
 
-/*
- * --INFO--
- * Address:	8042AAE8
- * Size:	000010
+/**
+ * @note Address: 0x8042AAE8
+ * @note Size: 0x10
  */
 void SysTimers::remove(TimerInf* timer) { timer->mState |= 1; }
 
-/*
- * --INFO--
- * Address:	8042AAF8
- * Size:	000004
+/**
+ * @note Address: 0x8042AAF8
+ * @note Size: 0x4
  */
 void SysTimers::_start(char*, bool) { }
 
-/*
- * --INFO--
- * Address:	8042AAFC
- * Size:	000004
+/**
+ * @note Address: 0x8042AAFC
+ * @note Size: 0x4
  */
 void SysTimers::_stop(char*) { }

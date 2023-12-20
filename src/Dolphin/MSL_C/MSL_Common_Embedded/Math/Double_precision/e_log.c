@@ -1,11 +1,10 @@
-/*
- * --INFO--
- * Address:	800CCDD8
- * Size:	00027C
+/**
+ * @note Address: 0x800CCDD8
+ * @note Size: 0x27C
  */
 
 /* @(#)e_log.c 1.3 95/01/18 */
-/*
+/**
  * ====================================================
  * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
  *

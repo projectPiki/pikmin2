@@ -1,10 +1,9 @@
 #include "JSystem/JAudio/JAD/JADUtility.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	800BA564
- * Size:	0000AC
+/**
+ * @note Address: 0x800BA564
+ * @note Size: 0xAC
  */
 JADUtility::PrmSetBase::PrmSetBase(bool p1)
     : JKRDisposer()
@@ -16,80 +15,72 @@ JADUtility::PrmSetBase::PrmSetBase(bool p1)
 {
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
+/**
+ * @note Address: N/A
+ * @note Size: 0x94
  */
 // JADUtility::PrmSetTree::~PrmSetTree()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
+/**
+ * @note Address: N/A
+ * @note Size: 0x84
  */
 // JADUtility::NodeTree<JADUtility::PrmSetBase>::~NodeTree()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 // void JSUTree<JADUtility::PrmSetBase>::~JSUTree()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 // void JSULink<JADUtility::PrmSetBase>::~JSULink()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 // void JSUList<JADUtility::PrmSetBase>::~JSUList()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 // void JSUList<JADUtility::PrmBase>::~JSUList()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 // void JADUtility::PrmSetBase::appendDummy(u8)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	800BA610
- * Size:	000098
+/**
+ * @note Address: 0x800BA610
+ * @note Size: 0x98
  */
 void JADUtility::PrmSetBase::load(JSUMemoryInputStream& input)
 {
@@ -100,19 +91,17 @@ void JADUtility::PrmSetBase::load(JSUMemoryInputStream& input)
 	input.skip(_19);
 }
 
-/*
- * --INFO--
- * Address:	800BA6A8
- * Size:	000040
+/**
+ * @note Address: 0x800BA6A8
+ * @note Size: 0x40
  */
 // void JADUtility::PrmBase::load(JSUMemoryInputStream&)
 // {
 // }
 
-/*
- * --INFO--
- * Address:	800BA6E8
- * Size:	0000E8
+/**
+ * @note Address: 0x800BA6E8
+ * @note Size: 0xE8
  */
 // JADUtility::PrmSetBase::~PrmSetBase()
 // {
@@ -122,65 +111,56 @@ void JADUtility::PrmSetBase::load(JSUMemoryInputStream& input)
 // 	}
 // }
 
-/*
- * --INFO--
- * Address:	800BA7D0
- * Size:	000004
+/**
+ * @note Address: 0x800BA7D0
+ * @note Size: 0x4
  */
 // void JADUtility::PrmSetBase::appendAfter() { }
 
-/*
- * --INFO--
- * Address:	800BA7D4
- * Size:	000004
+/**
+ * @note Address: 0x800BA7D4
+ * @note Size: 0x4
  */
 // void JADUtility::PrmSetBase::afterRemovingChildButton(JADUtility::PrmSetBase*) { }
 
-/*
- * --INFO--
- * Address:	800BA7D8
- * Size:	000004
+/**
+ * @note Address: 0x800BA7D8
+ * @note Size: 0x4
  */
 // void JADUtility::PrmSetBase::afterRemovingThisButton(JADUtility::PrmSetBase*) { }
 
-/*
- * --INFO--
- * Address:	800BA7DC
- * Size:	000008
+/**
+ * @note Address: 0x800BA7DC
+ * @note Size: 0x8
  */
 // void* JADUtility::PrmSetBase::getEraseLink() { return nullptr; }
 
-/*
- * --INFO--
- * Address:	800BA7E4
- * Size:	000004
+/**
+ * @note Address: 0x800BA7E4
+ * @note Size: 0x4
  */
 // void JADUtility::PrmSetBase::afterGetFromFree() { }
 
-/*
- * --INFO--
- * Address:	800BA7E8
- * Size:	000004
+/**
+ * @note Address: 0x800BA7E8
+ * @note Size: 0x4
  */
 // void JADUtility::NodeTree<JADUtility::PrmSetBase>::beforeRemovingChild(JADUtility::PrmSetBase*) { }
 
-/*
- * --INFO--
- * Address:	800BA7EC
- * Size:	000004
+/**
+ * @note Address: 0x800BA7EC
+ * @note Size: 0x4
  */
 // void JADUtility::NodeTree<JADUtility::PrmSetBase>::beforeRemovingThis(JADUtility::PrmSetBase*) { }
 
-/*
- * --INFO--
- * Address:	800BA7F0
- * Size:	000004
+/**
+ * @note Address: 0x800BA7F0
+ * @note Size: 0x4
  */
 // void JADUtility::NodeTree<JADUtility::PrmSetBase>::afterRemovingChildButton(JADUtility::PrmSetBase*) { }
 
-/*
- * --INFO--
- * Address:	800BA7F4
- * Size:	000004
+/**
+ * @note Address: 0x800BA7F4
+ * @note Size: 0x4
  */
 // void JADUtility::NodeTree<JADUtility::PrmSetBase>::afterRemovingThisButton(JADUtility::PrmSetBase*, JADUtility::PrmSetBase*) { }

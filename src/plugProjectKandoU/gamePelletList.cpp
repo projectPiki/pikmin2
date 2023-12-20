@@ -12,10 +12,9 @@ namespace PelletList {
 
 Mgr* Mgr::mInstance;
 
-/*
- * --INFO--
- * Address:	80227D5C
- * Size:	000070
+/**
+ * @note Address: 0x80227D5C
+ * @note Size: 0x70
  */
 PelletConfigList* Mgr::getConfigList(cKind kind)
 {
@@ -23,17 +22,15 @@ PelletConfigList* Mgr::getConfigList(cKind kind)
 	return &mInstance->mConfigList[kind];
 }
 
-/*
- * --INFO--
- * Address:	80227DCC
- * Size:	000074
+/**
+ * @note Address: 0x80227DCC
+ * @note Size: 0x74
  */
 int Mgr::getCount(cKind kind) { return getConfigList(kind)->mConfigCnt; }
 
-/*
- * --INFO--
- * Address:	80227E40
- * Size:	0000C0
+/**
+ * @note Address: 0x80227E40
+ * @note Size: 0xC0
  */
 PelletConfig* Mgr::getConfigAndKind(char* config, cKind& kind)
 {
@@ -52,10 +49,9 @@ PelletConfig* Mgr::getConfigAndKind(char* config, cKind& kind)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000068
+/**
+ * @note Address: N/A
+ * @note Size: 0x68
  */
 Mgr::Mgr()
 {
@@ -63,10 +59,9 @@ Mgr::Mgr()
 	loadResource();
 }
 
-/*
- * --INFO--
- * Address:	80227F00
- * Size:	000070
+/**
+ * @note Address: 0x80227F00
+ * @note Size: 0x70
  */
 Mgr::~Mgr()
 {
@@ -74,10 +69,9 @@ Mgr::~Mgr()
 	mConfigList = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80227F70
- * Size:	0001D8
+/**
+ * @note Address: 0x80227F70
+ * @note Size: 0x1D8
  */
 void Mgr::loadResource()
 {
@@ -119,12 +113,11 @@ void Mgr::loadResource()
 	archive->unmount();
 }
 
-/*
+/**
  * This relies on a fabricated function (PelletConfigList::getConfigCount) to preserve ordering.
  *
- * --INFO--
- * Address:	80228148
- * Size:	000018
+ * @note Address: 0x80228148
+ * @note Size: 0x18
  */
 int Mgr::getDictionaryNum()
 {
@@ -133,10 +126,9 @@ int Mgr::getDictionaryNum()
 	return otakaraCount + itemCount;
 }
 
-/*
- * --INFO--
- * Address:	80228160
- * Size:	0000A4
+/**
+ * @note Address: 0x80228160
+ * @note Size: 0xA4
  */
 PelletConfig* Mgr::getConfigFromDictionaryNo(int dictNo)
 {
@@ -149,10 +141,9 @@ PelletConfig* Mgr::getConfigFromDictionaryNo(int dictNo)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80228204
- * Size:	0000A4
+/**
+ * @note Address: 0x80228204
+ * @note Size: 0xA4
  */
 int Mgr::getOffsetFromDictionaryNo(int dictNo)
 {
@@ -166,10 +157,9 @@ int Mgr::getOffsetFromDictionaryNo(int dictNo)
 	return offset + config->mParams.mIndex;
 }
 
-/*
- * --INFO--
- * Address:	802282A8
- * Size:	000080
+/**
+ * @note Address: 0x802282A8
+ * @note Size: 0x80
  */
 void Mgr::globalInstance()
 {

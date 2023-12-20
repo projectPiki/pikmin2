@@ -1,9 +1,8 @@
 #include "Dolphin/card.h"
 
-/*
- * --INFO--
- * Address:	800D9E48
- * Size:	0001B8
+/**
+ * @note Address: 0x800D9E48
+ * @note Size: 0x1B8
  */
 s32 __CARDSeek(CARDFileInfo* fileInfo, s32 length, s32 offset, CARDControl** outCard)
 {
@@ -52,10 +51,9 @@ s32 __CARDSeek(CARDFileInfo* fileInfo, s32 length, s32 offset, CARDControl** out
 	return CARD_RESULT_READY;
 }
 
-/*
- * --INFO--
- * Address:	800DA000
- * Size:	000130
+/**
+ * @note Address: 0x800DA000
+ * @note Size: 0x130
  */
 static void ReadCallback(s32 channel, s32 result)
 {
@@ -105,10 +103,9 @@ error:
 	callback(channel, result);
 }
 
-/*
- * --INFO--
- * Address:	800DA130
- * Size:	000144
+/**
+ * @note Address: 0x800DA130
+ * @note Size: 0x144
  */
 s32 CARDReadAsync(CARDFileInfo* fileInfo, void* buffer, s32 length, s32 offset, CARDCallback callback)
 {
@@ -145,10 +142,9 @@ s32 CARDReadAsync(CARDFileInfo* fileInfo, void* buffer, s32 length, s32 offset, 
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	800DA274
- * Size:	000048
+/**
+ * @note Address: 0x800DA274
+ * @note Size: 0x48
  */
 s32 CARDRead(CARDFileInfo* fileInfo, void* buffer, s32 length, s32 offset)
 {

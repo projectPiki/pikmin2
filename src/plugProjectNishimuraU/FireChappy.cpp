@@ -4,10 +4,9 @@
 namespace Game {
 namespace FireChappy {
 
-/*
- * --INFO--
- * Address:	8028F62C
- * Size:	0000AC
+/**
+ * @note Address: 0x8028F62C
+ * @note Size: 0xAC
  */
 Obj::Obj()
 {
@@ -15,10 +14,9 @@ Obj::Obj()
 	createMaterialAnimation();
 }
 
-/*
- * --INFO--
- * Address:	8028F6D8
- * Size:	000058
+/**
+ * @note Address: 0x8028F6D8
+ * @note Size: 0x58
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
@@ -29,10 +27,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 	startMaterialAnimation();
 }
 
-/*
- * --INFO--
- * Address:	8028F730
- * Size:	000048
+/**
+ * @note Address: 0x8028F730
+ * @note Size: 0x48
  */
 void Obj::onKill(CreatureKillArg* killArg)
 {
@@ -40,24 +37,21 @@ void Obj::onKill(CreatureKillArg* killArg)
 	EnemyBase::onKill(killArg);
 }
 
-/*
- * --INFO--
- * Address:	8028F778
- * Size:	000004
+/**
+ * @note Address: 0x8028F778
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics& gfx) { }
 
-/*
- * --INFO--
- * Address:	8028F77C
- * Size:	000020
+/**
+ * @note Address: 0x8028F77C
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	8028F79C
- * Size:	0000C0
+/**
+ * @note Address: 0x8028F79C
+ * @note Size: 0xC0
  */
 void Obj::changeMaterial()
 {
@@ -75,10 +69,9 @@ void Obj::changeMaterial()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8028F85C
- * Size:	000034
+/**
+ * @note Address: 0x8028F85C
+ * @note Size: 0x34
  */
 void Obj::doUpdateCommon()
 {
@@ -86,10 +79,9 @@ void Obj::doUpdateCommon()
 	updateFireState();
 }
 
-/*
- * --INFO--
- * Address:	8028F890
- * Size:	0000A0
+/**
+ * @note Address: 0x8028F890
+ * @note Size: 0xA0
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
@@ -107,10 +99,9 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 	shadowParam.mSize = 32.0f;
 }
 
-/*
- * --INFO--
- * Address:	8028F930
- * Size:	0000E0
+/**
+ * @note Address: 0x8028F930
+ * @note Size: 0xE0
  */
 void Obj::collisionCallback(CollEvent& collEvent)
 {
@@ -122,10 +113,9 @@ void Obj::collisionCallback(CollEvent& collEvent)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8028FA10
- * Size:	000034
+/**
+ * @note Address: 0x8028FA10
+ * @note Size: 0x34
  */
 void Obj::doStartWaitingBirthTypeDrop()
 {
@@ -133,10 +123,9 @@ void Obj::doStartWaitingBirthTypeDrop()
 	effectDrawOff();
 }
 
-/*
- * --INFO--
- * Address:	8028FA44
- * Size:	000034
+/**
+ * @note Address: 0x8028FA44
+ * @note Size: 0x34
  */
 void Obj::doFinishWaitingBirthTypeDrop()
 {
@@ -144,24 +133,21 @@ void Obj::doFinishWaitingBirthTypeDrop()
 	effectDrawOn();
 }
 
-/*
- * --INFO--
- * Address:	8028FA78
- * Size:	000020
+/**
+ * @note Address: 0x8028FA78
+ * @note Size: 0x20
  */
 void Obj::doStartMovie() { effectDrawOff(); }
 
-/*
- * --INFO--
- * Address:	8028FA98
- * Size:	000020
+/**
+ * @note Address: 0x8028FA98
+ * @note Size: 0x20
  */
 void Obj::doEndMovie() { effectDrawOn(); }
 
-/*
- * --INFO--
- * Address:	8028FAB8
- * Size:	000048
+/**
+ * @note Address: 0x8028FAB8
+ * @note Size: 0x48
  */
 void Obj::startFireState()
 {
@@ -172,10 +158,9 @@ void Obj::startFireState()
 	mAnimationFireTimer = 30.0f;
 }
 
-/*
- * --INFO--
- * Address:	8028FB00
- * Size:	000094
+/**
+ * @note Address: 0x8028FB00
+ * @note Size: 0x94
  */
 void Obj::finishFireState(bool check)
 {
@@ -191,10 +176,9 @@ void Obj::finishFireState(bool check)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8028FB94
- * Size:	00010C
+/**
+ * @note Address: 0x8028FB94
+ * @note Size: 0x10C
  */
 void Obj::updateFireState()
 {
@@ -221,17 +205,15 @@ void Obj::updateFireState()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8028FCA0
- * Size:	00004C
+/**
+ * @note Address: 0x8028FCA0
+ * @note Size: 0x4C
  */
 void Obj::createMaterialAnimation() { mLoopAnimators = new Sys::MatLoopAnimator[2]; }
 
-/*
- * --INFO--
- * Address:	8028FCEC
- * Size:	000060
+/**
+ * @note Address: 0x8028FCEC
+ * @note Size: 0x60
  */
 void Obj::startMaterialAnimation()
 {
@@ -244,10 +226,9 @@ void Obj::startMaterialAnimation()
 	tevRegLoopAnimator->start(tevRegAnimation);
 }
 
-/*
- * --INFO--
- * Address:	8028FD4C
- * Size:	000108
+/**
+ * @note Address: 0x8028FD4C
+ * @note Size: 0x108
  */
 void Obj::updateMaterialAnimation()
 {
@@ -280,17 +261,15 @@ void Obj::updateMaterialAnimation()
 	mLoopAnimators[1].animate(p1);
 }
 
-/*
- * --INFO--
- * Address:	8028FE54
- * Size:	00002C
+/**
+ * @note Address: 0x8028FE54
+ * @note Size: 0x2C
  */
 void Obj::updateEfxLod() { mEfxBody->setRateLOD(mLod.isFlag(AILOD_IsMid | AILOD_IsFar)); }
 
-/*
- * --INFO--
- * Address:	8028FE80
- * Size:	000288
+/**
+ * @note Address: 0x8028FE80
+ * @note Size: 0x288
  */
 void Obj::createEffect()
 {
@@ -301,10 +280,9 @@ void Obj::createEffect()
 	mEfxSteam     = new efx::TYakiSteam;
 }
 
-/*
- * --INFO--
- * Address:	80290108
- * Size:	000084
+/**
+ * @note Address: 0x80290108
+ * @note Size: 0x84
  */
 void Obj::setupEffect()
 {
@@ -318,38 +296,33 @@ void Obj::setupEffect()
 	mEfxHanacho->mMtx = headMat;
 }
 
-/*
- * --INFO--
- * Address:	8029018C
- * Size:	000034
+/**
+ * @note Address: 0x8029018C
+ * @note Size: 0x34
  */
 void Obj::startSleepEffect() { mEfxHanacho->create(nullptr); }
 
-/*
- * --INFO--
- * Address:	802901C0
- * Size:	000030
+/**
+ * @note Address: 0x802901C0
+ * @note Size: 0x30
  */
 void Obj::finishSleepEffect() { mEfxHanacho->fade(); }
 
-/*
- * --INFO--
- * Address:	802901F0
- * Size:	000034
+/**
+ * @note Address: 0x802901F0
+ * @note Size: 0x34
  */
 void Obj::startBodyEffect() { mEfxBody->create(nullptr); }
 
-/*
- * --INFO--
- * Address:	80290224
- * Size:	000030
+/**
+ * @note Address: 0x80290224
+ * @note Size: 0x30
  */
 void Obj::finishBodyEffect() { mEfxBody->fade(); }
 
-/*
- * --INFO--
- * Address:	80290254
- * Size:	000040
+/**
+ * @note Address: 0x80290254
+ * @note Size: 0x40
  */
 void Obj::createFlickEffect()
 {
@@ -358,24 +331,21 @@ void Obj::createFlickEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80290294
- * Size:	000034
+/**
+ * @note Address: 0x80290294
+ * @note Size: 0x34
  */
 void Obj::createDeadSmokeEffect() { mEfxDeadsmoke->create(nullptr); }
 
-/*
- * --INFO--
- * Address:	802902C8
- * Size:	000034
+/**
+ * @note Address: 0x802902C8
+ * @note Size: 0x34
  */
 void Obj::createDeadSteamEffect() { mEfxSteam->create(nullptr); }
 
-/*
- * --INFO--
- * Address:	802902FC
- * Size:	00008C
+/**
+ * @note Address: 0x802902FC
+ * @note Size: 0x8C
  */
 void Obj::effectDrawOn()
 {
@@ -386,10 +356,9 @@ void Obj::effectDrawOn()
 	mEfxHanacho->endDemoDrawOn();
 }
 
-/*
- * --INFO--
- * Address:	80290388
- * Size:	00008C
+/**
+ * @note Address: 0x80290388
+ * @note Size: 0x8C
  */
 void Obj::effectDrawOff()
 {

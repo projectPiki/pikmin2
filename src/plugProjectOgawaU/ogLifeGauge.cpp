@@ -11,10 +11,9 @@
 namespace og {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	80306038
- * Size:	000158
+/**
+ * @note Address: 0x80306038
+ * @note Size: 0x158
  */
 CallBack_LifeGauge::CallBack_LifeGauge()
 {
@@ -55,10 +54,9 @@ CallBack_LifeGauge::CallBack_LifeGauge()
 	mMoveTimer     = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	80306200
- * Size:	0002C4
+/**
+ * @note Address: 0x80306200
+ * @note Size: 0x2C4
  */
 void CallBack_LifeGauge::init(P2DScreen::Mgr* mgr, DataNavi* data, LifeGaugeType lifeGaugeType)
 {
@@ -111,10 +109,9 @@ void CallBack_LifeGauge::init(P2DScreen::Mgr* mgr, DataNavi* data, LifeGaugeType
 	}
 }
 
-/*
- * --INFO--
- * Address:	803064C4
- * Size:	000434
+/**
+ * @note Address: 0x803064C4
+ * @note Size: 0x434
  */
 void CallBack_LifeGauge::setType(LifeGaugeType lifeGaugeType)
 {
@@ -150,10 +147,9 @@ void CallBack_LifeGauge::setType(LifeGaugeType lifeGaugeType)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803068F8
- * Size:	000078
+/**
+ * @note Address: 0x803068F8
+ * @note Size: 0x78
  */
 void CallBack_LifeGauge::setOffset(f32 x, f32 y)
 {
@@ -165,10 +161,9 @@ void CallBack_LifeGauge::setOffset(f32 x, f32 y)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80306970
- * Size:	000318
+/**
+ * @note Address: 0x80306970
+ * @note Size: 0x318
  */
 void CallBack_LifeGauge::moveIcon()
 {
@@ -211,10 +206,9 @@ void CallBack_LifeGauge::moveIcon()
 	mLi_i->updateScale(scale);
 }
 
-/*
- * --INFO--
- * Address:	80306C88
- * Size:	00026C
+/**
+ * @note Address: 0x80306C88
+ * @note Size: 0x26C
  */
 void CallBack_LifeGauge::update()
 {
@@ -263,10 +257,9 @@ void CallBack_LifeGauge::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80306EF4
- * Size:	0000B4
+/**
+ * @note Address: 0x80306EF4
+ * @note Size: 0xB4
  */
 void CallBack_LifeGauge::draw(Graphics& gfx, J2DGrafContext& context)
 {
@@ -284,10 +277,9 @@ void CallBack_LifeGauge::draw(Graphics& gfx, J2DGrafContext& context)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80306FA8
- * Size:	000118
+/**
+ * @note Address: 0x80306FA8
+ * @note Size: 0x118
  */
 void NaviLifeGauge::setCallBack(DataNavi* data, CallBack_LifeGauge::LifeGaugeType lifeGaugeType)
 {
@@ -312,10 +304,9 @@ void NaviLifeGauge::setCallBack(DataNavi* data, CallBack_LifeGauge::LifeGaugeTyp
 	}
 }
 
-/*
- * --INFO--
- * Address:	803070C0
- * Size:	00002C
+/**
+ * @note Address: 0x803070C0
+ * @note Size: 0x2C
  */
 void NaviLifeGauge::setType(CallBack_LifeGauge::LifeGaugeType lifeGaugeType)
 {
@@ -324,10 +315,9 @@ void NaviLifeGauge::setType(CallBack_LifeGauge::LifeGaugeType lifeGaugeType)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803070EC
- * Size:	00005C
+/**
+ * @note Address: 0x803070EC
+ * @note Size: 0x5C
  */
 void NaviLifeGauge::update()
 {

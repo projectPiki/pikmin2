@@ -1,10 +1,9 @@
 #include "JSystem/JAudio/JAS/JASTrack.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	800A29F8
- * Size:	000044
+/**
+ * @note Address: 0x800A29F8
+ * @note Size: 0x44
  */
 void JASIntrMgr::init()
 {
@@ -19,10 +18,9 @@ void JASIntrMgr::init()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800A2A3C
- * Size:	000024
+/**
+ * @note Address: 0x800A2A3C
+ * @note Size: 0x24
  */
 void JASIntrMgr::request(u32 interrupt)
 {
@@ -32,10 +30,9 @@ void JASIntrMgr::request(u32 interrupt)
 	_01 |= 1 << interrupt;
 }
 
-/*
- * --INFO--
- * Address:	800A2A60
- * Size:	000024
+/**
+ * @note Address: 0x800A2A60
+ * @note Size: 0x24
  */
 void JASIntrMgr::setIntr(u32 interrupt, void* data)
 {
@@ -43,17 +40,15 @@ void JASIntrMgr::setIntr(u32 interrupt, void* data)
 	_0C[interrupt] = data;
 }
 
-/*
- * --INFO--
- * Address:	800A2A84
- * Size:	000018
+/**
+ * @note Address: 0x800A2A84
+ * @note Size: 0x18
  */
 void JASIntrMgr::resetInter(u32 interrupt) { _02 &= ~(1 << interrupt); }
 
-/*
- * --INFO--
- * Address:	800A2A9C
- * Size:	00006C
+/**
+ * @note Address: 0x800A2A9C
+ * @note Size: 0x6C
  */
 void* JASIntrMgr::checkIntr()
 {
@@ -69,10 +64,9 @@ void* JASIntrMgr::checkIntr()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	800A2B08
- * Size:	000070
+/**
+ * @note Address: 0x800A2B08
+ * @note Size: 0x70
  */
 void JASIntrMgr::timerProcess()
 {

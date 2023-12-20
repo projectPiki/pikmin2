@@ -9,10 +9,9 @@ inline u64 J2DPane::getTagName() const { return mTag; }
 namespace og {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	80309614
- * Size:	000098
+/**
+ * @note Address: 0x80309614
+ * @note Size: 0x98
  */
 CallBack_Message::CallBack_Message()
 {
@@ -28,10 +27,9 @@ CallBack_Message::CallBack_Message()
 	mMinX              = 1.0f;
 }
 
-/*
- * --INFO--
- * Address:	803096AC
- * Size:	0001B4
+/**
+ * @note Address: 0x803096AC
+ * @note Size: 0x1B4
  */
 void CallBack_Message::draw(Graphics& gfx, J2DGrafContext& graf)
 {
@@ -81,18 +79,16 @@ void CallBack_Message::draw(Graphics& gfx, J2DGrafContext& graf)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
+/**
+ * @note Address: N/A
+ * @note Size: 0xE4
  * NB: this never gets used, but it has to be here to generate the weak CallBack_Message dtor in the right spot
  */
 CallBack_MessageAndShadow::CallBack_MessageAndShadow(f32, f32, J2DPane*) { }
 
-/*
- * --INFO--
- * Address:	803098E0
- * Size:	000194
+/**
+ * @note Address: 0x803098E0
+ * @note Size: 0x194
  */
 bool checkVisibleGlb(J2DPane* pane)
 {
@@ -104,10 +100,9 @@ bool checkVisibleGlb(J2DPane* pane)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80309A7C
- * Size:	00031C
+/**
+ * @note Address: 0x80309A7C
+ * @note Size: 0x31C
  */
 void setCallBackMessageSub(P2DScreen::Mgr* mgr, J2DPane* pane)
 {
@@ -129,10 +124,9 @@ void setCallBackMessageSub(P2DScreen::Mgr* mgr, J2DPane* pane)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80309E00
- * Size:	000024
+/**
+ * @note Address: 0x80309E00
+ * @note Size: 0x24
  */
 void setCallBackMessage(P2DScreen::Mgr* mgr) { setCallBackMessageSub(mgr, mgr); }
 } // namespace Screen

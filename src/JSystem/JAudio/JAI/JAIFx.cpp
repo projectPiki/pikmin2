@@ -11,10 +11,9 @@ u32* JAInter::Fx::mBufferSizeMax;
 s16** JAInter::Fx::mBufferPointer;
 JASDsp::FxlineConfig_** JAInter::Fx::mFxconfigTable;
 
-/*
- * --INFO--
- * Address:	800AD6CC
- * Size:	000160
+/**
+ * @note Address: 0x800AD6CC
+ * @note Size: 0x160
  */
 void JAInter::Fx::init()
 {
@@ -141,17 +140,15 @@ lbl_800AD810:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800AD82C
- * Size:	000008
+/**
+ * @note Address: 0x800AD82C
+ * @note Size: 0x8
  */
 void JAInter::Fx::setSceneMax(u8 sceneMax) { mSceneMax = sceneMax; }
 
-/*
- * --INFO--
- * Address:	800AD834
- * Size:	000024
+/**
+ * @note Address: 0x800AD834
+ * @note Size: 0x24
  */
 void JAInter::Fx::setBufferMax(u32 max1, u32 max2, u32 max3, u32 max4)
 {
@@ -161,62 +158,54 @@ void JAInter::Fx::setBufferMax(u32 max1, u32 max2, u32 max3, u32 max4)
 	mBufferSizeMax[3] = max4;
 }
 
-/*
- * --INFO--
- * Address:	800AD858
- * Size:	000008
+/**
+ * @note Address: 0x800AD858
+ * @note Size: 0x8
  */
 void JAInter::Fx::setTablePointer(void** tablePointer) { mFxconfigTable = reinterpret_cast<JASDsp::FxlineConfig_**>(tablePointer); }
 
-/*
- * --INFO--
- * Address:	800AD860
- * Size:	000010
+/**
+ * @note Address: 0x800AD860
+ * @note Size: 0x10
  */
 void JAInter::Fx::setBufferPointer(u8 index, s16* bufferPointer) { mBufferPointer[index] = bufferPointer; }
 
-/*
- * --INFO--
- * Address:	800AD870
- * Size:	000010
+/**
+ * @note Address: 0x800AD870
+ * @note Size: 0x10
  */
 void JAInter::Fx::setScenePointer(u8 index, void* scenePointer)
 {
 	mFxconfigTable[index] = static_cast<JASDsp::FxlineConfig_*>(scenePointer);
 }
 
-/*
- * --INFO--
- * Address:	800AD880
- * Size:	000008
+/**
+ * @note Address: 0x800AD880
+ * @note Size: 0x8
  */
 u8 JAInter::Fx::getSceneMax() { return mSceneMax; }
 
-/*
- * --INFO--
- * Address:	800AD888
- * Size:	000010
+/**
+ * @note Address: 0x800AD888
+ * @note Size: 0x10
  */
 u32 JAInter::Fx::getBufferSizeMax(u8 index) { return mBufferSizeMax[index]; }
 
-/*
- * --INFO--
- * Address:	800AD898
- * Size:	000010
+/**
+ * @note Address: 0x800AD898
+ * @note Size: 0x10
  */
 s16* JAInter::Fx::getBufferPointer(u8 index) { return mBufferPointer[index]; }
 
-/*
- * --INFO--
- * Address:	800AD8A8
- * Size:	000008
+/**
+ * @note Address: 0x800AD8A8
+ * @note Size: 0x8
  */
 JASDsp::FxlineConfig_** JAInter::Fx::getFxconfigTable() { return mFxconfigTable; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
+/**
+ * @note Address: N/A
+ * @note Size: 0x80
  */
 void JAInter::Fx::clearBuffer(u8 index)
 {
@@ -229,10 +218,9 @@ void JAInter::Fx::clearBuffer(u8 index)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800AD8B0
- * Size:	0000A0
+/**
+ * @note Address: 0x800AD8B0
+ * @note Size: 0xA0
  */
 void JAInter::Fx::clearAllBuffer()
 {

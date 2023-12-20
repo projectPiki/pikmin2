@@ -4,10 +4,9 @@
 #include "og/Screen/ogScreen.h"
 
 namespace Morimura {
-/*
- * --INFO--
- * Address:	803A102C
- * Size:	0000B8
+/**
+ * @note Address: 0x803A102C
+ * @note Size: 0xB8
  */
 void TCallbackScissor::draw(Graphics& gfx, J2DGrafContext& graf)
 {
@@ -15,10 +14,9 @@ void TCallbackScissor::draw(Graphics& gfx, J2DGrafContext& graf)
 	GXSetScissor(mBounds.i.x, mBounds.i.y, mBounds.f.x - mBounds.i.x, mBounds.f.y - mBounds.i.y);
 }
 
-/*
- * --INFO--
- * Address:	803A10E4
- * Size:	0000C0
+/**
+ * @note Address: 0x803A10E4
+ * @note Size: 0xC0
  */
 TOffsetMsgSet::TOffsetMsgSet(u64* taglist, u64 newtag, int size)
 {
@@ -36,10 +34,9 @@ TOffsetMsgSet::TOffsetMsgSet(u64* taglist, u64 newtag, int size)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A11A4
- * Size:	000068
+/**
+ * @note Address: 0x803A11A4
+ * @note Size: 0x68
  */
 TOffsetMsgSet::TOffsetMsgSet(u64* taglist, u64 newtag, int size, u64* taglist2, int* alloc)
 {
@@ -57,10 +54,9 @@ TOffsetMsgSet::TOffsetMsgSet(u64* taglist, u64 newtag, int size, u64* taglist2, 
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A120C
- * Size:	00019C
+/**
+ * @note Address: 0x803A120C
+ * @note Size: 0x19C
  */
 u64 TOffsetMsgSet::getMsgID(int index)
 {
@@ -94,10 +90,9 @@ u64 TOffsetMsgSet::getMsgID(int index)
 	return retTag;
 }
 
-/*
- * --INFO--
- * Address:	803A13A8
- * Size:	000028
+/**
+ * @note Address: 0x803A13A8
+ * @note Size: 0x28
  */
 TScreenBase::TScreenBase(JKRArchive* arc, int anims)
 {
@@ -108,10 +103,9 @@ TScreenBase::TScreenBase(JKRArchive* arc, int anims)
 	mCurrEntries        = 0;
 }
 
-/*
- * --INFO--
- * Address:	803A13D0
- * Size:	000090
+/**
+ * @note Address: 0x803A13D0
+ * @note Size: 0x90
  */
 void TScreenBase::create(const char* name, u32 flags)
 {
@@ -124,10 +118,9 @@ void TScreenBase::create(const char* name, u32 flags)
 	::og::Screen::setAlphaScreen(mScreenObj);
 }
 
-/*
- * --INFO--
- * Address:	803A1460
- * Size:	0000B0
+/**
+ * @note Address: 0x803A1460
+ * @note Size: 0xB0
  */
 void TScreenBase::addAnim(char* name)
 {
@@ -138,10 +131,9 @@ void TScreenBase::addAnim(char* name)
 	mCurrEntries++;
 }
 
-/*
- * --INFO--
- * Address:	803A1510
- * Size:	000088
+/**
+ * @note Address: 0x803A1510
+ * @note Size: 0x88
  */
 void TScreenBase::update()
 {
@@ -154,10 +146,9 @@ void TScreenBase::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A1598
- * Size:	000038
+/**
+ * @note Address: 0x803A1598
+ * @note Size: 0x38
  */
 void TScreenBase::draw(Graphics& gfx, J2DPerspGraph* graf)
 {
@@ -166,10 +157,9 @@ void TScreenBase::draw(Graphics& gfx, J2DPerspGraph* graf)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A15D0
- * Size:	000124
+/**
+ * @note Address: 0x803A15D0
+ * @note Size: 0x124
  */
 TIndPane::TIndPane(char const* name, f32 x, f32 y)
     : CNode("indpane")
@@ -190,10 +180,9 @@ TIndPane::TIndPane(char const* name, f32 x, f32 y)
 	mMaxPos = Vector2f(x, y);
 }
 
-/*
- * --INFO--
- * Address:	803A16F4
- * Size:	0000A4
+/**
+ * @note Address: 0x803A16F4
+ * @note Size: 0xA4
  */
 void TIndPane::createIndTexture(char const* name)
 {
@@ -201,17 +190,15 @@ void TIndPane::createIndTexture(char const* name)
 	P2ASSERTLINE(232, mTexture2);
 }
 
-/*
- * --INFO--
- * Address:	803A1798
- * Size:	000074
+/**
+ * @note Address: 0x803A1798
+ * @note Size: 0x74
  */
 void TIndPane::createCaptureTexture(_GXTexFmt fmt) { mTexture3 = new JUTTexture(mMaxPos.x, mMaxPos.y, fmt); }
 
-/*
- * --INFO--
- * Address:	803A180C
- * Size:	000308
+/**
+ * @note Address: 0x803A180C
+ * @note Size: 0x308
  */
 void TIndPane::draw()
 {
@@ -290,10 +277,9 @@ void TIndPane::draw()
 	GXTexCoord2f32(s0, t1);
 }
 
-/*
- * --INFO--
- * Address:	803A1B14
- * Size:	0000A8
+/**
+ * @note Address: 0x803A1B14
+ * @note Size: 0xA8
  */
 void TScaleUpCounter::setValue(bool flag1, bool flag2)
 {
@@ -316,10 +302,9 @@ void TScaleUpCounter::setValue(bool flag1, bool flag2)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A1BBC
- * Size:	000060
+/**
+ * @note Address: 0x803A1BBC
+ * @note Size: 0x60
  */
 void TScaleUpCounter::forceScaleUp(bool flag)
 {
@@ -333,10 +318,9 @@ void TScaleUpCounter::forceScaleUp(bool flag)
 	_AA = flag;
 }
 
-/*
- * --INFO--
- * Address:	803A1C1C
- * Size:	000040
+/**
+ * @note Address: 0x803A1C1C
+ * @note Size: 0x40
  */
 void TScaleUpCounter::setScale(f32 scale, f32 scalesub)
 {
@@ -348,10 +332,9 @@ void TScaleUpCounter::setScale(f32 scale, f32 scalesub)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A1C5C
- * Size:	0001A4
+/**
+ * @note Address: 0x803A1C5C
+ * @note Size: 0x1A4
  */
 TScaleUpCounter* setScaleUpCounter(P2DScreen::Mgr* screen, u64 inTag, u32* data, u16 flag, JKRArchive* arc)
 {
@@ -379,10 +362,9 @@ TScaleUpCounter* setScaleUpCounter(P2DScreen::Mgr* screen, u64 inTag, u32* data,
 	return counter;
 }
 
-/*
- * --INFO--
- * Address:	803A1E00
- * Size:	00012C
+/**
+ * @note Address: 0x803A1E00
+ * @note Size: 0x12C
  */
 TScaleUpCounter* setScaleUpCounter2(P2DScreen::Mgr* screen, u64 inTag, u64 searchTag, u32* data, u16 flag, JKRArchive* arc)
 {
@@ -398,10 +380,9 @@ TScaleUpCounter* setScaleUpCounter2(P2DScreen::Mgr* screen, u64 inTag, u64 searc
 	return counter;
 }
 
-/*
- * --INFO--
- * Address:	803A1F2C
- * Size:	0000B8
+/**
+ * @note Address: 0x803A1F2C
+ * @note Size: 0xB8
  */
 void TScissorPane::drawSelf(f32, f32, Mtx*)
 {

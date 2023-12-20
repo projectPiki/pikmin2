@@ -197,7 +197,7 @@ struct CellPyramid : public SweepPrune::World {
 	f32 mInverseScale;  // _38
 	f32 mLeft;          // _3C
 	f32 mRight;         // _40
-	/*
+	/**
 	 * Incremented at the start of every resolve/search pass.
 	 * Passed on to CellObjects to prevent evaluating multiple times per pass.
 	 */

@@ -15,10 +15,9 @@
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	8034F5E0
- * Size:	000070
+/**
+ * @note Address: 0x8034F5E0
+ * @note Size: 0x70
  */
 bool InteractSuckFinish::actEnemy(EnemyBase* enemy)
 {
@@ -34,10 +33,9 @@ bool InteractSuckFinish::actEnemy(EnemyBase* enemy)
 
 namespace PanModokiBase {
 
-/*
- * --INFO--
- * Address:	8034F650
- * Size:	000068
+/**
+ * @note Address: 0x8034F650
+ * @note Size: 0x68
  */
 void Obj::setParameters()
 {
@@ -49,10 +47,9 @@ void Obj::setParameters()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8034F6B8
- * Size:	000120
+/**
+ * @note Address: 0x8034F6B8
+ * @note Size: 0x120
  */
 void Obj::birth(Vector3f& position, f32 faceDirection)
 {
@@ -77,10 +74,9 @@ void Obj::birth(Vector3f& position, f32 faceDirection)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8034F7D8
- * Size:	0001DC
+/**
+ * @note Address: 0x8034F7D8
+ * @note Size: 0x1DC
  */
 void Obj::onInit(CreatureInitArg* args)
 {
@@ -120,10 +116,9 @@ void Obj::onInit(CreatureInitArg* args)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8034F9B4
- * Size:	0002A0
+/**
+ * @note Address: 0x8034F9B4
+ * @note Size: 0x2A0
  */
 Obj::Obj()
     : mCarryDir(0.0f)
@@ -147,17 +142,15 @@ Obj::Obj()
 	mEfxSmoke = new efx::TPanSmoke(&mPosition);
 }
 
-/*
- * --INFO--
- * Address:	8034FC54
- * Size:	000034
+/**
+ * @note Address: 0x8034FC54
+ * @note Size: 0x34
  */
 void Obj::doUpdate() { mFsm->exec(this); }
 
-/*
- * --INFO--
- * Address:	8034FC88
- * Size:	0000B4
+/**
+ * @note Address: 0x8034FC88
+ * @note Size: 0xB4
  */
 void Obj::doAnimation()
 {
@@ -177,10 +170,9 @@ void Obj::doAnimation()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8034FD3C
- * Size:	000318
+/**
+ * @note Address: 0x8034FD3C
+ * @note Size: 0x318
  */
 void Obj::doAnimationStick()
 {
@@ -218,10 +210,9 @@ void Obj::doAnimationStick()
 	mBaseTrMatrix.makeSRT(mScale, mRotation, mPosition);
 }
 
-/*
- * --INFO--
- * Address:	80350054
- * Size:	00027C
+/**
+ * @note Address: 0x80350054
+ * @note Size: 0x27C
  */
 void Obj::updateCaptureMatrix()
 {
@@ -440,24 +431,21 @@ lbl_80350298:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803502D0
- * Size:	000004
+/**
+ * @note Address: 0x803502D0
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	803502D4
- * Size:	000020
+/**
+ * @note Address: 0x803502D4
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& graphics) { EnemyBase::doDebugDraw(graphics); }
 
-/*
- * --INFO--
- * Address:	803502F4
- * Size:	000030
+/**
+ * @note Address: 0x803502F4
+ * @note Size: 0x30
  */
 bool Obj::damageCallBack(Creature* source, f32 damage, CollPart* part)
 {
@@ -467,10 +455,9 @@ bool Obj::damageCallBack(Creature* source, f32 damage, CollPart* part)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80350324
- * Size:	0001BC
+/**
+ * @note Address: 0x80350324
+ * @note Size: 0x1BC
  */
 bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* part)
 {
@@ -527,17 +514,15 @@ bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* part)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803504E0
- * Size:	00002C
+/**
+ * @note Address: 0x803504E0
+ * @note Size: 0x2C
  */
 bool Obj::hipdropCallBack(Creature* source, f32 damage, CollPart* part) { pressCallBack(source, damage, part); }
 
-/*
- * --INFO--
- * Address:	8035050C
- * Size:	0000AC
+/**
+ * @note Address: 0x8035050C
+ * @note Size: 0xAC
  */
 void Obj::collisionCallback(CollEvent& event)
 {
@@ -553,10 +538,9 @@ void Obj::collisionCallback(CollEvent& event)
 	EnemyBase::collisionCallback(event);
 }
 
-/*
- * --INFO--
- * Address:	803505B8
- * Size:	000044
+/**
+ * @note Address: 0x803505B8
+ * @note Size: 0x44
  */
 void Obj::outWaterCallback()
 {
@@ -566,10 +550,9 @@ void Obj::outWaterCallback()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803505FC
- * Size:	000034
+/**
+ * @note Address: 0x803505FC
+ * @note Size: 0x34
  */
 void Obj::inWaterCallback(WaterBox* waterbox)
 {
@@ -577,10 +560,9 @@ void Obj::inWaterCallback(WaterBox* waterbox)
 	fadePulledSmokeEffect();
 }
 
-/*
- * --INFO--
- * Address:	80350630
- * Size:	000054
+/**
+ * @note Address: 0x80350630
+ * @note Size: 0x54
  */
 void Obj::bounceCallback(Sys::Triangle* triangle)
 {
@@ -589,10 +571,9 @@ void Obj::bounceCallback(Sys::Triangle* triangle)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80350684
- * Size:	000050
+/**
+ * @note Address: 0x80350684
+ * @note Size: 0x50
  */
 void Obj::damageRumble()
 {
@@ -600,10 +581,9 @@ void Obj::damageRumble()
 	rumbleMgr->startRumble(11, mPosition, 2);
 }
 
-/*
- * --INFO--
- * Address:	803506D4
- * Size:	00021C
+/**
+ * @note Address: 0x803506D4
+ * @note Size: 0x21C
  */
 void Obj::doSimulation(f32 simspeed)
 {
@@ -641,10 +621,9 @@ void Obj::doSimulation(f32 simspeed)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803508F0
- * Size:	000088
+/**
+ * @note Address: 0x803508F0
+ * @note Size: 0x88
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
@@ -655,10 +634,9 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 	shadowParam.mSize                     = mShadowSize;
 }
 
-/*
- * --INFO--
- * Address:	80350978
- * Size:	000058
+/**
+ * @note Address: 0x80350978
+ * @note Size: 0x58
  */
 bool Obj::needShadow()
 {
@@ -674,17 +652,15 @@ bool Obj::needShadow()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	803509D0
- * Size:	000028
+/**
+ * @note Address: 0x803509D0
+ * @note Size: 0x28
  */
 void Obj::startCarcassMotion() { EnemyBase::startMotion(PANMODOKIANIM_Carry, nullptr); }
 
-/*
- * --INFO--
- * Address:	803509F8
- * Size:	00008C
+/**
+ * @note Address: 0x803509F8
+ * @note Size: 0x8C
  */
 void Obj::initMouthSlots()
 {
@@ -697,10 +673,9 @@ void Obj::initMouthSlots()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80350A84
- * Size:	000044
+/**
+ * @note Address: 0x80350A84
+ * @note Size: 0x44
  */
 void Obj::onKill(CreatureKillArg* settings)
 {
@@ -710,10 +685,9 @@ void Obj::onKill(CreatureKillArg* settings)
 	killNest();
 }
 
-/*
- * --INFO--
- * Address:	80350AC8
- * Size:	000050
+/**
+ * @note Address: 0x80350AC8
+ * @note Size: 0x50
  */
 void Obj::doStartMovie()
 {
@@ -721,10 +695,9 @@ void Obj::doStartMovie()
 	mEfxSmoke->startDemoDrawOff();
 }
 
-/*
- * --INFO--
- * Address:	80350B18
- * Size:	000050
+/**
+ * @note Address: 0x80350B18
+ * @note Size: 0x50
  */
 void Obj::doEndMovie()
 {
@@ -732,10 +705,9 @@ void Obj::doEndMovie()
 	mEfxSmoke->endDemoDrawOn();
 }
 
-/*
- * --INFO--
- * Address:	80350B68
- * Size:	000054
+/**
+ * @note Address: 0x80350B68
+ * @note Size: 0x54
  */
 void Obj::doStartStoneState()
 {
@@ -744,10 +716,9 @@ void Obj::doStartStoneState()
 	releaseCarryTarget();
 }
 
-/*
- * --INFO--
- * Address:	80350BBC
- * Size:	0000AC
+/**
+ * @note Address: 0x80350BBC
+ * @note Size: 0xAC
  */
 void Obj::doFinishStoneState()
 {
@@ -762,10 +733,9 @@ void Obj::doFinishStoneState()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80350C68
- * Size:	000064
+/**
+ * @note Address: 0x80350C68
+ * @note Size: 0x64
  */
 void Obj::initWalkSmokeEffect()
 {
@@ -774,17 +744,15 @@ void Obj::initWalkSmokeEffect()
 	mWalkSmokeMgr.setup(1, mModel, "asiR", 2.0f);
 }
 
-/*
- * --INFO--
- * Address:	80350CCC
- * Size:	000008
+/**
+ * @note Address: 0x80350CCC
+ * @note Size: 0x8
  */
 WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
 
-/*
- * --INFO--
- * Address:	80350CD4
- * Size:	0004B4
+/**
+ * @note Address: 0x80350CD4
+ * @note Size: 0x4B4
  */
 void Obj::findNextRoutePoint(bool cond)
 {
@@ -864,10 +832,9 @@ void Obj::findNextRoutePoint(bool cond)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80351188
- * Size:	000274
+/**
+ * @note Address: 0x80351188
+ * @note Size: 0x274
  */
 bool Obj::isCarryToGoal()
 {
@@ -1127,10 +1094,9 @@ lbl_803513B4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803513FC
- * Size:	0002CC
+/**
+ * @note Address: 0x803513FC
+ * @note Size: 0x2CC
  */
 void Obj::walkFunc()
 {
@@ -1202,10 +1168,9 @@ void Obj::walkFunc()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803516C8
- * Size:	000184
+/**
+ * @note Address: 0x803516C8
+ * @note Size: 0x184
  */
 bool Obj::isReachToGoal(f32 radius)
 {
@@ -1349,10 +1314,9 @@ lbl_80351824:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8035184C
- * Size:	000074
+/**
+ * @note Address: 0x8035184C
+ * @note Size: 0x74
  */
 bool Obj::canBack()
 {
@@ -1368,10 +1332,9 @@ bool Obj::canBack()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	803518C0
- * Size:	000344
+/**
+ * @note Address: 0x803518C0
+ * @note Size: 0x344
  */
 Pellet* Obj::findNearestPellet()
 {
@@ -1416,10 +1379,9 @@ Pellet* Obj::findNearestPellet()
 	return resPellet;
 }
 
-/*
- * --INFO--
- * Address:	80351C04
- * Size:	000068
+/**
+ * @note Address: 0x80351C04
+ * @note Size: 0x68
  */
 Pellet* Obj::getCarryTarget()
 {
@@ -1435,10 +1397,9 @@ Pellet* Obj::getCarryTarget()
 	return static_cast<Pellet*>(mTargetCreature);
 }
 
-/*
- * --INFO--
- * Address:	80351C6C
- * Size:	0001E4
+/**
+ * @note Address: 0x80351C6C
+ * @note Size: 0x1E4
  */
 void Obj::releaseCarryTarget()
 {
@@ -1463,10 +1424,9 @@ void Obj::releaseCarryTarget()
 	mTargetCreature = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80351E50
- * Size:	000284
+/**
+ * @note Address: 0x80351E50
+ * @note Size: 0x284
  */
 void Obj::checkNearHomeGraphIndex()
 {
@@ -1498,20 +1458,18 @@ void Obj::checkNearHomeGraphIndex()
 	turnToTarget2(mNextWayPointPosition, turnSpeed, maxTurnSpeed);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D0
+/**
+ * @note Address: N/A
+ * @note Size: 0xD0
  */
 void Obj::clearCarryVelocity()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803520D4
- * Size:	000518
+/**
+ * @note Address: 0x803520D4
+ * @note Size: 0x518
  */
 bool Obj::carryTarget(f32 param)
 {
@@ -1600,10 +1558,9 @@ bool Obj::carryTarget(f32 param)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803525EC
- * Size:	000050
+/**
+ * @note Address: 0x803525EC
+ * @note Size: 0x50
  */
 void Obj::changeCarryDir(bool direct)
 {
@@ -1614,10 +1571,9 @@ void Obj::changeCarryDir(bool direct)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8035263C
- * Size:	0001B4
+/**
+ * @note Address: 0x8035263C
+ * @note Size: 0x1B4
  */
 void Obj::setCarryDir(bool direct)
 {
@@ -1643,10 +1599,9 @@ void Obj::setCarryDir(bool direct)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803527F0
- * Size:	000384
+/**
+ * @note Address: 0x803527F0
+ * @note Size: 0x384
  */
 void Obj::endCarry()
 {
@@ -1685,10 +1640,9 @@ void Obj::endCarry()
 	mTargetCreature = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80352B74
- * Size:	0000A0
+/**
+ * @note Address: 0x80352B74
+ * @note Size: 0xA0
  */
 void Obj::checkSucked()
 {
@@ -1704,10 +1658,9 @@ void Obj::checkSucked()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80352C14
- * Size:	0000BC
+/**
+ * @note Address: 0x80352C14
+ * @note Size: 0xBC
  */
 void Obj::suckFinish()
 {
@@ -1722,10 +1675,9 @@ void Obj::suckFinish()
 	fadePulledSmokeEffect();
 }
 
-/*
- * --INFO--
- * Address:	80352CD0
- * Size:	000118
+/**
+ * @note Address: 0x80352CD0
+ * @note Size: 0x118
  */
 bool Obj::isEndPathFinder()
 {
@@ -1760,10 +1712,9 @@ bool Obj::isEndPathFinder()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80352DE8
- * Size:	0002BC
+/**
+ * @note Address: 0x80352DE8
+ * @note Size: 0x2BC
  */
 bool Obj::setPathFinder(bool cond)
 {
@@ -2016,10 +1967,9 @@ lbl_80353080:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803530A4
- * Size:	000044
+/**
+ * @note Address: 0x803530A4
+ * @note Size: 0x44
  */
 void Obj::releasePathFinder()
 {
@@ -2029,10 +1979,9 @@ void Obj::releasePathFinder()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803530E8
- * Size:	000020
+/**
+ * @note Address: 0x803530E8
+ * @note Size: 0x20
  */
 void PanModokiBase::Obj::killNest()
 {
@@ -2042,10 +1991,9 @@ void PanModokiBase::Obj::killNest()
 	mNest = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80353108
- * Size:	000324
+/**
+ * @note Address: 0x80353108
+ * @note Size: 0x324
  */
 bool Obj::isTargetable(Pellet* pellet)
 {
@@ -2081,10 +2029,9 @@ bool Obj::isTargetable(Pellet* pellet)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8035342C
- * Size:	00017C
+/**
+ * @note Address: 0x8035342C
+ * @note Size: 0x17C
  */
 void Obj::calcSlotGlobalPos(Vector3f& pos)
 {
@@ -2099,17 +2046,15 @@ void Obj::calcSlotGlobalPos(Vector3f& pos)
 	pos = matrix.mtxMult(dir);
 }
 
-/*
- * --INFO--
- * Address:	803535A8
- * Size:	000028
+/**
+ * @note Address: 0x803535A8
+ * @note Size: 0x28
  */
 void Obj::boundEffect() { createBounceEffect(mPosition, mBounceEffectSize); }
 
-/*
- * --INFO--
- * Address:	803535D0
- * Size:	0000E8
+/**
+ * @note Address: 0x803535D0
+ * @note Size: 0xE8
  */
 void Obj::createAppearEffect()
 {
@@ -2123,10 +2068,9 @@ void Obj::createAppearEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803536B8
- * Size:	0000E0
+/**
+ * @note Address: 0x803536B8
+ * @note Size: 0xE0
  */
 void Obj::createHideEffect()
 {
@@ -2139,17 +2083,15 @@ void Obj::createHideEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80353798
- * Size:	000030
+/**
+ * @note Address: 0x80353798
+ * @note Size: 0x30
  */
 void Obj::fadeHideEffect() { mEfxHide->fade(); }
 
-/*
- * --INFO--
- * Address:	803537C8
- * Size:	000084
+/**
+ * @note Address: 0x803537C8
+ * @note Size: 0x84
  */
 void Obj::createPulledSmokeEffect()
 {
@@ -2157,17 +2099,15 @@ void Obj::createPulledSmokeEffect()
 	mEfxSmoke->create(&args);
 }
 
-/*
- * --INFO--
- * Address:	8035384C
- * Size:	000030
+/**
+ * @note Address: 0x8035384C
+ * @note Size: 0x30
  */
 void Obj::fadePulledSmokeEffect() { mEfxSmoke->fade(); }
 
-/*
- * --INFO--
- * Address:	8035387C
- * Size:	0002CC
+/**
+ * @note Address: 0x8035387C
+ * @note Size: 0x2CC
  */
 void Obj::throwUpEatItem()
 {
@@ -2213,10 +2153,9 @@ void Obj::throwUpEatItem()
 
 namespace OoPanModoki {
 
-/*
- * --INFO--
- * Address:	80353B48
- * Size:	0000B8
+/**
+ * @note Address: 0x80353B48
+ * @note Size: 0xB8
  */
 Obj::Obj()
 {
@@ -2227,24 +2166,21 @@ Obj::Obj()
 	mAppearEffectSize = 1.6f;
 }
 
-/*
- * --INFO--
- * Address:	80353C00
- * Size:	000034
+/**
+ * @note Address: 0x80353C00
+ * @note Size: 0x34
  */
 void Obj::appearRumble() { rumbleMgr->startRumble(11, mPosition, 2); }
 
-/*
- * --INFO--
- * Address:	80353C34
- * Size:	000034
+/**
+ * @note Address: 0x80353C34
+ * @note Size: 0x34
  */
 void Obj::hideRumble() { rumbleMgr->startRumble(10, mPosition, 2); }
 
-/*
- * --INFO--
- * Address:	80353C68
- * Size:	000094
+/**
+ * @note Address: 0x80353C68
+ * @note Size: 0x94
  */
 bool Obj::pressCallBack(Game::Creature* creature, f32 damage, CollPart* collPart)
 {

@@ -11,20 +11,18 @@
 namespace Game {
 namespace SingleGame {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
+/**
+ * @note Address: N/A
+ * @note Size: 0xE4
  */
 // void _Print(char*, ...)
 //{
 // UNUSED FUNCTION
 //}
 
-/*
- * --INFO--
- * Address:	80239E84
- * Size:	0000B4
+/**
+ * @note Address: 0x80239E84
+ * @note Size: 0xB4
  */
 void LoadState::init(SingleGameSection* gs, StateArg* arg)
 {
@@ -47,20 +45,18 @@ void LoadState::init(SingleGameSection* gs, StateArg* arg)
 	_14 = false;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000160
+/**
+ * @note Address: N/A
+ * @note Size: 0x160
  */
 void LoadState::initNext(SingleGameSection* gs)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80239F38
- * Size:	000238
+/**
+ * @note Address: 0x80239F38
+ * @note Size: 0x238
  */
 void LoadState::exec(SingleGameSection* gs)
 {
@@ -118,10 +114,9 @@ void LoadState::exec(SingleGameSection* gs)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8023A170
- * Size:	000090
+/**
+ * @note Address: 0x8023A170
+ * @note Size: 0x90
  */
 void LoadState::draw(SingleGameSection* gs, Graphics& gfx)
 {
@@ -135,10 +130,9 @@ void LoadState::draw(SingleGameSection* gs, Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8023A200
- * Size:	000004
+/**
+ * @note Address: 0x8023A200
+ * @note Size: 0x4
  */
 void LoadState::cleanup(SingleGameSection*) { }
 

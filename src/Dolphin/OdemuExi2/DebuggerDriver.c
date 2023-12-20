@@ -1,49 +1,44 @@
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 void DBGEXIInit(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 void DBGEXISelect(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 void DBGEXIDeselect(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 void DBGEXISync(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800D0550
- * Size:	000298
+/**
+ * @note Address: 0x800D0550
+ * @note Size: 0x298
  */
 void DBGEXIImm(void)
 {
@@ -242,40 +237,36 @@ void DBGEXIImm(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 void DBGEXIClearInterrupts(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000AC
+/**
+ * @note Address: N/A
+ * @note Size: 0xAC
  */
 void DBGCheckID(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00008C
+/**
+ * @note Address: N/A
+ * @note Size: 0x8C
  */
 void DBGWriteMailbox(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800D04A4
- * Size:	0000AC
+/**
+ * @note Address: 0x800D04A4
+ * @note Size: 0xAC
  */
 void DBGReadMailbox(void)
 {
@@ -333,10 +324,9 @@ void DBGReadMailbox(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800D03C8
- * Size:	0000DC
+/**
+ * @note Address: 0x800D03C8
+ * @note Size: 0xDC
  */
 void DBGRead(void)
 {
@@ -408,10 +398,9 @@ void DBGRead(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800D02EC
- * Size:	0000DC
+/**
+ * @note Address: 0x800D02EC
+ * @note Size: 0xDC
  */
 void DBGWrite(void)
 {
@@ -483,10 +472,9 @@ void DBGWrite(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800D0240
- * Size:	0000AC
+/**
+ * @note Address: 0x800D0240
+ * @note Size: 0xAC
  */
 void DBGReadStatus(void)
 {
@@ -542,10 +530,9 @@ void DBGReadStatus(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800D0204
- * Size:	00003C
+/**
+ * @note Address: 0x800D0204
+ * @note Size: 0x3C
  */
 void MWCallback(void)
 {
@@ -571,10 +558,9 @@ void MWCallback(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800D01C4
- * Size:	000040
+/**
+ * @note Address: 0x800D01C4
+ * @note Size: 0x40
  */
 void DBGHandler(void)
 {
@@ -601,10 +587,9 @@ void DBGHandler(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800D014C
- * Size:	000078
+/**
+ * @note Address: 0x800D014C
+ * @note Size: 0x78
  */
 void DBInitComm(void)
 {
@@ -643,10 +628,9 @@ void DBInitComm(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800D00F8
- * Size:	000054
+/**
+ * @note Address: 0x800D00F8
+ * @note Size: 0x54
  */
 void DBInitInterrupts(void)
 {
@@ -676,20 +660,18 @@ void DBInitInterrupts(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000150
+/**
+ * @note Address: N/A
+ * @note Size: 0x150
  */
 void CheckMailBox(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800D005C
- * Size:	00009C
+/**
+ * @note Address: 0x800D005C
+ * @note Size: 0x9C
  */
 void DBQueryData(void)
 {
@@ -741,10 +723,9 @@ void DBQueryData(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800CFFD0
- * Size:	00008C
+/**
+ * @note Address: 0x800CFFD0
+ * @note Size: 0x8C
  */
 void DBRead(void)
 {
@@ -792,10 +773,9 @@ void DBRead(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800CFD70
- * Size:	000260
+/**
+ * @note Address: 0x800CFD70
+ * @note Size: 0x260
  */
 BOOL DBWrite(const void* src, u32 size)
 {
@@ -984,16 +964,14 @@ BOOL DBWrite(const void* src, u32 size)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800CFD6C
- * Size:	000004
+/**
+ * @note Address: 0x800CFD6C
+ * @note Size: 0x4
  */
 void DBOpen(void) { return; }
 
-/*
- * --INFO--
- * Address:	800CFD68
- * Size:	000004
+/**
+ * @note Address: 0x800CFD68
+ * @note Size: 0x4
  */
 void DBClose(void) { return; }

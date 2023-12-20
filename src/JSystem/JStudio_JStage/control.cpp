@@ -87,10 +87,9 @@ JStudio::TObject* createObject_JSG_(const JStudio::stb::data::TParse_TBlock_obje
 
 } // namespace
 
-/*
- * --INFO--
- * Address:	80014734
- * Size:	000060
+/**
+ * @note Address: 0x80014734
+ * @note Size: 0x60
  */
 TCreateObject::~TCreateObject() { }
 
@@ -126,10 +125,9 @@ static void fakeFunc(JStudio::TObject** newObject, JStudio::stb::data::TParse_TB
 	}
 }
 
-/*
- * --INFO--
- * Address:	80014794
- * Size:	000194
+/**
+ * @note Address: 0x80014794
+ * @note Size: 0x194
  */
 bool TCreateObject::create(JStudio::TObject** newObject, JStudio::stb::data::TParse_TBlock_object const& data)
 {

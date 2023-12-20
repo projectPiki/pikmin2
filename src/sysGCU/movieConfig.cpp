@@ -9,10 +9,9 @@ MovieList* movieList;
 static const int padding[]    = { 0, 0, 0 };
 static const char className[] = "movieConfig";
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000110
+/**
+ * @note Address: N/A
+ * @note Size: 0x110
  */
 MovieConfig::MovieConfig()
 {
@@ -32,17 +31,15 @@ MovieConfig::MovieConfig()
 	mMsgPauseNum = 0;
 }
 
-/*
- * --INFO--
- * Address:	804318A0
- * Size:	000004
+/**
+ * @note Address: 0x804318A0
+ * @note Size: 0x4
  */
 void MovieConfig::dump() { }
 
-/*
- * --INFO--
- * Address:	804318A4
- * Size:	00001C
+/**
+ * @note Address: 0x804318A4
+ * @note Size: 0x1C
  */
 bool MovieConfig::isSkippable()
 {
@@ -52,24 +49,21 @@ bool MovieConfig::isSkippable()
 	return mFlags & 1;
 }
 
-/*
- * --INFO--
- * Address:	804318C0
- * Size:	00000C
+/**
+ * @note Address: 0x804318C0
+ * @note Size: 0xC
  */
 bool MovieConfig::isNeverSkippable() { return mFlags >> 1 & 1; }
 
-/*
- * --INFO--
- * Address:	804318CC
- * Size:	000054
+/**
+ * @note Address: 0x804318CC
+ * @note Size: 0x54
  */
 bool MovieConfig::is(char* name) { return strncmp(mMovieNameBuffer2, name, strlen(name)) == 0; }
 
-/*
- * --INFO--
- * Address:	80431920
- * Size:	0002D4
+/**
+ * @note Address: 0x80431920
+ * @note Size: 0x2D4
  */
 void MovieConfig::read(Stream& data)
 {
@@ -124,17 +118,15 @@ void MovieConfig::read(Stream& data)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80431BF4
- * Size:	000038
+/**
+ * @note Address: 0x80431BF4
+ * @note Size: 0x38
  */
 void MovieList::construct() { movieList = new MovieList; }
 
-/*
- * --INFO--
- * Address:	80431C2C
- * Size:	0001BC
+/**
+ * @note Address: 0x80431C2C
+ * @note Size: 0x1BC
  */
 MovieList::MovieList()
 {
@@ -157,10 +149,9 @@ MovieList::MovieList()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80431E80
- * Size:	0000B0
+/**
+ * @note Address: 0x80431E80
+ * @note Size: 0xB0
  */
 MovieConfig* MovieList::findConfig(char* movieName, char* mapName)
 {
@@ -181,18 +172,16 @@ MovieConfig* MovieList::findConfig(char* movieName, char* mapName)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
+/**
+ * @note Address: N/A
+ * @note Size: 0x94
  * this is just here to get the rodata to line up.
  */
 void MovieList::getConfig(int i) { P2ASSERTLINE(100, i > 0); }
 
-/*
- * --INFO--
- * Address:	80431F30
- * Size:	000164
+/**
+ * @note Address: 0x80431F30
+ * @note Size: 0x164
  */
 void MovieList::read(Stream& data)
 {

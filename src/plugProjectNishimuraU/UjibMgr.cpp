@@ -5,10 +5,9 @@ namespace Ujib {
 
 static const char ujibMgrName[] = "246-UjibMgr";
 
-/*
- * --INFO--
- * Address:	8025979C
- * Size:	000050
+/**
+ * @note Address: 0x8025979C
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -16,24 +15,21 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "ウジンコ♂マネージャ"; // ujinko ♂ manager
 }
 
-/*
- * --INFO--
- * Address:	802597EC
- * Size:	000048
+/**
+ * @note Address: 0x802597EC
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Parms); }
 
-/*
- * --INFO--
- * Address:	80259910
- * Size:	000060
+/**
+ * @note Address: 0x80259910
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	80259A2C
- * Size:	000010
+/**
+ * @note Address: 0x80259A2C
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 

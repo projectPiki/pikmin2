@@ -6,10 +6,9 @@ static u32 Dev;
 static u32 Enabled         = 0;
 static u32 BarnacleEnabled = 0;
 
-/*
- * --INFO--
- * Address:	800E1530
- * Size:	00018C
+/**
+ * @note Address: 0x800E1530
+ * @note Size: 0x18C
  */
 static BOOL ProbeBarnacle(s32 chan, u32 dev, u32* revision)
 {
@@ -46,10 +45,9 @@ static BOOL ProbeBarnacle(s32 chan, u32 dev, u32* revision)
 	return (*revision != 0xFFFFFFFF) ? TRUE : FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800E16BC
- * Size:	0001BC
+/**
+ * @note Address: 0x800E16BC
+ * @note Size: 0x1BC
  */
 void __OSEnableBarnacle(s32 chan, u32 dev)
 {
@@ -90,10 +88,9 @@ void __OSEnableBarnacle(s32 chan, u32 dev)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800E1878
- * Size:	000070
+/**
+ * @note Address: 0x800E1878
+ * @note Size: 0x70
  */
 u32 InitializeUART(u32 baudRate)
 {
@@ -112,17 +109,15 @@ u32 InitializeUART(u32 baudRate)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 u32 ReadUARTN(void* bytes, u32 len) { return 4; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000098
+/**
+ * @note Address: N/A
+ * @note Size: 0x98
  */
 static int QueueLength(void)
 {
@@ -142,10 +137,9 @@ static int QueueLength(void)
 	return 16 - (int)((cmd >> 24) & 0xff);
 }
 
-/*
- * --INFO--
- * Address:	800E18E8
- * Size:	00021C
+/**
+ * @note Address: 0x800E18E8
+ * @note Size: 0x21C
  */
 u32 WriteUARTN(const void* buf, u32 len)
 {

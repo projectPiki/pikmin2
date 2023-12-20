@@ -5,10 +5,9 @@
 namespace og {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	80307DCC
- * Size:	0000E4
+/**
+ * @note Address: 0x80307DCC
+ * @note Size: 0xE4
  */
 MapCounter::MapCounter(DataMap* data)
 {
@@ -40,10 +39,9 @@ MapCounter::MapCounter(DataMap* data)
 	mPaneFreePiki    = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80307EB0
- * Size:	000038
+/**
+ * @note Address: 0x80307EB0
+ * @note Size: 0x38
  */
 void MapCounter::dispRed(bool makeVisible)
 {
@@ -56,10 +54,9 @@ void MapCounter::dispRed(bool makeVisible)
 	mPaneRPikiLeader->hide();
 }
 
-/*
- * --INFO--
- * Address:	80307EE8
- * Size:	000038
+/**
+ * @note Address: 0x80307EE8
+ * @note Size: 0x38
  */
 void MapCounter::dispYellow(bool makeVisible)
 {
@@ -72,10 +69,9 @@ void MapCounter::dispYellow(bool makeVisible)
 	mPaneYPikiLeader->hide();
 }
 
-/*
- * --INFO--
- * Address:	80307F20
- * Size:	000038
+/**
+ * @note Address: 0x80307F20
+ * @note Size: 0x38
  */
 void MapCounter::dispBlue(bool makeVisible)
 {
@@ -88,10 +84,9 @@ void MapCounter::dispBlue(bool makeVisible)
 	mPaneBPikiLeader->hide();
 }
 
-/*
- * --INFO--
- * Address:	80307F58
- * Size:	000038
+/**
+ * @note Address: 0x80307F58
+ * @note Size: 0x38
  */
 void MapCounter::dispWhite(bool makeVisible)
 {
@@ -104,10 +99,9 @@ void MapCounter::dispWhite(bool makeVisible)
 	mPaneWPikiLeader->hide();
 }
 
-/*
- * --INFO--
- * Address:	80307F90
- * Size:	000038
+/**
+ * @note Address: 0x80307F90
+ * @note Size: 0x38
  */
 void MapCounter::dispBlack(bool makeVisible)
 {
@@ -120,10 +114,9 @@ void MapCounter::dispBlack(bool makeVisible)
 	mPanePPikiLeader->hide();
 }
 
-/*
- * --INFO--
- * Address:	80307FC8
- * Size:	000028
+/**
+ * @note Address: 0x80307FC8
+ * @note Size: 0x28
  */
 void MapCounter::dispFree(bool makeVisible)
 {
@@ -134,10 +127,9 @@ void MapCounter::dispFree(bool makeVisible)
 	mPaneFreePiki->hide();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
+/**
+ * @note Address: N/A
+ * @note Size: 0xE0
  */
 J2DPane* setCallBack_CounterMap(P2DScreen::Mgr* mgr, u64 tag1, u64 tag2, u64 tag3, u32* count, u16 p1, u16 p2, bool check,
                                 JKRArchive* archive)
@@ -149,10 +141,9 @@ J2DPane* setCallBack_CounterMap(P2DScreen::Mgr* mgr, u64 tag1, u64 tag2, u64 tag
 	return counter->getMotherPane();
 }
 
-/*
- * --INFO--
- * Address:	80307FF0
- * Size:	000724
+/**
+ * @note Address: 0x80307FF0
+ * @note Size: 0x724
  */
 void MapCounter::setCallBack(JKRArchive* arc)
 {

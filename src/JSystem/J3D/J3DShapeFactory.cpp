@@ -6,10 +6,9 @@
 #include "Dolphin/os.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	80071D10
- * Size:	0000B0
+/**
+ * @note Address: 0x80071D10
+ * @note Size: 0xB0
  */
 J3DShapeFactory::J3DShapeFactory(const J3DShapeBlock& block)
     : mInitData(JSUConvertOffsetToPtr<J3DShapeInitData>(&block, block.mShapeDataOffset))
@@ -23,10 +22,9 @@ J3DShapeFactory::J3DShapeFactory(const J3DShapeBlock& block)
 {
 }
 
-/*
- * --INFO--
- * Address:	80071DC0
- * Size:	0001B4
+/**
+ * @note Address: 0x80071DC0
+ * @note Size: 0x1B4
  */
 J3DShape* J3DShapeFactory::create(int id, u32 flags, GXVtxDescList* vtxDescList)
 {
@@ -55,10 +53,9 @@ enum {
 	J3DMdlDataFlag_ConcatView = 0x10,
 };
 
-/*
- * --INFO--
- * Address:	80071F74
- * Size:	00024C
+/**
+ * @note Address: 0x80071F74
+ * @note Size: 0x24C
  */
 J3DShapeMtx* J3DShapeFactory::newShapeMtx(u32 flags, int shapeID, int mtxIndex) const
 {
@@ -104,10 +101,9 @@ J3DShapeMtx* J3DShapeFactory::newShapeMtx(u32 flags, int shapeID, int mtxIndex) 
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	80072264
- * Size:	00008C
+/**
+ * @note Address: 0x80072264
+ * @note Size: 0x8C
  */
 J3DShapeDraw* J3DShapeFactory::newShapeDraw(int shapeID, int drawIndex) const
 {
@@ -116,10 +112,9 @@ J3DShapeDraw* J3DShapeFactory::newShapeDraw(int shapeID, int drawIndex) const
 	return new J3DShapeDraw(&mDisplayListData[drawInitData.mDisplayListIndex], drawInitData.mDisplayListSize);
 }
 
-/*
- * --INFO--
- * Address:	800722F0
- * Size:	00010C
+/**
+ * @note Address: 0x800722F0
+ * @note Size: 0x10C
  */
 void J3DShapeFactory::allocVcdVatCmdBuffer(u32 count)
 {
@@ -128,10 +123,9 @@ void J3DShapeFactory::allocVcdVatCmdBuffer(u32 count)
 		((u32*)mVcdVatCmdBuffer)[i] = 0;
 }
 
-/*
- * --INFO--
- * Address:	800723FC
- * Size:	00008C
+/**
+ * @note Address: 0x800723FC
+ * @note Size: 0x8C
  */
 int J3DShapeFactory::calcSize(int shapeNo, u32 flag)
 {
@@ -150,17 +144,15 @@ int J3DShapeFactory::calcSize(int shapeNo, u32 flag)
 	return size;
 }
 
-/*
- * --INFO--
- * Address:	80072488
- * Size:	000010
+/**
+ * @note Address: 0x80072488
+ * @note Size: 0x10
  */
 int J3DShapeFactory::calcSizeVcdVatCmdBuffer(u32 count) { return ALIGN_NEXT(count * J3DShape::kVcdVatDLSize, 0x20); }
 
-/*
- * --INFO--
- * Address:	80072498
- * Size:	0000A8
+/**
+ * @note Address: 0x80072498
+ * @note Size: 0xA8
  */
 int J3DShapeFactory::calcSizeShapeMtx(u32 flag, int shapeNo, int mtxGroupNo) const
 {

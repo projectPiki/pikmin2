@@ -160,10 +160,9 @@ static u16 ZenkakuToCode[]
 		0x314, 0x315, 0x316, 0x317, 0x318, 0x319, 0x31A, 0x31B, 0x000 };
 // clang-format on
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
+/**
+ * @note Address: N/A
+ * @note Size: 0x58
  */
 static BOOL IsSjisLeadByte(u8 letter)
 {
@@ -171,17 +170,15 @@ static BOOL IsSjisLeadByte(u8 letter)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 static BOOL IsSjisTrailByte(u8 letter) { return (letter >= 0x40 && letter <= 0xFC && letter != 0x7F); }
 
-/*
- * --INFO--
- * Address:	800EDD98
- * Size:	00019C
+/**
+ * @note Address: 0x800EDD98
+ * @note Size: 0x19C
  */
 static int GetFontCode(u16 code)
 {
@@ -234,10 +231,9 @@ static int GetFontCode(u16 code)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	800EDF34
- * Size:	000174
+/**
+ * @note Address: 0x800EDF34
+ * @note Size: 0x174
  */
 static void Decode(u8* src, u8* dst)
 {
@@ -300,10 +296,9 @@ static void Decode(u8* src, u8* dst)
 	} while (i < expandSize);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 static u32 GetFontSize(u8* in)
 {
@@ -314,10 +309,9 @@ static u32 GetFontSize(u8* in)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	800EE0A8
- * Size:	000058
+/**
+ * @note Address: 0x800EE0A8
+ * @note Size: 0x58
  */
 u16 OSGetFontEncode(void)
 {
@@ -342,10 +336,9 @@ u16 OSGetFontEncode(void)
 	return fontEncode;
 }
 
-/*
- * --INFO--
- * Address:	800EE100
- * Size:	00008C
+/**
+ * @note Address: 0x800EE100
+ * @note Size: 0x8C
  */
 static void ReadROM(void* string, int len, int offset)
 {
@@ -368,10 +361,9 @@ static void ReadROM(void* string, int len, int offset)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00016C
+/**
+ * @note Address: N/A
+ * @note Size: 0x16C
  */
 u32 ReadFont(void* img, u16 encode, void* fontInfo)
 {
@@ -389,10 +381,9 @@ u32 ReadFont(void* img, u16 encode, void* fontInfo)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	800EE18C
- * Size:	000334
+/**
+ * @note Address: 0x800EE18C
+ * @note Size: 0x334
  */
 u32 OSLoadFont(void* fontInfo, void* temp)
 {
@@ -634,10 +625,9 @@ u32 OSLoadFont(void* fontInfo, void* temp)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800EE4C0
- * Size:	0003B0
+/**
+ * @note Address: 0x800EE4C0
+ * @note Size: 0x3B0
  */
 static void ExpandFontSheet(u8* source, u8* dest)
 {
@@ -661,10 +651,9 @@ static void ExpandFontSheet(u8* source, u8* dest)
 	DCStoreRange(dest, FontData->sheetFullSize);
 }
 
-/*
- * --INFO--
- * Address:	800EE870
- * Size:	0000E0
+/**
+ * @note Address: 0x800EE870
+ * @note Size: 0xE0
  */
 BOOL OSInitFont(OSFontHeader* font)
 {
@@ -800,10 +789,9 @@ BOOL OSInitFont(OSFontHeader* font)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800EE950
- * Size:	0001A8
+/**
+ * @note Address: 0x800EE950
+ * @note Size: 0x1A8
  */
 char* OSGetFontTexture(char* string, void** image, s32* x, s32* y, s32* width)
 {
@@ -1010,10 +998,9 @@ char* OSGetFontTexture(char* string, void** image, s32* x, s32* y, s32* width)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800EEAF8
- * Size:	000140
+/**
+ * @note Address: 0x800EEAF8
+ * @note Size: 0x140
  */
 char* OSGetFontWidth(char* string, s32* width)
 {

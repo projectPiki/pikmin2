@@ -574,10 +574,9 @@ namespace PSGame {
 
 char newSeqName[32];
 
-/*
- * --INFO--
- * Address:	80334268
- * Size:	000028
+/**
+ * @note Address: 0x80334268
+ * @note Size: 0x28
  */
 u32 CaveFloorInfo::getCaveNoFromID()
 {
@@ -587,10 +586,9 @@ u32 CaveFloorInfo::getCaveNoFromID()
 	return (u8)(mCaveID.byteView[3] - '1');
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
+/**
+ * @note Address: N/A
+ * @note Size: 0x70
  */
 ConductorList::ConductorList()
 {
@@ -598,10 +596,9 @@ ConductorList::ConductorList()
 	mCaveCount = 255;
 }
 
-/*
- * --INFO--
- * Address:	80334290
- * Size:	0000D4
+/**
+ * @note Address: 0x80334290
+ * @note Size: 0xD4
  */
 ConductorList::~ConductorList()
 {
@@ -679,10 +676,9 @@ lbl_80334344:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80334364
- * Size:	0001AC
+/**
+ * @note Address: 0x80334364
+ * @note Size: 0x1AC
  */
 bool ConductorList::read(Stream& input)
 {
@@ -836,10 +832,9 @@ lbl_803344E8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F4
+/**
+ * @note Address: N/A
+ * @note Size: 0xF4
  */
 char* ConductorList::getInfo(u8 caves, u8 floor)
 {
@@ -852,20 +847,18 @@ char* ConductorList::getInfo(u8 caves, u8 floor)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00012C
+/**
+ * @note Address: N/A
+ * @note Size: 0x12C
  */
 void ConductorList::getAutoBgmInfo(u8, u8)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80334524
- * Size:	0003D4
+/**
+ * @note Address: 0x80334524
+ * @note Size: 0x3D4
  */
 void ConductorList::getSeqAndWaveFromConductor(char const* cndName, u8* wScene, char** bmsName)
 {
@@ -1226,10 +1219,9 @@ void ConductorList::getSeqAndWaveFromConductor(char const* cndName, u8* wScene, 
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803348F8
- * Size:	0000E0
+/**
+ * @note Address: 0x803348F8
+ * @note Size: 0xE0
  */
 SoundTable::CategoryMgr::CategoryMgr()
 {
@@ -1306,10 +1298,9 @@ lbl_803349B0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803349D8
- * Size:	000174
+/**
+ * @note Address: 0x803349D8
+ * @note Size: 0x174
  */
 void SoundTable::CategoryMgr::initiate(u8 id)
 {
@@ -1339,10 +1330,9 @@ void SoundTable::CategoryMgr::initiate(u8 id)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80334B4C
- * Size:	000018
+/**
+ * @note Address: 0x80334B4C
+ * @note Size: 0x18
  */
 void SoundTable::SePerspInfo::set(f32 a1, f32 a2, f32 a3, f32 a4, f32 a5)
 {
@@ -1353,10 +1343,9 @@ void SoundTable::SePerspInfo::set(f32 a1, f32 a2, f32 a3, f32 a4, f32 a5)
 	mForcedDistance  = a5;
 }
 
-/*
- * --INFO--
- * Address:	80334B64
- * Size:	000164
+/**
+ * @note Address: 0x80334B64
+ * @note Size: 0x164
  */
 f32 SoundTable::SePerspInfo::getDistVol(f32 factor, u8 flag)
 {
@@ -1399,10 +1388,9 @@ f32 SoundTable::SePerspInfo::getDistVol(f32 factor, u8 flag)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80334CC8
- * Size:	0000A8
+/**
+ * @note Address: 0x80334CC8
+ * @note Size: 0xA8
  */
 CameraMgr::CameraMgr()
 {
@@ -1423,17 +1411,15 @@ CameraMgr::CameraMgr()
 	mDistVolumeFactor[1] = 1.0f;
 }
 
-/*
- * --INFO--
- * Address:	80334D70
- * Size:	000060
+/**
+ * @note Address: 0x80334D70
+ * @note Size: 0x60
  */
 CameraMgr::~CameraMgr() { }
 
-/*
- * --INFO--
- * Address:	80334DD0
- * Size:	000024
+/**
+ * @note Address: 0x80334DD0
+ * @note Size: 0x24
  */
 f32 CameraMgr::getBgmCamVol(u8 id)
 {
@@ -1443,10 +1429,9 @@ f32 CameraMgr::getBgmCamVol(u8 id)
 	return 1.0f;
 }
 
-/*
- * --INFO--
- * Address:	80334DF4
- * Size:	00004C
+/**
+ * @note Address: 0x80334DF4
+ * @note Size: 0x4C
  */
 void CameraMgr::update(u8 id, f32 base)
 {
@@ -1455,17 +1440,15 @@ void CameraMgr::update(u8 id, f32 base)
 	mDistVolumeFactor[id] = 1.0f;
 }
 
-/*
- * --INFO--
- * Address:	80334E40
- * Size:	000010
+/**
+ * @note Address: 0x80334E40
+ * @note Size: 0x10
  */
 f32 CameraMgr::getCurrentCamDistVol(u8 id) { return mCamDistVolume[id]; }
 
-/*
- * --INFO--
- * Address:	80334E50
- * Size:	000088
+/**
+ * @note Address: 0x80334E50
+ * @note Size: 0x88
  */
 f32 CameraMgr::getVol_DistBetweenCamAndLookat(f32 dist)
 {
@@ -1478,10 +1461,9 @@ f32 CameraMgr::getVol_DistBetweenCamAndLookat(f32 dist)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80334ED8
- * Size:	000034
+/**
+ * @note Address: 0x80334ED8
+ * @note Size: 0x34
  */
 SysFactory::SysFactory()
 {
@@ -1493,10 +1475,9 @@ SysFactory::SysFactory()
 	mSolidHeap     = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80334F0C
- * Size:	000404
+/**
+ * @note Address: 0x80334F0C
+ * @note Size: 0x404
  */
 void SysFactory::newSoundSystem()
 {
@@ -1844,10 +1825,9 @@ lbl_803352C8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80335310
- * Size:	000080
+/**
+ * @note Address: 0x80335310
+ * @note Size: 0x80
  */
 void SysFactory::preInitJAI()
 {
@@ -1864,10 +1844,9 @@ void SysFactory::preInitJAI()
 	JAIGlobalParameter::setParamStayHeapMax(1);
 }
 
-/*
- * --INFO--
- * Address:	80335390
- * Size:	000120
+/**
+ * @note Address: 0x80335390
+ * @note Size: 0x120
  */
 void SysFactory::postInitJAI()
 {
@@ -1976,10 +1955,9 @@ lbl_80335460:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803354B0
- * Size:	000038
+/**
+ * @note Address: 0x803354B0
+ * @note Size: 0x38
  */
 SceneInfo::SceneInfo()
 {
@@ -1993,10 +1971,9 @@ SceneInfo::SceneInfo()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803354E8
- * Size:	000078
+/**
+ * @note Address: 0x803354E8
+ * @note Size: 0x78
  */
 void SceneInfo::setStageFlag(SceneInfo::FlagDef flag, SceneInfo::FlagBitShift shift)
 {
@@ -2009,17 +1986,15 @@ void SceneInfo::setStageFlag(SceneInfo::FlagDef flag, SceneInfo::FlagBitShift sh
 	}
 }
 
-/*
- * --INFO--
- * Address:	80335560
- * Size:	000010
+/**
+ * @note Address: 0x80335560
+ * @note Size: 0x10
  */
 SceneInfo::FlagDef SceneInfo::getFlag(SceneInfo::FlagBitShift shift) const { return (SceneInfo::FlagDef)(mStageFlags >> shift & 1); }
 
-/*
- * --INFO--
- * Address:	80335570
- * Size:	000074
+/**
+ * @note Address: 0x80335570
+ * @note Size: 0x74
  */
 void SceneInfo::setStageCamera() const
 {
@@ -2028,27 +2003,24 @@ void SceneInfo::setStageCamera() const
 	}
 }
 
-/*
- * --INFO--
- * Address:	803355E4
- * Size:	00003C
+/**
+ * @note Address: 0x803355E4
+ * @note Size: 0x3C
  */
 PikScene::PikScene(u8 id)
     : PSSystem::Scene(id)
 {
 }
 
-/*
- * --INFO--
- * Address:	80335620
- * Size:	000060
+/**
+ * @note Address: 0x80335620
+ * @note Size: 0x60
  */
 PikScene::~PikScene() { }
 
-/*
- * --INFO--
- * Address:	80335680
- * Size:	0000A8
+/**
+ * @note Address: 0x80335680
+ * @note Size: 0xA8
  */
 PSM::MiddleBossSeq* PikScene::getMiddleBossBgm()
 {
@@ -2065,20 +2037,18 @@ PSM::MiddleBossSeq* PikScene::getMiddleBossBgm()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
+/**
+ * @note Address: N/A
+ * @note Size: 0x7C
  */
 void PikScene::getJumpMainBgm()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80335728
- * Size:	000378
+/**
+ * @note Address: 0x80335728
+ * @note Size: 0x378
  */
 PSSystem::Scene* PikSceneMgr::newAndSetGlobalScene()
 {
@@ -2391,10 +2361,9 @@ lbl_80335A60:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80335AA0
- * Size:	0004AC
+/**
+ * @note Address: 0x80335AA0
+ * @note Size: 0x4AC
  */
 PSSystem::Scene* PikSceneMgr::newAndSetCurrentScene(SceneInfo& info)
 {
@@ -2807,10 +2776,9 @@ lbl_80335F28:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80335F4C
- * Size:	000098
+/**
+ * @note Address: 0x80335F4C
+ * @note Size: 0x98
  */
 PSSystem::BgmSeq* PikSceneMgr::newBgmSeq(char const* name, JAInter::SoundInfo& info)
 {
@@ -2820,10 +2788,9 @@ PSSystem::BgmSeq* PikSceneMgr::newBgmSeq(char const* name, JAInter::SoundInfo& i
 	return seq;
 }
 
-/*
- * --INFO--
- * Address:	80335FE4
- * Size:	000088
+/**
+ * @note Address: 0x80335FE4
+ * @note Size: 0x88
  */
 PSSystem::BgmSeq* PikSceneMgr::newStreamBgm(u32 id, JAInter::SoundInfo& info)
 {
@@ -2873,10 +2840,9 @@ lbl_80336050:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033606C
- * Size:	000150
+/**
+ * @note Address: 0x8033606C
+ * @note Size: 0x150
  */
 PSSystem::BgmSeq* PikSceneMgr::initBossBgm(SceneInfo& info, u8* wScene)
 {
@@ -3001,10 +2967,9 @@ lbl_8033619C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803361BC
- * Size:	000400
+/**
+ * @note Address: 0x803361BC
+ * @note Size: 0x400
  */
 void PikSceneMgr::initAdditionalBgm(SceneInfo& info, PSSystem::Scene* scene)
 {
@@ -3364,10 +3329,9 @@ lbl_803365A8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803365BC
- * Size:	000D24
+/**
+ * @note Address: 0x803365BC
+ * @note Size: 0xD24
  */
 PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 {
@@ -4570,20 +4534,18 @@ lbl_803372C8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001A8
+/**
+ * @note Address: N/A
+ * @note Size: 0x1A8
  */
 void ConductorSelector::getConductorFile(char const*, CaveFloorInfo&, u8*, char*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803372E0
- * Size:	00094C
+/**
+ * @note Address: 0x803372E0
+ * @note Size: 0x94C
  */
 void seqCpuSync(JASTrack* track, u16 command)
 {
@@ -5360,10 +5322,9 @@ lbl_80337C18:
 
 } // namespace PSGame
 
-/*
- * --INFO--
- * Address:	80337C2C
- * Size:	00007C
+/**
+ * @note Address: 0x80337C2C
+ * @note Size: 0x7C
  */
 void PSPlayerChangeToOrimer()
 {
@@ -5374,10 +5335,9 @@ void PSPlayerChangeToOrimer()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80337CA8
- * Size:	000124
+/**
+ * @note Address: 0x80337CA8
+ * @note Size: 0x124
  */
 PSSystem::DirectedBgm* PSGetDirectedMainBgm()
 {
@@ -5396,10 +5356,9 @@ PSSystem::DirectedBgm* PSGetDirectedMainBgm()
 	return seq;
 }
 
-/*
- * --INFO--
- * Address:	80337DCC
- * Size:	000170
+/**
+ * @note Address: 0x80337DCC
+ * @note Size: 0x170
  */
 void PSPlayerChangeToLugie()
 {
@@ -5410,10 +5369,9 @@ void PSPlayerChangeToLugie()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80337F3C
- * Size:	000170
+/**
+ * @note Address: 0x80337F3C
+ * @note Size: 0x170
  */
 PSSystem::DirectedBgm* PSGetDirectedMainBgmA()
 {
@@ -5546,10 +5504,9 @@ lbl_80338090:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void PSSetBgmSelectAsToolMode()
 {

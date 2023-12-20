@@ -2,10 +2,9 @@
 #include "JSystem/JSupport/JSUList.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	80019444
- * Size:	00006C
+/**
+ * @note Address: 0x80019444
+ * @note Size: 0x6C
  */
 JKRAramBlock::JKRAramBlock(u32 address, u32 size, u32 freeSize, u8 groupID, bool isTempMem)
     : mLink(this)
@@ -17,10 +16,9 @@ JKRAramBlock::JKRAramBlock(u32 address, u32 size, u32 freeSize, u8 groupID, bool
 {
 }
 
-/*
- * --INFO--
- * Address:	800194B0
- * Size:	0000BC
+/**
+ * @note Address: 0x800194B0
+ * @note Size: 0xBC
  * __dt__12JKRAramBlockFv
  */
 JKRAramBlock::~JKRAramBlock()
@@ -36,10 +34,9 @@ JKRAramBlock::~JKRAramBlock()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8001956C
- * Size:	0000A8
+/**
+ * @note Address: 0x8001956C
+ * @note Size: 0xA8
  */
 JKRAramBlock* JKRAramBlock::allocHead(u32 newSize, u8 newGroupID, JKRAramHeap* heap)
 {
@@ -51,10 +48,9 @@ JKRAramBlock* JKRAramBlock::allocHead(u32 newSize, u8 newGroupID, JKRAramHeap* h
 	return block;
 }
 
-/*
- * --INFO--
- * Address:	80019614
- * Size:	0000B4
+/**
+ * @note Address: 0x80019614
+ * @note Size: 0xB4
  */
 JKRAramBlock* JKRAramBlock::allocTail(u32 newSize, u8 newGroupID, JKRAramHeap* heap)
 {

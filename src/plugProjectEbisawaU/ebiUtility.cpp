@@ -3,10 +3,9 @@
 
 namespace ebi {
 
-/*
- * --INFO--
- * Address:	803C1A3C
- * Size:	000060
+/**
+ * @note Address: 0x803C1A3C
+ * @note Size: 0x60
  */
 void EUTPadInterface_countNum::init(Controller* controller, s32 min, s32 max, s32* selValue, enumMode mode, f32 timeFactor1,
                                     f32 timeFactor2)
@@ -30,10 +29,9 @@ void EUTPadInterface_countNum::init(Controller* controller, s32 min, s32 max, s3
 	mLastIndex = *mSelIndex;
 }
 
-/*
- * --INFO--
- * Address:	803C1A9C
- * Size:	000304
+/**
+ * @note Address: 0x803C1A9C
+ * @note Size: 0x304
  */
 void EUTPadInterface_countNum::update()
 {
@@ -108,10 +106,9 @@ void EUTPadInterface_countNum::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803C1DA0
- * Size:	000114
+/**
+ * @note Address: 0x803C1DA0
+ * @note Size: 0x114
  */
 void EUTColor_complement(JUtility::TColor& color1, JUtility::TColor& color2, f32 color1Weight, f32 color2Weight, JUtility::TColor* outColor)
 {
@@ -121,17 +118,15 @@ void EUTColor_complement(JUtility::TColor& color1, JUtility::TColor& color2, f32
 	outColor->a = color1Weight * color1.a + color2Weight * color2.a;
 }
 
-/*
- * --INFO--
- * Address:	803C1EB4
- * Size:	000004
+/**
+ * @note Address: 0x803C1EB4
+ * @note Size: 0x4
  */
 void EUTDebug_Tag64ToName(u64, char*) { }
 
-/*
- * --INFO--
- * Address:	803C1EB8
- * Size:	000004
+/**
+ * @note Address: 0x803C1EB8
+ * @note Size: 0x4
  */
 void EUTDebug_Tag32ToName(u32, char*) { }
 } // namespace ebi

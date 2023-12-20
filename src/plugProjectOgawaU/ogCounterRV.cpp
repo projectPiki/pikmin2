@@ -8,10 +8,9 @@
 namespace og {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	8030B524
- * Size:	0001E0
+/**
+ * @note Address: 0x8030B524
+ * @note Size: 0x1E0
  */
 CallBack_CounterRV::CallBack_CounterRV(char** characterTexturePaths, u16 ketaCount, u16 p3, JKRArchive* archive)
     : P2DScreen::CallBackNode()
@@ -52,10 +51,9 @@ CallBack_CounterRV::CallBack_CounterRV(char** characterTexturePaths, u16 ketaCou
 	_A0               = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	8030B704
- * Size:	000040
+/**
+ * @note Address: 0x8030B704
+ * @note Size: 0x40
  */
 void CallBack_CounterRV::show()
 {
@@ -65,17 +63,15 @@ void CallBack_CounterRV::show()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8030B744
- * Size:	000034
+/**
+ * @note Address: 0x8030B744
+ * @note Size: 0x34
  */
 void CallBack_CounterRV::setValue() { setValue(false, false); }
 
-/*
- * --INFO--
- * Address:	8030B778
- * Size:	000048
+/**
+ * @note Address: 0x8030B778
+ * @note Size: 0x48
  */
 void CallBack_CounterRV::hide()
 {
@@ -87,10 +83,9 @@ void CallBack_CounterRV::hide()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8030B7C0
- * Size:	000018
+/**
+ * @note Address: 0x8030B7C0
+ * @note Size: 0x18
  */
 J2DPane* CallBack_CounterRV::getMotherPane()
 {
@@ -101,58 +96,51 @@ J2DPane* CallBack_CounterRV::getMotherPane()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8030B7D8
- * Size:	000008
+/**
+ * @note Address: 0x8030B7D8
+ * @note Size: 0x8
  */
 void CallBack_CounterRV::setPuyoAnim(bool a1) { mIsPuyoAnim = a1; }
 
-/*
- * --INFO--
- * Address:	8030B7E0
- * Size:	000008
+/**
+ * @note Address: 0x8030B7E0
+ * @note Size: 0x8
  */
 void CallBack_CounterRV::setPuyoAnimZero(bool a1) { mIsPuyoAnimZero = a1; }
 
-/*
- * --INFO--
- * Address:	8030B7E8
- * Size:	000008
+/**
+ * @note Address: 0x8030B7E8
+ * @note Size: 0x8
  */
 void CallBack_CounterRV::setBlind(bool a1) { mIsBlind = a1; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void CallBack_CounterRV::setRandMode(bool)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 void CallBack_CounterRV::setValPtr(u32*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8030B7F0
- * Size:	000008
+/**
+ * @note Address: 0x8030B7F0
+ * @note Size: 0x8
  */
 void CallBack_CounterRV::setZeroAlpha(u8 a1) { mZeroAlpha = a1; }
 
-/*
- * --INFO--
- * Address:	8030B7F8
- * Size:	0000E4
+/**
+ * @note Address: 0x8030B7F8
+ * @note Size: 0xE4
  */
 void CallBack_CounterRV::startPuyoUp(f32 p1)
 {
@@ -228,17 +216,15 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8030B8DC
- * Size:	000008
+/**
+ * @note Address: 0x8030B8DC
+ * @note Size: 0x8
  */
 void CallBack_CounterRV::setCenteringMode(EnumCenteringMode centeringMode) { mCenteringMode = centeringMode; }
 
-/*
- * --INFO--
- * Address:	8030B8E4
- * Size:	0004D0
+/**
+ * @note Address: 0x8030B8E4
+ * @note Size: 0x4D0
  */
 void CallBack_CounterRV::init(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u32* data, bool flag)
 {
@@ -658,10 +644,9 @@ void CallBack_CounterRV::init(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8030BDB4
- * Size:	000220
+/**
+ * @note Address: 0x8030BDB4
+ * @note Size: 0x220
  */
 void CallBack_CounterRV::setKetaSub(int count, bool flag1, bool flag2)
 {
@@ -699,10 +684,9 @@ void CallBack_CounterRV::setKetaSub(int count, bool flag1, bool flag2)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8030BFD4
- * Size:	0000B0
+/**
+ * @note Address: 0x8030BFD4
+ * @note Size: 0xB0
  */
 void CallBack_CounterRV::setCounterUpDown(int i, bool isUp, bool flag2)
 {
@@ -722,10 +706,9 @@ void CallBack_CounterRV::setCounterUpDown(int i, bool isUp, bool flag2)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8030C084
- * Size:	0003F8
+/**
+ * @note Address: 0x8030C084
+ * @note Size: 0x3F8
  */
 void CallBack_CounterRV::setValue(bool flag1, bool flag2)
 {
@@ -1087,10 +1070,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8030C47C
- * Size:	0000B0
+/**
+ * @note Address: 0x8030C47C
+ * @note Size: 0xB0
  */
 void CallBack_CounterRV::update()
 {
@@ -1117,17 +1099,15 @@ void CallBack_CounterRV::update()
 	setValue(isInc, isDec);
 }
 
-/*
- * --INFO--
- * Address:	8030C52C
- * Size:	000004
+/**
+ * @note Address: 0x8030C52C
+ * @note Size: 0x4
  */
 void CallBack_CounterRV::draw(Graphics&, J2DGrafContext&) { }
 
-/*
- * --INFO--
- * Address:	8030C530
- * Size:	0000D8
+/**
+ * @note Address: 0x8030C530
+ * @note Size: 0xD8
  */
 CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr* screen, u64 tag1, u64 tag2, u64 tag3, u32* data, u16 flag1, u16 flag2,
                                           bool isPuyo, JKRArchive* arc)
@@ -1139,10 +1119,9 @@ CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr* screen, u64 tag1, u64 
 	return counter;
 }
 
-/*
- * --INFO--
- * Address:	8030C608
- * Size:	00017C
+/**
+ * @note Address: 0x8030C608
+ * @note Size: 0x17C
  */
 CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr* mgr, u64 tag, u32* data, u16 flag1, bool flag2, bool isPuyo, JKRArchive* arc)
 {
@@ -1275,20 +1254,18 @@ CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr* mgr, u64 tag, u32* dat
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000170
+/**
+ * @note Address: N/A
+ * @note Size: 0x170
  */
 void setCallBack_CounterRV2(P2DScreen::Mgr*, u64, u32*, u16, bool, bool, JKRArchive*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8030C784
- * Size:	00018C
+/**
+ * @note Address: 0x8030C784
+ * @note Size: 0x18C
  */
 CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr* mgr, u64 tag, u32 data, u16 flag1, bool isPuyo, bool flag2, JKRArchive* arc)
 {

@@ -41,10 +41,9 @@ enum JointID {
 static const int unusedArray[]     = { 0, 0, 0 };
 static const char unusedBlackMan[] = "blackMan";
 
-/*
- * --INFO--
- * Address:	803A5DB0
- * Size:	00003C
+/**
+ * @note Address: 0x803A5DB0
+ * @note Size: 0x3C
  */
 bool lHandCallBack(J3DJoint*, int p2)
 {
@@ -54,10 +53,9 @@ bool lHandCallBack(J3DJoint*, int p2)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	803A5DEC
- * Size:	00003C
+/**
+ * @note Address: 0x803A5DEC
+ * @note Size: 0x3C
  */
 bool rHandCallBack(J3DJoint*, int p2)
 {
@@ -67,10 +65,9 @@ bool rHandCallBack(J3DJoint*, int p2)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	803A5E28
- * Size:	00003C
+/**
+ * @note Address: 0x803A5E28
+ * @note Size: 0x3C
  */
 bool lFootCallBack(J3DJoint*, int p2)
 {
@@ -80,10 +77,9 @@ bool lFootCallBack(J3DJoint*, int p2)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	803A5E64
- * Size:	00003C
+/**
+ * @note Address: 0x803A5E64
+ * @note Size: 0x3C
  */
 bool rFootCallBack(J3DJoint*, int p2)
 {
@@ -93,10 +89,9 @@ bool rFootCallBack(J3DJoint*, int p2)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	803A5EA0
- * Size:	000038
+/**
+ * @note Address: 0x803A5EA0
+ * @note Size: 0x38
  */
 bool bodyCallBack(J3DJoint*, int p2)
 {
@@ -106,10 +101,9 @@ bool bodyCallBack(J3DJoint*, int p2)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	803A5ED8
- * Size:	0000F0
+/**
+ * @note Address: 0x803A5ED8
+ * @note Size: 0xF0
  */
 void Obj::setParameters()
 {
@@ -136,17 +130,15 @@ void Obj::setParameters()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A5FC8
- * Size:	000020
+/**
+ * @note Address: 0x803A5FC8
+ * @note Size: 0x20
  */
 void Obj::birth(Vector3f& position, f32 faceDirection) { EnemyBase::birth(position, faceDirection); }
 
-/*
- * --INFO--
- * Address:	803A5FE8
- * Size:	0006B4
+/**
+ * @note Address: 0x803A5FE8
+ * @note Size: 0x6B4
  */
 void Obj::onInit(CreatureInitArg* arg)
 {
@@ -271,10 +263,9 @@ void Obj::onInit(CreatureInitArg* arg)
 	mEfxDead->mMtx = mModel->mJoints[mChestJointIndex].getWorldMatrix();
 }
 
-/*
- * --INFO--
- * Address:	803A669C
- * Size:	000560
+/**
+ * @note Address: 0x803A669C
+ * @note Size: 0x560
  */
 Obj::Obj()
     : mPostFlickState(-1)
@@ -320,10 +311,9 @@ Obj::Obj()
 	mEfxBackFlick  = new efx::TKageFlick(&mHandPositions[1]);
 }
 
-/*
- * --INFO--
- * Address:	803A6C48
- * Size:	0006C4
+/**
+ * @note Address: 0x803A6C48
+ * @note Size: 0x6C4
  */
 void BlackMan::Obj::doUpdate()
 {
@@ -905,24 +895,21 @@ lbl_803A72D0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803A730C
- * Size:	000004
+/**
+ * @note Address: 0x803A730C
+ * @note Size: 0x4
  */
 void BlackMan::Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	803A7310
- * Size:	000020
+/**
+ * @note Address: 0x803A7310
+ * @note Size: 0x20
  */
 void BlackMan::Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	803A7330
- * Size:	000174
+/**
+ * @note Address: 0x803A7330
+ * @note Size: 0x174
  */
 void BlackMan::Obj::doSimulation(f32 speed)
 {
@@ -956,10 +943,9 @@ void BlackMan::Obj::doSimulation(f32 speed)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A74A4
- * Size:	000238
+/**
+ * @note Address: 0x803A74A4
+ * @note Size: 0x238
  */
 void BlackMan::Obj::doAnimationCullingOff()
 {
@@ -1004,10 +990,9 @@ void BlackMan::Obj::doAnimationCullingOff()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A76DC
- * Size:	00003C
+/**
+ * @note Address: 0x803A76DC
+ * @note Size: 0x3C
  */
 void BlackMan::Obj::onKill(Game::CreatureKillArg* arg)
 {
@@ -1016,10 +1001,9 @@ void BlackMan::Obj::onKill(Game::CreatureKillArg* arg)
 	fadeFlickEffect();
 }
 
-/*
- * --INFO--
- * Address:	803A7718
- * Size:	0000DC
+/**
+ * @note Address: 0x803A7718
+ * @note Size: 0xDC
  */
 void BlackMan::Obj::doStartStoneState()
 {
@@ -1042,10 +1026,9 @@ void BlackMan::Obj::doStartStoneState()
 	fadeFlickEffect();
 }
 
-/*
- * --INFO--
- * Address:	803A77F4
- * Size:	0000BC
+/**
+ * @note Address: 0x803A77F4
+ * @note Size: 0xBC
  */
 void BlackMan::Obj::doFinishStoneState()
 {
@@ -1062,10 +1045,9 @@ void BlackMan::Obj::doFinishStoneState()
 	fadeTraceEffect();
 }
 
-/*
- * --INFO--
- * Address:	803A78B0
- * Size:	000058
+/**
+ * @note Address: 0x803A78B0
+ * @note Size: 0x58
  */
 bool BlackMan::Obj::isUnderground()
 {
@@ -1079,10 +1061,9 @@ bool BlackMan::Obj::isUnderground()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	803A7908
- * Size:	0000A4
+/**
+ * @note Address: 0x803A7908
+ * @note Size: 0xA4
  */
 void BlackMan::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam& param)
 {
@@ -1098,10 +1079,9 @@ void BlackMan::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam& param)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A79AC
- * Size:	0001B8
+/**
+ * @note Address: 0x803A79AC
+ * @note Size: 0x1B8
  */
 void BlackMan::Obj::collisionCallback(Game::CollEvent& collEvent)
 {
@@ -1135,10 +1115,9 @@ void BlackMan::Obj::collisionCallback(Game::CollEvent& collEvent)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A7B64
- * Size:	00016C
+/**
+ * @note Address: 0x803A7B64
+ * @note Size: 0x16C
  */
 bool BlackMan::Obj::damageCallBack(Game::Creature* creature, f32 damage, CollPart* part)
 {
@@ -1165,10 +1144,9 @@ bool BlackMan::Obj::damageCallBack(Game::Creature* creature, f32 damage, CollPar
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803A7CD0
- * Size:	000134
+/**
+ * @note Address: 0x803A7CD0
+ * @note Size: 0x134
  */
 bool BlackMan::Obj::hipdropCallBack(Game::Creature* creature, f32 damage, CollPart* part)
 {
@@ -1197,10 +1175,9 @@ bool BlackMan::Obj::hipdropCallBack(Game::Creature* creature, f32 damage, CollPa
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803A7E04
- * Size:	0000DC
+/**
+ * @note Address: 0x803A7E04
+ * @note Size: 0xDC
  */
 bool BlackMan::Obj::earthquakeCallBack(Game::Creature* creature, f32 bounceFactor)
 {
@@ -1217,10 +1194,9 @@ bool BlackMan::Obj::earthquakeCallBack(Game::Creature* creature, f32 bounceFacto
 	return EnemyBase::earthquakeCallBack(creature, bounceFactor);
 }
 
-/*
- * --INFO--
- * Address:	803A7EE0
- * Size:	000068
+/**
+ * @note Address: 0x803A7EE0
+ * @note Size: 0x68
  */
 void BlackMan::Obj::doEntry()
 {
@@ -1233,10 +1209,9 @@ void BlackMan::Obj::doEntry()
 	gameSystem->setDrawBuffer(0);
 }
 
-/*
- * --INFO--
- * Address:	803A7F48
- * Size:	00031C
+/**
+ * @note Address: 0x803A7F48
+ * @note Size: 0x31C
  */
 void BlackMan::Obj::changeMaterial()
 {
@@ -1492,10 +1467,9 @@ lbl_803A8234:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803A8264
- * Size:	000050
+/**
+ * @note Address: 0x803A8264
+ * @note Size: 0x50
  */
 void BlackMan::Obj::getShadowParam(ShadowParam& shadowParam)
 {
@@ -1506,10 +1480,9 @@ void BlackMan::Obj::getShadowParam(ShadowParam& shadowParam)
 	shadowParam.mSize                     = 30.0f;
 }
 
-/*
- * --INFO--
- * Address:	803A82B4
- * Size:	000064
+/**
+ * @note Address: 0x803A82B4
+ * @note Size: 0x64
  */
 void BlackMan::Obj::initWalkSmokeEffect()
 {
@@ -1518,10 +1491,9 @@ void BlackMan::Obj::initWalkSmokeEffect()
 	mWalkSmokeMgr.setup(1, mModel, "footL", 10.0f);
 }
 
-/*
- * --INFO--
- * Address:	803A8318
- * Size:	00001C
+/**
+ * @note Address: 0x803A8318
+ * @note Size: 0x1C
  */
 WalkSmokeEffect::Mgr* BlackMan::Obj::getWalkSmokeEffectMgr()
 {
@@ -1531,10 +1503,9 @@ WalkSmokeEffect::Mgr* BlackMan::Obj::getWalkSmokeEffectMgr()
 	return &mWalkSmokeMgr;
 }
 
-/*
- * --INFO--
- * Address:	803A8334
- * Size:	000848
+/**
+ * @note Address: 0x803A8334
+ * @note Size: 0x848
  */
 void BlackMan::Obj::walkFunc()
 {
@@ -2365,17 +2336,15 @@ lbl_803A8B4C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803A8B7C
- * Size:	000034
+/**
+ * @note Address: 0x803A8B7C
+ * @note Size: 0x34
  */
 bool BlackMan::Obj::isReachToGoal(f32 rad) { return (u8)(sqrDistanceXZ(mPosition, mTargetPosition) < SQUARE(rad)); }
 
-/*
- * --INFO--
- * Address:	803A8BB0
- * Size:	000ED0
+/**
+ * @note Address: 0x803A8BB0
+ * @note Size: 0xED0
  */
 void BlackMan::Obj::findNextRoutePoint()
 {
@@ -3729,10 +3698,9 @@ lbl_803A9A3C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803A9A80
- * Size:	0000D0
+/**
+ * @note Address: 0x803A9A80
+ * @note Size: 0xD0
  */
 void BlackMan::Obj::findNextTraceRoutePoint()
 {
@@ -3761,10 +3729,9 @@ void BlackMan::Obj::findNextTraceRoutePoint()
 	JUT_PANICLINE(1838, "failed traceRoutePoint\n");
 }
 
-/*
- * --INFO--
- * Address:	803A9B50
- * Size:	000114
+/**
+ * @note Address: 0x803A9B50
+ * @note Size: 0x114
  */
 bool BlackMan::Obj::isEndPathFinder()
 {
@@ -3798,10 +3765,9 @@ bool BlackMan::Obj::isEndPathFinder()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803A9C64
- * Size:	0001D8
+/**
+ * @note Address: 0x803A9C64
+ * @note Size: 0x1D8
  */
 bool BlackMan::Obj::setPathFinder(bool check)
 {
@@ -3977,10 +3943,9 @@ lbl_803A9E28:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803A9E3C
- * Size:	000044
+/**
+ * @note Address: 0x803A9E3C
+ * @note Size: 0x44
  */
 void BlackMan::Obj::releasePathFinder()
 {
@@ -3990,10 +3955,9 @@ void BlackMan::Obj::releasePathFinder()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A9E80
- * Size:	000590
+/**
+ * @note Address: 0x803A9E80
+ * @note Size: 0x590
  */
 void BlackMan::Obj::jointMtxCalc(int jointIdx)
 {
@@ -4496,10 +4460,9 @@ lbl_803AA39C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803AA410
- * Size:	00028C
+/**
+ * @note Address: 0x803AA410
+ * @note Size: 0x28C
  */
 void BlackMan::Obj::bodyMtxCalc()
 {
@@ -4723,10 +4686,9 @@ lbl_803AA684:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803AA69C
- * Size:	000040
+/**
+ * @note Address: 0x803AA69C
+ * @note Size: 0x40
  */
 bool BlackMan::Obj::isTyreFreeze()
 {
@@ -4737,10 +4699,9 @@ bool BlackMan::Obj::isTyreFreeze()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803AA6DC
- * Size:	00009C
+/**
+ * @note Address: 0x803AA6DC
+ * @note Size: 0x9C
  */
 bool BlackMan::Obj::isTyreDead()
 {
@@ -4758,10 +4719,9 @@ bool BlackMan::Obj::isTyreDead()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803AA778
- * Size:	000074
+/**
+ * @note Address: 0x803AA778
+ * @note Size: 0x74
  */
 bool BlackMan::Obj::isFallEnd()
 {
@@ -4777,10 +4737,9 @@ bool BlackMan::Obj::isFallEnd()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	803AA7EC
- * Size:	0001D4
+/**
+ * @note Address: 0x803AA7EC
+ * @note Size: 0x1D4
  */
 void BlackMan::Obj::moveRestart()
 {
@@ -4808,31 +4767,27 @@ void BlackMan::Obj::moveRestart()
 	                            C_PARMS->mGeneral.mShakeDamage(), FLICK_BACKWARD_ANGLE, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	803AA9C0
- * Size:	000004
+/**
+ * @note Address: 0x803AA9C0
+ * @note Size: 0x4
  */
 void BlackMan::Obj::escape() { }
 
-/*
- * --INFO--
- * Address:	803AA9C4
- * Size:	000008
+/**
+ * @note Address: 0x803AA9C4
+ * @note Size: 0x8
  */
 void BlackMan::Obj::setTimer(f32 time) { mWraithTimer = time; }
 
-/*
- * --INFO--
- * Address:	803AA9CC
- * Size:	000008
+/**
+ * @note Address: 0x803AA9CC
+ * @note Size: 0x8
  */
 f32 BlackMan::Obj::getTimer() { return mWraithTimer; }
 
-/*
- * --INFO--
- * Address:	803AA9D4
- * Size:	0000A0
+/**
+ * @note Address: 0x803AA9D4
+ * @note Size: 0xA0
  */
 void BlackMan::Obj::collisionStOn()
 {
@@ -4845,10 +4800,9 @@ void BlackMan::Obj::collisionStOn()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803AAA74
- * Size:	000098
+/**
+ * @note Address: 0x803AAA74
+ * @note Size: 0x98
  */
 void BlackMan::Obj::collisionStOff()
 {
@@ -4860,10 +4814,9 @@ void BlackMan::Obj::collisionStOff()
 	flick();
 }
 
-/*
- * --INFO--
- * Address:	803AAB0C
- * Size:	00004C
+/**
+ * @note Address: 0x803AAB0C
+ * @note Size: 0x4C
  */
 void BlackMan::Obj::flick()
 {
@@ -4872,10 +4825,9 @@ void BlackMan::Obj::flick()
 	mFlickTimer = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	803AAB58
- * Size:	000150
+/**
+ * @note Address: 0x803AAB58
+ * @note Size: 0x150
  */
 void BlackMan::Obj::recover()
 {
@@ -5005,10 +4957,9 @@ lbl_803AAC94:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803AACA8
- * Size:	0000F8
+/**
+ * @note Address: 0x803AACA8
+ * @note Size: 0xF8
  */
 void BlackMan::Obj::recoverFlick()
 {
@@ -5026,10 +4977,9 @@ void BlackMan::Obj::recoverFlick()
 	EnemyFunc::flickNearbyNavi(this, range, knockback, damage, mFaceDir, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	803AADA0
- * Size:	00002C
+/**
+ * @note Address: 0x803AADA0
+ * @note Size: 0x2C
  */
 void BlackMan::Obj::tyreFlick()
 {
@@ -5038,10 +4988,9 @@ void BlackMan::Obj::tyreFlick()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803AADCC
- * Size:	0000D0
+/**
+ * @note Address: 0x803AADCC
+ * @note Size: 0xD0
  */
 void BlackMan::Obj::deadEffect()
 {
@@ -5053,17 +5002,15 @@ void BlackMan::Obj::deadEffect()
 	deadFX.create(&fxArg);
 }
 
-/*
- * --INFO--
- * Address:	803AAE9C
- * Size:	000034
+/**
+ * @note Address: 0x803AAE9C
+ * @note Size: 0x34
  */
 void BlackMan::Obj::deadTraceEffect() { mEfxDead->create(nullptr); }
 
-/*
- * --INFO--
- * Address:	803AAED0
- * Size:	000074
+/**
+ * @note Address: 0x803AAED0
+ * @note Size: 0x74
  */
 void BlackMan::Obj::tyreUpEffect()
 {
@@ -5073,10 +5020,9 @@ void BlackMan::Obj::tyreUpEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803AAF44
- * Size:	000050
+/**
+ * @note Address: 0x803AAF44
+ * @note Size: 0x50
  */
 void BlackMan::Obj::tyreDownEffect()
 {
@@ -5086,10 +5032,9 @@ void BlackMan::Obj::tyreDownEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803AAF94
- * Size:	000094
+/**
+ * @note Address: 0x803AAF94
+ * @note Size: 0x94
  */
 void BlackMan::Obj::bendEffect()
 {
@@ -5099,10 +5044,9 @@ void BlackMan::Obj::bendEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803AB028
- * Size:	00005C
+/**
+ * @note Address: 0x803AB028
+ * @note Size: 0x5C
  */
 void BlackMan::Obj::createTraceEffect()
 {
@@ -5113,10 +5057,9 @@ void BlackMan::Obj::createTraceEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803AB084
- * Size:	000050
+/**
+ * @note Address: 0x803AB084
+ * @note Size: 0x50
  */
 void BlackMan::Obj::fadeTraceEffect()
 {
@@ -5124,10 +5067,9 @@ void BlackMan::Obj::fadeTraceEffect()
 	mEfxRun->fade();
 }
 
-/*
- * --INFO--
- * Address:	803AB0D4
- * Size:	000058
+/**
+ * @note Address: 0x803AB0D4
+ * @note Size: 0x58
  */
 void BlackMan::Obj::createFlickEffect()
 {
@@ -5135,10 +5077,9 @@ void BlackMan::Obj::createFlickEffect()
 	mEfxBackFlick->create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	803AB12C
- * Size:	000050
+/**
+ * @note Address: 0x803AB12C
+ * @note Size: 0x50
  */
 void BlackMan::Obj::fadeFlickEffect()
 {
@@ -5146,10 +5087,9 @@ void BlackMan::Obj::fadeFlickEffect()
 	mEfxBackFlick->fade();
 }
 
-/*
- * --INFO--
- * Address:	803AB17C
- * Size:	0000C4
+/**
+ * @note Address: 0x803AB17C
+ * @note Size: 0xC4
  */
 bool BlackMan::Obj::isFinalFloor()
 {
@@ -5169,10 +5109,9 @@ bool BlackMan::Obj::isFinalFloor()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803AB240
- * Size:	0001C0
+/**
+ * @note Address: 0x803AB240
+ * @note Size: 0x1C0
  */
 void BlackMan::Obj::appearFanfare()
 {

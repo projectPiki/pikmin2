@@ -7,17 +7,15 @@ namespace newScreen {
 
 static const int someSMenuMapArray[] = { 0, 0, 0 };
 
-/*
- * --INFO--
- * Address:	80312BFC
- * Size:	000050
+/**
+ * @note Address: 0x80312BFC
+ * @note Size: 0x50
  */
 SMenuMap::SMenuMap() { }
 
-/*
- * --INFO--
- * Address:	80312C4C
- * Size:	000148
+/**
+ * @note Address: 0x80312C4C
+ * @note Size: 0x148
  */
 void SMenuMap::doUserCallBackFunc(Resource::MgrCommand* command)
 {
@@ -61,10 +59,9 @@ void SMenuMap::doUserCallBackFunc(Resource::MgrCommand* command)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80312D94
- * Size:	000080
+/**
+ * @note Address: 0x80312D94
+ * @note Size: 0x80
  */
 void SMenuMap::doCreateObj(JKRArchive* archive)
 {
@@ -72,17 +69,15 @@ void SMenuMap::doCreateObj(JKRArchive* archive)
 	setColorBG(0, 0, 0, ObjSMenuMap::msVal._1B);
 }
 
-/*
- * --INFO--
- * Address:	80312E14
- * Size:	000004
+/**
+ * @note Address: 0x80312E14
+ * @note Size: 0x4
  */
 void SMenuMap::doUpdateActive() { }
 
-/*
- * --INFO--
- * Address:	80312E18
- * Size:	000068
+/**
+ * @note Address: 0x80312E18
+ * @note Size: 0x68
  */
 bool SMenuMap::doConfirmSetScene(::Screen::SetSceneArg& sceneArg)
 {
@@ -104,10 +99,9 @@ bool SMenuMap::doConfirmSetScene(::Screen::SetSceneArg& sceneArg)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80312E80
- * Size:	00000C
+/**
+ * @note Address: 0x80312E80
+ * @note Size: 0xC
  */
 void SMenuMap::doSetBackupScene(::Screen::SetSceneArg& sceneArg) { sceneArg.mDoCreateBackup = false; }
 

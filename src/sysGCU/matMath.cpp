@@ -25,20 +25,18 @@
         .float 2.0
 */
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000228
+/**
+ * @note Address: N/A
+ * @note Size: 0x228
  */
 void Matrixf::makeNaturalPosture(Vector3f&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80427F90
- * Size:	000344
+/**
+ * @note Address: 0x80427F90
+ * @note Size: 0x344
  */
 void Matrixf::makeNaturalPosture(Vector3f&, float)
 {
@@ -291,17 +289,15 @@ lbl_80428280:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	804282D4
- * Size:	000004
+/**
+ * @note Address: 0x804282D4
+ * @note Size: 0x4
  */
 void Matrixf::print(char*) { }
 
-/*
- * --INFO--
- * Address:	804282D8
- * Size:	000288
+/**
+ * @note Address: 0x804282D8
+ * @note Size: 0x288
  */
 void Matrixf::makeSRT(Vector3f&, Vector3f&, Vector3f&)
 {
@@ -489,10 +485,9 @@ lbl_80428478:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80428560
- * Size:	000050
+/**
+ * @note Address: 0x80428560
+ * @note Size: 0x50
  */
 void Matrixf::makeST(Vector3f&, Vector3f&)
 {
@@ -520,10 +515,9 @@ void Matrixf::makeST(Vector3f&, Vector3f&)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	804285B0
- * Size:	000290
+/**
+ * @note Address: 0x804285B0
+ * @note Size: 0x290
  */
 void Matrixf::makeSR(Vector3f&, Vector3f&)
 {
@@ -713,10 +707,9 @@ lbl_80428758:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80428840
- * Size:	000048
+/**
+ * @note Address: 0x80428840
+ * @note Size: 0x48
  */
 void Matrixf::makeT(Vector3f&)
 {
@@ -742,10 +735,9 @@ void Matrixf::makeT(Vector3f&)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80428888
- * Size:	000230
+/**
+ * @note Address: 0x80428888
+ * @note Size: 0x230
  */
 void Matrixf::makeTR(Vector3f&, Vector3f&)
 {
@@ -911,20 +903,18 @@ lbl_80428A20:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000128
+/**
+ * @note Address: N/A
+ * @note Size: 0x128
  */
 void Matrixf::makeSQT(Vector3f&, Quat&, Vector3f&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80428AB8
- * Size:	0000D0
+/**
+ * @note Address: 0x80428AB8
+ * @note Size: 0xD0
  */
 void Matrixf::makeTQ(Vector3f&, Quat&)
 {
@@ -984,10 +974,9 @@ void Matrixf::makeTQ(Vector3f&, Quat&)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80428B88
- * Size:	0000C8
+/**
+ * @note Address: 0x80428B88
+ * @note Size: 0xC8
  */
 void Matrixf::makeQ(Quat&)
 {

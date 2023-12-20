@@ -10,7 +10,7 @@ struct EnemyBase;
 struct StateArg;
 struct EnemyFSMState;
 
-/*
+/**
  * Base of EnemyBaseFSM::StateMachine, which is the generic lifecycle FSM that
  * every teki has. Note that this DOES NOT inherit from Game::StateMachine, as
  * much as it looks like it should. No, seriously, why didn't they just do that?

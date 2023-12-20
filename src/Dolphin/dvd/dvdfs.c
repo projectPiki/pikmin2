@@ -29,10 +29,9 @@ static void cbForPrepareStreamSync(s32 result, DVDCommandBlock* block);
 #define offsetof(type, memb) ((u32) & ((type*)0)->memb)
 #endif
 
-/*
- * --INFO--
- * Address:	800DC12C
- * Size:	000038
+/**
+ * @note Address: 0x800DC12C
+ * @note Size: 0x38
  */
 void __DVDFSInit()
 {
@@ -53,10 +52,9 @@ void __DVDFSInit()
 #define filePosition(i) (FstStart[i].parentOrPosition)
 #define fileLength(i)   (FstStart[i].nextEntryOrLength)
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A0
+/**
+ * @note Address: N/A
+ * @note Size: 0xA0
  */
 static BOOL isSame(const char* path, const char* string)
 {
@@ -73,10 +71,9 @@ static BOOL isSame(const char* path, const char* string)
 	return FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800DC164
- * Size:	0002F4
+/**
+ * @note Address: 0x800DC164
+ * @note Size: 0x2F4
  */
 s32 DVDConvertPathToEntrynum(char* pathPtr)
 {
@@ -178,10 +175,9 @@ s32 DVDConvertPathToEntrynum(char* pathPtr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800DC458
- * Size:	000074
+/**
+ * @note Address: 0x800DC458
+ * @note Size: 0x74
  */
 BOOL DVDFastOpen(s32 entrynum, DVDFileInfo* fileInfo)
 {
@@ -197,10 +193,9 @@ BOOL DVDFastOpen(s32 entrynum, DVDFileInfo* fileInfo)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800DC4CC
- * Size:	0000C8
+/**
+ * @note Address: 0x800DC4CC
+ * @note Size: 0xC8
  */
 BOOL DVDOpen(char* fileName, DVDFileInfo* fileInfo)
 {
@@ -227,10 +222,9 @@ BOOL DVDOpen(char* fileName, DVDFileInfo* fileInfo)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800DC594
- * Size:	000024
+/**
+ * @note Address: 0x800DC594
+ * @note Size: 0x24
  */
 BOOL DVDClose(DVDFileInfo* fileInfo)
 {
@@ -238,10 +232,9 @@ BOOL DVDClose(DVDFileInfo* fileInfo)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  */
 static u32 myStrncpy(char* dest, char* src, u32 maxlen)
 {
@@ -255,10 +248,9 @@ static u32 myStrncpy(char* dest, char* src, u32 maxlen)
 	return (maxlen - i);
 }
 
-/*
- * --INFO--
- * Address:	800DC5B8
- * Size:	000160
+/**
+ * @note Address: 0x800DC5B8
+ * @note Size: 0x160
  */
 static u32 entryToPath(u32 entry, char* path, u32 maxlen)
 {
@@ -284,10 +276,9 @@ static u32 entryToPath(u32 entry, char* path, u32 maxlen)
 	return loc;
 }
 
-/*
- * --INFO--
- * Address:	800DC718
- * Size:	000154
+/**
+ * @note Address: 0x800DC718
+ * @note Size: 0x154
  */
 static BOOL DVDConvertEntrynumToPath(s32 entrynum, char* path, u32 maxlen)
 {
@@ -313,17 +304,15 @@ static BOOL DVDConvertEntrynumToPath(s32 entrynum, char* path, u32 maxlen)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800DC86C
- * Size:	0000C4
+/**
+ * @note Address: 0x800DC86C
+ * @note Size: 0xC4
  */
 BOOL DVDGetCurrentDir(char* path, u32 maxlen) { return DVDConvertEntrynumToPath((s32)currentDirectory, path, maxlen); }
 
-/*
- * --INFO--
- * Address:	800DC930
- * Size:	000060
+/**
+ * @note Address: 0x800DC930
+ * @note Size: 0x60
  */
 BOOL DVDChangeDir(char* dirName)
 {
@@ -338,10 +327,9 @@ BOOL DVDChangeDir(char* dirName)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800DC990
- * Size:	0000C0
+/**
+ * @note Address: 0x800DC990
+ * @note Size: 0xC0
  */
 BOOL DVDReadAsyncPrio(DVDFileInfo* fileInfo, void* addr, s32 length, s32 offset, DVDCallback callback, s32 prio)
 {
@@ -360,10 +348,9 @@ BOOL DVDReadAsyncPrio(DVDFileInfo* fileInfo, void* addr, s32 length, s32 offset,
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800DCA50
- * Size:	000030
+/**
+ * @note Address: 0x800DCA50
+ * @note Size: 0x30
  */
 static void cbForReadAsync(s32 result, DVDCommandBlock* block)
 {
@@ -375,10 +362,9 @@ static void cbForReadAsync(s32 result, DVDCommandBlock* block)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800DCA80
- * Size:	000118
+/**
+ * @note Address: 0x800DCA80
+ * @note Size: 0x118
  */
 s32 DVDReadPrio(DVDFileInfo* fileInfo, void* addr, s32 length, s32 offset, s32 prio)
 {
@@ -429,77 +415,69 @@ s32 DVDReadPrio(DVDFileInfo* fileInfo, void* addr, s32 length, s32 offset, s32 p
 	return retVal;
 }
 
-/*
- * --INFO--
- * Address:	800DCB98
- * Size:	000024
+/**
+ * @note Address: 0x800DCB98
+ * @note Size: 0x24
  */
 static void cbForReadSync(s32 result, DVDCommandBlock* block) { OSWakeupThread(&__DVDThreadQueue); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000098
+/**
+ * @note Address: N/A
+ * @note Size: 0x98
  */
 BOOL DVDSeekAsyncPrio(DVDFileInfo* fileInfo, s32 offset, DVDCallback callback, s32 prio)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
+/**
+ * @note Address: N/A
+ * @note Size: 0x30
  */
 static void cbForSeekAsync(s32 result, DVDCommandBlock* block)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000AC
+/**
+ * @note Address: N/A
+ * @note Size: 0xAC
  */
 s32 DVDSeekPrio(DVDFileInfo* fileInfo, s32 offset, s32 prio)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 static void cbForSeekSync(s32 result, DVDCommandBlock* block)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 s32 DVDGetFileInfoStatus(DVDFileInfo* fileInfo)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000068
+/**
+ * @note Address: N/A
+ * @note Size: 0x68
  */
 BOOL DVDFastOpenDir(s32 entrynum, DVDDir* dir)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800DCBBC
- * Size:	0000C0
+/**
+ * @note Address: 0x800DCBBC
+ * @note Size: 0xC0
  */
 BOOL DVDOpenDir(char* dirName, DVDDir* dir)
 {
@@ -524,10 +502,9 @@ BOOL DVDOpenDir(char* dirName, DVDDir* dir)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800DCC7C
- * Size:	0000A4
+/**
+ * @note Address: 0x800DCC7C
+ * @note Size: 0xA4
  */
 BOOL DVDReadDir(DVDDir* dir, DVDDirEntry* dirent)
 {
@@ -544,71 +521,63 @@ BOOL DVDReadDir(DVDDir* dir, DVDDirEntry* dirent)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800DCD20
- * Size:	000008
+/**
+ * @note Address: 0x800DCD20
+ * @note Size: 0x8
  */
 BOOL DVDCloseDir(DVDDir* dir) { return TRUE; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 void DVDRewindDir(DVDDir* dir) { dir->location = dir->entryNum + 1; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void* DVDGetFSTLocation() { return BootInfo->FSTLocation; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000EC
+/**
+ * @note Address: N/A
+ * @note Size: 0xEC
  */
 BOOL DVDPrepareStreamAsync(DVDFileInfo* fileInfo, u32 length, u32 offset, DVDCallback callback)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
+/**
+ * @note Address: N/A
+ * @note Size: 0x30
  */
 static void cbForPrepareStreamAsync(s32 result, DVDCommandBlock* block)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000144
+/**
+ * @note Address: N/A
+ * @note Size: 0x144
  */
 void DVDPrepareStream()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 static void cbForPrepareStreamSync(s32 result, DVDCommandBlock* block)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  */
 s32 DVDGetTransferredSize(DVDFileInfo* fileinfo)
 {

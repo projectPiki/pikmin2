@@ -10,10 +10,9 @@ namespace FileSelect {
 
 TMgr* TMgr::msInstance;
 
-/*
- * --INFO--
- * Address:	803E12E0
- * Size:	000248
+/**
+ * @note Address: 0x803E12E0
+ * @note Size: 0x248
  */
 void FSMStateMachine::init(TMgr* mgr)
 {
@@ -26,38 +25,33 @@ void FSMStateMachine::init(TMgr* mgr)
 	registerState(new FSMState_ScreenFileSelect);
 }
 
-/*
- * --INFO--
- * Address:	803E1528
- * Size:	00002C
+/**
+ * @note Address: 0x803E1528
+ * @note Size: 0x2C
  */
 void FSMState::init(TMgr* mgr, Game::StateArg* arg) { do_init(mgr, arg); }
 
-/*
- * --INFO--
- * Address:	803E1554
- * Size:	000004
+/**
+ * @note Address: 0x803E1554
+ * @note Size: 0x4
  */
 void FSMState::do_init(TMgr*, Game::StateArg*) { }
 
-/*
- * --INFO--
- * Address:	803E1558
- * Size:	00002C
+/**
+ * @note Address: 0x803E1558
+ * @note Size: 0x2C
  */
 void FSMState::exec(TMgr* mgr) { do_exec(mgr); }
 
-/*
- * --INFO--
- * Address:	803E1584
- * Size:	000004
+/**
+ * @note Address: 0x803E1584
+ * @note Size: 0x4
  */
 void FSMState::do_exec(TMgr*) { }
 
-/*
- * --INFO--
- * Address:	803E1588
- * Size:	000010
+/**
+ * @note Address: 0x803E1588
+ * @note Size: 0x10
  */
 void FSMState_EmptyUpdate::do_init(TMgr* mgr, Game::StateArg* arg)
 {
@@ -65,10 +59,9 @@ void FSMState_EmptyUpdate::do_init(TMgr* mgr, Game::StateArg* arg)
 	_14      = 2;
 }
 
-/*
- * --INFO--
- * Address:	803E1598
- * Size:	000054
+/**
+ * @note Address: 0x803E1598
+ * @note Size: 0x54
  */
 void FSMState_EmptyUpdate::do_exec(TMgr* mgr)
 {
@@ -80,17 +73,15 @@ void FSMState_EmptyUpdate::do_exec(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E161C
- * Size:	00000C
+/**
+ * @note Address: 0x803E161C
+ * @note Size: 0xC
  */
 void FSMState_CardRequest::do_init(TMgr* mgr, Game::StateArg* arg) { mState = 0; }
 
-/*
- * --INFO--
- * Address:	803E1628
- * Size:	000278
+/**
+ * @note Address: 0x803E1628
+ * @note Size: 0x278
  */
 void FSMState_CardRequest::do_exec(TMgr* mgr)
 {
@@ -156,10 +147,9 @@ void FSMState_CardRequest::do_exec(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E18A0
- * Size:	00003C
+/**
+ * @note Address: 0x803E18A0
+ * @note Size: 0x3C
  */
 void FSMState_CardRequest::do_transitCardNoCard(TMgr* mgr)
 {
@@ -168,10 +158,9 @@ void FSMState_CardRequest::do_transitCardNoCard(TMgr* mgr)
 	transit(mgr, FSSTATE_CardError, &arg);
 }
 
-/*
- * --INFO--
- * Address:	803E18DC
- * Size:	00003C
+/**
+ * @note Address: 0x803E18DC
+ * @note Size: 0x3C
  */
 void FSMState_CardRequest::do_transitCardIOError(TMgr* mgr)
 {
@@ -180,10 +169,9 @@ void FSMState_CardRequest::do_transitCardIOError(TMgr* mgr)
 	transit(mgr, FSSTATE_CardError, &arg);
 }
 
-/*
- * --INFO--
- * Address:	803E1918
- * Size:	00003C
+/**
+ * @note Address: 0x803E1918
+ * @note Size: 0x3C
  */
 void FSMState_CardRequest::do_transitCardWrongDevice(TMgr* mgr)
 {
@@ -192,10 +180,9 @@ void FSMState_CardRequest::do_transitCardWrongDevice(TMgr* mgr)
 	transit(mgr, FSSTATE_CardError, &arg);
 }
 
-/*
- * --INFO--
- * Address:	803E1954
- * Size:	00003C
+/**
+ * @note Address: 0x803E1954
+ * @note Size: 0x3C
  */
 void FSMState_CardRequest::do_transitCardWrongSector(TMgr* mgr)
 {
@@ -204,10 +191,9 @@ void FSMState_CardRequest::do_transitCardWrongSector(TMgr* mgr)
 	transit(mgr, FSSTATE_CardError, &arg);
 }
 
-/*
- * --INFO--
- * Address:	803E1990
- * Size:	00003C
+/**
+ * @note Address: 0x803E1990
+ * @note Size: 0x3C
  */
 void FSMState_CardRequest::do_transitCardBroken(TMgr* mgr)
 {
@@ -216,10 +202,9 @@ void FSMState_CardRequest::do_transitCardBroken(TMgr* mgr)
 	transit(mgr, FSSTATE_CardError, &arg);
 }
 
-/*
- * --INFO--
- * Address:	803E19CC
- * Size:	00003C
+/**
+ * @note Address: 0x803E19CC
+ * @note Size: 0x3C
  */
 void FSMState_CardRequest::do_transitCardEncoding(TMgr* mgr)
 {
@@ -228,10 +213,9 @@ void FSMState_CardRequest::do_transitCardEncoding(TMgr* mgr)
 	transit(mgr, FSSTATE_CardError, &arg);
 }
 
-/*
- * --INFO--
- * Address:	803E1A08
- * Size:	00003C
+/**
+ * @note Address: 0x803E1A08
+ * @note Size: 0x3C
  */
 void FSMState_CardRequest::do_transitCardNoFileSpace(TMgr* mgr)
 {
@@ -240,10 +224,9 @@ void FSMState_CardRequest::do_transitCardNoFileSpace(TMgr* mgr)
 	transit(mgr, FSSTATE_CardError, &arg);
 }
 
-/*
- * --INFO--
- * Address:	803E1A44
- * Size:	00003C
+/**
+ * @note Address: 0x803E1A44
+ * @note Size: 0x3C
  */
 void FSMState_CardRequest::do_transitCardNoFileEntry(TMgr* mgr)
 {
@@ -252,10 +235,9 @@ void FSMState_CardRequest::do_transitCardNoFileEntry(TMgr* mgr)
 	transit(mgr, FSSTATE_CardError, &arg);
 }
 
-/*
- * --INFO--
- * Address:	803E1A80
- * Size:	00003C
+/**
+ * @note Address: 0x803E1A80
+ * @note Size: 0x3C
  */
 void FSMState_CardRequest::do_transitCardFileOpenError(TMgr* mgr)
 {
@@ -264,17 +246,15 @@ void FSMState_CardRequest::do_transitCardFileOpenError(TMgr* mgr)
 	transit(mgr, FSSTATE_CardError, &arg);
 }
 
-/*
- * --INFO--
- * Address:	803E1ABC
- * Size:	00002C
+/**
+ * @note Address: 0x803E1ABC
+ * @note Size: 0x2C
  */
 void FSMState_CardRequest::do_transitCardPlayerDataBroken(TMgr* mgr) { do_transitCardReady(mgr); }
 
-/*
- * --INFO--
- * Address:	803E1AE8
- * Size:	000054
+/**
+ * @note Address: 0x803E1AE8
+ * @note Size: 0x54
  */
 void FSMState_CardRequest::do_transitCardSerialNoError(TMgr* mgr)
 {
@@ -282,48 +262,42 @@ void FSMState_CardRequest::do_transitCardSerialNoError(TMgr* mgr)
 	JUT_PANICLINE(225, "P2Assert");
 }
 
-/*
- * --INFO--
- * Address:	803E1B3C
- * Size:	000028
+/**
+ * @note Address: 0x803E1B3C
+ * @note Size: 0x28
  */
 bool FSMState_MountCheck::do_cardRequest(TMgr* mgr) { return static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->resetError(); }
 
-/*
- * --INFO--
- * Address:	803E1B64
- * Size:	000034
+/**
+ * @note Address: 0x803E1B64
+ * @note Size: 0x34
  */
 void FSMState_MountCheck::do_transitCardReady(TMgr* mgr) { transit(mgr, FSState_GetPlayerHeader, nullptr); }
 
-/*
- * --INFO--
- * Address:	803E1B98
- * Size:	00002C
+/**
+ * @note Address: 0x803E1B98
+ * @note Size: 0x2C
  */
 bool FSMState_GetPlayerHeader::do_cardRequest(TMgr* mgr)
 {
 	return static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->getPlayerHeader(&mgr->mPlayer);
 }
 
-/*
- * --INFO--
- * Address:	803E1BC4
- * Size:	000034
+/**
+ * @note Address: 0x803E1BC4
+ * @note Size: 0x34
  */
 void FSMState_GetPlayerHeader::do_transitCardReady(TMgr* mgr) { transit(mgr, FSState_ScreenFileSelect, nullptr); }
 
-/*
- * --INFO--
- * Address:	803E1BF8
- * Size:	000038
+/**
+ * @note Address: 0x803E1BF8
+ * @note Size: 0x38
  */
 void FSMState_GetPlayerHeader::do_transitCardSerialNoError(TMgr* mgr) { JUT_PANICLINE(261, "P2Assert"); }
 
-/*
- * --INFO--
- * Address:	803E1C30
- * Size:	000044
+/**
+ * @note Address: 0x803E1C30
+ * @note Size: 0x44
  */
 void FSMState_ScreenFileSelect::do_init(TMgr* mgr, Game::StateArg* arg)
 {
@@ -332,10 +306,9 @@ void FSMState_ScreenFileSelect::do_init(TMgr* mgr, Game::StateArg* arg)
 	mgr->mCardErrorMgr.forceQuitSeq();
 }
 
-/*
- * --INFO--
- * Address:	803E1C74
- * Size:	0000C4
+/**
+ * @note Address: 0x803E1C74
+ * @note Size: 0xC4
  */
 void FSMState_ScreenFileSelect::do_exec(TMgr* mgr)
 {
@@ -358,10 +331,9 @@ void FSMState_ScreenFileSelect::do_exec(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E1D38
- * Size:	000060
+/**
+ * @note Address: 0x803E1D38
+ * @note Size: 0x60
  */
 void FSMState_CardError::do_init(TMgr* mgr, Game::StateArg* arg)
 {
@@ -370,10 +342,9 @@ void FSMState_CardError::do_init(TMgr* mgr, Game::StateArg* arg)
 	mgr->mCardErrorMgr.startSeq((CardError::TMgr::enumStart)carg->_00);
 }
 
-/*
- * --INFO--
- * Address:	803E1D98
- * Size:	0000B8
+/**
+ * @note Address: 0x803E1D98
+ * @note Size: 0xB8
  */
 void FSMState_CardError::do_exec(TMgr* mgr)
 {
@@ -393,10 +364,9 @@ void FSMState_CardError::do_exec(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C0
+/**
+ * @note Address: N/A
+ * @note Size: 0xC0
  */
 TMgr::TMgr()
     : mCounter(0)
@@ -408,18 +378,16 @@ TMgr::TMgr()
 }
 
 #pragma dont_inline on
-/*
- * --INFO--
- * Address:	803E1ED8
- * Size:	000084
+/**
+ * @note Address: 0x803E1ED8
+ * @note Size: 0x84
  */
 TMgr::~TMgr() { msInstance = nullptr; }
 #pragma dont_inline reset
 
-/*
- * --INFO--
- * Address:	803E1F5C
- * Size:	0000DC
+/**
+ * @note Address: 0x803E1F5C
+ * @note Size: 0xDC
  */
 TMgr* TMgr::createInstance()
 {
@@ -429,24 +397,21 @@ TMgr* TMgr::createInstance()
 	return msInstance;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 void TMgr::deleteInstance() { delete msInstance; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 TMgr* TMgr::getInstance() { return msInstance; }
 
-/*
- * --INFO--
- * Address:	803E2038
- * Size:	000058
+/**
+ * @note Address: 0x803E2038
+ * @note Size: 0x58
  */
 void TMgr::onDvdErrorOccured()
 {
@@ -460,10 +425,9 @@ void TMgr::onDvdErrorOccured()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2090
- * Size:	000044
+/**
+ * @note Address: 0x803E2090
+ * @note Size: 0x44
  */
 void TMgr::onDvdErrorRecovered()
 {
@@ -473,10 +437,9 @@ void TMgr::onDvdErrorRecovered()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E20D4
- * Size:	00004C
+/**
+ * @note Address: 0x803E20D4
+ * @note Size: 0x4C
  */
 void TMgr::start()
 {
@@ -485,10 +448,9 @@ void TMgr::start()
 	mFsm.start(this, FSSTATE_EmptyUpdate, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	803E2120
- * Size:	000058
+/**
+ * @note Address: 0x803E2120
+ * @note Size: 0x58
  */
 void TMgr::forceQuit()
 {
@@ -497,10 +459,9 @@ void TMgr::forceQuit()
 	mMgrFS.forceQuitSeq();
 }
 
-/*
- * --INFO--
- * Address:	803E2178
- * Size:	00008C
+/**
+ * @note Address: 0x803E2178
+ * @note Size: 0x8C
  */
 void TMgr::update()
 {
@@ -515,10 +476,9 @@ void TMgr::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2204
- * Size:	000044
+/**
+ * @note Address: 0x803E2204
+ * @note Size: 0x44
  */
 void TMgr::draw()
 {
@@ -528,17 +488,15 @@ void TMgr::draw()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2248
- * Size:	000004
+/**
+ * @note Address: 0x803E2248
+ * @note Size: 0x4
  */
 void TMgr::showInfo() { }
 
-/*
- * --INFO--
- * Address:	803E224C
- * Size:	00004C
+/**
+ * @note Address: 0x803E224C
+ * @note Size: 0x4C
  */
 bool TMgr::isFinish()
 {
@@ -549,10 +507,9 @@ bool TMgr::isFinish()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2298
- * Size:	00005C
+/**
+ * @note Address: 0x803E2298
+ * @note Size: 0x5C
  */
 void TMgr::goEnd_(enumEnd end)
 {
@@ -562,10 +519,9 @@ void TMgr::goEnd_(enumEnd end)
 	mCardErrorMgr.forceQuitSeq();
 }
 
-/*
- * --INFO--
- * Address:	803E22F4
- * Size:	000058
+/**
+ * @note Address: 0x803E22F4
+ * @note Size: 0x58
  */
 int TMgr::getStateID()
 {

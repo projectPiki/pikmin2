@@ -10,10 +10,9 @@
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	8012EC24
- * Size:	000070
+/**
+ * @note Address: 0x8012EC24
+ * @note Size: 0x70
  */
 EnemyBirthArg::EnemyBirthArg()
     : mPosition(Vector3f(0.0f))
@@ -26,10 +25,9 @@ EnemyBirthArg::EnemyBirthArg()
 {
 }
 
-/*
- * --INFO--
- * Address:	8012EC94
- * Size:	0000C4
+/**
+ * @note Address: 0x8012EC94
+ * @note Size: 0xC4
  */
 EnemyMgrBase::EnemyMgrBase(int objLimit, u8 modelType)
 {
@@ -45,10 +43,9 @@ EnemyMgrBase::EnemyMgrBase(int objLimit, u8 modelType)
 	mStoneInfo.mObjList = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8012ED58
- * Size:	000070
+/**
+ * @note Address: 0x8012ED58
+ * @note Size: 0x70
  */
 void EnemyMgrBase::startMovie()
 {
@@ -60,10 +57,9 @@ void EnemyMgrBase::startMovie()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012EDC8
- * Size:	000070
+/**
+ * @note Address: 0x8012EDC8
+ * @note Size: 0x70
  */
 void EnemyMgrBase::endMovie()
 {
@@ -75,10 +71,9 @@ void EnemyMgrBase::endMovie()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012EE38
- * Size:	0000A0
+/**
+ * @note Address: 0x8012EE38
+ * @note Size: 0xA0
  */
 void EnemyMgrBase::alloc()
 {
@@ -93,10 +88,9 @@ void EnemyMgrBase::alloc()
 	doAlloc();
 }
 
-/*
- * --INFO--
- * Address:	8012EED8
- * Size:	000110
+/**
+ * @note Address: 0x8012EED8
+ * @note Size: 0x110
  */
 void EnemyMgrBase::doAnimation()
 {
@@ -114,10 +108,9 @@ void EnemyMgrBase::doAnimation()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012EFE8
- * Size:	0000B4
+/**
+ * @note Address: 0x8012EFE8
+ * @note Size: 0xB4
  */
 void EnemyMgrBase::doEntry()
 {
@@ -129,10 +122,9 @@ void EnemyMgrBase::doEntry()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012F09C
- * Size:	00008C
+/**
+ * @note Address: 0x8012F09C
+ * @note Size: 0x8C
  */
 void EnemyMgrBase::doSetView(int viewportNumber)
 {
@@ -144,10 +136,9 @@ void EnemyMgrBase::doSetView(int viewportNumber)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012F128
- * Size:	00007C
+/**
+ * @note Address: 0x8012F128
+ * @note Size: 0x7C
  */
 void EnemyMgrBase::doViewCalc()
 {
@@ -159,10 +150,9 @@ void EnemyMgrBase::doViewCalc()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012F1A4
- * Size:	0000EC
+/**
+ * @note Address: 0x8012F1A4
+ * @note Size: 0xEC
  */
 void EnemyMgrBase::doSimulation(f32 arg)
 {
@@ -177,10 +167,9 @@ void EnemyMgrBase::doSimulation(f32 arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012F290
- * Size:	0000C4
+/**
+ * @note Address: 0x8012F290
+ * @note Size: 0xC4
  */
 void EnemyMgrBase::doDirectDraw(Graphics& graphics)
 {
@@ -192,10 +181,9 @@ void EnemyMgrBase::doDirectDraw(Graphics& graphics)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012f354
- * Size:	000074
+/**
+ * @note Address: 0x8012f354
+ * @note Size: 0x74
  */
 void* EnemyMgrBase::getNext(void* object)
 {
@@ -207,10 +195,9 @@ void* EnemyMgrBase::getNext(void* object)
 	return (void*)mObjLimit;
 }
 
-/*
- * --INFO--
- * Address:	8012F3C8
- * Size:	000184
+/**
+ * @note Address: 0x8012F3C8
+ * @note Size: 0x184
  */
 EnemyBase* EnemyMgrBase::birth(EnemyBirthArg& arg)
 {
@@ -252,10 +239,9 @@ EnemyBase* EnemyMgrBase::birth(EnemyBirthArg& arg)
 	return enemy;
 }
 
-/*
- * --INFO--
- * Address:	8012F554
- * Size:	000164
+/**
+ * @note Address: 0x8012F554
+ * @note Size: 0x164
  */
 void EnemyMgrBase::kill(EnemyBase* enemy)
 {
@@ -280,10 +266,9 @@ void EnemyMgrBase::kill(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012F6B8
- * Size:	0000A8
+/**
+ * @note Address: 0x8012F6B8
+ * @note Size: 0xA8
  */
 void EnemyMgrBase::killAll(CreatureKillArg* arg)
 {
@@ -299,10 +284,9 @@ void EnemyMgrBase::killAll(CreatureKillArg* arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012F760
- * Size:	00003C
+/**
+ * @note Address: 0x8012F760
+ * @note Size: 0x3C
  */
 bool EnemyMgrBase::isValidEnemyTypeID()
 {
@@ -310,10 +294,9 @@ bool EnemyMgrBase::isValidEnemyTypeID()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	8012F79C
- * Size:	000100
+/**
+ * @note Address: 0x8012F79C
+ * @note Size: 0x100
  */
 void EnemyMgrBase::setupSoundViewerAndBas()
 {
@@ -330,10 +313,9 @@ void EnemyMgrBase::setupSoundViewerAndBas()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012F89C
- * Size:	00008C
+/**
+ * @note Address: 0x8012F89C
+ * @note Size: 0x8C
  */
 void EnemyMgrBase::init(EnemyParmsBase* parms)
 {
@@ -345,24 +327,21 @@ void EnemyMgrBase::init(EnemyParmsBase* parms)
 	initGenerator();
 }
 
-/*
- * --INFO--
- * Address:	8012F928
- * Size:	000024
+/**
+ * @note Address: 0x8012F928
+ * @note Size: 0x24
  */
 void EnemyMgrBase::setDebugParm(u32 debugParm) { mParms->setDebugParm(debugParm); }
 
-/*
- * --INFO--
- * Address:	8012F94C
- * Size:	000024
+/**
+ * @note Address: 0x8012F94C
+ * @note Size: 0x24
  */
 void EnemyMgrBase::resetDebugParm(u32 debugParm) { mParms->resetDebugParm(debugParm); }
 
-/*
- * --INFO--
- * Address:	8012F970
- * Size:	0000AC
+/**
+ * @note Address: 0x8012F970
+ * @note Size: 0xAC
  */
 SysShape::Model* EnemyMgrBase::createModel()
 {
@@ -381,10 +360,9 @@ SysShape::Model* EnemyMgrBase::createModel()
 	return model;
 }
 
-/*
- * --INFO--
- * Address:	8012FA1C
- * Size:	0000C0
+/**
+ * @note Address: 0x8012FA1C
+ * @note Size: 0xC0
  */
 void EnemyMgrBase::initParms()
 {
@@ -401,10 +379,9 @@ void EnemyMgrBase::initParms()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012FADC
- * Size:	000078
+/**
+ * @note Address: 0x8012FADC
+ * @note Size: 0x78
  */
 void EnemyMgrBase::loadStoneSetting(const char* filename)
 {
@@ -416,10 +393,9 @@ void EnemyMgrBase::loadStoneSetting(const char* filename)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012FB54
- * Size:	000090
+/**
+ * @note Address: 0x8012FB54
+ * @note Size: 0x90
  */
 bool EnemyMgrBase::setupParms(const char* filename)
 {
@@ -430,10 +406,9 @@ bool EnemyMgrBase::setupParms(const char* filename)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	8012FBE4
- * Size:	000088
+/**
+ * @note Address: 0x8012FBE4
+ * @note Size: 0x88
  */
 void EnemyMgrBase::loadResource()
 {
@@ -444,10 +419,9 @@ void EnemyMgrBase::loadResource()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012FC6C
- * Size:	0002FC
+/**
+ * @note Address: 0x8012FC6C
+ * @note Size: 0x2FC
  */
 void EnemyMgrBase::initObjects()
 {
@@ -484,10 +458,9 @@ void EnemyMgrBase::initObjects()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012FF68
- * Size:	0000C0
+/**
+ * @note Address: 0x8012FF68
+ * @note Size: 0xC0
  */
 void EnemyMgrBase::initStoneSetting()
 {
@@ -504,10 +477,9 @@ void EnemyMgrBase::initStoneSetting()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80130028
- * Size:	0000E4
+/**
+ * @note Address: 0x80130028
+ * @note Size: 0xE4
  */
 J3DModelData* EnemyMgrBase::loadModelData(JKRArchive* archive)
 {
@@ -534,10 +506,9 @@ J3DModelData* EnemyMgrBase::loadModelData(JKRArchive* archive)
 	return modelData;
 }
 
-/*
- * --INFO--
- * Address:	8013010C
- * Size:	0000C0
+/**
+ * @note Address: 0x8013010C
+ * @note Size: 0xC0
  */
 void EnemyMgrBase::loadModelData()
 {
@@ -555,10 +526,9 @@ void EnemyMgrBase::loadModelData()
 	loadModelData(node->mArchive);
 }
 
-/*
- * --INFO--
- * Address:	801301CC
- * Size:	000154
+/**
+ * @note Address: 0x801301CC
+ * @note Size: 0x154
  */
 void EnemyMgrBase::loadAnimData()
 {
@@ -592,10 +562,9 @@ void EnemyMgrBase::loadAnimData()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80130320
- * Size:	000074
+/**
+ * @note Address: 0x80130320
+ * @note Size: 0x74
  */
 void EnemyMgrBase::loadTexData()
 {
@@ -605,31 +574,27 @@ void EnemyMgrBase::loadTexData()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80130394
- * Size:	00002C
+/**
+ * @note Address: 0x80130394
+ * @note Size: 0x2C
  */
 J3DModelData* EnemyMgrBase::doLoadBmd(void* bmd) { return J3DModelLoaderDataBase::load(bmd, 0x240010); }
 
-/*
- * --INFO--
- * Address:	801303C0
- * Size:	000028
+/**
+ * @note Address: 0x801303C0
+ * @note Size: 0x28
  */
 J3DModelData* EnemyMgrBase::doLoadBdl(void* bdl) { return J3DModelLoaderDataBase::loadBinaryDisplayList(bdl, 0x2000); }
 
-/*
- * --INFO--
- * Address:	801303E8
- * Size:	000090
+/**
+ * @note Address: 0x801303E8
+ * @note Size: 0x90
  */
 void EnemyMgrBase::initGenerator() { mGenerator = new EnemyGeneratorBase("EnemyGenerator"); }
 
-/*
- * --INFO--
- * Address:	80130478
- * Size:	0000E8
+/**
+ * @note Address: 0x80130478
+ * @note Size: 0xE8
  */
 void EnemyMgrBase::doAnimationAlwaysMovieActor()
 {
@@ -647,10 +612,9 @@ void EnemyMgrBase::doAnimationAlwaysMovieActor()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80130560
- * Size:	00007C
+/**
+ * @note Address: 0x80130560
+ * @note Size: 0x7C
  */
 void EnemyMgrBase::doEntryAlwaysMovieActor()
 {
@@ -662,10 +626,9 @@ void EnemyMgrBase::doEntryAlwaysMovieActor()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801305DC
- * Size:	00009C
+/**
+ * @note Address: 0x801305DC
+ * @note Size: 0x9C
  */
 void EnemyMgrBase::doSimulationAlwaysMovieActor(f32 arg)
 {
@@ -677,10 +640,9 @@ void EnemyMgrBase::doSimulationAlwaysMovieActor(f32 arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80130678
- * Size:	00008C
+/**
+ * @note Address: 0x80130678
+ * @note Size: 0x8C
  */
 void EnemyMgrBase::doDirectDrawAlwaysMovieActor(Graphics& graphics)
 {

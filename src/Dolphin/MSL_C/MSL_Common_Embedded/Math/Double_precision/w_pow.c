@@ -1,9 +1,8 @@
 extern double __ieee754_pow();
 
-/*
- * --INFO--
- * Address:	800CFA0C
- * Size:	000020
+/**
+ * @note Address: 0x800CFA0C
+ * @note Size: 0x20
  */
 
 double pow(double __x, double __y) { return (double)__ieee754_pow(); }

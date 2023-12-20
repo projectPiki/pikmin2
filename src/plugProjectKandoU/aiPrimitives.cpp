@@ -21,20 +21,18 @@ static const char unusedAiPrimName[] = "aiPrimitives";
 
 namespace PikiAI {
 
-/*
- * --INFO--
- * Address:	801972DC
- * Size:	00003C
+/**
+ * @note Address: 0x801972DC
+ * @note Size: 0x3C
  */
 ActGotoPos::ActGotoPos(Game::Piki* p)
     : Action(p)
 {
 }
 
-/*
- * --INFO--
- * Address:	80197318
- * Size:	000078
+/**
+ * @note Address: 0x80197318
+ * @note Size: 0x78
  */
 void ActGotoPos::init(ActionArg* actionArg)
 {
@@ -44,10 +42,9 @@ void ActGotoPos::init(ActionArg* actionArg)
 	mRadius   = posArg->mRadius;
 }
 
-/*
- * --INFO--
- * Address:	80197390
- * Size:	00011C
+/**
+ * @note Address: 0x80197390
+ * @note Size: 0x11C
  */
 int ActGotoPos::exec()
 {
@@ -63,27 +60,24 @@ int ActGotoPos::exec()
 	return ACTEXEC_Continue;
 }
 
-/*
- * --INFO--
- * Address:	801974AC
- * Size:	000004
+/**
+ * @note Address: 0x801974AC
+ * @note Size: 0x4
  */
 void ActGotoPos::cleanup() { }
 
-/*
- * --INFO--
- * Address:	801974B0
- * Size:	00003C
+/**
+ * @note Address: 0x801974B0
+ * @note Size: 0x3C
  */
 ActApproachPos::ActApproachPos(Game::Piki* p)
     : Action(p)
 {
 }
 
-/*
- * --INFO--
- * Address:	801974EC
- * Size:	000104
+/**
+ * @note Address: 0x801974EC
+ * @note Size: 0x104
  */
 void ActApproachPos::init(ActionArg* settings)
 {
@@ -108,10 +102,9 @@ void ActApproachPos::init(ActionArg* settings)
 	mTimer = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	801975F0
- * Size:	000328
+/**
+ * @note Address: 0x801975F0
+ * @note Size: 0x328
  */
 int ActApproachPos::exec()
 {
@@ -417,27 +410,24 @@ lbl_801978EC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80197918
- * Size:	000034
+/**
+ * @note Address: 0x80197918
+ * @note Size: 0x34
  */
 void ActApproachPos::cleanup() { mParent->setMoveRotation(true); }
 
-/*
- * --INFO--
- * Address:	8019794C
- * Size:	00003C
+/**
+ * @note Address: 0x8019794C
+ * @note Size: 0x3C
  */
 ActGotoSlot::ActGotoSlot(Game::Piki* p)
     : Action(p)
 {
 }
 
-/*
- * --INFO--
- * Address:	80197988
- * Size:	00018C
+/**
+ * @note Address: 0x80197988
+ * @note Size: 0x18C
  */
 void ActGotoSlot::init(ActionArg* settings)
 {
@@ -472,10 +462,9 @@ void ActGotoSlot::init(ActionArg* settings)
 	mWallTimer = 0;
 }
 
-/*
- * --INFO--
- * Address:	80197B14
- * Size:	000018
+/**
+ * @note Address: 0x80197B14
+ * @note Size: 0x18
  */
 void ActGotoSlot::wallCallback(Vector3f&)
 {
@@ -484,10 +473,9 @@ void ActGotoSlot::wallCallback(Vector3f&)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80197B2C
- * Size:	000014
+/**
+ * @note Address: 0x80197B2C
+ * @note Size: 0x14
  */
 void ActGotoSlot::resetTimers()
 {
@@ -495,10 +483,9 @@ void ActGotoSlot::resetTimers()
 	mRefreshSlotTimer = 3.0f;
 }
 
-/*
- * --INFO--
- * Address:	80197B40
- * Size:	000A94
+/**
+ * @note Address: 0x80197B40
+ * @note Size: 0xA94
  */
 int ActGotoSlot::exec()
 {
@@ -1481,17 +1468,15 @@ lbl_80198580:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801985D4
- * Size:	000004
+/**
+ * @note Address: 0x801985D4
+ * @note Size: 0x4
  */
 void ActGotoSlot::cleanup() { }
 
-/*
- * --INFO--
- * Address:	801985D8
- * Size:	00007C
+/**
+ * @note Address: 0x801985D8
+ * @note Size: 0x7C
  */
 ActPathMove::ActPathMove(Game::Piki* p)
     : Action(p)
@@ -1500,10 +1485,9 @@ ActPathMove::ActPathMove(Game::Piki* p)
 	mStartWPIndex = -1;
 }
 
-/*
- * --INFO--
- * Address:	80198654
- * Size:	0001BC
+/**
+ * @note Address: 0x80198654
+ * @note Size: 0x1BC
  */
 void ActPathMove::init(ActionArg* settings)
 {
@@ -1670,10 +1654,9 @@ lbl_801987F0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80198810
- * Size:	0003AC
+/**
+ * @note Address: 0x80198810
+ * @note Size: 0x3AC
  */
 void ActPathMove::initPathfinding(bool resetLinkCount)
 {
@@ -1776,10 +1759,9 @@ void ActPathMove::initPathfinding(bool resetLinkCount)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80198BBC
- * Size:	00005C
+/**
+ * @note Address: 0x80198BBC
+ * @note Size: 0x5C
  */
 Game::Onyon* ActPathMove::decideGoal()
 {
@@ -1787,10 +1769,9 @@ Game::Onyon* ActPathMove::decideGoal()
 	return mPellet->getPelletGoal();
 }
 
-/*
- * --INFO--
- * Address:	80198C18
- * Size:	00011C
+/**
+ * @note Address: 0x80198C18
+ * @note Size: 0x11C
  */
 int ActPathMove::exec()
 {
@@ -1828,10 +1809,9 @@ int ActPathMove::exec()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80198D34
- * Size:	0002B0
+/**
+ * @note Address: 0x80198D34
+ * @note Size: 0x2B0
  */
 int ActPathMove::execPathfinding()
 {
@@ -2136,10 +2116,9 @@ lbl_80198FC8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001AC
+/**
+ * @note Address: N/A
+ * @note Size: 0x1AC
  */
 f32 ActPathMove::getCarrySpeed()
 {
@@ -2171,10 +2150,9 @@ f32 ActPathMove::getCarrySpeed()
 	return minSpeed + (((1.0f + carryPower) - (f32)min) / (f32)max) * (maxSpeed - minSpeed);
 }
 
-/*
- * --INFO--
- * Address:	80198FE4
- * Size:	0006A8
+/**
+ * @note Address: 0x80198FE4
+ * @note Size: 0x6A8
  */
 int ActPathMove::execMoveGoal()
 {
@@ -2225,10 +2203,9 @@ int ActPathMove::execMoveGoal()
 	return ACTEXEC_Continue;
 }
 
-/*
- * --INFO--
- * Address:	8019968C
- * Size:	00009C
+/**
+ * @note Address: 0x8019968C
+ * @note Size: 0x9C
  */
 bool ActPathMove::isAllBlue()
 {
@@ -2241,10 +2218,9 @@ bool ActPathMove::isAllBlue()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80199728
- * Size:	0000A8
+/**
+ * @note Address: 0x80199728
+ * @note Size: 0xA8
  */
 void ActPathMove::carry(Vector3f& velocity)
 {
@@ -2260,10 +2236,9 @@ void ActPathMove::carry(Vector3f& velocity)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801997D0
- * Size:	000428
+/**
+ * @note Address: 0x801997D0
+ * @note Size: 0x428
  */
 int ActPathMove::execMove()
 {
@@ -2615,10 +2590,9 @@ lbl_80199BC8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80199BF8
- * Size:	000090
+/**
+ * @note Address: 0x80199BF8
+ * @note Size: 0x90
  */
 void ActPathMove::cleanup()
 {
@@ -2634,10 +2608,9 @@ void ActPathMove::cleanup()
 	mContextHandle = 0;
 }
 
-/*
- * --INFO--
- * Address:	80199C88
- * Size:	0004E8
+/**
+ * @note Address: 0x80199C88
+ * @note Size: 0x4E8
  */
 int ActPathMove::execMoveGuru()
 {
@@ -3064,10 +3037,9 @@ lbl_8019A144:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8019A170
- * Size:	0000B8
+/**
+ * @note Address: 0x8019A170
+ * @note Size: 0xB8
  */
 Game::WayPoint* ActPathMove::getWayPoint(int id)
 {
@@ -3086,10 +3058,9 @@ Game::WayPoint* ActPathMove::getWayPoint(int id)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8019A228
- * Size:	00018C
+/**
+ * @note Address: 0x8019A228
+ * @note Size: 0x18C
  */
 Vector3f ActPathMove::crGetPoint(int idx)
 {
@@ -3115,10 +3086,9 @@ Vector3f ActPathMove::crGetPoint(int idx)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	8019A3B4
- * Size:	0003C4
+/**
+ * @note Address: 0x8019A3B4
+ * @note Size: 0x3C4
  */
 bool ActPathMove::contextCheck(int idx)
 {
@@ -3482,10 +3452,9 @@ lbl_8019A730:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F0
+/**
+ * @note Address: N/A
+ * @note Size: 0xF0
  */
 bool ActPathMove::crPointOpen(int idx)
 {
@@ -3500,10 +3469,9 @@ bool ActPathMove::crPointOpen(int idx)
 	return (wp2->isFlag(Game::WPF_Closed)) <= 0; // SO dumb
 }
 
-/*
- * --INFO--
- * Address:	8019A778
- * Size:	000134
+/**
+ * @note Address: 0x8019A778
+ * @note Size: 0x134
  */
 f32 ActPathMove::crGetRadius(int idx)
 {
@@ -3526,10 +3494,9 @@ f32 ActPathMove::crGetRadius(int idx)
 	return wp->mRadius;
 }
 
-/*
- * --INFO--
- * Address:	8019A8AC
- * Size:	000738
+/**
+ * @note Address: 0x8019A8AC
+ * @note Size: 0x738
  */
 void ActPathMove::crInit()
 {
@@ -3602,10 +3569,9 @@ void ActPathMove::crInit()
 	crMakeRefs();
 }
 
-/*
- * --INFO--
- * Address:	8019AFE4
- * Size:	000080
+/**
+ * @note Address: 0x8019AFE4
+ * @note Size: 0x80
  */
 void ActPathMove::crMakeRefs()
 {
@@ -3614,10 +3580,9 @@ void ActPathMove::crMakeRefs()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8019B064
- * Size:	000C54
+/**
+ * @note Address: 0x8019B064
+ * @note Size: 0xC54
  */
 bool ActPathMove::crMove()
 {
@@ -4709,20 +4674,18 @@ lbl_8019BC54:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8019BCB8
- * Size:	00007C
+/**
+ * @note Address: 0x8019BCB8
+ * @note Size: 0x7C
  */
 ActStickAttack::ActStickAttack(Game::Piki* p)
     : Action(p)
 {
 }
 
-/*
- * --INFO--
- * Address:	8019BD34
- * Size:	0001F0
+/**
+ * @note Address: 0x8019BD34
+ * @note Size: 0x1F0
  */
 void ActStickAttack::init(ActionArg* settings)
 {
@@ -4768,10 +4731,9 @@ void ActStickAttack::init(ActionArg* settings)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8019BF24
- * Size:	000164
+/**
+ * @note Address: 0x8019BF24
+ * @note Size: 0x164
  */
 int ActStickAttack::exec()
 {
@@ -4817,10 +4779,9 @@ int ActStickAttack::exec()
 	return ACTEXEC_Continue;
 }
 
-/*
- * --INFO--
- * Address:	8019C088
- * Size:	000650
+/**
+ * @note Address: 0x8019C088
+ * @note Size: 0x650
  */
 void ActStickAttack::createEfx()
 {
@@ -4940,10 +4901,9 @@ void ActStickAttack::createEfx()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8019C6D8
- * Size:	000080
+/**
+ * @note Address: 0x8019C6D8
+ * @note Size: 0x80
  */
 void ActStickAttack::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 {
@@ -4973,27 +4933,24 @@ void ActStickAttack::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8019C758
- * Size:	000024
+/**
+ * @note Address: 0x8019C758
+ * @note Size: 0x24
  */
 void ActStickAttack::cleanup() { mParent->endStick(); }
 
-/*
- * --INFO--
- * Address:	8019C77C
- * Size:	00003C
+/**
+ * @note Address: 0x8019C77C
+ * @note Size: 0x3C
  */
 ActClimb::ActClimb(Game::Piki* p)
     : Action(p)
 {
 }
 
-/*
- * --INFO--
- * Address:	8019C7B8
- * Size:	000100
+/**
+ * @note Address: 0x8019C7B8
+ * @note Size: 0x100
  */
 void ActClimb::init(ActionArg* settings)
 {
@@ -5012,10 +4969,9 @@ void ActClimb::init(ActionArg* settings)
 	mVelocity   = mVelocity * mSpeed;
 }
 
-/*
- * --INFO--
- * Address:	8019C8B8
- * Size:	0000E4
+/**
+ * @note Address: 0x8019C8B8
+ * @note Size: 0xE4
  */
 int ActClimb::exec()
 {
@@ -5038,27 +4994,24 @@ int ActClimb::exec()
 	return ACTEXEC_Continue;
 }
 
-/*
- * --INFO--
- * Address:	8019C99C
- * Size:	000004
+/**
+ * @note Address: 0x8019C99C
+ * @note Size: 0x4
  */
 void ActClimb::cleanup() { }
 
-/*
- * --INFO--
- * Address:	8019C9A0
- * Size:	00003C
+/**
+ * @note Address: 0x8019C9A0
+ * @note Size: 0x3C
  */
 ActGather::ActGather(Game::Piki* p)
     : Action(p)
 {
 }
 
-/*
- * --INFO--
- * Address:	8019C9DC
- * Size:	0000E0
+/**
+ * @note Address: 0x8019C9DC
+ * @note Size: 0xE0
  */
 void ActGather::init(ActionArg* settings)
 {
@@ -5073,10 +5026,9 @@ void ActGather::init(ActionArg* settings)
 	mRadius *= 0.6f;
 }
 
-/*
- * --INFO--
- * Address:	8019CABC
- * Size:	000154
+/**
+ * @note Address: 0x8019CABC
+ * @note Size: 0x154
  */
 int ActGather::exec()
 {
@@ -5095,27 +5047,24 @@ int ActGather::exec()
 	return ACTEXEC_Continue;
 }
 
-/*
- * --INFO--
- * Address:	8019CC10
- * Size:	000004
+/**
+ * @note Address: 0x8019CC10
+ * @note Size: 0x4
  */
 void ActGather::cleanup() { }
 
-/*
- * --INFO--
- * Address:	8019CC14
- * Size:	00003C
+/**
+ * @note Address: 0x8019CC14
+ * @note Size: 0x3C
  */
 ActFollowVectorField::ActFollowVectorField(Game::Piki* p)
     : Action(p)
 {
 }
 
-/*
- * --INFO--
- * Address:	8019CC50
- * Size:	000060
+/**
+ * @note Address: 0x8019CC50
+ * @note Size: 0x60
  */
 void ActFollowVectorField::init(ActionArg* arg)
 {
@@ -5123,10 +5072,9 @@ void ActFollowVectorField::init(ActionArg* arg)
 	mItem = static_cast<FollowVectorFieldActionArg*>(arg)->mItem;
 }
 
-/*
- * --INFO--
- * Address:	8019CCB0
- * Size:	000080
+/**
+ * @note Address: 0x8019CCB0
+ * @note Size: 0x80
  */
 int ActFollowVectorField::exec()
 {
@@ -5141,10 +5089,9 @@ int ActFollowVectorField::exec()
 	return ACTEXEC_Continue;
 }
 
-/*
- * --INFO--
- * Address:	8019CD30
- * Size:	000004
+/**
+ * @note Address: 0x8019CD30
+ * @note Size: 0x4
  */
 void ActFollowVectorField::cleanup() { }
 

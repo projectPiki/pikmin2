@@ -6,10 +6,9 @@ u8 TRK_Use_BBA;
 
 DBCommTable gDBCommTable = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };
 
-/*
- * --INFO--
- * Address:	800C0984
- * Size:	000038
+/**
+ * @note Address: 0x800C0984
+ * @note Size: 0x38
  */
 void TRKEXICallBack(s16 r3, OSContext* ctx)
 {
@@ -17,10 +16,9 @@ void TRKEXICallBack(s16 r3, OSContext* ctx)
 	TRKLoadContext(ctx, 0x500);
 }
 
-/*
- * --INFO--
- * Address:	800C0718
- * Size:	00026C
+/**
+ * @note Address: 0x800C0718
+ * @note Size: 0x26C
  */
 int InitMetroTRKCommTable(int hwId)
 {
@@ -252,10 +250,9 @@ int InitMetroTRKCommTable(int hwId)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800C06C8
- * Size:	000050
+/**
+ * @note Address: 0x800C06C8
+ * @note Size: 0x50
  */
 DSError TRKInitializeIntDrivenUART(u32, u32, u32, void* r5)
 {
@@ -264,10 +261,9 @@ DSError TRKInitializeIntDrivenUART(u32, u32, u32, void* r5)
 	return DS_NoError;
 }
 
-/*
- * --INFO--
- * Address:	800C0680
- * Size:	000048
+/**
+ * @note Address: 0x800C0680
+ * @note Size: 0x48
  */
 void EnableEXI2Interrupts(void)
 {
@@ -278,17 +274,15 @@ void EnableEXI2Interrupts(void)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800C0650
- * Size:	000030
+/**
+ * @note Address: 0x800C0650
+ * @note Size: 0x30
  */
 int TRKPollUART(void) { return gDBCommTable.peek_func(); }
 
-/*
- * --INFO--
- * Address:	800C0614
- * Size:	00003C
+/**
+ * @note Address: 0x800C0614
+ * @note Size: 0x3C
  */
 UARTError TRKReadUARTN(void* bytes, u32 length)
 {
@@ -296,10 +290,9 @@ UARTError TRKReadUARTN(void* bytes, u32 length)
 	return ((-readErr | readErr) >> 31);
 }
 
-/*
- * --INFO--
- * Address:	800C05D8
- * Size:	00003C
+/**
+ * @note Address: 0x800C05D8
+ * @note Size: 0x3C
  */
 UARTError TRKWriteUARTN(const void* bytes, u32 length)
 {
@@ -307,61 +300,54 @@ UARTError TRKWriteUARTN(const void* bytes, u32 length)
 	return ((-writeErr | writeErr) >> 31);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
+/**
+ * @note Address: N/A
+ * @note Size: 0xE0
  */
 void WriteUARTFlush(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 void WriteUART1(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F0
+/**
+ * @note Address: N/A
+ * @note Size: 0xF0
  */
 void TRKReadUARTPoll(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800C05A8
- * Size:	000030
+/**
+ * @note Address: 0x800C05A8
+ * @note Size: 0x30
  */
 void ReserveEXI2Port(void) { gDBCommTable.post_stop_func(); }
 
-/*
- * --INFO--
- * Address:	800C0578
- * Size:	000030
+/**
+ * @note Address: 0x800C0578
+ * @note Size: 0x30
  */
 void UnreserveEXI2Port(void) { gDBCommTable.pre_continue_func(); }
 
-/*
- * --INFO--
- * Address:	800C0548
- * Size:	000030
+/**
+ * @note Address: 0x800C0548
+ * @note Size: 0x30
  */
 void TRK_board_display(char* str) { OSReport("%s\n", str); }
 
-/*
- * --INFO--
- * Address:	800C04F0
- * Size:	000058
+/**
+ * @note Address: 0x800C04F0
+ * @note Size: 0x58
  */
 DSError InitializeProgramEndTrap(void)
 {
@@ -374,17 +360,15 @@ DSError InitializeProgramEndTrap(void)
 	DCFlushRange(ppcHaltPtr + 4, 4);
 }
 
-/*
- * --INFO--
- * Address:	800C04EC
- * Size:	000004
+/**
+ * @note Address: 0x800C04EC
+ * @note Size: 0x4
  */
 void TRKUARTInterruptHandler(void) { }
 
-/*
- * --INFO--
- * Address:	800C0464
- * Size:	000088
+/**
+ * @note Address: 0x800C0464
+ * @note Size: 0x88
  */
 ASM void TRKLoadContext(OSContext* ctx, u32 r4)
 {

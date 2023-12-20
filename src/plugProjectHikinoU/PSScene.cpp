@@ -6,10 +6,9 @@ namespace PSSystem {
 
 SceneMgr* spSceneMgr;
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000098
+/**
+ * @note Address: N/A
+ * @note Size: 0x98
  */
 WaveLoader::WaveLoader(u8 id1, u8 id2)
 {
@@ -17,10 +16,9 @@ WaveLoader::WaveLoader(u8 id1, u8 id2)
 	mWaveSceneID[1] = id2;
 }
 
-/*
- * --INFO--
- * Address:	803414F8
- * Size:	000040
+/**
+ * @note Address: 0x803414F8
+ * @note Size: 0x40
  */
 void WaveLoader::loadWave(TaskChecker* task, WaveScene::AreaArg arg)
 {
@@ -29,10 +27,9 @@ void WaveLoader::loadWave(TaskChecker* task, WaveScene::AreaArg arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80341538
- * Size:	000118
+/**
+ * @note Address: 0x80341538
+ * @note Size: 0x118
  */
 Scene::Scene(u8 id)
     : mChild(nullptr)
@@ -46,17 +43,15 @@ Scene::Scene(u8 id)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80341650
- * Size:	0000C4
+/**
+ * @note Address: 0x80341650
+ * @note Size: 0xC4
  */
 Scene::~Scene() { delete mWaveLoader; }
 
-/*
- * --INFO--
- * Address:	80341714
- * Size:	0000BC
+/**
+ * @note Address: 0x80341714
+ * @note Size: 0xBC
  */
 void Scene::adaptChildScene(Scene* scene)
 {
@@ -68,10 +63,9 @@ void Scene::adaptChildScene(Scene* scene)
 	spSceneMgr->mEndScene = scene;
 }
 
-/*
- * --INFO--
- * Address:	803417D0
- * Size:	000070
+/**
+ * @note Address: 0x803417D0
+ * @note Size: 0x70
  */
 void Scene::adaptTo(Scene** scene)
 {
@@ -82,10 +76,9 @@ void Scene::adaptTo(Scene** scene)
 	OSEnableInterrupts();
 }
 
-/*
- * --INFO--
- * Address:	80341840
- * Size:	000058
+/**
+ * @note Address: 0x80341840
+ * @note Size: 0x58
  */
 void Scene::detach()
 {
@@ -97,10 +90,9 @@ void Scene::detach()
 	OSEnableInterrupts();
 }
 
-/*
- * --INFO--
- * Address:	80341898
- * Size:	000060
+/**
+ * @note Address: 0x80341898
+ * @note Size: 0x60
  */
 void Scene::appendSeq(SeqBase* seq)
 {
@@ -108,10 +100,9 @@ void Scene::appendSeq(SeqBase* seq)
 	mSeqMgr.append(seq);
 }
 
-/*
- * --INFO--
- * Address:	803418F8
- * Size:	00003C
+/**
+ * @note Address: 0x803418F8
+ * @note Size: 0x3C
  */
 void Scene::startMainSeq()
 {
@@ -121,10 +112,9 @@ void Scene::startMainSeq()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80341934
- * Size:	00003C
+/**
+ * @note Address: 0x80341934
+ * @note Size: 0x3C
  */
 void Scene::stopMainSeq(u32 time)
 {
@@ -134,17 +124,15 @@ void Scene::stopMainSeq(u32 time)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80341970
- * Size:	000024
+/**
+ * @note Address: 0x80341970
+ * @note Size: 0x24
  */
 void Scene::stopAllSound(u32 time) { mSeqMgr.stopAllSound(time); }
 
-/*
- * --INFO--
- * Address:	80341994
- * Size:	000088
+/**
+ * @note Address: 0x80341994
+ * @note Size: 0x88
  */
 void Scene::scene1st(TaskChecker* task)
 {
@@ -156,10 +144,9 @@ void Scene::scene1st(TaskChecker* task)
 	mSeqMgr.scene1st(task);
 }
 
-/*
- * --INFO--
- * Address:	80341A1C
- * Size:	00005C
+/**
+ * @note Address: 0x80341A1C
+ * @note Size: 0x5C
  */
 void Scene::scene1stLoadSync()
 {
@@ -171,10 +158,9 @@ void Scene::scene1stLoadSync()
 	while (task._18) { }
 }
 
-/*
- * --INFO--
- * Address:	80341A78
- * Size:	00004C
+/**
+ * @note Address: 0x80341A78
+ * @note Size: 0x4C
  */
 void Scene::exec()
 {
@@ -184,10 +170,9 @@ void Scene::exec()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80341AC4
- * Size:	000034
+/**
+ * @note Address: 0x80341AC4
+ * @note Size: 0x34
  */
 void SceneMgr::refreshCurEndScene()
 {
@@ -203,10 +188,9 @@ void SceneMgr::refreshCurEndScene()
 	mEndScene = scene;
 }
 
-/*
- * --INFO--
- * Address:	80341AF8
- * Size:	000154
+/**
+ * @note Address: 0x80341AF8
+ * @note Size: 0x154
  */
 SeqBase* SceneMgr::findSeq(JASTrack* track)
 {
@@ -234,10 +218,9 @@ SeqBase* SceneMgr::findSeq(JASTrack* track)
 	return mScenes->mSeqMgr.findSeq(track);
 }
 
-/*
- * --INFO--
- * Address:	80341C4C
- * Size:	000154
+/**
+ * @note Address: 0x80341C4C
+ * @note Size: 0x154
  */
 SeqBase* SceneMgr::getPlayingSeq(JASTrack* track)
 {
@@ -265,10 +248,9 @@ SeqBase* SceneMgr::getPlayingSeq(JASTrack* track)
 	return mScenes->mSeqMgr.getPlayingSeq(track);
 }
 
-/*
- * --INFO--
- * Address:	80341DA0
- * Size:	000440
+/**
+ * @note Address: 0x80341DA0
+ * @note Size: 0x440
  */
 void SceneMgr::deleteScene(Scene* scene)
 {
@@ -291,10 +273,9 @@ void SceneMgr::deleteScene(Scene* scene)
 	delete scene;
 }
 
-/*
- * --INFO--
- * Address:	803421E0
- * Size:	000068
+/**
+ * @note Address: 0x803421E0
+ * @note Size: 0x68
  */
 void SceneMgr::deleteCurrentScene()
 {

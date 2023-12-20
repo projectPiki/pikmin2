@@ -30,10 +30,9 @@
 
 JKRSolidHeap* JASDram;
 
-/*
- * --INFO--
- * Address:	800A6A9C
- * Size:	000074
+/**
+ * @note Address: 0x800A6A9C
+ * @note Size: 0x74
  */
 JASHeap::JASHeap(JASDisposer* disposer)
     : mTree(this)
@@ -45,60 +44,54 @@ JASHeap::JASHeap(JASDisposer* disposer)
 	OSInitMutex(&mMutexObject);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 // void JSUTree<JASHeap>::~JSUTree()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 // void JSULink<JASHeap>::~JSULink()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 // void JSUList<JASHeap>::~JSUList()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A4
+/**
+ * @note Address: N/A
+ * @note Size: 0xA4
  */
 void JASHeap::adjustSize()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
+/**
+ * @note Address: N/A
+ * @note Size: 0x78
  */
 void JASHeap::initRootHeap(void*, u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800A6B10
- * Size:	0001D0
+/**
+ * @note Address: 0x800A6B10
+ * @note Size: 0x1D0
  */
 bool JASHeap::alloc(JASHeap*, u32)
 {
@@ -244,10 +237,9 @@ lbl_800A6CCC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A6CE0
- * Size:	0000E8
+/**
+ * @note Address: 0x800A6CE0
+ * @note Size: 0xE8
  */
 bool JASHeap::allocTail(JASHeap*, u32)
 {
@@ -321,20 +313,18 @@ lbl_800A6DB4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000EC
+/**
+ * @note Address: N/A
+ * @note Size: 0xEC
  */
 void* JASHeap::allocAll(JASHeap*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800A6DC8
- * Size:	000124
+/**
+ * @note Address: 0x800A6DC8
+ * @note Size: 0x124
  */
 bool JASHeap::free()
 {
@@ -437,170 +427,153 @@ lbl_800A6ED4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D4
+/**
+ * @note Address: N/A
+ * @note Size: 0xD4
  */
 void JASHeap::freeTail()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
+/**
+ * @note Address: N/A
+ * @note Size: 0x94
  */
 void JASHeap::freeAll()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A8
+/**
+ * @note Address: N/A
+ * @note Size: 0xA8
  */
 int JASHeap::getTotalFreeSize() const
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000BC
+/**
+ * @note Address: N/A
+ * @note Size: 0xBC
  */
 int JASHeap::getFreeSize() const
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void JASHeap::dump()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00018C
+/**
+ * @note Address: N/A
+ * @note Size: 0x18C
  */
 void JASHeap::dump(int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 // void JSUTree<JASHeap>::getNextChild() const
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 // void JSUTreeIterator<JASHeap>::operator!=(const JSUTree<JASHeap>*) const
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 // void JSUTree<JASHeap>::getEndChild() const
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 // void JSUTreeIterator<JASHeap>::operator++()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 // void JSUTreeIterator<JASHeap>::JSUTreeIterator(JSUTree<JASHeap>*)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 // void JSUTree<JASHeap>::getParent() const
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  */
 // JASMutexLock::JASMutexLock(OSMutex*)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 // void JSUTreeIterator<JASHeap>::operator->() const
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 // void JSUTree<JASHeap>::getFirstChild() const
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 // void JSUTree<JASHeap>::getObject() const
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	800A6EEC
- * Size:	0000E0
+/**
+ * @note Address: 0x800A6EEC
+ * @note Size: 0xE0
  */
 void JASHeap::insertChild(JASHeap*, JASHeap*, void*, u32, bool)
 {
@@ -678,10 +651,9 @@ lbl_800A6FA8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A6FCC
- * Size:	00008C
+/**
+ * @note Address: 0x800A6FCC
+ * @note Size: 0x8C
  */
 void JASHeap::getTailHeap()
 {
@@ -732,10 +704,9 @@ lbl_800A7044:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A7058
- * Size:	0000C4
+/**
+ * @note Address: 0x800A7058
+ * @note Size: 0xC4
  */
 int JASHeap::getTailOffset()
 {
@@ -804,10 +775,9 @@ lbl_800A70F8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A711C
- * Size:	000068
+/**
+ * @note Address: 0x800A711C
+ * @note Size: 0x68
  */
 int JASHeap::getCurOffset()
 {
@@ -845,80 +815,72 @@ lbl_800A7164:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 // JASSolidHeap::JASSolidHeap()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
+/**
+ * @note Address: N/A
+ * @note Size: 0x30
  */
 // JASSolidHeap::JASSolidHeap(u8*, u32)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 void JASSolidHeap::init(u8*, u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
+/**
+ * @note Address: N/A
+ * @note Size: 0x50
  */
 void* JASSolidHeap::alloc(u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 void JASSolidHeap::freeLast()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 void JASSolidHeap::freeAll()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 void JASSolidHeap::getRemain()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800A7184
- * Size:	000014
+/**
+ * @note Address: 0x800A7184
+ * @note Size: 0x14
  */
 JASGenericMemPool::JASGenericMemPool()
 {
@@ -927,20 +889,18 @@ JASGenericMemPool::JASGenericMemPool()
 	_08 = 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
+/**
+ * @note Address: N/A
+ * @note Size: 0x70
  */
 JASGenericMemPool::~JASGenericMemPool()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800A7198
- * Size:	000094
+/**
+ * @note Address: 0x800A7198
+ * @note Size: 0x94
  */
 void JASGenericMemPool::newMemPool(u32, int)
 {
@@ -991,10 +951,9 @@ lbl_800A71F8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A722C
- * Size:	000044
+/**
+ * @note Address: 0x800A722C
+ * @note Size: 0x44
  */
 void* JASGenericMemPool::alloc(u32)
 {
@@ -1023,10 +982,9 @@ lbl_800A7268:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A7270
- * Size:	000034
+/**
+ * @note Address: 0x800A7270
+ * @note Size: 0x34
  */
 void JASGenericMemPool::free(void*, u32)
 {
@@ -1058,10 +1016,9 @@ static u32 sAramBase; // TODO: learn its actual type
 static JKRExpHeap* sSystemHeap;
 static JASCmdHeap* sCommandHeap;
 
-/*
- * --INFO--
- * Address:	800A72A4
- * Size:	000118
+/**
+ * @note Address: 0x800A72A4
+ * @note Size: 0x118
  */
 void setupRootHeap(JKRSolidHeap*, u32)
 {
@@ -1147,34 +1104,30 @@ lbl_800A7398:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 JKRSolidHeap* getRootHeap()
 {
 	return JASDram; // speculation
 }
 
-/*
- * --INFO--
- * Address:	800A73BC
- * Size:	000008
+/**
+ * @note Address: 0x800A73BC
+ * @note Size: 0x8
  */
 JKRExpHeap* getSystemHeap() { return sSystemHeap; }
 
-/*
- * --INFO--
- * Address:	800A73C4
- * Size:	000008
+/**
+ * @note Address: 0x800A73C4
+ * @note Size: 0x8
  */
 JASCmdHeap* getCommandHeap() { return sCommandHeap; }
 
-/*
- * --INFO--
- * Address:	800A73CC
- * Size:	00007C
+/**
+ * @note Address: 0x800A73CC
+ * @note Size: 0x7C
  */
 void setupAramHeap(u32 u1, u32 u2)
 {
@@ -1219,27 +1172,24 @@ void setupAramHeap(u32 u1, u32 u2)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A7448
- * Size:	00000C
+/**
+ * @note Address: 0x800A7448
+ * @note Size: 0xC
  */
 JASHeap* getAramHeap() { return &audioAramHeap; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C4
+/**
+ * @note Address: N/A
+ * @note Size: 0xC4
  */
 int getAramFreeSize()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 int getAramSize()
 {

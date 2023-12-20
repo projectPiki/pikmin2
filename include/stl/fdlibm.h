@@ -2,7 +2,7 @@
 #define _FDLIBM_H
 
 /* @(#)fdlibm.h 1.5 04/04/22 */
-/*
+/**
  * ====================================================
  * Copyright (C) 2004 by Sun Microsystems, Inc. All rights reserved.
  *
@@ -42,7 +42,7 @@ extern "C" {
 // #define __P(p) ()
 // #endif
 
-/*
+/**
  * ANSI/POSIX
  */
 
@@ -79,7 +79,7 @@ struct exception {
 
 #define HUGE MAXFLOAT
 
-/*
+/**
  * set X_TLOSS = pi*2**52, which is possibly defined in <values.h>
  * (one may replace the following line by "#include <values.h>")
  */
@@ -93,7 +93,7 @@ struct exception {
 #define TLOSS     5
 #define PLOSS     6
 
-/*
+/**
  * ANSI/POSIX
  */
 extern double acos __P((double));
@@ -153,12 +153,12 @@ extern double scalb __P((double, double));
 
 extern int matherr __P((struct exception*));
 
-/*
+/**
  * IEEE Test Vector
  */
 extern double significand __P((double));
 
-/*
+/**
  * Functions callable from C, intended to support IEEE arithmetic.
  */
 extern double copysign __P((double, double));
@@ -166,13 +166,13 @@ extern int ilogb __P((double));
 extern double rint __P((double));
 extern double scalbn __P((double, int));
 
-/*
+/**
  * BSD math library entry points
  */
 extern double expm1 __P((double));
 extern double log1p __P((double));
 
-/*
+/**
  * Reentrant version of gamma & lgamma; passes signgam back by reference
  * as the second argument; user must allocate space for signgam.
  */

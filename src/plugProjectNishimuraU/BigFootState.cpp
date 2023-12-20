@@ -8,10 +8,9 @@
 namespace Game {
 namespace BigFoot {
 
-/*
- * --INFO--
- * Address:	802C62E8
- * Size:	000224
+/**
+ * @note Address: 0x802C62E8
+ * @note Size: 0x224
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -24,10 +23,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateWalk);
 }
 
-/*
- * --INFO--
- * Address:	802C650C
- * Size:	0000CC
+/**
+ * @note Address: 0x802C650C
+ * @note Size: 0xCC
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -46,10 +44,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	rumbleMgr->startRumble(10, position, 2);
 }
 
-/*
- * --INFO--
- * Address:	802C65D8
- * Size:	000094
+/**
+ * @note Address: 0x802C65D8
+ * @note Size: 0x94
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -68,17 +65,15 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802C666C
- * Size:	000004
+/**
+ * @note Address: 0x802C666C
+ * @note Size: 0x4
  */
 void StateDead::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802C6670
- * Size:	000084
+/**
+ * @note Address: 0x802C6670
+ * @note Size: 0x84
  */
 void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -94,10 +89,9 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	bigfoot->stopMotion();
 }
 
-/*
- * --INFO--
- * Address:	802C66F4
- * Size:	0000B8
+/**
+ * @note Address: 0x802C66F4
+ * @note Size: 0xB8
  */
 void StateStay::exec(EnemyBase* enemy)
 {
@@ -117,17 +111,15 @@ void StateStay::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802C67AC
- * Size:	000004
+/**
+ * @note Address: 0x802C67AC
+ * @note Size: 0x4
  */
 void StateStay::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802C67B0
- * Size:	0000B4
+/**
+ * @note Address: 0x802C67B0
+ * @note Size: 0xB4
  */
 void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -150,10 +142,9 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 	shadowMgr->setForceVisible(bigfoot, true);
 }
 
-/*
- * --INFO--
- * Address:	802C6864
- * Size:	000178
+/**
+ * @note Address: 0x802C6864
+ * @note Size: 0x178
  */
 void StateLand::exec(EnemyBase* enemy)
 {
@@ -184,10 +175,9 @@ void StateLand::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802C69DC
- * Size:	00005C
+/**
+ * @note Address: 0x802C69DC
+ * @note Size: 0x5C
  */
 void StateLand::cleanup(EnemyBase* enemy)
 {
@@ -199,10 +189,9 @@ void StateLand::cleanup(EnemyBase* enemy)
 	shadowMgr->setForceVisible(bigfoot, false);
 }
 
-/*
- * --INFO--
- * Address:	802C6A38
- * Size:	000070
+/**
+ * @note Address: 0x802C6A38
+ * @note Size: 0x70
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -216,10 +205,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	bigfoot->startMotion(BIGFOOTANIM_Wait, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802C6AA8
- * Size:	0000F4
+/**
+ * @note Address: 0x802C6AA8
+ * @note Size: 0xF4
  */
 void StateWait::exec(EnemyBase* enemy)
 {
@@ -242,17 +230,15 @@ void StateWait::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802C6B9C
- * Size:	000004
+/**
+ * @note Address: 0x802C6B9C
+ * @note Size: 0x4
  */
 void StateWait::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802C6BA0
- * Size:	00006C
+/**
+ * @note Address: 0x802C6BA0
+ * @note Size: 0x6C
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -267,10 +253,9 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	bigfoot->startBossChargeBGM();
 }
 
-/*
- * --INFO--
- * Address:	802C6C0C
- * Size:	0000C0
+/**
+ * @note Address: 0x802C6C0C
+ * @note Size: 0xC0
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
@@ -291,10 +276,9 @@ void StateFlick::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802C6CCC
- * Size:	000048
+/**
+ * @note Address: 0x802C6CCC
+ * @note Size: 0x48
  */
 void StateFlick::cleanup(EnemyBase* enemy)
 {
@@ -305,10 +289,9 @@ void StateFlick::cleanup(EnemyBase* enemy)
 	bigfoot->setIKParameter();
 }
 
-/*
- * --INFO--
- * Address:	802C6D14
- * Size:	000070
+/**
+ * @note Address: 0x802C6D14
+ * @note Size: 0x70
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -325,10 +308,9 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802C6D84
- * Size:	000100
+/**
+ * @note Address: 0x802C6D84
+ * @note Size: 0x100
  */
 void StateWalk::exec(EnemyBase* enemy)
 {
@@ -352,10 +334,9 @@ void StateWalk::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802C6E84
- * Size:	000038
+/**
+ * @note Address: 0x802C6E84
+ * @note Size: 0x38
  */
 void StateWalk::cleanup(EnemyBase* enemy)
 {

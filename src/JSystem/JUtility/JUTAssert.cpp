@@ -16,17 +16,15 @@ static u32 sMessageLife;
 static bool sVisible = true;
 } // namespace
 
-/*
- * --INFO--
- * Address:	80027DC0
- * Size:	000004
+/**
+ * @note Address: 0x80027DC0
+ * @note Size: 0x4
  */
 void create() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 u32 flush_subroutine()
 {
@@ -42,10 +40,9 @@ u32 flush_subroutine()
 	return sMessageLife;
 }
 
-/*
- * --INFO--
- * Address:	80027DC4
- * Size:	0000EC
+/**
+ * @note Address: 0x80027DC4
+ * @note Size: 0xEC
  */
 void flushMessage()
 {
@@ -59,10 +56,9 @@ void flushMessage()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80027EB0
- * Size:	000214
+/**
+ * @note Address: 0x80027EB0
+ * @note Size: 0x214
  */
 void flushMessage_dbPrint()
 {
@@ -77,10 +73,10 @@ void flushMessage_dbPrint()
 		font->drawString(30, 54, sMessageString, true);
 	}
 }
-/*
- * --INFO--
- * Address:	800280C4
- * Size:	000018
+
+/**
+ * @note Address: 0x800280C4
+ * @note Size: 0x18
  */
 void setMessageCount(int p1) { sMessageLife = p1 <= 0 ? 0 : p1; }
 

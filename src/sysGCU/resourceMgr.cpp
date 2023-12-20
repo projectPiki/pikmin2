@@ -4,10 +4,9 @@
 
 namespace Resource {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
+/**
+ * @note Address: N/A
+ * @note Size: 0x7C
  */
 Node::Node(char const* name)
     : CNode(const_cast<char*>(name))
@@ -19,10 +18,9 @@ Node::Node(char const* name)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	804330D8
- * Size:	0000DC
+/**
+ * @note Address: 0x804330D8
+ * @note Size: 0xDC
  */
 Node::~Node()
 {
@@ -32,30 +30,27 @@ Node::~Node()
 	del();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 void Node::dump()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001CC
+/**
+ * @note Address: N/A
+ * @note Size: 0x1CC
  */
 void Node::drawDump(Graphics&, int&, int&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 void Node::becomeCurrentHeap()
 {
@@ -64,11 +59,10 @@ void Node::becomeCurrentHeap()
 	mHeap->changeGroupID(mHeapGroupID);
 }
 
-/*
+/**
  * @matchedSize
- * --INFO--
- * Address:	........
- * Size:	000030
+ * @note Address: N/A
+ * @note Size: 0x30
  */
 void Node::destroy(Node* node)
 {
@@ -78,10 +72,9 @@ void Node::destroy(Node* node)
 	}
 }
 
-/*
- * --INFO--
- * Address:	804331B4
- * Size:	000138
+/**
+ * @note Address: 0x804331B4
+ * @note Size: 0x138
  */
 MgrCommand::MgrCommand(char* name)
     : CNode(name)
@@ -94,21 +87,19 @@ MgrCommand::MgrCommand(char* name)
 	setModeInvalid();
 }
 
-/*
+/**
  * Generated?
- * --INFO--
- * Address:	........
- * Size:	000064
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 // void __dt__Q38Resource10MgrCommand26 @class$2436resourceMgr_cppFv()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	804332EC
- * Size:	0000B8
+/**
+ * @note Address: 0x804332EC
+ * @note Size: 0xB8
  */
 MgrCommand::~MgrCommand()
 {
@@ -170,11 +161,10 @@ lbl_80433388:
 	*/
 }
 
-/*
+/**
  * becomeCurrentHeap__Q28Resource10MgrCommandFv
- * --INFO--
- * Address:	804333A4
- * Size:	000070
+ * @note Address: 0x804333A4
+ * @note Size: 0x70
  */
 void MgrCommand::becomeCurrentHeap()
 {
@@ -183,10 +173,9 @@ void MgrCommand::becomeCurrentHeap()
 	mNode1->becomeCurrentHeap();
 }
 
-/*
- * --INFO--
- * Address:	80433414
- * Size:	000088
+/**
+ * @note Address: 0x80433414
+ * @note Size: 0x88
  */
 void MgrCommand::releaseCurrentHeap()
 {
@@ -196,57 +185,51 @@ void MgrCommand::releaseCurrentHeap()
 	mActiveHeap = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E8
+/**
+ * @note Address: N/A
+ * @note Size: 0xE8
  */
 bool MgrCommand::isFinish()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8043349C
- * Size:	00000C
+/**
+ * @note Address: 0x8043349C
+ * @note Size: 0xC
  */
 void* MgrCommand::getResource() { return mNode1->mResource; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 void MgrCommand::setModeMemory(Node*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 void MgrCommand::setModeAram(Node*, ARAM::Node*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 void MgrCommand::setModeDvd(Node*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	804334A8
- * Size:	00001C
+/**
+ * @note Address: 0x804334A8
+ * @note Size: 0x1C
  */
 void MgrCommand::setModeInvalid()
 {
@@ -256,10 +239,9 @@ void MgrCommand::setModeInvalid()
 	mUserCallback = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	804334C4
- * Size:	000048
+/**
+ * @note Address: 0x804334C4
+ * @note Size: 0x48
  */
 void MgrCommand::memoryCallBackFunc()
 {
@@ -267,10 +249,9 @@ void MgrCommand::memoryCallBackFunc()
 	JUT_PANICLINE(343, "—L‚è‚¦‚È‚¢ó‘Ô‚Å‚²‚´‚¢‚Ü‚· \n"); // This is an impossible situation.
 }
 
-/*
- * --INFO--
- * Address:	8043350C
- * Size:	000094
+/**
+ * @note Address: 0x8043350C
+ * @note Size: 0x94
  */
 void MgrCommand::aramLoadCallBackFunc()
 {
@@ -283,10 +264,9 @@ void MgrCommand::aramLoadCallBackFunc()
 	}
 }
 
-/*
- * --INFO--
- * Address:	804335A0
- * Size:	0000BC
+/**
+ * @note Address: 0x804335A0
+ * @note Size: 0xBC
  */
 void MgrCommand::dvdLoadCallBackFunc()
 {
@@ -309,10 +289,9 @@ void MgrCommand::dvdLoadCallBackFunc()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8043365C
- * Size:	000074
+/**
+ * @note Address: 0x8043365C
+ * @note Size: 0x74
  */
 void MgrCommand::userCallBackInvoke()
 {
@@ -325,10 +304,9 @@ void MgrCommand::userCallBackInvoke()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
+/**
+ * @note Address: N/A
+ * @note Size: 0x70
  */
 bool MgrCommand::destroy()
 {
@@ -347,11 +325,10 @@ bool MgrCommand::destroy()
 	return result;
 }
 
-/*
+/**
  * __ct__Q28Resource3MgrFP7JKRHeapUl
- * --INFO--
- * Address:	804336D0
- * Size:	00010C
+ * @note Address: 0x804336D0
+ * @note Size: 0x10C
  */
 Mgr::Mgr(JKRHeap* parentHeap, u32 size)
     : mHeap(nullptr)
@@ -373,37 +350,33 @@ Mgr::Mgr(JKRHeap* parentHeap, u32 size)
 	existingCurrentHeap->becomeCurrentHeap();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  */
 void Mgr::search(char const*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 void Mgr::dump()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	804337DC
- * Size:	000004
+/**
+ * @note Address: 0x804337DC
+ * @note Size: 0x4
  */
 void Mgr::drawDump(Graphics&, int, int) { }
 
-/*
- * --INFO--
- * Address:	804337E0
- * Size:	0001B4
+/**
+ * @note Address: 0x804337E0
+ * @note Size: 0x1B4
  */
 Node* Mgr::createNewNode(char const* path)
 {
@@ -570,10 +543,9 @@ lbl_80433964:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80433994
- * Size:	000188
+/**
+ * @note Address: 0x80433994
+ * @note Size: 0x188
  */
 void Mgr::loadResource(MgrCommand* command, char const* path, bool)
 {
@@ -739,18 +711,16 @@ lbl_80433B08:
 	*/
 }
 
-/*
+/**
  * destroy__Q28Resource3MgrFPQ28Resource10MgrCommand
- * --INFO--
- * Address:	80433B1C
- * Size:	000070
+ * @note Address: 0x80433B1C
+ * @note Size: 0x70
  */
 bool Mgr::destroy(MgrCommand* command) { return command->destroy(); }
 
-/*
- * --INFO--
- * Address:	80433B8C
- * Size:	000064
+/**
+ * @note Address: 0x80433B8C
+ * @note Size: 0x64
  */
 void Mgr::destroyAll()
 {
@@ -791,10 +761,9 @@ lbl_80433BC8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80433BF0
- * Size:	0001E0
+/**
+ * @note Address: 0x80433BF0
+ * @note Size: 0x1E0
  */
 bool Mgr::sync(MgrCommand*, bool)
 {
@@ -964,20 +933,18 @@ lbl_80433DB4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00013C
+/**
+ * @note Address: N/A
+ * @note Size: 0x13C
  */
 void Mgr::syncAll(bool)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80433DD0
- * Size:	000130
+/**
+ * @note Address: 0x80433DD0
+ * @note Size: 0x130
  */
 void Mgr::delFinishCommand()
 {
@@ -1087,10 +1054,9 @@ lbl_80433EDC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80433F00
- * Size:	000030
+/**
+ * @note Address: 0x80433F00
+ * @note Size: 0x30
  */
 bool Mgr::searchCommand(MgrCommand* command)
 {
@@ -1123,10 +1089,9 @@ lbl_80433F24:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void Mgr::watchHeap()
 {

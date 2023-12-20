@@ -9,10 +9,9 @@ static CircleBuffer gRecvCB;
 static u8 gRecvBuf[DDH_BUF_SIZE];
 static BOOL gIsInitialized;
 
-/*
- * --INFO--
- * Address:	800C0F0C
- * Size:	000088
+/**
+ * @note Address: 0x800C0F0C
+ * @note Size: 0x88
  */
 BOOL ddh_cc_initialize(vu8** inputPendingPtrRef, AmcEXICallback monitorCallback)
 {
@@ -23,17 +22,15 @@ BOOL ddh_cc_initialize(vu8** inputPendingPtrRef, AmcEXICallback monitorCallback)
 	return FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800C0F04
- * Size:	000008
+/**
+ * @note Address: 0x800C0F04
+ * @note Size: 0x8
  */
 BOOL ddh_cc_shutdown() { return FALSE; }
 
-/*
- * --INFO--
- * Address:	800C0EE0
- * Size:	000024
+/**
+ * @note Address: 0x800C0EE0
+ * @note Size: 0x24
  */
 int ddh_cc_open()
 {
@@ -45,17 +42,15 @@ int ddh_cc_open()
 	return FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800C0ED8
- * Size:	000008
+/**
+ * @note Address: 0x800C0ED8
+ * @note Size: 0x8
  */
 BOOL ddh_cc_close() { return FALSE; }
 
-/*
- * --INFO--
- * Address:	800C0DEC
- * Size:	0000EC
+/**
+ * @note Address: 0x800C0DEC
+ * @note Size: 0xEC
  */
 u32 ddh_cc_read(u8* data, u32 size)
 {
@@ -94,10 +89,9 @@ u32 ddh_cc_read(u8* data, u32 size)
 	return retval;
 }
 
-/*
- * --INFO--
- * Address:	800C0D2C
- * Size:	0000C0
+/**
+ * @note Address: 0x800C0D2C
+ * @note Size: 0xC0
  */
 int ddh_cc_write(u32 bytes, u32 length)
 {
@@ -128,10 +122,9 @@ int ddh_cc_write(u32 bytes, u32 length)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	800C0D08
- * Size:	000024
+/**
+ * @note Address: 0x800C0D08
+ * @note Size: 0x24
  */
 BOOL ddh_cc_pre_continue()
 {
@@ -139,10 +132,9 @@ BOOL ddh_cc_pre_continue()
 	return FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800C0CE4
- * Size:	000024
+/**
+ * @note Address: 0x800C0CE4
+ * @note Size: 0x24
  */
 BOOL ddh_cc_post_stop()
 {
@@ -150,10 +142,9 @@ BOOL ddh_cc_post_stop()
 	return FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800C0C74
- * Size:	000070
+/**
+ * @note Address: 0x800C0C74
+ * @note Size: 0x70
  */
 int ddh_cc_peek()
 {
@@ -174,10 +165,9 @@ int ddh_cc_peek()
 	return poll;
 }
 
-/*
- * --INFO--
- * Address:	800C0C50
- * Size:	000024
+/**
+ * @note Address: 0x800C0C50
+ * @note Size: 0x24
  */
 BOOL ddh_cc_initinterrupts()
 {

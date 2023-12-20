@@ -13,10 +13,9 @@ JKRThreadSwitch* JKRThreadSwitch::sManager;
 u32 JKRThreadSwitch::sTotalCount;
 OSTime JKRThreadSwitch::sTotalStart;
 
-/*
- * --INFO--
- * Address:	80025638
- * Size:	0000B8
+/**
+ * @note Address: 0x80025638
+ * @note Size: 0xB8
  * __ct__9JKRThreadFUlii
  */
 JKRThread::JKRThread(u32 stackSize, int msgCount, int threadPriority)
@@ -32,10 +31,9 @@ JKRThread::JKRThread(u32 stackSize, int msgCount, int threadPriority)
 	setCommon_mesgQueue(mHeap, msgCount);
 }
 
-/*
- * --INFO--
- * Address:	800256F0
- * Size:	0000A0
+/**
+ * @note Address: 0x800256F0
+ * @note Size: 0xA0
  * __ct__9JKRThreadFP7JKRHeapUlii
  */
 JKRThread::JKRThread(JKRHeap* heap, u32 stackSize, int msgCount, int threadPriority)
@@ -50,10 +48,9 @@ JKRThread::JKRThread(JKRHeap* heap, u32 stackSize, int msgCount, int threadPrior
 	setCommon_mesgQueue(mHeap, msgCount);
 }
 
-/*
- * --INFO--
- * Address:	80025790
- * Size:	0000A8
+/**
+ * @note Address: 0x80025790
+ * @note Size: 0xA8
  * __ct__9JKRThreadFP8OSThreadi
  */
 JKRThread::JKRThread(OSThread* thread, int msgCount)
@@ -68,10 +65,9 @@ JKRThread::JKRThread(OSThread* thread, int msgCount)
 	setCommon_mesgQueue(JKRHeap::sSystemHeap, msgCount);
 }
 
-/*
- * --INFO--
- * Address:	80025838
- * Size:	0000D8
+/**
+ * @note Address: 0x80025838
+ * @note Size: 0xD8
  * __dt__9JKRThreadFv
  */
 JKRThread::~JKRThread()
@@ -88,10 +84,9 @@ JKRThread::~JKRThread()
 	JKRHeap::free(mMsgBuffer, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80025910
- * Size:	000070
+/**
+ * @note Address: 0x80025910
+ * @note Size: 0x70
  */
 void JKRThread::setCommon_mesgQueue(JKRHeap* heap, int msgCount)
 {
@@ -103,10 +98,9 @@ void JKRThread::setCommon_mesgQueue(JKRHeap* heap, int msgCount)
 	mCurrentHeapError = 0;
 }
 
-/*
- * --INFO--
- * Address:	80025980
- * Size:	000090
+/**
+ * @note Address: 0x80025980
+ * @note Size: 0x90
  */
 BOOL JKRThread::setCommon_heapSpecified(JKRHeap* heap, u32 stackSize, int threadPriority)
 {
@@ -117,17 +111,15 @@ BOOL JKRThread::setCommon_heapSpecified(JKRHeap* heap, u32 stackSize, int thread
 	return OSCreateThread(mThread, &JKRThread::start, this, (void*)((u32)mStack + mStackSize), mStackSize, threadPriority, 1);
 }
 
-/*
- * --INFO--
- * Address:	80025A10
- * Size:	00002C
+/**
+ * @note Address: 0x80025A10
+ * @note Size: 0x2C
  */
 void* JKRThread::start(void* thread) { return static_cast<JKRThread*>(thread)->run(); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  */
 JKRThread::TLoad* JKRThread::searchThreadLoad(OSThread* osThread)
 {
@@ -142,10 +134,9 @@ JKRThread::TLoad* JKRThread::searchThreadLoad(OSThread* osThread)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80025A44
- * Size:	000184
+/**
+ * @note Address: 0x80025A44
+ * @note Size: 0x184
  */
 void JKRThreadSwitch::loopProc()
 {
@@ -185,10 +176,9 @@ void JKRThreadSwitch::loopProc()
 	OSEnableInterrupts();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000154
+/**
+ * @note Address: N/A
+ * @note Size: 0x154
  * __ct__7JKRTaskFiiUl
  */
 JKRTask::JKRTask(int msgCount, int threadPriority, size_t stackSize)
@@ -200,18 +190,16 @@ JKRTask::JKRTask(int msgCount, int threadPriority, size_t stackSize)
 	OSResumeThread(mThread);
 }
 
-/*
- * --INFO--
- * Address:	80025BC8
- * Size:	000110
+/**
+ * @note Address: 0x80025BC8
+ * @note Size: 0x110
  * __dt__7JKRTaskFv
  */
 JKRTask::~JKRTask() { sTaskList.remove(&_7C); }
 
-/*
- * --INFO--
- * Address:	80025CD8
- * Size:	0002A4
+/**
+ * @note Address: 0x80025CD8
+ * @note Size: 0x2A4
  */
 JKRTask* JKRTask::create(int msgCount, int threadPriority, size_t stackSize, JKRHeap* heap)
 {
@@ -235,10 +223,9 @@ JKRTask* JKRTask::create(int msgCount, int threadPriority, size_t stackSize, JKR
 	return task;
 }
 
-/*
- * --INFO--
- * Address:	80025F7C
- * Size:	00009C
+/**
+ * @note Address: 0x80025F7C
+ * @note Size: 0x9C
  * run__7JKRTaskFv
  */
 void* JKRTask::run()
@@ -257,10 +244,9 @@ void* JKRTask::run()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 JKRTask::Message* JKRTask::searchBlank()
 {
@@ -272,10 +258,9 @@ JKRTask::Message* JKRTask::searchBlank()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80026018
- * Size:	0000B0
+/**
+ * @note Address: 0x80026018
+ * @note Size: 0xB0
  */
 bool JKRTask::request(RequestCallback callback, void* p2, void* p3)
 {

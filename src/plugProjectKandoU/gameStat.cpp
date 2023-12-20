@@ -11,10 +11,9 @@ PikiCounter alivePikis;
 PikiCounter mePikis;
 PikiCounter zikatuPikis; // Wild pikis, that you find & whistle to unlock the type
 
-/*
- * --INFO--
- * Address:	801D0DB8
- * Size:	000058
+/**
+ * @note Address: 0x801D0DB8
+ * @note Size: 0x58
  */
 void clear()
 {
@@ -25,10 +24,9 @@ void clear()
 	zikatuPikis.clear();
 }
 
-/*
- * --INFO--
- * Address:	801D0E10
- * Size:	000050
+/**
+ * @note Address: 0x801D0E10
+ * @note Size: 0x50
  */
 int getMapPikmins_exclude_Me(int id)
 {
@@ -39,10 +37,9 @@ int getMapPikmins_exclude_Me(int id)
 	return alivePikis.mPikiCounts[id];
 }
 
-/*
- * --INFO--
- * Address:	801D0E60
- * Size:	00008C
+/**
+ * @note Address: 0x801D0E60
+ * @note Size: 0x8C
  */
 int getMapPikmins(int id)
 {
@@ -53,10 +50,9 @@ int getMapPikmins(int id)
 	return alivePikis.mPikiCounts[id] + mePikis.mPikiCounts[id];
 }
 
-/*
- * --INFO--
- * Address:	801D0EEC
- * Size:	000050
+/**
+ * @note Address: 0x801D0EEC
+ * @note Size: 0x50
  */
 int getZikatuPikmins(int id)
 {
@@ -67,10 +63,9 @@ int getZikatuPikmins(int id)
 	return zikatuPikis.mPikiCounts[id];
 }
 
-/*
- * --INFO--
- * Address:	801D0F3C
- * Size:	0000F8
+/**
+ * @note Address: 0x801D0F3C
+ * @note Size: 0xF8
  */
 int getAllPikmins(int id)
 {
@@ -82,17 +77,15 @@ int getAllPikmins(int id)
 	return getMapPikmins(id) + playData->mPikiContainer.getColorSum(id);
 }
 
-/*
- * --INFO--
- * Address:	801D1034
- * Size:	00003C
+/**
+ * @note Address: 0x801D1034
+ * @note Size: 0x3C
  */
 PikiCounter::PikiCounter() { clear(); }
 
-/*
- * --INFO--
- * Address:	801D1070
- * Size:	000024
+/**
+ * @note Address: 0x801D1070
+ * @note Size: 0x24
  */
 void PikiCounter::clear()
 {
@@ -101,10 +94,9 @@ void PikiCounter::clear()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801D1094
- * Size:	000084
+/**
+ * @note Address: 0x801D1094
+ * @note Size: 0x84
  */
 void PikiCounter::inc(Piki* piki)
 {
@@ -113,10 +105,9 @@ void PikiCounter::inc(Piki* piki)
 	mPikiCounts[id]++;
 }
 
-/*
- * --INFO--
- * Address:	801D1118
- * Size:	000084
+/**
+ * @note Address: 0x801D1118
+ * @note Size: 0x84
  */
 void PikiCounter::dec(Piki* piki)
 {
@@ -125,10 +116,9 @@ void PikiCounter::dec(Piki* piki)
 	mPikiCounts[id]--;
 }
 
-/*
- * --INFO--
- * Address:	801D119C
- * Size:	000080
+/**
+ * @note Address: 0x801D119C
+ * @note Size: 0x80
  */
 void PikiCounter::inc(int id)
 {
@@ -136,10 +126,9 @@ void PikiCounter::inc(int id)
 	mPikiCounts[id]++;
 }
 
-/*
- * --INFO--
- * Address:	801D121C
- * Size:	000080
+/**
+ * @note Address: 0x801D121C
+ * @note Size: 0x80
  */
 void PikiCounter::dec(int id)
 {
@@ -147,17 +136,15 @@ void PikiCounter::dec(int id)
 	mPikiCounts[id]--;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 PikiNaviCounter::PikiNaviCounter() { clear(); }
 
-/*
- * --INFO--
- * Address:	801D129C
- * Size:	0000CC
+/**
+ * @note Address: 0x801D129C
+ * @note Size: 0xCC
  */
 void PikiNaviCounter::clear()
 {
@@ -166,10 +153,9 @@ void PikiNaviCounter::clear()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801D1368
- * Size:	0000AC
+/**
+ * @note Address: 0x801D1368
+ * @note Size: 0xAC
  */
 void PikiNaviCounter::inc(Piki* piki)
 {
@@ -187,10 +173,9 @@ void PikiNaviCounter::inc(Piki* piki)
 	mCounter[id].mPikiCounts[type]++;
 }
 
-/*
- * --INFO--
- * Address:	801D1414
- * Size:	0000AC
+/**
+ * @note Address: 0x801D1414
+ * @note Size: 0xAC
  */
 void PikiNaviCounter::dec(Game::Piki* piki)
 {

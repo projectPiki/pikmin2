@@ -8,17 +8,15 @@ namespace PelletItem {
 
 Mgr* mgr;
 
-/*
- * --INFO--
- * Address:	80202E14
- * Size:	000004
+/**
+ * @note Address: 0x80202E14
+ * @note Size: 0x4
  */
 void Object::do_onInit(CreatureInitArg*) { }
 
-/*
- * --INFO--
- * Address:	80202E18
- * Size:	00005C
+/**
+ * @note Address: 0x80202E18
+ * @note Size: 0x5C
  */
 void Object::onBounce()
 {
@@ -27,10 +25,9 @@ void Object::onBounce()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80202E74
- * Size:	000054
+/**
+ * @note Address: 0x80202E74
+ * @note Size: 0x54
  */
 void Object::constructor()
 {
@@ -38,10 +35,9 @@ void Object::constructor()
 	shadowMgr->createShadow(this);
 }
 
-/*
- * --INFO--
- * Address:	80202EC8
- * Size:	000074
+/**
+ * @note Address: 0x80202EC8
+ * @note Size: 0x74
  */
 void Object::sound_otakaraEventStart()
 {
@@ -49,10 +45,9 @@ void Object::sound_otakaraEventStart()
 	static_cast<PSM::PelletItem*>(mSoundMgr)->otakaraEventStart();
 }
 
-/*
- * --INFO--
- * Address:	80202F3C
- * Size:	000074
+/**
+ * @note Address: 0x80202F3C
+ * @note Size: 0x74
  */
 void PelletItem::Object::sound_otakaraEventRestart()
 {
@@ -60,10 +55,9 @@ void PelletItem::Object::sound_otakaraEventRestart()
 	static_cast<PSM::PelletItem*>(mSoundMgr)->otakaraEventRestart();
 }
 
-/*
- * --INFO--
- * Address:	80202FB0
- * Size:	000074
+/**
+ * @note Address: 0x80202FB0
+ * @note Size: 0x74
  */
 void Object::sound_otakaraEventStop()
 {
@@ -71,10 +65,9 @@ void Object::sound_otakaraEventStop()
 	static_cast<PSM::PelletItem*>(mSoundMgr)->otakaraEventStop();
 }
 
-/*
- * --INFO--
- * Address:	80203024
- * Size:	000074
+/**
+ * @note Address: 0x80203024
+ * @note Size: 0x74
  */
 void Object::sound_otakaraEventFinish()
 {
@@ -82,20 +75,18 @@ void Object::sound_otakaraEventFinish()
 	static_cast<PSM::PelletItem*>(mSoundMgr)->otakaraEventFinish();
 }
 
-/*
- * --INFO--
- * Address:	80203098
- * Size:	0000B0
+/**
+ * @note Address: 0x80203098
+ * @note Size: 0xB0
  */
 Mgr::Mgr()
     : FixedSizePelletMgr<Object>(PelletList::ITEM)
 {
 }
 
-/*
- * --INFO--
- * Address:	802033F4
- * Size:	000074
+/**
+ * @note Address: 0x802033F4
+ * @note Size: 0x74
  */
 void Mgr::setupResources()
 {
@@ -106,17 +97,15 @@ void Mgr::setupResources()
 	sys->heapStatusEnd("Equipment");
 }
 
-/*
- * --INFO--
- * Address:	80203468
- * Size:	000024
+/**
+ * @note Address: 0x80203468
+ * @note Size: 0x24
  */
 GenPelletParm* Mgr::generatorNewPelletParm() { return new GenPelletParm; }
 
-/*
- * --INFO--
- * Address:	8020348C
- * Size:	000148
+/**
+ * @note Address: 0x8020348C
+ * @note Size: 0x148
  */
 Pellet* Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenPelletParm* genParm)
 {
@@ -141,17 +130,15 @@ Pellet* Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenPelletParm* genParm
 	return obj;
 }
 
-/*
- * --INFO--
- * Address:	802035D4
- * Size:	000030
+/**
+ * @note Address: 0x802035D4
+ * @note Size: 0x30
  */
 void Mgr::generatorWrite(Stream& data, GenPelletParm* genParm) { data.writeShort((u16)genParm->mIndex); }
 
-/*
- * --INFO--
- * Address:	80203604
- * Size:	000038
+/**
+ * @note Address: 0x80203604
+ * @note Size: 0x38
  */
 void Mgr::generatorRead(Stream& data, GenPelletParm* parm, u32 flag) { parm->mIndex = (u16)data.readShort(); }
 

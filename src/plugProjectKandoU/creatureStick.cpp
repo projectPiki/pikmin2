@@ -11,10 +11,9 @@ Creature** Stickers::buffer = nullptr;
 
 int Stickers::maxBuffer = 110;
 
-/*
- * --INFO--
- * Address:	8019EE94
- * Size:	000024
+/**
+ * @note Address: 0x8019EE94
+ * @note Size: 0x24
  */
 void Creature::clearStick()
 {
@@ -26,10 +25,9 @@ void Creature::clearStick()
 	mStickSlot     = -1;
 }
 
-/*
- * --INFO--
- * Address:	8019EEB8
- * Size:	00003C
+/**
+ * @note Address: 0x8019EEB8
+ * @note Size: 0x3C
  */
 void Creature::releaseAllStickers()
 {
@@ -38,10 +36,9 @@ void Creature::releaseAllStickers()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8019EEF4
- * Size:	000174
+/**
+ * @note Address: 0x8019EEF4
+ * @note Size: 0x174
  */
 bool Creature::startStick(Creature* obj, CollPart* part)
 {
@@ -92,10 +89,9 @@ bool Creature::startStick(Creature* obj, CollPart* part)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8019F068
- * Size:	0001B0
+/**
+ * @note Address: 0x8019F068
+ * @note Size: 0x1B0
  */
 bool Creature::startStickMouth(Creature* obj, CollPart* part)
 {
@@ -103,10 +99,9 @@ bool Creature::startStickMouth(Creature* obj, CollPart* part)
 	return startStick(obj, part);
 }
 
-/*
- * --INFO--
- * Address:	8019F218
- * Size:	00020C
+/**
+ * @note Address: 0x8019F218
+ * @note Size: 0x20C
  */
 bool Creature::startStick(Creature* obj, s16 id)
 {
@@ -135,10 +130,9 @@ bool Creature::startStick(Creature* obj, s16 id)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8019F424
- * Size:	000150
+/**
+ * @note Address: 0x8019F424
+ * @note Size: 0x150
  */
 void Creature::endStick()
 {
@@ -181,25 +175,22 @@ void Creature::endStick()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8019F574
- * Size:	000014
+/**
+ * @note Address: 0x8019F574
+ * @note Size: 0x14
  * Returns whether the creature is stuck to anything
  */
 bool Creature::isStickTo() { return mSticker != nullptr; }
 
-/*
- * --INFO--
- * Address:	8019F588
- * Size:	000060
+/**
+ * @note Address: 0x8019F588
+ * @note Size: 0x60
  */
 bool Creature::isStickToMouth() { return mSticker && mStuckCollPart && mStuckCollPart->isMouth(); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 bool Creature::isStickLeader()
 {
@@ -208,10 +199,9 @@ bool Creature::isStickLeader()
 
 #include "Game/enemyInfo.h"
 
-/*
- * --INFO--
- * Address:	8019F5E8
- * Size:	0004B4
+/**
+ * @note Address: 0x8019F5E8
+ * @note Size: 0x4B4
  */
 void Creature::updateStick(Vector3f& pos)
 {
@@ -294,17 +284,15 @@ void Creature::updateStick(Vector3f& pos)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8019FA9C
- * Size:	00000C
+/**
+ * @note Address: 0x8019FA9C
+ * @note Size: 0xC
  */
 void Creature::clearCapture() { mCaptureMatrix = nullptr; }
 
-/*
- * --INFO--
- * Address:	8019FAA8
- * Size:	000054
+/**
+ * @note Address: 0x8019FAA8
+ * @note Size: 0x54
  */
 void Creature::startCapture(Matrixf* mtx)
 {
@@ -313,10 +301,9 @@ void Creature::startCapture(Matrixf* mtx)
 	onStartCapture();
 }
 
-/*
- * --INFO--
- * Address:	8019FAFC
- * Size:	0000A0
+/**
+ * @note Address: 0x8019FAFC
+ * @note Size: 0xA0
  */
 void Creature::updateCapture(Matrixf& mtx)
 {
@@ -335,10 +322,9 @@ void Creature::updateCapture(Matrixf& mtx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8019FB9C
- * Size:	000058
+/**
+ * @note Address: 0x8019FB9C
+ * @note Size: 0x58
  */
 void Creature::endCapture()
 {
@@ -347,10 +333,9 @@ void Creature::endCapture()
 	onEndCapture();
 }
 
-/*
- * --INFO--
- * Address:	8019FBF4
- * Size:	000068
+/**
+ * @note Address: 0x8019FBF4
+ * @note Size: 0x68
  */
 void Stickers::initialise()
 {
@@ -363,10 +348,9 @@ void Stickers::initialise()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8019FC5C
- * Size:	000108
+/**
+ * @note Address: 0x8019FC5C
+ * @note Size: 0x108
  */
 Stickers::Stickers(Creature* obj)
 {
@@ -380,10 +364,9 @@ Stickers::Stickers(Creature* obj)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8019FD64
- * Size:	00008C
+/**
+ * @note Address: 0x8019FD64
+ * @note Size: 0x8C
  */
 Stickers::~Stickers()
 {
@@ -391,10 +374,9 @@ Stickers::~Stickers()
 	numBuffer = 0;
 }
 
-/*
- * --INFO--
- * Address:	8019FDF0
- * Size:	000070
+/**
+ * @note Address: 0x8019FDF0
+ * @note Size: 0x70
  */
 Creature* Stickers::get(void* id)
 {
@@ -402,24 +384,21 @@ Creature* Stickers::get(void* id)
 	return buffer[(int)id];
 }
 
-/*
- * --INFO--
- * Address:	8019FE60
- * Size:	000008
+/**
+ * @note Address: 0x8019FE60
+ * @note Size: 0x8
  */
 void* Stickers::getNext(void* in) { return (void*)((int)in + 1); }
 
-/*
- * --INFO--
- * Address:	8019FE68
- * Size:	000008
+/**
+ * @note Address: 0x8019FE68
+ * @note Size: 0x8
  */
 void* Stickers::getStart() { return nullptr; }
 
-/*
- * --INFO--
- * Address:	8019FE70
- * Size:	000008
+/**
+ * @note Address: 0x8019FE70
+ * @note Size: 0x8
  */
 void* Stickers::getEnd() { return (void*)numBuffer; }
 

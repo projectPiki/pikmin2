@@ -2,10 +2,9 @@
 
 TRKEventQueue gTRKEventQueue;
 
-/*
- * --INFO--
- * Address:	800BB658
- * Size:	000058
+/**
+ * @note Address: 0x800BB658
+ * @note Size: 0x58
  */
 DSError TRKInitializeEventQueue()
 {
@@ -18,20 +17,18 @@ DSError TRKInitializeEventQueue()
 	return DS_NoError;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void TRKCopyEvent(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800BB5A4
- * Size:	0000B4
+/**
+ * @note Address: 0x800BB5A4
+ * @note Size: 0xB4
  */
 BOOL TRKGetNextEvent(TRKEvent* ev)
 {
@@ -54,10 +51,9 @@ BOOL TRKGetNextEvent(TRKEvent* ev)
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	800BB4C4
- * Size:	0000E0
+/**
+ * @note Address: 0x800BB4C4
+ * @note Size: 0xE0
  */
 DSError TRKPostEvent(TRKEvent* event)
 {
@@ -85,10 +81,9 @@ DSError TRKPostEvent(TRKEvent* event)
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	800BB4AC
- * Size:	000018
+/**
+ * @note Address: 0x800BB4AC
+ * @note Size: 0x18
  */
 void TRKConstructEvent(TRKEvent* event, int eventType)
 {
@@ -97,9 +92,8 @@ void TRKConstructEvent(TRKEvent* event, int eventType)
 	event->msgBufID  = -1;
 }
 
-/*
- * --INFO--
- * Address:	800BB488
- * Size:	000024
+/**
+ * @note Address: 0x800BB488
+ * @note Size: 0x24
  */
 void TRKDestructEvent(TRKEvent* event) { TRKReleaseBuffer(event->msgBufID); }

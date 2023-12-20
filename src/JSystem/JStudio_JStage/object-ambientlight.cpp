@@ -3,10 +3,9 @@
 
 namespace JStudio_JStage {
 
-/*
- * --INFO--
- * Address:	8001318C
- * Size:	0000A0
+/**
+ * @note Address: 0x8001318C
+ * @note Size: 0xA0
  */
 TAdaptor_ambientLight::TAdaptor_ambientLight(const JStage::TSystem* system, JStage::TAmbientLight* object)
     : mSystem(system)
@@ -14,25 +13,22 @@ TAdaptor_ambientLight::TAdaptor_ambientLight(const JStage::TSystem* system, JSta
 {
 }
 
-/*
- * --INFO--
- * Address:	8001322C
- * Size:	000078
+/**
+ * @note Address: 0x8001322C
+ * @note Size: 0x78
  * _dt
  */
 TAdaptor_ambientLight::~TAdaptor_ambientLight() { adaptor_do_end(nullptr); }
 
-/*
- * --INFO--
- * Address:	800132A4
- * Size:	000004
+/**
+ * @note Address: 0x800132A4
+ * @note Size: 0x4
  */
 void TAdaptor_ambientLight::adaptor_do_prepare(const JStudio::TObject*) { }
 
-/*
- * --INFO--
- * Address:	800132A8
- * Size:	00008C
+/**
+ * @note Address: 0x800132A8
+ * @note Size: 0x8C
  */
 void TAdaptor_ambientLight::adaptor_do_begin(const JStudio::TObject*)
 {
@@ -40,17 +36,15 @@ void TAdaptor_ambientLight::adaptor_do_begin(const JStudio::TObject*)
 	adaptor_setVariableValue_GXColor(sauVariableValue_4_COLOR_RGBA, mLight->JSGGetColor());
 }
 
-/*
- * --INFO--
- * Address:	80013334
- * Size:	000054
+/**
+ * @note Address: 0x80013334
+ * @note Size: 0x54
  */
 void TAdaptor_ambientLight::adaptor_do_end(const JStudio::TObject*) { mLight->setFlagOff(1); }
 
-/*
- * --INFO--
- * Address:	80013388
- * Size:	00006C
+/**
+ * @note Address: 0x80013388
+ * @note Size: 0x6C
  */
 void TAdaptor_ambientLight::adaptor_do_update(const JStudio::TObject*, u32)
 {
@@ -60,10 +54,9 @@ void TAdaptor_ambientLight::adaptor_do_update(const JStudio::TObject*, u32)
 	mLight->JSGUpdate();
 }
 
-/*
- * --INFO--
- * Address:	800133F4
- * Size:	000034
+/**
+ * @note Address: 0x800133F4
+ * @note Size: 0x34
  */
 void TAdaptor_ambientLight::adaptor_do_data(const JStudio::TObject* p1, const void* p2, u32 p3, const void* p4, u32 p5)
 {

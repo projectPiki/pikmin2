@@ -1,19 +1,17 @@
 #include "Dolphin/mtx.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
+/**
+ * @note Address: N/A
+ * @note Size: 0x94
  */
 void C_MTXMultVec(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800EABD8
- * Size:	000054
+/**
+ * @note Address: 0x800EABD8
+ * @note Size: 0x54
  */
 ASM void PSMTXMultVec(const register Mtx m, const register Vec* in, register Vec* out)
 {
@@ -43,40 +41,36 @@ ASM void PSMTXMultVec(const register Mtx m, const register Vec* in, register Vec
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000204
+/**
+ * @note Address: N/A
+ * @note Size: 0x204
  */
 void C_MTXMultVecArray(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00008C
+/**
+ * @note Address: N/A
+ * @note Size: 0x8C
  */
 void PSMTXMultVecArray(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
+/**
+ * @note Address: N/A
+ * @note Size: 0x7C
  */
 void C_MTXMultVecSR(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800EAC2C
- * Size:	000054
+/**
+ * @note Address: 0x800EAC2C
+ * @note Size: 0x54
  */
 ASM void PSMTXMultVecSR(const register Mtx mtx, const register Vec* in, register Vec* out)
 {
@@ -106,20 +100,18 @@ ASM void PSMTXMultVecSR(const register Mtx mtx, const register Vec* in, register
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001BC
+/**
+ * @note Address: N/A
+ * @note Size: 0x1BC
  */
 void C_MTXMultVecArraySR(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800EAC80
- * Size:	000088
+/**
+ * @note Address: 0x800EAC80
+ * @note Size: 0x88
  */
 ASM void PSMTXMultVecArraySR(const register Mtx mtx, register f32* in, register f32* out, register f32* count)
 {

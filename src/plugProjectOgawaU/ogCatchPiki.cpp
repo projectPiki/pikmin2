@@ -7,10 +7,9 @@
 namespace og {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	80307820
- * Size:	000080
+/**
+ * @note Address: 0x80307820
+ * @note Size: 0x80
  */
 CallBack_CatchPiki::CallBack_CatchPiki()
 {
@@ -18,10 +17,9 @@ CallBack_CatchPiki::CallBack_CatchPiki()
 	mPikiIcon = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	803078DC
- * Size:	0000C0
+/**
+ * @note Address: 0x803078DC
+ * @note Size: 0xC0
  */
 void CallBack_CatchPiki::init(J2DScreen* screen, u64 tag, u32* pikiType, JKRArchive* archive)
 {
@@ -40,10 +38,9 @@ void CallBack_CatchPiki::init(J2DScreen* screen, u64 tag, u32* pikiType, JKRArch
 	update();
 }
 
-/*
- * --INFO--
- * Address:	8030799C
- * Size:	0000F0
+/**
+ * @note Address: 0x8030799C
+ * @note Size: 0xF0
  */
 void CallBack_CatchPiki::update()
 {
@@ -61,10 +58,9 @@ void CallBack_CatchPiki::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80307A8C
- * Size:	00004C
+/**
+ * @note Address: 0x80307A8C
+ * @note Size: 0x4C
  */
 void CallBack_CatchPiki::setPikiIcon(int pikiType)
 {

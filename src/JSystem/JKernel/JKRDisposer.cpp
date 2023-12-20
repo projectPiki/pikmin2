@@ -13,10 +13,9 @@
         .4byte 0
 */
 
-/*
- * --INFO--
- * Address:	8001CFCC
- * Size:	000068
+/**
+ * @note Address: 0x8001CFCC
+ * @note Size: 0x68
  */
 JKRDisposer::JKRDisposer()
     : mLink(this)
@@ -27,10 +26,9 @@ JKRDisposer::JKRDisposer()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8001D034
- * Size:	000084
+/**
+ * @note Address: 0x8001D034
+ * @note Size: 0x84
  */
 JKRDisposer::~JKRDisposer()
 {

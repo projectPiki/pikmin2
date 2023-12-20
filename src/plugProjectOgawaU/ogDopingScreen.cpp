@@ -9,10 +9,9 @@
 namespace og {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	8030360C
- * Size:	0000F4
+/**
+ * @note Address: 0x8030360C
+ * @note Size: 0xF4
  */
 DopingScreen::DopingScreen()
 {
@@ -38,10 +37,9 @@ DopingScreen::DopingScreen()
 	mScaleMgr3            = new ScaleMgr;
 }
 
-/*
- * --INFO--
- * Address:	80303700
- * Size:	0002CC
+/**
+ * @note Address: 0x80303700
+ * @note Size: 0x2CC
  */
 void DopingScreen::setCallBack(JKRArchive* arc)
 {
@@ -80,10 +78,9 @@ void DopingScreen::setCallBack(JKRArchive* arc)
 	mRootPosition.y = mPaneAll->mOffset.y;
 }
 
-/*
- * --INFO--
- * Address:	803039CC
- * Size:	000038
+/**
+ * @note Address: 0x803039CC
+ * @note Size: 0x38
  */
 void DopingScreen::setParam(DataNavi& data)
 {
@@ -96,10 +93,9 @@ void DopingScreen::setParam(DataNavi& data)
 	check->mActiveNaviID     = data.mActiveNaviID;
 }
 
-/*
- * --INFO--
- * Address:	80303A04
- * Size:	000284
+/**
+ * @note Address: 0x80303A04
+ * @note Size: 0x284
  */
 void DopingScreen::update()
 {
@@ -167,10 +163,9 @@ void DopingScreen::update()
 	mPaneCenterDpad->updateScale(scale3);
 }
 
-/*
- * --INFO--
- * Address:	80303C88
- * Size:	00000C
+/**
+ * @note Address: 0x80303C88
+ * @note Size: 0xC
  */
 void DopingScreen::adjPos(f32 x, f32 y)
 {
@@ -178,10 +173,9 @@ void DopingScreen::adjPos(f32 x, f32 y)
 	mOffset.y = y;
 }
 
-/*
- * --INFO--
- * Address:	80303C94
- * Size:	000044
+/**
+ * @note Address: 0x80303C94
+ * @note Size: 0x44
  */
 void DopingScreen::setDopingEnable(bool spicyEnabled, bool bitterEnabled)
 {
@@ -199,10 +193,9 @@ void DopingScreen::setDopingEnable(bool spicyEnabled, bool bitterEnabled)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80303CD8
- * Size:	000010
+/**
+ * @note Address: 0x80303CD8
+ * @note Size: 0x10
  */
 void DopingScreen::openDopingUp()
 {
@@ -210,10 +203,9 @@ void DopingScreen::openDopingUp()
 	mIsSpicySprayEnabled = true;
 }
 
-/*
- * --INFO--
- * Address:	80303CE8
- * Size:	000010
+/**
+ * @note Address: 0x80303CE8
+ * @note Size: 0x10
  */
 void DopingScreen::openDopingDown()
 {
@@ -221,17 +213,15 @@ void DopingScreen::openDopingDown()
 	mIsBitterSprayEnabled = true;
 }
 
-/*
- * --INFO--
- * Address:	80303CF8
- * Size:	00000C
+/**
+ * @note Address: 0x80303CF8
+ * @note Size: 0xC
  */
 void DopingScreen::openDopingKey() { mHasGotCenterDpad = true; }
 
-/*
- * --INFO--
- * Address:	80303D04
- * Size:	000100
+/**
+ * @note Address: 0x80303D04
+ * @note Size: 0x100
  */
 DopingCheck::DopingCheck()
 {
@@ -257,10 +247,9 @@ DopingCheck::DopingCheck()
 	mXOffset        = 20.0f;
 }
 
-/*
- * --INFO--
- * Address:	80303E04
- * Size:	000044
+/**
+ * @note Address: 0x80303E04
+ * @note Size: 0x44
  */
 void DopingCheck::init(J2DPane* pane1, J2DPane* pane2, ScaleMgr* mgr1, ScaleMgr* mgr2)
 {
@@ -275,10 +264,9 @@ void DopingCheck::init(J2DPane* pane1, J2DPane* pane2, ScaleMgr* mgr1, ScaleMgr*
 	mIsUpdateCount  = true;
 }
 
-/*
- * --INFO--
- * Address:	80303E48
- * Size:	000100
+/**
+ * @note Address: 0x80303E48
+ * @note Size: 0x100
  */
 void DopingCheck::update()
 {
@@ -320,10 +308,9 @@ void DopingCheck::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80303F48
- * Size:	000080
+/**
+ * @note Address: 0x80303F48
+ * @note Size: 0x80
  */
 void DopingCheck::effStart(J2DPane* pane)
 {
@@ -336,10 +323,9 @@ void DopingCheck::effStart(J2DPane* pane)
 	ogSound->setSprayAdd();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D0
+/**
+ * @note Address: N/A
+ * @note Size: 0xD0
  */
 void DopingCheck::startGetEff(J2DPane* pane)
 {
@@ -352,17 +338,15 @@ void DopingCheck::startGetEff(J2DPane* pane)
 	efx.create(&arg);
 }
 
-/*
- * --INFO--
- * Address:	80303FC8
- * Size:	0000D0
+/**
+ * @note Address: 0x80303FC8
+ * @note Size: 0xD0
  */
 void DopingCheck::startGetEff_Up() { startGetEff(mSpicyPane); }
 
-/*
- * --INFO--
- * Address:	80304098
- * Size:	0000D0
+/**
+ * @note Address: 0x80304098
+ * @note Size: 0xD0
  */
 void DopingCheck::startGetEff_Down() { startGetEff(mBitterPane); }
 } // namespace Screen

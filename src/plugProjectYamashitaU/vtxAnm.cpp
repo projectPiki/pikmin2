@@ -2,10 +2,9 @@
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
+/**
+ * @note Address: N/A
+ * @note Size: 0x44
  */
 FieldVtxColorControl::FieldVtxColorControl()
 {
@@ -17,10 +16,9 @@ FieldVtxColorControl::FieldVtxColorControl()
 	mControlInfo  = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80122450
- * Size:	0000B0
+/**
+ * @note Address: 0x80122450
+ * @note Size: 0xB0
  */
 FieldVtxColorMgr::FieldVtxColorMgr(J3DModelData* modelData)
     : CNode("FieldVtxColorMgr")
@@ -33,10 +31,9 @@ FieldVtxColorMgr::FieldVtxColorMgr(J3DModelData* modelData)
 	createFieldVtxColorInfo();
 }
 
-/*
- * --INFO--
- * Address:	80122500
- * Size:	0001F8
+/**
+ * @note Address: 0x80122500
+ * @note Size: 0x1F8
  */
 void FieldVtxColorMgr::createFieldVtxColorInfo()
 {
@@ -232,17 +229,15 @@ lbl_801226D4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
 /**
  * Updates the field vertex color control based on the given control information.
  * The control's current power is smoothly adjusted towards the target power using the smoothing rate.
  * The alpha value of each field vertex color info is updated based on the control's current power.
  *
  * @param control The field vertex color control to update.
+ *
+ * @note Address: N/A
+ * @note Size: 0xE0
  */
 void FieldVtxColorMgr::updateFieldVtxColorControl(FieldVtxColorControl* control)
 {
@@ -267,10 +262,9 @@ void FieldVtxColorMgr::updateFieldVtxColorControl(FieldVtxColorControl* control)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80122714
- * Size:	0001C8
+/**
+ * @note Address: 0x80122714
+ * @note Size: 0x1C8
  */
 void FieldVtxColorMgr::initVtxColor()
 {
@@ -448,10 +442,9 @@ lbl_801228A0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801228DC
- * Size:	000280
+/**
+ * @note Address: 0x801228DC
+ * @note Size: 0x280
  */
 void FieldVtxColorMgr::calc(J3DVertexBuffer* buffer)
 {
@@ -717,20 +710,18 @@ lbl_80122B3C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A4
+/**
+ * @note Address: N/A
+ * @note Size: 0xA4
  */
 void FieldVtxColorMgr::setupFieldVtxColorInfoFromFan(void*, int, int, int, int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80122B5C
- * Size:	000158
+/**
+ * @note Address: 0x80122B5C
+ * @note Size: 0x158
  */
 void FieldVtxColorMgr::setupFieldVtxColorInfoFromStrip(void* strip, int p1, int p2, int p3, int p4)
 {
@@ -910,10 +901,9 @@ void FieldVtxColorMgr::setupFieldVtxColorInfoFromStrip(void* strip, int p1, int 
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80122CB4
- * Size:	000210
+/**
+ * @note Address: 0x80122CB4
+ * @note Size: 0x210
  */
 void FieldVtxColorMgr::setupFieldVtxColorInfo(J3DShape* shape)
 {
@@ -1141,10 +1131,9 @@ lbl_80122EB0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80122EC4
- * Size:	0001288
+/**
+ * @note Address: 0x80122EC4
+ * @note Size: 0x1288
  */
 FieldVtxColorControl* FieldVtxColorMgr::createNewControl(Vector3f& position, f32 radius, f32 power)
 {
@@ -1268,10 +1257,9 @@ lbl_80122FBC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80122FEC
- * Size:	000204
+/**
+ * @note Address: 0x80122FEC
+ * @note Size: 0x204
  */
 void FieldVtxColorMgr::setupFieldVtxColorControl(Game::FieldVtxColorControl* control, Vector3f& pos, f32 radius, f32 power)
 {

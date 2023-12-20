@@ -5,10 +5,9 @@ namespace Houdai {
 
 static const char houdaiShadowName[] = "246-HoudaiShadow";
 
-/*
- * --INFO--
- * Address:	802BF47C
- * Size:	00027C
+/**
+ * @note Address: 0x802BF47C
+ * @note Size: 0x27C
  */
 HoudaiShadowMgr::HoudaiShadowMgr(Obj* obj)
 {
@@ -42,10 +41,9 @@ HoudaiShadowMgr::HoudaiShadowMgr(Obj* obj)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802BF6F8
- * Size:	0001B0
+/**
+ * @note Address: 0x802BF6F8
+ * @note Size: 0x1B0
  */
 void HoudaiShadowMgr::init()
 {
@@ -76,17 +74,15 @@ void HoudaiShadowMgr::init()
 	mLegTubeShadow4[3]->mJoint = model->getJoint("lfoot3jnt");
 }
 
-/*
- * --INFO--
- * Address:	802BF8A8
- * Size:	000018
+/**
+ * @note Address: 0x802BF8A8
+ * @note Size: 0x18
  */
 void HoudaiShadowMgr::setJointPosPtr(int p1, int p2, Vector3f* posPtr) { mJointPosPtrs[p1][p2] = posPtr; }
 
-/*
- * --INFO--
- * Address:	802BF8C0
- * Size:	0003F0
+/**
+ * @note Address: 0x802BF8C0
+ * @note Size: 0x3F0
  */
 void HoudaiShadowMgr::update()
 {

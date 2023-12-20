@@ -9,10 +9,9 @@ namespace PelletFruit {
 
 Mgr* mgr;
 
-/*
- * --INFO--
- * Address:	801FD9B8
- * Size:	000070
+/**
+ * @note Address: 0x801FD9B8
+ * @note Size: 0x70
  */
 void Object::do_onInit(CreatureInitArg* initArg)
 {
@@ -23,10 +22,9 @@ void Object::do_onInit(CreatureInitArg* initArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801FDA28
- * Size:	000180
+/**
+ * @note Address: 0x801FDA28
+ * @note Size: 0x180
  */
 void Object::do_update()
 {
@@ -49,10 +47,9 @@ void Object::do_update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801FDBA8
- * Size:	00011C
+/**
+ * @note Address: 0x801FDBA8
+ * @note Size: 0x11C
  */
 void Object::changeMaterial()
 {
@@ -77,20 +74,18 @@ void Object::changeMaterial()
 	mModel->mJ3dModel->diff();
 }
 
-/*
- * --INFO--
- * Address:	801FDCC4
- * Size:	0000B0
+/**
+ * @note Address: 0x801FDCC4
+ * @note Size: 0xB0
  */
 Mgr::Mgr()
     : FixedSizePelletMgr(PelletList::FRUIT)
 {
 }
 
-/*
- * --INFO--
- * Address:	801FE020
- * Size:	00008C
+/**
+ * @note Address: 0x801FE020
+ * @note Size: 0x8C
  */
 void Mgr::setupResources()
 {
@@ -103,10 +98,9 @@ void Mgr::setupResources()
 	sys->heapStatusEnd("PelletFruit");
 }
 
-/*
- * --INFO--
- * Address:	801FE0AC
- * Size:	00006C
+/**
+ * @note Address: 0x801FE0AC
+ * @note Size: 0x6C
  */
 void Mgr::onCreateModel(SysShape::Model* model)
 {

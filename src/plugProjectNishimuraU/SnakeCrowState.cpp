@@ -14,10 +14,9 @@
 namespace Game {
 namespace SnakeCrow {
 
-/*
- * --INFO--
- * Address:	80290724
- * Size:	000328
+/**
+ * @note Address: 0x80290724
+ * @note Size: 0x328
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -33,10 +32,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateStruggle);
 }
 
-/*
- * --INFO--
- * Address:	80290A4C
- * Size:	0000C4
+/**
+ * @note Address: 0x80290A4C
+ * @note Size: 0xC4
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -53,10 +51,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	rumbleMgr->startRumble(13, position, 2);
 }
 
-/*
- * --INFO--
- * Address:	80290B10
- * Size:	000170
+/**
+ * @note Address: 0x80290B10
+ * @note Size: 0x170
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -89,17 +86,15 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80290C80
- * Size:	000004
+/**
+ * @note Address: 0x80290C80
+ * @note Size: 0x4
  */
 void StateDead::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	80290C84
- * Size:	000124
+/**
+ * @note Address: 0x80290C84
+ * @note Size: 0x124
  */
 void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -126,10 +121,9 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80290DA8
- * Size:	000618
+/**
+ * @note Address: 0x80290DA8
+ * @note Size: 0x618
  */
 void StateStay::exec(EnemyBase* enemy)
 {
@@ -651,10 +645,9 @@ lbl_8029138C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802913C0
- * Size:	000090
+/**
+ * @note Address: 0x802913C0
+ * @note Size: 0x90
  */
 void StateStay::cleanup(EnemyBase* enemy)
 {
@@ -669,10 +662,9 @@ void StateStay::cleanup(EnemyBase* enemy)
 	snagret->lifeIncrement();
 }
 
-/*
- * --INFO--
- * Address:	80291450
- * Size:	0000CC
+/**
+ * @note Address: 0x80291450
+ * @note Size: 0xCC
  */
 void StateAppear1::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -689,10 +681,9 @@ void StateAppear1::init(EnemyBase* enemy, StateArg* stateArg)
 	rumbleMgr->startRumble(15, position, 2);
 }
 
-/*
- * --INFO--
- * Address:	8029151C
- * Size:	000158
+/**
+ * @note Address: 0x8029151C
+ * @note Size: 0x158
  */
 void StateAppear1::exec(EnemyBase* enemy)
 {
@@ -723,10 +714,9 @@ void StateAppear1::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80291674
- * Size:	000068
+/**
+ * @note Address: 0x80291674
+ * @note Size: 0x68
  */
 void StateAppear1::cleanup(EnemyBase* enemy)
 {
@@ -740,10 +730,9 @@ void StateAppear1::cleanup(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802916DC
- * Size:	0000CC
+/**
+ * @note Address: 0x802916DC
+ * @note Size: 0xCC
  */
 void StateAppear2::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -760,10 +749,9 @@ void StateAppear2::init(EnemyBase* enemy, StateArg* stateArg)
 	rumbleMgr->startRumble(12, position, 2);
 }
 
-/*
- * --INFO--
- * Address:	802917A8
- * Size:	000234
+/**
+ * @note Address: 0x802917A8
+ * @note Size: 0x234
  */
 void StateAppear2::exec(EnemyBase* enemy)
 {
@@ -807,10 +795,9 @@ void StateAppear2::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802919DC
- * Size:	000068
+/**
+ * @note Address: 0x802919DC
+ * @note Size: 0x68
  */
 void StateAppear2::cleanup(EnemyBase* enemy)
 {
@@ -824,10 +811,9 @@ void StateAppear2::cleanup(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80291A44
- * Size:	000140
+/**
+ * @note Address: 0x80291A44
+ * @note Size: 0x140
  */
 void StateDisappear::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -845,10 +831,9 @@ void StateDisappear::init(EnemyBase* enemy, StateArg* stateArg)
 	rumbleMgr->startRumble(14, position, 2);
 }
 
-/*
- * --INFO--
- * Address:	80291B84
- * Size:	000108
+/**
+ * @note Address: 0x80291B84
+ * @note Size: 0x108
  */
 void StateDisappear::exec(EnemyBase* enemy)
 {
@@ -881,10 +866,9 @@ void StateDisappear::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80291C8C
- * Size:	000064
+/**
+ * @note Address: 0x80291C8C
+ * @note Size: 0x64
  */
 void StateDisappear::cleanup(EnemyBase* enemy)
 {
@@ -895,10 +879,9 @@ void StateDisappear::cleanup(EnemyBase* enemy)
 	snagret->enableEvent(0, EB_Cullable);
 }
 
-/*
- * --INFO--
- * Address:	80291CF0
- * Size:	000048
+/**
+ * @note Address: 0x80291CF0
+ * @note Size: 0x48
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -909,10 +892,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	snagret->startMotion(SNAKECROWANIM_Wait, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80291D38
- * Size:	0006C0
+/**
+ * @note Address: 0x80291D38
+ * @note Size: 0x6C0
  */
 void StateWait::exec(EnemyBase* enemy)
 {
@@ -1501,10 +1483,9 @@ lbl_8029239C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802923F8
- * Size:	000024
+/**
+ * @note Address: 0x802923F8
+ * @note Size: 0x24
  */
 void StateWait::cleanup(EnemyBase* enemy)
 {
@@ -1512,10 +1493,9 @@ void StateWait::cleanup(EnemyBase* enemy)
 	snagret->finishRotateEffect();
 }
 
-/*
- * --INFO--
- * Address:	8029241C
- * Size:	00004C
+/**
+ * @note Address: 0x8029241C
+ * @note Size: 0x4C
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1525,10 +1505,9 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	snagret->startMotion(snagret->mAttackAnimIdx + SNAKECROWANIM_AttackOffset, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80292468
- * Size:	000334
+/**
+ * @note Address: 0x80292468
+ * @note Size: 0x334
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
@@ -1610,17 +1589,15 @@ void StateAttack::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8029279C
- * Size:	000010
+/**
+ * @note Address: 0x8029279C
+ * @note Size: 0x10
  */
 void StateAttack::cleanup(EnemyBase* enemy) { enemy->enableEvent(0, EB_Cullable); }
 
-/*
- * --INFO--
- * Address:	802927AC
- * Size:	00003C
+/**
+ * @note Address: 0x802927AC
+ * @note Size: 0x3C
  */
 void StateEat::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1628,10 +1605,9 @@ void StateEat::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(SNAKECROWANIM_Eat, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802927E8
- * Size:	000178
+/**
+ * @note Address: 0x802927E8
+ * @note Size: 0x178
  */
 void StateEat::exec(EnemyBase* enemy)
 {
@@ -1665,17 +1641,15 @@ void StateEat::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80292960
- * Size:	000004
+/**
+ * @note Address: 0x80292960
+ * @note Size: 0x4
  */
 void StateEat::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	80292964
- * Size:	000040
+/**
+ * @note Address: 0x80292964
+ * @note Size: 0x40
  */
 void StateStruggle::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1685,10 +1659,9 @@ void StateStruggle::init(EnemyBase* enemy, StateArg* stateArg)
 	snagret->startMotion(SNAKECROWANIM_Struggle, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802929A4
- * Size:	000158
+/**
+ * @note Address: 0x802929A4
+ * @note Size: 0x158
  */
 void StateStruggle::exec(EnemyBase* enemy)
 {
@@ -1717,10 +1690,9 @@ void StateStruggle::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80292AFC
- * Size:	000004
+/**
+ * @note Address: 0x80292AFC
+ * @note Size: 0x4
  */
 void StateStruggle::cleanup(EnemyBase* enemy) { }
 

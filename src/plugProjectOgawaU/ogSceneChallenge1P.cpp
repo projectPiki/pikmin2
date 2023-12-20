@@ -5,24 +5,21 @@
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	80328C30
- * Size:	00003C
+/**
+ * @note Address: 0x80328C30
+ * @note Size: 0x3C
  */
 Challenge1P::Challenge1P() { }
 
-/*
- * --INFO--
- * Address:	80328C6C
- * Size:	000004
+/**
+ * @note Address: 0x80328C6C
+ * @note Size: 0x4
  */
 void Challenge1P::doUserCallBackFunc(Resource::MgrCommand*) { }
 
-/*
- * --INFO--
- * Address:	80328C70
- * Size:	00009C
+/**
+ * @note Address: 0x80328C70
+ * @note Size: 0x9C
  */
 void Challenge1P::doCreateObj(JKRArchive* archive)
 {
@@ -31,10 +28,9 @@ void Challenge1P::doCreateObj(JKRArchive* archive)
 	setColorBG(0, 0, 0, 0);
 }
 
-/*
- * --INFO--
- * Address:	80328D0C
- * Size:	00004C
+/**
+ * @note Address: 0x80328D0C
+ * @note Size: 0x4C
  */
 bool Challenge1P::doStart(::Screen::StartSceneArg* sceneArg)
 {
@@ -42,10 +38,9 @@ bool Challenge1P::doStart(::Screen::StartSceneArg* sceneArg)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80328D58
- * Size:	000038
+/**
+ * @note Address: 0x80328D58
+ * @note Size: 0x38
  */
 void Challenge1P::doUpdateActive()
 {
@@ -55,10 +50,9 @@ void Challenge1P::doUpdateActive()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80328D90
- * Size:	00003C
+/**
+ * @note Address: 0x80328D90
+ * @note Size: 0x3C
  */
 void Challenge1P::startCountDown()
 {

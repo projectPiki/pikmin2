@@ -16,24 +16,21 @@
 namespace Game {
 namespace Damagumo {
 
-/*
- * --INFO--
- * Address:	802A57A4
- * Size:	000024
+/**
+ * @note Address: 0x802A57A4
+ * @note Size: 0x24
  */
 void DamagumoGroundCallBack::invokeOnGround(int footIdx, WaterBox* wbox) { mObj->createOnGroundEffect(footIdx, wbox); }
 
-/*
- * --INFO--
- * Address:	802A57C8
- * Size:	000024
+/**
+ * @note Address: 0x802A57C8
+ * @note Size: 0x24
  */
 void DamagumoGroundCallBack::invokeOffGround(int footIdx, WaterBox* wbox) { mObj->createOffGroundEffect(footIdx, wbox); }
 
-/*
- * --INFO--
- * Address:	802A57EC
- * Size:	00016C
+/**
+ * @note Address: 0x802A57EC
+ * @note Size: 0x16C
  */
 Obj::Obj()
 {
@@ -46,10 +43,9 @@ Obj::Obj()
 	createMaterialAnimation();
 }
 
-/*
- * --INFO--
- * Address:	802A5958
- * Size:	000034
+/**
+ * @note Address: 0x802A5958
+ * @note Size: 0x34
  */
 void Obj::constructor()
 {
@@ -57,17 +53,15 @@ void Obj::constructor()
 	resetBossAppearBGM();
 }
 
-/*
- * --INFO--
- * Address:	802A598C
- * Size:	000004
+/**
+ * @note Address: 0x802A598C
+ * @note Size: 0x4
  */
 void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
-/*
- * --INFO--
- * Address:	802A5990
- * Size:	000134
+/**
+ * @note Address: 0x802A5990
+ * @note Size: 0x134
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
@@ -103,10 +97,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A5AC4
- * Size:	000050
+/**
+ * @note Address: 0x802A5AC4
+ * @note Size: 0x50
  */
 void Obj::doUpdate()
 {
@@ -115,10 +108,9 @@ void Obj::doUpdate()
 	updateIKSystem();
 }
 
-/*
- * --INFO--
- * Address:	802A5B14
- * Size:	000034
+/**
+ * @note Address: 0x802A5B14
+ * @note Size: 0x34
  */
 void Obj::doUpdateCommon()
 {
@@ -126,10 +118,9 @@ void Obj::doUpdateCommon()
 	updateBossBGM();
 }
 
-/*
- * --INFO--
- * Address:	802A5B48
- * Size:	000098
+/**
+ * @note Address: 0x802A5B48
+ * @note Size: 0x98
  */
 void Obj::doAnimationCullingOff()
 {
@@ -147,24 +138,21 @@ void Obj::doAnimationCullingOff()
 	finishAnimationIKSystem();
 }
 
-/*
- * --INFO--
- * Address:	802A5BE0
- * Size:	000004
+/**
+ * @note Address: 0x802A5BE0
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	802A5BE4
- * Size:	000020
+/**
+ * @note Address: 0x802A5BE4
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	802A5C04
- * Size:	00004C
+/**
+ * @note Address: 0x802A5C04
+ * @note Size: 0x4C
  */
 void Obj::setFSM(FSM* fsm)
 {
@@ -173,10 +161,9 @@ void Obj::setFSM(FSM* fsm)
 	mCurrentLifecycleState = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	802A5C50
- * Size:	00003C
+/**
+ * @note Address: 0x802A5C50
+ * @note Size: 0x3C
  */
 void Obj::getShadowParam(ShadowParam& param)
 {
@@ -186,10 +173,9 @@ void Obj::getShadowParam(ShadowParam& param)
 	param.mSize                     = 0.1f;
 }
 
-/*
- * --INFO--
- * Address:	802A5C8C
- * Size:	000050
+/**
+ * @note Address: 0x802A5C8C
+ * @note Size: 0x50
  */
 bool Obj::needShadow()
 {
@@ -200,10 +186,9 @@ bool Obj::needShadow()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A5CDC
- * Size:	00009C
+/**
+ * @note Address: 0x802A5CDC
+ * @note Size: 0x9C
  */
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
@@ -215,10 +200,9 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802A5D78
- * Size:	0001AC
+/**
+ * @note Address: 0x802A5D78
+ * @note Size: 0x1AC
  */
 void Obj::collisionCallback(CollEvent& event)
 {
@@ -240,10 +224,9 @@ void Obj::collisionCallback(CollEvent& event)
 	setCollEvent(event);
 }
 
-/*
- * --INFO--
- * Address:	802A5F24
- * Size:	000034
+/**
+ * @note Address: 0x802A5F24
+ * @note Size: 0x34
  */
 void Obj::doStartStoneState()
 {
@@ -251,10 +234,9 @@ void Obj::doStartStoneState()
 	finishPinchJointEffect();
 }
 
-/*
- * --INFO--
- * Address:	802A5F58
- * Size:	00005C
+/**
+ * @note Address: 0x802A5F58
+ * @note Size: 0x5C
  */
 void Obj::doFinishStoneState()
 {
@@ -265,24 +247,21 @@ void Obj::doFinishStoneState()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A5FB4
- * Size:	000020
+/**
+ * @note Address: 0x802A5FB4
+ * @note Size: 0x20
  */
 void Obj::doStartMovie() { effectDrawOff(); }
 
-/*
- * --INFO--
- * Address:	802A5FD4
- * Size:	000020
+/**
+ * @note Address: 0x802A5FD4
+ * @note Size: 0x20
  */
 void Obj::doEndMovie() { effectDrawOn(); }
 
-/*
- * --INFO--
- * Address:	802A5FF4
- * Size:	000060
+/**
+ * @note Address: 0x802A5FF4
+ * @note Size: 0x60
  */
 void Obj::getThrowupItemPosition(Vector3f* position)
 {
@@ -290,10 +269,9 @@ void Obj::getThrowupItemPosition(Vector3f* position)
 	position->y -= 30.0f;
 }
 
-/*
- * --INFO--
- * Address:	802A6054
- * Size:	000014
+/**
+ * @note Address: 0x802A6054
+ * @note Size: 0x14
  */
 void Obj::getThrowupItemVelocity(Vector3f* velocity)
 {
@@ -302,10 +280,9 @@ void Obj::getThrowupItemVelocity(Vector3f* velocity)
 	velocity->x = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	802A6068
- * Size:	000298
+/**
+ * @note Address: 0x802A6068
+ * @note Size: 0x298
  */
 void Obj::getTargetPosition()
 {
@@ -336,10 +313,9 @@ void Obj::getTargetPosition()
 	setIKSystemTargetPosition(mTargetPosition);
 }
 
-/*
- * --INFO--
- * Address:	802A6300
- * Size:	00010C
+/**
+ * @note Address: 0x802A6300
+ * @note Size: 0x10C
  */
 void Obj::createIKSystem()
 {
@@ -348,10 +324,9 @@ void Obj::createIKSystem()
 	mGroundCallBack = new DamagumoGroundCallBack(this);
 }
 
-/*
- * --INFO--
- * Address:	802A640C
- * Size:	000124
+/**
+ * @note Address: 0x802A640C
+ * @note Size: 0x124
  */
 void Obj::setupIKSystem()
 {
@@ -371,10 +346,9 @@ void Obj::setupIKSystem()
 	mIkSystemMgr->mJointGroundCallBack = mGroundCallBack;
 }
 
-/*
- * --INFO--
- * Address:	802A6530
- * Size:	000090
+/**
+ * @note Address: 0x802A6530
+ * @note Size: 0x90
  */
 void Obj::setIKParameter()
 {
@@ -389,17 +363,15 @@ void Obj::setIKParameter()
 	mIkSystemParms->mHeightOffset        = C_PROPERPARMS.mLegSwing.mValue;
 }
 
-/*
- * --INFO--
- * Address:	802A65C0
- * Size:	000020
+/**
+ * @note Address: 0x802A65C0
+ * @note Size: 0x20
  */
 void Obj::setIKSystemTargetPosition(Vector3f& targetPos) { mIkSystemMgr->mTargetPosition = targetPos; }
 
-/*
- * --INFO--
- * Address:	802A65E0
- * Size:	000060
+/**
+ * @note Address: 0x802A65E0
+ * @note Size: 0x60
  */
 void Obj::updateIKSystem()
 {
@@ -409,10 +381,9 @@ void Obj::updateIKSystem()
 	mRotation.y = mFaceDir;
 }
 
-/*
- * --INFO--
- * Address:	802A6640
- * Size:	000060
+/**
+ * @note Address: 0x802A6640
+ * @note Size: 0x60
  */
 void Obj::doAnimationIKSystem()
 {
@@ -421,87 +392,75 @@ void Obj::doAnimationIKSystem()
 	mBaseTrMatrix.makeSRT(mScale, mRotation, translation);
 }
 
-/*
- * --INFO--
- * Address:	802A66A0
- * Size:	000024
+/**
+ * @note Address: 0x802A66A0
+ * @note Size: 0x24
  */
 void Obj::finishAnimationIKSystem() { mIkSystemMgr->resetAnimationCallBack(); }
 
-/*
- * --INFO--
- * Address:	802A66C4
- * Size:	000024
+/**
+ * @note Address: 0x802A66C4
+ * @note Size: 0x24
  */
 void Obj::startProgramedIK() { mIkSystemMgr->startProgramedIK(); }
 
-/*
- * --INFO--
- * Address:	802A66E8
- * Size:	000024
+/**
+ * @note Address: 0x802A66E8
+ * @note Size: 0x24
  */
 void Obj::startIKMotion() { mIkSystemMgr->startIKMotion(); }
 
-/*
- * --INFO--
- * Address:	802A670C
- * Size:	000024
+/**
+ * @note Address: 0x802A670C
+ * @note Size: 0x24
  */
 void Obj::finishIKMotion() { mIkSystemMgr->finishIKMotion(); }
 
-/*
- * --INFO--
- * Address:	802A6730
- * Size:	000024
+/**
+ * @note Address: 0x802A6730
+ * @note Size: 0x24
  */
 void Obj::forceFinishIKMotion() { mIkSystemMgr->forceFinishIKMotion(); }
 
-/*
- * --INFO--
- * Address:	802A6754
- * Size:	000024
+/**
+ * @note Address: 0x802A6754
+ * @note Size: 0x24
  */
 bool Obj::isFinishIKMotion() { return mIkSystemMgr->isFinishIKMotion(); }
 
-/*
- * --INFO--
- * Address:	802A6778
- * Size:	000024
+/**
+ * @note Address: 0x802A6778
+ * @note Size: 0x24
  */
 void Obj::startBlendMotion() { mIkSystemMgr->startBlendMotion(); }
 
-/*
- * --INFO--
- * Address:	802A679C
- * Size:	000024
+/**
+ * @note Address: 0x802A679C
+ * @note Size: 0x24
  */
 void Obj::finishBlendMotion() { mIkSystemMgr->finishBlendMotion(); }
 
-/*
- * --INFO--
- * Address:	802A67C0
- * Size:	000020
+/**
+ * @note Address: 0x802A67C0
+ * @note Size: 0x20
  */
 Vector3f Obj::getTraceCentrePosition() { return mIkSystemMgr->mTraceCentrePosition; }
 
-/*
- * --INFO--
- * Address:	802A67E0
- * Size:	000024
+/**
+ * @note Address: 0x802A67E0
+ * @note Size: 0x24
  */
 bool Obj::isCollisionCheck(CollPart* collpart) { return mIkSystemMgr->isCollisionCheck(collpart); }
 
-/*
- * --INFO--
- * Address:	802A6804
- * Size:	000048
+/**
+ * @note Address: 0x802A6804
+ * @note Size: 0x48
  */
 void Obj::createShadowSystem() { mShadowMgr = new DamagumoShadowMgr(this); }
 
-/*
- * --INFO--
- * Address:	802A684C
- * Size:	000074
+/**
+ * @note Address: 0x802A684C
+ * @note Size: 0x74
  */
 void Obj::setupShadowSystem()
 {
@@ -513,24 +472,21 @@ void Obj::setupShadowSystem()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A68C0
- * Size:	000024
+/**
+ * @note Address: 0x802A68C0
+ * @note Size: 0x24
  */
 void Obj::doAnimationShadowSystem() { mShadowMgr->update(); }
 
-/*
- * --INFO--
- * Address:	802A68E4
- * Size:	00004C
+/**
+ * @note Address: 0x802A68E4
+ * @note Size: 0x4C
  */
 void Obj::createMaterialAnimation() { mMatLoopAnimator = new Sys::MatLoopAnimator[2]; }
 
-/*
- * --INFO--
- * Address:	802A6930
- * Size:	000060
+/**
+ * @note Address: 0x802A6930
+ * @note Size: 0x60
  */
 void Obj::startMaterialAnimation()
 {
@@ -538,10 +494,9 @@ void Obj::startMaterialAnimation()
 	mMatLoopAnimator[1].start(static_cast<Mgr*>(mMgr)->mTevRegAnimation);
 }
 
-/*
- * --INFO--
- * Address:	802A6990
- * Size:	00013C
+/**
+ * @note Address: 0x802A6990
+ * @note Size: 0x13C
  */
 void Obj::updateMaterialAnimation()
 {
@@ -574,10 +529,9 @@ void Obj::updateMaterialAnimation()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A6ACC
- * Size:	000090
+/**
+ * @note Address: 0x802A6ACC
+ * @note Size: 0x90
  */
 void Obj::setupCollision()
 {
@@ -590,10 +544,9 @@ void Obj::setupCollision()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A6B5C
- * Size:	00008C
+/**
+ * @note Address: 0x802A6B5C
+ * @note Size: 0x8C
  */
 void Obj::createItemAndEnemy()
 {
@@ -608,10 +561,9 @@ void Obj::createItemAndEnemy()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A6BE8
- * Size:	0000C8
+/**
+ * @note Address: 0x802A6BE8
+ * @note Size: 0xC8
  */
 void Obj::startBossFlickBGM()
 {
@@ -620,10 +572,9 @@ void Obj::startBossFlickBGM()
 	soundObj->jumpRequest(4);
 }
 
-/*
- * --INFO--
- * Address:	802A6CB0
- * Size:	0000FC
+/**
+ * @note Address: 0x802A6CB0
+ * @note Size: 0xFC
  */
 void Obj::updateBossBGM()
 {
@@ -637,10 +588,9 @@ void Obj::updateBossBGM()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A6DAC
- * Size:	0000C4
+/**
+ * @note Address: 0x802A6DAC
+ * @note Size: 0xC4
  */
 void Obj::resetBossAppearBGM()
 {
@@ -650,10 +600,9 @@ void Obj::resetBossAppearBGM()
 	soundObj->_FF = 1;
 }
 
-/*
- * --INFO--
- * Address:	802A6E70
- * Size:	0000BC
+/**
+ * @note Address: 0x802A6E70
+ * @note Size: 0xBC
  */
 void Obj::setBossAppearBGM()
 {
@@ -662,10 +611,9 @@ void Obj::setBossAppearBGM()
 	soundObj->setAppearFlag(true);
 }
 
-/*
- * --INFO--
- * Address:	802A6F2C
- * Size:	0005BC
+/**
+ * @note Address: 0x802A6F2C
+ * @note Size: 0x5BC
  */
 void Obj::createEffect()
 {
@@ -694,10 +642,9 @@ void Obj::createEffect()
 	mDeadHahenC2FX = new efx::TDamaDeadHahenC2;
 }
 
-/*
- * --INFO--
- * Address:	802A756C
- * Size:	000184
+/**
+ * @note Address: 0x802A756C
+ * @note Size: 0x184
  */
 void Obj::setupEffect()
 {
@@ -722,10 +669,9 @@ void Obj::setupEffect()
 	mDeadHahenC2FX->mMtx = mModel->getJoint("tama2")->getWorldMatrix();
 }
 
-/*
- * --INFO--
- * Address:	802A76F0
- * Size:	0001F0
+/**
+ * @note Address: 0x802A76F0
+ * @note Size: 0x1F0
  */
 void Obj::createOnGroundEffect(int footIdx, WaterBox* wbox)
 {
@@ -758,10 +704,9 @@ void Obj::createOnGroundEffect(int footIdx, WaterBox* wbox)
 	rumbleMgr->startRumble(14, effectPos, 2);
 }
 
-/*
- * --INFO--
- * Address:	802A78E0
- * Size:	000128
+/**
+ * @note Address: 0x802A78E0
+ * @note Size: 0x128
  */
 void Obj::createOffGroundEffect(int footIdx, WaterBox* wbox)
 {
@@ -781,10 +726,9 @@ void Obj::createOffGroundEffect(int footIdx, WaterBox* wbox)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A7A08
- * Size:	0001A0
+/**
+ * @note Address: 0x802A7A08
+ * @note Size: 0x1A0
  */
 void Obj::startPinchJointEffect()
 {
@@ -812,10 +756,9 @@ void Obj::startPinchJointEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A7BA8
- * Size:	000058
+/**
+ * @note Address: 0x802A7BA8
+ * @note Size: 0x58
  */
 void Obj::finishPinchJointEffect()
 {
@@ -824,10 +767,9 @@ void Obj::finishPinchJointEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A7C00
- * Size:	0001C0
+/**
+ * @note Address: 0x802A7C00
+ * @note Size: 0x1C0
  */
 void Obj::startDeadEffect()
 {
@@ -856,10 +798,9 @@ void Obj::startDeadEffect()
 	finishPinchJointEffect();
 }
 
-/*
- * --INFO--
- * Address:	802A7DC0
- * Size:	000250
+/**
+ * @note Address: 0x802A7DC0
+ * @note Size: 0x250
  */
 void Obj::updatePinchLife()
 {
@@ -882,10 +823,9 @@ void Obj::updatePinchLife()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A8010
- * Size:	000198
+/**
+ * @note Address: 0x802A8010
+ * @note Size: 0x198
  */
 void Obj::effectDrawOn()
 {
@@ -920,10 +860,9 @@ void Obj::effectDrawOn()
 	mDeadHahenC2FX->endDemoDrawOn();
 }
 
-/*
- * --INFO--
- * Address:	802A81A8
- * Size:	000198
+/**
+ * @note Address: 0x802A81A8
+ * @note Size: 0x198
  */
 void Obj::effectDrawOff()
 {
@@ -958,10 +897,9 @@ void Obj::effectDrawOff()
 	mDeadHahenC2FX->startDemoDrawOff();
 }
 
-/*
- * --INFO--
- * Address:	802A8340
- * Size:	000038
+/**
+ * @note Address: 0x802A8340
+ * @note Size: 0x38
  */
 void Obj::addShadowScale()
 {

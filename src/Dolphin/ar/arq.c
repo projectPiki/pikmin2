@@ -21,10 +21,9 @@ void __ARQInterruptServiceRoutine(void);
 void __ARQInitTempQueue(void);
 void __ARQPushTempQueue(ARQRequest* task);
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
+/**
+ * @note Address: N/A
+ * @note Size: 0x70
  */
 void __ARQPopTaskQueueHi()
 {
@@ -43,10 +42,9 @@ void __ARQPopTaskQueueHi()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800D41BC
- * Size:	000100
+/**
+ * @note Address: 0x800D41BC
+ * @note Size: 0x100
  */
 void __ARQServiceQueueLo()
 {
@@ -82,17 +80,15 @@ void __ARQServiceQueueLo()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800D42BC
- * Size:	000004
+/**
+ * @note Address: 0x800D42BC
+ * @note Size: 0x4
  */
 void __ARQCallbackHack() { }
 
-/*
- * --INFO--
- * Address:	800D42C0
- * Size:	0000CC
+/**
+ * @note Address: 0x800D42C0
+ * @note Size: 0xCC
  */
 void __ARQInterruptServiceRoutine()
 {
@@ -114,10 +110,9 @@ void __ARQInterruptServiceRoutine()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800D438C
- * Size:	000070
+/**
+ * @note Address: 0x800D438C
+ * @note Size: 0x70
  */
 void ARQInit()
 {
@@ -138,10 +133,9 @@ void ARQInit()
 	__ARQ_init_flag = TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800D43FC
- * Size:	00015C
+/**
+ * @note Address: 0x800D43FC
+ * @note Size: 0x15C
  */
 void ARQPostRequest(ARQRequest* task, u32 owner, u32 type, u32 priority, u32 source, u32 dest, u32 length, ARQCallback callback)
 {

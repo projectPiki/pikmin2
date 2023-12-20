@@ -3,10 +3,9 @@
 
 DynamicsParms* DynamicsParms::mInstance;
 
-/*
- * --INFO--
- * Address:	80139C60
- * Size:	000334
+/**
+ * @note Address: 0x80139C60
+ * @note Size: 0x334
  */
 DynamicsParms::DynamicsParms()
     : Parameters(nullptr, "Dynamics")
@@ -26,17 +25,15 @@ DynamicsParms::DynamicsParms()
 	mInstance = this;
 }
 
-/*
- * --INFO--
- * Address:	80139F94
- * Size:	000074
+/**
+ * @note Address: 0x80139F94
+ * @note Size: 0x74
  */
 DynamicsParms::~DynamicsParms() { mInstance = nullptr; }
 
-/*
- * --INFO--
- * Address:	8013A008
- * Size:	000048
+/**
+ * @note Address: 0x8013A008
+ * @note Size: 0x48
  */
 void DynamicsParms::globalInstance()
 {
@@ -45,17 +42,15 @@ void DynamicsParms::globalInstance()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8013A050
- * Size:	000054
+/**
+ * @note Address: 0x8013A050
+ * @note Size: 0x54
  */
 Game::Rigid::Rigid() { mFlags.clear(); }
 
-/*
- * --INFO--
- * Address:	8013A0D8
- * Size:	00008C
+/**
+ * @note Address: 0x8013A0D8
+ * @note Size: 0x8C
  */
 void Game::Rigid::initPosition(Vector3f& posVec, Vector3f& quatVec)
 {
@@ -68,10 +63,9 @@ void Game::Rigid::initPosition(Vector3f& posVec, Vector3f& quatVec)
 	updateMatrix(0);
 }
 
-/*
- * --INFO--
- * Address:	8013A164
- * Size:	00008C
+/**
+ * @note Address: 0x8013A164
+ * @note Size: 0x8C
  */
 void Game::Rigid::initPositionIndex(Vector3f& posVec, int configIdx, Vector3f& quatVec)
 {
@@ -85,10 +79,9 @@ void Game::Rigid::initPositionIndex(Vector3f& posVec, int configIdx, Vector3f& q
 	config->_48.set(quatVec);
 }
 
-/*
- * --INFO--
- * Address:	8013A1F0
- * Size:	000038
+/**
+ * @note Address: 0x8013A1F0
+ * @note Size: 0x38
  */
 void Game::Rigid::updateMatrix(int configIdx)
 {
@@ -96,10 +89,9 @@ void Game::Rigid::updateMatrix(int configIdx)
 	_04.makeTQ(config->mPosition, config->_48);
 }
 
-/*
- * --INFO--
- * Address:	8013A228
- * Size:	00006C
+/**
+ * @note Address: 0x8013A228
+ * @note Size: 0x6C
  */
 void Game::Rigid::computeForces(int configIdx)
 {
@@ -113,10 +105,9 @@ void Game::Rigid::computeForces(int configIdx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8013A294
- * Size:	000268
+/**
+ * @note Address: 0x8013A294
+ * @note Size: 0x268
  */
 static f32 getYDegree(Quat& quat, Vector3f& vec)
 {
@@ -305,10 +296,9 @@ static f32 getYDegree(Quat& quat, Vector3f& vec)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8013A4FC
- * Size:	000678
+/**
+ * @note Address: 0x8013A4FC
+ * @note Size: 0x678
  */
 void Game::Rigid::integrate(f32 timeStep, int configIdx)
 {
@@ -765,10 +755,9 @@ lbl_8013AB2C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8013AB74
- * Size:	000300
+/**
+ * @note Address: 0x8013AB74
+ * @note Size: 0x300
  */
 bool Game::Rigid::resolveCollision(int index, Vector3f& p2, Vector3f& p3, f32 p4)
 {

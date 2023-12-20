@@ -14,10 +14,9 @@ namespace newScreen {
 
 static const char objCaveUnusedArray[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-/*
- * --INFO--
- * Address:	8031C008
- * Size:	00009C
+/**
+ * @note Address: 0x8031C008
+ * @note Size: 0x9C
  */
 ObjCave::ObjCave(const char* name)
 {
@@ -40,17 +39,15 @@ ObjCave::ObjCave(const char* name)
 	mPaneFinalf      = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8031C0A4
- * Size:	0000AC
+/**
+ * @note Address: 0x8031C0A4
+ * @note Size: 0xAC
  */
 ObjCave::~ObjCave() { }
 
-/*
- * --INFO--
- * Address:	8031C150
- * Size:	000518
+/**
+ * @note Address: 0x8031C150
+ * @note Size: 0x518
  */
 void ObjCave::doCreate(JKRArchive* arc)
 {
@@ -118,10 +115,9 @@ void ObjCave::doCreate(JKRArchive* arc)
 	mDoping->setDopingEnable(mDisp->mIsBitterUnlocked, mDisp->mIsSpicyUnlocked);
 }
 
-/*
- * --INFO--
- * Address:	8031C668
- * Size:	0003A4
+/**
+ * @note Address: 0x8031C668
+ * @note Size: 0x3A4
  */
 void ObjCave::commonUpdate()
 {
@@ -214,10 +210,9 @@ void ObjCave::commonUpdate()
 	mDoping->adjPos(msVal._24, msVal._28);
 }
 
-/*
- * --INFO--
- * Address:	8031CA0C
- * Size:	000024
+/**
+ * @note Address: 0x8031CA0C
+ * @note Size: 0x24
  */
 bool ObjCave::doUpdate()
 {
@@ -225,10 +220,9 @@ bool ObjCave::doUpdate()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8031CA30
- * Size:	000064
+/**
+ * @note Address: 0x8031CA30
+ * @note Size: 0x64
  */
 void ObjCave::doDraw(Graphics& gfx)
 {
@@ -241,10 +235,9 @@ void ObjCave::doDraw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8031CA94
- * Size:	000014
+/**
+ * @note Address: 0x8031CA94
+ * @note Size: 0x14
  */
 bool ObjCave::doStart(::Screen::StartSceneArg const*)
 {
@@ -253,10 +246,9 @@ bool ObjCave::doStart(::Screen::StartSceneArg const*)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8031CAA8
- * Size:	000010
+/**
+ * @note Address: 0x8031CAA8
+ * @note Size: 0x10
  */
 bool ObjCave::doEnd(::Screen::EndSceneArg const*)
 {
@@ -264,10 +256,9 @@ bool ObjCave::doEnd(::Screen::EndSceneArg const*)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8031CAB8
- * Size:	000074
+/**
+ * @note Address: 0x8031CAB8
+ * @note Size: 0x74
  */
 bool ObjCave::doUpdateFadein()
 {
@@ -283,24 +274,21 @@ bool ObjCave::doUpdateFadein()
 	return check;
 }
 
-/*
- * --INFO--
- * Address:	8031CB2C
- * Size:	000004
+/**
+ * @note Address: 0x8031CB2C
+ * @note Size: 0x4
  */
 void ObjCave::doUpdateFadeinFinish() { }
 
-/*
- * --INFO--
- * Address:	8031CB30
- * Size:	00000C
+/**
+ * @note Address: 0x8031CB30
+ * @note Size: 0xC
  */
 void ObjCave::doUpdateFinish() { mFadeLevel = 0.0f; }
 
-/*
- * --INFO--
- * Address:	8031CB3C
- * Size:	00007C
+/**
+ * @note Address: 0x8031CB3C
+ * @note Size: 0x7C
  */
 bool ObjCave::doUpdateFadeout()
 {
@@ -316,10 +304,9 @@ bool ObjCave::doUpdateFadeout()
 	return check;
 }
 
-/*
- * --INFO--
- * Address:	8031CBB8
- * Size:	000004
+/**
+ * @note Address: 0x8031CBB8
+ * @note Size: 0x4
  */
 void ObjCave::doUpdateFadeoutFinish() { }
 

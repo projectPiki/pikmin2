@@ -4,10 +4,9 @@
 namespace Game {
 namespace Pelplant {
 
-/*
- * --INFO--
- * Address:	801275B0
- * Size:	000098
+/**
+ * @note Address: 0x801275B0
+ * @note Size: 0x98
  */
 Generator::Generator()
     : EnemyGeneratorBase("ÉyÉåÉbÉgëê")
@@ -17,10 +16,9 @@ Generator::Generator()
 	mInitialParam.mInitialState = PELPLANTSIZE_Small;
 }
 
-/*
- * --INFO--
- * Address:	80127648
- * Size:	00008C
+/**
+ * @note Address: 0x80127648
+ * @note Size: 0x8C
  */
 void Generator::doRead(Stream& stream)
 {
@@ -35,10 +33,9 @@ void Generator::doRead(Stream& stream)
 	doReadOldVersion(stream);
 }
 
-/*
- * --INFO--
- * Address:	801276E0
- * Size:	000064
+/**
+ * @note Address: 0x801276E0
+ * @note Size: 0x64
  */
 void Generator::doReadOldVersion(Stream& stream)
 {
@@ -52,10 +49,9 @@ void Generator::doReadOldVersion(Stream& stream)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80127744
- * Size:	0000C8
+/**
+ * @note Address: 0x80127744
+ * @note Size: 0xC8
  */
 void Generator::doWrite(Stream& stream)
 {

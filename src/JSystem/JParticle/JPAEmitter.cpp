@@ -4,17 +4,15 @@
 #include "JSystem/JParticle/JPAResource.h"
 #include "JSystem/JParticle/JPAShape.h"
 
-/*
- * --INFO--
- * Address:	8008FC9C
- * Size:	000048
+/**
+ * @note Address: 0x8008FC9C
+ * @note Size: 0x48
  */
 JPAEmitterCallBack::~JPAEmitterCallBack() { }
 
-/*
- * --INFO--
- * Address:	8008FCE4
- * Size:	00035C
+/**
+ * @note Address: 0x8008FCE4
+ * @note Size: 0x35C
  */
 void JPABaseEmitter::init(JPAEmitterManager* manager, JPAResource* resource)
 {
@@ -287,10 +285,9 @@ lbl_8008FE08:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80090040
- * Size:	00011C
+/**
+ * @note Address: 0x80090040
+ * @note Size: 0x11C
  */
 JPABaseParticle* JPABaseEmitter::createParticle()
 {
@@ -306,10 +303,9 @@ JPABaseParticle* JPABaseEmitter::createParticle()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8009015C
- * Size:	0000FC
+/**
+ * @note Address: 0x8009015C
+ * @note Size: 0xFC
  */
 JPABaseParticle* JPABaseEmitter::createChild(JPABaseParticle* parent)
 {
@@ -323,10 +319,9 @@ JPABaseParticle* JPABaseEmitter::createChild(JPABaseParticle* parent)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80090258
- * Size:	000174
+/**
+ * @note Address: 0x80090258
+ * @note Size: 0x174
  */
 void JPABaseEmitter::deleteAllParticle()
 {
@@ -336,10 +331,9 @@ void JPABaseEmitter::deleteAllParticle()
 		mPtclPool->push_front(mAlivePtclChld.pop_back());
 }
 
-/*
- * --INFO--
- * Address:	800903CC
- * Size:	000040
+/**
+ * @note Address: 0x800903CC
+ * @note Size: 0x40
  */
 bool JPABaseEmitter::processTillStartFrame()
 {
@@ -352,10 +346,9 @@ bool JPABaseEmitter::processTillStartFrame()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8009040C
- * Size:	00009C
+/**
+ * @note Address: 0x8009040C
+ * @note Size: 0x9C
  */
 bool JPABaseEmitter::processTermination()
 {
@@ -380,10 +373,9 @@ bool JPABaseEmitter::processTermination()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	800904A8
- * Size:	000080
+/**
+ * @note Address: 0x800904A8
+ * @note Size: 0x80
  */
 void JPABaseEmitter::calcEmitterGlobalPosition(JGeometry::TVec3f* p1) const
 {
@@ -396,57 +388,51 @@ void JPABaseEmitter::calcEmitterGlobalPosition(JGeometry::TVec3f* p1) const
 	PSMTXMultVec(mtx, (Vec*)&mLocalTrs, (Vec*)p1);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void JPABaseEmitter::getEmitterAxisX(JGeometry::TVec3<float>*) const
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void JPABaseEmitter::getEmitterAxisY(JGeometry::TVec3<float>*) const
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void JPABaseEmitter::getEmitterAxisZ(JGeometry::TVec3<float>*) const
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80090528
- * Size:	000010
+/**
+ * @note Address: 0x80090528
+ * @note Size: 0x10
  */
 int JPABaseEmitter::getCurrentCreateNumber() const { return mManager->mWorkData->mCreateNumber; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 int JPABaseEmitter::getDrawCount() const
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 void JPABaseEmitter::loadTexture(u8, _GXTexMapID)
 {

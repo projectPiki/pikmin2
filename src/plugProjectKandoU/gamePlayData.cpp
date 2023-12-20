@@ -10,10 +10,9 @@
 #include "Game/gameStat.h"
 #include "Game/enemyInfo.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
+/**
+ * @note Address: N/A
+ * @note Size: 0xE4
  */
 void _Print(char* name, ...) { OSReport("PlayData"); }
 
@@ -21,10 +20,9 @@ namespace Game {
 
 PlayData* playData;
 
-/*
- * --INFO--
- * Address:	801E5354
- * Size:	000010
+/**
+ * @note Address: 0x801E5354
+ * @note Size: 0x10
  */
 KindCounter::KindCounter()
     : mNumKinds(0)
@@ -32,10 +30,9 @@ KindCounter::KindCounter()
 {
 }
 
-/*
- * --INFO--
- * Address:	801E5364
- * Size:	000074
+/**
+ * @note Address: 0x801E5364
+ * @note Size: 0x74
  */
 void KindCounter::alloc(int numKinds)
 {
@@ -45,10 +42,9 @@ void KindCounter::alloc(int numKinds)
 	clear();
 }
 
-/*
- * --INFO--
- * Address:	801E53D8
- * Size:	000028
+/**
+ * @note Address: 0x801E53D8
+ * @note Size: 0x28
  */
 void KindCounter::clear()
 {
@@ -57,10 +53,9 @@ void KindCounter::clear()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000088
+/**
+ * @note Address: N/A
+ * @note Size: 0x88
  */
 void KindCounter::copyFrom(KindCounter& other)
 {
@@ -70,10 +65,9 @@ void KindCounter::copyFrom(KindCounter& other)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000090
+/**
+ * @note Address: N/A
+ * @note Size: 0x90
  */
 void KindCounter::addTo(KindCounter& other)
 {
@@ -83,11 +77,10 @@ void KindCounter::addTo(KindCounter& other)
 	}
 }
 
-/*
+/**
  * cl_
- * --INFO--
- * Address:	801E5400
- * Size:	000078
+ * @note Address: 0x801E5400
+ * @note Size: 0x78
  */
 u8* KindCounter::operator()(int index)
 {
@@ -99,10 +92,9 @@ u8* KindCounter::operator()(int index)
 	return &mKinds[index];
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00018C
+/**
+ * @note Address: N/A
+ * @note Size: 0x18C
  */
 PelletCropMemory::PelletCropMemory(int num1, int num2, int num3)
 {
@@ -111,10 +103,9 @@ PelletCropMemory::PelletCropMemory(int num1, int num2, int num3)
 	mCarcass.alloc(num3);
 }
 
-/*
- * --INFO--
- * Address:	801E5478
- * Size:	000280
+/**
+ * @note Address: 0x801E5478
+ * @note Size: 0x280
  */
 PelletCropMemory* PelletCropMemory::createClone()
 {
@@ -325,10 +316,9 @@ lbl_801E56D4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801E56F8
- * Size:	000148
+/**
+ * @note Address: 0x801E56F8
+ * @note Size: 0x148
  */
 void PelletCropMemory::addTo(PelletCropMemory* add)
 {
@@ -337,10 +327,9 @@ void PelletCropMemory::addTo(PelletCropMemory* add)
 	mCarcass.addTo(add->mCarcass);
 }
 
-/*
- * --INFO--
- * Address:	801E5840
- * Size:	000070
+/**
+ * @note Address: 0x801E5840
+ * @note Size: 0x70
  */
 void PelletCropMemory::clear()
 {
@@ -349,41 +338,36 @@ void PelletCropMemory::clear()
 	mCarcass.clear();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000288
+/**
+ * @note Address: N/A
+ * @note Size: 0x288
  */
 void PelletCropMemory::obtainPellet(Pellet*) { }
 
-/*
- * --INFO--
- * Address:	801E58B0
- * Size:	000048
+/**
+ * @note Address: 0x801E58B0
+ * @note Size: 0x48
  */
 int PelletCropMemory::calcEarnKinds() { return mOtakara.getEarnKinds() + mItem.getEarnKinds(); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 int PelletCropMemory::calcNumKinds() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000198
+/**
+ * @note Address: N/A
+ * @note Size: 0x198
  */
 PelletFirstMemory::PelletFirstMemory(int p1, int p2, int p3)
     : PelletCropMemory(p1, p2, p3)
 {
 }
 
-/*
- * --INFO--
- * Address:	801E58F8
- * Size:	0002C8
+/**
+ * @note Address: 0x801E58F8
+ * @note Size: 0x2C8
  */
 bool PelletFirstMemory::firstCarryPellet(Pellet* pellet)
 {
@@ -416,10 +400,9 @@ bool PelletFirstMemory::firstCarryPellet(Pellet* pellet)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	801E5BC0
- * Size:	000154
+/**
+ * @note Address: 0x801E5BC0
+ * @note Size: 0x154
  */
 void PelletFirstMemory::obtainPellet(BasePelletMgr* mgr, int id)
 {
@@ -436,10 +419,9 @@ void PelletFirstMemory::obtainPellet(BasePelletMgr* mgr, int id)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E5D14
- * Size:	000154
+/**
+ * @note Address: 0x801E5D14
+ * @note Size: 0x154
  */
 void PelletFirstMemory::losePellet(Game::BasePelletMgr* mgr, int id)
 {
@@ -456,10 +438,9 @@ void PelletFirstMemory::losePellet(Game::BasePelletMgr* mgr, int id)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E5E68
- * Size:	00004C
+/**
+ * @note Address: 0x801E5E68
+ * @note Size: 0x4C
  */
 bool PlayData::isCompletePelletTrigger()
 {
@@ -471,22 +452,20 @@ bool PlayData::isCompletePelletTrigger()
 	return false;
 }
 
-/*
+/**
  * completeAll__Q24Game16PelletCropMemoryFv
- * --INFO--
- * Address:	801E5EB4
- * Size:	000058
+ * @note Address: 0x801E5EB4
+ * @note Size: 0x58
  */
 bool PelletCropMemory::completeAll()
 {
 	return (!mOtakara.completeAll()) ? false : mItem.completeAll() > 0; // sure.
 }
 
-/*
+/**
  * completeAll__Q24Game11KindCounterFv
- * --INFO--
- * Address:	801E5F0C
- * Size:	00003C
+ * @note Address: 0x801E5F0C
+ * @note Size: 0x3C
  */
 bool KindCounter::completeAll()
 {
@@ -497,10 +476,9 @@ bool KindCounter::completeAll()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801E5F48
- * Size:	00003C
+/**
+ * @note Address: 0x801E5F48
+ * @note Size: 0x3C
  */
 int KindCounter::getEarnKinds()
 {
@@ -513,10 +491,9 @@ int KindCounter::getEarnKinds()
 	return earnedKinds;
 }
 
-/*
- * --INFO--
- * Address:	801E5F84
- * Size:	00003C
+/**
+ * @note Address: 0x801E5F84
+ * @note Size: 0x3C
  */
 OlimarData::OlimarData()
 {
@@ -525,10 +502,9 @@ OlimarData::OlimarData()
 	clear();
 }
 
-/*
- * --INFO--
- * Address:	801E5FC0
- * Size:	000010
+/**
+ * @note Address: 0x801E5FC0
+ * @note Size: 0x10
  */
 void OlimarData::clear()
 {
@@ -536,10 +512,9 @@ void OlimarData::clear()
 	mFlags[1] = 0;
 }
 
-/*
- * --INFO--
- * Address:	801E5FD0
- * Size:	000098
+/**
+ * @note Address: 0x801E5FD0
+ * @note Size: 0x98
  * Matches!
  */
 bool OlimarData::hasItem(int index)
@@ -551,10 +526,9 @@ bool OlimarData::hasItem(int index)
 	return (mFlags[1 - data_idx] & bits) != false;
 }
 
-/*
- * --INFO--
- * Address:	801E6068
- * Size:	0000CC
+/**
+ * @note Address: 0x801E6068
+ * @note Size: 0xCC
  * Matches!
  */
 void OlimarData::getItem(int item)
@@ -577,10 +551,9 @@ void OlimarData::getItem(int item)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E6134
- * Size:	000084
+/**
+ * @note Address: 0x801E6134
+ * @note Size: 0x84
  */
 void PlayData::construct()
 {
@@ -590,10 +563,9 @@ void PlayData::construct()
 	sys->heapStatusEnd("playData");
 }
 
-/*
- * --INFO--
- * Address:	801E61B8
- * Size:	000854
+/**
+ * @note Address: 0x801E61B8
+ * @note Size: 0x854
  */
 PlayData::PlayData()
     : mDeadNaviID()
@@ -655,17 +627,15 @@ PlayData::PlayData()
 	reset();
 }
 
-/*
- * --INFO--
- * Address:	801E6A58
- * Size:	000068
+/**
+ * @note Address: 0x801E6A58
+ * @note Size: 0x68
  */
 PlayData::~PlayData() { playData = nullptr; }
 
-/*
- * --INFO--
- * Address:	801E6AC0
- * Size:	0003D0
+/**
+ * @note Address: 0x801E6AC0
+ * @note Size: 0x3D0
  */
 void PlayData::reset()
 {
@@ -1017,10 +987,9 @@ lbl_801E6DFC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801E6E90
- * Size:	0000C8
+/**
+ * @note Address: 0x801E6E90
+ * @note Size: 0xC8
  */
 void PlayData::setDevelopSetting(bool p1, bool p2)
 {
@@ -1043,10 +1012,9 @@ void PlayData::setDevelopSetting(bool p1, bool p2)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E6F58
- * Size:	0000B4
+/**
+ * @note Address: 0x801E6F58
+ * @note Size: 0xB4
  */
 int PlayData::calcPlayMinutes()
 {
@@ -1064,10 +1032,9 @@ int PlayData::calcPlayMinutes()
 	return (int)(diff / OS_TIMER_CLOCK) / 60;
 }
 
-/*
- * --INFO--
- * Address:	801E700C
- * Size:	000014
+/**
+ * @note Address: 0x801E700C
+ * @note Size: 0x14
  */
 void PlayData::resetContainerFlag()
 {
@@ -1076,10 +1043,9 @@ void PlayData::resetContainerFlag()
 	mHasContainerFlags     = 0;
 }
 
-/*
- * --INFO--
- * Address:	801E7020
- * Size:	000088
+/**
+ * @note Address: 0x801E7020
+ * @note Size: 0x88
  */
 bool PlayData::hasContainer(int pikminColor)
 {
@@ -1127,10 +1093,9 @@ lbl_801E7074:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801E70A8
- * Size:	000030
+/**
+ * @note Address: 0x801E70A8
+ * @note Size: 0x30
  */
 bool PlayData::hasMetPikmin(int pikminColor)
 {
@@ -1140,10 +1105,9 @@ bool PlayData::hasMetPikmin(int pikminColor)
 	return mMeetPikminFlags & (1 << pikminColor);
 }
 
-/*
- * --INFO--
- * Address:	801E70D8
- * Size:	0000A4
+/**
+ * @note Address: 0x801E70D8
+ * @note Size: 0xA4
  */
 bool PlayData::hasBootContainer(int pikminColor)
 {
@@ -1160,10 +1124,9 @@ bool PlayData::hasBootContainer(int pikminColor)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E717C
- * Size:	000080
+/**
+ * @note Address: 0x801E717C
+ * @note Size: 0x80
  */
 void PlayData::setContainer(int pikminColor)
 {
@@ -1213,10 +1176,9 @@ lbl_801E71D0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801E71FC
- * Size:	000080
+/**
+ * @note Address: 0x801E71FC
+ * @note Size: 0x80
  */
 void PlayData::setMeetPikmin(int pikminColor)
 {
@@ -1228,10 +1190,9 @@ void PlayData::setMeetPikmin(int pikminColor)
 	mMeetPikminFlags |= (1 << pikminColor);
 }
 
-/*
- * --INFO--
- * Address:	801E727C
- * Size:	000080
+/**
+ * @note Address: 0x801E727C
+ * @note Size: 0x80
  */
 void PlayData::setBootContainer(int pikminColor)
 {
@@ -1243,10 +1204,9 @@ void PlayData::setBootContainer(int pikminColor)
 	mHasBootContainerFlags |= (1 << pikminColor);
 }
 
-/*
- * --INFO--
- * Address:	801E72FC
- * Size:	0000A8
+/**
+ * @note Address: 0x801E72FC
+ * @note Size: 0xA8
  */
 void PlayData::debugSetContainerFlagOn()
 {
@@ -1266,10 +1226,9 @@ void PlayData::debugSetContainerFlagOn()
 	mLoadType = 1;
 }
 
-/*
- * --INFO--
- * Address:	801E73A4
- * Size:	00003C
+/**
+ * @note Address: 0x801E73A4
+ * @note Size: 0x3C
  */
 void PlayData::setDemoFlag(int flag)
 {
@@ -1277,17 +1236,15 @@ void PlayData::setDemoFlag(int flag)
 	mDemoFlags.dump();
 }
 
-/*
- * --INFO--
- * Address:	801E73E0
- * Size:	000028
+/**
+ * @note Address: 0x801E73E0
+ * @note Size: 0x28
  */
 bool PlayData::isDemoFlag(int flag) { return mDemoFlags.isFlag(flag); }
 
-/*
- * --INFO--
- * Address:	801E7408
- * Size:	00003C
+/**
+ * @note Address: 0x801E7408
+ * @note Size: 0x3C
  */
 void PlayData::setFindItemDemoFlag(int flag)
 {
@@ -1295,24 +1252,21 @@ void PlayData::setFindItemDemoFlag(int flag)
 	mFindItemFlags.dump();
 }
 
-/*
- * --INFO--
- * Address:	801E7444
- * Size:	000028
+/**
+ * @note Address: 0x801E7444
+ * @note Size: 0x28
  */
 bool PlayData::isFindItemDemoFlag(int flag) { return mFindItemFlags.isFlag(flag); }
 
-/*
- * --INFO--
- * Address:	801E746C
- * Size:	000008
+/**
+ * @note Address: 0x801E746C
+ * @note Size: 0x8
  */
 void PlayData::setCurrentCourse(int id) { mCaveSaveData.mCourseIdx = id; }
 
-/*
- * --INFO--
- * Address:	801E7474
- * Size:	00000C
+/**
+ * @note Address: 0x801E7474
+ * @note Size: 0xC
  */
 void PlayData::clearCurrentCave()
 {
@@ -1320,10 +1274,9 @@ void PlayData::clearCurrentCave()
 	mCaveSaveData.mIsInCave = false;
 }
 
-/*
- * --INFO--
- * Address:	801E7480
- * Size:	00004C
+/**
+ * @note Address: 0x801E7480
+ * @note Size: 0x4C
  */
 void PlayData::setCurrentCave(ID32& caveID, int floor)
 {
@@ -1332,10 +1285,9 @@ void PlayData::setCurrentCave(ID32& caveID, int floor)
 	mCaveSaveData.mIsInCave     = true;
 }
 
-/*
- * --INFO--
- * Address:	801E74CC
- * Size:	000010
+/**
+ * @note Address: 0x801E74CC
+ * @note Size: 0x10
  */
 void PlayData::setCurrentCaveFloor(int floor)
 {
@@ -1343,17 +1295,15 @@ void PlayData::setCurrentCaveFloor(int floor)
 	mCaveSaveData.mIsInCave     = true;
 }
 
-/*
- * --INFO--
- * Address:	801E74DC
- * Size:	000008
+/**
+ * @note Address: 0x801E74DC
+ * @note Size: 0x8
  */
 int PlayData::getCurrentCourseIndex() { return mCaveSaveData.mCourseIdx; }
 
-/*
- * --INFO--
- * Address:	801E74E4
- * Size:	000038
+/**
+ * @note Address: 0x801E74E4
+ * @note Size: 0x38
  */
 CourseInfo* PlayData::getCurrentCourse()
 {
@@ -1363,10 +1313,9 @@ CourseInfo* PlayData::getCurrentCourse()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	801E751C
- * Size:	000048
+/**
+ * @note Address: 0x801E751C
+ * @note Size: 0x48
  */
 void PlayData::getCurrentCave(ID32& outCaveID, int& outCaveFloor)
 {
@@ -1374,31 +1323,27 @@ void PlayData::getCurrentCave(ID32& outCaveID, int& outCaveFloor)
 	outCaveFloor = mCaveSaveData.mCurrentFloor;
 }
 
-/*
- * --INFO--
- * Address:	801E7564
- * Size:	000030
+/**
+ * @note Address: 0x801E7564
+ * @note Size: 0x30
  */
 bool PlayData::firstCarryPellet(Game::Pellet* pellet) { return mZukanStat->firstCarryPellet(pellet); }
 
-/*
- * --INFO--
- * Address:	801E7594
- * Size:	000030
+/**
+ * @note Address: 0x801E7594
+ * @note Size: 0x30
  */
 void PlayData::obtainPellet(BasePelletMgr* mgr, int p2) { mZukanStat->obtainPellet(mgr, p2); }
 
-/*
- * --INFO--
- * Address:	801E75C4
- * Size:	000030
+/**
+ * @note Address: 0x801E75C4
+ * @note Size: 0x30
  */
 void PlayData::losePellet(Game::BasePelletMgr* mgr, int p2) { mZukanStat->losePellet(mgr, p2); }
 
-/*
- * --INFO--
- * Address:	801E75F4
- * Size:	000320
+/**
+ * @note Address: 0x801E75F4
+ * @note Size: 0x320
  */
 void PlayData::obtainPellet_Main(Game::Pellet* pellet)
 {
@@ -1435,10 +1380,9 @@ void PlayData::obtainPellet_Main(Game::Pellet* pellet)
 	mPokoCount += pellet->mConfig->mParams.mMoney.mData;
 }
 
-/*
- * --INFO--
- * Address:	801E7914
- * Size:	000284
+/**
+ * @note Address: 0x801E7914
+ * @note Size: 0x284
  */
 void PlayData::obtainPellet_Cave(Game::Pellet* pellet)
 {
@@ -1463,24 +1407,21 @@ void PlayData::obtainPellet_Cave(Game::Pellet* pellet)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void PlayData::confirmCaveCropMemory() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000150
+/**
+ * @note Address: N/A
+ * @note Size: 0x150
  */
 // bool PlayData::isPelletEverGot(Pellet*) { }
 
-/*
- * --INFO--
- * Address:	801E7B98
- * Size:	000104
+/**
+ * @note Address: 0x801E7B98
+ * @note Size: 0x104
  */
 bool PlayData::isPelletEverGot(u8 type, u8 id)
 {
@@ -1495,10 +1436,9 @@ bool PlayData::isPelletEverGot(u8 type, u8 id)
 	JUT_PANICLINE(1406, "otakara or item !");
 }
 
-/*
- * --INFO--
- * Address:	801E7C9C
- * Size:	000128
+/**
+ * @note Address: 0x801E7C9C
+ * @note Size: 0x128
  */
 bool PlayData::isPelletZukanVisible(int id)
 {
@@ -1522,10 +1462,9 @@ bool PlayData::isPelletZukanVisible(int id)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	801E7DC4
- * Size:	000138
+/**
+ * @note Address: 0x801E7DC4
+ * @note Size: 0x138
  */
 bool PlayData::isPelletZukanWhatsNew(int id)
 {
@@ -1551,10 +1490,9 @@ bool PlayData::isPelletZukanWhatsNew(int id)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	801E7EFC
- * Size:	0001BC
+/**
+ * @note Address: 0x801E7EFC
+ * @note Size: 0x1BC
  */
 bool PlayData::hasPelletZukanWhatsNew()
 {
@@ -1575,10 +1513,9 @@ bool PlayData::hasPelletZukanWhatsNew()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	801E80B8
- * Size:	0001A8
+/**
+ * @note Address: 0x801E80B8
+ * @note Size: 0x1A8
  */
 void PlayData::setPelletZukanOutOfDateAll()
 {
@@ -1599,10 +1536,9 @@ void PlayData::setPelletZukanOutOfDateAll()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C4
+/**
+ * @note Address: N/A
+ * @note Size: 0xC4
  */
 int PlayData::getTekiCarcassMoney(int id)
 {
@@ -1610,10 +1546,9 @@ int PlayData::getTekiCarcassMoney(int id)
 	JUT_ASSERTLINE(300, id > 0, "no tekiname for %d\n", id);
 }
 
-/*
- * --INFO--
- * Address:	801E8260
- * Size:	00007C
+/**
+ * @note Address: 0x801E8260
+ * @note Size: 0x7C
  */
 int PlayData::getGroundOtakaraNum(int id)
 {
@@ -1621,10 +1556,9 @@ int PlayData::getGroundOtakaraNum(int id)
 	return mGroundOtakaraCollected[id];
 }
 
-/*
- * --INFO--
- * Address:	801E82DC
- * Size:	000078
+/**
+ * @note Address: 0x801E82DC
+ * @note Size: 0x78
  */
 int PlayData::getGroundOtakaraMax(int id)
 {
@@ -1633,10 +1567,9 @@ int PlayData::getGroundOtakaraMax(int id)
 	return info->mGroundOtakaraMax;
 }
 
-/*
- * --INFO--
- * Address:	801E8354
- * Size:	000084
+/**
+ * @note Address: 0x801E8354
+ * @note Size: 0x84
  */
 void PlayData::incGroundOtakara(int index)
 {
@@ -1644,10 +1577,9 @@ void PlayData::incGroundOtakara(int index)
 	mGroundOtakaraCollected[index]++;
 }
 
-/*
- * --INFO--
- * Address:	801E83D8
- * Size:	000078
+/**
+ * @note Address: 0x801E83D8
+ * @note Size: 0x78
  */
 int PlayData::getDopeCount(int sprayIndex)
 {
@@ -1655,10 +1587,9 @@ int PlayData::getDopeCount(int sprayIndex)
 	return mSprayCount[sprayIndex];
 }
 
-/*
- * --INFO--
- * Address:	801E8450
- * Size:	000084
+/**
+ * @note Address: 0x801E8450
+ * @note Size: 0x84
  */
 void PlayData::setDopeCount(int sprayIndex, int sprayCount)
 {
@@ -1666,10 +1597,9 @@ void PlayData::setDopeCount(int sprayIndex, int sprayCount)
 	mSprayCount[sprayIndex] = sprayCount;
 }
 
-/*
- * --INFO--
- * Address:	801E84D4
- * Size:	000080
+/**
+ * @note Address: 0x801E84D4
+ * @note Size: 0x80
  */
 void PlayData::incDopeCount(int sprayIndex)
 {
@@ -1677,10 +1607,9 @@ void PlayData::incDopeCount(int sprayIndex)
 	mSprayCount[sprayIndex]++;
 }
 
-/*
- * --INFO--
- * Address:	801E8554
- * Size:	000084
+/**
+ * @note Address: 0x801E8554
+ * @note Size: 0x84
  */
 bool PlayData::hasDope(int sprayIndex)
 {
@@ -1692,10 +1621,9 @@ bool PlayData::hasDope(int sprayIndex)
 	return (0 < mSprayCount[sprayIndex]);
 }
 
-/*
- * --INFO--
- * Address:	801E85D8
- * Size:	000078
+/**
+ * @note Address: 0x801E85D8
+ * @note Size: 0x78
  */
 int PlayData::getDopeFruitCount(int sprayIndex)
 {
@@ -1707,10 +1635,9 @@ int PlayData::getDopeFruitCount(int sprayIndex)
 	return mBerryCount[sprayIndex];
 }
 
-/*
- * --INFO--
- * Address:	801E8650
- * Size:	0000B4
+/**
+ * @note Address: 0x801E8650
+ * @note Size: 0xB4
  */
 bool PlayData::addDopeFruit(int sprayIndex)
 {
@@ -1730,10 +1657,9 @@ bool PlayData::addDopeFruit(int sprayIndex)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E8704
- * Size:	0000C4
+/**
+ * @note Address: 0x801E8704
+ * @note Size: 0xC4
  */
 void PlayData::useDope(int sprayIndex)
 {
@@ -1747,10 +1673,9 @@ void PlayData::useDope(int sprayIndex)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E87C8
- * Size:	0000DC
+/**
+ * @note Address: 0x801E87C8
+ * @note Size: 0xDC
  */
 bool PlayData::isCaveFirstTime(int courseIndex, ID32& caveID)
 {
@@ -1771,17 +1696,15 @@ bool PlayData::isCaveFirstTime(int courseIndex, ID32& caveID)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000CC
+/**
+ * @note Address: N/A
+ * @note Size: 0xCC
  */
 bool PlayData::isCaveFirstReturn(int, ID32&) { }
 
-/*
- * --INFO--
- * Address:	801E88A4
- * Size:	0000BC
+/**
+ * @note Address: 0x801E88A4
+ * @note Size: 0xBC
  */
 void PlayData::setCaveVisit(int courseIndex, ID32& caveID)
 {
@@ -1801,10 +1724,9 @@ void PlayData::setCaveVisit(int courseIndex, ID32& caveID)
 	JUT_PANICLINE(1680, "no cave info : course(%d):[%s]\n", courseIndex, caveID.getStr());
 }
 
-/*
- * --INFO--
- * Address:	801E8960
- * Size:	0000B8
+/**
+ * @note Address: 0x801E8960
+ * @note Size: 0xB8
  */
 void PlayData::incCaveOtakara(int courseIndex, ID32& caveID)
 {
@@ -1828,10 +1750,9 @@ void PlayData::incCaveOtakara(int courseIndex, ID32& caveID)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E8A18
- * Size:	0000B8
+/**
+ * @note Address: 0x801E8A18
+ * @note Size: 0xB8
  */
 int PlayData::getOtakaraNum_Course_CaveID(int courseIndex, ID32& caveID)
 {
@@ -1851,10 +1772,9 @@ int PlayData::getOtakaraNum_Course_CaveID(int courseIndex, ID32& caveID)
 	return -1;
 }
 
-/*
- * --INFO--
- * Address:	801E8AD0
- * Size:	000048
+/**
+ * @note Address: 0x801E8AD0
+ * @note Size: 0x48
  */
 int PlayData::getOtakaraMax_Course_CaveID(int courseIndex, ID32& caveID)
 {
@@ -1866,10 +1786,9 @@ int PlayData::getOtakaraMax_Course_CaveID(int courseIndex, ID32& caveID)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E8B18
- * Size:	0000D4
+/**
+ * @note Address: 0x801E8B18
+ * @note Size: 0xD4
  */
 void PlayData::initCaveOtakaras()
 {
@@ -1957,10 +1876,9 @@ lbl_801E8BE0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801E8BEC
- * Size:	000060
+/**
+ * @note Address: 0x801E8BEC
+ * @note Size: 0x60
  */
 void PlayData::read_CaveOtakara(Stream& ram)
 {
@@ -2000,10 +1918,9 @@ lbl_801E8C30:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801E8C4C
- * Size:	000078
+/**
+ * @note Address: 0x801E8C4C
+ * @note Size: 0x78
  */
 void PlayData::write_CaveOtakara(Stream& ram)
 {
@@ -2051,10 +1968,9 @@ lbl_801E8CA0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801E8CC4
- * Size:	0000D8
+/**
+ * @note Address: 0x801E8CC4
+ * @note Size: 0xD8
  */
 void PlayData::CaveOtakara::write(Stream& output)
 {
@@ -2131,10 +2047,9 @@ lbl_801E8D7C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801E8D9C
- * Size:	0000C0
+/**
+ * @note Address: 0x801E8D9C
+ * @note Size: 0xC0
  */
 void PlayData::CaveOtakara::read(Stream& input)
 {
@@ -2209,10 +2124,9 @@ const float repay_levs[10] = {
 };
 } // namespace
 
-/*
- * --INFO--
- * Address:	801E8E5C
- * Size:	000124
+/**
+ * @note Address: 0x801E8E5C
+ * @note Size: 0x124
  */
 int PlayData::getRepayLevel()
 {
@@ -2323,10 +2237,9 @@ lbl_801E8F78:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801E8F80
- * Size:	000044
+/**
+ * @note Address: 0x801E8F80
+ * @note Size: 0x44
  */
 f32 PlayData::getRepayLevelPercent(int state)
 {
@@ -2337,10 +2250,9 @@ f32 PlayData::getRepayLevelPercent(int state)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E8FC4
- * Size:	000160
+/**
+ * @note Address: 0x801E8FC4
+ * @note Size: 0x160
  */
 bool PlayData::checkRepayLevelFirstClear()
 {
@@ -2469,10 +2381,9 @@ lbl_801E911C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801E9124
- * Size:	000174
+/**
+ * @note Address: 0x801E9124
+ * @note Size: 0x174
  */
 void PlayData::experienceRepayLevelFirstClear()
 {
@@ -2606,10 +2517,9 @@ lbl_801E9290:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801E9298
- * Size:	000064
+/**
+ * @note Address: 0x801E9298
+ * @note Size: 0x64
  */
 void PlayData::initLimitGens()
 {
@@ -2620,10 +2530,9 @@ void PlayData::initLimitGens()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E92FC
- * Size:	00006C
+/**
+ * @note Address: 0x801E92FC
+ * @note Size: 0x6C
  */
 void PlayData::initCourses(bool type)
 {
@@ -2640,10 +2549,9 @@ void PlayData::initCourses(bool type)
 	mBitfieldPerCourse[0] = 3; // valley of repose always unlocked
 }
 
-/*
- * --INFO--
- * Address:	801E9368
- * Size:	000094
+/**
+ * @note Address: 0x801E9368
+ * @note Size: 0x94
  */
 void PlayData::openCourse(int index)
 {
@@ -2653,10 +2561,9 @@ void PlayData::openCourse(int index)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E93FC
- * Size:	000084
+/**
+ * @note Address: 0x801E93FC
+ * @note Size: 0x84
  */
 void PlayData::visitCourse(int index)
 {
@@ -2666,10 +2573,9 @@ void PlayData::visitCourse(int index)
 
 bool PlayData::closeCourse(int) { }
 
-/*
- * --INFO--
- * Address:	801E9480
- * Size:	000080
+/**
+ * @note Address: 0x801E9480
+ * @note Size: 0x80
  */
 bool PlayData::courseOpen(int index)
 {
@@ -2677,10 +2583,9 @@ bool PlayData::courseOpen(int index)
 	return (mBitfieldPerCourse[index] & PDCF_Open);
 }
 
-/*
- * --INFO--
- * Address:	801E9500
- * Size:	0000E4
+/**
+ * @note Address: 0x801E9500
+ * @note Size: 0xE4
  */
 bool PlayData::courseJustOpen(int index)
 {
@@ -2765,10 +2670,9 @@ lbl_801E95CC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801E95E4
- * Size:	0000DC
+/**
+ * @note Address: 0x801E95E4
+ * @note Size: 0xDC
  */
 bool PlayData::courseFirstTime(int index)
 {
@@ -2850,10 +2754,9 @@ lbl_801E96A8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801E96C0
- * Size:	000080
+/**
+ * @note Address: 0x801E96C0
+ * @note Size: 0x80
  */
 bool PlayData::courseVisited(int index)
 {
@@ -2861,10 +2764,9 @@ bool PlayData::courseVisited(int index)
 	return mBitfieldPerCourse[index] & PDCF_Visited;
 }
 
-/*
- * --INFO--
- * Address:	801E9740
- * Size:	000084
+/**
+ * @note Address: 0x801E9740
+ * @note Size: 0x84
  */
 CaveSaveData::CaveSaveData()
     : mCurrentCaveID()
@@ -2880,10 +2782,9 @@ CaveSaveData::CaveSaveData()
 	mWaterwraithTimer   = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	801E97C4
- * Size:	000068
+/**
+ * @note Address: 0x801E97C4
+ * @note Size: 0x68
  */
 void CaveSaveData::clear()
 {
@@ -2896,10 +2797,9 @@ void CaveSaveData::clear()
 	mWaterwraithTimer   = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	801E982C
- * Size:	000194
+/**
+ * @note Address: 0x801E982C
+ * @note Size: 0x194
  */
 bool PlayData::doneWorldMapEffect()
 {
@@ -2920,10 +2820,9 @@ bool PlayData::doneWorldMapEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E99C0
- * Size:	00007C
+/**
+ * @note Address: 0x801E99C0
+ * @note Size: 0x7C
  */
 int PlayData::getGroundOtakaraNum_Old(int index)
 {
@@ -2931,10 +2830,9 @@ int PlayData::getGroundOtakaraNum_Old(int index)
 	return mGroundOtakaraCollectedOld[index];
 }
 
-/*
- * --INFO--
- * Address:	801E9A3C
- * Size:	0000B8
+/**
+ * @note Address: 0x801E9A3C
+ * @note Size: 0xB8
  */
 int PlayData::getOtakaraNum_Course_CaveID_Old(int courseIndex, ID32& caveID)
 {
@@ -2954,17 +2852,15 @@ int PlayData::getOtakaraNum_Course_CaveID_Old(int courseIndex, ID32& caveID)
 	return -1;
 }
 
-/*
- * --INFO--
- * Address:	801E9AF4
- * Size:	000008
+/**
+ * @note Address: 0x801E9AF4
+ * @note Size: 0x8
  */
 int PlayData::getMoney_Old() { return mPokoCountOld; }
 
-/*
- * --INFO--
- * Address:	801E9AFC
- * Size:	0000A4
+/**
+ * @note Address: 0x801E9AFC
+ * @note Size: 0xA4
  */
 bool PlayData::isCaveFirstTime_Old(int courseIndex, ID32& caveID)
 {
@@ -2982,10 +2878,9 @@ bool PlayData::isCaveFirstTime_Old(int courseIndex, ID32& caveID)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	801E9BA0
- * Size:	0000D4
+/**
+ * @note Address: 0x801E9BA0
+ * @note Size: 0xD4
  */
 void PlayData::read_CaveOtakara_Old(Stream& ram)
 {
@@ -3061,10 +2956,9 @@ lbl_801E9C58:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801E9C74
- * Size:	000118
+/**
+ * @note Address: 0x801E9C74
+ * @note Size: 0x118
  */
 void PlayData::write_CaveOtakara_Old(Stream& ram)
 {
@@ -3157,10 +3051,9 @@ lbl_801E9D68:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801E9D8C
- * Size:	000078
+/**
+ * @note Address: 0x801E9D8C
+ * @note Size: 0x78
  */
 int PlayData::getPikminCount_Today(int pikminColor)
 {
@@ -3168,10 +3061,9 @@ int PlayData::getPikminCount_Today(int pikminColor)
 	return mPikminToday[pikminColor];
 }
 
-/*
- * --INFO--
- * Address:	801E9E04
- * Size:	000078
+/**
+ * @note Address: 0x801E9E04
+ * @note Size: 0x78
  */
 int PlayData::getPikminCount_Yesterday(int pikminColor)
 {
@@ -3179,10 +3071,9 @@ int PlayData::getPikminCount_Yesterday(int pikminColor)
 	return mPikminYesterday[pikminColor];
 }
 
-/*
- * --INFO--
- * Address:	801E9E7C
- * Size:	000108
+/**
+ * @note Address: 0x801E9E7C
+ * @note Size: 0x108
  */
 void PlayData::setPikminCounts_Today()
 {
@@ -3212,10 +3103,9 @@ void PlayData::setPikminCounts_Today()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E9F84
- * Size:	000034
+/**
+ * @note Address: 0x801E9F84
+ * @note Size: 0x34
  */
 void PlayData::setPikminCounts_Yesterday()
 {

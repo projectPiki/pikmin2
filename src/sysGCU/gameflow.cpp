@@ -52,10 +52,9 @@ static SectionInfo sSectionInfo[] = {
 } // namespace
 u32 GameFlow::mActiveSectionFlag = Boot;
 
-/*
- * --INFO--
- * Address:	804241A4
- * Size:	00002C
+/**
+ * @note Address: 0x804241A4
+ * @note Size: 0x2C
  */
 GameFlow::GameFlow()
 {
@@ -63,18 +62,16 @@ GameFlow::GameFlow()
 	mSection           = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  * Matches size.
  */
 GameFlow::~GameFlow() { }
 
-/*
- * --INFO--
- * Address:	804241D0
- * Size:	0000DC
+/**
+ * @note Address: 0x804241D0
+ * @note Size: 0xDC
  */
 void GameFlow::run()
 {
@@ -83,10 +80,9 @@ void GameFlow::run()
 	}
 }
 
-/*
- * --INFO--
- * Address:	804242AC
- * Size:	0000C0
+/**
+ * @note Address: 0x804242AC
+ * @note Size: 0xC0
  */
 void GameFlow::setSection()
 {
@@ -107,10 +103,9 @@ void GameFlow::setSection()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8042436C
- * Size:	0000B0
+/**
+ * @note Address: 0x8042436C
+ * @note Size: 0xB0
  */
 SectionInfo* GameFlow::getSectionInfo(int id)
 {
@@ -128,10 +123,9 @@ SectionInfo* GameFlow::getSectionInfo(int id)
 	return sectionInfo;
 }
 
-/*
- * --INFO--
- * Address:	8042441C
- * Size:	000148
+/**
+ * @note Address: 0x8042441C
+ * @note Size: 0x148
  */
 ISection* GameFlow::createSection(JKRHeap* heap)
 {

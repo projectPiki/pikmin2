@@ -5,10 +5,9 @@
 #include "trig.h"
 
 namespace Game {
-/*
- * --INFO--
- * Address:	802A9E5C
- * Size:	000070
+/**
+ * @note Address: 0x802A9E5C
+ * @note Size: 0x70
  */
 IKSystemBase::IKSystemBase()
 {
@@ -23,10 +22,9 @@ IKSystemBase::IKSystemBase()
 	mParams = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	802A9ECC
- * Size:	000030
+/**
+ * @note Address: 0x802A9ECC
+ * @note Size: 0x30
  */
 void IKSystemBase::init()
 {
@@ -42,24 +40,21 @@ void IKSystemBase::init()
 	mParams = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	802A9EFC
- * Size:	000010
+/**
+ * @note Address: 0x802A9EFC
+ * @note Size: 0x10
  */
 void IKSystemBase::setLegJointMatrix(int index, Matrixf* jointMtx) { mLegJointMatrices[index] = jointMtx; }
 
-/*
- * --INFO--
- * Address:	802A9F0C
- * Size:	000008
+/**
+ * @note Address: 0x802A9F0C
+ * @note Size: 0x8
  */
 void IKSystemBase::setParameters(IKSystemParms* params) { mParams = params; }
 
-/*
- * --INFO--
- * Address:	802A9F14
- * Size:	0000F0
+/**
+ * @note Address: 0x802A9F14
+ * @note Size: 0xF0
  */
 void IKSystemBase::startProgramedIK()
 {
@@ -80,10 +75,9 @@ void IKSystemBase::startProgramedIK()
 	mDistance2 = midPos.distance(mTargetPosition);
 }
 
-/*
- * --INFO--
- * Address:	802AA004
- * Size:	0000F4
+/**
+ * @note Address: 0x802AA004
+ * @note Size: 0xF4
  */
 void IKSystemBase::startMovePosition(Vector3f& targetMove)
 {
@@ -112,31 +106,27 @@ void IKSystemBase::startMovePosition(Vector3f& targetMove)
 	mIkPositions[MIDDLE].y += mParams->mHeightOffset;
 }
 
-/*
- * --INFO--
- * Address:	802AA0F8
- * Size:	00000C
+/**
+ * @note Address: 0x802AA0F8
+ * @note Size: 0xC
  */
 void IKSystemBase::startBlendMotion() { mIsBlendMotionActive = true; }
 
-/*
- * --INFO--
- * Address:	802AA104
- * Size:	00000C
+/**
+ * @note Address: 0x802AA104
+ * @note Size: 0xC
  */
 void IKSystemBase::finishBlendMotion() { mIsBlendMotionActive = false; }
 
-/*
- * --INFO--
- * Address:	802AA110
- * Size:	00000C
+/**
+ * @note Address: 0x802AA110
+ * @note Size: 0xC
  */
 void IKSystemBase::checkJointScaleOn() { mScaleJoints = true; }
 
-/*
- * --INFO--
- * Address:	802AA11C
- * Size:	00007C
+/**
+ * @note Address: 0x802AA11C
+ * @note Size: 0x7C
  */
 void IKSystemBase::update()
 {
@@ -155,10 +145,9 @@ void IKSystemBase::update()
 	mWasOnGround = mIsOnGround;
 }
 
-/*
- * --INFO--
- * Address:	802AA198
- * Size:	0000F8
+/**
+ * @note Address: 0x802AA198
+ * @note Size: 0xF8
  */
 void IKSystemBase::makeMatrix()
 {
@@ -180,10 +169,9 @@ void IKSystemBase::makeMatrix()
 	makeBottomMatrix(topPos);
 }
 
-/*
- * --INFO--
- * Address:	802AA290
- * Size:	0000C4
+/**
+ * @note Address: 0x802AA290
+ * @note Size: 0xC4
  */
 void IKSystemBase::moveBottomJointPosition()
 {
@@ -199,24 +187,21 @@ void IKSystemBase::moveBottomJointPosition()
 	NsMathExp::calcLagrange(mIkPositions, mMoveRatio, mTargetPosition);
 }
 
-/*
- * --INFO--
- * Address:	802AA354
- * Size:	000008
+/**
+ * @note Address: 0x802AA354
+ * @note Size: 0x8
  */
 bool IKSystemBase::onGround() { return mIsOnGround; }
 
-/*
- * --INFO--
- * Address:	802AA35C
- * Size:	00001C
+/**
+ * @note Address: 0x802AA35C
+ * @note Size: 0x1C
  */
 Vector3f IKSystemBase::getBottomJointPosition() { return mTargetPosition; }
 
-/*
- * --INFO--
- * Address:	802AA378
- * Size:	00004C
+/**
+ * @note Address: 0x802AA378
+ * @note Size: 0x4C
  */
 Vector3f IKSystemBase::getCollisionCentre()
 {
@@ -228,17 +213,15 @@ Vector3f IKSystemBase::getCollisionCentre()
 	return collVec;
 }
 
-/*
- * --INFO--
- * Address:	802AA3C4
- * Size:	000008
+/**
+ * @note Address: 0x802AA3C4
+ * @note Size: 0x8
  */
 f32 IKSystemBase::getMoveRatio() { return mMoveRatio; }
 
-/*
- * --INFO--
- * Address:	802AA3CC
- * Size:	000280
+/**
+ * @note Address: 0x802AA3CC
+ * @note Size: 0x280
  */
 bool IKSystemBase::onGroundPosition()
 {
@@ -281,10 +264,9 @@ bool IKSystemBase::onGroundPosition()
 	return isNewTargetHeight;
 }
 
-/*
- * --INFO--
- * Address:	802AA64C
- * Size:	000084
+/**
+ * @note Address: 0x802AA64C
+ * @note Size: 0x84
  */
 void IKSystemBase::makeBendRatio()
 {
@@ -298,10 +280,9 @@ void IKSystemBase::makeBendRatio()
 	mBendRatio = mParams->_28 * boundAboveBelow(ratio, 0.0f, 1.0f);
 }
 
-/*
- * --INFO--
- * Address:	802AA6D0
- * Size:	00009C
+/**
+ * @note Address: 0x802AA6D0
+ * @note Size: 0x9C
  */
 Vector3f IKSystemBase::getMiddleDirection(Vector3f& topPos)
 {
@@ -318,10 +299,9 @@ Vector3f IKSystemBase::getMiddleDirection(Vector3f& topPos)
 	return middleDir;
 }
 
-/*
- * --INFO--
- * Address:	802AA76C
- * Size:	000294
+/**
+ * @note Address: 0x802AA76C
+ * @note Size: 0x294
  */
 void IKSystemBase::setTopJointRotation(Vector3f& topPos, Vector3f& jointPos)
 {
@@ -363,10 +343,9 @@ void IKSystemBase::setTopJointRotation(Vector3f& topPos, Vector3f& jointPos)
 	mLegJointMatrices[TOP]->setBasis(2, zVec);
 }
 
-/*
- * --INFO--
- * Address:	802AAA00
- * Size:	000294
+/**
+ * @note Address: 0x802AAA00
+ * @note Size: 0x294
  */
 void IKSystemBase::setMiddleJointRotation(Vector3f& topPos, Vector3f& jointPos)
 {
@@ -408,10 +387,9 @@ void IKSystemBase::setMiddleJointRotation(Vector3f& topPos, Vector3f& jointPos)
 	mLegJointMatrices[MIDDLE]->setBasis(2, zVec);
 }
 
-/*
- * --INFO--
- * Address:	802AAC94
- * Size:	000100
+/**
+ * @note Address: 0x802AAC94
+ * @note Size: 0x100
  */
 void IKSystemBase::makeBottomMatrix(Vector3f& pos)
 {

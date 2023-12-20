@@ -11,10 +11,9 @@ static const char name[] = "ebiScreenTitleMenu";
 namespace ebi {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	803D9CE0
- * Size:	000928
+/**
+ * @note Address: 0x803D9CE0
+ * @note Size: 0x928
  */
 void TTitleMenu::doSetArchive(JKRArchive* arc)
 {
@@ -141,10 +140,9 @@ void TTitleMenu::doSetArchive(JKRArchive* arc)
 	sys->heapStatusEnd("TTitleMenu::setArchive");
 }
 
-/*
- * --INFO--
- * Address:	803DA608
- * Size:	00021C
+/**
+ * @note Address: 0x803DA608
+ * @note Size: 0x21C
  */
 void TTitleMenu::doOpenScreen(ArgOpen* arg)
 {
@@ -196,10 +194,9 @@ void TTitleMenu::doOpenScreen(ArgOpen* arg)
 	mMainScreen->setAlpha(255);
 }
 
-/*
- * --INFO--
- * Address:	803DA824
- * Size:	0001C4
+/**
+ * @note Address: 0x803DA824
+ * @note Size: 0x1C4
  */
 void TTitleMenu::doInitWaitState()
 {
@@ -236,10 +233,9 @@ void TTitleMenu::doInitWaitState()
 	mMenuCloseCounterMax = count;
 }
 
-/*
- * --INFO--
- * Address:	803DA9E8
- * Size:	000070
+/**
+ * @note Address: 0x803DA9E8
+ * @note Size: 0x70
  */
 void TTitleMenu::doCloseScreen(ArgClose*)
 {
@@ -254,10 +250,9 @@ void TTitleMenu::doCloseScreen(ArgClose*)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803DAA58
- * Size:	000084
+/**
+ * @note Address: 0x803DAA58
+ * @note Size: 0x84
  */
 bool TTitleMenu::doUpdateStateOpen()
 {
@@ -274,10 +269,9 @@ bool TTitleMenu::doUpdateStateOpen()
 	return u8(anm->isFinish() != 0);
 }
 
-/*
- * --INFO--
- * Address:	803DAADC
- * Size:	000470
+/**
+ * @note Address: 0x803DAADC
+ * @note Size: 0x470
  */
 bool TTitleMenu::doUpdateStateWait()
 {
@@ -344,10 +338,9 @@ bool TTitleMenu::doUpdateStateWait()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803DAF4C
- * Size:	0000D4
+/**
+ * @note Address: 0x803DAF4C
+ * @note Size: 0xD4
  */
 bool TTitleMenu::doUpdateStateClose()
 {
@@ -372,10 +365,9 @@ bool TTitleMenu::doUpdateStateClose()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803DB020
- * Size:	000074
+/**
+ * @note Address: 0x803DB020
+ * @note Size: 0x74
  */
 void TTitleMenu::doDraw()
 {
@@ -387,17 +379,15 @@ void TTitleMenu::doDraw()
 	mMainScreen->draw(*gfx, *graf);
 }
 
-/*
- * --INFO--
- * Address:	803DB094
- * Size:	000008
+/**
+ * @note Address: 0x803DB094
+ * @note Size: 0x8
  */
 void TTitleMenu::setController(Controller* a1) { mController = a1; }
 
-/*
- * --INFO--
- * Address:	803DB09C
- * Size:	000060
+/**
+ * @note Address: 0x803DB09C
+ * @note Size: 0x60
  */
 bool TTitleMenu::openMenuSet(ArgOpen* arg)
 {
@@ -408,24 +398,21 @@ bool TTitleMenu::openMenuSet(ArgOpen* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803DB0FC
- * Size:	000008
+/**
+ * @note Address: 0x803DB0FC
+ * @note Size: 0x8
  */
 bool TTitleMenu::isDecide() { return mDecidedMenuOption; }
 
-/*
- * --INFO--
- * Address:	803DB104
- * Size:	000008
+/**
+ * @note Address: 0x803DB104
+ * @note Size: 0x8
  */
 bool TTitleMenu::isCancel() { return mDoCloseMenu; }
 
-/*
- * --INFO--
- * Address:	803DB10C
- * Size:	00003C
+/**
+ * @note Address: 0x803DB10C
+ * @note Size: 0x3C
  */
 void TTitleMenu::showPika_(long id)
 {
@@ -434,10 +421,9 @@ void TTitleMenu::showPika_(long id)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803DB148
- * Size:	00003C
+/**
+ * @note Address: 0x803DB148
+ * @note Size: 0x3C
  */
 void TTitleMenu::hidePika_(long id)
 {

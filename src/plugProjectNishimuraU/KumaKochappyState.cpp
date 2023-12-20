@@ -5,10 +5,9 @@
 namespace Game {
 namespace KumaKochappy {
 
-/*
- * --INFO--
- * Address:	802E4EE8
- * Size:	00027C
+/**
+ * @note Address: 0x802E4EE8
+ * @note Size: 0x27C
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -22,10 +21,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateWalkPath);
 }
 
-/*
- * --INFO--
- * Address:	802E5164
- * Size:	000050
+/**
+ * @note Address: 0x802E5164
+ * @note Size: 0x50
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -34,10 +32,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(KUMAKOCHAPPYANIM_Dead, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802E51B4
- * Size:	000044
+/**
+ * @note Address: 0x802E51B4
+ * @note Size: 0x44
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -46,17 +43,15 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E51F8
- * Size:	000004
+/**
+ * @note Address: 0x802E51F8
+ * @note Size: 0x4
  */
 void StateDead::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802E51FC
- * Size:	000058
+/**
+ * @note Address: 0x802E51FC
+ * @note Size: 0x58
  */
 void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -66,10 +61,9 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(KUMAKOCHAPPYANIM_Press, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802E5254
- * Size:	000044
+/**
+ * @note Address: 0x802E5254
+ * @note Size: 0x44
  */
 void StatePress::exec(EnemyBase* enemy)
 {
@@ -78,17 +72,15 @@ void StatePress::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E5298
- * Size:	000004
+/**
+ * @note Address: 0x802E5298
+ * @note Size: 0x4
  */
 void StatePress::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802E529C
- * Size:	000054
+/**
+ * @note Address: 0x802E529C
+ * @note Size: 0x54
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -100,10 +92,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	kuma->startMotion(KUMAKOCHAPPYANIM_Wait, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802E52F0
- * Size:	0003A8
+/**
+ * @note Address: 0x802E52F0
+ * @note Size: 0x3A8
  */
 void StateWait::exec(EnemyBase* enemy)
 {
@@ -404,10 +395,9 @@ lbl_802E5648:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802E5698
- * Size:	00003C
+/**
+ * @note Address: 0x802E5698
+ * @note Size: 0x3C
  */
 void StateWait::cleanup(EnemyBase* enemy)
 {
@@ -415,10 +405,9 @@ void StateWait::cleanup(EnemyBase* enemy)
 	enemy->setAnimSpeed(30.0f);
 }
 
-/*
- * --INFO--
- * Address:	802E56D4
- * Size:	000058
+/**
+ * @note Address: 0x802E56D4
+ * @note Size: 0x58
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -429,10 +418,9 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	kuma->startMotion(KUMAKOCHAPPYANIM_Attack, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802E572C
- * Size:	0004CC
+/**
+ * @note Address: 0x802E572C
+ * @note Size: 0x4CC
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
@@ -828,17 +816,15 @@ lbl_802E5BA8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802E5BF8
- * Size:	000024
+/**
+ * @note Address: 0x802E5BF8
+ * @note Size: 0x24
  */
 void StateAttack::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	802E5C1C
- * Size:	000044
+/**
+ * @note Address: 0x802E5C1C
+ * @note Size: 0x44
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -848,10 +834,9 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	kuma->startMotion(KUMAKOCHAPPYANIM_Flick, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802E5C60
- * Size:	0004D0
+/**
+ * @note Address: 0x802E5C60
+ * @note Size: 0x4D0
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
@@ -1249,17 +1234,15 @@ lbl_802E60E0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802E6130
- * Size:	000004
+/**
+ * @note Address: 0x802E6130
+ * @note Size: 0x4
  */
 void StateFlick::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802E6134
- * Size:	000034
+/**
+ * @note Address: 0x802E6134
+ * @note Size: 0x34
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1268,10 +1251,9 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	kuma->startMotion(KUMAKOCHAPPYANIM_Move, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802E6168
- * Size:	000538
+/**
+ * @note Address: 0x802E6168
+ * @note Size: 0x538
  */
 void StateWalk::exec(EnemyBase* enemy)
 {
@@ -1705,17 +1687,15 @@ lbl_802E665C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802E66A0
- * Size:	000028
+/**
+ * @note Address: 0x802E66A0
+ * @note Size: 0x28
  */
 void StateWalk::cleanup(EnemyBase* enemy) { enemy->setAnimSpeed(30.0f); }
 
-/*
- * --INFO--
- * Address:	802E66C8
- * Size:	00004C
+/**
+ * @note Address: 0x802E66C8
+ * @note Size: 0x4C
  */
 void StateWalkPath::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1725,10 +1705,9 @@ void StateWalkPath::init(EnemyBase* enemy, StateArg* stateArg)
 	kuma->setAnimSpeed(45.0f);
 }
 
-/*
- * --INFO--
- * Address:	802E6714
- * Size:	000534
+/**
+ * @note Address: 0x802E6714
+ * @note Size: 0x534
  */
 void StateWalkPath::exec(EnemyBase* enemy)
 {
@@ -2150,10 +2129,9 @@ lbl_802E6BF8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802E6C48
- * Size:	000028
+/**
+ * @note Address: 0x802E6C48
+ * @note Size: 0x28
  */
 void StateWalkPath::cleanup(EnemyBase* enemy) { enemy->setAnimSpeed(30.0f); }
 } // namespace KumaKochappy

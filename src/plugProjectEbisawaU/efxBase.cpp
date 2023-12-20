@@ -14,10 +14,9 @@
 namespace efx {
 TCallBack_StaticClipping TBase::mCallBack_StaticClipping;
 
-/*
- * --INFO--
- * Address:	803AE8B0
- * Size:	00003C
+/**
+ * @note Address: 0x803AE8B0
+ * @note Size: 0x3C
  */
 void TCallBack_StaticClipping::executeAfter(JPABaseEmitter* emitter)
 {
@@ -25,10 +24,9 @@ void TCallBack_StaticClipping::executeAfter(JPABaseEmitter* emitter)
 	particleMgr->cullByResFlg(emitter);
 }
 
-/*
- * --INFO--
- * Address:	803AE8EC
- * Size:	000048
+/**
+ * @note Address: 0x803AE8EC
+ * @note Size: 0x48
  */
 void TOneEmitter::add(Context* context)
 {
@@ -36,11 +34,10 @@ void TOneEmitter::add(Context* context)
 	mContext.add(context);
 }
 
-/*
+/**
  * @matchedSize
- * --INFO--
- * Address:	........
- * Size:	000024
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void TOneEmitter::del(Context* context)
 {
@@ -48,11 +45,10 @@ void TOneEmitter::del(Context* context)
 	context->del();
 }
 
-/*
+/**
  * executeAfter__Q23efx11TOneEmitterFP14JPABaseEmitter
- * --INFO--
- * Address:	803AE934
- * Size:	0000C0
+ * @note Address: 0x803AE934
+ * @note Size: 0xC0
  */
 void TOneEmitter::executeAfter(JPABaseEmitter* emitter)
 {
@@ -71,11 +67,10 @@ void TOneEmitter::executeAfter(JPABaseEmitter* emitter)
 	}
 }
 
-/*
+/**
  * create__Q23efx11TOneEmitterFPQ23efx3Arg
- * --INFO--
- * Address:	803AE9F4
- * Size:	0000A8
+ * @note Address: 0x803AE9F4
+ * @note Size: 0xA8
  */
 bool TOneEmitter::create(Arg*)
 {
@@ -91,11 +86,10 @@ bool TOneEmitter::create(Arg*)
 	return (mEmitter);
 }
 
-/*
+/**
  * fade__Q23efx11TOneEmitterFv
- * --INFO--
- * Address:	803AEA9C
- * Size:	000058
+ * @note Address: 0x803AEA9C
+ * @note Size: 0x58
  */
 void TOneEmitter::fade()
 {
@@ -106,11 +100,10 @@ void TOneEmitter::fade()
 	}
 }
 
-/*
+/**
  * forceKill__Q23efx11TOneEmitterFv
- * --INFO--
- * Address:	803AEAF4
- * Size:	000058
+ * @note Address: 0x803AEAF4
+ * @note Size: 0x58
  */
 void TOneEmitter::forceKill()
 {
@@ -121,11 +114,10 @@ void TOneEmitter::forceKill()
 	}
 }
 
-/*
+/**
  * add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
- * --INFO--
- * Address:	803AEB4C
- * Size:	000048
+ * @note Address: 0x803AEB4C
+ * @note Size: 0x48
  */
 void TOneEmitterChasePos::add(ContextChasePos* context)
 {
@@ -133,19 +125,17 @@ void TOneEmitterChasePos::add(ContextChasePos* context)
 	mContext.add(context);
 }
 
-/*
+/**
  * del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
- * --INFO--
- * Address:	803AEB94
- * Size:	000024
+ * @note Address: 0x803AEB94
+ * @note Size: 0x24
  */
 void TOneEmitterChasePos::del(ContextChasePos* context) { context->del(); }
 
-/*
+/**
  * create__Q23efx19TOneEmitterChasePosFPQ23efx3Arg
- * --INFO--
- * Address:	803AEBB8
- * Size:	0000A8
+ * @note Address: 0x803AEBB8
+ * @note Size: 0xA8
  */
 bool TOneEmitterChasePos::create(Arg* arg)
 {
@@ -161,11 +151,10 @@ bool TOneEmitterChasePos::create(Arg* arg)
 	return (mEmitter);
 }
 
-/*
+/**
  * executeAfter__Q23efx19TOneEmitterChasePosFP14JPABaseEmitter
- * --INFO--
- * Address:	803AEC60
- * Size:	0000AC
+ * @note Address: 0x803AEC60
+ * @note Size: 0xAC
  */
 void TOneEmitterChasePos::executeAfter(JPABaseEmitter* emitter)
 {
@@ -184,11 +173,10 @@ void TOneEmitterChasePos::executeAfter(JPABaseEmitter* emitter)
 	}
 }
 
-/*
+/**
  * fade__Q23efx19TOneEmitterChasePosFv
- * --INFO--
- * Address:	803AED0C
- * Size:	000058
+ * @note Address: 0x803AED0C
+ * @note Size: 0x58
  */
 void TOneEmitterChasePos::fade()
 {
@@ -199,11 +187,10 @@ void TOneEmitterChasePos::fade()
 	}
 }
 
-/*
+/**
  * forceKill__Q23efx19TOneEmitterChasePosFv
- * --INFO--
- * Address:	803AED64
- * Size:	000058
+ * @note Address: 0x803AED64
+ * @note Size: 0x58
  */
 void TOneEmitterChasePos::forceKill()
 {
@@ -214,11 +201,10 @@ void TOneEmitterChasePos::forceKill()
 	}
 }
 
-/*
+/**
  * create__Q23efx17TOneEmitterSimpleFPQ23efx3Arg
- * --INFO--
- * Address:	803AEDBC
- * Size:	0000BC
+ * @note Address: 0x803AEDBC
+ * @note Size: 0xBC
  */
 bool TOneEmitterSimple::create(Arg* arg)
 {
@@ -236,11 +222,10 @@ bool TOneEmitterSimple::create(Arg* arg)
 	return (mEmitter);
 }
 
-/*
+/**
  * executeAfter__Q23efx17TOneEmitterSimpleFP14JPABaseEmitter
- * --INFO--
- * Address:	803AEE78
- * Size:	00010C
+ * @note Address: 0x803AEE78
+ * @note Size: 0x10C
  */
 void TOneEmitterSimple::executeAfter(JPABaseEmitter* emitter)
 {
@@ -262,11 +247,10 @@ void TOneEmitterSimple::executeAfter(JPABaseEmitter* emitter)
 	_14 = 0;
 }
 
-/*
+/**
  * create__Q23efx8TSimple1FPQ23efx3Arg
- * --INFO--
- * Address:	803AEF84
- * Size:	000090
+ * @note Address: 0x803AEF84
+ * @note Size: 0x90
  */
 bool TSimple1::create(Arg* arg)
 {
@@ -282,11 +266,10 @@ bool TSimple1::create(Arg* arg)
 	return true;
 }
 
-/*
+/**
  * create__Q23efx8TSimple2FPQ23efx3Arg
- * --INFO--
- * Address:	803AF014
- * Size:	0000A8
+ * @note Address: 0x803AF014
+ * @note Size: 0xA8
  */
 bool TSimple2::create(Arg* arg)
 {
@@ -302,11 +285,10 @@ bool TSimple2::create(Arg* arg)
 	return true;
 }
 
-/*
+/**
  * create__Q23efx8TSimple3FPQ23efx3Arg
- * --INFO--
- * Address:	803AF0BC
- * Size:	0000A8
+ * @note Address: 0x803AF0BC
+ * @note Size: 0xA8
  */
 bool TSimple3::create(Arg* arg)
 {
@@ -322,11 +304,10 @@ bool TSimple3::create(Arg* arg)
 	return true;
 }
 
-/*
+/**
  * create__Q23efx8TSimple4FPQ23efx3Arg
- * --INFO--
- * Address:	803AF164
- * Size:	0000A8
+ * @note Address: 0x803AF164
+ * @note Size: 0xA8
  */
 bool TSimple4::create(Arg* arg)
 {
@@ -342,11 +323,10 @@ bool TSimple4::create(Arg* arg)
 	return true;
 }
 
-/*
+/**
  * create__Q23efx8TSimple5FPQ23efx3Arg
- * --INFO--
- * Address:	803AF20C
- * Size:	0000A8
+ * @note Address: 0x803AF20C
+ * @note Size: 0xA8
  */
 bool TSimple5::create(Arg* arg)
 {
@@ -362,13 +342,12 @@ bool TSimple5::create(Arg* arg)
 	return true;
 }
 
-/*
+/**
  * TODO: This and other TSimpleMtx* creates use a fabricated inlined method.
  *       Said method is incompatible with their respective parent classes' create().
  * create__Q23efx11TSimpleMtx1FPQ23efx3Arg
- * --INFO--
- * Address:	803AF2B4
- * Size:	0000E4
+ * @note Address: 0x803AF2B4
+ * @note Size: 0xE4
  */
 bool TSimpleMtx1::create(Arg* arg)
 {
@@ -382,11 +361,10 @@ bool TSimpleMtx1::create(Arg* arg)
 	return false;
 }
 
-/*
+/**
  * create__Q23efx11TSimpleMtx2FPQ23efx3Arg
- * --INFO--
- * Address:	803AF398
- * Size:	00011C
+ * @note Address: 0x803AF398
+ * @note Size: 0x11C
  */
 bool TSimpleMtx2::create(Arg*)
 {
@@ -400,11 +378,10 @@ bool TSimpleMtx2::create(Arg*)
 	return false;
 }
 
-/*
+/**
  * create__Q23efx11TSimpleMtx3FPQ23efx3Arg
- * --INFO--
- * Address:	803AF4B4
- * Size:	00011C
+ * @note Address: 0x803AF4B4
+ * @note Size: 0x11C
  */
 bool TSimpleMtx3::create(Arg*)
 {
@@ -418,11 +395,10 @@ bool TSimpleMtx3::create(Arg*)
 	return false;
 }
 
-/*
+/**
  * create__Q23efx11TSimpleMtx4FPQ23efx3Arg
- * --INFO--
- * Address:	803AF5D0
- * Size:	00011C
+ * @note Address: 0x803AF5D0
+ * @note Size: 0x11C
  */
 bool TSimpleMtx4::create(Arg* arg)
 {
@@ -436,11 +412,10 @@ bool TSimpleMtx4::create(Arg* arg)
 	return false;
 }
 
-/*
+/**
  * create__Q23efx5TSyncFPQ23efx3Arg
- * --INFO--
- * Address:	803AF6EC
- * Size:	0000DC
+ * @note Address: 0x803AF6EC
+ * @note Size: 0xDC
  */
 bool TSync::create(Arg* arg)
 {
@@ -464,11 +439,10 @@ bool TSync::create(Arg* arg)
 	return true;
 }
 
-/*
+/**
  * execute__Q23efx5TSyncFP14JPABaseEmitter
- * --INFO--
- * Address:	803AF7C8
- * Size:	00006C
+ * @note Address: 0x803AF7C8
+ * @note Size: 0x6C
  */
 void TSync::execute(JPABaseEmitter* emitter)
 {
@@ -484,11 +458,10 @@ void TSync::execute(JPABaseEmitter* emitter)
 	}
 }
 
-/*
+/**
  * executeAfter__Q23efx5TSyncFP14JPABaseEmitter
- * --INFO--
- * Address:	803AF834
- * Size:	000090
+ * @note Address: 0x803AF834
+ * @note Size: 0x90
  */
 void TSync::executeAfter(JPABaseEmitter* emitter)
 {
@@ -503,11 +476,10 @@ void TSync::executeAfter(JPABaseEmitter* emitter)
 	doExecuteAfter(emitter);
 }
 
-/*
+/**
  * forceKill__Q23efx5TSyncFv
- * --INFO--
- * Address:	803AF8C4
- * Size:	00003C
+ * @note Address: 0x803AF8C4
+ * @note Size: 0x3C
  */
 void TSync::forceKill()
 {
@@ -515,11 +487,10 @@ void TSync::forceKill()
 	mEmitter = nullptr;
 }
 
-/*
+/**
  * fade__Q23efx5TSyncFv
- * --INFO--
- * Address:	803AF900
- * Size:	000070
+ * @note Address: 0x803AF900
+ * @note Size: 0x70
  */
 void TSync::fade()
 {
@@ -534,11 +505,10 @@ void TSync::fade()
 	}
 }
 
-/*
+/**
  * doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter
- * --INFO--
- * Address:	803AF970
- * Size:	000078
+ * @note Address: 0x803AF970
+ * @note Size: 0x78
  */
 void TChasePos::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 {
@@ -549,11 +519,10 @@ void TChasePos::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 	emitter->mGlobalTrs.z = pos->z;
 }
 
-/*
+/**
  * doExecuteEmitterOperation__Q23efx13TChasePosYRotFP14JPABaseEmitter
- * --INFO--
- * Address:	803AF9E8
- * Size:	0000D8
+ * @note Address: 0x803AF9E8
+ * @note Size: 0xD8
  */
 void TChasePosYRot::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 {
@@ -567,11 +536,10 @@ void TChasePosYRot::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 	emitter->setGlobalRTMatrix(mtx.mMatrix.mtxView);
 }
 
-/*
+/**
  * doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
- * --INFO--
- * Address:	803AFAC0
- * Size:	00006C
+ * @note Address: 0x803AFAC0
+ * @note Size: 0x6C
  */
 void TChaseMtx::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 {
@@ -579,11 +547,10 @@ void TChaseMtx::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 	emitter->setGlobalRTMatrix(mMtx->mMatrix.mtxView);
 }
 
-/*
+/**
  * doExecuteEmitterOperation__Q23efx10TChaseMtxTFP14JPABaseEmitter
- * --INFO--
- * Address:	803AFB2C
- * Size:	000078
+ * @note Address: 0x803AFB2C
+ * @note Size: 0x78
  */
 void TChaseMtxT::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 {
@@ -593,11 +560,10 @@ void TChaseMtxT::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 	emitter->setGlobalTranslation(translation.x, translation.y, translation.z);
 }
 
-/*
+/**
  * doExecuteEmitterOperation__Q23efx12TChasePosPosFP14JPABaseEmitter
- * --INFO--
- * Address:	803AFBA4
- * Size:	0000DC
+ * @note Address: 0x803AFBA4
+ * @note Size: 0xDC
  */
 void TChasePosPos::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 {
@@ -610,11 +576,10 @@ void TChasePosPos::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 	emitter->setGlobalRTMatrix(mtxZ);
 }
 
-/*
+/**
  * See Sys::Tube::getAxisVector. Also look at e.g. ec0000f2 ec2100f2 ec4200f2 in general.
- * --INFO--
- * Address:	803AFC80
- * Size:	0000F8
+ * @note Address: 0x803AFC80
+ * @note Size: 0xF8
  */
 #pragma dont_inline on
 void makeMtxZAxisAlongPosPos(Mtx mtx, Vector3f& p2, Vector3f& p3)
@@ -708,11 +673,10 @@ lbl_803AFD10:
 }
 #pragma dont_inline reset
 
-/*
+/**
  * doExecuteEmitterOperation__Q23efx23TChasePosPosLocalZScaleFP14JPABaseEmitter
- * --INFO--
- * Address:	803AFD78
- * Size:	00014C
+ * @note Address: 0x803AFD78
+ * @note Size: 0x14C
  */
 void TChasePosPosLocalZScale::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 {
@@ -821,11 +785,10 @@ lbl_803AFE88:
 	*/
 }
 
-/*
+/**
  * doExecuteEmitterOperation__Q23efx23TChasePosPosLocalYScaleFP14JPABaseEmitter
- * --INFO--
- * Address:	803AFEC4
- * Size:	00014C
+ * @note Address: 0x803AFEC4
+ * @note Size: 0x14C
  */
 void TChasePosPosLocalYScale::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 {
@@ -933,11 +896,10 @@ lbl_803AFFD4:
 	*/
 }
 
-/*
+/**
  * __ct__Q23efx9TForever2FUsUs
- * --INFO--
- * Address:	803B0010
- * Size:	000098
+ * @note Address: 0x803B0010
+ * @note Size: 0x98
  */
 TForever2::TForever2(u16 effectID1, u16 effectID2)
 {
@@ -945,11 +907,10 @@ TForever2::TForever2(u16 effectID1, u16 effectID2)
 	mItems[1].mEffectID = effectID2;
 }
 
-/*
+/**
  * __ct__Q23efx9TForever3FUsUsUs
- * --INFO--
- * Address:	803B0100
- * Size:	0000A8
+ * @note Address: 0x803B0100
+ * @note Size: 0xA8
  */
 TForever3::TForever3(u16 effectID1, u16 effectID2, u16 effectID3)
 {
@@ -958,11 +919,10 @@ TForever3::TForever3(u16 effectID1, u16 effectID2, u16 effectID3)
 	mItems[2].mEffectID = effectID3;
 }
 
-/*
+/**
  * __ct__Q23efx9TForever4FUsUsUsUs
- * --INFO--
- * Address:	803B01A8
- * Size:	000098
+ * @note Address: 0x803B01A8
+ * @note Size: 0x98
  */
 TForever4::TForever4(u16 effectID1, u16 effectID2, u16 effectID3, u16 effectID4)
 {
@@ -972,11 +932,10 @@ TForever4::TForever4(u16 effectID1, u16 effectID2, u16 effectID3, u16 effectID4)
 	mItems[3].mEffectID = effectID4;
 }
 
-/*
+/**
  * __ct__Q23efx10TChasePos2FP10Vector3<f>UsUs
- * --INFO--
- * Address:	803B0240
- * Size:	0000AC
+ * @note Address: 0x803B0240
+ * @note Size: 0xAC
  */
 TChasePos2::TChasePos2(Vector3f* position, u16 effectID1, u16 effectID2)
 {
@@ -986,11 +945,10 @@ TChasePos2::TChasePos2(Vector3f* position, u16 effectID1, u16 effectID2)
 	mItems[1].mEffectID = effectID2;
 }
 
-/*
+/**
  * setPosptr__Q23efx10TChasePos2FP10Vector3<f>
- * --INFO--
- * Address:	803B0344
- * Size:	00000C
+ * @note Address: 0x803B0344
+ * @note Size: 0xC
  */
 void TChasePos2::setPosptr(Vector3f* position)
 {
@@ -998,11 +956,10 @@ void TChasePos2::setPosptr(Vector3f* position)
 	mItems[1].mPosition = position;
 }
 
-/*
+/**
  * __ct__Q23efx10TChasePos3FP10Vector3<f>UsUsUs
- * --INFO--
- * Address:	803B0350
- * Size:	0000A0
+ * @note Address: 0x803B0350
+ * @note Size: 0xA0
  */
 TChasePos3::TChasePos3(Vector3f* position, u16 effectID1, u16 effectID2, u16 effectID3)
 {
@@ -1014,12 +971,11 @@ TChasePos3::TChasePos3(Vector3f* position, u16 effectID1, u16 effectID2, u16 eff
 	mItems[2].mEffectID = effectID3;
 }
 
-/*
+/**
  * setPosptr__Q23efx10TChasePos3FP10Vector3<f>
  * @matchedSize
- * --INFO--
- * Address:	........
- * Size:	000010
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 void TChasePos3::setPosptr(Vector3f* position)
 {
@@ -1029,11 +985,10 @@ void TChasePos3::setPosptr(Vector3f* position)
 	mItems[2].mPosition = position;
 }
 
-/*
+/**
  * __ct__Q23efx10TChasePos4FP10Vector3<f>UsUsUsUs
- * --INFO--
- * Address:	803B03F0
- * Size:	0000AC
+ * @note Address: 0x803B03F0
+ * @note Size: 0xAC
  */
 TChasePos4::TChasePos4(Vector3f* position, u16 effectID1, u16 effectID2, u16 effectID3, u16 effectID4)
 {
@@ -1047,12 +1002,11 @@ TChasePos4::TChasePos4(Vector3f* position, u16 effectID1, u16 effectID2, u16 eff
 	mItems[3].mEffectID = effectID4;
 }
 
-/*
+/**
  * @matchedSize
  * setPosptr__Q23efx10TChasePos4FP10Vector3<f>
- * --INFO--
- * Address:	........
- * Size:	000014
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 void TChasePos4::setPosptr(Vector3f* position)
 {
@@ -1063,11 +1017,10 @@ void TChasePos4::setPosptr(Vector3f* position)
 	mItems[3].mPosition = position;
 }
 
-/*
+/**
  * __ct__Q23efx10TChaseMtx2FPA4_fUsUs
- * --INFO--
- * Address:	803B049C
- * Size:	0000AC
+ * @note Address: 0x803B049C
+ * @note Size: 0xAC
  */
 TChaseMtx2::TChaseMtx2(Mtx mtx, u16 effectID1, u16 effectID2)
 {
@@ -1077,11 +1030,10 @@ TChaseMtx2::TChaseMtx2(Mtx mtx, u16 effectID1, u16 effectID2)
 	mItems[1].mEffectID = effectID2;
 }
 
-/*
+/**
  * setMtxptr__Q23efx10TChaseMtx2FPA4_f
- * --INFO--
- * Address:	803B05A0
- * Size:	00000C
+ * @note Address: 0x803B05A0
+ * @note Size: 0xC
  */
 void TChaseMtx2::setMtxptr(Mtx mtx)
 {
@@ -1089,10 +1041,9 @@ void TChaseMtx2::setMtxptr(Mtx mtx)
 	mItems[1].mMtx = (Matrixf*)mtx;
 }
 
-/*
- * --INFO--
- * Address:	803B05AC
- * Size:	0000A0
+/**
+ * @note Address: 0x803B05AC
+ * @note Size: 0xA0
  */
 TChaseMtx3::TChaseMtx3(Mtx mtx, u16 effectID1, u16 effectID2, u16 effectID3)
 {
@@ -1104,11 +1055,10 @@ TChaseMtx3::TChaseMtx3(Mtx mtx, u16 effectID1, u16 effectID2, u16 effectID3)
 	mItems[2].mEffectID = effectID3;
 }
 
-/*
+/**
  * setMtxptr__Q23efx10TChaseMtx3FPA4_f
- * --INFO--
- * Address:	803B064C
- * Size:	000010
+ * @note Address: 0x803B064C
+ * @note Size: 0x10
  */
 void TChaseMtx3::setMtxptr(Mtx mtx)
 {
@@ -1117,10 +1067,9 @@ void TChaseMtx3::setMtxptr(Mtx mtx)
 	mItems[2].mMtx = (Matrixf*)mtx;
 }
 
-/*
- * --INFO--
- * Address:	803B065C
- * Size:	0000AC
+/**
+ * @note Address: 0x803B065C
+ * @note Size: 0xAC
  */
 TChaseMtx4::TChaseMtx4(Mtx mtx, u16 effectID1, u16 effectID2, u16 effectID3, u16 effectID4)
 {
@@ -1134,11 +1083,10 @@ TChaseMtx4::TChaseMtx4(Mtx mtx, u16 effectID1, u16 effectID2, u16 effectID3, u16
 	mItems[3].mEffectID = effectID4;
 }
 
-/*
+/**
  * setMtxptr__Q23efx10TChaseMtx4FPA4_f
- * --INFO--
- * Address:	803B0708
- * Size:	000014
+ * @note Address: 0x803B0708
+ * @note Size: 0x14
  */
 void TChaseMtx4::setMtxptr(Mtx mtx)
 {
@@ -1148,12 +1096,11 @@ void TChaseMtx4::setMtxptr(Mtx mtx)
 	mItems[3].mMtx = (Matrixf*)mtx;
 }
 
-/*
+/**
  * @matchedSize
  * __ct__Q23efx10TChaseMtx5FPA4_fUsUsUsUsUs
- * --INFO--
- * Address:	........
- * Size:	0000B8
+ * @note Address: N/A
+ * @note Size: 0xB8
  */
 TChaseMtx5::TChaseMtx5(Mtx mtx, u16 effectID1, u16 effectID2, u16 effectID3, u16 effectID4, u16 effectID5)
 {
@@ -1170,12 +1117,11 @@ TChaseMtx5::TChaseMtx5(Mtx mtx, u16 effectID1, u16 effectID2, u16 effectID3, u16
 	mItems[4].mEffectID = effectID5;
 }
 
-/*
+/**
  * @matchedSize
  * setMtxptr__Q23efx10TChaseMtx5FPA4_f
- * --INFO--
- * Address:	........
- * Size:	000018
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 void TChaseMtx5::setMtxptr(Mtx mtx)
 {
@@ -1187,11 +1133,10 @@ void TChaseMtx5::setMtxptr(Mtx mtx)
 	mItems[4].mMtx = (Matrixf*)mtx;
 }
 
-/*
+/**
  * __ct__Q23efx10TChaseMtx6FPA4_fUsUsUsUsUsUs
- * --INFO--
- * Address:	803B071C
- * Size:	0000C4
+ * @note Address: 0x803B071C
+ * @note Size: 0xC4
  */
 TChaseMtx6::TChaseMtx6(Mtx mtx, u16 effectID1, u16 effectID2, u16 effectID3, u16 effectID4, u16 effectID5, u16 effectID6)
 {
@@ -1209,11 +1154,10 @@ TChaseMtx6::TChaseMtx6(Mtx mtx, u16 effectID1, u16 effectID2, u16 effectID3, u16
 	mItems[5].mEffectID = effectID6;
 }
 
-/*
+/**
  * setMtxptr__Q23efx10TChaseMtx6FPA4_f
- * --INFO--
- * Address:	803B07E0
- * Size:	00001C
+ * @note Address: 0x803B07E0
+ * @note Size: 0x1C
  */
 void TChaseMtx6::setMtxptr(Mtx mtx)
 {
@@ -1225,11 +1169,10 @@ void TChaseMtx6::setMtxptr(Mtx mtx)
 	mItems[5].mMtx = (Matrixf*)mtx;
 }
 
-/*
+/**
  * __ct__Q23efx11TChaseMtxT2FPA4_fUsUs
- * --INFO--
- * Address:	803B07FC
- * Size:	0000AC
+ * @note Address: 0x803B07FC
+ * @note Size: 0xAC
  */
 TChaseMtxT2::TChaseMtxT2(Mtx mtx, u16 effectID1, u16 effectID2)
 {
@@ -1239,11 +1182,10 @@ TChaseMtxT2::TChaseMtxT2(Mtx mtx, u16 effectID1, u16 effectID2)
 	mItems[1].mEffectID = effectID2;
 }
 
-/*
+/**
  * setMtxptr__Q23efx11TChaseMtxT2FPA4_f
- * --INFO--
- * Address:	803B0900
- * Size:	00000C
+ * @note Address: 0x803B0900
+ * @note Size: 0xC
  */
 void TChaseMtxT2::setMtxptr(Mtx mtx)
 {
@@ -1251,12 +1193,11 @@ void TChaseMtxT2::setMtxptr(Mtx mtx)
 	mItems[1].mMtx = (Matrixf*)mtx;
 }
 
-/*
+/**
  * @matchedSize
  * __ct__Q23efx11TChaseMtxT3FPA4_fUsUsUs
- * --INFO--
- * Address:	........
- * Size:	0000A0
+ * @note Address: N/A
+ * @note Size: 0xA0
  */
 TChaseMtxT3::TChaseMtxT3(Mtx mtx, u16 effectID1, u16 effectID2, u16 effectID3)
 {
@@ -1269,12 +1210,11 @@ TChaseMtxT3::TChaseMtxT3(Mtx mtx, u16 effectID1, u16 effectID2, u16 effectID3)
 	mItems[2].mEffectID = effectID3;
 }
 
-/*
+/**
  * @matchedSize
  * setMtxptr__Q23efx11TChaseMtxT3FPA4_f
- * --INFO--
- * Address:	........
- * Size:	000010
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 void TChaseMtxT3::setMtxptr(Mtx mtx)
 {
@@ -1284,11 +1224,10 @@ void TChaseMtxT3::setMtxptr(Mtx mtx)
 	mItems[2].mMtx = (Matrixf*)mtx;
 }
 
-/*
+/**
  * __ct__Q23efx11TChaseMtxT4FPA4_fUsUsUsUs
- * --INFO--
- * Address:	803B090C
- * Size:	0000AC
+ * @note Address: 0x803B090C
+ * @note Size: 0xAC
  */
 TChaseMtxT4::TChaseMtxT4(Mtx mtx, u16 effectID1, u16 effectID2, u16 effectID3, u16 effectID4)
 {
@@ -1302,11 +1241,10 @@ TChaseMtxT4::TChaseMtxT4(Mtx mtx, u16 effectID1, u16 effectID2, u16 effectID3, u
 	mItems[3].mEffectID = effectID4;
 }
 
-/*
+/**
  * setMtxptr__Q23efx11TChaseMtxT4FPA4_f
- * --INFO--
- * Address:	803B09B8
- * Size:	000014
+ * @note Address: 0x803B09B8
+ * @note Size: 0x14
  */
 void TChaseMtxT4::setMtxptr(Mtx mtx)
 {
@@ -1316,11 +1254,10 @@ void TChaseMtxT4::setMtxptr(Mtx mtx)
 	mItems[3].mMtx = (Matrixf*)mtx;
 }
 
-/*
+/**
  * __ct__Q23efx14TChasePosYRot2FP10Vector3<f>PfUsUs
- * --INFO--
- * Address:	803B09CC
- * Size:	0000A0
+ * @note Address: 0x803B09CC
+ * @note Size: 0xA0
  */
 TChasePosYRot2::TChasePosYRot2(Vector3f* p1, f32* p2, u16 effectID1, u16 effectID2)
 {
@@ -1332,12 +1269,11 @@ TChasePosYRot2::TChasePosYRot2(Vector3f* p1, f32* p2, u16 effectID1, u16 effectI
 	mItems[1].mEffectID = effectID2;
 }
 
-/*
+/**
  * @matchedSize
  * setPosptr__Q23efx14TChasePosYRot2FP10Vector3<f>
- * --INFO--
- * Address:	........
- * Size:	00000C
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void TChasePosYRot2::setPosptr(Vector3f* position)
 {
@@ -1346,12 +1282,11 @@ void TChasePosYRot2::setPosptr(Vector3f* position)
 	mItems[1].mPosition = position;
 }
 
-/*
+/**
  * @matchedSize
  * setYRot__Q23efx14TChasePosYRot2FPf
- * --INFO--
- * Address:	........
- * Size:	00000C
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void TChasePosYRot2::setYRot(f32* rotation)
 {
@@ -1360,11 +1295,10 @@ void TChasePosYRot2::setYRot(f32* rotation)
 	mItems[1].mRotation = rotation;
 }
 
-/*
+/**
  * __ct__Q23efx14TChasePosYRot3FP10Vector3<f>PfUsUsUs
- * --INFO--
- * Address:	803B0AC4
- * Size:	0000B0
+ * @note Address: 0x803B0AC4
+ * @note Size: 0xB0
  */
 TChasePosYRot3::TChasePosYRot3(Vector3f* p1, f32* p2, u16 effectID1, u16 effectID2, u16 effectID3)
 {
@@ -1379,12 +1313,11 @@ TChasePosYRot3::TChasePosYRot3(Vector3f* p1, f32* p2, u16 effectID1, u16 effectI
 	mItems[2].mEffectID = effectID3;
 }
 
-/*
+/**
  * @matchedSize
  * setPosptr__Q23efx14TChasePosYRot3FP10Vector3<f>
- * --INFO--
- * Address:	........
- * Size:	000010
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 void TChasePosYRot3::setPosptr(Vector3f* position)
 {
@@ -1394,12 +1327,11 @@ void TChasePosYRot3::setPosptr(Vector3f* position)
 	mItems[2].mPosition = position;
 }
 
-/*
+/**
  * @matchedSize
  * setYRot__Q23efx14TChasePosYRot3FPf
- * --INFO--
- * Address:	........
- * Size:	000010
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 void TChasePosYRot3::setYRot(f32* rotation)
 {
@@ -1409,12 +1341,11 @@ void TChasePosYRot3::setYRot(f32* rotation)
 	mItems[2].mRotation = rotation;
 }
 
-/*
+/**
  * @matchedSize
  * __ct__Q23efx24TChasePosPosLocalYScale2FP10Vector3<f>P10Vector3<f>fUsUs
- * --INFO--
- * Address:	........
- * Size:	0000B4
+ * @note Address: N/A
+ * @note Size: 0xB4
  */
 TChasePosPosLocalYScale2::TChasePosPosLocalYScale2(Vector3f* p1, Vector3f* p2, f32 p3, u16 effectID1, u16 effectID2)
 {
@@ -1429,12 +1360,11 @@ TChasePosPosLocalYScale2::TChasePosPosLocalYScale2(Vector3f* p1, Vector3f* p2, f
 	mItems[1].mEffectID = effectID2;
 }
 
-/*
+/**
  * @matchedSize
  * setPosptr__Q23efx24TChasePosPosLocalYScale2FP10Vector3<f>P10Vector3<f>
- * --INFO--
- * Address:	........
- * Size:	000014
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 void TChasePosPosLocalYScale2::setPosptr(Vector3f* p1, Vector3f* p2)
 {
@@ -1445,11 +1375,10 @@ void TChasePosPosLocalYScale2::setPosptr(Vector3f* p1, Vector3f* p2)
 	mItems[1]._14 = p2;
 }
 
-/*
+/**
  * __ct__Q23efx24TChasePosPosLocalYScale3FP10Vector3<f>P10Vector3<f>fUsUsUs
- * --INFO--
- * Address:	803B0BCC
- * Size:	0000C8
+ * @note Address: 0x803B0BCC
+ * @note Size: 0xC8
  */
 TChasePosPosLocalYScale3::TChasePosPosLocalYScale3(Vector3f* p1, Vector3f* p2, f32 p3, u16 effectID1, u16 effectID2, u16 effectID3)
 {
@@ -1467,11 +1396,10 @@ TChasePosPosLocalYScale3::TChasePosPosLocalYScale3(Vector3f* p1, Vector3f* p2, f
 	mItems[2].mEffectID = effectID3;
 }
 
-/*
+/**
  * setPosptr__Q23efx24TChasePosPosLocalYScale3FP10Vector3<f>P10Vector3<f>
- * --INFO--
- * Address:	803B0C94
- * Size:	00001C
+ * @note Address: 0x803B0C94
+ * @note Size: 0x1C
  */
 void TChasePosPosLocalYScale3::setPosptr(Vector3f* p1, Vector3f* p2)
 {
@@ -1483,12 +1411,11 @@ void TChasePosPosLocalYScale3::setPosptr(Vector3f* p1, Vector3f* p2)
 	mItems[2]._14 = p2;
 }
 
-/*
+/**
  * @matchedSize
  * __ct__Q23efx24TChasePosPosLocalZScale2FP10Vector3<f>P10Vector3<f>fUsUs
- * --INFO--
- * Address:	........
- * Size:	0000B4
+ * @note Address: N/A
+ * @note Size: 0xB4
  */
 TChasePosPosLocalZScale2::TChasePosPosLocalZScale2(Vector3f* p1, Vector3f* p2, f32 p3, u16 effectID1, u16 effectID2)
 {
@@ -1503,12 +1430,11 @@ TChasePosPosLocalZScale2::TChasePosPosLocalZScale2(Vector3f* p1, Vector3f* p2, f
 	mItems[1].mEffectID = effectID2;
 }
 
-/*
+/**
  * @matchedSize
  * setPosptr__Q23efx24TChasePosPosLocalZScale2FP10Vector3<f>P10Vector3<f>
- * --INFO--
- * Address:	........
- * Size:	000014
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 void TChasePosPosLocalZScale2::setPosptr(Vector3f* p1, Vector3f* p2)
 {
@@ -1518,11 +1444,10 @@ void TChasePosPosLocalZScale2::setPosptr(Vector3f* p1, Vector3f* p2)
 	}
 }
 
-/*
+/**
  * __ct__Q23efx24TChasePosPosLocalZScale3FP10Vector3<f>P10Vector3<f>fUsUsUs
- * --INFO--
- * Address:	803B0D08
- * Size:	0000C8
+ * @note Address: 0x803B0D08
+ * @note Size: 0xC8
  */
 TChasePosPosLocalZScale3::TChasePosPosLocalZScale3(Vector3f* p1, Vector3f* p2, f32 p3, u16 effectID1, u16 effectID2, u16 effectID3)
 {
@@ -1540,11 +1465,10 @@ TChasePosPosLocalZScale3::TChasePosPosLocalZScale3(Vector3f* p1, Vector3f* p2, f
 	mItems[2].mEffectID = effectID3;
 }
 
-/*
+/**
  * setPosptr__Q23efx24TChasePosPosLocalZScale3FP10Vector3<f>P10Vector3<f>
- * --INFO--
- * Address:	803B0DD0
- * Size:	00001C
+ * @note Address: 0x803B0DD0
+ * @note Size: 0x1C
  */
 void TChasePosPosLocalZScale3::setPosptr(Vector3f* p1, Vector3f* p2)
 {

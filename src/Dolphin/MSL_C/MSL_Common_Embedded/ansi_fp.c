@@ -2,10 +2,9 @@
 #include "ctype.h"
 #include "stl/limits.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
+/**
+ * @note Address: N/A
+ * @note Size: 0x70
  */
 static int __count_trailing_zerol(unsigned long x)
 {
@@ -36,10 +35,9 @@ static int __count_trailing_zerol(unsigned long x)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000FC
+/**
+ * @note Address: N/A
+ * @note Size: 0xFC
  */
 static int __count_trailing_zero(double x)
 {
@@ -52,10 +50,9 @@ static int __count_trailing_zero(double x)
 	return (int)(sizeof(unsigned long) * CHAR_BIT + __count_trailing_zerol(l[0] | 0x00100000));
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
+/**
+ * @note Address: N/A
+ * @note Size: 0x80
  */
 static int __must_round(const decimal* d, int digits)
 {
@@ -86,10 +83,9 @@ static int __must_round(const decimal* d, int digits)
 	return -1;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
+/**
+ * @note Address: N/A
+ * @note Size: 0x58
  */
 static void __dorounddecup(decimal* d, int digits)
 {
@@ -110,10 +106,9 @@ static void __dorounddecup(decimal* d, int digits)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000FC
+/**
+ * @note Address: N/A
+ * @note Size: 0xFC
  */
 static void __rounddec(decimal* d, int digits)
 {
@@ -127,10 +122,9 @@ static void __rounddec(decimal* d, int digits)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000110
+/**
+ * @note Address: N/A
+ * @note Size: 0x110
  */
 void __ull2dec(decimal* result, u64 val)
 {
@@ -168,10 +162,9 @@ void __ull2dec(decimal* result, u64 val)
 	result->exp = result->sig.length - 1;
 }
 
-/*
- * --INFO--
- * Address:	800C5E80
- * Size:	000278
+/**
+ * @note Address: 0x800C5E80
+ * @note Size: 0x278
  */
 void __timesdec(decimal* result, const decimal* x, const decimal* y)
 {
@@ -240,10 +233,9 @@ void __timesdec(decimal* result, const decimal* x, const decimal* y)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F0
+/**
+ * @note Address: N/A
+ * @note Size: 0xF0
  */
 void __str2dec(decimal* d, const char* s, short exp)
 {
@@ -279,10 +271,9 @@ void __str2dec(decimal* d, const char* s, short exp)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800C46FC
- * Size:	001784
+/**
+ * @note Address: 0x800C46FC
+ * @note Size: 0x1784
  */
 void __two_exp(decimal* result, long exp)
 {
@@ -370,10 +361,9 @@ void __two_exp(decimal* result, long exp)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800C45F0
- * Size:	00010C
+/**
+ * @note Address: 0x800C45F0
+ * @note Size: 0x10C
  */
 BOOL __equals_dec(const decimal* x, const decimal* y)
 {
@@ -421,10 +411,9 @@ BOOL __equals_dec(const decimal* x, const decimal* y)
 	return FALSE;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F8
+/**
+ * @note Address: N/A
+ * @note Size: 0xF8
  */
 BOOL __less_dec(const decimal* x, const decimal* y)
 {
@@ -467,10 +456,9 @@ BOOL __less_dec(const decimal* x, const decimal* y)
 	return x->exp < y->exp;
 }
 
-/*
- * --INFO--
- * Address:	800C40F4
- * Size:	0004FC
+/**
+ * @note Address: 0x800C40F4
+ * @note Size: 0x4FC
  */
 void __minus_dec(decimal* z, const decimal* x, const decimal* y)
 {
@@ -572,10 +560,9 @@ done:
 	z->sig.length = (u8)(i - ib + 1);
 }
 
-/*
- * --INFO--
- * Address:	800C3D40
- * Size:	0003B4
+/**
+ * @note Address: 0x800C3D40
+ * @note Size: 0x3B4
  */
 void __num2dec_internal(decimal* d, double x)
 {
@@ -616,10 +603,9 @@ void __num2dec_internal(decimal* d, double x)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800C3B9C
- * Size:	0001A4
+/**
+ * @note Address: 0x800C3B9C
+ * @note Size: 0x1A4
  */
 void __num2dec(const decform* form, double x, decimal* d)
 {
@@ -648,10 +634,9 @@ void __num2dec(const decform* form, double x, decimal* d)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800C2B1C
- * Size:	001080
+/**
+ * @note Address: 0x800C2B1C
+ * @note Size: 0x1080
  */
 double __dec2num(const decimal* d)
 {

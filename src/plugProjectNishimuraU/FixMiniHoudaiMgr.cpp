@@ -3,10 +3,9 @@
 namespace Game {
 namespace FixMiniHoudai {
 
-/*
- * --INFO--
- * Address:	80301688
- * Size:	000050
+/**
+ * @note Address: 0x80301688
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : MiniHoudai::Mgr(objLimit, modelType)
@@ -14,24 +13,21 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "固定チビホウダイマネージャ"; // fixed little houdai manager
 }
 
-/*
- * --INFO--
- * Address:	803016D8
- * Size:	000048
+/**
+ * @note Address: 0x803016D8
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new MiniHoudai::Parms); }
 
-/*
- * --INFO--
- * Address:	80301720
- * Size:	000060
+/**
+ * @note Address: 0x80301720
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	8030186C
- * Size:	000010
+/**
+ * @note Address: 0x8030186C
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 

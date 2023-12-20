@@ -9,10 +9,9 @@ namespace Houdai {
 
 static HoudaiShotGunMgr* sHoudaiShotGunMgr = nullptr;
 
-/*
- * --INFO--
- * Address:	802C394C
- * Size:	00003C
+/**
+ * @note Address: 0x802C394C
+ * @note Size: 0x3C
  */
 static bool levelRotationCallBack(J3DJoint* joint, int idx)
 {
@@ -23,10 +22,9 @@ static bool levelRotationCallBack(J3DJoint* joint, int idx)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802C3988
- * Size:	00003C
+/**
+ * @note Address: 0x802C3988
+ * @note Size: 0x3C
  */
 static bool verticalRotationCallBack(J3DJoint* joint, int idx)
 {
@@ -37,20 +35,18 @@ static bool verticalRotationCallBack(J3DJoint* joint, int idx)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 HoudaiShotGunNode::HoudaiShotGunNode(Obj* owner)
     : mOwner(owner)
 {
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E8
+/**
+ * @note Address: N/A
+ * @note Size: 0xE8
  */
 void HoudaiShotGunNode::create()
 {
@@ -58,34 +54,30 @@ void HoudaiShotGunNode::create()
 	                                        // UNUSED/INLINED
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 void HoudaiShotGunNode::setPosition(Vector3f& pos) { mPosition = pos; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 void HoudaiShotGunNode::setVelocity(Vector3f& vel) { mVelocity = vel; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D8
+/**
+ * @note Address: N/A
+ * @note Size: 0xD8
  */
 void HoudaiShotGunNode::startShotGun()
 {
 	// UNUSED/INLINED
 }
 
-/*
- * --INFO--
- * Address:	802C39C4
- * Size:	000B10
+/**
+ * @note Address: 0x802C39C4
+ * @note Size: 0xB10
  */
 bool HoudaiShotGunNode::update()
 {
@@ -1027,10 +1019,9 @@ lbl_802C4420:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802C44D4
- * Size:	000240
+/**
+ * @note Address: 0x802C44D4
+ * @note Size: 0x240
  */
 HoudaiShotGunMgr::HoudaiShotGunMgr(Obj* houdai)
     : mOwner(houdai)
@@ -1057,10 +1048,9 @@ HoudaiShotGunMgr::HoudaiShotGunMgr(Obj* houdai)
 	sHoudaiShotGunMgr = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	802C4714
- * Size:	0000B4
+/**
+ * @note Address: 0x802C4714
+ * @note Size: 0xB4
  */
 void HoudaiShotGunMgr::setupShotGun()
 {
@@ -1080,24 +1070,21 @@ void HoudaiShotGunMgr::setupShotGun()
 	mGunMtx  = gunJnt->getWorldMatrix();
 }
 
-/*
- * --INFO--
- * Address:	802C47C8
- * Size:	00000C
+/**
+ * @note Address: 0x802C47C8
+ * @note Size: 0xC
  */
 void HoudaiShotGunMgr::resetCallBack() { sHoudaiShotGunMgr = nullptr; }
 
-/*
- * --INFO--
- * Address:	802C47D4
- * Size:	000008
+/**
+ * @note Address: 0x802C47D4
+ * @note Size: 0x8
  */
 void HoudaiShotGunMgr::setCallBack() { sHoudaiShotGunMgr = this; }
 
-/*
- * --INFO--
- * Address:	802C47DC
- * Size:	000024
+/**
+ * @note Address: 0x802C47DC
+ * @note Size: 0x24
  */
 void HoudaiShotGunMgr::startRotation()
 {
@@ -1108,10 +1095,9 @@ void HoudaiShotGunMgr::startRotation()
 	_08                = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	802C4800
- * Size:	000014
+/**
+ * @note Address: 0x802C4800
+ * @note Size: 0x14
  */
 void HoudaiShotGunMgr::finishRotation()
 {
@@ -1119,38 +1105,33 @@ void HoudaiShotGunMgr::finishRotation()
 	mIsShotGunFinished = true;
 }
 
-/*
- * --INFO--
- * Address:	802C4814
- * Size:	000008
+/**
+ * @note Address: 0x802C4814
+ * @note Size: 0x8
  */
 bool HoudaiShotGunMgr::isShotGunRotation() { return mIsShotGunRotation; }
 
-/*
- * --INFO--
- * Address:	802C481C
- * Size:	000008
+/**
+ * @note Address: 0x802C481C
+ * @note Size: 0x8
  */
 bool HoudaiShotGunMgr::isShotGunLockOn() { return mIsShotGunLockedOn; }
 
-/*
- * --INFO--
- * Address:	802C4824
- * Size:	000008
+/**
+ * @note Address: 0x802C4824
+ * @note Size: 0x8
  */
 bool HoudaiShotGunMgr::isFinishShotGun() { return mIsShotGunFinished; }
 
-/*
- * --INFO--
- * Address:	802C482C
- * Size:	00001C
+/**
+ * @note Address: 0x802C482C
+ * @note Size: 0x1C
  */
 void HoudaiShotGunMgr::setShotGunTarget(Vector3f& pos) { mTargetPosition = pos; }
 
-/*
- * --INFO--
- * Address:	802C4848
- * Size:	0003C0
+/**
+ * @note Address: 0x802C4848
+ * @note Size: 0x3C0
  */
 void HoudaiShotGunMgr::emitShotGun()
 {
@@ -1454,10 +1435,9 @@ lbl_802C4BB4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802C4C08
- * Size:	000084
+/**
+ * @note Address: 0x802C4C08
+ * @note Size: 0x84
  */
 void HoudaiShotGunMgr::doUpdate()
 {
@@ -1481,10 +1461,9 @@ void HoudaiShotGunMgr::doUpdate()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802C4C8C
- * Size:	000078
+/**
+ * @note Address: 0x802C4C8C
+ * @note Size: 0x78
  */
 void HoudaiShotGunMgr::doUpdateCommon()
 {
@@ -1500,10 +1479,9 @@ void HoudaiShotGunMgr::doUpdateCommon()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802C4D04
- * Size:	000084
+/**
+ * @note Address: 0x802C4D04
+ * @note Size: 0x84
  */
 void HoudaiShotGunMgr::forceFinishShotGun()
 {
@@ -1520,10 +1498,9 @@ void HoudaiShotGunMgr::forceFinishShotGun()
 	finishLockOnEffect();
 }
 
-/*
- * --INFO--
- * Address:	802C4D88
- * Size:	000234
+/**
+ * @note Address: 0x802C4D88
+ * @note Size: 0x234
  */
 bool HoudaiShotGunMgr::searchShotGunRotation()
 {
@@ -1734,10 +1711,9 @@ lbl_802C4F80:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802C4FBC
- * Size:	000178
+/**
+ * @note Address: 0x802C4FBC
+ * @note Size: 0x178
  */
 bool HoudaiShotGunMgr::returnShotGunRotation()
 {
@@ -1877,10 +1853,9 @@ lbl_802C512C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802C5134
- * Size:	000068
+/**
+ * @note Address: 0x802C5134
+ * @note Size: 0x68
  */
 void HoudaiShotGunMgr::rotateLevel(J3DJoint* joint)
 {
@@ -1892,10 +1867,9 @@ void HoudaiShotGunMgr::rotateLevel(J3DJoint* joint)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802C519C
- * Size:	000258
+/**
+ * @note Address: 0x802C519C
+ * @note Size: 0x258
  */
 void HoudaiShotGunMgr::rotateVertical(J3DJoint* joint)
 {
@@ -2079,17 +2053,15 @@ lbl_802C53C8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802C53F4
- * Size:	000030
+/**
+ * @note Address: 0x802C53F4
+ * @note Size: 0x30
  */
 void HoudaiShotGunMgr::finishLockOnEffect() { mEfxSight->fade(); }
 
-/*
- * --INFO--
- * Address:	802C5424
- * Size:	000250
+/**
+ * @note Address: 0x802C5424
+ * @note Size: 0x250
  */
 void HoudaiShotGunMgr::setShotGunLockOnPosition()
 {
@@ -2261,10 +2233,9 @@ lbl_802C5634:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802C5674
- * Size:	00009C
+/**
+ * @note Address: 0x802C5674
+ * @note Size: 0x9C
  */
 void HoudaiShotGunMgr::effectDrawOn()
 {
@@ -2287,10 +2258,9 @@ void HoudaiShotGunMgr::effectDrawOn()
 	mEfxSight->endDemoDrawOn();
 }
 
-/*
- * --INFO--
- * Address:	802C5710
- * Size:	00009C
+/**
+ * @note Address: 0x802C5710
+ * @note Size: 0x9C
  */
 void HoudaiShotGunMgr::effectDrawOff()
 {
@@ -2313,17 +2283,15 @@ void HoudaiShotGunMgr::effectDrawOff()
 	mEfxSight->startDemoDrawOff();
 }
 
-/*
- * --INFO--
- * Address:	802C57AC
- * Size:	000030
+/**
+ * @note Address: 0x802C57AC
+ * @note Size: 0x30
  */
 void HoudaiShotGunMgr::startStoneStateEffectOff() { mEfxSight->startDemoDrawOff(); }
 
-/*
- * --INFO--
- * Address:	802C57DC
- * Size:	000030
+/**
+ * @note Address: 0x802C57DC
+ * @note Size: 0x30
  */
 void HoudaiShotGunMgr::finishStoneStateEffectOn() { mEfxSight->endDemoDrawOn(); }
 

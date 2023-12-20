@@ -1,10 +1,9 @@
 #include "JSystem/JUtility/JUTDirectFile.h"
 #include "Dolphin/os.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D0
+/**
+ * @note Address: N/A
+ * @note Size: 0xD0
  */
 int JUTDirectFile::fetch32byte()
 {
@@ -29,10 +28,9 @@ int JUTDirectFile::fetch32byte()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8002982C
- * Size:	000024
+/**
+ * @note Address: 0x8002982C
+ * @note Size: 0x24
  */
 JUTDirectFile::JUTDirectFile()
 {
@@ -43,17 +41,15 @@ JUTDirectFile::JUTDirectFile()
 	mIsOpen      = false;
 }
 
-/*
- * --INFO--
- * Address:	80029850
- * Size:	000044
+/**
+ * @note Address: 0x80029850
+ * @note Size: 0x44
  */
 JUTDirectFile::~JUTDirectFile() { mIsOpen = false; }
 
-/*
- * --INFO--
- * Address:	80029894
- * Size:	0000A8
+/**
+ * @note Address: 0x80029894
+ * @note Size: 0xA8
  */
 bool JUTDirectFile::fopen(const char* filename)
 {
@@ -79,10 +75,9 @@ bool JUTDirectFile::fopen(const char* filename)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8002993C
- * Size:	000060
+/**
+ * @note Address: 0x8002993C
+ * @note Size: 0x60
  */
 void JUTDirectFile::fclose()
 {
@@ -94,10 +89,9 @@ void JUTDirectFile::fclose()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8002999C
- * Size:	000230
+/**
+ * @note Address: 0x8002999C
+ * @note Size: 0x230
  * Gets data of length 'len' and stores in 'buf'.
  * Returns actual length gotten in bytes, or -1 if error.
  */

@@ -15,10 +15,9 @@ static struct tvformat XYNTSC[12] = { 0x00F6, 0x02, 0x000F, 0x12, 0x001E, 0x09, 
 static struct tvformat XYPAL[12]  = { 0x0128, 0x02, 0x000F, 0x15, 0x001D, 0x0B, 0x002D, 0x07, 0x0034, 0x06, 0x003F, 0x05,
                                      0x004E, 0x04, 0x0068, 0x03, 0x0068, 0x03, 0x0068, 0x03, 0x0068, 0x03, 0x009C, 0x02 };
 
-/*
- * --INFO--
- * Address:	800F675C
- * Size:	0000E4
+/**
+ * @note Address: 0x800F675C
+ * @note Size: 0xE4
  */
 void SISetSamplingRate(u32 samplerate)
 {
@@ -59,9 +58,8 @@ void SISetSamplingRate(u32 samplerate)
 	OSRestoreInterrupts(r30);
 }
 
-/*
- * --INFO--
- * Address:	800F6840
- * Size:	000024
+/**
+ * @note Address: 0x800F6840
+ * @note Size: 0x24
  */
 void SIRefreshSamplingRate(void) { SISetSamplingRate(SamplingRate); }

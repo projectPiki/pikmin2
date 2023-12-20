@@ -12,10 +12,9 @@ static const char* cMatAnimBtkTexName = "/enemy/data/Mar/fuusen_model.btk";
 static const char* cMatAnimBrkTexName = "/enemy/data/Mar/fuusen_model.brk";
 } // namespace
 
-/*
- * --INFO--
- * Address:	80281F10
- * Size:	000050
+/**
+ * @note Address: 0x80281F10
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -23,31 +22,27 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "フウセンドックリマネージャ"; // blimp manager
 }
 
-/*
- * --INFO--
- * Address:	80281F60
- * Size:	000048
+/**
+ * @note Address: 0x80281F60
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Parms); }
 
-/*
- * --INFO--
- * Address:	8028222C
- * Size:	000060
+/**
+ * @note Address: 0x8028222C
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	8028228C
- * Size:	000010
+/**
+ * @note Address: 0x8028228C
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
-/*
- * --INFO--
- * Address:	8028229C
- * Size:	00012C
+/**
+ * @note Address: 0x8028229C
+ * @note Size: 0x12C
  */
 void Mgr::loadTexData()
 {
@@ -75,10 +70,9 @@ void Mgr::loadTexData()
 	mTevRegAnimation->attachResource(brkFile, mModelData);
 }
 
-/*
- * --INFO--
- * Address:	802823C8
- * Size:	00013C
+/**
+ * @note Address: 0x802823C8
+ * @note Size: 0x13C
  */
 SysShape::Model* Mgr::createModel()
 {

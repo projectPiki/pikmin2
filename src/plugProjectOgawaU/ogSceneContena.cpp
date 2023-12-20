@@ -3,24 +3,21 @@
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	80321F08
- * Size:	000044
+/**
+ * @note Address: 0x80321F08
+ * @note Size: 0x44
  */
 Contena::Contena() { mSceneType = SCENE_CONTENA_BLUE; }
 
-/*
- * --INFO--
- * Address:	80321F4C
- * Size:	000004
+/**
+ * @note Address: 0x80321F4C
+ * @note Size: 0x4
  */
 void Contena::doUserCallBackFunc(Resource::MgrCommand*) { }
 
-/*
- * --INFO--
- * Address:	80321F50
- * Size:	000100
+/**
+ * @note Address: 0x80321F50
+ * @note Size: 0x100
  */
 void Contena::doCreateObj(JKRArchive* archive)
 {

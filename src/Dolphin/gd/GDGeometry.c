@@ -1,10 +1,9 @@
 #include "Dolphin/gd.h"
 #include "Dolphin/os.h"
 
-/*
- * --INFO--
- * Address:	800E1C70
- * Size:	0005FC
+/**
+ * @note Address: 0x800E1C70
+ * @note Size: 0x5FC
  */
 void GDSetVtxDescv(GXVtxDescList* lists)
 {
@@ -144,10 +143,9 @@ void GDSetVtxDescv(GXVtxDescList* lists)
 	__GDWriteU32(v2 | v1 << 2 | v3 << 4);
 }
 
-/*
- * --INFO--
- * Address:	800E226C
- * Size:	00020C
+/**
+ * @note Address: 0x800E226C
+ * @note Size: 0x20C
  */
 void GDSetArray(GXAttr attr, const void* data, u8 stride)
 {
@@ -173,10 +171,9 @@ void GDSetArray(GXAttr attr, const void* data, u8 stride)
 	__GDWriteU32(stride);
 }
 
-/*
- * --INFO--
- * Address:	800E2478
- * Size:	000208
+/**
+ * @note Address: 0x800E2478
+ * @note Size: 0x208
  */
 void GDSetArrayRaw(GXAttr attr, u32 data, u8 stride)
 {

@@ -11,40 +11,36 @@ static int sLineMax;
 static int sLineCount;
 static int sTop;
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
+/**
+ * @note Address: N/A
+ * @note Size: 0x58
  */
 void JASReportInit(JKRHeap*, int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void JASReportGetLineMax()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D8
+/**
+ * @note Address: N/A
+ * @note Size: 0xD8
  */
 void JASReportCopyBuffer(char*, int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800A786C
- * Size:	0000FC
+/**
+ * @note Address: 0x800A786C
+ * @note Size: 0xFC
  */
 void JASReport(const char* str, ...)
 {

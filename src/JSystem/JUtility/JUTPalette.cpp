@@ -3,10 +3,9 @@
 #include "JSystem/ResTLUT.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	8002EEC4
- * Size:	000098
+/**
+ * @note Address: 0x8002EEC4
+ * @note Size: 0x98
  */
 void JUTPalette::storeTLUT(GXTlut tlutID, ResTLUT* resource)
 {
@@ -22,12 +21,11 @@ void JUTPalette::storeTLUT(GXTlut tlutID, ResTLUT* resource)
 	GXInitTlutObj(&mTlutObj, mColorTable, (GXTlutFmt)mTlutFormat, mNumColors);
 }
 
-/*
+/**
  * storeTLUT__10JUTPaletteF7_GXTlut10_GXTlutFmt15JUTTransparencyUsPv
  *
- * --INFO--
- * Address:	8002EF5C
- * Size:	000040
+ * @note Address: 0x8002EF5C
+ * @note Size: 0x40
  */
 void JUTPalette::storeTLUT(GXTlut id, GXTlutFmt format, JUTTransparency transparency, u16 p4, void* p5)
 {
@@ -39,10 +37,9 @@ void JUTPalette::storeTLUT(GXTlut id, GXTlutFmt format, JUTTransparency transpar
 	GXInitTlutObj(&mTlutObj, mColorTable, (GXTlutFmt)mTlutFormat, mNumColors);
 }
 
-/*
- * --INFO--
- * Address:	8002EF9C
- * Size:	000044
+/**
+ * @note Address: 0x8002EF9C
+ * @note Size: 0x44
  */
 bool JUTPalette::load()
 {

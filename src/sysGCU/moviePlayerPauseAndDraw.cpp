@@ -10,10 +10,9 @@
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	80436ED0
- * Size:	000070
+/**
+ * @note Address: 0x80436ED0
+ * @note Size: 0x70
  */
 void MoviePlayer::setPauseAndDraw(MovieConfig* config)
 {
@@ -26,10 +25,9 @@ void MoviePlayer::setPauseAndDraw(MovieConfig* config)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80436F40
- * Size:	000498
+/**
+ * @note Address: 0x80436F40
+ * @note Size: 0x498
  */
 void MoviePlayer::clearPauseAndDraw()
 {

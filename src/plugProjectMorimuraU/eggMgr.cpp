@@ -3,10 +3,9 @@
 namespace Game {
 namespace Egg {
 
-/*
- * --INFO--
- * Address:	8034B6B0
- * Size:	000050
+/**
+ * @note Address: 0x8034B6B0
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -14,17 +13,15 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "タマゴマネージャ"; // egg manager
 }
 
-/*
- * --INFO--
- * Address:	8034B700
- * Size:	000048
+/**
+ * @note Address: 0x8034B700
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Parms); }
 
-/*
- * --INFO--
- * Address:	8034B8D4
- * Size:	000020
+/**
+ * @note Address: 0x8034B8D4
+ * @note Size: 0x20
  */
 EnemyBase* Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::birth(birthArg); }
 

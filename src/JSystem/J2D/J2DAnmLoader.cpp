@@ -2,10 +2,9 @@
 #include "JSystem/J2D/J2DAnmLoader.h"
 #include "JSystem/JSupport/JSU.h"
 
-/*
- * --INFO--
- * Address:	8004791C
- * Size:	00079C
+/**
+ * @note Address: 0x8004791C
+ * @note Size: 0x79C
  */
 J2DAnmBase* J2DAnmLoaderDataBase::load(const void* data)
 {
@@ -84,26 +83,23 @@ J2DAnmBase* J2DAnmLoaderDataBase::load(const void* data)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8004822C
- * Size:	00001C
+/**
+ * @note Address: 0x8004822C
+ * @note Size: 0x1C
  * __ct__19J2DAnmKeyLoader_v15Fv
  */
 J2DAnmKeyLoader_v15::J2DAnmKeyLoader_v15() { }
 
-/*
- * --INFO--
- * Address:	80048290
- * Size:	00005C
+/**
+ * @note Address: 0x80048290
+ * @note Size: 0x5C
  * __dt__19J2DAnmKeyLoader_v15Fv
  */
 J2DAnmKeyLoader_v15::~J2DAnmKeyLoader_v15() { }
 
-/*
- * --INFO--
- * Address:	800482EC
- * Size:	000104
+/**
+ * @note Address: 0x800482EC
+ * @note Size: 0x104
  */
 J2DAnmBase* J2DAnmKeyLoader_v15::load(const void* data)
 {
@@ -133,10 +129,9 @@ J2DAnmBase* J2DAnmKeyLoader_v15::load(const void* data)
 	return mResource;
 }
 
-/*
- * --INFO--
- * Address:	800483F0
- * Size:	000154
+/**
+ * @note Address: 0x800483F0
+ * @note Size: 0x154
  */
 void J2DAnmKeyLoader_v15::setResource(J2DAnmBase* anm, const void* data)
 {
@@ -175,20 +170,18 @@ void J2DAnmKeyLoader_v15::setResource(J2DAnmBase* anm, const void* data)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80048544
- * Size:	000028
+/**
+ * @note Address: 0x80048544
+ * @note Size: 0x28
  */
 void J2DAnmKeyLoader_v15::readAnmTransform(const J3DAnmTransformKeyData* data)
 {
 	setAnmTransform(static_cast<J2DAnmTransformKey*>(mResource), data);
 }
 
-/*
- * --INFO--
- * Address:	8004856C
- * Size:	00009C
+/**
+ * @note Address: 0x8004856C
+ * @note Size: 0x9C
  */
 void J2DAnmKeyLoader_v15::setAnmTransform(J2DAnmTransformKey* anm, const J3DAnmTransformKeyData* data)
 {
@@ -203,20 +196,18 @@ void J2DAnmKeyLoader_v15::setAnmTransform(J2DAnmTransformKey* anm, const J3DAnmT
 	anm->mTranslationVals = JSUConvertOffsetToPtr<f32>(data, (void*)data->mTranslateOffset);
 }
 
-/*
- * --INFO--
- * Address:	80048608
- * Size:	000028
+/**
+ * @note Address: 0x80048608
+ * @note Size: 0x28
  */
 void J2DAnmKeyLoader_v15::readAnmTextureSRT(const J3DAnmTextureSRTKeyData* data)
 {
 	setAnmTextureSRT(static_cast<J2DAnmTextureSRTKey*>(mResource), data);
 }
 
-/*
- * --INFO--
- * Address:	80048630
- * Size:	0001EC
+/**
+ * @note Address: 0x80048630
+ * @note Size: 0x1EC
  */
 void J2DAnmKeyLoader_v15::setAnmTextureSRT(J2DAnmTextureSRTKey* anm, const J3DAnmTextureSRTKeyData* data)
 {
@@ -267,17 +258,15 @@ void J2DAnmKeyLoader_v15::setAnmTextureSRT(J2DAnmTextureSRTKey* anm, const J3DAn
 	}
 }
 
-/*
- * --INFO--
- * Address:	8004881C
- * Size:	000028
+/**
+ * @note Address: 0x8004881C
+ * @note Size: 0x28
  */
 void J2DAnmKeyLoader_v15::readAnmColor(const J3DAnmColorKeyData* data) { setAnmColor(static_cast<J2DAnmColorKey*>(mResource), data); }
 
-/*
- * --INFO--
- * Address:	80048844
- * Size:	0000EC
+/**
+ * @note Address: 0x80048844
+ * @note Size: 0xEC
  */
 void J2DAnmKeyLoader_v15::setAnmColor(J2DAnmColorKey* anm, const J3DAnmColorKeyData* data)
 {
@@ -298,20 +287,18 @@ void J2DAnmKeyLoader_v15::setAnmColor(J2DAnmColorKey* anm, const J3DAnmColorKeyD
 	anm->mNameTab.setResource(JSUConvertOffsetToPtr<ResNTAB>(data, (void*)data->mNameTabOffset));
 }
 
-/*
- * --INFO--
- * Address:	80048930
- * Size:	000028
+/**
+ * @note Address: 0x80048930
+ * @note Size: 0x28
  */
 void J2DAnmKeyLoader_v15::readAnmVtxColor(const J3DAnmVtxColorKeyData* data)
 {
 	setAnmVtxColor(static_cast<J2DAnmVtxColorKey*>(mResource), data);
 }
 
-/*
- * --INFO--
- * Address:	80048958
- * Size:	0000FC
+/**
+ * @note Address: 0x80048958
+ * @note Size: 0xFC
  */
 void J2DAnmKeyLoader_v15::setAnmVtxColor(J2DAnmVtxColorKey* anm, const J3DAnmVtxColorKeyData* data)
 {
@@ -332,10 +319,9 @@ void J2DAnmKeyLoader_v15::setAnmVtxColor(J2DAnmVtxColorKey* anm, const J3DAnmVtx
 	anm->mAlphaVals            = JSUConvertOffsetToPtr<s16>(data, (void*)data->mAValOffset);
 }
 
-/*
- * --INFO--
- * Address:	80048A54
- * Size:	000104
+/**
+ * @note Address: 0x80048A54
+ * @note Size: 0x104
  */
 J2DAnmBase* J2DAnmFullLoader_v15::load(const void* data)
 {
@@ -365,10 +351,9 @@ J2DAnmBase* J2DAnmFullLoader_v15::load(const void* data)
 	return mResource;
 }
 
-/*
- * --INFO--
- * Address:	80048B58
- * Size:	000154
+/**
+ * @note Address: 0x80048B58
+ * @note Size: 0x154
  */
 void J2DAnmFullLoader_v15::setResource(J2DAnmBase* anm, const void* data)
 {
@@ -402,26 +387,23 @@ void J2DAnmFullLoader_v15::setResource(J2DAnmBase* anm, const void* data)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80048CAC
- * Size:	00001C
+/**
+ * @note Address: 0x80048CAC
+ * @note Size: 0x1C
  * __ct__20J2DAnmFullLoader_v15Fv
  */
 J2DAnmFullLoader_v15::J2DAnmFullLoader_v15() { }
 
-/*
- * --INFO--
- * Address:	80048CC8
- * Size:	00005C
+/**
+ * @note Address: 0x80048CC8
+ * @note Size: 0x5C
  * __dt__20J2DAnmFullLoader_v15Fv
  */
 J2DAnmFullLoader_v15::~J2DAnmFullLoader_v15() { }
 
-/*
- * --INFO--
- * Address:	80048D24
- * Size:	000028
+/**
+ * @note Address: 0x80048D24
+ * @note Size: 0x28
  * readAnmTransform__20J2DAnmFullLoader_v15FPC23J3DAnmTransformFullData
  */
 void J2DAnmFullLoader_v15::readAnmTransform(const J3DAnmTransformFullData* data)
@@ -429,10 +411,9 @@ void J2DAnmFullLoader_v15::readAnmTransform(const J3DAnmTransformFullData* data)
 	setAnmTransform(static_cast<J2DAnmTransformFull*>(mResource), data);
 }
 
-/*
- * --INFO--
- * Address:	80048D4C
- * Size:	000094
+/**
+ * @note Address: 0x80048D4C
+ * @note Size: 0x94
  * setAnmTransform__20J2DAnmFullLoader_v15FP19J2DAnmTransformFullPC23J3DAnmTransformFullData
  */
 void J2DAnmFullLoader_v15::setAnmTransform(J2DAnmTransformFull* anm, const J3DAnmTransformFullData* data)
@@ -447,18 +428,16 @@ void J2DAnmFullLoader_v15::setAnmTransform(J2DAnmTransformFull* anm, const J3DAn
 	anm->mTranslationVals = JSUConvertOffsetToPtr<f32>(data, (void*)data->mTransValOffset);
 }
 
-/*
- * --INFO--
- * Address:	80048DE0
- * Size:	000028
+/**
+ * @note Address: 0x80048DE0
+ * @note Size: 0x28
  * readAnmColor__20J2DAnmFullLoader_v15FPC19J3DAnmColorFullData
  */
 void J2DAnmFullLoader_v15::readAnmColor(const J3DAnmColorFullData* data) { setAnmColor(static_cast<J2DAnmColorFull*>(mResource), data); }
 
-/*
- * --INFO--
- * Address:	80048E08
- * Size:	0000CC
+/**
+ * @note Address: 0x80048E08
+ * @note Size: 0xCC
  * setAnmColor__20J2DAnmFullLoader_v15FP15J2DAnmColorFullPC19J3DAnmColorFullData
  */
 void J2DAnmFullLoader_v15::setAnmColor(J2DAnmColorFull* anm, const J3DAnmColorFullData* data)
@@ -476,20 +455,18 @@ void J2DAnmFullLoader_v15::setAnmColor(J2DAnmColorFull* anm, const J3DAnmColorFu
 	anm->mNameTab.setResource(JSUConvertOffsetToPtr<ResNTAB>(data, (void*)data->mNameTabOffset));
 }
 
-/*
- * --INFO--
- * Address:	80048ED4
- * Size:	000028
+/**
+ * @note Address: 0x80048ED4
+ * @note Size: 0x28
  */
 void J2DAnmFullLoader_v15::readAnmTexPattern(const J3DAnmTexPatternFullData* data)
 {
 	setAnmTexPattern(static_cast<J2DAnmTexPattern*>(mResource), data);
 }
 
-/*
- * --INFO--
- * Address:	80048EFC
- * Size:	0000A4
+/**
+ * @note Address: 0x80048EFC
+ * @note Size: 0xA4
  */
 void J2DAnmFullLoader_v15::setAnmTexPattern(J2DAnmTexPattern* anm, const J3DAnmTexPatternFullData* data)
 {
@@ -504,17 +481,15 @@ void J2DAnmFullLoader_v15::setAnmTexPattern(J2DAnmTexPattern* anm, const J3DAnmT
 	anm->mNameTab.setResource(JSUConvertOffsetToPtr<ResNTAB>(data, (void*)data->mNameTabOffset));
 }
 
-/*
- * --INFO--
- * Address:	80048FA0
- * Size:	000028
+/**
+ * @note Address: 0x80048FA0
+ * @note Size: 0x28
  */
 void J2DAnmKeyLoader_v15::readAnmTevReg(const J3DAnmTevRegKeyData* data) { setAnmTevReg(static_cast<J2DAnmTevRegKey*>(mResource), data); }
 
-/*
- * --INFO--
- * Address:	80048FC8
- * Size:	00018C
+/**
+ * @note Address: 0x80048FC8
+ * @note Size: 0x18C
  */
 void J2DAnmKeyLoader_v15::setAnmTevReg(J2DAnmTevRegKey* anm, const J3DAnmTevRegKeyData* data)
 {
@@ -547,20 +522,18 @@ void J2DAnmKeyLoader_v15::setAnmTevReg(J2DAnmTevRegKey* anm, const J3DAnmTevRegK
 	anm->mKAlphaVals = JSUConvertOffsetToPtr<s16>(data, (void*)data->mKAValuesOffset);
 }
 
-/*
- * --INFO--
- * Address:	80049154
- * Size:	000028
+/**
+ * @note Address: 0x80049154
+ * @note Size: 0x28
  */
 void J2DAnmFullLoader_v15::readAnmVisibility(const J3DAnmVisibilityFullData* data)
 {
 	setAnmVisibility(static_cast<J2DAnmVisibilityFull*>(mResource), data);
 }
 
-/*
- * --INFO--
- * Address:	8004917C
- * Size:	00007C
+/**
+ * @note Address: 0x8004917C
+ * @note Size: 0x7C
  */
 void J2DAnmFullLoader_v15::setAnmVisibility(J2DAnmVisibilityFull* anm, const J3DAnmVisibilityFullData* data)
 {
@@ -573,10 +546,9 @@ void J2DAnmFullLoader_v15::setAnmVisibility(J2DAnmVisibilityFull* anm, const J3D
 	anm->mValues       = JSUConvertOffsetToPtr<u8>(data, (void*)data->mValuesOffset);
 }
 
-/*
- * --INFO--
- * Address:	800491F8
- * Size:	000028
+/**
+ * @note Address: 0x800491F8
+ * @note Size: 0x28
  * readAnmVtxColor__20J2DAnmFullLoader_v15FPC22J3DAnmVtxColorFullData
  */
 void J2DAnmFullLoader_v15::readAnmVtxColor(const J3DAnmVtxColorFullData* data)
@@ -584,10 +556,9 @@ void J2DAnmFullLoader_v15::readAnmVtxColor(const J3DAnmVtxColorFullData* data)
 	setAnmVtxColor(static_cast<J2DAnmVtxColorFull*>(mResource), data);
 }
 
-/*
- * --INFO--
- * Address:	80049220
- * Size:	0000FC
+/**
+ * @note Address: 0x80049220
+ * @note Size: 0xFC
  * setAnmVtxColor__20J2DAnmFullLoader_v15FP18J2DAnmVtxColorFullPC22J3DAnmVtxColorFullData
  */
 void J2DAnmFullLoader_v15::setAnmVtxColor(J2DAnmVtxColorFull* anm, const J3DAnmVtxColorFullData* data)

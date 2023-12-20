@@ -82,10 +82,9 @@ GeneralEnemyMgr* generalEnemyMgr;
 int GeneralEnemyMgr::mCullCount;
 int GeneralEnemyMgr::mTotalCount;
 
-/*
- * --INFO--
- * Address:	8010BD3C
- * Size:	000FAC
+/**
+ * @note Address: 0x8010BD3C
+ * @note Size: 0xFAC
  */
 void GeneralEnemyMgr::createEnemyMgr(u8 type, int enemyID, int limit)
 {
@@ -388,10 +387,9 @@ void GeneralEnemyMgr::createEnemyMgr(u8 type, int enemyID, int limit)
 	sys->heapStatusEnd(name);
 }
 
-/*
- * --INFO--
- * Address:	8010CCE8
- * Size:	0001BC
+/**
+ * @note Address: 0x8010CCE8
+ * @note Size: 0x1BC
  */
 GeneralEnemyMgr::GeneralEnemyMgr()
     : _1C(0)
@@ -410,10 +408,9 @@ GeneralEnemyMgr::GeneralEnemyMgr()
 	mFlags.set(2);
 }
 
-/*
- * --INFO--
- * Address:	8010CF0C
- * Size:	000078
+/**
+ * @note Address: 0x8010CF0C
+ * @note Size: 0x78
  */
 void GeneralEnemyMgr::killAll()
 {
@@ -426,10 +423,9 @@ void GeneralEnemyMgr::killAll()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8010CFB4
- * Size:	00004C
+/**
+ * @note Address: 0x8010CFB4
+ * @note Size: 0x4C
  */
 void GeneralEnemyMgr::setupSoundViewerAndBas()
 {
@@ -439,10 +435,9 @@ void GeneralEnemyMgr::setupSoundViewerAndBas()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8010D030
- * Size:	00008C
+/**
+ * @note Address: 0x8010D030
+ * @note Size: 0x8C
  */
 void GeneralEnemyMgr::doAnimation()
 {
@@ -458,10 +453,9 @@ void GeneralEnemyMgr::doAnimation()
 	sys->mTimers->_stop("doaTEKI");
 }
 
-/*
- * --INFO--
- * Address:	8010D0EC
- * Size:	000058
+/**
+ * @note Address: 0x8010D0EC
+ * @note Size: 0x58
  */
 void GeneralEnemyMgr::doEntry()
 {
@@ -473,10 +467,9 @@ void GeneralEnemyMgr::doEntry()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8010D174
- * Size:	000068
+/**
+ * @note Address: 0x8010D174
+ * @note Size: 0x68
  */
 void GeneralEnemyMgr::doSetView(int viewportNumber)
 {
@@ -488,10 +481,9 @@ void GeneralEnemyMgr::doSetView(int viewportNumber)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8010D20C
- * Size:	000058
+/**
+ * @note Address: 0x8010D20C
+ * @note Size: 0x58
  */
 void GeneralEnemyMgr::doViewCalc()
 {
@@ -503,10 +495,9 @@ void GeneralEnemyMgr::doViewCalc()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8010D294
- * Size:	000068
+/**
+ * @note Address: 0x8010D294
+ * @note Size: 0x68
  */
 void GeneralEnemyMgr::doSimulation(f32 constraint)
 {
@@ -518,10 +509,9 @@ void GeneralEnemyMgr::doSimulation(f32 constraint)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8010D32C
- * Size:	000068
+/**
+ * @note Address: 0x8010D32C
+ * @note Size: 0x68
  */
 void GeneralEnemyMgr::doDirectDraw(Graphics& gfx)
 {
@@ -533,10 +523,9 @@ void GeneralEnemyMgr::doDirectDraw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8010D3C4
- * Size:	000080
+/**
+ * @note Address: 0x8010D3C4
+ * @note Size: 0x80
  */
 void GeneralEnemyMgr::doSimpleDraw(Viewport* viewport)
 {
@@ -549,10 +538,9 @@ void GeneralEnemyMgr::doSimpleDraw(Viewport* viewport)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8010D474
- * Size:	00004C
+/**
+ * @note Address: 0x8010D474
+ * @note Size: 0x4C
  */
 J3DModelData* GeneralEnemyMgr::getJ3DModelData(int idx)
 {
@@ -565,10 +553,9 @@ J3DModelData* GeneralEnemyMgr::getJ3DModelData(int idx)
 	return modelData;
 }
 
-/*
- * --INFO--
- * Address:	8010D4C0
- * Size:	0000BC
+/**
+ * @note Address: 0x8010D4C0
+ * @note Size: 0xBC
  */
 EnemyBase* GeneralEnemyMgr::birth(int enemyID, EnemyBirthArg& birthArg)
 {
@@ -584,24 +571,21 @@ EnemyBase* GeneralEnemyMgr::birth(int enemyID, EnemyBirthArg& birthArg)
 	return enemy;
 }
 
-/*
- * --INFO--
- * Address:	8010D57C
- * Size:	000028
+/**
+ * @note Address: 0x8010D57C
+ * @note Size: 0x28
  */
 char* GeneralEnemyMgr::getEnemyName(int p1, int p2) { return EnemyInfoFunc::getEnemyName(p1, p2); }
 
-/*
- * --INFO--
- * Address:	8010D5A4
- * Size:	000028
+/**
+ * @note Address: 0x8010D5A4
+ * @note Size: 0x28
  */
 int GeneralEnemyMgr::getEnemyID(char* name, int p1) { return EnemyInfoFunc::getEnemyID(name, p1); }
 
-/*
- * --INFO--
- * Address:	8010D5CC
- * Size:	00002C
+/**
+ * @note Address: 0x8010D5CC
+ * @note Size: 0x2C
  */
 IEnemyMgrBase* GeneralEnemyMgr::getIEnemyMgrBase(int enemyID)
 {
@@ -617,10 +601,9 @@ IEnemyMgrBase* GeneralEnemyMgr::getIEnemyMgrBase(int enemyID)
 	return base;
 }
 
-/*
- * --INFO--
- * Address:	8010D5F8
- * Size:	00021C
+/**
+ * @note Address: 0x8010D5F8
+ * @note Size: 0x21C
  */
 void GeneralEnemyMgr::allocateEnemys(u8 type, int heapSize)
 {
@@ -673,17 +656,15 @@ void GeneralEnemyMgr::allocateEnemys(u8 type, int heapSize)
 	sys->heapStatusEnd("enemyHeap");
 }
 
-/*
- * --INFO--
- * Address:	8010D814
- * Size:	000040
+/**
+ * @note Address: 0x8010D814
+ * @note Size: 0x40
  */
 void GeneralEnemyMgr::resetEnemyNum() { mEnemyNumInfo.resetEnemyNum(); }
 
-/*
- * --INFO--
- * Address:	8010D854
- * Size:	00022C
+/**
+ * @note Address: 0x8010D854
+ * @note Size: 0x22C
  */
 #pragma dont_inline on
 void GeneralEnemyMgr::addEnemyNum(int enemyID, u8 max, GenObjectEnemy* genObj)
@@ -730,10 +711,9 @@ void GeneralEnemyMgr::addEnemyNum(int enemyID, u8 max, GenObjectEnemy* genObj)
 	}
 }
 #pragma dont_inline reset
-/*
- * --INFO--
- * Address:	8010DA80
- * Size:	000170
+/**
+ * @note Address: 0x8010DA80
+ * @note Size: 0x170
  */
 u8 GeneralEnemyMgr::getEnemyNum(int enemyID, bool doFullCount)
 {
@@ -882,10 +862,9 @@ lbl_8010DBDC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8010DBF0
- * Size:	0000B4
+/**
+ * @note Address: 0x8010DBF0
+ * @note Size: 0xB4
  */
 JKRHeap* GeneralEnemyMgr::useHeap()
 {
@@ -899,10 +878,9 @@ JKRHeap* GeneralEnemyMgr::useHeap()
 	return mHeap;
 }
 
-/*
- * --INFO--
- * Address:	8010DCA4
- * Size:	000038
+/**
+ * @note Address: 0x8010DCA4
+ * @note Size: 0x38
  */
 EnemyMgrBase* GeneralEnemyMgr::getEnemyMgr(int enemyID)
 {
@@ -913,10 +891,9 @@ EnemyMgrBase* GeneralEnemyMgr::getEnemyMgr(int enemyID)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8010DCDC
- * Size:	000098
+/**
+ * @note Address: 0x8010DCDC
+ * @note Size: 0x98
  */
 void GeneralEnemyMgr::setMovieDraw(bool isEndMovie)
 {
@@ -935,10 +912,9 @@ void GeneralEnemyMgr::setMovieDraw(bool isEndMovie)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8010DDD4
- * Size:	00011C
+/**
+ * @note Address: 0x8010DDD4
+ * @note Size: 0x11C
  */
 void GeneralEnemyMgr::prepareDayendEnemies()
 {
@@ -969,10 +945,9 @@ void GeneralEnemyMgr::prepareDayendEnemies()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8010E4BC
- * Size:	000C84
+/**
+ * @note Address: 0x8010E4BC
+ * @note Size: 0xC84
  */
 void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 {
@@ -2150,10 +2125,9 @@ lbl_8010F104:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
+/**
+ * @note Address: N/A
+ * @note Size: 0x5C
  */
 void GeneralEnemyMgr::setParmsDebugNameAndID()
 {
@@ -2161,10 +2135,9 @@ void GeneralEnemyMgr::setParmsDebugNameAndID()
 	mEnemyMgrNode.setDebugParm(0);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
+/**
+ * @note Address: N/A
+ * @note Size: 0x50
  */
 void GeneralEnemyMgr::resetParmsDebugNameAndID()
 {

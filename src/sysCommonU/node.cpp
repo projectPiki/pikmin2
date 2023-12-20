@@ -3,17 +3,15 @@
 #include "JSystem/JUtility/JUTException.h"
 #include "Dolphin/os.h"
 
-/*
- * --INFO--
- * Address:	80411204
- * Size:	000004
+/**
+ * @note Address: 0x80411204
+ * @note Size: 0x4
  */
 void Node::init() { }
 
-/*
- * --INFO--
- * Address:	80411208
- * Size:	0000B0
+/**
+ * @note Address: 0x80411208
+ * @note Size: 0xB0
  */
 void Node::displayInfo(int whitespaceAmt)
 {
@@ -38,10 +36,9 @@ void Node::displayInfo(int whitespaceAmt)
 	}
 }
 
-/*
- * --INFO--
- * Address:	804112B8
- * Size:	000064
+/**
+ * @note Address: 0x804112B8
+ * @note Size: 0x64
  */
 void Node::update()
 {
@@ -60,10 +57,9 @@ void Node::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8041131C
- * Size:	000074
+/**
+ * @note Address: 0x8041131C
+ * @note Size: 0x74
  */
 void Node::draw(Graphics& gfx)
 {
@@ -82,10 +78,9 @@ void Node::draw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80411390
- * Size:	000030
+/**
+ * @note Address: 0x80411390
+ * @note Size: 0x30
  */
 CNode::CNode()
 {
@@ -93,10 +88,9 @@ CNode::CNode()
 	setName("CNode");
 }
 
-/*
- * --INFO--
- * Address:	804113C0
- * Size:	000048
+/**
+ * @note Address: 0x804113C0
+ * @note Size: 0x48
  */
 void CNode::addHead(CNode* newChild)
 {
@@ -123,10 +117,9 @@ void CNode::addHead(CNode* newChild)
 	add(newChild);
 }
 
-/*
- * --INFO--
- * Address:	80411408
- * Size:	0000B0
+/**
+ * @note Address: 0x80411408
+ * @note Size: 0xB0
  */
 void CNode::add(CNode* newAdd)
 {
@@ -158,10 +151,9 @@ void CNode::add(CNode* newAdd)
 	}
 }
 
-/*
- * --INFO--
- * Address:	804114B8
- * Size:	000020
+/**
+ * @note Address: 0x804114B8
+ * @note Size: 0x20
  */
 int CNode::calcNextCount()
 {
@@ -175,10 +167,9 @@ int CNode::calcNextCount()
 	return i;
 }
 
-/*
- * --INFO--
- * Address:	804114D8
- * Size:	0000B0
+/**
+ * @note Address: 0x804114D8
+ * @note Size: 0xB0
  */
 void CNode::concat(CNode* newEnd)
 {
@@ -204,17 +195,15 @@ void CNode::concat(CNode* newEnd)
 	newEnd->mPrev = curEnd;
 }
 
-/*
- * --INFO--
- * Address:	80411588
- * Size:	000048
+/**
+ * @note Address: 0x80411588
+ * @note Size: 0x48
  */
 CNode::~CNode() { }
 
-/*
- * --INFO--
- * Address:	804115D0
- * Size:	000098
+/**
+ * @note Address: 0x804115D0
+ * @note Size: 0x98
  */
 void CNode::del()
 {
@@ -271,10 +260,9 @@ void CNode::del()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80411668
- * Size:	000034
+/**
+ * @note Address: 0x80411668
+ * @note Size: 0x34
  */
 int CNode::getChildCount()
 {
@@ -290,10 +278,9 @@ int CNode::getChildCount()
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	8041169C
- * Size:	000094
+/**
+ * @note Address: 0x8041169C
+ * @note Size: 0x94
  */
 CNode* CNode::getChildAt(int idx)
 {

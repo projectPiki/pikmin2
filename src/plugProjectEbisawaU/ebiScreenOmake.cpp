@@ -9,10 +9,9 @@ static const char className[] = "ebiScreenOmake";
 namespace ebi {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	803ED2A8
- * Size:	000274
+/**
+ * @note Address: 0x803ED2A8
+ * @note Size: 0x274
  */
 TOmake::TOmake()
     : mController(nullptr)
@@ -25,10 +24,9 @@ TOmake::TOmake()
 {
 }
 
-/*
- * --INFO--
- * Address:	803ED51C
- * Size:	0005F0
+/**
+ * @note Address: 0x803ED51C
+ * @note Size: 0x5F0
  */
 void TOmake::doSetArchive(JKRArchive* arc)
 {
@@ -490,10 +488,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803EDB0C
- * Size:	0005F0
+/**
+ * @note Address: 0x803EDB0C
+ * @note Size: 0x5F0
  */
 void TOmake::doOpenScreen(ArgOpen* arg)
 {
@@ -981,10 +978,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803EE0FC
- * Size:	00004C
+/**
+ * @note Address: 0x803EE0FC
+ * @note Size: 0x4C
  */
 void TOmake::doCloseScreen(ArgClose* arg)
 {
@@ -994,10 +990,9 @@ void TOmake::doCloseScreen(ArgClose* arg)
 	mState      = 2;
 }
 
-/*
- * --INFO--
- * Address:	803EE148
- * Size:	000048
+/**
+ * @note Address: 0x803EE148
+ * @note Size: 0x48
  */
 void TOmake::doInitWaitState()
 {
@@ -1010,10 +1005,9 @@ void TOmake::doInitWaitState()
 	mState2                          = 0;
 }
 
-/*
- * --INFO--
- * Address:	803EE190
- * Size:	000084
+/**
+ * @note Address: 0x803EE190
+ * @note Size: 0x84
  */
 bool TOmake::doUpdateStateOpen()
 {
@@ -1031,10 +1025,9 @@ bool TOmake::doUpdateStateOpen()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803EE214
- * Size:	000484
+/**
+ * @note Address: 0x803EE214
+ * @note Size: 0x484
  */
 bool TOmake::doUpdateStateWait()
 {
@@ -1464,10 +1457,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803EE698
- * Size:	000074
+/**
+ * @note Address: 0x803EE698
+ * @note Size: 0x74
  */
 bool TOmake::doUpdateStateClose()
 {
@@ -1517,10 +1509,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803EE70C
- * Size:	000244
+/**
+ * @note Address: 0x803EE70C
+ * @note Size: 0x244
  */
 void TOmake::doDraw()
 {
@@ -1726,10 +1717,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803EE950
- * Size:	000044
+/**
+ * @note Address: 0x803EE950
+ * @note Size: 0x44
  */
 void TOmake::setController(Controller* in)
 {
@@ -1737,10 +1727,9 @@ void TOmake::setController(Controller* in)
 	mInput.init(in, 0, 6, (long*)&mCurrSel, EUTPadInterface_countNum::MODE_DOWNUP, 0.66f, 0.15f);
 }
 
-/*
- * --INFO--
- * Address:	803EE994
- * Size:	000064
+/**
+ * @note Address: 0x803EE994
+ * @note Size: 0x64
  */
 void TOmake::showPanes_()
 {
@@ -1753,10 +1742,9 @@ void TOmake::showPanes_()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803EE9F8
- * Size:	000028
+/**
+ * @note Address: 0x803EE9F8
+ * @note Size: 0x28
  */
 void TOmake::hidePanes_()
 {
@@ -1766,10 +1754,9 @@ void TOmake::hidePanes_()
 	mPaneBButton->hide();
 }
 
-/*
- * --INFO--
- * Address:	803EEA20
- * Size:	000054
+/**
+ * @note Address: 0x803EEA20
+ * @note Size: 0x54
  */
 void TOmake::openFromMovie_()
 {
@@ -1780,10 +1767,9 @@ void TOmake::openFromMovie_()
 	mState2     = 6;
 }
 
-/*
- * --INFO--
- * Address:	803EEA74
- * Size:	0000B0
+/**
+ * @note Address: 0x803EEA74
+ * @note Size: 0xB0
  */
 void TOmake::openFromCardE_()
 {

@@ -136,10 +136,9 @@ int eIDInfo[ENEMY_ZUKAN_COUNT][2] = {
 int TItemZukan::mCategoryArray[TREASUREHOARD_CATEGORY_NUM]
     = { 7, 16, 22, 27, 42, 51, 57, 63, 71, 79, 86, 94, 103, 109, 120, 126, 146, 156, 160, 166, 168, 176, 183, 196, 201 };
 
-/*
- * --INFO--
- * Address:	80370C08
- * Size:	000204
+/**
+ * @note Address: 0x80370C08
+ * @note Size: 0x204
  */
 TZukanBase::TZukanBase(char* name)
     : TScrollList(name)
@@ -227,10 +226,9 @@ TZukanBase::TZukanBase(char* name)
 	mPaneCursorCorners[3]  = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
+/**
+ * @note Address: N/A
+ * @note Size: 0x44
  */
 void TZukanBase::setDebugHeapParent(JKRHeap* heap)
 {
@@ -238,11 +236,6 @@ void TZukanBase::setDebugHeapParent(JKRHeap* heap)
 	P2ASSERTLINE(69, mDebugHeapParent);
 }
 
-/*
- * --INFO--
- * Address:	80370FCC
- * Size:	00090C
- */
 /**
  * @brief Initializes the TZukanBase object.
  *
@@ -251,6 +244,9 @@ void TZukanBase::setDebugHeapParent(JKRHeap* heap)
  * cursor corners, panel list bounds, big window, window back, model pane, and index group.
  *
  * @param archive A pointer to the JKRArchive object.
+ *
+ * @note Address: 0x80370FCC
+ * @note Size: 0x90C
  */
 void TZukanBase::doCreate(JKRArchive* archive)
 {
@@ -365,10 +361,9 @@ void TZukanBase::doCreate(JKRArchive* archive)
 	changePaneInfo();
 }
 
-/*
- * --INFO--
- * Address:	803718D8
- * Size:	000FC8
+/**
+ * @note Address: 0x803718D8
+ * @note Size: 0xFC8
  */
 bool TZukanBase::doUpdate()
 {
@@ -707,10 +702,9 @@ bool TZukanBase::doUpdate()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803728A8
- * Size:	0002B8
+/**
+ * @note Address: 0x803728A8
+ * @note Size: 0x2B8
  */
 void TZukanBase::updateButtonAlpha(u8 target)
 {
@@ -776,10 +770,9 @@ void TZukanBase::updateButtonAlpha(u8 target)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80372B68
- * Size:	000714
+/**
+ * @note Address: 0x80372B68
+ * @note Size: 0x714
  */
 void TZukanBase::doDraw(Graphics& gfx)
 {
@@ -897,10 +890,9 @@ void TZukanBase::doDraw(Graphics& gfx)
 	GXSetAlphaUpdate(GX_TRUE);
 }
 
-/*
- * --INFO--
- * Address:	80373280
- * Size:	000018
+/**
+ * @note Address: 0x80373280
+ * @note Size: 0x18
  */
 void TZukanBase::doUpdateFadeoutFinish()
 {
@@ -909,10 +901,9 @@ void TZukanBase::doUpdateFadeoutFinish()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80373298
- * Size:	000578
+/**
+ * @note Address: 0x80373298
+ * @note Size: 0x578
  */
 void TZukanBase::indexPaneInit(J2DScreen* screen)
 {
@@ -1433,10 +1424,9 @@ lbl_803737FC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80373810
- * Size:	000258
+/**
+ * @note Address: 0x80373810
+ * @note Size: 0x258
  */
 void TZukanBase::paneInit()
 {
@@ -1464,10 +1454,9 @@ void TZukanBase::paneInit()
 	_AC      = mYOffset + offs;
 }
 
-/*
- * --INFO--
- * Address:	80373A68
- * Size:	0000C8
+/**
+ * @note Address: 0x80373A68
+ * @note Size: 0xC8
  */
 void TZukanBase::changePaneInfo()
 {
@@ -1489,10 +1478,9 @@ void TZukanBase::changePaneInfo()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80373B30
- * Size:	0000A8
+/**
+ * @note Address: 0x80373B30
+ * @note Size: 0xA8
  */
 void TZukanBase::changeName()
 {
@@ -1507,10 +1495,9 @@ void TZukanBase::changeName()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80373BD8
- * Size:	00005C
+/**
+ * @note Address: 0x80373BD8
+ * @note Size: 0x5C
  */
 void TZukanBase::doUpdateIn()
 {
@@ -1524,10 +1511,9 @@ void TZukanBase::doUpdateIn()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80373C34
- * Size:	000630
+/**
+ * @note Address: 0x80373C34
+ * @note Size: 0x630
  */
 void TZukanBase::doUpdateOut()
 {
@@ -1643,10 +1629,9 @@ void TZukanBase::doUpdateOut()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80374264
- * Size:	000114
+/**
+ * @note Address: 0x80374264
+ * @note Size: 0x114
  */
 void TZukanBase::doPushXButton()
 {
@@ -1668,10 +1653,9 @@ void TZukanBase::doPushXButton()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80374378
- * Size:	000130
+/**
+ * @note Address: 0x80374378
+ * @note Size: 0x130
  */
 void TZukanBase::doPushYButton()
 {
@@ -1693,10 +1677,9 @@ void TZukanBase::doPushYButton()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803744A8
- * Size:	0000B0
+/**
+ * @note Address: 0x803744A8
+ * @note Size: 0xB0
  */
 void TZukanBase::doPushBButton()
 {
@@ -1712,10 +1695,9 @@ void TZukanBase::doPushBButton()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80374558
- * Size:	000244
+/**
+ * @note Address: 0x80374558
+ * @note Size: 0x244
  */
 void TZukanBase::setShortenIndex(int paneID, int index, bool)
 {
@@ -1932,10 +1914,9 @@ lbl_80374788:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8037479C
- * Size:	000088
+/**
+ * @note Address: 0x8037479C
+ * @note Size: 0x88
  */
 void TZukanBase::windowOpenClose(u64 mesg)
 {
@@ -1953,17 +1934,15 @@ void TZukanBase::windowOpenClose(u64 mesg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80374824
- * Size:	000074
+/**
+ * @note Address: 0x80374824
+ * @note Size: 0x74
  */
 bool TZukanBase::isPanelExist() { return (mIndexPaneList[mCurrentSelect]->getIndex() + mRightOffset) < getIdMax(); }
 
-/*
- * --INFO--
- * Address:	80374898
- * Size:	000018
+/**
+ * @note Address: 0x80374898
+ * @note Size: 0x18
  */
 void TZukanBase::requireRequest()
 {
@@ -1972,17 +1951,15 @@ void TZukanBase::requireRequest()
 	mIsEffectRequired = false;
 }
 
-/*
- * --INFO--
- * Address:	803748B0
- * Size:	00000C
+/**
+ * @note Address: 0x803748B0
+ * @note Size: 0xC
  */
 void TZukanBase::requireEffectOff() { mIsEffectRequired = true; }
 
-/*
- * --INFO--
- * Address:	803748BC
- * Size:	00001C
+/**
+ * @note Address: 0x803748BC
+ * @note Size: 0x1C
  */
 bool TZukanBase::isEnlargedWindow()
 {
@@ -1992,10 +1969,9 @@ bool TZukanBase::isEnlargedWindow()
 	return mIsBigWindowOpened;
 }
 
-/*
- * --INFO--
- * Address:	803748D8
- * Size:	000020
+/**
+ * @note Address: 0x803748D8
+ * @note Size: 0x20
  */
 bool TZukanBase::isMemoWindow()
 {
@@ -2005,20 +1981,18 @@ bool TZukanBase::isMemoWindow()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 void TZukanBase::requireSceneEnd()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803748F8
- * Size:	000010
+/**
+ * @note Address: 0x803748F8
+ * @note Size: 0x10
  */
 int TZukanBase::checkRequest(int& data)
 {
@@ -2026,10 +2000,9 @@ int TZukanBase::checkRequest(int& data)
 	return mState;
 }
 
-/*
- * --INFO--
- * Address:	80374908
- * Size:	000068
+/**
+ * @note Address: 0x80374908
+ * @note Size: 0x68
  */
 int TZukanBase::getCurrSelectId()
 {
@@ -2040,10 +2013,9 @@ int TZukanBase::getCurrSelectId()
 	return -1;
 }
 
-/*
- * --INFO--
- * Address:	80374970
- * Size:	000124
+/**
+ * @note Address: 0x80374970
+ * @note Size: 0x124
  */
 const ResTIMG* TZukanBase::getTexInfo(int id)
 {
@@ -2057,30 +2029,27 @@ const ResTIMG* TZukanBase::getTexInfo(int id)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000BC
+/**
+ * @note Address: N/A
+ * @note Size: 0xBC
  */
 void TZukanBase::resetDebugShow()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 void TEnemyZukanIndex::getIndexInfo(int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80374BB8
- * Size:	001734
+/**
+ * @note Address: 0x80374BB8
+ * @note Size: 0x1734
  */
 void TEnemyZukan::doCreate(JKRArchive* arc)
 {
@@ -2495,10 +2464,9 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 	backup->becomeCurrentHeap();
 }
 
-/*
- * --INFO--
- * Address:	80376338
- * Size:	0001D8
+/**
+ * @note Address: 0x80376338
+ * @note Size: 0x1D8
  */
 void TEnemyZukan::setDetail()
 {
@@ -2585,10 +2553,9 @@ void TEnemyZukan::setDetail()
 	mPikiLostCounter->forceScaleUp(false);
 }
 
-/*
- * --INFO--
- * Address:	80376510
- * Size:	000048
+/**
+ * @note Address: 0x80376510
+ * @note Size: 0x48
  */
 void TEnemyZukan::setShortenIndex(int paneID, int index, bool flag)
 {
@@ -2598,10 +2565,9 @@ void TEnemyZukan::setShortenIndex(int paneID, int index, bool flag)
 	TZukanBase::setShortenIndex(paneID, index, flag);
 }
 
-/*
- * --INFO--
- * Address:	80376558
- * Size:	0000D8
+/**
+ * @note Address: 0x80376558
+ * @note Size: 0xD8
  */
 bool TEnemyZukan::isListShow(int index)
 {
@@ -2632,10 +2598,9 @@ bool TEnemyZukan::isListShow(int index)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80376630
- * Size:	000718
+/**
+ * @note Address: 0x80376630
+ * @note Size: 0x718
  */
 void TEnemyZukan::indexPaneInit(J2DScreen* screen)
 {
@@ -3339,10 +3304,9 @@ lbl_80376D2C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80376D48
- * Size:	000970
+/**
+ * @note Address: 0x80376D48
+ * @note Size: 0x970
  */
 void TEnemyZukan::getUpdateIndex(int& id, bool flag)
 {
@@ -4199,31 +4163,27 @@ lbl_803776A4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803776B8
- * Size:	000024
+/**
+ * @note Address: 0x803776B8
+ * @note Size: 0x24
  */
 u64 TEnemyZukan::getNameID(int id) { return mOffsetMsgNames->getMsgID(id); }
 
-/*
- * --INFO--
- * Address:	803776DC
- * Size:	000024
+/**
+ * @note Address: 0x803776DC
+ * @note Size: 0x24
  */
 u64 TEnemyZukan::getXMsgID(int id) { return mOffsetMsg_XDesc->getMsgID(id); }
 
-/*
- * --INFO--
- * Address:	80377700
- * Size:	000024
+/**
+ * @note Address: 0x80377700
+ * @note Size: 0x24
  */
 u64 TEnemyZukan::getYMsgID(int id) { return mOffsetMsg_YDesc->getMsgID(id); }
 
-/*
- * --INFO--
- * Address:	80377724
- * Size:	000050
+/**
+ * @note Address: 0x80377724
+ * @note Size: 0x50
  */
 int TEnemyZukan::getModelIndex(int index)
 {
@@ -4238,10 +4198,9 @@ int TEnemyZukan::getModelIndex(int index)
 	return eIDInfo[0][j];
 }
 
-/*
- * --INFO--
- * Address:	80377774
- * Size:	000060
+/**
+ * @note Address: 0x80377774
+ * @note Size: 0x60
  */
 void TEnemyZukan::setXWindow()
 {
@@ -4251,10 +4210,9 @@ void TEnemyZukan::setXWindow()
 	mWindow->setIconColor(mIconColor1[0], mIconColor2[0]);
 }
 
-/*
- * --INFO--
- * Address:	803777D4
- * Size:	000060
+/**
+ * @note Address: 0x803777D4
+ * @note Size: 0x60
  */
 void TEnemyZukan::setYWindow()
 {
@@ -4264,17 +4222,15 @@ void TEnemyZukan::setYWindow()
 	mWindow->setIconColor(mIconColor1[1], mIconColor2[1]);
 }
 
-/*
- * --INFO--
- * Address:	80377834
- * Size:	000034
+/**
+ * @note Address: 0x80377834
+ * @note Size: 0x34
  */
 bool TEnemyZukan::isOpenConfirmWindow() { return static_cast<TDEnemyScene*>(getOwner())->mConfirmEndWindow->mHasDrawn; }
 
-/*
- * --INFO--
- * Address:	80377868
- * Size:	0000FC
+/**
+ * @note Address: 0x80377868
+ * @note Size: 0xFC
  */
 bool TEnemyZukan::isNewSupply(int index, bool flag)
 {
@@ -4306,10 +4262,9 @@ bool TEnemyZukan::isNewSupply(int index, bool flag)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80377964
- * Size:	0000E4
+/**
+ * @note Address: 0x80377964
+ * @note Size: 0xE4
  */
 bool TEnemyZukan::isPanelExist()
 {
@@ -4338,10 +4293,9 @@ bool TEnemyZukan::isPanelExist()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80377A48
- * Size:	00004C
+/**
+ * @note Address: 0x80377A48
+ * @note Size: 0x4C
  */
 void TEnemyZukan::openConfirmWindow()
 {
@@ -4349,10 +4303,9 @@ void TEnemyZukan::openConfirmWindow()
 	static_cast<TDEnemyScene*>(getOwner())->mConfirmEndWindow->start(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80377A94
- * Size:	000134
+/**
+ * @note Address: 0x80377A94
+ * @note Size: 0x134
  */
 u32 TEnemyZukan::getPrice(int index)
 {
@@ -4382,10 +4335,9 @@ u32 TEnemyZukan::getPrice(int index)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	80377BC8
- * Size:	0000F8
+/**
+ * @note Address: 0x80377BC8
+ * @note Size: 0xF8
  */
 u32 TEnemyZukan::getDefeatNum(int index)
 {
@@ -4410,10 +4362,9 @@ u32 TEnemyZukan::getDefeatNum(int index)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	80377CC0
- * Size:	00012C
+/**
+ * @note Address: 0x80377CC0
+ * @note Size: 0x12C
  */
 u32 TEnemyZukan::getKilledNum(int index)
 {
@@ -4438,17 +4389,15 @@ u32 TEnemyZukan::getKilledNum(int index)
 	return randWeightFloat(100000.0f) + 1.0f;
 }
 
-/*
- * --INFO--
- * Address:	80377DEC
- * Size:	000054
+/**
+ * @note Address: 0x80377DEC
+ * @note Size: 0x54
  */
 TDEnemyScene::TDEnemyScene() { mConfirmEndWindow = nullptr; }
 
-/*
- * --INFO--
- * Address:	80377E40
- * Size:	0000DC
+/**
+ * @note Address: 0x80377E40
+ * @note Size: 0xDC
  */
 void TDEnemyScene::doCreateObj(JKRArchive* arc)
 {
@@ -4460,10 +4409,9 @@ void TDEnemyScene::doCreateObj(JKRArchive* arc)
 	mConfirmEndWindow->setRetireMsg('6018_00'); // "Go to Area Selection"
 }
 
-/*
- * --INFO--
- * Address:	80377F1C
- * Size:	000034
+/**
+ * @note Address: 0x80377F1C
+ * @note Size: 0x34
  */
 bool TDEnemyScene::doStart(Screen::StartSceneArg* arg)
 {
@@ -4471,10 +4419,9 @@ bool TDEnemyScene::doStart(Screen::StartSceneArg* arg)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80377F50
- * Size:	000028
+/**
+ * @note Address: 0x80377F50
+ * @note Size: 0x28
  */
 bool TDEnemyScene::isAppearConfirmWindow()
 {
@@ -4484,20 +4431,18 @@ bool TDEnemyScene::isAppearConfirmWindow()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E8
+/**
+ * @note Address: N/A
+ * @note Size: 0xE8
  */
 bool TItemZukan::isCategoryComplete()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8037809C
- * Size:	000424
+/**
+ * @note Address: 0x8037809C
+ * @note Size: 0x424
  */
 bool TItemZukan::doUpdate()
 {
@@ -4593,10 +4538,9 @@ bool TItemZukan::doUpdate()
 	TZukanBase::doUpdate();
 }
 
-/*
- * --INFO--
- * Address:	803784C0
- * Size:	0000A8
+/**
+ * @note Address: 0x803784C0
+ * @note Size: 0xA8
  */
 void TItemZukan::demoSet()
 {
@@ -4613,10 +4557,9 @@ void TItemZukan::demoSet()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80378568
- * Size:	00045C
+/**
+ * @note Address: 0x80378568
+ * @note Size: 0x45C
  */
 void TItemZukan::setShortenIndex(int paneID, int index, bool flag)
 {
@@ -5041,10 +4984,9 @@ lbl_803789B0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803789D4
- * Size:	0002D4
+/**
+ * @note Address: 0x803789D4
+ * @note Size: 0x2D4
  */
 void TItemZukan::doUpdateOut()
 {
@@ -5313,10 +5255,9 @@ lbl_80378C5C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80378CA8
- * Size:	0000C0
+/**
+ * @note Address: 0x80378CA8
+ * @note Size: 0xC0
  */
 void TItemZukan::getUpdateIndex(int& id, bool flag)
 {
@@ -5344,31 +5285,27 @@ void TItemZukan::getUpdateIndex(int& id, bool flag)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80378D68
- * Size:	00003C
+/**
+ * @note Address: 0x80378D68
+ * @note Size: 0x3C
  */
 u64 TItemZukan::getNameID(int id) { return mOffsetMsgNames->getMsgID(Game::PelletList::Mgr::getOffsetFromDictionaryNo(id)); }
 
-/*
- * --INFO--
- * Address:	80378DA4
- * Size:	00003C
+/**
+ * @note Address: 0x80378DA4
+ * @note Size: 0x3C
  */
 u64 TItemZukan::getXMsgID(int id) { return mOffsetMsg_XDesc->getMsgID(Game::PelletList::Mgr::getOffsetFromDictionaryNo(id)); }
 
-/*
- * --INFO--
- * Address:	80378DE0
- * Size:	00003C
+/**
+ * @note Address: 0x80378DE0
+ * @note Size: 0x3C
  */
 u64 TItemZukan::getYMsgID(int id) { return mOffsetMsg_YDesc->getMsgID(Game::PelletList::Mgr::getOffsetFromDictionaryNo(id)); }
 
-/*
- * --INFO--
- * Address:	80378E1C
- * Size:	000034
+/**
+ * @note Address: 0x80378E1C
+ * @note Size: 0x34
  */
 int TItemZukan::getModelIndex(int id)
 {
@@ -5378,17 +5315,15 @@ int TItemZukan::getModelIndex(int id)
 	return Game::PelletList::Mgr::getOffsetFromDictionaryNo(id);
 }
 
-/*
- * --INFO--
- * Address:	80378E50
- * Size:	000020
+/**
+ * @note Address: 0x80378E50
+ * @note Size: 0x20
  */
 int TItemZukan::getIdMax() { return Game::PelletList::Mgr::getDictionaryNum(); }
 
-/*
- * --INFO--
- * Address:	80378E70
- * Size:	001690
+/**
+ * @note Address: 0x80378E70
+ * @note Size: 0x1690
  */
 void TItemZukan::doCreate(JKRArchive* arc)
 {
@@ -5792,10 +5727,9 @@ void TItemZukan::doCreate(JKRArchive* arc)
 	backup->becomeCurrentHeap();
 }
 
-/*
- * --INFO--
- * Address:	8037A500
- * Size:	0007B4
+/**
+ * @note Address: 0x8037A500
+ * @note Size: 0x7B4
  */
 void TItemZukan::doDemoDraw(Graphics& gfx)
 {
@@ -6403,10 +6337,9 @@ lbl_8037AC74:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8037ACB4
- * Size:	000170
+/**
+ * @note Address: 0x8037ACB4
+ * @note Size: 0x170
  */
 void TItemZukan::setDetail()
 {
@@ -6439,10 +6372,9 @@ void TItemZukan::setDetail()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8037AE24
- * Size:	000090
+/**
+ * @note Address: 0x8037AE24
+ * @note Size: 0x90
  */
 bool TItemZukan::isComplete()
 {
@@ -6463,10 +6395,9 @@ bool TItemZukan::isComplete()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8037AEB4
- * Size:	000080
+/**
+ * @note Address: 0x8037AEB4
+ * @note Size: 0x80
  */
 bool TItemZukan::isListShow(int id)
 {
@@ -6487,10 +6418,9 @@ bool TItemZukan::isListShow(int id)
 	return Game::playData->isPelletZukanVisible(id) != 0;
 }
 
-/*
- * --INFO--
- * Address:	8037AF34
- * Size:	00006C
+/**
+ * @note Address: 0x8037AF34
+ * @note Size: 0x6C
  */
 void TItemZukan::setXWindow()
 {
@@ -6501,10 +6431,9 @@ void TItemZukan::setXWindow()
 	mWindow->setIconColor(mOrimaMesgIconColor1, mOrimaMesgIconColor2);
 }
 
-/*
- * --INFO--
- * Address:	8037AFA0
- * Size:	0000A8
+/**
+ * @note Address: 0x8037AFA0
+ * @note Size: 0xA8
  */
 void TItemZukan::setYWindow()
 {
@@ -6522,10 +6451,9 @@ void TItemZukan::setYWindow()
 	mWindow->setIconColor(mIconColor1[id], mIconColor2[id]);
 }
 
-/*
- * --INFO--
- * Address:	8037B048
- * Size:	0000C0
+/**
+ * @note Address: 0x8037B048
+ * @note Size: 0xC0
  */
 u32 TItemZukan::getPrice(int id)
 {
@@ -6540,10 +6468,9 @@ u32 TItemZukan::getPrice(int id)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8037B108
- * Size:	0000C8
+/**
+ * @note Address: 0x8037B108
+ * @note Size: 0xC8
  */
 u32 TItemZukan::getWeight(int id)
 {
@@ -6563,10 +6490,9 @@ u32 TItemZukan::getWeight(int id)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8037B1D0
- * Size:	000098
+/**
+ * @note Address: 0x8037B1D0
+ * @note Size: 0x98
  */
 bool TItemZukan::isNewSupply(int id, bool flag)
 {
@@ -6586,10 +6512,9 @@ bool TItemZukan::isNewSupply(int id, bool flag)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8037B268
- * Size:	0000C4
+/**
+ * @note Address: 0x8037B268
+ * @note Size: 0xC4
  */
 bool TItemZukan::isPanelExist()
 {
@@ -6612,17 +6537,15 @@ bool TItemZukan::isPanelExist()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8037B32C
- * Size:	000034
+/**
+ * @note Address: 0x8037B32C
+ * @note Size: 0x34
  */
 bool TItemZukan::isOpenConfirmWindow() { return static_cast<TDItemScene*>(getOwner())->mConfirmEndWindow->mHasDrawn; }
 
-/*
- * --INFO--
- * Address:	8037B360
- * Size:	00004C
+/**
+ * @note Address: 0x8037B360
+ * @note Size: 0x4C
  */
 void TItemZukan::openConfirmWindow()
 {
@@ -6630,17 +6553,15 @@ void TItemZukan::openConfirmWindow()
 	static_cast<TDItemScene*>(getOwner())->mConfirmEndWindow->start(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8037B3AC
- * Size:	000054
+/**
+ * @note Address: 0x8037B3AC
+ * @note Size: 0x54
  */
 TDItemScene::TDItemScene() { mConfirmEndWindow = nullptr; }
 
-/*
- * --INFO--
- * Address:	8037B400
- * Size:	0001C8
+/**
+ * @note Address: 0x8037B400
+ * @note Size: 0x1C8
  */
 void TDItemScene::doCreateObj(JKRArchive* arc)
 {
@@ -6652,10 +6573,9 @@ void TDItemScene::doCreateObj(JKRArchive* arc)
 	mConfirmEndWindow->setRetireMsg('6018_00'); // "Go to Area Selection"
 }
 
-/*
- * --INFO--
- * Address:	8037B5C8
- * Size:	000034
+/**
+ * @note Address: 0x8037B5C8
+ * @note Size: 0x34
  */
 bool TDItemScene::doStart(Screen::StartSceneArg* arg)
 {
@@ -6663,10 +6583,9 @@ bool TDItemScene::doStart(Screen::StartSceneArg* arg)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8037B5FC
- * Size:	000028
+/**
+ * @note Address: 0x8037B5FC
+ * @note Size: 0x28
  */
 bool TDItemScene::isAppearConfirmWindow()
 {
@@ -6676,10 +6595,9 @@ bool TDItemScene::isAppearConfirmWindow()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8037B624
- * Size:	000080
+/**
+ * @note Address: 0x8037B624
+ * @note Size: 0x80
  */
 TCallbackScrollMsg::TCallbackScrollMsg()
 {
@@ -6692,10 +6610,9 @@ TCallbackScrollMsg::TCallbackScrollMsg()
 	reset();
 }
 
-/*
- * --INFO--
- * Address:	8037B6A4
- * Size:	000070
+/**
+ * @note Address: 0x8037B6A4
+ * @note Size: 0x70
  */
 void TCallbackScrollMsg::doInit()
 {
@@ -6703,17 +6620,15 @@ void TCallbackScrollMsg::doInit()
 	mControl->setTextBoxInfo(static_cast<J2DTextBox*>(mPane));
 }
 
-/*
- * --INFO--
- * Address:	8037B714
- * Size:	000038
+/**
+ * @note Address: 0x8037B714
+ * @note Size: 0x38
  */
 void TCallbackScrollMsg::update() { mControl->update(nullptr, nullptr); }
 
-/*
- * --INFO--
- * Address:	8037B74C
- * Size:	0000C8
+/**
+ * @note Address: 0x8037B74C
+ * @note Size: 0xC8
  */
 void TCallbackScrollMsg::reset()
 {
@@ -6734,10 +6649,9 @@ void TCallbackScrollMsg::reset()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8037B814
- * Size:	000034
+/**
+ * @note Address: 0x8037B814
+ * @note Size: 0x34
  */
 void TCallbackScrollMsg::scroll(f32 speed)
 {
@@ -6745,10 +6659,9 @@ void TCallbackScrollMsg::scroll(f32 speed)
 	mControl->scroll(speed);
 }
 
-/*
- * --INFO--
- * Address:	8037B848
- * Size:	000048
+/**
+ * @note Address: 0x8037B848
+ * @note Size: 0x48
  */
 void TCallbackScrollMsg::draw(Graphics& gfx, J2DGrafContext& graf)
 {
@@ -6757,17 +6670,15 @@ void TCallbackScrollMsg::draw(Graphics& gfx, J2DGrafContext& graf)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8037B890
- * Size:	000024
+/**
+ * @note Address: 0x8037B890
+ * @note Size: 0x24
  */
 f32 TCallbackScrollMsg::getPosRate() { return mControl->getScrollPosition(); }
 
-/*
- * --INFO--
- * Address:	8037B8B4
- * Size:	000080
+/**
+ * @note Address: 0x8037B8B4
+ * @note Size: 0x80
  */
 TZukanWindow::TZukanWindow(JKRArchive* arc, int anims)
     : TScreenBase(arc, anims)
@@ -6789,10 +6700,9 @@ TZukanWindow::TZukanWindow(JKRArchive* arc, int anims)
 	mCharacterIcon[1]     = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8037B934
- * Size:	000538
+/**
+ * @note Address: 0x8037B934
+ * @note Size: 0x538
  */
 void TZukanWindow::create(char const* filename, u32 flag)
 {
@@ -6840,10 +6750,9 @@ void TZukanWindow::create(char const* filename, u32 flag)
 	mScaleMgr = new og::Screen::ScaleMgr;
 }
 
-/*
- * --INFO--
- * Address:	8037BE6C
- * Size:	000390
+/**
+ * @note Address: 0x8037BE6C
+ * @note Size: 0x390
  */
 void TZukanWindow::update()
 {
@@ -6912,10 +6821,9 @@ void TZukanWindow::update()
 	scissor->mBounds.set(pos1.x + 10.0f, pos1.y + 5.0f, pos2.x - 10.0f, pos2.y - 10.0f);
 }
 
-/*
- * --INFO--
- * Address:	8037C1FC
- * Size:	00002C
+/**
+ * @note Address: 0x8037C1FC
+ * @note Size: 0x2C
  */
 void TZukanWindow::draw(Graphics& gfx, J2DPerspGraph* graf)
 {
@@ -6924,10 +6832,9 @@ void TZukanWindow::draw(Graphics& gfx, J2DPerspGraph* graf)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8037C228
- * Size:	0000F0
+/**
+ * @note Address: 0x8037C228
+ * @note Size: 0xF0
  */
 void TZukanWindow::windowOpen()
 {
@@ -6937,10 +6844,9 @@ void TZukanWindow::windowOpen()
 	mMsgCallback->reset();
 }
 
-/*
- * --INFO--
- * Address:	8037C318
- * Size:	000030
+/**
+ * @note Address: 0x8037C318
+ * @note Size: 0x30
  */
 void TZukanWindow::windowClose()
 {
@@ -6950,35 +6856,31 @@ void TZukanWindow::windowClose()
 	mState = STATE_Exit;
 }
 
-/*
- * --INFO--
- * Address:	8037C348
- * Size:	000038
+/**
+ * @note Address: 0x8037C348
+ * @note Size: 0x38
  */
 void TZukanWindow::msgScroll(f32 scroll) { mMsgCallback->scroll(scroll); }
 
-/*
- * --INFO--
- * Address:	8037C380
- * Size:	000030
+/**
+ * @note Address: 0x8037C380
+ * @note Size: 0x30
  * Retuns a ratio of how far through the message box you are
  */
 f32 TZukanWindow::getPosRate() { return 1.0f - mMsgCallback->mControl->getScrollPosition(); }
 
-/*
- * --INFO--
- * Address:	8037C3B0
- * Size:	00006C
+/**
+ * @note Address: 0x8037C3B0
+ * @note Size: 0x6C
  */
 void TZukanWindow::setWindowColor(J2DGXColorS10& color)
 {
 	static_cast<J2DPictureEx*>(mPaneWinMap)->getMaterial()->mTevBlock->setTevColor(1, color);
 }
 
-/*
- * --INFO--
- * Address:	8037C41C
- * Size:	0000F0
+/**
+ * @note Address: 0x8037C41C
+ * @note Size: 0xF0
  */
 void TZukanWindow::setIconColor(J2DGXColorS10& color1, J2DGXColorS10& color2)
 {
@@ -6989,10 +6891,9 @@ void TZukanWindow::setIconColor(J2DGXColorS10& color1, J2DGXColorS10& color2)
 	mat->mMaterialAlphaCalc = 1;
 }
 
-/*
- * --INFO--
- * Address:	8037C50C
- * Size:	00008C
+/**
+ * @note Address: 0x8037C50C
+ * @note Size: 0x8C
  */
 void TZukanWindow::onIcon(int id)
 {
@@ -7003,10 +6904,9 @@ void TZukanWindow::onIcon(int id)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8037C598
- * Size:	0000D4
+/**
+ * @note Address: 0x8037C598
+ * @note Size: 0xD4
  */
 void TZukanWindow::moveIcon(f32 x)
 {
@@ -7029,10 +6929,9 @@ void TZukanWindow::moveIcon(f32 x)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8037C66C
- * Size:	000040
+/**
+ * @note Address: 0x8037C66C
+ * @note Size: 0x40
  */
 void TZukanWindow::changeIconTexture(int id, ResTIMG* file) { mCharacterIcon[id]->changeTexture(file, 0); }
 

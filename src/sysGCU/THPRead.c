@@ -21,10 +21,9 @@ static OSThread ReadThread;
 static BOOL ReadThreadCreated;
 static u8 ReadThreadStack[STACK_SIZE];
 
-/*
- * --INFO--
- * Address:	8044F58C
- * Size:	0000A0
+/**
+ * @note Address: 0x8044F58C
+ * @note Size: 0xA0
  */
 
 BOOL CreateReadThread(OSPriority priority)
@@ -41,10 +40,9 @@ BOOL CreateReadThread(OSPriority priority)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	8044F62C
- * Size:	000034
+/**
+ * @note Address: 0x8044F62C
+ * @note Size: 0x34
  */
 void ReadThreadStart()
 {
@@ -53,10 +51,9 @@ void ReadThreadStart()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8044F660
- * Size:	00003C
+/**
+ * @note Address: 0x8044F660
+ * @note Size: 0x3C
  */
 void ReadThreadCancel()
 {
@@ -66,10 +63,9 @@ void ReadThreadCancel()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8044F69C
- * Size:	0000EC
+/**
+ * @note Address: 0x8044F69C
+ * @note Size: 0xEC
  */
 static void* Reader(void* arg)
 {
@@ -111,10 +107,9 @@ static void* Reader(void* arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8044F788
- * Size:	000034
+/**
+ * @note Address: 0x8044F788
+ * @note Size: 0x34
  */
 OSMessage PopReadedBuffer()
 {
@@ -123,17 +118,15 @@ OSMessage PopReadedBuffer()
 	return msg;
 }
 
-/*
- * --INFO--
- * Address:	8044F7BC
- * Size:	000030
+/**
+ * @note Address: 0x8044F7BC
+ * @note Size: 0x30
  */
 BOOL PushReadedBuffer(OSMessage* msg) { return OSSendMessage(&ReadedBufferQueue, msg, OS_MESSAGE_BLOCK); }
 
-/*
- * --INFO--
- * Address:	8044F7EC
- * Size:	000034
+/**
+ * @note Address: 0x8044F7EC
+ * @note Size: 0x34
  */
 OSMessage PopFreeReadBuffer()
 {
@@ -142,17 +135,15 @@ OSMessage PopFreeReadBuffer()
 	return msg;
 }
 
-/*
- * --INFO--
- * Address:	8044F820
- * Size:	000030
+/**
+ * @note Address: 0x8044F820
+ * @note Size: 0x30
  */
 BOOL PushFreeReadBuffer(OSMessage* msg) { return OSSendMessage(&FreeReadBufferQueue, msg, OS_MESSAGE_BLOCK); }
 
-/*
- * --INFO--
- * Address:	8044F850
- * Size:	000034
+/**
+ * @note Address: 0x8044F850
+ * @note Size: 0x34
  */
 OSMessage PopReadedBuffer2()
 {
@@ -161,9 +152,8 @@ OSMessage PopReadedBuffer2()
 	return msg;
 }
 
-/*
- * --INFO--
- * Address:	8044F884
- * Size:	000030
+/**
+ * @note Address: 0x8044F884
+ * @note Size: 0x30
  */
 BOOL PushReadedBuffer2(OSMessage* msg) { return OSSendMessage(&ReadedBufferQueue2, msg, OS_MESSAGE_BLOCK); }

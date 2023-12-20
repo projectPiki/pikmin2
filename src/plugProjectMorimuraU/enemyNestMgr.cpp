@@ -9,11 +9,10 @@ static const char enemyNestMgrName[] = "enemyNestMgr";
 
 J2DGXColorS10 mMatColor;
 
-/*
+/**
  * __ct
- * --INFO--
- * Address:	8036C194
- * Size:	000070
+ * @note Address: 0x8036C194
+ * @note Size: 0x70
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -26,24 +25,21 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mMatColor.r      = 0xFF;
 }
 
-/*
- * --INFO--
- * Address:	8036C204
- * Size:	000048
+/**
+ * @note Address: 0x8036C204
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new EnemyParmsBase); }
 
-/*
- * --INFO--
- * Address:	8036C24C
- * Size:	000020
+/**
+ * @note Address: 0x8036C24C
+ * @note Size: 0x20
  */
 EnemyBase* Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::birth(birthArg); }
 
-/*
- * --INFO--
- * Address:	8036C26C
- * Size:	00012C
+/**
+ * @note Address: 0x8036C26C
+ * @note Size: 0x12C
  */
 J3DModelData* Mgr::loadModelData(JKRArchive* archive)
 {
@@ -74,10 +70,9 @@ J3DModelData* Mgr::loadModelData(JKRArchive* archive)
 	return mModelData;
 }
 
-/*
- * --INFO--
- * Address:	8036C398
- * Size:	000320
+/**
+ * @note Address: 0x8036C398
+ * @note Size: 0x320
  */
 // regswaps
 void Mgr::doSimpleDraw(Viewport* viewport)
@@ -152,10 +147,9 @@ void Mgr::doSimpleDraw(Viewport* viewport)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8036C6C8
- * Size:	0001E8
+/**
+ * @note Address: 0x8036C6C8
+ * @note Size: 0x1E8
  */
 void Mgr::initObjects()
 {

@@ -5,10 +5,9 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	80099E60
- * Size:	000060
+/**
+ * @note Address: 0x80099E60
+ * @note Size: 0x60
  */
 JASBasicWaveBank::JASBasicWaveBank()
     : JASWaveBank()
@@ -20,10 +19,9 @@ JASBasicWaveBank::JASBasicWaveBank()
 	OSInitMutex(&mMutex);
 }
 
-/*
- * --INFO--
- * Address:	80099F08
- * Size:	0000BC
+/**
+ * @note Address: 0x80099F08
+ * @note Size: 0xBC
  * __dt__16JASBasicWaveBankFv
  */
 JASBasicWaveBank::~JASBasicWaveBank()
@@ -35,10 +33,9 @@ JASBasicWaveBank::~JASBasicWaveBank()
 	delete[] mGroups;
 }
 
-/*
- * --INFO--
- * Address:	80099FC4
- * Size:	000024
+/**
+ * @note Address: 0x80099FC4
+ * @note Size: 0x24
  */
 JASBasicWaveBank::TWaveGroup* JASBasicWaveBank::getWaveGroup(int groupIndex)
 {
@@ -48,10 +45,9 @@ JASBasicWaveBank::TWaveGroup* JASBasicWaveBank::getWaveGroup(int groupIndex)
 	return mGroups[groupIndex];
 }
 
-/*
- * --INFO--
- * Address:	80099FE8
- * Size:	0000E8
+/**
+ * @note Address: 0x80099FE8
+ * @note Size: 0xE8
  */
 void JASBasicWaveBank::setGroupCount(u32 count)
 {
@@ -66,10 +62,9 @@ void JASBasicWaveBank::setGroupCount(u32 count)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8009A0D0
- * Size:	000064
+/**
+ * @note Address: 0x8009A0D0
+ * @note Size: 0x64
  */
 void JASBasicWaveBank::setWaveTableSize(u32 tableSize)
 {
@@ -79,40 +74,36 @@ void JASBasicWaveBank::setWaveTableSize(u32 tableSize)
 	mTableSize = tableSize;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A0
+/**
+ * @note Address: N/A
+ * @note Size: 0xA0
  */
 void JASBasicWaveBank::incWaveTable(const JASBasicWaveBank::TWaveGroup*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 // JASMutexLock::~JASMutexLock()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E8
+/**
+ * @note Address: N/A
+ * @note Size: 0xE8
  */
 void JASBasicWaveBank::decWaveTable(const JASBasicWaveBank::TWaveGroup*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8009A134
- * Size:	000030
+/**
+ * @note Address: 0x8009A134
+ * @note Size: 0x30
  */
 JASWaveHandle* JASBasicWaveBank::getWaveHandle(u32 handleIndex) const
 {
@@ -125,10 +116,9 @@ JASWaveHandle* JASBasicWaveBank::getWaveHandle(u32 handleIndex) const
 	return &mWaveTable[handleIndex]->mHandle;
 }
 
-/*
- * --INFO--
- * Address:	8009A164
- * Size:	000058
+/**
+ * @note Address: 0x8009A164
+ * @note Size: 0x58
  * __ct__Q216JASBasicWaveBank10TWaveGroupFP16JASBasicWaveBank
  */
 JASBasicWaveBank::TWaveGroup::TWaveGroup(JASBasicWaveBank* bank)
@@ -139,10 +129,9 @@ JASBasicWaveBank::TWaveGroup::TWaveGroup(JASBasicWaveBank* bank)
 {
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000090
+/**
+ * @note Address: N/A
+ * @note Size: 0x90
  * __dt__10JASWaveArcFv
  */
 // JASWaveArc::~JASWaveArc()
@@ -150,18 +139,16 @@ JASBasicWaveBank::TWaveGroup::TWaveGroup(JASBasicWaveBank* bank)
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	8009A1BC
- * Size:	0000B4
+/**
+ * @note Address: 0x8009A1BC
+ * @note Size: 0xB4
  * __dt__Q216JASBasicWaveBank10TWaveGroupFv
  */
 JASBasicWaveBank::TWaveGroup::~TWaveGroup() { delete[] mInfo; }
 
-/*
- * --INFO--
- * Address:	8009A2D0
- * Size:	0001BC
+/**
+ * @note Address: 0x8009A2D0
+ * @note Size: 0x1BC
  */
 void JASBasicWaveBank::TWaveGroup::setWaveCount(u32 count)
 {
@@ -174,10 +161,9 @@ void JASBasicWaveBank::TWaveGroup::setWaveCount(u32 count)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8009A560
- * Size:	000090
+/**
+ * @note Address: 0x8009A560
+ * @note Size: 0x90
  */
 void JASBasicWaveBank::TWaveGroup::setWaveInfo(int infoIndex, u32 waveID, const JASWaveInfo& info)
 {
@@ -186,10 +172,9 @@ void JASBasicWaveBank::TWaveGroup::setWaveInfo(int infoIndex, u32 waveID, const 
 	mInfo[infoIndex].mHandle.mInfo._24 = &_48; // TODO: Should _48 be the start of a struct?
 }
 
-/*
- * --INFO--
- * Address:	8009A5F0
- * Size:	0000A0
+/**
+ * @note Address: 0x8009A5F0
+ * @note Size: 0xA0
  */
 void JASBasicWaveBank::TWaveGroup::onLoadDone()
 {
@@ -256,10 +241,9 @@ lbl_8009A668:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8009A690
- * Size:	0000E8
+/**
+ * @note Address: 0x8009A690
+ * @note Size: 0xE8
  */
 void JASBasicWaveBank::TWaveGroup::onEraseDone()
 {
@@ -364,9 +348,8 @@ lbl_8009A744:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8009A778
- * Size:	000014
+/**
+ * @note Address: 0x8009A778
+ * @note Size: 0x14
  */
 u32 JASBasicWaveBank::TWaveGroup::getWaveID(int infoIndex) const { return mInfo[infoIndex].mHandle.mWaveID; }

@@ -2,17 +2,15 @@
 
 namespace Game {
 namespace ElecOtakara {
-/*
- * --INFO--
- * Address:	802B9AD8
- * Size:	0000A4
+/**
+ * @note Address: 0x802B9AD8
+ * @note Size: 0xA4
  */
 Obj::Obj() { createEffect(); }
 
-/*
- * --INFO--
- * Address:	802B9B7C
- * Size:	0001A4
+/**
+ * @note Address: 0x802B9B7C
+ * @note Size: 0x1A4
  */
 void Obj::changeMaterial()
 {
@@ -41,10 +39,9 @@ void Obj::changeMaterial()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802B9D20
- * Size:	000168
+/**
+ * @note Address: 0x802B9D20
+ * @note Size: 0x168
  */
 void Obj::interactCreature(Creature* creature)
 {
@@ -68,17 +65,15 @@ void Obj::interactCreature(Creature* creature)
 	creature->stimulate(denki);
 }
 
-/*
- * --INFO--
- * Address:	802B9E88
- * Size:	000060
+/**
+ * @note Address: 0x802B9E88
+ * @note Size: 0x60
  */
 void Obj::createEffect() { mEfxChargeElec = new efx::TOtaChargeelec; }
 
-/*
- * --INFO--
- * Address:	802B9EE8
- * Size:	000048
+/**
+ * @note Address: 0x802B9EE8
+ * @note Size: 0x48
  */
 void Obj::setupEffect()
 {
@@ -86,24 +81,21 @@ void Obj::setupEffect()
 	mEfxChargeElec->setMtxptr(centerJointMtx->mMatrix.mtxView);
 }
 
-/*
- * --INFO--
- * Address:	802B9F30
- * Size:	000034
+/**
+ * @note Address: 0x802B9F30
+ * @note Size: 0x34
  */
 void Obj::startChargeEffect() { mEfxChargeElec->create(nullptr); }
 
-/*
- * --INFO--
- * Address:	802B9F64
- * Size:	000030
+/**
+ * @note Address: 0x802B9F64
+ * @note Size: 0x30
  */
 void Obj::finishChargeEffect() { mEfxChargeElec->fade(); }
 
-/*
- * --INFO--
- * Address:	802B9F94
- * Size:	000098
+/**
+ * @note Address: 0x802B9F94
+ * @note Size: 0x98
  */
 void Obj::createDisChargeEffect()
 {
@@ -112,24 +104,21 @@ void Obj::createDisChargeEffect()
 	dischargeFX.create(&fxArg);
 }
 
-/*
- * --INFO--
- * Address:	802BA02C
- * Size:	000030
+/**
+ * @note Address: 0x802BA02C
+ * @note Size: 0x30
  */
 void Obj::effectDrawOn() { mEfxChargeElec->endDemoDrawOn(); }
 
-/*
- * --INFO--
- * Address:	802BA05C
- * Size:	000030
+/**
+ * @note Address: 0x802BA05C
+ * @note Size: 0x30
  */
 void Obj::effectDrawOff() { mEfxChargeElec->startDemoDrawOff(); }
 
-/*
- * --INFO--
- * Address:	802BA08C
- * Size:	000044
+/**
+ * @note Address: 0x802BA08C
+ * @note Size: 0x44
  */
 void Obj::startDisChargeSE() { getJAIObject()->startSound(PSSE_EN_OTAKARA_ATK_ELEC, 0); }
 } // namespace ElecOtakara

@@ -6,10 +6,9 @@
 
 namespace JMessage {
 
-/*
- * --INFO--
- * Address:	800083A4
- * Size:	000044
+/**
+ * @note Address: 0x800083A4
+ * @note Size: 0x44
  */
 TControl::TControl()
     : mBaseProcSeq(nullptr)
@@ -24,17 +23,15 @@ TControl::TControl()
 {
 }
 
-/*
- * --INFO--
- * Address:	800083E8
- * Size:	000048
+/**
+ * @note Address: 0x800083E8
+ * @note Size: 0x48
  */
 TControl::~TControl() { }
 
-/*
- * --INFO--
- * Address:	80008430
- * Size:	000068
+/**
+ * @note Address: 0x80008430
+ * @note Size: 0x68
  */
 void TControl::reset()
 {
@@ -53,10 +50,9 @@ void TControl::reset()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80008498
- * Size:	000088
+/**
+ * @note Address: 0x80008498
+ * @note Size: 0x88
  */
 bool TControl::update()
 {
@@ -73,10 +69,9 @@ bool TControl::update()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80008520
- * Size:	00015C
+/**
+ * @note Address: 0x80008520
+ * @note Size: 0x15C
  */
 void TControl::render()
 {
@@ -191,17 +186,15 @@ lbl_8000865C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8000867C
- * Size:	0000DC
+/**
+ * @note Address: 0x8000867C
+ * @note Size: 0xDC
  */
 bool TControl::setMessageCode(u16 idx1, u16 idx2) { return setMessageCode_inReset_(getProcessor(), idx1, idx2); }
 
-/*
- * --INFO--
- * Address:	80008758
- * Size:	0000FC
+/**
+ * @note Address: 0x80008758
+ * @note Size: 0xFC
  * setMessageID__Q28JMessage8TControlFUlUlPb
  */
 bool TControl::setMessageID(u32 p1, u32 p2, bool* p3)
@@ -216,10 +209,9 @@ bool TControl::setMessageID(u32 p1, u32 p2, bool* p3)
 	return setMessageCode_inReset_(proc, code >> 16, code);
 }
 
-/*
- * --INFO--
- * Address:	80008854
- * Size:	0000E8
+/**
+ * @note Address: 0x80008854
+ * @note Size: 0xE8
  * setMessageCode_inSequence___Q28JMessage8TControlFPCQ28JMessage10TProcessorUsUs
  */
 bool TControl::setMessageCode_inSequence_(TProcessor const* proc, u16 messageCode, u16 messageIndex)

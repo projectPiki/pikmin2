@@ -11,12 +11,11 @@
 namespace og {
 namespace Screen {
 
-/*
+/**
  * __ct__Q32og6Screen12AnimBaseBaseFv
  *
- * --INFO--
- * Address:	........
- * Size:	000088
+ * @note Address: N/A
+ * @note Size: 0x88
  */
 AnimBaseBase::AnimBaseBase()
 {
@@ -40,10 +39,9 @@ AnimBaseBase::AnimBaseBase()
 	mDoSetAlpha   = 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 void AnimBaseBase::setArea(f32 frame, f32 area)
 {
@@ -54,12 +52,11 @@ void AnimBaseBase::setArea(f32 frame, f32 area)
 	_10           = 1;
 }
 
-/*
+/**
  * init__Q32og6Screen12AnimBaseBaseFP10JKRArchivePc
  *
- * --INFO--
- * Address:	........
- * Size:	00010C
+ * @note Address: N/A
+ * @note Size: 0x10C
  */
 void AnimBaseBase::init(JKRArchive* archive, char* resourcePath)
 {
@@ -80,10 +77,9 @@ void AnimBaseBase::init(JKRArchive* archive, char* resourcePath)
 	OSInitFastCast();
 }
 
-/*
- * --INFO--
- * Address:	80304CB0
- * Size:	000010
+/**
+ * @note Address: 0x80304CB0
+ * @note Size: 0x10
  */
 void AnimBaseBase::start(f32 p1)
 {
@@ -91,20 +87,18 @@ void AnimBaseBase::start(f32 p1)
 	_0C = p1;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void AnimBaseBase::setAllArea()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80304CC0
- * Size:	000150
+/**
+ * @note Address: 0x80304CC0
+ * @note Size: 0x150
  */
 bool AnimBaseBase::updateSub()
 {
@@ -153,12 +147,11 @@ bool AnimBaseBase::updateSub()
 	return result;
 }
 
-/*
+/**
  * update__Q32og6Screen12AnimBaseBaseFv
  *
- * --INFO--
- * Address:	80304E10
- * Size:	000078
+ * @note Address: 0x80304E10
+ * @note Size: 0x78
  */
 bool AnimBaseBase::update()
 {
@@ -176,12 +169,11 @@ bool AnimBaseBase::update()
 	return updateSub();
 }
 
-/*
+/**
  * __ct__Q32og6Screen10AnimScreenFv
  *
- * --INFO--
- * Address:	80304E88
- * Size:	00009C
+ * @note Address: 0x80304E88
+ * @note Size: 0x9C
  */
 AnimScreen::AnimScreen()
 {
@@ -189,12 +181,11 @@ AnimScreen::AnimScreen()
 	mType   = 1;
 }
 
-/*
+/**
  * init__Q32og6Screen10AnimScreenFP10JKRArchiveP9J2DScreenPc
  *
- * --INFO--
- * Address:	80304F24
- * Size:	000164
+ * @note Address: 0x80304F24
+ * @note Size: 0x164
  */
 void AnimScreen::init(JKRArchive* archive, J2DScreen* screen, char* resourcePath)
 {
@@ -203,12 +194,11 @@ void AnimScreen::init(JKRArchive* archive, J2DScreen* screen, char* resourcePath
 	moveAnim();
 }
 
-/*
+/**
  * start__Q32og6Screen10AnimScreenFv
  *
- * --INFO--
- * Address:	80305088
- * Size:	000090
+ * @note Address: 0x80305088
+ * @note Size: 0x90
  */
 void AnimScreen::start()
 {
@@ -220,10 +210,9 @@ void AnimScreen::start()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80305118
- * Size:	000060
+/**
+ * @note Address: 0x80305118
+ * @note Size: 0x60
  */
 void AnimScreen::moveAnim()
 {
@@ -234,12 +223,11 @@ void AnimScreen::moveAnim()
 	}
 }
 
-/*
+/**
  * __ct__Q32og6Screen8AnimPaneFv
  *
- * --INFO--
- * Address:	80305178
- * Size:	0000A0
+ * @note Address: 0x80305178
+ * @note Size: 0xA0
  */
 AnimPane::AnimPane()
 {
@@ -247,12 +235,11 @@ AnimPane::AnimPane()
 	mType = 2;
 }
 
-/*
+/**
  * init__Q32og6Screen8AnimPaneFP10JKRArchiveP9J2DScreenUxPc
  *
- * --INFO--
- * Address:	80305218
- * Size:	000150
+ * @note Address: 0x80305218
+ * @note Size: 0x150
  */
 void AnimPane::init(JKRArchive* archive, J2DScreen* parentScreen, u64 tag, char* resourcePath)
 {
@@ -260,12 +247,11 @@ void AnimPane::init(JKRArchive* archive, J2DScreen* parentScreen, u64 tag, char*
 	updatePane(parentScreen, tag, mAnm);
 }
 
-/*
+/**
  * start__Q32og6Screen8AnimPaneFv
  *
- * --INFO--
- * Address:	80305368
- * Size:	000090
+ * @note Address: 0x80305368
+ * @note Size: 0x90
  */
 void AnimPane::start()
 {
@@ -277,12 +263,11 @@ void AnimPane::start()
 	}
 }
 
-/*
+/**
  * moveAnim__Q32og6Screen8AnimPaneFv
  *
- * --INFO--
- * Address:	803053F8
- * Size:	000060
+ * @note Address: 0x803053F8
+ * @note Size: 0x60
  */
 void AnimPane::moveAnim()
 {
@@ -293,12 +278,11 @@ void AnimPane::moveAnim()
 	}
 }
 
-/*
+/**
  * __ct__Q32og6Screen9AnimGroupFi
  *
- * --INFO--
- * Address:	80305458
- * Size:	000090
+ * @note Address: 0x80305458
+ * @note Size: 0x90
  */
 AnimGroup::AnimGroup(int limit)
 {
@@ -317,9 +301,8 @@ AnimGroup::AnimGroup(int limit)
 }
 
 /* setAnim__Q32og6Screen9AnimGroup
- * --INFO--
- * Address:	........
- * Size:	000064
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 void AnimGroup::setAnim(og::Screen::AnimBaseBase* newAnim)
 {
@@ -333,12 +316,11 @@ void AnimGroup::setAnim(og::Screen::AnimBaseBase* newAnim)
 	mPaneCount++;
 }
 
-/*
+/**
  * update__Q32og6Screen9AnimGroupFv
  *
- * --INFO--
- * Address:	803054E8
- * Size:	0001C0
+ * @note Address: 0x803054E8
+ * @note Size: 0x1C0
  */
 bool AnimGroup::update()
 {
@@ -373,10 +355,9 @@ bool AnimGroup::update()
 	return anyUpdated;
 }
 
-/*
- * --INFO--
- * Address:	803056A8
- * Size:	00005C
+/**
+ * @note Address: 0x803056A8
+ * @note Size: 0x5C
  */
 void AnimGroup::setSpeed(f32 speed)
 {
@@ -396,10 +377,9 @@ void AnimGroup::setSpeed(f32 speed)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80305704
- * Size:	00005C
+/**
+ * @note Address: 0x80305704
+ * @note Size: 0x5C
  */
 void AnimGroup::setRepeat(bool repeat)
 {
@@ -419,10 +399,9 @@ void AnimGroup::setRepeat(bool repeat)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80305760
- * Size:	00005C
+/**
+ * @note Address: 0x80305760
+ * @note Size: 0x5C
  */
 void AnimGroup::setFrame(f32 frame)
 {
@@ -442,10 +421,9 @@ void AnimGroup::setFrame(f32 frame)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 void AnimGroup::setAlpha(u8 alpha)
 {
@@ -458,12 +436,11 @@ void AnimGroup::setAlpha(u8 alpha)
 	}
 }
 
-/*
+/**
  * setAllArea__Q32og6Screen9AnimGroupFv
  *
- * --INFO--
- * Address:	803057BC
- * Size:	000054
+ * @note Address: 0x803057BC
+ * @note Size: 0x54
  */
 void AnimGroup::setAllArea()
 {
@@ -478,10 +455,9 @@ void AnimGroup::setAllArea()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80305810
- * Size:	000020
+/**
+ * @note Address: 0x80305810
+ * @note Size: 0x20
  */
 f32 AnimGroup::getFrame()
 {
@@ -494,12 +470,11 @@ f32 AnimGroup::getFrame()
 	return result;
 }
 
-/*
+/**
  * setArea__Q32og6Screen9AnimGroupFff
  *
- * --INFO--
- * Address:	80305830
- * Size:	000088
+ * @note Address: 0x80305830
+ * @note Size: 0x88
  */
 void AnimGroup::setArea(f32 frame, f32 area)
 {
@@ -519,12 +494,11 @@ void AnimGroup::setArea(f32 frame, f32 area)
 	}
 }
 
-/*
+/**
  * start__Q32og6Screen9AnimGroupFv
  *
- * --INFO--
- * Address:	803058B8
- * Size:	0000A8
+ * @note Address: 0x803058B8
+ * @note Size: 0xA8
  */
 void AnimGroup::start()
 {
@@ -544,10 +518,9 @@ void AnimGroup::start()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80305960
- * Size:	000018
+/**
+ * @note Address: 0x80305960
+ * @note Size: 0x18
  */
 void AnimGroup::reservAnim(f32 p1, f32 p2, f32 p3)
 {
@@ -557,10 +530,9 @@ void AnimGroup::reservAnim(f32 p1, f32 p2, f32 p3)
 	_18 = p3;
 }
 
-/*
- * --INFO--
- * Address:	80305978
- * Size:	000020
+/**
+ * @note Address: 0x80305978
+ * @note Size: 0x20
  */
 f32 AnimGroup::getLastFrame()
 {
@@ -573,10 +545,9 @@ f32 AnimGroup::getLastFrame()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80305998
- * Size:	000254
+/**
+ * @note Address: 0x80305998
+ * @note Size: 0x254
  */
 void registAnimGroupScreen(AnimGroup* group, JKRArchive* archive, J2DScreen* screen, char* resourcePath, f32 p5)
 {
@@ -586,10 +557,9 @@ void registAnimGroupScreen(AnimGroup* group, JKRArchive* archive, J2DScreen* scr
 	group->setAnim(newGroupScreen);
 }
 
-/*
- * --INFO--
- * Address:	80305BEC
- * Size:	00025C
+/**
+ * @note Address: 0x80305BEC
+ * @note Size: 0x25C
  */
 void registAnimGroupPane(AnimGroup* group, JKRArchive* archive, J2DScreen* parentScreen, u64 tag, char* resourcePath, f32 p6)
 {

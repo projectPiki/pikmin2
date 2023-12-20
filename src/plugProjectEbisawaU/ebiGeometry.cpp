@@ -4,20 +4,18 @@
 
 namespace ebi {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 bool EGEBox2f::isIn(Vector2f&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803C9FF4
- * Size:	000058
+/**
+ * @note Address: 0x803C9FF4
+ * @note Size: 0x58
  */
 bool EGEBox2f::isOut(Vector2f& point)
 {
@@ -36,22 +34,20 @@ bool EGEBox2f::isOut(Vector2f& point)
 	return false;
 }
 
-/*
+/**
  * in__Q23ebi8EGEBox2fFP10Vector2<f>
- * --INFO--
- * Address:	........
- * Size:	000054
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 void EGEBox2f::in(Vector2f*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
+/**
  * isIn__Q23ebi8EGEBox2fFR10Vector2<f>f
- * --INFO--
- * Address:	803CA04C
- * Size:	000070
+ * @note Address: 0x803CA04C
+ * @note Size: 0x70
  */
 bool EGEBox2f::isIn(Vector2f& point, f32 pointSize)
 {
@@ -67,11 +63,10 @@ bool EGEBox2f::isIn(Vector2f& point, f32 pointSize)
 	return (f.y < point.y + pointSize) == false;
 }
 
-/*
+/**
  * isOut__Q23ebi8EGEBox2fFR10Vector2<f>f
- * --INFO--
- * Address:	803CA0BC
- * Size:	000068
+ * @note Address: 0x803CA0BC
+ * @note Size: 0x68
  */
 bool EGEBox2f::isOut(Vector2f& point, f32 pointSize)
 {
@@ -87,13 +82,12 @@ bool EGEBox2f::isOut(Vector2f& point, f32 pointSize)
 	return (f.y < point.y - pointSize);
 }
 
-/*
+/**
  * Constrains the given vector to be inside the box by at least the given margin.
  *
  * in__Q23ebi8EGEBox2fFP10Vector2<f>f
- * --INFO--
- * Address:	803CA124
- * Size:	000064
+ * @note Address: 0x803CA124
+ * @note Size: 0x64
  */
 void EGEBox2f::in(Vector2f* point, f32 margin)
 {
@@ -117,11 +111,10 @@ void EGEBox2f::in(Vector2f* point, f32 margin)
 	}
 }
 
-/*
+/**
  * isOut__Q23ebi11EGECircle2fFR10Vector2<f>
- * --INFO--
- * Address:	803CA188
- * Size:	00005C
+ * @note Address: 0x803CA188
+ * @note Size: 0x5C
  */
 bool ebi::EGECircle2f::isOut(Vector2f& point)
 {
@@ -129,11 +122,10 @@ bool ebi::EGECircle2f::isOut(Vector2f& point)
 	return mRadius < _lenVec2D(di) ? true : false;
 }
 
-/*
+/**
  * in__Q23ebi11EGECircle2fFP10Vector2<f>
- * --INFO--
- * Address:	803CA1E4
- * Size:	0000B8
+ * @note Address: 0x803CA1E4
+ * @note Size: 0xB8
  */
 bool EGECircle2f::in(Vector2f* point)
 {
@@ -209,11 +201,10 @@ lbl_803CA294:
 	*/
 }
 
-/*
+/**
  * out__Q23ebi11EGECircle2fFP10Vector2<f>
- * --INFO--
- * Address:	803CA29C
- * Size:	0000BC
+ * @note Address: 0x803CA29C
+ * @note Size: 0xBC
  */
 bool EGECircle2f::out(Vector2f* point)
 {

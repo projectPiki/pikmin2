@@ -1,20 +1,18 @@
 #include "types.h"
 #include "PowerPC_EABI_Support/MetroTRK/trk.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
+/**
+ * @note Address: N/A
+ * @note Size: 0x80
  */
 void TRKWaitForACK(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800BDD20
- * Size:	000098
+/**
+ * @note Address: 0x800BDD20
+ * @note Size: 0x98
  */
 DSError TRKDoNotifyStopped(MessageCommandID cmd)
 {

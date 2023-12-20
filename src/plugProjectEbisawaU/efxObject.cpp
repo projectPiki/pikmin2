@@ -12,10 +12,9 @@ namespace efx {
 
 static void _Printf(char* format) { OSReport(format, __FILE__); }
 
-/*
- * --INFO--
- * Address:	803B57BC
- * Size:	000108
+/**
+ * @note Address: 0x803B57BC
+ * @note Size: 0x108
  */
 bool TOtakaraDive::create(Arg* arg)
 {
@@ -33,10 +32,9 @@ bool TOtakaraDive::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803B58C4
- * Size:	000108
+/**
+ * @note Address: 0x803B58C4
+ * @note Size: 0x108
  */
 bool TTsuyuGrow0::create(Arg* arg)
 {
@@ -54,10 +52,9 @@ bool TTsuyuGrow0::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803B59CC
- * Size:	000100
+/**
+ * @note Address: 0x803B59CC
+ * @note Size: 0x100
  */
 bool TOtakaraApL::create(Arg* arg)
 {
@@ -75,10 +72,9 @@ bool TOtakaraApL::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803B5ACC
- * Size:	0000E8
+/**
+ * @note Address: 0x803B5ACC
+ * @note Size: 0xE8
  */
 bool TOtakaraApS::create(Arg* arg)
 {
@@ -96,10 +92,9 @@ bool TOtakaraApS::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803B5BB4
- * Size:	000314
+/**
+ * @note Address: 0x803B5BB4
+ * @note Size: 0x314
  */
 bool TOtakaraAp::create(Arg* arg)
 {
@@ -121,10 +116,9 @@ bool TOtakaraAp::create(Arg* arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803B5EC8
- * Size:	000124
+/**
+ * @note Address: 0x803B5EC8
+ * @note Size: 0x124
  */
 bool TEgateBC::create(Arg* arg)
 {
@@ -147,10 +141,9 @@ bool TEgateBC::create(Arg* arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803B5FEC
- * Size:	000124
+/**
+ * @note Address: 0x803B5FEC
+ * @note Size: 0x124
  */
 bool TKouhaiDamage::create(Arg* arg)
 {
@@ -273,10 +266,9 @@ lbl_803B60E4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803B6110
- * Size:	0000E8
+/**
+ * @note Address: 0x803B6110
+ * @note Size: 0xE8
  */
 bool TPelkira_ver01::create(Arg* arg)
 {
@@ -302,10 +294,9 @@ bool TPelkira_ver01::create(Arg* arg)
 	return TSync::create(argpel);
 }
 
-/*
- * --INFO--
- * Address:	803B61F8
- * Size:	0000D0
+/**
+ * @note Address: 0x803B61F8
+ * @note Size: 0xD0
  */
 bool Container::create(efx::Arg* arg)
 {
@@ -328,10 +319,9 @@ bool Container::create(efx::Arg* arg)
 	return TSync::create(argtype);
 }
 
-/*
- * --INFO--
- * Address:	803B62C8
- * Size:	0000E8
+/**
+ * @note Address: 0x803B62C8
+ * @note Size: 0xE8
  */
 bool ContainerAct::create(efx::Arg* arg)
 {
@@ -357,10 +347,9 @@ bool ContainerAct::create(efx::Arg* arg)
 	return TSyncGroup2<TForever>::create(argtype);
 }
 
-/*
- * --INFO--
- * Address:	803B63B0
- * Size:	0001B0
+/**
+ * @note Address: 0x803B63B0
+ * @note Size: 0x1B0
  */
 void WarpZone::setRateLOD(int id, bool flag)
 {

@@ -5,10 +5,9 @@ namespace NormMiniHoudai {
 
 static const char normMiniHoudaiMgrName[] = "246-NormMiniHoudaiMgr";
 
-/*
- * --INFO--
- * Address:	803011F8
- * Size:	000050
+/**
+ * @note Address: 0x803011F8
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : MiniHoudai::Mgr(objLimit, modelType)
@@ -16,24 +15,21 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "ノーマルチビホウダイマネージャ"; // normal little houdai manager
 }
 
-/*
- * --INFO--
- * Address:	80301248
- * Size:	000048
+/**
+ * @note Address: 0x80301248
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new MiniHoudai::Parms); }
 
-/*
- * --INFO--
- * Address:	8030136C
- * Size:	000060
+/**
+ * @note Address: 0x8030136C
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	803014B8
- * Size:	000010
+/**
+ * @note Address: 0x803014B8
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 

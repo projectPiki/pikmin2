@@ -67,10 +67,9 @@
 namespace JStudio {
 namespace stb {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
+/**
+ * @note Address: N/A
+ * @note Size: 0x58
  */
 void TObject::toString_status(int a)
 {
@@ -79,9 +78,8 @@ void TObject::toString_status(int a)
 
 /**
  * @warning It's just a guess which param gets assigned to where.
- * --INFO--
- * Address:	........
- * Size:	000048
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 TObject::TObject(u32 p1, void const* id, u32 idLength)
     : JStudio::object::TObject_ID(id, idLength)
@@ -98,10 +96,9 @@ TObject::TObject(u32 p1, void const* id, u32 idLength)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80010278
- * Size:	000070
+/**
+ * @note Address: 0x80010278
+ * @note Size: 0x70
  */
 TObject::TObject(data::TParse_TBlock_object const& block)
     : JStudio::object::TObject_ID((u32*)block.filedata + 3, block.filedata->_0A)
@@ -147,38 +144,34 @@ TObject::TObject(data::TParse_TBlock_object const& block)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800102E8
- * Size:	000048
+/**
+ * @note Address: 0x800102E8
+ * @note Size: 0x48
  * __dt__Q37JStudio3stb7TObjectFv
  */
 TObject::~TObject() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
+/**
+ * @note Address: N/A
+ * @note Size: 0x58
  */
 void TObject::setFlag_operation(u8, int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 void TObject::reset(void const*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80010330
- * Size:	000238
+/**
+ * @note Address: 0x80010330
+ * @note Size: 0x238
  */
 bool TObject::forward(u32 a1)
 {
@@ -422,45 +415,39 @@ lbl_8001054C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80010568
- * Size:	000004
+/**
+ * @note Address: 0x80010568
+ * @note Size: 0x4
  */
 void TObject::do_begin() { }
 
-/*
- * --INFO--
- * Address:	8001056C
- * Size:	000004
+/**
+ * @note Address: 0x8001056C
+ * @note Size: 0x4
  */
 void TObject::do_end() { }
 
-/*
- * --INFO--
- * Address:	80010570
- * Size:	000004
+/**
+ * @note Address: 0x80010570
+ * @note Size: 0x4
  */
 void TObject::do_paragraph(u32, void const*, u32) { }
 
-/*
- * --INFO--
- * Address:	80010574
- * Size:	000004
+/**
+ * @note Address: 0x80010574
+ * @note Size: 0x4
  */
 void TObject::do_wait(u32) { }
 
-/*
- * --INFO--
- * Address:	80010578
- * Size:	000004
+/**
+ * @note Address: 0x80010578
+ * @note Size: 0x4
  */
 void TObject::do_data(void const*, u32, void const*, u32) { }
 
-/*
- * --INFO--
- * Address:	8001057C
- * Size:	0001A4
+/**
+ * @note Address: 0x8001057C
+ * @note Size: 0x1A4
  */
 void TObject::process_sequence_()
 {
@@ -658,10 +645,9 @@ lbl_80010708:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80010720
- * Size:	00013C
+/**
+ * @note Address: 0x80010720
+ * @note Size: 0x13C
  * process_paragraph_reserved___Q37JStudio3stb7TObjectFUlPCvUl
  */
 void TObject::process_paragraph_reserved_(u32 a1, void const* a2, u32 a3)
@@ -806,9 +792,8 @@ void TObject::process_paragraph_reserved_(u32 a1, void const* a2, u32 a3)
 
 /**
  * @warning It's just a guess which param gets assigned to where.
- * --INFO--
- * Address:	........
- * Size:	000058
+ * @note Address: N/A
+ * @note Size: 0x58
  * __ct__Q37JStudio3stb15TObject_controlFPCvUl
  */
 TObject_control::TObject_control(void const* p1, u32 p2)
@@ -817,10 +802,9 @@ TObject_control::TObject_control(void const* p1, u32 p2)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
+/**
+ * @note Address: N/A
+ * @note Size: 0x7C
  * __ct__Q37JStudio3stb15TObject_controlFRCQ47JStudio3stb4data20TParse_TBlock_object
  */
 TObject_control::TObject_control(data::TParse_TBlock_object const&)
@@ -828,10 +812,9 @@ TObject_control::TObject_control(data::TParse_TBlock_object const&)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8001085C
- * Size:	000094
+/**
+ * @note Address: 0x8001085C
+ * @note Size: 0x94
  * __ct__Q37JStudio3stb8TControlFv
  */
 TControl::TControl()
@@ -846,10 +829,9 @@ TControl::TControl()
 	mObject_control.pControl = this;
 }
 
-/*
- * --INFO--
- * Address:	800108F0
- * Size:	00005C
+/**
+ * @note Address: 0x800108F0
+ * @note Size: 0x5C
  * __dt__Q37JStudio3stb15TObject_controlFv
  */
 // stb::TObject_control::~TObject_control() { }
@@ -857,10 +839,9 @@ TControl::TControl()
 } // namespace stb
 // } // namespace JStudio
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 // void __dt__Q27JGadget37TLinkList<JStudio::stb::TObject, -12> Fv()
 //{
@@ -869,68 +850,61 @@ TControl::TControl()
 
 // namespace JStudio {
 
-/*
- * --INFO--
- * Address:	8001094C
- * Size:	00009C
+/**
+ * @note Address: 0x8001094C
+ * @note Size: 0x9C
  * __dt__Q37JStudio3stb8TControlFv
  */
 stb::TControl::~TControl() { mObject_control.pControl = nullptr; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 void stb::TControl::appendObject(JStudio::stb::TObject*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  */
 void stb::TControl::removeObject(JStudio::stb::TObject*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  */
 void stb::TControl::removeObject_all()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 void stb::TControl::destroyObject(JStudio::stb::TObject*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
+/**
+ * @note Address: N/A
+ * @note Size: 0x94
  */
 void stb::TControl::destroyObject_all()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800109E8
- * Size:	000094
+/**
+ * @note Address: 0x800109E8
+ * @note Size: 0x94
  */
 const JStudio::stb::TObject* stb::TControl::getObject(void const* id, u32 length)
 {
@@ -980,10 +954,9 @@ const JStudio::stb::TObject* stb::TControl::getObject(void const* id, u32 length
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80010A7C
- * Size:	00009C
+/**
+ * @note Address: 0x80010A7C
+ * @note Size: 0x9C
  */
 // void find_if(JGadget::TNodeLinkList::iterator, JGadget::TNodeLinkList::iterator, JStudio::object::TPRObject_ID_equal)
 // {
@@ -1037,30 +1010,27 @@ const JStudio::stb::TObject* stb::TControl::getObject(void const* id, u32 length
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
+/**
+ * @note Address: N/A
+ * @note Size: 0x7C
  */
 void stb::TControl::getObject_index(u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
+/**
+ * @note Address: N/A
+ * @note Size: 0x84
  */
 void stb::TControl::reset()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80010B18
- * Size:	0000F0
+/**
+ * @note Address: 0x80010B18
+ * @note Size: 0xF0
  */
 bool stb::TControl::forward(u32)
 {
@@ -1136,33 +1106,29 @@ lbl_80010BC4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80010C08
- * Size:	000048
+/**
+ * @note Address: 0x80010C08
+ * @note Size: 0x48
  * __dt__Q37JStudio3stb8TFactoryFv
  */
 stb::TFactory::~TFactory() { }
 
-/*
- * --INFO--
- * Address:	80010C50
- * Size:	000008
+/**
+ * @note Address: 0x80010C50
+ * @note Size: 0x8
  */
 int stb::TFactory::create(JStudio::stb::data::TParse_TBlock_object const&) { return 0; }
 
-/*
- * --INFO--
- * Address:	80010C58
- * Size:	00003C
+/**
+ * @note Address: 0x80010C58
+ * @note Size: 0x3C
  * destroy__Q37JStudio3stb8TFactoryFPQ37JStudio3stb7TObject
  */
 void stb::TFactory::destroy(JStudio::stb::TObject* object) { delete object; }
 
-/*
- * --INFO--
- * Address:	80010C94
- * Size:	000020
+/**
+ * @note Address: 0x80010C94
+ * @note Size: 0x20
  * __ct__Q37JStudio3stb6TParseFPQ37JStudio3stb8TControl
  */
 stb::TParse::TParse(JStudio::stb::TControl* control)
@@ -1171,18 +1137,16 @@ stb::TParse::TParse(JStudio::stb::TControl* control)
 {
 }
 
-/*
- * --INFO--
- * Address:	80010CB4
- * Size:	000060
+/**
+ * @note Address: 0x80010CB4
+ * @note Size: 0x60
  * __dt__Q37JStudio3stb6TParseFv
  */
 stb::TParse::~TParse() { }
 
-/*
- * --INFO--
- * Address:	80010D14
- * Size:	0000C8
+/**
+ * @note Address: 0x80010D14
+ * @note Size: 0xC8
  */
 bool stb::TParse::parseHeader_next(void const** data, u32* blockCount, u32 p3)
 {
@@ -1272,10 +1236,9 @@ lbl_80010DC4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80010DDC
- * Size:	000054
+/**
+ * @note Address: 0x80010DDC
+ * @note Size: 0x54
  */
 bool stb::TParse::parseBlock_next(void const**, u32*, u32)
 {
@@ -1304,17 +1267,15 @@ bool stb::TParse::parseBlock_next(void const**, u32*, u32)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80010E30
- * Size:	000008
+/**
+ * @note Address: 0x80010E30
+ * @note Size: 0x8
  */
 bool stb::TParse::parseHeader(JStudio::stb::data::TParse_THeader const&, u32) { return true; }
 
-/*
- * --INFO--
- * Address:	80010E38
- * Size:	000038
+/**
+ * @note Address: 0x80010E38
+ * @note Size: 0x38
  */
 void stb::TParse::parseBlock_block(JStudio::stb::data::TParse_TBlock const& block, u32 n)
 {
@@ -1338,10 +1299,9 @@ void stb::TParse::parseBlock_block(JStudio::stb::data::TParse_TBlock const& bloc
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80010E70
- * Size:	000154
+/**
+ * @note Address: 0x80010E70
+ * @note Size: 0x154
  */
 void stb::TParse::parseBlock_object(data::TParse_TBlock_object const&, u32)
 {

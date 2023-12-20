@@ -1,9 +1,8 @@
 #include "JSystem/J2D/J2DMaterialFactory.h"
 
-/*
- * --INFO--
- * Address:	800532E8
- * Size:	0001C4
+/**
+ * @note Address: 0x800532E8
+ * @note Size: 0x1C4
  */
 J2DMaterialFactory::J2DMaterialFactory(const J2DMaterialBlock&)
 {
@@ -128,10 +127,9 @@ lbl_80053360:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800534AC
- * Size:	0009C8
+/**
+ * @note Address: 0x800534AC
+ * @note Size: 0x9C8
  */
 void J2DMaterialFactory::create(J2DMaterial*, int, u32, J2DResReference*, J2DResReference*, JKRArchive*) const
 {
@@ -872,10 +870,9 @@ void J2DMaterialFactory::create(J2DMaterial*, int, u32, J2DResReference*, J2DRes
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80053E74
- * Size:	00009C
+/**
+ * @note Address: 0x80053E74
+ * @note Size: 0x9C
  */
 JUtility::TColor J2DMaterialFactory::newMatColor(int id1, int id2) const
 {
@@ -933,10 +930,9 @@ lbl_80053F08:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80053F10
- * Size:	000038
+/**
+ * @note Address: 0x80053F10
+ * @note Size: 0x38
  */
 void J2DMaterialFactory::newColorChanNum(int) const
 {
@@ -960,10 +956,9 @@ lbl_80053F40:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80053F48
- * Size:	000054
+/**
+ * @note Address: 0x80053F48
+ * @note Size: 0x54
  */
 void J2DMaterialFactory::newColorChan(int, int) const
 {
@@ -994,10 +989,9 @@ lbl_80053F8C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80053F9C
- * Size:	000038
+/**
+ * @note Address: 0x80053F9C
+ * @note Size: 0x38
  */
 void J2DMaterialFactory::newTexGenNum(int) const
 {
@@ -1021,10 +1015,9 @@ lbl_80053FCC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80053FD4
- * Size:	000074
+/**
+ * @note Address: 0x80053FD4
+ * @note Size: 0x74
  */
 void J2DMaterialFactory::newTexCoord(int, int) const
 {
@@ -1063,10 +1056,9 @@ lbl_80054028:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80054048
- * Size:	0000EC
+/**
+ * @note Address: 0x80054048
+ * @note Size: 0xEC
  */
 void J2DMaterialFactory::newTexMtx(int, int) const
 {
@@ -1137,10 +1129,9 @@ lbl_80054110:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80054134
- * Size:	000040
+/**
+ * @note Address: 0x80054134
+ * @note Size: 0x40
  */
 void J2DMaterialFactory::newCullMode(int) const
 {
@@ -1166,10 +1157,9 @@ lbl_8005416C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80054174
- * Size:	000048
+/**
+ * @note Address: 0x80054174
+ * @note Size: 0x48
  */
 void J2DMaterialFactory::newTexNo(int, int) const
 {
@@ -1197,10 +1187,9 @@ lbl_800541B0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800541BC
- * Size:	000040
+/**
+ * @note Address: 0x800541BC
+ * @note Size: 0x40
  */
 void J2DMaterialFactory::newFontNo(int) const
 {
@@ -1226,10 +1215,9 @@ lbl_800541F0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800541FC
- * Size:	000074
+/**
+ * @note Address: 0x800541FC
+ * @note Size: 0x74
  */
 void J2DMaterialFactory::newTevOrder(int, int) const
 {
@@ -1268,10 +1256,9 @@ lbl_80054250:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80054270
- * Size:	000098
+/**
+ * @note Address: 0x80054270
+ * @note Size: 0x98
  */
 void J2DMaterialFactory::newTevColor(int, int) const
 {
@@ -1321,10 +1308,9 @@ lbl_80054300:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80054308
- * Size:	00009C
+/**
+ * @note Address: 0x80054308
+ * @note Size: 0x9C
  */
 void J2DMaterialFactory::newTevKColor(int, int) const
 {
@@ -1375,10 +1361,9 @@ lbl_8005439C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800543A4
- * Size:	000038
+/**
+ * @note Address: 0x800543A4
+ * @note Size: 0x38
  */
 void J2DMaterialFactory::newTevStageNum(int) const
 {
@@ -1402,10 +1387,9 @@ lbl_800543D4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800543DC
- * Size:	000060
+/**
+ * @note Address: 0x800543DC
+ * @note Size: 0x60
  */
 void J2DMaterialFactory::newTevStage(int, int) const
 {
@@ -1441,10 +1425,9 @@ lbl_8005442C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005443C
- * Size:	000060
+/**
+ * @note Address: 0x8005443C
+ * @note Size: 0x60
  */
 J2DTevStage::J2DTevStage(const J2DTevStageInfo&)
 {
@@ -1476,10 +1459,9 @@ J2DTevStage::J2DTevStage(const J2DTevStageInfo&)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8005449C
- * Size:	00009C
+/**
+ * @note Address: 0x8005449C
+ * @note Size: 0x9C
  */
 void J2DMaterialFactory::newTevSwapModeTable(int, int) const
 {
@@ -1528,10 +1510,9 @@ lbl_80054504:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80054538
- * Size:	000030
+/**
+ * @note Address: 0x80054538
+ * @note Size: 0x30
  */
 void J2DMaterialFactory::newIndTexStageNum(int) const
 {
@@ -1553,10 +1534,9 @@ lbl_80054560:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80054568
- * Size:	000068
+/**
+ * @note Address: 0x80054568
+ * @note Size: 0x68
  */
 void J2DMaterialFactory::newIndTexOrder(int, int) const
 {
@@ -1594,10 +1574,9 @@ lbl_800545C8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800545D0
- * Size:	0000EC
+/**
+ * @note Address: 0x800545D0
+ * @note Size: 0xEC
  */
 void J2DMaterialFactory::newIndTexMtx(int, int) const
 {
@@ -1668,10 +1647,9 @@ lbl_800546B4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800546BC
- * Size:	00014C
+/**
+ * @note Address: 0x800546BC
+ * @note Size: 0x14C
  */
 void J2DMaterialFactory::newIndTevStage(int, int) const
 {
@@ -1766,10 +1744,9 @@ lbl_800547FC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80054808
- * Size:	000068
+/**
+ * @note Address: 0x80054808
+ * @note Size: 0x68
  */
 void J2DMaterialFactory::newIndTexCoordScale(int, int) const
 {
@@ -1807,10 +1784,9 @@ lbl_80054868:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80054870
- * Size:	00007C
+/**
+ * @note Address: 0x80054870
+ * @note Size: 0x7C
  */
 void J2DMaterialFactory::newAlphaComp(int) const
 {
@@ -1851,10 +1827,9 @@ lbl_800548D4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800548EC
- * Size:	00007C
+/**
+ * @note Address: 0x800548EC
+ * @note Size: 0x7C
  */
 void J2DMaterialFactory::newBlend(int) const
 {
@@ -1895,10 +1870,9 @@ lbl_80054940:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80054968
- * Size:	000038
+/**
+ * @note Address: 0x80054968
+ * @note Size: 0x38
  */
 void J2DMaterialFactory::newDither(int) const
 {

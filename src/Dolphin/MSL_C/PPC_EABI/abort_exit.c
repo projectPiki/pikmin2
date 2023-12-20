@@ -12,40 +12,36 @@ int __aborting;
 
 static void (*__atexit_funcs[64])(void);
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00009C
+/**
+ * @note Address: N/A
+ * @note Size: 0x9C
  */
 void abort(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 void atexit(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  */
 void __atexit(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800C2460
- * Size:	0000F0
+/**
+ * @note Address: 0x800C2460
+ * @note Size: 0xF0
  */
 void exit(int status)
 {
@@ -79,10 +75,9 @@ void exit(int status)
 	_ExitProcess();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00008C
+/**
+ * @note Address: N/A
+ * @note Size: 0x8C
  */
 void __exit(void)
 {

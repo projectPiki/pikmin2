@@ -9,10 +9,9 @@
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	801D7E64
- * Size:	000074
+/**
+ * @note Address: 0x801D7E64
+ * @note Size: 0x74
  */
 bool Navi::stimulate(Game::Interaction& interaction)
 {
@@ -23,10 +22,9 @@ bool Navi::stimulate(Game::Interaction& interaction)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	801D7ED8
- * Size:	00008C
+/**
+ * @note Address: 0x801D7ED8
+ * @note Size: 0x8C
  */
 bool InteractSarai::actNavi(Game::Navi* navi)
 {
@@ -40,10 +38,9 @@ bool InteractSarai::actNavi(Game::Navi* navi)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801D7F64
- * Size:	000080
+/**
+ * @note Address: 0x801D7F64
+ * @note Size: 0x80
  */
 bool InteractBomb::actNavi(Game::Navi* navi)
 {
@@ -56,10 +53,9 @@ bool InteractBomb::actNavi(Game::Navi* navi)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801D7FE4
- * Size:	0000E0
+/**
+ * @note Address: 0x801D7FE4
+ * @note Size: 0xE0
  */
 bool InteractWind::actNavi(Game::Navi* navi)
 {
@@ -82,10 +78,9 @@ bool InteractWind::actNavi(Game::Navi* navi)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801D80C4
- * Size:	0000B4
+/**
+ * @note Address: 0x801D80C4
+ * @note Size: 0xB4
  */
 bool InteractDenki::actNavi(Game::Navi* navi)
 {
@@ -100,10 +95,9 @@ bool InteractDenki::actNavi(Game::Navi* navi)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801D8178
- * Size:	000044
+/**
+ * @note Address: 0x801D8178
+ * @note Size: 0x44
  */
 bool InteractFallMeck::actNavi(Game::Navi* navi)
 {
@@ -112,10 +106,9 @@ bool InteractFallMeck::actNavi(Game::Navi* navi)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801D81BC
- * Size:	0001F8
+/**
+ * @note Address: 0x801D81BC
+ * @note Size: 0x1F8
  */
 bool InteractFlick::actNavi(Game::Navi* navi)
 {
@@ -141,10 +134,9 @@ bool InteractFlick::actNavi(Game::Navi* navi)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801D83B4
- * Size:	0000F4
+/**
+ * @note Address: 0x801D83B4
+ * @note Size: 0xF4
  */
 bool InteractPress::actNavi(Game::Navi* navi)
 {
@@ -167,10 +159,9 @@ bool InteractPress::actNavi(Game::Navi* navi)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801D84A8
- * Size:	0000B8
+/**
+ * @note Address: 0x801D84A8
+ * @note Size: 0xB8
  */
 bool InteractFire::actNavi(Game::Navi* navi)
 {
@@ -191,10 +182,9 @@ bool InteractFire::actNavi(Game::Navi* navi)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801D8560
- * Size:	000090
+/**
+ * @note Address: 0x801D8560
+ * @note Size: 0x90
  */
 bool InteractBubble::actNavi(Game::Navi* navi)
 {
@@ -212,17 +202,15 @@ bool InteractBubble::actNavi(Game::Navi* navi)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801D85F0
- * Size:	000008
+/**
+ * @note Address: 0x801D85F0
+ * @note Size: 0x8
  */
 bool InteractGas::actNavi(Game::Navi*) { return false; }
 
-/*
- * --INFO--
- * Address:	801D85F8
- * Size:	00005C
+/**
+ * @note Address: 0x801D85F8
+ * @note Size: 0x5C
  */
 bool InteractBury::actNavi(Game::Navi* navi)
 {
@@ -234,10 +222,9 @@ bool InteractBury::actNavi(Game::Navi* navi)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801D8654
- * Size:	000358
+/**
+ * @note Address: 0x801D8654
+ * @note Size: 0x358
  * Whistling another navigator
  */
 bool InteractFue::actNavi(Game::Navi* navi)
@@ -282,10 +269,9 @@ bool InteractFue::actNavi(Game::Navi* navi)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801D89AC
- * Size:	000074
+/**
+ * @note Address: 0x801D89AC
+ * @note Size: 0x74
  */
 bool InteractKaisan::actNavi(Game::Navi* navi)
 {
@@ -301,10 +287,9 @@ bool InteractKaisan::actNavi(Game::Navi* navi)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	801D8A20
- * Size:	00009C
+/**
+ * @note Address: 0x801D8A20
+ * @note Size: 0x9C
  */
 bool InteractAttack::actNavi(Game::Navi* navi)
 {

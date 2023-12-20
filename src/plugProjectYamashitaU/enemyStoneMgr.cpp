@@ -16,10 +16,9 @@ static const char* sStoneMdlName[2] = { "sekikaobj_large.bmd", "sekikaobj_small.
 namespace Game {
 namespace EnemyStone {
 
-/*
- * --INFO--
- * Address:	80127C00
- * Size:	000088
+/**
+ * @note Address: 0x80127C00
+ * @note Size: 0x88
  */
 Mgr::Mgr()
     : mModelData(nullptr)
@@ -29,10 +28,9 @@ Mgr::Mgr()
 	mObj.clearRelations();
 }
 
-/*
- * --INFO--
- * Address:	80127C88
- * Size:	000174
+/**
+ * @note Address: 0x80127C88
+ * @note Size: 0x174
  */
 void Mgr::loadResource()
 {
@@ -73,10 +71,9 @@ void Mgr::loadResource()
 	sys->heapStatusEnd("EnemyStone::Mgr::loadResource");
 }
 
-/*
- * --INFO--
- * Address:	80127E20
- * Size:	0000F8
+/**
+ * @note Address: 0x80127E20
+ * @note Size: 0xF8
  */
 bool Mgr::regist(Obj* obj)
 {
@@ -111,10 +108,9 @@ bool Mgr::regist(Obj* obj)
 	return validCount;
 }
 
-/*
- * --INFO--
- * Address:	80127F18
- * Size:	00008C
+/**
+ * @note Address: 0x80127F18
+ * @note Size: 0x8C
  */
 void Mgr::release(Obj* obj)
 {
@@ -136,10 +132,9 @@ void Mgr::release(Obj* obj)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80127FA4
- * Size:	000164
+/**
+ * @note Address: 0x80127FA4
+ * @note Size: 0x164
  */
 void Mgr::draw(Viewport* viewport)
 {

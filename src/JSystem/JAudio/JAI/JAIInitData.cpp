@@ -48,24 +48,21 @@ u8* JAInter::InitData::aafPointer;
 JAInter::InitData::InitCallback JAInter::InitData::wsInitCallback  = initWsList;
 JAInter::InitData::InitCallback JAInter::InitData::bnkInitCallback = initBnkList;
 
-/*
- * --INFO--
- * Address:	800ADBA4
- * Size:	000008
+/**
+ * @note Address: 0x800ADBA4
+ * @note Size: 0x8
  */
 void JAInter::InitData::setWsInitCallback(void (*callback)(u32*)) { wsInitCallback = callback; }
 
-/*
- * --INFO--
- * Address:	800ADBAC
- * Size:	000008
+/**
+ * @note Address: 0x800ADBAC
+ * @note Size: 0x8
  */
 void JAInter::InitData::setBnkInitCallback(void (*callback)(u32*)) { bnkInitCallback = callback; }
 
-/*
- * --INFO--
- * Address:	800ADBB4
- * Size:	0000E4
+/**
+ * @note Address: 0x800ADBB4
+ * @note Size: 0xE4
  */
 BOOL JAInter::InitData::checkInitDataFile()
 {
@@ -152,10 +149,9 @@ lbl_800ADC80:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800ADC98
- * Size:	000264
+/**
+ * @note Address: 0x800ADC98
+ * @note Size: 0x264
  */
 void JAInter::InitData::checkInitDataOnMemory()
 {
@@ -353,10 +349,9 @@ lbl_800ADEC8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800ADEFC
- * Size:	0000CC
+/**
+ * @note Address: 0x800ADEFC
+ * @note Size: 0xCC
  */
 void JAInter::InitData::initBnkList(u32* p1)
 {
@@ -436,10 +431,9 @@ lbl_800ADF90:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800ADFC8
- * Size:	0000D8
+/**
+ * @note Address: 0x800ADFC8
+ * @note Size: 0xD8
  */
 void JAInter::InitData::initWsList(u32*)
 {

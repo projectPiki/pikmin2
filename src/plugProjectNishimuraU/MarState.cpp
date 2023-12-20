@@ -8,10 +8,9 @@ namespace Mar {
 
 static const char unusedMarStateName[] = "246-MarState";
 
-/*
- * --INFO--
- * Address:	80282614
- * Size:	00042C
+/**
+ * @note Address: 0x80282614
+ * @note Size: 0x42C
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -30,10 +29,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateGroundFlick);
 }
 
-/*
- * --INFO--
- * Address:	80282A40
- * Size:	0000AC
+/**
+ * @note Address: 0x80282A40
+ * @note Size: 0xAC
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -53,10 +51,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	mar->startDeadEffect();
 }
 
-/*
- * --INFO--
- * Address:	80282AEC
- * Size:	000088
+/**
+ * @note Address: 0x80282AEC
+ * @note Size: 0x88
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -72,17 +69,15 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80282B74
- * Size:	000004
+/**
+ * @note Address: 0x80282B74
+ * @note Size: 0x4
  */
 void StateDead::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	80282B78
- * Size:	000054
+/**
+ * @note Address: 0x80282B78
+ * @note Size: 0x54
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -94,10 +89,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	mar->startMotion(MARANIM_WaitFly, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80282BCC
- * Size:	000138
+/**
+ * @note Address: 0x80282BCC
+ * @note Size: 0x138
  */
 void StateWait::exec(EnemyBase* enemy)
 {
@@ -131,17 +125,15 @@ void StateWait::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80282D04
- * Size:	000004
+/**
+ * @note Address: 0x80282D04
+ * @note Size: 0x4
  */
 void StateWait::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	80282D08
- * Size:	00004C
+/**
+ * @note Address: 0x80282D08
+ * @note Size: 0x4C
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -152,10 +144,9 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	mar->enableEvent(0, EB_Untargetable);
 }
 
-/*
- * --INFO--
- * Address:	80282D54
- * Size:	0001A0
+/**
+ * @note Address: 0x80282D54
+ * @note Size: 0x1A0
  */
 void StateMove::exec(EnemyBase* enemy)
 {
@@ -311,17 +302,15 @@ lbl_80282ED4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80282EF4
- * Size:	000004
+/**
+ * @note Address: 0x80282EF4
+ * @note Size: 0x4
  */
 void StateMove::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	80282EF8
- * Size:	000030
+/**
+ * @note Address: 0x80282EF8
+ * @note Size: 0x30
  */
 void StateChase::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -329,10 +318,9 @@ void StateChase::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->setEmotionExcitement();
 }
 
-/*
- * --INFO--
- * Address:	80282F28
- * Size:	000530
+/**
+ * @note Address: 0x80282F28
+ * @note Size: 0x530
  */
 void StateChase::exec(EnemyBase* enemy)
 {
@@ -768,17 +756,15 @@ lbl_802833EC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80283458
- * Size:	000024
+/**
+ * @note Address: 0x80283458
+ * @note Size: 0x24
  */
 void StateChase::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	8028347C
- * Size:	000124
+/**
+ * @note Address: 0x8028347C
+ * @note Size: 0x124
  */
 void StateChaseInside::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -802,10 +788,9 @@ void StateChaseInside::init(EnemyBase* enemy, StateArg* stateArg)
 	mar->setEmotionExcitement();
 }
 
-/*
- * --INFO--
- * Address:	802835A0
- * Size:	00037C
+/**
+ * @note Address: 0x802835A0
+ * @note Size: 0x37C
  */
 void StateChaseInside::exec(EnemyBase* enemy)
 {
@@ -841,17 +826,15 @@ void StateChaseInside::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8028391C
- * Size:	000024
+/**
+ * @note Address: 0x8028391C
+ * @note Size: 0x24
  */
 void StateChaseInside::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	80283940
- * Size:	000088
+/**
+ * @note Address: 0x80283940
+ * @note Size: 0x88
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -867,10 +850,9 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	mar->createSuckEffect();
 }
 
-/*
- * --INFO--
- * Address:	802839C8
- * Size:	0000E0
+/**
+ * @note Address: 0x802839C8
+ * @note Size: 0xE0
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
@@ -895,10 +877,9 @@ void StateAttack::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80283AA8
- * Size:	000054
+/**
+ * @note Address: 0x80283AA8
+ * @note Size: 0x54
  */
 void StateAttack::cleanup(EnemyBase* enemy)
 {
@@ -910,10 +891,9 @@ void StateAttack::cleanup(EnemyBase* enemy)
 	mar->finishWindEffect();
 }
 
-/*
- * --INFO--
- * Address:	80283AFC
- * Size:	000068
+/**
+ * @note Address: 0x80283AFC
+ * @note Size: 0x68
  */
 void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -926,10 +906,9 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 	mar->startMotion(MARANIM_Fall, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80283B64
- * Size:	0001A4
+/**
+ * @note Address: 0x80283B64
+ * @note Size: 0x1A4
  */
 void StateFall::exec(EnemyBase* enemy)
 {
@@ -966,10 +945,9 @@ void StateFall::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80283D08
- * Size:	000038
+/**
+ * @note Address: 0x80283D08
+ * @note Size: 0x38
  */
 void StateFall::cleanup(EnemyBase* enemy)
 {
@@ -978,10 +956,9 @@ void StateFall::cleanup(EnemyBase* enemy)
 	mar->setEmotionCaution();
 }
 
-/*
- * --INFO--
- * Address:	80283D40
- * Size:	000070
+/**
+ * @note Address: 0x80283D40
+ * @note Size: 0x70
  */
 void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -995,10 +972,9 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 	mar->createDownEffect();
 }
 
-/*
- * --INFO--
- * Address:	80283DB0
- * Size:	000080
+/**
+ * @note Address: 0x80283DB0
+ * @note Size: 0x80
  */
 void StateLand::exec(EnemyBase* enemy)
 {
@@ -1012,17 +988,15 @@ void StateLand::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80283E30
- * Size:	000024
+/**
+ * @note Address: 0x80283E30
+ * @note Size: 0x24
  */
 void StateLand::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	80283E54
- * Size:	000068
+/**
+ * @note Address: 0x80283E54
+ * @note Size: 0x68
  */
 void StateGround::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1035,10 +1009,9 @@ void StateGround::init(EnemyBase* enemy, StateArg* stateArg)
 	mar->startMotion(MARANIM_WaitGround, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80283EBC
- * Size:	000114
+/**
+ * @note Address: 0x80283EBC
+ * @note Size: 0x114
  */
 void StateGround::exec(EnemyBase* enemy)
 {
@@ -1063,17 +1036,15 @@ void StateGround::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80283FD0
- * Size:	000024
+/**
+ * @note Address: 0x80283FD0
+ * @note Size: 0x24
  */
 void StateGround::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	80283FF4
- * Size:	000064
+/**
+ * @note Address: 0x80283FF4
+ * @note Size: 0x64
  */
 void StateTakeOff::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1084,10 +1055,9 @@ void StateTakeOff::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(MARANIM_TakeOff, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80284058
- * Size:	0000EC
+/**
+ * @note Address: 0x80284058
+ * @note Size: 0xEC
  */
 void StateTakeOff::exec(EnemyBase* enemy)
 {
@@ -1111,10 +1081,9 @@ void StateTakeOff::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80284144
- * Size:	000038
+/**
+ * @note Address: 0x80284144
+ * @note Size: 0x38
  */
 void StateTakeOff::cleanup(EnemyBase* enemy)
 {
@@ -1123,10 +1092,9 @@ void StateTakeOff::cleanup(EnemyBase* enemy)
 	mar->setEmotionCaution();
 }
 
-/*
- * --INFO--
- * Address:	8028417C
- * Size:	000064
+/**
+ * @note Address: 0x8028417C
+ * @note Size: 0x64
  */
 void StateFlyFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1137,10 +1105,9 @@ void StateFlyFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(MARANIM_FlickFly, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802841E0
- * Size:	0000E4
+/**
+ * @note Address: 0x802841E0
+ * @note Size: 0xE4
  */
 void StateFlyFlick::exec(EnemyBase* enemy)
 {
@@ -1164,17 +1131,15 @@ void StateFlyFlick::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802842C4
- * Size:	000024
+/**
+ * @note Address: 0x802842C4
+ * @note Size: 0x24
  */
 void StateFlyFlick::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	802842E8
- * Size:	000064
+/**
+ * @note Address: 0x802842E8
+ * @note Size: 0x64
  */
 void StateGroundFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1185,10 +1150,9 @@ void StateGroundFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(MARANIM_FlickGround, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8028434C
- * Size:	000100
+/**
+ * @note Address: 0x8028434C
+ * @note Size: 0x100
  */
 void StateGroundFlick::exec(EnemyBase* enemy)
 {
@@ -1216,10 +1180,9 @@ void StateGroundFlick::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8028444C
- * Size:	000024
+/**
+ * @note Address: 0x8028444C
+ * @note Size: 0x24
  */
 void StateGroundFlick::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 } // namespace Mar

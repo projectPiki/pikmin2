@@ -29,10 +29,9 @@ static GXColor sColorTableDenominator[CINFOCOLOR_ColorCount] = {
 
 CarryInfoMgr* carryInfoMgr;
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 CarryInfo::CarryInfo()
 {
@@ -44,10 +43,9 @@ CarryInfo::CarryInfo()
 	mCounter  = 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 void CarryInfo::appear()
 {
@@ -55,17 +53,15 @@ void CarryInfo::appear()
 	mCounter = 0;
 }
 
-/*
- * --INFO--
- * Address:	8011AFD0
- * Size:	00000C
+/**
+ * @note Address: 0x8011AFD0
+ * @note Size: 0xC
  */
 void CarryInfo::disappear() { mState = CINFO_Disappear; }
 
-/*
- * --INFO--
- * Address:	8011AFDC
- * Size:	000264
+/**
+ * @note Address: 0x8011AFDC
+ * @note Size: 0x264
  */
 void CarryInfo::update(const CarryInfoParam& param)
 {
@@ -159,10 +155,9 @@ void CarryInfo::update(const CarryInfoParam& param)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8011B240
- * Size:	0004AC
+/**
+ * @note Address: 0x8011B240
+ * @note Size: 0x4AC
  */
 void CarryInfo::draw(Graphics& gfx, CarryInfoParam& param)
 {
@@ -563,10 +558,9 @@ lbl_8011B6B8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8011B6EC
- * Size:	000328
+/**
+ * @note Address: 0x8011B6EC
+ * @note Size: 0x328
  */
 f32 CarryInfo::drawNumber(Graphics& gfx, f32 xpos, f32 ypos, int dispNum, Color4& color, f32 scale)
 {
@@ -606,10 +600,9 @@ f32 CarryInfo::drawNumber(Graphics& gfx, f32 xpos, f32 ypos, int dispNum, Color4
 	}
 }
 
-/*
- * --INFO--
- * Address:	8011BA14
- * Size:	0001B4
+/**
+ * @note Address: 0x8011BA14
+ * @note Size: 0x1B4
  */
 void CarryInfo::drawNumberPrim(Graphics& gfx, f32 x, f32 y, int arg3, Color4& color, f32 offset)
 {
@@ -641,17 +634,15 @@ void CarryInfo::drawNumberPrim(Graphics& gfx, f32 x, f32 y, int arg3, Color4& co
 	GXPosition2f32(x1, 0.0f);
 }
 
-/*
- * --INFO--
- * Address:	8011BBC8
- * Size:	000004
+/**
+ * @note Address: 0x8011BBC8
+ * @note Size: 0x4
  */
 void CarryInfoList::init() { }
 
-/*
- * --INFO--
- * Address:	8011BBCC
- * Size:	00004C
+/**
+ * @note Address: 0x8011BBCC
+ * @note Size: 0x4C
  */
 void CarryInfoList::update()
 {
@@ -659,17 +650,15 @@ void CarryInfoList::update()
 	mParam.mCarryInfo.update(mParam);
 }
 
-/*
- * --INFO--
- * Address:	8011BC18
- * Size:	00002C
+/**
+ * @note Address: 0x8011BC18
+ * @note Size: 0x2C
  */
 void CarryInfoList::draw(Graphics& gfx) { mParam.mCarryInfo.draw(gfx, mParam); }
 
-/*
- * --INFO--
- * Address:	8011BC44
- * Size:	00003C
+/**
+ * @note Address: 0x8011BC44
+ * @note Size: 0x3C
  */
 void PokoInfoOwner::getCarryInfoParam(CarryInfoParam& param)
 {
@@ -680,10 +669,9 @@ void PokoInfoOwner::getCarryInfoParam(CarryInfoParam& param)
 	param.mValue      = mValue;
 }
 
-/*
- * --INFO--
- * Address:	8011BC94
- * Size:	0000D4
+/**
+ * @note Address: 0x8011BC94
+ * @note Size: 0xD4
  */
 CarryInfoMgr::CarryInfoMgr(int a)
     : InfoMgr(a)
@@ -698,17 +686,15 @@ CarryInfoMgr::CarryInfoMgr(int a)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8011BF88
- * Size:	000170
+/**
+ * @note Address: 0x8011BF88
+ * @note Size: 0x170
  */
 CarryInfoMgr::~CarryInfoMgr() { carryInfoMgr = nullptr; }
 
-/*
- * --INFO--
- * Address:	8011C0F8
- * Size:	0000C0
+/**
+ * @note Address: 0x8011C0F8
+ * @note Size: 0xC0
  */
 void CarryInfoMgr::appearPoko(const Vector3f& pos, int value)
 {
@@ -729,10 +715,9 @@ void CarryInfoMgr::appearPoko(const Vector3f& pos, int value)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8011C1D8
- * Size:	000040
+/**
+ * @note Address: 0x8011C1D8
+ * @note Size: 0x40
  */
 CarryInfoList* CarryInfoMgr::appear(CarryInfoOwner* owner)
 {
@@ -744,10 +729,9 @@ CarryInfoList* CarryInfoMgr::appear(CarryInfoOwner* owner)
 	return list;
 }
 
-/*
- * --INFO--
- * Address:	8011C218
- * Size:	000098
+/**
+ * @note Address: 0x8011C218
+ * @note Size: 0x98
  */
 void CarryInfoMgr::loadResource()
 {
@@ -757,10 +741,9 @@ void CarryInfoMgr::loadResource()
 	mTexture        = tex;
 }
 
-/*
- * --INFO--
- * Address:	8011C2B0
- * Size:	000198
+/**
+ * @note Address: 0x8011C2B0
+ * @note Size: 0x198
  */
 void CarryInfoMgr::draw(Graphics& gfx)
 {
@@ -792,10 +775,9 @@ void CarryInfoMgr::draw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8011C448
- * Size:	000034
+/**
+ * @note Address: 0x8011C448
+ * @note Size: 0x34
  */
 void CarryInfoMgr::update()
 {
@@ -819,10 +801,9 @@ void CarryInfoMgr::update()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8011C47C
- * Size:	000108
+/**
+ * @note Address: 0x8011C47C
+ * @note Size: 0x108
  */
 void CarryInfoMgr::updatePokoInfoOwners()
 {

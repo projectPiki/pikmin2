@@ -3,10 +3,9 @@
 #include "JSystem/JSupport/JSUStream.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	800BA7F8
- * Size:	000044
+/**
+ * @note Address: 0x800BA7F8
+ * @note Size: 0x44
  */
 JADUtility::DataMgrBase::DataMgrBase()
     : JKRDisposer()
@@ -14,10 +13,9 @@ JADUtility::DataMgrBase::DataMgrBase()
 {
 }
 
-/*
- * --INFO--
- * Address:	800BA83C
- * Size:	000078
+/**
+ * @note Address: 0x800BA83C
+ * @note Size: 0x78
  */
 JADUtility::DataMgrBase::~DataMgrBase()
 {
@@ -26,10 +24,9 @@ JADUtility::DataMgrBase::~DataMgrBase()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D0
+/**
+ * @note Address: N/A
+ * @note Size: 0xD0
  */
 JADUtility::DataLoadMgrNode::DataLoadMgrNode()
     : DataMgrBase()
@@ -41,53 +38,47 @@ JADUtility::DataLoadMgrNode::DataLoadMgrNode()
 	setLoadPath("\0");
 }
 
-/*
- * --INFO--
- * Address:	800BA8B4
- * Size:	0000C8
+/**
+ * @note Address: 0x800BA8B4
+ * @note Size: 0xC8
  */
 JADUtility::DataLoadMgrNode::~DataLoadMgrNode() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
+/**
+ * @note Address: N/A
+ * @note Size: 0x50
  */
 // void JADUtility::DataLoadMgrNode::setLoadPath(char const*)
 // {
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000230
+/**
+ * @note Address: N/A
+ * @note Size: 0x230
  */
 // void JADUtility::DataLoadMgrNode::load(JADUtility::DataLoadMgrNode::ObjStatus, bool)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	800BA97C
- * Size:	000008
+/**
+ * @note Address: 0x800BA97C
+ * @note Size: 0x8
  */
 bool JADUtility::DataLoadMgrNode::isTempBuffaMode() { return false; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B8
+/**
+ * @note Address: N/A
+ * @note Size: 0xB8
  */
 // bool JADUtility::DataLoadMgrNode::initInstanceExt()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	800BA984
- * Size:	0000F0
+/**
+ * @note Address: 0x800BA984
+ * @note Size: 0xF0
  */
 bool JADUtility::DataLoadMgrNode::initInstanceExt(void* p1, long p2)
 {
@@ -108,10 +99,9 @@ bool JADUtility::DataLoadMgrNode::initInstanceExt(void* p1, long p2)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	800BAA74
- * Size:	000014
+/**
+ * @note Address: 0x800BAA74
+ * @note Size: 0x14
  */
 void JADUtility::DataLoadMgrNode::setFlagsAsExternal(void* p1)
 {
@@ -119,20 +109,18 @@ void JADUtility::DataLoadMgrNode::setFlagsAsExternal(void* p1)
 	_08 = 3;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C4
+/**
+ * @note Address: N/A
+ * @note Size: 0xC4
  */
 // void JADUtility::DataLoadMgrNode::loadDvd(u32*)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	800BAA88
- * Size:	00015C
+/**
+ * @note Address: 0x800BAA88
+ * @note Size: 0x15C
  */
 JADUtility::DataMgrNode::DataMgrNode()
     : DataLoadMgrNode()
@@ -140,136 +128,122 @@ JADUtility::DataMgrNode::DataMgrNode()
 {
 }
 
-/*
- * --INFO--
- * Address:	800BABE4
- * Size:	0000A8
+/**
+ * @note Address: 0x800BABE4
+ * @note Size: 0xA8
  */
 // JADUtility::StrPrm::~StrPrm()
 // {
 // }
 
-/*
- * --INFO--
- * Address:	800BAC8C
- * Size:	000098
+/**
+ * @note Address: 0x800BAC8C
+ * @note Size: 0x98
  */
 // JADUtility::PrmHio<char*>::~PrmHio()
 // {
 // }
 
-/*
- * --INFO--
- * Address:	800BAD24
- * Size:	000088
+/**
+ * @note Address: 0x800BAD24
+ * @note Size: 0x88
  */
 // JADUtility::Prm<char*>::~Prm()
 // {
 // }
 
-/*
- * --INFO--
- * Address:	800BADAC
- * Size:	000078
+/**
+ * @note Address: 0x800BADAC
+ * @note Size: 0x78
  */
 // JADUtility::PrmBase::~PrmBase()
 // {
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 // void JSULink<JADUtility::PrmBase>::~JSULink()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000FC
+/**
+ * @note Address: N/A
+ * @note Size: 0xFC
  */
 // JADUtility::DataLoadMgrVirNode::DataLoadMgrVirNode(u32)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000FC
+/**
+ * @note Address: N/A
+ * @note Size: 0xFC
  */
 // JADUtility::DataMgrVirNode::DataMgrVirNode(u32)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F0
+/**
+ * @note Address: N/A
+ * @note Size: 0xF0
  */
 // JADUtility::DataMgrVirNode::~DataMgrVirNode()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 // const char* JADUtility::DataMgrVirNode::getPath()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
+/**
+ * @note Address: N/A
+ * @note Size: 0x44
  */
 // void JADUtility::DataMgrVirNode::init()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 // const char* JADUtility::DataLoadMgrVirNode::getPath()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
+/**
+ * @note Address: N/A
+ * @note Size: 0x44
  */
 // void JADUtility::DataLoadMgrVirNode::init()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F0
+/**
+ * @note Address: N/A
+ * @note Size: 0xF0
  */
 // JADUtility::DataLoadMgrVirNode::~DataLoadMgrVirNode()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	800BAE24
- * Size:	0000A0
+/**
+ * @note Address: 0x800BAE24
+ * @note Size: 0xA0
  */
 // void JADUtility::StrPrm::save(JSUMemoryOutputStream& output)
 // {
@@ -281,10 +255,9 @@ JADUtility::DataMgrNode::DataMgrNode()
 // 	PrmBase::save(output);
 // }
 
-/*
- * --INFO--
- * Address:	800BAEC4
- * Size:	0000A0
+/**
+ * @note Address: 0x800BAEC4
+ * @note Size: 0xA0
  */
 // void JADUtility::StrPrm::load(JSUMemoryInputStream& input)
 // {
@@ -299,149 +272,132 @@ JADUtility::DataMgrNode::DataMgrNode()
 // 	}
 // }
 
-/*
- * --INFO--
- * Address:	800BAF64
- * Size:	000078
+/**
+ * @note Address: 0x800BAF64
+ * @note Size: 0x78
  */
 // void JADUtility::PrmBase::save(JSUMemoryOutputStream&)
 // {
 // }
 
-/*
- * --INFO--
- * Address:	800BAFDC
- * Size:	000164
+/**
+ * @note Address: 0x800BAFDC
+ * @note Size: 0x164
  */
 // JADUtility::DataMgrNode::~DataMgrNode() { }
 
-/*
- * --INFO--
- * Address:	800BB140
- * Size:	000008
+/**
+ * @note Address: 0x800BB140
+ * @note Size: 0x8
  */
 // char* JADUtility::DataMgrNode::getPath() { return mPath; }
 
-/*
- * --INFO--
- * Address:	800BB148
- * Size:	000050
+/**
+ * @note Address: 0x800BB148
+ * @note Size: 0x50
  */
 // void JADUtility::DataMgrNode::setPath(char* path) { DataLoadMgrNode::setPath(path); }
 
-/*
- * --INFO--
- * Address:	800BB198
- * Size:	000044
+/**
+ * @note Address: 0x800BB198
+ * @note Size: 0x44
  */
 // void JADUtility::DataMgrNode::init() { DataLoadMgrNode::init(); }
 
-/*
- * --INFO--
- * Address:	800BB1DC
- * Size:	000044
+/**
+ * @note Address: 0x800BB1DC
+ * @note Size: 0x44
  */
 // void JADUtility::DataLoadMgrNode::init()
 // {
 // }
 
-/*
- * --INFO--
- * Address:	800BB220
- * Size:	00003C
+/**
+ * @note Address: 0x800BB220
+ * @note Size: 0x3C
  */
 // void JADUtility::DataMgrBase::init()
 // {
 // }
 
-/*
- * --INFO--
- * Address:	800BB25C
- * Size:	000084
+/**
+ * @note Address: 0x800BB25C
+ * @note Size: 0x84
  */
 // void JADUtility::Prm<char*>::save(JSUMemoryOutputStream& output)
 // {
 // }
 
-/*
- * --INFO--
- * Address:	800BB2E0
- * Size:	000060
+/**
+ * @note Address: 0x800BB2E0
+ * @note Size: 0x60
  */
 // void JADUtility::Prm<char*>::load(JSUMemoryInputStream& input)
 // {
 // }
 
-/*
- * --INFO--
- * Address:	800BB340
- * Size:	000014
+/**
+ * @note Address: 0x800BB340
+ * @note Size: 0x14
  */
 // void @532 @28 @JADUtility::DataLoadMgrNode::init()
 // {
 // }
 
-/*
- * --INFO--
- * Address:	800BB354
- * Size:	000014
+/**
+ * @note Address: 0x800BB354
+ * @note Size: 0x14
  */
 // @532 @28 @JADUtility::DataLoadMgrNode::~DataLoadMgrNode()
 // {
 // }
 
-/*
- * --INFO--
- * Address:	800BB368
- * Size:	000014
+/**
+ * @note Address: 0x800BB368
+ * @note Size: 0x14
  */
 // void @592 @28 @JADUtility::DataMgrNode::init()
 // {
 // }
 
-/*
- * --INFO--
- * Address:	800BB37C
- * Size:	000014
+/**
+ * @note Address: 0x800BB37C
+ * @note Size: 0x14
  */
 // @592 @28 @JADUtility::DataMgrNode::~DataMgrNode()
 // {
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 // void @532 @28 @JADUtility::DataLoadMgrVirNode::init()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 // @532 @28 @JADUtility::DataLoadMgrVirNode::~DataLoadMgrVirNode()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 // void @532 @28 @JADUtility::DataMgrVirNode::init()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 // @532 @28 @JADUtility::DataMgrVirNode::~DataMgrVirNode()
 // {

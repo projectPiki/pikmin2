@@ -48,22 +48,20 @@ loop:
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800F2FB4
- * Size:	000020
+/**
+ * @note Address: 0x800F2FB4
+ * @note Size: 0x20
  */
 void __init_user() { __init_cpp(); }
 
-/*
- * --INFO--
- * Address:	800F2FD4
- * Size:	000054
+/**
+ * @note Address: 0x800F2FD4
+ * @note Size: 0x54
  */
 static void __init_cpp()
 {
 	voidfunctionptr* constructor;
-	/*
+	/**
 	 *	call static initializers
 	 */
 	for (constructor = _ctors; *constructor; constructor++) {
@@ -71,20 +69,18 @@ static void __init_cpp()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 void __fini_cpp()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800F3028
- * Size:	000020
+/**
+ * @note Address: 0x800F3028
+ * @note Size: 0x20
  */
 void _ExitProcess() { PPCHalt(); }
 #ifdef __cplusplus

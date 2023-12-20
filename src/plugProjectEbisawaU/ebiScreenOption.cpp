@@ -7,10 +7,9 @@
 #include "PSSystem/PSSystemIF.h"
 #include "SoundID.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
+/**
+ * @note Address: N/A
+ * @note Size: 0xE4
  */
 void _Print(char* name, ...) { OSReport("ebiScreenOption"); }
 
@@ -19,10 +18,9 @@ using namespace Game::CommonSaveData;
 namespace ebi {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	803CADC8
- * Size:	000100
+/**
+ * @note Address: 0x803CADC8
+ * @note Size: 0x100
  */
 void TOptionParameter::loadRam()
 {
@@ -47,10 +45,9 @@ void TOptionParameter::loadRam()
 	mUseDeflicker = mgr->mUseDeflicker;
 }
 
-/*
- * --INFO--
- * Address:	803CAEC8
- * Size:	0000FC
+/**
+ * @note Address: 0x803CAEC8
+ * @note Size: 0xFC
  */
 void TOptionParameter::saveRam()
 {
@@ -73,10 +70,9 @@ void TOptionParameter::saveRam()
 	mgr->setDeflicker(mUseDeflicker);
 }
 
-/*
- * --INFO--
- * Address:	803CAFC4
- * Size:	000024
+/**
+ * @note Address: 0x803CAFC4
+ * @note Size: 0x24
  */
 void TOptionParameter::initParamForTest()
 {
@@ -88,10 +84,9 @@ void TOptionParameter::initParamForTest()
 	mUseDeflicker = false;
 }
 
-/*
- * --INFO--
- * Address:	803CAFE8
- * Size:	0008D4
+/**
+ * @note Address: 0x803CAFE8
+ * @note Size: 0x8D4
  */
 void TOption::doSetArchive(JKRArchive* archive)
 {
@@ -181,10 +176,9 @@ void TOption::doSetArchive(JKRArchive* archive)
 	sys->heapStatusEnd("Screen::TOption::setArchive");
 }
 
-/*
- * --INFO--
- * Address:	803CB8BC
- * Size:	000134
+/**
+ * @note Address: 0x803CB8BC
+ * @note Size: 0x134
  */
 void TOption::doOpenScreen(ArgOpen*)
 {
@@ -214,10 +208,9 @@ void TOption::doOpenScreen(ArgOpen*)
 	initScreen_();
 }
 
-/*
- * --INFO--
- * Address:	803CB9F0
- * Size:	00004C
+/**
+ * @note Address: 0x803CB9F0
+ * @note Size: 0x4C
  */
 void TOption::doCloseScreen(ArgClose*)
 {
@@ -227,17 +220,15 @@ void TOption::doCloseScreen(ArgClose*)
 	mState          = 2;
 }
 
-/*
- * --INFO--
- * Address:	803CBA3C
- * Size:	000024
+/**
+ * @note Address: 0x803CBA3C
+ * @note Size: 0x24
  */
 void TOption::doInitWaitState() { mAnimOpenScreen.stop(); }
 
-/*
- * --INFO--
- * Address:	803CBA60
- * Size:	000084
+/**
+ * @note Address: 0x803CBA60
+ * @note Size: 0x84
  */
 bool TOption::doUpdateStateOpen()
 {
@@ -256,10 +247,9 @@ bool TOption::doUpdateStateOpen()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803CBAE4
- * Size:	0009B4
+/**
+ * @note Address: 0x803CBAE4
+ * @note Size: 0x9B4
  */
 bool TOption::doUpdateStateWait()
 {
@@ -455,10 +445,9 @@ bool TOption::doUpdateStateWait()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803CC498
- * Size:	000074
+/**
+ * @note Address: 0x803CC498
+ * @note Size: 0x74
  */
 bool TOption::doUpdateStateClose()
 {
@@ -473,10 +462,9 @@ bool TOption::doUpdateStateClose()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803CC50C
- * Size:	000244
+/**
+ * @note Address: 0x803CC50C
+ * @note Size: 0x244
  */
 void TOption::doDraw()
 {
@@ -518,10 +506,9 @@ void TOption::doDraw()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803CC750
- * Size:	0000B0
+/**
+ * @note Address: 0x803CC750
+ * @note Size: 0xB0
  */
 void TOption::loadResource()
 {
@@ -538,10 +525,9 @@ void TOption::loadResource()
 	setArchive(archive);
 }
 
-/*
- * --INFO--
- * Address:	803CC800
- * Size:	0000BC
+/**
+ * @note Address: 0x803CC800
+ * @note Size: 0xBC
  */
 void TOption::setController(Controller* controller)
 {
@@ -552,10 +538,9 @@ void TOption::setController(Controller* controller)
 	mInputMainSel.init(mController, 0, 6, &mCurrMainSelection, EUTPadInterface_countNum::MODE_DOWNUP, 0.66f, 0.15f);
 }
 
-/*
- * --INFO--
- * Address:	803CC8BC
- * Size:	000174
+/**
+ * @note Address: 0x803CC8BC
+ * @note Size: 0x174
  */
 void TOption::initScreen_()
 {
@@ -585,10 +570,9 @@ void TOption::initScreen_()
 	mDeflickerScreen->setAlpha(0);
 }
 
-/*
- * --INFO--
- * Address:	803CCA30
- * Size:	000C9C
+/**
+ * @note Address: 0x803CCA30
+ * @note Size: 0xC9C
  */
 void TOption::setOptionParamToScreen_()
 {

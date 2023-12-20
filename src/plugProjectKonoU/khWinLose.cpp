@@ -10,10 +10,9 @@ static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 namespace kh {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	8040FCE8
- * Size:	0000B8
+/**
+ * @note Address: 0x8040FCE8
+ * @note Size: 0xB8
  */
 ObjWinLose::ObjWinLose()
 {
@@ -37,10 +36,9 @@ ObjWinLose::ObjWinLose()
 	mAlpha        = 0;
 }
 
-/*
- * --INFO--
- * Address:	8040FDA0
- * Size:	000418
+/**
+ * @note Address: 0x8040FDA0
+ * @note Size: 0x418
  */
 void ObjWinLose::doCreate(JKRArchive* arc)
 {
@@ -128,17 +126,15 @@ void ObjWinLose::doCreate(JKRArchive* arc)
 	}
 }
 
-/*
- * --INFO--
- * Address:	804101B8
- * Size:	000020
+/**
+ * @note Address: 0x804101B8
+ * @note Size: 0x20
  */
 bool ObjWinLose::doUpdate() { return updateAnimation(); }
 
-/*
- * --INFO--
- * Address:	804101D8
- * Size:	0000B8
+/**
+ * @note Address: 0x804101D8
+ * @note Size: 0xB8
  */
 void ObjWinLose::doDraw(Graphics& gfx)
 {
@@ -152,10 +148,9 @@ void ObjWinLose::doDraw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80410290
- * Size:	00038C
+/**
+ * @note Address: 0x80410290
+ * @note Size: 0x38C
  */
 bool ObjWinLose::updateAnimation()
 {

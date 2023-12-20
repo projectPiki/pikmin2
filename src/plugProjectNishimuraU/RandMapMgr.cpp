@@ -6,10 +6,9 @@ namespace Cave {
 
 RandMapMgr* randMapMgr;
 
-/*
- * --INFO--
- * Address:	80244528
- * Size:	000088
+/**
+ * @note Address: 0x80244528
+ * @note Size: 0x88
  */
 RandMapMgr::RandMapMgr(bool isVersusHiba)
 {
@@ -28,10 +27,9 @@ RandMapMgr::RandMapMgr(bool isVersusHiba)
 	mName             = "RandMapMgr";
 }
 
-/*
- * --INFO--
- * Address:	802445B0
- * Size:	0001A4
+/**
+ * @note Address: 0x802445B0
+ * @note Size: 0x1A4
  */
 void RandMapMgr::loadResource(MapUnitInterface* interface, int interfaceCount, FloorInfo* floorInfo, bool isFinalFloor,
                               EditMapUnit* editUnit)
@@ -52,10 +50,9 @@ void RandMapMgr::loadResource(MapUnitInterface* interface, int interfaceCount, F
 	mRandItemUnit->setManageClassPtr(mRandMapScore);
 }
 
-/*
- * --INFO--
- * Address:	80244754
- * Size:	000104
+/**
+ * @note Address: 0x80244754
+ * @note Size: 0x104
  */
 void RandMapMgr::create()
 {
@@ -97,17 +94,15 @@ void RandMapMgr::create()
 	sys->heapStatusEnd("Radar Map Texture");
 }
 
-/*
- * --INFO--
- * Address:	80244858
- * Size:	000034
+/**
+ * @note Address: 0x80244858
+ * @note Size: 0x34
  */
 int RandMapMgr::getNumRooms() { return mGenerator->mPlacedMapNodes->getChildCount(); }
 
-/*
- * --INFO--
- * Address:	8024488C
- * Size:	00003C
+/**
+ * @note Address: 0x8024488C
+ * @note Size: 0x3C
  */
 char* RandMapMgr::getUseUnitName(int idx)
 {
@@ -119,10 +114,9 @@ char* RandMapMgr::getUseUnitName(int idx)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	802448C8
- * Size:	000084
+/**
+ * @note Address: 0x802448C8
+ * @note Size: 0x84
  */
 char* RandMapMgr::getRoomData(int idx, float& x, float& y, int& dir)
 {
@@ -136,10 +130,9 @@ char* RandMapMgr::getRoomData(int idx, float& x, float& y, int& dir)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8024494C
- * Size:	0000E4
+/**
+ * @note Address: 0x8024494C
+ * @note Size: 0xE4
  */
 RoomLink* RandMapMgr::makeRoomLink(int idx)
 {
@@ -163,10 +156,9 @@ RoomLink* RandMapMgr::makeRoomLink(int idx)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80244A30
- * Size:	000084
+/**
+ * @note Address: 0x80244A30
+ * @note Size: 0x84
  */
 ObjectLayoutInfo* RandMapMgr::makeObjectLayoutInfo(int idx)
 {
@@ -179,10 +171,9 @@ ObjectLayoutInfo* RandMapMgr::makeObjectLayoutInfo(int idx)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80244AB4
- * Size:	000088
+/**
+ * @note Address: 0x80244AB4
+ * @note Size: 0x88
  */
 void RandMapMgr::getStartPosition(Vector3f& position, int idx)
 {
@@ -199,20 +190,18 @@ void RandMapMgr::getStartPosition(Vector3f& position, int idx)
 	position.y += 50.0f;
 }
 
-/*
- * --INFO--
- * Address:	80244B3C
- * Size:	0000A0
+/**
+ * @note Address: 0x80244B3C
+ * @note Size: 0xA0
  */
 void RandMapMgr::getItemDropPosition(Vector3f& position, f32 minDist, f32 maxDist)
 {
 	mRandItemUnit->getItemDropPosition(position, minDist + randWeightFloat(maxDist - minDist), -1);
 }
 
-/*
- * --INFO--
- * Address:	80244BDC
- * Size:	000188
+/**
+ * @note Address: 0x80244BDC
+ * @note Size: 0x188
  */
 void RandMapMgr::getItemDropPosition(Vector3f* positions, int count, f32 lowerWeightBound, f32 upperWeightBound)
 {
@@ -352,10 +341,9 @@ lbl_80244D38:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80244D64
- * Size:	000048
+/**
+ * @note Address: 0x80244D64
+ * @note Size: 0x48
  */
 void RandMapMgr::setUnitTexture(int idx, JUTTexture* texture)
 {
@@ -365,17 +353,15 @@ void RandMapMgr::setUnitTexture(int idx, JUTTexture* texture)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80244DAC
- * Size:	00000C
+/**
+ * @note Address: 0x80244DAC
+ * @note Size: 0xC
  */
 void RandMapMgr::setCaptureOn() { mIsCaptureOn = true; }
 
-/*
- * --INFO--
- * Address:	80244DB8
- * Size:	0000DC
+/**
+ * @note Address: 0x80244DB8
+ * @note Size: 0xDC
  */
 void RandMapMgr::captureRadarMap(Graphics& gfx)
 {
@@ -392,10 +378,9 @@ void RandMapMgr::captureRadarMap(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80244E94
- * Size:	00001C
+/**
+ * @note Address: 0x80244E94
+ * @note Size: 0x1C
  */
 bool RandMapMgr::isLastFloor()
 {
@@ -405,31 +390,27 @@ bool RandMapMgr::isLastFloor()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80244EB0
- * Size:	000008
+/**
+ * @note Address: 0x80244EB0
+ * @note Size: 0x8
  */
 bool RandMapMgr::isVersusHiba() { return mIsVersusHiba; }
 
-/*
- * --INFO--
- * Address:	80244EB8
- * Size:	000008
+/**
+ * @note Address: 0x80244EB8
+ * @note Size: 0x8
  */
 JUTTexture* RandMapMgr::getRadarMapTexture() { return mRadarMapTexture; }
 
-/*
- * --INFO--
- * Address:	80244EC0
- * Size:	000024
+/**
+ * @note Address: 0x80244EC0
+ * @note Size: 0x24
  */
 void RandMapMgr::radarMapPartsOpen(Vector3f& pos) { mRandMapDraw->radarMapPartsOpen(pos); }
 
-/*
- * --INFO--
- * Address:	80244EE4
- * Size:	000020
+/**
+ * @note Address: 0x80244EE4
+ * @note Size: 0x20
  */
 void RandMapMgr::getPositionOnTex(Vector3f& pos, f32& x, f32& y)
 {
@@ -447,11 +428,9 @@ void RandMapMgr::getPositionOnTex(Vector3f& pos, f32& x, f32& y)
  *
  * @param positions An array to store the positions of the base generators.
  * @param dirs An array to store the directions of the base generators.
- */
-/*
- * --INFO--
- * Address:	80244F04
- * Size:	000254
+ *
+ * @note Address: 0x80244F04
+ * @note Size: 0x254
  */
 void RandMapMgr::getBaseGenData(Vector3f* positions, f32* dirs)
 {
@@ -660,10 +639,9 @@ lbl_8024512C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80245158
- * Size:	000200
+/**
+ * @note Address: 0x80245158
+ * @note Size: 0x200
  */
 void RandMapMgr::drawFrameBuffer(Graphics& gfx)
 {

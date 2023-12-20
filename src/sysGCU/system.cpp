@@ -101,10 +101,9 @@ struct CallbackObject {
 
 extern CallbackObject exCallbackObject;
 
-/*
- * --INFO--
- * Address:	80421EC4
- * Size:	0000A0
+/**
+ * @note Address: 0x80421EC4
+ * @note Size: 0xA0
  */
 void Pikmin2DefaultMemoryErrorRoutine(void* address, u32 size, int alignment)
 {
@@ -114,10 +113,9 @@ void Pikmin2DefaultMemoryErrorRoutine(void* address, u32 size, int alignment)
 	OSPanic("system.cpp", 101, "abort\n");
 }
 
-/*
- * --INFO--
- * Address:	80421F64
- * Size:	000188
+/**
+ * @note Address: 0x80421F64
+ * @note Size: 0x188
  */
 void kando_panic_f(bool r3, const char* r4, int line, const char* r6, ...)
 {
@@ -264,10 +262,9 @@ void kando_panic_f(bool r3, const char* r4, int line, const char* r6, ...)
 
 // static const char unusedStrSystem[] = "%s in \"%s\" on\n line %d\n";
 
-/*
- * --INFO--
- * Address:	804220EC
- * Size:	000118
+/**
+ * @note Address: 0x804220EC
+ * @note Size: 0x118
  */
 void preUserCallback(u16, OSContext*, u32, u32)
 {
@@ -387,17 +384,15 @@ void preUserCallback(u16, OSContext*, u32, u32)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80422204
- * Size:	00002C
+/**
+ * @note Address: 0x80422204
+ * @note Size: 0x2C
  */
 void myTask(void* data) { sys->mCardMgr->cardProc(data); }
 
-/*
- * --INFO--
- * Address:	80422230
- * Size:	000054
+/**
+ * @note Address: 0x80422230
+ * @note Size: 0x54
  */
 System::FragmentationChecker::FragmentationChecker(char* name, bool)
 {
@@ -407,10 +402,9 @@ System::FragmentationChecker::FragmentationChecker(char* name, bool)
 	mSize     = total - free;
 }
 
-/*
- * --INFO--
- * Address:	80422284
- * Size:	00005C
+/**
+ * @note Address: 0x80422284
+ * @note Size: 0x5C
  */
 System::FragmentationChecker::~FragmentationChecker()
 {
@@ -418,10 +412,9 @@ System::FragmentationChecker::~FragmentationChecker()
 	JKRGetCurrentHeap()->getTotalFreeSize();
 }
 
-/*
- * --INFO--
- * Address:	804222E0
- * Size:	00003C
+/**
+ * @note Address: 0x804222E0
+ * @note Size: 0x3C
  */
 int System::assert_fragmentation(char*)
 {
@@ -432,10 +425,9 @@ int System::assert_fragmentation(char*)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8042231C
- * Size:	000010
+/**
+ * @note Address: 0x8042231C
+ * @note Size: 0x10
  */
 void System::enableCPULockDetector(int locks)
 {
@@ -443,10 +435,9 @@ void System::enableCPULockDetector(int locks)
 	mCpuLockCount    = locks;
 }
 
-/*
- * --INFO--
- * Address:	8042232C
- * Size:	000018
+/**
+ * @note Address: 0x8042232C
+ * @note Size: 0x18
  */
 int System::disableCPULockDetector()
 {
@@ -458,10 +449,9 @@ int System::disableCPULockDetector()
 
 static const char aramStrmName[] = "aramStrm";
 
-/*
- * --INFO--
- * Address:	80422344
- * Size:	0000A4
+/**
+ * @note Address: 0x80422344
+ * @note Size: 0xA4
  */
 void retraceCallback(u32)
 {
@@ -477,10 +467,9 @@ void retraceCallback(u32)
 	}
 }
 
-/*
- * --INFO--
- * Address:	804223E8
- * Size:	00011C
+/**
+ * @note Address: 0x804223E8
+ * @note Size: 0x11C
  */
 System::System()
     : mSysHeap(nullptr)
@@ -508,10 +497,9 @@ System::System()
 	mSysHeap->getTotalFreeSize();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  */
 System::~System()
 {
@@ -520,10 +508,9 @@ System::~System()
 
 char* cMapFileName = "/pikmin2UP.map"; // !!
 
-/*
- * --INFO--
- * Address:	80422504
- * Size:	000214
+/**
+ * @note Address: 0x80422504
+ * @note Size: 0x214
  */
 void System::construct()
 {
@@ -569,10 +556,9 @@ void System::construct()
 	heapStatusEnd("construct");
 }
 
-/*
- * --INFO--
- * Address:	80422718
- * Size:	0000E8
+/**
+ * @note Address: 0x80422718
+ * @note Size: 0xE8
  */
 void System::constructWithDvdAccessFirst()
 {
@@ -594,10 +580,9 @@ void System::constructWithDvdAccessFirst()
 	heapStatusDump(true);
 }
 
-/*
- * --INFO--
- * Address:	80422800
- * Size:	000120
+/**
+ * @note Address: 0x80422800
+ * @note Size: 0x120
  */
 void System::constructWithDvdAccessSecond()
 {
@@ -626,17 +611,15 @@ void System::constructWithDvdAccessSecond()
 	heapStatusDump(true);
 }
 
-/*
- * --INFO--
- * Address:	80422920
- * Size:	000054
+/**
+ * @note Address: 0x80422920
+ * @note Size: 0x54
  */
 void System::createRomFont(JKRHeap* heap) { mRomFont = new JUTRomFont(heap); }
 
-/*
- * --INFO--
- * Address:	80422974
- * Size:	000050
+/**
+ * @note Address: 0x80422974
+ * @note Size: 0x50
  */
 void System::destroyRomFont()
 {
@@ -644,10 +627,9 @@ void System::destroyRomFont()
 	mRomFont = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	804229C4
- * Size:	0001B8
+/**
+ * @note Address: 0x804229C4
+ * @note Size: 0x1B8
  */
 void System::createSoundSystem()
 {
@@ -812,10 +794,9 @@ void System::createSoundSystem()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80422B7C
- * Size:	0000E8
+/**
+ * @note Address: 0x80422B7C
+ * @note Size: 0xE8
  */
 void System::loadSoundResource()
 {
@@ -899,10 +880,9 @@ void System::loadSoundResource()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 System::GXVerifyArg::GXVerifyArg()
 {
@@ -910,30 +890,27 @@ System::GXVerifyArg::GXVerifyArg()
 	_04 = 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void System::setGXVerifyLevel(System::GXVerifyArg&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void System::clearGXVerifyLevel()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80422C64
- * Size:	0000F8
+/**
+ * @note Address: 0x80422C64
+ * @note Size: 0xF8
  */
 void System::initialize()
 {
@@ -1029,10 +1006,9 @@ void System::initialize()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80422D5C
- * Size:	000094
+/**
+ * @note Address: 0x80422D5C
+ * @note Size: 0x94
  */
 void System::loadResourceFirst()
 {
@@ -1041,10 +1017,9 @@ void System::loadResourceFirst()
 	dvdLoadUseCallBack(&mThreadCommand, delegate);
 }
 
-/*
- * --INFO--
- * Address:	80422DF0
- * Size:	000094
+/**
+ * @note Address: 0x80422DF0
+ * @note Size: 0x94
  */
 void System::loadResourceSecond()
 {
@@ -1053,10 +1028,9 @@ void System::loadResourceSecond()
 	dvdLoadUseCallBack(&mThreadCommand, delegate);
 }
 
-/*
- * --INFO--
- * Address:	80422E84
- * Size:	000034
+/**
+ * @note Address: 0x80422E84
+ * @note Size: 0x34
  */
 int System::run()
 {
@@ -1064,10 +1038,9 @@ int System::run()
 	return EXIT_SUCCESS;
 }
 
-/*
- * --INFO--
- * Address:	80422EB8
- * Size:	000058
+/**
+ * @note Address: 0x80422EB8
+ * @note Size: 0x58
  */
 f32 System::getTime()
 {
@@ -1099,41 +1072,36 @@ f32 System::getTime()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void System::checkOptionBlockSaveFlag()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80422F10
- * Size:	000010
+/**
+ * @note Address: 0x80422F10
+ * @note Size: 0x10
  */
 void System::clearOptionBlockSaveFlag() { mPlayData->mChallengeOpen = false; }
 
-/*
- * --INFO--
- * Address:	80422F20
- * Size:	000010
+/**
+ * @note Address: 0x80422F20
+ * @note Size: 0x10
  */
 void System::setOptionBlockSaveFlag() { mPlayData->mChallengeOpen = true; }
 
-/*
- * --INFO--
- * Address:	80422F30
- * Size:	000008
+/**
+ * @note Address: 0x80422F30
+ * @note Size: 0x8
  */
 Game::CommonSaveData::Mgr* System::getPlayCommonData() { return mPlayData; }
 
-/*
- * --INFO--
- * Address:	80422F38
- * Size:	000058
+/**
+ * @note Address: 0x80422F38
+ * @note Size: 0x58
  */
 void System::dvdLoadUseCallBack(DvdThreadCommand* command, IDelegate* delegate)
 {
@@ -1143,60 +1111,54 @@ void System::dvdLoadUseCallBack(DvdThreadCommand* command, IDelegate* delegate)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
+/**
+ * @note Address: N/A
+ * @note Size: 0x60
  */
 void System::dvdLoadArchive(DvdThreadCommand*, char*, JKRHeap*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
+/**
+ * @note Address: N/A
+ * @note Size: 0x60
  */
 void System::dvdLoadArchiveTemporary(DvdThreadCommand*, char*, JKRHeap*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
+/**
+ * @note Address: N/A
+ * @note Size: 0x60
  */
 void System::dvdLoadFile(DvdThreadCommand*, char*, JKRHeap*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 void System::dvdLoadSync(DvdThreadCommand*, DvdThread::ESyncBlockFlag)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 void System::dvdLoadSyncAll(DvdThread::ESyncBlockFlag)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80422F90
- * Size:	000054
+/**
+ * @note Address: 0x80422F90
+ * @note Size: 0x54
  */
 void System::deleteThreads()
 {
@@ -1206,10 +1168,9 @@ void System::deleteThreads()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80423070
- * Size:	000010
+/**
+ * @note Address: 0x80423070
+ * @note Size: 0x10
  */
 JFWDisplay* System::setCurrentDisplay(JFWDisplay* display)
 {
@@ -1218,10 +1179,9 @@ JFWDisplay* System::setCurrentDisplay(JFWDisplay* display)
 	return old;
 }
 
-/*
- * --INFO--
- * Address:	80423080
- * Size:	00001C
+/**
+ * @note Address: 0x80423080
+ * @note Size: 0x1C
  */
 JFWDisplay* System::clearCurrentDisplay(JFWDisplay* display)
 {
@@ -1232,10 +1192,9 @@ JFWDisplay* System::clearCurrentDisplay(JFWDisplay* display)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8042309C
- * Size:	00003C
+/**
+ * @note Address: 0x8042309C
+ * @note Size: 0x3C
  */
 bool System::beginFrame()
 {
@@ -1244,10 +1203,9 @@ bool System::beginFrame()
 	mDvdStatus->update();
 }
 
-/*
- * --INFO--
- * Address:	804230D8
- * Size:	00005C
+/**
+ * @note Address: 0x804230D8
+ * @note Size: 0x5C
  */
 void System::endFrame()
 {
@@ -1259,10 +1217,9 @@ void System::endFrame()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80423134
- * Size:	000048
+/**
+ * @note Address: 0x80423134
+ * @note Size: 0x48
  */
 void System::beginRender()
 {
@@ -1271,10 +1228,9 @@ void System::beginRender()
 	mDisplay->beginRender();
 }
 
-/*
- * --INFO--
- * Address:	8042317C
- * Size:	000098
+/**
+ * @note Address: 0x8042317C
+ * @note Size: 0x98
  */
 void System::endRender()
 {
@@ -1289,10 +1245,9 @@ void System::endRender()
 	mDisplay->endRender();
 }
 
-/*
- * --INFO--
- * Address:	80423214
- * Size:	000010
+/**
+ * @note Address: 0x80423214
+ * @note Size: 0x10
  */
 System::ERenderMode System::setRenderMode(ERenderMode mode)
 {
@@ -1301,17 +1256,15 @@ System::ERenderMode System::setRenderMode(ERenderMode mode)
 	return currMode;
 }
 
-/*
- * --INFO--
- * Address:	80423224
- * Size:	000018
+/**
+ * @note Address: 0x80423224
+ * @note Size: 0x18
  */
 _GXRenderModeObj* System::getRenderModeObj() { return sRenderModeTable[mRenderMode]; }
 
-/*
- * --INFO--
- * Address:	8042323C
- * Size:	000120
+/**
+ * @note Address: 0x8042323C
+ * @note Size: 0x120
  */
 void System::changeRenderMode(ERenderMode newmode)
 {
@@ -1346,55 +1299,48 @@ void System::changeRenderMode(ERenderMode newmode)
 	mPlayData->setDeflicker();
 }
 
-/*
- * --INFO--
- * Address:	8042335C
- * Size:	000008
+/**
+ * @note Address: 0x8042335C
+ * @note Size: 0x8
  */
 u32 System::heapStatusStart(char*, JKRHeap*) { return 0; }
 
-/*
- * --INFO--
- * Address:	80423364
- * Size:	000004
+/**
+ * @note Address: 0x80423364
+ * @note Size: 0x4
  */
 void System::heapStatusEnd(char*) { }
 
-/*
- * --INFO--
- * Address:	80423368
- * Size:	000004
+/**
+ * @note Address: 0x80423368
+ * @note Size: 0x4
  */
 void System::heapStatusDump(bool) { }
 
-/*
- * --INFO--
- * Address:	8042336C
- * Size:	000004
+/**
+ * @note Address: 0x8042336C
+ * @note Size: 0x4
  */
 void System::heapStatusIndividual() { }
 
-/*
- * --INFO--
- * Address:	80423370
- * Size:	000004
+/**
+ * @note Address: 0x80423370
+ * @note Size: 0x4
  */
 void System::heapStatusNormal() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void System::heapStatusDumpNode()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80423374
- * Size:	000028
+/**
+ * @note Address: 0x80423374
+ * @note Size: 0x28
  */
 void System::resetOn(bool flag)
 {
@@ -1405,55 +1351,48 @@ void System::resetOn(bool flag)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 void System::resetOff()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8042339C
- * Size:	000014
+/**
+ * @note Address: 0x8042339C
+ * @note Size: 0x14
  */
 void System::resetPermissionOn() { mResetMgr->mFlags.typeView |= 0x10000000; }
 
-/*
- * --INFO--
- * Address:	804233B0
- * Size:	000018
+/**
+ * @note Address: 0x804233B0
+ * @note Size: 0x18
  */
 bool System::isResetActive() { return mResetMgr->mState; }
 
-/*
- * --INFO--
- * Address:	804233C8
- * Size:	000014
+/**
+ * @note Address: 0x804233C8
+ * @note Size: 0x14
  */
 void System::activeGP() { mResetMgr->mFlags.set(2); }
 
-/*
- * --INFO--
- * Address:	804233DC
- * Size:	000014
+/**
+ * @note Address: 0x804233DC
+ * @note Size: 0x14
  */
 void System::inactiveGP() { mResetMgr->mFlags.unset(2); }
 
-/*
- * --INFO--
- * Address:	804233F0
- * Size:	000024
+/**
+ * @note Address: 0x804233F0
+ * @note Size: 0x24
  */
 bool System::isDvdErrorOccured() { return mDvdStatus->isErrorOccured(); }
 
-/*
- * --INFO--
- * Address:	80423414
- * Size:	000034
+/**
+ * @note Address: 0x80423414
+ * @note Size: 0x34
  */
 void System::initCurrentHeapMutex()
 {
@@ -1461,10 +1400,9 @@ void System::initCurrentHeapMutex()
 	mBackupHeap = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80423448
- * Size:	000070
+/**
+ * @note Address: 0x80423448
+ * @note Size: 0x70
  */
 void System::startChangeCurrentHeap(JKRHeap* newheap)
 {
@@ -1474,10 +1412,9 @@ void System::startChangeCurrentHeap(JKRHeap* newheap)
 	newheap->becomeCurrentHeap();
 }
 
-/*
- * --INFO--
- * Address:	804234B8
- * Size:	000068
+/**
+ * @note Address: 0x804234B8
+ * @note Size: 0x68
  */
 void System::endChangeCurrentHeap()
 {
@@ -1487,31 +1424,27 @@ void System::endChangeCurrentHeap()
 	OSUnlockMutex(this);
 }
 
-/*
- * --INFO--
- * Address:	80423520
- * Size:	000004
+/**
+ * @note Address: 0x80423520
+ * @note Size: 0x4
  */
 void System::addGenNode(CNode*) { }
 
-/*
- * --INFO--
- * Address:	80423524
- * Size:	000004
+/**
+ * @note Address: 0x80423524
+ * @note Size: 0x4
  */
 void System::initGenNode() { }
 
-/*
- * --INFO--
- * Address:	80423528
- * Size:	000004
+/**
+ * @note Address: 0x80423528
+ * @note Size: 0x4
  */
 void System::refreshGenNode() { }
 
-/*
- * --INFO--
- * Address:	8042352C
- * Size:	0000A0
+/**
+ * @note Address: 0x8042352C
+ * @note Size: 0xA0
  */
 void System::setFrameRate(int newFactor)
 {
@@ -1567,20 +1500,18 @@ void System::setFrameRate(int newFactor)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A0
+/**
+ * @note Address: N/A
+ * @note Size: 0xA0
  */
 void System::forceFinishSection()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	804235D4
- * Size:	000060
+/**
+ * @note Address: 0x804235D4
+ * @note Size: 0x60
  */
 bool System::dvdLoadSyncNoBlock(DvdThreadCommand* command)
 {
@@ -1599,10 +1530,9 @@ bool System::dvdLoadSyncNoBlock(DvdThreadCommand* command)
 	return check;
 }
 
-/*
- * --INFO--
- * Address:	80423634
- * Size:	00005C
+/**
+ * @note Address: 0x80423634
+ * @note Size: 0x5C
  */
 int System::dvdLoadSyncAllNoBlock()
 {

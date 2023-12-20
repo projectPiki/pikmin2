@@ -141,10 +141,9 @@ u32 decodedBufferBlocks = 0x2760;
 } // namespace StreamMgr
 } // namespace JAInter
 
-/*
- * --INFO--
- * Address:	800B764C
- * Size:	00031C
+/**
+ * @note Address: 0x800B764C
+ * @note Size: 0x31C
  */
 void JAInter::StreamMgr::init()
 {
@@ -386,10 +385,9 @@ lbl_800B7954:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800B7968
- * Size:	000358
+/**
+ * @note Address: 0x800B7968
+ * @note Size: 0x358
  */
 void JAInter::StreamMgr::storeStreamBuffer(JAIStream** soundHandlePtr, JAInter::Actor* actor, u32 soundID, u32 p4, u8 p5,
                                            JAInter::SoundInfo* info)
@@ -695,10 +693,9 @@ void JAInter::StreamMgr::storeStreamBuffer(JAIStream** soundHandlePtr, JAInter::
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800B7CC0
- * Size:	000088
+/**
+ * @note Address: 0x800B7CC0
+ * @note Size: 0x88
  */
 void JAInter::StreamMgr::releaseStreamBuffer(JAIStream* stream, u32 p2)
 {
@@ -715,10 +712,9 @@ void JAInter::StreamMgr::releaseStreamBuffer(JAIStream* stream, u32 p2)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800B7D48
- * Size:	0001AC
+/**
+ * @note Address: 0x800B7D48
+ * @note Size: 0x1AC
  */
 void JAInter::StreamMgr::checkSystem()
 {
@@ -943,10 +939,9 @@ lbl_800B7EE4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800B7EF4
- * Size:	000A00
+/**
+ * @note Address: 0x800B7EF4
+ * @note Size: 0xA00
  */
 void JAInter::StreamMgr::PlayingStream()
 {
@@ -1764,20 +1759,18 @@ lbl_800B88D0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  */
 void JAInter::StreamMgr::RequestStream()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800B88F4
- * Size:	0000A8
+/**
+ * @note Address: 0x800B88F4
+ * @note Size: 0xA8
  */
 void JAInter::StreamMgr::changeCallback()
 {
@@ -1857,10 +1850,9 @@ lbl_800B898C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800B899C
- * Size:	000030
+/**
+ * @note Address: 0x800B899C
+ * @note Size: 0x30
  */
 void JAInter::StreamMgr::processGFrameStream()
 {
@@ -1870,10 +1862,9 @@ void JAInter::StreamMgr::processGFrameStream()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800B89CC
- * Size:	0000E8
+/**
+ * @note Address: 0x800B89CC
+ * @note Size: 0xE8
  */
 void JAInter::StreamMgr::checkEntriedStream()
 {
@@ -1959,10 +1950,9 @@ lbl_800B8AA0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800B8AB4
- * Size:	000070
+/**
+ * @note Address: 0x800B8AB4
+ * @note Size: 0x70
  */
 void JAInter::StreamMgr::systemCallBack(u32 status, JASAramStream* stream, void* p3)
 {
@@ -1981,10 +1971,9 @@ void JAInter::StreamMgr::systemCallBack(u32 status, JASAramStream* stream, void*
 	}
 }
 
-/*
- * --INFO--
- * Address:	800B8B24
- * Size:	0000C8
+/**
+ * @note Address: 0x800B8B24
+ * @note Size: 0xC8
  */
 void JAInter::StreamMgr::prepareSystem(long inode)
 {
@@ -2063,10 +2052,9 @@ lbl_800B8BAC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800B8BEC
- * Size:	000198
+/**
+ * @note Address: 0x800B8BEC
+ * @note Size: 0x198
  */
 void JAInter::StreamMgr::playDirect(char* path)
 {
@@ -2224,10 +2212,9 @@ lbl_800B8D6C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800B8D84
- * Size:	00003C
+/**
+ * @note Address: 0x800B8D84
+ * @note Size: 0x3C
  */
 void JAInter::StreamMgr::stopDirect()
 {
@@ -2239,10 +2226,9 @@ void JAInter::StreamMgr::stopDirect()
 	dataFileNumber = 0;
 }
 
-/*
- * --INFO--
- * Address:	800B8DC0
- * Size:	0000EC
+/**
+ * @note Address: 0x800B8DC0
+ * @note Size: 0xEC
  */
 void JAInter::StreamMgr::initChannel()
 {
@@ -2341,61 +2327,54 @@ lbl_800B8E90:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800B8EAC
- * Size:	000008
+/**
+ * @note Address: 0x800B8EAC
+ * @note Size: 0x8
  */
 JASAramStream* JAInter::StreamMgr::getStreamObjectPointer() { return streamSystem; }
 
-/*
- * --INFO--
- * Address:	800B8EB4
- * Size:	000008
+/**
+ * @note Address: 0x800B8EB4
+ * @note Size: 0x8
  */
 u32 JAInter::StreamMgr::getSystemStatus() { return systemStatus; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void JAInter::StreamMgr::setParentHeap(JASHeap*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 void JAInter::StreamMgr::setAllockCallback(JAInter::StreamMgr::AllocCallback)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void JAInter::StreamMgr::setDeallockCallback(JAInter::StreamMgr::DeallocCallback)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800B8EBC
- * Size:	000008
+/**
+ * @note Address: 0x800B8EBC
+ * @note Size: 0x8
  */
 u32 JAInter::StreamMgr::getDecodedBufferBlocks() { return decodedBufferBlocks; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void JAInter::StreamMgr::setDecodedBufferBlocks(u32 count)
 {
@@ -2403,17 +2382,15 @@ void JAInter::StreamMgr::setDecodedBufferBlocks(u32 count)
 	decodedBufferBlocks = count;
 }
 
-/*
- * --INFO--
- * Address:	800B8EC4
- * Size:	000018
+/**
+ * @note Address: 0x800B8EC4
+ * @note Size: 0x18
  */
 u32 JAInter::StreamMgr::getDecodedBufferSize(u32 p1) { return decodedBufferBlocks * p1 * sChannelMax >> 1; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 JAIStream* JAInter::StreamMgr::getStreamSound()
 {
@@ -2421,10 +2398,9 @@ JAIStream* JAInter::StreamMgr::getStreamSound()
 	return streamSound;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void JAInter::StreamMgr::setChannelMax(u32 max)
 {
@@ -2432,17 +2408,15 @@ void JAInter::StreamMgr::setChannelMax(u32 max)
 	sChannelMax = max;
 }
 
-/*
- * --INFO--
- * Address:	800B8EDC
- * Size:	000008
+/**
+ * @note Address: 0x800B8EDC
+ * @note Size: 0x8
  */
 u32 JAInter::StreamMgr::getChannelMax() { return sChannelMax; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 void JAInter::StreamMgr::setExternalAramBuffer(void (*)(JASHeap*))
 {

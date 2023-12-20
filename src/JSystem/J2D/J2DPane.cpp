@@ -11,10 +11,9 @@
 
 JGeometry::TBox2f J2DPane::static_mBounds(0.0f, 0.0f, 0.0f, 0.0f);
 
-/*
- * --INFO--
- * Address:	80036AF0
- * Size:	0000C0
+/**
+ * @note Address: 0x80036AF0
+ * @note Size: 0xC0
  */
 J2DPane::J2DPane()
     : mTree(this)
@@ -31,10 +30,9 @@ J2DPane::J2DPane()
 	calcMtx();
 }
 
-/*
- * --INFO--
- * Address:	80036BB0
- * Size:	000040
+/**
+ * @note Address: 0x80036BB0
+ * @note Size: 0x40
  */
 void J2DPane::calcMtx()
 {
@@ -43,17 +41,15 @@ void J2DPane::calcMtx()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80036BF0
- * Size:	00003C
+/**
+ * @note Address: 0x80036BF0
+ * @note Size: 0x3C
  */
 void J2DPane::makeMatrix(f32 f1, f32 f2) { makeMatrix(f1, f2, -mBounds.i.x, -mBounds.i.y); }
 
-/*
- * --INFO--
- * Address:	80036C2C
- * Size:	000088
+/**
+ * @note Address: 0x80036C2C
+ * @note Size: 0x88
  */
 void J2DPane::initiate()
 {
@@ -73,11 +69,10 @@ void J2DPane::initiate()
 	calcMtx();
 }
 
-/*
+/**
  * __ct__7J2DPaneFP7J2DPanebUxRCQ29JGeometry8TBox2<f>
- * --INFO--
- * Address:	80036CB4
- * Size:	000088
+ * @note Address: 0x80036CB4
+ * @note Size: 0x88
  */
 J2DPane::J2DPane(J2DPane* parent, bool isVisible, u64 tag, const JGeometry::TBox2f& box)
     : mTree(this)
@@ -86,10 +81,9 @@ J2DPane::J2DPane(J2DPane* parent, bool isVisible, u64 tag, const JGeometry::TBox
 	initialize(parent, isVisible, tag, box);
 }
 
-/*
- * --INFO--
- * Address:	80036D3C
- * Size:	000120
+/**
+ * @note Address: 0x80036D3C
+ * @note Size: 0x120
  */
 void J2DPane::initialize(J2DPane* parent, bool isVisible, u64 tag, const JGeometry::TBox2f& box)
 {
@@ -106,11 +100,10 @@ void J2DPane::initialize(J2DPane* parent, bool isVisible, u64 tag, const JGeomet
 	calcMtx();
 }
 
-/*
+/**
  * __ct__7J2DPaneFUxRCQ29JGeometry8TBox2<f>
- * --INFO--
- * Address:	80036E5C
- * Size:	000078
+ * @note Address: 0x80036E5C
+ * @note Size: 0x78
  */
 J2DPane::J2DPane(u64 tag, const JGeometry::TBox2f& box)
     : mTree(this)
@@ -119,19 +112,17 @@ J2DPane::J2DPane(u64 tag, const JGeometry::TBox2f& box)
 	initialize(tag, box);
 }
 
-/*
- * --INFO--
- * Address:	80036ED4
- * Size:	0000F4
+/**
+ * @note Address: 0x80036ED4
+ * @note Size: 0xF4
  * initialize__7J2DPaneFUxRCQ29JGeometry8TBox2<f>
  */
 void J2DPane::initialize(u64 tag, const JGeometry::TBox2f& box) { initialize(nullptr, true, tag, box); }
 
-/*
+/**
  * __ct__7J2DPaneFP7J2DPaneP20JSURandomInputStreamUc
- * --INFO--
- * Address:	80036FC8
- * Size:	000120
+ * @note Address: 0x80036FC8
+ * @note Size: 0x120
  */
 J2DPane::J2DPane(J2DPane* parent, JSURandomInputStream* input, u8 version)
     : mTree(this)
@@ -156,10 +147,9 @@ J2DPane::J2DPane(J2DPane* parent, JSURandomInputStream* input, u8 version)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800370E8
- * Size:	000340
+/**
+ * @note Address: 0x800370E8
+ * @note Size: 0x340
  */
 void J2DPane::makePaneStream(J2DPane* parent, JSURandomInputStream* input)
 {
@@ -219,10 +209,9 @@ void J2DPane::makePaneStream(J2DPane* parent, JSURandomInputStream* input)
 	calcMtx();
 }
 
-/*
- * --INFO--
- * Address:	80037428
- * Size:	0001BC
+/**
+ * @note Address: 0x80037428
+ * @note Size: 0x1BC
  */
 void J2DPane::changeUseTrans(J2DPane* parent)
 {
@@ -266,10 +255,9 @@ void J2DPane::changeUseTrans(J2DPane* parent)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800375E4
- * Size:	0000E0
+/**
+ * @note Address: 0x800375E4
+ * @note Size: 0xE0
  */
 J2DPane::~J2DPane()
 {
@@ -280,10 +268,9 @@ J2DPane::~J2DPane()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800376C4
- * Size:	0000B8
+/**
+ * @note Address: 0x800376C4
+ * @note Size: 0xB8
  */
 bool J2DPane::appendChild(J2DPane* child)
 {
@@ -300,10 +287,9 @@ bool J2DPane::appendChild(J2DPane* child)
 	return appendResult;
 }
 
-/*
- * --INFO--
- * Address:	8003777C
- * Size:	0000B8
+/**
+ * @note Address: 0x8003777C
+ * @note Size: 0xB8
  */
 bool J2DPane::prependChild(J2DPane* child)
 {
@@ -319,10 +305,9 @@ bool J2DPane::prependChild(J2DPane* child)
 	return prependResult;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000DC
+/**
+ * @note Address: N/A
+ * @note Size: 0xDC
  */
 bool J2DPane::insertChild(J2DPane* before, J2DPane* child)
 {
@@ -340,10 +325,9 @@ bool J2DPane::insertChild(J2DPane* before, J2DPane* child)
 	return removeResult;
 }
 
-/*
- * --INFO--
- * Address:	80037834
- * Size:	0000A4
+/**
+ * @note Address: 0x80037834
+ * @note Size: 0xA4
  */
 bool J2DPane::removeChild(J2DPane* child)
 {
@@ -358,10 +342,9 @@ bool J2DPane::removeChild(J2DPane* child)
 	return removeResult;
 }
 
-/*
- * --INFO--
- * Address:	800378D8
- * Size:	000658
+/**
+ * @note Address: 0x800378D8
+ * @note Size: 0x658
  */
 void J2DPane::draw(f32 x, f32 y, const J2DGrafContext* grafContext, bool isOrthoGraf, bool check)
 {
@@ -433,24 +416,21 @@ void J2DPane::draw(f32 x, f32 y, const J2DGrafContext* grafContext, bool isOrtho
 	}
 }
 
-/*
- * --INFO--
- * Address:	80037F30
- * Size:	000004
+/**
+ * @note Address: 0x80037F30
+ * @note Size: 0x4
  */
 // void J2DPane::drawSelf(f32, f32, Mtx*) { }
 
-/*
- * --INFO--
- * Address:	80037F34
- * Size:	000004
+/**
+ * @note Address: 0x80037F34
+ * @note Size: 0x4
  */
 // void J2DPane::rewriteAlpha() { }
 
-/*
- * --INFO--
- * Address:	80037F38
- * Size:	000248
+/**
+ * @note Address: 0x80037F38
+ * @note Size: 0x248
  */
 void J2DPane::place(const JGeometry::TBox2f& box)
 {
@@ -503,10 +483,9 @@ void J2DPane::place(const JGeometry::TBox2f& box)
 	calcMtx();
 }
 
-/*
- * --INFO--
- * Address:	80038180
- * Size:	000054
+/**
+ * @note Address: 0x80038180
+ * @note Size: 0x54
  */
 void J2DPane::move(f32 x, f32 y)
 {
@@ -515,10 +494,9 @@ void J2DPane::move(f32 x, f32 y)
 	place(JGeometry::TBox2<f32>(x, y, x + width, y + height));
 }
 
-/*
- * --INFO--
- * Address:	800381D4
- * Size:	000044
+/**
+ * @note Address: 0x800381D4
+ * @note Size: 0x44
  */
 void J2DPane::add(f32 x, f32 y)
 {
@@ -526,10 +504,9 @@ void J2DPane::add(f32 x, f32 y)
 	calcMtx();
 }
 
-/*
- * --INFO--
- * Address:	80038218
- * Size:	000108
+/**
+ * @note Address: 0x80038218
+ * @note Size: 0x108
  */
 void J2DPane::resize(f32 x, f32 y)
 {
@@ -550,10 +527,9 @@ void J2DPane::resize(f32 x, f32 y)
 	place(box);
 }
 
-/*
- * --INFO--
- * Address:	80038320
- * Size:	0000E0
+/**
+ * @note Address: 0x80038320
+ * @note Size: 0xE0
  */
 JGeometry::TBox2f* J2DPane::getBounds()
 {
@@ -566,10 +542,9 @@ JGeometry::TBox2f* J2DPane::getBounds()
 	return &static_mBounds;
 }
 
-/*
- * --INFO--
- * Address:	80038400
- * Size:	000030
+/**
+ * @note Address: 0x80038400
+ * @note Size: 0x30
  */
 void J2DPane::rotate(f32 anchorX, f32 anchorY, J2DRotateAxis axis, f32 angle)
 {
@@ -579,10 +554,9 @@ void J2DPane::rotate(f32 anchorX, f32 anchorY, J2DRotateAxis axis, f32 angle)
 	rotate(angle);
 }
 
-/*
- * --INFO--
- * Address:	80038430
- * Size:	000058
+/**
+ * @note Address: 0x80038430
+ * @note Size: 0x58
  * rotate__7J2DPaneFf
  * TODO: Can't verify this with genasm.sh
  */
@@ -601,20 +575,18 @@ void J2DPane::rotate(f32 f1)
 	calcMtx();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
+/**
+ * @note Address: N/A
+ * @note Size: 0x30
  */
 f32 J2DPane::getRotate() const
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80038488
- * Size:	00007C
+/**
+ * @note Address: 0x80038488
+ * @note Size: 0x7C
  */
 void J2DPane::clip(const JGeometry::TBox2f& bounds)
 {
@@ -623,10 +595,9 @@ void J2DPane::clip(const JGeometry::TBox2f& bounds)
 	mClipRect.intersect(boxA);
 }
 
-/*
- * --INFO--
- * Address:	80038504
- * Size:	0000B0
+/**
+ * @note Address: 0x80038504
+ * @note Size: 0xB0
  */
 J2DPane* J2DPane::search(u64 tag)
 {
@@ -643,10 +614,9 @@ J2DPane* J2DPane::search(u64 tag)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	800385B4
- * Size:	000310
+/**
+ * @note Address: 0x800385B4
+ * @note Size: 0x310
  */
 void J2DPane::gather(J2DPane** gatheredPanes, u64 minID, u64 maxID, int gatheredLimit, int& gatheredCount)
 {
@@ -662,10 +632,9 @@ void J2DPane::gather(J2DPane** gatheredPanes, u64 minID, u64 maxID, int gathered
 	}
 }
 
-/*
- * --INFO--
- * Address:	80038944
- * Size:	0000B0
+/**
+ * @note Address: 0x80038944
+ * @note Size: 0xB0
  */
 J2DPane* J2DPane::searchUserInfo(u64 id)
 {
@@ -681,20 +650,18 @@ J2DPane* J2DPane::searchUserInfo(u64 id)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000310
+/**
+ * @note Address: N/A
+ * @note Size: 0x310
  */
 void J2DPane::gatherUserInfo(J2DPane**, u64, u64, int, int&)
 {
 	// UNUSED FUNCTIOM
 }
 
-/*
- * --INFO--
- * Address:	800389F4
- * Size:	000088
+/**
+ * @note Address: 0x800389F4
+ * @note Size: 0x88
  */
 bool J2DPane::isUsed(const ResTIMG* resource)
 {
@@ -706,10 +673,9 @@ bool J2DPane::isUsed(const ResTIMG* resource)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80038A7C
- * Size:	000088
+/**
+ * @note Address: 0x80038A7C
+ * @note Size: 0x88
  * isUsed__7J2DPaneFPC7ResFONT
  */
 bool J2DPane::isUsed(const ResFONT* resource)
@@ -722,10 +688,9 @@ bool J2DPane::isUsed(const ResFONT* resource)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80038B04
- * Size:	000140
+/**
+ * @note Address: 0x80038B04
+ * @note Size: 0x140
  */
 void J2DPane::makeMatrix(f32 x, f32 y, f32 xAngOff, f32 yAngOff)
 {
@@ -743,10 +708,9 @@ void J2DPane::makeMatrix(f32 x, f32 y, f32 xAngOff, f32 yAngOff)
 	PSMTXTransApply(tmp, mPositionMtx, x + tmpX, y + tmpY, 0.0f);
 }
 
-/*
- * --INFO--
- * Address:	80038C44
- * Size:	000078
+/**
+ * @note Address: 0x80038C44
+ * @note Size: 0x78
  */
 void J2DPane::setCullBack(GXCullMode cullMode)
 {
@@ -756,10 +720,9 @@ void J2DPane::setCullBack(GXCullMode cullMode)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80038CBC
- * Size:	0000F0
+/**
+ * @note Address: 0x80038CBC
+ * @note Size: 0xF0
  */
 void J2DPane::setBasePosition(J2DBasePosition base)
 {
@@ -784,10 +747,9 @@ void J2DPane::setBasePosition(J2DBasePosition base)
 	calcMtx();
 }
 
-/*
- * --INFO--
- * Address:	80038DAC
- * Size:	0001E4
+/**
+ * @note Address: 0x80038DAC
+ * @note Size: 0x1E4
  */
 void J2DPane::setInfluencedAlpha(bool isInfluencedAlpha, bool check)
 {
@@ -828,10 +790,9 @@ void J2DPane::setInfluencedAlpha(bool isInfluencedAlpha, bool check)
 	mIsInfluencedAlpha = isInfluencedAlpha;
 }
 
-/*
- * --INFO--
- * Address:	80038F98
- * Size:	0000D8
+/**
+ * @note Address: 0x80038F98
+ * @note Size: 0xD8
  */
 JGeometry::TVec3f J2DPane::getGlbVtx(u8 idx) const
 {
@@ -928,10 +889,9 @@ lbl_80039068:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80039070
- * Size:	000038
+/**
+ * @note Address: 0x80039070
+ * @note Size: 0x38
  */
 J2DPane* J2DPane::getFirstChildPane()
 {
@@ -941,10 +901,9 @@ J2DPane* J2DPane::getFirstChildPane()
 	return mTree.getFirstChild()->getObject();
 }
 
-/*
- * --INFO--
- * Address:	800390A8
- * Size:	000038
+/**
+ * @note Address: 0x800390A8
+ * @note Size: 0x38
  */
 J2DPane* J2DPane::getNextChildPane()
 {
@@ -956,17 +915,15 @@ J2DPane* J2DPane::getNextChildPane()
 	// return (mTree.getNextChild() == nullptr) ? nullptr : mTree.getNextChild()->getObject();
 }
 
-/*
- * --INFO--
- * Address:	800390E0
- * Size:	00001C
+/**
+ * @note Address: 0x800390E0
+ * @note Size: 0x1C
  */
 J2DPane* J2DPane::getParentPane() { return (mTree.getParent() == nullptr) ? nullptr : mTree.getParent()->getObject(); }
 
-/*
- * --INFO--
- * Address:	800390FC
- * Size:	00020C
+/**
+ * @note Address: 0x800390FC
+ * @note Size: 0x20C
  */
 void J2DPane::makePaneExStream(J2DPane* parent, JSURandomInputStream* input)
 {
@@ -1169,10 +1126,9 @@ lbl_800392C4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80039308
- * Size:	0000B8
+/**
+ * @note Address: 0x80039308
+ * @note Size: 0xB8
  */
 s16 J2DPane::J2DCast_F32_to_S16(f32 value, u8 cutoff)
 {
@@ -1199,10 +1155,9 @@ s16 J2DPane::J2DCast_F32_to_S16(f32 value, u8 cutoff)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800393C0
- * Size:	00014C
+/**
+ * @note Address: 0x800393C0
+ * @note Size: 0x14C
  */
 void* J2DPane::getPointer(JSURandomInputStream* stream, u32 p1, JKRArchive* archive)
 {
@@ -1238,10 +1193,9 @@ void* J2DPane::getPointer(JSURandomInputStream* stream, u32 p1, JKRArchive* arch
 	return pointer;
 }
 
-/*
- * --INFO--
- * Address:	8003950C
- * Size:	0000D0
+/**
+ * @note Address: 0x8003950C
+ * @note Size: 0xD0
  * setAnimation__7J2DPaneFP10J2DAnmBase
  */
 void J2DPane::setAnimation(J2DAnmBase* animation)
@@ -1276,59 +1230,51 @@ void J2DPane::setAnimation(J2DAnmBase* animation)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800395DC
- * Size:	000004
+/**
+ * @note Address: 0x800395DC
+ * @note Size: 0x4
  */
 // void J2DPane::setAnimation(J2DAnmTevRegKey*) { }
 
-/*
- * --INFO--
- * Address:	800395E0
- * Size:	000004
+/**
+ * @note Address: 0x800395E0
+ * @note Size: 0x4
  */
 // void J2DPane::setAnimation(J2DAnmVisibilityFull*) { }
 
-/*
- * --INFO--
- * Address:	800395E4
- * Size:	000004
+/**
+ * @note Address: 0x800395E4
+ * @note Size: 0x4
  */
 // void J2DPane::setAnimation(J2DAnmTexPattern*) { }
 
-/*
- * --INFO--
- * Address:	800395E8
- * Size:	000004
+/**
+ * @note Address: 0x800395E8
+ * @note Size: 0x4
  */
 // void J2DPane::setAnimation(J2DAnmTextureSRTKey*) { }
 
-/*
- * --INFO--
- * Address:	800395EC
- * Size:	000004
+/**
+ * @note Address: 0x800395EC
+ * @note Size: 0x4
  */
 // void J2DPane::setAnimation(J2DAnmVtxColor*) { }
 
-/*
- * --INFO--
- * Address:	800395F0
- * Size:	000004
+/**
+ * @note Address: 0x800395F0
+ * @note Size: 0x4
  */
 // void J2DPane::setAnimation(J2DAnmColor*) { }
 
-/*
- * --INFO--
- * Address:	800395F4
- * Size:	000008
+/**
+ * @note Address: 0x800395F4
+ * @note Size: 0x8
  */
 void J2DPane::setAnimation(J2DAnmTransform* animation) { mTransform = animation; }
 
-/*
- * --INFO--
- * Address:	800395FC
- * Size:	000038
+/**
+ * @note Address: 0x800395FC
+ * @note Size: 0x38
  */
 void J2DPane::animationTransform()
 {
@@ -1337,10 +1283,9 @@ void J2DPane::animationTransform()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80039634
- * Size:	00007C
+/**
+ * @note Address: 0x80039634
+ * @note Size: 0x7C
  */
 void J2DPane::clearAnmTransform()
 {
@@ -1350,10 +1295,9 @@ void J2DPane::clearAnmTransform()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800396B0
- * Size:	0000A0
+/**
+ * @note Address: 0x800396B0
+ * @note Size: 0xA0
  * animationTransform__7J2DPaneFPC15J2DAnmTransform
  */
 const J2DAnmTransform* J2DPane::animationTransform(const J2DAnmTransform* animation)
@@ -1368,10 +1312,9 @@ const J2DAnmTransform* J2DPane::animationTransform(const J2DAnmTransform* animat
 	return animation;
 }
 
-/*
- * --INFO--
- * Address:	80039750
- * Size:	000088
+/**
+ * @note Address: 0x80039750
+ * @note Size: 0x88
  */
 void J2DPane::setVisibileAnimation(J2DAnmVisibilityFull* animation)
 {
@@ -1381,17 +1324,15 @@ void J2DPane::setVisibileAnimation(J2DAnmVisibilityFull* animation)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800397D8
- * Size:	00002C
+/**
+ * @note Address: 0x800397D8
+ * @note Size: 0x2C
  */
 // void J2DPane::setAnimationVF(J2DAnmVisibilityFull* animationVF) { setAnimation(animationVF); }
 
-/*
- * --INFO--
- * Address:	80039804
- * Size:	000088
+/**
+ * @note Address: 0x80039804
+ * @note Size: 0x88
  */
 void J2DPane::setVtxColorAnimation(J2DAnmVtxColor* animation)
 {
@@ -1401,17 +1342,15 @@ void J2DPane::setVtxColorAnimation(J2DAnmVtxColor* animation)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8003988C
- * Size:	00002C
+/**
+ * @note Address: 0x8003988C
+ * @note Size: 0x2C
  */
 // void J2DPane::setAnimationVC(J2DAnmVtxColor* animationVC) { setAnimation(animationVC); }
 
-/*
- * --INFO--
- * Address:	800398B8
- * Size:	0000A0
+/**
+ * @note Address: 0x800398B8
+ * @note Size: 0xA0
  */
 const J2DAnmTransform* J2DPane::animationPane(const J2DAnmTransform* animation)
 {
@@ -1425,10 +1364,9 @@ const J2DAnmTransform* J2DPane::animationPane(const J2DAnmTransform* animation)
 	return animation;
 }
 
-/*
- * --INFO--
- * Address:	80039958
- * Size:	000108
+/**
+ * @note Address: 0x80039958
+ * @note Size: 0x108
  */
 void J2DPane::updateTransform(const J2DAnmTransform* transform)
 {
@@ -1446,24 +1384,21 @@ void J2DPane::updateTransform(const J2DAnmTransform* transform)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80039A60
- * Size:	000004
+/**
+ * @note Address: 0x80039A60
+ * @note Size: 0x4
  */
 // void J2DAnmTransform::getTransform(u16, J3DTransformInfo*) const { }
 
-/*
- * --INFO--
- * Address:	80039A64
- * Size:	000008
+/**
+ * @note Address: 0x80039A64
+ * @note Size: 0x8
  */
 // u32 J2DPane::getTypeID() const { return 0x10; }
 
-/*
- * --INFO--
- * Address:	80039A6C
- * Size:	00003C
+/**
+ * @note Address: 0x80039A6C
+ * @note Size: 0x3C
  * setCullBack__7J2DPaneFb
  */
 void J2DPane::setCullBack(bool shouldCullBack)
@@ -1475,10 +1410,9 @@ void J2DPane::setCullBack(bool shouldCullBack)
 	setCullBack((GXCullMode)cullMode);
 }
 
-/*
- * --INFO--
- * Address:	80039AA8
- * Size:	000010
+/**
+ * @note Address: 0x80039AA8
+ * @note Size: 0x10
  */
 bool J2DPane::setConnectParent(bool connectParent)
 {
@@ -1486,16 +1420,14 @@ bool J2DPane::setConnectParent(bool connectParent)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80039AB8
- * Size:	000004
+/**
+ * @note Address: 0x80039AB8
+ * @note Size: 0x4
  */
 // void J2DPane::update() { }
 
-/*
- * --INFO--
- * Address:	80039ABC
- * Size:	000004
+/**
+ * @note Address: 0x80039ABC
+ * @note Size: 0x4
  */
 // void J2DPane::drawSelf(f32, f32) { }

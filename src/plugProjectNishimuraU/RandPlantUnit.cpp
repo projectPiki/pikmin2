@@ -7,10 +7,9 @@
 
 namespace Game {
 namespace Cave {
-/*
- * --INFO--
- * Address:	8029EF0C
- * Size:	00005C
+/**
+ * @note Address: 0x8029EF0C
+ * @note Size: 0x5C
  */
 RandPlantUnit::RandPlantUnit(MapUnitGenerator* generator)
 {
@@ -28,10 +27,9 @@ RandPlantUnit::RandPlantUnit(MapUnitGenerator* generator)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8029EF68
- * Size:	0000DC
+/**
+ * @note Address: 0x8029EF68
+ * @note Size: 0xDC
  */
 void Game::Cave::RandPlantUnit::setPlantSlot()
 {
@@ -69,10 +67,9 @@ void Game::Cave::RandPlantUnit::setPlantSlot()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8029F044
- * Size:	000134
+/**
+ * @note Address: 0x8029F044
+ * @note Size: 0x134
  */
 MapNode* RandPlantUnit::getPlantSetMapNode(BaseGen** plantSpawnsList)
 {
@@ -113,10 +110,9 @@ MapNode* RandPlantUnit::getPlantSetMapNode(BaseGen** plantSpawnsList)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8029F178
- * Size:	000068
+/**
+ * @note Address: 0x8029F178
+ * @note Size: 0x68
  */
 EnemyUnit* RandPlantUnit::getPlantUnit(BaseGen* spawn)
 {
@@ -144,10 +140,9 @@ EnemyUnit* RandPlantUnit::getPlantUnit(BaseGen* spawn)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8029F1E0
- * Size:	000048
+/**
+ * @note Address: 0x8029F1E0
+ * @note Size: 0x48
  */
 bool RandPlantUnit::isPlantSet(MapNode* testTile, BaseGen* testSpawn)
 {

@@ -3,10 +3,9 @@
 #include "JSystem/JStudio_JParticle.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	80006220
- * Size:	0000CC
+/**
+ * @note Address: 0x80006220
+ * @note Size: 0xCC
  */
 
 namespace JStudio_JParticle {
@@ -38,17 +37,15 @@ JStudio::TObject_particle* createObject_PARTICLE_JPA_(const JStudio::stb::data::
 }
 } // namespace
 
-/*
- * --INFO--
- * Address:	800062EC
- * Size:	000060
+/**
+ * @note Address: 0x800062EC
+ * @note Size: 0x60
  */
 TCreateObject::~TCreateObject() { }
 
-/*
- * --INFO--
- * Address:	8000634C
- * Size:	000078
+/**
+ * @note Address: 0x8000634C
+ * @note Size: 0x78
  */
 bool TCreateObject::create(JStudio::TObject** newObject, JStudio::stb::data::TParse_TBlock_object const& data)
 {

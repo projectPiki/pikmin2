@@ -37,17 +37,15 @@ JUtility::TColor TChallengeResult::mFlashColor(255, 255, 0, 255);
 
 const int cRandArray[] = { 0, 1, 2, 0, 2, 1, 1, 0, 2, 1, 2, 0, 2, 1, 0, 2, 0, 1, 0 };
 
-/*
- * --INFO--
- * Address:	80393348
- * Size:	000020
+/**
+ * @note Address: 0x80393348
+ * @note Size: 0x20
  */
 void TChallengeResultScreen::create(char const* path, u32 flag) { TScreenBase::create(path, flag); }
 
-/*
- * --INFO--
- * Address:	80393368
- * Size:	000118
+/**
+ * @note Address: 0x80393368
+ * @note Size: 0x118
  */
 void TChallengeResultScreen::createAnimPane(char* path)
 {
@@ -64,10 +62,9 @@ void TChallengeResultScreen::createAnimPane(char* path)
 	mResultAnimPane->init(mArchive, mScreenObj, 'NULL_001', path);
 }
 
-/*
- * --INFO--
- * Address:	80393480
- * Size:	000054
+/**
+ * @note Address: 0x80393480
+ * @note Size: 0x54
  */
 void TChallengeResultScreen::updateBckPane()
 {
@@ -78,10 +75,9 @@ void TChallengeResultScreen::updateBckPane()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803934D4
- * Size:	0000F8
+/**
+ * @note Address: 0x803934D4
+ * @note Size: 0xF8
  */
 void TChallengeResultDemoScreen::create(char const* path, u32 flag)
 {
@@ -97,10 +93,9 @@ void TChallengeResultDemoScreen::create(char const* path, u32 flag)
 	mAnimPane3->init(mArchive, mScreenObj, 'Nribons2', "challenge_modo_result_demo.bck");
 }
 
-/*
- * --INFO--
- * Address:	803935CC
- * Size:	0000E4
+/**
+ * @note Address: 0x803935CC
+ * @note Size: 0xE4
  */
 void TChallengeResultDemoScreen::update()
 {
@@ -119,10 +114,9 @@ void TChallengeResultDemoScreen::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803936B0
- * Size:	00002C
+/**
+ * @note Address: 0x803936B0
+ * @note Size: 0x2C
  */
 void TChallengeResultDemoScreen::draw(Graphics& gfx, J2DPerspGraph* graf)
 {
@@ -131,10 +125,9 @@ void TChallengeResultDemoScreen::draw(Graphics& gfx, J2DPerspGraph* graf)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 void TChallengeResultDemoScreen::startDemo()
 {
@@ -148,10 +141,9 @@ void TChallengeResultDemoScreen::startDemo()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000CC
+/**
+ * @note Address: N/A
+ * @note Size: 0xCC
  * NB: This is just a guess to get the ribon u64s in rodata.
  * Should be tweaked when needed in TChallengeResult::setInfo.
  */
@@ -167,20 +159,18 @@ void TChallengeResultDemoScreen::setComplete(bool isComplete)
 	// }
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 void TChallengeResultDemoScreen::reset()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803936DC
- * Size:	00007C
+/**
+ * @note Address: 0x803936DC
+ * @note Size: 0x7C
  */
 void TMovePane::setPane(J2DPane* pane)
 {
@@ -191,10 +181,9 @@ void TMovePane::setPane(J2DPane* pane)
 	reset();
 }
 
-/*
- * --INFO--
- * Address:	80393758
- * Size:	0000FC
+/**
+ * @note Address: 0x80393758
+ * @note Size: 0xFC
  */
 void TMovePane::update()
 {
@@ -226,10 +215,9 @@ void TMovePane::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80393854
- * Size:	00016C
+/**
+ * @note Address: 0x80393854
+ * @note Size: 0x16C
  */
 void TMovePane::move()
 {
@@ -352,10 +340,9 @@ lbl_803939AC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803939C0
- * Size:	00008C
+/**
+ * @note Address: 0x803939C0
+ * @note Size: 0x8C
  */
 void TMovePane::turn()
 {
@@ -408,10 +395,9 @@ lbl_80393A28:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80393A4C
- * Size:	00007C
+/**
+ * @note Address: 0x80393A4C
+ * @note Size: 0x7C
  */
 f32 TMovePane::getAngDist()
 {
@@ -427,10 +413,9 @@ f32 TMovePane::getAngDist()
 	return angDist(roundAng(angle), mAngle);
 }
 
-/*
- * --INFO--
- * Address:	80393AC8
- * Size:	000204
+/**
+ * @note Address: 0x80393AC8
+ * @note Size: 0x204
  */
 bool TMovePane::hosei()
 {
@@ -602,10 +587,9 @@ lbl_80393CA0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80393CCC
- * Size:	000030
+/**
+ * @note Address: 0x80393CCC
+ * @note Size: 0x30
  */
 void TMovePane::rolling()
 {
@@ -615,10 +599,9 @@ void TMovePane::rolling()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80393CFC
- * Size:	00012C
+/**
+ * @note Address: 0x80393CFC
+ * @note Size: 0x12C
  */
 void TMovePane::stick()
 {
@@ -715,20 +698,18 @@ lbl_80393DEC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00008C
+/**
+ * @note Address: N/A
+ * @note Size: 0x8C
  */
 void TMovePane::forceTurn()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000088
+/**
+ * @note Address: N/A
+ * @note Size: 0x88
  */
 void TMovePane::startStick(J2DPane* pane)
 {
@@ -739,10 +720,9 @@ void TMovePane::startStick(J2DPane* pane)
 	mStickPosition.y = mPaneGoal.y - pane->mGlobalMtx[1][3];
 }
 
-/*
- * --INFO--
- * Address:	80393E28
- * Size:	000034
+/**
+ * @note Address: 0x80393E28
+ * @note Size: 0x34
  */
 bool TMovePane::isReachToGoal()
 {
@@ -751,10 +731,9 @@ bool TMovePane::isReachToGoal()
 	return (x * x + y * y < 600.0f);
 }
 
-/*
- * --INFO--
- * Address:	80393E5C
- * Size:	0000D0
+/**
+ * @note Address: 0x80393E5C
+ * @note Size: 0xD0
  */
 void TMovePane::reset()
 {
@@ -772,10 +751,9 @@ void TMovePane::reset()
 	mPane->setAngle(roundAng(TAU - mAngle) * 360.0f / TAU);
 }
 
-/*
- * --INFO--
- * Address:	80393F2C
- * Size:	000100
+/**
+ * @note Address: 0x80393F2C
+ * @note Size: 0x100
  */
 TCounterRV* setTCounterRV(P2DScreen::Mgr* screen, u64 tag1, u64 tag2, u64 tag3, u32* data, u16 flag1, u16 flag2, JKRArchive* arc)
 {
@@ -787,10 +765,9 @@ TCounterRV* setTCounterRV(P2DScreen::Mgr* screen, u64 tag1, u64 tag2, u64 tag3, 
 	return counter;
 }
 
-/*
- * --INFO--
- * Address:	8039402C
- * Size:	000130
+/**
+ * @note Address: 0x8039402C
+ * @note Size: 0x130
  */
 TCounterRV::TCounterRV(char** a1, u16 a2, u16 a3, JKRArchive* arc)
     : CallBack_CounterRV(a1, a2, a3, arc)
@@ -806,10 +783,9 @@ TCounterRV::TCounterRV(char** a1, u16 a2, u16 a3, JKRArchive* arc)
 	setPuyoAnim(false);
 }
 
-/*
- * --INFO--
- * Address:	8039415C
- * Size:	0000DC
+/**
+ * @note Address: 0x8039415C
+ * @note Size: 0xDC
  */
 void TCounterRV::update()
 {
@@ -821,10 +797,9 @@ void TCounterRV::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80394238
- * Size:	0000D8
+/**
+ * @note Address: 0x80394238
+ * @note Size: 0xD8
  */
 void TCounterRV::setValue(bool flag1, bool flag2)
 {
@@ -840,20 +815,18 @@ void TCounterRV::setValue(bool flag1, bool flag2)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000150
+/**
+ * @note Address: N/A
+ * @note Size: 0x150
  */
 void TCounterRV::createKiraEffect(f32, int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
+/**
+ * @note Address: N/A
+ * @note Size: 0x94
  */
 void TCounterRV::fadeKiraEffect()
 {
@@ -863,20 +836,18 @@ void TCounterRV::fadeKiraEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void TCounterRV::startScaleAnim()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A8
+/**
+ * @note Address: N/A
+ * @note Size: 0xA8
  */
 void TCounterRV::reset()
 {
@@ -889,40 +860,36 @@ void TCounterRV::reset()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000138
+/**
+ * @note Address: N/A
+ * @note Size: 0x138
  */
 void TChallengeResultCounter::start()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 void TChallengeResultCounter::stop()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
+/**
+ * @note Address: N/A
+ * @note Size: 0x70
  */
 void TChallengeResultCounter::getFillRate()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001B0
+/**
+ * @note Address: N/A
+ * @note Size: 0x1B0
  */
 void TChallengeResultCounter::update()
 {
@@ -954,10 +921,9 @@ void TChallengeResultCounter::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
+/**
+ * @note Address: N/A
+ * @note Size: 0x80
  */
 void TClearTexture::resetTexture()
 {
@@ -967,10 +933,9 @@ void TClearTexture::resetTexture()
 	mPane2->setBasePosition(J2DPOS_Center);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A4
+/**
+ * @note Address: N/A
+ * @note Size: 0xA4
  */
 void TClearTexture::changeTexture(bool on)
 {
@@ -984,10 +949,9 @@ void TClearTexture::changeTexture(bool on)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A4
+/**
+ * @note Address: N/A
+ * @note Size: 0xA4
  */
 void TClearTexture::getPosition(Vector2f& pos)
 {
@@ -995,10 +959,9 @@ void TClearTexture::getPosition(Vector2f& pos)
 	pos.y = mPane1->getHeight() + mPane1->getGlbVtx(0).y;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000AC
+/**
+ * @note Address: N/A
+ * @note Size: 0xAC
  */
 void TClearTexture::getEffectPosition(Vector2f& pos)
 {
@@ -1006,10 +969,9 @@ void TClearTexture::getEffectPosition(Vector2f& pos)
 	pos.y = mPane1->getHeight() * 0.5f + mPane1->getGlbVtx(0).y;
 }
 
-/*
- * --INFO--
- * Address:	80394310
- * Size:	0002F0
+/**
+ * @note Address: 0x80394310
+ * @note Size: 0x2F0
  */
 TChallengeResult::TChallengeResult()
     : TTestBase("challengeResult")
@@ -1107,10 +1069,9 @@ TChallengeResult::TChallengeResult()
 	mEfxCompLoop = new efx2d::T2DCavecompLoop;
 }
 
-/*
- * --INFO--
- * Address:	80394604
- * Size:	0000F4
+/**
+ * @note Address: 0x80394604
+ * @note Size: 0xF4
  */
 TChallengeResult::~TChallengeResult()
 {
@@ -1122,20 +1083,18 @@ TChallengeResult::~TChallengeResult()
 	mDebugHeap = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
+/**
+ * @note Address: N/A
+ * @note Size: 0x44
  */
 void TChallengeResult::setDebugHeapParent(JKRHeap*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803946F8
- * Size:	001854
+/**
+ * @note Address: 0x803946F8
+ * @note Size: 0x1854
  */
 void TChallengeResult::doCreate(JKRArchive* arc)
 {
@@ -1396,10 +1355,9 @@ void TChallengeResult::doCreate(JKRArchive* arc)
 	setInfo();
 }
 
-/*
- * --INFO--
- * Address:	80395F4C
- * Size:	0009C0
+/**
+ * @note Address: 0x80395F4C
+ * @note Size: 0x9C0
  */
 bool TChallengeResult::doUpdate()
 {
@@ -2263,10 +2221,9 @@ lbl_803968DC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8039690C
- * Size:	000160
+/**
+ * @note Address: 0x8039690C
+ * @note Size: 0x160
  */
 void TChallengeResult::doDraw(Graphics& gfx)
 {
@@ -2290,10 +2247,9 @@ void TChallengeResult::doDraw(Graphics& gfx)
 	GXSetAlphaUpdate(GX_TRUE);
 }
 
-/*
- * --INFO--
- * Address:	80396A6C
- * Size:	00005C
+/**
+ * @note Address: 0x80396A6C
+ * @note Size: 0x5C
  */
 void TChallengeResult::doUpdateFadeoutFinish()
 {
@@ -2301,10 +2257,9 @@ void TChallengeResult::doUpdateFadeoutFinish()
 	mDisp->_10 = 2;
 }
 
-/*
- * --INFO--
- * Address:	80396AC8
- * Size:	000EDC
+/**
+ * @note Address: 0x80396AC8
+ * @note Size: 0xEDC
  */
 void TChallengeResult::setInfo()
 {
@@ -3542,10 +3497,9 @@ lbl_80397978:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803979A4
- * Size:	001250
+/**
+ * @note Address: 0x803979A4
+ * @note Size: 0x1250
  */
 void TChallengeResult::updateDemo()
 {
@@ -5217,10 +5171,9 @@ lbl_80398BC4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80398BF4
- * Size:	000540
+/**
+ * @note Address: 0x80398BF4
+ * @note Size: 0x540
  */
 void TChallengeResult::changeAnimDemo()
 {
@@ -5660,10 +5613,9 @@ lbl_80399118:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80399134
- * Size:	000220
+/**
+ * @note Address: 0x80399134
+ * @note Size: 0x220
  */
 void TChallengeResult::startRankInDemo()
 {
@@ -5844,10 +5796,9 @@ lbl_80399320:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80399354
- * Size:	00017C
+/**
+ * @note Address: 0x80399354
+ * @note Size: 0x17C
  */
 void TChallengeResult::startDemo()
 {
@@ -5976,10 +5927,9 @@ lbl_803994AC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803994D0
- * Size:	000120
+/**
+ * @note Address: 0x803994D0
+ * @note Size: 0x120
  */
 void TChallengeResult::fadeEffect()
 {
@@ -5989,10 +5939,9 @@ void TChallengeResult::fadeEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803995F0
- * Size:	0000B0
+/**
+ * @note Address: 0x803995F0
+ * @note Size: 0xB0
  */
 void TChallengeResultScene::doUserCallBackFunc(Resource::MgrCommand*)
 {

@@ -34,10 +34,9 @@ static const char className[] = "SingleGS_Game";
 namespace Game {
 namespace SingleGame {
 
-/*
- * --INFO--
- * Address:	80217760
- * Size:	000304
+/**
+ * @note Address: 0x80217760
+ * @note Size: 0x304
  */
 void CaveState::init(SingleGameSection* game, StateArg* arg)
 {
@@ -307,10 +306,9 @@ lbl_80217A44:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000174
+/**
+ * @note Address: N/A
+ * @note Size: 0x174
  */
 void CaveState::gameStart(SingleGameSection* game)
 {
@@ -323,17 +321,15 @@ void CaveState::gameStart(SingleGameSection* game)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80217A64
- * Size:	00000C
+/**
+ * @note Address: 0x80217A64
+ * @note Size: 0xC
  */
 void CaveState::on_section_fadeout(SingleGameSection*) { mFadeout = true; }
 
-/*
- * --INFO--
- * Address:	80217A70
- * Size:	0002D4
+/**
+ * @note Address: 0x80217A70
+ * @note Size: 0x2D4
  */
 void CaveState::exec(SingleGameSection* game)
 {
@@ -406,10 +402,9 @@ void CaveState::exec(SingleGameSection* game)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80217D44
- * Size:	000098
+/**
+ * @note Address: 0x80217D44
+ * @note Size: 0x98
  */
 void CaveState::draw(SingleGameSection* game, Graphics& gfx)
 {
@@ -427,10 +422,9 @@ void CaveState::draw(SingleGameSection* game, Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80217DDC
- * Size:	00048C
+/**
+ * @note Address: 0x80217DDC
+ * @note Size: 0x48C
  */
 void CaveState::check_SMenu(SingleGameSection* game)
 {
@@ -491,10 +485,9 @@ void CaveState::check_SMenu(SingleGameSection* game)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80218268
- * Size:	000068
+/**
+ * @note Address: 0x80218268
+ * @note Size: 0x68
  */
 void CaveState::cleanup(SingleGameSection* game)
 {
@@ -506,10 +499,9 @@ void CaveState::cleanup(SingleGameSection* game)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802182D0
- * Size:	0000D4
+/**
+ * @note Address: 0x802182D0
+ * @note Size: 0xD4
  */
 void CaveState::onOrimaDown(SingleGameSection* game, int naviID)
 {
@@ -525,10 +517,9 @@ void CaveState::onOrimaDown(SingleGameSection* game, int naviID)
 	moviePlayer->play(arg);
 }
 
-/*
- * --INFO--
- * Address:	802183A4
- * Size:	000104
+/**
+ * @note Address: 0x802183A4
+ * @note Size: 0x104
  */
 void CaveState::onFountainReturn(SingleGameSection* game, ItemBigFountain::Item* fountain)
 {
@@ -545,10 +536,9 @@ void CaveState::onFountainReturn(SingleGameSection* game, ItemBigFountain::Item*
 	moviePlayer->play(arg);
 }
 
-/*
- * --INFO--
- * Address:	802184A8
- * Size:	000144
+/**
+ * @note Address: 0x802184A8
+ * @note Size: 0x144
  */
 void CaveState::onNextFloor(SingleGameSection* game, ItemHole::Item* hole)
 {
@@ -571,10 +561,9 @@ void CaveState::onNextFloor(SingleGameSection* game, ItemHole::Item* hole)
 	moviePlayer->play(arg);
 }
 
-/*
- * --INFO--
- * Address:	802185EC
- * Size:	0005F0
+/**
+ * @note Address: 0x802185EC
+ * @note Size: 0x5F0
  */
 void CaveState::onMovieCommand(SingleGameSection* game, int command)
 {
@@ -1115,10 +1104,9 @@ lbl_80218BB0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80218BDC
- * Size:	000490
+/**
+ * @note Address: 0x80218BDC
+ * @note Size: 0x490
  */
 void CaveState::onMovieStart(SingleGameSection* game, MovieConfig* config, u32, u32 naviID)
 {
@@ -1537,10 +1525,9 @@ void CaveState::onMovieStart(SingleGameSection* game, MovieConfig* config, u32, 
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8021906C
- * Size:	000EB4
+/**
+ * @note Address: 0x8021906C
+ * @note Size: 0xEB4
  */
 void CaveState::onMovieDone(Game::SingleGameSection* game, Game::MovieConfig* config, u32, u32 naviID)
 {

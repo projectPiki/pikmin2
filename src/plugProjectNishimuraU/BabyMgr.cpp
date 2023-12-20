@@ -5,10 +5,9 @@ namespace Baby {
 
 static const char babyMgrName[] = "246-BabyMgr";
 
-/*
- * --INFO--
- * Address:	8028D0C0
- * Size:	000050
+/**
+ * @note Address: 0x8028D0C0
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -16,24 +15,21 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "ベビーチャッピーマネージャ"; // baby chappy manager
 }
 
-/*
- * --INFO--
- * Address:	8028D110
- * Size:	000048
+/**
+ * @note Address: 0x8028D110
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Parms); }
 
-/*
- * --INFO--
- * Address:	8028D234
- * Size:	000060
+/**
+ * @note Address: 0x8028D234
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	8028D350
- * Size:	000010
+/**
+ * @note Address: 0x8028D350
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 

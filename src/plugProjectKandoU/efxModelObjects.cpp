@@ -17,10 +17,9 @@ void OnyonSpot::initAnimators(Sys::MatTexAnimation* texanim, Sys::MatTevRegAnima
 	mAnim1.start(texanim);
 }
 
-/*
- * --INFO--
- * Address:	802055A4
- * Size:	000024
+/**
+ * @note Address: 0x802055A4
+ * @note Size: 0x24
  */
 void OnyonSpot::getLODSphere(Sys::Sphere& sphere)
 {
@@ -30,10 +29,9 @@ void OnyonSpot::getLODSphere(Sys::Sphere& sphere)
 	sphere.mRadius     = 10.0f;
 }
 
-/*
- * --INFO--
- * Address:	802055C8
- * Size:	000054
+/**
+ * @note Address: 0x802055C8
+ * @note Size: 0x54
  */
 void OnyonSpot::getLODCylinder(Sys::Cylinder& cyl)
 {
@@ -46,10 +44,9 @@ void OnyonSpot::getLODCylinder(Sys::Cylinder& cyl)
 	cyl.mAxis = Vector3f(0.0f, 1.0f, 0.0f);
 }
 
-/*
- * --INFO--
- * Address:	8020561C
- * Size:	000050
+/**
+ * @note Address: 0x8020561C
+ * @note Size: 0x50
  */
 void OnyonSpot::changeMaterial()
 {
@@ -59,10 +56,9 @@ void OnyonSpot::changeMaterial()
 	mAnim2.animate(0.0f);
 }
 
-/*
- * --INFO--
- * Address:	8020566C
- * Size:	0001A4
+/**
+ * @note Address: 0x8020566C
+ * @note Size: 0x1A4
  */
 void OnyonSpotData::loadResources()
 {
@@ -94,10 +90,9 @@ void OnyonSpotData::loadResources()
 	mTevAnims[ONYON_TYPE_YELLOW].attachResource(file, *mModelData);
 }
 
-/*
- * --INFO--
- * Address:	80205810
- * Size:	000180
+/**
+ * @note Address: 0x80205810
+ * @note Size: 0x180
  */
 ModelEffect* OnyonSpotData::onCreate(ModelEffectCreateArg* arg)
 {

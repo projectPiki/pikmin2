@@ -7,10 +7,9 @@
 namespace Game {
 namespace Tobi {
 
-/*
- * --INFO--
- * Address:	802698AC
- * Size:	000138
+/**
+ * @note Address: 0x802698AC
+ * @note Size: 0x138
  */
 Obj::Obj()
 {
@@ -18,17 +17,15 @@ Obj::Obj()
 	setFSM(new FSM);
 }
 
-/*
- * --INFO--
- * Address:	802699E4
- * Size:	000004
+/**
+ * @note Address: 0x802699E4
+ * @note Size: 0x4
  */
 void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
-/*
- * --INFO--
- * Address:	802699E8
- * Size:	000098
+/**
+ * @note Address: 0x802699E8
+ * @note Size: 0x98
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
@@ -43,10 +40,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 	doAnimationCullingOff();
 }
 
-/*
- * --INFO--
- * Address:	80269A80
- * Size:	000048
+/**
+ * @note Address: 0x80269A80
+ * @note Size: 0x48
  */
 void Obj::doUpdate()
 {
@@ -54,24 +50,21 @@ void Obj::doUpdate()
 	mMouthSlots.update();
 }
 
-/*
- * --INFO--
- * Address:	80269AC8
- * Size:	000004
+/**
+ * @note Address: 0x80269AC8
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	80269ACC
- * Size:	000020
+/**
+ * @note Address: 0x80269ACC
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	80269AEC
- * Size:	00004C
+/**
+ * @note Address: 0x80269AEC
+ * @note Size: 0x4C
  */
 void Obj::setFSM(FSM* fsm)
 {
@@ -80,10 +73,9 @@ void Obj::setFSM(FSM* fsm)
 	mCurrentLifecycleState = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80269B38
- * Size:	0000E0
+/**
+ * @note Address: 0x80269B38
+ * @note Size: 0xE0
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
@@ -105,10 +97,9 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 	shadowParam.mSize = 9.0f;
 }
 
-/*
- * --INFO--
- * Address:	80269C18
- * Size:	0000A4
+/**
+ * @note Address: 0x80269C18
+ * @note Size: 0xA4
  */
 bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* part)
 {
@@ -124,17 +115,15 @@ bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* part)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80269CBC
- * Size:	00002C
+/**
+ * @note Address: 0x80269CBC
+ * @note Size: 0x2C
  */
 bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* part) { return pressCallBack(creature, damage, part); }
 
-/*
- * --INFO--
- * Address:	80269CE8
- * Size:	000094
+/**
+ * @note Address: 0x80269CE8
+ * @note Size: 0x94
  */
 bool Obj::flyCollisionCallBack(Creature* creature, f32 damage, CollPart* part)
 {
@@ -147,10 +136,9 @@ bool Obj::flyCollisionCallBack(Creature* creature, f32 damage, CollPart* part)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80269D7C
- * Size:	000038
+/**
+ * @note Address: 0x80269D7C
+ * @note Size: 0x38
  */
 void Obj::doStartStoneState()
 {
@@ -158,10 +146,9 @@ void Obj::doStartStoneState()
 	disableEvent(0, EB_Invulnerable);
 }
 
-/*
- * --INFO--
- * Address:	80269DB4
- * Size:	00005C
+/**
+ * @note Address: 0x80269DB4
+ * @note Size: 0x5C
  */
 void Obj::doFinishStoneState()
 {
@@ -171,10 +158,9 @@ void Obj::doFinishStoneState()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80269E10
- * Size:	000038
+/**
+ * @note Address: 0x80269E10
+ * @note Size: 0x38
  */
 void Obj::doStartEarthquakeFitState()
 {
@@ -182,10 +168,9 @@ void Obj::doStartEarthquakeFitState()
 	disableEvent(0, EB_Invulnerable);
 }
 
-/*
- * --INFO--
- * Address:	80269E48
- * Size:	00005C
+/**
+ * @note Address: 0x80269E48
+ * @note Size: 0x5C
  */
 void Obj::doFinishEarthquakeFitState()
 {
@@ -195,17 +180,15 @@ void Obj::doFinishEarthquakeFitState()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80269EA4
- * Size:	000028
+/**
+ * @note Address: 0x80269EA4
+ * @note Size: 0x28
  */
 void Obj::startCarcassMotion() { startMotion(TOBIANIM_Carry, nullptr); }
 
-/*
- * --INFO--
- * Address:	80269ECC
- * Size:	00008C
+/**
+ * @note Address: 0x80269ECC
+ * @note Size: 0x8C
  */
 void Obj::initMouthSlots()
 {
@@ -216,10 +199,9 @@ void Obj::initMouthSlots()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80269F58
- * Size:	00007C
+/**
+ * @note Address: 0x80269F58
+ * @note Size: 0x7C
  */
 void Obj::lifeRecover()
 {
@@ -233,10 +215,9 @@ void Obj::lifeRecover()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80269FD4
- * Size:	000030
+/**
+ * @note Address: 0x80269FD4
+ * @note Size: 0x30
  */
 void Obj::lifeIncrement()
 {
@@ -247,10 +228,9 @@ void Obj::lifeIncrement()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8026A004
- * Size:	000220
+/**
+ * @note Address: 0x8026A004
+ * @note Size: 0x220
  */
 void Obj::randomFlyingTarget()
 {
@@ -422,17 +402,15 @@ lbl_8026A1BC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8026A224
- * Size:	000024
+/**
+ * @note Address: 0x8026A224
+ * @note Size: 0x24
  */
 bool Obj::isFlyingLife() { return ((mHealth / C_PARMS->mGeneral.mHealth.mValue) < C_PROPERPARMS.mTakeOffHealthRatio.mValue); }
 
-/*
- * --INFO--
- * Address:	8026A248
- * Size:	000034
+/**
+ * @note Address: 0x8026A248
+ * @note Size: 0x34
  */
 void Obj::setInWaterDamage()
 {
@@ -441,10 +419,9 @@ void Obj::setInWaterDamage()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8026A27C
- * Size:	0000B4
+/**
+ * @note Address: 0x8026A27C
+ * @note Size: 0xB4
  */
 void Obj::resetAppearCheck()
 {
@@ -457,10 +434,9 @@ void Obj::resetAppearCheck()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8026A330
- * Size:	000048
+/**
+ * @note Address: 0x8026A330
+ * @note Size: 0x48
  */
 bool Obj::isAppearCheck()
 {
@@ -476,10 +452,9 @@ bool Obj::isAppearCheck()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8026A378
- * Size:	000020
+/**
+ * @note Address: 0x8026A378
+ * @note Size: 0x20
  */
 void Obj::resetBridgeSearch()
 {
@@ -489,10 +464,9 @@ void Obj::resetBridgeSearch()
 	_2E4    = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	8026A398
- * Size:	000048
+/**
+ * @note Address: 0x8026A398
+ * @note Size: 0x48
  */
 void Obj::setBridgeSearch()
 {
@@ -503,10 +477,9 @@ void Obj::setBridgeSearch()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8026A3E0
- * Size:	0002C0
+/**
+ * @note Address: 0x8026A3E0
+ * @note Size: 0x2C0
  */
 void Obj::setNearestBridge()
 {
@@ -536,17 +509,15 @@ void Obj::setNearestBridge()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8026A6A0
- * Size:	000004
+/**
+ * @note Address: 0x8026A6A0
+ * @note Size: 0x4
  */
 void Obj::setCullingCheck() { }
 
-/*
- * --INFO--
- * Address:	8026A6A4
- * Size:	0001B4
+/**
+ * @note Address: 0x8026A6A4
+ * @note Size: 0x1B4
  */
 int Obj::checkBreakOrMove()
 {
@@ -586,10 +557,9 @@ int Obj::checkBreakOrMove()
 	return TOBI_MoveCentre;
 }
 
-/*
- * --INFO--
- * Address:	8026A858
- * Size:	000028
+/**
+ * @note Address: 0x8026A858
+ * @note Size: 0x28
  */
 bool Obj::isBreakBridge()
 {
@@ -600,10 +570,9 @@ bool Obj::isBreakBridge()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8026A880
- * Size:	0002A8
+/**
+ * @note Address: 0x8026A880
+ * @note Size: 0x2A8
  */
 bool Obj::moveBridgeSide()
 {
@@ -825,10 +794,9 @@ lbl_8026AAF4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8026AB28
- * Size:	000288
+/**
+ * @note Address: 0x8026AB28
+ * @note Size: 0x288
  */
 bool Obj::moveBridgeCentre()
 {
@@ -867,10 +835,9 @@ bool Obj::moveBridgeCentre()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8026ADB0
- * Size:	0002F0
+/**
+ * @note Address: 0x8026ADB0
+ * @note Size: 0x2F0
  */
 bool Obj::moveBridgeTop()
 {
@@ -1124,10 +1091,9 @@ lbl_8026B060:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8026B0A0
- * Size:	00005C
+/**
+ * @note Address: 0x8026B0A0
+ * @note Size: 0x5C
  */
 void Obj::breakTargetBridge()
 {
@@ -1135,10 +1101,9 @@ void Obj::breakTargetBridge()
 	mBridge->stimulate(breakBridge);
 }
 
-/*
- * --INFO--
- * Address:	8026B0FC
- * Size:	00008C
+/**
+ * @note Address: 0x8026B0FC
+ * @note Size: 0x8C
  */
 void Obj::createAppearEffect()
 {
@@ -1147,10 +1112,9 @@ void Obj::createAppearEffect()
 	appearFX.create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8026B188
- * Size:	00008C
+/**
+ * @note Address: 0x8026B188
+ * @note Size: 0x8C
  */
 void Obj::createDisAppearEffect()
 {
@@ -1159,10 +1123,9 @@ void Obj::createDisAppearEffect()
 	hideFX.create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8026B214
- * Size:	000090
+/**
+ * @note Address: 0x8026B214
+ * @note Size: 0x90
  */
 void Obj::createBridgeEffect()
 {
@@ -1172,10 +1135,9 @@ void Obj::createBridgeEffect()
 	eatFX.create(&fxArg);
 }
 
-/*
- * --INFO--
- * Address:	8026B2A4
- * Size:	000090
+/**
+ * @note Address: 0x8026B2A4
+ * @note Size: 0x90
  */
 void Obj::createEatEffect()
 {
@@ -1185,31 +1147,27 @@ void Obj::createEatEffect()
 	eatFX.create(&fxArg);
 }
 
-/*
- * --INFO--
- * Address:	8026B334
- * Size:	000008
+/**
+ * @note Address: 0x8026B334
+ * @note Size: 0x8
  */
 bool Obj::isUnderground() { return mIsUnderground; }
 
-/*
- * --INFO--
- * Address:	8026B33C
- * Size:	000008
+/**
+ * @note Address: 0x8026B33C
+ * @note Size: 0x8
  */
 MouthSlots* Obj::getMouthSlots() { return &mMouthSlots; }
 
-/*
- * --INFO--
- * Address:	8026B344
- * Size:	000008
+/**
+ * @note Address: 0x8026B344
+ * @note Size: 0x8
  */
 f32 Obj::getDownSmokeScale() { return 0.35f; }
 
-/*
- * --INFO--
- * Address:	8026B34C
- * Size:	000008
+/**
+ * @note Address: 0x8026B34C
+ * @note Size: 0x8
  */
 EnemyTypeID::EEnemyTypeID Obj::getEnemyTypeID() { return EnemyTypeID::EnemyID_Tobi; }
 } // namespace Tobi

@@ -13,10 +13,9 @@ static const char cMatAnimBtkTexName[] = "/enemy/data/BigTreasure/oootakara_mode
 static const char cMatAnimBrkTexName[] = "/enemy/data/BigTreasure/oootakara_model.brk";
 } // namespace
 
-/*
- * --INFO--
- * Address:	802D90E4
- * Size:	000110
+/**
+ * @note Address: 0x802D90E4
+ * @note Size: 0x110
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -34,31 +33,27 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802D91F4
- * Size:	000048
+/**
+ * @note Address: 0x802D91F4
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Parms); }
 
-/*
- * --INFO--
- * Address:	802DA27C
- * Size:	000060
+/**
+ * @note Address: 0x802DA27C
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	802DA398
- * Size:	000010
+/**
+ * @note Address: 0x802DA398
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
-/*
- * --INFO--
- * Address:	802DA3A8
- * Size:	000068
+/**
+ * @note Address: 0x802DA3A8
+ * @note Size: 0x68
  */
 void Mgr::loadModelData()
 {
@@ -70,10 +65,9 @@ void Mgr::loadModelData()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802DA410
- * Size:	00007C
+/**
+ * @note Address: 0x802DA410
+ * @note Size: 0x7C
  */
 SysShape::Model* Mgr::createModel()
 {

@@ -3,31 +3,27 @@
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	8031A2A0
- * Size:	00003C
+/**
+ * @note Address: 0x8031A2A0
+ * @note Size: 0x3C
  */
 SpecialItem::SpecialItem() { }
 
-/*
- * --INFO--
- * Address:	8031A2DC
- * Size:	000004
+/**
+ * @note Address: 0x8031A2DC
+ * @note Size: 0x4
  */
 void SpecialItem::doUserCallBackFunc(Resource::MgrCommand*) { }
 
-/*
- * --INFO--
- * Address:	8031A2E0
- * Size:	000060
+/**
+ * @note Address: 0x8031A2E0
+ * @note Size: 0x60
  */
 void SpecialItem::doCreateObj(JKRArchive* archive) { registObj(new ObjSpecialItem("special item screen"), archive); }
 
-/*
- * --INFO--
- * Address:	8031A340
- * Size:	00004C
+/**
+ * @note Address: 0x8031A340
+ * @note Size: 0x4C
  */
 bool SpecialItem::doConfirmSetScene(::Screen::SetSceneArg& arg)
 {

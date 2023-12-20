@@ -87,10 +87,9 @@
 
 namespace P2JME {
 
-/*
- * --INFO--
- * Address:	80437844
- * Size:	000084
+/**
+ * @note Address: 0x80437844
+ * @note Size: 0x84
  */
 TSequenceProcessor::TSequenceProcessor(const JMessage::TReference* ref, JMessage::TControl* control)
     : JMessage::TSequenceProcessor(ref, control)
@@ -106,10 +105,9 @@ TSequenceProcessor::TSequenceProcessor(const JMessage::TReference* ref, JMessage
 	_4C = 0.11f;
 }
 
-/*
- * --INFO--
- * Address:	804378C8
- * Size:	000034
+/**
+ * @note Address: 0x804378C8
+ * @note Size: 0x34
  */
 void TSequenceProcessor::do_begin(const void* arg0, const char* arg1)
 {
@@ -122,57 +120,51 @@ void TSequenceProcessor::do_begin(const void* arg0, const char* arg1)
 	_6C = false;
 }
 
-/*
- * --INFO--
- * Address:	804378FC
- * Size:	000004
+/**
+ * @note Address: 0x804378FC
+ * @note Size: 0x4
  */
 void TSequenceProcessor::do_end() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 // void TSequenceProcessor::tagColor(void const*, u32)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 // void TSequenceProcessor::tagSize(void const*, u32)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 // void TSequenceProcessor::tagRuby(void const*, u32)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 // void TSequenceProcessor::tagFont(void const*, u32)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	80437900
- * Size:	0000A4
+/**
+ * @note Address: 0x80437900
+ * @note Size: 0xA4
  */
 bool TSequenceProcessor::do_tag(u32 arg0, const void* arg1, u32 arg2)
 {
@@ -208,17 +200,15 @@ bool TSequenceProcessor::do_tag(u32 arg0, const void* arg1, u32 arg2)
 	return check;
 }
 
-/*
- * --INFO--
- * Address:	804379A4
- * Size:	000008
+/**
+ * @note Address: 0x804379A4
+ * @note Size: 0x8
  */
 bool TSequenceProcessor::do_systemTagCode(u16, const void*, u32) { return false; }
 
-/*
- * --INFO--
- * Address:	804379AC
- * Size:	0001D8
+/**
+ * @note Address: 0x804379AC
+ * @note Size: 0x1D8
  */
 bool TSequenceProcessor::do_isReady()
 {
@@ -261,45 +251,39 @@ bool TSequenceProcessor::do_isReady()
 	return check;
 }
 
-/*
- * --INFO--
- * Address:	80437B88
- * Size:	000008
+/**
+ * @note Address: 0x80437B88
+ * @note Size: 0x8
  */
 bool TSequenceProcessor::do_jump_isReady() { return false; }
 
-/*
- * --INFO--
- * Address:	80437B90
- * Size:	00000C
+/**
+ * @note Address: 0x80437B90
+ * @note Size: 0xC
  */
 void TSequenceProcessor::do_jump(const void* arg0, const char* arg1) { _50 = _4C; }
 
-/*
- * --INFO--
- * Address:	80437B9C
- * Size:	000004
+/**
+ * @note Address: 0x80437B9C
+ * @note Size: 0x4
  */
 void TSequenceProcessor::do_branch_query(u16) { }
 
-/*
- * --INFO--
- * Address:	80437BA0
- * Size:	000008
+/**
+ * @note Address: 0x80437BA0
+ * @note Size: 0x8
  */
 int TSequenceProcessor::do_branch_queryResult() { return -1; }
 
-/*
- * --INFO--
- * Address:	80437BA8
- * Size:	00000C
+/**
+ * @note Address: 0x80437BA8
+ * @note Size: 0xC
  */
 void TSequenceProcessor::do_branch(const void* arg0, const char* arg1) { _50 = _4C; }
 
-/*
- * --INFO--
- * Address:	80437BB4
- * Size:	0000A8
+/**
+ * @note Address: 0x80437BB4
+ * @note Size: 0xA8
  */
 void TSequenceProcessor::do_character(int arg0)
 {
@@ -323,10 +307,9 @@ void TSequenceProcessor::do_character(int arg0)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80437C64
- * Size:	0000F4
+/**
+ * @note Address: 0x80437C64
+ * @note Size: 0xF4
  */
 bool TSequenceProcessor::tagControl(u16 arg0, const void* arg1, u32 arg2)
 {
@@ -355,10 +338,9 @@ bool TSequenceProcessor::tagControl(u16 arg0, const void* arg1, u32 arg2)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80437D58
- * Size:	00004C
+/**
+ * @note Address: 0x80437D58
+ * @note Size: 0x4C
  */
 void TSequenceProcessor::setAbtnWait()
 {
@@ -368,10 +350,9 @@ void TSequenceProcessor::setAbtnWait()
 	doCharacterSEEnd();
 }
 
-/*
- * --INFO--
- * Address:	80437DA8
- * Size:	000060
+/**
+ * @note Address: 0x80437DA8
+ * @note Size: 0x60
  */
 void TSequenceProcessor::resetAbtnWait()
 {
@@ -382,17 +363,15 @@ void TSequenceProcessor::resetAbtnWait()
 	_5C = 0;
 }
 
-/*
- * --INFO--
- * Address:	80437E08
- * Size:	00002C
+/**
+ * @note Address: 0x80437E08
+ * @note Size: 0x2C
  */
 void TSequenceProcessor::doResetAbtnWaitSE() { PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0); }
 
-/*
- * --INFO--
- * Address:	80437E34
- * Size:	000018
+/**
+ * @note Address: 0x80437E34
+ * @note Size: 0x18
  */
 void TSequenceProcessor::reset()
 {

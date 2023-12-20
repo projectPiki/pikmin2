@@ -4,10 +4,9 @@
 
 namespace Game {
 namespace Cave {
-/*
- * --INFO--
- * Address:	80250824
- * Size:	0000CC
+/**
+ * @note Address: 0x80250824
+ * @note Size: 0xCC
  */
 ObjectLayout::ObjectLayout(MapNode* node)
 {
@@ -23,17 +22,15 @@ ObjectLayout::ObjectLayout(MapNode* node)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802508F0
- * Size:	000010
+/**
+ * @note Address: 0x802508F0
+ * @note Size: 0x10
  */
 void ObjectLayout::setNode(int idx, ObjectLayoutNode* layoutNode) { mNodeList[idx] = layoutNode; }
 
-/*
- * --INFO--
- * Address:	80250900
- * Size:	000048
+/**
+ * @note Address: 0x80250900
+ * @note Size: 0x48
  */
 int ObjectLayout::getCount(int idx)
 {
@@ -41,10 +38,9 @@ int ObjectLayout::getCount(int idx)
 	return node ? node->getChildCount() : 0;
 }
 
-/*
- * --INFO--
- * Address:	80250948
- * Size:	000040
+/**
+ * @note Address: 0x80250948
+ * @note Size: 0x40
  */
 ObjectLayoutNode* ObjectLayout::getNode(int nodeIndex, int childIndex)
 {

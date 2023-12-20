@@ -33,17 +33,15 @@ const f32 SeSound::smACosPrm[] = {
 	0.0f,
 };
 
-/*
- * --INFO--
- * Address:	80470F0C
- * Size:	000078
+/**
+ * @note Address: 0x80470F0C
+ * @note Size: 0x78
  */
 SeSound* SeSound::makeSeSound() { return new SeSound; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 f32 SeSound::psACos(f32 val)
 {
@@ -56,17 +54,15 @@ f32 SeSound::psACos(f32 val)
 	return smACosPrm[mod];
 }
 
-/*
- * --INFO--
- * Address:	80470F84
- * Size:	000004
+/**
+ * @note Address: 0x80470F84
+ * @note Size: 0x4
  */
 void SeSound::onGet() { }
 
-/*
- * --INFO--
- * Address:	80470F88
- * Size:	0000A4
+/**
+ * @note Address: 0x80470F88
+ * @note Size: 0xA4
  */
 void SeSound::onRelease()
 {
@@ -86,10 +82,9 @@ void SeSound::onRelease()
 	ObjMgr::getInstance()->remove(creature);
 }
 
-/*
- * --INFO--
- * Address:	8047102C
- * Size:	000154
+/**
+ * @note Address: 0x8047102C
+ * @note Size: 0x154
  */
 void SeSound::initParameter(void* d1, JAInter::Actor* actor, u32 a1, u32 a2, u8 a3, JAInter::SoundInfo* info)
 {
@@ -117,10 +112,9 @@ void SeSound::initParameter(void* d1, JAInter::Actor* actor, u32 a1, u32 a2, u8 
 	}
 }
 
-/*
- * --INFO--
- * Address:	80471180
- * Size:	0002D8
+/**
+ * @note Address: 0x80471180
+ * @note Size: 0x2D8
  */
 f32 SeSound::setDistanceVolumeCommon(f32, u8 flag)
 {
@@ -372,10 +366,9 @@ lbl_8047142C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80471458
- * Size:	000044
+/**
+ * @note Address: 0x80471458
+ * @note Size: 0x44
  */
 void SeSound::specializePerspCalc(const PSGame::SoundTable::SePerspInfo& info)
 {
@@ -383,10 +376,9 @@ void SeSound::specializePerspCalc(const PSGame::SoundTable::SePerspInfo& info)
 	mPerspInfo.mIsSpecialSound = true;
 }
 
-/*
- * --INFO--
- * Address:	8047149C
- * Size:	00006C
+/**
+ * @note Address: 0x8047149C
+ * @note Size: 0x6C
  */
 f32 SeSound::calcVolumeSpecialized(float p1)
 {
@@ -394,10 +386,9 @@ f32 SeSound::calcVolumeSpecialized(float p1)
 	return mPerspInfo.getDistVol(p1, 0);
 }
 
-/*
- * --INFO--
- * Address:	80471508
- * Size:	00008C
+/**
+ * @note Address: 0x80471508
+ * @note Size: 0x8C
  */
 f32 SeSound::calcVolume(f32 p1, u8 p2, u8 p3)
 {
@@ -405,10 +396,9 @@ f32 SeSound::calcVolume(f32 p1, u8 p2, u8 p3)
 	PSSystem::getSoundCategoryInfo(mgr, p3)->getDistVol(p1, p2);
 }
 
-/*
- * --INFO--
- * Address:	80471594
- * Size:	0000B8
+/**
+ * @note Address: 0x80471594
+ * @note Size: 0xB8
  */
 void SeSound::setSeDistancePan(u8 flag)
 {
@@ -425,10 +415,9 @@ void SeSound::setSeDistancePan(u8 flag)
 	setSeInterPan(4, calc, flag, 0);
 }
 
-/*
- * --INFO--
- * Address:	8047164C
- * Size:	0000C8
+/**
+ * @note Address: 0x8047164C
+ * @note Size: 0xC8
  */
 f32 SeSound::calcPan(const Vec& pos, f32 modifier)
 {
@@ -448,10 +437,9 @@ f32 SeSound::calcPan(const Vec& pos, f32 modifier)
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	80471714
- * Size:	000088
+/**
+ * @note Address: 0x80471714
+ * @note Size: 0x88
  */
 void SeSound::setSeDistanceDolby(u8 flag)
 {
@@ -467,10 +455,9 @@ void SeSound::setSeDistanceDolby(u8 flag)
 	setSeInterDolby(4, calc, flag, 0);
 }
 
-/*
- * --INFO--
- * Address:	8047179C
- * Size:	00010C
+/**
+ * @note Address: 0x8047179C
+ * @note Size: 0x10C
  */
 f32 SeSound::calcDolby(const Vec& pos, f32 modifier)
 {

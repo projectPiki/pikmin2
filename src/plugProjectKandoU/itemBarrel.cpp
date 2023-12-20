@@ -25,10 +25,9 @@ static const char unusedBarrelName[] = "itemBarrel";
 
 Mgr* mgr;
 
-/*
- * --INFO--
- * Address:	801F7970
- * Size:	000134
+/**
+ * @note Address: 0x801F7970
+ * @note Size: 0x134
  */
 void FSM::init(Item*)
 {
@@ -38,31 +37,27 @@ void FSM::init(Item*)
 	registerState(new DeadState());
 }
 
-/*
- * --INFO--
- * Address:	801F7AA4
- * Size:	00000C
+/**
+ * @note Address: 0x801F7AA4
+ * @note Size: 0xC
  */
 void NormalState::init(Item* item, StateArg* arg) { item->mAnimSpeed = 0.0f; }
 
-/*
- * --INFO--
- * Address:	801F7AB0
- * Size:	000004
+/**
+ * @note Address: 0x801F7AB0
+ * @note Size: 0x4
  */
 void NormalState::exec(Item*) { }
 
-/*
- * --INFO--
- * Address:	801F7AB4
- * Size:	000004
+/**
+ * @note Address: 0x801F7AB4
+ * @note Size: 0x4
  */
 void NormalState::cleanup(Item*) { }
 
-/*
- * --INFO--
- * Address:	801F7AB8
- * Size:	000064
+/**
+ * @note Address: 0x801F7AB8
+ * @note Size: 0x64
  */
 void NormalState::onDamage(Item* item, f32 damage)
 {
@@ -74,17 +69,15 @@ void NormalState::onDamage(Item* item, f32 damage)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801F7B4C
- * Size:	000004
+/**
+ * @note Address: 0x801F7B4C
+ * @note Size: 0x4
  */
 void NormalState::onKeyEvent(Item*, SysShape::KeyEvent const&) { }
 
-/*
- * --INFO--
- * Address:	801F7B50
- * Size:	000170
+/**
+ * @note Address: 0x801F7B50
+ * @note Size: 0x170
  */
 void DeadState::init(Item* item, StateArg* stateArg)
 {
@@ -104,31 +97,27 @@ void DeadState::init(Item* item, StateArg* stateArg)
 	deadFX.create(&fxArg);
 }
 
-/*
- * --INFO--
- * Address:	801F7CC0
- * Size:	000004
+/**
+ * @note Address: 0x801F7CC0
+ * @note Size: 0x4
  */
 void DeadState::exec(Item*) { }
 
-/*
- * --INFO--
- * Address:	801F7CC4
- * Size:	000004
+/**
+ * @note Address: 0x801F7CC4
+ * @note Size: 0x4
  */
 void DeadState::cleanup(Item*) { }
 
-/*
- * --INFO--
- * Address:	801F7CC8
- * Size:	000004
+/**
+ * @note Address: 0x801F7CC8
+ * @note Size: 0x4
  */
 void DeadState::onDamage(Item*, f32) { }
 
-/*
- * --INFO--
- * Address:	801F7CCC
- * Size:	000148
+/**
+ * @note Address: 0x801F7CCC
+ * @note Size: 0x148
  */
 void DeadState::onKeyEvent(Item* item, SysShape::KeyEvent const& event)
 {
@@ -145,52 +134,45 @@ void DeadState::onKeyEvent(Item* item, SysShape::KeyEvent const& event)
 	mgr->kill(item);
 }
 
-/*
- * --INFO--
- * Address:	801F7E14
- * Size:	000004
+/**
+ * @note Address: 0x801F7E14
+ * @note Size: 0x4
  */
 void DamagedState::init(Item*, StateArg*) { }
 
-/*
- * --INFO--
- * Address:	801F7E18
- * Size:	000004
+/**
+ * @note Address: 0x801F7E18
+ * @note Size: 0x4
  */
 void DamagedState::exec(Item*) { }
 
-/*
- * --INFO--
- * Address:	801F7E1C
- * Size:	000004
+/**
+ * @note Address: 0x801F7E1C
+ * @note Size: 0x4
  */
 void DamagedState::cleanup(Item*) { }
 
-/*
- * --INFO--
- * Address:	801F7E20
- * Size:	000010
+/**
+ * @note Address: 0x801F7E20
+ * @note Size: 0x10
  */
 void DamagedState::onDamage(Item* item, f32 damage) { item->mStoredDamage += damage; }
 
-/*
- * --INFO--
- * Address:	801F7E30
- * Size:	000004
+/**
+ * @note Address: 0x801F7E30
+ * @note Size: 0x4
  */
 void DamagedState::onKeyEvent(Item*, SysShape::KeyEvent const&) { }
 
-/*
- * --INFO--
- * Address:	801F7E34
- * Size:	000044
+/**
+ * @note Address: 0x801F7E34
+ * @note Size: 0x44
  */
 void Item::doSave(Stream& output) { output.writeByte(isAlive()); }
 
-/*
- * --INFO--
- * Address:	801F7E78
- * Size:	0000BC
+/**
+ * @note Address: 0x801F7E78
+ * @note Size: 0xBC
  */
 void Item::doLoad(Stream& input)
 {
@@ -207,10 +189,9 @@ void Item::doLoad(Stream& input)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
+/**
+ * @note Address: N/A
+ * @note Size: 0xE4
  */
 Item::Item()
     : WorkItem(OBJTYPE_Barrel)
@@ -218,17 +199,15 @@ Item::Item()
 	mMass = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	801F7F34
- * Size:	000048
+/**
+ * @note Address: 0x801F7F34
+ * @note Size: 0x48
  */
 void Item::constructor() { mSoundObj = new PSM::WorkItem(this); }
 
-/*
- * --INFO--
- * Address:	801F7F7C
- * Size:	000140
+/**
+ * @note Address: 0x801F7F7C
+ * @note Size: 0x140
  */
 void Item::onInit(CreatureInitArg*)
 {
@@ -247,10 +226,9 @@ void Item::onInit(CreatureInitArg*)
 	mStoredDamage = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	801F80F0
- * Size:	00004C
+/**
+ * @note Address: 0x801F80F0
+ * @note Size: 0x4C
  */
 void Item::onSetPosition()
 {
@@ -258,10 +236,9 @@ void Item::onSetPosition()
 	updateBoundSphere();
 }
 
-/*
- * --INFO--
- * Address:	801F813C
- * Size:	000048
+/**
+ * @note Address: 0x801F813C
+ * @note Size: 0x48
  */
 void Item::updateBoundSphere()
 {
@@ -270,10 +247,9 @@ void Item::updateBoundSphere()
 	mBoundingSphere.mRadius   = radius;
 }
 
-/*
- * --INFO--
- * Address:	801F8184
- * Size:	0000C4
+/**
+ * @note Address: 0x801F8184
+ * @note Size: 0xC4
  */
 void Item::doAI()
 {
@@ -288,10 +264,9 @@ void Item::doAI()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801F8248
- * Size:	000114
+/**
+ * @note Address: 0x801F8248
+ * @note Size: 0x114
  */
 bool Item::getVectorField(Sys::Sphere& sphere, Vector3f& vec)
 {
@@ -307,10 +282,9 @@ bool Item::getVectorField(Sys::Sphere& sphere, Vector3f& vec)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801F835C
- * Size:	000058
+/**
+ * @note Address: 0x801F835C
+ * @note Size: 0x58
  */
 f32 Item::getWorkRadius()
 {
@@ -323,10 +297,9 @@ f32 Item::getWorkRadius()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801F83B4
- * Size:	0000C4
+/**
+ * @note Address: 0x801F83B4
+ * @note Size: 0xC4
  */
 f32 Item::getWorkDistance(Sys::Sphere& sphere)
 {
@@ -335,10 +308,9 @@ f32 Item::getWorkDistance(Sys::Sphere& sphere)
 	return dist - getWorkRadius();
 }
 
-/*
- * --INFO--
- * Address:	801F8478
- * Size:	000024
+/**
+ * @note Address: 0x801F8478
+ * @note Size: 0x24
  */
 void Item::createBarrel()
 {
@@ -347,10 +319,9 @@ void Item::createBarrel()
 	mStoredDamage = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	801F849C
- * Size:	000148
+/**
+ * @note Address: 0x801F849C
+ * @note Size: 0x148
  */
 bool Item::interactAttack(InteractAttack& interaction)
 {
@@ -375,10 +346,9 @@ bool Item::interactAttack(InteractAttack& interaction)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801F85E8
- * Size:	000120
+/**
+ * @note Address: 0x801F85E8
+ * @note Size: 0x120
  * __ct__Q34Game10ItemBarrel3MgrFv
  */
 Mgr::Mgr()
@@ -398,10 +368,9 @@ Mgr::Mgr()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801F8918
- * Size:	000108
+/**
+ * @note Address: 0x801F8918
+ * @note Size: 0x108
  * birth__Q34Game10ItemBarrel3MgrFv
  */
 BaseItem* Mgr::birth()
@@ -411,10 +380,9 @@ BaseItem* Mgr::birth()
 	return item;
 }
 
-/*
- * --INFO--
- * Address:	801F8A20
- * Size:	000060
+/**
+ * @note Address: 0x801F8A20
+ * @note Size: 0x60
  * generatorBirth__Q34Game10ItemBarrel3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm
  */
 BaseItem* Mgr::generatorBirth(Vector3f& position, Vector3f& p2, GenItemParm* parm)
@@ -425,10 +393,9 @@ BaseItem* Mgr::generatorBirth(Vector3f& position, Vector3f& p2, GenItemParm* par
 	return item;
 }
 
-/*
- * --INFO--
- * Address:	801F8A80
- * Size:	0000B8
+/**
+ * @note Address: 0x801F8A80
+ * @note Size: 0xB8
  */
 void Mgr::onLoadResources()
 {

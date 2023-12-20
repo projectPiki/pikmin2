@@ -13,57 +13,51 @@ struct TPRIsEqual_pointer_ {
 };
 } // namespace
 
-/*
- * --INFO--
- * Address:	800272E4
- * Size:	00003C
+/**
+ * @note Address: 0x800272E4
+ * @note Size: 0x3C
  */
 TNodeLinkList::~TNodeLinkList() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 void TNodeLinkList::erase(iterator)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
+/**
+ * @note Address: N/A
+ * @note Size: 0x60
  */
 void TNodeLinkList::erase(iterator, iterator)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 void TNodeLinkList::clear()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 void TNodeLinkList::splice(iterator, TNodeLinkList&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A8
+/**
+ * @note Address: N/A
+ * @note Size: 0xA8
  */
 void TNodeLinkList::splice(iterator it, TNodeLinkList& list, iterator itSrc)
 {
@@ -80,50 +74,45 @@ void TNodeLinkList::splice(iterator it, TNodeLinkList& list, iterator itSrc)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C4
+/**
+ * @note Address: N/A
+ * @note Size: 0xC4
  */
 void TNodeLinkList::splice(iterator, TNodeLinkList&, iterator, iterator)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
+/**
+ * @note Address: N/A
+ * @note Size: 0x94
  */
 void TNodeLinkList::swap(TNodeLinkList&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00008C
+/**
+ * @note Address: N/A
+ * @note Size: 0x8C
  */
 void TNodeLinkList::reverse()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
+/**
+ * @note Address: N/A
+ * @note Size: 0x60
  */
 TLinkListNode* TNodeLinkList::Find(TLinkListNode const*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80027320
- * Size:	00002C
+/**
+ * @note Address: 0x80027320
+ * @note Size: 0x2C
  */
 TNodeLinkList::iterator TNodeLinkList::Insert(iterator it, TLinkListNode* node)
 {
@@ -137,10 +126,9 @@ TNodeLinkList::iterator TNodeLinkList::Insert(iterator it, TLinkListNode* node)
 	return iterator(node);
 }
 
-/*
- * --INFO--
- * Address:	8002734C
- * Size:	000024
+/**
+ * @note Address: 0x8002734C
+ * @note Size: 0x24
  */
 TNodeLinkList::iterator TNodeLinkList::Erase(TLinkListNode* node)
 {
@@ -152,10 +140,9 @@ TNodeLinkList::iterator TNodeLinkList::Erase(TLinkListNode* node)
 	return iterator(next);
 }
 
-/*
- * --INFO--
- * Address:	80027370
- * Size:	00002C
+/**
+ * @note Address: 0x80027370
+ * @note Size: 0x2C
  */
 void TNodeLinkList::Remove(TLinkListNode* node) { remove_if((TPRIsEqual_pointer_<TLinkListNode>)(node)); }
 

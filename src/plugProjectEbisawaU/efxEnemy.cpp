@@ -28,10 +28,9 @@ namespace efx {
 
 static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 
-/*
- * --INFO--
- * Address:	803B2D84
- * Size:	000124
+/**
+ * @note Address: 0x803B2D84
+ * @note Size: 0x124
  */
 bool TChibiHit::create(Arg* arg)
 {
@@ -52,10 +51,9 @@ bool TChibiHit::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803B2EA8
- * Size:	0000E0
+/**
+ * @note Address: 0x803B2EA8
+ * @note Size: 0xE0
  */
 bool TChouDown::create(Arg* arg)
 {
@@ -77,10 +75,9 @@ bool TChouDown::create(Arg* arg)
 	return (u8)TSync::create(arg);
 }
 
-/*
- * --INFO--
- * Address:	803B2F88
- * Size:	000044
+/**
+ * @note Address: 0x803B2F88
+ * @note Size: 0x44
  */
 void TUmiHamon::setGlobalScale(f32 scale)
 {
@@ -91,10 +88,9 @@ void TUmiHamon::setGlobalScale(f32 scale)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803B2FCC
- * Size:	000100
+/**
+ * @note Address: 0x803B2FCC
+ * @note Size: 0x100
  */
 bool TUmiFlick::create(Arg* arg)
 {
@@ -110,10 +106,9 @@ bool TUmiFlick::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803B30CC
- * Size:	0000D0
+/**
+ * @note Address: 0x803B30CC
+ * @note Size: 0xD0
  */
 bool TUmiAttack::create(Arg* arg)
 {
@@ -127,10 +122,9 @@ bool TUmiAttack::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803B319C
- * Size:	000024
+/**
+ * @note Address: 0x803B319C
+ * @note Size: 0x24
  */
 void TUmiEat::setGlobalScale(f32 scale)
 {
@@ -139,10 +133,9 @@ void TUmiEat::setGlobalScale(f32 scale)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803B31C0
- * Size:	000024
+/**
+ * @note Address: 0x803B31C0
+ * @note Size: 0x24
  */
 void TUmiDeadawa::setGlobalScale(f32 scale)
 {
@@ -151,10 +144,9 @@ void TUmiDeadawa::setGlobalScale(f32 scale)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803B31E4
- * Size:	0000D0
+/**
+ * @note Address: 0x803B31E4
+ * @note Size: 0xD0
  */
 bool TUmiDeadmelt::create(Arg* arg)
 {
@@ -168,10 +160,9 @@ bool TUmiDeadmelt::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803B32B4
- * Size:	0000E8
+/**
+ * @note Address: 0x803B32B4
+ * @note Size: 0xE8
  */
 bool TJgmAttack::create(Arg* arg)
 {
@@ -187,10 +178,9 @@ bool TJgmAttack::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803B339C
- * Size:	000100
+/**
+ * @note Address: 0x803B339C
+ * @note Size: 0x100
  */
 bool TJgmAttackW::create(Arg* arg)
 {
@@ -206,10 +196,9 @@ bool TJgmAttackW::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803B349C
- * Size:	0000D0
+/**
+ * @note Address: 0x803B349C
+ * @note Size: 0xD0
  */
 bool TJgmBack::create(Arg* arg)
 {
@@ -223,10 +212,9 @@ bool TJgmBack::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803B356C
- * Size:	0000E8
+/**
+ * @note Address: 0x803B356C
+ * @note Size: 0xE8
  */
 bool TJgmBackW::create(Arg* arg)
 {
@@ -242,10 +230,9 @@ bool TJgmBackW::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803B3654
- * Size:	0000C0
+/**
+ * @note Address: 0x803B3654
+ * @note Size: 0xC0
  */
 bool TImoEat::create(Arg* arg)
 {
@@ -264,10 +251,9 @@ bool TImoEat::create(Arg* arg)
 	return TSync::create(sarg);
 }
 
-/*
- * --INFO--
- * Address:	803B3714
- * Size:	000074
+/**
+ * @note Address: 0x803B3714
+ * @note Size: 0x74
  */
 bool TUjinkoHd_Imo::create(Arg* arg)
 {
@@ -280,10 +266,9 @@ bool TUjinkoHd_Imo::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803B3788
- * Size:	000074
+/**
+ * @note Address: 0x803B3788
+ * @note Size: 0x74
  */
 bool TUjinkoAp_Imo::create(Arg* arg)
 {
@@ -296,10 +281,9 @@ bool TUjinkoAp_Imo::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803B37FC
- * Size:	0000D0
+/**
+ * @note Address: 0x803B37FC
+ * @note Size: 0xD0
  */
 bool TImoSmoke::create(Arg* arg)
 {
@@ -313,10 +297,9 @@ bool TImoSmoke::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803B38CC
- * Size:	0000D0
+/**
+ * @note Address: 0x803B38CC
+ * @note Size: 0xD0
  */
 bool TOtaPartsoff::create(Arg* arg)
 {
@@ -330,10 +313,9 @@ bool TOtaPartsoff::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803B399C
- * Size:	000040
+/**
+ * @note Address: 0x803B399C
+ * @note Size: 0x40
  */
 void TNewkurageSui::setGlobalTranslation(Vector3f& pos)
 {
@@ -346,10 +328,9 @@ void TNewkurageSui::setGlobalTranslation(Vector3f& pos)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803B39DC
- * Size:	000034
+/**
+ * @note Address: 0x803B39DC
+ * @note Size: 0x34
  */
 void TNewkurageHire::setLifeTime(s16 time)
 {
@@ -359,10 +340,9 @@ void TNewkurageHire::setLifeTime(s16 time)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803B3A10
- * Size:	000040
+/**
+ * @note Address: 0x803B3A10
+ * @note Size: 0x40
  */
 void TKurageSui::setGlobalTranslation(Vector3f& pos)
 {
@@ -375,10 +355,9 @@ void TKurageSui::setGlobalTranslation(Vector3f& pos)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803B3A50
- * Size:	000034
+/**
+ * @note Address: 0x803B3A50
+ * @note Size: 0x34
  */
 void TKurageHire::setLifeTime(s16 time)
 {
@@ -388,10 +367,9 @@ void TKurageHire::setLifeTime(s16 time)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803B3A84
- * Size:	000024
+/**
+ * @note Address: 0x803B3A84
+ * @note Size: 0x24
  */
 void TQuriGlow::setGlobalScale(f32 scale)
 {
@@ -400,10 +378,9 @@ void TQuriGlow::setGlobalScale(f32 scale)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803B3AA8
- * Size:	0000A4
+/**
+ * @note Address: 0x803B3AA8
+ * @note Size: 0xA4
  */
 bool THebiAphd_base::create(Arg* arg)
 {
@@ -417,10 +394,9 @@ bool THebiAphd_base::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803B3B4C
- * Size:	000034
+/**
+ * @note Address: 0x803B3B4C
+ * @note Size: 0x34
  */
 void TKechappyTest::setGlobalAlpha(u8 alpha)
 {
@@ -431,10 +407,9 @@ void TKechappyTest::setGlobalAlpha(u8 alpha)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803B3B80
- * Size:	000024
+/**
+ * @note Address: 0x803B3B80
+ * @note Size: 0x24
  */
 void TKechappyTest::setGlobalParticleScale(f32 scale)
 {
@@ -445,10 +420,9 @@ void TKechappyTest::setGlobalParticleScale(f32 scale)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803B3BA4
- * Size:	000024
+/**
+ * @note Address: 0x803B3BA4
+ * @note Size: 0x24
  */
 void TKechappyTest::setAwayFromCenterSpeed(f32 speed)
 {
@@ -459,10 +433,9 @@ void TKechappyTest::setAwayFromCenterSpeed(f32 speed)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803B3BC8
- * Size:	000024
+/**
+ * @note Address: 0x803B3BC8
+ * @note Size: 0x24
  */
 void TKechappyTest::setSpread(f32 spread)
 {
@@ -473,10 +446,9 @@ void TKechappyTest::setSpread(f32 spread)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803B3BEC
- * Size:	00004C
+/**
+ * @note Address: 0x803B3BEC
+ * @note Size: 0x4C
  */
 void TKechappyTest::setGlobalDynamicsScale(Vector3f& scale)
 {
@@ -487,10 +459,9 @@ void TKechappyTest::setGlobalDynamicsScale(Vector3f& scale)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803B3C38
- * Size:	0000DC
+/**
+ * @note Address: 0x803B3C38
+ * @note Size: 0xDC
  */
 void TYakiBody::setRateLOD(int id)
 {
@@ -572,10 +543,9 @@ lbl_803B3D08:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803B3D14
- * Size:	0000D0
+/**
+ * @note Address: 0x803B3D14
+ * @note Size: 0xD0
  */
 bool TPanApp::create(Arg* arg)
 {
@@ -589,10 +559,9 @@ bool TPanApp::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803B3DE4
- * Size:	0000D0
+/**
+ * @note Address: 0x803B3DE4
+ * @note Size: 0xD0
  */
 bool TPanHide::create(Arg* arg)
 {
@@ -606,10 +575,9 @@ bool TPanHide::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803B3EB4
- * Size:	0000D0
+/**
+ * @note Address: 0x803B3EB4
+ * @note Size: 0xD0
  */
 bool TPanSmoke::create(Arg* arg)
 {
@@ -623,10 +591,9 @@ bool TPanSmoke::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803B3F84
- * Size:	0000D0
+/**
+ * @note Address: 0x803B3F84
+ * @note Size: 0xD0
  */
 bool TBabaFly_ver01::create(Arg* arg)
 {
@@ -640,10 +607,9 @@ bool TBabaFly_ver01::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803B4054
- * Size:	000184
+/**
+ * @note Address: 0x803B4054
+ * @note Size: 0x184
  */
 bool TBabaHe::create(Arg* arg)
 {
@@ -777,10 +743,9 @@ lbl_803B41A4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803B41D8
- * Size:	0000E8
+/**
+ * @note Address: 0x803B41D8
+ * @note Size: 0xE8
  */
 bool TKoganeHit::create(Arg* arg)
 {
@@ -796,10 +761,9 @@ bool TKoganeHit::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803B42C0
- * Size:	0000E8
+/**
+ * @note Address: 0x803B42C0
+ * @note Size: 0xE8
  */
 bool TKoganeDive::create(Arg* arg)
 {
@@ -815,17 +779,15 @@ bool TKoganeDive::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803B43A8
- * Size:	000004
+/**
+ * @note Address: 0x803B43A8
+ * @note Size: 0x4
  */
 void TParticleCallBack_TankFire::init(JPABaseEmitter*, JPABaseParticle*) { }
 
-/*
- * --INFO--
- * Address:	803B43AC
- * Size:	000144
+/**
+ * @note Address: 0x803B43AC
+ * @note Size: 0x144
  */
 void TParticleCallBack_TankFire::execute(JPABaseEmitter* emit, JPABaseParticle* particle)
 {
@@ -937,10 +899,9 @@ lbl_803B44C4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803B44F0
- * Size:	000090
+/**
+ * @note Address: 0x803B44F0
+ * @note Size: 0x90
  */
 bool TTankFireABC::create(Arg* arg)
 {
@@ -955,10 +916,9 @@ bool TTankFireABC::create(Arg* arg)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	803B4580
- * Size:	000044
+/**
+ * @note Address: 0x803B4580
+ * @note Size: 0x44
  */
 bool TTankFireIND::create(Arg* arg)
 {
@@ -968,10 +928,9 @@ bool TTankFireIND::create(Arg* arg)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	803B45C4
- * Size:	000084
+/**
+ * @note Address: 0x803B45C4
+ * @note Size: 0x84
  */
 bool TTankFire::create(Arg* arg)
 {
@@ -982,10 +941,9 @@ bool TTankFire::create(Arg* arg)
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	803B4648
- * Size:	000098
+/**
+ * @note Address: 0x803B4648
+ * @note Size: 0x98
  */
 bool TTankWat::create(Arg* arg)
 {
@@ -1000,10 +958,9 @@ bool TTankWat::create(Arg* arg)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	803B46E0
- * Size:	000168
+/**
+ * @note Address: 0x803B46E0
+ * @note Size: 0x168
  */
 void TDnkmsThunderA::doExecuteEmitterOperation(JPABaseEmitter* emit)
 {
@@ -1121,10 +1078,9 @@ lbl_803B4800:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803B4848
- * Size:	000168
+/**
+ * @note Address: 0x803B4848
+ * @note Size: 0x168
  */
 void TDnkmsThunderB::doExecuteEmitterOperation(JPABaseEmitter* emit)
 {
@@ -1243,10 +1199,9 @@ lbl_803B4968:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803B49B0
- * Size:	0000DC
+/**
+ * @note Address: 0x803B49B0
+ * @note Size: 0xDC
  */
 void THibaFire::setRateLOD(int id)
 {
@@ -1328,10 +1283,9 @@ lbl_803B4A80:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803B4A8C
- * Size:	0000C0
+/**
+ * @note Address: 0x803B4A8C
+ * @note Size: 0xC0
  */
 bool TGasuHiba::create(Arg* arg)
 {
@@ -1348,10 +1302,9 @@ bool TGasuHiba::create(Arg* arg)
 	return TSyncGroup2<TForever>::create(gasarg);
 }
 
-/*
- * --INFO--
- * Address:	803B4B4C
- * Size:	000078
+/**
+ * @note Address: 0x803B4B4C
+ * @note Size: 0x78
  */
 void TGasuHiba::setRateLOD(int id)
 {
@@ -1402,10 +1355,9 @@ lbl_803B4BBC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803B4BC4
- * Size:	000218
+/**
+ * @note Address: 0x803B4BC4
+ * @note Size: 0x218
  */
 bool TDenkiHiba::create(Arg* arg)
 {
@@ -1602,20 +1554,18 @@ lbl_803B4DC8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B4
+/**
+ * @note Address: N/A
+ * @note Size: 0xB4
  */
 void TDenkiHiba::setRateLOD(int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803B4DDC
- * Size:	000128
+/**
+ * @note Address: 0x803B4DDC
+ * @note Size: 0x128
  */
 bool TDenkiHibaMgr::create(Arg* arg)
 {
@@ -1714,10 +1664,9 @@ lbl_803B4E44:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803B4F04
- * Size:	000178
+/**
+ * @note Address: 0x803B4F04
+ * @note Size: 0x178
  */
 bool TDenkiHibaMgr::createHiba(int type)
 {
@@ -1736,20 +1685,18 @@ bool TDenkiHibaMgr::createHiba(int type)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000174
+/**
+ * @note Address: N/A
+ * @note Size: 0x174
  */
 void TDenkiHibaMgr::createHiba()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803B507C
- * Size:	00008C
+/**
+ * @note Address: 0x803B507C
+ * @note Size: 0x8C
  */
 void TDenkiHibaMgr::forceKill()
 {
@@ -1760,10 +1707,9 @@ void TDenkiHibaMgr::forceKill()
 	mPolesigns[1].forceKill();
 }
 
-/*
- * --INFO--
- * Address:	803B5108
- * Size:	00008C
+/**
+ * @note Address: 0x803B5108
+ * @note Size: 0x8C
  */
 void TDenkiHibaMgr::fade()
 {
@@ -1774,10 +1720,9 @@ void TDenkiHibaMgr::fade()
 	mPolesigns[1].fade();
 }
 
-/*
- * --INFO--
- * Address:	803B5194
- * Size:	0000B4
+/**
+ * @note Address: 0x803B5194
+ * @note Size: 0xB4
  */
 void TDenkiHibaMgr::setRateLOD(int id)
 {

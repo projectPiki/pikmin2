@@ -11,10 +11,9 @@ void bzero(void*, u32);
 
 f32 clamp_0_1(f32);
 
-/*
- * --INFO--
- * Address:	800A64D8
- * Size:	000028
+/**
+ * @note Address: 0x800A64D8
+ * @note Size: 0x28
  */
 template <typename A, typename B>
 A clamp(B x)

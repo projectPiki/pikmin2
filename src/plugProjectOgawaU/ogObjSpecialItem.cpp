@@ -8,10 +8,9 @@
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	80319CC4
- * Size:	000088
+/**
+ * @note Address: 0x80319CC4
+ * @note Size: 0x88
  */
 ObjSpecialItem::ObjSpecialItem(const char* name)
 {
@@ -28,17 +27,15 @@ ObjSpecialItem::ObjSpecialItem(const char* name)
 	mDoDrawBox    = true;
 }
 
-/*
- * --INFO--
- * Address:	80319D4C
- * Size:	0000AC
+/**
+ * @note Address: 0x80319D4C
+ * @note Size: 0xAC
  */
 ObjSpecialItem::~ObjSpecialItem() { }
 
-/*
- * --INFO--
- * Address:	80319DF8
- * Size:	000194
+/**
+ * @note Address: 0x80319DF8
+ * @note Size: 0x194
  */
 void ObjSpecialItem::doCreate(JKRArchive* arc)
 {
@@ -64,10 +61,9 @@ void ObjSpecialItem::doCreate(JKRArchive* arc)
 	mDoDrawBox = true;
 }
 
-/*
- * --INFO--
- * Address:	80319F8C
- * Size:	000040
+/**
+ * @note Address: 0x80319F8C
+ * @note Size: 0x40
  */
 bool ObjSpecialItem::doUpdate()
 {
@@ -77,10 +73,9 @@ bool ObjSpecialItem::doUpdate()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80319FCC
- * Size:	000104
+/**
+ * @note Address: 0x80319FCC
+ * @note Size: 0x104
  */
 void ObjSpecialItem::doDraw(Graphics& gfx)
 {
@@ -114,10 +109,9 @@ void ObjSpecialItem::doDraw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8031A0D0
- * Size:	00010C
+/**
+ * @note Address: 0x8031A0D0
+ * @note Size: 0x10C
  */
 bool ObjSpecialItem::doStart(::Screen::StartSceneArg const*)
 {
@@ -132,10 +126,9 @@ bool ObjSpecialItem::doStart(::Screen::StartSceneArg const*)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8031A1DC
- * Size:	000010
+/**
+ * @note Address: 0x8031A1DC
+ * @note Size: 0x10
  */
 bool ObjSpecialItem::doEnd(::Screen::EndSceneArg const*)
 {
@@ -143,31 +136,27 @@ bool ObjSpecialItem::doEnd(::Screen::EndSceneArg const*)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8031A1EC
- * Size:	000004
+/**
+ * @note Address: 0x8031A1EC
+ * @note Size: 0x4
  */
 void ObjSpecialItem::doUpdateFadeinFinish() { }
 
-/*
- * --INFO--
- * Address:	8031A1F0
- * Size:	00000C
+/**
+ * @note Address: 0x8031A1F0
+ * @note Size: 0xC
  */
 void ObjSpecialItem::doUpdateFinish() { mFadeTimer1 = 0.0f; }
 
-/*
- * --INFO--
- * Address:	8031A1FC
- * Size:	000004
+/**
+ * @note Address: 0x8031A1FC
+ * @note Size: 0x4
  */
 void ObjSpecialItem::doUpdateFadeoutFinish() { }
 
-/*
- * --INFO--
- * Address:	8031A200
- * Size:	000048
+/**
+ * @note Address: 0x8031A200
+ * @note Size: 0x48
  */
 bool ObjSpecialItem::doUpdateFadein()
 {
@@ -184,10 +173,9 @@ bool ObjSpecialItem::doUpdateFadein()
 	return check;
 }
 
-/*
- * --INFO--
- * Address:	8031A248
- * Size:	000050
+/**
+ * @note Address: 0x8031A248
+ * @note Size: 0x50
  */
 bool ObjSpecialItem::doUpdateFadeout()
 {

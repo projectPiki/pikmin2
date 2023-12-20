@@ -82,10 +82,9 @@ u32 JUTDirectPrint::sFontData2[0x4D] = {
 
 JUTDirectPrint* JUTDirectPrint::sDirectPrint;
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
+/**
+ * @note Address: N/A
+ * @note Size: 0x58
  */
 JUTDirectPrint::JUTDirectPrint()
     : mCharColor(0xFFFFFFFF)
@@ -95,10 +94,9 @@ JUTDirectPrint::JUTDirectPrint()
 	setCharColor(0xFF, 0xFF, 0xFF);
 }
 
-/*
- * --INFO--
- * Address:	80029BCC
- * Size:	000074
+/**
+ * @note Address: 0x80029BCC
+ * @note Size: 0x74
  */
 JUTDirectPrint* JUTDirectPrint::start()
 {
@@ -109,9 +107,8 @@ JUTDirectPrint* JUTDirectPrint::start()
 }
 
 /**
- * --INFO--
- * Address:	80029C40
- * Size:	0000F8
+ * @note Address: 0x80029C40
+ * @note Size: 0xF8
  * Clears a rectangular region of the buffer.
  */
 void JUTDirectPrint::erase(int x, int y, int width, int height)
@@ -141,10 +138,9 @@ void JUTDirectPrint::erase(int x, int y, int width, int height)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80029D38
- * Size:	000254
+/**
+ * @note Address: 0x80029D38
+ * @note Size: 0x254
  */
 void JUTDirectPrint::drawChar(int position_x, int position_y, int ch)
 {
@@ -198,10 +194,9 @@ void JUTDirectPrint::drawChar(int position_x, int position_y, int ch)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80029F8C
- * Size:	000034
+/**
+ * @note Address: 0x80029F8C
+ * @note Size: 0x34
  */
 void JUTDirectPrint::changeFrameBuffer(void* buffer, u16 pixelWidth, u16 pixelHeight)
 {
@@ -213,10 +208,9 @@ void JUTDirectPrint::changeFrameBuffer(void* buffer, u16 pixelWidth, u16 pixelHe
 	mFBSize      = (u32)mStride * (u32)mFBHeight * 2;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000228
+/**
+ * @note Address: N/A
+ * @note Size: 0x228
  */
 void JUTDirectPrint::printSub(u16 position_x, u16 position_y, const char* format, va_list args, bool clear)
 {
@@ -254,27 +248,24 @@ void JUTDirectPrint::printSub(u16 position_x, u16 position_y, const char* format
 	DCStoreRange(mFrameMemory, mFBSize);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000280
+/**
+ * @note Address: N/A
+ * @note Size: 0x280
  */
 // void JUTDirectPrint::print(u16, u16, const char*, ...)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	80029FC0
- * Size:	00002C
+/**
+ * @note Address: 0x80029FC0
+ * @note Size: 0x2C
  */
 void JUTDirectPrint::drawString(u16 x, u16 y, char* str) { drawString_f(x, y, "%s", str); }
 
-/*
- * --INFO--
- * Address:	80029FEC
- * Size:	000174
+/**
+ * @note Address: 0x80029FEC
+ * @note Size: 0x174
  */
 void JUTDirectPrint::drawString_f(u16 x, u16 y, const char* format, ...)
 {
@@ -286,17 +277,15 @@ void JUTDirectPrint::drawString_f(u16 x, u16 y, const char* format, ...)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8002A160
- * Size:	000030
+/**
+ * @note Address: 0x8002A160
+ * @note Size: 0x30
  */
 void JUTDirectPrint::setCharColor(JUtility::TColor color) { setCharColor(color.r, color.g, color.b); }
 
-/*
- * --INFO--
- * Address:	8002A190
- * Size:	00017C
+/**
+ * @note Address: 0x8002A190
+ * @note Size: 0x17C
  * UcUcUc
  */
 void JUTDirectPrint::setCharColor(u8 r, u8 g, u8 b)

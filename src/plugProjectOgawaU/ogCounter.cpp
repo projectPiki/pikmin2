@@ -14,10 +14,9 @@ const char* og::Screen::SujiTexMap[11] = {
 namespace og {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	80305E48
- * Size:	000118
+/**
+ * @note Address: 0x80305E48
+ * @note Size: 0x118
  */
 ResTIMG** makeSujiFontTable(char** characterTexturePaths, JKRArchive* archive)
 {
@@ -36,10 +35,9 @@ ResTIMG** makeSujiFontTable(char** characterTexturePaths, JKRArchive* archive)
 	return table;
 }
 
-/*
- * --INFO--
- * Address:	80305F60
- * Size:	000050
+/**
+ * @note Address: 0x80305F60
+ * @note Size: 0x50
  */
 void CounterKeta::setSuji(ResTIMG** texList, u32 texIdx)
 {
@@ -49,10 +47,9 @@ void CounterKeta::setSuji(ResTIMG** texList, u32 texIdx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80305FB0
- * Size:	000088
+/**
+ * @note Address: 0x80305FB0
+ * @note Size: 0x88
  */
 void CounterKeta::calcScale()
 {

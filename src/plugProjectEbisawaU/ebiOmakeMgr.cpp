@@ -9,10 +9,9 @@ static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 namespace ebi {
 namespace Omake {
 
-/*
- * --INFO--
- * Address:	803EEBE8
- * Size:	0001D0
+/**
+ * @note Address: 0x803EEBE8
+ * @note Size: 0x1D0
  */
 void FSMStateMachine::init(TMgr* mgr)
 {
@@ -24,24 +23,21 @@ void FSMStateMachine::init(TMgr* mgr)
 	registerState(new FSMState(Movie, "Movieó‘Ô"));
 }
 
-/*
- * --INFO--
- * Address:	803EEDB8
- * Size:	00002C
+/**
+ * @note Address: 0x803EEDB8
+ * @note Size: 0x2C
  */
 void FSMState::init(TMgr* mgr, Game::StateArg* arg) { do_init(mgr, arg); }
 
-/*
- * --INFO--
- * Address:	803EEDE4
- * Size:	00002C
+/**
+ * @note Address: 0x803EEDE4
+ * @note Size: 0x2C
  */
 void FSMState::exec(TMgr* mgr) { do_exec(mgr); }
 
-/*
- * --INFO--
- * Address:	803EEE10
- * Size:	0000DC
+/**
+ * @note Address: 0x803EEE10
+ * @note Size: 0xDC
  */
 void FSMState_OmakeScreen::do_init(TMgr* mgr, Game::StateArg*)
 {
@@ -59,10 +55,9 @@ void FSMState_OmakeScreen::do_init(TMgr* mgr, Game::StateArg*)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803EEEEC
- * Size:	0000A8
+/**
+ * @note Address: 0x803EEEEC
+ * @note Size: 0xA8
  */
 void FSMState_OmakeScreen::do_exec(TMgr* mgr)
 {
@@ -77,17 +72,15 @@ void FSMState_OmakeScreen::do_exec(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803EEF94
- * Size:	000034
+/**
+ * @note Address: 0x803EEF94
+ * @note Size: 0x34
  */
 void FSMState_CardEScreen::do_init(TMgr* mgr, Game::StateArg* arg) { mgr->mOmakeCardE.openScreen(nullptr); }
 
-/*
- * --INFO--
- * Address:	803EEFC8
- * Size:	0000A0
+/**
+ * @note Address: 0x803EEFC8
+ * @note Size: 0xA0
  */
 void FSMState_CardEScreen::do_exec(TMgr* mgr)
 {
@@ -100,10 +93,9 @@ void FSMState_CardEScreen::do_exec(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803EF068
- * Size:	000048
+/**
+ * @note Address: 0x803EF068
+ * @note Size: 0x48
  */
 void FSMState_SelectGame::do_init(TMgr* mgr, Game::StateArg*)
 {
@@ -111,10 +103,9 @@ void FSMState_SelectGame::do_init(TMgr* mgr, Game::StateArg*)
 	mStatus = Idle;
 }
 
-/*
- * --INFO--
- * Address:	803EF0B0
- * Size:	000378
+/**
+ * @note Address: 0x803EF0B0
+ * @note Size: 0x378
  */
 void FSMState_SelectGame::do_exec(TMgr* mgr)
 {
@@ -207,10 +198,9 @@ void FSMState_SelectGame::do_exec(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803EF428
- * Size:	0000B4
+/**
+ * @note Address: 0x803EF428
+ * @note Size: 0xB4
  */
 TMgr::TMgr()
     : mController(nullptr)
@@ -222,10 +212,9 @@ TMgr::TMgr()
 	mStateMachine.start(this, Standby, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	803EF4DC
- * Size:	0000E8
+/**
+ * @note Address: 0x803EF4DC
+ * @note Size: 0xE8
  */
 void TMgr::loadResource()
 {
@@ -244,10 +233,9 @@ void TMgr::loadResource()
 	gCardEMgr->loadResource();
 }
 
-/*
- * --INFO--
- * Address:	803EF5C4
- * Size:	000050
+/**
+ * @note Address: 0x803EF5C4
+ * @note Size: 0x50
  */
 void TMgr::newCardEMgrAndTask()
 {
@@ -256,41 +244,36 @@ void TMgr::newCardEMgrAndTask()
 	JKRTask::create(64, 18, 0x4000, nullptr)->request(gCardEMgr_ThreadFunc, nullptr, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	803EF614
- * Size:	00003C
+/**
+ * @note Address: 0x803EF614
+ * @note Size: 0x3C
  */
 void TMgr::start() { mStateMachine.transit(this, OmakeScreen, nullptr); }
 
-/*
- * --INFO--
- * Address:	803EF650
- * Size:	00003C
+/**
+ * @note Address: 0x803EF650
+ * @note Size: 0x3C
  */
 void TMgr::goEnd_() { mStateMachine.transit(this, Standby, nullptr); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
+/**
+ * @note Address: N/A
+ * @note Size: 0x84
  */
 void TMgr::forceQuit()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803EF68C
- * Size:	000028
+/**
+ * @note Address: 0x803EF68C
+ * @note Size: 0x28
  */
 bool TMgr::isFinish() { return u8(getStateID() == Standby); }
 
-/*
- * --INFO--
- * Address:	803EF6B4
- * Size:	0000E0
+/**
+ * @note Address: 0x803EF6B4
+ * @note Size: 0xE0
  */
 void TMgr::update()
 {
@@ -310,10 +293,9 @@ void TMgr::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803EF794
- * Size:	000080
+/**
+ * @note Address: 0x803EF794
+ * @note Size: 0x80
  */
 void TMgr::draw()
 {
@@ -324,17 +306,15 @@ void TMgr::draw()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803EF814
- * Size:	00002C
+/**
+ * @note Address: 0x803EF814
+ * @note Size: 0x2C
  */
 bool TMgr::isMovieState() { return u8(getStateID() == Movie); }
 
-/*
- * --INFO--
- * Address:	803EF840
- * Size:	000054
+/**
+ * @note Address: 0x803EF840
+ * @note Size: 0x54
  */
 void TMgr::restartFromMovieState()
 {
@@ -343,27 +323,24 @@ void TMgr::restartFromMovieState()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803EF894
- * Size:	000008
+/**
+ * @note Address: 0x803EF894
+ * @note Size: 0x8
  */
 int TMgr::getMovieID() { return mOmake.mCurrSel; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00016C
+/**
+ * @note Address: N/A
+ * @note Size: 0x16C
  */
 bool TMgr::isTouchAnyKey_()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803EF89C
- * Size:	000058
+/**
+ * @note Address: 0x803EF89C
+ * @note Size: 0x58
  */
 int TMgr::getStateID()
 {

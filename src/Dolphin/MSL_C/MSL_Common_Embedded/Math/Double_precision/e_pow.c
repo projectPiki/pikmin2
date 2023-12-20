@@ -54,7 +54,7 @@
 // CONFIGURATION
 
 /* @(#)e_pow.c 5.1 93/09/24 */
-/*
+/**
  * ====================================================
  * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
  *
@@ -368,7 +368,7 @@ double __ieee754_pow(x, y) double x, y;
 				return s * tiny * tiny; /* underflow */
 		}
 	}
-	/*
+	/**
 	 * compute 2**(p_h+p_l)
 	 */
 	i = j & 0x7fffffff;

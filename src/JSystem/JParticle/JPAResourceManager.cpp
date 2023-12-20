@@ -4,20 +4,18 @@
 #include "JSystem/JUtility/JUTTexture.h"
 #include "JSystem/ResTIMG.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 JPAResourceManager::JPAResourceManager(u16, u16, JKRHeap*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800984D0
- * Size:	000058
+/**
+ * @note Address: 0x800984D0
+ * @note Size: 0x58
  */
 JPAResourceManager::JPAResourceManager(const void* p1, JKRHeap* heap)
     : mResources(nullptr)
@@ -31,30 +29,27 @@ JPAResourceManager::JPAResourceManager(const void* p1, JKRHeap* heap)
 	JPAResourceLoader loader((const u8*)p1, this);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 void JPAResourceManager::load(const char*, u16)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
+/**
+ * @note Address: N/A
+ * @note Size: 0x30
  */
 void JPAResourceManager::load(const void*, u16)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80098528
- * Size:	000040
+/**
+ * @note Address: 0x80098528
+ * @note Size: 0x40
  */
 JPAResource* JPAResourceManager::getResource(u16 p1) const
 {
@@ -66,20 +61,18 @@ JPAResource* JPAResourceManager::getResource(u16 p1) const
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 void JPAResourceManager::checkUserIndexDuplication(u16) const
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80098568
- * Size:	00009C
+/**
+ * @note Address: 0x80098568
+ * @note Size: 0x9C
  */
 const ResTIMG* JPAResourceManager::swapTexture(const ResTIMG* img, const char* swapName)
 {
@@ -96,10 +89,9 @@ const ResTIMG* JPAResourceManager::swapTexture(const ResTIMG* img, const char* s
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	80098604
- * Size:	000020
+/**
+ * @note Address: 0x80098604
+ * @note Size: 0x20
  */
 void JPAResourceManager::registRes(JPAResource* resource)
 {
@@ -107,10 +99,9 @@ void JPAResourceManager::registRes(JPAResource* resource)
 	mResourceCount++;
 }
 
-/*
- * --INFO--
- * Address:	80098624
- * Size:	000020
+/**
+ * @note Address: 0x80098624
+ * @note Size: 0x20
  */
 void JPAResourceManager::registTex(JPATexture* texture)
 {
@@ -118,20 +109,18 @@ void JPAResourceManager::registTex(JPATexture* texture)
 	mTextureCount++;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C0
+/**
+ * @note Address: N/A
+ * @note Size: 0xC0
  */
 void JPAResourceManager::registTexDupCheck(const u8*, JKRHeap*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80098644
- * Size:	00005C
+/**
+ * @note Address: 0x80098644
+ * @note Size: 0x5C
  */
 u32 JPAResourceManager::getResUserWork(u16 usrIdx) const
 {

@@ -36,10 +36,9 @@
         .4byte 0x0A000000
 */
 
-/*
- * --INFO--
- * Address:	8042AFC4
- * Size:	0000B0
+/**
+ * @note Address: 0x8042AFC4
+ * @note Size: 0xB0
  */
 HeapStatus::HeapStatus()
 {
@@ -91,130 +90,117 @@ HeapStatus::HeapStatus()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00008C
+/**
+ * @note Address: N/A
+ * @note Size: 0x8C
  */
 // Node::~Node()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
+/**
+ * @note Address: N/A
+ * @note Size: 0x7C
  */
 // CoreNode::~CoreNode()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 // void JSUTree<CoreNode>::~JSUTree()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 // void JSULink<CoreNode>::~JSULink()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 // void JSUList<CoreNode>::~JSUList()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000114
+/**
+ * @note Address: N/A
+ * @note Size: 0x114
  */
 void HeapStatus::start(char*, JKRHeap*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 void HeapStatus::end(char*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
+/**
+ * @note Address: N/A
+ * @note Size: 0x80
  */
 void HeapStatus::setCurrentHeapInfoParent()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void HeapStatus::searchHeapInfo(char*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 void HeapStatus::searchHeapInfo(HeapInfo*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00036C
+/**
+ * @note Address: N/A
+ * @note Size: 0x36C
  */
 void HeapStatus::dump(bool)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
+/**
+ * @note Address: N/A
+ * @note Size: 0x80
  */
 void HeapStatus::dumpNode()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8042B074
- * Size:	0001A0
+/**
+ * @note Address: 0x8042B074
+ * @note Size: 0x1A0
  */
 HeapInfo::~HeapInfo()
 {
@@ -338,30 +324,27 @@ lbl_8042B1F0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 void HeapInfo::getTotalUsedSize()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00032C
+/**
+ * @note Address: N/A
+ * @note Size: 0x32C
  */
 void HeapInfo::dump(int, bool)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8042B214
- * Size:	000014
+/**
+ * @note Address: 0x8042B214
+ * @note Size: 0x14
  */
 // void JSUTree<CoreNode>::getNextChild() const
 // {
@@ -374,10 +357,9 @@ void HeapInfo::dump(int, bool)
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	8042B228
- * Size:	000018
+/**
+ * @note Address: 0x8042B228
+ * @note Size: 0x18
  */
 // void JSUTreeIterator<CoreNode>::operator!=(const JSUTree<CoreNode>*) const
 // {
@@ -391,17 +373,15 @@ void HeapInfo::dump(int, bool)
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	8042B240
- * Size:	000008
+/**
+ * @note Address: 0x8042B240
+ * @note Size: 0x8
  */
 // u32 JSUTree<CoreNode>::getEndChild() const { return 0x0; }
 
-/*
- * --INFO--
- * Address:	8042B248
- * Size:	00001C
+/**
+ * @note Address: 0x8042B248
+ * @note Size: 0x1C
  */
 // void JSUTreeIterator<CoreNode>::operator++()
 // {
@@ -418,10 +398,9 @@ void HeapInfo::dump(int, bool)
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	8042B264
- * Size:	00000C
+/**
+ * @note Address: 0x8042B264
+ * @note Size: 0xC
  */
 // void JSUTreeIterator<CoreNode>::getObject() const
 // {
@@ -432,10 +411,9 @@ void HeapInfo::dump(int, bool)
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	8042B270
- * Size:	000008
+/**
+ * @note Address: 0x8042B270
+ * @note Size: 0x8
  */
 // void JSUTreeIterator<CoreNode>::JSUTreeIterator(JSUTree<CoreNode>* a1)
 // {
@@ -443,20 +421,18 @@ void HeapInfo::dump(int, bool)
 // 	_00 = a1;
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 // void JSUTree<CoreNode>::getObject() const
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	8042B278
- * Size:	000014
+/**
+ * @note Address: 0x8042B278
+ * @note Size: 0x14
  */
 // void JSUTree<CoreNode>::getFirstChild() const
 // {
@@ -469,20 +445,18 @@ void HeapInfo::dump(int, bool)
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000270
+/**
+ * @note Address: N/A
+ * @note Size: 0x270
  */
 // void HeapInfo::dumpNode(int)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	8042B28C
- * Size:	0001D8
+/**
+ * @note Address: 0x8042B28C
+ * @note Size: 0x1D8
  */
 void HeapInfo::search(HeapInfo*)
 {
@@ -650,50 +624,45 @@ lbl_8042B44C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0002A4
+/**
+ * @note Address: N/A
+ * @note Size: 0x2A4
  */
 void HeapInfo::search(char*, bool)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void HeapInfo::isInvalidUsedSize()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 void HeapInfo::isValidUsedSize()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 // void CoreNode::getName() const
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
+/**
+ * @note Address: N/A
+ * @note Size: 0x70
  */
 void HeapInfo::getUsedSize(bool)
 {

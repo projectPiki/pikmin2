@@ -8,10 +8,9 @@
 namespace Game {
 namespace EnemyStone {
 
-/*
- * --INFO--
- * Address:	80129B30
- * Size:	0000A8
+/**
+ * @note Address: 0x80129B30
+ * @note Size: 0xA8
  */
 Obj::Obj(EnemyBase* enemy, Info* info)
     : mInfo(info)
@@ -23,10 +22,9 @@ Obj::Obj(EnemyBase* enemy, Info* info)
 	mNodeArray[1].clearRelations();
 }
 
-/*
- * --INFO--
- * Address:	80129BD8
- * Size:	000104
+/**
+ * @note Address: 0x80129BD8
+ * @note Size: 0x104
  */
 bool Obj::start()
 {
@@ -54,10 +52,9 @@ bool Obj::start()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80129CDC
- * Size:	0000E0
+/**
+ * @note Address: 0x80129CDC
+ * @note Size: 0xE0
  */
 void Obj::shake()
 {
@@ -80,10 +77,9 @@ void Obj::shake()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
+/**
+ * @note Address: N/A
+ * @note Size: 0x78
  */
 void Obj::updateDrawInfo()
 {
@@ -98,10 +94,9 @@ void Obj::updateDrawInfo()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
+/**
+ * @note Address: N/A
+ * @note Size: 0x78
  */
 void Obj::fitDrawInfo()
 {
@@ -116,10 +111,9 @@ void Obj::fitDrawInfo()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
+/**
+ * @note Address: N/A
+ * @note Size: 0x78
  */
 void Obj::disappearDrawInfo()
 {
@@ -134,10 +128,9 @@ void Obj::disappearDrawInfo()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80129DBC
- * Size:	0002A8
+/**
+ * @note Address: 0x80129DBC
+ * @note Size: 0x2A8
  */
 void Obj::update()
 {
@@ -176,10 +169,9 @@ void Obj::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012A064
- * Size:	000088
+/**
+ * @note Address: 0x8012A064
+ * @note Size: 0x88
  */
 bool Obj::checkDrawInfoState(int state)
 {
@@ -197,10 +189,9 @@ bool Obj::checkDrawInfoState(int state)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8012A0EC
- * Size:	0000B4
+/**
+ * @note Address: 0x8012A0EC
+ * @note Size: 0xB4
  */
 void Obj::dead()
 {

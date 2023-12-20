@@ -3,10 +3,9 @@
 
 namespace Game {
 namespace Tyre {
-/*
- * --INFO--
- * Address:	803AB864
- * Size:	0000C0
+/**
+ * @note Address: 0x803AB864
+ * @note Size: 0xC0
  */
 void Tyre::FSM::init(EnemyBase* enemy)
 {
@@ -17,10 +16,9 @@ void Tyre::FSM::init(EnemyBase* enemy)
 	registerState(new StateDead(TYRE_Dead));
 }
 
-/*
- * --INFO--
- * Address:	803AB924
- * Size:	00003C
+/**
+ * @note Address: 0x803AB924
+ * @note Size: 0x3C
  */
 StateMove::StateMove(int stateID)
     : State(stateID)
@@ -28,10 +26,9 @@ StateMove::StateMove(int stateID)
 	mName = "move";
 }
 
-/*
- * --INFO--
- * Address:	803AB960
- * Size:	000048
+/**
+ * @note Address: 0x803AB960
+ * @note Size: 0x48
  */
 void Tyre::StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -42,10 +39,9 @@ void Tyre::StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	tyre->createSmokeEffect();
 }
 
-/*
- * --INFO--
- * Address:	803AB9A8
- * Size:	0000BC
+/**
+ * @note Address: 0x803AB9A8
+ * @note Size: 0xBC
  */
 void Tyre::StateMove::exec(EnemyBase* enemy)
 {
@@ -72,17 +68,15 @@ void Tyre::StateMove::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803ABA64
- * Size:	000024
+/**
+ * @note Address: 0x803ABA64
+ * @note Size: 0x24
  */
 void Tyre::StateMove::cleanup(EnemyBase* enemy) { OBJ(enemy)->fadeSmokeEffect(); }
 
-/*
- * --INFO--
- * Address:	803ABA88
- * Size:	00003C
+/**
+ * @note Address: 0x803ABA88
+ * @note Size: 0x3C
  */
 StateLand::StateLand(int stateID)
     : State(stateID)
@@ -90,10 +84,9 @@ StateLand::StateLand(int stateID)
 	mName = "land";
 }
 
-/*
- * --INFO--
- * Address:	803ABAC4
- * Size:	000048
+/**
+ * @note Address: 0x803ABAC4
+ * @note Size: 0x48
  */
 void Tyre::StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -101,10 +94,9 @@ void Tyre::StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 	shadowMgr->setForceVisible(enemy, true);
 }
 
-/*
- * --INFO--
- * Address:	803ABB0C
- * Size:	0000B4
+/**
+ * @note Address: 0x803ABB0C
+ * @note Size: 0xB4
  */
 void Tyre::StateLand::exec(EnemyBase* enemy)
 {
@@ -118,10 +110,9 @@ void Tyre::StateLand::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803ABBC0
- * Size:	00003C
+/**
+ * @note Address: 0x803ABBC0
+ * @note Size: 0x3C
  */
 StateFreeze::StateFreeze(int stateID)
     : State(stateID)
@@ -129,10 +120,9 @@ StateFreeze::StateFreeze(int stateID)
 	mName = "freeze";
 }
 
-/*
- * --INFO--
- * Address:	803ABBFC
- * Size:	000074
+/**
+ * @note Address: 0x803ABBFC
+ * @note Size: 0x74
  */
 void Tyre::StateFreeze::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -145,10 +135,9 @@ void Tyre::StateFreeze::init(EnemyBase* enemy, StateArg* stateArg)
 	tyre->collisionStOn();
 }
 
-/*
- * --INFO--
- * Address:	803ABC70
- * Size:	0000B4
+/**
+ * @note Address: 0x803ABC70
+ * @note Size: 0xB4
  */
 void Tyre::StateFreeze::exec(EnemyBase* enemy)
 {
@@ -170,10 +159,9 @@ void Tyre::StateFreeze::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803ABD24
- * Size:	00003C
+/**
+ * @note Address: 0x803ABD24
+ * @note Size: 0x3C
  */
 Tyre::StateDead::StateDead(int stateID)
     : State(stateID)
@@ -181,10 +169,9 @@ Tyre::StateDead::StateDead(int stateID)
 	mName = "dead";
 }
 
-/*
- * --INFO--
- * Address:	803ABD60
- * Size:	000048
+/**
+ * @note Address: 0x803ABD60
+ * @note Size: 0x48
  */
 void Tyre::StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -194,10 +181,9 @@ void Tyre::StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	tyre->deadEffect();
 }
 
-/*
- * --INFO--
- * Address:	803ABDA8
- * Size:	000044
+/**
+ * @note Address: 0x803ABDA8
+ * @note Size: 0x44
  */
 void Tyre::StateDead::exec(EnemyBase* enemy)
 {

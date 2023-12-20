@@ -7,30 +7,27 @@
 static JASProbe* sProbes;
 static u32 sProbeCount; // unused
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000130
+/**
+ * @note Address: N/A
+ * @note Size: 0x130
  */
 JASProbe::JASProbe()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000150
+/**
+ * @note Address: N/A
+ * @note Size: 0x150
  */
 void JASProbe::reset()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
+/**
+ * @note Address: N/A
+ * @note Size: 0x50
  */
 void JASProbe::start(char* name)
 {
@@ -42,10 +39,9 @@ void JASProbe::start(char* name)
 	OSRestoreInterrupts(interrupts);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00012C
+/**
+ * @note Address: N/A
+ * @note Size: 0x12C
  */
 void JASProbe::stop()
 {
@@ -67,30 +63,27 @@ void JASProbe::stop()
 }
 
 namespace JASKernel {
-/*
- * --INFO--
- * Address:	........
- * Size:	000068
+/**
+ * @note Address: N/A
+ * @note Size: 0x68
  */
 void initProbe(long)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000190
+/**
+ * @note Address: N/A
+ * @note Size: 0x190
  */
 void resetProbe()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800A74D4
- * Size:	000060
+/**
+ * @note Address: 0x800A74D4
+ * @note Size: 0x60
  */
 void probeStart(long index, char* name)
 {
@@ -99,10 +92,9 @@ void probeStart(long index, char* name)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800A7534
- * Size:	00013C
+/**
+ * @note Address: 0x800A7534
+ * @note Size: 0x13C
  */
 void probeFinish(long index)
 {
@@ -111,10 +103,9 @@ void probeFinish(long index)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 const char* getProbeName(long index)
 {
@@ -122,40 +113,36 @@ const char* getProbeName(long index)
 	return sProbes[index].mName;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 void getProbeLast(long)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 void getProbeAvg(long)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 void getProbeTotalAvg(long)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 void getProbeMax(long)
 {

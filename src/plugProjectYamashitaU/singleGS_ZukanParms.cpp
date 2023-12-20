@@ -13,10 +13,9 @@ static const int unusedIllustratedBookArray[] = { 0, 0, 0 };
 
 #define COMPLEMENT(src, dest, proportion) (proportion) * ((f32)(dest) - (f32)(src)) + (f32)(src)
 
-/*
- * --INFO--
- * Address:	80130B9C
- * Size:	0001D0
+/**
+ * @note Address: 0x80130B9C
+ * @note Size: 0x1D0
  */
 ColorSetting::ColorSetting()
     : CNode("êFê›íË")
@@ -39,10 +38,9 @@ ColorSetting::ColorSetting()
 	_40[4] = Color4(32, 32, 10, 255);
 }
 
-/*
- * --INFO--
- * Address:	80130D70
- * Size:	000098
+/**
+ * @note Address: 0x80130D70
+ * @note Size: 0x98
  */
 void ColorSetting::read(Stream& stream)
 {
@@ -56,10 +54,9 @@ void ColorSetting::read(Stream& stream)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80130E08
- * Size:	0008CC
+/**
+ * @note Address: 0x80130E08
+ * @note Size: 0x8CC
  */
 void ColorSetting::update()
 {
@@ -719,10 +716,9 @@ lbl_801316B4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801316D4
- * Size:	000148
+/**
+ * @note Address: 0x801316D4
+ * @note Size: 0x148
  */
 PositionParms::PositionParms()
     : CNode(mEnemyName)
@@ -730,10 +726,9 @@ PositionParms::PositionParms()
 	sprintf(mEnemyName, "èoåªèÍèäñº"); // 'appearance location name'
 }
 
-/*
- * --INFO--
- * Address:	8013181C
- * Size:	000050
+/**
+ * @note Address: 0x8013181C
+ * @note Size: 0x50
  */
 void PositionParms::read(Stream& stream)
 {
@@ -741,10 +736,9 @@ void PositionParms::read(Stream& stream)
 	mParms.read(stream);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000BC
+/**
+ * @note Address: N/A
+ * @note Size: 0xBC
  */
 PositionParmsList::PositionParmsList()
     : CNode("èoåªà íuÉäÉXÉg")
@@ -754,10 +748,9 @@ PositionParmsList::PositionParmsList()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801318CC
- * Size:	000068
+/**
+ * @note Address: 0x801318CC
+ * @note Size: 0x68
  */
 void PositionParmsList::read(Stream& stream)
 {
@@ -766,27 +759,24 @@ void PositionParmsList::read(Stream& stream)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80131934
- * Size:	000020
+/**
+ * @note Address: 0x80131934
+ * @note Size: 0x20
  */
 void CameraParms::read(Stream& stream) { mParms.read(stream); }
 
-/*
- * --INFO--
- * Address:	80131954
- * Size:	000130
+/**
+ * @note Address: 0x80131954
+ * @note Size: 0x130
  */
 EnemyParms::EnemyParms()
     : CNode("")
 {
 }
 
-/*
- * --INFO--
- * Address:	80131DA8
- * Size:	000064
+/**
+ * @note Address: 0x80131DA8
+ * @note Size: 0x64
  */
 void EnemyParms::read(Stream& stream)
 {
@@ -795,10 +785,9 @@ void EnemyParms::read(Stream& stream)
 	mCameraParms.read(stream);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D0
+/**
+ * @note Address: N/A
+ * @note Size: 0xD0
  */
 EnemyModeParms::EnemyModeParms(PositionParmsList* list)
     : CNode("ìGê}ä”") // 'enemy encyclopedia'
@@ -810,10 +799,9 @@ EnemyModeParms::EnemyModeParms(PositionParmsList* list)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80131E6C
- * Size:	000084
+/**
+ * @note Address: 0x80131E6C
+ * @note Size: 0x84
  */
 void EnemyModeParms::read(Stream& stream)
 {
@@ -824,10 +812,9 @@ void EnemyModeParms::read(Stream& stream)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80131EF0
- * Size:	000148
+/**
+ * @note Address: 0x80131EF0
+ * @note Size: 0x148
  */
 ItemParms::ItemParms()
     : CNode("ê›íË") // 'setting'
@@ -835,10 +822,9 @@ ItemParms::ItemParms()
 	mIndex = -1;
 }
 
-/*
- * --INFO--
- * Address:	80132038
- * Size:	000064
+/**
+ * @note Address: 0x80132038
+ * @note Size: 0x64
  */
 void ItemParms::read(Stream& stream)
 {
@@ -847,10 +833,9 @@ void ItemParms::read(Stream& stream)
 	mCameraParms.read(stream);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000118
+/**
+ * @note Address: N/A
+ * @note Size: 0x118
  */
 ItemModeParms::ItemModeParms(PositionParmsList* list)
     : CNode("Ç®ïÛê}ä”") // 'treasure book'
@@ -867,10 +852,9 @@ ItemModeParms::ItemModeParms(PositionParmsList* list)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801320FC
- * Size:	000080
+/**
+ * @note Address: 0x801320FC
+ * @note Size: 0x80
  */
 void ItemModeParms::read(Stream& stream)
 {
@@ -879,10 +863,9 @@ void ItemModeParms::read(Stream& stream)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8013217C
- * Size:	00029C
+/**
+ * @note Address: 0x8013217C
+ * @note Size: 0x29C
  */
 Parms::Parms()
     : CNode("ê}ä”ê›íË") // 'picture book setting'
@@ -895,10 +878,9 @@ Parms::Parms()
 	add(&mItemParms);
 }
 
-/*
- * --INFO--
- * Address:	801325D0
- * Size:	000090
+/**
+ * @note Address: 0x801325D0
+ * @note Size: 0x90
  */
 void Parms::read(Stream& stream)
 {
@@ -908,10 +890,9 @@ void Parms::read(Stream& stream)
 	mItemParms.read(stream);
 }
 
-/*
- * --INFO--
- * Address:	80132660
- * Size:	0000D0
+/**
+ * @note Address: 0x80132660
+ * @note Size: 0xD0
  */
 void Parms::loadFile(JKRArchive* archive)
 {

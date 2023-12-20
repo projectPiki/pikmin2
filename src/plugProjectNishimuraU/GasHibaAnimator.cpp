@@ -2,17 +2,15 @@
 
 namespace Game {
 namespace GasHiba {
-/*
- * --INFO--
- * Address:	8034B63C
- * Size:	000008
+/**
+ * @note Address: 0x8034B63C
+ * @note Size: 0x8
  */
 void ProperAnimator::setAnimMgr(SysShape::AnimMgr* mgr) { mAnimator.mAnimMgr = mgr; }
 
-/*
- * --INFO--
- * Address:	8034B644
- * Size:	000008
+/**
+ * @note Address: 0x8034B644
+ * @note Size: 0x8
  */
 SysShape::Animator& ProperAnimator::getAnimator(int) { return mAnimator; }
 } // namespace GasHiba

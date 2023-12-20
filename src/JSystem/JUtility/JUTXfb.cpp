@@ -6,10 +6,9 @@
 
 JUTXfb* JUTXfb::sManager;
 
-/*
- * --INFO--
- * Address:	80033CFC
- * Size:	000014
+/**
+ * @note Address: 0x80033CFC
+ * @note Size: 0x14
  */
 void JUTXfb::clearIndex()
 {
@@ -18,11 +17,10 @@ void JUTXfb::clearIndex()
 	mDisplayingXfbIndex = -1;
 }
 
-/*
+/**
  * __ct
- * --INFO--
- * Address:	........
- * Size:	0000B0
+ * @note Address: N/A
+ * @note Size: 0xB0
  */
 JUTXfb::JUTXfb(const GXRenderModeObj* gxObj, JKRHeap* heap, JUTXfb::EXfbNumber number)
 {
@@ -39,10 +37,9 @@ JUTXfb::JUTXfb(const GXRenderModeObj* gxObj, JKRHeap* heap, JUTXfb::EXfbNumber n
 	initiate(width, GXGetNumXfbLines(height, GXGetYScaleFactor(height, gxObj->xfbHeight)), heap, number);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
+/**
+ * @note Address: N/A
+ * @note Size: 0x78
  */
 JUTXfb::~JUTXfb()
 {
@@ -52,10 +49,9 @@ JUTXfb::~JUTXfb()
 	sManager = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 void JUTXfb::delXfb(int xfbIdx)
 {
@@ -64,11 +60,10 @@ void JUTXfb::delXfb(int xfbIdx)
 	}
 }
 
-/*
+/**
  * createManager__6JUTXfbFP7JKRHeapQ26JUTXfb10EXfbNumber
- * --INFO--
- * Address:	80033D10
- * Size:	0000A8
+ * @note Address: 0x80033D10
+ * @note Size: 0xA8
  */
 JUTXfb* JUTXfb::createManager(JKRHeap* heap, JUTXfb::EXfbNumber number)
 {
@@ -78,10 +73,9 @@ JUTXfb* JUTXfb::createManager(JKRHeap* heap, JUTXfb::EXfbNumber number)
 	return getManager();
 }
 
-/*
- * --INFO--
- * Address:	80033DB8
- * Size:	000090
+/**
+ * @note Address: 0x80033DB8
+ * @note Size: 0x90
  */
 void JUTXfb::destroyManager()
 {
@@ -89,10 +83,9 @@ void JUTXfb::destroyManager()
 	sManager = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80033E48
- * Size:	0000E8
+/**
+ * @note Address: 0x80033E48
+ * @note Size: 0xE8
  */
 void JUTXfb::initiate(u16 p1, u16 p2, JKRHeap* heap, JUTXfb::EXfbNumber number)
 {
@@ -124,10 +117,9 @@ void JUTXfb::initiate(u16 p1, u16 p2, JKRHeap* heap, JUTXfb::EXfbNumber number)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80033F30
- * Size:	000064
+/**
+ * @note Address: 0x80033F30
+ * @note Size: 0x64
  */
 u32 JUTXfb::accumeXfbSize()
 {

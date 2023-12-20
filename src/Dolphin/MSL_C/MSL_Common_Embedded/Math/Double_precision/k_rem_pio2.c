@@ -2,7 +2,7 @@
 #ifndef _No_Floating_Point
 /* @(#)k_rem_pio2.c 1.2 95/01/04 */
 /* $Id: k_rem_pio2.c,v 1.2.14.1 2002/01/31 15:24:13 ceciliar Exp $ */
-/*
+/**
  * ====================================================
  * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
  *
@@ -13,7 +13,7 @@
  * ====================================================
  */
 
-/*
+/**
  * __kernel_rem_pio2(x,y,e0,nx,prec,ipio2)
  * double x[],y[]; int e0,nx,prec; int ipio2[];
  *
@@ -120,7 +120,7 @@
  *
  */
 
-/*
+/**
  * Constants:
  * The hexadecimal values are the intended ones for the following
  * constants. The decimal values may be used, provided that the

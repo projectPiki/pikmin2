@@ -2,10 +2,9 @@
 
 static DSError TRK_mainError;
 
-/*
- * --INFO--
- * Address:	800C040C
- * Size:	000058
+/**
+ * @note Address: 0x800C040C
+ * @note Size: 0x58
  */
 DSError TRK_main(void)
 {

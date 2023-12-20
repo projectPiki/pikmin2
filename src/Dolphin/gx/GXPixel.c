@@ -1,10 +1,9 @@
 #include "Dolphin/gx.h"
 #include "Dolphin/math.h"
 
-/*
- * --INFO--
- * Address:	800E8BE0
- * Size:	000224
+/**
+ * @note Address: 0x800E8BE0
+ * @note Size: 0x224
  */
 void GXSetFog(GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXColor color)
 {
@@ -96,10 +95,9 @@ void GXSetFog(GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXColor
 	gx->bpSentNot = GX_FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800E8E04
- * Size:	0001B0
+/**
+ * @note Address: 0x800E8E04
+ * @note Size: 0x1B0
  */
 void GXInitFogAdjTable(GXFogAdjTable* table, u16 width, const Mtx44 proj)
 {
@@ -125,10 +123,9 @@ void GXInitFogAdjTable(GXFogAdjTable* table, u16 width, const Mtx44 proj)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800E8FB4
- * Size:	000124
+/**
+ * @note Address: 0x800E8FB4
+ * @note Size: 0x124
  */
 void GXSetFogRangeAdj(GXBool enable, u16 center, GXFogAdjTable* table)
 {
@@ -155,10 +152,9 @@ void GXSetFogRangeAdj(GXBool enable, u16 center, GXFogAdjTable* table)
 	gx->bpSentNot = GX_FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800E90D8
- * Size:	000054
+/**
+ * @note Address: 0x800E90D8
+ * @note Size: 0x54
  */
 void GXSetBlendMode(GXBlendMode type, GXBlendFactor src_factor, GXBlendFactor dst_factor, GXLogicOp op)
 {
@@ -176,10 +172,9 @@ void GXSetBlendMode(GXBlendMode type, GXBlendFactor src_factor, GXBlendFactor ds
 	gx->bpSentNot = FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800E912C
- * Size:	00002C
+/**
+ * @note Address: 0x800E912C
+ * @note Size: 0x2C
  */
 void GXSetColorUpdate(GXBool updateEnable)
 {
@@ -190,10 +185,9 @@ void GXSetColorUpdate(GXBool updateEnable)
 	gx->bpSentNot = GX_FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800E9158
- * Size:	00002C
+/**
+ * @note Address: 0x800E9158
+ * @note Size: 0x2C
  */
 void GXSetAlphaUpdate(GXBool updateEnable)
 {
@@ -204,10 +198,9 @@ void GXSetAlphaUpdate(GXBool updateEnable)
 	gx->bpSentNot = GX_FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800E9184
- * Size:	000034
+/**
+ * @note Address: 0x800E9184
+ * @note Size: 0x34
  */
 void GXSetZMode(GXBool compareEnable, GXCompare func, GXBool updateEnable)
 {
@@ -220,10 +213,9 @@ void GXSetZMode(GXBool compareEnable, GXCompare func, GXBool updateEnable)
 	gx->bpSentNot = GX_FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800E91B8
- * Size:	000034
+/**
+ * @note Address: 0x800E91B8
+ * @note Size: 0x34
  */
 void GXSetZCompLoc(GXBool beforeTex)
 {
@@ -232,10 +224,9 @@ void GXSetZCompLoc(GXBool beforeTex)
 	gx->bpSentNot = GX_FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800E91EC
- * Size:	0000D4
+/**
+ * @note Address: 0x800E91EC
+ * @note Size: 0xD4
  */
 void GXSetPixelFmt(GXPixelFmt pixelFmt, GXZFmt16 zFmt)
 {
@@ -264,10 +255,9 @@ void GXSetPixelFmt(GXPixelFmt pixelFmt, GXZFmt16 zFmt)
 	gx->bpSentNot = FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800E92C0
- * Size:	00002C
+/**
+ * @note Address: 0x800E92C0
+ * @note Size: 0x2C
  */
 void GXSetDither(GXBool dither)
 {
@@ -278,10 +268,9 @@ void GXSetDither(GXBool dither)
 	gx->bpSentNot = GX_FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800E92EC
- * Size:	00003C
+/**
+ * @note Address: 0x800E92EC
+ * @note Size: 0x3C
  */
 void GXSetDstAlpha(GXBool enable, u8 alpha)
 {
@@ -293,10 +282,9 @@ void GXSetDstAlpha(GXBool enable, u8 alpha)
 	gx->bpSentNot = GX_FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800E9328
- * Size:	000038
+/**
+ * @note Address: 0x800E9328
+ * @note Size: 0x38
  */
 void GXSetFieldMask(GXBool enableEven, GXBool enableOdd)
 {
@@ -309,10 +297,9 @@ void GXSetFieldMask(GXBool enableEven, GXBool enableOdd)
 	gx->bpSentNot = GX_FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800E9360
- * Size:	000078
+/**
+ * @note Address: 0x800E9360
+ * @note Size: 0x78
  */
 void GXSetFieldMode(GXBool texLOD, GXBool adjustAR)
 {

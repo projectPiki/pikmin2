@@ -3,10 +3,9 @@
 namespace Morimura {
 bool TTestBase::mIsSection;
 
-/*
- * --INFO--
- * Address:	803491C8
- * Size:	000084
+/**
+ * @note Address: 0x803491C8
+ * @note Size: 0x84
  */
 TTestBase::TTestBase(char* name)
 {
@@ -20,10 +19,9 @@ TTestBase::TTestBase(char* name)
 	mName = mBaseName;
 }
 
-/*
- * --INFO--
- * Address:	8034924C
- * Size:	000020
+/**
+ * @note Address: 0x8034924C
+ * @note Size: 0x20
  */
 bool TTestBase::doStart(Screen::StartSceneArg const*)
 {
@@ -35,10 +33,9 @@ bool TTestBase::doStart(Screen::StartSceneArg const*)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8034926C
- * Size:	000010
+/**
+ * @note Address: 0x8034926C
+ * @note Size: 0x10
  */
 bool TTestBase::doEnd(Screen::EndSceneArg const*)
 {
@@ -46,10 +43,9 @@ bool TTestBase::doEnd(Screen::EndSceneArg const*)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8034927C
- * Size:	0000B0
+/**
+ * @note Address: 0x8034927C
+ * @note Size: 0xB0
  */
 bool TTestBase::doUpdateFadein()
 {
@@ -73,17 +69,15 @@ bool TTestBase::doUpdateFadein()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8034932C
- * Size:	00000C
+/**
+ * @note Address: 0x8034932C
+ * @note Size: 0xC
  */
 void TTestBase::doUpdateFinish() { mTimer = 0.0f; }
 
-/*
- * --INFO--
- * Address:	80349338
- * Size:	0000B8
+/**
+ * @note Address: 0x80349338
+ * @note Size: 0xB8
  */
 bool TTestBase::doUpdateFadeout()
 {

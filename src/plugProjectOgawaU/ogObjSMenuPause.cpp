@@ -8,20 +8,18 @@
 #include "Controller.h"
 #include "trig.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
+/**
+ * @note Address: N/A
+ * @note Size: 0xE4
  */
 static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	80314238
- * Size:	0001F4
+/**
+ * @note Address: 0x80314238
+ * @note Size: 0x1F4
  */
 void ObjSMenuPause::ObjHIOVal::getMenuColor(JUtility::TColor* col1, JUtility::TColor* col2, JUtility::TColor* col3, JUtility::TColor* col4,
                                             JUtility::TColor* col5, JUtility::TColor* col6, JUtility::TColor* col7, JUtility::TColor* col8,
@@ -48,10 +46,9 @@ void ObjSMenuPause::ObjHIOVal::getMenuColor(JUtility::TColor* col1, JUtility::TC
 	*col14 = ObjSMenuPause::msVal.mColor14;
 }
 
-/*
- * --INFO--
- * Address:	8031442C
- * Size:	0000D0
+/**
+ * @note Address: 0x8031442C
+ * @note Size: 0xD0
  */
 ObjSMenuPause::ObjSMenuPause(char const* name)
 {
@@ -90,17 +87,15 @@ ObjSMenuPause::ObjSMenuPause(char const* name)
 	mMenuReturnTimer = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	803144FC
- * Size:	0000C4
+/**
+ * @note Address: 0x803144FC
+ * @note Size: 0xC4
  */
 ObjSMenuPause::~ObjSMenuPause() { }
 
-/*
- * --INFO--
- * Address:	803145C0
- * Size:	00054C
+/**
+ * @note Address: 0x803145C0
+ * @note Size: 0x54C
  */
 void ObjSMenuPause::doCreate(JKRArchive* arc)
 {
@@ -164,10 +159,9 @@ void ObjSMenuPause::doCreate(JKRArchive* arc)
 	doCreateAfter(arc, mScreenPause);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
+/**
+ * @note Address: N/A
+ * @note Size: 0x84
  */
 void ObjSMenuPause::open_TopMenu()
 {
@@ -181,10 +175,9 @@ void ObjSMenuPause::open_TopMenu()
 	mMenuPauseTimer = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 void ObjSMenuPause::close_TopMenu()
 {
@@ -193,10 +186,9 @@ void ObjSMenuPause::close_TopMenu()
 	mTextReturn->close();
 }
 
-/*
- * --INFO--
- * Address:	80314B0C
- * Size:	0000DC
+/**
+ * @note Address: 0x80314B0C
+ * @note Size: 0xDC
  */
 void ObjSMenuPause::blink_TopMenu(int id)
 {
@@ -224,10 +216,9 @@ void ObjSMenuPause::blink_TopMenu(int id)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
+/**
+ * @note Address: N/A
+ * @note Size: 0x84
  */
 void ObjSMenuPause::open_Yuugata()
 {
@@ -242,10 +233,9 @@ void ObjSMenuPause::open_Yuugata()
 	mMenuState       = PAUSEMENU_Yuugata;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 void ObjSMenuPause::close_Yuugata()
 {
@@ -254,10 +244,9 @@ void ObjSMenuPause::close_Yuugata()
 	mTextSunsetN->close();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 void ObjSMenuPause::blink_Yuugata(int id)
 {
@@ -273,10 +262,9 @@ void ObjSMenuPause::blink_Yuugata(int id)
 	mTextSunsetN->blink(blinks[1], 0.0f);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
+/**
+ * @note Address: N/A
+ * @note Size: 0x84
  */
 void ObjSMenuPause::open_Zenkai()
 {
@@ -291,10 +279,9 @@ void ObjSMenuPause::open_Zenkai()
 	mMenuState       = PAUSEMENU_Zenkai;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 void ObjSMenuPause::close_Zenkai()
 {
@@ -303,10 +290,9 @@ void ObjSMenuPause::close_Zenkai()
 	mTextReturnN->close();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 void ObjSMenuPause::blink_Zenkai(int id)
 {
@@ -322,10 +308,9 @@ void ObjSMenuPause::blink_Zenkai(int id)
 	mTextReturnN->blink(blinks[1], 0.0f);
 }
 
-/*
- * --INFO--
- * Address:	80314BE8
- * Size:	00006C
+/**
+ * @note Address: 0x80314BE8
+ * @note Size: 0x6C
  */
 void ObjSMenuPause::doUpdateLAction()
 {
@@ -333,10 +318,9 @@ void ObjSMenuPause::doUpdateLAction()
 	jump_L(arg);
 }
 
-/*
- * --INFO--
- * Address:	80314C54
- * Size:	0000C8
+/**
+ * @note Address: 0x80314C54
+ * @note Size: 0xC8
  */
 void ObjSMenuPause::doUpdateRAction()
 {
@@ -349,17 +333,15 @@ void ObjSMenuPause::doUpdateRAction()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80314D1C
- * Size:	000010
+/**
+ * @note Address: 0x80314D1C
+ * @note Size: 0x10
  */
 void ObjSMenuPause::doUpdateCancelAction() { mDisp->mExitStatus = 2; }
 
-/*
- * --INFO--
- * Address:	80314D2C
- * Size:	000084
+/**
+ * @note Address: 0x80314D2C
+ * @note Size: 0x84
  */
 void ObjSMenuPause::commonUpdate()
 {
@@ -370,10 +352,9 @@ void ObjSMenuPause::commonUpdate()
 	mAnims->update();
 }
 
-/*
- * --INFO--
- * Address:	80314DB0
- * Size:	0000B0
+/**
+ * @note Address: 0x80314DB0
+ * @note Size: 0xB0
  */
 bool ObjSMenuPause::doUpdate()
 {
@@ -392,10 +373,9 @@ bool ObjSMenuPause::doUpdate()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	80314E60
- * Size:	000098
+/**
+ * @note Address: 0x80314E60
+ * @note Size: 0x98
  */
 void ObjSMenuPause::doDraw(Graphics& gfx)
 {
@@ -409,10 +389,9 @@ void ObjSMenuPause::doDraw(Graphics& gfx)
 	drawYaji(gfx);
 }
 
-/*
- * --INFO--
- * Address:	80314EF8
- * Size:	0000A4
+/**
+ * @note Address: 0x80314EF8
+ * @note Size: 0xA4
  */
 bool ObjSMenuPause::doStart(::Screen::StartSceneArg const* arg)
 {
@@ -426,17 +405,15 @@ bool ObjSMenuPause::doStart(::Screen::StartSceneArg const* arg)
 	start_LR(arg);
 }
 
-/*
- * --INFO--
- * Address:	80314F9C
- * Size:	000008
+/**
+ * @note Address: 0x80314F9C
+ * @note Size: 0x8
  */
 bool ObjSMenuPause::doEnd(::Screen::EndSceneArg const*) { return true; }
 
-/*
- * --INFO--
- * Address:	80314FA4
- * Size:	000034
+/**
+ * @note Address: 0x80314FA4
+ * @note Size: 0x34
  */
 void ObjSMenuPause::doUpdateFinish()
 {
@@ -444,10 +421,9 @@ void ObjSMenuPause::doUpdateFinish()
 	killCursorAll();
 }
 
-/*
- * --INFO--
- * Address:	80314FD8
- * Size:	00004C
+/**
+ * @note Address: 0x80314FD8
+ * @note Size: 0x4C
  */
 bool ObjSMenuPause::doUpdateFadeout()
 {
@@ -455,10 +431,9 @@ bool ObjSMenuPause::doUpdateFadeout()
 	return updateFadeOut();
 }
 
-/*
- * --INFO--
- * Address:	80315024
- * Size:	00012C
+/**
+ * @note Address: 0x80315024
+ * @note Size: 0x12C
  */
 void ObjSMenuPause::doUpdateFadeoutFinish()
 {
@@ -500,10 +475,9 @@ void ObjSMenuPause::doUpdateFadeoutFinish()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80315150
- * Size:	0004C0
+/**
+ * @note Address: 0x80315150
+ * @note Size: 0x4C0
  */
 bool ObjSMenuPause::menu_pause()
 {
@@ -570,10 +544,9 @@ bool ObjSMenuPause::menu_pause()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	80315610
- * Size:	000478
+/**
+ * @note Address: 0x80315610
+ * @note Size: 0x478
  */
 bool ObjSMenuPause::menu_yuugata()
 {
@@ -628,10 +601,9 @@ bool ObjSMenuPause::menu_yuugata()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	80315A88
- * Size:	000478
+/**
+ * @note Address: 0x80315A88
+ * @note Size: 0x478
  */
 bool ObjSMenuPause::menu_zenkai()
 {
@@ -688,10 +660,9 @@ bool ObjSMenuPause::menu_zenkai()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	80315F00
- * Size:	000040
+/**
+ * @note Address: 0x80315F00
+ * @note Size: 0x40
  */
 void ObjSMenuPause::killCursorAll()
 {
@@ -700,10 +671,9 @@ void ObjSMenuPause::killCursorAll()
 	mMenuReturn->killCursor();
 }
 
-/*
- * --INFO--
- * Address:	80315F40
- * Size:	00006C
+/**
+ * @note Address: 0x80315F40
+ * @note Size: 0x6C
  */
 bool ObjSMenuPause::menu()
 {
@@ -726,10 +696,9 @@ bool ObjSMenuPause::menu()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	80315FAC
- * Size:	000014
+/**
+ * @note Address: 0x80315FAC
+ * @note Size: 0x14
  */
 void ObjSMenuPause::in_L()
 {
@@ -737,10 +706,9 @@ void ObjSMenuPause::in_L()
 	mAngle = 15.0f;
 }
 
-/*
- * --INFO--
- * Address:	80315FC0
- * Size:	000014
+/**
+ * @note Address: 0x80315FC0
+ * @note Size: 0x14
  */
 void ObjSMenuPause::in_R()
 {
@@ -748,10 +716,9 @@ void ObjSMenuPause::in_R()
 	mAngle = 15.0f;
 }
 
-/*
- * --INFO--
- * Address:	80315FD4
- * Size:	000030
+/**
+ * @note Address: 0x80315FD4
+ * @note Size: 0x30
  */
 void ObjSMenuPause::wait()
 {
@@ -759,10 +726,9 @@ void ObjSMenuPause::wait()
 	mMenuPause->startCursor(0.2f);
 }
 
-/*
- * --INFO--
- * Address:	80316004
- * Size:	00002C
+/**
+ * @note Address: 0x80316004
+ * @note Size: 0x2C
  */
 void ObjSMenuPause::out_L()
 {
@@ -770,10 +736,9 @@ void ObjSMenuPause::out_L()
 	ogSound->setSMenuLR();
 }
 
-/*
- * --INFO--
- * Address:	80316030
- * Size:	00002C
+/**
+ * @note Address: 0x80316030
+ * @note Size: 0x2C
  */
 void ObjSMenuPause::out_R()
 {

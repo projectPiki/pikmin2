@@ -1,9 +1,8 @@
 extern double __ieee754_sqrt();
 
-/*
- * --INFO--
- * Address:	800CFCBC
- * Size:	000020
+/**
+ * @note Address: 0x800CFCBC
+ * @note Size: 0x20
  */
 
 double sqrt(double __x) { return (double)__ieee754_sqrt(); }

@@ -2,12 +2,11 @@
 #include "JSystem/JSupport/JSUStream.h"
 #include "types.h"
 
-/*
+/**
  * __ct
  *
- * --INFO--
- * Address:	80026EE4
- * Size:	000044
+ * @note Address: 0x80026EE4
+ * @note Size: 0x44
  * Matches
  */
 JSUFileInputStream::JSUFileInputStream(JKRFile* file)
@@ -16,10 +15,9 @@ JSUFileInputStream::JSUFileInputStream(JKRFile* file)
 	mLength = 0;
 }
 
-/*
- * --INFO--
- * Address:	80026F28
- * Size:	0000E0
+/**
+ * @note Address: 0x80026F28
+ * @note Size: 0xE0
  * Matches
  */
 int JSUFileInputStream::readData(void* buffer, long byteCount)
@@ -41,10 +39,9 @@ int JSUFileInputStream::readData(void* buffer, long byteCount)
 	return readBytes;
 }
 
-/*
- * --INFO--
- * Address:	80027008
- * Size:	0000E8
+/**
+ * @note Address: 0x80027008
+ * @note Size: 0xE8
  * Matches
  */
 int JSUFileInputStream::seekPos(long offset, JSUStreamSeekFrom mode)
@@ -72,19 +69,17 @@ int JSUFileInputStream::seekPos(long offset, JSUStreamSeekFrom mode)
 	return mLength - originalLength;
 }
 
-/*
- * --INFO--
- * Address:	800270F0
- * Size:	000030
+/**
+ * @note Address: 0x800270F0
+ * @note Size: 0x30
  * Weak function. Found in JSUStream.h
  * Matches
  */
 // int JSUFileInputStream::getLength() const { return ((JKRFile*)mObject)->getFileSize(); }
 
-/*
- * --INFO--
- * Address:	80027120
- * Size:	000008
+/**
+ * @note Address: 0x80027120
+ * @note Size: 0x8
  * Weak function. Found in JSUStream.h
  * Matches
  */

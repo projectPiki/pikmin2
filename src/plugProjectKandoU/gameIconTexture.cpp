@@ -8,10 +8,9 @@
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	80233484
- * Size:	000048
+/**
+ * @note Address: 0x80233484
+ * @note Size: 0x48
  */
 IconTexture::Loader::Loader()
     : JKRDisposer()
@@ -20,10 +19,9 @@ IconTexture::Loader::Loader()
 	mNode    = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	802334CC
- * Size:	00008C
+/**
+ * @note Address: 0x802334CC
+ * @note Size: 0x8C
  */
 IconTexture::Loader::~Loader()
 {
@@ -35,10 +33,9 @@ IconTexture::Loader::~Loader()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80233558
- * Size:	000084
+/**
+ * @note Address: 0x80233558
+ * @note Size: 0x84
  */
 void IconTexture::Loader::loadResource(char* path)
 {
@@ -51,17 +48,15 @@ void IconTexture::Loader::loadResource(char* path)
 	JUT_PANICLINE(45, "failed to open [%s]\n", path);
 }
 
-/*
- * --INFO--
- * Address:	802335DC
- * Size:	000030
+/**
+ * @note Address: 0x802335DC
+ * @note Size: 0x30
  */
 ResTIMG* IconTexture::Loader::getResTIMG(char* path) { return (ResTIMG*)mArchive->getResource(path); }
 
-/*
- * --INFO--
- * Address:	8023360C
- * Size:	000048
+/**
+ * @note Address: 0x8023360C
+ * @note Size: 0x48
  */
 IconTexture::Mgr::Mgr()
     : JKRDisposer()
@@ -71,9 +66,8 @@ IconTexture::Mgr::Mgr()
 }
 
 /* __dt__Q34Game11IconTexture3MgrFv
- * --INFO--
- * Address:	80233654
- * Size:	00008C
+ * @note Address: 0x80233654
+ * @note Size: 0x8C
  */
 IconTexture::Mgr::~Mgr()
 {
@@ -84,10 +78,9 @@ IconTexture::Mgr::~Mgr()
 	mCount = 0;
 }
 
-/*
- * --INFO--
- * Address:	802336E0
- * Size:	000084
+/**
+ * @note Address: 0x802336E0
+ * @note Size: 0x84
  */
 void IconTexture::Mgr::create(int count)
 {
@@ -96,10 +89,9 @@ void IconTexture::Mgr::create(int count)
 	mCount    = count;
 }
 
-/*
- * --INFO--
- * Address:	80233764
- * Size:	00008C
+/**
+ * @note Address: 0x80233764
+ * @note Size: 0x8C
  */
 void IconTexture::Mgr::setTexture(int index, ResTIMG* resource)
 {
@@ -107,10 +99,9 @@ void IconTexture::Mgr::setTexture(int index, ResTIMG* resource)
 	mTextures[index].storeTIMG(resource, (u8)'\0');
 }
 
-/*
- * --INFO--
- * Address:	802337F0
- * Size:	00002C
+/**
+ * @note Address: 0x802337F0
+ * @note Size: 0x2C
  */
 JUTTexture* IconTexture::Mgr::getTexture(int index)
 {

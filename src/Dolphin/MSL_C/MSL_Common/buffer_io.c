@@ -1,10 +1,9 @@
 #include "PowerPC_EABI_Support/MSL_C/MSL_Common/ansi_files.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	800C6224
- * Size:	000034
+/**
+ * @note Address: 0x800C6224
+ * @note Size: 0x34
  */
 void __prep_buffer(FILE* file)
 
@@ -16,10 +15,9 @@ void __prep_buffer(FILE* file)
 	return;
 }
 
-/*
- * --INFO--
- * Address:	800C6160
- * Size:	0000C4
+/**
+ * @note Address: 0x800C6160
+ * @note Size: 0xC4
  */
 int __flush_buffer(FILE* file, size_t* length)
 {

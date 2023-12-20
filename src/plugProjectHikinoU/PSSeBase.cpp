@@ -8,10 +8,9 @@
 
 namespace PSSystem {
 
-/*
- * --INFO--
- * Address:	80340838
- * Size:	0000A4
+/**
+ * @note Address: 0x80340838
+ * @note Size: 0xA4
  */
 EnvSeBase::EnvSeBase(u32 soundID, f32 p2)
     : JSULink(this)
@@ -27,17 +26,15 @@ EnvSeBase::EnvSeBase(u32 soundID, f32 p2)
 {
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void EnvSeBase::requestMoveParam(MoveParamSet param) { mMoveParam = param; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000CC
+/**
+ * @note Address: N/A
+ * @note Size: 0xCC
  */
 void EnvSeBase::doMoveParamRequest()
 {
@@ -62,10 +59,9 @@ void EnvSeBase::doMoveParamRequest()
 	mMoveParam._0C = 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 void EnvSeBase::setPauseFlag(u8 flag)
 {
@@ -75,10 +71,9 @@ void EnvSeBase::setPauseFlag(u8 flag)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803408DC
- * Size:	00035C
+/**
+ * @note Address: 0x803408DC
+ * @note Size: 0x35C
  */
 void EnvSeBase::exec()
 {
@@ -124,10 +119,9 @@ void EnvSeBase::exec()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80340C38
- * Size:	000040
+/**
+ * @note Address: 0x80340C38
+ * @note Size: 0x40
  */
 JAISound* EnvSeBase::play()
 {
@@ -135,10 +129,9 @@ JAISound* EnvSeBase::play()
 	return mSound;
 }
 
-/*
- * --INFO--
- * Address:	80340C78
- * Size:	000034
+/**
+ * @note Address: 0x80340C78
+ * @note Size: 0x34
  */
 void EnvSeMgr::setAllPauseFlag(u8 flag)
 {
@@ -147,10 +140,9 @@ void EnvSeMgr::setAllPauseFlag(u8 flag)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80340CAC
- * Size:	000024
+/**
+ * @note Address: 0x80340CAC
+ * @note Size: 0x24
  */
 void EnvSeMgr::on()
 {
@@ -159,10 +151,9 @@ void EnvSeMgr::on()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80340CD0
- * Size:	000050
+/**
+ * @note Address: 0x80340CD0
+ * @note Size: 0x50
  */
 void EnvSeMgr::on(u32 soundID, bool p2)
 {
@@ -173,10 +164,9 @@ void EnvSeMgr::on(u32 soundID, bool p2)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80340D20
- * Size:	000024
+/**
+ * @note Address: 0x80340D20
+ * @note Size: 0x24
  */
 void EnvSeMgr::off()
 {
@@ -185,10 +175,9 @@ void EnvSeMgr::off()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80340D44
- * Size:	000050
+/**
+ * @note Address: 0x80340D44
+ * @note Size: 0x50
  */
 void EnvSeMgr::off(u32 soundID, bool p2)
 {
@@ -199,17 +188,15 @@ void EnvSeMgr::off(u32 soundID, bool p2)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80340D94
- * Size:	00000C
+/**
+ * @note Address: 0x80340D94
+ * @note Size: 0xC
  */
 void EnvSeMgr::reservePauseOff() { mReservator.mState = 31; }
 
-/*
- * --INFO--
- * Address:	80340DA0
- * Size:	000070
+/**
+ * @note Address: 0x80340DA0
+ * @note Size: 0x70
  */
 void EnvSeMgr::setVolumeRequest(f32 p1, u32 p2, u8 p3)
 {
@@ -221,10 +208,9 @@ void EnvSeMgr::setVolumeRequest(f32 p1, u32 p2, u8 p3)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80340E10
- * Size:	000080
+/**
+ * @note Address: 0x80340E10
+ * @note Size: 0x80
  */
 void EnvSeMgr::exec()
 {
@@ -239,17 +225,15 @@ void EnvSeMgr::exec()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80340E90
- * Size:	000038
+/**
+ * @note Address: 0x80340E90
+ * @note Size: 0x38
  */
 void EnvSe_PauseOffReservator::reservatorTask() { mMgr->setAllPauseFlag(0); }
 
-/*
- * --INFO--
- * Address:	80340EC8
- * Size:	000020
+/**
+ * @note Address: 0x80340EC8
+ * @note Size: 0x20
  */
 ClusterSe::PartInitArg::PartInitArg()
 {
@@ -260,10 +244,9 @@ ClusterSe::PartInitArg::PartInitArg()
 	mSoundID = PSSE_NULL;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001AC
+/**
+ * @note Address: N/A
+ * @note Size: 0x1AC
  */
 void ClusterSe::PartInitArg::check()
 {
@@ -279,20 +262,18 @@ void ClusterSe::PartInitArg::check()
 	P2ASSERTLINE(377, mSoundID != 0xFFFFFFFF);
 }
 
-/*
- * --INFO--
- * Address:	80340EE8
- * Size:	00002C
+/**
+ * @note Address: 0x80340EE8
+ * @note Size: 0x2C
  */
 ClusterSe::Part::Part()
     : mInitArg()
 {
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001EC
+/**
+ * @note Address: N/A
+ * @note Size: 0x1EC
  */
 void ClusterSe::Part::identify(PartInitArg initArg)
 {
@@ -326,17 +307,15 @@ void ClusterSe::Part::play(u8 p1, JAInter::Object* obj)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80340F14
- * Size:	00003C
+/**
+ * @note Address: 0x80340F14
+ * @note Size: 0x3C
  */
 JAISound* ClusterSe::Part::callSe(JAInter::Object* obj) { obj->startSound(mInitArg.mSoundID, 0); }
 
-/*
- * --INFO--
- * Address:	80340F50
- * Size:	000060
+/**
+ * @note Address: 0x80340F50
+ * @note Size: 0x60
  */
 ClusterSe::Factory::Factory(u8 count)
 {
@@ -344,10 +323,9 @@ ClusterSe::Factory::Factory(u8 count)
 	P2ASSERTLINE(474, count);
 }
 
-/*
- * --INFO--
- * Address:	80340FB0
- * Size:	000074
+/**
+ * @note Address: 0x80340FB0
+ * @note Size: 0x74
  */
 ClusterSe::Part* ClusterSe::Factory::constructPart()
 {
@@ -356,10 +334,9 @@ ClusterSe::Part* ClusterSe::Factory::constructPart()
 	return parts;
 }
 
-/*
- * --INFO--
- * Address:	80341024
- * Size:	0002B4
+/**
+ * @note Address: 0x80341024
+ * @note Size: 0x2B4
  */
 void ClusterSe::Mgr::constructParts(PSSystem::ClusterSe::Factory& factory)
 {
@@ -372,10 +349,9 @@ void ClusterSe::Mgr::constructParts(PSSystem::ClusterSe::Factory& factory)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803412D8
- * Size:	0001A4
+/**
+ * @note Address: 0x803412D8
+ * @note Size: 0x1A4
  */
 void ClusterSe::Mgr::play(u8 p1, JAInter::Object* obj)
 {

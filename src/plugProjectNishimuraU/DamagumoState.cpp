@@ -9,10 +9,9 @@
 namespace Game {
 namespace Damagumo {
 
-/*
- * --INFO--
- * Address:	802A43FC
- * Size:	000224
+/**
+ * @note Address: 0x802A43FC
+ * @note Size: 0x224
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -25,10 +24,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateWalk);
 }
 
-/*
- * --INFO--
- * Address:	802A4620
- * Size:	0000CC
+/**
+ * @note Address: 0x802A4620
+ * @note Size: 0xCC
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -47,10 +45,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	rumbleMgr->startRumble(10, position, 2);
 }
 
-/*
- * --INFO--
- * Address:	802A46EC
- * Size:	00008C
+/**
+ * @note Address: 0x802A46EC
+ * @note Size: 0x8C
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -67,17 +64,15 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A4778
- * Size:	000004
+/**
+ * @note Address: 0x802A4778
+ * @note Size: 0x4
  */
 void StateDead::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802A477C
- * Size:	000084
+/**
+ * @note Address: 0x802A477C
+ * @note Size: 0x84
  */
 void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -93,10 +88,9 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	damagumo->stopMotion();
 }
 
-/*
- * --INFO--
- * Address:	802A4800
- * Size:	0000B8
+/**
+ * @note Address: 0x802A4800
+ * @note Size: 0xB8
  */
 void StateStay::exec(EnemyBase* enemy)
 {
@@ -116,17 +110,15 @@ void StateStay::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A48B8
- * Size:	000004
+/**
+ * @note Address: 0x802A48B8
+ * @note Size: 0x4
  */
 void StateStay::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802A48BC
- * Size:	0000B4
+/**
+ * @note Address: 0x802A48BC
+ * @note Size: 0xB4
  */
 void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -149,10 +141,9 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 	shadowMgr->setForceVisible(damagumo, true);
 }
 
-/*
- * --INFO--
- * Address:	802A4970
- * Size:	0001E8
+/**
+ * @note Address: 0x802A4970
+ * @note Size: 0x1E8
  */
 void StateLand::exec(EnemyBase* enemy)
 {
@@ -195,10 +186,9 @@ void StateLand::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A4B58
- * Size:	00005C
+/**
+ * @note Address: 0x802A4B58
+ * @note Size: 0x5C
  */
 void StateLand::cleanup(EnemyBase* enemy)
 {
@@ -210,10 +200,9 @@ void StateLand::cleanup(EnemyBase* enemy)
 	shadowMgr->setForceVisible(damagumo, false);
 }
 
-/*
- * --INFO--
- * Address:	802A4BB4
- * Size:	000098
+/**
+ * @note Address: 0x802A4BB4
+ * @note Size: 0x98
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -226,10 +215,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	damagumo->startMotion(DAMAGUMOANIM_Wait, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802A4C4C
- * Size:	0000F4
+/**
+ * @note Address: 0x802A4C4C
+ * @note Size: 0xF4
  */
 void StateWait::exec(EnemyBase* enemy)
 {
@@ -252,17 +240,15 @@ void StateWait::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A4D40
- * Size:	000004
+/**
+ * @note Address: 0x802A4D40
+ * @note Size: 0x4
  */
 void StateWait::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802A4D44
- * Size:	000064
+/**
+ * @note Address: 0x802A4D44
+ * @note Size: 0x64
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -276,10 +262,9 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	damagumo->startBlendMotion();
 }
 
-/*
- * --INFO--
- * Address:	802A4DA8
- * Size:	0000C8
+/**
+ * @note Address: 0x802A4DA8
+ * @note Size: 0xC8
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
@@ -301,10 +286,9 @@ void StateFlick::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A4E70
- * Size:	000024
+/**
+ * @note Address: 0x802A4E70
+ * @note Size: 0x24
  */
 void StateFlick::cleanup(EnemyBase* enemy)
 {
@@ -312,10 +296,9 @@ void StateFlick::cleanup(EnemyBase* enemy)
 	damagumo->finishBlendMotion();
 }
 
-/*
- * --INFO--
- * Address:	802A4E94
- * Size:	000098
+/**
+ * @note Address: 0x802A4E94
+ * @note Size: 0x98
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -329,10 +312,9 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	damagumo->getTargetPosition();
 }
 
-/*
- * --INFO--
- * Address:	802A4F2C
- * Size:	000100
+/**
+ * @note Address: 0x802A4F2C
+ * @note Size: 0x100
  */
 void StateWalk::exec(EnemyBase* enemy)
 {
@@ -355,10 +337,9 @@ void StateWalk::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802A502C
- * Size:	000004
+/**
+ * @note Address: 0x802A502C
+ * @note Size: 0x4
  */
 void StateWalk::cleanup(EnemyBase* enemy) { }
 

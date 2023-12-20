@@ -7,10 +7,9 @@
     Generated from dpostproc
 */
 
-/*
- * --INFO--
- * Address:	800A6500
- * Size:	00009C
+/**
+ * @note Address: 0x800A6500
+ * @note Size: 0x9C
  */
 bool JASCallbackMgr::regist(JASCallback* function, void* argument)
 {
@@ -25,10 +24,9 @@ bool JASCallbackMgr::regist(JASCallback* function, void* argument)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	800A659C
- * Size:	000110
+/**
+ * @note Address: 0x800A659C
+ * @note Size: 0x110
  */
 bool JASCallbackMgr::reject(JASCallback* function, void* argument)
 {
@@ -44,20 +42,18 @@ bool JASCallbackMgr::reject(JASCallback* function, void* argument)
 	return didRejectAtLeastOne;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000134
+/**
+ * @note Address: N/A
+ * @note Size: 0x134
  */
 bool JASCallbackMgr::reject(JASCallback*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800A66AC
- * Size:	000078
+/**
+ * @note Address: 0x800A66AC
+ * @note Size: 0x78
  */
 void JASCallbackMgr::callback()
 {

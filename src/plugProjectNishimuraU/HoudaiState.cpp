@@ -9,10 +9,9 @@
 namespace Game {
 namespace Houdai {
 
-/*
- * --INFO--
- * Address:	802BDAB0
- * Size:	000278
+/**
+ * @note Address: 0x802BDAB0
+ * @note Size: 0x278
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -26,10 +25,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateShot);
 }
 
-/*
- * --INFO--
- * Address:	802BDD28
- * Size:	0000BC
+/**
+ * @note Address: 0x802BDD28
+ * @note Size: 0xBC
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -47,10 +45,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	rumbleMgr->startRumble(7, position, 2);
 }
 
-/*
- * --INFO--
- * Address:	802BDDE4
- * Size:	0000B8
+/**
+ * @note Address: 0x802BDDE4
+ * @note Size: 0xB8
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -66,17 +63,15 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802BDE9C
- * Size:	000004
+/**
+ * @note Address: 0x802BDE9C
+ * @note Size: 0x4
  */
 void StateDead::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802BDEA0
- * Size:	000078
+/**
+ * @note Address: 0x802BDEA0
+ * @note Size: 0x78
  */
 void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -90,10 +85,9 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	houdai->stopMotion();
 }
 
-/*
- * --INFO--
- * Address:	802BDF18
- * Size:	0000C4
+/**
+ * @note Address: 0x802BDF18
+ * @note Size: 0xC4
  */
 void StateStay::exec(EnemyBase* enemy)
 {
@@ -117,17 +111,15 @@ void StateStay::exec(EnemyBase* enemy)
 	transit(houdai, HOUDAI_Land, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802BDFDC
- * Size:	000004
+/**
+ * @note Address: 0x802BDFDC
+ * @note Size: 0x4
  */
 void StateStay::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802BDFE0
- * Size:	0000E4
+/**
+ * @note Address: 0x802BDFE0
+ * @note Size: 0xE4
  */
 void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -148,10 +140,9 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 	rumbleMgr->startRumble(6, position, 2);
 }
 
-/*
- * --INFO--
- * Address:	802BE0C4
- * Size:	0002F0
+/**
+ * @note Address: 0x802BE0C4
+ * @note Size: 0x2F0
  */
 void StateLand::exec(EnemyBase* enemy)
 {
@@ -217,10 +208,9 @@ void StateLand::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802BE3B4
- * Size:	000050
+/**
+ * @note Address: 0x802BE3B4
+ * @note Size: 0x50
  */
 void StateLand::cleanup(EnemyBase* enemy)
 {
@@ -231,10 +221,9 @@ void StateLand::cleanup(EnemyBase* enemy)
 	houdai->setBossAppearBGM();
 }
 
-/*
- * --INFO--
- * Address:	802BE404
- * Size:	000098
+/**
+ * @note Address: 0x802BE404
+ * @note Size: 0x98
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -247,10 +236,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	houdai->startMotion(HOUDAIANIM_Wait, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802BE49C
- * Size:	000118
+/**
+ * @note Address: 0x802BE49C
+ * @note Size: 0x118
  */
 void StateWait::exec(EnemyBase* enemy)
 {
@@ -276,17 +264,15 @@ void StateWait::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802BE5B4
- * Size:	000004
+/**
+ * @note Address: 0x802BE5B4
+ * @note Size: 0x4
  */
 void StateWait::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802BE5B8
- * Size:	000064
+/**
+ * @note Address: 0x802BE5B8
+ * @note Size: 0x64
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -299,10 +285,9 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	houdai->startBlendMotion();
 }
 
-/*
- * --INFO--
- * Address:	802BE61C
- * Size:	0000F0
+/**
+ * @note Address: 0x802BE61C
+ * @note Size: 0xF0
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
@@ -332,10 +317,9 @@ void StateFlick::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802BE70C
- * Size:	000024
+/**
+ * @note Address: 0x802BE70C
+ * @note Size: 0x24
  */
 void StateFlick::cleanup(EnemyBase* enemy)
 {
@@ -343,10 +327,9 @@ void StateFlick::cleanup(EnemyBase* enemy)
 	houdai->finishBlendMotion();
 }
 
-/*
- * --INFO--
- * Address:	802BE730
- * Size:	000098
+/**
+ * @note Address: 0x802BE730
+ * @note Size: 0x98
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -360,10 +343,9 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	houdai->getTargetPosition();
 }
 
-/*
- * --INFO--
- * Address:	802BE7C8
- * Size:	000100
+/**
+ * @note Address: 0x802BE7C8
+ * @note Size: 0x100
  */
 void StateWalk::exec(EnemyBase* enemy)
 {
@@ -386,17 +368,15 @@ void StateWalk::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802BE8C8
- * Size:	000004
+/**
+ * @note Address: 0x802BE8C8
+ * @note Size: 0x4
  */
 void StateWalk::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802BE8CC
- * Size:	000090
+/**
+ * @note Address: 0x802BE8CC
+ * @note Size: 0x90
  */
 void StateShot::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -415,10 +395,9 @@ void StateShot::init(EnemyBase* enemy, StateArg* stateArg)
 	houdai->startBossChargeBGM();
 }
 
-/*
- * --INFO--
- * Address:	802BE95C
- * Size:	0003B0
+/**
+ * @note Address: 0x802BE95C
+ * @note Size: 0x3B0
  */
 void StateShot::exec(EnemyBase* enemy)
 {
@@ -518,10 +497,9 @@ void StateShot::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802BED0C
- * Size:	000038
+/**
+ * @note Address: 0x802BED0C
+ * @note Size: 0x38
  */
 void StateShot::cleanup(EnemyBase* enemy)
 {

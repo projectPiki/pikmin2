@@ -3,17 +3,15 @@
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	803304F0
- * Size:	000050
+/**
+ * @note Address: 0x803304F0
+ * @note Size: 0x50
  */
 SMenuCont::SMenuCont() { }
 
-/*
- * --INFO--
- * Address:	80330540
- * Size:	000068
+/**
+ * @note Address: 0x80330540
+ * @note Size: 0x68
  */
 bool SMenuCont::doConfirmSetScene(::Screen::SetSceneArg& sceneArg)
 {
@@ -35,31 +33,27 @@ bool SMenuCont::doConfirmSetScene(::Screen::SetSceneArg& sceneArg)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	803305A8
- * Size:	00000C
+/**
+ * @note Address: 0x803305A8
+ * @note Size: 0xC
  */
 void SMenuCont::doSetBackupScene(::Screen::SetSceneArg& sceneArg) { sceneArg.mDoCreateBackup = false; }
 
-/*
- * --INFO--
- * Address:	803305B4
- * Size:	000004
+/**
+ * @note Address: 0x803305B4
+ * @note Size: 0x4
  */
 void SMenuCont::doUserCallBackFunc(Resource::MgrCommand*) { }
 
-/*
- * --INFO--
- * Address:	803305B8
- * Size:	000060
+/**
+ * @note Address: 0x803305B8
+ * @note Size: 0x60
  */
 void SMenuCont::doCreateObj(JKRArchive* archive) { registObj(new ObjSMenuCont("SMenuCont screen"), archive); }
 
-/*
- * --INFO--
- * Address:	80330618
- * Size:	000004
+/**
+ * @note Address: 0x80330618
+ * @note Size: 0x4
  */
 void SMenuCont::doUpdateActive() { }
 

@@ -3,10 +3,9 @@
 namespace Game {
 namespace Tyre {
 
-/*
- * --INFO--
- * Address:	803ABE60
- * Size:	000050
+/**
+ * @note Address: 0x803ABE60
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -14,24 +13,21 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "タイヤマネージャ"; // tire manager
 }
 
-/*
- * --INFO--
- * Address:	803ABEB0
- * Size:	000048
+/**
+ * @note Address: 0x803ABEB0
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Parms); }
 
-/*
- * --INFO--
- * Address:	803ABFD4
- * Size:	000020
+/**
+ * @note Address: 0x803ABFD4
+ * @note Size: 0x20
  */
 EnemyBase* Mgr::birth(EnemyBirthArg& arg) { return EnemyMgrBase::birth(arg); }
 
-/*
- * --INFO--
- * Address:	803ABFF4
- * Size:	000094
+/**
+ * @note Address: 0x803ABFF4
+ * @note Size: 0x94
  */
 void Mgr::loadModelData()
 {
@@ -44,10 +40,9 @@ void Mgr::loadModelData()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803AC088
- * Size:	00002C
+/**
+ * @note Address: 0x803AC088
+ * @note Size: 0x2C
  */
 J3DModelData* Mgr::doLoadBmd(void* file)
 {

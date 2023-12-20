@@ -19,10 +19,9 @@ static const int unusedTyreArray[] = { 0, 0, 0 };
 
 Obj* curT;
 
-/*
- * --INFO--
- * Address:	803AC2F0
- * Size:	000038
+/**
+ * @note Address: 0x803AC2F0
+ * @note Size: 0x38
  */
 bool frontTyreCallBack(J3DJoint* jnt, int a)
 {
@@ -32,10 +31,9 @@ bool frontTyreCallBack(J3DJoint* jnt, int a)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	803AC328
- * Size:	000038
+/**
+ * @note Address: 0x803AC328
+ * @note Size: 0x38
  */
 bool rearTyreCallBack(J3DJoint* jnt, int a)
 {
@@ -45,25 +43,22 @@ bool rearTyreCallBack(J3DJoint* jnt, int a)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	803AC360
- * Size:	000020
+/**
+ * @note Address: 0x803AC360
+ * @note Size: 0x20
  */
 void Obj::setParameters() { EnemyBase::setParameters(); }
 
-/*
- * --INFO--
- * Address:	803AC380
- * Size:	000020
+/**
+ * @note Address: 0x803AC380
+ * @note Size: 0x20
  */
 // void birth__Q34Game4Tyre3ObjFR10Vector3f f()
 void Obj::birth(Vector3f& pos, f32 angle) { EnemyBase::birth(pos, angle); }
 
-/*
- * --INFO--
- * Address:	803AC3A0
- * Size:	00018C
+/**
+ * @note Address: 0x803AC3A0
+ * @note Size: 0x18C
  */
 void Obj::onInit(CreatureInitArg* arg)
 {
@@ -98,10 +93,9 @@ void Obj::onInit(CreatureInitArg* arg)
 	mEfxPosition = mPosition;
 }
 
-/*
- * --INFO--
- * Address:	803AC52C
- * Size:	0003C0
+/**
+ * @note Address: 0x803AC52C
+ * @note Size: 0x3C0
  */
 Obj::Obj()
     : mOwner(nullptr)
@@ -128,10 +122,9 @@ Obj::Obj()
 	mShadowMgr = new TyreShadowMgr(this);
 }
 
-/*
- * --INFO--
- * Address:	803AC8EC
- * Size:	00004C
+/**
+ * @note Address: 0x803AC8EC
+ * @note Size: 0x4C
  */
 void Obj::setFSM(FSM* fsm)
 {
@@ -140,10 +133,9 @@ void Obj::setFSM(FSM* fsm)
 	mCurrentLifecycleState = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	803AC938
- * Size:	00004C
+/**
+ * @note Address: 0x803AC938
+ * @note Size: 0x4C
  */
 void Obj::doUpdate()
 {
@@ -152,10 +144,9 @@ void Obj::doUpdate()
 	mFsm->exec(this);
 }
 
-/*
- * --INFO--
- * Address:	803AC984
- * Size:	0000B8
+/**
+ * @note Address: 0x803AC984
+ * @note Size: 0xB8
  */
 void Obj::doAnimationCullingOff()
 {
@@ -179,31 +170,27 @@ void Obj::doAnimationCullingOff()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803ACA3C
- * Size:	000004
+/**
+ * @note Address: 0x803ACA3C
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	803ACA40
- * Size:	000020
+/**
+ * @note Address: 0x803ACA40
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	803ACA60
- * Size:	000020
+/**
+ * @note Address: 0x803ACA60
+ * @note Size: 0x20
  */
 void Obj::doSimulation(f32 rate) { EnemyBase::doSimulation(rate); }
 
-/*
- * --INFO--
- * Address:	803ACA80
- * Size:	000080
+/**
+ * @note Address: 0x803ACA80
+ * @note Size: 0x80
  */
 void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
 {
@@ -215,10 +202,9 @@ void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
 	param.mPosition.z = (param.mPosition.z + mtx[id][2][3]) * 0.5f;
 }
 
-/*
- * --INFO--
- * Address:	803ACB00
- * Size:	00012C
+/**
+ * @note Address: 0x803ACB00
+ * @note Size: 0x12C
  */
 void Obj::doStartStoneState()
 {
@@ -237,10 +223,9 @@ void Obj::doStartStoneState()
 	fadeSmokeEffect();
 }
 
-/*
- * --INFO--
- * Address:	803ACC2C
- * Size:	000124
+/**
+ * @note Address: 0x803ACC2C
+ * @note Size: 0x124
  */
 void Obj::doFinishStoneState()
 {
@@ -257,10 +242,9 @@ void Obj::doFinishStoneState()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803ACD50
- * Size:	000538
+/**
+ * @note Address: 0x803ACD50
+ * @note Size: 0x538
  */
 void Obj::collisionCallback(CollEvent& event)
 {
@@ -314,10 +298,9 @@ void Obj::collisionCallback(CollEvent& event)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803AD288
- * Size:	0000A0
+/**
+ * @note Address: 0x803AD288
+ * @note Size: 0xA0
  */
 bool Obj::damageCallBack(Creature* obj, f32 damage, CollPart* coll)
 {
@@ -331,10 +314,9 @@ bool Obj::damageCallBack(Creature* obj, f32 damage, CollPart* coll)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803AD328
- * Size:	00003C
+/**
+ * @note Address: 0x803AD328
+ * @note Size: 0x3C
  */
 bool Obj::hipdropCallBack(Creature* obj, f32 damage, CollPart* coll)
 {
@@ -344,10 +326,9 @@ bool Obj::hipdropCallBack(Creature* obj, f32 damage, CollPart* coll)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803AD364
- * Size:	000058
+/**
+ * @note Address: 0x803AD364
+ * @note Size: 0x58
  */
 bool Obj::earthquakeCallBack(Creature* obj, f32 damage)
 {
@@ -357,10 +338,9 @@ bool Obj::earthquakeCallBack(Creature* obj, f32 damage)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803AD3BC
- * Size:	000034
+/**
+ * @note Address: 0x803AD3BC
+ * @note Size: 0x34
  */
 void Obj::inWaterCallback(WaterBox* wbox)
 {
@@ -368,10 +348,9 @@ void Obj::inWaterCallback(WaterBox* wbox)
 	fadeSmokeEffect();
 }
 
-/*
- * --INFO--
- * Address:	803AD3F0
- * Size:	000044
+/**
+ * @note Address: 0x803AD3F0
+ * @note Size: 0x44
  */
 void Obj::outWaterCallback()
 {
@@ -381,10 +360,9 @@ void Obj::outWaterCallback()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803AD434
- * Size:	000050
+/**
+ * @note Address: 0x803AD434
+ * @note Size: 0x50
  */
 void Obj::getShadowParam(ShadowParam& param)
 {
@@ -395,10 +373,9 @@ void Obj::getShadowParam(ShadowParam& param)
 	param.mSize                     = 10.0f;
 }
 
-/*
- * --INFO--
- * Address:	803AD484
- * Size:	00004C
+/**
+ * @note Address: 0x803AD484
+ * @note Size: 0x4C
  */
 bool Obj::needShadow()
 {
@@ -410,10 +387,9 @@ bool Obj::needShadow()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	803AD4D0
- * Size:	000050
+/**
+ * @note Address: 0x803AD4D0
+ * @note Size: 0x50
  */
 bool Obj::isFreeze()
 {
@@ -424,10 +400,9 @@ bool Obj::isFreeze()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803AD520
- * Size:	000298
+/**
+ * @note Address: 0x803AD520
+ * @note Size: 0x298
  */
 void Obj::frontRollMtxCalc()
 {
@@ -484,10 +459,9 @@ void Obj::frontRollMtxCalc()
 	PSMTXConcat(J3DSys::mCurrentMtx, mat.mMatrix.mtxView, J3DSys::mCurrentMtx);
 }
 
-/*
- * --INFO--
- * Address:	803AD7B8
- * Size:	00038C
+/**
+ * @note Address: 0x803AD7B8
+ * @note Size: 0x38C
  */
 void Obj::rearRollMtxCalc()
 {
@@ -567,10 +541,9 @@ void Obj::rearRollMtxCalc()
 	PSMTXConcat(J3DSys::mCurrentMtx, mat.mMatrix.mtxView, J3DSys::mCurrentMtx);
 }
 
-/*
- * --INFO--
- * Address:	803ADB4C
- * Size:	000088
+/**
+ * @note Address: 0x803ADB4C
+ * @note Size: 0x88
  */
 void Obj::moveStart()
 {
@@ -581,10 +554,9 @@ void Obj::moveStart()
 	constraintOff();
 }
 
-/*
- * --INFO--
- * Address:	803ADBD4
- * Size:	0000E8
+/**
+ * @note Address: 0x803ADBD4
+ * @note Size: 0xE8
  */
 void Obj::collisionStOn()
 {
@@ -596,10 +568,9 @@ void Obj::collisionStOn()
 	mCollTree->getCollPart('tyr6')->mSpecialID = 'st__';
 }
 
-/*
- * --INFO--
- * Address:	803ADCBC
- * Size:	000108
+/**
+ * @note Address: 0x803ADCBC
+ * @note Size: 0x108
  */
 void Obj::collisionStOff()
 {
@@ -612,10 +583,9 @@ void Obj::collisionStOff()
 	EnemyFunc::flickStickPikmin(this, 1.0f, C_PARMS->mGeneral.mShakeKnockback.mValue, 0.0f, FLICK_BACKWARD_ANGLE, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	803ADDC4
- * Size:	0005CC
+/**
+ * @note Address: 0x803ADDC4
+ * @note Size: 0x5CC
  */
 void Obj::flick()
 {
@@ -1069,10 +1039,9 @@ lbl_803AE2F0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803AE390
- * Size:	000100
+/**
+ * @note Address: 0x803AE390
+ * @note Size: 0x100
  */
 void Obj::deadEffect()
 {
@@ -1086,10 +1055,9 @@ void Obj::deadEffect()
 	mIsShadowActive = false;
 }
 
-/*
- * --INFO--
- * Address:	803AE490
- * Size:	000064
+/**
+ * @note Address: 0x803AE490
+ * @note Size: 0x64
  */
 void Obj::createSmokeEffect()
 {
@@ -1099,10 +1067,9 @@ void Obj::createSmokeEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803AE4F4
- * Size:	000050
+/**
+ * @note Address: 0x803AE4F4
+ * @note Size: 0x50
  */
 void Obj::fadeSmokeEffect()
 {
@@ -1110,10 +1077,9 @@ void Obj::fadeSmokeEffect()
 	mEfxSmoke2->fade();
 }
 
-/*
- * --INFO--
- * Address:	803AE544
- * Size:	0001E8
+/**
+ * @note Address: 0x803AE544
+ * @note Size: 0x1E8
  */
 void Obj::landEffect(Vector3f& pos)
 {
@@ -1146,10 +1112,9 @@ void Obj::landEffect(Vector3f& pos)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803AE72C
- * Size:	00002C
+/**
+ * @note Address: 0x803AE72C
+ * @note Size: 0x2C
  */
 void Obj::scaleUpShadow()
 {

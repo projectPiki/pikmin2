@@ -14,10 +14,9 @@ u32 GeneratorCurrentVersion = 'v0.3';
 
 static const int unusedArray[] = { 0, 0, 0 };
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
+/**
+ * @note Address: N/A
+ * @note Size: 0xE4
  */
 void _Print(char* name, ...) { OSReport("generator"); }
 
@@ -31,10 +30,9 @@ GeneratorMgr* plantsGeneratorMgr;
 GeneratorMgr* dayGeneratorMgr;
 Delegate1<BaseGameSection, Vector3f&>* GeneratorMgr::cursorCallback;
 
-/*
- * --INFO--
- * Address:	801AA6E4
- * Size:	000050
+/**
+ * @note Address: 0x801AA6E4
+ * @note Size: 0x50
  */
 GenBase::GenBase(u32 typeID, char* labelData, char* objTypeName)
     : Parameters(nullptr, "gen base")
@@ -46,11 +44,10 @@ GenBase::GenBase(u32 typeID, char* labelData, char* objTypeName)
 	mModel       = nullptr;
 }
 
-/*
+/**
  * @matchedSize
- * --INFO--
- * Address:	........
- * Size:	000054
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 void GenBase::writeVersion(Stream& output)
 {
@@ -60,10 +57,9 @@ void GenBase::writeVersion(Stream& output)
 	versionID32.write(output);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000DC
+/**
+ * @note Address: N/A
+ * @note Size: 0xDC
  */
 void GenBase::write(Stream& output)
 {
@@ -82,34 +78,30 @@ void GenBase::write(Stream& output)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801AA744
- * Size:	000020
+/**
+ * @note Address: 0x801AA744
+ * @note Size: 0x20
  */
 void GenBase::ramSaveParameters(Stream& output) { Parameters::write(output); }
 
-/*
- * --INFO--
- * Address:	801AA764
- * Size:	000020
+/**
+ * @note Address: 0x801AA764
+ * @note Size: 0x20
  */
 void GenBase::ramLoadParameters(Stream& input) { Parameters::read(input); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
+/**
+ * @note Address: N/A
+ * @note Size: 0x50
  */
 void GenBase::readVersion(Stream&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C0
+/**
+ * @note Address: N/A
+ * @note Size: 0xC0
  */
 void GenBase::read(Stream& input)
 {
@@ -128,36 +120,32 @@ void GenBase::read(Stream& input)
 	}
 }
 
-/*
+/**
  * getLatestVersion__Q24Game9GenObjectFv
- * --INFO--
- * Address:	801AA788
- * Size:	000050
+ * @note Address: 0x801AA788
+ * @note Size: 0x50
  */
 u32 GenObject::getLatestVersion() { return GenObjectFactory::factory->checkVersion(mTypeID); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
+/**
+ * @note Address: N/A
+ * @note Size: 0x60
  */
 void GenObjectFactory::createInstance()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	801AA7D8
- * Size:	00000C
+/**
+ * @note Address: 0x801AA7D8
+ * @note Size: 0xC
  */
 void Generator::initialiseSystem() { GenObjectFactory::factory = nullptr; }
 
-/*
+/**
  * __ct__Q24Game9GeneratorFv
- * --INFO--
- * Address:	801AA7E4
- * Size:	0000DC
+ * @note Address: 0x801AA7E4
+ * @note Size: 0xDC
  */
 Generator::Generator()
     : CNode()
@@ -186,28 +174,25 @@ Generator::Generator()
 	mDaysTillResurrection = 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D0
+/**
+ * @note Address: N/A
+ * @note Size: 0xD0
  */
 Generator::Generator(int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	801AA8C0
- * Size:	000068
+/**
+ * @note Address: 0x801AA8C0
+ * @note Size: 0x68
  */
 Generator::~Generator() { mNextGenerator = nullptr; }
 
-/*
+/**
  * updateUseList__Q24Game9GeneratorFv
- * --INFO--
- * Address:	801AA928
- * Size:	000058
+ * @note Address: 0x801AA928
+ * @note Size: 0x58
  */
 void Generator::updateUseList()
 {
@@ -216,10 +201,9 @@ void Generator::updateUseList()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801AA984
- * Size:	000034
+/**
+ * @note Address: 0x801AA984
+ * @note Size: 0x34
  */
 bool Generator::isExpired()
 {
@@ -232,10 +216,9 @@ bool Generator::isExpired()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	801AA9B8
- * Size:	0000B8
+/**
+ * @note Address: 0x801AA9B8
+ * @note Size: 0xB8
  */
 bool Generator::loadCreature(Stream& input)
 {
@@ -258,10 +241,9 @@ bool Generator::loadCreature(Stream& input)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801AAA78
- * Size:	00007C
+/**
+ * @note Address: 0x801AAA78
+ * @note Size: 0x7C
  */
 bool Generator::need_saveCreature()
 {
@@ -278,11 +260,10 @@ bool Generator::need_saveCreature()
 	return shouldSave;
 }
 
-/*
+/**
  * saveCreature__Q24Game9GeneratorFR6Stream
- * --INFO--
- * Address:	801AAAF4
- * Size:	0000C8
+ * @note Address: 0x801AAAF4
+ * @note Size: 0xC8
  */
 void Generator::saveCreature(Stream& output)
 {
@@ -302,12 +283,11 @@ void Generator::saveCreature(Stream& output)
 	JUT_PANICLINE(448, "Generaotr::saveCreature creature is 0\n");
 }
 
-/*
+/**
  * generate__Q24Game9GeneratorFv
  *
- * --INFO--
- * Address:	801AABBC
- * Size:	000138
+ * @note Address: 0x801AABBC
+ * @note Size: 0x138
  */
 void Generator::generate()
 {
@@ -341,10 +321,9 @@ void Generator::generate()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801AACF4
- * Size:	000024
+/**
+ * @note Address: 0x801AACF4
+ * @note Size: 0x24
  */
 void Generator::informDeath(Game::Creature* creature)
 {
@@ -355,32 +334,29 @@ void Generator::informDeath(Game::Creature* creature)
 	mDeathCount++;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void Generator::update()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void Generator::render(Graphics&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
+/**
  * read__Q24Game9GeneratorFR6Stream
  *
- * --INFO--
- * Address:	801AAD18
- * Size:	0003A4
+ * @note Address: 0x801AAD18
+ * @note Size: 0x3A4
  */
 void Generator::read(Stream& input)
 {
@@ -448,12 +424,11 @@ void Generator::read(Stream& input)
 	}
 }
 
-/*
+/**
  * write__Q24Game9GeneratorFR6Stream
  *
- * --INFO--
- * Address:	801AB0BC
- * Size:	00039C
+ * @note Address: 0x801AB0BC
+ * @note Size: 0x39C
  */
 void Generator::write(Stream& output)
 {
@@ -509,12 +484,11 @@ void Generator::write(Stream& output)
 	}
 }
 
-/*
+/**
  * __ct__Q24Game12GeneratorMgrFv
  *
- * --INFO--
- * Address:	801AB458
- * Size:	000120
+ * @note Address: 0x801AB458
+ * @note Size: 0x120
  */
 GeneratorMgr::GeneratorMgr()
     : CNode("genMgr")
@@ -539,10 +513,9 @@ GeneratorMgr::GeneratorMgr()
 	mName = "GeneratorMgr";
 }
 
-/*
- * --INFO--
- * Address:	801AB578
- * Size:	00003C
+/**
+ * @note Address: 0x801AB578
+ * @note Size: 0x3C
  */
 void GeneratorMgr::addMgr(Game::GeneratorMgr* newMgr)
 {
@@ -559,20 +532,18 @@ void GeneratorMgr::addMgr(Game::GeneratorMgr* newMgr)
 	newMgr->mParentMgr         = this;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 bool GeneratorMgr::isRootMgr()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	801AB5B4
- * Size:	000148
+/**
+ * @note Address: 0x801AB5B4
+ * @note Size: 0x148
  */
 void GeneratorMgr::generate()
 {
@@ -581,10 +552,9 @@ void GeneratorMgr::generate()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801AB6FC
- * Size:	00001C
+/**
+ * @note Address: 0x801AB6FC
+ * @note Size: 0x1C
  */
 void GeneratorMgr::setDayLimit(int dayLimit)
 {
@@ -593,10 +563,9 @@ void GeneratorMgr::setDayLimit(int dayLimit)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801AB718
- * Size:	000098
+/**
+ * @note Address: 0x801AB718
+ * @note Size: 0x98
  */
 void GeneratorMgr::updateUseList()
 {
@@ -605,20 +574,18 @@ void GeneratorMgr::updateUseList()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 void GeneratorMgr::update()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00055C
+/**
+ * @note Address: N/A
+ * @note Size: 0x55C
  */
 void GeneratorMgr::render(Graphics& gfx)
 {
@@ -630,10 +597,9 @@ void GeneratorMgr::render(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801AB7C0
- * Size:	00043C
+/**
+ * @note Address: 0x801AB7C0
+ * @note Size: 0x43C
  */
 void GeneratorMgr::updateCursorPos(Vector3f& position)
 {
@@ -646,11 +612,10 @@ void GeneratorMgr::updateCursorPos(Vector3f& position)
 	}
 }
 
-/*
+/**
  * read__Q24Game12GeneratorMgrFR6Streamb
- * --INFO--
- * Address:	801ABC18
- * Size:	0002F0
+ * @note Address: 0x801ABC18
+ * @note Size: 0x2F0
  */
 void GeneratorMgr::read(Stream& input, bool)
 {
@@ -695,10 +660,9 @@ void GeneratorMgr::read(Stream& input, bool)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000118
+/**
+ * @note Address: N/A
+ * @note Size: 0x118
  */
 void GeneratorMgr::write(Stream& output)
 {
@@ -715,10 +679,9 @@ void GeneratorMgr::write(Stream& output)
 	output.textWriteText("\t# %d generators\r\n");
 }
 
-/*
- * --INFO--
- * Address:	801ABF08
- * Size:	0000D8
+/**
+ * @note Address: 0x801ABF08
+ * @note Size: 0xD8
  */
 void Generator::doAnimation()
 {
@@ -737,10 +700,9 @@ void Generator::doAnimation()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801ABFE0
- * Size:	000070
+/**
+ * @note Address: 0x801ABFE0
+ * @note Size: 0x70
  */
 void Generator::doEntry()
 {
@@ -753,10 +715,9 @@ void Generator::doEntry()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801AC050
- * Size:	000070
+/**
+ * @note Address: 0x801AC050
+ * @note Size: 0x70
  */
 void Generator::doSetView(int viewportNumber)
 {
@@ -769,10 +730,9 @@ void Generator::doSetView(int viewportNumber)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801AC0C0
- * Size:	000060
+/**
+ * @note Address: 0x801AC0C0
+ * @note Size: 0x60
  */
 void Generator::doViewCalc()
 {
@@ -785,12 +745,11 @@ void Generator::doViewCalc()
 	}
 }
 
-/*
+/**
  * doAnimation__Q24Game12GeneratorMgrFv
  *
- * --INFO--
- * Address:	801AC120
- * Size:	00007C
+ * @note Address: 0x801AC120
+ * @note Size: 0x7C
  */
 void GeneratorMgr::doAnimation()
 {
@@ -807,12 +766,11 @@ void GeneratorMgr::doAnimation()
 	}
 }
 
-/*
+/**
  * doAnimation__Q24Game12GeneratorMgrFv
  *
- * --INFO--
- * Address:	801AC19C
- * Size:	00007C
+ * @note Address: 0x801AC19C
+ * @note Size: 0x7C
  */
 void GeneratorMgr::doEntry()
 {
@@ -829,12 +787,11 @@ void GeneratorMgr::doEntry()
 	}
 }
 
-/*
+/**
  * doSetView__Q24Game12GeneratorMgrFi
  *
- * --INFO--
- * Address:	801AC218
- * Size:	000090
+ * @note Address: 0x801AC218
+ * @note Size: 0x90
  */
 void GeneratorMgr::doSetView(int viewportNumber)
 {
@@ -851,12 +808,11 @@ void GeneratorMgr::doSetView(int viewportNumber)
 	}
 }
 
-/*
+/**
  * doViewCalc__Q24Game12GeneratorMgrFv
  *
- * --INFO--
- * Address:	801AC2A8
- * Size:	00007C
+ * @note Address: 0x801AC2A8
+ * @note Size: 0x7C
  */
 void GeneratorMgr::doViewCalc()
 {

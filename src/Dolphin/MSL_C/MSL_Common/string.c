@@ -2,10 +2,9 @@
 #define K1 0x80808080
 #define K2 0xFEFEFEFF
 
-/*
- * --INFO--
- * Address:	800CA910
- * Size:	00001C
+/**
+ * @note Address: 0x800CA910
+ * @note Size: 0x1C
  */
 size_t(strlen)(const char* str)
 {
@@ -18,10 +17,9 @@ size_t(strlen)(const char* str)
 	return (len);
 }
 
-/*
- * --INFO--
- * Address:	800CA858
- * Size:	0000B8
+/**
+ * @note Address: 0x800CA858
+ * @note Size: 0xB8
  */
 char*(strcpy)(char* dst, const char* src)
 {
@@ -78,10 +76,9 @@ bytecopy:
 	return dst;
 }
 
-/*
- * --INFO--
- * Address:	800CA814
- * Size:	000044
+/**
+ * @note Address: 0x800CA814
+ * @note Size: 0x44
  */
 char* strncpy(char* dst, const char* src, size_t n)
 {
@@ -100,10 +97,9 @@ char* strncpy(char* dst, const char* src, size_t n)
 	return (dst);
 }
 
-/*
- * --INFO--
- * Address:	800CA7E8
- * Size:	00002C
+/**
+ * @note Address: 0x800CA7E8
+ * @note Size: 0x2C
  */
 char* strcat(char* dst, const char* src)
 {
@@ -121,20 +117,18 @@ char* strcat(char* dst, const char* src)
 	return (dst);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 void strncat(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800CA6C0
- * Size:	000128
+/**
+ * @note Address: 0x800CA6C0
+ * @note Size: 0x128
  */
 int strcmp(const char* str1, const char* str2)
 {
@@ -211,10 +205,9 @@ bytecopy:
 	} while (1);
 }
 
-/*
- * --INFO--
- * Address:	800CA680
- * Size:	000040
+/**
+ * @note Address: 0x800CA680
+ * @note Size: 0x40
  */
 int strncmp(const char* str1, const char* str2, size_t n)
 {
@@ -232,10 +225,9 @@ int strncmp(const char* str1, const char* str2, size_t n)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	800CA650
- * Size:	000030
+/**
+ * @note Address: 0x800CA650
+ * @note Size: 0x30
  */
 char* strchr(const char* str, int chr)
 {
@@ -250,30 +242,27 @@ char* strchr(const char* str, int chr)
 	return (c ? 0 : (char*)p);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 void strcoll(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
+/**
+ * @note Address: N/A
+ * @note Size: 0x80
  */
 void strxfrm(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800CA608
- * Size:	000048
+/**
+ * @note Address: 0x800CA608
+ * @note Size: 0x48
  */
 char* strrchr(const char* str, int chr)
 {
@@ -292,70 +281,63 @@ char* strrchr(const char* str, int chr)
 	return (c ? 0 : (char*)p);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D4
+/**
+ * @note Address: N/A
+ * @note Size: 0xD4
  */
 void strpbrk(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D0
+/**
+ * @note Address: N/A
+ * @note Size: 0xD0
  */
 void strspn(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D0
+/**
+ * @note Address: N/A
+ * @note Size: 0xD0
  */
 void strcspn(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00013C
+/**
+ * @note Address: N/A
+ * @note Size: 0x13C
  */
 void strtok(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000068
+/**
+ * @note Address: N/A
+ * @note Size: 0x68
  */
 void strstr(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 void strerror(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000458
+/**
+ * @note Address: N/A
+ * @note Size: 0x458
  */
 void __strerror(void)
 {

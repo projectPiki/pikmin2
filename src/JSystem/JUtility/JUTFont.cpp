@@ -2,18 +2,16 @@
 #include "types.h"
 #include "JSystem/JUtility/JUTFont.h"
 
-/*
- * --INFO--
- * Address:	8002D144
- * Size:	00002C
+/**
+ * @note Address: 0x8002D144
+ * @note Size: 0x2C
  * Matches
  */
 JUTFont::JUTFont() { mIsValid = false; }
 
-/*
- * --INFO--
- * Address:	8002D170
- * Size:	00004C
+/**
+ * @note Address: 0x8002D170
+ * @note Size: 0x4C
  * Matches
  */
 void JUTFont::initialize_state()
@@ -24,10 +22,9 @@ void JUTFont::initialize_state()
 	mIsValid    = false;
 }
 
-/*
- * --INFO--
- * Address:	8002D1BC
- * Size:	000054
+/**
+ * @note Address: 0x8002D1BC
+ * @note Size: 0x54
  * Matches
  */
 void JUTFont::setCharColor(JUtility::TColor color)
@@ -38,10 +35,9 @@ void JUTFont::setCharColor(JUtility::TColor color)
 	mColor4 = color;
 }
 
-/*
- * --INFO--
- * Address:	8002D210
- * Size:	000064
+/**
+ * @note Address: 0x8002D210
+ * @note Size: 0x64
  * Matches
  */
 void JUTFont::setGradColor(JUtility::TColor color, JUtility::TColor color2)
@@ -52,10 +48,9 @@ void JUTFont::setGradColor(JUtility::TColor color, JUtility::TColor color2)
 	mColor4 = color2;
 }
 
-/*
- * --INFO--
- * Address:	8002D274
- * Size:	000118
+/**
+ * @note Address: 0x8002D274
+ * @note Size: 0x118
  * Matches
  */
 f32 JUTFont::drawString_size_scale(f32 w, f32 x, f32 y, f32 z, const char* str, u32 u, bool flag)

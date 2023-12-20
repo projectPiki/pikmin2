@@ -53,10 +53,9 @@ typedef __builtin_va_list va_list;
 #define va_arg(v, l)   __builtin_va_arg(v, l)
 #endif
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0 or 0000E4, depending on param.
+/**
+ * @note Address: N/A
+ * @note Size: 0xE0 or 0xE4, depending on param.
  */
 #define DEFINE__PRINT(unit) \
 	inline static void _Print(char*, ...) { printf(unit); }

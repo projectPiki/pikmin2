@@ -9,10 +9,9 @@ const f32 cTubeShadowRadius[8]   = { 17.5f, 16.5f, 13.5f, 11.0f, 9.0f, 7.0f, 6.0
 } // namespace
 } // namespace SnakeCrow
 
-/*
- * --INFO--
- * Address:	802F8090
- * Size:	00022C
+/**
+ * @note Address: 0x802F8090
+ * @note Size: 0x22C
  */
 void SnakeCrowTubeShadowNode::makeShadowSRT(JointShadowParm& parm, Vector3f& pos1, Vector3f& pos2)
 {
@@ -195,10 +194,9 @@ void SnakeCrowTubeShadowNode::makeShadowSRT(JointShadowParm& parm, Vector3f& pos
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802F82BC
- * Size:	00012C
+/**
+ * @note Address: 0x802F82BC
+ * @note Size: 0x12C
  */
 void SnakeCrowSphereShadowNode::makeShadowSRT(JointShadowParm& parm, Vector3f& pos)
 {
@@ -227,10 +225,9 @@ void SnakeCrowSphereShadowNode::makeShadowSRT(JointShadowParm& parm, Vector3f& p
 }
 
 namespace SnakeCrow {
-/*
- * --INFO--
- * Address:	802F83E8
- * Size:	0000EC
+/**
+ * @note Address: 0x802F83E8
+ * @note Size: 0xEC
  */
 SnakeCrowShadowMgr::SnakeCrowShadowMgr(Obj* owner)
 {
@@ -246,10 +243,9 @@ SnakeCrowShadowMgr::SnakeCrowShadowMgr(Obj* owner)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802F84D4
- * Size:	0000C0
+/**
+ * @note Address: 0x802F84D4
+ * @note Size: 0xC0
  */
 void SnakeCrowShadowMgr::init()
 {
@@ -261,10 +257,9 @@ void SnakeCrowShadowMgr::init()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802F8594
- * Size:	000078
+/**
+ * @note Address: 0x802F8594
+ * @note Size: 0x78
  */
 void SnakeCrowShadowMgr::startJointShadow()
 {
@@ -276,10 +271,9 @@ void SnakeCrowShadowMgr::startJointShadow()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802F860C
- * Size:	000064
+/**
+ * @note Address: 0x802F860C
+ * @note Size: 0x64
  */
 void SnakeCrowShadowMgr::finishJointShadow()
 {
@@ -291,10 +285,9 @@ void SnakeCrowShadowMgr::finishJointShadow()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802F8670
- * Size:	00025C
+/**
+ * @note Address: 0x802F8670
+ * @note Size: 0x25C
  */
 void SnakeCrowShadowMgr::update()
 {

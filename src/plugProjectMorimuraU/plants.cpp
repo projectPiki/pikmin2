@@ -10,10 +10,9 @@
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	803583CC
- * Size:	000050
+/**
+ * @note Address: 0x803583CC
+ * @note Size: 0x50
  */
 void Plants::Obj::setParameters()
 {
@@ -23,17 +22,15 @@ void Plants::Obj::setParameters()
 	mCurLodSphere.mPosition = pos;
 }
 
-/*
- * --INFO--
- * Address:	8035841C
- * Size:	000020
+/**
+ * @note Address: 0x8035841C
+ * @note Size: 0x20
  */
 void Plants::Obj::birth(Vector3f& position, f32 faceDir) { EnemyBase::birth(position, faceDir); }
 
-/*
- * --INFO--
- * Address:	8035843C
- * Size:	0001A8
+/**
+ * @note Address: 0x8035843C
+ * @note Size: 0x1A8
  */
 void Plants::Obj::onInit(CreatureInitArg* initArg)
 {
@@ -75,17 +72,15 @@ void Plants::Obj::onInit(CreatureInitArg* initArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803585E4
- * Size:	0000EC
+/**
+ * @note Address: 0x803585E4
+ * @note Size: 0xEC
  */
 Plants::Obj::Obj() { mAnimator = new ProperAnimator; }
 
-/*
- * --INFO--
- * Address:	803586D0
- * Size:	000048
+/**
+ * @note Address: 0x803586D0
+ * @note Size: 0x48
  */
 void Plants::Obj::update()
 {
@@ -94,10 +89,9 @@ void Plants::Obj::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80358718
- * Size:	00006C
+/**
+ * @note Address: 0x80358718
+ * @note Size: 0x6C
  */
 void Plants::Obj::doAnimation()
 {
@@ -109,10 +103,9 @@ void Plants::Obj::doAnimation()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80358784
- * Size:	00009C
+/**
+ * @note Address: 0x80358784
+ * @note Size: 0x9C
  */
 void Plants::Obj::doAnimationCullingOff()
 {
@@ -127,17 +120,15 @@ void Plants::Obj::doAnimationCullingOff()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80358820
- * Size:	000020
+/**
+ * @note Address: 0x80358820
+ * @note Size: 0x20
  */
 void Plants::Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	80358840
- * Size:	000150
+/**
+ * @note Address: 0x80358840
+ * @note Size: 0x150
  */
 void Plants::Obj::collisionCallback(CollEvent& collEvent)
 {
@@ -166,10 +157,9 @@ void Plants::Obj::collisionCallback(CollEvent& collEvent)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80358990
- * Size:	000060
+/**
+ * @note Address: 0x80358990
+ * @note Size: 0x60
  */
 bool Plants::Obj::earthquakeCallBack(Creature* creature, f32 damage)
 {
@@ -182,10 +172,9 @@ bool Plants::Obj::earthquakeCallBack(Creature* creature, f32 damage)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803589F0
- * Size:	0000A0
+/**
+ * @note Address: 0x803589F0
+ * @note Size: 0xA0
  */
 void Plants::Obj::touched()
 {
@@ -203,10 +192,9 @@ void Plants::Obj::touched()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80358A90
- * Size:	000040
+/**
+ * @note Address: 0x80358A90
+ * @note Size: 0x40
  */
 void Plants::Obj::touchedSE(Navi* navi)
 {
@@ -215,10 +203,9 @@ void Plants::Obj::touchedSE(Navi* navi)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80358AD0
- * Size:	000040
+/**
+ * @note Address: 0x80358AD0
+ * @note Size: 0x40
  */
 void HikariKinoko::Obj::touchedSE(Navi* navi)
 {
@@ -227,10 +214,9 @@ void HikariKinoko::Obj::touchedSE(Navi* navi)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80358B10
- * Size:	000048
+/**
+ * @note Address: 0x80358B10
+ * @note Size: 0x48
  */
 void Watage::Obj::doEntry()
 {
@@ -239,10 +225,9 @@ void Watage::Obj::doEntry()
 	gameSystem->setDrawBuffer(0);
 }
 
-/*
- * --INFO--
- * Address:	80358B58
- * Size:	000104
+/**
+ * @note Address: 0x80358B58
+ * @note Size: 0x104
  */
 void Watage::Obj::touched()
 {
@@ -265,10 +250,9 @@ void Watage::Obj::touched()
 	watageEFX.create(&arg);
 }
 
-/*
- * --INFO--
- * Address:	80358C5C
- * Size:	000048
+/**
+ * @note Address: 0x80358C5C
+ * @note Size: 0x48
  */
 void Nekojarashi::Obj::doEntry()
 {
@@ -277,10 +261,9 @@ void Nekojarashi::Obj::doEntry()
 	gameSystem->setDrawBuffer(0);
 }
 
-/*
- * --INFO--
- * Address:	80358CA4
- * Size:	000040
+/**
+ * @note Address: 0x80358CA4
+ * @note Size: 0x40
  */
 void DiodeRed::Obj::touchedSE(Navi* navi)
 {
@@ -289,10 +272,9 @@ void DiodeRed::Obj::touchedSE(Navi* navi)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80358CE4
- * Size:	000048
+/**
+ * @note Address: 0x80358CE4
+ * @note Size: 0x48
  */
 void DiodeRed::Obj::doEntry()
 {
@@ -301,10 +283,9 @@ void DiodeRed::Obj::doEntry()
 	gameSystem->setDrawBuffer(0);
 }
 
-/*
- * --INFO--
- * Address:	80358D2C
- * Size:	000040
+/**
+ * @note Address: 0x80358D2C
+ * @note Size: 0x40
  */
 void DiodeGreen::Obj::touchedSE(Navi* navi)
 {
@@ -313,10 +294,9 @@ void DiodeGreen::Obj::touchedSE(Navi* navi)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80358D6C
- * Size:	000048
+/**
+ * @note Address: 0x80358D6C
+ * @note Size: 0x48
  */
 void DiodeGreen::Obj::doEntry()
 {

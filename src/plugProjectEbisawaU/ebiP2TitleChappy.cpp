@@ -14,10 +14,9 @@ namespace title {
 static const int unusedTitleChappyArray[] = { 0, 0, 0 };
 static const char ebiP2TitleChappyName[]  = "ebiP2TitleChappy";
 
-/*
- * --INFO--
- * Address:	803E85D8
- * Size:	000150
+/**
+ * @note Address: 0x803E85D8
+ * @note Size: 0x150
  */
 Chappy::TMgr::TMgr()
     : CNode("ChappyMgr")
@@ -26,10 +25,9 @@ Chappy::TMgr::TMgr()
 	mObject   = new TUnit;
 }
 
-/*
- * --INFO--
- * Address:	803E8728
- * Size:	000050
+/**
+ * @note Address: 0x803E8728
+ * @note Size: 0x50
  */
 void Chappy::TMgr::setArchive(JKRArchive* arc)
 {
@@ -37,17 +35,15 @@ void Chappy::TMgr::setArchive(JKRArchive* arc)
 	mAnimator->setArchive(arc);
 }
 
-/*
- * --INFO--
- * Address:	803E8778
- * Size:	000028
+/**
+ * @note Address: 0x803E8778
+ * @note Size: 0x28
  */
 void Chappy::TMgr::initUnit() { mObject->init(this); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C8
+/**
+ * @note Address: N/A
+ * @note Size: 0xC8
  */
 void Chappy::TAnimFolder::load(J3DModelData* data, JKRArchive* arc)
 {
@@ -65,17 +61,15 @@ void Chappy::TAnimFolder::load(J3DModelData* data, JKRArchive* arc)
 	mAnims[3].load(data, arc, "chappy/waitact2.bck");
 }
 
-/*
- * --INFO--
- * Address:	803E87A0
- * Size:	000068
+/**
+ * @note Address: 0x803E87A0
+ * @note Size: 0x68
  */
 Chappy::TAnimator::TAnimator() { mModelData = nullptr; }
 
-/*
- * --INFO--
- * Address:	803E8808
- * Size:	000128
+/**
+ * @note Address: 0x803E8808
+ * @note Size: 0x128
  */
 void Chappy::TAnimator::setArchive(JKRArchive* arc)
 {
@@ -89,24 +83,21 @@ void Chappy::TAnimator::setArchive(JKRArchive* arc)
 	mAnimFolder.load(mModelData, arc);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
+/**
+ * @note Address: N/A
+ * @note Size: 0x78
  */
 J3DModel* Chappy::TAnimator::newJ3DModel() { return new J3DModel(mModelData, 0x20000, 1); }
 
-/*
- * --INFO--
- * Address:	803E8930
- * Size:	000008
+/**
+ * @note Address: 0x803E8930
+ * @note Size: 0x8
  */
 void Chappy::TUnit::setController(Controller* control) { mController = control; }
 
-/*
- * --INFO--
- * Address:	803E8938
- * Size:	0000F4
+/**
+ * @note Address: 0x803E8938
+ * @note Size: 0xF4
  */
 void Chappy::TUnit::init(TMgr* mgr)
 {
@@ -122,10 +113,9 @@ void Chappy::TUnit::init(TMgr* mgr)
 	mParms[3] = mManager->mParams.mPikiReactRadius.mValue;
 }
 
-/*
- * --INFO--
- * Address:	803E8A2C
- * Size:	000054
+/**
+ * @note Address: 0x803E8A2C
+ * @note Size: 0x54
  */
 void Chappy::TUnit::startZigzagWalk(Vector2f& position, Vector2f& targetPosition)
 {
@@ -136,10 +126,9 @@ void Chappy::TUnit::startZigzagWalk(Vector2f& position, Vector2f& targetPosition
 	startAIState_(CHAPPYAI_EscapeScreen);
 }
 
-/*
- * --INFO--
- * Address:	803E8A80
- * Size:	000030
+/**
+ * @note Address: 0x803E8A80
+ * @note Size: 0x30
  */
 void Chappy::TUnit::goHome()
 {
@@ -150,31 +139,27 @@ void Chappy::TUnit::goHome()
 	startAIState_(CHAPPYAI_GoHome);
 }
 
-/*
- * --INFO--
- * Address:	803E8AB0
- * Size:	000024
+/**
+ * @note Address: 0x803E8AB0
+ * @note Size: 0x24
  */
 void Chappy::TUnit::outOfCalc() { startAIState_(CHAPPYAI_Inactive); }
 
-/*
- * --INFO--
- * Address:	803E8AD4
- * Size:	000014
+/**
+ * @note Address: 0x803E8AD4
+ * @note Size: 0x14
  */
 bool Chappy::TUnit::isCalc() { return mStateID != CHAPPYAI_Inactive; }
 
-/*
- * --INFO--
- * Address:	803E8AE8
- * Size:	000014
+/**
+ * @note Address: 0x803E8AE8
+ * @note Size: 0x14
  */
 bool Chappy::TUnit::isController() { return (u8)(mStateID == CHAPPYAI_Controlled); }
 
-/*
- * --INFO--
- * Address:	803E8AFC
- * Size:	000318
+/**
+ * @note Address: 0x803E8AFC
+ * @note Size: 0x318
  */
 void Chappy::TUnit::startAIState_(enumAIState state)
 {
@@ -248,10 +233,9 @@ void Chappy::TUnit::startAIState_(enumAIState state)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000100
+/**
+ * @note Address: N/A
+ * @note Size: 0x100
  */
 void Chappy::TUnit::startAction_(Chappy::TUnit::enumAction actionID)
 {
@@ -286,10 +270,9 @@ void Chappy::TUnit::startAction_(Chappy::TUnit::enumAction actionID)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E8E14
- * Size:	000A64
+/**
+ * @note Address: 0x803E8E14
+ * @note Size: 0xA64
  */
 void Chappy::TUnit::update()
 {

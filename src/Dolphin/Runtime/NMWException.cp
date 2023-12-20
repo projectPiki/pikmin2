@@ -8,28 +8,25 @@ extern void abort();
 }
 
 namespace std {
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 static void dthandler() { abort(); }
 
 static terminate_handler thandler = dthandler;
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 static void duhandler() { terminate(); }
 
 static unexpected_handler uhandler = duhandler;
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 extern terminate_handler set_terminate(terminate_handler handler)
 {
@@ -38,17 +35,15 @@ extern terminate_handler set_terminate(terminate_handler handler)
 	return old;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 extern void terminate() { thandler(); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 extern unexpected_handler set_unexpected(unexpected_handler handler)
 {
@@ -57,18 +52,16 @@ extern unexpected_handler set_unexpected(unexpected_handler handler)
 	return old;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 extern void unexpected() { uhandler(); }
 } // namespace std
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00022C
+/**
+ * @note Address: N/A
+ * @note Size: 0x22C
  */
 extern char __throw_catch_compare(const char* throwtype, const char* catchtype, long* offset_result)
 {
@@ -185,10 +178,9 @@ public:
 	}
 };
 
-/*
- * --INFO--
- * Address:	800C19F0
- * Size:	000104
+/**
+ * @note Address: 0x800C19F0
+ * @note Size: 0x104
  */
 extern void* __construct_new_array(void* block, ConstructorDestructor ctor, ConstructorDestructor dtor, size_t size, size_t n)
 {
@@ -213,10 +205,9 @@ extern void* __construct_new_array(void* block, ConstructorDestructor ctor, Cons
 	return ptr;
 }
 
-/*
- * --INFO--
- * Address:	800C183C
- * Size:	0000FC
+/**
+ * @note Address: 0x800C183C
+ * @note Size: 0xFC
  */
 extern void __construct_array(void* ptr, ConstructorDestructor ctor, ConstructorDestructor dtor, size_t size, size_t n)
 {
@@ -228,10 +219,9 @@ extern void __construct_array(void* ptr, ConstructorDestructor ctor, Constructor
 	}
 }
 
-/*
- * --INFO--
- * Address:	800C17C4
- * Size:	000078
+/**
+ * @note Address: 0x800C17C4
+ * @note Size: 0x78
  */
 extern void __destroy_arr(void* block, ConstructorDestructor* dtor, size_t size, size_t n)
 {
@@ -243,10 +233,9 @@ extern void __destroy_arr(void* block, ConstructorDestructor* dtor, size_t size,
 	}
 }
 
-/*
- * --INFO--
- * Address:	800C1748
- * Size:	00007C
+/**
+ * @note Address: 0x800C1748
+ * @note Size: 0x7C
  */
 extern void __destroy_new_array(void* block, ConstructorDestructor dtor)
 {
@@ -269,20 +258,18 @@ extern void __destroy_new_array(void* block, ConstructorDestructor dtor)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
+/**
+ * @note Address: N/A
+ * @note Size: 0x80
  */
 void __destroy_new_array2(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000BC
+/**
+ * @note Address: N/A
+ * @note Size: 0xBC
  */
 void __destroy_new_array3(void)
 {

@@ -10,10 +10,9 @@ JUTProcBar* JUTProcBar::sManager;
 f32 oneFrameRate     = 8.0f;
 f32 oneFrameRateUser = 10.0f;
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000114
+/**
+ * @note Address: N/A
+ * @note Size: 0x114
  */
 JUTProcBar::JUTProcBar()
 {
@@ -37,10 +36,9 @@ JUTProcBar::JUTProcBar()
 	mWatchHeap = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
+/**
+ * @note Address: N/A
+ * @note Size: 0x44
  */
 JUTProcBar::~JUTProcBar()
 {
@@ -48,10 +46,9 @@ JUTProcBar::~JUTProcBar()
 	sManager = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8002EFF4
- * Size:	000130
+/**
+ * @note Address: 0x8002EFF4
+ * @note Size: 0x130
  */
 JUTProcBar* JUTProcBar::create()
 {
@@ -61,10 +58,9 @@ JUTProcBar* JUTProcBar::create()
 	return sManager;
 }
 
-/*
- * --INFO--
- * Address:	8002F124
- * Size:	000040
+/**
+ * @note Address: 0x8002F124
+ * @note Size: 0x40
  */
 void JUTProcBar::destroy()
 {
@@ -74,10 +70,9 @@ void JUTProcBar::destroy()
 	sManager = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8002F164
- * Size:	0000D0
+/**
+ * @note Address: 0x8002F164
+ * @note Size: 0xD0
  */
 void JUTProcBar::clear()
 {
@@ -90,10 +85,9 @@ void JUTProcBar::clear()
 	oneFrameRateUser = 10.0f;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00018C
+/**
+ * @note Address: N/A
+ * @note Size: 0x18C
  */
 void JUTProcBar::bar_subroutine(int param_0, int param_1, int param_2, int param_3, int param_4, int param_5, int param_6,
                                 JUtility::TColor param_7, JUtility::TColor param_8)
@@ -110,10 +104,9 @@ void JUTProcBar::bar_subroutine(int param_0, int param_1, int param_2, int param
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000144
+/**
+ * @note Address: N/A
+ * @note Size: 0x144
  */
 void JUTProcBar::adjustMeterLength(u32 param_0, f32* param_1, f32 param_2, f32 param_3, int* param_4)
 {
@@ -143,10 +136,9 @@ void JUTProcBar::adjustMeterLength(u32 param_0, f32* param_1, f32 param_2, f32 p
 	*param_1 = var1;
 }
 
-/*
- * --INFO--
- * Address:	8002F234
- * Size:	000034
+/**
+ * @note Address: 0x8002F234
+ * @note Size: 0x34
  */
 void JUTProcBar::draw()
 {
@@ -154,10 +146,9 @@ void JUTProcBar::draw()
 	drawHeapBar();
 }
 
-/*
- * --INFO--
- * Address:	8002F268
- * Size:	001814
+/**
+ * @note Address: 0x8002F268
+ * @note Size: 0x1814
  */
 void JUTProcBar::drawProcessBar()
 {
@@ -274,34 +265,30 @@ void JUTProcBar::drawProcessBar()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D0
+/**
+ * @note Address: N/A
+ * @note Size: 0xD0
  */
 void JUTProcBar::getUnuseUserBar()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000068
+/**
+ * @note Address: N/A
+ * @note Size: 0x68
  */
 int addrToXPos(void* param_0, int param_1) { return param_1 * (((u32)param_0 - 0x80000000) / (float)JKRHeap::getMemorySize()); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000068
+/**
+ * @note Address: N/A
+ * @note Size: 0x68
  */
 int byteToXLen(int param_0, int param_1) { return param_1 * (param_0 / (float)JKRHeap::getMemorySize()); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000264
+/**
+ * @note Address: N/A
+ * @note Size: 0x264
  */
 void heapBar(JKRHeap* param_0, int param_1, int param_2, int param_3, int param_4, int param_5)
 {
@@ -312,10 +299,9 @@ void heapBar(JKRHeap* param_0, int param_1, int param_2, int param_3, int param_
 	J2DFillBox(stack52, param_2 - param_5 * 2 + param_5 / 2, stack36, param_5 / 2, JUtility::TColor(255, 180, 250, 255));
 }
 
-/*
- * --INFO--
- * Address:	80030A7C
- * Size:	000704
+/**
+ * @note Address: 0x80030A7C
+ * @note Size: 0x704
  */
 void JUTProcBar::drawHeapBar()
 { // barWidth * 2 / 2 is a workaround, if height / 2 is used and barWidth * 2 gets replaced with height then there will be regswaps

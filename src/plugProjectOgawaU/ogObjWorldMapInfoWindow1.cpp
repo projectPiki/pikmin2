@@ -9,10 +9,9 @@
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	8032BC48
- * Size:	000080
+/**
+ * @note Address: 0x8032BC48
+ * @note Size: 0x80
  */
 ObjWorldMapInfoWindow1::ObjWorldMapInfoWindow1(char const* name)
     : ObjSMenuPauseVS("SMenuPauseVS screen")
@@ -27,10 +26,9 @@ ObjWorldMapInfoWindow1::ObjWorldMapInfoWindow1(char const* name)
 	mAnimText2     = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8032BCC8
- * Size:	000300
+/**
+ * @note Address: 0x8032BCC8
+ * @note Size: 0x300
  */
 void ObjWorldMapInfoWindow1::doCreate(JKRArchive* arc)
 {
@@ -66,10 +64,9 @@ void ObjWorldMapInfoWindow1::doCreate(JKRArchive* arc)
 	blink_Menu(mCurrMenuSel);
 }
 
-/*
- * --INFO--
- * Address:	8032BFC8
- * Size:	00005C
+/**
+ * @note Address: 0x8032BFC8
+ * @note Size: 0x5C
  */
 bool ObjWorldMapInfoWindow1::doStart(::Screen::StartSceneArg const*)
 {
@@ -79,17 +76,15 @@ bool ObjWorldMapInfoWindow1::doStart(::Screen::StartSceneArg const*)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8032C024
- * Size:	000020
+/**
+ * @note Address: 0x8032C024
+ * @note Size: 0x20
  */
 void ObjWorldMapInfoWindow1::commonUpdate() { ObjSMenuPauseVS::commonUpdate(); }
 
-/*
- * --INFO--
- * Address:	8032C044
- * Size:	000038
+/**
+ * @note Address: 0x8032C044
+ * @note Size: 0x38
  */
 void ObjWorldMapInfoWindow1::out_cancel()
 {
@@ -97,10 +92,9 @@ void ObjWorldMapInfoWindow1::out_cancel()
 	out_L();
 }
 
-/*
- * --INFO--
- * Address:	8032C07C
- * Size:	000038
+/**
+ * @note Address: 0x8032C07C
+ * @note Size: 0x38
  */
 void ObjWorldMapInfoWindow1::out_menu_0()
 {
@@ -108,10 +102,9 @@ void ObjWorldMapInfoWindow1::out_menu_0()
 	out_L();
 }
 
-/*
- * --INFO--
- * Address:	8032C0B4
- * Size:	000038
+/**
+ * @note Address: 0x8032C0B4
+ * @note Size: 0x38
  */
 void ObjWorldMapInfoWindow1::out_menu_1()
 {
@@ -119,17 +112,15 @@ void ObjWorldMapInfoWindow1::out_menu_1()
 	out_L();
 }
 
-/*
- * --INFO--
- * Address:	8032C0EC
- * Size:	00000C
+/**
+ * @note Address: 0x8032C0EC
+ * @note Size: 0xC
  */
 void ObjWorldMapInfoWindow1::out_L() { mState = ObjSMenuBase::MENUSTATE_CloseL; }
 
-/*
- * --INFO--
- * Address:	8032C0F8
- * Size:	00006C
+/**
+ * @note Address: 0x8032C0F8
+ * @note Size: 0x6C
  */
 void ObjWorldMapInfoWindow1::doUpdateFadeoutFinish()
 {
@@ -137,10 +128,9 @@ void ObjWorldMapInfoWindow1::doUpdateFadeoutFinish()
 	getOwner()->setColorBG(0, 0, 0, 0);
 }
 
-/*
- * --INFO--
- * Address:	8032C164
- * Size:	00000C
+/**
+ * @note Address: 0x8032C164
+ * @note Size: 0xC
  */
 int ObjWorldMapInfoWindow1::getResult() { return mDispWmap->mResult; }
 

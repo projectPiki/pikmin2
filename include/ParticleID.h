@@ -1,7 +1,7 @@
 #ifndef _PARTICLEID_H
 #define _PARTICLEID_H
 
-/*
+/**
  * Particle ID define list for efx headers, for game.jpc
  * - IDs are u16s.
  * - TODO: make define list for cutscene effects.

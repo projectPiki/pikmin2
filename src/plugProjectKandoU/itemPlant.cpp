@@ -33,7 +33,7 @@ Mgr* mgr;
  *
  * @param item Unused.
  *
- * @note Address: 801DCE28
+ * @note Address: 0x801DCE28
  * @note Size: 0x18C
  */
 void FSM::init(Item* item)
@@ -51,7 +51,7 @@ void FSM::init(Item* item)
  * @param item Item acted on by state machine.
  * @param stateArg Unused.
  *
- * @note Address: 801DCFB4
+ * @note Address: 0x801DCFB4
  * @note Size: 0x34
  */
 void NormalState::init(Item* item, StateArg* stateArg) { item->startMotion(PLANTMOTION_Normal); }
@@ -64,7 +64,7 @@ void NormalState::init(Item* item, StateArg* stateArg) { item->startMotion(PLANT
  *
  * @param item Item acted on by state machine.
  *
- * @note Address: 801DCFEC
+ * @note Address: 0x801DCFEC
  * @note Size: 0x128
  */
 void NormalState::exec(Item* item)
@@ -101,7 +101,7 @@ void NormalState::exec(Item* item)
  *
  * @param item Unused.
  *
- * @note Address: 801DD148
+ * @note Address: 0x801DD148
  * @note Size: 0x4
  */
 void NormalState::cleanup(Item* item) { }
@@ -111,7 +111,7 @@ void NormalState::cleanup(Item* item) { }
  *
  * @param item Item acted on by state machine.
  *
- * @note Address: 801DD14C
+ * @note Address: 0x801DD14C
  * @note Size: 0x34
  */
 void NormalState::eventKarero(Item* item) { transit(item, ITEMPLANT_Kareru, nullptr); }
@@ -122,7 +122,7 @@ void NormalState::eventKarero(Item* item) { transit(item, ITEMPLANT_Kareru, null
  * @param item Item acted on by state machine.
  * @param damage Damage to add.
  *
- * @note Address: 801DD180
+ * @note Address: 0x801DD180
  * @note Size: 0x5C
  */
 void NormalState::onDamage(Item* item, f32 damage)
@@ -137,7 +137,7 @@ void NormalState::onDamage(Item* item, f32 damage)
  * @param item Item acted on by state machine.
  * @param stateArg Unused.
  *
- * @note Address: 801DD1DC
+ * @note Address: 0x801DD1DC
  * @note Size: 0x48
  */
 void DamagedState::init(Item* item, StateArg* stateArg)
@@ -151,7 +151,7 @@ void DamagedState::init(Item* item, StateArg* stateArg)
  *
  * @param item Unused.
  *
- * @note Address: 801DD224
+ * @note Address: 0x801DD224
  * @note Size: 0x4
  */
 void DamagedState::exec(Item* item) { }
@@ -161,7 +161,7 @@ void DamagedState::exec(Item* item) { }
  *
  * @param item Unused.
  *
- * @note Address: 801DD228
+ * @note Address: 0x801DD228
  * @note Size: 0x4
  */
 void DamagedState::cleanup(Item* item) { }
@@ -171,7 +171,7 @@ void DamagedState::cleanup(Item* item) { }
  *
  * @param item Unused.
  *
- * @note Address: 801DD22C
+ * @note Address: 0x801DD22C
  * @note Size: 0xC
  */
 void DamagedState::eventKarero(Item* item) { mHasMold = true; }
@@ -183,7 +183,7 @@ void DamagedState::eventKarero(Item* item) { mHasMold = true; }
  * @param item Item acted on by state machine.
  * @param event Key event (triggered by animation).
  *
- * @note Address: 801DD238
+ * @note Address: 0x801DD238
  * @note Size: 0x5C
  */
 void DamagedState::onKeyEvent(Item* item, const SysShape::KeyEvent& event)
@@ -202,7 +202,7 @@ void DamagedState::onKeyEvent(Item* item, const SysShape::KeyEvent& event)
  * @param damage Damage to add.
  *
  *
- * @note Address: 801DD294
+ * @note Address: 0x801DD294
  * @note Size: 0x24
  */
 void DamagedState::onDamage(Item* item, f32 damage) { item->addDamage(damage); }
@@ -214,7 +214,7 @@ void DamagedState::onDamage(Item* item, f32 damage) { item->addDamage(damage); }
  * @param item Item acted on by state machine.
  * @param stateArg Unused.
  *
- * @note Address: 801DD2B8
+ * @note Address: 0x801DD2B8
  * @note Size: 0x74
  */
 void GrowUpState::init(Item* item, StateArg* stateArg)
@@ -230,7 +230,7 @@ void GrowUpState::init(Item* item, StateArg* stateArg)
  *
  * @param item Unused.
  *
- * @note Address: 801DD32C
+ * @note Address: 0x801DD32C
  * @note Size: 0x4
  */
 void GrowUpState::exec(Item* item) { }
@@ -240,7 +240,7 @@ void GrowUpState::exec(Item* item) { }
  *
  * @param item Unused.
  *
- * @note Address: 801DD330
+ * @note Address: 0x801DD330
  * @note Size: 0x4
  */
 void GrowUpState::cleanup(Item* item) { }
@@ -250,7 +250,7 @@ void GrowUpState::cleanup(Item* item) { }
  *
  * @param item Unused.
  *
- * @note Address: 801DD334
+ * @note Address: 0x801DD334
  * @note Size: 0xC
  */
 void GrowUpState::eventKarero(Item*) { mHasMold = true; }
@@ -267,7 +267,7 @@ void GrowUpState::eventKarero(Item*) { mHasMold = true; }
  *
  * @throws Panic if growth state ends up more than 'large' (2).
  *
- * @note Address: 801DD340
+ * @note Address: 0x801DD340
  * @note Size: 0x120
  */
 void GrowUpState::onKeyEvent(Item* item, const SysShape::KeyEvent& event)
@@ -301,7 +301,7 @@ void GrowUpState::onKeyEvent(Item* item, const SysShape::KeyEvent& event)
  * @param item Item acted on by state machine.
  * @param damage Damage to add.
  *
- * @note Address: 801DD460
+ * @note Address: 0x801DD460
  * @note Size: 0x24
  */
 void GrowUpState::onDamage(Item* item, f32 damage) { item->addDamage(damage); }
@@ -313,7 +313,7 @@ void GrowUpState::onDamage(Item* item, f32 damage) { item->addDamage(damage); }
  * @param item Item acted on by state machine.
  * @param stateArg Unused.
  *
- * @note Address: 801DD484
+ * @note Address: 0x801DD484
  * @note Size: 0x7C
  */
 void KareruState::init(Item* item, StateArg* stateArg)
@@ -332,7 +332,7 @@ void KareruState::init(Item* item, StateArg* stateArg)
  *
  * @param item Item acted on by state machine.
  *
- * @note Address: 801DD504
+ * @note Address: 0x801DD504
  * @note Size: 0x8C
  */
 void KareruState::exec(Item* item)
@@ -350,7 +350,7 @@ void KareruState::exec(Item* item)
  *
  * @param item Unused.
  *
- * @note Address: 801DD590
+ * @note Address: 0x801DD590
  * @note Size: 0x4
  */
 void KareruState::cleanup(Item* item) { }
@@ -360,7 +360,7 @@ void KareruState::cleanup(Item* item) { }
  *
  * @param item Unused.
  *
- * @note Address: 801DD594
+ * @note Address: 0x801DD594
  * @note Size: 0x18
  */
 void KareruState::eventHaero(Item* item)
@@ -379,7 +379,7 @@ void KareruState::eventHaero(Item* item)
  * @param item Item acted on by state machine.
  * @param event Key event (triggered by animation).
  *
- * @note Address: 801DD5AC
+ * @note Address: 0x801DD5AC
  * @note Size: 0xA4
  */
 void KareruState::onKeyEvent(Item* item, const SysShape::KeyEvent& event)
@@ -408,7 +408,7 @@ void KareruState::onKeyEvent(Item* item, const SysShape::KeyEvent& event)
  * @param item Item acted on by state machine.
  * @param damage Unused.
  *
- * @note Address: 801DD650
+ * @note Address: 0x801DD650
  * @note Size: 0x4
  */
 void KareruState::onDamage(Item* item, f32 damage) { }
@@ -420,7 +420,7 @@ void KareruState::onDamage(Item* item, f32 damage) { }
 /**
  * Sets up (dedicated) sound object.
  *
- * @note Address: 801DD654
+ * @note Address: 0x801DD654
  * @note Size: 0x48
  */
 void Item::constructor() { mSoundObj = new PSM::Tsuyukusa(this); }
@@ -448,7 +448,7 @@ Item::Item(int objType)
  *
  * @param initArg Unused.
  *
- * @note Address: 801DD69C
+ * @note Address: 0x801DD69C
  * @note Size: 0x58
  */
 void Item::onInit(CreatureInitArg* initArg)
@@ -466,7 +466,7 @@ void Item::onInit(CreatureInitArg* initArg)
  *
  * @param stuck Creature now stuck to item.
  *
- * @note Address: 801DD6F4
+ * @note Address: 0x801DD6F4
  * @note Size: 0x28
  */
 void Item::onStickStart(Creature* stuck)
@@ -482,7 +482,7 @@ void Item::onStickStart(Creature* stuck)
  *
  * @param stuck Creature (formerly) stuck to item.
  *
- * @note Address: 801DD71C
+ * @note Address: 0x801DD71C
  * @note Size: 0x3C
  */
 void Item::onStickEnd(Creature* stuck)
@@ -498,7 +498,7 @@ void Item::onStickEnd(Creature* stuck)
 /**
  * Adds item to global farm manager.
  *
- * @note Address: 801DD758
+ * @note Address: 0x801DD758
  * @note Size: 0x28
  */
 void Item::onSetPosition() { Farm::farmMgr->addPlant(this); }
@@ -522,7 +522,7 @@ void Item::updateTrMatrix()
  *
  * @param state Color motion state to set (as per `MotionStateID` enum).
  *
- * @note Address: 801DD7C4
+ * @note Address: 0x801DD7C4
  * @note Size: 0x28
  */
 void Item::startColorMotion(int state)
@@ -541,7 +541,7 @@ void Item::startColorMotion(int state)
  *
  * @param rate Rate at which to increment/decrement color blend ratio per frame.
  *
- * @note Address: 801DD7EC
+ * @note Address: 0x801DD7EC
  * @note Size: 0x90
  */
 void Item::updateColorMotion(f32 rate)
@@ -572,7 +572,7 @@ void Item::updateColorMotion(f32 rate)
 /**
  * Item AI call. Executes current state machine loop.
  *
- * @note Address: 801DD87C
+ * @note Address: 0x801DD87C
  * @note Size: 0x34
  */
 void Item::doAI() { mFsm->exec(this); }
@@ -584,7 +584,7 @@ void Item::doAI() { mFsm->exec(this); }
  *
  * @returns True always.
  *
- * @note Address: 801DD8B0
+ * @note Address: 0x801DD8B0
  * @note Size: 0x44
  */
 bool Item::interactAttack(InteractAttack& attack)
@@ -600,7 +600,7 @@ bool Item::interactAttack(InteractAttack& attack)
  *
  * @returns True always.
  *
- * @note Address: 801DD8F8
+ * @note Address: 0x801DD8F8
  * @note Size: 0x38
  */
 bool Item::interactFarmKarero(InteractFarmKarero& karero)
@@ -616,7 +616,7 @@ bool Item::interactFarmKarero(InteractFarmKarero& karero)
  *
  * @returns True always.
  *
- * @note Address: 801DD934
+ * @note Address: 0x801DD934
  * @note Size: 0x38
  */
 bool Item::interactFarmHaero(InteractFarmHaero& haero)
@@ -630,7 +630,7 @@ bool Item::interactFarmHaero(InteractFarmHaero& haero)
  *
  * @param gfx Graphics handler.
  *
- * @note Address: 801DD970
+ * @note Address: 0x801DD970
  * @note Size: 0x120
  */
 void Item::doDirectDraw(Graphics& gfx)
@@ -652,7 +652,7 @@ void Item::doDirectDraw(Graphics& gfx)
  *
  * @param damage Damage to apply.
  *
- * @note Address: 801DDA90
+ * @note Address: 0x801DDA90
  * @note Size: 0x294
  */
 void Item::addDamage(f32 damage)
@@ -730,7 +730,7 @@ void ProcAnimator::create(int count)
  *
  * @throws Panics if index provided is >= `mMaxCount` (outside array size).
  *
- * @note Address: ........
+ * @note Address: N/A
  * @note Size: 0x74 (should be 0x88 but matches when inlined)
  */
 void ProcAnimator::setMatrix(int idx, Matrixf* mtx)
@@ -748,7 +748,7 @@ void ProcAnimator::setMatrix(int idx, Matrixf* mtx)
  * @throws Panics if index provided is >= `mMaxCount` (outside array size).
  *
  * @note UNUSED
- * @note Address: ........
+ * @note Address: N/A
  * @note Size: 0x74 (should be 0x88)
  */
 void ProcAnimator::setAngle(int idx, f32 angle)
@@ -767,7 +767,7 @@ void ProcAnimator::setAngle(int idx, f32 angle)
  * @throws Panics if index provided is >= `mMaxCount` (outside array size).
  *
  * @note UNUSED
- * @note Address: ........
+ * @note Address: N/A
  * @note Size: 0x68 (should be 0x7C)
  */
 f32 ProcAnimator::getAngle(int idx)
@@ -782,7 +782,7 @@ f32 ProcAnimator::getAngle(int idx)
  * `mAngle` is calculated based on vertical separation from current index to next.
  * `mXRot` is calculated based on y-component of x-rotation basis vector (possibly needs better name).
  *
- * @note Address: 801DDD28
+ * @note Address: 0x801DDD28
  * @note Size: 0x318
  */
 void ProcAnimator::calcAngles()
@@ -837,7 +837,7 @@ void ProcAnimator::calcAngles()
  * Has regswaps currently.
  *
  * @note NON-MATCHING
- * @note Address: ........
+ * @note Address: N/A
  * @note Size: 0x9C
  */
 void ProcAnimator::calcDists()
@@ -864,7 +864,7 @@ void ProcAnimator::calcDists()
 /**
  * Stripped. Unknown if used or not.
  *
- * @note Address: ........
+ * @note Address: N/A
  * @note Size: 0x30
  */
 void ProcAnimator::force(f32) { }
@@ -877,7 +877,7 @@ void ProcAnimator::force(f32) { }
  * @param p2 Unknown, seems to increase rate at which angles advance.
  *
  * @note NON-MATCHING
- * @note Address: 801DE040
+ * @note Address: 0x801DE040
  * @note Size: 0x4E4
  */
 void ProcAnimator::update(f32 faceDir, f32 p2)
@@ -1327,7 +1327,7 @@ void ProcAnimator::draw(Graphics& gfx)
  * Constructor for (actual) Plant class. Instantiates base class and sets mass to 0.
  * Stripped, but used later in file.
  *
- * @note Address: ........
+ * @note Address: N/A
  * @note Size: 0x10C
  */
 Plant::Plant()
@@ -1341,7 +1341,7 @@ Plant::Plant()
  *
  * @param killArg Unused.
  *
- * @note Address: 801DE524
+ * @note Address: 0x801DE524
  * @note Size: 0x34
  */
 void Plant::onKill(CreatureKillArg* killArg) { mgr->kill(this); }
@@ -1353,7 +1353,7 @@ void Plant::onKill(CreatureKillArg* killArg) { mgr->kill(this); }
  *
  * @returns Pellet of nearest fruit if found, or nullptr if not.
  *
- * @note Address: 801DE558
+ * @note Address: 0x801DE558
  * @note Size: 0x38
  */
 Pellet* Plant::getNearestFruit(Vector3f& pos)
@@ -1369,7 +1369,7 @@ Pellet* Plant::getNearestFruit(Vector3f& pos)
 /**
  * Updates bounding sphere. Sets center of sphere to current position, and radius to 400.
  *
- * @note Address: 801DE590
+ * @note Address: 0x801DE590
  * @note Size: 0x24
  */
 void Plant::updateBoundSphere()
@@ -1412,7 +1412,7 @@ void Plant::doDirectDraw(Graphics& gfx)
  * @throws Panics if first non-root collision part is not tube-like (tube or tube tree).
  *
  * @note NON-MATCHING
- * @note Address: 801DE794
+ * @note Address: 0x801DE794
  * @note Size: 0x778
  */
 void Plant::onInit(CreatureInitArg* initArg)
@@ -2034,7 +2034,7 @@ lbl_801DEE98:
 /**
  * Plant AI call. Executes current state machine loop and sets up "near spiderwort" sound mix if there's no mold.
  *
- * @note Address: 801DEF40
+ * @note Address: 0x801DEF40
  * @note Size: 0x80
  */
 void Plant::doAI()
@@ -2065,7 +2065,7 @@ void Plant::doAI()
  *
  * @throws Panics if trying to do grow efx from a size that isn't 'Small' or 'Medium'.
  *
- * @note Address: 801DEFC0
+ * @note Address: 0x801DEFC0
  * @note Size: 0x370
  */
 void Plant::startMotion(int motionState)
@@ -2132,7 +2132,7 @@ void Plant::startMotion(int motionState)
  *
  * @param frame Frame to force color animation to.
  *
- * @note Address: 801DF330
+ * @note Address: 0x801DF330
  * @note Size: 0x18
  */
 void Plant::setColor(f32 frame)
@@ -2145,7 +2145,7 @@ void Plant::setColor(f32 frame)
 /**
  * Updates culling. Just calls BaseItem method.
  *
- * @note Address: 801DF348
+ * @note Address: 0x801DF348
  * @note Size: 0x20
  */
 void Plant::do_updateLOD() { BaseItem::do_updateLOD(); }
@@ -2154,7 +2154,7 @@ void Plant::do_updateLOD() { BaseItem::do_updateLOD(); }
  * Updates visible (blend) animations and model calcs. If Plant is visible and at max size, also
  * recalc and update ProcAnimator. Also updates berries, Plant, and Plant collision tree.
  *
- * @note Address: 801DF368
+ * @note Address: 0x801DF368
  * @note Size:	0x2B0
  */
 void Plant::doAnimation()
@@ -2193,7 +2193,7 @@ void Plant::doAnimation()
 /**
  * Restocks all berries based on plant type (spicy, bitter, random).
  *
- * @note Address: 801DF618
+ * @note Address: 0x801DF618
  * @note Size:	0x2C
  */
 void Plant::bearFruits() { mFruits->bearAll(mPlantType); }
@@ -2201,7 +2201,7 @@ void Plant::bearFruits() { mFruits->bearAll(mPlantType); }
 /**
  * Kills all berries.
  *
- * @note Address: 801DF644
+ * @note Address: 0x801DF644
  * @note Size: 0x24
  */
 void Plant::killFruits() { mFruits->killAll(); }
@@ -2212,7 +2212,7 @@ void Plant::killFruits() { mFruits->killAll(); }
  *
  * @param num Number of berries to drop.
  *
- * @note Address: 801DF668
+ * @note Address: 0x801DF668
  * @note Size: 0x80
  */
 void Plant::dropFruit(int num)
@@ -2232,7 +2232,7 @@ void Plant::dropFruit(int num)
  *
  * @returns True if any berries are found on Plant, false if none found.
  *
- * @note Address: 801DF6E8
+ * @note Address: 0x801DF6E8
  * @note Size: 0x24
  */
 bool Plant::hasFruits() { return mFruits->hasFruits(); }
@@ -2242,7 +2242,7 @@ bool Plant::hasFruits() { return mFruits->hasFruits(); }
  *
  * @returns Number of berries currently on Plant.
  *
- * @note Address: 801DF70C
+ * @note Address: 0x801DF70C
  * @note Size: 0x24
  */
 int Plant::getFruitsNum() { return mFruits->countFruits(); }
@@ -2256,7 +2256,7 @@ int Plant::getFruitsNum() { return mFruits->countFruits(); }
  *
  * @returns True if berry to burst is found, false if not.
  *
- * @note Address: 801DF730
+ * @note Address: 0x801DF730
  * @note Size: 0x1D0
  */
 bool Plant::interactEat(InteractEat& eat)
@@ -2298,7 +2298,7 @@ bool Plant::interactEat(InteractEat& eat)
 /**
  * Constructor for Plant manager. Sets up component paths and reads in Plant parameters from file.
  *
- * @note Address: 801DF900
+ * @note Address: 0x801DF900
  * @note Size: 0x120
  */
 Mgr::Mgr()
@@ -2322,7 +2322,7 @@ Mgr::Mgr()
  *
  * @returns New Plant.
  *
- * @note Address: 801DFD5C
+ * @note Address: 0x801DFD5C
  * @note Size: 0x130
  */
 BaseItem* Mgr::birth()
@@ -2337,7 +2337,7 @@ BaseItem* Mgr::birth()
  *
  * @throws Panics if `texts.szs` archive doesn't load/exist.
  *
- * @note Address: 801DFE8C
+ * @note Address: 0x801DFE8C
  * @note Size: 0xB4
  */
 void Mgr::onLoadResources()
@@ -2357,7 +2357,7 @@ void Mgr::onLoadResources()
  *
  * @returns New (default) GenPlantParm.
  *
- * @note Address: 801DFF40
+ * @note Address: 0x801DFF40
  * @note Size: 0x4C
  */
 GenItemParm* Mgr::generatorNewItemParm() { return new GenPlantParm(); }
@@ -2370,7 +2370,7 @@ GenItemParm* Mgr::generatorNewItemParm() { return new GenPlantParm(); }
  *
  * @throws Panics if `genParm` is null or uncastable to genPlantParm.
  *
- * @note Address: 801DFF8C
+ * @note Address: 0x801DFF8C
  * @note Size: 0x88
  */
 void Mgr::generatorWrite(Stream& input, GenItemParm* genParm)
@@ -2393,7 +2393,7 @@ void Mgr::generatorWrite(Stream& input, GenItemParm* genParm)
  *
  * @throws Panics if `genParm` is null or uncastable to genPlantParm.
  *
- * @note Address: 801E0014
+ * @note Address: 0x801E0014
  * @note Size: 0x88
  */
 void Mgr::generatorRead(Stream& input, GenItemParm* genParm, u32 version)
@@ -2421,7 +2421,7 @@ void Mgr::generatorRead(Stream& input, GenItemParm* genParm, u32 version)
  *
  * @throws Panics if `genParm` is null or uncastable to genPlantParm.
  *
- * @note Address: 801E009C
+ * @note Address: 0x801E009C
  * @note Size: 0xB4
  */
 BaseItem* Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenItemParm* genParm)
@@ -2447,7 +2447,7 @@ BaseItem* Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenItemParm* genParm
  * @param count Number of berry slots to set up.
  * @param mtx Matrix for berry holder.
  *
- * @note Address: 801E0150
+ * @note Address: 0x801E0150
  * @note Size: 0x74
  */
 void Fruits::init(int count, Matrixf* mtx)
@@ -2460,7 +2460,7 @@ void Fruits::init(int count, Matrixf* mtx)
 /**
  * Updates each berry slot.
  *
- * @note Address: 801E0224
+ * @note Address: 0x801E0224
  * @note Size: 0x64
  */
 void Fruits::update()
@@ -2478,7 +2478,7 @@ void Fruits::update()
  * @param plantType Type of Plant to make berries for, either spicy, bitter, or random.
  *
  * @note NON-MATCHING
- * @note Address: 801E0288
+ * @note Address: 0x801E0288
  * @note Size: 0x2B4
  */
 void Fruits::bearAll(u16 plantType)
@@ -2732,7 +2732,7 @@ lbl_801E0520:
  *
  * @returns True if any slots have berries, false otherwise.
  *
- * @note Address: 801E053C
+ * @note Address: 0x801E053C
  * @note Size: 0x40
  */
 bool Fruits::hasFruits()
@@ -2750,7 +2750,7 @@ bool Fruits::hasFruits()
  *
  * @returns Number of slots currently containing berries.
  *
- * @note Address: 801E057C
+ * @note Address: 0x801E057C
  * @note Size: 0x40
  */
 int Fruits::countFruits()
@@ -2768,7 +2768,7 @@ int Fruits::countFruits()
 /**
  * Kills all berries in any slot.
  *
- * @note Address: 801E05BC
+ * @note Address: 0x801E05BC
  * @note Size: 0x64
  */
 void Fruits::killAll()
@@ -2785,7 +2785,7 @@ void Fruits::killAll()
  *
  * @returns Slot nearest to `pos` containing a berry, or nullptr if no berry-containing slot found.
  *
- * @note Address: 801E0620
+ * @note Address: 0x801E0620
  * @note Size: 0x10C
  */
 FruitSlot* Fruits::getFruit(Vector3f& pos)
@@ -2818,7 +2818,7 @@ FruitSlot* Fruits::getFruit(Vector3f& pos)
 /**
  * Constructor for berry-holding slot class. Sets berry pellet to null and sets matrix to the identity.
  *
- * @note Address: 801E072C
+ * @note Address: 0x801E072C
  * @note Size: 0x4C
  */
 FruitSlot::FruitSlot()
@@ -2834,7 +2834,7 @@ FruitSlot::FruitSlot()
  * @param captureMatrix Capture matrix for berry pellet.
  * @param fruitMatrix Orientation matrix for slot.
  *
- * @note Address: 801E0778
+ * @note Address: 0x801E0778
  * @note Size: 0x50
  */
 void FruitSlot::setFruit(Pellet* pellet, Matrixf* captureMatrix, Matrixf& fruitMatrix)
@@ -2847,7 +2847,7 @@ void FruitSlot::setFruit(Pellet* pellet, Matrixf* captureMatrix, Matrixf& fruitM
 /**
  * Drops berry from slot if berry exists. Ends capture and sets slot berry to nullptr.
  *
- * @note Address: 801E07C8
+ * @note Address: 0x801E07C8
  * @note Size: 0x40
  */
 void FruitSlot::dropFruit()
@@ -2861,7 +2861,7 @@ void FruitSlot::dropFruit()
 /**
  * If berry is in slot, kill berry and set berry to null.
  *
- * @note Address: 801E0808
+ * @note Address: 0x801E0808
  * @note Size: 0x44
  */
 void FruitSlot::killFruit()
@@ -2875,7 +2875,7 @@ void FruitSlot::killFruit()
 /**
  * If berry is in slot, update berry's capture using the slot's orientation matrix.
  *
- * @note Address: 801E084C
+ * @note Address: 0x801E084C
  * @note Size: 0x34
  */
 void FruitSlot::update()

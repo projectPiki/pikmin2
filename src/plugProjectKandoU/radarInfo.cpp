@@ -4,10 +4,9 @@
 
 Radar::Mgr* Radar::mgr;
 
-/*
- * --INFO--
- * Address:	8021E28C
- * Size:	000068
+/**
+ * @note Address: 0x8021E28C
+ * @note Size: 0x68
  */
 Vector2f Radar::Point::getPosition()
 {
@@ -19,10 +18,9 @@ Vector2f Radar::Point::getPosition()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 void Radar::Point::clear()
 {
@@ -32,10 +30,9 @@ void Radar::Point::clear()
 	mNext   = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8021E2F4
- * Size:	0000F4
+/**
+ * @note Address: 0x8021E2F4
+ * @note Size: 0xF4
  */
 Radar::Mgr::Mgr()
 {
@@ -47,10 +44,9 @@ Radar::Mgr::Mgr()
 	clear();
 }
 
-/*
- * --INFO--
- * Address:	8021E498
- * Size:	0000B4
+/**
+ * @note Address: 0x8021E498
+ * @note Size: 0xB4
  */
 void Radar::Mgr::clear()
 {
@@ -72,17 +68,15 @@ void Radar::Mgr::clear()
 	mFuefukiTimer = 0;
 }
 
-/*
- * --INFO--
- * Address:	8021E54C
- * Size:	000010
+/**
+ * @note Address: 0x8021E54C
+ * @note Size: 0x10
  */
 void Radar::Mgr::bornFuefuki() { mFuefukiCount++; }
 
-/*
- * --INFO--
- * Address:	8021E55C
- * Size:	000018
+/**
+ * @note Address: 0x8021E55C
+ * @note Size: 0x18
  */
 void Radar::Mgr::dieFuefuki()
 {
@@ -91,17 +85,15 @@ void Radar::Mgr::dieFuefuki()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8021E574
- * Size:	000010
+/**
+ * @note Address: 0x8021E574
+ * @note Size: 0x10
  */
 void Radar::Mgr::fuefuki() { mFuefukiTimer++; }
 
-/*
- * --INFO--
- * Address:	8021E584
- * Size:	000070
+/**
+ * @note Address: 0x8021E584
+ * @note Size: 0x70
  */
 void Radar::Mgr::entry(Game::TPositionObject* obj, Radar::cRadarType type, u32 flag)
 {
@@ -113,10 +105,9 @@ void Radar::Mgr::entry(Game::TPositionObject* obj, Radar::cRadarType type, u32 f
 	}
 }
 
-/*
- * --INFO--
- * Address:	8021E5F4
- * Size:	00003C
+/**
+ * @note Address: 0x8021E5F4
+ * @note Size: 0x3C
  */
 bool Radar::Mgr::exit(Game::TPositionObject* obj)
 {
@@ -126,10 +117,9 @@ bool Radar::Mgr::exit(Game::TPositionObject* obj)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8021E630
- * Size:	00001C
+/**
+ * @note Address: 0x8021E630
+ * @note Size: 0x1C
  */
 int Radar::Mgr::getNumOtakaraItems()
 {
@@ -139,10 +129,9 @@ int Radar::Mgr::getNumOtakaraItems()
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	8021E64C
- * Size:	000064
+/**
+ * @note Address: 0x8021E64C
+ * @note Size: 0x64
  */
 void Radar::Mgr::attach(Game::TPositionObject* obj, Radar::cRadarType type, u32 flag)
 {
@@ -160,10 +149,9 @@ void Radar::Mgr::attach(Game::TPositionObject* obj, Radar::cRadarType type, u32 
 	}
 }
 
-/*
- * --INFO--
- * Address:	8021E6B0
- * Size:	0000C4
+/**
+ * @note Address: 0x8021E6B0
+ * @note Size: 0xC4
  */
 bool Radar::Mgr::detach(Game::TPositionObject* obj)
 {
@@ -190,10 +178,9 @@ bool Radar::Mgr::detach(Game::TPositionObject* obj)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8021E774
- * Size:	0001E0
+/**
+ * @note Address: 0x8021E774
+ * @note Size: 0x1E0
  */
 int Radar::Mgr::calcNearestTreasure(Vector3f& naviPos, f32 searchDist, Vector3f& treasurePos, f32& dist2)
 {
@@ -241,10 +228,9 @@ int Radar::Mgr::calcNearestTreasure(Vector3f& naviPos, f32 searchDist, Vector3f&
 	}
 }
 
-/*
- * --INFO--
- * Address:	8021E954
- * Size:	000568
+/**
+ * @note Address: 0x8021E954
+ * @note Size: 0x568
  */
 void Radar::Mgr::ogDummpyInit()
 {

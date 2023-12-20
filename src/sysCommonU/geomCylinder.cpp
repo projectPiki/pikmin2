@@ -7,10 +7,9 @@
 
 namespace Sys {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000104
+/**
+ * @note Address: N/A
+ * @note Size: 0x104
  */
 Cylinder::Cylinder(const Vector3f& start, const Vector3f& end, f32 radius)
 {
@@ -22,10 +21,9 @@ Cylinder::Cylinder(const Vector3f& start, const Vector3f& end, f32 radius)
 	mRadius    = radius;
 }
 
-/*
- * --INFO--
- * Address:	80421628
- * Size:	00003C
+/**
+ * @note Address: 0x80421628
+ * @note Size: 0x3C
  */
 Cylinder::Cylinder(const Vector3f& center, const Vector3f& axis, f32 len, f32 radius)
 {
@@ -35,10 +33,9 @@ Cylinder::Cylinder(const Vector3f& center, const Vector3f& axis, f32 len, f32 ra
 	mRadius = radius;
 }
 
-/*
- * --INFO--
- * Address:	80421664
- * Size:	000100
+/**
+ * @note Address: 0x80421664
+ * @note Size: 0x100
  */
 void Cylinder::set(const Vector3f& start, const Vector3f& end, f32 radius)
 {
@@ -50,20 +47,18 @@ void Cylinder::set(const Vector3f& start, const Vector3f& end, f32 radius)
 	mRadius    = radius;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000188
+/**
+ * @note Address: N/A
+ * @note Size: 0x188
  */
 bool Cylinder::intersect(Plane const& plane)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80421764
- * Size:	000190
+/**
+ * @note Address: 0x80421764
+ * @note Size: 0x190
  */
 bool Cylinder::culled(Plane const& inputPlane)
 {
@@ -193,10 +188,9 @@ lbl_80421894:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	804218F4
- * Size:	0001D8
+/**
+ * @note Address: 0x804218F4
+ * @note Size: 0x1D8
  */
 bool Cylinder::intersect(Triangle const& triangle, f32& p2)
 {
@@ -362,10 +356,9 @@ lbl_80421A70:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0004A0
+/**
+ * @note Address: N/A
+ * @note Size: 0x4A0
  */
 void Cylinder::draw(Graphics& graphics)
 {

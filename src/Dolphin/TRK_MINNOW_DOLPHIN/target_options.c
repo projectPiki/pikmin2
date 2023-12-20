@@ -2,10 +2,9 @@
 
 static u8 bUseSerialIO;
 
-/*
- * --INFO--
- * Address:	800C0A00
- * Size:	00000C
+/**
+ * @note Address: 0x800C0A00
+ * @note Size: 0xC
  */
 void SetUseSerialIO(u8 sio)
 {
@@ -13,9 +12,8 @@ void SetUseSerialIO(u8 sio)
 	return;
 }
 
-/*
- * --INFO--
- * Address:	800C09F0
- * Size:	000010
+/**
+ * @note Address: 0x800C09F0
+ * @note Size: 0x10
  */
 u8 GetUseSerialIO(void) { return bUseSerialIO; }

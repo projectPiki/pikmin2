@@ -8,10 +8,9 @@
 static const char className[] = "actRescue";
 
 namespace PikiAI {
-/*
- * --INFO--
- * Address:	80238EB0
- * Size:	0000B8
+/**
+ * @note Address: 0x80238EB0
+ * @note Size: 0xB8
  */
 ActRescue::ActRescue(Game::Piki* piki)
     : Action(piki)
@@ -21,10 +20,9 @@ ActRescue::ActRescue(Game::Piki* piki)
 	mApproachPos = new ActApproachPos(piki);
 }
 
-/*
- * --INFO--
- * Address:	80238F68
- * Size:	0000C4
+/**
+ * @note Address: 0x80238F68
+ * @note Size: 0xC4
  */
 void ActRescue::init(ActionArg* arg)
 {
@@ -44,10 +42,9 @@ void ActRescue::init(ActionArg* arg)
 	initApproach();
 }
 
-/*
- * --INFO--
- * Address:	8023902C
- * Size:	000060
+/**
+ * @note Address: 0x8023902C
+ * @note Size: 0x60
  */
 int ActRescue::exec()
 {
@@ -63,10 +60,9 @@ int ActRescue::exec()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C0
+/**
+ * @note Address: N/A
+ * @note Size: 0xC0
  */
 ActionExitCode ActRescue::checkPikmin()
 {
@@ -83,10 +79,9 @@ ActionExitCode ActRescue::checkPikmin()
 	return ACTEXEC_Continue;
 }
 
-/*
- * --INFO--
- * Address:	8023908C
- * Size:	0000AC
+/**
+ * @note Address: 0x8023908C
+ * @note Size: 0xAC
  */
 void ActRescue::initApproach()
 {
@@ -98,10 +93,9 @@ void ActRescue::initApproach()
 	mApproachPos->init(&arg);
 }
 
-/*
- * --INFO--
- * Address:	80239138
- * Size:	00013C
+/**
+ * @note Address: 0x80239138
+ * @note Size: 0x13C
  */
 int ActRescue::execApproach()
 {
@@ -123,10 +117,9 @@ int ActRescue::execApproach()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80239274
- * Size:	000150
+/**
+ * @note Address: 0x80239274
+ * @note Size: 0x150
  */
 void ActRescue::initGo()
 {
@@ -145,10 +138,9 @@ void ActRescue::initGo()
 	mTimeLimit = 100;
 }
 
-/*
- * --INFO--
- * Address:	802393C4
- * Size:	0001C0
+/**
+ * @note Address: 0x802393C4
+ * @note Size: 0x1C0
  */
 int ActRescue::execGo()
 {
@@ -181,10 +173,9 @@ int ActRescue::execGo()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	80239584
- * Size:	000064
+/**
+ * @note Address: 0x80239584
+ * @note Size: 0x64
  */
 void ActRescue::initThrow()
 {
@@ -193,10 +184,9 @@ void ActRescue::initThrow()
 	mThrowFlag = THROW_Null;
 }
 
-/*
- * --INFO--
- * Address:	802395E8
- * Size:	000278
+/**
+ * @note Address: 0x802395E8
+ * @note Size: 0x278
  */
 int ActRescue::execThrow()
 {
@@ -237,10 +227,9 @@ int ActRescue::execThrow()
 	return ACTEXEC_Continue;
 }
 
-/*
- * --INFO--
- * Address:	80239860
- * Size:	00002C
+/**
+ * @note Address: 0x80239860
+ * @note Size: 0x2C
  */
 void ActRescue::onKeyEvent(SysShape::KeyEvent const& event)
 {
@@ -251,31 +240,27 @@ void ActRescue::onKeyEvent(SysShape::KeyEvent const& event)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8023988C
- * Size:	000004
+/**
+ * @note Address: 0x8023988C
+ * @note Size: 0x4
  */
 void ActRescue::emotion_success() { }
 
-/*
- * --INFO--
- * Address:	80239890
- * Size:	000004
+/**
+ * @note Address: 0x80239890
+ * @note Size: 0x4
  */
 void ActRescue::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	80239894
- * Size:	000004
+/**
+ * @note Address: 0x80239894
+ * @note Size: 0x4
  */
 void ActRescue::cleanup() { }
 
-/*
- * --INFO--
- * Address:	80239898
- * Size:	000004
+/**
+ * @note Address: 0x80239898
+ * @note Size: 0x4
  */
 void ActRescue::collisionCallback(Game::Piki* piki, Game::CollEvent& event) { }
 

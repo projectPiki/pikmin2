@@ -17,9 +17,8 @@ namespace FileSelect {
 
 static const char className[] = "ebiScreenFileSelect";
 
-/*  * --INFO--
- * Address:	........
- * Size:	0000B8
+/*  * @note Address: N/A
+ * @note Size: 0xB8
  */
 void TScreenDataWindow_new::setArchive(JKRArchive* arc)
 {
@@ -33,10 +32,9 @@ void TScreenDataWindow_new::setArchive(JKRArchive* arc)
 	sys->heapStatusEnd("TScreen_FS_scene_open::setArchive--callback_message");
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000130
+/**
+ * @note Address: N/A
+ * @note Size: 0x130
  */
 void TScreenDataWindow_new::setData(s32 fileID, u64 mesg)
 {
@@ -55,10 +53,9 @@ void TScreenDataWindow_new::setData(s32 fileID, u64 mesg)
 	E2DScreen_searchAssert(mScreenObj, 'Tnewds')->setMsgID(mesg);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0002E4
+/**
+ * @note Address: N/A
+ * @note Size: 0x2E4
  */
 void TScreenDataWindow_data::setArchive(JKRArchive* arc)
 {
@@ -91,10 +88,9 @@ void TScreenDataWindow_data::setArchive(JKRArchive* arc)
 	mCaveFloor       = 0;
 }
 
-/*
- * --INFO--
- * Address:	803D4244
- * Size:	000254
+/**
+ * @note Address: 0x803D4244
+ * @note Size: 0x254
  */
 void TScreenDataWindow_data::setData(s32 fileID, u32 pokos, u32 treasures, u32 cave, u32 floor, u32 hours, u32 minutes)
 {
@@ -141,10 +137,9 @@ void TScreenDataWindow_data::setData(s32 fileID, u32 pokos, u32 treasures, u32 c
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D4498
- * Size:	000EB0
+/**
+ * @note Address: 0x803D4498
+ * @note Size: 0xEB0
  */
 TMainScreen::TMainScreen()
     : mDrawColor(0, 0, 0, 255)
@@ -195,10 +190,9 @@ TMainScreen::TMainScreen()
 	mParticleResource = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	803D5348
- * Size:	0000B0
+/**
+ * @note Address: 0x803D5348
+ * @note Size: 0xB0
  */
 void TMainScreen::loadResource()
 {
@@ -211,10 +205,9 @@ void TMainScreen::loadResource()
 	setArchive(arc);
 }
 
-/*
- * --INFO--
- * Address:	803D53F8
- * Size:	0012E4
+/**
+ * @note Address: 0x803D53F8
+ * @note Size: 0x12E4
  */
 void TMainScreen::doSetArchive(JKRArchive* arc)
 {
@@ -1658,10 +1651,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803D66DC
- * Size:	000100
+/**
+ * @note Address: 0x803D66DC
+ * @note Size: 0x100
  */
 void TMainScreen::doKillScreen()
 {
@@ -1681,10 +1673,9 @@ void TMainScreen::doKillScreen()
 	mIsCardSeActive = false;
 }
 
-/*
- * --INFO--
- * Address:	803D67DC
- * Size:	000284
+/**
+ * @note Address: 0x803D67DC
+ * @note Size: 0x284
  */
 void TMainScreen::doOpenScreen(ArgOpen*)
 {
@@ -1729,10 +1720,9 @@ void TMainScreen::doOpenScreen(ArgOpen*)
 	mIsCardSeActive = false;
 }
 
-/*
- * --INFO--
- * Address:	803D6A60
- * Size:	0001B0
+/**
+ * @note Address: 0x803D6A60
+ * @note Size: 0x1B0
  */
 void TMainScreen::doInitWaitState()
 {
@@ -1762,10 +1752,9 @@ void TMainScreen::doInitWaitState()
 	mState = 0;
 }
 
-/*
- * --INFO--
- * Address:	803D6C10
- * Size:	000098
+/**
+ * @note Address: 0x803D6C10
+ * @note Size: 0x98
  */
 void TMainScreen::doCloseScreen(ArgClose*)
 {
@@ -1779,10 +1768,9 @@ void TMainScreen::doCloseScreen(ArgClose*)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D6CA8
- * Size:	000088
+/**
+ * @note Address: 0x803D6CA8
+ * @note Size: 0x88
  */
 bool TMainScreen::doUpdateStateOpen()
 {
@@ -1799,10 +1787,9 @@ bool TMainScreen::doUpdateStateOpen()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803D6D30
- * Size:	00031C
+/**
+ * @note Address: 0x803D6D30
+ * @note Size: 0x31C
  */
 bool TMainScreen::doUpdateStateWait()
 {
@@ -1867,10 +1854,9 @@ bool TMainScreen::doUpdateStateWait()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803D704C
- * Size:	0000CC
+/**
+ * @note Address: 0x803D704C
+ * @note Size: 0xCC
  */
 bool TMainScreen::doUpdateStateClose()
 {
@@ -1892,10 +1878,9 @@ bool TMainScreen::doUpdateStateClose()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803D7118
- * Size:	000374
+/**
+ * @note Address: 0x803D7118
+ * @note Size: 0x374
  */
 void TMainScreen::doDraw()
 {
@@ -2197,10 +2182,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803D748C
- * Size:	0001B0
+/**
+ * @note Address: 0x803D748C
+ * @note Size: 0x1B0
  */
 void TMainScreen::inDataBall(s32 fileID)
 {
@@ -2230,10 +2214,9 @@ void TMainScreen::inDataBall(s32 fileID)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D763C
- * Size:	0000A4
+/**
+ * @note Address: 0x803D763C
+ * @note Size: 0xA4
  */
 void TMainScreen::outDataBall(s32 fileID)
 {
@@ -2243,10 +2226,9 @@ void TMainScreen::outDataBall(s32 fileID)
 	mAnimFileBallDecide[fileID].stop();
 }
 
-/*
- * --INFO--
- * Address:	803D76E0
- * Size:	0000A4
+/**
+ * @note Address: 0x803D76E0
+ * @note Size: 0xA4
  */
 void TMainScreen::decideDataBall(s32 fileID)
 {
@@ -2256,10 +2238,9 @@ void TMainScreen::decideDataBall(s32 fileID)
 	mAnimFileBallDecide[fileID].play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
 }
 
-/*
- * --INFO--
- * Address:	803D7784
- * Size:	000124
+/**
+ * @note Address: 0x803D7784
+ * @note Size: 0x124
  */
 void TMainScreen::createFiledecide(s32 id)
 {
@@ -2274,24 +2255,21 @@ void TMainScreen::createFiledecide(s32 id)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D78A8
- * Size:	000030
+/**
+ * @note Address: 0x803D78A8
+ * @note Size: 0x30
  */
 bool TMainScreen::isFinishOutDataBall(s32 fileID) { return mAnimFileBallOut[fileID].isFinish(); }
 
-/*
- * --INFO--
- * Address:	803D78D8
- * Size:	000030
+/**
+ * @note Address: 0x803D78D8
+ * @note Size: 0x30
  */
 bool TMainScreen::isFinishDecideDataBall(s32 fileID) { return mAnimFileBallDecide[fileID].isFinish(); }
 
-/*
- * --INFO--
- * Address:	803D7908
- * Size:	0000F4
+/**
+ * @note Address: 0x803D7908
+ * @note Size: 0xF4
  */
 void TMainScreen::createCopyCursor(s32 fileID)
 {
@@ -2322,10 +2300,9 @@ void TMainScreen::createCopyCursor(s32 fileID)
 	mCursorB.mCursor.create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	803D79FC
- * Size:	000050
+/**
+ * @note Address: 0x803D79FC
+ * @note Size: 0x50
  */
 void TMainScreen::fadeCopyCursor()
 {
@@ -2333,20 +2310,18 @@ void TMainScreen::fadeCopyCursor()
 	mCursorB.mCursor.fade();
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000050
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x50
 //  */
 // void TMainScreen::killCopyCursor()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	803D7A4C
- * Size:	000010
+/**
+ * @note Address: 0x803D7A4C
+ * @note Size: 0x10
  */
 void TMainScreen::moveLeftCopyCursor()
 {
@@ -2354,10 +2329,9 @@ void TMainScreen::moveLeftCopyCursor()
 	mCursorB.mIsLeft = true;
 }
 
-/*
- * --INFO--
- * Address:	803D7A5C
- * Size:	000010
+/**
+ * @note Address: 0x803D7A5C
+ * @note Size: 0x10
  */
 void TMainScreen::moveRightCopyCursor()
 {
@@ -2365,10 +2339,9 @@ void TMainScreen::moveRightCopyCursor()
 	mCursorB.mIsLeft = false;
 }
 
-/*
- * --INFO--
- * Address:	803D7A6C
- * Size:	0001E0
+/**
+ * @note Address: 0x803D7A6C
+ * @note Size: 0x1E0
  */
 void TMainScreen::createFilecopyEffect(s32 idFrom, s32 idTo)
 {
@@ -2388,10 +2361,9 @@ void TMainScreen::createFilecopyEffect(s32 idFrom, s32 idTo)
 	mIsCardSeActive = true;
 }
 
-/*
- * --INFO--
- * Address:	803D7C4C
- * Size:	000058
+/**
+ * @note Address: 0x803D7C4C
+ * @note Size: 0x58
  */
 void TMainScreen::fadeFilecopyEffect()
 {
@@ -2400,10 +2372,9 @@ void TMainScreen::fadeFilecopyEffect()
 	mIsCardSeActive = false;
 }
 
-/*
- * --INFO--
- * Address:	803D7CA4
- * Size:	000118
+/**
+ * @note Address: 0x803D7CA4
+ * @note Size: 0x118
  */
 void TMainScreen::createFiledeletingEffect(s32 fileID)
 {
@@ -2419,10 +2390,9 @@ void TMainScreen::createFiledeletingEffect(s32 fileID)
 	mIsCardSeActive = true;
 }
 
-/*
- * --INFO--
- * Address:	803D7DBC
- * Size:	000058
+/**
+ * @note Address: 0x803D7DBC
+ * @note Size: 0x58
  */
 void TMainScreen::fadeFiledeletingEffect()
 {
@@ -2431,20 +2401,18 @@ void TMainScreen::fadeFiledeletingEffect()
 	mIsCardSeActive = false;
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	0000F0
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0xF0
 //  */
 // void TMainScreen::killAllEffect()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	803D7E14
- * Size:	000318
+/**
+ * @note Address: 0x803D7E14
+ * @note Size: 0x318
  */
 void TMainScreen::openDataWindow(s32 fileID)
 {
@@ -2472,10 +2440,9 @@ void TMainScreen::openDataWindow(s32 fileID)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D812C
- * Size:	00006C
+/**
+ * @note Address: 0x803D812C
+ * @note Size: 0x6C
  */
 void TMainScreen::closeDataWindow()
 {
@@ -2487,10 +2454,9 @@ void TMainScreen::closeDataWindow()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D8198
- * Size:	00006C
+/**
+ * @note Address: 0x803D8198
+ * @note Size: 0x6C
  */
 void TMainScreen::decideDataWindow()
 {
@@ -2502,17 +2468,15 @@ void TMainScreen::decideDataWindow()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D8204
- * Size:	000024
+/**
+ * @note Address: 0x803D8204
+ * @note Size: 0x24
  */
 bool TMainScreen::isFinishCloseDataWindow() { return mAnimCloseDataWindow.isFinish(); }
 
-/*
- * --INFO--
- * Address:	803D8228
- * Size:	0002A0
+/**
+ * @note Address: 0x803D8228
+ * @note Size: 0x2A0
  */
 void TMainScreen::openMSG(s32 mesgID)
 {
@@ -2572,10 +2536,9 @@ void TMainScreen::openMSG(s32 mesgID)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D84C8
- * Size:	000060
+/**
+ * @note Address: 0x803D84C8
+ * @note Size: 0x60
  */
 void TMainScreen::closeMSG()
 {
@@ -2588,10 +2551,9 @@ void TMainScreen::closeMSG()
 	outYesNo_();
 }
 
-/*
- * --INFO--
- * Address:	803D8528
- * Size:	000028
+/**
+ * @note Address: 0x803D8528
+ * @note Size: 0x28
  */
 bool TMainScreen::isFinishCloseMSG()
 {
@@ -2601,10 +2563,9 @@ bool TMainScreen::isFinishCloseMSG()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803D8550
- * Size:	0000C4
+/**
+ * @note Address: 0x803D8550
+ * @note Size: 0xC4
  */
 void TMainScreen::setYesNo(bool isYes)
 {
@@ -2619,10 +2580,9 @@ void TMainScreen::setYesNo(bool isYes)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D8614
- * Size:	000144
+/**
+ * @note Address: 0x803D8614
+ * @note Size: 0x144
  */
 void TMainScreen::updateMsg_()
 {
@@ -2652,10 +2612,9 @@ void TMainScreen::updateMsg_()
 	mesg->setAlpha(alpha);
 }
 
-/*
- * --INFO--
- * Address:	803D8758
- * Size:	00004C
+/**
+ * @note Address: 0x803D8758
+ * @note Size: 0x4C
  */
 void TMainScreen::setMsgID_(u64 mesgMain, u64 mesgYes, u64 mesgNo)
 {
@@ -2669,20 +2628,18 @@ void TMainScreen::setMsgID_(u64 mesgMain, u64 mesgYes, u64 mesgNo)
 	mPaneMesgMainShadow->setMsgID(mesgMain);
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	00005C
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x5C
 //  */
 // void FileSelect::TMainScreen::isFinishOutCopyErase()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	803D87A4
- * Size:	00008C
+/**
+ * @note Address: 0x803D87A4
+ * @note Size: 0x8C
  */
 void TMainScreen::inCopyErase()
 {
@@ -2695,10 +2652,9 @@ void TMainScreen::inCopyErase()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D8830
- * Size:	00008C
+/**
+ * @note Address: 0x803D8830
+ * @note Size: 0x8C
  */
 void TMainScreen::outCopyErase()
 {
@@ -2711,10 +2667,9 @@ void TMainScreen::outCopyErase()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D88BC
- * Size:	00008C
+/**
+ * @note Address: 0x803D88BC
+ * @note Size: 0x8C
  */
 void TMainScreen::inYesNo_()
 {
@@ -2727,10 +2682,9 @@ void TMainScreen::inYesNo_()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D8948
- * Size:	00008C
+/**
+ * @note Address: 0x803D8948
+ * @note Size: 0x8C
  */
 void TMainScreen::outYesNo_()
 {
@@ -2743,20 +2697,18 @@ void TMainScreen::outYesNo_()
 	}
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	00005C
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x5C
 //  */
 // void TMainScreen::isFinishOutYesNo_()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	803D89D4
- * Size:	0001C0
+/**
+ * @note Address: 0x803D89D4
+ * @note Size: 0x1C0
  */
 void TMainScreen::setDataBallCopyResult(s32 idFrom, s32 idTo)
 {
@@ -2774,10 +2726,9 @@ void TMainScreen::setDataBallCopyResult(s32 idFrom, s32 idTo)
 	mEfxFileSelM[idTo]->setGlobalEnvColor(color);
 }
 
-/*
- * --INFO--
- * Address:	803D8B94
- * Size:	000250
+/**
+ * @note Address: 0x803D8B94
+ * @note Size: 0x250
  */
 void TMainScreen::setDataBallNew(s32 fileID)
 {
@@ -2802,10 +2753,9 @@ void TMainScreen::setDataBallNew(s32 fileID)
 	mEfxFileSelM[fileID]->setGlobalEnvColor(color);
 }
 
-/*
- * --INFO--
- * Address:	803D8DE4
- * Size:	000098
+/**
+ * @note Address: 0x803D8DE4
+ * @note Size: 0x98
  */
 void TMainScreen::setDataBallBroken(s32 fileID)
 {
@@ -2817,10 +2767,9 @@ void TMainScreen::setDataBallBroken(s32 fileID)
 	mEfxFileSelM[fileID]->setGlobalEnvColor(color2);
 }
 
-/*
- * --INFO--
- * Address:	803D8E7C
- * Size:	00004C
+/**
+ * @note Address: 0x803D8E7C
+ * @note Size: 0x4C
  */
 void TMainScreen::initDataBalls_()
 {
@@ -2829,10 +2778,9 @@ void TMainScreen::initDataBalls_()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D8EC8
- * Size:	000550
+/**
+ * @note Address: 0x803D8EC8
+ * @note Size: 0x550
  */
 void TMainScreen::setColorTimgDataBall_(s32 fileID)
 {
@@ -3240,10 +3188,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803D9418
- * Size:	0000CC
+/**
+ * @note Address: 0x803D9418
+ * @note Size: 0xCC
  */
 JUtility::TColor TMainScreen::getDataBallColor_(s32 fileID)
 {
@@ -3266,10 +3213,9 @@ JUtility::TColor TMainScreen::getDataBallColor_(s32 fileID)
 	return calcDataBallColor_(blues, reds, yellows, purples, whites);
 }
 
-/*
- * --INFO--
- * Address:	803D94E4
- * Size:	0001C0
+/**
+ * @note Address: 0x803D94E4
+ * @note Size: 0x1C0
  */
 JUtility::TColor TMainScreen::calcDataBallColor_(u32 blue, u32 red, u32 yellow, u32 purple, u32 white)
 {
@@ -3454,10 +3400,9 @@ JUtility::TColor TMainScreen::calcDataBallColor_(u32 blue, u32 red, u32 yellow, 
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803D96A4
- * Size:	000080
+/**
+ * @note Address: 0x803D96A4
+ * @note Size: 0x80
  */
 void TMainScreen::setIconColorAlpha_(u8 alpha)
 {

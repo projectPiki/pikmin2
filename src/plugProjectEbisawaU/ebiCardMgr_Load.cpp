@@ -6,10 +6,9 @@
 namespace ebi {
 namespace CardError {
 
-/*
- * --INFO--
- * Address:	803E2520
- * Size:	00004C
+/**
+ * @note Address: 0x803E2520
+ * @note Size: 0x4C
  */
 void FSMState_W00_NoCard::do_open(TMgr* mgr)
 {
@@ -20,10 +19,9 @@ void FSMState_W00_NoCard::do_open(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E256C
- * Size:	000058
+/**
+ * @note Address: 0x803E256C
+ * @note Size: 0x58
  */
 void FSMState_W00_NoCard::do_transit(TMgr* mgr)
 {
@@ -34,10 +32,9 @@ void FSMState_W00_NoCard::do_transit(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E25C4
- * Size:	00004C
+/**
+ * @note Address: 0x803E25C4
+ * @note Size: 0x4C
  */
 void FSMState_W00_NoCard::do_transitOnCard(TMgr* mgr)
 {
@@ -48,10 +45,9 @@ void FSMState_W00_NoCard::do_transitOnCard(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2610
- * Size:	000054
+/**
+ * @note Address: 0x803E2610
+ * @note Size: 0x54
  */
 void FSMState_W01_IOError::do_open(TMgr* mgr)
 {
@@ -63,10 +59,9 @@ void FSMState_W01_IOError::do_open(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2664
- * Size:	000058
+/**
+ * @note Address: 0x803E2664
+ * @note Size: 0x58
  */
 void FSMState_W01_IOError::do_transit(TMgr* mgr)
 {
@@ -77,10 +72,9 @@ void FSMState_W01_IOError::do_transit(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E26BC
- * Size:	000054
+/**
+ * @note Address: 0x803E26BC
+ * @note Size: 0x54
  */
 void FSMState_W02_WrongDevice::do_open(TMgr* mgr)
 {
@@ -92,10 +86,9 @@ void FSMState_W02_WrongDevice::do_open(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2710
- * Size:	000058
+/**
+ * @note Address: 0x803E2710
+ * @note Size: 0x58
  */
 void FSMState_W02_WrongDevice::do_transit(TMgr* mgr)
 {
@@ -106,10 +99,9 @@ void FSMState_W02_WrongDevice::do_transit(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2768
- * Size:	000054
+/**
+ * @note Address: 0x803E2768
+ * @note Size: 0x54
  */
 void FSMState_W03_WrongSector::do_open(TMgr* mgr)
 {
@@ -121,10 +113,9 @@ void FSMState_W03_WrongSector::do_open(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E27BC
- * Size:	000058
+/**
+ * @note Address: 0x803E27BC
+ * @note Size: 0x58
  */
 void FSMState_W03_WrongSector::do_transit(TMgr* mgr)
 {
@@ -135,10 +126,9 @@ void FSMState_W03_WrongSector::do_transit(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2814
- * Size:	000054
+/**
+ * @note Address: 0x803E2814
+ * @note Size: 0x54
  */
 void FSMState_W04_OverCapacity::do_open(TMgr* mgr)
 {
@@ -150,10 +140,9 @@ void FSMState_W04_OverCapacity::do_open(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2868
- * Size:	000064
+/**
+ * @note Address: 0x803E2868
+ * @note Size: 0x64
  */
 void FSMState_W04_OverCapacity::do_transit(TMgr* mgr)
 {
@@ -164,10 +153,9 @@ void FSMState_W04_OverCapacity::do_transit(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E28CC
- * Size:	000054
+/**
+ * @note Address: 0x803E28CC
+ * @note Size: 0x54
  */
 void FSMState_W05_InitCardOnIPL::do_open(TMgr* mgr)
 {
@@ -179,10 +167,9 @@ void FSMState_W05_InitCardOnIPL::do_open(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2920
- * Size:	000064
+/**
+ * @note Address: 0x803E2920
+ * @note Size: 0x64
  */
 void FSMState_W05_InitCardOnIPL::do_transit(TMgr* mgr)
 {
@@ -193,10 +180,9 @@ void FSMState_W05_InitCardOnIPL::do_transit(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2984
- * Size:	000054
+/**
+ * @note Address: 0x803E2984
+ * @note Size: 0x54
  */
 void FSMState_W06_CardNotUsable::do_open(TMgr* mgr)
 {
@@ -208,10 +194,9 @@ void FSMState_W06_CardNotUsable::do_open(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E29D8
- * Size:	000058
+/**
+ * @note Address: 0x803E29D8
+ * @note Size: 0x58
  */
 void FSMState_W06_CardNotUsable::do_transit(TMgr* mgr)
 {
@@ -222,10 +207,9 @@ void FSMState_W06_CardNotUsable::do_transit(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2A30
- * Size:	000054
+/**
+ * @note Address: 0x803E2A30
+ * @note Size: 0x54
  */
 void FSMState_W07_NoFileForSave::do_open(TMgr* mgr)
 {
@@ -237,10 +221,9 @@ void FSMState_W07_NoFileForSave::do_open(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2A84
- * Size:	000058
+/**
+ * @note Address: 0x803E2A84
+ * @note Size: 0x58
  */
 void FSMState_W07_NoFileForSave::do_transit(TMgr* mgr)
 {
@@ -251,10 +234,9 @@ void FSMState_W07_NoFileForSave::do_transit(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2ADC
- * Size:	000054
+/**
+ * @note Address: 0x803E2ADC
+ * @note Size: 0x54
  */
 void FSMState_W08_FinishFormat::do_open(TMgr* mgr)
 {
@@ -266,10 +248,9 @@ void FSMState_W08_FinishFormat::do_open(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2B30
- * Size:	00004C
+/**
+ * @note Address: 0x803E2B30
+ * @note Size: 0x4C
  */
 void FSMState_W08_FinishFormat::do_transit(TMgr* mgr)
 {
@@ -280,10 +261,9 @@ void FSMState_W08_FinishFormat::do_transit(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2B7C
- * Size:	000054
+/**
+ * @note Address: 0x803E2B7C
+ * @note Size: 0x54
  */
 void FSMState_W09_FinishCreateNewFile::do_open(TMgr* mgr)
 {
@@ -295,10 +275,9 @@ void FSMState_W09_FinishCreateNewFile::do_open(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2BD0
- * Size:	00004C
+/**
+ * @note Address: 0x803E2BD0
+ * @note Size: 0x4C
  */
 void FSMState_W09_FinishCreateNewFile::do_transit(TMgr* mgr)
 {
@@ -309,10 +288,9 @@ void FSMState_W09_FinishCreateNewFile::do_transit(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2C1C
- * Size:	000064
+/**
+ * @note Address: 0x803E2C1C
+ * @note Size: 0x64
  */
 void FSMState_W10_SerialNoError::do_open(TMgr* mgr)
 {
@@ -324,10 +302,9 @@ void FSMState_W10_SerialNoError::do_open(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2C80
- * Size:	00005C
+/**
+ * @note Address: 0x803E2C80
+ * @note Size: 0x5C
  */
 void FSMState_W10_SerialNoError::do_transit(TMgr* mgr)
 {
@@ -338,10 +315,9 @@ void FSMState_W10_SerialNoError::do_transit(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2CDC
- * Size:	000054
+/**
+ * @note Address: 0x803E2CDC
+ * @note Size: 0x54
  */
 void FSMState_WF0_FailToFormat_NoCard::do_open(TMgr* mgr)
 {
@@ -353,10 +329,9 @@ void FSMState_WF0_FailToFormat_NoCard::do_open(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2D30
- * Size:	00004C
+/**
+ * @note Address: 0x803E2D30
+ * @note Size: 0x4C
  */
 void FSMState_WF0_FailToFormat_NoCard::do_transit(TMgr* mgr)
 {
@@ -367,10 +342,9 @@ void FSMState_WF0_FailToFormat_NoCard::do_transit(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2D7C
- * Size:	000054
+/**
+ * @note Address: 0x803E2D7C
+ * @note Size: 0x54
  */
 void FSMState_WF1_FailToFormat_IOError::do_open(TMgr* mgr)
 {
@@ -382,10 +356,9 @@ void FSMState_WF1_FailToFormat_IOError::do_open(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2DD0
- * Size:	00004C
+/**
+ * @note Address: 0x803E2DD0
+ * @note Size: 0x4C
  */
 void FSMState_WF1_FailToFormat_IOError::do_transit(TMgr* mgr)
 {
@@ -396,10 +369,9 @@ void FSMState_WF1_FailToFormat_IOError::do_transit(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2E1C
- * Size:	000054
+/**
+ * @note Address: 0x803E2E1C
+ * @note Size: 0x54
  */
 void FSMState_WF2_FailToCreateNewFile_NoCard::do_open(TMgr* mgr)
 {
@@ -411,10 +383,9 @@ void FSMState_WF2_FailToCreateNewFile_NoCard::do_open(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2E70
- * Size:	00004C
+/**
+ * @note Address: 0x803E2E70
+ * @note Size: 0x4C
  */
 void FSMState_WF2_FailToCreateNewFile_NoCard::do_transit(TMgr* mgr)
 {
@@ -425,10 +396,9 @@ void FSMState_WF2_FailToCreateNewFile_NoCard::do_transit(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2EBC
- * Size:	000054
+/**
+ * @note Address: 0x803E2EBC
+ * @note Size: 0x54
  */
 void FSMState_WF3_FailToCreateNewFile_IOError::do_open(TMgr* mgr)
 {
@@ -440,10 +410,9 @@ void FSMState_WF3_FailToCreateNewFile_IOError::do_open(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2F10
- * Size:	00004C
+/**
+ * @note Address: 0x803E2F10
+ * @note Size: 0x4C
  */
 void FSMState_WF3_FailToCreateNewFile_IOError::do_transit(TMgr* mgr)
 {
@@ -454,10 +423,9 @@ void FSMState_WF3_FailToCreateNewFile_IOError::do_transit(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2F5C
- * Size:	000064
+/**
+ * @note Address: 0x803E2F5C
+ * @note Size: 0x64
  */
 void FSMState_WF4_FailToSave_NoCard::do_open(TMgr* mgr)
 {
@@ -469,10 +437,9 @@ void FSMState_WF4_FailToSave_NoCard::do_open(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E2FC0
- * Size:	00004C
+/**
+ * @note Address: 0x803E2FC0
+ * @note Size: 0x4C
  */
 void FSMState_WF4_FailToSave_NoCard::do_transit(TMgr* mgr)
 {
@@ -483,10 +450,9 @@ void FSMState_WF4_FailToSave_NoCard::do_transit(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E300C
- * Size:	000064
+/**
+ * @note Address: 0x803E300C
+ * @note Size: 0x64
  */
 void FSMState_WF5_FailToSave_IOError::do_open(TMgr* mgr)
 {
@@ -498,10 +464,9 @@ void FSMState_WF5_FailToSave_IOError::do_open(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E3070
- * Size:	00004C
+/**
+ * @note Address: 0x803E3070
+ * @note Size: 0x4C
  */
 void FSMState_WF5_FailToSave_IOError::do_transit(TMgr* mgr)
 {
@@ -512,10 +477,9 @@ void FSMState_WF5_FailToSave_IOError::do_transit(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E30BC
- * Size:	000054
+/**
+ * @note Address: 0x803E30BC
+ * @note Size: 0x54
  */
 void FSMState_Q00_DataBrokenAndDoYouFormat::do_open(TMgr* mgr)
 {
@@ -527,10 +491,9 @@ void FSMState_Q00_DataBrokenAndDoYouFormat::do_open(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E3110
- * Size:	000064
+/**
+ * @note Address: 0x803E3110
+ * @note Size: 0x64
  */
 void FSMState_Q00_DataBrokenAndDoYouFormat::do_transitYes(TMgr* mgr)
 {
@@ -541,10 +504,9 @@ void FSMState_Q00_DataBrokenAndDoYouFormat::do_transitYes(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E3174
- * Size:	000064
+/**
+ * @note Address: 0x803E3174
+ * @note Size: 0x64
  */
 void FSMState_Q00_DataBrokenAndDoYouFormat::do_transitNo(TMgr* mgr)
 {
@@ -555,10 +517,9 @@ void FSMState_Q00_DataBrokenAndDoYouFormat::do_transitNo(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E31D8
- * Size:	000054
+/**
+ * @note Address: 0x803E31D8
+ * @note Size: 0x54
  */
 void FSMState_Q01_DoYouOpenIPL::do_open(TMgr* mgr)
 {
@@ -570,10 +531,9 @@ void FSMState_Q01_DoYouOpenIPL::do_open(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E322C
- * Size:	000058
+/**
+ * @note Address: 0x803E322C
+ * @note Size: 0x58
  */
 void FSMState_Q01_DoYouOpenIPL::do_transitYes(TMgr* mgr)
 {
@@ -584,10 +544,9 @@ void FSMState_Q01_DoYouOpenIPL::do_transitYes(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E3284
- * Size:	000058
+/**
+ * @note Address: 0x803E3284
+ * @note Size: 0x58
  */
 void FSMState_Q01_DoYouOpenIPL::do_transitNo(TMgr* mgr)
 {
@@ -598,10 +557,9 @@ void FSMState_Q01_DoYouOpenIPL::do_transitNo(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E32DC
- * Size:	000054
+/**
+ * @note Address: 0x803E32DC
+ * @note Size: 0x54
  */
 void FSMState_Q02_DoYouFormat::do_open(TMgr* mgr)
 {
@@ -613,10 +571,9 @@ void FSMState_Q02_DoYouFormat::do_open(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E3330
- * Size:	000064
+/**
+ * @note Address: 0x803E3330
+ * @note Size: 0x64
  */
 void FSMState_Q02_DoYouFormat::do_transitYes(TMgr* mgr)
 {
@@ -627,10 +584,9 @@ void FSMState_Q02_DoYouFormat::do_transitYes(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E3394
- * Size:	000064
+/**
+ * @note Address: 0x803E3394
+ * @note Size: 0x64
  */
 void FSMState_Q02_DoYouFormat::do_transitNo(TMgr* mgr)
 {
@@ -641,10 +597,9 @@ void FSMState_Q02_DoYouFormat::do_transitNo(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E33F8
- * Size:	000054
+/**
+ * @note Address: 0x803E33F8
+ * @note Size: 0x54
  */
 void FSMState_Q03_DoYouCreateNewFile::do_open(TMgr* mgr)
 {
@@ -656,10 +611,9 @@ void FSMState_Q03_DoYouCreateNewFile::do_open(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E344C
- * Size:	000064
+/**
+ * @note Address: 0x803E344C
+ * @note Size: 0x64
  */
 void FSMState_Q03_DoYouCreateNewFile::do_transitYes(TMgr* mgr)
 {
@@ -670,10 +624,9 @@ void FSMState_Q03_DoYouCreateNewFile::do_transitYes(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E34B0
- * Size:	000064
+/**
+ * @note Address: 0x803E34B0
+ * @note Size: 0x64
  */
 void FSMState_Q03_DoYouCreateNewFile::do_transitNo(TMgr* mgr)
 {
@@ -684,10 +637,9 @@ void FSMState_Q03_DoYouCreateNewFile::do_transitNo(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E3514
- * Size:	000064
+/**
+ * @note Address: 0x803E3514
+ * @note Size: 0x64
  */
 void FSMState_Q04_DoYouStartGameWithoutSave::do_open(TMgr* mgr)
 {
@@ -699,10 +651,9 @@ void FSMState_Q04_DoYouStartGameWithoutSave::do_open(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E3578
- * Size:	00005C
+/**
+ * @note Address: 0x803E3578
+ * @note Size: 0x5C
  */
 void FSMState_Q04_DoYouStartGameWithoutSave::do_transitYes(TMgr* mgr)
 {
@@ -713,10 +664,9 @@ void FSMState_Q04_DoYouStartGameWithoutSave::do_transitYes(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E35D4
- * Size:	00005C
+/**
+ * @note Address: 0x803E35D4
+ * @note Size: 0x5C
  */
 void FSMState_Q04_DoYouStartGameWithoutSave::do_transitNo(TMgr* mgr)
 {
@@ -727,10 +677,9 @@ void FSMState_Q04_DoYouStartGameWithoutSave::do_transitNo(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E3630
- * Size:	000064
+/**
+ * @note Address: 0x803E3630
+ * @note Size: 0x64
  */
 void FSMState_Q05_GameCantSave::do_open(TMgr* mgr)
 {
@@ -742,10 +691,9 @@ void FSMState_Q05_GameCantSave::do_open(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E3694
- * Size:	00005C
+/**
+ * @note Address: 0x803E3694
+ * @note Size: 0x5C
  */
 void FSMState_Q05_GameCantSave::do_transitYes(TMgr* mgr)
 {
@@ -756,10 +704,9 @@ void FSMState_Q05_GameCantSave::do_transitYes(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E36F0
- * Size:	00005C
+/**
+ * @note Address: 0x803E36F0
+ * @note Size: 0x5C
  */
 void FSMState_Q05_GameCantSave::do_transitNo(TMgr* mgr)
 {
@@ -770,17 +717,15 @@ void FSMState_Q05_GameCantSave::do_transitNo(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E374C
- * Size:	000028
+/**
+ * @note Address: 0x803E374C
+ * @note Size: 0x28
  */
 bool FSMState_WN0_NowFormat::do_cardRequest() { return static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->format(); }
 
-/*
- * --INFO--
- * Address:	803E3774
- * Size:	00004C
+/**
+ * @note Address: 0x803E3774
+ * @note Size: 0x4C
  */
 void FSMState_WN0_NowFormat::do_open(TMgr* mgr)
 {
@@ -791,31 +736,27 @@ void FSMState_WN0_NowFormat::do_open(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E37C0
- * Size:	000034
+/**
+ * @note Address: 0x803E37C0
+ * @note Size: 0x34
  */
 void FSMState_WN0_NowFormat::do_transitCardReady(TMgr* mgr) { transit(mgr, CARDERROR_FinishFormat, nullptr); }
 
-/*
- * --INFO--
- * Address:	803E37F4
- * Size:	000034
+/**
+ * @note Address: 0x803E37F4
+ * @note Size: 0x34
  */
 void FSMState_WN0_NowFormat::do_transitCardNoCard(TMgr* mgr) { transit(mgr, CARDERROR_FailToFormat_NoCard, nullptr); }
 
-/*
- * --INFO--
- * Address:	803E3828
- * Size:	000034
+/**
+ * @note Address: 0x803E3828
+ * @note Size: 0x34
  */
 void FSMState_WN0_NowFormat::do_transitCardIOError(TMgr* mgr) { transit(mgr, CARDERROR_FailToFormat_IOError, nullptr); }
 
-/*
- * --INFO--
- * Address:	803E385C
- * Size:	00004C
+/**
+ * @note Address: 0x803E385C
+ * @note Size: 0x4C
  */
 void FSMState_WN1_NowCreateNewFile::do_open(TMgr* mgr)
 {
@@ -826,31 +767,27 @@ void FSMState_WN1_NowCreateNewFile::do_open(TMgr* mgr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E38A8
- * Size:	000028
+/**
+ * @note Address: 0x803E38A8
+ * @note Size: 0x28
  */
 bool FSMState_WN1_NowCreateNewFile::do_cardRequest() { return static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->createNewFile(); }
 
-/*
- * --INFO--
- * Address:	803E38D0
- * Size:	000034
+/**
+ * @note Address: 0x803E38D0
+ * @note Size: 0x34
  */
 void FSMState_WN1_NowCreateNewFile::do_transitCardReady(TMgr* mgr) { transit(mgr, CARDERROR_FinishCreateNewFile, nullptr); }
 
-/*
- * --INFO--
- * Address:	803E3904
- * Size:	000034
+/**
+ * @note Address: 0x803E3904
+ * @note Size: 0x34
  */
 void FSMState_WN1_NowCreateNewFile::do_transitCardNoCard(TMgr* mgr) { transit(mgr, CARDERROR_FailToCreateNewFile_NoCard, nullptr); }
 
-/*
- * --INFO--
- * Address:	803E3938
- * Size:	000034
+/**
+ * @note Address: 0x803E3938
+ * @note Size: 0x34
  */
 void FSMState_WN1_NowCreateNewFile::do_transitCardIOError(TMgr* mgr) { transit(mgr, CARDERROR_FailToCreateNewFile_IOError, nullptr); }
 

@@ -10,10 +10,9 @@
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	80325A40
- * Size:	00015C
+/**
+ * @note Address: 0x80325A40
+ * @note Size: 0x15C
  */
 ObjVs::ObjVs(char const* name)
 {
@@ -55,17 +54,15 @@ ObjVs::ObjVs(char const* name)
 	mPlayWinSound     = false;
 }
 
-/*
- * --INFO--
- * Address:	80325B9C
- * Size:	0000AC
+/**
+ * @note Address: 0x80325B9C
+ * @note Size: 0xAC
  */
 ObjVs::~ObjVs() { }
 
-/*
- * --INFO--
- * Address:	80325C48
- * Size:	000800
+/**
+ * @note Address: 0x80325C48
+ * @note Size: 0x800
  */
 void ObjVs::doCreate(JKRArchive* arc)
 {
@@ -693,60 +690,54 @@ lbl_8032632C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 void ObjVs::isCompBdama(int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000138
+/**
+ * @note Address: N/A
+ * @note Size: 0x138
  */
 bool ObjVs::startGetBdama(J2DPane* pane)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C8
+/**
+ * @note Address: N/A
+ * @note Size: 0xC8
  */
 void ObjVs::startBdamaComp(J2DPane*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000124
+/**
+ * @note Address: N/A
+ * @note Size: 0x124
  */
 void ObjVs::startBdamaWinRed(J2DPane*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00013C
+/**
+ * @note Address: N/A
+ * @note Size: 0x13C
  */
 void ObjVs::startBdamaWinBlue(J2DPane*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80326448
- * Size:	000A28
+/**
+ * @note Address: 0x80326448
+ * @note Size: 0xA28
  */
 void ObjVs::setOnOffBdama(bool doEfx)
 {
@@ -1621,10 +1612,9 @@ lbl_80326E3C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80326E70
- * Size:	0002B8
+/**
+ * @note Address: 0x80326E70
+ * @note Size: 0x2B8
  */
 void ObjVs::ScreenSet::init(og::Screen::DataNavi* data, JKRArchive* arc, u32* pikis)
 {
@@ -1835,10 +1825,9 @@ void ObjVs::ScreenSet::init(og::Screen::DataNavi* data, JKRArchive* arc, u32* pi
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000EC
+/**
+ * @note Address: N/A
+ * @note Size: 0xEC
  */
 void ObjVs::ScreenSet::update(og::Screen::DataNavi& data)
 {
@@ -1859,10 +1848,9 @@ void ObjVs::ScreenSet::update(og::Screen::DataNavi& data)
 	dope->update();
 }
 
-/*
- * --INFO--
- * Address:	80327128
- * Size:	00056C
+/**
+ * @note Address: 0x80327128
+ * @note Size: 0x56C
  */
 void ObjVs::checkObake()
 {
@@ -2344,10 +2332,9 @@ lbl_803275A4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80327694
- * Size:	0002AC
+/**
+ * @note Address: 0x80327694
+ * @note Size: 0x2AC
  */
 void ObjVs::doUpdateCommon()
 {
@@ -2564,10 +2551,9 @@ lbl_8032788C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80327940
- * Size:	000044
+/**
+ * @note Address: 0x80327940
+ * @note Size: 0x44
  */
 bool ObjVs::doUpdate()
 {
@@ -2578,10 +2564,9 @@ bool ObjVs::doUpdate()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80327984
- * Size:	000130
+/**
+ * @note Address: 0x80327984
+ * @note Size: 0x130
  */
 void ObjVs::doDraw(Graphics& gfx)
 {
@@ -2601,10 +2586,9 @@ void ObjVs::doDraw(Graphics& gfx)
 	mBloGroup->draw(graf);
 }
 
-/*
- * --INFO--
- * Address:	80327AB4
- * Size:	000014
+/**
+ * @note Address: 0x80327AB4
+ * @note Size: 0x14
  */
 bool ObjVs::doStart(::Screen::StartSceneArg const*)
 {
@@ -2613,10 +2597,9 @@ bool ObjVs::doStart(::Screen::StartSceneArg const*)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80327AC8
- * Size:	000010
+/**
+ * @note Address: 0x80327AC8
+ * @note Size: 0x10
  */
 bool ObjVs::doEnd(::Screen::EndSceneArg const*)
 {
@@ -2624,31 +2607,27 @@ bool ObjVs::doEnd(::Screen::EndSceneArg const*)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80327AD8
- * Size:	000004
+/**
+ * @note Address: 0x80327AD8
+ * @note Size: 0x4
  */
 void ObjVs::doUpdateFadeinFinish() { }
 
-/*
- * --INFO--
- * Address:	80327ADC
- * Size:	00000C
+/**
+ * @note Address: 0x80327ADC
+ * @note Size: 0xC
  */
 void ObjVs::doUpdateFinish() { mFadeLevel = 0.0f; }
 
-/*
- * --INFO--
- * Address:	80327AE8
- * Size:	000004
+/**
+ * @note Address: 0x80327AE8
+ * @note Size: 0x4
  */
 void ObjVs::doUpdateFadeoutFinish() { }
 
-/*
- * --INFO--
- * Address:	80327AEC
- * Size:	000074
+/**
+ * @note Address: 0x80327AEC
+ * @note Size: 0x74
  */
 bool ObjVs::doUpdateFadein()
 {
@@ -2664,10 +2643,9 @@ bool ObjVs::doUpdateFadein()
 	return check;
 }
 
-/*
- * --INFO--
- * Address:	80327B60
- * Size:	00007C
+/**
+ * @note Address: 0x80327B60
+ * @note Size: 0x7C
  */
 bool ObjVs::doUpdateFadeout()
 {

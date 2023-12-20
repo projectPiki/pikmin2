@@ -10,10 +10,9 @@
 namespace Game {
 namespace EnemyFunc {
 
-/*
- * --INFO--
- * Address:	801126F4
- * Size:	000424
+/**
+ * @note Address: 0x801126F4
+ * @note Size: 0x424
  */
 Navi* getNearestNavi(Creature* creature, f32 searchAngle, f32 searchRadius, f32* naviDist, Condition<Navi>* condition)
 {
@@ -362,10 +361,9 @@ Navi* getNearestNavi(Creature* creature, f32 searchAngle, f32 searchRadius, f32*
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80112B64
- * Size:	000484
+/**
+ * @note Address: 0x80112B64
+ * @note Size: 0x484
  */
 Piki* getNearestPikmin(Creature* creature, f32 searchAngle, f32 searchRadius, f32* pikiDist, Condition<Piki>* condition)
 {
@@ -741,10 +739,9 @@ Piki* getNearestPikmin(Creature* creature, f32 searchAngle, f32 searchRadius, f3
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80113050
- * Size:	0000C4
+/**
+ * @note Address: 0x80113050
+ * @note Size: 0xC4
  */
 Creature* getNearestPikminOrNavi(Creature* creature, f32 searchAngle, f32 searchRadius, f32* targetDist, Condition<Navi>* naviCondition,
                                  Condition<Piki>* pikiCondition)
@@ -764,10 +761,9 @@ Creature* getNearestPikminOrNavi(Creature* creature, f32 searchAngle, f32 search
 	return navi;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
+/**
+ * @note Address: N/A
+ * @note Size: 0x60
  */
 void flickCreature(Creature* flicker, Creature* toFlick, f32 knockback, f32 damage, f32 angle)
 {
@@ -777,10 +773,9 @@ void flickCreature(Creature* flicker, Creature* toFlick, f32 knockback, f32 dama
 	}
 }
 
-/*
- * --INFO--
- * Address:	8011311C
- * Size:	00036C
+/**
+ * @note Address: 0x8011311C
+ * @note Size: 0x36C
  */
 void flickStickPikmin(Creature* creature, f32 flickChance, f32 knockback, f32 damage, f32 angle, Condition<Piki>* condition)
 {
@@ -802,10 +797,9 @@ void flickStickPikmin(Creature* creature, f32 flickChance, f32 knockback, f32 da
 	}
 }
 
-/*
- * --INFO--
- * Address:	801134D4
- * Size:	0002BC
+/**
+ * @note Address: 0x801134D4
+ * @note Size: 0x2BC
  */
 void flickNearbyPikmin(Creature* creature, f32 searchRadius, f32 knockback, f32 damage, f32 angle, Condition<Piki>* condition)
 {
@@ -826,10 +820,9 @@ void flickNearbyPikmin(Creature* creature, f32 searchRadius, f32 knockback, f32 
 	}
 }
 
-/*
- * --INFO--
- * Address:	80113790
- * Size:	0003A4
+/**
+ * @note Address: 0x80113790
+ * @note Size: 0x3A4
  */
 void flickNearbyNavi(Creature* creature, f32 searchRadius, f32 knockback, f32 damage, f32 angle, Condition<Navi>* condition)
 {
@@ -1107,10 +1100,9 @@ void flickNearbyNavi(Creature* creature, f32 searchRadius, f32 knockback, f32 da
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80113B34
- * Size:	000350
+/**
+ * @note Address: 0x80113B34
+ * @note Size: 0x350
  */
 int eatPikmin(EnemyBase* enemy, Condition<Piki>* condition)
 {
@@ -1149,10 +1141,9 @@ int eatPikmin(EnemyBase* enemy, Condition<Piki>* condition)
 	return eatCount;
 }
 
-/*
- * --INFO--
- * Address:	80113E84
- * Size:	0003DC
+/**
+ * @note Address: 0x80113E84
+ * @note Size: 0x3DC
  */
 void swallowPikmin(Creature* creature, f32 poisonDamage, Condition<Piki>* condition)
 {
@@ -1181,10 +1172,9 @@ void swallowPikmin(Creature* creature, f32 poisonDamage, Condition<Piki>* condit
 	}
 }
 
-/*
- * --INFO--
- * Address:	80114260
- * Size:	0003F8
+/**
+ * @note Address: 0x80114260
+ * @note Size: 0x3F8
  */
 int attackNavi(Creature* creature, f32 searchRadius, f32 searchAngle, f32 damage, CollPart* part, Condition<Navi>* condition)
 {
@@ -1212,10 +1202,9 @@ int attackNavi(Creature* creature, f32 searchRadius, f32 searchAngle, f32 damage
 	return attackCount;
 }
 
-/*
- * --INFO--
- * Address:	80114658
- * Size:	0000DC
+/**
+ * @note Address: 0x80114658
+ * @note Size: 0xDC
  */
 bool isStartFlick(EnemyBase* enemy, bool doResetFlickTimer)
 {
@@ -1254,10 +1243,9 @@ bool isStartFlick(EnemyBase* enemy, bool doResetFlickTimer)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80114734
- * Size:	00038C
+/**
+ * @note Address: 0x80114734
+ * @note Size: 0x38C
  */
 bool isTherePikmin(Creature* creature, f32 searchRadius, Condition<Piki>* condition)
 {
@@ -1531,10 +1519,9 @@ lbl_80114A74:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80114AC0
- * Size:	000330
+/**
+ * @note Address: 0x80114AC0
+ * @note Size: 0x330
  */
 bool isThereOlimar(Creature* creature, f32 searchRadius, Condition<Navi>* condition)
 {
@@ -1781,10 +1768,9 @@ lbl_80114DA8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80114DF0
- * Size:	0003C4
+/**
+ * @note Address: 0x80114DF0
+ * @note Size: 0x3C4
  */
 int getSurroundPikminNum(Creature* creature, f32 searchRadius, Condition<Piki>* condition)
 {
@@ -2075,10 +2061,9 @@ int getSurroundPikminNum(Creature* creature, f32 searchRadius, Condition<Piki>* 
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801151B4
- * Size:	00024C
+/**
+ * @note Address: 0x801151B4
+ * @note Size: 0x24C
  */
 int getStickPikminColorNum(Creature* creature, int color)
 {
@@ -2098,10 +2083,9 @@ int getStickPikminColorNum(Creature* creature, int color)
 	return num;
 }
 
-/*
- * --INFO--
- * Address:	80115400
- * Size:	0001DC
+/**
+ * @note Address: 0x80115400
+ * @note Size: 0x1DC
  */
 void walkToTarget(EnemyBase* enemy, Creature* target, f32 speed, f32 turnFactor, f32 maxTurnSpeed)
 {
@@ -2114,10 +2098,9 @@ void walkToTarget(EnemyBase* enemy, Creature* target, f32 speed, f32 turnFactor,
 	enemy->mTargetVelocity = Vector3f(speed * x, y, speed * z);
 }
 
-/*
- * --INFO--
- * Address:	801155DC
- * Size:	0001BC
+/**
+ * @note Address: 0x801155DC
+ * @note Size: 0x1BC
  */
 void walkToTarget(EnemyBase* enemy, Vector3f& targetPos, f32 moveSpeed, f32 turnFactor, f32 maxTurnSpeed)
 {
@@ -2130,10 +2113,9 @@ void walkToTarget(EnemyBase* enemy, Vector3f& targetPos, f32 moveSpeed, f32 turn
 	enemy->mTargetVelocity = Vector3f(moveSpeed * x, y, moveSpeed * z);
 }
 
-/*
- * --INFO--
- * Address:	80115798
- * Size:	000080
+/**
+ * @note Address: 0x80115798
+ * @note Size: 0x80
  */
 bool EatPikminDefaultCondition::satisfy(Piki* piki)
 {
@@ -2146,10 +2128,9 @@ bool EatPikminDefaultCondition::satisfy(Piki* piki)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80115818
- * Size:	000168
+/**
+ * @note Address: 0x80115818
+ * @note Size: 0x168
  */
 bool ConditionPikminNearby::satisfy(Creature* creature)
 {

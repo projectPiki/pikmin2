@@ -9,10 +9,9 @@
 namespace og {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	8032C3AC
- * Size:	0000A0
+/**
+ * @note Address: 0x8032C3AC
+ * @note Size: 0xA0
  */
 TotalPokoScreen::TotalPokoScreen()
 {
@@ -32,10 +31,9 @@ TotalPokoScreen::TotalPokoScreen()
 	mScaleMgr          = new ScaleMgr;
 }
 
-/*
- * --INFO--
- * Address:	8032C44C
- * Size:	000070
+/**
+ * @note Address: 0x8032C44C
+ * @note Size: 0x70
  */
 void TotalPokoScreen::showTotalPoko()
 {
@@ -53,10 +51,9 @@ void TotalPokoScreen::showTotalPoko()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8032C4BC
- * Size:	000070
+/**
+ * @note Address: 0x8032C4BC
+ * @note Size: 0x70
  */
 void TotalPokoScreen::setTotalPoko(u32 newPokoCount)
 {
@@ -72,10 +69,9 @@ void TotalPokoScreen::setTotalPoko(u32 newPokoCount)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8032C52C
- * Size:	000044
+/**
+ * @note Address: 0x8032C52C
+ * @note Size: 0x44
  */
 void TotalPokoScreen::closeTotalPoko()
 {
@@ -85,17 +81,15 @@ void TotalPokoScreen::closeTotalPoko()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8032C570
- * Size:	000010
+/**
+ * @note Address: 0x8032C570
+ * @note Size: 0x10
  */
 void TotalPokoScreen::hideTotalPoko() { mPane->hide(); }
 
-/*
- * --INFO--
- * Address:	8032C580
- * Size:	000138
+/**
+ * @note Address: 0x8032C580
+ * @note Size: 0x138
  */
 void TotalPokoScreen::setCallBack(JKRArchive* archive, f32 x, f32 y, f32 scaleX, f32 scaleY)
 {
@@ -114,10 +108,9 @@ void TotalPokoScreen::setCallBack(JKRArchive* archive, f32 x, f32 y, f32 scaleX,
 	pane->calcMtx();
 }
 
-/*
- * --INFO--
- * Address:	8032C6B8
- * Size:	000144
+/**
+ * @note Address: 0x8032C6B8
+ * @note Size: 0x144
  */
 void TotalPokoScreen::update()
 {

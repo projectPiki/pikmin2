@@ -12,10 +12,9 @@ const char filename[]     = "JSTFindCreature";
 namespace Game {
 namespace P2JST {
 
-/*
- * --INFO--
- * Address:	804313B8
- * Size:	000450
+/**
+ * @note Address: 0x804313B8
+ * @note Size: 0x450
  */
 Creature* ObjectSystem::findCreature(const char* query) const
 {

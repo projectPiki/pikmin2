@@ -11,10 +11,9 @@ static const char unusedName[] = "itemRock";
 
 Mgr* mgr;
 
-/*
- * --INFO--
- * Address:	801E0E84
- * Size:	000134
+/**
+ * @note Address: 0x801E0E84
+ * @note Size: 0x134
  */
 void FSM::init(Item*)
 {
@@ -24,10 +23,9 @@ void FSM::init(Item*)
 	registerState(new UpState);
 }
 
-/*
- * --INFO--
- * Address:	801E0FB8
- * Size:	00003C
+/**
+ * @note Address: 0x801E0FB8
+ * @note Size: 0x3C
  */
 void NormalState::init(Item* item, StateArg* stateArg)
 {
@@ -36,10 +34,9 @@ void NormalState::init(Item* item, StateArg* stateArg)
 	_11 = 0;
 }
 
-/*
- * --INFO--
- * Address:	801E0FF4
- * Size:	000090
+/**
+ * @note Address: 0x801E0FF4
+ * @note Size: 0x90
  */
 void NormalState::exec(Item* item)
 {
@@ -55,17 +52,15 @@ void NormalState::exec(Item* item)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E10B4
- * Size:	000004
+/**
+ * @note Address: 0x801E10B4
+ * @note Size: 0x4
  */
 void NormalState::cleanup(Item*) { }
 
-/*
- * --INFO--
- * Address:	801E10B8
- * Size:	0000BC
+/**
+ * @note Address: 0x801E10B8
+ * @note Size: 0xBC
  */
 void NormalState::onDamage(Item* item, f32 damage)
 {
@@ -80,10 +75,9 @@ void NormalState::onDamage(Item* item, f32 damage)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E1174
- * Size:	0000F8
+/**
+ * @note Address: 0x801E1174
+ * @note Size: 0xF8
  */
 void NormalState::onKeyEvent(Item* item, const SysShape::KeyEvent& event)
 {
@@ -105,10 +99,9 @@ void NormalState::onKeyEvent(Item* item, const SysShape::KeyEvent& event)
 	rock->startWaitMotion();
 }
 
-/*
- * --INFO--
- * Address:	801E126C
- * Size:	000048
+/**
+ * @note Address: 0x801E126C
+ * @note Size: 0x48
  */
 void DownState::init(Item* item, StateArg* stateArg)
 {
@@ -116,31 +109,27 @@ void DownState::init(Item* item, StateArg* stateArg)
 	item->startSound(PSSE_EV_RUIN_WITHER);
 }
 
-/*
- * --INFO--
- * Address:	801E12B4
- * Size:	000004
+/**
+ * @note Address: 0x801E12B4
+ * @note Size: 0x4
  */
 void DownState::exec(Item*) { }
 
-/*
- * --INFO--
- * Address:	801E12B8
- * Size:	000004
+/**
+ * @note Address: 0x801E12B8
+ * @note Size: 0x4
  */
 void DownState::cleanup(Item*) { }
 
-/*
- * --INFO--
- * Address:	801E12BC
- * Size:	000010
+/**
+ * @note Address: 0x801E12BC
+ * @note Size: 0x10
  */
 void DownState::onDamage(Item* item, f32 damage) { static_cast<ItemRock::Item*>(item)->mDamageBuffer += damage; }
 
-/*
- * --INFO--
- * Address:	801E12CC
- * Size:	0000F0
+/**
+ * @note Address: 0x801E12CC
+ * @note Size: 0xF0
  */
 void DownState::onKeyEvent(Item* item, const SysShape::KeyEvent& event)
 {
@@ -158,10 +147,9 @@ void DownState::onKeyEvent(Item* item, const SysShape::KeyEvent& event)
 	transit(rock, ITEMROCK_Normal, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	801E13BC
- * Size:	000058
+/**
+ * @note Address: 0x801E13BC
+ * @note Size: 0x58
  */
 void UpState::init(Item* item, StateArg* stateArg)
 {
@@ -172,31 +160,27 @@ void UpState::init(Item* item, StateArg* stateArg)
 	rock->startSound(PSSE_EV_RUIN_GROW);
 }
 
-/*
- * --INFO--
- * Address:	801E1414
- * Size:	000004
+/**
+ * @note Address: 0x801E1414
+ * @note Size: 0x4
  */
 void UpState::exec(Item*) { }
 
-/*
- * --INFO--
- * Address:	801E1418
- * Size:	000004
+/**
+ * @note Address: 0x801E1418
+ * @note Size: 0x4
  */
 void UpState::cleanup(Item*) { }
 
-/*
- * --INFO--
- * Address:	801E141C
- * Size:	000010
+/**
+ * @note Address: 0x801E141C
+ * @note Size: 0x10
  */
 void UpState::onDamage(Item* item, f32 damage) { static_cast<ItemRock::Item*>(item)->mDamageBuffer += damage; }
 
-/*
- * --INFO--
- * Address:	801E142C
- * Size:	0000CC
+/**
+ * @note Address: 0x801E142C
+ * @note Size: 0xCC
  */
 void UpState::onKeyEvent(Item* item, const SysShape::KeyEvent& event)
 {
@@ -209,10 +193,9 @@ void UpState::onKeyEvent(Item* item, const SysShape::KeyEvent& event)
 	transit(item, ITEMROCK_Normal, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000EC
+/**
+ * @note Address: N/A
+ * @note Size: 0xEC
  */
 Item::Item()
     : WorkItem(OBJTYPE_Rock)
@@ -221,17 +204,15 @@ Item::Item()
 	mObstacle = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	801E14F8
- * Size:	000048
+/**
+ * @note Address: 0x801E14F8
+ * @note Size: 0x48
  */
 void Item::constructor() { mSoundObj = new PSM::WorkItem(this); }
 
-/*
- * --INFO--
- * Address:	801E1540
- * Size:	00020C
+/**
+ * @note Address: 0x801E1540
+ * @note Size: 0x20C
  */
 void Item::onInit(CreatureInitArg* initArg)
 {
@@ -262,17 +243,15 @@ void Item::onInit(CreatureInitArg* initArg)
 	_1FC = 0;
 }
 
-/*
- * --INFO--
- * Address:	801E1780
- * Size:	000034
+/**
+ * @note Address: 0x801E1780
+ * @note Size: 0x34
  */
 void Item::onKill(CreatureKillArg* killArg) { mgr->kill(this); }
 
-/*
- * --INFO--
- * Address:	801E17B4
- * Size:	00005C
+/**
+ * @note Address: 0x801E17B4
+ * @note Size: 0x5C
  */
 void Item::onSetPosition()
 {
@@ -281,10 +260,9 @@ void Item::onSetPosition()
 	startLoopEffect();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000140
+/**
+ * @note Address: N/A
+ * @note Size: 0x140
  */
 void Item::emitDamageEffect()
 {
@@ -310,10 +288,9 @@ void Item::emitDamageEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E1810
- * Size:	000044
+/**
+ * @note Address: 0x801E1810
+ * @note Size: 0x44
  */
 void Item::onKeyEvent(const SysShape::KeyEvent& event)
 {
@@ -322,10 +299,9 @@ void Item::onKeyEvent(const SysShape::KeyEvent& event)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E1858
- * Size:	00010C
+/**
+ * @note Address: 0x801E1858
+ * @note Size: 0x10C
  */
 void Item::startLoopEffect()
 {
@@ -348,10 +324,9 @@ void Item::startLoopEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E1964
- * Size:	000064
+/**
+ * @note Address: 0x801E1964
+ * @note Size: 0x64
  */
 void Item::finishLoopEffect()
 {
@@ -360,10 +335,9 @@ void Item::finishLoopEffect()
 	mEfxKouhaiMax->fade();
 }
 
-/*
- * --INFO--
- * Address:	801E19C8
- * Size:	0000B0
+/**
+ * @note Address: 0x801E19C8
+ * @note Size: 0xB0
  */
 void Item::startFukuEffect(Vector3f& fxPos)
 {
@@ -374,10 +348,9 @@ void Item::startFukuEffect(Vector3f& fxPos)
 	startSound(PSSE_EV_RUIN_DISCHARGE);
 }
 
-/*
- * --INFO--
- * Address:	801E1A78
- * Size:	000204
+/**
+ * @note Address: 0x801E1A78
+ * @note Size: 0x204
  */
 void Item::doLoad(Stream& input)
 {
@@ -398,10 +371,9 @@ void Item::doLoad(Stream& input)
 	startLoopEffect();
 }
 
-/*
- * --INFO--
- * Address:	801E1C7C
- * Size:	000058
+/**
+ * @note Address: 0x801E1C7C
+ * @note Size: 0x58
  */
 void Item::doSave(Stream& input)
 {
@@ -410,10 +382,9 @@ void Item::doSave(Stream& input)
 	input.writeFloat(mHealth);
 }
 
-/*
- * --INFO--
- * Address:	801E1CD4
- * Size:	000048
+/**
+ * @note Address: 0x801E1CD4
+ * @note Size: 0x48
  */
 void Item::updateBoundSphere()
 {
@@ -422,10 +393,9 @@ void Item::updateBoundSphere()
 	mBoundingSphere.mRadius   = rad;
 }
 
-/*
- * --INFO--
- * Address:	801E1D1C
- * Size:	0001B4
+/**
+ * @note Address: 0x801E1D1C
+ * @note Size: 0x1B4
  */
 void Item::doAI()
 {
@@ -445,24 +415,21 @@ void Item::doAI()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E1ED0
- * Size:	000020
+/**
+ * @note Address: 0x801E1ED0
+ * @note Size: 0x20
  */
 void Item::initMotion() { startWaitMotion(); }
 
-/*
- * --INFO--
- * Address:	801E1EF0
- * Size:	000020
+/**
+ * @note Address: 0x801E1EF0
+ * @note Size: 0x20
  */
 void Item::on_movie_end(bool) { startWaitMotion(); }
 
-/*
- * --INFO--
- * Address:	801E1F10
- * Size:	00012C
+/**
+ * @note Address: 0x801E1F10
+ * @note Size: 0x12C
  */
 void Item::startWaitMotion()
 {
@@ -491,10 +458,9 @@ void Item::startWaitMotion()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E203C
- * Size:	00009C
+/**
+ * @note Address: 0x801E203C
+ * @note Size: 0x9C
  */
 void Item::startDamageMotion()
 {
@@ -513,10 +479,9 @@ void Item::startDamageMotion()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E20D8
- * Size:	00028C
+/**
+ * @note Address: 0x801E20D8
+ * @note Size: 0x28C
  */
 void Item::startDownMotion()
 {
@@ -549,10 +514,9 @@ void Item::startDownMotion()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E2364
- * Size:	0000EC
+/**
+ * @note Address: 0x801E2364
+ * @note Size: 0xEC
  */
 void Item::startUpMotion()
 {
@@ -572,10 +536,9 @@ void Item::startUpMotion()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E2450
- * Size:	000114
+/**
+ * @note Address: 0x801E2450
+ * @note Size: 0x114
  */
 bool Item::getVectorField(Sys::Sphere& sphere, Vector3f& vec)
 {
@@ -591,10 +554,9 @@ bool Item::getVectorField(Sys::Sphere& sphere, Vector3f& vec)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801E2564
- * Size:	000088
+/**
+ * @note Address: 0x801E2564
+ * @note Size: 0x88
  */
 f32 Item::getWorkDistance(Sys::Sphere& sphere)
 {
@@ -603,10 +565,9 @@ f32 Item::getWorkDistance(Sys::Sphere& sphere)
 	return dist - getWorkRadius();
 }
 
-/*
- * --INFO--
- * Address:	801E25EC
- * Size:	000194
+/**
+ * @note Address: 0x801E25EC
+ * @note Size: 0x194
  */
 void Item::createRock(int visibleSizeCount)
 {
@@ -748,10 +709,9 @@ lbl_801E2764:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801E2780
- * Size:	000174
+/**
+ * @note Address: 0x801E2780
+ * @note Size: 0x174
  */
 bool Item::interactAttack(InteractAttack& attack)
 {
@@ -763,10 +723,9 @@ bool Item::interactAttack(InteractAttack& attack)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801E28F8
- * Size:	000028
+/**
+ * @note Address: 0x801E28F8
+ * @note Size: 0x28
  */
 f32 Item::getWorkRadius()
 {
@@ -776,10 +735,9 @@ f32 Item::getWorkRadius()
 	return mWorkRadii[mSize];
 }
 
-/*
- * --INFO--
- * Address:	801E2920
- * Size:	000120
+/**
+ * @note Address: 0x801E2920
+ * @note Size: 0x120
  */
 Mgr::Mgr()
     : TNodeItemMgr()
@@ -798,10 +756,9 @@ Mgr::Mgr()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E2EF8
- * Size:	000110
+/**
+ * @note Address: 0x801E2EF8
+ * @note Size: 0x110
  */
 BaseItem* Mgr::birth()
 {
@@ -810,10 +767,9 @@ BaseItem* Mgr::birth()
 	return rock;
 }
 
-/*
- * --INFO--
- * Address:	801E3008
- * Size:	000060
+/**
+ * @note Address: 0x801E3008
+ * @note Size: 0x60
  */
 BaseItem* Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenItemParm* parm)
 {
@@ -823,10 +779,9 @@ BaseItem* Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenItemParm* parm)
 	return rock;
 }
 
-/*
- * --INFO--
- * Address:	801E3068
- * Size:	0000A8
+/**
+ * @note Address: 0x801E3068
+ * @note Size: 0xA8
  */
 void Mgr::onLoadResources()
 {

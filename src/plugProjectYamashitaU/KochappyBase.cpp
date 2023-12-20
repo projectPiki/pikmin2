@@ -5,10 +5,9 @@
 namespace Game {
 namespace KochappyBase {
 
-/*
- * --INFO--
- * Address:	8012DAE8
- * Size:	000148
+/**
+ * @note Address: 0x8012DAE8
+ * @note Size: 0x148
  */
 Obj::Obj()
     : mFsm(nullptr)
@@ -17,10 +16,9 @@ Obj::Obj()
 	setFSM(new FSM);
 }
 
-/*
- * --INFO--
- * Address:	8012DC30
- * Size:	000068
+/**
+ * @note Address: 0x8012DC30
+ * @note Size: 0x68
  */
 void Obj::birth(Vector3f& position, f32 p1)
 {
@@ -30,17 +28,15 @@ void Obj::birth(Vector3f& position, f32 p1)
 	mAlertTime   = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	8012DC98
- * Size:	000004
+/**
+ * @note Address: 0x8012DC98
+ * @note Size: 0x4
  */
 void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
-/*
- * --INFO--
- * Address:	8012DC9C
- * Size:	000068
+/**
+ * @note Address: 0x8012DC9C
+ * @note Size: 0x68
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
@@ -50,10 +46,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mFsm->start(this, KOCHAPPY_Wait, (WaitArg*)'rand');
 }
 
-/*
- * --INFO--
- * Address:	8012DD04
- * Size:	000088
+/**
+ * @note Address: 0x8012DD04
+ * @note Size: 0x88
  */
 void Obj::doUpdate()
 {
@@ -65,24 +60,21 @@ void Obj::doUpdate()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012DD8C
- * Size:	000004
+/**
+ * @note Address: 0x8012DD8C
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	8012DD90
- * Size:	000020
+/**
+ * @note Address: 0x8012DD90
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	8012DDB0
- * Size:	000088
+/**
+ * @note Address: 0x8012DDB0
+ * @note Size: 0x88
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
@@ -96,10 +88,9 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 	shadowParam.mSize = 10.0f;
 }
 
-/*
- * --INFO--
- * Address:	8012DE38
- * Size:	000040
+/**
+ * @note Address: 0x8012DE38
+ * @note Size: 0x40
  */
 void Obj::bounceCallback(Sys::Triangle* triangle)
 {
@@ -108,10 +99,9 @@ void Obj::bounceCallback(Sys::Triangle* triangle)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012DE78
- * Size:	0000A0
+/**
+ * @note Address: 0x8012DE78
+ * @note Size: 0xA0
  */
 bool Obj::pressCallBack(Game::Creature* creature, float p1, CollPart* collpart)
 {
@@ -125,24 +115,21 @@ bool Obj::pressCallBack(Game::Creature* creature, float p1, CollPart* collpart)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8012DF18
- * Size:	000020
+/**
+ * @note Address: 0x8012DF18
+ * @note Size: 0x20
  */
 void Obj::doStartStoneState() { EnemyBase::doStartStoneState(); }
 
-/*
- * --INFO--
- * Address:	8012DF38
- * Size:	000004
+/**
+ * @note Address: 0x8012DF38
+ * @note Size: 0x4
  */
 void Obj::doFinishStoneState() { }
 
-/*
- * --INFO--
- * Address:	8012DF3C
- * Size:	000064
+/**
+ * @note Address: 0x8012DF3C
+ * @note Size: 0x64
  */
 Vector3f Obj::getOffsetForMapCollision()
 {
@@ -160,17 +147,15 @@ Vector3f Obj::getOffsetForMapCollision()
 	return offset;
 }
 
-/*
- * --INFO--
- * Address:	8012DFA0
- * Size:	000028
+/**
+ * @note Address: 0x8012DFA0
+ * @note Size: 0x28
  */
 void Obj::startCarcassMotion() { EnemyBase::startMotion(KOCHAPPYANIM_Carry, nullptr); }
 
-/*
- * --INFO--
- * Address:	8012DFC8
- * Size:	00008C
+/**
+ * @note Address: 0x8012DFC8
+ * @note Size: 0x8C
  */
 void Obj::initMouthSlots()
 {
@@ -182,10 +167,9 @@ void Obj::initMouthSlots()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012E054
- * Size:	00008C
+/**
+ * @note Address: 0x8012E054
+ * @note Size: 0x8C
  */
 void Obj::initWalkSmokeEffect()
 {
@@ -196,10 +180,9 @@ void Obj::initWalkSmokeEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012E0E0
- * Size:	000008
+/**
+ * @note Address: 0x8012E0E0
+ * @note Size: 0x8
  */
 WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
 

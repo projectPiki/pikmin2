@@ -10,10 +10,9 @@
 namespace Game {
 namespace Frog {
 
-/*
- * --INFO--
- * Address:	80258548
- * Size:	000138
+/**
+ * @note Address: 0x80258548
+ * @note Size: 0x138
  */
 Obj::Obj()
 {
@@ -22,17 +21,15 @@ Obj::Obj()
 	createEffect();
 }
 
-/*
- * --INFO--
- * Address:	80258680
- * Size:	000004
+/**
+ * @note Address: 0x80258680
+ * @note Size: 0x4
  */
 void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
-/*
- * --INFO--
- * Address:	80258684
- * Size:	000078
+/**
+ * @note Address: 0x80258684
+ * @note Size: 0x78
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
@@ -46,10 +43,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mFsm->start(this, FROG_Wait, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802586FC
- * Size:	000044
+/**
+ * @note Address: 0x802586FC
+ * @note Size: 0x44
  */
 void Obj::onKill(CreatureKillArg* killArg)
 {
@@ -57,10 +53,9 @@ void Obj::onKill(CreatureKillArg* killArg)
 	EnemyBase::onKill(killArg);
 }
 
-/*
- * --INFO--
- * Address:	80258740
- * Size:	000044
+/**
+ * @note Address: 0x80258740
+ * @note Size: 0x44
  */
 void Obj::doUpdate()
 {
@@ -68,10 +63,9 @@ void Obj::doUpdate()
 	mFsm->exec(this);
 }
 
-/*
- * --INFO--
- * Address:	80258784
- * Size:	000280
+/**
+ * @note Address: 0x80258784
+ * @note Size: 0x280
  */
 void Obj::doSimulationFlying(f32 step)
 {
@@ -108,24 +102,21 @@ void Obj::doSimulationFlying(f32 step)
 	mAirTimer += sys->mDeltaTime;
 }
 
-/*
- * --INFO--
- * Address:	80258A04
- * Size:	000004
+/**
+ * @note Address: 0x80258A04
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics& gfx) { }
 
-/*
- * --INFO--
- * Address:	80258A08
- * Size:	000020
+/**
+ * @note Address: 0x80258A08
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	80258A28
- * Size:	00004C
+/**
+ * @note Address: 0x80258A28
+ * @note Size: 0x4C
  */
 void Obj::setFSM(FSM* fsm)
 {
@@ -134,10 +125,9 @@ void Obj::setFSM(FSM* fsm)
 	mCurrentLifecycleState = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80258A74
- * Size:	000110
+/**
+ * @note Address: 0x80258A74
+ * @note Size: 0x110
  */
 void Obj::getShadowParam(ShadowParam& param)
 {
@@ -169,10 +159,9 @@ void Obj::getShadowParam(ShadowParam& param)
 	param.mSize                     = 17.5f;
 }
 
-/*
- * --INFO--
- * Address:	80258B84
- * Size:	000104
+/**
+ * @note Address: 0x80258B84
+ * @note Size: 0x104
  */
 void Obj::collisionCallback(CollEvent& event)
 {
@@ -193,10 +182,9 @@ void Obj::collisionCallback(CollEvent& event)
 	setCollEvent(event);
 }
 
-/*
- * --INFO--
- * Address:	80258C88
- * Size:	000034
+/**
+ * @note Address: 0x80258C88
+ * @note Size: 0x34
  */
 void Obj::doStartStoneState()
 {
@@ -204,10 +192,9 @@ void Obj::doStartStoneState()
 	finishJumpEffect();
 }
 
-/*
- * --INFO--
- * Address:	80258CBC
- * Size:	000064
+/**
+ * @note Address: 0x80258CBC
+ * @note Size: 0x64
  */
 void Obj::doFinishStoneState()
 {
@@ -219,10 +206,9 @@ void Obj::doFinishStoneState()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80258D20
- * Size:	000034
+/**
+ * @note Address: 0x80258D20
+ * @note Size: 0x34
  */
 void Obj::doStartEarthquakeFitState()
 {
@@ -230,10 +216,9 @@ void Obj::doStartEarthquakeFitState()
 	finishJumpEffect();
 }
 
-/*
- * --INFO--
- * Address:	80258D54
- * Size:	00005C
+/**
+ * @note Address: 0x80258D54
+ * @note Size: 0x5C
  */
 void Obj::doFinishEarthquakeFitState()
 {
@@ -243,10 +228,9 @@ void Obj::doFinishEarthquakeFitState()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80258DB0
- * Size:	000034
+/**
+ * @note Address: 0x80258DB0
+ * @note Size: 0x34
  */
 void Obj::doStartWaitingBirthTypeDrop()
 {
@@ -254,10 +238,9 @@ void Obj::doStartWaitingBirthTypeDrop()
 	effectDrawOff();
 }
 
-/*
- * --INFO--
- * Address:	80258DE4
- * Size:	000034
+/**
+ * @note Address: 0x80258DE4
+ * @note Size: 0x34
  */
 void Obj::doFinishWaitingBirthTypeDrop()
 {
@@ -265,38 +248,33 @@ void Obj::doFinishWaitingBirthTypeDrop()
 	effectDrawOn();
 }
 
-/*
- * --INFO--
- * Address:	80258E18
- * Size:	000028
+/**
+ * @note Address: 0x80258E18
+ * @note Size: 0x28
  */
 void Obj::startCarcassMotion() { EnemyBase::startMotion(FROGANIM_Carry, nullptr); }
 
-/*
- * --INFO--
- * Address:	80258E18
- * Size:	000028
+/**
+ * @note Address: 0x80258E18
+ * @note Size: 0x28
  */
 Vector3f Obj::viewGetCollTreeOffset() { return Vector3f(20.0f, -15.0f, 0.0f); }
 
-/*
- * --INFO--
- * Address:	80258E5C
- * Size:	000020
+/**
+ * @note Address: 0x80258E5C
+ * @note Size: 0x20
  */
 void Obj::doStartMovie() { effectDrawOff(); }
 
-/*
- * --INFO--
- * Address:	80258E7C
- * Size:	000020
+/**
+ * @note Address: 0x80258E7C
+ * @note Size: 0x20
  */
 void Obj::doEndMovie() { effectDrawOn(); }
 
-/*
- * --INFO--
- * Address:	80258E9C
- * Size:	000088
+/**
+ * @note Address: 0x80258E9C
+ * @note Size: 0x88
  */
 Vector3f Obj::getOffsetForMapCollision()
 {
@@ -308,10 +286,9 @@ Vector3f Obj::getOffsetForMapCollision()
 	return boundingSphere.mPosition;
 }
 
-/*
- * --INFO--
- * Address:	80258F24
- * Size:	000054
+/**
+ * @note Address: 0x80258F24
+ * @note Size: 0x54
  */
 void Obj::getCommonEffectPos(Vector3f& effectPos)
 {
@@ -320,10 +297,9 @@ void Obj::getCommonEffectPos(Vector3f& effectPos)
 	effectPos = boundingSphere.mPosition;
 }
 
-/*
- * --INFO--
- * Address:	80258F78
- * Size:	000050
+/**
+ * @note Address: 0x80258F78
+ * @note Size: 0x50
  */
 void Obj::updateCaution()
 {
@@ -336,10 +312,9 @@ void Obj::updateCaution()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80258FC8
- * Size:	000024
+/**
+ * @note Address: 0x80258FC8
+ * @note Size: 0x24
  */
 f32 Obj::getViewAngle()
 {
@@ -349,10 +324,9 @@ f32 Obj::getViewAngle()
 	return C_PARMS->mGeneral.mViewAngle();
 }
 
-/*
- * --INFO--
- * Address:	80258FEC
- * Size:	0000D8
+/**
+ * @note Address: 0x80258FEC
+ * @note Size: 0xD8
  */
 void Obj::startJumpAttack()
 {
@@ -369,10 +343,9 @@ void Obj::startJumpAttack()
 	mCurrentVelocity.z *= factor;
 }
 
-/*
- * --INFO--
- * Address:	802590C4
- * Size:	0000D8
+/**
+ * @note Address: 0x802590C4
+ * @note Size: 0xD8
  */
 void Obj::resetHomePosition()
 {
@@ -382,10 +355,9 @@ void Obj::resetHomePosition()
 	mHomePosition.z = dist * cosf(mFaceDir) + mPosition.z;
 }
 
-/*
- * --INFO--
- * Address:	8025919C
- * Size:	00024C
+/**
+ * @note Address: 0x8025919C
+ * @note Size: 0x24C
  */
 void Obj::pressOnGround()
 {
@@ -426,38 +398,33 @@ void Obj::pressOnGround()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802593E8
- * Size:	0000B0
+/**
+ * @note Address: 0x802593E8
+ * @note Size: 0xB0
  */
 void Obj::createEffect() { mEfxPota = new efx::TFrogPota; }
 
-/*
- * --INFO--
- * Address:	80259498
- * Size:	000010
+/**
+ * @note Address: 0x80259498
+ * @note Size: 0x10
  */
 void Obj::setupEffect() { mEfxPota->mPosition = &mPosition; }
 
-/*
- * --INFO--
- * Address:	802594A8
- * Size:	000034
+/**
+ * @note Address: 0x802594A8
+ * @note Size: 0x34
  */
 void Obj::startJumpEffect() { mEfxPota->create(nullptr); }
 
-/*
- * --INFO--
- * Address:	802594DC
- * Size:	000030
+/**
+ * @note Address: 0x802594DC
+ * @note Size: 0x30
  */
 void Obj::finishJumpEffect() { mEfxPota->fade(); }
 
-/*
- * --INFO--
- * Address:	8025950C
- * Size:	0000C0
+/**
+ * @note Address: 0x8025950C
+ * @note Size: 0xC0
  */
 void Obj::createDownEffect(f32 scale)
 {
@@ -474,17 +441,15 @@ void Obj::createDownEffect(f32 scale)
 	rumbleMgr->startRumble(11, mPosition, 2);
 }
 
-/*
- * --INFO--
- * Address:	802595CC
- * Size:	000030
+/**
+ * @note Address: 0x802595CC
+ * @note Size: 0x30
  */
 void Obj::effectDrawOn() { mEfxPota->endDemoDrawOn(); }
 
-/*
- * --INFO--
- * Address:	802595FC
- * Size:	000030
+/**
+ * @note Address: 0x802595FC
+ * @note Size: 0x30
  */
 void Obj::effectDrawOff() { mEfxPota->startDemoDrawOff(); }
 

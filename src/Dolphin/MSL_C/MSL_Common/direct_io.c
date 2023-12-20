@@ -10,30 +10,27 @@
 #include "PowerPC_EABI_Support/MSL_C/MSL_Common/misc_io.h"
 #include "PowerPC_EABI_Support/MSL_C/MSL_Common/critical_regions.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
+/**
+ * @note Address: N/A
+ * @note Size: 0x7C
  */
 void fread(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000350
+/**
+ * @note Address: N/A
+ * @note Size: 0x350
  */
 void __fread(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800C6594
- * Size:	00007C
+/**
+ * @note Address: 0x800C6594
+ * @note Size: 0x7C
  */
 size_t fwrite(const void* pPtr, size_t memb_size, size_t num_memb, FILE* pFile)
 {
@@ -46,10 +43,9 @@ size_t fwrite(const void* pPtr, size_t memb_size, size_t num_memb, FILE* pFile)
 	return retval;
 }
 
-/*
- * --INFO--
- * Address:	800C6288
- * Size:	00030C
+/**
+ * @note Address: 0x800C6288
+ * @note Size: 0x30C
  */
 size_t __fwrite(const void* pPtr, size_t memb_size, size_t num_memb, FILE* pFile)
 {

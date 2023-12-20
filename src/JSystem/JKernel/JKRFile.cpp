@@ -2,10 +2,9 @@
 #include "JSystem/JKernel/JKRFile.h"
 #include "Dolphin/vi.h"
 
-/*
- * --INFO--
- * Address:	80022E1C
- * Size:	00007C
+/**
+ * @note Address: 0x80022E1C
+ * @note Size: 0x7C
  */
 void JKRFile::read(void* data, long size, long offset)
 {

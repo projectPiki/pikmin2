@@ -14,10 +14,9 @@
 #include "JSystem/JUtility/TColor.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	80049B20
- * Size:	0000AC
+/**
+ * @note Address: 0x80049B20
+ * @note Size: 0xAC
  */
 void J2DColorBlock::initialize()
 {
@@ -76,10 +75,9 @@ void J2DColorBlock::initialize()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80049BCC
- * Size:	0000F4
+/**
+ * @note Address: 0x80049BCC
+ * @note Size: 0xF4
  */
 void J2DColorBlock::setGX()
 {
@@ -94,10 +92,9 @@ void J2DColorBlock::setGX()
 	GXSetCullMode((GXCullMode)mCullMode);
 }
 
-/*
- * --INFO--
- * Address:	80049CC0
- * Size:	0000F0
+/**
+ * @note Address: 0x80049CC0
+ * @note Size: 0xF0
  * initialize__14J2DTexGenBlockFv
  */
 void J2DTexGenBlock::initialize()
@@ -111,10 +108,9 @@ void J2DTexGenBlock::initialize()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80049DB0
- * Size:	0000B4
+/**
+ * @note Address: 0x80049DB0
+ * @note Size: 0xB4
  */
 void J2DTexGenBlock::setGX()
 {
@@ -130,10 +126,9 @@ void J2DTexGenBlock::setGX()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80049E64
- * Size:	000090
+/**
+ * @note Address: 0x80049E64
+ * @note Size: 0x90
  * __dt__14J2DTexGenBlockFv
  */
 J2DTexGenBlock::~J2DTexGenBlock()
@@ -143,10 +138,9 @@ J2DTexGenBlock::~J2DTexGenBlock()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80049EF4
- * Size:	000158
+/**
+ * @note Address: 0x80049EF4
+ * @note Size: 0x158
  */
 void J2DTexGenBlock::setTexMtx(u32 index, J2DTexMtx& mtx)
 {
@@ -161,10 +155,9 @@ void J2DTexGenBlock::setTexMtx(u32 index, J2DTexMtx& mtx)
 	mTexMtxes[index]->calc();
 }
 
-/*
- * --INFO--
- * Address:	8004A04C
- * Size:	0000B8
+/**
+ * @note Address: 0x8004A04C
+ * @note Size: 0xB8
  */
 void J2DTexGenBlock::getTexMtx(u32 id, J2DTexMtx& texMtx)
 {
@@ -173,24 +166,21 @@ void J2DTexGenBlock::getTexMtx(u32 id, J2DTexMtx& texMtx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8004A104
- * Size:	000008
+/**
+ * @note Address: 0x8004A104
+ * @note Size: 0x8
  */
 JUTTexture* J2DTevBlock::getTexture(u32 index) { return nullptr; }
 
-/*
- * --INFO--
- * Address:	8004A10C
- * Size:	000008
+/**
+ * @note Address: 0x8004A10C
+ * @note Size: 0x8
  */
 JUTPalette* J2DTevBlock::getPalette(u32 index) { return nullptr; }
 
-/*
- * --INFO--
- * Address:	8004A114
- * Size:	00010C
+/**
+ * @note Address: 0x8004A114
+ * @note Size: 0x10C
  * __ct__12J2DTevBlock1Fv
  */
 J2DTevBlock1::J2DTevBlock1()
@@ -207,10 +197,9 @@ J2DTevBlock1::J2DTevBlock1()
 	initialize();
 }
 
-/*
- * --INFO--
- * Address:	8004A32C
- * Size:	0000B8
+/**
+ * @note Address: 0x8004A32C
+ * @note Size: 0xB8
  * __dt__12J2DTevBlock1Fv
  */
 J2DTevBlock1::~J2DTevBlock1()
@@ -224,10 +213,9 @@ J2DTevBlock1::~J2DTevBlock1()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8004A3E4
- * Size:	000278
+/**
+ * @note Address: 0x8004A3E4
+ * @note Size: 0x278
  * initialize__12J2DTevBlock1Fv
  */
 void J2DTevBlock1::initialize()
@@ -414,10 +402,9 @@ lbl_8004A48C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8004A65C
- * Size:	0000BC
+/**
+ * @note Address: 0x8004A65C
+ * @note Size: 0xBC
  */
 bool J2DTevBlock1::prepareTexture(u8 count)
 {
@@ -434,10 +421,9 @@ bool J2DTevBlock1::prepareTexture(u8 count)
 	return count <= 1;
 }
 
-/*
- * --INFO--
- * Address:	8004A718
- * Size:	000134
+/**
+ * @note Address: 0x8004A718
+ * @note Size: 0x134
  * insertTexture__12J2DTevBlock1FUlPC7ResTIMGP10JUTPalette
  */
 bool J2DTevBlock1::insertTexture(u32 id, const ResTIMG* timg, JUTPalette* tlut)
@@ -472,10 +458,9 @@ bool J2DTevBlock1::insertTexture(u32 id, const ResTIMG* timg, JUTPalette* tlut)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004A84C
- * Size:	0000A8
+/**
+ * @note Address: 0x8004A84C
+ * @note Size: 0xA8
  * insertTexture__12J2DTevBlock1FUlP10JUTTexture
  */
 bool J2DTevBlock1::insertTexture(u32 id, JUTTexture* tex)
@@ -499,10 +484,9 @@ bool J2DTevBlock1::insertTexture(u32 id, JUTTexture* tex)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004A8F4
- * Size:	000198
+/**
+ * @note Address: 0x8004A8F4
+ * @note Size: 0x198
  * setTexture__12J2DTevBlock1FUlPC7ResTIMG
  */
 bool J2DTevBlock1::setTexture(u32 id, const ResTIMG* timg)
@@ -551,10 +535,9 @@ bool J2DTevBlock1::setTexture(u32 id, const ResTIMG* timg)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004AA8C
- * Size:	00008C
+/**
+ * @note Address: 0x8004AA8C
+ * @note Size: 0x8C
  * setTexture__12J2DTevBlock1FUlP10JUTTexture
  */
 bool J2DTevBlock1::setTexture(u32 index, JUTTexture* texture)
@@ -573,10 +556,9 @@ bool J2DTevBlock1::setTexture(u32 index, JUTTexture* texture)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004AB18
- * Size:	00007C
+/**
+ * @note Address: 0x8004AB18
+ * @note Size: 0x7C
  * removeTexture__12J2DTevBlock1FUl
  */
 bool J2DTevBlock1::removeTexture(u32 id)
@@ -596,10 +578,9 @@ bool J2DTevBlock1::removeTexture(u32 id)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004AB94
- * Size:	0000BC
+/**
+ * @note Address: 0x8004AB94
+ * @note Size: 0xBC
  * setFont__12J2DTevBlock1FP7ResFONT
  */
 bool J2DTevBlock1::setFont(ResFONT* font)
@@ -619,10 +600,9 @@ bool J2DTevBlock1::setFont(ResFONT* font)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004AC50
- * Size:	000080
+/**
+ * @note Address: 0x8004AC50
+ * @note Size: 0x80
  * setFont__12J2DTevBlock1FP7JUTFont
  */
 bool J2DTevBlock1::setFont(JUTFont* font)
@@ -638,10 +618,9 @@ bool J2DTevBlock1::setFont(JUTFont* font)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004ACD0
- * Size:	0000C8
+/**
+ * @note Address: 0x8004ACD0
+ * @note Size: 0xC8
  * setPalette__12J2DTevBlock1FUlPC7ResTLUT
  */
 bool J2DTevBlock1::setPalette(u32 index, const ResTLUT* lut)
@@ -668,18 +647,16 @@ bool J2DTevBlock1::setPalette(u32 index, const ResTLUT* lut)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004AD98
- * Size:	000010
+/**
+ * @note Address: 0x8004AD98
+ * @note Size: 0x10
  * shiftDeleteFlag__12J2DTevBlock1FUcb
  */
 void J2DTevBlock1::shiftDeleteFlag(u8 flag, bool direction) { mUndeleteFlag = mUndeleteFlag & 0x80; }
 
-/*
- * --INFO--
- * Address:	8004ADA8
- * Size:	00024C
+/**
+ * @note Address: 0x8004ADA8
+ * @note Size: 0x24C
  * setGX__12J2DTevBlock1Fv
  */
 void J2DTevBlock1::setGX()
@@ -713,10 +690,9 @@ void J2DTevBlock1::setGX()
 	mIndStages->load(0);
 }
 
-/*
- * --INFO--
- * Address:	8004AFF4
- * Size:	000048
+/**
+ * @note Address: 0x8004AFF4
+ * @note Size: 0x48
  * loadTexture__12J2DTevBlock1F11_GXTexMapIDUl
  */
 void J2DTevBlock1::loadTexture(_GXTexMapID id, u32 index)
@@ -726,10 +702,9 @@ void J2DTevBlock1::loadTexture(_GXTexMapID id, u32 index)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8004B03C
- * Size:	000110
+/**
+ * @note Address: 0x8004B03C
+ * @note Size: 0x110
  * __ct__12J2DTevBlock2Fv
  */
 J2DTevBlock2::J2DTevBlock2()
@@ -748,10 +723,9 @@ J2DTevBlock2::J2DTevBlock2()
 	initialize();
 }
 
-/*
- * --INFO--
- * Address:	8004B14C
- * Size:	0000D8
+/**
+ * @note Address: 0x8004B14C
+ * @note Size: 0xD8
  * __dt__12J2DTevBlock2Fv
  */
 J2DTevBlock2::~J2DTevBlock2()
@@ -769,10 +743,9 @@ J2DTevBlock2::~J2DTevBlock2()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8004B224
- * Size:	000350
+/**
+ * @note Address: 0x8004B224
+ * @note Size: 0x350
  * initialize__12J2DTevBlock2Fv
  */
 void J2DTevBlock2::initialize()
@@ -995,10 +968,9 @@ lbl_8004B30C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8004B574
- * Size:	0000E0
+/**
+ * @note Address: 0x8004B574
+ * @note Size: 0xE0
  * prepareTexture__12J2DTevBlock2FUc
  */
 bool J2DTevBlock2::prepareTexture(u8 count)
@@ -1018,10 +990,9 @@ bool J2DTevBlock2::prepareTexture(u8 count)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004B654
- * Size:	0002CC
+/**
+ * @note Address: 0x8004B654
+ * @note Size: 0x2CC
  * insertTexture__12J2DTevBlock2FUlPC7ResTIMGP10JUTPalette
  */
 bool J2DTevBlock2::insertTexture(u32 id, const ResTIMG* timg, JUTPalette* tlut)
@@ -1112,10 +1083,9 @@ bool J2DTevBlock2::insertTexture(u32 id, const ResTIMG* timg, JUTPalette* tlut)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004B920
- * Size:	000168
+/**
+ * @note Address: 0x8004B920
+ * @note Size: 0x168
  * insertTexture__12J2DTevBlock2FUlP10JUTTexture
  */
 bool J2DTevBlock2::insertTexture(u32 id, JUTTexture* tex)
@@ -1161,10 +1131,9 @@ bool J2DTevBlock2::insertTexture(u32 id, JUTTexture* tex)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004BA88
- * Size:	00021C
+/**
+ * @note Address: 0x8004BA88
+ * @note Size: 0x21C
  * setTexture__12J2DTevBlock2FUlPC7ResTIMG
  */
 bool J2DTevBlock2::setTexture(u32 id, const ResTIMG* timg)
@@ -1395,10 +1364,9 @@ lbl_8004BC90:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8004BCA4
- * Size:	0000A8
+/**
+ * @note Address: 0x8004BCA4
+ * @note Size: 0xA8
  * setTexture__12J2DTevBlock2FUlP10JUTTexture
  */
 bool J2DTevBlock2::setTexture(u32 index, JUTTexture* texture)
@@ -1417,10 +1385,9 @@ bool J2DTevBlock2::setTexture(u32 index, JUTTexture* texture)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004BD4C
- * Size:	0000D4
+/**
+ * @note Address: 0x8004BD4C
+ * @note Size: 0xD4
  * removeTexture__12J2DTevBlock2FUl
  */
 bool J2DTevBlock2::removeTexture(u32 id)
@@ -1447,10 +1414,9 @@ bool J2DTevBlock2::removeTexture(u32 id)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004BE20
- * Size:	0000BC
+/**
+ * @note Address: 0x8004BE20
+ * @note Size: 0xBC
  * setFont__12J2DTevBlock2FP7ResFONT
  */
 bool J2DTevBlock2::setFont(ResFONT* font)
@@ -1470,10 +1436,9 @@ bool J2DTevBlock2::setFont(ResFONT* font)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004BEDC
- * Size:	000080
+/**
+ * @note Address: 0x8004BEDC
+ * @note Size: 0x80
  * setFont__12J2DTevBlock2FP7JUTFont
  */
 bool J2DTevBlock2::setFont(JUTFont* font)
@@ -1489,10 +1454,9 @@ bool J2DTevBlock2::setFont(JUTFont* font)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004BF5C
- * Size:	0000D0
+/**
+ * @note Address: 0x8004BF5C
+ * @note Size: 0xD0
  * setPalette__12J2DTevBlock2FUlPC7ResTLUT
  */
 bool J2DTevBlock2::setPalette(u32 index, const ResTLUT* lut)
@@ -1519,10 +1483,9 @@ bool J2DTevBlock2::setPalette(u32 index, const ResTLUT* lut)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004C02C
- * Size:	000088
+/**
+ * @note Address: 0x8004C02C
+ * @note Size: 0x88
  * shiftDeleteFlag__12J2DTevBlock2FUcb
  */
 void J2DTevBlock2::shiftDeleteFlag(u8 p1, bool p2)
@@ -1538,10 +1501,9 @@ void J2DTevBlock2::shiftDeleteFlag(u8 p1, bool p2)
 	mUndeleteFlag = mUndeleteFlag | fontFlag;
 }
 
-/*
- * --INFO--
- * Address:	8004C0B4
- * Size:	0002E8
+/**
+ * @note Address: 0x8004C0B4
+ * @note Size: 0x2E8
  * setGX__12J2DTevBlock2Fv
  */
 void J2DTevBlock2::setGX()
@@ -1583,10 +1545,9 @@ void J2DTevBlock2::setGX()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8004C39C
- * Size:	000048
+/**
+ * @note Address: 0x8004C39C
+ * @note Size: 0x48
  * loadTexture__12J2DTevBlock2F11_GXTexMapIDUl
  */
 void J2DTevBlock2::loadTexture(_GXTexMapID id, u32 index)
@@ -1596,10 +1557,9 @@ void J2DTevBlock2::loadTexture(_GXTexMapID id, u32 index)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8004C3E4
- * Size:	000118
+/**
+ * @note Address: 0x8004C3E4
+ * @note Size: 0x118
  */
 J2DTevBlock4::J2DTevBlock4()
     : J2DTevBlock()
@@ -1617,10 +1577,9 @@ J2DTevBlock4::J2DTevBlock4()
 	initialize();
 }
 
-/*
- * --INFO--
- * Address:	8004C4FC
- * Size:	0000D0
+/**
+ * @note Address: 0x8004C4FC
+ * @note Size: 0xD0
  */
 J2DTevBlock4::~J2DTevBlock4()
 {
@@ -1635,10 +1594,9 @@ J2DTevBlock4::~J2DTevBlock4()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8004C5CC
- * Size:	0003BC
+/**
+ * @note Address: 0x8004C5CC
+ * @note Size: 0x3BC
  */
 void J2DTevBlock4::initialize()
 {
@@ -1920,10 +1878,9 @@ lbl_8004C85C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8004C988
- * Size:	0000E0
+/**
+ * @note Address: 0x8004C988
+ * @note Size: 0xE0
  * prepareTexture__12J2DTevBlock4FUc
  */
 bool J2DTevBlock4::prepareTexture(u8 count)
@@ -1943,10 +1900,9 @@ bool J2DTevBlock4::prepareTexture(u8 count)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004CA68
- * Size:	0003AC
+/**
+ * @note Address: 0x8004CA68
+ * @note Size: 0x3AC
  */
 bool J2DTevBlock4::insertTexture(u32 id, const ResTIMG* timg, JUTPalette* tlut)
 {
@@ -2335,10 +2291,9 @@ lbl_8004CE00:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8004CE14
- * Size:	000198
+/**
+ * @note Address: 0x8004CE14
+ * @note Size: 0x198
  */
 bool J2DTevBlock4::insertTexture(u32 id, JUTTexture* tex)
 {
@@ -2383,10 +2338,9 @@ bool J2DTevBlock4::insertTexture(u32 id, JUTTexture* tex)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004CFAC
- * Size:	0002E4
+/**
+ * @note Address: 0x8004CFAC
+ * @note Size: 0x2E4
  * setTexture__12J2DTevBlock4FUlPC7ResTIMG
  */
 bool J2DTevBlock4::setTexture(u32 index, const ResTIMG* img)
@@ -2620,10 +2574,9 @@ lbl_8004D27C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8004D290
- * Size:	0000A8
+/**
+ * @note Address: 0x8004D290
+ * @note Size: 0xA8
  * setTexture__12J2DTevBlock4FUlP10JUTTexture
  */
 bool J2DTevBlock4::setTexture(u32 index, JUTTexture* texture)
@@ -2642,10 +2595,9 @@ bool J2DTevBlock4::setTexture(u32 index, JUTTexture* texture)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004D338
- * Size:	000210
+/**
+ * @note Address: 0x8004D338
+ * @note Size: 0x210
  * removeTexture__12J2DTevBlock4FUl
  */
 bool J2DTevBlock4::removeTexture(u32 id)
@@ -2672,10 +2624,9 @@ bool J2DTevBlock4::removeTexture(u32 id)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004D548
- * Size:	0000BC
+/**
+ * @note Address: 0x8004D548
+ * @note Size: 0xBC
  */
 bool J2DTevBlock4::setFont(ResFONT* font)
 {
@@ -2694,10 +2645,9 @@ bool J2DTevBlock4::setFont(ResFONT* font)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004D604
- * Size:	000080
+/**
+ * @note Address: 0x8004D604
+ * @note Size: 0x80
  * setFont__12J2DTevBlock4FP7JUTFont
  */
 bool J2DTevBlock4::setFont(JUTFont* font)
@@ -2713,10 +2663,9 @@ bool J2DTevBlock4::setFont(JUTFont* font)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004D684
- * Size:	0000D0
+/**
+ * @note Address: 0x8004D684
+ * @note Size: 0xD0
  * setPalette__12J2DTevBlock4FUlPC7ResTLUT
  */
 bool J2DTevBlock4::setPalette(u32 index, const ResTLUT* lut)
@@ -2743,10 +2692,9 @@ bool J2DTevBlock4::setPalette(u32 index, const ResTLUT* lut)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004D754
- * Size:	000088
+/**
+ * @note Address: 0x8004D754
+ * @note Size: 0x88
  */
 void J2DTevBlock4::shiftDeleteFlag(u8 p1, bool p2)
 {
@@ -2761,10 +2709,9 @@ void J2DTevBlock4::shiftDeleteFlag(u8 p1, bool p2)
 	mUndeleteFlag = mUndeleteFlag | fontFlag;
 }
 
-/*
- * --INFO--
- * Address:	8004D7DC
- * Size:	0002E8
+/**
+ * @note Address: 0x8004D7DC
+ * @note Size: 0x2E8
  */
 void J2DTevBlock4::setGX()
 {
@@ -2805,10 +2752,9 @@ void J2DTevBlock4::setGX()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8004DAC4
- * Size:	000048
+/**
+ * @note Address: 0x8004DAC4
+ * @note Size: 0x48
  * loadTexture__12J2DTevBlock4F11_GXTexMapIDUl
  */
 void J2DTevBlock4::loadTexture(_GXTexMapID id, u32 index)
@@ -2818,10 +2764,9 @@ void J2DTevBlock4::loadTexture(_GXTexMapID id, u32 index)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8004DB0C
- * Size:	000128
+/**
+ * @note Address: 0x8004DB0C
+ * @note Size: 0x128
  */
 J2DTevBlock8::J2DTevBlock8()
     : J2DTevBlock()
@@ -2839,10 +2784,9 @@ J2DTevBlock8::J2DTevBlock8()
 	initialize();
 }
 
-/*
- * --INFO--
- * Address:	8004DC34
- * Size:	0000D0
+/**
+ * @note Address: 0x8004DC34
+ * @note Size: 0xD0
  */
 J2DTevBlock8::~J2DTevBlock8()
 {
@@ -2857,10 +2801,9 @@ J2DTevBlock8::~J2DTevBlock8()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8004DD04
- * Size:	0004A0
+/**
+ * @note Address: 0x8004DD04
+ * @note Size: 0x4A0
  */
 void J2DTevBlock8::initialize()
 {
@@ -3168,10 +3111,9 @@ lbl_8004E064:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8004E1A4
- * Size:	0000E0
+/**
+ * @note Address: 0x8004E1A4
+ * @note Size: 0xE0
  * prepareTexture__12J2DTevBlock8FUc
  */
 bool J2DTevBlock8::prepareTexture(u8 count)
@@ -3191,10 +3133,9 @@ bool J2DTevBlock8::prepareTexture(u8 count)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004E284
- * Size:	0003C8
+/**
+ * @note Address: 0x8004E284
+ * @note Size: 0x3C8
  */
 bool J2DTevBlock8::insertTexture(u32, const ResTIMG*, JUTPalette*)
 {
@@ -3502,10 +3443,9 @@ lbl_8004E638:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8004E64C
- * Size:	000198
+/**
+ * @note Address: 0x8004E64C
+ * @note Size: 0x198
  */
 bool J2DTevBlock8::insertTexture(u32 id, JUTTexture* tex)
 {
@@ -3550,10 +3490,9 @@ bool J2DTevBlock8::insertTexture(u32 id, JUTTexture* tex)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004E7E4
- * Size:	0002E4
+/**
+ * @note Address: 0x8004E7E4
+ * @note Size: 0x2E4
  * setTexture__12J2DTevBlock8FUlPC7ResTIMG
  */
 bool J2DTevBlock8::setTexture(u32 index, const ResTIMG* img)
@@ -3787,10 +3726,9 @@ lbl_8004EAB4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8004EAC8
- * Size:	0000A8
+/**
+ * @note Address: 0x8004EAC8
+ * @note Size: 0xA8
  * setTexture__12J2DTevBlock8FUlP10JUTTexture
  */
 bool J2DTevBlock8::setTexture(u32 index, JUTTexture* texture)
@@ -3809,10 +3747,9 @@ bool J2DTevBlock8::setTexture(u32 index, JUTTexture* texture)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004EB70
- * Size:	000210
+/**
+ * @note Address: 0x8004EB70
+ * @note Size: 0x210
  * removeTexture__12J2DTevBlock8FUl
  */
 bool J2DTevBlock8::removeTexture(u32 id)
@@ -3839,10 +3776,9 @@ bool J2DTevBlock8::removeTexture(u32 id)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004ED80
- * Size:	0000B4
+/**
+ * @note Address: 0x8004ED80
+ * @note Size: 0xB4
  */
 bool J2DTevBlock8::setFont(ResFONT* font)
 {
@@ -3861,10 +3797,9 @@ bool J2DTevBlock8::setFont(ResFONT* font)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004EE34
- * Size:	00007C
+/**
+ * @note Address: 0x8004EE34
+ * @note Size: 0x7C
  * setFont__12J2DTevBlock8FP7JUTFont
  */
 bool J2DTevBlock8::setFont(JUTFont* font)
@@ -3880,10 +3815,9 @@ bool J2DTevBlock8::setFont(JUTFont* font)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004EEB0
- * Size:	0000D0
+/**
+ * @note Address: 0x8004EEB0
+ * @note Size: 0xD0
  * setPalette__12J2DTevBlock8FUlPC7ResTLUT
  */
 bool J2DTevBlock8::setPalette(u32 index, const ResTLUT* lut)
@@ -3910,10 +3844,9 @@ bool J2DTevBlock8::setPalette(u32 index, const ResTLUT* lut)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004EF80
- * Size:	00006C
+/**
+ * @note Address: 0x8004EF80
+ * @note Size: 0x6C
  */
 void J2DTevBlock8::shiftDeleteFlag(u8 flag, bool direction)
 {
@@ -3925,10 +3858,9 @@ void J2DTevBlock8::shiftDeleteFlag(u8 flag, bool direction)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8004EFEC
- * Size:	0002E8
+/**
+ * @note Address: 0x8004EFEC
+ * @note Size: 0x2E8
  */
 void J2DTevBlock8::setGX()
 {
@@ -3969,10 +3901,9 @@ void J2DTevBlock8::setGX()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8004F2D4
- * Size:	000048
+/**
+ * @note Address: 0x8004F2D4
+ * @note Size: 0x48
  * loadTexture__12J2DTevBlock8F11_GXTexMapIDUl
  */
 void J2DTevBlock8::loadTexture(_GXTexMapID id, u32 index)
@@ -3982,10 +3913,9 @@ void J2DTevBlock8::loadTexture(_GXTexMapID id, u32 index)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8004F31C
- * Size:	000128
+/**
+ * @note Address: 0x8004F31C
+ * @note Size: 0x128
  */
 J2DTevBlock16::J2DTevBlock16()
     : J2DTevBlock()
@@ -4003,10 +3933,9 @@ J2DTevBlock16::J2DTevBlock16()
 	initialize();
 }
 
-/*
- * --INFO--
- * Address:	8004F444
- * Size:	0000D0
+/**
+ * @note Address: 0x8004F444
+ * @note Size: 0xD0
  */
 J2DTevBlock16::~J2DTevBlock16()
 {
@@ -4021,10 +3950,9 @@ J2DTevBlock16::~J2DTevBlock16()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8004F514
- * Size:	000550
+/**
+ * @note Address: 0x8004F514
+ * @note Size: 0x550
  */
 void J2DTevBlock16::initialize()
 {
@@ -4380,10 +4308,9 @@ lbl_8004F924:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8004FA64
- * Size:	0000E0
+/**
+ * @note Address: 0x8004FA64
+ * @note Size: 0xE0
  * prepareTexture__13J2DTevBlock16FUc
  */
 bool J2DTevBlock16::prepareTexture(u8 count)
@@ -4403,10 +4330,9 @@ bool J2DTevBlock16::prepareTexture(u8 count)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8004FB44
- * Size:	0003C8
+/**
+ * @note Address: 0x8004FB44
+ * @note Size: 0x3C8
  */
 bool J2DTevBlock16::insertTexture(u32, const ResTIMG*, JUTPalette*)
 {
@@ -4714,10 +4640,9 @@ lbl_8004FEF8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8004FF0C
- * Size:	000198
+/**
+ * @note Address: 0x8004FF0C
+ * @note Size: 0x198
  */
 bool J2DTevBlock16::insertTexture(u32 id, JUTTexture* tex)
 {
@@ -4762,10 +4687,9 @@ bool J2DTevBlock16::insertTexture(u32 id, JUTTexture* tex)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	800500A4
- * Size:	0002E4
+/**
+ * @note Address: 0x800500A4
+ * @note Size: 0x2E4
  * setTexture__13J2DTevBlock16FUlPC7ResTIMG
  */
 bool J2DTevBlock16::setTexture(u32 index, const ResTIMG* img)
@@ -4999,10 +4923,9 @@ lbl_80050374:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80050388
- * Size:	0000A8
+/**
+ * @note Address: 0x80050388
+ * @note Size: 0xA8
  * setTexture__13J2DTevBlock16FUlP10JUTTexture
  */
 bool J2DTevBlock16::setTexture(u32 index, JUTTexture* texture)
@@ -5021,10 +4944,9 @@ bool J2DTevBlock16::setTexture(u32 index, JUTTexture* texture)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80050430
- * Size:	000210
+/**
+ * @note Address: 0x80050430
+ * @note Size: 0x210
  * removeTexture__13J2DTevBlock16FUl
  */
 bool J2DTevBlock16::removeTexture(u32 id)
@@ -5051,10 +4973,9 @@ bool J2DTevBlock16::removeTexture(u32 id)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80050640
- * Size:	0000B4
+/**
+ * @note Address: 0x80050640
+ * @note Size: 0xB4
  */
 bool J2DTevBlock16::setFont(ResFONT* font)
 {
@@ -5073,10 +4994,9 @@ bool J2DTevBlock16::setFont(ResFONT* font)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	800506F4
- * Size:	00007C
+/**
+ * @note Address: 0x800506F4
+ * @note Size: 0x7C
  * setFont__13J2DTevBlock16FP7JUTFont
  */
 bool J2DTevBlock16::setFont(JUTFont* font)
@@ -5092,10 +5012,9 @@ bool J2DTevBlock16::setFont(JUTFont* font)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80050770
- * Size:	0000D0
+/**
+ * @note Address: 0x80050770
+ * @note Size: 0xD0
  * setPalette__13J2DTevBlock16FUlPC7ResTLUT
  */
 bool J2DTevBlock16::setPalette(u32 index, const ResTLUT* lut)
@@ -5122,10 +5041,9 @@ bool J2DTevBlock16::setPalette(u32 index, const ResTLUT* lut)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80050840
- * Size:	00006C
+/**
+ * @note Address: 0x80050840
+ * @note Size: 0x6C
  */
 void J2DTevBlock16::shiftDeleteFlag(u8 flag, bool direction)
 {
@@ -5137,10 +5055,9 @@ void J2DTevBlock16::shiftDeleteFlag(u8 flag, bool direction)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800508AC
- * Size:	0002E8
+/**
+ * @note Address: 0x800508AC
+ * @note Size: 0x2E8
  */
 void J2DTevBlock16::setGX()
 {
@@ -5181,10 +5098,9 @@ void J2DTevBlock16::setGX()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80050B94
- * Size:	000048
+/**
+ * @note Address: 0x80050B94
+ * @note Size: 0x48
  * loadTexture__13J2DTevBlock16F11_GXTexMapIDUl
  */
 void J2DTevBlock16::loadTexture(_GXTexMapID id, u32 index)
@@ -5194,10 +5110,9 @@ void J2DTevBlock16::loadTexture(_GXTexMapID id, u32 index)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80050BDC
- * Size:	000148
+/**
+ * @note Address: 0x80050BDC
+ * @note Size: 0x148
  * initialize__15J2DIndBlockFullFv
  */
 void J2DIndBlockFull::initialize()
@@ -5214,10 +5129,9 @@ void J2DIndBlockFull::initialize()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80050D24
- * Size:	0000CC
+/**
+ * @note Address: 0x80050D24
+ * @note Size: 0xCC
  * setGX__15J2DIndBlockFullFv
  */
 void J2DIndBlockFull::setGX()
@@ -5234,10 +5148,9 @@ void J2DIndBlockFull::setGX()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80050DF0
- * Size:	000044
+/**
+ * @note Address: 0x80050DF0
+ * @note Size: 0x44
  * initialize__10J2DPEBlockFv
  */
 void J2DPEBlock::initialize()
@@ -5247,10 +5160,9 @@ void J2DPEBlock::initialize()
 	mDither = j2dDefaultDither;
 }
 
-/*
- * --INFO--
- * Address:	80050E34
- * Size:	000060
+/**
+ * @note Address: 0x80050E34
+ * @note Size: 0x60
  * setGX__10J2DPEBlockFv
  */
 void J2DPEBlock::setGX()

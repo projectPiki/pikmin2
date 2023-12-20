@@ -9,10 +9,9 @@
 namespace og {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	80309E28
- * Size:	0001E8
+/**
+ * @note Address: 0x80309E28
+ * @note Size: 0x1E8
  */
 MenuMgr::MenuMgr()
 {
@@ -52,10 +51,9 @@ MenuMgr::MenuMgr()
 	mEfxCursor2           = new efx2d::T2DCursor(&mCursorPos2);
 }
 
-/*
- * --INFO--
- * Address:	8030A100
- * Size:	000094
+/**
+ * @note Address: 0x8030A100
+ * @note Size: 0x94
  */
 void MenuMgr::startCursor(f32 time)
 {
@@ -73,10 +71,9 @@ void MenuMgr::startCursor(f32 time)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8030A194
- * Size:	000070
+/**
+ * @note Address: 0x8030A194
+ * @note Size: 0x70
  */
 void MenuMgr::killCursor()
 {
@@ -90,30 +87,27 @@ void MenuMgr::killCursor()
 	}
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	00004C
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x4C
 //  */
 // void MenuMgr::initCommon()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	0002F4
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x2F4
 //  */
 // void MenuMgr::initSub(J2DScreen*, u16, u64, u64, u64)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	8030A204
- * Size:	00021C
+/**
+ * @note Address: 0x8030A204
+ * @note Size: 0x21C
  * This function and the one below it (init2TakuTitle) are byte for byte identical
  * bravo Ogawa
  */
@@ -154,10 +148,9 @@ void MenuMgr::init2taku(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u64 tag
 	mPaneList5[1]->hide();
 }
 
-/*
- * --INFO--
- * Address:	8030A420
- * Size:	00021C
+/**
+ * @note Address: 0x8030A420
+ * @note Size: 0x21C
  */
 void MenuMgr::init2takuTitle(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u64 tag4, u64 tag5, u64 tag6, u64 tag7, u64 tag8)
 {
@@ -196,20 +189,18 @@ void MenuMgr::init2takuTitle(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u6
 	mPaneList5[1]->hide();
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	0002F0
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x2F0
 //  */
 // void MenuMgr::init(J2DScreen*, u16, u64, u64, u64)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	8030A63C
- * Size:	000494
+/**
+ * @note Address: 0x8030A63C
+ * @note Size: 0x494
  */
 void MenuMgr::init(J2DScreen* screen, u16 options, u64 tag1, u64 tag2, u64 tag3, u64 tag4, u64 tag5)
 {
@@ -574,10 +565,9 @@ void MenuMgr::init(J2DScreen* screen, u16 options, u64 tag1, u64 tag2, u64 tag3,
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8030AAD0
- * Size:	000090
+/**
+ * @note Address: 0x8030AAD0
+ * @note Size: 0x90
  */
 void MenuMgr::selectSub(u16 sel)
 {
@@ -594,10 +584,9 @@ void MenuMgr::selectSub(u16 sel)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8030AB60
- * Size:	000098
+/**
+ * @note Address: 0x8030AB60
+ * @note Size: 0x98
  * Identical to selectSub minus one extra sound effect, very cool Ogawa
  */
 void MenuMgr::select(u16 sel)
@@ -616,10 +605,9 @@ void MenuMgr::select(u16 sel)
 	ogSound->setCursor();
 }
 
-/*
- * --INFO--
- * Address:	8030ABF8
- * Size:	000014
+/**
+ * @note Address: 0x8030ABF8
+ * @note Size: 0x14
  */
 void MenuMgr::initSelNum(u16 sel)
 {
@@ -628,10 +616,9 @@ void MenuMgr::initSelNum(u16 sel)
 	_6C           = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000AC
+/**
+ * @note Address: N/A
+ * @note Size: 0xAC
  */
 void MenuMgr::calcCenter(J2DPane* pane, Vector2f* pos)
 {
@@ -641,10 +628,9 @@ void MenuMgr::calcCenter(J2DPane* pane, Vector2f* pos)
 	pos->y        = (pos1.y + pos2.y) / 2;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 // regswaps in here
 void MenuMgr::calcPoint(Vector2f& vec1, Vector2f& vec2, f32 scale, Vector2f* outVec)
@@ -653,10 +639,9 @@ void MenuMgr::calcPoint(Vector2f& vec1, Vector2f& vec2, f32 scale, Vector2f* out
 	*outVec          = Vector2f(vec1.x * scale + compVec.x, vec1.y * scale + compVec.y);
 }
 
-/*
- * --INFO--
- * Address:	8030AC0C
- * Size:	000580
+/**
+ * @note Address: 0x8030AC0C
+ * @note Size: 0x580
  */
 void MenuMgr::update()
 {
@@ -1107,10 +1092,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8030B18C
- * Size:	0000EC
+/**
+ * @note Address: 0x8030B18C
+ * @note Size: 0xEC
  */
 void MenuMgr::draw(J2DGrafContext* graf)
 {
@@ -1131,10 +1115,9 @@ void MenuMgr::draw(J2DGrafContext* graf)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8030B278
- * Size:	0000F8
+/**
+ * @note Address: 0x8030B278
+ * @note Size: 0xF8
  */
 void MenuMgr::MenuOnOff()
 {

@@ -6,10 +6,9 @@
 namespace og {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	80328E04
- * Size:	000044
+/**
+ * @note Address: 0x80328E04
+ * @note Size: 0x44
  */
 ScaleMgr::ScaleMgr()
     : mState(SCM_Unknown_0)
@@ -17,10 +16,9 @@ ScaleMgr::ScaleMgr()
 	setParam(1.0f, 1.0f, 1.0f);
 }
 
-/*
- * --INFO--
- * Address:	80328E48
- * Size:	000048
+/**
+ * @note Address: 0x80328E48
+ * @note Size: 0x48
  */
 void ScaleMgr::up()
 {
@@ -29,10 +27,9 @@ void ScaleMgr::up()
 	_18 = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	80328E90
- * Size:	000048
+/**
+ * @note Address: 0x80328E90
+ * @note Size: 0x48
  */
 void ScaleMgr::down()
 {
@@ -41,10 +38,9 @@ void ScaleMgr::down()
 	_18 = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	80328ED8
- * Size:	000064
+/**
+ * @note Address: 0x80328ED8
+ * @note Size: 0x64
  */
 void ScaleMgr::up(f32 p1, f32 periodModifier, f32 durationInSeconds, f32 p4)
 {
@@ -57,10 +53,9 @@ void ScaleMgr::up(f32 p1, f32 periodModifier, f32 durationInSeconds, f32 p4)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80328F3C
- * Size:	000028
+/**
+ * @note Address: 0x80328F3C
+ * @note Size: 0x28
  */
 void ScaleMgr::down(f32 p1, f32 periodModifier, f32 durationInSeconds)
 {
@@ -68,10 +63,9 @@ void ScaleMgr::down(f32 p1, f32 periodModifier, f32 durationInSeconds)
 	setParam(p1, periodModifier, durationInSeconds);
 }
 
-/*
- * --INFO--
- * Address:	80328F64
- * Size:	000020
+/**
+ * @note Address: 0x80328F64
+ * @note Size: 0x20
  */
 void ScaleMgr::setParam(f32 p1, f32 periodModifier, f32 durationInSeconds)
 {
@@ -82,10 +76,9 @@ void ScaleMgr::setParam(f32 p1, f32 periodModifier, f32 durationInSeconds)
 	mDurationInSeconds = durationInSeconds;
 }
 
-/*
- * --INFO--
- * Address:	80328F84
- * Size:	00020C
+/**
+ * @note Address: 0x80328F84
+ * @note Size: 0x20C
  */
 f32 ScaleMgr::calc()
 {

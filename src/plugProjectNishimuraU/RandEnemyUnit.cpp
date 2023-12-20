@@ -3,10 +3,9 @@
 
 namespace Game {
 namespace Cave {
-/*
- * --INFO--
- * Address:	80248914
- * Size:	0000A8
+/**
+ * @note Address: 0x80248914
+ * @note Size: 0xA8
  */
 RandEnemyUnit::RandEnemyUnit(MapUnitGenerator* generator, bool isVersusHiba)
 {
@@ -31,17 +30,15 @@ RandEnemyUnit::RandEnemyUnit(MapUnitGenerator* generator, bool isVersusHiba)
 	setEnemyTypeWeight();
 }
 
-/*
- * --INFO--
- * Address:	802489BC
- * Size:	000008
+/**
+ * @note Address: 0x802489BC
+ * @note Size: 0x8
  */
 void RandEnemyUnit::setManageClassPtr(RandMapScore* score) { mMapScore = score; }
 
-/*
- * --INFO--
- * Address:	802489C4
- * Size:	000054
+/**
+ * @note Address: 0x802489C4
+ * @note Size: 0x54
  */
 void RandEnemyUnit::setEnemySlot()
 {
@@ -53,10 +50,9 @@ void RandEnemyUnit::setEnemySlot()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80248A18
- * Size:	000278
+/**
+ * @note Address: 0x80248A18
+ * @note Size: 0x278
  */
 void RandEnemyUnit::setEnemyTypeWeight()
 {
@@ -302,10 +298,9 @@ lbl_80248C60:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80248C90
- * Size:	0000F0
+/**
+ * @note Address: 0x80248C90
+ * @note Size: 0xF0
  */
 void RandEnemyUnit::setEnemyTypeC()
 {
@@ -335,10 +330,9 @@ void RandEnemyUnit::setEnemyTypeC()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80248D80
- * Size:	0000CC
+/**
+ * @note Address: 0x80248D80
+ * @note Size: 0xCC
  */
 void RandEnemyUnit::setEnemyTypeF()
 {
@@ -363,10 +357,9 @@ void RandEnemyUnit::setEnemyTypeF()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80248E4C
- * Size:	0000CC
+/**
+ * @note Address: 0x80248E4C
+ * @note Size: 0xCC
  */
 void RandEnemyUnit::setEnemyTypeB()
 {
@@ -391,10 +384,9 @@ void RandEnemyUnit::setEnemyTypeB()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80248F18
- * Size:	000104
+/**
+ * @note Address: 0x80248F18
+ * @note Size: 0x104
  */
 void RandEnemyUnit::setEnemyTypeA()
 {
@@ -423,10 +415,9 @@ void RandEnemyUnit::setEnemyTypeA()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8024901C
- * Size:	000190
+/**
+ * @note Address: 0x8024901C
+ * @note Size: 0x190
  */
 void RandEnemyUnit::setVersusHibaTypeC()
 {
@@ -457,10 +448,9 @@ void RandEnemyUnit::setVersusHibaTypeC()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802491AC
- * Size:	0001A4
+/**
+ * @note Address: 0x802491AC
+ * @note Size: 0x1A4
  */
 void RandEnemyUnit::setVersusEnemyTypeC()
 {
@@ -501,10 +491,9 @@ void RandEnemyUnit::setVersusEnemyTypeC()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80249350
- * Size:	0002F8
+/**
+ * @note Address: 0x80249350
+ * @note Size: 0x2F8
  */
 void RandEnemyUnit::setSlotEnemyTypeC(int&, int)
 {
@@ -748,10 +737,9 @@ lbl_80249634:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80249648
- * Size:	0001A0
+/**
+ * @note Address: 0x80249648
+ * @note Size: 0x1A0
  */
 void RandEnemyUnit::setUnitRandEnemyTypeC()
 {
@@ -877,10 +865,9 @@ lbl_802497C8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802497E8
- * Size:	0000D8
+/**
+ * @note Address: 0x802497E8
+ * @note Size: 0xD8
  */
 void RandEnemyUnit::makeSetEnemyTypeC(MapNode*, int, EnemyUnit*)
 {
@@ -945,10 +932,9 @@ void RandEnemyUnit::makeSetEnemyTypeC(MapNode*, int, EnemyUnit*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802498C0
- * Size:	00017C
+/**
+ * @note Address: 0x802498C0
+ * @note Size: 0x17C
  */
 void RandEnemyUnit::setVersusEnemyTypeF()
 {
@@ -989,10 +975,9 @@ void RandEnemyUnit::setVersusEnemyTypeF()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80249A3C
- * Size:	0003E0
+/**
+ * @note Address: 0x80249A3C
+ * @note Size: 0x3E0
  */
 void RandEnemyUnit::setSlotEnemyTypeF(int)
 {
@@ -1263,10 +1248,9 @@ lbl_80249E08:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80249E1C
- * Size:	0001A0
+/**
+ * @note Address: 0x80249E1C
+ * @note Size: 0x1A0
  */
 void RandEnemyUnit::setUnitRandEnemyTypeF()
 {
@@ -1392,10 +1376,9 @@ lbl_80249F9C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80249FBC
- * Size:	000088
+/**
+ * @note Address: 0x80249FBC
+ * @note Size: 0x88
  */
 void RandEnemyUnit::makeSetEnemyTypeF(MapNode*, BaseGen*, EnemyUnit*)
 {
@@ -1440,10 +1423,9 @@ void RandEnemyUnit::makeSetEnemyTypeF(MapNode*, BaseGen*, EnemyUnit*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8024A044
- * Size:	00017C
+/**
+ * @note Address: 0x8024A044
+ * @note Size: 0x17C
  */
 void RandEnemyUnit::setVersusEnemyTypeB()
 {
@@ -1483,10 +1465,9 @@ void RandEnemyUnit::setVersusEnemyTypeB()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8024A1C0
- * Size:	0003E0
+/**
+ * @note Address: 0x8024A1C0
+ * @note Size: 0x3E0
  */
 void RandEnemyUnit::setSlotEnemyTypeB(int)
 {
@@ -1757,10 +1738,9 @@ lbl_8024A58C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8024A5A0
- * Size:	0001A0
+/**
+ * @note Address: 0x8024A5A0
+ * @note Size: 0x1A0
  */
 void RandEnemyUnit::setUnitRandEnemyTypeB()
 {
@@ -1886,10 +1866,9 @@ lbl_8024A720:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8024A740
- * Size:	000088
+/**
+ * @note Address: 0x8024A740
+ * @note Size: 0x88
  */
 void RandEnemyUnit::makeSetEnemyTypeB(MapNode*, BaseGen*, EnemyUnit*)
 {
@@ -1934,10 +1913,9 @@ void RandEnemyUnit::makeSetEnemyTypeB(MapNode*, BaseGen*, EnemyUnit*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8024A7C8
- * Size:	0002CC
+/**
+ * @note Address: 0x8024A7C8
+ * @note Size: 0x2CC
  */
 void RandEnemyUnit::setVersusEasyEnemy()
 {
@@ -2204,10 +2182,9 @@ lbl_8024AA6C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8024AA94
- * Size:	000144
+/**
+ * @note Address: 0x8024AA94
+ * @note Size: 0x144
  */
 BaseGen* RandEnemyUnit::getVersusEasyEnemyBaseGen(MapNode*, BaseGen*)
 {
@@ -2319,10 +2296,9 @@ BaseGen* RandEnemyUnit::getVersusEasyEnemyBaseGen(MapNode*, BaseGen*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8024ABD8
- * Size:	0001D4
+/**
+ * @note Address: 0x8024ABD8
+ * @note Size: 0x1D4
  */
 void RandEnemyUnit::setVersusEnemyTypeA()
 {
@@ -2468,10 +2444,9 @@ lbl_8024AD98:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8024ADAC
- * Size:	0003D4
+/**
+ * @note Address: 0x8024ADAC
+ * @note Size: 0x3D4
  */
 void RandEnemyUnit::setSlotEnemyTypeA(int&, int&, int)
 {
@@ -2737,10 +2712,9 @@ lbl_8024B16C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8024B180
- * Size:	000298
+/**
+ * @note Address: 0x8024B180
+ * @note Size: 0x298
  */
 void RandEnemyUnit::setUnitRandEnemyTypeA(int&, int, int)
 {
@@ -2936,10 +2910,9 @@ lbl_8024B404:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8024B418
- * Size:	000420
+/**
+ * @note Address: 0x8024B418
+ * @note Size: 0x420
  */
 void RandEnemyUnit::makeSetEnemyTypeA(MapNode*, BaseGen*, EnemyUnit*, int)
 {
@@ -3250,10 +3223,9 @@ void RandEnemyUnit::makeSetEnemyTypeA(MapNode*, BaseGen*, EnemyUnit*, int)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8024B838
- * Size:	00003C
+/**
+ * @note Address: 0x8024B838
+ * @note Size: 0x3C
  */
 bool RandEnemyUnit::isEnemySetGen(MapNode*, BaseGen*)
 {

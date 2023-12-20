@@ -1,9 +1,8 @@
 #include "Dolphin/gx.h"
 
-/*
- * --INFO--
- * Address:	800E9984
- * Size:	000848
+/**
+ * @note Address: 0x800E9984
+ * @note Size: 0x848
  */
 void GXSetGPMetric(GXPerf0 perf0, GXPerf1 perf1)
 {
@@ -375,47 +374,42 @@ void GXSetGPMetric(GXPerf0 perf0, GXPerf1 perf1)
 	gx->bpSentNot = GX_FALSE;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001A8
+/**
+ * @note Address: N/A
+ * @note Size: 0x1A8
  */
 void GXReadGPMetric(u32* count0, u32* count1)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800EA1CC
- * Size:	000010
+/**
+ * @note Address: 0x800EA1CC
+ * @note Size: 0x10
  */
 void GXClearGPMetric(void) { GX_SET_CP_REG(2, 4); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 u32 GXReadGP0Metric(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 u32 GXReadGP1Metric(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000214
+/**
+ * @note Address: N/A
+ * @note Size: 0x214
  */
 void GXReadMemMetric(u32* cpReq, u32* tcReq, u32* cpuReadReq, u32* cpuWriteReq, u32* dspReq, u32* ioReq, u32* viReq, u32* peReq, u32* rfReq,
                      u32* fiReq)
@@ -423,80 +417,72 @@ void GXReadMemMetric(u32* cpReq, u32* tcReq, u32* cpuReadReq, u32* cpuWriteReq, 
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A8
+/**
+ * @note Address: N/A
+ * @note Size: 0xA8
  */
 void GXClearMemMetric(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000138
+/**
+ * @note Address: N/A
+ * @note Size: 0x138
  */
 void GXReadPixMetric(u32* topIn, u32* topOut, u32* bottomIn, u32* bottomOut, u32* clearIn, u32* copyClocks)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
+/**
+ * @note Address: N/A
+ * @note Size: 0x30
  */
 void GXClearPixMetric(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
+/**
+ * @note Address: N/A
+ * @note Size: 0x44
  */
 void GXSetVCacheMetric(GXVCachePerf attr)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
+/**
+ * @note Address: N/A
+ * @note Size: 0x94
  */
 void GXReadVCacheMetric(u32* check, u32* miss, u32* stall)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 void GXClearVCacheMetric(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
+/**
+ * @note Address: N/A
+ * @note Size: 0x44
  */
 void GXInitXfRasMetric(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800EA1DC
- * Size:	0000C4
+/**
+ * @note Address: 0x800EA1DC
+ * @note Size: 0xC4
  * TODO: use enums for the read regs
  */
 #pragma scheduling off
@@ -508,10 +494,9 @@ void GXReadXfRasMetric(u32* xfWaitIn, u32* xfWaitOut, u32* rasBusy, u32* clocks)
 	*xfWaitOut = GXReadCPReg(38, 39);
 }
 #pragma scheduling reset
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 u32 GXReadClksPerVtx(void)
 {

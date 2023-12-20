@@ -8,10 +8,9 @@ namespace {
 static const char* cKochappyChangeTexName = "/enemy/data/YellowKochappy/kochappy_body_s3tc.2.bti";
 } // namespace
 
-/*
- * --INFO--
- * Address:	8012D5E4
- * Size:	000050
+/**
+ * @note Address: 0x8012D5E4
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : KochappyBase::Mgr(objLimit, modelType)
@@ -19,17 +18,15 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "黄コチャッピーマネージャ"; // blue kochappy manager
 }
 
-/*
- * --INFO--
- * Address:	8012D634
- * Size:	000048
+/**
+ * @note Address: 0x8012D634
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new KochappyBase::Parms); }
 
-/*
- * --INFO--
- * Address:	8012D67C
- * Size:	000048
+/**
+ * @note Address: 0x8012D67C
+ * @note Size: 0x48
  */
 void Mgr::loadTexData()
 {

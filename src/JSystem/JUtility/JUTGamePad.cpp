@@ -39,10 +39,9 @@ bool JUTGamePad::C3ButtonReset::sResetSwitchPushing;
 bool JUTGamePad::C3ButtonReset::sResetOccurred;
 JUTGamePad::EPadPort JUTGamePad::C3ButtonReset::sResetOccurredPort;
 
-/*
- * --INFO--
- * Address:	8002D458
- * Size:	0000D4
+/**
+ * @note Address: 0x8002D458
+ * @note Size: 0xD4
  * __ct__10JUTGamePadFQ210JUTGamePad8EPadPort
  */
 JUTGamePad::JUTGamePad(JUTGamePad::EPadPort portNum)
@@ -65,10 +64,9 @@ JUTGamePad::JUTGamePad(JUTGamePad::EPadPort portNum)
 	clear();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A8
+/**
+ * @note Address: N/A
+ * @note Size: 0xA8
  */
 JUTGamePad::JUTGamePad()
     : mButton()
@@ -86,10 +84,9 @@ JUTGamePad::JUTGamePad()
 	clear();
 }
 
-/*
- * --INFO--
- * Address:	8002D52C
- * Size:	0000AC
+/**
+ * @note Address: 0x8002D52C
+ * @note Size: 0xAC
  * __dt__10JUTGamePadFv
  */
 JUTGamePad::~JUTGamePad()
@@ -101,10 +98,9 @@ JUTGamePad::~JUTGamePad()
 	mPadList.remove(&mListLink);
 }
 
-/*
- * --INFO--
- * Address:	8002D5D8
- * Size:	00003C
+/**
+ * @note Address: 0x8002D5D8
+ * @note Size: 0x3C
  */
 void JUTGamePad::initList()
 {
@@ -114,10 +110,9 @@ void JUTGamePad::initList()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8002D614
- * Size:	000038
+/**
+ * @note Address: 0x8002D614
+ * @note Size: 0x38
  * init__10JUTGamePadFv
  */
 void JUTGamePad::init()
@@ -128,10 +123,9 @@ void JUTGamePad::init()
 	PADInit();
 }
 
-/*
- * --INFO--
- * Address:	8002D64C
- * Size:	000014
+/**
+ * @note Address: 0x8002D64C
+ * @note Size: 0x14
  * clear__10JUTGamePadFv
  */
 void JUTGamePad::clear()
@@ -140,10 +134,9 @@ void JUTGamePad::clear()
 	_A8                   = 1;
 }
 
-/*
- * --INFO--
- * Address:	8002D660
- * Size:	0002C8
+/**
+ * @note Address: 0x8002D660
+ * @note Size: 0x2C8
  * read__10JUTGamePadFv
  */
 u32 JUTGamePad::read()
@@ -418,50 +411,45 @@ lbl_8002D90C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000088
+/**
+ * @note Address: N/A
+ * @note Size: 0x88
  */
 void JUTGamePad::setStatus(u32, char, char, char, char, u8, u8, u8, u8, u32, PADStatus*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F0
+/**
+ * @note Address: N/A
+ * @note Size: 0xF0
  */
 void JUTGamePad::setStatus_PADStatus(const PADStatus*, u32, PADStatus*, u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00012C
+/**
+ * @note Address: N/A
+ * @note Size: 0x12C
  */
 void JUTGamePad::setStatus_data(const void*, u32, PADStatus*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
+/**
+ * @note Address: N/A
+ * @note Size: 0x84
  */
 void JUTGamePad::setStatus_sticks_subroutine(PADStatus*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8002D928
- * Size:	0000A8
+/**
+ * @note Address: 0x8002D928
+ * @note Size: 0xA8
  * assign__10JUTGamePadFv
  */
 void JUTGamePad::assign()
@@ -527,10 +515,9 @@ lbl_8002D9BC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8002D9D0
- * Size:	00006C
+/**
+ * @note Address: 0x8002D9D0
+ * @note Size: 0x6C
  */
 void JUTGamePad::checkResetCallback(s64 p1)
 {
@@ -543,10 +530,9 @@ void JUTGamePad::checkResetCallback(s64 p1)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8002DA3C
- * Size:	00032C
+/**
+ * @note Address: 0x8002DA3C
+ * @note Size: 0x32C
  * update__10JUTGamePadFv
  */
 void JUTGamePad::update()
@@ -826,10 +812,9 @@ lbl_8002DD48:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8002DD68
- * Size:	000080
+/**
+ * @note Address: 0x8002DD68
+ * @note Size: 0x80
  */
 void JUTGamePad::checkResetSwitch()
 {
@@ -850,10 +835,9 @@ void JUTGamePad::checkResetSwitch()
 	C3ButtonReset::sResetSwitchPushing = false;
 }
 
-/*
- * --INFO--
- * Address:	8002DDE8
- * Size:	00002C
+/**
+ * @note Address: 0x8002DDE8
+ * @note Size: 0x2C
  */
 void JUTGamePad::clearForReset()
 {
@@ -861,10 +845,9 @@ void JUTGamePad::clearForReset()
 	recalibrate(0xF0000000);
 }
 
-/*
- * --INFO--
- * Address:	8002DE14
- * Size:	00003C
+/**
+ * @note Address: 0x8002DE14
+ * @note Size: 0x3C
  * clear__Q210JUTGamePad7CButtonFv
  */
 void JUTGamePad::CButton::clear()
@@ -884,10 +867,9 @@ void JUTGamePad::CButton::clear()
 	_2C           = 0;
 }
 
-/*
- * --INFO--
- * Address:	8002DE50
- * Size:	000190
+/**
+ * @note Address: 0x8002DE50
+ * @note Size: 0x190
  * update__Q210JUTGamePad7CButtonFPC9PADStatusUl
  */
 void JUTGamePad::CButton::update(PADStatus const* status, u32 p2)
@@ -1050,10 +1032,9 @@ lbl_8002DF8C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8002DFE0
- * Size:	00001C
+/**
+ * @note Address: 0x8002DFE0
+ * @note Size: 0x1C
  * clear__Q210JUTGamePad6CStickFv
  */
 void JUTGamePad::CStick::clear()
@@ -1064,10 +1045,9 @@ void JUTGamePad::CStick::clear()
 	mAngle    = 0;
 }
 
-/*
- * --INFO--
- * Address:	8002DFFC
- * Size:	0002B8
+/**
+ * @note Address: 0x8002DFFC
+ * @note Size: 0x2B8
  * update__Q210JUTGamePad6CStickFScScQ210JUTGamePad10EStickModeQ210JUTGamePad11EWhichStickUl
  */
 u32 JUTGamePad::CStick::update(s8, s8, JUTGamePad::EStickMode, JUTGamePad::EWhichStick, u32)
@@ -1291,10 +1271,9 @@ u32 JUTGamePad::CStick::update(s8, s8, JUTGamePad::EStickMode, JUTGamePad::EWhic
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8002E2B4
- * Size:	0000B4
+/**
+ * @note Address: 0x8002E2B4
+ * @note Size: 0xB4
  * getButton__Q210JUTGamePad6CStickFUl
  */
 u32 JUTGamePad::CStick::getButton(u32 p1)
@@ -1379,10 +1358,9 @@ lbl_8002E360:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  * clear__Q210JUTGamePad7CRumbleFv
  */
 void JUTGamePad::CRumble::clear()
@@ -1396,10 +1374,9 @@ void JUTGamePad::CRumble::clear()
 	mEnabled = 0xF0000000;
 }
 
-/*
- * --INFO--
- * Address:	8002E368
- * Size:	000074
+/**
+ * @note Address: 0x8002E368
+ * @note Size: 0x74
  * clear__Q210JUTGamePad7CRumbleFP10JUTGamePad
  */
 void JUTGamePad::CRumble::clear(JUTGamePad* pad)
@@ -1446,20 +1423,18 @@ lbl_8002E3A8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
+/**
+ * @note Address: N/A
+ * @note Size: 0x58
  */
 void JUTGamePad::CRumble::startMotor(int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8002E3DC
- * Size:	000070
+/**
+ * @note Address: 0x8002E3DC
+ * @note Size: 0x70
  * stopMotor__Q210JUTGamePad7CRumbleFib
  */
 void JUTGamePad::CRumble::stopMotor(int chan, bool p2)
@@ -1503,20 +1478,18 @@ lbl_8002E438:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 // void getNumBit(u8*, int)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	8002E44C
- * Size:	00025C
+/**
+ * @note Address: 0x8002E44C
+ * @note Size: 0x25C
  */
 void JUTGamePad::CRumble::update(short)
 {
@@ -1693,70 +1666,63 @@ lbl_8002E690:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 void JUTGamePad::CRumble::triggerPatternedRumble(u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
+/**
+ * @note Address: N/A
+ * @note Size: 0x5C
  */
 void JUTGamePad::CRumble::setPatternedRumble(short, u16, void*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000BC
+/**
+ * @note Address: N/A
+ * @note Size: 0xBC
  */
 void JUTGamePad::CRumble::startPatternedRumble(void*, JUTGamePad::CRumble::ERumble, u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
+/**
+ * @note Address: N/A
+ * @note Size: 0x70
  */
 void JUTGamePad::CRumble::stopPatternedRumble(short)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void JUTGamePad::CRumble::stopPatternedRumbleAtThePeriod()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 JUTGamePad* JUTGamePad::getGamePad(int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8002E6A8
- * Size:	000124
+/**
+ * @note Address: 0x8002E6A8
+ * @note Size: 0x124
  */
 void JUTGamePad::CRumble::setEnabled(u32)
 {
@@ -1851,10 +1817,9 @@ lbl_8002E798:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8002E7CC
- * Size:	00001C
+/**
+ * @note Address: 0x8002E7CC
+ * @note Size: 0x1C
  */
 void JUTGamePad::CButton::setRepeat(u32 p1, u32 p2, u32 p3)
 {
@@ -1865,10 +1830,9 @@ void JUTGamePad::CButton::setRepeat(u32 p1, u32 p2, u32 p3)
 	_2C = p3;
 }
 
-/*
- * --INFO--
- * Address:	8002E7E8
- * Size:	00004C
+/**
+ * @note Address: 0x8002E7E8
+ * @note Size: 0x4C
  */
 void JUTGamePad::setButtonRepeat(u32 p1, u32 p2, u32 p3)
 {
@@ -1879,40 +1843,36 @@ void JUTGamePad::setButtonRepeat(u32 p1, u32 p2, u32 p3)
 	mPadButton[mPortNum].setRepeat(p1, p2, p3);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
+/**
+ * @note Address: N/A
+ * @note Size: 0x58
  */
 void JUTGamePad::resetButtonRepeat()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  */
 void JUTGamePad::addButtonRepeat(u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
+/**
+ * @note Address: N/A
+ * @note Size: 0x40
  */
 void JUTGamePad::removeButtonRepeat(u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 void JUTGamePad::clearButtonRepeat(bool)
 {
@@ -1921,10 +1881,9 @@ void JUTGamePad::clearButtonRepeat(bool)
 
 #define FLIP_BITS(v) ((~v))
 
-/*
- * --INFO--
- * Address:	8002E834
- * Size:	00008C
+/**
+ * @note Address: 0x8002E834
+ * @note Size: 0x8C
  */
 bool JUTGamePad::recalibrate(u32 mask)
 {
@@ -1981,50 +1940,45 @@ lbl_8002E8A0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 JUTGamePadLongPress::JUTGamePadLongPress()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 // void JSULink<JUTGamePadLongPress>::~JSULink()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000CC
+/**
+ * @note Address: N/A
+ * @note Size: 0xCC
  */
 void JUTGamePadLongPress::add(u32, u32, u32, void (*)(int, JUTGamePadLongPress*, void*), void*, JKRHeap*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000AC
+/**
+ * @note Address: N/A
+ * @note Size: 0xAC
  */
 void JUTGamePadLongPress::remove(JUTGamePadLongPress*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8002E8C0
- * Size:	000064
+/**
+ * @note Address: 0x8002E8C0
+ * @note Size: 0x64
  */
 void JUTGamePadLongPress::checkCallback(int p1, u32 p2)
 {
@@ -2037,180 +1991,162 @@ void JUTGamePadLongPress::checkCallback(int p1, u32 p2)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 JUTGamePadRecordBase::JUTGamePadRecordBase()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 JUTGamePadRecordBase::~JUTGamePadRecordBase()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 JUTGamePadRecordFixed::JUTGamePadRecordFixed()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 void JUTGamePadRecordFixed::setBuffer(void*, u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void JUTGamePadRecordFixed::setDataEnd(void*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 void JUTGamePadRecordFixed::setDataSize(u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  */
 void JUTGamePadRecord::setPart(uint)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 void JUTGamePadRecordFixed::clear()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00009C
+/**
+ * @note Address: N/A
+ * @note Size: 0x9C
  */
 void JUTGamePadRecordFixed::seek(int, JUTGamePadRecordFixed::EOrigin)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A8
+/**
+ * @note Address: N/A
+ * @note Size: 0xA8
  */
 void JUTGamePadRecordFixed::do_read(PADStatus*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A4
+/**
+ * @note Address: N/A
+ * @note Size: 0xA4
  */
 void JUTGamePadRecordFixed::do_write(const PADStatus*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00008C
+/**
+ * @note Address: N/A
+ * @note Size: 0x8C
  */
 JUTGamePadRecord::JUTGamePadRecord()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
+/**
+ * @note Address: N/A
+ * @note Size: 0x5C
  */
 JUTGamePadRecordFixed::~JUTGamePadRecordFixed()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 void JUTGamePadRecord::calculateDataSizePerFrame(u8)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
+/**
+ * @note Address: N/A
+ * @note Size: 0xE4
  */
 void JUTGamePadRecord::do_readFixed(const void*, PADStatus*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000098
+/**
+ * @note Address: N/A
+ * @note Size: 0x98
  */
 void JUTGamePadRecord::do_writeFixed(const PADStatus*, void*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  */
 JUTGamePadRecord::~JUTGamePadRecord()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8002E924
- * Size:	000110
+/**
+ * @note Address: 0x8002E924
+ * @note Size: 0x110
  */
 // void __sinit_JUTGamePad_cpp()
 // {
@@ -2286,10 +2222,9 @@ JUTGamePadRecord::~JUTGamePadRecord()
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	8002EA34
- * Size:	000054
+/**
+ * @note Address: 0x8002EA34
+ * @note Size: 0x54
  */
 // void JSUList<JUTGamePadLongPress>::~JSUList()
 // {
@@ -2320,10 +2255,9 @@ JUTGamePadRecord::~JUTGamePadRecord()
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	8002EA88
- * Size:	00001C
+/**
+ * @note Address: 0x8002EA88
+ * @note Size: 0x1C
  * __ct__Q210JUTGamePad6CStickFv
  */
 // JUTGamePad::CStick::CStick()
@@ -2339,10 +2273,9 @@ JUTGamePadRecord::~JUTGamePadRecord()
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	8002EAA4
- * Size:	00003C
+/**
+ * @note Address: 0x8002EAA4
+ * @note Size: 0x3C
  * __ct__Q210JUTGamePad7CButtonFv
  */
 // JUTGamePad::CButton::CButton()
@@ -2366,10 +2299,9 @@ JUTGamePadRecord::~JUTGamePadRecord()
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	8002EAE0
- * Size:	000054
+/**
+ * @note Address: 0x8002EAE0
+ * @note Size: 0x54
  * __dt__21JSUList<10JUTGamePad>Fv
  */
 // void JSUList<JUTGamePad>::~JSUList()

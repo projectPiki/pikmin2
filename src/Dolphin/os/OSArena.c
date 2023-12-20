@@ -1,10 +1,9 @@
 static void* __OSArenaHi = (void*)0x00000000;
 static void* __OSArenaLo = (void*)0xffffffff;
 
-/*
- * --INFO--
- * Address:	800EC424
- * Size:	000008
+/**
+ * @note Address: 0x800EC424
+ * @note Size: 0x8
  */
 void* OSGetArenaHi(void) { return __OSArenaHi; }
 /*
@@ -13,10 +12,9 @@ void* OSGetArenaHi(void) { return __OSArenaHi; }
   blr
 */
 
-/*
- * --INFO--
- * Address:	800EC42C
- * Size:	000008
+/**
+ * @note Address: 0x800EC42C
+ * @note Size: 0x8
  */
 void* OSGetArenaLo(void) { return __OSArenaLo; }
 /*
@@ -25,10 +23,9 @@ void* OSGetArenaLo(void) { return __OSArenaLo; }
   blr
 */
 
-/*
- * --INFO--
- * Address:	800EC434
- * Size:	000008
+/**
+ * @note Address: 0x800EC434
+ * @note Size: 0x8
  */
 void OSSetArenaHi(void* arena_hi)
 
@@ -42,10 +39,9 @@ void OSSetArenaHi(void* arena_hi)
   blr
 */
 
-/*
- * --INFO--
- * Address:	800EC43C
- * Size:	000008
+/**
+ * @note Address: 0x800EC43C
+ * @note Size: 0x8
  */
 void OSSetArenaLo(void* arena_lo)
 
@@ -59,20 +55,18 @@ void OSSetArenaLo(void* arena_lo)
   blr
 */
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 void OSAllocFromArenaLo(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 void OSAllocFromArenaHi(void)
 {

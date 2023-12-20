@@ -8,10 +8,9 @@
 namespace Game {
 namespace ChappyBase {
 
-/*
- * --INFO--
- * Address:	8012A950
- * Size:	00015C
+/**
+ * @note Address: 0x8012A950
+ * @note Size: 0x15C
  */
 Obj::Obj()
     : mFsm(nullptr)
@@ -29,9 +28,8 @@ Obj::Obj()
  * @param position The initial position of the chappy.
  * @param faceDirection The initial direction of the chappy.
  *
- * --INFO--
- * Address:	8012AAAC
- * Size:	000044
+ * @note Address: 0x8012AAAC
+ * @note Size: 0x44
  */
 void Obj::birth(Vector3f& position, f32 faceDirection)
 {
@@ -40,10 +38,9 @@ void Obj::birth(Vector3f& position, f32 faceDirection)
 	mAlertTimer  = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	8012AAF0
- * Size:	000004
+/**
+ * @note Address: 0x8012AAF0
+ * @note Size: 0x4
  */
 void Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
@@ -53,9 +50,8 @@ void Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
  *
  * @param initArg The CreatureInitArg used to initialize the chappy.
  *
- * --INFO--
- * Address:	8012AAF4
- * Size:	000080
+ * @note Address: 0x8012AAF4
+ * @note Size: 0x80
  *
  */
 void Obj::onInit(CreatureInitArg* initArg)
@@ -72,31 +68,27 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mFsm->start(this, CHAPPY_Sleep, &sleepArg);
 }
 
-/*
- * --INFO--
- * Address:	8012AB74
- * Size:	000034
+/**
+ * @note Address: 0x8012AB74
+ * @note Size: 0x34
  */
 void Obj::doUpdate() { mFsm->exec(this); }
 
-/*
- * --INFO--
- * Address:	8012ABA8
- * Size:	000004
+/**
+ * @note Address: 0x8012ABA8
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	8012ABAC
- * Size:	000020
+/**
+ * @note Address: 0x8012ABAC
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	8012ABCC
- * Size:	0000C8
+/**
+ * @note Address: 0x8012ABCC
+ * @note Size: 0xC8
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
@@ -117,10 +109,9 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 	shadowParam.mSize                     = 32.0f;
 }
 
-/*
- * --INFO--
- * Address:	8012AC94
- * Size:	000040
+/**
+ * @note Address: 0x8012AC94
+ * @note Size: 0x40
  */
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
@@ -142,9 +133,8 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
  *
  * @param collEvent The collision event object containing information about the collision.
  *
- * --INFO--
- * Address:	8012ACD4
- * Size:	000150
+ * @note Address: 0x8012ACD4
+ * @note Size: 0x150
  */
 void Obj::collisionCallback(CollEvent& collEvent)
 {
@@ -176,10 +166,9 @@ void Obj::collisionCallback(CollEvent& collEvent)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012AE24
- * Size:	000050
+/**
+ * @note Address: 0x8012AE24
+ * @note Size: 0x50
  */
 void Obj::doStartStoneState()
 {
@@ -189,17 +178,15 @@ void Obj::doStartStoneState()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012AE74
- * Size:	000004
+/**
+ * @note Address: 0x8012AE74
+ * @note Size: 0x4
  */
 void Obj::doFinishStoneState() { }
 
-/*
- * --INFO--
- * Address:	8012AE78
- * Size:	000064
+/**
+ * @note Address: 0x8012AE78
+ * @note Size: 0x64
  */
 Vector3f Obj::getOffsetForMapCollision()
 {
@@ -217,17 +204,15 @@ Vector3f Obj::getOffsetForMapCollision()
 	return offset;
 }
 
-/*
- * --INFO--
- * Address:	8012AEDC
- * Size:	000028
+/**
+ * @note Address: 0x8012AEDC
+ * @note Size: 0x28
  */
 void Obj::startCarcassMotion() { startMotion(CHAPPYANIM_Carry, nullptr); }
 
-/*
- * --INFO--
- * Address:	8012AF04
- * Size:	0000DC
+/**
+ * @note Address: 0x8012AF04
+ * @note Size: 0xDC
  */
 void Obj::initMouthSlots()
 {
@@ -243,10 +228,9 @@ void Obj::initMouthSlots()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012AFE0
- * Size:	000064
+/**
+ * @note Address: 0x8012AFE0
+ * @note Size: 0x64
  */
 void Obj::initWalkSmokeEffect()
 {
@@ -255,10 +239,9 @@ void Obj::initWalkSmokeEffect()
 	mWalkSmokeMgr.setup(1, mModel, "asiR", 10.0f);
 }
 
-/*
- * --INFO--
- * Address:	8012B044
- * Size:	000008
+/**
+ * @note Address: 0x8012B044
+ * @note Size: 0x8
  */
 WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
 
@@ -266,9 +249,8 @@ WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
  * Checks if the object should wake up based on its enemy type and nearby creatures.
  * @return true if the object should wake up, false otherwise.
  *
- * --INFO--
- * Address:	8012B04C
- * Size:	000200
+ * @note Address: 0x8012B04C
+ * @note Size: 0x200
  */
 bool Obj::isWakeup()
 {
@@ -306,10 +288,9 @@ bool Obj::isWakeup()
 	return shouldWakeup;
 }
 
-/*
- * --INFO--
- * Address:	8012B24C
- * Size:	0000B0
+/**
+ * @note Address: 0x8012B24C
+ * @note Size: 0xB0
  */
 void Obj::setCollEvent(CollEvent& collEvent)
 {
@@ -323,10 +304,9 @@ void Obj::setCollEvent(CollEvent& collEvent)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012B2FC
- * Size:	0000C8
+/**
+ * @note Address: 0x8012B2FC
+ * @note Size: 0xC8
  */
 void Obj::flickStatePikmin()
 {
@@ -343,10 +323,9 @@ void Obj::flickStatePikmin()
 	                           nearNaviParms->mGeneral.mShakeDamage.mValue, getFaceDir(), nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8012B3C4
- * Size:	0001A4
+/**
+ * @note Address: 0x8012B3C4
+ * @note Size: 0x1A4
  */
 void Obj::flickAttackBomb()
 {
@@ -368,10 +347,9 @@ void Obj::flickAttackBomb()
 	rumbleMgr->startRumble(11, effectPos, 2);
 }
 
-/*
- * --INFO--
- * Address:	8012B568
- * Size:	000060
+/**
+ * @note Address: 0x8012B568
+ * @note Size: 0x60
  */
 void Obj::flickAttackFail()
 {
@@ -380,24 +358,21 @@ void Obj::flickAttackFail()
 	                            parms->mGeneral.mShakeDamage.mValue, getFaceDir(), nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8012B5C8
- * Size:	000024
+/**
+ * @note Address: 0x8012B5C8
+ * @note Size: 0x24
  */
 int Obj::eatAttackPikmin() { return EnemyFunc::eatPikmin(this, nullptr); }
 
-/*
- * --INFO--
- * Address:	8012B5EC
- * Size:	0000B0
+/**
+ * @note Address: 0x8012B5EC
+ * @note Size: 0xB0
  */
 void Obj::createEffect() { mEfxHanacho = new efx::THanachoN; }
 
-/*
- * --INFO--
- * Address:	8012B720
- * Size:	000050
+/**
+ * @note Address: 0x8012B720
+ * @note Size: 0x50
  */
 void Obj::setupEffect()
 {
@@ -410,17 +385,15 @@ void Obj::setupEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012B770
- * Size:	000034
+/**
+ * @note Address: 0x8012B770
+ * @note Size: 0x34
  */
 void Obj::startSleepEffect() { static_cast<efx::THanachoN*>(mEfxHanacho)->create(nullptr); }
 
-/*
- * --INFO--
- * Address:	8012B7A4
- * Size:	000030
+/**
+ * @note Address: 0x8012B7A4
+ * @note Size: 0x30
  */
 void Obj::finishSleepEffect() { static_cast<efx::THanachoN*>(mEfxHanacho)->fade(); }
 

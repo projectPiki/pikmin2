@@ -27,10 +27,9 @@ static BOOL __THPInitFlag = FALSE;
 
 #define THPROUNDUP(a, b) ((((s32)(a)) + ((s32)(b)-1L)) / ((s32)(b)))
 
-/*
- * --INFO--
- * Address:	800F7148
- * Size:	000244
+/**
+ * @note Address: 0x800F7148
+ * @note Size: 0x244
  */
 s32 THPVideoDecode(void* file, void* tileY, void* tileU, void* tileV, void* work)
 {
@@ -184,10 +183,9 @@ _err_exit:
 	return errorCode;
 }
 
-/*
- * --INFO--
- * Address:	800F738C
- * Size:	000044
+/**
+ * @note Address: 0x800F738C
+ * @note Size: 0x44
  */
 static void __THPSetupBuffers(void)
 {
@@ -201,10 +199,9 @@ static void __THPSetupBuffers(void)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800F73D0
- * Size:	00013C
+/**
+ * @note Address: 0x800F73D0
+ * @note Size: 0x13C
  */
 static u8 __THPReadFrameHeader(void)
 {
@@ -241,10 +238,9 @@ static u8 __THPReadFrameHeader(void)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	800F750C
- * Size:	00011C
+/**
+ * @note Address: 0x800F750C
+ * @note Size: 0x11C
  */
 static u8 __THPReadScaneHeader(void)
 {
@@ -281,10 +277,9 @@ static u8 __THPReadScaneHeader(void)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	800F7628
- * Size:	0003BC
+/**
+ * @note Address: 0x800F7628
+ * @note Size: 0x3BC
  */
 static u8 __THPReadQuantizationTable(void)
 {
@@ -319,10 +314,9 @@ static u8 __THPReadQuantizationTable(void)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	800F79E4
- * Size:	0001E0
+/**
+ * @note Address: 0x800F79E4
+ * @note Size: 0x1E0
  */
 static u8 __THPReadHuffmanTableSpecification(void)
 {
@@ -363,10 +357,9 @@ static u8 __THPReadHuffmanTableSpecification(void)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	800F7BC4
- * Size:	0000F0
+/**
+ * @note Address: 0x800F7BC4
+ * @note Size: 0xF0
  */
 static void __THPHuffGenerateSizeTable(void)
 {
@@ -383,10 +376,9 @@ static void __THPHuffGenerateSizeTable(void)
 	__THPHuffmanSizeTab[p] = 0;
 }
 
-/*
- * --INFO--
- * Address:	800F7CB4
- * Size:	000068
+/**
+ * @note Address: 0x800F7CB4
+ * @note Size: 0x68
  */
 static void __THPHuffGenerateCodeTable(void)
 {
@@ -408,10 +400,9 @@ static void __THPHuffGenerateCodeTable(void)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800F7D1C
- * Size:	0001BC
+/**
+ * @note Address: 0x800F7D1C
+ * @note Size: 0x1BC
  */
 static void __THPHuffGenerateDecoderTables(u8 tabIndex)
 {
@@ -434,10 +425,9 @@ static void __THPHuffGenerateDecoderTables(u8 tabIndex)
 	h->maxCode[17] = 0xfffffL;
 }
 
-/*
- * --INFO--
- * Address:	800F7ED8
- * Size:	000054
+/**
+ * @note Address: 0x800F7ED8
+ * @note Size: 0x54
  */
 static void __THPRestartDefinition(void)
 {
@@ -488,10 +478,9 @@ static inline void __THPGQRRestore(void)
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800F7F2C
- * Size:	00024C
+/**
+ * @note Address: 0x800F7F2C
+ * @note Size: 0x24C
  */
 void __THPPrepBitStream(void)
 {
@@ -551,10 +540,9 @@ void __THPPrepBitStream(void)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800F8178
- * Size:	00010C
+/**
+ * @note Address: 0x800F8178
+ * @note Size: 0x10C
  */
 static void __THPDecompressYUV(void* tileY, void* tileU, void* tileV)
 {
@@ -1205,10 +1193,9 @@ inline void __THPInverseDCTY8(register THPCoeff* in, register u32 xPos)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800F8284
- * Size:	001A88
+/**
+ * @note Address: 0x800F8284
+ * @note Size: 0x1A88
  */
 static void __THPDecompressiMCURow512x448(void)
 {
@@ -1512,10 +1499,9 @@ _FailedCheckNoBits1 :
 	return (h->Vij[(s32)(code + h->valPtr[cnt])]);
 }
 
-/*
- * --INFO--
- * Address:	800F9D0C
- * Size:	001A8C
+/**
+ * @note Address: 0x800F9D0C
+ * @note Size: 0x1A8C
  */
 static void __THPDecompressiMCURow640x480(void)
 {
@@ -1585,10 +1571,9 @@ static void __THPDecompressiMCURow640x480(void)
 	__THPInfo->dLC[2] += 0xA00;
 }
 
-/*
- * --INFO--
- * Address:	800FB798
- * Size:	001AAC
+/**
+ * @note Address: 0x800FB798
+ * @note Size: 0x1AAC
  */
 static void __THPDecompressiMCURowNxN(void)
 {
@@ -1655,10 +1640,9 @@ static void __THPDecompressiMCURowNxN(void)
 	__THPInfo->dLC[2] += ((sizeof(u8) * 64) * (x / 16));
 }
 
-/*
- * --INFO--
- * Address:	800FD244
- * Size:	00067C
+/**
+ * @note Address: 0x800FD244
+ * @note Size: 0x67C
  */
 static void __THPHuffDecodeDCTCompY(register THPFileInfo* info, THPCoeff* block)
 {
@@ -2047,10 +2031,9 @@ static void __THPHuffDecodeDCTCompY(register THPFileInfo* info, THPCoeff* block)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800FD8C0
- * Size:	0006A8
+/**
+ * @note Address: 0x800FD8C0
+ * @note Size: 0x6A8
  */
 static void __THPHuffDecodeDCTCompU(register THPFileInfo* info, THPCoeff* block)
 {
@@ -2176,10 +2159,9 @@ static void __THPHuffDecodeDCTCompU(register THPFileInfo* info, THPCoeff* block)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800FDF68
- * Size:	0006A8
+/**
+ * @note Address: 0x800FDF68
+ * @note Size: 0x6A8
  */
 static void __THPHuffDecodeDCTCompV(register THPFileInfo* info, THPCoeff* block)
 {
@@ -2308,10 +2290,9 @@ static void __THPHuffDecodeDCTCompV(register THPFileInfo* info, THPCoeff* block)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800FE610
- * Size:	0000A0
+/**
+ * @note Address: 0x800FE610
+ * @note Size: 0xA0
  */
 
 BOOL THPInit(void)

@@ -18,10 +18,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateFlick);
 }
 
-/*
- * --INFO--
- * Address:	80274064
- * Size:	000070
+/**
+ * @note Address: 0x80274064
+ * @note Size: 0x70
  */
 
 void StateDead::init(EnemyBase* enemy, StateArg* Args)
@@ -34,10 +33,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* Args)
 	tank->startMotion(TANKANIM_Dead, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802740D8
- * Size:	000044
+/**
+ * @note Address: 0x802740D8
+ * @note Size: 0x44
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -46,17 +44,15 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8027411C
- * Size:	000004
+/**
+ * @note Address: 0x8027411C
+ * @note Size: 0x4
  */
 void StateDead::cleanup(EnemyBase*) { }
 
-/*
- * --INFO--
- * Address:	80274120
- * Size:	000044
+/**
+ * @note Address: 0x80274120
+ * @note Size: 0x44
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -66,10 +62,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	tank->startMotion(TANKANIM_Wait, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80274164
- * Size:	000258
+/**
+ * @note Address: 0x80274164
+ * @note Size: 0x258
  */
 void StateWait::exec(EnemyBase* enemy)
 {
@@ -109,10 +104,9 @@ void StateWait::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802743BC
- * Size:	000028
+/**
+ * @note Address: 0x802743BC
+ * @note Size: 0x28
  */
 void StateWait::cleanup(EnemyBase* enemy)
 {
@@ -120,10 +114,9 @@ void StateWait::cleanup(EnemyBase* enemy)
 	tank->setAnimSpeed(30.0f);
 }
 
-/*
- * --INFO--
- * Address:	802743E4
- * Size:	000054
+/**
+ * @note Address: 0x802743E4
+ * @note Size: 0x54
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -134,10 +127,9 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	tank->setAnimSpeed(60.0f);
 }
 
-/*
- * --INFO--
- * Address:	80274438
- * Size:	00056C
+/**
+ * @note Address: 0x80274438
+ * @note Size: 0x56C
  */
 void StateMove::exec(EnemyBase* enemy)
 {
@@ -592,10 +584,9 @@ lbl_80274948:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802749A4
- * Size:	000028
+/**
+ * @note Address: 0x802749A4
+ * @note Size: 0x28
  */
 void StateMove::cleanup(EnemyBase* enemy)
 {
@@ -603,10 +594,9 @@ void StateMove::cleanup(EnemyBase* enemy)
 	tank->setAnimSpeed(30.0f);
 }
 
-/*
- * --INFO--
- * Address:	802749CC
- * Size:	000104
+/**
+ * @note Address: 0x802749CC
+ * @note Size: 0x104
  */
 void StateMoveTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -693,10 +683,9 @@ lbl_80274A8C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80274AD0
- * Size:	000364
+/**
+ * @note Address: 0x80274AD0
+ * @note Size: 0x364
  */
 void StateMoveTurn::exec(EnemyBase* enemy)
 {
@@ -743,10 +732,9 @@ void StateMoveTurn::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80274E34
- * Size:	000028
+/**
+ * @note Address: 0x80274E34
+ * @note Size: 0x28
  */
 void StateMoveTurn::cleanup(EnemyBase* enemy)
 {
@@ -754,10 +742,9 @@ void StateMoveTurn::cleanup(EnemyBase* enemy)
 	tank->setAnimSpeed(30.0f);
 }
 
-/*
- * --INFO--
- * Address:	80274E5C
- * Size:	000050
+/**
+ * @note Address: 0x80274E5C
+ * @note Size: 0x50
  */
 void StateChaseTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -767,10 +754,9 @@ void StateChaseTurn::init(EnemyBase* enemy, StateArg* stateArg)
 	tank->startMotion(TANKANIM_Turn, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80274EAC
- * Size:	0005F4
+/**
+ * @note Address: 0x80274EAC
+ * @note Size: 0x5F4
  */
 void StateChaseTurn::exec(EnemyBase* enemy)
 {
@@ -1256,10 +1242,9 @@ lbl_80275444:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802754A0
- * Size:	00003C
+/**
+ * @note Address: 0x802754A0
+ * @note Size: 0x3C
  */
 void StateChaseTurn::cleanup(EnemyBase* enemy)
 {
@@ -1268,10 +1253,9 @@ void StateChaseTurn::cleanup(EnemyBase* enemy)
 	tank->setAnimSpeed(30.0f);
 }
 
-/*
- * --INFO--
- * Address:	802754DC
- * Size:	000084
+/**
+ * @note Address: 0x802754DC
+ * @note Size: 0x84
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1287,10 +1271,9 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	tank->createChargeSE();
 }
 
-/*
- * --INFO--
- * Address:	80275564
- * Size:	0001E0
+/**
+ * @note Address: 0x80275564
+ * @note Size: 0x1E0
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
@@ -1333,10 +1316,9 @@ void StateAttack::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8027574C
- * Size:	000058
+/**
+ * @note Address: 0x8027574C
+ * @note Size: 0x58
  */
 void StateAttack::cleanup(EnemyBase* enemy)
 {
@@ -1347,10 +1329,9 @@ void StateAttack::cleanup(EnemyBase* enemy)
 	tank->setEmotionCaution();
 }
 
-/*
- * --INFO--
- * Address:	802757A8
- * Size:	000058
+/**
+ * @note Address: 0x802757A8
+ * @note Size: 0x58
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1361,10 +1342,9 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	tank->startMotion(TANKANIM_Flick, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80275800
- * Size:	000180
+/**
+ * @note Address: 0x80275800
+ * @note Size: 0x180
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
@@ -1398,10 +1378,9 @@ void StateFlick::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80275980
- * Size:	000024
+/**
+ * @note Address: 0x80275980
+ * @note Size: 0x24
  */
 void StateFlick::cleanup(EnemyBase* enemy)
 {

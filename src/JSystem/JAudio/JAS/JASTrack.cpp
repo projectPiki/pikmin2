@@ -13,10 +13,9 @@
 
 static f32 c32 = 1.0f;
 
-/*
- * --INFO--
- * Address:	8009EF94
- * Size:	00012C
+/**
+ * @note Address: 0x8009EF94
+ * @note Size: 0x12C
  */
 JASTrack::JASTrack()
     : JSUList<JASChannel>()
@@ -52,19 +51,17 @@ JASTrack::JASTrack()
 	JASCalc::bzero(&mTimedParam, sizeof(TimedParam_));
 }
 
-/*
- * --INFO--
- * Address:	8009F0C0
- * Size:	00004C
+/**
+ * @note Address: 0x8009F0C0
+ * @note Size: 0x4C
  */
 // JASTrack::TimedParam_::TimedParam_()
 // {
 // }
 
-/*
- * --INFO--
- * Address:	8009F10C
- * Size:	000018
+/**
+ * @note Address: 0x8009F10C
+ * @note Size: 0x18
  */
 // JASTrack::MoveParam_::MoveParam_()
 //     : _00(0.0f)
@@ -74,39 +71,35 @@ JASTrack::JASTrack()
 // {
 // }
 
-/*
- * --INFO--
- * Address:	8009F124
- * Size:	000130
+/**
+ * @note Address: 0x8009F124
+ * @note Size: 0x130
  */
 // JASTrack::AInnerParam_::AInnerParam_()
 // {
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 // void JSUList<JASChannel>::~JSUList()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C8
+/**
+ * @note Address: N/A
+ * @note Size: 0xC8
  */
 JASTrack::~JASTrack()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8009F254
- * Size:	0001E8
+/**
+ * @note Address: 0x8009F254
+ * @note Size: 0x1E8
  * TODO: needs JASPlayer
  */
 void JASTrack::init()
@@ -300,10 +293,9 @@ lbl_8009F388:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000120
+/**
+ * @note Address: N/A
+ * @note Size: 0x120
  */
 int JASTrack::inherit()
 {
@@ -341,10 +333,9 @@ int JASTrack::inherit()
 	return 1;
 }
 
-/*
- * --INFO--
- * Address:	8009F43C
- * Size:	00020C
+/**
+ * @note Address: 0x8009F43C
+ * @note Size: 0x20C
  */
 s8 JASTrack::mainProc()
 {
@@ -551,17 +542,15 @@ lbl_8009F628:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8009F648
- * Size:	000028
+/**
+ * @note Address: 0x8009F648
+ * @note Size: 0x28
  */
 void JASTrack::setInterrupt(u16 interrupt) { mIntrMgr.request(interrupt); }
 
-/*
- * --INFO--
- * Address:	8009F670
- * Size:	000060
+/**
+ * @note Address: 0x8009F670
+ * @note Size: 0x60
  */
 bool JASTrack::tryInterrupt()
 {
@@ -576,20 +565,18 @@ bool JASTrack::tryInterrupt()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 void JASTrack::setBankNumber(u8)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8009F6D0
- * Size:	000008
+/**
+ * @note Address: 0x8009F6D0
+ * @note Size: 0x8
  */
 void JASTrack::assignExtBuffer(JASOuterParam* a1)
 {
@@ -597,110 +584,99 @@ void JASTrack::assignExtBuffer(JASOuterParam* a1)
 	mExtBuffer = a1;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void JASTrack::setPanSwitchExt(u8, int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void JASTrack::setPanSwitchParent(u8, int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void JASTrack::setPanSwitchJcs(u8, int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void JASTrack::getBank() const
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void JASTrack::getProgramNumber() const
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void JASTrack::getVolume() const
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void JASTrack::getPitch() const
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void JASTrack::getPan() const
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void JASTrack::getFxmix() const
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void JASTrack::getDolby() const
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8009F6D8
- * Size:	0000CC
+/**
+ * @note Address: 0x8009F6D8
+ * @note Size: 0xCC
  */
 void JASTrack::initTimed()
 {
@@ -731,17 +707,15 @@ void JASTrack::initTimed()
 	mTimedParam.mMoveParams[5]._04  = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	8009F7A4
- * Size:	000010
+/**
+ * @note Address: 0x8009F7A4
+ * @note Size: 0x10
  */
 void JASTrack::connectBus(int p1, int p2) { mChannelUpdater._36[p1] = p2; }
 
-/*
- * --INFO--
- * Address:	8009F7B4
- * Size:	0001A4
+/**
+ * @note Address: 0x8009F7B4
+ * @note Size: 0x1A4
  */
 int JASTrack::noteOn(u8 channelIndex, long p2, long p3, long p4, u32 p5)
 {
@@ -771,10 +745,9 @@ int JASTrack::noteOn(u8 channelIndex, long p2, long p3, long p4, u32 p5)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	8009F958
- * Size:	0000A4
+/**
+ * @note Address: 0x8009F958
+ * @note Size: 0xA4
  */
 void JASTrack::overwriteOsc(JASChannel* channel)
 {
@@ -847,10 +820,9 @@ lbl_8009F9D4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8009F9FC
- * Size:	000068
+/**
+ * @note Address: 0x8009F9FC
+ * @note Size: 0x68
  */
 bool JASTrack::noteOff(u8 channelIndex, u16 p2)
 {
@@ -866,10 +838,9 @@ bool JASTrack::noteOff(u8 channelIndex, u16 p2)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8009FA64
- * Size:	000064
+/**
+ * @note Address: 0x8009FA64
+ * @note Size: 0x64
  */
 int JASTrack::gateOn(u8 p1, long p2, long p3, long p4)
 {
@@ -882,10 +853,9 @@ int JASTrack::gateOn(u8 p1, long p2, long p3, long p4)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	8009FAC8
- * Size:	00002C
+/**
+ * @note Address: 0x8009FAC8
+ * @note Size: 0x2C
  */
 BOOL JASTrack::checkNoteStop(long p1)
 {
@@ -895,10 +865,9 @@ BOOL JASTrack::checkNoteStop(long p1)
 	return _C0[p1]->_18 == 0;
 }
 
-/*
- * --INFO--
- * Address:	8009FAF4
- * Size:	0000E0
+/**
+ * @note Address: 0x8009FAF4
+ * @note Size: 0xE0
  */
 void JASTrack::oscSetupFull(u8, u32, u32)
 {
@@ -972,10 +941,9 @@ lbl_8009FBBC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8009FBD4
- * Size:	000070
+/**
+ * @note Address: 0x8009FBD4
+ * @note Size: 0x70
  */
 void JASTrack::oscSetupSimpleEnv(u8 p1, u32 p2)
 {
@@ -992,20 +960,18 @@ void JASTrack::oscSetupSimpleEnv(u8 p1, u32 p2)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 void JASTrack::updateOscParam(int, f32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8009FC44
- * Size:	0000DC
+/**
+ * @note Address: 0x8009FC44
+ * @note Size: 0xDC
  */
 void JASTrack::oscSetupSimple(u8 p1)
 {
@@ -1024,10 +990,9 @@ void JASTrack::oscSetupSimple(u8 p1)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8009FD20
- * Size:	0000E8
+/**
+ * @note Address: 0x8009FD20
+ * @note Size: 0xE8
  */
 void JASTrack::updateTimedParam()
 {
@@ -1065,10 +1030,9 @@ void JASTrack::updateTimedParam()
 	_34C |= 2;
 }
 
-/*
- * --INFO--
- * Address:	8009FE08
- * Size:	0003E8
+/**
+ * @note Address: 0x8009FE08
+ * @note Size: 0x3E8
  */
 void JASTrack::updateTrackAll()
 {
@@ -1354,10 +1318,9 @@ lbl_800A01A8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A01F0
- * Size:	0004E0
+/**
+ * @note Address: 0x800A01F0
+ * @note Size: 0x4E0
  */
 void JASTrack::updateTrack(u32)
 {
@@ -1731,10 +1694,9 @@ lbl_800A068C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A06D0
- * Size:	0003B4
+/**
+ * @note Address: 0x800A06D0
+ * @note Size: 0x3B4
  */
 void JASTrack::updateTempo()
 {
@@ -2011,17 +1973,15 @@ lbl_800A0A60:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A0A84
- * Size:	000008
+/**
+ * @note Address: 0x800A0A84
+ * @note Size: 0x8
  */
 f32 JASOuterParam::getTempo() const { return _18; }
 
-/*
- * --INFO--
- * Address:	800A0A8C
- * Size:	000294
+/**
+ * @note Address: 0x800A0A8C
+ * @note Size: 0x294
  */
 void JASTrack::updateSeq(u32 p1, bool recursive)
 {
@@ -2253,10 +2213,9 @@ lbl_800A0CFC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A0D20
- * Size:	0000D8
+/**
+ * @note Address: 0x800A0D20
+ * @note Size: 0xD8
  */
 void JASTrack::seqTimeToDspTime(long, u8)
 {
@@ -2322,10 +2281,9 @@ lbl_800A0DD4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A0DF8
- * Size:	000084
+/**
+ * @note Address: 0x800A0DF8
+ * @note Size: 0x84
  */
 void JASTrack::setParam(int paramIndex, f32 p2, int p3)
 {
@@ -2380,10 +2338,9 @@ lbl_800A0E74:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A0E7C
- * Size:	000064
+/**
+ * @note Address: 0x800A0E7C
+ * @note Size: 0x64
  */
 bool JASTrack::setSeqData(u8* p1, long p2)
 {
@@ -2422,10 +2379,9 @@ bool JASTrack::setSeqData(u8* p1, long p2)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A0EE0
- * Size:	000078
+/**
+ * @note Address: 0x800A0EE0
+ * @note Size: 0x78
  */
 bool JASTrack::startSeq()
 {
@@ -2494,10 +2450,9 @@ lbl_800A0F48:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A0F58
- * Size:	0000FC
+/**
+ * @note Address: 0x800A0F58
+ * @note Size: 0xFC
  */
 bool JASTrack::stopSeq()
 {
@@ -2617,10 +2572,9 @@ lbl_800A1034:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A1054
- * Size:	00003C
+/**
+ * @note Address: 0x800A1054
+ * @note Size: 0x3C
  */
 void JASTrack::stopSeqMain()
 {
@@ -2628,10 +2582,9 @@ void JASTrack::stopSeqMain()
 	close();
 }
 
-/*
- * --INFO--
- * Address:	800A1090
- * Size:	0001D4
+/**
+ * @note Address: 0x800A1090
+ * @note Size: 0x1D4
  */
 void JASTrack::close()
 {
@@ -2792,10 +2745,9 @@ lbl_800A1244:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A1264
- * Size:	000080
+/**
+ * @note Address: 0x800A1264
+ * @note Size: 0x80
  */
 void JASTrack::setNoteMask(u8 noteMask)
 {
@@ -2841,10 +2793,9 @@ lbl_800A12C4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A12E4
- * Size:	000234
+/**
+ * @note Address: 0x800A12E4
+ * @note Size: 0x234
  */
 void JASTrack::muteTrack(bool)
 {
@@ -3039,20 +2990,18 @@ lbl_800A14F4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000068
+/**
+ * @note Address: N/A
+ * @note Size: 0x68
  */
 void JASTrack::muteChildTracks(u16)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800A1518
- * Size:	000044
+/**
+ * @note Address: 0x800A1518
+ * @note Size: 0x44
  */
 bool JASTrack::start(void* p1, u32 p2)
 {
@@ -3081,10 +3030,9 @@ bool JASTrack::start(void* p1, u32 p2)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A155C
- * Size:	0001DC
+/**
+ * @note Address: 0x800A155C
+ * @note Size: 0x1DC
  */
 void JASTrack::openChild(u8, u8)
 {
@@ -3225,20 +3173,18 @@ lbl_800A1724:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B8
+/**
+ * @note Address: N/A
+ * @note Size: 0xB8
  */
 void JASTrack::loadTbl(u32, u32, u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800A1738
- * Size:	000040
+/**
+ * @note Address: 0x800A1738
+ * @note Size: 0x40
  */
 void JASTrack::exchangeRegisterValue(u8)
 {
@@ -3266,10 +3212,9 @@ lbl_800A1768:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A1778
- * Size:	000094
+/**
+ * @note Address: 0x800A1778
+ * @note Size: 0x94
  */
 void JASTrack::readReg32(u8)
 {
@@ -3322,10 +3267,9 @@ lbl_800A17F0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A180C
- * Size:	000218
+/**
+ * @note Address: 0x800A180C
+ * @note Size: 0x218
  */
 u32 JASTrack::readReg16(u8)
 {
@@ -3518,10 +3462,9 @@ lbl_800A1A08:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A1A24
- * Size:	0000D0
+/**
+ * @note Address: 0x800A1A24
+ * @note Size: 0xD0
  */
 void JASTrack::writeRegDirect(u8, u16)
 {
@@ -3593,30 +3536,27 @@ lbl_800A1AD4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void JASRegisterParam::setFlag(u16)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void JSULoByte(u16)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800A1AF4
- * Size:	0005B0
+/**
+ * @note Address: 0x800A1AF4
+ * @note Size: 0x5B0
  */
 void JASTrack::writeRegParam(u8)
 {
@@ -4114,24 +4054,21 @@ lbl_800A2090:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A20A4
- * Size:	000024
+/**
+ * @note Address: 0x800A20A4
+ * @note Size: 0x24
  */
 u16 JASTrack::readSelfPort(int portNumber) { return mTrackPort.readImport(portNumber); }
 
-/*
- * --INFO--
- * Address:	800A20C8
- * Size:	000024
+/**
+ * @note Address: 0x800A20C8
+ * @note Size: 0x24
  */
 void JASTrack::writeSelfPort(int portNumber, u16 value) { mTrackPort.writeExport(portNumber, value); }
 
-/*
- * --INFO--
- * Address:	800A20EC
- * Size:	000068
+/**
+ * @note Address: 0x800A20EC
+ * @note Size: 0x68
  */
 bool JASTrack::writePortAppDirect(u32 p1, u16 value)
 {
@@ -4147,10 +4084,9 @@ bool JASTrack::writePortAppDirect(u32 p1, u16 value)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	800A2154
- * Size:	000038
+/**
+ * @note Address: 0x800A2154
+ * @note Size: 0x38
  */
 bool JASTrack::readPortAppDirect(u32 p1, u16* value)
 {
@@ -4158,30 +4094,27 @@ bool JASTrack::readPortAppDirect(u32 p1, u16* value)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  */
 void JASTrack::routeTrack(u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  */
 void JASTrack::routeTrack(u32) const
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800A218C
- * Size:	0000B4
+/**
+ * @note Address: 0x800A218C
+ * @note Size: 0xB4
  */
 void JASTrack::writePortApp(u32, u16)
 {
@@ -4252,10 +4185,9 @@ lbl_800A2228:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A2240
- * Size:	000084
+/**
+ * @note Address: 0x800A2240
+ * @note Size: 0x84
  */
 void JASTrack::readPortApp(u32, u16*)
 {
@@ -4306,30 +4238,27 @@ lbl_800A22B0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
+/**
+ * @note Address: N/A
+ * @note Size: 0x58
  */
 void JASTrack::checkExportApp(u32) const
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
+/**
+ * @note Address: N/A
+ * @note Size: 0x58
  */
 void JASTrack::checkImportApp(u32) const
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800A22C4
- * Size:	000168
+/**
+ * @note Address: 0x800A22C4
+ * @note Size: 0x168
  */
 void JASTrack::pause(bool, bool)
 {
@@ -4455,10 +4384,9 @@ lbl_800A2418:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A242C
- * Size:	000170
+/**
+ * @note Address: 0x800A242C
+ * @note Size: 0x170
  */
 int JASTrack::getTranspose() const
 {
@@ -4468,10 +4396,9 @@ int JASTrack::getTranspose() const
 	return _356;
 }
 
-/*
- * --INFO--
- * Address:	800A259C
- * Size:	00003C
+/**
+ * @note Address: 0x800A259C
+ * @note Size: 0x3C
  */
 void JASTrack::setTempo(u16 tempo)
 {
@@ -4504,10 +4431,9 @@ lbl_800A25C8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A25D8
- * Size:	000030
+/**
+ * @note Address: 0x800A25D8
+ * @note Size: 0x30
  */
 void JASTrack::setTimebase(u16 timebase)
 {
@@ -4533,10 +4459,9 @@ lbl_800A25F8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A2608
- * Size:	000050
+/**
+ * @note Address: 0x800A2608
+ * @note Size: 0x50
  */
 f32 JASTrack::panCalc(f32 p1, f32 p2, f32 p3, u8 p4)
 {
@@ -4554,10 +4479,9 @@ f32 JASTrack::panCalc(f32 p1, f32 p2, f32 p3, u8 p4)
 	return 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	800A2658
- * Size:	0000F4
+/**
+ * @note Address: 0x800A2658
+ * @note Size: 0xF4
  */
 long JASTrack::rootCallback(void* obj)
 {
@@ -4589,10 +4513,9 @@ long JASTrack::rootCallback(void* obj)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	800A274C
- * Size:	000008
+/**
+ * @note Address: 0x800A274C
+ * @note Size: 0x8
  */
 void JASTrack::registerSeqCallback(u16 (*cb)(JASTrack*, u16))
 {
@@ -4604,10 +4527,9 @@ void JASTrack::registerSeqCallback(u16 (*cb)(JASTrack*, u16))
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A2754
- * Size:	0000D4
+/**
+ * @note Address: 0x800A2754
+ * @note Size: 0xD4
  */
 void JASTrack::newMemPool(int)
 {
@@ -4676,27 +4598,24 @@ lbl_800A27FC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 int JASTrack::getFreeMemCount()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800A2828
- * Size:	000030
+/**
+ * @note Address: 0x800A2828
+ * @note Size: 0x30
  */
 JASVibrate::JASVibrate() { init(); }
 
-/*
- * --INFO--
- * Address:	800A2858
- * Size:	000018
+/**
+ * @note Address: 0x800A2858
+ * @note Size: 0x18
  */
 void JASVibrate::init()
 {
@@ -4714,10 +4633,9 @@ void JASVibrate::init()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A2870
- * Size:	000034
+/**
+ * @note Address: 0x800A2870
+ * @note Size: 0x34
  */
 void JASVibrate::incCounter()
 {
@@ -4727,10 +4645,9 @@ void JASVibrate::incCounter()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800A28A4
- * Size:	0000A4
+/**
+ * @note Address: 0x800A28A4
+ * @note Size: 0xA4
  */
 f32 JASVibrate::getValue() const
 {
@@ -4797,10 +4714,9 @@ lbl_800A2938:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A2948
- * Size:	0000B0
+/**
+ * @note Address: 0x800A2948
+ * @note Size: 0xB0
  */
 void JASTrack::channelUpdateCallback(u32 p1, JASChannel* p2, JASDsp::TChannel* p3, void* p4)
 {
@@ -4871,20 +4787,18 @@ void JASTrack::channelUpdateCallback(u32 p1, JASChannel* p2, JASDsp::TChannel* p
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 int JASTrack::getChannelCount() const
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
+/**
+ * @note Address: N/A
+ * @note Size: 0x30
  */
 int JASTrack::getReleaseChannelCount() const
 {

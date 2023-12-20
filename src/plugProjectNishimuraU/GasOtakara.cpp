@@ -2,17 +2,15 @@
 
 namespace Game {
 namespace GasOtakara {
-/*
- * --INFO--
- * Address:	802B9294
- * Size:	0000A4
+/**
+ * @note Address: 0x802B9294
+ * @note Size: 0xA4
  */
 Obj::Obj() { createEffect(); }
 
-/*
- * --INFO--
- * Address:	802B9338
- * Size:	0001A4
+/**
+ * @note Address: 0x802B9338
+ * @note Size: 0x1A4
  */
 void Obj::changeMaterial()
 {
@@ -41,10 +39,9 @@ void Obj::changeMaterial()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802B94DC
- * Size:	000060
+/**
+ * @note Address: 0x802B94DC
+ * @note Size: 0x60
  */
 void Obj::interactCreature(Creature* creature)
 {
@@ -53,17 +50,15 @@ void Obj::interactCreature(Creature* creature)
 	creature->stimulate(gas);
 }
 
-/*
- * --INFO--
- * Address:	802B953C
- * Size:	000060
+/**
+ * @note Address: 0x802B953C
+ * @note Size: 0x60
  */
 void Obj::createEffect() { mEfxChargeGas = new efx::TOtaChargegas; }
 
-/*
- * --INFO--
- * Address:	802B959C
- * Size:	000048
+/**
+ * @note Address: 0x802B959C
+ * @note Size: 0x48
  */
 void Obj::setupEffect()
 {
@@ -71,24 +66,21 @@ void Obj::setupEffect()
 	mEfxChargeGas->setMtxptr(centerJointMtx->mMatrix.mtxView);
 }
 
-/*
- * --INFO--
- * Address:	802B95E4
- * Size:	000034
+/**
+ * @note Address: 0x802B95E4
+ * @note Size: 0x34
  */
 void Obj::startChargeEffect() { mEfxChargeGas->create(nullptr); }
 
-/*
- * --INFO--
- * Address:	802B9618
- * Size:	000030
+/**
+ * @note Address: 0x802B9618
+ * @note Size: 0x30
  */
 void Obj::finishChargeEffect() { mEfxChargeGas->fade(); }
 
-/*
- * --INFO--
- * Address:	802B9648
- * Size:	00008C
+/**
+ * @note Address: 0x802B9648
+ * @note Size: 0x8C
  */
 void Obj::createDisChargeEffect()
 {
@@ -97,24 +89,21 @@ void Obj::createDisChargeEffect()
 	dischargeFX.create(&fxArg);
 }
 
-/*
- * --INFO--
- * Address:	802B96D4
- * Size:	000030
+/**
+ * @note Address: 0x802B96D4
+ * @note Size: 0x30
  */
 void Obj::effectDrawOn() { mEfxChargeGas->endDemoDrawOn(); }
 
-/*
- * --INFO--
- * Address:	802B9704
- * Size:	000030
+/**
+ * @note Address: 0x802B9704
+ * @note Size: 0x30
  */
 void Obj::effectDrawOff() { mEfxChargeGas->startDemoDrawOff(); }
 
-/*
- * --INFO--
- * Address:	802B9734
- * Size:	000044
+/**
+ * @note Address: 0x802B9734
+ * @note Size: 0x44
  */
 void Obj::startDisChargeSE() { getJAIObject()->startSound(PSSE_EN_OTAKARA_ATK_GAS, 0); }
 } // namespace GasOtakara

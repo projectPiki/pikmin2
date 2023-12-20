@@ -3,10 +3,9 @@
 #include "JSystem/JUtility/JUTFader.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	8002CE5C
- * Size:	0000AC
+/**
+ * @note Address: 0x8002CE5C
+ * @note Size: 0xAC
  */
 JUTFader::JUTFader(int p1, int p2, int p3, int p4, JUtility::TColor color)
     : mColor(color)
@@ -19,10 +18,9 @@ JUTFader::JUTFader(int p1, int p2, int p3, int p4, JUtility::TColor color)
 	_20          = -1;
 }
 
-/*
- * --INFO--
- * Address:	8002CF08
- * Size:	000100
+/**
+ * @note Address: 0x8002CF08
+ * @note Size: 0x100
  */
 void JUTFader::control()
 {
@@ -54,10 +52,9 @@ void JUTFader::control()
 	draw();
 }
 
-/*
- * --INFO--
- * Address:	8002D008
- * Size:	000090
+/**
+ * @note Address: 0x8002D008
+ * @note Size: 0x90
  */
 void JUTFader::draw()
 {
@@ -69,20 +66,18 @@ void JUTFader::draw()
 	orthograph.fillBox(mViewBox);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
+/**
+ * @note Address: N/A
+ * @note Size: 0x5C
  */
 void JUTFader::start(int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8002D098
- * Size:	000030
+/**
+ * @note Address: 0x8002D098
+ * @note Size: 0x30
  */
 bool JUTFader::startFadeIn(int duration)
 {
@@ -95,10 +90,9 @@ bool JUTFader::startFadeIn(int duration)
 	return isStarting;
 }
 
-/*
- * --INFO--
- * Address:	8002D0C8
- * Size:	000034
+/**
+ * @note Address: 0x8002D0C8
+ * @note Size: 0x34
  */
 bool JUTFader::startFadeOut(int duration)
 {
@@ -111,20 +105,18 @@ bool JUTFader::startFadeOut(int duration)
 	return isStarting;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
+/**
+ * @note Address: N/A
+ * @note Size: 0x78
  */
 void JUTFader::setStatus(JUTFader::EStatus, int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8002D0FC
- * Size:	000048
+/**
+ * @note Address: 0x8002D0FC
+ * @note Size: 0x48
  * __dt__8JUTFaderFv
  */
 // JUTFader::~JUTFader()

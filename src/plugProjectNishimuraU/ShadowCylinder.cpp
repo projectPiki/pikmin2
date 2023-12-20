@@ -6,40 +6,36 @@ namespace Game {
 static const int unusedArray[] = { 0, 0, 0 };
 static const char unusedName[] = "246-ShadowCylinder";
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000108
+/**
+ * @note Address: N/A
+ * @note Size: 0x108
  */
 CylinderList::CylinderList(int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000210
+/**
+ * @note Address: N/A
+ * @note Size: 0x210
  */
 void CylinderList::createCylinder(int, float)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 void CylinderList::draw()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8023DA30
- * Size:	0004DC
+/**
+ * @note Address: 0x8023DA30
+ * @note Size: 0x4DC
  */
 CylinderBase::CylinderBase()
 {
@@ -406,17 +402,15 @@ lbl_8023DE0C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8023DF0C
- * Size:	000008
+/**
+ * @note Address: 0x8023DF0C
+ * @note Size: 0x8
  */
 void CylinderBase::setColor(Color4* color) { mColor = color; }
 
-/*
- * --INFO--
- * Address:	8023DF14
- * Size:	000024
+/**
+ * @note Address: 0x8023DF14
+ * @note Size: 0x24
  */
 void CylinderBase::setShadowRect(Rectf&)
 {
@@ -433,10 +427,9 @@ void CylinderBase::setShadowRect(Rectf&)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8023DF38
- * Size:	0000B4
+/**
+ * @note Address: 0x8023DF38
+ * @note Size: 0xB4
  */
 void CylinderBase::setCameraParms(Camera*, int)
 {
@@ -489,10 +482,9 @@ void CylinderBase::setCameraParms(Camera*, int)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8023DFEC
- * Size:	0000CC
+/**
+ * @note Address: 0x8023DFEC
+ * @note Size: 0xCC
  */
 void CylinderBase::makeSRT(Matrixf&, Game::ShadowParam&)
 {
@@ -555,10 +547,9 @@ lbl_8023E05C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8023E0B8
- * Size:	0000A4
+/**
+ * @note Address: 0x8023E0B8
+ * @note Size: 0xA4
  */
 int CylinderBase::getCylinderType(Game::ShadowParam&, int)
 {
@@ -613,128 +604,114 @@ lbl_8023E154:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8023E15C
- * Size:	000004
+/**
+ * @note Address: 0x8023E15C
+ * @note Size: 0x4
  */
 void CylinderBase::setFilterTextureID(int) { }
 
-/*
- * --INFO--
- * Address:	8023E160
- * Size:	000004
+/**
+ * @note Address: 0x8023E160
+ * @note Size: 0x4
  */
 void CylinderBase::drawInit() { }
 
-/*
- * --INFO--
- * Address:	8023E164
- * Size:	000004
+/**
+ * @note Address: 0x8023E164
+ * @note Size: 0x4
  */
 void CylinderBase::drawCylinder(Matrixf&, int) { }
 
-/*
- * --INFO--
- * Address:	8023E168
- * Size:	000004
+/**
+ * @note Address: 0x8023E168
+ * @note Size: 0x4
  */
 void CylinderBase::drawFinish() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00010C
+/**
+ * @note Address: N/A
+ * @note Size: 0x10C
  */
 void CylinderBase::setupFillGX()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
+/**
+ * @note Address: N/A
+ * @note Size: 0x5C
  */
 void CylinderBase::setupDrawCylinderGX()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000088
+/**
+ * @note Address: N/A
+ * @note Size: 0x88
  */
 void CylinderBase::setupFilterGX()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 void CylinderBase::setOrthoProjection()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A4
+/**
+ * @note Address: N/A
+ * @note Size: 0xA4
  */
 void CylinderBase::setOrthoCamera()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D0
+/**
+ * @note Address: N/A
+ * @note Size: 0xD0
  */
 void CylinderBase::setScissorViewport()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000090
+/**
+ * @note Address: N/A
+ * @note Size: 0x90
  */
 void CylinderBase::fillShadowRect()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D4
+/**
+ * @note Address: N/A
+ * @note Size: 0xD4
  */
 void CylinderBase::fillRectAlphaZero()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  */
 void CylinderBase::drawCylinderList(int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8023E16C
- * Size:	000164
+/**
+ * @note Address: 0x8023E16C
+ * @note Size: 0x164
  */
 ShadowCylinder2::ShadowCylinder2(Game::ShadowParms*, Color4*)
 {
@@ -839,10 +816,9 @@ lbl_8023E28C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8023E2D0
- * Size:	000044
+/**
+ * @note Address: 0x8023E2D0
+ * @note Size: 0x44
  */
 void ShadowCylinder2::setFilterTextureID(int)
 {
@@ -873,10 +849,9 @@ lbl_8023E30C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8023E314
- * Size:	000350
+/**
+ * @note Address: 0x8023E314
+ * @note Size: 0x350
  */
 void ShadowCylinder2::drawInit()
 {
@@ -1096,10 +1071,9 @@ void ShadowCylinder2::drawInit()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8023E664
- * Size:	0000C0
+/**
+ * @note Address: 0x8023E664
+ * @note Size: 0xC0
  */
 void ShadowCylinder2::drawCylinder(Matrixf&, int)
 {
@@ -1155,10 +1129,9 @@ void ShadowCylinder2::drawCylinder(Matrixf&, int)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8023E724
- * Size:	0001E4
+/**
+ * @note Address: 0x8023E724
+ * @note Size: 0x1E4
  */
 void ShadowCylinder2::drawFinish()
 {
@@ -1287,10 +1260,9 @@ void ShadowCylinder2::drawFinish()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8023E908
- * Size:	000170
+/**
+ * @note Address: 0x8023E908
+ * @note Size: 0x170
  */
 void ShadowCylinder2::copyShadowTexture()
 {
@@ -1390,10 +1362,9 @@ void ShadowCylinder2::copyShadowTexture()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8023EA78
- * Size:	0000FC
+/**
+ * @note Address: 0x8023EA78
+ * @note Size: 0xFC
  */
 void ShadowCylinder2::setupTextureFilterGX()
 {
@@ -1464,10 +1435,9 @@ void ShadowCylinder2::setupTextureFilterGX()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8023EB74
- * Size:	000108
+/**
+ * @note Address: 0x8023EB74
+ * @note Size: 0x108
  */
 void ShadowCylinder2::drawTextureFilter()
 {
@@ -1541,10 +1511,9 @@ void ShadowCylinder2::drawTextureFilter()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8023EC7C
- * Size:	00005C
+/**
+ * @note Address: 0x8023EC7C
+ * @note Size: 0x5C
  */
 ShadowCylinder3::ShadowCylinder3(Game::ShadowParms*, Color4*)
 {
@@ -1575,10 +1544,9 @@ ShadowCylinder3::ShadowCylinder3(Game::ShadowParms*, Color4*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8023ECD8
- * Size:	000350
+/**
+ * @note Address: 0x8023ECD8
+ * @note Size: 0x350
  */
 void ShadowCylinder3::drawInit()
 {
@@ -1798,10 +1766,9 @@ void ShadowCylinder3::drawInit()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8023F028
- * Size:	0000F8
+/**
+ * @note Address: 0x8023F028
+ * @note Size: 0xF8
  */
 void ShadowCylinder3::drawCylinder(Matrixf&, int)
 {
@@ -1871,10 +1838,9 @@ void ShadowCylinder3::drawCylinder(Matrixf&, int)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8023F120
- * Size:	0001D4
+/**
+ * @note Address: 0x8023F120
+ * @note Size: 0x1D4
  */
 void ShadowCylinder3::drawFinish()
 {
@@ -1999,10 +1965,9 @@ void ShadowCylinder3::drawFinish()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8023F2F4
- * Size:	0000D0
+/**
+ * @note Address: 0x8023F2F4
+ * @note Size: 0xD0
  */
 void ShadowCylinder3::drawScreenFilter()
 {
@@ -2062,19 +2027,17 @@ void ShadowCylinder3::drawScreenFilter()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8023F3C4
- * Size:	000004
+/**
+ * @note Address: 0x8023F3C4
+ * @note Size: 0x4
  */
 void ShadowCylinder3::setFilterTextureID(int) { }
 
 } // namespace Game
 
-/*
- * --INFO--
- * Address:	8023F3C8
- * Size:	000028
+/**
+ * @note Address: 0x8023F3C8
+ * @note Size: 0x28
  */
 void __sinit_ShadowCylinder_cpp()
 {

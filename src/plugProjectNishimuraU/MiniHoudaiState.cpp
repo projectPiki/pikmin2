@@ -11,10 +11,9 @@ namespace MiniHoudai {
 static const int unusedArray[] = { 0, 0, 0 };
 static const char unusedName[] = "246-MiniHoudaiState";
 
-/*
- * --INFO--
- * Address:	802E7F4C
- * Size:	0003D8
+/**
+ * @note Address: 0x802E7F4C
+ * @note Size: 0x3D8
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -32,10 +31,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateWalkPath);
 }
 
-/*
- * --INFO--
- * Address:	802E8324
- * Size:	000058
+/**
+ * @note Address: 0x802E8324
+ * @note Size: 0x58
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -46,10 +44,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	mini->createDeadLightEffect();
 }
 
-/*
- * --INFO--
- * Address:	802E837C
- * Size:	00010C
+/**
+ * @note Address: 0x802E837C
+ * @note Size: 0x10C
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -73,17 +70,15 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E8488
- * Size:	000004
+/**
+ * @note Address: 0x802E8488
+ * @note Size: 0x4
  */
 void StateDead::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802E848C
- * Size:	000058
+/**
+ * @note Address: 0x802E848C
+ * @note Size: 0x58
  */
 void StateRebirth::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -95,10 +90,9 @@ void StateRebirth::init(EnemyBase* enemy, StateArg* stateArg)
 	mini->startMotion(MINIHOUDAIANIM_Rebirth, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802E84E4
- * Size:	0003A8
+/**
+ * @note Address: 0x802E84E4
+ * @note Size: 0x3A8
  */
 void StateRebirth::exec(EnemyBase* enemy)
 {
@@ -159,17 +153,15 @@ void StateRebirth::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E888C
- * Size:	000010
+/**
+ * @note Address: 0x802E888C
+ * @note Size: 0x10
  */
 void StateRebirth::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_NoInterrupt); }
 
-/*
- * --INFO--
- * Address:	802E889C
- * Size:	00004C
+/**
+ * @note Address: 0x802E889C
+ * @note Size: 0x4C
  */
 void StateLost::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -180,10 +172,9 @@ void StateLost::init(EnemyBase* enemy, StateArg* stateArg)
 	mini->startMotion(MINIHOUDAIANIM_Search, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802E88E8
- * Size:	00050C
+/**
+ * @note Address: 0x802E88E8
+ * @note Size: 0x50C
  */
 void StateLost::exec(EnemyBase* enemy)
 {
@@ -256,17 +247,15 @@ void StateLost::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E8DF4
- * Size:	000004
+/**
+ * @note Address: 0x802E8DF4
+ * @note Size: 0x4
  */
 void StateLost::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802E8DF8
- * Size:	000060
+/**
+ * @note Address: 0x802E8DF8
+ * @note Size: 0x60
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -279,10 +268,9 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	mini->startMotion(MINIHOUDAIANIM_Attack, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802E8E58
- * Size:	0006CC
+/**
+ * @note Address: 0x802E8E58
+ * @note Size: 0x6CC
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
@@ -404,17 +392,15 @@ void StateAttack::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E9524
- * Size:	000024
+/**
+ * @note Address: 0x802E9524
+ * @note Size: 0x24
  */
 void StateAttack::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	802E9548
- * Size:	000068
+/**
+ * @note Address: 0x802E9548
+ * @note Size: 0x68
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -427,10 +413,9 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	mini->setAnimSpeed(45.0f);
 }
 
-/*
- * --INFO--
- * Address:	802E95B0
- * Size:	000544
+/**
+ * @note Address: 0x802E95B0
+ * @note Size: 0x544
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
@@ -506,10 +491,9 @@ void StateFlick::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E9AF4
- * Size:	00003C
+/**
+ * @note Address: 0x802E9AF4
+ * @note Size: 0x3C
  */
 void StateFlick::cleanup(EnemyBase* enemy)
 {
@@ -517,10 +501,9 @@ void StateFlick::cleanup(EnemyBase* enemy)
 	enemy->setAnimSpeed(30.0f);
 }
 
-/*
- * --INFO--
- * Address:	802E9B30
- * Size:	00005C
+/**
+ * @note Address: 0x802E9B30
+ * @note Size: 0x5C
  */
 void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -532,10 +515,9 @@ void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 	mini->startMotion(MINIHOUDAIANIM_Turn, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802E9B8C
- * Size:	0006AC
+/**
+ * @note Address: 0x802E9B8C
+ * @note Size: 0x6AC
  */
 void StateTurn::exec(EnemyBase* enemy)
 {
@@ -1067,17 +1049,15 @@ lbl_802EA1DC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802EA238
- * Size:	000024
+/**
+ * @note Address: 0x802EA238
+ * @note Size: 0x24
  */
 void StateTurn::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	802EA25C
- * Size:	000044
+/**
+ * @note Address: 0x802EA25C
+ * @note Size: 0x44
  */
 void StateTurnHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1087,10 +1067,9 @@ void StateTurnHome::init(EnemyBase* enemy, StateArg* stateArg)
 	mini->startMotion(MINIHOUDAIANIM_Turn, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802EA2A0
- * Size:	000368
+/**
+ * @note Address: 0x802EA2A0
+ * @note Size: 0x368
  */
 void StateTurnHome::exec(EnemyBase* enemy)
 {
@@ -1129,17 +1108,15 @@ void StateTurnHome::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802EA608
- * Size:	000004
+/**
+ * @note Address: 0x802EA608
+ * @note Size: 0x4
  */
 void StateTurnHome::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802EA60C
- * Size:	000044
+/**
+ * @note Address: 0x802EA60C
+ * @note Size: 0x44
  */
 void StateTurnPath::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1149,10 +1126,9 @@ void StateTurnPath::init(EnemyBase* enemy, StateArg* stateArg)
 	mini->startMotion(MINIHOUDAIANIM_Turn, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802EA650
- * Size:	000390
+/**
+ * @note Address: 0x802EA650
+ * @note Size: 0x390
  */
 void StateTurnPath::exec(EnemyBase* enemy)
 {
@@ -1194,17 +1170,15 @@ void StateTurnPath::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802EA9E0
- * Size:	000004
+/**
+ * @note Address: 0x802EA9E0
+ * @note Size: 0x4
  */
 void StateTurnPath::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802EA9E4
- * Size:	000050
+/**
+ * @note Address: 0x802EA9E4
+ * @note Size: 0x50
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1215,10 +1189,9 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	mini->startMotion(MINIHOUDAIANIM_Walk, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802EAA34
- * Size:	0007CC
+/**
+ * @note Address: 0x802EAA34
+ * @note Size: 0x7CC
  */
 void StateWalk::exec(EnemyBase* enemy)
 {
@@ -1861,17 +1834,15 @@ lbl_802EB1A4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802EB208
- * Size:	000024
+/**
+ * @note Address: 0x802EB208
+ * @note Size: 0x24
  */
 void StateWalk::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	802EB22C
- * Size:	000034
+/**
+ * @note Address: 0x802EB22C
+ * @note Size: 0x34
  */
 void StateWalkHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1880,10 +1851,9 @@ void StateWalkHome::init(EnemyBase* enemy, StateArg* stateArg)
 	mini->startMotion(MINIHOUDAIANIM_Walk, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802EB260
- * Size:	000578
+/**
+ * @note Address: 0x802EB260
+ * @note Size: 0x578
  */
 void StateWalkHome::exec(EnemyBase* enemy)
 {
@@ -1971,17 +1941,15 @@ void StateWalkHome::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802EB7D8
- * Size:	000004
+/**
+ * @note Address: 0x802EB7D8
+ * @note Size: 0x4
  */
 void StateWalkHome::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802EB7DC
- * Size:	000034
+/**
+ * @note Address: 0x802EB7DC
+ * @note Size: 0x34
  */
 void StateWalkPath::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1990,10 +1958,9 @@ void StateWalkPath::init(EnemyBase* enemy, StateArg* stateArg)
 	mini->startMotion(MINIHOUDAIANIM_Walk, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802EB810
- * Size:	0004A4
+/**
+ * @note Address: 0x802EB810
+ * @note Size: 0x4A4
  */
 void StateWalkPath::exec(EnemyBase* enemy)
 {
@@ -2061,10 +2028,9 @@ void StateWalkPath::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802EBCB4
- * Size:	000004
+/**
+ * @note Address: 0x802EBCB4
+ * @note Size: 0x4
  */
 void StateWalkPath::cleanup(EnemyBase* enemy) { }
 

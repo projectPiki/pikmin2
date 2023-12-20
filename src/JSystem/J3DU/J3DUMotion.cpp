@@ -3,10 +3,9 @@
 #include "JSystem/J3D/J3DMtxCalc.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	80015DF0
- * Size:	000590
+/**
+ * @note Address: 0x80015DF0
+ * @note Size: 0x590
  */
 J3DMtxCalc* J3DUNewMtxCalcAnm(u32, J3DAnmTransform*, J3DAnmTransform*, J3DAnmTransform*, J3DAnmTransform*, J3DMtxCalcFlag)
 {
@@ -411,24 +410,21 @@ J3DMtxCalc* J3DUNewMtxCalcAnm(u32, J3DAnmTransform*, J3DAnmTransform*, J3DAnmTra
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80016380
- * Size:	000004
+/**
+ * @note Address: 0x80016380
+ * @note Size: 0x4
  */
 void J3DMtxCalc::setWeight(u8, f32) { }
 
-/*
- * --INFO--
- * Address:	80016384
- * Size:	000004
+/**
+ * @note Address: 0x80016384
+ * @note Size: 0x4
  */
 void J3DMtxCalc::setAnmTransform(u8, J3DAnmTransform*) { }
 
-/*
- * --INFO--
- * Address:	80016388
- * Size:	00005C
+/**
+ * @note Address: 0x80016388
+ * @note Size: 0x5C
  */
 J3DMtxCalcBlendAnmBase::~J3DMtxCalcBlendAnmBase()
 {
@@ -463,10 +459,9 @@ lbl_800163CC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800163E4
- * Size:	000048
+/**
+ * @note Address: 0x800163E4
+ * @note Size: 0x48
  */
 // J3DMtxCalc::~J3DMtxCalc()
 // {
@@ -494,10 +489,9 @@ lbl_800163CC:
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	8001642C
- * Size:	000348
+/**
+ * @note Address: 0x8001642C
+ * @note Size: 0x348
  */
 void J3DMtxCalcBlend::calcBlend(Vec*, Vec*, J3DAnmTransform**, f32*)
 {
@@ -737,10 +731,9 @@ lbl_80016750:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80016774
- * Size:	000390
+/**
+ * @note Address: 0x80016774
+ * @note Size: 0x390
  */
 void J3DMtxCalcBlendSharedMotionT::calcBlend(Vec*, Vec*, J3DAnmTransform**, f32*)
 {
@@ -999,10 +992,9 @@ void J3DMtxCalcBlendSharedMotionT::calcBlend(Vec*, Vec*, J3DAnmTransform**, f32*
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80016B04
- * Size:	000198
+/**
+ * @note Address: 0x80016B04
+ * @note Size: 0x198
  */
 void J3DMtxCalcScaleBlendMaya::calcScaleBlend(const Vec&, const Vec&)
 {
@@ -1118,17 +1110,15 @@ lbl_80016C40:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80016C9C
- * Size:	000008
+/**
+ * @note Address: 0x80016C9C
+ * @note Size: 0x8
  */
 void J3DMtxCalcBlendAnmBase::setAnmTransform(J3DAnmTransform* a1) { mAnim = a1; }
 
-/*
- * --INFO--
- * Address:	80016CA4
- * Size:	000010
+/**
+ * @note Address: 0x80016CA4
+ * @note Size: 0x10
  */
 J3DAnmTransform* J3DMtxCalcBlendAnmBase::getAnmTransform(u8)
 {
@@ -1140,10 +1130,9 @@ J3DAnmTransform* J3DMtxCalcBlendAnmBase::getAnmTransform(u8)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80016CB4
- * Size:	000008
+/**
+ * @note Address: 0x80016CB4
+ * @note Size: 0x8
  */
 J3DAnmTransform* J3DMtxCalcBlendAnmBase::getAnmTransform()
 {
@@ -1153,10 +1142,9 @@ J3DAnmTransform* J3DMtxCalcBlendAnmBase::getAnmTransform()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80016CBC
- * Size:	000010
+/**
+ * @note Address: 0x80016CBC
+ * @note Size: 0x10
  */
 void J3DMtxCalcBlendAnmBase::getWeight(u8) const
 {
@@ -1168,10 +1156,9 @@ void J3DMtxCalcBlendAnmBase::getWeight(u8) const
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80016CCC
- * Size:	000010
+/**
+ * @note Address: 0x80016CCC
+ * @note Size: 0x10
  */
 void J3DMtxCalcBlendAnmBase::setAnmTransform(u8, J3DAnmTransform*)
 {
@@ -1183,10 +1170,9 @@ void J3DMtxCalcBlendAnmBase::setAnmTransform(u8, J3DAnmTransform*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80016CDC
- * Size:	000010
+/**
+ * @note Address: 0x80016CDC
+ * @note Size: 0x10
  */
 void J3DMtxCalcBlendAnmBase::setWeight(u8, f32)
 {
@@ -1198,31 +1184,27 @@ void J3DMtxCalcBlendAnmBase::setWeight(u8, f32)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80016CEC
- * Size:	000004
+/**
+ * @note Address: 0x80016CEC
+ * @note Size: 0x4
  */
 void J3DMtxCalc::setAnmTransform(J3DAnmTransform*) { }
 
-/*
- * --INFO--
- * Address:	80016CF0
- * Size:	000008
+/**
+ * @note Address: 0x80016CF0
+ * @note Size: 0x8
  */
 J3DAnmTransform* J3DMtxCalc::getAnmTransform(u8) { return nullptr; }
 
-/*
- * --INFO--
- * Address:	80016CF8
- * Size:	000008
+/**
+ * @note Address: 0x80016CF8
+ * @note Size: 0x8
  */
 J3DAnmTransform* J3DMtxCalc::getAnmTransform() { return nullptr; }
 
-/*
- * --INFO--
- * Address:	80016D00
- * Size:	000008
+/**
+ * @note Address: 0x80016D00
+ * @note Size: 0x8
  */
 void J3DMtxCalc::getWeight(u8) const
 {

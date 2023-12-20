@@ -6,10 +6,9 @@
 namespace og {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	8030421C
- * Size:	0000BC
+/**
+ * @note Address: 0x8030421C
+ * @note Size: 0xBC
  */
 PikminCounter::PikminCounter()
 {
@@ -26,10 +25,9 @@ PikminCounter::PikminCounter()
 	mCurrPos.y         = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	803042D8
- * Size:	00006C
+/**
+ * @note Address: 0x803042D8
+ * @note Size: 0x6C
  */
 void PikminCounter::setParam(og::Screen::DataGame& game, og::Screen::DataNavi& navi)
 {
@@ -37,10 +35,9 @@ void PikminCounter::setParam(og::Screen::DataGame& game, og::Screen::DataNavi& n
 	mDataNavi = navi;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000188
+/**
+ * @note Address: N/A
+ * @note Size: 0x188
  */
 void PikminCounter::setCallBackCommon(JKRArchive* arc, bool flag)
 {
@@ -52,10 +49,9 @@ void PikminCounter::setCallBackCommon(JKRArchive* arc, bool flag)
 	mIsTotalPokoActive = flag;
 }
 
-/*
- * --INFO--
- * Address:	80304344
- * Size:	0000F8
+/**
+ * @note Address: 0x80304344
+ * @note Size: 0xF8
  */
 void PikminCounter::update()
 {
@@ -79,10 +75,9 @@ void PikminCounter::update()
 	P2DScreen::Mgr::update();
 }
 
-/*
- * --INFO--
- * Address:	8030443C
- * Size:	000230
+/**
+ * @note Address: 0x8030443C
+ * @note Size: 0x230
  */
 void PikminCounter::setCallBack(JKRArchive* arc)
 {
@@ -100,10 +95,9 @@ void PikminCounter::setCallBack(JKRArchive* arc)
 	search('c_sc')->removeFromParent();
 }
 
-/*
- * --INFO--
- * Address:	8030466C
- * Size:	000240
+/**
+ * @note Address: 0x8030466C
+ * @note Size: 0x240
  */
 void PikminCounterCave::setCallBack(JKRArchive* arc)
 {
@@ -126,10 +120,9 @@ void PikminCounterCave::setCallBack(JKRArchive* arc)
 	counter->mScaleDownSoundID  = PSSE_SY_PIKI_DECREMENT;
 }
 
-/*
- * --INFO--
- * Address:	803048AC
- * Size:	0001F8
+/**
+ * @note Address: 0x803048AC
+ * @note Size: 0x1F8
  */
 void PikminCounterChallenge1P::setCallBack(JKRArchive* arc)
 {

@@ -34,10 +34,9 @@
 #define FindBitterSprayTriggerSize   40.0f
 
 namespace Game {
-/*
- * --INFO--
- * Address:	8021F3D0
- * Size:	001790
+/**
+ * @note Address: 0x8021F3D0
+ * @note Size: 0x1790
  */
 bool Navi::demoCheck()
 {
@@ -2147,10 +2146,9 @@ lbl_80220B34:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80220E04
- * Size:	0001C4
+/**
+ * @note Address: 0x80220E04
+ * @note Size: 0x1C4
  */
 FakePiki* Navi::checkDemoNaviAndPiki(Sys::Sphere& bounds)
 {

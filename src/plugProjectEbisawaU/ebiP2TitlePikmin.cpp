@@ -12,10 +12,9 @@ namespace title {
 static const int unusedArray[]            = { 0, 0, 0 };
 static const char unusedPikminTitleName[] = "ebiP2TitlePikmin";
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D4
+/**
+ * @note Address: N/A
+ * @note Size: 0xD4
  */
 Pikmin::TBoidParamMgr::TBoidParamMgr()
     : CNode("TBoidParamMgr")
@@ -38,20 +37,18 @@ Pikmin::TBoidParamMgr::TBoidParamMgr()
 	_18       = 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 /* void Pikmin::TBoidParamMgr::startState((ebi::title::Pikmin::TBoidParamMgr::enumState, float))
 {
     // UNUSED FUNCTION
 } */
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000130
+/**
+ * @note Address: N/A
+ * @note Size: 0x130
  */
 void Pikmin::TBoidParamMgr::update()
 {
@@ -79,10 +76,9 @@ void Pikmin::TBoidParamMgr::update()
 	_6CC = factor2 * param1.mBoidNeighbor() + factor1 * param2.mBoidNeighbor();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 Pikmin::TAnimator::TAnimator()
 {
@@ -97,10 +93,9 @@ Pikmin::TAnimator::TAnimator()
 	_20              = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	803E3DE8
- * Size:	0002D8
+/**
+ * @note Address: 0x803E3DE8
+ * @note Size: 0x2D8
  */
 void Pikmin::TAnimator::setArchive(JKRArchive* arc)
 {
@@ -136,10 +131,9 @@ void Pikmin::TAnimator::setArchive(JKRArchive* arc)
 	mModelDataWhite->doMakeShared();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 void Pikmin::TAnimator::setAnmWait(J3DModel* model, f32 frame)
 {
@@ -147,10 +141,9 @@ void Pikmin::TAnimator::setAnmWait(J3DModel* model, f32 frame)
 	model->mModelData->mJointTree.mJoints[0]->mMtxCalc = _1C;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A4
+/**
+ * @note Address: N/A
+ * @note Size: 0xA4
  */
 void Pikmin::TAnimator::setAnmWave(J3DModel* model, f32 weight, f32 frameA, f32 frameB)
 {
@@ -164,10 +157,9 @@ void Pikmin::TAnimator::setAnmWave(J3DModel* model, f32 weight, f32 frameA, f32 
 	model->mModelData->mJointTree.mJoints[0]->mMtxCalc = calc;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000218
+/**
+ * @note Address: N/A
+ * @note Size: 0x218
  */
 J3DModel* Pikmin::TAnimator::newJ3DModel(s32 color)
 {
@@ -188,10 +180,9 @@ J3DModel* Pikmin::TAnimator::newJ3DModel(s32 color)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	803E40C0
- * Size:	000198
+/**
+ * @note Address: 0x803E40C0
+ * @note Size: 0x198
  */
 Pikmin::TMgr::TMgr()
     : CNode("PikminMgr")
@@ -202,10 +193,9 @@ Pikmin::TMgr::TMgr()
 	add((CNode*)&mBoidParamMgr);
 }
 
-/*
- * --INFO--
- * Address:	803E42CC
- * Size:	0000D8
+/**
+ * @note Address: 0x803E42CC
+ * @note Size: 0xD8
  */
 void Pikmin::TMgr::setArchive(JKRArchive* arc)
 {
@@ -223,10 +213,9 @@ void Pikmin::TMgr::setArchive(JKRArchive* arc)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E43A4
- * Size:	00011C
+/**
+ * @note Address: 0x803E43A4
+ * @note Size: 0x11C
  */
 void Pikmin::TMgr::initUnit()
 {
@@ -247,10 +236,9 @@ void Pikmin::TMgr::initUnit()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E44C0
- * Size:	0001A8
+/**
+ * @note Address: 0x803E44C0
+ * @note Size: 0x1A8
  */
 void Pikmin::TMgr::update()
 {
@@ -265,10 +253,9 @@ void Pikmin::TMgr::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E4930
- * Size:	0000C0
+/**
+ * @note Address: 0x803E4930
+ * @note Size: 0xC0
  */
 void Pikmin::TMgr::forceArriveDest()
 {
@@ -287,10 +274,9 @@ void Pikmin::TMgr::forceArriveDest()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E49F0
- * Size:	000088
+/**
+ * @note Address: 0x803E49F0
+ * @note Size: 0x88
  */
 void Pikmin::TMgr::assemble()
 {
@@ -304,10 +290,9 @@ void Pikmin::TMgr::assemble()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E4A78
- * Size:	000088
+/**
+ * @note Address: 0x803E4A78
+ * @note Size: 0x88
  */
 void Pikmin::TMgr::quickAssemble()
 {
@@ -321,10 +306,9 @@ void Pikmin::TMgr::quickAssemble()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E4B00
- * Size:	000090
+/**
+ * @note Address: 0x803E4B00
+ * @note Size: 0x90
  */
 void Pikmin::TMgr::startBoid1(f32 arg)
 {
@@ -338,10 +322,9 @@ void Pikmin::TMgr::startBoid1(f32 arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E4B90
- * Size:	000090
+/**
+ * @note Address: 0x803E4B90
+ * @note Size: 0x90
  */
 void Pikmin::TMgr::startBoid2(f32 arg)
 {
@@ -355,10 +338,9 @@ void Pikmin::TMgr::startBoid2(f32 arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E4C20
- * Size:	000090
+/**
+ * @note Address: 0x803E4C20
+ * @note Size: 0x90
  */
 void Pikmin::TMgr::startBoid3(f32 arg)
 {
@@ -372,10 +354,9 @@ void Pikmin::TMgr::startBoid3(f32 arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E4CB0
- * Size:	00009C
+/**
+ * @note Address: 0x803E4CB0
+ * @note Size: 0x9C
  */
 void Pikmin::TMgr::startWindBlow(ebi::EGEBox2f& box)
 {
@@ -390,10 +371,9 @@ void Pikmin::TMgr::startWindBlow(ebi::EGEBox2f& box)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E4D4C
- * Size:	0000AC
+/**
+ * @note Address: 0x803E4D4C
+ * @note Size: 0xAC
  */
 void Pikmin::TMgr::startDemo()
 {
@@ -403,10 +383,9 @@ void Pikmin::TMgr::startDemo()
 	quickAssemble();
 }
 
-/*
- * --INFO--
- * Address:	803E4DF8
- * Size:	00006C
+/**
+ * @note Address: 0x803E4DF8
+ * @note Size: 0x6C
  */
 void Pikmin::TMgr::enemyPushOut(ebi::title::TObjBase* obj)
 {
@@ -415,10 +394,9 @@ void Pikmin::TMgr::enemyPushOut(ebi::title::TObjBase* obj)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E4E64
- * Size:	0003B8
+/**
+ * @note Address: 0x803E4E64
+ * @note Size: 0x3B8
  */
 void Pikmin::TMgr::updateCalcBoid_()
 {
@@ -492,10 +470,9 @@ void Pikmin::TMgr::updateCalcBoid_()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E521C
- * Size:	000070
+/**
+ * @note Address: 0x803E521C
+ * @note Size: 0x70
  */
 bool Pikmin::TMgr::isAssemble()
 {
@@ -509,17 +486,15 @@ bool Pikmin::TMgr::isAssemble()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	803E528C
- * Size:	000010
+/**
+ * @note Address: 0x803E528C
+ * @note Size: 0x10
  */
 Pikmin::TUnit* Pikmin::TMgr::getUnit(long idx) { return &mUnits[idx]; }
 
-/*
- * --INFO--
- * Address:	803E529C
- * Size:	000360
+/**
+ * @note Address: 0x803E529C
+ * @note Size: 0x360
  */
 void Pikmin::TUnit::init(ebi::title::Pikmin::TMgr* mgr, s32 color)
 {
@@ -551,10 +526,9 @@ void Pikmin::TUnit::init(ebi::title::Pikmin::TMgr* mgr, s32 color)
 	mIsDead               = false;
 }
 
-/*
- * --INFO--
- * Address:	803E55FC
- * Size:	000098
+/**
+ * @note Address: 0x803E55FC
+ * @note Size: 0x98
  */
 void Pikmin::TUnit::goDestination()
 {
@@ -572,20 +546,18 @@ void Pikmin::TUnit::goDestination()
 	startState(STATE_Unk2);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 /* void Pikmin::TUnit::chaseKogane(ebi::title::TObjBase*)
 {
     // UNUSED FUNCTION
 } */
 
-/*
- * --INFO--
- * Address:	803E5694
- * Size:	00006C
+/**
+ * @note Address: 0x803E5694
+ * @note Size: 0x6C
  */
 bool Pikmin::TUnit::beAttacked()
 {
@@ -598,24 +570,21 @@ bool Pikmin::TUnit::beAttacked()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	803E5700
- * Size:	00000C
+/**
+ * @note Address: 0x803E5700
+ * @note Size: 0xC
  */
 void Pikmin::TUnit::alive() { mIsDead = false; }
 
-/*
- * --INFO--
- * Address:	803E570C
- * Size:	000014
+/**
+ * @note Address: 0x803E570C
+ * @note Size: 0x14
  */
 bool Pikmin::TUnit::isCalc() { return (bool)(mCurrentState != STATE_Hidden); }
 
-/*
- * --INFO--
- * Address:	803E5720
- * Size:	000024
+/**
+ * @note Address: 0x803E5720
+ * @note Size: 0x24
  */
 bool Pikmin::TUnit::isAssemble()
 {
@@ -625,10 +594,9 @@ bool Pikmin::TUnit::isAssemble()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803E5744
- * Size:	000024
+/**
+ * @note Address: 0x803E5744
+ * @note Size: 0x24
  */
 bool Pikmin::TUnit::isWalk()
 {
@@ -638,20 +606,18 @@ bool Pikmin::TUnit::isWalk()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 /* void Pikmin::TUnit::isBoid()
 {
     // UNUSED FUNCTION
 } */
 
-/*
- * --INFO--
- * Address:	803E5768
- * Size:	000150
+/**
+ * @note Address: 0x803E5768
+ * @note Size: 0x150
  */
 void Pikmin::TUnit::startState(TUnit::enumState state)
 {
@@ -687,10 +653,9 @@ void Pikmin::TUnit::startState(TUnit::enumState state)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E58B8
- * Size:	000DD4
+/**
+ * @note Address: 0x803E58B8
+ * @note Size: 0xDD4
  */
 void Pikmin::TUnit::update()
 {
@@ -1865,10 +1830,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803E4668
- * Size:	000164
+/**
+ * @note Address: 0x803E4668
+ * @note Size: 0x164
  */
 void Pikmin::TMgr::setStartPos(Vector2f* pos)
 {
@@ -1879,10 +1843,9 @@ void Pikmin::TMgr::setStartPos(Vector2f* pos)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803E47CC
- * Size:	000164
+/**
+ * @note Address: 0x803E47CC
+ * @note Size: 0x164
  */
 void Pikmin::TMgr::setDestPos(Vector2f* pos)
 {
@@ -1898,10 +1861,9 @@ void Pikmin::TMgr::setDestPos(Vector2f* pos)
 
 namespace ebi {
 namespace title {
-/*
- * --INFO--
- * Address:	803E668C
- * Size:	000200
+/**
+ * @note Address: 0x803E668C
+ * @note Size: 0x200
  */
 void Pikmin::TUnit::updateSmoothWalk_(Vector2f& arg)
 {
@@ -1931,10 +1893,9 @@ void Pikmin::TUnit::updateSmoothWalk_(Vector2f& arg)
 	mPosition = mPosition + mAngle * mParms[0];
 }
 
-/*
- * --INFO--
- * Address:	803E688C
- * Size:	000350
+/**
+ * @note Address: 0x803E688C
+ * @note Size: 0x350
  */
 void Pikmin::TUnit::updateEnemyReaction_()
 {

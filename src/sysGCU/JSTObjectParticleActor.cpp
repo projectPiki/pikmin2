@@ -14,10 +14,9 @@
 namespace Game {
 namespace P2JST {
 
-/*
- * --INFO--
- * Address:	804544D4
- * Size:	000168
+/**
+ * @note Address: 0x804544D4
+ * @note Size: 0x168
  */
 ObjectParticleActor::ObjectParticleActor(char const* name, MoviePlayer* movie, Creature* obj)
     : ObjectActor(name, movie)
@@ -148,10 +147,9 @@ ObjectParticleActor::ObjectParticleActor(char const* name, MoviePlayer* movie, C
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8045463C
- * Size:	000028
+/**
+ * @note Address: 0x8045463C
+ * @note Size: 0x28
  */
 void ObjectParticleActor::reset()
 {
@@ -161,17 +159,15 @@ void ObjectParticleActor::reset()
 	mTranslation2    = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	80454664
- * Size:	000020
+/**
+ * @note Address: 0x80454664
+ * @note Size: 0x20
  */
 void ObjectParticleActor::stop() { killEmitter(); }
 
-/*
- * --INFO--
- * Address:	80454684
- * Size:	0000C0
+/**
+ * @note Address: 0x80454684
+ * @note Size: 0xC0
  */
 void ObjectParticleActor::update()
 {
@@ -193,10 +189,9 @@ void ObjectParticleActor::update()
 	mEfxFlag = 0;
 }
 
-/*
- * --INFO--
- * Address:	80454744
- * Size:	00003C
+/**
+ * @note Address: 0x80454744
+ * @note Size: 0x3C
  */
 void ObjectParticleActor::JSGSetShape(u32 id)
 {
@@ -206,10 +201,9 @@ void ObjectParticleActor::JSGSetShape(u32 id)
 	killEmitter();
 }
 
-/*
- * --INFO--
- * Address:	80454780
- * Size:	000178
+/**
+ * @note Address: 0x80454780
+ * @note Size: 0x178
  */
 void ObjectParticleActor::parseUserData_(u32 p1, void const* rawData)
 {
@@ -362,17 +356,15 @@ lbl_804548D8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	804548F8
- * Size:	00001C
+/**
+ * @note Address: 0x804548F8
+ * @note Size: 0x1C
  */
 void ObjectParticleActor::JSGSetTranslation(Vec const& pos) { mTranslation2 = pos; }
 
-/*
- * --INFO--
- * Address:	80454914
- * Size:	00001C
+/**
+ * @note Address: 0x80454914
+ * @note Size: 0x1C
  */
 void ObjectParticleActor::JSGGetTranslation(Vec* pos) const
 {
@@ -381,10 +373,9 @@ void ObjectParticleActor::JSGGetTranslation(Vec* pos) const
 	pos->z = mTranslation2.z;
 }
 
-/*
- * --INFO--
- * Address:	80454930
- * Size:	0001F0
+/**
+ * @note Address: 0x80454930
+ * @note Size: 0x1F0
  */
 void ObjectParticleActor::emit()
 {
@@ -423,10 +414,9 @@ void ObjectParticleActor::emit()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80454B20
- * Size:	0000F4
+/**
+ * @note Address: 0x80454B20
+ * @note Size: 0xF4
  */
 void ObjectParticleActor::executeAfter(JPABaseEmitter* emit)
 {
@@ -448,10 +438,9 @@ void ObjectParticleActor::executeAfter(JPABaseEmitter* emit)
 	emit->setGlobalRTMatrix(mMatrix.mMatrix.mtxView);
 }
 
-/*
- * --INFO--
- * Address:	80454C14
- * Size:	000044
+/**
+ * @note Address: 0x80454C14
+ * @note Size: 0x44
  */
 void ObjectParticleActor::killEmitter()
 {

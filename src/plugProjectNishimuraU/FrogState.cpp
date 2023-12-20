@@ -6,10 +6,9 @@
 namespace Game {
 namespace Frog {
 
-/*
- * --INFO--
- * Address:	802563C4
- * Size:	00037C
+/**
+ * @note Address: 0x802563C4
+ * @note Size: 0x37C
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -26,10 +25,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateGoHome);
 }
 
-/*
- * --INFO--
- * Address:	80256740
- * Size:	000068
+/**
+ * @note Address: 0x80256740
+ * @note Size: 0x68
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -40,10 +38,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(FROGANIM_Dead, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802567A8
- * Size:	000078
+/**
+ * @note Address: 0x802567A8
+ * @note Size: 0x78
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -58,17 +55,15 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80256828
- * Size:	000004
+/**
+ * @note Address: 0x80256828
+ * @note Size: 0x4
  */
 void StateDead::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8025682C
- * Size:	0000A0
+/**
+ * @note Address: 0x8025682C
+ * @note Size: 0xA0
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -81,10 +76,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802568CC
- * Size:	000440
+/**
+ * @note Address: 0x802568CC
+ * @note Size: 0x440
  */
 void StateWait::exec(EnemyBase* enemy)
 {
@@ -423,17 +417,15 @@ lbl_80256CBC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80256D10
- * Size:	000004
+/**
+ * @note Address: 0x80256D10
+ * @note Size: 0x4
  */
 void StateWait::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	80256D14
- * Size:	000060
+/**
+ * @note Address: 0x80256D14
+ * @note Size: 0x60
  */
 void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -445,10 +437,9 @@ void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 	frog->startMotion(FROGANIM_Turn, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80256D74
- * Size:	0003AC
+/**
+ * @note Address: 0x80256D74
+ * @note Size: 0x3AC
  */
 void StateTurn::exec(EnemyBase* enemy)
 {
@@ -752,10 +743,9 @@ lbl_802570D0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80257120
- * Size:	0000AC
+/**
+ * @note Address: 0x80257120
+ * @note Size: 0xAC
  */
 void StateTurn::cleanup(EnemyBase* enemy)
 {
@@ -773,10 +763,9 @@ void StateTurn::cleanup(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802571CC
- * Size:	0000E8
+/**
+ * @note Address: 0x802571CC
+ * @note Size: 0xE8
  */
 void StateJump::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -797,10 +786,9 @@ void StateJump::init(EnemyBase* enemy, StateArg* stateArg)
 	frog->startMotion(FROGANIM_Jump, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802572B4
- * Size:	000118
+/**
+ * @note Address: 0x802572B4
+ * @note Size: 0x118
  */
 void StateJump::exec(EnemyBase* enemy)
 {
@@ -826,10 +814,9 @@ void StateJump::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802573CC
- * Size:	000048
+/**
+ * @note Address: 0x802573CC
+ * @note Size: 0x48
  */
 void StateJump::cleanup(EnemyBase* enemy)
 {
@@ -838,10 +825,9 @@ void StateJump::cleanup(EnemyBase* enemy)
 	enemy->disableEvent(0, EB_Untargetable);
 }
 
-/*
- * --INFO--
- * Address:	80257414
- * Size:	000058
+/**
+ * @note Address: 0x80257414
+ * @note Size: 0x58
  */
 void StateJumpWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -851,10 +837,9 @@ void StateJumpWait::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(FROGANIM_JumpWait, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8025746C
- * Size:	00008C
+/**
+ * @note Address: 0x8025746C
+ * @note Size: 0x8C
  */
 void StateJumpWait::exec(EnemyBase* enemy)
 {
@@ -868,10 +853,9 @@ void StateJumpWait::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802574F8
- * Size:	00003C
+/**
+ * @note Address: 0x802574F8
+ * @note Size: 0x3C
  */
 void StateJumpWait::cleanup(EnemyBase* enemy)
 {
@@ -880,10 +864,9 @@ void StateJumpWait::cleanup(EnemyBase* enemy)
 	enemy->setEmotionCaution();
 }
 
-/*
- * --INFO--
- * Address:	80257534
- * Size:	00008C
+/**
+ * @note Address: 0x80257534
+ * @note Size: 0x8C
  */
 void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -897,10 +880,9 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 	frog->mCurrentVelocity = Vector3f(0.0f, -CG_PROPERPARMS(frog).mFallSpeed.mValue, 0.0f);
 }
 
-/*
- * --INFO--
- * Address:	802575C0
- * Size:	000040
+/**
+ * @note Address: 0x802575C0
+ * @note Size: 0x40
  */
 void StateFall::exec(EnemyBase* enemy)
 {
@@ -909,10 +891,9 @@ void StateFall::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80257600
- * Size:	000038
+/**
+ * @note Address: 0x80257600
+ * @note Size: 0x38
  */
 void StateFall::cleanup(EnemyBase* enemy)
 {
@@ -922,10 +903,9 @@ void StateFall::cleanup(EnemyBase* enemy)
 	frog->setEmotionCaution();
 }
 
-/*
- * --INFO--
- * Address:	80257638
- * Size:	000074
+/**
+ * @note Address: 0x80257638
+ * @note Size: 0x74
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -939,10 +919,9 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	frog->startMotion(FROGANIM_Attack, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802576AC
- * Size:	00016C
+/**
+ * @note Address: 0x802576AC
+ * @note Size: 0x16C
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
@@ -966,10 +945,9 @@ void StateAttack::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80257818
- * Size:	000044
+/**
+ * @note Address: 0x80257818
+ * @note Size: 0x44
  */
 void StateAttack::cleanup(EnemyBase* enemy)
 {
@@ -979,10 +957,9 @@ void StateAttack::cleanup(EnemyBase* enemy)
 	frog->setEmotionCaution();
 }
 
-/*
- * --INFO--
- * Address:	8025785C
- * Size:	000054
+/**
+ * @note Address: 0x8025785C
+ * @note Size: 0x54
  */
 void StateFail::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -992,10 +969,9 @@ void StateFail::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(FROGANIM_Fail, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802578B0
- * Size:	0001A8
+/**
+ * @note Address: 0x802578B0
+ * @note Size: 0x1A8
  */
 void StateFail::exec(EnemyBase* enemy)
 {
@@ -1024,17 +1000,15 @@ void StateFail::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80257A58
- * Size:	000024
+/**
+ * @note Address: 0x80257A58
+ * @note Size: 0x24
  */
 void StateFail::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
-/*
- * --INFO--
- * Address:	80257A7C
- * Size:	000044
+/**
+ * @note Address: 0x80257A7C
+ * @note Size: 0x44
  */
 void StateTurnToHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1044,10 +1018,9 @@ void StateTurnToHome::init(EnemyBase* enemy, StateArg* stateArg)
 	frog->startMotion(FROGANIM_Turn, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80257AC0
- * Size:	000224
+/**
+ * @note Address: 0x80257AC0
+ * @note Size: 0x224
  */
 void StateTurnToHome::exec(EnemyBase* enemy)
 {
@@ -1227,10 +1200,9 @@ lbl_80257CA4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80257CE4
- * Size:	000060
+/**
+ * @note Address: 0x80257CE4
+ * @note Size: 0x60
  */
 void StateTurnToHome::cleanup(EnemyBase* enemy)
 {
@@ -1241,10 +1213,9 @@ void StateTurnToHome::cleanup(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80257D44
- * Size:	00005C
+/**
+ * @note Address: 0x80257D44
+ * @note Size: 0x5C
  */
 void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1257,10 +1228,9 @@ void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg)
 	frog->startMotion(FROGANIM_Move, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80257DA0
- * Size:	000200
+/**
+ * @note Address: 0x80257DA0
+ * @note Size: 0x200
  */
 void StateGoHome::exec(EnemyBase* enemy)
 {
@@ -1307,10 +1277,9 @@ void StateGoHome::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80257FA0
- * Size:	00010C
+/**
+ * @note Address: 0x80257FA0
+ * @note Size: 0x10C
  */
 void StateGoHome::cleanup(EnemyBase* enemy)
 {

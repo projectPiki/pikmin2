@@ -5,20 +5,18 @@
 #include "JSystem/J2D/J2DMaterial.h"
 #include "System.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
+/**
+ * @note Address: N/A
+ * @note Size: 0xE4
  */
 static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	8031741C
- * Size:	0000A8
+/**
+ * @note Address: 0x8031741C
+ * @note Size: 0xA8
  */
 ObjCourseName::ObjCourseName(char const* name)
     : mFadeLevel(0.0f)
@@ -38,17 +36,15 @@ ObjCourseName::ObjCourseName(char const* name)
 	mBackgroundAlpha = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	803174C4
- * Size:	0000AC
+/**
+ * @note Address: 0x803174C4
+ * @note Size: 0xAC
  */
 ObjCourseName::~ObjCourseName() { }
 
-/*
- * --INFO--
- * Address:	80317570
- * Size:	000334
+/**
+ * @note Address: 0x80317570
+ * @note Size: 0x334
  */
 void ObjCourseName::doCreate(JKRArchive* arc)
 {
@@ -95,10 +91,9 @@ void ObjCourseName::doCreate(JKRArchive* arc)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F0
+/**
+ * @note Address: N/A
+ * @note Size: 0xF0
  */
 bool ObjCourseName::commonUpdate()
 {
@@ -126,17 +121,15 @@ bool ObjCourseName::commonUpdate()
 	return check;
 }
 
-/*
- * --INFO--
- * Address:	803178A4
- * Size:	0000F0
+/**
+ * @note Address: 0x803178A4
+ * @note Size: 0xF0
  */
 bool ObjCourseName::doUpdate() { return commonUpdate(); }
 
-/*
- * --INFO--
- * Address:	80317994
- * Size:	000170
+/**
+ * @note Address: 0x80317994
+ * @note Size: 0x170
  */
 void ObjCourseName::doDraw(Graphics& gfx)
 {
@@ -164,10 +157,9 @@ void ObjCourseName::doDraw(Graphics& gfx)
 	graf->setPort();
 }
 
-/*
- * --INFO--
- * Address:	80317B04
- * Size:	000014
+/**
+ * @note Address: 0x80317B04
+ * @note Size: 0x14
  */
 bool ObjCourseName::doStart(::Screen::StartSceneArg const*)
 {
@@ -176,10 +168,9 @@ bool ObjCourseName::doStart(::Screen::StartSceneArg const*)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80317B18
- * Size:	000010
+/**
+ * @note Address: 0x80317B18
+ * @note Size: 0x10
  */
 bool ObjCourseName::doEnd(::Screen::EndSceneArg const*)
 {
@@ -187,31 +178,27 @@ bool ObjCourseName::doEnd(::Screen::EndSceneArg const*)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80317B28
- * Size:	000004
+/**
+ * @note Address: 0x80317B28
+ * @note Size: 0x4
  */
 void ObjCourseName::doUpdateFadeinFinish() { }
 
-/*
- * --INFO--
- * Address:	80317B2C
- * Size:	00000C
+/**
+ * @note Address: 0x80317B2C
+ * @note Size: 0xC
  */
 void ObjCourseName::doUpdateFinish() { mFadeLevel = 0.0f; }
 
-/*
- * --INFO--
- * Address:	80317B38
- * Size:	000004
+/**
+ * @note Address: 0x80317B38
+ * @note Size: 0x4
  */
 void ObjCourseName::doUpdateFadeoutFinish() { }
 
-/*
- * --INFO--
- * Address:	80317B3C
- * Size:	000120
+/**
+ * @note Address: 0x80317B3C
+ * @note Size: 0x120
  */
 bool ObjCourseName::doUpdateFadein()
 {
@@ -226,10 +213,9 @@ bool ObjCourseName::doUpdateFadein()
 	return check;
 }
 
-/*
- * --INFO--
- * Address:	80317C5C
- * Size:	000134
+/**
+ * @note Address: 0x80317C5C
+ * @note Size: 0x134
  */
 bool ObjCourseName::doUpdateFadeout()
 {
@@ -246,10 +232,9 @@ bool ObjCourseName::doUpdateFadeout()
 	return check;
 }
 
-/*
- * --INFO--
- * Address:	80317D90
- * Size:	000168
+/**
+ * @note Address: 0x80317D90
+ * @note Size: 0x168
  */
 void ObjCourseName::drawBG(Graphics& gfx)
 {

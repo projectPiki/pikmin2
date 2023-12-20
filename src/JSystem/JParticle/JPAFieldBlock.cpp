@@ -170,20 +170,18 @@ void setDisjointedVecOfMtx33(Mtx33& mtx, const RawVec& vec, int p3)
 	mtx[2][p3] = vec[2];
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00015C
+/**
+ * @note Address: N/A
+ * @note Size: 0x15C
  */
 void JPAFieldBase::calcAffect(JPAFieldBlock*, JPABaseParticle*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00009C
+/**
+ * @note Address: N/A
+ * @note Size: 0x9C
  */
 void JPAFieldBase::calcFadeAffect(JPAFieldBlock*, float) const
 {
@@ -192,10 +190,9 @@ void JPAFieldBase::calcFadeAffect(JPAFieldBlock*, float) const
 	// TODO: Then again, where's the JPABaseParticle in that case...
 }
 
-/*
- * --INFO--
- * Address:	800915A0
- * Size:	0000A8
+/**
+ * @note Address: 0x800915A0
+ * @note Size: 0xA8
  */
 void JPAFieldGravity::prepare(JPAEmitterWorkData* workData, JPAFieldBlock* block)
 {
@@ -213,10 +210,9 @@ void JPAFieldGravity::prepare(JPAEmitterWorkData* workData, JPAFieldBlock* block
 	}
 }
 
-/*
- * --INFO--
- * Address:	80091648
- * Size:	0001BC
+/**
+ * @note Address: 0x80091648
+ * @note Size: 0x1BC
  */
 void JPAFieldGravity::calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*)
 {
@@ -358,10 +354,9 @@ void JPAFieldGravity::calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80091804
- * Size:	000150
+/**
+ * @note Address: 0x80091804
+ * @note Size: 0x150
  */
 void JPAFieldAir::prepare(JPAEmitterWorkData* data, JPAFieldBlock* block)
 {
@@ -465,10 +460,9 @@ lbl_8009193C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80091954
- * Size:	00025C
+/**
+ * @note Address: 0x80091954
+ * @note Size: 0x25C
  */
 void JPAFieldAir::calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*)
 {
@@ -655,10 +649,9 @@ lbl_80091BA8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80091BB0
- * Size:	000060
+/**
+ * @note Address: 0x80091BB0
+ * @note Size: 0x60
  */
 void JPAFieldMagnet::prepare(JPAEmitterWorkData* data, JPAFieldBlock* block)
 {
@@ -668,10 +661,9 @@ void JPAFieldMagnet::prepare(JPAEmitterWorkData* data, JPAFieldBlock* block)
 	PSMTXMultVecSR(data->mRotationMtx, (Vec*)&_10, (Vec*)&_10);
 }
 
-/*
- * --INFO--
- * Address:	80091C10
- * Size:	000288
+/**
+ * @note Address: 0x80091C10
+ * @note Size: 0x288
  */
 void JPAFieldMagnet::calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*)
 {
@@ -869,10 +861,9 @@ lbl_80091E90:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80091E98
- * Size:	000084
+/**
+ * @note Address: 0x80091E98
+ * @note Size: 0x84
  */
 void JPAFieldNewton::prepare(JPAEmitterWorkData* data, JPAFieldBlock* block)
 {
@@ -883,10 +874,9 @@ void JPAFieldNewton::prepare(JPAEmitterWorkData* data, JPAFieldBlock* block)
 	_1C = SQUARE(*(f32*)(block->mData + 0x2C));
 }
 
-/*
- * --INFO--
- * Address:	80091F1C
- * Size:	00032C
+/**
+ * @note Address: 0x80091F1C
+ * @note Size: 0x32C
  */
 void JPAFieldNewton::calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*)
 {
@@ -1131,10 +1121,9 @@ lbl_80092240:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80092248
- * Size:	0000F4
+/**
+ * @note Address: 0x80092248
+ * @note Size: 0xF4
  */
 void JPAFieldVortex::prepare(JPAEmitterWorkData* data, JPAFieldBlock* block)
 {
@@ -1209,10 +1198,9 @@ lbl_80092308:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8009233C
- * Size:	0002F0
+/**
+ * @note Address: 0x8009233C
+ * @note Size: 0x2F0
  */
 void JPAFieldVortex::calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*)
 {
@@ -1440,10 +1428,9 @@ lbl_80092624:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8009262C
- * Size:	00028C
+/**
+ * @note Address: 0x8009262C
+ * @note Size: 0x28C
  */
 void JPAFieldConvection::prepare(JPAEmitterWorkData* data, JPAFieldBlock* block)
 {
@@ -1632,10 +1619,9 @@ lbl_8009289C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800928B8
- * Size:	00039C
+/**
+ * @note Address: 0x800928B8
+ * @note Size: 0x39C
  */
 void JPAFieldConvection::calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*)
 {
@@ -1911,10 +1897,9 @@ void JPAFieldConvection::calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABasePartic
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80092C54
- * Size:	0002B0
+/**
+ * @note Address: 0x80092C54
+ * @note Size: 0x2B0
  */
 void JPAFieldRandom::calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*)
 {
@@ -2118,10 +2103,9 @@ lbl_80092EFC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80092F04
- * Size:	0000D8
+/**
+ * @note Address: 0x80092F04
+ * @note Size: 0xD8
  */
 void JPAFieldDrag::calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*)
 {
@@ -2195,10 +2179,9 @@ lbl_80092FC8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80092FDC
- * Size:	000130
+/**
+ * @note Address: 0x80092FDC
+ * @note Size: 0x130
  */
 void JPAFieldSpin::prepare(JPAEmitterWorkData* data, JPAFieldBlock* block)
 {
@@ -2310,10 +2293,9 @@ lbl_8009309C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8009310C
- * Size:	000288
+/**
+ * @note Address: 0x8009310C
+ * @note Size: 0x288
  */
 void JPAFieldSpin::calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*)
 {
@@ -2505,10 +2487,9 @@ lbl_80093378:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80093394
- * Size:	000038
+/**
+ * @note Address: 0x80093394
+ * @note Size: 0x38
  */
 JPAFieldBlock::JPAFieldBlock(const u8* data, JKRHeap* heap)
 {
@@ -2516,20 +2497,18 @@ JPAFieldBlock::JPAFieldBlock(const u8* data, JKRHeap* heap)
 	init(heap);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000114
+/**
+ * @note Address: N/A
+ * @note Size: 0x114
  */
 void JPAFieldBlock::init_jpa(const u8*, JKRHeap*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800933CC
- * Size:	0002EC
+/**
+ * @note Address: 0x800933CC
+ * @note Size: 0x2EC
  */
 void JPAFieldBlock::init(JKRHeap*)
 {
@@ -2781,10 +2760,9 @@ lbl_800936A4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800936B8
- * Size:	000048
+/**
+ * @note Address: 0x800936B8
+ * @note Size: 0x48
  */
 JPAFieldBase::~JPAFieldBase()
 {
@@ -2812,17 +2790,15 @@ lbl_800936E8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80093700
- * Size:	000004
+/**
+ * @note Address: 0x80093700
+ * @note Size: 0x4
  */
 void JPAFieldBase::prepare(JPAEmitterWorkData* data, JPAFieldBlock* block) { }
 
-/*
- * --INFO--
- * Address:	80093704
- * Size:	00005C
+/**
+ * @note Address: 0x80093704
+ * @note Size: 0x5C
  */
 JPAFieldSpin::~JPAFieldSpin()
 {
@@ -2857,10 +2833,9 @@ lbl_80093748:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80093760
- * Size:	00005C
+/**
+ * @note Address: 0x80093760
+ * @note Size: 0x5C
  */
 JPAFieldDrag::~JPAFieldDrag()
 {
@@ -2895,10 +2870,9 @@ lbl_800937A4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800937BC
- * Size:	00005C
+/**
+ * @note Address: 0x800937BC
+ * @note Size: 0x5C
  */
 JPAFieldRandom::~JPAFieldRandom()
 {
@@ -2933,10 +2907,9 @@ lbl_80093800:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80093818
- * Size:	00005C
+/**
+ * @note Address: 0x80093818
+ * @note Size: 0x5C
  */
 JPAFieldConvection::~JPAFieldConvection()
 {
@@ -2971,10 +2944,9 @@ lbl_8009385C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80093874
- * Size:	00005C
+/**
+ * @note Address: 0x80093874
+ * @note Size: 0x5C
  */
 JPAFieldVortex::~JPAFieldVortex()
 {
@@ -3009,10 +2981,9 @@ lbl_800938B8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800938D0
- * Size:	00005C
+/**
+ * @note Address: 0x800938D0
+ * @note Size: 0x5C
  */
 JPAFieldNewton::~JPAFieldNewton()
 {
@@ -3047,10 +3018,9 @@ lbl_80093914:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8009392C
- * Size:	00005C
+/**
+ * @note Address: 0x8009392C
+ * @note Size: 0x5C
  */
 JPAFieldMagnet::~JPAFieldMagnet()
 {
@@ -3085,10 +3055,9 @@ lbl_80093970:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80093988
- * Size:	00005C
+/**
+ * @note Address: 0x80093988
+ * @note Size: 0x5C
  */
 JPAFieldAir::~JPAFieldAir()
 {
@@ -3123,10 +3092,9 @@ lbl_800939CC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800939E4
- * Size:	00005C
+/**
+ * @note Address: 0x800939E4
+ * @note Size: 0x5C
  */
 JPAFieldGravity::~JPAFieldGravity()
 {

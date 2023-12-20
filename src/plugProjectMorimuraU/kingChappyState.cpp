@@ -13,10 +13,9 @@
 namespace Game {
 namespace KingChappy {
 
-/*
- * --INFO--
- * Address:	803591BC
- * Size:	000204
+/**
+ * @note Address: 0x803591BC
+ * @note Size: 0x204
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -37,10 +36,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateSwallow(KINGCHAPPY_Swallow));
 }
 
-/*
- * --INFO--
- * Address:	803593C0
- * Size:	00003C
+/**
+ * @note Address: 0x803593C0
+ * @note Size: 0x3C
  */
 StateWalk::StateWalk(int stateID)
     : State(stateID)
@@ -48,10 +46,9 @@ StateWalk::StateWalk(int stateID)
 	mName = "walk";
 }
 
-/*
- * --INFO--
- * Address:	803593FC
- * Size:	000080
+/**
+ * @note Address: 0x803593FC
+ * @note Size: 0x80
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -65,10 +62,9 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed * CG_PROPERPARMS(enemy).mWalkingAnimeSpeed.mValue);
 }
 
-/*
- * --INFO--
- * Address:	8035947C
- * Size:	0001A4
+/**
+ * @note Address: 0x8035947C
+ * @note Size: 0x1A4
  */
 void StateWalk::exec(EnemyBase* enemy)
 {
@@ -109,17 +105,15 @@ void StateWalk::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80359620
- * Size:	000028
+/**
+ * @note Address: 0x80359620
+ * @note Size: 0x28
  */
 void StateWalk::cleanup(EnemyBase* enemy) { enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed); }
 
-/*
- * --INFO--
- * Address:	80359648
- * Size:	00003C
+/**
+ * @note Address: 0x80359648
+ * @note Size: 0x3C
  */
 StateAttack::StateAttack(int stateID)
     : State(stateID)
@@ -127,10 +121,9 @@ StateAttack::StateAttack(int stateID)
 	mName = "attack";
 }
 
-/*
- * --INFO--
- * Address:	80359684
- * Size:	00006C
+/**
+ * @note Address: 0x80359684
+ * @note Size: 0x6C
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -143,10 +136,9 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	OBJ(enemy)->_338       = 0;
 }
 
-/*
- * --INFO--
- * Address:	803596F0
- * Size:	0006AC
+/**
+ * @note Address: 0x803596F0
+ * @note Size: 0x6AC
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
@@ -735,10 +727,9 @@ lbl_80359D80:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80359D9C
- * Size:	00003C
+/**
+ * @note Address: 0x80359D9C
+ * @note Size: 0x3C
  */
 void StateAttack::cleanup(EnemyBase* enemy)
 {
@@ -746,10 +737,9 @@ void StateAttack::cleanup(EnemyBase* enemy)
 	OBJ(enemy)->_338 = 1;
 }
 
-/*
- * --INFO--
- * Address:	80359DD8
- * Size:	00003C
+/**
+ * @note Address: 0x80359DD8
+ * @note Size: 0x3C
  */
 StateDead::StateDead(int stateID)
     : State(stateID)
@@ -757,10 +747,9 @@ StateDead::StateDead(int stateID)
 	mName = "dead";
 }
 
-/*
- * --INFO--
- * Address:	80359E14
- * Size:	0000CC
+/**
+ * @note Address: 0x80359E14
+ * @note Size: 0xCC
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -777,10 +766,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->disableEvent(0, EB_Cullable);
 }
 
-/*
- * --INFO--
- * Address:	80359EE0
- * Size:	0000DC
+/**
+ * @note Address: 0x80359EE0
+ * @note Size: 0xDC
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -804,17 +792,15 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80359FBC
- * Size:	000028
+/**
+ * @note Address: 0x80359FBC
+ * @note Size: 0x28
  */
 void StateDead::cleanup(EnemyBase* enemy) { OBJ(enemy)->fadeEffect(7); }
 
-/*
- * --INFO--
- * Address:	80359FE4
- * Size:	00003C
+/**
+ * @note Address: 0x80359FE4
+ * @note Size: 0x3C
  */
 StateFlick::StateFlick(int stateID)
     : State(stateID)
@@ -822,10 +808,9 @@ StateFlick::StateFlick(int stateID)
 	mName = "flick";
 }
 
-/*
- * --INFO--
- * Address:	8035A020
- * Size:	000060
+/**
+ * @note Address: 0x8035A020
+ * @note Size: 0x60
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -835,10 +820,9 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->enableEvent(0, EB_NoInterrupt);
 }
 
-/*
- * --INFO--
- * Address:	8035A080
- * Size:	0008EC
+/**
+ * @note Address: 0x8035A080
+ * @note Size: 0x8EC
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
@@ -1570,17 +1554,15 @@ lbl_8035A91C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8035A96C
- * Size:	000010
+/**
+ * @note Address: 0x8035A96C
+ * @note Size: 0x10
  */
 void StateFlick::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_NoInterrupt); }
 
-/*
- * --INFO--
- * Address:	8035A97C
- * Size:	00003C
+/**
+ * @note Address: 0x8035A97C
+ * @note Size: 0x3C
  */
 StateWarCry::StateWarCry(int stateID)
     : State(stateID)
@@ -1588,10 +1570,9 @@ StateWarCry::StateWarCry(int stateID)
 	mName = "warcry";
 }
 
-/*
- * --INFO--
- * Address:	8035A9B8
- * Size:	000054
+/**
+ * @note Address: 0x8035A9B8
+ * @note Size: 0x54
  */
 void StateWarCry::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1600,10 +1581,9 @@ void StateWarCry::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->mTargetVelocity  = Vector3f(0.0f);
 }
 
-/*
- * --INFO--
- * Address:	8035AA0C
- * Size:	0006D0
+/**
+ * @note Address: 0x8035AA0C
+ * @note Size: 0x6D0
  */
 void StateWarCry::exec(EnemyBase* enemy)
 {
@@ -1688,10 +1668,9 @@ void StateWarCry::exec(EnemyBase* enemy)
 	OBJ(enemy)->checkDead(true);
 }
 
-/*
- * --INFO--
- * Address:	8035B0DC
- * Size:	000040
+/**
+ * @note Address: 0x8035B0DC
+ * @note Size: 0x40
  */
 void StateWarCry::cleanup(EnemyBase* enemy)
 {
@@ -1699,10 +1678,9 @@ void StateWarCry::cleanup(EnemyBase* enemy)
 	OBJ(enemy)->fadeEffect(3);
 }
 
-/*
- * --INFO--
- * Address:	8035B11C
- * Size:	00003C
+/**
+ * @note Address: 0x8035B11C
+ * @note Size: 0x3C
  */
 StateDamage::StateDamage(int stateID)
     : State(stateID)
@@ -1710,10 +1688,9 @@ StateDamage::StateDamage(int stateID)
 	mName = "damage";
 }
 
-/*
- * --INFO--
- * Address:	8035B158
- * Size:	000040
+/**
+ * @note Address: 0x8035B158
+ * @note Size: 0x40
  */
 void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1721,10 +1698,9 @@ void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 	_10 = 0;
 }
 
-/*
- * --INFO--
- * Address:	8035B198
- * Size:	0001B4
+/**
+ * @note Address: 0x8035B198
+ * @note Size: 0x1B4
  */
 void StateDamage::exec(EnemyBase* enemy)
 {
@@ -1776,10 +1752,9 @@ void StateDamage::exec(EnemyBase* enemy)
 	OBJ(enemy)->checkDead(true);
 }
 
-/*
- * --INFO--
- * Address:	8035B34C
- * Size:	000040
+/**
+ * @note Address: 0x8035B34C
+ * @note Size: 0x40
  */
 void StateDamage::cleanup(EnemyBase* enemy)
 {
@@ -1787,10 +1762,9 @@ void StateDamage::cleanup(EnemyBase* enemy)
 	OBJ(enemy)->fadeEffect(4);
 }
 
-/*
- * --INFO--
- * Address:	8035B38C
- * Size:	00003C
+/**
+ * @note Address: 0x8035B38C
+ * @note Size: 0x3C
  */
 StateTurn::StateTurn(int stateID)
     : State(stateID)
@@ -1798,10 +1772,9 @@ StateTurn::StateTurn(int stateID)
 	mName = "turn";
 }
 
-/*
- * --INFO--
- * Address:	8035B3C8
- * Size:	000048
+/**
+ * @note Address: 0x8035B3C8
+ * @note Size: 0x48
  */
 void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1809,10 +1782,9 @@ void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->mTargetVelocity = Vector3f(0.0f);
 }
 
-/*
- * --INFO--
- * Address:	8035B410
- * Size:	0000F8
+/**
+ * @note Address: 0x8035B410
+ * @note Size: 0xF8
  */
 void StateTurn::exec(EnemyBase* enemy)
 {
@@ -1839,10 +1811,9 @@ void StateTurn::exec(EnemyBase* enemy)
 	OBJ(enemy)->checkFlick(true);
 }
 
-/*
- * --INFO--
- * Address:	8035B508
- * Size:	00003C
+/**
+ * @note Address: 0x8035B508
+ * @note Size: 0x3C
  */
 StateEat::StateEat(int stateID)
     : State(stateID)
@@ -1850,10 +1821,9 @@ StateEat::StateEat(int stateID)
 	mName = "eat";
 }
 
-/*
- * --INFO--
- * Address:	8035B544
- * Size:	000050
+/**
+ * @note Address: 0x8035B544
+ * @note Size: 0x50
  */
 void StateEat::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1861,10 +1831,9 @@ void StateEat::init(EnemyBase* enemy, StateArg* stateArg)
 	_10 = static_cast<StateEatArg*>(stateArg)->_00;
 }
 
-/*
- * --INFO--
- * Address:	8035B594
- * Size:	0000A4
+/**
+ * @note Address: 0x8035B594
+ * @note Size: 0xA4
  */
 void StateEat::exec(EnemyBase* enemy)
 {
@@ -1884,10 +1853,9 @@ void StateEat::exec(EnemyBase* enemy)
 	OBJ(enemy)->checkDead(true);
 }
 
-/*
- * --INFO--
- * Address:	8035B638
- * Size:	00003C
+/**
+ * @note Address: 0x8035B638
+ * @note Size: 0x3C
  */
 StateHide::StateHide(int stateID)
     : State(stateID)
@@ -1895,10 +1863,9 @@ StateHide::StateHide(int stateID)
 	mName = "hide";
 }
 
-/*
- * --INFO--
- * Address:	8035B674
- * Size:	0000BC
+/**
+ * @note Address: 0x8035B674
+ * @note Size: 0xBC
  */
 void StateHide::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1913,10 +1880,9 @@ void StateHide::init(EnemyBase* enemy, StateArg* stateArg)
 	rumbleMgr->startRumble(13, pos, 2);
 }
 
-/*
- * --INFO--
- * Address:	8035B730
- * Size:	0001B8
+/**
+ * @note Address: 0x8035B730
+ * @note Size: 0x1B8
  */
 void StateHide::exec(EnemyBase* enemy)
 {
@@ -1949,10 +1915,9 @@ void StateHide::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8035B8E8
- * Size:	000054
+/**
+ * @note Address: 0x8035B8E8
+ * @note Size: 0x54
  */
 void StateHide::cleanup(EnemyBase* enemy)
 {
@@ -1961,10 +1926,9 @@ void StateHide::cleanup(EnemyBase* enemy)
 	enemy->fadeEfxHamon();
 }
 
-/*
- * --INFO--
- * Address:	8035B93C
- * Size:	000040
+/**
+ * @note Address: 0x8035B93C
+ * @note Size: 0x40
  */
 StateHideWait::StateHideWait(int stateID)
     : State(stateID)
@@ -1972,10 +1936,9 @@ StateHideWait::StateHideWait(int stateID)
 	mName = "hidewait";
 }
 
-/*
- * --INFO--
- * Address:	8035B97C
- * Size:	000080
+/**
+ * @note Address: 0x8035B97C
+ * @note Size: 0x80
  */
 void StateHideWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1988,10 +1951,9 @@ void StateHideWait::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->enableEvent(0, EB_BitterImmune);
 }
 
-/*
- * --INFO--
- * Address:	8035B9FC
- * Size:	00018C
+/**
+ * @note Address: 0x8035B9FC
+ * @note Size: 0x18C
  */
 void StateHideWait::exec(EnemyBase* enemy)
 {
@@ -2031,10 +1993,9 @@ void StateHideWait::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8035BB88
- * Size:	000040
+/**
+ * @note Address: 0x8035BB88
+ * @note Size: 0x40
  */
 void StateHideWait::cleanup(EnemyBase* enemy)
 {
@@ -2042,10 +2003,9 @@ void StateHideWait::cleanup(EnemyBase* enemy)
 	enemy->disableEvent(0, EB_BitterImmune);
 }
 
-/*
- * --INFO--
- * Address:	8035BBC8
- * Size:	00003C
+/**
+ * @note Address: 0x8035BBC8
+ * @note Size: 0x3C
  */
 StateAppear::StateAppear(int stateID)
     : State(stateID)
@@ -2053,10 +2013,9 @@ StateAppear::StateAppear(int stateID)
 	mName = "appear";
 }
 
-/*
- * --INFO--
- * Address:	8035BC04
- * Size:	0002EC
+/**
+ * @note Address: 0x8035BC04
+ * @note Size: 0x2EC
  */
 void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -2093,10 +2052,9 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8035BEF0
- * Size:	00019C
+/**
+ * @note Address: 0x8035BEF0
+ * @note Size: 0x19C
  */
 void StateAppear::exec(EnemyBase* enemy)
 {
@@ -2137,10 +2095,9 @@ void StateAppear::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8035C08C
- * Size:	00003C
+/**
+ * @note Address: 0x8035C08C
+ * @note Size: 0x3C
  */
 StateCaution::StateCaution(int stateID)
     : State(stateID)
@@ -2148,17 +2105,15 @@ StateCaution::StateCaution(int stateID)
 	mName = "caution";
 }
 
-/*
- * --INFO--
- * Address:	8035C0C8
- * Size:	00002C
+/**
+ * @note Address: 0x8035C0C8
+ * @note Size: 0x2C
  */
 void StateCaution::init(EnemyBase* enemy, StateArg* stateArg) { OBJ(enemy)->startMotionSelf(KINGANIM_Caution, nullptr); }
 
-/*
- * --INFO--
- * Address:	8035C0F4
- * Size:	000064
+/**
+ * @note Address: 0x8035C0F4
+ * @note Size: 0x64
  */
 void StateCaution::exec(EnemyBase* enemy)
 {
@@ -2172,10 +2127,9 @@ void StateCaution::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8035C158
- * Size:	00003C
+/**
+ * @note Address: 0x8035C158
+ * @note Size: 0x3C
  */
 StateSwallow::StateSwallow(int stateID)
     : State(stateID)
@@ -2183,17 +2137,15 @@ StateSwallow::StateSwallow(int stateID)
 	mName = "swallow";
 }
 
-/*
- * --INFO--
- * Address:	8035C194
- * Size:	00002C
+/**
+ * @note Address: 0x8035C194
+ * @note Size: 0x2C
  */
 void StateSwallow::init(EnemyBase* enemy, StateArg* stateArg) { OBJ(enemy)->startMotionSelf(KINGANIM_Swallow, nullptr); }
 
-/*
- * --INFO--
- * Address:	8035C1C0
- * Size:	000094
+/**
+ * @note Address: 0x8035C1C0
+ * @note Size: 0x94
  */
 void StateSwallow::exec(EnemyBase* enemy)
 {

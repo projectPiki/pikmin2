@@ -13,10 +13,9 @@ namespace Game {
 
 namespace P2JST {
 
-/*
- * --INFO--
- * Address:	8042E960
- * Size:	0000D0
+/**
+ * @note Address: 0x8042E960
+ * @note Size: 0xD0
  */
 ObjectActor::ObjectActor(char const* name, MoviePlayer* movie)
     : ObjectBase(name, movie)
@@ -95,17 +94,15 @@ ObjectActor::ObjectActor(char const* name, MoviePlayer* movie)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8042EA30
- * Size:	000068
+/**
+ * @note Address: 0x8042EA30
+ * @note Size: 0x68
  */
 ObjectActor::~ObjectActor() { }
 
-/*
- * --INFO--
- * Address:	8042EA98
- * Size:	000070
+/**
+ * @note Address: 0x8042EA98
+ * @note Size: 0x70
  */
 void ObjectActor::reset()
 {
@@ -158,10 +155,9 @@ void ObjectActor::reset()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8042EB08
- * Size:	000390
+/**
+ * @note Address: 0x8042EB08
+ * @note Size: 0x390
  */
 void ObjectActor::update()
 {
@@ -415,10 +411,9 @@ lbl_8042EE70:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8042EE98
- * Size:	000068
+/**
+ * @note Address: 0x8042EE98
+ * @note Size: 0x68
  */
 void ObjectActor::entry()
 {
@@ -429,10 +424,9 @@ void ObjectActor::entry()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8042EF00
- * Size:	0001A4
+/**
+ * @note Address: 0x8042EF00
+ * @note Size: 0x1A4
  */
 bool ObjectActor::setShape()
 {
@@ -475,10 +469,9 @@ bool ObjectActor::setShape()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8042F0A4
- * Size:	000128
+/**
+ * @note Address: 0x8042F0A4
+ * @note Size: 0x128
  */
 bool ObjectActor::setAnim()
 {
@@ -514,17 +507,15 @@ bool ObjectActor::setAnim()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8042F1CC
- * Size:	000038
+/**
+ * @note Address: 0x8042F1CC
+ * @note Size: 0x38
  */
 void ObjectActor::mountArchive() { JUT_PANICLINE(359, "DON\'T CALL THIS !\n"); }
 
-/*
- * --INFO--
- * Address:	8042F204
- * Size:	000260
+/**
+ * @note Address: 0x8042F204
+ * @note Size: 0x260
  */
 void ObjectActor::parseUserData_(u32 p1, void const* p2)
 {
@@ -721,10 +712,9 @@ lbl_8042F448:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8042F464
- * Size:	00006C
+/**
+ * @note Address: 0x8042F464
+ * @note Size: 0x6C
  */
 int ObjectActor::JSGFindNodeID(char const* name) const
 {
@@ -732,10 +722,9 @@ int ObjectActor::JSGFindNodeID(char const* name) const
 	return mModelData->mJointTree.mNametab->getIndex(name);
 }
 
-/*
- * --INFO--
- * Address:	8042F4D0
- * Size:	00008C
+/**
+ * @note Address: 0x8042F4D0
+ * @note Size: 0x8C
  */
 bool ObjectActor::JSGGetNodeTransformation(u32 id, Mtx mtx) const
 {
@@ -744,31 +733,27 @@ bool ObjectActor::JSGGetNodeTransformation(u32 id, Mtx mtx) const
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8042F55C
- * Size:	000008
+/**
+ * @note Address: 0x8042F55C
+ * @note Size: 0x8
  */
 char const* ObjectActor::JSGGetName() const { return mName; }
 
-/*
- * --INFO--
- * Address:	8042F564
- * Size:	000008
+/**
+ * @note Address: 0x8042F564
+ * @note Size: 0x8
  */
 void ObjectActor::JSGSetFlag(u32 a1) { mFlags = a1; }
 
-/*
- * --INFO--
- * Address:	8042F56C
- * Size:	000008
+/**
+ * @note Address: 0x8042F56C
+ * @note Size: 0x8
  */
 u32 ObjectActor::JSGGetFlag() const { return mFlags; }
 
-/*
- * --INFO--
- * Address:	8042F574
- * Size:	000038
+/**
+ * @note Address: 0x8042F574
+ * @note Size: 0x38
  */
 void ObjectActor::JSGSetData(u32 data1, void const* data2, u32 data3)
 {
@@ -778,17 +763,15 @@ void ObjectActor::JSGSetData(u32 data1, void const* data2, u32 data3)
 	parseUserData_(data1, data2);
 }
 
-/*
- * --INFO--
- * Address:	8042F5AC
- * Size:	00001C
+/**
+ * @note Address: 0x8042F5AC
+ * @note Size: 0x1C
  */
 void ObjectActor::JSGSetTranslation(Vec const& translate) { mTranslation = translate; }
 
-/*
- * --INFO--
- * Address:	8042F5C8
- * Size:	00001C
+/**
+ * @note Address: 0x8042F5C8
+ * @note Size: 0x1C
  */
 void ObjectActor::JSGGetTranslation(Vec* translate) const
 {
@@ -797,17 +780,15 @@ void ObjectActor::JSGGetTranslation(Vec* translate) const
 	translate->z = mTranslation.z;
 }
 
-/*
- * --INFO--
- * Address:	8042F5E4
- * Size:	00001C
+/**
+ * @note Address: 0x8042F5E4
+ * @note Size: 0x1C
  */
 void ObjectActor::JSGSetRotation(Vec const& rotate) { mRotation = rotate; }
 
-/*
- * --INFO--
- * Address:	8042F600
- * Size:	00001C
+/**
+ * @note Address: 0x8042F600
+ * @note Size: 0x1C
  */
 void ObjectActor::JSGGetRotation(Vec* rotate) const
 {
@@ -816,17 +797,15 @@ void ObjectActor::JSGGetRotation(Vec* rotate) const
 	rotate->z = mRotation.z;
 }
 
-/*
- * --INFO--
- * Address:	8042F61C
- * Size:	00001C
+/**
+ * @note Address: 0x8042F61C
+ * @note Size: 0x1C
  */
 void ObjectActor::JSGSetScaling(Vec const& scale) { mScaling = scale; }
 
-/*
- * --INFO--
- * Address:	8042F638
- * Size:	00001C
+/**
+ * @note Address: 0x8042F638
+ * @note Size: 0x1C
  */
 void ObjectActor::JSGGetScaling(Vec* scale) const
 {
@@ -835,52 +814,45 @@ void ObjectActor::JSGGetScaling(Vec* scale) const
 	scale->z = mScaling.z;
 }
 
-/*
- * --INFO--
- * Address:	8042F654
- * Size:	000008
+/**
+ * @note Address: 0x8042F654
+ * @note Size: 0x8
  */
 void ObjectActor::JSGSetShape(u32 a1) { mShape = a1; }
 
-/*
- * --INFO--
- * Address:	8042F65C
- * Size:	000008
+/**
+ * @note Address: 0x8042F65C
+ * @note Size: 0x8
  */
 int ObjectActor::JSGGetShape() const { return mShape; }
 
-/*
- * --INFO--
- * Address:	8042F664
- * Size:	000008
+/**
+ * @note Address: 0x8042F664
+ * @note Size: 0x8
  */
 void ObjectActor::JSGSetAnimation(u32 a1) { mAnimation = a1; }
 
-/*
- * --INFO--
- * Address:	8042F66C
- * Size:	000008
+/**
+ * @note Address: 0x8042F66C
+ * @note Size: 0x8
  */
 int ObjectActor::JSGGetAnimation() const { return mAnimation; }
 
-/*
- * --INFO--
- * Address:	8042F674
- * Size:	000008
+/**
+ * @note Address: 0x8042F674
+ * @note Size: 0x8
  */
 f32 ObjectActor::JSGGetAnimationFrameMax() const { return mAnimFrameMax; }
 
-/*
- * --INFO--
- * Address:	8042F67C
- * Size:	000004
+/**
+ * @note Address: 0x8042F67C
+ * @note Size: 0x4
  */
 void ObjectActor::JSGSetAnimationFrame(f32) { }
 
-/*
- * --INFO--
- * Address:	8042F680
- * Size:	000008
+/**
+ * @note Address: 0x8042F680
+ * @note Size: 0x8
  */
 f32 ObjectActor::JSGGetAnimationFrame() const { return mAnimFrame; }
 

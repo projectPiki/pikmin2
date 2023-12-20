@@ -5,10 +5,9 @@ namespace OniKurage {
 
 static const char oniKurageMgrName[] = "246-OniKurageMgr";
 
-/*
- * --INFO--
- * Address:	802D3998
- * Size:	000050
+/**
+ * @note Address: 0x802D3998
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -16,31 +15,27 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "オニクラゲマネージャ"; // jellyfish manager
 }
 
-/*
- * --INFO--
- * Address:	802D39E8
- * Size:	000048
+/**
+ * @note Address: 0x802D39E8
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Parms); }
 
-/*
- * --INFO--
- * Address:	802D3CB4
- * Size:	000060
+/**
+ * @note Address: 0x802D3CB4
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	802D3DD0
- * Size:	000010
+/**
+ * @note Address: 0x802D3DD0
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
-/*
- * --INFO--
- * Address:	802D3DE0
- * Size:	000068
+/**
+ * @note Address: 0x802D3DE0
+ * @note Size: 0x68
  */
 void Mgr::loadModelData()
 {

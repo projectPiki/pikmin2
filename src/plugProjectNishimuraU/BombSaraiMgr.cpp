@@ -5,10 +5,9 @@ namespace BombSarai {
 
 static const char bombSaraiMgrName[] = "246-BombSaraiMgr";
 
-/*
- * --INFO--
- * Address:	802B21A4
- * Size:	000050
+/**
+ * @note Address: 0x802B21A4
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -16,31 +15,27 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "バクダンサライマネージャ"; // bakudan sarai manager
 }
 
-/*
- * --INFO--
- * Address:	802B21F4
- * Size:	000048
+/**
+ * @note Address: 0x802B21F4
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Parms); }
 
-/*
- * --INFO--
- * Address:	802B24FC
- * Size:	000060
+/**
+ * @note Address: 0x802B24FC
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	802B2618
- * Size:	000010
+/**
+ * @note Address: 0x802B2618
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
-/*
- * --INFO--
- * Address:	802B2628
- * Size:	000068
+/**
+ * @note Address: 0x802B2628
+ * @note Size: 0x68
  */
 void Mgr::loadModelData()
 {

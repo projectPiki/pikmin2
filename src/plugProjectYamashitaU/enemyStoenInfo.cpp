@@ -5,10 +5,9 @@
 
 namespace Game {
 namespace EnemyStone {
-/*
- * --INFO--
- * Address:	80128108
- * Size:	000164
+/**
+ * @note Address: 0x80128108
+ * @note Size: 0x164
  */
 void Info::setup(Stream& stream)
 {
@@ -34,10 +33,9 @@ void Info::setup(Stream& stream)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012826C
- * Size:	000014
+/**
+ * @note Address: 0x8012826C
+ * @note Size: 0x14
  */
 ObjInfo::ObjInfo()
     : mName(nullptr)

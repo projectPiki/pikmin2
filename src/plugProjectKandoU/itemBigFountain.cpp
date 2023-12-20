@@ -16,10 +16,9 @@ static const char unusedBFName[] = "itemBigFountain";
 
 Mgr* mgr;
 
-/*
- * --INFO--
- * Address:	801EC188
- * Size:	00018C
+/**
+ * @note Address: 0x801EC188
+ * @note Size: 0x18C
  */
 void FSM::init(Item* item)
 {
@@ -30,10 +29,9 @@ void FSM::init(Item* item)
 	registerState(new CloseState());
 }
 
-/*
- * --INFO--
- * Address:	801EC314
- * Size:	000048
+/**
+ * @note Address: 0x801EC314
+ * @note Size: 0x48
  */
 void AppearState::init(Item* item, StateArg* arg)
 {
@@ -42,10 +40,9 @@ void AppearState::init(Item* item, StateArg* arg)
 	item->setAlive(true);
 }
 
-/*
- * --INFO--
- * Address:	801EC35C
- * Size:	0000CC
+/**
+ * @note Address: 0x801EC35C
+ * @note Size: 0xCC
  */
 void AppearState::exec(Item* item)
 {
@@ -64,17 +61,15 @@ void AppearState::exec(Item* item)
 	item->mBuryDepth = timeRemaining * 45.0f;
 }
 
-/*
- * --INFO--
- * Address:	801EC458
- * Size:	000004
+/**
+ * @note Address: 0x801EC458
+ * @note Size: 0x4
  */
 void AppearState::cleanup(Item* item) { }
 
-/*
- * --INFO--
- * Address:	801EC45C
- * Size:	00003C
+/**
+ * @note Address: 0x801EC45C
+ * @note Size: 0x3C
  */
 void CloseState::init(Item* item, StateArg* arg)
 {
@@ -82,24 +77,21 @@ void CloseState::init(Item* item, StateArg* arg)
 	item->setAlive(false);
 }
 
-/*
- * --INFO--
- * Address:	801EC498
- * Size:	000014
+/**
+ * @note Address: 0x801EC498
+ * @note Size: 0x14
  */
 void CloseState::exec(Item* item) { item->mLod.resetFlag(AILOD_IsVisible | AILOD_IsVisVP0 | AILOD_IsVisVP1); }
 
-/*
- * --INFO--
- * Address:	801EC4AC
- * Size:	000004
+/**
+ * @note Address: 0x801EC4AC
+ * @note Size: 0x4
  */
 void CloseState::cleanup(Item* item) { }
 
-/*
- * --INFO--
- * Address:	801EC4B0
- * Size:	000044
+/**
+ * @note Address: 0x801EC4B0
+ * @note Size: 0x44
  */
 void WaitState::init(Item* item, StateArg* arg)
 {
@@ -108,24 +100,21 @@ void WaitState::init(Item* item, StateArg* arg)
 	item->mBuryDepth = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	801EC4F4
- * Size:	000034
+/**
+ * @note Address: 0x801EC4F4
+ * @note Size: 0x34
  */
 void WaitState::exec(Item* item) { item->startSound(PSSE_EN_WATERSHOT_NORMAL); }
 
-/*
- * --INFO--
- * Address:	801EC528
- * Size:	000004
+/**
+ * @note Address: 0x801EC528
+ * @note Size: 0x4
  */
 void WaitState::cleanup(Item* item) { }
 
-/*
- * --INFO--
- * Address:	801EC52C
- * Size:	000094
+/**
+ * @note Address: 0x801EC52C
+ * @note Size: 0x94
  */
 void WaitState::onDamage(Item* item, f32 damage)
 {
@@ -139,17 +128,15 @@ void WaitState::onDamage(Item* item, f32 damage)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801EC5C0
- * Size:	00000C
+/**
+ * @note Address: 0x801EC5C0
+ * @note Size: 0xC
  */
 void WaitState::onKeyEvent(Item* item, SysShape::KeyEvent const& keyEvent) { item->mAnimSpeed = 0.0f; }
 
-/*
- * --INFO--
- * Address:	801EC5CC
- * Size:	00011C
+/**
+ * @note Address: 0x801EC5CC
+ * @note Size: 0x11C
  */
 void OutState::init(Item* item, StateArg* arg)
 {
@@ -167,24 +154,21 @@ void OutState::init(Item* item, StateArg* arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801EC6E8
- * Size:	000034
+/**
+ * @note Address: 0x801EC6E8
+ * @note Size: 0x34
  */
 void OutState::exec(Item* item) { item->startSound(PSSE_EV_BIG_FOUNTAIN); }
 
-/*
- * --INFO--
- * Address:	801EC71C
- * Size:	000004
+/**
+ * @note Address: 0x801EC71C
+ * @note Size: 0x4
  */
 void OutState::cleanup(Item* item) { }
 
-/*
- * --INFO--
- * Address:	801EC720
- * Size:	000204
+/**
+ * @note Address: 0x801EC720
+ * @note Size: 0x204
  */
 void Item::movieUserCommand(u32 command, MoviePlayer* player)
 {
@@ -222,10 +206,9 @@ void Item::movieUserCommand(u32 command, MoviePlayer* player)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801EC924
- * Size:	000108
+/**
+ * @note Address: 0x801EC924
+ * @note Size: 0x108
  */
 bool Item::interactGotKey(InteractGotKey& gotKey)
 {
@@ -243,27 +226,24 @@ bool Item::interactGotKey(InteractGotKey& gotKey)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000DC
+/**
+ * @note Address: N/A
+ * @note Size: 0xDC
  */
 Item::Item()
     : WorkItem(OBJTYPE_BigFountain)
 {
 }
 
-/*
- * --INFO--
- * Address:	801ECA2C
- * Size:	000048
+/**
+ * @note Address: 0x801ECA2C
+ * @note Size: 0x48
  */
 void Item::constructor() { mSoundObj = new PSM::WorkItem(this); }
 
-/*
- * --INFO--
- * Address:	801ECA74
- * Size:	000284
+/**
+ * @note Address: 0x801ECA74
+ * @note Size: 0x284
  */
 void Item::onInit(CreatureInitArg* initArg)
 {
@@ -302,10 +282,9 @@ void Item::onInit(CreatureInitArg* initArg)
 	mFaceDir = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	801ECD2C
- * Size:	000054
+/**
+ * @note Address: 0x801ECD2C
+ * @note Size: 0x54
  */
 void Item::initDependency()
 {
@@ -315,10 +294,9 @@ void Item::initDependency()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801ECD80
- * Size:	0000C0
+/**
+ * @note Address: 0x801ECD80
+ * @note Size: 0xC0
  */
 void Item::update()
 {
@@ -333,10 +311,9 @@ void Item::update()
 	do_updateLOD();
 }
 
-/*
- * --INFO--
- * Address:	801ECE40
- * Size:	000060
+/**
+ * @note Address: 0x801ECE40
+ * @note Size: 0x60
  */
 void Item::killAllEffect()
 {
@@ -348,10 +325,9 @@ void Item::killAllEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801ECEA0
- * Size:	000068
+/**
+ * @note Address: 0x801ECEA0
+ * @note Size: 0x68
  */
 void Item::makeTrMatrix()
 {
@@ -361,10 +337,9 @@ void Item::makeTrMatrix()
 	mBaseTrMatrix.makeTR(translation, rotation);
 }
 
-/*
- * --INFO--
- * Address:	801ECF08
- * Size:	000118
+/**
+ * @note Address: 0x801ECF08
+ * @note Size: 0x118
  */
 void Item::onSetPosition()
 {
@@ -389,10 +364,9 @@ void Item::onSetPosition()
 	mPlatInstance->setCollision(true);
 }
 
-/*
- * --INFO--
- * Address:	801ED020
- * Size:	0000A0
+/**
+ * @note Address: 0x801ED020
+ * @note Size: 0xA0
  */
 void Item::doAI()
 {
@@ -405,10 +379,9 @@ void Item::doAI()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801ED0C0
- * Size:	00016C
+/**
+ * @note Address: 0x801ED0C0
+ * @note Size: 0x16C
  */
 void Item::doDirectDraw(Graphics& gfx)
 {
@@ -430,10 +403,9 @@ void Item::doDirectDraw(Graphics& gfx)
 	gfx.perspPrintf(printInfo, pos, "%s %s", mLod.isFlag(AILOD_IsVisible) ? "vis" : "x", status);
 }
 
-/*
- * --INFO--
- * Address:	801ED22C
- * Size:	000038
+/**
+ * @note Address: 0x801ED22C
+ * @note Size: 0x38
  */
 void Item::updateBoundSphere()
 {
@@ -441,24 +413,21 @@ void Item::updateBoundSphere()
 	updateCollTree();
 }
 
-/*
- * --INFO--
- * Address:	801ED264
- * Size:	000004
+/**
+ * @note Address: 0x801ED264
+ * @note Size: 0x4
  */
 void Item::doSimulation(f32) { }
 
-/*
- * --INFO--
- * Address:	801ED268
- * Size:	000030
+/**
+ * @note Address: 0x801ED268
+ * @note Size: 0x30
  */
 bool Item::canRide() { return mCurrentState->canRide(); }
 
-/*
- * --INFO--
- * Address:	801ED2A0
- * Size:	00011C
+/**
+ * @note Address: 0x801ED2A0
+ * @note Size: 0x11C
  */
 bool Item::interactAttack(InteractAttack& attack)
 {
@@ -479,10 +448,9 @@ bool Item::interactAttack(InteractAttack& attack)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801ED3C0
- * Size:	0000C8
+/**
+ * @note Address: 0x801ED3C0
+ * @note Size: 0xC8
  */
 bool Item::getVectorField(Sys::Sphere& sphere, Vector3f& vec)
 {
@@ -500,10 +468,9 @@ bool Item::getVectorField(Sys::Sphere& sphere, Vector3f& vec)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801ED488
- * Size:	000060
+/**
+ * @note Address: 0x801ED488
+ * @note Size: 0x60
  */
 f32 Item::getWorkDistance(Sys::Sphere& sphere)
 {
@@ -512,17 +479,15 @@ f32 Item::getWorkDistance(Sys::Sphere& sphere)
 	return dist - 50.0f;
 }
 
-/*
- * --INFO--
- * Address:	801ED4E8
- * Size:	00003C
+/**
+ * @note Address: 0x801ED4E8
+ * @note Size: 0x3C
  */
 void Item::onKeyEvent(SysShape::KeyEvent const& keyEvent) { mCurrentState->onKeyEvent(this, keyEvent); }
 
-/*
- * --INFO--
- * Address:	801ED528
- * Size:	000120
+/**
+ * @note Address: 0x801ED528
+ * @note Size: 0x120
  */
 Mgr::Mgr()
     : TNodeItemMgr()
@@ -541,10 +506,9 @@ Mgr::Mgr()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801ED858
- * Size:	0000DC
+/**
+ * @note Address: 0x801ED858
+ * @note Size: 0xDC
  */
 void Mgr::onLoadResources()
 {
@@ -565,17 +529,15 @@ void Mgr::onLoadResources()
 	closeTextArc(textArc);
 }
 
-/*
- * --INFO--
- * Address:	801ED934
- * Size:	000020
+/**
+ * @note Address: 0x801ED934
+ * @note Size: 0x20
  */
 BaseItem* Mgr::birth() { return TNodeItemMgr::birth(); }
 
-/*
- * --INFO--
- * Address:	801ED954
- * Size:	000058
+/**
+ * @note Address: 0x801ED954
+ * @note Size: 0x58
  */
 BaseItem* Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenItemParm* genParm)
 {

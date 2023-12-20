@@ -1,16 +1,14 @@
 #include "PowerPC_EABI_Support/MetroTRK/trk.h"
 
-/*
- * --INFO--
- * Address:	800BC57C
- * Size:	000008
+/**
+ * @note Address: 0x800BC57C
+ * @note Size: 0x8
  */
 DSError TRKInitializeDispatcher(void) { return DS_NoError; }
 
-/*
- * --INFO--
- * Address:	800BC40C
- * Size:	000170
+/**
+ * @note Address: 0x800BC40C
+ * @note Size: 0x170
  */
 DSError TRKDispatchMessage(MessageBuffer* msg)
 {

@@ -12,10 +12,9 @@ namespace CardEReader {
 static u8 cInitialCode[4] = { 'P', 'S', 'A', 'J' };
 } // namespace CardEReader
 
-/*
- * --INFO--
- * Address:	803ECB40
- * Size:	00005C
+/**
+ * @note Address: 0x803ECB40
+ * @note Size: 0x5C
  */
 void gCardEMgr_ThreadFunc(void* data)
 {
@@ -23,37 +22,33 @@ void gCardEMgr_ThreadFunc(void* data)
 	gCardEMgr->threadProc(data);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
+/**
+ * @note Address: N/A
+ * @note Size: 0x18
  */
 u32 CardEReader::changeEndian(u32 x) { return ((x & 0xFF00) << 8) | (((x >> 24) & 0xFF) | ((x >> 8) & 0xFF00)) | ((x & 0xFF) << 24); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void CardEReader::roundup4b(u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
+/**
+ * @note Address: N/A
+ * @note Size: 0x70
  */
 void CardEReader::CardE_probeAGB()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803ECB9C
- * Size:	000274
+/**
+ * @note Address: 0x803ECB9C
+ * @note Size: 0x274
  */
 bool CardEReader::CardE_uploadToGBA(s32 chan, u8* data, size_t size)
 {
@@ -129,17 +124,15 @@ bool CardEReader::CardE_uploadToGBA(s32 chan, u8* data, size_t size)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	803ECE10
- * Size:	000068
+/**
+ * @note Address: 0x803ECE10
+ * @note Size: 0x68
  */
 CardEReader::TMgr::~TMgr() { gCardEMgr = nullptr; }
 
-/*
- * --INFO--
- * Address:	803ECE78
- * Size:	00006C
+/**
+ * @note Address: 0x803ECE78
+ * @note Size: 0x6C
  */
 void CardEReader::TMgr::globalInstance()
 {
@@ -147,20 +140,18 @@ void CardEReader::TMgr::globalInstance()
 		gCardEMgr = new TMgr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 void CardEReader::TMgr::deleteInstance()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803ECEE4
- * Size:	00011C
+/**
+ * @note Address: 0x803ECEE4
+ * @note Size: 0x11C
  */
 void CardEReader::TMgr::loadResource()
 {
@@ -184,10 +175,9 @@ void CardEReader::TMgr::loadResource()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803ED000
- * Size:	00003C
+/**
+ * @note Address: 0x803ED000
+ * @note Size: 0x3C
  */
 void CardEReader::TMgr::init()
 {
@@ -196,10 +186,9 @@ void CardEReader::TMgr::init()
 	OSInitCond(&mCond);
 }
 
-/*
- * --INFO--
- * Address:	803ED03C
- * Size:	00001C
+/**
+ * @note Address: 0x803ED03C
+ * @note Size: 0x1C
  */
 void CardEReader::TMgr::uploadToGBA(s32 data)
 {
@@ -209,10 +198,9 @@ void CardEReader::TMgr::uploadToGBA(s32 data)
 	mGameID  = data;
 }
 
-/*
- * --INFO--
- * Address:	803ED058
- * Size:	000018
+/**
+ * @note Address: 0x803ED058
+ * @note Size: 0x18
  */
 void CardEReader::TMgr::probeAGB()
 {
@@ -221,10 +209,9 @@ void CardEReader::TMgr::probeAGB()
 	mCounter = 0;
 }
 
-/*
- * --INFO--
- * Address:	803ED070
- * Size:	000150
+/**
+ * @note Address: 0x803ED070
+ * @note Size: 0x150
  */
 void CardEReader::TMgr::update()
 {
@@ -273,17 +260,15 @@ void CardEReader::TMgr::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803ED1C0
- * Size:	000010
+/**
+ * @note Address: 0x803ED1C0
+ * @note Size: 0x10
  */
 bool CardEReader::TMgr::isFinish() { return (u8)(mState == 0); }
 
-/*
- * --INFO--
- * Address:	803ED1D0
- * Size:	000074
+/**
+ * @note Address: 0x803ED1D0
+ * @note Size: 0x74
  */
 void CardEReader::TMgr::threadProc(void* data)
 {
@@ -299,10 +284,9 @@ void CardEReader::TMgr::threadProc(void* data)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803ED244
- * Size:	000054
+/**
+ * @note Address: 0x803ED244
+ * @note Size: 0x54
  */
 bool CardEReader::TMgr::tryUploadToGBA_()
 {
@@ -314,10 +298,9 @@ bool CardEReader::TMgr::tryUploadToGBA_()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803ED298
- * Size:	000010
+/**
+ * @note Address: 0x803ED298
+ * @note Size: 0x10
  */
 void CardEReader::TMgr::goEnd_(enumErr stat)
 {

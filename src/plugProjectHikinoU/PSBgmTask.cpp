@@ -16,10 +16,9 @@ const float TriangleTableModTask::sTable[40] = {
 
 BankRandPrm* BankRandPrm::sInstance;
 
-/*
- * --INFO--
- * Address: 8033E6B4
- * Size:    000124
+/**
+ * @note Address: 0x8033E6B4
+ * @note Size: 0x124
  */
 int ModParamWithFade::task(JASTrack& track)
 {
@@ -46,11 +45,10 @@ int ModParamWithFade::task(JASTrack& track)
 	return result;
 }
 
-/*
+/**
  * task__Q28PSSystem21ModParamWithTableTaskFR8JASTrack
- * --INFO--
- * Address: 8033E7D8
- * Size:    0000F4
+ * @note Address: 0x8033E7D8
+ * @note Size: 0xF4
  */
 int ModParamWithTableTask::task(JASTrack& track)
 {
@@ -63,10 +61,9 @@ int ModParamWithTableTask::task(JASTrack& track)
 	return tableTask(track, getTgtWithTable(_24));
 }
 
-/*
- * --INFO--
- * Address: 8033E8CC
- * Size:    000030
+/**
+ * @note Address: 0x8033E8CC
+ * @note Size: 0x30
  */
 int PitchModTask::tableTask(JASTrack& track, f32 param)
 {
@@ -74,10 +71,9 @@ int PitchModTask::tableTask(JASTrack& track, f32 param)
 	return -0x10;
 }
 
-/*
- * --INFO--
- * Address: 8033E8FC
- * Size:    0000D4
+/**
+ * @note Address: 0x8033E8FC
+ * @note Size: 0xD4
  */
 float OuterParamTask::getPreParam(JASTrack& track)
 {
@@ -100,10 +96,9 @@ float OuterParamTask::getPreParam(JASTrack& track)
 	}
 }
 
-/*
- * --INFO--
- * Address: 8033E9D0
- * Size:    000098
+/**
+ * @note Address: 0x8033E9D0
+ * @note Size: 0x98
  */
 void OuterParamTask::timeTask(JASTrack& track, float param)
 {
@@ -119,10 +114,9 @@ void OuterParamTask::timeTask(JASTrack& track, float param)
 	track.mExtBuffer->setParam(_30, param);
 }
 
-/*
- * --INFO--
- * Address: 8033EA68
- * Size:    000028
+/**
+ * @note Address: 0x8033EA68
+ * @note Size: 0x28
  */
 int SimpleWaitTask::task(JASTrack& track)
 {
@@ -133,10 +127,9 @@ int SimpleWaitTask::task(JASTrack& track)
 	return -0x10;
 }
 
-/*
- * --INFO--
- * Address: 8033EA90
- * Size:    000074
+/**
+ * @note Address: 0x8033EA90
+ * @note Size: 0x74
  */
 BankRandPrm::BankRandPrm()
     : mInst()
@@ -146,10 +139,9 @@ BankRandPrm::BankRandPrm()
 	mInst._0C = 0.0f;
 }
 
-/*
- * --INFO--
- * Address: 8033EB04
- * Size:    000080
+/**
+ * @note Address: 0x8033EB04
+ * @note Size: 0x80
  */
 void TaskEntry_OuterParam::makeEntry(float p1, u32 p2)
 {
@@ -165,10 +157,9 @@ void TaskEntry_OuterParam::makeEntry(float p1, u32 p2)
 	append((TaskBase*)&mOuterParamTask);
 }
 
-/*
- * --INFO--
- * Address: 8033EB84
- * Size:    000054
+/**
+ * @note Address: 0x8033EB84
+ * @note Size: 0x54
  */
 void TaskEntry_IdMask::makeEntry(u8 noteMask)
 {
@@ -180,10 +171,9 @@ void TaskEntry_IdMask::makeEntry(u8 noteMask)
 	append((TaskBase*)&mIdMaskTask);
 }
 
-/*
- * --INFO--
- * Address: 8033EBD8
- * Size:    000110
+/**
+ * @note Address: 0x8033EBD8
+ * @note Size: 0x110
  */
 void TaskEntry_PitMod::makeEntry(float p1, float p2, u32 p3)
 {
@@ -222,10 +212,9 @@ void TaskEntry_PitMod::makeEntry(float p1, float p2, u32 p3)
 	append(&mPitResetTask);
 }
 
-/*
- * --INFO--
- * Address: 8033ECE8
- * Size:    0000A4
+/**
+ * @note Address: 0x8033ECE8
+ * @note Size: 0xA4
  */
 void TaskEntry_MuteVolume::makeEntry(float p1, u32 p2)
 {
@@ -248,10 +237,9 @@ void TaskEntry_MuteVolume::makeEntry(float p1, u32 p2)
 	append(&mOuterParamTask1);
 }
 
-/*
- * --INFO--
- * Address: 8033ED8C
- * Size:    00008C
+/**
+ * @note Address: 0x8033ED8C
+ * @note Size: 0x8C
  */
 void TaskEntry_MuteOnVolume::makeEntry(u32 p1)
 {
@@ -273,10 +261,9 @@ void TaskEntry_MuteOnVolume::makeEntry(u32 p1)
 	append(&mMuteTask);
 }
 
-/*
- * --INFO--
- * Address: 8033EE18
- * Size:    000080
+/**
+ * @note Address: 0x8033EE18
+ * @note Size: 0x80
  */
 void TaskEntry_Tempo::makeEntry(float p1, u32 p2)
 {

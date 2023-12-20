@@ -5,10 +5,9 @@
     Generated from dpostproc
 */
 
-/*
- * --INFO--
- * Address:	8009C858
- * Size:	000060
+/**
+ * @note Address: 0x8009C858
+ * @note Size: 0x60
  */
 void JASSeqCtrl::init()
 {
@@ -24,10 +23,9 @@ void JASSeqCtrl::init()
 	_44 = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8009C8B8
- * Size:	000014
+/**
+ * @note Address: 0x8009C8B8
+ * @note Size: 0x14
  */
 void JASSeqCtrl::start(void* p1, u32 p2)
 {
@@ -35,10 +33,9 @@ void JASSeqCtrl::start(void* p1, u32 p2)
 	_04 = _00 + p2;
 }
 
-/*
- * --INFO--
- * Address:	8009C8CC
- * Size:	00006C
+/**
+ * @note Address: 0x8009C8CC
+ * @note Size: 0x6C
  */
 bool JASSeqCtrl::loopEnd()
 {
@@ -59,10 +56,9 @@ bool JASSeqCtrl::loopEnd()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8009C938
- * Size:	000030
+/**
+ * @note Address: 0x8009C938
+ * @note Size: 0x30
  */
 bool JASSeqCtrl::waitCountDown()
 {
@@ -75,10 +71,9 @@ bool JASSeqCtrl::waitCountDown()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8009C968
- * Size:	000038
+/**
+ * @note Address: 0x8009C968
+ * @note Size: 0x38
  */
 bool JASSeqCtrl::callIntr(void* p1)
 {
@@ -92,10 +87,9 @@ bool JASSeqCtrl::callIntr(void* p1)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8009C9A0
- * Size:	000034
+/**
+ * @note Address: 0x8009C9A0
+ * @note Size: 0x34
  */
 bool JASSeqCtrl::retIntr()
 {
@@ -108,10 +102,9 @@ bool JASSeqCtrl::retIntr()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8009C9D4
- * Size:	000018
+/**
+ * @note Address: 0x8009C9D4
+ * @note Size: 0x18
  */
 u32 JASSeqCtrl::get16(u32 p1) const
 {
@@ -162,10 +155,9 @@ u32 JASSeqCtrl::get16(u32 p1) const
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8009C9EC
- * Size:	000028
+/**
+ * @note Address: 0x8009C9EC
+ * @note Size: 0x28
  */
 u32 JASSeqCtrl::get24(u32 p1) const
 {
@@ -186,10 +178,9 @@ u32 JASSeqCtrl::get24(u32 p1) const
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8009CA14
- * Size:	000038
+/**
+ * @note Address: 0x8009CA14
+ * @note Size: 0x38
  */
 u32 JASSeqCtrl::get32(u32) const
 {
@@ -211,10 +202,9 @@ u32 JASSeqCtrl::get32(u32) const
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8009CA4C
- * Size:	000028
+/**
+ * @note Address: 0x8009CA4C
+ * @note Size: 0x28
  */
 u32 JASSeqCtrl::read16()
 {
@@ -232,10 +222,9 @@ u32 JASSeqCtrl::read16()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8009CA74
- * Size:	000044
+/**
+ * @note Address: 0x8009CA74
+ * @note Size: 0x44
  */
 u32 JASSeqCtrl::read24()
 {
@@ -260,10 +249,9 @@ u32 JASSeqCtrl::read24()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
+/**
+ * @note Address: N/A
+ * @note Size: 0x5C
  */
 u32 JASSeqCtrl::read32()
 {

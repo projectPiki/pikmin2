@@ -18,10 +18,9 @@ namespace PikiAI {
 
 static const char unusedAiBattleName[] = "aiBattle";
 
-/*
- * --INFO--
- * Address:	8022ECB4
- * Size:	0000B8
+/**
+ * @note Address: 0x8022ECB4
+ * @note Size: 0xB8
  */
 ActBattle::ActBattle(Game::Piki* p)
     : Action(p)
@@ -31,10 +30,9 @@ ActBattle::ActBattle(Game::Piki* p)
 	mApproachPos = new ActApproachPos(p);
 }
 
-/*
- * --INFO--
- * Address:	8022ED6C
- * Size:	000044
+/**
+ * @note Address: 0x8022ED6C
+ * @note Size: 0x44
  */
 void ActBattle::emotion_success()
 {
@@ -42,10 +40,9 @@ void ActBattle::emotion_success()
 	mParent->mFsm->transit(mParent, Game::PIKISTATE_Emotion, &arg);
 }
 
-/*
- * --INFO--
- * Address:	8022EDB0
- * Size:	000300
+/**
+ * @note Address: 0x8022EDB0
+ * @note Size: 0x300
  * TODO
  */
 void ActBattle::init(PikiAI::ActionArg* arg)
@@ -101,10 +98,9 @@ void ActBattle::init(PikiAI::ActionArg* arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8022F0B0
- * Size:	0000EC
+/**
+ * @note Address: 0x8022F0B0
+ * @note Size: 0xEC
  */
 int ActBattle::exec()
 {
@@ -133,24 +129,21 @@ int ActBattle::exec()
 	return 1;
 }
 
-/*
- * --INFO--
- * Address:	8022F19C
- * Size:	00000C
+/**
+ * @note Address: 0x8022F19C
+ * @note Size: 0xC
  */
 void ActBattle::cleanup() { mOther = nullptr; }
 
-/*
- * --INFO--
- * Address:	8022F1A8
- * Size:	000004
+/**
+ * @note Address: 0x8022F1A8
+ * @note Size: 0x4
  */
 void ActBattle::collisionCallback(Game::Piki*, Game::CollEvent&) { }
 
-/*
- * --INFO--
- * Address:	8022F1AC
- * Size:	000484
+/**
+ * @note Address: 0x8022F1AC
+ * @note Size: 0x484
  */
 void ActBattle::onKeyEvent(SysShape::KeyEvent const& event)
 {
@@ -552,10 +545,9 @@ void ActBattle::onKeyEvent(SysShape::KeyEvent const& event)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8022F630
- * Size:	0000BC
+/**
+ * @note Address: 0x8022F630
+ * @note Size: 0xBC
  * TODO: WTF is going on in approach arg?
  */
 void ActBattle::initApproach()
@@ -571,10 +563,9 @@ void ActBattle::initApproach()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8022F6EC
- * Size:	000050
+/**
+ * @note Address: 0x8022F6EC
+ * @note Size: 0x50
  */
 int ActBattle::execApproach()
 {
@@ -585,10 +576,9 @@ int ActBattle::execApproach()
 	return 1;
 }
 
-/*
- * --INFO--
- * Address:	8022F73C
- * Size:	0000C8
+/**
+ * @note Address: 0x8022F73C
+ * @note Size: 0xC8
  */
 void ActBattle::initBattle()
 {
@@ -601,10 +591,9 @@ void ActBattle::initBattle()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8022F804
- * Size:	0000FC
+/**
+ * @note Address: 0x8022F804
+ * @note Size: 0xFC
  */
 int ActBattle::execBattle()
 {
@@ -626,10 +615,9 @@ int ActBattle::execBattle()
 	return 1;
 }
 
-/*
- * --INFO--
- * Address:	8022F900
- * Size:	0000E8
+/**
+ * @note Address: 0x8022F900
+ * @note Size: 0xE8
  */
 int ActBattle::execDamage()
 {

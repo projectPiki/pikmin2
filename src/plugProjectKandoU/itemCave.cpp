@@ -16,10 +16,9 @@ namespace ItemCave {
 
 Mgr* mgr;
 
-/*
- * --INFO--
- * Address:	801E9FB8
- * Size:	0000D8
+/**
+ * @note Address: 0x801E9FB8
+ * @note Size: 0xD8
  */
 void FSM::init(Item*)
 {
@@ -28,52 +27,45 @@ void FSM::init(Item*)
 	registerState(new OpenState);
 }
 
-/*
- * --INFO--
- * Address:	801EA090
- * Size:	000004
+/**
+ * @note Address: 0x801EA090
+ * @note Size: 0x4
  */
 void NormalState::init(Item*, StateArg*) { }
 
-/*
- * --INFO--
- * Address:	801EA094
- * Size:	000004
+/**
+ * @note Address: 0x801EA094
+ * @note Size: 0x4
  */
 void NormalState::exec(Item*) { }
 
-/*
- * --INFO--
- * Address:	801EA098
- * Size:	000004
+/**
+ * @note Address: 0x801EA098
+ * @note Size: 0x4
  */
 void NormalState::cleanup(Item*) { }
 
-/*
- * --INFO--
- * Address:	801EA09C
- * Size:	000004
+/**
+ * @note Address: 0x801EA09C
+ * @note Size: 0x4
  */
 void OpenState::init(Item*, StateArg*) { }
 
-/*
- * --INFO--
- * Address:	801EA0A0
- * Size:	000004
+/**
+ * @note Address: 0x801EA0A0
+ * @note Size: 0x4
  */
 void OpenState::exec(Item*) { }
 
-/*
- * --INFO--
- * Address:	801EA0A4
- * Size:	000004
+/**
+ * @note Address: 0x801EA0A4
+ * @note Size: 0x4
  */
 void OpenState::cleanup(Item*) { }
 
-/*
- * --INFO--
- * Address:	801EA0A8
- * Size:	0000E4
+/**
+ * @note Address: 0x801EA0A8
+ * @note Size: 0xE4
  */
 Item::Item()
     : FSMItem<Item, FSM, State>(OBJTYPE_Cave)
@@ -83,10 +75,9 @@ Item::Item()
 	mLightEventNode = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	801EA18C
- * Size:	0002B4
+/**
+ * @note Address: 0x801EA18C
+ * @note Size: 0x2B4
  */
 FogParm::FogParm()
     : Parameters(nullptr, "FogParm")
@@ -104,10 +95,9 @@ FogParm::FogParm()
 {
 }
 
-/*
- * --INFO--
- * Address:	801EA440
- * Size:	000078
+/**
+ * @note Address: 0x801EA440
+ * @note Size: 0x78
  */
 void Item::onInit(CreatureInitArg* arg)
 {
@@ -116,10 +106,9 @@ void Item::onInit(CreatureInitArg* arg)
 	setAlive(true);
 }
 
-/*
- * --INFO--
- * Address:	801EA4EC
- * Size:	000044
+/**
+ * @note Address: 0x801EA4EC
+ * @note Size: 0x44
  */
 void Item::makeTrMatrix()
 {
@@ -127,10 +116,9 @@ void Item::makeTrMatrix()
 	mBaseTrMatrix.makeTR(mPosition, angle);
 }
 
-/*
- * --INFO--
- * Address:	801EA530
- * Size:	000264
+/**
+ * @note Address: 0x801EA530
+ * @note Size: 0x264
  */
 void Item::onSetPosition()
 {
@@ -182,10 +170,9 @@ void Item::onSetPosition()
 	mPlatformB->setCollision(true);
 }
 
-/*
- * --INFO--
- * Address:	801EA794
- * Size:	000314
+/**
+ * @note Address: 0x801EA794
+ * @note Size: 0x314
  */
 void Item::initDependency()
 {
@@ -211,10 +198,9 @@ void Item::initDependency()
 	mBarrel = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	801EAAA8
- * Size:	00008C
+/**
+ * @note Address: 0x801EAAA8
+ * @note Size: 0x8C
  */
 bool Item::sound_culling()
 {
@@ -228,10 +214,9 @@ bool Item::sound_culling()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	801EAB34
- * Size:	00005C
+/**
+ * @note Address: 0x801EAB34
+ * @note Size: 0x5C
  */
 void Item::changeMaterial()
 {
@@ -241,10 +226,9 @@ void Item::changeMaterial()
 }
 
 #pragma dont_inline on
-/*
- * --INFO--
- * Address:	801EAB90
- * Size:	00014C
+/**
+ * @note Address: 0x801EAB90
+ * @note Size: 0x14C
  */
 void Item::createLightEvent()
 {
@@ -353,10 +337,9 @@ lbl_801EACC8:
 }
 #pragma dont_inline reset
 
-/*
- * --INFO--
- * Address:	801EACDC
- * Size:	000014
+/**
+ * @note Address: 0x801EACDC
+ * @note Size: 0x14
  */
 void Item::do_setLODParm(AILODParm& parm)
 {
@@ -364,10 +347,9 @@ void Item::do_setLODParm(AILODParm& parm)
 	parm.mClose = 0.085f;
 }
 
-/*
- * --INFO--
- * Address:	801EACF0
- * Size:	000214
+/**
+ * @note Address: 0x801EACF0
+ * @note Size: 0x214
  */
 void Item::doAI()
 {
@@ -554,10 +536,9 @@ lbl_801EAEEC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801EAF04
- * Size:	000060
+/**
+ * @note Address: 0x801EAF04
+ * @note Size: 0x60
  */
 u32 Item::getCaveOtakaraNum()
 {
@@ -569,10 +550,9 @@ u32 Item::getCaveOtakaraNum()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801EAF64
- * Size:	000060
+/**
+ * @note Address: 0x801EAF64
+ * @note Size: 0x60
  */
 u32 Item::getCaveOtakaraMax()
 {
@@ -584,10 +564,9 @@ u32 Item::getCaveOtakaraMax()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801EAFC4
- * Size:	0000B4
+/**
+ * @note Address: 0x801EAFC4
+ * @note Size: 0xB4
  */
 bool Item::complete()
 {
@@ -596,10 +575,9 @@ bool Item::complete()
 	return (otaNum >= otaMax);
 }
 
-/*
- * --INFO--
- * Address:	801EB078
- * Size:	0001F0
+/**
+ * @note Address: 0x801EB078
+ * @note Size: 0x1F0
  */
 void Item::doDirectDraw(Graphics& gfx)
 {
@@ -758,10 +736,9 @@ lbl_801EB228:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801EB268
- * Size:	00007C
+/**
+ * @note Address: 0x801EB268
+ * @note Size: 0x7C
  */
 Mgr::Mgr()
 {
@@ -770,10 +747,9 @@ Mgr::Mgr()
 	mObjectPathComponent = "user/Kando/objects/dungeon_hole";
 }
 
-/*
- * --INFO--
- * Address:	801EB2E4
- * Size:	0000E4
+/**
+ * @note Address: 0x801EB2E4
+ * @note Size: 0xE4
  */
 void Mgr::onLoadResources()
 {
@@ -790,24 +766,21 @@ void Mgr::onLoadResources()
 	closeTextArc(arc);
 }
 
-/*
- * --INFO--
- * Address:	801EB3C8
- * Size:	000074
+/**
+ * @note Address: 0x801EB3C8
+ * @note Size: 0x74
  */
 void Mgr::setup(BaseItem* item) { item->mModel = new SysShape::Model(getModelData(0), 0x20000, 2); }
 
-/*
- * --INFO--
- * Address:	801EB43C
- * Size:	000038
+/**
+ * @note Address: 0x801EB43C
+ * @note Size: 0x38
  */
 GenItemParm* Mgr::generatorNewItemParm() { return new GenCaveParm; }
 
-/*
- * --INFO--
- * Address:	801EB580
- * Size:	0000E0
+/**
+ * @note Address: 0x801EB580
+ * @note Size: 0xE0
  */
 void Mgr::generatorWrite(Stream& stream, GenItemParm* parm)
 {
@@ -825,10 +798,9 @@ void Mgr::generatorWrite(Stream& stream, GenItemParm* parm)
 	gparm->mFogParm.write(stream);
 }
 
-/*
- * --INFO--
- * Address:	801EB660
- * Size:	000218
+/**
+ * @note Address: 0x801EB660
+ * @note Size: 0x218
  */
 void Mgr::generatorRead(Stream& stream, GenItemParm* parm, u32 flag)
 {
@@ -852,10 +824,9 @@ void Mgr::generatorRead(Stream& stream, GenItemParm* parm, u32 flag)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801EB878
- * Size:	0000FC
+/**
+ * @note Address: 0x801EB878
+ * @note Size: 0xFC
  */
 BaseItem* Mgr::generatorBirth(Vector3f& pos, Vector3f& angle, GenItemParm* parm)
 {

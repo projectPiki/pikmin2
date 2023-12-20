@@ -3,10 +3,9 @@
 
 namespace Game {
 namespace Cave {
-/*
- * --INFO--
- * Address:	8024FE70
- * Size:	000074
+/**
+ * @note Address: 0x8024FE70
+ * @note Size: 0x74
  */
 RandGateUnit::RandGateUnit(MapUnitGenerator* generator)
 {
@@ -23,10 +22,9 @@ RandGateUnit::RandGateUnit(MapUnitGenerator* generator)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8024FEE4
- * Size:	00000C
+/**
+ * @note Address: 0x8024FEE4
+ * @note Size: 0xC
  */
 void RandGateUnit::setManageClassPtr(RandMapScore* score, RandItemUnit* item)
 {
@@ -34,10 +32,9 @@ void RandGateUnit::setManageClassPtr(RandMapScore* score, RandItemUnit* item)
 	mItemUnit = item;
 }
 
-/*
- * --INFO--
- * Address:	8024FEF0
- * Size:	0000D8
+/**
+ * @note Address: 0x8024FEF0
+ * @note Size: 0xD8
  */
 void RandGateUnit::setGateDoor()
 {
@@ -64,10 +61,9 @@ void RandGateUnit::setGateDoor()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8024FFC8
- * Size:	0000D4
+/**
+ * @note Address: 0x8024FFC8
+ * @note Size: 0xD4
  */
 GateUnit* RandGateUnit::getGateUnit()
 {
@@ -94,10 +90,9 @@ GateUnit* RandGateUnit::getGateUnit()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8025009C
- * Size:	0000BC
+/**
+ * @note Address: 0x8025009C
+ * @note Size: 0xBC
  */
 MapNode* RandGateUnit::getRoomNodePtr(int& idx)
 {
@@ -121,10 +116,9 @@ MapNode* RandGateUnit::getRoomNodePtr(int& idx)
 	return getRandomScoreDoor(idx);
 }
 
-/*
- * --INFO--
- * Address:	80250158
- * Size:	000160
+/**
+ * @note Address: 0x80250158
+ * @note Size: 0x160
  */
 MapNode* RandGateUnit::getItemSetCapDoor(int& idx)
 {
@@ -154,10 +148,9 @@ MapNode* RandGateUnit::getItemSetCapDoor(int& idx)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	802502B8
- * Size:	0000E4
+/**
+ * @note Address: 0x802502B8
+ * @note Size: 0xE4
  */
 MapNode* RandGateUnit::getRoomMinScoreDoor(int& idx)
 {
@@ -180,10 +173,9 @@ MapNode* RandGateUnit::getRoomMinScoreDoor(int& idx)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8025039C
- * Size:	000218
+/**
+ * @note Address: 0x8025039C
+ * @note Size: 0x218
  */
 Game::Cave::MapNode* Game::Cave::RandGateUnit::getRoomLowScoreDoor(int& idx)
 {
@@ -229,10 +221,9 @@ Game::Cave::MapNode* Game::Cave::RandGateUnit::getRoomLowScoreDoor(int& idx)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	802505B4
- * Size:	000270
+/**
+ * @note Address: 0x802505B4
+ * @note Size: 0x270
  */
 MapNode* RandGateUnit::getRandomScoreDoor(int& idx)
 {

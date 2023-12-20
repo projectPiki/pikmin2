@@ -12,10 +12,9 @@
 namespace Game {
 namespace KumaChappy {
 
-/*
- * --INFO--
- * Address:	802996A0
- * Size:	000154
+/**
+ * @note Address: 0x802996A0
+ * @note Size: 0x154
  */
 Obj::Obj()
 {
@@ -24,17 +23,15 @@ Obj::Obj()
 	createChappyRelation();
 }
 
-/*
- * --INFO--
- * Address:	802997F4
- * Size:	000004
+/**
+ * @note Address: 0x802997F4
+ * @note Size: 0x4
  */
 void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
-/*
- * --INFO--
- * Address:	802997F8
- * Size:	00007C
+/**
+ * @note Address: 0x802997F8
+ * @note Size: 0x7C
  */
 void Obj::onInit(CreatureInitArg* arg)
 {
@@ -48,10 +45,9 @@ void Obj::onInit(CreatureInitArg* arg)
 	mFsm->start(this, KUMACHAPPY_TurnPath, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80299874
- * Size:	000060
+/**
+ * @note Address: 0x80299874
+ * @note Size: 0x60
  */
 void Obj::doUpdate()
 {
@@ -61,24 +57,21 @@ void Obj::doUpdate()
 	mMouthSlots.update();
 }
 
-/*
- * --INFO--
- * Address:	802998D4
- * Size:	000004
+/**
+ * @note Address: 0x802998D4
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	802998D8
- * Size:	000020
+/**
+ * @note Address: 0x802998D8
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	802998F8
- * Size:	00004C
+/**
+ * @note Address: 0x802998F8
+ * @note Size: 0x4C
  */
 void Obj::setFSM(FSM* fsm)
 {
@@ -87,10 +80,9 @@ void Obj::setFSM(FSM* fsm)
 	mCurrentLifecycleState = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80299944
- * Size:	0000C4
+/**
+ * @note Address: 0x80299944
+ * @note Size: 0xC4
  */
 void Obj::getShadowParam(ShadowParam& param)
 {
@@ -112,10 +104,9 @@ void Obj::getShadowParam(ShadowParam& param)
 	param.mSize = 30.0f;
 }
 
-/*
- * --INFO--
- * Address:	80299A08
- * Size:	000038
+/**
+ * @note Address: 0x80299A08
+ * @note Size: 0x38
  */
 bool Obj::damageCallBack(Creature*, f32 dmg, CollPart* part)
 {
@@ -126,17 +117,15 @@ bool Obj::damageCallBack(Creature*, f32 dmg, CollPart* part)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80299A40
- * Size:	000028
+/**
+ * @note Address: 0x80299A40
+ * @note Size: 0x28
  */
 void Obj::startCarcassMotion() { startMotion(KUMACHAPPYANIM_Carry, nullptr); }
 
-/*
- * --INFO--
- * Address:	80299A68
- * Size:	0000A8
+/**
+ * @note Address: 0x80299A68
+ * @note Size: 0xA8
  */
 Vector3f Obj::getOffsetForMapCollision()
 {
@@ -151,10 +140,9 @@ Vector3f Obj::getOffsetForMapCollision()
 	return pos;
 }
 
-/*
- * --INFO--
- * Address:	80299B10
- * Size:	0000DC
+/**
+ * @note Address: 0x80299B10
+ * @note Size: 0xDC
  */
 void Obj::initMouthSlots()
 {
@@ -170,10 +158,9 @@ void Obj::initMouthSlots()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80299BEC
- * Size:	000064
+/**
+ * @note Address: 0x80299BEC
+ * @note Size: 0x64
  */
 void Obj::initWalkSmokeEffect()
 {
@@ -182,17 +169,15 @@ void Obj::initWalkSmokeEffect()
 	mWalkSmokeMgr.setup(1, mModel, "asiR", 10.0f);
 }
 
-/*
- * --INFO--
- * Address:	80299C50
- * Size:	000008
+/**
+ * @note Address: 0x80299C50
+ * @note Size: 0x8
  */
 WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
 
-/*
- * --INFO--
- * Address:	80299C58
- * Size:	000014
+/**
+ * @note Address: 0x80299C58
+ * @note Size: 0x14
  */
 bool Obj::doBecomeCarcass()
 {
@@ -201,10 +186,9 @@ bool Obj::doBecomeCarcass()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80299C6C
- * Size:	0001FC
+/**
+ * @note Address: 0x80299C6C
+ * @note Size: 0x1FC
  */
 void Obj::doUpdateCarcass()
 {
@@ -240,10 +224,9 @@ void Obj::doUpdateCarcass()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80299E68
- * Size:	000064
+/**
+ * @note Address: 0x80299E68
+ * @note Size: 0x64
  */
 void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
 {
@@ -258,10 +241,9 @@ void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
 	param.mRadius              = 10.0f;
 }
 
-/*
- * --INFO--
- * Address:	80299ECC
- * Size:	000024
+/**
+ * @note Address: 0x80299ECC
+ * @note Size: 0x24
  */
 f32 Obj::getViewAngle()
 {
@@ -272,10 +254,9 @@ f32 Obj::getViewAngle()
 	return parms->mGeneral.mViewAngle;
 }
 
-/*
- * --INFO--
- * Address:	80299EF0
- * Size:	000010
+/**
+ * @note Address: 0x80299EF0
+ * @note Size: 0x10
  */
 void Obj::resetWayPoint()
 {
@@ -283,10 +264,9 @@ void Obj::resetWayPoint()
 	mPrevWP = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80299F00
- * Size:	0000B0
+/**
+ * @note Address: 0x80299F00
+ * @note Size: 0xB0
  */
 void Obj::setNearestWayPoint()
 {
@@ -303,10 +283,9 @@ void Obj::setNearestWayPoint()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80299FB0
- * Size:	000260
+/**
+ * @note Address: 0x80299FB0
+ * @note Size: 0x260
  */
 void Obj::setLinkWayPoint()
 {
@@ -355,10 +334,9 @@ void Obj::setLinkWayPoint()
 	setNearestWayPoint();
 }
 
-/*
- * --INFO--
- * Address:	8029A210
- * Size:	00006C
+/**
+ * @note Address: 0x8029A210
+ * @note Size: 0x6C
  */
 Creature* Obj::getSearchedTarget()
 {
@@ -372,10 +350,9 @@ Creature* Obj::getSearchedTarget()
 	return target;
 }
 
-/*
- * --INFO--
- * Address:	8029A27C
- * Size:	000128
+/**
+ * @note Address: 0x8029A27C
+ * @note Size: 0x128
  */
 void Obj::updateTargetDistance()
 {
@@ -398,10 +375,9 @@ void Obj::updateTargetDistance()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8029A3A4
- * Size:	0000BC
+/**
+ * @note Address: 0x8029A3A4
+ * @note Size: 0xBC
  */
 void Obj::updateHomePosition()
 {
@@ -465,10 +441,9 @@ lbl_8029A444:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8029A460
- * Size:	000070
+/**
+ * @note Address: 0x8029A460
+ * @note Size: 0x70
  */
 void Obj::createChappyRelation()
 {
@@ -476,10 +451,9 @@ void Obj::createChappyRelation()
 	mChappyRelation->clearRelations();
 }
 
-/*
- * --INFO--
- * Address:	8029A4D0
- * Size:	00007C
+/**
+ * @note Address: 0x8029A4D0
+ * @note Size: 0x7C
  */
 void Obj::startEnemyRumble()
 {

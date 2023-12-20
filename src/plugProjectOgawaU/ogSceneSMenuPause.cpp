@@ -4,38 +4,33 @@
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	803140B4
- * Size:	000050
+/**
+ * @note Address: 0x803140B4
+ * @note Size: 0x50
  */
 SMenuPause::SMenuPause() { }
 
-/*
- * --INFO--
- * Address:	80314104
- * Size:	000004
+/**
+ * @note Address: 0x80314104
+ * @note Size: 0x4
  */
 void SMenuPause::doUserCallBackFunc(Resource::MgrCommand*) { }
 
-/*
- * --INFO--
- * Address:	80314108
- * Size:	000060
+/**
+ * @note Address: 0x80314108
+ * @note Size: 0x60
  */
 void SMenuPause::doCreateObj(JKRArchive* archive) { registObj(new ObjSMenuPause("SMenuPause screen"), archive); }
 
-/*
- * --INFO--
- * Address:	80314168
- * Size:	000004
+/**
+ * @note Address: 0x80314168
+ * @note Size: 0x4
  */
 void SMenuPause::doUpdateActive() { }
 
-/*
- * --INFO--
- * Address:	8031416C
- * Size:	000068
+/**
+ * @note Address: 0x8031416C
+ * @note Size: 0x68
  */
 bool SMenuPause::doConfirmSetScene(::Screen::SetSceneArg& sceneArg)
 {

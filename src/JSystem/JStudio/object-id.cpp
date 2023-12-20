@@ -7,10 +7,9 @@
 
 namespace JStudio {
 
-/*
- * --INFO--
- * Address:	80010188
- * Size:	0000F0
+/**
+ * @note Address: 0x80010188
+ * @note Size: 0xF0
  */
 bool object::TIDData::isEqual(JStudio::object::TIDData const& a, JStudio::object::TIDData const& b)
 {

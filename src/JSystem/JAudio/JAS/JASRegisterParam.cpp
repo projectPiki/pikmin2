@@ -1,10 +1,9 @@
 #include "JSystem/JAudio/JAS/JASRegisterParam.h"
 #include "JSystem/JSupport/JSU.h"
 
-/*
- * --INFO--
- * Address:	8009C714
- * Size:	000050
+/**
+ * @note Address: 0x8009C714
+ * @note Size: 0x50
  */
 JASRegisterParam::JASRegisterParam()
 {
@@ -28,10 +27,9 @@ JASRegisterParam::JASRegisterParam()
 	_2C    = 0;
 }
 
-/*
- * --INFO--
- * Address:	8009C764
- * Size:	000068
+/**
+ * @note Address: 0x8009C764
+ * @note Size: 0x68
  */
 void JASRegisterParam::init()
 {
@@ -55,10 +53,9 @@ void JASRegisterParam::init()
 	_2C    = 0;
 }
 
-/*
- * --INFO--
- * Address:	8009C7CC
- * Size:	000070
+/**
+ * @note Address: 0x8009C7CC
+ * @note Size: 0x70
  */
 void JASRegisterParam::inherit(const JASRegisterParam& other)
 {
@@ -82,20 +79,18 @@ void JASRegisterParam::inherit(const JASRegisterParam& other)
 	_2C    = 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 void JASRegisterParam::setBankNumber(u8)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8009C83C
- * Size:	000010
+/**
+ * @note Address: 0x8009C83C
+ * @note Size: 0x10
  */
 u8 JASRegisterParam::getBankNumber() const
 {
@@ -103,10 +98,9 @@ u8 JASRegisterParam::getBankNumber() const
 	return _0C >> 8;
 }
 
-/*
- * --INFO--
- * Address:	8009C84C
- * Size:	00000C
+/**
+ * @note Address: 0x8009C84C
+ * @note Size: 0xC
  */
 u8 JASRegisterParam::getProgramNumber() const
 {

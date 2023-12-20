@@ -7,10 +7,9 @@ namespace JALCalc {
 const f32 cEqualCSlope = 1.0f;
 const f32 cEqualPSlope = 0.5f;
 
-/*
- * --INFO--
- * Address:    800BA244
- * Size:    000064
+/**
+ * @note Address: 0x800BA244
+ * @note Size: 0x64
  */
 f32 linearTransform(f32 x, f32 xStart, f32 xEnd, f32 yStart, f32 yEnd, bool unbounded)
 {
@@ -47,10 +46,9 @@ f32 linearTransform(f32 x, f32 xStart, f32 xEnd, f32 yStart, f32 yEnd, bool unbo
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	800BA2A8
- * Size:	00018C
+/**
+ * @note Address: 0x800BA2A8
+ * @note Size: 0x18C
  */
 f32 getParamByExp(f32 x, f32 xStart, f32 xEnd, f32 y, f32 yStart, f32 yEnd, JALCalc::CurveSign curve)
 {
@@ -95,10 +93,9 @@ f32 getParamByExp(f32 x, f32 xStart, f32 xEnd, f32 y, f32 yStart, f32 yEnd, JALC
 	return result;
 }
 
-///*
-// * --INFO--
-// * Address:	........
-// * Size:	000028
+///**
+// * @note Address: N/A
+// * @note Size: 0x28
 // */
 // void JALCalc::getParamByExp_0_1(f32, f32, f32, f32,
 // JALCalc::CurveSign)
@@ -106,10 +103,9 @@ f32 getParamByExp(f32 x, f32 xStart, f32 xEnd, f32 y, f32 yStart, f32 yEnd, JALC
 //    // UNUSED FUNCTION
 //}
 
-/*
- * --INFO--
- * Address:	800BA434
- * Size:	0000C0
+/**
+ * @note Address: 0x800BA434
+ * @note Size: 0xC0
  */
 f32 getRandom(f32 p1, f32 p2, f32 p3)
 {
@@ -129,10 +125,9 @@ f32 getRandom(f32 p1, f32 p2, f32 p3)
 	return val3 * p1;
 }
 
-/*
- * --INFO--
- * Address:	800BA4F4
- * Size:	000070
+/**
+ * @note Address: 0x800BA4F4
+ * @note Size: 0x70
  */
 f32 getRandom_0_1()
 {
@@ -141,50 +136,45 @@ f32 getRandom_0_1()
 	return *(f32*)(void*)&next - 1.0f;
 }
 
-///*
-// * --INFO--
-// * Address:	........
-// * Size:	0000A4
+///**
+// * @note Address: N/A
+// * @note Size: 0xA4
 // */
 // void JALCalc::getRandom_Sign()
 //{
 //    // UNUSED FUNCTION
 //}
 
-///*
-// * --INFO--
-// * Address:	........
-// * Size:	000028
+///**
+// * @note Address: N/A
+// * @note Size: 0x28
 // */
 // void JALCalc::pow2(f32)
 //{
 //    // UNUSED FUNCTION
 //}
 
-///*
-// * --INFO--
-// * Address:	........
-// * Size:	000050
+///**
+// * @note Address: N/A
+// * @note Size: 0x50
 // */
 // void JALCalc::getRint(f32)
 //{
 //    // UNUSED FUNCTION
 //}
 
-///*
-// * --INFO--
-// * Address:	........
-// * Size:	0000F8
+///**
+// * @note Address: N/A
+// * @note Size: 0xF8
 // */
 // void JALCalc::getDist(Vec*, Vec*)
 //{
 //    // UNUSED FUNCTION
 //}
 
-///*
-// * --INFO--
-// * Address:	........
-// * Size:	0000E4
+///**
+// * @note Address: N/A
+// * @note Size: 0xE4
 // */
 // void JALCalc::getDistPow(Vec*, Vec*)
 //{

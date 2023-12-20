@@ -39,20 +39,18 @@
 
 namespace JStudio {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000158
+/**
+ * @note Address: N/A
+ * @note Size: 0x158
  */
 void math::getRotation_xyz(float (*)[4], float, float, float)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80010FC4
- * Size:	0001B0
+/**
+ * @note Address: 0x80010FC4
+ * @note Size: 0x1B0
  */
 void math::getTransformation_SRxyzT(float (*)[4], Vec const&, Vec const&, Vec const&)
 {
@@ -169,20 +167,18 @@ void math::getTransformation_SRxyzT(float (*)[4], Vec const&, Vec const&, Vec co
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001B4
+/**
+ * @note Address: N/A
+ * @note Size: 0x1B4
  */
 void math::transform_SRxyzT(float (*)[4], float const (*)[4], Vec const&, Vec const&, Vec const&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80011174
- * Size:	000254
+/**
+ * @note Address: 0x80011174
+ * @note Size: 0x254
  */
 void math::getFromTransformation_SRxyzT(Vec*, Vec*, Vec*, float const (*)[4])
 {

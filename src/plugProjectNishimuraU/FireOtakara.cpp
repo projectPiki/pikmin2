@@ -2,17 +2,15 @@
 
 namespace Game {
 namespace FireOtakara {
-/*
- * --INFO--
- * Address:	802B81C8
- * Size:	0000A4
+/**
+ * @note Address: 0x802B81C8
+ * @note Size: 0xA4
  */
 Obj::Obj() { createEffect(); }
 
-/*
- * --INFO--
- * Address:	802B826C
- * Size:	0001A4
+/**
+ * @note Address: 0x802B826C
+ * @note Size: 0x1A4
  */
 void Obj::changeMaterial()
 {
@@ -41,10 +39,9 @@ void Obj::changeMaterial()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802B8410
- * Size:	000060
+/**
+ * @note Address: 0x802B8410
+ * @note Size: 0x60
  */
 void Obj::interactCreature(Creature* creature)
 {
@@ -53,17 +50,15 @@ void Obj::interactCreature(Creature* creature)
 	creature->stimulate(fire);
 }
 
-/*
- * --INFO--
- * Address:	802B8470
- * Size:	000060
+/**
+ * @note Address: 0x802B8470
+ * @note Size: 0x60
  */
 void Obj::createEffect() { mEfxChargeFire = new efx::TOtaChargefire; }
 
-/*
- * --INFO--
- * Address:	802B84D0
- * Size:	000048
+/**
+ * @note Address: 0x802B84D0
+ * @note Size: 0x48
  */
 void Obj::setupEffect()
 {
@@ -71,24 +66,21 @@ void Obj::setupEffect()
 	mEfxChargeFire->setMtxptr(centerJointMtx->mMatrix.mtxView);
 }
 
-/*
- * --INFO--
- * Address:	802B8518
- * Size:	000034
+/**
+ * @note Address: 0x802B8518
+ * @note Size: 0x34
  */
 void Obj::startChargeEffect() { mEfxChargeFire->create(nullptr); }
 
-/*
- * --INFO--
- * Address:	802B854C
- * Size:	000030
+/**
+ * @note Address: 0x802B854C
+ * @note Size: 0x30
  */
 void Obj::finishChargeEffect() { mEfxChargeFire->fade(); }
 
-/*
- * --INFO--
- * Address:	802B857C
- * Size:	0000B0
+/**
+ * @note Address: 0x802B857C
+ * @note Size: 0xB0
  */
 void Obj::createDisChargeEffect()
 {
@@ -97,24 +89,21 @@ void Obj::createDisChargeEffect()
 	dischargeFX.create(&fxArg);
 }
 
-/*
- * --INFO--
- * Address:	802B862C
- * Size:	000030
+/**
+ * @note Address: 0x802B862C
+ * @note Size: 0x30
  */
 void Obj::effectDrawOn() { mEfxChargeFire->endDemoDrawOn(); }
 
-/*
- * --INFO--
- * Address:	802B865C
- * Size:	000030
+/**
+ * @note Address: 0x802B865C
+ * @note Size: 0x30
  */
 void Obj::effectDrawOff() { mEfxChargeFire->startDemoDrawOff(); }
 
-/*
- * --INFO--
- * Address:	802B868C
- * Size:	000044
+/**
+ * @note Address: 0x802B868C
+ * @note Size: 0x44
  */
 void Obj::startDisChargeSE() { getJAIObject()->startSound(PSSE_EN_OTAKARA_ATTACK_FIRE, 0); }
 } // namespace FireOtakara

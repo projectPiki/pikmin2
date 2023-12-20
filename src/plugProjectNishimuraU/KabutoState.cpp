@@ -8,10 +8,9 @@ namespace Kabuto {
 
 static const char unusedKabutoName[] = "246-KabutoState";
 
-/*
- * --INFO--
- * Address:	802E1834
- * Size:	000480
+/**
+ * @note Address: 0x802E1834
+ * @note Size: 0x480
  */
 void Kabuto::FSM::init(EnemyBase* enemy)
 {
@@ -31,10 +30,9 @@ void Kabuto::FSM::init(EnemyBase* enemy)
 	registerState(new StateFixFlick);
 }
 
-/*
- * --INFO--
- * Address:	802E1CB4
- * Size:	0000A0
+/**
+ * @note Address: 0x802E1CB4
+ * @note Size: 0xA0
  */
 void Kabuto::StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -50,10 +48,9 @@ void Kabuto::StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E1D60
- * Size:	000044
+/**
+ * @note Address: 0x802E1D60
+ * @note Size: 0x44
  */
 void Kabuto::StateDead::exec(EnemyBase* enemy)
 {
@@ -62,17 +59,15 @@ void Kabuto::StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E1DA4
- * Size:	000004
+/**
+ * @note Address: 0x802E1DA4
+ * @note Size: 0x4
  */
 void Kabuto::StateDead::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802E1DA8
- * Size:	00006C
+/**
+ * @note Address: 0x802E1DA8
+ * @note Size: 0x6C
  */
 void Kabuto::StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -85,10 +80,9 @@ void Kabuto::StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	kabuto->startMotion(KABUTOANIM_Wait, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802E1E14
- * Size:	00010C
+/**
+ * @note Address: 0x802E1E14
+ * @note Size: 0x10C
  */
 void Kabuto::StateWait::exec(EnemyBase* enemy)
 {
@@ -113,17 +107,15 @@ void Kabuto::StateWait::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E1F20
- * Size:	000024
+/**
+ * @note Address: 0x802E1F20
+ * @note Size: 0x24
  */
 void Kabuto::StateWait::cleanup(EnemyBase* enemy) { enemy->constraintOff(); }
 
-/*
- * --INFO--
- * Address:	802E1F44
- * Size:	000054
+/**
+ * @note Address: 0x802E1F44
+ * @note Size: 0x54
  */
 void Kabuto::StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -135,10 +127,9 @@ void Kabuto::StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 	kabuto->startMotion(KABUTOANIM_Pivot, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802E1F98
- * Size:	000340
+/**
+ * @note Address: 0x802E1F98
+ * @note Size: 0x340
  */
 void Kabuto::StateTurn::exec(EnemyBase* enemy)
 {
@@ -405,17 +396,15 @@ lbl_802E22A0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802E22D8
- * Size:	000024
+/**
+ * @note Address: 0x802E22D8
+ * @note Size: 0x24
  */
 void Kabuto::StateTurn::cleanup(EnemyBase* enemy) { enemy->constraintOff(); }
 
-/*
- * --INFO--
- * Address:	802E22FC
- * Size:	000050
+/**
+ * @note Address: 0x802E22FC
+ * @note Size: 0x50
  */
 void Kabuto::StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -427,10 +416,9 @@ void Kabuto::StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	kabuto->startMotion(KABUTOANIM_Move, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802E234C
- * Size:	00038C
+/**
+ * @note Address: 0x802E234C
+ * @note Size: 0x38C
  */
 void Kabuto::StateMove::exec(EnemyBase* enemy)
 {
@@ -751,17 +739,15 @@ lbl_802E26A0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802E26D8
- * Size:	000024
+/**
+ * @note Address: 0x802E26D8
+ * @note Size: 0x24
  */
 void Kabuto::StateMove::cleanup(EnemyBase* enemy) { enemy->constraintOff(); }
 
-/*
- * --INFO--
- * Address:	802E26FC
- * Size:	000068
+/**
+ * @note Address: 0x802E26FC
+ * @note Size: 0x68
  */
 void Kabuto::StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -774,10 +760,9 @@ void Kabuto::StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	kabuto->startMotion(KABUTOANIM_Flick, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802E2764
- * Size:	00016C
+/**
+ * @note Address: 0x802E2764
+ * @note Size: 0x16C
  */
 void Kabuto::StateFlick::exec(EnemyBase* enemy)
 {
@@ -808,10 +793,9 @@ void Kabuto::StateFlick::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E28D0
- * Size:	000038
+/**
+ * @note Address: 0x802E28D0
+ * @note Size: 0x38
  */
 void Kabuto::StateFlick::cleanup(EnemyBase* enemy)
 {
@@ -819,10 +803,9 @@ void Kabuto::StateFlick::cleanup(EnemyBase* enemy)
 	enemy->setEmotionCaution();
 }
 
-/*
- * --INFO--
- * Address:	802E2908
- * Size:	00007C
+/**
+ * @note Address: 0x802E2908
+ * @note Size: 0x7C
  */
 void Kabuto::StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -837,10 +820,9 @@ void Kabuto::StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	kabuto->startMotion(KABUTOANIM_Attack, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802E2984
- * Size:	000128
+/**
+ * @note Address: 0x802E2984
+ * @note Size: 0x128
  */
 void Kabuto::StateAttack::exec(EnemyBase* enemy)
 {
@@ -871,10 +853,9 @@ void Kabuto::StateAttack::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E2AAC
- * Size:	000044
+/**
+ * @note Address: 0x802E2AAC
+ * @note Size: 0x44
  */
 void Kabuto::StateAttack::cleanup(EnemyBase* enemy)
 {
@@ -883,10 +864,9 @@ void Kabuto::StateAttack::cleanup(EnemyBase* enemy)
 	enemy->setEmotionCaution();
 }
 
-/*
- * --INFO--
- * Address:	802E2AF0
- * Size:	0000B8
+/**
+ * @note Address: 0x802E2AF0
+ * @note Size: 0xB8
  */
 void Kabuto::StateFixStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -904,10 +884,9 @@ void Kabuto::StateFixStay::init(EnemyBase* enemy, StateArg* stateArg)
 	kabuto->finishWaitEffect();
 }
 
-/*
- * --INFO--
- * Address:	802E2BA8
- * Size:	0000E4
+/**
+ * @note Address: 0x802E2BA8
+ * @note Size: 0xE4
  */
 void Kabuto::StateFixStay::exec(EnemyBase* enemy)
 {
@@ -922,10 +901,9 @@ void Kabuto::StateFixStay::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E2C8C
- * Size:	000084
+/**
+ * @note Address: 0x802E2C8C
+ * @note Size: 0x84
  */
 void Kabuto::StateFixStay::cleanup(EnemyBase* enemy)
 {
@@ -939,10 +917,9 @@ void Kabuto::StateFixStay::cleanup(EnemyBase* enemy)
 	kabuto->disableEvent(0, EB_ModelHidden);
 }
 
-/*
- * --INFO--
- * Address:	802E2D10
- * Size:	00018C
+/**
+ * @note Address: 0x802E2D10
+ * @note Size: 0x18C
  */
 void Kabuto::StateFixAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -969,10 +946,9 @@ void Kabuto::StateFixAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	                            CG_PARMS(kabuto)->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802E2E9C
- * Size:	000244
+/**
+ * @note Address: 0x802E2E9C
+ * @note Size: 0x244
  */
 void Kabuto::StateFixAppear::exec(EnemyBase* enemy)
 {
@@ -1010,17 +986,15 @@ void Kabuto::StateFixAppear::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E30E0
- * Size:	000010
+/**
+ * @note Address: 0x802E30E0
+ * @note Size: 0x10
  */
 void Kabuto::StateFixAppear::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_NoInterrupt); }
 
-/*
- * --INFO--
- * Address:	802E30F0
- * Size:	000130
+/**
+ * @note Address: 0x802E30F0
+ * @note Size: 0x130
  */
 void Kabuto::StateFixHide::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1041,10 +1015,9 @@ void Kabuto::StateFixHide::init(EnemyBase* enemy, StateArg* stateArg)
 	kabuto->finishWaitEffect();
 }
 
-/*
- * --INFO--
- * Address:	802E3220
- * Size:	000090
+/**
+ * @note Address: 0x802E3220
+ * @note Size: 0x90
  */
 void Kabuto::StateFixHide::exec(EnemyBase* enemy)
 {
@@ -1057,10 +1030,9 @@ void Kabuto::StateFixHide::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E32B0
- * Size:	000024
+/**
+ * @note Address: 0x802E32B0
+ * @note Size: 0x24
  */
 void Kabuto::StateFixHide::cleanup(EnemyBase* enemy)
 {
@@ -1070,10 +1042,9 @@ void Kabuto::StateFixHide::cleanup(EnemyBase* enemy)
 	enemy->disableEvent(0, EB_BitterImmune);
 }
 
-/*
- * --INFO--
- * Address:	802E32D4
- * Size:	000054
+/**
+ * @note Address: 0x802E32D4
+ * @note Size: 0x54
  */
 void Kabuto::StateFixWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1083,10 +1054,9 @@ void Kabuto::StateFixWait::init(EnemyBase* enemy, StateArg* stateArg)
 	kabuto->startWaitEffect();
 }
 
-/*
- * --INFO--
- * Address:	802E332C
- * Size:	000204
+/**
+ * @note Address: 0x802E332C
+ * @note Size: 0x204
  */
 void Kabuto::StateFixWait::exec(EnemyBase* enemy)
 {
@@ -1123,17 +1093,15 @@ void Kabuto::StateFixWait::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E3530
- * Size:	000004
+/**
+ * @note Address: 0x802E3530
+ * @note Size: 0x4
  */
 void Kabuto::StateFixWait::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802E3534
- * Size:	000068
+/**
+ * @note Address: 0x802E3534
+ * @note Size: 0x68
  */
 void Kabuto::StateFixTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1144,10 +1112,9 @@ void Kabuto::StateFixTurn::init(EnemyBase* enemy, StateArg* stateArg)
 	kabuto->startRotateEffect();
 }
 
-/*
- * --INFO--
- * Address:	802E35A0
- * Size:	000290
+/**
+ * @note Address: 0x802E35A0
+ * @note Size: 0x290
  */
 void Kabuto::StateFixTurn::exec(EnemyBase* enemy)
 {
@@ -1189,10 +1156,9 @@ void Kabuto::StateFixTurn::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E3830
- * Size:	000030
+/**
+ * @note Address: 0x802E3830
+ * @note Size: 0x30
  */
 void Kabuto::StateFixTurn::cleanup(EnemyBase* enemy)
 {
@@ -1200,10 +1166,9 @@ void Kabuto::StateFixTurn::cleanup(EnemyBase* enemy)
 	kabuto->finishRotateEffect();
 }
 
-/*
- * --INFO--
- * Address:	802E3864
- * Size:	000068
+/**
+ * @note Address: 0x802E3864
+ * @note Size: 0x68
  */
 void Kabuto::StateFixAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1215,10 +1180,9 @@ void Kabuto::StateFixAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	kabuto->startWaitEffect();
 }
 
-/*
- * --INFO--
- * Address:	802E38CC
- * Size:	000260
+/**
+ * @note Address: 0x802E38CC
+ * @note Size: 0x260
  */
 void Kabuto::StateFixAttack::exec(EnemyBase* enemy)
 {
@@ -1260,17 +1224,15 @@ void Kabuto::StateFixAttack::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E3B2C
- * Size:	000004
+/**
+ * @note Address: 0x802E3B2C
+ * @note Size: 0x4
  */
 void Kabuto::StateFixAttack::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802E3B30
- * Size:	000054
+/**
+ * @note Address: 0x802E3B30
+ * @note Size: 0x54
  */
 void Kabuto::StateFixFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1280,10 +1242,9 @@ void Kabuto::StateFixFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	kabuto->startWaitEffect();
 }
 
-/*
- * --INFO--
- * Address:	802E3B84
- * Size:	00016C
+/**
+ * @note Address: 0x802E3B84
+ * @note Size: 0x16C
  */
 void Kabuto::StateFixFlick::exec(EnemyBase* enemy)
 {
@@ -1314,10 +1275,9 @@ void Kabuto::StateFixFlick::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802E3CF0
- * Size:	000004
+/**
+ * @note Address: 0x802E3CF0
+ * @note Size: 0x4
  */
 void Kabuto::StateFixFlick::cleanup(EnemyBase* enemy) { }
 

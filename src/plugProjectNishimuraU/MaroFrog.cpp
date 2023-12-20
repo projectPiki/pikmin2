@@ -5,17 +5,15 @@
 namespace Game {
 namespace MaroFrog {
 
-/*
- * --INFO--
- * Address:	802617E0
- * Size:	000098
+/**
+ * @note Address: 0x802617E0
+ * @note Size: 0x98
  */
 Obj::Obj() { createEffect(); }
 
-/*
- * --INFO--
- * Address:	80261878
- * Size:	00045C
+/**
+ * @note Address: 0x80261878
+ * @note Size: 0x45C
  */
 void Obj::attackNaviPosition()
 {
@@ -44,10 +42,9 @@ void Obj::attackNaviPosition()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80261CD4
- * Size:	0000B0
+/**
+ * @note Address: 0x80261CD4
+ * @note Size: 0xB0
  */
 void Obj::createEffect() { mEfxPota = new efx::TFrogPota; }
 

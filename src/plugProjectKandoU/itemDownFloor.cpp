@@ -20,10 +20,9 @@ static const char unusedName[] = "itemDownFloor";
 
 Mgr* mgr;
 
-/*
- * --INFO--
- * Address:	801F4CDC
- * Size:	0001E4
+/**
+ * @note Address: 0x801F4CDC
+ * @note Size: 0x1E4
  */
 void FSM::init(Item*)
 {
@@ -35,10 +34,9 @@ void FSM::init(Item*)
 	registerState(new DeadState);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000134
+/**
+ * @note Address: N/A
+ * @note Size: 0x134
  */
 Item::Item()
     : FSMItem<Item, FSM, State>(OBJTYPE_Downfloor)
@@ -56,17 +54,15 @@ Item::Item()
 	mIsDemoBlock = false;
 }
 
-/*
- * --INFO--
- * Address:	801F4EC0
- * Size:	000048
+/**
+ * @note Address: 0x801F4EC0
+ * @note Size: 0x48
  */
 void Item::constructor() { mSoundObj = new PSM::WorkItem(this); }
 
-/*
- * --INFO--
- * Address:	801F4F08
- * Size:	0000FC
+/**
+ * @note Address: 0x801F4F08
+ * @note Size: 0xFC
  */
 void Item::onInit(CreatureInitArg* initArg)
 {
@@ -87,10 +83,9 @@ void Item::onInit(CreatureInitArg* initArg)
 	mCurrentWeight = 0;
 }
 
-/*
- * --INFO--
- * Address:	801F5038
- * Size:	0002B4
+/**
+ * @note Address: 0x801F5038
+ * @note Size: 0x2B4
  */
 void Item::initDependency()
 {
@@ -123,10 +118,9 @@ void Item::initDependency()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801F52EC
- * Size:	000138
+/**
+ * @note Address: 0x801F52EC
+ * @note Size: 0x138
  */
 void Item::onSetPosition()
 {
@@ -153,17 +147,15 @@ void Item::onSetPosition()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801F5424
- * Size:	00001C
+/**
+ * @note Address: 0x801F5424
+ * @note Size: 0x1C
  */
 void Item::updateBoundSphere() { mBoundingSphere.mPosition = mPosition; }
 
-/*
- * --INFO--
- * Address:	801F5440
- * Size:	000044
+/**
+ * @note Address: 0x801F5440
+ * @note Size: 0x44
  */
 void Item::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 {
@@ -172,20 +164,18 @@ void Item::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000068
+/**
+ * @note Address: N/A
+ * @note Size: 0x68
  */
 void Item::initMotion()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	801F5488
- * Size:	000338
+/**
+ * @note Address: 0x801F5488
+ * @note Size: 0x338
  */
 void Item::startDamageMotion()
 {
@@ -237,10 +227,9 @@ void Item::startDamageMotion()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801F57C0
- * Size:	00033C
+/**
+ * @note Address: 0x801F57C0
+ * @note Size: 0x33C
  */
 void Item::startDownMotion()
 {
@@ -291,10 +280,9 @@ void Item::startDownMotion()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801F5AFC
- * Size:	0002E4
+/**
+ * @note Address: 0x801F5AFC
+ * @note Size: 0x2E4
  */
 void Item::startUpMotion()
 {
@@ -340,17 +328,15 @@ void Item::startUpMotion()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801F5DE0
- * Size:	000004
+/**
+ * @note Address: 0x801F5DE0
+ * @note Size: 0x4
  */
 void Item::changeMaterial() { }
 
-/*
- * --INFO--
- * Address:	801F5DE4
- * Size:	000038
+/**
+ * @note Address: 0x801F5DE4
+ * @note Size: 0x38
  */
 void Item::doSave(Stream& output)
 {
@@ -359,10 +345,9 @@ void Item::doSave(Stream& output)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801F5E1C
- * Size:	0000F8
+/**
+ * @note Address: 0x801F5E1C
+ * @note Size: 0xF8
  */
 void Item::doLoad(Stream& input)
 {
@@ -391,10 +376,9 @@ void Item::doLoad(Stream& input)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801F5F14
- * Size:	0000F8
+/**
+ * @note Address: 0x801F5F14
+ * @note Size: 0xF8
  */
 void Item::doAI()
 {
@@ -421,10 +405,9 @@ void Item::doAI()
 	mFsm->exec(this);
 }
 
-/*
- * --INFO--
- * Address:	801F600C
- * Size:	00023C
+/**
+ * @note Address: 0x801F600C
+ * @note Size: 0x23C
  */
 void Item::platCallback(PlatEvent& event)
 {
@@ -464,10 +447,9 @@ void Item::platCallback(PlatEvent& event)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801F624C
- * Size:	00005C
+/**
+ * @note Address: 0x801F624C
+ * @note Size: 0x5C
  */
 void Item::getCarryInfoParam(CarryInfoParam& param)
 {
@@ -482,10 +464,9 @@ void Item::getCarryInfoParam(CarryInfoParam& param)
 	param.mIsTopFirst = FALSE;
 }
 
-/*
- * --INFO--
- * Address:	801F62A8
- * Size:	0001E0
+/**
+ * @note Address: 0x801F62A8
+ * @note Size: 0x1E0
  */
 Mgr::Mgr()
 {
@@ -524,10 +505,9 @@ Mgr::Mgr()
 	sys->heapStatusEnd("ItemDownFloor");
 }
 
-/*
- * --INFO--
- * Address:	801F6488
- * Size:	0000F0
+/**
+ * @note Address: 0x801F6488
+ * @note Size: 0xF0
  */
 void Mgr::setupDownFloor(Item* item)
 {
@@ -542,10 +522,9 @@ void Mgr::setupDownFloor(Item* item)
 	item->mAnimator.startAnim(0, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	801F6578
- * Size:	000108
+/**
+ * @note Address: 0x801F6578
+ * @note Size: 0x108
  */
 void Mgr::setupPlatform(Item* item)
 {
@@ -569,17 +548,15 @@ void Mgr::setupPlatform(Item* item)
 	sys->heapStatusEnd("Platform");
 }
 
-/*
- * --INFO--
- * Address:	801F6680
- * Size:	000004
+/**
+ * @note Address: 0x801F6680
+ * @note Size: 0x4
  */
 void Mgr::onLoadResources() { }
 
-/*
- * --INFO--
- * Address:	801F6684
- * Size:	00017C
+/**
+ * @note Address: 0x801F6684
+ * @note Size: 0x17C
  */
 BaseItem* Mgr::birth()
 {
@@ -590,10 +567,9 @@ BaseItem* Mgr::birth()
 	return downFloor;
 }
 
-/*
- * --INFO--
- * Address:	801F6800
- * Size:	00003C
+/**
+ * @note Address: 0x801F6800
+ * @note Size: 0x3C
  */
 char* Mgr::getCaveName(int type)
 {
@@ -608,10 +584,9 @@ char* Mgr::getCaveName(int type)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	801F683C
- * Size:	0000B0
+/**
+ * @note Address: 0x801F683C
+ * @note Size: 0xB0
  */
 int Mgr::getCaveID(char* name)
 {
@@ -629,10 +604,9 @@ int Mgr::getCaveID(char* name)
 	return DFMODEL_PaperBag;
 }
 
-/*
- * --INFO--
- * Address:	801F68EC
- * Size:	000068
+/**
+ * @note Address: 0x801F68EC
+ * @note Size: 0x68
  */
 void WaitState::init(Item* item, StateArg* stateArg)
 {
@@ -645,10 +619,9 @@ void WaitState::init(Item* item, StateArg* stateArg)
 	item->mAnimSpeed = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	801F6954
- * Size:	000060
+/**
+ * @note Address: 0x801F6954
+ * @note Size: 0x60
  */
 void WaitState::exec(Item* item)
 {
@@ -657,24 +630,21 @@ void WaitState::exec(Item* item)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801F69E4
- * Size:	000004
+/**
+ * @note Address: 0x801F69E4
+ * @note Size: 0x4
  */
 void WaitState::cleanup(Item*) { }
 
-/*
- * --INFO--
- * Address:	801F69E8
- * Size:	000004
+/**
+ * @note Address: 0x801F69E8
+ * @note Size: 0x4
  */
 void WaitState::onKeyEvent(Item*, SysShape::KeyEvent const&) { }
 
-/*
- * --INFO--
- * Address:	801F69EC
- * Size:	000040
+/**
+ * @note Address: 0x801F69EC
+ * @note Size: 0x40
  */
 void WaitState::onPlat(Item* item)
 {
@@ -683,10 +653,9 @@ void WaitState::onPlat(Item* item)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801F6A2C
- * Size:	000038
+/**
+ * @note Address: 0x801F6A2C
+ * @note Size: 0x38
  */
 void DamagedState::init(Item* item, StateArg* stateArg)
 {
@@ -694,10 +663,9 @@ void DamagedState::init(Item* item, StateArg* stateArg)
 	mIsReady = false;
 }
 
-/*
- * --INFO--
- * Address:	801F6A64
- * Size:	0000C4
+/**
+ * @note Address: 0x801F6A64
+ * @note Size: 0xC4
  */
 void DamagedState::exec(Item* item)
 {
@@ -716,31 +684,27 @@ void DamagedState::exec(Item* item)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801F6B28
- * Size:	000004
+/**
+ * @note Address: 0x801F6B28
+ * @note Size: 0x4
  */
 void DamagedState::cleanup(Item*) { }
 
-/*
- * --INFO--
- * Address:	801F6B2C
- * Size:	00000C
+/**
+ * @note Address: 0x801F6B2C
+ * @note Size: 0xC
  */
 void DamagedState::onKeyEvent(Item*, SysShape::KeyEvent const&) { mIsReady = true; }
 
-/*
- * --INFO--
- * Address:	801F6B38
- * Size:	000004
+/**
+ * @note Address: 0x801F6B38
+ * @note Size: 0x4
  */
 void DamagedState::onPlat(Item*) { }
 
-/*
- * --INFO--
- * Address:	801F6B3C
- * Size:	00009C
+/**
+ * @note Address: 0x801F6B3C
+ * @note Size: 0x9C
  */
 void DownState::init(Item* item, StateArg* stateArg)
 {
@@ -757,24 +721,21 @@ void DownState::init(Item* item, StateArg* stateArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801F6BD8
- * Size:	000004
+/**
+ * @note Address: 0x801F6BD8
+ * @note Size: 0x4
  */
 void DownState::exec(Item*) { }
 
-/*
- * --INFO--
- * Address:	801F6BDC
- * Size:	000004
+/**
+ * @note Address: 0x801F6BDC
+ * @note Size: 0x4
  */
 void DownState::cleanup(Item*) { }
 
-/*
- * --INFO--
- * Address:	801F6BE0
- * Size:	000220
+/**
+ * @note Address: 0x801F6BE0
+ * @note Size: 0x220
  */
 void DownState::onKeyEvent(Item* item, SysShape::KeyEvent const&)
 {
@@ -819,38 +780,33 @@ void DownState::onKeyEvent(Item* item, SysShape::KeyEvent const&)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801F6E00
- * Size:	000004
+/**
+ * @note Address: 0x801F6E00
+ * @note Size: 0x4
  */
 void DownState::onPlat(Item*) { }
 
-/*
- * --INFO--
- * Address:	801F6E04
- * Size:	000024
+/**
+ * @note Address: 0x801F6E04
+ * @note Size: 0x24
  */
 void UpState::init(Item* item, StateArg*) { item->startUpMotion(); }
 
-/*
- * --INFO--
- * Address:	801F6E28
- * Size:	000004
+/**
+ * @note Address: 0x801F6E28
+ * @note Size: 0x4
  */
 void UpState::exec(Item*) { }
 
-/*
- * --INFO--
- * Address:	801F6E2C
- * Size:	000004
+/**
+ * @note Address: 0x801F6E2C
+ * @note Size: 0x4
  */
 void UpState::cleanup(Item*) { }
 
-/*
- * --INFO--
- * Address:	801F6E30
- * Size:	00003C
+/**
+ * @note Address: 0x801F6E30
+ * @note Size: 0x3C
  */
 void UpState::onKeyEvent(Item* item, SysShape::KeyEvent const&)
 {
@@ -858,24 +814,21 @@ void UpState::onKeyEvent(Item* item, SysShape::KeyEvent const&)
 	transit(item, DOWNFLOOR_Wait, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	801F6E6C
- * Size:	000004
+/**
+ * @note Address: 0x801F6E6C
+ * @note Size: 0x4
  */
 void UpState::onPlat(Item*) { }
 
-/*
- * --INFO--
- * Address:	801F6E70
- * Size:	00007C
+/**
+ * @note Address: 0x801F6E70
+ * @note Size: 0x7C
  */
 GenItemParm* Mgr::generatorNewItemParm() { return new GenDownFloorParm(); }
 
-/*
- * --INFO--
- * Address:	801F6EEC
- * Size:	000104
+/**
+ * @note Address: 0x801F6EEC
+ * @note Size: 0x104
  */
 void Mgr::generatorWrite(Stream& input, GenItemParm* genParm)
 {
@@ -898,10 +851,9 @@ void Mgr::generatorWrite(Stream& input, GenItemParm* genParm)
 	input.textWriteText("\t# id\r\n"); // '# id'
 }
 
-/*
- * --INFO--
- * Address:	801F6FF0
- * Size:	0000CC
+/**
+ * @note Address: 0x801F6FF0
+ * @note Size: 0xCC
  */
 void Mgr::generatorRead(Stream& input, GenItemParm* genParm, u32 version)
 {
@@ -923,10 +875,9 @@ void Mgr::generatorRead(Stream& input, GenItemParm* genParm, u32 version)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801F70BC
- * Size:	0001E4
+/**
+ * @note Address: 0x801F70BC
+ * @note Size: 0x1E4
  */
 BaseItem* Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenItemParm* genParm)
 {

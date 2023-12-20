@@ -169,10 +169,9 @@
         .4byte 0x00000000
 */
 
-/*
- * --INFO--
- * Address:	800955EC
- * Size:	000070
+/**
+ * @note Address: 0x800955EC
+ * @note Size: 0x70
  */
 JPAResource::JPAResource()
 {
@@ -204,10 +203,9 @@ JPAResource::JPAResource()
 	mUsrIdx                       = 0;
 }
 
-/*
- * --INFO--
- * Address:	8009565C
- * Size:	001540
+/**
+ * @note Address: 0x8009565C
+ * @note Size: 0x1540
  */
 void JPAResource::init(JKRHeap*)
 {
@@ -1927,10 +1925,9 @@ lbl_80096B88:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80096B9C
- * Size:	00055C
+/**
+ * @note Address: 0x80096B9C
+ * @note Size: 0x55C
  */
 bool JPAResource::calc(JPAEmitterWorkData*, JPABaseEmitter*)
 {
@@ -2351,10 +2348,9 @@ lbl_800970E4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800970F8
- * Size:	0000F0
+/**
+ * @note Address: 0x800970F8
+ * @note Size: 0xF0
  */
 void JPAResource::draw(JPAEmitterWorkData* work, JPABaseEmitter* emtr)
 {
@@ -2373,10 +2369,9 @@ void JPAResource::draw(JPAEmitterWorkData* work, JPABaseEmitter* emtr)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800971E8
- * Size:	000334
+/**
+ * @note Address: 0x800971E8
+ * @note Size: 0x334
  */
 void JPAResource::drawP(JPAEmitterWorkData*)
 {
@@ -2637,10 +2632,9 @@ lbl_80097508:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8009751C
- * Size:	0002F0
+/**
+ * @note Address: 0x8009751C
+ * @note Size: 0x2F0
  */
 void JPAResource::drawC(JPAEmitterWorkData*)
 {
@@ -2880,10 +2874,9 @@ lbl_800977F8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8009780C
- * Size:	000278
+/**
+ * @note Address: 0x8009780C
+ * @note Size: 0x278
  */
 void JPAResource::setPTev()
 {
@@ -3063,10 +3056,9 @@ lbl_80097A68:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80097A84
- * Size:	000164
+/**
+ * @note Address: 0x80097A84
+ * @note Size: 0x164
  */
 void JPAResource::setCTev(JPAEmitterWorkData*)
 {
@@ -3169,10 +3161,9 @@ lbl_80097B90:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80097BE8
- * Size:	000074
+/**
+ * @note Address: 0x80097BE8
+ * @note Size: 0x74
  */
 void JPAResource::calc_p(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
@@ -3184,10 +3175,9 @@ void JPAResource::calc_p(JPAEmitterWorkData* workData, JPABaseParticle* particle
 	}
 }
 
-/*
- * --INFO--
- * Address:	80097C5C
- * Size:	000074
+/**
+ * @note Address: 0x80097C5C
+ * @note Size: 0x74
  */
 void JPAResource::calc_c(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
@@ -3199,10 +3189,9 @@ void JPAResource::calc_c(JPAEmitterWorkData* workData, JPABaseParticle* particle
 	}
 }
 
-/*
- * --INFO--
- * Address:	80097CD0
- * Size:	000074
+/**
+ * @note Address: 0x80097CD0
+ * @note Size: 0x74
  */
 void JPAResource::calcField(JPAEmitterWorkData*, JPABaseParticle*)
 {
@@ -3243,10 +3232,9 @@ lbl_80097D28:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80097D44
- * Size:	000138
+/**
+ * @note Address: 0x80097D44
+ * @note Size: 0x138
  */
 void JPAResource::calcKey(JPAEmitterWorkData*)
 {
@@ -3366,10 +3354,9 @@ lbl_80097E58:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80097E7C
- * Size:	0001DC
+/**
+ * @note Address: 0x80097E7C
+ * @note Size: 0x1DC
  */
 void JPAResource::calcWorkData_c(JPAEmitterWorkData*)
 {
@@ -3496,10 +3483,9 @@ void JPAResource::calcWorkData_c(JPAEmitterWorkData*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80098058
- * Size:	000080
+/**
+ * @note Address: 0x80098058
+ * @note Size: 0x80
  */
 void JPAResource::calcWorkData_d(JPAEmitterWorkData* work)
 {

@@ -10,10 +10,9 @@ namespace newScreen {
 
 static const char objChall1PUnusedArray[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-/*
- * --INFO--
- * Address:	80327D48
- * Size:	000074
+/**
+ * @note Address: 0x80327D48
+ * @note Size: 0x74
  */
 ObjChallenge1P::ObjChallenge1P(const char* name)
 {
@@ -27,17 +26,15 @@ ObjChallenge1P::ObjChallenge1P(const char* name)
 	mPokoScreen  = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80327DBC
- * Size:	000068
+/**
+ * @note Address: 0x80327DBC
+ * @note Size: 0x68
  */
 ObjChallenge1P::~ObjChallenge1P() { }
 
-/*
- * --INFO--
- * Address:	80327E24
- * Size:	000678
+/**
+ * @note Address: 0x80327E24
+ * @note Size: 0x678
  */
 void ObjChallenge1P::doCreate(JKRArchive* arc)
 {
@@ -127,10 +124,9 @@ void ObjChallenge1P::doCreate(JKRArchive* arc)
 	doCreateAfter(arc, counter);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001CC
+/**
+ * @note Address: N/A
+ * @note Size: 0x1CC
  */
 void ObjChallenge1P::commonUpdate()
 {
@@ -159,10 +155,9 @@ void ObjChallenge1P::commonUpdate()
 	mBloGroup->update();
 }
 
-/*
- * --INFO--
- * Address:	8032849C
- * Size:	0001D4
+/**
+ * @note Address: 0x8032849C
+ * @note Size: 0x1D4
  */
 bool ObjChallenge1P::doUpdate()
 {
@@ -170,10 +165,9 @@ bool ObjChallenge1P::doUpdate()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80328670
- * Size:	000030
+/**
+ * @note Address: 0x80328670
+ * @note Size: 0x30
  */
 void ObjChallenge1P::doDraw(Graphics& gfx)
 {
@@ -182,10 +176,9 @@ void ObjChallenge1P::doDraw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803286A0
- * Size:	000228
+/**
+ * @note Address: 0x803286A0
+ * @note Size: 0x228
  */
 bool ObjChallenge1P::doUpdateFadein()
 {
@@ -201,24 +194,21 @@ bool ObjChallenge1P::doUpdateFadein()
 	return check;
 }
 
-/*
- * --INFO--
- * Address:	803288C8
- * Size:	000004
+/**
+ * @note Address: 0x803288C8
+ * @note Size: 0x4
  */
 void ObjChallenge1P::doUpdateFadeinFinish() { }
 
-/*
- * --INFO--
- * Address:	803288CC
- * Size:	00000C
+/**
+ * @note Address: 0x803288CC
+ * @note Size: 0xC
  */
 void ObjChallenge1P::doUpdateFinish() { mFadeLevel = 0.0f; }
 
-/*
- * --INFO--
- * Address:	803288D8
- * Size:	000230
+/**
+ * @note Address: 0x803288D8
+ * @note Size: 0x230
  */
 bool ObjChallenge1P::doUpdateFadeout()
 {
@@ -233,17 +223,15 @@ bool ObjChallenge1P::doUpdateFadeout()
 	return check;
 }
 
-/*
- * --INFO--
- * Address:	80328B08
- * Size:	000004
+/**
+ * @note Address: 0x80328B08
+ * @note Size: 0x4
  */
 void ObjChallenge1P::doUpdateFadeoutFinish() { }
 
-/*
- * --INFO--
- * Address:	80328B0C
- * Size:	000074
+/**
+ * @note Address: 0x80328B0C
+ * @note Size: 0x74
  */
 bool ObjChallenge1P::doStart(::Screen::StartSceneArg const* arg)
 {

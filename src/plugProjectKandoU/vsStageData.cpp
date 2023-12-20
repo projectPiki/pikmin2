@@ -8,10 +8,9 @@
 namespace Game {
 namespace ChallengeGame {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000088
+/**
+ * @note Address: N/A
+ * @note Size: 0x88
  */
 StageData::StageData()
 {
@@ -26,10 +25,9 @@ StageData::StageData()
 	mFloorTimerExtensions = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8022D68C
- * Size:	000238
+/**
+ * @note Address: 0x8022D68C
+ * @note Size: 0x238
  */
 void StageData::read(Stream& stream)
 {
@@ -66,20 +64,18 @@ void StageData::read(Stream& stream)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8022D8C4
- * Size:	0000B4
+/**
+ * @note Address: 0x8022D8C4
+ * @note Size: 0xB4
  */
 StageList::StageList()
 {
 	mName = "チャレンジステージ"; // challenge stage
 }
 
-/*
- * --INFO--
- * Address:	8022D9D8
- * Size:	00010C
+/**
+ * @note Address: 0x8022D9D8
+ * @note Size: 0x10C
  */
 void StageList::read(Stream& stream)
 {
@@ -95,10 +91,9 @@ void StageList::read(Stream& stream)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8022DAE4
- * Size:	000084
+/**
+ * @note Address: 0x8022DAE4
+ * @note Size: 0x84
  */
 StageData* StageList::getStageData(int idx)
 {
@@ -111,10 +106,9 @@ StageData* StageList::getStageData(int idx)
 
 namespace VsGame {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000090
+/**
+ * @note Address: N/A
+ * @note Size: 0x90
  */
 StageData::StageData()
 {
@@ -128,10 +122,9 @@ StageData::StageData()
 	mStartNumYellowMarbles = 7;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000284
+/**
+ * @note Address: N/A
+ * @note Size: 0x284
  */
 void StageData::read(Stream& stream)
 {
@@ -163,20 +156,18 @@ void StageData::read(Stream& stream)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8022DB68
- * Size:	0000BC
+/**
+ * @note Address: 0x8022DB68
+ * @note Size: 0xBC
  */
 StageList::StageList()
 {
 	mName = "対戦用ステージ"; // battle stage
 }
 
-/*
- * --INFO--
- * Address:	8022DC84
- * Size:	000350
+/**
+ * @note Address: 0x8022DC84
+ * @note Size: 0x350
  */
 void StageList::read(Stream& stream)
 {
@@ -192,10 +183,9 @@ void StageList::read(Stream& stream)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8022DFD4
- * Size:	000084
+/**
+ * @note Address: 0x8022DFD4
+ * @note Size: 0x84
  */
 StageData* StageList::getStageData(int idx)
 {

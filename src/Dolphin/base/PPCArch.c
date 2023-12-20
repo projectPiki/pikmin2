@@ -13,10 +13,9 @@ union FpscrUnion {
 
 void PPCMthid0(u32 newHID0);
 
-/*
- * --INFO--
- * Address:	800D4558
- * Size:	000008
+/**
+ * @note Address: 0x800D4558
+ * @note Size: 0x8
  */
 ASM u32 PPCMfmsr(void) {
 #ifdef __MWERKS__ // clang-format off
@@ -26,10 +25,9 @@ ASM u32 PPCMfmsr(void) {
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800D4560
- * Size:	000008
+/**
+ * @note Address: 0x800D4560
+ * @note Size: 0x8
  */
 ASM void PPCMtmsr(register u32 newMSR)
 {
@@ -40,40 +38,36 @@ ASM void PPCMtmsr(register u32 newMSR)
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void PPCOrMsr(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void PPCAndMsr(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void PPCAndCMsr(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800D4568
- * Size:	000008
+/**
+ * @note Address: 0x800D4568
+ * @note Size: 0x8
  */
 ASM u32 PPCMfhid0(void) {
 #ifdef __MWERKS__ // clang-format off
@@ -83,10 +77,9 @@ ASM u32 PPCMfhid0(void) {
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800D4570
- * Size:	000008
+/**
+ * @note Address: 0x800D4570
+ * @note Size: 0x8
  */
 ASM void PPCMthid0(register u32 newHID0)
 {
@@ -97,20 +90,18 @@ ASM void PPCMthid0(register u32 newHID0)
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void PPCMfhid1(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800D4578
- * Size:	000008
+/**
+ * @note Address: 0x800D4578
+ * @note Size: 0x8
  */
 ASM u32 PPCMfl2cr(void) {
 #ifdef __MWERKS__ // clang-format off
@@ -120,10 +111,9 @@ ASM u32 PPCMfl2cr(void) {
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800D4580
- * Size:	000008
+/**
+ * @note Address: 0x800D4580
+ * @note Size: 0x8
  */
 ASM void PPCMtl2cr(register u32 newL2cr) {
 #ifdef __MWERKS__ // clang-format off
@@ -133,10 +123,9 @@ ASM void PPCMtl2cr(register u32 newL2cr) {
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800D4588
- * Size:	000008
+/**
+ * @note Address: 0x800D4588
+ * @note Size: 0x8
  */
 WEAKFUNC ASM void PPCMtdec(register u32 newDec)
 {
@@ -147,20 +136,18 @@ WEAKFUNC ASM void PPCMtdec(register u32 newDec)
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void PPCMfdec(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800D4590
- * Size:	000008
+/**
+ * @note Address: 0x800D4590
+ * @note Size: 0x8
  */
 ASM void PPCSync(void)
 {
@@ -171,20 +158,18 @@ ASM void PPCSync(void)
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 void PPCEieio(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800D4598
- * Size:	000014
+/**
+ * @note Address: 0x800D4598
+ * @note Size: 0x14
  */
 WEAKFUNC ASM void PPCHalt(void) // spins infinitely
 {
@@ -203,20 +188,18 @@ _spin:
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void PPCMfmmcr0(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800D45AC
- * Size:	000008
+/**
+ * @note Address: 0x800D45AC
+ * @note Size: 0x8
  */
 ASM void PPCMtmmcr0(register u32 newMmcr0)
 {
@@ -227,20 +210,18 @@ ASM void PPCMtmmcr0(register u32 newMmcr0)
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void PPCMfmmcr1(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800D45B4
- * Size:	000008
+/**
+ * @note Address: 0x800D45B4
+ * @note Size: 0x8
  */
 ASM void PPCMtmmcr1(register u32 newMmcr1)
 {
@@ -251,20 +232,18 @@ ASM void PPCMtmmcr1(register u32 newMmcr1)
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void PPCMfpmc1(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800D45BC
- * Size:	000008
+/**
+ * @note Address: 0x800D45BC
+ * @note Size: 0x8
  */
 ASM void PPCMtpmc1(register u32 newPmc1)
 {
@@ -275,20 +254,18 @@ ASM void PPCMtpmc1(register u32 newPmc1)
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void PPCMfpmc2(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800D45C4
- * Size:	000008
+/**
+ * @note Address: 0x800D45C4
+ * @note Size: 0x8
  */
 ASM void PPCMtpmc2(register u32 newPmc2)
 {
@@ -299,20 +276,18 @@ ASM void PPCMtpmc2(register u32 newPmc2)
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void PPCMfpmc3(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800D45CC
- * Size:	000008
+/**
+ * @note Address: 0x800D45CC
+ * @note Size: 0x8
  */
 ASM void PPCMtpmc3(register u32 newPmc3)
 {
@@ -323,20 +298,18 @@ ASM void PPCMtpmc3(register u32 newPmc3)
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void PPCMfpmc4(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800D45D4
- * Size:	000008
+/**
+ * @note Address: 0x800D45D4
+ * @note Size: 0x8
  */
 ASM void PPCMtpmc4(register u32 newPmc4)
 {
@@ -347,30 +320,27 @@ ASM void PPCMtpmc4(register u32 newPmc4)
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void PPCMfsia(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void PPCMtsia(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800D45DC
- * Size:	000020
+/**
+ * @note Address: 0x800D45DC
+ * @note Size: 0x20
  */
 u32 PPCMffpscr(void)
 {
@@ -386,10 +356,9 @@ u32 PPCMffpscr(void)
 	return m.u.fpscr;
 }
 
-/*
- * --INFO--
- * Address:	800D45FC
- * Size:	000028
+/**
+ * @note Address: 0x800D45FC
+ * @note Size: 0x28
  */
 void PPCMtfpscr(register u32 newFPSCR)
 {
@@ -406,10 +375,9 @@ void PPCMtfpscr(register u32 newFPSCR)
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800D4624
- * Size:	000008
+/**
+ * @note Address: 0x800D4624
+ * @note Size: 0x8
  */
 ASM u32 PPCMfhid2(void) {
 #ifdef __MWERKS__ // clang-format off
@@ -419,10 +387,9 @@ ASM u32 PPCMfhid2(void) {
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800D462C
- * Size:	000008
+/**
+ * @note Address: 0x800D462C
+ * @note Size: 0x8
  */
 ASM void PPCMthid2(register u32 newhid2) {
 #ifdef __MWERKS__ // clang-format off
@@ -432,10 +399,9 @@ ASM void PPCMthid2(register u32 newhid2) {
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  * UNUSED
  */
 ASM u32 PPCMfwpar(void) {
@@ -447,10 +413,9 @@ ASM u32 PPCMfwpar(void) {
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800D4634
- * Size:	000008
+/**
+ * @note Address: 0x800D4634
+ * @note Size: 0x8
  */
 ASM void PPCMtwpar(register u32 newwpar)
 {
@@ -461,77 +426,69 @@ ASM void PPCMtwpar(register u32 newwpar)
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void PPCMfdmaU(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void PPCMfdmaL(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void PPCMtdmaU(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void PPCMtdmaL(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void PPCMfpvr(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 void PPCEnableSpeculation(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800D463C
- * Size:	000028
+/**
+ * @note Address: 0x800D463C
+ * @note Size: 0x28
  */
 void PPCDisableSpeculation(void) { PPCMthid0(PPCMfhid0() | HID0_SPD); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  * UNUSED
  */
 ASM void PPCSetFpIEEEMode(void) {
@@ -542,10 +499,9 @@ ASM void PPCSetFpIEEEMode(void) {
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800D4664
- * Size:	000008
+/**
+ * @note Address: 0x800D4664
+ * @note Size: 0x8
  */
 ASM void PPCSetFpNonIEEEMode(void)
 {

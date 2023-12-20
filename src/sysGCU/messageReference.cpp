@@ -3,10 +3,9 @@
 
 namespace P2JME {
 
-/*
- * --INFO--
- * Address:	8043DB18
- * Size:	000074
+/**
+ * @note Address: 0x8043DB18
+ * @note Size: 0x74
  */
 char* TReference::do_word(u32 arg) const
 {

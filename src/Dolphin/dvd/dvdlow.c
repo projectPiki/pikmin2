@@ -40,10 +40,9 @@ static OSAlarm AlarmForBreak;
 static DVDBuffer Prev;
 static DVDBuffer Curr;
 
-/*
- * --INFO--
- * Address:	800DB2B0
- * Size:	000040
+/**
+ * @note Address: 0x800DB2B0
+ * @note Size: 0x40
  */
 WEAKFUNC void __DVDInitWA()
 {
@@ -55,10 +54,9 @@ WEAKFUNC void __DVDInitWA()
 
 static void Read(void* addr, u32 length, u32 offset, DVDLowCallback callback);
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
+/**
+ * @note Address: N/A
+ * @note Size: 0x94
  */
 static BOOL ProcessNextCommand()
 {
@@ -77,10 +75,9 @@ static BOOL ProcessNextCommand()
 	return FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800DB2F0
- * Size:	0002E0
+/**
+ * @note Address: 0x800DB2F0
+ * @note Size: 0x2E0
  */
 WEAKFUNC void __DVDInterruptHandler(__OSInterrupt interrupt, OSContext* context)
 {
@@ -184,17 +181,15 @@ WEAKFUNC void __DVDInterruptHandler(__OSInterrupt interrupt, OSContext* context)
 	OSSetCurrentContext(context);
 }
 
-/*
- * --INFO--
- * Address:	800DB5D0
- * Size:	000084
+/**
+ * @note Address: 0x800DB5D0
+ * @note Size: 0x84
  */
 static void AlarmHandler(OSAlarm* alarm, OSContext* context) { BOOL error = ProcessNextCommand(); }
 
-/*
- * --INFO--
- * Address:	800DB654
- * Size:	000070
+/**
+ * @note Address: 0x800DB654
+ * @note Size: 0x70
  */
 static void AlarmHandlerForTimeout(OSAlarm* alarm, OSContext* context)
 {
@@ -212,10 +207,9 @@ static void AlarmHandlerForTimeout(OSAlarm* alarm, OSContext* context)
 	OSSetCurrentContext(context);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 static void SetTimeoutAlarm(OSTime timeout)
 {
@@ -223,10 +217,9 @@ static void SetTimeoutAlarm(OSTime timeout)
 	OSSetAlarm(&AlarmForTimeout, timeout, AlarmHandlerForTimeout);
 }
 
-/*
- * --INFO--
- * Address:	800DB6C4
- * Size:	000110
+/**
+ * @note Address: 0x800DB6C4
+ * @note Size: 0x110
  */
 static void Read(void* addr, u32 length, u32 offset, DVDLowCallback callback)
 {
@@ -250,20 +243,18 @@ static void Read(void* addr, u32 length, u32 offset, DVDLowCallback callback)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  */
 void AudioBufferOn(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A0
+/**
+ * @note Address: N/A
+ * @note Size: 0xA0
  */
 BOOL HitCache(DVDBuffer* cur, DVDBuffer* prev)
 {
@@ -277,10 +268,9 @@ BOOL HitCache(DVDBuffer* cur, DVDBuffer* prev)
 	return FALSE;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 static void DoJustRead(void* addr, u32 length, u32 offset, DVDLowCallback callback)
 {
@@ -289,10 +279,9 @@ static void DoJustRead(void* addr, u32 length, u32 offset, DVDLowCallback callba
 	Read(addr, length, offset, callback);
 }
 
-/*
- * --INFO--
- * Address:	800DB7D4
- * Size:	000080
+/**
+ * @note Address: 0x800DB7D4
+ * @note Size: 0x80
  */
 static void SeekTwiceBeforeRead(void* addr, u32 length, u32 offset, DVDLowCallback callback)
 {
@@ -315,10 +304,9 @@ static void SeekTwiceBeforeRead(void* addr, u32 length, u32 offset, DVDLowCallba
 	DVDLowSeek(newOffset, callback);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00008C
+/**
+ * @note Address: N/A
+ * @note Size: 0x8C
  */
 static void WaitBeforeRead(void* addr, u32 length, u32 offset, DVDLowCallback callback, OSTime timeout)
 {
@@ -333,10 +321,9 @@ static void WaitBeforeRead(void* addr, u32 length, u32 offset, DVDLowCallback ca
 	OSSetAlarm(&AlarmForWA, timeout, AlarmHandler);
 }
 
-/*
- * --INFO--
- * Address:	800DB854
- * Size:	000298
+/**
+ * @note Address: 0x800DB854
+ * @note Size: 0x298
  */
 WEAKFUNC BOOL DVDLowRead(void* addr, u32 length, u32 offset, DVDLowCallback callback)
 {
@@ -374,10 +361,9 @@ WEAKFUNC BOOL DVDLowRead(void* addr, u32 length, u32 offset, DVDLowCallback call
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800DBAEC
- * Size:	000094
+/**
+ * @note Address: 0x800DBAEC
+ * @note Size: 0x94
  */
 WEAKFUNC BOOL DVDLowSeek(u32 offset, DVDLowCallback callback)
 {
@@ -390,10 +376,9 @@ WEAKFUNC BOOL DVDLowSeek(u32 offset, DVDLowCallback callback)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800DBB80
- * Size:	00002C
+/**
+ * @note Address: 0x800DBB80
+ * @note Size: 0x2C
  */
 WEAKFUNC BOOL DVDLowWaitCoverClose(DVDLowCallback callback)
 {
@@ -404,10 +389,9 @@ WEAKFUNC BOOL DVDLowWaitCoverClose(DVDLowCallback callback)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800DBBAC
- * Size:	0000A4
+/**
+ * @note Address: 0x800DBBAC
+ * @note Size: 0xA4
  */
 WEAKFUNC BOOL DVDLowReadDiskID(DVDDiskID* diskID, DVDLowCallback callback)
 {
@@ -423,10 +407,9 @@ WEAKFUNC BOOL DVDLowReadDiskID(DVDDiskID* diskID, DVDLowCallback callback)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800DBC50
- * Size:	00008C
+/**
+ * @note Address: 0x800DBC50
+ * @note Size: 0x8C
  */
 WEAKFUNC BOOL DVDLowStopMotor(DVDLowCallback callback)
 {
@@ -438,10 +421,9 @@ WEAKFUNC BOOL DVDLowStopMotor(DVDLowCallback callback)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800DBCDC
- * Size:	00008C
+/**
+ * @note Address: 0x800DBCDC
+ * @note Size: 0x8C
  */
 WEAKFUNC BOOL DVDLowRequestError(DVDLowCallback callback)
 {
@@ -453,10 +435,9 @@ WEAKFUNC BOOL DVDLowRequestError(DVDLowCallback callback)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800DBD68
- * Size:	00009C
+/**
+ * @note Address: 0x800DBD68
+ * @note Size: 0x9C
  */
 WEAKFUNC BOOL DVDLowInquiry(DVDDriveInfo* info, DVDLowCallback callback)
 {
@@ -471,10 +452,9 @@ WEAKFUNC BOOL DVDLowInquiry(DVDDriveInfo* info, DVDLowCallback callback)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800DBE04
- * Size:	000098
+/**
+ * @note Address: 0x800DBE04
+ * @note Size: 0x98
  */
 WEAKFUNC BOOL DVDLowAudioStream(u32 subcmd, u32 length, u32 offset, DVDLowCallback callback)
 {
@@ -488,10 +468,9 @@ WEAKFUNC BOOL DVDLowAudioStream(u32 subcmd, u32 length, u32 offset, DVDLowCallba
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800DBE9C
- * Size:	00008C
+/**
+ * @note Address: 0x800DBE9C
+ * @note Size: 0x8C
  */
 WEAKFUNC BOOL DVDLowRequestAudioStatus(u32 subcmd, DVDLowCallback callback)
 {
@@ -503,10 +482,9 @@ WEAKFUNC BOOL DVDLowRequestAudioStatus(u32 subcmd, DVDLowCallback callback)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800DBF28
- * Size:	00009C
+/**
+ * @note Address: 0x800DBF28
+ * @note Size: 0x9C
  */
 WEAKFUNC BOOL DVDLowAudioBufferConfig(BOOL enable, u32 size, DVDLowCallback callback)
 {
@@ -518,10 +496,9 @@ WEAKFUNC BOOL DVDLowAudioBufferConfig(BOOL enable, u32 size, DVDLowCallback call
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800DBFC4
- * Size:	0000BC
+/**
+ * @note Address: 0x800DBFC4
+ * @note Size: 0xBC
  */
 WEAKFUNC void DVDLowReset()
 {
@@ -541,50 +518,45 @@ WEAKFUNC void DVDLowReset()
 	LastResetEnd  = __OSGetSystemTime();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
+/**
+ * @note Address: N/A
+ * @note Size: 0x44
  */
 void DVDLowSetResetCoverCallback(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 void DoBreak(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 void AlarmHandlerForBreak(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 void SetBreakAlarm(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800DC080
- * Size:	000014
+/**
+ * @note Address: 0x800DC080
+ * @note Size: 0x14
  */
 WEAKFUNC BOOL DVDLowBreak()
 {
@@ -593,10 +565,9 @@ WEAKFUNC BOOL DVDLowBreak()
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800DC094
- * Size:	00001C
+/**
+ * @note Address: 0x800DC094
+ * @note Size: 0x1C
  */
 WEAKFUNC DVDLowCallback DVDLowClearCallback()
 {
@@ -608,20 +579,18 @@ WEAKFUNC DVDLowCallback DVDLowClearCallback()
 	return old;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
+/**
+ * @note Address: N/A
+ * @note Size: 0x94
  */
 void DVDLowGetCoverStatus(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800DC0B0
- * Size:	000044
+/**
+ * @note Address: 0x800DC0B0
+ * @note Size: 0x44
  */
 
 WEAKFUNC void __DVDLowSetWAType(u32 type, u32 location)
@@ -633,10 +602,9 @@ WEAKFUNC void __DVDLowSetWAType(u32 type, u32 location)
 	OSRestoreInterrupts(enabled);
 }
 
-/*
- * --INFO--
- * Address:	800DC0F4
- * Size:	000038
+/**
+ * @note Address: 0x800DC0F4
+ * @note Size: 0x38
  */
 BOOL __DVDLowTestAlarm(OSAlarm* alarm)
 {

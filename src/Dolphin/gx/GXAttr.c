@@ -1,10 +1,9 @@
 #include "Dolphin/gx.h"
 #include "Dolphin/GX/GXHardware.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00008C
+/**
+ * @note Address: N/A
+ * @note Size: 0x8C
  */
 static void __GXXfVtxSpecs(void)
 {
@@ -24,10 +23,9 @@ static void __GXXfVtxSpecs(void)
 	gx->bpSentNot = GX_TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800E4284
- * Size:	00026C
+/**
+ * @note Address: 0x800E4284
+ * @note Size: 0x26C
  */
 
 void GXSetVtxDesc(GXAttr attr, GXAttrType type)
@@ -122,20 +120,18 @@ void GXSetVtxDesc(GXAttr attr, GXAttrType type)
 	gx->dirtyState |= GX_DIRTY_VCD;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000288
+/**
+ * @note Address: N/A
+ * @note Size: 0x288
  */
 void GXSetVtxDescv(GXVtxDescList* list)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800E44F0
- * Size:	0000BC
+/**
+ * @note Address: 0x800E44F0
+ * @note Size: 0xBC
  */
 void __GXSetVCD(void)
 {
@@ -202,10 +198,9 @@ void __GXSetVCD(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800E45AC
- * Size:	000124
+/**
+ * @note Address: 0x800E45AC
+ * @note Size: 0x124
  */
 void __GXCalculateVLim(void)
 {
@@ -256,30 +251,27 @@ void __GXCalculateVLim(void)
 	gx->vLim = vlim;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001B4
+/**
+ * @note Address: N/A
+ * @note Size: 0x1B4
  */
 void GXGetVtxDesc(GXAttr attr, GXAttrType* type)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000090
+/**
+ * @note Address: N/A
+ * @note Size: 0x90
  */
 void GXGetVtxDescv(GXVtxDescList* list)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800E46D0
- * Size:	000038
+/**
+ * @note Address: 0x800E46D0
+ * @note Size: 0x38
  */
 void GXClearVtxDesc(void)
 {
@@ -362,10 +354,9 @@ static inline void SETVAT(u32* vatA, u32* vatB, u32* vatC, GXAttr attr, GXCompCn
 	}
 }
 
-/*
- * --INFO--
- * Address:	800E4708
- * Size:	00025C
+/**
+ * @note Address: 0x800E4708
+ * @note Size: 0x25C
  */
 void GXSetVtxAttrFmt(GXVtxFmt format, GXAttr attr, GXCompCnt count, GXCompType type, u8 frac)
 {
@@ -379,10 +370,9 @@ void GXSetVtxAttrFmt(GXVtxFmt format, GXAttr attr, GXCompCnt count, GXCompType t
 	gx->dirtyVAT |= (u8)(1 << (u8)format);
 }
 
-/*
- * --INFO--
- * Address:	800E4964
- * Size:	000280
+/**
+ * @note Address: 0x800E4964
+ * @note Size: 0x280
  */
 void GXSetVtxAttrFmtv(GXVtxFmt format, GXVtxAttrFmtList* list)
 {
@@ -402,10 +392,9 @@ void GXSetVtxAttrFmtv(GXVtxFmt format, GXVtxAttrFmtList* list)
 	gx->dirtyVAT |= (u8)(1 << (u8)format);
 }
 
-/*
- * --INFO--
- * Address:	800E4BE4
- * Size:	00009C
+/**
+ * @note Address: 0x800E4BE4
+ * @note Size: 0x9C
  */
 void __GXSetVAT(void)
 {
@@ -421,30 +410,27 @@ void __GXSetVAT(void)
 	gx->dirtyVAT = 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000280
+/**
+ * @note Address: N/A
+ * @note Size: 0x280
  */
 void GXGetVtxAttrFmt(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 void GXGetVtxAttrFmtv(GXVtxFmt format, GXVtxAttrFmtList* list)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800E4C80
- * Size:	00008C
+/**
+ * @note Address: 0x800E4C80
+ * @note Size: 0x8C
  */
 void GXSetArray(GXAttr attr, void* basePtr, u8 stride)
 {
@@ -476,17 +462,15 @@ void GXSetArray(GXAttr attr, void* basePtr, u8 stride)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800E4D0C
- * Size:	000010
+/**
+ * @note Address: 0x800E4D0C
+ * @note Size: 0x10
  */
 void GXInvalidateVtxCache(void) { GX_WRITE_U8(GX_FIFO_CMD_INVAL_VTX); }
 
-/*
- * --INFO--
- * Address:	800E4D1C
- * Size:	000280
+/**
+ * @note Address: 0x800E4D1C
+ * @note Size: 0x280
  */
 void GXSetTexCoordGen2(GXTexCoordID id, GXTexGenType type, GXTexGenSrc src, u32 texMtxIdx, GXBool normalize, u32 dualTexMtxIdx)
 {
@@ -631,10 +615,9 @@ void GXSetTexCoordGen2(GXTexCoordID id, GXTexGenType type, GXTexGenSrc src, u32 
 	__GXSetMatrixIndex(id + 1);
 }
 
-/*
- * --INFO--
- * Address:	800E4F9C
- * Size:	00003C
+/**
+ * @note Address: 0x800E4F9C
+ * @note Size: 0x3C
  */
 void GXSetNumTexGens(u8 count)
 {

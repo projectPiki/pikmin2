@@ -6,10 +6,9 @@
 namespace Game {
 namespace ChappyBase {
 
-/*
- * --INFO--
- * Address:	8012A670
- * Size:	000050
+/**
+ * @note Address: 0x8012A670
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -17,10 +16,9 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "チャッピーベースマネージャ"; // chappybase manager
 }
 
-/*
- * --INFO--
- * Address:	8012A6C0
- * Size:	0000C0
+/**
+ * @note Address: 0x8012A6C0
+ * @note Size: 0xC0
  */
 void Mgr::loadModelData()
 {
@@ -44,10 +42,9 @@ void Mgr::loadModelData()
 	mModelData->makeSharedDL();
 }
 
-/*
- * --INFO--
- * Address:	8012A780
- * Size:	0000A0
+/**
+ * @note Address: 0x8012A780
+ * @note Size: 0xA0
  */
 void Mgr::loadAnimData()
 {
@@ -67,10 +64,9 @@ void Mgr::loadAnimData()
 	EnemyMgrBase::loadAnimData();
 }
 
-/*
- * --INFO--
- * Address:	8012A820
- * Size:	00011C
+/**
+ * @note Address: 0x8012A820
+ * @note Size: 0x11C
  */
 SysShape::Model* Mgr::createModel()
 {

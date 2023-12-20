@@ -10,10 +10,9 @@ namespace Cave {
 
 static const char randItemUnitName[] = "246-RandItemUnit";
 
-/*
- * --INFO--
- * Address:	8024E38C
- * Size:	000064
+/**
+ * @note Address: 0x8024E38C
+ * @note Size: 0x64
  */
 RandItemUnit::RandItemUnit(MapUnitGenerator* generator)
 {
@@ -28,17 +27,15 @@ RandItemUnit::RandItemUnit(MapUnitGenerator* generator)
 	mSpawnList   = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8024E3F0
- * Size:	000008
+/**
+ * @note Address: 0x8024E3F0
+ * @note Size: 0x8
  */
 void RandItemUnit::setManageClassPtr(RandMapScore* ptr) { mMapScore = ptr; }
 
-/*
- * --INFO--
- * Address:	8024E3F8
- * Size:	000104
+/**
+ * @note Address: 0x8024E3F8
+ * @note Size: 0x104
  */
 void RandItemUnit::setItemSlot()
 {
@@ -80,10 +77,9 @@ void RandItemUnit::setItemSlot()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8024E4FC
- * Size:	000110
+/**
+ * @note Address: 0x8024E4FC
+ * @note Size: 0x110
  */
 bool RandItemUnit::isItemSetDone(MapNode* mapNode, BaseGen* baseGen)
 {
@@ -116,10 +112,9 @@ bool RandItemUnit::isItemSetDone(MapNode* mapNode, BaseGen* baseGen)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8024E60C
- * Size:	0000E8
+/**
+ * @note Address: 0x8024E60C
+ * @note Size: 0xE8
  */
 bool RandItemUnit::isGroundCapEnemySetDone(MapNode* mapNode)
 {
@@ -144,10 +139,9 @@ bool RandItemUnit::isGroundCapEnemySetDone(MapNode* mapNode)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8024E6F4
- * Size:	0000D0
+/**
+ * @note Address: 0x8024E6F4
+ * @note Size: 0xD0
  */
 bool RandItemUnit::isFallCapEnemySetDone(MapNode* mapNode)
 {
@@ -169,10 +163,9 @@ bool RandItemUnit::isFallCapEnemySetDone(MapNode* mapNode)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8024E7C4
- * Size:	00000C
+/**
+ * @note Address: 0x8024E7C4
+ * @note Size: 0xC
  */
 void RandItemUnit::setItemDropPositionList(MapNode** tileList, BaseGen** spawnList)
 {
@@ -180,10 +173,9 @@ void RandItemUnit::setItemDropPositionList(MapNode** tileList, BaseGen** spawnLi
 	mSpawnList   = spawnList;
 }
 
-/*
- * --INFO--
- * Address:	8024E7D0
- * Size:	000228
+/**
+ * @note Address: 0x8024E7D0
+ * @note Size: 0x228
  */
 void RandItemUnit::getItemDropPosition(Vector3f& position, f32 weight, int floorIndex)
 {
@@ -224,10 +216,9 @@ void RandItemUnit::getItemDropPosition(Vector3f& position, f32 weight, int floor
 	}
 }
 
-/*
- * --INFO--
- * Address:	8024E9F8
- * Size:	00038C
+/**
+ * @note Address: 0x8024E9F8
+ * @note Size: 0x38C
  */
 MapNode* RandItemUnit::getItemNormalSetMapNode(BaseGen** outGens)
 {
@@ -284,10 +275,9 @@ MapNode* RandItemUnit::getItemNormalSetMapNode(BaseGen** outGens)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8024ED84
- * Size:	000340
+/**
+ * @note Address: 0x8024ED84
+ * @note Size: 0x340
  */
 MapNode* RandItemUnit::getItemHardSetMapNode(BaseGen** outGens)
 {
@@ -346,10 +336,9 @@ MapNode* RandItemUnit::getItemHardSetMapNode(BaseGen** outGens)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8024F0C4
- * Size:	000180
+/**
+ * @note Address: 0x8024F0C4
+ * @note Size: 0x180
  */
 ItemUnit* RandItemUnit::getItemUnit()
 {
@@ -394,10 +383,9 @@ ItemUnit* RandItemUnit::getItemUnit()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8024F244
- * Size:	000060
+/**
+ * @note Address: 0x8024F244
+ * @note Size: 0x60
  */
 int RandItemUnit::getItemSlotNum(MapNode* mapNode)
 {
@@ -414,10 +402,9 @@ int RandItemUnit::getItemSlotNum(MapNode* mapNode)
 	return itemSlotNum;
 }
 
-/*
- * --INFO--
- * Address:	8024F2A4
- * Size:	00005C
+/**
+ * @note Address: 0x8024F2A4
+ * @note Size: 0x5C
  */
 bool RandItemUnit::isItemSetHard()
 {
@@ -438,10 +425,9 @@ bool RandItemUnit::isItemSetHard()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8024F300
- * Size:	000148
+/**
+ * @note Address: 0x8024F300
+ * @note Size: 0x148
  */
 void RandItemUnit::getItemDropMapNode(MapNode* targetTile, MapNode** nodeList, int currentScore, int& bestScore)
 {
@@ -476,10 +462,9 @@ void RandItemUnit::getItemDropMapNode(MapNode* targetTile, MapNode** nodeList, i
 	}
 }
 
-/*
- * --INFO--
- * Address:	8024F448
- * Size:	000314
+/**
+ * @note Address: 0x8024F448
+ * @note Size: 0x314
  */
 Vector3f RandItemUnit::getItemBaseGenPosition(MapNode* node, int score)
 {
@@ -536,10 +521,9 @@ Vector3f RandItemUnit::getItemBaseGenPosition(MapNode* node, int score)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8024F75C
- * Size:	00018C
+/**
+ * @note Address: 0x8024F75C
+ * @note Size: 0x18C
  */
 void RandItemUnit::getItemDropList(MapNode* targetTile, MapNode** nodeList, BaseGen** dropList, int& idx)
 {
@@ -579,10 +563,9 @@ void RandItemUnit::getItemDropList(MapNode* targetTile, MapNode** nodeList, Base
 	}
 }
 
-/*
- * --INFO--
- * Address:	8024F8E8
- * Size:	0002CC
+/**
+ * @note Address: 0x8024F8E8
+ * @note Size: 0x2CC
  */
 Vector3f RandItemUnit::getItemBaseGenPosition(MapNode** candidates, BaseGen** spawnerList, int nodeCount, int minScore, int idx)
 {
@@ -639,10 +622,9 @@ Vector3f RandItemUnit::getItemBaseGenPosition(MapNode** candidates, BaseGen** sp
 	return Vector3f::zero;
 }
 
-/*
- * --INFO--
- * Address:	8024FBB4
- * Size:	000114
+/**
+ * @note Address: 0x8024FBB4
+ * @note Size: 0x114
  */
 void RandItemUnit::getItemDropSortingList(MapNode** candidateNodes, BaseGen** spawnerList, int* scores, int count)
 {

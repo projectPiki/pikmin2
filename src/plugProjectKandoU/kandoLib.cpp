@@ -1,10 +1,9 @@
 #include "KandoLib/Choice.h"
 #include "Dolphin/rand.h"
 
-/*
- * --INFO--
- * Address:	801F78C8
- * Size:	0000A8
+/**
+ * @note Address: 0x801F78C8
+ * @note Size: 0xA8
  * A function for getting a random value from a set list of possible values with
  * their own probabilities
  */

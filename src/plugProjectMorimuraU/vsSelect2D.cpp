@@ -48,10 +48,9 @@ TVsSelectSlotIndex slotIDInfo[12] = {
 	{ 5, 11, '2043_00' }, // "Vanish from opponent's view."
 };
 
-/*
- * --INFO--
- * Address:	8039982C
- * Size:	000314
+/**
+ * @note Address: 0x8039982C
+ * @note Size: 0x314
  */
 void TVsSelectIndPane::draw()
 {
@@ -124,10 +123,9 @@ void TVsSelectIndPane::draw()
 	GXPosition3f32(zero, zero, one);
 }
 
-/*
- * --INFO--
- * Address:	80399B40
- * Size:	00003C
+/**
+ * @note Address: 0x80399B40
+ * @note Size: 0x3C
  */
 void TVsSelectExplanationWindow::create(char const* path, u32 flags)
 {
@@ -136,17 +134,15 @@ void TVsSelectExplanationWindow::create(char const* path, u32 flags)
 	mTransYModifier = -800.0f;
 }
 
-/*
- * --INFO--
- * Address:	80399B7C
- * Size:	000004
+/**
+ * @note Address: 0x80399B7C
+ * @note Size: 0x4
  */
 void TVsSelectExplanationWindow::screenScaleUp() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000EC
+/**
+ * @note Address: N/A
+ * @note Size: 0xEC
  */
 TVsPiki::TVsPiki(J2DPane* left, J2DPane* right, J2DPane* flower)
 {
@@ -164,17 +160,15 @@ TVsPiki::TVsPiki(J2DPane* left, J2DPane* right, J2DPane* flower)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80399B80
- * Size:	000004
+/**
+ * @note Address: 0x80399B80
+ * @note Size: 0x4
  */
 TVsPiki::posInfo::posInfo() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C0
+/**
+ * @note Address: N/A
+ * @note Size: 0xC0
  */
 void TVsPiki::init(int sel)
 {
@@ -192,10 +186,9 @@ void TVsPiki::init(int sel)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80399B84
- * Size:	0002C8
+/**
+ * @note Address: 0x80399B84
+ * @note Size: 0x2C8
  */
 void TVsPiki::update(int pikis)
 {
@@ -250,10 +243,9 @@ void TVsPiki::update(int pikis)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80399E4C
- * Size:	000280
+/**
+ * @note Address: 0x80399E4C
+ * @note Size: 0x280
  */
 void TVsPiki::draw()
 {
@@ -452,10 +444,9 @@ lbl_80399F04:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000068
+/**
+ * @note Address: N/A
+ * @note Size: 0x68
  */
 void TVsPiki::setAlpha(u8 alpha)
 {
@@ -464,10 +455,9 @@ void TVsPiki::setAlpha(u8 alpha)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000108
+/**
+ * @note Address: N/A
+ * @note Size: 0x108
  */
 void TVsSelectOnyon::reset()
 {
@@ -486,10 +476,9 @@ void TVsSelectOnyon::reset()
 	mAngleTimer = TVsSelect::mAngRate;
 }
 
-/*
- * --INFO--
- * Address:	8039A0CC
- * Size:	000308
+/**
+ * @note Address: 0x8039A0CC
+ * @note Size: 0x308
  */
 void TVsSelectOnyon::posUpdate(f32 rate)
 {
@@ -767,10 +756,9 @@ lbl_8039A39C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8039A3D4
- * Size:	00007C
+/**
+ * @note Address: 0x8039A3D4
+ * @note Size: 0x7C
  */
 f32 TVsSelectOnyon::getAngDist()
 {
@@ -788,10 +776,9 @@ f32 TVsSelectOnyon::getAngDist()
 	return angDist(roundAng(angle), mGoalAngle);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000198
+/**
+ * @note Address: N/A
+ * @note Size: 0x198
  */
 void TVsSelectOnyon::draw()
 {
@@ -815,10 +802,9 @@ void TVsSelectOnyon::draw()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8039A450
- * Size:	0002B0
+/**
+ * @note Address: 0x8039A450
+ * @note Size: 0x2B0
  */
 void TVsSelectScreen::create(char const* name, u32 flags)
 {
@@ -845,10 +831,9 @@ void TVsSelectScreen::create(char const* name, u32 flags)
 	og::Screen::setAlphaScreen(mScreenObj);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
+/**
+ * @note Address: N/A
+ * @note Size: 0x64
  */
 TVsSelectCBWinNum::TVsSelectCBWinNum(char** p1, u16 p2, JKRArchive* arc)
     : og::Screen::CallBack_CounterDay(p1, p2, arc)
@@ -858,10 +843,9 @@ TVsSelectCBWinNum::TVsSelectCBWinNum(char** p1, u16 p2, JKRArchive* arc)
 	mScaleMgr = new og::Screen::ScaleMgr;
 }
 
-/*
- * --INFO--
- * Address:	8039A700
- * Size:	000058
+/**
+ * @note Address: 0x8039A700
+ * @note Size: 0x58
  */
 void TVsSelectCBWinNum::update()
 {
@@ -870,10 +854,9 @@ void TVsSelectCBWinNum::update()
 	mDayPic->updateScale(mScaleMgr->calc());
 }
 
-/*
- * --INFO--
- * Address:	8039A758
- * Size:	000068
+/**
+ * @note Address: 0x8039A758
+ * @note Size: 0x68
  */
 void TVsSelectCBWinNum::setValue(bool a1, bool a2)
 {
@@ -886,10 +869,9 @@ void TVsSelectCBWinNum::setValue(bool a1, bool a2)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 TVsSelectSlotIndex* TVsSelectSlotIndex::getIndexInfo(int id)
 {
@@ -901,10 +883,9 @@ TVsSelectSlotIndex* TVsSelectSlotIndex::getIndexInfo(int id)
 	return &slotIDInfo[0];
 }
 
-/*
- * --INFO--
- * Address:	8039A7C0
- * Size:	0003A0
+/**
+ * @note Address: 0x8039A7C0
+ * @note Size: 0x3A0
  */
 TVsSelect::TVsSelect()
     : TScrollList("vsSelect")
@@ -1009,20 +990,18 @@ TVsSelect::TVsSelect()
 	mCanCancel         = false;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
+/**
+ * @note Address: N/A
+ * @note Size: 0x44
  */
 void TVsSelect::setDebugHeapParent(JKRHeap*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8039AC6C
- * Size:	002554
+/**
+ * @note Address: 0x8039AC6C
+ * @note Size: 0x2554
  */
 void TVsSelect::doCreate(JKRArchive* arc)
 {
@@ -4056,10 +4035,9 @@ lbl_8039D184:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8039D1E0
- * Size:	001244
+/**
+ * @note Address: 0x8039D1E0
+ * @note Size: 0x1244
  */
 bool TVsSelect::doUpdate()
 {
@@ -5739,10 +5717,9 @@ bool TVsSelect::doUpdate()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8039E454
- * Size:	000AF0
+/**
+ * @note Address: 0x8039E454
+ * @note Size: 0xAF0
  */
 void TVsSelect::doDraw(Graphics& gfx)
 {
@@ -6663,17 +6640,15 @@ setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColo
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8039F334
- * Size:	00000C
+/**
+ * @note Address: 0x8039F334
+ * @note Size: 0xC
  */
 void TVsSelect::doUpdateFadeinFinish() { mCanInput = true; }
 
-/*
- * --INFO--
- * Address:	8039F340
- * Size:	0000AC
+/**
+ * @note Address: 0x8039F340
+ * @note Size: 0xAC
  */
 void TVsSelect::doUpdateFadeoutFinish()
 {
@@ -6688,10 +6663,9 @@ void TVsSelect::doUpdateFadeoutFinish()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8039F3EC
- * Size:	0003CC
+/**
+ * @note Address: 0x8039F3EC
+ * @note Size: 0x3CC
  */
 void TVsSelect::paneInit()
 {
@@ -6731,10 +6705,9 @@ void TVsSelect::paneInit()
 	changeCourseTexture();
 }
 
-/*
- * --INFO--
- * Address:	8039F7B8
- * Size:	000240
+/**
+ * @note Address: 0x8039F7B8
+ * @note Size: 0x240
  */
 void TVsSelect::changePaneInfo()
 {
@@ -6952,10 +6925,9 @@ lbl_8039F9C8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8039F9F8
- * Size:	000084
+/**
+ * @note Address: 0x8039F9F8
+ * @note Size: 0x84
  */
 u64 TVsSelect::getNameID(int id)
 {
@@ -6964,17 +6936,15 @@ u64 TVsSelect::getNameID(int id)
 	return mMesgData->getMsgID(course - 1);
 }
 
-/*
- * --INFO--
- * Address:	8039FA7C
- * Size:	000008
+/**
+ * @note Address: 0x8039FA7C
+ * @note Size: 0x8
  */
 int TVsSelect::getIdMax() { return mStageCount; }
 
-/*
- * --INFO--
- * Address:	8039FA84
- * Size:	00003C
+/**
+ * @note Address: 0x8039FA84
+ * @note Size: 0x3C
  */
 int TVsSelect::getCourseID(int id)
 {
@@ -6985,20 +6955,18 @@ int TVsSelect::getCourseID(int id)
 	return id;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000194
+/**
+ * @note Address: N/A
+ * @note Size: 0x194
  */
 void TVsSelect::reset()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8039FAC0
- * Size:	0001F4
+/**
+ * @note Address: 0x8039FAC0
+ * @note Size: 0x1F4
  */
 void TVsSelect::doZoom()
 {
@@ -7185,10 +7153,9 @@ lbl_8039FC78:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8039FCB4
- * Size:	00006C
+/**
+ * @note Address: 0x8039FCB4
+ * @note Size: 0x6C
  */
 void TVsSelect::doMoveOnyon()
 {
@@ -7201,10 +7168,9 @@ void TVsSelect::doMoveOnyon()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8039FD20
- * Size:	000214
+/**
+ * @note Address: 0x8039FD20
+ * @note Size: 0x214
  */
 void TVsSelect::doScreenEffect()
 {
@@ -7241,10 +7207,9 @@ void TVsSelect::doScreenEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8039FF34
- * Size:	0004FC
+/**
+ * @note Address: 0x8039FF34
+ * @note Size: 0x4FC
  */
 void TVsSelect::onyonDemoInit()
 {
@@ -7638,10 +7603,9 @@ lbl_803A0384:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803A0430
- * Size:	0001C0
+/**
+ * @note Address: 0x803A0430
+ * @note Size: 0x1C0
  */
 void TVsSelect::demoStart()
 {
@@ -7781,10 +7745,9 @@ lbl_803A0548:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803A05F0
- * Size:	00009C
+/**
+ * @note Address: 0x803A05F0
+ * @note Size: 0x9C
  */
 void TVsSelect::changeCourseTexture()
 {
@@ -7794,10 +7757,9 @@ void TVsSelect::changeCourseTexture()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A068C
- * Size:	0000D0
+/**
+ * @note Address: 0x803A068C
+ * @note Size: 0xD0
  */
 void TVsSelect::changeIndirectTexture()
 {
@@ -7808,10 +7770,9 @@ void TVsSelect::changeIndirectTexture()
 	mActiveCourseThumbs[mCurrentSelect]->changeTexture(mIndPane->mTexture3->mTexInfo, 0);
 }
 
-/*
- * --INFO--
- * Address:	803A075C
- * Size:	0000B8
+/**
+ * @note Address: 0x803A075C
+ * @note Size: 0xB8
  */
 void TVsSelect::setShortenIndex(int id, int id2, bool)
 {
@@ -7820,10 +7781,9 @@ void TVsSelect::setShortenIndex(int id, int id2, bool)
 	mActiveCourseThumbs[id]->changeTexture(mLevelTextures[id2], 0);
 }
 
-/*
- * --INFO--
- * Address:	803A0814
- * Size:	000140
+/**
+ * @note Address: 0x803A0814
+ * @note Size: 0x140
  */
 void TVsSelect::updateFacePicture()
 {
@@ -7852,10 +7812,9 @@ void TVsSelect::updateFacePicture()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A0954
- * Size:	0001F4
+/**
+ * @note Address: 0x803A0954
+ * @note Size: 0x1F4
  */
 void TVsSelect::changeFaceTexture()
 {
@@ -7903,10 +7862,9 @@ void TVsSelect::changeFaceTexture()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A0B48
- * Size:	00009C
+/**
+ * @note Address: 0x803A0B48
+ * @note Size: 0x9C
  */
 void TVsSelect::changeOrimaTexture(int id)
 {
@@ -7918,10 +7876,9 @@ void TVsSelect::changeOrimaTexture(int id)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A0BE4
- * Size:	00009C
+/**
+ * @note Address: 0x803A0BE4
+ * @note Size: 0x9C
  */
 void TVsSelect::changeLouieTexture(int id)
 {
@@ -7933,10 +7890,9 @@ void TVsSelect::changeLouieTexture(int id)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A0C80
- * Size:	000118
+/**
+ * @note Address: 0x803A0C80
+ * @note Size: 0x118
  */
 void TVsSelect::changeSlotPage()
 {
@@ -7957,10 +7913,9 @@ void TVsSelect::changeSlotPage()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A0D98
- * Size:	00009C
+/**
+ * @note Address: 0x803A0D98
+ * @note Size: 0x9C
  */
 void TVsSelectScene::doCreateObj(JKRArchive* arc)
 {
@@ -7971,10 +7926,9 @@ void TVsSelectScene::doCreateObj(JKRArchive* arc)
 	registObj(mConfirmEndWindow, arc);
 }
 
-/*
- * --INFO--
- * Address:	803A0E34
- * Size:	000034
+/**
+ * @note Address: 0x803A0E34
+ * @note Size: 0x34
  */
 bool TVsSelectScene::doStart(Screen::StartSceneArg* arg)
 {

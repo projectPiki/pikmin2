@@ -8,10 +8,9 @@
 #include "Quat.h"
 #include "nans.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B0
+/**
+ * @note Address: N/A
+ * @note Size: 0xB0
  */
 CullPlane::CullPlane(int a)
 {
@@ -19,10 +18,9 @@ CullPlane::CullPlane(int a)
 	mCount = 6;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
+/**
+ * @note Address: N/A
+ * @note Size: 0x6C
  */
 bool CullPlane::isPointVisible(Vector3f& pos, f32 rad)
 {
@@ -35,17 +33,15 @@ bool CullPlane::isPointVisible(Vector3f& pos, f32 rad)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8041A190
- * Size:	000070
+/**
+ * @note Address: 0x8041A190
+ * @note Size: 0x70
  */
 bool CullPlane::isVisible(Sys::Sphere& ball) { return isPointVisible(ball.mPosition, ball.mRadius); }
 
-/*
- * --INFO--
- * Address:	8041A200
- * Size:	000088
+/**
+ * @note Address: 0x8041A200
+ * @note Size: 0x88
  */
 bool CullPlane::isCylinderVisible(Sys::Cylinder& cylinder)
 {
@@ -57,10 +53,9 @@ bool CullPlane::isCylinderVisible(Sys::Cylinder& cylinder)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F8
+/**
+ * @note Address: N/A
+ * @note Size: 0xF8
  */
 CullFrustum::CullFrustum(int a)
     : CullPlane(a)
@@ -72,10 +67,9 @@ CullFrustum::CullFrustum(int a)
 	mAspectRatio = width / height;
 }
 
-/*
- * --INFO--
- * Address:	8041A288
- * Size:	000020
+/**
+ * @note Address: 0x8041A288
+ * @note Size: 0x20
  */
 Vector3f CullFrustum::getUpVector()
 {
@@ -86,10 +80,9 @@ Vector3f CullFrustum::getUpVector()
 	return upVec;
 }
 
-/*
- * --INFO--
- * Address:	8041A2A8
- * Size:	00002C
+/**
+ * @note Address: 0x8041A2A8
+ * @note Size: 0x2C
  */
 Vector3f CullFrustum::getSideVector()
 {
@@ -100,10 +93,9 @@ Vector3f CullFrustum::getSideVector()
 	return sideVec;
 }
 
-/*
- * --INFO--
- * Address:	8041A2D4
- * Size:	00002C
+/**
+ * @note Address: 0x8041A2D4
+ * @note Size: 0x2C
  */
 Vector3f CullFrustum::getViewVector()
 {
@@ -114,10 +106,9 @@ Vector3f CullFrustum::getViewVector()
 	return viewVec;
 }
 
-/*
- * --INFO--
- * Address:	8041A300
- * Size:	000074
+/**
+ * @note Address: 0x8041A300
+ * @note Size: 0x74
  */
 Vector3f CullFrustum::getPosition()
 {
@@ -148,10 +139,9 @@ Vector3f CullFrustum::getPosition()
 	return position;
 }
 
-/*
- * --INFO--
- * Address:	8041A374
- * Size:	0002D4
+/**
+ * @note Address: 0x8041A374
+ * @note Size: 0x2D4
  */
 void CullFrustum::updatePlanes()
 {
@@ -403,10 +393,9 @@ void CullFrustum::updatePlanes()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8041A648
- * Size:	000158
+/**
+ * @note Address: 0x8041A648
+ * @note Size: 0x158
  */
 Camera::Camera()
     : CullFrustum(0)
@@ -424,18 +413,16 @@ Camera::Camera()
 	mNear    = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	8041A7A0
- * Size:	0000A0
+/**
+ * @note Address: 0x8041A7A0
+ * @note Size: 0xA0
  */
 // WEAK - in header
 // CullFrustum::~CullFrustum() { }
 
-/*
- * --INFO--
- * Address:	8041A840
- * Size:	000018
+/**
+ * @note Address: 0x8041A840
+ * @note Size: 0x18
  */
 void Camera::setFixNearFar(bool fixed, f32 near, f32 far)
 {
@@ -446,10 +433,9 @@ void Camera::setFixNearFar(bool fixed, f32 near, f32 far)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8041A858
- * Size:	0000A8
+/**
+ * @note Address: 0x8041A858
+ * @note Size: 0xA8
  */
 void Camera::copyFrom(Camera* camera)
 {
@@ -472,10 +458,9 @@ void Camera::copyFrom(Camera* camera)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8041A900
- * Size:	000198
+/**
+ * @note Address: 0x8041A900
+ * @note Size: 0x198
  */
 void Camera::updatePlanes()
 {
@@ -607,10 +592,9 @@ void Camera::updatePlanes()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8041AA98
- * Size:	0000B0
+/**
+ * @note Address: 0x8041AA98
+ * @note Size: 0xB0
  */
 Vector3f Camera::getLookAtPosition()
 {
@@ -621,25 +605,22 @@ Vector3f Camera::getLookAtPosition()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8041AB48
- * Size:	000020
+/**
+ * @note Address: 0x8041AB48
+ * @note Size: 0x20
  */
 Vector3f Camera::getLookAtPosition_() { return Vector3f::zero; }
 
-/*
- * --INFO--
- * Address:	8041AB68
- * Size:	000008
+/**
+ * @note Address: 0x8041AB68
+ * @note Size: 0x8
  */
 // WEAK - in header
 // void Game::P2JST::ObjectCamera::isRunning() { return mIsRunning; }
 
-/*
- * --INFO--
- * Address:	8041AB70
- * Size:	000108
+/**
+ * @note Address: 0x8041AB70
+ * @note Size: 0x108
  */
 Vector3f Camera::getPosition()
 {
@@ -655,10 +636,9 @@ Vector3f Camera::getPosition()
 	return mViewMatrix->multTranspose(vec);
 }
 
-/*
- * --INFO--
- * Address:	8041AC78
- * Size:	00008C
+/**
+ * @note Address: 0x8041AC78
+ * @note Size: 0x8C
  */
 Vector3f* Camera::getPositionPtr()
 {
@@ -669,18 +649,16 @@ Vector3f* Camera::getPositionPtr()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8041AD04
- * Size:	000008
+/**
+ * @note Address: 0x8041AD04
+ * @note Size: 0x8
  */
 // WEAK - in header
 // Vector3f* Camera::on_getPositionPtr() { return nullptr; }
 
-/*
- * --INFO--
- * Address:	8041AD0C
- * Size:	00001C
+/**
+ * @note Address: 0x8041AD0C
+ * @note Size: 0x1C
  */
 f32 Camera::getNear()
 {
@@ -690,10 +668,9 @@ f32 Camera::getNear()
 	return mProjectionNear;
 }
 
-/*
- * --INFO--
- * Address:	8041AD28
- * Size:	00001C
+/**
+ * @note Address: 0x8041AD28
+ * @note Size: 0x1C
  */
 f32 Camera::getFar()
 {
@@ -703,10 +680,9 @@ f32 Camera::getFar()
 	return mProjectionFar;
 }
 
-/*
- * --INFO--
- * Address:	8041AD44
- * Size:	000070
+/**
+ * @note Address: 0x8041AD44
+ * @note Size: 0x70
  */
 void Camera::setProjection()
 {
@@ -718,10 +694,9 @@ void Camera::setProjection()
 	GXSetProjection(mProjectionMtx, GX_PERSPECTIVE);
 }
 
-/*
- * --INFO--
- * Address:	8041ADB4
- * Size:	000128
+/**
+ * @note Address: 0x8041ADB4
+ * @note Size: 0x128
  */
 void Camera::update()
 {
@@ -741,18 +716,16 @@ void Camera::update()
 	updatePlanes();
 }
 
-/*
- * --INFO--
- * Address:	8041AEDC
- * Size:	000004
+/**
+ * @note Address: 0x8041AEDC
+ * @note Size: 0x4
  */
 // WEAK - in header
 // void Camera::updateMatrix() { }
 
-/*
- * --INFO--
- * Address:	8041AEE0
- * Size:	000018
+/**
+ * @note Address: 0x8041AEE0
+ * @note Size: 0x18
  */
 Matrixf* Camera::getViewMatrix(bool getCurrentViewMtx)
 {
@@ -763,10 +736,9 @@ Matrixf* Camera::getViewMatrix(bool getCurrentViewMtx)
 	return mViewMatrix;
 }
 
-/*
- * --INFO--
- * Address:	8041AEF8
- * Size:	000120
+/**
+ * @note Address: 0x8041AEF8
+ * @note Size: 0x120
  */
 f32 Camera::calcProperDistance(f32 f1, f32 f2)
 {
@@ -797,10 +769,9 @@ f32 Camera::calcProperDistance(f32 f1, f32 f2)
 	return (returnValue > returnMax) ? returnValue : returnMax;
 }
 
-/*
- * --INFO--
- * Address:	8041B018
- * Size:	0000E0
+/**
+ * @note Address: 0x8041B018
+ * @note Size: 0xE0
  */
 void Camera::updateScreenConstants()
 {
@@ -813,10 +784,9 @@ void Camera::updateScreenConstants()
 	_13C = -(mProjectionFar - mProjectionNear) / (mProjectionFar * 2.0f * mProjectionNear);
 }
 
-/*
- * --INFO--
- * Address:	8041B0F8
- * Size:	0000B8
+/**
+ * @note Address: 0x8041B0F8
+ * @note Size: 0xB8
  */
 f32 Camera::calcScreenSize(Sys::Sphere& ball)
 {
@@ -832,20 +802,18 @@ f32 Camera::calcScreenSize(Sys::Sphere& ball)
 	return absF(product);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
+/**
+ * @note Address: N/A
+ * @note Size: 0xE0
  */
 // void Camera::calcScreenSize(Sys::Sphere&, f32&, f32&, Vector3f&)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	8041B1B0
- * Size:	0002E8
+/**
+ * @note Address: 0x8041B1B0
+ * @note Size: 0x2E8
  */
 void Camera::updateSoundCamera(f32 angle)
 {
@@ -871,10 +839,9 @@ void Camera::updateSoundCamera(f32 angle)
 	PSMTXCopy(mat.mMatrix.mtxView, mSoundMatrix.mMatrix.mtxView);
 }
 
-/*
- * --INFO--
- * Address:	8041B498
- * Size:	0001AC
+/**
+ * @note Address: 0x8041B498
+ * @note Size: 0x1AC
  */
 LookAtCamera::LookAtCamera()
 {
@@ -885,25 +852,22 @@ LookAtCamera::LookAtCamera()
 	mViewMatrix = &mLookMatrix;
 }
 
-/*
- * --INFO--
- * Address:	8041B644
- * Size:	0000B0
+/**
+ * @note Address: 0x8041B644
+ * @note Size: 0xB0
  */
 // WEAK - in header
 // Camera::~Camera() { }
 
-/*
- * --INFO--
- * Address:	8041B6F4
- * Size:	000034
+/**
+ * @note Address: 0x8041B6F4
+ * @note Size: 0x34
  */
 void LookAtCamera::updateMatrix() { C_MTXLookAt(mLookMatrix.mMatrix.mtxView, (Vec*)&mPosition, (Vec*)&_18C, (Vec*)&mLookAtPosition); }
 
-/*
- * --INFO--
- * Address:	8041B728
- * Size:	000180
+/**
+ * @note Address: 0x8041B728
+ * @note Size: 0x180
  */
 BlendCamera::BlendCamera(int cameraCount, Camera** cameras)
 {
@@ -912,10 +876,9 @@ BlendCamera::BlendCamera(int cameraCount, Camera** cameras)
 	setCameras(cameras);
 }
 
-/*
- * --INFO--
- * Address:	8041B8A8
- * Size:	00008C
+/**
+ * @note Address: 0x8041B8A8
+ * @note Size: 0x8C
  */
 void BlendCamera::setCameras(Camera** camList)
 {
@@ -929,10 +892,9 @@ void BlendCamera::setCameras(Camera** camList)
 	mViewMatrix = &_150;
 }
 
-/*
- * --INFO--
- * Address:	8041B934
- * Size:	000060
+/**
+ * @note Address: 0x8041B934
+ * @note Size: 0x60
  */
 void BlendCamera::setBlendFactor(f32 factor)
 {
@@ -946,10 +908,9 @@ void BlendCamera::setBlendFactor(f32 factor)
 	mBlendFactor = blendfactor;
 }
 
-/*
- * --INFO--
- * Address:	8041B994
- * Size:	0002A8
+/**
+ * @note Address: 0x8041B994
+ * @note Size: 0x2A8
  */
 bool BlendCamera::doUpdate()
 {

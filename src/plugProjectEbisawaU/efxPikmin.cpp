@@ -17,10 +17,9 @@
 
 namespace efx {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void TParticleCallBack_Yodare::init(JPABaseEmitter*, JPABaseParticle*)
 {
@@ -30,30 +29,27 @@ void TParticleCallBack_Yodare::init(JPABaseEmitter*, JPABaseParticle*)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000124
+/**
+ * @note Address: N/A
+ * @note Size: 0x124
  */
 void TParticleCallBack_Yodare::execute(JPABaseEmitter*, JPABaseParticle*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
+/**
+ * @note Address: N/A
+ * @note Size: 0x78
  */
 void TTestYodareGen::create(Arg*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803B66B0
- * Size:	0000F0
+/**
+ * @note Address: 0x803B66B0
+ * @note Size: 0xF0
  */
 bool TPkNageBlur::create(Arg* arg)
 {
@@ -82,10 +78,9 @@ bool TPkNageBlur::create(Arg* arg)
 
 static void fakeFuncEfxPikmin(TParticleCallBack_Yodare* callback) { callback->_00 = 1.0f; }
 
-/*
- * --INFO--
- * Address:	803B67A0
- * Size:	0001E0
+/**
+ * @note Address: 0x803B67A0
+ * @note Size: 0x1E0
  */
 bool TDopingSmoke::create(Arg* arg)
 {
@@ -123,10 +118,9 @@ bool TDopingSmoke::create(Arg* arg)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803B6980
- * Size:	000060
+/**
+ * @note Address: 0x803B6980
+ * @note Size: 0x60
  */
 bool TOrimaLight::create(Arg* arg)
 {
@@ -143,10 +137,9 @@ bool TOrimaLight::create(Arg* arg)
 	return TSyncGroup2::create(arg);
 }
 
-/*
- * --INFO--
- * Address:	803B69E0
- * Size:	000060
+/**
+ * @note Address: 0x803B69E0
+ * @note Size: 0x60
  */
 bool TOrimaLightAct::create(Arg* arg)
 {
@@ -163,10 +156,9 @@ bool TOrimaLightAct::create(Arg* arg)
 	return TSyncGroup2::create(arg);
 }
 
-/*
- * --INFO--
- * Address:	803B6A40
- * Size:	000078
+/**
+ * @note Address: 0x803B6A40
+ * @note Size: 0x78
  */
 void TCursor::init(long whistleType, long cNum)
 {
@@ -193,10 +185,9 @@ void TCursor::init(long whistleType, long cNum)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803B6AB8
- * Size:	000154
+/**
+ * @note Address: 0x803B6AB8
+ * @note Size: 0x154
  */
 bool TCursor::create(Arg* arg)
 {
@@ -221,10 +212,9 @@ bool TCursor::create(Arg* arg)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	803B6C0C
- * Size:	000100
+/**
+ * @note Address: 0x803B6C0C
+ * @note Size: 0x100
  */
 void TCursor::update(Arg* arg)
 {
@@ -246,10 +236,9 @@ void TCursor::update(Arg* arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803B6D0C
- * Size:	000148
+/**
+ * @note Address: 0x803B6D0C
+ * @note Size: 0x148
  */
 void TCursor::calcPos_(Vector3f* pos, f32 mag, long id)
 {
@@ -263,10 +252,9 @@ void TCursor::calcPos_(Vector3f* pos, f32 mag, long id)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803B6E54
- * Size:	0000AC
+/**
+ * @note Address: 0x803B6E54
+ * @note Size: 0xAC
  */
 bool TFueactCircle::create(Arg* arg)
 {
@@ -285,10 +273,9 @@ bool TFueactCircle::create(Arg* arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803B6F00
- * Size:	000124
+/**
+ * @note Address: 0x803B6F00
+ * @note Size: 0x124
  */
 void TFueactCircle::execute(JPABaseEmitter* emit)
 {
@@ -398,10 +385,9 @@ lbl_803B7000:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803B7024
- * Size:	0002CC
+/**
+ * @note Address: 0x803B7024
+ * @note Size: 0x2CC
  */
 void TFueactCircle::execute(JPABaseEmitter*, JPABaseParticle* prt)
 {
@@ -618,10 +604,9 @@ lbl_803B72D8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803B72F0
- * Size:	0001D4
+/**
+ * @note Address: 0x803B72F0
+ * @note Size: 0x1D4
  */
 void TFueactBiriBase::doExecuteEmitterOperation(JPABaseEmitter* emit)
 {
@@ -771,10 +756,9 @@ lbl_803B7490:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803B74C4
- * Size:	00010C
+/**
+ * @note Address: 0x803B74C4
+ * @note Size: 0x10C
  */
 void createSimpleDead(Vector3f& pos, long type)
 {
@@ -790,40 +774,36 @@ void createSimpleDead(Vector3f& pos, long type)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
+/**
+ * @note Address: N/A
+ * @note Size: 0x5C
  */
 void createSimpleAttack(Vector3f&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
+/**
+ * @note Address: N/A
+ * @note Size: 0x5C
  */
 void createSimpleAttackDp(Vector3f&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
+/**
+ * @note Address: N/A
+ * @note Size: 0x5C
  */
 void createSimpleKanden(Vector3f&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803B75D0
- * Size:	00005C
+/**
+ * @note Address: 0x803B75D0
+ * @note Size: 0x5C
  */
 void createSimpleChinka(Vector3f& pos)
 {
@@ -831,10 +811,9 @@ void createSimpleChinka(Vector3f& pos)
 	pkEffectMgr->createS_Chinka(pos);
 }
 
-/*
- * --INFO--
- * Address:	803B762C
- * Size:	00005C
+/**
+ * @note Address: 0x803B762C
+ * @note Size: 0x5C
  */
 void createSimpleGedoku(Vector3f& pos)
 {
@@ -842,10 +821,9 @@ void createSimpleGedoku(Vector3f& pos)
 	pkEffectMgr->createS_Gedoku(pos);
 }
 
-/*
- * --INFO--
- * Address:	803B7688
- * Size:	000098
+/**
+ * @note Address: 0x803B7688
+ * @note Size: 0x98
  */
 void createSimpleBlackDrop(Vector3f& pos)
 {
@@ -854,10 +832,9 @@ void createSimpleBlackDrop(Vector3f& pos)
 	efx.create(&arg);
 }
 
-/*
- * --INFO--
- * Address:	803B7720
- * Size:	00008C
+/**
+ * @note Address: 0x803B7720
+ * @note Size: 0x8C
  */
 void createSimpleGate1Attack(Vector3f& pos)
 {
@@ -866,10 +843,9 @@ void createSimpleGate1Attack(Vector3f& pos)
 	efx.create(&arg);
 }
 
-/*
- * --INFO--
- * Address:	803B77AC
- * Size:	00008C
+/**
+ * @note Address: 0x803B77AC
+ * @note Size: 0x8C
  */
 void createSimplePkAp(Vector3f& pos)
 {
@@ -878,10 +854,9 @@ void createSimplePkAp(Vector3f& pos)
 	efx.create(&arg);
 }
 
-/*
- * --INFO--
- * Address:	803B7838
- * Size:	00005C
+/**
+ * @note Address: 0x803B7838
+ * @note Size: 0x5C
  */
 void createSimpleWaterOff(Vector3f& pos)
 {
@@ -889,10 +864,9 @@ void createSimpleWaterOff(Vector3f& pos)
 	pkEffectMgr->createS_WaterOff(pos);
 }
 
-/*
- * --INFO--
- * Address:	803B7894
- * Size:	00005C
+/**
+ * @note Address: 0x803B7894
+ * @note Size: 0x5C
  */
 void createSimpleDive(Vector3f& pos)
 {
@@ -900,10 +874,9 @@ void createSimpleDive(Vector3f& pos)
 	pkEffectMgr->createS_Dive(pos);
 }
 
-/*
- * --INFO--
- * Address:	803B78F0
- * Size:	000098
+/**
+ * @note Address: 0x803B78F0
+ * @note Size: 0x98
  */
 void createSimpleChiru(Vector3f& pos, long type)
 {
@@ -921,10 +894,9 @@ void createSimpleChiru(Vector3f& pos, long type)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803B7988
- * Size:	00005C
+/**
+ * @note Address: 0x803B7988
+ * @note Size: 0x5C
  */
 void createSimpleInattack(Vector3f& pos)
 {
@@ -932,10 +904,9 @@ void createSimpleInattack(Vector3f& pos)
 	pkEffectMgr->createS_Inattack(pos);
 }
 
-/*
- * --INFO--
- * Address:	803B79E4
- * Size:	000080
+/**
+ * @note Address: 0x803B79E4
+ * @note Size: 0x80
  */
 void createSimpleInstick(Vector3f& pos)
 {
@@ -944,10 +915,9 @@ void createSimpleInstick(Vector3f& pos)
 	efx.create(&arg);
 }
 
-/*
- * --INFO--
- * Address:	803B7A64
- * Size:	00008C
+/**
+ * @note Address: 0x803B7A64
+ * @note Size: 0x8C
  */
 void createSimpleGate2Attack(Vector3f& pos)
 {
@@ -956,10 +926,9 @@ void createSimpleGate2Attack(Vector3f& pos)
 	efx.create(&arg);
 }
 
-/*
- * --INFO--
- * Address:	803B7AF0
- * Size:	000080
+/**
+ * @note Address: 0x803B7AF0
+ * @note Size: 0x80
  */
 void createSimpleBridgeAttack(Vector3f& pos)
 {
@@ -968,10 +937,9 @@ void createSimpleBridgeAttack(Vector3f& pos)
 	efx.create(&arg);
 }
 
-/*
- * --INFO--
- * Address:	803B7B70
- * Size:	00005C
+/**
+ * @note Address: 0x803B7B70
+ * @note Size: 0x5C
  */
 void createSimpleWalksmoke(Vector3f& pos)
 {
@@ -979,10 +947,9 @@ void createSimpleWalksmoke(Vector3f& pos)
 	pkEffectMgr->createS_Walksmoke(pos);
 }
 
-/*
- * --INFO--
- * Address:	803B7BCC
- * Size:	00008C
+/**
+ * @note Address: 0x803B7BCC
+ * @note Size: 0x8C
  */
 void createSimpleGlow2(Vector3f& pos)
 {
@@ -991,10 +958,9 @@ void createSimpleGlow2(Vector3f& pos)
 	efx.create(&arg);
 }
 
-/*
- * --INFO--
- * Address:	803B7C58
- * Size:	000080
+/**
+ * @note Address: 0x803B7C58
+ * @note Size: 0x80
  */
 void createSimpleStoneAttack(Vector3f& pos)
 {
@@ -1003,10 +969,9 @@ void createSimpleStoneAttack(Vector3f& pos)
 	efx.create(&arg);
 }
 
-/*
- * --INFO--
- * Address:	803B7CD8
- * Size:	00005C
+/**
+ * @note Address: 0x803B7CD8
+ * @note Size: 0x5C
  */
 void createSimpleDig(Vector3f& pos)
 {
@@ -1014,10 +979,9 @@ void createSimpleDig(Vector3f& pos)
 	pkEffectMgr->createS_Dig(pos);
 }
 
-/*
- * --INFO--
- * Address:	803B7D34
- * Size:	00005C
+/**
+ * @note Address: 0x803B7D34
+ * @note Size: 0x5C
  */
 void createSimpleGate3Attack(Vector3f& pos)
 {
@@ -1025,10 +989,9 @@ void createSimpleGate3Attack(Vector3f& pos)
 	pkEffectMgr->createS_Gate3Attack(pos);
 }
 
-/*
- * --INFO--
- * Address:	803B7D90
- * Size:	00005C
+/**
+ * @note Address: 0x803B7D90
+ * @note Size: 0x5C
  */
 void createSimpleWalkwater(Vector3f& pos)
 {
@@ -1036,10 +999,9 @@ void createSimpleWalkwater(Vector3f& pos)
 	pkEffectMgr->createS_Walkwater(pos);
 }
 
-/*
- * --INFO--
- * Address:	803B7DEC
- * Size:	000038
+/**
+ * @note Address: 0x803B7DEC
+ * @note Size: 0x38
  */
 void TNaviEffect::init(Vector3f* pos, Mtx mtx, Vector3f* naviPos, enumNaviType naviType)
 {
@@ -1050,10 +1012,9 @@ void TNaviEffect::init(Vector3f* pos, Mtx mtx, Vector3f* naviPos, enumNaviType n
 	setNaviType(naviType);
 }
 
-/*
- * --INFO--
- * Address:	803B7E24
- * Size:	0000D8
+/**
+ * @note Address: 0x803B7E24
+ * @note Size: 0xD8
  */
 void TNaviEffect::setNaviType(enumNaviType type)
 {
@@ -1155,17 +1116,15 @@ lbl_803B7ED0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803B7EFC
- * Size:	000020
+/**
+ * @note Address: 0x803B7EFC
+ * @note Size: 0x20
  */
 void TNaviEffect::update() { updateHamon_(); }
 
-/*
- * --INFO--
- * Address:	803B7F1C
- * Size:	0000D8
+/**
+ * @note Address: 0x803B7F1C
+ * @note Size: 0xD8
  */
 void TNaviEffect::updateHamon_()
 {
@@ -1191,10 +1150,9 @@ void TNaviEffect::updateHamon_()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803B7FF4
- * Size:	000060
+/**
+ * @note Address: 0x803B7FF4
+ * @note Size: 0x60
  */
 void TNaviEffect::createHamonA_(Vector3f* pos)
 {
@@ -1202,17 +1160,15 @@ void TNaviEffect::createHamonA_(Vector3f* pos)
 	mHamonA->create(pos);
 }
 
-/*
- * --INFO--
- * Address:	803B8054
- * Size:	000024
+/**
+ * @note Address: 0x803B8054
+ * @note Size: 0x24
  */
 void TNaviEffect::killHamonA_() { mHamonA->kill(); }
 
-/*
- * --INFO--
- * Address:	803B8078
- * Size:	000060
+/**
+ * @note Address: 0x803B8078
+ * @note Size: 0x60
  */
 void TNaviEffect::createHamonB_(Vector3f* pos)
 {
@@ -1220,17 +1176,15 @@ void TNaviEffect::createHamonB_(Vector3f* pos)
 	mHamonB->create(pos);
 }
 
-/*
- * --INFO--
- * Address:	803B80D8
- * Size:	000024
+/**
+ * @note Address: 0x803B80D8
+ * @note Size: 0x24
  */
 void TNaviEffect::killHamonB_() { mHamonB->kill(); }
 
-/*
- * --INFO--
- * Address:	803B80FC
- * Size:	000078
+/**
+ * @note Address: 0x803B80FC
+ * @note Size: 0x78
  */
 void TNaviEffect::createLight_(Mtx mtx)
 {
@@ -1239,17 +1193,15 @@ void TNaviEffect::createLight_(Mtx mtx)
 	mLight.create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	803B8174
- * Size:	00002C
+/**
+ * @note Address: 0x803B8174
+ * @note Size: 0x2C
  */
 void TNaviEffect::killLight_() { mLight.fade(); }
 
-/*
- * --INFO--
- * Address:	803B81A0
- * Size:	000078
+/**
+ * @note Address: 0x803B81A0
+ * @note Size: 0x78
  */
 void TNaviEffect::createLightAct_(Mtx mtx)
 {
@@ -1258,17 +1210,15 @@ void TNaviEffect::createLightAct_(Mtx mtx)
 	mLightAct.create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	803B8218
- * Size:	00002C
+/**
+ * @note Address: 0x803B8218
+ * @note Size: 0x2C
  */
 void TNaviEffect::killLightAct_() { mLightAct.fade(); }
 
-/*
- * --INFO--
- * Address:	803B8244
- * Size:	000064
+/**
+ * @note Address: 0x803B8244
+ * @note Size: 0x64
  */
 void TNaviEffect::createCursor_(Vector3f pos, f32 scale)
 {
@@ -1276,17 +1226,15 @@ void TNaviEffect::createCursor_(Vector3f pos, f32 scale)
 	mCursor.create(&arg);
 }
 
-/*
- * --INFO--
- * Address:	803B82A8
- * Size:	00002C
+/**
+ * @note Address: 0x803B82A8
+ * @note Size: 0x2C
  */
 void TNaviEffect::killCursor_() { mCursor.fade(); }
 
-/*
- * --INFO--
- * Address:	803B82D4
- * Size:	000284
+/**
+ * @note Address: 0x803B82D4
+ * @note Size: 0x284
  */
 void TNaviEffect::updateCursor_(Vector3f pos, f32 scale)
 {
@@ -1294,10 +1242,9 @@ void TNaviEffect::updateCursor_(Vector3f pos, f32 scale)
 	mCursor.update(&arg);
 }
 
-/*
- * --INFO--
- * Address:	803B8558
- * Size:	0000B4
+/**
+ * @note Address: 0x803B8558
+ * @note Size: 0xB4
  */
 void TNaviEffect::createFueact_(Mtx mtx, Vector3f* pos)
 {
@@ -1313,17 +1260,15 @@ void TNaviEffect::createFueact_(Mtx mtx, Vector3f* pos)
 	mFueact.create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	803B860C
- * Size:	00002C
+/**
+ * @note Address: 0x803B860C
+ * @note Size: 0x2C
  */
 void TNaviEffect::killFueact_() { mFueact.fade(); }
 
-/*
- * --INFO--
- * Address:	803B8638
- * Size:	000078
+/**
+ * @note Address: 0x803B8638
+ * @note Size: 0x78
  */
 void TNaviEffect::createOrimadamage_(Mtx mtx)
 {
@@ -1332,10 +1277,9 @@ void TNaviEffect::createOrimadamage_(Mtx mtx)
 	mDamage.create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 void TNaviEffect::killOrimadamage_()
 {
@@ -1343,10 +1287,9 @@ void TNaviEffect::killOrimadamage_()
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803B86B0
- * Size:	00003C
+/**
+ * @note Address: 0x803B86B0
+ * @note Size: 0x3C
  */
 void TPkEffect::init()
 {
@@ -1361,10 +1304,9 @@ void TPkEffect::init()
 	mFlags.clear();
 }
 
-/*
- * --INFO--
- * Address:	803B86EC
- * Size:	000034
+/**
+ * @note Address: 0x803B86EC
+ * @note Size: 0x34
  */
 void TPkEffect::update()
 {
@@ -1372,10 +1314,9 @@ void TPkEffect::update()
 	updateHamon_();
 }
 
-/*
- * --INFO--
- * Address:	803B8720
- * Size:	000038
+/**
+ * @note Address: 0x803B8720
+ * @note Size: 0x38
  */
 void TPkEffect::updateMoeSmoke_()
 {
@@ -1386,10 +1327,9 @@ void TPkEffect::updateMoeSmoke_()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803B8758
- * Size:	0000D0
+/**
+ * @note Address: 0x803B8758
+ * @note Size: 0xD0
  */
 void TPkEffect::updateHamon_()
 {
@@ -1413,10 +1353,9 @@ void TPkEffect::updateHamon_()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803B8828
- * Size:	000064
+/**
+ * @note Address: 0x803B8828
+ * @note Size: 0x64
  */
 void TPkEffect::createKourin_(Vector3f* pos)
 {
@@ -1424,17 +1363,15 @@ void TPkEffect::createKourin_(Vector3f* pos)
 	mOeKourin.create(pos, mPikiColor);
 }
 
-/*
- * --INFO--
- * Address:	803B888C
- * Size:	000024
+/**
+ * @note Address: 0x803B888C
+ * @note Size: 0x24
  */
 void TPkEffect::killKourin_() { mOeKourin.kill(); }
 
-/*
- * --INFO--
- * Address:	803B88B0
- * Size:	000060
+/**
+ * @note Address: 0x803B88B0
+ * @note Size: 0x60
  */
 void TPkEffect::createDoping_(Vector3f* pos)
 {
@@ -1442,17 +1379,15 @@ void TPkEffect::createDoping_(Vector3f* pos)
 	mOeDoping.create(pos);
 }
 
-/*
- * --INFO--
- * Address:	803B8910
- * Size:	000024
+/**
+ * @note Address: 0x803B8910
+ * @note Size: 0x24
  */
 void TPkEffect::killDoping_() { mOeDoping.kill(); }
 
-/*
- * --INFO--
- * Address:	803B8934
- * Size:	0000F8
+/**
+ * @note Address: 0x803B8934
+ * @note Size: 0xF8
  */
 void TPkEffect::createNage_(Vector3f* pos, Mtx mtx)
 {
@@ -1465,10 +1400,9 @@ void TPkEffect::createNage_(Vector3f* pos, Mtx mtx)
 	mNageBlur.create(&arg);
 }
 
-/*
- * --INFO--
- * Address:	803B8A2C
- * Size:	000044
+/**
+ * @note Address: 0x803B8A2C
+ * @note Size: 0x44
  */
 void TPkEffect::killNage_()
 {
@@ -1476,10 +1410,9 @@ void TPkEffect::killNage_()
 	mNageBlur.fade();
 }
 
-/*
- * --INFO--
- * Address:	803B8A70
- * Size:	00007C
+/**
+ * @note Address: 0x803B8A70
+ * @note Size: 0x7C
  */
 void TPkEffect::createMoe_(Vector3f* pos)
 {
@@ -1489,10 +1422,9 @@ void TPkEffect::createMoe_(Vector3f* pos)
 	mMoeA.create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	803B8AEC
- * Size:	000044
+/**
+ * @note Address: 0x803B8AEC
+ * @note Size: 0x44
  */
 void TPkEffect::killMoe_()
 {
@@ -1500,10 +1432,9 @@ void TPkEffect::killMoe_()
 	mMoeA.fade();
 }
 
-/*
- * --INFO--
- * Address:	803B8B30
- * Size:	000060
+/**
+ * @note Address: 0x803B8B30
+ * @note Size: 0x60
  */
 void TPkEffect::createChudoku_(Vector3f* pos)
 {
@@ -1511,17 +1442,15 @@ void TPkEffect::createChudoku_(Vector3f* pos)
 	mOeChudoku.create(pos);
 }
 
-/*
- * --INFO--
- * Address:	803B8B90
- * Size:	000024
+/**
+ * @note Address: 0x803B8B90
+ * @note Size: 0x24
  */
 void TPkEffect::killChudoku_() { mOeChudoku.kill(); }
 
-/*
- * --INFO--
- * Address:	803B8BB4
- * Size:	000060
+/**
+ * @note Address: 0x803B8BB4
+ * @note Size: 0x60
  */
 void TPkEffect::createMoeSmoke_(Vector3f* pos)
 {
@@ -1529,17 +1458,15 @@ void TPkEffect::createMoeSmoke_(Vector3f* pos)
 	mOeMoeSmoke.create(pos);
 }
 
-/*
- * --INFO--
- * Address:	803B8C14
- * Size:	000024
+/**
+ * @note Address: 0x803B8C14
+ * @note Size: 0x24
  */
 void TPkEffect::killMoeSmoke_() { mOeMoeSmoke.kill(); }
 
-/*
- * --INFO--
- * Address:	803B8C38
- * Size:	000070
+/**
+ * @note Address: 0x803B8C38
+ * @note Size: 0x70
  */
 void TPkEffect::createBlackDown_(Vector3f* pos)
 {
@@ -1548,17 +1475,15 @@ void TPkEffect::createBlackDown_(Vector3f* pos)
 	mBlackDown.create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	803B8CA8
- * Size:	00002C
+/**
+ * @note Address: 0x803B8CA8
+ * @note Size: 0x2C
  */
 void TPkEffect::killBlackDown_() { mBlackDown.fade(); }
 
-/*
- * --INFO--
- * Address:	803B8CD4
- * Size:	000060
+/**
+ * @note Address: 0x803B8CD4
+ * @note Size: 0x60
  */
 void TPkEffect::createWater_(Vector3f* pos)
 {
@@ -1566,17 +1491,15 @@ void TPkEffect::createWater_(Vector3f* pos)
 	mOeWater.create(pos);
 }
 
-/*
- * --INFO--
- * Address:	803B8D34
- * Size:	000024
+/**
+ * @note Address: 0x803B8D34
+ * @note Size: 0x24
  */
 void TPkEffect::killWater_() { mOeWater.kill(); }
 
-/*
- * --INFO--
- * Address:	803B8D58
- * Size:	000060
+/**
+ * @note Address: 0x803B8D58
+ * @note Size: 0x60
  */
 void TPkEffect::createHamonA_(Vector3f* pos)
 {
@@ -1584,17 +1507,15 @@ void TPkEffect::createHamonA_(Vector3f* pos)
 	mOeHamonA.create(pos);
 }
 
-/*
- * --INFO--
- * Address:	803B8DB8
- * Size:	000024
+/**
+ * @note Address: 0x803B8DB8
+ * @note Size: 0x24
  */
 void TPkEffect::killHamonA_() { mOeHamonA.kill(); }
 
-/*
- * --INFO--
- * Address:	803B8DDC
- * Size:	000060
+/**
+ * @note Address: 0x803B8DDC
+ * @note Size: 0x60
  */
 void TPkEffect::createHamonB_(Vector3f* pos)
 {
@@ -1602,17 +1523,15 @@ void TPkEffect::createHamonB_(Vector3f* pos)
 	mOeHamonB.create(pos);
 }
 
-/*
- * --INFO--
- * Address:	803B8E3C
- * Size:	000024
+/**
+ * @note Address: 0x803B8E3C
+ * @note Size: 0x24
  */
 void TPkEffect::killHamonB_() { mOeHamonB.kill(); }
 
-/*
- * --INFO--
- * Address:	803B8E60
- * Size:	000020
+/**
+ * @note Address: 0x803B8E60
+ * @note Size: 0x20
  */
 void TPkEffectTane::init()
 {
@@ -1623,10 +1542,9 @@ void TPkEffectTane::init()
 	_10        = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	803B8E80
- * Size:	000060
+/**
+ * @note Address: 0x803B8E80
+ * @note Size: 0x60
  */
 void TPkEffectTane::createTanekira_(Vector3f* pos)
 {
@@ -1634,17 +1552,15 @@ void TPkEffectTane::createTanekira_(Vector3f* pos)
 	mOeKira.create(pos);
 }
 
-/*
- * --INFO--
- * Address:	803B8EE0
- * Size:	000024
+/**
+ * @note Address: 0x803B8EE0
+ * @note Size: 0x24
  */
 void TPkEffectTane::killTanekira_() { mOeKira.kill(); }
 
-/*
- * --INFO--
- * Address:	803B8F04
- * Size:	000064
+/**
+ * @note Address: 0x803B8F04
+ * @note Size: 0x64
  */
 void TPkEffectTane::createKourin_(Vector3f* pos)
 {
@@ -1652,17 +1568,15 @@ void TPkEffectTane::createKourin_(Vector3f* pos)
 	mOeKourin.create(pos, mPikiColor);
 }
 
-/*
- * --INFO--
- * Address:	803B8F68
- * Size:	000024
+/**
+ * @note Address: 0x803B8F68
+ * @note Size: 0x24
  */
 void TPkEffectTane::killKourin_() { mOeKourin.kill(); }
 
-/*
- * --INFO--
- * Address:	803B8F8C
- * Size:	000070
+/**
+ * @note Address: 0x803B8F8C
+ * @note Size: 0x70
  */
 void TPkEffectTane::createGlow1_(Vector3f* pos)
 {
@@ -1671,10 +1585,9 @@ void TPkEffectTane::createGlow1_(Vector3f* pos)
 	mGlow.create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 void TPkEffectTane::killGlow1_()
 {
@@ -1682,64 +1595,57 @@ void TPkEffectTane::killGlow1_()
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	803B8FFC
- * Size:	000004
+/**
+ * @note Address: 0x803B8FFC
+ * @note Size: 0x4
  */
 void TFueactCircle::executeAfter(JPABaseEmitter*) { }
 
-/*
- * --INFO--
- * Address:	803B9000
- * Size:	00002C
+/**
+ * @note Address: 0x803B9000
+ * @note Size: 0x2C
  */
 // void TCursor::forceKill() { mOneEmitter.forceKill(); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000104
+/**
+ * @note Address: N/A
+ * @note Size: 0x104
  */
 TTestYodareGen::~TTestYodareGen()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 void TTestYodareGen::forceKill()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 void TTestYodareGen::fade()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
+/**
+ * @note Address: N/A
+ * @note Size: 0x84
  */
 TTestYodareHit::~TTestYodareHit()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
+/**
+ * @note Address: N/A
+ * @note Size: 0x60
  */
 TParticleCallBack_Yodare::~TParticleCallBack_Yodare()
 {

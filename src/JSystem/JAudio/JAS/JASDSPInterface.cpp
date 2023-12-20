@@ -445,10 +445,9 @@ const u16 JASDsp::DSPRES_FILTER[640] = {
 	0x7ED5, 0x7F09, 0x7F37, 0x7F61, 0x7F86, 0x7FA6, 0x7FC1, 0x7FD8, 0x7FE9, 0x7FF5, 0x7FFD
 };
 
-/*
- * --INFO--
- * Address:	800A5310
- * Size:	00004C
+/**
+ * @note Address: 0x800A5310
+ * @note Size: 0x4C
  */
 void JASDsp::boot(void (*p1)(void*))
 {
@@ -459,31 +458,27 @@ void JASDsp::boot(void (*p1)(void*))
 	}
 }
 
-/*
- * --INFO--
- * Address:	800A535C
- * Size:	000020
+/**
+ * @note Address: 0x800A535C
+ * @note Size: 0x20
  */
 void JASDsp::releaseHalt(u32 p1) { DSPReleaseHalt2(p1); }
 
-/*
- * --INFO--
- * Address:	800A537C
- * Size:	000020
+/**
+ * @note Address: 0x800A537C
+ * @note Size: 0x20
  */
 void JASDsp::finishWork(u16 p1) { DspFinishWork(p1); }
 
-/*
- * --INFO--
- * Address:	800A539C
- * Size:	000020
+/**
+ * @note Address: 0x800A539C
+ * @note Size: 0x20
  */
 void JASDsp::syncFrame(u32 p1, u32 p2, u32 p3) { DsyncFrame2(p1, p2, p3); }
 
-/*
- * --INFO--
- * Address:	800A53BC
- * Size:	000024
+/**
+ * @note Address: 0x800A53BC
+ * @note Size: 0x24
  */
 void JASDsp::setDSPMixerLevel(float dspMixerLevel)
 {
@@ -491,17 +486,15 @@ void JASDsp::setDSPMixerLevel(float dspMixerLevel)
 	DsetMixerLevel(dspMixerLevel);
 }
 
-/*
- * --INFO--
- * Address:	800A53E0
- * Size:	000008
+/**
+ * @note Address: 0x800A53E0
+ * @note Size: 0x8
  */
 float JASDsp::getDSPMixerLevel() { return sDSPVolume; }
 
-/*
- * --INFO--
- * Address:	800A53E8
- * Size:	000010
+/**
+ * @note Address: 0x800A53E8
+ * @note Size: 0x10
  */
 JASDsp::TChannel* JASDsp::getDSPHandle(int index)
 {
@@ -513,67 +506,60 @@ JASDsp::TChannel* JASDsp::getDSPHandle(int index)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 void JASDsp::getDSPHandleNc(int)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A4
+/**
+ * @note Address: N/A
+ * @note Size: 0xA4
  */
 void JASDsp::setFilterTable(short*, short*, u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 void JASDsp::flushBuffer()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 void JASDsp::flushChannelAll()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 void JASDsp::cacheChannelAll()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800A53F8
- * Size:	000028
+/**
+ * @note Address: 0x800A53F8
+ * @note Size: 0x28
  */
 void JASDsp::invalChannelAll() { DCInvalidateRange(CH_BUF, sizeof(u8) * 0x6000); }
 
-/*
- * --INFO--
- * Address:	800A5420
- * Size:	0000C4
+/**
+ * @note Address: 0x800A5420
+ * @note Size: 0xC4
  */
 void JASDsp::initBuffer()
 {
@@ -589,10 +575,9 @@ void JASDsp::initBuffer()
 	DCFlushRange(FX_BUF, sizeof(u16) * 0x40);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 JASDsp::Fxline& JASDsp::getFXHandle(u8 index)
 {
@@ -600,20 +585,18 @@ JASDsp::Fxline& JASDsp::getFXHandle(u8 index)
 	return FX_BUF[index];
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 void JASDsp::getFXHandleNc(u8)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800A54E4
- * Size:	000154
+/**
+ * @note Address: 0x800A54E4
+ * @note Size: 0x154
  */
 bool JASDsp::setFXLine(u8 lineIndex, short* p2, JASDsp::FxlineConfig_* config)
 {
@@ -757,20 +740,18 @@ lbl_800A560C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E8
+/**
+ * @note Address: N/A
+ * @note Size: 0xE8
  */
 void JASDsp::changeFXLineParam(u8, u8, u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800A5638
- * Size:	00003C
+/**
+ * @note Address: 0x800A5638
+ * @note Size: 0x3C
  * init__Q26JASDsp8TChannelFv
  */
 void JASDsp::TChannel::init()
@@ -784,10 +765,9 @@ void JASDsp::TChannel::init()
 	initFilter();
 }
 
-/*
- * --INFO--
- * Address:	800A5674
- * Size:	0000A0
+/**
+ * @note Address: 0x800A5674
+ * @note Size: 0xA0
  */
 void JASDsp::TChannel::playStart()
 {
@@ -852,10 +832,9 @@ lbl_800A5708:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A5714
- * Size:	00000C
+/**
+ * @note Address: 0x800A5714
+ * @note Size: 0xC
  */
 void JASDsp::TChannel::playStop()
 {
@@ -863,10 +842,9 @@ void JASDsp::TChannel::playStop()
 	_00 = 0;
 }
 
-/*
- * --INFO--
- * Address:	800A5720
- * Size:	000010
+/**
+ * @note Address: 0x800A5720
+ * @note Size: 0x10
  */
 void JASDsp::TChannel::replyFinishRequest()
 {
@@ -874,10 +852,9 @@ void JASDsp::TChannel::replyFinishRequest()
 	_00 = 0;
 }
 
-/*
- * --INFO--
- * Address:	800A5730
- * Size:	00000C
+/**
+ * @note Address: 0x800A5730
+ * @note Size: 0xC
  */
 void JASDsp::TChannel::forceStop()
 {
@@ -885,10 +862,9 @@ void JASDsp::TChannel::forceStop()
 	_10A = 1;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 bool JASDsp::TChannel::isActive() const
 {
@@ -896,17 +872,15 @@ bool JASDsp::TChannel::isActive() const
 	// return (getBlockCounter() < getRemainSamples());
 }
 
-/*
- * --INFO--
- * Address:	800A573C
- * Size:	000014
+/**
+ * @note Address: 0x800A573C
+ * @note Size: 0x14
  */
 bool JASDsp::TChannel::isFinish() const { return (_02 != 0); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 u16 JASDsp::TChannel::getBlockCounter() const
 {
@@ -914,10 +888,9 @@ u16 JASDsp::TChannel::getBlockCounter() const
 	// return 0x0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 u16 JASDsp::TChannel::getRemainSamples() const
 {
@@ -925,10 +898,9 @@ u16 JASDsp::TChannel::getRemainSamples() const
 	// return 0x10;
 }
 
-/*
- * --INFO--
- * Address:	800A5750
- * Size:	000150
+/**
+ * @note Address: 0x800A5750
+ * @note Size: 0x150
  */
 void JASDsp::TChannel::setWaveInfo(JASWaveInfo const& info, u32 p2, u32 p3)
 {
@@ -1087,10 +1059,9 @@ void JASDsp::TChannel::setWaveInfo(JASWaveInfo const& info, u32 p2, u32 p3)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A58A0
- * Size:	000018
+/**
+ * @note Address: 0x800A58A0
+ * @note Size: 0x18
  */
 void JASDsp::TChannel::setOscInfo(u32 p1)
 {
@@ -1099,10 +1070,9 @@ void JASDsp::TChannel::setOscInfo(u32 p1)
 	_100 = p1;
 }
 
-/*
- * --INFO--
- * Address:	800A58B8
- * Size:	00002C
+/**
+ * @note Address: 0x800A58B8
+ * @note Size: 0x2C
  */
 void JASDsp::TChannel::initAutoMixer()
 {
@@ -1114,10 +1084,9 @@ void JASDsp::TChannel::initAutoMixer()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800A58E4
- * Size:	00002C
+/**
+ * @note Address: 0x800A58E4
+ * @note Size: 0x2C
  */
 void JASDsp::TChannel::setAutoMixer(u16 p1, u8 p2, u8 p3, u8 p4, u8 p5)
 {
@@ -1127,40 +1096,36 @@ void JASDsp::TChannel::setAutoMixer(u16 p1, u8 p2, u8 p3, u8 p4, u8 p5)
 	_58 = 1;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void JASDsp::TChannel::updateAMVolume(u16)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
+/**
+ * @note Address: N/A
+ * @note Size: 0x10
  */
 void JASDsp::TChannel::updateAMPan(u8, u8)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void JASDsp::TChannel::updateAMFX(u8)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800A5910
- * Size:	000018
+/**
+ * @note Address: 0x800A5910
+ * @note Size: 0x18
  */
 void JASDsp::TChannel::setPitch(u16 pitch)
 {
@@ -1170,17 +1135,15 @@ void JASDsp::TChannel::setPitch(u16 pitch)
 	mPitch = pitch;
 }
 
-/*
- * --INFO--
- * Address:	800A5928
- * Size:	00000C
+/**
+ * @note Address: 0x800A5928
+ * @note Size: 0xC
  */
 void JASDsp::TChannel::setMixerInitDelayMax(u8 mixerInitDelayMax) { mMixerInitDelayMax = mixerInitDelayMax; }
 
-/*
- * --INFO--
- * Address:	800A5934
- * Size:	000020
+/**
+ * @note Address: 0x800A5934
+ * @note Size: 0x20
  */
 void JASDsp::TChannel::setMixerInitVolume(u8 index, s16 volume)
 {
@@ -1190,10 +1153,9 @@ void JASDsp::TChannel::setMixerInitVolume(u8 index, s16 volume)
 	mixer->_06           = 0;
 }
 
-/*
- * --INFO--
- * Address:	800A5954
- * Size:	000018
+/**
+ * @note Address: 0x800A5954
+ * @note Size: 0x18
  */
 void JASDsp::TChannel::setMixerInitDelaySamples(u8 index, u8 samples)
 {
@@ -1201,10 +1163,9 @@ void JASDsp::TChannel::setMixerInitDelaySamples(u8 index, u8 samples)
 	mixer->_06           = (samples << 8) | samples;
 }
 
-/*
- * --INFO--
- * Address:	800A596C
- * Size:	000020
+/**
+ * @note Address: 0x800A596C
+ * @note Size: 0x20
  */
 void JASDsp::TChannel::setMixerDelaySamples(u8 index, u8 samples)
 {
@@ -1212,10 +1173,9 @@ void JASDsp::TChannel::setMixerDelaySamples(u8 index, u8 samples)
 	mixer->_06           = (samples << 8) | (mixer->_06 & 0xFF);
 }
 
-/*
- * --INFO--
- * Address:	800A598C
- * Size:	00002C
+/**
+ * @note Address: 0x800A598C
+ * @note Size: 0x2C
  */
 void JASDsp::TChannel::setMixerVolume(u8 index, short volume)
 {
@@ -1227,26 +1187,23 @@ void JASDsp::TChannel::setMixerVolume(u8 index, short volume)
 	mixer->_06 &= 0xFF;
 }
 
-/*
- * --INFO--
- * Address:	800A59B8
- * Size:	00000C
+/**
+ * @note Address: 0x800A59B8
+ * @note Size: 0xC
  */
 void JASDsp::TChannel::setPauseFlag(u8 pauseFlag) { mPauseFlag = pauseFlag; }
 
-/*
- * --INFO--
- * Address:	800A59C4
- * Size:	000024
+/**
+ * @note Address: 0x800A59C4
+ * @note Size: 0x24
  * TODO: Sizeof?
  * flush__Q26JASDsp8TChannelFv
  */
 void JASDsp::TChannel::flush() { DCFlushRange(this, 0x180); }
 
-/*
- * --INFO--
- * Address:	800A59E8
- * Size:	000048
+/**
+ * @note Address: 0x800A59E8
+ * @note Size: 0x48
  */
 void JASDsp::TChannel::initFilter()
 {
@@ -1261,10 +1218,9 @@ void JASDsp::TChannel::initFilter()
 	mDistFilter        = 0;
 }
 
-/*
- * --INFO--
- * Address:	800A5A30
- * Size:	000038
+/**
+ * @note Address: 0x800A5A30
+ * @note Size: 0x38
  */
 void JASDsp::TChannel::setFilterMode(u16 p1)
 {
@@ -1279,10 +1235,9 @@ void JASDsp::TChannel::setFilterMode(u16 p1)
 	mFilterMode = (p1 & 0x20) + v1;
 }
 
-/*
- * --INFO--
- * Address:	800A5A68
- * Size:	000024
+/**
+ * @note Address: 0x800A5A68
+ * @note Size: 0x24
  */
 void JASDsp::TChannel::setIIRFilterParam(short* p1)
 {
@@ -1291,10 +1246,9 @@ void JASDsp::TChannel::setIIRFilterParam(short* p1)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800A5A8C
- * Size:	000044
+/**
+ * @note Address: 0x800A5A8C
+ * @note Size: 0x44
  */
 void JASDsp::TChannel::setFIR8FilterParam(short* p1)
 {
@@ -1303,10 +1257,9 @@ void JASDsp::TChannel::setFIR8FilterParam(short* p1)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800A5AD0
- * Size:	000008
+/**
+ * @note Address: 0x800A5AD0
+ * @note Size: 0x8
  */
 void JASDsp::TChannel::setDistFilter(s16 distFilter)
 {
@@ -1314,10 +1267,9 @@ void JASDsp::TChannel::setDistFilter(s16 distFilter)
 	mDistFilter = distFilter;
 }
 
-/*
- * --INFO--
- * Address:	800A5AD8
- * Size:	000020
+/**
+ * @note Address: 0x800A5AD8
+ * @note Size: 0x20
  */
 void JASDsp::TChannel::setBusConnect(u8 index, u8 p2)
 {
@@ -1326,10 +1278,9 @@ void JASDsp::TChannel::setBusConnect(u8 index, u8 p2)
 	mixer->_00                         = connect_table[p2];
 }
 
-/*
- * --INFO--
- * Address:	800A5AF8
- * Size:	000090
+/**
+ * @note Address: 0x800A5AF8
+ * @note Size: 0x90
  */
 u16 DSP_CreateMap2(u32 p1)
 {
@@ -1383,10 +1334,9 @@ lbl_800A5B78:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00015C
+/**
+ * @note Address: N/A
+ * @note Size: 0x15C
  */
 void DSP_CreateMap()
 {

@@ -19,10 +19,9 @@ enum scan_states {
 #define fetch()                 (count++, (*ReadProc)(ReadProcArg, 0, __GetAChar))
 #define unfetch(c)              (*ReadProc)(ReadProcArg, c, __UngetAChar)
 
-/*
- * --INFO--
- * Address:	800CBEE0
- * Size:	000378
+/**
+ * @note Address: 0x800CBEE0
+ * @note Size: 0x378
  */
 unsigned long __strtoul(int base, int max_width, int (*ReadProc)(void*, int, int), void* ReadProcArg, int* chars_scanned, int* negative,
                         int* overflow)
@@ -156,10 +155,9 @@ unsigned long __strtoul(int base, int max_width, int (*ReadProc)(void*, int, int
 	return value;
 }
 
-/*
- * --INFO--
- * Address:	800CBAD4
- * Size:	00040C
+/**
+ * @note Address: 0x800CBAD4
+ * @note Size: 0x40C
  */
 unsigned long long __strtoull(int base, int max_width, int (*ReadProc)(void*, int, int), void* ReadProcArg, int* chars_scanned,
                               int* negative, int* overflow)
@@ -293,10 +291,9 @@ unsigned long long __strtoull(int base, int max_width, int (*ReadProc)(void*, in
 	return value;
 }
 
-/*
- * --INFO--
- * Address:	800CBA28
- * Size:	0000AC
+/**
+ * @note Address: 0x800CBA28
+ * @note Size: 0xAC
  */
 unsigned long strtoul(const char* str, char** end, int base)
 {
@@ -323,20 +320,18 @@ unsigned long strtoul(const char* str, char** end, int base)
 	return value;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B4
+/**
+ * @note Address: N/A
+ * @note Size: 0xB4
  */
 void strtoull(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800CB938
- * Size:	0000F0
+/**
+ * @note Address: 0x800CB938
+ * @note Size: 0xF0
  */
 long strtol(const char* str, char** end, int base)
 {
@@ -364,30 +359,27 @@ long strtol(const char* str, char** end, int base)
 	return svalue;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000124
+/**
+ * @note Address: N/A
+ * @note Size: 0x124
  */
 void strtoll(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C0
+/**
+ * @note Address: N/A
+ * @note Size: 0xC0
  */
 int atoi(const char* str)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C0
+/**
+ * @note Address: N/A
+ * @note Size: 0xC0
  */
 void atol(void)
 {

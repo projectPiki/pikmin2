@@ -8,10 +8,9 @@
 
 namespace Game {
 namespace MiniHoudai {
-/*
- * --INFO--
- * Address:	802EBFF8
- * Size:	000148
+/**
+ * @note Address: 0x802EBFF8
+ * @note Size: 0x148
  */
 Obj::Obj()
 {
@@ -21,17 +20,15 @@ Obj::Obj()
 	createEffect();
 }
 
-/*
- * --INFO--
- * Address:	802EC140
- * Size:	000004
+/**
+ * @note Address: 0x802EC140
+ * @note Size: 0x4
  */
 void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
-/*
- * --INFO--
- * Address:	802EC144
- * Size:	0000C8
+/**
+ * @note Address: 0x802EC144
+ * @note Size: 0xC8
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
@@ -55,10 +52,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mFsm->start(this, MINIHOUDAI_TurnPath, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802EC20C
- * Size:	00004C
+/**
+ * @note Address: 0x802EC20C
+ * @note Size: 0x4C
  */
 void Obj::onKill(CreatureKillArg* killArg)
 {
@@ -67,10 +63,9 @@ void Obj::onKill(CreatureKillArg* killArg)
 	EnemyBase::onKill(killArg);
 }
 
-/*
- * --INFO--
- * Address:	802EC258
- * Size:	000054
+/**
+ * @note Address: 0x802EC258
+ * @note Size: 0x54
  */
 void Obj::doUpdate()
 {
@@ -80,10 +75,9 @@ void Obj::doUpdate()
 	doUpdateShotGun();
 }
 
-/*
- * --INFO--
- * Address:	802EC2AC
- * Size:	000034
+/**
+ * @note Address: 0x802EC2AC
+ * @note Size: 0x34
  */
 void Obj::doUpdateCommon()
 {
@@ -91,10 +85,9 @@ void Obj::doUpdateCommon()
 	doUpdateCommonShotGun();
 }
 
-/*
- * --INFO--
- * Address:	802EC2E0
- * Size:	00003C
+/**
+ * @note Address: 0x802EC2E0
+ * @note Size: 0x3C
  */
 void Obj::doAnimationCullingOff()
 {
@@ -103,24 +96,21 @@ void Obj::doAnimationCullingOff()
 	resetShotGunCallBack();
 }
 
-/*
- * --INFO--
- * Address:	802EC31C
- * Size:	000004
+/**
+ * @note Address: 0x802EC31C
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	802EC320
- * Size:	000020
+/**
+ * @note Address: 0x802EC320
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	802EC340
- * Size:	00004C
+/**
+ * @note Address: 0x802EC340
+ * @note Size: 0x4C
  */
 void Obj::setFSM(FSM* fsm)
 {
@@ -129,10 +119,9 @@ void Obj::setFSM(FSM* fsm)
 	mCurrentLifecycleState = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	802EC38C
- * Size:	0000E0
+/**
+ * @note Address: 0x802EC38C
+ * @note Size: 0xE0
  */
 void Obj::getShadowParam(ShadowParam& param)
 {
@@ -158,10 +147,9 @@ void Obj::getShadowParam(ShadowParam& param)
 	param.mSize = 30.0f;
 }
 
-/*
- * --INFO--
- * Address:	802EC46C
- * Size:	000044
+/**
+ * @note Address: 0x802EC46C
+ * @note Size: 0x44
  */
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* part)
 {
@@ -174,10 +162,9 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* part)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	802EC4B0
- * Size:	000034
+/**
+ * @note Address: 0x802EC4B0
+ * @note Size: 0x34
  */
 void Obj::doStartStoneState()
 {
@@ -185,17 +172,15 @@ void Obj::doStartStoneState()
 	finishChargeEffect();
 }
 
-/*
- * --INFO--
- * Address:	802EC4E4
- * Size:	000020
+/**
+ * @note Address: 0x802EC4E4
+ * @note Size: 0x20
  */
 void Obj::doFinishStoneState() { EnemyBase::doFinishStoneState(); }
 
-/*
- * --INFO--
- * Address:	802EC504
- * Size:	000034
+/**
+ * @note Address: 0x802EC504
+ * @note Size: 0x34
  */
 void Obj::doStartEarthquakeFitState()
 {
@@ -203,17 +188,15 @@ void Obj::doStartEarthquakeFitState()
 	finishChargeEffect();
 }
 
-/*
- * --INFO--
- * Address:	802EC538
- * Size:	000020
+/**
+ * @note Address: 0x802EC538
+ * @note Size: 0x20
  */
 void Obj::doFinishEarthquakeFitState() { EnemyBase::doFinishEarthquakeFitState(); }
 
-/*
- * --INFO--
- * Address:	802EC558
- * Size:	000034
+/**
+ * @note Address: 0x802EC558
+ * @note Size: 0x34
  */
 void Obj::doStartWaitingBirthTypeDrop()
 {
@@ -221,10 +204,9 @@ void Obj::doStartWaitingBirthTypeDrop()
 	effectDrawOff();
 }
 
-/*
- * --INFO--
- * Address:	802EC58C
- * Size:	000034
+/**
+ * @note Address: 0x802EC58C
+ * @note Size: 0x34
  */
 void Obj::doFinishWaitingBirthTypeDrop()
 {
@@ -232,31 +214,27 @@ void Obj::doFinishWaitingBirthTypeDrop()
 	effectDrawOn();
 }
 
-/*
- * --INFO--
- * Address:	802EC5C0
- * Size:	000028
+/**
+ * @note Address: 0x802EC5C0
+ * @note Size: 0x28
  */
 void Obj::startCarcassMotion() { startMotion(MINIHOUDAIANIM_Carry, nullptr); }
 
-/*
- * --INFO--
- * Address:	802EC5E8
- * Size:	000020
+/**
+ * @note Address: 0x802EC5E8
+ * @note Size: 0x20
  */
 void Obj::doStartMovie() { effectDrawOff(); }
 
-/*
- * --INFO--
- * Address:	802EC608
- * Size:	000020
+/**
+ * @note Address: 0x802EC608
+ * @note Size: 0x20
  */
 void Obj::doEndMovie() { effectDrawOn(); }
 
-/*
- * --INFO--
- * Address:	802EC628
- * Size:	000064
+/**
+ * @note Address: 0x802EC628
+ * @note Size: 0x64
  */
 void Obj::initWalkSmokeEffect()
 {
@@ -265,17 +243,15 @@ void Obj::initWalkSmokeEffect()
 	mWalkSmokeMgr.setup(1, mModel, "handR", 5.0f);
 }
 
-/*
- * --INFO--
- * Address:	802EC68C
- * Size:	000008
+/**
+ * @note Address: 0x802EC68C
+ * @note Size: 0x8
  */
 WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
 
-/*
- * --INFO--
- * Address:	802EC694
- * Size:	000014
+/**
+ * @note Address: 0x802EC694
+ * @note Size: 0x14
  */
 bool Obj::doBecomeCarcass()
 {
@@ -284,10 +260,9 @@ bool Obj::doBecomeCarcass()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	802EC6A8
- * Size:	0001FC
+/**
+ * @note Address: 0x802EC6A8
+ * @note Size: 0x1FC
  */
 void Obj::doUpdateCarcass()
 {
@@ -323,10 +298,9 @@ void Obj::doUpdateCarcass()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802EC8A4
- * Size:	000064
+/**
+ * @note Address: 0x802EC8A4
+ * @note Size: 0x64
  */
 void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
 {
@@ -342,10 +316,9 @@ void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
 	param.mRadius              = 10.0f;
 }
 
-/*
- * --INFO--
- * Address:	802EC908
- * Size:	000050
+/**
+ * @note Address: 0x802EC908
+ * @note Size: 0x50
  */
 void Obj::updateCaution()
 {
@@ -358,17 +331,15 @@ void Obj::updateCaution()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802EC958
- * Size:	000024
+/**
+ * @note Address: 0x802EC958
+ * @note Size: 0x24
  */
 f32 Obj::getViewAngle() { return (mHealthGaugeTimer < C_PARMS->mGeneral.mAlertDuration()) ? 180.0f : C_PARMS->mGeneral.mViewAngle(); }
 
-/*
- * --INFO--
- * Address:	802EC97C
- * Size:	000010
+/**
+ * @note Address: 0x802EC97C
+ * @note Size: 0x10
  */
 void Obj::resetWayPoint()
 {
@@ -376,10 +347,9 @@ void Obj::resetWayPoint()
 	mOldNearestWaypoint = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	802EC98C
- * Size:	0000B0
+/**
+ * @note Address: 0x802EC98C
+ * @note Size: 0xB0
  */
 void Obj::setNearestWayPoint()
 {
@@ -394,10 +364,9 @@ void Obj::setNearestWayPoint()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802ECA3C
- * Size:	000260
+/**
+ * @note Address: 0x802ECA3C
+ * @note Size: 0x260
  */
 void Obj::setLinkWayPoint()
 {
@@ -442,10 +411,9 @@ void Obj::setLinkWayPoint()
 	setNearestWayPoint();
 }
 
-/*
- * --INFO--
- * Address:	802ECC9C
- * Size:	00006C
+/**
+ * @note Address: 0x802ECC9C
+ * @note Size: 0x6C
  */
 Creature* Obj::getSearchedTarget()
 {
@@ -459,10 +427,9 @@ Creature* Obj::getSearchedTarget()
 	return target;
 }
 
-/*
- * --INFO--
- * Address:	802ECD08
- * Size:	000128
+/**
+ * @note Address: 0x802ECD08
+ * @note Size: 0x128
  */
 void Obj::updateTargetDistance()
 {
@@ -480,10 +447,9 @@ void Obj::updateTargetDistance()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802ECE30
- * Size:	0000BC
+/**
+ * @note Address: 0x802ECE30
+ * @note Size: 0xBC
  */
 void Obj::updateHomePosition()
 {
@@ -546,10 +512,9 @@ lbl_802ECED0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802ECEEC
- * Size:	00032C
+/**
+ * @note Address: 0x802ECEEC
+ * @note Size: 0x32C
  */
 bool Obj::isAttackableTarget()
 {
@@ -822,122 +787,105 @@ lbl_802ED1CC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802ED218
- * Size:	000048
+/**
+ * @note Address: 0x802ED218
+ * @note Size: 0x48
  */
 void Obj::createShotGun() { mShotgunMgr = new MiniHoudaiShotGunMgr(this); }
 
-/*
- * --INFO--
- * Address:	802ED260
- * Size:	000024
+/**
+ * @note Address: 0x802ED260
+ * @note Size: 0x24
  */
 void Obj::setupShotGun() { mShotgunMgr->setupShotGun(); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void Obj::setShotGunTarget(Vector3f& pos) { mShotgunMgr->setShotGunTarget(pos); }
 
-/*
- * --INFO--
- * Address:	802ED284
- * Size:	000024
+/**
+ * @note Address: 0x802ED284
+ * @note Size: 0x24
  */
 void Obj::resetShotGunCallBack() { mShotgunMgr->resetCallBack(); }
 
-/*
- * --INFO--
- * Address:	802ED2A8
- * Size:	000024
+/**
+ * @note Address: 0x802ED2A8
+ * @note Size: 0x24
  */
 void Obj::setShotGunCallBack() { mShotgunMgr->setCallBack(); }
 
-/*
- * --INFO--
- * Address:	802ED2CC
- * Size:	000024
+/**
+ * @note Address: 0x802ED2CC
+ * @note Size: 0x24
  */
 void Obj::doUpdateShotGun() { mShotgunMgr->doUpdate(); }
 
-/*
- * --INFO--
- * Address:	802ED2F0
- * Size:	000024
+/**
+ * @note Address: 0x802ED2F0
+ * @note Size: 0x24
  */
 void Obj::doUpdateCommonShotGun() { mShotgunMgr->doUpdateCommon(); }
 
-/*
- * --INFO--
- * Address:	802ED314
- * Size:	000024
+/**
+ * @note Address: 0x802ED314
+ * @note Size: 0x24
  */
 void Obj::startShotGunRotation() { mShotgunMgr->startRotation(); }
 
-/*
- * --INFO--
- * Address:	802ED338
- * Size:	000024
+/**
+ * @note Address: 0x802ED338
+ * @note Size: 0x24
  */
 void Obj::finishShotGunRotation() { mShotgunMgr->finishRotation(); }
 
-/*
- * --INFO--
- * Address:	802ED35C
- * Size:	000024
+/**
+ * @note Address: 0x802ED35C
+ * @note Size: 0x24
  */
 bool Obj::isShotGunRotation() { return mShotgunMgr->isShotGunRotation(); }
 
-/*
- * --INFO--
- * Address:	802ED380
- * Size:	000024
+/**
+ * @note Address: 0x802ED380
+ * @note Size: 0x24
  */
 bool Obj::isShotGunLockOn() { return mShotgunMgr->isShotGunLockOn(); }
 
-/*
- * --INFO--
- * Address:	802ED3A4
- * Size:	000024
+/**
+ * @note Address: 0x802ED3A4
+ * @note Size: 0x24
  */
 bool Obj::isFinishShotGun() { return mShotgunMgr->isFinishShotGun(); }
 
-/*
- * --INFO--
- * Address:	802ED3C8
- * Size:	000024
+/**
+ * @note Address: 0x802ED3C8
+ * @note Size: 0x24
  */
 void Obj::emitShotGun() { mShotgunMgr->emitShotGun(); }
 
-/*
- * --INFO--
- * Address:	802ED3EC
- * Size:	00002C
+/**
+ * @note Address: 0x802ED3EC
+ * @note Size: 0x2C
  */
 void Obj::setShotGunTargetPosition() { mShotgunMgr->setShotGunTarget(mTargetPosition); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void Obj::shotGunDoDebugDraw(Graphics& gfx) { mShotgunMgr->doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	802ED418
- * Size:	000024
+/**
+ * @note Address: 0x802ED418
+ * @note Size: 0x24
  */
 void Obj::forceFinishShotGun() { mShotgunMgr->forceFinishShotGun(); }
 
-/*
- * --INFO--
- * Address:	802ED43C
- * Size:	000138
+/**
+ * @note Address: 0x802ED43C
+ * @note Size: 0x138
  */
 void Obj::createEffect()
 {
@@ -945,10 +893,9 @@ void Obj::createEffect()
 	mEfxDeadLight = new efx::TChibiDeadLight;
 }
 
-/*
- * --INFO--
- * Address:	802ED574
- * Size:	000058
+/**
+ * @note Address: 0x802ED574
+ * @note Size: 0x58
  */
 void Obj::setupEffect()
 {
@@ -956,10 +903,9 @@ void Obj::setupEffect()
 	mEfxDeadLight->mMtx = mModel->getJoint("head")->getWorldMatrix();
 }
 
-/*
- * --INFO--
- * Address:	802ED5CC
- * Size:	0000A0
+/**
+ * @note Address: 0x802ED5CC
+ * @note Size: 0xA0
  */
 void Obj::createSmokeSmallEffect(bool useSebire1Joint)
 {
@@ -974,10 +920,9 @@ void Obj::createSmokeSmallEffect(bool useSebire1Joint)
 	smokeSmall.create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802ED66C
- * Size:	0000E8
+/**
+ * @note Address: 0x802ED66C
+ * @note Size: 0xE8
  */
 void Obj::createSmokeLargeEffect()
 {
@@ -987,38 +932,33 @@ void Obj::createSmokeLargeEffect()
 	smokeLarge2.create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802ED754
- * Size:	000024
+/**
+ * @note Address: 0x802ED754
+ * @note Size: 0x24
  */
 void Obj::createDownEffect(f32 scale) { EnemyBase::createBounceEffect(mPosition, scale); }
 
-/*
- * --INFO--
- * Address:	802ED778
- * Size:	000034
+/**
+ * @note Address: 0x802ED778
+ * @note Size: 0x34
  */
 void Obj::startChargeEffect() { mEfxCharge->create(nullptr); }
 
-/*
- * --INFO--
- * Address:	802ED7AC
- * Size:	000030
+/**
+ * @note Address: 0x802ED7AC
+ * @note Size: 0x30
  */
 void Obj::finishChargeEffect() { mEfxCharge->fade(); }
 
-/*
- * --INFO--
- * Address:	802ED7DC
- * Size:	000034
+/**
+ * @note Address: 0x802ED7DC
+ * @note Size: 0x34
  */
 void Obj::createDeadLightEffect() { mEfxDeadLight->create(nullptr); }
 
-/*
- * --INFO--
- * Address:	802ED810
- * Size:	0001D4
+/**
+ * @note Address: 0x802ED810
+ * @note Size: 0x1D4
  */
 void Obj::createDeadBombEmitEffect()
 {
@@ -1036,10 +976,9 @@ void Obj::createDeadBombEmitEffect()
 	deadSe2.create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802ED9E4
- * Size:	000058
+/**
+ * @note Address: 0x802ED9E4
+ * @note Size: 0x58
  */
 void Obj::effectDrawOn()
 {
@@ -1048,10 +987,9 @@ void Obj::effectDrawOn()
 	mEfxDeadLight->endDemoDrawOn();
 }
 
-/*
- * --INFO--
- * Address:	802EDA3C
- * Size:	000058
+/**
+ * @note Address: 0x802EDA3C
+ * @note Size: 0x58
  */
 void Obj::effectDrawOff()
 {

@@ -24,10 +24,9 @@ typedef struct _ApploaderHeader {
 
 static ApploaderHeader Header ATTRIBUTE_ALIGN(32);
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  */
 BOOL IsStreamEnabled(void)
 {
@@ -37,10 +36,9 @@ BOOL IsStreamEnabled(void)
 	return FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800EFF4C
- * Size:	000010
+/**
+ * @note Address: 0x800EFF4C
+ * @note Size: 0x10
  */
 ASM static void Run(register u32 addr)
 {
@@ -54,10 +52,9 @@ ASM static void Run(register u32 addr)
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D8
+/**
+ * @note Address: N/A
+ * @note Size: 0xD8
  */
 void ReadApploader(OSTime time1)
 {
@@ -66,17 +63,15 @@ void ReadApploader(OSTime time1)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800EFF5C
- * Size:	00000C
+/**
+ * @note Address: 0x800EFF5C
+ * @note Size: 0xC
  */
 static void Callback(void) { Prepared = TRUE; }
 
-/*
- * --INFO--
- * Address:	800EFF68
- * Size:	000330
+/**
+ * @note Address: 0x800EFF68
+ * @note Size: 0x330
  */
 void __OSReboot(u32 resetCode, u32 bootDol)
 {
@@ -146,10 +141,9 @@ void __OSReboot(u32 resetCode, u32 bootDol)
 	Run(OS_BOOTROM_ADDR);
 }
 
-/*
- * --INFO--
- * Address:	800F0298
- * Size:	00000C
+/**
+ * @note Address: 0x800F0298
+ * @note Size: 0xC
  */
 void OSSetSaveRegion(void* start, void* end)
 {
@@ -157,10 +151,9 @@ void OSSetSaveRegion(void* start, void* end)
 	SaveEnd   = end;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 void OSGetSaveRegion(void** start, void** end)
 {
@@ -168,10 +161,9 @@ void OSGetSaveRegion(void** start, void** end)
 	*end   = SaveEnd;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 void OSGetSavedRegion(void** start, void** end)
 {

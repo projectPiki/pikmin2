@@ -7,10 +7,9 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "mem.h"
 
-/*
- * --INFO--
- * Address:	8005EB80
- * Size:	000068
+/**
+ * @note Address: 0x8005EB80
+ * @note Size: 0x68
  */
 J3DVertexData::J3DVertexData()
 {
@@ -34,10 +33,9 @@ J3DVertexData::J3DVertexData()
 	mVtxNrmType = GX_F32;
 }
 
-/*
- * --INFO--
- * Address:	8005EBE8
- * Size:	000060
+/**
+ * @note Address: 0x8005EBE8
+ * @note Size: 0x60
  */
 void J3DVertexBuffer::setVertexData(J3DVertexData* data)
 {
@@ -60,10 +58,9 @@ void J3DVertexBuffer::setVertexData(J3DVertexData* data)
 	mCurrentVtxColor = mVtxColor[0];
 }
 
-/*
- * --INFO--
- * Address:	8005EC48
- * Size:	000058
+/**
+ * @note Address: 0x8005EC48
+ * @note Size: 0x58
  */
 void J3DVertexBuffer::init()
 {
@@ -90,17 +87,15 @@ void J3DVertexBuffer::init()
 	mCurrentVtxColor = mVtxColor[0];
 }
 
-/*
- * --INFO--
- * Address:	8005ECA0
- * Size:	00003C
+/**
+ * @note Address: 0x8005ECA0
+ * @note Size: 0x3C
  */
 J3DVertexBuffer::~J3DVertexBuffer() { }
 
-/*
- * --INFO--
- * Address:	8005ECDC
- * Size:	000024
+/**
+ * @note Address: 0x8005ECDC
+ * @note Size: 0x24
  */
 void J3DVertexBuffer::setArray() const
 {
@@ -109,10 +104,9 @@ void J3DVertexBuffer::setArray() const
 	j3dSys.mVtxColor = mCurrentVtxColor;
 }
 
-/*
- * --INFO--
- * Address:	8005ED00
- * Size:	000128
+/**
+ * @note Address: 0x8005ED00
+ * @note Size: 0x128
  */
 void J3DVertexBuffer::copyVtxColorArray(J3DDeformAttachFlag flag)
 {
@@ -136,10 +130,9 @@ void J3DVertexBuffer::copyVtxColorArray(J3DDeformAttachFlag flag)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8005EE28
- * Size:	000014
+/**
+ * @note Address: 0x8005EE28
+ * @note Size: 0x14
  */
 J3DDrawMtxData::J3DDrawMtxData()
     : mCount(0)
@@ -148,9 +141,8 @@ J3DDrawMtxData::J3DDrawMtxData()
 {
 }
 
-/*
- * --INFO--
- * Address:	8005EE3C
- * Size:	00003C
+/**
+ * @note Address: 0x8005EE3C
+ * @note Size: 0x3C
  */
 J3DDrawMtxData::~J3DDrawMtxData() { }

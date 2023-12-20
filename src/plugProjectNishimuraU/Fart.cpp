@@ -8,17 +8,15 @@
 namespace Game {
 namespace Fart {
 
-/*
- * --INFO--
- * Address:	80285448
- * Size:	000098
+/**
+ * @note Address: 0x80285448
+ * @note Size: 0x98
  */
 Obj::Obj() { createEffect(); }
 
-/*
- * --INFO--
- * Address:	802854E0
- * Size:	000070
+/**
+ * @note Address: 0x802854E0
+ * @note Size: 0x70
  */
 void Obj::doUpdateCommon()
 {
@@ -29,10 +27,9 @@ void Obj::doUpdateCommon()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80285550
- * Size:	0001F0
+/**
+ * @note Address: 0x80285550
+ * @note Size: 0x1F0
  */
 void Obj::changeMaterial()
 {
@@ -68,17 +65,15 @@ void Obj::changeMaterial()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80285740
- * Size:	000020
+/**
+ * @note Address: 0x80285740
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	80285760
- * Size:	0001F4
+/**
+ * @note Address: 0x80285760
+ * @note Size: 0x1F4
  */
 void Obj::interactFartGasAttack()
 {
@@ -116,10 +111,9 @@ void Obj::interactFartGasAttack()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80285954
- * Size:	000120
+/**
+ * @note Address: 0x80285954
+ * @note Size: 0x120
  */
 void Obj::createItem()
 {
@@ -174,10 +168,9 @@ void Obj::createItem()
 	mHitCount++;
 }
 
-/*
- * --INFO--
- * Address:	80285A74
- * Size:	0000B8
+/**
+ * @note Address: 0x80285A74
+ * @note Size: 0xB8
  */
 void Obj::createEffect()
 {
@@ -185,10 +178,9 @@ void Obj::createEffect()
 	mFartTimer  = 2.5f;
 }
 
-/*
- * --INFO--
- * Address:	80285B2C
- * Size:	000024
+/**
+ * @note Address: 0x80285B2C
+ * @note Size: 0x24
  */
 void Obj::resetFartTimer()
 {
@@ -196,10 +188,9 @@ void Obj::resetFartTimer()
 	mFartPosition = mPosition;
 }
 
-/*
- * --INFO--
- * Address:	80285B50
- * Size:	0000A8
+/**
+ * @note Address: 0x80285B50
+ * @note Size: 0xA8
  */
 void Obj::startBodyEffect()
 {
@@ -208,17 +199,15 @@ void Obj::startBodyEffect()
 	resetFartTimer();
 }
 
-/*
- * --INFO--
- * Address:	80285BF8
- * Size:	000030
+/**
+ * @note Address: 0x80285BF8
+ * @note Size: 0x30
  */
 void Obj::finishBodyEffect() { mBodyEffect->fade(); }
 
-/*
- * --INFO--
- * Address:	80285C28
- * Size:	000204
+/**
+ * @note Address: 0x80285C28
+ * @note Size: 0x204
  */
 void Obj::createFartEffect()
 {
@@ -239,24 +228,21 @@ void Obj::createFartEffect()
 	getJAIObject()->startSound(PSSE_EN_FART_GAS, 0);
 }
 
-/*
- * --INFO--
- * Address:	80285E2C
- * Size:	000030
+/**
+ * @note Address: 0x80285E2C
+ * @note Size: 0x30
  */
 void Obj::effectDrawOn() { mBodyEffect->endDemoDrawOn(); }
 
-/*
- * --INFO--
- * Address:	80285E5C
- * Size:	000030
+/**
+ * @note Address: 0x80285E5C
+ * @note Size: 0x30
  */
 void Obj::effectDrawOff() { mBodyEffect->startDemoDrawOff(); }
 
-/*
- * --INFO--
- * Address:	80285E8C
- * Size:	000044
+/**
+ * @note Address: 0x80285E8C
+ * @note Size: 0x44
  */
 void Obj::createPressSESpecial() { getJAIObject()->startSound(PSSE_EN_FART_HIT, 0); }
 

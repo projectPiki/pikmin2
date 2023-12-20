@@ -157,10 +157,9 @@
         .4byte 0x00000000
 */
 
-/*
- * --INFO--
- * Address:	80044E34
- * Size:	0002E8
+/**
+ * @note Address: 0x80044E34
+ * @note Size: 0x2E8
  */
 J2DWindowEx::J2DWindowEx(J2DPane* parent, JSURandomInputStream* input, u32 flags, J2DMaterial* materials)
 {
@@ -361,52 +360,45 @@ J2DWindowEx::J2DWindowEx(J2DPane* parent, JSURandomInputStream* input, u32 flags
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8004511C
- * Size:	000008
+/**
+ * @note Address: 0x8004511C
+ * @note Size: 0x8
  */
 // J2DTevStage* J2DTevBlock::getTevStage(u32 index) { return nullptr; }
 
-/*
- * --INFO--
- * Address:	80045124
- * Size:	000004
+/**
+ * @note Address: 0x80045124
+ * @note Size: 0x4
  */
 // void J2DTevBlock::setTevOrder(u32 index, J2DTevOrder order) { }
 
-/*
- * --INFO--
- * Address:	80045128
- * Size:	000008
+/**
+ * @note Address: 0x80045128
+ * @note Size: 0x8
  */
 // bool J2DTevBlock::insertTexture(u32 index, const ResTIMG* img) { return false; }
 
-/*
- * --INFO--
- * Address:	80045130
- * Size:	000004
+/**
+ * @note Address: 0x80045130
+ * @note Size: 0x4
  */
 // void J2DTevBlock::setTevKAlphaSel(u32 index, u8 sel) { }
 
-/*
- * --INFO--
- * Address:	80045134
- * Size:	000004
+/**
+ * @note Address: 0x80045134
+ * @note Size: 0x4
  */
 // void J2DTevBlock::setTevKColorSel(u32 index, u8 sel) { }
 
-/*
- * --INFO--
- * Address:	80045138
- * Size:	000004
+/**
+ * @note Address: 0x80045138
+ * @note Size: 0x4
  */
 // void J2DTevBlock::setTevStageNum(u8) { }
 
-/*
- * --INFO--
- * Address:	8004513C
- * Size:	0001C4
+/**
+ * @note Address: 0x8004513C
+ * @note Size: 0x1C4
  */
 void J2DWindowEx::setMinSize()
 {
@@ -422,10 +414,9 @@ void J2DWindowEx::setMinSize()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80045300
- * Size:	0000F8
+/**
+ * @note Address: 0x80045300
+ * @note Size: 0xF8
  */
 J2DWindowEx::~J2DWindowEx()
 {
@@ -505,10 +496,9 @@ lbl_800453D4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800453F8
- * Size:	0000A0
+/**
+ * @note Address: 0x800453F8
+ * @note Size: 0xA0
  */
 void J2DWindowEx::drawSelf(float p1, float p2, float (*p3)[3][4])
 {
@@ -521,10 +511,9 @@ void J2DWindowEx::drawSelf(float p1, float p2, float (*p3)[3][4])
 	clip(_114);
 }
 
-/*
- * --INFO--
- * Address:	80045498
- * Size:	0006F0
+/**
+ * @note Address: 0x80045498
+ * @note Size: 0x6F0
  */
 void J2DWindowEx::draw_private(const JGeometry::TBox2<float>&, const JGeometry::TBox2<float>&)
 {
@@ -985,10 +974,9 @@ void J2DWindowEx::draw_private(const JGeometry::TBox2<float>&, const JGeometry::
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80045B88
- * Size:	00042C
+/**
+ * @note Address: 0x80045B88
+ * @note Size: 0x42C
  */
 void J2DWindowEx::drawContents(const JGeometry::TBox2<float>&)
 {
@@ -1283,10 +1271,9 @@ lbl_80045F78:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80045FB4
- * Size:	000264
+/**
+ * @note Address: 0x80045FB4
+ * @note Size: 0x264
  */
 void J2DWindowEx::drawFrameTexture(float, float, float, float, u16, u16, u16, u16, J2DMaterial*, bool)
 {
@@ -1460,10 +1447,9 @@ void J2DWindowEx::drawFrameTexture(float, float, float, float, u16, u16, u16, u1
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80046218
- * Size:	000194
+/**
+ * @note Address: 0x80046218
+ * @note Size: 0x194
  */
 void J2DWindowEx::draw(const JGeometry::TBox2<float>&)
 {
@@ -1582,10 +1568,9 @@ lbl_80046398:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800463AC
- * Size:	000128
+/**
+ * @note Address: 0x800463AC
+ * @note Size: 0x128
  * draw__11J2DWindowExFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>
  */
 void J2DWindowEx::draw(const JGeometry::TBox2<float>& p1, const JGeometry::TBox2<float>& p2)
@@ -1689,10 +1674,9 @@ void J2DWindowEx::draw(const JGeometry::TBox2<float>& p1, const JGeometry::TBox2
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800464D4
- * Size:	000124
+/**
+ * @note Address: 0x800464D4
+ * @note Size: 0x124
  */
 void J2DWindowEx::setTevStage(bool)
 {
@@ -1785,10 +1769,9 @@ lbl_800465D4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800465F8
- * Size:	0002BC
+/**
+ * @note Address: 0x800465F8
+ * @note Size: 0x2BC
  */
 void J2DWindowEx::setStage(J2DTevStage*, J2DWindowEx::stage_enum)
 {
@@ -1979,10 +1962,9 @@ lbl_80046884:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800468B4
- * Size:	000088
+/**
+ * @note Address: 0x800468B4
+ * @note Size: 0x88
  */
 bool J2DWindowEx::setBlack(JUtility::TColor black)
 {
@@ -2028,10 +2010,9 @@ lbl_80046924:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8004693C
- * Size:	000088
+/**
+ * @note Address: 0x8004693C
+ * @note Size: 0x88
  */
 bool J2DWindowEx::setWhite(JUtility::TColor white)
 {
@@ -2077,10 +2058,9 @@ lbl_800469AC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800469C4
- * Size:	0002EC
+/**
+ * @note Address: 0x800469C4
+ * @note Size: 0x2EC
  */
 bool J2DWindowEx::setBlackWhite(JUtility::TColor black, JUtility::TColor white)
 {
@@ -2317,17 +2297,15 @@ lbl_80046C9C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80046CB0
- * Size:	000004
+/**
+ * @note Address: 0x80046CB0
+ * @note Size: 0x4
  */
 // void J2DTevBlock::setTevColor(u32 index, J2DGXColorS10 color) { }
 
-/*
- * --INFO--
- * Address:	80046CB4
- * Size:	000194
+/**
+ * @note Address: 0x80046CB4
+ * @note Size: 0x194
  */
 void J2DWindowEx::getBlackWhite(JUtility::TColor*, JUtility::TColor*) const
 {
@@ -2444,10 +2422,9 @@ lbl_80046E34:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80046E48
- * Size:	000098
+/**
+ * @note Address: 0x80046E48
+ * @note Size: 0x98
  */
 void J2DWindowEx::isSetBlackWhite(JUtility::TColor, JUtility::TColor) const
 {
@@ -2501,10 +2478,9 @@ lbl_80046EC8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80046EE0
- * Size:	000060
+/**
+ * @note Address: 0x80046EE0
+ * @note Size: 0x60
  */
 JUtility::TColor J2DWindowEx::getBlack() const
 {
@@ -2540,10 +2516,9 @@ lbl_80046F2C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80046F40
- * Size:	000060
+/**
+ * @note Address: 0x80046F40
+ * @note Size: 0x60
  */
 JUtility::TColor J2DWindowEx::getWhite() const
 {
@@ -2579,10 +2554,9 @@ lbl_80046F8C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80046FA0
- * Size:	000084
+/**
+ * @note Address: 0x80046FA0
+ * @note Size: 0x84
  */
 void J2DWindowEx::setAlpha(u8 alpha)
 {
@@ -2615,10 +2589,9 @@ void J2DWindowEx::setAlpha(u8 alpha)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80047024
- * Size:	000078
+/**
+ * @note Address: 0x80047024
+ * @note Size: 0x78
  */
 void J2DWindowEx::setCullBack(_GXCullMode cullMode)
 {
@@ -2647,10 +2620,9 @@ void J2DWindowEx::setCullBack(_GXCullMode cullMode)
 	J2DPane::setCullBack(cullMode);
 }
 
-/*
- * --INFO--
- * Address:	8004709C
- * Size:	000018
+/**
+ * @note Address: 0x8004709C
+ * @note Size: 0x18
  */
 void J2DWindowEx::rewriteAlpha()
 {
@@ -2659,10 +2631,9 @@ void J2DWindowEx::rewriteAlpha()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800470B4
- * Size:	000068
+/**
+ * @note Address: 0x800470B4
+ * @note Size: 0x68
  */
 JUTTexture* J2DWindowEx::getFrameTexture(u8 frameMaterialIndex, u8 textureIndex) const
 {
@@ -2673,17 +2644,15 @@ JUTTexture* J2DWindowEx::getFrameTexture(u8 frameMaterialIndex, u8 textureIndex)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8004711C
- * Size:	000024
+/**
+ * @note Address: 0x8004711C
+ * @note Size: 0x24
  */
 // J2DMaterial* J2DWindowEx::getFrameMaterial(u8 index) const { return (index >= 4) ? nullptr : _148[index]; }
 
-/*
- * --INFO--
- * Address:	80047140
- * Size:	000068
+/**
+ * @note Address: 0x80047140
+ * @note Size: 0x68
  */
 JUTTexture* J2DWindowEx::getContentsTexture(u8 textureIndex) const
 {
@@ -2694,17 +2663,15 @@ JUTTexture* J2DWindowEx::getContentsTexture(u8 textureIndex) const
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	800471A8
- * Size:	000008
+/**
+ * @note Address: 0x800471A8
+ * @note Size: 0x8
  */
 // J2DMaterial* J2DWindowEx::getContentsMaterial() const { return mContentsMaterial; }
 
-/*
- * --INFO--
- * Address:	800471B0
- * Size:	000118
+/**
+ * @note Address: 0x800471B0
+ * @note Size: 0x118
  */
 bool J2DWindowEx::isUsed(const ResTIMG* resource)
 {
@@ -2729,10 +2696,9 @@ bool J2DWindowEx::isUsed(const ResTIMG* resource)
 	return J2DPane::isUsed(resource);
 }
 
-/*
- * --INFO--
- * Address:	800472C8
- * Size:	000090
+/**
+ * @note Address: 0x800472C8
+ * @note Size: 0x90
  * setAnimation__11J2DWindowExFP11J2DAnmColor
  */
 void J2DWindowEx::setAnimation(J2DAnmColor* animation)
@@ -2747,10 +2713,9 @@ void J2DWindowEx::setAnimation(J2DAnmColor* animation)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80047358
- * Size:	000090
+/**
+ * @note Address: 0x80047358
+ * @note Size: 0x90
  * setAnimation__11J2DWindowExFP19J2DAnmTextureSRTKey
  */
 void J2DWindowEx::setAnimation(J2DAnmTextureSRTKey* animation)
@@ -2765,10 +2730,9 @@ void J2DWindowEx::setAnimation(J2DAnmTextureSRTKey* animation)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800473E8
- * Size:	000090
+/**
+ * @note Address: 0x800473E8
+ * @note Size: 0x90
  * setAnimation__11J2DWindowExFP16J2DAnmTexPattern
  */
 void J2DWindowEx::setAnimation(J2DAnmTexPattern* animation)
@@ -2783,10 +2747,9 @@ void J2DWindowEx::setAnimation(J2DAnmTexPattern* animation)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80047478
- * Size:	000090
+/**
+ * @note Address: 0x80047478
+ * @note Size: 0x90
  * setAnimation__11J2DWindowExFP15J2DAnmTevRegKey
  */
 void J2DWindowEx::setAnimation(J2DAnmTevRegKey* animation)
@@ -2801,10 +2764,9 @@ void J2DWindowEx::setAnimation(J2DAnmTevRegKey* animation)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80047508
- * Size:	00005C
+/**
+ * @note Address: 0x80047508
+ * @note Size: 0x5C
  */
 bool J2DWindowEx::isNeedSetAnm(u8 frameMaterialIndex)
 {
@@ -2816,18 +2778,16 @@ bool J2DWindowEx::isNeedSetAnm(u8 frameMaterialIndex)
 	return (mFrameMaterials[frameMaterialIndex] != nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80047564
- * Size:	000008
+/**
+ * @note Address: 0x80047564
+ * @note Size: 0x8
  * setAnimation__11J2DWindowExFP20J2DAnmVisibilityFull
  */
 void J2DWindowEx::setAnimation(J2DAnmVisibilityFull* animation) { mAnmVisibility = animation; }
 
-/*
- * --INFO--
- * Address:	8004756C
- * Size:	0000E0
+/**
+ * @note Address: 0x8004756C
+ * @note Size: 0xE0
  * setAnimation__11J2DWindowExFP14J2DAnmVtxColor
  */
 void J2DWindowEx::setAnimation(J2DAnmVtxColor* animation)
@@ -2910,10 +2870,9 @@ lbl_80047634:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8004764C
- * Size:	0001AC
+/**
+ * @note Address: 0x8004764C
+ * @note Size: 0x1AC
  */
 const J2DAnmTransform* J2DWindowEx::animationPane(const J2DAnmTransform* animation)
 {
@@ -3050,17 +3009,15 @@ lbl_800477CC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800477F8
- * Size:	000004
+/**
+ * @note Address: 0x800477F8
+ * @note Size: 0x4
  */
 // void J2DAnmVtxColor::getColor(u8, u16, _GXColor*) const { }
 
-/*
- * --INFO--
- * Address:	800477FC
- * Size:	00002C
+/**
+ * @note Address: 0x800477FC
+ * @note Size: 0x2C
  */
 void J2DWindowEx::getMaterial(J2DWindow::TMaterial& material) const
 {
@@ -3071,10 +3028,9 @@ void J2DWindowEx::getMaterial(J2DWindow::TMaterial& material) const
 	material._10 = mContentsMaterial;
 }
 
-/*
- * --INFO--
- * Address:	80047828
- * Size:	000058
+/**
+ * @note Address: 0x80047828
+ * @note Size: 0x58
  * draw__11J2DWindowExFffff
  */
 void J2DWindowEx::draw(float p1, float p2, float p3, float p4)
@@ -3122,10 +3078,9 @@ void J2DWindowEx::draw(float p1, float p2, float p3, float p4)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80047880
- * Size:	00003C
+/**
+ * @note Address: 0x80047880
+ * @note Size: 0x3C
  * setCullBack__11J2DWindowExFb
  */
 void J2DWindowEx::setCullBack(bool shouldCullBack)
@@ -3137,26 +3092,23 @@ void J2DWindowEx::setCullBack(bool shouldCullBack)
 	setCullBack(cullMode);
 }
 
-/*
- * --INFO--
- * Address:	800478BC
- * Size:	000020
+/**
+ * @note Address: 0x800478BC
+ * @note Size: 0x20
  * isUsed__11J2DWindowExFPC7ResFONT
  */
 // bool J2DWindowEx::isUsed(const ResFONT* resource) { return J2DPane::isUsed(resource); }
 
-/*
- * --INFO--
- * Address:	800478DC
- * Size:	000020
+/**
+ * @note Address: 0x800478DC
+ * @note Size: 0x20
  * setAnimation__11J2DWindowExFP15J2DAnmTransform
  */
 // void J2DWindowEx::setAnimation(J2DAnmTransform* animation) { J2DPane::setAnimation(animation); }
 
-/*
- * --INFO--
- * Address:	800478FC
- * Size:	000020
+/**
+ * @note Address: 0x800478FC
+ * @note Size: 0x20
  * setAnimation__11J2DWindowExFP10J2DAnmBase
  */
 // void J2DWindowEx::setAnimation(J2DAnmBase* animation) { J2DPane::setAnimation(animation); }

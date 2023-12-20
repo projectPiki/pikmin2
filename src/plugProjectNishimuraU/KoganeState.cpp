@@ -6,10 +6,9 @@
 namespace Game {
 namespace Kogane {
 
-/*
- * --INFO--
- * Address:	8025CD48
- * Size:	0001D4
+/**
+ * @note Address: 0x8025CD48
+ * @note Size: 0x1D4
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -21,10 +20,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StatePress);
 }
 
-/*
- * --INFO--
- * Address:	8025CF1C
- * Size:	000098
+/**
+ * @note Address: 0x8025CF1C
+ * @note Size: 0x98
  */
 void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -40,10 +38,9 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	kogane->stopMotion();
 }
 
-/*
- * --INFO--
- * Address:	8025CFB4
- * Size:	000064
+/**
+ * @note Address: 0x8025CFB4
+ * @note Size: 0x64
  */
 void StateAppear::exec(EnemyBase* enemy)
 {
@@ -53,10 +50,9 @@ void StateAppear::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8025D018
- * Size:	0001A0
+/**
+ * @note Address: 0x8025D018
+ * @note Size: 0x1A0
  */
 void StateAppear::cleanup(EnemyBase* enemy)
 {
@@ -81,10 +77,9 @@ void StateAppear::cleanup(EnemyBase* enemy)
 	kogane->getJAIObject()->startSound(PSSE_EN_TAMAGOMUSHI_APPEAR, 0);
 }
 
-/*
- * --INFO--
- * Address:	8025D1BC
- * Size:	000138
+/**
+ * @note Address: 0x8025D1BC
+ * @note Size: 0x138
  */
 void StateDisappear::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -100,10 +95,9 @@ void StateDisappear::init(EnemyBase* enemy, StateArg* stateArg)
 	kogane->getJAIObject()->startSound(PSSE_EN_TAMAGOMUSHI_DIVE, 0);
 }
 
-/*
- * --INFO--
- * Address:	8025D2F8
- * Size:	00006C
+/**
+ * @note Address: 0x8025D2F8
+ * @note Size: 0x6C
  */
 void StateDisappear::exec(EnemyBase* enemy)
 {
@@ -119,17 +113,15 @@ void StateDisappear::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8025D364
- * Size:	000004
+/**
+ * @note Address: 0x8025D364
+ * @note Size: 0x4
  */
 void StateDisappear::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8025D368
- * Size:	00006C
+/**
+ * @note Address: 0x8025D368
+ * @note Size: 0x6C
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -142,10 +134,9 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	kogane->createFartEffect();
 }
 
-/*
- * --INFO--
- * Address:	8025D3D8
- * Size:	000138
+/**
+ * @note Address: 0x8025D3D8
+ * @note Size: 0x138
  */
 void StateMove::exec(EnemyBase* enemy)
 {
@@ -174,17 +165,15 @@ void StateMove::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8025D510
- * Size:	000004
+/**
+ * @note Address: 0x8025D510
+ * @note Size: 0x4
  */
 void StateMove::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8025D514
- * Size:	00005C
+/**
+ * @note Address: 0x8025D514
+ * @note Size: 0x5C
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -197,10 +186,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	kogane->startMotion(KOGANEANIM_Wait, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8025D570
- * Size:	0000BC
+/**
+ * @note Address: 0x8025D570
+ * @note Size: 0xBC
  */
 void StateWait::exec(EnemyBase* enemy)
 {
@@ -219,17 +207,15 @@ void StateWait::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8025D62C
- * Size:	000004
+/**
+ * @note Address: 0x8025D62C
+ * @note Size: 0x4
  */
 void StateWait::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8025D630
- * Size:	00011C
+/**
+ * @note Address: 0x8025D630
+ * @note Size: 0x11C
  */
 void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -245,10 +231,9 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 	kogane->createPressSENormal();
 }
 
-/*
- * --INFO--
- * Address:	8025D750
- * Size:	000130
+/**
+ * @note Address: 0x8025D750
+ * @note Size: 0x130
  */
 void StatePress::exec(EnemyBase* enemy)
 {
@@ -276,10 +261,9 @@ void StatePress::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8025D888
- * Size:	000010
+/**
+ * @note Address: 0x8025D888
+ * @note Size: 0x10
  */
 void StatePress::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_NoInterrupt); }
 

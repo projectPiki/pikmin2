@@ -11,10 +11,9 @@
 int gScissorOffset;
 char* Graphics::lastTokenName;
 
-/*
- * --INFO--
- * Address:	80424E90
- * Size:	000150
+/**
+ * @note Address: 0x80424E90
+ * @note Size: 0x150
  */
 HorizonalSplitter::HorizonalSplitter(Graphics* gfx)
 {
@@ -35,10 +34,9 @@ HorizonalSplitter::HorizonalSplitter(Graphics* gfx)
 	gfx->addViewport(vp2);
 }
 
-/*
- * --INFO--
- * Address:	80424FE0
- * Size:	0000BC
+/**
+ * @note Address: 0x80424FE0
+ * @note Size: 0xBC
  */
 void HorizonalSplitter::split2(f32 split)
 {
@@ -53,50 +51,45 @@ void HorizonalSplitter::split2(f32 split)
 	vp2->refresh();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000150
+/**
+ * @note Address: N/A
+ * @note Size: 0x150
  */
 VerticalSplitter::VerticalSplitter(Graphics*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000BC
+/**
+ * @note Address: N/A
+ * @note Size: 0xBC
  */
 void VerticalSplitter::split2(f32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001C8
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C8
  */
 FourSplitter::FourSplitter(Graphics*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00016C
+/**
+ * @note Address: N/A
+ * @note Size: 0x16C
  */
 void FourSplitter::split4(f32, f32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8042509C
- * Size:	0000C0
+/**
+ * @note Address: 0x8042509C
+ * @note Size: 0xC0
  */
 Viewport::Viewport()
 {
@@ -113,10 +106,9 @@ Viewport::Viewport()
 	refresh();
 }
 
-/*
- * --INFO--
- * Address:	8042515C
- * Size:	000044
+/**
+ * @note Address: 0x8042515C
+ * @note Size: 0x44
  */
 Matrixf* Viewport::getMatrix(bool getCurrentViewMtx)
 {
@@ -127,10 +119,9 @@ Matrixf* Viewport::getMatrix(bool getCurrentViewMtx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	804251A0
- * Size:	00002C
+/**
+ * @note Address: 0x804251A0
+ * @note Size: 0x2C
  */
 void Viewport::setProjection()
 {
@@ -139,10 +130,9 @@ void Viewport::setProjection()
 	}
 }
 
-/*
- * --INFO--
- * Address:	804251CC
- * Size:	000074
+/**
+ * @note Address: 0x804251CC
+ * @note Size: 0x74
  */
 int Graphics::getNumActiveViewports()
 {
@@ -155,20 +145,18 @@ int Graphics::getNumActiveViewports()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 void Viewport::getAspect()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80425240
- * Size:	000050
+/**
+ * @note Address: 0x80425240
+ * @note Size: 0x50
  */
 bool Viewport::viewable()
 {
@@ -182,10 +170,9 @@ bool Viewport::viewable()
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80425290
- * Size:	00004C
+/**
+ * @note Address: 0x80425290
+ * @note Size: 0x4C
  */
 void Viewport::updateCameraAspect()
 {
@@ -204,10 +191,9 @@ void Viewport::updateCameraAspect()
 	mCamera->mAspectRatio = aspect;
 }
 
-/*
- * --INFO--
- * Address:	804252DC
- * Size:	0000A4
+/**
+ * @note Address: 0x804252DC
+ * @note Size: 0xA4
  */
 void Viewport::refresh()
 {
@@ -265,10 +251,9 @@ lbl_80425378:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80425380
- * Size:	0000C4
+/**
+ * @note Address: 0x80425380
+ * @note Size: 0xC4
  */
 void Viewport::setRect(Rectf& rect)
 {
@@ -333,10 +318,9 @@ lbl_8042543C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80425444
- * Size:	0000D4
+/**
+ * @note Address: 0x80425444
+ * @note Size: 0xD4
  */
 void Viewport::setViewport()
 {
@@ -347,20 +331,18 @@ void Viewport::setViewport()
 	GXSetScissor(mBounds2.p1.x, mBounds2.p1.y, x, gScissorOffset + y);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001EC
+/**
+ * @note Address: N/A
+ * @note Size: 0x1EC
  */
 void Viewport::setOrthoGraph2d(J2DOrthoGraph&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80425518
- * Size:	000050
+/**
+ * @note Address: 0x80425518
+ * @note Size: 0x50
  */
 SysShape::Model* Viewport::setJ3DViewMtx(bool flag)
 {
@@ -368,20 +350,18 @@ SysShape::Model* Viewport::setJ3DViewMtx(bool flag)
 	PSMTXCopy(mtx->mMatrix.mtxView, j3dSys.mViewMtx);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000DC
+/**
+ * @note Address: N/A
+ * @note Size: 0xDC
  */
 void Viewport::draw2dframe(J2DGrafContext&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80425568
- * Size:	000044
+/**
+ * @note Address: 0x80425568
+ * @note Size: 0x44
  */
 void Graphics::allocateViewports(int vpNum)
 {
@@ -390,10 +370,9 @@ void Graphics::allocateViewports(int vpNum)
 	mActiveViewports = 0;
 }
 
-/*
- * --INFO--
- * Address:	804255AC
- * Size:	000014
+/**
+ * @note Address: 0x804255AC
+ * @note Size: 0x14
  */
 void Graphics::deleteViewports()
 {
@@ -402,10 +381,9 @@ void Graphics::deleteViewports()
 	mViewports       = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	804255C0
- * Size:	000030
+/**
+ * @note Address: 0x804255C0
+ * @note Size: 0x30
  */
 void Graphics::addViewport(Viewport* vp)
 {
@@ -416,17 +394,15 @@ void Graphics::addViewport(Viewport* vp)
 	mViewports[mActiveViewports++] = vp;
 }
 
-/*
- * --INFO--
- * Address:	804255F0
- * Size:	000010
+/**
+ * @note Address: 0x804255F0
+ * @note Size: 0x10
  */
 Viewport* Graphics::getViewport(int id) { return mViewports[id]; }
 
-/*
- * --INFO--
- * Address:	80425600
- * Size:	0000E0
+/**
+ * @note Address: 0x80425600
+ * @note Size: 0xE0
  */
 void Graphics::mapViewport(IDelegate1<Viewport*>* delegate)
 {
@@ -439,47 +415,42 @@ void Graphics::mapViewport(IDelegate1<Viewport*>* delegate)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
+/**
+ * @note Address: N/A
+ * @note Size: 0xE4
  */
 void Graphics::mapViewport(IDelegate2<Graphics&, Viewport*>*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000130
+/**
+ * @note Address: N/A
+ * @note Size: 0x130
  */
 void Graphics::renderJ3D()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F0
+/**
+ * @note Address: N/A
+ * @note Size: 0xF0
  */
 void Graphics::updateJ3D()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	804256E0
- * Size:	000030
+/**
+ * @note Address: 0x804256E0
+ * @note Size: 0x30
  */
 static void graphicsTokenCallback(u16 id) { Graphics::lastTokenName = sys->mGfx->getTokenName(id); }
 
-/*
- * --INFO--
- * Address:	80425710
- * Size:	000078
+/**
+ * @note Address: 0x80425710
+ * @note Size: 0x78
  */
 void Graphics::setToken(char* tok)
 {
@@ -495,27 +466,24 @@ void Graphics::setToken(char* tok)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80425788
- * Size:	000010
+/**
+ * @note Address: 0x80425788
+ * @note Size: 0x10
  */
 char* Graphics::getTokenName(u16 id) { return mTokens[id]; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
+/**
+ * @note Address: N/A
+ * @note Size: 0x38
  */
 u16 Graphics::getToken()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80425798
- * Size:	000084
+/**
+ * @note Address: 0x80425798
+ * @note Size: 0x84
  */
 int Graphics::findTokenIndex(char* tok)
 {
@@ -527,10 +495,9 @@ int Graphics::findTokenIndex(char* tok)
 	return -1;
 }
 
-/*
- * --INFO--
- * Address:	8042581C
- * Size:	0001CC
+/**
+ * @note Address: 0x8042581C
+ * @note Size: 0x1CC
  */
 void Graphics::initPrimDraw(Matrixf* mtx)
 {
@@ -557,30 +524,27 @@ void Graphics::initPrimDraw(Matrixf* mtx)
 	GXLoadPosMtxImm(mMatrix.mMatrix.mtxView, 0);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F0
+/**
+ * @note Address: N/A
+ * @note Size: 0xF0
  */
 void Graphics::drawPoint(Vector3f&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00012C
+/**
+ * @note Address: N/A
+ * @note Size: 0x12C
  */
 void Graphics::drawPoint(Vector3f*, u16)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	804259E8
- * Size:	0000C4
+/**
+ * @note Address: 0x804259E8
+ * @note Size: 0xC4
  */
 void Graphics::drawLine(Vector3f& start, Vector3f& end)
 {
@@ -593,40 +557,36 @@ void Graphics::drawLine(Vector3f& start, Vector3f& end)
 	GXColor4u8(mDrawColor.r, mDrawColor.g, mDrawColor.b, mDrawColor.a);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0002FC
+/**
+ * @note Address: N/A
+ * @note Size: 0x2FC
  */
 void Graphics::drawPlane(Plane&, f32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0007F0
+/**
+ * @note Address: N/A
+ * @note Size: 0x7F0
  */
 void Graphics::drawBox(Vector3f&, Vector3f*, f32*, f32*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000790
+/**
+ * @note Address: N/A
+ * @note Size: 0x790
  */
 void Graphics::drawBox(Vector3f&, Vector3f&, Vector3f&, Vector3f&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80425AAC
- * Size:	000598
+/**
+ * @note Address: 0x80425AAC
+ * @note Size: 0x598
  */
 void Graphics::drawSphere(Vector3f& position, f32 radius)
 {
@@ -1076,10 +1036,9 @@ lbl_80425F5C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80426044
- * Size:	0005C8
+/**
+ * @note Address: 0x80426044
+ * @note Size: 0x5C8
  */
 void Graphics::drawSphere(f32 radius, Matrixf* gfxMtx)
 {
@@ -1543,50 +1502,45 @@ lbl_80426524:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0005B4
+/**
+ * @note Address: N/A
+ * @note Size: 0x5B4
  */
 void Graphics::drawCylinder(Vector3f&, Vector3f&, f32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 void Graphics::loadPrimViewMtx()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0005F8
+/**
+ * @note Address: N/A
+ * @note Size: 0x5F8
  */
 void Graphics::drawTube(Vector3f&, Vector3f&, f32, f32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
+/**
+ * @note Address: N/A
+ * @note Size: 0xE0
  */
 void Graphics::drawMesh(Matrixf*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8042660C
- * Size:	0002B8
+/**
+ * @note Address: 0x8042660C
+ * @note Size: 0x2B8
  */
 void Graphics::drawAxis(f32 a1, Matrixf* mtx)
 {
@@ -1624,47 +1578,42 @@ void Graphics::drawAxis(f32 a1, Matrixf* mtx)
 	mDrawColor = backup;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000274
+/**
+ * @note Address: N/A
+ * @note Size: 0x274
  */
 void Graphics::drawMarker(f32, Matrixf*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001EC
+/**
+ * @note Address: N/A
+ * @note Size: 0x1EC
  */
 void Graphics::drawRect(Rectf&, Color4&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001B8
+/**
+ * @note Address: N/A
+ * @note Size: 0x1B8
  */
 void Graphics::drawRect(Rectf&, JUTTexture*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	804268C4
- * Size:	000024
+/**
+ * @note Address: 0x804268C4
+ * @note Size: 0x24
  */
 void Graphics::clearZBuffer(Rectf& bounds) { fillZBuffer(bounds, -0.999f); }
 
-/*
- * --INFO--
- * Address:	804268E8
- * Size:	0003D0
+/**
+ * @note Address: 0x804268E8
+ * @note Size: 0x3D0
  */
 void Graphics::fillZBuffer(Rectf& bounds, f32 z)
 {
@@ -1965,20 +1914,18 @@ r3, 1 li       r4, 1 li       r5, 1 bl       GXSetZMode addi     r3, r27, 0x8c
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00045C
+/**
+ * @note Address: N/A
+ * @note Size: 0x45C
  */
 void Graphics::drawTile(Sys::Sphere&, Sys::Sphere&, JUTTexture*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80426CB8
- * Size:	00070C
+/**
+ * @note Address: 0x80426CB8
+ * @note Size: 0x70C
  */
 void Graphics::drawCone(Vector3f& vec1, Vector3f& vec2, f32 p3, int limit)
 {
@@ -2554,10 +2501,9 @@ lbl_80427350:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	804273C4
- * Size:	0000A4
+/**
+ * @note Address: 0x804273C4
+ * @note Size: 0xA4
  */
 Graphics::Graphics()
 {
@@ -2571,30 +2517,27 @@ Graphics::Graphics()
 	setupJ2DPerspGraphDefault();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00016C
+/**
+ * @note Address: N/A
+ * @note Size: 0x16C
  */
 void Graphics::initJ2DOrthoGraph(J2DOrthoGraph*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00011C
+/**
+ * @note Address: N/A
+ * @note Size: 0x11C
  */
 void Graphics::initJ2DPerspGraph(J2DPerspGraph*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80427468
- * Size:	00016C
+/**
+ * @note Address: 0x80427468
+ * @note Size: 0x16C
  */
 void Graphics::setupJ2DOrthoGraphDefault()
 {
@@ -2708,10 +2651,9 @@ void Graphics::setupJ2DOrthoGraphDefault()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	804275D4
- * Size:	00011C
+/**
+ * @note Address: 0x804275D4
+ * @note Size: 0x11C
  */
 void Graphics::setupJ2DPerspGraphDefault()
 {
@@ -2801,61 +2743,54 @@ void Graphics::setupJ2DPerspGraphDefault()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	804276F0
- * Size:	000020
+/**
+ * @note Address: 0x804276F0
+ * @note Size: 0x20
  */
 void Graphics::clearVtxDesc() { GXClearVtxDesc(); }
 
-/*
- * --INFO--
- * Address:	80427710
- * Size:	000028
+/**
+ * @note Address: 0x80427710
+ * @note Size: 0x28
  */
 void Graphics::setVtxDesc(_GXAttr attr, _GXAttrType type) { GXSetVtxDesc(attr, type); }
 
-/*
- * --INFO--
- * Address:	80427738
- * Size:	000034
+/**
+ * @note Address: 0x80427738
+ * @note Size: 0x34
  */
 void Graphics::setVtxAttrFmt(_GXVtxFmt fmt, _GXAttr attr, _GXCompCnt comp, _GXCompType type, u8 a1)
 {
 	GXSetVtxAttrFmt(fmt, attr, comp, type, a1);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001DC
+/**
+ * @note Address: N/A
+ * @note Size: 0x1DC
  */
 void Graphics::drawRectangle(Rectf&, bool)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8042776C
- * Size:	00003C
+/**
+ * @note Address: 0x8042776C
+ * @note Size: 0x3C
  */
 void Graphics::disableLight() { GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_VTX, GX_SRC_VTX, GX_LIGHT0, GX_DF_CLAMP, GX_AF_NONE); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
  */
 void Graphics::disableTexture()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	804277A8
- * Size:	000100
+/**
+ * @note Address: 0x804277A8
+ * @note Size: 0x100
  */
 void Graphics::setTextureGX()
 {
@@ -2875,20 +2810,18 @@ void Graphics::setTextureGX()
 	GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F0
+/**
+ * @note Address: N/A
+ * @note Size: 0xF0
  */
 void Graphics::drawTexture(JUTTexture*, f32, f32, f32, f32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	804278A8
- * Size:	000234
+/**
+ * @note Address: 0x804278A8
+ * @note Size: 0x234
  */
 void Graphics::initPerspPrintf(Viewport* vp)
 {
@@ -2901,10 +2834,9 @@ void Graphics::initPerspPrintf(Viewport* vp)
 	vp->setProjection();
 }
 
-/*
- * --INFO--
- * Address:	80427ADC
- * Size:	0003C4
+/**
+ * @note Address: 0x80427ADC
+ * @note Size: 0x3C4
  */
 void Graphics::perspPrintf(PerspPrintfInfo& info, Vector3f& vec, char* format, ...)
 {
@@ -3219,10 +3151,9 @@ lbl_80427E74:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80427EA0
- * Size:	000060
+/**
+ * @note Address: 0x80427EA0
+ * @note Size: 0x60
  */
 void Graphics::initGX()
 {
@@ -3237,16 +3168,14 @@ void Graphics::initGX()
 	GXSetTevDirect(GX_TEVSTAGE0);
 }
 
-/*
- * --INFO--
- * Address:	80427F00
- * Size:	000004
+/**
+ * @note Address: 0x80427F00
+ * @note Size: 0x4
  */
 void Graphics::dirtyInitGX() { }
 
-/*
- * --INFO--
- * Address:	80427F04
- * Size:	000060
+/**
+ * @note Address: 0x80427F04
+ * @note Size: 0x60
  */
 void Graphics::clearInitGX() { initGX(); }

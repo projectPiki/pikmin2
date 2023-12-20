@@ -14,11 +14,10 @@ static const char caveInfoName[] = "caveInfo";
 
 namespace Game {
 namespace Cave {
-/*
+/**
  * __ct__Q34Game4Cave7BaseGenFv
- * --INFO--
- * Address:	801D60A4
- * Size:	000070
+ * @note Address: 0x801D60A4
+ * @note Size: 0x70
  */
 BaseGen::BaseGen()
 {
@@ -31,10 +30,9 @@ BaseGen::BaseGen()
 	mSpawnType = CGT_EnemyEasy;
 }
 
-/*
- * --INFO--
- * Address:	801D6114
- * Size:	0000F4
+/**
+ * @note Address: 0x801D6114
+ * @note Size: 0xF4
  */
 void BaseGen::read(Stream& stream)
 {
@@ -51,19 +49,17 @@ void BaseGen::read(Stream& stream)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801D6208
- * Size:	000004
+/**
+ * @note Address: 0x801D6208
+ * @note Size: 0x4
  */
 void BaseGen::draw(Graphics&, Matrixf*) { }
 
-/*
+/**
  * read__Q34Game4Cave8TekiInfoFR6Stream
  *
- * --INFO--
- * Address:	801D620C
- * Size:	0001A8
+ * @note Address: 0x801D620C
+ * @note Size: 0x1A8
  */
 void TekiInfo::read(Stream& stream)
 {
@@ -272,10 +268,9 @@ void TekiInfo::read(Stream& stream)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D63B4
- * Size:	0000A8
+/**
+ * @note Address: 0x801D63B4
+ * @note Size: 0xA8
  */
 void ItemInfo::read(Stream& input)
 {
@@ -332,10 +327,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D645C
- * Size:	00008C
+/**
+ * @note Address: 0x801D645C
+ * @note Size: 0x8C
  */
 void GateInfo::read(Stream& input)
 {
@@ -383,17 +377,15 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D64E8
- * Size:	00001C
+/**
+ * @note Address: 0x801D64E8
+ * @note Size: 0x1C
  */
 TekiInfo* CapInfo::getTekiInfo() { return (!mIsTekiEmpty) ? mTekiInfo : nullptr; }
 
-/*
- * --INFO--
- * Address:	801D6504
- * Size:	0000C8
+/**
+ * @note Address: 0x801D6504
+ * @note Size: 0xC8
  */
 void CapInfo::read(Stream& input)
 {
@@ -466,10 +458,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D65CC
- * Size:	000174
+/**
+ * @note Address: 0x801D65CC
+ * @note Size: 0x174
  */
 FloorInfo::FloorInfo()
     : CNode("floorInfo")
@@ -580,10 +571,9 @@ blr
 	*/
 }
 
-// /*
-//  * --INFO--
-//  * Address:	801D6740
-//  * Size:	000060
+// /**
+//  * @note Address: 0x801D6740
+//  * @note Size: 0x60
 //  */
 // CapInfo::~CapInfo()
 // {
@@ -617,10 +607,9 @@ blr
 // 	*/
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	801D67A0
-//  * Size:	000060
+// /**
+//  * @note Address: 0x801D67A0
+//  * @note Size: 0x60
 //  */
 // GateInfo::~GateInfo()
 // {
@@ -654,10 +643,9 @@ blr
 // 	*/
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	801D6800
-//  * Size:	000060
+// /**
+//  * @note Address: 0x801D6800
+//  * @note Size: 0x60
 //  */
 // ItemInfo::~ItemInfo()
 // {
@@ -691,10 +679,9 @@ blr
 // 	*/
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	801D6860
-//  * Size:	000060
+// /**
+//  * @note Address: 0x801D6860
+//  * @note Size: 0x60
 //  */
 // TekiInfo::~TekiInfo()
 // {
@@ -737,10 +724,9 @@ static const char* enum_floor_hiddens[]     = { "‚È‚µ", "‚ ‚è" };
 namespace Game {
 namespace Cave {
 
-/*
- * --INFO--
- * Address:	801D68C0
- * Size:	000410
+/**
+ * @note Address: 0x801D68C0
+ * @note Size: 0x410
  */
 FloorInfo::Parms::Parms()
     : Parameters(nullptr, "FloorInfo")
@@ -1030,10 +1016,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D6CD0
- * Size:	000014
+/**
+ * @note Address: 0x801D6CD0
+ * @note Size: 0x14
  */
 bool FloorInfo::hasHiddenCollision()
 {
@@ -1047,10 +1032,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D6CE4
- * Size:	000008
+/**
+ * @note Address: 0x801D6CE4
+ * @note Size: 0x8
  */
 int FloorInfo::getTekiMax()
 {
@@ -1061,10 +1045,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D6CEC
- * Size:	00002C
+/**
+ * @note Address: 0x801D6CEC
+ * @note Size: 0x2C
  */
 int FloorInfo::getTekiInfoNum()
 {
@@ -1084,10 +1067,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D6D18
- * Size:	000094
+/**
+ * @note Address: 0x801D6D18
+ * @note Size: 0x94
  */
 TekiInfo* FloorInfo::getTekiInfo(int index)
 {
@@ -1138,10 +1120,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D6DAC
- * Size:	000024
+/**
+ * @note Address: 0x801D6DAC
+ * @note Size: 0x24
  */
 int FloorInfo::getTekiWeightSum()
 {
@@ -1165,10 +1146,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D6DD0
- * Size:	000008
+/**
+ * @note Address: 0x801D6DD0
+ * @note Size: 0x8
  */
 int FloorInfo::getItemMax()
 {
@@ -1179,10 +1159,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D6DD8
- * Size:	00002C
+/**
+ * @note Address: 0x801D6DD8
+ * @note Size: 0x2C
  */
 int FloorInfo::getItemInfoNum()
 {
@@ -1202,10 +1181,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D6E04
- * Size:	000094
+/**
+ * @note Address: 0x801D6E04
+ * @note Size: 0x94
  */
 ItemInfo* FloorInfo::getItemInfo(int index)
 {
@@ -1256,10 +1234,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D6E98
- * Size:	000024
+/**
+ * @note Address: 0x801D6E98
+ * @note Size: 0x24
  */
 int FloorInfo::getItemWeightSum()
 {
@@ -1284,10 +1261,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D6EBC
- * Size:	000008
+/**
+ * @note Address: 0x801D6EBC
+ * @note Size: 0x8
  */
 int FloorInfo::getGateMax()
 {
@@ -1298,10 +1274,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D6EC4
- * Size:	00002C
+/**
+ * @note Address: 0x801D6EC4
+ * @note Size: 0x2C
  */
 int FloorInfo::getGateInfoNum()
 {
@@ -1321,10 +1296,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D6EF0
- * Size:	000094
+/**
+ * @note Address: 0x801D6EF0
+ * @note Size: 0x94
  */
 GateInfo* FloorInfo::getGateInfo(int index)
 {
@@ -1376,10 +1350,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D6F84
- * Size:	000024
+/**
+ * @note Address: 0x801D6F84
+ * @note Size: 0x24
  */
 int FloorInfo::getGateWeightSum()
 {
@@ -1403,10 +1376,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D6FA8
- * Size:	000008
+/**
+ * @note Address: 0x801D6FA8
+ * @note Size: 0x8
  */
 int FloorInfo::getCapMax()
 {
@@ -1417,10 +1389,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D6FB0
- * Size:	00002C
+/**
+ * @note Address: 0x801D6FB0
+ * @note Size: 0x2C
  */
 int FloorInfo::getCapInfoNum()
 {
@@ -1440,10 +1411,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D6FDC
- * Size:	000094
+/**
+ * @note Address: 0x801D6FDC
+ * @note Size: 0x94
  */
 CapInfo* FloorInfo::getCapInfo(int index)
 {
@@ -1495,10 +1465,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D7070
- * Size:	000008
+/**
+ * @note Address: 0x801D7070
+ * @note Size: 0x8
  */
 int FloorInfo::getRoomNum()
 {
@@ -1509,10 +1478,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D7078
- * Size:	000008
+/**
+ * @note Address: 0x801D7078
+ * @note Size: 0x8
  */
 f32 FloorInfo::getRouteRatio()
 {
@@ -1523,10 +1491,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D7080
- * Size:	000044
+/**
+ * @note Address: 0x801D7080
+ * @note Size: 0x44
  */
 bool FloorInfo::hasEscapeFountain(int floorIndex)
 {
@@ -1565,10 +1532,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D70C4
- * Size:	000014
+/**
+ * @note Address: 0x801D70C4
+ * @note Size: 0x14
  */
 bool FloorInfo::useKaidanBarrel()
 {
@@ -1582,10 +1548,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D70D8
- * Size:	000224
+/**
+ * @note Address: 0x801D70D8
+ * @note Size: 0x224
  */
 void FloorInfo::read(Stream& input)
 {
@@ -1783,10 +1748,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D72FC
- * Size:	0000D0
+/**
+ * @note Address: 0x801D72FC
+ * @note Size: 0xD0
  */
 CaveInfo::CaveInfo()
     : CNode(const_cast<char*>(caveInfoName))
@@ -1850,10 +1814,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D73CC
- * Size:	0000E4
+/**
+ * @note Address: 0x801D73CC
+ * @note Size: 0xE4
  */
 FloorInfo::~FloorInfo()
 {
@@ -1928,10 +1891,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D74B0
- * Size:	000040
+/**
+ * @note Address: 0x801D74B0
+ * @note Size: 0x40
  */
 void CaveInfo::disablePelplant()
 {
@@ -1975,10 +1937,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D74F0
- * Size:	000008
+/**
+ * @note Address: 0x801D74F0
+ * @note Size: 0x8
  */
 int CaveInfo::getFloorMax()
 {
@@ -1989,10 +1950,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D74F8
- * Size:	000034
+/**
+ * @note Address: 0x801D74F8
+ * @note Size: 0x34
  */
 FloorInfo* CaveInfo::getFloorInfo(int floorIndex)
 {
@@ -2027,10 +1987,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D752C
- * Size:	0000F8
+/**
+ * @note Address: 0x801D752C
+ * @note Size: 0xF8
  */
 CaveInfo* CaveInfo::load(char* path)
 {
@@ -2118,10 +2077,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D7624
- * Size:	000090
+/**
+ * @note Address: 0x801D7624
+ * @note Size: 0x90
  */
 void CaveInfo::read(Stream& input)
 {
@@ -2178,10 +2136,9 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D76B4
- * Size:	0000F4
+/**
+ * @note Address: 0x801D76B4
+ * @note Size: 0xF4
  */
 CaveInfo::~CaveInfo()
 {
@@ -2262,10 +2219,9 @@ blr
 	*/
 }
 
-// /*
-//  * --INFO--
-//  * Address:	801D77A8
-//  * Size:	000060
+// /**
+//  * @note Address: 0x801D77A8
+//  * @note Size: 0x60
 //  */
 // BaseGen::~BaseGen()
 // {

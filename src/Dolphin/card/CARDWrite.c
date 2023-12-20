@@ -2,10 +2,9 @@
 
 static void EraseCallback(s32 chan, s32 result);
 
-/*
- * --INFO--
- * Address:	800DA2BC
- * Size:	000170
+/**
+ * @note Address: 0x800DA2BC
+ * @note Size: 0x170
  */
 static void WriteCallback(s32 channel, s32 result)
 {
@@ -59,10 +58,9 @@ error:
 	callback(channel, result);
 }
 
-/*
- * --INFO--
- * Address:	800DA42C
- * Size:	0000B0
+/**
+ * @note Address: 0x800DA42C
+ * @note Size: 0xB0
  */
 static void EraseCallback(s32 channel, s32 result)
 {
@@ -89,10 +87,9 @@ error:
 	callback(channel, result);
 }
 
-/*
- * --INFO--
- * Address:	800DA4DC
- * Size:	000114
+/**
+ * @note Address: 0x800DA4DC
+ * @note Size: 0x114
  */
 s32 CARDWriteAsync(CARDFileInfo* fileInfo, void* buffer, s32 length, s32 offset, CARDCallback callback)
 {
@@ -127,10 +124,9 @@ s32 CARDWriteAsync(CARDFileInfo* fileInfo, void* buffer, s32 length, s32 offset,
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	800DA5F0
- * Size:	000048
+/**
+ * @note Address: 0x800DA5F0
+ * @note Size: 0x48
  */
 s32 CARDWrite(CARDFileInfo* fileInfo, void* buffer, s32 length, s32 offset)
 {

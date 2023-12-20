@@ -20,10 +20,9 @@
         .4byte run__13JASTaskThreadFv
 */
 
-/*
- * --INFO--
- * Address:	800A8840
- * Size:	000060
+/**
+ * @note Address: 0x800A8840
+ * @note Size: 0x60
  */
 JASTaskThread::JASTaskThread(int threadPriority, int msgCount, u32 stackSize)
     : JKRThread(JASDram, stackSize, msgCount, threadPriority)
@@ -32,10 +31,9 @@ JASTaskThread::JASTaskThread(int threadPriority, int msgCount, u32 stackSize)
 	OSInitThreadQueue(&_7C);
 }
 
-/*
- * --INFO--
- * Address:	800A88A0
- * Size:	000128
+/**
+ * @note Address: 0x800A88A0
+ * @note Size: 0x128
  */
 JASTaskThread::~JASTaskThread()
 {
@@ -135,10 +133,9 @@ lbl_800A89B0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000198
+/**
+ * @note Address: N/A
+ * @note Size: 0x198
  */
 JASCmdHeap::Header* JASTaskThread::allocCallStack(void (*cmd)(void*), const void* msg, u32 msgLength)
 {
@@ -154,20 +151,18 @@ JASCmdHeap::Header* JASTaskThread::allocCallStack(void (*cmd)(void*), const void
 	return header;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000184
+/**
+ * @note Address: N/A
+ * @note Size: 0x184
  */
 void* JASTaskThread::allocCallStack(void (*)(void*), void*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800A89C8
- * Size:	000260
+/**
+ * @note Address: 0x800A89C8
+ * @note Size: 0x260
  */
 int JASTaskThread::sendCmdMsg(void (*cmd)(void*), const void* msg, u32 msgLength)
 {
@@ -374,10 +369,9 @@ lbl_800A8C14:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A8C28
- * Size:	000234
+/**
+ * @note Address: 0x800A8C28
+ * @note Size: 0x234
  */
 int JASTaskThread::sendCmdMsg(void (*)(void*), void*)
 {
@@ -562,10 +556,9 @@ lbl_800A8E48:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A8E5C
- * Size:	000148
+/**
+ * @note Address: 0x800A8E5C
+ * @note Size: 0x148
  */
 void* JASTaskThread::run()
 {
@@ -673,10 +666,9 @@ lbl_800A8F90:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 void JASTaskThread::pause(bool)
 {

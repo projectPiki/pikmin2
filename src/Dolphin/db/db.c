@@ -2,10 +2,9 @@
 #include "Dolphin/db.h"
 #include "Dolphin/os.h"
 
-/*
- * --INFO--
- * Address:	800DABC4
- * Size:	000028
+/**
+ * @note Address: 0x800DABC4
+ * @note Size: 0x28
  */
 void DBInit(void)
 {
@@ -15,20 +14,18 @@ void DBInit(void)
 	DBVerbose                       = 1;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 void DBIsDebuggerPresent(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800DABEC
- * Size:	000048
+/**
+ * @note Address: 0x800DABEC
+ * @note Size: 0x48
  */
 static void __DBExceptionDestinationAux(void)
 {
@@ -39,10 +36,9 @@ static void __DBExceptionDestinationAux(void)
 	PPCHalt();
 }
 
-/*
- * --INFO--
- * Address:	800DAC34
- * Size:	000010
+/**
+ * @note Address: 0x800DAC34
+ * @note Size: 0x10
  */
 #ifdef __MWERKS__ // clang-format off
 ASM static void __DBExceptionDestination(void)
@@ -63,37 +59,33 @@ static void __DBExceptionDestination(void)
 }
 #endif
 
-/*
- * --INFO--
- * Address:	800DAC44
- * Size:	00001C
+/**
+ * @note Address: 0x800DAC44
+ * @note Size: 0x1C
  */
 int __DBIsExceptionMarked(u8 a) { return __DBInterface->unk4 & (1 << a); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
+/**
+ * @note Address: N/A
+ * @note Size: 0x44
  */
 void __DBMarkException(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
+/**
+ * @note Address: N/A
+ * @note Size: 0xC
  */
 void __DBSetPresent(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800DAC60
- * Size:	000050
+/**
+ * @note Address: 0x800DAC60
+ * @note Size: 0x50
  */
 
 void DBPrintf(const char*, ...) { }

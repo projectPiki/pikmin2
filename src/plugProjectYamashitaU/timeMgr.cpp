@@ -5,10 +5,9 @@
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	80126C00
- * Size:	000090
+/**
+ * @note Address: 0x80126C00
+ * @note Size: 0x90
  */
 TimeMgr::TimeMgr()
     : CNode("タイムマネージャ")
@@ -17,10 +16,9 @@ TimeMgr::TimeMgr()
 	init();
 }
 
-/*
- * --INFO--
- * Address:	80126FF0
- * Size:	0000B0
+/**
+ * @note Address: 0x80126FF0
+ * @note Size: 0xB0
  */
 void TimeMgr::init()
 {
@@ -37,10 +35,9 @@ void TimeMgr::init()
 	setTime(mParms.mParms.mDayStartTime.mValue);
 }
 
-/*
- * --INFO--
- * Address:	801270A0
- * Size:	00003C
+/**
+ * @note Address: 0x801270A0
+ * @note Size: 0x3C
  */
 void TimeMgr::setTime(f32 time)
 {
@@ -50,10 +47,9 @@ void TimeMgr::setTime(f32 time)
 	updateSlot();
 }
 
-/*
- * --INFO--
- * Address:	801270DC
- * Size:	000040
+/**
+ * @note Address: 0x801270DC
+ * @note Size: 0x40
  */
 void TimeMgr::setStartTime()
 {
@@ -63,10 +59,9 @@ void TimeMgr::setStartTime()
 	updateSlot();
 }
 
-/*
- * --INFO--
- * Address:	8012711C
- * Size:	000040
+/**
+ * @note Address: 0x8012711C
+ * @note Size: 0x40
  */
 void TimeMgr::setEndTime()
 {
@@ -76,10 +71,9 @@ void TimeMgr::setEndTime()
 	updateSlot();
 }
 
-/*
- * --INFO--
- * Address:	8012715C
- * Size:	000168
+/**
+ * @note Address: 0x8012715C
+ * @note Size: 0x168
  */
 #pragma dont_inline on
 void TimeMgr::updateSlot()
@@ -144,10 +138,9 @@ void TimeMgr::updateSlot()
 }
 #pragma dont_inline reset
 
-/*
- * --INFO--
- * Address:	801272C4
- * Size:	000060
+/**
+ * @note Address: 0x801272C4
+ * @note Size: 0x60
  */
 f32 TimeMgr::getSunGaugeRatio()
 {
@@ -164,10 +157,9 @@ f32 TimeMgr::getSunGaugeRatio()
 	return 1.0f - ((time - mParms.mParms.mDayEndTime.mValue) / mGameNightLength);
 }
 
-/*
- * --INFO--
- * Address:	80127324
- * Size:	000074
+/**
+ * @note Address: 0x80127324
+ * @note Size: 0x74
  */
 void TimeMgr::update()
 {
@@ -184,27 +176,24 @@ void TimeMgr::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80127398
- * Size:	000018
+/**
+ * @note Address: 0x80127398
+ * @note Size: 0x18
  */
 bool TimeMgr::isDayOver() { return mCurrentTimeOfDay > mParms.mParms.mDayEndTime.mValue; }
 
-/*
- * --INFO--
- * Address:	801273B0
- * Size:	000030
+/**
+ * @note Address: 0x801273B0
+ * @note Size: 0x30
  */
 bool TimeMgr::isDayTime()
 {
 	return mCurrentTimeOfDay > mParms.mParms.mDayStartTime.mValue && mCurrentTimeOfDay <= mParms.mParms.mDayEndTime.mValue;
 }
 
-/*
- * --INFO--
- * Address:	801273E0
- * Size:	000020
+/**
+ * @note Address: 0x801273E0
+ * @note Size: 0x20
  */
 f32 TimeMgr::getRealDayTime()
 {
@@ -212,10 +201,9 @@ f32 TimeMgr::getRealDayTime()
 	     * ((mParms.mParms.mDayEndTime.mValue - mParms.mParms.mDayStartTime.mValue) / TIMEMGR_DAY_HOURS);
 }
 
-/*
- * --INFO--
- * Address:	80127400
- * Size:	000150
+/**
+ * @note Address: 0x80127400
+ * @note Size: 0x150
  */
 void TimeMgr::loadSettingFile(char* filename)
 {

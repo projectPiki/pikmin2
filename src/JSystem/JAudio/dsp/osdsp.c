@@ -3,10 +3,9 @@
 #include "JSystem/JAudio/DSP.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	800AAC20
- * Size:	000060
+/**
+ * @note Address: 0x800AAC20
+ * @note Size: 0x60
  */
 DSPTaskInfo* DSPAddTask(DSPTaskInfo* task)
 {
@@ -19,10 +18,9 @@ DSPTaskInfo* DSPAddTask(DSPTaskInfo* task)
 	return task;
 }
 
-/*
- * --INFO--
- * Address:	800AAC80
- * Size:	00007C
+/**
+ * @note Address: 0x800AAC80
+ * @note Size: 0x7C
  */
 void DSPAddPriorTask(DSPTaskInfo* task)
 {

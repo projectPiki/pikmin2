@@ -13,10 +13,9 @@
 namespace Game {
 namespace Pom {
 
-/*
- * --INFO--
- * Address:	802547A4
- * Size:	000138
+/**
+ * @note Address: 0x802547A4
+ * @note Size: 0x138
  */
 Obj::Obj()
 {
@@ -24,17 +23,15 @@ Obj::Obj()
 	setFSM(new FSM);
 }
 
-/*
- * --INFO--
- * Address:	802548DC
- * Size:	000004
+/**
+ * @note Address: 0x802548DC
+ * @note Size: 0x4
  */
 void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
-/*
- * --INFO--
- * Address:	802548E0
- * Size:	000114
+/**
+ * @note Address: 0x802548E0
+ * @note Size: 0x114
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
@@ -67,10 +64,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mFsm->start(this, 0, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802549F4
- * Size:	000088
+/**
+ * @note Address: 0x802549F4
+ * @note Size: 0x88
  */
 void Obj::doUpdate()
 {
@@ -86,10 +82,9 @@ void Obj::doUpdate()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80254A7C
- * Size:	000110
+/**
+ * @note Address: 0x80254A7C
+ * @note Size: 0x110
  */
 void Obj::changeMaterial()
 {
@@ -108,24 +103,21 @@ void Obj::changeMaterial()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80254B8C
- * Size:	000004
+/**
+ * @note Address: 0x80254B8C
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	80254B90
- * Size:	000020
+/**
+ * @note Address: 0x80254B90
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	80254BB0
- * Size:	00004C
+/**
+ * @note Address: 0x80254BB0
+ * @note Size: 0x4C
  */
 void Obj::setFSM(FSM* fsm)
 {
@@ -134,10 +126,9 @@ void Obj::setFSM(FSM* fsm)
 	mCurrentLifecycleState = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80254BFC
- * Size:	000044
+/**
+ * @note Address: 0x80254BFC
+ * @note Size: 0x44
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
@@ -149,10 +140,9 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 	shadowParam.mSize                     = 0.1f;
 }
 
-/*
- * --INFO--
- * Address:	80254C40
- * Size:	00012C
+/**
+ * @note Address: 0x80254C40
+ * @note Size: 0x12C
  */
 bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
@@ -171,17 +161,15 @@ bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* collpart)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80254D6C
- * Size:	00002C
+/**
+ * @note Address: 0x80254D6C
+ * @note Size: 0x2C
  */
 bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart) { return pressCallBack(creature, damage, collpart); }
 
-/*
- * --INFO--
- * Address:	80254D98
- * Size:	0000A8
+/**
+ * @note Address: 0x80254D98
+ * @note Size: 0xA8
  */
 void Obj::collisionCallback(CollEvent& collEvent)
 {
@@ -192,10 +180,9 @@ void Obj::collisionCallback(CollEvent& collEvent)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80254E40
- * Size:	00004C
+/**
+ * @note Address: 0x80254E40
+ * @note Size: 0x4C
  */
 void Obj::initMouthSlots()
 {
@@ -203,10 +190,9 @@ void Obj::initMouthSlots()
 	mMouthSlots.setup(0, mModel, "jnt_center");
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B4
+/**
+ * @note Address: N/A
+ * @note Size: 0xB4
  */
 void Obj::setPomColor(int pikiKind)
 {
@@ -237,10 +223,9 @@ void Obj::setPomColor(int pikiKind)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80254E8C
- * Size:	000510
+/**
+ * @note Address: 0x80254E8C
+ * @note Size: 0x510
  */
 void Obj::setPomParms()
 {
@@ -278,10 +263,9 @@ void Obj::setPomParms()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802553A4
- * Size:	0004AC
+/**
+ * @note Address: 0x802553A4
+ * @note Size: 0x4AC
  */
 void Obj::shotPikmin()
 {
@@ -327,10 +311,9 @@ void Obj::shotPikmin()
 	setZukanVisible(false);
 }
 
-/*
- * --INFO--
- * Address:	80255850
- * Size:	00019C
+/**
+ * @note Address: 0x80255850
+ * @note Size: 0x19C
  */
 void Obj::changePomColor()
 {
@@ -361,10 +344,9 @@ void Obj::changePomColor()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802559EC
- * Size:	000184
+/**
+ * @note Address: 0x802559EC
+ * @note Size: 0x184
  */
 void Obj::createSwingSmokeEffect()
 {
@@ -385,10 +367,9 @@ void Obj::createSwingSmokeEffect()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80255B70
- * Size:	000094
+/**
+ * @note Address: 0x80255B70
+ * @note Size: 0x94
  */
 void Obj::createShotEffect()
 {
@@ -401,10 +382,9 @@ void Obj::createShotEffect()
 	laySeed.create(&arg);
 }
 
-/*
- * --INFO--
- * Address:	80255C04
- * Size:	000080
+/**
+ * @note Address: 0x80255C04
+ * @note Size: 0x80
  */
 void Obj::createPomDeadEffect()
 {

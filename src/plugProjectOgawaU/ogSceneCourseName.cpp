@@ -5,24 +5,21 @@
 namespace og {
 namespace newScreen {
 
-/*
- * --INFO--
- * Address:	80318050
- * Size:	00003C
+/**
+ * @note Address: 0x80318050
+ * @note Size: 0x3C
  */
 CourseName::CourseName() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
+/**
+ * @note Address: N/A
+ * @note Size: 0x74
  */
 CourseName::~CourseName() { }
 
-/*
- * --INFO--
- * Address:	8031808C
- * Size:	000128
+/**
+ * @note Address: 0x8031808C
+ * @note Size: 0x128
  */
 void CourseName::doUserCallBackFunc(Resource::MgrCommand*)
 {
@@ -51,17 +48,15 @@ void CourseName::doUserCallBackFunc(Resource::MgrCommand*)
 	doCreateObjUserCallBackFunc(arc);
 }
 
-/*
- * --INFO--
- * Address:	803181B4
- * Size:	000004
+/**
+ * @note Address: 0x803181B4
+ * @note Size: 0x4
  */
 void CourseName::doCreateObj(JKRArchive*) { }
 
-/*
- * --INFO--
- * Address:	803181B8
- * Size:	000060
+/**
+ * @note Address: 0x803181B8
+ * @note Size: 0x60
  */
 void CourseName::doCreateObjUserCallBackFunc(JKRArchive* arc)
 {

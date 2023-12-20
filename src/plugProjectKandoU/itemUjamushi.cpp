@@ -16,10 +16,9 @@ static const char unusedUjamushiName[] = "itemUjamushi";
 
 Mgr* mgr;
 
-/*
- * --INFO--
- * Address:	80205A28
- * Size:	0003D4
+/**
+ * @note Address: 0x80205A28
+ * @note Size: 0x3D4
  */
 BoidParms::BoidParms()
     : Parameters(nullptr, "BoidParms")
@@ -41,10 +40,9 @@ BoidParms::BoidParms()
 {
 }
 
-/*
- * --INFO--
- * Address:	80205DFC
- * Size:	000138
+/**
+ * @note Address: 0x80205DFC
+ * @note Size: 0x138
  */
 void BoidParms::blendTo(BoidParms& dest, BoidParms& outParms, f32 blendFactor)
 {
@@ -66,10 +64,9 @@ void BoidParms::blendTo(BoidParms& dest, BoidParms& outParms, f32 blendFactor)
 	outParms.mRandomAngle()       = comp * mRandomAngle() + blendFactor * dest.mRandomAngle();
 }
 
-/*
- * --INFO--
- * Address:	80205F34
- * Size:	00004C
+/**
+ * @note Address: 0x80205F34
+ * @note Size: 0x4C
  */
 BoidParameter::BoidParameter()
     : CNode()
@@ -78,10 +75,9 @@ BoidParameter::BoidParameter()
 	newParms();
 }
 
-/*
- * --INFO--
- * Address:	80206028
- * Size:	0000C0
+/**
+ * @note Address: 0x80206028
+ * @note Size: 0xC0
  */
 void BoidParameter::getParms(int srcIndex, int destIndex, f32 blendFactor, BoidParms& outParms)
 {
@@ -92,10 +88,9 @@ void BoidParameter::getParms(int srcIndex, int destIndex, f32 blendFactor, BoidP
 	src->mParms.blendTo(dest->mParms, outParms, blendFactor);
 }
 
-/*
- * --INFO--
- * Address:	802060E8
- * Size:	000048
+/**
+ * @note Address: 0x802060E8
+ * @note Size: 0x48
  */
 void BoidParameter::newParms()
 {
@@ -103,10 +98,9 @@ void BoidParameter::newParms()
 	mNode.add(node);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A8
+/**
+ * @note Address: N/A
+ * @note Size: 0xA8
  */
 void BoidParameter::write(Stream& output)
 {
@@ -114,10 +108,9 @@ void BoidParameter::write(Stream& output)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80206130
- * Size:	0000A8
+/**
+ * @note Address: 0x80206130
+ * @note Size: 0xA8
  */
 void BoidParameter::read(Stream& input)
 {
@@ -136,10 +129,9 @@ void BoidParameter::read(Stream& input)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000148
+/**
+ * @note Address: N/A
+ * @note Size: 0x148
  */
 UjaParms::UjaParms()
     : Parameters(nullptr, "UjaParms")
@@ -150,10 +142,9 @@ UjaParms::UjaParms()
 {
 }
 
-/*
- * --INFO--
- * Address:	802061D8
- * Size:	0000A8
+/**
+ * @note Address: 0x802061D8
+ * @note Size: 0xA8
  */
 Uja::Uja()
     : TFlock()
@@ -168,10 +159,9 @@ Uja::Uja()
 	clearBuffer();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000160
+/**
+ * @note Address: N/A
+ * @note Size: 0x160
  */
 void Uja::init(Mgr* mgr, Vector3f& pos)
 {
@@ -190,10 +180,9 @@ void Uja::init(Mgr* mgr, Vector3f& pos)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80206280
- * Size:	000028
+/**
+ * @note Address: 0x80206280
+ * @note Size: 0x28
  */
 bool Uja::damaged(f32 damage)
 {
@@ -201,20 +190,18 @@ bool Uja::damaged(f32 damage)
 	return mHealth <= 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A4
+/**
+ * @note Address: N/A
+ * @note Size: 0xA4
  */
 void Uja::setPosition(Vector3f& pos)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	802062A8
- * Size:	00003C
+/**
+ * @note Address: 0x802062A8
+ * @note Size: 0x3C
  */
 void Uja::clearBuffer()
 {
@@ -224,10 +211,9 @@ void Uja::clearBuffer()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802062E4
- * Size:	000318
+/**
+ * @note Address: 0x802062E4
+ * @note Size: 0x318
  */
 void Uja::updateBuffer()
 {
@@ -254,10 +240,9 @@ void Uja::updateBuffer()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802065FC
- * Size:	0000AC
+/**
+ * @note Address: 0x802065FC
+ * @note Size: 0xAC
  */
 void Uja::makeMatrix()
 {
@@ -272,10 +257,9 @@ void Uja::makeMatrix()
 	mTransformationMtx.makeSRT(scale, rot, translation);
 }
 
-/*
- * --INFO--
- * Address:	802066A8
- * Size:	00015C
+/**
+ * @note Address: 0x802066A8
+ * @note Size: 0x15C
  */
 void Uja::updateScale(f32 scale)
 {
@@ -291,10 +275,9 @@ void Uja::updateScale(f32 scale)
 	mScale.y = 0.14f * cosf(mMotionAnimationFactor) + 1.0f;
 }
 
-/*
- * --INFO--
- * Address:	80206804
- * Size:	00134C
+/**
+ * @note Address: 0x80206804
+ * @note Size: 0x134C
  */
 void Uja::update(BoidParms& parms)
 {
@@ -1997,10 +1980,9 @@ lbl_80207AA0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80207EA4
- * Size:	000130
+/**
+ * @note Address: 0x80207EA4
+ * @note Size: 0x130
  */
 UjaMgr::UjaMgr(int count)
 {
@@ -2014,10 +1996,9 @@ UjaMgr::UjaMgr(int count)
 	mUjaParms      = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	802081E4
- * Size:	000050
+/**
+ * @note Address: 0x802081E4
+ * @note Size: 0x50
  */
 void UjaMgr::init(UjaMgrInitArg& initArg)
 {
@@ -2027,10 +2008,9 @@ void UjaMgr::init(UjaMgrInitArg& initArg)
 	test_createUjas();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
+/**
+ * @note Address: N/A
+ * @note Size: 0xE0
  */
 void UjaMgr::updateBlend(int p1, int p2, f32 p3)
 {
@@ -2043,10 +2023,9 @@ void UjaMgr::updateBlend(int p1, int p2, f32 p3)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B0
+/**
+ * @note Address: N/A
+ * @note Size: 0xB0
  */
 void UjaMgr::appear()
 {
@@ -2060,10 +2039,9 @@ void UjaMgr::appear()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
+/**
+ * @note Address: N/A
+ * @note Size: 0x80
  */
 void UjaMgr::disappear()
 {
@@ -2072,10 +2050,9 @@ void UjaMgr::disappear()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
+/**
+ * @note Address: N/A
+ * @note Size: 0x80
  */
 void UjaMgr::mogure()
 {
@@ -2084,10 +2061,9 @@ void UjaMgr::mogure()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80208278
- * Size:	000418
+/**
+ * @note Address: 0x80208278
+ * @note Size: 0x418
  */
 void UjaMgr::test_createUjas()
 {
@@ -2143,17 +2119,15 @@ void UjaMgr::test_createUjas()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80208690
- * Size:	000024
+/**
+ * @note Address: 0x80208690
+ * @note Size: 0x24
  */
 void UjaMgr::do_update_boundSphere() { mActivationSpherePosition = mBoundSphere; }
 
-/*
- * --INFO--
- * Address:	802086B4
- * Size:	00029C
+/**
+ * @note Address: 0x802086B4
+ * @note Size: 0x29C
  */
 void UjaMgr::do_update()
 {
@@ -2207,10 +2181,9 @@ void UjaMgr::do_update()
 	sys->mTimers->_stop("ujaAI");
 }
 
-/*
- * --INFO--
- * Address:	80208964
- * Size:	0002E4
+/**
+ * @note Address: 0x80208964
+ * @note Size: 0x2E4
  */
 void UjaMgr::astonishPikmins()
 {
@@ -2233,10 +2206,9 @@ void UjaMgr::astonishPikmins()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80208C48
- * Size:	000134
+/**
+ * @note Address: 0x80208C48
+ * @note Size: 0x134
  */
 void FSM::init(Item*)
 {
@@ -2246,10 +2218,9 @@ void FSM::init(Item*)
 	registerState(new DigState());
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000134
+/**
+ * @note Address: N/A
+ * @note Size: 0x134
  */
 Item::Item()
     : FSMItem<Item, FSM, State>(OBJTYPE_Ujamushi)
@@ -2261,10 +2232,9 @@ Item::Item()
 	setCollisionFlick(false);
 }
 
-/*
- * --INFO--
- * Address:	80208D7C
- * Size:	0000C8
+/**
+ * @note Address: 0x80208D7C
+ * @note Size: 0xC8
  */
 void Item::onInit(CreatureInitArg* initArg)
 {
@@ -2280,10 +2250,9 @@ void Item::onInit(CreatureInitArg* initArg)
 	setAlive(true);
 }
 
-/*
- * --INFO--
- * Address:	80208E78
- * Size:	0000C0
+/**
+ * @note Address: 0x80208E78
+ * @note Size: 0xC0
  */
 void Item::onSetPosition()
 {
@@ -2302,20 +2271,18 @@ void Item::onSetPosition()
 	setBoidTimer();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00008C
+/**
+ * @note Address: N/A
+ * @note Size: 0x8C
  */
 void Item::changeBoid()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80208F38
- * Size:	000064
+/**
+ * @note Address: 0x80208F38
+ * @note Size: 0x64
  */
 void Item::setBoidTimer()
 {
@@ -2324,17 +2291,15 @@ void Item::setBoidTimer()
 	mBoidTimer2 = timer;
 }
 
-/*
- * --INFO--
- * Address:	80208F9C
- * Size:	00003C
+/**
+ * @note Address: 0x80208F9C
+ * @note Size: 0x3C
  */
 bool Item::ignoreAtari(Creature* creature) { return !creature->isPiki(); }
 
-/*
- * --INFO--
- * Address:	80208FD8
- * Size:	000078
+/**
+ * @note Address: 0x80208FD8
+ * @note Size: 0x78
  */
 void Item::updateBoundSphere()
 {
@@ -2345,10 +2310,9 @@ void Item::updateBoundSphere()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80209058
- * Size:	000374
+/**
+ * @note Address: 0x80209058
+ * @note Size: 0x374
  */
 bool Item::interactFlockAttack(InteractFlockAttack& interaction)
 {
@@ -2390,10 +2354,9 @@ bool Item::interactFlockAttack(InteractFlockAttack& interaction)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	802093CC
- * Size:	0002AC
+/**
+ * @note Address: 0x802093CC
+ * @note Size: 0x2AC
  */
 void Item::doAI()
 {
@@ -2430,10 +2393,9 @@ void Item::doAI()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80209680
- * Size:	000078
+/**
+ * @note Address: 0x80209680
+ * @note Size: 0x78
  */
 void Item::doSimpleDraw(Viewport* vp)
 {
@@ -2474,10 +2436,9 @@ void Item::doSimpleDraw(Viewport* vp)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802096F8
- * Size:	000310
+/**
+ * @note Address: 0x802096F8
+ * @note Size: 0x310
  */
 Mgr::Mgr()
 {
@@ -2519,10 +2480,9 @@ Mgr::Mgr()
 	closeTextArc(textArc);
 }
 
-/*
- * --INFO--
- * Address:	80209BA8
- * Size:	000200
+/**
+ * @note Address: 0x80209BA8
+ * @note Size: 0x200
  */
 void Mgr::doSimpleDraw(Viewport* vp)
 {
@@ -2530,34 +2490,30 @@ void Mgr::doSimpleDraw(Viewport* vp)
 	CI_LOOP(iter) { (*iter)->doSimpleDraw(vp); }
 }
 
-/*
- * --INFO--
- * Address:	80209DF4
- * Size:	000004
+/**
+ * @note Address: 0x80209DF4
+ * @note Size: 0x4
  */
 void Mgr::onLoadResources() { }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000158
+/**
+ * @note Address: N/A
+ * @note Size: 0x158
  */
 Item* Mgr::birth()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80209DF8
- * Size:	00000C
+/**
+ * @note Address: 0x80209DF8
+ * @note Size: 0xC
  */
 char* Mgr::getCaveName(int) { return "ujamushi"; }
 
-/*
- * --INFO--
- * Address:	80209E04
- * Size:	000054
+/**
+ * @note Address: 0x80209E04
+ * @note Size: 0x54
  */
 int Mgr::getCaveID(char* name)
 {
@@ -2587,10 +2543,9 @@ int Mgr::getCaveID(char* name)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80209E58
- * Size:	000094
+/**
+ * @note Address: 0x80209E58
+ * @note Size: 0x94
  */
 void WaitState::init(Item* item, StateArg* stateArg)
 {
@@ -2598,10 +2553,9 @@ void WaitState::init(Item* item, StateArg* stateArg)
 	mTimer = 10.0f;
 }
 
-/*
- * --INFO--
- * Address:	80209EEC
- * Size:	000058
+/**
+ * @note Address: 0x80209EEC
+ * @note Size: 0x58
  */
 void WaitState::exec(Item* item)
 {
@@ -2611,17 +2565,15 @@ void WaitState::exec(Item* item)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80209F74
- * Size:	000004
+/**
+ * @note Address: 0x80209F74
+ * @note Size: 0x4
  */
 void WaitState::cleanup(Item*) { }
 
-/*
- * --INFO--
- * Address:	80209F78
- * Size:	0000C4
+/**
+ * @note Address: 0x80209F78
+ * @note Size: 0xC4
  */
 void ActiveState::init(Item* item, StateArg* stateArg)
 {
@@ -2629,24 +2581,21 @@ void ActiveState::init(Item* item, StateArg* stateArg)
 	mTimer = 20.0f;
 }
 
-/*
- * --INFO--
- * Address:	8020A03C
- * Size:	000004
+/**
+ * @note Address: 0x8020A03C
+ * @note Size: 0x4
  */
 void ActiveState::exec(Item*) { }
 
-/*
- * --INFO--
- * Address:	8020A040
- * Size:	000004
+/**
+ * @note Address: 0x8020A040
+ * @note Size: 0x4
  */
 void ActiveState::cleanup(Item*) { }
 
-/*
- * --INFO--
- * Address:	8020A044
- * Size:	000094
+/**
+ * @note Address: 0x8020A044
+ * @note Size: 0x94
  */
 void DigState::init(Item* item, StateArg* stateArg)
 {
@@ -2654,10 +2603,9 @@ void DigState::init(Item* item, StateArg* stateArg)
 	mTimer = 10.0f;
 }
 
-/*
- * --INFO--
- * Address:	8020A0D8
- * Size:	000058
+/**
+ * @note Address: 0x8020A0D8
+ * @note Size: 0x58
  */
 void DigState::exec(Item* item)
 {
@@ -2667,24 +2615,21 @@ void DigState::exec(Item* item)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8020A130
- * Size:	000004
+/**
+ * @note Address: 0x8020A130
+ * @note Size: 0x4
  */
 void DigState::cleanup(Item*) { }
 
-/*
- * --INFO--
- * Address:	8020A134
- * Size:	00004C
+/**
+ * @note Address: 0x8020A134
+ * @note Size: 0x4C
  */
 GenItemParm* Mgr::generatorNewItemParm() { return new GenUjamushiParm(); }
 
-/*
- * --INFO--
- * Address:	8020A180
- * Size:	000088
+/**
+ * @note Address: 0x8020A180
+ * @note Size: 0x88
  */
 void Mgr::generatorWrite(Stream& output, GenItemParm* genParm)
 {
@@ -2696,10 +2641,9 @@ void Mgr::generatorWrite(Stream& output, GenItemParm* genParm)
 	output.textWriteText("\t#‚¤‚¶‚á‰¤”\r\n"); // 'ujaoh number'
 }
 
-/*
- * --INFO--
- * Address:	8020A208
- * Size:	000064
+/**
+ * @note Address: 0x8020A208
+ * @note Size: 0x64
  */
 void Mgr::generatorRead(Stream& input, GenItemParm* genParm, u32 version)
 {
@@ -2709,10 +2653,9 @@ void Mgr::generatorRead(Stream& input, GenItemParm* genParm, u32 version)
 	ujaParm->mCount = input.readShort();
 }
 
-/*
- * --INFO--
- * Address:	8020A26C
- * Size:	0001CC
+/**
+ * @note Address: 0x8020A26C
+ * @note Size: 0x1CC
  */
 BaseItem* Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenItemParm* genParm)
 {

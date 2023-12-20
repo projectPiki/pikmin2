@@ -4,17 +4,15 @@
 namespace Game {
 namespace Cave {
 
-/*
- * --INFO--
- * Address:	80245418
- * Size:	000008
+/**
+ * @note Address: 0x80245418
+ * @note Size: 0x8
  */
 RandMapDraw::RandMapDraw(MapUnitGenerator* generator) { mGenerator = generator; }
 
-/*
- * --INFO--
- * Address:	80245420
- * Size:	0001CC
+/**
+ * @note Address: 0x80245420
+ * @note Size: 0x1CC
  */
 void RandMapDraw::radarMapPartsOpen(Vector3f& pos)
 {
@@ -51,10 +49,9 @@ void RandMapDraw::radarMapPartsOpen(Vector3f& pos)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802455EC
- * Size:	000078
+/**
+ * @note Address: 0x802455EC
+ * @note Size: 0x78
  */
 void RandMapDraw::draw(Graphics& gfx, f32 x, f32 y, f32 z)
 {

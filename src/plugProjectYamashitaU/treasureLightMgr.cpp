@@ -6,10 +6,9 @@
 static const char _RODATA_FIX[0xC] = { '\0' };
 
 namespace TreasureLight {
-/*
- * --INFO--
- * Address:	8013286C
- * Size:	000150
+/**
+ * @note Address: 0x8013286C
+ * @note Size: 0x150
  */
 Mgr::Mgr()
     : LightMgr("‚¨•óƒ‰ƒCƒg")
@@ -29,17 +28,15 @@ Mgr::Mgr()
 	mAmbientLight.mColor = Color4(0x32, 0x32, 0x32, 0xFF);
 }
 
-/*
- * --INFO--
- * Address:	801329BC
- * Size:	000004
+/**
+ * @note Address: 0x801329BC
+ * @note Size: 0x4
  */
 void Mgr::update() { }
 
-/*
- * --INFO--
- * Address:	801329C0
- * Size:	000044
+/**
+ * @note Address: 0x801329C0
+ * @note Size: 0x44
  */
 void Mgr::set(Graphics& gfx)
 {
@@ -47,10 +44,9 @@ void Mgr::set(Graphics& gfx)
 	LightMgr::set(gfx);
 }
 
-/*
- * --INFO--
- * Address:	80132A04
- * Size:	000044
+/**
+ * @note Address: 0x80132A04
+ * @note Size: 0x44
  */
 void Mgr::set(Matrixf& mtx)
 {
@@ -58,10 +54,9 @@ void Mgr::set(Matrixf& mtx)
 	LightMgr::set(mtx);
 }
 
-/*
- * --INFO--
- * Address:	80132A48
- * Size:	000184
+/**
+ * @note Address: 0x80132A48
+ * @note Size: 0x184
  * Credits: Altafen
  *
  * https://en.wikipedia.org/wiki/Spherical_coordinate_system
@@ -104,10 +99,9 @@ void Mgr::setCommonProc()
 	mSpecLight->mElevation = elevation;
 }
 
-/*
- * --INFO--
- * Address:	80132BCC
- * Size:	000020
+/**
+ * @note Address: 0x80132BCC
+ * @note Size: 0x20
  */
 void Mgr::drawDebugInfo(Graphics& gfx) { LightMgr::drawDebugInfo(gfx); }
 } // namespace TreasureLight

@@ -6,20 +6,18 @@
 
 u32 JKRArchive::sCurrentDirID;
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	00004C
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x4C
 //  */
 // JKRArchive::JKRArchive()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	8001A4BC
- * Size:	0000A8
+/**
+ * @note Address: 0x8001A4BC
+ * @note Size: 0xA8
  */
 JKRArchive::JKRArchive(s32 entryNum, JKRArchive::EMountMode mountMode)
     : JKRFileLoader()
@@ -39,10 +37,9 @@ JKRArchive::JKRArchive(s32 entryNum, JKRArchive::EMountMode mountMode)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B8
+/**
+ * @note Address: N/A
+ * @note Size: 0xB8
  * __ct__10JKRArchiveFPCcQ210JKRArchive10EMountMode
  */
 JKRArchive::JKRArchive(const char* p1, JKRArchive::EMountMode mountMode)
@@ -50,17 +47,15 @@ JKRArchive::JKRArchive(const char* p1, JKRArchive::EMountMode mountMode)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8001A564
- * Size:	000060
+/**
+ * @note Address: 0x8001A564
+ * @note Size: 0x60
  */
 JKRArchive::~JKRArchive() { }
 
-/*
- * --INFO--
- * Address:	8001A5C4
- * Size:	00004C
+/**
+ * @note Address: 0x8001A5C4
+ * @note Size: 0x4C
  */
 bool JKRArchive::isSameName(JKRArchive::CArcName& archiveName, u32 nameTableOffset, u16 hash) const
 {
@@ -68,10 +63,9 @@ bool JKRArchive::isSameName(JKRArchive::CArcName& archiveName, u32 nameTableOffs
 	return (arcHash != hash) ? false : strcmp(&mStrTable[nameTableOffset], archiveName.getString()) == 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  * findResType__10JKRArchiveCFUl
  */
 JKRArchive::SDIDirEntry* JKRArchive::findResType(u32 type) const
@@ -85,10 +79,9 @@ JKRArchive::SDIDirEntry* JKRArchive::findResType(u32 type) const
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8001A610
- * Size:	00031C
+/**
+ * @note Address: 0x8001A610
+ * @note Size: 0x31C
  */
 JKRArchive::SDIDirEntry* JKRArchive::findDirectory(const char* path, u32 index) const
 {
@@ -112,10 +105,9 @@ JKRArchive::SDIDirEntry* JKRArchive::findDirectory(const char* path, u32 index) 
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8001A92C
- * Size:	000044
+/**
+ * @note Address: 0x8001A92C
+ * @note Size: 0x44
  * __ct__Q210JKRArchive8CArcNameFPPCcc
  */
 // JKRArchive::CArcName::CArcName(const char** p1, char p2)
@@ -123,10 +115,9 @@ JKRArchive::SDIDirEntry* JKRArchive::findDirectory(const char* path, u32 index) 
 // 	p1[0] = store(p1[0], p2);
 // }
 
-/*
- * --INFO--
- * Address:	8001A970
- * Size:	000008
+/**
+ * @note Address: 0x8001A970
+ * @note Size: 0x8
  */
 // const char* JKRArchive::CArcName::getString() const
 // {
@@ -137,20 +128,18 @@ JKRArchive::SDIDirEntry* JKRArchive::findDirectory(const char* path, u32 index) 
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	8001A978
- * Size:	000008
+/**
+ * @note Address: 0x8001A978
+ * @note Size: 0x8
  */
 // u16 JKRArchive::CArcName::getHash() const
 // {
 // 	return mHash;
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000098
+/**
+ * @note Address: N/A
+ * @note Size: 0x98
  * findTypeResource__10JKRArchiveCFUlUl
  */
 JKRArchive::SDIFileEntry* JKRArchive::findTypeResource(u32 p1, u32 p2) const
@@ -177,10 +166,9 @@ JKRArchive::SDIFileEntry* JKRArchive::findTypeResource(u32 p1, u32 p2) const
 	// return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8001A980
- * Size:	0000F4
+/**
+ * @note Address: 0x8001A980
+ * @note Size: 0xF4
  * findTypeResource__10JKRArchiveCFUlPCc
  */
 JKRArchive::SDIFileEntry* JKRArchive::findTypeResource(u32 type, const char* name) const
@@ -201,10 +189,9 @@ JKRArchive::SDIFileEntry* JKRArchive::findTypeResource(u32 type, const char* nam
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8001AA74
- * Size:	000340
+/**
+ * @note Address: 0x8001AA74
+ * @note Size: 0x340
  */
 JKRArchive::SDIFileEntry* JKRArchive::findFsResource(const char* path, u32 index) const
 {
@@ -227,10 +214,9 @@ JKRArchive::SDIFileEntry* JKRArchive::findFsResource(const char* path, u32 index
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8001ADB4
- * Size:	000028
+/**
+ * @note Address: 0x8001ADB4
+ * @note Size: 0x28
  */
 JKRArchive::SDIFileEntry* JKRArchive::findIdxResource(u32 idx) const
 {
@@ -240,10 +226,9 @@ JKRArchive::SDIFileEntry* JKRArchive::findIdxResource(u32 idx) const
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8001ADDC
- * Size:	0000A4
+/**
+ * @note Address: 0x8001ADDC
+ * @note Size: 0xA4
  */
 JKRArchive::SDIFileEntry* JKRArchive::findNameResource(const char* name) const
 {
@@ -259,10 +244,9 @@ JKRArchive::SDIFileEntry* JKRArchive::findNameResource(const char* name) const
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8001AE80
- * Size:	000034
+/**
+ * @note Address: 0x8001AE80
+ * @note Size: 0x34
  * findPtrResource__10JKRArchiveCFPCv
  */
 JKRArchive::SDIFileEntry* JKRArchive::findPtrResource(const void* ptr) const
@@ -276,10 +260,9 @@ JKRArchive::SDIFileEntry* JKRArchive::findPtrResource(const void* ptr) const
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8001AEB4
- * Size:	000080
+/**
+ * @note Address: 0x8001AEB4
+ * @note Size: 0x80
  * findIdResource__10JKRArchiveCFUs
  */
 JKRArchive::SDIFileEntry* JKRArchive::findIdResource(u16 id) const
@@ -301,20 +284,18 @@ JKRArchive::SDIFileEntry* JKRArchive::findIdResource(u16 id) const
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  * __ct__Q210JKRArchive8CArcNameFv
  */
 // JKRArchive::CArcName::CArcName() {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	8001AF34
- * Size:	000098
+/**
+ * @note Address: 0x8001AF34
+ * @note Size: 0x98
  */
 void JKRArchive::CArcName::store(const char* name)
 {
@@ -332,10 +313,9 @@ void JKRArchive::CArcName::store(const char* name)
 	mString[count] = '\0';
 }
 
-/*
- * --INFO--
- * Address:	8001AFCC
- * Size:	0000C8
+/**
+ * @note Address: 0x8001AFCC
+ * @note Size: 0xC8
  */
 const char* JKRArchive::CArcName::store(const char* name, char endChar)
 {
@@ -356,10 +336,9 @@ const char* JKRArchive::CArcName::store(const char* name, char endChar)
 	return name + 1;
 }
 
-/*
- * --INFO--
- * Address:	8001B094
- * Size:	00004C
+/**
+ * @note Address: 0x8001B094
+ * @note Size: 0x4C
  */
 void JKRArchive::setExpandSize(JKRArchive::SDIFileEntry* entry, u32 size)
 {
@@ -370,10 +349,9 @@ void JKRArchive::setExpandSize(JKRArchive::SDIFileEntry* entry, u32 size)
 	mExpandSizes[index] = size;
 }
 
-/*
- * --INFO--
- * Address:	8001B0E0
- * Size:	000050
+/**
+ * @note Address: 0x8001B0E0
+ * @note Size: 0x50
  */
 u32 JKRArchive::getExpandSize(JKRArchive::SDIFileEntry* entry) const
 {

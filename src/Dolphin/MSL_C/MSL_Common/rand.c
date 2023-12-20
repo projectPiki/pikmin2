@@ -2,10 +2,9 @@
 
 static u32 next = 1;
 
-/*
- * --INFO--
- * Address:	800C95A0
- * Size:	000020
+/**
+ * @note Address: 0x800C95A0
+ * @note Size: 0x20
  */
 int rand()
 {
@@ -13,9 +12,8 @@ int rand()
 	return ((next >> 16) & 0x7fff);
 }
 
-/*
- * --INFO--
- * Address:	800C9598
- * Size:	000008
+/**
+ * @note Address: 0x800C9598
+ * @note Size: 0x8
  */
 void srand(u32 seed) { next = seed; }

@@ -5,10 +5,9 @@
 #include "JSystem/J3D/J3DTypes.h"
 #include "JSystem/J3D/J3DShapeFactory.h"
 #include "JSystem/JSupport/JSU.h"
-/*
- * --INFO--
- * Address:	8006F894
- * Size:	000154
+/**
+ * @note Address: 0x8006F894
+ * @note Size: 0x154
  */
 J3DModelData* J3DModelLoaderDataBase::load(const void* stream, u32 flags)
 {
@@ -30,10 +29,9 @@ J3DModelData* J3DModelLoaderDataBase::load(const void* stream, u32 flags)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8006FAE8
- * Size:	0000BC
+/**
+ * @note Address: 0x8006FAE8
+ * @note Size: 0xBC
  */
 J3DModelData* J3DModelLoaderDataBase::loadBinaryDisplayList(const void* stream, u32 flags)
 {
@@ -48,10 +46,9 @@ J3DModelData* J3DModelLoaderDataBase::loadBinaryDisplayList(const void* stream, 
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8006FBA4
- * Size:	0002BC
+/**
+ * @note Address: 0x8006FBA4
+ * @note Size: 0x2BC
  * load__14J3DModelLoaderFPCvUl
  */
 J3DModelData* J3DModelLoader::load(const void* stream, u32 flags)
@@ -108,24 +105,21 @@ J3DModelData* J3DModelLoader::load(const void* stream, u32 flags)
 	return mModelData;
 }
 
-/*
- * --INFO--
- * Address:	8006FE60
- * Size:	000004
+/**
+ * @note Address: 0x8006FE60
+ * @note Size: 0x4
  */
 void J3DModelLoader::readMaterial_v21(const J3DMaterialBlock_v21*, u32) { }
 
-/*
- * --INFO--
- * Address:	8006FE64
- * Size:	000004
+/**
+ * @note Address: 0x8006FE64
+ * @note Size: 0x4
  */
 void J3DModelLoader::readMaterial(const J3DMaterialBlock*, u32) { }
 
-/*
- * --INFO--
- * Address:	8006FE68
- * Size:	000148
+/**
+ * @note Address: 0x8006FE68
+ * @note Size: 0x148
  * loadMaterialTable__14J3DModelLoaderFPCv
  */
 J3DMaterialTable* J3DModelLoader::loadMaterialTable(const void* stream)
@@ -156,24 +150,21 @@ J3DMaterialTable* J3DModelLoader::loadMaterialTable(const void* stream)
 	return mMaterialTable;
 }
 
-/*
- * --INFO--
- * Address:	8006FFB0
- * Size:	000004
+/**
+ * @note Address: 0x8006FFB0
+ * @note Size: 0x4
  */
 void J3DModelLoader::readMaterialTable_v21(const J3DMaterialBlock_v21*, u32) { }
 
-/*
- * --INFO--
- * Address:	8006FFB4
- * Size:	000004
+/**
+ * @note Address: 0x8006FFB4
+ * @note Size: 0x4
  */
 void J3DModelLoader::readMaterialTable(const J3DMaterialBlock*, u32) { }
 
-/*
- * --INFO--
- * Address:	8006FFB8
- * Size:	0002A4
+/**
+ * @note Address: 0x8006FFB8
+ * @note Size: 0x2A4
  * loadBinaryDisplayList__14J3DModelLoaderFPCvUl
  */
 J3DModelData* J3DModelLoader::loadBinaryDisplayList(const void* stream, u32 flags)
@@ -441,10 +432,9 @@ makeHierarchy__12J3DJointTreeFP8J3DJointPPC17J3DModelHierarchyP16J3DMaterialTabl
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8007025C
- * Size:	00014C
+/**
+ * @note Address: 0x8007025C
+ * @note Size: 0x14C
  */
 void J3DModelLoader::setupBBoardInfo()
 {
@@ -575,10 +565,9 @@ lbl_80070380:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800703A8
- * Size:	000168
+/**
+ * @note Address: 0x800703A8
+ * @note Size: 0x168
  */
 void J3DModelLoader::readInformation(const J3DModelInfoBlock* block, u32 flags)
 {
@@ -602,10 +591,9 @@ void J3DModelLoader::readInformation(const J3DModelInfoBlock* block, u32 flags)
 	mModelData->mJointTree.mHierarchy     = JSUConvertOffsetToPtr<J3DModelHierarchy>(block, block->mHierarchyDataOffset);
 }
 
-/*
- * --INFO--
- * Address:	8007056C
- * Size:	000238
+/**
+ * @note Address: 0x8007056C
+ * @note Size: 0x238
  * readVertex__14J3DModelLoaderFPC14J3DVertexBlock
  */
 void J3DModelLoader::readVertex(const J3DVertexBlock* block)
@@ -807,10 +795,9 @@ lbl_80070790:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800707A4
- * Size:	000098
+/**
+ * @note Address: 0x800707A4
+ * @note Size: 0x98
  */
 void J3DModelLoader::readEnvelop(const J3DEnvelopeBlock* block)
 {
@@ -821,10 +808,9 @@ void J3DModelLoader::readEnvelop(const J3DEnvelopeBlock* block)
 	mModelData->getJointTree().mInvJointMtx       = JSUConvertOffsetToPtr<Mtx>(block, block->mInvBindTableOffset);
 }
 
-/*
- * --INFO--
- * Address:	8007083C
- * Size:	0000B8
+/**
+ * @note Address: 0x8007083C
+ * @note Size: 0xB8
  */
 void J3DModelLoader::readDraw(const J3DDrawBlock* block)
 {
@@ -900,10 +886,9 @@ lbl_800708C0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800708F4
- * Size:	0000EC
+/**
+ * @note Address: 0x800708F4
+ * @note Size: 0xEC
  */
 void J3DModelLoader::readJoint(const J3DJointBlock*)
 {
@@ -980,10 +965,9 @@ lbl_800709B0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800709E0
- * Size:	000274
+/**
+ * @note Address: 0x800709E0
+ * @note Size: 0x274
  */
 void J3DModelLoader_v26::readMaterial(const J3DMaterialBlock*, u32)
 {
@@ -1182,10 +1166,9 @@ lbl_80070C40:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80070CA8
- * Size:	00025C
+/**
+ * @note Address: 0x80070CA8
+ * @note Size: 0x25C
  */
 void J3DModelLoader_v21::readMaterial_v21(const J3DMaterialBlock_v21*, u32)
 {
@@ -1377,10 +1360,9 @@ void J3DModelLoader_v21::readMaterial_v21(const J3DMaterialBlock_v21*, u32)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80070F04
- * Size:	00011C
+/**
+ * @note Address: 0x80070F04
+ * @note Size: 0x11C
  */
 void J3DModelLoader::readShape(const J3DShapeBlock* block, u32 flags)
 {
@@ -1491,10 +1473,9 @@ lbl_80071000:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80071020
- * Size:	0000C4
+/**
+ * @note Address: 0x80071020
+ * @note Size: 0xC4
  */
 void J3DModelLoader::readTexture(const J3DTextureBlock* block)
 {
@@ -1508,10 +1489,9 @@ void J3DModelLoader::readTexture(const J3DTextureBlock* block)
 	mMaterialTable->setTexture(new J3DTexture(count, resTextureImage));
 }
 
-/*
- * --INFO--
- * Address:	800710E4
- * Size:	00014C
+/**
+ * @note Address: 0x800710E4
+ * @note Size: 0x14C
  * readMaterialTable__18J3DModelLoader_v26FPC16J3DMaterialBlockUl
  */
 void J3DModelLoader_v26::readMaterialTable(const J3DMaterialBlock* block, u32 flags)
@@ -1635,10 +1615,9 @@ void J3DModelLoader_v26::readMaterialTable(const J3DMaterialBlock* block, u32 fl
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80071230
- * Size:	00014C
+/**
+ * @note Address: 0x80071230
+ * @note Size: 0x14C
  */
 void J3DModelLoader_v21::readMaterialTable_v21(const J3DMaterialBlock_v21* block, u32 flags)
 {
@@ -1761,10 +1740,9 @@ void J3DModelLoader_v21::readMaterialTable_v21(const J3DMaterialBlock_v21* block
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8007137C
- * Size:	0000C4
+/**
+ * @note Address: 0x8007137C
+ * @note Size: 0xC4
  */
 void J3DModelLoader::readTextureTable(const J3DTextureBlock* block)
 {
@@ -1778,10 +1756,9 @@ void J3DModelLoader::readTextureTable(const J3DTextureBlock* block)
 	mMaterialTable->setTexture(new J3DTexture(count, resTextureImage));
 }
 
-/*
- * --INFO--
- * Address:	80071440
- * Size:	000150
+/**
+ * @note Address: 0x80071440
+ * @note Size: 0x150
  */
 void J3DModelLoader::readPatchedMaterial(const J3DMaterialBlock* block, u32 flags)
 {
@@ -1898,10 +1875,9 @@ lbl_8007155C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80071590
- * Size:	0001BC
+/**
+ * @note Address: 0x80071590
+ * @note Size: 0x1BC
  */
 void J3DModelLoader::readMaterialDL(const J3DMaterialDLBlock* block, u32 flags)
 {
@@ -1931,10 +1907,9 @@ void J3DModelLoader::readMaterialDL(const J3DMaterialDLBlock* block, u32 flags)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8007174C
- * Size:	00007C
+/**
+ * @note Address: 0x8007174C
+ * @note Size: 0x7C
  */
 void J3DModelLoader::modifyMaterial(u32 flags)
 {

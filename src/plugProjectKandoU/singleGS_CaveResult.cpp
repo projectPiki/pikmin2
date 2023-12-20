@@ -23,10 +23,9 @@ namespace SingleGame {
 static const u32 padding[]    = { 0, 0, 0 };
 static const char className[] = "SingleGS_CaveResult";
 
-/*
- * --INFO--
- * Address:	8021AC20
- * Size:	0000F8
+/**
+ * @note Address: 0x8021AC20
+ * @note Size: 0xF8
  * __ct
  */
 CaveResultState::CaveResultState()
@@ -38,10 +37,9 @@ CaveResultState::CaveResultState()
 	mMainHeap     = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8021AD18
- * Size:	000124
+/**
+ * @note Address: 0x8021AD18
+ * @note Size: 0x124
  */
 void CaveResultState::init(SingleGameSection* section, StateArg* arg)
 {
@@ -66,20 +64,18 @@ void CaveResultState::init(SingleGameSection* section, StateArg* arg)
 	PSMCancelToPauseOffMainBgm();
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	00007C
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x7C
 //  */
 // void CaveResultState::initNext(SingleGameSection* section)
 // {
 // 	// UNUSED
 // }
 
-/*
- * --INFO--
- * Address:	8021AE3C
- * Size:	000240
+/**
+ * @note Address: 0x8021AE3C
+ * @note Size: 0x240
  */
 void CaveResultState::loadResource()
 {
@@ -271,20 +267,18 @@ lbl_8021B048:
 	*/
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000134
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x134
 //  */
 // unknown CaveResultState::open2D(Game::SingleGameSection*)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	8021B07C
- * Size:	0002E8
+/**
+ * @note Address: 0x8021B07C
+ * @note Size: 0x2E8
  */
 void CaveResultState::exec(SingleGameSection* section)
 {
@@ -556,10 +550,9 @@ lbl_8021B350:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8021B364
- * Size:	0000C0
+/**
+ * @note Address: 0x8021B364
+ * @note Size: 0xC0
  */
 void CaveResultState::draw(SingleGameSection* section, Graphics& gfx)
 {
@@ -573,10 +566,9 @@ void CaveResultState::draw(SingleGameSection* section, Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8021B424
- * Size:	0000C4
+/**
+ * @note Address: 0x8021B424
+ * @note Size: 0xC4
  */
 void CaveResultState::cleanup(SingleGameSection* section)
 {
@@ -592,10 +584,9 @@ void CaveResultState::cleanup(SingleGameSection* section)
 	mBackupHeap->becomeCurrentHeap();
 }
 
-/*
- * --INFO--
- * Address:	8021B4E8
- * Size:	00040C
+/**
+ * @note Address: 0x8021B4E8
+ * @note Size: 0x40C
  */
 void CaveResultState::createResultNodes()
 {

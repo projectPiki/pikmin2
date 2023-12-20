@@ -32,10 +32,9 @@ static s8 sSeasonIndex   = 255;
 
 namespace Title {
 
-/*
- * --INFO--
- * Address:	8044A03C
- * Size:	0000F0
+/**
+ * @note Address: 0x8044A03C
+ * @note Size: 0xF0
  */
 Section::Section(JKRHeap* heap)
     : BaseHIOSection(heap)
@@ -50,17 +49,15 @@ Section::Section(JKRHeap* heap)
 	mDoCheckShortCut = false;
 }
 
-/*
- * --INFO--
- * Address:	8044A460
- * Size:	0000A4
+/**
+ * @note Address: 0x8044A460
+ * @note Size: 0xA4
  */
 Section::~Section() { ebi::title::TTitleMgr::deleteInstance(); }
 
-/*
- * --INFO--
- * Address:	8044A504
- * Size:	0000C4
+/**
+ * @note Address: 0x8044A504
+ * @note Size: 0xC4
  */
 void Section::doExit()
 {
@@ -73,10 +70,9 @@ void Section::doExit()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8044A5C8
- * Size:	000104
+/**
+ * @note Address: 0x8044A5C8
+ * @note Size: 0x104
  */
 void Section::loadResident()
 {
@@ -100,10 +96,9 @@ void Section::loadResident()
 	backup->becomeCurrentHeap();
 }
 
-/*
- * --INFO--
- * Address:	8044A6CC
- * Size:	000434
+/**
+ * @note Address: 0x8044A6CC
+ * @note Size: 0x434
  */
 void Section::init()
 {
@@ -157,17 +152,15 @@ void Section::init()
 	mTimeStep = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	8044AB00
- * Size:	00002C
+/**
+ * @note Address: 0x8044AB00
+ * @note Size: 0x2C
  */
 void Section::menuCancel(Menu&) { PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0); }
 
-/*
- * --INFO--
- * Address:	8044AB2C
- * Size:	000054
+/**
+ * @note Address: 0x8044AB2C
+ * @note Size: 0x54
  */
 void Section::menuSelect(Menu& menu)
 {
@@ -178,10 +171,9 @@ void Section::menuSelect(Menu& menu)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8044AB80
- * Size:	000110
+/**
+ * @note Address: 0x8044AB80
+ * @note Size: 0x110
  */
 void Section::doDraw(Graphics& gfx)
 {
@@ -212,50 +204,45 @@ void Section::doDraw(Graphics& gfx)
 	particle2dMgr->draw(0, 0);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000200
+/**
+ * @note Address: N/A
+ * @note Size: 0x200
  */
 void Section::drawShortCuts(Graphics& gfx)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000150
+/**
+ * @note Address: N/A
+ * @note Size: 0x150
  */
 void Section::drawShortCut(Graphics&, int, int, int, char*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
+/**
+ * @note Address: N/A
+ * @note Size: 0x4
  */
 void Section::drawDebugInfo(Graphics& gfx)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000118
+/**
+ * @note Address: N/A
+ * @note Size: 0x118
  */
 void Section::updateMenu()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8044AC90
- * Size:	000688
+/**
+ * @note Address: 0x8044AC90
+ * @note Size: 0x688
  */
 void Section::doUpdateMainTitle()
 {
@@ -371,20 +358,18 @@ void Section::doUpdateMainTitle()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000214
+/**
+ * @note Address: N/A
+ * @note Size: 0x214
  */
 void Section::doUpdateHiScore()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8044B318
- * Size:	0004C8
+/**
+ * @note Address: 0x8044B318
+ * @note Size: 0x4C8
  */
 void Section::doUpdateOmake()
 {
@@ -449,20 +434,18 @@ void Section::doUpdateOmake()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00025C
+/**
+ * @note Address: N/A
+ * @note Size: 0x25C
  */
 void Section::doUpdateOption()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8044B7E0
- * Size:	000108
+/**
+ * @note Address: 0x8044B7E0
+ * @note Size: 0x108
  */
 void Section::run()
 {
@@ -487,10 +470,9 @@ void Section::run()
 	mIsMainActive = false;
 }
 
-/*
- * --INFO--
- * Address:	8044B8E8
- * Size:	0005B8
+/**
+ * @note Address: 0x8044B8E8
+ * @note Size: 0x5B8
  */
 bool Section::doUpdate()
 {
@@ -557,10 +539,9 @@ bool Section::doUpdate()
 	return mIsMainActive;
 }
 
-/*
- * --INFO--
- * Address:	8044BEA0
- * Size:	000040
+/**
+ * @note Address: 0x8044BEA0
+ * @note Size: 0x40
  */
 bool Section::isFinishable()
 {
@@ -568,17 +549,15 @@ bool Section::isFinishable()
 	sys->dvdLoadSyncNoBlock(&mThreadCommand);
 }
 
-/*
- * --INFO--
- * Address:	8044BEE0
- * Size:	00008C
+/**
+ * @note Address: 0x8044BEE0
+ * @note Size: 0x8C
  */
 void Section::doLoadingStart() { sys->dvdLoadUseCallBack(&mThreadCommand, new Delegate<Section>(this, nullptr)); }
 
-/*
- * --INFO--
- * Address:	8044BF6C
- * Size:	0000EC
+/**
+ * @note Address: 0x8044BF6C
+ * @note Size: 0xEC
  */
 bool Section::doLoading()
 {
@@ -594,10 +573,9 @@ bool Section::doLoading()
 	return u8(flag == 0);
 }
 
-/*
- * --INFO--
- * Address:	8044C058
- * Size:	0003C8
+/**
+ * @note Address: 0x8044C058
+ * @note Size: 0x3C8
  */
 void Section::loadResource()
 {
@@ -703,30 +681,27 @@ void Section::loadResource()
 
 } // namespace Title
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000100
+/**
+ * @note Address: N/A
+ * @note Size: 0x100
  */
 TitleDummy::Section::Section(JKRHeap*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 void TitleDummy::Section::init()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001C0
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C0
  */
 void TitleDummy::Section::loadResource()
 {
@@ -737,30 +712,27 @@ void TitleDummy::Section::loadResource()
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000124
+/**
+ * @note Address: N/A
+ * @note Size: 0x124
  */
 bool TitleDummy::Section::doUpdate()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C0
+/**
+ * @note Address: N/A
+ * @note Size: 0xC0
  */
 void TitleDummy::Section::doDraw(Graphics& gfx)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
+/**
+ * @note Address: N/A
+ * @note Size: 0x60
  */
 TitleDummy::Section::~Section()
 {

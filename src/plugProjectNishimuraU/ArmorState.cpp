@@ -7,10 +7,9 @@
 namespace Game {
 namespace Armor {
 
-/*
- * --INFO--
- * Address:	80285ED8
- * Size:	0004CC
+/**
+ * @note Address: 0x80285ED8
+ * @note Size: 0x4CC
  */
 void FSM::init(EnemyBase* enemy)
 {
@@ -31,10 +30,9 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateFail);
 }
 
-/*
- * --INFO--
- * Address:	802863A4
- * Size:	00005C
+/**
+ * @note Address: 0x802863A4
+ * @note Size: 0x5C
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -44,10 +42,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(ARMORANIM_Dead, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80286400
- * Size:	000090
+/**
+ * @note Address: 0x80286400
+ * @note Size: 0x90
  */
 void StateDead::exec(EnemyBase* enemy)
 {
@@ -63,17 +60,15 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80286490
- * Size:	000004
+/**
+ * @note Address: 0x80286490
+ * @note Size: 0x4
  */
 void StateDead::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	80286494
- * Size:	000070
+/**
+ * @note Address: 0x80286494
+ * @note Size: 0x70
  */
 void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -85,10 +80,9 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->stopMotion();
 }
 
-/*
- * --INFO--
- * Address:	80286504
- * Size:	0000A0
+/**
+ * @note Address: 0x80286504
+ * @note Size: 0xA0
  */
 void StateStay::exec(EnemyBase* enemy)
 {
@@ -105,10 +99,9 @@ void StateStay::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802865A4
- * Size:	00003C
+/**
+ * @note Address: 0x802865A4
+ * @note Size: 0x3C
  */
 void StateStay::cleanup(EnemyBase* enemy)
 {
@@ -116,10 +109,9 @@ void StateStay::cleanup(EnemyBase* enemy)
 	enemy->enableEvent(0, EB_Animating);
 }
 
-/*
- * --INFO--
- * Address:	802865E0
- * Size:	0000B8
+/**
+ * @note Address: 0x802865E0
+ * @note Size: 0xB8
  */
 void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -136,10 +128,9 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	rumbleMgr->startRumble(10, pos, 2);
 }
 
-/*
- * --INFO--
- * Address:	80286698
- * Size:	0000CC
+/**
+ * @note Address: 0x80286698
+ * @note Size: 0xCC
  */
 void StateAppear::exec(EnemyBase* enemy)
 {
@@ -159,17 +150,15 @@ void StateAppear::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80286764
- * Size:	000024
+/**
+ * @note Address: 0x80286764
+ * @note Size: 0x24
  */
 void StateAppear::cleanup(EnemyBase* enemy) { enemy->hardConstraintOff(); }
 
-/*
- * --INFO--
- * Address:	80286788
- * Size:	000060
+/**
+ * @note Address: 0x80286788
+ * @note Size: 0x60
  */
 void StateDive::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -181,10 +170,9 @@ void StateDive::init(EnemyBase* enemy, StateArg* stateArg)
 	armor->createDisAppearEffect();
 }
 
-/*
- * --INFO--
- * Address:	802867E8
- * Size:	00009C
+/**
+ * @note Address: 0x802867E8
+ * @note Size: 0x9C
  */
 void StateDive::exec(EnemyBase* enemy)
 {
@@ -200,17 +188,15 @@ void StateDive::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80286884
- * Size:	000024
+/**
+ * @note Address: 0x80286884
+ * @note Size: 0x24
  */
 void StateDive::cleanup(EnemyBase* enemy) { enemy->hardConstraintOff(); }
 
-/*
- * --INFO--
- * Address:	802868A8
- * Size:	000034
+/**
+ * @note Address: 0x802868A8
+ * @note Size: 0x34
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -219,10 +205,9 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	armor->startMotion(ARMORANIM_Move, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802868DC
- * Size:	0004F8
+/**
+ * @note Address: 0x802868DC
+ * @note Size: 0x4F8
  */
 void StateMove::exec(EnemyBase* enemy)
 {
@@ -628,17 +613,15 @@ lbl_80286D84:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80286DD4
- * Size:	000004
+/**
+ * @note Address: 0x80286DD4
+ * @note Size: 0x4
  */
 void StateMove::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	80286DD8
- * Size:	000034
+/**
+ * @note Address: 0x80286DD8
+ * @note Size: 0x34
  */
 void StateMoveSide::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -647,10 +630,9 @@ void StateMoveSide::init(EnemyBase* enemy, StateArg* stateArg)
 	armor->startMotion(ARMORANIM_Move, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80286E0C
- * Size:	000128
+/**
+ * @note Address: 0x80286E0C
+ * @note Size: 0x128
  */
 void StateMoveSide::exec(EnemyBase* enemy)
 {
@@ -685,17 +667,15 @@ void StateMoveSide::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80286F34
- * Size:	000004
+/**
+ * @note Address: 0x80286F34
+ * @note Size: 0x4
  */
 void StateMoveSide::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	80286F38
- * Size:	000034
+/**
+ * @note Address: 0x80286F38
+ * @note Size: 0x34
  */
 void StateMoveCentre::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -704,10 +684,9 @@ void StateMoveCentre::init(EnemyBase* enemy, StateArg* stateArg)
 	armor->startMotion(ARMORANIM_Move, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80286F6C
- * Size:	000128
+/**
+ * @note Address: 0x80286F6C
+ * @note Size: 0x128
  */
 void StateMoveCentre::exec(EnemyBase* enemy)
 {
@@ -741,17 +720,15 @@ void StateMoveCentre::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80287094
- * Size:	000004
+/**
+ * @note Address: 0x80287094
+ * @note Size: 0x4
  */
 void StateMoveCentre::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	80287098
- * Size:	000034
+/**
+ * @note Address: 0x80287098
+ * @note Size: 0x34
  */
 void StateMoveTop::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -760,10 +737,9 @@ void StateMoveTop::init(EnemyBase* enemy, StateArg* stateArg)
 	armor->startMotion(ARMORANIM_Move, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802870CC
- * Size:	000128
+/**
+ * @note Address: 0x802870CC
+ * @note Size: 0x128
  */
 void StateMoveTop::exec(EnemyBase* enemy)
 {
@@ -797,17 +773,15 @@ void StateMoveTop::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802871F4
- * Size:	000004
+/**
+ * @note Address: 0x802871F4
+ * @note Size: 0x4
  */
 void StateMoveTop::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802871F8
- * Size:	000034
+/**
+ * @note Address: 0x802871F8
+ * @note Size: 0x34
  */
 void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -816,10 +790,9 @@ void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg)
 	armor->startMotion(ARMORANIM_Move, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8028722C
- * Size:	00021C
+/**
+ * @note Address: 0x8028722C
+ * @note Size: 0x21C
  */
 void StateGoHome::exec(EnemyBase* enemy)
 {
@@ -859,17 +832,15 @@ void StateGoHome::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80287448
- * Size:	000004
+/**
+ * @note Address: 0x80287448
+ * @note Size: 0x4
  */
 void StateGoHome::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8028744C
- * Size:	000058
+/**
+ * @note Address: 0x8028744C
+ * @note Size: 0x58
  */
 void StateAttack1::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -880,10 +851,9 @@ void StateAttack1::init(EnemyBase* enemy, StateArg* stateArg)
 	armor->createBridgeEffect();
 }
 
-/*
- * --INFO--
- * Address:	802874A4
- * Size:	00013C
+/**
+ * @note Address: 0x802874A4
+ * @note Size: 0x13C
  */
 void StateAttack1::exec(EnemyBase* enemy)
 {
@@ -920,17 +890,15 @@ void StateAttack1::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802875E0
- * Size:	000004
+/**
+ * @note Address: 0x802875E0
+ * @note Size: 0x4
  */
 void StateAttack1::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802875E4
- * Size:	000040
+/**
+ * @note Address: 0x802875E4
+ * @note Size: 0x40
  */
 void StateAttack2::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -939,10 +907,9 @@ void StateAttack2::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(ARMORANIM_Attack2, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80287624
- * Size:	0001B8
+/**
+ * @note Address: 0x80287624
+ * @note Size: 0x1B8
  */
 void StateAttack2::exec(EnemyBase* enemy)
 {
@@ -984,17 +951,15 @@ void StateAttack2::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802877DC
- * Size:	000004
+/**
+ * @note Address: 0x802877DC
+ * @note Size: 0x4
  */
 void StateAttack2::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802877E0
- * Size:	00003C
+/**
+ * @note Address: 0x802877E0
+ * @note Size: 0x3C
  */
 void StateEat::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1002,10 +967,9 @@ void StateEat::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(ARMORANIM_Eat, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8028781C
- * Size:	000098
+/**
+ * @note Address: 0x8028781C
+ * @note Size: 0x98
  */
 void StateEat::exec(EnemyBase* enemy)
 {
@@ -1023,17 +987,15 @@ void StateEat::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802878B4
- * Size:	000004
+/**
+ * @note Address: 0x802878B4
+ * @note Size: 0x4
  */
 void StateEat::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	802878B8
- * Size:	00003C
+/**
+ * @note Address: 0x802878B8
+ * @note Size: 0x3C
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1041,10 +1003,9 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(ARMORANIM_Flick, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802878F4
- * Size:	000144
+/**
+ * @note Address: 0x802878F4
+ * @note Size: 0x144
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
@@ -1074,17 +1035,15 @@ void StateFlick::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80287A38
- * Size:	000004
+/**
+ * @note Address: 0x80287A38
+ * @note Size: 0x4
  */
 void StateFlick::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	80287A3C
- * Size:	00003C
+/**
+ * @note Address: 0x80287A3C
+ * @note Size: 0x3C
  */
 void StateFail::init(EnemyBase* enemy, StateArg* stateArg)
 {
@@ -1092,10 +1051,9 @@ void StateFail::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(ARMORANIM_AttackFail, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80287A78
- * Size:	000080
+/**
+ * @note Address: 0x80287A78
+ * @note Size: 0x80
  */
 void StateFail::exec(EnemyBase* enemy)
 {
@@ -1112,10 +1070,9 @@ void StateFail::exec(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80287AF8
- * Size:	000004
+/**
+ * @note Address: 0x80287AF8
+ * @note Size: 0x4
  */
 void StateFail::cleanup(EnemyBase* enemy) { }
 

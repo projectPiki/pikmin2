@@ -5,10 +5,9 @@
     Generated from dpostproc
 */
 
-/*
- * --INFO--
- * Address:	8009C310
- * Size:	000088
+/**
+ * @note Address: 0x8009C310
+ * @note Size: 0x88
  */
 void JASTrackPort::init()
 {
@@ -19,10 +18,9 @@ void JASTrackPort::init()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8009C398
- * Size:	000018
+/**
+ * @note Address: 0x8009C398
+ * @note Size: 0x18
  */
 u16 JASTrackPort::readImport(int p1)
 {
@@ -30,10 +28,9 @@ u16 JASTrackPort::readImport(int p1)
 	return _20[p1];
 }
 
-/*
- * --INFO--
- * Address:	8009C3B0
- * Size:	00001C
+/**
+ * @note Address: 0x8009C3B0
+ * @note Size: 0x1C
  */
 u16 JASTrackPort::readExport(int p1)
 {
@@ -41,10 +38,9 @@ u16 JASTrackPort::readExport(int p1)
 	return _20[p1];
 }
 
-/*
- * --INFO--
- * Address:	8009C3CC
- * Size:	000018
+/**
+ * @note Address: 0x8009C3CC
+ * @note Size: 0x18
  */
 void JASTrackPort::writeImport(int p1, u16 p2)
 {
@@ -52,10 +48,9 @@ void JASTrackPort::writeImport(int p1, u16 p2)
 	_20[p1] = p2;
 }
 
-/*
- * --INFO--
- * Address:	8009C3E4
- * Size:	00001C
+/**
+ * @note Address: 0x8009C3E4
+ * @note Size: 0x1C
  */
 void JASTrackPort::writeExport(int p1, u16 p2)
 {

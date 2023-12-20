@@ -6,12 +6,11 @@
 
 namespace Game {
 
-/*
+/**
  * __ct
  *
- * --INFO--
- * Address:	8023233C
- * Size:	000140
+ * @note Address: 0x8023233C
+ * @note Size: 0x140
  */
 PartsView::PartsView()
 {
@@ -30,17 +29,15 @@ PartsView::PartsView()
 	mBaseGen = new Cave::BaseGen();
 }
 
-/*
- * --INFO--
- * Address:	8023247C
- * Size:	000004
+/**
+ * @note Address: 0x8023247C
+ * @note Size: 0x4
  */
 void PartsView::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	80232480
- * Size:	000074
+/**
+ * @note Address: 0x80232480
+ * @note Size: 0x74
  */
 void PartsView::doAnimation()
 {
@@ -51,17 +48,15 @@ void PartsView::doAnimation()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802324F4
- * Size:	000004
+/**
+ * @note Address: 0x802324F4
+ * @note Size: 0x4
  */
 void PartsView::doEntry() { }
 
-/*
- * --INFO--
- * Address:	802324F8
- * Size:	00002C
+/**
+ * @note Address: 0x802324F8
+ * @note Size: 0x2C
  */
 void PartsView::doSetView(int viewportNumber)
 {
@@ -70,10 +65,9 @@ void PartsView::doSetView(int viewportNumber)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80232524
- * Size:	00002C
+/**
+ * @note Address: 0x80232524
+ * @note Size: 0x2C
  */
 void PartsView::doViewCalc()
 {
@@ -82,10 +76,9 @@ void PartsView::doViewCalc()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80232550
- * Size:	000158
+/**
+ * @note Address: 0x80232550
+ * @note Size: 0x158
  */
 void PartsView::read(Stream& input)
 {

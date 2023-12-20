@@ -672,10 +672,9 @@
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	801CBFE8
- * Size:	000100
+/**
+ * @note Address: 0x801CBFE8
+ * @note Size: 0x100
  */
 BaseItem::BaseItem(int objectTypeID)
     : Creature()
@@ -693,10 +692,9 @@ BaseItem::BaseItem(int objectTypeID)
 	mBoundingSphere.mRadius   = 1.0f;
 }
 
-/*
- * --INFO--
- * Address:	801CC0E8
- * Size:	00004C
+/**
+ * @note Address: 0x801CC0E8
+ * @note Size: 0x4C
  */
 void BaseItem::constructor()
 {
@@ -704,10 +702,9 @@ void BaseItem::constructor()
 	mSoundObj                  = soundObj;
 }
 
-/*
- * --INFO--
- * Address:	801CC134
- * Size:	000014
+/**
+ * @note Address: 0x801CC134
+ * @note Size: 0x14
  */
 JAInter::Object* BaseItem::getJAIObject()
 {
@@ -716,17 +713,15 @@ JAInter::Object* BaseItem::getJAIObject()
 	return mSoundObj;
 }
 
-/*
- * --INFO--
- * Address:	801CC148
- * Size:	000008
+/**
+ * @note Address: 0x801CC148
+ * @note Size: 0x8
  */
 PSM::Creature* BaseItem::getPSCreature() { return mSoundObj; }
 
-/*
- * --INFO--
- * Address:	801CC150
- * Size:	00008C
+/**
+ * @note Address: 0x801CC150
+ * @note Size: 0x8C
  */
 void BaseItem::startSound(u32 soundID)
 {
@@ -734,10 +729,9 @@ void BaseItem::startSound(u32 soundID)
 	mSoundObj->startSound(soundID, 0);
 }
 
-/*
- * --INFO--
- * Address:	801CC1DC
- * Size:	000108
+/**
+ * @note Address: 0x801CC1DC
+ * @note Size: 0x108
  */
 void BaseItem::doAnimation()
 {
@@ -757,17 +751,15 @@ void BaseItem::doAnimation()
 	update();
 }
 
-/*
- * --INFO--
- * Address:	801CC2E4
- * Size:	00002C
+/**
+ * @note Address: 0x801CC2E4
+ * @note Size: 0x2C
  */
 void BaseItem::updateTrMatrix() { makeTrMatrix(); }
 
-/*
- * --INFO--
- * Address:	801CC310
- * Size:	0000C4
+/**
+ * @note Address: 0x801CC310
+ * @note Size: 0xC4
  */
 void BaseItem::entryShape()
 {
@@ -788,10 +780,9 @@ void BaseItem::entryShape()
 	mModel->getJ3DModel()->entry();
 }
 
-/*
- * --INFO--
- * Address:	801CC3D4
- * Size:	000038
+/**
+ * @note Address: 0x801CC3D4
+ * @note Size: 0x38
  */
 void BaseItem::doEntry()
 {
@@ -800,32 +791,28 @@ void BaseItem::doEntry()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801CC40C
- * Size:	000074
+/**
+ * @note Address: 0x801CC40C
+ * @note Size: 0x74
  */
 bool BaseItem::stimulate(Game::Interaction& interaction) { return (interaction.actCommon(this) ? interaction.actItem(this) : false); }
 
-/*
- * --INFO--
- * Address:	801CC480
- * Size:	000004
+/**
+ * @note Address: 0x801CC480
+ * @note Size: 0x4
  */
 void BaseItem::doSimulation(f32) { }
 
-/*
- * --INFO--
- * Address:	801CC484
- * Size:	00002C
+/**
+ * @note Address: 0x801CC484
+ * @note Size: 0x2C
  */
 void BaseItem::makeTrMatrix() { mBaseTrMatrix.makeT(mPosition); }
 
-/*
+/**
  * update__
- * --INFO--
- * Address:	801CC4B0
- * Size:	0000DC
+ * @note Address: 0x801CC4B0
+ * @note Size: 0xDC
  */
 void BaseItem::update()
 {
@@ -842,10 +829,9 @@ void BaseItem::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801CC590
- * Size:	00007C
+/**
+ * @note Address: 0x801CC590
+ * @note Size: 0x7C
  */
 void BaseItem::do_updateLOD()
 {
@@ -857,10 +843,9 @@ void BaseItem::do_updateLOD()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801CC60C
- * Size:	00003C
+/**
+ * @note Address: 0x801CC60C
+ * @note Size: 0x3C
  */
 void BaseItem::updateCollTree()
 {
@@ -868,10 +853,9 @@ void BaseItem::updateCollTree()
 	mCollTree->getBoundingSphere(mBoundingSphere);
 }
 
-/*
- * --INFO--
- * Address:	801CC648
- * Size:	0001C4
+/**
+ * @note Address: 0x801CC648
+ * @note Size: 0x1C4
  */
 void BaseItem::move(f32 p1)
 {
@@ -1007,10 +991,9 @@ lbl_801CC7C0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801CC80C
- * Size:	00007C
+/**
+ * @note Address: 0x801CC80C
+ * @note Size: 0x7C
  */
 void BaseItem::movieStartAnimation(u32 p1)
 {
@@ -1023,10 +1006,9 @@ void BaseItem::movieStartAnimation(u32 p1)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801CC888
- * Size:	000088
+/**
+ * @note Address: 0x801CC888
+ * @note Size: 0x88
  */
 void BaseItem::movieStartDemoAnimation(SysShape::AnimInfo* animInfo)
 {
@@ -1036,25 +1018,22 @@ void BaseItem::movieStartDemoAnimation(SysShape::AnimInfo* animInfo)
 	P2ASSERTLINE(498, mAnimator.assertValid(mModel));
 }
 
-/*
- * --INFO--
- * Address:	801CC910
- * Size:	000024
+/**
+ * @note Address: 0x801CC910
+ * @note Size: 0x24
  */
 void BaseItem::movieSetAnimationLastFrame() { mAnimator.setLastFrame(); }
 
-/*
- * --INFO--
- * Address:	801CC934
- * Size:	00001C
+/**
+ * @note Address: 0x801CC934
+ * @note Size: 0x1C
  */
 void BaseItem::movieSetTranslation(Vector3f& dest, f32 faceDir) { mPosition = dest; }
 
-/*
+/**
  * constructor__Q24Game8CFSMItemFv
- * --INFO--
- * Address:	801CC950
- * Size:	000050
+ * @note Address: 0x801CC950
+ * @note Size: 0x50
  */
 void CFSMItem::constructor()
 {
@@ -1062,10 +1041,9 @@ void CFSMItem::constructor()
 	mSoundObj = new PSM::CreatureObj(this, 2);
 }
 
-/*
- * --INFO--
- * Address:	801CC9A0
- * Size:	000054
+/**
+ * @note Address: 0x801CC9A0
+ * @note Size: 0x54
  */
 void CFSMItem::initFSM()
 {
@@ -1073,26 +1051,23 @@ void CFSMItem::initFSM()
 	mFsm->init(this);
 }
 
-/*
+/**
  * @generated{init__Q24Game30StateMachine<Q24Game8CFSMItem>FPQ24Game8CFSMItem}
- * --INFO--
- * Address:	801CC9F4
- * Size:	000004
+ * @note Address: 0x801CC9F4
+ * @note Size: 0x4
  */
 // void StateMachine<Game::CFSMItem>::init(Game::CFSMItem*) { }
 
-/*
+/**
  * doAI__Q24Game8CFSMItemFv
- * --INFO--
- * Address:	801CC9F8
- * Size:	000034
+ * @note Address: 0x801CC9F8
+ * @note Size: 0x34
  */
 void CFSMItem::doAI() { mFsm->exec(this); }
 
-/*
- * --INFO--
- * Address:	801CCA2C
- * Size:	000008
+/**
+ * @note Address: 0x801CCA2C
+ * @note Size: 0x8
  */
 void CFSMItem::setCurrState(FSMState<CFSMItem>* state)
 {
@@ -1100,17 +1075,15 @@ void CFSMItem::setCurrState(FSMState<CFSMItem>* state)
 	mCurrentState = state;
 }
 
-/*
- * --INFO--
- * Address:	801CCA34
- * Size:	000008
+/**
+ * @note Address: 0x801CCA34
+ * @note Size: 0x8
  */
 FSMState<CFSMItem>* CFSMItem::getCurrState() { return mCurrentState; }
 
-/*
- * --INFO--
- * Address:	801CCA3C
- * Size:	00001C
+/**
+ * @note Address: 0x801CCA3C
+ * @note Size: 0x1C
  */
 int CFSMItem::getStateID()
 {
@@ -1120,10 +1093,9 @@ int CFSMItem::getStateID()
 	return -1;
 }
 
-/*
- * --INFO--
- * Address:	801CCA58
- * Size:	000044
+/**
+ * @note Address: 0x801CCA58
+ * @note Size: 0x44
  */
 void CFSMItem::bounceCallback(Sys::Triangle* tri)
 {
@@ -1132,18 +1104,16 @@ void CFSMItem::bounceCallback(Sys::Triangle* tri)
 	}
 }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801CCA9C
- * Size:	000004
+ * @note Address: 0x801CCA9C
+ * @note Size: 0x4
  */
 // void CItemState::onBounce(Game::CFSMItem*, Sys::Triangle*) { }
 
-/*
- * --INFO--
- * Address:	801CCAA0
- * Size:	000044
+/**
+ * @note Address: 0x801CCAA0
+ * @note Size: 0x44
  */
 void CFSMItem::collisionCallback(Game::CollEvent& event)
 {
@@ -1152,18 +1122,16 @@ void CFSMItem::collisionCallback(Game::CollEvent& event)
 	}
 }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801CCAE4
- * Size:	000004
+ * @note Address: 0x801CCAE4
+ * @note Size: 0x4
  */
 // void CItemState::onCollision(Game::CFSMItem*, Game::CollEvent&) { }
 
-/*
- * --INFO--
- * Address:	801CCAE8
- * Size:	000044
+/**
+ * @note Address: 0x801CCAE8
+ * @note Size: 0x44
  */
 void CFSMItem::platCallback(Game::PlatEvent& event)
 {
@@ -1172,18 +1140,16 @@ void CFSMItem::platCallback(Game::PlatEvent& event)
 	}
 }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801CCB2C
- * Size:	000004
+ * @note Address: 0x801CCB2C
+ * @note Size: 0x4
  */
 // void CItemState::onPlatCollision(Game::CFSMItem*, Game::PlatEvent&) { }
 
-/*
- * --INFO--
- * Address:	801CCB30
- * Size:	000044
+/**
+ * @note Address: 0x801CCB30
+ * @note Size: 0x44
  */
 void CFSMItem::onKeyEvent(const SysShape::KeyEvent& event)
 {
@@ -1192,90 +1158,79 @@ void CFSMItem::onKeyEvent(const SysShape::KeyEvent& event)
 	}
 }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801CCB74
- * Size:	000004
+ * @note Address: 0x801CCB74
+ * @note Size: 0x4
  */
 // void CItemState::onKeyEvent(Game::CFSMItem*, const SysShape::KeyEvent&) { }
 
-/*
+/**
  * actItem__Q24Game14InteractAttackFPQ24Game8BaseItem
- * --INFO--
- * Address:	801CCB78
- * Size:	000038
+ * @note Address: 0x801CCB78
+ * @note Size: 0x38
  */
 bool InteractAttack::actItem(Game::BaseItem* item) { return item->interactAttack(*this); }
 
-/*
+/**
  * actItem__Q24Game19InteractBreakBridgeFPQ24Game8BaseItem
- * --INFO--
- * Address:	801CCBB0
- * Size:	000038
+ * @note Address: 0x801CCBB0
+ * @note Size: 0x38
  */
 bool InteractBreakBridge::actItem(Game::BaseItem* item) { return item->interactBreakBridge(*this); }
 
-/*
+/**
  * actItem__Q24Game14InteractGotKeyFPQ24Game8BaseItem
- * --INFO--
- * Address:	801CCBE8
- * Size:	000038
+ * @note Address: 0x801CCBE8
+ * @note Size: 0x38
  */
 bool InteractGotKey::actItem(Game::BaseItem* item) { return item->interactGotKey(*this); }
 
-/*
+/**
  * actItem__Q24Game11InteractEatFPQ24Game8BaseItem
- * --INFO--
- * Address:	801CCC20
- * Size:	000038
+ * @note Address: 0x801CCC20
+ * @note Size: 0x38
  */
 bool InteractEat::actItem(Game::BaseItem* item) { return item->interactEat(*this); }
 
-/*
+/**
  * actItem__Q24Game19InteractFlockAttackFPQ24Game8BaseItem
- * --INFO--
- * Address:	801CCC58
- * Size:	000038
+ * @note Address: 0x801CCC58
+ * @note Size: 0x38
  */
 bool InteractFlockAttack::actItem(Game::BaseItem* item) { return item->interactFlockAttack(*this); }
 
-/*
+/**
  * actItem__Q24Game14InteractAbsorbFPQ24Game8BaseItem
- * --INFO--
- * Address:	801CCC90
- * Size:	000038
+ * @note Address: 0x801CCC90
+ * @note Size: 0x38
  */
 bool InteractAbsorb::actItem(Game::BaseItem* item) { return item->interactAbsorb(*this); }
 
-/*
+/**
  * actItem__Q24Game11InteractFueFPQ24Game8BaseItem
- * --INFO--
- * Address:	801CCCC8
- * Size:	000038
+ * @note Address: 0x801CCCC8
+ * @note Size: 0x38
  */
 bool InteractFue::actItem(Game::BaseItem* item) { return item->interactFue(*this); }
 
-/*
+/**
  * actItem__Q24Game18InteractFarmKareroFPQ24Game8BaseItem
- * --INFO--
- * Address:	801CCD00
- * Size:	000038
+ * @note Address: 0x801CCD00
+ * @note Size: 0x38
  */
 bool InteractFarmKarero::actItem(Game::BaseItem* item) { return item->interactFarmKarero(*this); }
 
-/*
+/**
  * actItem__Q24Game17InteractFarmHaeroFPQ24Game8BaseItem
- * --INFO--
- * Address:	801CCD38
- * Size:	000038
+ * @note Address: 0x801CCD38
+ * @note Size: 0x38
  */
 bool InteractFarmHaero::actItem(Game::BaseItem* item) { return item->interactFarmHaero(*this); }
 
-/*
- * --INFO--
- * Address:	801CCD70
- * Size:	00005C
+/**
+ * @note Address: 0x801CCD70
+ * @note Size: 0x5C
  */
 BaseItemMgr::BaseItemMgr(int p1)
 {
@@ -1290,10 +1245,9 @@ BaseItemMgr::BaseItemMgr(int p1)
 	_14                  = 0;
 }
 
-/*
- * --INFO--
- * Address:	801CCDCC
- * Size:	000108
+/**
+ * @note Address: 0x801CCDCC
+ * @note Size: 0x108
  */
 void BaseItemMgr::setModelSize(int modelSize)
 {
@@ -1304,10 +1258,9 @@ void BaseItemMgr::setModelSize(int modelSize)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801CCED4
- * Size:	00007C
+/**
+ * @note Address: 0x801CCED4
+ * @note Size: 0x7C
  */
 void BaseItemMgr::loadArchive(char* fileName)
 {
@@ -1323,10 +1276,9 @@ void BaseItemMgr::loadArchive(char* fileName)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801CCF50
- * Size:	0000AC
+/**
+ * @note Address: 0x801CCF50
+ * @note Size: 0xAC
  */
 void BaseItemMgr::loadBmd(char* path, int shapeID, u32 flags)
 {
@@ -1336,10 +1288,9 @@ void BaseItemMgr::loadBmd(char* path, int shapeID, u32 flags)
 	mModelData[shapeID] = modelData;
 }
 
-/*
- * --INFO--
- * Address:	801CCFFC
- * Size:	000080
+/**
+ * @note Address: 0x801CCFFC
+ * @note Size: 0x80
  */
 void BaseItemMgr::loadAnimMgr(JKRFileLoader* loader, char* path)
 {
@@ -1347,24 +1298,21 @@ void BaseItemMgr::loadAnimMgr(JKRFileLoader* loader, char* path)
 	JUT_ASSERTLINE(753, mAnimMgr != nullptr, "AnimMgr creation failed ! %s\n", path);
 }
 
-/*
- * --INFO--
- * Address:	801CD07C
- * Size:	000038
+/**
+ * @note Address: 0x801CD07C
+ * @note Size: 0x38
  */
 void BaseItemMgr::loadCollision(JKRFileLoader* loader, char* path) { mCollPartFactory = CollPartFactory::load(loader, path); }
 
-/*
- * --INFO--
- * Address:	801CD0B4
- * Size:	000038
+/**
+ * @note Address: 0x801CD0B4
+ * @note Size: 0x38
  */
 GenItemParm* BaseItemMgr::generatorNewItemParm() { return new GenItemParm(); }
 
-/*
- * --INFO--
- * Address:	801CD0EC
- * Size:	000064
+/**
+ * @note Address: 0x801CD0EC
+ * @note Size: 0x64
  */
 J3DModelData* BaseItemMgr::generatorGetShape(Game::GenItemParm* parm)
 {
@@ -1378,10 +1326,9 @@ J3DModelData* BaseItemMgr::generatorGetShape(Game::GenItemParm* parm)
 	return modelData;
 }
 
-/*
- * --INFO--
- * Address:	801CD150
- * Size:	00007C
+/**
+ * @note Address: 0x801CD150
+ * @note Size: 0x7C
  */
 J3DModelData* BaseItemMgr::getModelData(int index)
 {
@@ -1389,10 +1336,9 @@ J3DModelData* BaseItemMgr::getModelData(int index)
 	return mModelData[index];
 }
 
-/*
- * --INFO--
- * Address:	801CD1CC
- * Size:	000084
+/**
+ * @note Address: 0x801CD1CC
+ * @note Size: 0x84
  */
 JKRArchive* BaseItemMgr::openTextArc(char* fileName)
 {
@@ -1453,10 +1399,9 @@ lbl_801CD23C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801CD250
- * Size:	000050
+/**
+ * @note Address: 0x801CD250
+ * @note Size: 0x50
  */
 void BaseItemMgr::closeTextArc(JKRArchive*)
 {
@@ -1464,10 +1409,9 @@ void BaseItemMgr::closeTextArc(JKRArchive*)
 	mResourceNode = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	801CD2A0
- * Size:	000068
+/**
+ * @note Address: 0x801CD2A0
+ * @note Size: 0x68
  */
 Platform* BaseItemMgr::loadPlatform(JKRFileLoader* loader, char* p2)
 {
@@ -1476,10 +1420,9 @@ Platform* BaseItemMgr::loadPlatform(JKRFileLoader* loader, char* p2)
 	return platform;
 }
 
-/*
- * --INFO--
- * Address:	801CD308
- * Size:	0000BC
+/**
+ * @note Address: 0x801CD308
+ * @note Size: 0xBC
  */
 PlatAttacher* BaseItemMgr::loadPlatAttacher(JKRFileLoader* loader, char* path)
 {
@@ -1498,31 +1441,27 @@ PlatAttacher* BaseItemMgr::loadPlatAttacher(JKRFileLoader* loader, char* path)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801CD3C4
- * Size:	00002C
+/**
+ * @note Address: 0x801CD3C4
+ * @note Size: 0x2C
  */
 void BaseItemMgr::updateUseList(Game::GenItemParm* p1, int p2) { onUpdateUseList(p1, p2); }
 
-/*
- * --INFO--
- * Address:	801CD3F0
- * Size:	00002C
+/**
+ * @note Address: 0x801CD3F0
+ * @note Size: 0x2C
  */
 void BaseItemMgr::loadResources() { onLoadResources(); }
 
-/*
- * --INFO--
- * Address:	801CD41C
- * Size:	000004
+/**
+ * @note Address: 0x801CD41C
+ * @note Size: 0x4
  */
 void BaseItemMgr::setupSoundViewerAndBas() { }
 
-/*
- * --INFO--
- * Address:	801CD420
- * Size:	00014C
+/**
+ * @note Address: 0x801CD420
+ * @note Size: 0x14C
  */
 TNodeItemMgr::TNodeItemMgr()
     : BaseItemMgr(0)
@@ -1531,11 +1470,10 @@ TNodeItemMgr::TNodeItemMgr()
 {
 }
 
-/*
+/**
  * @generated{__dt__31NodeObjectMgr<Q24Game8BaseItem>Fv}
- * --INFO--
- * Address:	801CD56C
- * Size:	0000C8
+ * @note Address: 0x801CD56C
+ * @note Size: 0xC8
  */
 // void NodeObjectMgr<Game::BaseItem>::~NodeObjectMgr()
 // {
@@ -1599,11 +1537,10 @@ TNodeItemMgr::TNodeItemMgr()
 // 	*/
 // }
 
-/*
+/**
  * @generated{__dt__29TObjectNode<Q24Game8BaseItem>Fv}
- * --INFO--
- * Address:	801CD634
- * Size:	000060
+ * @note Address: 0x801CD634
+ * @note Size: 0x60
  */
 // void TObjectNode<Game::BaseItem>::~TObjectNode()
 // {
@@ -1637,11 +1574,10 @@ TNodeItemMgr::TNodeItemMgr()
 // 	*/
 // }
 
-/*
+/**
  * @generated{__dt__27ObjectMgr<Q24Game8BaseItem>Fv}
- * --INFO--
- * Address:	801CD694
- * Size:	000088
+ * @note Address: 0x801CD694
+ * @note Size: 0x88
  */
 // void ObjectMgr<Game::BaseItem>::~ObjectMgr()
 // {
@@ -1687,11 +1623,10 @@ TNodeItemMgr::TNodeItemMgr()
 // 	*/
 // }
 
-/*
+/**
  * @generated{__dt__27Container<Q24Game8BaseItem>Fv}
- * --INFO--
- * Address:	801CD71C
- * Size:	000070
+ * @note Address: 0x801CD71C
+ * @note Size: 0x70
  */
 // void Container<Game::BaseItem>::~Container()
 // {
@@ -1731,10 +1666,9 @@ TNodeItemMgr::TNodeItemMgr()
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	801CD78C
- * Size:	00009C
+/**
+ * @note Address: 0x801CD78C
+ * @note Size: 0x9C
  */
 BaseItem* TNodeItemMgr::birth()
 {
@@ -1747,11 +1681,10 @@ BaseItem* TNodeItemMgr::birth()
 	return item;
 }
 
-/*
+/**
  * entry__Q24Game12TNodeItemMgrFPQ24Game8BaseItem
- * --INFO--
- * Address:	801CD828
- * Size:	000084
+ * @note Address: 0x801CD828
+ * @note Size: 0x84
  */
 void TNodeItemMgr::entry(BaseItem* item)
 {
@@ -1762,11 +1695,10 @@ void TNodeItemMgr::entry(BaseItem* item)
 	node->mContents->constructor();
 }
 
-/*
+/**
  * initDependency__Q24Game12TNodeItemMgrFv
- * --INFO--
- * Address:	801CD8AC
- * Size:	0001E8
+ * @note Address: 0x801CD8AC
+ * @note Size: 0x1E8
  */
 void TNodeItemMgr::initDependency()
 {
@@ -1919,10 +1851,9 @@ lbl_801CDA64:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801CDA94
- * Size:	0000A8
+/**
+ * @note Address: 0x801CDA94
+ * @note Size: 0xA8
  */
 void TNodeItemMgr::killAll()
 {
@@ -1938,19 +1869,17 @@ void TNodeItemMgr::killAll()
 	}
 }
 
-/*
+/**
  * __ct__Q24Game7ItemMgrFv
- * --INFO--
- * Address:	801CDB3C
- * Size:	0000C4
+ * @note Address: 0x801CDB3C
+ * @note Size: 0xC4
  */
 ItemMgr::ItemMgr() { mName = "ÈÉ¢?Ωß??ΩΩ?Ω¢ÈÉ¢?Ωß??ΩΩ?Ω§ÈÉ¢??ÈÉ¢??ÈÉ¢Êô??Ωß?Ω≠ÁπùÔΩ≠ÈÉ¢Êô¢?ΩΩ?ΩºÈÉ¢?Ωß??ΩΩ?Ω∏ÈÉ¢Êô¢?ΩΩ?Ω£"; }
 
-/*
+/**
  * __dt__Q24Game7ItemMgrFv
- * --INFO--
- * Address:	801CDC00
- * Size:	0000E8
+ * @note Address: 0x801CDC00
+ * @note Size: 0xE8
  */
 ItemMgr::~ItemMgr()
 {
@@ -2023,10 +1952,9 @@ lbl_801CDCCC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801CDCE8
- * Size:	00006C
+/**
+ * @note Address: 0x801CDCE8
+ * @note Size: 0x6C
  */
 void ItemMgr::addMgr(BaseItemMgr* mgr)
 {
@@ -2035,11 +1963,10 @@ void ItemMgr::addMgr(BaseItemMgr* mgr)
 	mNode.add(node);
 }
 
-/*
+/**
  * initDependency__Q24Game7ItemMgrFv
- * --INFO--
- * Address:	801CDD54
- * Size:	0001E4
+ * @note Address: 0x801CDD54
+ * @note Size: 0x1E4
  */
 void ItemMgr::initDependency()
 {
@@ -2052,11 +1979,10 @@ void ItemMgr::initDependency()
 	}
 }
 
-/*
+/**
  * doAnimation__Q24Game7ItemMgrFv
- * --INFO--
- * Address:	801CDF38
- * Size:	0001E4
+ * @note Address: 0x801CDF38
+ * @note Size: 0x1E4
  */
 void ItemMgr::doAnimation()
 {
@@ -2069,11 +1995,10 @@ void ItemMgr::doAnimation()
 	}
 }
 
-/*
+/**
  * doEntry__Q24Game7ItemMgrFv
- * --INFO--
- * Address:	801CE11C
- * Size:	0001E4
+ * @note Address: 0x801CE11C
+ * @note Size: 0x1E4
  */
 void ItemMgr::doEntry()
 {
@@ -2086,11 +2011,10 @@ void ItemMgr::doEntry()
 	}
 }
 
-/*
+/**
  * doSetView__Q24Game7ItemMgrFi
- * --INFO--
- * Address:	801CE300
- * Size:	0001F4
+ * @note Address: 0x801CE300
+ * @note Size: 0x1F4
  */
 void ItemMgr::doSetView(int viewportNumber)
 {
@@ -2103,11 +2027,10 @@ void ItemMgr::doSetView(int viewportNumber)
 	}
 }
 
-/*
+/**
  * doViewCalc__Q24Game7ItemMgrFv
- * --INFO--
- * Address:	801CE4F4
- * Size:	0001E4
+ * @note Address: 0x801CE4F4
+ * @note Size: 0x1E4
  */
 void ItemMgr::doViewCalc()
 {
@@ -2120,11 +2043,10 @@ void ItemMgr::doViewCalc()
 	}
 }
 
-/*
+/**
  * doSimulation__Q24Game7ItemMgrFf
- * --INFO--
- * Address:	801CE6D8
- * Size:	0001F4
+ * @note Address: 0x801CE6D8
+ * @note Size: 0x1F4
  */
 void ItemMgr::doSimulation(f32 p1)
 {
@@ -2137,18 +2059,16 @@ void ItemMgr::doSimulation(f32 p1)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801CE8CC
- * Size:	000004
+/**
+ * @note Address: 0x801CE8CC
+ * @note Size: 0x4
  */
 void ItemMgr::doDirectDraw(Graphics&) { }
 
-/*
+/**
  * doSimpleDraw__Q24Game7ItemMgrFP8Viewport
- * --INFO--
- * Address:	801CE8D0
- * Size:	0001F4
+ * @note Address: 0x801CE8D0
+ * @note Size: 0x1F4
  */
 void ItemMgr::doSimpleDraw(Viewport* viewport)
 {
@@ -2161,11 +2081,10 @@ void ItemMgr::doSimpleDraw(Viewport* viewport)
 	}
 }
 
-/*
+/**
  * setupSoundViewerAndBas__Q24Game7ItemMgrFv
- * --INFO--
- * Address:	801CEAC4
- * Size:	0001E4
+ * @note Address: 0x801CEAC4
+ * @note Size: 0x1E4
  */
 void ItemMgr::setupSoundViewerAndBas()
 {
@@ -2178,11 +2097,10 @@ void ItemMgr::setupSoundViewerAndBas()
 	}
 }
 
-/*
+/**
  * loadResources__Q24Game7ItemMgrFv
- * --INFO--
- * Address:	801CECA8
- * Size:	0001E4
+ * @note Address: 0x801CECA8
+ * @note Size: 0x1E4
  */
 void ItemMgr::loadResources()
 {
@@ -2195,10 +2113,9 @@ void ItemMgr::loadResources()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801CEE8C
- * Size:	000204
+/**
+ * @note Address: 0x801CEE8C
+ * @note Size: 0x204
  */
 int ItemMgr::getIndexByMgr(Game::BaseItemMgr* mgr)
 {
@@ -2215,10 +2132,9 @@ int ItemMgr::getIndexByMgr(Game::BaseItemMgr* mgr)
 	return -1;
 }
 
-/*
- * --INFO--
- * Address:	801CF090
- * Size:	000200
+/**
+ * @note Address: 0x801CF090
+ * @note Size: 0x200
  */
 BaseItemMgr* ItemMgr::getMgrByIndex(int index)
 {
@@ -2385,10 +2301,9 @@ lbl_801CF278:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801CF290
- * Size:	000224
+/**
+ * @note Address: 0x801CF290
+ * @note Size: 0x224
  */
 BaseItemMgr* ItemMgr::getMgrByID(ID32& id)
 {
@@ -2404,10 +2319,9 @@ BaseItemMgr* ItemMgr::getMgrByID(ID32& id)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	801CF4B4
- * Size:	00011C
+/**
+ * @note Address: 0x801CF4B4
+ * @note Size: 0x11C
  */
 // TNodeItemMgr::~TNodeItemMgr()
 // {
@@ -2494,11 +2408,10 @@ BaseItemMgr* ItemMgr::getMgrByID(ID32& id)
 // 	*/
 // }
 
-/*
+/**
  * kill__Q24Game12TNodeItemMgrFPQ24Game8BaseItem
- * --INFO--
- * Address:	801CF5D0
- * Size:	000024
+ * @note Address: 0x801CF5D0
+ * @note Size: 0x24
  */
 void TNodeItemMgr::kill(Game::BaseItem* item)
 {
@@ -2516,34 +2429,30 @@ void TNodeItemMgr::kill(Game::BaseItem* item)
 	*/
 }
 
-/*
+/**
  * doAnimation__Q24Game12TNodeItemMgrFv
- * --INFO--
- * Address:	801CF5F4
- * Size:	00002C
+ * @note Address: 0x801CF5F4
+ * @note Size: 0x2C
  */
 void TNodeItemMgr::doAnimation() { mNodeObjectMgr.doAnimation(); }
 
-/*
+/**
  * doEntry__Q24Game12TNodeItemMgrFv
- * --INFO--
- * Address:	801CF620
- * Size:	00002C
+ * @note Address: 0x801CF620
+ * @note Size: 0x2C
  */
 void TNodeItemMgr::doEntry() { mNodeObjectMgr.doEntry(); }
 
-/*
+/**
  * doSetView__Q24Game12TNodeItemMgrFi
- * --INFO--
- * Address:	801CF64C
- * Size:	00002C
+ * @note Address: 0x801CF64C
+ * @note Size: 0x2C
  */
 void TNodeItemMgr::doSetView(int viewportNumber) { mNodeObjectMgr.doSetView(viewportNumber); }
 
-/*
- * --INFO--
- * Address:	801CF678
- * Size:	00002C
+/**
+ * @note Address: 0x801CF678
+ * @note Size: 0x2C
  */
 void TNodeItemMgr::doViewCalc()
 {
@@ -2563,10 +2472,9 @@ void TNodeItemMgr::doViewCalc()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801CF6A4
- * Size:	00002C
+/**
+ * @note Address: 0x801CF6A4
+ * @note Size: 0x2C
  */
 void TNodeItemMgr::doSimulation(f32 rate)
 {
@@ -2586,10 +2494,9 @@ void TNodeItemMgr::doSimulation(f32 rate)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801CF6D0
- * Size:	00002C
+/**
+ * @note Address: 0x801CF6D0
+ * @note Size: 0x2C
  */
 void TNodeItemMgr::doDirectDraw(Graphics& gfx)
 {
@@ -2609,33 +2516,29 @@ void TNodeItemMgr::doDirectDraw(Graphics& gfx)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801CF6FC
- * Size:	00002C
+/**
+ * @note Address: 0x801CF6FC
+ * @note Size: 0x2C
  */
 void* TNodeItemMgr::getEnd() { return mNodeObjectMgr.getEnd(); }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801CF728
- * Size:	000008
+ * @note Address: 0x801CF728
+ * @note Size: 0x8
  */
 // void* NodeObjectMgr<Game::BaseItem>::getEnd() { return 0x0; }
 
-/*
- * --INFO--
- * Address:	801CF730
- * Size:	00002C
+/**
+ * @note Address: 0x801CF730
+ * @note Size: 0x2C
  */
 void* TNodeItemMgr::getStart() { return mNodeObjectMgr.getStart(); }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801CF75C
- * Size:	000008
+ * @note Address: 0x801CF75C
+ * @note Size: 0x8
  */
 // void* NodeObjectMgr<Game::BaseItem>::getStart()
 // {
@@ -2645,18 +2548,16 @@ void* TNodeItemMgr::getStart() { return mNodeObjectMgr.getStart(); }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	801CF764
- * Size:	00002C
+/**
+ * @note Address: 0x801CF764
+ * @note Size: 0x2C
  */
 void* TNodeItemMgr::getNext(void* item) { return mNodeObjectMgr.getNext(item); }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801CF790
- * Size:	000008
+ * @note Address: 0x801CF790
+ * @note Size: 0x8
  */
 // void NodeObjectMgr<Game::BaseItem>::getNext(void*)
 // {
@@ -2666,10 +2567,9 @@ void* TNodeItemMgr::getNext(void* item) { return mNodeObjectMgr.getNext(item); }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	801CF798
- * Size:	00002C
+/**
+ * @note Address: 0x801CF798
+ * @note Size: 0x2C
  */
 BaseItem* TNodeItemMgr::get(void* item)
 {
@@ -2689,11 +2589,10 @@ BaseItem* TNodeItemMgr::get(void* item)
 	*/
 }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801CF7C4
- * Size:	000008
+ * @note Address: 0x801CF7C4
+ * @note Size: 0x8
  */
 // BaseItem* NodeObjectMgr<Game::BaseItem>::get(void*)
 // {
@@ -2703,55 +2602,48 @@ BaseItem* TNodeItemMgr::get(void* item)
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	801CF7CC
- * Size:	000004
+/**
+ * @note Address: 0x801CF7CC
+ * @note Size: 0x4
  */
 // void BaseItemMgr::doAnimation() { }
 
-/*
- * --INFO--
- * Address:	801CF7D0
- * Size:	000004
+/**
+ * @note Address: 0x801CF7D0
+ * @note Size: 0x4
  */
 // void BaseItemMgr::doEntry() { }
 
-/*
- * --INFO--
- * Address:	801CF7D4
- * Size:	000004
+/**
+ * @note Address: 0x801CF7D4
+ * @note Size: 0x4
  */
 // void BaseItemMgr::doSetView(int) { }
 
-/*
- * --INFO--
- * Address:	801CF7D8
- * Size:	000004
+/**
+ * @note Address: 0x801CF7D8
+ * @note Size: 0x4
  */
 // void BaseItemMgr::doViewCalc() { }
 
-/*
- * --INFO--
- * Address:	801CF7DC
- * Size:	000004
+/**
+ * @note Address: 0x801CF7DC
+ * @note Size: 0x4
  */
 // void BaseItemMgr::doSimulation(f32) { }
 
-/*
- * --INFO--
- * Address:	801CF7E0
- * Size:	000004
+/**
+ * @note Address: 0x801CF7E0
+ * @note Size: 0x4
  */
 // void BaseItemMgr::doDirectDraw(Graphics&) { }
 
 } // namespace Game
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801CF7E4
- * Size:	000044
+ * @note Address: 0x801CF7E4
+ * @note Size: 0x44
  */
 // void NodeObjectMgr<Game::BaseItem>::delNode(Game::BaseItem*)
 // {
@@ -2784,11 +2676,10 @@ BaseItem* TNodeItemMgr::get(void* item)
 // 	*/
 // }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801CF828
- * Size:	000018
+ * @note Address: 0x801CF828
+ * @note Size: 0x18
  */
 // void NodeObjectMgr<Game::BaseItem>::resetMgr()
 // {
@@ -2802,11 +2693,10 @@ BaseItem* TNodeItemMgr::get(void* item)
 // 	*/
 // }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801CF840
- * Size:	0001E4
+ * @note Address: 0x801CF840
+ * @note Size: 0x1E4
  */
 // void ObjectMgr<Game::BaseItem>::doAnimation()
 // {
@@ -2951,11 +2841,10 @@ BaseItem* TNodeItemMgr::get(void* item)
 // 	*/
 // }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801CFA24
- * Size:	0001E4
+ * @note Address: 0x801CFA24
+ * @note Size: 0x1E4
  */
 // void ObjectMgr<Game::BaseItem>::doEntry()
 // {
@@ -3100,11 +2989,10 @@ BaseItem* TNodeItemMgr::get(void* item)
 // 	*/
 // }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801CFC08
- * Size:	0001F4
+ * @note Address: 0x801CFC08
+ * @note Size: 0x1F4
  */
 // void ObjectMgr<Game::BaseItem>::doSetView(int)
 // {
@@ -3253,11 +3141,10 @@ BaseItem* TNodeItemMgr::get(void* item)
 // 	*/
 // }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801CFDFC
- * Size:	0001E4
+ * @note Address: 0x801CFDFC
+ * @note Size: 0x1E4
  */
 // void ObjectMgr<Game::BaseItem>::doViewCalc()
 // {
@@ -3402,11 +3289,10 @@ BaseItem* TNodeItemMgr::get(void* item)
 // 	*/
 // }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801CFFE0
- * Size:	0001F4
+ * @note Address: 0x801CFFE0
+ * @note Size: 0x1F4
  */
 // void ObjectMgr<Game::BaseItem>::doSimulation(float)
 // {
@@ -3555,11 +3441,10 @@ BaseItem* TNodeItemMgr::get(void* item)
 // 	*/
 // }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801D01D4
- * Size:	0001F4
+ * @note Address: 0x801D01D4
+ * @note Size: 0x1F4
  */
 // void ObjectMgr<Game::BaseItem>::doDirectDraw(Graphics&)
 // {
@@ -3708,11 +3593,10 @@ BaseItem* TNodeItemMgr::get(void* item)
 // 	*/
 // }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801D03C8
- * Size:	00002C
+ * @note Address: 0x801D03C8
+ * @note Size: 0x2C
  */
 // void Container<Game::BaseItem>::getObject(void*)
 // {
@@ -3731,29 +3615,26 @@ BaseItem* TNodeItemMgr::get(void* item)
 // 	*/
 // }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801D03F4
- * Size:	000008
+ * @note Address: 0x801D03F4
+ * @note Size: 0x8
  */
 // u32 Container<Game::BaseItem>::getAt(int) { return 0x0; }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801D03FC
- * Size:	000008
+ * @note Address: 0x801D03FC
+ * @note Size: 0x8
  */
 // u32 Container<Game::BaseItem>::getTo() { return 0x0; }
 
 namespace Game {
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801D0404
- * Size:	000038
+ * @note Address: 0x801D0404
+ * @note Size: 0x38
  */
 // void StateMachine<Game::CFSMItem>::exec(Game::CFSMItem*)
 // {
@@ -3777,19 +3658,17 @@ namespace Game {
 // 	*/
 // }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801D043C
- * Size:	000004
+ * @note Address: 0x801D043C
+ * @note Size: 0x4
  */
 // void FSMState<Game::CFSMItem>::exec(Game::CFSMItem*) { }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801D0440
- * Size:	000008
+ * @note Address: 0x801D0440
+ * @note Size: 0x8
  */
 // void CFSMItem::@376 @onKeyEvent(const SysShape::KeyEvent&)
 // {
@@ -3801,11 +3680,10 @@ namespace Game {
 
 } // namespace Game
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801D0448
- * Size:	000008
+ * @note Address: 0x801D0448
+ * @note Size: 0x8
  */
 // void NodeObjectMgr<Game::BaseItem>::@28 @resetMgr()
 // {
@@ -3815,11 +3693,10 @@ namespace Game {
 // 	*/
 // }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801D0450
- * Size:	000008
+ * @note Address: 0x801D0450
+ * @note Size: 0x8
  */
 // void ObjectMgr<Game::BaseItem>::@28 @doDirectDraw(Graphics&)
 // {
@@ -3829,11 +3706,10 @@ namespace Game {
 // 	*/
 // }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801D0458
- * Size:	000008
+ * @note Address: 0x801D0458
+ * @note Size: 0x8
  */
 // void ObjectMgr<Game::BaseItem>::@28 @doSimulation(float)
 // {
@@ -3843,11 +3719,10 @@ namespace Game {
 // 	*/
 // }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801D0460
- * Size:	000008
+ * @note Address: 0x801D0460
+ * @note Size: 0x8
  */
 // void ObjectMgr<Game::BaseItem>::@28 @doViewCalc()
 // {
@@ -3857,11 +3732,10 @@ namespace Game {
 // 	*/
 // }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801D0468
- * Size:	000008
+ * @note Address: 0x801D0468
+ * @note Size: 0x8
  */
 // void ObjectMgr<Game::BaseItem>::@28 @doSetView(int)
 // {
@@ -3871,11 +3745,10 @@ namespace Game {
 // 	*/
 // }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801D0470
- * Size:	000008
+ * @note Address: 0x801D0470
+ * @note Size: 0x8
  */
 // void ObjectMgr<Game::BaseItem>::@28 @doEntry()
 // {
@@ -3885,11 +3758,10 @@ namespace Game {
 // 	*/
 // }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801D0478
- * Size:	000008
+ * @note Address: 0x801D0478
+ * @note Size: 0x8
  */
 // void ObjectMgr<Game::BaseItem>::@28 @doAnimation()
 // {
@@ -3901,11 +3773,10 @@ namespace Game {
 
 namespace Game {
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801D0480
- * Size:	000008
+ * @note Address: 0x801D0480
+ * @note Size: 0x8
  */
 // void TNodeItemMgr::@48 @getEnd()
 // {
@@ -3915,11 +3786,10 @@ namespace Game {
 // 	*/
 // }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801D0488
- * Size:	000008
+ * @note Address: 0x801D0488
+ * @note Size: 0x8
  */
 // void TNodeItemMgr::@48 @getStart()
 // {
@@ -3929,11 +3799,10 @@ namespace Game {
 // 	*/
 // }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801D0490
- * Size:	000008
+ * @note Address: 0x801D0490
+ * @note Size: 0x8
  */
 // void TNodeItemMgr::@48 @getNext(void*)
 // {
@@ -3943,11 +3812,10 @@ namespace Game {
 // 	*/
 // }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801D0498
- * Size:	000008
+ * @note Address: 0x801D0498
+ * @note Size: 0x8
  */
 // void TNodeItemMgr::@48 @get(void*)
 // {
@@ -3957,11 +3825,10 @@ namespace Game {
 // 	*/
 // }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801D04A0
- * Size:	000008
+ * @note Address: 0x801D04A0
+ * @note Size: 0x8
  */
 // TNodeItemMgr::@48 @~TNodeItemMgr()
 // {
@@ -3971,11 +3838,10 @@ namespace Game {
 // 	*/
 // }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801D04A8
- * Size:	000008
+ * @note Address: 0x801D04A8
+ * @note Size: 0x8
  */
 // void ItemMgr::@28 @loadResources()
 // {
@@ -3985,11 +3851,10 @@ namespace Game {
 // 	*/
 // }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801D04B0
- * Size:	000008
+ * @note Address: 0x801D04B0
+ * @note Size: 0x8
  */
 // void ItemMgr::@28 @doSimpleDraw(Viewport*)
 // {
@@ -3999,11 +3864,10 @@ namespace Game {
 // 	*/
 // }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801D04B8
- * Size:	000008
+ * @note Address: 0x801D04B8
+ * @note Size: 0x8
  */
 // void ItemMgr::@28 @doDirectDraw(Graphics&)
 // {
@@ -4013,11 +3877,10 @@ namespace Game {
 // 	*/
 // }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801D04C0
- * Size:	000008
+ * @note Address: 0x801D04C0
+ * @note Size: 0x8
  */
 // void ItemMgr::@28 @doSimulation(float)
 // {
@@ -4027,11 +3890,10 @@ namespace Game {
 // 	*/
 // }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801D04C8
- * Size:	000008
+ * @note Address: 0x801D04C8
+ * @note Size: 0x8
  */
 // void ItemMgr::@28 @doViewCalc()
 // {
@@ -4041,11 +3903,10 @@ namespace Game {
 // 	*/
 // }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801D04D0
- * Size:	000008
+ * @note Address: 0x801D04D0
+ * @note Size: 0x8
  */
 // void ItemMgr::@28 @doSetView(int)
 // {
@@ -4055,11 +3916,10 @@ namespace Game {
 // 	*/
 // }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801D04D8
- * Size:	000008
+ * @note Address: 0x801D04D8
+ * @note Size: 0x8
  */
 // void ItemMgr::@28 @doEntry()
 // {
@@ -4069,11 +3929,10 @@ namespace Game {
 // 	*/
 // }
 
-/*
+/**
  * @generated
- * --INFO--
- * Address:	801D04E0
- * Size:	000008
+ * @note Address: 0x801D04E0
+ * @note Size: 0x8
  */
 // void ItemMgr::@28 @doAnimation()
 // {

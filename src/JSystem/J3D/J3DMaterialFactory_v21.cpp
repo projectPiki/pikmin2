@@ -2,10 +2,9 @@
 #include "JSystem/J3D/J3DColorBlock.h"
 #include "JSystem/JSupport/JSU.h"
 
-/*
- * --INFO--
- * Address:	80084A00
- * Size:	0001E0
+/**
+ * @note Address: 0x80084A00
+ * @note Size: 0x1E0
  */
 J3DMaterialFactory_v21::J3DMaterialFactory_v21(const J3DMaterialBlock_v21& matblock)
 {
@@ -39,10 +38,9 @@ J3DMaterialFactory_v21::J3DMaterialFactory_v21(const J3DMaterialBlock_v21& matbl
 	mNBTScaleInfo         = JSUConvertOffsetToPtr<J3DNBTScaleInfo>(&matblock, matblock.mNBTScaleInfoOffset);
 }
 
-/*
- * --INFO--
- * Address:	80084BE0
- * Size:	00004C
+/**
+ * @note Address: 0x80084BE0
+ * @note Size: 0x4C
  */
 u16 J3DMaterialFactory_v21::countUniqueMaterials()
 {
@@ -54,10 +52,9 @@ u16 J3DMaterialFactory_v21::countUniqueMaterials()
 	return count;
 }
 
-/*
- * --INFO--
- * Address:	80084C2C
- * Size:	000838
+/**
+ * @note Address: 0x80084C2C
+ * @note Size: 0x838
  */
 J3DMaterial* J3DMaterialFactory_v21::create(J3DMaterial* mat, int index, u32 flags) const
 {
@@ -802,10 +799,9 @@ lbl_80085440:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80085464
- * Size:	000090
+/**
+ * @note Address: 0x80085464
+ * @note Size: 0x90
  */
 J3DGXColor J3DMaterialFactory_v21::newMatColor(int matID, int colID) const
 {
@@ -859,10 +855,9 @@ lbl_800854EC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800854F4
- * Size:	000038
+/**
+ * @note Address: 0x800854F4
+ * @note Size: 0x38
  */
 u8 J3DMaterialFactory_v21::newColorChanNum(int matID) const
 {
@@ -892,10 +887,9 @@ lbl_80085524:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008552C
- * Size:	000194
+/**
+ * @note Address: 0x8008552C
+ * @note Size: 0x194
  */
 J3DColorChan J3DMaterialFactory_v21::newColorChan(int matID, int colID) const
 {
@@ -1010,10 +1004,9 @@ lbl_8008560C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800856C0
- * Size:	000038
+/**
+ * @note Address: 0x800856C0
+ * @note Size: 0x38
  */
 u8 J3DMaterialFactory_v21::newTexGenNum(int matID) const
 {
@@ -1042,10 +1035,9 @@ lbl_800856F0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800856F8
- * Size:	000084
+/**
+ * @note Address: 0x800856F8
+ * @note Size: 0x84
  */
 J3DTexCoord J3DMaterialFactory_v21::newTexCoord(int matID, int texID) const
 {
@@ -1104,10 +1096,9 @@ lbl_80085754:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8008577C
- * Size:	000158
+/**
+ * @note Address: 0x8008577C
+ * @note Size: 0x158
  */
 J3DTexMtx J3DMaterialFactory_v21::newTexMtx(int, int) const
 {
@@ -1203,10 +1194,9 @@ lbl_800858B8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800858D4
- * Size:	000040
+/**
+ * @note Address: 0x800858D4
+ * @note Size: 0x40
  */
 u8 J3DMaterialFactory_v21::newCullMode(int id) const
 {
@@ -1217,10 +1207,9 @@ u8 J3DMaterialFactory_v21::newCullMode(int id) const
 	return 0xff;
 }
 
-/*
- * --INFO--
- * Address:	80085914
- * Size:	000048
+/**
+ * @note Address: 0x80085914
+ * @note Size: 0x48
  */
 u16 J3DMaterialFactory_v21::newTexNo(int id, int texID) const
 {
@@ -1231,10 +1220,9 @@ u16 J3DMaterialFactory_v21::newTexNo(int id, int texID) const
 	return 0xffff;
 }
 
-/*
- * --INFO--
- * Address:	8008595C
- * Size:	000074
+/**
+ * @note Address: 0x8008595C
+ * @note Size: 0x74
  */
 J3DTevOrder J3DMaterialFactory_v21::newTevOrder(int id, int tevID) const
 {
@@ -1278,10 +1266,9 @@ lbl_800859B0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800859D0
- * Size:	000098
+/**
+ * @note Address: 0x800859D0
+ * @note Size: 0x98
  */
 J3DGXColorS10 J3DMaterialFactory_v21::newTevColor(int id, int colID) const
 {
@@ -1336,10 +1323,9 @@ lbl_80085A60:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80085A68
- * Size:	000090
+/**
+ * @note Address: 0x80085A68
+ * @note Size: 0x90
  */
 J3DGXColor J3DMaterialFactory_v21::newTevKColor(int id, int colID) const
 {
@@ -1392,10 +1378,9 @@ lbl_80085AF0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80085AF8
- * Size:	000038
+/**
+ * @note Address: 0x80085AF8
+ * @note Size: 0x38
  */
 u8 J3DMaterialFactory_v21::newTevStageNum(int id) const
 {
@@ -1406,10 +1391,9 @@ u8 J3DMaterialFactory_v21::newTevStageNum(int id) const
 	return 255;
 }
 
-/*
- * --INFO--
- * Address:	80085B30
- * Size:	000060
+/**
+ * @note Address: 0x80085B30
+ * @note Size: 0x60
  */
 J3DTevStage J3DMaterialFactory_v21::newTevStage(int id, int tevID) const
 {
@@ -1420,10 +1404,9 @@ J3DTevStage J3DMaterialFactory_v21::newTevStage(int id, int tevID) const
 	return J3DTevStage();
 }
 
-/*
- * --INFO--
- * Address:	80085B90
- * Size:	00009C
+/**
+ * @note Address: 0x80085B90
+ * @note Size: 0x9C
  */
 J3DTevSwapModeTable J3DMaterialFactory_v21::newTevSwapModeTable(int, int) const
 {
@@ -1472,10 +1455,9 @@ lbl_80085BF8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80085C2C
- * Size:	00024C
+/**
+ * @note Address: 0x80085C2C
+ * @note Size: 0x24C
  */
 J3DFog J3DMaterialFactory_v21::newFog(int id) const
 {
@@ -1637,10 +1619,9 @@ lbl_80085E14:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80085E78
- * Size:	000080
+/**
+ * @note Address: 0x80085E78
+ * @note Size: 0x80
  */
 J3DAlphaComp J3DMaterialFactory_v21::newAlphaComp(int id) const
 {
@@ -1651,10 +1632,9 @@ J3DAlphaComp J3DMaterialFactory_v21::newAlphaComp(int id) const
 	return J3DAlphaComp();
 }
 
-/*
- * --INFO--
- * Address:	80085EF8
- * Size:	00007C
+/**
+ * @note Address: 0x80085EF8
+ * @note Size: 0x7C
  */
 J3DBlend J3DMaterialFactory_v21::newBlend(int id) const
 {
@@ -1700,10 +1680,9 @@ lbl_80085F4C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80085F74
- * Size:	000060
+/**
+ * @note Address: 0x80085F74
+ * @note Size: 0x60
  */
 J3DZMode J3DMaterialFactory_v21::newZMode(int id) const
 {
@@ -1714,10 +1693,9 @@ J3DZMode J3DMaterialFactory_v21::newZMode(int id) const
 	return J3DZMode();
 }
 
-/*
- * --INFO--
- * Address:	80085FD4
- * Size:	000038
+/**
+ * @note Address: 0x80085FD4
+ * @note Size: 0x38
  */
 u8 J3DMaterialFactory_v21::newZCompLoc(int id) const
 {
@@ -1728,10 +1706,9 @@ u8 J3DMaterialFactory_v21::newZCompLoc(int id) const
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	8008600C
- * Size:	000038
+/**
+ * @note Address: 0x8008600C
+ * @note Size: 0x38
  */
 u8 J3DMaterialFactory_v21::newDither(int id) const
 {
@@ -1742,10 +1719,9 @@ u8 J3DMaterialFactory_v21::newDither(int id) const
 	return 1;
 }
 
-/*
- * --INFO--
- * Address:	80086044
- * Size:	0000A8
+/**
+ * @note Address: 0x80086044
+ * @note Size: 0xA8
  */
 J3DNBTScale J3DMaterialFactory_v21::newNBTScale(int id) const
 {

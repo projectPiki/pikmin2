@@ -4,10 +4,9 @@
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRFileFinder.h"
 
-/*
- * --INFO--
- * Address:	80022ADC
- * Size:	00008C
+/**
+ * @note Address: 0x80022ADC
+ * @note Size: 0x8C
  */
 JKRArcFinder::JKRArcFinder(JKRArchive* archive, s32 startIdx, s32 length)
     : JKRFileFinder()
@@ -20,10 +19,9 @@ JKRArcFinder::JKRArcFinder(JKRArchive* archive, s32 startIdx, s32 length)
 	findNextFile();
 }
 
-/*
- * --INFO--
- * Address:	80022B68
- * Size:	0000AC
+/**
+ * @note Address: 0x80022B68
+ * @note Size: 0xAC
  */
 bool JKRArcFinder::findNextFile()
 {
@@ -43,10 +41,9 @@ bool JKRArcFinder::findNextFile()
 	return mIsAvailable;
 }
 
-/*
- * --INFO--
- * Address:	80022C14
- * Size:	000088
+/**
+ * @note Address: 0x80022C14
+ * @note Size: 0x88
  */
 JKRDvdFinder::JKRDvdFinder(const char* p1)
     : JKRFileFinder()
@@ -56,10 +53,9 @@ JKRDvdFinder::JKRDvdFinder(const char* p1)
 	findNextFile();
 }
 
-/*
- * --INFO--
- * Address:	80022C9C
- * Size:	000080
+/**
+ * @note Address: 0x80022C9C
+ * @note Size: 0x80
  * __dt__12JKRDvdFinderFv
  */
 JKRDvdFinder::~JKRDvdFinder()
@@ -69,10 +65,9 @@ JKRDvdFinder::~JKRDvdFinder()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80022D1C
- * Size:	0000A4
+/**
+ * @note Address: 0x80022D1C
+ * @note Size: 0xA4
  * findNextFile__12JKRDvdFinderFv
  */
 bool JKRDvdFinder::findNextFile()

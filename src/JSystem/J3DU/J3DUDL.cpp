@@ -2,10 +2,9 @@
 #include "JSystem/J3DU/J3DU.h"
 #include "JSystem/J3D/J3DModel.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000098
+/**
+ * @note Address: N/A
+ * @note Size: 0x98
  * Fabricated to generate getUseMtxNum weak function.
  */
 void J3DUCountUseMtxNum(J3DModelData* modelData) { modelData->mShapeTable.mItems[0]->mShapeMtx[0]->getUseMtxNum(); }

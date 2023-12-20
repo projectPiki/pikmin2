@@ -1,9 +1,8 @@
 #include "Dolphin/gx.h"
 
-/*
- * --INFO--
- * Address:	800E5908
- * Size:	000080
+/**
+ * @note Address: 0x800E5908
+ * @note Size: 0x80
  */
 void __GXSetDirtyState(void)
 {
@@ -36,10 +35,9 @@ void __GXSetDirtyState(void)
 	gx->dirtyState = 0;
 }
 
-/*
- * --INFO--
- * Address:	800E5988
- * Size:	0000D0
+/**
+ * @note Address: 0x800E5988
+ * @note Size: 0xD0
  */
 void GXBegin(GXPrimitive type, GXVtxFmt fmt, u16 vert_num)
 {
@@ -55,10 +53,9 @@ void GXBegin(GXPrimitive type, GXVtxFmt fmt, u16 vert_num)
 	GX_WRITE_U16(vert_num);
 }
 
-/*
- * --INFO--
- * Address:	800E5A58
- * Size:	000088
+/**
+ * @note Address: 0x800E5A58
+ * @note Size: 0x88
  */
 void __GXSendFlushPrim(void)
 {
@@ -75,10 +72,9 @@ void __GXSendFlushPrim(void)
 	gx->bpSentNot = GX_TRUE;
 }
 
-/*
- * --INFO--
- * Address:	800E5AE0
- * Size:	000040
+/**
+ * @note Address: 0x800E5AE0
+ * @note Size: 0x40
  */
 void GXSetLineWidth(u8 width, GXTexOffset offsets)
 {
@@ -89,10 +85,9 @@ void GXSetLineWidth(u8 width, GXTexOffset offsets)
 	gx->bpSentNot = GX_FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800E5B20
- * Size:	000040
+/**
+ * @note Address: 0x800E5B20
+ * @note Size: 0x40
  */
 void GXSetPointSize(u8 size, GXTexOffset offsets)
 {
@@ -103,10 +98,9 @@ void GXSetPointSize(u8 size, GXTexOffset offsets)
 	gx->bpSentNot = GX_FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800E5B60
- * Size:	000048
+/**
+ * @note Address: 0x800E5B60
+ * @note Size: 0x48
  */
 void GXEnableTexOffsets(GXTexCoordID coord, GXBool line, GXBool point)
 {
@@ -117,10 +111,9 @@ void GXEnableTexOffsets(GXTexCoordID coord, GXBool line, GXBool point)
 	gx->bpSentNot = GX_FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800E5BA8
- * Size:	000044
+/**
+ * @note Address: 0x800E5BA8
+ * @note Size: 0x44
  */
 void GXSetCullMode(GXCullMode mode)
 {
@@ -137,10 +130,9 @@ void GXSetCullMode(GXCullMode mode)
 	gx->dirtyState |= 4;
 }
 
-/*
- * --INFO--
- * Address:	800E5BEC
- * Size:	000034
+/**
+ * @note Address: 0x800E5BEC
+ * @note Size: 0x34
  */
 void GXSetCoPlanar(GXBool enable)
 {
@@ -151,10 +143,9 @@ void GXSetCoPlanar(GXBool enable)
 	GX_WRITE_U32(gx->genMode);
 }
 
-/*
- * --INFO--
- * Address:	800E5C20
- * Size:	000024
+/**
+ * @note Address: 0x800E5C20
+ * @note Size: 0x24
  */
 void __GXSetGenMode(void)
 {

@@ -3,10 +3,9 @@
 #include "stream.h"
 #include "P2JME/Caption.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
+/**
+ * @note Address: N/A
+ * @note Size: 0x80
  */
 Caption::Node::Node()
     : CNode("")
@@ -17,10 +16,9 @@ Caption::Node::Node()
 	mName = mMesgID;
 }
 
-/*
- * --INFO--
- * Address:	804508E8
- * Size:	000064
+/**
+ * @note Address: 0x804508E8
+ * @note Size: 0x64
  * Reads a caption node entry from the config file
  */
 void Caption::Node::read(Stream& input)
@@ -30,10 +28,9 @@ void Caption::Node::read(Stream& input)
 	mEndFrame   = (u16)input.readShort();
 }
 
-/*
- * --INFO--
- * Address:	8045094C
- * Size:	0000D4
+/**
+ * @note Address: 0x8045094C
+ * @note Size: 0xD4
  * __ct
  */
 Caption::Mgr::Mgr()
@@ -51,10 +48,9 @@ Caption::Mgr::Mgr()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80450AA0
- * Size:	000108
+/**
+ * @note Address: 0x80450AA0
+ * @note Size: 0x108
  */
 void Caption::Mgr::read(Stream& input)
 {
@@ -70,10 +66,9 @@ void Caption::Mgr::read(Stream& input)
 	FOREACH_NODE(Node, mChild, node) { node->read(input); }
 }
 
-/*
- * --INFO--
- * Address:	80450BA8
- * Size:	000068
+/**
+ * @note Address: 0x80450BA8
+ * @note Size: 0x68
  */
 void Caption::Mgr::reset()
 {
@@ -85,10 +80,9 @@ void Caption::Mgr::reset()
 	resetMessageObjs();
 }
 
-/*
- * --INFO--
- * Address:	80450C10
- * Size:	000068
+/**
+ * @note Address: 0x80450C10
+ * @note Size: 0x68
  */
 void Caption::Mgr::resetMessageObjs()
 {
@@ -97,10 +91,9 @@ void Caption::Mgr::resetMessageObjs()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
+/**
+ * @note Address: N/A
+ * @note Size: 0x2C
  */
 void Caption::Mgr::setCurrentNode(long id)
 {
@@ -114,10 +107,9 @@ void Caption::Mgr::setCurrentNode(long id)
 	mNode = node;
 }
 
-/*
- * --INFO--
- * Address:	80450C78
- * Size:	000194
+/**
+ * @note Address: 0x80450C78
+ * @note Size: 0x194
  */
 void Caption::Mgr::update(long num)
 {
@@ -151,10 +143,9 @@ void Caption::Mgr::update(long num)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80450E0C
- * Size:	000098
+/**
+ * @note Address: 0x80450E0C
+ * @note Size: 0x98
  */
 void Caption::Mgr::draw(Graphics& gfx)
 {
@@ -166,10 +157,9 @@ void Caption::Mgr::draw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80450EA4
- * Size:	00005C
+/**
+ * @note Address: 0x80450EA4
+ * @note Size: 0x5C
  */
 P2JME::Caption::TControl* Caption::Mgr::getFreeMessage()
 {

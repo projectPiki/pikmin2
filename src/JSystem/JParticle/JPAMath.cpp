@@ -24,20 +24,18 @@
         .4byte 0x00000000
 */
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B0
+/**
+ * @note Address: N/A
+ * @note Size: 0xB0
  */
 void JPAConvertFixToFloat(short)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80093AE4
- * Size:	000100
+/**
+ * @note Address: 0x80093AE4
+ * @note Size: 0x100
  */
 void JPAGetDirMtx(const JGeometry::TVec3f& vec, Mtx mtx)
 {
@@ -147,10 +145,9 @@ lbl_80093B6C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80093BE4
- * Size:	000074
+/**
+ * @note Address: 0x80093BE4
+ * @note Size: 0x74
  */
 void JPAGetYZRotateMtx(s16 angleY, s16 angleZ, Mtx mtx)
 {
@@ -172,10 +169,9 @@ void JPAGetYZRotateMtx(s16 angleY, s16 angleZ, Mtx mtx)
 	mtx[0][3] = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	80093C58
- * Size:	00009C
+/**
+ * @note Address: 0x80093C58
+ * @note Size: 0x9C
  */
 void JPAGetXYZRotateMtx(s16 x, s16 y, s16 z, Mtx mtx)
 {
@@ -203,10 +199,9 @@ void JPAGetXYZRotateMtx(s16 x, s16 y, s16 z, Mtx mtx)
 	mtx[0][3]    = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	80093CF4
- * Size:	000028
+/**
+ * @note Address: 0x80093CF4
+ * @note Size: 0x28
  */
 void JPASetRMtxfromMtx(const Mtx p1, Mtx p2)
 {
@@ -215,10 +210,9 @@ void JPASetRMtxfromMtx(const Mtx p1, Mtx p2)
 	JPASetRMtxSTVecfromMtx(p1, p2, &v1, &v2);
 }
 
-/*
- * --INFO--
- * Address:	80093D1C
- * Size:	000028
+/**
+ * @note Address: 0x80093D1C
+ * @note Size: 0x28
  */
 void JPASetRMtxTVecfromMtx(const Mtx p1, Mtx p2, JGeometry::TVec3f* p3)
 {
@@ -226,10 +220,9 @@ void JPASetRMtxTVecfromMtx(const Mtx p1, Mtx p2, JGeometry::TVec3f* p3)
 	JPASetRMtxSTVecfromMtx(p1, p2, &v1, p3);
 }
 
-/*
- * --INFO--
- * Address:	80093D44
- * Size:	00021C
+/**
+ * @note Address: 0x80093D44
+ * @note Size: 0x21C
  */
 void JPASetRMtxSTVecfromMtx(const Mtx p1, Mtx p2, JGeometry::TVec3f* vec1, JGeometry::TVec3f* vec2)
 {
@@ -419,10 +412,9 @@ void JPASetRMtxSTVecfromMtx(const Mtx p1, Mtx p2, JGeometry::TVec3f* vec1, JGeom
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80093F60
- * Size:	0000C8
+/**
+ * @note Address: 0x80093F60
+ * @note Size: 0xC8
  */
 f32 JPACalcKeyAnmValue(f32 p1, u16 p2, const f32* p3)
 {

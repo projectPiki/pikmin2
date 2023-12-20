@@ -9,31 +9,27 @@
 #include "Quat.h"
 #include "Sys/Sphere.h"
 
-/*
- * --INFO--
- * Address:	80411730
- * Size:	000068
+/**
+ * @note Address: 0x80411730
+ * @note Size: 0x68
  */
 f32 pikmin2_sinf(f32 x) { return sinf(x); }
 
-/*
- * --INFO--
- * Address:	80411798
- * Size:	000044
+/**
+ * @note Address: 0x80411798
+ * @note Size: 0x44
  */
 f32 pikmin2_cosf(f32 x) { return cosf(x); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F4
+/**
+ * @note Address: N/A
+ * @note Size: 0xF4
  */
 f32 pikmin2_acosf(f32 x) { return acosf(x); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000FC
+/**
+ * @note Address: N/A
+ * @note Size: 0xFC
  */
 f32 pikmin2_asinf(f32 x)
 {
@@ -54,17 +50,15 @@ f32 pikmin2_asinf(f32 x)
 	}
 }
 
-/*
- * --INFO--
- * Address:	804117DC
- * Size:	000028
+/**
+ * @note Address: 0x804117DC
+ * @note Size: 0x28
  */
 f32 pikmin2_atan2f(f32 x, f32 y) { return JMath::atanTable_.atan2_(x, y); }
 
-/*
- * --INFO--
- * Address:	80411804
- * Size:	000018
+/**
+ * @note Address: 0x80411804
+ * @note Size: 0x18
  * The asm seems necessary to match, but why would they do this?
  * Perhaps they didn't want to call the intrinsic.
  */
@@ -80,10 +74,9 @@ f32 pikmin2_sqrtf(register f32 x)
 	return x;
 }
 
-/*
- * --INFO--
- * Address:	8041181C
- * Size:	00003C
+/**
+ * @note Address: 0x8041181C
+ * @note Size: 0x3C
  */
 f32 qdist2(f32 x1, f32 y1, f32 x2, f32 y2)
 {
@@ -99,10 +92,9 @@ f32 qdist2(f32 x1, f32 y1, f32 x2, f32 y2)
 	return dist;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
+/**
+ * @note Address: N/A
+ * @note Size: 0x44
  */
 f32 qdist3(f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2)
 {
@@ -119,10 +111,9 @@ f32 qdist3(f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2)
 	// return dist;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00010C
+/**
+ * @note Address: N/A
+ * @note Size: 0x10C
  */
 Vector3f CRSpline(f32 t, Vector3f* controls)
 {
@@ -132,10 +123,9 @@ Vector3f CRSpline(f32 t, Vector3f* controls)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80411858
- * Size:	0000F4
+/**
+ * @note Address: 0x80411858
+ * @note Size: 0xF4
  */
 Vector3f CRSplineTangent(f32 t, Vector3f* controls)
 /* == Centripetal Catmull-Rom Spline tangent calculation ==
@@ -165,10 +155,9 @@ Outputs tangent vector of desired point, given:
 	return out;
 }
 
-/*
- * --INFO--
- * Address:	8041194C
- * Size:	000044
+/**
+ * @note Address: 0x8041194C
+ * @note Size: 0x44
  */
 void BoundBox::read(Stream& stream)
 {
@@ -176,10 +165,9 @@ void BoundBox::read(Stream& stream)
 	mMax.read(stream);
 }
 
-/*
- * --INFO--
- * Address:	80411990
- * Size:	000058
+/**
+ * @note Address: 0x80411990
+ * @note Size: 0x58
  */
 void Vector3f::read(Stream& stream)
 {
@@ -188,10 +176,9 @@ void Vector3f::read(Stream& stream)
 	z = stream.readFloat();
 }
 
-/*
- * --INFO--
- * Address:	804119E8
- * Size:	000058
+/**
+ * @note Address: 0x804119E8
+ * @note Size: 0x58
  */
 void Vector3f::write(Stream& stream)
 {
@@ -200,10 +187,9 @@ void Vector3f::write(Stream& stream)
 	stream.writeFloat(z);
 }
 
-/*
- * --INFO--
- * Address:	80411A40
- * Size:	000064
+/**
+ * @note Address: 0x80411A40
+ * @note Size: 0x64
  */
 void Plane::write(Stream& stream)
 {
@@ -213,10 +199,9 @@ void Plane::write(Stream& stream)
 	stream.writeFloat(d);
 }
 
-/*
- * --INFO--
- * Address:	80411AA4
- * Size:	000064
+/**
+ * @note Address: 0x80411AA4
+ * @note Size: 0x64
  */
 void Plane::read(Stream& stream)
 {
@@ -226,10 +211,9 @@ void Plane::read(Stream& stream)
 	d = stream.readFloat();
 }
 
-/*
- * --INFO--
- * Address:	80411B08
- * Size:	000064
+/**
+ * @note Address: 0x80411B08
+ * @note Size: 0x64
  */
 void Color4::write(Stream& stream)
 {
@@ -239,10 +223,9 @@ void Color4::write(Stream& stream)
 	stream.writeByte(a);
 }
 
-/*
- * --INFO--
- * Address:	80411B6C
- * Size:	000064
+/**
+ * @note Address: 0x80411B6C
+ * @note Size: 0x64
  */
 void Color4::read(Stream& stream)
 {
@@ -252,10 +235,9 @@ void Color4::read(Stream& stream)
 	a = stream.readByte();
 }
 
-/*
- * --INFO--
- * Address:	80411BD0
- * Size:	00002C
+/**
+ * @note Address: 0x80411BD0
+ * @note Size: 0x2C
  */
 // NOTE: angle needs to be in radians!
 f32 roundAng(f32 angle)
@@ -273,10 +255,9 @@ f32 roundAng(f32 angle)
 	return angle;
 }
 
-/*
- * --INFO--
- * Address:	80411BFC
- * Size:	000074
+/**
+ * @note Address: 0x80411BFC
+ * @note Size: 0x74
  */
 f32 angDist(f32 angle1, f32 angle2)
 {
@@ -288,10 +269,9 @@ f32 angDist(f32 angle1, f32 angle2)
 	return angle;
 }
 
-/*
- * --INFO--
- * Address:	80411C70
- * Size:	000030
+/**
+ * @note Address: 0x80411C70
+ * @note Size: 0x30
  */
 void Matrix3f::makeIdentity()
 {
@@ -313,10 +293,9 @@ void Matrix3f::makeIdentity()
 	mMatrix[2][2] = 1.0f;
 }
 
-/*
- * --INFO--
- * Address:	80411CA0
- * Size:	000728
+/**
+ * @note Address: 0x80411CA0
+ * @note Size: 0x728
  */
 void Matrix3f::calcEigenMatrix(Matrix3f& D, Matrix3f& P)
 {
@@ -462,10 +441,9 @@ void Matrix3f::calcEigenMatrix(Matrix3f& D, Matrix3f& P)
 	}
 }
 
-/*
- * --INFO--
- * Address:	804123C8
- * Size:	000018
+/**
+ * @note Address: 0x804123C8
+ * @note Size: 0x18
  */
 Quat::Quat()
 {
@@ -476,20 +454,18 @@ Quat::Quat()
 	z = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C4
+/**
+ * @note Address: N/A
+ * @note Size: 0xC4
  */
 void Quat::setAxisRotation(Vector3f&, f32)
 {
 	// UNUSED/INLINED
 }
 
-/*
- * --INFO--
- * Address:	804123E0
- * Size:	000020
+/**
+ * @note Address: 0x804123E0
+ * @note Size: 0x20
  */
 Quat::Quat(f32 _w, Vector3f vec)
 {
@@ -499,10 +475,9 @@ Quat::Quat(f32 _w, Vector3f vec)
 	z = vec.z;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000268
+/**
+ * @note Address: N/A
+ * @note Size: 0x268
  */
 Quat::Quat(RPY& rpy)
 {
@@ -510,10 +485,9 @@ Quat::Quat(RPY& rpy)
 	// probably is recursive?
 }
 
-/*
- * --INFO--
- * Address:	80412400
- * Size:	0000FC
+/**
+ * @note Address: 0x80412400
+ * @note Size: 0xFC
  */
 Quat operator*(Quat& q1, Quat& q2)
 {
@@ -616,10 +590,9 @@ Quat operator*(Quat& q1, Quat& q2)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	804124FC
- * Size:	000264
+/**
+ * @note Address: 0x804124FC
+ * @note Size: 0x264
  */
 void Quat::set(Vector3f& vec)
 {
@@ -643,20 +616,18 @@ void Quat::set(Vector3f& vec)
 	*this = *this * q1;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000264
+/**
+ * @note Address: N/A
+ * @note Size: 0x264
  */
 void Quat::set(RPY&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80412760
- * Size:	000024
+/**
+ * @note Address: 0x80412760
+ * @note Size: 0x24
  */
 Quat::Quat(Quat& quat)
 {
@@ -666,10 +637,9 @@ Quat::Quat(Quat& quat)
 	z = quat.z;
 }
 
-/*
- * --INFO--
- * Address:	80412784
- * Size:	000014
+/**
+ * @note Address: 0x80412784
+ * @note Size: 0x14
  */
 void Quat::set(f32 a, f32 b, f32 c, f32 d)
 {
@@ -679,40 +649,36 @@ void Quat::set(f32 a, f32 b, f32 c, f32 d)
 	z = d;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
+/**
+ * @note Address: N/A
+ * @note Size: 0x20
  */
 void Quat::set(f32, Vector3f&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
+/**
+ * @note Address: N/A
+ * @note Size: 0x30
  */
 void Quat::norm()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 void Quat::conjugate()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80412798
- * Size:	0000B4
+/**
+ * @note Address: 0x80412798
+ * @note Size: 0xB4
  */
 Quat Quat::inverse()
 {
@@ -788,20 +754,18 @@ Quat Quat::inverse()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000128
+/**
+ * @note Address: N/A
+ * @note Size: 0x128
  */
 void rotate(Quat&, Vector3f&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8041284C
- * Size:	0000A4
+/**
+ * @note Address: 0x8041284C
+ * @note Size: 0xA4
  */
 void Quat::normalise()
 {
@@ -864,10 +828,9 @@ void Quat::normalise()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	804128F0
- * Size:	000348
+/**
+ * @note Address: 0x804128F0
+ * @note Size: 0x348
  */
 void Quat::slerp(Quat& q1, f32 t, Quat& qout)
 {
@@ -1187,20 +1150,18 @@ void Quat::slerp(Quat& q1, f32 t, Quat& qout)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000150
+/**
+ * @note Address: N/A
+ * @note Size: 0x150
  */
 void Quat::toMatrix(Matrix3f&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80412C38
- * Size:	00033C
+/**
+ * @note Address: 0x80412C38
+ * @note Size: 0x33C
  */
 void Quat::fromMatrixf(Matrixf& mtx)
 {
@@ -1280,40 +1241,36 @@ void Quat::fromMatrixf(Matrixf& mtx)
 	z *= norm;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 void Plane::calcProjection(Vector3f&)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
+/**
+ * @note Address: N/A
+ * @note Size: 0x60
  */
 void Plane::intersectRay(Vector3f&, Vector3f&)
 {
 	// UNUSED FUNCTION
 }
 
-// /*
-// * --INFO--
-// * Address:	........
-// * Size:	000300
+// /**
+// * @note Address: N/A
+// * @note Size: 0x300
 // */
 // void Matrix4f::inverse(Matrix4f*)
 // {
 //    // UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	80412F74
- * Size:	0000C8
+/**
+ * @note Address: 0x80412F74
+ * @note Size: 0xC8
  */
 void BoundBox::makeBoundSphere(Sys::Sphere& sphere)
 {
@@ -1388,10 +1345,9 @@ void BoundBox::makeBoundSphere(Sys::Sphere& sphere)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8041303C
- * Size:	0001EC
+/**
+ * @note Address: 0x8041303C
+ * @note Size: 0x1EC
  */
 int BoundBox::transform(Matrixf& mtx)
 {

@@ -7,10 +7,9 @@ static const char name[] = "ebiScreenOmakeGame";
 namespace ebi {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	803F0CF4
- * Size:	000278
+/**
+ * @note Address: 0x803F0CF4
+ * @note Size: 0x278
  */
 TOmakeGame::TOmakeGame()
     : mInput(nullptr)
@@ -18,10 +17,9 @@ TOmakeGame::TOmakeGame()
 {
 }
 
-/*
- * --INFO--
- * Address:	803F0F6C
- * Size:	0002F4
+/**
+ * @note Address: 0x803F0F6C
+ * @note Size: 0x2F4
  */
 void TOmakeGame::doSetArchive(JKRArchive* arc)
 {
@@ -68,10 +66,9 @@ void TOmakeGame::doSetArchive(JKRArchive* arc)
 	mScreenObj->addCallBack('Wselctw', &mCursor);
 }
 
-/*
- * --INFO--
- * Address:	803F1260
- * Size:	000294
+/**
+ * @note Address: 0x803F1260
+ * @note Size: 0x294
  */
 void TOmakeGame::doOpenScreen(ArgOpen*)
 {
@@ -278,17 +275,15 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803F14F4
- * Size:	00003C
+/**
+ * @note Address: 0x803F14F4
+ * @note Size: 0x3C
  */
 void TOmakeGame::doCloseScreen(ArgClose*) { mAnimationExit.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true); }
 
-/*
- * --INFO--
- * Address:	803F1530
- * Size:	000054
+/**
+ * @note Address: 0x803F1530
+ * @note Size: 0x54
  */
 bool TOmakeGame::doUpdateStateOpen()
 {
@@ -296,10 +291,9 @@ bool TOmakeGame::doUpdateStateOpen()
 	return !!mAnimationEnter.isFinish();
 }
 
-/*
- * --INFO--
- * Address:	803F1584
- * Size:	000258
+/**
+ * @note Address: 0x803F1584
+ * @note Size: 0x258
  */
 bool TOmakeGame::doUpdateStateWait()
 {
@@ -346,10 +340,9 @@ bool TOmakeGame::doUpdateStateWait()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803F17DC
- * Size:	000054
+/**
+ * @note Address: 0x803F17DC
+ * @note Size: 0x54
  */
 bool TOmakeGame::doUpdateStateClose()
 {
@@ -357,10 +350,9 @@ bool TOmakeGame::doUpdateStateClose()
 	return !!mAnimationExit.isFinish();
 }
 
-/*
- * --INFO--
- * Address:	803F1830
- * Size:	000074
+/**
+ * @note Address: 0x803F1830
+ * @note Size: 0x74
  */
 void TOmakeGame::doDraw()
 {
@@ -371,10 +363,9 @@ void TOmakeGame::doDraw()
 	mScreenObj->draw(*gfx, *graf);
 }
 
-/*
- * --INFO--
- * Address:	803F18A4
- * Size:	000044
+/**
+ * @note Address: 0x803F18A4
+ * @note Size: 0x44
  */
 void TOmakeGame::setController(Controller* pad)
 {
@@ -382,10 +373,9 @@ void TOmakeGame::setController(Controller* pad)
 	mPad.init(pad, 0, 2, &mSelection, EUTPadInterface_countNum::MODE_DOWNUP, 0.66f, 0.15f);
 }
 
-/*
- * --INFO--
- * Address:	803F18E8
- * Size:	000048
+/**
+ * @note Address: 0x803F18E8
+ * @note Size: 0x48
  */
 bool TOmakeGame::isDelegateControl()
 {
@@ -396,10 +386,9 @@ bool TOmakeGame::isDelegateControl()
 	return ret;
 }
 
-/*
- * --INFO--
- * Address:	803F1930
- * Size:	00003C
+/**
+ * @note Address: 0x803F1930
+ * @note Size: 0x3C
  */
 void TOmakeGame::setSelfControl()
 {
@@ -407,10 +396,9 @@ void TOmakeGame::setSelfControl()
 	mCursor.mScaleMgr.up(0.1f, 30.0f, 0.6f, 0.0f);
 }
 
-/*
- * --INFO--
- * Address:	803F196C
- * Size:	000108
+/**
+ * @note Address: 0x803F196C
+ * @note Size: 0x108
  */
 bool TOmakeGame::openMsg(long id)
 {

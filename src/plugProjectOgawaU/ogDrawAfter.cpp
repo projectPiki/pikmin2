@@ -7,10 +7,9 @@
 namespace og {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B4
+/**
+ * @note Address: N/A
+ * @note Size: 0xB4
  */
 CallBack_DrawAfter::CallBack_DrawAfter(P2DScreen::Mgr* mgr, u64 tag)
 {
@@ -20,17 +19,15 @@ CallBack_DrawAfter::CallBack_DrawAfter(P2DScreen::Mgr* mgr, u64 tag)
 	mIsVisible      = true;
 }
 
-/*
- * --INFO--
- * Address:	8032D684
- * Size:	000004
+/**
+ * @note Address: 0x8032D684
+ * @note Size: 0x4
  */
 void CallBack_DrawAfter::update() { }
 
-/*
- * --INFO--
- * Address:	8032D688
- * Size:	0000FC
+/**
+ * @note Address: 0x8032D688
+ * @note Size: 0xFC
  */
 void CallBack_DrawAfter::draw(Graphics& gfx, J2DGrafContext& context)
 {
@@ -46,10 +43,9 @@ void CallBack_DrawAfter::draw(Graphics& gfx, J2DGrafContext& context)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8032D784
- * Size:	0000E4
+/**
+ * @note Address: 0x8032D784
+ * @note Size: 0xE4
  */
 CallBack_DrawAfter* setCallBack_DrawAfter(P2DScreen::Mgr* mgr, u64 tag)
 {

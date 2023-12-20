@@ -5,10 +5,9 @@
 namespace Game {
 namespace ElecBug {
 
-/*
- * --INFO--
- * Address:	8027AC88
- * Size:	000138
+/**
+ * @note Address: 0x8027AC88
+ * @note Size: 0x138
  */
 Obj::Obj()
 {
@@ -17,17 +16,15 @@ Obj::Obj()
 	createEffect();
 }
 
-/*
- * --INFO--
- * Address:	8027ADC0
- * Size:	000004
+/**
+ * @note Address: 0x8027ADC0
+ * @note Size: 0x4
  */
 void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
-/*
- * --INFO--
- * Address:	8027ADC4
- * Size:	0000A4
+/**
+ * @note Address: 0x8027ADC4
+ * @note Size: 0xA4
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
@@ -40,10 +37,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mFsm->start(this, ELECBUG_Turn, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	8027AE68
- * Size:	000044
+/**
+ * @note Address: 0x8027AE68
+ * @note Size: 0x44
  */
 void Obj::onKill(CreatureKillArg* arg)
 {
@@ -51,10 +47,9 @@ void Obj::onKill(CreatureKillArg* arg)
 	EnemyBase::onKill(arg);
 }
 
-/*
- * --INFO--
- * Address:	8027AEAC
- * Size:	000048
+/**
+ * @note Address: 0x8027AEAC
+ * @note Size: 0x48
  */
 void Obj::doUpdate()
 {
@@ -62,24 +57,21 @@ void Obj::doUpdate()
 	mFsm->exec(this);
 }
 
-/*
- * --INFO--
- * Address:	8027AEF4
- * Size:	000004
+/**
+ * @note Address: 0x8027AEF4
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics& gfx) { }
 
-/*
- * --INFO--
- * Address:	8027AEF8
- * Size:	000020
+/**
+ * @note Address: 0x8027AEF8
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	8027AF18
- * Size:	00004C
+/**
+ * @note Address: 0x8027AF18
+ * @note Size: 0x4C
  */
 void Obj::setFSM(FSM* fsm)
 {
@@ -88,10 +80,9 @@ void Obj::setFSM(FSM* fsm)
 	mCurrentLifecycleState = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8027AF64
- * Size:	000080
+/**
+ * @note Address: 0x8027AF64
+ * @note Size: 0x80
  */
 void Obj::getShadowParam(ShadowParam& param)
 {
@@ -103,10 +94,9 @@ void Obj::getShadowParam(ShadowParam& param)
 	param.mSize                     = 15.0f;
 }
 
-/*
- * --INFO--
- * Address:	8027AFE4
- * Size:	0001E4
+/**
+ * @note Address: 0x8027AFE4
+ * @note Size: 0x1E4
  */
 void Obj::collisionCallback(CollEvent& event)
 {
@@ -134,10 +124,9 @@ void Obj::collisionCallback(CollEvent& event)
 	setCollEvent(event);
 }
 
-/*
- * --INFO--
- * Address:	8027B1C8
- * Size:	0001BC
+/**
+ * @note Address: 0x8027B1C8
+ * @note Size: 0x1BC
  */
 bool Obj::pressCallBack(Creature* source, f32 damage, CollPart* part)
 {
@@ -164,17 +153,15 @@ bool Obj::pressCallBack(Creature* source, f32 damage, CollPart* part)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8027B384
- * Size:	00002C
+/**
+ * @note Address: 0x8027B384
+ * @note Size: 0x2C
  */
 bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart) { return pressCallBack(creature, damage, collpart); }
 
-/*
- * --INFO--
- * Address:	8027B3B0
- * Size:	0000C0
+/**
+ * @note Address: 0x8027B3B0
+ * @note Size: 0xC0
  */
 bool Obj::earthquakeCallBack(Creature* source, f32 damage)
 {
@@ -189,10 +176,9 @@ bool Obj::earthquakeCallBack(Creature* source, f32 damage)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8027B470
- * Size:	000040
+/**
+ * @note Address: 0x8027B470
+ * @note Size: 0x40
  */
 void Obj::doStartStoneState()
 {
@@ -201,10 +187,9 @@ void Obj::doStartStoneState()
 	finishPartnerAndEffect();
 }
 
-/*
- * --INFO--
- * Address:	8027B4B0
- * Size:	000040
+/**
+ * @note Address: 0x8027B4B0
+ * @note Size: 0x40
  */
 void Obj::doFinishStoneState()
 {
@@ -213,10 +198,9 @@ void Obj::doFinishStoneState()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8027B4F0
- * Size:	000034
+/**
+ * @note Address: 0x8027B4F0
+ * @note Size: 0x34
  */
 void Obj::doStartWaitingBirthTypeDrop()
 {
@@ -224,10 +208,9 @@ void Obj::doStartWaitingBirthTypeDrop()
 	effectDrawOff();
 }
 
-/*
- * --INFO--
- * Address:	8027B524
- * Size:	000034
+/**
+ * @note Address: 0x8027B524
+ * @note Size: 0x34
  */
 void Obj::doFinishWaitingBirthTypeDrop()
 {
@@ -235,31 +218,27 @@ void Obj::doFinishWaitingBirthTypeDrop()
 	effectDrawOn();
 }
 
-/*
- * --INFO--
- * Address:	8027B558
- * Size:	000028
+/**
+ * @note Address: 0x8027B558
+ * @note Size: 0x28
  */
 void Obj::startCarcassMotion() { startMotion(ELECBUGANIM_Carry, nullptr); }
 
-/*
- * --INFO--
- * Address:	8027B580
- * Size:	000020
+/**
+ * @note Address: 0x8027B580
+ * @note Size: 0x20
  */
 void Obj::doStartMovie() { effectDrawOff(); }
 
-/*
- * --INFO--
- * Address:	8027B5A0
- * Size:	000020
+/**
+ * @note Address: 0x8027B5A0
+ * @note Size: 0x20
  */
 void Obj::doEndMovie() { effectDrawOn(); }
 
-/*
- * --INFO--
- * Address:	8027B5C0
- * Size:	0001A4
+/**
+ * @note Address: 0x8027B5C0
+ * @note Size: 0x1A4
  */
 void Obj::setTargetPosition()
 {
@@ -272,10 +251,9 @@ void Obj::setTargetPosition()
 	mTargetPosition.z = randDist * cosf(randAngle) + homePos.z;
 }
 
-/*
- * --INFO--
- * Address:	8027B764
- * Size:	00001C
+/**
+ * @note Address: 0x8027B764
+ * @note Size: 0x1C
  */
 void Obj::resetPartnerPtr()
 {
@@ -285,10 +263,9 @@ void Obj::resetPartnerPtr()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8027B780
- * Size:	000070
+/**
+ * @note Address: 0x8027B780
+ * @note Size: 0x70
  */
 bool Obj::isBecomeChargeState()
 {
@@ -302,10 +279,9 @@ bool Obj::isBecomeChargeState()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8027B7F0
- * Size:	000030
+/**
+ * @note Address: 0x8027B7F0
+ * @note Size: 0x30
  */
 void Obj::startChargeState(Obj* beetle)
 {
@@ -313,10 +289,9 @@ void Obj::startChargeState(Obj* beetle)
 	beetle->startChildChargeState(this);
 }
 
-/*
- * --INFO--
- * Address:	8027B820
- * Size:	000044
+/**
+ * @note Address: 0x8027B820
+ * @note Size: 0x44
  */
 bool Obj::startChildChargeState(Obj* beetle)
 {
@@ -325,10 +300,9 @@ bool Obj::startChildChargeState(Obj* beetle)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8027B864
- * Size:	000044
+/**
+ * @note Address: 0x8027B864
+ * @note Size: 0x44
  */
 void Obj::createEffect()
 {
@@ -356,31 +330,27 @@ lbl_8027B890:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8027BC50
- * Size:	000010
+/**
+ * @note Address: 0x8027BC50
+ * @note Size: 0x10
  */
 void Obj::setupEffect() { mEffectObj->mPosition = &mPosition; }
 
-/*
- * --INFO--
- * Address:	8027BC60
- * Size:	000040
+/**
+ * @note Address: 0x8027BC60
+ * @note Size: 0x40
  */
 void Obj::startChargeEffect() { mEffectObj->startCharge(); }
 
-/*
- * --INFO--
- * Address:	8027BCA0
- * Size:	0000C0
+/**
+ * @note Address: 0x8027BCA0
+ * @note Size: 0xC0
  */
 void Obj::startDischargeEffect(Obj* partner) { mEffectObj->startDischarge(&partner->mPosition); }
 
-/*
- * --INFO--
- * Address:	8027BD60
- * Size:	0000A4
+/**
+ * @note Address: 0x8027BD60
+ * @note Size: 0xA4
  */
 void Obj::finishPartnerAndEffect()
 {
@@ -392,24 +362,21 @@ void Obj::finishPartnerAndEffect()
 	mEffectObj->fade();
 }
 
-/*
- * --INFO--
- * Address:	8027BE04
- * Size:	00008C
+/**
+ * @note Address: 0x8027BE04
+ * @note Size: 0x8C
  */
 void Obj::effectDrawOn() { mEffectObj->effectDrawOn(); }
 
-/*
- * --INFO--
- * Address:	8027BE90
- * Size:	00008C
+/**
+ * @note Address: 0x8027BE90
+ * @note Size: 0x8C
  */
 void Obj::effectDrawOff() { mEffectObj->effectDrawOff(); }
 
-/*
- * --INFO--
- * Address:	8027BF1C
- * Size:	0004D0
+/**
+ * @note Address: 0x8027BF1C
+ * @note Size: 0x4D0
  */
 void Obj::checkInteract(Obj* partner)
 {

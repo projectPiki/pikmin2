@@ -4,20 +4,18 @@
 namespace Game {
 namespace P2JST {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
+/**
+ * @note Address: N/A
+ * @note Size: 0xE4
  */
 // void P2JST::_Print(char*, ...)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	80430954
- * Size:	0000A0
+/**
+ * @note Address: 0x80430954
+ * @note Size: 0xA0
  */
 ObjectSystem::ObjectSystem(char const* name, MoviePlayer* player)
     : ObjectBase(name, player)
@@ -66,10 +64,9 @@ ObjectSystem::ObjectSystem(char const* name, MoviePlayer* player)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	804309F4
- * Size:	000084
+/**
+ * @note Address: 0x804309F4
+ * @note Size: 0x84
  */
 ObjectSystem::~ObjectSystem()
 {
@@ -115,10 +112,9 @@ lbl_80430A5C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80430A78
- * Size:	0000A8
+/**
+ * @note Address: 0x80430A78
+ * @note Size: 0xA8
  */
 void ObjectSystem::destroyObjectAll()
 {
@@ -175,10 +171,9 @@ lbl_80430AF4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80430B20
- * Size:	0000F4
+/**
+ * @note Address: 0x80430B20
+ * @note Size: 0xF4
  */
 void ObjectSystem::reset()
 {
@@ -261,10 +256,9 @@ lbl_80430BEC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80430C14
- * Size:	0000AC
+/**
+ * @note Address: 0x80430C14
+ * @note Size: 0xAC
  */
 void ObjectSystem::entry()
 {
@@ -323,10 +317,9 @@ lbl_80430C98:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80430CC0
- * Size:	0000D4
+/**
+ * @note Address: 0x80430CC0
+ * @note Size: 0xD4
  */
 void ObjectSystem::update()
 {
@@ -397,10 +390,9 @@ lbl_80430D6C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80430D94
- * Size:	0000D4
+/**
+ * @note Address: 0x80430D94
+ * @note Size: 0xD4
  */
 void ObjectSystem::start()
 {
@@ -471,10 +463,9 @@ lbl_80430E40:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80430E68
- * Size:	0000D4
+/**
+ * @note Address: 0x80430E68
+ * @note Size: 0xD4
  */
 void ObjectSystem::stop()
 {
@@ -545,10 +536,9 @@ lbl_80430F14:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80430F3C
- * Size:	0000FC
+/**
+ * @note Address: 0x80430F3C
+ * @note Size: 0xFC
  */
 ObjectBase* ObjectSystem::findObject(char const*, JStage::TEObject) const
 {
@@ -633,10 +623,9 @@ lbl_80431020:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80431038
- * Size:	000310
+/**
+ * @note Address: 0x80431038
+ * @note Size: 0x310
  */
 int ObjectSystem::JSGFindObject(JStage::TObject**, char const*, JStage::TEObject) const
 {
@@ -894,31 +883,27 @@ int ObjectSystem::JSGFindObject(JStage::TObject**, char const*, JStage::TEObject
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80431348
- * Size:	000008
+/**
+ * @note Address: 0x80431348
+ * @note Size: 0x8
  */
 char* ObjectSystem::JSGGetName() const { return const_cast<char*>(mName); }
 
-/*
- * --INFO--
- * Address:	80431350
- * Size:	000008
+/**
+ * @note Address: 0x80431350
+ * @note Size: 0x8
  */
 void ObjectSystem::JSGSetFlag(u32 a1) { mFlags = a1; }
 
-/*
- * --INFO--
- * Address:	80431358
- * Size:	000008
+/**
+ * @note Address: 0x80431358
+ * @note Size: 0x8
  */
 u32 ObjectSystem::JSGGetFlag() const { return mFlags; }
 
-/*
- * --INFO--
- * Address:	80431360
- * Size:	000010
+/**
+ * @note Address: 0x80431360
+ * @note Size: 0x10
  */
 void ObjectSystem::JSGSetData(u32 d1, void const* d2, u32 d3)
 {

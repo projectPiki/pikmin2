@@ -7,10 +7,9 @@
 namespace og {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
+/**
+ * @note Address: N/A
+ * @note Size: 0x44
  */
 CallBack_Picture::CallBack_Picture(P2DScreen::Mgr* mgr, u64 tag)
     : CallBack_Screen(mgr, tag)
@@ -18,10 +17,9 @@ CallBack_Picture::CallBack_Picture(P2DScreen::Mgr* mgr, u64 tag)
 	mAnimGroup = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8032CE18
- * Size:	000060
+/**
+ * @note Address: 0x8032CE18
+ * @note Size: 0x60
  */
 void CallBack_Picture::update()
 {
@@ -34,10 +32,9 @@ void CallBack_Picture::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8032CE78
- * Size:	0002BC
+/**
+ * @note Address: 0x8032CE78
+ * @note Size: 0x2BC
  */
 void CallBack_Picture::draw(Graphics& gfx, J2DGrafContext& graf)
 {
@@ -68,10 +65,9 @@ void CallBack_Picture::draw(Graphics& gfx, J2DGrafContext& graf)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D4
+/**
+ * @note Address: N/A
+ * @note Size: 0xD4
  */
 CallBack_Picture* setCallBack_Picture(JKRArchive* arc, char* name, u64 tag1, P2DScreen::Mgr* screen, u64 tag2)
 {
@@ -88,10 +84,9 @@ CallBack_Picture* setCallBack_Picture(JKRArchive* arc, char* name, u64 tag1, P2D
 	return pic;
 }
 
-/*
- * --INFO--
- * Address:	8032D134
- * Size:	00011C
+/**
+ * @note Address: 0x8032D134
+ * @note Size: 0x11C
  */
 CallBack_Picture* setCallBack_3DStick(JKRArchive* arc, P2DScreen::Mgr* screen, u64 tag)
 {
@@ -103,10 +98,9 @@ CallBack_Picture* setCallBack_3DStick(JKRArchive* arc, P2DScreen::Mgr* screen, u
 	return pic;
 }
 
-/*
- * --INFO--
- * Address:	8032D250
- * Size:	00011C
+/**
+ * @note Address: 0x8032D250
+ * @note Size: 0x11C
  * This function is identical to setCallBack_3DStick but with a different .blo name
  */
 CallBack_Picture* setCallBack_3DStickSmall(JKRArchive* arc, P2DScreen::Mgr* screen, u64 tag)
@@ -119,10 +113,9 @@ CallBack_Picture* setCallBack_3DStickSmall(JKRArchive* arc, P2DScreen::Mgr* scre
 	return pic;
 }
 
-/*
- * --INFO--
- * Address:	8032D36C
- * Size:	000010
+/**
+ * @note Address: 0x8032D36C
+ * @note Size: 0x10
  */
 StickAnimMgr::StickAnimMgr(og::Screen::CallBack_Picture* pic)
 {
@@ -130,10 +123,9 @@ StickAnimMgr::StickAnimMgr(og::Screen::CallBack_Picture* pic)
 	mState           = STICKANIM_Disabled;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
+/**
+ * @note Address: N/A
+ * @note Size: 0x5C
  */
 void StickAnimMgr::stickStop()
 {
@@ -141,10 +133,9 @@ void StickAnimMgr::stickStop()
 	mCallBackPicture->mAnimGroup->reservAnim(21.0f, 0.0f, 40.0f);
 }
 
-/*
- * --INFO--
- * Address:	8032D37C
- * Size:	0000D4
+/**
+ * @note Address: 0x8032D37C
+ * @note Size: 0xD4
  */
 void StickAnimMgr::stickUp()
 {
@@ -175,10 +166,9 @@ void StickAnimMgr::stickUp()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8032D450
- * Size:	0000E8
+/**
+ * @note Address: 0x8032D450
+ * @note Size: 0xE8
  */
 void StickAnimMgr::stickDown()
 {
@@ -209,10 +199,9 @@ void StickAnimMgr::stickDown()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8032D538
- * Size:	0000BC
+/**
+ * @note Address: 0x8032D538
+ * @note Size: 0xBC
  */
 void StickAnimMgr::stickUpDown()
 {

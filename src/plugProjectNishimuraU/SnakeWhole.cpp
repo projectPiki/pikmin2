@@ -17,10 +17,9 @@ namespace SnakeWhole {
 
 static const char unusedSnakeWholeName[] = "246-SnakeWhole";
 
-/*
- * --INFO--
- * Address:	802CE798
- * Size:	00016C
+/**
+ * @note Address: 0x802CE798
+ * @note Size: 0x16C
  */
 Obj::Obj()
 {
@@ -31,17 +30,15 @@ Obj::Obj()
 	createEffect();
 }
 
-/*
- * --INFO--
- * Address:	802CE904
- * Size:	000004
+/**
+ * @note Address: 0x802CE904
+ * @note Size: 0x4
  */
 void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
-/*
- * --INFO--
- * Address:	802CE908
- * Size:	0000CC
+/**
+ * @note Address: 0x802CE908
+ * @note Size: 0xCC
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
@@ -64,10 +61,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 	doAnimationCullingOff();
 }
 
-/*
- * --INFO--
- * Address:	802CE9D4
- * Size:	000050
+/**
+ * @note Address: 0x802CE9D4
+ * @note Size: 0x50
  */
 void Obj::doUpdate()
 {
@@ -76,10 +72,9 @@ void Obj::doUpdate()
 	mMouthSlots.update();
 }
 
-/*
- * --INFO--
- * Address:	802CEA24
- * Size:	000034
+/**
+ * @note Address: 0x802CEA24
+ * @note Size: 0x34
  */
 void Obj::doUpdateCommon()
 {
@@ -87,10 +82,9 @@ void Obj::doUpdateCommon()
 	updateBossBGM();
 }
 
-/*
- * --INFO--
- * Address:	802CEA58
- * Size:	000034
+/**
+ * @note Address: 0x802CEA58
+ * @note Size: 0x34
  */
 void Obj::doAnimationUpdateAnimator()
 {
@@ -98,10 +92,9 @@ void Obj::doAnimationUpdateAnimator()
 	doAnimationJointCallBack();
 }
 
-/*
- * --INFO--
- * Address:	802CEA8C
- * Size:	00003C
+/**
+ * @note Address: 0x802CEA8C
+ * @note Size: 0x3C
  */
 void Obj::doAnimationCullingOff()
 {
@@ -110,24 +103,21 @@ void Obj::doAnimationCullingOff()
 	finishAnimationJointCallBack();
 }
 
-/*
- * --INFO--
- * Address:	802CEAC8
- * Size:	000004
+/**
+ * @note Address: 0x802CEAC8
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	802CEACC
- * Size:	000020
+/**
+ * @note Address: 0x802CEACC
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	802CEAEC
- * Size:	00004C
+/**
+ * @note Address: 0x802CEAEC
+ * @note Size: 0x4C
  */
 void Obj::setFSM(FSM* fsm)
 {
@@ -136,10 +126,9 @@ void Obj::setFSM(FSM* fsm)
 	mCurrentLifecycleState = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	802CEB38
- * Size:	0000B0
+/**
+ * @note Address: 0x802CEB38
+ * @note Size: 0xB0
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
@@ -154,10 +143,9 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 	shadowParam.mSize = 22.5f;
 }
 
-/*
- * --INFO--
- * Address:	802CEBE8
- * Size:	000098
+/**
+ * @note Address: 0x802CEBE8
+ * @note Size: 0x98
  */
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* part)
 {
@@ -172,17 +160,15 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* part)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802CEC80
- * Size:	000020
+/**
+ * @note Address: 0x802CEC80
+ * @note Size: 0x20
  */
 void Obj::doStartStoneState() { EnemyBase::doStartStoneState(); }
 
-/*
- * --INFO--
- * Address:	802CECA0
- * Size:	000048
+/**
+ * @note Address: 0x802CECA0
+ * @note Size: 0x48
  */
 void Obj::doFinishStoneState()
 {
@@ -190,31 +176,27 @@ void Obj::doFinishStoneState()
 	EnemyFunc::flickStickPikmin(this, 1.0f, 10.0f, 0.0f, FLICK_BACKWARD_ANGLE, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802CECE8
- * Size:	000028
+/**
+ * @note Address: 0x802CECE8
+ * @note Size: 0x28
  */
 void Obj::startCarcassMotion() { startMotion(SNAKEWHOLEANIM_Carry, nullptr); }
 
-/*
- * --INFO--
- * Address:	802CED10
- * Size:	000020
+/**
+ * @note Address: 0x802CED10
+ * @note Size: 0x20
  */
 void Obj::doStartMovie() { effectDrawOff(); }
 
-/*
- * --INFO--
- * Address:	802CED30
- * Size:	000020
+/**
+ * @note Address: 0x802CED30
+ * @note Size: 0x20
  */
 void Obj::doEndMovie() { effectDrawOn(); }
 
-/*
- * --INFO--
- * Address:	802CED50
- * Size:	0000BC
+/**
+ * @note Address: 0x802CED50
+ * @note Size: 0xBC
  */
 void Obj::initMouthSlots()
 {
@@ -228,31 +210,27 @@ void Obj::initMouthSlots()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802CEE0C
- * Size:	000058
+/**
+ * @note Address: 0x802CEE0C
+ * @note Size: 0x58
  */
 void Obj::getThrowupItemPosition(Vector3f* pos) { *pos = mModel->getJoint("kutijnt1")->getWorldMatrix()->getBasis(3); }
 
-/*
- * --INFO--
- * Address:	802CEE64
- * Size:	00003C
+/**
+ * @note Address: 0x802CEE64
+ * @note Size: 0x3C
  */
 bool Obj::isOutTerritory() { return (u8)(sqrDistanceXZ(mPosition, mHomePosition) > SQUARE(C_PARMS->mGeneral.mTerritoryRadius())); }
 
-/*
- * --INFO--
- * Address:	802CEEA0
- * Size:	00003C
+/**
+ * @note Address: 0x802CEEA0
+ * @note Size: 0x3C
  */
 bool Obj::isInHomeRange() { return (u8)(sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(C_PARMS->mGeneral.mHomeRadius())); }
 
-/*
- * --INFO--
- * Address:	802CEEDC
- * Size:	0002AC
+/**
+ * @note Address: 0x802CEEDC
+ * @note Size: 0x2AC
  */
 void Obj::setJumpMove(Vector3f& targetPos)
 {
@@ -286,10 +264,9 @@ void Obj::setJumpMove(Vector3f& targetPos)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802CF188
- * Size:	000078
+/**
+ * @note Address: 0x802CF188
+ * @note Size: 0x78
  */
 void Obj::updateFace()
 {
@@ -300,10 +277,9 @@ void Obj::updateFace()
 	updateFaceDir(faceAngle);
 }
 
-/*
- * --INFO--
- * Address:	802CF200
- * Size:	000080
+/**
+ * @note Address: 0x802CF200
+ * @note Size: 0x80
  */
 void Obj::updateConstraint()
 {
@@ -320,10 +296,9 @@ void Obj::updateConstraint()
 	constraintOff();
 }
 
-/*
- * --INFO--
- * Address:	802CF280
- * Size:	000530
+/**
+ * @note Address: 0x802CF280
+ * @note Size: 0x530
  */
 void Obj::appearNearByTarget(Creature* target)
 {
@@ -730,10 +705,9 @@ lbl_802CF754:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802CF7B0
- * Size:	00020C
+/**
+ * @note Address: 0x802CF7B0
+ * @note Size: 0x20C
  */
 void Obj::setAttackPosition()
 {
@@ -895,10 +869,9 @@ lbl_802CF8D4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802CF9BC
- * Size:	0005F4
+/**
+ * @note Address: 0x802CF9BC
+ * @note Size: 0x5F4
  */
 Piki* Obj::getAttackPiki(int animIdx)
 {
@@ -1362,10 +1335,9 @@ lbl_802CFF6C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802CFFB0
- * Size:	0005C8
+/**
+ * @note Address: 0x802CFFB0
+ * @note Size: 0x5C8
  */
 Navi* Obj::getAttackNavi(int animIdx)
 {
@@ -1818,10 +1790,9 @@ lbl_802D0534:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802D0578
- * Size:	000050
+/**
+ * @note Address: 0x802D0578
+ * @note Size: 0x50
  */
 Creature* Obj::getSearchedTarget()
 {
@@ -1830,10 +1801,9 @@ Creature* Obj::getSearchedTarget()
 	return EnemyFunc::getNearestPikminOrNavi(this, searchAngle, C_PARMS->mGeneral.mSightRadius.mValue, nullptr, nullptr, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802D05C8
- * Size:	000068
+/**
+ * @note Address: 0x802D05C8
+ * @note Size: 0x68
  */
 CollPart* Obj::getSwallowSlot()
 {
@@ -1848,10 +1818,9 @@ CollPart* Obj::getSwallowSlot()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	802D0630
- * Size:	00006C
+/**
+ * @note Address: 0x802D0630
+ * @note Size: 0x6C
  */
 bool Obj::isSwallowPikmin()
 {
@@ -1866,10 +1835,9 @@ bool Obj::isSwallowPikmin()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802D069C
- * Size:	00024C
+/**
+ * @note Address: 0x802D069C
+ * @note Size: 0x24C
  */
 int Obj::getStickHeadPikmin()
 {
@@ -1887,38 +1855,33 @@ int Obj::getStickHeadPikmin()
 	return stickCount;
 }
 
-/*
- * --INFO--
- * Address:	802D08E8
- * Size:	000048
+/**
+ * @note Address: 0x802D08E8
+ * @note Size: 0x48
  */
 void Obj::createJointCallBack() { mSnakeJointMgr = new SnakeJointMgr(this); }
 
-/*
- * --INFO--
- * Address:	802D0930
- * Size:	000024
+/**
+ * @note Address: 0x802D0930
+ * @note Size: 0x24
  */
 void Obj::setupJointCallBack() { mSnakeJointMgr->setupCallBackJoint(); }
 
-/*
- * --INFO--
- * Address:	802D0954
- * Size:	000024
+/**
+ * @note Address: 0x802D0954
+ * @note Size: 0x24
  */
 void Obj::doAnimationJointCallBack() { mSnakeJointMgr->doAnimation(); }
 
-/*
- * --INFO--
- * Address:	802D0978
- * Size:	000024
+/**
+ * @note Address: 0x802D0978
+ * @note Size: 0x24
  */
 void Obj::finishAnimationJointCallBack() { mSnakeJointMgr->finishAnimation(); }
 
-/*
- * --INFO--
- * Address:	802D099C
- * Size:	0000B8
+/**
+ * @note Address: 0x802D099C
+ * @note Size: 0xB8
  */
 void Obj::startJointCallBack()
 {
@@ -1928,10 +1891,9 @@ void Obj::startJointCallBack()
 	mSnakeJointMgr->startModify(y, (f32)event->mFrame - frame);
 }
 
-/*
- * --INFO--
- * Address:	802D0A54
- * Size:	000088
+/**
+ * @note Address: 0x802D0A54
+ * @note Size: 0x88
  */
 void Obj::returnJointCallBack()
 {
@@ -1940,17 +1902,15 @@ void Obj::returnJointCallBack()
 	mSnakeJointMgr->returnModify((f32)event->mFrame - frame);
 }
 
-/*
- * --INFO--
- * Address:	802D0ADC
- * Size:	000024
+/**
+ * @note Address: 0x802D0ADC
+ * @note Size: 0x24
  */
 void Obj::finishJointCallBack() { mSnakeJointMgr->finishModify(); }
 
-/*
- * --INFO--
- * Address:	802D0B00
- * Size:	000038
+/**
+ * @note Address: 0x802D0B00
+ * @note Size: 0x38
  */
 void Obj::setupCollision()
 {
@@ -1960,10 +1920,9 @@ void Obj::setupCollision()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802D0B38
- * Size:	000040
+/**
+ * @note Address: 0x802D0B38
+ * @note Size: 0x40
  */
 void Obj::lifeIncrement()
 {
@@ -1976,45 +1935,39 @@ void Obj::lifeIncrement()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802D0B78
- * Size:	000048
+/**
+ * @note Address: 0x802D0B78
+ * @note Size: 0x48
  */
 void Obj::createShadowSystem() { mShadowMgr = new SnakeWholeShadowMgr(this); }
 
-/*
- * --INFO--
- * Address:	802D0BC0
- * Size:	000024
+/**
+ * @note Address: 0x802D0BC0
+ * @note Size: 0x24
  */
 void Obj::setupShadowSystem() { mShadowMgr->init(); }
 
-/*
- * --INFO--
- * Address:	802D0BE4
- * Size:	000024
+/**
+ * @note Address: 0x802D0BE4
+ * @note Size: 0x24
  */
 void Obj::doAnimationShadowSystem() { mShadowMgr->update(); }
 
-/*
- * --INFO--
- * Address:	802D0C08
- * Size:	000024
+/**
+ * @note Address: 0x802D0C08
+ * @note Size: 0x24
  */
 void Obj::startJointShadow() { mShadowMgr->startJointShadow(); }
 
-/*
- * --INFO--
- * Address:	802D0C2C
- * Size:	000024
+/**
+ * @note Address: 0x802D0C2C
+ * @note Size: 0x24
  */
 void Obj::finishJointShadow() { mShadowMgr->finishJointShadow(); }
 
-/*
- * --INFO--
- * Address:	802D0C50
- * Size:	000040
+/**
+ * @note Address: 0x802D0C50
+ * @note Size: 0x40
  */
 void Obj::deleteJointShadow()
 {
@@ -2022,10 +1975,9 @@ void Obj::deleteJointShadow()
 	shadowMgr->delJointShadow(this);
 }
 
-/*
- * --INFO--
- * Address:	802D0C90
- * Size:	0000E0
+/**
+ * @note Address: 0x802D0C90
+ * @note Size: 0xE0
  */
 void Obj::startBossAttackBGM()
 {
@@ -2038,10 +1990,9 @@ void Obj::startBossAttackBGM()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802D0D70
- * Size:	0000C8
+/**
+ * @note Address: 0x802D0D70
+ * @note Size: 0xC8
  */
 void Obj::startBossFlickBGM()
 {
@@ -2050,10 +2001,9 @@ void Obj::startBossFlickBGM()
 	soundObj->jumpRequest(4);
 }
 
-/*
- * --INFO--
- * Address:	802D0E38
- * Size:	0000FC
+/**
+ * @note Address: 0x802D0E38
+ * @note Size: 0xFC
  */
 void Obj::updateBossBGM()
 {
@@ -2066,10 +2016,9 @@ void Obj::updateBossBGM()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802D0F34
- * Size:	0000D0
+/**
+ * @note Address: 0x802D0F34
+ * @note Size: 0xD0
  */
 void Obj::resetBossAppearBGM()
 {
@@ -2081,10 +2030,9 @@ void Obj::resetBossAppearBGM()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802D1004
- * Size:	0000CC
+/**
+ * @note Address: 0x802D1004
+ * @note Size: 0xCC
  */
 void Obj::setBossAppearBGM()
 {
@@ -2096,17 +2044,15 @@ void Obj::setBossAppearBGM()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802D10D0
- * Size:	000068
+/**
+ * @note Address: 0x802D10D0
+ * @note Size: 0x68
  */
 void Obj::createEffect() { mEfxDead = new efx::TCphebiDead; }
 
-/*
- * --INFO--
- * Address:	802D1138
- * Size:	000078
+/**
+ * @note Address: 0x802D1138
+ * @note Size: 0x78
  */
 void Obj::setupEffect()
 {
@@ -2116,10 +2062,9 @@ void Obj::setupEffect()
 	mFitEffectPos = mModel->getJoint("kutijnt1")->getWorldMatrix()->getBasis(3);
 }
 
-/*
- * --INFO--
- * Address:	802D11B0
- * Size:	0001D4
+/**
+ * @note Address: 0x802D11B0
+ * @note Size: 0x1D4
  */
 void Obj::createAppearEffect(int effectID)
 {
@@ -2140,17 +2085,15 @@ void Obj::createAppearEffect(int effectID)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802D1384
- * Size:	000034
+/**
+ * @note Address: 0x802D1384
+ * @note Size: 0x34
  */
 void Obj::createDeadStartEffect() { mEfxDead->create(nullptr); }
 
-/*
- * --INFO--
- * Address:	802D13B8
- * Size:	000094
+/**
+ * @note Address: 0x802D13B8
+ * @note Size: 0x94
  */
 void Obj::createDeadFinishEffect()
 {
@@ -2160,10 +2103,9 @@ void Obj::createDeadFinishEffect()
 	deadFX.create(&fxArg);
 }
 
-/*
- * --INFO--
- * Address:	802D144C
- * Size:	00003C
+/**
+ * @note Address: 0x802D144C
+ * @note Size: 0x3C
  */
 void Obj::createWalkSmokeEffect(f32 scale)
 {
@@ -2174,24 +2116,21 @@ void Obj::createWalkSmokeEffect(f32 scale)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802D1488
- * Size:	000030
+/**
+ * @note Address: 0x802D1488
+ * @note Size: 0x30
  */
 void Obj::effectDrawOn() { mEfxDead->endDemoDrawOn(); }
 
-/*
- * --INFO--
- * Address:	802D14B8
- * Size:	000030
+/**
+ * @note Address: 0x802D14B8
+ * @note Size: 0x30
  */
 void Obj::effectDrawOff() { mEfxDead->startDemoDrawOff(); }
 
-/*
- * --INFO--
- * Address:	802D14E8
- * Size:	000048
+/**
+ * @note Address: 0x802D14E8
+ * @note Size: 0x48
  */
 void Obj::createEfxHamon()
 {
@@ -2200,10 +2139,9 @@ void Obj::createEfxHamon()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802D1538
- * Size:	000058
+/**
+ * @note Address: 0x802D1538
+ * @note Size: 0x58
  */
 Vector3f* Obj::getFitEffectPos()
 {

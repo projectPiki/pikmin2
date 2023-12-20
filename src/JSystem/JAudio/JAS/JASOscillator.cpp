@@ -146,10 +146,9 @@ const s16 oscTableForceStop[6] = { 0, 15, 0, 15, 0, 0 };
         .4byte 0x00000000
 */
 
-/*
- * --INFO--
- * Address:	800A2B78
- * Size:	000034
+/**
+ * @note Address: 0x800A2B78
+ * @note Size: 0x34
  */
 void JASOscillator::init()
 {
@@ -165,10 +164,9 @@ void JASOscillator::init()
 	_14   = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	800A2BAC
- * Size:	000088
+/**
+ * @note Address: 0x800A2BAC
+ * @note Size: 0x88
  */
 void JASOscillator::initStart(const Data* data)
 {
@@ -190,10 +188,9 @@ void JASOscillator::initStart(const Data* data)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800A2C34
- * Size:	0000C8
+/**
+ * @note Address: 0x800A2C34
+ * @note Size: 0xC8
  */
 void JASOscillator::incCounter()
 {
@@ -224,10 +221,9 @@ void JASOscillator::incCounter()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800A2CFC
- * Size:	00002C
+/**
+ * @note Address: 0x800A2CFC
+ * @note Size: 0x2C
  */
 f32 JASOscillator::getValue() const
 {
@@ -237,20 +233,18 @@ f32 JASOscillator::getValue() const
 	return _08 * mData->_10 + mData->_14;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 void JASOscillator::forceStop()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800A2D28
- * Size:	000168
+/**
+ * @note Address: 0x800A2D28
+ * @note Size: 0x168
  */
 bool JASOscillator::release()
 {
@@ -394,10 +388,9 @@ lbl_800A2E74:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800A2E90
- * Size:	000374
+/**
+ * @note Address: 0x800A2E90
+ * @note Size: 0x374
  */
 f32 JASOscillator::calc(const short*)
 {

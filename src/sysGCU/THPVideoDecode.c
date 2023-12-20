@@ -15,10 +15,9 @@ static OSMessage DecodedTextureSetMessage[BUFFER_COUNT];
 static BOOL VideoDecodeThreadCreated;
 static BOOL First;
 
-/*
- * --INFO--
- * Address:	8044F8B4
- * Size:	0000D8
+/**
+ * @note Address: 0x8044F8B4
+ * @note Size: 0xD8
  */
 BOOL CreateVideoDecodeThread(OSPriority priority, void* task)
 {
@@ -41,10 +40,9 @@ BOOL CreateVideoDecodeThread(OSPriority priority, void* task)
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	8044F98C
- * Size:	000034
+/**
+ * @note Address: 0x8044F98C
+ * @note Size: 0x34
  */
 void VideoDecodeThreadStart()
 {
@@ -52,10 +50,9 @@ void VideoDecodeThreadStart()
 		OSResumeThread(&VideoDecodeThread);
 }
 
-/*
- * --INFO--
- * Address:	8044F9C0
- * Size:	00003C
+/**
+ * @note Address: 0x8044F9C0
+ * @note Size: 0x3C
  */
 void VideoDecodeThreadCancel()
 {
@@ -65,10 +62,9 @@ void VideoDecodeThreadCancel()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8044F9FC
- * Size:	0000C8
+/**
+ * @note Address: 0x8044F9FC
+ * @note Size: 0xC8
  */
 static void* VideoDecoder(void* arg)
 {
@@ -102,10 +98,9 @@ static void* VideoDecoder(void* arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8044FAC4
- * Size:	000134
+/**
+ * @note Address: 0x8044FAC4
+ * @note Size: 0x134
  */
 static void* VideoDecoderForOnMemory(void* arg)
 {
@@ -163,10 +158,9 @@ static void* VideoDecoderForOnMemory(void* arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8044FBF8
- * Size:	000120
+/**
+ * @note Address: 0x8044FBF8
+ * @note Size: 0x120
  */
 static void VideoDecode(THPReadBuffer* readBuffer)
 {
@@ -210,10 +204,9 @@ static void VideoDecode(THPReadBuffer* readBuffer)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8044FD18
- * Size:	000034
+/**
+ * @note Address: 0x8044FD18
+ * @note Size: 0x34
  */
 OSMessage PopFreeTextureSet()
 {
@@ -222,17 +215,15 @@ OSMessage PopFreeTextureSet()
 	return msg;
 }
 
-/*
- * --INFO--
- * Address:	8044FD4C
- * Size:	000030
+/**
+ * @note Address: 0x8044FD4C
+ * @note Size: 0x30
  */
 BOOL PushFreeTextureSet(OSMessage* msg) { OSSendMessage(&FreeTextureSetQueue, msg, 0); }
 
-/*
- * --INFO--
- * Address:	8044FD7C
- * Size:	000044
+/**
+ * @note Address: 0x8044FD7C
+ * @note Size: 0x44
  */
 OSMessage PopDecodedTextureSet(s32 flags)
 {
@@ -243,9 +234,8 @@ OSMessage PopDecodedTextureSet(s32 flags)
 	return NULL;
 }
 
-/*
- * --INFO--
- * Address:	8044FDC0
- * Size:	000030
+/**
+ * @note Address: 0x8044FDC0
+ * @note Size: 0x30
  */
 BOOL PushDecodedTextureSet(OSMessage* msg) { OSSendMessage(&DecodedTextureSetQueue, msg, OS_MESSAGE_BLOCK); }

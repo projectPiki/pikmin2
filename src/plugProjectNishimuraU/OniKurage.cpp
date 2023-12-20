@@ -17,10 +17,9 @@ const f32 cDefaultKamuJointOffset[2] = { 7.5f, -7.5f };
 const f32 cFlickKamuJointOffset[2]   = { 10.0f, -10.0f };
 } // namespace
 
-/*
- * --INFO--
- * Address:	802D3F84
- * Size:	000140
+/**
+ * @note Address: 0x802D3F84
+ * @note Size: 0x140
  */
 Obj::Obj()
 {
@@ -29,17 +28,15 @@ Obj::Obj()
 	createEffect();
 }
 
-/*
- * --INFO--
- * Address:	802D40C4
- * Size:	000004
+/**
+ * @note Address: 0x802D40C4
+ * @note Size: 0x4
  */
 void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
-/*
- * --INFO--
- * Address:	802D40C8
- * Size:	0000B0
+/**
+ * @note Address: 0x802D40C8
+ * @note Size: 0xB0
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
@@ -63,10 +60,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mFsm->start(this, ONIKURAGE_Wait, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802D4178
- * Size:	000054
+/**
+ * @note Address: 0x802D4178
+ * @note Size: 0x54
  */
 void Obj::onKill(CreatureKillArg* killArg)
 {
@@ -76,10 +72,9 @@ void Obj::onKill(CreatureKillArg* killArg)
 	EnemyBase::onKill(killArg);
 }
 
-/*
- * --INFO--
- * Address:	802D41CC
- * Size:	000108
+/**
+ * @note Address: 0x802D41CC
+ * @note Size: 0x108
  */
 void Obj::doUpdate()
 {
@@ -98,10 +93,9 @@ void Obj::doUpdate()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802D42D4
- * Size:	000034
+/**
+ * @note Address: 0x802D42D4
+ * @note Size: 0x34
  */
 void Obj::doUpdateCommon()
 {
@@ -109,24 +103,21 @@ void Obj::doUpdateCommon()
 	escapeCheckNavi();
 }
 
-/*
- * --INFO--
- * Address:	802D4308
- * Size:	000004
+/**
+ * @note Address: 0x802D4308
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	802D430C
- * Size:	000020
+/**
+ * @note Address: 0x802D430C
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	802D432C
- * Size:	00004C
+/**
+ * @note Address: 0x802D432C
+ * @note Size: 0x4C
  */
 void Obj::setFSM(FSM* fsm)
 {
@@ -135,10 +126,9 @@ void Obj::setFSM(FSM* fsm)
 	mCurrentLifecycleState = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	802D4378
- * Size:	00010C
+/**
+ * @note Address: 0x802D4378
+ * @note Size: 0x10C
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
@@ -164,10 +154,9 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 	shadowParam.mSize = 25.0f;
 }
 
-/*
- * --INFO--
- * Address:	802D4484
- * Size:	000038
+/**
+ * @note Address: 0x802D4484
+ * @note Size: 0x38
  */
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* part)
 {
@@ -179,10 +168,9 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* part)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802D44BC
- * Size:	000044
+/**
+ * @note Address: 0x802D44BC
+ * @note Size: 0x44
  */
 void Obj::doStartStoneState()
 {
@@ -192,10 +180,9 @@ void Obj::doStartStoneState()
 	finishSuckEffect();
 }
 
-/*
- * --INFO--
- * Address:	802D4500
- * Size:	0000B8
+/**
+ * @note Address: 0x802D4500
+ * @note Size: 0xB8
  */
 void Obj::doFinishStoneState()
 {
@@ -212,10 +199,9 @@ void Obj::doFinishStoneState()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802D45B8
- * Size:	000034
+/**
+ * @note Address: 0x802D45B8
+ * @note Size: 0x34
  */
 void Obj::doStartWaitingBirthTypeDrop()
 {
@@ -223,10 +209,9 @@ void Obj::doStartWaitingBirthTypeDrop()
 	effectDrawOff();
 }
 
-/*
- * --INFO--
- * Address:	802D45EC
- * Size:	000034
+/**
+ * @note Address: 0x802D45EC
+ * @note Size: 0x34
  */
 void Obj::doFinishWaitingBirthTypeDrop()
 {
@@ -234,24 +219,21 @@ void Obj::doFinishWaitingBirthTypeDrop()
 	effectDrawOn();
 }
 
-/*
- * --INFO--
- * Address:	802D4620
- * Size:	000020
+/**
+ * @note Address: 0x802D4620
+ * @note Size: 0x20
  */
 void Obj::doStartMovie() { effectDrawOff(); }
 
-/*
- * --INFO--
- * Address:	802D4640
- * Size:	000020
+/**
+ * @note Address: 0x802D4640
+ * @note Size: 0x20
  */
 void Obj::doEndMovie() { effectDrawOn(); }
 
-/*
- * --INFO--
- * Address:	802D4660
- * Size:	0000C8
+/**
+ * @note Address: 0x802D4660
+ * @note Size: 0xC8
  */
 void Obj::initMouthSlots()
 {
@@ -268,10 +250,9 @@ void Obj::initMouthSlots()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802D4728
- * Size:	000098
+/**
+ * @note Address: 0x802D4728
+ * @note Size: 0x98
  */
 f32 Obj::setHeightVelocity(f32 yOffset, f32 speedFactor)
 {
@@ -283,10 +264,9 @@ f32 Obj::setHeightVelocity(f32 yOffset, f32 speedFactor)
 	return mPosition.y - minY;
 }
 
-/*
- * --INFO--
- * Address:	802D47C0
- * Size:	0001D8
+/**
+ * @note Address: 0x802D47C0
+ * @note Size: 0x1D8
  */
 void Obj::setRandTarget()
 {
@@ -301,10 +281,9 @@ void Obj::setRandTarget()
 	mTargetPosition = Vector3f(randRadius * sinf(theta) + homePos.x, homePos.y, randRadius * cosf(theta) + homePos.z);
 }
 
-/*
- * --INFO--
- * Address:	802D4998
- * Size:	0000A4
+/**
+ * @note Address: 0x802D4998
+ * @note Size: 0xA4
  */
 f32 Obj::getMovePitchOffset()
 {
@@ -317,10 +296,9 @@ f32 Obj::getMovePitchOffset()
 	return 20.0f * sinf(_2C8);
 }
 
-/*
- * --INFO--
- * Address:	802D4A3C
- * Size:	0001A8
+/**
+ * @note Address: 0x802D4A3C
+ * @note Size: 0x1A8
  */
 f32 Obj::getAttackPitchOffset()
 {
@@ -346,10 +324,9 @@ f32 Obj::getAttackPitchOffset()
 	return attackOffset;
 }
 
-/*
- * --INFO--
- * Address:	802D4BE4
- * Size:	0001A8
+/**
+ * @note Address: 0x802D4BE4
+ * @note Size: 0x1A8
  */
 f32 Obj::getFlickPitchOffset()
 {
@@ -375,10 +352,9 @@ f32 Obj::getFlickPitchOffset()
 	return flickOffset;
 }
 
-/*
- * --INFO--
- * Address:	802D4D8C
- * Size:	000144
+/**
+ * @note Address: 0x802D4D8C
+ * @note Size: 0x144
  */
 f32 Obj::getTakeOffPitchOffset()
 {
@@ -404,10 +380,9 @@ f32 Obj::getTakeOffPitchOffset()
 	return takeOffOffset;
 }
 
-/*
- * --INFO--
- * Address:	802D4ED0
- * Size:	000168
+/**
+ * @note Address: 0x802D4ED0
+ * @note Size: 0x168
  */
 f32 Obj::getFallPitchOffset(f32 currFrame)
 {
@@ -432,10 +407,9 @@ f32 Obj::getFallPitchOffset(f32 currFrame)
 	return fallOffset;
 }
 
-/*
- * --INFO--
- * Address:	802D5038
- * Size:	000030
+/**
+ * @note Address: 0x802D5038
+ * @note Size: 0x30
  */
 void Obj::updateFallTimer()
 {
@@ -447,10 +421,9 @@ void Obj::updateFallTimer()
 	mFallTimer = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	802D5068
- * Size:	0000A4
+/**
+ * @note Address: 0x802D5068
+ * @note Size: 0xA4
  */
 StateID Obj::getFlyingNextState()
 {
@@ -473,10 +446,9 @@ StateID Obj::getFlyingNextState()
 	return ONIKURAGE_NULL;
 }
 
-/*
- * --INFO--
- * Address:	802D510C
- * Size:	000340
+/**
+ * @note Address: 0x802D510C
+ * @note Size: 0x340
  */
 Creature* Obj::getSearchedTarget(f32 offset)
 {
@@ -754,10 +726,9 @@ lbl_802D53F4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802D544C
- * Size:	000238
+/**
+ * @note Address: 0x802D544C
+ * @note Size: 0x238
  */
 bool Obj::isSuck(f32 offset, Creature* target)
 {
@@ -799,10 +770,9 @@ bool Obj::isSuck(f32 offset, Creature* target)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802D5684
- * Size:	000434
+/**
+ * @note Address: 0x802D5684
+ * @note Size: 0x434
  */
 bool Obj::suckPikmin(f32 offset)
 {
@@ -835,10 +805,9 @@ bool Obj::suckPikmin(f32 offset)
 	return mSuckedPiki >= C_PROPERPARMS.mMaxSuckPiki.mValue;
 }
 
-/*
- * --INFO--
- * Address:	802D5AB8
- * Size:	000570
+/**
+ * @note Address: 0x802D5AB8
+ * @note Size: 0x570
  */
 bool Obj::suckNavi(f32 offset)
 {
@@ -1289,10 +1258,9 @@ lbl_802D5FC0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802D6028
- * Size:	00026C
+/**
+ * @note Address: 0x802D6028
+ * @note Size: 0x26C
  */
 void Obj::updateCollPartOffset()
 {
@@ -1529,10 +1497,9 @@ lbl_802D6268:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802D6294
- * Size:	000100
+/**
+ * @note Address: 0x802D6294
+ * @note Size: 0x100
  */
 bool Obj::isFinishNaviSuck()
 {
@@ -1550,10 +1517,9 @@ bool Obj::isFinishNaviSuck()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	802D6394
- * Size:	000028
+/**
+ * @note Address: 0x802D6394
+ * @note Size: 0x28
  */
 bool Obj::isNaviSucked()
 {
@@ -1564,10 +1530,9 @@ bool Obj::isNaviSucked()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	802D63BC
- * Size:	00029C
+/**
+ * @note Address: 0x802D63BC
+ * @note Size: 0x29C
  */
 void Obj::flickStickNavi(bool check)
 {
@@ -1832,10 +1797,9 @@ lbl_802D6638:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802D6658
- * Size:	000130
+/**
+ * @note Address: 0x802D6658
+ * @note Size: 0x130
  */
 void Obj::escapeCheckNavi()
 {
@@ -1860,10 +1824,9 @@ void Obj::escapeCheckNavi()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802D6788
- * Size:	000340
+/**
+ * @note Address: 0x802D6788
+ * @note Size: 0x340
  */
 void Obj::createEffect()
 {
@@ -1876,10 +1839,9 @@ void Obj::createEffect()
 	mEfxDeadrun = new efx::TKurageDeadrun();
 }
 
-/*
- * --INFO--
- * Address:	802D6AC8
- * Size:	00008C
+/**
+ * @note Address: 0x802D6AC8
+ * @note Size: 0x8C
  */
 void Obj::setupEffect()
 {
@@ -1889,10 +1851,9 @@ void Obj::setupEffect()
 	mEfxDeadrun->mMtx = mModel->getJoint("center")->getWorldMatrix();
 }
 
-/*
- * --INFO--
- * Address:	802D6B54
- * Size:	000088
+/**
+ * @note Address: 0x802D6B54
+ * @note Size: 0x88
  */
 void Obj::startEyeHireBodyEffect()
 {
@@ -1902,10 +1863,9 @@ void Obj::startEyeHireBodyEffect()
 	mEfxKira->create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802D6BDC
- * Size:	00007C
+/**
+ * @note Address: 0x802D6BDC
+ * @note Size: 0x7C
  */
 void Obj::finishEyeBodyEffect()
 {
@@ -1916,17 +1876,15 @@ void Obj::finishEyeBodyEffect()
 	mEfxDeadrun->create(nullptr);
 }
 
-/*
- * --INFO--
- * Address:	802D6C58
- * Size:	000024
+/**
+ * @note Address: 0x802D6C58
+ * @note Size: 0x24
  */
 void Obj::setHireEffectLife(s16 lifeTime) { mEfxHire->setLifeTime(lifeTime); }
 
-/*
- * --INFO--
- * Address:	802D6C7C
- * Size:	000050
+/**
+ * @note Address: 0x802D6C7C
+ * @note Size: 0x50
  */
 void Obj::finishHireEffect()
 {
@@ -1934,10 +1892,9 @@ void Obj::finishHireEffect()
 	mEfxDeadrun->fade();
 }
 
-/*
- * --INFO--
- * Address:	802D6CCC
- * Size:	000058
+/**
+ * @note Address: 0x802D6CCC
+ * @note Size: 0x58
  */
 void Obj::startSuckEffect(Vector3f& pos)
 {
@@ -1945,31 +1902,27 @@ void Obj::startSuckEffect(Vector3f& pos)
 	mEfxSui->create(&fxArg);
 }
 
-/*
- * --INFO--
- * Address:	802D6D24
- * Size:	000024
+/**
+ * @note Address: 0x802D6D24
+ * @note Size: 0x24
  */
 void Obj::updateSuckEffect(Vector3f& pos) { mEfxSui->setGlobalTranslation(pos); }
 
-/*
- * --INFO--
- * Address:	802D6D48
- * Size:	000030
+/**
+ * @note Address: 0x802D6D48
+ * @note Size: 0x30
  */
 void Obj::finishSuckEffect() { mEfxSui->fade(); }
 
-/*
- * --INFO--
- * Address:	802D6D78
- * Size:	000034
+/**
+ * @note Address: 0x802D6D78
+ * @note Size: 0x34
  */
 void Obj::createFlickNaviEffect() { mEfxGepu->create(nullptr); }
 
-/*
- * --INFO--
- * Address:	802D6DAC
- * Size:	00009C
+/**
+ * @note Address: 0x802D6DAC
+ * @note Size: 0x9C
  */
 void Obj::createBodyBombEffect()
 {
@@ -1982,17 +1935,15 @@ void Obj::createBodyBombEffect()
 	bombFX.create(&fxArg);
 }
 
-/*
- * --INFO--
- * Address:	802D6E48
- * Size:	000044
+/**
+ * @note Address: 0x802D6E48
+ * @note Size: 0x44
  */
 void Obj::createDownEffect() { createBounceEffect(mPosition, getDownSmokeScale()); }
 
-/*
- * --INFO--
- * Address:	802D6E94
- * Size:	0000B4
+/**
+ * @note Address: 0x802D6E94
+ * @note Size: 0xB4
  */
 void Obj::effectDrawOn()
 {
@@ -2005,10 +1956,9 @@ void Obj::effectDrawOn()
 	mEfxDeadrun->endDemoDrawOn();
 }
 
-/*
- * --INFO--
- * Address:	802D6F48
- * Size:	0000B4
+/**
+ * @note Address: 0x802D6F48
+ * @note Size: 0xB4
  */
 void Obj::effectDrawOff()
 {

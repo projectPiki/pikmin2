@@ -3,10 +3,9 @@
 namespace Game {
 const f32 EnemyAnimatorBase::defaultAnimSpeed = 30.0f;
 
-/*
- * --INFO--
- * Address:	80127974
- * Size:	000044
+/**
+ * @note Address: 0x80127974
+ * @note Size: 0x44
  */
 EnemyAnimatorBase::EnemyAnimatorBase()
     : mSpeed(30.0f)
@@ -15,10 +14,9 @@ EnemyAnimatorBase::EnemyAnimatorBase()
 	reset();
 }
 
-/*
- * --INFO--
- * Address:	801279B8
- * Size:	000124
+/**
+ * @note Address: 0x801279B8
+ * @note Size: 0x124
  */
 void EnemyAnimatorBase::animate(f32 speed)
 {
@@ -47,10 +45,9 @@ void EnemyAnimatorBase::animate(f32 speed)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80127ADC
- * Size:	000124
+/**
+ * @note Address: 0x80127ADC
+ * @note Size: 0x124
  */
 void EnemyAnimatorBase::animate(int animatorNum, f32 speed)
 {

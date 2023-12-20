@@ -5,10 +5,9 @@ namespace Armor {
 
 static const char armorMgrName[] = "246-ArmorMgr";
 
-/*
- * --INFO--
- * Address:	8027D2B8
- * Size:	000050
+/**
+ * @note Address: 0x8027D2B8
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -16,24 +15,21 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "ヨロイムシマネージャ"; // worm manager
 }
 
-/*
- * --INFO--
- * Address:	8027D308
- * Size:	000048
+/**
+ * @note Address: 0x8027D308
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Parms); }
 
-/*
- * --INFO--
- * Address:	8027D460
- * Size:	000060
+/**
+ * @note Address: 0x8027D460
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	8027D57C
- * Size:	000010
+/**
+ * @note Address: 0x8027D57C
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 

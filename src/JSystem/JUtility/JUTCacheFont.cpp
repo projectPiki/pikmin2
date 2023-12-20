@@ -4,10 +4,9 @@
 #include "JSystem/JUtility/JUTFont.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	80033F94
- * Size:	000090
+/**
+ * @note Address: 0x80033F94
+ * @note Size: 0x90
  * __ct__12JUTCacheFontFPC7ResFONTUlP7JKRHeap
  */
 JUTCacheFont::JUTCacheFont(const ResFONT* resource, u32 size, JKRHeap* heap)
@@ -19,10 +18,9 @@ JUTCacheFont::JUTCacheFont(const ResFONT* resource, u32 size, JKRHeap* heap)
 	initiate(resource, nullptr, size, heap);
 }
 
-/*
- * --INFO--
- * Address:	80034024
- * Size:	000094
+/**
+ * @note Address: 0x80034024
+ * @note Size: 0x94
  * __dt
  */
 JUTCacheFont::~JUTCacheFont()
@@ -36,10 +34,9 @@ JUTCacheFont::~JUTCacheFont()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800340B8
- * Size:	000084
+/**
+ * @note Address: 0x800340B8
+ * @note Size: 0x84
  */
 void JUTCacheFont::deleteMemBlocks_CacheFont()
 {
@@ -54,10 +51,9 @@ void JUTCacheFont::deleteMemBlocks_CacheFont()
 	delete mMapBlockBuffer;
 }
 
-/*
- * --INFO--
- * Address:	8003413C
- * Size:	00003C
+/**
+ * @note Address: 0x8003413C
+ * @note Size: 0x3C
  */
 void JUTCacheFont::initialize_state()
 {
@@ -76,10 +72,9 @@ void JUTCacheFont::initialize_state()
 	mEndPage          = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80034178
- * Size:	000188
+/**
+ * @note Address: 0x80034178
+ * @note Size: 0x188
  */
 bool JUTCacheFont::getMemorySize(const ResFONT* resource, u16* widthBlocksCount, u32* widthBlocksSize, u16* glyphBlocksCount,
                                  u32* glyphBlocksSize, u16* mapBlocksCount, u32* mapBlocksSize, u32* maxPageByteSize)
@@ -157,10 +152,9 @@ bool JUTCacheFont::getMemorySize(const ResFONT* resource, u16* widthBlocksCount,
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80034300
- * Size:	0000B4
+/**
+ * @note Address: 0x80034300
+ * @note Size: 0xB4
  * initiate__12JUTCacheFontFPC7ResFONTPvUlP7JKRHeap
  */
 bool JUTCacheFont::initiate(const ResFONT* resource, void* buffer, u32 size, JKRHeap* heap)
@@ -175,10 +169,9 @@ bool JUTCacheFont::initiate(const ResFONT* resource, void* buffer, u32 size, JKR
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	800343B4
- * Size:	000184
+/**
+ * @note Address: 0x800343B4
+ * @note Size: 0x184
  */
 bool JUTCacheFont::internal_initiate(const ResFONT* resource, void* buffer, u32 size, JKRHeap* heap)
 {
@@ -204,10 +197,9 @@ bool JUTCacheFont::internal_initiate(const ResFONT* resource, void* buffer, u32 
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80034538
- * Size:	0001C4
+/**
+ * @note Address: 0x80034538
+ * @note Size: 0x1C4
  */
 bool JUTCacheFont::allocArea(void* buffer, u32 size, JKRHeap* heap)
 {
@@ -259,10 +251,9 @@ bool JUTCacheFont::allocArea(void* buffer, u32 size, JKRHeap* heap)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	800346FC
- * Size:	0000E8
+/**
+ * @note Address: 0x800346FC
+ * @note Size: 0xE8
  */
 bool JUTCacheFont::allocArray(JKRHeap* heap)
 {
@@ -294,10 +285,9 @@ bool JUTCacheFont::allocArray(JKRHeap* heap)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	800347E4
- * Size:	000210
+/**
+ * @note Address: 0x800347E4
+ * @note Size: 0x210
  */
 void JUTCacheFont::setBlock()
 {
@@ -360,10 +350,9 @@ void JUTCacheFont::setBlock()
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B0
+/**
+ * @note Address: N/A
+ * @note Size: 0xB0
  */
 JUTCacheFont::TGlyphCacheInfo* JUTCacheFont::determineBlankPage()
 {
@@ -393,10 +382,9 @@ JUTCacheFont::TGlyphCacheInfo* JUTCacheFont::determineBlankPage()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000120
+/**
+ * @note Address: N/A
+ * @note Size: 0x120
  */
 void JUTCacheFont::getGlyphFromAram(JUTCacheFont::TGlyphCacheInfo* info, JUTCacheFont::TCachePage* page, int* code, int* texPageID)
 {
@@ -417,10 +405,9 @@ void JUTCacheFont::getGlyphFromAram(JUTCacheFont::TGlyphCacheInfo* info, JUTCach
 	GXInitTexObjLOD(obj, GX_LINEAR, GX_LINEAR, 0.0f, 0.0f, 0.0f, GX_FALSE, GX_FALSE, GX_ANISO_1);
 }
 
-/*
- * --INFO--
- * Address:	800349F4
- * Size:	0000BC
+/**
+ * @note Address: 0x800349F4
+ * @note Size: 0xBC
  */
 void JUTCacheFont::loadImage(int code, _GXTexMapID id)
 {
@@ -436,10 +423,9 @@ void JUTCacheFont::loadImage(int code, _GXTexMapID id)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80034AB0
- * Size:	000298
+/**
+ * @note Address: 0x80034AB0
+ * @note Size: 0x298
  */
 JUTCacheFont::TGlyphCacheInfo* JUTCacheFont::loadCache_char_subroutine(int* code, bool isSJIS)
 {
@@ -480,20 +466,18 @@ JUTCacheFont::TGlyphCacheInfo* JUTCacheFont::loadCache_char_subroutine(int* code
 	return outPage;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
+/**
+ * @note Address: N/A
+ * @note Size: 0x58
  */
 void JUTCacheFont::loadCache_char(int, bool)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	80034D48
- * Size:	0000C8
+/**
+ * @note Address: 0x80034D48
+ * @note Size: 0xC8
  */
 bool JUTCacheFont::loadCache_string(const char* str, bool isSJIS)
 {
@@ -519,10 +503,9 @@ bool JUTCacheFont::loadCache_string(const char* str, bool isSJIS)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	80034E10
- * Size:	000088
+/**
+ * @note Address: 0x80034E10
+ * @note Size: 0x88
  */
 void JUTCacheFont::invalidiateAllCache()
 {
@@ -552,10 +535,9 @@ void JUTCacheFont::invalidiateAllCache()
 	mEndPage     = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80034E98
- * Size:	000044
+/**
+ * @note Address: 0x80034E98
+ * @note Size: 0x44
  */
 void JUTCacheFont::unlink(TGlyphCacheInfo* cacheInfo)
 {
@@ -571,10 +553,9 @@ void JUTCacheFont::unlink(TGlyphCacheInfo* cacheInfo)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80034EDC
- * Size:	00002C
+/**
+ * @note Address: 0x80034EDC
+ * @note Size: 0x2C
  */
 void JUTCacheFont::prepend(TGlyphCacheInfo* cacheInfo)
 {

@@ -1,16 +1,14 @@
 #include "MapCollision.h"
 
-/*
- * --INFO--
- * Address:	8041A030
- * Size:	000030
+/**
+ * @note Address: 0x8041A030
+ * @note Size: 0x30
  */
 void MapCollision::getCurrTri(Game::CurrTriInfo& info) { mDivider->getCurrTri(info); }
 
-/*
- * --INFO--
- * Address:	8041A060
- * Size:	0000B4
+/**
+ * @note Address: 0x8041A060
+ * @note Size: 0xB4
  */
 void MapCollision::read(Stream& input)
 {
@@ -18,10 +16,9 @@ void MapCollision::read(Stream& input)
 	mDivider->read(input);
 }
 
-/*
- * --INFO--
- * Address:	8041A114
- * Size:	00007C
+/**
+ * @note Address: 0x8041A114
+ * @note Size: 0x7C
  */
 MapCollision* MapCollision::clone(Matrixf& matrix)
 {

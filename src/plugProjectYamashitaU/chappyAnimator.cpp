@@ -4,17 +4,15 @@
 
 namespace Game {
 namespace ChappyBase {
-/*
- * --INFO--
- * Address:	80119710
- * Size:	000008
+/**
+ * @note Address: 0x80119710
+ * @note Size: 0x8
  */
 void ProperAnimator::setAnimMgr(SysShape::AnimMgr* mgr) { mAnimator.mAnimMgr = mgr; }
 
-/*
- * --INFO--
- * Address:	80119718
- * Size:	000008
+/**
+ * @note Address: 0x80119718
+ * @note Size: 0x8
  */
 SysShape::Animator& ProperAnimator::getAnimator(int idx) { return mAnimator; }
 } // namespace ChappyBase

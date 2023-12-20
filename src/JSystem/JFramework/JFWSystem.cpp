@@ -39,10 +39,9 @@ ResFONT* JFWSystem::CSetUpParam::systemFontRes      = &JUTResFONT_Ascfont_fix12;
 GXRenderModeObj* JFWSystem::CSetUpParam::renderMode = &GXNtsc480IntDf;
 u32 JFWSystem::CSetUpParam::exConsoleBufferSize     = 0x24FC;
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
  */
 void JFWSystem::firstInit()
 {
@@ -54,9 +53,8 @@ void JFWSystem::firstInit()
 }
 
 /**
- * --INFO--
- * Address:	8008975C
- * Size:	000350
+ * @note Address: 0x8008975C
+ * @note Size: 0x350
  * init__9JFWSystemFv
  */
 void JFWSystem::init()

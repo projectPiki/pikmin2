@@ -82,10 +82,9 @@ const u32 sSizeOfDiffered[7]   = { 0xD, 0x15, 0x78, 0x37, 0xF, 0x13, 0x2D };
 
 int J3DDisplayListObj::sInterruptFlag;
 
-/*
- * --INFO--
- * Address:	8005F82C
- * Size:	000060
+/**
+ * @note Address: 0x8005F82C
+ * @note Size: 0x60
  */
 J3DErrType J3DDisplayListObj::newDisplayList(u32 size)
 {
@@ -96,10 +95,9 @@ J3DErrType J3DDisplayListObj::newDisplayList(u32 size)
 	return JET_Success;
 }
 
-/*
- * --INFO--
- * Address:	8005F88C
- * Size:	000058
+/**
+ * @note Address: 0x8005F88C
+ * @note Size: 0x58
  */
 J3DErrType J3DDisplayListObj::newSingleDisplayList(u32 size)
 {
@@ -110,10 +108,9 @@ J3DErrType J3DDisplayListObj::newSingleDisplayList(u32 size)
 	return JET_Success;
 }
 
-/*
- * --INFO--
- * Address:	8005F8E4
- * Size:	000068
+/**
+ * @note Address: 0x8005F8E4
+ * @note Size: 0x68
  */
 J3DErrType J3DDisplayListObj::single_To_Double()
 {
@@ -125,10 +122,9 @@ J3DErrType J3DDisplayListObj::single_To_Double()
 	return JET_Success;
 }
 
-/*
- * --INFO--
- * Address:	8005F94C
- * Size:	000020
+/**
+ * @note Address: 0x8005F94C
+ * @note Size: 0x20
  */
 void J3DDisplayListObj::setSingleDisplayList(void* list, u32 size)
 {
@@ -138,10 +134,9 @@ void J3DDisplayListObj::setSingleDisplayList(void* list, u32 size)
 	mSize           = size;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 void J3DDisplayListObj::swapBuffer()
 {
@@ -150,17 +145,15 @@ void J3DDisplayListObj::swapBuffer()
 	mDisplayList[1] = oldList1;
 }
 
-/*
- * --INFO--
- * Address:	8005F96C
- * Size:	00002C
+/**
+ * @note Address: 0x8005F96C
+ * @note Size: 0x2C
  */
 void J3DDisplayListObj::callDL() const { GXCallDisplayList(mDisplayList[0], mSize); }
 
-/*
- * --INFO--
- * Address:	8005F998
- * Size:	000060
+/**
+ * @note Address: 0x8005F998
+ * @note Size: 0x60
  */
 void J3DDisplayListObj::beginDL()
 {
@@ -170,10 +163,9 @@ void J3DDisplayListObj::beginDL()
 	__GDCurrentDL = &sGDLObj;
 }
 
-/*
- * --INFO--
- * Address:	8005F9F8
- * Size:	00005C
+/**
+ * @note Address: 0x8005F9F8
+ * @note Size: 0x5C
  */
 u32 J3DDisplayListObj::endDL()
 {
@@ -185,17 +177,15 @@ u32 J3DDisplayListObj::endDL()
 	return mSize;
 }
 
-/*
- * --INFO--
- * Address:	8005FA54
- * Size:	000060
+/**
+ * @note Address: 0x8005FA54
+ * @note Size: 0x60
  */
 void J3DDisplayListObj::beginPatch() { beginDL(); }
 
-/*
- * --INFO--
- * Address:	8005FAB4
- * Size:	00003C
+/**
+ * @note Address: 0x8005FAB4
+ * @note Size: 0x3C
  */
 u32 J3DDisplayListObj::endPatch()
 {
@@ -204,17 +194,15 @@ u32 J3DDisplayListObj::endPatch()
 	return mSize;
 }
 
-/*
- * --INFO--
- * Address:	8005FAF0
- * Size:	000008
+/**
+ * @note Address: 0x8005FAF0
+ * @note Size: 0x8
  */
 bool J3DPacket::entry(J3DDrawBuffer*) { return true; }
 
-/*
- * --INFO--
- * Address:	8005FAF8
- * Size:	000020
+/**
+ * @note Address: 0x8005FAF8
+ * @note Size: 0x20
  */
 void J3DPacket::addChildPacket(J3DPacket* child)
 {
@@ -226,33 +214,29 @@ void J3DPacket::addChildPacket(J3DPacket* child)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8005FB18
- * Size:	000004
+/**
+ * @note Address: 0x8005FB18
+ * @note Size: 0x4
  */
 void J3DPacket::draw() { }
 
-/*
- * --INFO--
- * Address:	8005FB1C
- * Size:	000048
+/**
+ * @note Address: 0x8005FB1C
+ * @note Size: 0x48
  * __dt__9J3DPacketFv
  */
 J3DPacket::~J3DPacket() { }
 
-/*
- * --INFO--
- * Address:	8005FB64
- * Size:	00005C
+/**
+ * @note Address: 0x8005FB64
+ * @note Size: 0x5C
  * __dt__13J3DDrawPacketFv
  */
 J3DDrawPacket::~J3DDrawPacket() { }
 
-/*
- * --INFO--
- * Address:	8005FBC0
- * Size:	0000A4
+/**
+ * @note Address: 0x8005FBC0
+ * @note Size: 0xA4
  * newDisplayList__13J3DDrawPacketFUl
  */
 J3DErrType J3DDrawPacket::newDisplayList(u32 size)
@@ -261,10 +245,9 @@ J3DErrType J3DDrawPacket::newDisplayList(u32 size)
 	return (mDisplayList == nullptr) ? JET_OutOfMemory : mDisplayList->newDisplayList(size);
 }
 
-/*
- * --INFO--
- * Address:	8005FC64
- * Size:	00009C
+/**
+ * @note Address: 0x8005FC64
+ * @note Size: 0x9C
  * newSingleDisplayList__13J3DDrawPacketFUl
  */
 J3DErrType J3DDrawPacket::newSingleDisplayList(u32 size)
@@ -273,18 +256,16 @@ J3DErrType J3DDrawPacket::newSingleDisplayList(u32 size)
 	return (mDisplayList == nullptr) ? JET_OutOfMemory : mDisplayList->newSingleDisplayList(size);
 }
 
-/*
- * --INFO--
- * Address:	8005FD00
- * Size:	00002C
+/**
+ * @note Address: 0x8005FD00
+ * @note Size: 0x2C
  * draw__13J3DDrawPacketFv
  */
 void J3DDrawPacket::draw() { mDisplayList->callDL(); }
 
-/*
- * --INFO--
- * Address:	8005FD2C
- * Size:	00005C
+/**
+ * @note Address: 0x8005FD2C
+ * @note Size: 0x5C
  * __ct__12J3DMatPacketFv
  */
 J3DMatPacket::J3DMatPacket()
@@ -297,18 +278,16 @@ J3DMatPacket::J3DMatPacket()
 {
 }
 
-/*
- * --INFO--
- * Address:	8005FD88
- * Size:	00006C
+/**
+ * @note Address: 0x8005FD88
+ * @note Size: 0x6C
  * __dt__12J3DMatPacketFv
  */
 J3DMatPacket::~J3DMatPacket() { }
 
-/*
- * --INFO--
- * Address:	8005FDF4
- * Size:	000020
+/**
+ * @note Address: 0x8005FDF4
+ * @note Size: 0x20
  */
 void J3DMatPacket::addShapePacket(J3DShapePacket* shapePacket)
 {
@@ -320,32 +299,28 @@ void J3DMatPacket::addShapePacket(J3DShapePacket* shapePacket)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8005FE14
- * Size:	000064
+/**
+ * @note Address: 0x8005FE14
+ * @note Size: 0x64
  */
 void J3DMatPacket::beginDiff() { mInitShapePacket->mDisplayList->beginDL(); }
 
-/*
- * --INFO--
- * Address:	8005FE78
- * Size:	000060
+/**
+ * @note Address: 0x8005FE78
+ * @note Size: 0x60
  */
 u32 J3DMatPacket::endDiff() { return mInitShapePacket->mDisplayList->endDL(); }
 
-/*
- * --INFO--
- * Address:	8005FED8
- * Size:	000024
+/**
+ * @note Address: 0x8005FED8
+ * @note Size: 0x24
  * isSame__12J3DMatPacketCFP12J3DMatPacket
  */
 bool J3DMatPacket::isSame(J3DMatPacket* other) const { return !(mDiffFlag != other->mDiffFlag || mDiffFlag >> 31); }
 
-/*
- * --INFO--
- * Address:	8005FEFC
- * Size:	000094
+/**
+ * @note Address: 0x8005FEFC
+ * @note Size: 0x94
  * draw__12J3DMatPacketFv
  */
 void J3DMatPacket::draw()
@@ -365,10 +340,9 @@ void J3DMatPacket::draw()
 	J3DShape::sOldVcdVatCmd = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8005FF90
- * Size:	000058
+/**
+ * @note Address: 0x8005FF90
+ * @note Size: 0x58
  * __ct__14J3DShapePacketFv
  */
 J3DShapePacket::J3DShapePacket()
@@ -381,18 +355,16 @@ J3DShapePacket::J3DShapePacket()
 {
 }
 
-/*
- * --INFO--
- * Address:	8005FFE8
- * Size:	00006C
+/**
+ * @note Address: 0x8005FFE8
+ * @note Size: 0x6C
  * __dt__14J3DShapePacketFv
  */
 J3DShapePacket::~J3DShapePacket() { }
 
-/*
- * --INFO--
- * Address:	80060054
- * Size:	000274
+/**
+ * @note Address: 0x80060054
+ * @note Size: 0x274
  */
 int J3DShapePacket::calcDifferedBufferSize(u32 flag)
 {
@@ -650,10 +622,9 @@ lbl_800602A0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800602D8
- * Size:	0000BC
+/**
+ * @note Address: 0x800602D8
+ * @note Size: 0xBC
  */
 J3DErrType J3DShapePacket::newDifferedDisplayList(u32 flag)
 {
@@ -723,10 +694,9 @@ lbl_8006037C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80060394
- * Size:	000114
+/**
+ * @note Address: 0x80060394
+ * @note Size: 0x114
  */
 J3DErrType J3DShapePacket::newDifferedTexMtx(J3DTexDiffFlag flag)
 {
@@ -751,10 +721,9 @@ J3DErrType J3DShapePacket::newDifferedTexMtx(J3DTexDiffFlag flag)
 	return JET_Success;
 }
 
-/*
- * --INFO--
- * Address:	800604A8
- * Size:	0001B0
+/**
+ * @note Address: 0x800604A8
+ * @note Size: 0x1B0
  */
 void J3DShapePacket::draw()
 {
@@ -939,10 +908,9 @@ void J3DShapePacket::draw()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80060658
- * Size:	000198
+/**
+ * @note Address: 0x80060658
+ * @note Size: 0x198
  */
 void J3DShapePacket::drawFast()
 {

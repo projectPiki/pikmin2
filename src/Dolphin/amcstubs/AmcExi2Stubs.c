@@ -1,58 +1,50 @@
 #include "types.h"
 #include "Dolphin/AmcExi2Stubs.h"
 
-/*
- * --INFO--
- * Address:	800D2644
- * Size:	000004
+/**
+ * @note Address: 0x800D2644
+ * @note Size: 0x4
  */
 void EXI2_Init(volatile unsigned char** inputPendingPtrRef, AmcEXICallback monitorCallback) { return; }
 
-/*
- * --INFO--
- * Address:	800D2648
- * Size:	000004
+/**
+ * @note Address: 0x800D2648
+ * @note Size: 0x4
  */
 void EXI2_EnableInterrupts() { return; }
 
-/*
- * --INFO--
- * Address:	800D264C
- * Size:	000008
+/**
+ * @note Address: 0x800D264C
+ * @note Size: 0x8
  */
 int EXI2_Poll() { return 0; }
 
-/*
- * --INFO--
- * Address:	800D2654
- * Size:	000008
+/**
+ * @note Address: 0x800D2654
+ * @note Size: 0x8
  */
 AmcExiError EXI2_ReadN(void* bytes, u32 length) { return AMC_EXI_NO_ERROR; }
 
-/*
- * --INFO--
- * Address:	800D265C
- * Size:	000008
+/**
+ * @note Address: 0x800D265C
+ * @note Size: 0x8
  */
 AmcExiError EXI2_WriteN(const void* bytes, u32 length) { return AMC_EXI_NO_ERROR; }
 
-/*
- * --INFO--
- * Address:	800D2664
- * Size:	000004
+/**
+ * @note Address: 0x800D2664
+ * @note Size: 0x4
  */
 void EXI2_Reserve() { return; }
 
-/*
- * --INFO--
- * Address:	800D2668
- * Size:	000004
+/**
+ * @note Address: 0x800D2668
+ * @note Size: 0x4
  */
 void EXI2_Unreserve() { return; }
 
-/*
- * --INFO--
- * Address:	800D266C
- * Size:	000008
+/**
+ * @note Address: 0x800D266C
+ * @note Size: 0x8
  */
 BOOL AMC_IsStub() { return TRUE; }

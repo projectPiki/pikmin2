@@ -2,10 +2,9 @@
 
 namespace kh {
 namespace Screen {
-/*
- * --INFO--
- * Address:	80410FE0
- * Size:	00009C
+/**
+ * @note Address: 0x80410FE0
+ * @note Size: 0x9C
  */
 void MailSaveData::clear()
 {
@@ -18,10 +17,9 @@ void MailSaveData::clear()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8041107C
- * Size:	000088
+/**
+ * @note Address: 0x8041107C
+ * @note Size: 0x88
  */
 void MailSaveData::read(Stream& stream)
 {
@@ -34,10 +32,9 @@ void MailSaveData::read(Stream& stream)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80411104
- * Size:	000088
+/**
+ * @note Address: 0x80411104
+ * @note Size: 0x88
  */
 void MailSaveData::write(Stream& stream)
 {
@@ -50,10 +47,9 @@ void MailSaveData::write(Stream& stream)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8041118C
- * Size:	000028
+/**
+ * @note Address: 0x8041118C
+ * @note Size: 0x28
  */
 void MailSaveData::set_history(s8 history)
 {

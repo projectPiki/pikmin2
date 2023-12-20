@@ -10,10 +10,9 @@
 #include "JSystem/J3D/J3DVtxColorCalc.h"
 #include "JSystem/J3D/J3DTransform.h"
 
-/*
- * --INFO--
- * Address:	800662FC
- * Size:	000084
+/**
+ * @note Address: 0x800662FC
+ * @note Size: 0x84
  */
 void J3DModel::initialize()
 {
@@ -37,10 +36,9 @@ void J3DModel::initialize()
 	mUnkCalc2     = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80066380
- * Size:	0000C4
+/**
+ * @note Address: 0x80066380
+ * @note Size: 0xC4
  */
 int J3DModel::entryModelData(J3DModelData* data, u32 p2, u32 modelType)
 {
@@ -63,10 +61,9 @@ int J3DModel::entryModelData(J3DModelData* data, u32 p2, u32 modelType)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	80066444
- * Size:	0000BC
+/**
+ * @note Address: 0x80066444
+ * @note Size: 0xBC
  */
 int J3DModel::createShapePacket(J3DModelData* data)
 {
@@ -80,10 +77,9 @@ int J3DModel::createShapePacket(J3DModelData* data)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	80066500
- * Size:	0001D8
+/**
+ * @note Address: 0x80066500
+ * @note Size: 0x1D8
  */
 int J3DModel::createMatPacket(J3DModelData* data, u32 flags)
 {
@@ -285,10 +281,9 @@ lbl_800666C4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800666D8
- * Size:	000090
+/**
+ * @note Address: 0x800666D8
+ * @note Size: 0x90
  */
 int J3DModel::newDifferedDisplayList(u32 displayListFlag)
 {
@@ -305,10 +300,9 @@ int J3DModel::newDifferedDisplayList(u32 displayListFlag)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	80066768
- * Size:	00008C
+/**
+ * @note Address: 0x80066768
+ * @note Size: 0x8C
  */
 int J3DModel::newDifferedTexMtx(J3DTexDiffFlag texDiffFlag)
 {
@@ -322,10 +316,9 @@ int J3DModel::newDifferedTexMtx(J3DTexDiffFlag texDiffFlag)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	800667F4
- * Size:	000130
+/**
+ * @note Address: 0x800667F4
+ * @note Size: 0x130
  */
 void J3DModel::lock()
 {
@@ -335,10 +328,9 @@ void J3DModel::lock()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80066924
- * Size:	0000A4
+/**
+ * @note Address: 0x80066924
+ * @note Size: 0xA4
  */
 void J3DModel::makeDL()
 {
@@ -351,10 +343,9 @@ void J3DModel::makeDL()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800669C8
- * Size:	000164
+/**
+ * @note Address: 0x800669C8
+ * @note Size: 0x164
  */
 void J3DModel::calcMaterial()
 {
@@ -503,10 +494,9 @@ lbl_80066B0C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80066B2C
- * Size:	000140
+/**
+ * @note Address: 0x80066B2C
+ * @note Size: 0x140
  */
 void J3DModel::calcDiffTexMtx()
 {
@@ -627,10 +617,9 @@ lbl_80066C4C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80066C6C
- * Size:	00009C
+/**
+ * @note Address: 0x80066C6C
+ * @note Size: 0x9C
  * diff__8J3DModelFv
  */
 void J3DModel::diff()
@@ -642,10 +631,9 @@ void J3DModel::diff()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80066D08
- * Size:	000034
+/**
+ * @note Address: 0x80066D08
+ * @note Size: 0x34
  */
 void J3DModel::setVtxColorCalc(J3DVtxColorCalc* vtxColorCalc, J3DDeformAttachFlag deformAttachFlag)
 {
@@ -655,10 +643,9 @@ void J3DModel::setVtxColorCalc(J3DVtxColorCalc* vtxColorCalc, J3DDeformAttachFla
 	}
 }
 
-/*
- * --INFO--
- * Address:	80066D3C
- * Size:	00004C
+/**
+ * @note Address: 0x80066D3C
+ * @note Size: 0x4C
  */
 void J3DModel::calcWeightEnvelopeMtx()
 {
@@ -667,10 +654,9 @@ void J3DModel::calcWeightEnvelopeMtx()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80066D88
- * Size:	00004C
+/**
+ * @note Address: 0x80066D88
+ * @note Size: 0x4C
  * update__8J3DModelFv
  */
 void J3DModel::update()
@@ -679,10 +665,9 @@ void J3DModel::update()
 	entry();
 }
 
-/*
- * --INFO--
- * Address:	80066DD4
- * Size:	0001E0
+/**
+ * @note Address: 0x80066DD4
+ * @note Size: 0x1E0
  */
 void J3DModel::calc()
 {
@@ -738,10 +723,9 @@ void J3DModel::calc()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80066FB4
- * Size:	0000F4
+/**
+ * @note Address: 0x80066FB4
+ * @note Size: 0xF4
  * entry__8J3DModelFv
  */
 void J3DModel::entry()
@@ -844,10 +828,9 @@ lbl_8006707C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800670A8
- * Size:	000368
+/**
+ * @note Address: 0x800670A8
+ * @note Size: 0x368
  */
 void J3DModel::viewCalc()
 {
@@ -1116,17 +1099,15 @@ lbl_800673F4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80067410
- * Size:	000024
+/**
+ * @note Address: 0x80067410
+ * @note Size: 0x24
  */
 void J3DModel::calcNrmMtx() { mMtxBuffer->calcNrmMtx(); }
 
-/*
- * --INFO--
- * Address:	80067434
- * Size:	000100
+/**
+ * @note Address: 0x80067434
+ * @note Size: 0x100
  */
 void J3DModel::calcBumpMtx()
 {
@@ -1220,10 +1201,9 @@ lbl_80067520:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80067534
- * Size:	000034
+/**
+ * @note Address: 0x80067534
+ * @note Size: 0x34
  */
 void J3DModel::calcBBoardMtx()
 {
@@ -1232,10 +1212,9 @@ void J3DModel::calcBBoardMtx()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80067568
- * Size:	000064
+/**
+ * @note Address: 0x80067568
+ * @note Size: 0x64
  */
 void J3DModel::prepareShapePackets()
 {

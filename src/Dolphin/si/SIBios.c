@@ -30,24 +30,21 @@ static void GetTypeCallback(s32 chan, u32 error, OSContext* context);
 // useful macros.
 #define ROUND(n, a) (((u32)(n) + (a)-1) & ~((a)-1))
 
-/*
- * --INFO--
- * Address:	800F4EFC
- * Size:	000020
+/**
+ * @note Address: 0x800F4EFC
+ * @note Size: 0x20
  */
 BOOL SIBusy() { return Si.chan != -1 ? TRUE : FALSE; }
 
-/*
- * --INFO--
- * Address:	800F4F1C
- * Size:	00003C
+/**
+ * @note Address: 0x800F4F1C
+ * @note Size: 0x3C
  */
 BOOL SIIsChanBusy(s32 chan) { return Packet[chan].chan != -1 || Si.chan == chan; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/**
+ * @note Address: N/A
+ * @note Size: 0x1C
  */
 void SIClearTCInterrupt(void)
 {
@@ -59,10 +56,9 @@ void SIClearTCInterrupt(void)
 	__SIRegs[SI_CC_STAT] = reg;
 }
 
-/*
- * --INFO--
- * Address:	800F4F58
- * Size:	0002FC
+/**
+ * @note Address: 0x800F4F58
+ * @note Size: 0x2FC
  */
 static u32 CompleteTransfer(void)
 {
@@ -116,10 +112,9 @@ static u32 CompleteTransfer(void)
 	return sr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F0
+/**
+ * @note Address: N/A
+ * @note Size: 0xF0
  */
 void SITransferNext(s32 chan)
 {
@@ -140,10 +135,9 @@ void SITransferNext(s32 chan)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800F5254
- * Size:	000344
+/**
+ * @note Address: 0x800F5254
+ * @note Size: 0x344
  */
 static void SIInterruptHandler(__OSInterrupt interrupt, OSContext* context)
 {
@@ -214,10 +208,9 @@ static void SIInterruptHandler(__OSInterrupt interrupt, OSContext* context)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800F5598
- * Size:	000098
+/**
+ * @note Address: 0x800F5598
+ * @note Size: 0x98
  */
 static BOOL SIEnablePollingInterrupt(BOOL doEnable)
 {
@@ -247,10 +240,9 @@ static BOOL SIEnablePollingInterrupt(BOOL doEnable)
 	return rc;
 }
 
-/*
- * --INFO--
- * Address:	800F5630
- * Size:	0000CC
+/**
+ * @note Address: 0x800F5630
+ * @note Size: 0xCC
  */
 BOOL SIRegisterPollingHandler(__OSInterruptHandler handler)
 {
@@ -279,10 +271,9 @@ BOOL SIRegisterPollingHandler(__OSInterruptHandler handler)
 	return FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800F56FC
- * Size:	0000F4
+/**
+ * @note Address: 0x800F56FC
+ * @note Size: 0xF4
  */
 BOOL SIUnregisterPollingHandler(__OSInterruptHandler handler)
 {
@@ -313,10 +304,9 @@ BOOL SIUnregisterPollingHandler(__OSInterruptHandler handler)
 	return FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800F57F0
- * Size:	0000B4
+/**
+ * @note Address: 0x800F57F0
+ * @note Size: 0xB4
  */
 void SIInit(void)
 {
@@ -342,10 +332,9 @@ void SIInit(void)
 	SIGetType(3);
 }
 
-/*
- * --INFO--
- * Address:	800F58A4
- * Size:	00020C
+/**
+ * @note Address: 0x800F58A4
+ * @note Size: 0x20C
  */
 static BOOL __SITransfer(s32 chan, void* output, u32 outputBytes, void* input, u32 inputBytes, SICallback callback)
 {
@@ -389,10 +378,9 @@ static BOOL __SITransfer(s32 chan, void* output, u32 outputBytes, void* input, u
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000108
+/**
+ * @note Address: N/A
+ * @note Size: 0x108
  */
 u32 SISync(void)
 {
@@ -413,10 +401,9 @@ u32 SISync(void)
 	return sr;
 }
 
-/*
- * --INFO--
- * Address:	800F5AB0
- * Size:	00007C
+/**
+ * @note Address: 0x800F5AB0
+ * @note Size: 0x7C
  */
 u32 SIGetStatus(s32 chan)
 {
@@ -439,31 +426,27 @@ u32 SIGetStatus(s32 chan)
 	return sr;
 }
 
-/*
- * --INFO--
- * Address:	800F5B2C
- * Size:	000014
+/**
+ * @note Address: 0x800F5B2C
+ * @note Size: 0x14
  */
 void SISetCommand(s32 chan, u32 command) { __SIRegs[3 * chan] = command; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000014
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
  */
 u32 SIGetCommand(s32 chan) { return __SIRegs[3 * chan]; }
 
-/*
- * --INFO--
- * Address:	800F5B40
- * Size:	000010
+/**
+ * @note Address: 0x800F5B40
+ * @note Size: 0x10
  */
 void SITransferCommands(void) { __SIRegs[SI_STAT] = 0x80000000; }
 
-/*
- * --INFO--
- * Address:	800F5B50
- * Size:	00006C
+/**
+ * @note Address: 0x800F5B50
+ * @note Size: 0x6C
  */
 u32 SISetXY(u32 x, u32 y)
 {
@@ -484,10 +467,9 @@ u32 SISetXY(u32 x, u32 y)
 	return poll;
 }
 
-/*
- * --INFO--
- * Address:	800F5BBC
- * Size:	00009C
+/**
+ * @note Address: 0x800F5BBC
+ * @note Size: 0x9C
  */
 u32 SIEnablePolling(u32 poll)
 {
@@ -522,10 +504,9 @@ u32 SIEnablePolling(u32 poll)
 	return poll;
 }
 
-/*
- * --INFO--
- * Address:	800F5C58
- * Size:	00006C
+/**
+ * @note Address: 0x800F5C58
+ * @note Size: 0x6C
  */
 u32 SIDisablePolling(u32 poll)
 {
@@ -549,10 +530,9 @@ u32 SIDisablePolling(u32 poll)
 	return poll;
 }
 
-/*
- * --INFO--
- * Address:	800F5CC4
- * Size:	0000D4
+/**
+ * @note Address: 0x800F5CC4
+ * @note Size: 0xD4
  */
 static BOOL SIGetResponseRaw(s32 chan)
 {
@@ -568,10 +548,9 @@ static BOOL SIGetResponseRaw(s32 chan)
 	return FALSE;
 }
 
-/*
- * --INFO--
- * Address:	800F5D98
- * Size:	0000C4
+/**
+ * @note Address: 0x800F5D98
+ * @note Size: 0xC4
  */
 BOOL SIGetResponse(s32 chan, void* data)
 {
@@ -590,10 +569,9 @@ BOOL SIGetResponse(s32 chan, void* data)
 	return rc;
 }
 
-/*
- * --INFO--
- * Address:	800F5E5C
- * Size:	00008C
+/**
+ * @note Address: 0x800F5E5C
+ * @note Size: 0x8C
  */
 static void AlarmHandler(OSAlarm* alarm, OSContext* context)
 {
@@ -610,10 +588,9 @@ static void AlarmHandler(OSAlarm* alarm, OSContext* context)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800F5EE8
- * Size:	00016C
+/**
+ * @note Address: 0x800F5EE8
+ * @note Size: 0x16C
  */
 BOOL SITransfer(s32 chan, void* output, u32 outputBytes, void* input, u32 inputBytes, SICallback callback, OSTime delay)
 {
@@ -654,10 +631,9 @@ BOOL SITransfer(s32 chan, void* output, u32 outputBytes, void* input, u32 inputB
 	return TRUE;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
+/**
+ * @note Address: N/A
+ * @note Size: 0x78
  */
 void CallTypeAndStatusCallback(s32 chan, u32 type)
 {
@@ -673,10 +649,9 @@ void CallTypeAndStatusCallback(s32 chan, u32 type)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800F6054
- * Size:	000298
+/**
+ * @note Address: 0x800F6054
+ * @note Size: 0x298
  */
 static void GetTypeCallback(s32 chan, u32 error, OSContext* context)
 {
@@ -743,10 +718,9 @@ static void GetTypeCallback(s32 chan, u32 error, OSContext* context)
 	CallTypeAndStatusCallback(chan, Type[chan]);
 }
 
-/*
- * --INFO--
- * Address:	800F62EC
- * Size:	0001C4
+/**
+ * @note Address: 0x800F62EC
+ * @note Size: 0x1C4
  */
 u32 SIGetType(s32 chan)
 {
@@ -785,10 +759,9 @@ u32 SIGetType(s32 chan)
 	return type;
 }
 
-/*
- * --INFO--
- * Address:	800F64B0
- * Size:	00013C
+/**
+ * @note Address: 0x800F64B0
+ * @note Size: 0x13C
  */
 u32 SIGetTypeAsync(s32 chan, SITypeAndStatusCallback callback)
 {
@@ -816,10 +789,9 @@ u32 SIGetTypeAsync(s32 chan, SITypeAndStatusCallback callback)
 	return type;
 }
 
-/*
- * --INFO--
- * Address:	800F65EC
- * Size:	00014C
+/**
+ * @note Address: 0x800F65EC
+ * @note Size: 0x14C
  */
 u32 SIDecodeType(u32 type)
 {
@@ -883,17 +855,15 @@ u32 SIDecodeType(u32 type)
 	return SI_ERROR_UNKNOWN;
 }
 
-/*
- * --INFO--
- * Address:	800F6738
- * Size:	000024
+/**
+ * @note Address: 0x800F6738
+ * @note Size: 0x24
  */
 u32 SIProbe(s32 chan) { return SIDecodeType(SIGetType(chan)); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000158
+/**
+ * @note Address: N/A
+ * @note Size: 0x158
  */
 char* SIGetTypeString(u32 type)
 {

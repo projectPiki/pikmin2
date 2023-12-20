@@ -27,10 +27,9 @@ struct blah {
 	u32 FSTMaxLength;
 }; // diskinfo : 0x80000000;
 
-/*
- * --INFO--
- * Address:	800DF914
- * Size:	0000D8
+/**
+ * @note Address: 0x800DF914
+ * @note Size: 0xD8
  */
 
 static void cb(s32 param_1, void* param_2) // param_2 is probably a struct
@@ -54,10 +53,9 @@ static void cb(s32 param_1, void* param_2) // param_2 is probably a struct
 	}
 }
 
-/*
- * --INFO--
- * Address:	800DF9EC
- * Size:	000168
+/**
+ * @note Address: 0x800DF9EC
+ * @note Size: 0x168
  */
 void __fstLoad(void)
 {

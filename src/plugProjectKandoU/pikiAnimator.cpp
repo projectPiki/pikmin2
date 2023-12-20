@@ -1,16 +1,14 @@
 #include "PikiAnimator.h"
 
-/*
- * --INFO--
- * Address:	8013364C
- * Size:	000050
+/**
+ * @note Address: 0x8013364C
+ * @note Size: 0x50
  */
 PikiAnimator::PikiAnimator() { }
 
-/*
- * --INFO--
- * Address:	8013369C
- * Size:	00000C
+/**
+ * @note Address: 0x8013369C
+ * @note Size: 0xC
  */
 void PikiAnimator::setAnimMgr(SysShape::AnimMgr* mgr)
 {

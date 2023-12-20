@@ -9,10 +9,9 @@ static const char unusedName[] = "actBreakWall";
 
 namespace PikiAI {
 
-/*
- * --INFO--
- * Address:	801E3E50
- * Size:	0000D4
+/**
+ * @note Address: 0x801E3E50
+ * @note Size: 0xD4
  */
 ActCrop::ActCrop(Game::Piki* parent)
     : Action(parent)
@@ -22,10 +21,9 @@ ActCrop::ActCrop(Game::Piki* parent)
 	mName        = "Crop";
 }
 
-/*
- * --INFO--
- * Address:	801E3F24
- * Size:	000108
+/**
+ * @note Address: 0x801E3F24
+ * @note Size: 0x108
  */
 void ActCrop::init(ActionArg* arg)
 {
@@ -52,10 +50,9 @@ void ActCrop::init(ActionArg* arg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 void ActCrop::initClimb()
 {
@@ -64,10 +61,9 @@ void ActCrop::initClimb()
 	prepareClimb();
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000114
+/**
+ * @note Address: N/A
+ * @note Size: 0x114
  */
 void ActCrop::prepareClimb()
 {
@@ -84,10 +80,9 @@ void ActCrop::prepareClimb()
 	mPlantHeightRatio = 1.0f / len;
 }
 
-/*
- * --INFO--
- * Address:	801E402C
- * Size:	0002C8
+/**
+ * @note Address: 0x801E402C
+ * @note Size: 0x2C8
  */
 int ActCrop::execClimb()
 {
@@ -114,10 +109,9 @@ int ActCrop::execClimb()
 	return ACTEXEC_Continue;
 }
 
-/*
- * --INFO--
- * Address:	801E42F4
- * Size:	000098
+/**
+ * @note Address: 0x801E42F4
+ * @note Size: 0x98
  */
 void ActCrop::initGoto()
 {
@@ -129,10 +123,9 @@ void ActCrop::initGoto()
 	mState = CROP_Goto;
 }
 
-/*
- * --INFO--
- * Address:	801E438C
- * Size:	0000FC
+/**
+ * @note Address: 0x801E438C
+ * @note Size: 0xFC
  */
 void ActCrop::initAttack()
 {
@@ -149,10 +142,9 @@ void ActCrop::initAttack()
 	mIsDirectionReversed = true;
 }
 
-/*
- * --INFO--
- * Address:	801E4488
- * Size:	0006AC
+/**
+ * @note Address: 0x801E4488
+ * @note Size: 0x6AC
  */
 int ActCrop::exec()
 {
@@ -220,10 +212,9 @@ int ActCrop::exec()
 	return ACTEXEC_Continue;
 }
 
-/*
- * --INFO--
- * Address:	801E4B34
- * Size:	000040
+/**
+ * @note Address: 0x801E4B34
+ * @note Size: 0x40
  */
 void ActCrop::cleanup()
 {
@@ -231,17 +222,15 @@ void ActCrop::cleanup()
 	mParent->endStick();
 }
 
-/*
- * --INFO--
- * Address:	801E4B74
- * Size:	000004
+/**
+ * @note Address: 0x801E4B74
+ * @note Size: 0x4
  */
 void ActCrop::collisionCallback(Game::Piki*, Game::CollEvent&) { }
 
-/*
- * --INFO--
- * Address:	801E4B78
- * Size:	000004
+/**
+ * @note Address: 0x801E4B78
+ * @note Size: 0x4
  */
 void ActCrop::onKeyEvent(const SysShape::KeyEvent&) { }
 

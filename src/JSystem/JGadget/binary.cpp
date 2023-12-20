@@ -3,40 +3,36 @@
 namespace JGadget {
 namespace binary {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 // void JGadget::binary::parseVariableUInt_16_32(void const**, JGadget::binary::TEBit*)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
+/**
+ * @note Address: N/A
+ * @note Size: 0x84
  */
 // void JGadget::binary::parseVariableUInt_8_16_32(void const**, JGadget::binary::TEBit*)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 // void JGadget::binary::parseVariableUInt_8_16(void const**, JGadget::binary::TEBit*)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	80027128
- * Size:	000068
+/**
+ * @note Address: 0x80027128
+ * @note Size: 0x68
  */
 const void* parseVariableUInt_16_32_following(void const* buffer, u32* p1, u32* p2, JGadget::binary::TEBit* bit)
 {
@@ -60,17 +56,15 @@ const void* parseVariableUInt_16_32_following(void const* buffer, u32* p1, u32* 
 	return (u8*)buffer + 8;
 }
 
-/*
- * --INFO--
- * Address:	80027190
- * Size:	000048
+/**
+ * @note Address: 0x80027190
+ * @note Size: 0x48
  */
 TParse_header_block::~TParse_header_block() { }
 
-/*
- * --INFO--
- * Address:	800271D8
- * Size:	00010C
+/**
+ * @note Address: 0x800271D8
+ * @note Size: 0x10C
  */
 bool TParse_header_block::parse_next(void const** ptrLocation, u32 idx)
 {

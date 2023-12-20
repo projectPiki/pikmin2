@@ -11,10 +11,9 @@ u32 JAInter::SoundTable::mDatasize;
 JAInter::SoundInfo** JAInter::SoundTable::mPointerCategory;
 u8* JAInter::SoundTable::mAddress;
 
-/*
- * --INFO--
- * Address:	800B744C
- * Size:	0000CC
+/**
+ * @note Address: 0x800B744C
+ * @note Size: 0xCC
  */
 void JAInter::SoundTable::init(u8* data, u32 dataSize)
 {
@@ -92,10 +91,9 @@ lbl_800B74FC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800B7518
- * Size:	0000C4
+/**
+ * @note Address: 0x800B7518
+ * @note Size: 0xC4
  */
 JAInter::SoundInfo* JAInter::SoundTable::getInfoPointer(u32 soundID)
 {
@@ -120,10 +118,9 @@ JAInter::SoundInfo* JAInter::SoundTable::getInfoPointer(u32 soundID)
 	return info;
 }
 
-/*
- * --INFO--
- * Address:	800B75DC
- * Size:	000058
+/**
+ * @note Address: 0x800B75DC
+ * @note Size: 0x58
  */
 u32 JAInter::SoundTable::getInfoFormat(u32 id)
 {
@@ -142,34 +139,30 @@ u32 JAInter::SoundTable::getInfoFormat(u32 id)
 	return retval;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
+/**
+ * @note Address: N/A
+ * @note Size: 0xE4
  */
 void JAInter::SoundTable::setInfoTrack(u32, u8)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800B7634
- * Size:	000008
+/**
+ * @note Address: 0x800B7634
+ * @note Size: 0x8
  */
 u8 JAInter::SoundTable::getCategotyMax() { return mCategotyMax; }
 
-/*
- * --INFO--
- * Address:	800B763C
- * Size:	000010
+/**
+ * @note Address: 0x800B763C
+ * @note Size: 0x10
  */
 u16 JAInter::SoundTable::getSoundMax(u8 p1) { return mSoundMax[p1]; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
+/**
+ * @note Address: N/A
+ * @note Size: 0x8
  */
 void JAInter::SoundTable::getSoundTablePointer()
 {

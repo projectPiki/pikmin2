@@ -15,10 +15,9 @@ JAInter::LinkSound JAInter::SequenceMgr::seqControl;
 JKRArchive* JAInter::SequenceMgr::arcPointer;
 JAInter::SequenceMgr::CustomHeapCallback JAInter::SequenceMgr::customHeapCallback;
 
-/*
- * --INFO--
- * Address:	800B0944
- * Size:	000488
+/**
+ * @note Address: 0x800B0944
+ * @note Size: 0x488
  */
 void JAInter::SequenceMgr::init()
 {
@@ -347,10 +346,9 @@ lbl_800B0D8C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800B0DCC
- * Size:	000020
+/**
+ * @note Address: 0x800B0DCC
+ * @note Size: 0x20
  */
 JAInter::MuteBit::MuteBit()
     : _0(false)
@@ -358,10 +356,9 @@ JAInter::MuteBit::MuteBit()
 {
 }
 
-/*
- * --INFO--
- * Address:	800B0DEC
- * Size:	00012C
+/**
+ * @note Address: 0x800B0DEC
+ * @note Size: 0x12C
  */
 JAInter::SeqUpdateData::SeqUpdateData()
     : _00(0)
@@ -458,10 +455,9 @@ JAInter::SeqUpdateData::SeqUpdateData()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800B0F18
- * Size:	000068
+/**
+ * @note Address: 0x800B0F18
+ * @note Size: 0x68
  */
 JAInter::PlayerParameter::~PlayerParameter()
 {
@@ -499,10 +495,9 @@ lbl_800B0F64:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800B0F80
- * Size:	000050
+/**
+ * @note Address: 0x800B0F80
+ * @note Size: 0x50
  */
 JAInter::PlayerParameter::PlayerParameter()
 {
@@ -530,10 +525,9 @@ JAInter::PlayerParameter::PlayerParameter()
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800B0FD0
- * Size:	000058
+/**
+ * @note Address: 0x800B0FD0
+ * @note Size: 0x58
  */
 JASPortCmd::~JASPortCmd()
 {
@@ -567,20 +561,18 @@ lbl_800B100C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
+/**
+ * @note Address: N/A
+ * @note Size: 0x54
  */
 // void JSULink<JASPortCmd>::~JSULink()
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	800B1028
- * Size:	00006C
+/**
+ * @note Address: 0x800B1028
+ * @note Size: 0x6C
  */
 void JAInter::SequenceMgr::getArchiveName(char* path)
 {
@@ -592,34 +584,30 @@ void JAInter::SequenceMgr::getArchiveName(char* path)
 	strcat(path, JAIGlobalParameter::getParamSequenceArchivesFileName());
 }
 
-/*
- * --INFO--
- * Address:	800B1094
- * Size:	000008
+/**
+ * @note Address: 0x800B1094
+ * @note Size: 0x8
  */
 void JAInter::SequenceMgr::setArchivePointer(JKRArchive* archive) { arcPointer = archive; }
 
-/*
- * --INFO--
- * Address:	800B109C
- * Size:	000008
+/**
+ * @note Address: 0x800B109C
+ * @note Size: 0x8
  */
 JKRArchive* JAInter::SequenceMgr::getArchivePointer() { return arcPointer; }
 
-/*
- * --INFO--
- * Address:	800B10A4
- * Size:	000008
+/**
+ * @note Address: 0x800B10A4
+ * @note Size: 0x8
  */
 void JAInter::SequenceMgr::setCustomHeapCallback(JAInter::SequenceMgr::CustomHeapInfo (*callback)(u32, u16, JAISequence*))
 {
 	customHeapCallback = callback;
 }
 
-/*
- * --INFO--
- * Address:	800B10AC
- * Size:	000038
+/**
+ * @note Address: 0x800B10AC
+ * @note Size: 0x38
  */
 void JAInter::SequenceMgr::processGFrameSequence()
 {
@@ -632,10 +620,9 @@ void JAInter::SequenceMgr::processGFrameSequence()
 	checkSeqWave();
 }
 
-/*
- * --INFO--
- * Address:	800B10E4
- * Size:	000430
+/**
+ * @note Address: 0x800B10E4
+ * @note Size: 0x430
  */
 void JAInter::SequenceMgr::checkEntriedSeq()
 {
@@ -961,10 +948,9 @@ lbl_800B14F4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800B1514
- * Size:	0000B8
+/**
+ * @note Address: 0x800B1514
+ * @note Size: 0xB8
  */
 void JAInter::SequenceMgr::checkFadeoutSeq()
 {
@@ -979,17 +965,15 @@ void JAInter::SequenceMgr::checkFadeoutSeq()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800B15CC
- * Size:	000020
+/**
+ * @note Address: 0x800B15CC
+ * @note Size: 0x20
  */
 // float JAISequence::getVolume(u8 p1) { return getSeqInterVolume(p1); }
 
-/*
- * --INFO--
- * Address:	800B15EC
- * Size:	0000A4
+/**
+ * @note Address: 0x800B15EC
+ * @note Size: 0xA4
  */
 void JAInter::SequenceMgr::checkStoppedSeq()
 {
@@ -1004,10 +988,9 @@ void JAInter::SequenceMgr::checkStoppedSeq()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800B1690
- * Size:	0000EC
+/**
+ * @note Address: 0x800B1690
+ * @note Size: 0xEC
  */
 void JAInter::SequenceMgr::checkPlayingSeq()
 {
@@ -1027,10 +1010,9 @@ void JAInter::SequenceMgr::checkPlayingSeq()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800B177C
- * Size:	0000A0
+/**
+ * @note Address: 0x800B177C
+ * @note Size: 0xA0
  */
 void JAInter::SequenceMgr::checkStartedSeq()
 {
@@ -1044,10 +1026,9 @@ void JAInter::SequenceMgr::checkStartedSeq()
 	}
 }
 
-/*
- * --INFO--
- * Address:	800B181C
- * Size:	000224
+/**
+ * @note Address: 0x800B181C
+ * @note Size: 0x224
  */
 void JAInter::SequenceMgr::checkReadSeq()
 {
@@ -1244,10 +1225,9 @@ lbl_800B1A08:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800B1A40
- * Size:	0000D8
+/**
+ * @note Address: 0x800B1A40
+ * @note Size: 0xD8
  */
 void JAInter::SequenceMgr::checkSeqWave()
 {
@@ -1319,40 +1299,36 @@ lbl_800B1AF4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000138
+/**
+ * @note Address: N/A
+ * @note Size: 0x138
  */
 void JAInter::SequenceMgr::checkPlayingSeqUpdateMultiplication(u32, u8, u32, JAInter::MoveParaSet*, u32*, u8, float*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000178
+/**
+ * @note Address: N/A
+ * @note Size: 0x178
  */
 void JAInter::SequenceMgr::checkPlayingSeqUpdateAddition(u32, u8, u32, JAInter::MoveParaSet*, u32*, u8, float*, float)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000118
+/**
+ * @note Address: N/A
+ * @note Size: 0x118
  */
 void JAInter::SequenceMgr::checkPlayingSeqUpdateTrack(u32, u32, JAInter::MoveParaSet*, u32*, u8, float*)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800B1B18
- * Size:	001078
+/**
+ * @note Address: 0x800B1B18
+ * @note Size: 0x1078
  */
 void JAInter::SequenceMgr::checkPlayingSeqTrack(u32)
 {
@@ -2626,24 +2602,21 @@ lbl_800B2B5C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800B2B90
- * Size:	00002C
+/**
+ * @note Address: 0x800B2B90
+ * @note Size: 0x2C
  */
 void JAISequence::setPitch(float p1, u32 p2, u8 p3) { setSeqInterPitch(p3, p1, p2); }
 
-/*
- * --INFO--
- * Address:	800B2BBC
- * Size:	00002C
+/**
+ * @note Address: 0x800B2BBC
+ * @note Size: 0x2C
  */
 void JAISequence::setPan(float p1, u32 p2, u8 p3) { setSeqInterPan(p3, p1, p2); }
 
-/*
- * --INFO--
- * Address:	800B2BE8
- * Size:	000130
+/**
+ * @note Address: 0x800B2BE8
+ * @note Size: 0x130
  */
 void JAInter::SequenceMgr::stopSeq(JAISequence*)
 {
@@ -2739,10 +2712,9 @@ lbl_800B2CCC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800B2D18
- * Size:	0000E4
+/**
+ * @note Address: 0x800B2D18
+ * @note Size: 0xE4
  */
 void JAInter::SequenceMgr::checkDvdLoadArc(u32, u32)
 {
@@ -2817,10 +2789,9 @@ lbl_800B2DDC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800B2DFC
- * Size:	00009C
+/**
+ * @note Address: 0x800B2DFC
+ * @note Size: 0x9C
  */
 void JAInter::SequenceMgr::checkCustomDvdLoadArc(u32 p1, u32 index)
 {
@@ -2879,20 +2850,18 @@ lbl_800B2E84:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 void JAInter::SequenceMgr::checkCustomDvdPreloadArc(u32, u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800B2E98
- * Size:	000430
+/**
+ * @note Address: 0x800B2E98
+ * @note Size: 0x430
  */
 void JAInter::SequenceMgr::storeSeqBuffer(JAISequence**, JAInter::Actor*, u32, u32, u8, JAInter::SoundInfo*)
 {
@@ -3221,10 +3190,9 @@ void JAInter::SequenceMgr::storeSeqBuffer(JAISequence**, JAInter::Actor*, u32, u
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800B32C8
- * Size:	000388
+/**
+ * @note Address: 0x800B32C8
+ * @note Size: 0x388
  */
 void JAInter::SeqParameter::init()
 {
@@ -3517,10 +3485,9 @@ lbl_800B3608:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	800B3650
- * Size:	0001D8
+/**
+ * @note Address: 0x800B3650
+ * @note Size: 0x1D8
  */
 void JAInter::SequenceMgr::releaseSeqBuffer(JAISequence*, u32)
 {
@@ -3670,47 +3637,42 @@ lbl_800B3808:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A0
+/**
+ * @note Address: N/A
+ * @note Size: 0xA0
  */
 void JAInter::SequenceMgr::stopPlayingSeq(u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
+/**
+ * @note Address: N/A
+ * @note Size: 0x7C
  */
 void JAInter::SequenceMgr::checkPlayingSoundTrack(u32)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800B3828
- * Size:	000010
+/**
+ * @note Address: 0x800B3828
+ * @note Size: 0x10
  */
 JAInter::SeqUpdateData* JAInter::SequenceMgr::getPlayTrackInfo(u32 index) { return &seqTrackInfo[index]; }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0001B0
+/**
+ * @note Address: N/A
+ * @note Size: 0x1B0
  */
 void JAInter::SequenceMgr::loadArcSeqData(u32, bool)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B0
+/**
+ * @note Address: N/A
+ * @note Size: 0xB0
  */
 void JAInter::SequenceMgr::loadCustomArcSeqData(u16, bool)
 {

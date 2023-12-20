@@ -16,60 +16,54 @@ const PTMF __ptmf_null = { 0, 0, 0 };
 long __ptmf_test(PTMF* ptmf);
 void __ptmf_scall(...);
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
+/**
+ * @note Address: N/A
+ * @note Size: 0x24
  */
 void __ptmf_cast(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
+/**
+ * @note Address: N/A
+ * @note Size: 0x28
  */
 void __ptmf_scall4(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 void __ptmf_call4(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
+/**
+ * @note Address: N/A
+ * @note Size: 0x34
  */
 void __ptmf_call(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 void __ptmf_cmpr(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800C1AF4
- * Size:	000030
+/**
+ * @note Address: 0x800C1AF4
+ * @note Size: 0x30
  */
 ASM long __ptmf_test(register PTMF* ptmf) {
 #ifdef __MWERKS__ // clang-format off
@@ -89,10 +83,9 @@ ASM long __ptmf_test(register PTMF* ptmf) {
 #endif // clang-format on
 }
 
-/*
- * --INFO--
- * Address:	800C1B24
- * Size:	000028
+/**
+ * @note Address: 0x800C1B24
+ * @note Size: 0x28
  */
 ASM void __ptmf_scall(...)
 {

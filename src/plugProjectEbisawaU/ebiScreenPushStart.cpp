@@ -14,10 +14,9 @@ static const char name[] = "ebiScreenPushStart";
 namespace ebi {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	803D3B10
- * Size:	000324
+/**
+ * @note Address: 0x803D3B10
+ * @note Size: 0x324
  */
 void TPressStart::doSetArchive(JKRArchive* arc)
 {
@@ -68,10 +67,9 @@ void TPressStart::doSetArchive(JKRArchive* arc)
 	mAnims2[3].loadAnm("push_start_d.bpk", arc, 0, 99999);
 }
 
-/*
- * --INFO--
- * Address:	803D3E34
- * Size:	000028
+/**
+ * @note Address: 0x803D3E34
+ * @note Size: 0x28
  */
 void TPressStart::doOpenScreen(ArgOpen*)
 {
@@ -79,10 +77,9 @@ void TPressStart::doOpenScreen(ArgOpen*)
 	startLoop_();
 }
 
-/*
- * --INFO--
- * Address:	803D3E5C
- * Size:	000044
+/**
+ * @note Address: 0x803D3E5C
+ * @note Size: 0x44
  */
 void TPressStart::doCloseScreen(ArgClose*)
 {
@@ -91,10 +88,9 @@ void TPressStart::doCloseScreen(ArgClose*)
 	mAlphaMax = time;
 }
 
-/*
- * --INFO--
- * Address:	803D3EA0
- * Size:	0000A4
+/**
+ * @note Address: 0x803D3EA0
+ * @note Size: 0xA4
  */
 bool TPressStart::doUpdateStateWait()
 {
@@ -110,10 +106,9 @@ bool TPressStart::doUpdateStateWait()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D3F44
- * Size:	000108
+/**
+ * @note Address: 0x803D3F44
+ * @note Size: 0x108
  */
 bool TPressStart::doUpdateStateClose()
 {
@@ -137,10 +132,9 @@ bool TPressStart::doUpdateStateClose()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803D404C
- * Size:	000080
+/**
+ * @note Address: 0x803D404C
+ * @note Size: 0x80
  */
 void TPressStart::doDraw()
 {
@@ -150,10 +144,9 @@ void TPressStart::doDraw()
 	mScreens[mCurrentScreen]->draw(*gfx, graf);
 }
 
-/*
- * --INFO--
- * Address:	803D40CC
- * Size:	00016C
+/**
+ * @note Address: 0x803D40CC
+ * @note Size: 0x16C
  */
 void TPressStart::startLoop_()
 {

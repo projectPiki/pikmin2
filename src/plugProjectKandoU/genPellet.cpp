@@ -2,19 +2,17 @@
 
 static const char name[] = "genPellet";
 
-/*
- * --INFO--
- * Address:	8020278C
- * Size:	00009C
+/**
+ * @note Address: 0x8020278C
+ * @note Size: 0x9C
  */
 Game::GenPellet* makePellet() { return new Game::GenPellet; }
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	80202828
- * Size:	00008C
+/**
+ * @note Address: 0x80202828
+ * @note Size: 0x8C
  */
 void GenPellet::initialise()
 {
@@ -29,10 +27,9 @@ void GenPellet::initialise()
 	obj->mCount++;
 }
 
-/*
- * --INFO--
- * Address:	802028B4
- * Size:	00006C
+/**
+ * @note Address: 0x802028B4
+ * @note Size: 0x6C
  */
 void GenPellet::doEvent(u32 flag)
 {
@@ -46,10 +43,9 @@ void GenPellet::doEvent(u32 flag)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80202920
- * Size:	000068
+/**
+ * @note Address: 0x80202920
+ * @note Size: 0x68
  */
 void GenPellet::generatorMakeMatrix(Matrixf& mtx, Vector3f& pos)
 {
@@ -62,10 +58,9 @@ void GenPellet::generatorMakeMatrix(Matrixf& mtx, Vector3f& pos)
 	mtx.makeTR(pos, ang);
 }
 
-/*
- * --INFO--
- * Address:	80202988
- * Size:	000050
+/**
+ * @note Address: 0x80202988
+ * @note Size: 0x50
  */
 J3DModelData* GenPellet::getShape()
 {
@@ -76,10 +71,9 @@ J3DModelData* GenPellet::getShape()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802029D8
- * Size:	000138
+/**
+ * @note Address: 0x802029D8
+ * @note Size: 0x138
  */
 void GenPellet::doWrite(Stream& data)
 {
@@ -105,10 +99,9 @@ void GenPellet::doWrite(Stream& data)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80202B10
- * Size:	000118
+/**
+ * @note Address: 0x80202B10
+ * @note Size: 0x118
  */
 void GenPellet::doRead(Stream& data)
 {
@@ -133,24 +126,21 @@ void GenPellet::doRead(Stream& data)
 	mManager->generatorRead(data, mGenParm, id.getID());
 }
 
-/*
- * --INFO--
- * Address:	80202C28
- * Size:	000004
+/**
+ * @note Address: 0x80202C28
+ * @note Size: 0x4
  */
 void GenPellet::ramSaveParameters(Stream&) { }
 
-/*
- * --INFO--
- * Address:	80202C2C
- * Size:	000004
+/**
+ * @note Address: 0x80202C2C
+ * @note Size: 0x4
  */
 void GenPellet::ramLoadParameters(Stream&) { }
 
-/*
- * --INFO--
- * Address:	80202C30
- * Size:	000058
+/**
+ * @note Address: 0x80202C30
+ * @note Size: 0x58
  */
 void GenPellet::updateUseList(Generator*, int)
 {
@@ -159,10 +149,9 @@ void GenPellet::updateUseList(Generator*, int)
 	mManager->getPelletConfig(mGenParm->mIndex);
 }
 
-/*
- * --INFO--
- * Address:	80202C88
- * Size:	000078
+/**
+ * @note Address: 0x80202C88
+ * @note Size: 0x78
  */
 Creature* GenPellet::generate(Generator* gen)
 {
@@ -175,17 +164,15 @@ Creature* GenPellet::generate(Generator* gen)
 	return birth(&arg);
 }
 
-/*
- * --INFO--
- * Address:	80202D00
- * Size:	000040
+/**
+ * @note Address: 0x80202D00
+ * @note Size: 0x40
  */
 void GenPellet::getDebugInfo(char* str) { sprintf(str, "mgr%d:%d", mPelType, mGenParm->mIndex); }
 
-/*
- * --INFO--
- * Address:	80202D40
- * Size:	0000D4
+/**
+ * @note Address: 0x80202D40
+ * @note Size: 0xD4
  */
 Creature* GenPellet::birth(Game::GenArg* arg)
 {

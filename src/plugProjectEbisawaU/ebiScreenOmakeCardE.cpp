@@ -8,10 +8,9 @@ static const char name[] = "ebiScreenOmakeCardE";
 namespace ebi {
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	803F02A4
- * Size:	0002B4
+/**
+ * @note Address: 0x803F02A4
+ * @note Size: 0x2B4
  */
 TOmakeCardE::TOmakeCardE()
     : mScreenObj(nullptr)
@@ -21,10 +20,9 @@ TOmakeCardE::TOmakeCardE()
 	mMesgScroll = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	803F0558
- * Size:	000290
+/**
+ * @note Address: 0x803F0558
+ * @note Size: 0x290
  */
 void TOmakeCardE::doSetArchive(JKRArchive* arc)
 {
@@ -67,10 +65,9 @@ void TOmakeCardE::doSetArchive(JKRArchive* arc)
 	mAnimationColor.loadAnm("omake_tunagu.bpk", arc, 0, 100);
 }
 
-/*
- * --INFO--
- * Address:	803F07E8
- * Size:	0000BC
+/**
+ * @note Address: 0x803F07E8
+ * @note Size: 0xBC
  */
 void TOmakeCardE::doOpenScreen(ArgOpen*)
 {
@@ -85,10 +82,9 @@ void TOmakeCardE::doOpenScreen(ArgOpen*)
 	mScreenObj->update();
 }
 
-/*
- * --INFO--
- * Address:	803F08A4
- * Size:	000050
+/**
+ * @note Address: 0x803F08A4
+ * @note Size: 0x50
  */
 void TOmakeCardE::doCloseScreen(ArgClose*)
 {
@@ -96,17 +92,15 @@ void TOmakeCardE::doCloseScreen(ArgClose*)
 	mAnimationExit.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
 }
 
-/*
- * --INFO--
- * Address:	803F08F4
- * Size:	00003C
+/**
+ * @note Address: 0x803F08F4
+ * @note Size: 0x3C
  */
 void TOmakeCardE::doInitWaitState() { mAnimationIdle.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_2, true); }
 
-/*
- * --INFO--
- * Address:	803F0930
- * Size:	000054
+/**
+ * @note Address: 0x803F0930
+ * @note Size: 0x54
  */
 bool TOmakeCardE::doUpdateStateOpen()
 {
@@ -114,10 +108,9 @@ bool TOmakeCardE::doUpdateStateOpen()
 	return !!mAnimationEnter.isFinish();
 }
 
-/*
- * --INFO--
- * Address:	803F0984
- * Size:	00029C
+/**
+ * @note Address: 0x803F0984
+ * @note Size: 0x29C
  */
 bool TOmakeCardE::doUpdateStateWait()
 {
@@ -198,10 +191,9 @@ bool TOmakeCardE::doUpdateStateWait()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	803F0C20
- * Size:	000054
+/**
+ * @note Address: 0x803F0C20
+ * @note Size: 0x54
  */
 bool TOmakeCardE::doUpdateStateClose()
 {
@@ -209,10 +201,9 @@ bool TOmakeCardE::doUpdateStateClose()
 	return !!mAnimationExit.isFinish();
 }
 
-/*
- * --INFO--
- * Address:	803F0C74
- * Size:	000074
+/**
+ * @note Address: 0x803F0C74
+ * @note Size: 0x74
  */
 void TOmakeCardE::doDraw()
 {

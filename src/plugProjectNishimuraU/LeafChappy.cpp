@@ -9,17 +9,15 @@
 namespace Game {
 namespace LeafChappy {
 
-/*
- * --INFO--
- * Address:	802C5C18
- * Size:	000098
+/**
+ * @note Address: 0x802C5C18
+ * @note Size: 0x98
  */
 Obj::Obj() { createFootmarks(); }
 
-/*
- * --INFO--
- * Address:	802C5CB0
- * Size:	0000C0
+/**
+ * @note Address: 0x802C5CB0
+ * @note Size: 0xC0
  */
 void Obj::doUpdate()
 {
@@ -35,17 +33,15 @@ void Obj::doUpdate()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802C5D70
- * Size:	000004
+/**
+ * @note Address: 0x802C5D70
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	802C5D74
- * Size:	0000C4
+/**
+ * @note Address: 0x802C5D74
+ * @note Size: 0xC4
  */
 void Obj::getShadowParam(ShadowParam& param)
 {
@@ -69,10 +65,9 @@ void Obj::getShadowParam(ShadowParam& param)
 	param.mSize = 12.5f;
 }
 
-/*
- * --INFO--
- * Address:	802C5E38
- * Size:	0000B4
+/**
+ * @note Address: 0x802C5E38
+ * @note Size: 0xB4
  */
 void Obj::initMouthSlots()
 {
@@ -86,10 +81,9 @@ void Obj::initMouthSlots()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802C5EEC
- * Size:	000064
+/**
+ * @note Address: 0x802C5EEC
+ * @note Size: 0x64
  */
 void Obj::initWalkSmokeEffect()
 {
@@ -98,31 +92,27 @@ void Obj::initWalkSmokeEffect()
 	mWalkSmokeMgr.setup(1, mModel, "asiR", 5.0f);
 }
 
-/*
- * --INFO--
- * Address:	802C5F50
- * Size:	000020
+/**
+ * @note Address: 0x802C5F50
+ * @note Size: 0x20
  */
 bool Obj::doBecomeCarcass() { return EnemyBase::doBecomeCarcass(); }
 
-/*
- * --INFO--
- * Address:	802C5F70
- * Size:	000020
+/**
+ * @note Address: 0x802C5F70
+ * @note Size: 0x20
  */
 void Obj::doUpdateCarcass() { EnemyBase::doUpdateCarcass(); }
 
-/*
- * --INFO--
- * Address:	802C5F90
- * Size:	000020
+/**
+ * @note Address: 0x802C5F90
+ * @note Size: 0x20
  */
 void Obj::doGetLifeGaugeParam(LifeGaugeParam& param) { EnemyBase::doGetLifeGaugeParam(param); }
 
-/*
- * --INFO--
- * Address:	802C5FB0
- * Size:	000244
+/**
+ * @note Address: 0x802C5FB0
+ * @note Size: 0x244
  */
 void Obj::birthChildren(EnemyBirthArg& birthArg)
 {
@@ -147,10 +137,9 @@ void Obj::birthChildren(EnemyBirthArg& birthArg)
 	}
 }
 
-/*
- * --INFO--
- * Address:	802C61F4
- * Size:	00007C
+/**
+ * @note Address: 0x802C61F4
+ * @note Size: 0x7C
  */
 void Obj::startEnemyRumble()
 {
@@ -161,10 +150,9 @@ void Obj::startEnemyRumble()
 	createBounceEffect(pos, 0.4f);
 }
 
-/*
- * --INFO--
- * Address:	802C6270
- * Size:	000050
+/**
+ * @note Address: 0x802C6270
+ * @note Size: 0x50
  */
 void Obj::createFootmarks()
 {

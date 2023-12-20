@@ -1,9 +1,8 @@
 #include "PowerPC_EABI_Support/MetroTRK/trk.h"
 
-/*
- * --INFO--
- * Address:	800BB848
- * Size:	000044
+/**
+ * @note Address: 0x800BB848
+ * @note Size: 0x44
  */
 DSError TRKMessageSend(MessageBuffer* msg)
 {

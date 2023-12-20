@@ -2,7 +2,7 @@
 
 namespace Screen {
 
-/*
+/**
  * NB:
  * All functions in this file are either unused, inlined, or weak.
  * The weak functions are likely generated from unused methods of

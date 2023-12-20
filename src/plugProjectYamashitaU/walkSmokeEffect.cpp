@@ -12,10 +12,9 @@ const char filename[] = "walkSmoke";
 namespace Game {
 namespace WalkSmokeEffect {
 
-/*
- * --INFO--
- * Address:	8012A320
- * Size:	000034
+/**
+ * @note Address: 0x8012A320
+ * @note Size: 0x34
  */
 Obj::Obj()
 {
@@ -53,10 +52,9 @@ void Obj::update(EnemyBase* enemy)
 	mPosition = pos;
 }
 
-/*
- * --INFO--
- * Address:	8012A354
- * Size:	000010
+/**
+ * @note Address: 0x8012A354
+ * @note Size: 0x10
  */
 Mgr::Mgr()
 {
@@ -64,10 +62,9 @@ Mgr::Mgr()
 	mObjects    = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8012A364
- * Size:	0000B4
+/**
+ * @note Address: 0x8012A364
+ * @note Size: 0xB4
  */
 void Mgr::alloc(int count)
 {
@@ -86,10 +83,9 @@ void Mgr::alloc(int count)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012A418
- * Size:	0001C8
+/**
+ * @note Address: 0x8012A418
+ * @note Size: 0x1C8
  */
 void Mgr::update(EnemyBase* enemy)
 {
@@ -98,10 +94,9 @@ void Mgr::update(EnemyBase* enemy)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8012A5E0
- * Size:	000090
+/**
+ * @note Address: 0x8012A5E0
+ * @note Size: 0x90
  */
 void Mgr::setup(int objIdx, SysShape::Model* model, char* name, f32 heightOffset)
 {

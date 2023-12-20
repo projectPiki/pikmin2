@@ -13,10 +13,9 @@ static const char* cMatAnimBtkTexName = "/enemy/data/Houdai/houdai_model.btk";
 static const char* cMatAnimBrkTexName = "/enemy/data/Houdai/houdai_model.brk";
 } // namespace
 
-/*
- * --INFO--
- * Address:	802BEDE0
- * Size:	000050
+/**
+ * @note Address: 0x802BEDE0
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -24,31 +23,27 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "ホウダイマネージャ"; // houdai manager
 }
 
-/*
- * --INFO--
- * Address:	802BEE30
- * Size:	000048
+/**
+ * @note Address: 0x802BEE30
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Parms); }
 
-/*
- * --INFO--
- * Address:	802BF1AC
- * Size:	000060
+/**
+ * @note Address: 0x802BF1AC
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	802BF2C8
- * Size:	000010
+/**
+ * @note Address: 0x802BF2C8
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
-/*
- * --INFO--
- * Address:	802BF2D8
- * Size:	000068
+/**
+ * @note Address: 0x802BF2D8
+ * @note Size: 0x68
  */
 void Mgr::loadModelData()
 {

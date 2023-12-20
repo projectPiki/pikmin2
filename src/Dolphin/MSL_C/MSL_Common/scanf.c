@@ -34,10 +34,9 @@ typedef struct {
 #define set_char_map(map, ch) map[(unsigned char)ch >> 3] |= (1 << (ch & 7))
 #define tst_char_map(map, ch) (map[(unsigned char)ch >> 3] & (1 << (ch & 7)))
 
-/*
- * --INFO--
- * Address:	800CA0C0
- * Size:	000548
+/**
+ * @note Address: 0x800CA0C0
+ * @note Size: 0x548
  */
 static const char* parse_format(const char* format_string, scan_format* format)
 {
@@ -243,10 +242,9 @@ static const char* parse_format(const char* format_string, scan_format* format)
 	return ((const char*)s + 1);
 }
 
-/*
- * --INFO--
- * Address:	800C9714
- * Size:	0009AC
+/**
+ * @note Address: 0x800C9714
+ * @note Size: 0x9AC
  */
 static int __sformatter(int (*ReadProc)(void*, int, int), void* ReadProcArg, const char* format_str, va_list arg)
 {
@@ -589,20 +587,18 @@ exit:
 	return items_assigned;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
+/**
+ * @note Address: N/A
+ * @note Size: 0x84
  */
 void __FileRead(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800C9684
- * Size:	000090
+/**
+ * @note Address: 0x800C9684
+ * @note Size: 0x90
  */
 int __StringRead(void* pPtr, int ch, int act)
 {
@@ -637,40 +633,36 @@ int __StringRead(void* pPtr, int ch, int act)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F0
+/**
+ * @note Address: N/A
+ * @note Size: 0xF0
  */
 void fscanf(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000090
+/**
+ * @note Address: N/A
+ * @note Size: 0x90
  */
 void vscanf(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
+/**
+ * @note Address: N/A
+ * @note Size: 0xE0
  */
 void scanf(void)
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000098
+/**
+ * @note Address: N/A
+ * @note Size: 0x98
  */
 void vfscanf(void)
 {
@@ -689,10 +681,9 @@ inline int isspace_string(const char* s)
 	return 1;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
+/**
+ * @note Address: N/A
+ * @note Size: 0x5C
  */
 inline int vsscanf(const char* s, const char* format, va_list arg)
 {
@@ -707,10 +698,9 @@ inline int vsscanf(const char* s, const char* format, va_list arg)
 	return __sformatter(&__StringRead, (void*)&isc, format, arg);
 }
 
-/*
- * --INFO--
- * Address:	800C95C0
- * Size:	0000C4
+/**
+ * @note Address: 0x800C95C0
+ * @note Size: 0xC4
  */
 int sscanf(const char* s, const char* pFormat, ...)
 {

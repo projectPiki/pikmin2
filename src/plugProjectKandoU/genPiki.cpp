@@ -5,18 +5,16 @@
 #include "Dolphin/rand.h"
 #include "nans.h"
 
-/*
- * --INFO--
- * Address:	801AC3C0
- * Size:	000128
+/**
+ * @note Address: 0x801AC3C0
+ * @note Size: 0x128
  */
 Game::GenObject* makeObjectPiki() { return new Game::GenObjectPiki(); }
 
 namespace Game {
-/*
- * --INFO--
- * Address:	801AC4E8
- * Size:	00008C
+/**
+ * @note Address: 0x801AC4E8
+ * @note Size: 0x8C
  */
 void GenObjectPiki::initialise()
 {
@@ -30,24 +28,21 @@ void GenObjectPiki::initialise()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801AC574
- * Size:	00002C
+/**
+ * @note Address: 0x801AC574
+ * @note Size: 0x2C
  */
 void GenObjectPiki::ramSaveParameters(Stream& stream) { stream.writeByte(mColourParm.mValue); }
 
-/*
- * --INFO--
- * Address:	801AC5A0
- * Size:	000038
+/**
+ * @note Address: 0x801AC5A0
+ * @note Size: 0x38
  */
 void GenObjectPiki::ramLoadParameters(Stream& stream) { mColourParm.mValue = stream.readByte(); }
 
-/*
- * --INFO--
- * Address:	801AC5D8
- * Size:	000258
+/**
+ * @note Address: 0x801AC5D8
+ * @note Size: 0x258
  */
 Creature* GenObjectPiki::generate(Generator* gen)
 {
@@ -73,10 +68,9 @@ Creature* GenObjectPiki::generate(Generator* gen)
 
 static const char unusedGenPikiArray[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-/*
- * --INFO--
- * Address:	801AC830
- * Size:	0001B0
+/**
+ * @note Address: 0x801AC830
+ * @note Size: 0x1B0
  */
 Creature* GenObjectPiki::birth(GenArg* arg)
 {

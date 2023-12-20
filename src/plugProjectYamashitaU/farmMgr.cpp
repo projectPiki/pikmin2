@@ -11,11 +11,10 @@
 namespace Game {
 namespace Farm {
 
-/*
+/**
  * __ct__Q34Game4Farm7FarmMgrFUl
- * --INFO--
- * Address:	80124018
- * Size:	0000C0
+ * @note Address: 0x80124018
+ * @note Size: 0xC0
  */
 FarmMgr::FarmMgr(u32 farmType)
     : GenericObjectMgr()
@@ -31,10 +30,9 @@ FarmMgr::FarmMgr(u32 farmType)
 	_3D = 0;
 }
 
-/*
- * --INFO--
- * Address:	801240D8
- * Size:	00002C
+/**
+ * @note Address: 0x801240D8
+ * @note Size: 0x2C
  */
 void FarmMgr::setupSound()
 {
@@ -44,10 +42,9 @@ void FarmMgr::setupSound()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80124104
- * Size:	000124
+/**
+ * @note Address: 0x80124104
+ * @note Size: 0x124
  */
 void FarmMgr::doAnimation()
 {
@@ -79,10 +76,9 @@ void FarmMgr::doAnimation()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80124230
- * Size:	000068
+/**
+ * @note Address: 0x80124230
+ * @note Size: 0x68
  */
 void FarmMgr::doEntry()
 {
@@ -93,10 +89,9 @@ void FarmMgr::doEntry()
 	gameSystem->setDrawBuffer(0);
 }
 
-/*
- * --INFO--
- * Address:	80124298
- * Size:	00005C
+/**
+ * @note Address: 0x80124298
+ * @note Size: 0x5C
  */
 void FarmMgr::doSetView(int viewportNumber)
 {
@@ -105,10 +100,9 @@ void FarmMgr::doSetView(int viewportNumber)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801242F4
- * Size:	00004C
+/**
+ * @note Address: 0x801242F4
+ * @note Size: 0x4C
  */
 void FarmMgr::doViewCalc()
 {
@@ -117,34 +111,30 @@ void FarmMgr::doViewCalc()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80124340
- * Size:	000004
+/**
+ * @note Address: 0x80124340
+ * @note Size: 0x4
  */
 void FarmMgr::doSimulation(f32) { }
 
-/*
- * --INFO--
- * Address:	80124344
- * Size:	000004
+/**
+ * @note Address: 0x80124344
+ * @note Size: 0x4
  */
 void FarmMgr::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	80124348
- * Size:	000050
+/**
+ * @note Address: 0x80124348
+ * @note Size: 0x50
  */
 void FarmMgr::doDebugDraw(Graphics& gfx)
 {
 	FOREACH_NODE(Farm, mFarmsRootNode.mChild, farm) { farm->doDebugDraw(gfx); }
 }
 
-/*
- * --INFO--
- * Address:	80124398
- * Size:	000068
+/**
+ * @note Address: 0x80124398
+ * @note Size: 0x68
  */
 void FarmMgr::addFarmBmd(void* bmd)
 {
@@ -153,10 +143,9 @@ void FarmMgr::addFarmBmd(void* bmd)
 	sys->heapStatusEnd("FarmMgr Resource");
 }
 
-/*
- * --INFO--
- * Address:	80124400
- * Size:	000074
+/**
+ * @note Address: 0x80124400
+ * @note Size: 0x74
  */
 Farm* FarmMgr::createNewFarm(void* bmd)
 {
@@ -166,10 +155,9 @@ Farm* FarmMgr::createNewFarm(void* bmd)
 	return farm;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000098
+/**
+ * @note Address: N/A
+ * @note Size: 0x98
  */
 Farm* FarmMgr::getNearestFarm(Vector3f& position)
 {
@@ -188,10 +176,9 @@ Farm* FarmMgr::getNearestFarm(Vector3f& position)
 	return nearestFarm;
 }
 
-/*
- * --INFO--
- * Address:	80124474
- * Size:	000120
+/**
+ * @note Address: 0x80124474
+ * @note Size: 0x120
  */
 Obstacle* FarmMgr::addObstacle(Creature* creature, f32 radius, f32 power)
 {
@@ -203,10 +190,9 @@ Obstacle* FarmMgr::addObstacle(Creature* creature, f32 radius, f32 power)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80124594
- * Size:	0000F0
+/**
+ * @note Address: 0x80124594
+ * @note Size: 0xF0
  */
 Plant* FarmMgr::addPlant(Creature* creature)
 {
@@ -218,10 +204,9 @@ Plant* FarmMgr::addPlant(Creature* creature)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80124684
- * Size:	00004C
+/**
+ * @note Address: 0x80124684
+ * @note Size: 0x4C
  */
 void FarmMgr::initAllFarmObjectNodes()
 {
@@ -230,11 +215,10 @@ void FarmMgr::initAllFarmObjectNodes()
 	}
 }
 
-/*
+/**
  * __dt__Q34Game4Farm7FarmMgrFv
- * --INFO--
- * Address:	801246D0
- * Size:	000078
+ * @note Address: 0x801246D0
+ * @note Size: 0x78
  * TODO: Make Weak
  */
 FarmMgr::~FarmMgr() { }

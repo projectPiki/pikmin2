@@ -2,24 +2,21 @@
 #include "JSystem/JUtility/JUTNameTab.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	8002ECCC
- * Size:	000040
+/**
+ * @note Address: 0x8002ECCC
+ * @note Size: 0x40
  */
 JUTNameTab::JUTNameTab() { setResource(nullptr); }
 
-/*
- * --INFO--
- * Address:	8002ED0C
- * Size:	00003C
+/**
+ * @note Address: 0x8002ED0C
+ * @note Size: 0x3C
  */
 JUTNameTab::JUTNameTab(const ResNTAB* pNameTable) { setResource(pNameTable); }
 
-/*
- * --INFO--
- * Address:	8002ED48
- * Size:	00003C
+/**
+ * @note Address: 0x8002ED48
+ * @note Size: 0x3C
  */
 void JUTNameTab::setResource(const ResNTAB* pNameTable)
 {
@@ -34,10 +31,9 @@ void JUTNameTab::setResource(const ResNTAB* pNameTable)
 	}
 }
 
-/*
- * --INFO--
- * Address:	8002ED84
- * Size:	000098
+/**
+ * @note Address: 0x8002ED84
+ * @note Size: 0x98
  */
 s32 JUTNameTab::getIndex(const char* pName) const
 {
@@ -51,10 +47,9 @@ s32 JUTNameTab::getIndex(const char* pName) const
 	return -1;
 }
 
-/*
- * --INFO--
- * Address:	8002EE1C
- * Size:	000030
+/**
+ * @note Address: 0x8002EE1C
+ * @note Size: 0x30
  */
 const char* JUTNameTab::getName(u16 index) const
 {
@@ -63,10 +58,9 @@ const char* JUTNameTab::getName(u16 index) const
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	8002EE4C
- * Size:	000030
+/**
+ * @note Address: 0x8002EE4C
+ * @note Size: 0x30
  */
 u16 JUTNameTab::calcKeyCode(const char* pName) const
 {

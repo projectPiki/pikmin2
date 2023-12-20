@@ -1,6 +1,6 @@
 
 /* @(#)s_copysign.c 1.3 95/01/18 */
-/*
+/**
  * ====================================================
  * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
  *
@@ -11,7 +11,7 @@
  * ====================================================
  */
 
-/*
+/**
  * copysign(double x, double y)
  * copysign(x,y) returns a value with the magnitude of x and
  * with the sign bit of y.

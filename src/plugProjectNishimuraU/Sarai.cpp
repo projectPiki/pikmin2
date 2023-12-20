@@ -10,10 +10,9 @@
 namespace Game {
 namespace Sarai {
 
-/*
- * --INFO--
- * Address:	80272BC4
- * Size:	000138
+/**
+ * @note Address: 0x80272BC4
+ * @note Size: 0x138
  */
 Obj::Obj()
 {
@@ -21,17 +20,15 @@ Obj::Obj()
 	setFSM(new FSM);
 }
 
-/*
- * --INFO--
- * Address:	80272CFC
- * Size:	000004
+/**
+ * @note Address: 0x80272CFC
+ * @note Size: 0x4
  */
 void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
-/*
- * --INFO--
- * Address:	80272D00
- * Size:	000078
+/**
+ * @note Address: 0x80272D00
+ * @note Size: 0x78
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
@@ -45,10 +42,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mFsm->start(this, SARAI_Move, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	80272D78
- * Size:	000048
+/**
+ * @note Address: 0x80272D78
+ * @note Size: 0x48
  */
 void Obj::doUpdate()
 {
@@ -56,10 +52,9 @@ void Obj::doUpdate()
 	mMouthSlots.update();
 }
 
-/*
- * --INFO--
- * Address:	80272DC0
- * Size:	00004C
+/**
+ * @note Address: 0x80272DC0
+ * @note Size: 0x4C
  */
 void Obj::setFSM(FSM* fsm)
 {
@@ -68,24 +63,21 @@ void Obj::setFSM(FSM* fsm)
 	mCurrentLifecycleState = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80272E0C
- * Size:	000004
+/**
+ * @note Address: 0x80272E0C
+ * @note Size: 0x4
  */
 void Obj::doDirectDraw(Graphics&) { }
 
-/*
- * --INFO--
- * Address:	80272E10
- * Size:	000020
+/**
+ * @note Address: 0x80272E10
+ * @note Size: 0x20
  */
 void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
-/*
- * --INFO--
- * Address:	80272E30
- * Size:	000140
+/**
+ * @note Address: 0x80272E30
+ * @note Size: 0x140
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
@@ -114,10 +106,9 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 	shadowParam.mSize                     = 12.5f;
 }
 
-/*
- * --INFO--
- * Address:	80272F70
- * Size:	000034
+/**
+ * @note Address: 0x80272F70
+ * @note Size: 0x34
  */
 void Obj::doStartStoneState()
 {
@@ -125,10 +116,9 @@ void Obj::doStartStoneState()
 	flickStickTarget();
 }
 
-/*
- * --INFO--
- * Address:	80272FA4
- * Size:	00005C
+/**
+ * @note Address: 0x80272FA4
+ * @note Size: 0x5C
  */
 void Obj::doFinishStoneState()
 {
@@ -140,17 +130,15 @@ void Obj::doFinishStoneState()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80273000
- * Size:	000028
+/**
+ * @note Address: 0x80273000
+ * @note Size: 0x28
  */
 void Obj::startCarcassMotion() { EnemyBase::startMotion(SARAIANIM_Carry, nullptr); }
 
-/*
- * --INFO--
- * Address:	80273028
- * Size:	0000A8
+/**
+ * @note Address: 0x80273028
+ * @note Size: 0xA8
  */
 void Obj::initMouthSlots()
 {
@@ -163,10 +151,9 @@ void Obj::initMouthSlots()
 	}
 }
 
-/*
- * --INFO--
- * Address:	802730D0
- * Size:	000108
+/**
+ * @note Address: 0x802730D0
+ * @note Size: 0x108
  */
 f32 Obj::setHeightVelocity()
 {
@@ -199,10 +186,9 @@ f32 Obj::setHeightVelocity()
 	return mPosition.y - mapPosY;
 }
 
-/*
- * --INFO--
- * Address:	802731D8
- * Size:	000230
+/**
+ * @note Address: 0x802731D8
+ * @note Size: 0x230
  */
 void Obj::setRandTarget()
 {
@@ -226,10 +212,9 @@ void Obj::setRandTarget()
 	mTargetPos   = Vector3f((radius * sinf(rngAngle)) + mHomePosition.x, mHomePosition.y, (radius * cosf(rngAngle)) + mHomePosition.z);
 }
 
-/*
- * --INFO--
- * Address:	80273408
- * Size:	000294
+/**
+ * @note Address: 0x80273408
+ * @note Size: 0x294
  */
 void Obj::fallMeckGround()
 {
@@ -257,10 +242,9 @@ void Obj::fallMeckGround()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8027369C
- * Size:	00007C
+/**
+ * @note Address: 0x8027369C
+ * @note Size: 0x7C
  */
 int Obj::getCatchTargetNum()
 {
@@ -275,10 +259,9 @@ int Obj::getCatchTargetNum()
 	return count;
 }
 
-/*
- * --INFO--
- * Address:	80273718
- * Size:	000144
+/**
+ * @note Address: 0x80273718
+ * @note Size: 0x144
  * TODO
  */
 int Obj::getNextStateOnHeight()
@@ -322,10 +305,9 @@ int Obj::getNextStateOnHeight()
 	return SARAI_NULL;
 }
 
-/*
- * --INFO--
- * Address:	8027385C
- * Size:	0000B0
+/**
+ * @note Address: 0x8027385C
+ * @note Size: 0xB0
  */
 void Obj::flickStickTarget()
 {
@@ -340,17 +322,15 @@ void Obj::flickStickTarget()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8027390C
- * Size:	000080
+/**
+ * @note Address: 0x8027390C
+ * @note Size: 0x80
  */
 int Obj::getStickPikminNum() { return mStuckPikminCount - getCatchTargetNum(); }
 
-/*
- * --INFO--
- * Address:	8027398C
- * Size:	0003D0
+/**
+ * @note Address: 0x8027398C
+ * @note Size: 0x3D0
  */
 FakePiki* Obj::getAttackableTarget()
 {
@@ -380,17 +360,15 @@ FakePiki* Obj::getAttackableTarget()
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	80273D5C
- * Size:	000024
+/**
+ * @note Address: 0x80273D5C
+ * @note Size: 0x24
  */
 int Obj::catchTarget() { EnemyFunc::eatPikmin(this, nullptr); }
 
-/*
- * --INFO--
- * Address:	80273D80
- * Size:	000044
+/**
+ * @note Address: 0x80273D80
+ * @note Size: 0x44
  */
 void Obj::createDownEffect() { EnemyBase::createBounceEffect(mPosition, getDownSmokeScale()); }
 } // namespace Sarai

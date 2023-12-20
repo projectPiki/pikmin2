@@ -8,10 +8,9 @@ namespace BlackMan {
 
 static const char blackManMgrName[] = "blackManMgr";
 
-/*
- * --INFO--
- * Address:	803A53C8
- * Size:	000050
+/**
+ * @note Address: 0x803A53C8
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
@@ -19,24 +18,21 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "黒い人マネージャ"; // black man manager
 }
 
-/*
- * --INFO--
- * Address:	803A5418
- * Size:	000048
+/**
+ * @note Address: 0x803A5418
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new Parms); }
 
-/*
- * --INFO--
- * Address:	803A58B4
- * Size:	000020
+/**
+ * @note Address: 0x803A58B4
+ * @note Size: 0x20
  */
 EnemyBase* Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::birth(birthArg); }
 
-/*
- * --INFO--
- * Address:	803A58D4
- * Size:	000094
+/**
+ * @note Address: 0x803A58D4
+ * @note Size: 0x94
  */
 void Mgr::loadModelData()
 {
@@ -49,10 +45,9 @@ void Mgr::loadModelData()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803A5968
- * Size:	0000BC
+/**
+ * @note Address: 0x803A5968
+ * @note Size: 0xBC
  */
 void Mgr::loadTexData()
 {
@@ -69,17 +64,15 @@ void Mgr::loadTexData()
 	mTexAnimation->attachResource(btkFile, mModelData);
 }
 
-/*
- * --INFO--
- * Address:	803A5A24
- * Size:	00002C
+/**
+ * @note Address: 0x803A5A24
+ * @note Size: 0x2C
  */
 J3DModelData* Mgr::doLoadBmd(void* filename) { return J3DModelLoaderDataBase::load(filename, 0x21300030); }
 
-/*
- * --INFO--
- * Address:	803A5A50
- * Size:	000124
+/**
+ * @note Address: 0x803A5A50
+ * @note Size: 0x124
  */
 SysShape::Model* Mgr::createModel()
 {

@@ -46,10 +46,9 @@ static const THPPlayer::THPPlayerFileSettingTable sTHPPlayerFileSettingTable[12]
 #endif
 } // namespace
 
-/*
- * --INFO--
- * Address:	8044FDF0
- * Size:	000118
+/**
+ * @note Address: 0x8044FDF0
+ * @note Size: 0x118
  */
 THPPlayer::THPPlayer()
     : CNode("THPPlayer")
@@ -66,10 +65,9 @@ THPPlayer::THPPlayer()
 	_E8 = 0;
 }
 
-/*
- * --INFO--
- * Address:	8044FF08
- * Size:	000098
+/**
+ * @note Address: 0x8044FF08
+ * @note Size: 0x98
  */
 THPPlayer::~THPPlayer()
 {
@@ -77,10 +75,9 @@ THPPlayer::~THPPlayer()
 	THPPlayerQuit();
 }
 
-/*
- * --INFO--
- * Address:	8044FFA0
- * Size:	0000CC
+/**
+ * @note Address: 0x8044FFA0
+ * @note Size: 0xCC
  */
 void THPPlayer::load(EMovieIndex movieIdx)
 {
@@ -111,10 +108,9 @@ void THPPlayer::load(EMovieIndex movieIdx)
 	PSM::sTHPDinamicsProc.setSetting((PSM::THP_ID)data->mThpID);
 }
 
-/*
- * --INFO--
- * Address:	8045006C
- * Size:	00006C
+/**
+ * @note Address: 0x8045006C
+ * @note Size: 0x6C
  */
 void THPPlayer::load()
 {
@@ -131,27 +127,24 @@ void THPPlayer::load()
 	sys->dvdLoadUseCallBack(&mThreadCommand, &_C8);
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
+/**
+ * @note Address: N/A
+ * @note Size: 0x3C
  */
 void THPPlayer::reset()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	804500D8
- * Size:	000024
+/**
+ * @note Address: 0x804500D8
+ * @note Size: 0x24
  */
 void THPPlayer::loadResource() { loadResource(mLoadResArg); }
 
-/*
- * --INFO--
- * Address:	804500FC
- * Size:	0001CC
+/**
+ * @note Address: 0x804500FC
+ * @note Size: 0x1CC
  */
 void THPPlayer::loadResource(const THPPlayerLoadResourceArg& loadArg)
 {
@@ -205,10 +198,9 @@ void THPPlayer::loadResource(const THPPlayerLoadResourceArg& loadArg)
 	pause();
 }
 
-/*
- * --INFO--
- * Address:	804502C8
- * Size:	0000FC
+/**
+ * @note Address: 0x804502C8
+ * @note Size: 0xFC
  */
 void THPPlayer::prepare()
 {
@@ -245,10 +237,9 @@ void THPPlayer::prepare()
 	}
 }
 
-/*
- * --INFO--
- * Address:	804503C4
- * Size:	0000C0
+/**
+ * @note Address: 0x804503C4
+ * @note Size: 0xC0
  */
 void THPPlayer::init(JKRHeap* heap)
 {
@@ -271,10 +262,9 @@ void THPPlayer::init(JKRHeap* heap)
 	currHeap->becomeCurrentHeap();
 }
 
-/*
- * --INFO--
- * Address:	80450484
- * Size:	0000A0
+/**
+ * @note Address: 0x80450484
+ * @note Size: 0xA0
  */
 bool THPPlayer::play()
 {
@@ -293,10 +283,9 @@ bool THPPlayer::play()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	80450524
- * Size:	000038
+/**
+ * @note Address: 0x80450524
+ * @note Size: 0x38
  */
 bool THPPlayer::pause()
 {
@@ -308,10 +297,9 @@ bool THPPlayer::pause()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8045055C
- * Size:	000028
+/**
+ * @note Address: 0x8045055C
+ * @note Size: 0x28
  */
 void THPPlayer::stop()
 {
@@ -320,10 +308,9 @@ void THPPlayer::stop()
 	THPPlayerQuit();
 }
 
-/*
- * --INFO--
- * Address:	80450584
- * Size:	000094
+/**
+ * @note Address: 0x80450584
+ * @note Size: 0x94
  */
 void THPPlayer::update()
 {
@@ -348,10 +335,9 @@ void THPPlayer::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80450618
- * Size:	0000DC
+/**
+ * @note Address: 0x80450618
+ * @note Size: 0xDC
  */
 void THPPlayer::draw(Graphics& gfx)
 {
@@ -367,17 +353,15 @@ void THPPlayer::draw(Graphics& gfx)
 	}
 }
 
-/*
- * --INFO--
- * Address:	804506F4
- * Size:	0000BC
+/**
+ * @note Address: 0x804506F4
+ * @note Size: 0xBC
  */
 void THPPlayer::draw(Graphics& gfx, s32 x, s32 y, f32 factor) { draw(gfx, x, y, factor * mVideoInfo.mXSize, factor * mVideoInfo.mYSize); }
 
-/*
- * --INFO--
- * Address:	804507B0
- * Size:	000088
+/**
+ * @note Address: 0x804507B0
+ * @note Size: 0x88
  */
 void THPPlayer::draw(Graphics& gfx, s32 x, s32 y, u32 z, u32 w)
 {
@@ -389,10 +373,9 @@ void THPPlayer::draw(Graphics& gfx, s32 x, s32 y, u32 z, u32 w)
 	}
 }
 
-/*
- * --INFO--
- * Address:	80450838
- * Size:	00005C
+/**
+ * @note Address: 0x80450838
+ * @note Size: 0x5C
  */
 bool THPPlayer::isFinishLoading()
 {
@@ -404,10 +387,9 @@ bool THPPlayer::isFinishLoading()
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	80450894
- * Size:	00001C
+/**
+ * @note Address: 0x80450894
+ * @note Size: 0x1C
  */
 bool THPPlayer::isFinishPlaying() { return ActivePlayer.mState == 3; }
 

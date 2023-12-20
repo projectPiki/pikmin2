@@ -15,10 +15,9 @@ namespace newScreen {
 
 static const char unusedObjGroundArray[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-/*
- * --INFO--
- * Address:	8030DEB8
- * Size:	000094
+/**
+ * @note Address: 0x8030DEB8
+ * @note Size: 0x94
  */
 ObjGround::ObjGround(char const* name)
     : mFadeLevel(0.0f)
@@ -39,17 +38,15 @@ ObjGround::ObjGround(char const* name)
 	_6C           = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	8030DF4C
- * Size:	0000AC
+/**
+ * @note Address: 0x8030DF4C
+ * @note Size: 0xAC
  */
 ObjGround::~ObjGround() { }
 
-/*
- * --INFO--
- * Address:	8030DFF8
- * Size:	000464
+/**
+ * @note Address: 0x8030DFF8
+ * @note Size: 0x464
  */
 void ObjGround::doCreate(JKRArchive* arc)
 {
@@ -97,10 +94,9 @@ void ObjGround::doCreate(JKRArchive* arc)
 	mDoping->setDopingEnable(mDisp->mUnlockedSpicy, mDisp->mUnlockedBitter);
 }
 
-/*
- * --INFO--
- * Address:	8030E45C
- * Size:	00029C
+/**
+ * @note Address: 0x8030E45C
+ * @note Size: 0x29C
  */
 void ObjGround::commonUpdate()
 {
@@ -160,10 +156,9 @@ void ObjGround::commonUpdate()
 	mDoping->adjPos(msVal.mDopingX, msVal.mDopingY);
 }
 
-/*
- * --INFO--
- * Address:	8030E6F8
- * Size:	000024
+/**
+ * @note Address: 0x8030E6F8
+ * @note Size: 0x24
  */
 bool ObjGround::doUpdate()
 {
@@ -171,10 +166,9 @@ bool ObjGround::doUpdate()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	8030E71C
- * Size:	000090
+/**
+ * @note Address: 0x8030E71C
+ * @note Size: 0x90
  */
 void ObjGround::doDraw(Graphics& gfx)
 {
@@ -191,10 +185,9 @@ void ObjGround::doDraw(Graphics& gfx)
 		mOtakara->draw(gfx.mPerspGraph);
 }
 
-/*
- * --INFO--
- * Address:	8030E7AC
- * Size:	000014
+/**
+ * @note Address: 0x8030E7AC
+ * @note Size: 0x14
  */
 bool ObjGround::doStart(::Screen::StartSceneArg const*)
 {
@@ -203,10 +196,9 @@ bool ObjGround::doStart(::Screen::StartSceneArg const*)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8030E7C0
- * Size:	000010
+/**
+ * @note Address: 0x8030E7C0
+ * @note Size: 0x10
  */
 bool ObjGround::doEnd(::Screen::EndSceneArg const*)
 {
@@ -214,10 +206,9 @@ bool ObjGround::doEnd(::Screen::EndSceneArg const*)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	8030E7D0
- * Size:	000074
+/**
+ * @note Address: 0x8030E7D0
+ * @note Size: 0x74
  */
 bool ObjGround::doUpdateFadein()
 {
@@ -233,24 +224,21 @@ bool ObjGround::doUpdateFadein()
 	return check;
 }
 
-/*
- * --INFO--
- * Address:	8030E844
- * Size:	000004
+/**
+ * @note Address: 0x8030E844
+ * @note Size: 0x4
  */
 void ObjGround::doUpdateFadeinFinish() { }
 
-/*
- * --INFO--
- * Address:	8030E848
- * Size:	00000C
+/**
+ * @note Address: 0x8030E848
+ * @note Size: 0xC
  */
 void ObjGround::doUpdateFinish() { mFadeLevel = 0.0f; }
 
-/*
- * --INFO--
- * Address:	8030E854
- * Size:	00007C
+/**
+ * @note Address: 0x8030E854
+ * @note Size: 0x7C
  */
 bool ObjGround::doUpdateFadeout()
 {
@@ -266,10 +254,9 @@ bool ObjGround::doUpdateFadeout()
 	return check;
 }
 
-/*
- * --INFO--
- * Address:	8030E8D0
- * Size:	000004
+/**
+ * @note Address: 0x8030E8D0
+ * @note Size: 0x4
  */
 void ObjGround::doUpdateFadeoutFinish() { }
 

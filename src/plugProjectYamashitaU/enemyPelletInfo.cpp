@@ -3,10 +3,9 @@
 #include "Game/EnemyPelletInfo.h"
 namespace Game {
 
-/*
- * --INFO--
- * Address:	8012E34C
- * Size:	000034
+/**
+ * @note Address: 0x8012E34C
+ * @note Size: 0x34
  */
 EnemyPelletInfo::EnemyPelletInfo()
 {
@@ -17,10 +16,9 @@ EnemyPelletInfo::EnemyPelletInfo()
 	mSpawnChance = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	8012E380
- * Size:	000120
+/**
+ * @note Address: 0x8012E380
+ * @note Size: 0x120
  */
 void EnemyPelletInfo::write(Stream& stream)
 {
@@ -41,10 +39,9 @@ void EnemyPelletInfo::write(Stream& stream)
 	stream.textWriteText("\t\t# %s \r\n", "Pellet Min");
 }
 
-/*
- * --INFO--
- * Address:	8012E4A0
- * Size:	000070
+/**
+ * @note Address: 0x8012E4A0
+ * @note Size: 0x70
  */
 void EnemyPelletInfo::read(Stream& stream)
 {

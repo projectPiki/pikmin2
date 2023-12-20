@@ -3,10 +3,9 @@
 #include "JSystem/J3D/J3DAnmVtxColor.h"
 #include "JSystem/J3D/J3DSkinDeform.h"
 
-/*
- * --INFO--
- * Address:	80088658
- * Size:	000088
+/**
+ * @note Address: 0x80088658
+ * @note Size: 0x88
  */
 void J3DSkinDeform::deform(J3DModel* model)
 {
@@ -24,17 +23,15 @@ void J3DSkinDeform::deform(J3DModel* model)
 	deform(&model->mVertexBuffer, model->mMtxBuffer);
 }
 
-/*
- * --INFO--
- * Address:	800886E0
- * Size:	000030
+/**
+ * @note Address: 0x800886E0
+ * @note Size: 0x30
  */
 void J3DVtxColorCalc::calc(J3DModel* model) { calc(&model->mVertexBuffer); }
 
-/*
- * --INFO--
- * Address:	80088710
- * Size:	0000F4
+/**
+ * @note Address: 0x80088710
+ * @note Size: 0xF4
  */
 void J3DVtxColorCalc::calc(J3DVertexBuffer* buffer)
 {

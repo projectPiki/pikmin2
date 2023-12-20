@@ -8,10 +8,9 @@ namespace {
 static const char* cOtakaraChangeTexName = "/enemy/data/WaterOtakara/otakara_blue_s3tc.bti";
 } // namespace
 
-/*
- * --INFO--
- * Address:	802B86E0
- * Size:	000050
+/**
+ * @note Address: 0x802B86E0
+ * @note Size: 0x50
  */
 Mgr::Mgr(int objLimit, u8 modelType)
     : OtakaraBase::Mgr(objLimit, modelType)
@@ -19,31 +18,27 @@ Mgr::Mgr(int objLimit, u8 modelType)
 	mName = "水オタカラムシマネージャ"; // water otakara manager
 }
 
-/*
- * --INFO--
- * Address:	802B8730
- * Size:	000048
+/**
+ * @note Address: 0x802B8730
+ * @note Size: 0x48
  */
 void Mgr::doAlloc() { init(new OtakaraBase::Parms); }
 
-/*
- * --INFO--
- * Address:	802B8778
- * Size:	000060
+/**
+ * @note Address: 0x802B8778
+ * @note Size: 0x60
  */
 void Mgr::createObj(int count) { mObj = new Obj[count]; }
 
-/*
- * --INFO--
- * Address:	802B88C8
- * Size:	000010
+/**
+ * @note Address: 0x802B88C8
+ * @note Size: 0x10
  */
 EnemyBase* Mgr::getEnemy(int index) { return &mObj[index]; }
 
-/*
- * --INFO--
- * Address:	802B88D8
- * Size:	000080
+/**
+ * @note Address: 0x802B88D8
+ * @note Size: 0x80
  */
 void Mgr::loadTexData()
 {

@@ -22,26 +22,23 @@ static OSResetFunctionInfo ResetFunctionInfo = { OnReset, 127 };
 #define AD1EX(x) ((u8)(AD1(x) | 0x80));
 #define AD2(x)   ((u8)(((x) >> 9) & 0xff))
 #define AD3(x)   ((u8)(((x) >> 7) & 0x03))
-#define BA(x)    ((u8)((x)&0x7f))
+#define BA(x)    ((u8)((x) & 0x7f))
 
-/*
- * --INFO--
- * Address:	800D466C
- * Size:	000004
+/**
+ * @note Address: 0x800D466C
+ * @note Size: 0x4
  */
 void __CARDDefaultApiCallback(s32 channel, s32 result) { }
 
-/*
- * --INFO--
- * Address:	800D4670
- * Size:	000034
+/**
+ * @note Address: 0x800D4670
+ * @note Size: 0x34
  */
 void __CARDSyncCallback(s32 channel, s32 result) { OSWakeupThread(&__CARDBlock[channel].threadQueue); }
 
-/*
- * --INFO--
- * Address:	800D46A4
- * Size:	0000D8
+/**
+ * @note Address: 0x800D46A4
+ * @note Size: 0xD8
  */
 void __CARDExtHandler(s32 channel, OSContext* context)
 {
@@ -78,10 +75,9 @@ void __CARDExtHandler(s32 channel, OSContext* context)
 // 	int v1;
 // }
 
-/*
- * --INFO--
- * Address:	800D477C
- * Size:	000118
+/**
+ * @note Address: 0x800D477C
+ * @note Size: 0x118
  */
 void __CARDExiHandler(s32 channel, OSContext* context)
 {
@@ -127,10 +123,9 @@ fatal:
 	}
 }
 
-/*
- * --INFO--
- * Address:	800D4894
- * Size:	0000A8
+/**
+ * @note Address: 0x800D4894
+ * @note Size: 0xA8
  */
 void __CARDTxHandler(s32 channel, OSContext* context)
 {
@@ -148,10 +143,9 @@ void __CARDTxHandler(s32 channel, OSContext* context)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800D493C
- * Size:	000084
+/**
+ * @note Address: 0x800D493C
+ * @note Size: 0x84
  */
 void __CARDUnlockedHandler(s32 channel, OSContext* context)
 {
@@ -166,10 +160,9 @@ void __CARDUnlockedHandler(s32 channel, OSContext* context)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800D49C0
- * Size:	0000C0
+/**
+ * @note Address: 0x800D49C0
+ * @note Size: 0xC0
  */
 s32 __CARDEnableInterrupt(s32 channel, BOOL enable)
 {
@@ -188,10 +181,9 @@ s32 __CARDEnableInterrupt(s32 channel, BOOL enable)
 	return err ? CARD_RESULT_NOCARD : CARD_RESULT_READY;
 }
 
-/*
- * --INFO--
- * Address:	800D4A80
- * Size:	0000F0
+/**
+ * @note Address: 0x800D4A80
+ * @note Size: 0xF0
  */
 s32 __CARDReadStatus(s32 channel, u8* status)
 {
@@ -212,10 +204,9 @@ s32 __CARDReadStatus(s32 channel, u8* status)
 	return err ? CARD_RESULT_NOCARD : CARD_RESULT_READY;
 }
 
-/*
- * --INFO--
- * Address:	800D4B70
- * Size:	0000AC
+/**
+ * @note Address: 0x800D4B70
+ * @note Size: 0xAC
  */
 s32 __CARDClearStatus(s32 channel)
 {
@@ -235,30 +226,27 @@ s32 __CARDClearStatus(s32 channel)
 	return err ? CARD_RESULT_NOCARD : CARD_RESULT_READY;
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	0000AC
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0xAC
 //  */
 // void __CARDSleep(void)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	0000AC
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0xAC
 //  */
 // void __CARDWakeup(void)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	800D4C1C
- * Size:	0000A4
+/**
+ * @note Address: 0x800D4C1C
+ * @note Size: 0xA4
  */
 void TimeoutHandler(OSAlarm* alarm, OSContext* context)
 {
@@ -284,10 +272,9 @@ void TimeoutHandler(OSAlarm* alarm, OSContext* context)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F8
+/**
+ * @note Address: N/A
+ * @note Size: 0xF8
  */
 void SetupTimeoutAlarm(CARDControl* card)
 {
@@ -305,10 +292,9 @@ void SetupTimeoutAlarm(CARDControl* card)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800D4CC0
- * Size:	00022C
+/**
+ * @note Address: 0x800D4CC0
+ * @note Size: 0x22C
  */
 s32 Retry(s32 channel)
 {
@@ -349,10 +335,9 @@ s32 Retry(s32 channel)
 	return CARD_RESULT_READY;
 }
 
-/*
- * --INFO--
- * Address:	800D4EEC
- * Size:	000110
+/**
+ * @note Address: 0x800D4EEC
+ * @note Size: 0x110
  */
 void UnlockedCallback(s32 channel, s32 result)
 {
@@ -393,10 +378,9 @@ void UnlockedCallback(s32 channel, s32 result)
 	}
 }
 
-/*
- * --INFO--
- * Address:	800D4FFC
- * Size:	0001B4
+/**
+ * @note Address: 0x800D4FFC
+ * @note Size: 0x1B4
  */
 s32 __CARDStart(s32 channel, CARDCallback txCallback, CARDCallback exiCallback)
 {
@@ -437,10 +421,9 @@ s32 __CARDStart(s32 channel, CARDCallback txCallback, CARDCallback exiCallback)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	800D51B0
- * Size:	000134
+/**
+ * @note Address: 0x800D51B0
+ * @note Size: 0x134
  */
 s32 __CARDReadSegment(s32 channel, CARDCallback callback)
 {
@@ -477,10 +460,9 @@ s32 __CARDReadSegment(s32 channel, CARDCallback callback)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	800D52E4
- * Size:	00011C
+/**
+ * @note Address: 0x800D52E4
+ * @note Size: 0x11C
  */
 s32 __CARDWritePage(s32 channel, CARDCallback callback)
 {
@@ -514,10 +496,9 @@ s32 __CARDWritePage(s32 channel, CARDCallback callback)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	800D5400
- * Size:	0000E0
+/**
+ * @note Address: 0x800D5400
+ * @note Size: 0xE0
  */
 s32 __CARDEraseSector(s32 channel, u32 addr, CARDCallback callback)
 {
@@ -550,10 +531,9 @@ s32 __CARDEraseSector(s32 channel, u32 addr, CARDCallback callback)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	800D54E0
- * Size:	0000AC
+/**
+ * @note Address: 0x800D54E0
+ * @note Size: 0xAC
  */
 void CARDInit()
 {
@@ -583,27 +563,24 @@ void CARDInit()
 	OSRegisterResetFunction(&ResetFunctionInfo);
 }
 
-/*
- * --INFO--
- * Address:	800D558C
- * Size:	000008
+/**
+ * @note Address: 0x800D558C
+ * @note Size: 0x8
  */
 u16 __CARDGetFontEncode() { return __CARDEncode; }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000028
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x28
 //  */
 // void __CARDSetFontEncode(void)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	800D5594
- * Size:	000038
+/**
+ * @note Address: 0x800D5594
+ * @note Size: 0x38
  */
 void __CARDSetDiskID(const DVDDiskID* diskID)
 {
@@ -611,30 +588,27 @@ void __CARDSetDiskID(const DVDDiskID* diskID)
 	__CARDBlock[1].diskID = diskID ? diskID : &__CARDDiskNone;
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000018
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x18
 //  */
 // void CARDGetDiskID(void)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000078
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x78
 //  */
 // void CARDSetDiskID(void)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	800D55CC
- * Size:	0000B8
+/**
+ * @note Address: 0x800D55CC
+ * @note Size: 0xB8
  */
 s32 __CARDGetControlBlock(s32 channel, CARDControl** card)
 {
@@ -662,10 +636,9 @@ s32 __CARDGetControlBlock(s32 channel, CARDControl** card)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	800D5684
- * Size:	000064
+/**
+ * @note Address: 0x800D5684
+ * @note Size: 0x64
  */
 s32 __CARDPutControlBlock(CARDControl* card, s32 result)
 {
@@ -681,10 +654,9 @@ s32 __CARDPutControlBlock(CARDControl* card, s32 result)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
+/**
+ * @note Address: N/A
+ * @note Size: 0x30
  */
 s32 CARDGetResultCode(s32 channel)
 {
@@ -698,10 +670,9 @@ s32 CARDGetResultCode(s32 channel)
 	return card->result;
 }
 
-/*
- * --INFO--
- * Address:	800D56E8
- * Size:	000150
+/**
+ * @note Address: 0x800D56E8
+ * @note Size: 0x150
  */
 s32 CARDFreeBlocks(s32 channel, s32* byteNotUsed, s32* filesNotUsed)
 {
@@ -740,40 +711,36 @@ s32 CARDFreeBlocks(s32 channel, s32* byteNotUsed, s32* filesNotUsed)
 	return __CARDPutControlBlock(card, CARD_RESULT_READY);
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000088
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x88
 //  */
 // void CARDGetEncoding(void)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000084
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x84
 //  */
 // void CARDGetMemSize(void)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000084
+// /**
+//  * @note Address: N/A
+//  * @note Size: 0x84
 //  */
 // void CARDGetSectorSize(void)
 // {
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * --INFO--
- * Address:	800D5838
- * Size:	000098
+/**
+ * @note Address: 0x800D5838
+ * @note Size: 0x98
  */
 s32 __CARDSync(s32 channel)
 {
@@ -792,10 +759,9 @@ s32 __CARDSync(s32 channel)
 	return result;
 }
 
-/*
- * --INFO--
- * Address:	800D58D0
- * Size:	000050
+/**
+ * @note Address: 0x800D58D0
+ * @note Size: 0x50
  */
 BOOL OnReset(BOOL f)
 {
