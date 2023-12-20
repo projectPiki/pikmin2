@@ -10,14 +10,14 @@ void C_MTXMultVec(void)
 	// UNUSED FUNCTION
 }
 
-// clang-format off
 /*
  * --INFO--
  * Address:	800EABD8
  * Size:	000054
  */
-asm void PSMTXMultVec(const register Mtx m, const register Vec* in, register Vec* out)
+ASM void PSMTXMultVec(const register Mtx m, const register Vec* in, register Vec* out)
 {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc;
 	psq_l fp0, 0(in), 0, 0;
 	psq_l fp2, 0(m), 0, 0;
@@ -40,8 +40,8 @@ asm void PSMTXMultVec(const register Mtx m, const register Vec* in, register Vec
 	ps_sum0 fp6, fp5, fp6, fp5;
 	psq_st fp6, 8(out), 1, 0;
 	blr;
+#endif // clang-format on
 }
-// clang-format on
 
 /*
  * --INFO--
@@ -73,14 +73,14 @@ void C_MTXMultVecSR(void)
 	// UNUSED FUNCTION
 }
 
-// clang-format off
 /*
  * --INFO--
  * Address:	800EAC2C
  * Size:	000054
  */
-asm void PSMTXMultVecSR(const register Mtx mtx, const register Vec* in, register Vec* out)
+ASM void PSMTXMultVecSR(const register Mtx mtx, const register Vec* in, register Vec* out)
 {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc;
 	psq_l fp0, 0(mtx), 0, 0;
 	psq_l fp6, 0(in), 0, 0;
@@ -103,8 +103,8 @@ asm void PSMTXMultVecSR(const register Mtx mtx, const register Vec* in, register
 	ps_madd fp13, fp5, fp7, fp12;
 	psq_st fp13, 8(out), 1, 0;
 	blr;
+#endif // clang-format on
 }
-// clang-format on
 
 /*
  * --INFO--
@@ -121,8 +121,9 @@ void C_MTXMultVecArraySR(void)
  * Address:	800EAC80
  * Size:	000088
  */
-asm void PSMTXMultVecArraySR(const register Mtx mtx, register f32* in, register f32* out, register f32* count)
+ASM void PSMTXMultVecArraySR(const register Mtx mtx, register f32* in, register f32* out, register f32* count)
 {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc;
 	psq_l fp13, 0(mtx), 0, 0;
 	psq_l fp12, 0x10(mtx), 0, 0;
@@ -162,4 +163,5 @@ loop:
 	psq_stu fp12, 4(out), 0, 0;
 	psq_stu fp13, 8(out), 1, 0;
 	blr;
+#endif // clang-format on
 }

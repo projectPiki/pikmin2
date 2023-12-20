@@ -1,19 +1,20 @@
 #include "Dolphin/os.h"
-// clang-format off
-asm void targsupp(void) // encapsulating function to get the file to align properly
+
+ASM void targsupp(void) // encapsulating function to get the file to align properly
 {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	entry TRKAccessFile
 		twi 31, r0, 0
-		blr 
+		blr
 	entry TRKOpenFile
 		twi 31, r0, 0
-		blr 
+		blr
 	entry TRKCloseFile
 		twi 31, r0, 0
-		blr 
+		blr
 	entry TRKPositionFile
 		twi 31, r0, 0
-		blr 
+		blr
+#endif // clang-format on
 }
-// clang-format on

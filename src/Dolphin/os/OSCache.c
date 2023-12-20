@@ -1,7 +1,7 @@
 #include "Dolphin/os.h"
 #include "Dolphin/db.h"
 #define PPCSYNC sc // system call performs PPCSync()
-// clang-format off
+
 // /*
 //  * --INFO--
 //  * Address:	........
@@ -17,17 +17,18 @@
  * Address:	800EC6D8
  * Size:	000014
  */
-asm void DCEnable(void)
-{
-    nofralloc
+ASM void DCEnable(void) {
+#ifdef __MWERKS__ // clang-format off
+	nofralloc
 
-    sync
+	sync
 
-    mfspr   r3, HID0
-    ori     r3, r3, HID0_DCE
-    mtspr   HID0, r3
+	mfspr   r3, HID0
+	ori     r3, r3, HID0_DCE
+	mtspr   HID0, r3
 
-    blr
+	blr
+#endif // clang-format on
 }
 
 // /*
@@ -115,47 +116,48 @@ asm void DCEnable(void)
  * Address:	800EC6EC
  * Size:	00002C
  */
-asm void DCInvalidateRange(register void* addr, register u32 nBytes)
-{
-    nofralloc
-    cmplwi  nBytes,0
-    blelr-
-    rlwinm  r5,addr,0,27,31
-    add     nBytes,nBytes,r5
-    addi    nBytes,nBytes,31
-    srwi    nBytes,nBytes,5
-    mtctr   nBytes
+ASM void DCInvalidateRange(register void* addr, register u32 nBytes) {
+#ifdef __MWERKS__ // clang-format off
+	nofralloc
+	cmplwi  nBytes,0
+	blelr-
+	rlwinm  r5,addr,0,27,31
+	add     nBytes,nBytes,r5
+	addi    nBytes,nBytes,31
+	srwi    nBytes,nBytes,5
+	mtctr   nBytes
 _loop:
-    dcbi    0,addr
-    addi    addr,addr,32
-    bdnz    _loop
-    blr
+	dcbi    0,addr
+	addi    addr,addr,32
+	bdnz    _loop
+	blr
+#endif // clang-format on
 }
-
 
 /*
  * --INFO--
  * Address:	800EC718
  * Size:	000030
  */
-asm void DCFlushRange(register void* addr, register u32 nBytes)
-{
-    nofralloc
-    cmplwi  nBytes,0
-    blelr-
-    rlwinm  r5,addr,0,27,31
-    add     nBytes,nBytes,r5
-    addi    nBytes,nBytes,31
-    srwi    nBytes,nBytes,5
-    mtctr   nBytes
+ASM void DCFlushRange(register void* addr, register u32 nBytes) {
+#ifdef __MWERKS__ // clang-format off
+	nofralloc
+	cmplwi  nBytes,0
+	blelr-
+	rlwinm  r5,addr,0,27,31
+	add     nBytes,nBytes,r5
+	addi    nBytes,nBytes,31
+	srwi    nBytes,nBytes,5
+	mtctr   nBytes
 _loop:
-    dcbf    0,addr
-    addi    addr,addr,32
-    bdnz    _loop
+	dcbf    0,addr
+	addi    addr,addr,32
+	bdnz    _loop
 
-    PPCSYNC
+	PPCSYNC
 
-    blr
+	blr
+#endif // clang-format on
 }
 
 /*
@@ -163,24 +165,25 @@ _loop:
  * Address:	800EC748
  * Size:	000030
  */
-asm void DCStoreRange(register void* addr, register u32 nBytes)
-{
-    nofralloc
-    cmplwi  nBytes,0
-    blelr-
-    rlwinm  r5,addr,0,27,31
-    add     nBytes,nBytes,r5
-    addi    nBytes,nBytes,31
-    srwi    nBytes,nBytes,5
-    mtctr   nBytes
+ASM void DCStoreRange(register void* addr, register u32 nBytes) {
+#ifdef __MWERKS__ // clang-format off
+	nofralloc
+	cmplwi  nBytes,0
+	blelr-
+	rlwinm  r5,addr,0,27,31
+	add     nBytes,nBytes,r5
+	addi    nBytes,nBytes,31
+	srwi    nBytes,nBytes,5
+	mtctr   nBytes
 _loop:
-    dcbst   0,addr
-    addi    addr,addr,32
-    bdnz    _loop
+	dcbst   0,addr
+	addi    addr,addr,32
+	bdnz    _loop
 
-    PPCSYNC
+	PPCSYNC
 
-    blr
+	blr
+#endif // clang-format on
 }
 
 /*
@@ -188,22 +191,23 @@ _loop:
  * Address:	800EC778
  * Size:	00002C
  */
-asm void DCFlushRangeNoSync(register void* addr, register u32 nBytes)
-{
-    nofralloc
-    cmplwi  nBytes,0
-    blelr-
-    rlwinm  r5,addr,0,27,31
-    add     nBytes,nBytes,r5
-    addi    nBytes,nBytes,31
-    srwi    nBytes,nBytes,5
-    mtctr   nBytes
+ASM void DCFlushRangeNoSync(register void* addr, register u32 nBytes) {
+#ifdef __MWERKS__ // clang-format off
+	nofralloc
+	cmplwi  nBytes,0
+	blelr-
+	rlwinm  r5,addr,0,27,31
+	add     nBytes,nBytes,r5
+	addi    nBytes,nBytes,31
+	srwi    nBytes,nBytes,5
+	mtctr   nBytes
 _loop:
-    dcbf    0,addr
-    addi    addr,addr,32
-    bdnz    _loop
+	dcbf    0,addr
+	addi    addr,addr,32
+	bdnz    _loop
 
-    blr
+	blr
+#endif // clang-format on
 }
 
 /*
@@ -211,22 +215,23 @@ _loop:
  * Address:	800EC7A4
  * Size:	00002C
  */
-asm void DCStoreRangeNoSync(register void* addr, register u32 nBytes)
-{
-    nofralloc
-    cmplwi  nBytes,0
-    blelr-
-    rlwinm  r5,addr,0,27,31
-    add     nBytes,nBytes,r5
-    addi    nBytes,nBytes,31
-    srwi    nBytes,nBytes,5
-    mtctr   nBytes
+ASM void DCStoreRangeNoSync(register void* addr, register u32 nBytes) {
+#ifdef __MWERKS__ // clang-format off
+	nofralloc
+	cmplwi  nBytes,0
+	blelr-
+	rlwinm  r5,addr,0,27,31
+	add     nBytes,nBytes,r5
+	addi    nBytes,nBytes,31
+	srwi    nBytes,nBytes,5
+	mtctr   nBytes
 _loop:
-    dcbst   0,addr
-    addi    addr,addr,32
-    bdnz    _loop
+	dcbst   0,addr
+	addi    addr,addr,32
+	bdnz    _loop
 
-    blr
+	blr
+#endif // clang-format on
 }
 
 /*
@@ -234,21 +239,22 @@ _loop:
  * Address:	800EC7D0
  * Size:	00002C
  */
-asm void DCZeroRange(register void* addr, register u32 nBytes)
-{
-    nofralloc
-    cmplwi  nBytes,0
-    blelr-
-    rlwinm  r5,addr,0,27,31
-    add     nBytes,nBytes,r5
-    addi    nBytes,nBytes,31
-    srwi    nBytes,nBytes,5
-    mtctr   nBytes
+ASM void DCZeroRange(register void* addr, register u32 nBytes) {
+#ifdef __MWERKS__ // clang-format off
+	nofralloc
+	cmplwi  nBytes,0
+	blelr-
+	rlwinm  r5,addr,0,27,31
+	add     nBytes,nBytes,r5
+	addi    nBytes,nBytes,31
+	srwi    nBytes,nBytes,5
+	mtctr   nBytes
 _loop:
-    dcbz    0,addr
-    addi    addr,addr,32
-    bdnz    _loop
-    blr
+	dcbz    0,addr
+	addi    addr,addr,32
+	bdnz    _loop
+	blr
+#endif // clang-format on
 }
 
 /*
@@ -256,7 +262,7 @@ _loop:
  * Address:	........
  * Size:	00002C
  */
-asm void DCTouchRange(register void* addr, register u32 nBytes)
+ASM void DCTouchRange(register void* addr, register u32 nBytes)
 {
 	// UNUSED FUNCTION
 }
@@ -266,23 +272,24 @@ asm void DCTouchRange(register void* addr, register u32 nBytes)
  * Address:	800EC7FC
  * Size:	000034
  */
-asm void ICInvalidateRange(register void* addr, register u32 nBytes)
-{
-    nofralloc
-    cmplwi  nBytes,0
-    blelr-
-    rlwinm  r5,addr,0,27,31
-    add     nBytes,nBytes,r5
-    addi    nBytes,nBytes,31
-    srwi    nBytes,nBytes,5
-    mtctr   nBytes
+ASM void ICInvalidateRange(register void* addr, register u32 nBytes) {
+#ifdef __MWERKS__ // clang-format off
+	nofralloc
+	cmplwi  nBytes,0
+	blelr-
+	rlwinm  r5,addr,0,27,31
+	add     nBytes,nBytes,r5
+	addi    nBytes,nBytes,31
+	srwi    nBytes,nBytes,5
+	mtctr   nBytes
 _loop:
-    icbi    0,addr
-    addi    addr,addr,32
-    bdnz    _loop
-    sync
-    isync
-    blr
+	icbi    0,addr
+	addi    addr,addr,32
+	bdnz    _loop
+	sync
+	isync
+	blr
+#endif // clang-format on
 }
 
 /*
@@ -290,15 +297,16 @@ _loop:
  * Address:	800EC830
  * Size:	000010
  */
-asm void ICFlashInvalidate(void)
-{
-    nofralloc
+ASM void ICFlashInvalidate(void) {
+#ifdef __MWERKS__ // clang-format off
+	nofralloc
 
-    mfspr   r3, HID0
-    ori     r3, r3, HID0_ICFI
-    mtspr   HID0, r3
+	mfspr   r3, HID0
+	ori     r3, r3, HID0_ICFI
+	mtspr   HID0, r3
 
-    blr
+	blr
+#endif // clang-format on
 }
 
 /*
@@ -306,17 +314,19 @@ asm void ICFlashInvalidate(void)
  * Address:	800EC840
  * Size:	000014
  */
- asm void ICEnable(void)
+ASM void ICEnable(void)
 {
-    nofralloc
+#ifdef __MWERKS__ // clang-format off
+	nofralloc
 
-    isync
+	isync
 
-    mfspr   r3, HID0
-    ori     r3, r3, HID0_ICE
-    mtspr   HID0, r3
+	mfspr   r3, HID0
+	ori     r3, r3, HID0_ICE
+	mtspr   HID0, r3
 
-    blr
+	blr
+#endif // clang-format on
 }
 
 // /*
@@ -377,69 +387,71 @@ asm void ICFlashInvalidate(void)
  * Address:	800EC854
  * Size:	0000CC
  */
-static asm void __LCEnable(void)
+ASM static void __LCEnable(void)
 {
-    nofralloc
-    mfmsr   r5
-    ori     r5, r5, MSR_ME
-    mtmsr   r5
-    lis     r3, OS_CACHED_REGION_PREFIX
-    li      r4, CACHE_LINES
-    mtctr   r4
+#ifdef __MWERKS__ // clang-format off
+	nofralloc
+	mfmsr   r5
+	ori     r5, r5, MSR_ME
+	mtmsr   r5
+	lis     r3, OS_CACHED_REGION_PREFIX
+	li      r4, CACHE_LINES
+	mtctr   r4
 _loop:
-    dcbt    0,r3
-    dcbst   0,r3
-    addi    r3,r3,32
-    bdnz    _loop
+	dcbt    0,r3
+	dcbst   0,r3
+	addi    r3,r3,32
+	bdnz    _loop
 
-    mfspr   r4, HID2
-    oris    r4, r4, 0x100F
-    mtspr   HID2, r4
+	mfspr   r4, HID2
+	oris    r4, r4, 0x100F
+	mtspr   HID2, r4
 
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-	
-    lis     r3, LC_BASE_PREFIX
-    ori     r3, r3, 0x0002
-    mtdbatl   DBAT3L, r3
-    ori     r3, r3, 0x01fe
-    mtdbatu   DBAT3U, r3
-    isync
-	
-    lis     r3, LC_BASE_PREFIX
-    li      r6, LC_LINES
-    mtctr   r6
-    li      r6, 0
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+
+	lis     r3, LC_BASE_PREFIX
+	ori     r3, r3, 0x0002
+	mtdbatl   DBAT3L, r3
+	ori     r3, r3, 0x01fe
+	mtdbatu   DBAT3U, r3
+	isync
+
+	lis     r3, LC_BASE_PREFIX
+	li      r6, LC_LINES
+	mtctr   r6
+	li      r6, 0
 
 _lock:
-    dcbz_l  r6, r3
-    addi    r3, r3, 32
-    bdnz+    _lock
+	dcbz_l  r6, r3
+	addi    r3, r3, 32
+	bdnz+    _lock
 
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
 
-    blr
+	blr
+#endif // clang-format on
 }
 
 /*
@@ -449,11 +461,11 @@ _lock:
  */
 void LCEnable(void)
 {
-    BOOL enabled;
+	BOOL enabled;
 
-    enabled = OSDisableInterrupts();
-    __LCEnable();
-    OSRestoreInterrupts(enabled);
+	enabled = OSDisableInterrupts();
+	__LCEnable();
+	OSRestoreInterrupts(enabled);
 }
 
 /*
@@ -461,21 +473,22 @@ void LCEnable(void)
  * Address:	800EC958
  * Size:	000028
  */
-asm void LCDisable(void)
-{
-    nofralloc
+ASM void LCDisable(void) {
+#ifdef __MWERKS__ // clang-format off
+	nofralloc
 
-    lis     r3, LC_BASE_PREFIX
-    li      r4, LC_LINES
-    mtctr   r4
+	lis     r3, LC_BASE_PREFIX
+	li      r4, LC_LINES
+	mtctr   r4
 _loop:
-    dcbi    0, r3
-    addi    r3, r3, 32
-    bdnz+    _loop
-    mfspr   r4, HID2
-    rlwinm  r4, r4, 0, HID2_LCE_BIT+1, HID2_LCE_BIT-1
-    mtspr   HID2, r4
-    blr
+	dcbi    0, r3
+	addi    r3, r3, 32
+	bdnz+    _loop
+	mfspr   r4, HID2
+	rlwinm  r4, r4, 0, HID2_LCE_BIT+1, HID2_LCE_BIT-1
+	mtspr   HID2, r4
+	blr
+#endif // clang-format on
 }
 
 // /*
@@ -513,22 +526,19 @@ _loop:
  * Address:	800EC980
  * Size:	000024
  */
-asm void LCStoreBlocks(
-    register void*   destAddr,
-    register void*   srcTag,
-    register u32     numBlocks
-)
-{
-    nofralloc
-    rlwinm  r6, numBlocks, 30, 27, 31
-    rlwinm  destAddr, destAddr, 0, 4, 31
-    or      r6, r6, destAddr
-    mtspr   DMA_U, r6
-    rlwinm  r6, numBlocks, 2, 28, 29
-    or      r6, r6, srcTag
-    ori     r6, r6, DMA_L_STORE | DMA_L_TRIGGER
-    mtspr   DMA_L, r6
-    blr
+ASM void LCStoreBlocks(register void* destAddr, register void* srcTag, register u32 numBlocks) {
+#ifdef __MWERKS__ // clang-format off
+	nofralloc
+	rlwinm  r6, numBlocks, 30, 27, 31
+	rlwinm  destAddr, destAddr, 0, 4, 31
+	or      r6, r6, destAddr
+	mtspr   DMA_U, r6
+	rlwinm  r6, numBlocks, 2, 28, 29
+	or      r6, r6, srcTag
+	ori     r6, r6, DMA_L_STORE | DMA_L_TRIGGER
+	mtspr   DMA_L, r6
+	blr
+#endif // clang-format on
 }
 
 // /*
@@ -561,7 +571,6 @@ asm void LCStoreBlocks(
 // 	// UNUSED FUNCTION
 // }
 
-// clang-format on
 /*
  * --INFO--
  * Address:	800EC9A4
@@ -599,26 +608,26 @@ u32 LCStoreData(void* destAddr, // to main memory destination
 // 	// UNUSED FUNCTION
 // }
 
-// clang-format off
 /*
  * --INFO--
  * Address:	800ECA50
  * Size:	000014
  */
-asm void LCQueueWait(register u32 len)
+ASM void LCQueueWait(register u32 len)
 {
-    nofralloc
+#ifdef __MWERKS__ // clang-format off
+	nofralloc
 
 _waitloop:
-    mfspr   r4, HID2
-    rlwinm  r4, r4, 8, 28, 31
-    cmpw    r4, len
-    bgt     _waitloop
+	mfspr   r4, HID2
+	rlwinm  r4, r4, 8, 28, 31
+	cmpw    r4, len
+	bgt     _waitloop
 
-    blr
+	blr
+#endif // clang-format on
 }
 
-// clang-format on
 // /*
 //  * --INFO--
 //  * Address:	........

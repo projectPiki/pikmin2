@@ -15,21 +15,20 @@ static s32 LeapYearDays[OS_TIME_MONTH_MAX] = { 0, 31, 60, 91, 121, 152, 182, 213
  * Address:	800F2B90
  * Size:	000018
  */
-asm s64 OSGetTime()
-{
-	// clang-format off
-    nofralloc
+ASM s64 OSGetTime() {
+#ifdef __MWERKS__ // clang-format off
+	nofralloc
 
-    mftbu r3
-    mftb r4
+	mftbu r3
+	mftb r4
 
-    // Check for possible carry from TBL to TBU
-    mftbu r5
-    cmpw r3, r5
-    bne OSGetTime
+	// Check for possible carry from TBL to TBU
+	mftbu r5
+	cmpw r3, r5
+	bne OSGetTime
 
-    blr
-	// clang-format on
+	blr
+#endif // clang-format on
 }
 
 /*
@@ -37,13 +36,13 @@ asm s64 OSGetTime()
  * Address:	800F2BA8
  * Size:	000008
  */
-asm u32 OSGetTick() {
-	// clang-format off
-    nofralloc
+ASM u32 OSGetTick() {
+#ifdef __MWERKS__ // clang-format off
+	nofralloc
 
-    mftb r3
-    blr
-	// clang-format on
+	mftb r3
+	blr
+#endif // clang-format on
 }
 
 /*

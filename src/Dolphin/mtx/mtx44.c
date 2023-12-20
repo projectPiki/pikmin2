@@ -118,14 +118,14 @@ void C_MTX44Copy(void)
 	// UNUSED FUNCTION
 }
 
-// clang-format off
 /*
  * --INFO--
  * Address:	800EAE70
  * Size:	000044
  */
-asm void PSMTX44Copy(register Mtx44 src, register Mtx44 dest)
+ASM void PSMTX44Copy(register Mtx44 src, register Mtx44 dest)
 {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc;
 	psq_l fp1, 0(src), 0, 0;
 	psq_st fp1, 0(dest), 0, 0;
@@ -144,8 +144,8 @@ asm void PSMTX44Copy(register Mtx44 src, register Mtx44 dest)
 	psq_l fp1, 0x38(src), 0, 0;
 	psq_st fp1, 0x38(dest), 0, 0;
 	blr;
+#endif // clang-format on
 }
-// clang-format on
 
 /*
  * --INFO--

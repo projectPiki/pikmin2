@@ -32,4 +32,4 @@ void __destroy_global_chain(void)
 	}
 }
 
-__declspec(section ".dtors") static void* const __destroy_global_chain_reference = __destroy_global_chain;
+DECL_SECT(".dtors") static void* const __destroy_global_chain_reference = __destroy_global_chain;

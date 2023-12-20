@@ -476,9 +476,8 @@ typedef enum _GXTexMapID {
  * copying using GX_CTF_RG8, you would apply the resulting texture using
  * GX_TF_IA8.
  */
-// clang-format off
 typedef enum _GXTexFmt {
-    // Intensities (I) and RGB/RGBA.
+	// Intensities (I) and RGB/RGBA.
 	GX_TF_I4     = 0x0, // 4-bit I
 	GX_TF_I8     = 0x1, // 8-bit I
 	GX_TF_IA4    = 0x2, // 8-bit I + alpha (4+4).
@@ -488,16 +487,16 @@ typedef enum _GXTexFmt {
 	GX_TF_RGBA8  = 0x6, // 32-bit RGB.
 	GX_TF_CMPR   = 0xE, // Compressed 4-bit texel.
 
-    // Z-texture format.
+	// Z-texture format.
 	GX_TF_Z8    = 0x11, // Unsigned 8-bit Z. For texture copies, specify the upper 8 bits of Z.
 	GX_TF_Z16   = 0x13, // Unsigned 16-bit Z. For texture copies, specify the upper 16 bits of Z.
 	GX_TF_Z24X8 = 0x16, // Unsigned 24-bit (32-bit texture) Z. For texture copies, copy the 24-bit Z and 0xff.
 
-    // Copy-texture format.
+	// Copy-texture format.
 	GX_CTF_R4    = 0x20, // 4-bit red. For copying 4 bits from red.
 	GX_CTF_RA4   = 0x22, // 4-bit red + 4-bit alpha. For copying 4 bits from red, 4 bits from alpha.
 	GX_CTF_RA8   = 0x23, // 8-bit red + 8-bit alpha. For copying 8 bits from red, 8 bits from alpha.
-    GX_CTF_YUVA8 = 0x26, // 8-bit YUV + alpha. For copying 8 bits from YUV, 8 bits from alpha.
+	GX_CTF_YUVA8 = 0x26, // 8-bit YUV + alpha. For copying 8 bits from YUV, 8 bits from alpha.
 	GX_CTF_A8    = 0x26, // 8-bit alpha. For copying 8 bits from alpha.
 	GX_CTF_R8    = 0x27, // 8-bit red. For copying 8 bits from red.
 	GX_CTF_G8    = 0x28, // 8-bit green. For copying 8 bits from green.
@@ -505,13 +504,12 @@ typedef enum _GXTexFmt {
 	GX_CTF_RG8   = 0x2A, // 8-bit red +8-bit green. For copying 8 bits from red, 8 bits from green.
 	GX_CTF_GB8   = 0x2B, // 8-bit green +8-bit blue. For copying 8 bits from green, 8 bits from blue.
 
-    // Copy-Z-texture format.
+	// Copy-Z-texture format.
 	GX_CTF_Z4   = 0x30, // 4-bit Z. For copying the 4 upper bits from Z.
 	GX_CTF_Z8M  = 0x39, // 8-bit Z (median byte). For copying the middle 8 bits of Z.
 	GX_CTF_Z8L  = 0x3A, // 8-bit Z (lower byte). For copying the lower 8 bits of Z.
 	GX_CTF_Z16L = 0x3C, // 16-bit Z (lower portion). For copying the lower 16 bits of Z.
 } GXTexFmt;
-// clang-format on
 
 // Color index formats.
 typedef enum _GXCITexFmt {

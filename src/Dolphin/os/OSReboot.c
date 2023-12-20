@@ -42,16 +42,16 @@ BOOL IsStreamEnabled(void)
  * Address:	800EFF4C
  * Size:	000010
  */
-static asm void Run(register u32 addr)
+ASM static void Run(register u32 addr)
 {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 
 	sync
 	isync
 	mtlr addr
 	blr
-	// clang-format on
+#endif // clang-format on
 }
 
 /*

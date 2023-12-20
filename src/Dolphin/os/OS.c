@@ -2,7 +2,7 @@
 #include "Dolphin/os.h"
 #include "Dolphin/PPCArch.h"
 
-__declspec(section ".init") extern char _db_stack_end[];
+DECL_SECT(".init") extern char _db_stack_end[];
 
 // memory locations for important stuff
 #define OS_DBINTERFACE_ADDR     0x40
@@ -109,93 +109,93 @@ void __OSIsDebuggerPresent(void)
  * Address:	800EAFC8
  * Size:	000128
  */
-// clang-format off
-asm void __OSFPRInit(void)
+ASM void __OSFPRInit(void)
 {
-    nofralloc
+#ifdef __MWERKS__ // clang-format off
+	nofralloc
 
-    mfmsr   r3
-    ori     r3, r3, 0x2000
-    mtmsr   r3
+	mfmsr   r3
+	ori     r3, r3, 0x2000
+	mtmsr   r3
 
-    mfspr   r3, 0x398
-    rlwinm. r3, r3, 3, 31, 31
-    beq     SkipPairedSingles
+	mfspr   r3, 0x398
+	rlwinm. r3, r3, 3, 31, 31
+	beq     SkipPairedSingles
 
-    lis     r3, ZeroPS@ha
-    addi    r3, r3, ZeroPS@l
-    psq_l   fp0, 0(r3), 0, 0
-    ps_mr   fp1, fp0
-    ps_mr   fp2, fp0
-    ps_mr   fp3, fp0
-    ps_mr   fp4, fp0
-    ps_mr   fp5, fp0
-    ps_mr   fp6, fp0
-    ps_mr   fp7, fp0
-    ps_mr   fp8, fp0
-    ps_mr   fp9, fp0
-    ps_mr   fp10, fp0
-    ps_mr   fp11, fp0
-    ps_mr   fp12, fp0
-    ps_mr   fp13, fp0
-    ps_mr   fp14, fp0
-    ps_mr   fp15, fp0
-    ps_mr   fp16, fp0
-    ps_mr   fp17, fp0
-    ps_mr   fp18, fp0
-    ps_mr   fp19, fp0
-    ps_mr   fp20, fp0
-    ps_mr   fp21, fp0
-    ps_mr   fp22, fp0
-    ps_mr   fp23, fp0
-    ps_mr   fp24, fp0
-    ps_mr   fp25, fp0
-    ps_mr   fp26, fp0
-    ps_mr   fp27, fp0
-    ps_mr   fp28, fp0
-    ps_mr   fp29, fp0
-    ps_mr   fp30, fp0
-    ps_mr   fp31, fp0
+	lis     r3, ZeroPS@ha
+	addi    r3, r3, ZeroPS@l
+	psq_l   fp0, 0(r3), 0, 0
+	ps_mr   fp1, fp0
+	ps_mr   fp2, fp0
+	ps_mr   fp3, fp0
+	ps_mr   fp4, fp0
+	ps_mr   fp5, fp0
+	ps_mr   fp6, fp0
+	ps_mr   fp7, fp0
+	ps_mr   fp8, fp0
+	ps_mr   fp9, fp0
+	ps_mr   fp10, fp0
+	ps_mr   fp11, fp0
+	ps_mr   fp12, fp0
+	ps_mr   fp13, fp0
+	ps_mr   fp14, fp0
+	ps_mr   fp15, fp0
+	ps_mr   fp16, fp0
+	ps_mr   fp17, fp0
+	ps_mr   fp18, fp0
+	ps_mr   fp19, fp0
+	ps_mr   fp20, fp0
+	ps_mr   fp21, fp0
+	ps_mr   fp22, fp0
+	ps_mr   fp23, fp0
+	ps_mr   fp24, fp0
+	ps_mr   fp25, fp0
+	ps_mr   fp26, fp0
+	ps_mr   fp27, fp0
+	ps_mr   fp28, fp0
+	ps_mr   fp29, fp0
+	ps_mr   fp30, fp0
+	ps_mr   fp31, fp0
 
 SkipPairedSingles:
-    lfd     fp0, ZeroF
-    fmr     fp1, fp0
-    fmr     fp2, fp0
-    fmr     fp3, fp0
-    fmr     fp4, fp0
-    fmr     fp5, fp0
-    fmr     fp6, fp0
-    fmr     fp7, fp0
-    fmr     fp8, fp0
-    fmr     fp9, fp0
-    fmr     fp10, fp0
-    fmr     fp11, fp0
-    fmr     fp12, fp0
-    fmr     fp13, fp0
-    fmr     fp14, fp0
-    fmr     fp15, fp0
-    fmr     fp16, fp0
-    fmr     fp17, fp0
-    fmr     fp18, fp0
-    fmr     fp19, fp0
-    fmr     fp20, fp0
-    fmr     fp21, fp0
-    fmr     fp22, fp0
-    fmr     fp23, fp0
-    fmr     fp24, fp0
-    fmr     fp25, fp0
-    fmr     fp26, fp0
-    fmr     fp27, fp0
-    fmr     fp28, fp0
-    fmr     fp29, fp0
-    fmr     fp30, fp0
-    fmr     fp31, fp0
+	lfd     fp0, ZeroF
+	fmr     fp1, fp0
+	fmr     fp2, fp0
+	fmr     fp3, fp0
+	fmr     fp4, fp0
+	fmr     fp5, fp0
+	fmr     fp6, fp0
+	fmr     fp7, fp0
+	fmr     fp8, fp0
+	fmr     fp9, fp0
+	fmr     fp10, fp0
+	fmr     fp11, fp0
+	fmr     fp12, fp0
+	fmr     fp13, fp0
+	fmr     fp14, fp0
+	fmr     fp15, fp0
+	fmr     fp16, fp0
+	fmr     fp17, fp0
+	fmr     fp18, fp0
+	fmr     fp19, fp0
+	fmr     fp20, fp0
+	fmr     fp21, fp0
+	fmr     fp22, fp0
+	fmr     fp23, fp0
+	fmr     fp24, fp0
+	fmr     fp25, fp0
+	fmr     fp26, fp0
+	fmr     fp27, fp0
+	fmr     fp28, fp0
+	fmr     fp29, fp0
+	fmr     fp30, fp0
+	fmr     fp31, fp0
 
-    mtfsf   0xFF, fp0
+	mtfsf   0xFF, fp0
 
-    blr
+	blr
+#endif // clang-format on
 }
-// clang-format on
 /*
  * --INFO--
  * Address:	........
@@ -570,21 +570,21 @@ static void OSExceptionInit(void)
  * Address:	800EB8D4
  * Size:	000024
  */
-// clang-format off
-static asm void __OSDBIntegrator ( void )
-{
-    nofralloc
+ASM static void __OSDBIntegrator(void) {
+#ifdef __MWERKS__ // clang-format off
+	nofralloc
 entry __OSDBINTSTART
-    li      r5, OS_DBINTERFACE_ADDR
-    mflr    r3
-    stw     r3, DB_EXCEPTIONRET_OFFSET(r5)
-    lwz     r3, DB_EXCEPTIONDEST_OFFSET(r5)
-    oris    r3, r3, OS_CACHED_REGION_PREFIX
-    mtlr    r3
-    li      r3, 0x30 // MSR_IR | MSR_DR     // turn on memory addressing
-    mtmsr   r3
-    blr
+	li      r5, OS_DBINTERFACE_ADDR
+	mflr    r3
+	stw     r3, DB_EXCEPTIONRET_OFFSET(r5)
+	lwz     r3, DB_EXCEPTIONDEST_OFFSET(r5)
+	oris    r3, r3, OS_CACHED_REGION_PREFIX
+	mtlr    r3
+	li      r3, 0x30 // MSR_IR | MSR_DR     // turn on memory addressing
+	mtmsr   r3
+	blr
 entry __OSDBINTEND
+#endif // clang-format on
 }
 
 /*
@@ -592,13 +592,14 @@ entry __OSDBINTEND
  * Address:	800EB8F8
  * Size:	000004
  */
-static asm void __OSDBJump ( void )
-{
-    nofralloc
+ASM static void __OSDBJump(void) {
+#ifdef __MWERKS__ // clang-format off
+	nofralloc
 entry __OSDBJUMPSTART
-    bla     OS_DBJUMPPOINT_ADDR
+	bla     OS_DBJUMPPOINT_ADDR
 entry __OSDBJUMPEND
-} // clang-format on
+#endif // clang-format on
+}
 
 /*
  * --INFO--
@@ -625,88 +626,89 @@ __OSExceptionHandler __OSGetExceptionHandler(__OSException exception) { return O
  * Address:	800EB92C
  * Size:	00009C
  */
-// clang-format off
-static asm void OSExceptionVector(void)
+ASM static void OSExceptionVector(void)
 {
-    nofralloc
+#ifdef __MWERKS__ // clang-format off
+	nofralloc
 
 entry __OSEVStart
-    // Save r4 into SPRG0
-    mtsprg  0, r4
+	// Save r4 into SPRG0
+	mtsprg  0, r4
 
-    // Load current context physical address into r4
-    lwz     r4, OS_CURRENTCONTEXT_PADDR
+	// Load current context physical address into r4
+	lwz     r4, OS_CURRENTCONTEXT_PADDR
 
-    // Save r3 - r5 into the current context
-    stw     r3, OS_CONTEXT_R3(r4)
-    mfsprg  r3, 0
-    stw     r3, OS_CONTEXT_R4(r4)
-    stw     r5, OS_CONTEXT_R5(r4)
+	// Save r3 - r5 into the current context
+	stw     r3, OS_CONTEXT_R3(r4)
+	mfsprg  r3, 0
+	stw     r3, OS_CONTEXT_R4(r4)
+	stw     r5, OS_CONTEXT_R5(r4)
 
-    lhz     r3, OS_CONTEXT_STATE(r4)
-    ori     r3, r3, OS_CONTEXT_STATE_EXC
-    sth     r3, OS_CONTEXT_STATE(r4)
+	lhz     r3, OS_CONTEXT_STATE(r4)
+	ori     r3, r3, OS_CONTEXT_STATE_EXC
+	sth     r3, OS_CONTEXT_STATE(r4)
 
-    // Save misc registers
-    mfcr    r3
-    stw     r3, OS_CONTEXT_CR(r4)
-    mflr    r3
-    stw     r3, OS_CONTEXT_LR(r4)
-    mfctr   r3
-    stw     r3, OS_CONTEXT_CTR(r4)
-    mfxer   r3
-    stw     r3, OS_CONTEXT_XER(r4)
-    mfsrr0  r3
-    stw     r3, OS_CONTEXT_SRR0(r4)
-    mfsrr1  r3
-    stw     r3, OS_CONTEXT_SRR1(r4)
-    mr      r5, r3
+	// Save misc registers
+	mfcr    r3
+	stw     r3, OS_CONTEXT_CR(r4)
+	mflr    r3
+	stw     r3, OS_CONTEXT_LR(r4)
+	mfctr   r3
+	stw     r3, OS_CONTEXT_CTR(r4)
+	mfxer   r3
+	stw     r3, OS_CONTEXT_XER(r4)
+	mfsrr0  r3
+	stw     r3, OS_CONTEXT_SRR0(r4)
+	mfsrr1  r3
+	stw     r3, OS_CONTEXT_SRR1(r4)
+	mr      r5, r3
 
 entry __DBVECTOR
-    nop
+	nop
 
-    // Set SRR1[IR|DR] to turn on address
-    // translation at the next RFI
-    mfmsr   r3
-    ori     r3, r3, 0x30
-    mtsrr1  r3
+	// Set SRR1[IR|DR] to turn on address
+	// translation at the next RFI
+	mfmsr   r3
+	ori     r3, r3, 0x30
+	mtsrr1  r3
 
-    // This lets us change the exception number based on the
-    // exception we're installing.
+	// This lets us change the exception number based on the
+	// exception we're installing.
 entry __OSEVSetNumber
-    addi    r3, 0, 0x0000
+	addi    r3, 0, 0x0000
 
-    // Load current context virtual address into r4
-    lwz     r4, 0xD4
+	// Load current context virtual address into r4
+	lwz     r4, 0xD4
 
-    // Check non-recoverable interrupt
-    rlwinm. r5, r5, 0, MSR_RI_BIT, MSR_RI_BIT
-    bne     recoverable
-    addis   r5, 0,  OSDefaultExceptionHandler@ha
-    addi    r5, r5, OSDefaultExceptionHandler@l
-    mtsrr0  r5
-    rfi
-    // NOT REACHED HERE
+	// Check non-recoverable interrupt
+	rlwinm. r5, r5, 0, MSR_RI_BIT, MSR_RI_BIT
+	bne     recoverable
+	addis   r5, 0,  OSDefaultExceptionHandler@ha
+	addi    r5, r5, OSDefaultExceptionHandler@l
+	mtsrr0  r5
+	rfi
+	// NOT REACHED HERE
 
 recoverable:
-    // Locate exception handler.
-    rlwinm  r5, r3, 2, 22, 29               // r5 contains exception*4
-    lwz     r5, OS_EXCEPTIONTABLE_ADDR(r5)
-    mtsrr0  r5
+	// Locate exception handler.
+	rlwinm  r5, r3, 2, 22, 29               // r5 contains exception*4
+	lwz     r5, OS_EXCEPTIONTABLE_ADDR(r5)
+	mtsrr0  r5
 
-    // Final state
-    // r3 - exception number
-    // r4 - pointer to context
-    // r5 - garbage
-    // srr0 - exception handler
-    // srr1 - address translation enalbed, not yet recoverable
+	// Final state
+	// r3 - exception number
+	// r4 - pointer to context
+	// r5 - garbage
+	// srr0 - exception handler
+	// srr1 - address translation enalbed, not yet recoverable
 
-    rfi
-    // NOT REACHED HERE
-    // The handler will restore state
+	rfi
+	// NOT REACHED HERE
+	// The handler will restore state
 
 entry __OSEVEnd
-    nop
+	nop
+#endif // clang-format on
 }
 
 /*
@@ -714,25 +716,21 @@ entry __OSEVEnd
  * Address:	800EB9C8
  * Size:	000058
  */
-asm void
-OSDefaultExceptionHandler(
-    register __OSException exception,
-    register OSContext*    context
-)
+ASM void OSDefaultExceptionHandler(register __OSException exception, register OSContext* context)
 {
-#pragma unused (exception)
+#pragma unused(exception)
+#ifdef __MWERKS__ // clang-format off
+	nofralloc
+	OS_EXCEPTION_SAVE_GPRS(context)
+	// Load DSISR and DAR
+	mfdsisr r5
+	mfdar   r6
 
-    nofralloc
-    OS_EXCEPTION_SAVE_GPRS(context)
-    // Load DSISR and DAR
-    mfdsisr r5
-    mfdar   r6
-
-    stwu    r1,-8(r1)
-    b       __OSUnhandledException
-    // NOT REACHED HERE
+	stwu    r1,-8(r1)
+	b       __OSUnhandledException
+	// NOT REACHED HERE
+#endif // clang-format on
 }
-// clang-format on
 
 /*
  * --INFO--
@@ -744,20 +742,19 @@ void __OSPSInit(void)
 	PPCMthid2(PPCMfhid2() | 0xA0000000);
 	ICFlashInvalidate();
 	__sync();
-	// clang-format off
-    asm
-    {
-        li      r3, 0
-        mtspr   GQR0, r3
-        mtspr   GQR1, r3
-        mtspr   GQR2, r3
-        mtspr   GQR3, r3
-        mtspr   GQR4, r3
-        mtspr   GQR5, r3
-        mtspr   GQR6, r3
-        mtspr   GQR7, r3
-    }
-	// clang-format on
+#ifdef __MWERKS__ // clang-format off
+	asm {
+		li      r3, 0
+		mtspr   GQR0, r3
+		mtspr   GQR1, r3
+		mtspr   GQR2, r3
+		mtspr   GQR3, r3
+		mtspr   GQR4, r3
+		mtspr   GQR5, r3
+		mtspr   GQR6, r3
+		mtspr   GQR7, r3
+	}
+#endif // clang-format on
 }
 
 /*

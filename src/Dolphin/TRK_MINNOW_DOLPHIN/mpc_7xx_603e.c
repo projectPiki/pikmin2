@@ -5,9 +5,9 @@
  * Address:	800BFA60
  * Size:	0001B8
  */
-asm void TRKSaveExtended1Block(void)
+ASM void TRKSaveExtended1Block(void)
 {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	lis       r2, gTRKCPUState@h
 	ori       r2, r2, gTRKCPUState@l
@@ -122,7 +122,7 @@ loc_0x150:
 	mfdec     r31
 	stw       r31, 0x278(r2)
 	blr
-	// clang-format on
+#endif // clang-format on
 }
 
 /*
@@ -130,9 +130,9 @@ loc_0x150:
  * Address:	800BFC18
  * Size:	0001B8
  */
-asm void TRKRestoreExtended1Block()
+ASM void TRKRestoreExtended1Block()
 {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	lis       r2, gTRKCPUState@h
 	ori       r2, r2, gTRKCPUState@l
@@ -252,5 +252,5 @@ loc_0xF4:
 	mtspr     1010, r30
 	mtear     r31
 	blr
-	// clang-format on
+#endif // clang-format on
 }

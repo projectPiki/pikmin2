@@ -12,51 +12,51 @@ namespace newScreen {
 // clang-format off
 static CaveTitleMsgEntry CaveTitleMsg [] = {
 //   id, filler, msg,      fire,  elec,  water, poison, filler
-    {'t_01', 0, '8395_00', false, false, false, false, 0},		// Emergence Cave
-    {'t_02', 0, '8399_00', true , true , false, true , 0},		// Subterannean Complex
-    {'t_03', 0, '8400_00', true , true , true , true , 0},		// Frontier Cavern
-    {'f_01', 0, '8396_00', true , false, false, false, 0},		// Hole of Beasts
-    {'f_02', 0, '8398_00', true , false, false, true , 0},		// White Flower Garden
-    {'f_03', 0, '8401_00', true , true , false, false, 0},		// Bulblax Kingdom
-    {'f_04', 0, '8410_00', false, true , true , true , 0},		// Snagret Hole
-    {'y_01', 0, '8397_00', true , true , false, false, 0},		// Citadel of Spiders
-    {'y_02', 0, '8402_00', false, true , false, false, 0},		// Gluttons Kitchen
-    {'y_03', 0, '8403_00', true , true , true , true , 0},		// Shower Room
-    {'y_04', 0, '8411_00', true , true , true , true , 0},		// Submerged Castle
-    {'l_01', 0, '8412_00', true , true , true , true , 0},		// Cavern of Chaos
-    {'l_02', 0, '8413_00', true , true , true , true , 0},		// Hole of Heroes
-    {'l_03', 0, '8414_00', true , true , true , true , 0},		// Dream Den
-    {'c_00', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 1
-    {'c_01', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 2
-    {'c_02', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 3
-    {'c_03', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 4
-    {'c_04', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 5
-    {'c_05', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 6
-    {'c_06', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 7
-    {'c_07', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 8
-    {'c_08', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 9
-    {'c_09', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 10
-    {'c_10', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 11
-    {'c_11', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 12
-    {'c_12', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 13
-    {'c_13', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 14
-    {'c_14', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 15
-    {'c_15', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 16
-    {'c_16', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 17
-    {'c_17', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 18
-    {'c_18', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 19
-    {'c_19', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 20
-    {'c_20', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 21
-    {'c_21', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 22
-    {'c_22', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 23
-    {'c_23', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 24
-    {'c_24', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 25
-    {'c_25', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 26
-    {'c_26', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 27
-    {'c_27', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 28
-    {'c_28', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 29
-    {'c_29', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 30
-    {'END' , 0, 'END'    , false, false, false, false, 0}
+	{'t_01', 0, '8395_00', false, false, false, false, 0},		// Emergence Cave
+	{'t_02', 0, '8399_00', true , true , false, true , 0},		// Subterannean Complex
+	{'t_03', 0, '8400_00', true , true , true , true , 0},		// Frontier Cavern
+	{'f_01', 0, '8396_00', true , false, false, false, 0},		// Hole of Beasts
+	{'f_02', 0, '8398_00', true , false, false, true , 0},		// White Flower Garden
+	{'f_03', 0, '8401_00', true , true , false, false, 0},		// Bulblax Kingdom
+	{'f_04', 0, '8410_00', false, true , true , true , 0},		// Snagret Hole
+	{'y_01', 0, '8397_00', true , true , false, false, 0},		// Citadel of Spiders
+	{'y_02', 0, '8402_00', false, true , false, false, 0},		// Gluttons Kitchen
+	{'y_03', 0, '8403_00', true , true , true , true , 0},		// Shower Room
+	{'y_04', 0, '8411_00', true , true , true , true , 0},		// Submerged Castle
+	{'l_01', 0, '8412_00', true , true , true , true , 0},		// Cavern of Chaos
+	{'l_02', 0, '8413_00', true , true , true , true , 0},		// Hole of Heroes
+	{'l_03', 0, '8414_00', true , true , true , true , 0},		// Dream Den
+	{'c_00', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 1
+	{'c_01', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 2
+	{'c_02', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 3
+	{'c_03', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 4
+	{'c_04', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 5
+	{'c_05', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 6
+	{'c_06', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 7
+	{'c_07', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 8
+	{'c_08', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 9
+	{'c_09', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 10
+	{'c_10', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 11
+	{'c_11', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 12
+	{'c_12', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 13
+	{'c_13', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 14
+	{'c_14', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 15
+	{'c_15', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 16
+	{'c_16', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 17
+	{'c_17', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 18
+	{'c_18', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 19
+	{'c_19', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 20
+	{'c_20', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 21
+	{'c_21', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 22
+	{'c_22', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 23
+	{'c_23', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 24
+	{'c_24', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 25
+	{'c_25', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 26
+	{'c_26', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 27
+	{'c_27', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 28
+	{'c_28', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 29
+	{'c_29', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 30
+	{'END' , 0, 'END'    , false, false, false, false, 0}
 };
 // clang-format on
 

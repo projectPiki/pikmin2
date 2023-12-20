@@ -386,45 +386,45 @@ void TRKUARTInterruptHandler(void) { }
  * Address:	800C0464
  * Size:	000088
  */
-asm void TRKLoadContext(OSContext* ctx, u32 r4)
+ASM void TRKLoadContext(OSContext* ctx, u32 r4)
 {
-	// clang-format off
-    nofralloc
-    lwz r0, OSContext.gpr[0](r3)
-    lwz r1, OSContext.gpr[1](r3)
-    lwz r2, OSContext.gpr[2](r3)
-    lhz r5, OSContext.state(r3)
-    rlwinm. r6, r5, 0, 0x1e, 0x1e
-    beq L_802CC24C
-    rlwinm r5, r5, 0, 0x1f, 0x1d
-    sth r5, OSContext.state(r3)
-    lmw r5, OSContext.gpr[5](r3)
-    b L_802CC250
+#ifdef __MWERKS__ // clang-format off
+	nofralloc
+	lwz r0, OSContext.gpr[0](r3)
+	lwz r1, OSContext.gpr[1](r3)
+	lwz r2, OSContext.gpr[2](r3)
+	lhz r5, OSContext.state(r3)
+	rlwinm. r6, r5, 0, 0x1e, 0x1e
+	beq L_802CC24C
+	rlwinm r5, r5, 0, 0x1f, 0x1d
+	sth r5, OSContext.state(r3)
+	lmw r5, OSContext.gpr[5](r3)
+	b L_802CC250
 L_802CC24C:
-    lmw r13, OSContext.gpr[13](r3)
+	lmw r13, OSContext.gpr[13](r3)
 L_802CC250:
-    mr r31, r3
-    mr r3, r4
-    lwz r4, OSContext.cr(r31)
-    mtcrf 0xff, r4
-    lwz r4, OSContext.lr(r31)
-    mtlr r4
-    lwz r4, OSContext.ctr(r31)
-    mtctr r4
-    lwz r4, OSContext.xer(r31)
-    mtxer r4
-    mfmsr r4
-    rlwinm r4, r4, 0, 0x11, 0xf //Turn off external exceptions
-    rlwinm r4, r4, 0, 0x1f, 0x1d //Turn off recoverable exception flag
-    mtmsr r4
-    mtsprg 1, r2
-    lwz r4, OSContext.gpr[3](r31)
-    mtsprg 2, r4
-    lwz r4, OSContext.gpr[4](r31)
-    mtsprg 3, r4
-    lwz r2, OSContext.srr0(r31)
-    lwz r4, OSContext.srr1(r31)
-    lwz r31, OSContext.gpr[31](r31)
-    b TRKInterruptHandler
-	// clang-format on
+	mr r31, r3
+	mr r3, r4
+	lwz r4, OSContext.cr(r31)
+	mtcrf 0xff, r4
+	lwz r4, OSContext.lr(r31)
+	mtlr r4
+	lwz r4, OSContext.ctr(r31)
+	mtctr r4
+	lwz r4, OSContext.xer(r31)
+	mtxer r4
+	mfmsr r4
+	rlwinm r4, r4, 0, 0x11, 0xf //Turn off external exceptions
+	rlwinm r4, r4, 0, 0x1f, 0x1d //Turn off recoverable exception flag
+	mtmsr r4
+	mtsprg 1, r2
+	lwz r4, OSContext.gpr[3](r31)
+	mtsprg 2, r4
+	lwz r4, OSContext.gpr[4](r31)
+	mtsprg 3, r4
+	lwz r2, OSContext.srr0(r31)
+	lwz r4, OSContext.srr1(r31)
+	lwz r31, OSContext.gpr[31](r31)
+	b TRKInterruptHandler
+#endif // clang-format on
 }

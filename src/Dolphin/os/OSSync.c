@@ -5,23 +5,23 @@
  * Address:	800F17D4
  * Size:	000020
  */
-static asm void SystemCallVector()
+ASM static void SystemCallVector()
 {
-	// clang-format off
-    nofralloc
+#ifdef __MWERKS__ // clang-format off
+	nofralloc
 
-    entry __OSSystemCallVectorStart
-    mfspr r9, DBSR
-    ori r10, r9, 8
-    mtspr DBSR, r10
-    isync
-    sync
-    mtspr DBSR, r9
-    rfi
+	entry __OSSystemCallVectorStart
+	mfspr r9, DBSR
+	ori r10, r9, 8
+	mtspr DBSR, r10
+	isync
+	sync
+	mtspr DBSR, r9
+	rfi
 
-    entry __OSSystemCallVectorEnd
-    nop
-	// clang-format on
+	entry __OSSystemCallVectorEnd
+	nop
+#endif // clang-format on
 }
 
 /*
@@ -35,6 +35,8 @@ void __OSInitSystemCall()
 	memcpy(handler, __OSSystemCallVectorStart, (u32)__OSSystemCallVectorEnd - (u32)__OSSystemCallVectorStart);
 
 	DCFlushRangeNoSync(handler, OS_HANDLER_SLOT_SIZE);
-	asm {sync }
+#ifdef __MWERKS__ // clang-format off
+	asm { sync }
+#endif // clang-format on
 	ICInvalidateRange(handler, OS_HANDLER_SLOT_SIZE);
 }

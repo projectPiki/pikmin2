@@ -212,14 +212,14 @@ static void DecrementerExceptionCallback(__OSException exception, OSContext* con
  * Address:	800EC120
  * Size:	000050
  */
-static asm void DecrementerExceptionHandler(register __OSException exception, register OSContext* context)
+ASM static void DecrementerExceptionHandler(register __OSException exception, register OSContext* context)
 {
-	// clang-format off
-	nofralloc 
+#ifdef __MWERKS__ // clang-format off
+	nofralloc
 	OS_EXCEPTION_SAVE_GPRS(context)
 	stwu r1, -8(r1)
 	b DecrementerExceptionCallback
-	// clang-format on
+#endif // clang-format on
 }
 
 /*

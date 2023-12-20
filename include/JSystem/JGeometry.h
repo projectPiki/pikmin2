@@ -199,37 +199,37 @@ struct TBox {
 
 // clang-format off
 template<> struct TBox<TVec2<f32> > {
-    inline f32 getWidth() const { return f.x - i.x; }
-    inline f32 getHeight() const { return f.y - i.y; }
+	inline f32 getWidth() const { return f.x - i.x; }
+	inline f32 getHeight() const { return f.y - i.y; }
 
-    bool isValid() const { return f.isAbove(i); }
+	bool isValid() const { return f.isAbove(i); }
 
-    void addPos(f32 x, f32 y) {
-        addPos(TVec2<f32>(x, y));
-    }
+	void addPos(f32 x, f32 y) {
+		addPos(TVec2<f32>(x, y));
+	}
 
-    void addPos(const TVec2<f32>& pos) {
-        i.add(pos);
-        f.add(pos);
-    }
+	void addPos(const TVec2<f32>& pos) {
+		i.add(pos);
+		f.add(pos);
+	}
 
-    bool intersect(const TBox<TVec2<f32> >& other) {
-        i.setMax(other.i);
-        f.setMin(other.f);
-        return isValid();
-    }
+	bool intersect(const TBox<TVec2<f32> >& other) {
+		i.setMax(other.i);
+		f.setMin(other.f);
+		return isValid();
+	}
 
-    TVec2<f32> i, f;
+	TVec2<f32> i, f;
 };
 
 template <typename T>
 struct TBox2 : TBox<TVec2<T> > {
-    TBox2() {}
+	TBox2() {}
 	// TBox2(const TBox2& other) { set(other); }
-    TBox2(const TVec2<T>& i, const TVec2<T> f) { set(i, f); }
+	TBox2(const TVec2<T>& i, const TVec2<T> f) { set(i, f); }
 	// TBox2(const TVec2<T>& i, T x1, T y1) { set(i, x1, y1); }
 	// TBox2(T x0, T y0, const TVec2<T>& f) { set(x0, y0, f); }
-    TBox2(f32 x0, f32 y0, f32 x1, f32 y1) { set(x0, y0, x1, y1); }
+	TBox2(f32 x0, f32 y0, f32 x1, f32 y1) { set(x0, y0, x1, y1); }
 	TBox2(f32 x0, f32 y0, TVec2<f32>& f) { set(x0, y0, x0 + f.x, y0 + f.y);	}
 	TBox2(f32 val)
 	{
@@ -245,31 +245,30 @@ struct TBox2 : TBox<TVec2<T> > {
 	// 	return *this;
 	// }
 
-    void absolute() {
-        if (!this->isValid()) {
-            TBox2<T> box(*this);
-            this->i.setMin(box.i);
-            this->i.setMin(box.f);
-            this->f.setMax(box.i);
-            this->f.setMax(box.f);
-        }
-    }
+	void absolute() {
+		if (!this->isValid()) {
+			TBox2<T> box(*this);
+			this->i.setMin(box.i);
+			this->i.setMin(box.f);
+			this->f.setMax(box.i);
+			this->f.setMax(box.f);
+		}
+	}
 
 	// /** @fabricated */
 	// TBox2<T>& addingPos(TBox2<T>& result, const TVec2<T>& pos) {
 	// 	return TBox2<T>(i.adding(pos), f.adding(pos));
 	// }
 
-    void set(const TBox2& other) { set(other.i, other.f); }
-    void set(const TVec2<T>& i, const TVec2<T>& f) { this->i.set(i), this->f.set(f); }
-    // void set(const TVec2<T>& i, T x1, T y1) { this->i.set(i), this->f.set(x1, y1); }
-    // void set(T x0, T y0, const TVec2<T>& f) { this->i.set(x0, y0), this->f.set(f); }
-    void set(T x0, T y0, T x1, T y1) { this->i.set(x0, y0); this->f.set(x1, y1); }
+	void set(const TBox2& other) { set(other.i, other.f); }
+	void set(const TVec2<T>& i, const TVec2<T>& f) { this->i.set(i), this->f.set(f); }
+	// void set(const TVec2<T>& i, T x1, T y1) { this->i.set(i), this->f.set(x1, y1); }
+	// void set(T x0, T y0, const TVec2<T>& f) { this->i.set(x0, y0), this->f.set(f); }
+	void set(T x0, T y0, T x1, T y1) { this->i.set(x0, y0); this->f.set(x1, y1); }
 
 	// void setOrigin(const TVec2<T>& other) { this->i.set(other); }
 	// void setSize(T width, T height) { this->f.x = this->i.x + width; this->f.y = this->i.y + height; }
 };
-
 // clang-format on
 
 template <typename T>

@@ -20,18 +20,18 @@ inline f32 J3DCalcZValue(register Mtx* m, register Vec v)
 	register f32 temp_f2;
 	register f32 temp_f1 = 1.0f;
 
-	// clang-format off
-    asm {
-        psq_l temp_f0, 0(v), 0, 0 /* qr0 */
-        lfs temp_f2, 8(v)
-        psq_l temp_f4, 32(m), 0, 0 /* qr0 */
-        psq_l out, 40(m), 0, 0 /* qr0 */
-        ps_merge00 temp_f2, temp_f2, temp_f1
-        ps_mul temp_f4, temp_f0, temp_f4
-        ps_madd out, temp_f2, out, temp_f4
-        ps_sum0 out, out, out, out
-    }
-	// clang-format on
+#ifdef __MWERKS__ // clang-format off
+	asm {
+		psq_l temp_f0, 0(v), 0, 0 /* qr0 */
+		lfs temp_f2, 8(v)
+		psq_l temp_f4, 32(m), 0, 0 /* qr0 */
+		psq_l out, 40(m), 0, 0 /* qr0 */
+		ps_merge00 temp_f2, temp_f2, temp_f1
+		ps_mul temp_f4, temp_f0, temp_f4
+		ps_madd out, temp_f2, out, temp_f4
+		ps_sum0 out, out, out, out
+	}
+#endif // clang-format on
 
 	return out;
 }

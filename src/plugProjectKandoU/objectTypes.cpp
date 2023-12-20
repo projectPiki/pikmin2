@@ -1,9 +1,9 @@
 #include "ObjectTypes.h"
 
 // clang-format off
-ObjTypeInfo infos[] = { 
+ObjTypeInfo infos[] = {
 	// Protagonists
-	{ OBJTYPE_Piki, "piki" }, 
+	{ OBJTYPE_Piki, "piki" },
 	{ OBJTYPE_Navi, "navi" },
 	{ OBJTYPE_Teki, "teki" },
 

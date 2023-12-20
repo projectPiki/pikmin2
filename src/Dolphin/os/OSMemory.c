@@ -108,9 +108,9 @@ void OSProtectRange(u32 channel, void* addr, u32 numBytes, u32 control)
  * Address:	800EF900
  * Size:	000080
  */
-asm static void Config24MB()
+ASM static void Config24MB()
 {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 
 	addi    r7,r0,0
@@ -154,7 +154,7 @@ asm static void Config24MB()
 	mflr    r3
 	mtsrr0  r3
 	rfi
-	// clang-format on
+#endif // clang-format on
 }
 
 /*
@@ -162,9 +162,9 @@ asm static void Config24MB()
  * Address:	800EF980
  * Size:	000080
  */
-asm static void Config48MB()
+ASM static void Config48MB()
 {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 
 	addi    r7,r0,0x0000
@@ -208,7 +208,7 @@ asm static void Config48MB()
 	mflr    r3
 	mtsrr0  r3
 	rfi
-	// clang-format on
+#endif // clang-format on
 }
 
 /*
@@ -216,9 +216,9 @@ asm static void Config48MB()
  * Address:	800EFA00
  * Size:	000018
  */
-asm static void RealMode(register u32 addr)
+ASM static void RealMode(register u32 addr)
 {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	clrlwi r3, r3, 2
 	mtsrr0 r3
@@ -226,7 +226,7 @@ asm static void RealMode(register u32 addr)
 	rlwinm r3, r3, 0, 28, 25
 	mtsrr1 r3
 	rfi
-	// clang-format on
+#endif // clang-format on
 }
 
 /*
