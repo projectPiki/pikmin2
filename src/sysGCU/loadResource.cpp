@@ -4,10 +4,9 @@
 #include "P2Macros.h"
 
 static void _Print(char* format, ...) { OSReport(format, __FILE__); }
+LoadResource::Mgr* gLoadResourceMgr;
 
 namespace LoadResource {
-
-Mgr* gLoadResourceMgr;
 
 /*
  * --INFO--
@@ -52,18 +51,18 @@ void Node::dump() { }
  */
 Arg::Arg(char const* p1)
     : mPath(p1)
-    , _04(nullptr)
-    , _08(0)
-    , _0C(0)
+    , mBuffer(nullptr)
+    , mAddress(0)
+    , mOffset(0)
     , mExpandSwitch(Switch_1)
-    , _14(0)
+    , mMaxExpandSize(0)
     , mHeap(nullptr)
     , mAllocDir(JKRDvdRipper::ALLOC_DIR_TOP)
-    , _20(-1)
-    , _24(nullptr)
-    , _28(nullptr)
-    , _2C(1)
-    , _2D(1)
+    , mAramID(-1)
+    , mDvdFileCompression(nullptr)
+    , mNewSize(nullptr)
+    , mUseAram(1)
+    , mUseDVD(1)
 {
 }
 
@@ -76,7 +75,7 @@ Arg::Arg(char const* p1)
 ArgAramOnly::ArgAramOnly(char const* p1)
     : Arg(p1)
 {
-	_2D = 0;
+	mUseDVD = 0;
 }
 
 /*
@@ -89,8 +88,8 @@ Mgr::Mgr()
     : mAramRoot("AramRoot")
     , mDvdRoot("DvdRoot")
 {
-	// UNUSED FUNCTION
-	P2ASSERTLINE(118, gLoadResourceMgr == nullptr);
+	P2ASSERTLINE(118, !gLoadResourceMgr);
+	gLoadResourceMgr = this;
 }
 
 /*
@@ -98,60 +97,7 @@ Mgr::Mgr()
  * Address:	8044C664
  * Size:	0000B0
  */
-void Mgr::init()
-{
-	gLoadResourceMgr = new Mgr;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, lbl_8049B368@ha
-	li       r3, 0x30
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r4, lbl_8049B368@l
-	stw      r30, 8(r1)
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_8044C6FC
-	lis      r4, __vt__5CNode@ha
-	mr       r30, r3
-	addi     r5, r4, __vt__5CNode@l
-	li       r4, 0
-	stw      r5, 0(r3)
-	addi     r3, r31, 0x14
-	addi     r0, r2, lbl_80520AA8@sda21
-	stw      r4, 0x10(r30)
-	stw      r4, 0xc(r30)
-	stw      r4, 8(r30)
-	stw      r4, 4(r30)
-	stw      r3, 0x14(r30)
-	stw      r5, 0x18(r30)
-	stw      r4, 0x28(r30)
-	stw      r4, 0x24(r30)
-	stw      r4, 0x20(r30)
-	stw      r4, 0x1c(r30)
-	stw      r0, 0x2c(r30)
-	lwz      r0, gLoadResourceMgr@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_8044C6F8
-	addi     r3, r31, 0
-	addi     r5, r31, 0x20
-	li       r4, 0x76
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8044C6F8:
-	stw      r30, gLoadResourceMgr@sda21(r13)
-
-lbl_8044C6FC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Mgr::init() { new Mgr(); }
 
 /*
  * --INFO--
@@ -228,9 +174,9 @@ Node* Mgr::load(Arg& arg)
 			arg.mHeap = JKRGetCurrentHeap();
 		}
 
-		if (!arg._28) {
+		if (!arg.mNewSize) {
 			u32 what[3];
-			arg._28 = what;
+			arg.mNewSize = what;
 		}
 
 		char* path;
@@ -253,18 +199,18 @@ Node* Mgr::load(Arg& arg)
 			break;
 		}
 
-		if (arg._2C) {
-			data = gAramMgr->aramToMainRam(arg.mPath, arg._04, arg._08, arg._0C, arg.mExpandSwitch, arg._14, arg.mHeap, arg.mAllocDir,
-			                               arg._20, arg._28);
+		if (arg.mUseAram) {
+			data = gAramMgr->aramToMainRam(arg.mPath, arg.mBuffer, arg.mAddress, arg.mOffset, arg.mExpandSwitch, arg.mMaxExpandSize,
+			                               arg.mHeap, arg.mAllocDir, arg.mAramID, arg.mNewSize);
 		}
 
 		if (data) {
 			mAramRoot.add(node);
-		} else if (arg._2D) {
-			void* data2 = JKRDvdRipper::loadToMainRAM(arg.mPath, arg._04, arg.mExpandSwitch, arg._14, arg.mHeap, arg.mAllocDir, arg._0C,
-			                                          arg._24, arg._28);
+		} else if (arg.mUseDVD) {
+			void* data2 = JKRDvdRipper::loadToMainRAM(arg.mPath, arg.mBuffer, arg.mExpandSwitch, arg.mMaxExpandSize, arg.mHeap,
+			                                          arg.mAllocDir, arg.mOffset, arg.mDvdFileCompression, arg.mNewSize);
 			if (data2) {
-				DCFlushRange(data2, *arg._28);
+				DCFlushRange(data2, *arg.mNewSize);
 				mDvdRoot.add(node);
 				data = data2;
 			}

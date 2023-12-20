@@ -1214,17 +1214,29 @@ bool Mgr::setScene(SetSceneArg& arg)
 	Screen::MgrCommand* command = (Screen::MgrCommand*)mCommandList.mChild;
 	JUT_ASSERTLINE(615, command != nullptr, "screen command buffer is empty.\n");
 
-	bool set = false;
 	if (!command) {
 		JUT_PANICLINE(626, "【エラー】コマンドバッファが足りません\n");
-		set = false;
-	} else {
-		command->setTypeSetScene(arg);
-		command->setDispMember(arg.mDispMember);
+		return false;
+	}
+
+	OSLockMutex(&command->mMutex);
+	command->del();
+	mCommandList.add(command);
+	OSUnlockMutex(&command->mMutex);
+
+	if (!command) {
+		return false;
+	}
+
+	OSLockMutex(&command->mMutex);
+	if (arg._08) {
+		if (isCurrentSceneLoading()) {
+			command->setTypeSetScene(arg);
+		}
 	}
 
 	OSUnlockMutex(&command->mMutex);
-	return set;
+	return true;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
