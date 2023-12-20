@@ -217,10 +217,12 @@ u32 CellPyramid::getCheckCount() { return mPassID; }
 // 	register float reg2 = 0.0f;
 // 	register float result;
 
+// #ifdef __MWERKS__ // clang-format off
 // 	asm {
 //       frsqrte reg2, reg1
 //       fmuls result, reg2, reg1
 // 	}
+// #endif // clang-format on
 
 // 	return result;
 // }

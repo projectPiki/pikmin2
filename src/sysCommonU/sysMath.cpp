@@ -66,9 +66,9 @@ f32 pikmin2_sqrtf(register f32 x)
 {
 	if (x > 0.0f) {
 		register f32 reg_f0;
-		asm {
-			frsqrte reg_f0, x
-		}
+#ifdef __MWERKS__ // clang-format off
+		asm { frsqrte reg_f0, x }
+#endif // clang-format off
 		return reg_f0 * x;
 	}
 	return x;
