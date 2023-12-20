@@ -76,14 +76,14 @@ void MapNode::getDoorOffset(int idx, int& x, int& y)
 	/*
 	Offset is measured from map origin. First, finds top left of unit on grid
 	(i.e., grid offset), then adds unit size or door offset as necessary.
-    x-->
-  y	 ____________
-  |	|            |
-  v	|            |
-    |    unit    |
-    |            |
-    |____________|
-	
+	x-->
+  y  ____________
+  | |            |
+  v |            |
+	|    unit    |
+	|            |
+	|____________|
+
 	*/
 	// clang-format on
 

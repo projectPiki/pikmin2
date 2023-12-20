@@ -25,23 +25,19 @@ void C_MTXIdentity(Mtx mtx)
 	// UNUSED FUNCTION
 }
 
-// clang-format off
-
 /*
  * --INFO--
  * Address:	800EA2A0
  * Size:	00002C
  */
-void PSMTXIdentity
-(
-	register Mtx m
-)
+void PSMTXIdentity(register Mtx m)
 {
 	register f32 zero_c = 0.0f;
 	register f32 one_c  = 1.0f;
 	register f32 c_01;
 	register f32 c_10;
 
+#ifdef __MWERKS__ // clang-format off
 	asm {
 		psq_st      zero_c, 8(m),   0, 0
 		ps_merge01  c_01, zero_c, one_c
@@ -52,6 +48,7 @@ void PSMTXIdentity
 		psq_st      c_10,   0(m),   0, 0
 		psq_st      c_10,   40(m),  0, 0
 	}
+#endif // clang-format on
 }
 
 /*
@@ -69,12 +66,9 @@ void C_MTXCopy(void)
  * Address:	800EA2CC
  * Size:	000034
  */
-ASM void PSMTXCopy
-(
-	const register Mtx src,
-	register Mtx dst
-)
+ASM void PSMTXCopy(const register Mtx src, register Mtx dst)
 {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 
 	psq_l       fp0, 0(src),   0, 0
@@ -91,6 +85,7 @@ ASM void PSMTXCopy
 	psq_st      fp5, 40(dst),  0, 0
 
 	blr
+#endif // clang-format on
 }
 
 /*
@@ -108,13 +103,12 @@ void C_MTXConcat(void)
  * Address:	800EA300
  * Size:	0000CC
  */
-ASM void PSMTXConcat
-(
-	const register Mtx mA,    // r3
-	const register Mtx mB,    // r4
-		  register Mtx mAB    // r5
+ASM void PSMTXConcat(const register Mtx mA, // r3
+                     const register Mtx mB, // r4
+                     register Mtx mAB       // r5
 )
 {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 
 #define FP0 fp0
@@ -208,6 +202,7 @@ ASM void PSMTXConcat
 #undef FP14
 #undef FP15
 #undef FP31
+#endif // clang-format on
 }
 
 /*
@@ -246,12 +241,13 @@ void C_MTXTranspose(void)
  * Size:	000050
  */
 #pragma scheduling off
-void PSMTXTranspose ( const register Mtx src, register Mtx xPose )
+void PSMTXTranspose(const register Mtx src, register Mtx xPose)
 {
 	register f32 c_zero = 0.0f;
 	register f32 row0a, row1a, row0b, row1b;
 	register f32 trns0, trns1, trns2;
 
+#ifdef __MWERKS__ // clang-format off
 	asm {
 		psq_l       row0a, 0(src),  0, 0
 		stfs        c_zero, 44(xPose)
@@ -272,6 +268,7 @@ void PSMTXTranspose ( const register Mtx src, register Mtx xPose )
 		psq_st      trns1, 24(xPose), 0, 0
 		stfs        row0b, 40(xPose)
 	}
+#endif // clang-format on
 }
 /*
  * --INFO--
@@ -288,8 +285,9 @@ void C_MTXInverse(void)
  * Address:	800EA41C
  * Size:	0000F8
  */
-ASM u32 PSMTXInverse ( const register Mtx src, register Mtx inv )
+ASM u32 PSMTXInverse(const register Mtx src, register Mtx inv)
 {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	psq_l       fp0, 0(src), 1, 0
 	psq_l       fp1, 4(src), 0, 0
@@ -354,6 +352,7 @@ ASM u32 PSMTXInverse ( const register Mtx src, register Mtx inv )
 			addi        r3, 0, 1
 	psq_st      fp7,  44(inv), 1, 0
 	blr
+#endif // clang-format on
 }
 
 /*
@@ -391,12 +390,12 @@ void C_MTXRotRad(void)
  * Address:	800EA514
  * Size:	000070
  */
-void PSMTXRotRad ( Mtx m, char axis, f32 rad )
+void PSMTXRotRad(Mtx m, char axis, f32 rad)
 {
-  f32 sinA, cosA;
-  sinA = sinf(rad);
-  cosA = cosf(rad);
-  PSMTXRotTrig(m, axis, sinA, cosA);
+	f32 sinA, cosA;
+	sinA = sinf(rad);
+	cosA = cosf(rad);
+	PSMTXRotTrig(m, axis, sinA, cosA);
 }
 
 /*
@@ -414,23 +413,22 @@ void C_MTXRotTrig(void)
  * Address:	800EA584
  * Size:	0000B0
  */
-void PSMTXRotTrig (
-	register Mtx    m,
-	register char   axis,
-	register f32    sinA,
-	register f32    cosA )
+void PSMTXRotTrig(register Mtx m, register char axis, register f32 sinA, register f32 cosA)
 {
-	register f32    fc0, fc1, nsinA;
-	register f32    fw0, fw1, fw2, fw3;
+	register f32 fc0, fc1, nsinA;
+	register f32 fw0, fw1, fw2, fw3;
 
+#ifdef __MWERKS__ // clang-format off
 	asm {
 		frsp        sinA, sinA
 		frsp        cosA, cosA
 	}
+#endif // clang-format on
 
 	fc0 = 0.0f;
 	fc1 = 1.0f;
 
+#ifdef __MWERKS__ // clang-format off
 	asm {
 		ori         axis, axis, 0x20
 		ps_neg      nsinA, sinA
@@ -481,6 +479,7 @@ void PSMTXRotTrig (
 	_end:
 
 	}
+#endif // clang-format on
 }
 
 /*
@@ -498,19 +497,16 @@ void C_MTXRotAxisRad(void)
  * Address:	800EA634
  * Size:	0000B0
  */
-static void __PSMTXRotAxisRadInternal(
-	register Mtx    m,
-	const register Vec *axis,
-	register f32    sT,
-	register f32    cT )
+static void __PSMTXRotAxisRadInternal(register Mtx m, const register Vec* axis, register f32 sT, register f32 cT)
 {
-	register f32    tT, fc0;
-	register f32    tmp0, tmp1, tmp2, tmp3, tmp4;
-	register f32    tmp5, tmp6, tmp7, tmp8, tmp9;
+	register f32 tT, fc0;
+	register f32 tmp0, tmp1, tmp2, tmp3, tmp4;
+	register f32 tmp5, tmp6, tmp7, tmp8, tmp9;
 
 	tmp9 = 0.5f;
 	tmp8 = 3.0f;
 
+#ifdef __MWERKS__ // clang-format off
 	asm {
 		frsp        cT, cT
 		psq_l       tmp0, 0(axis), 0, 0
@@ -554,8 +550,8 @@ static void __PSMTXRotAxisRadInternal(
 			psq_st      tmp4, 32(m), 0, 0
 			psq_st      tmp5, 40(m), 0, 0
 	}
+#endif // clang-format on
 }
-// clang-format on
 /*
  * --INFO--
  * Address:	800EA6E4
@@ -570,7 +566,7 @@ void PSMTXRotAxisRad(Mtx m, const Vec* axis, f32 rad)
 
 	__PSMTXRotAxisRadInternal(m, axis, sinT, cosT);
 }
-// clang-format off
+
 /*
  * --INFO--
  * Address:	........
@@ -586,16 +582,12 @@ void C_MTXTrans(void)
  * Address:	800EA754
  * Size:	000034
  */
-void PSMTXTrans(
-	register Mtx m,
-	register f32 xT,
-	register f32 yT,
-	register f32 zT
-)
+void PSMTXTrans(register Mtx m, register f32 xT, register f32 yT, register f32 zT)
 {
 	register f32 c0 = 0.0f;
 	register f32 c1 = 1.0f;
 
+#ifdef __MWERKS__ // clang-format off
 	asm {
 		stfs        xT,     12(m)
 		stfs        yT,     28(m)
@@ -608,6 +600,7 @@ void PSMTXTrans(
 		stfs        zT,     44(m)
 		stfs        c1,      0(m)
 	}
+#endif // clang-format on
 }
 
 /*
@@ -625,13 +618,9 @@ void C_MTXTransApply(void)
  * Address:	800EA788
  * Size:	00004C
  */
-ASM void PSMTXTransApply(
-	const register Mtx src,
-	register Mtx dst,
-	register f32 xT,
-	register f32 yT,
-	register f32 zT )
+ASM void PSMTXTransApply(const register Mtx src, register Mtx dst, register f32 xT, register f32 yT, register f32 zT)
 {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc;
 	psq_l       fp4, 0(src),        0, 0;
 	frsp        xT, xT;
@@ -652,6 +641,7 @@ ASM void PSMTXTransApply(
 	psq_st      fp9, 32(dst),       0, 0;
 	psq_st      fp8, 40(dst),       0, 0;
 	blr;
+#endif // clang-format on
 }
 
 /*
@@ -669,15 +659,11 @@ void C_MTXScale(void)
  * Address:	800EA7D4
  * Size:	000028
  */
-void PSMTXScale(
-	register Mtx m,
-	register f32 xS,
-	register f32 yS,
-	register f32 zS
-)
+void PSMTXScale(register Mtx m, register f32 xS, register f32 yS, register f32 zS)
 {
 	register f32 c0 = 0.0f;
 
+#ifdef __MWERKS__ // clang-format off
 	asm {
 		stfs        xS,      0(m)
 		psq_st      c0,      4(m), 0, 0
@@ -688,6 +674,7 @@ void PSMTXScale(
 		stfs        zS,     40(m)
 		stfs        c0,     44(m)
 	}
+#endif // clang-format on
 }
 
 /*
@@ -705,13 +692,9 @@ void C_MTXScaleApply(void)
  * Address:	800EA7FC
  * Size:	000058
  */
-ASM void PSMTXScaleApply (
-	const register Mtx src,
-	register Mtx dst,
-	register f32 xS,
-	register f32 yS,
-	register f32 zS )
+ASM void PSMTXScaleApply(const register Mtx src, register Mtx dst, register f32 xS, register f32 yS, register f32 zS)
 {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc;
 	frsp        xS, xS;
 	psq_l       fp4, 0(src),        0, 0;
@@ -735,6 +718,7 @@ ASM void PSMTXScaleApply (
 	psq_st      fp8, 32(dst),       0, 0;
 	psq_st      fp2, 40(dst),       0, 0;
 	blr;
+#endif // clang-format on
 }
 
 /*
@@ -752,12 +736,13 @@ void C_MTXQuat(void)
  * Address:	800EA854
  * Size:	0000A4
  */
-void PSMTXQuat ( register Mtx m, const register PSQuaternion *q )
+void PSMTXQuat(register Mtx m, const register PSQuaternion* q)
 {
-	register f32    c_zero, c_one, c_two, scale;
-	register f32    tmp0, tmp1, tmp2, tmp3, tmp4;
-	register f32    tmp5, tmp6, tmp7, tmp8, tmp9;
+	register f32 c_zero, c_one, c_two, scale;
+	register f32 tmp0, tmp1, tmp2, tmp3, tmp4;
+	register f32 tmp5, tmp6, tmp7, tmp8, tmp9;
 	c_one = 1.0f;
+#ifdef __MWERKS__ // clang-format off
 	asm {
 		psq_l       tmp0, 0(q), 0, 0
 		psq_l       tmp1, 8(q), 0, 0
@@ -799,8 +784,8 @@ void PSMTXQuat ( register Mtx m, const register PSQuaternion *q )
 			psq_st      tmp3, 24(m), 0, 0
 			psq_st      tmp9, 32(m), 0, 0
 	}
+#endif // clang-format on
 }
-// clang-format on
 /*
  * --INFO--
  * Address:	........

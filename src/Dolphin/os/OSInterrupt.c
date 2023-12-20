@@ -33,7 +33,7 @@ volatile u32 __OSLastInterruptSrr0;
  * Size:	000014
  */
 ASM BOOL OSDisableInterrupts() {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 entry    __RAS_OSDisableInterrupts_begin
 	mfmsr   r3
@@ -42,7 +42,7 @@ entry    __RAS_OSDisableInterrupts_begin
 entry    __RAS_OSDisableInterrupts_end
 	rlwinm  r3, r3, 17, 31, 31
 	blr
-	// clang-format on
+#endif // clang-format on
 }
 
 /*
@@ -51,7 +51,7 @@ entry    __RAS_OSDisableInterrupts_end
  * Size:	000014
  */
 ASM BOOL OSEnableInterrupts() {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 
 	mfmsr   r3
@@ -59,7 +59,7 @@ ASM BOOL OSEnableInterrupts() {
 	mtmsr   r4
 	rlwinm  r3, r3, 17, 31, 31
 	blr
-	// clang-format on
+#endif // clang-format on
 }
 
 /*
@@ -68,8 +68,7 @@ ASM BOOL OSEnableInterrupts() {
  * Size:	000024
  */
 ASM BOOL OSRestoreInterrupts(register BOOL level) {
-	// clang-format off
-
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 
 	cmpwi   level, 0
@@ -83,7 +82,7 @@ _restore:
 	mtmsr   r5
 	rlwinm  r3, r4, 17, 31, 31
 	blr
-	// clang-format on
+#endif // clang-format on
 }
 
 /*
@@ -480,11 +479,11 @@ void __OSDispatchInterrupt(__OSException exception, OSContext* context)
 ASM static void ExternalInterruptHandler(register __OSException exception, register OSContext* context)
 {
 #pragma unused(exception)
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	OS_EXCEPTION_SAVE_GPRS(context)
 
 	stwu r1, -8(r1)
 	b __OSDispatchInterrupt
-	// clang-format on
+#endif // clang-format on
 }

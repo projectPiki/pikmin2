@@ -479,7 +479,7 @@ void TRK__write_aram(void)
  */
 ASM void InitMetroTRK_BBA(void)
 {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	addi r1, r1, -4
 	stw r3, 0(r1)
@@ -534,7 +534,7 @@ ASM void InitMetroTRK_BBA(void)
 initCommTableSuccess:
 	b TRK_main //Jump to TRK_main
 	blr
-	// clang-format on
+#endif // clang-format on
 }
 
 /*
@@ -544,7 +544,7 @@ initCommTableSuccess:
  */
 ASM void InitMetroTRK(void)
 {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	addi r1, r1, -4
 	stw r3, 0(r1)
@@ -601,5 +601,5 @@ ASM void InitMetroTRK(void)
 initCommTableSuccess:
 	b TRK_main //Jump to TRK_main
 	blr
-	// clang-format on
+#endif // clang-format on
 }

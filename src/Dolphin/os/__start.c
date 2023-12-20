@@ -14,10 +14,9 @@ void __set_debug_bba(void) { Debug_BBA = 1; }
 
 u8 __get_debug_bba(void) { return Debug_BBA; }
 
-// clang-format off
-
 WEAKFUNC ASM void __start(void)
 {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	bl __init_registers
 	bl __init_hardware
@@ -128,10 +127,12 @@ _goto_skip_init_bba:
 	mr r4, r15
 	bl main
 	b exit
+#endif // clang-format on
 }
 
 ASM static void __init_registers(void)
 {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	li r0, 0
 	li r3, 0
@@ -169,12 +170,11 @@ ASM static void __init_registers(void)
 	lis r13, _SDA_BASE_@h
 	ori r13, r13, _SDA_BASE_@l
 	blr
+#endif // clang-format on
 }
 
 DECL_SECT(".init") extern __rom_copy_info _rom_copy_info[];
 DECL_SECT(".init") extern __bss_init_info _bss_init_info[];
-
-// clang-format on
 
 inline static void __copy_rom_section(void* dst, const void* src, unsigned long size)
 {

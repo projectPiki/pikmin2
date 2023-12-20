@@ -109,9 +109,9 @@ void __OSIsDebuggerPresent(void)
  * Address:	800EAFC8
  * Size:	000128
  */
-// clang-format off
 ASM void __OSFPRInit(void)
 {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 
 	mfmsr   r3
@@ -194,8 +194,8 @@ SkipPairedSingles:
 	mtfsf   0xFF, fp0
 
 	blr
+#endif // clang-format on
 }
-// clang-format on
 /*
  * --INFO--
  * Address:	........
@@ -570,9 +570,8 @@ static void OSExceptionInit(void)
  * Address:	800EB8D4
  * Size:	000024
  */
-// clang-format off
-ASM static void __OSDBIntegrator(void)
-{
+ASM static void __OSDBIntegrator(void) {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 entry __OSDBINTSTART
 	li      r5, OS_DBINTERFACE_ADDR
@@ -585,6 +584,7 @@ entry __OSDBINTSTART
 	mtmsr   r3
 	blr
 entry __OSDBINTEND
+#endif // clang-format on
 }
 
 /*
@@ -592,13 +592,14 @@ entry __OSDBINTEND
  * Address:	800EB8F8
  * Size:	000004
  */
-ASM static void __OSDBJump(void)
-{
+ASM static void __OSDBJump(void) {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 entry __OSDBJUMPSTART
 	bla     OS_DBJUMPPOINT_ADDR
 entry __OSDBJUMPEND
-} // clang-format on
+#endif // clang-format on
+}
 
 /*
  * --INFO--
@@ -625,9 +626,9 @@ __OSExceptionHandler __OSGetExceptionHandler(__OSException exception) { return O
  * Address:	800EB92C
  * Size:	00009C
  */
-// clang-format off
 ASM static void OSExceptionVector(void)
 {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 
 entry __OSEVStart
@@ -707,6 +708,7 @@ recoverable:
 
 entry __OSEVEnd
 	nop
+#endif // clang-format on
 }
 
 /*
@@ -714,13 +716,10 @@ entry __OSEVEnd
  * Address:	800EB9C8
  * Size:	000058
  */
-ASM void OSDefaultExceptionHandler(
-	register __OSException exception,
-	register OSContext*    context
-)
+ASM void OSDefaultExceptionHandler(register __OSException exception, register OSContext* context)
 {
-#pragma unused (exception)
-
+#pragma unused(exception)
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	OS_EXCEPTION_SAVE_GPRS(context)
 	// Load DSISR and DAR
@@ -730,8 +729,8 @@ ASM void OSDefaultExceptionHandler(
 	stwu    r1,-8(r1)
 	b       __OSUnhandledException
 	// NOT REACHED HERE
+#endif // clang-format on
 }
-// clang-format on
 
 /*
  * --INFO--
@@ -743,7 +742,7 @@ void __OSPSInit(void)
 	PPCMthid2(PPCMfhid2() | 0xA0000000);
 	ICFlashInvalidate();
 	__sync();
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	asm {
 		li      r3, 0
 		mtspr   GQR0, r3
@@ -755,7 +754,7 @@ void __OSPSInit(void)
 		mtspr   GQR6, r3
 		mtspr   GQR7, r3
 	}
-	// clang-format on
+#endif // clang-format on
 }
 
 /*

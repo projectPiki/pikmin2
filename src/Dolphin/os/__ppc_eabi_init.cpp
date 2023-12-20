@@ -11,8 +11,9 @@ DECL_SECT(".dtors") extern voidfunctionptr _dtors[];
 
 static void __init_cpp();
 
-// clang-format off
-DECL_SECT(".init") ASM void __init_hardware() {
+DECL_SECT(".init")
+ASM void __init_hardware() {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	mfmsr r0
 	ori r0,r0,0x2000
@@ -23,9 +24,12 @@ DECL_SECT(".init") ASM void __init_hardware() {
 	bl __OSCacheInit
 	mtlr r31
 	blr
+#endif // clang-format on
 }
 
-DECL_SECT(".init") ASM void __flush_cache(u32 param_1, int param_2) {
+DECL_SECT(".init") ASM void __flush_cache(u32 param_1, int param_2)
+{
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	lis r5, 0xFFFFFFF1@h
 	ori r5, r5, 0xFFFFFFF1@l
@@ -41,8 +45,8 @@ loop:
 	bge loop
 	isync
 	blr
+#endif // clang-format on
 }
-// clang-format on
 
 /*
  * --INFO--

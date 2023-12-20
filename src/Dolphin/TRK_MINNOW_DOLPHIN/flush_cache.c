@@ -5,8 +5,9 @@
  * Address:	800BDDB8
  * Size:	000038
  */
-// clang-format off
-ASM void TRK_flush_cache(u32 param_1, int param_2) {
+ASM void TRK_flush_cache(u32 param_1, int param_2)
+{
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	lis r5, 0xFFFFFFF1@h
 	ori r5, r5, 0xFFFFFFF1@l
@@ -23,5 +24,5 @@ loop:
 	bge loop
 	isync
 	blr
+#endif // clang-format on
 }
-// clang-format on

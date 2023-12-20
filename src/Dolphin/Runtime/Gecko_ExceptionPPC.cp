@@ -696,7 +696,7 @@ extern void __unexpected(CatchInfo* catchinfo)
  */
 ASM static void ExPPC_LongJump(register ThrowContext* context, register void* newRTOC, register void* newPC)
 {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 
 	mr r8, newPC
@@ -785,7 +785,7 @@ ASM static void ExPPC_LongJump(register ThrowContext* context, register void* ne
 	lwz r3, 0(r3)
 	stw r3, 0(SP)
 	blr
-	// clang-format on
+#endif // clang-format on
 }
 
 /*
@@ -974,7 +974,7 @@ void __end__catch(CatchInfo* catchinfo)
  */
 ASM void __throw(char* throwtype, void* location, void* dtor)
 {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	ThrowContext throwcontext;
 
 	fralloc
@@ -1074,5 +1074,5 @@ ASM void __throw(char* throwtype, void* location, void* dtor)
 	nop
 	frfree
 	blr
-	// clang-format on
+#endif // clang-format on
 }

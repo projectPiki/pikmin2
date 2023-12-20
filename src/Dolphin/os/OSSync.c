@@ -7,7 +7,7 @@
  */
 ASM static void SystemCallVector()
 {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 
 	entry __OSSystemCallVectorStart
@@ -21,7 +21,7 @@ ASM static void SystemCallVector()
 
 	entry __OSSystemCallVectorEnd
 	nop
-	// clang-format on
+#endif // clang-format on
 }
 
 /*
@@ -35,6 +35,8 @@ void __OSInitSystemCall()
 	memcpy(handler, __OSSystemCallVectorStart, (u32)__OSSystemCallVectorEnd - (u32)__OSSystemCallVectorStart);
 
 	DCFlushRangeNoSync(handler, OS_HANDLER_SLOT_SIZE);
+#ifdef __MWERKS__ // clang-format off
 	asm { sync }
+#endif // clang-format on
 	ICInvalidateRange(handler, OS_HANDLER_SLOT_SIZE);
 }

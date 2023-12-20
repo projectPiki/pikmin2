@@ -28,14 +28,9 @@ void C_VECAdd(void)
  * Address:	800EAEB4
  * Size:	000024
  */
-// clang-format off
-ASM void PSVECAdd
-(
-	const register Vec *vec1,
-	const register Vec *vec2,
-	register Vec *ret
-)
+ASM void PSVECAdd(const register Vec* vec1, const register Vec* vec2, register Vec* ret)
 {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc;
 	psq_l     FP2,  0(vec1), 0, 0;
 	psq_l     FP4,  0(vec2), 0, 0;
@@ -46,8 +41,8 @@ ASM void PSVECAdd
 	ps_add    FP7, FP3, FP5;
 	psq_st    FP7,   8(ret), 1, 0;
 	blr
+#endif // clang-format on
 }
-// clang-format on
 /*
  * --INFO--
  * Address:	........
@@ -62,14 +57,9 @@ void C_VECSubtract(void)
  * Address:	800EAED8
  * Size:	000024
  */
-// clang-format off
-ASM void PSVECSubtract
-(
-	const register Vec *vec1,
-	const register Vec *vec2,
-		  register Vec *ret
-)
+ASM void PSVECSubtract(const register Vec* vec1, const register Vec* vec2, register Vec* ret)
 {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc;
 	psq_l     FP2,  0(vec1), 0, 0;
 	psq_l     FP4,  0(vec2), 0, 0;
@@ -80,8 +70,8 @@ ASM void PSVECSubtract
 	ps_sub    FP7, FP3, FP5;
 	psq_st    FP7,  8(ret), 1, 0;
 	blr
+#endif // clang-format on
 }
-// clang-format on
 /*
  * --INFO--
  * Address:	........
@@ -114,13 +104,9 @@ void C_VECNormalize(void)
  * Address:	800EAEFC
  * Size:	000044
  */
-// clang-format off
-void PSVECNormalize
-(
-	const register Vec *vec1,
-		  register Vec *ret
-)
+void PSVECNormalize(const register Vec* vec1, register Vec* ret)
 {
+#ifdef __MWERKS__ // clang-format off
 	register f32 half  = 0.5f;
 	register f32 three = 3.0f;
 	register f32 xx_zz, xx_yy;
@@ -143,8 +129,8 @@ void PSVECNormalize
 		ps_muls0    FP3, FP3, ret_sqrt;
 		psq_st      FP3, 8(ret), 1, 0;
 	}
+#endif // clang-format on
 }
-// clang-format on
 /*
  * --INFO--
  * Address:	........
@@ -177,13 +163,13 @@ void C_VECMag(void)
  * Address:	800EAF40
  * Size:	000044
  */
-// clang-format off
-f32 PSVECMag ( const register Vec *v )
+f32 PSVECMag(const register Vec* v)
 {
-	register f32    v_xy, v_zz, square_mag;
-	register f32    ret_mag, n_0, n_1;
-	register f32    three, half, zero;
+	register f32 v_xy, v_zz, square_mag;
+	register f32 ret_mag, n_0, n_1;
+	register f32 three, half, zero;
 	half = 0.5f;
+#ifdef __MWERKS__ // clang-format off
 	asm {
 		psq_l       v_xy, 0(v), 0, 0
 		ps_mul      v_xy, v_xy, v_xy
@@ -195,7 +181,9 @@ f32 PSVECMag ( const register Vec *v )
 		beq-        __exit
 		frsqrte     ret_mag, square_mag
 	}
+#endif // clang-format on
 	three = 3.0f;
+#ifdef __MWERKS__ // clang-format off
 	asm {
 		fmuls       n_0, ret_mag, ret_mag
 		fmuls       n_1, ret_mag, half
@@ -204,9 +192,9 @@ f32 PSVECMag ( const register Vec *v )
 		fmuls       square_mag, square_mag, ret_mag
 	__exit:
 	}
+#endif // clang-format on
 	return square_mag;
 }
-// clang-format on
 /*
  * --INFO--
  * Address:	........
@@ -239,14 +227,9 @@ void C_VECCrossProduct(void)
  * Address:	800EAF84
  * Size:	00003C
  */
-// clang-format off
-ASM void PSVECCrossProduct
-(
-	const register Vec *vec1,
-	const register Vec *vec2,
-		  register Vec *ret
-)
+ASM void PSVECCrossProduct(const register Vec* vec1, const register Vec* vec2, register Vec* ret)
 {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc;
 	psq_l       fp1, 0(vec2), 0, 0
 	lfs         fp2, 8(vec1)
@@ -263,8 +246,8 @@ ASM void PSVECCrossProduct
 	ps_neg      fp10, fp10
 	psq_st      fp10, 4(ret), 0, 0
 	blr;
+#endif // clang-format on
 }
-// clang-format on
 /*
  * --INFO--
  * Address:	........

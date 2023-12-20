@@ -9,18 +9,18 @@ static CreaturePrm sInsReal;
 
 // clang-format off
 THPDemoDinamics sTHPDemoDinamics[THP_COUNT]
-    = { { 0.8f,  0.38f, 0.94f, true,   "Opening1" }, 
-		{ 0.9f,  0.22f, 0.98f, true,   "Opening2" },
-		{ 0.7f,  0.38f, 0.98f, true,   "Ending1" },
-	    { 0.8f,  0.44f, 0.99f, true,   "Ending2" },
-		{ 0.57f, 1.00f, 1.00f, false,  "Staffroll" },
-		{ 0.5f,  1.00f, 1.00f, false,  "Play1" },
-	    { 0.7f,  1.00f, 1.00f, false,  "Play2" },
-		{ 0.7f,  1.00f, 1.00f, false,  "Play3" },
-		{ 0.7f,  1.00f, 1.00f, false,  "Play4" },
-		{ 0.7f,  1.00f, 1.00f, false,  "Play5" },
-		{ 0.7f,  1.00f, 1.00f, false,  "Play6" }, 
-		{ 0.7f,  1.00f, 1.00f, false,  "Crime" }, };
+	= { { 0.8f,  0.38f, 0.94f, true,  "Opening1" },
+		{ 0.9f,  0.22f, 0.98f, true,  "Opening2" },
+		{ 0.7f,  0.38f, 0.98f, true,  "Ending1" },
+		{ 0.8f,  0.44f, 0.99f, true,  "Ending2" },
+		{ 0.57f, 1.00f, 1.00f, false, "Staffroll" },
+		{ 0.5f,  1.00f, 1.00f, false, "Play1" },
+		{ 0.7f,  1.00f, 1.00f, false, "Play2" },
+		{ 0.7f,  1.00f, 1.00f, false, "Play3" },
+		{ 0.7f,  1.00f, 1.00f, false, "Play4" },
+		{ 0.7f,  1.00f, 1.00f, false, "Play5" },
+		{ 0.7f,  1.00f, 1.00f, false, "Play6" },
+		{ 0.7f,  1.00f, 1.00f, false, "Crime" }, };
 // clang-format on
 
 /*

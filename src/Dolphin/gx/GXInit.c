@@ -54,14 +54,14 @@ static OSResetFunctionInfo GXResetFuncInfo = { __GXShutdown, OS_RESET_PRIO_GX };
  */
 ASM BOOL IsWriteGatherBufferEmpty(void)
 {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc;
 	sync;
 
 	mfspr r3, WPAR;
 	andi. r3, r3, 1;
 	blr;
-	// clang-format on
+#endif // clang-format on
 }
 
 /*

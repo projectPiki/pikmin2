@@ -16,7 +16,7 @@ static s32 LeapYearDays[OS_TIME_MONTH_MAX] = { 0, 31, 60, 91, 121, 152, 182, 213
  * Size:	000018
  */
 ASM s64 OSGetTime() {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 
 	mftbu r3
@@ -28,7 +28,7 @@ ASM s64 OSGetTime() {
 	bne OSGetTime
 
 	blr
-	// clang-format on
+#endif // clang-format on
 }
 
 /*
@@ -37,12 +37,12 @@ ASM s64 OSGetTime() {
  * Size:	000008
  */
 ASM u32 OSGetTick() {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 
 	mftb r3
 	blr
-	// clang-format on
+#endif // clang-format on
 }
 
 /*

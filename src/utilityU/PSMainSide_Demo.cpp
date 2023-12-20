@@ -369,15 +369,15 @@ PSSystem::BgmSeq* Demo::initiate(DemoArg demoArg, u8* unk)
 		audio_info.mVolume.c -= 0xf;
 	}
 	// clang-format off
-  if (streq("s10_suck_treasure",        init.mName) || 
-      streq("s11_dope_first_b",         init.mName) || 
-      streq("s11_dope_first_r",         init.mName) || 
-      streq("s11_dopebin_first_b",      init.mName) || 
-      streq("s11_dopebin_first_r",      init.mName) || 
-      streq("s17_suck_equipment",       init.mName) || 
-      streq("s22_cv_suck_equipment",    init.mName) || 
-      streq("s22_cv_suck_treasure",     init.mName) || 
-      streq("x19_vs_bedama",            init.mName))
+	if (streq("s10_suck_treasure",        init.mName) ||
+		streq("s11_dope_first_b",         init.mName) ||
+		streq("s11_dope_first_r",         init.mName) ||
+		streq("s11_dopebin_first_b",      init.mName) ||
+		streq("s11_dopebin_first_r",      init.mName) ||
+		streq("s17_suck_equipment",       init.mName) ||
+		streq("s22_cv_suck_equipment",    init.mName) ||
+		streq("s22_cv_suck_treasure",     init.mName) ||
+		streq("x19_vs_bedama",            init.mName))
 	// clang-format on
 	{
 		mDoStartWithAudio = false;

@@ -12,7 +12,7 @@ extern void __RAS_OSDisableInterrupts_end();
  */
 ASM static void __OSLoadFPUContext(register u32, register OSContext* fpuContext)
 {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	lhz r5, fpuContext->state;
 	clrlwi. r5, r5, 31
@@ -91,8 +91,8 @@ _regular_FPRs:
 	lfd fp30, fpuContext->fpr[30]
 	lfd fp31, fpuContext->fpr[31]
 _return:
-  	blr
-	// clang-format on
+	blr
+#endif // clang-format on
 }
 
 /*
@@ -101,7 +101,7 @@ _return:
  * Size:	000128
  */
 ASM static void __OSSaveFPUContext(register u32, register u32, register OSContext* fpuContext) {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
   	nofralloc
 
 	lhz     r3,   fpuContext->state
@@ -185,7 +185,7 @@ ASM static void __OSSaveFPUContext(register u32, register u32, register OSContex
 
 _return:
 		blr
-	// clang-format on
+#endif // clang-format on
 }
 
 /*
@@ -194,11 +194,11 @@ _return:
  * Size:	000008
  */
 ASM void OSLoadFPUContext(register OSContext* fpuContext) {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	addi    r4, fpuContext, 0
 	b       __OSLoadFPUContext
-	// clang-format on
+#endif // clang-format on
 }
 
 /*
@@ -207,11 +207,11 @@ ASM void OSLoadFPUContext(register OSContext* fpuContext) {
  * Size:	000008
  */
 ASM void OSSaveFPUContext(register OSContext* fpuContext) {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	addi    r5, fpuContext, 0
 	b       __OSSaveFPUContext
-	// clang-format on
+#endif // clang-format on
 }
 
 /*
@@ -220,7 +220,7 @@ ASM void OSSaveFPUContext(register OSContext* fpuContext) {
  * Size:	00005C
  */
 ASM void OSSetCurrentContext(register OSContext* context) {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 
 	addis   r4, r0, OS_CACHED_REGION_PREFIX
@@ -252,7 +252,7 @@ _disableFPU:
 	mtmsr   r6
 	isync
 	blr
-	// clang-format on
+#endif // clang-format on
 }
 
 /*
@@ -271,7 +271,7 @@ OSContext* OSGetCurrentContext()
  * Size:	000080
  */
 ASM u32 OSSaveContext(register OSContext* context) {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	stmw    r13, context->gpr[13]
 	mfspr   r0, GQR1
@@ -305,7 +305,7 @@ ASM u32 OSSaveContext(register OSContext* context) {
 	stw     r0, context->gpr[3]
 	li      r3, 0
 	blr
-	// clang-format on
+#endif // clang-format on
 }
 
 /*
@@ -315,7 +315,7 @@ ASM u32 OSSaveContext(register OSContext* context) {
  */
 ASM void OSLoadContext(register OSContext* context)
 {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 
 	lis      r4,__RAS_OSDisableInterrupts_begin@ha
@@ -384,7 +384,7 @@ misc:
 	lwz     r3, context->gpr[3]
 
 	rfi
-	// clang-format on
+#endif // clang-format on
 }
 
 /*
@@ -393,11 +393,11 @@ misc:
  * Size:	000008
  */
 ASM u32 OSGetStackPointer() {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	mr r3, r1
 	blr
-	// clang-format on
+#endif // clang-format on
 }
 
 /*
@@ -406,13 +406,13 @@ ASM u32 OSGetStackPointer() {
  * Size:	000010
  */
 ASM u32 OSSwitchStack(register u32 newsp) {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	mr  r5, r1
 	mr  r1, newsp
 	mr  r3, r5
 	blr
-	// clang-format on
+#endif // clang-format on
 }
 
 /*
@@ -422,7 +422,7 @@ ASM u32 OSSwitchStack(register u32 newsp) {
  */
 ASM int OSSwitchFiber(register u32 pc, register u32 newsp)
 {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	mflr    r0
 	mr      r5, r1
@@ -436,7 +436,7 @@ ASM int OSSwitchFiber(register u32 pc, register u32 newsp)
 	mtlr    r0
 	mr      r1, r5
 	blr
-	// clang-format on
+#endif // clang-format on
 }
 
 /*
@@ -460,7 +460,7 @@ void OSClearContext(OSContext* context)
  */
 ASM void OSInitContext(register OSContext* context, register u32 pc, register u32 newsp)
 {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 
 	stw     pc,  OS_CONTEXT_SRR0(context)
@@ -516,7 +516,7 @@ ASM void OSInitContext(register OSContext* context, register u32 pc, register u3
 	stw     r0,  OS_CONTEXT_GQR7(context)
 
 	b       OSClearContext
-	// clang-format on
+#endif // clang-format on
 }
 
 /*
@@ -581,7 +581,7 @@ void OSDumpContext(OSContext* context)
  */
 ASM static void OSSwitchFPUContext(register __OSException exception, register OSContext* context)
 {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	mfmsr   r5
 	ori     r5, r5, 0x2000
@@ -618,7 +618,7 @@ _restoreAndExit:
 	lwz     r3, OS_CONTEXT_R3(context)
 	lwz     r4, OS_CONTEXT_R4(context)
 	rfi
-	// clang-format on
+#endif // clang-format on
 }
 
 /*
@@ -640,7 +640,7 @@ void __OSContextInit()
  */
 ASM void OSFillFPUContext(register OSContext* context)
 {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	mfmsr     r5
 	ori       r5, r5, 0x2000
@@ -722,5 +722,5 @@ ASM void OSFillFPUContext(register OSContext* context)
 
 _return:
 	blr
-	// clang-format on
+#endif // clang-format on
 }

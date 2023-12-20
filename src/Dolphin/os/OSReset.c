@@ -71,7 +71,7 @@ BOOL __OSCallResetFunctions(BOOL final)
  */
 ASM static void Reset(register s32 resetCode)
 {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	b _jump1
 
@@ -85,7 +85,7 @@ _begin:
 	b _preloop
 
 _jump1:
-    b _jump2
+	b _jump2
 
 _preloop:
 	mftb r5, 268
@@ -98,27 +98,27 @@ _loop:
 	b _setPIReg
 
 _jump2:
-    b _jump3
+	b _jump3
 
 _setPIReg:
-    lis r8, 0xCC003000@h
-    ori r8, r8, 0xCC003000@l
-    li r4, 3
-    stw r4, 0x24(r8)
-    stw r3, 0x24(r8)
-    nop
-    b _noptrap
+	lis r8, 0xCC003000@h
+	ori r8, r8, 0xCC003000@l
+	li r4, 3
+	stw r4, 0x24(r8)
+	stw r3, 0x24(r8)
+	nop
+	b _noptrap
 
 _jump3:
-    b _jump4
+	b _jump4
 
 _noptrap:
-    nop
-    b _noptrap
+	nop
+	b _noptrap
 
 _jump4:
-    b _begin
-	// clang-format on
+	b _begin
+#endif // clang-format on
 }
 
 /*

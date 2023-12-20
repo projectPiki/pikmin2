@@ -44,14 +44,14 @@ BOOL IsStreamEnabled(void)
  */
 ASM static void Run(register u32 addr)
 {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 
 	sync
 	isync
 	mtlr addr
 	blr
-	// clang-format on
+#endif // clang-format on
 }
 
 /*

@@ -388,7 +388,7 @@ void TRKUARTInterruptHandler(void) { }
  */
 ASM void TRKLoadContext(OSContext* ctx, u32 r4)
 {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	lwz r0, OSContext.gpr[0](r3)
 	lwz r1, OSContext.gpr[1](r3)
@@ -426,5 +426,5 @@ L_802CC250:
 	lwz r4, OSContext.srr1(r31)
 	lwz r31, OSContext.gpr[31](r31)
 	b TRKInterruptHandler
-	// clang-format on
+#endif // clang-format on
 }

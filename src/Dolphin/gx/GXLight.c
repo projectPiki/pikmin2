@@ -280,7 +280,7 @@ static inline void PushLight(const register GXLightObjPriv* lt_obj, register voi
 	register u32 zero, color;
 	register f32 a0_a1, a2_k0, k1_k2;
 	register f32 px_py, pz_dx, dy_dz;
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	asm {
 		lwz     color, 12(lt_obj)
 		xor     zero, zero, zero
@@ -302,7 +302,7 @@ static inline void PushLight(const register GXLightObjPriv* lt_obj, register voi
 		psq_st  pz_dx, 0(dest), 0, 0
 		psq_st  dy_dz, 0(dest), 0, 0
 	}
-	// clang-format on
+#endif // clang-format on
 }
 
 /*

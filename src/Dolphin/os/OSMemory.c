@@ -110,7 +110,7 @@ void OSProtectRange(u32 channel, void* addr, u32 numBytes, u32 control)
  */
 ASM static void Config24MB()
 {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 
 	addi    r7,r0,0
@@ -154,7 +154,7 @@ ASM static void Config24MB()
 	mflr    r3
 	mtsrr0  r3
 	rfi
-	// clang-format on
+#endif // clang-format on
 }
 
 /*
@@ -164,7 +164,7 @@ ASM static void Config24MB()
  */
 ASM static void Config48MB()
 {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 
 	addi    r7,r0,0x0000
@@ -208,7 +208,7 @@ ASM static void Config48MB()
 	mflr    r3
 	mtsrr0  r3
 	rfi
-	// clang-format on
+#endif // clang-format on
 }
 
 /*
@@ -218,7 +218,7 @@ ASM static void Config48MB()
  */
 ASM static void RealMode(register u32 addr)
 {
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	clrlwi r3, r3, 2
 	mtsrr0 r3
@@ -226,7 +226,7 @@ ASM static void RealMode(register u32 addr)
 	rlwinm r3, r3, 0, 28, 25
 	mtsrr1 r3
 	rfi
-	// clang-format on
+#endif // clang-format on
 }
 
 /*

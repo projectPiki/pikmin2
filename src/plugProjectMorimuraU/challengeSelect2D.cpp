@@ -908,7 +908,7 @@ void TChallengeScreen::create(char const* path, u32 flags)
 void TChallengeScreen::createAnimPane(char* path)
 {
 	u64 tags[16]   = { 'Nhl_00', 'Nhl_01', 'Nhl_02', 'Nhl_03', 'Nhl_04', 'Nhl_05', 'Nhl_06', 'Nhl_07',
-                     'Nhl_08', 'Nhl_09', 'Nhl_10', 'Nhl_11', 'Nhl_12', 'Nhl_13', 'Nhl_14', 'NULL_001' };
+		               'Nhl_08', 'Nhl_09', 'Nhl_10', 'Nhl_11', 'Nhl_12', 'Nhl_13', 'Nhl_14', 'NULL_001' };
 	mAnimPaneCount = 15;
 	mAnimPanes     = new og::Screen::AnimPane*[mAnimPaneCount];
 	for (int i = 0; i < mAnimPaneCount; i++) {
@@ -2027,36 +2027,36 @@ void TChallengeSelect::doCreate(JKRArchive* arc)
 	mFloorCounter   = setScaleUpCounter(screen, 'Pfloor1', &mFloorCount, 2, mArchive);
 
 	// clang-format off
-	u64 panelTags[3][30]
-	    = { 'Pfl00', 'Pselec00', 'Pana00',
+	u64 panelTags[3][30] = {
+			'Pfl00', 'Pselec00', 'Pana00',
 			'Pfl01', 'Pselec01', 'Pana01',
 			'Pfl02', 'Pselec02', 'Pana02',
 			'Pfl03', 'Pselec03', 'Pana03',
-		    'Pfl04', 'Pselec04', 'Pana04',
+			'Pfl04', 'Pselec04', 'Pana04',
 			'Pfl05', 'Pselec05', 'Pana05',
 			'Pfl06', 'Pselec06', 'Pana06',
 			'Pfl07', 'Pselec07', 'Pana07',
-		    'Pfl08', 'Pselec08', 'Pana08',
+			'Pfl08', 'Pselec08', 'Pana08',
 			'Pfl09', 'Pselec09', 'Pana09',
 			'Pfl10', 'Pselec10', 'Pana10',
 			'Pfl11', 'Pselec11', 'Pana11',
-		    'Pfl12', 'Pselec12', 'Pana12',
+			'Pfl12', 'Pselec12', 'Pana12',
 			'Pfl13', 'Pselec13', 'Pana13',
 			'Pfl14', 'Pselec14', 'Pana14',
 			'Pfl15', 'Pselec15', 'Pana15',
-		    'Pfl16', 'Pselec16', 'Pana16',
+			'Pfl16', 'Pselec16', 'Pana16',
 			'Pfl17', 'Pselec17', 'Pana17',
 			'Pfl18', 'Pselec18', 'Pana18',
 			'Pfl19', 'Pselec19', 'Pana19',
-		    'Pfl20', 'Pselec20', 'Pana20',
+			'Pfl20', 'Pselec20', 'Pana20',
 			'Pfl21', 'Pselec21', 'Pana21',
 			'Pfl22', 'Pselec22', 'Pana22',
 			'Pfl23', 'Pselec23', 'Pana23',
-		    'Pfl24', 'Pselec24', 'Pana24',
+			'Pfl24', 'Pselec24', 'Pana24',
 			'Pfl25', 'Pselec25', 'Pana25',
 			'Pfl26', 'Pselec26', 'Pana26',
 			'Pfl27', 'Pselec27', 'Pana27',
-		    'Pfl28', 'Pselec28', 'Pana28',
+			'Pfl28', 'Pselec28', 'Pana28',
 			'Pfl29', 'Pselec29', 'Pana29' };
 	// clang-format on
 

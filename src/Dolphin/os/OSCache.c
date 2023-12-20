@@ -1,7 +1,7 @@
 #include "Dolphin/os.h"
 #include "Dolphin/db.h"
 #define PPCSYNC sc // system call performs PPCSync()
-// clang-format off
+
 // /*
 //  * --INFO--
 //  * Address:	........
@@ -17,8 +17,8 @@
  * Address:	800EC6D8
  * Size:	000014
  */
-ASM void DCEnable(void)
-{
+ASM void DCEnable(void) {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 
 	sync
@@ -28,6 +28,7 @@ ASM void DCEnable(void)
 	mtspr   HID0, r3
 
 	blr
+#endif // clang-format on
 }
 
 // /*
@@ -115,8 +116,8 @@ ASM void DCEnable(void)
  * Address:	800EC6EC
  * Size:	00002C
  */
-ASM void DCInvalidateRange(register void* addr, register u32 nBytes)
-{
+ASM void DCInvalidateRange(register void* addr, register u32 nBytes) {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	cmplwi  nBytes,0
 	blelr-
@@ -130,16 +131,16 @@ _loop:
 	addi    addr,addr,32
 	bdnz    _loop
 	blr
+#endif // clang-format on
 }
-
 
 /*
  * --INFO--
  * Address:	800EC718
  * Size:	000030
  */
-ASM void DCFlushRange(register void* addr, register u32 nBytes)
-{
+ASM void DCFlushRange(register void* addr, register u32 nBytes) {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	cmplwi  nBytes,0
 	blelr-
@@ -156,6 +157,7 @@ _loop:
 	PPCSYNC
 
 	blr
+#endif // clang-format on
 }
 
 /*
@@ -163,8 +165,8 @@ _loop:
  * Address:	800EC748
  * Size:	000030
  */
-ASM void DCStoreRange(register void* addr, register u32 nBytes)
-{
+ASM void DCStoreRange(register void* addr, register u32 nBytes) {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	cmplwi  nBytes,0
 	blelr-
@@ -181,6 +183,7 @@ _loop:
 	PPCSYNC
 
 	blr
+#endif // clang-format on
 }
 
 /*
@@ -188,8 +191,8 @@ _loop:
  * Address:	800EC778
  * Size:	00002C
  */
-ASM void DCFlushRangeNoSync(register void* addr, register u32 nBytes)
-{
+ASM void DCFlushRangeNoSync(register void* addr, register u32 nBytes) {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	cmplwi  nBytes,0
 	blelr-
@@ -204,6 +207,7 @@ _loop:
 	bdnz    _loop
 
 	blr
+#endif // clang-format on
 }
 
 /*
@@ -211,8 +215,8 @@ _loop:
  * Address:	800EC7A4
  * Size:	00002C
  */
-ASM void DCStoreRangeNoSync(register void* addr, register u32 nBytes)
-{
+ASM void DCStoreRangeNoSync(register void* addr, register u32 nBytes) {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	cmplwi  nBytes,0
 	blelr-
@@ -227,6 +231,7 @@ _loop:
 	bdnz    _loop
 
 	blr
+#endif // clang-format on
 }
 
 /*
@@ -234,8 +239,8 @@ _loop:
  * Address:	800EC7D0
  * Size:	00002C
  */
-ASM void DCZeroRange(register void* addr, register u32 nBytes)
-{
+ASM void DCZeroRange(register void* addr, register u32 nBytes) {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	cmplwi  nBytes,0
 	blelr-
@@ -249,6 +254,7 @@ _loop:
 	addi    addr,addr,32
 	bdnz    _loop
 	blr
+#endif // clang-format on
 }
 
 /*
@@ -266,8 +272,8 @@ ASM void DCTouchRange(register void* addr, register u32 nBytes)
  * Address:	800EC7FC
  * Size:	000034
  */
-ASM void ICInvalidateRange(register void* addr, register u32 nBytes)
-{
+ASM void ICInvalidateRange(register void* addr, register u32 nBytes) {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	cmplwi  nBytes,0
 	blelr-
@@ -283,6 +289,7 @@ _loop:
 	sync
 	isync
 	blr
+#endif // clang-format on
 }
 
 /*
@@ -290,8 +297,8 @@ _loop:
  * Address:	800EC830
  * Size:	000010
  */
-ASM void ICFlashInvalidate(void)
-{
+ASM void ICFlashInvalidate(void) {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 
 	mfspr   r3, HID0
@@ -299,6 +306,7 @@ ASM void ICFlashInvalidate(void)
 	mtspr   HID0, r3
 
 	blr
+#endif // clang-format on
 }
 
 /*
@@ -308,6 +316,7 @@ ASM void ICFlashInvalidate(void)
  */
 ASM void ICEnable(void)
 {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 
 	isync
@@ -317,6 +326,7 @@ ASM void ICEnable(void)
 	mtspr   HID0, r3
 
 	blr
+#endif // clang-format on
 }
 
 // /*
@@ -379,6 +389,7 @@ ASM void ICEnable(void)
  */
 ASM static void __LCEnable(void)
 {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	mfmsr   r5
 	ori     r5, r5, MSR_ME
@@ -440,6 +451,7 @@ _lock:
 	nop
 
 	blr
+#endif // clang-format on
 }
 
 /*
@@ -461,8 +473,8 @@ void LCEnable(void)
  * Address:	800EC958
  * Size:	000028
  */
-ASM void LCDisable(void)
-{
+ASM void LCDisable(void) {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 
 	lis     r3, LC_BASE_PREFIX
@@ -476,6 +488,7 @@ _loop:
 	rlwinm  r4, r4, 0, HID2_LCE_BIT+1, HID2_LCE_BIT-1
 	mtspr   HID2, r4
 	blr
+#endif // clang-format on
 }
 
 // /*
@@ -513,12 +526,8 @@ _loop:
  * Address:	800EC980
  * Size:	000024
  */
-ASM void LCStoreBlocks(
-	register void*   destAddr,
-	register void*   srcTag,
-	register u32     numBlocks
-)
-{
+ASM void LCStoreBlocks(register void* destAddr, register void* srcTag, register u32 numBlocks) {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 	rlwinm  r6, numBlocks, 30, 27, 31
 	rlwinm  destAddr, destAddr, 0, 4, 31
@@ -529,6 +538,7 @@ ASM void LCStoreBlocks(
 	ori     r6, r6, DMA_L_STORE | DMA_L_TRIGGER
 	mtspr   DMA_L, r6
 	blr
+#endif // clang-format on
 }
 
 // /*
@@ -561,7 +571,6 @@ ASM void LCStoreBlocks(
 // 	// UNUSED FUNCTION
 // }
 
-// clang-format on
 /*
  * --INFO--
  * Address:	800EC9A4
@@ -599,7 +608,6 @@ u32 LCStoreData(void* destAddr, // to main memory destination
 // 	// UNUSED FUNCTION
 // }
 
-// clang-format off
 /*
  * --INFO--
  * Address:	800ECA50
@@ -607,6 +615,7 @@ u32 LCStoreData(void* destAddr, // to main memory destination
  */
 ASM void LCQueueWait(register u32 len)
 {
+#ifdef __MWERKS__ // clang-format off
 	nofralloc
 
 _waitloop:
@@ -616,9 +625,9 @@ _waitloop:
 	bgt     _waitloop
 
 	blr
+#endif // clang-format on
 }
 
-// clang-format on
 // /*
 //  * --INFO--
 //  * Address:	........

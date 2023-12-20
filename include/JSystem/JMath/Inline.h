@@ -9,7 +9,7 @@ namespace JMathInlineVEC {
 inline void PSVECAdd(register const Vec* vec1, register const Vec* vec2, register Vec* dst)
 {
 	register f32 v1xy, v2xy, d1xy, v1z, v2z, d1z;
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	asm {
 		psq_l     v1xy, 0(vec1), 0, 0
 		psq_l     v2xy, 0(vec2), 0, 0
@@ -21,12 +21,13 @@ inline void PSVECAdd(register const Vec* vec1, register const Vec* vec2, registe
 		ps_add    d1z, v1z, v2z
 		psq_st    d1z,  8(dst), 1, 0
 	}
-	// clang-format on
+#endif // clang-format on
 }
+
 inline void PSVECSubtract(register const Vec* vec1, register const Vec* vec2, register Vec* dst)
 {
-	// clang-format off
 	register f32 v1xy, v2xy, dxy, v1z, v2z, dz;
+#ifdef __MWERKS__ // clang-format off
 	asm {
 		psq_l     v1xy, 0(vec1), 0, 0
 		psq_l     v2xy, 0(vec2), 0, 0
@@ -38,12 +39,13 @@ inline void PSVECSubtract(register const Vec* vec1, register const Vec* vec2, re
 		ps_sub    dz, v1z, v2z
 		psq_st    dz,  8(dst), 1, 0
 	}
-	// clang-format on
+#endif // clang-format on
 }
+
 inline void PSVECScale(register const Vec* src, register Vec* dst, register f32 scalar)
 {
-	// clang-format off
 	register f32 vxy, vz, rxy, rz;
+#ifdef __MWERKS__ // clang-format off
 	asm {
 
 		psq_l       vxy, 0(src), 0, 0
@@ -53,12 +55,13 @@ inline void PSVECScale(register const Vec* src, register Vec* dst, register f32 
 		ps_muls0    rz,  vz,  scalar
 		psq_st      rz,  8(dst), 1, 0
 	}
-	// clang-format on
+#endif // clang-format on
 }
+
 inline f32 PSVECDotProduct(register const Vec* vec1, register const Vec* vec2)
 {
 	register f32 dp, v1yz, v2yz, v2xy, v1xy;
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	asm {
 		psq_l    v1yz, 4(vec1), 0, 0
 		psq_l    v2yz, 4(vec2), 0, 0
@@ -68,13 +71,14 @@ inline f32 PSVECDotProduct(register const Vec* vec1, register const Vec* vec2)
 		ps_madd  v2yz, v1xy, v2xy, v1yz
 		ps_sum0  dp, v2yz, v1yz, v1yz
 	}
-	// clang-format on
+#endif // clang-format on
 	return dp;
 }
+
 inline f32 PSVECSquareMag(register const Vec* src)
 {
 	register f32 xy, z, ret;
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	asm {
 		psq_l xy, 0(src), 0, 0
 		ps_mul xy, xy, xy
@@ -82,9 +86,10 @@ inline f32 PSVECSquareMag(register const Vec* src)
 		ps_madd ret, z, z, xy
 		ps_sum0 ret, ret, xy, xy
 	}
-	// clang-format on
+#endif // clang-format on
 	return ret;
 }
+
 } // namespace JMathInlineVEC
 
 #endif

@@ -261,9 +261,9 @@ inline f32 JMAFastSqrt(register f32 x)
 	register f32 recip;
 
 	if (x > 0.0f) {
-		// clang-format off
+#ifdef __MWERKS__ // clang-format off
 		asm { frsqrte recip, x }
-		// clang-format on
+#endif // clang-format on
 		return recip * x;
 	}
 	return x;
@@ -279,7 +279,7 @@ inline f32 JMAHermiteInterpolation(register f32 p1, register f32 p2, register f3
 	register f32 ff28;
 	register f32 ff27;
 	register f32 ff26;
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	asm {
 		fsubs   ff31, p1, p2
 		fsubs   ff30, p5, p2
@@ -295,7 +295,7 @@ inline f32 JMAHermiteInterpolation(register f32 p1, register f32 p2, register f3
 		fmsubs  ff25,ff29,p4,ff25
 		fnmsubs ff25,ff31,ff25,ff26
 	}
-	// clang-format on
+#endif // clang-format on
 	return ff25;
 }
 

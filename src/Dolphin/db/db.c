@@ -44,8 +44,7 @@ static void __DBExceptionDestinationAux(void)
  * Address:	800DAC34
  * Size:	000010
  */
-#ifdef __MWERKS__
-// clang-format off
+#ifdef __MWERKS__ // clang-format off
 ASM static void __DBExceptionDestination(void)
 {
 	nofralloc
@@ -54,8 +53,7 @@ ASM static void __DBExceptionDestination(void)
 	mtmsr r3
 	b __DBExceptionDestinationAux
 }
-// clang-format on
-#else
+#else // clang-format on
 static void __DBExceptionDestination(void)
 {
 	asm("mfmsr %r3\n"

@@ -35,7 +35,7 @@ void JMAQuatLerp(register const Quaternion* p, register const Quaternion* q, f32
 {
 	register f32 pxy, pzw, qxy, qzw;
 	register f32 dp;
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	asm // compute dot product
 	{
 		psq_l       pxy, 0(p), 0, 0
@@ -48,7 +48,7 @@ void JMAQuatLerp(register const Quaternion* p, register const Quaternion* q, f32
 
 		ps_sum0     dp, dp, dp, dp
 	}
-	// clang-format on
+#endif // clang-format on
 
 	if (dp < 0.0)
 	{
@@ -95,7 +95,7 @@ void JMAFastVECNormalize(register const Vec* src, register Vec* dst)
 {
 	// UNUSED FUNCTION
 	register f32 vxy, rxy, vz, length;
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	asm {
 		psq_l vxy, 0(src), 0, 0
 		ps_mul rxy, vxy, vxy
@@ -108,7 +108,7 @@ void JMAFastVECNormalize(register const Vec* src, register Vec* dst)
 		fmuls vz, vz, length
 		stfs vz, dst->z
 	}
-	// clang-format on
+#endif // clang-format on
 }
 
 /*
@@ -120,7 +120,7 @@ void JMAVECScaleAdd(register const Vec* vec1, register const Vec* vec2, register
 {
 	// UNUSED FUNCTION
 	register f32 v1xy, v2xy, rxy, v1z, v2z, rz;
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	asm {
 		// load vector XY of vector 1
 		psq_l v1xy, 0(vec1), 0, 0
@@ -139,7 +139,7 @@ void JMAVECScaleAdd(register const Vec* vec1, register const Vec* vec2, register
 		// store result Z in dst
 		psq_st rz,  8(dst), 1, 0
 	}
-	// clang-format on
+#endif // clang-format on
 }
 
 /*
@@ -151,7 +151,7 @@ void JMAVECLerp(register const Vec* vec1, register const Vec* vec2, register Vec
 {
 	// UNUSED FUNCTION
 	register f32 v1xy, v2xy, v1z, v2z;
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	asm {
 		// load XY components of both vectors
 		psq_l v1xy, 0(vec1), 0, 0
@@ -173,10 +173,10 @@ void JMAVECLerp(register const Vec* vec1, register const Vec* vec2, register Vec
 		// store result z in dst
 		stfs v2z, 8(dst)
 	}
-	// clang-format on
-	/*dst->x = (vec2->x - vec1->x) * t + vec1->x;
-	dst->y = (vec2->y - vec1->y) * t + vec1->y;
-	dst->z = (vec2->z - vec1->z) * t + vec1->z;*/
+#endif // clang-format on
+	   /*dst->x = (vec2->x - vec1->x) * t + vec1->x;
+	   dst->y = (vec2->y - vec1->y) * t + vec1->y;
+	   dst->z = (vec2->z - vec1->z) * t + vec1->z;*/
 }
 
 /*
@@ -188,7 +188,7 @@ void JMAMTXApplyScale(register const Mtx src, register Mtx dst, register f32 xSc
 {
 	register f32 scale, x, y, z;
 	register f32 normal = 1.0f;
-	// clang-format off
+#ifdef __MWERKS__ // clang-format off
 	asm {
 		// scale first 2 components
 		psq_l x, 0(src), 0, 0
@@ -214,7 +214,7 @@ void JMAMTXApplyScale(register const Mtx src, register Mtx dst, register f32 xSc
 		psq_st y, 0x18(dst), 0, 0
 		psq_st z, 0x28(dst), 0, 0
 	}
-	// clang-format on
+#endif // clang-format on
 
 	/*dst[0][0] = src[0][0] * xScale;
 	dst[0][1] = src[0][1] * yScale;
