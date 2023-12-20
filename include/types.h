@@ -40,9 +40,9 @@ typedef unsigned short wchar_t;
 #endif
 
 // Basic defines to allow newer-like C++ code to be written
-#define TRUE    1
-#define FALSE   0
-#define NULL    ((void*)0)
+#define TRUE  1
+#define FALSE 0
+#define NULL  ((void*)0)
 #define nullptr 0
 
 // Sets specific flag to 1
@@ -73,7 +73,7 @@ typedef unsigned short wchar_t;
 #define ATTRIBUTE_ALIGN(num) __attribute__((aligned(num)))
 
 // Checks if a flag is set in a bitfield
-#define IS_FLAG_SET(flags, bitsFromLSB) (((flags) >> (bitsFromLSB) & 1))
+#define IS_FLAG_SET(flags, bitsFromLSB) (((flags) >> (bitsFromLSB)&1))
 
 // For functions that return 0 on a success and -1 on failure
 #define EXIT_SUCCESS 0

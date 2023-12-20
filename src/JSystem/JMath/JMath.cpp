@@ -174,9 +174,9 @@ void JMAVECLerp(register const Vec* vec1, register const Vec* vec2, register Vec
 		stfs v2z, 8(dst)
 	}
 #endif // clang-format on
-	   /*dst->x = (vec2->x - vec1->x) * t + vec1->x;
-	   dst->y = (vec2->y - vec1->y) * t + vec1->y;
-	   dst->z = (vec2->z - vec1->z) * t + vec1->z;*/
+	/*dst->x = (vec2->x - vec1->x) * t + vec1->x;
+	dst->y = (vec2->y - vec1->y) * t + vec1->y;
+	dst->z = (vec2->z - vec1->z) * t + vec1->z;*/
 }
 
 /*

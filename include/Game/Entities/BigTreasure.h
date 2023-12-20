@@ -532,6 +532,9 @@ struct BigTreasureShadowMgr {
 
 	inline Matrixf* getTreasureMatrix(int i) { return (&mElecMatrix)[i]; }
 
+	inline Matrixf** getArmMatrices(int i) { return (&mLeftArmMatrix)[i]; }         // 0=left, 1=right
+	inline Matrixf** getAntennaMatrices(int i) { return (&mLeftAntennaMatrix)[i]; } // 0=left, 1=right
+
 	Matrixf* mBodyMatrix;                                          // _00
 	Matrixf* mElecMatrix;                                          // _04
 	Matrixf* mFireMatrix;                                          // _08
@@ -547,18 +550,18 @@ struct BigTreasureShadowMgr {
 	JointShadowRootNode* mRootNode;                                // _84
 	SphereShadowNode* _88;                                         // _88
 	SphereShadowNode* _8C;                                         // _8C
-	TubeShadowSetNode* _90[4];                                     // _90
-	TubeShadowSetNode* _A0[4];                                     // _A0
-	TubeShadowSetNode* _B0[4];                                     // _B0
-	TubeShadowSetNode* _C0[4];                                     // _C0
-	SphereShadowNode* _D0[4];                                      // _D0
-	SphereShadowNode* _E0[4];                                      // _E0
-	SphereShadowNode* _F0[4];                                      // _F0
+	TubeShadowSetNode* _90[4];                                     // _90, leg, *jnt1
+	TubeShadowSetNode* _A0[4];                                     // _A0, leg, *jnt2
+	TubeShadowSetNode* _B0[4];                                     // _B0, leg, *jnt2
+	TubeShadowSetNode* _C0[4];                                     // _C0, leg, *jnt3
+	SphereShadowNode* _D0[4];                                      // _D0, leg?
+	SphereShadowNode* _E0[4];                                      // _E0, leg?
+	SphereShadowNode* _F0[4];                                      // _F0, leg?
 	SphereShadowNode* mTreasureShadowNodes[BIGATTACK_AttackCount]; // _100
-	TubeShadowPosNode* _110[2][4];                                 // _110
-	SphereShadowNode* _130[2][2];                                  // _130
-	TubeShadowPosNode* _140[2][5];                                 // _140
-	SphereShadowNode* _168[2];                                     // _168
+	TubeShadowPosNode* mHandTubeNodes[2][4];                       // _110, [0][j] = left hand, [1][j] = right hand
+	SphereShadowNode* mHandSphereNodes[2][2];                      // _130, [0][j] = left hand, [1][j] = right hand
+	TubeShadowPosNode* mAntennaTubeNodes[2][5];                    // _140, [0][j] = left antenna, [1][j] = right antenna
+	SphereShadowNode* mAntennaSphereNodes[2];                      // _168, [0][j] = left antenna, [1][j] = right antenna
 };
 
 struct BigTreasureGroundCallBack : public JointGroundCallBack {

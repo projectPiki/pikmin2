@@ -450,13 +450,13 @@ void Matrix3f::calcEigenMatrix(Matrix3f& D, Matrix3f& P)
 					  // J_r26 += 1;
 					  // col_row += 3;
 				}     // end col loop
-				  // J_r25 += 3;
-				  // row_col += 1;
-				  // row_row += 3;
-				  // D_r19 += 3;
-			}    // end row loop
-			     // if not diagonal, just move on to next one
-		} else { // if diagonals are already sufficiently 0
+				      // J_r25 += 3;
+				      // row_col += 1;
+				      // row_row += 3;
+				      // D_r19 += 3;
+			}         // end row loop
+			          // if not diagonal, just move on to next one
+		} else {      // if diagonals are already sufficiently 0
 			break;
 		}
 	}
