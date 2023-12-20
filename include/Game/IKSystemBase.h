@@ -99,23 +99,76 @@ struct IKSystemBase {
 
 	void update();
 
+	/**
+	 * Calculates the bend ratio for the IK system.
+	 * If the character is on the ground, the bend ratio is set to 0.
+	 * Otherwise, the bend ratio is calculated based on the move ratio and other parameters.
+	 */
 	void makeBendRatio();
+
 	Vector3f getBottomJointPosition();
 	Vector3f getCollisionCentre();
-	Vector3f getMiddleDirection(Vector3f&);
+
+	/**
+	 * @brief Get the middle direction for the IK system.
+	 *
+	 * This function calculates the middle direction for the IK system. If the blend motion is active,
+	 * it gets the basis of the top leg joint matrix. Otherwise, it calculates the direction from the
+	 * top position to the target position, normalizes it, and then adds 100 to the y-component.
+	 *
+	 * @param topPos Reference to the top position vector.
+	 * @return Vector3f The calculated middle direction.
+	 */
+	Vector3f getMiddleDirection(Vector3f& topPos);
+
 	f32 getMoveRatio();
+
 	void moveBottomJointPosition();
-	void setTopJointRotation(Vector3f&, Vector3f&);
-	void setMiddleJointRotation(Vector3f&, Vector3f&);
+
+	/**
+	 * Sets the rotation of the top joint in the IK system.
+	 *
+	 * @param topPos The position of the top joint.
+	 * @param jointPos The position of the joint.
+	 */
+	void setTopJointRotation(Vector3f& topPos, Vector3f& jointPos);
+
+	/**
+	 * Sets the rotation of the middle joint in the IK system.
+	 *
+	 * @param topPos The position of the top joint.
+	 * @param jointPos The position of the middle joint.
+	 */
+	void setMiddleJointRotation(Vector3f& topPos, Vector3f& jointPos);
+
+	/**
+	 * Determines if the target position is on the ground and adjusts the target position's height accordingly.
+	 *
+	 * @return True if the target position's height was adjusted, false otherwise.
+	 */
 	bool onGroundPosition();
+
+	/**
+	 * Calculates and sets the transformation matrices for the IK system.
+	 * If the IK system is not enabled, the function returns without performing any calculations.
+	 */
 	void makeMatrix();
-	void makeBottomMatrix(Vector3f&);
+
+	/**
+	 * Updates the bottom matrix of the IK system based on the target position and current joint matrices.
+	 * This function is responsible for setting the basis vectors of the bottom joint matrix and applying rotation based on the bend ratio.
+	 * If the blend motion is active, the function returns without making any changes.
+	 *
+	 * @param pos The current position of the IK system.
+	 */
+	void makeBottomMatrix(Vector3f& pos);
+
 	bool onGround();
 
 	bool mIsIKEnabled;             // _00
 	bool mIsBlendMotionActive;     // _01
 	bool mIsOnGround;              // _02
-	bool _03;                      // _03
+	bool mWasOnGround;             // _03
 	bool mScaleJoints;             // _04
 	f32 mBendRatio;                // _08, aka rotation in radians
 	f32 mMoveRatio;                // _0C
@@ -135,6 +188,16 @@ struct IKSystemMgr {
 	void setupJoint(SysShape::Model*, int, char**);
 	void setupCallBack(SysShape::Model*, char*);
 	void setParameters(IKSystemParms*);
+
+	/**
+	 * @brief Starts the programmed Inverse Kinematics (IK) system.
+	 *
+	 * This function activates the IK system and initializes its state. It then calculates the distance
+	 * between the owner's position and the bottom joint position of each leg in the IK system.
+	 * It also calculates the height of each leg based on the owner's facing direction and the position of the leg's bottom joint.
+	 *
+	 * @note This function assumes that the IK system has a fixed number of legs, defined by IK_LEG_COUNT.
+	 */
 	void startProgramedIK();
 	void startIKMotion();
 	void finishIKMotion();

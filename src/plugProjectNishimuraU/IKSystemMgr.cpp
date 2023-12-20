@@ -113,13 +113,15 @@ void IKSystemMgr::startProgramedIK()
 		mIKSystems[i].startProgramedIK();
 	}
 
-	Vector3f objpos, ikpos;
-	objpos            = mOwner->getPosition();
-	ikpos             = mIKSystems->getBottomJointPosition();
-	mIKDistanceOffset = objpos.distance(ikpos);
+	Vector3f objectPos      = mOwner->getPosition();
+	Vector3f bottomJointPos = mIKSystems->getBottomJointPosition();
+	mIKDistanceOffset       = objectPos.distance(bottomJointPos);
 	for (int i = 0; i < IK_LEG_COUNT; i++) {
-		ikpos         = mIKSystems[i].getBottomJointPosition();
-		f32 diff      = JMath::atanTable_.atan2_(ikpos.x - objpos.x, ikpos.z - objpos.z);
+		bottomJointPos = mIKSystems[i].getBottomJointPosition();
+
+		// Calculate difference in angle between the owner's position and the current foot's position
+		f32 diff = JMath::atanTable_.atan2_(bottomJointPos.x - objectPos.x, bottomJointPos.z - objectPos.z);
+
 		mLegHeight[i] = diff - mOwner->getFaceDir();
 	}
 }
@@ -205,8 +207,10 @@ bool IKSystemMgr::isFinishIKMotion()
 				return false;
 			}
 		}
+
 		return true;
 	}
+
 	return false;
 }
 
@@ -491,6 +495,7 @@ void IKSystemMgr::calcTraceCentrePosition()
 		_50 *= mParams->_40;
 		return;
 	}
+
 	mTraceCentrePosition = mCenterPosition;
 }
 } // namespace Game

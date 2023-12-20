@@ -13,7 +13,7 @@ namespace Game {
 IKSystemBase::IKSystemBase()
 {
 	mIsIKEnabled = false;
-	_03          = true;
+	mWasOnGround = true;
 	mIsOnGround  = true;
 	mScaleJoints = false;
 
@@ -31,7 +31,7 @@ IKSystemBase::IKSystemBase()
 void IKSystemBase::init()
 {
 	mIsIKEnabled = false;
-	_03          = true;
+	mWasOnGround = true;
 	mIsOnGround  = true;
 	mScaleJoints = false;
 
@@ -152,7 +152,7 @@ void IKSystemBase::update()
 	}
 
 	makeBendRatio();
-	_03 = mIsOnGround;
+	mWasOnGround = mIsOnGround;
 }
 
 /*
