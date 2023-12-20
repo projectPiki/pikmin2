@@ -47,7 +47,7 @@ void IKSystemBase::init()
  * Address:	802A9EFC
  * Size:	000010
  */
-void IKSystemBase::setLegJointMatrix(int index, Matrixf* joint) { mLegJointMatrices[index] = joint; }
+void IKSystemBase::setLegJointMatrix(int index, Matrixf* jointMtx) { mLegJointMatrices[index] = jointMtx; }
 
 /*
  * --INFO--
@@ -85,7 +85,7 @@ void IKSystemBase::startProgramedIK()
  * Address:	802AA004
  * Size:	0000F4
  */
-void IKSystemBase::startMovePosition(Vector3f& pos)
+void IKSystemBase::startMovePosition(Vector3f& targetMove)
 {
 	mIsOnGround = false;
 
@@ -97,8 +97,8 @@ void IKSystemBase::startMovePosition(Vector3f& pos)
 	mIkPositions[TOP] = mTargetPosition;
 
 	// Set end position to the floor
-	pos.y                = mapMgr->getMinY(pos);
-	mIkPositions[BOTTOM] = pos;
+	targetMove.y         = mapMgr->getMinY(targetMove);
+	mIkPositions[BOTTOM] = targetMove;
 
 	// Interpolate between top and bottom to get middle
 	f32 fc  = mParams->_0C;

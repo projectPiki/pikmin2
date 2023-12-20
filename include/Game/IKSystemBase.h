@@ -76,11 +76,22 @@ struct IKSystemBase {
 	IKSystemBase();
 
 	void init();
-	void setLegJointMatrix(int, Matrixf*);
-	void setParameters(IKSystemParms*);
+	void setLegJointMatrix(int legIdx, Matrixf* legMtx);
+	void setParameters(IKSystemParms* settings);
 
+	/**
+	 * Starts the programmed IK (Inverse Kinematics) process.
+	 * This function enables IK, sets blend motion to inactive, and initializes the IK parameters.
+	 * It calculates the distances between joints and the target position.
+	 */
 	void startProgramedIK();
-	void startMovePosition(Vector3f&);
+
+	/**
+	 * Sets up the initial positions for the IK system and calculates the intermediate position for movement.
+	 *
+	 * @param targetMove The target movement position.
+	 */
+	void startMovePosition(Vector3f& targetPos);
 
 	void startBlendMotion();
 	void finishBlendMotion();
