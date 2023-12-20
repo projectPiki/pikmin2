@@ -136,7 +136,7 @@ void GameState::do_init(VsGameSection* section)
 		section->createFallPikmins(section->mContainer1, 0);
 	}
 
-	Screen::gGame2DMgr->mScreenMgr->mInCave = 1;
+	static_cast<newScreen::Mgr*>(Screen::gGame2DMgr->mScreenMgr)->mInCave = 1;
 }
 
 /*

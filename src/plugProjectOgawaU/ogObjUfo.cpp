@@ -181,7 +181,7 @@ bool ObjUfoMenu::doUpdate()
 			mDisp->mUfoMenu.mContenaType = 1;
 			::Screen::SetSceneArg arg(SCENE_CONTENA_WHITE, getDispMember(), 0, true);
 			::Screen::SceneBase* base = getOwner();
-			arg._09                   = false;
+			arg.mDoCreateBackup       = false;
 			bool check                = base->setScene(arg);
 			if (check) {
 				check = base->startScene(nullptr);
@@ -191,7 +191,7 @@ bool ObjUfoMenu::doUpdate()
 			mDisp->mUfoMenu.mContenaType = 2;
 			::Screen::SetSceneArg arg(SCENE_CONTENA_PURPLE, getDispMember(), 0, true);
 			::Screen::SceneBase* base = getOwner();
-			arg._09                   = false;
+			arg.mDoCreateBackup       = false;
 			bool check                = base->setScene(arg);
 			if (check) {
 				check = base->startScene(nullptr);

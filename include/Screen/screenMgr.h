@@ -12,8 +12,8 @@ namespace Screen {
 
 namespace Screen {
 
-void getSceneOwnerName(SceneBase* scene);
-void getSceneMemberName(SceneBase* scene);
+ScreenOwnerID getSceneOwnerName(SceneBase* scene);
+ScreenMemberID getSceneMemberName(SceneBase* scene);
 
 struct MgrBase : public JKRDisposer {
 	virtual ~MgrBase() { }                           // _08
@@ -79,23 +79,16 @@ struct Mgr : public MgrBase {
 
 	// _00     = VTBL
 	// _00-_18 = MgrBase
-	BitFlag<u32> mFlags;       // _18
-	SceneBase* mBackupScene;   // _1C
-	Controller* mController;   // _20
-	u8 _24[8];                 // _24
-	CNode mAvailableCommands;  // _2C
-	CNode mCommandList;        // _44
-	JKRSolidHeap* mCurrHeap;   // _5C
-	CNode _60;                 // _60
-	CNode mSceneInfoList;      // _78, treat as SceneInfoList
-	u8 mInitialised;           // _90
-	bool mInCave;              // _91
-	bool mInDemo;              // _92
-	u32 mCourseIndex;          // _94
-	u32 _98;                   // _98
-	JUtility::TColor mBgColor; // _9C, I think the type of these are wrong as its messing up the ctor
-	JUtility::TColor mColor2;  // _A0
-	int mBgMode;               // _A4
+	BitFlag<u32> mFlags;      // _18
+	SceneBase* mBackupScene;  // _1C
+	Controller* mController;  // _20
+	int mHeapSize;            // _24
+	int m2DHeapSize;          // _28
+	CNode mAvailableCommands; // _2C
+	CNode mCommandList;       // _44
+	JKRSolidHeap* mCurrHeap;  // _5C
+	CNode mBackupInfoList;    // _60
+	CNode mSceneInfoList;     // _78, treat as SceneInfoList
 
 	static Mgr* sScreenMgr;
 };
@@ -115,8 +108,6 @@ namespace newScreen {
 struct Mgr : public Screen::Mgr {
 	Mgr()
 	{
-		mBgColor.set(-1);
-		mColor2.set(-1);
 		mInitialised = 0;
 		mInCave      = false;
 		mInDemo      = false;
@@ -134,7 +125,15 @@ struct Mgr : public Screen::Mgr {
 	static Mgr* create();
 
 	// _00     = VTBL
-	// _00-_A8 = Mgr
+	// _00-_90 = Mgr
+	u8 mInitialised;           // _90
+	bool mInCave;              // _91
+	bool mInDemo;              // _92
+	u32 mCourseIndex;          // _94
+	u32 _98;                   // _98
+	JUtility::TColor mBgColor; // _9C
+	JUtility::TColor mColor2;  // _A0
+	int mBgMode;               // _A4
 };
 } // namespace newScreen
 

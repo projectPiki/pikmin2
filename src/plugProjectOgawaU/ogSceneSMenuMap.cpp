@@ -109,7 +109,7 @@ bool SMenuMap::doConfirmSetScene(::Screen::SetSceneArg& sceneArg)
  * Address:	80312E80
  * Size:	00000C
  */
-void SMenuMap::doSetBackupScene(::Screen::SetSceneArg& sceneArg) { sceneArg._09 = false; }
+void SMenuMap::doSetBackupScene(::Screen::SetSceneArg& sceneArg) { sceneArg.mDoCreateBackup = false; }
 
 static const char DONOTDOTHAT[] = "‚¾‚ß‚Å‚·"; // 'do not do that' lmao
 

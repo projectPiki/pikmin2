@@ -366,7 +366,7 @@ bool Game2DMgr::open_SMenu_Sub(og::Screen::DispMemberSMenuAll& disp)
 {
 	bool ret                              = false;
 	disp.mSMenuPauseDoukutu.mPreCavePokos = disp.mSMenuPause.mPokoCount;
-	if (mScreenMgr->mInCave) {
+	if (static_cast<newScreen::Mgr*>(mScreenMgr)->mInCave) {
 		disp.mSMenuMap.mInCave = true;
 	} else {
 		disp.mSMenuMap.mInCave = false;
@@ -553,7 +553,7 @@ int Game2DMgr::check_WorldMapInfoWin1() const
  */
 void Game2DMgr::open_Kantei(og::Screen::DispMemberKantei& disp)
 {
-	if (mScreenMgr->mInCave) {
+	if (static_cast<newScreen::Mgr*>(mScreenMgr)->mInCave) {
 		disp.mInCave = true;
 	} else {
 		disp.mInCave = false;

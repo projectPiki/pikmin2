@@ -52,7 +52,7 @@ bool UfoMenu::doConfirmSetScene(::Screen::SetSceneArg& sceneArg)
  * Address:	80324A0C
  * Size:	00000C
  */
-void UfoMenu::doSetBackupScene(::Screen::SetSceneArg& sceneArg) { sceneArg._09 = false; }
+void UfoMenu::doSetBackupScene(::Screen::SetSceneArg& sceneArg) { sceneArg.mDoCreateBackup = false; }
 
 } // namespace newScreen
 } // namespace og

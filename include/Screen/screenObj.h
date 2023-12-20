@@ -38,6 +38,13 @@ struct MgrCommand : public CNode {
 
 	virtual ~MgrCommand() { del(); } // _08 (weak)
 
+	enum ArgType {
+		CommandType_NULL = -1,
+		CommandType_Set,
+		CommandType_Start,
+		CommandType_End,
+	};
+
 	// literally all of these are unused/inline
 	void clearArgBuf();
 	void clearDispMemberBuf();
@@ -50,11 +57,12 @@ struct MgrCommand : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	int _18;                // _18
-	char* mPreviousArg;     // _1C
-	char mCurrentArg[0x64]; // _20
-	char _84[0x464 - 0x84]; // _84
-	OSMutex mMutex;         // _464
+	int mArgType;                               // _18
+	char* mScreenArgBufferPtr;                  // _1C
+	char mScreenArgBuffer[0x40];                // _20
+	og::Screen::DispMemberBase* mDispBufferPtr; // _60
+	char mDispBuffer[0x400];                    // _64
+	OSMutex mMutex;                             // _464
 };
 
 struct SceneArgBase {
@@ -89,7 +97,7 @@ struct SetSceneArg : public SceneArgBase {
 	    : mSceneType(sceneType)
 	    , mDispMember(dispMember)
 	    , _08(p3)
-	    , _09(p4)
+	    , mDoCreateBackup(p4)
 	{
 		// _08 = p3;
 		// _09 = p4;
@@ -101,7 +109,7 @@ struct SetSceneArg : public SceneArgBase {
 	// _00 = VTBL
 	SceneType mSceneType;                    // _04
 	u8 _08;                                  // _08
-	bool _09;                                // _09
+	bool mDoCreateBackup;                    // _09
 	og::Screen::DispMemberBase* mDispMember; // _0C
 };
 

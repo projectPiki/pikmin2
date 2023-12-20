@@ -150,7 +150,7 @@ bool ObjFinalFloor::updateAnimation()
 		mScreen[i]->animation();
 
 		// Check if the game is in demo mode
-		if (::Screen::gGame2DMgr && ::Screen::gGame2DMgr->mScreenMgr->mInDemo) {
+		if (::Screen::gGame2DMgr && static_cast<newScreen::Mgr*>(::Screen::gGame2DMgr->mScreenMgr)->mInDemo) {
 			mScreen[i]->hide();
 
 			// Reset animation if current frame is >75% of the length.

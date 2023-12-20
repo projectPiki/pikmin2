@@ -78,7 +78,7 @@ bool SMenuPauseVS::doConfirmSetScene(::Screen::SetSceneArg& arg)
  * Address:	80329EA8
  * Size:	00000C
  */
-void SMenuPauseVS::doSetBackupScene(::Screen::SetSceneArg& arg) { arg._09 = false; }
+void SMenuPauseVS::doSetBackupScene(::Screen::SetSceneArg& arg) { arg.mDoCreateBackup = false; }
 
 } // namespace newScreen
 } // namespace og

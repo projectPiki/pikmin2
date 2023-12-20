@@ -286,7 +286,7 @@ void SceneBase::endScene(EndSceneArg* arg) { mScreenMgr->endScene(arg); }
 bool SceneBase::setBackupScene()
 {
 
-	SceneInfoList* list = (SceneInfoList*)mScreenMgr->_60.mChild;
+	SceneInfoList* list = (SceneInfoList*)mScreenMgr->mBackupInfoList.mChild;
 	Mgr* mgr;
 	bool result = false;
 
@@ -297,7 +297,7 @@ bool SceneBase::setBackupScene()
 		result = mScreenMgr->setScene(arg);
 		if (result) {
 			mgr  = getScreenMgr();
-			list = (SceneInfoList*)mgr->_60.mChild;
+			list = (SceneInfoList*)mgr->mBackupInfoList.mChild;
 			checkSceneList(list);
 			list->del();
 			mgr->mSceneInfoList.add(list);

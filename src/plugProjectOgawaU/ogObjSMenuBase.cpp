@@ -197,7 +197,7 @@ void ObjSMenuBase::startBackupScene()
 void ObjSMenuBase::jump_LR(::Screen::SetSceneArg& arg, bool flag)
 {
 	SceneSMenuBase* scene = static_cast<SceneSMenuBase*>(getOwner());
-	arg._09               = false;
+	arg.mDoCreateBackup   = false;
 	if (scene->setScene(arg)) {
 		StartSceneArgSMenu sarg;
 		sarg.mFlag      = true;

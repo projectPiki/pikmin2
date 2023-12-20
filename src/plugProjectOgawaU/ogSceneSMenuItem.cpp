@@ -40,7 +40,7 @@ bool SMenuItem::doConfirmSetScene(::Screen::SetSceneArg& sceneArg)
  * Address:	80314004
  * Size:	00000C
  */
-void SMenuItem::doSetBackupScene(::Screen::SetSceneArg& sceneArg) { sceneArg._09 = false; }
+void SMenuItem::doSetBackupScene(::Screen::SetSceneArg& sceneArg) { sceneArg.mDoCreateBackup = false; }
 
 /*
  * --INFO--

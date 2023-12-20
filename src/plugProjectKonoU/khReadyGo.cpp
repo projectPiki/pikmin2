@@ -117,7 +117,7 @@ bool ObjReadyGo::doUpdateFadeout()
 		DispFinalFloor disp2;
 		disp2.mIs2Player = disp->mIs2Player;
 		::Screen::SetSceneArg arg(SCENE_FINAL_FLOOR, &disp2, 0, true);
-		arg._09 = false;
+		arg.mDoCreateBackup = false;
 
 		if (getOwner()->setScene(arg)) {
 			getOwner()->startScene(nullptr);
