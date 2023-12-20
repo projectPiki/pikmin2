@@ -173,7 +173,7 @@ bool ObjUfoMenu::doUpdate()
 		ret = 1;
 		if (mSelectIndex == 0) {
 			mDisp->mUfoMenu.mContenaType = 1;
-			::Screen::SetSceneArg arg(SCENE_CONTENA_WHITE, getDispMember(), 0, true);
+			::Screen::SetSceneArg arg(SCENE_CONTENA_WHITE, getDispMember());
 			::Screen::SceneBase* base = getOwner();
 			arg.mDoCreateBackup       = false;
 			bool check                = base->setScene(arg);
@@ -183,7 +183,7 @@ bool ObjUfoMenu::doUpdate()
 			}
 		} else if (mSelectIndex == 1) {
 			mDisp->mUfoMenu.mContenaType = 2;
-			::Screen::SetSceneArg arg(SCENE_CONTENA_PURPLE, getDispMember(), 0, true);
+			::Screen::SetSceneArg arg(SCENE_CONTENA_PURPLE, getDispMember());
 			::Screen::SceneBase* base = getOwner();
 			arg.mDoCreateBackup       = false;
 			bool check                = base->setScene(arg);

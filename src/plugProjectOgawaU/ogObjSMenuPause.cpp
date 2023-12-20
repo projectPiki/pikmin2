@@ -314,7 +314,7 @@ void ObjSMenuPause::blink_Zenkai(int id)
  */
 void ObjSMenuPause::doUpdateLAction()
 {
-	::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_MAP, getDispMember(), 0, true);
+	::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_MAP, getDispMember());
 	jump_L(arg);
 }
 
@@ -325,10 +325,10 @@ void ObjSMenuPause::doUpdateLAction()
 void ObjSMenuPause::doUpdateRAction()
 {
 	if (msBaseVal.mUseController) {
-		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_CONTROLS, getDispMember(), 0, true);
+		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_CONTROLS, getDispMember());
 		jump_R(arg);
 	} else {
-		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_ITEMS, getDispMember(), 0, true);
+		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_ITEMS, getDispMember());
 		jump_R(arg);
 	}
 }

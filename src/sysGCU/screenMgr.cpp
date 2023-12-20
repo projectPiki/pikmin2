@@ -680,14 +680,14 @@ void Mgr::update()
 	                                                               beq      lbl_80452BC0
 	                                                               mr       r3, r28
 	                                                               b        lbl_80452BB8
-
+	                                                           
 	                                                           lbl_80452BB4:
 	                                                               lwz      r3, 4(r3)
-
+	                                                           
 	                                                           lbl_80452BB8:
 	                                                               cmplwi   r3, 0
 	                                                               bne      lbl_80452BB4
-
+	                                                           
 	                                                           lbl_80452BC0:
 	                                                               cmplwi   r28, 0
 	                                                               beq      lbl_80452E10
@@ -702,12 +702,12 @@ void Mgr::update()
 	                                                               beq      lbl_80452E08
 	                                                               bge      lbl_80452C00
 	                                                               b        lbl_80452DF4
-
+	                                                           
 	                                                           lbl_80452BF4:
 	                                                               cmpwi    r0, 3
 	                                                               bge      lbl_80452DF4
 	                                                               b        lbl_80452D4C
-
+	                                                           
 	                                                           lbl_80452C00:
 	                                                               lwz      r29, 0x1c(r28)
 	                                                               mr       r3, r31
@@ -721,7 +721,7 @@ void Mgr::update()
 	                                                               bl       isSceneFinish__Q26Screen3MgrFv
 	                                                               clrlwi.  r0, r3, 0x18
 	                                                               beq      lbl_80452E08
-
+	                                                           
 	                                                           lbl_80452C30:
 	                                                               lwz      r5, 0x60(r28)
 	                                                               mr       r3, r31
@@ -737,7 +737,7 @@ void Mgr::update()
 	                                                               addi     r3, r28, 0x464
 	                                                               bl       OSUnlockMutex
 	                                                               b        lbl_80452E08
-
+	                                                           
 	                                                           lbl_80452C68:
 	                                                               cmplwi   r3, 0
 	                                                               bne      lbl_80452C84
@@ -746,7 +746,7 @@ void Mgr::update()
 	                                                               li       r4, 0x2d6
 	                                                               crclr    6
 	                                                               bl       panic_f__12JUTExceptionFPCciPCce
-
+	                                                           
 	                                                           lbl_80452C84:
 	                                                               lwz      r3, 0x1c(r28)
 	                                                               cmplwi   r3, 0
@@ -781,7 +781,7 @@ void Mgr::update()
 	                                                               li       r4, 0x2de
 	                                                               crclr    6
 	                                                               bl       panic_f__12JUTExceptionFPCciPCce
-
+	                                                           
 	                                                           lbl_80452D08:
 	                                                               lwz      r3, 0x1c(r31)
 	                                                               lwz      r4, 0x1c(r28)
@@ -800,7 +800,7 @@ void Mgr::update()
 	                                                               lwz      r3, 0x1c(r31)
 	                                                               bl       update__Q26Screen9SceneBaseFv
 	                                                               b        lbl_80452E08
-
+	                                                           
 	                                                           lbl_80452D4C:
 	                                                               cmplwi   r3, 0
 	                                                               bne      lbl_80452D68
@@ -809,7 +809,7 @@ void Mgr::update()
 	                                                               li       r4, 0x2f3
 	                                                               crclr    6
 	                                                               bl       panic_f__12JUTExceptionFPCciPCce
-
+	                                                           
 	                                                           lbl_80452D68:
 	                                                               lwz      r3, 0x1c(r28)
 	                                                               cmplwi   r3, 0
@@ -831,7 +831,7 @@ void Mgr::update()
 	                                                               li       r4, 0x2f7
 	                                                               crclr    6
 	                                                               bl       panic_f__12JUTExceptionFPCciPCce
-
+	                                                           
 	                                                           lbl_80452DB8:
 	                                                               lwz      r3, 0x1c(r31)
 	                                                               lwz      r4, 0x1c(r28)
@@ -848,24 +848,24 @@ void Mgr::update()
 	                                                               addi     r3, r28, 0x464
 	                                                               bl       OSUnlockMutex
 	                                                               b        lbl_80452E08
-
+	                                                           
 	                                                           lbl_80452DF4:
 	                                                               addi     r3, r29, 0xc
 	                                                               addi     r5, r29, 0x1c
 	                                                               li       r4, 0x30d
 	                                                               crclr    6
 	                                                               bl       panic_f__12JUTExceptionFPCciPCce
-
+	                                                           
 	                                                           lbl_80452E08:
 	                                                               addi     r3, r28, 0x464
 	                                                               bl       OSUnlockMutex
-
+	                                                           
 	                                                           lbl_80452E10:
 	                                                               lwz      r3, 0x1c(r31)
 	                                                               cmplwi   r3, 0
 	                                                               beq      lbl_80452E20
 	                                                               bl       update__Q26Screen9SceneBaseFv
-
+	                                                           
 	                                                           lbl_80452E20:
 	                                                               lwz      r0, 0x24(r1)
 	                                                               lwz      r31, 0x1c(r1)

@@ -269,7 +269,7 @@ bool SceneBase::setBackupScene()
 	bool result = false;
 
 	if (list) {
-		SetSceneArg arg(list->mSceneType, (og::Screen::DispMemberBase*)list->mDispMemberBuffer, 0, true);
+		SetSceneArg arg(list->mSceneType, (og::Screen::DispMemberBase*)list->mDispMemberBuffer);
 		doSetBackupScene(arg);
 
 		result = mScreenMgr->setScene(arg);

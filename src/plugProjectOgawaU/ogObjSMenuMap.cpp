@@ -3094,7 +3094,7 @@ void ObjSMenuMap::commonUpdate()
  */
 void ObjSMenuMap::doUpdateLAction()
 {
-	::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_ITEMS, getDispMember(), 0, true);
+	::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_ITEMS, getDispMember());
 	jump_L(arg);
 }
 
@@ -3105,10 +3105,10 @@ void ObjSMenuMap::doUpdateLAction()
 void ObjSMenuMap::doUpdateRAction()
 {
 	if (mDisp->mInCave) {
-		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_DOUKUTU, getDispMember(), 0, true);
+		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_DOUKUTU, getDispMember());
 		jump_R(arg);
 	} else {
-		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU, getDispMember(), 0, true);
+		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU, getDispMember());
 		jump_R(arg);
 	}
 }

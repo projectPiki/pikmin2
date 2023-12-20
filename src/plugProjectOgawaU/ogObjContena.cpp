@@ -1876,7 +1876,7 @@ bool ObjContena::doUpdateFadeout()
 		disp->mState                        = mDispState;
 		if (disp->mState == 3 && disp->_2C) {
 			if (disp->mOnyonID == 4 || disp->mOnyonID == 3) {
-				::Screen::SetSceneArg arg(SCENE_UFO_MENU, getDispMember(), false, false);
+				::Screen::SetSceneArg arg(SCENE_UFO_MENU, getDispMember());
 				if (scene->setScene(arg) && !scene->startScene(nullptr)) {
 					JUT_PANICLINE(944, "‚¾‚ß‚Å‚·\n");
 				}

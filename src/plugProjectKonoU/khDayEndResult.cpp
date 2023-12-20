@@ -604,7 +604,7 @@ bool ObjDayEndResultItem::doUpdate()
 
 		if (mStatus == ITEMSTATUS_Normal) {
 			DispDayEndResultIncP* dispIncP = static_cast<DispDayEndResultIncP*>(getDispMember());
-			::Screen::SetSceneArg setArg(SCENE_DAY_END_RESULT_INC_P, dispIncP, 0, 1);
+			::Screen::SetSceneArg setArg(SCENE_DAY_END_RESULT_INC_P, dispIncP);
 
 			if (getOwner()->setScene(setArg)) {
 				SArgDayEndResultIncP argIncP(1);
@@ -1734,14 +1734,14 @@ bool ObjDayEndResultIncP::doUpdate()
 
 		if (mStatus == INCPSTATUS_Normal || mStatus == INCPSTATUS_DecP) {
 			if (getGamePad()->mButton.mButtonDown & Controller::PRESS_A) {
-				::Screen::SetSceneArg setArg(SCENE_DAY_END_RESULT_MAIL, getDispMember(), 0, 1);
+				::Screen::SetSceneArg setArg(SCENE_DAY_END_RESULT_MAIL, getDispMember());
 				if (getOwner()->setScene(setArg)) {
 					SArgDayEndResultMail argMail(1);
 					getOwner()->startScene(&argMail);
 					mFlags &= ~0x10;
 				}
 			} else if (getGamePad()->mButton.mButtonDown & Controller::PRESS_B) {
-				::Screen::SetSceneArg setArg(SCENE_DAY_END_RESULT_ITEM, getDispMember(), 0, 1);
+				::Screen::SetSceneArg setArg(SCENE_DAY_END_RESULT_ITEM, getDispMember());
 				if (getOwner()->setScene(setArg)) {
 					SArgDayEndResultItem argItem(0);
 					getOwner()->startScene(&argItem);
@@ -2988,7 +2988,7 @@ void ObjDayEndResultMail::statusNormal()
 		mSaveMgr->start();
 	} else if (getGamePad()->mButton.mButtonDown & Controller::PRESS_B) {
 		DispDayEndResultIncP* dispIncP = static_cast<DispDayEndResultIncP*>(getDispMember());
-		::Screen::SetSceneArg setArg(SCENE_DAY_END_RESULT_INC_P, dispIncP, 0, 1);
+		::Screen::SetSceneArg setArg(SCENE_DAY_END_RESULT_INC_P, dispIncP);
 		if (getOwner()->setScene(setArg)) {
 			SArgDayEndResultIncP argIncP(0);
 			getOwner()->startScene(&argIncP);
@@ -3671,7 +3671,7 @@ bool ObjDayEndResultTitl::doUpdateFadeout()
  */
 void ObjDayEndResultTitl::doUpdateFadeoutFinish()
 {
-	::Screen::SetSceneArg arg(SCENE_DAY_END_RESULT_ITEM, getDispMember(), 0, 1);
+	::Screen::SetSceneArg arg(SCENE_DAY_END_RESULT_ITEM, getDispMember());
 	SArgDayEndResultItem sarg(1);
 	if (getOwner()->setScene(arg)) {
 		getOwner()->startScene(&sarg);

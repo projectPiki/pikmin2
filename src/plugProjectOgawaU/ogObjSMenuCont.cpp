@@ -57,10 +57,10 @@ void ObjSMenuCont::doUpdateLAction()
 {
 	og::Screen::DispMemberSMenuAll* disp = static_cast<og::Screen::DispMemberSMenuAll*>(getDispMember());
 	if (disp->mSMenuMap.mInCave) {
-		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_DOUKUTU, getDispMember(), false, true);
+		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_DOUKUTU, getDispMember());
 		jump_L(arg);
 	} else {
-		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU, getDispMember(), false, true);
+		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU, getDispMember());
 		jump_L(arg);
 	}
 }
@@ -71,7 +71,7 @@ void ObjSMenuCont::doUpdateLAction()
  */
 void ObjSMenuCont::doUpdateRAction()
 {
-	::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_ITEMS, getDispMember(), false, true);
+	::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_ITEMS, getDispMember());
 	jump_R(arg);
 }
 

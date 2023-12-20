@@ -331,7 +331,7 @@ void ObjSMenuPauseDoukutu::doUpdateCancelAction() { mDisp->mExitStatus = 5; }
  */
 void ObjSMenuPauseDoukutu::doUpdateLAction()
 {
-	::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_MAP, getDispMember(), 0, true);
+	::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_MAP, getDispMember());
 	jump_L(arg);
 }
 
@@ -342,10 +342,10 @@ void ObjSMenuPauseDoukutu::doUpdateLAction()
 void ObjSMenuPauseDoukutu::doUpdateRAction()
 {
 	if (msBaseVal.mUseController) {
-		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_CONTROLS, getDispMember(), 0, true);
+		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_CONTROLS, getDispMember());
 		jump_R(arg);
 	} else {
-		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_ITEMS, getDispMember(), 0, true);
+		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_ITEMS, getDispMember());
 		jump_R(arg);
 	}
 }

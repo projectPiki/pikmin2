@@ -88,19 +88,12 @@ struct StartSceneArgTemplate : public StartSceneArg {
 };
 
 struct SetSceneArg : public SceneArgBase {
-	/**
-	 * @fabricated
-	 * Unsure if p3 and p4 exist or are hardcoded.
-	 * Remove p3 and p4 if they appear to never be set to anything else by a ctor.
-	 */
-	inline SetSceneArg(SceneType sceneType, og::Screen::DispMemberBase* dispMember, u8 p3, bool p4)
+	inline SetSceneArg(SceneType sceneType, og::Screen::DispMemberBase* dispMember)
 	    : mSceneType(sceneType)
 	    , mDispMember(dispMember)
-	    , _08(p3)
-	    , mDoCreateBackup(p4)
+	    , _08(0)
+	    , mDoCreateBackup(true)
 	{
-		// _08 = p3;
-		// _09 = p4;
 	}
 
 	virtual SceneType getSceneType() const { return mSceneType; } // _08
