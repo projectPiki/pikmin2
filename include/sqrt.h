@@ -48,7 +48,7 @@ inline void __sqrtf(register f32 x, f32* val)
 		if (x > 0.0f) {
 			register f32 reg_f0;
 			asm {
-                frsqrte reg_f0, x
+				frsqrte reg_f0, x
 			}
 			*val = reg_f0 * x;
 		}

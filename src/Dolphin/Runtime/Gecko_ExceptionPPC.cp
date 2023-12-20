@@ -694,12 +694,12 @@ extern void __unexpected(CatchInfo* catchinfo)
  * Address:	........
  * Size:	000104
  */
-static asm void ExPPC_LongJump(register ThrowContext* context, register void* newRTOC, register void* newPC)
+ASM static void ExPPC_LongJump(register ThrowContext* context, register void* newRTOC, register void* newPC)
 {
 	// clang-format off
 	nofralloc
 
-	mr r8, newPC	
+	mr r8, newPC
 	mr RTOC, newRTOC
 	lwz	r0, context->CR
 	mtcrf 255, r0
@@ -729,7 +729,7 @@ static asm void ExPPC_LongJump(register ThrowContext* context, register void* ne
 	la r7, context->FPR[19].v
 	psq_lx fp19, 0, r7, 0, 0
 	lfd fp19, context->FPR[19].d
-	
+
 	la r7, context->FPR[20].v
 	psq_lx fp20, 0, r7, 0, 0
 	lfd fp20, context->FPR[20].d
@@ -777,7 +777,7 @@ static asm void ExPPC_LongJump(register ThrowContext* context, register void* ne
 	la r7, context->FPR[31].v
 	psq_lx fp31, 0, r7, 0, 0
 	lfd fp31, context->FPR[31].d
-	
+
 	mtlr r8
 
 	lwz SP, context->throwSP
@@ -972,7 +972,7 @@ void __end__catch(CatchInfo* catchinfo)
  * Address:	........
  * Size:	000144
  */
-asm void __throw(char* throwtype, void* location, void* dtor)
+ASM void __throw(char* throwtype, void* location, void* dtor)
 {
 	// clang-format off
 	ThrowContext throwcontext;

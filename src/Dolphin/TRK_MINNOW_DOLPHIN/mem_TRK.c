@@ -4,8 +4,8 @@
 #define WRITE_BYTE(dst, add)          WRITE(dst, add, 8, 32)
 #define WRITE_WORD(dst, add)          WRITE(dst, add, 32, 8)
 
-__declspec(section ".init") void* TRK_memcpy(void* dst, const void* src, size_t n);
-__declspec(section ".init") void* TRK_memset(void* dst, int val, size_t n);
+DECL_SECT(".init") void* TRK_memcpy(void* dst, const void* src, size_t n);
+DECL_SECT(".init") void* TRK_memset(void* dst, int val, size_t n);
 
 /*
  * --INFO--

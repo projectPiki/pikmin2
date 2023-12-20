@@ -124,7 +124,7 @@ void C_MTX44Copy(void)
  * Address:	800EAE70
  * Size:	000044
  */
-asm void PSMTX44Copy(register Mtx44 src, register Mtx44 dest)
+ASM void PSMTX44Copy(register Mtx44 src, register Mtx44 dest)
 {
 	nofralloc;
 	psq_l fp1, 0(src), 0, 0;

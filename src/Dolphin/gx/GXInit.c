@@ -52,7 +52,7 @@ static OSResetFunctionInfo GXResetFuncInfo = { __GXShutdown, OS_RESET_PRIO_GX };
  * Address:	........
  * Size:	000010
  */
-asm BOOL IsWriteGatherBufferEmpty(void)
+ASM BOOL IsWriteGatherBufferEmpty(void)
 {
 	// clang-format off
 	nofralloc;

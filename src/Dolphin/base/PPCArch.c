@@ -4,12 +4,12 @@
 
 union FpscrUnion
 {
-    f64 f;
-    struct
-    {
-        u32 fpscr_pad;
-        u32 fpscr;
-    }   u;
+	f64 f;
+	struct
+	{
+		u32 fpscr_pad;
+		u32 fpscr;
+	}   u;
 };
 
 #define HID0_SPD 0x00000200  // Speculative cache access enable (0 enable)
@@ -21,11 +21,11 @@ void PPCMthid0 ( u32 newHID0 );
  * Address:	800D4558
  * Size:	000008
  */
-asm u32 PPCMfmsr (void)
+ASM u32 PPCMfmsr (void)
 {
-    nofralloc
-    mfmsr r3
-    blr
+	nofralloc
+	mfmsr r3
+	blr
 }
 
 /*
@@ -33,11 +33,11 @@ asm u32 PPCMfmsr (void)
  * Address:	800D4560
  * Size:	000008
  */
-asm void PPCMtmsr (register u32 newMSR)
+ASM void PPCMtmsr (register u32 newMSR)
 {
-    nofralloc
-    mtmsr newMSR
-    blr
+	nofralloc
+	mtmsr newMSR
+	blr
 }
 
 /*
@@ -75,11 +75,11 @@ void PPCAndCMsr(void)
  * Address:	800D4568
  * Size:	000008
  */
-asm u32 PPCMfhid0 (void)
+ASM u32 PPCMfhid0 (void)
 {
-    nofralloc
-    mfspr r3, HID0
-    blr
+	nofralloc
+	mfspr r3, HID0
+	blr
 }
 
 /*
@@ -87,11 +87,11 @@ asm u32 PPCMfhid0 (void)
  * Address:	800D4570
  * Size:	000008
  */
-asm void PPCMthid0 (register u32 newHID0)
+ASM void PPCMthid0 (register u32 newHID0)
 {
-    nofralloc
-    mtspr HID0, newHID0
-    blr
+	nofralloc
+	mtspr HID0, newHID0
+	blr
 }
 
 /*
@@ -109,11 +109,11 @@ void PPCMfhid1(void)
  * Address:	800D4578
  * Size:	000008
  */
-asm u32 PPCMfl2cr (void)
+ASM u32 PPCMfl2cr (void)
 {
-    nofralloc
-    mfspr r3, L2CR
-    blr
+	nofralloc
+	mfspr r3, L2CR
+	blr
 }
 
 /*
@@ -121,11 +121,11 @@ asm u32 PPCMfl2cr (void)
  * Address:	800D4580
  * Size:	000008
  */
-asm void PPCMtl2cr (register u32 newL2cr)
+ASM void PPCMtl2cr (register u32 newL2cr)
 {
-    nofralloc
-    mtspr L2CR, newL2cr
-    blr
+	nofralloc
+	mtspr L2CR, newL2cr
+	blr
 }
 
 /*
@@ -133,11 +133,11 @@ asm void PPCMtl2cr (register u32 newL2cr)
  * Address:	800D4588
  * Size:	000008
  */
-WEAKFUNC asm void PPCMtdec ( register u32 newDec )
+WEAKFUNC ASM void PPCMtdec ( register u32 newDec )
 {
-    nofralloc
-    mtdec newDec
-    blr
+	nofralloc
+	mtdec newDec
+	blr
 }
 
 /*
@@ -155,11 +155,11 @@ void PPCMfdec(void)
  * Address:	800D4590
  * Size:	000008
  */
-asm void PPCSync (void)
+ASM void PPCSync (void)
 {
-    nofralloc
-    sc
-    blr
+	nofralloc
+	sc
+	blr
 }
 
 /*
@@ -177,19 +177,19 @@ void PPCEieio(void)
  * Address:	800D4598
  * Size:	000014
  */
-WEAKFUNC asm void PPCHalt (void) //spins infinitely
+WEAKFUNC ASM void PPCHalt (void) //spins infinitely
 {
-    nofralloc
+	nofralloc
 
-    sync
+	sync
 
 _spin:
-    nop
-    li r3, 0
-    nop
-    b _spin
+	nop
+	li r3, 0
+	nop
+	b _spin
 
-    // NEVER REACHED
+	// NEVER REACHED
 }
 
 /*
@@ -207,11 +207,11 @@ void PPCMfmmcr0(void)
  * Address:	800D45AC
  * Size:	000008
  */
-asm void PPCMtmmcr0 (register u32 newMmcr0)
+ASM void PPCMtmmcr0 (register u32 newMmcr0)
 {
-    nofralloc
-    mtspr       MMCR0, newMmcr0
-    blr
+	nofralloc
+	mtspr       MMCR0, newMmcr0
+	blr
 }
 
 /*
@@ -229,11 +229,11 @@ void PPCMfmmcr1(void)
  * Address:	800D45B4
  * Size:	000008
  */
-asm void PPCMtmmcr1 (register u32 newMmcr1)
+ASM void PPCMtmmcr1 (register u32 newMmcr1)
 {
-    nofralloc
-    mtspr       MMCR1, newMmcr1
-    blr
+	nofralloc
+	mtspr       MMCR1, newMmcr1
+	blr
 }
 
 /*
@@ -251,11 +251,11 @@ void PPCMfpmc1(void)
  * Address:	800D45BC
  * Size:	000008
  */
-asm void PPCMtpmc1 (register u32 newPmc1)
+ASM void PPCMtpmc1 (register u32 newPmc1)
 {
-    nofralloc
-    mtspr       PMC1, newPmc1
-    blr
+	nofralloc
+	mtspr       PMC1, newPmc1
+	blr
 }
 
 /*
@@ -273,11 +273,11 @@ void PPCMfpmc2(void)
  * Address:	800D45C4
  * Size:	000008
  */
-asm void PPCMtpmc2 (register u32 newPmc2)
+ASM void PPCMtpmc2 (register u32 newPmc2)
 {
-    nofralloc
-    mtspr       PMC2, newPmc2
-    blr
+	nofralloc
+	mtspr       PMC2, newPmc2
+	blr
 }
 
 /*
@@ -295,11 +295,11 @@ void PPCMfpmc3(void)
  * Address:	800D45CC
  * Size:	000008
  */
-asm void PPCMtpmc3 (register u32 newPmc3)
+ASM void PPCMtpmc3 (register u32 newPmc3)
 {
-    nofralloc
-    mtspr       PMC3, newPmc3
-    blr
+	nofralloc
+	mtspr       PMC3, newPmc3
+	blr
 }
 
 /*
@@ -317,11 +317,11 @@ void PPCMfpmc4(void)
  * Address:	800D45D4
  * Size:	000008
  */
-asm void PPCMtpmc4 (register u32 newPmc4)
+ASM void PPCMtpmc4 (register u32 newPmc4)
 {
-    nofralloc
-    mtspr       PMC4, newPmc4
-    blr
+	nofralloc
+	mtspr       PMC4, newPmc4
+	blr
 }
 
 /*
@@ -351,16 +351,15 @@ void PPCMtsia(void)
  */
 u32 PPCMffpscr(void)
 {
-    union FpscrUnion m;
+	union FpscrUnion m;
 
 
-    asm
-    {
-        mffs fp31
-        stfd fp31, m.f;
-    }
+	asm {
+		mffs fp31
+		stfd fp31, m.f;
+	}
 
-    return m.u.fpscr;
+	return m.u.fpscr;
 }
 
 /*
@@ -370,16 +369,15 @@ u32 PPCMffpscr(void)
  */
 void PPCMtfpscr(register u32 newFPSCR)
 {
-    union FpscrUnion m;
+	union FpscrUnion m;
 
-    asm
-    {
-        li    r4, 0
-        stw   r4, m.u.fpscr_pad;
-        stw   newFPSCR, m.u.fpscr
-        lfd   fp31, m.f
-        mtfsf 0xff, fp31
-    }
+	asm {
+		li    r4, 0
+		stw   r4, m.u.fpscr_pad;
+		stw   newFPSCR, m.u.fpscr
+		lfd   fp31, m.f
+		mtfsf 0xff, fp31
+	}
 }
 
 /*
@@ -387,11 +385,11 @@ void PPCMtfpscr(register u32 newFPSCR)
  * Address:	800D4624
  * Size:	000008
  */
-asm u32 PPCMfhid2 ( void )
+ASM u32 PPCMfhid2 ( void )
 {
-    nofralloc
-    mfspr r3, 920
-    blr
+	nofralloc
+	mfspr r3, 920
+	blr
 }
 
 /*
@@ -399,11 +397,11 @@ asm u32 PPCMfhid2 ( void )
  * Address:	800D462C
  * Size:	000008
  */
-asm void PPCMthid2 ( register u32 newhid2 )
+ASM void PPCMthid2 ( register u32 newhid2 )
 {
-    nofralloc
-    mtspr 920, newhid2
-    blr
+	nofralloc
+	mtspr 920, newhid2
+	blr
 }
 
 /*
@@ -412,7 +410,7 @@ asm void PPCMthid2 ( register u32 newhid2 )
  * Size:	00000C
  * UNUSED
  */
-asm u32 PPCMfwpar(void)
+ASM u32 PPCMfwpar(void)
 {
 	nofralloc
 	sync
@@ -425,11 +423,11 @@ asm u32 PPCMfwpar(void)
  * Address:	800D4634
  * Size:	000008
  */
-asm void PPCMtwpar ( register u32 newwpar )
+ASM void PPCMtwpar ( register u32 newwpar )
 {
-    nofralloc
-    mtspr WPAR, newwpar
-    blr
+	nofralloc
+	mtspr WPAR, newwpar
+	blr
 }
 
 /*
@@ -499,7 +497,7 @@ void PPCEnableSpeculation(void)
  */
 void PPCDisableSpeculation (void)
 {
-    PPCMthid0(PPCMfhid0() | HID0_SPD);
+	PPCMthid0(PPCMfhid0() | HID0_SPD);
 }
 
 /*
@@ -508,11 +506,11 @@ void PPCDisableSpeculation (void)
  * Size:	000008
  * UNUSED
  */
-asm void PPCSetFpIEEEMode(void)
+ASM void PPCSetFpIEEEMode(void)
 {
-    nofralloc
-    mtfsb0      29
-    blr
+	nofralloc
+	mtfsb0      29
+	blr
 }
 
 /*
@@ -520,10 +518,10 @@ asm void PPCSetFpIEEEMode(void)
  * Address:	800D4664
  * Size:	000008
  */
-asm void PPCSetFpNonIEEEMode (void)
+ASM void PPCSetFpNonIEEEMode (void)
 {
-    nofralloc
-    mtfsb1      29
-    blr
+	nofralloc
+	mtfsb1      29
+	blr
 }
 // clang-format on

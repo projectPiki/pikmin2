@@ -108,7 +108,7 @@ void OSProtectRange(u32 channel, void* addr, u32 numBytes, u32 control)
  * Address:	800EF900
  * Size:	000080
  */
-asm static void Config24MB()
+ASM static void Config24MB()
 {
 	// clang-format off
 	nofralloc
@@ -162,7 +162,7 @@ asm static void Config24MB()
  * Address:	800EF980
  * Size:	000080
  */
-asm static void Config48MB()
+ASM static void Config48MB()
 {
 	// clang-format off
 	nofralloc
@@ -216,7 +216,7 @@ asm static void Config48MB()
  * Address:	800EFA00
  * Size:	000018
  */
-asm static void RealMode(register u32 addr)
+ASM static void RealMode(register u32 addr)
 {
 	// clang-format off
 	nofralloc

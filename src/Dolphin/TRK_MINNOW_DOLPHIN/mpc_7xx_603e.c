@@ -5,7 +5,7 @@
  * Address:	800BFA60
  * Size:	0001B8
  */
-asm void TRKSaveExtended1Block(void)
+ASM void TRKSaveExtended1Block(void)
 {
 	// clang-format off
 	nofralloc
@@ -130,7 +130,7 @@ loc_0x150:
  * Address:	800BFC18
  * Size:	0001B8
  */
-asm void TRKRestoreExtended1Block()
+ASM void TRKRestoreExtended1Block()
 {
 	// clang-format off
 	nofralloc

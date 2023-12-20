@@ -8,11 +8,11 @@ static int fragmentID = -2;
  * Address:	800C22C4
  * Size:	000008
  */
-static asm char* GetR2()
+ASM static char* GetR2()
 {
 	// clang-format off
-	nofralloc 
-	mr r3, r2 
+	nofralloc
+	mr r3, r2
 	blr
 	// clang-format on
 }
@@ -44,6 +44,6 @@ void __fini_cpp_exceptions()
 }
 }
 
-__declspec(section ".ctors") extern void* const __init_cpp_exceptions_reference  = __init_cpp_exceptions;
-__declspec(section ".dtors") extern void* const __destroy_global_chain_reference = __destroy_global_chain;
-__declspec(section ".dtors") extern void* const __fini_cpp_exceptions_reference  = __fini_cpp_exceptions;
+DECL_SECT(".ctors") extern void* const __init_cpp_exceptions_reference  = __init_cpp_exceptions;
+DECL_SECT(".dtors") extern void* const __destroy_global_chain_reference = __destroy_global_chain;
+DECL_SECT(".dtors") extern void* const __fini_cpp_exceptions_reference  = __fini_cpp_exceptions;

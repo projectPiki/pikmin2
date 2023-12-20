@@ -493,28 +493,28 @@ inline f32 J2DHermiteInterpolation<s16>(register f32 pp1, register s16* pp2, reg
 	register s16* p6 = pp6;
 	register s16* p7 = pp7;
 	// clang-format off
-    asm {
-        psq_l ff2, 0(p2), 0x1, 5
-        psq_l ff0, 0(p5), 0x1, 5
-        psq_l ff7, 0(p3), 0x1, 5
-        fsubs ff5, ff0, ff2
-        psq_l ff6, 0(p6), 0x1, 5
-        fsubs ff3, p1, ff2
-        psq_l ff0, 0(p7), 0x1, 5
-        fsubs ff4, ff6, ff7
-        fdivs ff3, ff3, ff5
-        psq_l fout, 0(p4), 0x1, 5
-        fmadds ff0, ff0, ff5, ff7
-        fmuls ff2, ff3, ff3
-        fnmsubs ff4, ff5, fout, ff4
-        fsubs ff0, ff0, ff6
-        fsubs ff0, ff0, ff4
-        fmuls ff0, ff2, ff0
-        fmadds fout, ff5, fout, ff0
-        fmadds fout, fout, ff3, ff7
-        fmadds fout, ff4, ff2, fout
-        fsubs fout, fout, ff0
-    }
+	asm {
+		psq_l ff2, 0(p2), 0x1, 5
+		psq_l ff0, 0(p5), 0x1, 5
+		psq_l ff7, 0(p3), 0x1, 5
+		fsubs ff5, ff0, ff2
+		psq_l ff6, 0(p6), 0x1, 5
+		fsubs ff3, p1, ff2
+		psq_l ff0, 0(p7), 0x1, 5
+		fsubs ff4, ff6, ff7
+		fdivs ff3, ff3, ff5
+		psq_l fout, 0(p4), 0x1, 5
+		fmadds ff0, ff0, ff5, ff7
+		fmuls ff2, ff3, ff3
+		fnmsubs ff4, ff5, fout, ff4
+		fsubs ff0, ff0, ff6
+		fsubs ff0, ff0, ff4
+		fmuls ff0, ff2, ff0
+		fmadds fout, ff5, fout, ff0
+		fmadds fout, fout, ff3, ff7
+		fmadds fout, ff4, ff2, fout
+		fsubs fout, fout, ff0
+	}
 	// clang-format on
 	return fout;
 }

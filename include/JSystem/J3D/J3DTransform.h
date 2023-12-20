@@ -27,8 +27,8 @@ void J3DPSMtxArrayConcat(f32 (*)[4], f32 (*)[4], f32 (*)[4], u32);
  */
 inline void J3DPSMtx33Copy
 (
-    const register Mtx33 src,
-    register Mtx33 dst
+	const register Mtx33 src,
+	register Mtx33 dst
 )
 {
 	asm {

@@ -6,26 +6,26 @@
 extern "C" {
 #endif
 typedef void (*voidfunctionptr)(); // pointer to function returning void
-__declspec(section ".ctors") extern voidfunctionptr _ctors[];
-__declspec(section ".dtors") extern voidfunctionptr _dtors[];
+DECL_SECT(".ctors") extern voidfunctionptr _ctors[];
+DECL_SECT(".dtors") extern voidfunctionptr _dtors[];
 
 static void __init_cpp();
 
 // clang-format off
-__declspec(section ".init") asm void __init_hardware() {
-    nofralloc
-    mfmsr r0
-    ori r0,r0,0x2000
-    mtmsr r0
-    mflr r31
-    bl __OSPSInit
-    bl __OSFPRInit
-    bl __OSCacheInit
-    mtlr r31
-    blr
+DECL_SECT(".init") ASM void __init_hardware() {
+	nofralloc
+	mfmsr r0
+	ori r0,r0,0x2000
+	mtmsr r0
+	mflr r31
+	bl __OSPSInit
+	bl __OSFPRInit
+	bl __OSCacheInit
+	mtlr r31
+	blr
 }
 
-__declspec(section ".init") asm void __flush_cache(u32 param_1, int param_2) {
+DECL_SECT(".init") ASM void __flush_cache(u32 param_1, int param_2) {
 	nofralloc
 	lis r5, 0xFFFFFFF1@h
 	ori r5, r5, 0xFFFFFFF1@l
@@ -39,7 +39,7 @@ loop:
 	addic r5, r5, 8
 	addic. r4, r4, -8
 	bge loop
-	isync 
+	isync
 	blr
 }
 // clang-format on

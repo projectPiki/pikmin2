@@ -69,7 +69,7 @@ BOOL __OSCallResetFunctions(BOOL final)
  * Address:	800F0328
  * Size:	000070
  */
-static asm void Reset(register s32 resetCode)
+ASM static void Reset(register s32 resetCode)
 {
 	// clang-format off
 	nofralloc
@@ -79,9 +79,9 @@ _begin:
 	mfspr r8, HID0
 	ori r8, r8, 8
 	mtspr HID0, r8
-	isync 
+	isync
 	sync
-	nop 
+	nop
 	b _preloop
 
 _jump1:
@@ -94,7 +94,7 @@ _loop:
 	subf r7, r5, r6
 	cmplwi r7, 0x1124
 	blt _loop
-	nop 
+	nop
 	b _setPIReg
 
 _jump2:
@@ -106,14 +106,14 @@ _setPIReg:
     li r4, 3
     stw r4, 0x24(r8)
     stw r3, 0x24(r8)
-    nop 
+    nop
     b _noptrap
 
 _jump3:
     b _jump4
 
 _noptrap:
-    nop 
+    nop
     b _noptrap
 
 _jump4:

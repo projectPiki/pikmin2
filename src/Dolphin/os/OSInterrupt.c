@@ -1,7 +1,7 @@
 #include "Dolphin/os.h"
 #include "Dolphin/hw_regs.h"
 
-static asm void ExternalInterruptHandler(register __OSException exception, register OSContext* context);
+ASM static void ExternalInterruptHandler(register __OSException exception, register OSContext* context);
 
 extern void __RAS_OSDisableInterrupts_begin(void);
 extern void __RAS_OSDisableInterrupts_end(void);
@@ -32,17 +32,16 @@ volatile u32 __OSLastInterruptSrr0;
  * Address:	800EEC38
  * Size:	000014
  */
-asm BOOL OSDisableInterrupts()
-{
+ASM BOOL OSDisableInterrupts() {
 	// clang-format off
-    nofralloc
+	nofralloc
 entry    __RAS_OSDisableInterrupts_begin
-    mfmsr   r3
-    rlwinm  r4, r3, 0, 17, 15
-    mtmsr   r4
+	mfmsr   r3
+	rlwinm  r4, r3, 0, 17, 15
+	mtmsr   r4
 entry    __RAS_OSDisableInterrupts_end
-    rlwinm  r3, r3, 17, 31, 31
-    blr
+	rlwinm  r3, r3, 17, 31, 31
+	blr
 	// clang-format on
 }
 
@@ -51,16 +50,15 @@ entry    __RAS_OSDisableInterrupts_end
  * Address:	800EEC4C
  * Size:	000014
  */
-asm BOOL OSEnableInterrupts()
-{
+ASM BOOL OSEnableInterrupts() {
 	// clang-format off
-    nofralloc
+	nofralloc
 
-    mfmsr   r3
-    ori     r4, r3, 0x8000
-    mtmsr   r4
-    rlwinm  r3, r3, 17, 31, 31
-    blr
+	mfmsr   r3
+	ori     r4, r3, 0x8000
+	mtmsr   r4
+	rlwinm  r3, r3, 17, 31, 31
+	blr
 	// clang-format on
 }
 
@@ -69,22 +67,22 @@ asm BOOL OSEnableInterrupts()
  * Address:	800EEC60
  * Size:	000024
  */
-asm BOOL OSRestoreInterrupts(register BOOL level) {
+ASM BOOL OSRestoreInterrupts(register BOOL level) {
 	// clang-format off
 
-    nofralloc
+	nofralloc
 
-    cmpwi   level, 0
-    mfmsr   r4
-    beq     _disable
-    ori     r5, r4, 0x8000
-    b       _restore
+	cmpwi   level, 0
+	mfmsr   r4
+	beq     _disable
+	ori     r5, r4, 0x8000
+	b       _restore
 _disable:
-    rlwinm  r5, r4, 0, 17, 15
+	rlwinm  r5, r4, 0, 17, 15
 _restore:
-    mtmsr   r5
-    rlwinm  r3, r4, 17, 31, 31
-    blr
+	mtmsr   r5
+	rlwinm  r3, r4, 17, 31, 31
+	blr
 	// clang-format on
 }
 
@@ -479,11 +477,11 @@ void __OSDispatchInterrupt(__OSException exception, OSContext* context)
  * Address:	800EF454
  * Size:	000050
  */
-static asm void ExternalInterruptHandler(register __OSException exception, register OSContext* context)
+ASM static void ExternalInterruptHandler(register __OSException exception, register OSContext* context)
 {
 #pragma unused(exception)
 	// clang-format off
-	nofralloc 
+	nofralloc
 	OS_EXCEPTION_SAVE_GPRS(context)
 
 	stwu r1, -8(r1)

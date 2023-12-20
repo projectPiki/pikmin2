@@ -1,3 +1,5 @@
+#include "types.h"
+
 // presumably, ptmf = pointer to member function
 
 typedef struct PTMF {
@@ -70,7 +72,7 @@ void __ptmf_cmpr(void)
  * Size:	000030
  */
 // clang-format off
-asm long __ptmf_test(register PTMF* ptmf)
+ASM long __ptmf_test(register PTMF* ptmf)
 {
 	nofralloc
 		lwz       r5, PTMF.this_delta(r3)
@@ -80,13 +82,12 @@ asm long __ptmf_test(register PTMF* ptmf)
 		cmpwi     r5, 0
 		cmpwi     cr6, r6, 0
 		cmpwi     cr7, r7, 0
-		bnelr-    
+		bnelr-
 		bnelr-    cr6
 		bnelr-    cr7
 		li        r3, 0
 		blr
-}
-// clang-format on
+} // clang-format on
 
 // clang-format off
 /*
@@ -94,7 +95,7 @@ asm long __ptmf_test(register PTMF* ptmf)
  * Address:	800C1B24
  * Size:	000028
  */
-asm void __ptmf_scall(...)
+ASM void __ptmf_scall(...)
 {
 	nofralloc
 		lwz     r0, PTMF.this_delta(r12)

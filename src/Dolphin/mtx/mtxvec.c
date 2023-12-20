@@ -16,7 +16,7 @@ void C_MTXMultVec(void)
  * Address:	800EABD8
  * Size:	000054
  */
-asm void PSMTXMultVec(const register Mtx m, const register Vec* in, register Vec* out)
+ASM void PSMTXMultVec(const register Mtx m, const register Vec* in, register Vec* out)
 {
 	nofralloc;
 	psq_l fp0, 0(in), 0, 0;
@@ -79,7 +79,7 @@ void C_MTXMultVecSR(void)
  * Address:	800EAC2C
  * Size:	000054
  */
-asm void PSMTXMultVecSR(const register Mtx mtx, const register Vec* in, register Vec* out)
+ASM void PSMTXMultVecSR(const register Mtx mtx, const register Vec* in, register Vec* out)
 {
 	nofralloc;
 	psq_l fp0, 0(mtx), 0, 0;
@@ -121,7 +121,7 @@ void C_MTXMultVecArraySR(void)
  * Address:	800EAC80
  * Size:	000088
  */
-asm void PSMTXMultVecArraySR(const register Mtx mtx, register f32* in, register f32* out, register f32* count)
+ASM void PSMTXMultVecArraySR(const register Mtx mtx, register f32* in, register f32* out, register f32* count)
 {
 	nofralloc;
 	psq_l fp13, 0(mtx), 0, 0;

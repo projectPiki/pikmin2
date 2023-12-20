@@ -10,7 +10,7 @@ extern void __RAS_OSDisableInterrupts_end();
  * Address:	800ECD50
  * Size:	000124
  */
-static asm void __OSLoadFPUContext(register u32, register OSContext* fpuContext)
+ASM static void __OSLoadFPUContext(register u32, register OSContext* fpuContext)
 {
 	// clang-format off
 	nofralloc
@@ -23,7 +23,7 @@ static asm void __OSLoadFPUContext(register u32, register OSContext* fpuContext)
 	mfspr r5, HID2
 	rlwinm. r5, r5, 3, 31, 31
 	beq _regular_FPRs
-  
+
 	psq_l fp0, OS_CONTEXT_PSF0(fpuContext), 0, 0
 	psq_l fp1, OS_CONTEXT_PSF1(fpuContext), 0, 0
 	psq_l fp2, OS_CONTEXT_PSF2(fpuContext), 0, 0
@@ -100,8 +100,7 @@ _return:
  * Address:	800ECE74
  * Size:	000128
  */
-static asm void __OSSaveFPUContext(register u32, register u32, register OSContext* fpuContext)
-{
+ASM static void __OSSaveFPUContext(register u32, register u32, register OSContext* fpuContext) {
 	// clang-format off
   	nofralloc
 
@@ -185,7 +184,7 @@ static asm void __OSSaveFPUContext(register u32, register u32, register OSContex
 	psq_st  fp31, OS_CONTEXT_PSF31(fpuContext), 0, 0
 
 _return:
-    	blr
+		blr
 	// clang-format on
 }
 
@@ -194,8 +193,7 @@ _return:
  * Address:	........
  * Size:	000008
  */
-asm void OSLoadFPUContext(register OSContext* fpuContext)
-{
+ASM void OSLoadFPUContext(register OSContext* fpuContext) {
 	// clang-format off
 	nofralloc
 	addi    r4, fpuContext, 0
@@ -208,8 +206,7 @@ asm void OSLoadFPUContext(register OSContext* fpuContext)
  * Address:	800ECF9C
  * Size:	000008
  */
-asm void OSSaveFPUContext(register OSContext* fpuContext)
-{
+ASM void OSSaveFPUContext(register OSContext* fpuContext) {
 	// clang-format off
 	nofralloc
 	addi    r5, fpuContext, 0
@@ -222,7 +219,7 @@ asm void OSSaveFPUContext(register OSContext* fpuContext)
  * Address:	800ECFA4
  * Size:	00005C
  */
-asm void OSSetCurrentContext(register OSContext* context) {
+ASM void OSSetCurrentContext(register OSContext* context) {
 	// clang-format off
 	nofralloc
 
@@ -273,8 +270,7 @@ OSContext* OSGetCurrentContext()
  * Address:	800ED00C
  * Size:	000080
  */
-asm u32 OSSaveContext(register OSContext* context)
-{
+ASM u32 OSSaveContext(register OSContext* context) {
 	// clang-format off
 	nofralloc
 	stmw    r13, context->gpr[13]
@@ -317,7 +313,7 @@ asm u32 OSSaveContext(register OSContext* context)
  * Address:	800ED08C
  * Size:	0000D8
  */
-asm void OSLoadContext(register OSContext* context)
+ASM void OSLoadContext(register OSContext* context)
 {
 	// clang-format off
 	nofralloc
@@ -396,11 +392,10 @@ misc:
  * Address:	800ED164
  * Size:	000008
  */
-asm u32 OSGetStackPointer()
-{
+ASM u32 OSGetStackPointer() {
 	// clang-format off
-	nofralloc 
-	mr r3, r1 
+	nofralloc
+	mr r3, r1
 	blr
 	// clang-format on
 }
@@ -410,8 +405,7 @@ asm u32 OSGetStackPointer()
  * Address:	........
  * Size:	000010
  */
-asm u32 OSSwitchStack(register u32 newsp)
-{
+ASM u32 OSSwitchStack(register u32 newsp) {
 	// clang-format off
 	nofralloc
 	mr  r5, r1
@@ -426,7 +420,7 @@ asm u32 OSSwitchStack(register u32 newsp)
  * Address:	........
  * Size:	000030
  */
-asm int OSSwitchFiber(register u32 pc, register u32 newsp)
+ASM int OSSwitchFiber(register u32 pc, register u32 newsp)
 {
 	// clang-format off
 	nofralloc
@@ -464,7 +458,7 @@ void OSClearContext(OSContext* context)
  * Address:	800ED190
  * Size:	0000BC
  */
-asm void OSInitContext(register OSContext* context, register u32 pc, register u32 newsp)
+ASM void OSInitContext(register OSContext* context, register u32 pc, register u32 newsp)
 {
 	// clang-format off
 	nofralloc
@@ -585,7 +579,7 @@ void OSDumpContext(OSContext* context)
  * Address:	800ED4F4
  * Size:	000084
  */
-static asm void OSSwitchFPUContext(register __OSException exception, register OSContext* context)
+ASM static void OSSwitchFPUContext(register __OSException exception, register OSContext* context)
 {
 	// clang-format off
 	nofralloc
@@ -597,7 +591,7 @@ static asm void OSSwitchFPUContext(register __OSException exception, register OS
 	ori     r5, r5, 0x2000
 	mtsrr1  r5
 	addis   r3, r0, OS_CACHED_REGION_PREFIX
-	lwz     r5, 0x00D8(r3) 
+	lwz     r5, 0x00D8(r3)
 	stw     context, 0x00D8(r3)
 	cmpw    r5, r4
 	beq     _restoreAndExit
@@ -644,7 +638,7 @@ void __OSContextInit()
  * Address:	800ED5C0
  * Size:	00012C
  */
-asm void OSFillFPUContext(register OSContext* context)
+ASM void OSFillFPUContext(register OSContext* context)
 {
 	// clang-format off
 	nofralloc

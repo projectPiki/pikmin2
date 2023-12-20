@@ -16,40 +16,40 @@ u8 __get_debug_bba(void) { return Debug_BBA; }
 
 // clang-format off
 
-__declspec (weak) asm void __start(void)
+WEAKFUNC ASM void __start(void)
 {
-    nofralloc
+	nofralloc
 	bl __init_registers
-    bl __init_hardware
-    li r0, -1
-    stwu r1, -8(r1)
-    stw r0, 4(r1)
-    stw r0, 0(r1)
-    bl __init_data
-    li r0, 0
-    lis r6, EXCEPTIONMASK_ADDR@ha
-    addi r6, r6, EXCEPTIONMASK_ADDR@l
-    stw r0, 0(r6)
-    lis r6, BOOTINFO2_ADDR@ha
-    addi r6, r6, BOOTINFO2_ADDR@l
-    lwz r6, 0(r6)
+	bl __init_hardware
+	li r0, -1
+	stwu r1, -8(r1)
+	stw r0, 4(r1)
+	stw r0, 0(r1)
+	bl __init_data
+	li r0, 0
+	lis r6, EXCEPTIONMASK_ADDR@ha
+	addi r6, r6, EXCEPTIONMASK_ADDR@l
+	stw r0, 0(r6)
+	lis r6, BOOTINFO2_ADDR@ha
+	addi r6, r6, BOOTINFO2_ADDR@l
+	lwz r6, 0(r6)
 
 _check_TRK:
-    cmplwi r6, 0
-    beq _load_lomem_debug_flag
-    lwz r7, OS_BI2_DEBUGFLAG_OFFSET(r6)
-    b _check_debug_flag
-	
+	cmplwi r6, 0
+	beq _load_lomem_debug_flag
+	lwz r7, OS_BI2_DEBUGFLAG_OFFSET(r6)
+	b _check_debug_flag
+
 _load_lomem_debug_flag:
 	lis r5, ARENAHI_ADDR@ha
 	addi r5, r5, ARENAHI_ADDR@l
-    lwz r5, 0(r5)
-    cmplwi r5, 0
-    beq _goto_main
-    lis r7, DEBUGFLAG_ADDR@ha
-    addi r7, r7, DEBUGFLAG_ADDR@l
-    lwz r7, 0(r7)
-	
+	lwz r5, 0(r5)
+	cmplwi r5, 0
+	beq _goto_main
+	lis r7, DEBUGFLAG_ADDR@ha
+	addi r7, r7, DEBUGFLAG_ADDR@l
+	lwz r7, 0(r7)
+
 _check_debug_flag:
 	li r5, 0
 	cmplwi r7, 2
@@ -68,7 +68,7 @@ _goto_inittrk:
 	addi r6, r6, InitMetroTRK@l
 	mtlr r6
 	blrl
-	
+
 _goto_main:
 	lis r6, BOOTINFO2_ADDR@ha
 	addi r6, r6, BOOTINFO2_ADDR@l
@@ -130,7 +130,7 @@ _goto_skip_init_bba:
 	b exit
 }
 
-asm static void __init_registers(void)
+ASM static void __init_registers(void)
 {
 	nofralloc
 	li r0, 0
@@ -171,8 +171,8 @@ asm static void __init_registers(void)
 	blr
 }
 
-__declspec(section ".init") extern __rom_copy_info _rom_copy_info[];
-__declspec(section ".init") extern __bss_init_info _bss_init_info[];
+DECL_SECT(".init") extern __rom_copy_info _rom_copy_info[];
+DECL_SECT(".init") extern __bss_init_info _bss_init_info[];
 
 // clang-format on
 
