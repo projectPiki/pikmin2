@@ -8,7 +8,11 @@
         "editor.defaultFormatter": "ms-vscode.cpptools"
     },
     "editor.tabSize": 4,
+    "files.exclude": {
+        "**/*.ctx": true
+    },
     "files.associations": {
+        "*.ctx": "cpp",
         "source_location": "cpp",
         "types.h": "c",
         "rand.h": "c",

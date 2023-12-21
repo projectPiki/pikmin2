@@ -116,7 +116,7 @@ LIBS = [
             ["JSystem/JKernel/JKRFileLoader", True],
             ["JSystem/JKernel/JKRHeap", False],
             ["JSystem/JKernel/JKRMemArchive", True],
-            ["JSystem/JKernel/JKRSolidHeap", True, {"mw_version" : "1.3.2"}],
+            ["JSystem/JKernel/JKRSolidHeap", True, {"mw_version": "1.3.2"}],
             ["JSystem/JKernel/JKRThread", True],
         ],
     },
@@ -1478,27 +1478,27 @@ LIBS = [
             ["plugProjectEbisawaU/ebiCardMgr", True],
             ["plugProjectEbisawaU/ebiScreenFramework", True],
             ["plugProjectEbisawaU/ebiScreenPushStart", True],
-            ["plugProjectEbisawaU/ebiScreenFileSelect", False, {"cflags" : "$cflags_pikmin -sym on"}],
+            ["plugProjectEbisawaU/ebiScreenFileSelect", False, {"cflags": "$cflags_pikmin -sym on"}],
             ["plugProjectEbisawaU/ebiScreenTitleMenu", True],
             ["plugProjectEbisawaU/ebiSaveMgr", True],
             ["plugProjectEbisawaU/ebiScreenSaveMenu", False],
-            ["plugProjectEbisawaU/ebiScreenFileSelect_Mgr", False, {"cflags" : "$cflags_pikmin -sym on"}],
-            ["plugProjectEbisawaU/ebiFileSelectMgr", True, {"cflags" : "$cflags_pikmin"}],
+            ["plugProjectEbisawaU/ebiScreenFileSelect_Mgr", False, {"cflags": "$cflags_pikmin -sym on"}],
+            ["plugProjectEbisawaU/ebiFileSelectMgr", True, {"cflags": "$cflags_pikmin"}],
             ["plugProjectEbisawaU/ebiCardMgr_Load", True],
             ["plugProjectEbisawaU/ebiP2TitleCoordMgr", True],
-            ["plugProjectEbisawaU/ebiP2TitlePikmin", False, {"cflags" : "$cflags_pikmin -sym on"}],
-            ["plugProjectEbisawaU/ebiP2TitleKogane", True, {"cflags" : "$cflags_pikmin -sym on"}],
-            ["plugProjectEbisawaU/ebiP2TitleChappy", True, {"cflags" : "$cflags_pikmin -sym on"}],
-            ["plugProjectEbisawaU/ebiScreenTMBack", True, {"cflags" : "$cflags_pikmin -sym on"}],
-            ["plugProjectEbisawaU/ebiMainTitleMgr", False, {"cflags" : "$cflags_pikmin -sym on"}],
+            ["plugProjectEbisawaU/ebiP2TitlePikmin", False, {"cflags": "$cflags_pikmin -sym on"}],
+            ["plugProjectEbisawaU/ebiP2TitleKogane", True, {"cflags": "$cflags_pikmin -sym on"}],
+            ["plugProjectEbisawaU/ebiP2TitleChappy", True, {"cflags": "$cflags_pikmin -sym on"}],
+            ["plugProjectEbisawaU/ebiScreenTMBack", True, {"cflags": "$cflags_pikmin -sym on"}],
+            ["plugProjectEbisawaU/ebiMainTitleMgr", False, {"cflags": "$cflags_pikmin -sym on"}],
             ["plugProjectEbisawaU/ebiP2TitleFog", True],
-            ["plugProjectEbisawaU/efxEnemyBoss", False, {"cflags" : "$cflags_pikmin -sym on"}],
+            ["plugProjectEbisawaU/efxEnemyBoss", False, {"cflags": "$cflags_pikmin -sym on"}],
             ["plugProjectEbisawaU/ebiCardEReader", True],
-            ["plugProjectEbisawaU/ebiScreenOmake", False, {"cflags" : "$cflags_pikmin -sym on"}],
-            ["plugProjectEbisawaU/ebiOmakeMgr", False, {"cflags" : "$cflags_pikmin -sym on"}],
-            ["plugProjectEbisawaU/ebiScreenOmakeCardE", False, {"cflags" : "$cflags_pikmin -sym on"}],
-            ["plugProjectEbisawaU/ebiScreenOmakeGame", True, {"cflags" : "$cflags_pikmin -sym on"}],
-            ["plugProjectEbisawaU/ebiScreenInfoWindow", True, {"cflags" : "$cflags_pikmin -sym on"}],
+            ["plugProjectEbisawaU/ebiScreenOmake", False, {"cflags": "$cflags_pikmin -sym on"}],
+            ["plugProjectEbisawaU/ebiOmakeMgr", False, {"cflags": "$cflags_pikmin -sym on"}],
+            ["plugProjectEbisawaU/ebiScreenOmakeCardE", False, {"cflags": "$cflags_pikmin -sym on"}],
+            ["plugProjectEbisawaU/ebiScreenOmakeGame", True, {"cflags": "$cflags_pikmin -sym on"}],
+            ["plugProjectEbisawaU/ebiScreenInfoWindow", True, {"cflags": "$cflags_pikmin -sym on"}],
         ],
     },
     {
@@ -1658,6 +1658,7 @@ LIBS = [
     },
 ]
 
+
 def main():
     import os
     import io
@@ -1739,6 +1740,13 @@ def main():
         type=Path,
         default=Path("build"),
         help="base build directory",
+    )
+    parser.add_argument(
+        "--context",
+        "-c",
+        dest="context",
+        action="store_true",
+        help="generate context files for decomp.me",
     )
     args = parser.parse_args()
 
@@ -1874,6 +1882,7 @@ def main():
         # FIXME: Manual download because the above doesn't work for some reason
         if not Path("tools/powerpc").exists():
             import tools.download_ppc
+
             tools.download_ppc.main()
 
     if args.compilers == Path("tools/mwcc_compiler"):
@@ -1893,6 +1902,7 @@ def main():
         # FIXME: Manual download because the above doesn't work for some reason
         if not Path("tools/mwcc_compiler").exists():
             import tools.download_mwcc
+
             tools.download_mwcc.main()
 
     ###
@@ -1904,6 +1914,8 @@ def main():
     gnu_as = args.powerpc / f"powerpc-eabi-as{exe}"
 
     mwcc_cmd = f"{chain}{wine}{mwcc} $cflags -MMD -c $in -o $basedir"
+    if args.context:
+        mwcc_cmd += " && $python tools/decompctx.py $cfile -r -q"
     mwld_cmd = f"{wine}{mwld} $ldflags -o $out @$out.rsp"
     as_cmd = (
         f"{chain}{gnu_as} $asflags -o $out $in -MD $out.d"
@@ -2062,6 +2074,7 @@ def main():
                         "cflags": options["cflags"] or lib["cflags"],
                         "basedir": os.path.dirname(build_src_path / f"{object}"),
                         "basefile": path(build_src_path / f"{object}"),
+                        "cfile": path(c_file),
                     },
                 )
                 if lib["host"]:
@@ -2254,6 +2267,7 @@ def main():
     ###
     with open("objdiff.json", "w") as w:
         json.dump(objdiff_config, w, indent=4)
+
 
 if __name__ == "__main__":
     main()
