@@ -19,7 +19,7 @@ struct DVDThreadCheckBackArgs {
 };
 
 void checkPassDvdT(u32, u32*, JASDvdCallback);
-bool createThread(long, int, u32);
+bool createThread(s32, int, u32);
 void dvdThreadCheckBack(void*);
 JASTaskThread* getThreadPointer();
 

@@ -409,7 +409,7 @@ struct JPAEmitterWorkData {
 	int mPlaneType;                        // _208
 	int mDLType;                           // _20C
 	int mPrjType;                          // _210
-	short mClrKeyFrame;                    // _214
+	s16 mClrKeyFrame;                    // _214
 	u8 mDrawCount;                         // _216
 };
 

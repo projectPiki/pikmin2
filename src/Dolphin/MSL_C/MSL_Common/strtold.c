@@ -63,7 +63,7 @@ enum hex_scan_states {
  * @note Address: 0x800CA92C
  * @note Size: 0x100C
  */
-long double __strtold(int max_width, int (*ReadProc)(void*, int, int), void* ReadProcArg, int* chars_scanned, int* overflow)
+f128 __strtold(int max_width, int (*ReadProc)(void*, int, int), void* ReadProcArg, int* chars_scanned, int* overflow)
 {
 	int scan_state     = start;
 	int hex_scan_state = not_hex;
@@ -73,13 +73,13 @@ long double __strtold(int max_width, int (*ReadProc)(void*, int, int), void* Rea
 	decimal d        = { 0, 0, 0, { 0, "" } };
 	int sig_negative = 0;
 	int exp_negative = 0;
-	long exp_value   = 0;
+	s32 exp_value    = 0;
 	int exp_adjust   = 0;
-	long double result;
+	f128 result;
 	int sign_detected = 0;
 
-	unsigned char* chptr = (unsigned char*)&result;
-	unsigned char uch, uch1;
+	u8* chptr = (u8*)&result;
+	u8 uch, uch1;
 	int ui;
 	int chindex;
 	int NibbleIndex;
@@ -87,10 +87,10 @@ long double __strtold(int max_width, int (*ReadProc)(void*, int, int), void* Rea
 	int exp_digits      = 0;
 	int intdigits       = 0;
 	int RadixPointFound = 0;
-	short exponent      = 0;
+	s16 exponent        = 0;
 	int dot;
 
-	dot = *(unsigned char*)(__lconv).decimal_point;
+	dot = *(u8*)(__lconv).decimal_point;
 
 	*overflow = 0;
 	c         = fetch();
@@ -496,8 +496,8 @@ long double __strtold(int max_width, int (*ReadProc)(void*, int, int), void* Rea
 		}
 
 		{
-			int n            = d.sig.length;
-			unsigned char* p = &d.sig.text[n];
+			int n = d.sig.length;
+			u8* p = &d.sig.text[n];
 
 			while (n-- && *--p == '0') {
 				exp_adjust++;
@@ -541,21 +541,21 @@ long double __strtold(int max_width, int (*ReadProc)(void*, int, int), void* Rea
 
 		return result;
 	} else {
-		unsigned long long* uptr = (unsigned long long*)&result;
+		u64* uptr = (u64*)&result;
 
 		if (result) {
 			if (expsign) {
 				exponent = -exponent;
 			}
 
-			while ((*(short*)(&result) & 0x00f0) != 0x0010) {
+			while ((*(s16*)(&result) & 0x00f0) != 0x0010) {
 				*uptr >>= 1;
 				exponent++;
 			}
 
 			exponent += 4 * (intdigits - 1);
-			*(short*)&result &= 0x000f;
-			*(short*)(&result) |= ((exponent + 1023) << 4);
+			*(s16*)&result &= 0x000f;
+			*(s16*)(&result) |= ((exponent + 1023) << 4);
 
 			*chars_scanned = spaces + sign_detected + NibbleIndex + 1 + exp_digits;
 			if (result != 0.0 && result < LDBL_MIN) {
@@ -566,7 +566,7 @@ long double __strtold(int max_width, int (*ReadProc)(void*, int, int), void* Rea
 				result    = HUGE_VAL;
 			}
 			if (sig_negative) {
-				*(short*)(&result) |= 0x8000;
+				*(s16*)(&result) |= 0x8000;
 			}
 		} else {
 			result = 0.0;

@@ -23,10 +23,10 @@ void createSimpleGedoku(Vector3f&);
 void createSimpleBlackDrop(Vector3f&);
 void createSimpleDig(Vector3f&);
 void createSimpleDive(Vector3f&);
-void createSimpleChiru(Vector3f&, long);
+void createSimpleChiru(Vector3f&, s32);
 void createSimpleInattack(Vector3f&);
 void createSimpleInstick(Vector3f&);
-void createSimpleDead(Vector3f&, long);
+void createSimpleDead(Vector3f&, s32);
 void createSimpleBridgeAttack(Vector3f&);
 void createSimpleGate1Attack(Vector3f&);
 void createSimpleGate2Attack(Vector3f&);
@@ -386,7 +386,7 @@ struct TPkEffectMgr : public JKRDisposer {
 	void exitMgr();
 
 	void resetContextS();
-	void createS_Dead(Vector3f&, long);
+	void createS_Dead(Vector3f&, s32);
 	void createS_Chinka(Vector3f&);
 	void createS_Gedoku(Vector3f&);
 	void createS_WaterOff(Vector3f&);

@@ -296,7 +296,7 @@ void NaviLifeGauge::setCallBack(DataNavi* data, CallBack_LifeGauge::LifeGaugeTyp
 		if (!pane) {
 			JUT_PANICLINE(243, "ERR! : NULL Pane !!!\n");
 		} else {
-			float temp      = 0.0f;
+			f32 temp      = 0.0f;
 			cback->mOffsetX = (pane->mBounds.f.x - pane->mBounds.i.x) / 2 + temp;
 			J2DPane* pane2  = cback->mPane;
 			cback->mOffsetY = (pane2->mBounds.f.y - pane2->mBounds.i.y) / 2 + temp;

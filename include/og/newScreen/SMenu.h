@@ -178,7 +178,7 @@ struct ObjSMenuBase : public ::Screen::ObjBase {
 	virtual bool updateFadeOut();            // _A0
 	virtual void commonUpdate() = 0;         // _A4
 
-	void setFinishState(long);
+	void setFinishState(s32);
 	void setSMenuScale(f32, f32);
 	void doCreateAfter(JKRArchive*, P2DScreen::Mgr*);
 	void commonUpdateBase();

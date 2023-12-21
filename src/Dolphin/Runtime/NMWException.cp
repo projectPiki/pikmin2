@@ -63,7 +63,7 @@ extern void unexpected() { uhandler(); }
  * @note Address: N/A
  * @note Size: 0x22C
  */
-extern char __throw_catch_compare(const char* throwtype, const char* catchtype, long* offset_result)
+extern char __throw_catch_compare(const char* throwtype, const char* catchtype, s32* offset_result)
 {
 	const char *cptr1, *cptr2;
 
@@ -97,7 +97,7 @@ extern char __throw_catch_compare(const char* throwtype, const char* catchtype, 
 		for (;;) {
 			if (*cptr1 == *cptr2++) {
 				if (*cptr1++ == '!') {
-					long offset;
+					s32 offset;
 
 					for (offset = 0; *cptr1 != '!';) {
 						offset = offset * 10 + *cptr1++ - '0';

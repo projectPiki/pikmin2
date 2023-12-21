@@ -3721,7 +3721,7 @@ void Pellet::onKeyEvent(SysShape::KeyEvent const& keyEvent)
  * @note Address: 0x8016A3E8
  * @note Size: 0xC0
  */
-bool Pellet::isSlotFree(short slot)
+bool Pellet::isSlotFree(s16 slot)
 {
 	if (slot == 9999) {
 		return (_3F6 == 0);
@@ -3741,7 +3741,7 @@ bool Pellet::isSlotFree(short slot)
  */
 int Pellet::getSpeicalSlot()
 {
-	short slot = 9999;
+	s16 slot = 9999;
 	if (_3F6 > 0) {
 		slot = -1;
 	}
@@ -3800,9 +3800,9 @@ lbl_8016A510:
 s16 Pellet::getNearFreeStickSlot(Vector3f& position)
 {
 	f32 minDist      = 12800.0f;
-	short returnSlot = -1;
+	s16 returnSlot = -1;
 
-	for (short slot = 0; slot < mSlotCount; slot++) {
+	for (s16 slot = 0; slot < mSlotCount; slot++) {
 		u32 index = slot >> 3;
 		u32 flag  = 1 << slot - index * 8;
 		if (!(flag & mSlots.mSlots[15 - index])) {
@@ -3911,11 +3911,11 @@ lbl_8016A604:
  */
 s16 Pellet::getRandomFreeStickSlot()
 {
-	short slotCap    = mSlotCount;
-	short randomSlot = (int)((f32)slotCap * randFloat());
+	s16 slotCap    = mSlotCount;
+	s16 randomSlot = (int)((f32)slotCap * randFloat());
 	int slotByte     = 128;
-	short returnSlot = -1;
-	for (short slot = 0; slot < slotCap; slot++) {
+	s16 returnSlot = -1;
+	for (s16 slot = 0; slot < slotCap; slot++) {
 		u32 index = slot >> 3;
 		u32 flag  = 1 << slot - index * 8;
 		if (!(flag & mSlots.mSlots[15 - index])) {
@@ -4093,7 +4093,7 @@ int Pellet::getPikmins(int color)
  * @note Address: 0x8016AA54
  * @note Size: 0x1D4
  */
-void Pellet::onSlotStickStart(Creature* creature, short slot)
+void Pellet::onSlotStickStart(Creature* creature, s16 slot)
 {
 	if (slot != 9999) {
 		bool validSlot = (slot >= 0 && slot < mSlotCount);
@@ -4124,7 +4124,7 @@ void Pellet::onSlotStickStart(Creature* creature, short slot)
  * @note Address: 0x8016AC28
  * @note Size: 0x1E8
  */
-void Pellet::onSlotStickEnd(Creature* creature, short slot)
+void Pellet::onSlotStickEnd(Creature* creature, s16 slot)
 {
 	if (slot != 9999) {
 		bool validSlot = (slot >= 0 && slot < mSlotCount);
@@ -5866,7 +5866,7 @@ void PelletMgr::setupSoundViewerAndBas()
  * @note Address: 0x8016ED88
  * @note Size: 0x14
  */
-void PelletMgr::decode(long index, u8& pelletType, int& code)
+void PelletMgr::decode(s32 index, u8& pelletType, int& code)
 {
 	pelletType = (index >> 24) & 0xFF;
 	code       = index & 0xFFFFFF;

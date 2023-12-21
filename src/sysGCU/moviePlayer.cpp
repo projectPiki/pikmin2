@@ -1025,7 +1025,7 @@ lbl_8042E374:
  * @note Address: N/A
  * @note Size: 0x14
  */
-void MoviePlayer::suspend(long)
+void MoviePlayer::suspend(s32)
 {
 	// UNUSED FUNCTION
 }
@@ -1034,7 +1034,7 @@ void MoviePlayer::suspend(long)
  * @note Address: 0x8042E388
  * @note Size: 0xD0
  */
-void MoviePlayer::unsuspend(long msg, bool flag)
+void MoviePlayer::unsuspend(s32 msg, bool flag)
 {
 	mStudioControl->mObject_control._20 -= msg;
 	if (flag) {

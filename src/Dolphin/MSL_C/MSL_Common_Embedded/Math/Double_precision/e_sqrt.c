@@ -90,20 +90,21 @@
 #include "math.h"
 
 #ifdef __STDC__
-static const double one = 1.0, tiny = 1.0e-300;
+static const f64 one = 1.0, tiny = 1.0e-300;
 #else
-static double one = 1.0, tiny = 1.0e-300;
+static f64 one = 1.0, tiny = 1.0e-300;
 #endif
 
 #ifdef __STDC__
-double __ieee754_sqrt(double x)
+f64 __ieee754_sqrt(f64 x)
 #else
-double __ieee754_sqrt(x) double x;
+f64 __ieee754_sqrt(x)
+f64 x;
 #endif
 {
-	double z;
+	f64 z;
 	int sign = (int)0x80000000;
-	unsigned r, t1, s1, ix1, q1;
+	uint r, t1, s1, ix1, q1;
 	int ix0, s0, q, m, t, i;
 
 	ix0 = __HI(x); /* high word of x */
@@ -140,7 +141,7 @@ double __ieee754_sqrt(x) double x;
 	}
 	m -= 1023; /* unbias exponent */
 	ix0 = (ix0 & 0x000fffff) | 0x00100000;
-	if (m & 1) { /* odd m, double x to make it even */
+	if (m & 1) { /* odd m, f64 x to make it even */
 		ix0 += ix0 + ((ix1 & sign) >> 31);
 		ix1 += ix1;
 	}

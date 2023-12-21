@@ -741,7 +741,7 @@ void JStudio_JAudio::TAdaptor_sound::adaptor_do_LOCATED(JStudio::data::TEOperati
  * @note Address: 0x80015658
  * @note Size: 0x40
  */
-void JStudio_JAudio::TAdaptor_sound::TVVOSetValue_::operator()(float, JStudio::TAdaptor*) const
+void JStudio_JAudio::TAdaptor_sound::TVVOSetValue_::operator()(f32, JStudio::TAdaptor*) const
 {
 	/*
 	.loc_0x0:

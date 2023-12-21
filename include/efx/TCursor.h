@@ -18,13 +18,13 @@ struct TCursor : public TBase {
 	virtual void forceKill() { mOneEmitter.forceKill(); } // _0C (weak)
 	virtual void fade() { mOneEmitter.fade(); }           // _10 (weak)
 
-	void init(long, long);
+	void init(s32, s32);
 	void update(Arg*);
-	void calcPos_(Vector3f*, f32, long);
+	void calcPos_(Vector3f*, f32, s32);
 
 	// _00      = VTBL
 	TOneEmitter mOneEmitter;                    // _04
-	long mContextNum;                           // _38
+	s32 mContextNum;                           // _38
 	Context mContextArray[WHISTLE_CONTEXT_NUM]; // _3C
 	Vector3f mPosition;                         // _27C
 	f32 mAngleTimer;                            // _288

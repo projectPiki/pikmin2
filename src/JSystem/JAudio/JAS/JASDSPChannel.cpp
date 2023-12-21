@@ -70,7 +70,7 @@ void JASDSPChannel::initAll()
  * @note Address: 0x800A4CA0
  * @note Size: 0xDC
  */
-JASDSPChannel* JASDSPChannel::alloc(u8 index, long (*cb)(u32, JASDsp::TChannel*, void*), void* p3)
+JASDSPChannel* JASDSPChannel::alloc(u8 index, s32 (*cb)(u32, JASDsp::TChannel*, void*), void* p3)
 {
 	JASDSPChannel* channel = getLowestChannel(index);
 	if (!channel) {
@@ -98,7 +98,7 @@ JASDSPChannel* JASDSPChannel::alloc(u8 index, long (*cb)(u32, JASDsp::TChannel*,
  * @note Address: 0x800A4D7C
  * @note Size: 0xE4
  */
-JASDSPChannel* JASDSPChannel::allocForce(u8 index, long (*cb)(u32, JASDsp::TChannel*, void*), void* p3)
+JASDSPChannel* JASDSPChannel::allocForce(u8 index, s32 (*cb)(u32, JASDsp::TChannel*, void*), void* p3)
 {
 	JASDSPChannel* channel = getLowestChannel(index);
 	if (!channel) {
@@ -136,7 +136,7 @@ void JASDSPChannel::setPriority(u8 priority) { _04 = priority; }
 JASDSPChannel* JASDSPChannel::getLowestChannel(int threshold)
 {
 	// JASDSPChannel* channel = sDspChannels;
-	short lowestPriority = 0xFF;
+	s16 lowestPriority = 0xFF;
 	int lowestIndex      = -1;
 	u32 v1               = 0;
 	for (int i = 0; i < 0x40; i++) {

@@ -83,7 +83,7 @@ JKRMemArchive::~JKRMemArchive()
  * @note Size: 0x40
  * fixedInit__13JKRMemArchiveFl
  */
-void JKRMemArchive::fixedInit(long)
+void JKRMemArchive::fixedInit(s32)
 {
 	// UNUSED FUNCTION
 }
@@ -93,7 +93,7 @@ void JKRMemArchive::fixedInit(long)
  * @note Size: 0x108
  * mountFixed__13JKRMemArchiveFlQ210JKRArchive15EMountDirection
  */
-void JKRMemArchive::mountFixed(long, EMountDirection)
+void JKRMemArchive::mountFixed(s32, EMountDirection)
 {
 	// UNUSED FUNCTION
 }

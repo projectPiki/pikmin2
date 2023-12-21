@@ -51,7 +51,7 @@ void ContRumble::init()
  */
 void ContRumble::update()
 {
-	double maxRumbleIntensity = 0.0;
+	f64 maxRumbleIntensity = 0.0;
 
 	for (RumbleNode* currentNode = (RumbleNode*)mParentNode->mChild; currentNode; currentNode = (RumbleNode*)currentNode->mNext) {
 		currentNode->mCurrentIntensity = 0.0f;
@@ -71,7 +71,7 @@ void ContRumble::update()
 			}
 
 			if (currentSegment < numRumbleSegments) {
-				double t = (currentNode->mRumbleTimer - rumbleData->mTimes[4 * currentSegment])
+				f64 t = (currentNode->mRumbleTimer - rumbleData->mTimes[4 * currentSegment])
 				         / (rumbleData->mTimes[4 * (currentSegment + 1)] - rumbleData->mTimes[4 * currentSegment]);
 
 				currentNode->mCurrentIntensity

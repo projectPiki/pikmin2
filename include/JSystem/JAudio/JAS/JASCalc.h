@@ -5,7 +5,7 @@
 #include "types.h"
 
 namespace JASCalc {
-void imixcopy(const short*, const short*, short*, u32);
+void imixcopy(const s16*, const s16*, s16*, u32);
 void bcopy(const void*, void*, u32);
 void bzero(void*, u32);
 
@@ -39,12 +39,12 @@ inline f32 clamp01(f32 value)
 }
 
 // unused/inlined:
-void mixcopy(const short*, const short*, short*, u32);
+void mixcopy(const s16*, const s16*, s16*, u32);
 void bcopyfast(const void*, void*, u32);
 void bzerofast(void*, u32);
-void hannWindow(short*, u32);
-void hammWindow(short*, u32);
-void fft(f32*, f32*, u32, long);
+void hannWindow(s16*, u32);
+void hammWindow(s16*, u32);
+void fft(f32*, f32*, u32, s32);
 } // namespace JASCalc
 
 #endif

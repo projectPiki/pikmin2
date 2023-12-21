@@ -137,7 +137,7 @@
  * @note Address: 0x80067678
  * @note Size: 0x30
  */
-void J3DFrameCtrl::init(short i_end)
+void J3DFrameCtrl::init(s16 i_end)
 {
 	mAttribute = 2;
 	mState     = 0;
@@ -301,7 +301,7 @@ void J3DAnmTransformFull::getTransform(u16 p1, J3DTransformInfo* info) const
  * @note Size: 0x420
  * TODO: Needs J3DGetKeyFrameAnimation to be defined.
  */
-void J3DAnmTransformKey::calcTransform(float p1, u16 p2, J3DTransformInfo* info) const
+void J3DAnmTransformKey::calcTransform(f32 p1, u16 p2, J3DTransformInfo* info) const
 {
 	/**
 	u16 v0                 = p2 * 3;
@@ -762,7 +762,7 @@ void J3DAnmTransformKey::calcTransform(float p1, u16 p2, J3DTransformInfo* info)
  * @note Address: 0x8006829C
  * @note Size: 0x268
  */
-void J3DAnmTextureSRTKey::calcTransform(float p1, u16 p2, J3DTextureSRTInfo* info) const
+void J3DAnmTextureSRTKey::calcTransform(f32 p1, u16 p2, J3DTextureSRTInfo* info) const
 {
 	/**
 	u16 v0                 = p2 * 3;
@@ -1033,7 +1033,7 @@ void J3DAnmTextureSRTKey::calcTransform(float p1, u16 p2, J3DTextureSRTInfo* inf
  * @note Address: 0x80068504
  * @note Size: 0x94
  */
-float J3DAnmClusterFull::getWeight(u16 p1) const
+f32 J3DAnmClusterFull::getWeight(u16 p1) const
 {
 	/*
 	    int v4                     = (int)(0.5f + mFTime);
@@ -1134,7 +1134,7 @@ lbl_80068590:
  * @note Size: 0x84
  * getWeight__16J3DAnmClusterKeyCFUs
  */
-float J3DAnmClusterKey::getWeight(u16 p1) const
+f32 J3DAnmClusterKey::getWeight(u16 p1) const
 {
 	switch (mTables[p1]._00) {
 	case 0:
@@ -1142,7 +1142,7 @@ float J3DAnmClusterKey::getWeight(u16 p1) const
 	case 1:
 		return _0C[mTables[p1]._02];
 	default:
-		return J3DGetKeyFrameInterpolation<float>(mCurrentFrame, &mTables[p1], &_0C[mTables[p1]._02]);
+		return J3DGetKeyFrameInterpolation<f32>(mCurrentFrame, &mTables[p1], &_0C[mTables[p1]._02]);
 	}
 }
 
@@ -2621,7 +2621,7 @@ void J3DAnmTevRegKey::searchUpdateMaterialID(J3DModelData* data)
  * @note Address: 0x80069BF0
  * @note Size: 0x8
  */
-float J3DAnmCluster::getWeight(u16) const
+f32 J3DAnmCluster::getWeight(u16) const
 {
 	/*
 	lfs      f1, lbl_80516A18@sda21(r2)
@@ -2673,7 +2673,7 @@ float J3DAnmCluster::getWeight(u16) const
  * @note Size: 0x234
  * J3DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs
  */
-// void J3DGetKeyFrameInterpolation<short>(float, J3DAnmKeyTableBase*, short*)
+// void J3DGetKeyFrameInterpolation<s16>(f32, J3DAnmKeyTableBase*, s16*)
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -2843,7 +2843,7 @@ float J3DAnmCluster::getWeight(u16) const
  * @note Size: 0x17C
  * J3DGetKeyFrameInterpolation<f>__FfP18J3DAnmKeyTableBasePf
  */
-// void J3DGetKeyFrameInterpolation<float>(float, J3DAnmKeyTableBase*, float*)
+// void J3DGetKeyFrameInterpolation<f32>(f32, J3DAnmKeyTableBase*, f32*)
 // {
 // 	/*
 // 	lfs      f0, 0(r4)

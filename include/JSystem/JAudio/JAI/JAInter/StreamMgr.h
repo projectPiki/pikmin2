@@ -48,7 +48,7 @@ struct StreamUpdate {
 	JAIStream* _1C;
 };
 
-typedef BufferInfo (*AllocCallback)(long);
+typedef BufferInfo (*AllocCallback)(s32);
 typedef void (*DeallocCallback)();
 typedef void (*ExternalAramBufferCallback)(JASHeap*);
 typedef void (*MgrCallback)();
@@ -62,7 +62,7 @@ void changeCallback();
 void processGFrameStream();
 void checkEntriedStream();
 void systemCallBack(u32, JASAramStream*, void*);
-void prepareSystem(long);
+void prepareSystem(s32);
 void playDirect(char* path);
 void stopDirect();
 void initChannel();

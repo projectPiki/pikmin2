@@ -400,7 +400,7 @@ void TOmakeGame::setSelfControl()
  * @note Address: 0x803F196C
  * @note Size: 0x108
  */
-bool TOmakeGame::openMsg(long id)
+bool TOmakeGame::openMsg(s32 id)
 {
 	// This text was never translated from japanese
 	u64 tag;

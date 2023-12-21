@@ -12,7 +12,7 @@
  */
 
 /**
- * modf(double x, double *iptr)
+ * modf(f64 x, f64 *iptr)
  * return fraction part of x, and return x's integral part in *iptr.
  * Method:
  *	Bit twiddling.
@@ -24,19 +24,20 @@
 #include "fdlibm.h"
 
 #ifdef __STDC__
-static const double one = 1.0;
+static const f64 one = 1.0;
 #else
-static double one = 1.0;
+static f64 one = 1.0;
 #endif
 
 #ifdef __STDC__
-double modf(double x, double* iptr)
+f64 modf(f64 x, f64* iptr)
 #else
-double modf(x, iptr) double x, *iptr;
+f64 modf(x, iptr)
+f64 x, *iptr;
 #endif
 {
 	int i0, i1, j0;
-	unsigned i;
+	uint i;
 	i0 = __HI(x);                      /* high x */
 	i1 = __LO(x);                      /* low  x */
 	j0 = ((i0 >> 20) & 0x7ff) - 0x3ff; /* exponent of x */

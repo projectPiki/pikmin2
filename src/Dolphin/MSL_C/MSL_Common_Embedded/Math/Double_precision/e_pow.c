@@ -118,9 +118,9 @@
 #ifndef _DOUBLE_IS_32BITS
 
 #ifdef __STDC__
-static const double
+static const f64
 #else
-static double
+static f64
 #endif
 bp[] = {1.0, 1.5,},
 dp_h[] = { 0.0, 5.84962487220764160156e-01,}, /* 0x3FE2B803, 0x40000000 */
@@ -148,21 +148,21 @@ lg2_h  =  6.93147182464599609375e-01, /* 0x3FE62E43, 0x00000000 */
 lg2_l  = -1.90465429995776804525e-09, /* 0xBE205C61, 0x0CA86C39 */
 ovt =  8.0085662595372944372e-0017, /* -(1024-log2(ovfl+.5ulp)) */
 cp    =  9.61796693925975554329e-01, /* 0x3FEEC709, 0xDC3A03FD =2/(3ln2) */
-cp_h  =  9.61796700954437255859e-01, /* 0x3FEEC709, 0xE0000000 =(float)cp */
+cp_h  =  9.61796700954437255859e-01, /* 0x3FEEC709, 0xE0000000 =(f32)cp */
 cp_l  = -7.02846165095275826516e-09, /* 0xBE3E2FE0, 0x145B01F5 =tail of cp_h*/
 ivln2    =  1.44269504088896338700e+00, /* 0x3FF71547, 0x652B82FE =1/ln2 */
 ivln2_h  =  1.44269502162933349609e+00, /* 0x3FF71547, 0x60000000 =24b 1/ln2*/
 ivln2_l  =  1.92596299112661746887e-08; /* 0x3E54AE0B, 0xF85DDF44 =1/ln2 tail*/
 
 #ifdef __STDC__
-double __ieee754_pow(double x, double y)
+f64 __ieee754_pow(f64 x, f64 y)
 #else
-double __ieee754_pow(x, y) double x, y;
+f64 __ieee754_pow(x, y) f64 x, y;
 #endif
 {
-	double z, ax, z_h, z_l, p_h, p_l;
-	double y1, t1, t2, r, s, t, u, v, w;
-	double qqq; // necessary temp
+	f64 z, ax, z_h, z_l, p_h, p_l;
+	f64 y1, t1, t2, r, s, t, u, v, w;
+	f64 qqq; // necessary temp
 	int i0, i1, i, j, k, yisint, n;
 	int hx, hy, ix, iy;
 	u32 lx, ly;
@@ -257,7 +257,7 @@ double __ieee754_pow(x, y) double x, y;
 
 	if (((((int)hx >> 31) + 1) | yisint) == 0) {
 		errno = 33;
-		return (double)NAN;
+		return (f64)NAN;
 	};
 
 	/* |y| is huge */
@@ -283,7 +283,7 @@ double __ieee754_pow(x, y) double x, y;
 		__LO(t1) = 0;
 		t2       = v - (t1 - u);
 	} else {
-		double s2, s_h, s_l, t_h, t_l;
+		f64 s2, s_h, s_l, t_h, t_l;
 		n = 0;
 		/* take care subnormal number */
 		if (ix < 0x00100000) {
@@ -335,7 +335,7 @@ double __ieee754_pow(x, y) double x, y;
 		z_h       = cp_h * p_h; /* cp_h+cp_l = 2/(3*log2) */
 		z_l       = cp_l * p_h + p_l * cp + dp_l[k];
 		/* log2(ax) = (s+..)*2/(3*log2) = n + dp_h + z_h + z_l */
-		t        = (double)n;
+		t        = (f64)n;
 		t1       = (((z_h + z_l) + dp_h[k]) + t);
 		__LO(t1) = 0;
 		t2       = z_l - (((t1 - t) - dp_h[k]) - z_h);

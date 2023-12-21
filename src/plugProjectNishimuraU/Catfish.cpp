@@ -55,7 +55,7 @@ void Obj::getShadowParam(Game::ShadowParam& param)
  * @note Address: 0x80277194
  * @note Size: 0x28
  */
-bool Obj::pressCallBack(Game::Creature*, float damage, CollPart*)
+bool Obj::pressCallBack(Game::Creature*, f32 damage, CollPart*)
 {
 	EnemyBase::addDamage(damage, 1.0f);
 	return false;
@@ -67,7 +67,7 @@ bool Obj::pressCallBack(Game::Creature*, float damage, CollPart*)
  * @note Address: 0x802771BC
  * @note Size: 0x20
  */
-bool Obj::hipdropCallBack(Game::Creature* creature, float a2, CollPart* collPart)
+bool Obj::hipdropCallBack(Game::Creature* creature, f32 a2, CollPart* collPart)
 {
 	return EnemyBase::hipdropCallBack(creature, a2, collPart);
 }

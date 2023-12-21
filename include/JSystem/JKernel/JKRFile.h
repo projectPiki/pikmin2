@@ -75,7 +75,7 @@ struct JKRDvdFile : public JKRFile {
 	inline DVDFileInfo* getFileInfo() { return &mDvdPlayer; }
 
 	void initiate();
-	long sync();
+	s32 sync();
 
 	static void doneProcess(s32 result, DVDFileInfo* info);
 

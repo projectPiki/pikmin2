@@ -299,7 +299,7 @@ void JASWaveArc::onDispose()
  * @note Address: N/A
  * @note Size: 0x60
  */
-void JASWaveArc::setEntryNum(long entryNum)
+void JASWaveArc::setEntryNum(s32 entryNum)
 {
 	// UNUSED FUNCTION
 	DVDFileInfo player;
@@ -327,7 +327,7 @@ void JASWaveArc::setFileName(const char* fileName)
 	strcpy(buffer, JASWaveArcLoader::sCurrentDir);
 	strcat(buffer, fileName);
 	buffer[length] = '\0';
-	long entryNum  = DVDConvertPathToEntrynum(buffer);
+	s32 entryNum  = DVDConvertPathToEntrynum(buffer);
 	delete[] buffer;
 	if (0 <= entryNum) {
 		setEntryNum(entryNum);

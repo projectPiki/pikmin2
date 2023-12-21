@@ -38,9 +38,9 @@ struct JASChannel : JSULink<JASChannel>,
 	BOOL playForce();
 	void release(u16);
 	void updateEffectorParam(JASDsp::TChannel*, u16*, const EffectOscParam&);
-	static long dspUpdateCallback(u32, JASDsp::TChannel*, void*);
+	static s32 dspUpdateCallback(u32, JASDsp::TChannel*, void*);
 	void initialUpdateDSPChannel(JASDsp::TChannel*);
-	long updateDSPChannel(JASDsp::TChannel*);
+	s32 updateDSPChannel(JASDsp::TChannel*);
 	f32 calcEffect(const PanVector*, const PanVector*, u8);
 	f32 calcPan(const PanVector*, const PanVector*, u8);
 	void updateAutoMixer(JASDsp::TChannel*, f32, f32, f32, f32);
@@ -110,9 +110,9 @@ struct JASChannelUpdater {
 	f32 _08;    // _08
 	f32 _0C;    // _0C
 	f32 _10;    // _10
-	short _14;  // _14
+	s16 _14;  // _14
 	u16 _16[7]; // _16 - unknown
-	short _24;  // _24
+	s16 _24;  // _24
 	u16 _26[3]; // _26 - unknown
 	u8 _2C[8];  // _2C - unknown
 	s16 _34;    // _34 - unknown

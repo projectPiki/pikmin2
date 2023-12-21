@@ -78,7 +78,7 @@ void* JKRDvdRipper::loadToMainRAM(const char* path, u8* fileData, JKRExpandSwitc
  * @note Address: 0x8001F23C
  * @note Size: 0xB4
  */
-void* JKRDvdRipper::loadToMainRAM(long entryNum, u8* fileData, JKRExpandSwitch expSwitch, u32 fileSize, JKRHeap* heap,
+void* JKRDvdRipper::loadToMainRAM(s32 entryNum, u8* fileData, JKRExpandSwitch expSwitch, u32 fileSize, JKRHeap* heap,
                                   EAllocDirection allocDir, u32 startOffset, int* fileCompression, u32* newSize)
 {
 	JKRDvdFile file;

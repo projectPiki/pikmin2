@@ -696,7 +696,7 @@ void JASChannel::updateEffectorParam(JASDsp::TChannel*, u16*, const JASChannel::
  * @note Address: 0x800A3ABC
  * @note Size: 0xA0
  */
-long JASChannel::dspUpdateCallback(u32 p1, JASDsp::TChannel* p2, void* p3)
+s32 JASChannel::dspUpdateCallback(u32 p1, JASDsp::TChannel* p2, void* p3)
 {
 	JASChannel* channel = static_cast<JASChannel*>(p3);
 	switch (p1) {
@@ -941,7 +941,7 @@ lbl_800A3D98:
  * @note Address: 0x800A3E00
  * @note Size: 0x2BC
  */
-long JASChannel::updateDSPChannel(JASDsp::TChannel*)
+s32 JASChannel::updateDSPChannel(JASDsp::TChannel*)
 {
 	/*
 	stwu     r1, -0x40(r1)

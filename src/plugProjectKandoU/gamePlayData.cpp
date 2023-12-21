@@ -2119,7 +2119,7 @@ lbl_801E8E30:
 }
 
 namespace {
-const float repay_levs[10] = {
+const f32 repay_levs[10] = {
 	10.0f, 20.0f, 30.0f, 40.0f, 50.0f, 60.0f, 70.0f, 80.0f, 90.0f, 100.0f,
 };
 } // namespace

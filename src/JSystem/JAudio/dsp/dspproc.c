@@ -66,7 +66,7 @@ void Dswap(u32 p1, u32 p2, u32 p3)
  * @note Address: N/A
  * @note Size: 0x48
  */
-void Dmix(u32 p1, u32 p2, u32 p3, short p4)
+void Dmix(u32 p1, u32 p2, u32 p3, s16 p4)
 {
 	// UNUSED FUNCTION
 }

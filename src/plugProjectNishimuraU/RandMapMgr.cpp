@@ -118,7 +118,7 @@ char* RandMapMgr::getUseUnitName(int idx)
  * @note Address: 0x802448C8
  * @note Size: 0x84
  */
-char* RandMapMgr::getRoomData(int idx, float& x, float& y, int& dir)
+char* RandMapMgr::getRoomData(int idx, f32& x, f32& y, int& dir)
 {
 	MapNode* node = static_cast<MapNode*>(mGenerator->mPlacedMapNodes->getChildAt(idx));
 	if (node) {

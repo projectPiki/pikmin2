@@ -1,7 +1,7 @@
 #ifndef _RUNTIME_GECKO_EXCEPTIONPPC_H
 #define _RUNTIME_GECKO_EXCEPTIONPPC_H
 
-typedef unsigned char exaction_type;
+typedef u8 exaction_type;
 
 #define EXACTION_ENDBIT 0x80
 #define EXACTION_MASK   0x7F
@@ -13,16 +13,16 @@ typedef unsigned char exaction_type;
 
 typedef struct ex_branch {
 	exaction_type action;
-	unsigned char unused;
-	unsigned short target;
+	u8 unused;
+	u16 target;
 } ex_branch;
 
 #define EXACTION_DESTROYLOCAL 2
 
 typedef struct ex_destroylocal {
 	exaction_type action;
-	unsigned char unused;
-	short local;
+	u8 unused;
+	s16 local;
 	void* dtor;
 } ex_destroylocal;
 
@@ -30,9 +30,9 @@ typedef struct ex_destroylocal {
 
 typedef struct ex_destroylocalcond {
 	exaction_type action;
-	unsigned char dlc_field;
-	short cond;
-	short local;
+	u8 dlc_field;
+	s16 cond;
+	s16 local;
 	void* dtor;
 } ex_destroylocalcond;
 
@@ -43,8 +43,8 @@ typedef struct ex_destroylocalcond {
 
 typedef struct ex_destroylocalpointer {
 	exaction_type action;
-	unsigned char dlp_field;
-	short pointer;
+	u8 dlp_field;
+	s16 pointer;
 	void* dtor;
 } ex_destroylocalpointer;
 
@@ -55,10 +55,10 @@ typedef struct ex_destroylocalpointer {
 
 typedef struct ex_destroylocalarray {
 	exaction_type action;
-	unsigned char unused;
-	short localarray;
-	unsigned short elements;
-	unsigned short element_size;
+	u8 unused;
+	s16 localarray;
+	u16 elements;
+	u16 element_size;
 	void* dtor;
 } ex_destroylocalarray;
 
@@ -67,9 +67,9 @@ typedef struct ex_destroylocalarray {
 
 typedef struct ex_destroymember {
 	exaction_type action;
-	unsigned char dm_field;
-	short objectptr;
-	long offset;
+	u8 dm_field;
+	s16 objectptr;
+	s32 offset;
 	void* dtor;
 } ex_destroymember;
 
@@ -80,14 +80,14 @@ typedef struct ex_destroymember {
 
 typedef struct ex_destroymembercond {
 	exaction_type action;
-	unsigned char dmc_field;
-	short cond;
-	short objectptr;
-	long offset;
+	u8 dmc_field;
+	s16 cond;
+	s16 objectptr;
+	s32 offset;
 	void* dtor;
 } ex_destroymembercond;
 
-#define ex_destroymembercond_MakeField(regcond, regpointer) (((regcond) << 7) | (((regpointer)&0x1) << 6))
+#define ex_destroymembercond_MakeField(regcond, regpointer) (((regcond) << 7) | (((regpointer) & 0x1) << 6))
 #define ex_destroymembercond_GetRegCond(field)              ((field) >> 7)
 #define ex_destroymembercond_GetRegPointer(field)           (((field) >> 6) & 0x1)
 
@@ -95,11 +95,11 @@ typedef struct ex_destroymembercond {
 
 typedef struct ex_destroymemberarray {
 	exaction_type action;
-	unsigned char dma_field;
-	short objectptr;
-	long offset;
-	long elements;
-	long element_size;
+	u8 dma_field;
+	s16 objectptr;
+	s32 offset;
+	s32 elements;
+	s32 element_size;
 	void* dtor;
 } ex_destroymemberarray;
 
@@ -110,8 +110,8 @@ typedef struct ex_destroymemberarray {
 
 typedef struct ex_deletepointer {
 	exaction_type action;
-	unsigned char dp_field;
-	short objectptr;
+	u8 dp_field;
+	s16 objectptr;
 	void* deletefunc;
 } ex_deletepointer;
 
@@ -122,13 +122,13 @@ typedef struct ex_deletepointer {
 
 typedef struct ex_deletepointercond {
 	exaction_type action;
-	unsigned char dpc_field;
-	short cond;
-	short objectptr;
+	u8 dpc_field;
+	s16 cond;
+	s16 objectptr;
 	void* deletefunc;
 } ex_deletepointercond;
 
-#define ex_deletepointercond_MakeField(regcond, regpointer) (((regcond) << 7) | (((regpointer)&0x1) << 6))
+#define ex_deletepointercond_MakeField(regcond, regpointer) (((regcond) << 7) | (((regpointer) & 0x1) << 6))
 #define ex_deletepointercond_GetRegCond(field)              ((field) >> 7)
 #define ex_deletepointercond_GetRegPointer(field)           (((field) >> 6) & 0x1)
 
@@ -136,35 +136,35 @@ typedef struct ex_deletepointercond {
 
 typedef struct ex_catchblock {
 	exaction_type action;
-	unsigned char unused;
+	u8 unused;
 	char* catch_type;
-	unsigned short catch_pcoffset;
-	short cinfo_ref;
+	u16 catch_pcoffset;
+	s16 cinfo_ref;
 } ex_catchblock;
 
 #define EXACTION_ACTIVECATCHBLOCK 13
 
 typedef struct ex_activecatchblock {
 	exaction_type action;
-	unsigned char unused;
-	short cinfo_ref;
+	u8 unused;
+	s16 cinfo_ref;
 } ex_activecatchblock;
 
 #define EXACTION_TERMINATE 14
 
 typedef struct ex_terminate {
 	exaction_type action;
-	unsigned char unused;
+	u8 unused;
 } ex_terminate;
 
 #define EXACTION_SPECIFICATION 15
 
 typedef struct ex_specification {
 	exaction_type action;
-	unsigned char unused;
-	unsigned short specs;
-	long pcoffset;
-	long cinfo_ref;
+	u8 unused;
+	u16 specs;
+	s32 pcoffset;
+	s32 cinfo_ref;
 	char* spec[];
 } ex_specification;
 
@@ -172,34 +172,34 @@ typedef struct ex_specification {
 
 typedef struct ex_catchblock_32 {
 	exaction_type action;
-	unsigned char unused;
+	u8 unused;
 	char* catch_type;
-	long catch_pcoffset;
-	long cinfo_ref;
+	s32 catch_pcoffset;
+	s32 cinfo_ref;
 } ex_catchblock_32;
 
 // Other structs
 
 typedef struct ExceptionRangeSmall {
-	unsigned short start;
-	unsigned short end;
-	unsigned short action;
+	u16 start;
+	u16 end;
+	u16 action;
 } ExceptionRangeSmall;
 
 typedef struct ExceptionTableSmall {
-	unsigned short et_field;
+	u16 et_field;
 	ExceptionRangeSmall ranges[0];
 } ExceptionTableSmall;
 
 typedef struct ExceptionRangeLarge {
-	unsigned long start;
-	unsigned short size;
-	unsigned short action;
+	u32 start;
+	u16 size;
+	u16 action;
 } ExceptionRangeLarge;
 
 typedef struct ExceptionTableLarge {
-	unsigned short et_field;
-	unsigned short et_field2;
+	u16 et_field;
+	u16 et_field2;
 	ExceptionRangeLarge ranges[];
 } ExceptionTableLarge;
 
@@ -217,13 +217,13 @@ typedef struct ExceptionTableLarge {
 #define ET_HasElfVector(field) (((field) >> 1) & 0x1)
 
 typedef struct ExceptionTableIndex {
-	unsigned long functionoffset;
-	unsigned long eti_field;
-	unsigned long exceptionoffset;
+	u32 functionoffset;
+	u32 eti_field;
+	u32 exceptionoffset;
 } ExceptionTableIndex;
 
-#define ETI_MakeField(direct, fsize) ((((long)(direct)) << 31) | ((fsize)&0x7fffffff))
+#define ETI_MakeField(direct, fsize) ((((s32)(direct)) << 31) | ((fsize) & 0x7fffffff))
 #define ETI_GetDirectStore(field)    ((field) >> 31)
-#define ETI_GetFunctionSize(field)   ((field)&0x7fffffff)
+#define ETI_GetFunctionSize(field)   ((field) & 0x7fffffff)
 
 #endif

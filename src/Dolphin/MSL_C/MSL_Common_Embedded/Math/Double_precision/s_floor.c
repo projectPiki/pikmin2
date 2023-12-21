@@ -23,19 +23,20 @@
 #include "fdlibm.h"
 
 #ifdef __STDC__
-static const double huge = 1.0e300;
+static const f64 huge = 1.0e300;
 #else
-static double huge = 1.0e300;
+static f64 huge = 1.0e300;
 #endif
 
 #ifdef __STDC__
-double floor(double x)
+f64 floor(f64 x)
 #else
-double floor(x) double x;
+f64 floor(x)
+f64 x;
 #endif
 {
 	int i0, i1, j0;
-	unsigned i, j;
+	uint i, j;
 	i0 = __HI(x);
 	i1 = __LO(x);
 	j0 = ((i0 >> 20) & 0x7ff) - 0x3ff;

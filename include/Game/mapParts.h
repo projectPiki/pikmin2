@@ -115,7 +115,7 @@ struct MapUnit {
 	void save(Stream&);
 	void setupSizeInfo();
 
-	short _04;                         // _04
+	s16 _04;                           // _04
 	char* mName;                       // _08
 	J3DModelData* mModelData;          // _0C
 	MapCollision mCollision;           // _10

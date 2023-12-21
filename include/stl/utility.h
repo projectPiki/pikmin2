@@ -9,7 +9,7 @@ struct pair {
 };
 
 template <>
-struct pair<float, float> {
+struct pair<f32, f32> {
 	/**
 	 * @note Address: 0x80035520
 	 * @note Size: 0x10
@@ -18,8 +18,8 @@ struct pair<float, float> {
 	pair()
 	    : first(0.0f)
 	    , second(0.0f) {};
-	float first;
-	float second;
+	f32 first;
+	f32 second;
 };
 } // namespace std
 

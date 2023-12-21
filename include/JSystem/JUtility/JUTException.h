@@ -72,11 +72,11 @@ struct JUTException : public JKRThread {
 	void printContext(u16, OSContext*, u32, u32);
 	void createFB();
 
-	static void waitTime(long);
+	static void waitTime(s32);
 	static JUTExceptionHandler setPreUserCallback(JUTExceptionHandler);
 	static void appendMapFile(const char*);
-	static bool queryMapAddress(char*, u32, long, u32*, u32*, char*, u32, bool, bool);
-	static bool queryMapAddress_single(char*, u32, long, u32*, u32*, char*, u32, bool, bool);
+	static bool queryMapAddress(char*, u32, s32, u32*, u32*, char*, u32, bool, bool);
+	static bool queryMapAddress_single(char*, u32, s32, u32*, u32*, char*, u32, bool, bool);
 
 	static JUTException* create(JUTDirectPrint*);
 	static void createConsole(void* buffer, u32 bufferSize);

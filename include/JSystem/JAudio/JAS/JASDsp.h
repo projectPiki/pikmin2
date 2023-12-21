@@ -113,7 +113,7 @@ struct TChannel {
 	s16 mFir8FilterParam[8]; // _120
 	u8 _130[0x18];           // _130
 	s16 mIirFilterParam[4];  // _148
-	short mDistFilter;       // _150
+	s16 mDistFilter;       // _150
 };
 
 struct FxlineConfig_ {
@@ -144,11 +144,11 @@ f32 getDSPMixerLevel();
 TChannel* getDSPHandle(int index);
 void invalChannelAll();
 void initBuffer();
-bool setFXLine(u8, short*, JASDsp::FxlineConfig_*);
+bool setFXLine(u8, s16*, JASDsp::FxlineConfig_*);
 
 // unused/inlined:
 void getDSPHandleNc(int);
-void setFilterTable(short*, short*, u32);
+void setFilterTable(s16*, s16*, u32);
 void flushBuffer();
 void flushChannelAll();
 void cacheChannelAll();
@@ -166,7 +166,7 @@ extern const u16 DSPRES_FILTER[640];
 } // namespace JASDsp
 
 struct JASDSPChannel {
-	typedef long (*Callback)(u32, JASDsp::TChannel*, void*);
+	typedef s32 (*Callback)(u32, JASDsp::TChannel*, void*);
 	JASDSPChannel();
 	void free();
 	void start();

@@ -34,7 +34,7 @@ struct J2DPrint {
 	void doCtrlCode(int);
 	void doEscapeCode(const u8**, u8);
 	void initchar();
-	void getNumberS32(const u8**, long, long, int);
+	void getNumberS32(const u8**, s32, s32, int);
 	void getNumberF32(const u8**, f32, f32, int);
 
 	// unused/inlined:
@@ -64,7 +64,7 @@ struct J2DPrint {
 	f32 _14;                         // _14
 	f32 _18;                         // _18
 	f32 _1C;                         // _1C
-	short _20;                       // _20
+	s16 _20;                         // _20
 	u8 _22;                          // _22 - could be padding
 	f32 _24;                         // _24
 	f32 _28;                         // _28
@@ -79,7 +79,7 @@ struct J2DPrint {
 	f32 _4C;                         // _4C
 	f32 mGlyphWidth;                 // _50
 	f32 mGlyphHeight;                // _54
-	short _58;                       // _58
+	s16 _58;                         // _58
 	u8 _5A;                          // _5A
 };
 

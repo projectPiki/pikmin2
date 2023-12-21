@@ -446,7 +446,7 @@ void TParticle2dMgr::killGroup(u8 p1) { _30->forceDeleteGroupEmitter((int)p1); }
  * @note Address: N/A
  * @note Size: 0x4
  */
-void TParticle2dMgr::showInfo(long, long, long, long)
+void TParticle2dMgr::showInfo(s32, s32, s32, s32)
 {
 	// UNUSED FUNCTION
 }

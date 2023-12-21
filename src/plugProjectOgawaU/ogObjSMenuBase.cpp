@@ -53,7 +53,7 @@ ObjSMenuBase::ObjSMenuBase()
  * @note Address: 0x803162FC
  * @note Size: 0x3C
  */
-void ObjSMenuBase::setFinishState(long id)
+void ObjSMenuBase::setFinishState(s32 id)
 {
 	SceneSMenuBase* scene = static_cast<SceneSMenuBase*>(getOwner());
 	scene->mFinishState   = id;

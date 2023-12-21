@@ -78,20 +78,20 @@ JASBasicBank* JASBNKParser::createBasicBank(void* stream)
 						oscData         = new (heap, 0) JASOscillator::Data();
 						oscData->_00    = oscRaw->_00;
 						oscData->_04    = oscRaw->_04;
-						short* oscTable = JSUConvertOffsetToPtr<short>(header, oscRaw->_08);
+						s16* oscTable = JSUConvertOffsetToPtr<s16>(header, oscRaw->_08);
 						if (oscTable != nullptr) {
 							u32 tableLength  = getOscTableEndPtr(oscTable) - oscTable;
-							short* tableCopy = new (heap, 0) short[tableLength];
-							JASCalc::bcopy(oscTable, tableCopy, tableLength * sizeof(short));
+							s16* tableCopy = new (heap, 0) s16[tableLength];
+							JASCalc::bcopy(oscTable, tableCopy, tableLength * sizeof(s16));
 							oscData->_08 = tableCopy;
 						} else {
 							oscData->_08 = nullptr;
 						}
-						oscTable = JSUConvertOffsetToPtr<short>(header, oscRaw->_0C);
+						oscTable = JSUConvertOffsetToPtr<s16>(header, oscRaw->_0C);
 						if (oscTable != nullptr) {
 							u32 tableLength  = getOscTableEndPtr(oscTable) - oscTable;
-							short* tableCopy = new (heap, 0) short[tableLength];
-							JASCalc::bcopy(oscTable, tableCopy, tableLength * sizeof(short));
+							s16* tableCopy = new (heap, 0) s16[tableLength];
+							JASCalc::bcopy(oscTable, tableCopy, tableLength * sizeof(s16));
 							oscData->_0C = tableCopy;
 						} else {
 							oscData->_0C = nullptr;
@@ -813,9 +813,9 @@ JASOscillator::Data* JASBNKParser::findOscPtr(JASBasicBank* bank, JASBNKParser::
  * @note Address: 0x8009AFCC
  * @note Size: 0x14
  */
-short* JASBNKParser::getOscTableEndPtr(short* p1)
+s16* JASBNKParser::getOscTableEndPtr(s16* p1)
 {
-	short v1;
+	s16 v1;
 	do {
 		v1 = *p1;
 		p1 += 3;

@@ -18,8 +18,8 @@ void TTitleFogMgr::setGX(Camera& camera)
 		Color4 color4_local(mParms.mColR.mValue, mParms.mColG.mValue, mParms.mColB.mValue, mParms.mColA.mValue);
 		GXColor color_local = color4_local.toGXColor();
 
-		float startDist = mParms.mStartDist.mValue;
-		float endDist   = mParms.mEndDist.mValue;
+		f32 startDist = mParms.mStartDist.mValue;
+		f32 endDist   = mParms.mEndDist.mValue;
 
 		GXSetFog(GX_FOG_LINEAR, startDist, endDist, camera.getNear(), camera.getFar(), color_local);
 

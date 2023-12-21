@@ -5,9 +5,9 @@
 typedef struct FSTEntry FSTEntry;
 
 struct FSTEntry {
-	unsigned int isDirAndStringOff;
-	unsigned int parentOrPosition;
-	unsigned int nextEntryOrLength;
+	uint isDirAndStringOff;
+	uint parentOrPosition;
+	uint nextEntryOrLength;
 };
 
 static OSBootInfo* BootInfo;

@@ -717,7 +717,7 @@ void JASTrack::connectBus(int p1, int p2) { mChannelUpdater._36[p1] = p2; }
  * @note Address: 0x8009F7B4
  * @note Size: 0x1A4
  */
-int JASTrack::noteOn(u8 channelIndex, long p2, long p3, long p4, u32 p5)
+int JASTrack::noteOn(u8 channelIndex, s32 p2, s32 p3, s32 p4, u32 p5)
 {
 	if (_363 && (_358 & 0x40)) {
 		return -1;
@@ -842,7 +842,7 @@ bool JASTrack::noteOff(u8 channelIndex, u16 p2)
  * @note Address: 0x8009FA64
  * @note Size: 0x64
  */
-int JASTrack::gateOn(u8 p1, long p2, long p3, long p4)
+int JASTrack::gateOn(u8 p1, s32 p2, s32 p3, s32 p4)
 {
 	JASChannel* channel = _C0[p1];
 	if (channel == nullptr) {
@@ -857,7 +857,7 @@ int JASTrack::gateOn(u8 p1, long p2, long p3, long p4)
  * @note Address: 0x8009FAC8
  * @note Size: 0x2C
  */
-BOOL JASTrack::checkNoteStop(long p1)
+BOOL JASTrack::checkNoteStop(s32 p1)
 {
 	if (_C0[p1] == nullptr) {
 		return true;
@@ -2217,7 +2217,7 @@ lbl_800A0CFC:
  * @note Address: 0x800A0D20
  * @note Size: 0xD8
  */
-void JASTrack::seqTimeToDspTime(long, u8)
+void JASTrack::seqTimeToDspTime(s32, u8)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2342,7 +2342,7 @@ lbl_800A0E74:
  * @note Address: 0x800A0E7C
  * @note Size: 0x64
  */
-bool JASTrack::setSeqData(u8* p1, long p2)
+bool JASTrack::setSeqData(u8* p1, s32 p2)
 {
 	init();
 	_357 = 3;
@@ -4483,7 +4483,7 @@ f32 JASTrack::panCalc(f32 p1, f32 p2, f32 p3, u8 p4)
  * @note Address: 0x800A2658
  * @note Size: 0xF4
  */
-long JASTrack::rootCallback(void* obj)
+s32 JASTrack::rootCallback(void* obj)
 {
 	JASTrack* track = static_cast<JASTrack*>(obj);
 	if (track == nullptr) {

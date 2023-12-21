@@ -39,7 +39,7 @@ void E3DAnimCtrl::setAnimFolder(E3DAnimFolderBase* animFolder)
  * @note Address: 0x803C9E6C
  * @note Size: 0xA4
  */
-void E3DAnimCtrl::init(long id, float timeStep)
+void E3DAnimCtrl::init(s32 id, f32 timeStep)
 {
 	P2ASSERTLINE(47, mAnimFolder);
 	mAnimRes       = mAnimFolder->getAnimRes(id);

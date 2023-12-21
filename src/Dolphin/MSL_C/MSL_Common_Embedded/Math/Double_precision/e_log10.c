@@ -48,9 +48,9 @@
 #include "errno.h"
 
 #ifdef __STDC__
-static const double
+static const f64
 #else
-static double
+static f64
 #endif
     two54
     = 1.80143985094819840000e+16,           /* 0x43500000, 0x00000000 */
@@ -58,17 +58,18 @@ static double
     log10_2hi = 3.01029995663611771306e-01, /* 0x3FD34413, 0x509F6000 */
     log10_2lo = 3.69423907715893078616e-13; /* 0x3D59FEF3, 0x11F12B36 */
 
-static double zero = 0.0;
+static f64 zero = 0.0;
 
 #ifdef __STDC__
-double __ieee754_log10(double x)
+f64 __ieee754_log10(f64 x)
 #else
-double __ieee754_log10(x) double x;
+f64 __ieee754_log10(x)
+f64 x;
 #endif
 {
-	double y, z;
+	f64 y, z;
 	int i, k, hx;
-	unsigned lx;
+	uint lx;
 
 	hx = __HI(x); /* high word of x */
 	lx = __LO(x); /* low word of x */
@@ -92,7 +93,7 @@ double __ieee754_log10(x) double x;
 	k += (hx >> 20) - 1023;
 	i       = ((unsigned)k & 0x80000000) >> 31;
 	hx      = (hx & 0x000fffff) | ((0x3ff - i) << 20);
-	y       = (double)(k + i);
+	y       = (f64)(k + i);
 	__HI(x) = hx;
 	z       = y * log10_2lo + ivln10 * __ieee754_log(x);
 	return z + y * log10_2hi;

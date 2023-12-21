@@ -3,8 +3,8 @@
 
 #include "types.h"
 
-typedef unsigned long __file_handle;
-typedef unsigned long fpos_t;
+typedef u32 __file_handle;
+typedef u32 fpos_t;
 typedef struct _IO_FILE _IO_FILE, *P_IO_FILE;
 
 #define __ungetc_buffer_size 2

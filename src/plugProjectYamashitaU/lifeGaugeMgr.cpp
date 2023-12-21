@@ -93,15 +93,15 @@ void LifeGauge::draw(f32 a2, f32 a3, f32 a4)
 	position.z = 0.0f;
 
 	for (int i = 0; i < mSegmentCount; ++i) {
-		float angle = static_cast<float>(i) / static_cast<float>(this->_09);
+		f32 angle = static_cast<f32>(i) / static_cast<f32>(this->_09);
 
 		offsetPos.x = (a2 * cos(angle * 6.2831855f - 1.5707964f)) + position.x;
 		offsetPos.y = (a2 * sin(angle * 6.2831855f - 1.5707964f)) + position.y;
 		offsetPos.z = position.z;
 
-		float x2 = (a2 * cos((angle + 1.0f) * 6.2831855f - 1.5707964f)) + position.x;
-		float y2 = (a2 * sin((angle + 1.0f) * 6.2831855f - 1.5707964f)) + position.y;
-		float z2 = position.z;
+		f32 x2 = (a2 * cos((angle + 1.0f) * 6.2831855f - 1.5707964f)) + position.x;
+		f32 y2 = (a2 * sin((angle + 1.0f) * 6.2831855f - 1.5707964f)) + position.y;
+		f32 z2 = position.z;
 
 		drawOneTri(&position, mLifeGaugeColor);
 

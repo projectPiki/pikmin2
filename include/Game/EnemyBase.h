@@ -105,8 +105,7 @@ enum DropGroup {
 };
 
 // Interface for specific overrides (e.g. PelplantInitialParams)
-struct EnemyInitialParamBase {
-};
+struct EnemyInitialParamBase { };
 
 struct EnemyKillArg : public CreatureKillArg {
 	inline EnemyKillArg(int flag)

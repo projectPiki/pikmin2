@@ -1229,7 +1229,7 @@ void GateWaitState::cleanup(Game::ItemGate*) { }
  * @note Address: 0x801C9788
  * @note Size: 0x40
  */
-void GateWaitState::onDamage(Game::ItemGate* item, float damage)
+void GateWaitState::onDamage(Game::ItemGate* item, f32 damage)
 {
 	item->mDamage += damage;
 	transit(item, GATESTATE_Damaged, nullptr);
@@ -1284,7 +1284,7 @@ void GateDamagedState::cleanup(Game::ItemGate*) { }
  * @note Address: 0x801C991C
  * @note Size: 0x10
  */
-void GateDamagedState::onDamage(Game::ItemGate* gate, float damage) { gate->mDamage += damage; }
+void GateDamagedState::onDamage(Game::ItemGate* gate, f32 damage) { gate->mDamage += damage; }
 
 /**
  * @note Address: 0x801C992C
@@ -1342,7 +1342,7 @@ void GateDownState::cleanup(Game::ItemGate*) { }
  * @note Address: 0x801C9B6C
  * @note Size: 0x10
  */
-void GateDownState::onDamage(Game::ItemGate* gate, float damage) { gate->mDamage += damage; }
+void GateDownState::onDamage(Game::ItemGate* gate, f32 damage) { gate->mDamage += damage; }
 
 /**
  * @note Address: 0x801C9B7C
@@ -1729,7 +1729,7 @@ void ItemGateMgr::doViewCalc() { mNodeObjectMgr.doViewCalc(); }
  * @note Address: 0x801CA5E0
  * @note Size: 0x2C
  */
-void ItemGateMgr::doSimulation(float val) { mNodeObjectMgr.doSimulation(val); }
+void ItemGateMgr::doSimulation(f32 val) { mNodeObjectMgr.doSimulation(val); }
 
 /**
  * @note Address: 0x801CA60C

@@ -4,7 +4,7 @@
 #include "stdio.h"
 #include "PowerPC_EABI_Support/MSL_C/MSL_Common/stdio_api.h"
 
-typedef long long intmax_t;
+typedef s64 intmax_t;
 
 #define PTRDIFF __typeof__((char*)0 - (char*)0)
 typedef PTRDIFF ptrdiff_t;
@@ -20,19 +20,19 @@ enum argument_options {
 	wchar_argument
 };
 
-typedef unsigned char char_map[32];
+typedef u8 char_map[32];
 
 typedef struct {
-	unsigned char suppress_assignment;
-	unsigned char field_width_specified;
-	unsigned char argument_options;
-	unsigned char conversion_char;
+	u8 suppress_assignment;
+	u8 field_width_specified;
+	u8 argument_options;
+	u8 conversion_char;
 	int field_width;
 	char_map char_set;
 } scan_format;
 
-#define set_char_map(map, ch) map[(unsigned char)ch >> 3] |= (1 << (ch & 7))
-#define tst_char_map(map, ch) (map[(unsigned char)ch >> 3] & (1 << (ch & 7)))
+#define set_char_map(map, ch) map[(u8)ch >> 3] |= (1 << (ch & 7))
+#define tst_char_map(map, ch) (map[(u8)ch >> 3] & (1 << (ch & 7)))
 
 /**
  * @note Address: 0x800CA0C0
@@ -164,7 +164,7 @@ static const char* parse_format(const char* format_string, scan_format* format)
 
 		{
 			int i;
-			unsigned char* p;
+			u8* p;
 
 			for (i = sizeof(f.char_set), p = f.char_set; i; --i) {
 				*p++ = 0xFF;
@@ -223,7 +223,7 @@ static const char* parse_format(const char* format_string, scan_format* format)
 
 		if (invert) {
 			int i;
-			unsigned char* p;
+			u8* p;
 
 			for (i = sizeof(f.char_set), p = f.char_set; i; --i, ++p) {
 				*p = ~*p;
@@ -254,11 +254,11 @@ static int __sformatter(int (*ReadProc)(void*, int, int), void* ReadProcArg, con
 	char format_char;
 	char c;
 	scan_format format;
-	long long_num;
-	unsigned long u_long_num;
-	long long long_long_num;
-	unsigned long long u_long_long_num;
-	long double long_double_num;
+	s32 long_num;
+	u32 u_long_num;
+	s64 long_long_num;
+	u64 u_long_long_num;
+	f128 long_double_num;
 	char* arg_ptr;
 	int terminate = 0;
 
@@ -282,7 +282,7 @@ static int __sformatter(int (*ReadProc)(void*, int, int), void* ReadProcArg, con
 		}
 
 		if (format_char != '%') {
-			if ((c = (*ReadProc)(ReadProcArg, 0, __GetAChar)) != (unsigned char)format_char) {
+			if ((c = (*ReadProc)(ReadProcArg, 0, __GetAChar)) != (u8)format_char) {
 				(*ReadProc)(ReadProcArg, c, __UngetAChar);
 				goto exit;
 			}
@@ -337,16 +337,16 @@ static int __sformatter(int (*ReadProc)(void*, int, int), void* ReadProcArg, con
 					*(int*)arg_ptr = long_num;
 					break;
 				case char_argument:
-					*(signed char*)arg_ptr = long_num;
+					*(s8*)arg_ptr = long_num;
 					break;
 				case short_argument:
-					*(short*)arg_ptr = long_num;
+					*(s16*)arg_ptr = long_num;
 					break;
 				case long_argument:
-					*(long*)arg_ptr = long_num;
+					*(s32*)arg_ptr = long_num;
 					break;
 				case long_long_argument:
-					*(long long*)arg_ptr = long_long_num;
+					*(s64*)arg_ptr = long_long_num;
 					break;
 				}
 
@@ -388,19 +388,19 @@ static int __sformatter(int (*ReadProc)(void*, int, int), void* ReadProcArg, con
 			if (arg_ptr) {
 				switch (format.argument_options) {
 				case normal_argument:
-					*(unsigned int*)arg_ptr = u_long_num;
+					*(uint*)arg_ptr = u_long_num;
 					break;
 				case char_argument:
-					*(unsigned char*)arg_ptr = u_long_num;
+					*(u8*)arg_ptr = u_long_num;
 					break;
 				case short_argument:
-					*(unsigned short*)arg_ptr = u_long_num;
+					*(u16*)arg_ptr = u_long_num;
 					break;
 				case long_argument:
-					*(unsigned long*)arg_ptr = u_long_num;
+					*(u32*)arg_ptr = u_long_num;
 					break;
 				case long_long_argument:
-					*(unsigned long long*)arg_ptr = u_long_long_num;
+					*(u64*)arg_ptr = u_long_long_num;
 					break;
 				}
 
@@ -429,13 +429,13 @@ static int __sformatter(int (*ReadProc)(void*, int, int), void* ReadProcArg, con
 			if (arg_ptr) {
 				switch (format.argument_options) {
 				case normal_argument:
-					*(float*)arg_ptr = long_double_num;
+					*(f32*)arg_ptr = long_double_num;
 					break;
 				case double_argument:
-					*(double*)arg_ptr = long_double_num;
+					*(f64*)arg_ptr = long_double_num;
 					break;
 				case long_double_argument:
-					*(long double*)arg_ptr = long_double_num;
+					*(f128*)arg_ptr = long_double_num;
 					break;
 				}
 
@@ -560,16 +560,16 @@ static int __sformatter(int (*ReadProc)(void*, int, int), void* ReadProcArg, con
 					*(int*)arg_ptr = chars_read;
 					break;
 				case short_argument:
-					*(short*)arg_ptr = chars_read;
+					*(s16*)arg_ptr = chars_read;
 					break;
 				case long_argument:
-					*(long*)arg_ptr = chars_read;
+					*(s32*)arg_ptr = chars_read;
 					break;
 				case char_argument:
 					*(char*)arg_ptr = chars_read;
 					break;
 				case long_long_argument:
-					*(long long*)arg_ptr = chars_read;
+					*(s64*)arg_ptr = chars_read;
 					break;
 				}
 			continue;
@@ -614,7 +614,7 @@ int __StringRead(void* pPtr, int ch, int act)
 			return -1;
 		} else {
 			Iscp->NextChar++;
-			return (unsigned char)ret;
+			return (u8)ret;
 		}
 
 	case __UngetAChar:

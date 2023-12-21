@@ -20,11 +20,11 @@ struct TMainTitleMgr {
 
 	TMainTitleMgr();
 
-	void setMode(long);
+	void setMode(s32);
 	void loadResource();
 	void setController(Controller*);
 	void start();
-	void startMenuSet(long, long);
+	void startMenuSet(s32, s32);
 	void forceQuit();
 	bool isFinish();
 	bool isAnyKey();

@@ -66,7 +66,7 @@ void Creature::updateLOD(Game::AILODParm& parm)
 					mLod.mFlags |= (AILOD_IsVisVP0 << i);
 				}
 			}
-			float screenSize = camera->calcScreenSize(lodSphere);
+			f32 screenSize = camera->calcScreenSize(lodSphere);
 			if (screenSize > parm.mFar) {
 
 				*pi = 0;

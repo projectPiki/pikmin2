@@ -231,7 +231,7 @@ void JPAEmitterManager::draw(const JPADrawInfo* info, u8 id)
  * @note Address: N/A
  * @note Size: 0x5C
  */
-void JPAEmitterManager::draw(float (*)[4], u8)
+void JPAEmitterManager::draw(f32 (*)[4], u8)
 {
 	// UNUSED FUNCTION
 }
@@ -249,7 +249,7 @@ void JPAEmitterManager::draw(const JPADrawInfo*)
  * @note Address: N/A
  * @note Size: 0x70
  */
-void JPAEmitterManager::draw(float (*)[4])
+void JPAEmitterManager::draw(f32 (*)[4])
 {
 	// UNUSED FUNCTION
 }

@@ -5,7 +5,7 @@
 #include "types.h"
 #include "stl/float.h"
 
-inline float fsqrt_step(float mag)
+inline f32 fsqrt_step(f32 mag)
 {
 	f32 root = __frsqrte(mag);
 	return 0.5f * root * (3.0f - mag * (root * root));

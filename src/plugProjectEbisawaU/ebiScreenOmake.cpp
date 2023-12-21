@@ -1724,7 +1724,7 @@ blr
 void TOmake::setController(Controller* in)
 {
 	mController = in;
-	mInput.init(in, 0, 6, (long*)&mCurrSel, EUTPadInterface_countNum::MODE_DOWNUP, 0.66f, 0.15f);
+	mInput.init(in, 0, 6, (s32*)&mCurrSel, EUTPadInterface_countNum::MODE_DOWNUP, 0.66f, 0.15f);
 }
 
 /**

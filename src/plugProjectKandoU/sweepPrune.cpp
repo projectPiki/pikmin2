@@ -194,10 +194,10 @@ void SweepPrune::World::resolve(SweepPrune::World::ResolveArg& arg)
 				if (prev == nullptr) {
 					prev = n2;
 				}
-				float min1 = o1->mMinZ.mRadius;
-				float max1 = o1->mMaxZ.mRadius;
-				float min2 = o2->mMinZ.mRadius;
-				float max2 = o2->mMaxZ.mRadius;
+				f32 min1 = o1->mMinZ.mRadius;
+				f32 max1 = o1->mMaxZ.mRadius;
+				f32 min2 = o2->mMinZ.mRadius;
+				f32 max2 = o2->mMaxZ.mRadius;
 				if (((((min1 <= min2) && (min2 <= max1)) || ((min1 <= max2 && (max2 <= max1)))) || ((min2 <= min1 && (min1 <= max2))))
 				    || ((min2 <= max1 && (max1 <= max2)))) {
 					arg.mCallback->invoke(o1, o2);

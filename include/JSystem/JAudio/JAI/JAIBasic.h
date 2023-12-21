@@ -50,7 +50,7 @@ struct JAIBasic {
 	static u8 checkAudioStopStatus();
 
 	static void stopAudio(u32, bool);
-	static long stopCallBack(void*);
+	static s32 stopCallBack(void*);
 	static u16 setParameterSeqSync(JASTrack*, u16);
 
 	template <typename T>
@@ -87,7 +87,7 @@ struct JAIBasic {
 	void changeSoundScene(u32);
 	void setSeCancelSwitch(u8, u8);
 	void setSeCategoryVolume(u8, u8);
-	void allocStreamBuffer(void*, long);
+	void allocStreamBuffer(void*, s32);
 	void deallocStreamBuffer();
 	void resumeAudio();
 

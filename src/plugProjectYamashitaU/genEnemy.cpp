@@ -625,7 +625,7 @@ void GenObjectEnemy::render(Graphics& gfx, Game::Generator* gen)
 
 		gfx.mDrawColor = Color4(115, 16, 16, 255);
 
-		float dirRadians = mDirection * DEG2RAD * PI;
+		f32 dirRadians = mDirection * DEG2RAD * PI;
 		Vector3f rotation(0.0f, dirRadians, 0.0f);
 
 		Matrixf rotationMtx;

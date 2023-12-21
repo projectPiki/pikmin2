@@ -66,7 +66,7 @@ void J3DUMultiTexture::draw(u8, u32, u32, _GXTevColorArg, u32, u32) const
  * @note Address: N/A
  * @note Size: 0x140
  */
-void calcSphereIncludingTwoSpheres(Vec*, float, Vec*, float, Vec*, float*)
+void calcSphereIncludingTwoSpheres(Vec*, f32, Vec*, f32, Vec*, f32*)
 {
 	// UNUSED FUNCTION
 }
@@ -75,7 +75,7 @@ void calcSphereIncludingTwoSpheres(Vec*, float, Vec*, float, Vec*, float*)
  * @note Address: N/A
  * @note Size: 0xFC
  */
-void calcSphereIncludingTwoSpheres(Vec*, float, Vec*, float*)
+void calcSphereIncludingTwoSpheres(Vec*, f32, Vec*, f32*)
 {
 	// UNUSED FUNCTION
 }
@@ -84,7 +84,7 @@ void calcSphereIncludingTwoSpheres(Vec*, float, Vec*, float*)
  * @note Address: N/A
  * @note Size: 0x214
  */
-void calcSphereIncludingModel(const J3DModel*, Vec*, float*)
+void calcSphereIncludingModel(const J3DModel*, Vec*, f32*)
 {
 	// UNUSED FUNCTION
 }
@@ -213,7 +213,7 @@ void J3DUShadowInfo::renderShape() const
  * @note Address: N/A
  * @note Size: 0xC4
  */
-void J3DUShadowInfo::getTexMtx(float (*)[4]) const
+void J3DUShadowInfo::getTexMtx(f32 (*)[4]) const
 {
 	// UNUSED FUNCTION
 }
@@ -222,7 +222,7 @@ void J3DUShadowInfo::getTexMtx(float (*)[4]) const
  * @note Address: N/A
  * @note Size: 0xB8
  */
-void J3DUShadowInfo::getTexMtxForGX(float (*)[4]) const
+void J3DUShadowInfo::getTexMtxForGX(f32 (*)[4]) const
 {
 	// UNUSED FUNCTION
 }
@@ -231,7 +231,7 @@ void J3DUShadowInfo::getTexMtxForGX(float (*)[4]) const
  * @note Address: N/A
  * @note Size: 0x834
  */
-void J3DUIsShadowInViewFrustum(const J3DUShadowInfo&, float (*)[4], const J3DUClipper&, const Vec&, const JGeometry::TPartition3<float>&)
+void J3DUIsShadowInViewFrustum(const J3DUShadowInfo&, f32 (*)[4], const J3DUClipper&, const Vec&, const JGeometry::TPartition3<f32>&)
 {
 	// UNUSED FUNCTION
 }

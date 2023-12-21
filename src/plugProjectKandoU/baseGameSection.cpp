@@ -1607,7 +1607,7 @@ void BaseGameSection::j3dViewCalc(Viewport*)
  * @note Address: 0x8014F51C
  * @note Size: 0x30
  */
-void BaseGameSection::doSimulation(float rate) { gameSystem->doSimulation(rate); }
+void BaseGameSection::doSimulation(f32 rate) { gameSystem->doSimulation(rate); }
 
 /**
  * @note Address: 0x8014F54C
@@ -2581,7 +2581,7 @@ void BaseGameSection::setupFloatMemory()
 	if (Farm::farmMgr) {
 		Farm::farmMgr->setupSound();
 	}
-	OSReport("<float> Done\n");
+	OSReport("<f32> Done\n");
 
 	/*
 	stwu     r1, -0x2c0(r1)

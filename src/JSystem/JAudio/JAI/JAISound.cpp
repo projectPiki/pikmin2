@@ -717,7 +717,7 @@ void JAISequence::setSeqPortData(u8, u16, u32)
  * @note Address: N/A
  * @note Size: 0x74
  */
-void JAISequence::setWaveReadMode(long, long)
+void JAISequence::setWaveReadMode(s32, s32)
 {
 	// UNUSED FUNCTION
 }
@@ -2698,7 +2698,7 @@ void JAISound::setDistanceParameterMoveTime(u8 a1)
  * @note Address: 0x800B62DC
  * @note Size: 0x8
  */
-void JAISound::setAdjustPriority(short a1)
+void JAISound::setAdjustPriority(s16 a1)
 {
 	// Generated from sth r4, 0x1C(r3)
 	mAdjustPriority = a1;

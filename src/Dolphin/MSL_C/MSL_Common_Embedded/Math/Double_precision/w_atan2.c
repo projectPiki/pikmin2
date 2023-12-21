@@ -1,11 +1,13 @@
-extern double __ieee754_atan2();
+#include "types.h"
+
+extern f64 __ieee754_atan2();
 
 /**
  * @note Address: 0x800CF98C
  * @note Size: 0x20
  */
 
-double atan2(double __x, double __y) { return (double)__ieee754_atan2(); }
+f64 atan2(f64 __x, f64 __y) { return (f64)__ieee754_atan2(); }
 
 /*
 .loc_0x0:

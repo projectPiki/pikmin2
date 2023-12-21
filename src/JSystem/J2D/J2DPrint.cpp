@@ -83,7 +83,7 @@
  * @note Address: 0x8003D750
  * @note Size: 0x94
  */
-J2DPrint::J2DPrint(JUTFont*, float)
+J2DPrint::J2DPrint(JUTFont*, f32)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -180,7 +180,7 @@ J2DPrint::J2DPrint(JUTFont*, JUtility::TColor, JUtility::TColor)
  * @note Address: 0x8003D87C
  * @note Size: 0x94
  */
-J2DPrint::J2DPrint(JUTFont*, float, float, JUtility::TColor, JUtility::TColor, JUtility::TColor, JUtility::TColor)
+J2DPrint::J2DPrint(JUTFont*, f32, f32, JUtility::TColor, JUtility::TColor, JUtility::TColor, JUtility::TColor)
 {
 	/*
 	.loc_0x0:
@@ -291,7 +291,7 @@ lbl_8003D99C:
  * @note Address: 0x8003D9AC
  * @note Size: 0x1E8
  */
-void J2DPrint::private_initiate(JUTFont*, float, float, JUtility::TColor, JUtility::TColor, JUtility::TColor, JUtility::TColor, bool)
+void J2DPrint::private_initiate(JUTFont*, f32, f32, JUtility::TColor, JUtility::TColor, JUtility::TColor, JUtility::TColor, bool)
 {
 	/*
 	.loc_0x0:
@@ -558,7 +558,7 @@ lbl_8003DCC8:
  * @note Address: 0x8003DCDC
  * @note Size: 0x1C
  */
-void J2DPrint::locate(float, float)
+void J2DPrint::locate(f32, f32)
 {
 	/*
 	stfs     f1, 0x24(r3)
@@ -575,7 +575,7 @@ void J2DPrint::locate(float, float)
  * @note Address: 0x8003DCF8
  * @note Size: 0x114
  */
-double J2DPrint::print(float, float, const char*, ...)
+f64 J2DPrint::print(f32, f32, const char*, ...)
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -662,7 +662,7 @@ lbl_8003DDF4:
  * @note Address: 0x8003DE0C
  * @note Size: 0x120
  */
-void J2DPrint::print(float, float, u8, const char*, ...)
+void J2DPrint::print(f32, f32, u8, const char*, ...)
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -827,7 +827,7 @@ lbl_8003DFD8:
  * @note Address: 0x8003E018
  * @note Size: 0x31C
  */
-void J2DPrint::printReturn(const char*, float, float, J2DTextBoxHBinding, J2DTextBoxVBinding, float, float, u8)
+void J2DPrint::printReturn(const char*, f32, f32, J2DTextBoxHBinding, J2DTextBoxVBinding, f32, f32, u8)
 {
 	/*
 	.loc_0x0:
@@ -2217,7 +2217,7 @@ void J2DPrint::initchar()
  * @note Address: 0x8003F22C
  * @note Size: 0x114
  */
-void J2DPrint::getNumberS32(const u8**, long, long, int)
+void J2DPrint::getNumberS32(const u8**, s32, s32, int)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2310,7 +2310,7 @@ lbl_8003F320:
  * @note Address: 0x8003F340
  * @note Size: 0x134
  */
-void J2DPrint::getNumberF32(const u8**, float, float, int)
+void J2DPrint::getNumberF32(const u8**, f32, f32, int)
 {
 	/*
 	stwu     r1, -0x40(r1)

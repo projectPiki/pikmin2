@@ -163,7 +163,7 @@ lbl_800AB28C:
  * @note Address: N/A
  * @note Size: 0x4C
  */
-void JAIAnimeSound::initActorAnimSound(JAIAnimeSoundData*, JAInter::Actor, u32, float, float)
+void JAIAnimeSound::initActorAnimSound(JAIAnimeSoundData*, JAInter::Actor, u32, f32, f32)
 {
 	// UNUSED FUNCTION
 }
@@ -172,7 +172,7 @@ void JAIAnimeSound::initActorAnimSound(JAIAnimeSoundData*, JAInter::Actor, u32, 
  * @note Address: 0x800AB2B0
  * @note Size: 0x194
  */
-void JAIAnimeSound::initActorAnimSound(JAIAnimeSoundData*, u32, float, float)
+void JAIAnimeSound::initActorAnimSound(JAIAnimeSoundData*, u32, f32, f32)
 {
 	/*
 	.loc_0x0:
@@ -302,7 +302,7 @@ void JAIAnimeSound::initActorAnimSound(JAIAnimeSoundData*, u32, float, float)
  * @note Address: 0x800AB444
  * @note Size: 0x40
  */
-int JAIAnimeSound::checkLoopStartCount(float p1)
+int JAIAnimeSound::checkLoopStartCount(f32 p1)
 {
 	u32 i = 0;
 	// if (mSoundData->_00 == 0) {
@@ -340,7 +340,7 @@ lbl_800AB460:
  * @note Address: 0x800AB484
  * @note Size: 0x48
  */
-void JAIAnimeSound::checkLoopEndCount(float)
+void JAIAnimeSound::checkLoopEndCount(f32)
 {
 	/*
 	lwz      r5, 0x78(r3)
@@ -372,7 +372,7 @@ lbl_800AB4BC:
  * @note Address: N/A
  * @note Size: 0x4C
  */
-void JAIAnimeSound::setLoopStartFrame(float)
+void JAIAnimeSound::setLoopStartFrame(f32)
 {
 	// UNUSED FUNCTION
 }
@@ -381,7 +381,7 @@ void JAIAnimeSound::setLoopStartFrame(float)
  * @note Address: N/A
  * @note Size: 0x54
  */
-void JAIAnimeSound::setLoopEndFrame(float)
+void JAIAnimeSound::setLoopEndFrame(f32)
 {
 	// UNUSED FUNCTION
 }
@@ -390,7 +390,7 @@ void JAIAnimeSound::setLoopEndFrame(float)
  * @note Address: N/A
  * @note Size: 0x94
  */
-void JAIAnimeSound::setLoopFrame(float, float)
+void JAIAnimeSound::setLoopFrame(f32, f32)
 {
 	// UNUSED FUNCTION
 }
@@ -399,7 +399,7 @@ void JAIAnimeSound::setLoopFrame(float, float)
  * @note Address: N/A
  * @note Size: 0x28
  */
-void JAIAnimeSound::setAnimSound(float, float, u8)
+void JAIAnimeSound::setAnimSound(f32, f32, u8)
 {
 	// UNUSED FUNCTION
 }
@@ -408,7 +408,7 @@ void JAIAnimeSound::setAnimSound(float, float, u8)
  * @note Address: N/A
  * @note Size: 0x24
  */
-void JAIAnimeSound::setAnimSound(JAIBasic*, float, float, u8)
+void JAIAnimeSound::setAnimSound(JAIBasic*, f32, f32, u8)
 {
 	// UNUSED FUNCTION
 }
@@ -417,7 +417,7 @@ void JAIAnimeSound::setAnimSound(JAIBasic*, float, float, u8)
  * @note Address: N/A
  * @note Size: 0x78
  */
-void JAIAnimeSound::setAnimObjectSound(float, float, u8)
+void JAIAnimeSound::setAnimObjectSound(f32, f32, u8)
 {
 	// UNUSED FUNCTION
 }
@@ -426,7 +426,7 @@ void JAIAnimeSound::setAnimObjectSound(float, float, u8)
  * @note Address: N/A
  * @note Size: 0x74
  */
-void JAIAnimeSound::setAnimSoundVec(Vec*, float, float, u32, u8)
+void JAIAnimeSound::setAnimSoundVec(Vec*, f32, f32, u32, u8)
 {
 	// UNUSED FUNCTION
 }
@@ -435,7 +435,7 @@ void JAIAnimeSound::setAnimSoundVec(Vec*, float, float, u32, u8)
  * @note Address: N/A
  * @note Size: 0x74
  */
-void JAIAnimeSound::setAnimSoundVec(JAIBasic*, Vec*, float, float, u32, u8)
+void JAIAnimeSound::setAnimSoundVec(JAIBasic*, Vec*, f32, f32, u32, u8)
 {
 	// UNUSED FUNCTION
 }
@@ -444,7 +444,7 @@ void JAIAnimeSound::setAnimSoundVec(JAIBasic*, Vec*, float, float, u32, u8)
  * @note Address: 0x800AB4CC
  * @note Size: 0x504
  */
-void JAIAnimeSound::setAnimSoundActor(JAInter::Actor*, float, float, u8)
+void JAIAnimeSound::setAnimSoundActor(JAInter::Actor*, f32, f32, u8)
 {
 	/*
 	.loc_0x0:
@@ -844,7 +844,7 @@ void JAIAnimeSound::setAnimSoundActor(JAInter::Actor*, float, float, u8)
  * @note Address: 0x800AB9D0
  * @note Size: 0x280
  */
-void JAIAnimeSound::playActorAnimSound(JAInter::Actor*, float, u8)
+void JAIAnimeSound::playActorAnimSound(JAInter::Actor*, f32, u8)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -1072,7 +1072,7 @@ void JAIAnimeSound::startAnimSound(u32 id, JAISound** handlePtr, JAInter::Actor*
  * @note Address: 0x800ABC9C
  * @note Size: 0x13C
  */
-void JAIAnimeSound::setSpeedModifySound(JAISound*, JAIAnimeFrameSoundData*, float)
+void JAIAnimeSound::setSpeedModifySound(JAISound*, JAIAnimeFrameSoundData*, f32)
 {
 	/*
 	.loc_0x0:

@@ -12,7 +12,7 @@ struct JASProbe {
 	void stop();
 
 	char* mName;     // _00
-	long mStartTime; // _04
+	s32 mStartTime; // _04
 	f32 _08;         // _08
 	f32 _0C;         // _0C
 	f32 _10;         // _10

@@ -19,7 +19,7 @@ struct TScreenProgre {
 	virtual void setArchive(JKRArchive*); // _08
 
 	void loadResource();
-	void startScreen(long, u32);
+	void startScreen(s32, u32);
 	bool fadeout(u32);
 	bool isFinish();
 	void startState(enumState, u32);

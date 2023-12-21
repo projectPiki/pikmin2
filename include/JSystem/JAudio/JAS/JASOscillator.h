@@ -7,8 +7,8 @@ struct JASOscillator {
 	struct Data {
 		u32 _00;          // _00 - unknown
 		f32 _04;          // _04
-		short* _08;       // _08 - unknown
-		const short* _0C; // _0C - unknown pointer
+		s16* _08;       // _08 - unknown
+		const s16* _0C; // _0C - unknown pointer
 		f32 _10;          // _10
 		f32 _14;          // _14
 	};
@@ -20,7 +20,7 @@ struct JASOscillator {
 	void incCounter();
 	f32 getValue() const;
 	bool release();
-	f32 calc(const short*);
+	f32 calc(const s16*);
 
 	// unused/inlined
 	void forceStop();
@@ -31,7 +31,7 @@ struct JASOscillator {
 	f32 _0C;           // _0C
 	f32 _10;           // _10
 	f32 _14;           // _14
-	short _18;         // _18
+	s16 _18;         // _18
 	u16 _1A;           // _1A
 	u8 _1C;            // _1C
 	u8 _1D;            // _1D

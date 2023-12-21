@@ -18,7 +18,7 @@
 #define TARGET_FLOAT_MANT_BITS      (TARGET_FLOAT_MANT_DIG - TARGET_FLOAT_IMPLICIT_J_BIT)
 #define TARGET_FLOAT_EXP_BITS       (TARGET_FLOAT_BITS - TARGET_FLOAT_MANT_BITS - 1)
 
-typedef long long intmax_t;
+typedef s64 intmax_t;
 
 #define PTRDIFF __typeof__((char*)0 - (char*)0)
 typedef PTRDIFF ptrdiff_t;
@@ -38,14 +38,14 @@ enum argument_options {
 };
 
 typedef struct {
-	unsigned char justification_options; // _0
-	unsigned char sign_options;          // _1
-	unsigned char precision_specified;   // _2
-	unsigned char alternate_form;        // _3
-	unsigned char argument_options;      // _4
-	unsigned char conversion_char;       // _5
-	int field_width;                     // _8
-	int precision;                       // _C
+	u8 justification_options; // _0
+	u8 sign_options;          // _1
+	u8 precision_specified;   // _2
+	u8 alternate_form;        // _3
+	u8 argument_options;      // _4
+	u8 conversion_char;       // _5
+	int field_width;          // _8
+	int precision;            // _C
 } print_format;
 
 /**
@@ -291,9 +291,9 @@ static const char* parse_format(const char* format_string, va_list* arg, print_f
  * @note Address: 0x800C8E3C
  * @note Size: 0x258
  */
-static char* long2str(long num, char* buff, print_format format)
+static char* long2str(s32 num, char* buff, print_format format)
 {
-	unsigned long unsigned_num, base;
+	u32 unsigned_num, base;
 	char* p;
 	int n, digits;
 	int minus    = 0;
@@ -399,9 +399,9 @@ static char* long2str(long num, char* buff, print_format format)
  * @note Address: 0x800C8B28
  * @note Size: 0x314
  */
-static char* longlong2str(long long num, char* pBuf, print_format fmt)
+static char* longlong2str(s64 num, char* pBuf, print_format fmt)
 {
-	unsigned long long unsigned_num, base;
+	u64 unsigned_num, base;
 	char* p;
 	int n, digits;
 	int minus    = 0;
@@ -505,16 +505,16 @@ static char* longlong2str(long long num, char* pBuf, print_format fmt)
  * @note Address: 0x800C87F0
  * @note Size: 0x338
  */
-static char* double2hex(long double num, char* buff, print_format format)
+static char* double2hex(f128 num, char* buff, print_format format)
 {
 	int offset, what_nibble = 0;
 	char* wrk_byte_ptr;
 	char *p, *q;
 	char working_byte;
-	long double ld;
-	short* sptr;
-	short snum;
-	long exp;
+	f128 ld;
+	s16* sptr;
+	s16 snum;
+	s32 exp;
 	print_format exp_format;
 	int hex_precision;
 	decform form;
@@ -522,7 +522,7 @@ static char* double2hex(long double num, char* buff, print_format format)
 
 	p    = buff;
 	ld   = num;
-	sptr = (short*)&ld;
+	sptr = (s16*)&ld;
 
 	if (format.precision > 509) {
 		return 0;
@@ -696,7 +696,7 @@ static void round_decimal(decimal* dec, int new_length)
  * @note Address: 0x800C7FA8
  * @note Size: 0x71C
  */
-static char* float2str(long double num, char* buff, print_format format)
+static char* float2str(f128 num, char* buff, print_format format)
 {
 	decimal dec;
 	decform form;
@@ -928,9 +928,9 @@ static int __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* Wr
 	const char* format_ptr;
 	const char* curr_format;
 	print_format format;
-	long long_num;
-	long long long_long_num;
-	long double long_double_num;
+	s32 long_num;
+	s64 long_long_num;
+	f128 long_double_num;
 	char buff[512];
 	char* buff_ptr;
 	char* string_end;
@@ -965,19 +965,19 @@ static int __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* Wr
 		case 'd':
 		case 'i':
 			if (format.argument_options == long_argument) {
-				long_num = va_arg(arg, long);
+				long_num = va_arg(arg, s32);
 			} else if (format.argument_options == long_long_argument) {
-				long_long_num = va_arg(arg, long long);
+				long_long_num = va_arg(arg, s64);
 			} else {
 				long_num = va_arg(arg, int);
 			}
 
 			if (format.argument_options == short_argument) {
-				long_num = (short)long_num;
+				long_num = (s16)long_num;
 			}
 
 			if (format.argument_options == char_argument) {
-				long_num = (signed char)long_num;
+				long_num = (s8)long_num;
 			}
 
 			if ((format.argument_options == long_long_argument)) {
@@ -998,19 +998,19 @@ static int __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* Wr
 		case 'x':
 		case 'X':
 			if (format.argument_options == long_argument) {
-				long_num = va_arg(arg, unsigned long);
+				long_num = va_arg(arg, u32);
 			} else if (format.argument_options == long_long_argument) {
-				long_long_num = va_arg(arg, long long);
+				long_long_num = va_arg(arg, s64);
 			} else {
-				long_num = va_arg(arg, unsigned int);
+				long_num = va_arg(arg, uint);
 			}
 
 			if (format.argument_options == short_argument) {
-				long_num = (unsigned short)long_num;
+				long_num = (u16)long_num;
 			}
 
 			if (format.argument_options == char_argument) {
-				long_num = (unsigned char)long_num;
+				long_num = (u8)long_num;
 			}
 
 			if ((format.argument_options == long_long_argument)) {
@@ -1033,9 +1033,9 @@ static int __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* Wr
 		case 'g':
 		case 'G':
 			if (format.argument_options == long_double_argument) {
-				long_double_num = va_arg(arg, long double);
+				long_double_num = va_arg(arg, f128);
 			} else {
-				long_double_num = va_arg(arg, double);
+				long_double_num = va_arg(arg, f64);
 			}
 
 			if (!(buff_ptr = float2str(long_double_num, buff + 512, format))) {
@@ -1048,9 +1048,9 @@ static int __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* Wr
 		case 'a':
 		case 'A':
 			if (format.argument_options == long_double_argument) {
-				long_double_num = va_arg(arg, long double);
+				long_double_num = va_arg(arg, f128);
 			} else {
-				long_double_num = va_arg(arg, double);
+				long_double_num = va_arg(arg, f64);
 			}
 
 			if (!(buff_ptr = double2hex(long_double_num, buff + 512, format))) {
@@ -1082,7 +1082,7 @@ static int __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* Wr
 			}
 
 			if (format.alternate_form) {
-				num_chars = (unsigned char)*buff_ptr++;
+				num_chars = (u8)*buff_ptr++;
 
 				if (format.precision_specified && num_chars > format.precision) {
 					num_chars = format.precision;
@@ -1090,7 +1090,7 @@ static int __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* Wr
 			} else if (format.precision_specified) {
 				num_chars = format.precision;
 
-				if ((string_end = (char*)memchr((unsigned char*)buff_ptr, 0, num_chars)) != 0) {
+				if ((string_end = (char*)memchr((u8*)buff_ptr, 0, num_chars)) != 0) {
 					num_chars = string_end - buff_ptr;
 				}
 			} else {
@@ -1107,13 +1107,13 @@ static int __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* Wr
 				*(int*)buff_ptr = chars_written;
 				break;
 			case short_argument:
-				*(short*)buff_ptr = chars_written;
+				*(s16*)buff_ptr = chars_written;
 				break;
 			case long_argument:
-				*(long*)buff_ptr = chars_written;
+				*(s32*)buff_ptr = chars_written;
 				break;
 			case long_long_argument:
-				*(long long*)buff_ptr = chars_written;
+				*(s64*)buff_ptr = chars_written;
 				break;
 			}
 

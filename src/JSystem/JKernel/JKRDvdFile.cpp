@@ -161,7 +161,7 @@ int JKRDvdFile::writeData(const void* addr, s32 length, s32 offset) { return wri
  * @note Address: 0x8001D5CC
  * @note Size: 0x54
  */
-long JKRDvdFile::sync()
+s32 JKRDvdFile::sync()
 {
 	void* buffer[1];
 	OSLockMutex(&mDvdMutex);

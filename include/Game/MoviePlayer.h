@@ -237,7 +237,7 @@ struct MoviePlayer : public JKRDisposer {
 	void skip();
 	bool start(Camera*);
 	bool stop();
-	void unsuspend(long, bool);
+	void unsuspend(s32, bool);
 	bool update(Controller*, Controller*);
 
 	// unused/inlined
@@ -249,7 +249,7 @@ struct MoviePlayer : public JKRDisposer {
 	void hasSuspendedContext();
 	void getSuspendedContext();
 	void do_stop();
-	void suspend(long);
+	void suspend(s32);
 	void isLoadingBlack();
 	void draw2d();
 

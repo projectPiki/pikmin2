@@ -42,9 +42,9 @@
 #include "fdlibm.h"
 
 #ifdef __STDC__
-static const double
+static const f64
 #else
-static double
+static f64
 #endif
     tiny
     = 1.0e-300,
@@ -54,14 +54,15 @@ static double
     pi_lo  = 1.2246467991473531772E-16;             /* 0x3CA1A626, 0x33145C07 */
 
 #ifdef __STDC__
-double __ieee754_atan2(double y, double x)
+f64 __ieee754_atan2(f64 y, f64 x)
 #else
-double __ieee754_atan2(y, x) double y, x;
+f64 __ieee754_atan2(y, x)
+f64 y, x;
 #endif
 {
-	double z;
+	f64 z;
 	int k, m, hx, hy, ix, iy;
-	unsigned lx, ly;
+	uint lx, ly;
 
 	hx = __HI(x);
 	ix = hx & 0x7fffffff;

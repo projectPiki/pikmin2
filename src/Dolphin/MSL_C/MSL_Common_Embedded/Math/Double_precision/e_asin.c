@@ -45,9 +45,9 @@
 #include "math.h"
 
 #ifdef __STDC__
-static const double
+static const f64
 #else
-static double
+static f64
 #endif
     one
     = 1.00000000000000000000e+00,                            /* 0x3FF00000, 0x00000000 */
@@ -67,12 +67,12 @@ static double
     qS4 = 7.70381505559019352791e-02;                        /* 0x3FB3B8C5, 0xB12E9282 */
 
 #ifdef __STDC__
-double __ieee754_asin(double x)
+f64 __ieee754_asin(f64 x)
 #else
-double __ieee754_asin(x) double x;
+f64 __ieee754_asin(x) f64 x;
 #endif
 {
-	double t, w, p, q, c, r, s;
+	f64 t, w, p, q, c, r, s;
 	int hx, ix;
 	hx = __HI(x);
 	ix = hx & 0x7fffffff;

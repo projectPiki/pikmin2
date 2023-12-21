@@ -43,7 +43,7 @@ namespace JStudio {
  * @note Address: N/A
  * @note Size: 0x158
  */
-void math::getRotation_xyz(float (*)[4], float, float, float)
+void math::getRotation_xyz(f32 (*)[4], f32, f32, f32)
 {
 	// UNUSED FUNCTION
 }
@@ -52,7 +52,7 @@ void math::getRotation_xyz(float (*)[4], float, float, float)
  * @note Address: 0x80010FC4
  * @note Size: 0x1B0
  */
-void math::getTransformation_SRxyzT(float (*)[4], Vec const&, Vec const&, Vec const&)
+void math::getTransformation_SRxyzT(f32 (*)[4], Vec const&, Vec const&, Vec const&)
 {
 	/*
 	.loc_0x0:
@@ -171,7 +171,7 @@ void math::getTransformation_SRxyzT(float (*)[4], Vec const&, Vec const&, Vec co
  * @note Address: N/A
  * @note Size: 0x1B4
  */
-void math::transform_SRxyzT(float (*)[4], float const (*)[4], Vec const&, Vec const&, Vec const&)
+void math::transform_SRxyzT(f32 (*)[4], f32 const (*)[4], Vec const&, Vec const&, Vec const&)
 {
 	// UNUSED FUNCTION
 }
@@ -180,7 +180,7 @@ void math::transform_SRxyzT(float (*)[4], float const (*)[4], Vec const&, Vec co
  * @note Address: 0x80011174
  * @note Size: 0x254
  */
-void math::getFromTransformation_SRxyzT(Vec*, Vec*, Vec*, float const (*)[4])
+void math::getFromTransformation_SRxyzT(Vec*, Vec*, Vec*, f32 const (*)[4])
 {
 	/*
 	stwu     r1, -0x80(r1)

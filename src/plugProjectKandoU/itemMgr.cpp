@@ -3294,7 +3294,7 @@ BaseItem* TNodeItemMgr::get(void* item)
  * @note Address: 0x801CFFE0
  * @note Size: 0x1F4
  */
-// void ObjectMgr<Game::BaseItem>::doSimulation(float)
+// void ObjectMgr<Game::BaseItem>::doSimulation(f32)
 // {
 // 	/*
 // 	stwu     r1, -0x20(r1)
@@ -3711,7 +3711,7 @@ namespace Game {
  * @note Address: 0x801D0458
  * @note Size: 0x8
  */
-// void ObjectMgr<Game::BaseItem>::@28 @doSimulation(float)
+// void ObjectMgr<Game::BaseItem>::@28 @doSimulation(f32)
 // {
 // 	/*
 // 	addi     r3, r3, -28
@@ -3882,7 +3882,7 @@ namespace Game {
  * @note Address: 0x801D04C0
  * @note Size: 0x8
  */
-// void ItemMgr::@28 @doSimulation(float)
+// void ItemMgr::@28 @doSimulation(f32)
 // {
 // 	/*
 // 	addi     r3, r3, -28

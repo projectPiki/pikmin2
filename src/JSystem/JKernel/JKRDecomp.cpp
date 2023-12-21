@@ -12,7 +12,7 @@ JKRDecomp* JKRDecomp::sDecompObject;
  * @note Address: 0x8001C934
  * @note Size: 0x60
  */
-JKRDecomp* JKRDecomp::create(long priority)
+JKRDecomp* JKRDecomp::create(s32 priority)
 {
 
 	if (sDecompObject == nullptr) {
@@ -26,7 +26,7 @@ JKRDecomp* JKRDecomp::create(long priority)
  * @note Size: 0x50
  * __ct
  */
-JKRDecomp::JKRDecomp(long priority)
+JKRDecomp::JKRDecomp(s32 priority)
     : JKRThread(0x4000, 0x10, priority)
 {
 	OSResumeThread(mThread);

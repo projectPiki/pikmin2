@@ -16,14 +16,14 @@ DECL_SECT(".init") extern char _SDA2_BASE_[];
 typedef struct __rom_copy_info {
 	char* rom;
 	char* addr;
-	unsigned int size;
+	uint size;
 } __rom_copy_info;
 
 DECL_SECT(".init") extern __rom_copy_info _rom_copy_info[];
 
 typedef struct __bss_init_info {
 	char* addr;
-	unsigned int size;
+	uint size;
 } __bss_init_info;
 
 DECL_SECT(".init") extern __bss_init_info _bss_init_info[];
@@ -32,7 +32,7 @@ typedef struct __eti_init_info {
 	void* eti_start;
 	void* eti_end;
 	void* code_start;
-	unsigned long code_size;
+	u32 code_size;
 } __eti_init_info;
 
 DECL_SECT(".init") extern __eti_init_info _eti_init_info[];

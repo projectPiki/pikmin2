@@ -6,13 +6,13 @@
  * @note Address: N/A
  * @note Size: 0x70
  */
-static int __count_trailing_zerol(unsigned long x)
+static int __count_trailing_zerol(u32 x)
 {
 	int result           = 0;
-	int bits_not_checked = sizeof(unsigned long) * CHAR_BIT;
+	int bits_not_checked = sizeof(u32) * CHAR_BIT;
 	int n                = bits_not_checked / 2;
 	int mask_size        = n;
-	unsigned long mask   = (~0UL) >> (bits_not_checked - n);
+	u32 mask   = (~0UL) >> (bits_not_checked - n);
 
 	while (bits_not_checked) {
 		if (!(x & mask)) {
@@ -39,15 +39,15 @@ static int __count_trailing_zerol(unsigned long x)
  * @note Address: N/A
  * @note Size: 0xFC
  */
-static int __count_trailing_zero(double x)
+static int __count_trailing_zero(f64 x)
 {
-	unsigned long* l = (unsigned long*)&x;
+	u32* l = (u32*)&x;
 
 	if (l[1] != 0) {
 		return __count_trailing_zerol(l[1]);
 	}
 
-	return (int)(sizeof(unsigned long) * CHAR_BIT + __count_trailing_zerol(l[0] | 0x00100000));
+	return (int)(sizeof(u32) * CHAR_BIT + __count_trailing_zerol(l[0] | 0x00100000));
 }
 
 /**
@@ -206,7 +206,7 @@ void __timesdec(decimal* result, const decimal* x, const decimal* y)
 		accumulator /= 10;
 	}
 
-	result->exp = (short)(x->exp + y->exp);
+	result->exp = (s16)(x->exp + y->exp);
 
 	if (accumulator) {
 		*--ip = (u8)(accumulator);
@@ -237,7 +237,7 @@ void __timesdec(decimal* result, const decimal* x, const decimal* y)
  * @note Address: N/A
  * @note Size: 0xF0
  */
-void __str2dec(decimal* d, const char* s, short exp)
+void __str2dec(decimal* d, const char* s, s16 exp)
 {
 	int i;
 
@@ -275,7 +275,7 @@ void __str2dec(decimal* d, const char* s, short exp)
  * @note Address: 0x800C46FC
  * @note Size: 0x1784
  */
-void __two_exp(decimal* result, long exp)
+void __two_exp(decimal* result, s32 exp)
 {
 	switch (exp) {
 	case -64:
@@ -564,7 +564,7 @@ done:
  * @note Address: 0x800C3D40
  * @note Size: 0x3B4
  */
-void __num2dec_internal(decimal* d, double x)
+void __num2dec_internal(decimal* d, f64 x)
 {
 	s8 sign = (s8)(signbit(x) != 0);
 
@@ -590,9 +590,9 @@ void __num2dec_internal(decimal* d, double x)
 
 	{
 		int exp;
-		double frac           = frexp(x, &exp);
-		long num_bits_extract = DBL_MANT_DIG - __count_trailing_zero(frac);
-		double integer;
+		f64 frac           = frexp(x, &exp);
+		s32 num_bits_extract = DBL_MANT_DIG - __count_trailing_zero(frac);
+		f64 integer;
 		decimal int_d, pow2_d;
 
 		__two_exp(&pow2_d, exp - num_bits_extract);
@@ -607,9 +607,9 @@ void __num2dec_internal(decimal* d, double x)
  * @note Address: 0x800C3B9C
  * @note Size: 0x1A4
  */
-void __num2dec(const decform* form, double x, decimal* d)
+void __num2dec(const decform* form, f64 x, decimal* d)
 {
-	short digits = form->digits;
+	s16 digits = form->digits;
 	int i;
 	__num2dec_internal(d, x);
 
@@ -638,7 +638,7 @@ void __num2dec(const decform* form, double x, decimal* d)
  * @note Address: 0x800C2B1C
  * @note Size: 0x1080
  */
-double __dec2num(const decimal* d)
+f64 __dec2num(const decimal* d)
 {
 	if (d->sig.length <= 0) {
 		return copysign(0.0, d->sign == 0 ? 1.0 : -1.0);
@@ -648,9 +648,9 @@ double __dec2num(const decimal* d)
 	case '0':
 		return copysign(0.0, d->sign == 0 ? 1.0 : -1.0);
 	case 'I':
-		return copysign((double)INFINITY, d->sign == 0 ? 1.0 : -1.0);
+		return copysign((f64)INFINITY, d->sign == 0 ? 1.0 : -1.0);
 	case 'N': {
-		double result;
+		f64 result;
 		u64* ll = (u64*)&result;
 
 		*ll = 0x7FF0000000000000;
@@ -660,7 +660,7 @@ double __dec2num(const decimal* d)
 		if (d->sig.length == 1)
 			*ll |= 0x8000000000000;
 		else {
-			unsigned char* p    = (unsigned char*)&result + 1;
+			u8* p    = (u8*)&result + 1;
 			int placed_non_zero = 0;
 			int low             = 1;
 			int i;
@@ -669,12 +669,12 @@ double __dec2num(const decimal* d)
 				e = 14;
 
 			for (i = 1; i < e; ++i) {
-				unsigned char c = d->sig.text[i];
+				u8 c = d->sig.text[i];
 
 				if (isdigit(c)) {
 					c -= '0';
 				} else {
-					c = (unsigned char)(_tolower(c) - 'a' + 10);
+					c = (u8)(_tolower(c) - 'a' + 10);
 				}
 
 				if (c != 0) {
@@ -684,7 +684,7 @@ double __dec2num(const decimal* d)
 				if (low) {
 					*p++ |= c;
 				} else {
-					*p = (unsigned char)(c << 4);
+					*p = (u8)(c << 4);
 				}
 
 				low = !low;
@@ -700,12 +700,12 @@ double __dec2num(const decimal* d)
 	}
 
 	{
-		static double pow_10[8] = { 1e1, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7, 1e8 };
+		static f64 pow_10[8] = { 1e1, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7, 1e8 };
 
 		decimal dec = *d;
 		u8* i       = dec.sig.text;
 		u8* e       = i + dec.sig.length;
-		double first_guess;
+		f64 first_guess;
 		int exponent;
 
 		for (; i < e; ++i)
@@ -719,7 +719,7 @@ double __dec2num(const decimal* d)
 		while (i < e) {
 			u32 ival = 0;
 			int j;
-			double temp1, temp2;
+			f64 temp1, temp2;
 			int ndig = (int)(e - i) % 8;
 
 			if (ndig == 0)
@@ -767,7 +767,7 @@ double __dec2num(const decimal* d)
 			if (__less_dec(&feedback1, &dec)) {
 
 				decimal feedback2, difflow, diffhigh;
-				double next_guess = first_guess;
+				f64 next_guess = first_guess;
 				u64* ull          = (u64*)&next_guess;
 				++*ull;
 
@@ -801,8 +801,8 @@ double __dec2num(const decimal* d)
 				}
 			} else {
 				decimal feedback2, difflow, diffhigh;
-				double next_guess       = first_guess;
-				unsigned long long* ull = (unsigned long long*)&next_guess;
+				f64 next_guess       = first_guess;
+				u64* ull = (u64*)&next_guess;
 				--*ull;
 
 				__num2dec_internal(&feedback2, next_guess);
@@ -818,7 +818,7 @@ double __dec2num(const decimal* d)
 				__minus_dec(&diffhigh, &feedback1, &dec);
 
 				if (__equals_dec(&difflow, &diffhigh)) {
-					if (*(unsigned long long*)&first_guess & 1) {
+					if (*(u64*)&first_guess & 1) {
 						first_guess = next_guess;
 					}
 				} else if (__less_dec(&difflow, &diffhigh)) {

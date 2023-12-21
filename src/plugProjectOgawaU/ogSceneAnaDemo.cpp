@@ -8,7 +8,7 @@ namespace newScreen {
  * @note Address: 0x8031EA58
  * @note Size: 0x80
  */
-AnaDemo::AnaDemo(long sceneType)
+AnaDemo::AnaDemo(s32 sceneType)
 {
 	if (sceneType == SCENE_CAVE_IN_MENU || sceneType == SCENE_KANKETU_MENU || sceneType == SCENE_CAVE_MORE_MENU) {
 		mSceneType = (SceneType)sceneType;

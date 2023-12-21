@@ -15,7 +15,7 @@
 
 /**
  * __kernel_rem_pio2(x,y,e0,nx,prec,ipio2)
- * double x[],y[]; int e0,nx,prec; int ipio2[];
+ * f64 x[],y[]; int e0,nx,prec; int ipio2[];
  *
  * __kernel_rem_pio2 return the last three digits of N with
  *		y = x - N*pi/2
@@ -53,9 +53,9 @@
  *		The actual value is the sum of them. Thus for 113-bit
  *		precison, one may have to do something like:
  *
- *		long double t,w,r_head, r_tail;
- *		t = (long double)y[2] + (long double)y[1];
- *		w = (long double)y[0];
+ *		f128 t,w,r_head, r_tail;
+ *		t = (f128)y[2] + (f128)y[1];
+ *		w = (f128)y[0];
  *		r_head = t+w;
  *		r_tail = w - (r_head - t);
  *
@@ -77,7 +77,7 @@
  *			ipio2[i] * 2^(-24(i+1)).
  *
  * External function:
- *	double ldexp(), floor();
+ *	f64 ldexp(), floor();
  *
  *
  * Here is the description of some local variables:
@@ -138,9 +138,9 @@ static int init_jk[] = { 2, 3, 4, 6 }; /*- cc 020130 -*/
 #endif
 
 #ifdef __STDC__
-static const double PIo2[] = {
+static const f64 PIo2[] = {
 #else
-static double PIo2[] = {
+static f64 PIo2[] = {
 #endif
 	1.57079625129699707031e+00, /* 0x3FF921FB, 0x40000000 */
 	7.54978941586159635335e-08, /* 0x3E74442D, 0x00000000 */
@@ -153,9 +153,9 @@ static double PIo2[] = {
 };
 
 #ifdef __STDC__
-static const double
+static const f64
 #else
-static double
+static f64
 #endif
     zero
     = 0.0,
@@ -163,17 +163,16 @@ static double
     twon24 = 5.96046447753906250000e-08;           /* 0x3E700000, 0x00000000 */
 
 #ifdef __STDC__
-int __kernel_rem_pio2(double* x, double* y, int e0, int nx, int prec, const int* ipio2) /*- cc 020130 -*/
+int __kernel_rem_pio2(f64* x, f64* y, int e0, int nx, int prec, const int* ipio2) /*- cc 020130 -*/
 #else
 int __kernel_rem_pio2(x, y, e0, nx, prec, ipio2) /*- cc 020130 -*/
-    double x[],
-    y[];
+f64 x[], y[];
 int e0, nx, prec;
 int ipio2[]; /*- cc 020130 -*/
 #endif
 {
 	int jz, jx, jv, jp, jk, carry, n, iq[20], i, j, k, m, q0, ih; /*- cc 020130 -*/
-	double z, fw, f[20], fq[20], q[20];
+	f64 z, fw, f[20], fq[20], q[20];
 
 	/* initialize jk*/
 	jk = init_jk[prec];
@@ -190,7 +189,7 @@ int ipio2[]; /*- cc 020130 -*/
 	j = jv - jx;
 	m = jx + jk;
 	for (i = 0; i <= m; i++, j++)
-		f[i] = (j < 0) ? zero : (double)ipio2[j];
+		f[i] = (j < 0) ? zero : (f64)ipio2[j];
 
 	/* compute q[0],q[1],...q[jk] */
 	for (i = 0; i <= jk; i++) {
@@ -203,8 +202,8 @@ int ipio2[]; /*- cc 020130 -*/
 recompute:
 	/* distill q[] into iq[] reversingly */
 	for (i = 0, j = jz, z = q[jz]; j > 0; i++, j--) {
-		fw    = (double)((int)(twon24 * z)); /*- cc 020130 -*/
-		iq[i] = (int)(z - two24 * fw);       /*- cc 020130 -*/
+		fw    = (f64)((int)(twon24 * z)); /*- cc 020130 -*/
+		iq[i] = (int)(z - two24 * fw);    /*- cc 020130 -*/
 		z     = q[j - 1] + fw;
 	}
 
@@ -212,7 +211,7 @@ recompute:
 	z = ldexp(z, q0);            /* actual value of z */
 	z -= 8.0 * floor(z * 0.125); /* trim off integer >= 8 */
 	n = (int)z;                  /*- cc 020130 -*/
-	z -= (double)n;
+	z -= (f64)n;
 	ih = 0;
 	if (q0 > 0) { /* need iq[jz-1] to determine n */
 		i = (iq[jz - 1] >> (24 - q0));
@@ -264,7 +263,7 @@ recompute:
 				; /* k = no. of terms needed */
 
 			for (i = jz + 1; i <= jz + k; i++) { /* add q[jz+1] to q[jz+k] */
-				f[jx + i] = (double)ipio2[jv + i];
+				f[jx + i] = (f64)ipio2[jv + i];
 				for (j = 0, fw = 0.0; j <= jx; j++)
 					fw += x[j] * f[jx + i - j];
 				q[i] = fw;
@@ -285,8 +284,8 @@ recompute:
 	} else { /* break z into 24-bit if necessary */
 		z = ldexp(z, -q0);
 		if (z >= two24) {
-			fw     = (double)((int)(twon24 * z)); /*- cc 020130 -*/
-			iq[jz] = (int)(z - two24 * fw);       /*- cc 020130 -*/
+			fw     = (f64)((int)(twon24 * z)); /*- cc 020130 -*/
+			iq[jz] = (int)(z - two24 * fw);    /*- cc 020130 -*/
 			jz += 1;
 			q0 += 24;
 			iq[jz] = (int)fw; /*- cc 020130 -*/
@@ -297,7 +296,7 @@ recompute:
 	/* convert integer "bit" chunk to floating-point value */
 	fw = ldexp(one, q0);
 	for (i = jz; i >= 0; i--) {
-		q[i] = fw * (double)iq[i];
+		q[i] = fw * (f64)iq[i];
 		fw *= twon24;
 	}
 

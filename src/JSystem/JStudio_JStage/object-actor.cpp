@@ -749,7 +749,7 @@ lbl_80012BD0:
  * @note Address: 0x80012BE8
  * @note Size: 0xE4
  */
-void TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::operator()(float, JStudio::TAdaptor*) const
+void TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::operator()(f32, JStudio::TAdaptor*) const
 {
 	/*
 	.loc_0x0:
@@ -1133,7 +1133,7 @@ void TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::operator()(float, JStudio::TAda
  * @note Address: 0x8001315C
  * @note Size: 0x30
  */
-// void TVariableValueOutput_object_<TAdaptor_actor, JStage::TActor>::operator()(float,
+// void TVariableValueOutput_object_<TAdaptor_actor, JStage::TActor>::operator()(f32,
 //                                                                                                               JStudio::TAdaptor*) const
 // {
 // 	/*

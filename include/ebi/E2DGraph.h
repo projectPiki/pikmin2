@@ -27,7 +27,7 @@ void E2DPane_setTreeInfluencedAlpha(J2DPane*, bool);
 void E2DPane_setTreeShow(J2DPane*);
 void E2DPane_setTreeHide(J2DPane*);
 J2DPane* E2DScreen_searchAssert(J2DScreen*, u64);
-void EUTDrawWindow(J2DGrafContext&, long, long, long, long);
+void EUTDrawWindow(J2DGrafContext&, s32, s32, s32, s32);
 } // namespace ebi
 
 #endif

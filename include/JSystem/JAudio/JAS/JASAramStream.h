@@ -31,7 +31,7 @@ struct JASAramStream {
 	JASAramStream();
 
 	void init(u32, u32, JASAramStreamCallback, void*);
-	BOOL prepare(long inode, int p2);
+	BOOL prepare(s32 inode, int p2);
 	BOOL start();
 	int stop(u16);
 	bool pause(bool);
@@ -49,8 +49,8 @@ struct JASAramStream {
 	static bool loadToAramTask(void*);
 	static void finishTask(void*);
 	static void prepareFinishTask(void*);
-	static long channelProcCallback(void*);
-	static long dvdErrorCheck(void*);
+	static s32 channelProcCallback(void*);
+	static s32 dvdErrorCheck(void*);
 	static void channelCallback(u32, JASChannel*, JASDsp::TChannel*, void*);
 
 	// unused/inlined:

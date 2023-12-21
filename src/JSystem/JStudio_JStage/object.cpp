@@ -15,7 +15,7 @@
  * @note Address: 0x80011DCC
  * @note Size: 0x98
  */
-bool JStudio_JStage::transform_toGlobalFromLocal(float (*p1)[4],
+bool JStudio_JStage::transform_toGlobalFromLocal(f32 (*p1)[4],
                                                  const JStudio::TControl::TTransform_translation_rotation_scaling& transform,
                                                  const JStage::TObject* object, u32 p4)
 {
@@ -37,7 +37,7 @@ bool JStudio_JStage::transform_toGlobalFromLocal(float (*p1)[4],
  * @note Size: 0x98
  * transform_toGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransform_positionPCQ26JStage7TObjectUl
  */
-bool JStudio_JStage::transform_toGlobalFromLocal(float (*p1)[4], const JStudio::TControl::TTransform_position& transform,
+bool JStudio_JStage::transform_toGlobalFromLocal(f32 (*p1)[4], const JStudio::TControl::TTransform_position& transform,
                                                  const JStage::TObject* object, u32 p4)
 {
 	if (object == nullptr) {
@@ -57,7 +57,7 @@ bool JStudio_JStage::transform_toGlobalFromLocal(float (*p1)[4], const JStudio::
  * @note Address: 0x80011EFC
  * @note Size: 0xA4
  */
-bool JStudio_JStage::transform_toLocalFromGlobal(float (*p1)[4],
+bool JStudio_JStage::transform_toLocalFromGlobal(f32 (*p1)[4],
                                                  const JStudio::TControl::TTransform_translation_rotation_scaling& transform,
                                                  const JStage::TObject* object, u32 p4)
 {
@@ -81,7 +81,7 @@ bool JStudio_JStage::transform_toLocalFromGlobal(float (*p1)[4],
  * @note Size: 0xA4
  * transform_toLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransform_positionPCQ26JStage7TObjectUl
  */
-bool JStudio_JStage::transform_toLocalFromGlobal(float (*p1)[4], const JStudio::TControl::TTransform_position& transform,
+bool JStudio_JStage::transform_toLocalFromGlobal(f32 (*p1)[4], const JStudio::TControl::TTransform_position& transform,
                                                  const JStage::TObject* object, u32 p4)
 {
 	if (object == nullptr) {

@@ -194,7 +194,7 @@ void JASOscillator::initStart(const Data* data)
  */
 void JASOscillator::incCounter()
 {
-	const short* v1;
+	const s16* v1;
 	switch (_1C) {
 	case 0:
 	case 2:
@@ -392,7 +392,7 @@ lbl_800A2E74:
  * @note Address: 0x800A2E90
  * @note Size: 0x374
  */
-f32 JASOscillator::calc(const short*)
+f32 JASOscillator::calc(const s16*)
 {
 	/*
 	stwu     r1, -0x50(r1)

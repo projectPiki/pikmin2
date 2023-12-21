@@ -3,7 +3,7 @@
 
 #ifdef __cplusplus
 namespace std {
-typedef long ptrdiff_t;
+typedef s32 ptrdiff_t;
 
 struct input_iterator_tag {
 };

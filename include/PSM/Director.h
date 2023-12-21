@@ -130,7 +130,7 @@ struct ActorDirector_TempoChange : public TempoChangeDirectorBase {
 };
 
 struct TrackOnDirectorBase : public SwitcherDirector {
-	TrackOnDirectorBase(int, const char*, long, long);
+	TrackOnDirectorBase(int, const char*, s32, s32);
 
 	virtual ~TrackOnDirectorBase() { }                      // _08 (weak)
 	virtual void directOnTrack(::PSSystem::SeqTrackBase&);  // _20
@@ -139,8 +139,8 @@ struct TrackOnDirectorBase : public SwitcherDirector {
 
 	// _00     = VTBL
 	// _00-_48 = SwitcherDirector
-	long mFadeInValue;  // _48
-	long mFadeOutValue; // _4C
+	s32 mFadeInValue;  // _48
+	s32 mFadeOutValue; // _4C
 	u8 mEnableType;     // _50
 };
 
@@ -224,7 +224,7 @@ struct ExiteDirector : public TrackOnDirectorBase {
  * @size{0x58}
  */
 struct ActorDirector_TrackOn : public TrackOnDirectorBase {
-	ActorDirector_TrackOn(const char*, int, long, long);
+	ActorDirector_TrackOn(const char*, int, s32, s32);
 
 	virtual ~ActorDirector_TrackOn() { } // _08 (weak)
 	virtual void execInner();            // _1C
@@ -238,7 +238,7 @@ struct ActorDirector_TrackOn : public TrackOnDirectorBase {
  * @size{0x58}
  */
 struct GroundDirector_Cave : public ActorDirector_TrackOn {
-	GroundDirector_Cave(const char* name, int tracks, long a1, long a2)
+	GroundDirector_Cave(const char* name, int tracks, s32 a1, s32 a2)
 	    : ActorDirector_TrackOn(name, tracks, a1, a2)
 	{
 	}
@@ -255,7 +255,7 @@ struct GroundDirector_Cave : public ActorDirector_TrackOn {
  * @size{0x68}
  */
 struct ActorDirector_Scaled : public TrackOnDirector_Scaled {
-	ActorDirector_Scaled(const char*, int, f32, f32, long, long, u32);
+	ActorDirector_Scaled(const char*, int, f32, f32, s32, s32, u32);
 
 	virtual ~ActorDirector_Scaled() { }               // _08 (weak)
 	virtual void execInner();                         // _1C
@@ -270,7 +270,7 @@ struct ActorDirector_Scaled : public TrackOnDirector_Scaled {
  * @size{0x6C}
  */
 struct ActorDirector_Enemy : public ActorDirector_Scaled {
-	ActorDirector_Enemy(const char*, int, long, long, u32);
+	ActorDirector_Enemy(const char*, int, s32, s32, u32);
 
 	virtual ~ActorDirector_Enemy() { }                // _08 (weak)
 	virtual void underDirection();                    // _18
@@ -287,7 +287,7 @@ struct ActorDirector_Enemy : public ActorDirector_Scaled {
  * @size{0x6C}
  */
 struct ActorDirector_Battle : public ActorDirector_Enemy {
-	ActorDirector_Battle(const char* name, int tracks, long a1, long a2, u32 a3)
+	ActorDirector_Battle(const char* name, int tracks, s32 a1, s32 a2, u32 a3)
 	    : ActorDirector_Enemy(name, tracks, a1, a2, a3)
 	{
 	}
@@ -304,7 +304,7 @@ struct ActorDirector_Battle : public ActorDirector_Enemy {
  * @size{0x6C}
  */
 struct ActorDirector_Kehai : public ActorDirector_Enemy {
-	ActorDirector_Kehai(const char* name, int tracks, long a1, long a2, u32 a3)
+	ActorDirector_Kehai(const char* name, int tracks, s32 a1, s32 a2, u32 a3)
 	    : ActorDirector_Enemy(name, tracks, a1, a2, a3)
 	{
 	}

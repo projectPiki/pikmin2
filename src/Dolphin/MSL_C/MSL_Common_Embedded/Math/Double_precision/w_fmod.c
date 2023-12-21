@@ -1,11 +1,13 @@
-extern double __ieee754_fmod();
+#include "types.h"
+
+extern f64 __ieee754_fmod();
 
 /**
  * @note Address: 0x800CF9CC
  * @note Size: 0x20
  */
 
-double fmod(double __x, double __y) { return (double)__ieee754_fmod(); }
+f64 fmod(f64 __x, f64 __y) { return (f64)__ieee754_fmod(); }
 
 /*
 .loc_0x0:

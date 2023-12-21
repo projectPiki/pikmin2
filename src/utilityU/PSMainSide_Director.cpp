@@ -732,7 +732,7 @@ lbl_80457294:
  * @note Address: 0x804572B0
  * @note Size: 0x7C
  */
-TrackOnDirectorBase::TrackOnDirectorBase(int type, const char* name, long in, long out)
+TrackOnDirectorBase::TrackOnDirectorBase(int type, const char* name, s32 in, s32 out)
     : SwitcherDirector(type, name)
     , mFadeInValue(in)
     , mFadeOutValue(out)
@@ -892,7 +892,7 @@ void ListDirectorActor::onUpdateFromMasterD()
  * @note Address: 0x80457684
  * @note Size: 0x98
  */
-ActorDirector_TrackOn::ActorDirector_TrackOn(const char* p1, int p2, long p3, long p4)
+ActorDirector_TrackOn::ActorDirector_TrackOn(const char* p1, int p2, s32 p3, s32 p4)
     : TrackOnDirectorBase(p2, p1, p3, p4)
     , mActor(nullptr)
 {
@@ -953,7 +953,7 @@ void ActorDirector_TrackOn::execInner()
  * @note Address: 0x80457758
  * @note Size: 0xF4
  */
-ActorDirector_Scaled::ActorDirector_Scaled(const char* name, int p2, f32 p3, f32 p4, long p5, long p6, u32 p7)
+ActorDirector_Scaled::ActorDirector_Scaled(const char* name, int p2, f32 p3, f32 p4, s32 p5, s32 p6, u32 p7)
     : TrackOnDirector_Scaled(name, p2, p3, p4, p5, p6, p7)
 {
 }
@@ -1443,7 +1443,7 @@ lbl_80457ED8:
  * @note Address: 0x80457F3C
  * @note Size: 0xE4
  */
-ActorDirector_Enemy::ActorDirector_Enemy(const char* name, int p2, long p3, long p4, u32 p5)
+ActorDirector_Enemy::ActorDirector_Enemy(const char* name, int p2, s32 p3, s32 p4, u32 p5)
     : ActorDirector_Scaled(name, p2, 1.0f, 0.0f, p3, p4, p5)
     , mGameObject(nullptr)
 {

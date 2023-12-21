@@ -38,7 +38,7 @@ struct TCoordMgr : public CNode {
 	void copyCoordinate(Vector2f*);
 	void readCoordinate(JKRArchive*, char*);
 	void readCoordinate(Stream&);
-	void getDestPos(long);
+	void getDestPos(s32);
 
 	// _00     = VTBL
 	// _00-_18 = CNode

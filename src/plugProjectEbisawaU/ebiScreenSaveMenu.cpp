@@ -227,7 +227,7 @@ void TSaveMenu::loadResource()
  * @note Address: 0x803DDA64
  * @note Size: 0x94
  */
-bool TSaveMenu::openMsg(long id)
+bool TSaveMenu::openMsg(s32 id)
 {
 	P2ASSERTBOUNDSLINE(239, 0, id, 4);
 

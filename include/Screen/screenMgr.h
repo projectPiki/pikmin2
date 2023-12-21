@@ -6,7 +6,7 @@
 // no idea if theres a better place to put this, its kind of a random single function
 namespace kh {
 namespace Screen {
-::Screen::SceneBase* createScene_Koono(long);
+::Screen::SceneBase* createScene_Koono(s32);
 } // namespace Screen
 } // namespace kh
 
@@ -42,7 +42,7 @@ struct Mgr : public MgrBase {
 	virtual bool reset();                              // _18
 	virtual void setColorBG(JUtility::TColor&) { }     // _1C (weak)
 	virtual void setBGMode(int) { }                    // _20 (weak)
-	virtual ::Screen::SceneBase* doGetSceneBase(long); // _24
+	virtual ::Screen::SceneBase* doGetSceneBase(s32); // _24
 	virtual void drawBG(Graphics&) { }                 // _28 (weak)
 	virtual void drawWipe(Graphics&) { }               // _2C (weak)
 
@@ -68,7 +68,7 @@ struct Mgr : public MgrBase {
 	// unused/inline
 	void create();
 	void updateCurrentScene();
-	SceneBase* getSceneBase(long);
+	SceneBase* getSceneBase(s32);
 	void createNewBackupSceneInfo(SceneBase* scene);
 
 	inline void checkController()
@@ -102,8 +102,8 @@ struct DispMemberCpy {
 } // namespace Screen
 
 namespace newScreen {
-::Screen::SceneBase* createScene_Ogawa(long);
-::Screen::SceneBase* createScene_Morimura(long);
+::Screen::SceneBase* createScene_Ogawa(s32);
+::Screen::SceneBase* createScene_Morimura(s32);
 
 struct Mgr : public Screen::Mgr {
 	Mgr()
@@ -119,7 +119,7 @@ struct Mgr : public Screen::Mgr {
 	virtual bool reset();                                              // _18
 	virtual void setColorBG(JUtility::TColor& col) { mBgColor = col; } // _1C (weak)
 	virtual void setBGMode(int mode) { mBgMode = mode; }               // _20 (weak)
-	virtual ::Screen::SceneBase* doGetSceneBase(long);                 // _24
+	virtual ::Screen::SceneBase* doGetSceneBase(s32);                 // _24
 	virtual void drawBG(Graphics&);                                    // _28
 
 	static Mgr* create();

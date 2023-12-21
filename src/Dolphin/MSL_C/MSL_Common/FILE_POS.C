@@ -22,7 +22,7 @@ int ftell(FILE* stream)
 	int retval;
 
 	__begin_critical_region(stdin_access);
-	retval = (long)_ftell(stream);
+	retval = (s32)_ftell(stream);
 	__end_critical_region(stdin_access);
 	return retval;
 }

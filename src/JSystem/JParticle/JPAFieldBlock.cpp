@@ -139,7 +139,7 @@ void doTheThing(Vec& vec)
 	vec.z *= v1;
 }
 
-typedef float RawVec[3];
+typedef f32 RawVec[3];
 
 void getContiguousVecFromMtx(const Mtx& mtx, RawVec& output, int p3)
 {
@@ -183,7 +183,7 @@ void JPAFieldBase::calcAffect(JPAFieldBlock*, JPABaseParticle*)
  * @note Address: N/A
  * @note Size: 0x9C
  */
-void JPAFieldBase::calcFadeAffect(JPAFieldBlock*, float) const
+void JPAFieldBase::calcFadeAffect(JPAFieldBlock*, f32) const
 {
 	// UNUSED FUNCTION
 	// TODO: I suspect this is the switch statement/vector addition at the end of most (all?) calc functions.

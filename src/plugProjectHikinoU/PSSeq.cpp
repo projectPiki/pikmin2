@@ -59,7 +59,7 @@ SeqDataList::~SeqDataList() { }
 int SeqDataList::getSeqVolume(char const* bmsname)
 {
 	char buf[32];
-	volatile u8 volume;
+	vu8 volume;
 	P2ASSERTLINE(36, mFile);
 	RamStream stream(mFile, -1);
 	stream.resetPosition(true, 1);
@@ -250,7 +250,7 @@ lbl_80330FDC:
 int StreamDataList::getStreamVolume(u32 id)
 {
 	char buf[32];
-	volatile u8 volume;
+	vu8 volume;
 	volatile int streamID;
 	P2ASSERTLINE(76, mFile);
 	RamStream stream(mFile, -1);

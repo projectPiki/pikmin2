@@ -5,7 +5,7 @@
  * @note Address: 0x800D2644
  * @note Size: 0x4
  */
-void EXI2_Init(volatile unsigned char** inputPendingPtrRef, AmcEXICallback monitorCallback) { return; }
+void EXI2_Init(vu8** inputPendingPtrRef, AmcEXICallback monitorCallback) { return; }
 
 /**
  * @note Address: 0x800D2648

@@ -166,7 +166,7 @@ void init()
 	}
 	categoryInfoTable = v1;
 	seEntryCancel     = new (JAIBasic::msCurrentHeap, 0x20) u8[JAIGlobalParameter::getParamSeCategoryMax()];
-	seCategoryVolume  = new (JAIBasic::msCurrentHeap, 0x20) float[JAIGlobalParameter::getParamSeCategoryMax()];
+	seCategoryVolume  = new (JAIBasic::msCurrentHeap, 0x20) f32[JAIGlobalParameter::getParamSeCategoryMax()];
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeCategoryMax(); i++) {
 		seEntryCancel[i]    = 0;
 		seCategoryVolume[i] = 1.0f;
@@ -1830,7 +1830,7 @@ lbl_800AF5D4:
  * @note Size: 0x10C
  * checkPlayingSeUpdateMultiplication__Q27JAInter5SeMgrFP5JAISePQ27JAInter13SeqUpdateDataPfPQ27JAInter11MoveParaSetfUcPf
  */
-void checkPlayingSeUpdateMultiplication(JAISe*, JAInter::SeqUpdateData*, float*, JAInter::MoveParaSet*, float, u8, float*)
+void checkPlayingSeUpdateMultiplication(JAISe*, JAInter::SeqUpdateData*, f32*, JAInter::MoveParaSet*, f32, u8, f32*)
 {
 	/*
 	.loc_0x0:
@@ -1917,7 +1917,7 @@ void checkPlayingSeUpdateMultiplication(JAISe*, JAInter::SeqUpdateData*, float*,
  * @note Size: 0x14C
  * checkPlayingSeUpdateAddition__Q27JAInter5SeMgrFP5JAISePQ27JAInter13SeqUpdateDataPfPQ27JAInter11MoveParaSetUcPff
  */
-void checkPlayingSeUpdateAddition(JAISe*, JAInter::SeqUpdateData*, float*, JAInter::MoveParaSet*, u8, float*, float)
+void checkPlayingSeUpdateAddition(JAISe*, JAInter::SeqUpdateData*, f32*, JAInter::MoveParaSet*, u8, f32*, f32)
 {
 	/*
 	.loc_0x0:

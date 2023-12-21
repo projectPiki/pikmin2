@@ -160,7 +160,7 @@ bool TOrimaLightAct::create(Arg* arg)
  * @note Address: 0x803B6A40
  * @note Size: 0x78
  */
-void TCursor::init(long whistleType, long cNum)
+void TCursor::init(s32 whistleType, s32 cNum)
 {
 	if (cNum <= 0 || cNum > 16) {
 		cNum = 16;
@@ -240,7 +240,7 @@ void TCursor::update(Arg* arg)
  * @note Address: 0x803B6D0C
  * @note Size: 0x148
  */
-void TCursor::calcPos_(Vector3f* pos, f32 mag, long id)
+void TCursor::calcPos_(Vector3f* pos, f32 mag, s32 id)
 {
 	f32 angle = mAngleTimer + ((f32)id * 2.0f * PI) / (f32)mContextNum;
 	pos->x    = mag * cosf(angle) + mPosition.x;
@@ -760,7 +760,7 @@ lbl_803B7490:
  * @note Address: 0x803B74C4
  * @note Size: 0x10C
  */
-void createSimpleDead(Vector3f& pos, long type)
+void createSimpleDead(Vector3f& pos, s32 type)
 {
 	P2ASSERTLINE(618, pkEffectMgr);
 	switch (type) {
@@ -878,7 +878,7 @@ void createSimpleDive(Vector3f& pos)
  * @note Address: 0x803B78F0
  * @note Size: 0x98
  */
-void createSimpleChiru(Vector3f& pos, long type)
+void createSimpleChiru(Vector3f& pos, s32 type)
 {
 	P2ASSERTLINE(701, pkEffectMgr);
 	switch (type) {

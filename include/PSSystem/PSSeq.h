@@ -111,9 +111,9 @@ struct JumpBgmSeq : public DirectedBgm {
 	// _6C-_B8  = DirectedBgm
 
 	OSMutex _B8;      // _B8
-	short _D0;        // _D0
+	s16 _D0;        // _D0
 	OSMutex _D4;      // _D4
-	short _EC;        // _EC
+	s16 _EC;        // _EC
 	OSMutex _F0;      // _F0
 	u16 _108;         // _108
 	OSMutex _10C;     // _10C

@@ -84,7 +84,7 @@ void __DSP_exec_task(DSPTaskInfo* curr, DSPTaskInfo* next)
 void __DSP_boot_task(DSPTaskInfo* task)
 {
 
-	volatile u32 mail;
+	vu32 mail;
 
 	while (!DSPCheckMailFromDSP())
 		;

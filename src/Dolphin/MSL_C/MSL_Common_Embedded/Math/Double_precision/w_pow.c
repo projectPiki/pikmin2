@@ -1,11 +1,13 @@
-extern double __ieee754_pow();
+#include "types.h"
+
+extern f64 __ieee754_pow();
 
 /**
  * @note Address: 0x800CFA0C
  * @note Size: 0x20
  */
 
-double pow(double __x, double __y) { return (double)__ieee754_pow(); }
+f64 pow(f64 __x, f64 __y) { return (f64)__ieee754_pow(); }
 
 /*
 .loc_0x0:

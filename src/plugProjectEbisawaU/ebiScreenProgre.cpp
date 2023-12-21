@@ -83,7 +83,7 @@ void TScreenProgre::setArchive(JKRArchive* arc)
  * @note Address: 0x803CDAA0
  * @note Size: 0x3E4
  */
-void TScreenProgre::startScreen(long state, u32 timer)
+void TScreenProgre::startScreen(s32 state, u32 timer)
 {
 	mStateScreen = state;
 	switch (mStateScreen) {

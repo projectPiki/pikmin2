@@ -106,7 +106,7 @@ void RESTORE_GPR(29)(void);
 void RESTORE_GPR(30)(void);
 void RESTORE_GPR(31)(void);
 
-static const unsigned long __constants[] = {
+static const u32 __constants[] = {
 	0x00000000, 0x00000000, 0x41F00000, 0x00000000, 0x41E00000, 0x00000000,
 };
 
@@ -114,7 +114,7 @@ static const unsigned long __constants[] = {
  * @note Address: 0x800C1B4C
  * @note Size: 0x5C
  */
-ASM unsigned long __cvt_fp2unsigned(register double d)
+ASM u32 __cvt_fp2unsigned(register f64 d)
 {
 #ifdef __MWERKS__ // clang-format off
 		nofralloc

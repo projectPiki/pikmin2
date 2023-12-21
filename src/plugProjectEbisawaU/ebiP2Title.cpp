@@ -158,7 +158,7 @@ void TTitleMgr::init()
  * @note Address: N/A
  * @note Size: 0x38
  */
-void TTitleMgr::setDestToPiki(long)
+void TTitleMgr::setDestToPiki(s32)
 {
 	// UNUSED FUNCTION
 }
@@ -167,7 +167,7 @@ void TTitleMgr::setDestToPiki(long)
  * @note Address: N/A
  * @note Size: 0x38
  */
-void TTitleMgr::setPosToPiki(long)
+void TTitleMgr::setPosToPiki(s32)
 {
 	// UNUSED FUNCTION
 }
@@ -215,7 +215,7 @@ void TTitleMgr::calcBreakupDestination()
  * @note Address: N/A
  * @note Size: 0x208
  */
-void TTitleMgr::calcDestination(long)
+void TTitleMgr::calcDestination(s32)
 {
 	// UNUSED FUNCTION
 }
@@ -581,7 +581,7 @@ bool TTitleMgr::startChappy()
  * @note Address: 0x803BF9EC
  * @note Size: 0x23C
  */
-bool TTitleMgr::boidToAssemble(long id)
+bool TTitleMgr::boidToAssemble(s32 id)
 {
 	mKoganeMgr.mObject->goHome();
 	mChappyMgr.mObject->goHome();
@@ -977,7 +977,7 @@ void TTitleMgr::draw()
  * @note Address: N/A
  * @note Size: 0x4
  */
-void TTitleMgr::showInfo(long, long, long, long)
+void TTitleMgr::showInfo(s32, s32, s32, s32)
 {
 	// UNUSED FUNCTION
 }

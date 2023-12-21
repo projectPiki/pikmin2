@@ -969,7 +969,7 @@ void JAInter::SequenceMgr::checkFadeoutSeq()
  * @note Address: 0x800B15CC
  * @note Size: 0x20
  */
-// float JAISequence::getVolume(u8 p1) { return getSeqInterVolume(p1); }
+// f32 JAISequence::getVolume(u8 p1) { return getSeqInterVolume(p1); }
 
 /**
  * @note Address: 0x800B15EC
@@ -1303,7 +1303,7 @@ lbl_800B1AF4:
  * @note Address: N/A
  * @note Size: 0x138
  */
-void JAInter::SequenceMgr::checkPlayingSeqUpdateMultiplication(u32, u8, u32, JAInter::MoveParaSet*, u32*, u8, float*)
+void JAInter::SequenceMgr::checkPlayingSeqUpdateMultiplication(u32, u8, u32, JAInter::MoveParaSet*, u32*, u8, f32*)
 {
 	// UNUSED FUNCTION
 }
@@ -1312,7 +1312,7 @@ void JAInter::SequenceMgr::checkPlayingSeqUpdateMultiplication(u32, u8, u32, JAI
  * @note Address: N/A
  * @note Size: 0x178
  */
-void JAInter::SequenceMgr::checkPlayingSeqUpdateAddition(u32, u8, u32, JAInter::MoveParaSet*, u32*, u8, float*, float)
+void JAInter::SequenceMgr::checkPlayingSeqUpdateAddition(u32, u8, u32, JAInter::MoveParaSet*, u32*, u8, f32*, f32)
 {
 	// UNUSED FUNCTION
 }
@@ -1321,7 +1321,7 @@ void JAInter::SequenceMgr::checkPlayingSeqUpdateAddition(u32, u8, u32, JAInter::
  * @note Address: N/A
  * @note Size: 0x118
  */
-void JAInter::SequenceMgr::checkPlayingSeqUpdateTrack(u32, u32, JAInter::MoveParaSet*, u32*, u8, float*)
+void JAInter::SequenceMgr::checkPlayingSeqUpdateTrack(u32, u32, JAInter::MoveParaSet*, u32*, u8, f32*)
 {
 	// UNUSED FUNCTION
 }
@@ -2606,13 +2606,13 @@ lbl_800B2B5C:
  * @note Address: 0x800B2B90
  * @note Size: 0x2C
  */
-void JAISequence::setPitch(float p1, u32 p2, u8 p3) { setSeqInterPitch(p3, p1, p2); }
+void JAISequence::setPitch(f32 p1, u32 p2, u8 p3) { setSeqInterPitch(p3, p1, p2); }
 
 /**
  * @note Address: 0x800B2BBC
  * @note Size: 0x2C
  */
-void JAISequence::setPan(float p1, u32 p2, u8 p3) { setSeqInterPan(p3, p1, p2); }
+void JAISequence::setPan(f32 p1, u32 p2, u8 p3) { setSeqInterPan(p3, p1, p2); }
 
 /**
  * @note Address: 0x800B2BE8

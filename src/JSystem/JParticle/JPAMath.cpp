@@ -28,7 +28,7 @@
  * @note Address: N/A
  * @note Size: 0xB0
  */
-void JPAConvertFixToFloat(short)
+void JPAConvertFixToFloat(s16)
 {
 	// UNUSED FUNCTION
 }

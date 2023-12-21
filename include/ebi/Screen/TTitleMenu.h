@@ -75,14 +75,14 @@ struct TTitleMenu : public TScreenBase {
 	bool openMenuSet(ArgOpen*);
 	bool isDecide();
 	bool isCancel();
-	void showPika_(long);
-	void hidePika_(long);
+	void showPika_(s32);
+	void hidePika_(s32);
 
 	// _00     = VTBL
 	// _00-_08 = TScreenBase
 	Controller* mController;             // _0C
 	EUTPadInterface_countNum mPad;       // _10
-	long mSelectID;                      // _3C
+	s32 mSelectID;                      // _3C
 	bool mDecidedMenuOption;             // _40
 	bool mDoCloseMenu;                   // _41
 	u32 mMenuCloseCounter;               // _44

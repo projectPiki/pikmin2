@@ -46,7 +46,7 @@ struct TSaveMenu : public TScreenBase {
 	virtual char* getName() { return "TSaveMenu"; } // _48 (weak)
 
 	void loadResource();
-	bool openMsg(long);
+	bool openMsg(s32);
 	bool closeMsg();
 	void noMsg();
 	bool isFinishMsg();

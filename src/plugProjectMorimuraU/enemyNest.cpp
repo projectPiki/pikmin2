@@ -12,7 +12,7 @@ namespace Nest {
  * @note Size: 0x34
  */
 // void birth__Q34Game4Nest3ObjFR10Vector3f f()
-void Obj::birth(Vector3f& position, float p2)
+void Obj::birth(Vector3f& position, f32 p2)
 {
 	EnemyBase::birth(position, p2);
 	mHouseType = NEST_Breadbug;

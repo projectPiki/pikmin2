@@ -614,7 +614,7 @@ bool TMgr::isFinish()
  * @note Address: N/A
  * @note Size: 0x4
  */
-void TMgr::showInfo(long, long, long, long)
+void TMgr::showInfo(s32, s32, s32, s32)
 {
 	// UNUSED FUNCTION
 }

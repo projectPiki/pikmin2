@@ -82,7 +82,7 @@ static DVDCommandBlock DriveBlock;
 
 // flags and system info
 static OSBootInfo* BootInfo;
-static volatile u32* BI2DebugFlag;
+static vu32* BI2DebugFlag;
 static u32* BI2DebugFlagHolder;
 WEAKFUNC BOOL __OSIsGcam = FALSE;
 static f64 ZeroF;
@@ -747,7 +747,7 @@ void __OSPSInit(void)
  * @note Address: 0x800EBA74
  * @note Size: 0x14
  */
-extern volatile u32 __DIRegs[];
+extern vu32 __DIRegs[];
 #define DI_CONFIG_IDX         0x9
 #define DI_CONFIG_CONFIG_MASK 0xFF
 u32 __OSGetDIConfig(void) { return (__DIRegs[DI_CONFIG_IDX] & DI_CONFIG_CONFIG_MASK); }

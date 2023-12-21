@@ -13,7 +13,7 @@ namespace Sys {
 bool Triangle::intersect(Sys::VertexTable& vtxTable, Sys::Triangle::SphereSweep& sweep)
 {
 
-	float distSweep = planeDist(sweep.mSphere.mPosition, mTrianglePlane);
+	f32 distSweep = planeDist(sweep.mSphere.mPosition, mTrianglePlane);
 
 	Vector3f* intersectPoint = &sweep.mIntersectionPoint;
 	switch (sweep.mSweepType) {
@@ -55,7 +55,7 @@ bool Triangle::intersect(Sys::VertexTable& vtxTable, Sys::Triangle::SphereSweep&
 		return isIntersect;
 	}
 
-	float edgeDists[3];
+	f32 edgeDists[3];
 	for (int i = 0; i < 3; i++) {
 		edgeDists[i] = planeDist(sweep.mSphere.mPosition, mEdgePlanes[i]);
 	}
@@ -73,7 +73,7 @@ bool Triangle::intersect(Sys::VertexTable& vtxTable, Sys::Triangle::SphereSweep&
 
 	Sphere ball(sweep.mSphere.mPosition, sweep.mSphere.mRadius);
 	Edge edge_in;
-	float t; // sp8
+	f32 t; // sp8
 
 	int vertA         = mVertices.x;
 	int vertB         = mVertices.y;

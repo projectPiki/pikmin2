@@ -1153,7 +1153,7 @@ J2DResReference* J2DScreen::getResReference(JSURandomInputStream* input, u32 fla
 	int v2;
 	input->read(&v2, 4);
 	input->seek(initialPosition + v2, SEEK_SET);
-	long byteCount = v1 - v2;
+	s32 byteCount = v1 - v2;
 	J2DResReference* data;
 	if (flags & (J3DMLF_17 | J3DMLF_18 | J3DMLF_19 | J3DMLF_20 | J3DMLF_21)) {
 		data = new J2DResReference[byteCount];

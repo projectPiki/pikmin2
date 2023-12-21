@@ -51,10 +51,10 @@ struct DataLoadMgrNode : virtual public DataMgrBase {
 
 	virtual JKRHeap* getObjHeap()          = 0; // _14
 	virtual JKRHeap* getDataHeap()         = 0; // _18
-	virtual bool initInstance(void*, long) = 0; // _1C
+	virtual bool initInstance(void*, s32) = 0; // _1C
 	virtual bool initInstance()            = 0; // _20
 
-	bool initInstanceExt(void*, long);
+	bool initInstanceExt(void*, s32);
 	void setFlagsAsExternal(void*);
 
 	// unused/inlined:
@@ -97,7 +97,7 @@ struct DataMgrNode : public DataLoadMgrNode {
 	virtual void init() { DataLoadMgrNode::init(); }                     // _10 (weak)
 	virtual JKRHeap* getObjHeap()          = 0;                          // _14
 	virtual JKRHeap* getDataHeap()         = 0;                          // _18
-	virtual bool initInstance(void*, long) = 0;                          // _1C
+	virtual bool initInstance(void*, s32) = 0;                          // _1C
 	virtual bool initInstance()            = 0;                          // _20
 	virtual char* getPath() { return mPath; }                            // _24 (weak)
 	virtual void setPath(char* path) { DataLoadMgrNode::setPath(path); } // _28 (weak)
@@ -121,7 +121,7 @@ struct PrmDataMgrNode : public DataMgrNode {
 	virtual ~PrmDataMgrNode<A, B>() { } // _08 (weak)
 	virtual JKRHeap* getObjHeap();      // _14 (weak)
 	virtual JKRHeap* getDataHeap();     // _18 (weak)
-	virtual bool initInstance(void* buffer, long bufferLength)
+	virtual bool initInstance(void* buffer, s32 bufferLength)
 	{
 		bool success = initInstance();
 		if (success != false) {

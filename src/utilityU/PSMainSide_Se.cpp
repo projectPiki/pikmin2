@@ -1078,7 +1078,7 @@ JAISound* PSStartEnemyDownSmokeSE(Game::EnemyBase* enemy, f32 scale)
  * @note Address: 0x8046E840
  * @note Size: 0x200
  */
-JAISound* PSStartEnemyDownWatSE(Game::EnemyBase* enemy, float p2)
+JAISound* PSStartEnemyDownWatSE(Game::EnemyBase* enemy, f32 p2)
 {
 	JAISound* sound;
 	if (p2 == 0 || p2 < 0.0f) {

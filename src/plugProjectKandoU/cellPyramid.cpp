@@ -200,22 +200,22 @@ u32 CellPyramid::getCheckCount() { return mPassID; }
 // 	// UNUSED FUNCTION
 // }
 
-// inline float temp(float input) {
+// inline f32 temp(f32 input) {
 // 	if (input > 0.0f) {
-// 		return (float)__frsqrte(input) * input;
+// 		return (f32)__frsqrte(input) * input;
 // 	}
 // 	return 0.0f;
 // }
 
-// inline float fakepikmin2_sqrtf(float x)
+// inline f32 fakepikmin2_sqrtf(f32 x)
 // {
 // 	if (!(x > 0.0f)) { // if x <= 0
 // 		return x;
 // 	}
 
-// 	register float reg1 = x;
-// 	register float reg2 = 0.0f;
-// 	register float result;
+// 	register f32 reg1 = x;
+// 	register f32 reg2 = 0.0f;
+// 	register f32 result;
 
 // #ifdef __MWERKS__ // clang-format off
 // 	asm {
@@ -227,13 +227,13 @@ u32 CellPyramid::getCheckCount() { return mPassID; }
 // 	return result;
 // }
 
-// float qdist32(float x1, float y1, float z1, float x2, float y2, float z2)
+// f32 qdist32(f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2)
 // {
-// 	float xdiff = (x2 - x1);
-// 	float ydiff = (y2 - y1);
-// 	float zdiff = (z2 - z1);
+// 	f32 xdiff = (x2 - x1);
+// 	f32 ydiff = (y2 - y1);
+// 	f32 zdiff = (z2 - z1);
 
-// 	float dist = (SQUARE(xdiff) + SQUARE(ydiff) + SQUARE(zdiff));
+// 	f32 dist = (SQUARE(xdiff) + SQUARE(ydiff) + SQUARE(zdiff));
 // 	if (dist > 0.0f) {
 // 		dist *= (__frsqrte(dist));
 // 	} else {
@@ -247,7 +247,7 @@ u32 CellPyramid::getCheckCount() { return mPassID; }
  * @note Size: 0xB8
  * 46(dec) instructions
  */
-float CellObject::calcCollisionDistance(CellObject* them)
+f32 CellObject::calcCollisionDistance(CellObject* them)
 {
 	// basically same function as calcSphereDistance from creature.cpp
 	Sys::Sphere ourBounds;
@@ -348,7 +348,7 @@ void CollisionBuffer::clear()
  * @note Address: 0x80156EB0
  * @note Size: 0xB8
  */
-void CollisionBuffer::insert(CellObject* newObject, float distance)
+void CollisionBuffer::insert(CellObject* newObject, f32 distance)
 {
 	CellObject* object = mCellObject;
 	if (object) {
@@ -367,7 +367,7 @@ void CollisionBuffer::insert(CellObject* newObject, float distance)
  * @note Address: 0x80156F68
  * @note Size: 0x128
  */
-void CollisionBuffer::pikiInsertPiki(CellObject* object, float distance)
+void CollisionBuffer::pikiInsertPiki(CellObject* object, f32 distance)
 {
 	if (findIndex(object) == -1) {
 		int nodeIndex = mUsedNodeCount - 1;
@@ -399,7 +399,7 @@ void CollisionBuffer::pikiInsertPiki(CellObject* object, float distance)
  * @note Address: 0x80157090
  * @note Size: 0x128
  */
-void CollisionBuffer::pikiInsertOther(CellObject* object, float distance)
+void CollisionBuffer::pikiInsertOther(CellObject* object, f32 distance)
 {
 	if (findIndex(object) == -1) {
 		int nodeIndex = mUsedNodeCount - 1;
@@ -431,7 +431,7 @@ void CollisionBuffer::pikiInsertOther(CellObject* object, float distance)
  * @note Address: 0x801571B8
  * @note Size: 0xF8
  */
-void CollisionBuffer::insertSort(CellObject* object, float distance)
+void CollisionBuffer::insertSort(CellObject* object, f32 distance)
 {
 	if (findIndex(object) == -1) {
 		int index = mUsedNodeCount - 1;
@@ -1257,7 +1257,7 @@ lbl_80158294:
  * @note Size: 0x4
  */
 // void drawCell__Q24Game9CellLayerFR8GraphicsR10Vector3f iif()
-inline void CellLayer::drawCell(Graphics&, Vector3f&, int, int, float) const
+inline void CellLayer::drawCell(Graphics&, Vector3f&, int, int, f32) const
 {
 	// UNUSED FUNCTION
 }
@@ -1436,9 +1436,9 @@ void CellPyramid::entry(CellObject* object, Sys::Sphere& sphere, int& layerIndex
 {
 	Cell::sCurrCellMgr = this;
 
-	float sphereRadiusLog = log10(sphere.mRadius * 2.0f * mInverseScale);
-	float log2            = log10(2.0f);
-	float layerIndexFloat = (sphereRadiusLog / log2);
+	f32 sphereRadiusLog = log10(sphere.mRadius * 2.0f * mInverseScale);
+	f32 log2            = log10(2.0f);
+	f32 layerIndexFloat = (sphereRadiusLog / log2);
 
 	// Ensure the layer is non-negative
 	if (layerIndexFloat < 0.0f) {
@@ -1452,12 +1452,12 @@ void CellPyramid::entry(CellObject* object, Sys::Sphere& sphere, int& layerIndex
 		layerIndex = mLayerCount - 1;
 	}
 
-	float sphereRadius       = sphere.mRadius;
-	float sphereX            = sphere.mPosition.x;
-	float sphereZ            = sphere.mPosition.z;
-	float rightBoundary      = mRight;
-	float leftBoundary       = mLeft;
-	float inverseScaleFactor = 1.0f / ((mLayers[layerIndex].mLayerSize) * mScale);
+	f32 sphereRadius       = sphere.mRadius;
+	f32 sphereX            = sphere.mPosition.x;
+	f32 sphereZ            = sphere.mPosition.z;
+	f32 rightBoundary      = mRight;
+	f32 leftBoundary       = mLeft;
+	f32 inverseScaleFactor = 1.0f / ((mLayers[layerIndex].mLayerSize) * mScale);
 
 	// Calculate the bounding rectangle
 	boundingRect.p1.x = (int)(((sphereX - sphereRadius) - rightBoundary) * inverseScaleFactor);
@@ -1590,7 +1590,7 @@ void CellPyramid::entry(CellObject* object, Sys::Sphere& sphere, int& layerIndex
  * @note Address: 0x80158A0C
  * @note Size: 0x2EC
  */
-void CellPyramid::create(BoundBox2d& box, float scale)
+void CellPyramid::create(BoundBox2d& box, f32 scale)
 {
 	mFreeMemory = JKRHeap::sCurrentHeap->getFreeSize();
 
@@ -1613,7 +1613,7 @@ void CellPyramid::create(BoundBox2d& box, float scale)
 	int maxDimension = MAX(pixelHeight, pixelWidth);
 
 	int layerCount = (f32)ceil((f32)log10((f32)maxDimension) / (f32)log10(2.0f));
-	pow(2.0, (double)layerCount);
+	pow(2.0, (f64)layerCount);
 
 	mLayerCount                = layerCount + 1;
 	mLayers                    = new CellLayer[mLayerCount];
@@ -1909,7 +1909,7 @@ int CellPyramid::getPikiCount(int layerLevel, Recti& extent)
  * @note Size: 0x4
  */
 // void drawCell__Q24Game11CellPyramidFR8GraphicsiR7Rect<int> f()
-inline void CellPyramid::drawCell(Graphics&, int, Rect<int>&, float) const
+inline void CellPyramid::drawCell(Graphics&, int, Rect<int>&, f32) const
 {
 	// UNUSED FUNCTION
 }

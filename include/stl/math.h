@@ -14,7 +14,7 @@ extern "C" {
 #define __frsqrte(x) (x)
 #endif
 
-#define FABS(x) (float)__fabs(x)
+#define FABS(x) (f32) __fabs(x)
 #define fabs(x) __fabs(x)
 // #define __frsqrtes opword
 
@@ -32,50 +32,50 @@ extern int __float_nan[];
 extern int __float_huge[];
 extern int __double_huge[];
 
-#define INFINITY (*(float*)__float_huge)
-#define NAN      (*(float*)__float_nan)
-#define HUGE_VAL (*(double*)__double_huge)
+#define INFINITY (*(f32*)__float_huge)
+#define NAN      (*(f32*)__float_nan)
+#define HUGE_VAL (*(f64*)__double_huge)
 
-inline long double fabsl(long double x) { return __fabs((double)x); }
+inline f128 fabsl(f128 x) { return __fabs((f64)x); }
 
-double acos(double);
-double asin(double);
-double atan(double);
-double atan2(double, double);
-double ceil(double);
-double floor(double);
-double frexp(double, int*);
-double ldexp(double, int);
-double sqrt(double);
+f64 acos(f64);
+f64 asin(f64);
+f64 atan(f64);
+f64 atan2(f64, f64);
+f64 ceil(f64);
+f64 floor(f64);
+f64 frexp(f64, int*);
+f64 ldexp(f64, int);
+f64 sqrt(f64);
 
-double pow(double, double);
+f64 pow(f64, f64);
 
-double log(double);
-double log10(double);
+f64 log(f64);
+f64 log10(f64);
 
-double fmod(double, double);
+f64 fmod(f64, f64);
 
-double sin(double x);
-double cos(double x);
+f64 sin(f64 x);
+f64 cos(f64 x);
 
-double __ieee754_acos(double);
-double __ieee754_fmod(double, double);
-double __ieee754_log(double);
-double __ieee754_log10(double);
-double __ieee754_pow(double, double);
-double __ieee754_sqrt(double);
-double __ieee754_atan2(double, double);
-double __ieee754_asin(double);
+f64 __ieee754_acos(f64);
+f64 __ieee754_fmod(f64, f64);
+f64 __ieee754_log(f64);
+f64 __ieee754_log10(f64);
+f64 __ieee754_pow(f64, f64);
+f64 __ieee754_sqrt(f64);
+f64 __ieee754_atan2(f64, f64);
+f64 __ieee754_asin(f64);
 
-double scalbn(double, int);
+f64 scalbn(f64, int);
 
-double __kernel_sin(double, double, int);
-double __kernel_cos(double, double);
-double __kernel_tan(double, double, int);
+f64 __kernel_sin(f64, f64, int);
+f64 __kernel_cos(f64, f64);
+f64 __kernel_tan(f64, f64, int);
 
-int __ieee754_rem_pio2(double, double*);
+int __ieee754_rem_pio2(f64, f64*);
 
-// float sqrtf(float);
+// f32 sqrtf(f32);
 
 #ifdef __cplusplus
 };

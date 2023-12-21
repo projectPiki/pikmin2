@@ -20,25 +20,26 @@
 #include "fdlibm.h"
 
 #ifdef __STDC__
-static const double one = 1.0, Zero[] = {
+static const f64 one = 1.0, Zero[] = {
 	0.0,
 	-0.0,
 };
 #else
-static double one = 1.0, Zero[] = {
+static f64 one = 1.0, Zero[] = {
 	0.0,
 	-0.0,
 };
 #endif
 
 #ifdef __STDC__
-double __ieee754_fmod(double x, double y)
+f64 __ieee754_fmod(f64 x, f64 y)
 #else
-double __ieee754_fmod(x, y) double x, y;
+f64 __ieee754_fmod(x, y)
+f64 x, y;
 #endif
 {
 	int n, hx, hy, hz, ix, iy, sx, i;
-	unsigned lx, ly, lz;
+	uint lx, ly, lz;
 
 	hx = __HI(x);         /* high word of x */
 	lx = __LO(x);         /* low  word of x */

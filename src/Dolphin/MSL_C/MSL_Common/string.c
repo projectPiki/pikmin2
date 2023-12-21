@@ -82,9 +82,9 @@ bytecopy:
  */
 char* strncpy(char* dst, const char* src, size_t n)
 {
-	const unsigned char* p = (const unsigned char*)src - 1;
-	unsigned char* q       = (unsigned char*)dst - 1;
-	unsigned char zero     = 0;
+	const u8* p = (const u8*)src - 1;
+	u8* q       = (u8*)dst - 1;
+	u8 zero     = 0;
 
 	n++;
 

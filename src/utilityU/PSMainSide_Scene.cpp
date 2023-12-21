@@ -1312,7 +1312,7 @@ void Scene_Ground::setPollutUp() { mPollutUpTimer = 0; }
  * @note Address: 0x80469B14
  * @note Size: 0x1AC
  */
-void Scene_Ground::fadeMainBgm(float p1, u32 p2, PSM::Scene_Ground::Time time)
+void Scene_Ground::fadeMainBgm(f32 p1, u32 p2, PSM::Scene_Ground::Time time)
 {
 	PSSystem::SeqBase* seq = mSeqMgr.getFirst()->getObject();
 	P2ASSERTLINE(813, seq);

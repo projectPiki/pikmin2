@@ -414,7 +414,7 @@ bool TTitleMenu::isCancel() { return mDoCloseMenu; }
  * @note Address: 0x803DB10C
  * @note Size: 0x3C
  */
-void TTitleMenu::showPika_(long id)
+void TTitleMenu::showPika_(s32 id)
 {
 	for (int i = 0; i < mPikiCounts[id]; i++) {
 		mPikaPanes[id][i]->show();
@@ -425,7 +425,7 @@ void TTitleMenu::showPika_(long id)
  * @note Address: 0x803DB148
  * @note Size: 0x3C
  */
-void TTitleMenu::hidePika_(long id)
+void TTitleMenu::hidePika_(s32 id)
 {
 	for (int i = 0; i < mPikiCounts[id]; i++) {
 		mPikaPanes[id][i]->hide();

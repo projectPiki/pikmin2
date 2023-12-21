@@ -38,7 +38,7 @@ void Matrixf::makeNaturalPosture(Vector3f&)
  * @note Address: 0x80427F90
  * @note Size: 0x344
  */
-void Matrixf::makeNaturalPosture(Vector3f&, float)
+void Matrixf::makeNaturalPosture(Vector3f&, f32)
 {
 	/*
 	stwu     r1, -0x20(r1)

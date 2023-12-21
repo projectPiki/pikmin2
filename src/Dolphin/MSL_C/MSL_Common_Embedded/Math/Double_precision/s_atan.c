@@ -35,9 +35,9 @@
 #include "fdlibm.h"
 
 #ifdef __STDC__
-static const double atanhi[] = {
+static const f64 atanhi[] = {
 #else
-static double atanhi[] = {
+static f64 atanhi[] = {
 #endif
 	4.63647609000806093515e-01, /* atan(0.5)hi 0x3FDDAC67, 0x0561BB4F */
 	7.85398163397448278999e-01, /* atan(1.0)hi 0x3FE921FB, 0x54442D18 */
@@ -46,9 +46,9 @@ static double atanhi[] = {
 };
 
 #ifdef __STDC__
-static const double atanlo[] = {
+static const f64 atanlo[] = {
 #else
-static double atanlo[] = {
+static f64 atanlo[] = {
 #endif
 	2.26987774529616870924e-17, /* atan(0.5)lo 0x3C7A2B7F, 0x222F65E2 */
 	3.06161699786838301793e-17, /* atan(1.0)lo 0x3C81A626, 0x33145C07 */
@@ -57,9 +57,9 @@ static double atanlo[] = {
 };
 
 #ifdef __STDC__
-static const double aT[] = {
+static const f64 aT[] = {
 #else
-static double aT[] = {
+static f64 aT[] = {
 #endif
 	3.33333333333329318027e-01,  /* 0x3FD55555, 0x5555550D */
 	-1.99999999998764832476e-01, /* 0xBFC99999, 0x9998EBC4 */
@@ -75,21 +75,21 @@ static double aT[] = {
 };
 
 #ifdef __STDC__
-static const double
+static const f64
 #else
-static double
+static f64
 #endif
     one
     = 1.0,
     huge = 1.0e300;
 
 #ifdef __STDC__
-double atan(double x)
+f64 atan(f64 x)
 #else
-double atan(x) double x;
+f64 atan(x) f64 x;
 #endif
 {
-	double w, s1, s2, z;
+	f64 w, s1, s2, z;
 	int ix, hx, id;
 
 	hx = __HI(x);

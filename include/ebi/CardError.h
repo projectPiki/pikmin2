@@ -533,7 +533,7 @@ struct TMgr {
 	void draw();
 	bool isGetEnd();
 	bool isFinish();
-	void showInfo(long, long, long, long);
+	void showInfo(s32, s32, s32, s32);
 	int getStateID();
 
 	inline void setCurrState(StateType* state) { mCurrentState = state; }
