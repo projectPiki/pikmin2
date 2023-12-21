@@ -159,7 +159,7 @@ struct J3DZMode {
 struct J3DColorChan {
 	J3DColorChan();
 
-	u16 _00;
+	u16 channelInfo;
 };
 
 // IDK what the structure of this is meant to be
@@ -212,17 +212,16 @@ struct J3DTevOrderInfo {
 	// inline GXTexCoordID getTexCoordID() const { return (GXTexCoordID)mData[0]; }
 	// inline GXTexMapID getTexMapID() const { return (GXTexMapID)mData[1]; }
 	// inline u8 getChannelID() const { return mData[2]; }
-	u8 mData[4]; // _00 size should be 4 for newTevOrder to work
+	// u8 mData[4]; // _00 size should be 4 for newTevOrder to work
 
 	// inline GXTexCoordID getTexCoordID() const { return (GXTexCoordID)mTexCoordID; }
 	// inline GXTexMapID getTexMapID() const { return (GXTexMapID)mTexMapID; }
 	// inline u8 getChannelID() const { return mChannelID; }
 
-	// u8 mTexCoordID; // _00
-	// u8 mTexMapID;   // _01
-	// u8 mChannelID;  // _02
-
-	// u8 _03;          // _03 - unknown/padding
+	u8 mTexCoordID; // _00
+	u8 mTexMapID;   // _01
+	u8 mChannelID;  // _02
+	u8 _03;         // _03 - unknown/padding
 };
 
 extern const J3DTevOrderInfo j3dDefaultTevOrderInfoNull;
@@ -238,9 +237,9 @@ struct J3DTevOrder {
 		// 	mData[i] = j3dDefaultTevOrderInfoNull.mData[i];
 		// }
 		const J3DTevOrderInfo& info = j3dDefaultTevOrderInfoNull;
-		mTexCoordID                 = info.mData[0];
-		mTexMapID                   = info.mData[1];
-		mChannelID                  = info.mData[2];
+		mTexCoordID                 = info.mTexCoordID;
+		mTexMapID                   = info.mTexMapID;
+		mChannelID                  = info.mChannelID;
 		// mTexCoordID                = info.mTexCoordID;
 		// mTexMapID                  = info.mTexMapID;
 		// mChannelID                 = info.mChannelID;
@@ -259,9 +258,9 @@ struct J3DTevOrder {
 	    // : mTexCoordID(info.mTexCoordID)
 	    // , mTexMapID(info.mTexMapID)
 	    // , mChannelID(info.mChannelID)
-	    : mTexCoordID(info.mData[0])
-	    , mTexMapID(info.mData[1])
-	    , mChannelID(info.mData[2])
+	    : mTexCoordID(info.mTexCoordID)
+	    , mTexMapID(info.mTexMapID)
+	    , mChannelID(info.mChannelID)
 	{
 		// for (int i = 0; i < 3; i++) {
 		// 	mData[i] = info.mData[i];
@@ -303,7 +302,7 @@ struct J3DTevOrder {
 struct J3DTevSwapModeTable {
 	J3DTevSwapModeTable();
 
-	u8 _00;
+	u8 mTevSwapID; // _00
 };
 
 struct J3DTevStage {

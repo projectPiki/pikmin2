@@ -2876,8 +2876,8 @@ J3DTevStage J3DMaterialFactory::newTevStage(int p1, int p2) const
 J3DTevStage::J3DTevStage(const J3DTevStageInfo& info)
 {
 	setTevStageInfo(info);
-	_07 = _07 & ~3 | j3dDefaultTevSwapMode._01 << 2;
-	_07 = _07 & ~3 | j3dDefaultTevSwapMode._00;
+	_07 = _07 & ~3 | j3dDefaultTevSwapMode.mTexSel << 2;
+	_07 = _07 & ~3 | j3dDefaultTevSwapMode.mRasSel;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

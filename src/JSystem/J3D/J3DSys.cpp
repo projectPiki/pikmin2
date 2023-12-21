@@ -197,7 +197,7 @@ void J3DSys::drawInit()
 	for (i = 0; i < GX_MAXTEVSTAGE; i++) {
 		GXSetTevColorIn((GXTevStageID)i, GX_CC_RASC, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO);
 		GXSetTevColorOp((GXTevStageID)i, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
-		GXSetTevAlphaIn((GXTevStageID)i, GX_CA_RASA, GX_ZERO, GX_ZERO, GX_ZERO);
+		GXSetTevAlphaIn((GXTevStageID)i, GX_CA_RASA, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO);
 		GXSetTevAlphaOp((GXTevStageID)i, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
 	}
 
@@ -327,7 +327,7 @@ void J3DSys::reinitTevStages()
 	for (u32 i = 0; i < 0x10; i++) {
 		GXSetTevColorIn((GXTevStageID)i, GX_CC_RASC, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO);
 		GXSetTevColorOp((GXTevStageID)i, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
-		GXSetTevAlphaIn((GXTevStageID)i, GX_CA_RASA, GX_ZERO, GX_ZERO, GX_ZERO);
+		GXSetTevAlphaIn((GXTevStageID)i, GX_CA_RASA, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO);
 		GXSetTevAlphaOp((GXTevStageID)i, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
 		GXSetTevKColorSel((GXTevStageID)i, GX_TEV_KCSEL_1_4);
 		GXSetTevKAlphaSel((GXTevStageID)i, GX_TEV_KASEL_1);

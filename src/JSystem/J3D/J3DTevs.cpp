@@ -271,7 +271,8 @@ const J3DTexMtxInfo j3dDefaultTexMtxInfo
 
 const J3DIndTexMtxInfo j3dDefaultIndTexMtxInfo = { 0.5f, 0.0f, 0.0f, 0.0f, 0.5f, 0.0f, 1 };
 
-const J3DTevStageInfo j3dDefaultTevStageInfo = { 4, 10, 15, 15, 0, 0, 0, 0, 1, 0, 5, 7, 7, 0, 0, 0, 0, 1, 0 };
+const J3DTevStageInfo j3dDefaultTevStageInfo = { GX_PASSCLR, GX_CC_RASC, GX_CC_ZERO, GX_CC_ZERO, GX_CC_CPREV, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, true, GX_TEVPREV, 
+												    		 GX_CA_RASA, GX_CA_ZERO, GX_CA_ZERO, GX_CA_APREV, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, true, GX_TEVPREV };
 
 const J3DIndTevStageInfo j3dDefaultIndTevStageInfo[12]
     = { { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 } };
@@ -293,9 +294,9 @@ const J3DIndTexOrderInfo j3dDefaultIndTexOrderNull       = { GX_TEXCOORD_NULL, G
 const GXColorS10 j3dDefaultTevColor                      = { 0xFFFFFFFF };
 const GXColor j3dDefaultTevKColor                        = { 0xFFFFFFFF };
 const J3DTevSwapModeInfo j3dDefaultTevSwapMode           = { 0 };
-const J3DTevSwapModeTableInfo j3dDefaultTevSwapModeTable = { 0, 1, 2, 3 };
+const J3DTevSwapModeTableInfo j3dDefaultTevSwapModeTable = { GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE, GX_CH_ALPHA };
 const J3DBlendInfo j3dDefaultBlendInfo                   = { 1, 4, 5, 5 };
-const J3DColorChanInfo j3dDefaultColorChanInfo           = { 0, 0, 0, 2, 2, 0, 0xFF, 0xFF };
+const J3DColorChanInfo j3dDefaultColorChanInfo           = { false, GX_SRC_REG, GX_SRC_REG, GX_LIGHT1, GX_DF_CLAMP, GX_AF_SPEC, 0xFF, 0xFF };
 const u8 j3dDefaultTevSwapTableID                        = 0x1B;
 const u16 j3dDefaultAlphaCmpID                           = 0xE7;
 const u16 j3dDefaultZModeID                              = 0x17;

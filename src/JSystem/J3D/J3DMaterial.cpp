@@ -130,7 +130,7 @@ J3DTevBlock* J3DMaterial::createTevBlock(int stageCount)
  * @note Address: 0x80061DE0
  * @note Size: 0xC
  */
-J3DTevSwapModeTable::J3DTevSwapModeTable() { _00 = j3dDefaultTevSwapTableID; }
+J3DTevSwapModeTable::J3DTevSwapModeTable() { mTevSwapID = j3dDefaultTevSwapTableID; }
 
 /**
  * @note Address: 0x80061DF0

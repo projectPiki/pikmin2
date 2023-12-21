@@ -127,9 +127,9 @@ J3DMaterial* J3DMaterialFactory_v21::create(J3DMaterial* mat, int index, u32 fla
 		mat->mTevBlock->setTevStage(i, newTevStage(i, flags));
 		u16 id = data->mTevSwapModeInfoIndex[i];
 		if (id != 0xffff) {
-			u8 flag = mTevSwapModeInfo[id]._01;
+			u8 flag = mTevSwapModeInfo[id].mTexSel;
 			mat->mTevBlock->getTevStage(i)->_07 |= flag << 2;
-			flag = mTevSwapModeInfo[data->mTevSwapModeInfoIndex[i]]._00;
+			flag = mTevSwapModeInfo[data->mTevSwapModeInfoIndex[i]].mRasSel;
 			mat->mTevBlock->getTevStage(i)->_07 |= flag;
 		}
 	}
