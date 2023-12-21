@@ -364,7 +364,7 @@ GXFifoObj* GXInit(void* base, u32 size)
 	GX_CP_LOAD_REG(0x20, gx->perfSel)
 
 	GX_XF_LOAD_REG(0x1006, 0);
-	
+
 	GX_BP_LOAD_REG(0x23000000)
 	GX_BP_LOAD_REG(0x24000000)
 	GX_BP_LOAD_REG(0x67000000)

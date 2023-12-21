@@ -485,6 +485,6 @@ void GXSetTevOrder(GXTevStageID stage, GXTexCoordID coord, GXTexMapID map, GXCha
 void GXSetNumTevStages(u8 count)
 {
 	GX_SET_REG(gx->genMode, count - 1, 18, 21);
-	
+
 	gx->dirtyState |= 0x4;
 }

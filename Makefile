@@ -85,7 +85,6 @@ POWERPC ?= tools/powerpc
 ifeq ($(WINDOWS),1)
   WINE :=
   AS      := $(POWERPC)/powerpc-eabi-as.exe
-  CPP     := $(POWERPC)/powerpc-eabi-cpp.exe -P
   PYTHON  := python
 else
   WIBO   := $(shell command -v wibo 2> /dev/null)
@@ -97,7 +96,6 @@ else
   # Disable wine debug output for cleanliness
   export WINEDEBUG ?= -all
   AS      := $(POWERPC)/powerpc-eabi-as
-  CPP     := $(POWERPC)/powerpc-eabi-cpp -P
   PYTHON  := python3
 endif
 COMPILERS ?= tools/mwcc_compiler
@@ -151,8 +149,7 @@ ALL_DIRS := $(sort $(dir $(O_FILES)))
 # Make sure build directory exists before compiling anything
 DUMMY != mkdir -p $(ALL_DIRS)
 
-$(LDSCRIPT): ldscript.lcf
-	$(QUIET) $(CPP) -MMD -MP -MT $@ -MF $@.d -I include/ -I . -DBUILD_DIR=$(BUILD_DIR) -o $@ $<
+LDSCRIPT := ldscript.lcf
 
 $(DOL): $(ELF) | $(DTK)
 	$(QUIET) $(ELF2DOL) $< $@
