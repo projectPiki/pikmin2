@@ -305,8 +305,8 @@ void GXLoadLightObjImm(GXLightObj* obj, GXLightID light)
 
 	addr = 0x600 + idx * 0x10;
 
-	GX_WRITE_U8(16);
-	GX_WRITE_U32(addr | (0x10 - 1) << 16);
+	GX_XF_LOAD_REG_HDR(addr | (0x10 - 1) << 16);
+
 	PushLight(pObj, (void*)GXFIFO_ADDR);
 	__GXData->bpSentNot = 1;
 }

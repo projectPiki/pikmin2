@@ -78,10 +78,11 @@ void __GXSendFlushPrim(void)
  */
 void GXSetLineWidth(u8 width, GXTexOffset offsets)
 {
-	GX_BITFIELD_SET(gx->lpSize, 24, 8, width);
-	GX_BITFIELD_SET(gx->lpSize, 13, 3, offsets);
-	GX_WRITE_U8(0x61);
-	GX_WRITE_U32(gx->lpSize);
+	GX_SET_REG(gx->lpSize, width, 24, 31);
+	GX_SET_REG(gx->lpSize, offsets, 13, 15);
+
+	GX_BP_LOAD_REG(gx->lpSize);
+
 	gx->bpSentNot = GX_FALSE;
 }
 
@@ -91,10 +92,11 @@ void GXSetLineWidth(u8 width, GXTexOffset offsets)
  */
 void GXSetPointSize(u8 size, GXTexOffset offsets)
 {
-	GX_BITFIELD_SET(gx->lpSize, 16, 8, size);
-	GX_BITFIELD_SET(gx->lpSize, 10, 3, offsets);
-	GX_WRITE_U8(0x61);
-	GX_WRITE_U32(gx->lpSize);
+	GX_SET_REG(gx->lpSize, size, 16, 23);
+	GX_SET_REG(gx->lpSize, offsets, 10, 12);
+
+	GX_BP_LOAD_REG(gx->lpSize);
+
 	gx->bpSentNot = GX_FALSE;
 }
 
@@ -104,10 +106,11 @@ void GXSetPointSize(u8 size, GXTexOffset offsets)
  */
 void GXEnableTexOffsets(GXTexCoordID coord, GXBool line, GXBool point)
 {
-	GX_BITFIELD_SET(gx->suTs0[coord], 13, 1, line);
-	GX_BITFIELD_SET(gx->suTs0[coord], 12, 1, point);
-	GX_WRITE_U8(0x61);
-	GX_WRITE_U32(gx->suTs0[coord]);
+	GX_SET_REG(gx->suTs0[coord], line, 13, 13);
+	GX_SET_REG(gx->suTs0[coord], point, 12, 12);
+
+	GX_BP_LOAD_REG(gx->suTs0[coord]);
+
 	gx->bpSentNot = GX_FALSE;
 }
 
@@ -126,7 +129,7 @@ void GXSetCullMode(GXCullMode mode)
 		break;
 	}
 
-	GX_BITFIELD_SET(gx->genMode, 16, 2, mode);
+	GX_SET_REG(gx->genMode, mode, 16, 17);
 	gx->dirtyState |= 4;
 }
 
@@ -136,11 +139,9 @@ void GXSetCullMode(GXCullMode mode)
  */
 void GXSetCoPlanar(GXBool enable)
 {
-	GX_BITFIELD_SET(gx->genMode, 12, 1, enable);
-	GX_WRITE_U8(0x61);
-	GX_WRITE_U32(0xFE080000);
-	GX_WRITE_U8(0x61);
-	GX_WRITE_U32(gx->genMode);
+	GX_SET_REG(gx->genMode, enable, 12, 12);
+	GX_BP_LOAD_REG(0xFE080000);
+	GX_BP_LOAD_REG(gx->genMode);
 }
 
 /**
@@ -149,7 +150,6 @@ void GXSetCoPlanar(GXBool enable)
  */
 void __GXSetGenMode(void)
 {
-	GX_WRITE_U8(0x61);
-	GX_WRITE_U32(gx->genMode);
+	GX_BP_LOAD_REG(gx->genMode);
 	gx->bpSentNot = GX_FALSE;
 }

@@ -42,8 +42,7 @@ void GXUnderflowHandler()
 void GXBreakPointHandler(OSContext* context)
 {
 	OSContext bpContext;
-
-	FAST_FLAG_SET(gx->cpEnable, 0, 5, 1);
+	GX_SET_REG(gx->cpEnable, 0, 26, 26);
 	GX_SET_CP_REG(1, gx->cpEnable);
 
 	if (BreakPointCB) {
@@ -136,8 +135,8 @@ void GXSetCPUFifo(GXFifoObj* fifo)
 		GX_SET_PI_REG(3, (u32)((GXFifoObjPriv*)fifo)->base & 0x3FFFFFFF);
 		GX_SET_PI_REG(4, (u32)((GXFifoObjPriv*)fifo)->end & 0x3FFFFFFF);
 		reg = 0;
-		GX_BITFIELD_SET(reg, 6, 21, (u32)((GXFifoObjPriv*)fifo)->writePtr >> 5);
-		GX_BITFIELD_SET(reg, 5, 1, 0);
+		GX_SET_REG(reg, (u32)((GXFifoObjPriv*)fifo)->writePtr >> 5, 6, 26);
+		GX_SET_REG(reg, 0, 5, 5);
 		GX_SET_PI_REG(5, reg);
 
 		CPGPLinked = GX_TRUE;
@@ -156,8 +155,8 @@ void GXSetCPUFifo(GXFifoObj* fifo)
 		GX_SET_PI_REG(3, (u32)((GXFifoObjPriv*)fifo)->base & 0x3FFFFFFF);
 		GX_SET_PI_REG(4, (u32)((GXFifoObjPriv*)fifo)->end & 0x3FFFFFFF);
 		reg = 0;
-		GX_BITFIELD_SET(reg, 6, 21, (u32)((GXFifoObjPriv*)fifo)->writePtr >> 5);
-		GX_BITFIELD_SET(reg, 5, 1, 0);
+		GX_SET_REG(reg, (u32)((GXFifoObjPriv*)fifo)->writePtr >> 5, 6, 26);
+		GX_SET_REG(reg, 0, 5, 5);
 		GX_SET_PI_REG(5, reg);
 	}
 
@@ -366,7 +365,7 @@ void __GXFifoInit(void)
  */
 void __GXFifoReadEnable(void)
 {
-	FAST_FLAG_SET(gx->cpEnable, 1, 0, 1);
+	GX_SET_REG(gx->cpEnable, GX_TRUE, 31, 31);
 	GX_SET_CP_REG(1, gx->cpEnable);
 }
 
@@ -376,7 +375,7 @@ void __GXFifoReadEnable(void)
  */
 void __GXFifoReadDisable(void)
 {
-	FAST_FLAG_SET(gx->cpEnable, 0, 0, 1);
+	GX_SET_REG(gx->cpEnable, GX_FALSE, 31, 31);
 	GX_SET_CP_REG(1, gx->cpEnable);
 }
 
@@ -392,7 +391,7 @@ void __GXFifoLink(u8 link)
 	} else {
 		b = 0;
 	}
-	FAST_FLAG_SET(gx->cpEnable, b, 4, 1);
+	GX_SET_REG(gx->cpEnable, b, 27, 27);
 	GX_SET_CP_REG(1, gx->cpEnable);
 }
 
@@ -402,8 +401,8 @@ void __GXFifoLink(u8 link)
  */
 void __GXWriteFifoIntEnable(u32 p1, u32 p2)
 {
-	FAST_FLAG_SET(gx->cpEnable, p1, 2, 1);
-	FAST_FLAG_SET(gx->cpEnable, (u8)p2, 3, 1);
+	GX_SET_REG(gx->cpEnable, p1, 29, 29);
+	GX_SET_REG(gx->cpEnable, (u8)p2, 28, 28);
 	GX_SET_CP_REG(1, gx->cpEnable);
 }
 
@@ -413,8 +412,8 @@ void __GXWriteFifoIntEnable(u32 p1, u32 p2)
  */
 void __GXWriteFifoIntReset(u32 p1, u32 p2)
 {
-	FAST_FLAG_SET(gx->cpClr, p1, 0, 1);
-	FAST_FLAG_SET(gx->cpClr, (u8)p2, 1, 1);
+	GX_SET_REG(gx->cpClr, p1, 31, 31);
+	GX_SET_REG(gx->cpClr, (u8)p2, 30, 30);
 	GX_SET_CP_REG(2, gx->cpClr);
 }
 

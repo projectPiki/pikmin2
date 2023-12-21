@@ -237,13 +237,13 @@ GXFifoObj* GXInit(void* base, u32 size)
 	EnableWriteGatherPipe();
 
 	gx->genMode = 0;
-	FAST_FLAG_SET(gx->genMode, 0, 24, 8);
+	GX_SET_REG(gx->genMode, 0, 0, 7);
 
 	gx->bpMask = 255;
-	FAST_FLAG_SET(gx->bpMask, 0xF, 24, 8);
+	GX_SET_REG(gx->bpMask, 0xF, 0, 7);
 
 	gx->lpSize = 0;
-	FAST_FLAG_SET(gx->lpSize, 34, 24, 8);
+	GX_SET_REG(gx->lpSize, 34, 0, 7);
 
 	for (i = 0; i < GX_MAXTEVSTAGE; i++) {
 		gx->tevc[i]     = 0;
@@ -251,33 +251,33 @@ GXFifoObj* GXInit(void* base, u32 size)
 		gx->tref[i / 2] = 0;
 		gx->texmapId[i] = GX_TEXMAP_NULL;
 
-		FAST_FLAG_SET(gx->tevc[i], 0xC0 + i * 2, 24, 8);
-		FAST_FLAG_SET(gx->teva[i], 0xC1 + i * 2, 24, 8);
-		FAST_FLAG_SET(gx->tevKsel[i / 2], 0xF6 + i / 2, 24, 8);
-		FAST_FLAG_SET(gx->tref[i / 2], 0x28 + i / 2, 24, 8);
+		GX_SET_REG(gx->tevc[i], 0xC0 + i * 2, 0, 7);
+		GX_SET_REG(gx->teva[i], 0xC1 + i * 2, 0, 7);
+		GX_SET_REG(gx->tevKsel[i / 2], 0xF6 + i / 2, 0, 7);
+		GX_SET_REG(gx->tref[i / 2], 0x28 + i / 2, 0, 7);
 	}
 
 	gx->iref = 0;
-	FAST_FLAG_SET(gx->iref, 0x27, 24, 8);
+	GX_SET_REG(gx->iref, 0x27, 0, 7);
 
 	for (i = 0; i < GX_MAX_TEXCOORD; i++) {
 		gx->suTs0[i] = 0;
 		gx->suTs1[i] = 0;
 
-		FAST_FLAG_SET(gx->suTs0[i], 0x30 + i * 2, 24, 8);
-		FAST_FLAG_SET(gx->suTs1[i], 0x31 + i * 2, 24, 8);
+		GX_SET_REG(gx->suTs0[i], 0x30 + i * 2, 0, 7);
+		GX_SET_REG(gx->suTs1[i], 0x31 + i * 2, 0, 7);
 	}
 
-	FAST_FLAG_SET(gx->suScis0, 0x20, 24, 8);
-	FAST_FLAG_SET(gx->suScis1, 0x21, 24, 8);
+	GX_SET_REG(gx->suScis0, 0x20, 0, 7);
+	GX_SET_REG(gx->suScis1, 0x21, 0, 7);
 
-	FAST_FLAG_SET(gx->cmode0, 0x41, 24, 8);
-	FAST_FLAG_SET(gx->cmode1, 0x42, 24, 8);
+	GX_SET_REG(gx->cmode0, 0x41, 0, 7);
+	GX_SET_REG(gx->cmode1, 0x42, 0, 7);
 
-	FAST_FLAG_SET(gx->zmode, 0x40, 24, 8);
-	FAST_FLAG_SET(gx->peCtrl, 0x43, 24, 8);
+	GX_SET_REG(gx->zmode, 0x40, 0, 7);
+	GX_SET_REG(gx->peCtrl, 0x43, 0, 7);
 
-	FAST_FLAG_SET(gx->cpTex, 0, 7, 2);
+	GX_SET_REG(gx->cpTex, 0, 23, 24);
 
 	gx->zScale  = 1.6777216E7f;
 	gx->zOffset = 0.0f;
@@ -295,54 +295,49 @@ GXFifoObj* GXInit(void* base, u32 size)
 
 		val1 = (val2 / 2048) | 0x69000400;
 
-		GX_WRITE_U8(0x61);
-		GX_WRITE_U32(val1);
+		GX_BP_LOAD_REG(val1);
 
 		__GXFlushTextureState();
 
 		val1 = (val2 / 4224) | 0x46000200;
-		GX_WRITE_U8(0x61);
-		GX_WRITE_U32(val1);
+
+		GX_BP_LOAD_REG(val1);
 	}
 
 	for (i = 0; i < 8; i++) {
-		FAST_FLAG_SET(gx->vatA[i], 1, 30, 33);
-		FAST_FLAG_SET(gx->vatB[i], 1, 31, 33);
+		GX_SET_REG(gx->vatA[i], 1, 1, 1);
+		GX_SET_REG(gx->vatB[i], 1, 0, 0);
 
-		GX_WRITE_U8(0x8);
-		GX_WRITE_U8(i | 0x80);
-		GX_WRITE_U32(gx->vatB[i]);
+		GX_CP_LOAD_REG(i | 0x80, gx->vatB[i]);
 	}
 
 	{
 		u32 reg1 = 0;
 		u32 reg2 = 0;
 
-		FAST_FLAG_SET(reg1, 1, 0, 1);
-		FAST_FLAG_SET(reg1, 1, 1, 1);
-		FAST_FLAG_SET(reg1, 1, 2, 1);
-		FAST_FLAG_SET(reg1, 1, 3, 1);
-		FAST_FLAG_SET(reg1, 1, 4, 1);
-		FAST_FLAG_SET(reg1, 1, 5, 1);
-		GX_WRITE_U8(0x10);
-		GX_WRITE_U32(0x1000);
-		GX_WRITE_U32(reg1);
+		GX_SET_REG(reg1, 1, 31, 31);
+		GX_SET_REG(reg1, 1, 30, 30);
+		GX_SET_REG(reg1, 1, 29, 29);
+		GX_SET_REG(reg1, 1, 28, 28);
+		GX_SET_REG(reg1, 1, 27, 27);
+		GX_SET_REG(reg1, 1, 26, 26);
 
-		FAST_FLAG_SET(reg2, 1, 0, 1);
-		GX_WRITE_U8(0x10);
-		GX_WRITE_U32(0x1012);
-		GX_WRITE_U32(reg2);
+		GX_XF_LOAD_REG(0x1000, reg1);
+
+		GX_SET_REG(reg2, 1, 31, 31);
+
+		GX_XF_LOAD_REG(0x1012, reg2);
 	}
 
 	{
 		u32 reg = 0;
-		FAST_FLAG_SET(reg, 1, 0, 1);
-		FAST_FLAG_SET(reg, 1, 1, 1);
-		FAST_FLAG_SET(reg, 1, 2, 1);
-		FAST_FLAG_SET(reg, 1, 3, 1);
-		FAST_FLAG_SET(reg, 0x58, 24, 8);
-		GX_WRITE_U8(0x61);
-		GX_WRITE_U32(reg);
+		GX_SET_REG(reg, 1, 31, 31);
+		GX_SET_REG(reg, 1, 30, 30);
+		GX_SET_REG(reg, 1, 29, 29);
+		GX_SET_REG(reg, 1, 28, 28);
+		GX_SET_REG(reg, 0x58, 0, 7);
+
+		GX_BP_LOAD_REG(reg);
 	}
 
 	for (i = 0; i < GX_MAX_TEXMAP; i++) {
@@ -364,24 +359,15 @@ GXFifoObj* GXInit(void* base, u32 size)
 
 	GX_SET_CP_REG(3, 0);
 
-	FAST_FLAG_SET(gx->perfSel, 0, 4, 4);
+	GX_SET_REG(gx->perfSel, 0, 24, 27);
 
-	GX_WRITE_U8(0x8);
-	GX_WRITE_U8(0x20);
-	GX_WRITE_U32(gx->perfSel);
+	GX_CP_LOAD_REG(0x20, gx->perfSel)
 
-	GX_WRITE_U8(0x10);
-	GX_WRITE_U32(0x1006);
-	GX_WRITE_U32(0);
-
-	GX_WRITE_U8(0x61);
-	GX_WRITE_U32(0x23000000);
-
-	GX_WRITE_U8(0x61);
-	GX_WRITE_U32(0x24000000);
-
-	GX_WRITE_U8(0x61);
-	GX_WRITE_U32(0x67000000);
+	GX_XF_LOAD_REG(0x1006, 0);
+	
+	GX_BP_LOAD_REG(0x23000000)
+	GX_BP_LOAD_REG(0x24000000)
+	GX_BP_LOAD_REG(0x67000000)
 
 	__GXSetIndirectMask(0);
 	__GXSetTmemConfig(2);
