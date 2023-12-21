@@ -14,7 +14,9 @@ inline f32 sqrtf(f32& __sqrtf_g)
 {
 	if ((__sqrtf_g > 0.0f)) {
 		f32 __sqrtf_h;
+#ifdef __MWERKS__ // clang-format off
 		FRSQRTE(__sqrtf_g, &__sqrtf_h);
+#endif // clang-format on
 		__sqrtf_g = __sqrtf_h * __sqrtf_g;
 	}
 	return __sqrtf_g;
@@ -24,7 +26,9 @@ inline f32 sqrtf2(f32& __sqrtf_g)
 {
 	if ((__sqrtf_g > 0.0f)) {
 		f32 __sqrtf_h;
+#ifdef __MWERKS__ // clang-format off
 		FRSQRTE(__sqrtf_g, &__sqrtf_h);
+#endif // clang-format on
 		__sqrtf_g = __sqrtf_h * __sqrtf_g;
 		return __sqrtf_g;
 	}
@@ -47,9 +51,9 @@ inline void __sqrtf(register f32 x, f32* val)
 	if (x > 0.0f) {
 		if (x > 0.0f) {
 			register f32 reg_f0;
-			asm {
-				frsqrte reg_f0, x
-			}
+#ifdef __MWERKS__ // clang-format off
+			asm { frsqrte reg_f0, x }
+#endif // clang-format on
 			*val = reg_f0 * x;
 		}
 	} else {
