@@ -81,11 +81,11 @@ MWCC_VERSION := 2.6
 MWLD_VERSION := 2.6
 
 # Programs
-DEVKITPPC ?= tools/devkitPPC
+POWERPC ?= tools/powerpc
 ifeq ($(WINDOWS),1)
   WINE :=
-  AS      := $(DEVKITPPC)/bin/powerpc-eabi-as.exe
-  CPP     := $(DEVKITPPC)/bin/powerpc-eabi-cpp.exe -P
+  AS      := $(POWERPC)/powerpc-eabi-as.exe
+  CPP     := $(POWERPC)/powerpc-eabi-cpp.exe -P
   PYTHON  := python
 else
   WIBO   := $(shell command -v wibo 2> /dev/null)
@@ -96,8 +96,8 @@ else
   endif
   # Disable wine debug output for cleanliness
   export WINEDEBUG ?= -all
-  AS      := $(DEVKITPPC)/bin/powerpc-eabi-as
-  CPP     := $(DEVKITPPC)/bin/powerpc-eabi-cpp -P
+  AS      := $(POWERPC)/powerpc-eabi-as
+  CPP     := $(POWERPC)/powerpc-eabi-cpp -P
   PYTHON  := python3
 endif
 COMPILERS ?= tools/mwcc_compiler

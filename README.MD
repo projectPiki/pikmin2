@@ -28,13 +28,9 @@ This repository builds the following DOLs:
 
 1. Clone the repo using `git clone https://github.com/projectPiki/pikmin2/`
 
-2. Install required python modules with `pip install -r requirements.txt`.
+2. Run `configure.py` to automatically download/build any other necessary files for the project.
 
-3. Download [GC_WII_COMPILERS.zip](https://files.decomp.dev/compilers_20230715.zip) and extract the contents of the GC folder to `tools/mwcc_compiler/`. For example, your directory structure should look like `pikmin2/tools/mwcc_compiler/2.6/` (along with the other versions).
-
-4. Run `python configure.py` to automatically download/build any other necessary files for the project.
-
-5. Run `ninja` (recommended) or `make -j` in a command prompt or terminal.
+3. Enter `ninja` (recommended) or `make -j` in a command prompt or terminal.
 	- `-j` Allows `make` to use multiple threads, speeding up the process.
 	- `ninja` already implicitly uses the max amount of cores available, only use `-j` to *decrease* the thread count.
 	- If just `-j` gives errors on your setup, try specifying a set number of threads, e.g. `make -j 4`.
@@ -59,20 +55,22 @@ This repository builds the following DOLs:
 - To set up objdiff for this project:
 	1. Run `objdiff.exe`.
 	2. Set:
-		- Build config: `None`.
-		- Select project dir: `/path/to/cloned/pikmin2`
-		- Select target build dir: `/path/to/cloned/pikmin2/build/pikmin2.usa/asm`
-		- Select base build dir: `/path/to/cloned/pikmin2/build/pikmin2.usa/src`
-			- NB: you may have to specify a custom make path if the desired `make` version is not the default. On Windows, this is likely:
-			`/path/to/devkitPro/msys2/usr/bin/make.exe`
-	3. Select desired object file to diff (likely from `pikmin2/build/pikmin2.usa/asm/LIBRARY/OBJECTFILE.o`).
+		- Project dir: `/path/to/cloned/pikmin2`.
+		- Custom make program: `ninja` or `make`, depending on what was used to build previously.
+			- If specifying the name isn't enough, it's likely the program isn't on your `PATH`; try an absolute path instead.
+		- (`make` only) Build config: `None`.
+		- (`make` only) Select target build dir: `/path/to/cloned/pikmin2/build/pikmin2.usa/asm`.
+		- (`make` only) Select base build dir: `/path/to/cloned/pikmin2/build/pikmin2.usa/src`.
+	3. Select desired object file to diff:
+		- With `ninja`, an explorer viewer is provided after applying the previous settings.
+		- With `make`, you must explicitly select the object each time (likely from `pikmin2/build/pikmin2.usa/asm/LIBRARY/OBJECTFILE.o`).
 	4. Decomp it!
 
 ### Generating Context for decomp.me Scratches
 
 - [decomp.me](https://decomp.me/) is an online decompilation sharing hub, allowing 'scratches' of functions to be generated and collaborated on.
 - Stand-alone decompilation packages and tools such as decomp.me require information on the functions and structures of the project in order to parse extracted blocks correctly. The easiest way to do this is to pass the tool just the necessary 'context' for the file, i.e. a set of all the headers used by the file that's being worked on.
-- A recursive context processing script is included in the repo (<a href="https://github.com/projectPiki/pikmin2/tree/main/tools/decompctx.py">tools/decompctx.py</a>), which generates a `ctx.c` file in the root directory.
+- A recursive context processing script is included in the repo ([tools/decompctx.py](https://github.com/projectPiki/pikmin2/tree/main/tools/decompctx.py)), which generates a `ctx.c` file in the root directory.
 	- The contents of this can then be copied and pasted into the 'Context' section of a decomp.me scratch or similar.
 - To use, call the generator via the terminal/command line from the root directory (replacing DIRECTORY and FILE as required):
 	```python tools/decompctx.py src/DIRECTORY/FILE.cpp```
