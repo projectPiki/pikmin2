@@ -3,10 +3,8 @@ import sys
 import os
 import stat
 import platform
-import shutil
 import tempfile
-import tarfile
-import zstandard
+import zipfile
 
 if sys.platform == "cygwin":
     sys.exit(
@@ -16,47 +14,30 @@ if sys.platform == "cygwin":
         f"\n(Current path: {sys.executable})"
     )
 
-# TODO: Less hardcoded elements
-REPO = "https://wii.leseratte10.de/devkitPro/devkitPPC/r44%20%282023-08-07%29/"
+REPO = "https://github.com/encounter/gc-wii-binutils"
 
 
 def main() -> None:
-    output = f"{os.path.dirname(__file__)}/devkitPPC"
+    output = f"{os.path.dirname(__file__)}/powerpc"
 
     uname = platform.uname()
     system = uname.system.lower()
     arch = uname.machine.lower()
     if system == "darwin":
-        system = "osx"
+        system = "macos"
+        arch = "universal"
     if arch == "amd64":
         arch = "x86_64"
-    if arch == "x86_32" and system == "windows":
-        system = "win32"
-        arch = "1686"
-    if arch in ["armv8", "arm64v8", "aarch64"]:
-        arch = "aarch64"
+    if arch == "x86_32":
+        arch = "i686"
 
-    with tempfile.TemporaryDirectory() as tmp:
-        tmp_zst = f"{tmp}/tmp.tar.zst"
-        tmp_tar = f"{tmp}/tmp.tar"
-        tmp_dir = f"{tmp}/tmp"
-        tmp_ppc = f"{tmp_dir}/opt/devkitpro/devkitPPC"
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        tmp_zip = f"{tmp_dir}/powerpc.zip"
+        url = f"{REPO}/releases/latest/download/{system}-{arch}.zip"
 
-        request = urllib.request.Request(
-            url=f"{REPO}/devkitPPC-r44.2-2-{system}_{arch}.pkg.tar.zst",
-            headers={"User-Agent": "Mozilla/5.0"},
-        )
-
-        with urllib.request.urlopen(request) as src, open(tmp_zst, "wb") as dst:
-            shutil.copyfileobj(src, dst)
-
-        with open(tmp_zst, "rb") as src, open(tmp_tar, "wb") as dst:
-            zstandard.ZstdDecompressor().copy_stream(src, dst)
-
-        with tarfile.open(tmp_tar) as src:
-            src.extractall(tmp_dir)
-
-        shutil.move(tmp_ppc, output)
+        urllib.request.urlretrieve(url, tmp_zip)
+        with zipfile.ZipFile(tmp_zip) as zip_file:
+            zip_file.extractall(output)
 
     st = os.stat(output)
     os.chmod(output, st.st_mode | stat.S_IEXEC)

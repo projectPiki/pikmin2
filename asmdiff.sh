@@ -1,8 +1,8 @@
 #!/bin/bash -e
 
 VERSION="${VERSION:=usa}"
-DEVKITPPC="${DEVKITPPC:=tools/devkitPPC}"
-OBJDUMP="$DEVKITPPC/bin/powerpc-eabi-objdump -Dz -bbinary -EB -mpowerpc -M gekko"
+POWERPC="${POWERPC:=tools/powerpc}"
+OBJDUMP="$POWERPC/powerpc-eabi-objdump -Dz -bbinary -EB -mpowerpc -M gekko"
 if [ ! -z "$1" ]; then
   OPTIONS="--start-address=$(($1)) --stop-address=$(($2))"
 fi

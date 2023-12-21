@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 LIBS = [
     {
         "lib": "JStudio_JParticle",
@@ -1660,7 +1658,7 @@ LIBS = [
     },
 ]
 
-if __name__ == "__main__":
+def main():
     import os
     import io
     import sys
@@ -1702,10 +1700,11 @@ if __name__ == "__main__":
         help="don't build and use static libs",
     )
     parser.add_argument(
-        "--devkitppc",
-        dest="devkitppc",
+        "--powerpc",
+        dest="powerpc",
         type=Path,
-        help="path to devkitPPC",
+        default=Path("tools/powerpc"),
+        help="path to powerpc-eabi tools",
     )
     if os.name != "nt" and not "_NT-" in os.uname().sysname:
         parser.add_argument(
@@ -1754,9 +1753,6 @@ if __name__ == "__main__":
 
     n.comment("The arguments passed to configure.py, for rerunning it.")
     configure_args = sys.argv[1:]
-    # Ignore DEVKITPPC env var on Windows
-    if os.name != "nt" and "DEVKITPPC" in os.environ and not args.devkitppc:
-        configure_args.extend(["--devkitppc", os.environ["DEVKITPPC"]])
     n.variable("configure_args", configure_args)
     n.variable("python", f'"{sys.executable}"')
     n.newline()
@@ -1773,15 +1769,6 @@ if __name__ == "__main__":
     else:
         sys.exit(f'Invalid version "{args.version}"')
     build_path = args.build_dir / f"pikmin2.{version}"
-    if args.devkitppc:
-        dkp_path = args.devkitppc
-    elif "DEVKITPPC" in os.environ:
-        dkp_path = Path(os.environ["DEVKITPPC"])
-    else:
-        dkp_path = Path("tools/devkitPPC")
-        if not dkp_path.exists():
-            import tools.download_ppc
-            tools.download_ppc.main()
 
     cflags_base = f"-proc gekko -nodefaults -Cpp_exceptions off -RTTI off -fp hard -fp_contract on -O4,p -maxerrors 1 -enum int -inline auto -str reuse,readonly -nosyspath -use_lmw_stmw on -sdata 8 -sdata2 8 -DVERNUM={version_num} -i include -i include/stl"
     if args.debug:
@@ -1825,8 +1812,6 @@ if __name__ == "__main__":
     ###
     # Tooling
     ###
-    n.comment("decomp-toolkit")
-
     tools_path = Path("tools")
 
     def path(input):
@@ -1837,6 +1822,7 @@ if __name__ == "__main__":
         else:
             return [str(input)]
 
+    n.comment("decomp-toolkit")
     if args.build_dtk:
         dtk = tools_path / "release" / f"dtk{exe}"
         n.rule(
@@ -1871,13 +1857,51 @@ if __name__ == "__main__":
         )
     n.newline()
 
+    if args.powerpc == Path("tools/powerpc"):
+        n.comment("powerpc")
+        download_ppc = tools_path / "download_ppc.py"
+        n.rule(
+            name="download_ppc",
+            command=f"$python {download_ppc}",
+            description="DOWNLOAD $out",
+        )
+        n.build(
+            outputs=path("tools/powerpc/finish"),
+            rule="download_ppc",
+            implicit=path(["tools/powerpc", download_ppc]),
+        )
+        n.newline()
+        # FIXME: Manual download because the above doesn't work for some reason
+        if not Path("tools/powerpc").exists():
+            import tools.download_ppc
+            tools.download_ppc.main()
+
+    if args.compilers == Path("tools/mwcc_compiler"):
+        n.comment("mwcc-compilers")
+        download_mwcc = tools_path / "download_mwcc.py"
+        n.rule(
+            name="download_mwcc",
+            command=f"$python {download_mwcc}",
+            description="DOWNLOAD $out",
+        )
+        n.build(
+            outputs=path("tools/mwcc_compiler"),
+            rule="download_mwcc",
+            implicit=path(["tools/mwcc_compiler", download_mwcc]),
+        )
+        n.newline()
+        # FIXME: Manual download because the above doesn't work for some reason
+        if not Path("tools/mwcc_compiler").exists():
+            import tools.download_mwcc
+            tools.download_mwcc.main()
+
     ###
     # Rules
     ###
     compiler_path = args.compilers / "$mw_version"
     mwcc = compiler_path / "mwcceppc.exe"
     mwld = compiler_path / "mwldeppc.exe"
-    gnu_as = dkp_path / "bin" / f"powerpc-eabi-as{exe}"
+    gnu_as = args.powerpc / f"powerpc-eabi-as{exe}"
 
     mwcc_cmd = f"{chain}{wine}{mwcc} $cflags -MMD -c $in -o $basedir"
     mwld_cmd = f"{wine}{mwld} $ldflags -o $out @$out.rsp"
@@ -2230,3 +2254,6 @@ if __name__ == "__main__":
     ###
     with open("objdiff.json", "w") as w:
         json.dump(objdiff_config, w, indent=4)
+
+if __name__ == "__main__":
+    main()
