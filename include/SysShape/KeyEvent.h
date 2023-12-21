@@ -35,6 +35,8 @@ struct KeyEvent : public CNode {
 
 	virtual ~KeyEvent() { } // _08 (weak)
 
+	inline int getFrame() const { return mFrame; }
+
 	int mFrame;   // _18
 	u32 mType;    // _1C
 	s16 mAnimIdx; // _20

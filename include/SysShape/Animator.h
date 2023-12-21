@@ -3,6 +3,7 @@
 
 #include "SysShape/AnimInfo.h"
 #include "SysShape/Model.h"
+#include "SysShape/MotionListener.h"
 
 struct J3DMtxCalc;
 
@@ -56,6 +57,16 @@ struct Animator : public BaseAnimator {
 			return nullptr;
 		}
 	}
+
+	inline void onKeyEventTrigger(SysShape::KeyEvent* evt)
+	{
+		if (mListener) {
+			evt->mAnimIdx = mAnimInfo->mId;
+			mListener->onKeyEvent(*mCurAnimKey);
+		}
+	}
+
+	inline KeyEvent* moveCurAnim() { return mCurAnimKey = (KeyEvent*)mCurAnimKey->mNext; }
 
 	MotionListener* mListener; // _04
 	f32 mTimer;                // _08

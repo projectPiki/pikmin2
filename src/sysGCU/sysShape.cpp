@@ -126,56 +126,61 @@ void Animator::setLastFrame()
  */
 void Animator::animate(f32 timeFactor)
 {
-	if (mAnimInfo) {
-		bool end = false;
-		mTimer += timeFactor;
-		while (true) {
-			KeyEvent* evt = mCurAnimKey;
-			if (mListener) {
-				evt->mAnimIdx = mAnimInfo->mId;
-				mListener->onKeyEvent(*mCurAnimKey);
-			}
-			evt = mCurAnimKey;
-			if (!evt) {
-				break;
-			}
-			switch (evt->mType) {
-			case 1:
-				if (!(mFlags & 2)) {
-					KeyEvent* start = mAnimInfo->getLastLoopStart(evt);
-					if (start) {
-						mTimer = start->mFrame;
-					} else {
-						mTimer = 0.0f;
-						JUT_PANICLINE(369, "mismatch LOOP_START - LOOP_END\n");
-					}
-				}
-				end = true;
-				break;
-			}
-			mCurAnimKey = (KeyEvent*)mCurAnimKey->mNext;
-			if (end || !mCurAnimKey || mCurAnimKey->mFrame >= (int)mTimer) {
-				break;
-			}
-		}
-		if (end) {
-			mCurAnimKey = mAnimInfo->getLowestAnimKey(mTimer);
+	if (!mAnimInfo) {
+		return;
+	}
+
+	mTimer += timeFactor;
+
+	bool found = false;
+	SysShape::KeyEvent* currentEv;
+	while (!found && mCurAnimKey && mCurAnimKey->mFrame < (int)mTimer) {
+		onKeyEventTrigger(currentEv);
+
+		currentEv = mCurAnimKey;
+		if (!currentEv) {
+			break;
 		}
 
-		int time = mAnimInfo->mAnm->mMaxFrame;
-		if (time >= mTimer) {
-			mTimer = time - 1.0f;
-			if (mListener && !(mFlags & 1)) {
-				KeyEvent event;
-				event.mFrame   = (f32)mAnimInfo->mAnm->mMaxFrame;
-				event.mType    = KEYEVENT_END;
-				event.mAnimIdx = mAnimInfo->mId;
-				mFlags |= 1;
-				mListener->onKeyEvent(event);
+		switch (currentEv->mType) {
+		case 1:
+			if (!(mFlags & 2)) {
+				KeyEvent* start = mAnimInfo->getLastLoopStart(currentEv);
+				if (start) {
+					mTimer = start->mFrame;
+				} else {
+					mTimer = 0.0f;
+					JUT_PANICLINE(369, "mismatch LOOP_START - LOOP_END\n");
+				}
+
+				found = true;
+				break;
 			}
 		}
-		mAnimInfo->mAnm->setFrame((int)mTimer);
+
+		currentEv = moveCurAnim();
 	}
+
+	if (found) {
+		mCurAnimKey = mAnimInfo->getLowestAnimKey(mTimer);
+	}
+
+	int time = mAnimInfo->mAnm->mMaxFrame;
+	if (time >= mTimer) {
+		mTimer = time - 1.0f;
+
+		if (mListener && !(mFlags & 1)) {
+			KeyEvent event;
+			event.mFrame   = (f32)mAnimInfo->mAnm->mMaxFrame;
+			event.mType    = KEYEVENT_END;
+			event.mAnimIdx = mAnimInfo->mId;
+			mFlags |= 1;
+			mListener->onKeyEvent(event);
+		}
+	}
+
+	mAnimInfo->mAnm->setFrame((int)mTimer);
+
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -561,50 +566,16 @@ KeyEvent* AnimInfo::getLowestAnimKey(f32 minimumFrame)
 	KeyEvent* lowestKey = nullptr;
 	FOREACH_NODE(KeyEvent, mKeyEvent.mChild, key)
 	{
-		// dumb but works
-		int frame      = key->mFrame;
+		int frame      = key->getFrame();
 		f32 framefloat = frame;
-		if ((int)minimumFrame >= frame && framefloat < lowestFrame) {
+
+		if (frame >= (int)minimumFrame && framefloat < lowestFrame) {
 			lowestFrame = framefloat;
 			lowestKey   = key;
 		}
 	}
+
 	return lowestKey;
-	/*
-	fctiwz   f0, f1
-	stwu     r1, -0x10(r1)
-	lfs      f2, lbl_80520540@sda21(r2)
-	lis      r0, 0x4330
-	lwz      r7, 0x38(r3)
-	li       r3, 0
-	stfd     f0, 8(r1)
-	lfd      f1, lbl_80520538@sda21(r2)
-	lwz      r6, 0xc(r1)
-	b        lbl_8042991C
-
-lbl_804298E8:
-	lwz      r5, 0x18(r7)
-	stw      r0, 8(r1)
-	xoris    r4, r5, 0x8000
-	cmpw     r5, r6
-	stw      r4, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f1
-	blt      lbl_80429918
-	fcmpo    cr0, f0, f2
-	bge      lbl_80429918
-	fmr      f2, f0
-	mr       r3, r7
-
-lbl_80429918:
-	lwz      r7, 4(r7)
-
-lbl_8042991C:
-	cmplwi   r7, 0
-	bne      lbl_804298E8
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
