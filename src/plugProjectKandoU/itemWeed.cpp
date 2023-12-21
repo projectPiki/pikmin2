@@ -490,45 +490,19 @@ Item* Mgr::birth()
  * @note Address: 0x802101F4
  * @note Size: 0x8
  */
-char* Mgr::getCaveName(int)
-{
-	return "weed";
-	/*
-	addi     r3, r2, lbl_80519F44@sda21
-	blr
-	*/
-}
+char* Mgr::getCaveName(int) { return "weed"; }
 
 /**
  * @note Address: 0x802101FC
  * @note Size: 0x4C
  */
-int Mgr::getCaveID(char* p1)
+int Mgr::getCaveID(char* name)
 {
-	return strncmp("weed", p1, strlen("weed")) != 0;
+	if (strncmp("weed", name, strlen("weed")) != 0) {
+		return -1;
+	}
 
-	// return ((bool)strncmp("weed", p1, strlen("weed")));
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r2, lbl_80519F44@sda21
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	bl       strlen
-	mr       r5, r3
-	mr       r4, r31
-	addi     r3, r2, lbl_80519F44@sda21
-	bl       strncmp
-	neg      r0, r3
-	or       r0, r0, r3
-	srawi    r3, r0, 0x1f
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return 0;
 }
 
 /**

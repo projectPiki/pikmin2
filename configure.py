@@ -1420,7 +1420,7 @@ LIBS = [
             ["plugProjectMorimuraU/enemyNest", True],
             ["plugProjectMorimuraU/tamagoMushiState", True],
             ["plugProjectMorimuraU/tamagoMushiAnimator", True],
-            ["plugProjectMorimuraU/tamagoMushiMgr", False],
+            ["plugProjectMorimuraU/tamagoMushiMgr", True],
             ["plugProjectMorimuraU/tamagoMushi", False],
             ["plugProjectMorimuraU/zukan2D", False],
             ["plugProjectMorimuraU/hiScore2D", False],

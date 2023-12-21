@@ -2517,30 +2517,11 @@ char* Mgr::getCaveName(int) { return "ujamushi"; }
  */
 int Mgr::getCaveID(char* name)
 {
-	return (bool)(strncmp("ujamushi", name, strlen("ujamushi")));
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_80481EB0@ha
-	stw      r0, 0x14(r1)
-	addi     r3, r3, lbl_80481EB0@l
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	bl       strlen
-	lis      r4, lbl_80481EB0@ha
-	mr       r5, r3
-	addi     r3, r4, lbl_80481EB0@l
-	mr       r4, r31
-	bl       strncmp
-	neg      r0, r3
-	or       r0, r0, r3
-	srawi    r3, r0, 0x1f
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (strncmp("ujamushi", name, strlen("ujamushi")) != 0) {
+		return -1;
+	}
+
+	return 0;
 }
 
 /**
