@@ -1,27 +1,98 @@
 #include "Game/shadowMgr.h"
+#include "Game/GameSystem.h"
+#include "System.h"
+#include "trig.h"
 #include "nans.h"
+#include "JSystem/JUtility/JUTTexture.h"
 
+static const u32 padding[]    = { 0, 0, 0 };
+static const char className[] = "246-ShadowCylinder";
 namespace Game {
 
-static const int unusedArray[] = { 0, 0, 0 };
-static const char unusedName[] = "246-ShadowCylinder";
+// clang-format off
+u8 sHighCylinderDL[] = {
+	GX_TRIANGLEFAN,   0, 12, 0, 0,  0, 1,  0, 2,  0, 3,  0, 4,  0, 5,  0, 6,  0, 7,  0, 8,  0, 9,  0, 10, 0, 11,
+	GX_TRIANGLEFAN,   0, 12, 0, 23, 0, 22, 0, 21, 0, 20, 0, 19, 0, 18, 0, 17, 0, 16, 0, 15, 0, 14, 0, 13, 0, 12,
+	GX_TRIANGLESTRIP, 0, 26, 0, 0,  0, 12, 0, 1,  0, 13, 0, 2,  0, 14, 0, 3,  0, 15, 0, 4,  0, 16, 0, 5,  0, 17, 0, 6, 0, 18, 0, 7, 0, 19, 0, 8, 0, 20, 0, 9, 0, 21, 0, 10, 0, 22, 0, 11, 0, 23,
+	 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+};
+
+u8 sMidCylinderDL[] = {
+	GX_TRIANGLEFAN,   0, 8, 0, 24, 0, 25, 0, 26, 0, 27,  0, 28,  0, 29,  0, 30,  0, 31,
+	GX_TRIANGLEFAN,   0, 8, 0, 39, 0, 38, 0, 37, 0, 36, 0, 35, 0, 34, 0, 33, 0, 32,
+	GX_TRIANGLESTRIP, 0, 18, 0, 24, 0, 32, 0, 25, 0, 33, 0, 26, 0, 34, 0, 27, 0, 35, 0, 28, 0, 36, 0, 29, 0, 37, 0, 30, 0, 38, 0, 31, 0, 39, 0, 24, 0, 32, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+};
+
+u8 sLowCylinderDL[] = {
+	GX_TRIANGLEFAN,   0, 4, 0, 40, 0, 41, 0, 42, 0, 43,  
+	GX_TRIANGLEFAN,   0, 4, 0, 47, 0, 46, 0, 45, 0, 44,
+	GX_TRIANGLESTRIP, 0, 10, 0, 40, 0, 44, 0, 41, 0, 45, 0, 42, 0, 46, 0, 43, 0, 47, 0, 40, 0, 44, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+};
+// clang-format on
+
+static f32 sCylinderVertPos[30];
 
 /**
  * @note Address: N/A
  * @note Size: 0x108
  */
-CylinderList::CylinderList(int)
+CylinderList::CylinderList(int index)
 {
-	// UNUSED FUNCTION
+	mTriangleNum = 0;
+	mDLData      = nullptr;
+	mSize        = 0;
+	switch (index) {
+	case 0:
+		mTriangleNum = 12;
+		mDLData      = sHighCylinderDL;
+		mSize        = 141;
+		break;
+	case 1:
+		mTriangleNum = 8;
+		mDLData      = sMidCylinderDL;
+		mSize        = 109;
+		break;
+	case 2:
+		mTriangleNum = 4;
+		mDLData      = sLowCylinderDL;
+		mSize        = 77;
+		break;
+	}
+	P2ASSERTBOOLLINE(188, mTriangleNum && mDLData && mSize);
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0x210
  */
-void CylinderList::createCylinder(int, float)
+void CylinderList::createCylinder(int id, f32 calc)
 {
-	// UNUSED FUNCTION
+	int a = 0;
+	switch (id) {
+	case 1:
+		a = 72;
+		break;
+	default:
+		break;
+	case 2:
+		a = 120;
+		break;
+	}
+	f32 test = TAU / mTriangleNum;
+	for (int i = 0; i < mTriangleNum; i++) {
+		f32 a2                  = i * test;
+		f32 a3                  = a2 - (test * 0.5f);
+		sCylinderVertPos[a]     = calc * cosf(a3);
+		sCylinderVertPos[a + 1] = 0.0f;
+		sCylinderVertPos[a + 2] = calc * sinf(a3);
+
+		int b                   = a + (i + mTriangleNum) * 3;
+		sCylinderVertPos[b]     = calc * cosf(a3);
+		sCylinderVertPos[b + 1] = -1.0f;
+		sCylinderVertPos[b + 2] = calc * sinf(a3);
+	}
 }
 
 /**
@@ -39,6 +110,35 @@ void CylinderList::draw()
  */
 CylinderBase::CylinderBase()
 {
+	mDisplayListObj = new CylinderList*[3];
+	for (int i = 0; i < 3; i++) {
+		f32 calc = 1.0f;
+		switch (i) {
+		case 1:
+			calc = 1.05f;
+			break;
+		default:
+			break;
+		case 2:
+			calc = 1.35f;
+			break;
+		}
+
+		mDisplayListObj[i] = new CylinderList(i);
+		mDisplayListObj[i]->createCylinder(i, calc);
+	}
+	u16 y              = sys->getRenderModeObj()->efbHeight;
+	u16 x              = sys->getRenderModeObj()->fbWidth;
+	mScreenBounds.p1.x = 0.0f;
+	mScreenBounds.p1.y = 0.0f;
+	mScreenBounds.p2.x = x;
+	mScreenBounds.p2.y = y;
+
+	for (int i = 0; i < 2; i++) {
+		mCamPosition[i]   = Vector3f(0.0f, 0.0f, 1.0f);
+		mCamLookAt[i]     = Vector3f(0.0f, 0.0f, 1.0f);
+		mCameraSizeMod[i] = 12800.0f;
+	}
 	/*
 	stwu     r1, -0xe0(r1)
 	mflr     r0
@@ -412,196 +512,85 @@ void CylinderBase::setColor(Color4* color) { mColor = color; }
  * @note Address: 0x8023DF14
  * @note Size: 0x24
  */
-void CylinderBase::setShadowRect(Rectf&)
-{
-	/*
-	lfs      f0, 0(r4)
-	stfs     f0, 0x10(r3)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x14(r3)
-	lfs      f0, 8(r4)
-	stfs     f0, 0x18(r3)
-	lfs      f0, 0xc(r4)
-	stfs     f0, 0x1c(r3)
-	blr
-	*/
-}
+void CylinderBase::setShadowRect(Rectf& rect) { mScreenBounds = rect; }
 
 /**
  * @note Address: 0x8023DF38
  * @note Size: 0xB4
  */
-void CylinderBase::setCameraParms(Camera*, int)
+void CylinderBase::setCameraParms(Camera* camera, int id)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	mr       r30, r5
-	stw      r29, 0x24(r1)
-	mr       r29, r4
-	stw      r28, 0x20(r1)
-	mr       r28, r3
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r4)
-	lwz      r12, 0x4c(r12)
-	mtctr    r12
-	bctrl
-	mulli    r31, r30, 0xc
-	lfs      f0, 0x14(r1)
-	mr       r4, r29
-	addi     r3, r1, 8
-	add      r5, r28, r31
-	stfs     f0, 0x20(r5)
-	lfs      f0, 0x18(r1)
-	stfs     f0, 0x24(r5)
-	lfs      f0, 0x1c(r1)
-	stfs     f0, 0x28(r5)
-	bl       getViewVector__11CullFrustumFv
-	lfs      f0, 8(r1)
-	add      r4, r28, r31
-	slwi     r0, r30, 2
-	stfs     f0, 0x38(r4)
-	add      r3, r28, r0
-	lfs      f0, 0xc(r1)
-	stfs     f0, 0x3c(r4)
-	lfs      f0, 0x10(r1)
-	stfs     f0, 0x40(r4)
-	lfs      f0, 0x138(r29)
-	stfs     f0, 0x50(r3)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	lwz      r28, 0x20(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	mCamPosition[id]   = camera->getPosition();
+	mCamLookAt[id]     = camera->getViewVector();
+	mCameraSizeMod[id] = camera->_138;
 }
 
 /**
  * @note Address: 0x8023DFEC
  * @note Size: 0xCC
  */
-void CylinderBase::makeSRT(Matrixf&, Game::ShadowParam&)
+void CylinderBase::makeSRT(Matrixf& mtx, Game::ShadowParam& param)
 {
-	/*
-	lfs      f1, 0x10(r5)
-	lfs      f0, lbl_8051A640@sda21(r2)
-	lfs      f3, 0(r5)
-	fcmpo    cr0, f1, f0
-	lfs      f4, 4(r5)
-	lfs      f5, 8(r5)
-	lfs      f6, 0x1c(r5)
-	lfs      f7, 0x18(r5)
-	cror     2, 1, 2
-	beq      lbl_8023E024
-	lfs      f2, lbl_8051A620@sda21(r2)
-	fcmpo    cr0, f1, f2
-	cror     2, 0, 2
-	bne      lbl_8023E05C
+	f32 ybound    = param.mBoundingSphere.mPosition.y;
+	f32 x         = param.mPosition.x;
+	f32 y         = param.mPosition.y;
+	f32 z         = param.mPosition.z;
+	f32 radius    = param.mSize;
+	f32 boundsize = param.mBoundingSphere.mRadius;
 
-lbl_8023E024:
-	stfs     f6, 0(r4)
-	lfs      f0, lbl_8051A620@sda21(r2)
-	stfs     f0, 0x10(r4)
-	stfs     f0, 0x20(r4)
-	stfs     f0, 4(r4)
-	stfs     f7, 0x14(r4)
-	stfs     f0, 0x24(r4)
-	stfs     f0, 8(r4)
-	stfs     f0, 0x18(r4)
-	stfs     f6, 0x28(r4)
-	stfs     f3, 0xc(r4)
-	stfs     f4, 0x1c(r4)
-	stfs     f5, 0x2c(r4)
-	blr
+	if (ybound >= 1.0f || ybound <= 0.0f) {
+		mtx.mMatrix.mtxView[0][0] = radius;
+		mtx.mMatrix.mtxView[1][0] = 0.0f;
+		mtx.mMatrix.mtxView[2][0] = 0.0f;
+		mtx.mMatrix.mtxView[0][1] = 0.0f;
 
-lbl_8023E05C:
-	stfs     f6, 0(r4)
-	lfs      f1, 0xc(r5)
-	lfs      f0, 0x10(r5)
-	fneg     f1, f1
-	fdivs    f0, f1, f0
-	fmuls    f0, f6, f0
-	stfs     f0, 0x10(r4)
-	stfs     f2, 0x20(r4)
-	stfs     f2, 4(r4)
-	stfs     f7, 0x14(r4)
-	stfs     f2, 0x24(r4)
-	stfs     f2, 8(r4)
-	lfs      f1, 0x14(r5)
-	lfs      f0, 0x10(r5)
-	fneg     f1, f1
-	fdivs    f0, f1, f0
-	fmuls    f0, f6, f0
-	stfs     f0, 0x18(r4)
-	stfs     f6, 0x28(r4)
-	stfs     f3, 0xc(r4)
-	stfs     f4, 0x1c(r4)
-	stfs     f5, 0x2c(r4)
-	blr
-	*/
+		mtx.mMatrix.mtxView[1][1] = boundsize;
+		mtx.mMatrix.mtxView[2][1] = 0.0f;
+		mtx.mMatrix.mtxView[0][2] = 0.0f;
+		mtx.mMatrix.mtxView[1][2] = 0.0f;
+		mtx.mMatrix.mtxView[2][2] = radius;
+
+		mtx.mMatrix.mtxView[0][3] = x;
+		mtx.mMatrix.mtxView[1][3] = y;
+		mtx.mMatrix.mtxView[2][3] = z;
+		return;
+	}
+
+	mtx.mMatrix.mtxView[0][0] = radius;
+	mtx.mMatrix.mtxView[1][0] = radius * (-param.mBoundingSphere.mPosition.x / param.mBoundingSphere.mPosition.y);
+	mtx.mMatrix.mtxView[2][0] = 0.0f;
+	mtx.mMatrix.mtxView[0][1] = 0.0f;
+
+	mtx.mMatrix.mtxView[1][1] = boundsize;
+	mtx.mMatrix.mtxView[2][1] = 0.0f;
+	mtx.mMatrix.mtxView[0][2] = 0.0f;
+
+	mtx.mMatrix.mtxView[1][2] = radius * (-param.mBoundingSphere.mPosition.z / param.mBoundingSphere.mPosition.y);
+	mtx.mMatrix.mtxView[2][2] = radius;
+	mtx.mMatrix.mtxView[0][3] = x;
+	mtx.mMatrix.mtxView[1][3] = y;
+	mtx.mMatrix.mtxView[2][3] = z;
 }
 
 /**
  * @note Address: 0x8023E0B8
  * @note Size: 0xA4
  */
-int CylinderBase::getCylinderType(Game::ShadowParam&, int)
+int CylinderBase::getCylinderType(Game::ShadowParam& param, int camID)
 {
-	/*
-	mulli    r6, r5, 0xc
-	slwi     r0, r5, 2
-	lwz      r7, 0xc(r3)
-	add      r5, r3, r0
-	lfs      f1, 4(r4)
-	add      r3, r3, r6
-	lfs      f0, 0x24(r3)
-	lfs      f3, 0(r4)
-	fsubs    f0, f1, f0
-	lfs      f2, 0x20(r3)
-	lfs      f1, 0x3c(r3)
-	fsubs    f2, f3, f2
-	lfs      f4, 8(r4)
-	fmuls    f0, f1, f0
-	lfs      f3, 0x28(r3)
-	lfs      f1, 0x38(r3)
-	fsubs    f5, f4, f3
-	lfs      f4, 0x50(r5)
-	lfs      f3, 0x1c(r4)
-	fmadds   f0, f1, f2, f0
-	lfs      f1, 0x40(r3)
-	fmuls    f2, f4, f3
-	fmadds   f1, f1, f5, f0
-	lfs      f0, 0x24(r7)
-	fdivs    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_8023E12C
-	li       r3, 0
-	blr
+	f32 dist = (mCameraSizeMod[camID] * param.mSize)
+	         / (mCamLookAt[camID].x * (param.mPosition.x - mCamPosition[camID].x)
+	            + mCamLookAt[camID].y * (param.mPosition.y - mCamPosition[camID].y)
+	            + mCamLookAt[camID].z * (param.mPosition.z - mCamPosition[camID].z));
 
-lbl_8023E12C:
-	lfs      f0, 0x4c(r7)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8023E140
-	li       r3, 1
-	blr
-
-lbl_8023E140:
-	lfs      f0, lbl_8051A620@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8023E154
-	li       r3, 2
-	blr
-
-lbl_8023E154:
-	li       r3, 0
-	blr
-	*/
+	if (dist > mParms->mLodNear()) {
+		return 0;
+	} else if (dist > mParms->mLodFar()) {
+		return 1;
+	} else if (dist > 0.0f) {
+		return 2;
+	}
+	return 0;
 }
 
 /**
@@ -652,7 +641,14 @@ void CylinderBase::setupDrawCylinderGX()
  */
 void CylinderBase::setupFilterGX()
 {
-	// UNUSED FUNCTION
+	GXSetNumTexGens(0);
+	GXSetNumIndStages(0);
+	__GXSetIndirectMask(0);
+	GXSetCurrentMtx(0);
+	GXSetNumTevStages(1);
+	GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
+	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+	GXSetNumChans(1);
 }
 
 /**
@@ -661,7 +657,9 @@ void CylinderBase::setupFilterGX()
  */
 void CylinderBase::setOrthoProjection()
 {
-	// UNUSED FUNCTION
+	Mtx mtx;
+	C_MTXOrtho(mtx, mScreenBounds.p1.y, mScreenBounds.p2.y, mScreenBounds.p1.x, mScreenBounds.p2.x, 0.0f, 2.0f);
+	GXSetProjection(mtx, GX_ORTHOGRAPHIC);
 }
 
 /**
@@ -670,7 +668,13 @@ void CylinderBase::setOrthoProjection()
  */
 void CylinderBase::setOrthoCamera()
 {
-	// UNUSED FUNCTION
+	Vec b = { 0.0f, 1.0f, 0.0f };
+	Vec c = { 0.0f, 0.0f, 0.0f };
+	Vec a = { 0.0f, 0.0f, 1.0f };
+
+	Mtx mtx2;
+	C_MTXLookAt(mtx2, &a, &b, &c);
+	GXLoadPosMtxImm(mtx2, 0);
 }
 
 /**
@@ -679,7 +683,8 @@ void CylinderBase::setOrthoCamera()
  */
 void CylinderBase::setScissorViewport()
 {
-	// UNUSED FUNCTION
+	GXSetScissor(mScreenBounds.p1.x, mScreenBounds.p1.y, mScreenBounds.getWidth(), mScreenBounds.getHeight());
+	GXSetViewport(mScreenBounds.p1.x, mScreenBounds.p1.y, mScreenBounds.getWidth(), mScreenBounds.getHeight(), 0.0f, 1.0f);
 }
 
 /**
@@ -713,140 +718,40 @@ void CylinderBase::drawCylinderList(int)
  * @note Address: 0x8023E16C
  * @note Size: 0x164
  */
-ShadowCylinder2::ShadowCylinder2(Game::ShadowParms*, Color4*)
+ShadowCylinder2::ShadowCylinder2(Game::ShadowParms* parm, Color4* color)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	stw      r28, 0x10(r1)
-	bl       __ct__Q24Game12CylinderBaseFv
-	lis      r4, __vt__Q24Game15ShadowCylinder2@ha
-	lis      r3, lbl_80483FBC@ha
-	addi     r0, r4, __vt__Q24Game15ShadowCylinder2@l
-	li       r5, 0
-	stw      r0, 0(r29)
-	addi     r4, r3, lbl_80483FBC@l
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	bl       getRenderModeObj__6SystemFv
-	lhz      r28, 6(r3)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r0, 4(r3)
-	rlwinm   r4, r28, 0x1f, 0x11, 0x1f
-	li       r5, 0x27
-	li       r6, 0
-	rlwinm   r3, r0, 0x1f, 0x11, 0x1f
-	li       r7, 0
-	bl       GXGetTexBufferSize
-	lwz      r4, gameSystem__4Game@sda21(r13)
-	mr       r28, r3
-	cmplwi   r4, 0
-	beq      lbl_8023E248
-	lwz      r3, 0x44(r4)
-	li       r0, 0
-	cmpwi    r3, 1
-	beq      lbl_8023E208
-	cmpwi    r3, 3
-	bne      lbl_8023E20C
+	sys->heapStatusStart("Shadow Texture", nullptr);
 
-lbl_8023E208:
-	li       r0, 1
-
-lbl_8023E20C:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_8023E248
-	li       r3, 4
-	li       r4, 0x20
-	bl       __nwa__FUli
-	stw      r3, 0x58(r29)
-	mr       r3, r28
-	li       r4, 0x20
-	bl       __nwa__FUli
-	lwz      r4, 0x58(r29)
-	stw      r3, 0(r4)
-	li       r3, 0x20
-	bl       __nwa__FUl
-	stw      r3, 0x5c(r29)
-	b        lbl_8023E28C
-
-lbl_8023E248:
-	li       r3, 8
-	li       r4, 0x20
-	bl       __nwa__FUli
-	stw      r3, 0x58(r29)
-	mr       r3, r28
-	li       r4, 0x20
-	bl       __nwa__FUli
-	lwz      r5, 0x58(r29)
-	li       r4, 0x20
-	stw      r3, 0(r5)
-	mr       r3, r28
-	bl       __nwa__FUli
-	lwz      r4, 0x58(r29)
-	stw      r3, 4(r4)
-	li       r3, 0x40
-	bl       __nwa__FUl
-	stw      r3, 0x5c(r29)
-
-lbl_8023E28C:
-	stw      r30, 0xc(r29)
-	lis      r3, lbl_80483FBC@ha
-	li       r0, 0
-	stw      r31, 8(r29)
-	addi     r4, r3, lbl_80483FBC@l
-	stw      r0, 0x60(r29)
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusEnd__6SystemFPc
-	lwz      r0, 0x24(r1)
-	mr       r3, r29
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	u16 y    = sys->getRenderModeObj()->efbHeight;
+	u16 x    = sys->getRenderModeObj()->fbWidth;
+	int size = GXGetTexBufferSize(x / 2, y / 2, GX_CTF_R8, GX_FALSE, 0);
+	if (gameSystem && !gameSystem->isMultiplayerMode()) {
+		mTexImg    = new (0x20) ResTIMG*[1];
+		mTexImg[0] = (ResTIMG*)(new (0x20) u8[size]);
+		mTexObj    = new GXTexObj[1];
+	} else {
+		mTexImg    = new (0x20) ResTIMG*[2];
+		mTexImg[0] = (ResTIMG*)(new (0x20) u8[size]);
+		mTexImg[1] = (ResTIMG*)(new (0x20) u8[size]);
+		mTexObj    = new GXTexObj[2];
+	}
+	mParms  = parm;
+	mColor  = color;
+	mTexIdx = 0;
+	sys->heapStatusEnd("Shadow Texture");
 }
 
 /**
  * @note Address: 0x8023E2D0
  * @note Size: 0x44
  */
-void ShadowCylinder2::setFilterTextureID(int)
+void ShadowCylinder2::setFilterTextureID(int vpID)
 {
-	/*
-	lwz      r5, gameSystem__4Game@sda21(r13)
-	cmplwi   r5, 0
-	beq      lbl_8023E30C
-	lwz      r5, 0x44(r5)
-	li       r0, 0
-	cmpwi    r5, 1
-	beq      lbl_8023E2F4
-	cmpwi    r5, 3
-	bne      lbl_8023E2F8
-
-lbl_8023E2F4:
-	li       r0, 1
-
-lbl_8023E2F8:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_8023E30C
-	li       r0, 0
-	stw      r0, 0x60(r3)
-	blr
-
-lbl_8023E30C:
-	stw      r4, 0x60(r3)
-	blr
-	*/
+	if (gameSystem && !gameSystem->isMultiplayerMode()) {
+		mTexIdx = 0;
+		return;
+	}
+	mTexIdx = vpID;
 }
 
 /**
@@ -855,6 +760,41 @@ lbl_8023E30C:
  */
 void ShadowCylinder2::drawInit()
 {
+	setOrthoProjection();
+	setOrthoCamera();
+	setScissorViewport();
+
+	setupFilterGX();
+
+	GXSetChanMatColor(GX_COLOR0A0, mColor->toGXColor());
+
+	GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
+	GXSetCullMode(GX_CULL_BACK);
+	GXSetZMode(GX_FALSE, GX_NEVER, GX_FALSE);
+	GXSetBlendMode(GX_BM_NONE, GX_BL_ONE, GX_BL_ONE, GX_LO_CLEAR);
+	GXSetColorUpdate(GX_FALSE);
+	GXSetAlphaUpdate(GX_TRUE);
+	GXSetDstAlpha(GX_TRUE, 0);
+	GXClearVtxDesc();
+	GXInvalidateVtxCache();
+	GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+
+	f32 zero = 0.0f;
+	GXPosition3f32(mScreenBounds.p1.x, mScreenBounds.p1.y, zero);
+	GXPosition3f32(mScreenBounds.p2.x, mScreenBounds.p1.y, zero);
+	GXPosition3f32(mScreenBounds.p2.x, mScreenBounds.p2.y, zero);
+	GXPosition3f32(mScreenBounds.p1.x, mScreenBounds.p2.y, zero);
+
+	GXSetDstAlpha(GX_FALSE, 0);
+	GXColor color = { 255, 255, 255, 4 };
+	GXSetChanMatColor(GX_COLOR0A0, color);
+	GXClearVtxDesc();
+	GXInvalidateVtxCache();
+	GXSetVtxDesc(GX_VA_POS, GX_INDEX16);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+	GXSetArray(GX_VA_POS, sCylinderVertPos, 0xc);
 	/*
 	stwu     r1, -0xe0(r1)
 	mflr     r0
@@ -1075,58 +1015,18 @@ void ShadowCylinder2::drawInit()
  * @note Address: 0x8023E664
  * @note Size: 0xC0
  */
-void ShadowCylinder2::drawCylinder(Matrixf&, int)
+void ShadowCylinder2::drawCylinder(Matrixf& mtx, int id)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	mr       r0, r4
-	li       r4, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r0
-	bl       GXLoadPosMtxImm
-	li       r3, 1
-	li       r4, 3
-	li       r5, 0
-	bl       GXSetZMode
-	li       r3, 2
-	bl       GXSetCullMode
-	li       r3, 1
-	li       r4, 1
-	li       r5, 1
-	li       r6, 5
-	bl       GXSetBlendMode
-	lwz      r3, 4(r30)
-	slwi     r31, r31, 2
-	lwzx     r3, r3, r31
-	lwz      r0, 8(r3)
-	lwz      r3, 4(r3)
-	rlwinm   r4, r0, 0, 0, 0x1a
-	bl       GXCallDisplayList
-	li       r3, 1
-	bl       GXSetCullMode
-	li       r3, 3
-	li       r4, 1
-	li       r5, 1
-	li       r6, 5
-	bl       GXSetBlendMode
-	lwz      r3, 4(r30)
-	lwzx     r3, r3, r31
-	lwz      r0, 8(r3)
-	lwz      r3, 4(r3)
-	rlwinm   r4, r0, 0, 0, 0x1a
-	bl       GXCallDisplayList
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	GXLoadPosMtxImm(mtx.mMatrix.mtxView, 0);
+
+	GXSetZMode(GX_TRUE, GX_LEQUAL, GX_FALSE);
+	GXSetCullMode(GX_CULL_BACK);
+	GXSetBlendMode(GX_BM_BLEND, GX_BL_ONE, GX_BL_ONE, GX_LO_NOOP);
+	GXCallDisplayList(mDisplayListObj[id]->mDLData, mDisplayListObj[id]->mSize & 0xffffffe0);
+
+	GXSetCullMode(GX_CULL_FRONT);
+	GXSetBlendMode(GX_BM_SUBTRACT, GX_BL_ONE, GX_BL_ONE, GX_LO_NOOP);
+	GXCallDisplayList(mDisplayListObj[id]->mDLData, mDisplayListObj[id]->mSize & 0xffffffe0);
 }
 
 /**
@@ -1135,6 +1035,18 @@ void ShadowCylinder2::drawCylinder(Matrixf&, int)
  */
 void ShadowCylinder2::drawFinish()
 {
+	setOrthoProjection();
+	setOrthoCamera();
+	setScissorViewport();
+
+	GXSetColorUpdate(GX_TRUE);
+	GXSetAlphaUpdate(GX_TRUE);
+	GXSetChanMatColor(GX_COLOR0A0, mColor->toGXColor());
+	GXSetCullMode(GX_CULL_BACK);
+	GXSetZMode(GX_FALSE, GX_NEVER, GX_FALSE);
+	copyShadowTexture();
+	setupTextureFilterGX();
+	drawTextureFilter();
 	/*
 	stwu     r1, -0xe0(r1)
 	mflr     r0
@@ -1266,100 +1178,14 @@ void ShadowCylinder2::drawFinish()
  */
 void ShadowCylinder2::copyShadowTexture()
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	mr       r31, r3
-	lfs      f0, 0x10(r3)
-	lfs      f2, 0x14(r3)
-	fctiwz   f3, f0
-	lfs      f1, 0x18(r3)
-	lfs      f0, 0x1c(r3)
-	fctiwz   f2, f2
-	fctiwz   f1, f1
-	fctiwz   f0, f0
-	stfd     f3, 8(r1)
-	stfd     f2, 0x10(r1)
-	lwz      r3, 0xc(r1)
-	stfd     f1, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	stfd     f0, 0x20(r1)
-	lwz      r5, 0x1c(r1)
-	lwz      r6, 0x24(r1)
-	bl       GXSetTexCopySrc
-	lfs      f3, 0x18(r31)
-	li       r5, 0x27
-	lfs      f2, 0x10(r31)
-	li       r6, 1
-	lfs      f1, 0x1c(r31)
-	lfs      f0, 0x14(r31)
-	fsubs    f3, f3, f2
-	lfs      f2, lbl_8051A61C@sda21(r2)
-	fsubs    f0, f1, f0
-	fmuls    f1, f3, f2
-	fmuls    f0, f0, f2
-	fctiwz   f1, f1
-	fctiwz   f0, f0
-	stfd     f1, 0x28(r1)
-	stfd     f0, 0x30(r1)
-	lwz      r3, 0x2c(r1)
-	lwz      r4, 0x34(r1)
-	bl       GXSetTexCopyDst
-	lwz      r0, 0x60(r31)
-	li       r4, 0
-	lwz      r3, 0x58(r31)
-	slwi     r0, r0, 2
-	lwzx     r3, r3, r0
-	bl       GXCopyTex
-	bl       GXPixModeSync
-	lfs      f3, 0x18(r31)
-	li       r7, 1
-	lfs      f2, 0x10(r31)
-	li       r8, 0
-	lfs      f1, 0x1c(r31)
-	li       r9, 0
-	lfs      f0, 0x14(r31)
-	fsubs    f3, f3, f2
-	lfs      f2, lbl_8051A61C@sda21(r2)
-	li       r10, 0
-	fsubs    f0, f1, f0
-	lwz      r4, 0x60(r31)
-	fmuls    f1, f3, f2
-	lwz      r3, 0x58(r31)
-	slwi     r0, r4, 2
-	fmuls    f0, f0, f2
-	fctiwz   f1, f1
-	lwz      r6, 0x5c(r31)
-	slwi     r5, r4, 5
-	lwzx     r4, r3, r0
-	fctiwz   f0, f0
-	stfd     f1, 0x38(r1)
-	add      r3, r6, r5
-	stfd     f0, 0x40(r1)
-	lwz      r5, 0x3c(r1)
-	lwz      r6, 0x44(r1)
-	bl       GXInitTexObj
-	lfs      f1, lbl_8051A620@sda21(r2)
-	li       r4, 1
-	lwz      r0, 0x60(r31)
-	li       r5, 1
-	fmr      f2, f1
-	lwz      r3, 0x5c(r31)
-	slwi     r0, r0, 5
-	fmr      f3, f1
-	add      r3, r3, r0
-	li       r6, 0
-	li       r7, 0
-	li       r8, 0
-	bl       GXInitTexObjLOD
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	GXSetTexCopySrc(mScreenBounds.p1.x, mScreenBounds.p1.y, mScreenBounds.p2.x, mScreenBounds.p2.y);
+
+	GXSetTexCopyDst(mScreenBounds.getWidth() / 2, mScreenBounds.getHeight() / 2, GX_CTF_R8, GX_TRUE);
+	GXCopyTex(mTexImg[mTexIdx], GX_FALSE);
+	GXPixModeSync();
+	GXInitTexObj(&mTexObj[mTexIdx], mTexImg[mTexIdx], mScreenBounds.getWidth() / 2, mScreenBounds.getHeight() / 2, GX_TF_I8, GX_CLAMP,
+	             GX_CLAMP, GX_FALSE);
+	GXInitTexObjLOD(&mTexObj[mTexIdx], GX_LINEAR, GX_LINEAR, 0.0, 0.0, 0.0, GX_FALSE, GX_FALSE, GX_ANISO_1);
 }
 
 /**
@@ -1368,71 +1194,18 @@ void ShadowCylinder2::copyShadowTexture()
  */
 void ShadowCylinder2::setupTextureFilterGX()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x60(r3)
-	lwz      r3, 0x5c(r3)
-	slwi     r0, r0, 5
-	add      r3, r3, r0
-	bl       GXLoadTexObj
-	li       r3, 1
-	bl       GXSetNumTexGens
-	li       r3, 0
-	li       r4, 1
-	li       r5, 4
-	li       r6, 0x3c
-	li       r7, 0
-	li       r8, 0x7d
-	bl       GXSetTexCoordGen2
-	li       r3, 0
-	li       r4, 0
-	li       r5, 0
-	li       r6, 4
-	bl       GXSetTevOrder
-	lwz      r0, lbl_80520E88@sda21(r2)
-	addi     r4, r1, 8
-	li       r3, 1
-	stw      r0, 8(r1)
-	bl       GXSetTevColor
-	li       r3, 0
-	li       r4, 9
-	li       r5, 3
-	li       r6, 0xa
-	li       r7, 0xf
-	bl       GXSetTevColorIn
-	li       r3, 0
-	li       r4, 8
-	li       r5, 0
-	li       r6, 0
-	li       r7, 0
-	li       r8, 0
-	bl       GXSetTevColorOp
-	li       r3, 0
-	li       r4, 4
-	li       r5, 1
-	li       r6, 5
-	li       r7, 7
-	bl       GXSetTevAlphaIn
-	li       r3, 0
-	li       r4, 8
-	li       r5, 0
-	li       r6, 0
-	li       r7, 0
-	li       r8, 0
-	bl       GXSetTevAlphaOp
-	li       r3, 1
-	li       r4, 4
-	li       r5, 5
-	li       r6, 5
-	bl       GXSetBlendMode
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	GXLoadTexObj(&mTexObj[mTexIdx], GX_TEXMAP0);
+	GXSetNumTexGens(1);
+	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEX0, 0x3c, GX_FALSE, 0x7d);
+	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
+
+	GXColor color = { 255, 255, 255, 0x7f };
+	GXSetTevColor(GX_TEVREG0, color);
+	GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_TEXA, GX_CC_C1, GX_CC_RASC, GX_CC_ZERO);
+	GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_COMP_R8_GT, GX_TB_ZERO, GX_CS_SCALE_1, GX_FALSE, GX_TEVPREV);
+	GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_TEXA, GX_CA_A0, GX_CA_RASA, GX_CA_ZERO);
+	GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_COMP_R8_GT, GX_TB_ZERO, GX_CS_SCALE_1, GX_FALSE, GX_TEVPREV);
+	GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_NOOP);
 }
 
 /**
@@ -1441,107 +1214,36 @@ void ShadowCylinder2::setupTextureFilterGX()
  */
 void ShadowCylinder2::drawTextureFilter()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       GXClearVtxDesc
-	bl       GXInvalidateVtxCache
-	li       r3, 9
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0xd
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0
-	li       r4, 9
-	li       r5, 1
-	li       r6, 4
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 0
-	li       r4, 0xd
-	li       r5, 1
-	li       r6, 1
-	li       r7, 4
-	bl       GXSetVtxAttrFmt
-	li       r3, 0x80
-	li       r4, 0
-	li       r5, 4
-	bl       GXBegin
-	lfs      f2, 0x14(r31)
-	lis      r4, 0xCC008000@ha
-	lfs      f0, 0x10(r31)
-	li       r3, 0
-	lfs      f1, lbl_8051A620@sda21(r2)
-	li       r0, 0x10
-	stfs     f0, 0xCC008000@l(r4)
-	stfs     f2, -0x8000(r4)
-	stfs     f1, -0x8000(r4)
-	stb      r3, -0x8000(r4)
-	stb      r3, -0x8000(r4)
-	lfs      f2, 0x14(r31)
-	lfs      f0, 0x18(r31)
-	stfs     f0, -0x8000(r4)
-	stfs     f2, -0x8000(r4)
-	stfs     f1, -0x8000(r4)
-	stb      r0, -0x8000(r4)
-	stb      r3, -0x8000(r4)
-	lfs      f2, 0x1c(r31)
-	lfs      f0, 0x18(r31)
-	stfs     f0, -0x8000(r4)
-	stfs     f2, -0x8000(r4)
-	stfs     f1, -0x8000(r4)
-	stb      r0, -0x8000(r4)
-	stb      r0, -0x8000(r4)
-	lfs      f2, 0x1c(r31)
-	lfs      f0, 0x10(r31)
-	stfs     f0, -0x8000(r4)
-	stfs     f2, -0x8000(r4)
-	stfs     f1, -0x8000(r4)
-	stb      r3, -0x8000(r4)
-	stb      r0, -0x8000(r4)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	GXClearVtxDesc();
+	GXInvalidateVtxCache();
+	GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+	GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_S8, 4);
+	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+
+	f32 zero = 0.0f;
+	GXPosition3f32(mScreenBounds.p1.x, mScreenBounds.p1.y, zero);
+	GXTexCoord2s8(0, 0);
+
+	GXPosition3f32(mScreenBounds.p2.x, mScreenBounds.p1.y, zero);
+	GXTexCoord2s8(0x10, 0);
+
+	GXPosition3f32(mScreenBounds.p2.x, mScreenBounds.p2.y, zero);
+	GXTexCoord2s8(0x10, 0x10);
+
+	GXPosition3f32(mScreenBounds.p1.x, mScreenBounds.p2.y, zero);
+	GXTexCoord2s8(0, 0x10);
 }
 
 /**
  * @note Address: 0x8023EC7C
  * @note Size: 0x5C
  */
-ShadowCylinder3::ShadowCylinder3(Game::ShadowParms*, Color4*)
+ShadowCylinder3::ShadowCylinder3(ShadowParms* parm, Color4* color)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bl       __ct__Q24Game12CylinderBaseFv
-	lis      r4, __vt__Q24Game15ShadowCylinder3@ha
-	mr       r3, r29
-	addi     r0, r4, __vt__Q24Game15ShadowCylinder3@l
-	stw      r0, 0(r29)
-	stw      r30, 0xc(r29)
-	stw      r31, 8(r29)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	mParms = parm;
+	mColor = color;
 }
 
 /**
@@ -1550,6 +1252,42 @@ ShadowCylinder3::ShadowCylinder3(Game::ShadowParms*, Color4*)
  */
 void ShadowCylinder3::drawInit()
 {
+	setOrthoProjection();
+	setOrthoCamera();
+	setScissorViewport();
+
+	setupFilterGX();
+
+	GXSetChanMatColor(GX_COLOR0A0, mColor->toGXColor());
+
+	GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
+	GXSetCullMode(GX_CULL_BACK);
+	GXSetZMode(GX_FALSE, GX_NEVER, GX_FALSE);
+	GXSetBlendMode(GX_BM_NONE, GX_BL_ONE, GX_BL_ONE, GX_LO_CLEAR);
+	GXSetColorUpdate(GX_FALSE);
+	GXSetAlphaUpdate(GX_TRUE);
+	GXSetDstAlpha(GX_TRUE, 0);
+	GXClearVtxDesc();
+	GXInvalidateVtxCache();
+	GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+
+	f32 zero = 0.0f;
+	GXPosition3f32(mScreenBounds.p1.x, mScreenBounds.p1.y, zero);
+	GXPosition3f32(mScreenBounds.p2.x, mScreenBounds.p1.y, zero);
+	GXPosition3f32(mScreenBounds.p2.x, mScreenBounds.p2.y, zero);
+	GXPosition3f32(mScreenBounds.p1.x, mScreenBounds.p2.y, zero);
+
+	GXSetDstAlpha(GX_FALSE, 0);
+	GXColor color = { 255, 255, 255, 0x7f };
+	GXSetChanMatColor(GX_COLOR0A0, color);
+	GXClearVtxDesc();
+	GXInvalidateVtxCache();
+	GXSetVtxDesc(GX_VA_POS, GX_INDEX16);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+	GXSetArray(GX_VA_POS, sCylinderVertPos, 0xc);
+
 	/*
 	stwu     r1, -0xe0(r1)
 	mflr     r0
@@ -1770,72 +1508,19 @@ void ShadowCylinder3::drawInit()
  * @note Address: 0x8023F028
  * @note Size: 0xF8
  */
-void ShadowCylinder3::drawCylinder(Matrixf&, int)
+void ShadowCylinder3::drawCylinder(Matrixf& mtx, int id)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	mr       r0, r4
-	li       r4, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r0
-	bl       GXLoadPosMtxImm
-	li       r3, 1
-	bl       GXSetCullMode
-	li       r3, 1
-	li       r4, 6
-	li       r5, 0
-	bl       GXSetZMode
-	li       r3, 1
-	li       r4, 1
-	li       r5, 1
-	li       r6, 5
-	bl       GXSetBlendMode
-	lwz      r3, 4(r30)
-	slwi     r31, r31, 2
-	lwzx     r3, r3, r31
-	lwz      r0, 8(r3)
-	lwz      r3, 4(r3)
-	rlwinm   r4, r0, 0, 0, 0x1a
-	bl       GXCallDisplayList
-	li       r3, 2
-	bl       GXSetCullMode
-	li       r3, 1
-	li       r4, 3
-	li       r5, 0
-	bl       GXSetZMode
-	lwz      r3, 4(r30)
-	lwzx     r3, r3, r31
-	lwz      r0, 8(r3)
-	lwz      r3, 4(r3)
-	rlwinm   r4, r0, 0, 0, 0x1a
-	bl       GXCallDisplayList
-	li       r3, 0
-	li       r4, 7
-	li       r5, 0
-	bl       GXSetZMode
-	li       r3, 3
-	li       r4, 1
-	li       r5, 1
-	li       r6, 5
-	bl       GXSetBlendMode
-	lwz      r3, 4(r30)
-	lwzx     r3, r3, r31
-	lwz      r0, 8(r3)
-	lwz      r3, 4(r3)
-	rlwinm   r4, r0, 0, 0, 0x1a
-	bl       GXCallDisplayList
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	GXLoadPosMtxImm(mtx.mMatrix.mtxView, 0);
+	GXSetCullMode(GX_CULL_FRONT);
+	GXSetZMode(GX_TRUE, GX_GEQUAL, GX_FALSE);
+	GXSetBlendMode(GX_BM_BLEND, GX_BL_ONE, GX_BL_ONE, GX_LO_NOOP);
+	GXCallDisplayList(mDisplayListObj[id]->mDLData, mDisplayListObj[id]->mSize & 0xffffffe0);
+	GXSetCullMode(GX_CULL_BACK);
+	GXSetZMode(GX_TRUE, GX_LEQUAL, GX_FALSE);
+	GXCallDisplayList(mDisplayListObj[id]->mDLData, mDisplayListObj[id]->mSize & 0xffffffe0);
+	GXSetZMode(GX_FALSE, GX_ALWAYS, GX_FALSE);
+	GXSetBlendMode(GX_BM_SUBTRACT, GX_BL_ONE, GX_BL_ONE, GX_LO_NOOP);
+	GXCallDisplayList(mDisplayListObj[id]->mDLData, mDisplayListObj[id]->mSize & 0xffffffe0);
 }
 
 /**
@@ -1844,6 +1529,16 @@ void ShadowCylinder3::drawCylinder(Matrixf&, int)
  */
 void ShadowCylinder3::drawFinish()
 {
+	setOrthoProjection();
+	setOrthoCamera();
+	setScissorViewport();
+
+	GXSetColorUpdate(GX_TRUE);
+	GXSetAlphaUpdate(GX_TRUE);
+	GXSetChanMatColor(GX_COLOR0A0, mColor->toGXColor());
+	GXSetCullMode(GX_CULL_BACK);
+	GXSetZMode(GX_FALSE, GX_NEVER, GX_FALSE);
+	drawScreenFilter();
 	/*
 	stwu     r1, -0xe0(r1)
 	mflr     r0
@@ -1971,86 +1666,18 @@ void ShadowCylinder3::drawFinish()
  */
 void ShadowCylinder3::drawScreenFilter()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 6
-	li       r5, 7
-	stw      r0, 0x14(r1)
-	li       r6, 5
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	li       r3, 1
-	bl       GXSetBlendMode
-	bl       GXClearVtxDesc
-	bl       GXInvalidateVtxCache
-	li       r3, 9
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0
-	li       r4, 9
-	li       r5, 1
-	li       r6, 4
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 0x80
-	li       r4, 0
-	li       r5, 4
-	bl       GXBegin
-	lfs      f2, 0x14(r31)
-	lis      r3, 0xCC008000@ha
-	lfs      f0, 0x10(r31)
-	lfs      f1, lbl_8051A620@sda21(r2)
-	stfs     f0, 0xCC008000@l(r3)
-	stfs     f2, -0x8000(r3)
-	stfs     f1, -0x8000(r3)
-	lfs      f2, 0x14(r31)
-	lfs      f0, 0x18(r31)
-	stfs     f0, -0x8000(r3)
-	stfs     f2, -0x8000(r3)
-	stfs     f1, -0x8000(r3)
-	lfs      f2, 0x1c(r31)
-	lfs      f0, 0x18(r31)
-	stfs     f0, -0x8000(r3)
-	stfs     f2, -0x8000(r3)
-	stfs     f1, -0x8000(r3)
-	lfs      f2, 0x1c(r31)
-	lfs      f0, 0x10(r31)
-	stfs     f0, -0x8000(r3)
-	stfs     f2, -0x8000(r3)
-	stfs     f1, -0x8000(r3)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+	GXSetBlendMode(GX_BM_BLEND, GX_BL_DSTALPHA, GX_BL_INVDSTALPHA, GX_LO_NOOP);
+	GXClearVtxDesc();
+	GXInvalidateVtxCache();
+	GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
 
-/**
- * @note Address: 0x8023F3C4
- * @note Size: 0x4
- */
-void ShadowCylinder3::setFilterTextureID(int) { }
+	f32 one = 1.0f;
+	GXPosition3f32(mScreenBounds.p1.x, mScreenBounds.p1.y, one);
+	GXPosition3f32(mScreenBounds.p2.x, mScreenBounds.p1.y, one);
+	GXPosition3f32(mScreenBounds.p2.x, mScreenBounds.p2.y, one);
+	GXPosition3f32(mScreenBounds.p1.x, mScreenBounds.p2.y, one);
+}
 
 } // namespace Game
-
-/**
- * @note Address: 0x8023F3C8
- * @note Size: 0x28
- */
-void __sinit_ShadowCylinder_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804C1780@ha
-	stw      r0, lbl_80515CE8@sda21(r13)
-	stfsu    f0, lbl_804C1780@l(r3)
-	stfs     f0, lbl_80515CEC@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}

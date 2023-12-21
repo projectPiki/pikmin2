@@ -17,6 +17,7 @@ struct Graphics;
 struct Matrixf;
 struct Stream;
 struct Viewport;
+struct ResTIMG;
 
 namespace Game {
 struct Creature;
@@ -60,6 +61,18 @@ struct ShadowNode : public CNode {
 	u32 mFlags;          // _20 /* bitfield */
 };
 
+// stripped struct
+struct CylinderList {
+	CylinderList(int);
+
+	void createCylinder(int, f32);
+	void draw();
+
+	u8 mTriangleNum; // _00
+	void* mDLData;   // _04
+	int mSize;       // _08
+};
+
 struct CylinderBase {
 	CylinderBase();
 
@@ -84,21 +97,13 @@ struct CylinderBase {
 	void drawCylinderList(int);
 
 	// VTBL _00
-	void* mDisplayListObj; // _04
-	Color4* mColor;        // _08
-	ShadowParms* mParms;   // _0C
-	Rectf _10;             // _10
-	Vector3f _20[2];       // _20
-	Vector3f _38[2];       // _38
-	f32 _50;               // _50
-};
-
-// stripped struct
-struct CylinderList {
-	CylinderList(int);
-
-	void createCylinder(int, f32);
-	void draw();
+	CylinderList** mDisplayListObj; // _04
+	Color4* mColor;                 // _08
+	ShadowParms* mParms;            // _0C
+	Rectf mScreenBounds;            // _10
+	Vector3f mCamPosition[2];       // _20
+	Vector3f mCamLookAt[2];         // _38
+	f32 mCameraSizeMod[2];          // _50
 };
 
 struct ShadowCylinder2 : public CylinderBase {
@@ -113,22 +118,20 @@ struct ShadowCylinder2 : public CylinderBase {
 	void setupTextureFilterGX();
 	void drawTextureFilter();
 
-	u8 _54[8]; // _54
-	void* _5C; // _5C
-	int _60;   // _60
+	ResTIMG** mTexImg; // _58
+	GXTexObj* mTexObj; // _5C
+	int mTexIdx;       // _60
 };
 
 struct ShadowCylinder3 : public CylinderBase {
 	ShadowCylinder3(ShadowParms*, Color4*);
 
-	virtual void setFilterTextureID(int);     // _08
+	virtual void setFilterTextureID(int) { }  // _08
 	virtual void drawInit();                  // _0C
 	virtual void drawCylinder(Matrixf&, int); // _10
 	virtual void drawFinish();                // _14
 
 	void drawScreenFilter();
-
-	u8 _54[4]; // _54
 };
 
 struct TubeShadowPosNode : public JointShadowNode {

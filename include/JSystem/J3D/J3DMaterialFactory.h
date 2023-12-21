@@ -17,11 +17,11 @@ struct J3DColorChanInfo {
 	bool mlightingEnabled; // _00
 	u8 mMaterialColorSrc;  // _01
 	u8 mAmbientColorSrc;   // _02
-	u8 mLitmask;		   // _03
-	u8 mDiffuseFn;		   // _04
-	u8 mAttnFn;		   	   // _05
-	u8 _06;				   // _06 - unknown/padding
-	u8 _07;				   // _07 - unknown/padding
+	u8 mLitmask;           // _03
+	u8 mDiffuseFn;         // _04
+	u8 mAttnFn;            // _05
+	u8 _06;                // _06 - unknown/padding
+	u8 _07;                // _07 - unknown/padding
 };
 
 struct J3DDisplayListInit {
@@ -58,7 +58,7 @@ struct J3DTevStageInfo {
 	u8 mColorInB;     // _02
 	u8 mColorInC;     // _03
 	u8 mColorInD;     // _04
-	u8 mColorOp;      // _05 
+	u8 mColorOp;      // _05
 	u8 mColorBias;    // _06
 	u8 mColorScale;   // _07
 	bool mColorClamp; // _08
@@ -67,12 +67,12 @@ struct J3DTevStageInfo {
 	u8 mAlphaInB;     // _0B
 	u8 mAlphaInC;     // _0C
 	u8 mAlphaInD;     // _0D
-	u8 mAlphaOp;      // _0E 
+	u8 mAlphaOp;      // _0E
 	u8 mAlphaBias;    // _0F
 	u8 mAlphaScale;   // _10
 	bool mAlphaClamp; // _11
 	u8 mAlphaRegID;   // _12
-	u8 _13;			  // _13 - unknown
+	u8 _13;           // _13 - unknown
 };
 
 extern const J3DTevSwapModeInfo j3dDefaultTevSwapMode;

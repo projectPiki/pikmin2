@@ -8,7 +8,7 @@
 
 struct J3DTevSwapModeInfo {
 	u8 mRasSel; // _00
-	u8 mTexSel; // _01		
+	u8 mTexSel; // _01
 };
 
 struct J3DTevBlock {

@@ -787,7 +787,7 @@ typedef enum _GXTevStageID {
 
 // TEV register names.
 typedef enum _GXTevRegID {
-	GX_TEVPREV = 0, // TEV register 3. Used primarily to store previous TEVStage output. 
+	GX_TEVPREV = 0, // TEV register 3. Used primarily to store previous TEVStage output.
 	GX_TEVREG0 = 1, // TEV register 0.
 	GX_TEVREG1 = 2, // TEV register 1.
 	GX_TEVREG2 = 3, // TEV register 2.
