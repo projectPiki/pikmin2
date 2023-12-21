@@ -308,6 +308,8 @@ struct HoudaiShotGunNode : public CNode {
 	void setVelocity(Vector3f& vel);
 	void startShotGun();
 
+	HoudaiShotGunNode* getChild() const { return static_cast<HoudaiShotGunNode*>(mChild); }
+
 	// _00		= VTBL
 	// _00-_18 	= CNode
 	Obj* mOwner;                 // _18
@@ -348,12 +350,12 @@ struct HoudaiShotGunMgr {
 	bool mIsShotGunRotation;           // _04
 	bool mIsShotGunLockedOn;           // _05
 	bool mIsShotGunFinished;           // _06
-	f32 _08;                           // _08
-	f32 _0C;                           // _0C
+	f32 mYaw;                          // _08, (-) used for rotateLevel
+	f32 mPitch;                        // _0C, (+) used for rotateVertical
 	Matrixf* mHeadMtx;                 // _10, world matrix for head joint
 	Matrixf* mGunMtx;                  // _14, world matrix for gun joint
 	Vector3f mTargetPosition;          // _18
-	u8 _24[0xC];                       // _24, unknown
+	Vector3f mLockOnPosition;          // _24
 	efx::THdamaSight* mEfxSight;       // _30
 	HoudaiShotGunNode* mActiveNodes;   // _34
 	HoudaiShotGunNode* mInactiveNodes; // _38

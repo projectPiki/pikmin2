@@ -220,8 +220,8 @@ struct MiniHoudaiShotGunNode : public CNode {
 	u8 _18;                      // _18
 	Obj* mOwner;                 // _1C
 	efx::TChibiShell* mEfxShell; // _20
-	Vector3f _24;                // _24
-	Vector3f _30;                // _30
+	Vector3f mPosition;          // _24
+	Vector3f mVelocity;          // _30
 };
 
 struct MiniHoudaiShotGunMgr {
@@ -248,17 +248,17 @@ struct MiniHoudaiShotGunMgr {
 	void effectDrawOff();
 	void doDebugDraw(Graphics&);
 
-	Obj* mOwner;                // _00
-	bool mIsShotGunRotation;    // _04
-	bool mIsShotGunLockedOn;    // _05
-	bool mIsShotGunFinished;    // _06
-	f32 _08;                    // _08
-	f32 _0C;                    // _0C
-	Matrixf* _10;               // _10
-	Vector3f mTargetPosition;   // _14
-	u8 _20[0xC];                // _20, unknown
-	MiniHoudaiShotGunNode* _2C; // _2C
-	MiniHoudaiShotGunNode* _30; // _30
+	Obj* mOwner;                           // _00
+	bool mIsShotGunRotation;               // _04
+	bool mIsShotGunLockedOn;               // _05
+	bool mIsShotGunFinished;               // _06
+	f32 mShellSpeed;                       // _08
+	f32 mAngle;                            // _0C
+	Matrixf* mHeadMtx;                     // _10
+	Vector3f mTargetPosition;              // _14
+	u8 _20[0xC];                           // _20, unknown
+	MiniHoudaiShotGunNode* mActiveNodes;   // _2C
+	MiniHoudaiShotGunNode* mInactiveNodes; // _30
 };
 
 /////////////////////////////////////////////////////////////////

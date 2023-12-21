@@ -52,6 +52,11 @@ struct TChibiDeadSe : public TSimpleMtx2 {
 };
 
 struct TChibiHit : public TSimple4 {
+	inline TChibiHit()
+	    : TSimple4(PID_ChibiHit_1, PID_ChibiHit_2, PID_ChibiHit_3, PID_ChibiHit_4)
+	{
+	}
+
 	virtual bool create(Arg*); // _08
 
 	// _00      = VTBL

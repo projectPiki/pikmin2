@@ -72,7 +72,14 @@ void HoudaiShotGunNode::setVelocity(Vector3f& vel) { mVelocity = vel; }
  */
 void HoudaiShotGunNode::startShotGun()
 {
-	// UNUSED/INLINED
+	Vector3f dir = mVelocity;
+	dir.normalise();
+
+	efx::ArgDir fxArg(mPosition);
+	fxArg.mAngle = dir;
+
+	mEfxShell->mPosition = &mPosition;
+	mEfxShell->create(&fxArg);
 }
 
 /**
@@ -1029,8 +1036,8 @@ HoudaiShotGunMgr::HoudaiShotGunMgr(Obj* houdai)
     , mIsShotGunLockedOn(false)
     , mIsShotGunFinished(false)
 {
-	_0C            = 0.0f;
-	_08            = 0.0f;
+	mPitch         = 0.0f;
+	mYaw           = 0.0f;
 	mActiveNodes   = new HoudaiShotGunNode(mOwner);
 	mInactiveNodes = new HoudaiShotGunNode(mOwner);
 
@@ -1057,8 +1064,8 @@ void HoudaiShotGunMgr::setupShotGun()
 	mIsShotGunRotation = false;
 	mIsShotGunLockedOn = false;
 	mIsShotGunFinished = false;
-	_0C                = 0.0f;
-	_08                = 0.0f;
+	mPitch             = 0.0f;
+	mYaw               = 0.0f;
 
 	SysShape::Joint* headJnt = mOwner->mModel->getJoint("tamajnt");
 	SysShape::Joint* gunJnt  = mOwner->mModel->getJoint("gun");
@@ -1091,8 +1098,8 @@ void HoudaiShotGunMgr::startRotation()
 	mIsShotGunRotation = true;
 	mIsShotGunLockedOn = false;
 	mIsShotGunFinished = false;
-	_0C                = 0.0f;
-	_08                = 0.0f;
+	mPitch             = 0.0f;
+	mYaw               = 0.0f;
 }
 
 /**
@@ -1135,13 +1142,14 @@ void HoudaiShotGunMgr::setShotGunTarget(Vector3f& pos) { mTargetPosition = pos; 
  */
 void HoudaiShotGunMgr::emitShotGun()
 {
-	HoudaiShotGunNode* node = static_cast<HoudaiShotGunNode*>(mInactiveNodes->mChild);
+	HoudaiShotGunNode* node = mInactiveNodes->getChild();
 	if (!node) {
 		return;
 	}
 
-	Vector3f xVec   = mGunMtx->getBasis(0);
-	Vector3f gunPos = mGunMtx->getBasis(3);
+	Vector3f xVec, gunPos;
+	mGunMtx->getBasis(0, xVec);
+	mGunMtx->getBasis(3, gunPos);
 
 	xVec.normalise();
 
@@ -1153,18 +1161,12 @@ void HoudaiShotGunMgr::emitShotGun()
 
 	xVec.normalise();
 
-	node->mPosition = gunPos + (xVec * 45.0f);
-	node->mVelocity = xVec * 600.0f;
+	gunPos += (xVec * 45.0f);
+	node->setPosition(gunPos);
+	xVec *= 600.0f;
+	node->setVelocity(xVec);
 
-	Vector3f dir = node->mVelocity;
-	dir.normalise();
-
-	efx::ArgDir fxArg(node->mPosition);
-	fxArg.mAngle = dir;
-
-	node->mEfxShell->mPosition = &node->mPosition;
-	node->mEfxShell->create(&fxArg);
-
+	node->startShotGun();
 	node->del();
 
 	mActiveNodes->add(node);
@@ -1512,27 +1514,27 @@ bool HoudaiShotGunMgr::searchShotGunRotation()
 	f32 absDist = absVal(angleDist);
 
 	if (absDist > 0.05f) {
-		_08 -= 0.05f * (angleDist / absDist);
+		mYaw -= 0.05f * (angleDist / absDist);
 	} else {
-		_08 -= angleDist;
+		mYaw -= angleDist;
 	}
 
-	_08 = (_08 < 0.0f) ? TAU + _08 : (_08 >= TAU) ? _08 - TAU : _08;
+	mYaw = (mYaw < 0.0f) ? TAU + mYaw : (mYaw >= TAU) ? mYaw - TAU : mYaw;
 
 	f32 dist2D = sep.length2D();
 	f32 ang    = JMAAtan2Radian(dist2D, sep.y);
 	f32 ang2   = PI + ang;
 	clampAngle(ang2);
 
-	f32 angleDist2 = angDist(_0C, ang2);
+	f32 angleDist2 = angDist(mPitch, ang2);
 	f32 absDist2   = absVal(angleDist2);
 	if (absDist2 > 0.05f) {
-		_0C -= 0.05f * (angleDist2 / absDist2);
+		mPitch -= 0.05f * (angleDist2 / absDist2);
 	} else {
-		_0C -= angleDist2;
+		mPitch -= angleDist2;
 	}
 
-	_0C = (_0C < 0.0f) ? TAU + _0C : (_0C >= TAU) ? _0C - TAU : _0C;
+	mPitch = (mPitch < 0.0f) ? TAU + mPitch : (mPitch >= TAU) ? mPitch - TAU : mPitch;
 	return true;
 	/*
 	stwu     r1, -0x50(r1)
@@ -1717,6 +1719,33 @@ lbl_802C4F80:
  */
 bool HoudaiShotGunMgr::returnShotGunRotation()
 {
+	f32 val = 0.0f;
+	if (val >= mYaw) {
+		if (TAU - (val - mYaw) < (val - mYaw)) {
+			val -= TAU;
+		}
+	} else if (TAU - (mYaw - val) < (mYaw - val)) {
+		val += TAU;
+	}
+
+	mYaw = (absVal(mYaw - val) < 0.025f) ? val : (mYaw < val) ? mYaw + 0.025f : mYaw - 0.025f;
+
+	f32 val3 = 0.0f;
+	if (val3 >= mPitch) {
+		if (TAU - (val3 - mPitch) < (val3 - mPitch)) {
+			val3 -= TAU;
+		}
+	} else if (TAU - (mPitch - val3) < (mPitch - val3)) {
+		val3 += TAU;
+	}
+
+	mPitch = (absVal(mPitch - val3) < 0.025f) ? val3 : (mPitch < val3) ? mPitch + 0.025f : mPitch - 0.025f;
+
+	if (absVal(mYaw - val) < 0.01f && absVal(mPitch - val3) < 0.01f) {
+		return true;
+	}
+
+	return false;
 	/*
 	lfs      f3, lbl_8051C588@sda21(r2)
 	lfs      f4, 8(r3)
@@ -1861,7 +1890,7 @@ void HoudaiShotGunMgr::rotateLevel(J3DJoint* joint)
 {
 	if (mIsShotGunRotation) {
 		Mtx mtx;
-		PSMTXRotRad(mtx, 'X', -_08);
+		PSMTXRotRad(mtx, 'X', -mYaw);
 		PSMTXConcat(mHeadMtx->mMatrix.mtxView, mtx, mHeadMtx->mMatrix.mtxView);
 		PSMTXCopy(mHeadMtx->mMatrix.mtxView, J3DSys::mCurrentMtx);
 	}
@@ -1873,184 +1902,47 @@ void HoudaiShotGunMgr::rotateLevel(J3DJoint* joint)
  */
 void HoudaiShotGunMgr::rotateVertical(J3DJoint* joint)
 {
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	stfd     f30, 0x50(r1)
-	psq_st   f30, 88(r1), 0, qr0
-	stfd     f29, 0x40(r1)
-	psq_st   f29, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	mr       r31, r3
-	lbz      r0, 4(r3)
-	cmplwi   r0, 0
-	beq      lbl_802C53C8
-	lwz      r5, 0x14(r31)
-	lfs      f9, lbl_8051C588@sda21(r2)
-	lfs      f1, 0x10(r5)
-	lfs      f2, 0x20(r5)
-	fmuls    f5, f1, f1
-	lfs      f0, 0(r5)
-	fmuls    f8, f2, f2
-	lfs      f3, 4(r5)
-	lfs      f4, 0x14(r5)
-	fmadds   f7, f0, f0, f5
-	lfs      f5, 0x24(r5)
-	lfs      f6, 8(r5)
-	fadds    f31, f8, f7
-	lfs      f7, 0x18(r5)
-	lfs      f8, 0x28(r5)
-	fcmpo    cr0, f31, f9
-	ble      lbl_802C5228
-	ble      lbl_802C522C
-	frsqrte  f9, f31
-	fmuls    f31, f9, f31
-	b        lbl_802C522C
+	if (!mIsShotGunRotation) {
+		return;
+	}
 
-lbl_802C5228:
-	fmr      f31, f9
+	Matrixf* gunMtx = mGunMtx;
 
-lbl_802C522C:
-	lfs      f9, lbl_8051C588@sda21(r2)
-	fcmpo    cr0, f31, f9
-	ble      lbl_802C5250
-	lfs      f9, lbl_8051C58C@sda21(r2)
-	fdivs    f9, f9, f31
-	fmuls    f0, f0, f9
-	fmuls    f1, f1, f9
-	fmuls    f2, f2, f9
-	b        lbl_802C5254
+	Vector3f xVec, yVec, zVec;
+	gunMtx->getBasis(0, xVec);
+	gunMtx->getBasis(1, yVec);
+	gunMtx->getBasis(2, zVec);
 
-lbl_802C5250:
-	fmr      f31, f9
+	f32 xScale = xVec.normalise();
+	f32 yScale = yVec.normalise();
+	f32 zScale = zVec.normalise();
 
-lbl_802C5254:
-	fmuls    f10, f4, f4
-	lfs      f9, lbl_8051C588@sda21(r2)
-	fmuls    f11, f5, f5
-	fmadds   f10, f3, f3, f10
-	fadds    f30, f11, f10
-	fcmpo    cr0, f30, f9
-	ble      lbl_802C5280
-	ble      lbl_802C5284
-	frsqrte  f9, f30
-	fmuls    f30, f9, f30
-	b        lbl_802C5284
+	gunMtx->setBasis(0, xVec);
+	gunMtx->setBasis(1, yVec);
+	gunMtx->setBasis(2, zVec);
 
-lbl_802C5280:
-	fmr      f30, f9
+	Matrixf rotMtx;
+	PSMTXRotRad(rotMtx.mMatrix.mtxView, 'Z', mPitch);
 
-lbl_802C5284:
-	lfs      f9, lbl_8051C588@sda21(r2)
-	fcmpo    cr0, f30, f9
-	ble      lbl_802C52A8
-	lfs      f9, lbl_8051C58C@sda21(r2)
-	fdivs    f9, f9, f30
-	fmuls    f3, f3, f9
-	fmuls    f4, f4, f9
-	fmuls    f5, f5, f9
-	b        lbl_802C52AC
+	PSMTXConcat(mGunMtx->mMatrix.mtxView, rotMtx.mMatrix.mtxView, mGunMtx->mMatrix.mtxView);
 
-lbl_802C52A8:
-	fmr      f30, f9
+	gunMtx = mGunMtx;
 
-lbl_802C52AC:
-	fmuls    f10, f7, f7
-	lfs      f9, lbl_8051C588@sda21(r2)
-	fmuls    f11, f8, f8
-	fmadds   f10, f6, f6, f10
-	fadds    f29, f11, f10
-	fcmpo    cr0, f29, f9
-	ble      lbl_802C52D8
-	ble      lbl_802C52DC
-	frsqrte  f9, f29
-	fmuls    f29, f9, f29
-	b        lbl_802C52DC
+	Vector3f newX, newY, newZ;
 
-lbl_802C52D8:
-	fmr      f29, f9
+	gunMtx->getBasis(0, newX);
+	gunMtx->getBasis(1, newY);
+	gunMtx->getBasis(2, newZ);
 
-lbl_802C52DC:
-	lfs      f9, lbl_8051C588@sda21(r2)
-	fcmpo    cr0, f29, f9
-	ble      lbl_802C5300
-	lfs      f9, lbl_8051C58C@sda21(r2)
-	fdivs    f9, f9, f29
-	fmuls    f6, f6, f9
-	fmuls    f7, f7, f9
-	fmuls    f8, f8, f9
-	b        lbl_802C5304
+	newX *= xScale;
+	newY *= yScale;
+	newZ *= zScale;
 
-lbl_802C5300:
-	fmr      f29, f9
+	gunMtx->setBasis(0, newX);
+	gunMtx->setBasis(1, newY);
+	gunMtx->setBasis(2, newZ);
 
-lbl_802C5304:
-	stfs     f0, 0(r5)
-	addi     r3, r1, 8
-	li       r4, 0x5a
-	stfs     f1, 0x10(r5)
-	stfs     f2, 0x20(r5)
-	stfs     f3, 4(r5)
-	stfs     f4, 0x14(r5)
-	stfs     f5, 0x24(r5)
-	stfs     f6, 8(r5)
-	stfs     f7, 0x18(r5)
-	stfs     f8, 0x28(r5)
-	lfs      f1, 0xc(r31)
-	bl       PSMTXRotRad
-	lwz      r3, 0x14(r31)
-	addi     r4, r1, 8
-	mr       r5, r3
-	bl       PSMTXConcat
-	lwz      r5, 0x14(r31)
-	lis      r3, mCurrentMtx__6J3DSys@ha
-	addi     r4, r3, mCurrentMtx__6J3DSys@l
-	lfs      f0, 0(r5)
-	lfs      f1, 0x10(r5)
-	fmuls    f0, f0, f31
-	lfs      f2, 0x20(r5)
-	lfs      f3, 4(r5)
-	fmuls    f1, f1, f31
-	lfs      f4, 0x14(r5)
-	fmuls    f2, f2, f31
-	lfs      f5, 0x24(r5)
-	fmuls    f3, f3, f30
-	lfs      f6, 8(r5)
-	fmuls    f4, f4, f30
-	lfs      f7, 0x18(r5)
-	fmuls    f5, f5, f30
-	lfs      f8, 0x28(r5)
-	fmuls    f6, f6, f29
-	stfs     f0, 0(r5)
-	fmuls    f7, f7, f29
-	fmuls    f8, f8, f29
-	stfs     f1, 0x10(r5)
-	stfs     f2, 0x20(r5)
-	stfs     f3, 4(r5)
-	stfs     f4, 0x14(r5)
-	stfs     f5, 0x24(r5)
-	stfs     f6, 8(r5)
-	stfs     f7, 0x18(r5)
-	stfs     f8, 0x28(r5)
-	lwz      r3, 0x14(r31)
-	bl       PSMTXCopy
-
-lbl_802C53C8:
-	psq_l    f31, 104(r1), 0, qr0
-	lfd      f31, 0x60(r1)
-	psq_l    f30, 88(r1), 0, qr0
-	lfd      f30, 0x50(r1)
-	psq_l    f29, 72(r1), 0, qr0
-	lfd      f29, 0x40(r1)
-	lwz      r0, 0x74(r1)
-	lwz      r31, 0x3c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
+	PSMTXCopy(mGunMtx->mMatrix.mtxView, J3DSys::mCurrentMtx);
 }
 
 /**
@@ -2065,172 +1957,46 @@ void HoudaiShotGunMgr::finishLockOnEffect() { mEfxSight->fade(); }
  */
 void HoudaiShotGunMgr::setShotGunLockOnPosition()
 {
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	stfd     f30, 0x50(r1)
-	psq_st   f30, 88(r1), 0, qr0
-	stfd     f29, 0x40(r1)
-	psq_st   f29, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	stw      r29, 0x34(r1)
-	mr       r29, r3
-	lfs      f0, lbl_8051C588@sda21(r2)
-	lwz      r3, 0x14(r3)
-	li       r31, 0
-	lfs      f30, 0x10(r3)
-	lfs      f29, 0x20(r3)
-	fmuls    f1, f30, f30
-	lfs      f31, 0(r3)
-	fmuls    f5, f29, f29
-	lfs      f2, 0xc(r3)
-	lfs      f3, 0x1c(r3)
-	fmadds   f1, f31, f31, f1
-	lfs      f4, 0x2c(r3)
-	fadds    f1, f5, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_802C54A4
-	ble      lbl_802C54A8
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_802C54A8
+	bool isHeightChanged = false;
+	Vector3f xVec, pos;
+	mGunMtx->getBasis(0, xVec);
+	mGunMtx->getBasis(3, pos);
 
-lbl_802C54A4:
-	fmr      f1, f0
+	xVec.normalise();
 
-lbl_802C54A8:
-	lfs      f0, lbl_8051C588@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_802C54C8
-	lfs      f0, lbl_8051C58C@sda21(r2)
-	fdivs    f0, f0, f1
-	fmuls    f31, f31, f0
-	fmuls    f30, f30, f0
-	fmuls    f29, f29, f0
+	mLockOnPosition = xVec;
 
-lbl_802C54C8:
-	stfs     f31, 0x24(r29)
-	li       r30, 0
-	lfs      f0, lbl_8051C590@sda21(r2)
-	stfs     f30, 0x28(r29)
-	lfs      f1, lbl_8051C5EC@sda21(r2)
-	fmuls    f31, f31, f0
-	stfs     f29, 0x2c(r29)
-	fmuls    f30, f30, f0
-	fmuls    f29, f29, f0
-	lfs      f0, 0x24(r29)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x24(r29)
-	lfs      f0, 0x28(r29)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x28(r29)
-	lfs      f0, 0x2c(r29)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x2c(r29)
-	lfs      f0, 0x24(r29)
-	fadds    f0, f0, f2
-	stfs     f0, 0x24(r29)
-	lfs      f0, 0x28(r29)
-	fadds    f0, f0, f3
-	stfs     f0, 0x28(r29)
-	lfs      f0, 0x2c(r29)
-	fadds    f0, f0, f4
-	stfs     f0, 0x2c(r29)
+	xVec *= 10.0f;
 
-lbl_802C5534:
-	lfs      f0, 0x24(r29)
-	addi     r4, r29, 0x24
-	fadds    f0, f0, f31
-	stfs     f0, 0x24(r29)
-	lfs      f0, 0x28(r29)
-	fadds    f0, f0, f30
-	stfs     f0, 0x28(r29)
-	lfs      f0, 0x2c(r29)
-	fadds    f0, f0, f29
-	stfs     f0, 0x2c(r29)
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	lwz      r12, 4(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x28(r29)
-	fcmpo    cr0, f1, f0
-	ble      lbl_802C5588
-	stfs     f1, 0x28(r29)
-	li       r31, 1
-	b        lbl_802C5594
+	mLockOnPosition *= 50.0f;
+	mLockOnPosition += pos;
 
-lbl_802C5588:
-	addi     r30, r30, 1
-	cmpwi    r30, 0x3c
-	blt      lbl_802C5534
+	for (int i = 0; i < 60; i++) {
+		mLockOnPosition += xVec;
+		f32 minY = mapMgr->getMinY(mLockOnPosition);
+		if (minY > mLockOnPosition.y) {
+			mLockOnPosition.y = minY;
+			isHeightChanged   = true;
+			break;
+		}
+	}
 
-lbl_802C5594:
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_802C5620
-	lis      r3, __vt__Q23efx3Arg@ha
-	addi     r4, r1, 8
-	addi     r0, r3, __vt__Q23efx3Arg@l
-	stw      r0, 8(r1)
-	lfs      f0, 0x24(r29)
-	stfs     f0, 0xc(r1)
-	lfs      f0, 0x28(r29)
-	stfs     f0, 0x10(r1)
-	lfs      f0, 0x2c(r29)
-	stfs     f0, 0x14(r1)
-	lwz      r3, 0x30(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x14(r29)
-	addi     r4, r29, 0x24
-	addi     r5, r1, 0x18
-	lfs      f0, 0(r3)
-	stfs     f0, 0x18(r1)
-	fneg     f2, f0
-	lfs      f0, 0x10(r3)
-	stfs     f0, 0x1c(r1)
-	fneg     f1, f0
-	lfs      f3, 0x20(r3)
-	fneg     f0, f3
-	stfs     f3, 0x20(r1)
-	stfs     f2, 0x18(r1)
-	stfs     f1, 0x1c(r1)
-	stfs     f0, 0x20(r1)
-	lwz      r3, 0x30(r29)
-	bl       "setPosNrm__Q23efx11THdamaSightFR10Vector3<f>R10Vector3<f>"
-	b        lbl_802C5634
+	if (isHeightChanged) {
+		Vector3f nrm;
+		efx::Arg fxArg(mLockOnPosition);
+		mEfxSight->create(&fxArg);
 
-lbl_802C5620:
-	lwz      r3, 0x30(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
+		mGunMtx->getBasis(0, nrm);
+		nrm.x = -nrm.x;
+		nrm.y = -nrm.y;
+		nrm.z = -nrm.z;
 
-lbl_802C5634:
-	addi     r4, r29, 0x24
-	li       r3, 0x3055
-	bl       PSStartSoundVec__FUlP3Vec
-	psq_l    f31, 104(r1), 0, qr0
-	lfd      f31, 0x60(r1)
-	psq_l    f30, 88(r1), 0, qr0
-	lfd      f30, 0x50(r1)
-	psq_l    f29, 72(r1), 0, qr0
-	lfd      f29, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r0, 0x74(r1)
-	lwz      r29, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
+		mEfxSight->setPosNrm(mLockOnPosition, nrm);
+	} else {
+		mEfxSight->fade();
+	}
+
+	PSStartSoundVec(PSSE_EN_HOUDAI_BEAM, (Vec*)&mLockOnPosition);
 }
 
 /**
