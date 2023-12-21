@@ -355,8 +355,8 @@ typedef enum _GXChannelID {
 
 // Color sources.
 typedef enum _GXColorSrc {
-	GX_SRC_REG = 0, // Source from register (?).
-	GX_SRC_VTX = 1, // Source from vertex.
+	GX_SRC_REG = 0, // Color source from material color register.
+	GX_SRC_VTX = 1, // Color source from vertex.
 } GXColorSrc;
 
 // Alpha operators.
@@ -787,10 +787,10 @@ typedef enum _GXTevStageID {
 
 // TEV register names.
 typedef enum _GXTevRegID {
-	GX_TEVPREV = 0,
-	GX_TEVREG0 = 1,
-	GX_TEVREG1 = 2,
-	GX_TEVREG2 = 3,
+	GX_TEVPREV = 0, // TEV register 3. Used primarily to store previous TEVStage output. 
+	GX_TEVREG0 = 1, // TEV register 0.
+	GX_TEVREG1 = 2, // TEV register 1.
+	GX_TEVREG2 = 3, // TEV register 2.
 
 	GX_MAX_TEVREG, // Max num TEV registers (4).
 } GXTevRegID;
@@ -860,8 +860,8 @@ typedef enum _GXTevAlphaArg {
 	GX_CA_A2    = 3,
 	GX_CA_TEXA  = 4,
 	GX_CA_RASA  = 5,
-	GX_KONST    = 6,
-	GX_ZERO     = 7,
+	GX_CA_KONST = 6,
+	GX_CA_ZERO  = 7,
 } GXTevAlphaArg;
 
 // TEV bias.
@@ -883,7 +883,7 @@ typedef enum _GXTevClampMode {
 	GX_MAX_TEVCLAMPMODE, // Max num clamp modes (4).
 } GXTevClampMode;
 
-// TEV scale types.
+// TEV scale types. These multiply the final TEVStage output by 1, 2, 4, or 0.5.
 typedef enum _GXTevScale {
 	GX_CS_SCALE_1  = 0,
 	GX_CS_SCALE_2  = 1,

@@ -7,8 +7,8 @@
 #include "types.h"
 
 struct J3DTevSwapModeInfo {
-	u8 _00;
-	u8 _01;
+	u8 mRasSel; // _00
+	u8 mTexSel; // _01		
 };
 
 struct J3DTevBlock {
