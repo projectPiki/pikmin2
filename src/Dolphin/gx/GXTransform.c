@@ -391,16 +391,15 @@ void GXSetScissor(u32 left, u32 top, u32 width, u32 height)
  */
 void GXGetScissor(u32* left, u32* top, u32* width, u32* height)
 {
-	u32 x1, y1, x2, y2;
-	x1 = (gx->suScis0 >> 12);
-	y1 = (gx->suScis0 >>  0);
-	x2 = (gx->suScis1 >> 12);
-	y2 = (gx->suScis1 >>  0);
-	
-	*left   = (x1 & 0x7ff) - 0x156;
-	*top    = (y1 & 0x7ff) - 0x156;
-	*width  = (x2 & 0x7ff) - (x1 & 0x7ff) + 1;
-	*height = (y2 & 0x7ff) - (y1 & 0x7ff) + 1;
+	u32 y1 = (gx->suScis0 & 0x0007FF) >>  0;
+    u32 x1 = (gx->suScis0 & 0x7FF000) >> 12;
+    u32 y2 = (gx->suScis1 & 0x0007FF) >>  0;
+    u32 x2 = (gx->suScis1 & 0x7FF000) >> 12;
+
+    *left   = x1 - 0x156;
+    *top    = y1 - 0x156;
+    *width  = (x2 - x1) + 1;
+    *height = (y2 - y1) + 1;
 
 	/*
 	.loc_0x0:
