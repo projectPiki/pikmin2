@@ -211,7 +211,7 @@ void RandMapMgr::getItemDropPosition(Vector3f* positions, int count, f32 lowerWe
 	MapNode* nodeList[16];
 	BaseGen* genList[16];
 
-	const int randVal   = 2.0f * randFloat();
+	const int randVal   = randInt(2.0f);
 	const int countEven = (count % 2) - 1;
 	mRandItemUnit->setItemDropPositionList(nodeList, genList);
 
@@ -226,119 +226,6 @@ void RandMapMgr::getItemDropPosition(Vector3f* positions, int count, f32 lowerWe
 		}
 		mRandItemUnit->getItemDropPosition(positions[i], val, i);
 	}
-	/*
-	stwu     r1, -0xd0(r1)
-	mflr     r0
-	stw      r0, 0xd4(r1)
-	stfd     f31, 0xc0(r1)
-	psq_st   f31, 200(r1), 0, qr0
-	stfd     f30, 0xb0(r1)
-	psq_st   f30, 184(r1), 0, qr0
-	stmw     r26, 0x98(r1)
-	fadds    f1, f1, f2
-	lfs      f3, lbl_8051A738@sda21(r2)
-	lfs      f0, lbl_8051A73C@sda21(r2)
-	mr       r30, r3
-	mr       r26, r4
-	mr       r31, r5
-	fmuls    f30, f3, f1
-	fsubs    f31, f2, f30
-	fcmpo    cr0, f31, f0
-	ble      lbl_80244C28
-	b        lbl_80244C2C
-
-lbl_80244C28:
-	fneg     f31, f31
-
-lbl_80244C2C:
-	bl       rand
-	xoris    r0, r3, 0x8000
-	lis      r4, 0x4330
-	stw      r0, 0x8c(r1)
-	srwi     r3, r31, 0x1f
-	clrlwi   r0, r31, 0x1f
-	lfd      f3, lbl_8051A730@sda21(r2)
-	stw      r4, 0x88(r1)
-	xor      r0, r0, r3
-	subf     r3, r3, r0
-	lfs      f1, lbl_8051A72C@sda21(r2)
-	lfd      f2, 0x88(r1)
-	addi     r27, r3, -1
-	lfs      f0, lbl_8051A740@sda21(r2)
-	addi     r4, r1, 0x48
-	fsubs    f2, f2, f3
-	lwz      r3, 0x30(r30)
-	addi     r5, r1, 8
-	fdivs    f1, f2, f1
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x90(r1)
-	lwz      r29, 0x94(r1)
-	bl
-setItemDropPositionList__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7MapNodePPQ34Game4Cave7BaseGen
-	mr       r28, r26
-	li       r26, 0
-	b        lbl_80244D38
-
-lbl_80244C98:
-	fmr      f1, f30
-	cmpw     r26, r27
-	beq      lbl_80244D20
-	srwi     r3, r26, 0x1f
-	clrlwi   r0, r26, 0x1f
-	xor      r0, r0, r3
-	subf     r0, r3, r0
-	cmpw     r0, r29
-	bne      lbl_80244CF0
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x94(r1)
-	lfd      f2, lbl_8051A730@sda21(r2)
-	stw      r0, 0x90(r1)
-	lfs      f0, lbl_8051A72C@sda21(r2)
-	lfd      f1, 0x90(r1)
-	fsubs    f1, f1, f2
-	fmuls    f1, f31, f1
-	fdivs    f0, f1, f0
-	fadds    f1, f30, f0
-	b        lbl_80244D20
-
-lbl_80244CF0:
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x94(r1)
-	lfd      f2, lbl_8051A730@sda21(r2)
-	stw      r0, 0x90(r1)
-	lfs      f0, lbl_8051A72C@sda21(r2)
-	lfd      f1, 0x90(r1)
-	fsubs    f1, f1, f2
-	fmuls    f1, f31, f1
-	fdivs    f0, f1, f0
-	fsubs    f1, f30, f0
-
-lbl_80244D20:
-	lwz      r3, 0x30(r30)
-	mr       r4, r28
-	mr       r5, r26
-	bl       "getItemDropPosition__Q34Game4Cave12RandItemUnitFR10Vector3<f>fi"
-	addi     r28, r28, 0xc
-	addi     r26, r26, 1
-
-lbl_80244D38:
-	cmpw     r26, r31
-	blt      lbl_80244C98
-	psq_l    f31, 200(r1), 0, qr0
-	lfd      f31, 0xc0(r1)
-	psq_l    f30, 184(r1), 0, qr0
-	lfd      f30, 0xb0(r1)
-	lmw      r26, 0x98(r1)
-	lwz      r0, 0xd4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xd0
-	blr
-	*/
 }
 
 /**
