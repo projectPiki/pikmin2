@@ -1865,45 +1865,17 @@ def main():
         )
     n.newline()
 
-    if args.powerpc == Path("tools/powerpc"):
-        n.comment("powerpc")
-        download_ppc = tools_path / "download_ppc.py"
-        n.rule(
-            name="download_ppc",
-            command=f"$python {download_ppc}",
-            description="DOWNLOAD $out",
-        )
-        n.build(
-            outputs=path("tools/powerpc/finish"),
-            rule="download_ppc",
-            implicit=path(["tools/powerpc", download_ppc]),
-        )
-        n.newline()
-        # FIXME: Manual download because the above doesn't work for some reason
-        if not Path("tools/powerpc").exists():
-            import tools.download_ppc
+    # FIXME: Manual downloads because ninja doesn't play nice with directories,
+    # replace with automated system like dtk uses if workaround is found
+    if args.powerpc == Path("tools/powerpc") and not Path("tools/powerpc").exists():
+        import tools.download_ppc
 
-            tools.download_ppc.main()
+        tools.download_ppc.main()
 
-    if args.compilers == Path("tools/mwcc_compiler"):
-        n.comment("mwcc-compilers")
-        download_mwcc = tools_path / "download_mwcc.py"
-        n.rule(
-            name="download_mwcc",
-            command=f"$python {download_mwcc}",
-            description="DOWNLOAD $out",
-        )
-        n.build(
-            outputs=path("tools/mwcc_compiler"),
-            rule="download_mwcc",
-            implicit=path(["tools/mwcc_compiler", download_mwcc]),
-        )
-        n.newline()
-        # FIXME: Manual download because the above doesn't work for some reason
-        if not Path("tools/mwcc_compiler").exists():
-            import tools.download_mwcc
+    if args.compilers == Path("tools/mwcc_compiler") and not Path("tools/mwcc_compiler").exists():
+        import tools.download_mwcc
 
-            tools.download_mwcc.main()
+        tools.download_mwcc.main()
 
     ###
     # Rules
@@ -2076,6 +2048,7 @@ def main():
                         "basefile": path(build_src_path / f"{object}"),
                         "cfile": path(c_file),
                     },
+                    implicit_outputs = None if not args.context else (str(c_file) + ".ctx")
                 )
                 if lib["host"]:
                     n.build(

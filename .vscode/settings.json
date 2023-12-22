@@ -12,6 +12,7 @@
         "**/*.ctx": true
     },
     "files.associations": {
+        "*.c.ctx": "c",
         "*.ctx": "cpp",
         "source_location": "cpp",
         "types.h": "c",
