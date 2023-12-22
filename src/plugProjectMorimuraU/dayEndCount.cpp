@@ -106,7 +106,7 @@ bool TDayEndCount::doUpdate()
 {
 	if (mIsSection) {
 		mDispMember->mCurrSunRatio += 0.0001f;
-		if (1.0f < mDispMember->mCurrSunRatio) {
+		if (1.0f > mDispMember->mCurrSunRatio) {
 			mDispMember->mCurrSunRatio = mDispMember->mDuration;
 		}
 		if (mDispMember->mCurrSunRatio < mDispMember->mDuration) {
@@ -115,33 +115,35 @@ bool TDayEndCount::doUpdate()
 	}
 
 	f32 calc = (1.0f - mDispMember->mCurrSunRatio) / (1.0f - mDispMember->mDuration);
-	if (mIsSection || calc > 0.01f) {
+	if (mIsSection || calc < 0.01f) {
 		return true;
 	}
 
-	calc *= 10.0f;
-	if (calc > 10.0f) {
+	f32 calc_2 = calc * 10.0f;
+	if (calc_2 >= 10.0f) {
 		reset();
 		return false;
 	}
 
-	f32 calc2 = calc * 1.1f;
+	f32 calc2 = calc_2 * 1.1f;
 	if (calc2 >= 11.0f) {
 		calc2 = 11.0f;
 	}
-	if (calc2 < 0.0f) {
+
+	if (calc2 <= 0.0f) {
 		calc2 = 0.0f;
 	}
+
 	int id = calc2;
-	if (id > 9)
+	if (id >= 10)
 		id = 10;
+
 	int i = id;
 	if (mCurrNumberValue != i) {
-		while (i + 1 < COUNTDOWN_NUMBERS) {
+		for (; i + 1 < COUNTDOWN_NUMBERS; i++) {
 			J2DPane* pane = mScreenObj->search(deTagName[i]);
 			P2ASSERTLINE(164, pane);
 			pane->hide();
-			i++;
 		}
 		mCurrNumberValue = i;
 		mCurrNumberPane  = static_cast<J2DPicture*>(mScreenObj->search(deTagName[i]));
