@@ -719,20 +719,24 @@ u8 GeneralEnemyMgr::getEnemyNum(int enemyID, bool doFullCount)
 {
 	u8 num = 0;
 	if (doFullCount) {
-
 		if (mEnemyNumInfo.mEnemyNumList) {
 			int mgrID = getEnemyMgrID(enemyID);
 
 			for (int i = 0; i < gEnemyInfoNum; i++) {
 				EnemyTypeID* typeID = &mEnemyNumInfo.mEnemyNumList[i];
-				int id              = ((u8)(enemyID == mgrID) != 0) ? getEnemyMgrID(typeID->mEnemyID) : typeID->mEnemyID;
+
+				bool eq = (u8)(enemyID == mgrID);
+				int id  = eq ? getEnemyMgrID(typeID->mEnemyID) : typeID->mEnemyID;
+
 				if (id == enemyID) {
 					num += typeID->mCount;
 				}
 			}
+
+			return num;
 		}
-		return num;
 	}
+
 	return mEnemyNumInfo.getEnemyNumData(enemyID);
 	/*
 	stwu     r1, -0x10(r1)
