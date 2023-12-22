@@ -5,12 +5,12 @@
 
 struct JASOscillator {
 	struct Data {
-		u32 _00;          // _00 - unknown
-		f32 _04;          // _04
+		u32 _00;        // _00 - unknown
+		f32 _04;        // _04
 		s16* _08;       // _08 - unknown
 		const s16* _0C; // _0C - unknown pointer
-		f32 _10;          // _10
-		f32 _14;          // _14
+		f32 _10;        // _10
+		f32 _14;        // _14
 	};
 
 	JASOscillator();
@@ -31,7 +31,7 @@ struct JASOscillator {
 	f32 _0C;           // _0C
 	f32 _10;           // _10
 	f32 _14;           // _14
-	s16 _18;         // _18
+	s16 _18;           // _18
 	u16 _1A;           // _1A
 	u8 _1C;            // _1C
 	u8 _1D;            // _1D

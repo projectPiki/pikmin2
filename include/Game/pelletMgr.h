@@ -270,13 +270,13 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	virtual void getLODSphere(Sys::Sphere& lodSphere);               // _140
 	virtual void startPick();                                        // _148
 	virtual void endPick(bool);                                      // _14C
-	virtual bool isSlotFree(s16);                                  // _168
-	virtual s16 getFreeStickSlot();                                // _16C
-	virtual s16 getNearFreeStickSlot(Vector3f&);                   // _170
-	virtual s16 getRandomFreeStickSlot();                          // _174
-	virtual void onSlotStickStart(Creature*, s16);                 // _178
-	virtual void onSlotStickEnd(Creature*, s16);                   // _17C
-	virtual void calcStickSlotGlobal(s16, Vector3f&);              // _180
+	virtual bool isSlotFree(s16);                                    // _168
+	virtual s16 getFreeStickSlot();                                  // _16C
+	virtual s16 getNearFreeStickSlot(Vector3f&);                     // _170
+	virtual s16 getRandomFreeStickSlot();                            // _174
+	virtual void onSlotStickStart(Creature*, s16);                   // _178
+	virtual void onSlotStickEnd(Creature*, s16);                     // _17C
+	virtual void calcStickSlotGlobal(s16, Vector3f&);                // _180
 	virtual bool stimulate(Interaction& data);                       // _1A4
 	virtual char* getCreatureName();                                 // _1A8
 	virtual s32 getCreatureID();                                     // _1AC
@@ -474,7 +474,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	int mMaxCarriers;                 // _3DC
 	f32 mAngleOffset;                 // _3E0
 	PelletSlots mSlots;               // _3E4
-	s16 mSlotCount;                 // _3F4
+	s16 mSlotCount;                   // _3F4
 	u8 _3F6;                          // _3F6
 	u32 mPikminCount[PikiColorCount]; // _3F8
 	u32 mTotalCarriers;               // _414, might be for non-pikmin carriers?

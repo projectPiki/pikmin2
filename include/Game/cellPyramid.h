@@ -103,7 +103,7 @@ struct Cell {
 	CellLeg* mLeg;              // _1C
 	Cell* mNextCell;            // _20
 	Cell* mPrevCell;            // _24
-	s16 mLayerIdx;            // _28
+	s16 mLayerIdx;              // _28
 
 	static CellPyramid* sCurrCellMgr;
 };

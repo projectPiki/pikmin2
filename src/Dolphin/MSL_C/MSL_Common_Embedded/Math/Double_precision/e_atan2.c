@@ -56,8 +56,7 @@ static f64
 #ifdef __STDC__
 f64 __ieee754_atan2(f64 y, f64 x)
 #else
-f64 __ieee754_atan2(y, x)
-f64 y, x;
+f64 __ieee754_atan2(y, x) f64 y, x;
 #endif
 {
 	f64 z;

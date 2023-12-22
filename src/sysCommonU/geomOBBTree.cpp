@@ -1012,7 +1012,7 @@ void OBB::determineDivPlane(Sys::VertexTable& vertTable, Sys::TriangleTable& tri
 		// loop through all triangles
 		for (int j = 0; j < mTriIndexList.mCount; j++) {
 			Triangle* currTri = &triTable.mObjects[mTriIndexList.mObjects[j]];
-			f32 triDist     = currTri->calcDist(currPlane, vertTable);
+			f32 triDist       = currTri->calcDist(currPlane, vertTable);
 			if (triDist > 0.0f) { // triangle above plane
 				numAbove += 1;
 			} else if (triDist < 0.0f) { // triangle below plane
@@ -1191,7 +1191,7 @@ bool OBB::divide(Sys::VertexTable& vertTable, Sys::TriangleTable& triTable)
 
 	for (int i = 0; i < mTriIndexList.mCount; i++) {
 		Triangle* currTri = &triTable.mObjects[mTriIndexList.mObjects[i]];
-		f32 triDist     = currTri->calcDist(mDivPlane, vertTable);
+		f32 triDist       = currTri->calcDist(mDivPlane, vertTable);
 		if (triDist > 0.0f) {
 			numAbove += 1;
 		} else if (triDist < 0.0f) {
@@ -2542,7 +2542,7 @@ bool OBB::findRayIntersectionTriList(Sys::RayIntersectInfo& rayInfo, Matrixf& tr
 		if (rayInfo.condition(*currTri) && currTri->intersect(rayInfo.mIntersectEdge, rayInfo.mRadius, intersectVec)) {
 			isIntersect     = true;
 			Vector3f sepVec = intersectVec - rayInfo.mIntersectEdge.mStartPos;
-			f32 sqSep     = sepVec.x * sepVec.x + sepVec.y * sepVec.y + sepVec.z * sepVec.z;
+			f32 sqSep       = sepVec.x * sepVec.x + sepVec.y * sepVec.y + sepVec.z * sepVec.z;
 			if (sqSep < rayInfo.mDistance) {
 				rayInfo.mDistance          = sqSep;
 				rayInfo.mIntersectPosition = transformMtx.mtxMult(intersectVec);

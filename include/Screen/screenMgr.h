@@ -35,16 +35,16 @@ struct Mgr : public MgrBase {
 
 	Mgr();
 
-	virtual ~Mgr() { sScreenMgr = nullptr; }           // _08 (weak)
-	virtual bool setScene(SetSceneArg&);               // _0C
-	virtual bool startScene(StartSceneArg*);           // _10
-	virtual bool endScene(EndSceneArg*);               // _14
-	virtual bool reset();                              // _18
-	virtual void setColorBG(JUtility::TColor&) { }     // _1C (weak)
-	virtual void setBGMode(int) { }                    // _20 (weak)
+	virtual ~Mgr() { sScreenMgr = nullptr; }          // _08 (weak)
+	virtual bool setScene(SetSceneArg&);              // _0C
+	virtual bool startScene(StartSceneArg*);          // _10
+	virtual bool endScene(EndSceneArg*);              // _14
+	virtual bool reset();                             // _18
+	virtual void setColorBG(JUtility::TColor&) { }    // _1C (weak)
+	virtual void setBGMode(int) { }                   // _20 (weak)
 	virtual ::Screen::SceneBase* doGetSceneBase(s32); // _24
-	virtual void drawBG(Graphics&) { }                 // _28 (weak)
-	virtual void drawWipe(Graphics&) { }               // _2C (weak)
+	virtual void drawBG(Graphics&) { }                // _28 (weak)
+	virtual void drawWipe(Graphics&) { }              // _2C (weak)
 
 	void init();
 	MgrCommand* getCurrentCommand();
@@ -119,7 +119,7 @@ struct Mgr : public Screen::Mgr {
 	virtual bool reset();                                              // _18
 	virtual void setColorBG(JUtility::TColor& col) { mBgColor = col; } // _1C (weak)
 	virtual void setBGMode(int mode) { mBgMode = mode; }               // _20 (weak)
-	virtual ::Screen::SceneBase* doGetSceneBase(s32);                 // _24
+	virtual ::Screen::SceneBase* doGetSceneBase(s32);                  // _24
 	virtual void drawBG(Graphics&);                                    // _28
 
 	static Mgr* create();

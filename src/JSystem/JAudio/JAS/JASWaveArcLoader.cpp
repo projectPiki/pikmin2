@@ -327,7 +327,7 @@ void JASWaveArc::setFileName(const char* fileName)
 	strcpy(buffer, JASWaveArcLoader::sCurrentDir);
 	strcat(buffer, fileName);
 	buffer[length] = '\0';
-	s32 entryNum  = DVDConvertPathToEntrynum(buffer);
+	s32 entryNum   = DVDConvertPathToEntrynum(buffer);
 	delete[] buffer;
 	if (0 <= entryNum) {
 		setEntryNum(entryNum);

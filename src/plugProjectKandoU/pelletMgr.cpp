@@ -3799,7 +3799,7 @@ lbl_8016A510:
  */
 s16 Pellet::getNearFreeStickSlot(Vector3f& position)
 {
-	f32 minDist      = 12800.0f;
+	f32 minDist    = 12800.0f;
 	s16 returnSlot = -1;
 
 	for (s16 slot = 0; slot < mSlotCount; slot++) {
@@ -3913,7 +3913,7 @@ s16 Pellet::getRandomFreeStickSlot()
 {
 	s16 slotCap    = mSlotCount;
 	s16 randomSlot = (int)((f32)slotCap * randFloat());
-	int slotByte     = 128;
+	int slotByte   = 128;
 	s16 returnSlot = -1;
 	for (s16 slot = 0; slot < slotCap; slot++) {
 		u32 index = slot >> 3;

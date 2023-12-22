@@ -54,9 +54,9 @@ void GenItem::doEvent(u32 idx)
  */
 void GenItem::generatorMakeMatrix(Matrixf& matrix, Vector3f& pos)
 {
-	f32 x           = mRotation.x * DEG2RAD * PI;
-	f32 y           = mRotation.y * DEG2RAD * PI;
-	f32 z           = mRotation.z * DEG2RAD * PI;
+	f32 x             = mRotation.x * DEG2RAD * PI;
+	f32 y             = mRotation.y * DEG2RAD * PI;
+	f32 z             = mRotation.z * DEG2RAD * PI;
 	Vector3f rotation = Vector3f(x, y, z);
 
 	matrix.makeTR(pos, rotation);
@@ -166,9 +166,9 @@ Creature* GenItem::birth(Game::GenArg* arg)
 	BaseItemMgr* baseItemMgr = mItemMgr;
 	if (baseItemMgr) {
 		Vector3f pos      = arg->mPosition;
-		f32 z           = mRotation.z * DEG2RAD * PI;
-		f32 y           = mRotation.y * DEG2RAD * PI;
-		f32 x           = mRotation.x * DEG2RAD * PI;
+		f32 z             = mRotation.z * DEG2RAD * PI;
+		f32 y             = mRotation.y * DEG2RAD * PI;
+		f32 x             = mRotation.x * DEG2RAD * PI;
 		Vector3f rotation = Vector3f(x, y, z);
 		baseItem          = baseItemMgr->generatorBirth(pos, rotation, mParm);
 	}

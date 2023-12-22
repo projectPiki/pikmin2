@@ -24,7 +24,7 @@ struct TCursor : public TBase {
 
 	// _00      = VTBL
 	TOneEmitter mOneEmitter;                    // _04
-	s32 mContextNum;                           // _38
+	s32 mContextNum;                            // _38
 	Context mContextArray[WHISTLE_CONTEXT_NUM]; // _3C
 	Vector3f mPosition;                         // _27C
 	f32 mAngleTimer;                            // _288

@@ -34,8 +34,7 @@ static f64 one = 1.0, Zero[] = {
 #ifdef __STDC__
 f64 __ieee754_fmod(f64 x, f64 y)
 #else
-f64 __ieee754_fmod(x, y)
-f64 x, y;
+f64 __ieee754_fmod(x, y) f64 x, y;
 #endif
 {
 	int n, hx, hy, hz, ix, iy, sx, i;

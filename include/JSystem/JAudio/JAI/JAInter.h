@@ -202,7 +202,7 @@ struct SeParameter {
 	}
 
 	u8 _00[0x20];                // _00 - unknown
-	s16 _20;                   // _20
+	s16 _20;                     // _20
 	u8 _22[0x2];                 // _22 - possibly padding
 	MoveParaSet _24[16];         // _24
 	MoveParaSet _124[8];         // _124
@@ -268,7 +268,7 @@ struct SeqParameter : MoveParaSet {
 	u16** _274;                // _274
 	u8 _278;                   // _278 - auto heap index?
 	u8 _279;                   // _279
-	s16 _27A;                // _27A
+	s16 _27A;                  // _27A
 	u32 _27C;                  // _27C
 	u32 _280;                  // _280 - from here to (and including) _2B0 might be an array...
 	u32 _284;                  // _284

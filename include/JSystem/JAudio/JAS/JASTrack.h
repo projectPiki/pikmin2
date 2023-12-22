@@ -257,7 +257,7 @@ struct JASTrack : JSUList<JASChannel> {
 	u8 _298[0x10];                     // _298 - unknown
 	JASOscillator::Data _2A8[2];       // _2A8
 	u32 _2D8[2];                       // _2D8
-	s16 _2E0[12];                    // _2E0
+	s16 _2E0[12];                      // _2E0
 	JASTrack* _2F8;                    // _2F8
 	JASTrack* _2FC[16];                // _2FC
 	JASOuterParam* mExtBuffer;         // _33C

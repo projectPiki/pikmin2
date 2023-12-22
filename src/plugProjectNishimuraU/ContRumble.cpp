@@ -72,7 +72,7 @@ void ContRumble::update()
 
 			if (currentSegment < numRumbleSegments) {
 				f64 t = (currentNode->mRumbleTimer - rumbleData->mTimes[4 * currentSegment])
-				         / (rumbleData->mTimes[4 * (currentSegment + 1)] - rumbleData->mTimes[4 * currentSegment]);
+				      / (rumbleData->mTimes[4 * (currentSegment + 1)] - rumbleData->mTimes[4 * currentSegment]);
 
 				currentNode->mCurrentIntensity
 				    = ((1.0 - t) * rumbleData->mIntensities[4 * currentSegment]) + (t * rumbleData->mIntensities[4 * (currentSegment + 1)]);

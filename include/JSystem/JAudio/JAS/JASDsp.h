@@ -113,7 +113,7 @@ struct TChannel {
 	s16 mFir8FilterParam[8]; // _120
 	u8 _130[0x18];           // _130
 	s16 mIirFilterParam[4];  // _148
-	s16 mDistFilter;       // _150
+	s16 mDistFilter;         // _150
 };
 
 struct FxlineConfig_ {

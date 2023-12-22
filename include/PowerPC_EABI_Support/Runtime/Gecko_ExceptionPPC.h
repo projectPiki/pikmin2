@@ -87,7 +87,7 @@ typedef struct ex_destroymembercond {
 	void* dtor;
 } ex_destroymembercond;
 
-#define ex_destroymembercond_MakeField(regcond, regpointer) (((regcond) << 7) | (((regpointer) & 0x1) << 6))
+#define ex_destroymembercond_MakeField(regcond, regpointer) (((regcond) << 7) | (((regpointer)&0x1) << 6))
 #define ex_destroymembercond_GetRegCond(field)              ((field) >> 7)
 #define ex_destroymembercond_GetRegPointer(field)           (((field) >> 6) & 0x1)
 
@@ -128,7 +128,7 @@ typedef struct ex_deletepointercond {
 	void* deletefunc;
 } ex_deletepointercond;
 
-#define ex_deletepointercond_MakeField(regcond, regpointer) (((regcond) << 7) | (((regpointer) & 0x1) << 6))
+#define ex_deletepointercond_MakeField(regcond, regpointer) (((regcond) << 7) | (((regpointer)&0x1) << 6))
 #define ex_deletepointercond_GetRegCond(field)              ((field) >> 7)
 #define ex_deletepointercond_GetRegPointer(field)           (((field) >> 6) & 0x1)
 
@@ -222,8 +222,8 @@ typedef struct ExceptionTableIndex {
 	u32 exceptionoffset;
 } ExceptionTableIndex;
 
-#define ETI_MakeField(direct, fsize) ((((s32)(direct)) << 31) | ((fsize) & 0x7fffffff))
+#define ETI_MakeField(direct, fsize) ((((s32)(direct)) << 31) | ((fsize)&0x7fffffff))
 #define ETI_GetDirectStore(field)    ((field) >> 31)
-#define ETI_GetFunctionSize(field)   ((field) & 0x7fffffff)
+#define ETI_GetFunctionSize(field)   ((field)&0x7fffffff)
 
 #endif

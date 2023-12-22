@@ -32,8 +32,7 @@ static f64 one = 1.0;
 #ifdef __STDC__
 f64 modf(f64 x, f64* iptr)
 #else
-f64 modf(x, iptr)
-f64 x, *iptr;
+f64 modf(x, iptr) f64 x, *iptr;
 #endif
 {
 	int i0, i1, j0;

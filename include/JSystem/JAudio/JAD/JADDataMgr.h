@@ -49,10 +49,10 @@ struct DataLoadMgrNode : virtual public DataMgrBase {
 		DataMgrBase::init();
 	} // _10 (weak)
 
-	virtual JKRHeap* getObjHeap()          = 0; // _14
-	virtual JKRHeap* getDataHeap()         = 0; // _18
+	virtual JKRHeap* getObjHeap()         = 0; // _14
+	virtual JKRHeap* getDataHeap()        = 0; // _18
 	virtual bool initInstance(void*, s32) = 0; // _1C
-	virtual bool initInstance()            = 0; // _20
+	virtual bool initInstance()           = 0; // _20
 
 	bool initInstanceExt(void*, s32);
 	void setFlagsAsExternal(void*);
@@ -95,10 +95,10 @@ struct DataMgrNode : public DataLoadMgrNode {
 
 	virtual ~DataMgrNode() { }                                           // _08 (weak)
 	virtual void init() { DataLoadMgrNode::init(); }                     // _10 (weak)
-	virtual JKRHeap* getObjHeap()          = 0;                          // _14
-	virtual JKRHeap* getDataHeap()         = 0;                          // _18
-	virtual bool initInstance(void*, s32) = 0;                          // _1C
-	virtual bool initInstance()            = 0;                          // _20
+	virtual JKRHeap* getObjHeap()         = 0;                           // _14
+	virtual JKRHeap* getDataHeap()        = 0;                           // _18
+	virtual bool initInstance(void*, s32) = 0;                           // _1C
+	virtual bool initInstance()           = 0;                           // _20
 	virtual char* getPath() { return mPath; }                            // _24 (weak)
 	virtual void setPath(char* path) { DataLoadMgrNode::setPath(path); } // _28 (weak)
 

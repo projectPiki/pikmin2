@@ -561,8 +561,8 @@ void J2DPictureEx::drawFullSet(f32 p1, f32 p2, f32 p3, f32 p4, f32 (*mtx)[3][4])
  * @note Address: 0x800554FC
  * @note Size: 0x2B4
  */
-void J2DPictureEx::drawTexCoord(f32 p1, f32 p2, f32 p3, f32 p4, s16 p5, s16 p6, s16 p7, s16 p8, s16 p9, s16 p10,
-                                s16 p11, s16 p12, f32 (*p13)[3][4])
+void J2DPictureEx::drawTexCoord(f32 p1, f32 p2, f32 p3, f32 p4, s16 p5, s16 p6, s16 p7, s16 p8, s16 p9, s16 p10, s16 p11, s16 p12,
+                                f32 (*p13)[3][4])
 {
 	Mtx v1;
 	PSMTXConcat(*p13, mGlobalMtx, v1);

@@ -26,8 +26,8 @@ int ModParamWithFade::task(JASTrack& track)
 	if (_28 == 0) {
 		if (_1C != 0) {
 			f32 preParam = getPreParam(track);
-			_24            = (_20 - preParam) / _1C;
-			_2C            = preParam + _24;
+			_24          = (_20 - preParam) / _1C;
+			_2C          = preParam + _24;
 		} else {
 			timeTask(track, _20);
 			return -1;

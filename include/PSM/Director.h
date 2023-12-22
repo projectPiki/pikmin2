@@ -141,7 +141,7 @@ struct TrackOnDirectorBase : public SwitcherDirector {
 	// _00-_48 = SwitcherDirector
 	s32 mFadeInValue;  // _48
 	s32 mFadeOutValue; // _4C
-	u8 mEnableType;     // _50
+	u8 mEnableType;    // _50
 };
 
 /**

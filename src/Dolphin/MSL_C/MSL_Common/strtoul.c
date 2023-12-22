@@ -24,13 +24,13 @@ enum scan_states {
  * @note Size: 0x378
  */
 u32 __strtoul(int base, int max_width, int (*ReadProc)(void*, int, int), void* ReadProcArg, int* chars_scanned, int* negative,
-                        int* overflow)
+              int* overflow)
 {
-	int scan_state          = start;
-	int count               = 0;
-	int spaces              = 0;
-	u32 value     = 0;
-	u32 value_max = 0;
+	int scan_state = start;
+	int count      = 0;
+	int spaces     = 0;
+	u32 value      = 0;
+	u32 value_max  = 0;
 	int c;
 
 	*negative = *overflow = 0;
@@ -159,15 +159,15 @@ u32 __strtoul(int base, int max_width, int (*ReadProc)(void*, int, int), void* R
  * @note Address: 0x800CBAD4
  * @note Size: 0x40C
  */
-u64 __strtoull(int base, int max_width, int (*ReadProc)(void*, int, int), void* ReadProcArg, int* chars_scanned,
-                              int* negative, int* overflow)
+u64 __strtoull(int base, int max_width, int (*ReadProc)(void*, int, int), void* ReadProcArg, int* chars_scanned, int* negative,
+               int* overflow)
 {
-	int scan_state               = start;
-	int count                    = 0;
-	int spaces                   = 0;
-	u64 value     = 0;
-	u64 value_max = 0;
-	u64 ullmax    = ULLONG_MAX;
+	int scan_state = start;
+	int count      = 0;
+	int spaces     = 0;
+	u64 value      = 0;
+	u64 value_max  = 0;
+	u64 ullmax     = ULLONG_MAX;
 	int c;
 
 	*negative = *overflow = 0;

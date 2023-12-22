@@ -11,8 +11,8 @@ static u32 channel_mask[PAD_MAX_CONTROLLERS]               = { 0x80000000, 0x400
 
 JUTGamePad::EStickMode JUTGamePad::sStickMode    = MODE_1;
 int JUTGamePad::sClampMode                       = 1;
-f32 JUTGamePad::CStick::sPressPoint            = 0.5f;
-f32 JUTGamePad::CStick::sReleasePoint          = 0.25f;
+f32 JUTGamePad::CStick::sPressPoint              = 0.5f;
+f32 JUTGamePad::CStick::sReleasePoint            = 0.25f;
 u32 JUTGamePad::C3ButtonReset::sResetPattern     = 0x1600;
 u32 JUTGamePad::C3ButtonReset::sResetMaskPattern = 0xFFFF;
 

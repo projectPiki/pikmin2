@@ -56,8 +56,8 @@ struct THPPlayer : public JKRDisposer, public CNode {
 	// vtable 1 (JKRDisposer)
 	virtual ~THPPlayer(); // _08 (thunked at vtable 2 _14)
 	// vtable 2 (CNode + self)
-	virtual void update();                              // _1C
-	virtual void draw(Graphics&);                       // _20
+	virtual void update();                            // _1C
+	virtual void draw(Graphics&);                     // _20
 	virtual void draw(Graphics&, s32, s32, u32, u32); // _24
 	virtual void draw(Graphics&, s32, s32, f32);      // _28
 

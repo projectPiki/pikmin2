@@ -1112,7 +1112,7 @@ void TVsSelect::doCreate(JKRArchive* arc)
 		TVsSelectSlotIndex* info = TVsSelectSlotIndex::getIndexInfo(i);
 		int id                   = info->mIndex;
 		int tagID                = info->mTagID;
-		vu64 tag         = info->mMesg;
+		vu64 tag                 = info->mMesg;
 		mPowerIconPanes[id]      = mSlotTexturesScreen->mScreenObj->search(iconTags[tagID]);
 		P2ASSERTLINE(949, mPowerIconPanes[id]);
 	}

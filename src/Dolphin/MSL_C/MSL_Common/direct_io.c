@@ -93,8 +93,8 @@ size_t __fwrite(const void* pPtr, size_t memb_size, size_t num_memb, FILE* pFile
 		pFile->mBufferLength = pFile->mBufferSize - (pFile->mBufferPtr - pFile->mBuffer);
 
 		do {
-			u8* nw = 0;
-			num_bytes         = pFile->mBufferLength;
+			u8* nw    = 0;
+			num_bytes = pFile->mBufferLength;
 
 			if (num_bytes > rem_bytes) {
 				num_bytes = rem_bytes;
@@ -130,8 +130,8 @@ size_t __fwrite(const void* pPtr, size_t memb_size, size_t num_memb, FILE* pFile
 	}
 
 	if (rem_bytes && buff == 0) {
-		u8* save_buf = (u8*)pFile->mBuffer;
-		size_t save_size        = pFile->mBufferSize;
+		u8* save_buf     = (u8*)pFile->mBuffer;
+		size_t save_size = pFile->mBufferSize;
 
 		pFile->mBuffer     = (char*)cur_ptr;
 		pFile->mBufferSize = rem_bytes;

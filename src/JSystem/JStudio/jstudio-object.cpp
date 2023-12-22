@@ -1194,7 +1194,7 @@ namespace {
 template <typename Adaptor>
 struct TOutputVariableValue_BOOL_ : public TVariableValue::TOutput {
 	virtual void operator()(f32, TAdaptor*) const; // _08
-	virtual ~TOutputVariableValue_BOOL_() { }        // _0C
+	virtual ~TOutputVariableValue_BOOL_() { }      // _0C
 };
 
 static TOutputVariableValue_BOOL_<TAdaptor_actor> soovv_actor_PARENT_ENABLE_;

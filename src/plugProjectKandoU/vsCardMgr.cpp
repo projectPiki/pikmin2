@@ -798,7 +798,7 @@ void VsGame::CardMgr::SlotMachine::update()
 	mSpinSpeed += mSpinAccel * deltaTime;
 	int previousValue = mSelectedSlot;
 	mPrevCardIndex    = mSelectedSlot;
-	f32 loopValue   = TAU / CARD_ID_COUNT;
+	f32 loopValue     = TAU / CARD_ID_COUNT;
 	mSpinProgress     = roundAng(mSpinAngle + loopValue) / loopValue;
 	mCurrCardIndex    = (int)mSpinProgress;
 	if (mSpinState != 10 && mSpinState != 0) {
@@ -878,8 +878,8 @@ void VsGame::CardMgr::initDraw()
 	_F8        = countA * countB * 2;
 	_FC        = new Vector3f[_F8];
 	_100       = new Vector3f[_F8];
-	f32 phi  = TAU / countA;
-	f32 s    = sinf(phi / 2.0f);
+	f32 phi    = TAU / countA;
+	f32 s      = sinf(phi / 2.0f);
 	f32 x, y, z;
 
 	x = 20.0f;
@@ -924,7 +924,7 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 {
 
 	f32 spinAngle = machine.mSpinAngle;
-	Vector3f pos    = place;
+	Vector3f pos  = place;
 	gfx.initPrimDraw(0);
 	gfx.mDrawColor = Color4(250, 250, 250, 255);
 	GXSetLineWidth(40, GX_TO_ZERO);
@@ -973,7 +973,7 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 		mSlotTextures[i]->load(GX_TEXMAP0);
 		for (int j = 0; j < vectorsPerCard / 4; j++) {
 			GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 0x4);
-			f32 id     = i * vectorsPerCard;
+			f32 id       = i * vectorsPerCard;
 			Vector3f vec = _FC[4 * i];
 			GXPosition3f32(vec.x, vec.y, vec.z);
 			vec = _100[4 * i];

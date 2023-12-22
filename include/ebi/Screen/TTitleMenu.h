@@ -82,7 +82,7 @@ struct TTitleMenu : public TScreenBase {
 	// _00-_08 = TScreenBase
 	Controller* mController;             // _0C
 	EUTPadInterface_countNum mPad;       // _10
-	s32 mSelectID;                      // _3C
+	s32 mSelectID;                       // _3C
 	bool mDecidedMenuOption;             // _40
 	bool mDoCloseMenu;                   // _41
 	u32 mMenuCloseCounter;               // _44

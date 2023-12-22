@@ -22,7 +22,7 @@ typedef u32 OSInterruptMask;
 
 // Last interrupts.
 extern volatile __OSInterrupt __OSLastInterrupt; // one of the Interrupt Codes below.
-extern vu32 __OSLastInterruptSrr0;       // SRR0 value at time of interrupt.
+extern vu32 __OSLastInterruptSrr0;               // SRR0 value at time of interrupt.
 extern volatile OSTime __OSLastInterruptTime;    // time of interrupt (from OSGetTime()).
 
 // Interrupt global addresses.

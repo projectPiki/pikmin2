@@ -15,8 +15,7 @@
  * @note Address: 0x80011DCC
  * @note Size: 0x98
  */
-bool JStudio_JStage::transform_toGlobalFromLocal(f32 (*p1)[4],
-                                                 const JStudio::TControl::TTransform_translation_rotation_scaling& transform,
+bool JStudio_JStage::transform_toGlobalFromLocal(f32 (*p1)[4], const JStudio::TControl::TTransform_translation_rotation_scaling& transform,
                                                  const JStage::TObject* object, u32 p4)
 {
 	if (object == nullptr) {
@@ -57,8 +56,7 @@ bool JStudio_JStage::transform_toGlobalFromLocal(f32 (*p1)[4], const JStudio::TC
  * @note Address: 0x80011EFC
  * @note Size: 0xA4
  */
-bool JStudio_JStage::transform_toLocalFromGlobal(f32 (*p1)[4],
-                                                 const JStudio::TControl::TTransform_translation_rotation_scaling& transform,
+bool JStudio_JStage::transform_toLocalFromGlobal(f32 (*p1)[4], const JStudio::TControl::TTransform_translation_rotation_scaling& transform,
                                                  const JStage::TObject* object, u32 p4)
 {
 	if (object == nullptr) {

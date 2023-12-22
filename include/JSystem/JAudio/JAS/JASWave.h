@@ -8,7 +8,7 @@ struct JASWaveArc : public JASDisposer {
 	/** @fabricated */
 	struct LoadToAramCallbackArgs {
 		JASWaveArc* mArc; // _00
-		s32 mFileNumber; // _04
+		s32 mFileNumber;  // _04
 		u8* _08;          // _08
 		u32 _0C;          // _0C
 	};

@@ -110,9 +110,9 @@ struct JASChannelUpdater {
 	f32 _08;    // _08
 	f32 _0C;    // _0C
 	f32 _10;    // _10
-	s16 _14;  // _14
+	s16 _14;    // _14
 	u16 _16[7]; // _16 - unknown
-	s16 _24;  // _24
+	s16 _24;    // _24
 	u16 _26[3]; // _26 - unknown
 	u8 _2C[8];  // _2C - unknown
 	s16 _34;    // _34 - unknown

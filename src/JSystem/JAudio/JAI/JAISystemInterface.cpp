@@ -86,8 +86,7 @@ void JAInter::SystemInterface::setSeqPortargsF32(JAInter::SeqUpdateData* updateD
  * @note Address: N/A
  * @note Size: 0x1C
  */
-void JAInter::SystemInterface::setSeqPortargsPS16(JAInter::SeqUpdateData* updateData, u32 playerParameterIndex, u8 portArgIndex,
-                                                  s16* value)
+void JAInter::SystemInterface::setSeqPortargsPS16(JAInter::SeqUpdateData* updateData, u32 playerParameterIndex, u8 portArgIndex, s16* value)
 {
 	// UNUSED FUNCTION
 	updateData->_4C[playerParameterIndex].mPortArgs.asArray[portArgIndex].ps16 = value;

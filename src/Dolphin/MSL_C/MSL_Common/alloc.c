@@ -101,10 +101,10 @@ static const u32 fix_pool_sizes[] = { 4, 12, 20, 36, 52, 68 };
 	*(u32*)((char*)(ths) + this_size - sizeof(u32)) = this_size
 
 #define SubBlock_is_free(ths) !((ths)->size & 2)
-#define SubBlock_set_size(ths, sz)    \
-	(ths)->size &= ~0xFFFFFFF8;       \
-	(ths)->size |= (sz) & 0xFFFFFFF8; \
-	if (SubBlock_is_free((ths)))      \
+#define SubBlock_set_size(ths, sz)  \
+	(ths)->size &= ~0xFFFFFFF8;     \
+	(ths)->size |= (sz)&0xFFFFFFF8; \
+	if (SubBlock_is_free((ths)))    \
 	*(u32*)((char*)(ths) + (sz) - sizeof(u32)) = (sz)
 
 #define SubBlock_from_pointer(ptr)    ((SubBlock*)((char*)(ptr)-8))

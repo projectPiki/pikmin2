@@ -37,9 +37,9 @@ struct TOptionParameter {
 
 	bool mIsRubyFont;   // _00
 	bool mIsRumble;     // _01
-	s32 mSoundMode;    // _04
-	s32 mBgmVolume;    // _08
-	s32 mSeVolume;     // _0C
+	s32 mSoundMode;     // _04
+	s32 mBgmVolume;     // _08
+	s32 mSeVolume;      // _0C
 	bool mUseDeflicker; // _10
 };
 
@@ -110,8 +110,8 @@ struct TOption : public TScreenBase {
 	int mState;                                // _0F8
 	u32 mCounterOpen;                          // _0FC
 	u32 mCounterOpenMax;                       // _100
-	s32 mCurrMainSelection;                   // _104
-	s32 mNextSelection;                       // _108
+	s32 mCurrMainSelection;                    // _104
+	s32 mNextSelection;                        // _108
 	P2DScreen::Mgr_tuning* mMainScreen;        // _10C
 	J2DTextBox* mPaneRumbleYes;                // _110
 	J2DTextBox* mPaneRumbleNo;                 // _114

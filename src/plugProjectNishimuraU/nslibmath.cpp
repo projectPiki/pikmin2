@@ -14,9 +14,9 @@ void calcLagrange(const Vector3f* p_vec, f32 p2, Vector3f& new_vec)
 {
 	f32 p2_sub1 = p2 - 1.0f;
 	f32 p2_sub2 = p2 - 2.0f;
-	new_vec.x     = p2_sub1 * (p_vec[2].x * 0.5f * p2) + (p2_sub2 * (p_vec[0].x * 0.5f * p2_sub1) - (p2_sub2 * (p_vec[1].x * p2)));
-	new_vec.y     = p2_sub1 * (p_vec[2].y * 0.5f * p2) + (p2_sub2 * (p_vec[0].y * 0.5f * p2_sub1) - (p2_sub2 * (p_vec[1].y * p2)));
-	new_vec.z     = p2_sub1 * (p_vec[2].z * 0.5f * p2) + (p2_sub2 * (p_vec[0].z * 0.5f * p2_sub1) - (p2_sub2 * (p_vec[1].z * p2)));
+	new_vec.x   = p2_sub1 * (p_vec[2].x * 0.5f * p2) + (p2_sub2 * (p_vec[0].x * 0.5f * p2_sub1) - (p2_sub2 * (p_vec[1].x * p2)));
+	new_vec.y   = p2_sub1 * (p_vec[2].y * 0.5f * p2) + (p2_sub2 * (p_vec[0].y * 0.5f * p2_sub1) - (p2_sub2 * (p_vec[1].y * p2)));
+	new_vec.z   = p2_sub1 * (p_vec[2].z * 0.5f * p2) + (p2_sub2 * (p_vec[0].z * 0.5f * p2_sub1) - (p2_sub2 * (p_vec[1].z * p2)));
 }
 
 /**

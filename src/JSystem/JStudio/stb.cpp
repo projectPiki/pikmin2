@@ -654,7 +654,7 @@ void TObject::process_paragraph_reserved_(u32 a1, void const* a2, u32 a3)
 {
 	switch (((u8)a1)) {
 	case 1: {
-		int flag   = *(u32*)a2 >> 0x10 & 0xff;
+		int flag = *(u32*)a2 >> 0x10 & 0xff;
 		s16 flip = *(u16*)a2;
 		switch (flip) {
 		case 1:

@@ -79,7 +79,7 @@ struct JAISound : public JSULink<JAISound> {
 	virtual void setPrepareFlag(u8);               // _A8
 	virtual void checkReady();                     // _AC
 	virtual void setDistanceParameterMoveTime(u8); // _B0 (weak)
-	virtual void setAdjustPriority(s16);         // _B4 (weak)
+	virtual void setAdjustPriority(s16);           // _B4 (weak)
 	virtual f32 setPositionDopplarCommon(u32);     // _B8
 	virtual f32 setDistanceVolumeCommon(f32, u8);  // _BC
 	virtual f32 setDistancePanCommon();            // _C0

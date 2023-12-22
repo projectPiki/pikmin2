@@ -137,8 +137,8 @@ JASDSPChannel* JASDSPChannel::getLowestChannel(int threshold)
 {
 	// JASDSPChannel* channel = sDspChannels;
 	s16 lowestPriority = 0xFF;
-	int lowestIndex      = -1;
-	u32 v1               = 0;
+	int lowestIndex    = -1;
+	u32 v1             = 0;
 	for (int i = 0; i < 0x40; i++) {
 		if (sDspChannels[i]._04 < 0) {
 			return &sDspChannels[i];

@@ -98,8 +98,7 @@ static f64 one = 1.0, tiny = 1.0e-300;
 #ifdef __STDC__
 f64 __ieee754_sqrt(f64 x)
 #else
-f64 __ieee754_sqrt(x)
-f64 x;
+f64 __ieee754_sqrt(x) f64 x;
 #endif
 {
 	f64 z;

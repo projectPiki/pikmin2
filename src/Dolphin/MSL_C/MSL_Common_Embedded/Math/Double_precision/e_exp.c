@@ -101,7 +101,7 @@ P5   =  4.13813679705723846039e-08; /* 0x3E663769, 0x72BEA4D0 */
 f64 __ieee754_exp(f64 x) /* default IEEE double exp */
 #else
 f64 __ieee754_exp(x) /* default IEEE double exp */
-f64 x;
+    f64 x;
 #endif
 {
 	f64 y, hi, lo, c, t;

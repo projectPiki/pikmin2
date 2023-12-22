@@ -166,7 +166,8 @@ static f64
 int __kernel_rem_pio2(f64* x, f64* y, int e0, int nx, int prec, const int* ipio2) /*- cc 020130 -*/
 #else
 int __kernel_rem_pio2(x, y, e0, nx, prec, ipio2) /*- cc 020130 -*/
-f64 x[], y[];
+    f64 x[],
+    y[];
 int e0, nx, prec;
 int ipio2[]; /*- cc 020130 -*/
 #endif

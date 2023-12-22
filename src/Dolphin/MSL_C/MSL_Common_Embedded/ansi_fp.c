@@ -12,7 +12,7 @@ static int __count_trailing_zerol(u32 x)
 	int bits_not_checked = sizeof(u32) * CHAR_BIT;
 	int n                = bits_not_checked / 2;
 	int mask_size        = n;
-	u32 mask   = (~0UL) >> (bits_not_checked - n);
+	u32 mask             = (~0UL) >> (bits_not_checked - n);
 
 	while (bits_not_checked) {
 		if (!(x & mask)) {
@@ -590,7 +590,7 @@ void __num2dec_internal(decimal* d, f64 x)
 
 	{
 		int exp;
-		f64 frac           = frexp(x, &exp);
+		f64 frac             = frexp(x, &exp);
 		s32 num_bits_extract = DBL_MANT_DIG - __count_trailing_zero(frac);
 		f64 integer;
 		decimal int_d, pow2_d;
@@ -660,7 +660,7 @@ f64 __dec2num(const decimal* d)
 		if (d->sig.length == 1)
 			*ll |= 0x8000000000000;
 		else {
-			u8* p    = (u8*)&result + 1;
+			u8* p               = (u8*)&result + 1;
 			int placed_non_zero = 0;
 			int low             = 1;
 			int i;
@@ -768,7 +768,7 @@ f64 __dec2num(const decimal* d)
 
 				decimal feedback2, difflow, diffhigh;
 				f64 next_guess = first_guess;
-				u64* ull          = (u64*)&next_guess;
+				u64* ull       = (u64*)&next_guess;
 				++*ull;
 
 				if (isinf(next_guess)) {
@@ -801,8 +801,8 @@ f64 __dec2num(const decimal* d)
 				}
 			} else {
 				decimal feedback2, difflow, diffhigh;
-				f64 next_guess       = first_guess;
-				u64* ull = (u64*)&next_guess;
+				f64 next_guess = first_guess;
+				u64* ull       = (u64*)&next_guess;
 				--*ull;
 
 				__num2dec_internal(&feedback2, next_guess);

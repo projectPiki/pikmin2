@@ -20,7 +20,7 @@ struct JKRFileLoader : public JKRDisposer {
 	virtual void removeResourceAll()                                                              = 0; // _24
 	virtual bool removeResource(void*)                                                            = 0; // _28
 	virtual bool detachResource(void*)                                                            = 0; // _2C
-	virtual s32 getResSize(const void*) const                                                    = 0; // _30
+	virtual s32 getResSize(const void*) const                                                     = 0; // _30
 	virtual u32 countFile(const char*) const                                                      = 0; // _34
 	virtual JKRFileFinder* getFirstFile(const char*) const                                        = 0; // _38
 

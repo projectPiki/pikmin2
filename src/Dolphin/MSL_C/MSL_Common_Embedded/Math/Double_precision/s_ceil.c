@@ -31,8 +31,7 @@ static f64 huge = 1.0e300;
 #ifdef __STDC__
 f64 ceil(f64 x)
 #else
-f64 ceil(x)
-f64 x;
+f64 ceil(x) f64 x;
 #endif
 {
 	int i0, i1, j0;
