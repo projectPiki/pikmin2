@@ -15,7 +15,7 @@ extern "C" {
 #define __frsqrte(x) (x)
 #endif
 
-#define FABS(x) (float)__fabs(x)
+#define FABS(x) (f32) __fabs(x)
 #define fabs(x) __fabs(x)
 // #define __frsqrtes opword
 
@@ -66,7 +66,7 @@ static inline f32 dolsqrtf(f32 x)
 {
 	static const f64 _half  = .5;
 	static const f64 _three = 3.0;
-	volatile f32 y;
+	vf32 y;
 	if (x > 0.0f) {
 
 		f64 guess = __frsqrte((f64)x);                            // returns an approximation to

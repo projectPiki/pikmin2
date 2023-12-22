@@ -177,14 +177,14 @@ J2DPictureEx::J2DPictureEx(const ResTIMG* img, u32 p2)
  * @note Size: 0x30
  * append__12J2DPictureExFPC7ResTIMGf
  */
-bool J2DPictureEx::append(const ResTIMG* img, float p2) { return append(img, nullptr, p2); }
+bool J2DPictureEx::append(const ResTIMG* img, f32 p2) { return append(img, nullptr, p2); }
 
 /**
  * @note Address: 0x80054BE4
  * @note Size: 0x30
  * append__12J2DPictureExFPCcf
  */
-bool J2DPictureEx::append(const char* p1, float p2) { return append(p1, nullptr, p2); }
+bool J2DPictureEx::append(const char* p1, f32 p2) { return append(p1, nullptr, p2); }
 
 /**
  * @note Address: 0x80054C14
@@ -534,7 +534,7 @@ lbl_800553B4:
  * @note Address: 0x800553D4
  * @note Size: 0xCC
  */
-void J2DPictureEx::drawSelf(float p1, float p2, float (*mtx)[3][4])
+void J2DPictureEx::drawSelf(f32 p1, f32 p2, f32 (*mtx)[3][4])
 {
 	if (!mMaterial) {
 		return;
@@ -551,7 +551,7 @@ void J2DPictureEx::drawSelf(float p1, float p2, float (*mtx)[3][4])
  * @note Address: 0x800554A0
  * @note Size: 0x5C
  */
-void J2DPictureEx::drawFullSet(float p1, float p2, float p3, float p4, float (*mtx)[3][4])
+void J2DPictureEx::drawFullSet(f32 p1, f32 p2, f32 p3, f32 p4, f32 (*mtx)[3][4])
 {
 	drawTexCoord(mBounds.i.x, mBounds.i.y, p3, p4, mTexCoords[0].x, mTexCoords[0].y, mTexCoords[1].x, mTexCoords[1].y, mTexCoords[2].x,
 	             mTexCoords[2].y, mTexCoords[3].x, mTexCoords[3].y, mtx);
@@ -561,8 +561,8 @@ void J2DPictureEx::drawFullSet(float p1, float p2, float p3, float p4, float (*m
  * @note Address: 0x800554FC
  * @note Size: 0x2B4
  */
-void J2DPictureEx::drawTexCoord(float p1, float p2, float p3, float p4, short p5, short p6, short p7, short p8, short p9, short p10,
-                                short p11, short p12, float (*p13)[3][4])
+void J2DPictureEx::drawTexCoord(f32 p1, f32 p2, f32 p3, f32 p4, s16 p5, s16 p6, s16 p7, s16 p8, s16 p9, s16 p10,
+                                s16 p11, s16 p12, f32 (*p13)[3][4])
 {
 	Mtx v1;
 	PSMTXConcat(*p13, mGlobalMtx, v1);
@@ -787,7 +787,7 @@ void J2DPictureEx::drawTexCoord(float p1, float p2, float p3, float p4, short p5
  * @note Size: 0x48
  * append__12J2DPictureExFPC7ResTIMGP10JUTPalettef
  */
-bool J2DPictureEx::append(const ResTIMG* img, JUTPalette* palette, float p3)
+bool J2DPictureEx::append(const ResTIMG* img, JUTPalette* palette, f32 p3)
 {
 	return (!mMaterial) ? false : insert(img, palette, mMaterial->mTexGenBlock.mTexGenNum, p3);
 }
@@ -797,7 +797,7 @@ bool J2DPictureEx::append(const ResTIMG* img, JUTPalette* palette, float p3)
  * @note Size: 0x48
  * append__12J2DPictureExFPCcP10JUTPalettef
  */
-bool J2DPictureEx::append(const char* p1, JUTPalette* palette, float p3)
+bool J2DPictureEx::append(const char* p1, JUTPalette* palette, f32 p3)
 {
 	return (!mMaterial) ? false : insert(p1, palette, mMaterial->mTexGenBlock.mTexGenNum, p3);
 }
@@ -807,7 +807,7 @@ bool J2DPictureEx::append(const char* p1, JUTPalette* palette, float p3)
  * @note Size: 0x48
  * append__12J2DPictureExFP10JUTTexturef
  */
-bool J2DPictureEx::append(JUTTexture* texture, float p2)
+bool J2DPictureEx::append(JUTTexture* texture, f32 p2)
 {
 	return (!mMaterial) ? false : insert(texture, mMaterial->mTexGenBlock.mTexGenNum, p2);
 }
@@ -817,7 +817,7 @@ bool J2DPictureEx::append(JUTTexture* texture, float p2)
  * @note Size: 0xB4
  * insert__12J2DPictureExFPC7ResTIMGP10JUTPaletteUcf
  */
-bool J2DPictureEx::insert(const ResTIMG* img, JUTPalette* palette, u8 p3, float p4)
+bool J2DPictureEx::insert(const ResTIMG* img, JUTPalette* palette, u8 p3, f32 p4)
 {
 	if (!img) {
 		return false;
@@ -835,7 +835,7 @@ bool J2DPictureEx::insert(const ResTIMG* img, JUTPalette* palette, u8 p3, float 
  * @note Size: 0x78
  * insert__12J2DPictureExFPCcP10JUTPaletteUcf
  */
-bool J2DPictureEx::insert(const char* p1, JUTPalette* palette, u8 p3, float p4)
+bool J2DPictureEx::insert(const char* p1, JUTPalette* palette, u8 p3, f32 p4)
 {
 	return insert((ResTIMG*)J2DScreen::getNameResource(p1), palette, p3, p4);
 }
@@ -845,7 +845,7 @@ bool J2DPictureEx::insert(const char* p1, JUTPalette* palette, u8 p3, float p4)
  * @note Size: 0xA4
  * insert__12J2DPictureExFP10JUTTextureUcf
  */
-bool J2DPictureEx::insert(JUTTexture* texture, u8 p2, float p3)
+bool J2DPictureEx::insert(JUTTexture* texture, u8 p2, f32 p3)
 {
 	if (!texture) {
 		return false;
@@ -863,7 +863,7 @@ bool J2DPictureEx::insert(JUTTexture* texture, u8 p2, float p3)
  * @note Size: 0x334
  * insertCommon__12J2DPictureExFUcf
  */
-void J2DPictureEx::insertCommon(u8, float)
+void J2DPictureEx::insertCommon(u8, f32)
 {
 	/*
 	stwu     r1, -0xa0(r1)
@@ -1500,7 +1500,7 @@ bool J2DPictureEx::isRemove(u8 p1) const
  * @note Size: 0x124
  * draw__12J2DPictureExFffUcbbb
  */
-void J2DPictureEx::draw(float p1, float p2, u8 p3, bool p4, bool p5, bool p6)
+void J2DPictureEx::draw(f32 p1, f32 p2, u8 p3, bool p4, bool p5, bool p6)
 {
 	if (mMaterial && mMaterial->mTevBlock && mIsVisible && p3 < mMaterial->mTexGenBlock.mTexGenNum) {
 		JUTTexture* texture = mMaterial->mTevBlock->getTexture(p3);
@@ -1514,7 +1514,7 @@ void J2DPictureEx::draw(float p1, float p2, u8 p3, bool p4, bool p5, bool p6)
  * @note Address: 0x800562D4
  * @note Size: 0x5A8
  */
-void J2DPictureEx::draw(float, float, float, float, bool, bool, bool)
+void J2DPictureEx::draw(f32, f32, f32, f32, bool, bool, bool)
 {
 	/*
 	stwu     r1, -0xb0(r1)
@@ -1911,7 +1911,7 @@ lbl_80056848:
  * @note Size: 0x168
  * drawOut__12J2DPictureExFffffff
  */
-void J2DPictureEx::drawOut(float p1, float p2, float p3, float p4, float p5, float p6)
+void J2DPictureEx::drawOut(f32 p1, f32 p2, f32 p3, f32 p4, f32 p5, f32 p6)
 {
 	if (mMaterial && mMaterial->mTevBlock && mIsVisible) {
 		JUTTexture* texture = mMaterial->mTevBlock->getTexture(0);
@@ -1926,7 +1926,7 @@ void J2DPictureEx::drawOut(float p1, float p2, float p3, float p4, float p5, flo
  * @note Address: 0x800569E4
  * @note Size: 0x3E8
  */
-void J2DPictureEx::drawOut(const JGeometry::TBox2<float>&, const JGeometry::TBox2<float>&)
+void J2DPictureEx::drawOut(const JGeometry::TBox2<f32>&, const JGeometry::TBox2<f32>&)
 {
 	/*
 	.loc_0x0:
@@ -3164,7 +3164,7 @@ lbl_80057BA8:
  * @note Address: 0x80057BD0
  * @note Size: 0x118
  */
-void J2DPictureEx::shiftSetBlendRatio(u8, float, bool, bool)
+void J2DPictureEx::shiftSetBlendRatio(u8, f32, bool, bool)
 {
 	/*
 	clrlwi.  r0, r5, 0x18
@@ -3274,7 +3274,7 @@ lbl_80057CD4:
  * @note Address: 0x80057CE8
  * @note Size: 0x58
  */
-void J2DPictureEx::setBlendColorRatio(float p1, float p2, float p3, float p4, float p5, float p6, float p7, float p8)
+void J2DPictureEx::setBlendColorRatio(f32 p1, f32 p2, f32 p3, f32 p4, f32 p5, f32 p6, f32 p7, f32 p8)
 {
 	if (mMaterial != nullptr) {
 		_124[0] = p1;
@@ -3320,7 +3320,7 @@ void J2DPictureEx::setBlendColorRatio(float p1, float p2, float p3, float p4, fl
  * @note Address: 0x80057D40
  * @note Size: 0x58
  */
-void J2DPictureEx::setBlendAlphaRatio(float, float, float, float, float, float, float, float)
+void J2DPictureEx::setBlendAlphaRatio(f32, f32, f32, f32, f32, f32, f32, f32)
 {
 	/*
 	.loc_0x0:
@@ -4772,13 +4772,13 @@ J2DMaterial* J2DPictureEx::getMaterial() const { return mMaterial; }
  * @note Size: 0x30
  * prepend__12J2DPictureExFP10JUTTexturef
  */
-bool J2DPictureEx::prepend(JUTTexture* texture, float p2) { return insert(texture, 0, p2); }
+bool J2DPictureEx::prepend(JUTTexture* texture, f32 p2) { return insert(texture, 0, p2); }
 
 /**
  * @note Address: 0x80058F80
  * @note Size: 0x30
  */
-bool J2DPictureEx::prepend(const char*, JUTPalette*, float)
+bool J2DPictureEx::prepend(const char*, JUTPalette*, f32)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4800,7 +4800,7 @@ bool J2DPictureEx::prepend(const char*, JUTPalette*, float)
  * @note Address: 0x80058FB0
  * @note Size: 0x30
  */
-bool J2DPictureEx::prepend(const char*, float)
+bool J2DPictureEx::prepend(const char*, f32)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4822,7 +4822,7 @@ bool J2DPictureEx::prepend(const char*, float)
  * @note Address: 0x80058FE0
  * @note Size: 0x30
  */
-bool J2DPictureEx::prepend(const ResTIMG*, JUTPalette*, float)
+bool J2DPictureEx::prepend(const ResTIMG*, JUTPalette*, f32)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4844,7 +4844,7 @@ bool J2DPictureEx::prepend(const ResTIMG*, JUTPalette*, float)
  * @note Address: 0x80059010
  * @note Size: 0x30
  */
-bool J2DPictureEx::prepend(const ResTIMG*, float)
+bool J2DPictureEx::prepend(const ResTIMG*, f32)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4866,7 +4866,7 @@ bool J2DPictureEx::prepend(const ResTIMG*, float)
  * @note Address: 0x80059040
  * @note Size: 0x34
  */
-bool J2DPictureEx::insert(const char*, u8, float)
+bool J2DPictureEx::insert(const char*, u8, f32)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4889,7 +4889,7 @@ bool J2DPictureEx::insert(const char*, u8, float)
  * @note Address: 0x80059074
  * @note Size: 0x34
  */
-bool J2DPictureEx::insert(const ResTIMG*, u8, float)
+bool J2DPictureEx::insert(const ResTIMG*, u8, f32)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4913,14 +4913,14 @@ bool J2DPictureEx::insert(const ResTIMG*, u8, float)
  * @note Size: 0x40
  * draw__12J2DPictureExFffbbb
  */
-void J2DPictureEx::draw(float p1, float p2, bool p3, bool p4, bool p5) { draw(p1, p2, 0, p3, p4, p5); }
+void J2DPictureEx::draw(f32 p1, f32 p2, bool p3, bool p4, bool p5) { draw(p1, p2, 0, p3, p4, p5); }
 
 /**
  * @note Address: 0x800590E8
  * @note Size: 0x64
  * drawOut__12J2DPictureExFffffffff
  */
-void J2DPictureEx::drawOut(float p1, float p2, float p3, float p4, float p5, float p6, float p7, float p8)
+void J2DPictureEx::drawOut(f32 p1, f32 p2, f32 p3, f32 p4, f32 p5, f32 p6, f32 p7, f32 p8)
 {
 	drawOut(JGeometry::TBox2f(p1, p2, p1 + p3, p2 + p4), JGeometry::TBox2f(p5, p6, p5 + p7, p6 + p8));
 }

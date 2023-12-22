@@ -500,7 +500,7 @@ lbl_800453D4:
  * @note Address: 0x800453F8
  * @note Size: 0xA0
  */
-void J2DWindowEx::drawSelf(float p1, float p2, float (*p3)[3][4])
+void J2DWindowEx::drawSelf(f32 p1, f32 p2, f32 (*p3)[3][4])
 {
 	JGeometry::TBox2f box = mBounds;
 	box.addPos(p1, p2);
@@ -515,7 +515,7 @@ void J2DWindowEx::drawSelf(float p1, float p2, float (*p3)[3][4])
  * @note Address: 0x80045498
  * @note Size: 0x6F0
  */
-void J2DWindowEx::draw_private(const JGeometry::TBox2<float>&, const JGeometry::TBox2<float>&)
+void J2DWindowEx::draw_private(const JGeometry::TBox2<f32>&, const JGeometry::TBox2<f32>&)
 {
 	/*
 	.loc_0x0:
@@ -978,7 +978,7 @@ void J2DWindowEx::draw_private(const JGeometry::TBox2<float>&, const JGeometry::
  * @note Address: 0x80045B88
  * @note Size: 0x42C
  */
-void J2DWindowEx::drawContents(const JGeometry::TBox2<float>&)
+void J2DWindowEx::drawContents(const JGeometry::TBox2<f32>&)
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -1275,7 +1275,7 @@ lbl_80045F78:
  * @note Address: 0x80045FB4
  * @note Size: 0x264
  */
-void J2DWindowEx::drawFrameTexture(float, float, float, float, u16, u16, u16, u16, J2DMaterial*, bool)
+void J2DWindowEx::drawFrameTexture(f32, f32, f32, f32, u16, u16, u16, u16, J2DMaterial*, bool)
 {
 	/*
 	.loc_0x0:
@@ -1451,7 +1451,7 @@ void J2DWindowEx::drawFrameTexture(float, float, float, float, u16, u16, u16, u1
  * @note Address: 0x80046218
  * @note Size: 0x194
  */
-void J2DWindowEx::draw(const JGeometry::TBox2<float>&)
+void J2DWindowEx::draw(const JGeometry::TBox2<f32>&)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -1573,7 +1573,7 @@ lbl_80046398:
  * @note Size: 0x128
  * draw__11J2DWindowExFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>
  */
-void J2DWindowEx::draw(const JGeometry::TBox2<float>& p1, const JGeometry::TBox2<float>& p2)
+void J2DWindowEx::draw(const JGeometry::TBox2<f32>& p1, const JGeometry::TBox2<f32>& p2)
 {
 	rewriteAlpha();
 	mColorAlpha = mAlpha;
@@ -3033,15 +3033,15 @@ void J2DWindowEx::getMaterial(J2DWindow::TMaterial& material) const
  * @note Size: 0x58
  * draw__11J2DWindowExFffff
  */
-void J2DWindowEx::draw(float p1, float p2, float p3, float p4)
+void J2DWindowEx::draw(f32 p1, f32 p2, f32 p3, f32 p4)
 {
 	// JGeometry::TBox2f box;
 	// box.f.x = p3 + p1;
 	// box.f.y = p4 + p2;
 	// box.i.x = p1;
 	// box.i.y = p2;
-	// float x1 = p1 + p3;
-	// float y1 = p2 + p4;
+	// f32 x1 = p1 + p3;
+	// f32 y1 = p2 + p4;
 	// JGeometry::TBox2f box(p1, p2, x1, y1);
 	// JGeometry::TVec2f bottomRight, topLeft = JGeometry::TVec2f(p1, p2);
 	// bottomRight.add(p3, p4);

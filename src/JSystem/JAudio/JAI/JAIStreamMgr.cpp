@@ -1975,7 +1975,7 @@ void JAInter::StreamMgr::systemCallBack(u32 status, JASAramStream* stream, void*
  * @note Address: 0x800B8B24
  * @note Size: 0xC8
  */
-void JAInter::StreamMgr::prepareSystem(long inode)
+void JAInter::StreamMgr::prepareSystem(s32 inode)
 {
 	u32 start;
 	u32 length;

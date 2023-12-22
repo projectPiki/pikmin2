@@ -3,17 +3,17 @@
 // presumably, ptmf = pointer to member function
 
 typedef struct PTMF {
-	long this_delta; // self-explanatory
-	long v_offset;   // vtable offset
+	s32 this_delta; // self-explanatory
+	s32 v_offset;   // vtable offset
 	union {
 		void* f_addr;   // function address
-		long ve_offset; // virtual function entry offset (of vtable)
+		s32 ve_offset; // virtual function entry offset (of vtable)
 	} f_data;
 } PTMF;
 
 const PTMF __ptmf_null = { 0, 0, 0 };
 
-long __ptmf_test(PTMF* ptmf);
+s32 __ptmf_test(PTMF* ptmf);
 void __ptmf_scall(...);
 
 /**
@@ -65,7 +65,7 @@ void __ptmf_cmpr(void)
  * @note Address: 0x800C1AF4
  * @note Size: 0x30
  */
-ASM long __ptmf_test(register PTMF* ptmf) {
+ASM s32 __ptmf_test(register PTMF* ptmf) {
 #ifdef __MWERKS__ // clang-format off
 	nofralloc
 		lwz       r5, PTMF.this_delta(r3)

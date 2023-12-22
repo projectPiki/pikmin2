@@ -11,7 +11,7 @@ void J3DCalcBBoardMtx(f32 (*)[4]);
 void J3DCalcYBBoardMtx(f32 (*)[4]);
 void J3DPSCalcInverseTranspose(f32 (*)[4], f32 (*)[3]);
 void J3DGetTranslateRotateMtx(const J3DTransformInfo&, f32 (*)[4]);
-void J3DGetTranslateRotateMtx(short, short, short, f32, f32, f32, f32 (*)[4]);
+void J3DGetTranslateRotateMtx(s16, s16, s16, f32, f32, f32, f32 (*)[4]);
 void J3DGetTextureMtx(const J3DTextureSRTInfo&, const Vec&, f32 (*)[4]);
 void J3DGetTextureMtxOld(const J3DTextureSRTInfo&, const Vec&, f32 (*)[4]);
 void J3DGetTextureMtxMaya(const J3DTextureSRTInfo&, f32 (*)[4]);

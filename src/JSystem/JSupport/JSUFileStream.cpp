@@ -20,7 +20,7 @@ JSUFileInputStream::JSUFileInputStream(JKRFile* file)
  * @note Size: 0xE0
  * Matches
  */
-int JSUFileInputStream::readData(void* buffer, long byteCount)
+int JSUFileInputStream::readData(void* buffer, s32 byteCount)
 {
 	int readBytes = 0;
 	if (((JKRFile*)mObject)->mFileOpen) {
@@ -44,7 +44,7 @@ int JSUFileInputStream::readData(void* buffer, long byteCount)
  * @note Size: 0xE8
  * Matches
  */
-int JSUFileInputStream::seekPos(long offset, JSUStreamSeekFrom mode)
+int JSUFileInputStream::seekPos(s32 offset, JSUStreamSeekFrom mode)
 {
 	u32 originalLength = mLength;
 	switch (mode) {

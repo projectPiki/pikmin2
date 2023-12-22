@@ -64,7 +64,7 @@ bool JASBasicInst::getParam(int p1, int p2, JASInstParam* param) const
 		JASInstEffect* effect = mEffects[i];
 		if (effect != nullptr) {
 			// This pattern exists in JASDrumSet as well...
-			float y = effect->getY(p1, p2);
+			f32 y = effect->getY(p1, p2);
 			switch (effect->mTarget) {
 			case 0:
 				param->_10 *= y;

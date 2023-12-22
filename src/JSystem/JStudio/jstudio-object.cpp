@@ -1193,7 +1193,7 @@ namespace JStudio {
 namespace {
 template <typename Adaptor>
 struct TOutputVariableValue_BOOL_ : public TVariableValue::TOutput {
-	virtual void operator()(float, TAdaptor*) const; // _08
+	virtual void operator()(f32, TAdaptor*) const; // _08
 	virtual ~TOutputVariableValue_BOOL_() { }        // _0C
 };
 
@@ -1217,7 +1217,7 @@ TVariableValue::TOutput::~TOutput() { }
  * @note Address: N/A
  * @note Size: 0x64
  */
-void TVariableValue::update(double, JStudio::TAdaptor*)
+void TVariableValue::update(f64, JStudio::TAdaptor*)
 {
 	// UNUSED FUNCTION
 }
@@ -1226,7 +1226,7 @@ void TVariableValue::update(double, JStudio::TAdaptor*)
  * @note Address: 0x8000D0B0
  * @note Size: 0x14
  */
-void TVariableValue::update_immediate_(TVariableValue* p1, double p2)
+void TVariableValue::update_immediate_(TVariableValue* p1, f64 p2)
 {
 	p1->_00 = p1->_0C;
 	p1->_08 = nullptr;
@@ -1236,7 +1236,7 @@ void TVariableValue::update_immediate_(TVariableValue* p1, double p2)
  * @note Address: 0x8000D0C4
  * @note Size: 0x3C
  */
-void TVariableValue::update_time_(TVariableValue* p1, double p2)
+void TVariableValue::update_time_(TVariableValue* p1, f64 p2)
 {
 	p1->_00 = (f64)p1->_0C * (f64)p1->_04 * (f64)p2;
 	/*
@@ -1262,7 +1262,7 @@ void TVariableValue::update_time_(TVariableValue* p1, double p2)
  * @note Address: 0x8000D100
  * @note Size: 0x64
  */
-void TVariableValue::update_functionValue_(JStudio::TVariableValue*, double)
+void TVariableValue::update_functionValue_(JStudio::TVariableValue*, f64)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1304,7 +1304,7 @@ TVariableValue::TOutput_none_::~TOutput_none_() { }
  * @note Address: 0x8000D1C0
  * @note Size: 0x4
  */
-void TVariableValue::TOutput_none_::operator()(float, JStudio::TAdaptor*) const { }
+void TVariableValue::TOutput_none_::operator()(f32, JStudio::TAdaptor*) const { }
 
 /**
  * @note Address: N/A

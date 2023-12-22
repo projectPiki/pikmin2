@@ -2217,7 +2217,7 @@ void LostItemMgr::init(const JGeometry::TVec2f& pos, bool flag)
 			item->_1A        = (10000.0f * x2 - 5000.0f);
 			item->mCounter   = (10.0f * x1 - 8.0f);
 		}
-		float xoffs[5] = { kh::Screen::ObjCaveResult::msVal._24, kh::Screen::ObjCaveResult::msVal._28, kh::Screen::ObjCaveResult::msVal._2C,
+		f32 xoffs[5] = { kh::Screen::ObjCaveResult::msVal._24, kh::Screen::ObjCaveResult::msVal._28, kh::Screen::ObjCaveResult::msVal._2C,
 			               kh::Screen::ObjCaveResult::msVal._30, kh::Screen::ObjCaveResult::msVal._34 };
 
 		if (flag) {

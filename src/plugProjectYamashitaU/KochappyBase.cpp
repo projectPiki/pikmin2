@@ -103,7 +103,7 @@ void Obj::bounceCallback(Sys::Triangle* triangle)
  * @note Address: 0x8012DE78
  * @note Size: 0xA0
  */
-bool Obj::pressCallBack(Game::Creature* creature, float p1, CollPart* collpart)
+bool Obj::pressCallBack(Game::Creature* creature, f32 p1, CollPart* collpart)
 {
 	if (creature->isPiki() && isAlive()) {
 		if (!isEvent(0, EB_Bittered)) {

@@ -1,11 +1,13 @@
-extern double __ieee754_exp();
+#include "types.h"
+
+extern f64 __ieee754_exp();
 
 /**
  * @note Address: 0x800CF9AC
  * @note Size: 0x20
  */
 
-double exp(double __x) { return (double)__ieee754_exp(); }
+f64 exp(f64 __x) { return (f64)__ieee754_exp(); }
 
 /*
 .loc_0x0:

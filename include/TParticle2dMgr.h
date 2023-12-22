@@ -38,7 +38,7 @@ struct TParticle2dMgr : public CNode, JKRDisposer {
 	void exitMgr();
 	void destroyHeap();
 	void setXfb(const struct ResTIMG*);
-	void showInfo(long, long, long, long);
+	void showInfo(s32, s32, s32, s32);
 
 	// _00		= VTBL
 	// _00-_18	= CNode

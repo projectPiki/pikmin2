@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-typedef long JASCallback(void*);
+typedef s32 JASCallback(void*);
 
 struct JASCallbackMgr {
 	struct TCallback {

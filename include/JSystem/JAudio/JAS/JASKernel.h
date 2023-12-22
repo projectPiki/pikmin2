@@ -16,20 +16,20 @@ JASCmdHeap* getCommandHeap();
 JASHeap* getAramHeap();
 void setupAramHeap(u32, u32);
 
-void probeFinish(long);
-void probeStart(long, char*);
+void probeFinish(s32);
+void probeStart(s32, char*);
 
 // unused/inlined:
 JKRSolidHeap* getRootHeap();
 int getAramFreeSize();
 int getAramSize();
-void initProbe(long);
+void initProbe(s32);
 void resetProbe();
-const char* getProbeName(long);
-void getProbeLast(long);
-void getProbeAvg(long);
-void getProbeTotalAvg(long);
-void getProbeMax(long);
+const char* getProbeName(s32);
+void getProbeLast(s32);
+void getProbeAvg(s32);
+void getProbeTotalAvg(s32);
+void getProbeMax(s32);
 
 }; // namespace JASKernel
 

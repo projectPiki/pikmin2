@@ -159,7 +159,7 @@ void Parm<bool>::write(Stream& stream)
  * @note Size: 0x34
  */
 template <>
-void Parm<float>::read(Stream& stream)
+void Parm<f32>::read(Stream& stream)
 {
 	mValue = stream.readFloat();
 }
@@ -169,7 +169,7 @@ void Parm<float>::read(Stream& stream)
  * @note Size: 0x28
  */
 template <>
-void Parm<float>::write(Stream& stream)
+void Parm<f32>::write(Stream& stream)
 {
 	stream.writeFloat(mValue);
 }
@@ -210,7 +210,7 @@ void ParmString::read(Stream& stream) { stream.readString(mValue, mLength); }
  * @note Address: 0x80413CC4
  * @note Size: 0xB8
  */
-ParmEnum::ParmEnum(Parameters* parameters, char** enumValues, u32 value, int length, long rawID, char* comment)
+ParmEnum::ParmEnum(Parameters* parameters, char** enumValues, u32 value, int length, s32 rawID, char* comment)
     : BaseParm(parameters, rawID, comment)
 {
 	mValue        = value;

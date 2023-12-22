@@ -32,7 +32,7 @@ void* OSAllocFromHeap(OSHeapHandle heap, u32 size);
 void* OSAllocFixed(void** rStart, void** rEnd);
 void OSDestroyHeap(OSHeapHandle heap);
 void OSAddToHeap(OSHeapHandle heap, void* start, void* end);
-long OSCheckHeap(OSHeapHandle heap);
+s32 OSCheckHeap(OSHeapHandle heap);
 void OSDumpHeap(OSHeapHandle heap);
 u32 OSReferentSize(void* ptr);
 void OSVisitAllocated(OSAllocVisitor visitor);

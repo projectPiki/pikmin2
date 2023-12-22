@@ -20,7 +20,7 @@ int abs(int x)
  * @note Address: N/A
  * @note Size: 0x10
  */
-long labs(long x)
+s32 labs(s32 x)
 {
 	// UNUSED FUNCTION
 	return x > 0 ? x : -x;

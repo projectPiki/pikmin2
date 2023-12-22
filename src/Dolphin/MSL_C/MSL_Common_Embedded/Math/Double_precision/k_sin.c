@@ -42,9 +42,9 @@
 #include "fdlibm.h"
 
 #ifdef __STDC__
-static const double
+static const f64
 #else
-static double
+static f64
 #endif
     half
     = 5.00000000000000000000e-01,     /* 0x3FE00000, 0x00000000 */
@@ -56,13 +56,13 @@ static double
     S6 = 1.58969099521155010221e-10;  /* 0x3DE5D93A, 0x5ACFD57C */
 
 #ifdef __STDC__
-double __kernel_sin(double x, double y, int iy)
+f64 __kernel_sin(f64 x, f64 y, int iy)
 #else
-double __kernel_sin(x, y, iy) double x, y;
+f64 __kernel_sin(x, y, iy) f64 x, y;
 int iy; /* iy=0 if y is zero */
 #endif
 {
-	double z, r, v;
+	f64 z, r, v;
 	int ix;
 	ix = __HI(x) & 0x7fffffff; /* high word of x */
 	if (ix < 0x3e400000)       /* |x| < 2**-27 */

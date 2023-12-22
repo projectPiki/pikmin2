@@ -21,7 +21,7 @@ struct SceneInfoList : public CNode {
 
 	// virtual void _08() = 0;       // _08
 
-	void set(long, og::Screen::DispMemberBase*);
+	void set(s32, og::Screen::DispMemberBase*);
 
 	SceneType mSceneType;        // _18
 	u8 mDispMemberBuffer[0x400]; // _1C

@@ -440,7 +440,7 @@ void setNumDSPBuffer(u8)
  * @note Address: 0x800A81E4
  * @note Size: 0xC
  */
-void registerMixCallback(short* (*mixCallback)(long), JASMixMode mode)
+void registerMixCallback(s16* (*mixCallback)(s32), JASMixMode mode)
 {
 	extMixCallback = mixCallback;
 	sMixMode       = mode;
@@ -450,7 +450,7 @@ void registerMixCallback(short* (*mixCallback)(long), JASMixMode mode)
  * @note Address: N/A
  * @note Size: 0x8
  */
-void registerDacCallback(void (*)(short*, u32))
+void registerDacCallback(void (*)(s16*, u32))
 {
 	// UNUSED FUNCTION
 }
@@ -459,7 +459,7 @@ void registerDacCallback(void (*)(short*, u32))
  * @note Address: N/A
  * @note Size: 0x8
  */
-void registDSPBufCallback(void (*)(short*, u32))
+void registDSPBufCallback(void (*)(s16*, u32))
 {
 	// UNUSED FUNCTION
 }

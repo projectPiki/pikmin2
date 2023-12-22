@@ -97,7 +97,7 @@ void JPABaseParticle::init_p(JPAEmitterWorkData* workData)
 
 	mAge       = 0xFFFF;
 	u32 random = emitter->mRandom.next();
-	mLifeTime  = (float)emitter->mLifeTime * -(dynamicsBlock->mData->mLifeTimeRndm * emitter->mRandom.nextFloat_0_1() - 1.0f);
+	mLifeTime  = (f32)emitter->mLifeTime * -(dynamicsBlock->mData->mLifeTimeRndm * emitter->mRandom.nextFloat_0_1() - 1.0f);
 	mTime      = 0.0f;
 	mFlags     = 0;
 	PSMTXMultVecSR(workData->mGlobalSR, (Vec*)&workData->mVolumePos, (Vec*)&mPosition);
@@ -109,17 +109,17 @@ void JPABaseParticle::init_p(JPAEmitterWorkData* workData)
 	mPosition.y     = mPosition.y * workData->mPublicScale.y + mOffsetPosition.y;
 	mPosition.z     = mPosition.z * workData->mPublicScale.z + mOffsetPosition.z;
 	if (emitter->mAwayFromCenterSpeed != 0.0f) {
-		// float mag = SQUARE(workData->_24) + SQUARE(workData->_1C) + SQUARE(workData->_20);
+		// f32 mag = SQUARE(workData->_24) + SQUARE(workData->_1C) + SQUARE(workData->_20);
 		// if (__float_epsilon * 32.0f < mag) {
 		// 	if (mag < 0.0f) {
-		// 		float v1;
+		// 		f32 v1;
 		// 		FRSQRTE(&v1);
 		// 		mag = v1 * 0.5f * -(mag * v1 * v1 - 3.0f);
 		// 	}
 		// 	mag *= emitter->_34;
 
 		// }
-		// float mag = PSVECSquareMag((Vec*)&workData->_1C);
+		// f32 mag = PSVECSquareMag((Vec*)&workData->_1C);
 		// if (__float_epsilon * 32.0f < mag) {
 
 		// }
@@ -1645,7 +1645,7 @@ lbl_80095574:
  * @note Address: 0x80095580
  * @note Size: 0x24
  */
-float JPABaseParticle::getCalcCurrentPositionX(const JPABaseEmitter* emitter) const
+f32 JPABaseParticle::getCalcCurrentPositionX(const JPABaseEmitter* emitter) const
 {
 	return emitter->mManager->mWorkData->mPublicScale.x * (mPosition.x + mVelocity.x + mOffsetPosition.x);
 	/*
@@ -1665,7 +1665,7 @@ float JPABaseParticle::getCalcCurrentPositionX(const JPABaseEmitter* emitter) co
  * @note Address: 0x800955A4
  * @note Size: 0x24
  */
-float JPABaseParticle::getCalcCurrentPositionY(const JPABaseEmitter* emitter) const
+f32 JPABaseParticle::getCalcCurrentPositionY(const JPABaseEmitter* emitter) const
 {
 	/*
 	lwz      r4, 0xe4(r4)
@@ -1684,7 +1684,7 @@ float JPABaseParticle::getCalcCurrentPositionY(const JPABaseEmitter* emitter) co
  * @note Address: 0x800955C8
  * @note Size: 0x24
  */
-float JPABaseParticle::getCalcCurrentPositionZ(const JPABaseEmitter* emitter) const
+f32 JPABaseParticle::getCalcCurrentPositionZ(const JPABaseEmitter* emitter) const
 {
 	/*
 	lwz      r4, 0xe4(r4)
@@ -1703,7 +1703,7 @@ float JPABaseParticle::getCalcCurrentPositionZ(const JPABaseEmitter* emitter) co
  * @note Address: N/A
  * @note Size: 0x20
  */
-float JPABaseParticle::getWidth(const JPABaseEmitter* emitter) const
+f32 JPABaseParticle::getWidth(const JPABaseEmitter* emitter) const
 {
 	// UNUSED FUNCTION
 }
@@ -1712,7 +1712,7 @@ float JPABaseParticle::getWidth(const JPABaseEmitter* emitter) const
  * @note Address: N/A
  * @note Size: 0x20
  */
-float JPABaseParticle::getHeight(const JPABaseEmitter* emitter) const
+f32 JPABaseParticle::getHeight(const JPABaseEmitter* emitter) const
 {
 	// UNUSED FUNCTION
 }

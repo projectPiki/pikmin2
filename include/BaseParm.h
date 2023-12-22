@@ -52,7 +52,7 @@ struct ParmString : public BaseParm {
 };
 
 struct ParmEnum : public BaseParm {
-	ParmEnum(Parameters*, char**, u32, int, long, char*);
+	ParmEnum(Parameters*, char**, u32, int, s32, char*);
 	inline virtual int size() { return 4; }
 	virtual void write(Stream&);
 	virtual void read(Stream&);

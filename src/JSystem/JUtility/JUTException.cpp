@@ -201,7 +201,7 @@ void JUTException::setFPException(u32 enableBits)
  * @note Address: N/A
  * @note Size: 0x184
  */
-void JUTException::showFloatSub(int reg, float flt)
+void JUTException::showFloatSub(int reg, f32 flt)
 {
 	if (fpclassify(flt) == 1) {
 		sConsole->print_f("F%02d: Nan      ", reg);
@@ -811,7 +811,7 @@ void JUTException::printContext(OSError error, OSContext* context, u32 dsisr, u3
  * @note Address: 0x8002C624
  * @note Size: 0x88
  */
-void JUTException::waitTime(long timeout_ms)
+void JUTException::waitTime(s32 timeout_ms)
 {
 	if (timeout_ms) {
 		OSTime start_time = OSGetTime();
@@ -930,7 +930,7 @@ void JUTException::appendMapFile(const char* fileName)
  * @note Address: 0x8002C844
  * @note Size: 0xE0
  */
-bool JUTException::queryMapAddress(char* p1, u32 p2, long p3, u32* p4, u32* p5, char* p6, u32 p7, bool p8, bool p9)
+bool JUTException::queryMapAddress(char* p1, u32 p2, s32 p3, u32* p4, u32* p5, char* p6, u32 p7, bool p8, bool p9)
 {
 	if (p1 != nullptr) {
 		char buffer[80];

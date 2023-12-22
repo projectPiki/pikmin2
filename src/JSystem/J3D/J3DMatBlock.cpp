@@ -11096,7 +11096,7 @@ lbl_80081170:
  * @note Address: 0x80081188
  * @note Size: 0x1B0
  */
-void J3DTexGenBlockPatched::calc(const float (*)[4])
+void J3DTexGenBlockPatched::calc(const f32 (*)[4])
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -11243,7 +11243,7 @@ lbl_80081310:
  * @note Address: 0x80081338
  * @note Size: 0x140
  */
-void J3DTexGenBlockPatched::calcWithoutViewMtx(const float (*)[4])
+void J3DTexGenBlockPatched::calcWithoutViewMtx(const f32 (*)[4])
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -11356,7 +11356,7 @@ lbl_80081450:
  * @note Address: 0x80081478
  * @note Size: 0x140
  */
-void J3DTexGenBlockPatched::calcPostTexMtx(const float (*)[4])
+void J3DTexGenBlockPatched::calcPostTexMtx(const f32 (*)[4])
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -11465,7 +11465,7 @@ lbl_80081588:
  * @note Address: 0x800815B8
  * @note Size: 0x118
  */
-void J3DTexGenBlockPatched::calcPostTexMtxWithoutViewMtx(const float (*)[4])
+void J3DTexGenBlockPatched::calcPostTexMtxWithoutViewMtx(const f32 (*)[4])
 {
 	/*
 	stwu     r1, -0x20(r1)

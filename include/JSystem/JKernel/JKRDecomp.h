@@ -108,13 +108,13 @@ struct JKRDecompCommand {
 
 // Size: 0x7C
 struct JKRDecomp : public JKRThread {
-	JKRDecomp(long);
+	JKRDecomp(s32);
 
 	virtual ~JKRDecomp(); // _08
 	virtual void* run();  // _0C
 
 	static JKRCompression checkCompressed(u8*);
-	static JKRDecomp* create(long);
+	static JKRDecomp* create(s32);
 	static void decode(u8*, u8*, u32, u32);
 	static void decodeSZP(u8*, u8*, u32, u32);
 	static void decodeSZS(u8*, u8*, u32, u32);
@@ -133,7 +133,7 @@ inline void JKRDecompress(u8* srcBuffer, u8* dstBuffer, u32 srcLength, u32 dstLe
 	JKRDecomp::orderSync(srcBuffer, dstBuffer, srcLength, dstLength);
 }
 
-inline JKRDecomp* JKRCreateDecompManager(long priority) { return JKRDecomp::create(priority); }
+inline JKRDecomp* JKRCreateDecompManager(s32 priority) { return JKRDecomp::create(priority); }
 
 inline int JKRCheckCompressed_noASR(u8* buf)
 {

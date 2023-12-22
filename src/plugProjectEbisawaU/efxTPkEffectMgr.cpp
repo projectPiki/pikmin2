@@ -227,7 +227,7 @@ void TPkEffectMgr::exitMgr()
  */
 void TPkEffectMgr::resetContextS() { mNextOpenContext = 0; }
 
-void TPkEffectMgr::createS_Dead(Vector3f& position, long pikiKind)
+void TPkEffectMgr::createS_Dead(Vector3f& position, s32 pikiKind)
 {
 	switch (pikiKind) {
 	case Game::Blue:
@@ -372,7 +372,7 @@ void TPkEffectMgr::createS_Walkwater(Vector3f& position)
  * @note Address: 0x803C7054
  * @note Size: 0x128
  */
-void ToeKourin::create(Vector3f* chasePos, long pikiKind)
+void ToeKourin::create(Vector3f* chasePos, s32 pikiKind)
 {
 	P2ASSERTLINE(320, chasePos);
 	mPikiKind             = pikiKind;

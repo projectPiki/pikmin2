@@ -176,7 +176,7 @@ ASM static void __init_registers(void)
 DECL_SECT(".init") extern __rom_copy_info _rom_copy_info[];
 DECL_SECT(".init") extern __bss_init_info _bss_init_info[];
 
-inline static void __copy_rom_section(void* dst, const void* src, unsigned long size)
+inline static void __copy_rom_section(void* dst, const void* src, u32 size)
 {
 	if (size && (dst != src)) {
 		memcpy(dst, src, size);
@@ -184,7 +184,7 @@ inline static void __copy_rom_section(void* dst, const void* src, unsigned long 
 	}
 }
 
-inline static void __init_bss_section(void* dst, unsigned long size)
+inline static void __init_bss_section(void* dst, u32 size)
 {
 	if (size) {
 		memset(dst, 0, size);

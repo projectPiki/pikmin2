@@ -175,7 +175,7 @@ JASCallbackMgr JASDriver::sUpdateDacCallback;
  * @note Address: 0x800A47D8
  * @note Size: 0x30
  */
-float JASDriver::key2pitch_c5(int key)
+f32 JASDriver::key2pitch_c5(int key)
 {
 	if (key < 0) {
 		key = 0;
@@ -189,7 +189,7 @@ float JASDriver::key2pitch_c5(int key)
  * @note Address: 0x800A4808
  * @note Size: 0x50
  */
-void JASDriver::setLevel(float channelLevel, float autoMixerLevel, float dspMixerLevel)
+void JASDriver::setLevel(f32 channelLevel, f32 autoMixerLevel, f32 dspMixerLevel)
 {
 	MAX_MIXERLEVEL     = channelLevel * 16383.5f;
 	MAX_AUTOMIXERLEVEL = autoMixerLevel * 16383.5f;
@@ -200,7 +200,7 @@ void JASDriver::setLevel(float channelLevel, float autoMixerLevel, float dspMixe
  * @note Address: 0x800A4858
  * @note Size: 0x3C
  */
-void JASDriver::setMixerLevel(float channelLevel, float dspMixerLevel)
+void JASDriver::setMixerLevel(f32 channelLevel, f32 dspMixerLevel)
 {
 	MAX_MIXERLEVEL = channelLevel * 16383.5f;
 	JASDsp::setDSPMixerLevel(dspMixerLevel);
@@ -210,7 +210,7 @@ void JASDriver::setMixerLevel(float channelLevel, float dspMixerLevel)
  * @note Address: N/A
  * @note Size: 0x24
  */
-void JASDriver::setChannelLevel(float channelLevel)
+void JASDriver::setChannelLevel(f32 channelLevel)
 {
 	// UNUSED FUNCTION
 	MAX_MIXERLEVEL = channelLevel * 16383.5f;
@@ -220,13 +220,13 @@ void JASDriver::setChannelLevel(float channelLevel)
  * @note Address: 0x800A4894
  * @note Size: 0x24
  */
-void JASDriver::setAutoLevel(float autoMixerLevel) { MAX_AUTOMIXERLEVEL = autoMixerLevel * 16383.5f; }
+void JASDriver::setAutoLevel(f32 autoMixerLevel) { MAX_AUTOMIXERLEVEL = autoMixerLevel * 16383.5f; }
 
 /**
  * @note Address: 0x800A48B8
  * @note Size: 0x20
  */
-void JASDriver::setDSPLevel(float dspMixerLevel) { JASDsp::setDSPMixerLevel(dspMixerLevel); }
+void JASDriver::setDSPLevel(f32 dspMixerLevel) { JASDsp::setDSPMixerLevel(dspMixerLevel); }
 
 /**
  * @note Address: 0x800A48D8
@@ -253,7 +253,7 @@ s16 JASDriver::getDSPLevel()
  * @note Address: N/A
  * @note Size: 0x30
  */
-float JASDriver::getChannelLevel_f32()
+f32 JASDriver::getChannelLevel_f32()
 {
 	// UNUSED FUNCTION
 	return MAX_MIXERLEVEL / 16383.5f;
@@ -263,13 +263,13 @@ float JASDriver::getChannelLevel_f32()
  * @note Address: 0x800A48E8
  * @note Size: 0x30
  */
-float JASDriver::getAutoLevel_f32() { return MAX_AUTOMIXERLEVEL / 16383.5f; }
+f32 JASDriver::getAutoLevel_f32() { return MAX_AUTOMIXERLEVEL / 16383.5f; }
 
 /**
  * @note Address: 0x800A4918
  * @note Size: 0x20
  */
-float JASDriver::getDSPLevel_f32() { return JASDsp::getDSPMixerLevel(); }
+f32 JASDriver::getDSPLevel_f32() { return JASDsp::getDSPMixerLevel(); }
 
 /**
  * @note Address: 0x800A4938
@@ -287,7 +287,7 @@ u32 JASDriver::getOutputMode() { return JAS_SYSTEM_OUTPUT_MODE; }
  * @note Address: 0x800A4948
  * @note Size: 0x90
  */
-bool JASDriver::rejectCallback(long (*callback)(void*), void* p2)
+bool JASDriver::rejectCallback(s32 (*callback)(void*), void* p2)
 {
 	bool v1 = false;
 	v1 |= sDspSyncCallback.reject(callback, p2);
@@ -338,19 +338,19 @@ bool JASDriver::rejectCallback(long (*callback)(void*), void* p2)
  * @note Address: 0x800A49D8
  * @note Size: 0x34
  */
-bool JASDriver::registerDspSyncCallback(long (*callback)(void*), void* p2) { return sDspSyncCallback.regist(callback, p2); }
+bool JASDriver::registerDspSyncCallback(s32 (*callback)(void*), void* p2) { return sDspSyncCallback.regist(callback, p2); }
 
 /**
  * @note Address: 0x800A4A0C
  * @note Size: 0x34
  */
-bool JASDriver::registerSubFrameCallback(long (*callback)(void*), void* p2) { return sSubFrameCallback.regist(callback, p2); }
+bool JASDriver::registerSubFrameCallback(s32 (*callback)(void*), void* p2) { return sSubFrameCallback.regist(callback, p2); }
 
 /**
  * @note Address: N/A
  * @note Size: 0x34
  */
-bool JASDriver::registerUpdateDacCallback(long (*callback)(void*), void* p2)
+bool JASDriver::registerUpdateDacCallback(s32 (*callback)(void*), void* p2)
 {
 	// UNUSED FUNCTION
 	return sUpdateDacCallback.regist(callback, p2);

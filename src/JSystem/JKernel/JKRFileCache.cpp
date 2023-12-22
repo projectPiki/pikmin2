@@ -287,7 +287,7 @@ bool JKRFileCache::detachResource(void* resource)
  * @note Address: 0x80022294
  * @note Size: 0x34
  */
-long JKRFileCache::getResSize(const void* resource) const
+s32 JKRFileCache::getResSize(const void* resource) const
 {
 	CCacheBlock* block = findCacheBlock(resource);
 	return (block == nullptr) ? -1 : block->mFileSize;

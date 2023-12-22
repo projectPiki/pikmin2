@@ -188,7 +188,7 @@ void TObject::prepare(const JStudio::fvb::data::TParse_TBlock& block, JStudio::f
 			}
 		case 0x12:
 			if (attr) {
-				float* fdata = (float*)data.content;
+				f32* fdata = (f32*)data.content;
 
 				attr->range_set(*fdata, fdata[1]);
 				m = data.next;

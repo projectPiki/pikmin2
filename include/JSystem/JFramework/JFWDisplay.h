@@ -1,6 +1,7 @@
 #ifndef _JSYSTEM_JFW_JFWDISPLAY_H
 #define _JSYSTEM_JFW_JFWDISPLAY_H
 
+#include "types.h"
 #include "JSystem/JUtility/TColor.h"
 #include "JSystem/JUtility/JUTFader.h"
 #include "JSystem/JUtility/JUTXfb.h"
@@ -31,7 +32,7 @@ struct JFWDisplay {
 	static JFWDisplay* createManager(const _GXRenderModeObj*, JKRHeap*, JUTXfb::EXfbNumber, bool);
 	static void destroyManager();
 	void waitBlanking(int);
-	void threadSleep(long long);
+	void threadSleep(s64);
 	void clearEfb_init();
 	void clearEfb(GXColor);
 	void clearEfb(int, int, int, int, GXColor);

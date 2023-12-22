@@ -25,7 +25,7 @@ static OSInterruptMask InterruptPrioTable[] = {
 
 volatile OSTime __OSLastInterruptTime;
 volatile __OSInterrupt __OSLastInterrupt;
-volatile u32 __OSLastInterruptSrr0;
+vu32 __OSLastInterruptSrr0;
 
 /**
  * @note Address: 0x800EEC38

@@ -127,7 +127,7 @@ TControl::~TControl() { }
  * @note Address: 0x8000CBA4
  * @note Size: 0x80
  */
-void TControl::transformOnSet_setOrigin(Vec const& p1, float p2)
+void TControl::transformOnSet_setOrigin(Vec const& p1, f32 p2)
 {
 	_78 = p1;
 	_90 = p2;
@@ -140,7 +140,7 @@ void TControl::transformOnSet_setOrigin(Vec const& p1, float p2)
  * @note Address: 0x8000CC24
  * @note Size: 0x94
  */
-void TControl::transformOnGet_setOrigin(Vec const& p1, float p2)
+void TControl::transformOnGet_setOrigin(Vec const& p1, f32 p2)
 {
 	_84 = p1;
 	_94 = p2;

@@ -45,8 +45,8 @@ struct TControl : public P2JME::Window::TControl {
 	virtual void createSequenceProcessor() { mSequenceProc = new Caption::TSequenceProcessor(getReference(), this); } // _40 (weak)
 	virtual void createRenderingProcessor() { mTextRenderProc = new Caption::TRenderingProcessor(getReference()); }   // _44 (weak)
 
-	bool updateSetFrame(long);
-	void start(char*, long, long);
+	bool updateSetFrame(s32);
+	void start(char*, s32, s32);
 
 	// _00     = VTBL
 	// _00-_5C = P2JME::Window::TControl

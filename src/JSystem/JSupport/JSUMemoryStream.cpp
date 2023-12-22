@@ -7,7 +7,7 @@
  * @note Size: 0x14
  * Matches
  */
-void JSUMemoryInputStream::setBuffer(const void* buffer, long length)
+void JSUMemoryInputStream::setBuffer(const void* buffer, s32 length)
 {
 	mObject   = buffer;
 	mLength   = length;
@@ -19,7 +19,7 @@ void JSUMemoryInputStream::setBuffer(const void* buffer, long length)
  * @note Size: 0x78
  * Matches
  */
-int JSUMemoryInputStream::readData(void* data, long length)
+int JSUMemoryInputStream::readData(void* data, s32 length)
 {
 	if (mPosition + length > mLength) {
 		length = mLength - mPosition;
@@ -36,7 +36,7 @@ int JSUMemoryInputStream::readData(void* data, long length)
  * @note Size: 0x7C
  * Matches
  */
-int JSUMemoryInputStream::seekPos(long offset, JSUStreamSeekFrom mode)
+int JSUMemoryInputStream::seekPos(s32 offset, JSUStreamSeekFrom mode)
 {
 	u32 originalPosition = mPosition;
 	switch (mode) {

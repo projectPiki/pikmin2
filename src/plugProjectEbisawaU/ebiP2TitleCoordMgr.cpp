@@ -20,7 +20,7 @@ TCoordMgr::TCoordMgr()
  * @note Address: N/A
  * @note Size: 0x90
  */
-void TCoordMgr::getDestPos(long)
+void TCoordMgr::getDestPos(s32)
 {
 	// UNUSED FUNCTION
 }

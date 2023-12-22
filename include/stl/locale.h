@@ -86,17 +86,17 @@ struct _loc_coll_cmpt {
 	char CmptName[8];
 	int char_start_value;
 	int char_coll_tab_size;
-	short char_spec_accents;
-	unsigned short* char_coll_table_ptr;
-	unsigned short* wchar_coll_seq_ptr;
+	s16 char_spec_accents;
+	u16* char_coll_table_ptr;
+	u16* wchar_coll_seq_ptr;
 };
 
 struct _loc_ctype_cmpt {
 	char CmptName[8];
-	const unsigned short* ctype_map_ptr;
-	const unsigned char* upper_map_ptr;
-	const unsigned char* lower_map_ptr;
-	const unsigned short* wctype_map_ptr;
+	const u16* ctype_map_ptr;
+	const u8* upper_map_ptr;
+	const u8* lower_map_ptr;
+	const u16* wctype_map_ptr;
 	const wchar_t* wupper_map_ptr;
 	const wchar_t* wlower_map_ptr;
 	__decode_mbyte decode_mb;

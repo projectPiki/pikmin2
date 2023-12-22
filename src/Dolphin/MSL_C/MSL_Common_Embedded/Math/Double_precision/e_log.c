@@ -70,9 +70,9 @@
 #include "errno.h"
 
 #ifdef __STDC__
-static const double
+static const f64
 #else
-static double
+static f64
 #endif
     ln2_hi
     = 6.93147180369123816490e-01,        /* 3fe62e42 fee00000 */
@@ -86,17 +86,18 @@ static double
     Lg6    = 1.531383769920937332e-01,   /* 3FC39A09 D078C69F */
     Lg7    = 1.479819860511658591e-01;   /* 3FC2F112 DF3E5244 */
 
-static double zero = 0.0;
+static f64 zero = 0.0;
 
 #ifdef __STDC__
-double __ieee754_log(double x)
+f64 __ieee754_log(f64 x)
 #else
-double __ieee754_log(x) double x;
+f64 __ieee754_log(x)
+f64 x;
 #endif
 {
-	double hfsq, f, s, z, R, w, t1, t2, dk;
+	f64 hfsq, f, s, z, R, w, t1, t2, dk;
 	int k, hx, i, j;
-	unsigned lx;
+	uint lx;
 
 	hx = __HI(x); /* high word of x */
 	lx = __LO(x); /* low  word of x */
@@ -126,19 +127,19 @@ double __ieee754_log(x) double x;
 			if (k == 0)
 				return zero;
 			else {
-				dk = (double)k;
+				dk = (f64)k;
 				return dk * ln2_hi + dk * ln2_lo;
 			}
 		R = f * f * (0.5 - 0.33333333333333333 * f);
 		if (k == 0)
 			return f - R;
 		else {
-			dk = (double)k;
+			dk = (f64)k;
 			return dk * ln2_hi - ((R - dk * ln2_lo) - f);
 		}
 	}
 	s  = f / (2.0 + f);
-	dk = (double)k;
+	dk = (f64)k;
 	z  = s * s;
 	i  = hx - 0x6147a;
 	w  = z * z;

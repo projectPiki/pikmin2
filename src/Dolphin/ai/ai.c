@@ -8,8 +8,8 @@ static AISCallback __AIS_Callback = NULL;
 static AIDCallback __AID_Callback = NULL;
 static u8* __CallbackStack;
 static u8* __OldStack;
-static volatile s32 __AI_init_flag = FALSE;
-static volatile s32 __AID_Active   = FALSE;
+static vs32 __AI_init_flag = FALSE;
+static vs32 __AID_Active   = FALSE;
 
 static OSTime bound_32KHz;
 static OSTime bound_48KHz;

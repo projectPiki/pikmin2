@@ -80,7 +80,7 @@ bool JADUtility::DataLoadMgrNode::isTempBuffaMode() { return false; }
  * @note Address: 0x800BA984
  * @note Size: 0xF0
  */
-bool JADUtility::DataLoadMgrNode::initInstanceExt(void* p1, long p2)
+bool JADUtility::DataLoadMgrNode::initInstanceExt(void* p1, s32 p2)
 {
 	JKRHeap* existingHeap = JKRHeap::sCurrentHeap;
 	if (getObjHeap() != nullptr) {

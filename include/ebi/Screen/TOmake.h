@@ -122,7 +122,7 @@ struct TOmakeGame : public TScreenBase {
 	virtual char* getName() { return "TOmakeGame"; } // _48
 
 	bool isDelegateControl();
-	bool openMsg(long);
+	bool openMsg(s32);
 	void setController(Controller*);
 	void setSelfControl();
 
@@ -131,7 +131,7 @@ struct TOmakeGame : public TScreenBase {
 	Controller* mInput;                               // _0C
 	bool mExitState;                                  // _10 (false when press A to continue, true when press B to exit)
 	EUTPadInterface_countNum mPad;                    // _14
-	long mSelection;                                  // _40
+	s32 mSelection;                                  // _40
 	P2DScreen::Mgr_tuning* mScreenObj;                // _44
 	J2DPane* mPaneGameSel[GameCount];                 // _48
 	J2DPane* mPaneSelectBox[GameCount];               // _54

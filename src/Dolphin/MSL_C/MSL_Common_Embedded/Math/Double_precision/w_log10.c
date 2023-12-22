@@ -1,11 +1,13 @@
-extern double __ieee754_log10();
+#include "types.h"
+
+extern f64 __ieee754_log10();
 
 /**
  * @note Address: 0x800CF9EC
  * @note Size: 0x20
  */
 
-double log10(double __x) { return (double)__ieee754_log10(); }
+f64 log10(f64 __x) { return (f64)__ieee754_log10(); }
 
 /*
 .loc_0x0:

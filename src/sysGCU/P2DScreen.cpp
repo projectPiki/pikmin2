@@ -24,7 +24,7 @@ J2DPane* Mgr::addCallBack(u64 tag, Node* node)
 		node->doInit();
 		mScreenNode.add(node);
 	} else {
-		volatile s8 something[8];
+		vs8 something[8];
 		for (int i = 0; i < 8; i++) {
 			if (!something[i]) {
 				something[i] = 0x3f;

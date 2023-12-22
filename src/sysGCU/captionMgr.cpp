@@ -95,7 +95,7 @@ void Caption::Mgr::resetMessageObjs()
  * @note Address: N/A
  * @note Size: 0x2C
  */
-void Caption::Mgr::setCurrentNode(long id)
+void Caption::Mgr::setCurrentNode(s32 id)
 {
 	// needs to be like this to get regalloc correct, FOREACH doesn't work
 	Node* node = (Node*)mChild;
@@ -111,7 +111,7 @@ void Caption::Mgr::setCurrentNode(long id)
  * @note Address: 0x80450C78
  * @note Size: 0x194
  */
-void Caption::Mgr::update(long num)
+void Caption::Mgr::update(s32 num)
 {
 	if (num >= 0) {
 		Node* node = mNode;

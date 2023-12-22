@@ -305,7 +305,7 @@ bool JKRArchive::detachResource(void* resource)
  * @note Address: 0x8001BA4C
  * @note Size: 0x34
  */
-long JKRArchive::getResSize(const void* resource) const
+s32 JKRArchive::getResSize(const void* resource) const
 {
 	SDIFileEntry* entry = findPtrResource(resource);
 	return (entry == nullptr) ? -1 : entry->getSize();

@@ -29,7 +29,7 @@ namespace newScreen {
  * @note Address: 0x804001D8
  * @note Size: 0x3CC
  */
-::Screen::SceneBase* createScene_Ogawa(long sceneType)
+::Screen::SceneBase* createScene_Ogawa(s32 sceneType)
 {
 	::Screen::SceneBase* base = nullptr;
 	switch (sceneType) {
@@ -152,7 +152,7 @@ namespace newScreen {
  * @note Address: 0x804005A4
  * @note Size: 0x348
  */
-::Screen::SceneBase* createScene_Morimura(long sceneType)
+::Screen::SceneBase* createScene_Morimura(s32 sceneType)
 {
 	::Screen::SceneBase* base = nullptr;
 	switch (sceneType) {
@@ -215,7 +215,7 @@ namespace newScreen {
  * @note Address: 0x804008EC
  * @note Size: 0x50
  */
-::Screen::SceneBase* Mgr::doGetSceneBase(long id)
+::Screen::SceneBase* Mgr::doGetSceneBase(s32 id)
 {
 	::Screen::SceneBase* base;
 	base = createScene_Ogawa(id);

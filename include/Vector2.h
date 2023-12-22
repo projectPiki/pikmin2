@@ -59,8 +59,8 @@ struct Vector2 {
 	T x, y;
 };
 
-// Use instead of Vector2<float> or Vector2<f32>
-typedef Vector2<float> Vector2f;
+// Use instead of Vector2<f32>
+typedef Vector2<f32> Vector2f;
 typedef Vector2<int> Vector2i;
 
 inline Vector2f operator+(const Vector2f& a, f32 b) { return Vector2f(a.x + b, a.y + b); }

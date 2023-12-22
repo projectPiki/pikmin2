@@ -49,9 +49,9 @@
 #include "fdlibm.h"
 
 #ifdef __STDC__
-static const double
+static const f64
 #else
-static double
+static f64
 #endif
     one
     = 1.00000000000000000000e+00,     /* 0x3FF00000, 0x00000000 */
@@ -63,12 +63,12 @@ static double
     C6 = -1.13596475577881948265e-11; /* 0xBDA8FAE9, 0xBE8838D4 */
 
 #ifdef __STDC__
-double __kernel_cos(double x, double y)
+f64 __kernel_cos(f64 x, f64 y)
 #else
-double __kernel_cos(x, y) double x, y;
+f64 __kernel_cos(x, y) f64 x, y;
 #endif
 {
-	double a, hz, z, r, qx;
+	f64 a, hz, z, r, qx;
 	int ix;
 	ix = __HI(x) & 0x7fffffff; /* ix = |x|'s high word*/
 	if (ix < 0x3e400000) {     /* if x < 2**27 */

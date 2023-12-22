@@ -223,9 +223,9 @@ void J3DAnmFullLoader_v15::setAnmTransform(J3DAnmTransformFull* animation, const
 	animation->mCurrentFrame = 0.0f;
 
 	animation->mTable           = JSUConvertOffsetToPtr<J3DAnmTransformFullTable>(data, (void*)data->mTableOffset);
-	animation->mScaleVals       = JSUConvertOffsetToPtr<float>(data, (void*)data->mScaleValOffset);
-	animation->mRotationVals    = JSUConvertOffsetToPtr<short>(data, (void*)data->mRotValOffset);
-	animation->mTranslationVals = JSUConvertOffsetToPtr<float>(data, (void*)data->mTransValOffset);
+	animation->mScaleVals       = JSUConvertOffsetToPtr<f32>(data, (void*)data->mScaleValOffset);
+	animation->mRotationVals    = JSUConvertOffsetToPtr<s16>(data, (void*)data->mRotValOffset);
+	animation->mTranslationVals = JSUConvertOffsetToPtr<f32>(data, (void*)data->mTransValOffset);
 }
 
 /**
@@ -354,10 +354,10 @@ void J3DAnmFullLoader_v15::setAnmVtxColor(J3DAnmVtxColorFull* animation, const J
 	u16* v2                             = JSUConvertOffsetToPtr<u16>(data, (void*)data->mVtxColorIndexPointerOffsets[1]);
 
 	for (int i = 0; i < animation->mAnmTableNum[0]; i++) {
-		animation->mAnmVtxColorIndexData[0][i]._04 = (long)(v1 + animation->mAnmVtxColorIndexData[0][i]._04);
+		animation->mAnmVtxColorIndexData[0][i]._04 = (s32)(v1 + animation->mAnmVtxColorIndexData[0][i]._04);
 	}
 	for (int i = 0; i < animation->mAnmTableNum[1]; i++) {
-		animation->mAnmVtxColorIndexData[1][i]._04 = (long)(v2 + animation->mAnmVtxColorIndexData[1][i]._04);
+		animation->mAnmVtxColorIndexData[1][i]._04 = (s32)(v2 + animation->mAnmVtxColorIndexData[1][i]._04);
 	}
 
 	animation->mRedVals   = JSUConvertOffsetToPtr<u8>(data, (void*)data->mRValuesOffset);
@@ -458,9 +458,9 @@ void J3DAnmKeyLoader_v15::setAnmTransform(J3DAnmTransformKey* animation, const J
 	animation->mCurrentFrame = 0.0f;
 
 	animation->mTable           = JSUConvertOffsetToPtr<J3DAnmTransformKeyTable>(data, (void*)data->mTableOffset);
-	animation->mScaleVals       = JSUConvertOffsetToPtr<float>(data, (void*)data->mScaleOffset);
-	animation->mRotationVals    = JSUConvertOffsetToPtr<short>(data, (void*)data->mRotationOffset);
-	animation->mTranslationVals = JSUConvertOffsetToPtr<float>(data, (void*)data->mTranslateOffset);
+	animation->mScaleVals       = JSUConvertOffsetToPtr<f32>(data, (void*)data->mScaleOffset);
+	animation->mRotationVals    = JSUConvertOffsetToPtr<s16>(data, (void*)data->mRotationOffset);
+	animation->mTranslationVals = JSUConvertOffsetToPtr<f32>(data, (void*)data->mTranslateOffset);
 }
 
 /**
@@ -495,9 +495,9 @@ void J3DAnmKeyLoader_v15::setAnmTextureSRT(J3DAnmTextureSRTKey* animation, const
 	animation->_30.setResource(JSUConvertOffsetToPtr<ResNTAB>(data, (void*)data->mNameTab1Offset));
 	animation->mUpdateTexMtxID = JSUConvertOffsetToPtr<u8>(data, (void*)data->mUpdateTexMtxIDOffset);
 	animation->_40             = JSUConvertOffsetToPtr<Vec>(data, (void*)data->unkOffset);
-	animation->_1C             = JSUConvertOffsetToPtr<float>(data, (void*)data->mScaleValOffset);
+	animation->_1C             = JSUConvertOffsetToPtr<f32>(data, (void*)data->mScaleValOffset);
 	animation->_20             = JSUConvertOffsetToPtr<s16>(data, (void*)data->mRotValOffset);
-	animation->_24             = JSUConvertOffsetToPtr<float>(data, (void*)data->mTransValOffset);
+	animation->_24             = JSUConvertOffsetToPtr<f32>(data, (void*)data->mTransValOffset);
 	if (data->mNameTab2Offset != nullptr) {
 		animation->_64.setResource(JSUConvertOffsetToPtr<ResNTAB>(data, (void*)data->mNameTab2Offset));
 	}
@@ -509,9 +509,9 @@ void J3DAnmKeyLoader_v15::setAnmTextureSRT(J3DAnmTextureSRTKey* animation, const
 	animation->_60 = JSUConvertOffsetToPtr<u16>(data, (void*)data->_40);
 	animation->_5C = JSUConvertOffsetToPtr<u8>(data, (void*)data->_48);
 	animation->_74 = JSUConvertOffsetToPtr<Vec>(data, (void*)data->_4C);
-	animation->_4C = JSUConvertOffsetToPtr<float>(data, (void*)data->_50);
+	animation->_4C = JSUConvertOffsetToPtr<f32>(data, (void*)data->_50);
 	animation->_50 = JSUConvertOffsetToPtr<s16>(data, (void*)data->_54);
-	animation->_54 = JSUConvertOffsetToPtr<float>(data, (void*)data->_58);
+	animation->_54 = JSUConvertOffsetToPtr<f32>(data, (void*)data->_58);
 	switch (data->_5C) {
 	case 0:
 	case 1:
@@ -572,7 +572,7 @@ void J3DAnmKeyLoader_v15::setAnmCluster(J3DAnmClusterKey* animation, const J3DAn
 	animation->mAttribute    = data->_08;
 	animation->mCurrentFrame = 0.0f;
 	animation->mTables       = JSUConvertOffsetToPtr<J3DAnmClusterKeyTable>(data, (void*)data->_10);
-	animation->_0C           = JSUConvertOffsetToPtr<float>(data, (void*)data->_14);
+	animation->_0C           = JSUConvertOffsetToPtr<f32>(data, (void*)data->_14);
 }
 
 /**
@@ -646,10 +646,10 @@ void J3DAnmKeyLoader_v15::setAnmVtxColor(J3DAnmVtxColorKey* animation, const J3D
 	u16* v1 = JSUConvertOffsetToPtr<u16>(data, (void*)data->mVtxColoIndexPointerOffset[0]);
 	u16* v2 = JSUConvertOffsetToPtr<u16>(data, (void*)data->mVtxColoIndexPointerOffset[1]);
 	for (int i = 0; i < animation->mAnmTableNum[0]; i++) {
-		animation->mAnmVtxColorIndexData[0][i]._04 = (long)(v1 + animation->mAnmVtxColorIndexData[0][i]._04);
+		animation->mAnmVtxColorIndexData[0][i]._04 = (s32)(v1 + animation->mAnmVtxColorIndexData[0][i]._04);
 	}
 	for (int i = 0; i < animation->mAnmTableNum[1]; i++) {
-		animation->mAnmVtxColorIndexData[1][i]._04 = (long)(v2 + animation->mAnmVtxColorIndexData[1][i]._04);
+		animation->mAnmVtxColorIndexData[1][i]._04 = (s32)(v2 + animation->mAnmVtxColorIndexData[1][i]._04);
 	}
 
 	animation->mRedVals   = JSUConvertOffsetToPtr<s16>(data, (void*)data->mRValOffset);

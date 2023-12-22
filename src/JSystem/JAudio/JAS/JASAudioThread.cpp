@@ -29,7 +29,7 @@ JASAudioThread::JASAudioThread(int stackSize, int msgCount, u32 threadPriority)
  * @note Address: 0x800A5B88
  * @note Size: 0x74
  */
-void JASAudioThread::create(long threadPriority)
+void JASAudioThread::create(s32 threadPriority)
 {
 	sAudioThread = new (JASDram, 0) JASAudioThread(0x1000, 0x10, threadPriority);
 	OSResumeThread(sAudioThread->mThread);

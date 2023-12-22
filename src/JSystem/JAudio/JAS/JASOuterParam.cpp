@@ -86,7 +86,7 @@ u16 JASOuterParam::getOuterUpdate() { return mOuterUpdate; }
  * @note Address: N/A
  * @note Size: 0x10
  */
-void JASOuterParam::setIntFirFilter(short newValue, u8 index)
+void JASOuterParam::setIntFirFilter(s16 newValue, u8 index)
 {
 	// UNUSED FUNCTION
 	mFirFilter[index] = newValue;
@@ -102,9 +102,9 @@ s16 JASOuterParam::getIntFirFilter(u8 index) { return mFirFilter[index]; }
  * @note Address: 0x8009C4A0
  * @note Size: 0x9C
  */
-void JASOuterParam::setParam(u8 p1, float p2)
+void JASOuterParam::setParam(u8 p1, f32 p2)
 {
-	float* v1;
+	f32* v1;
 	switch (p1) {
 	case 1:
 		v1 = &_04;
@@ -145,7 +145,7 @@ void JASOuterParam::onSwitch(u16 p1)
  * @note Address: 0x8009C558
  * @note Size: 0x5C
  */
-void JASOuterParam::setFirFilter(short* p1)
+void JASOuterParam::setFirFilter(s16* p1)
 {
 	mOuterUpdate |= 0x80;
 	mOuterSwitch |= 0x80;

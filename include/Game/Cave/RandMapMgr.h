@@ -172,7 +172,7 @@ struct RandMapMgr : public CNode {
 	void create();
 	int getNumRooms();
 	char* getUseUnitName(int placedNodeIndex);
-	char* getRoomData(int placedNodeIndex, float& x, float& y, int& direction);
+	char* getRoomData(int placedNodeIndex, f32& x, f32& y, int& direction);
 	RoomLink* makeRoomLink(int placedNodeIndex);
 	ObjectLayoutInfo* makeObjectLayoutInfo(int placedNodeIndex);
 	void getStartPosition(Vector3f& position, int index);

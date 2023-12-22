@@ -67,7 +67,7 @@ struct TParam : public TParamBase {
 };
 
 struct TAnimFolder : public E3DAnimFolderBase {
-	virtual E3DAnimRes* getAnimRes(long); // _08 (weak)
+	virtual E3DAnimRes* getAnimRes(s32); // _08 (weak)
 
 	void load(J3DModelData*, JKRArchive*);
 	E3DAnimRes* getAnimRes(int);
@@ -177,7 +177,7 @@ struct TUnit : public TObjBase {
 	virtual u32 getCreatureType() { return TITLECREATURE_Pikmin; } // _08 (weak)
 	virtual bool isCalc();                                         // _0C
 
-	void init(TMgr*, long);
+	void init(TMgr*, s32);
 	void goDestination();
 	bool beAttacked();
 	void alive();
@@ -228,7 +228,7 @@ struct TMgr : public CNode {
 	void enemyPushOut(TObjBase*);
 	void updateCalcBoid_();
 	bool isAssemble();
-	TUnit* getUnit(long);
+	TUnit* getUnit(s32);
 
 	// _00     = VTBL
 	// _00-_18 = CNode

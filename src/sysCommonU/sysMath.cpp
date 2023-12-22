@@ -86,7 +86,7 @@ f32 qdist2(f32 x1, f32 y1, f32 x2, f32 y2)
 
 	f32 dist = ((xdiff * xdiff) + (ydiff * ydiff));
 	if (dist > 0.0f) {
-		volatile f32 calcDist = dist * (__frsqrte(dist));
+		vf32 calcDist = dist * (__frsqrte(dist));
 		dist                  = calcDist;
 	}
 	return dist;
@@ -105,7 +105,7 @@ f32 qdist3(f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2)
 	return pikmin2_sqrtf(((xdiff * xdiff) + (ydiff * ydiff) + (zdiff * zdiff)));
 	// f32 dist = ((xdiff * xdiff) + (ydiff * ydiff) + (zdiff * zdiff));
 	// if (dist > 0.0f) {
-	// 	volatile f32 calcDist = dist * (__frsqrte(dist));
+	// 	vf32 calcDist = dist * (__frsqrte(dist));
 	// 	dist                    = calcDist;
 	// }
 	// return dist;

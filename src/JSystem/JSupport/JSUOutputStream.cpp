@@ -13,7 +13,7 @@ JSUOutputStream::~JSUOutputStream() { }
  * @note Address: 0x800261E0
  * @note Size: 0x58
  */
-int JSUOutputStream::write(const void* data, long length)
+int JSUOutputStream::write(const void* data, s32 length)
 {
 	int len = writeData(data, length);
 	if (len != length) {

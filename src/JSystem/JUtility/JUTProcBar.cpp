@@ -110,8 +110,8 @@ void JUTProcBar::bar_subroutine(int param_0, int param_1, int param_2, int param
  */
 void JUTProcBar::adjustMeterLength(u32 param_0, f32* param_1, f32 param_2, f32 param_3, int* param_4)
 {
-	BOOL var2  = false;
-	float var1 = *param_1;
+	BOOL var2 = false;
+	f32 var1  = *param_1;
 	while (var1 > param_2) {
 		if (param_0 * var1 * 20.0f / 16666.0f <= mParams.mWidth - 30.0f)
 			break;
@@ -278,13 +278,13 @@ void JUTProcBar::getUnuseUserBar()
  * @note Address: N/A
  * @note Size: 0x68
  */
-int addrToXPos(void* param_0, int param_1) { return param_1 * (((u32)param_0 - 0x80000000) / (float)JKRHeap::getMemorySize()); }
+int addrToXPos(void* param_0, int param_1) { return param_1 * (((u32)param_0 - 0x80000000) / (f32)JKRHeap::getMemorySize()); }
 
 /**
  * @note Address: N/A
  * @note Size: 0x68
  */
-int byteToXLen(int param_0, int param_1) { return param_1 * (param_0 / (float)JKRHeap::getMemorySize()); }
+int byteToXLen(int param_0, int param_1) { return param_1 * (param_0 / (f32)JKRHeap::getMemorySize()); }
 
 /**
  * @note Address: N/A

@@ -7,7 +7,7 @@
 namespace PSSystem {
 
 // clang-format off
-const float TriangleTableModTask::sTable[40] = {
+const f32 TriangleTableModTask::sTable[40] = {
 	 0.0f,  0.1f,  0.2f,  0.3f,  0.4f,  0.5f,  0.6f,  0.7f,  0.8f,  0.9f,
 	 1.0f,  0.9f,  0.8f,  0.7f,  0.6f,  0.5f,  0.4f,  0.3f,  0.2f,  0.1f,
 	 0.0f, -0.1f, -0.2f, -0.3f, -0.4f, -0.5f, -0.6f, -0.7f, -0.8f, -0.9f,
@@ -25,7 +25,7 @@ int ModParamWithFade::task(JASTrack& track)
 	int result;
 	if (_28 == 0) {
 		if (_1C != 0) {
-			float preParam = getPreParam(track);
+			f32 preParam = getPreParam(track);
 			_24            = (_20 - preParam) / _1C;
 			_2C            = preParam + _24;
 		} else {
@@ -75,7 +75,7 @@ int PitchModTask::tableTask(JASTrack& track, f32 param)
  * @note Address: 0x8033E8FC
  * @note Size: 0xD4
  */
-float OuterParamTask::getPreParam(JASTrack& track)
+f32 OuterParamTask::getPreParam(JASTrack& track)
 {
 	switch (_30) {
 	case 0x1:
@@ -100,7 +100,7 @@ float OuterParamTask::getPreParam(JASTrack& track)
  * @note Address: 0x8033E9D0
  * @note Size: 0x98
  */
-void OuterParamTask::timeTask(JASTrack& track, float param)
+void OuterParamTask::timeTask(JASTrack& track, f32 param)
 {
 	if (_30 != 2) {
 		if (param < 0.0f) {
@@ -143,7 +143,7 @@ BankRandPrm::BankRandPrm()
  * @note Address: 0x8033EB04
  * @note Size: 0x80
  */
-void TaskEntry_OuterParam::makeEntry(float p1, u32 p2)
+void TaskEntry_OuterParam::makeEntry(f32 p1, u32 p2)
 {
 	OSDisableInterrupts();
 	mOuterParamTask._20 = p1;
@@ -175,7 +175,7 @@ void TaskEntry_IdMask::makeEntry(u8 noteMask)
  * @note Address: 0x8033EBD8
  * @note Size: 0x110
  */
-void TaskEntry_PitMod::makeEntry(float p1, float p2, u32 p3)
+void TaskEntry_PitMod::makeEntry(f32 p1, f32 p2, u32 p3)
 {
 	if (p3 != 0) {
 		OSDisableInterrupts();
@@ -216,7 +216,7 @@ void TaskEntry_PitMod::makeEntry(float p1, float p2, u32 p3)
  * @note Address: 0x8033ECE8
  * @note Size: 0xA4
  */
-void TaskEntry_MuteVolume::makeEntry(float p1, u32 p2)
+void TaskEntry_MuteVolume::makeEntry(f32 p1, u32 p2)
 {
 	f32 temp_f0;
 
@@ -265,7 +265,7 @@ void TaskEntry_MuteOnVolume::makeEntry(u32 p1)
  * @note Address: 0x8033EE18
  * @note Size: 0x80
  */
-void TaskEntry_Tempo::makeEntry(float p1, u32 p2)
+void TaskEntry_Tempo::makeEntry(f32 p1, u32 p2)
 {
 	OSDisableInterrupts();
 	mOuterParamTask1._20 = p1;

@@ -321,6 +321,6 @@ void TAdaptor_fog::adaptor_do_data(const JStudio::TObject* object, const void* p
  * @note Size: 0x30
  * __cl__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>CFfPQ27JStudio8TAdaptor
  */
-// void TVariableValueOutput_object_<TAdaptor_fog, JStage::TFog>::operator()(float, JStudio::TAdaptor*) const { }
+// void TVariableValueOutput_object_<TAdaptor_fog, JStage::TFog>::operator()(f32, JStudio::TAdaptor*) const { }
 
 } // namespace JStudio_JStage

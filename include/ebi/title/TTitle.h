@@ -280,7 +280,7 @@ struct TTitleMgr : public CNode, JKRDisposer {
 	bool breakup();
 	bool startKogane();
 	bool startChappy();
-	bool boidToAssemble(long);
+	bool boidToAssemble(s32);
 	bool isControllerOK();
 	bool isPressStart();
 	void startState(enumState);
@@ -289,11 +289,11 @@ struct TTitleMgr : public CNode, JKRDisposer {
 	void checkEncounter_();
 	void draw();
 	void readTitleParam(JKRArchive*, char*);
-	void setDestToPiki(long);
-	void setPosToPiki(long);
+	void setDestToPiki(s32);
+	void setPosToPiki(s32);
 	Vector2f setStartPosToPiki();
 	void calcBreakupDestination();
-	void calcDestination(long);
+	void calcDestination(s32);
 	bool isAssemble();
 	void setDrawBufferToJ3DSys();
 	void inField(Vector2f&);
@@ -302,7 +302,7 @@ struct TTitleMgr : public CNode, JKRDisposer {
 	void windBlow();
 	void boid3ToAssemble();
 	void isAnyKey();
-	void showInfo(long, long, long, long);
+	void showInfo(s32, s32, s32, s32);
 
 	// _00     = VTBL
 	// _00-_18 = CNode

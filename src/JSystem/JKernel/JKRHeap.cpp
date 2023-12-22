@@ -7,7 +7,7 @@
 #include "JSystem/JUtility/JUTException.h"
 
 // TODO: This is stupid-hacky. Fix pls.
-typedef void Destructor(void*, short);
+typedef void Destructor(void*, s16);
 #define INVOKE_VIRT_DTOR(o, v) (((*(Destructor***)(o))[2])((o), (v)))
 
 JKRHeap* JKRHeap::sSystemHeap;

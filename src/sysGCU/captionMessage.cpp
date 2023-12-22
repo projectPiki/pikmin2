@@ -140,7 +140,7 @@ void TControl::reset()
  * @note Address: 0x80451328
  * @note Size: 0x128
  */
-bool TControl::updateSetFrame(long frame)
+bool TControl::updateSetFrame(s32 frame)
 {
 	bool ret = false;
 	if (mState == 0 && frame >= mStartFrame && frame <= mEndFrame + _68) {
@@ -183,7 +183,7 @@ void TControl::draw(Graphics& gfx)
  * @note Address: 0x804514D4
  * @note Size: 0x58
  */
-void TControl::start(char* name, long start, long end)
+void TControl::start(char* name, s32 start, s32 end)
 {
 	setMessageID(name);
 	mStartFrame = start;

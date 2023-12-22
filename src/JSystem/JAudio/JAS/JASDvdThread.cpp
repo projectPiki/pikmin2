@@ -25,7 +25,7 @@ JASTaskThread* JASDvd::getThreadPointer() { return sThread; }
  * @note Address: 0x800A6994
  * @note Size: 0x7C
  */
-bool JASDvd::createThread(long priority, int p2, u32 p3)
+bool JASDvd::createThread(s32 priority, int p2, u32 p3)
 {
 	sThread = new (JASDram, 0) JASTaskThread(priority, p2, p3);
 	OSResumeThread(sThread->mThread);

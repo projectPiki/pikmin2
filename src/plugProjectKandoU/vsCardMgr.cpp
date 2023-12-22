@@ -360,11 +360,11 @@ bool VsGame::CardMgr::usePlayerCard(int user, Game::VsGame::TekiMgr* tekiMgr)
 		if (onyon) {
 			onyonPos = onyon->getPosition();
 
-			float faceDir = onyon->getFaceDir();
+			f32 faceDir = onyon->getFaceDir();
 
-			float radius = randFloat() * 150.0f + 50.0f;
-			float angle  = randFloat() * TAU;
-			float height = 0.0f;
+			f32 radius = randFloat() * 150.0f + 50.0f;
+			f32 angle  = randFloat() * TAU;
+			f32 height = 0.0f;
 
 			Vector3f spawnOffset = Vector3f(radius * sinf(angle), height, radius * cosf(angle));
 
@@ -376,8 +376,8 @@ bool VsGame::CardMgr::usePlayerCard(int user, Game::VsGame::TekiMgr* tekiMgr)
 	case TEKI_ROCK:
 	case TEKI_BOMBOTAKRA: {
 
-		float radiusVariance = 90.0f;
-		float enemyHeight    = 0.0f;
+		f32 radiusVariance = 90.0f;
+		f32 enemyHeight    = 0.0f;
 		int num;
 		if (slotID == TEKI_ROCK) {
 			num = 8;
@@ -394,11 +394,11 @@ bool VsGame::CardMgr::usePlayerCard(int user, Game::VsGame::TekiMgr* tekiMgr)
 			if (navi) {
 				spawnNaviPos = navi->getPosition();
 
-				float faceDir = navi->getFaceDir();
-				float radius  = randFloat() * 150.0f * radiusVariance;
+				f32 faceDir = navi->getFaceDir();
+				f32 radius  = randFloat() * 150.0f * radiusVariance;
 
-				float angle  = randFloat() * TAU;
-				float height = enemyHeight;
+				f32 angle  = randFloat() * TAU;
+				f32 height = enemyHeight;
 
 				Vector3f spawnOffset = Vector3f(radius * sinf(angle), height, radius * cosf(angle));
 
@@ -417,11 +417,11 @@ bool VsGame::CardMgr::usePlayerCard(int user, Game::VsGame::TekiMgr* tekiMgr)
 
 			onyonPos = onyon->getPosition();
 
-			float faceDir = onyon->getFaceDir();
+			f32 faceDir = onyon->getFaceDir();
 
-			float radius = randFloat() * 150.0f + 50.0f;
-			float angle  = randFloat() * TAU;
-			float height = 0.0f;
+			f32 radius = randFloat() * 150.0f + 50.0f;
+			f32 angle  = randFloat() * TAU;
+			f32 height = 0.0f;
 
 			angle = faceDir;
 
@@ -638,13 +638,13 @@ bool CardMgr::SlotMachine::goodPlace()
 {
 	int nextCardBottom = getNextCard(mSelectedSlot);
 
-	float distanceToBottom = FABS(nextCardBottom - mSpinProgress);
+	f32 distanceToBottom = FABS(nextCardBottom - mSpinProgress);
 
 	int nextCardTop = nextCardBottom + CARD_ID_COUNT;
 
-	float distanceToTop = FABS(nextCardTop - mSpinProgress);
+	f32 distanceToTop = FABS(nextCardTop - mSpinProgress);
 
-	float distance = distanceToBottom;
+	f32 distance = distanceToBottom;
 	if (distanceToTop < distanceToBottom) {
 		distance = distanceToTop;
 	}
@@ -660,7 +660,7 @@ bool CardMgr::SlotMachine::goodPlace()
 void VsGame::CardMgr::SlotMachine::update()
 {
 	updateAppear();
-	float deltaTime = sys->mDeltaTime;
+	f32 deltaTime = sys->mDeltaTime;
 	switch (mSpinState) { // await spin stop
 	case SPIN_WAIT_START:
 		mSpinAccel = -TAU;
@@ -798,7 +798,7 @@ void VsGame::CardMgr::SlotMachine::update()
 	mSpinSpeed += mSpinAccel * deltaTime;
 	int previousValue = mSelectedSlot;
 	mPrevCardIndex    = mSelectedSlot;
-	float loopValue   = TAU / CARD_ID_COUNT;
+	f32 loopValue   = TAU / CARD_ID_COUNT;
 	mSpinProgress     = roundAng(mSpinAngle + loopValue) / loopValue;
 	mCurrCardIndex    = (int)mSpinProgress;
 	if (mSpinState != 10 && mSpinState != 0) {
@@ -878,14 +878,14 @@ void VsGame::CardMgr::initDraw()
 	_F8        = countA * countB * 2;
 	_FC        = new Vector3f[_F8];
 	_100       = new Vector3f[_F8];
-	float phi  = TAU / countA;
-	float s    = sinf(phi / 2.0f);
-	float x, y, z;
+	f32 phi  = TAU / countA;
+	f32 s    = sinf(phi / 2.0f);
+	f32 x, y, z;
 
 	x = 20.0f;
 
 	for (int i = 0; i < countA * countB; i++) {
-		float theta = i * TAU / countA / countB;
+		f32 theta = i * TAU / countA / countB;
 
 		z = x / s * cosf(theta);
 		y = x / s * sinf(theta);
@@ -923,7 +923,7 @@ void VsGame::CardMgr::norm(int)
 void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& machine)
 {
 
-	float spinAngle = machine.mSpinAngle;
+	f32 spinAngle = machine.mSpinAngle;
 	Vector3f pos    = place;
 	gfx.initPrimDraw(0);
 	gfx.mDrawColor = Color4(250, 250, 250, 255);
@@ -973,7 +973,7 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 		mSlotTextures[i]->load(GX_TEXMAP0);
 		for (int j = 0; j < vectorsPerCard / 4; j++) {
 			GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 0x4);
-			float id     = i * vectorsPerCard;
+			f32 id     = i * vectorsPerCard;
 			Vector3f vec = _FC[4 * i];
 			GXPosition3f32(vec.x, vec.y, vec.z);
 			vec = _100[4 * i];
@@ -1062,8 +1062,8 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 		machine._6C += sys->mDeltaTime / 2;
 
 		// this bunch seems good
-		float pos = machine._44;
-		float neg = -machine._44;
+		f32 pos = machine._44;
+		f32 neg = -machine._44;
 
 		GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 0x4);
 
@@ -1106,7 +1106,7 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 		}
 	} // end "if (machine._38 != 0 && machine._51)"
 
-	float machineY;
+	f32 machineY;
 
 	if (machine.mPlayerIndex == 0) {
 		machineY = 115.0f;

@@ -1657,7 +1657,7 @@ void dirTypeVel(const JPAEmitterWorkData* workData, const JPABaseParticle* parti
  * @note Address: 0x8008C950
  * @note Size: 0x1C
  */
-void dirTypePos(const JPAEmitterWorkData* workData, const JPABaseParticle* particle, JGeometry::TVec3<float>* direction)
+void dirTypePos(const JPAEmitterWorkData* workData, const JPABaseParticle* particle, JGeometry::TVec3<f32>* direction)
 {
 	*direction = particle->mPosition;
 }
@@ -1762,7 +1762,7 @@ void dirTypePrevPtcl(const JPAEmitterWorkData* work, const JPABaseParticle* ptcl
  * @note Address: 0x8008CA88
  * @note Size: 0x40
  */
-void rotTypeY(float, float, float (&)[3][4])
+void rotTypeY(f32, f32, f32 (&)[3][4])
 {
 	/*
 	stfs     f2, 0(r3)
@@ -1788,7 +1788,7 @@ void rotTypeY(float, float, float (&)[3][4])
  * @note Address: 0x8008CAC8
  * @note Size: 0x40
  */
-void rotTypeX(float, float, float (&)[3][4])
+void rotTypeX(f32, f32, f32 (&)[3][4])
 {
 	/*
 	lfs      f4, lbl_80516B4C@sda21(r2)
@@ -1814,7 +1814,7 @@ void rotTypeX(float, float, float (&)[3][4])
  * @note Address: 0x8008CB08
  * @note Size: 0x40
  */
-void rotTypeZ(float, float, float (&)[3][4])
+void rotTypeZ(f32, f32, f32 (&)[3][4])
 {
 	/*
 	fneg     f4, f1
@@ -1840,7 +1840,7 @@ void rotTypeZ(float, float, float (&)[3][4])
  * @note Address: 0x8008CB48
  * @note Size: 0x5C
  */
-void rotTypeXYZ(float, float, float (&)[3][4])
+void rotTypeXYZ(f32, f32, f32 (&)[3][4])
 {
 	/*
 	lfs      f3, lbl_80516B4C@sda21(r2)
@@ -3987,7 +3987,7 @@ void JPAParticleCallBack::draw(JPABaseEmitter*, JPABaseParticle* particle) { }
  * @note Address: 0x8008E96C
  * @note Size: 0x284
  */
-void makeColorTable(_GXColor**, const JPAClrAnmKeyData*, u8, short, JKRHeap*)
+void makeColorTable(_GXColor**, const JPAClrAnmKeyData*, u8, s16, JKRHeap*)
 {
 	/*
 	.loc_0x0:

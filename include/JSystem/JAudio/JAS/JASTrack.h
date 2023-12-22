@@ -74,7 +74,7 @@ struct JASOuterParam {
 	void setOuterUpdate(u16 newValue);
 	u16 getOuterUpdate();
 	s16 getIntFirFilter(u8 index);
-	void setFirFilter(short*);
+	void setFirFilter(s16*);
 	void onSwitch(u16);
 	f32 getTempo() const;
 
@@ -168,11 +168,11 @@ struct JASTrack : JSUList<JASChannel> {
 	bool tryInterrupt();
 	void assignExtBuffer(JASOuterParam*);
 	void connectBus(int, int);
-	int noteOn(u8, long, long, long, u32);
+	int noteOn(u8, s32, s32, s32, u32);
 	void overwriteOsc(JASChannel*);
 	bool noteOff(u8, u16);
-	int gateOn(u8, long, long, long);
-	BOOL checkNoteStop(long);
+	int gateOn(u8, s32, s32, s32);
+	BOOL checkNoteStop(s32);
 	void oscSetupFull(u8, u32, u32);
 	void oscSetupSimpleEnv(u8, u32);
 	void oscSetupSimple(u8);
@@ -181,9 +181,9 @@ struct JASTrack : JSUList<JASChannel> {
 	void updateTrack(u32);
 	void updateTempo();
 	void updateSeq(u32, bool);
-	void seqTimeToDspTime(long, u8);
+	void seqTimeToDspTime(s32, u8);
 	void setParam(int, f32, int);
-	bool setSeqData(u8*, long);
+	bool setSeqData(u8*, s32);
 	bool startSeq();
 	bool stopSeq();
 	void stopSeqMain();
@@ -209,7 +209,7 @@ struct JASTrack : JSUList<JASChannel> {
 	void setNoteMask(u8);
 	void muteTrack(bool);
 
-	static long rootCallback(void*);
+	static s32 rootCallback(void*);
 	static void channelUpdateCallback(u32, JASChannel*, JASDsp::TChannel*, void*);
 	static void newMemPool(int);
 	static void registerSeqCallback(SeqCallback);
@@ -257,7 +257,7 @@ struct JASTrack : JSUList<JASChannel> {
 	u8 _298[0x10];                     // _298 - unknown
 	JASOscillator::Data _2A8[2];       // _2A8
 	u32 _2D8[2];                       // _2D8
-	short _2E0[12];                    // _2E0
+	s16 _2E0[12];                    // _2E0
 	JASTrack* _2F8;                    // _2F8
 	JASTrack* _2FC[16];                // _2FC
 	JASOuterParam* mExtBuffer;         // _33C

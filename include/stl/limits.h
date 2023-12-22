@@ -51,10 +51,10 @@ public:
 };
 
 template <>
-class numeric_limits<short> {
+class numeric_limits<s16> {
 public:
-	inline static short min() { return -0x8000; }
-	inline static short max() { return 0x7FFF; }
+	inline static s16 min() { return -0x8000; }
+	inline static s16 max() { return 0x7FFF; }
 };
 
 template <>
@@ -65,38 +65,38 @@ public:
 };
 
 template <>
-class numeric_limits<long> {
+class numeric_limits<s32> {
 public:
-	inline static long min() { return -0x80000000; }
-	inline static long max() { return 0x7FFFFFFF; }
+	inline static s32 min() { return -0x80000000; }
+	inline static s32 max() { return 0x7FFFFFFF; }
 };
 
 template <>
-class numeric_limits<unsigned char> {
+class numeric_limits<u8> {
 public:
-	inline static unsigned char min() { return 0x0; }
-	inline static unsigned char max() { return 0xFF; }
+	inline static u8 min() { return 0x0; }
+	inline static u8 max() { return 0xFF; }
 };
 
 template <>
-class numeric_limits<unsigned short> {
+class numeric_limits<u16> {
 public:
-	inline static unsigned short min() { return 0x0; }
-	inline static unsigned short max() { return 0xFFFF; }
+	inline static u16 min() { return 0x0; }
+	inline static u16 max() { return 0xFFFF; }
 };
 
 template <>
-class numeric_limits<unsigned int> {
+class numeric_limits<uint> {
 public:
-	inline static unsigned int min() { return 0x0; }
-	inline static unsigned int max() { return 0xFFFFFFFF; }
+	inline static uint min() { return 0x0; }
+	inline static uint max() { return 0xFFFFFFFF; }
 };
 
 template <>
-class numeric_limits<unsigned long> {
+class numeric_limits<u32> {
 public:
-	inline static unsigned long min() { return 0x0; }
-	inline static unsigned long max() { return 0xFFFFFFFF; }
+	inline static u32 min() { return 0x0; }
+	inline static u32 max() { return 0xFFFFFFFF; }
 };
 
 } // namespace std

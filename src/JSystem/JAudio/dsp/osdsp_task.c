@@ -1,7 +1,7 @@
 #include "JSystem/JAudio/DSP.h"
 #include "Dolphin/hw_regs.h"
 
-static volatile u8 DSP_prior_yield;
+static vu8 DSP_prior_yield;
 static int AUDIO_UPDATE_REQUEST;
 DSPTaskInfo* DSP_prior_task;
 static u32 sync_stack[3];

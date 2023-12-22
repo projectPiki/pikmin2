@@ -41,7 +41,7 @@ Pikmin::TBoidParamMgr::TBoidParamMgr()
  * @note Address: N/A
  * @note Size: 0x4C
  */
-/* void Pikmin::TBoidParamMgr::startState((ebi::title::Pikmin::TBoidParamMgr::enumState, float))
+/* void Pikmin::TBoidParamMgr::startState((ebi::title::Pikmin::TBoidParamMgr::enumState, f32))
 {
     // UNUSED FUNCTION
 } */
@@ -490,7 +490,7 @@ bool Pikmin::TMgr::isAssemble()
  * @note Address: 0x803E528C
  * @note Size: 0x10
  */
-Pikmin::TUnit* Pikmin::TMgr::getUnit(long idx) { return &mUnits[idx]; }
+Pikmin::TUnit* Pikmin::TMgr::getUnit(s32 idx) { return &mUnits[idx]; }
 
 /**
  * @note Address: 0x803E529C

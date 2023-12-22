@@ -11,7 +11,7 @@ JSUInputStream::~JSUInputStream() { }
  * @note Address: 0x800263D4
  * @note Size: 0x58
  */
-s32 JSUInputStream::read(void* data, long length)
+s32 JSUInputStream::read(void* data, s32 length)
 {
 	int len = readData(data, length);
 	if (len != length) {
@@ -46,7 +46,7 @@ char* JSUInputStream::read(char* str)
  * @note Address: 0x800264DC
  * @note Size: 0x88
  */
-s32 JSUInputStream::skip(long val)
+s32 JSUInputStream::skip(s32 val)
 {
 	char unk;
 	int i;
@@ -86,9 +86,9 @@ u32 JSURandomInputStream::align(s32 arg0)
  * @note Address: 0x800265F0
  * @note Size: 0x5C
  */
-s32 JSURandomInputStream::skip(long offset)
+s32 JSURandomInputStream::skip(s32 offset)
 {
-	long tmp = seekPos(offset, SEEK_CUR);
+	s32 tmp = seekPos(offset, SEEK_CUR);
 	if (tmp != offset) {
 		mIsEOFMaybe |= 1;
 	}
@@ -99,7 +99,7 @@ s32 JSURandomInputStream::skip(long offset)
  * @note Address: 0x8002664C
  * @note Size: 0xBC
  */
-size_t JSURandomInputStream::peek(void* buffer, long byteCount)
+size_t JSURandomInputStream::peek(void* buffer, s32 byteCount)
 {
 	int dataLength;
 	int position;
@@ -118,7 +118,7 @@ size_t JSURandomInputStream::peek(void* buffer, long byteCount)
  * @note Address: 0x80026708
  * @note Size: 0x44
  */
-void JSURandomInputStream::seek(long offset, JSUStreamSeekFrom mode)
+void JSURandomInputStream::seek(s32 offset, JSUStreamSeekFrom mode)
 {
 	seekPos(offset, mode);
 	mIsEOFMaybe &= ~1;

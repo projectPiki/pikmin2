@@ -113,7 +113,7 @@ BOOL OSJoinThread(OSThread* thread, void** val);
 BOOL OSSetThreadPriority(OSThread* thread, OSPriority prio);
 OSThread* OSSetIdleFunction(OSIdleFunction idleFunc, void* param, void* stack, u32 stackSize);
 OSThread* OSGetIdleFunction();
-long OSCheckActiveThreads();
+s32 OSCheckActiveThreads();
 
 //////////////////////////////////
 

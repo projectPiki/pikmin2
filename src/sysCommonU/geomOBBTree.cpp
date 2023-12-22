@@ -1012,7 +1012,7 @@ void OBB::determineDivPlane(Sys::VertexTable& vertTable, Sys::TriangleTable& tri
 		// loop through all triangles
 		for (int j = 0; j < mTriIndexList.mCount; j++) {
 			Triangle* currTri = &triTable.mObjects[mTriIndexList.mObjects[j]];
-			float triDist     = currTri->calcDist(currPlane, vertTable);
+			f32 triDist     = currTri->calcDist(currPlane, vertTable);
 			if (triDist > 0.0f) { // triangle above plane
 				numAbove += 1;
 			} else if (triDist < 0.0f) { // triangle below plane
@@ -1191,7 +1191,7 @@ bool OBB::divide(Sys::VertexTable& vertTable, Sys::TriangleTable& triTable)
 
 	for (int i = 0; i < mTriIndexList.mCount; i++) {
 		Triangle* currTri = &triTable.mObjects[mTriIndexList.mObjects[i]];
-		float triDist     = currTri->calcDist(mDivPlane, vertTable);
+		f32 triDist     = currTri->calcDist(mDivPlane, vertTable);
 		if (triDist > 0.0f) {
 			numAbove += 1;
 		} else if (triDist < 0.0f) {
@@ -1794,7 +1794,7 @@ void OBBTree::traceMove_global(Game::MoveInfo& info, f32) { traceMove_new_global
  * @note Address: N/A
  * @note Size: 0x3A4
  */
-void OBBTree::traceMove_original(Matrixf&, Matrixf&, Game::MoveInfo&, float)
+void OBBTree::traceMove_original(Matrixf&, Matrixf&, Game::MoveInfo&, f32)
 {
 	// UNUSED FUNCTION
 }
@@ -2542,7 +2542,7 @@ bool OBB::findRayIntersectionTriList(Sys::RayIntersectInfo& rayInfo, Matrixf& tr
 		if (rayInfo.condition(*currTri) && currTri->intersect(rayInfo.mIntersectEdge, rayInfo.mRadius, intersectVec)) {
 			isIntersect     = true;
 			Vector3f sepVec = intersectVec - rayInfo.mIntersectEdge.mStartPos;
-			float sqSep     = sepVec.x * sepVec.x + sepVec.y * sepVec.y + sepVec.z * sepVec.z;
+			f32 sqSep     = sepVec.x * sepVec.x + sepVec.y * sepVec.y + sepVec.z * sepVec.z;
 			if (sqSep < rayInfo.mDistance) {
 				rayInfo.mDistance          = sqSep;
 				rayInfo.mIntersectPosition = transformMtx.mtxMult(intersectVec);

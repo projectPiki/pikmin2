@@ -1109,7 +1109,7 @@ JAIStream* JAIBasic::makeStream()
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIBasic::allocStreamBuffer(void*, long)
+void JAIBasic::allocStreamBuffer(void*, s32)
 {
 	// UNUSED FUNCTION
 }
@@ -1236,7 +1236,7 @@ void JAIBasic::resumeAudio()
  * @note Address: 0x800AD05C
  * @note Size: 0x168
  */
-long JAIBasic::stopCallBack(void*)
+s32 JAIBasic::stopCallBack(void*)
 {
 	if (msAudioStopTime == msBasic->_10) {
 		msStopStatus = 3;

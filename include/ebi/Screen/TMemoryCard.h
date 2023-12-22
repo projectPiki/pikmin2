@@ -72,7 +72,7 @@ struct TMemoryCard {
 	void loadResource(JKRHeap*);
 	void setArchive(JKRArchive*);
 	void destroyResource();
-	void open(long);
+	void open(s32);
 	void close();
 	void killScreen();
 	void setSelect_(bool);

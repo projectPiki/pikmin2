@@ -21,7 +21,7 @@ struct JASAudioThread : public JKRThread {
 	static void DMACallback();
 	static void DSPCallback(void*);
 
-	static void create(long);
+	static void create(s32);
 	static void stop();
 
 	// unused/inlined:

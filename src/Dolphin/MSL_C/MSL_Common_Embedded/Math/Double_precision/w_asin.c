@@ -1,11 +1,13 @@
-extern double __ieee754_asin();
+#include "types.h"
+
+extern f64 __ieee754_asin();
 
 /**
  * @note Address: 0x800CF96C
  * @note Size: 0x20
  */
 
-double asin(double __x) { return (double)__ieee754_asin(); }
+f64 asin(f64 __x) { return (f64)__ieee754_asin(); }
 
 /*
 .loc_0x0:

@@ -359,7 +359,7 @@ void J3DTexMtx::load(u32 p1) const
 void J3DTexMtx::loadTexMtx(u32 p1) const
 {
 	__GDCheckOverflowed(0x35);
-	J3DGDLoadTexMtxImm(const_cast<float(*)[4]>(mMtx), p1 * 3 + 30, (_GXTexMtxType)mTexMtxInfo.mProjection);
+	J3DGDLoadTexMtxImm(const_cast<f32(*)[4]>(mMtx), p1 * 3 + 30, (_GXTexMtxType)mTexMtxInfo.mProjection);
 }
 
 /**
@@ -735,7 +735,7 @@ lbl_80064720:
 void J3DTexMtx::loadPostTexMtx(u32 p1) const
 {
 	__GDCheckOverflowed(0x35);
-	J3DGDLoadPostTexMtxImm(const_cast<float(*)[4]>(mMtx), p1 * 3 + 0x40);
+	J3DGDLoadPostTexMtxImm(const_cast<f32(*)[4]>(mMtx), p1 * 3 + 0x40);
 }
 
 /**
@@ -1099,7 +1099,7 @@ void J3DGDLoadPostTexMtxImm(Mtx, u32)
  * @note Address: 0x80064CF4
  * @note Size: 0x20
  */
-void J3DTexMtx::calc(const float (*mtx)[4]) { calcTexMtx(mtx); }
+void J3DTexMtx::calc(const f32 (*mtx)[4]) { calcTexMtx(mtx); }
 
 /**
  * @note Address: 0x80064D14

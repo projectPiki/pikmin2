@@ -88,9 +88,9 @@ struct MemoryCardMgr {
 	void setCommand(int);
 	bool setCommand(MemoryCardMgrCommandBase*);
 	void releaseCurrentCommand();
-	bool write(ECardSlot, const char*, u8*, long, long);
+	bool write(ECardSlot, const char*, u8*, s32, s32);
 	bool checkCardStat(ECardSlot, CARDFileInfo*);
-	bool read(ECardSlot, const char*, u8*, long, long);
+	bool read(ECardSlot, const char*, u8*, s32, s32);
 	void format(ECardSlot);
 	void attach(ECardSlot);
 	void detach(ECardSlot);

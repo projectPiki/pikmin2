@@ -38,7 +38,7 @@ bool TChibiHit::create(Arg* arg)
 	P2ASSERTLINE(23, nameCheck);
 	f32 scale = static_cast<ArgScale*>(arg)->mScale;
 	if (TSimple4::create(arg)) {
-		volatile f32 test[3];
+		vf32 test[3];
 		test[0] = scale;
 		mEmitters[0]->setScale(scale);
 		test[1] = scale;

@@ -892,7 +892,7 @@ bool ParticleMgr::cullByResFlg(JPABaseEmitter* emit)
 
 	Sys::Sphere bound;
 	u32 flag = emit->mResource->mDynamicsBlock->mData->mResUserWork;
-	float radius;
+	f32 radius;
 	if (flag & 0x20) {
 		if (flag & 0x10) {
 			radius = mClipRadiusL;

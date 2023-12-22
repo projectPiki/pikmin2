@@ -168,7 +168,7 @@ void hannWindow(s16*, u32 x)
 }
 
 // required to get clamp to generate
-void fake(long x) { clamp<s16, long>(x); }
+void fake(s32 x) { clamp<s16, s32>(x); }
 
 /**
  * @note Address: N/A
@@ -183,7 +183,7 @@ void hammWindow(s16*, u32)
  * @note Address: N/A
  * @note Size: 0x4CC
  */
-void fft(float*, float*, u32, long)
+void fft(f32*, f32*, u32, s32)
 {
 	// UNUSED FUNCTION
 }

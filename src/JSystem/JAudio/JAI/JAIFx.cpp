@@ -19,7 +19,7 @@ void JAInter::Fx::init()
 {
 	if (initOnCodeFxScene) {
 		mBufferSizeMax = new (JAIGetCurrentHeap(), 4) u32[4];
-		mBufferPointer = new (JAIGetCurrentHeap(), 4) short*[4];
+		mBufferPointer = new (JAIGetCurrentHeap(), 4) s16*[4];
 		Init* init     = initOnCodeFxScene;
 		setSceneMax(init->mSceneMax);
 		setBufferMax(init->mBufferMax1, init->mBufferMax2, init->mBufferMax3, init->mBufferMax4);

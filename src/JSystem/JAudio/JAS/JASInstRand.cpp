@@ -36,13 +36,13 @@
  * @note Address: 0x8009B4E8
  * @note Size: 0xA4
  */
-float JASInstRand::getY(int, int) const
+f32 JASInstRand::getY(int, int) const
 {
 	// static JMath::TRandom_fast_ oRandom(0);
 	// oRandom.value = oRandom.value * 1664525 + 1013904223;
-	// return -((1.0f - __float_epsilon) * 1.0f - ((float)(oRandom.value >> 9 | 0x3f800000) - 1.0f) * 2.0f) * _0C + _08;
+	// return -((1.0f - __float_epsilon) * 1.0f - ((f32)(oRandom.value >> 9 | 0x3f800000) - 1.0f) * 2.0f) * _0C + _08;
 
-	float v = -((1.0f - __float_epsilon[0]) * 1.0f - JALCalc::getRandom_0_1() * 2.0f);
+	f32 v = -((1.0f - __float_epsilon[0]) * 1.0f - JALCalc::getRandom_0_1() * 2.0f);
 	v *= _0C;
 	v += _08;
 	return v;

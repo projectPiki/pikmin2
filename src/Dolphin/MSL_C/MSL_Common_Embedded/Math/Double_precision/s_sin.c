@@ -45,12 +45,12 @@
 #include "fdlibm.h"
 
 #ifdef __STDC__
-double sin(double x)
+f64 sin(f64 x)
 #else
-double sin(x) double x;
+f64 sin(x) f64 x;
 #endif
 {
-	double y[2], z = 0.0;
+	f64 y[2], z = 0.0;
 	int n, ix;
 
 	/* High word of x. */

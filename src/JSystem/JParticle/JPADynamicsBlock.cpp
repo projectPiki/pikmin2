@@ -121,7 +121,7 @@ void JPAVolumeLine(JPAEmitterWorkData* workData)
 {
 	if (workData->mEmitter->mResource->mDynamicsBlock->castData()->mFlags & 2) {
 		workData->mVolumePos = JGeometry::TVec3f(
-		    0.0f, 0.0f, workData->mVolumeSize * ((float)workData->mVolumeEmitIdx / ((float)workData->mCreateNumber - 1.0f) - 0.5f));
+		    0.0f, 0.0f, workData->mVolumeSize * ((f32)workData->mVolumeEmitIdx / ((f32)workData->mCreateNumber - 1.0f) - 0.5f));
 		workData->mVolumeEmitIdx++;
 	} else {
 		workData->mVolumePos = JGeometry::TVec3f(0.0f, 0.0f, workData->mVolumeSize * (workData->mEmitter->mRandom.nextFloat_0_1() - 0.5f));

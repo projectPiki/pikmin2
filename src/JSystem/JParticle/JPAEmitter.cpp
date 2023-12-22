@@ -392,7 +392,7 @@ void JPABaseEmitter::calcEmitterGlobalPosition(JGeometry::TVec3f* p1) const
  * @note Address: N/A
  * @note Size: 0x24
  */
-void JPABaseEmitter::getEmitterAxisX(JGeometry::TVec3<float>*) const
+void JPABaseEmitter::getEmitterAxisX(JGeometry::TVec3<f32>*) const
 {
 	// UNUSED FUNCTION
 }
@@ -401,7 +401,7 @@ void JPABaseEmitter::getEmitterAxisX(JGeometry::TVec3<float>*) const
  * @note Address: N/A
  * @note Size: 0x24
  */
-void JPABaseEmitter::getEmitterAxisY(JGeometry::TVec3<float>*) const
+void JPABaseEmitter::getEmitterAxisY(JGeometry::TVec3<f32>*) const
 {
 	// UNUSED FUNCTION
 }
@@ -410,7 +410,7 @@ void JPABaseEmitter::getEmitterAxisY(JGeometry::TVec3<float>*) const
  * @note Address: N/A
  * @note Size: 0x24
  */
-void JPABaseEmitter::getEmitterAxisZ(JGeometry::TVec3<float>*) const
+void JPABaseEmitter::getEmitterAxisZ(JGeometry::TVec3<f32>*) const
 {
 	// UNUSED FUNCTION
 }

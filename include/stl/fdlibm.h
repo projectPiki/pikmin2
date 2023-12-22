@@ -1,6 +1,8 @@
 #ifndef _FDLIBM_H
 #define _FDLIBM_H
 
+#include "types.h"
+
 /* @(#)fdlibm.h 1.5 04/04/22 */
 /**
  * ====================================================
@@ -48,7 +50,7 @@ extern "C" {
 
 extern int signgam;
 
-#define MAXFLOAT ((float)3.40282346638528860e+38)
+#define MAXFLOAT ((f32)3.40282346638528860e+38)
 
 enum fdversion { fdlibm_ieee = -1, fdlibm_svid, fdlibm_xopen, fdlibm_posix };
 
@@ -72,9 +74,9 @@ extern _LIB_VERSION_TYPE _LIB_VERSION;
 struct exception {
 	int type;
 	char* name;
-	double arg1;
-	double arg2;
-	double retval;
+	f64 arg1;
+	f64 arg2;
+	f64 retval;
 };
 
 #define HUGE MAXFLOAT
@@ -96,59 +98,59 @@ struct exception {
 /**
  * ANSI/POSIX
  */
-extern double acos __P((double));
-extern double asin __P((double));
-extern double atan __P((double));
-extern double atan2 __P((double, double));
-extern double cos __P((double));
-extern double sin __P((double));
-extern double tan __P((double));
+extern f64 acos __P((f64));
+extern f64 asin __P((f64));
+extern f64 atan __P((f64));
+extern f64 atan2 __P((f64, f64));
+extern f64 cos __P((f64));
+extern f64 sin __P((f64));
+extern f64 tan __P((f64));
 
-extern double cosh __P((double));
-extern double sinh __P((double));
-extern double tanh __P((double));
+extern f64 cosh __P((f64));
+extern f64 sinh __P((f64));
+extern f64 tanh __P((f64));
 
-extern double exp __P((double));
-extern double frexp __P((double, int*));
-extern double ldexp __P((double, int));
-extern double scalbn __P((double, int));
-extern double log __P((double));
-extern double log10 __P((double));
-extern double modf __P((double, double*));
+extern f64 exp __P((f64));
+extern f64 frexp __P((f64, int*));
+extern f64 ldexp __P((f64, int));
+extern f64 scalbn __P((f64, int));
+extern f64 log __P((f64));
+extern f64 log10 __P((f64));
+extern f64 modf __P((f64, f64*));
 
-extern double pow __P((double, double));
-extern double sqrt __P((double));
+extern f64 pow __P((f64, f64));
+extern f64 sqrt __P((f64));
 
-extern double ceil __P((double));
-extern double fabs __P((double));
-extern double floor __P((double));
-extern double fmod __P((double, double));
+extern f64 ceil __P((f64));
+extern f64 fabs __P((f64));
+extern f64 floor __P((f64));
+extern f64 fmod __P((f64, f64));
 
-extern double erf __P((double));
-extern double erfc __P((double));
-extern double gamma __P((double));
-extern double hypot __P((double, double));
-extern int isnan __P((double));
-extern int finite __P((double));
-extern double j0 __P((double));
-extern double j1 __P((double));
-extern double jn __P((int, double));
-extern double lgamma __P((double));
-extern double y0 __P((double));
-extern double y1 __P((double));
-extern double yn __P((int, double));
+extern f64 erf __P((f64));
+extern f64 erfc __P((f64));
+extern f64 gamma __P((f64));
+extern f64 hypot __P((f64, f64));
+extern int isnan __P((f64));
+extern int finite __P((f64));
+extern f64 j0 __P((f64));
+extern f64 j1 __P((f64));
+extern f64 jn __P((int, f64));
+extern f64 lgamma __P((f64));
+extern f64 y0 __P((f64));
+extern f64 y1 __P((f64));
+extern f64 yn __P((int, f64));
 
-extern double acosh __P((double));
-extern double asinh __P((double));
-extern double atanh __P((double));
-extern double cbrt __P((double));
-extern double logb __P((double));
-extern double nextafter __P((double, double));
-extern double remainder __P((double, double));
+extern f64 acosh __P((f64));
+extern f64 asinh __P((f64));
+extern f64 atanh __P((f64));
+extern f64 cbrt __P((f64));
+extern f64 logb __P((f64));
+extern f64 nextafter __P((f64, f64));
+extern f64 remainder __P((f64, f64));
 #ifdef _SCALB_INT
-extern double scalb __P((double, int));
+extern f64 scalb __P((f64, int));
 #else
-extern double scalb __P((double, double));
+extern f64 scalb __P((f64, f64));
 #endif
 
 extern int matherr __P((struct exception*));
@@ -156,70 +158,70 @@ extern int matherr __P((struct exception*));
 /**
  * IEEE Test Vector
  */
-extern double significand __P((double));
+extern f64 significand __P((f64));
 
 /**
  * Functions callable from C, intended to support IEEE arithmetic.
  */
-extern double copysign __P((double, double));
-extern int ilogb __P((double));
-extern double rint __P((double));
-extern double scalbn __P((double, int));
+extern f64 copysign __P((f64, f64));
+extern int ilogb __P((f64));
+extern f64 rint __P((f64));
+extern f64 scalbn __P((f64, int));
 
 /**
  * BSD math library entry points
  */
-extern double expm1 __P((double));
-extern double log1p __P((double));
+extern f64 expm1 __P((f64));
+extern f64 log1p __P((f64));
 
 /**
  * Reentrant version of gamma & lgamma; passes signgam back by reference
  * as the second argument; user must allocate space for signgam.
  */
 #ifdef _REENTRANT
-extern double gamma_r __P((double, int*));
-extern double lgamma_r __P((double, int*));
+extern f64 gamma_r __P((f64, int*));
+extern f64 lgamma_r __P((f64, int*));
 #endif /* _REENTRANT */
 
 /* ieee style elementary functions */
-extern double __ieee754_sqrt __P((double));
-extern double __ieee754_acos __P((double));
-extern double __ieee754_acosh __P((double));
-extern double __ieee754_log __P((double));
-extern double __ieee754_atanh __P((double));
-extern double __ieee754_asin __P((double));
-extern double __ieee754_atan2 __P((double, double));
-extern double __ieee754_exp __P((double));
-extern double __ieee754_cosh __P((double));
-extern double __ieee754_fmod __P((double, double));
-extern double __ieee754_pow __P((double, double));
-extern double __ieee754_lgamma_r __P((double, int*));
-extern double __ieee754_gamma_r __P((double, int*));
-extern double __ieee754_lgamma __P((double));
-extern double __ieee754_gamma __P((double));
-extern double __ieee754_log10 __P((double));
-extern double __ieee754_sinh __P((double));
-extern double __ieee754_hypot __P((double, double));
-extern double __ieee754_j0 __P((double));
-extern double __ieee754_j1 __P((double));
-extern double __ieee754_y0 __P((double));
-extern double __ieee754_y1 __P((double));
-extern double __ieee754_jn __P((int, double));
-extern double __ieee754_yn __P((int, double));
-extern double __ieee754_remainder __P((double, double));
-extern int __ieee754_rem_pio2 __P((double, double*));
+extern f64 __ieee754_sqrt __P((f64));
+extern f64 __ieee754_acos __P((f64));
+extern f64 __ieee754_acosh __P((f64));
+extern f64 __ieee754_log __P((f64));
+extern f64 __ieee754_atanh __P((f64));
+extern f64 __ieee754_asin __P((f64));
+extern f64 __ieee754_atan2 __P((f64, f64));
+extern f64 __ieee754_exp __P((f64));
+extern f64 __ieee754_cosh __P((f64));
+extern f64 __ieee754_fmod __P((f64, f64));
+extern f64 __ieee754_pow __P((f64, f64));
+extern f64 __ieee754_lgamma_r __P((f64, int*));
+extern f64 __ieee754_gamma_r __P((f64, int*));
+extern f64 __ieee754_lgamma __P((f64));
+extern f64 __ieee754_gamma __P((f64));
+extern f64 __ieee754_log10 __P((f64));
+extern f64 __ieee754_sinh __P((f64));
+extern f64 __ieee754_hypot __P((f64, f64));
+extern f64 __ieee754_j0 __P((f64));
+extern f64 __ieee754_j1 __P((f64));
+extern f64 __ieee754_y0 __P((f64));
+extern f64 __ieee754_y1 __P((f64));
+extern f64 __ieee754_jn __P((int, f64));
+extern f64 __ieee754_yn __P((int, f64));
+extern f64 __ieee754_remainder __P((f64, f64));
+extern int __ieee754_rem_pio2 __P((f64, f64*));
 #ifdef _SCALB_INT
-extern double __ieee754_scalb __P((double, int));
+extern f64 __ieee754_scalb __P((f64, int));
 #else
-extern double __ieee754_scalb __P((double, double));
+extern f64 __ieee754_scalb __P((f64, f64));
 #endif
 
 /* fdlibm kernel function */
-extern double __kernel_standard __P((double, double, int));
-extern double __kernel_sin __P((double, double, int));
-extern double __kernel_cos __P((double, double));
-extern double __kernel_tan __P((double, double, int));
-extern int __kernel_rem_pio2 __P((double*, double*, int, int, int, const int*));
+extern f64 __kernel_standard __P((f64, f64, int));
+extern f64 __kernel_sin __P((f64, f64, int));
+extern f64 __kernel_cos __P((f64, f64));
+extern f64 __kernel_tan __P((f64, f64, int));
+extern int __kernel_rem_pio2 __P((f64*, f64*, int, int, int, const int*));
 
 #ifdef __cplusplus
 };

@@ -849,7 +849,7 @@ bool JKRExpHeap::dump()
 		                   block->getAlignment(), block->mPrev, block->mNext);
 		freeCount++;
 	}
-	float percent = ((float)usedBytes / (float)mHeapSize) * 100.0f;
+	f32 percent = ((f32)usedBytes / (f32)mHeapSize) * 100.0f;
 	JUTReportConsole_f("%d / %d bytes (%6.2f%%) used (U:%d F:%d)\n", usedBytes, mHeapSize, percent, usedCount, freeCount);
 	unlock();
 	return result;
@@ -905,7 +905,7 @@ bool JKRExpHeap::dump_sort()
 		                   block->getAlignment(), block->mPrev, block->mNext);
 		freeCount++;
 	}
-	float percent = ((float)usedBytes / (float)mHeapSize) * 100.0f;
+	f32 percent = ((f32)usedBytes / (f32)mHeapSize) * 100.0f;
 	JUTReportConsole_f("%d / %d bytes (%6.2f%%) used (U:%d F:%d)\n", usedBytes, mHeapSize, percent, usedCount, freeCount);
 	unlock();
 	return result;

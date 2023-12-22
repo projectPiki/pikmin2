@@ -159,7 +159,7 @@ J2DPicture::J2DPicture()
  * @note Address: 0x80039BA0
  * @note Size: 0x4
  */
-// JGeometry::TVec2<short>::TVec2() { }
+// JGeometry::TVec2<s16>::TVec2() { }
 
 /**
  * @note Address: 0x80039BA4
@@ -2654,7 +2654,7 @@ void J2DPicture::drawOut(const JGeometry::TBox2<f32>&, const JGeometry::TBox2<f3
  * @note Address: 0x8003C324
  * @note Size: 0x23C
  */
-void J2DPicture::drawTexCoord(f32, f32, f32, f32, short, short, short, short, short, short, short, short, f32 (*)[3][4])
+void J2DPicture::drawTexCoord(f32, f32, f32, f32, s16, s16, s16, s16, s16, s16, s16, s16, f32 (*)[3][4])
 {
 	/*
 	.loc_0x0:
@@ -3423,7 +3423,7 @@ void J2DPicture::getNewColor(JUtility::TColor* newColor)
  * @note Address: 0x8003CE24
  * @note Size: 0x44
  */
-void J2DPicture::setTexCoord(const JGeometry::TVec2<short>* coords)
+void J2DPicture::setTexCoord(const JGeometry::TVec2<s16>* coords)
 {
 	for (int i = 0; i < 4; i++) {
 		mTexCoords[i].x = coords[i].x;
@@ -3445,7 +3445,7 @@ void J2DPicture::setTexCoord(const JUTTexture* texture, J2DBinding binding, J2DM
  * @note Address: 0x8003CEA4
  * @note Size: 0x318
  */
-void J2DPicture::setTexCoord(JGeometry::TVec2<short>*, const JUTTexture*, J2DBinding, J2DMirror, bool)
+void J2DPicture::setTexCoord(JGeometry::TVec2<s16>*, const JUTTexture*, J2DBinding, J2DMirror, bool)
 {
 	/*
 	.loc_0x0:

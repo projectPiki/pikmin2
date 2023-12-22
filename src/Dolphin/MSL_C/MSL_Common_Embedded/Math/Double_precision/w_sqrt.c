@@ -1,11 +1,13 @@
-extern double __ieee754_sqrt();
+#include "types.h"
+
+extern f64 __ieee754_sqrt();
 
 /**
  * @note Address: 0x800CFCBC
  * @note Size: 0x20
  */
 
-double sqrt(double __x) { return (double)__ieee754_sqrt(); }
+f64 sqrt(f64 __x) { return (f64)__ieee754_sqrt(); }
 
 /*
 .loc_0x0:

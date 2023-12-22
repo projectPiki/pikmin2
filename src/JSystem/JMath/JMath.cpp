@@ -68,7 +68,7 @@ void JMAQuatLerp(register const Quaternion* p, register const Quaternion* q, f32
  * @note Address: N/A
  * @note Size: 0x148
  */
-void JMALagrangeInterpolation(int, float*, float*, float)
+void JMALagrangeInterpolation(int, f32*, f32*, f32)
 {
 	// UNUSED FUNCTION
 }
@@ -229,7 +229,7 @@ void JMAMTXApplyScale(register const Mtx src, register Mtx dst, register f32 xSc
  * @note Address: N/A
  * @note Size: 0x74
  */
-void JMAMTXScaleApply(const float (*)[4], float (*)[4], float, float, float)
+void JMAMTXScaleApply(const f32 (*)[4], f32 (*)[4], f32, f32, f32)
 {
 	// UNUSED FUNCTION
 }

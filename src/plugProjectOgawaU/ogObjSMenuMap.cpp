@@ -2632,7 +2632,7 @@ void ObjSMenuMap::updateMap()
 		mCaveLabelTextBoxes[i]->setAlpha(mZoomCaveTextAlpha);
 	}
 
-	float scale = mCurrentZoom;
+	f32 scale = mCurrentZoom;
 	if (mDisp->mInCave)
 		scale *= 2.0f;
 	f32 mapX             = mMapPosition.x;

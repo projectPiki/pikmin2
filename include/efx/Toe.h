@@ -64,11 +64,11 @@ struct ToeHamonB {
 
 struct ToeKourin {
 
-	void create(Vector3f*, long);
+	void create(Vector3f*, s32);
 	void kill();
 
 	ContextChasePos mContext[1];
-	long mPikiKind;
+	s32 mPikiKind;
 };
 
 struct ToeMoeBC {

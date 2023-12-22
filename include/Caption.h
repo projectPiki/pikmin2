@@ -40,10 +40,10 @@ struct Mgr : public CNode {
 	P2JME::Caption::TControl* getFreeMessage();
 	void reset();
 	void resetMessageObjs();
-	void update(long);
+	void update(s32);
 
 	// Unused/inlined:
-	void setCurrentNode(long);
+	void setCurrentNode(s32);
 
 	P2JME::Caption::TControl* mControls; // _18
 	Node* mNode;                         // _1C

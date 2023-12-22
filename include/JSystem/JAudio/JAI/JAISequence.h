@@ -52,7 +52,7 @@ struct JAISequence : public JAISound {
 	void setSeqInterDolby(u8, f32, u32);
 	void setSeqTempoProportion(f32, u32);
 	void setSeqPortData(u8, u16, u32);
-	void setWaveReadMode(long, long);
+	void setWaveReadMode(s32, s32);
 	void setTrackVolume(u8, f32, u32);
 	void setTrackVolumeMulti(u8, u32, f32, u32);
 	void setTrackMuteSwitch(u8, u8);

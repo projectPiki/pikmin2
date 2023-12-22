@@ -36,7 +36,7 @@ struct JKRFileFinder : public JKRFileFinderBase {
 };
 
 struct JKRArcFinder : public JKRFileFinder {
-	JKRArcFinder(JKRArchive*, long, long);
+	JKRArcFinder(JKRArchive*, s32, s32);
 
 	virtual ~JKRArcFinder() { }  // _08 (weak)
 	virtual bool findNextFile(); // _0C

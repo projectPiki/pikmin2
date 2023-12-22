@@ -24,19 +24,19 @@ struct Module : public JADUtility::PrmSetBase {
 
 	// _00      = VTABLE
 	// _04-_64  = PrmSetBase
-	JADUtility::PrmSlider<short> _64;    // _64
-	JADUtility::PrmSlider<short> _94;    // _94
+	JADUtility::PrmSlider<s16> _64;      // _64
+	JADUtility::PrmSlider<s16> _94;      // _94
 	JADUtility::PrmSlider<u8> _C4;       // _C4
 	JADUtility::PrmRadioButton<s8> _F4;  // _F4
 	JADUtility::PrmSlider<u8> _124;      // _124
 	JADUtility::PrmSlider<u8> _154;      // _154
-	JADUtility::PrmSlider<short> _184;   // _184
-	JADUtility::PrmSlider<short> _1B4;   // _1B4
-	JADUtility::PrmSlider<short> _1E4;   // _1E4
+	JADUtility::PrmSlider<s16> _184;     // _184
+	JADUtility::PrmSlider<s16> _1B4;     // _1B4
+	JADUtility::PrmSlider<s16> _1E4;     // _1E4
 	JADUtility::PrmSlider<u8> _214;      // _214
 	JADUtility::PrmSlider<u8> _244;      // _244
 	JADUtility::PrmRadioButton<u8> _274; // _274
-	short _2A4;                          // _2A4
+	s16 _2A4;                            // _2A4
 	uint _2A8;                           // _2A8
 	u8 _2AC;                             // _2AC - unknown
 	uint _2B0;                           // _2B0

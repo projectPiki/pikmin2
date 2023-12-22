@@ -1,9 +1,9 @@
 #include "PowerPC_EABI_Support/MSL_C/MSL_Common/mem_funcs.h"
 
-#define srcCharPtr  ((unsigned char*)pSrc)
-#define destCharPtr ((unsigned char*)pDest)
-#define srcLongPtr  ((unsigned long*)pSrc)
-#define destLongPtr ((unsigned long*)pDest)
+#define srcCharPtr  ((u8*)pSrc)
+#define destCharPtr ((u8*)pDest)
+#define srcLongPtr  ((u32*)pSrc)
+#define destLongPtr ((u32*)pDest)
 
 /**
  * @note Address: N/A
@@ -27,11 +27,11 @@ void __move_mem(void)
  * @note Address: 0x800C736C
  * @note Size: 0xBC
  */
-void __copy_longs_aligned(void* pDest, const void* pSrc, unsigned long len)
+void __copy_longs_aligned(void* pDest, const void* pSrc, u32 len)
 {
-	unsigned long i = (-(unsigned long)pDest) & 3;
-	srcCharPtr      = ((unsigned char*)pSrc) - 1;
-	destCharPtr     = ((unsigned char*)pDest) - 1;
+	u32 i       = (-(u32)pDest) & 3;
+	srcCharPtr  = ((u8*)pSrc) - 1;
+	destCharPtr = ((u8*)pDest) - 1;
 
 	if (i != 0) {
 		len -= i;
@@ -41,8 +41,8 @@ void __copy_longs_aligned(void* pDest, const void* pSrc, unsigned long len)
 		} while (--i);
 	}
 
-	srcLongPtr  = ((unsigned long*)(srcCharPtr + 1)) - 1;
-	destLongPtr = ((unsigned long*)(destCharPtr + 1)) - 1;
+	srcLongPtr  = ((u32*)(srcCharPtr + 1)) - 1;
+	destLongPtr = ((u32*)(destCharPtr + 1)) - 1;
 
 	i = len >> 5;
 
@@ -67,8 +67,8 @@ void __copy_longs_aligned(void* pDest, const void* pSrc, unsigned long len)
 		} while (--i);
 	}
 
-	srcCharPtr  = ((unsigned char*)(srcLongPtr + 1)) - 1;
-	destCharPtr = ((unsigned char*)(destLongPtr + 1)) - 1;
+	srcCharPtr  = ((u8*)(srcLongPtr + 1)) - 1;
+	destCharPtr = ((u8*)(destLongPtr + 1)) - 1;
 
 	len &= 3;
 
@@ -83,12 +83,12 @@ void __copy_longs_aligned(void* pDest, const void* pSrc, unsigned long len)
  * @note Address: 0x800C72C4
  * @note Size: 0xA8
  */
-void __copy_longs_rev_aligned(void* pDest, const void* pSrc, unsigned long len)
+void __copy_longs_rev_aligned(void* pDest, const void* pSrc, u32 len)
 {
-	unsigned long i;
-	srcCharPtr  = ((unsigned char*)pSrc) + len;
-	destCharPtr = ((unsigned char*)pDest) + len;
-	i           = ((unsigned long)destCharPtr) & 3;
+	u32 i;
+	srcCharPtr  = ((u8*)pSrc) + len;
+	destCharPtr = ((u8*)pDest) + len;
+	i           = ((u32)destCharPtr) & 3;
 
 	if (i != 0) {
 		len -= i;
@@ -134,14 +134,14 @@ void __copy_longs_rev_aligned(void* pDest, const void* pSrc, unsigned long len)
  * @note Address: 0x800C7204
  * @note Size: 0xC0
  */
-void __copy_longs_unaligned(void* pDest, const void* pSrc, unsigned long len)
+void __copy_longs_unaligned(void* pDest, const void* pSrc, u32 len)
 {
-	unsigned long i, v1, v2;
-	unsigned int src, ls, rs;
+	u32 i, v1, v2;
+	uint src, ls, rs;
 
-	i           = (-(unsigned long)pDest) & 3;
-	srcCharPtr  = ((unsigned char*)pSrc) - 1;
-	destCharPtr = ((unsigned char*)pDest) - 1;
+	i           = (-(u32)pDest) & 3;
+	srcCharPtr  = ((u8*)pSrc) - 1;
+	destCharPtr = ((u8*)pDest) - 1;
 
 	if (i != 0) {
 		len -= i;
@@ -151,14 +151,14 @@ void __copy_longs_unaligned(void* pDest, const void* pSrc, unsigned long len)
 		} while (--i);
 	}
 
-	src = ((unsigned int)(srcCharPtr + 1)) & 3;
+	src = ((uint)(srcCharPtr + 1)) & 3;
 	ls  = src << 3;
 	rs  = 32 - ls;
 
 	srcCharPtr -= src;
 
-	srcLongPtr  = ((unsigned long*)(srcCharPtr + 1)) - 1;
-	destLongPtr = ((unsigned long*)(destCharPtr + 1)) - 1;
+	srcLongPtr  = ((u32*)(srcCharPtr + 1)) - 1;
+	destLongPtr = ((u32*)(destCharPtr + 1)) - 1;
 
 	i  = len >> 3;
 	v1 = *++srcLongPtr;
@@ -175,8 +175,8 @@ void __copy_longs_unaligned(void* pDest, const void* pSrc, unsigned long len)
 		*++destLongPtr = (v1 << ls) | (v2 >> rs);
 	}
 
-	srcCharPtr  = ((unsigned char*)(srcLongPtr + 1)) - 1;
-	destCharPtr = ((unsigned char*)(destLongPtr + 1)) - 1;
+	srcCharPtr  = ((u8*)(srcLongPtr + 1)) - 1;
+	destCharPtr = ((u8*)(destLongPtr + 1)) - 1;
 
 	len &= 3;
 
@@ -192,14 +192,14 @@ void __copy_longs_unaligned(void* pDest, const void* pSrc, unsigned long len)
  * @note Address: 0x800C7158
  * @note Size: 0xAC
  */
-void __copy_longs_rev_unaligned(void* pDest, const void* pSrc, unsigned long len)
+void __copy_longs_rev_unaligned(void* pDest, const void* pSrc, u32 len)
 {
-	unsigned long i, v1, v2;
-	unsigned int src, ls, rs;
+	u32 i, v1, v2;
+	uint src, ls, rs;
 
-	srcCharPtr  = ((unsigned char*)pSrc) + len;
-	destCharPtr = ((unsigned char*)pDest) + len;
-	i           = ((unsigned long)pDest) & 3;
+	srcCharPtr  = ((u8*)pSrc) + len;
+	destCharPtr = ((u8*)pDest) + len;
+	i           = ((u32)pDest) & 3;
 
 	if (i != 0) {
 		len -= i;
@@ -209,7 +209,7 @@ void __copy_longs_rev_unaligned(void* pDest, const void* pSrc, unsigned long len
 		} while (--i);
 	}
 
-	src = ((unsigned int)(srcCharPtr)) & 3;
+	src = ((uint)(srcCharPtr)) & 3;
 	ls  = src << 3;
 	rs  = 32 - ls;
 

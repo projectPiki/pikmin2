@@ -11,8 +11,8 @@ static u32 channel_mask[PAD_MAX_CONTROLLERS]               = { 0x80000000, 0x400
 
 JUTGamePad::EStickMode JUTGamePad::sStickMode    = MODE_1;
 int JUTGamePad::sClampMode                       = 1;
-float JUTGamePad::CStick::sPressPoint            = 0.5f;
-float JUTGamePad::CStick::sReleasePoint          = 0.25f;
+f32 JUTGamePad::CStick::sPressPoint            = 0.5f;
+f32 JUTGamePad::CStick::sReleasePoint          = 0.25f;
 u32 JUTGamePad::C3ButtonReset::sResetPattern     = 0x1600;
 u32 JUTGamePad::C3ButtonReset::sResetMaskPattern = 0xFFFF;
 
@@ -1491,7 +1491,7 @@ lbl_8002E438:
  * @note Address: 0x8002E44C
  * @note Size: 0x25C
  */
-void JUTGamePad::CRumble::update(short)
+void JUTGamePad::CRumble::update(s16)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1679,7 +1679,7 @@ void JUTGamePad::CRumble::triggerPatternedRumble(u32)
  * @note Address: N/A
  * @note Size: 0x5C
  */
-void JUTGamePad::CRumble::setPatternedRumble(short, u16, void*)
+void JUTGamePad::CRumble::setPatternedRumble(s16, u16, void*)
 {
 	// UNUSED FUNCTION
 }
@@ -1697,7 +1697,7 @@ void JUTGamePad::CRumble::startPatternedRumble(void*, JUTGamePad::CRumble::ERumb
  * @note Address: N/A
  * @note Size: 0x70
  */
-void JUTGamePad::CRumble::stopPatternedRumble(short)
+void JUTGamePad::CRumble::stopPatternedRumble(s16)
 {
 	// UNUSED FUNCTION
 }

@@ -34,7 +34,7 @@ TMainTitleMgr::TMainTitleMgr()
  * @note Address: 0x803EA524
  * @note Size: 0x68
  */
-void TMainTitleMgr::setMode(long set)
+void TMainTitleMgr::setMode(s32 set)
 {
 	switch (set) {
 	case 0:
@@ -116,7 +116,7 @@ void TMainTitleMgr::start()
  * @note Address: 0x803EA7BC
  * @note Size: 0x1F0
  */
-void TMainTitleMgr::startMenuSet(long, long select)
+void TMainTitleMgr::startMenuSet(s32, s32 select)
 {
 	mSelectedMenuOption = select;
 	int id;

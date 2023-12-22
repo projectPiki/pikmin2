@@ -45,12 +45,12 @@
 #include "fdlibm.h"
 
 #ifdef __STDC__
-double cos(double x)
+f64 cos(f64 x)
 #else
-double cos(x) double x;
+f64 cos(x) f64 x;
 #endif
 {
-	double y[2], z = 0.0;
+	f64 y[2], z = 0.0;
 	int n, ix;
 
 	/* High word of x. */

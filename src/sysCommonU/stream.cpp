@@ -375,7 +375,7 @@ u8 Stream::_readByte()
  * @note Address: 0x80414764
  * @note Size: 0x32C
  */
-short Stream::readShort()
+s16 Stream::readShort()
 {
 	// if we're in text mode:
 	//     - returns next 2 bytes, treated as short (assuming it's not a comment or special character)
@@ -459,13 +459,13 @@ int Stream::readInt()
  * @note Address: 0x80414DAC
  * @note Size: 0x328
  */
-float Stream::readFloat()
+f32 Stream::readFloat()
 {
 	// if we're in text mode:
 	//     - returns next 4 bytes, treated as float (assuming it's not a comment or special character)
 	// if we're in binary mode:
 	//     - returns next 4 bytes with no checks
-	float outFloat;
+	f32 outFloat;
 	int outInt;
 
 	if (mMode == STREAM_MODE_TEXT) { // we're in text mode, need to do more checks
@@ -645,9 +645,9 @@ void Stream::_writeByte(u8 c)
  * @note Address: 0x80415730
  * @note Size: 0x90
  */
-void Stream::writeShort(short inputShort)
+void Stream::writeShort(s16 inputShort)
 {
-	// write short (s16)
+	// write s16 (s16)
 	// need to handle text and binary mode differently
 
 	// by default, value to write should be inputShort
@@ -663,7 +663,7 @@ void Stream::writeShort(short inputShort)
 		outVal = bswap16((s16)inputShort);
 	}
 
-	// write short (2 bytes) and increment stream position
+	// write s16 (2 bytes) and increment stream position
 	write(&outVal, 2);
 	mPosition += 2;
 }
@@ -702,7 +702,7 @@ void Stream::writeInt(int inputInt)
  * @note Address: 0x80415848
  * @note Size: 0xB0
  */
-void Stream::writeFloat(float inputFloat)
+void Stream::writeFloat(f32 inputFloat)
 {
 	// write float (4 bytes)
 	// need to handle text and binary mode differently

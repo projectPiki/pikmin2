@@ -120,7 +120,7 @@ struct J2DPictureBlockTrailer {
 	u16 _04;                        // _04
 	u8 _06[2];                      // _06 - padding?
 	s16 _08[2][2];                  // _08
-	JGeometry::TVec2<short> _10[4]; // _10
+	JGeometry::TVec2<s16> _10[4]; // _10
 	_GXColor _20[4];                // _20
 };
 
@@ -564,7 +564,7 @@ struct J2DPicture : public J2DPane {
 	virtual JUtility::TColor getWhite() const { return mWhite; }                                                          // _138 (weak)
 	virtual J2DMaterial* getMaterial() const { return nullptr; }                                                          // _13C (weak)
 	virtual void drawFullSet(f32, f32, f32, f32, f32 (*)[3][4]);                                                          // _140
-	virtual void drawTexCoord(f32, f32, f32, f32, short, short, short, short, short, short, short, short, f32 (*)[3][4]); // _144
+	virtual void drawTexCoord(f32, f32, f32, f32, s16, s16, s16, s16, s16, s16, s16, s16, f32 (*)[3][4]); // _144
 	virtual u8 getUsableTlut(u8);                                                                                         // _148
 
 	void initinfo();
@@ -688,7 +688,7 @@ struct J2DPictureEx : public J2DPicture {
 	virtual JUtility::TColor getWhite() const;                                                                            // _138
 	virtual J2DMaterial* getMaterial() const;                                                                             // _13C (weak)
 	virtual void drawFullSet(f32, f32, f32, f32, f32 (*)[3][4]);                                                          // _140
-	virtual void drawTexCoord(f32, f32, f32, f32, short, short, short, short, short, short, short, short, f32 (*)[3][4]); // _144
+	virtual void drawTexCoord(f32, f32, f32, f32, s16, s16, s16, s16, s16, s16, s16, s16, f32 (*)[3][4]); // _144
 	virtual u8 getUsableTlut(u8);                                                                                         // _148
 
 	void initialize(u32);

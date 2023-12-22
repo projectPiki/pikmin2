@@ -146,7 +146,7 @@ u32 WriteUARTN(const void* buf, u32 len)
 	u32 cmd;
 	BOOL interrupt;
 	int qLen;
-	long xLen;
+	s32 xLen;
 	char* ptr;
 	BOOL locked;
 	u32 error;
@@ -190,7 +190,7 @@ u32 WriteUARTN(const void* buf, u32 len)
 		while (qLen && len) {
 			if (qLen < 4 && qLen < len)
 				break;
-			xLen = (len < 4) ? (long)len : 4;
+			xLen = (len < 4) ? (s32)len : 4;
 			EXIImm(Chan, (void*)buf, xLen, EXI_WRITE, NULL);
 			(u8*)buf += xLen;
 			len -= xLen;

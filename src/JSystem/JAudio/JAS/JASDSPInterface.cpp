@@ -399,7 +399,7 @@
 */
 u8* JASDsp::CH_BUF;
 JASDsp::Fxline* JASDsp::FX_BUF;
-float JASDsp::sDSPVolume;
+f32 JASDsp::sDSPVolume;
 
 const u16 JASDsp::DSPADPCM_FILTER[32]
     = { 0x0,    0x0,    0x800,  0x0,    0x0,    0x800,  0x400, 0x400,  0x1000, 0xF800, 0xE00,  0xFA00, 0xC00,  0xFC00, 0x1200, 0xF600,
@@ -480,7 +480,7 @@ void JASDsp::syncFrame(u32 p1, u32 p2, u32 p3) { DsyncFrame2(p1, p2, p3); }
  * @note Address: 0x800A53BC
  * @note Size: 0x24
  */
-void JASDsp::setDSPMixerLevel(float dspMixerLevel)
+void JASDsp::setDSPMixerLevel(f32 dspMixerLevel)
 {
 	sDSPVolume = dspMixerLevel;
 	DsetMixerLevel(dspMixerLevel);
@@ -490,7 +490,7 @@ void JASDsp::setDSPMixerLevel(float dspMixerLevel)
  * @note Address: 0x800A53E0
  * @note Size: 0x8
  */
-float JASDsp::getDSPMixerLevel() { return sDSPVolume; }
+f32 JASDsp::getDSPMixerLevel() { return sDSPVolume; }
 
 /**
  * @note Address: 0x800A53E8
@@ -519,7 +519,7 @@ void JASDsp::getDSPHandleNc(int)
  * @note Address: N/A
  * @note Size: 0xA4
  */
-void JASDsp::setFilterTable(short*, short*, u32)
+void JASDsp::setFilterTable(s16*, s16*, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -598,7 +598,7 @@ void JASDsp::getFXHandleNc(u8)
  * @note Address: 0x800A54E4
  * @note Size: 0x154
  */
-bool JASDsp::setFXLine(u8 lineIndex, short* p2, JASDsp::FxlineConfig_* config)
+bool JASDsp::setFXLine(u8 lineIndex, s16* p2, JASDsp::FxlineConfig_* config)
 {
 	Fxline& fx = getFXHandle(lineIndex);
 	JASCriticalSection criticalSection;
@@ -1177,7 +1177,7 @@ void JASDsp::TChannel::setMixerDelaySamples(u8 index, u8 samples)
  * @note Address: 0x800A598C
  * @note Size: 0x2C
  */
-void JASDsp::TChannel::setMixerVolume(u8 index, short volume)
+void JASDsp::TChannel::setMixerVolume(u8 index, s16 volume)
 {
 	if (_10A != 0) {
 		return;
@@ -1239,7 +1239,7 @@ void JASDsp::TChannel::setFilterMode(u16 p1)
  * @note Address: 0x800A5A68
  * @note Size: 0x24
  */
-void JASDsp::TChannel::setIIRFilterParam(short* p1)
+void JASDsp::TChannel::setIIRFilterParam(s16* p1)
 {
 	for (int i = 0; i < 4; i++) {
 		mIirFilterParam[i] = p1[i];
@@ -1250,7 +1250,7 @@ void JASDsp::TChannel::setIIRFilterParam(short* p1)
  * @note Address: 0x800A5A8C
  * @note Size: 0x44
  */
-void JASDsp::TChannel::setFIR8FilterParam(short* p1)
+void JASDsp::TChannel::setFIR8FilterParam(s16* p1)
 {
 	for (int i = 0; i < 8; i++) {
 		mFir8FilterParam[i] = p1[i];

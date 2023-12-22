@@ -136,7 +136,7 @@ void TMemoryCard::destroyResource()
  * @note Address: 0x803C28F8
  * @note Size: 0x1208
  */
-void TMemoryCard::open(long type)
+void TMemoryCard::open(s32 type)
 {
 	P2ASSERTBOUNDSLINE(162, 0, type, 44);
 	mIsPlaySavingSE = false;

@@ -42,8 +42,8 @@ void RoomMapMgr::nishimuraPlaceRooms()
 	allocRooms(numRooms);
 
 	for (int index = 0; index < numRooms; index++) {
-		float centreX;
-		float centreY;
+		f32 centreX;
+		f32 centreY;
 		int direction;
 
 		char* unitName         = Cave::randMapMgr->getRoomData(index, centreX, centreY, direction); // sets centreX, centreY, and direction

@@ -67,7 +67,7 @@ namespace JASKernel {
  * @note Address: N/A
  * @note Size: 0x68
  */
-void initProbe(long)
+void initProbe(s32)
 {
 	// UNUSED FUNCTION
 }
@@ -85,7 +85,7 @@ void resetProbe()
  * @note Address: 0x800A74D4
  * @note Size: 0x60
  */
-void probeStart(long index, char* name)
+void probeStart(s32 index, char* name)
 {
 	if (sProbes != nullptr) {
 		sProbes[index].start(name);
@@ -96,7 +96,7 @@ void probeStart(long index, char* name)
  * @note Address: 0x800A7534
  * @note Size: 0x13C
  */
-void probeFinish(long index)
+void probeFinish(s32 index)
 {
 	if (sProbes != nullptr) {
 		sProbes[index].stop();
@@ -107,7 +107,7 @@ void probeFinish(long index)
  * @note Address: N/A
  * @note Size: 0x10
  */
-const char* getProbeName(long index)
+const char* getProbeName(s32 index)
 {
 	// UNUSED FUNCTION
 	return sProbes[index].mName;
@@ -117,7 +117,7 @@ const char* getProbeName(long index)
  * @note Address: N/A
  * @note Size: 0x14
  */
-void getProbeLast(long)
+void getProbeLast(s32)
 {
 	// UNUSED FUNCTION
 }
@@ -126,7 +126,7 @@ void getProbeLast(long)
  * @note Address: N/A
  * @note Size: 0x14
  */
-void getProbeAvg(long)
+void getProbeAvg(s32)
 {
 	// UNUSED FUNCTION
 }
@@ -135,7 +135,7 @@ void getProbeAvg(long)
  * @note Address: N/A
  * @note Size: 0x1C
  */
-void getProbeTotalAvg(long)
+void getProbeTotalAvg(s32)
 {
 	// UNUSED FUNCTION
 }
@@ -144,7 +144,7 @@ void getProbeTotalAvg(long)
  * @note Address: N/A
  * @note Size: 0x14
  */
-void getProbeMax(long)
+void getProbeMax(s32)
 {
 	// UNUSED FUNCTION
 }

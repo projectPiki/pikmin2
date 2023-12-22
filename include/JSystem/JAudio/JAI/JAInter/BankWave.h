@@ -39,27 +39,27 @@ inline void assignWaveBanks()
 
 typedef void (*LoadCallback)();
 typedef void (*InitCallback)();
-typedef void (*SceneSetFinishCallback)(long, long);
+typedef void (*SceneSetFinishCallback)(s32, s32);
 void finishSceneSet(u32);
 void init();
 void loadFirstStayWave();
-void loadGroupWave(long, long);
+void loadGroupWave(s32, s32);
 void loadSecondStayWave();
 void setFirstLoadCallback(LoadCallback);
 void setInitCallback(InitCallback);
 void setSecondLoadCallback(LoadCallback);
 
 // unused/inlined:
-void setWsGroupNumber(long, long);
-void setWsLoadStatus(long, long);
-long getWsGroupNumber(long);
-long getWsLoadStatus(long);
+void setWsGroupNumber(s32, s32);
+void setWsLoadStatus(s32, s32);
+s32 getWsGroupNumber(s32);
+s32 getWsLoadStatus(s32);
 void readInitSoundData();
 void setSceneSetFinishCallback(SceneSetFinishCallback);
-void loadSceneWave(long, long);
-void checkSceneWaveOnMemory(long, long);
-long getWaveGroupNumber(long);
-long getWaveLoadStatus(long);
+void loadSceneWave(s32, s32);
+void checkSceneWaveOnMemory(s32, s32);
+s32 getWaveGroupNumber(s32);
+s32 getWaveLoadStatus(s32);
 void checkAllWaveLoadStatus();
 
 extern union Flags {
@@ -74,8 +74,8 @@ extern int SceneSetFlag;
 extern InitCallback initCallback;
 extern LoadCallback firstLoadCallback;
 extern LoadCallback secondLoadCallback;
-extern long* wsGroupNumber;
-extern long* wsLoadStatus;
+extern s32* wsGroupNumber;
+extern s32* wsLoadStatus;
 extern int wsMax;
 } // namespace BankWave
 } // namespace JAInter

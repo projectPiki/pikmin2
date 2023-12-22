@@ -79,7 +79,7 @@ void SeqTrackRoot::initSwingRatio()
  * @note Address: 0x803427A4
  * @note Size: 0x88
  */
-void SeqTrackRoot::pitchModulation(float f1, float f2, u32 arg, PSSystem::DirectorBase* base)
+void SeqTrackRoot::pitchModulation(f32 f1, f32 f2, u32 arg, PSSystem::DirectorBase* base)
 {
 	mTaskEntryMgr.removeEntry(&_16C);
 	_16C.makeEntry(f1, f2, arg);
@@ -90,7 +90,7 @@ void SeqTrackRoot::pitchModulation(float f1, float f2, u32 arg, PSSystem::Direct
  * @note Address: 0x8034282C
  * @note Size: 0x78
  */
-void SeqTrackRoot::tempoChange(float tempo, u32 arg, PSSystem::DirectorBase* base)
+void SeqTrackRoot::tempoChange(f32 tempo, u32 arg, PSSystem::DirectorBase* base)
 {
 	mTaskEntryMgr.removeEntry(&_40);
 	_40.makeEntry(tempo, arg);
@@ -138,7 +138,7 @@ SeqTrackChild::SeqTrackChild(const PSSystem::SeqTrackRoot&)
  * @note Address: 0x80342C50
  * @note Size: 0x84
  */
-void SeqTrackChild::muteOffAndFadeIn(float arg1, u32 arg2, PSSystem::DirectorBase* base)
+void SeqTrackChild::muteOffAndFadeIn(f32 arg1, u32 arg2, PSSystem::DirectorBase* base)
 {
 	mTaskEntryMgr.removeEntry(&_2C);
 	mTaskEntryMgr.removeEntry(&_12C);
@@ -162,7 +162,7 @@ void SeqTrackChild::fadeoutAndMute(u32 arg, PSSystem::DirectorBase* base)
  * @note Address: 0x80342D48
  * @note Size: 0x78
  */
-void SeqTrackChild::fade(float arg1, u32 arg2, PSSystem::DirectorBase* base)
+void SeqTrackChild::fade(f32 arg1, u32 arg2, PSSystem::DirectorBase* base)
 {
 	mTaskEntryMgr.removeEntry(&_1B8);
 	_1B8.makeEntry(arg1, arg2);

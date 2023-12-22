@@ -27,13 +27,13 @@ struct E3DAnimRes {
 };
 
 struct E3DAnimFolderBase {
-	virtual E3DAnimRes* getAnimRes(long) = 0; // _08
+	virtual E3DAnimRes* getAnimRes(s32) = 0; // _08
 };
 
 struct E3DAnimCtrl {
 
 	void setAnimFolder(ebi::E3DAnimFolderBase* animFolder);
-	void init(long id, f32 timeStep);
+	void init(s32 id, f32 timeStep);
 	void setStartFrame(); // UNUSED
 	void play();
 	void playStopEnd();

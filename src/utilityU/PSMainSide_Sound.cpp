@@ -380,7 +380,7 @@ void SeSound::specializePerspCalc(const PSGame::SoundTable::SePerspInfo& info)
  * @note Address: 0x8047149C
  * @note Size: 0x6C
  */
-f32 SeSound::calcVolumeSpecialized(float p1)
+f32 SeSound::calcVolumeSpecialized(f32 p1)
 {
 	P2ASSERTLINE(294, mPerspInfo.mIsSpecialSound == true);
 	return mPerspInfo.getDistVol(p1, 0);

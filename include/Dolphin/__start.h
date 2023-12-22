@@ -44,14 +44,14 @@ DECL_SECT(".init") extern char _SDA2_BASE_[];
 typedef struct __rom_copy_info {
 	char* rom;
 	char* addr;
-	unsigned int size;
+	uint size;
 } __rom_copy_info;
 
 DECL_SECT(".init") extern __rom_copy_info _rom_copy_info[];
 
 typedef struct __bss_init_info {
 	char* addr;
-	unsigned int size;
+	uint size;
 } __bss_init_info;
 
 DECL_SECT(".init") extern __bss_init_info _bss_init_info[];

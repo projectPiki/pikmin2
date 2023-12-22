@@ -48,7 +48,7 @@ struct TParam : public TParamBase {
 };
 
 struct TAnimFolder : public E3DAnimFolderBase {
-	virtual E3DAnimRes* getAnimRes(long id) { return &mAnims[id]; } // _08 (weak)
+	virtual E3DAnimRes* getAnimRes(s32 id) { return &mAnims[id]; } // _08 (weak)
 
 	void load(J3DModelData*, JKRArchive*);
 

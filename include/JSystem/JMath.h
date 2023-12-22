@@ -236,7 +236,7 @@ inline f32 fastReciprocal(f32 value) { return JMAFastReciprocal(value); }
 
 } // namespace JMath
 
-void JMAEulerToQuat(short, short, short, Quaternion*);
+void JMAEulerToQuat(s16, s16, s16, Quaternion*);
 void JMAQuatLerp(const Quaternion*, const Quaternion*, f32, Quaternion*);
 void JMALagrangeInterpolation(int, f32*, f32*, f32);
 void JMAFastVECMag(const Vec*);

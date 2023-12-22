@@ -33,7 +33,7 @@
  * @note Address: 0x8009B58C
  * @note Size: 0x124
  */
-float JASInstSense::getY(int p1, int p2) const
+f32 JASInstSense::getY(int p1, int p2) const
 {
 	int v1 = 0;
 	switch (_08) {
@@ -47,9 +47,9 @@ float JASInstSense::getY(int p1, int p2) const
 	if (_09 == 0x7F || _09 == 0) {
 		return _0C + (v1 * (_10 - _0C)) / 127.0f;
 	} else if (v1 < _09) {
-		return (1.0f - _0C) * ((float)v1 / (float)_09) + _0C;
+		return (1.0f - _0C) * ((f32)v1 / (f32)_09) + _0C;
 	} else {
-		return (_10 - 1.0f) * ((float)(v1 - _09) / (float)(0x7F - _09)) + 1.0f;
+		return (_10 - 1.0f) * ((f32)(v1 - _09) / (f32)(0x7F - _09)) + 1.0f;
 	}
 	// switch (_08) {
 	// 	case 2:
@@ -64,9 +64,9 @@ float JASInstSense::getY(int p1, int p2) const
 	// if (_09 == 0x7F || _09 == 0) {
 	// 	return _0C + (p1 * (_10 - _0C)) / 127.0f;
 	// } else if (p1 < _09) {
-	// 	return (1.0f - _0C) * ((float)p1 / (float)_09) + _0C;
+	// 	return (1.0f - _0C) * ((f32)p1 / (f32)_09) + _0C;
 	// } else {
-	// 	return (_10 - 1.0f) * ((float)(p1 - _09) / (float)(0x7F - _09)) + 1.0f;
+	// 	return (_10 - 1.0f) * ((f32)(p1 - _09) / (f32)(0x7F - _09)) + 1.0f;
 	// }
 
 	/*
@@ -164,7 +164,7 @@ lbl_8009B6A8:
  * @note Address: 0x8009B6B0
  * @note Size: 0x14
  */
-void JASInstSense::setParams(int p1, int p2, float p3, float p4)
+void JASInstSense::setParams(int p1, int p2, f32 p3, f32 p4)
 {
 	_08 = p1;
 	_09 = p2;

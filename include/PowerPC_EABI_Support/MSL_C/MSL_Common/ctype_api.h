@@ -7,9 +7,9 @@
 extern "C" {
 #endif // ifdef __cplusplus
 
-extern unsigned char __ctype_map[256];
-extern unsigned char __lower_map[256];
-extern unsigned char __upper_map[256];
+extern u8 __ctype_map[256];
+extern u8 __lower_map[256];
+extern u8 __upper_map[256];
 
 #define __control_char 0x01
 #define __motion_char  0x02

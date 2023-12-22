@@ -44,12 +44,12 @@
 #include "fdlibm.h"
 
 #ifdef __STDC__
-double tan(double x)
+f64 tan(f64 x)
 #else
-double tan(x) double x;
+f64 tan(x) f64 x;
 #endif
 {
-	double y[2], z = 0.0;
+	f64 y[2], z = 0.0;
 	int n, ix;
 
 	/* High word of x. */

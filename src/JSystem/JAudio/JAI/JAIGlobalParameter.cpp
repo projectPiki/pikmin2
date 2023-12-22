@@ -209,31 +209,31 @@ char* sequenceArchivesPath     = "Seqs/";
 char* streamPath               = "Stream/";
 char* audioResPath             = "AudioRes/";
 char* sequenceArchivesFileName = "JaiSeqs.arc";
-float inputGainDown            = 0.5f;
-float outputGainUp             = 1.2f;
-float distanceMax              = 5000.0f;
-float maxVolumeDistance        = 1000.0f;
-float seDolbyCenterValue       = 30.0f;
-float seDolbyFrontDistanceMax  = -300.0f;
-float seDolbyBehindDistanceMax = 1000.0f;
+f32 inputGainDown            = 0.5f;
+f32 outputGainUp             = 1.2f;
+f32 distanceMax              = 5000.0f;
+f32 maxVolumeDistance        = 1000.0f;
+f32 seDolbyCenterValue       = 30.0f;
+f32 seDolbyFrontDistanceMax  = -300.0f;
+f32 seDolbyBehindDistanceMax = 1000.0f;
 u32 dopplarMoveTime            = 0xF;
 u32 dummyObjectLifeTime        = 0x258;
 u32 dummyObjectMax             = 0xA;
 u32 seqMuteMoveSpeedSePlay     = 0x3;
 u32 audioCameraMax             = 0x1;
-long systemTrackMax            = 0x100;
-long systemRootTrackMax        = 0x10;
-float panDistanceMax           = 500.0f;
-float panDistance2Max          = 1000.0f;
-float panAngleParameter        = 12.0f;
-float panAngleParameter2       = 2.4f;
-float dopplarParameter         = 3200.0f;
+s32 systemTrackMax            = 0x100;
+s32 systemRootTrackMax        = 0x10;
+f32 panDistanceMax           = 500.0f;
+f32 panDistance2Max          = 1000.0f;
+f32 panAngleParameter        = 12.0f;
+f32 panAngleParameter2       = 2.4f;
+f32 dopplarParameter         = 3200.0f;
 u16 seDistanceWaitMax          = 0xC;
-float seDistancepitchMax       = 0.2f;
+f32 seDistancepitchMax       = 0.2f;
 
 u16 seDefaultFx;
 u32 interfaceHeapSize;
-float minDistanceVolume;
+f32 minDistanceVolume;
 } // namespace JAIGlobalParameter
 
 /**
@@ -376,7 +376,7 @@ void JAIGlobalParameter::setParamStayHeapMax(u32 value) { stayHeapMax = value; }
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamInputGainDown(float value)
+void JAIGlobalParameter::setParamInputGainDown(f32 value)
 {
 	// UNUSED FUNCTION
 	inputGainDown = value;
@@ -386,7 +386,7 @@ void JAIGlobalParameter::setParamInputGainDown(float value)
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamOutputGainUp(float value)
+void JAIGlobalParameter::setParamOutputGainUp(f32 value)
 {
 	// UNUSED FUNCTION
 	outputGainUp = value;
@@ -396,19 +396,19 @@ void JAIGlobalParameter::setParamOutputGainUp(float value)
  * @note Address: 0x800AD99C
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamDistanceMax(float value) { distanceMax = value; }
+void JAIGlobalParameter::setParamDistanceMax(f32 value) { distanceMax = value; }
 
 /**
  * @note Address: 0x800AD9A4
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamMaxVolumeDistance(float value) { maxVolumeDistance = value; }
+void JAIGlobalParameter::setParamMaxVolumeDistance(f32 value) { maxVolumeDistance = value; }
 
 /**
  * @note Address: 0x800AD9AC
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamMinDistanceVolume(float value) { minDistanceVolume = value; }
+void JAIGlobalParameter::setParamMinDistanceVolume(f32 value) { minDistanceVolume = value; }
 
 /**
  * @note Address: N/A
@@ -479,7 +479,7 @@ void JAIGlobalParameter::setParamSeDolbyCenterValue(u8 value)
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamSeDolbyFrontDistanceMax(float value)
+void JAIGlobalParameter::setParamSeDolbyFrontDistanceMax(f32 value)
 {
 	// UNUSED FUNCTION
 	seDolbyFrontDistanceMax = value;
@@ -489,7 +489,7 @@ void JAIGlobalParameter::setParamSeDolbyFrontDistanceMax(float value)
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamSeDolbyBehindDistanceMax(float value)
+void JAIGlobalParameter::setParamSeDolbyBehindDistanceMax(f32 value)
 {
 	// UNUSED FUNCTION
 	seDolbyBehindDistanceMax = value;
@@ -640,19 +640,19 @@ void JAIGlobalParameter::setParamAudioCameraMax(u32 value) { audioCameraMax = va
  * @note Address: 0x800AD9F8
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamSystemTrackMax(long value) { systemTrackMax = value; }
+void JAIGlobalParameter::setParamSystemTrackMax(s32 value) { systemTrackMax = value; }
 
 /**
  * @note Address: 0x800ADA00
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamSystemRootTrackMax(long value) { systemRootTrackMax = value; }
+void JAIGlobalParameter::setParamSystemRootTrackMax(s32 value) { systemRootTrackMax = value; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x14
  */
-void JAIGlobalParameter::setParamPanDistanceMax(float value)
+void JAIGlobalParameter::setParamPanDistanceMax(f32 value)
 {
 	// UNUSED FUNCTION
 }
@@ -661,7 +661,7 @@ void JAIGlobalParameter::setParamPanDistanceMax(float value)
  * @note Address: N/A
  * @note Size: 0x20
  */
-void JAIGlobalParameter::setParamPanAngleParameter(float value)
+void JAIGlobalParameter::setParamPanAngleParameter(f32 value)
 {
 	// UNUSED FUNCTION
 }
@@ -670,7 +670,7 @@ void JAIGlobalParameter::setParamPanAngleParameter(float value)
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamDopplarParameter(float value)
+void JAIGlobalParameter::setParamDopplarParameter(f32 value)
 {
 	// UNUSED FUNCTION
 	dopplarParameter = value;
@@ -690,7 +690,7 @@ void JAIGlobalParameter::setParamSeDistanceWaitMax(u16 value)
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAIGlobalParameter::setParamSeDistancepitchMax(float value)
+void JAIGlobalParameter::setParamSeDistancepitchMax(f32 value)
 {
 	// UNUSED FUNCTION
 	seDistancepitchMax = value;
@@ -863,7 +863,7 @@ u32 JAIGlobalParameter::getParamSeqPlayTrackMax() { return seqPlayTrackMax; }
  * @note Address: N/A
  * @note Size: 0x8
  */
-float JAIGlobalParameter::getParamInputGainDown()
+f32 JAIGlobalParameter::getParamInputGainDown()
 {
 	// UNUSED FUNCTION
 	return inputGainDown;
@@ -873,7 +873,7 @@ float JAIGlobalParameter::getParamInputGainDown()
  * @note Address: N/A
  * @note Size: 0x8
  */
-float JAIGlobalParameter::getParamOutputGainUp()
+f32 JAIGlobalParameter::getParamOutputGainUp()
 {
 	// UNUSED FUNCTION
 	return outputGainUp;
@@ -883,19 +883,19 @@ float JAIGlobalParameter::getParamOutputGainUp()
  * @note Address: 0x800ADAD4
  * @note Size: 0x8
  */
-float JAIGlobalParameter::getParamDistanceMax() { return distanceMax; }
+f32 JAIGlobalParameter::getParamDistanceMax() { return distanceMax; }
 
 /**
  * @note Address: 0x800ADADC
  * @note Size: 0x8
  */
-float JAIGlobalParameter::getParamMaxVolumeDistance() { return maxVolumeDistance; }
+f32 JAIGlobalParameter::getParamMaxVolumeDistance() { return maxVolumeDistance; }
 
 /**
  * @note Address: 0x800ADAE4
  * @note Size: 0x8
  */
-float JAIGlobalParameter::getParamMinDistanceVolume() { return minDistanceVolume; }
+f32 JAIGlobalParameter::getParamMinDistanceVolume() { return minDistanceVolume; }
 
 /**
  * @note Address: N/A
@@ -956,13 +956,13 @@ u32 JAIGlobalParameter::getParamStayHeapSize() { return stayHeapSize; }
  * @note Address: 0x800ADB1C
  * @note Size: 0x8
  */
-float JAIGlobalParameter::getParamSeDolbyCenterValue() { return seDolbyCenterValue; }
+f32 JAIGlobalParameter::getParamSeDolbyCenterValue() { return seDolbyCenterValue; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-float JAIGlobalParameter::getParamSeDolbyFrontDistanceMax()
+f32 JAIGlobalParameter::getParamSeDolbyFrontDistanceMax()
 {
 	// UNUSED FUNCTION
 	return seDolbyFrontDistanceMax;
@@ -972,7 +972,7 @@ float JAIGlobalParameter::getParamSeDolbyFrontDistanceMax()
  * @note Address: N/A
  * @note Size: 0x8
  */
-float JAIGlobalParameter::getParamSeDolbyBehindDistanceMax()
+f32 JAIGlobalParameter::getParamSeDolbyBehindDistanceMax()
 {
 	// UNUSED FUNCTION
 	return seDolbyBehindDistanceMax;
@@ -1052,7 +1052,7 @@ u32 JAIGlobalParameter::getParamDopplarMoveTime() { return dopplarMoveTime; }
  * @note Address: N/A
  * @note Size: 0x8
  */
-float JAIGlobalParameter::getParamDopplarParameter()
+f32 JAIGlobalParameter::getParamDopplarParameter()
 {
 	// UNUSED FUNCTION
 	return dopplarParameter;
@@ -1098,7 +1098,7 @@ u32 JAIGlobalParameter::getParamAudioCameraMax() { return audioCameraMax; }
  * @note Address: N/A
  * @note Size: 0x8
  */
-long JAIGlobalParameter::getParamSystemTrackMax()
+s32 JAIGlobalParameter::getParamSystemTrackMax()
 {
 	// UNUSED FUNCTION
 	return systemTrackMax;
@@ -1108,7 +1108,7 @@ long JAIGlobalParameter::getParamSystemTrackMax()
  * @note Address: N/A
  * @note Size: 0x8
  */
-long JAIGlobalParameter::getParamSystemRootTrackMax()
+s32 JAIGlobalParameter::getParamSystemRootTrackMax()
 {
 	// UNUSED FUNCTION
 	return systemRootTrackMax;

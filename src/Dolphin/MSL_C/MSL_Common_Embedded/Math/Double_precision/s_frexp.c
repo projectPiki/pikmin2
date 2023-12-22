@@ -14,7 +14,7 @@
 /**
  * for non-zero x
  *	x = frexp(arg,&exp);
- * return a double fp quantity x such that 0.5 <= |x| <1.0
+ * return a f64 fp quantity x such that 0.5 <= |x| <1.0
  * and the corresponding binary exponent "exp". That is
  *	arg = x*2^exp.
  * If arg is inf, 0.0, or NaN, then frexp(arg,&exp) returns arg
@@ -24,17 +24,17 @@
 #include "fdlibm.h"
 
 #ifdef __STDC__
-static const double
+static const f64
 #else
-static double
+static f64
 #endif
     two54
     = 1.80143985094819840000e+16; /* 0x43500000, 0x00000000 */
 
 #ifdef __STDC__
-double frexp(double x, int* eptr)
+f64 frexp(f64 x, int* eptr)
 #else
-double frexp(x, eptr) double x;
+f64 frexp(x, eptr) f64 x;
 int* eptr;
 #endif
 {

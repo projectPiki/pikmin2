@@ -18,7 +18,7 @@
  */
 JPAKeyBlock::JPAKeyBlock(const u8* data)
     : mDataStart(data)
-    , _04(reinterpret_cast<const float*>(&data[0xC]))
+    , _04(reinterpret_cast<const f32*>(&data[0xC]))
 {
 }
 
@@ -36,7 +36,7 @@ void JPAKeyBlock::init_jpa(const u8*, JKRHeap*)
  * @note Address: 0x80093A50
  * @note Size: 0x94
  */
-void JPAKeyBlock::calc(float p1)
+void JPAKeyBlock::calc(f32 p1)
 {
 	if (mDataStart[0xB] != '\0') {
 		int v1 = (int)_04[(mDataStart[9] - 1) * 4] + 1;

@@ -211,12 +211,12 @@ struct Vector3 {
 	static Vector3<T> zero;
 };
 
-// template <> struct Vector3<float> {
-// 	static Vector3<float> zero;
+// template <> struct Vector3<f32> {
+// 	static Vector3<f32> zero;
 // };
 
-// Use instead of Vector3<float> or Vector3<f32>
-typedef Vector3<float> Vector3f;
+// Use instead of Vector3<f32>
+typedef Vector3<f32> Vector3f;
 typedef Vector3<int> Vector3i;
 
 /**
