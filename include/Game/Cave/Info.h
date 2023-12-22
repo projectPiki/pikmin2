@@ -185,7 +185,7 @@ struct FloorInfo : public CNode {
 
 	FloorInfo();
 
-	virtual ~FloorInfo();             // _08 (weak)
+	virtual ~FloorInfo() {};          // _08 (weak)
 	virtual void read(Stream& input); // _10
 
 	int getTekiMax();
@@ -230,7 +230,7 @@ struct CaveInfo : public CNode {
 	struct Parms : Parameters {
 		inline Parms()
 		    : Parameters(nullptr, "CaveInfo")
-		    , mFloorMax(this, 'f000', "\x8A\x4B\x91\x77", 1, 1, 128)
+		    , mFloorMax(this, 'c000', "ŠK‘w", 1, 1, 128)
 		{
 		}
 
@@ -239,7 +239,7 @@ struct CaveInfo : public CNode {
 
 	CaveInfo();
 
-	virtual ~CaveInfo();              // _08 (weak)
+	virtual ~CaveInfo() {};           // _08 (weak)
 	virtual void read(Stream& input); // _10
 
 	void disablePelplant();
