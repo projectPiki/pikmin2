@@ -6,13 +6,10 @@
 #include "efx2d/Arg.h"
 
 namespace efx2d {
-struct T2DCvnameCave : public TForeverN {
+struct T2DCvnameCave : public TForever3 {
 	inline T2DCvnameCave()
-	    : TForeverN(3)
+	    : TForever3(PID_2DCvnameCave_1, PID_2DCvnameCave_2, PID_2DCvnameCave_3)
 	{
-		mForevers[0].mEfxID = PID_2DCvnameCave_1;
-		mForevers[1].mEfxID = PID_2DCvnameCave_2;
-		mForevers[2].mEfxID = PID_2DCvnameCave_3;
 	}
 	// _00     = VTBL
 	// _00-_0C = TForeverN
@@ -29,12 +26,10 @@ struct T2DCvnameChal : public TForever {
 	// _00-_14 = TForever
 };
 
-struct T2DCvnameVs : public TForeverN {
+struct T2DCvnameVs : public TForever2 {
 	inline T2DCvnameVs()
-	    : TForeverN(2)
+	    : TForever2(PID_2DCvnameVs_1, PID_2DCvnameVs_2)
 	{
-		mForevers[0].mEfxID = PID_2DCvnameVs_1;
-		mForevers[1].mEfxID = PID_2DCvnameVs_2;
 	}
 	// _00     = VTBL
 	// _00-_0C = TForeverN

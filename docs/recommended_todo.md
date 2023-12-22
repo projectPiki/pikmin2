@@ -185,9 +185,9 @@
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCopyPane.cpp">ogCopyPane.cpp</a> | 7720 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogFuriko.cpp">ogFuriko.cpp</a> | 10913 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounterSlot.cpp">ogCounterSlot.cpp</a> | 15216 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjSMenuItem.cpp">ogObjSMenuItem.cpp</a> | 26247 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogMenuMgr.cpp">ogMenuMgr.cpp</a> | 26474 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounterRV.cpp">ogCounterRV.cpp</a> | 33104 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjContena.cpp">ogObjContena.cpp</a> | 50114 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogTitleMsg.cpp">ogTitleMsg.cpp</a> | 50741 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounterSlot.cpp">ogCounterSlot.cpp</a> | 15216 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogTitleMsg.cpp">ogTitleMsg.cpp</a> | 17548 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjSMenuItem.cpp">ogObjSMenuItem.cpp</a> | 26247 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogMenuMgr.cpp">ogMenuMgr.cpp</a> | 26474 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounterRV.cpp">ogCounterRV.cpp</a> | 33104 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjContena.cpp">ogObjContena.cpp</a> | 50114 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjVs.cpp">ogObjVs.cpp</a> | 67561 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjSMenuMap.cpp">ogObjSMenuMap.cpp</a> | 90092 |
 
 ### <section id="plugProjectYamashitaU">plugProjectYamashitaU</section>

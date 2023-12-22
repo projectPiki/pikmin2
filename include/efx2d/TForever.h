@@ -54,11 +54,25 @@ struct TForeverN : public TBaseIF {
 };
 
 struct TForever2 : public TForeverN {
+	TForever2(u16 effectID1, u16 effectID2)
+	    : TForeverN(2)
+	{
+		mForevers[0].mEfxID = effectID1;
+		mForevers[1].mEfxID = effectID2;
+	}
+
 	// _00		= VTBL
 	// _00-_0C	= TForeverN
 };
 
 struct TForever3 : public TForeverN {
+	TForever3(u16 effectID1, u16 effectID2, u16 effectID3)
+	    : TForeverN(3)
+	{
+		mForevers[0].mEfxID = effectID1;
+		mForevers[1].mEfxID = effectID2;
+		mForevers[2].mEfxID = effectID3;
+	}
 	// _00		= VTBL
 	// _00-_0C	= TForeverN
 };
