@@ -1022,6 +1022,7 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 						f32 randAngle     = TAU * randFloat();
 						birthArg.mFaceDir = _angXZ(sphere.mPosition.x, sphere.mPosition.z, birthArg.mPosition.x, birthArg.mPosition.z);
 
+						// From here
 						int searchID = randomNode->mEnemyID;
 						enemy        = nullptr;
 						int mgrID    = getEnemyMgrID(searchID);
@@ -1038,6 +1039,7 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 							birthArg.mTypeID = (EnemyTypeID::EEnemyTypeID)searchID;
 							enemy            = anotherMgr->birth(birthArg);
 						}
+						// To here is an inline
 
 						if (enemy) {
 							Sys::Sphere boundingSphere;
