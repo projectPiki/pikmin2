@@ -375,7 +375,7 @@ void GXSetScissor(u32 left, u32 top, u32 width, u32 height)
 	GX_SET_REG(gx->suScis0, x1, GX_BP_SCISSORTL_LEFT_ST, GX_BP_SCISSORTL_LEFT_END);
 
 	y2 = y1 + height - 1;
-	x2 = (x1 + width) - 1;
+	x2 = x1 + width - 1;
 
 	GX_SET_REG(gx->suScis1, y2, GX_BP_SCISSORBR_BOT_ST, GX_BP_SCISSORBR_BOT_END);
 	GX_SET_REG(gx->suScis1, x2, GX_BP_SCISSORBR_RIGHT_ST, GX_BP_SCISSORBR_RIGHT_END);
@@ -391,17 +391,17 @@ void GXSetScissor(u32 left, u32 top, u32 width, u32 height)
  */
 void GXGetScissor(u32* left, u32* top, u32* width, u32* height)
 {
-	u32 y1, x1, y2, x2;
+	u32 x1, y1, x2, y2;
+	x1 = (gx->suScis0 >> 12);
+	y1 = (gx->suScis0 >>  0);
+	x2 = (gx->suScis1 >> 12);
+	y2 = (gx->suScis1 >>  0);
+	
+	*left   = (x1 & 0x7ff) - 0x156;
+	*top    = (y1 & 0x7ff) - 0x156;
+	*width  = (x2 & 0x7ff) - (x1 & 0x7ff) + 1;
+	*height = (y2 & 0x7ff) - (y1 & 0x7ff) + 1;
 
-	y1 = GX_GET_REG(gx->suScis0, GX_BP_SCISSORTL_TOP_ST, GX_BP_SCISSORTL_TOP_END);
-	x1 = GX_GET_REG(gx->suScis0, GX_BP_SCISSORTL_LEFT_ST, GX_BP_SCISSORTL_LEFT_END);
-	y2 = GX_GET_REG(gx->suScis1, GX_BP_SCISSORBR_BOT_ST, GX_BP_SCISSORBR_BOT_END);
-	x2 = GX_GET_REG(gx->suScis1, GX_BP_SCISSORBR_RIGHT_ST, GX_BP_SCISSORBR_RIGHT_END);
-
-	*left   = x1 - 342;
-	*top    = y1 - 342;
-	*width  = x2 - x1 + 1;
-	*height = y2 - y1 + 1;
 	/*
 	.loc_0x0:
 	  lwz       r8, -0x6D70(r2)
