@@ -525,6 +525,20 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		return angleDist;
 	}
 
+	inline f32 turnToTarget3(Creature* creature)
+	{
+		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(mParms);
+		f32 maxTurnAngle      = parms->mGeneral.mMaxTurnAngle.mValue;
+		f32 turnSpeed         = parms->mGeneral.mTurnSpeed.mValue;
+
+		f32 angleDist = getCreatureViewAngle(creature);
+		f32 angle     = clamp(angleDist * turnSpeed, PI * (DEG2RAD * maxTurnAngle));
+
+		updateFaceDir(roundAng(angle + getFaceDir()));
+
+		return angleDist;
+	}
+
 	inline bool isTargetAttackable(Creature* target, f32 angleDiff, f32 attackDist, f32 attackAngle)
 	{
 		bool result = false;

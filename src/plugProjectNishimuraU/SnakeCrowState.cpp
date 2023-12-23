@@ -192,455 +192,12 @@ void StateStay::exec(EnemyBase* enemy)
 		snagret->mTargetCreature = target;
 		snagret->appearNearByTarget(target);
 		snagret->setBossAppearBGM();
-		Parms* parms = static_cast<Parms*>(snagret->mParms);
-		if (randWeightFloat(1.0f) < parms->mProperParms.mFastAppearChance.mValue) {
+		if (randWeightFloat(1.0f) < CG_PROPERPARMS(snagret).mFastAppearChance()) {
 			transit(snagret, SNAKECROW_Appear1, nullptr);
 		} else {
 			transit(snagret, SNAKECROW_Appear2, nullptr);
 		}
 	}
-	/*
-	stwu     r1, -0xa0(r1)
-	mflr     r0
-	stw      r0, 0xa4(r1)
-	stfd     f31, 0x90(r1)
-	psq_st   f31, 152(r1), 0, qr0
-	stfd     f30, 0x80(r1)
-	psq_st   f30, 136(r1), 0, qr0
-	stfd     f29, 0x70(r1)
-	psq_st   f29, 120(r1), 0, qr0
-	stfd     f28, 0x60(r1)
-	psq_st   f28, 104(r1), 0, qr0
-	stmw     r27, 0x4c(r1)
-	mr       r28, r3
-	lwz      r3, 0xc0(r4)
-	lfs      f1, 0x2c4(r4)
-	mr       r31, r4
-	lfs      f0, 0x86c(r3)
-	li       r30, 0
-	fcmpo    cr0, f1, f0
-	ble      lbl_802912D4
-	lfs      f0, 0x35c(r3)
-	lis      r3, "__vt__22Iterator<Q24Game4Piki>"@ha
-	li       r0, 0
-	lfs      f31, 0x198(r31)
-	lfs      f30, 0x19c(r31)
-	cmplwi   r0, 0
-	lfs      f29, 0x1a0(r31)
-	addi     r4, r3, "__vt__22Iterator<Q24Game4Piki>"@l
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	fmuls    f28, f0, f0
-	stw      r4, 0x30(r1)
-	li       r29, 1
-	stw      r0, 0x3c(r1)
-	stw      r0, 0x34(r1)
-	stw      r3, 0x38(r1)
-	bne      lbl_80290E50
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
-	b        lbl_8029105C
-
-lbl_80290E50:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
-	b        lbl_80290EBC
-
-lbl_80290E68:
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x3c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8029105C
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
-
-lbl_80290EBC:
-	lwz      r12, 0x30(r1)
-	addi     r3, r1, 0x30
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80290E68
-	b        lbl_8029105C
-
-lbl_80290EDC:
-	lwz      r3, 0x38(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r27, r3
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80290F98
-	mr       r3, r27
-	lwz      r12, 0(r27)
-	lwz      r12, 0x1c0(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80290F98
-	mr       r3, r27
-	bl       isStickToMouth__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80290F98
-	mr       r4, r27
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r27)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x18(r1)
-	lfs      f1, 0x14(r1)
-	fsubs    f2, f30, f0
-	lfs      f0, 0x1c(r1)
-	fsubs    f3, f31, f1
-	fsubs    f1, f29, f0
-	fmuls    f0, f2, f2
-	fmadds   f0, f3, f3, f0
-	fmadds   f1, f1, f1, f0
-	fcmpo    cr0, f1, f28
-	bge      lbl_80290F88
-	mr       r30, r27
-	li       r29, 0
-	b        lbl_80290F98
-
-lbl_80290F88:
-	lfs      f0, lbl_8051BA38@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80290F98
-	li       r29, 0
-
-lbl_80290F98:
-	cmplwi   r30, 0
-	bne      lbl_8029107C
-	lwz      r0, 0x3c(r1)
-	cmplwi   r0, 0
-	bne      lbl_80290FCC
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
-	b        lbl_8029105C
-
-lbl_80290FCC:
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
-	b        lbl_80291040
-
-lbl_80290FEC:
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x3c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8029105C
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
-
-lbl_80291040:
-	lwz      r12, 0x30(r1)
-	addi     r3, r1, 0x30
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80290FEC
-
-lbl_8029105C:
-	lwz      r3, 0x38(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x34(r1)
-	cmplw    r4, r3
-	bne      lbl_80290EDC
-
-lbl_8029107C:
-	cmplwi   r30, 0
-	bne      lbl_802912C4
-	li       r0, 0
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	lis      r4, "__vt__22Iterator<Q24Game4Navi>"@ha
-	stw      r0, 0x2c(r1)
-	addi     r4, r4, "__vt__22Iterator<Q24Game4Navi>"@l
-	cmplwi   r0, 0
-	stw      r4, 0x20(r1)
-	stw      r0, 0x24(r1)
-	stw      r3, 0x28(r1)
-	bne      lbl_802910C4
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_802912A4
-
-lbl_802910C4:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_80291130
-
-lbl_802910DC:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x2c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802912A4
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-
-lbl_80291130:
-	lwz      r12, 0x20(r1)
-	addi     r3, r1, 0x20
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802910DC
-	b        lbl_802912A4
-
-lbl_80291150:
-	lwz      r3, 0x28(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r27, r3
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802911E0
-	mr       r4, r27
-	addi     r3, r1, 8
-	lwz      r12, 0(r27)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0xc(r1)
-	lfs      f1, 8(r1)
-	fsubs    f2, f30, f0
-	lfs      f0, 0x10(r1)
-	fsubs    f3, f31, f1
-	fsubs    f1, f29, f0
-	fmuls    f0, f2, f2
-	fmadds   f0, f3, f3, f0
-	fmadds   f1, f1, f1, f0
-	fcmpo    cr0, f1, f28
-	bge      lbl_802911D0
-	mr       r30, r27
-	li       r29, 0
-	b        lbl_802911E0
-
-lbl_802911D0:
-	lfs      f0, lbl_8051BA38@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_802911E0
-	li       r29, 0
-
-lbl_802911E0:
-	cmplwi   r30, 0
-	bne      lbl_802912C4
-	lwz      r0, 0x2c(r1)
-	cmplwi   r0, 0
-	bne      lbl_80291214
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_802912A4
-
-lbl_80291214:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_80291288
-
-lbl_80291234:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x2c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802912A4
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-
-lbl_80291288:
-	lwz      r12, 0x20(r1)
-	addi     r3, r1, 0x20
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80291234
-
-lbl_802912A4:
-	lwz      r3, 0x28(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x24(r1)
-	cmplw    r4, r3
-	bne      lbl_80291150
-
-lbl_802912C4:
-	clrlwi.  r0, r29, 0x18
-	beq      lbl_802912D4
-	mr       r3, r31
-	bl       resetBossAppearBGM__Q34Game9SnakeCrow3ObjFv
-
-lbl_802912D4:
-	lwz      r3, sys@sda21(r13)
-	cmplwi   r30, 0
-	lfs      f1, 0x2c4(r31)
-	lfs      f0, 0x54(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x2c4(r31)
-	beq      lbl_8029138C
-	stw      r30, 0x230(r31)
-	mr       r3, r31
-	mr       r4, r30
-	bl       appearNearByTarget__Q34Game9SnakeCrow3ObjFPQ24Game8Creature
-	mr       r3, r31
-	bl       setBossAppearBGM__Q34Game9SnakeCrow3ObjFv
-	lwz      r29, 0xc0(r31)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x44(r1)
-	lfd      f3, lbl_8051BA48@sda21(r2)
-	stw      r0, 0x40(r1)
-	lfs      f2, lbl_8051BA3C@sda21(r2)
-	lfd      f0, 0x40(r1)
-	lfs      f1, lbl_8051BA40@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, 0x81c(r29)
-	fmuls    f2, f2, f3
-	fdivs    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_8029136C
-	mr       r3, r28
-	mr       r4, r31
-	lwz      r12, 0(r28)
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8029138C
-
-lbl_8029136C:
-	mr       r3, r28
-	mr       r4, r31
-	lwz      r12, 0(r28)
-	li       r5, 3
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8029138C:
-	psq_l    f31, 152(r1), 0, qr0
-	lfd      f31, 0x90(r1)
-	psq_l    f30, 136(r1), 0, qr0
-	lfd      f30, 0x80(r1)
-	psq_l    f29, 120(r1), 0, qr0
-	lfd      f29, 0x70(r1)
-	psq_l    f28, 104(r1), 0, qr0
-	lfd      f28, 0x60(r1)
-	lmw      r27, 0x4c(r1)
-	lwz      r0, 0xa4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xa0
-	blr
-	*/
 }
 
 /**
@@ -901,63 +458,40 @@ void StateWait::exec(EnemyBase* enemy)
 	Creature* previousTarget = snagret->mTargetCreature;
 	if (previousTarget) {
 		if (previousTarget->isAlive() && !previousTarget->isStickToMouth() && previousTarget->mSticker != snagret) {
-			f32 approxSpeed;
-			EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(snagret->mParms);
-			f32 fov               = parms->mGeneral.mViewAngle.mValue;
-			f32 visionHeight      = parms->mGeneral.mSearchHeight.mValue;
-			f32 sightRadius       = parms->mGeneral.mSightRadius.mValue;
-			f32 privRadius        = parms->mGeneral.mPrivateRadius.mValue;
-			Vector3f creaturePos  = previousTarget->getPosition();
-			Vector3f pos          = snagret->getPosition();
-
-			f32 angleDist = angDist(angXZ(creaturePos, pos), snagret->getFaceDir());
-
-			f32 xDiff   = previousTarget->getPosition().x - snagret->getPosition().x;
-			f32 yDiff   = previousTarget->getPosition().y - snagret->getPosition().y;
-			f32 zDiff   = previousTarget->getPosition().z - snagret->getPosition().z;
-			bool check1 = true;
-			bool check2 = false;
-
-			f32 dist2D = SQUARE(xDiff) + SQUARE(zDiff);
-			if (dist2D > SQUARE(privRadius)) {
-				bool check3 = false;
-				if (dist2D > SQUARE(sightRadius) && (FABS(yDiff) < visionHeight)) {
-					check3 = true;
-				}
-				if (check3) {
-					check2 = true;
-				}
-			}
-
-			if (!check2 && (FABS(angleDist) <= (DEG2RAD * fov) * PI) != 0) {
-				check1 = false;
-			}
-
-			if (check1) {
+			// this inline needs fixing
+			if (snagret->isTargetOutOfRange(previousTarget, snagret->getCreatureViewAngle(previousTarget),
+			                                CG_PARMS(snagret)->mGeneral.mPrivateRadius(), CG_PARMS(snagret)->mGeneral.mSightRadius(),
+			                                CG_PARMS(snagret)->mGeneral.mFov(), CG_PARMS(snagret)->mGeneral.mViewAngle())) {
 				target = nullptr;
 			} else {
-				Parms* parms2 = static_cast<Parms*>(snagret->mParms);
-				target        = EnemyFunc::getNearestPikminOrNavi(snagret, parms2->mGeneral.mViewAngle.mValue,
-                                                           parms2->mGeneral.mSightRadius.mValue, nullptr, nullptr, nullptr);
+				target = EnemyFunc::getNearestPikminOrNavi(snagret, CG_PARMS(snagret)->mGeneral.mViewAngle(),
+				                                           CG_PARMS(snagret)->mGeneral.mSightRadius(), nullptr, nullptr, nullptr);
 			}
 
 		} else {
-			Parms* parms = static_cast<Parms*>(snagret->mParms);
-			target = EnemyFunc::getNearestPikminOrNavi(snagret, parms->mGeneral.mViewAngle.mValue, parms->mGeneral.mSightRadius.mValue,
-			                                           nullptr, nullptr, nullptr);
+			target = EnemyFunc::getNearestPikminOrNavi(snagret, CG_PARMS(snagret)->mGeneral.mViewAngle(),
+			                                           CG_PARMS(snagret)->mGeneral.mSightRadius(), nullptr, nullptr, nullptr);
 		}
 
 	} else {
-		Parms* parms = static_cast<Parms*>(snagret->mParms);
-		target = EnemyFunc::getNearestPikminOrNavi(snagret, parms->mGeneral.mViewAngle.mValue, parms->mGeneral.mSightRadius.mValue, nullptr,
-		                                           nullptr, nullptr);
+		target = EnemyFunc::getNearestPikminOrNavi(snagret, CG_PARMS(snagret)->mGeneral.mViewAngle(),
+		                                           CG_PARMS(snagret)->mGeneral.mSightRadius(), nullptr, nullptr, nullptr);
 	}
 
 	if (target) {
 		snagret->mStateTimer = 0.0f;
-		f32 angleDist        = snagret->changeFaceDir(target);
 
-		if (FABS(angleDist) <= SIN_2_5) {
+		// this is probably one of the turnToTarget inlines but currently they don't generate the right stack >:(
+		f32 angleDist, angle, turnSpeed, maxTurnAngle;
+		maxTurnAngle = CG_PARMS(snagret)->mGeneral.mMaxTurnAngle();
+		turnSpeed    = CG_PARMS(snagret)->mGeneral.mTurnSpeed();
+
+		angleDist = snagret->getCreatureViewAngle(target);
+		angle     = clamp(angleDist * turnSpeed, PI * (DEG2RAD * maxTurnAngle));
+
+		snagret->updateFaceDir(roundAng(angle + snagret->getFaceDir()));
+
+		if (absF(angleDist) <= SIN_2_5) {
 			snagret->finishRotateEffect();
 
 		} else {
@@ -970,21 +504,19 @@ void StateWait::exec(EnemyBase* enemy)
 	}
 
 	if (!snagret->isFinishMotion()) {
-		if (snagret->mHealth <= 0.0f || snagret->mStateTimer > static_cast<Parms*>(snagret->mParms)->mProperParms.mWaitTime.mValue
+		if (snagret->mHealth <= 0.0f || snagret->mStateTimer > CG_PROPERPARMS(snagret).mWaitTime()
 		    || EnemyFunc::isStartFlick(snagret, false) || snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5)) {
 			snagret->finishMotion();
 		}
 	}
 
 	if (snagret->mCurAnim->mIsPlaying) {
-		if ((u32)snagret->mCurAnim->mType == KEYEVENT_END) {
+		if (snagret->mCurAnim->mType == KEYEVENT_END) {
 			if (snagret->mHealth <= 0.0f) {
 				transit(snagret, SNAKECROW_Dead, nullptr);
 				return;
 			}
-
-			Parms* parms = static_cast<Parms*>(snagret->mParms);
-			if (snagret->mStateTimer > parms->mProperParms.mWaitTime.mValue || EnemyFunc::isStartFlick(snagret, false)) {
+			if (snagret->mStateTimer > CG_PROPERPARMS(snagret).mWaitTime() || EnemyFunc::isStartFlick(snagret, false)) {
 				transit(snagret, SNAKECROW_Disappear, nullptr);
 				return;
 			}

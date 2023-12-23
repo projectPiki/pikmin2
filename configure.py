@@ -1212,7 +1212,7 @@ LIBS = [
             ["plugProjectNishimuraU/BigFootMgr", True],
             ["plugProjectNishimuraU/BigFootShadow", True],
             ["plugProjectNishimuraU/BigFoot", True],
-            ["plugProjectNishimuraU/SnakeWholeState", False],
+            ["plugProjectNishimuraU/SnakeWholeState", True],
             ["plugProjectNishimuraU/SnakeWholeAnimator", True],
             ["plugProjectNishimuraU/SnakeWholeMgr", True],
             ["plugProjectNishimuraU/SnakeWhole", False],
