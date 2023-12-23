@@ -447,14 +447,9 @@ void GXSetChanCtrl(GXChannelID channel, GXBool doEnable, GXColorSrc ambSrc, GXCo
 
 	// why are we unmasking bits we're about to overwrite?
 
-	// these lines do identical things. The first one is wrong, but wrangles the code
-	/*filler*/ GX_SET_REG(reg, 0, GX_XF_CLR0CTRL_LMASKHI_ST, GX_XF_CLR0CTRL_LMASKHI_END);
-	reg &= ~GX_REG_MASK(GX_XF_CLR0CTRL_LMASKHI_ST, GX_XF_CLR0CTRL_LMASKHI_END);
+    reg = (reg & ~(0xf << 2)) | ((mask & 0xf) << 2);
 
-	GX_SET_REG(reg, mask, GX_XF_CLR0CTRL_LMASKHI_ST, GX_XF_CLR0CTRL_LMASKHI_END);
-
-	reg &= ~GX_REG_MASK(GX_XF_CLR0CTRL_LMASKLO_ST, GX_XF_CLR0CTRL_LMASKLO_END);
-	GX_SET_REG(reg, mask >> 4, GX_XF_CLR0CTRL_LMASKLO_ST, GX_XF_CLR0CTRL_LMASKLO_END);
+    reg = (reg & ~(0xf << 11)) | (((mask>>4) & 0xf) << 11);
 
 	GX_XF_LOAD_REG(GX_XF_REG_COLOR0CNTRL + colorID, reg);
 
@@ -465,59 +460,4 @@ void GXSetChanCtrl(GXChannelID channel, GXBool doEnable, GXColorSrc ambSrc, GXCo
 	}
 
 	gx->bpSentNot = GX_TRUE;
-	/*
-	.loc_0x0:
-	  rlwinm    r0,r4,0,24,31
-	  li        r4, 0
-	  rlwimi    r4,r0,1,30,30
-	  addi      r10, r4, 0
-	  rlwimi    r10,r6,0,31,31
-	  cmpwi     r9, 0
-	  rlwimi    r10,r5,6,25,25
-	  rlwinm    r6,r3,0,30,31
-	  bne-      .loc_0x28
-	  li        r8, 0
-
-	.loc_0x28:
-	  subfic    r4, r9, 0x2
-	  subic     r0, r4, 0x1
-	  subfe     r5, r0, r4
-	  neg       r4, r9
-	  subic     r0, r4, 0x1
-	  rlwimi    r10,r8,7,23,24
-	  rlwimi    r10,r5,9,22,22
-	  subfe     r0, r0, r4
-	  rlwimi    r10,r0,10,21,21
-	  addi      r0, r6, 0x100E
-	  rlwinm    r6,r10,0,30,25
-	  rlwimi    r6,r7,2,26,29
-	  rlwinm    r6,r6,0,21,16
-	  li        r5, 0x10
-	  lis       r4, 0xCC01
-	  stb       r5, -0x8000(r4)
-	  rlwimi    r6,r7,7,17,20
-	  cmpwi     r3, 0x4
-	  stw       r0, -0x8000(r4)
-	  stw       r6, -0x8000(r4)
-	  bne-      .loc_0x90
-	  stb       r5, -0x8000(r4)
-	  li        r0, 0x1010
-	  stw       r0, -0x8000(r4)
-	  stw       r6, -0x8000(r4)
-	  b         .loc_0xA8
-
-	.loc_0x90:
-	  cmpwi     r3, 0x5
-	  bne-      .loc_0xA8
-	  stb       r5, -0x8000(r4)
-	  li        r0, 0x1011
-	  stw       r0, -0x8000(r4)
-	  stw       r6, -0x8000(r4)
-
-	.loc_0xA8:
-	  lwz       r3, -0x6D70(r2)
-	  li        r0, 0x1
-	  sth       r0, 0x2(r3)
-	  blr
-	*/
 }

@@ -400,28 +400,6 @@ void GXGetScissor(u32* left, u32* top, u32* width, u32* height)
 	*top    = y1 - 0x156;
 	*width  = (x2 - x1) + 1;
 	*height = (y2 - y1) + 1;
-
-	/*
-	.loc_0x0:
-	  lwz       r8, -0x6D70(r2)
-	  lwz       r7, 0xF8(r8)
-	  lwz       r8, 0xFC(r8)
-	  rlwinm    r9,r7,20,21,31
-	  subi      r0, r9, 0x156
-	  stw       r0, 0x0(r3)
-	  rlwinm    r7,r7,0,21,31
-	  subi      r3, r7, 0x156
-	  stw       r3, 0x0(r4)
-	  rlwinm    r0,r8,20,21,31
-	  sub       r3, r0, r9
-	  addi      r0, r3, 0x1
-	  rlwinm    r4,r8,0,21,31
-	  stw       r0, 0x0(r5)
-	  sub       r3, r4, r7
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x0(r6)
-	  blr
-	*/
 }
 
 /**
