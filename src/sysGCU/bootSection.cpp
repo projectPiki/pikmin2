@@ -294,9 +294,9 @@ void TinyPikminMgr::init()
 
 	// randomly swap around times?
 	for (int i = 0; i < sTinyPikminNum; i++) {
-		int id      = randFloat() * sTinyPikminNum;
+		int id      = randInt(sTinyPikminNum);
 		f32 old     = values[id];
-		int id2     = randFloat() * sTinyPikminNum;
+		int id2     = randInt(sTinyPikminNum);
 		values[id]  = values[id2];
 		values[id2] = old;
 	}
@@ -306,7 +306,7 @@ void TinyPikminMgr::init()
 	bool changecolor = false;
 	if (randFloat() > 0.75f) {
 		changecolor = true;
-		color       = randFloat() * 5.0f;
+		color       = randInt(5);
 	}
 
 	f32 delay = test2 * 0.5f + 175.0f;

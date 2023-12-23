@@ -4735,7 +4735,7 @@ void PikiDrownState::init(Piki* piki, StateArg* stateArg)
 		piki->startMotion(IPikiAnims::OBORERU, IPikiAnims::OBORERU, piki, nullptr);
 	}
 
-	_12             = (u16)(2.0f * randFloat()) + 6;
+	_12             = randInt(2) + 6;
 	piki->mVelocity = Vector3f(0.0f);
 	_14             = 0;
 	piki->mVelocity = Vector3f(0.0f);

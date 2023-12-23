@@ -815,7 +815,7 @@ void Obj::findNextRoutePoint(bool cond)
 		}
 	}
 	if (counter != 0) {
-		int randIdx = counter * randFloat();
+		int randIdx = randInt(counter);
 		if (randIdx >= counter) {
 			randIdx = counter - 1;
 		}

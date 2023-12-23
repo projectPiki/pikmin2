@@ -2138,7 +2138,7 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 			int max  = getIdMax();
 			int test = randWeightFloat(50.0f);
 			test++;
-			int test2 = randFloat() * 10.0f;
+			int test2 = randInt(10);
 			test2     = 85 - test2;
 			for (int i = 0; i < max; i++) {
 				if (i < test || test2 > i) {
@@ -5393,7 +5393,7 @@ void TItemZukan::doCreate(JKRArchive* arc)
 
 	if (mIsPreDebt) {
 		if (mIsSection) {
-			int test = randFloat() * 150.0f;
+			int test = randInt(150);
 			for (int i = 0; i < test; i++) {
 				if (i != test) {
 					mMaxPane++;

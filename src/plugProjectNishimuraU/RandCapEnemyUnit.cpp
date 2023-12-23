@@ -98,7 +98,7 @@ void RandCapEnemyUnit::setCapCommonEnemySlot(MapNode* mapTile, int spawnType)
 	}
 
 	// calculate random weight based on total tekiWeights
-	int randWeight = tekiWeight * randFloat();
+	int randWeight = randInt(tekiWeight);
 
 	TekiInfo* tekiInfo;
 	int tekiCount_2 = 0;

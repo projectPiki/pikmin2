@@ -2441,7 +2441,7 @@ void BlackMan::Obj::findNextRoutePoint()
 		int targetWPIdx;                                           // r26
 		switch (_2E0) {
 		case 0: {
-			targetWPIdx = (f32)counter * randFloat();
+			targetWPIdx = randInt(counter);
 		} break;
 		case 1: {
 			for (int i = 0; i < counter; i++) {
@@ -2494,7 +2494,7 @@ void BlackMan::Obj::findNextRoutePoint()
 
 			if (val < 0) {
 				for (int i = 0; i < 100; i++) {
-					targetWPIdx = (f32)counter * randFloat();
+					targetWPIdx = randInt(counter);
 					if (_342 != indices[targetWPIdx]) {
 						break;
 					}
@@ -2529,10 +2529,10 @@ void BlackMan::Obj::findNextRoutePoint()
 			}
 
 			if (val < 0 || counter <= 2) {
-				targetWPIdx = (f32)counter * randFloat();
+				targetWPIdx = randInt(counter);
 			} else {
 				for (int i = 0; i < 10; i++) {
-					targetWPIdx = (f32)counter * randFloat();
+					targetWPIdx = randInt(counter);
 					if (targetWPIdx != val) {
 						break;
 					}
@@ -2580,7 +2580,7 @@ void BlackMan::Obj::findNextRoutePoint()
 			}
 
 			if (val < 0) {
-				targetWPIdx = (f32)counter * randFloat();
+				targetWPIdx = randInt(counter);
 			} else {
 				targetWPIdx = val;
 			}

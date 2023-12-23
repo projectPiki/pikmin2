@@ -112,7 +112,7 @@ int ActBattle::exec()
 		return 2;
 	}
 
-	PSMGetPikiBattleD()->_54++;
+	PSMGetPikiBattleD()->mVoteState++;
 
 	switch (mState) {
 	case PIKIAI_ACTBATTLE_APPROACH:
@@ -188,9 +188,9 @@ void ActBattle::onKeyEvent(SysShape::KeyEvent const& event)
 		case KEYEVENT_END: {
 			initApproach();
 
-			f32 rngChance = randFloat() * 2.2f;
+			int rngChance = randInt(2);
 			u8 old        = ++mHitCount;
-			if (old >= (int)rngChance + 6) {
+			if (old >= rngChance + 6) {
 				if (mOther && mOther->getVsBattlePiki() == mParent) {
 					f32 oh = 0.5f * mOther->mHappaKind + 1.0f;
 					f32 ph = 0.5f * mParent->mHappaKind + 1.0f;

@@ -722,7 +722,7 @@ Creature* Obj::getRandFruitsPlant()
 	}
 
 	if (counter != 0) {
-		return plantList[(int)((f32)counter * randFloat())];
+		return plantList[randInt(counter)];
 	}
 
 	return nullptr;

@@ -211,7 +211,7 @@ void MapUnitGenerator::createMapPartsList()
 		}
 
 		for (int childCount = currMapKind->getChildCount(), j = 0; j < childCount; j++) {
-			int randIdx = (childCount * randFloat());
+			int randIdx = (randInt(childCount));
 
 			if (CNode* randNode = static_cast<MapNode*>(currMapKind->getChildAt(randIdx))) {
 				randNode->del();

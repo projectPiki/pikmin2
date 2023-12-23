@@ -102,7 +102,7 @@ MapNode* RandPlantUnit::getPlantSetMapNode(BaseGen** plantSpawnsList)
 	// assuming we hit at least one plant spawn, pick one from the list at random
 	// return the map node pointer, and put the basegen pointer into *baseGenOut
 	if (count) {
-		int randBase     = count * randFloat();
+		int randBase     = randInt(count);
 		*plantSpawnsList = spawnList[randBase];
 		return tileList[randBase];
 	}

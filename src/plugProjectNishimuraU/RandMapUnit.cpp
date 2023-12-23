@@ -440,7 +440,7 @@ void RandMapUnit::changeCapToRootLoopMapUnit()
 					deleteMapNode(currNode);
 					deleteMapNode(tile);
 
-					int randIdx    = nameCount * randFloat();
+					int randIdx    = randInt(nameCount);
 					char* randName = unitNames[randIdx];
 
 					FOREACH_NODE(MapNode, nodeArray[2].mChild, anotherNode)
@@ -532,7 +532,7 @@ void RandMapUnit::changeTwoToOneMapUnit()
 				deleteMapNode(currNode);
 				deleteMapNode(targetNode);
 
-				int randIdx    = secondNamesCount * randFloat();
+				int randIdx    = randInt(secondNamesCount);
 				char* randName = secondUnitNames[randIdx];
 				FOREACH_NODE(MapNode, nodeArray[2].mChild, anotherNode)
 				{
@@ -830,7 +830,7 @@ void RandMapUnit::setEditorMapUnit()
 	int editNo = editUnit->mEditNum;
 	if (editNo < 0) {
 		int count = editUnit->mEditCount;
-		editNo    = count * randFloat();
+		editNo    = randInt(count);
 	}
 
 	int last = editUnit->mUnitCounts[editNo] - 1;
@@ -985,7 +985,7 @@ MapNode* RandMapUnit::getNormalRandMapUnit()
 	int intArr[16];
 	int kindOrder[UNITKIND_Count];
 	int doorNum  = getOpenDoorNum();
-	int randDoor = doorNum * randFloat();
+	int randDoor = randInt(doorNum);
 
 	MapNode* nodeArray = mGenerator->getMapNodeKind(0);
 
@@ -1064,7 +1064,7 @@ void RandMapUnit::setUnitDoorSorting(int kind)
 			if (openDoorNum < 10) {
 				int doorCount;
 				for (int i = 0; i < (doorCount = mDoorCount); i++) {
-					int randIdx          = doorCount * randFloat();
+					int randIdx          = randInt(doorCount);
 					int currOffset       = doorOffsets[i];
 					doorOffsets[i]       = doorOffsets[randIdx];
 					doorOffsets[randIdx] = currOffset;
@@ -1352,7 +1352,7 @@ void RandMapUnit::setRandomDoorIndex(int* list, int max)
 	}
 
 	for (int i = 0; i < max; i++) {
-		int randIdx    = max * randFloat();
+		int randIdx    = randInt(max);
 		int currOffset = list[i];
 		list[i]        = list[randIdx];
 		list[randIdx]  = currOffset;

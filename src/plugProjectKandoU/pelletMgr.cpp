@@ -739,7 +739,7 @@ PelletIndexInitArg::PelletIndexInitArg(int idx)
 
 	mTextIdentifier = config->mParams.mName.mData;
 	mPelletIndex    = code;
-	mPelletColor    = (int)(3.0f * randFloat());
+	mPelletColor    = randInt(3);
 }
 
 /**
@@ -3912,7 +3912,7 @@ lbl_8016A604:
 s16 Pellet::getRandomFreeStickSlot()
 {
 	s16 slotCap    = mSlotCount;
-	s16 randomSlot = (int)((f32)slotCap * randFloat());
+	s16 randomSlot = randInt(slotCap);
 	int slotByte   = 128;
 	s16 returnSlot = -1;
 	for (s16 slot = 0; slot < slotCap; slot++) {
@@ -4025,7 +4025,7 @@ Onyon* Pellet::getPelletGoal()
 			}
 		}
 
-		int idx = (int)((f32)counter * randFloat());
+		int idx = randInt(counter);
 		if (idx >= counter) {
 			idx = ONYON_TYPE_BLUE;
 		}

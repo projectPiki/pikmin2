@@ -1065,7 +1065,7 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 						goto noadd;
 					} else if (infoFlags & 0x80) {
 						int maxObj    = mgr->getMaxObjects();
-						int randLimit = (int)(7.0f * randFloat()) + 2;
+						int randLimit = randInt(7) + 2;
 
 						if (maxObj > randLimit) {
 							maxObj = randLimit;
@@ -1122,7 +1122,7 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 						goto noadd;
 					} else {
 						int maxObj    = mgr->getMaxObjects();
-						int randLimit = (int)(7.0f * randFloat()) + 7;
+						int randLimit = randInt(7) + 7;
 
 						if (maxObj > randLimit) {
 							maxObj = randLimit;

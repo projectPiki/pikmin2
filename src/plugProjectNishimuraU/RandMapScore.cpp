@@ -356,7 +356,7 @@ MapNode* RandMapScore::getRandRoomMapNode()
 
 	MapNode* targetNode;
 	if (counter) {
-		return mapList[(int)(counter * randFloat())];
+		return mapList[randInt(counter)];
 	}
 
 	return nullptr;
@@ -393,7 +393,7 @@ void RandMapScore::setChallengePod()
 			}
 
 			if (counter) {
-				int randIdx              = counter * randFloat();
+				int randIdx              = randInt(counter);
 				mFixObjGens[FIXNODE_Pod] = genList[randIdx];
 			}
 		}
@@ -904,7 +904,7 @@ void RandMapScore::setChallengeFixObjNormal()
 			}
 
 			if (tally) {
-				int randIdx  = tally * randFloat();
+				int randIdx  = randInt(tally);
 				int newTally = 0;
 				for (int k = 0; k < counter; k++) {
 					newTally += scoreList[k];
@@ -1291,7 +1291,7 @@ void RandMapScore::setChallengeFixObjHard()
 			}
 
 			if (counter) {
-				int randIdx                = counter * randFloat();
+				int randIdx                = randInt(counter);
 				mFixObjNodes[fixObjIdx[i]] = mapList[randIdx];
 				mFixObjGens[fixObjIdx[i]]  = genList[randIdx];
 			}

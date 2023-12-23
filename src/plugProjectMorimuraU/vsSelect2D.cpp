@@ -462,7 +462,7 @@ void TVsPiki::setAlpha(u8 alpha)
 void TVsSelectOnyon::reset()
 {
 	mCurrentPosition = Vector2f(-100.0f, 0.0f);
-	int test         = randFloat() * 20.0f;
+	int test         = randInt(20);
 	mCounter         = -(test + int(TVsSelect::mTestVal));
 	_30              = 0.0f;
 	_3C              = true;
@@ -1025,8 +1025,8 @@ void TVsSelect::doCreate(JKRArchive* arc)
 			mDispMember                        = new (mDebugHeap, 0) DispMemberVsSelect;
 			mDispMember->mDebugExpHeap         = mDebugHeap;
 			mDispMember->mDispWorldMapInfoWin0 = new og::Screen::DispMemberWorldMapInfoWin0;
-			mDispMember->mRedWinCount          = randFloat() * 99.0f;
-			mDispMember->mBlueWinCount         = randFloat() * 99.0f;
+			mDispMember->mRedWinCount          = randInt(99);
+			mDispMember->mBlueWinCount         = randInt(99);
 			mDispMember->mRedWinCount          = 2;
 			mDispMember->mBlueWinCount         = 0;
 			mDispMember->mStageCount           = VS_Stage_Count;

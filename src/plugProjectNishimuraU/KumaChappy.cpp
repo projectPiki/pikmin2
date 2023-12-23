@@ -313,7 +313,7 @@ void Obj::setLinkWayPoint()
 		// children of the current waypoint were found
 		if (wpNum) {
 			mPrevWP    = mCurrWP;
-			int id     = randFloat() * wpNum;
+			int id     = randInt(wpNum);
 			mCurrWP    = wpList[id];
 			mTargetPos = Vector3f(mCurrWP->mPosition);
 			return;

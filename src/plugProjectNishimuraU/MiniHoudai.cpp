@@ -393,7 +393,7 @@ void Obj::setLinkWayPoint()
 
 		if (counter != 0) {
 			mOldNearestWaypoint = mNearestWaypoint;
-			mNearestWaypoint    = wpList[(int)((f32)counter * randFloat())];
+			mNearestWaypoint    = wpList[randInt(counter)];
 			mWalkTargetPosition = Vector3f(mNearestWaypoint->mPosition);
 			return;
 

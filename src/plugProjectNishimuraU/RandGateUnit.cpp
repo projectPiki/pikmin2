@@ -71,7 +71,7 @@ GateUnit* RandGateUnit::getGateUnit()
 	GateNode* node = static_cast<GateNode*>(mGenerator->mGateNode);
 
 	int gateSum    = 0;
-	int randCutoff = (int)(weight * randFloat());
+	int randCutoff = randInt(weight);
 
 	GateUnit* gate;
 	GateInfo* info;
@@ -141,7 +141,7 @@ MapNode* RandGateUnit::getItemSetCapDoor(int& idx)
 	}
 
 	if (validDoorCount != 0) {
-		int randIdx = validDoorCount * randFloat();
+		int randIdx = randInt(validDoorCount);
 		idx         = idxArray[randIdx];
 		return nodeArray[randIdx];
 	}
@@ -209,7 +209,7 @@ Game::Cave::MapNode* Game::Cave::RandGateUnit::getRoomLowScoreDoor(int& idx)
 	}
 
 	if (scoreSum != 0) {
-		int randLimit = scoreSum * randFloat(), tally = 0;
+		int randLimit = randInt(scoreSum), tally = 0;
 		for (int i = 0; i < total; i++) {
 			tally += scoreArray[i];
 			if (tally > randLimit) {
@@ -269,7 +269,7 @@ MapNode* RandGateUnit::getRandomScoreDoor(int& idx)
 	}
 
 	if (totalCount != 0) {
-		int randLimit = totalCount * randFloat();
+		int randLimit = randInt(totalCount);
 		int* pDoorNum = doorNumArray;
 		for (int tally = 0, i = 0; i < total; i++) {
 			tally += *pDoorNum;

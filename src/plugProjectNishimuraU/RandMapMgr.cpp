@@ -211,7 +211,7 @@ void RandMapMgr::getItemDropPosition(Vector3f* positions, int count, f32 lowerWe
 	MapNode* nodeList[16];
 	BaseGen* genList[16];
 
-	const int randVal   = randInt(2.0f);
+	const int randVal   = randInt(2);
 	const int countEven = (count % 2) - 1;
 	mRandItemUnit->setItemDropPositionList(nodeList, genList);
 

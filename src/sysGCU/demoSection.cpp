@@ -75,7 +75,7 @@ void Section::init()
 	JUTProcBar::sManager->setVisible(false);
 	JUTProcBar::sManager->setVisibleHeapBar(false);
 	if (sMovieIndex == -1) {
-		sMovieIndex = 8 * randFloat();
+		sMovieIndex = randInt(8);
 	}
 }
 

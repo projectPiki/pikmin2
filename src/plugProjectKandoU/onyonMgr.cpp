@@ -1456,7 +1456,7 @@ void Onyon::efxPafuPafu()
 {
 	if (!(randFloat() > 0.05f)) {
 		char* jntnames[3]      = { "kasi1jnt1", "kass2jnt1", "kasi3jnt1" };
-		int id                 = (int)(randFloat() * 3.0f);
+		int id                 = randInt(3);
 		SysShape::Joint* joint = mModel->getJoint(jntnames[id]);
 		if (joint && mLod.mFlags & 4) {
 			efx::TOnyonPuffPuff puffFX(joint->getWorldMatrix());

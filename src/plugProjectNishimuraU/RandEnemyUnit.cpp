@@ -63,7 +63,7 @@ void RandEnemyUnit::setEnemyTypeWeight()
 		mTypeMax[i]   = 0;
 	}
 
-	int enemyTypes[4] = { BaseGen::CGT_EnemyEasy, BaseGen::CGT_EnemyHard, BaseGen::CGT_DoorSeam, BaseGen::CGT_TekiSpecial }; // _38
+	int enemyTypes[4] = { BaseGen::CGT_EnemyEasy, BaseGen::CGT_EnemyHard, BaseGen::CGT_DoorSeam, BaseGen::CGT_EnemySpecial }; // _38
 
 	int weightList[4]; // _28
 	int countList[4];  // _18
@@ -106,7 +106,7 @@ void RandEnemyUnit::setEnemyTypeWeight()
 	}
 
 	for (totalNum; totalNum < mMaxEnemies; totalNum++) {
-		int randEnemy = totalWeights * randFloat();
+		int randEnemy = randInt(totalWeights);
 		for (int i = 0; i < 4; i++) {
 			if (randEnemy < tallyWeights[i]) {
 				mTypeMax[i]++;
@@ -464,7 +464,7 @@ void RandEnemyUnit::setVersusEnemyTypeC()
 				int altNum     = (count - mTypeCount[TEKITYPE_C]) % 2;
 				int roundedMax = ((count - mTypeCount[TEKITYPE_C]) / 2) * 2;
 
-				int randIdx = 2.0f * randFloat();
+				int randIdx = randInt(2);
 				for (int i = 0; i < roundedMax; i++, randIdx ^= 1) {
 					int slot = -1;
 					setSlotEnemyTypeC(slot, randIdx);
@@ -942,13 +942,13 @@ void RandEnemyUnit::setVersusEnemyTypeF()
 	FOREACH_NODE(EnemyNode, mGenerator->mMainEnemies->mChild, currEnemy)
 	{
 		TekiInfo* info = currEnemy->getTekiInfo();
-		if (info && info->mType == BaseGen::CGT_TekiSpecial) {
+		if (info && info->mType == BaseGen::CGT_EnemySpecial) {
 			count += info->mWeight / 10;
 			if (count > mTypeCount[TEKITYPE_F]) {
 				int altNum     = (count - mTypeCount[TEKITYPE_F]) % 2;
 				int roundedMax = ((count - mTypeCount[TEKITYPE_F]) / 2) * 2;
 
-				int randIdx = 2.0f * randFloat();
+				int randIdx = randInt(2);
 				for (int i = 0; i < roundedMax; i++, randIdx ^= 1) {
 					int slot = -1;
 					setSlotEnemyTypeF(randIdx);
@@ -1439,7 +1439,7 @@ void RandEnemyUnit::setVersusEnemyTypeB()
 				int altNum     = (count - mTypeCount[TEKITYPE_B]) % 2;
 				int roundedMax = ((count - mTypeCount[TEKITYPE_B]) / 2) * 2;
 
-				int randIdx = 2.0f * randFloat();
+				int randIdx = randInt(2);
 				for (int i = 0; i < roundedMax; i++, randIdx ^= 1) {
 					setSlotEnemyTypeB(randIdx);
 
