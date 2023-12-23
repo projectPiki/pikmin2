@@ -709,7 +709,7 @@ LIBS = [
             ["Dolphin/gx/GXMisc", True],
             ["Dolphin/gx/GXGeometry", True],
             ["Dolphin/gx/GXFrameBuf", True],
-            ["Dolphin/gx/GXLight", False],
+            ["Dolphin/gx/GXLight", True],
             ["Dolphin/gx/GXTexture", True],
             ["Dolphin/gx/GXBump", True],
             ["Dolphin/gx/GXTev", False],
