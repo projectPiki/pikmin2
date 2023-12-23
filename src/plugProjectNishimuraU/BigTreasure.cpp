@@ -899,15 +899,15 @@ void Obj::finishAttack() { mAttackMgr->finishAttack(); }
  */
 void Obj::setTreasureAttack()
 {
-	int attackIdx[BIGATTACK_AttackCount];     // indices for available attacks, max 4
-	f32 weaponWeights[BIGATTACK_AttackCount]; // weightings for each available attack based on health, max 4
+	int attackIdx[BIGATTACK_Count];     // indices for available attacks, max 4
+	f32 weaponWeights[BIGATTACK_Count]; // weightings for each available attack based on health, max 4
 
 	f32 totalWeights = 0.0f; // total weightings
 	int count        = 0;    // how many weapons alive, max 4
 
 	// loop through all weapons; if alive, calc weighting + add to arrays
 	// 0 = elec, 1 = fire, 2 = gas, 3 = water
-	for (int i = 0; i < BIGATTACK_AttackCount; i++) {
+	for (int i = 0; i < BIGATTACK_Count; i++) {
 		if (mTreasures[i]) {
 			attackIdx[count] = i;
 

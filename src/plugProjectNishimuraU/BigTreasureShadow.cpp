@@ -44,7 +44,7 @@ BigTreasureShadowMgr::BigTreasureShadowMgr(Obj* obj)
 	}
 
 	// set up treasure shadow nodes
-	for (int i = 0; i < BIGATTACK_AttackCount; i++) {
+	for (int i = 0; i < BIGATTACK_Count; i++) {
 		mTreasureShadowNodes[i] = new SphereShadowNode;
 		mRootNode->add(mTreasureShadowNodes[i]);
 	}
@@ -235,7 +235,7 @@ void BigTreasureShadowMgr::updateTreasureShadow(JointShadowParm& parm)
 	parm._18          = 0.0f;
 	parm._1C          = 0.0f;
 	parm._24          = -35.0f;
-	for (int i = 0; i < BIGATTACK_AttackCount; i++) {
+	for (int i = 0; i < BIGATTACK_Count; i++) {
 		if (mObj->isCapturedTreasure(i)) {
 			if (!mTreasureShadowNodes[i]->mParent) {
 				mRootNode->add(mTreasureShadowNodes[i]);

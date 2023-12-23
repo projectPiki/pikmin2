@@ -176,6 +176,8 @@ struct Vector3 {
 
 	inline T dot(const Vector3& other) { return this->x * other.x + this->y * other.y + this->z * other.z; }
 
+	inline void setZero() { this->x = this->y = this->z = 0; }
+
 	// Squared magnitude
 	inline f32 sqrMagnitude() const { return x * x + y * y + z * z; }
 	// 2D magnitude

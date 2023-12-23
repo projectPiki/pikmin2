@@ -77,7 +77,7 @@ enum AttackID {
 	BIGATTACK_Fire  = 1,
 	BIGATTACK_Gas   = 2,
 	BIGATTACK_Water = 3,
-	BIGATTACK_AttackCount, // 4
+	BIGATTACK_Count, // 4
 };
 
 enum EyeColorTargetID {
@@ -535,33 +535,33 @@ struct BigTreasureShadowMgr {
 	inline Matrixf** getArmMatrices(int i) { return (&mLeftArmMatrix)[i]; }         // 0=left, 1=right
 	inline Matrixf** getAntennaMatrices(int i) { return (&mLeftAntennaMatrix)[i]; } // 0=left, 1=right
 
-	Matrixf* mBodyMatrix;                                          // _00
-	Matrixf* mElecMatrix;                                          // _04
-	Matrixf* mFireMatrix;                                          // _08
-	Matrixf* mGasMatrix;                                           // _0C
-	Matrixf* mWaterMatrix;                                         // _10
-	Matrixf* mLeftArmMatrix[3];                                    // _14
-	Matrixf* mRightArmMatrix[3];                                   // _20
-	Matrixf* mLeftAntennaMatrix[2];                                // _2C
-	Matrixf* mRightAntennaMatrix[2];                               // _34
-	Obj* mObj;                                                     // _3C
-	Vector3f* mKosiPosition;                                       // _40
-	Vector3f* mJointPositions[4][4];                               // _44
-	JointShadowRootNode* mRootNode;                                // _84
-	SphereShadowNode* _88;                                         // _88
-	SphereShadowNode* _8C;                                         // _8C
-	TubeShadowSetNode* _90[4];                                     // _90, leg, *jnt1
-	TubeShadowSetNode* _A0[4];                                     // _A0, leg, *jnt2
-	TubeShadowSetNode* _B0[4];                                     // _B0, leg, *jnt2
-	TubeShadowSetNode* _C0[4];                                     // _C0, leg, *jnt3
-	SphereShadowNode* _D0[4];                                      // _D0, leg?
-	SphereShadowNode* _E0[4];                                      // _E0, leg?
-	SphereShadowNode* _F0[4];                                      // _F0, leg?
-	SphereShadowNode* mTreasureShadowNodes[BIGATTACK_AttackCount]; // _100
-	TubeShadowPosNode* mHandTubeNodes[2][4];                       // _110, [0][j] = left hand, [1][j] = right hand
-	SphereShadowNode* mHandSphereNodes[2][2];                      // _130, [0][j] = left hand, [1][j] = right hand
-	TubeShadowPosNode* mAntennaTubeNodes[2][5];                    // _140, [0][j] = left antenna, [1][j] = right antenna
-	SphereShadowNode* mAntennaSphereNodes[2];                      // _168, [0][j] = left antenna, [1][j] = right antenna
+	Matrixf* mBodyMatrix;                                    // _00
+	Matrixf* mElecMatrix;                                    // _04
+	Matrixf* mFireMatrix;                                    // _08
+	Matrixf* mGasMatrix;                                     // _0C
+	Matrixf* mWaterMatrix;                                   // _10
+	Matrixf* mLeftArmMatrix[3];                              // _14
+	Matrixf* mRightArmMatrix[3];                             // _20
+	Matrixf* mLeftAntennaMatrix[2];                          // _2C
+	Matrixf* mRightAntennaMatrix[2];                         // _34
+	Obj* mObj;                                               // _3C
+	Vector3f* mKosiPosition;                                 // _40
+	Vector3f* mJointPositions[4][4];                         // _44
+	JointShadowRootNode* mRootNode;                          // _84
+	SphereShadowNode* _88;                                   // _88
+	SphereShadowNode* _8C;                                   // _8C
+	TubeShadowSetNode* _90[4];                               // _90, leg, *jnt1
+	TubeShadowSetNode* _A0[4];                               // _A0, leg, *jnt2
+	TubeShadowSetNode* _B0[4];                               // _B0, leg, *jnt2
+	TubeShadowSetNode* _C0[4];                               // _C0, leg, *jnt3
+	SphereShadowNode* _D0[4];                                // _D0, leg?
+	SphereShadowNode* _E0[4];                                // _E0, leg?
+	SphereShadowNode* _F0[4];                                // _F0, leg?
+	SphereShadowNode* mTreasureShadowNodes[BIGATTACK_Count]; // _100
+	TubeShadowPosNode* mHandTubeNodes[2][4];                 // _110, [0][j] = left hand, [1][j] = right hand
+	SphereShadowNode* mHandSphereNodes[2][2];                // _130, [0][j] = left hand, [1][j] = right hand
+	TubeShadowPosNode* mAntennaTubeNodes[2][5];              // _140, [0][j] = left antenna, [1][j] = right antenna
+	SphereShadowNode* mAntennaSphereNodes[2];                // _168, [0][j] = left antenna, [1][j] = right antenna
 };
 
 struct BigTreasureGroundCallBack : public JointGroundCallBack {
@@ -579,6 +579,13 @@ struct BigTreasureGroundCallBack : public JointGroundCallBack {
 
 /////////////////////////////////////////////////////////////////
 // ATTACK DEFINITIONS
+enum BigTreasureFireTypes {
+	BIGFIRE_Root = 0,
+	BIGFIRE_Body = 1,
+	BIGFIRE_Tail = 2,
+	BIGFIRE_TypeCount, // 3
+};
+
 struct AttackShadowNode : public JointShadowNode {
 	AttackShadowNode(int nodeCount);
 
@@ -588,51 +595,51 @@ struct AttackShadowNode : public JointShadowNode {
 
 	// _00      = VTBL
 	// _00-_24  = JointShadowNode
-	Vector3f* _24; // _24
-	f32 _28;       // _28
+	Vector3f* mPosition; // _24
+	f32 mAngle;          // _28
 };
 
 struct BigTreasureAttackData {
 	inline BigTreasureAttackData()
 	{
-		_00 = 0.75f;
-		_04 = 0.65f;
-		_08 = 100.0f;
-		_0C = 220.0f;
-		_10 = 170.0f;
-		_14 = 200.0f;
-		_18 = 2.7f;
-		_1C = 0.1f;
-		_20 = 15;
-		_24 = 0;
-		_28 = 1.0f;
-		_2C = 1;
-		_30 = 3;
-		_34 = 0.02f;
-		_38 = 30.0f;
-		_3C = 0.5f;
-		_40 = 0.25f;
-		_44 = 50.0f;
+		_00               = 0.75f;
+		_04               = 0.65f;
+		_08               = 100.0f;
+		_0C               = 220.0f;
+		_10               = 170.0f;
+		_14               = 200.0f;
+		_18               = 2.7f;
+		_1C               = 0.1f;
+		_20               = 15;
+		_24               = 0;
+		mAttackScale      = 1.0f;
+		_2C               = 1;
+		mGasArmNum        = 3;
+		mGasRotationSpeed = 0.02f;
+		mGasReversalTime  = 30.0f;
+		_3C               = 0.5f;
+		_40               = 0.25f;
+		_44               = 50.0f;
 	}
 
-	f32 _00; // _00
-	f32 _04; // _04
-	f32 _08; // _08
-	f32 _0C; // _0C
-	f32 _10; // _10
-	f32 _14; // _14
-	f32 _18; // _18
-	f32 _1C; // _1C
-	int _20; // _20
-	int _24; // _24
-	f32 _28; // _28
-	u8 _2C;  // _2C
-	int _30; // _30
-	f32 _34; // _34
-	f32 _38; // _38
-	f32 _3C; // _3C
-	f32 _40; // _40
-	f32 _44; // _44
+	f32 _00;               // _00
+	f32 _04;               // _04
+	f32 _08;               // _08
+	f32 _0C;               // _0C
+	f32 _10;               // _10
+	f32 _14;               // _14
+	f32 _18;               // _18
+	f32 _1C;               // _1C
+	int _20;               // _20
+	int _24;               // _24
+	f32 mAttackScale;      // _28, for fire and gas
+	u8 _2C;                // _2C, gas-related
+	int mGasArmNum;        // _30, 3 or 4
+	f32 mGasRotationSpeed; // _34
+	f32 mGasReversalTime;  // _38
+	f32 _3C;               // _3C
+	f32 _40;               // _40
+	f32 _44;               // _44
 };
 
 struct BigTreasureAttackParameter : public BigTreasureAttackData {
@@ -651,15 +658,17 @@ struct BigTreasureElecAttack : public CNode {
 	void startInteract(BigTreasureElecAttack*);
 	void finish();
 
+	inline BigTreasureElecAttack* getNext() const { return static_cast<BigTreasureElecAttack*>(mNext); }
+
 	// _00      = VTBL
 	// _00-_18  = CNode
 	Obj* mOwner;                         // _18
 	BigTreasureAttackData* mAttackData;  // _1C
 	u8 _20;                              // _20
-	Sys::Triangle* _24;                  // _24
-	Vector3f _28;                        // _28
-	Vector3f _34;                        // _34
-	u32 _40;                             // _40, unknown
+	Sys::Triangle* mFloorTri;            // _24
+	Vector3f mVelocity;                  // _28
+	Vector3f mPosition;                  // _34
+	BigTreasureElecAttack* _40;          // _40
 	efx::TOootaElec* mEfxElec;           // _44
 	efx::TOootaElecparts* mEfxElecParts; // _48
 	efx::TOootaPhouden* mEfxPhouden;     // _4C
@@ -676,13 +685,15 @@ struct BigTreasureFireAttack : public CNode {
 	void start(Vector3f&, Vector3f&);
 	void finish();
 
+	inline BigTreasureFireAttack* getNext() const { return static_cast<BigTreasureFireAttack*>(mNext); }
+
 	// _00      = VTBL
 	// _00-_18  = CNode
 	Obj* mOwner;                        // _18
 	BigTreasureAttackData* mAttackData; // _1C
-	f32 _20;                            // _20
-	Vector3f _24;                       // _24
-	Vector3f _30;                       // _30
+	f32 mEmitRatio;                     // _20, how far has fire extended? (0=at body, 1=max dist)
+	Vector3f mEmitDirection;            // _24
+	Vector3f mEmitPosition;             // _30
 };
 
 struct BigTreasureGasAttack : public CNode {
@@ -695,13 +706,15 @@ struct BigTreasureGasAttack : public CNode {
 	void init();
 	void start(Vector3f&, f32);
 
+	inline BigTreasureGasAttack* getNext() const { return static_cast<BigTreasureGasAttack*>(mNext); }
+
 	// _00      = VTBL
 	// _00-_18  = CNode
 	Obj* mOwner;                        // _18
 	BigTreasureAttackData* mAttackData; // _1C
-	f32 _20;                            // _20
-	Vector3f _24;                       // _24
-	Vector3f _30;                       // _30, gas emit position?
+	f32 mEmitRatio;                     // _20, how far has gas extended? (0=at body, 1=max dist)
+	Vector3f mEmitDirection;            // _24
+	Vector3f mEmitPosition;             // _30
 };
 
 struct BigTreasureWaterAttack : public CNode {
@@ -719,8 +732,8 @@ struct BigTreasureWaterAttack : public CNode {
 	// _00-_18  = CNode
 	Obj* mOwner;                        // _18
 	BigTreasureAttackData* mAttackData; // _1C
-	Vector3f _20;                       // _24
-	Vector3f _2C;                       // _30
+	Vector3f mVelocity;                 // _20
+	Vector3f mPosition;                 // _2C
 	efx::TOootaWbomb* mEfxWaterBomb;    // _38
 };
 
@@ -769,34 +782,34 @@ struct BigTreasureAttackMgr {
 	void startNewElecList();
 	void finishElecAttack();
 
-	u8 _00[4];                               // _00
-	Obj* mObj;                               // _04
-	f32 _08;                                 // _08
-	f32 _0C;                                 // _0C
-	CNode* _10;                              // _10
-	CNode* mFireAttackNodes;                 // _14
-	efx::TOootaFire* mEfxFire;               // _18
-	Vector3f _1C;                            // _1C
-	Vector3f _28[3];                         // _28
-	CNode* _4C;                              // _4C
-	CNode* mGasAttackNodes;                  // _50
-	f32 _54[4];                              // _54
-	Vector3f mGasEmitPosition;               // _64
-	Vector3f _70[4];                         // _70
-	efx::TOootaGas* mEfxGas[4];              // _A0
-	CNode* _B0;                              // _B0
-	CNode* mWaterAttackNodes;                // _B4
-	efx::TOootaWbomb* mEfxWaterBomb;         // _B8
-	Vector3f mWaterEmitPosition;             // _BC
-	CNode* _C8;                              // _C8
-	CNode* mElecAttackNodes;                 // _CC
-	efx::TOootaElecLeg* mEfxElecLeg[4][3];   // _D0
-	efx::TOootaElecAttack1* mEfxElecAttack1; // _100
-	efx::TOootaElecAttack2* mEfxElecAttack2; // _104
-	u8 _108[0xC];                            // _108, unknown
-	JointShadowRootNode* mShadowRootNode;    // _114
-	AttackShadowNode** mAttackShadowNodes;   // _118, array of 16 ptrs
-	BigTreasureAttackData* mAttackData;      // _11C
+	bool mIsStartAttack[BIGATTACK_Count];          // _00
+	Obj* mObj;                                     // _04
+	f32 _08;                                       // _08
+	f32 _0C;                                       // _0C
+	CNode* mActiveFireList;                        // _10
+	CNode* mFireAttackNodes;                       // _14
+	efx::TOootaFire* mEfxFire;                     // _18
+	Vector3f mFireEmitDirection;                   // _1C
+	Vector3f mFireNodePosition[BIGFIRE_TypeCount]; // _28, indexed by BigTreasureFireTypes
+	CNode* mActiveGasList;                         // _4C
+	CNode* mGasAttackNodes;                        // _50
+	f32 mGasAttackAngles[4];                       // _54
+	Vector3f mGasEmitPosition;                     // _64
+	Vector3f mGasSePosition[4];                    // _70
+	efx::TOootaGas* mEfxGas[4];                    // _A0
+	CNode* mActiveWaterList;                       // _B0
+	CNode* mWaterAttackNodes;                      // _B4
+	efx::TOootaWbomb* mEfxWaterBomb;               // _B8
+	Vector3f mWaterEmitPosition;                   // _BC
+	CNode* mActiveElecList;                        // _C8
+	CNode* mElecAttackNodes;                       // _CC
+	efx::TOootaElecLeg* mEfxElecLeg[4][3];         // _D0
+	efx::TOootaElecAttack1* mEfxElecAttack1;       // _100
+	efx::TOootaElecAttack2* mEfxElecAttack2;       // _104
+	u8 _108[0xC];                                  // _108, unknown
+	JointShadowRootNode* mShadowRootNode;          // _114
+	AttackShadowNode** mAttackShadowNodes;         // _118, array of 16 ptrs
+	BigTreasureAttackData* mAttackData;            // _11C
 };
 /////////////////////////////////////////////////////////////////
 

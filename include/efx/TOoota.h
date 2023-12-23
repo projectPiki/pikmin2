@@ -164,8 +164,8 @@ struct TOootaFoot : public TChasePos2 {
 };
 
 struct TOootaGas : public TChasePosYRot2 {
-	inline TOootaGas(Vector3f* pos, f32* scale)
-	    : TChasePosYRot2(pos, scale, PID_OoOtaGas_1, PID_OoOtaGas_2)
+	inline TOootaGas(Vector3f* pos, f32* rot)
+	    : TChasePosYRot2(pos, rot, PID_OoOtaGas_1, PID_OoOtaGas_2)
 	{
 	}
 

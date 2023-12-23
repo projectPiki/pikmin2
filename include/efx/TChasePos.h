@@ -163,6 +163,12 @@ struct TChasePosPosLocalZScale : public TSync {
 	virtual void doExecuteEmitterOperation(JPABaseEmitter*); // _38
 	virtual ~TChasePosPosLocalZScale() { }                   // _48 (weak, thunk at _1C)
 
+	inline void setPosPtrs(Vector3f* posA, Vector3f* posB)
+	{
+		mPosPtrA = posA;
+		mPosPtrB = posB;
+	}
+
 	// _00		= VTBL
 	// _00-_10	= TSync
 	Vector3f* mPosPtrA; // _10
