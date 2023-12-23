@@ -249,7 +249,7 @@ void TyreShadowMgr::update()
 {
 	JointShadowParm parm;
 	parm.mPosition = mObj->getPosition();
-	parm._0C       = Vector3f(0.0f, 1.0f, 0.0f);
+	parm.mRotation = Vector3f(0.0f, 1.0f, 0.0f);
 
 	f32 scale1 = 31.5f * mGlobalScale;
 	f32 scale2 = 17.5f * mGlobalScale;

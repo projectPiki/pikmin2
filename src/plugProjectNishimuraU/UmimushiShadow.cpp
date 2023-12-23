@@ -280,7 +280,7 @@ void UmimushiShadowMgr::update()
 	Vector3f vec2;
 
 	parm.mPosition = position;
-	parm._0C       = Vector3f(0.0f, 1.0f, 0.0f);
+	parm.mRotation = Vector3f(0.0f, 1.0f, 0.0f);
 
 	vec1 = mWeakMatrix1->getBasis(3);
 

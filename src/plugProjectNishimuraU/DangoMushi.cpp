@@ -718,7 +718,7 @@ int Obj::getFallEggNum()
 
 	Navi* navi = naviMgr->getActiveNavi();
 	if (navi) {
-		weight = (f32)navi->mCPlateMgr->_BC; // what even is this
+		weight = (f32)navi->mCPlateMgr->mActiveGroupSize; // what even is this
 	}
 
 	// the closer mCPlateMgr->_BC is to the active piki count, the more likely an egg will drop

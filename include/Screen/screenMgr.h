@@ -88,7 +88,7 @@ struct Mgr : public MgrBase {
 	CNode mCommandList;       // _44
 	JKRSolidHeap* mCurrHeap;  // _5C
 	CNode mBackupInfoList;    // _60
-	CNode mSceneInfoList;     // _78, treat as SceneInfoList
+	CNode mSceneInfoList;     // _78, treat as SceneInfoList // NOTE: Why can't this just be SceneInfoList?
 
 	static Mgr* sScreenMgr;
 };
