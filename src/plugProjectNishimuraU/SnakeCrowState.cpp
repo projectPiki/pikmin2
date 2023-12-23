@@ -143,8 +143,7 @@ void StateStay::exec(EnemyBase* enemy)
 			Piki* piki = (*pikiIterator);
 			if (piki->isAlive() && piki->isPikmin() && !piki->isStickToMouth()) {
 				Vector3f pikiPos = piki->getPosition();
-				Vector3f diff    = homePos - pikiPos;
-				f32 sqrDist      = SQUARE(diff.x) + SQUARE(diff.y) + SQUARE(diff.z);
+				f32 sqrDist      = homePos.sqrDistance(pikiPos);
 				if (sqrDist < tSqr) {
 					target         = piki;
 					targetNotFound = false;
@@ -167,8 +166,7 @@ void StateStay::exec(EnemyBase* enemy)
 				Navi* navi = (*naviIterator);
 				if (navi->isAlive()) {
 					Vector3f naviPos = navi->getPosition();
-					Vector3f diff    = homePos - naviPos;
-					f32 sqrDist      = SQUARE(diff.x) + SQUARE(diff.y) + SQUARE(diff.z);
+					f32 sqrDist      = homePos.sqrDistance(naviPos);
 					if (sqrDist < tSqr) {
 						target         = navi;
 						targetNotFound = false;
