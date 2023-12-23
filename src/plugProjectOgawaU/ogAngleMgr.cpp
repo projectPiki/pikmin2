@@ -1,5 +1,5 @@
 #include "og/Screen/AngleMgr.h"
-#include "Dolphin/math.h"
+#include "math.h"
 
 namespace og {
 namespace Screen {

@@ -2,7 +2,7 @@
 #define _JSYSTEM_JMATH_H
 
 #include "JSystem/JMath/Inline.h"
-#include "Dolphin/math.h"
+#include "math.h"
 #include "Dolphin/mtx.h"
 #include "Dolphin/vec.h"
 #include "types.h"

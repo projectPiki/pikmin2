@@ -5,7 +5,7 @@
 #include "fdlibm.h"
 #include "stl/functional.h"
 #include "stl/algorithm.h"
-#include "stl/math.h"
+#include "math.h"
 #include "types.h"
 
 /*

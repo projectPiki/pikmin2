@@ -1,6 +1,6 @@
 #include "types.h"
 #include "Dolphin/pad.h"
-#include "Dolphin/math.h"
+#include "math.h"
 
 typedef struct PADClampRegion {
 	u8 minTrigger;

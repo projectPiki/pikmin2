@@ -1,5 +1,5 @@
 #include "CollInfo.h"
-#include "Dolphin/math.h"
+#include "math.h"
 #include "Dolphin/rand.h"
 #include "Game/Entities/ItemWeed.h"
 #include "Game/Entities/ItemHoney.h"

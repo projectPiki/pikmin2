@@ -1,5 +1,5 @@
 #include "Dolphin/gx.h"
-#include "Dolphin/math.h"
+#include "math.h"
 
 /**
  * @note Address: 0x800E8BE0

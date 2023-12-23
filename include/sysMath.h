@@ -2,7 +2,7 @@
 #define _SYSMATH_H
 
 #include "JSystem/JMath.h"
-#include "Dolphin/math.h"
+#include "math.h"
 
 template <typename T>
 struct Vector3;

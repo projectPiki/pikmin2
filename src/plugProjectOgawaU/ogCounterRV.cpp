@@ -1,7 +1,7 @@
 #include "og/Screen/callbackNodes.h"
 #include "og/Screen/ogScreen.h"
 #include "og/Sound.h"
-#include "Dolphin/math.h"
+#include "math.h"
 #include "Dolphin/rand.h"
 #include "trig.h"
 

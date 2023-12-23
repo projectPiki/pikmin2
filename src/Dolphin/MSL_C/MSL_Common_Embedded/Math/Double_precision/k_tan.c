@@ -100,7 +100,7 @@
  */
 
 #include "fdlibm.h"
-#include "Dolphin/math.h"
+#include "math.h"
 static const f64 one = 1.00000000000000000000e+00, /* 0x3FF00000, 0x00000000 */
     pio4             = 7.85398163397448278999e-01, /* 0x3FE921FB, 0x54442D18 */
     pio4lo           = 3.06161699786838301793e-17, /* 0x3C81A626, 0x33145C07 */

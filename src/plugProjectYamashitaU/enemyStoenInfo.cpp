@@ -1,7 +1,7 @@
 #include "Game/EnemyStone.h"
 #include "stream.h"
 #include "Vector3.h"
-#include "Dolphin/math.h"
+#include "math.h"
 
 namespace Game {
 namespace EnemyStone {

@@ -3,7 +3,7 @@
 
 #include "JSystem/JGeometry.h"
 #include "stream.h"
-#include "Dolphin/math.h"
+#include "math.h"
 #include "sysMath.h"
 #include "Vector3.h"
 #include "Plane.h"
