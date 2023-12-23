@@ -553,10 +553,11 @@ void RandMapMgr::drawFrameBuffer(Graphics& gfx)
 
 	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
 
-	GXPosition3f32(0.0f, 0.0f, 0.0f);                                                 // bottom left
-	GXPosition3f32(mRadarMapTexture->getSizeX(), 0.0f, 0.0f);                         // bottom right
-	GXPosition3f32(mRadarMapTexture->getSizeX(), mRadarMapTexture->getSizeY(), 0.0f); // top right
-	GXPosition3f32(0.0f, mRadarMapTexture->getSizeY(), 0.0f);                         // top left
+	f32 zero = 0.0f;
+	GXPosition3f32(zero, zero, zero);                                                 // bottom left
+	GXPosition3f32(mRadarMapTexture->getSizeX(), zero, zero);                         // bottom right
+	GXPosition3f32(mRadarMapTexture->getSizeX(), mRadarMapTexture->getSizeY(), zero); // top right
+	GXPosition3f32(zero, mRadarMapTexture->getSizeY(), zero);                         // top left
 	GXSetDstAlpha(GX_FALSE, 0);
 }
 } // namespace Cave
