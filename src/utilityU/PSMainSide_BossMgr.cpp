@@ -162,12 +162,12 @@ void Mgr::exec()
 		int state = mTypedProc.mCurrState;
 		if (state == 0 && mTypedProc.mPrevState) {
 			MiddleBossSeq* seq = PSMGetMiddleBossSeq();
-			if (seq->_130) {
+			if (seq->mJumpPort._70) {
 				seq->requestJumpBgmOnBeat(0);
 			}
 		} else if ((state == 3 || state == 2) && (mTypedProc.mPrevState == 1 || mTypedProc.mPrevState == 0)) {
 			MiddleBossSeq* seq = PSMGetMiddleBossSeq();
-			if (!seq->_130) {
+			if (!seq->mJumpPort._70) {
 				seq->requestJumpBgmOnBeat(1);
 			}
 		}

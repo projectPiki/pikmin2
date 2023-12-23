@@ -1,11 +1,12 @@
+#include "JSystem/JAudio/JAS/JASResArcLoader.h"
 #include "PSSystem/PSSeq.h"
 #include "PSSystem/PSCommon.h"
 #include "PSSystem/PSStream.h"
 #include "PSSystem/SeqTrack.h"
 #include "PSSystem/PSSystemIF.h"
 #include "PSSystem/PSDirector.h"
-#include "JSystem/JAudio/JAS/JASResArcLoader.h"
 #include "stream.h"
+#include "CNode.h"
 
 namespace PSSystem {
 
@@ -14,8 +15,8 @@ namespace PSSystem {
  * @note Size: 0x60
  */
 SeqDataList::SeqDataList()
+    : SingletonBase<SeqDataList>(this)
 {
-	sInstance = this;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -59,22 +60,21 @@ SeqDataList::~SeqDataList() { }
 int SeqDataList::getSeqVolume(char const* bmsname)
 {
 	char buf[32];
-	vu8 volume;
 	P2ASSERTLINE(36, mFile);
 	RamStream stream(mFile, -1);
 	stream.resetPosition(true, 1);
 	stream.readString(buf, 32);
-	while (true) {
-		volume = stream.readByte();
+
+	while (strcmp(buf, "endoffile")) {
+		vu8 volume = stream.readByte();
 		if (!strcmp(buf, bmsname)) {
 			return volume;
 		}
 		stream.readString(buf, 32);
-		if (!strcmp(buf, "endoffile")) {
-			JUT_PANICLINE(53, "seq list\nnot find\n(%s)\n", bmsname);
-			return 50;
-		}
 	}
+
+	JUT_PANICLINE(53, "seq list\nnot find\n(%s)\n", bmsname);
+	return 50;
 	/*
 	stwu     r1, -0x460(r1)
 	mflr     r0
@@ -162,8 +162,8 @@ lbl_80330EF4:
  * @note Size: 0x60
  */
 StreamDataList::StreamDataList()
+    : SingletonBase(this)
 {
-	sInstance = this;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -198,50 +198,7 @@ lbl_80330F40:
  * @note Address: 0x80330F70
  * @note Size: 0x88
  */
-StreamDataList::~StreamDataList()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80330FDC
-	lis      r3, __vt__Q28PSSystem14StreamDataList@ha
-	addic.   r0, r30, 0x1c
-	addi     r3, r3, __vt__Q28PSSystem14StreamDataList@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x10
-	stw      r0, 0x1c(r30)
-	beq      lbl_80330FC0
-	lis      r3,
-"__vt__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>"@ha li       r0,
-0 addi     r3, r3,
-"__vt__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>"@l stw      r3,
-0x1c(r30) stw      r0,
-"sInstance__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>"@sda21(r13)
-
-lbl_80330FC0:
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__Q28PSSystem12TextDataBaseFv
-	extsh.   r0, r31
-	ble      lbl_80330FDC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80330FDC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+StreamDataList::~StreamDataList() { }
 
 /**
  * @note Address: 0x80330FF8
@@ -249,6 +206,7 @@ lbl_80330FDC:
  */
 int StreamDataList::getStreamVolume(u32 id)
 {
+	u32 searchID = id & 0xfff;
 	char buf[32];
 	vu8 volume;
 	volatile int streamID;
@@ -256,18 +214,17 @@ int StreamDataList::getStreamVolume(u32 id)
 	RamStream stream(mFile, -1);
 	stream.resetPosition(true, 1);
 	stream.readString(buf, 32);
-	while (true) {
+	while (strcmp(buf, "endoffile")) {
 		streamID = stream.readInt();
 		volume   = stream.readByte();
-		if (streamID == id) {
+		if (streamID == searchID) {
 			return volume;
 		}
 		stream.readString(buf, 32);
-		if (!strcmp(buf, "endoffile")) {
-			JUT_PANICLINE(95, "stream list\nnot find\n(id=%d)\n", id);
-			return 0;
-		}
 	}
+	JUT_PANICLINE(95, "stream list\nnot find\n(id=%d)\n", searchID);
+	return 0;
+
 	/*
 	stwu     r1, -0x460(r1)
 	mflr     r0
@@ -384,7 +341,7 @@ void StreamSound::stopInner(u32 type) { JAInter::StreamMgr::releaseStreamBuffer(
 SeqHeap::SeqHeap(u32 entry, SeqBase* seq)
 {
 	mOwner    = nullptr;
-	mSize     = entry;
+	mSize     = (entry + 0x1f) & 0xffffffe0;
 	mFileData = nullptr;
 	mOwnerSeq = seq;
 	mTask     = nullptr;
@@ -407,8 +364,47 @@ SeqHeap::~SeqHeap() { delete[] mFileData; }
  * @note Address: 0x8033123C
  * @note Size: 0x200
  */
-void SeqHeap::requestCallback(u32, u16, JAISequence*)
+void SeqHeap::requestCallback(u32 request, u16 res, JAISequence* seq)
 {
+	static int oldID = 0;
+
+	bool status = false;
+	u8* file    = nullptr;
+
+	switch (request) {
+	case 0: {
+		P2ASSERTLINE(190, seq);
+		SeqSound* sound = static_cast<SeqSound*>(seq);
+		P2ASSERTLINE(192, sound->mSeq);
+		SeqHeap* heap = sound->mSeq->mSeqHeap;
+		if (!heap->mOwner) {
+			status      = true;
+			size_t size = JASResArcLoader::getResSize(JAInter::SequenceMgr::getArchivePointer(), res);
+			P2ASSERTLINE(201, heap->mSize <= size);
+		} else {
+			status = false;
+		}
+		file = heap->mFileData;
+		P2ASSERTLINE(208, file);
+	} break;
+	case 1: {
+		P2ASSERTLINE(220, seq);
+		SeqSound* sound = static_cast<SeqSound*>(seq);
+		P2ASSERTLINE(222, sound->mSeq);
+		JKRArchive* arc = JAInter::SequenceMgr::getArchivePointer();
+		P2ASSERTLINE(224, arc);
+		size_t size = JASResArcLoader::getResSize(arc, res);
+		sound->mSeq->mSeqHeap->loadedCallback(size, (u32)sound->mSeq->mSeqHeap);
+	} break;
+	case 2: {
+		P2ASSERTLINE(220, seq);
+		SeqSound* sound = static_cast<SeqSound*>(seq);
+		sound->mSeq     = nullptr;
+	} break;
+	}
+
+	// supposed to return some struct?
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -770,7 +766,7 @@ void SeqBase::init()
 {
 	if (mBmsFileName) {
 		if (SeqDataList::sInstance) {
-			mSoundInfo.mVolume.w = SeqDataList::sInstance->getSeqVolume(mBmsFileName);
+			mSoundInfo.mVolume.c = SeqDataList::sInstance->getSeqVolume(mBmsFileName);
 		}
 		mSeqHeap = new SeqHeap(((int*)getFileEntry())[3], this);
 	}
@@ -924,7 +920,7 @@ void SeqBase::pauseOn(PauseMode pause)
 	switch (pause) {
 	case SeqBase::MODE0:
 		if (sound) {
-			sound->setPauseMode(true, 30);
+			sound->setPauseMode(2, 30);
 		} else {
 			noSound = true;
 		}
@@ -939,9 +935,7 @@ void SeqBase::pauseOn(PauseMode pause)
 	case SeqBase::MODE2:
 		if (sound) {
 			f32 volume = _48 / 127.0f;
-			if (volume > 1.0f) {
-				volume = 1.0f;
-			}
+			volume     = (volume > 1.0f) ? 1.0f : volume;
 			sound->setVolume(volume, 15, 11);
 		} else {
 			noSound = true;
@@ -960,155 +954,6 @@ void SeqBase::pauseOn(PauseMode pause)
 
 	if (noSound == true)
 		mPauseMode = SeqBase::MODE4;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 4
-	bne      lbl_80331B58
-	stw      r30, 0x44(r29)
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0
-	bne      lbl_80331A04
-	lis      r3, lbl_8048F848@ha
-	lis      r5, lbl_8048F854@ha
-	addi     r3, r3, lbl_8048F848@l
-	li       r4, 0x1a2
-	addi     r5, r5, lbl_8048F854@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80331A04:
-	mr       r3, r29
-	lwz      r12, 0x10(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r30, 2
-	lwz      r3, 0(r3)
-	li       r31, 0
-	beq      lbl_80331A98
-	bge      lbl_80331A3C
-	cmpwi    r30, 0
-	beq      lbl_80331A48
-	bge      lbl_80331A68
-	b        lbl_80331B28
-
-lbl_80331A3C:
-	cmpwi    r30, 4
-	bge      lbl_80331B28
-	b        lbl_80331AFC
-
-lbl_80331A48:
-	cmplwi   r3, 0
-	beq      lbl_80331A60
-	li       r4, 2
-	li       r5, 0x1e
-	bl       setPauseMode__8JAISoundFUcUc
-	b        lbl_80331B44
-
-lbl_80331A60:
-	li       r31, 1
-	b        lbl_80331B44
-
-lbl_80331A68:
-	cmplwi   r3, 0
-	beq      lbl_80331A90
-	lwz      r12, 0x10(r3)
-	li       r4, 0xf
-	lfs      f1, lbl_8051E0A0@sda21(r2)
-	li       r5, 0xb
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80331B44
-
-lbl_80331A90:
-	li       r31, 1
-	b        lbl_80331B44
-
-lbl_80331A98:
-	cmplwi   r3, 0
-	beq      lbl_80331AF4
-	lbz      r4, 0x48(r29)
-	lis      r0, 0x4330
-	stw      r0, 8(r1)
-	lfd      f3, lbl_8051E0B0@sda21(r2)
-	stw      r4, 0xc(r1)
-	lfs      f0, lbl_8051E0A4@sda21(r2)
-	lfd      f2, 8(r1)
-	lfs      f1, lbl_8051E0A8@sda21(r2)
-	fsubs    f2, f2, f3
-	fdivs    f0, f2, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_80331AD4
-	b        lbl_80331AD8
-
-lbl_80331AD4:
-	fmr      f1, f0
-
-lbl_80331AD8:
-	lwz      r12, 0x10(r3)
-	li       r4, 0xf
-	li       r5, 0xb
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80331B44
-
-lbl_80331AF4:
-	li       r31, 1
-	b        lbl_80331B44
-
-lbl_80331AFC:
-	cmplwi   r3, 0
-	beq      lbl_80331B20
-	mr       r3, r29
-	li       r4, 0
-	lwz      r12, 0x10(r29)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80331B44
-
-lbl_80331B20:
-	li       r31, 1
-	b        lbl_80331B44
-
-lbl_80331B28:
-	lis      r3, lbl_8048F848@ha
-	lis      r5, lbl_8048F854@ha
-	addi     r3, r3, lbl_8048F848@l
-	li       r4, 0x1cd
-	addi     r5, r5, lbl_8048F854@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80331B44:
-	clrlwi   r0, r31, 0x18
-	cmplwi   r0, 1
-	bne      lbl_80331B58
-	li       r0, 4
-	stw      r0, 0x44(r29)
-
-lbl_80331B58:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -1118,6 +963,7 @@ lbl_80331B58:
 void SeqBase::pauseOff()
 {
 	P2ASSERTLINE(474, getHandleP());
+
 	if (mPauseMode == SeqBase::MODE3) {
 		startSeq();
 	} else if (mPauseMode == SeqBase::MODE2 || mPauseMode == SeqBase::MODE1) {
@@ -1132,97 +978,6 @@ void SeqBase::pauseOff()
 		}
 	}
 	mPauseMode = SeqBase::MODE4;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0
-	bne      lbl_80331BBC
-	lis      r3, lbl_8048F848@ha
-	lis      r5, lbl_8048F854@ha
-	addi     r3, r3, lbl_8048F848@l
-	li       r4, 0x1da
-	addi     r5, r5, lbl_8048F854@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80331BBC:
-	lwz      r0, 0x44(r31)
-	cmpwi    r0, 3
-	bne      lbl_80331BE0
-	mr       r3, r31
-	lwz      r12, 0x10(r31)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80331C94
-
-lbl_80331BE0:
-	cmpwi    r0, 2
-	beq      lbl_80331BF0
-	cmpwi    r0, 1
-	bne      lbl_80331C48
-
-lbl_80331BF0:
-	mr       r3, r31
-	lwz      r12, 0x10(r31)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0(r3)
-	cmplwi   r0, 0
-	beq      lbl_80331C94
-	mr       r3, r31
-	lwz      r12, 0x10(r31)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0(r3)
-	li       r4, 0xf
-	lfs      f1, lbl_8051E0A8@sda21(r2)
-	li       r5, 0xb
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80331C94
-
-lbl_80331C48:
-	cmpwi    r0, 4
-	beq      lbl_80331C94
-	mr       r3, r31
-	lwz      r12, 0x10(r31)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0(r3)
-	cmplwi   r0, 0
-	beq      lbl_80331C94
-	mr       r3, r31
-	lwz      r12, 0x10(r31)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0(r3)
-	li       r4, 0
-	li       r5, 0x1e
-	bl       setPauseMode__8JAISoundFUcUc
-
-lbl_80331C94:
-	li       r0, 4
-	stw      r0, 0x44(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -1243,72 +998,12 @@ void SeqBase::exec()
 		}
 	}
 
-	if (getHandleP() && isPlaying()) {
-		mSeqSound = nullptr;
+	if (!(*getHandleP()) && mSeqSound) {
+		u8 state = (u8)mSeqSound->mSeqParameter.mTrack.mSeqCtrl.mPlayingState;
+		if (state == 0 || state == 2) {
+			mSeqSound = nullptr;
+		}
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lhz      r3, 0x30(r3)
-	cmplwi   r3, 0
-	beq      lbl_80331CF4
-	addi     r0, r3, -1
-	cmplwi   r3, 1
-	sth      r0, 0x30(r31)
-	bne      lbl_80331CF4
-	addi     r3, r31, 0x2c
-	lwz      r12, 0x2c(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80331CF4:
-	lhz      r3, 0x3c(r31)
-	cmplwi   r3, 0
-	beq      lbl_80331D24
-	addi     r0, r3, -1
-	cmplwi   r3, 1
-	sth      r0, 0x3c(r31)
-	bne      lbl_80331D24
-	addi     r3, r31, 0x38
-	lwz      r12, 0x38(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80331D24:
-	mr       r3, r31
-	lwz      r12, 0x10(r31)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0(r3)
-	cmplwi   r0, 0
-	bne      lbl_80331D70
-	lwz      r3, 0x4c(r31)
-	cmplwi   r3, 0
-	beq      lbl_80331D70
-	lbz      r0, 0x35b(r3)
-	cmplwi   r0, 0
-	beq      lbl_80331D68
-	clrlwi   r0, r0, 0x18
-	cmplwi   r0, 2
-	bne      lbl_80331D70
-
-lbl_80331D68:
-	li       r0, 0
-	stw      r0, 0x4c(r31)
-
-lbl_80331D70:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -1333,9 +1028,10 @@ void SeqBase::startSeq()
 	handle = (JAISequence*)getHandleP();
 	P2ASSERTLINE(534, handle);
 	JUT_ASSERTLINE(538, handle, "seq not played");
-	// handle->mSeqParameter.mOuterParam.mOuterUpdate = (u16)this;
+	SeqSound* se = (SeqSound*)(this);
+	se->mSeq     = this;
 	setConfigVolume();
-	// mSeqSound = handle->mSeqParameter._250;
+	mSeqSound = (SeqSound*)&handle->mSeqParameter.mTrack.mHead;
 	OSUnlockMutex(&mMutex);
 
 	/*
@@ -1520,37 +1216,10 @@ void SeqBase::scene1st(TaskChecker* task)
  */
 void SeqBase::stopSeq(u32 type)
 {
-	if (getHandleP()) {
-		(*getHandleP())->stop(type);
+	JAISound** se = getHandleP();
+	if (se && *se) {
+		(*se)->stop(type);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0
-	beq      lbl_80332030
-	lwz      r3, 0(r3)
-	cmplwi   r3, 0
-	beq      lbl_80332030
-	lwz      r12, 0x10(r3)
-	mr       r4, r31
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80332030:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -1605,7 +1274,7 @@ void StreamBgm::setId(u32 a1) { mId = a1; }
 void StreamBgm::startSeq()
 {
 	if (StreamDataList::sInstance) {
-		// mSoundInfo.mVolume.w = StreamDataList::sInstance->getStream(mId);
+		mSoundInfo.mVolume.c = StreamDataList::sInstance->getStreamVolume(mId);
 	}
 	OSLockMutex(&mMutex);
 	JAIBasic::msBasic->startSoundBasic(mId, &mJaiSound, nullptr, 0, 0, &mSoundInfo);
@@ -1618,108 +1287,6 @@ void StreamBgm::startSeq()
 	} else {
 		setConfigVolume();
 	}
-
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0,
-"sInstance__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>"@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_80332440
-	lwz      r4, 0x70(r31)
-	mr       r3, r0
-	bl       getStreamVolume__Q28PSSystem14StreamDataListFUl
-	stb      r3, 0x24(r31)
-
-lbl_80332440:
-	addi     r3, r31, 0x50
-	bl       OSLockMutex
-	lwz      r3, msBasic__8JAIBasic@sda21(r13)
-	addi     r5, r31, 0x6c
-	lwz      r4, 0x70(r31)
-	addi     r9, r31, 0x18
-	li       r6, 0
-	li       r7, 0
-	li       r8, 0
-	bl
-startSoundBasic__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUcPQ27JAInter9SoundInfo
-	addi     r3, r31, 0x50
-	bl       OSUnlockMutex
-	lwz      r0, 0x6c(r31)
-	cmplwi   r0, 0
-	bne      lbl_80332498
-	lis      r3, lbl_8048F848@ha
-	lis      r5, lbl_8048F854@ha
-	addi     r3, r3, lbl_8048F848@l
-	li       r4, 0x2c0
-	addi     r5, r5, lbl_8048F854@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80332498:
-	lwz      r3, 0x6c(r31)
-	lwz      r4, 0x70(r31)
-	lwz      r0, 0x20(r3)
-	cmplw    r4, r0
-	beq      lbl_803324C8
-	lis      r3, lbl_8048F848@ha
-	lis      r5, lbl_8048F854@ha
-	addi     r3, r3, lbl_8048F848@l
-	li       r4, 0x2c1
-	addi     r5, r5, lbl_8048F854@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803324C8:
-	lwz      r3, 0x70(r31)
-	addis    r0, r3, 0x3fff
-	cmplwi   r0, 0x101f
-	bne      lbl_80332544
-	mr       r3, r31
-	lwz      r12, 0x10(r31)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0(r3)
-	li       r4, 0
-	lfs      f1, lbl_8051E0A8@sda21(r2)
-	li       r5, 8
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	lwz      r12, 0x10(r31)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0(r3)
-	li       r4, 0
-	lfs      f1, lbl_8051E0B8@sda21(r2)
-	li       r5, 3
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80332558
-
-lbl_80332544:
-	mr       r3, r31
-	lwz      r12, 0x10(r31)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80332558:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -1731,62 +1298,6 @@ void StreamBgm::setConfigVolume()
 	f32 vol = PSGetSystemIFA()->mBgmVolume;
 	(*getHandleP())->setVolume(vol, 0, 8);
 	(*getHandleP())->setVolume(0.8f, 0, 3);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	lwz      r0, spSysIF__8PSSystem@sda21(r13)
-	mr       r31, r3
-	cmplwi   r0, 0
-	bne      lbl_803325B0
-	lis      r3, lbl_8048F8F4@ha
-	lis      r5, lbl_8048F854@ha
-	addi     r3, r3, lbl_8048F8F4@l
-	li       r4, 0x18b
-	addi     r5, r5, lbl_8048F854@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803325B0:
-	mr       r3, r31
-	lwz      r4, spSysIF__8PSSystem@sda21(r13)
-	lwz      r12, 0x10(r31)
-	lfs      f31, 0x24(r4)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0(r3)
-	fmr      f1, f31
-	li       r4, 0
-	li       r5, 8
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	lwz      r12, 0x10(r31)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0(r3)
-	li       r4, 0
-	lfs      f1, lbl_8051E0BC@sda21(r2)
-	li       r5, 3
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -1816,62 +1327,6 @@ void SeSeq::setConfigVolume()
 	f32 vol = PSGetSystemIFA()->mSfxVolume;
 	(*getHandleP())->setVolume(vol, 0, 8);
 	(*getHandleP())->setVolume(0.8f, 0, 3);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	lwz      r0, spSysIF__8PSSystem@sda21(r13)
-	mr       r31, r3
-	cmplwi   r0, 0
-	bne      lbl_80332780
-	lis      r3, lbl_8048F8F4@ha
-	lis      r5, lbl_8048F854@ha
-	addi     r3, r3, lbl_8048F8F4@l
-	li       r4, 0x18b
-	addi     r5, r5, lbl_8048F854@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80332780:
-	mr       r3, r31
-	lwz      r4, spSysIF__8PSSystem@sda21(r13)
-	lwz      r12, 0x10(r31)
-	lfs      f31, 0x20(r4)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0(r3)
-	fmr      f1, f31
-	li       r4, 0
-	li       r5, 8
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	lwz      r12, 0x10(r31)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0(r3)
-	li       r4, 0
-	lfs      f1, lbl_8051E0A8@sda21(r2)
-	li       r5, 3
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -1880,61 +1335,10 @@ lbl_80332780:
  */
 void SeSeq::stopSeq(u32 type)
 {
-	for (u8 i = 0; i < JAIGlobalParameter::getParamSeCategoryMax(); i++) {
+	for (u8 i = 0; i < (u8)JAIGlobalParameter::getParamSeCategoryMax(); i++) {
 		JAIBasic::msBasic->stopAllSe(i);
 	}
-	if (getHandleP()) {
-		(*getHandleP())->stop(type);
-	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	b        lbl_80332844
-
-lbl_80332834:
-	lwz      r3, msBasic__8JAIBasic@sda21(r13)
-	mr       r4, r31
-	bl       stopAllSe__8JAIBasicFUc
-	addi     r31, r31, 1
-
-lbl_80332844:
-	bl       getParamSeCategoryMax__18JAIGlobalParameterFv
-	clrlwi   r3, r3, 0x18
-	clrlwi   r0, r31, 0x18
-	cmplw    r0, r3
-	blt      lbl_80332834
-	mr       r3, r29
-	lwz      r12, 0x10(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0
-	beq      lbl_80332894
-	lwz      r3, 0(r3)
-	cmplwi   r3, 0
-	beq      lbl_80332894
-	lwz      r12, 0x10(r3)
-	mr       r4, r30
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80332894:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	SeqBase::stopSeq(type);
 }
 
 /**
@@ -2324,7 +1728,7 @@ lbl_80332FEC:
  */
 void DirectedBgm::stopSeq(u32 type)
 {
-	if (getHandleP()) {
+	if (*getHandleP()) {
 		for (u8 i = 0; i < 16; i++) {
 			mChildTracks[i]->onStopSeq();
 		}
@@ -2332,80 +1736,8 @@ void DirectedBgm::stopSeq(u32 type)
 		if (mDirectorMgr) {
 			mDirectorMgr->off(this);
 		}
-		if (getHandleP()) {
-			(*getHandleP())->stop(type);
-		}
+		SeqBase::stopSeq(type);
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0(r3)
-	cmplwi   r0, 0
-	beq      lbl_80333104
-	li       r31, 0
-	b        lbl_80333094
-
-lbl_80333074:
-	rlwinm   r3, r31, 2, 0x16, 0x1d
-	addi     r0, r3, 0x74
-	lwzx     r3, r29, r0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r31, r31, 1
-
-lbl_80333094:
-	clrlwi   r0, r31, 0x18
-	cmplwi   r0, 0x10
-	blt      lbl_80333074
-	lwz      r3, 0x70(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x6c(r29)
-	cmplwi   r3, 0
-	beq      lbl_803330C8
-	mr       r4, r29
-	bl       off__Q28PSSystem15DirectorMgrBaseFPQ28PSSystem11DirectedBgm
-
-lbl_803330C8:
-	mr       r3, r29
-	lwz      r12, 0x10(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0
-	beq      lbl_80333104
-	lwz      r3, 0(r3)
-	cmplwi   r3, 0
-	beq      lbl_80333104
-	lwz      r12, 0x10(r3)
-	mr       r4, r30
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80333104:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -2423,31 +1755,26 @@ void DirectedBgm::onPlayingFrame()
  * @note Address: 0x8033314C
  * @note Size: 0x2C
  */
-void SeqTrackRoot_JumpBgm::onBeatTop()
-{
-	// JumpBgmPort::onBeatTop(mBeatMgr);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	addi     r4, r4, 0x3c
-	lwz      r3, 0x2c4(r3)
-	bl       onBeatTop__Q28PSSystem11JumpBgmPortFRQ28PSSystem7BeatMgr
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void SeqTrackRoot_JumpBgm::onBeatTop() { mJumpPort->onBeatTop(mBeatMgr); }
 
 /**
  * @note Address: N/A
  * @note Size: 0x84
  */
-JumpBgmPort::JumpBgmPort(JumpBgmSeq*)
+JumpBgmPort::JumpBgmPort(JumpBgmSeq* owner)
 {
-	// UNUSED FUNCTION
+	OSInitMutex(&mMutex1);
+	_18 = -1;
+	OSInitMutex(&mMutex2);
+	_34 = -1;
+	OSInitMutex(&mMutex3);
+	_50 = 0;
+	OSInitMutex(&mMutex4);
+	_64 = -1;
+
+	mOwner          = owner;
+	mAvoidJumpTimer = 0;
+	_70             = 0;
 }
 
 /**
@@ -2456,7 +1783,26 @@ JumpBgmPort::JumpBgmPort(JumpBgmSeq*)
  */
 void JumpBgmPort::onBeatTop(BeatMgr& mgr)
 {
-	if (mgr._00) { }
+	if (!mgr._00) {
+		return;
+	}
+
+	u16 mode = _34;
+	if (mode != 0xffff) {
+		OSLockMutex(&mMutex4);
+		_64 = mode;
+		OSUnlockMutex(&mMutex4);
+		OSLockMutex(&mMutex2);
+		_34 = 0xffff;
+		OSUnlockMutex(&mMutex2);
+	} else if (_18 != 0xffff) {
+		OSLockMutex(&mMutex4);
+		_64 = mode;
+		OSUnlockMutex(&mMutex4);
+		OSLockMutex(&mMutex1);
+		_18 = 0xffff;
+		OSUnlockMutex(&mMutex1);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2515,36 +1861,67 @@ lbl_80333218:
  * @note Address: N/A
  * @note Size: 0x48
  */
-void JumpBgmPort::requestQuickly(u16)
+void JumpBgmPort::requestQuickly(u16 state)
 {
-	// UNUSED FUNCTION
+	if (mAvoidJumpTimer == 0) {
+		OSLockMutex(&mMutex4);
+		_64 = state;
+		OSUnlockMutex(&mMutex4);
+	}
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0x48
  */
-void JumpBgmPort::requestOnBeat(u16)
+void JumpBgmPort::requestOnBeat(u16 state)
 {
-	// UNUSED FUNCTION
+	if (mAvoidJumpTimer == 0) {
+		OSLockMutex(&mMutex2);
+		_34 = state;
+		OSUnlockMutex(&mMutex2);
+	}
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0x44
  */
-void JumpBgmPort::requestEveryBeat(u16)
+void JumpBgmPort::requestEveryBeat(u16 state)
 {
-	// UNUSED FUNCTION
+	if (mAvoidJumpTimer == 0) {
+		OSLockMutex(&mMutex1);
+		_18 = state;
+		OSUnlockMutex(&mMutex1);
+	}
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0xAC
  */
-void JumpBgmPort::output()
+u16 JumpBgmPort::output()
 {
-	// UNUSED FUNCTION
+	u16 check = _64;
+	if (check != 0xffff) {
+		OSLockMutex(&mMutex4);
+		_64 = -1;
+		OSUnlockMutex(&mMutex4);
+
+		OSLockMutex(&mMutex3);
+		_50 = check;
+		OSUnlockMutex(&mMutex3);
+
+		P2ASSERTLINE(1173, mOwner);
+		if (mOwner->mDirectorMgr) {
+			mOwner->mDirectorMgr->off(mOwner);
+		}
+	}
+
+	if (check != 0xffff) {
+		_70 = check;
+	}
+	return check;
 }
 
 /**
@@ -2553,124 +1930,8 @@ void JumpBgmPort::output()
  */
 JumpBgmSeq::JumpBgmSeq(char const* bmsFileName, JAInter::SoundInfo const& info, PSSystem::DirectorMgrBase* directorMgr)
     : DirectedBgm(bmsFileName, info, directorMgr)
+    , mJumpPort(this)
 {
-	OSInitMutex(&_B8);
-	_D0 = -1;
-	OSInitMutex(&_D4);
-	_EC = -1;
-	OSInitMutex(&_F0);
-	_108 = 0;
-	OSInitMutex(&_10C);
-	_124 = -1;
-	_128 = this; // TODO: This feels indicative of a substruct
-	_12C = 0;
-	_130 = 0;
-
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  mr        r26, r3
-	  mr        r29, r4
-	  mr        r30, r5
-	  mr        r4, r26
-	  mr        r31, r6
-	  mr        r27, r4
-	  mr        r28, r4
-	  bl        -0x30CAA4
-	  lis       r3, 0x804E
-	  lis       r5, 0x804E
-	  subi      r0, r3, 0x598C
-	  lis       r4, 0x804E
-	  stw       r0, 0x10(r28)
-	  li        r10, 0
-	  lis       r3, 0x804E
-	  lwz       r8, 0x0(r30)
-	  stw       r10, 0x14(r28)
-	  subi      r7, r5, 0x5948
-	  lwz       r0, 0x4(r30)
-	  subi      r6, r4, 0x5930
-	  stw       r8, 0x18(r28)
-	  subi      r5, r3, 0x593C
-	  lwz       r9, 0x8(r30)
-	  li        r4, 0x4
-	  stw       r0, 0x1C(r28)
-	  li        r0, 0x26
-	  lwz       r8, 0xC(r30)
-	  addi      r3, r28, 0x50
-	  stw       r9, 0x20(r28)
-	  stw       r8, 0x24(r28)
-	  stw       r10, 0x28(r28)
-	  stw       r7, 0x2C(r28)
-	  sth       r10, 0x30(r28)
-	  stw       r6, 0x2C(r28)
-	  stw       r28, 0x34(r28)
-	  stw       r7, 0x38(r28)
-	  sth       r10, 0x3C(r28)
-	  stw       r5, 0x38(r28)
-	  stw       r28, 0x40(r28)
-	  stw       r4, 0x44(r28)
-	  stb       r0, 0x48(r28)
-	  stw       r10, 0x4C(r28)
-	  bl        -0x2437B8
-	  cmplwi    r29, 0
-	  beq-      .loc_0xE4
-	  mr        r3, r29
-	  bl        -0x2689E8
-	  addi      r3, r3, 0x1
-	  bl        -0x30F354
-	  stw       r3, 0x14(r28)
-	  mr        r4, r29
-	  lwz       r3, 0x14(r28)
-	  bl        -0x268AB8
-
-	.loc_0xE4:
-	  lis       r3, 0x804E
-	  lis       r4, 0x804E
-	  subi      r0, r3, 0x59D0
-	  lis       r3, 0x804E
-	  stw       r0, 0x10(r27)
-	  li        r5, 0
-	  subi      r4, r4, 0x5AA4
-	  subi      r0, r3, 0x5B74
-	  stw       r5, 0x68(r27)
-	  addi      r3, r26, 0xB8
-	  stw       r4, 0x10(r27)
-	  stw       r31, 0x6C(r27)
-	  stw       r5, 0x70(r27)
-	  stb       r5, 0xB4(r27)
-	  stw       r0, 0x10(r26)
-	  bl        -0x243820
-	  lis       r4, 0x1
-	  addi      r3, r26, 0xD4
-	  subi      r0, r4, 0x1
-	  sth       r0, 0xD0(r26)
-	  bl        -0x243834
-	  lis       r4, 0x1
-	  addi      r3, r26, 0xF0
-	  subi      r0, r4, 0x1
-	  sth       r0, 0xEC(r26)
-	  bl        -0x243848
-	  li        r0, 0
-	  addi      r3, r26, 0x10C
-	  sth       r0, 0x108(r26)
-	  bl        -0x243858
-	  lis       r3, 0x1
-	  li        r0, 0
-	  subi      r4, r3, 0x1
-	  mr        r3, r26
-	  sth       r4, 0x124(r26)
-	  stw       r26, 0x128(r26)
-	  stw       r0, 0x12C(r26)
-	  sth       r0, 0x130(r26)
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
 }
 
 /**
@@ -2679,47 +1940,9 @@ JumpBgmSeq::JumpBgmSeq(char const* bmsFileName, JAInter::SoundInfo const& info, 
  */
 SeqTrackRoot* JumpBgmSeq::newSeqTrackRoot()
 {
-	SeqTrackRoot* track = new SeqTrackRoot_JumpBgm;
+	SeqTrackRoot* track = new SeqTrackRoot_JumpBgm(&mJumpPort);
 	P2ASSERTLINE(1211, track);
 	return track;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	li       r3, 0x2c8
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_80333400
-	bl       __ct__Q28PSSystem12SeqTrackRootFv
-	lis      r3, __vt__Q28PSSystem20SeqTrackRoot_JumpBgm@ha
-	addi     r0, r30, 0xb8
-	addi     r3, r3, __vt__Q28PSSystem20SeqTrackRoot_JumpBgm@l
-	stw      r3, 0(r31)
-	stw      r0, 0x2c4(r31)
-
-lbl_80333400:
-	cmplwi   r31, 0
-	bne      lbl_80333424
-	lis      r3, lbl_8048F848@ha
-	lis      r5, lbl_8048F854@ha
-	addi     r3, r3, lbl_8048F848@l
-	li       r4, 0x4bb
-	addi     r5, r5, lbl_8048F854@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80333424:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -2737,7 +1960,11 @@ lbl_80333424:
  */
 void JumpBgmSeq::startSeq()
 {
-	BgmSeq::startSeq();
+	DirectedBgm::startSeq();
+
+	OSLockMutex(&mJumpPort.mMutex3);
+	mJumpPort._50 = 0;
+	OSUnlockMutex(&mJumpPort.mMutex3);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2847,9 +2074,13 @@ lbl_80333550:
  * @note Address: 0x803335B0
  * @note Size: 0x178
  */
-void JumpBgmSeq::startSeq(u16)
+void JumpBgmSeq::startSeq(u16 type)
 {
 	BgmSeq::startSeq();
+
+	OSLockMutex(&mJumpPort.mMutex3);
+	mJumpPort._50 = type;
+	OSUnlockMutex(&mJumpPort.mMutex3);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2961,121 +2192,19 @@ lbl_803336C8:
  * @note Address: 0x80333728
  * @note Size: 0x60
  */
-void JumpBgmSeq::requestJumpBgmQuickly(u16 jump)
-{
-	if (!_12C) {
-		OSLockMutex(&mMutex);
-		_12C = jump;
-		OSUnlockMutex(&mMutex);
-	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r0, 0x12c(r3)
-	cmplwi   r0, 0
-	bne      lbl_8033376C
-	addi     r31, r29, 0x10c
-	mr       r3, r31
-	bl       OSLockMutex
-	sth      r30, 0x124(r29)
-	mr       r3, r31
-	bl       OSUnlockMutex
-
-lbl_8033376C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+void JumpBgmSeq::requestJumpBgmQuickly(u16 jump) { mJumpPort.requestQuickly(jump); }
 
 /**
  * @note Address: 0x80333788
  * @note Size: 0x60
  */
-void JumpBgmSeq::requestJumpBgmOnBeat(u16 jump)
-{
-	if (!_12C) {
-		OSLockMutex(&mMutex);
-		_EC = jump;
-		OSUnlockMutex(&mMutex);
-	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r0, 0x12c(r3)
-	cmplwi   r0, 0
-	bne      lbl_803337CC
-	addi     r31, r29, 0xd4
-	mr       r3, r31
-	bl       OSLockMutex
-	sth      r30, 0xec(r29)
-	mr       r3, r31
-	bl       OSUnlockMutex
-
-lbl_803337CC:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+void JumpBgmSeq::requestJumpBgmOnBeat(u16 jump) { mJumpPort.requestOnBeat(jump); }
 
 /**
  * @note Address: 0x803337E8
  * @note Size: 0x54
  */
-void JumpBgmSeq::requestJumpBgmEveryBeat(u16 jump)
-{
-	if (!_12C) {
-		OSLockMutex(&mMutex);
-		_12C = jump;
-		OSUnlockMutex(&mMutex);
-	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r0, 0x12c(r3)
-	cmplwi   r0, 0
-	bne      lbl_80333824
-	addi     r3, r30, 0xb8
-	bl       OSLockMutex
-	sth      r31, 0xd0(r30)
-	addi     r3, r30, 0xb8
-	bl       OSUnlockMutex
-
-lbl_80333824:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JumpBgmSeq::requestJumpBgmEveryBeat(u16 jump) { mJumpPort.requestEveryBeat(jump); }
 
 /**
  * @note Address: 0x8033383C
@@ -3084,8 +2213,8 @@ lbl_80333824:
 void JumpBgmSeq::onPlayingFrame()
 {
 	DirectedBgm::onPlayingFrame();
-	if (_12C) {
-		_12C--;
+	if (mJumpPort.mAvoidJumpTimer) {
+		mJumpPort.mAvoidJumpTimer--;
 	}
 }
 
@@ -3093,67 +2222,7 @@ void JumpBgmSeq::onPlayingFrame()
  * @note Address: 0x80333888
  * @note Size: 0xC8
  */
-void JumpBgmSeq::outputJumpRequest()
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lhz      r31, 0x124(r3)
-	cmplwi   r31, 0xffff
-	beq      lbl_80333924
-	addi     r30, r29, 0x10c
-	mr       r3, r30
-	bl       OSLockMutex
-	lis      r4, 0x0000FFFF@ha
-	mr       r3, r30
-	addi     r0, r4, 0x0000FFFF@l
-	sth      r0, 0x124(r29)
-	bl       OSUnlockMutex
-	addi     r30, r29, 0xf0
-	mr       r3, r30
-	bl       OSLockMutex
-	sth      r31, 0x108(r29)
-	mr       r3, r30
-	bl       OSUnlockMutex
-	lwz      r0, 0x128(r29)
-	cmplwi   r0, 0
-	bne      lbl_80333910
-	lis      r3, lbl_8048F848@ha
-	lis      r5, lbl_8048F854@ha
-	addi     r3, r3, lbl_8048F848@l
-	li       r4, 0x495
-	addi     r5, r5, lbl_8048F854@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80333910:
-	lwz      r4, 0x128(r29)
-	lwz      r3, 0x6c(r4)
-	cmplwi   r3, 0
-	beq      lbl_80333924
-	bl       off__Q28PSSystem15DirectorMgrBaseFPQ28PSSystem11DirectedBgm
-
-lbl_80333924:
-	cmplwi   r31, 0xffff
-	beq      lbl_80333930
-	sth      r31, 0x130(r29)
-
-lbl_80333930:
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+u16 JumpBgmSeq::outputJumpRequest() { return mJumpPort.output(); }
 
 /**
  * @note Address: 0x80333950
@@ -3161,7 +2230,7 @@ lbl_80333930:
  */
 int JumpBgmSeq::getSeqStartPoint()
 {
-	int start = _108;
+	int start = mJumpPort._50;
 	onJump(start);
 	return start;
 }
@@ -3172,8 +2241,8 @@ int JumpBgmSeq::getSeqStartPoint()
  */
 void JumpBgmSeq::setAvoidJumpTimer_Checked(u32 time)
 {
-	if (!_12C) {
-		_12C = time;
+	if (!mJumpPort.mAvoidJumpTimer) {
+		mJumpPort.mAvoidJumpTimer = time;
 	}
 }
 
@@ -3183,41 +2252,13 @@ void JumpBgmSeq::setAvoidJumpTimer_Checked(u32 time)
  */
 bool SeqMgr::isPlaying()
 {
-	return true;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r31, 0(r3)
-	b        lbl_803339E4
-
-lbl_803339BC:
-	lwz      r3, 0(r31)
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803339E0
-	li       r3, 1
-	b        lbl_803339F0
-
-lbl_803339E0:
-	lwz      r31, 0xc(r31)
-
-lbl_803339E4:
-	cmplwi   r31, 0
-	bne      lbl_803339BC
-	li       r3, 0
-
-lbl_803339F0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	FOREACH_NODE(JSULink<SeqBase>, getFirst(), link)
+	{
+		if (link->getObject()->isPlaying()) {
+			return true;
+		}
+	}
+	return false;
 }
 
 /**
@@ -3226,6 +2267,13 @@ lbl_803339F0:
  */
 SeqMgr::~SeqMgr()
 {
+	OSDisableInterrupts();
+	FOREACH_NODE(JSULink<SeqBase>, getFirst(), link)
+	{
+		remove(link);
+		delete link->getObject();
+	}
+	OSEnableInterrupts();
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -3294,37 +2342,9 @@ lbl_80333AA8:
  * @note Address: 0x80333ACC
  * @note Size: 0x5C
  */
-void SeqMgr::pauseOnAllSeq(SeqBase::PauseMode)
+void SeqMgr::pauseOnAllSeq(SeqBase::PauseMode mode)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r4
-	lwz      r31, 0(r3)
-	b        lbl_80333B08
-
-lbl_80333AEC:
-	lwz      r3, 0(r31)
-	mr       r4, r30
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r31, 0xc(r31)
-
-lbl_80333B08:
-	cmplwi   r31, 0
-	bne      lbl_80333AEC
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	FOREACH_NODE(JSULink<SeqBase>, getFirst(), link) { link->getObject()->pauseOn(mode); }
 }
 
 /**
@@ -3333,31 +2353,7 @@ lbl_80333B08:
  */
 void SeqMgr::pauseOffAllSeq()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r31, 0(r3)
-	b        lbl_80333B58
-
-lbl_80333B40:
-	lwz      r3, 0(r31)
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r31, 0xc(r31)
-
-lbl_80333B58:
-	cmplwi   r31, 0
-	bne      lbl_80333B40
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	FOREACH_NODE(JSULink<SeqBase>, getFirst(), link) { link->getObject()->pauseOff(); }
 }
 
 /**
@@ -3366,21 +2362,7 @@ lbl_80333B58:
  */
 void SeqMgr::reservePauseOffAllSeq()
 {
-	/*
-	lwz      r4, 0(r3)
-	li       r0, 1
-	b        lbl_80333B8C
-
-lbl_80333B80:
-	lwz      r3, 0(r4)
-	sth      r0, 0x3c(r3)
-	lwz      r4, 0xc(r4)
-
-lbl_80333B8C:
-	cmplwi   r4, 0
-	bne      lbl_80333B80
-	blr
-	*/
+	FOREACH_NODE(JSULink<SeqBase>, getFirst(), link) { link->getObject()->mPauseOffRes.mState = 1; }
 }
 
 /**
@@ -3389,21 +2371,7 @@ lbl_80333B8C:
  */
 void SeqMgr::cancelPauseOffAllSeq()
 {
-	/*
-	lwz      r4, 0(r3)
-	li       r0, 0
-	b        lbl_80333BB0
-
-lbl_80333BA4:
-	lwz      r3, 0(r4)
-	sth      r0, 0x3c(r3)
-	lwz      r4, 0xc(r4)
-
-lbl_80333BB0:
-	cmplwi   r4, 0
-	bne      lbl_80333BA4
-	blr
-	*/
+	FOREACH_NODE(JSULink<SeqBase>, getFirst(), link) { link->getObject()->mPauseOffRes.mState = 0; }
 }
 
 /**
@@ -3412,128 +2380,59 @@ lbl_80333BB0:
  */
 void SeqMgr::exec()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r31, 0(r3)
-	b        lbl_80333C20
-
-lbl_80333BD4:
-	lwz      r3, 0(r31)
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0(r31)
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0(r3)
-	cmplwi   r0, 0
-	beq      lbl_80333C1C
-	lwz      r3, 0(r31)
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80333C1C:
-	lwz      r31, 0xc(r31)
-
-lbl_80333C20:
-	cmplwi   r31, 0
-	bne      lbl_80333BD4
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	FOREACH_NODE(JSULink<SeqBase>, getFirst(), link)
+	{
+		link->getObject()->exec();
+		if (*link->getObject()->getHandleP()) {
+			link->getObject()->onPlayingFrame();
+		}
+	}
 }
 
 /**
  * @note Address: 0x80333C3C
  * @note Size: 0x5C
  */
-void SeqMgr::stopAllSound(u32)
+void SeqMgr::stopAllSound(u32 state)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r4
-	lwz      r31, 0(r3)
-	b        lbl_80333C78
-
-lbl_80333C5C:
-	lwz      r3, 0(r31)
-	mr       r4, r30
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r31, 0xc(r31)
-
-lbl_80333C78:
-	cmplwi   r31, 0
-	bne      lbl_80333C5C
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	FOREACH_NODE(JSULink<SeqBase>, getFirst(), link) { link->getObject()->stopSeq(state); }
 }
 
 /**
  * @note Address: 0x80333C98
  * @note Size: 0x5C
  */
-void SeqMgr::scene1st(TaskChecker*)
+void SeqMgr::scene1st(TaskChecker* task)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r4
-	lwz      r31, 0(r3)
-	b        lbl_80333CD4
-
-lbl_80333CB8:
-	lwz      r3, 0(r31)
-	mr       r4, r30
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r31, 0xc(r31)
-
-lbl_80333CD4:
-	cmplwi   r31, 0
-	bne      lbl_80333CB8
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	FOREACH_NODE(JSULink<SeqBase>, getFirst(), link) { link->getObject()->scene1st(task); }
 }
 
 /**
  * @note Address: 0x80333CF4
  * @note Size: 0xE8
  */
-SeqBase* SeqMgr::findSeq(JASTrack*)
+SeqBase* SeqMgr::findSeq(JASTrack* track)
 {
+	FOREACH_NODE(JSULink<SeqBase>, getFirst(), link)
+	{
+		if (link->getObject()->getSeqType() != 1 && link->getObject()->getHandleP()) {
+			if (*link->getObject()->getHandleP()) {
+				SeqSound* se   = (SeqSound*)(link->getObject());
+				JASTrack* temp = &se->mSeqParameter.mTrack;
+				if (temp == track) {
+					return link->getObject();
+				}
+				// needs to not unroll
+				// for (int i = 0; i < 16; i++) {
+				if (temp->_2FC[0] == track) {
+					return link->getObject();
+				}
+				//}
+			}
+		}
+	}
+
+	return nullptr;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3616,50 +2515,20 @@ lbl_80333DC4:
  * @note Address: 0x80333DDC
  * @note Size: 0x80
  */
-SeqBase* SeqMgr::getPlayingSeq(JASTrack*)
+SeqBase* SeqMgr::getPlayingSeq(JASTrack* track)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r4
-	lwz      r31, 0(r3)
-	b        lbl_80333E38
+	FOREACH_NODE(JSULink<SeqBase>, getFirst(), link)
+	{
+		if (link->getObject()->getSeqType() != 1) {
 
-lbl_80333DFC:
-	lwz      r3, 0(r31)
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 1
-	beq      lbl_80333E34
-	lwz      r3, 0(r31)
-	lwz      r0, 0x4c(r3)
-	cmplwi   r0, 0
-	beq      lbl_80333E34
-	cmplw    r0, r30
-	bne      lbl_80333E34
-	b        lbl_80333E44
+			JASTrack* temp = (JASTrack*)link->getObject()->mSeqSound;
+			if (temp && temp == track) {
+				return link->getObject();
+			}
+		}
+	}
 
-lbl_80333E34:
-	lwz      r31, 0xc(r31)
-
-lbl_80333E38:
-	cmplwi   r31, 0
-	bne      lbl_80333DFC
-	li       r3, 0
-
-lbl_80333E44:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return nullptr;
 }
 
 /**
@@ -3668,17 +2537,11 @@ lbl_80333E44:
  */
 SeqBase* SeqMgr::getFirstSeq()
 {
-	/*
-	lwz      r3, 0(r3)
-	cmplwi   r3, 0
-	beq      lbl_80333E70
-	lwz      r3, 0(r3)
-	blr
-
-lbl_80333E70:
-	li       r3, 0
-	blr
-	*/
+	JSULink<SeqBase>* link = getFirst();
+	if (link) {
+		return link->getObject();
+	}
+	return nullptr;
 }
 
 /**
@@ -3691,27 +2554,10 @@ SeqBase* SeqMgr::getFirstSeqA() { return getSeq(0); }
  * @note Address: 0x80333E9C
  * @note Size: 0x34
  */
-SeqBase* SeqMgr::getSeq(u32)
+SeqBase* SeqMgr::getSeq(u32 id)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       getNthLink__10JSUPtrListCFUl
-	cmplwi   r3, 0
-	bne      lbl_80333EBC
-	li       r3, 0
-	b        lbl_80333EC0
-
-lbl_80333EBC:
-	lwz      r3, 0(r3)
-
-lbl_80333EC0:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	JSULink<SeqBase>* link = (JSULink<SeqBase>*)getNthLink(id);
+	return (!link) ? nullptr : link->getObject();
 }
 
 } // namespace PSSystem

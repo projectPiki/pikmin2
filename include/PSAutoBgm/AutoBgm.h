@@ -10,17 +10,18 @@
 
 namespace PSAutoBgm {
 
-struct AutoBgmSeqTrackRoot : public PSSystem::SeqTrackRoot {
+struct AutoBgmSeqTrackRoot : public PSSystem::SeqTrackRoot_JumpBgm {
 	AutoBgmSeqTrackRoot(ConductorMgr* mgr)
+	    : PSSystem::SeqTrackRoot_JumpBgm(mJumpPort)
 	{
-		mDataMgr = mgr;
+		// mDataMgr = mgr;
 		P2ASSERTLINE(755, mgr);
 	}
 
 	virtual u16 beatUpdate()
 	{
 		SeqTrackRoot::beatUpdate();
-		P2ASSERTLINE(760, mDataMgr->_18);
+		P2ASSERTLINE(760, mJumpPort->_18);
 	} // _14 (weak)
 
 	// _00      = VTABLE

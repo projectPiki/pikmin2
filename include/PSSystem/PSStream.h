@@ -38,13 +38,11 @@ struct StreamBgm : public BgmSeq {
 /**
  * @size = 0x20
  */
-struct StreamDataList : public SeqDataList {
+struct StreamDataList : public TextDataBase, public SingletonBase<StreamDataList> {
 	StreamDataList();
 
 	virtual ~StreamDataList();                         // _08 (weak)
 	virtual bool read(Stream& input) { return false; } // _0C (weak)
-	// virtual void _10() = 0;      // _10 - possibly
-	// virtual void _14() = 0;      // _14 - possibly
 
 	int getStreamVolume(u32);
 };

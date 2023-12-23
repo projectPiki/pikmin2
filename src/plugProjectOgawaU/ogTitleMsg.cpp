@@ -56,7 +56,7 @@ void TitleMessageAnalyzer::do_character(int data)
 		set2ByteString(cChar, data + 0x8220);
 		valid = true;
 	} else if (c >= 0xbf && c <= 0xff) {
-		set2ByteString(cChar, data - 0x1bf);
+		set2ByteString(cChar, (u16)(data)-0x1bf);
 		valid = true;
 	} else if (c == ' ') {
 		set2ByteString(cChar, 0x8140);
@@ -67,8 +67,8 @@ void TitleMessageAnalyzer::do_character(int data)
 	} else if (c == '?') {
 		set2ByteString(cChar, 0x8148);
 		valid = true;
-	} else if (u8(c - '&') <= 1 || c == '-') {
-		set2ByteString(cChar, data - 0x100);
+	} else if (u8(c - '&') <= 1 || (u32)c == '-') {
+		set2ByteString(cChar, (u16)data - 0x100);
 		valid = true;
 	}
 

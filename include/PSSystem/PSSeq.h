@@ -13,6 +13,7 @@ namespace PSSystem {
 struct DirectorMgrBase;
 struct SeqTrackRoot;
 struct SeqTrackChild;
+struct JumpBgmSeq;
 
 /**
  * @size = 0x6C
@@ -84,6 +85,30 @@ struct DirectedBgm : public BgmSeq {
 	u8 _B4;                          // _B4 - unknown
 };
 
+struct JumpBgmPort {
+	JumpBgmPort(JumpBgmSeq*);
+
+	void onBeatTop(struct BeatMgr&);
+
+	// unused/inlined:
+	void requestQuickly(u16);
+	void requestOnBeat(u16);
+	void requestEveryBeat(u16);
+	u16 output();
+
+	OSMutex mMutex1;     // _00
+	u16 _18;             // _18
+	OSMutex mMutex2;     // _1C
+	u16 _34;             // _34
+	OSMutex mMutex3;     // _38
+	u16 _50;             // _50
+	OSMutex mMutex4;     // _54
+	u16 _64;             // _64
+	JumpBgmSeq* mOwner;  // _68
+	u32 mAvoidJumpTimer; // _6C
+	u16 _70;             // _70
+};
+
 /**
  * @size = 0x134
  */
@@ -99,7 +124,7 @@ struct JumpBgmSeq : public DirectedBgm {
 	virtual void requestJumpBgmQuickly(u16);           // _50
 	virtual void requestJumpBgmOnBeat(u16);            // _54
 	virtual void requestJumpBgmEveryBeat(u16);         // _58
-	virtual void outputJumpRequest();                  // _5C
+	virtual u16 outputJumpRequest();                   // _5C
 	virtual void onJump(u16) { }                       // _60 (weak)
 
 	void startSeq(u16);
@@ -110,29 +135,7 @@ struct JumpBgmSeq : public DirectedBgm {
 	// _14-_68  = SeqBase
 	// _6C-_B8  = DirectedBgm
 
-	OSMutex _B8;      // _B8
-	s16 _D0;          // _D0
-	OSMutex _D4;      // _D4
-	s16 _EC;          // _EC
-	OSMutex _F0;      // _F0
-	u16 _108;         // _108
-	OSMutex _10C;     // _10C
-	u16 _124;         // _124
-	JumpBgmSeq* _128; // _128
-	u32 _12C;         // _12C
-	u16 _130;         // _130
-};
-
-struct JumpBgmPort {
-	JumpBgmPort(JumpBgmSeq*);
-
-	void onBeatTop(struct BeatMgr&);
-
-	// unused/inlined:
-	void requestQuickly(u16);
-	void requestOnBeat(u16);
-	void requestEveryBeat(u16);
-	void output();
+	JumpBgmPort mJumpPort; // _BC
 };
 
 } // namespace PSSystem

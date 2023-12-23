@@ -515,7 +515,7 @@ void Scene_Game::bossKilled(PSM::EnemyBoss* obj)
 	PSM::BossBgmFader::Mgr* mgr = PSSystem::SingletonBase<PSM::BossBgmFader::Mgr>::getInstance();
 	if (!mgr->checkBossActive() && seq) {
 		seq = PSMGetMiddleBossSeq();
-		if (seq && (seq->_130 == 2 || seq->_130 == 8)) {
+		if (seq && (seq->mJumpPort._70 == 2 || seq->mJumpPort._70 == 8)) {
 			obj->jumpRequest(1);
 		}
 	}
@@ -1274,7 +1274,7 @@ bool Scene_Game::akubiOK()
 		result = true;
 	}
 
-	if (result && getMiddleBossBgm() && getMiddleBossBgm()->_130 != 0) {
+	if (result && getMiddleBossBgm() && getMiddleBossBgm()->mJumpPort._70 != 0) {
 		result = false;
 	}
 	return result;
@@ -1887,7 +1887,7 @@ void Scene_Cave::bossKilled(PSM::EnemyBoss* obj)
 		if (seq) {
 			if (!check) {
 				seq->stopSeq(40);
-			} else if (seq->_130 == 2 || seq->_130 == 8) {
+			} else if (seq->mJumpPort._70 == 2 || seq->mJumpPort._70 == 8) {
 				obj->jumpRequest(1);
 			}
 		}
@@ -1896,7 +1896,7 @@ void Scene_Cave::bossKilled(PSM::EnemyBoss* obj)
 		bool check         = PSSystem::SingletonBase<BossBgmFader::Mgr>::getInstance()->checkBossActive();
 		if (!check && seq) {
 			seq = PSMGetMiddleBossSeq();
-			if (seq && (seq->_130 == 2 || seq->_130 == 8)) {
+			if (seq && (seq->mJumpPort._70 == 2 || seq->mJumpPort._70 == 8)) {
 				obj->jumpRequest(1);
 			}
 		}
