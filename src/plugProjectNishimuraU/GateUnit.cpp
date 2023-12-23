@@ -1,5 +1,5 @@
 #include "Game/Cave/Node.h"
-#include "Dolphin/math.h"
+#include "math.h"
 
 namespace Game {
 namespace Cave {

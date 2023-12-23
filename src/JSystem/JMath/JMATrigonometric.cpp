@@ -1,4 +1,4 @@
-#include "Dolphin/math.h"
+#include "math.h"
 #include "JSystem/JMath.h"
 #include "types.h"
 

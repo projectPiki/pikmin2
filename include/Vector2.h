@@ -4,7 +4,7 @@
 #include "types.h"
 #include "sqrt.h"
 #include "JSystem/JGeometry.h"
-#include "Dolphin/math.h"
+#include "math.h"
 
 template <typename T>
 struct Vector2 {

@@ -1,5 +1,5 @@
 #include "Dolphin/mtx.h"
-#include "Dolphin/math.h"
+#include "math.h"
 
 /**
  * @note Address: N/A

@@ -1,5 +1,5 @@
 #include "float.h"
-#include "Dolphin/math.h"
+#include "math.h"
 #include "Dolphin/mtx.h"
 #include "JSystem/JGeometry.h"
 #include "JSystem/JParticle/JPABlock.h"

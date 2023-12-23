@@ -1,6 +1,6 @@
 #include "types.h"
 #include "JSystem/J2D/J2DGrafContext.h"
-#include "Dolphin/math.h"
+#include "math.h"
 
 /**
  * @note Address: 0x80036074

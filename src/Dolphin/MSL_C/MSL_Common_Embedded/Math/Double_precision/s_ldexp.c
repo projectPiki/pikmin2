@@ -13,7 +13,7 @@
  */
 
 #include "fdlibm.h"
-#include "Dolphin/math.h" /* for isfinite macro */
+#include "math.h" /* for isfinite macro */
 static const f64
 
     two54

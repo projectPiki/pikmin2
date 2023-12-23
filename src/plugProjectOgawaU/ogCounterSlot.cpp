@@ -3,7 +3,7 @@
 #include "og/Sound.h"
 #include "og/Screen/ogScreen.h"
 #include "Dolphin/rand.h"
-#include "Dolphin/math.h"
+#include "math.h"
 #include "trig.h"
 
 namespace og {

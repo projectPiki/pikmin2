@@ -4,7 +4,7 @@
 #include "JSystem/JParticle/JPAEmitter.h"
 #include "JSystem/JStudio_JParticle.h"
 #include "JSystem/JStudio_JStage.h"
-#include "stl/math.h"
+#include "math.h"
 #include "float.h"
 #include "types.h"
 

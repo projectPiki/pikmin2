@@ -1,5 +1,5 @@
 #include "Dolphin/PPCArch.h"
-#include "Dolphin/math.h"
+#include "math.h"
 #include "Dolphin/os.h"
 #include "string.h"
 #include "Dolphin/vi.h"

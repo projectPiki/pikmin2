@@ -1,5 +1,5 @@
 #include "Dolphin/gx.h"
-#include "Dolphin/math.h"
+#include "math.h"
 #include "JSystem/J2D/J2DIndBlock.h"
 #include "JSystem/J2D/J2DTexMtx.h"
 #include "fdlibm.h"

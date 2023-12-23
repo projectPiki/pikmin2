@@ -1,5 +1,5 @@
 #include "Dolphin/OS/OSCache.h"
-#include "Dolphin/math.h"
+#include "math.h"
 #include "JSystem/JAudio/JAS/JASBank.h"
 #include "JSystem/JAudio/JAS/JASCalc.h"
 #include "JSystem/JAudio/JAS/JASChannel.h"

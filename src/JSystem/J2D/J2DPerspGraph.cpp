@@ -1,7 +1,7 @@
 #include "types.h"
 #include "JSystem/J2D/J2DGrafContext.h"
 #include "fdlibm.h"
-#include "Dolphin/math.h"
+#include "math.h"
 #include "Dolphin/gx.h"
 
 /**
