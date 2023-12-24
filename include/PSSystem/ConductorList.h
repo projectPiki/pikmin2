@@ -29,7 +29,7 @@ struct ConductorList : public PSSystem::TextDataBase, PSSystem::SingletonBase<Co
 
 	// unused/inlined:
 	char* getInfo(u8, u8);
-	void getAutoBgmInfo(u8, u8);
+	u8 getAutoBgmInfo(u8, u8);
 
 	// _00 = VTBL
 	u8 mCaveCount;        // _20

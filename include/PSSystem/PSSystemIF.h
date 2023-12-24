@@ -69,11 +69,11 @@ struct ArcMgr : public JKRDisposer {
 	static void createInstance()
 	{
 		P2ASSERTLINE(71, !sInstance);
-		// sInstance = new ArcMgr<T>;
-		P2ASSERTLINE(92, sInstance);
+		sInstance = new ArcMgr<T>;
+		P2ASSERTLINE(74, sInstance);
 	}
 
-	static T* sInstance;
+	static ArcMgr* sInstance;
 
 	// _00      = VTABLE
 	// _04-_18  = JKRDisposer
@@ -82,8 +82,8 @@ struct ArcMgr : public JKRDisposer {
 
 inline JKRFileLoader* getLoaderInstance()
 {
-	P2ASSERTLINE(80, PSSystem::ArcMgr<PSGame::BASARC>::sInstance != nullptr);
-	return (JKRFileLoader*)PSSystem::ArcMgr<PSGame::BASARC>::sInstance->mFileLoaderLink.mValue;
+	P2ASSERTLINE(80, PSSystem::ArcMgr<PSGame::BASARC>::sInstance);
+	return PSSystem::ArcMgr<PSGame::BASARC>::sInstance->mArchive;
 }
 
 extern SysIF* spSysIF;

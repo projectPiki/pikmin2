@@ -578,7 +578,7 @@ char newSeqName[32];
  * @note Address: 0x80334268
  * @note Size: 0x28
  */
-u32 CaveFloorInfo::getCaveNoFromID()
+u8 CaveFloorInfo::getCaveNoFromID()
 {
 	if (mCaveID.fullView == 'test') {
 		return 0;
@@ -591,6 +591,7 @@ u32 CaveFloorInfo::getCaveNoFromID()
  * @note Size: 0x70
  */
 ConductorList::ConductorList()
+    : SingletonBase(this)
 {
 	mCaveInfos = nullptr;
 	mCaveCount = 255;
@@ -603,77 +604,11 @@ ConductorList::ConductorList()
 ConductorList::~ConductorList()
 {
 	for (u8 i = 0; i < mCaveCount; i++) {
-		delete[] mCaveInfos;
+		// works, but theres something weird going on here
+		delete[](&mCaveInfos->mFileNames)[i * 2];
 	}
 
 	delete[] mCaveInfos;
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	or.      r29, r3, r3
-	beq      lbl_80334344
-	lis      r3, __vt__Q26PSGame13ConductorList@ha
-	li       r31, 0
-	addi     r3, r3, __vt__Q26PSGame13ConductorList@l
-	stw      r3, 0(r29)
-	addi     r0, r3, 0x10
-	stw      r0, 0x1c(r29)
-	b        lbl_803342E8
-
-lbl_803342D0:
-	rlwinm   r3, r31, 3, 0x15, 0x1c
-	lwz      r4, 0x24(r29)
-	addi     r0, r3, 4
-	lwzx     r3, r4, r0
-	bl       __dla__FPv
-	addi     r31, r31, 1
-
-lbl_803342E8:
-	lbz      r0, 0x20(r29)
-	clrlwi   r3, r31, 0x18
-	cmplw    r3, r0
-	blt      lbl_803342D0
-	lwz      r3, 0x24(r29)
-	cmplwi   r3, 0
-	beq      lbl_8033430C
-	addi     r3, r3, -16
-	bl       __dla__FPv
-
-lbl_8033430C:
-	addic.   r0, r29, 0x1c
-	beq      lbl_80334328
-	lis      r3, "__vt__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>"@ha
-	li       r0, 0
-	addi     r3, r3,
-"__vt__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>"@l stw      r3,
-0x1c(r29) stw      r0,
-"sInstance__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>"@sda21(r13)
-
-lbl_80334328:
-	mr       r3, r29
-	li       r4, 0
-	bl       __dt__Q28PSSystem12TextDataBaseFv
-	extsh.   r0, r30
-	ble      lbl_80334344
-	mr       r3, r29
-	bl       __dl__FPv
-
-lbl_80334344:
-	lwz      r0, 0x24(r1)
-	mr       r3, r29
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -690,12 +625,12 @@ bool ConductorList::read(Stream& input)
 	for (u8 i = 0; i < mCaveCount; i++) {
 		u8 floors                    = input.readByte();
 		mCaveInfos[i].mFileNameCount = floors;
-		mCaveInfos[i].mFileNames     = new (JKRGetCurrentHeap(), 0xffffffe0) char*[floors];
+		mCaveInfos[i].mFileNames     = new (JKRGetCurrentHeap(), 0xffffffe0) char*[floors * 8];
 		for (u8 j = 0; j < floors; j++) {
 			char* str = mCaveInfos[i].mFileNames[j];
-			input.readString(str, 0x20);
+			input.readString(str, 32);
 			P2ASSERTLINE(156, strcmp(str, "endoffile"));
-			P2ASSERTBOUNDSLINE(158, '0', str[0], '9');
+			P2ASSERTBOOLLINE(158, '0' <= str[0] && str[0] > '9');
 		}
 	}
 
@@ -838,7 +773,7 @@ lbl_803344E8:
  */
 char* ConductorList::getInfo(u8 caves, u8 floor)
 {
-	if (sToolMode && caves < mCaveCount && mCaveInfos[caves].mFileNameCount < floor) {
+	if (sToolMode && caves < mCaveCount && mCaveInfos[caves].mFileNameCount >= floor) {
 		return mCaveInfos[0].mFileNames[0];
 	} else {
 		P2ASSERTLINE(175, caves < mCaveCount);
@@ -851,9 +786,23 @@ char* ConductorList::getInfo(u8 caves, u8 floor)
  * @note Address: N/A
  * @note Size: 0x12C
  */
-void ConductorList::getAutoBgmInfo(u8, u8)
+u8 ConductorList::getAutoBgmInfo(u8 id1, u8 id2)
 {
-	// UNUSED FUNCTION
+	if (newSeqName[5] >= '0' && newSeqName[5] <= '9') {
+		id1 = newSeqName[5] - '0';
+	} else {
+		id1 = 255;
+	}
+	P2ASSERTLINE(258, id1 != 0xffff);
+
+	if (newSeqName[4] >= '0' && newSeqName[4] <= '9') {
+		id2 = newSeqName[4] - '0';
+	} else {
+		id2 = 255;
+	}
+	P2ASSERTLINE(260, id2 != 0xffff);
+
+	return u8(id1 + (id2 * 10));
 }
 
 /**
@@ -896,22 +845,7 @@ void ConductorList::getSeqAndWaveFromConductor(char const* cndName, u8* wScene, 
 		strcpy(newSeqName, cndName);
 		strcpy(&newSeqName[6], ".bms");
 		*bmsName = newSeqName;
-		u8 id1, id2;
-		if (newSeqName[5] >= '0' && newSeqName[5] <= '9') {
-			id1 = newSeqName[5] - '0';
-		} else {
-			id1 = 255;
-		}
-		P2ASSERTLINE(258, id1 != 0xffff);
-
-		if (newSeqName[4] >= '0' && newSeqName[4] <= '9') {
-			id2 = newSeqName[4] - '0';
-		} else {
-			id2 = 255;
-		}
-		P2ASSERTLINE(260, id2 != 0xffff);
-
-		*wScene = PSSystem::WaveScene::WSCENE37_EmergenceCave + u8(id1 + (id2 * 10));
+		*wScene  = PSSystem::WaveScene::WSCENE37_EmergenceCave + getAutoBgmInfo(0, 0);
 	} else if (!strncmp("cavetile", cndName, strlen("cavetile"))) {
 		*bmsName = "cavetile.bms";
 		*wScene  = PSSystem::WaveScene::WSCENE24_CaveTile;
@@ -1224,78 +1158,13 @@ void ConductorList::getSeqAndWaveFromConductor(char const* cndName, u8* wScene, 
  * @note Size: 0xE0
  */
 SoundTable::CategoryMgr::CategoryMgr()
+    : SingletonBase(this)
 {
-	sInstance = this;
 	for (u8 i = 0; i < SoundCat_COUNT; i++) {
 		mPerspInfo[i] = new SePerspInfo;
 		P2ASSERTLINE(312, mPerspInfo[i]);
 		initiate(i);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5,
-"__vt__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"@ha lis
-r4, __vt__Q36PSGame10SoundTable11CategoryMgr@ha stw      r0, 0x14(r1) addi r0,
-r4, __vt__Q36PSGame10SoundTable11CategoryMgr@l stw      r31, 0xc(r1) li r31, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	addi     r3, r5,
-"__vt__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"@l stw r3,
-0(r30) stw      r30,
-"sInstance__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"@sda21(r13)
-	stw      r0, 0(r30)
-	b        lbl_803349B0
-
-lbl_80334934:
-	li       r3, 0x18
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_8033496C
-	lfs      f1, lbl_8051E0D4@sda21(r2)
-	li       r0, 0
-	lfs      f0, lbl_8051E0D8@sda21(r2)
-	stfs     f1, 0(r3)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	stfs     f0, 0xc(r3)
-	stfs     f0, 0x10(r3)
-	stb      r0, 0x14(r3)
-	stb      r0, 0x15(r3)
-
-lbl_8033496C:
-	rlwinm   r4, r31, 2, 0x16, 0x1d
-	addi     r0, r4, 4
-	stwx     r3, r30, r0
-	lwzx     r0, r30, r0
-	cmplwi   r0, 0
-	bne      lbl_803349A0
-	lis      r3, lbl_8048F918@ha
-	lis      r5, lbl_8048F924@ha
-	addi     r3, r3, lbl_8048F918@l
-	li       r4, 0x138
-	addi     r5, r5, lbl_8048F924@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803349A0:
-	mr       r3, r30
-	mr       r4, r31
-	bl       initiate__Q36PSGame10SoundTable11CategoryMgrFUc
-	addi     r31, r31, 1
-
-lbl_803349B0:
-	clrlwi   r0, r31, 0x18
-	cmplwi   r0, 6
-	blt      lbl_80334934
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -1492,19 +1361,13 @@ void SysFactory::newSoundSystem()
 	JKRSolidHeap* newheap = JKRSolidHeap::create(mHeap->getFreeSize(), mHeap, false);
 	P2ASSERTLINE(741, newheap);
 	newheap->becomeCurrentHeap();
-	PSSystem::SingletonBase<PSGame::SoundTable::CategoryMgr>::newInstance();
+	PSSystem::SingletonBase<SoundTable::CategoryMgr>::newInstance();
 	P2ASSERTLINE(748, mSolidHeapSize < newheap->getFreeSize());
 
 	mSolidHeap = JKRSolidHeap::create(mSolidHeapSize, newheap, false);
 	P2ASSERTLINE(754, mSolidHeap);
 
-	PSSystem::SetupArg arg;
-	arg._08 = 231;
-	// arg._0C       = seqCpuSync;
-	arg.mPath     = "/SeqTest/";
-	arg.mHeap     = mSolidHeap;
-	arg.mHeapSize = mSolidHeapSize;
-	arg.mAafFile  = mAafFile;
+	PSSystem::SetupArg arg = { mSolidHeap, mHeapSize, 231, seqCpuSync, mAafFile, "/SeqTest/" };
 	P2ASSERTLINE(769, !PSSystem::spSysIF);
 	PSSystem::SysIF::sMakeJAISeCallback = mMakeSeFunc;
 	PSSystem::SysIF* sysif              = new PSSystem::SysIF(arg);
@@ -1516,9 +1379,9 @@ void SysFactory::newSoundSystem()
 	postInitJAI();
 
 	PSAutoBgm::ConductorArcMgr::createInstance();
-	PSSystem::ArcMgr<PSGame::BASARC>::createInstance();
+	PSSystem::ArcMgr<BASARC>::createInstance();
 
-	PSSystem::SingletonBase<PSGame::SeMgr>::newInstance();
+	PSSystem::SingletonBase<SeMgr>::newInstance();
 
 	backupheap->becomeCurrentHeap();
 	newheap->adjustSize();
@@ -1865,94 +1728,6 @@ void SysFactory::postInitJAI()
 	JAIGlobalParameter::setParamDistanceMax(max);
 	JAIGlobalParameter::setParamMinDistanceVolume(0.0f);
 	JAIGlobalParameter::setParamMaxVolumeDistance(120.0f);
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	lfs      f31, lbl_8051E0D8@sda21(r2)
-	li       r30, 0
-	b        lbl_80335460
-
-lbl_803353BC:
-	mr       r3, r30
-	bl       getSoundMax__Q27JAInter10SoundTableFUc
-	clrlwi.  r0, r3, 0x10
-	beq      lbl_8033545C
-	rlwinm   r31, r30, 2, 0x16, 0x1d
-	lwz      r29,
-"sInstance__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"@sda21(r13)
-	addi     r0, r31, 4
-	lwzx     r0, r29, r0
-	cmplwi   r0, 0
-	bne      lbl_80335400
-	lis      r3, lbl_8048FAA8@ha
-	lis      r5, lbl_8048F924@ha
-	addi     r3, r3, lbl_8048FAA8@l
-	li       r4, 0x5d
-	addi     r5, r5, lbl_8048F924@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80335400:
-	addi     r0, r31, 4
-	lwzx     r3, r29, r0
-	lfs      f0, 0xc(r3)
-	fcmpo    cr0, f31, f0
-	bge      lbl_80335418
-	fmr      f31, f0
-
-lbl_80335418:
-	lwz      r29,
-"sInstance__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"@sda21(r13)
-	addi     r0, r31, 4
-	lwzx     r0, r29, r0
-	cmplwi   r0, 0
-	bne      lbl_80335448
-	lis      r3, lbl_8048FAA8@ha
-	lis      r5, lbl_8048F924@ha
-	addi     r3, r3, lbl_8048FAA8@l
-	li       r4, 0x5d
-	addi     r5, r5, lbl_8048F924@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80335448:
-	addi     r0, r31, 4
-	lwz      r3, seCategoryVolume__Q27JAInter5SeMgr@sda21(r13)
-	lwzx     r4, r29, r0
-	lfs      f0, 0(r4)
-	stfsx    f0, r3, r31
-
-lbl_8033545C:
-	addi     r30, r30, 1
-
-lbl_80335460:
-	bl       getParamSeCategoryMax__18JAIGlobalParameterFv
-	clrlwi   r3, r3, 0x18
-	clrlwi   r0, r30, 0x18
-	cmplw    r0, r3
-	blt      lbl_803353BC
-	fmr      f1, f31
-	bl       setParamDistanceMax__18JAIGlobalParameterFf
-	lfs      f1, lbl_8051E0D8@sda21(r2)
-	bl       setParamMinDistanceVolume__18JAIGlobalParameterFf
-	lfs      f1, lbl_8051E130@sda21(r2)
-	bl       setParamMaxVolumeDistance__18JAIGlobalParameterFf
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -2054,34 +1829,31 @@ PSSystem::Scene* PikSceneMgr::newAndSetGlobalScene()
 {
 	JUT_ASSERTLINE(1002, !mScenes, "2重にグローバルシーンを作成しようとした");
 	SceneInfo info;
+	info.mSceneType  = 0;
+	info.mCameras    = 0;
+	info.mStageFlags = 0;
+
 	mScenes = newGameScene(0, &info);
 	P2ASSERTLINE(1015, mScenes);
 	mScenes->adaptTo(&mScenes);
 	mEndScene = mScenes;
 
 	PSSystem::SingletonBase<PSSystem::StreamDataList>::newInstance();
-	P2ASSERTLINE(1024, PSSystem::SingletonBase<PSSystem::StreamDataList>::sInstance->onlyLoad("/user/Totaka/StreamList.txt",
-	                                                                                          JKRDvdRipper::ALLOC_DIR_TOP));
+	P2ASSERTLINE(1024, PSSystem::SingletonBase<PSSystem::StreamDataList>::getInstance()->onlyLoad("/user/Totaka/StreamList.txt",
+	                                                                                              JKRDvdRipper::ALLOC_DIR_TOP));
 	PSSystem::SingletonBase<PSSystem::SeqDataList>::newInstance();
-	P2ASSERTLINE(
-	    1028, PSSystem::SingletonBase<PSSystem::SeqDataList>::sInstance->onlyLoad("/user/Totaka/BgmList.txt", JKRDvdRipper::ALLOC_DIR_TOP));
+	P2ASSERTLINE(1028, PSSystem::SingletonBase<PSSystem::SeqDataList>::getInstance()->onlyLoad("/user/Totaka/BgmList.txt",
+	                                                                                           JKRDvdRipper::ALLOC_DIR_TOP));
 
-	JAInter::SoundInfo sound;
-	sound._00            = 0x1f00;
-	sound.mCount         = 0xff000000;
-	sound.mPitch         = 1.0f;
-	sound.mVolume.w      = 0x7f000000;
+	JAInter::SoundInfo sound = { 0x00000000, 0x7F, 0x03, 0, 0x3F800000, 0x3C000000 };
+	P2ASSERTLINE(1040, sound.mVolume.c <= 0x7f);
 	PSSystem::SeSeq* seq = new PSSystem::SeSeq("se.bms", sound);
 	P2ASSERTLINE(1043, seq);
 	seq->init();
 	mScenes->appendSeq(seq);
 
-	JAInter::SoundInfo sound2;
-	sound2._00             = 0;
-	sound2.mCount          = 0x7f010000;
-	sound2.mPitch          = 1.0f;
-	sound2.mVolume.w       = 0x32000000;
-	PSSystem::BgmSeq* seq2 = newStreamBgm(0xc0011011, sound2);
+	JAInter::SoundInfo sound2 = { 0x00000000, 0x7F, 0x03, 0, 0x3F800000, 0x3C000000 };
+	PSSystem::BgmSeq* seq2    = newStreamBgm(0xc0011011, sound2);
 	P2ASSERTLINE(1061, seq2);
 	seq2->init();
 	mScenes->appendSeq(seq2);
@@ -2368,7 +2140,7 @@ lbl_80335A60:
 PSSystem::Scene* PikSceneMgr::newAndSetCurrentScene(SceneInfo& info)
 {
 	P2ASSERTLINE(1093, info.mSceneType != SceneInfo::SCENE_NULL);
-	JUT_ASSERTLINE(1094, info.mSceneType <= SceneInfo::COURSE_TUTORIALDAY1, "scene noが不正");
+	JUT_ASSERTLINE(1094, info.mSceneType < SceneInfo::SCENE_COUNT, "scene noが不正");
 
 	checkScene();
 
@@ -2377,21 +2149,21 @@ PSSystem::Scene* PikSceneMgr::newAndSetCurrentScene(SceneInfo& info)
 	info.setStageCamera();
 
 	P2ASSERTLINE(1105, mScenes);
-	P2ASSERTLINE(1096, !mScenes->mChild);
+	P2ASSERTLINE(1106, !mScenes->mChild);
 
 	u8 wScene                      = 255;
 	PSAutoBgm::ConductorMgr::sHeap = JKRGetCurrentHeap();
 	PSSystem::BgmSeq* seq          = initMainBgm(info, &wScene);
 	P2ASSERTLINE(1132, seq);
 
-	bool needboss = false;
-	if (info.mSceneType == SceneInfo::CHALLENGE_MODE || info.mSceneType == SceneInfo::TWO_PLAYER_BATTLE || (info.mSceneType - 1) < 4
-	    || info.isCaveFloor()) {
+	PSSystem::SeqBase* bossSeq = nullptr;
+	bool needboss              = false;
+	if ((u8)info.mSceneType == SceneInfo::CHALLENGE_MODE || (u8)info.mSceneType == SceneInfo::TWO_PLAYER_BATTLE
+	    || u8(info.mSceneType - 1) <= 3 || info.isCaveFloor()) {
 		needboss = true;
 	}
 
-	PSSystem::SeqBase* bossSeq = nullptr;
-	CaveFloorInfo& cinfo       = static_cast<CaveFloorInfo&>(info);
+	CaveFloorInfo& cinfo = static_cast<CaveFloorInfo&>(info);
 	// Check for submerged castle theme
 	if (info.isCaveFloor() && info.mSceneType == SceneInfo::COURSE_YAKUSHIMA) {
 		if (cinfo.getCaveNoFromID() == 3 && !cinfo.isBossFloor()) {
@@ -2406,10 +2178,9 @@ PSSystem::Scene* PikSceneMgr::newAndSetCurrentScene(SceneInfo& info)
 
 	SceneInfo* newinfo;
 	if (info.isCaveFloor()) {
-		newinfo = new CaveFloorInfo;
-		// newinfo            = cinfo;
+		newinfo = new CaveFloorInfo(cinfo);
 	} else {
-		newinfo = new SceneInfo;
+		newinfo = new SceneInfo(info);
 	}
 
 	PSSystem::Scene* newscene = newGameScene(wScene, newinfo);
@@ -2794,50 +2565,10 @@ PSSystem::BgmSeq* PikSceneMgr::newBgmSeq(char const* name, JAInter::SoundInfo& i
  */
 PSSystem::BgmSeq* PikSceneMgr::newStreamBgm(u32 id, JAInter::SoundInfo& info)
 {
-	info._00                 = 0;
-	PSSystem::StreamBgm* seq = new PSSystem::StreamBgm(id, info);
+	info.mFlag            = 0;
+	PSSystem::BgmSeq* seq = new PSSystem::StreamBgm(id, info);
 	P2ASSERTLINE(1234, seq);
 	return seq;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r3, 0x74
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	stw      r30, 8(r1)
-	mr       r30, r4
-	stw      r0, 0(r5)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80336028
-	mr       r4, r30
-	mr       r5, r31
-	bl       __ct__Q28PSSystem9StreamBgmFUlRCQ27JAInter9SoundInfo
-	mr       r0, r3
-
-lbl_80336028:
-	cmplwi   r0, 0
-	mr       r31, r0
-	bne      lbl_80336050
-	lis      r3, lbl_8048F918@ha
-	lis      r5, lbl_8048F924@ha
-	addi     r3, r3, lbl_8048F918@l
-	li       r4, 0x4d2
-	addi     r5, r5, lbl_8048F924@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80336050:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -2846,11 +2577,7 @@ lbl_80336050:
  */
 PSSystem::BgmSeq* PikSceneMgr::initBossBgm(SceneInfo& info, u8* wScene)
 {
-	JAInter::SoundInfo sound;
-	sound._00       = 0;
-	sound.mCount    = 0x7f010000;
-	sound.mPitch    = 1.0f;
-	sound.mVolume.w = 0x32000000;
+	JAInter::SoundInfo sound = { 0x00000000, 0x7F, 0x03, 0, 0x3F800000, 0x3C000000 };
 
 	PSSystem::DirectedBgm* seq;
 	if (curSceneIsBigBossFloor()) {
@@ -2862,109 +2589,11 @@ PSSystem::BgmSeq* PikSceneMgr::initBossBgm(SceneInfo& info, u8* wScene)
 
 	P2ASSERTLINE(1264, seq);
 
-	// some panic in SESeq.h that doesnt exist
+	seq->assertValidTrack();
 
 	seq->mRootTrack->_3E = 60;
-	P2ASSERTLINE(1267, sound._00 < 0x80);
+	P2ASSERTLINE(1267, sound.mVolume.c <= 0x7f);
 	return seq;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r4, lbl_8048F918@ha
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	addi     r31, r4, lbl_8048F918@l
-	stw      r30, 0x28(r1)
-	mr       r30, r5
-	stw      r29, 0x24(r1)
-	mr       r29, r3
-	lwz      r6, 0x284(r31)
-	lwz      r5, 0x288(r31)
-	lwz      r4, 0x28c(r31)
-	lwz      r0, 0x290(r31)
-	stw      r6, 8(r1)
-	stw      r5, 0xc(r1)
-	stw      r4, 0x10(r1)
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803360F8
-	mr       r3, r29
-	addi     r4, r31, 0x1b8
-	lwz      r12, 0(r29)
-	addi     r5, r1, 8
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0x23
-	stb      r0, 0(r30)
-	mr       r30, r3
-	b        lbl_80336118
-
-lbl_803360F8:
-	mr       r3, r29
-	addi     r4, r31, 0x1ac
-	lwz      r12, 0(r29)
-	addi     r5, r1, 8
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	mr       r30, r3
-
-lbl_80336118:
-	cmplwi   r30, 0
-	bne      lbl_80336134
-	addi     r3, r31, 0
-	addi     r5, r31, 0xc
-	li       r4, 0x4f0
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80336134:
-	lbz      r0, 0xb4(r30)
-	li       r3, 0
-	cmplwi   r0, 1
-	bne      lbl_80336154
-	lwz      r0, 0x70(r30)
-	cmplwi   r0, 0
-	beq      lbl_80336154
-	li       r3, 1
-
-lbl_80336154:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80336170
-	addi     r5, r31, 0xc
-	addi     r3, r2, lbl_8051E13C@sda21
-	li       r4, 0x19f
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80336170:
-	lwz      r3, 0x70(r30)
-	li       r0, 0x3c
-	sth      r0, 0x3e(r3)
-	lbz      r0, 0x14(r1)
-	cmplwi   r0, 0x7f
-	ble      lbl_8033619C
-	addi     r3, r31, 0
-	addi     r5, r31, 0xc
-	li       r4, 0x4f3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8033619C:
-	lwz      r0, 0x34(r1)
-	mr       r3, r30
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -2973,11 +2602,8 @@ lbl_8033619C:
  */
 void PikSceneMgr::initAdditionalBgm(SceneInfo& info, PSSystem::Scene* scene)
 {
-	JAInter::SoundInfo sound;
-	sound._00       = 0;
-	sound.mCount    = 0x7f010000;
-	sound.mPitch    = 1.0f;
-	sound.mVolume.w = 0x32000000;
+	JAInter::SoundInfo sound = { 0x00000000, 0x7F, 0x03, 0, 0x3F800000, 0x3C000000 };
+
 	PSSystem::BgmSeq* seq;
 	switch (info.mSceneType) {
 	case SceneInfo::TITLE_SCREEN:
@@ -2999,15 +2625,14 @@ void PikSceneMgr::initAdditionalBgm(SceneInfo& info, PSSystem::Scene* scene)
 		scene->appendSeq(seq);
 		break;
 	case SceneInfo::CHALLENGE_MODE:
-		sound.mCount                  = 0x7f040000;
-		sound.mVolume.w               = 0x23000000;
-		sound._00                     = 0x1f00;
+		sound._05                     = 0x04;
+		sound.mVolume.c               = 0x23;
+		sound.mFlag                   = 0x1f00;
 		JADUtility::AccessMode flag   = (JADUtility::AccessMode)mAccessMode;
 		PSSystem::DirectedBgm* seqold = (PSSystem::DirectedBgm*)scene->mSeqMgr.getFirstSeq();
 		seq                           = newAutoBgm("cavekeyget.cnd", "cavekeyget.bms", sound, flag, info, seqold->mDirectorMgr);
 		scene->appendSeq(seq);
-		P2ASSERTLINE(1318, scene->mWaveLoader);
-		scene->mWaveLoader->mWaveSceneID[1] = PSSystem::WaveScene::WSCENE5_Challenge_KeyGet;
+		scene->setSecondaryWaveScene(PSSystem::WaveScene::WSCENE5_Challenge_KeyGet);
 		P2ASSERTLINE(1342, seq == scene->mSeqMgr.getSeq(2));
 		break;
 	}
@@ -3021,312 +2646,6 @@ void PikSceneMgr::initAdditionalBgm(SceneInfo& info, PSSystem::Scene* scene)
 			scene->appendSeq(seq);
 		}
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r6, lbl_8048F918@ha
-	stw      r0, 0x34(r1)
-	stmw     r27, 0x1c(r1)
-	addi     r31, r6, lbl_8048F918@l
-	mr       r29, r4
-	mr       r27, r3
-	mr       r30, r5
-	lwz      r6, 0x294(r31)
-	lwz      r4, 0x298(r31)
-	lwz      r3, 0x29c(r31)
-	lwz      r0, 0x2a0(r31)
-	stw      r6, 8(r1)
-	stw      r4, 0xc(r1)
-	stw      r3, 0x10(r1)
-	stw      r0, 0x14(r1)
-	lbz      r0, 6(r29)
-	cmpwi    r0, 8
-	beq      lbl_80336228
-	bge      lbl_8033621C
-	cmpwi    r0, 6
-	beq      lbl_80336400
-	b        lbl_803364BC
-
-lbl_8033621C:
-	cmpwi    r0, 0x14
-	beq      lbl_80336384
-	b        lbl_803364BC
-
-lbl_80336228:
-	li       r0, 0
-	li       r3, 0x74
-	stw      r0, 8(r1)
-	bl       __nw__FUl
-	or.      r28, r3, r3
-	beq      lbl_80336254
-	lis      r4, 0xC0011011@ha
-	addi     r5, r1, 8
-	addi     r4, r4, 0xC0011011@l
-	bl       __ct__Q28PSSystem9StreamBgmFUlRCQ27JAInter9SoundInfo
-	mr       r28, r3
-
-lbl_80336254:
-	cmplwi   r28, 0
-	bne      lbl_80336270
-	addi     r3, r31, 0
-	addi     r5, r31, 0xc
-	li       r4, 0x4d2
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80336270:
-	cmplwi   r28, 0
-	bne      lbl_8033628C
-	addi     r3, r31, 0
-	addi     r5, r31, 0xc
-	li       r4, 0x50a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8033628C:
-	mr       r3, r30
-	mr       r4, r28
-	bl       appendSeq__Q28PSSystem5SceneFPQ28PSSystem7SeqBase
-	li       r3, 0x6c
-	bl       __nw__FUl
-	or.      r28, r3, r3
-	beq      lbl_803362B8
-	addi     r4, r31, 0x2a4
-	addi     r5, r1, 8
-	bl       __ct__Q28PSSystem6BgmSeqFPCcRCQ27JAInter9SoundInfo
-	mr       r28, r3
-
-lbl_803362B8:
-	cmplwi   r28, 0
-	bne      lbl_803362D4
-	addi     r3, r31, 0
-	addi     r5, r31, 0xc
-	li       r4, 0x4c7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803362D4:
-	mr       r3, r28
-	lwz      r12, 0x10(r28)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r28, 0
-	bne      lbl_80336304
-	addi     r3, r31, 0
-	addi     r5, r31, 0xc
-	li       r4, 0x510
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80336304:
-	mr       r3, r30
-	mr       r4, r28
-	bl       appendSeq__Q28PSSystem5SceneFPQ28PSSystem7SeqBase
-	li       r0, 0
-	li       r3, 0x74
-	stw      r0, 8(r1)
-	bl       __nw__FUl
-	or.      r28, r3, r3
-	beq      lbl_8033633C
-	lis      r4, 0xC0011010@ha
-	addi     r5, r1, 8
-	addi     r4, r4, 0xC0011010@l
-	bl       __ct__Q28PSSystem9StreamBgmFUlRCQ27JAInter9SoundInfo
-	mr       r28, r3
-
-lbl_8033633C:
-	cmplwi   r28, 0
-	bne      lbl_80336358
-	addi     r3, r31, 0
-	addi     r5, r31, 0xc
-	li       r4, 0x4d2
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80336358:
-	cmplwi   r28, 0
-	bne      lbl_80336374
-	addi     r3, r31, 0
-	addi     r5, r31, 0xc
-	li       r4, 0x516
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80336374:
-	mr       r3, r30
-	mr       r4, r28
-	bl       appendSeq__Q28PSSystem5SceneFPQ28PSSystem7SeqBase
-	b        lbl_803364BC
-
-lbl_80336384:
-	li       r3, 0x6c
-	bl       __nw__FUl
-	or.      r28, r3, r3
-	beq      lbl_803363A4
-	addi     r4, r31, 0x2b0
-	addi     r5, r1, 8
-	bl       __ct__Q28PSSystem6BgmSeqFPCcRCQ27JAInter9SoundInfo
-	mr       r28, r3
-
-lbl_803363A4:
-	cmplwi   r28, 0
-	bne      lbl_803363C0
-	addi     r3, r31, 0
-	addi     r5, r31, 0xc
-	li       r4, 0x4c7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803363C0:
-	mr       r3, r28
-	lwz      r12, 0x10(r28)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r28, 0
-	bne      lbl_803363F0
-	addi     r3, r31, 0
-	addi     r5, r31, 0xc
-	li       r4, 0x526
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803363F0:
-	mr       r3, r30
-	mr       r4, r28
-	bl       appendSeq__Q28PSSystem5SceneFPQ28PSSystem7SeqBase
-	b        lbl_803364BC
-
-lbl_80336400:
-	li       r3, 4
-	li       r4, 0x23
-	li       r0, 0x1f00
-	stb      r3, 0xd(r1)
-	addi     r3, r30, 0x10
-	stb      r4, 0x14(r1)
-	stw      r0, 8(r1)
-	lbz      r28, 0xc(r27)
-	bl       getFirstSeq__Q28PSSystem6SeqMgrFv
-	mr       r9, r3
-	mr       r3, r27
-	lwz      r12, 0(r27)
-	mr       r7, r28
-	mr       r8, r29
-	addi     r4, r31, 0x2c8
-	lwz      r12, 0x1c(r12)
-	addi     r5, r31, 0x2d8
-	addi     r6, r1, 8
-	lwz      r9, 0x6c(r9)
-	mtctr    r12
-	bctrl
-	mr       r0, r3
-	mr       r3, r30
-	mr       r28, r0
-	mr       r4, r28
-	bl       appendSeq__Q28PSSystem5SceneFPQ28PSSystem7SeqBase
-	lwz      r0, 8(r30)
-	cmplwi   r0, 0
-	bne      lbl_80336488
-	addi     r3, r31, 0x254
-	addi     r5, r31, 0xc
-	li       r4, 0x4a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80336488:
-	lwz      r5, 8(r30)
-	li       r0, 5
-	addi     r3, r30, 0x10
-	li       r4, 2
-	stb      r0, 5(r5)
-	bl       getSeq__Q28PSSystem6SeqMgrFUl
-	cmplw    r28, r3
-	beq      lbl_803364BC
-	addi     r3, r31, 0
-	addi     r5, r31, 0xc
-	li       r4, 0x53e
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803364BC:
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803365A8
-	lbz      r0, 6(r29)
-	cmplwi   r0, 3
-	bne      lbl_803365A8
-	lwz      r3, 0x44(r29)
-	addis    r0, r3, 0x8b9b
-	cmplwi   r0, 0x7374
-	bne      lbl_803364FC
-	li       r0, 0
-	b        lbl_80336508
-
-lbl_803364FC:
-	lbz      r3, 0x47(r29)
-	addi     r0, r3, -49
-	clrlwi   r0, r0, 0x18
-
-lbl_80336508:
-	clrlwi   r0, r0, 0x18
-	cmplwi   r0, 3
-	bne      lbl_803365A8
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_803365A8
-	li       r3, 0x6c
-	bl       __nw__FUl
-	or.      r28, r3, r3
-	beq      lbl_80336550
-	addi     r4, r31, 0x2e8
-	addi     r5, r1, 8
-	bl       __ct__Q28PSSystem6BgmSeqFPCcRCQ27JAInter9SoundInfo
-	mr       r28, r3
-
-lbl_80336550:
-	cmplwi   r28, 0
-	bne      lbl_8033656C
-	addi     r3, r31, 0
-	addi     r5, r31, 0xc
-	li       r4, 0x4c7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8033656C:
-	mr       r3, r28
-	lwz      r12, 0x10(r28)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r28, 0
-	bne      lbl_8033659C
-	addi     r3, r31, 0
-	addi     r5, r31, 0xc
-	li       r4, 0x549
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8033659C:
-	mr       r3, r30
-	mr       r4, r28
-	bl       appendSeq__Q28PSSystem5SceneFPQ28PSSystem7SeqBase
-
-lbl_803365A8:
-	lmw      r27, 0x1c(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -3338,30 +2657,29 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 	P2ASSERTLINE(1378, wScene);
 	PSSystem::BgmSeq* bgm = nullptr;
 
-	JAInter::SoundInfo sound;
-	sound._00            = 0x1f00;
-	sound.mCount         = 0x7f010000;
-	sound.mPitch         = 1.0f;
-	sound.mVolume.w      = 0x32000000;
+	JAInter::SoundInfo sound = { 0x00001f00, 0x7F, 0x03, 0, 0x3F800000, 0x3C000000 };
+
 	CaveFloorInfo& cinfo = static_cast<CaveFloorInfo&>(info);
 	P2ASSERTLINE(1393, wScene);
 	if (info.isCaveFloor()) {
 
 		switch (info.mSceneType) {
 		case SceneInfo::CHALLENGE_MODE:
-			PSSystem::SingletonBase<PSGame::ConductorList>::newInstance();
-			ConductorList* list = PSSystem::SingletonBase<PSGame::ConductorList>::getInstance();
+			PSSystem::SingletonBase<ConductorList>::newInstance();
+			ConductorList* list = PSSystem::SingletonBase<ConductorList>::getInstance();
 			bool loaded         = list->load("/user/Totaka/ChallengeBgmList.txt", JKRDvdRipper::ALLOC_DIR_BOTTOM);
-			P2ASSERTLINE(1472, loaded);
+			P2ASSERTLINE(1417, loaded);
 			char* name = list->getInfo(cinfo.mFloorNum, cinfo.mChallengeModeStageNum);
 			u8 wScene2;
 			char* bmsName;
 			list->getSeqAndWaveFromConductor(name, &wScene2, &bmsName);
-			bgm = newAutoBgm(name, bmsName, sound, (JADUtility::AccessMode)mAccessMode, info, nullptr);
-			delete list;
+			*wScene = wScene2;
+			bgm     = newAutoBgm(name, bmsName, sound, (JADUtility::AccessMode)mAccessMode, info, nullptr);
+			delete PSSystem::SingletonBase<ConductorList>::sInstance;
+			PSSystem::SingletonBase<ConductorList>::sInstance = nullptr;
 			break;
 		case SceneInfo::TWO_PLAYER_BATTLE:
-			bgm     = newBgmSeq("battle_t.bms", sound);
+			bgm     = newDirectedBgm("battle_t.bms", sound);
 			*wScene = PSSystem::WaveScene::WSCENE6_2P_Battle;
 			break;
 		}
@@ -3382,7 +2700,7 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 		if (info.isCaveFloor() && info.mSceneType == SceneInfo::COURSE_YAKUSHIMA) {
 			if (cinfo.getCaveNoFromID() == 3 && !cinfo.isBossFloor()) {
 				bgm = newBgmSeq("kuro_pre.bms", sound);
-				P2ASSERTLINE(1353, bgm);
+				P2ASSERTLINE(1566, bgm);
 				*wScene = PSSystem::WaveScene::WSCENE48_SubmergedCastle;
 			}
 		}
@@ -3419,26 +2737,33 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 			char* bmsName;
 			list->getSeqAndWaveFromConductor(name, &wScene2, &bmsName);
 			bgm = newAutoBgm(name, bmsName, sound, (JADUtility::AccessMode)mAccessMode, info, nullptr);
-			delete list;
+			delete PSSystem::SingletonBase<ConductorList>::sInstance;
+			PSSystem::SingletonBase<ConductorList>::sInstance = nullptr;
 		}
 	} else {
 		switch (info.mSceneType) {
 		case SceneInfo::COURSE_TUTORIAL:
 		case SceneInfo::COURSE_TUTORIALDAY1:
-			bgm     = newBgmSeq("n_tutorial.bms", sound);
+			bgm     = newMainBgm("n_tutorial.bms", sound);
 			*wScene = PSSystem::WaveScene::WSCENE15_Valley_of_Repose;
 			break;
 		case SceneInfo::COURSE_FOREST:
-			bgm     = newBgmSeq("forest.bms", sound);
+			bgm     = newMainBgm("forest.bms", sound);
 			*wScene = PSSystem::WaveScene::WSCENE2_Awakening_Wood;
 			break;
 		case SceneInfo::COURSE_YAKUSHIMA:
-			bgm     = newBgmSeq("yakushima.bms", sound);
+			bgm     = newMainBgm("yakushima.bms", sound);
 			*wScene = PSSystem::WaveScene::WSCENE3_Perplexing_Pool;
+			P2ASSERTLINE(1640, bgm);
+			static_cast<PSSystem::DirectedBgm*>(bgm)->assertValidTrack();
+			static_cast<PSSystem::DirectedBgm*>(bgm)->mRootTrack->_3E = 30;
 			break;
 		case SceneInfo::COURSE_LAST:
-			bgm     = newBgmSeq("last.bms", sound);
+			bgm     = newMainBgm("last.bms", sound);
 			*wScene = PSSystem::WaveScene::WSCENE4_Wistful_Wild;
+			P2ASSERTLINE(1650, bgm);
+			static_cast<PSSystem::DirectedBgm*>(bgm)->assertValidTrack();
+			static_cast<PSSystem::DirectedBgm*>(bgm)->mRootTrack->_3E = 30;
 			break;
 		case SceneInfo::TITLE_SCREEN:
 			bgm     = newStreamBgm(0xc0011000, sound);
@@ -3446,6 +2771,9 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 			break;
 		case SceneInfo::CAVE_RESULTS:
 			bgm = newStreamBgm(0xc0011013, sound);
+			break;
+		case SceneInfo::CHALLENGE_RESULTS:
+			bgm = newStreamBgm(0xc0011014, sound);
 			break;
 		case SceneInfo::FILE_SELECT:
 			bgm = newStreamBgm(0xc001101e, sound);
@@ -3470,9 +2798,6 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 			bgm     = newBgmSeq("f_result.bms", sound);
 			*wScene = PSSystem::WaveScene::WSCENE19_Final_Result;
 			break;
-		case SceneInfo::CHALLENGE_RESULTS:
-			bgm = newStreamBgm(0xc0011014, sound);
-			break;
 		case SceneInfo::CHALLENGE_MENU:
 			bgm     = newBgmSeq("c_menu.bms", sound);
 			*wScene = PSSystem::WaveScene::WSCENE20_ChallengeSelect;
@@ -3486,7 +2811,7 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 	}
 
 	P2ASSERTLINE(1749, bgm);
-	P2ASSERTLINE(1750, sound._00 < 80);
+	P2ASSERTLINE(1750, sound.mVolume.c <= 0x7f);
 
 	return bgm;
 	/*
@@ -5330,7 +4655,7 @@ void PSPlayerChangeToOrimer()
 {
 	PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
 	if (bgm) {
-		// bgm->assertLoaded();
+		bgm->assertValidTrack();
 		bgm->mRootTrack->mSwingState = 0;
 	}
 }
@@ -5350,10 +4675,10 @@ PSSystem::DirectedBgm* PSGetDirectedMainBgm()
 	}
 
 	PSSystem::DirectedBgm* seq = (PSSystem::DirectedBgm*)scene->mSeqMgr.getFirstSeq();
-	if (!seq || seq->getCastType() == 2 || seq->getCastType() == 3 || seq->getCastType() == 4) {
-		return nullptr;
+	if (seq && (seq->getCastType() == 2 || seq->getCastType() == 3 || seq->getCastType() == 4)) {
+		return seq;
 	}
-	return seq;
+	return nullptr;
 }
 
 /**
@@ -5364,7 +4689,7 @@ void PSPlayerChangeToLugie()
 {
 	PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
 	if (bgm) {
-		// bgm->assertLoaded();
+		bgm->assertValidTrack();
 		bgm->mRootTrack->mSwingState = 1;
 	}
 }

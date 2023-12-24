@@ -447,9 +447,9 @@ void GXSetChanCtrl(GXChannelID channel, GXBool doEnable, GXColorSrc ambSrc, GXCo
 
 	// why are we unmasking bits we're about to overwrite?
 
-    reg = (reg & ~(0xf << 2)) | ((mask & 0xf) << 2);
+	reg = (reg & ~(0xf << 2)) | ((mask & 0xf) << 2);
 
-    reg = (reg & ~(0xf << 11)) | (((mask>>4) & 0xf) << 11);
+	reg = (reg & ~(0xf << 11)) | (((mask >> 4) & 0xf) << 11);
 
 	GX_XF_LOAD_REG(GX_XF_REG_COLOR0CNTRL + colorID, reg);
 

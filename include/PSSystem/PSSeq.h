@@ -62,10 +62,15 @@ struct DirectedBgm : public BgmSeq {
 	// unused/inlined:
 	void getDirector(u8);
 
-	inline void removeAllChildren()
+	inline void assertValidTrack()
 	{
 		bool check = _B4 == 1 && mRootTrack;
 		P2ASSERTLINE(415, check);
+	}
+
+	inline void removeAllChildren()
+	{
+		assertValidTrack();
 		mRootTrack->getTaskEntryList()->removeAllEntry();
 		for (u8 i = 0; i < 16; i++) {
 			int count = i;

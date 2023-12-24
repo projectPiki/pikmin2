@@ -32,6 +32,12 @@ struct Scene {
 	SeqMgr* getSeqMgr() { return &mSeqMgr; }
 	Scene* getChildScene() { return mChild; }
 
+	inline void setSecondaryWaveScene(u8 id)
+	{
+		P2ASSERTLINE(74, mWaveLoader);
+		mWaveLoader->mWaveSceneID[1] = id;
+	}
+
 	// _00 = VTBL
 	Scene* mChild;           // _04
 	WaveLoader* mWaveLoader; // _08

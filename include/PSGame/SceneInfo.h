@@ -43,10 +43,35 @@ struct SceneInfo {
 		CHALLENGE_MENU,
 		TITLE_18,
 		VERSUS_MENU,
-		COURSE_TUTORIALDAY1
+		COURSE_TUTORIALDAY1,
+		SCENE_COUNT, // not actual scene, used as max
 	};
 
 	SceneInfo();
+
+	SceneInfo(SceneInfo& other) { (*this) = other; }
+
+	inline void operator=(SceneInfo& other)
+	{
+		mStageFlags = other.mStageFlags;
+		mSceneType  = other.mSceneType;
+		mCameras    = other.mCameras;
+
+		// stupid
+		Vector3f* temp   = other.mCam1Position[0];
+		mCam1Position[0] = other.mCam1Position[1];
+		mCam1Position[1] = temp;
+
+		temp             = other.mCam2Position[0];
+		mCam2Position[0] = other.mCam2Position[1];
+		mCam2Position[1] = temp;
+
+		Matrixf* temp2 = other.mCameraMtx[0];
+		mCameraMtx[0]  = other.mCameraMtx[1];
+		mCameraMtx[1]  = temp2;
+
+		mBounds = (other.mBounds);
+	}
 
 	virtual bool isCaveFloor() { return false; } // _08 (weak)
 
@@ -98,7 +123,7 @@ struct CaveFloorInfo : public SceneInfo {
 	virtual bool isBossFloor() { return mBetaType == BetaType_Boss; }   // _0C (weak)
 	virtual bool isRelaxFloor() { return mBetaType == BetaType_Relax; } // _10 (weak)
 
-	u32 getCaveNoFromID();
+	u8 getCaveNoFromID();
 
 	// _00     = VTBL
 	// _00-_38 = SceneInfo

@@ -45,7 +45,7 @@
 
 // Archives
 JKRArchive* Game::gParmArc;
-PSGame::BASARC* PSSystem::ArcMgr<PSGame::BASARC>::sInstance;
+PSSystem::ArcMgr<PSGame::BASARC>* PSSystem::ArcMgr<PSGame::BASARC>::sInstance;
 
 // SingletonBase instances
 PSM::BossBgmFader::Mgr* PSSystem::SingletonBase<PSM::BossBgmFader::Mgr>::sInstance;

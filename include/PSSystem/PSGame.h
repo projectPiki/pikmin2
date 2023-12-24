@@ -53,12 +53,16 @@ inline SeqBase* getSeqFromScene(Scene* scene, u32 id)
 	return seq;
 }
 
-inline PSGame::SoundTable::SePerspInfo* getSoundCategoryInfo(PSGame::SoundTable::CategoryMgr* mgr, int id)
+inline PSGame::SoundTable::SePerspInfo* getSoundCategoryInfo(PSGame::SoundTable::CategoryMgr* mgr, u8 id)
 {
 	P2ASSERTLINE(93, mgr->mPerspInfo[id]);
 	return mgr->mPerspInfo[id];
 }
 
 }; // namespace PSSystem
+
+namespace PSGame {
+void seqCpuSync(JASTrack* track, u16 command);
+};
 
 #endif
