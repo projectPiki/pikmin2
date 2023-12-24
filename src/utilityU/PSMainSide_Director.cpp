@@ -2,7 +2,7 @@
 #include "PSM/ObjCalc.h"
 #include "PSM/Otakara.h"
 #include "PSGame/Global.h"
-#include "PSAutoBgm/AutoBgm.h"
+#include "PSAutoBgm/PSAutoBgm.h"
 #include "JSystem/JAudio/JALCalc.h"
 #include "PSM/CreaturePrm.h"
 #include "Game/Navi.h"

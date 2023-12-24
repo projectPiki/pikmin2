@@ -11,8 +11,8 @@ namespace PSGame {
  * @note Size: 0x210
  */
 SeMgr::SeMgr()
-    // : PSSystem::SingletonBase<SeMgr>(this)
-    : mRandid()
+    : PSSystem::SingletonBase<SeMgr>(this)
+    , mRandid()
     , mSound(nullptr)
 {
 	for (int i = 0; i < 8; i++) {
@@ -523,7 +523,7 @@ RandId::RandId() { mId = cNotUsingMasterIdRatio; }
  * @note Address: 0x8033FAA0
  * @note Size: 0x1E8
  */
-void RandId::startSound(JAInter::Object* obj, u32 soundID, u32 range, u32 flag)
+JAISe* RandId::startSound(JAInter::Object* obj, u32 soundID, u32 range, u32 flag)
 {
 	if (mId == -1.0f) {
 		P2ASSERTLINE(426, range > 1);

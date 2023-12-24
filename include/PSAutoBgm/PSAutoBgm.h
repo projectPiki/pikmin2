@@ -66,6 +66,37 @@ struct AutoBgm : public PSSystem::DirectedBgm {
 	MeloArrMgr mMeloArr;         // _33C
 };
 
+/**
+ * @size = 0x8
+ */
+struct ConductorArcMgr {
+	ConductorArcMgr()
+	{
+		mArchive = nullptr;
+		mArchive = JKRMountArchive("/AudioRes/Conductor.arc", JKRArchive::EMM_Dvd, JKRGetCurrentHeap(), JKRArchive::EMD_Head);
+		P2ASSERTLINE(746, mArchive); // this file needs to be PSAutoBgm.h
+	}
+
+	static void createInstance()
+	{
+		P2ASSERTLINE(726, !sInstance);
+		sInstance = new ConductorArcMgr;
+		P2ASSERTLINE(728, sInstance);
+	}
+
+	static ConductorArcMgr* getInstance()
+	{
+		P2ASSERTLINE(734, sInstance);
+		return sInstance;
+	}
+
+	virtual ~ConductorArcMgr() { sInstance = nullptr; } // _08 (weak)
+
+	JKRArchive* mArchive; // _04
+
+	static ConductorArcMgr* sInstance;
+};
+
 } // namespace PSAutoBgm
 
 #endif

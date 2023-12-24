@@ -1,5 +1,5 @@
 #include "PSM/DirectorMgr.h"
-#include "PSAutoBgm/AutoBgm.h"
+#include "PSAutoBgm/PSAutoBgm.h"
 #include "PSSystem/PSGame.h"
 #include "PSGame/PikScene.h"
 #include "PSM/BossBgmFader.h"

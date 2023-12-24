@@ -8,7 +8,7 @@
 #include "PSM/ObjCalc.h"
 #include "PSSystem/PSSystemIF.h"
 #include "PSSystem/EnvSeBase.h"
-#include "PSAutoBgm/AutoBgm.h"
+#include "PSAutoBgm/PSAutoBgm.h"
 #include "PSSystem/PSSeq.h"
 #include "Game/Navi.h"
 #include "PSM/DirectorMgr.h"

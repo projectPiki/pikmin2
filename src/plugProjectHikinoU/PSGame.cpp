@@ -1,6 +1,6 @@
 #include "PSGame/BASARC.h"
 #include "PSSystem/PSSystemIF.h"
-#include "PSAutoBgm/AutoBgm.h"
+#include "PSAutoBgm/PSAutoBgm.h"
 #include "PSGame/CameraMgr.h"
 #include "PSGame/EnvSe.h"
 #include "PSGame/PikScene.h"
@@ -16,559 +16,6 @@
 #include "PSSystem/PSGame.h"
 #include "JSystem/JAudio/JALCalc.h"
 #include "JSystem/JAudio/JAI/JAInter/SeMgr.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8048F918
-    lbl_8048F918:
-        .asciz "PSGame.cpp"
-        .skip 1
-    .global lbl_8048F924
-    lbl_8048F924:
-        .asciz "P2Assert"
-        .skip 3
-        .asciz "endoffile"
-        .skip 2
-        .asciz "cavesoil"
-        .skip 3
-        .asciz "cavesoil.bms"
-        .skip 3
-        .asciz "cavesoil_"
-        .skip 2
-        .asciz "cavemetal"
-        .skip 2
-        .asciz "cavemetal.bms"
-        .skip 2
-        .asciz "cavemetal_"
-        .skip 1
-        .asciz "caveconc"
-        .skip 3
-        .asciz "caveconc.bms"
-        .skip 3
-        .asciz "caveconc_"
-        .skip 2
-        .asciz "cavetile"
-        .skip 3
-        .asciz "cavetile.bms"
-        .skip 3
-        .asciz "caveglass"
-        .skip 2
-        .asciz "caveglass.bms"
-        .skip 2
-        .asciz "cavetsumiki"
-        .asciz "cavetsumiki.bms"
-        .asciz "caverelax"
-        .skip 2
-        .asciz "caverelax.bms"
-        .skip 2
-    .global lbl_8048FA24
-    lbl_8048FA24:
-        .asciz "/SeqTest/"
-        .skip 2
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x000000E7
-        .4byte seqCpuSync__6PSGameFP8JASTrackUs
-        .4byte 0x00000000
-        .4byte lbl_8048FA24
-        .4byte 0x50534175
-        .4byte 0x746F4267
-        .4byte 0x6D2E6800
-        .4byte 0x2F417564
-        .4byte 0x696F5265
-        .4byte 0x732F436F
-        .4byte 0x6E647563
-        .4byte 0x746F722E
-        .4byte 0x61726300
-    .global lbl_8048FA6C
-    lbl_8048FA6C:
-        .4byte 0x50535379
-        .4byte 0x7374656D
-        .4byte 0x49462E68
-        .4byte 0x00000000
-        .4byte 0x2F417564
-        .4byte 0x696F5265
-        .4byte 0x732F4B65
-        .4byte 0x792E6172
-        .4byte 0x63000000
-    .global lbl_8048FA90
-    lbl_8048FA90:
-        .4byte 0x5053436F
-        .4byte 0x6D6D6F6E
-        .4byte 0x2E680000
-    .global lbl_8048FA9C
-    lbl_8048FA9C:
-        .4byte 0x50534761
-        .4byte 0x6D652E61
-        .4byte 0x61660000
-    .global lbl_8048FAA8
-    lbl_8048FAA8:
-        .4byte 0x50534761
-        .4byte 0x6D652E68
-        .4byte 0x00000000
-    .global lbl_8048FAB4
-    lbl_8048FAB4:
-        .4byte 0x666C6167
-        .4byte 0x82CD3020
-        .4byte 0x6F723182
-        .4byte 0xC582B700
-    .global lbl_8048FAC4
-    lbl_8048FAC4:
-        .4byte 0x6D5F626F
-        .4byte 0x73732E62
-        .4byte 0x6D730000
-    .global lbl_8048FAD0
-    lbl_8048FAD0:
-        .4byte 0x6C5F626F
-        .4byte 0x73732E62
-        .4byte 0x6D730000
-        .4byte 0x00001F00
-        .4byte 0xFF000000
-        .float 1.0
-        .4byte 0x7F000000
-        .4byte 0x00000000
-        .4byte 0x7F010000
-        .float 1.0
-        .4byte 0x32000000
-        .4byte 0x328F6482
-        .4byte 0xC9834F83
-        .4byte 0x8D815B83
-        .4byte 0x6F838B83
-        .4byte 0x56815B83
-        .4byte 0x9382F08D
-        .4byte 0xEC90AC82
-        .4byte 0xB582E682
-        .4byte 0xA482C682
-        .4byte 0xB582BD00
-        .4byte 0x2F757365
-        .4byte 0x722F546F
-        .4byte 0x74616B61
-        .4byte 0x2F537472
-        .4byte 0x65616D4C
-        .4byte 0x6973742E
-        .4byte 0x74787400
-        .4byte 0x2F757365
-        .4byte 0x722F546F
-        .4byte 0x74616B61
-        .4byte 0x2F42676D
-        .4byte 0x4C697374
-        .4byte 0x2E747874
-        .4byte 0x00000000
-        .4byte 0x7363656E
-        .4byte 0x65206E6F
-        .4byte 0x82AA9573
-        .4byte 0x90B30000
-        .4byte 0x50535363
-        .4byte 0x656E652E
-        .4byte 0x68000000
-        .4byte 0x914F89F1
-        .4byte 0x82CC6D43
-        .4byte 0x75727265
-        .4byte 0x6E745363
-        .4byte 0x656E6582
-        .4byte 0xCC8CE38F
-        .4byte 0x88979D82
-        .4byte 0xAA957390
-        .4byte 0xB3000000
-        .4byte 0x00000000
-        .4byte 0x7F020000
-        .float 1.0
-        .4byte 0x28000000
-        .4byte 0x00000000
-        .4byte 0x7F010000
-        .float 1.0
-        .4byte 0x32000000
-        .4byte 0x68697363
-        .4byte 0x6F72652E
-        .4byte 0x626D7300
-        .4byte 0x6E5F7475
-        .4byte 0x746F7269
-        .4byte 0x616C5F31
-        .4byte 0x73746461
-        .4byte 0x792E626D
-        .4byte 0x73000000
-        .4byte 0x63617665
-        .4byte 0x6B657967
-        .4byte 0x65742E63
-        .4byte 0x6E640000
-        .4byte 0x63617665
-        .4byte 0x6B657967
-        .4byte 0x65742E62
-        .4byte 0x6D730000
-        .4byte 0x6B75726F
-        .4byte 0x5F706F73
-        .4byte 0x742E626D
-        .4byte 0x73000000
-        .4byte 0x00001F00
-        .4byte 0x7FFF0000
-        .float 1.0
-        .4byte 0x32000000
-        .4byte 0x2F757365
-        .4byte 0x722F546F
-        .4byte 0x74616B61
-        .4byte 0x2F436861
-        .4byte 0x6C6C656E
-        .4byte 0x67654267
-        .4byte 0x6D4C6973
-        .4byte 0x742E7478
-        .4byte 0x74000000
-        .4byte 0x62617474
-        .4byte 0x6C655F74
-        .4byte 0x2E626D73
-        .4byte 0x00000000
-        .4byte 0x63617665
-        .4byte 0x636F6E63
-        .4byte 0x5F30305F
-        .4byte 0x302E636E
-        .4byte 0x64000000
-        .4byte 0x63617665
-        .4byte 0x72656C61
-        .4byte 0x782E636E
-        .4byte 0x64000000
-        .4byte 0x6B75726F
-        .4byte 0x5F707265
-        .4byte 0x2E626D73
-        .4byte 0x00000000
-        .4byte 0x2F757365
-        .4byte 0x722F546F
-        .4byte 0x74616B61
-        .4byte 0x2F42676D
-        .4byte 0x4C697374
-        .4byte 0x5F547574
-        .4byte 0x6F726961
-        .4byte 0x6C2E7478
-        .4byte 0x74000000
-        .4byte 0x2F757365
-        .4byte 0x722F546F
-        .4byte 0x74616B61
-        .4byte 0x2F42676D
-        .4byte 0x4C697374
-        .4byte 0x5F466F72
-        .4byte 0x6573742E
-        .4byte 0x74787400
-        .4byte 0x2F757365
-        .4byte 0x722F546F
-        .4byte 0x74616B61
-        .4byte 0x2F42676D
-        .4byte 0x4C697374
-        .4byte 0x5F59616B
-        .4byte 0x75736869
-        .4byte 0x6D612E74
-        .4byte 0x78740000
-        .4byte 0x2F757365
-        .4byte 0x722F546F
-        .4byte 0x74616B61
-        .4byte 0x2F42676D
-        .4byte 0x4C697374
-        .4byte 0x5F4C6173
-        .4byte 0x742E7478
-        .4byte 0x74000000
-        .4byte 0x2F757365
-        .4byte 0x722F546F
-        .4byte 0x74616B61
-        .4byte 0x2F42676D
-        .4byte 0x4C697374
-        .4byte 0x5F42676D
-        .4byte 0x54657374
-        .4byte 0x2E747874
-        .4byte 0x00000000
-        .4byte 0x63617665
-        .4byte 0x49443D3D
-        .4byte 0x25640A00
-        .4byte 0x6E5F7475
-        .4byte 0x746F7269
-        .4byte 0x616C2E62
-        .4byte 0x6D730000
-        .4byte 0x666F7265
-        .4byte 0x73742E62
-        .4byte 0x6D730000
-        .4byte 0x79616B75
-        .4byte 0x7368696D
-        .4byte 0x612E626D
-        .4byte 0x73000000
-        .4byte 0x6C617374
-        .4byte 0x2E626D73
-        .4byte 0x00000000
-        .4byte 0x776F726C
-        .4byte 0x646D6170
-        .4byte 0x2E626D73
-        .4byte 0x00000000
-        .4byte 0x776F726C
-        .4byte 0x646D6170
-        .4byte 0x5F696E74
-        .4byte 0x726F2E62
-        .4byte 0x6D730000
-        .4byte 0x635F6D65
-        .4byte 0x6E752E62
-        .4byte 0x6D730000
-        .4byte 0x626F6F6B
-        .4byte 0x2E626D73
-        .4byte 0x00000000
-        .4byte 0x636F6D70
-        .4byte 0x5F726573
-        .4byte 0x756C742E
-        .4byte 0x626D7300
-        .4byte 0x665F7265
-        .4byte 0x73756C74
-        .4byte 0x2E626D73
-        .4byte 0x00000000
-        .4byte 0x25735F25
-        .4byte 0x3032645F
-        .4byte 0x302E636E
-        .4byte 0x64000000
-        .4byte 0x0A6E6F74
-        .4byte 0x2066696E
-        .4byte 0x64205365
-        .4byte 0x710A0000
-        .4byte 0x25735F25
-        .4byte 0x3032645F
-        .4byte 0x2531642E
-        .4byte 0x636E6400
-        .4byte 0x67657420
-        .4byte 0x736F756E
-        .4byte 0x64207363
-        .4byte 0x656E6520
-        .4byte 0x61740A69
-        .4byte 0x6E76616C
-        .4byte 0x69642074
-        .4byte 0x696D6D69
-        .4byte 0x6E670A00
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804DA920
-    lbl_804DA920:
-        .4byte lbl_80337278
-        .4byte lbl_80336D5C
-        .4byte lbl_80336D88
-        .4byte lbl_80336DB4
-        .4byte lbl_80336E40
-        .4byte lbl_80337278
-        .4byte lbl_80337278
-        .4byte lbl_80337278
-        .4byte lbl_80336ECC
-        .4byte lbl_80336F20
-        .4byte lbl_80336FB8
-        .4byte lbl_80337004
-        .4byte lbl_80337060
-        .4byte lbl_80337118
-        .4byte lbl_80337174
-        .4byte lbl_803371D0
-        .4byte lbl_80336F6C
-        .4byte lbl_803370BC
-        .4byte lbl_80337278
-        .4byte lbl_8033722C
-        .4byte lbl_80336D5C
-    .global lbl_804DA974
-    lbl_804DA974:
-        .4byte lbl_80336AB8
-        .4byte lbl_80336A94
-        .4byte lbl_80336A9C
-        .4byte lbl_80336AA4
-        .4byte lbl_80336AAC
-        .4byte lbl_80336AB4
-        .4byte lbl_80336AB8
-        .4byte lbl_80336AB8
-        .4byte lbl_80336AB8
-        .4byte lbl_80336AB8
-        .4byte lbl_80336AB8
-        .4byte lbl_80336AB8
-        .4byte lbl_80336AB8
-        .4byte lbl_80336AB8
-        .4byte lbl_80336AB8
-        .4byte lbl_80336AB8
-        .4byte lbl_80336AB8
-        .4byte lbl_80336AB8
-        .4byte lbl_80336AB8
-        .4byte lbl_80336AB8
-        .4byte lbl_80336A94
-    .global __vt__Q26PSGame11PikSceneMgr
-    __vt__Q26PSGame11PikSceneMgr:
-        .4byte 0
-        .4byte 0
-        .4byte exec__Q28PSSystem8SceneMgrFv
-        .4byte
-   newAndSetCurrentScene__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfo .4byte
-   newAndSetGlobalScene__Q26PSGame11PikSceneMgrFv .4byte 0 .4byte 0 .4byte 0
-        .4byte curSceneIsBigBossFloor__Q26PSGame11PikSceneMgrFv
-        .4byte 0
-    .global __vt__Q26PSGame8PikScene
-    __vt__Q26PSGame8PikScene:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q28PSSystem5SceneFv
-        .4byte __dt__Q26PSGame8PikSceneFv
-        .4byte scene1st__Q28PSSystem5SceneFPQ28PSSystem11TaskChecker
-        .4byte scene1stLoadSync__Q28PSSystem5SceneFv
-        .4byte exec__Q28PSSystem5SceneFv
-        .4byte startMainSeq__Q28PSSystem5SceneFv
-        .4byte stopMainSeq__Q28PSSystem5SceneFUl
-        .4byte stopAllSound__Q28PSSystem5SceneFUl
-    .global __vt__Q26PSGame9SceneInfo
-    __vt__Q26PSGame9SceneInfo:
-        .4byte 0
-        .4byte 0
-        .4byte isCaveFloor__Q26PSGame9SceneInfoFv
-    .global "__vt__Q28PSSystem24ArcMgr<Q26PSGame6BASARC>"
-    "__vt__Q28PSSystem24ArcMgr<Q26PSGame6BASARC>":
-        .4byte 0
-        .4byte 0
-        .4byte "__dt__Q28PSSystem24ArcMgr<Q26PSGame6BASARC>Fv"
-    .global __vt__Q29PSAutoBgm15ConductorArcMgr
-    __vt__Q29PSAutoBgm15ConductorArcMgr:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q29PSAutoBgm15ConductorArcMgrFv
-    .global __vt__Q26PSGame10SysFactory
-    __vt__Q26PSGame10SysFactory:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-    .global __vt__Q26PSGame9CameraMgr
-    __vt__Q26PSGame9CameraMgr:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q26PSGame9CameraMgrFv
-    .global __vt__Q36PSGame10SoundTable11CategoryMgr
-    __vt__Q36PSGame10SoundTable11CategoryMgr:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q36PSGame10SoundTable11CategoryMgrFv
-    .global
-   "__vt__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"
-    "__vt__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "__dt__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>Fv"
-    .global __vt__Q26PSGame13ConductorList
-    __vt__Q26PSGame13ConductorList:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q26PSGame13ConductorListFv
-        .4byte read__Q26PSGame13ConductorListFR6Stream
-        .4byte 0
-        .4byte 0
-        .4byte "@28@__dt__Q26PSGame13ConductorListFv"
-    .global "__vt__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>"
-    "__vt__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>":
-        .4byte 0
-        .4byte 0
-        .4byte "__dt__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>Fv"
-        .4byte 0
-
-    .section .bss  # 0x804EFC20 - 0x8051467C
-    .global newSeqName__6PSGame
-    newSeqName__6PSGame:
-        .skip 0x20
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global sToolMode__Q26PSGame13ConductorList
-    sToolMode__Q26PSGame13ConductorList:
-        .skip 0x4
-    .global "sInstance__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>"
-    "sInstance__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>":
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051E0C0
-    lbl_8051E0C0:
-        .4byte 0x30300000
-    .global lbl_8051E0C4
-    lbl_8051E0C4:
-        .4byte 0x30350000
-    .global lbl_8051E0C8
-    lbl_8051E0C8:
-        .4byte 0x6E657700
-    .global lbl_8051E0CC
-    lbl_8051E0CC:
-        .4byte 0x2E626D73
-        .4byte 0x00000000
-    .global lbl_8051E0D4
-    lbl_8051E0D4:
-        .float 1.0
-    .global lbl_8051E0D8
-    lbl_8051E0D8:
-        .4byte 0x00000000
-    .global lbl_8051E0DC
-    lbl_8051E0DC:
-        .4byte 0x442F0000
-    .global lbl_8051E0E0
-    lbl_8051E0E0:
-        .4byte 0x3E3851EC
-    .global lbl_8051E0E4
-    lbl_8051E0E4:
-        .4byte 0x45228000
-    .global lbl_8051E0E8
-    lbl_8051E0E8:
-        .4byte 0x43480000
-    .global lbl_8051E0EC
-    lbl_8051E0EC:
-        .4byte 0x442B0000
-    .global lbl_8051E0F0
-    lbl_8051E0F0:
-        .4byte 0x3E49BA5E
-    .global lbl_8051E0F4
-    lbl_8051E0F4:
-        .4byte 0x457AC800
-    .global lbl_8051E0F8
-    lbl_8051E0F8:
-        .4byte 0x40000000
-    .global lbl_8051E0FC
-    lbl_8051E0FC:
-        .float 0.5
-    .global lbl_8051E100
-    lbl_8051E100:
-        .float 0.25
-    .global sDefaultVol__Q26PSGame9CameraMgr
-    sDefaultVol__Q26PSGame9CameraMgr:
-        .4byte 0x3F4CCCCD
-    .global lbl_8051E108
-    lbl_8051E108:
-        .4byte 0x4276A3D7
-    .global lbl_8051E10C
-    lbl_8051E10C:
-        .4byte 0x43034000
-    .global lbl_8051E110
-    lbl_8051E110:
-        .4byte 0x43570A3D
-    .global lbl_8051E114
-    lbl_8051E114:
-        .4byte 0x43A5170A
-    .global lbl_8051E118
-    lbl_8051E118:
-        .4byte 0x3F4CCCCD
-    .global lbl_8051E11C
-    lbl_8051E11C:
-        .4byte 0x3F35C28F
-    .global lbl_8051E120
-    lbl_8051E120:
-        .4byte 0x3F1EB852
-    .global lbl_8051E124
-    lbl_8051E124:
-        .4byte 0x3EE66666
-    .global lbl_8051E128
-    lbl_8051E128:
-        .4byte 0x5365712E
-        .4byte 0x61726300
-    .global lbl_8051E130
-    lbl_8051E130:
-        .4byte 0x42F00000
-    .global lbl_8051E134
-    lbl_8051E134:
-        .4byte 0x73652E62
-        .4byte 0x6D730000
-    .global lbl_8051E13C
-    lbl_8051E13C:
-        .4byte 0x50535365
-        .4byte 0x712E6800
-    .global lbl_8051E144
-    lbl_8051E144:
-        .4byte 0x50535365
-        .4byte 0x2E680000
-        .4byte 0x00000000
-*/
 
 namespace PSGame {
 
@@ -1845,14 +1292,14 @@ PSSystem::Scene* PikSceneMgr::newAndSetGlobalScene()
 	P2ASSERTLINE(1028, PSSystem::SingletonBase<PSSystem::SeqDataList>::getInstance()->onlyLoad("/user/Totaka/BgmList.txt",
 	                                                                                           JKRDvdRipper::ALLOC_DIR_TOP));
 
-	JAInter::SoundInfo sound = { 0x00000000, 0x7F, 0x03, 0, 0x3F800000, 0x3C000000 };
+	JAInter::SoundInfo sound = { 0x00001f00, 255, 0, 0, 0x3F800000, 0x7f000000 };
 	P2ASSERTLINE(1040, sound.mVolume.c <= 0x7f);
 	PSSystem::SeSeq* seq = new PSSystem::SeSeq("se.bms", sound);
 	P2ASSERTLINE(1043, seq);
 	seq->init();
 	mScenes->appendSeq(seq);
 
-	JAInter::SoundInfo sound2 = { 0x00000000, 0x7F, 0x03, 0, 0x3F800000, 0x3C000000 };
+	JAInter::SoundInfo sound2 = { 0x00000000, 0x7F, 1, 0, 0x3F800000, 0x32000000 };
 	PSSystem::BgmSeq* seq2    = newStreamBgm(0xc0011011, sound2);
 	P2ASSERTLINE(1061, seq2);
 	seq2->init();
@@ -2577,7 +2024,7 @@ PSSystem::BgmSeq* PikSceneMgr::newStreamBgm(u32 id, JAInter::SoundInfo& info)
  */
 PSSystem::BgmSeq* PikSceneMgr::initBossBgm(SceneInfo& info, u8* wScene)
 {
-	JAInter::SoundInfo sound = { 0x00000000, 0x7F, 0x03, 0, 0x3F800000, 0x3C000000 };
+	JAInter::SoundInfo sound = { 0x00000000, 0x7F, 0x02, 0, 0x3F800000, 0x28000000 };
 
 	PSSystem::DirectedBgm* seq;
 	if (curSceneIsBigBossFloor()) {
@@ -2602,7 +2049,7 @@ PSSystem::BgmSeq* PikSceneMgr::initBossBgm(SceneInfo& info, u8* wScene)
  */
 void PikSceneMgr::initAdditionalBgm(SceneInfo& info, PSSystem::Scene* scene)
 {
-	JAInter::SoundInfo sound = { 0x00000000, 0x7F, 0x03, 0, 0x3F800000, 0x3C000000 };
+	JAInter::SoundInfo sound = { 0x00000000, 0x7F, 0x01, 0, 0x3F800000, 0x32000000 };
 
 	PSSystem::BgmSeq* seq;
 	switch (info.mSceneType) {
@@ -2657,7 +2104,7 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 	P2ASSERTLINE(1378, wScene);
 	PSSystem::BgmSeq* bgm = nullptr;
 
-	JAInter::SoundInfo sound = { 0x00001f00, 0x7F, 0x03, 0, 0x3F800000, 0x3C000000 };
+	JAInter::SoundInfo sound = { 0x00001f00, 0x7F, 0xFF, 0, 0x3F800000, 0x32000000 };
 
 	CaveFloorInfo& cinfo = static_cast<CaveFloorInfo&>(info);
 	P2ASSERTLINE(1393, wScene);
@@ -2786,6 +2233,10 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 			bgm     = newBgmSeq("worldmap_intro.bms", sound);
 			*wScene = PSSystem::WaveScene::WSCENE16_WorldMap;
 			break;
+		case SceneInfo::CHALLENGE_MENU:
+			bgm     = newBgmSeq("c_menu.bms", sound);
+			*wScene = PSSystem::WaveScene::WSCENE20_ChallengeSelect;
+			break;
 		case SceneInfo::PIKLOPEDIA:
 			bgm     = newBgmSeq("book.bms", sound);
 			*wScene = PSSystem::WaveScene::WSCENE36_Piklopedia;
@@ -2797,10 +2248,6 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 		case SceneInfo::ENDING_DEBTRESULT:
 			bgm     = newBgmSeq("f_result.bms", sound);
 			*wScene = PSSystem::WaveScene::WSCENE19_Final_Result;
-			break;
-		case SceneInfo::CHALLENGE_MENU:
-			bgm     = newBgmSeq("c_menu.bms", sound);
-			*wScene = PSSystem::WaveScene::WSCENE20_ChallengeSelect;
 			break;
 		case SceneInfo::VERSUS_MENU:
 			bgm = newStreamBgm(0xc001100f, sound);
@@ -3863,8 +3310,11 @@ lbl_803372C8:
  * @note Address: N/A
  * @note Size: 0x1A8
  */
-void ConductorSelector::getConductorFile(char const*, CaveFloorInfo&, u8*, char*)
+void ConductorSelector::getConductorFile(char const* path, CaveFloorInfo&, u8*, char*)
 {
+	JUT_PANICLINE(999, "%s_%02d_0.cnd");
+	JUT_PANICLINE(999, "\nnot find Seq\n");
+	JUT_PANICLINE(999, "%s_%02d_%1d.cnd");
 	// UNUSED FUNCTION
 }
 

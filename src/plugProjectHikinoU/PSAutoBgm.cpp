@@ -1,6 +1,6 @@
 #include "JSystem/JAudio/JAD/JADDataMgr.h"
 #include "JSystem/JAudio/JAD/JADUtility.h"
-#include "PSAutoBgm/AutoBgm.h"
+#include "PSAutoBgm/PSAutoBgm.h"
 #include "PSAutoBgm/Conductor.h"
 #include "PSAutoBgm/Cycle.h"
 #include "PSAutoBgm/PrmLink.h"
