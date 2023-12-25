@@ -37,7 +37,7 @@ typedef struct _THPFileInfo {
 	u16 yPixelSize;
 	u16 MCUsPerRow;
 	u16 decompressedY;
-	u8* c;
+	u8* file;
 	u32 currByte;
 	u32 cnt;
 	u8 validHuffmanTabs;

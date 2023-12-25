@@ -1,4 +1,5 @@
 #include "THP/THPAudio.h"
+#include "stl/limits.h"
 
 /**
  * @note Address: 0x800FE6B0
@@ -49,12 +50,12 @@ u32 THPAudioDecode(s16* audioBuffer, u8* audioFrame, s32 flag)
 
 			yn += 0x8000;
 
-			if (yn > 2147483647LL) {
-				yn = 2147483647LL;
+			if (yn > INT_MAX) {
+				yn = INT_MAX;
 			}
 
-			if (yn < -2147483648LL) {
-				yn = -2147483648LL;
+			if (yn < INT_MIN) {
+				yn = INT_MIN;
 			}
 
 			*decLeftPtr = (s16)(yn >> 16);
@@ -78,12 +79,12 @@ u32 THPAudioDecode(s16* audioBuffer, u8* audioFrame, s32 flag)
 			yn <<= 5;
 			yn += 0x8000;
 
-			if (yn > 2147483647LL) {
-				yn = 2147483647LL;
+			if (yn > INT_MAX) {
+				yn = INT_MAX;
 			}
 
-			if (yn < -2147483648LL) {
-				yn = -2147483648LL;
+			if (yn < INT_MIN) {
+				yn = INT_MIN;
 			}
 
 			*decLeftPtr = (s16)(yn >> 16);
@@ -106,12 +107,12 @@ u32 THPAudioDecode(s16* audioBuffer, u8* audioFrame, s32 flag)
 
 			yn += 0x8000;
 
-			if (yn > 2147483647LL) {
-				yn = 2147483647LL;
+			if (yn > INT_MAX) {
+				yn = INT_MAX;
 			}
 
-			if (yn < -2147483648LL) {
-				yn = -2147483648LL;
+			if (yn < INT_MIN) {
+				yn = INT_MIN;
 			}
 
 			*decRightPtr = (s16)(yn >> 16);

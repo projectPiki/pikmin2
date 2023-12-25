@@ -28,10 +28,19 @@ static BOOL __THPInitFlag = FALSE;
 #define THPROUNDUP(a, b) ((((s32)(a)) + ((s32)(b)-1L)) / ((s32)(b)))
 
 /**
+ * Decodes a THP video file.
+ *
+ * @param file   Pointer to the THP video file.
+ * @param tileY  Pointer to the output tile for Y component.
+ * @param tileU  Pointer to the output tile for U component.
+ * @param tileV  Pointer to the output tile for V component.
+ * @param work   Pointer to the work area.
+ * @return       Error code indicating the success or failure of the decoding process.
+ *
  * @note Address: 0x800F7148
  * @note Size: 0x244
  */
-s32 THPVideoDecode(void* file, void* tileY, void* tileU, void* tileV, void* work)
+s32 THPVideoDecode(void* file, void* tileY, void* tileU, void* tileV, void* workArea)
 {
 	u8 all_done, status;
 	s32 errorCode;
@@ -44,7 +53,7 @@ s32 THPVideoDecode(void* file, void* tileY, void* tileU, void* tileV, void* work
 		goto _err_no_output;
 	}
 
-	if (!work) {
+	if (!workArea) {
 		goto _err_no_work;
 	}
 
@@ -56,29 +65,32 @@ s32 THPVideoDecode(void* file, void* tileY, void* tileU, void* tileV, void* work
 		goto _err_not_initialized;
 	}
 
-	__THPWorkArea = (u8*)work;
+	__THPWorkArea = (u8*)workArea;
 	__THPInfo     = (THPFileInfo*)OSRoundUp32B(__THPWorkArea);
 	__THPWorkArea = (u8*)OSRoundUp32B(__THPWorkArea) + sizeof(THPFileInfo);
+
 	DCZeroRange(__THPInfo, sizeof(THPFileInfo));
 	__THPInfo->cnt           = 33;
 	__THPInfo->decompressedY = 0;
-	__THPInfo->c             = (u8*)file;
-	all_done                 = FALSE;
+	__THPInfo->file          = (u8*)file;
+
+	all_done = FALSE;
 
 	for (;;) {
-		if ((*(__THPInfo->c)++) != 255) {
+		if ((*(__THPInfo->file)++) != 0xFF) {
 			goto _err_bad_syntax;
 		}
 
-		while (*__THPInfo->c == 255) {
-			((__THPInfo->c)++);
+		while (*__THPInfo->file == 0xFF) {
+			((__THPInfo->file)++);
 		}
 
-		status = (*(__THPInfo->c)++);
+		status = (*(__THPInfo->file)++);
 
 		if (status <= 0xD7) {
-			if (status == 196) {
+			if (status == 0xC5) {
 				status = __THPReadHuffmanTableSpecification();
+
 				if (status != 0) {
 					goto _err_bad_status;
 				}
@@ -124,7 +136,7 @@ s32 THPVideoDecode(void* file, void* tileY, void* tileU, void* tileV, void* work
 
 		else if (0xE0 <= status) {
 			if ((224 <= status && status <= 239) || status == 254) {
-				__THPInfo->c += (__THPInfo->c)[0] << 8 | (__THPInfo->c)[1];
+				__THPInfo->file += (__THPInfo->file)[0] << 8 | (__THPInfo->file)[1];
 			} else {
 				goto _err_unsupported_marker;
 			}
@@ -207,32 +219,32 @@ static u8 __THPReadFrameHeader(void)
 {
 	u8 i, utmp8;
 
-	__THPInfo->c += 2;
+	__THPInfo->file += 2;
 
-	utmp8 = (*(__THPInfo->c)++);
+	utmp8 = (*(__THPInfo->file)++);
 
 	if (utmp8 != 8) {
 		return 10;
 	}
 
-	__THPInfo->yPixelSize = (u16)((__THPInfo->c)[0] << 8 | (__THPInfo->c)[1]);
-	__THPInfo->c += 2;
-	__THPInfo->xPixelSize = (u16)((__THPInfo->c)[0] << 8 | (__THPInfo->c)[1]);
-	__THPInfo->c += 2;
+	__THPInfo->yPixelSize = (u16)((__THPInfo->file)[0] << 8 | (__THPInfo->file)[1]);
+	__THPInfo->file += 2;
+	__THPInfo->xPixelSize = (u16)((__THPInfo->file)[0] << 8 | (__THPInfo->file)[1]);
+	__THPInfo->file += 2;
 
-	utmp8 = (*(__THPInfo->c)++);
+	utmp8 = (*(__THPInfo->file)++);
 	if (utmp8 != 3) {
 		return 12;
 	}
 
 	for (i = 0; i < 3; i++) {
-		utmp8 = (*(__THPInfo->c)++);
-		utmp8 = (*(__THPInfo->c)++);
+		utmp8 = (*(__THPInfo->file)++);
+		utmp8 = (*(__THPInfo->file)++);
 		if ((i == 0 && utmp8 != 0x22) || (i > 0 && utmp8 != 0x11)) {
 			return 19;
 		}
 
-		__THPInfo->components[i].quantizationTableSelector = (*(__THPInfo->c)++);
+		__THPInfo->components[i].quantizationTableSelector = (*(__THPInfo->file)++);
 	}
 
 	return 0;
@@ -245,18 +257,18 @@ static u8 __THPReadFrameHeader(void)
 static u8 __THPReadScaneHeader(void)
 {
 	u8 i, utmp8;
-	__THPInfo->c += 2;
+	__THPInfo->file += 2;
 
-	utmp8 = (*(__THPInfo->c)++);
+	utmp8 = (*(__THPInfo->file)++);
 
 	if (utmp8 != 3) {
 		return 12;
 	}
 
 	for (i = 0; i < 3; i++) {
-		utmp8 = (*(__THPInfo->c)++);
+		utmp8 = (*(__THPInfo->file)++);
 
-		utmp8                                    = (*(__THPInfo->c)++);
+		utmp8                                    = (*(__THPInfo->file)++);
 		__THPInfo->components[i].DCTableSelector = (u8)(utmp8 >> 4);
 		__THPInfo->components[i].ACTableSelector = (u8)(utmp8 & 15);
 
@@ -269,7 +281,7 @@ static u8 __THPReadScaneHeader(void)
 		}
 	}
 
-	__THPInfo->c += 3;
+	__THPInfo->file += 3;
 	__THPInfo->MCUsPerRow           = (u16)THPROUNDUP(__THPInfo->xPixelSize, 16);
 	__THPInfo->components[0].predDC = 0;
 	__THPInfo->components[1].predDC = 0;
@@ -286,15 +298,15 @@ static u8 __THPReadQuantizationTable(void)
 	u16 length, id, i, row, col;
 	f32 q_temp[64];
 
-	length = (u16)((__THPInfo->c)[0] << 8 | (__THPInfo->c)[1]);
-	__THPInfo->c += 2;
+	length = (u16)((__THPInfo->file)[0] << 8 | (__THPInfo->file)[1]);
+	__THPInfo->file += 2;
 	length -= 2;
 
 	for (;;) {
-		id = (*(__THPInfo->c)++);
+		id = (*(__THPInfo->file)++);
 
 		for (i = 0; i < 64; i++) {
-			q_temp[__THPJpegNaturalOrder[i]] = (f32)(*(__THPInfo->c)++);
+			q_temp[__THPJpegNaturalOrder[i]] = (f32)(*(__THPInfo->file)++);
 		}
 
 		i = 0;
@@ -325,24 +337,24 @@ static u8 __THPReadHuffmanTableSpecification(void)
 
 	__THPHuffmanSizeTab = __THPWorkArea;
 	__THPHuffmanCodeTab = (u16*)((u32)__THPWorkArea + 256 + 1);
-	length              = (u16)((__THPInfo->c)[0] << 8 | (__THPInfo->c)[1]);
-	__THPInfo->c += 2;
+	length              = (u16)((__THPInfo->file)[0] << 8 | (__THPInfo->file)[1]);
+	__THPInfo->file += 2;
 	length -= 2;
 
 	for (;;) {
-		i                = (*(__THPInfo->c)++);
+		i                = (*(__THPInfo->file)++);
 		id               = (u8)(i & 15);
 		t_class          = (u8)(i >> 4);
-		__THPHuffmanBits = __THPInfo->c;
+		__THPHuffmanBits = __THPInfo->file;
 		tab_index        = (u8)((id << 1) + t_class);
 		num_Vij          = 0;
 
 		for (i = 0; i < 16; i++) {
-			num_Vij += (*(__THPInfo->c)++);
+			num_Vij += (*(__THPInfo->file)++);
 		}
 
-		__THPInfo->huffmanTabs[tab_index].Vij = __THPInfo->c;
-		__THPInfo->c += num_Vij;
+		__THPInfo->huffmanTabs[tab_index].Vij = __THPInfo->file;
+		__THPInfo->file += num_Vij;
 		__THPHuffGenerateSizeTable();
 		__THPHuffGenerateCodeTable();
 		__THPHuffGenerateDecoderTables(tab_index);
@@ -432,9 +444,9 @@ static void __THPHuffGenerateDecoderTables(u8 tabIndex)
 static void __THPRestartDefinition(void)
 {
 	__THPInfo->RST = TRUE;
-	__THPInfo->c += 2;
-	__THPInfo->nMCU = (u16)((__THPInfo->c)[0] << 8 | (__THPInfo->c)[1]);
-	__THPInfo->c += 2;
+	__THPInfo->file += 2;
+	__THPInfo->nMCU = (u16)((__THPInfo->file)[0] << 8 | (__THPInfo->file)[1]);
+	__THPInfo->file += 2;
 	__THPInfo->currMCU = __THPInfo->nMCU;
 }
 
@@ -487,8 +499,8 @@ void __THPPrepBitStream(void)
 	u32* ptr;
 	u32 offset, i, j, k;
 
-	ptr    = (u32*)((u32)__THPInfo->c & 0xFFFFFFFC);
-	offset = (u32)__THPInfo->c & 3;
+	ptr    = (u32*)((u32)__THPInfo->file & 0xFFFFFFFC);
+	offset = (u32)__THPInfo->file & 3;
 
 	if (__THPInfo->cnt != 33) {
 		__THPInfo->cnt -= (3 - offset) * 8;
@@ -496,7 +508,7 @@ void __THPPrepBitStream(void)
 		__THPInfo->cnt = (offset * 8) + 1;
 	}
 
-	__THPInfo->c        = (u8*)ptr;
+	__THPInfo->file     = (u8*)ptr;
 	__THPInfo->currByte = *ptr;
 
 	for (i = 0; i < 4; i++) {
@@ -1312,12 +1324,12 @@ _done:
 			b __WHILE_CHECK;
 
 		  _FCEB_faster:
-			lwz     increment, info->c;
+			lwz     increment, info->file;
 			li      cnt, 1;
 			lwzu    cb, 4(increment);
 			lwzu    tmp2, 4(maxcodebase);
 
-			stw     increment, info->c;
+			stw     increment, info->file;
 			rlwimi  tmp, cb, 1,31,31;
 			stw     cb, info->currByte;
 			b __FL_WHILE_CHECK;
@@ -1350,7 +1362,7 @@ _FCEB_Done:
 	asm {
 	  _notEnoughBits:
 		cmpwi   cnt, 33;
-		lwz     tmp, info->c;
+		lwz     tmp, info->file;
 		beq     _getfullword;
 
 		cmpwi   cnt, 32;
@@ -1375,7 +1387,7 @@ _FCEB_Done:
 	  _1bitleft:
 		lwzu    cb, 4(tmp);
 
-		stw     tmp, info->c;
+		stw     tmp, info->file;
 		rlwimi  code, cb, 4, 28, 31;
 		lbzx    tmp, h, code;
 		lbzx    increment, increment, code
@@ -1388,7 +1400,7 @@ _FCEB_Done:
 #endif // clang-format on
 	return tmp;
 
-_Read4 : {
+_Read4: {
 	register u32 maxcodebase = (u32) & (h->maxCode);
 	register u32 tmp2;
 
@@ -1424,7 +1436,7 @@ _getfullword:
 		lwzu    cb, 4(tmp);
 
 		rlwinm  code, cb, 5, 27, 31
-		stw     tmp, info->c;
+		stw     tmp, info->file;
 		lbzx    cnt, h, code;
 		lbzx    increment, increment, code;
 		cmpwi   cnt, 0xFF
@@ -1454,7 +1466,7 @@ _FailedCheckEnoughbits_Updated:
 	goto __CODE_PLUS_VP_CNT;
 
 _FailedCheckNoBits0:
-_FailedCheckNoBits1 :
+_FailedCheckNoBits1:
 
 {
 	register u32 mask = 0xFFFFFFFF << (33 - cnt);
@@ -1465,13 +1477,13 @@ _FailedCheckNoBits1 :
 
 #ifdef __MWERKS__ // clang-format off
 	asm {
-			lwz     tmp, info->c;
+			lwz     tmp, info->file;
 			subfic  tmp2, cnt, 33;
 			addi    cnt, tmp2, 1;
 			slwi    tmp2, tmp2, 2;
 			lwzu    cb, 4(tmp);
 			add     mask,mask, tmp2;
-			stw     tmp, info->c;
+			stw     tmp, info->file;
 			slwi    code, code, 1;
 			stw     cb, info->currByte;
 			rlwimi  code, cb, 1, 31, 31;
@@ -1689,13 +1701,13 @@ static void __THPHuffDecodeDCTCompY(register THPFileInfo* info, THPCoeff* block)
 				asm {
 					b _DoneDIFF;
 				_notEnoughBitsDIFF:
-					lwz tmp1, info->c;
+					lwz tmp1, info->file;
 					slw v, cb, cnt1;
 					lwzu cb, 4(tmp1);
 					addi tmp, tmp, 1;
 					stw cb, info->currByte;
 					srw cb, cb, code;
-					stw tmp1, info->c;
+					stw tmp1, info->file;
 					add v, cb, v;
 					stw tmp, info->cnt;
 					subfic tmp, t, 32;
@@ -1778,13 +1790,13 @@ static void __THPHuffDecodeDCTCompY(register THPFileInfo* info, THPCoeff* block)
 					b __WHILE_CHECK;
 
 				_FCEB_faster:
-					lwz     ssss, info->c;
+					lwz     ssss, info->file;
 					li      cnt, 1;
 					lwzu    cb, 4(ssss);
 
 					lwzu    tmp2, 4(maxcodebase);
 
-					stw     ssss, info->c;
+					stw     ssss, info->file;
 					rlwimi  tmp, cb, 1,31,31;
 					b __FL_WHILE_CHECK;
 
@@ -1817,7 +1829,7 @@ static void __THPHuffDecodeDCTCompY(register THPFileInfo* info, THPCoeff* block)
 #ifdef __MWERKS__ // clang-format off
 			asm {
 				cmpwi   cnt, 33;
-				lwz     tmp, info->c;
+				lwz     tmp, info->file;
 				beq     _getfullword;
 
 				cmpwi   cnt, 32;
@@ -1837,12 +1849,12 @@ static void __THPHuffDecodeDCTCompY(register THPFileInfo* info, THPCoeff* block)
 			cnt = (u32)code;
 			goto _DoneDecodeTab;
 
-		_getfullword : {
+		_getfullword: {
 #ifdef __MWERKS__ // clang-format off
 			asm {
 				lwzu    cb, 4(tmp);
 				rlwinm  code, cb, 5, 27, 31
-				stw     tmp, info->c;
+				stw     tmp, info->file;
 				lbzx    ssss, h, code;
 				lbzx    tmp, increment, code;
 				cmpwi   ssss, 0xFF
@@ -1875,7 +1887,7 @@ static void __THPHuffDecodeDCTCompY(register THPFileInfo* info, THPCoeff* block)
 			asm {
 				lwzu    cb, 4(tmp);
 
-				stw     tmp, info->c;
+				stw     tmp, info->file;
 				rlwimi  code, cb, 4, 28, 31;
 				lbzx    ssss, h, code;
 				lbzx    cnt, increment, code
@@ -1886,7 +1898,7 @@ static void __THPHuffDecodeDCTCompY(register THPFileInfo* info, THPCoeff* block)
 
 			goto _DoneDecodeTab;
 
-		_Read4 : {
+		_Read4: {
 			register u32 maxcodebase = (u32) & (h->maxCode);
 			register u32 tmp2;
 
@@ -1916,7 +1928,7 @@ static void __THPHuffDecodeDCTCompY(register THPFileInfo* info, THPCoeff* block)
 
 		_FailedCheckNoBits0:
 		_FailedCheckNoBits1:
-		_REALFAILEDCHECKNOBITS : {
+		_REALFAILEDCHECKNOBITS: {
 			register u32 mask = 0xFFFFFFFF << (33 - cnt);
 			register u32 tmp2;
 			register u32 tmp3;
@@ -1925,13 +1937,13 @@ static void __THPHuffDecodeDCTCompY(register THPFileInfo* info, THPCoeff* block)
 
 #ifdef __MWERKS__ // clang-format off
 			asm {
-				lwz     tmp, info->c;
+				lwz     tmp, info->file;
 				subfic  tmp2, cnt, 33;
 				addi    tmp3, tmp2, 1;
 				slwi    tmp2, tmp2, 2;
 				lwzu    cb, 4(tmp);
 				add     mask,mask, tmp2;
-				stw     tmp, info->c;
+				stw     tmp, info->file;
 				slwi    code, code, 1;
 				rlwimi  code, cb, 1, 31, 31;
 				lwzu    tmp2, 4(mask);
@@ -1984,11 +1996,11 @@ static void __THPHuffDecodeDCTCompY(register THPFileInfo* info, THPCoeff* block)
 						srw      ssss,tmp1,v;
 						b _RECVDone;
 					_RECVnotEnoughBits:
-						lwz tmp1, info->c;
+						lwz tmp1, info->file;
 						slw v, cb, cnt1;
 						lwzu cb, 4(tmp1);
 						addi cnt, tmp, 1;
-						stw tmp1, info->c;
+						stw tmp1, info->file;
 						srw tmp1, cb, code;
 
 						add v, tmp1, v;
@@ -2074,13 +2086,13 @@ static void __THPHuffDecodeDCTCompU(register THPFileInfo* info, THPCoeff* block)
 		asm {
 			b _DoneDIFF;
 		_notEnoughBitsDIFF:
-			lwz tmp1, info->c;
+			lwz tmp1, info->file;
 			slw v, cb, cnt1;
 			lwzu cb, 4(tmp1);
 			addi tmp, tmp, 1;
 			stw cb, info->currByte;
 			srw cb, cb, cnt33;
-			stw tmp1, info->c;
+			stw tmp1, info->file;
 			add v, cb, v;
 			stw tmp, info->cnt;
 			subfic tmp, t, 32;
@@ -2125,13 +2137,13 @@ static void __THPHuffDecodeDCTCompU(register THPFileInfo* info, THPCoeff* block)
 			asm {
 				b _Done;
 			_notEnoughBits:
-				lwz tmp1, info->c;
+				lwz tmp1, info->file;
 				slw v, cb, cnt1;
 				lwzu cb, 4(tmp1);
 				addi tmp, tmp, 1;
 				stw cb, info->currByte;
 				srw cb, cb, cnt33;
-				stw tmp1, info->c;
+				stw tmp1, info->file;
 				add v, cb, v;
 				stw tmp, info->cnt;
 				subfic tmp, ssss, 32;
@@ -2202,13 +2214,13 @@ static void __THPHuffDecodeDCTCompV(register THPFileInfo* info, THPCoeff* block)
 		asm {
 			b _DoneDIFF;
 		_notEnoughBitsDIFF:
-			lwz tmp1, info->c;
+			lwz tmp1, info->file;
 			slw v, cb, cnt1;
 			lwzu cb, 4(tmp1);
 			addi tmp, tmp, 1;
 			stw cb, info->currByte;
 			srw cb, cb, cnt33;
-			stw tmp1, info->c;
+			stw tmp1, info->file;
 			add v, cb, v;
 			stw tmp, info->cnt;
 			subfic tmp, t, 32;
@@ -2258,13 +2270,13 @@ static void __THPHuffDecodeDCTCompV(register THPFileInfo* info, THPCoeff* block)
 			asm {
 				b _Done;
 			_notEnoughBits:
-				lwz tmp1, info->c;
+				lwz tmp1, info->file;
 				slw v, cb, cnt1;
 				lwzu cb, 4(tmp1);
 				addi tmp, tmp, 1;
 				stw cb, info->currByte;
 				srw cb, cb, cnt33;
-				stw tmp1, info->c;
+				stw tmp1, info->file;
 				add v, cb, v;
 				stw tmp, info->cnt;
 				subfic tmp, ssss, 32;
