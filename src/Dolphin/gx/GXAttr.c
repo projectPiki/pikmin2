@@ -12,15 +12,17 @@ static void __GXXfVtxSpecs(void)
 	normCount = gx->hasBiNrms ? 2 : (gx->hasNrms ? 1 : 0);
 
 	// Both fields in one access
-	colorCount = 33 - __cntlzw(GX_GET_REG(gx->vcdLo, GX_CP_VCD_LO_CLRSPEC_ST, GX_CP_VCD_LO_CLRDIF_END));
+	colorCount = 33 - __cntlzw((gx->vcdLo & (0xf << 0xd)) >> 0xd);
 	colorCount /= 2; // equivalent to /=2 and >>= 1
 
 	// All 16 assigned bits in VCD_Hi
-	texCount = 33 - __cntlzw(GX_GET_REG(gx->vcdHi, GX_CP_VCD_HI_TEX7COORD_ST, GX_CP_VCD_HI_TEX0COORD_END));
+	texCount = 33 - __cntlzw((gx->vcdHi & (0xffff << 0)) >> 0);
 	texCount /= 2; // equivalent to /=2 and >>= 1
 
-	GX_XF_LOAD_REG(GX_XF_REG_INVERTEXSPEC, colorCount | normCount << 2 | texCount << 4);
+	GX_XF_LOAD_REG(GX_XF_REG_INVERTEXSPEC, (colorCount) | (normCount << 2) | (texCount << 4));
 	gx->bpSentNot = GX_TRUE;
+	
+	return;
 }
 
 /**

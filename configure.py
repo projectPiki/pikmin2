@@ -705,7 +705,7 @@ LIBS = [
         "objects": [
             ["Dolphin/gx/GXInit", True],
             ["Dolphin/gx/GXFifo", True],
-            ["Dolphin/gx/GXAttr", False],
+            ["Dolphin/gx/GXAttr", True],
             ["Dolphin/gx/GXMisc", True],
             ["Dolphin/gx/GXGeometry", True],
             ["Dolphin/gx/GXFrameBuf", True],
