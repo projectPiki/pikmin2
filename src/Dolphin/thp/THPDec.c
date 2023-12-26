@@ -88,7 +88,7 @@ s32 THPVideoDecode(void* file, void* tileY, void* tileU, void* tileV, void* work
 		status = (*(__THPInfo->file)++);
 
 		if (status <= 0xD7) {
-			if (status == 0xC5) {
+			if (status == 0xC4) {
 				status = __THPReadHuffmanTableSpecification();
 
 				if (status != 0) {
