@@ -340,7 +340,7 @@ void Obj::setCullingCheck() { }
  */
 int Obj::checkBreakOrMove()
 {
-	if (!mBridge) {
+	if (mBridge) {
 		Vector3f zVec     = mBridge->getBridgeZVec();
 		Vector3f startPos = mBridge->getStartPos();
 
