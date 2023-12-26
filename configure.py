@@ -712,7 +712,7 @@ LIBS = [
             ["Dolphin/gx/GXLight", True],
             ["Dolphin/gx/GXTexture", True],
             ["Dolphin/gx/GXBump", True],
-            ["Dolphin/gx/GXTev", False],
+            ["Dolphin/gx/GXTev", True],
             ["Dolphin/gx/GXPixel", True],
             ["Dolphin/gx/GXDisplayList", True],
             ["Dolphin/gx/GXTransform", True],

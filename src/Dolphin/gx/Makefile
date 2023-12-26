@@ -8,7 +8,7 @@ GX_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/gx/GXLight.o\
 	$(BUILD_DIR)/src/Dolphin/gx/GXTexture.o\
 	$(BUILD_DIR)/src/Dolphin/gx/GXBump.o\
-	$(BUILD_DIR)/asm/Dolphin/gx/GXTev.o\
+	$(BUILD_DIR)/src/Dolphin/gx/GXTev.o\
 	$(BUILD_DIR)/src/Dolphin/gx/GXPixel.o\
 	$(BUILD_DIR)/src/Dolphin/gx/GXDisplayList.o\
 	$(BUILD_DIR)/src/Dolphin/gx/GXTransform.o\

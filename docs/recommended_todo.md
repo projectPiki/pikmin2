@@ -19,11 +19,10 @@
 ### <section id="Dolphin">Dolphin</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXTev.c">gx/GXTev.c</a> | 9965 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk_glue.c">TRK_MINNOW_DOLPHIN/dolphin_trk_glue.c</a> | 10625 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk.c">TRK_MINNOW_DOLPHIN/dolphin_trk.c</a> | 13669 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/support.c">TRK_MINNOW_DOLPHIN/support.c</a> | 13673 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/msgbuf.c">TRK_MINNOW_DOLPHIN/msgbuf.c</a> | 15192 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/OdemuExi2/DebuggerDriver.c">OdemuExi2/DebuggerDriver.c</a> | 19107 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/msghndlr.c">TRK_MINNOW_DOLPHIN/msghndlr.c</a> | 29447 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/os/OSFont.c">os/OSFont.c</a> | 31552 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/targimpl.c">TRK_MINNOW_DOLPHIN/targimpl.c</a> | 52416 |  |  |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk_glue.c">TRK_MINNOW_DOLPHIN/dolphin_trk_glue.c</a> | 10625 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk.c">TRK_MINNOW_DOLPHIN/dolphin_trk.c</a> | 13669 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/support.c">TRK_MINNOW_DOLPHIN/support.c</a> | 13673 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/msgbuf.c">TRK_MINNOW_DOLPHIN/msgbuf.c</a> | 15192 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/OdemuExi2/DebuggerDriver.c">OdemuExi2/DebuggerDriver.c</a> | 19107 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/msghndlr.c">TRK_MINNOW_DOLPHIN/msghndlr.c</a> | 29447 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/os/OSFont.c">os/OSFont.c</a> | 31552 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/targimpl.c">TRK_MINNOW_DOLPHIN/targimpl.c</a> | 52416 |
 
 ### <section id="JSystem">JSystem</section>
 | File | Size (bytes) | File | Size (bytes) |
@@ -93,7 +92,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSBnkMgr.cpp">PSBnkMgr.cpp</a> | 8931 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSDirector.cpp">PSDirector.cpp</a> | 10323 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSSystemIF.cpp">PSSystemIF.cpp</a> | 13421 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSSe.cpp">PSSe.cpp</a> | 32214 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSSeq.cpp">PSSeq.cpp</a> | 54419 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSAutoBgm.cpp">PSAutoBgm.cpp</a> | 71469 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSGame.cpp">PSGame.cpp</a> | 101950 |  |  |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSGame.cpp">PSGame.cpp</a> | 101949 |  |  |
 
 ### <section id="plugProjectKandoU">plugProjectKandoU</section>
 | File | Size (bytes) | File | Size (bytes) |
@@ -164,7 +163,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Ujia.cpp">Ujia.cpp</a> | 22963 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Queen.cpp">Queen.cpp</a> | 23088 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Ujib.cpp">Ujib.cpp</a> | 23598 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/BigTreasureShadow.cpp">BigTreasureShadow.cpp</a> | 25193 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/UjibState.cpp">UjibState.cpp</a> | 25642 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Tobi.cpp">Tobi.cpp</a> | 25915 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Armor.cpp">Armor.cpp</a> | 26018 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ArmorState.cpp">ArmorState.cpp</a> | 26611 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Armor.cpp">Armor.cpp</a> | 26017 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ArmorState.cpp">ArmorState.cpp</a> | 26611 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/TobiState.cpp">TobiState.cpp</a> | 27176 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/SaraiState.cpp">SaraiState.cpp</a> | 27207 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/MarState.cpp">MarState.cpp</a> | 28357 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/FrogState.cpp">FrogState.cpp</a> | 30866 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/SnakeCrowState.cpp">SnakeCrowState.cpp</a> | 31736 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/playCamera.cpp">playCamera.cpp</a> | 32993 |
