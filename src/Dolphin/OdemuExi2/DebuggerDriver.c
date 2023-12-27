@@ -1,15 +1,19 @@
 #include "types.h"
-
-static void (*MTRCallback)(int);
+#include "Dolphin/os.h"
+#include "Dolphin/hw_regs.h"
+typedef void (*MTRCallbackType)(int);
+static MTRCallbackType MTRCallback;
 static u8 EXIInputFlag;
-
+static u8* pEXIInputFlag;
+static void (*DBGCallback)(u32, OSContext*);
 /**
  * @note Address: N/A
  * @note Size: 0x34
  */
-void DBGEXIInit(void)
+void DBGEXIInit()
 {
-	// UNUSED FUNCTION
+	__OSMaskInterrupts(0x18000);
+	__EXIRegs[10] = 0;
 }
 
 /**
@@ -34,17 +38,89 @@ void DBGEXIDeselect(void)
  * @note Address: N/A
  * @note Size: 0x1C
  */
-void DBGEXISync(void)
+u32 DBGEXISync(void)
 {
-	// UNUSED FUNCTION
+	u32 signal;
+	do {
+		signal = __EXIRegs[6];
+	} while ((signal & 1) != 0);	
+	return 1;
 }
 
 /**
  * @note Address: 0x800D0550
  * @note Size: 0x298
  */
-void DBGEXIImm(void)
+void DBGEXIImm(u8* a, u32 b, u32 c)
 {
+	int iVar1;
+	int byteCount;
+	int i;
+	uint outReg;
+	u8* tempPointer;
+	uint uVar5;
+
+	if (c != 0) {
+		byteCount = 0;
+		outReg = 0;
+		if (b > 0) 
+		{
+			if ((b > 8) && (b - 8 > 0)) {
+				tempPointer = a;
+				for (uVar5 = (b - 1) / 8; uVar5; uVar5--) {
+					for(i = 0; i < 8; i++)
+					{
+						outReg |= tempPointer[i] << (3 - (byteCount + i)) * 8;
+					}
+					tempPointer = tempPointer + 8;
+					byteCount += 8;
+				}
+			}
+			tempPointer = a + byteCount;
+			iVar1  = b - byteCount;
+			if (byteCount < b) {
+				do {
+					outReg |= *tempPointer << (3 - byteCount) * 8;
+					tempPointer++;
+					byteCount++;
+					iVar1--;
+				} while (iVar1 != 0);
+			}
+		}
+		__EXIRegs[7] = outReg;
+	}
+	__EXIRegs[8] = (c << 2 | 1U | (b + -1) * 0x10);
+	
+	DBGEXISync();
+
+	if (c == 0) {
+		byteCount = 0;
+		outReg = __EXIRegs[7];
+		if (0 < b) {
+			if ((8 < b) && (uVar5 = b - 1U >> 3, 0 < b + -8)) {
+				for(uVar5 = (b - 1) / 8; uVar5 != 0; uVar5--) 
+				{
+					for(i = 0; i < 8; i++)
+					{
+						a[i] = (u8)(outReg >> (3 - (byteCount + i)) * 8);
+					}
+					a = &a[8];
+					byteCount += 8;
+					uVar5 -= 1;
+				}
+			}
+			iVar1 = b - byteCount;
+			if (byteCount < b) {
+				do {
+					*a = (u8)(outReg >> (3 - byteCount) * 8);
+					a++;
+					byteCount++;
+					iVar1--;
+				} while (iVar1 != 0);
+			}
+		}
+	}
+	return;
 	/*
 	.loc_0x0:
 	 stwu      r1, -0x48(r1)
@@ -481,6 +557,7 @@ void DBGWrite(void)
  */
 void DBGReadStatus(void)
 {
+	DBGEXIImm(0, 0, 0);
 	/*
 	.loc_0x0:
 	 mflr      r0
@@ -538,7 +615,7 @@ void DBGReadStatus(void)
  * @note Size: 0x3C
  */
 
-static void MWCallback(void)
+static void MWCallback(u32 a, OSContext* b)
 {
 	EXIInputFlag = TRUE;
 	if (MTRCallback) {
@@ -550,70 +627,32 @@ static void MWCallback(void)
  * @note Address: 0x800D01C4
  * @note Size: 0x40
  */
-void DBGHandler(void)
+void DBGHandler(s16 a, OSContext* b)
 {
-	/*
-	.loc_0x0:
-	 mflr      r0
-	 lis       r5, 0xCC00
-	 stw       r0, 0x4(r1)
-	 li        r0, 0x1000
-	 stwu      r1, -0x8(r1)
-	 lwz       r12, -0x731C(r13)
-	 stw       r0, 0x3000(r5)
-	 cmplwi    r12, 0
-	 beq-      .loc_0x30
-	 mtlr      r12
-	 extsh     r3, r3
-	 blrl
-
-	.loc_0x30:
-	 lwz       r0, 0xC(r1)
-	 addi      r1, r1, 0x8
-	 mtlr      r0
-	 blr
-	*/
+	*__PIRegs = 0x1000;
+	if (DBGCallback) {
+		DBGCallback(a, b);
+	}
 }
 
 /**
  * @note Address: 0x800D014C
  * @note Size: 0x78
  */
-void DBInitComm(void)
+void DBInitComm(u8** a, MTRCallbackType b)
 {
-	/*
-	.loc_0x0:
-	 mflr      r0
-	 stw       r0, 0x4(r1)
-	 stwu      r1, -0x20(r1)
-	 stw       r31, 0x1C(r1)
-	 stw       r30, 0x18(r1)
-	 addi      r30, r4, 0
-	 stw       r29, 0x14(r1)
-	 addi      r29, r3, 0
-	 bl        0x1EACC
-	 subi      r0, r13, 0x730C
-	 stw       r0, -0x7310(r13)
-	 lis       r4, 0x2
-	 addi      r31, r3, 0
-	 lwz       r0, -0x7310(r13)
-	 subi      r3, r4, 0x8000
-	 stw       r0, 0x0(r29)
-	 stw       r30, -0x7320(r13)
-	 bl        0x1EE70
-	 lis       r3, 0xCC00
-	 li        r0, 0
-	 stw       r0, 0x6828(r3)
-	 mr        r3, r31
-	 bl        0x1EABC
-	 lwz       r0, 0x24(r1)
-	 lwz       r31, 0x1C(r1)
-	 lwz       r30, 0x18(r1)
-	 lwz       r29, 0x14(r1)
-	 addi      r1, r1, 0x20
-	 mtlr      r0
-	 blr
-	*/
+	BOOL interrupts = OSDisableInterrupts();
+	{
+		pEXIInputFlag = (u8*)EXIInputFlag;
+		pEXIInputFlag = &EXIInputFlag;
+
+		*a = pEXIInputFlag;
+
+		MTRCallback = b;
+
+		DBGEXIInit();
+	}
+	OSRestoreInterrupts(interrupts);
 }
 
 /**
@@ -622,30 +661,11 @@ void DBInitComm(void)
  */
 void DBInitInterrupts(void)
 {
-	/*
-	.loc_0x0:
-	 mflr      r0
-	 lis       r3, 0x2
-	 stw       r0, 0x4(r1)
-	 subi      r3, r3, 0x8000
-	 stwu      r1, -0x8(r1)
-	 bl        0x1EEF4
-	 li        r3, 0x40
-	 bl        0x1EEEC
-	 lis       r3, 0x800D
-	 addi      r0, r3, 0x204
-	 lis       r3, 0x800D
-	 stw       r0, -0x731C(r13)
-	 addi      r4, r3, 0x1C4
-	 li        r3, 0x19
-	 bl        0x1EB54
-	 li        r3, 0x40
-	 bl        0x1EF50
-	 lwz       r0, 0xC(r1)
-	 addi      r1, r1, 0x8
-	 mtlr      r0
-	 blr
-	*/
+	__OSMaskInterrupts(0x18000);
+	__OSMaskInterrupts(0x40);
+	DBGCallback = &MWCallback;
+	__OSSetInterruptHandler(0x19, DBGHandler);
+	__OSUnmaskInterrupts(0x40);
 }
 
 /**
@@ -767,6 +787,7 @@ void DBRead(void)
  */
 BOOL DBWrite(const void* src, u32 size)
 {
+
 	/*
 	.loc_0x0:
 	 mflr      r0
