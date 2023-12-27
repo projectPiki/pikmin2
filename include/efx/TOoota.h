@@ -87,7 +87,7 @@ struct TOootaDeadLeg : public TChasePosPosLocalYScale3 {
 
 struct TOootaElec : public TChasePosPosLocalZScale3 {
 	inline TOootaElec()
-	    : TChasePosPosLocalZScale3(nullptr, nullptr, 0.0f, PID_OoOtaElec_1, PID_OoOtaElec_2, PID_OoOtaElec_3)
+	    : TChasePosPosLocalZScale3(nullptr, nullptr, 300.0f, PID_OoOtaElec_1, PID_OoOtaElec_2, PID_OoOtaElec_3)
 	{
 	}
 
@@ -119,7 +119,7 @@ struct TOootaElecAttack2 : public TChasePos2 {
 
 struct TOootaElecLeg : public TChasePosPosLocalZScale {
 	inline TOootaElecLeg()
-	    : TChasePosPosLocalZScale(PID_OoOtaElecLeg)
+	    : TChasePosPosLocalZScale(PID_OoOtaElecLeg, 100.0f)
 	{
 	}
 
@@ -294,8 +294,8 @@ struct TOootaWbomb : public TChasePos4 {
 };
 
 struct TOootaWbShot : public TSimpleMtx2 {
-	inline TOootaWbShot()
-	    : TSimpleMtx2(nullptr, PID_OoOtaWbShot_1, PID_OoOtaWbShot_2)
+	inline TOootaWbShot(Matrixf* mtx)
+	    : TSimpleMtx2(mtx, PID_OoOtaWbShot_1, PID_OoOtaWbShot_2)
 	{
 	}
 

@@ -1400,7 +1400,7 @@ _FCEB_Done:
 #endif // clang-format on
 	return tmp;
 
-_Read4: {
+_Read4 : {
 	register u32 maxcodebase = (u32) & (h->maxCode);
 	register u32 tmp2;
 
@@ -1466,7 +1466,7 @@ _FailedCheckEnoughbits_Updated:
 	goto __CODE_PLUS_VP_CNT;
 
 _FailedCheckNoBits0:
-_FailedCheckNoBits1:
+_FailedCheckNoBits1 :
 
 {
 	register u32 mask = 0xFFFFFFFF << (33 - cnt);
@@ -1849,7 +1849,7 @@ static void __THPHuffDecodeDCTCompY(register THPFileInfo* info, THPCoeff* block)
 			cnt = (u32)code;
 			goto _DoneDecodeTab;
 
-		_getfullword: {
+		_getfullword : {
 #ifdef __MWERKS__ // clang-format off
 			asm {
 				lwzu    cb, 4(tmp);
@@ -1898,7 +1898,7 @@ static void __THPHuffDecodeDCTCompY(register THPFileInfo* info, THPCoeff* block)
 
 			goto _DoneDecodeTab;
 
-		_Read4: {
+		_Read4 : {
 			register u32 maxcodebase = (u32) & (h->maxCode);
 			register u32 tmp2;
 
@@ -1928,7 +1928,7 @@ static void __THPHuffDecodeDCTCompY(register THPFileInfo* info, THPCoeff* block)
 
 		_FailedCheckNoBits0:
 		_FailedCheckNoBits1:
-		_REALFAILEDCHECKNOBITS: {
+		_REALFAILEDCHECKNOBITS : {
 			register u32 mask = 0xFFFFFFFF << (33 - cnt);
 			register u32 tmp2;
 			register u32 tmp3;

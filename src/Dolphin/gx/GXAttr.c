@@ -21,7 +21,7 @@ static void __GXXfVtxSpecs(void)
 
 	GX_XF_LOAD_REG(GX_XF_REG_INVERTEXSPEC, (colorCount) | (normCount << 2) | (texCount << 4));
 	gx->bpSentNot = GX_TRUE;
-	
+
 	return;
 }
 

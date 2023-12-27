@@ -209,7 +209,7 @@ void GXSetTevColorS10(GXTevRegID reg, GXColorS10 color)
 	GX_SET_REG(bg, GX_BP_REG_TEVREG0HI + reg * 2, 0, 7);
 
 	GX_BP_LOAD_REG(ra);
-	
+
 	GX_BP_LOAD_REG(bg);
 	GX_BP_LOAD_REG(bg);
 	GX_BP_LOAD_REG(bg);

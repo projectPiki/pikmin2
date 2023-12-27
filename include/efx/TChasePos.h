@@ -158,6 +158,14 @@ struct TChasePosPosLocalZScale : public TSync {
 		mEffectID = effectID;
 	}
 
+	inline TChasePosPosLocalZScale(u16 effectID, f32 scale) // probably
+	    : mPosPtrA(nullptr)
+	    , mPosPtrB(nullptr)
+	    , _18(scale)
+	{
+		mEffectID = effectID;
+	}
+
 	// vtable 1 (TBase)
 	// vtable 2 (JPAEmitterCallBack + self)
 	virtual void doExecuteEmitterOperation(JPABaseEmitter*); // _38

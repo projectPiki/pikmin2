@@ -43,7 +43,7 @@ u32 DBGEXISync(void)
 	u32 signal;
 	do {
 		signal = __EXIRegs[6];
-	} while ((signal & 1) != 0);	
+	} while ((signal & 1) != 0);
 	return 1;
 }
 
@@ -62,14 +62,12 @@ void DBGEXIImm(u8* a, u32 b, u32 c)
 
 	if (c != 0) {
 		byteCount = 0;
-		outReg = 0;
-		if (b > 0) 
-		{
+		outReg    = 0;
+		if (b > 0) {
 			if ((b > 8) && (b - 8 > 0)) {
 				tempPointer = a;
 				for (uVar5 = (b - 1) / 8; uVar5; uVar5--) {
-					for(i = 0; i < 8; i++)
-					{
+					for (i = 0; i < 8; i++) {
 						outReg |= tempPointer[i] << (3 - (byteCount + i)) * 8;
 					}
 					tempPointer = tempPointer + 8;
@@ -77,7 +75,7 @@ void DBGEXIImm(u8* a, u32 b, u32 c)
 				}
 			}
 			tempPointer = a + byteCount;
-			iVar1  = b - byteCount;
+			iVar1       = b - byteCount;
 			if (byteCount < b) {
 				do {
 					outReg |= *tempPointer << (3 - byteCount) * 8;
@@ -90,18 +88,16 @@ void DBGEXIImm(u8* a, u32 b, u32 c)
 		__EXIRegs[7] = outReg;
 	}
 	__EXIRegs[8] = (c << 2 | 1U | (b + -1) * 0x10);
-	
+
 	DBGEXISync();
 
 	if (c == 0) {
 		byteCount = 0;
-		outReg = __EXIRegs[7];
+		outReg    = __EXIRegs[7];
 		if (0 < b) {
 			if ((8 < b) && (uVar5 = b - 1U >> 3, 0 < b + -8)) {
-				for(uVar5 = (b - 1) / 8; uVar5 != 0; uVar5--) 
-				{
-					for(i = 0; i < 8; i++)
-					{
+				for (uVar5 = (b - 1) / 8; uVar5 != 0; uVar5--) {
+					for (i = 0; i < 8; i++) {
 						a[i] = (u8)(outReg >> (3 - (byteCount + i)) * 8);
 					}
 					a = &a[8];

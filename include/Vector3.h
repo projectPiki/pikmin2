@@ -201,6 +201,7 @@ struct Vector3 {
 
 	f32 length() const;
 	f32 distance(Vector3&);
+	f32 distance2D(Vector3&);
 	f32 sqrDistance(Vector3&);
 	f32 distance(JGeometry::TVec3f&);
 	f32 normalise();
@@ -464,6 +465,16 @@ inline f32 Vector3f::distance(Vector3f& them)
 	f32 diffZ = this->z - them.z;
 
 	return Vector3f(diffX, diffY, diffZ).length();
+}
+
+template <>
+inline f32 Vector3f::distance2D(Vector3f& them)
+{
+	f32 diffX = this->x - them.x;
+	f32 diffY = this->y - them.y;
+	f32 diffZ = this->z - them.z;
+
+	return Vector3f(diffX, diffY, diffZ).length2D();
 }
 
 template <>

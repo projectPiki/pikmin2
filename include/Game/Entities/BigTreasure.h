@@ -324,40 +324,40 @@ struct Parms : public EnemyParmsBase {
 
 		    , mBounceCoefficient1_1(this, 'fe00', "íµï‘åWêî(1-1)", 0.75f, 0.0f, 1.0f)         // 'bounce coefficient (1-1)'
 		    , mFrictionCoefficient1_1(this, 'fe01', "ñÄéCåWêî(1-1)", 0.65f, 0.0f, 1.0f)       // 'friction coefficient (1-1)'
-		    , mBaseMuzzleVelocityXZ1_1(this, 'fe02', "XZèâë¨Base(1-1)", 100.0f, 0.0f, 500.0f) // 'XZ muzzle velocity Base (1-1)'
-		    , mRandMuzzleVelocityXZ1_1(this, 'fe03', "XZèâë¨Rand(1-1)", 220.0f, 0.0f, 500.0f) // 'XZ muzzle velocity Rand (1-1)'
-		    , mBaseMuzzleVelocityY1_1(this, 'fe04', "Yèâë¨Base(1-1)", 170.0f, 0.0f, 500.0f)   // 'Y muzzle velocity Base (1-1)'
-		    , mRandMuzzleVelocityY1_1(this, 'fe05', "Yèâë¨Rand(1-1)", 200.0f, 0.0f, 500.0f)   // 'Y muzzle velocity Rand (1-1)'
+		    , mBaseMuzzleVelocityXZ1_1(this, 'fe02', "XZèâë¨Base(1-1)", 100.0f, 0.0f, 500.0f) // 'XZ initial velocity Base (1-1)'
+		    , mRandMuzzleVelocityXZ1_1(this, 'fe03', "XZèâë¨Rand(1-1)", 220.0f, 0.0f, 500.0f) // 'XZ initial velocity Rand (1-1)'
+		    , mBaseMuzzleVelocityY1_1(this, 'fe04', "Yèâë¨Base(1-1)", 170.0f, 0.0f, 500.0f)   // 'Y initial velocity Base (1-1)'
+		    , mRandMuzzleVelocityY1_1(this, 'fe05', "Yèâë¨Rand(1-1)", 200.0f, 0.0f, 500.0f)   // 'Y initial velocity Rand (1-1)'
 		    , mDischargeStart1_1(this, 'fe06', "ï˙ìdäJén(1-1)", 2.7f, 0.0f, 5.0f)             // 'discharge start (1-1)'
 		    , mChainInterval1_1(this, 'fe08', "òAçΩä‘äu(1-1)", 0.02f, 0.0f, 1.0f)             // 'chain interval (1-1)'
 		    , mDischargeCount1_1(this, 'fe07', "ï˙ìdêî(1-1)", 10, 0, 16)                      // 'number of discharges (1-1)'
 
 		    , mBounceCoefficient1_2(this, 'fe10', "íµï‘åWêî(1-2)", 0.7f, 0.0f, 1.0f)          // 'bounce coefficient (1-2)'
 		    , mFrictionCoefficient1_2(this, 'fe11', "ñÄéCåWêî(1-2)", 0.65f, 0.0f, 1.0f)       // 'friction coefficient (1-2)'
-		    , mBaseMuzzleVelocityXZ1_2(this, 'fe12', "XZèâë¨Base(1-2)", 80.0f, 0.0f, 500.0f)  // 'XZ muzzle velocity Base (1-2)'
-		    , mRandMuzzleVelocityXZ1_2(this, 'fe13', "XZèâë¨Rand(1-2)", 250.0f, 0.0f, 500.0f) // 'XZ muzzle velocity Rand (1-2)'
-		    , mBaseMuzzleVelocityY1_2(this, 'fe14', "Yèâë¨Base(1-2)", 350.0f, 0.0f, 500.0f)   // 'Y muzzle velocity Base (1-2)'
-		    , mRandMuzzleVelocityY1_2(this, 'fe15', "Yèâë¨Rand(1-2)", 100.0f, 0.0f, 500.0f)   // 'Y muzzle velocity Rand (1-2)'
+		    , mBaseMuzzleVelocityXZ1_2(this, 'fe12', "XZèâë¨Base(1-2)", 80.0f, 0.0f, 500.0f)  // 'XZ initial velocity Base (1-2)'
+		    , mRandMuzzleVelocityXZ1_2(this, 'fe13', "XZèâë¨Rand(1-2)", 250.0f, 0.0f, 500.0f) // 'XZ initial velocity Rand (1-2)'
+		    , mBaseMuzzleVelocityY1_2(this, 'fe14', "Yèâë¨Base(1-2)", 350.0f, 0.0f, 500.0f)   // 'Y initial velocity Base (1-2)'
+		    , mRandMuzzleVelocityY1_2(this, 'fe15', "Yèâë¨Rand(1-2)", 100.0f, 0.0f, 500.0f)   // 'Y initial velocity Rand (1-2)'
 		    , mDischargeStart1_2(this, 'fe16', "ï˙ìdäJén(1-2)", 4.5f, 0.0f, 5.0f)             // 'discharge start (1-2)'
 		    , mChainInterval1_2(this, 'fe18', "òAçΩä‘äu(1-2)", 0.02f, 0.0f, 1.0f)             // 'chain interval (1-2)'
 		    , mDischargeCount1_2(this, 'fe17', "ï˙ìdêî(1-2)", 12, 0, 16)                      // 'number of discharges (1-2)'
 
 		    , mBounceCoefficient2_1(this, 'fe20', "íµï‘åWêî(2-1)", 0.97f, 0.0f, 1.0f)        // 'bounce coefficient (2-1)'
 		    , mFrictionCoefficient2_1(this, 'fe21', "ñÄéCåWêî(2-1)", 0.75f, 0.0f, 1.0f)      // 'friction coefficient (2-1)'
-		    , mBaseMuzzleVelocityXZ2_1(this, 'fe22', "XZèâë¨Base(2-1)", 60.0f, 0.0f, 500.0f) // 'XZ muzzle velocity Base (2-1)'
-		    , mRandMuzzleVelocityXZ2_1(this, 'fe23', "XZèâë¨Rand(2-1)", 70.0f, 0.0f, 500.0f) // 'XZ muzzle velocity Rand (2-1)'
-		    , mBaseMuzzleVelocityY2_1(this, 'fe24', "Yèâë¨Base(2-1)", 350.0f, 0.0f, 500.0f)  // 'Y muzzle velocity Base (2-1)'
-		    , mRandMuzzleVelocityY2_1(this, 'fe25', "Yèâë¨Rand(2-1)", 100.0f, 0.0f, 500.0f)  // 'Y muzzle velocity Rand (2-1)'
+		    , mBaseMuzzleVelocityXZ2_1(this, 'fe22', "XZèâë¨Base(2-1)", 60.0f, 0.0f, 500.0f) // 'XZ initial velocity Base (2-1)'
+		    , mRandMuzzleVelocityXZ2_1(this, 'fe23', "XZèâë¨Rand(2-1)", 70.0f, 0.0f, 500.0f) // 'XZ initial velocity Rand (2-1)'
+		    , mBaseMuzzleVelocityY2_1(this, 'fe24', "Yèâë¨Base(2-1)", 350.0f, 0.0f, 500.0f)  // 'Y initial velocity Base (2-1)'
+		    , mRandMuzzleVelocityY2_1(this, 'fe25', "Yèâë¨Rand(2-1)", 100.0f, 0.0f, 500.0f)  // 'Y initial velocity Rand (2-1)'
 		    , mDischargeStart2_1(this, 'fe26', "ï˙ìdäJén(2-1)", 0.5f, 0.0f, 5.0f)            // 'discharge start (2-1)'
 		    , mChainInterval2_1(this, 'fe28', "òAçΩä‘äu(2-1)", 0.25f, 0.0f, 1.0f)            // 'chain interval (2-1)'
 		    , mDischargeCount2_1(this, 'fe27', "ï˙ìdêî(2-1)", 8, 0, 16)                      // 'number of discharges (2-1)'
 
 		    , mBounceCoefficient2_2(this, 'fe30', "íµï‘åWêî(2-2)", 0.2f, 0.0f, 1.0f)          // 'bounce coefficient (2-2)'
 		    , mFrictionCoefficient2_2(this, 'fe31', "ñÄéCåWêî(2-2)", 0.985f, 0.0f, 1.0f)      // 'friction coefficient (2-2)'
-		    , mBaseMuzzleVelocityXZ2_2(this, 'fe32', "XZèâë¨Base(2-2)", 100.0f, 0.0f, 500.0f) // 'XZ muzzle velocity Base (2-2)'
-		    , mRandMuzzleVelocityXZ2_2(this, 'fe33', "XZèâë¨Rand(2-2)", 90.0f, 0.0f, 500.0f)  // 'XZ muzzle velocity Rand (2-2)'
-		    , mBaseMuzzleVelocityY2_2(this, 'fe34', "Yèâë¨Base(2-2)", 70.0f, 0.0f, 500.0f)    // 'Y muzzle velocity Base (2-2)'
-		    , mRandMuzzleVelocityY2_2(this, 'fe35', "Yèâë¨Rand(2-2)", 20.0f, 0.0f, 500.0f)    // 'Y muzzle velocity Rand (2-2)'
+		    , mBaseMuzzleVelocityXZ2_2(this, 'fe32', "XZèâë¨Base(2-2)", 100.0f, 0.0f, 500.0f) // 'XZ initial velocity Base (2-2)'
+		    , mRandMuzzleVelocityXZ2_2(this, 'fe33', "XZèâë¨Rand(2-2)", 90.0f, 0.0f, 500.0f)  // 'XZ initial velocity Rand (2-2)'
+		    , mBaseMuzzleVelocityY2_2(this, 'fe34', "Yèâë¨Base(2-2)", 70.0f, 0.0f, 500.0f)    // 'Y initial velocity Base (2-2)'
+		    , mRandMuzzleVelocityY2_2(this, 'fe35', "Yèâë¨Rand(2-2)", 20.0f, 0.0f, 500.0f)    // 'Y initial velocity Rand (2-2)'
 		    , mDischargeStart2_2(this, 'fe36', "ï˙ìdäJén(2-2)", 0.2f, 0.0f, 5.0f)             // 'discharge start (2-2)'
 		    , mChainInterval2_2(this, 'fe38', "òAçΩä‘äu(2-2)", 0.15f, 0.0f, 1.0f)             // 'chain interval (2-2)'
 		    , mDischargeCount2_2(this, 'fe37', "ï˙ìdêî(2-2)", 14, 0, 16)                      // 'number of discharges (2-2)'
@@ -602,44 +602,49 @@ struct AttackShadowNode : public JointShadowNode {
 struct BigTreasureAttackData {
 	inline BigTreasureAttackData()
 	{
-		_00               = 0.75f;
-		_04               = 0.65f;
-		_08               = 100.0f;
-		_0C               = 220.0f;
-		_10               = 170.0f;
-		_14               = 200.0f;
-		_18               = 2.7f;
-		_1C               = 0.1f;
-		_20               = 15;
-		_24               = 0;
-		mAttackScale      = 1.0f;
-		_2C               = 1;
-		mGasArmNum        = 3;
-		mGasRotationSpeed = 0.02f;
-		mGasReversalTime  = 30.0f;
-		_3C               = 0.5f;
-		_40               = 0.25f;
-		_44               = 50.0f;
+		mElecBounceFactor    = 0.75f;
+		mElecFrictionFactor  = 0.65f;
+		mElecBaseHSpeed      = 100.0f;
+		mElecJitterHSpeed    = 220.0f;
+		mElecBaseVSpeed      = 170.0f;
+		mElecJitterVSpeed    = 200.0f;
+		mElecScatterTime     = 2.7f;
+		mElecChainOffsetTime = 0.1f;
+		mElecMaxNodes        = 15;
+		mElecPlacedNodes     = 0;
+		mAttackScale         = 1.0f;
+		mIsGasRotClockwise   = true;
+		mGasArmNum           = 3;
+		mGasRotationSpeed    = 0.02f;
+		mGasReversalTime     = 30.0f;
+		mWaterShotInterval   = 0.5f;
+		mWaterJitterAngle    = 0.25f;
+		mWaterJitterDistance = 50.0f;
 	}
 
-	f32 _00;               // _00
-	f32 _04;               // _04
-	f32 _08;               // _08
-	f32 _0C;               // _0C
-	f32 _10;               // _10
-	f32 _14;               // _14
-	f32 _18;               // _18
-	f32 _1C;               // _1C
-	int _20;               // _20
-	int _24;               // _24
-	f32 mAttackScale;      // _28, for fire and gas
-	u8 _2C;                // _2C, gas-related
-	int mGasArmNum;        // _30, 3 or 4
-	f32 mGasRotationSpeed; // _34
-	f32 mGasReversalTime;  // _38
-	f32 _3C;               // _3C
-	f32 _40;               // _40
-	f32 _44;               // _44
+	// Elec attack params
+	f32 mElecBounceFactor;    // _00
+	f32 mElecFrictionFactor;  // _04
+	f32 mElecBaseHSpeed;      // _08
+	f32 mElecJitterHSpeed;    // _0C
+	f32 mElecBaseVSpeed;      // _10
+	f32 mElecJitterVSpeed;    // _14
+	f32 mElecScatterTime;     // _18
+	f32 mElecChainOffsetTime; // _1C
+	int mElecMaxNodes;        // _20
+	int mElecPlacedNodes;     // _24
+
+	// Fire/gas attack params
+	f32 mAttackScale;        // _28, for fire and gas
+	bool mIsGasRotClockwise; // _2C
+	int mGasArmNum;          // _30, 3 or 4
+	f32 mGasRotationSpeed;   // _34
+	f32 mGasReversalTime;    // _38
+
+	// Water attack params
+	f32 mWaterShotInterval;   // _3C
+	f32 mWaterJitterAngle;    // _40, adds some random jitter on shoot angle so it's not directly at target
+	f32 mWaterJitterDistance; // _44, adds some random jitter on shoot distance so it's not directly at target
 };
 
 struct BigTreasureAttackParameter : public BigTreasureAttackData {
@@ -659,12 +664,13 @@ struct BigTreasureElecAttack : public CNode {
 	void finish();
 
 	inline BigTreasureElecAttack* getNext() const { return static_cast<BigTreasureElecAttack*>(mNext); }
+	inline BigTreasureElecAttack* getPrev() const { return static_cast<BigTreasureElecAttack*>(mPrev); }
 
 	// _00      = VTBL
 	// _00-_18  = CNode
 	Obj* mOwner;                         // _18
 	BigTreasureAttackData* mAttackData;  // _1C
-	u8 _20;                              // _20
+	bool _20;                            // _20
 	Sys::Triangle* mFloorTri;            // _24
 	Vector3f mVelocity;                  // _28
 	Vector3f mPosition;                  // _34
@@ -707,6 +713,7 @@ struct BigTreasureGasAttack : public CNode {
 	void start(Vector3f&, f32);
 
 	inline BigTreasureGasAttack* getNext() const { return static_cast<BigTreasureGasAttack*>(mNext); }
+	inline BigTreasureGasAttack* getChild() const { return static_cast<BigTreasureGasAttack*>(mChild); }
 
 	// _00      = VTBL
 	// _00-_18  = CNode
@@ -727,6 +734,8 @@ struct BigTreasureWaterAttack : public CNode {
 	void init();
 	void start(Vector3f&, Vector3f&);
 	void finish();
+
+	inline BigTreasureWaterAttack* getNext() const { return static_cast<BigTreasureWaterAttack*>(mNext); }
 
 	// _00      = VTBL
 	// _00-_18  = CNode
@@ -759,7 +768,7 @@ struct BigTreasureAttackMgr {
 	void startNewWaterList();
 	void updateWaterAttack();
 	void updateWaterEmitPosition();
-	void getWaterTargetCreature();
+	Creature* getWaterTargetCreature();
 
 	void setElecAttackParameter();
 	void startElecAttack();
@@ -784,8 +793,8 @@ struct BigTreasureAttackMgr {
 
 	bool mIsStartAttack[BIGATTACK_Count];          // _00
 	Obj* mObj;                                     // _04
-	f32 _08;                                       // _08
-	f32 _0C;                                       // _0C
+	f32 mAttackTimer1;                             // _08, used by all attacks
+	f32 mAttackTimer2;                             // _0C, used by gas (reverse rot) and elec (discharge)
 	CNode* mActiveFireList;                        // _10
 	CNode* mFireAttackNodes;                       // _14
 	efx::TOootaFire* mEfxFire;                     // _18
@@ -806,7 +815,7 @@ struct BigTreasureAttackMgr {
 	efx::TOootaElecLeg* mEfxElecLeg[4][3];         // _D0
 	efx::TOootaElecAttack1* mEfxElecAttack1;       // _100
 	efx::TOootaElecAttack2* mEfxElecAttack2;       // _104
-	u8 _108[0xC];                                  // _108, unknown
+	int _108[3];                                   // _108
 	JointShadowRootNode* mShadowRootNode;          // _114
 	AttackShadowNode** mAttackShadowNodes;         // _118, array of 16 ptrs
 	BigTreasureAttackData* mAttackData;            // _11C
