@@ -147,7 +147,7 @@ void Kabuto::StateTurn::exec(EnemyBase* enemy)
 		if (target) {
 			kabuto->mAlertTimer = 0.0f;
 			Vector3f targetPos  = target->getPosition();
-			kabuto->turnToTarget(targetPos, CG_PARMS(kabuto)->mGeneral.mTurnSpeed(), CG_PARMS(kabuto)->mGeneral.mMaxTurnAngle());
+			kabuto->turnToTarget2(targetPos, CG_PARMS(kabuto)->mGeneral.mTurnSpeed(), CG_PARMS(kabuto)->mGeneral.mMaxTurnAngle());
 			if (kabuto->isAttackableTarget()) {
 				kabuto->mNextState = KABUTO_Attack;
 				kabuto->finishMotion();

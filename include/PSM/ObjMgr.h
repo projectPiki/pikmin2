@@ -13,6 +13,10 @@ namespace PSM {
 struct ObjMgr : public JSUPtrList,
                 public PSSystem::SingletonBase<ObjMgr>,
                 public JKRDisposer { // causes build errors from PSSystem::SingletonBase<ObjMgr>
+	ObjMgr()
+	    : PSSystem::SingletonBase<ObjMgr>(this)
+	{
+	}
 	// vtable 1 (SingletonBase)
 	// vtable 2 (JKRDisposer)
 	virtual ~ObjMgr(); // _20 (weak, thunks at _10 of vtable 1 and _08 of vtable 2)

@@ -49,8 +49,8 @@ void CaveState::init(SingleGameSection* game, StateArg* arg)
 	sys->heapStatusDump(true);
 	gameSystem->mTimeMgr->setFlag(TIMEFLAG_Stopped);
 	gameSystem->setFlag(GAMESYS_IsGameWorldActive);
-	Screen::gGame2DMgr->mScreenMgr->mInCave = true;
-	gameSystem->mIsInCave                   = true;
+	static_cast<newScreen::Mgr*>(Screen::gGame2DMgr->mScreenMgr)->mInCave = true;
+	gameSystem->mIsInCave                                                 = true;
 	game->setFixNearFar(true, 1.0f, 12800.0f);
 
 	// I assume this is meant to check if the 'active' navi is dead and if so, swap to the other navi

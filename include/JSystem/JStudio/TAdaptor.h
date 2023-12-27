@@ -213,6 +213,10 @@ struct TAdaptor_particle : public TAdaptor {
 };
 
 struct TAdaptor_sound : public TAdaptor {
+	TAdaptor_sound(TVariableValue* var, u32 a1)
+	    : TAdaptor(var, a1)
+	{
+	}
 	// ~TAdaptor_sound();
 
 	virtual ~TAdaptor_sound() = 0; // _08

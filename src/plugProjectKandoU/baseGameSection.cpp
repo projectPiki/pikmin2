@@ -303,7 +303,7 @@ void BaseGameSection::init()
 
 	og::Lib2D::create();
 	Screen::Game2DMgr::create();
-	Screen::gGame2DMgr->mScreenMgr->mInitialised = 1; // NEEDS FIXING.
+	static_cast<newScreen::Mgr*>(Screen::gGame2DMgr->mScreenMgr)->mInitialised = 1;
 	System::assert_fragmentation("BaseGameSection::Game2DMgr");
 	mXfbBoundsY = 0;
 	mXfbBoundsX = 0;

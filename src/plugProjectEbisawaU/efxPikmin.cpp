@@ -1157,14 +1157,14 @@ void TNaviEffect::updateHamon_()
 void TNaviEffect::createHamonA_(Vector3f* pos)
 {
 	P2ASSERTLINE(863, pos);
-	mHamonA->create(pos);
+	mHamonA.create(pos);
 }
 
 /**
  * @note Address: 0x803B8054
  * @note Size: 0x24
  */
-void TNaviEffect::killHamonA_() { mHamonA->kill(); }
+void TNaviEffect::killHamonA_() { mHamonA.kill(); }
 
 /**
  * @note Address: 0x803B8078
@@ -1173,14 +1173,14 @@ void TNaviEffect::killHamonA_() { mHamonA->kill(); }
 void TNaviEffect::createHamonB_(Vector3f* pos)
 {
 	P2ASSERTLINE(874, pos);
-	mHamonB->create(pos);
+	mHamonB.create(pos);
 }
 
 /**
  * @note Address: 0x803B80D8
  * @note Size: 0x24
  */
-void TNaviEffect::killHamonB_() { mHamonB->kill(); }
+void TNaviEffect::killHamonB_() { mHamonB.kill(); }
 
 /**
  * @note Address: 0x803B80FC

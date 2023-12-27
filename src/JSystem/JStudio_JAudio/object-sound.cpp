@@ -109,7 +109,7 @@
  * @note Size: 0xC8
  */
 JStudio_JAudio::TAdaptor_sound::TAdaptor_sound(JAIBasic*, const JStage::TSystem*)
-    : TAdaptor(_0C, 0)
+    : JStudio::TAdaptor_sound(_0C, 0)
 {
 	/*
 	.loc_0x0:

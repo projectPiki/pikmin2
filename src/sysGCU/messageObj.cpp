@@ -204,7 +204,7 @@ BOOL TControl::setMessageCode(u16 id1, u16 id2)
 {
 	reset();
 	bool ret = JMessage::TControl::setMessageCode(id1, id2);
-	mTextRenderProc->preProcCode(_0C << 16 | _0E);
+	mTextRenderProc->preProcCode(mMessageCode << 16 | mMessageIndex);
 	return ret;
 }
 

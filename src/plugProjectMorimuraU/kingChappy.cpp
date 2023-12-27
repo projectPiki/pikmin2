@@ -1170,7 +1170,7 @@ void Obj::searchTarget()
 	mTargetCreature
 	    = EnemyFunc::getNearestNavi(this, C_PARMS->mGeneral.mSearchAngle(), C_PARMS->mGeneral.mSearchDistance(), &searchDist, nullptr);
 
-	f32 range = SQUARE(C_PROPERPARMS.mFp06()); // f30
+	f32 range = SQUARE(C_PROPERPARMS.mInvisibleRange()); // f30
 	f32 maxY, minY;
 	minY = mPosition.y - 50.0f; // f28
 	maxY = 50.0f + mPosition.y; // f29
@@ -2527,7 +2527,7 @@ void Obj::checkTurn(bool check)
 	}
 
 	f32 angle = getCreatureViewAngle(mGoalPosition);
-	if (absF(angle) > TORADIANS(C_PROPERPARMS.mFp01())) {
+	if (absF(angle) > TORADIANS(C_PROPERPARMS.mRequiredTurningAngleDeg())) {
 		_2E4 = check;
 		mFsm->transit(this, KINGCHAPPY_Turn, nullptr);
 	}

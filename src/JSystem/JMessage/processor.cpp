@@ -118,7 +118,7 @@ void JMessage::TProcessor::setBegin_messageCode(u16 p1, u16 p2)
 		}
 	}
 	if (datOffset != 0) {
-		char* dat = (char*)_08->mDAT1->_00 + datOffset;
+		char* dat = (char*)mResourceCache->mDAT1->_00 + datOffset;
 		reset_(dat);
 		do_begin_(&datOffset, dat);
 	}
@@ -268,11 +268,10 @@ lbl_80006F48:
  */
 void JMessage::TProcessor::pushCurrent(const char* p1)
 {
-	// UNUSED FUNCTION
-	if (p1 != nullptr && _10[0] < 4) {
-		_10[_10[0] + 1] = (u32)_0C;
-		_10[0]++;
-		_0C = p1;
+	if (p1 && mStack.mSize < 4) {
+		mStack.mStack[mStack.mSize + 1] = mCurrent;
+		mStack.mSize++;
+		mCurrent = p1;
 	}
 }
 
@@ -526,9 +525,9 @@ void JMessage::TProcessor::do_select_separate() { }
  */
 void JMessage::TProcessor::reset_(const char* p1)
 {
-	_0C    = p1;
-	_10[0] = 0;
-	_24    = &process_onCharacterEnd_normal_;
+	mCurrent              = p1;
+	mStack.mSize          = 0;
+	mProcess.mEndCallback = process_onCharacterEnd_normal_;
 	do_reset_(p1);
 	do_reset();
 }
@@ -563,23 +562,23 @@ bool JMessage::TProcessor::do_tag_(u32 p1, const void* p2, u32 p3)
 		pushCurrent(on_message_limited(v2));
 		break;
 	case 0xF6:
-		if (_10[0] < 4) {
-			_24 = &process_onCharacterEnd_select_;
-			_28 = &process_onSelect_limited_;
-			_2C = (char*)p2 + p3;
-			_30 = (char*)p2;
-			_34 = v2;
+		if (mStack.mSize < 4) {
+			mProcess.mEndCallback          = &process_onCharacterEnd_select_;
+			mProcess.mData.mSelectCallback = &process_onSelect_limited_;
+			mProcess.mData.mBase           = (char*)p2 + p3;
+			mProcess.mData.mOffset         = (char*)p2;
+			mProcess.mData.mRest           = v2;
 			pushCurrent(process_onSelect_limited_(this));
 			do_select_begin(v2);
 		}
 		break;
 	case 0xF5:
-		if (_10[0] < 4) {
-			_24 = &process_onCharacterEnd_select_;
-			_28 = &process_onSelect_;
-			_2C = (char*)p2 + p3;
-			_30 = (char*)p2;
-			_34 = v2;
+		if (mStack.mSize < 4) {
+			mProcess.mEndCallback          = &process_onCharacterEnd_select_;
+			mProcess.mData.mSelectCallback = &process_onSelect_;
+			mProcess.mData.mBase           = (char*)p2 + p3;
+			mProcess.mData.mOffset         = (char*)p2;
+			mProcess.mData.mRest           = v2;
 			pushCurrent(process_onSelect_(this));
 			do_select_begin(v2);
 		}
@@ -590,7 +589,7 @@ bool JMessage::TProcessor::do_tag_(u32 p1, const void* p2, u32 p3)
 		}
 		break;
 	case 0xFE:
-		pushCurrent(_04->do_word(v2));
+		pushCurrent(mReference->do_word(v2));
 		break;
 	default:
 		break;
@@ -820,7 +819,7 @@ void JMessage::TProcessor::do_systemTagCode_(u16 p1, const void* p2, u32 p3)
 {
 	switch (p1) {
 	case 4:
-		pushCurrent(_04->do_word(*(u32*)p2));
+		pushCurrent(mReference->do_word(*(u32*)p2));
 		break;
 	case 5:
 		pushCurrent(on_message(*(u32*)p2));
@@ -1009,10 +1008,10 @@ unknown JMessage::TProcessor::process_character_()
  */
 bool JMessage::TProcessor::process_onCharacterEnd_normal_(JMessage::TProcessor* processor)
 {
-	u32 offset = processor->_10[0];
+	u32 offset = processor->mStack.mSize;
 	if (offset != 0) {
-		processor->_0C = (const char*)processor->_10[offset];
-		processor->_10[0]--;
+		processor->mCurrent = (const char*)processor->mStack.mStack[0];
+		processor->mStack.mSize--;
 		return true;
 	} else {
 		processor->do_end_();
@@ -1026,22 +1025,22 @@ bool JMessage::TProcessor::process_onCharacterEnd_normal_(JMessage::TProcessor* 
  */
 bool JMessage::TProcessor::process_onCharacterEnd_select_(JMessage::TProcessor* processor)
 {
-	processor->_34--;
-	if (processor->_34 != 0) {
-		processor->_0C = (const char*)processor->_10[processor->_10[0]];
-		processor->_10[0]--;
-		char* processedResult = processor->_28(processor);
-		if (processedResult != nullptr && processor->_10[0] < 4) {
-			processor->_10[processor->_10[0] + 1] = (u32)processor->_0C;
-			processor->_10[0]++;
-			processor->_0C = processedResult;
+	processor->mProcess.mData.mRest--;
+	if (processor->mProcess.mData.mRest != 0) {
+		processor->mCurrent = processor->mStack.mStack[processor->mStack.mSize];
+		processor->mStack.mSize--;
+		bool processedResult = processor->mProcess.mEndCallback(processor);
+		if (processedResult != nullptr && processor->mStack.mSize < 4) {
+			processor->mStack.mStack[processor->mStack.mSize + 1] = processor->mCurrent;
+			processor->mStack.mSize++;
+			processor->mCurrent = (char*)processedResult;
 		}
 		processor->do_select_separate();
 		return true;
 	} else {
-		processor->_24 = &process_onCharacterEnd_normal_;
-		processor->_0C = (const char*)processor->_10[processor->_10[0]];
-		processor->_10[0]--;
+		processor->mProcess.mEndCallback = &process_onCharacterEnd_normal_;
+		processor->mCurrent              = processor->mStack.mStack[processor->mStack.mSize];
+		processor->mStack.mSize--;
 		processor->do_select_end();
 		return true;
 	}
@@ -1051,11 +1050,11 @@ bool JMessage::TProcessor::process_onCharacterEnd_select_(JMessage::TProcessor* 
  * @note Address: 0x800077AC
  * @note Size: 0x1C
  */
-char* JMessage::TProcessor::process_onSelect_limited_(JMessage::TProcessor* processor)
+const char* JMessage::TProcessor::process_onSelect_limited_(JMessage::TProcessor* processor)
 {
-	u16 next       = *(u16*)processor->_30;
-	processor->_30 = (u16*)(processor->_30) + 1;
-	return processor->_2C + next;
+	u16 next = *(u16*)processor->mProcess.mData.mRest;
+	processor->mProcess.mData.mRest++;
+	return processor->mProcess.mData.mBase + next;
 	/*
 	lwz      r5, 0x30(r3)
 	lhz      r4, 0(r5)
@@ -1072,11 +1071,11 @@ char* JMessage::TProcessor::process_onSelect_limited_(JMessage::TProcessor* proc
  * @note Size: 0x1C
  * process_onSelect___Q28JMessage10TProcessorFPQ28JMessage10TProcessor
  */
-char* JMessage::TProcessor::process_onSelect_(JMessage::TProcessor* processor)
+const char* JMessage::TProcessor::process_onSelect_(JMessage::TProcessor* processor)
 {
-	u32 next       = *(u32*)processor->_30;
-	processor->_30 = (u32*)(processor->_30) + 1;
-	return processor->_2C + next;
+	u16 next = *(u16*)processor->mProcess.mData.mRest;
+	processor->mProcess.mData.mRest++;
+	return processor->mProcess.mData.mBase + next;
 	/*
 	lwz      r5, 0x30(r3)
 	lwz      r4, 0(r5)
@@ -1438,9 +1437,9 @@ void JMessage::TSequenceProcessor::on_jump_isReady()
  */
 void JMessage::TSequenceProcessor::on_jump(const void* p1, const char* p2)
 {
-	_0C    = p2;
-	_10[0] = 0;
-	_24    = &process_onCharacterEnd_normal_;
+	mCurrent              = p2;
+	mStack.mSize          = 0;
+	mProcess.mEndCallback = &process_onCharacterEnd_normal_;
 	do_reset_(p2);
 	do_reset();
 	do_jump(p1, p2);
@@ -1479,9 +1478,9 @@ void JMessage::TSequenceProcessor::on_branch_queryResult() { do_branch_queryResu
  */
 void JMessage::TSequenceProcessor::on_branch(const void* p1, const char* p2)
 {
-	_0C    = p2;
-	_10[0] = 0;
-	_24    = &process_onCharacterEnd_normal_;
+	mCurrent              = p2;
+	mStack.mSize          = 0;
+	mProcess.mEndCallback = &process_onCharacterEnd_normal_;
 	do_reset_(p2);
 	do_reset();
 	do_branch(p1, p2);
@@ -1821,7 +1820,7 @@ void* JMessage::TSequenceProcessor::process_onJump_(const JMessage::TSequencePro
 	if (v1 >= 0xFF00) {
 		return nullptr;
 	}
-	return processor->_38->setMessageCode_inSequence_(processor, processor->_44 >> 0x10, v1) ? processor->_38->_14 : nullptr;
+	return processor->_38->setMessageCode_inSequence_(processor, processor->_44 >> 0x10, v1) ? processor->_38->mEntry : nullptr;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)

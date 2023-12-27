@@ -68,11 +68,11 @@ void GameState::init(SingleGameSection* game, StateArg* arg)
 	u16 startType = castedArg->mStartType;
 
 	game->setFixNearFar(false, 0.0f, 0.0f);
-	Screen::gGame2DMgr->mScreenMgr->mInCave      = false;
-	Screen::gGame2DMgr->mScreenMgr->mCourseIndex = courseID;
-	gameSystem->mIsInCave                        = false;
-	game->mCurrentFloor                          = 0;
-	game->_194                                   = false;
+	static_cast<newScreen::Mgr*>(Screen::gGame2DMgr->mScreenMgr)->mInCave      = false;
+	static_cast<newScreen::Mgr*>(Screen::gGame2DMgr->mScreenMgr)->mCourseIndex = courseID;
+	gameSystem->mIsInCave                                                      = false;
+	game->mCurrentFloor                                                        = 0;
+	game->_194                                                                 = false;
 
 	if ((playData->mDeadNaviID & 1) == 0) {
 		game->setPlayerMode(0);

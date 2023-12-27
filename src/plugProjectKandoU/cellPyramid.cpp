@@ -1593,20 +1593,20 @@ void CellPyramid::create(BoundBox2d& box, f32 scale)
 {
 	mFreeMemory = JKRHeap::sCurrentHeap->getFreeSize();
 
-	mLeft         = box.mBottom;
-	mRight        = box.mLeft;
+	mLeft         = box.mMin.x;
+	mRight        = box.mMax.x;
 	mScale        = scale;
 	mInverseScale = 1.0f / scale;
 
 	// Calculate dimensions in pixels
-	int pixelWidth  = (f32)ceil((FABS(box.mRight - box.mLeft) * mInverseScale));
-	int pixelHeight = (f32)ceil(FABS(box.mTop - box.mBottom) * mInverseScale);
+	int pixelWidth  = (f32)ceil((FABS(box.mMin.x - box.mMax.x) * mInverseScale));
+	int pixelHeight = (f32)ceil(FABS(box.mMin.y - box.mMax.y) * mInverseScale);
 
 	if (pixelWidth > 200 || pixelHeight > 200) {
 		mScale        = scale * 1.5f;
 		mInverseScale = 1.0f / (scale * 1.5f);
-		pixelWidth    = (f32)ceil((FABS(box.mRight - box.mLeft) * mInverseScale));
-		pixelHeight   = (f32)ceil((FABS(box.mTop - box.mBottom) * mInverseScale));
+		pixelWidth    = (f32)ceil((FABS(box.mMin.x - box.mMax.x) * mInverseScale));
+		pixelHeight   = (f32)ceil((FABS(box.mMin.y - box.mMax.y) * mInverseScale));
 	}
 
 	int maxDimension = MAX(pixelHeight, pixelWidth);

@@ -204,7 +204,7 @@ u8 MoviePlayer::play(MovieConfig* config, MoviePlayArg& arg, bool flag)
 		mCameraName = arg.mPelletName;
 		mStreamID   = arg.mStreamID;
 
-		Screen::gGame2DMgr->mScreenMgr->mInDemo = true;
+		static_cast<newScreen::Mgr*>(Screen::gGame2DMgr->mScreenMgr)->mInDemo = true;
 		if (!flag && mCurrentConfig->mDrawType & 1) {
 			WipeBase* wipe = gameSystem->mSection->mDisplayWiper;
 			if (wipe && wipe->isBlack()) {
@@ -571,7 +571,7 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 			mCanFinish          = true;
 			MovieConfig* config = mCurrentConfig;
 			stop();
-			Screen::gGame2DMgr->mScreenMgr->mInDemo = false;
+			static_cast<newScreen::Mgr*>(Screen::gGame2DMgr->mScreenMgr)->mInDemo = false;
 			cameraMgr->controllerUnLock(2);
 			gameSystem->setPause(0, "moviePl:donecall", 3);
 			if (Screen::gGame2DMgr) {

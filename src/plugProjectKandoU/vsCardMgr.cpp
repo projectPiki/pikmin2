@@ -468,7 +468,7 @@ void VsGame::CardMgr::gotPlayerCard(int user)
 		JUtility::TColor color1(0xff, 0x96, 0x64, 0xff);
 		JUtility::TColor color2(0xff, 0x46, 0x46, 0xff);
 
-		efx2d::ArgScaleColorColor spraysetArg(&panePos, 0.4f, color1, color2);
+		efx2d::ArgScaleColorColor spraysetArg(panePos, 0.4f, color1, color2);
 		efx2d::T2DSprayset_forVS vsSpraySet;
 
 		vsSpraySet.create(&spraysetArg);
@@ -1116,8 +1116,6 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 
 	for (int i = 0; i < 4; i++) { }
 }
-
-void LightObj::update() { }
 
 /**
  * @note Address: 0x80238B0C

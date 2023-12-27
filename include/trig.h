@@ -111,7 +111,7 @@ inline int adjustValInt(int current, int dest, const int delta)
 
 inline Vector3f getRotationOffset(f32 scale, f32 y, f32 angle) { return Vector3f(scale * sinf(angle), y, scale * cosf(angle)); }
 
-inline Vector3f getRotation(f32 angle) { return Vector3f(sinf(angle), 0.0f, cosf(angle)); }
+inline Vector3f getRotation(f32 angle) { return Vector3f(-sinf(angle), 0.0f, cosf(angle)); }
 
 inline f32 clamp(f32 val, f32 limit)
 {

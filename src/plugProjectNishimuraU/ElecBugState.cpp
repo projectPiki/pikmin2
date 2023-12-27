@@ -248,7 +248,7 @@ void StateCharge::exec(EnemyBase* enemy)
 		Vector3f partnerPos = partner->getPosition();
 		Vector3f pos        = bugPos - partnerPos;
 		pos += bugPos;
-		partner->turnToTarget(pos, 0.15f, CG_PARMS(bug)->mGeneral.mMaxTurnAngle());
+		partner->turnToTarget2(pos, 0.15f, CG_PARMS(bug)->mGeneral.mMaxTurnAngle());
 	}
 	if (bug->mStateTimer > 3.0f) {
 		if (bug->mPartner) {
@@ -362,7 +362,7 @@ void StateChildCharge::exec(EnemyBase* enemy)
 		Vector3f partnerPos = partner->getPosition();
 		Vector3f pos        = bugPos - partnerPos;
 		pos += bugPos;
-		partner->turnToTarget(pos, 0.15f, CG_PARMS(bug)->mGeneral.mMaxTurnAngle());
+		partner->turnToTarget2(pos, 0.15f, CG_PARMS(bug)->mGeneral.mMaxTurnAngle());
 	}
 	if (bug->mStateTimer > 3.0f) {
 		if (partner) {
