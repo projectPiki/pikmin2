@@ -35,7 +35,7 @@ BOOL ddh_cc_shutdown() { return FALSE; }
 int ddh_cc_open()
 {
 	if (gIsInitialized) {
-		return -0x2715;
+		return DDH_ERR_ALREADY_INITIALIZED;
 	}
 
 	gIsInitialized = TRUE;
@@ -55,38 +55,38 @@ BOOL ddh_cc_close() { return FALSE; }
 u32 ddh_cc_read(u8* data, u32 size)
 {
 	u8 buff[DDH_BUF_SIZE];
-	int p1;
-	u32 retval;
-	int p2;
+	int originalDataSize;
+	u32 result;
+	int expectedDataSize;
 	int poll;
 
-	retval = 0;
+	result = 0;
 	if (!gIsInitialized) {
-		return -0x2711;
+		return DDH_ERR_NOT_INITIALIZED;
 	}
 
 	MWTRACE(1, "Expected packet size : 0x%08x (%ld)\n", size, size);
 
-	p1 = size;
-	p2 = size;
-	while ((u32)CBGetBytesAvailableForRead(&gRecvCB) < p2) {
-		retval = 0;
-		poll   = EXI2_Poll();
+	originalDataSize = expectedDataSize = size;
+	while ((u32)CBGetBytesAvailableForRead(&gRecvCB) < expectedDataSize) {
+		result = 0;
+
+		poll = EXI2_Poll();
 		if (poll != 0) {
-			retval = EXI2_ReadN(buff, poll);
-			if (retval == 0) {
+			result = EXI2_ReadN(buff, poll);
+			if (result == 0) {
 				CircleBufferWriteBytes(&gRecvCB, buff, poll);
 			}
 		}
 	}
 
-	if (retval == 0) {
-		CircleBufferReadBytes(&gRecvCB, data, p1);
+	if (result == 0) {
+		CircleBufferReadBytes(&gRecvCB, data, originalDataSize);
 	} else {
-		MWTRACE(8, "cc_read : error reading bytes from EXI2 %ld\n", retval);
+		MWTRACE(8, "cc_read : error reading bytes from EXI2 %ld\n", result);
 	}
 
-	return retval;
+	return result;
 }
 
 /**
@@ -104,7 +104,7 @@ int ddh_cc_write(u32 bytes, u32 length)
 
 	if (gIsInitialized == FALSE) {
 		MWTRACE(8, "cc not initialized\n");
-		return -0x2711;
+		return DDH_ERR_NOT_INITIALIZED;
 	}
 
 	MWTRACE(8, "cc_write : Output data 0x%08x %ld bytes\n", bytes, length);
@@ -159,7 +159,7 @@ int ddh_cc_peek()
 	if (EXI2_ReadN(buff, poll) == 0) {
 		CircleBufferWriteBytes(&gRecvCB, buff, poll);
 	} else {
-		return -0x2719;
+		return DDH_ERR_READ_ERROR;
 	}
 
 	return poll;

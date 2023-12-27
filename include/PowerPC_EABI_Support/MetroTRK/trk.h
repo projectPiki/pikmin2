@@ -73,6 +73,10 @@ int udp_cc_initinterrupts();
 ////////////////////////////////////
 
 /////////// DDH FUNCTIONS //////////
+#define DDH_ERR_NOT_INITIALIZED     -0x2711
+#define DDH_ERR_ALREADY_INITIALIZED -0x2715
+#define DDH_ERR_READ_ERROR          -0x2719
+
 // int ddh_cc_initialize(void* flagOut, __OSInterruptHandler handler);
 // int ddh_cc_shutdown();
 // int ddh_cc_open();
