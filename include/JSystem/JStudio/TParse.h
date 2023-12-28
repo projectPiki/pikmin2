@@ -10,7 +10,7 @@ struct TParse : public stb::TParse {
 	TParse(JStudio::TControl*);
 	virtual ~TParse();                                                   // _08
 	virtual bool parseHeader(const stb::data::TParse_THeader&, u32);     // _14
-	virtual void parseBlock_block(const stb::data::TParse_TBlock&, u32); // _18
+	virtual bool parseBlock_block(const stb::data::TParse_TBlock&, u32); // _18
 
 	void parseBlock_block_fvb_(const JStudio::stb::data::TParse_TBlock&, u32);
 

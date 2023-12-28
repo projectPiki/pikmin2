@@ -2,7 +2,7 @@
 #include "JSystem/JStage/TObject.h"
 #include "JSystem/JStage/TSystem.h"
 #include "JSystem/JStudio/TAdaptor.h"
-#include "JSystem/JStudio/stb-data.h"
+#include "JSystem/JStudio/stb-data-parse.h"
 #include "JSystem/JStudio_JStage.h"
 
 namespace JStudio_JStage {
@@ -99,7 +99,7 @@ static void fakeFunc(JStudio::TObject** newObject, JStudio::stb::data::TParse_TB
 	*newObject = nullptr;
 	JStage::TEObject type;
 	CreateObjectFunction function;
-	switch (data.filedata->mDataType) {
+	switch (data.getType()) {
 	case 'JFOG':
 		type     = JStage::TEO_Fog;
 		function = &createObject_JSG_<TAdaptor_fog, JStage::TFog>;
@@ -134,7 +134,7 @@ bool TCreateObject::create(JStudio::TObject** newObject, JStudio::stb::data::TPa
 	*newObject = nullptr;
 	JStage::TEObject type;
 	CreateObjectFunction function;
-	switch (data.filedata->mDataType) {
+	switch (data.getType()) {
 	case 'JACT':
 		type     = JStage::TEO_Actor;
 		function = &createObject_JSG_<TAdaptor_actor, JStage::TActor>;
@@ -160,7 +160,7 @@ bool TCreateObject::create(JStudio::TObject** newObject, JStudio::stb::data::TPa
 	}
 
 	JStage::TObject* stageObject;
-	switch (mSystem->JSGFindObject(&stageObject, &data.filedata->mObjName, type)) {
+	switch (mSystem->JSGFindObject(&stageObject, (const char*)data.getID(), type)) {
 	case 0:
 		*newObject = function(data, stageObject, mSystem);
 		return true;

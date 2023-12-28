@@ -1,7 +1,7 @@
 #ifndef _JSTUDIO_TCREATEOBJECT_H
 #define _JSTUDIO_TCREATEOBJECT_H
 
-#include "JSystem/JStudio/stb-data.h"
+#include "JSystem/JStudio/stb-data-parse.h"
 #include "JSystem/JGadget/linklist.h"
 
 namespace JStudio {

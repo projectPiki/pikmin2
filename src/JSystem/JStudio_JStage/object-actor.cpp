@@ -264,7 +264,7 @@ lbl_80012354:
 void TAdaptor_actor::adaptor_do_begin(const JStudio::TObject* object)
 {
 	mObject->setFlagOn(1);
-	getJSG_SRT_((const JStudio::TControl*)object->pControl);
+	getJSG_SRT_((const JStudio::TControl*)object->mControl);
 	for (const TVVOutputObject* output = saoVVOutput_; output->mValueIndex != -1; output++) {
 		_04[output->mValueIndex].set(JStudio::TVariableValue::update_immediate_, 0, (mObject->*(output->mGetter))());
 	}
@@ -285,7 +285,7 @@ void TAdaptor_actor::adaptor_do_end(const JStudio::TObject*) { mObject->setFlagO
  */
 void TAdaptor_actor::adaptor_do_update(const JStudio::TObject* object, u32 p2)
 {
-	setJSG_SRT_(static_cast<JStudio::TControl*>(object->pControl));
+	setJSG_SRT_(static_cast<JStudio::TControl*>(object->mControl));
 	mObject->JSGUpdate();
 }
 

@@ -245,7 +245,7 @@ void JStudio_JParticle::TAdaptor_particle::TJPACallback_::execute(JPABaseEmitter
 		break;
 	}
 
-	JStudio::TControl* ctrl = static_cast<JStudio::TControl*>(mObject->pControl); // r28
+	JStudio::TControl* ctrl = static_cast<JStudio::TControl*>(mObject->mControl); // r28
 
 	Vec srts[3]; // 0x64
 	mAdaptor->adaptor_getVariableValue_Vec(&srts[2], sauVariableValue_3_TRANSLATION_XYZ);

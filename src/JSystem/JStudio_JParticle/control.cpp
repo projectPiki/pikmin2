@@ -50,7 +50,7 @@ TCreateObject::~TCreateObject() { }
 bool TCreateObject::create(JStudio::TObject** newObject, JStudio::stb::data::TParse_TBlock_object const& data)
 {
 	JStudio::TObject_particle* (*func)(const JStudio::stb::data::TParse_TBlock_object&, JPAEmitterManager*, const JStage::TSystem*);
-	switch (data.filedata->mDataType) {
+	switch (data.getType()) {
 	case 'JPTC': {
 		func = &createObject_PARTICLE_JPA_;
 		break;

@@ -3,7 +3,7 @@
 #include "JSystem/J3D/J3DAnmLoader.h"
 #include "JSystem/J3D/J3DModelLoader.h"
 #include "Game/GameSystem.h"
-#include "JSystem/JStudio/stb-data.h"
+#include "JSystem/JStudio/stb-data-parse.h"
 #include "nans.h"
 
 static const u32 filler[]    = { 0, 0, 0 };

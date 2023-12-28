@@ -228,7 +228,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_end(const JStudio::TObject*) { 
  */
 void JStudio_JStage::TAdaptor_camera::adaptor_do_update(const JStudio::TObject* object, u32 p2)
 {
-	const JStudio::TControl* control = static_cast<JStudio::TControl*>(object->pControl);
+	const JStudio::TControl* control = static_cast<JStudio::TControl*>(object->mControl);
 	setJSG_position_(control);
 	setJSG_targetPosition_(control);
 	mObject->JSGUpdate();

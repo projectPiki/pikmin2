@@ -8,33 +8,31 @@ namespace JStudio {
 namespace object {
 
 struct TIDData {
-	/** @fabricated */
-	TIDData() {};
-	/** @fabricated */
+	TIDData() { }
 	TIDData(const void* id, u32 length)
-	    : idString_0x0(id)
-	    , lengthInBytes_0x4(length)
+	    : mIDString(id)
+	    , mLength(length)
 	{
 	}
 
-	~TIDData() {}; // unused/inlined
-
-	const void* idString_0x0;
-	u32 lengthInBytes_0x4;
+	~TIDData() { } // unused/inlined
 
 	static bool isEqual(TIDData const&, TIDData const&);
+
+	const void* mIDString; // _00
+	u32 mLength;           // _04, in bytes
 };
 
-struct TObject_ID : TIDData {
+struct TObject_ID : public TIDData {
 	inline TObject_ID(const void* id, u32 length)
 	    : TIDData(id, length)
 	{
 	}
 
 	// inline virtual ~TObject_ID() {}; // _08
-	~TObject_ID() {}; // unused/inlined
+	~TObject_ID() { } // unused/inlined
 
-	// JGadget::TLinkListNode _0C;
+	// _00-_08 = TIData
 };
 
 struct TPRObject_ID_equal : TIDData {

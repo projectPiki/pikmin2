@@ -1,77 +1,30 @@
 #include "JSystem/JStudio/stb.h"
 #include "JSystem/JStudio/object.h"
-#include "JSystem/JStudio/stb-data.h"
-#include "JSystem/JGadget/binary.h"
+#include "JSystem/JStudio/stb-data-parse.h"
 #include "JSystem/JGadget/linklist.h"
 #include "stl/algorithm.h"
 #include "mem.h"
 
-/*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q37JStudio3stb6TParse
-    __vt__Q37JStudio3stb6TParse:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q37JStudio3stb6TParseFv
-        .4byte parseHeader_next__Q37JStudio3stb6TParseFPPCvPUlUl
-        .4byte parseBlock_next__Q37JStudio3stb6TParseFPPCvPUlUl
-        .4byte
-   parseHeader__Q37JStudio3stb6TParseFRCQ47JStudio3stb4data14TParse_THeaderUl
-        .4byte
-   parseBlock_block__Q37JStudio3stb6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl
-        .4byte
-   parseBlock_object__Q37JStudio3stb6TParseFRCQ47JStudio3stb4data20TParse_TBlock_objectUl
-    .global __vt__Q37JStudio3stb8TFactory
-    __vt__Q37JStudio3stb8TFactory:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q37JStudio3stb8TFactoryFv
-        .4byte
-   create__Q37JStudio3stb8TFactoryFRCQ47JStudio3stb4data20TParse_TBlock_object
-        .4byte destroy__Q37JStudio3stb8TFactoryFPQ37JStudio3stb7TObject
-    .global __vt__Q37JStudio3stb8TControl
-    __vt__Q37JStudio3stb8TControl:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q37JStudio3stb8TControlFv
-    .global __vt__Q37JStudio3stb15TObject_control
-    __vt__Q37JStudio3stb15TObject_control:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q37JStudio3stb15TObject_controlFv
-        .4byte do_begin__Q37JStudio3stb7TObjectFv
-        .4byte do_end__Q37JStudio3stb7TObjectFv
-        .4byte do_paragraph__Q37JStudio3stb7TObjectFUlPCvUl
-        .4byte do_wait__Q37JStudio3stb7TObjectFUl
-        .4byte do_data__Q37JStudio3stb7TObjectFPCvUlPCvUl
-    .global __vt__Q37JStudio3stb7TObject
-    __vt__Q37JStudio3stb7TObject:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q37JStudio3stb7TObjectFv
-        .4byte do_begin__Q37JStudio3stb7TObjectFv
-        .4byte do_end__Q37JStudio3stb7TObjectFv
-        .4byte do_paragraph__Q37JStudio3stb7TObjectFUlPCvUl
-        .4byte do_wait__Q37JStudio3stb7TObjectFUl
-        .4byte do_data__Q37JStudio3stb7TObjectFPCvUlPCvUl
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data
-    gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data:
-        .4byte 0xFF000000
-        .4byte 0x00000000
-*/
-
 namespace JStudio {
 namespace stb {
+
+namespace data {
+static const u32 gu32Mask_TSequence_value_signExpansion = 0xFF000000;
+} // namespace data
+
+inline u32 TObject::toInt32FromUInt24(u32 val)
+{
+	if (val & 0x800000) {
+		val |= data::gu32Mask_TSequence_value_signExpansion;
+	}
+	return val;
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x58
  */
-void TObject::toString_status(int a)
+const char* TObject::toString_status(int status)
 {
 	// UNUSED FUNCTION
 }
@@ -81,67 +34,36 @@ void TObject::toString_status(int a)
  * @note Address: N/A
  * @note Size: 0x48
  */
-TObject::TObject(u32 p1, void const* id, u32 idLength)
+TObject::TObject(u32 p1, const void* id, u32 idLength)
     : JStudio::object::TObject_ID(id, idLength)
-    , pControl(nullptr)
-    , signature(p1)
+    , mControl(nullptr)
+    , mSignature(p1)
     , mFlag(0)
-    , bSequence_(0)
-    , _20(0)
-    , pSequence(nullptr)
-    , pSequence_next(nullptr)
-    , u32Wait_(0)
+    , mIsActive(false)
+    , mSuspend(0)
+    , mSequence(nullptr)
+    , mNextSequence(nullptr)
+    , mWait(0)
     , mStatus(STATUS_STILL)
 {
-	// UNUSED FUNCTION
 }
 
 /**
  * @note Address: 0x80010278
  * @note Size: 0x70
  */
-TObject::TObject(data::TParse_TBlock_object const& block)
-    : JStudio::object::TObject_ID((u32*)block.filedata + 3, block.filedata->_0A)
+TObject::TObject(data::TParse_TBlock_object const& object)
+    : JStudio::object::TObject_ID(object.getID(), object.getIDSize())
+    , mControl(nullptr)
+    , mSignature(object.getType())
+    , mFlag(object.getFlag())
+    , mIsActive(false)
+    , mSuspend(0)
+    , mSequence(nullptr)
+    , mNextSequence(object.getContent())
+    , mWait(0)
+    , mStatus(STATUS_STILL)
 {
-	pControl       = nullptr;
-	signature      = block.filedata->mDataType;
-	mFlag          = block.filedata->_08;
-	bSequence_     = false;
-	_20            = 0;
-	pSequence      = nullptr;
-	pSequence_next = &((u32*)&block.filedata[block.filedata->_0A + 3])[3]; // close
-	u32Wait_       = 0;
-	mStatus        = STATUS_STILL;
-	/*
-	lwz      r8, 0(r4)
-	lis      r4, __vt__Q37JStudio3stb7TObject@ha
-	addi     r0, r4, __vt__Q37JStudio3stb7TObject@l
-	li       r5, 0
-	lhz      r7, 0xa(r8)
-	addi     r6, r8, 0xc
-	stw      r6, 0(r3)
-	stw      r7, 4(r3)
-	stw      r0, 8(r3)
-	stw      r5, 0xc(r3)
-	stw      r5, 0x10(r3)
-	stw      r5, 0x14(r3)
-	lwz      r0, 4(r8)
-	stw      r0, 0x18(r3)
-	lhz      r0, 8(r8)
-	sth      r0, 0x1c(r3)
-	stb      r5, 0x1e(r3)
-	stw      r5, 0x20(r3)
-	stw      r5, 0x24(r3)
-	lhz      r4, 0xa(r8)
-	addi     r0, r4, 3
-	rlwinm   r4, r0, 0, 0, 0x1d
-	addi     r0, r4, 0xc
-	add      r0, r8, r0
-	stw      r0, 0x28(r3)
-	stw      r5, 0x2c(r3)
-	stw      r5, 0x30(r3)
-	blr
-	*/
 }
 
 /**
@@ -155,264 +77,120 @@ TObject::~TObject() { }
  * @note Address: N/A
  * @note Size: 0x58
  */
-void TObject::setFlag_operation(u8, int)
+void TObject::setFlag_operation(u8 operation, int flag)
 {
-	// UNUSED FUNCTION
+	switch (operation) {
+	default:
+		break;
+	case 1:
+		mFlag |= flag;
+		break;
+	case 2:
+		mFlag &= flag;
+		break;
+	case 3:
+		mFlag ^= flag;
+		break;
+	}
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0x18
  */
-void TObject::reset(void const*)
+void TObject::reset(const void* next)
 {
-	// UNUSED FUNCTION
+	mIsActive     = false;
+	mStatus       = STATUS_STILL;
+	mNextSequence = next;
+	mWait         = 0;
 }
 
 /**
  * @note Address: 0x80010330
  * @note Size: 0x238
  */
-bool TObject::forward(u32 a1)
+bool TObject::forward(u32 time)
 {
-	bool end = false;
+	bool forceEnd = false;
 	while (true) {
 		if (mFlag & 0x8000) {
 			switch (mStatus) {
-			case STATUS_SUSPEND:
-			case STATUS_WAIT:
-
-				mStatus = STATUS_INACTIVE;
-				if (bSequence_)
-					do_end();
+			case STATUS_STILL:
+			case STATUS_END:
 				break;
+
+			case STATUS_WAIT:
+			case STATUS_SUSPEND:
+				setStatus(STATUS_INACTIVE);
+				if (mIsActive) {
+					on_end();
+				}
+				break;
+			case STATUS_INACTIVE:
+				break;
+			default:
+				break;
+			}
+
+			return true;
+		}
+
+		if (mStatus == STATUS_INACTIVE) {
+			on_begin();
+			setStatus(STATUS_WAIT);
+		}
+
+		TControl* control = getControl();
+		if (control && control->isSuspended() || isSuspended()) {
+			if (mIsActive) {
+				setStatus(STATUS_SUSPEND);
+				on_wait(time);
 			}
 			return true;
 		}
-		if (mStatus == 8) {
-			do_begin();
-			mStatus = STATUS_WAIT;
-		}
-		if (pControl != nullptr && 0 < pControl->_54 || 0 < _20)
-			break;
 
 		while (true) {
-			pSequence = pSequence_next;
-			if (pSequence == nullptr) {
-				if (bSequence_) {
-					if (!end) {
-						do_wait(0);
+			void* nextSeq = (void*)getNextSequence(); // this has to be void* (not const) to match lol.
+			setSequence(nextSeq);
+			if (!nextSeq) {
+				if (mIsActive) {
+					if (!forceEnd) {
+						on_wait(0);
 					}
-					bSequence_ = false;
-					mStatus    = STATUS_END;
-					do_end();
+					mIsActive = false;
+					setStatus(STATUS_END);
+					on_end();
 				}
 				return false;
 			}
-			if (!bSequence_) {
-				bSequence_ = true;
-				do_begin();
+
+			if (!mIsActive) {
+				mIsActive = true;
+				on_begin();
 			}
-			mStatus = STATUS_WAIT;
-			process_sequence();
-			if (u32Wait_ == 0)
-				break;
-			end             = true;
-			int seqstateold = u32Wait_;
-			if (a1 < u32Wait_) {
-				u32Wait_ -= a1;
-				do_wait(a1);
+
+			setStatus(STATUS_WAIT);
+			if (mWait == 0) {
+				process_sequence_();
+				if (mWait == 0) {
+					break;
+				}
+			}
+			forceEnd = true;
+			if (time >= mWait) {
+				u32 prevWait = mWait;
+				time -= prevWait;
+				mWait = 0;
+				on_wait(prevWait);
+
+			} else {
+				mWait -= time;
+				on_wait(time);
 				return true;
 			}
-			u32Wait_ = 0;
-			a1 -= seqstateold;
-			do_wait(u32Wait_);
 		}
 	}
-	if (bSequence_) {
-		mStatus = STATUS_SUSPEND;
-		do_wait(a1);
-	}
-	return true;
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r29, 0x14(r1)
-	li       r29, 0
-
-lbl_80010354:
-	lhz      r0, 0x1c(r30)
-	rlwinm.  r0, r0, 0, 0x10, 0x10
-	beq      lbl_800103BC
-	lwz      r0, 0x30(r30)
-	cmpwi    r0, 4
-	beq      lbl_8001038C
-	bge      lbl_80010380
-	cmpwi    r0, 2
-	beq      lbl_8001038C
-	bge      lbl_800103B4
-	b        lbl_800103B4
-
-lbl_80010380:
-	cmpwi    r0, 8
-	beq      lbl_800103B4
-	b        lbl_800103B4
-
-lbl_8001038C:
-	li       r0, 8
-	stw      r0, 0x30(r30)
-	lbz      r0, 0x1e(r30)
-	cmplwi   r0, 0
-	beq      lbl_800103B4
-	mr       r3, r30
-	lwz      r12, 8(r30)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-
-lbl_800103B4:
-	li       r3, 1
-	b        lbl_8001054C
-
-lbl_800103BC:
-	lwz      r0, 0x30(r30)
-	cmpwi    r0, 8
-	bne      lbl_800103E4
-	mr       r3, r30
-	lwz      r12, 8(r30)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 2
-	stw      r0, 0x30(r30)
-
-lbl_800103E4:
-	lwz      r3, 0x14(r30)
-	cmplwi   r3, 0
-	beq      lbl_800103FC
-	lwz      r0, 0x54(r3)
-	cmpwi    r0, 0
-	bgt      lbl_80010408
-
-lbl_800103FC:
-	lwz      r0, 0x20(r30)
-	cmpwi    r0, 0
-	ble      lbl_8001043C
-
-lbl_80010408:
-	lbz      r0, 0x1e(r30)
-	cmplwi   r0, 0
-	beq      lbl_80010434
-	li       r0, 4
-	mr       r3, r30
-	stw      r0, 0x30(r30)
-	mr       r4, r31
-	lwz      r12, 8(r30)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80010434:
-	li       r3, 1
-	b        lbl_8001054C
-
-lbl_8001043C:
-	lwz      r0, 0x28(r30)
-	cmplwi   r0, 0
-	stw      r0, 0x24(r30)
-	bne      lbl_800104A4
-	lbz      r0, 0x1e(r30)
-	cmplwi   r0, 0
-	beq      lbl_8001049C
-	clrlwi.  r0, r29, 0x18
-	bne      lbl_80010478
-	mr       r3, r30
-	li       r4, 0
-	lwz      r12, 8(r30)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80010478:
-	li       r3, 0
-	li       r0, 1
-	stb      r3, 0x1e(r30)
-	mr       r3, r30
-	stw      r0, 0x30(r30)
-	lwz      r12, 8(r30)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8001049C:
-	li       r3, 0
-	b        lbl_8001054C
-
-lbl_800104A4:
-	lbz      r0, 0x1e(r30)
-	cmplwi   r0, 0
-	bne      lbl_800104CC
-	li       r0, 1
-	mr       r3, r30
-	stb      r0, 0x1e(r30)
-	lwz      r12, 8(r30)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-
-lbl_800104CC:
-	li       r0, 2
-	stw      r0, 0x30(r30)
-	lwz      r0, 0x2c(r30)
-	cmplwi   r0, 0
-	bne      lbl_800104F4
-	mr       r3, r30
-	bl       process_sequence___Q37JStudio3stb7TObjectFv
-	lwz      r0, 0x2c(r30)
-	cmplwi   r0, 0
-	beq      lbl_80010354
-
-lbl_800104F4:
-	lwz      r4, 0x2c(r30)
-	li       r29, 1
-	cmplw    r31, r4
-	blt      lbl_80010528
-	li       r0, 0
-	mr       r3, r30
-	stw      r0, 0x2c(r30)
-	subf     r31, r4, r31
-	lwz      r12, 8(r30)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8001043C
-
-lbl_80010528:
-	subf     r0, r31, r4
-	mr       r3, r30
-	stw      r0, 0x2c(r30)
-	mr       r4, r31
-	lwz      r12, 8(r30)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 1
-
-lbl_8001054C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -451,198 +229,54 @@ void TObject::do_data(void const*, u32, void const*, u32) { }
  */
 void TObject::process_sequence_()
 {
-	data::TParse_TSequence temp;
-	data::TParse_TSequence::TData data;
+	data::TParse_TSequence seq(getSequence());
+	data::TParse_TSequence::TData dat;
 
-	temp.stbData = pSequence;
-	temp.getData(&data);
-	pSequence_next = (void*)data.next;
-	switch (data.type) {
+	seq.getData(&dat);
+
+	u8 type             = dat.mType;
+	u32 value           = dat.mParam;
+	const void* content = dat.mContent;
+	const void* next    = dat.mNext;
+	setNextSequence(dat.mNext);
+
+	switch (type) {
+	case 0:
+		break;
 	case 1:
-		int bitflag = data.param >> 0x10 & 0xff;
-		if (bitflag == 2)
-			mFlag &= data.param;
-		else if (bitflag == 1)
-			mFlag |= data.param;
-		else if (bitflag == 3)
-			mFlag ^= data.param;
+		setFlag_operation(value);
 		break;
 	case 2:
-		u32Wait_ = data.param;
+		setWait(value);
 		break;
 	case 3:
-		if (data.param & 0x800000) {
-			data.param |= 0xff000000; // gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data;
-		}
-		pSequence_next = (u8*)pSequence + data.param;
+		s32 off       = toInt32FromUInt24(value);
+		void* nextseq = (void*)getSequenceOffset(off);
+		setNextSequence(nextseq);
 		break;
 	case 4:
-		if (data.param & 0x800000) {
-			data.param |= 0xff000000; // gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data
-		}
-		_20 += data.param;
+		u32 val = toInt32FromUInt24(value);
+		suspend(val);
 		break;
 	case 0x80:
-	default:
-		while (data.content < data.next) {
-			stb::data::TParse_TParagraph para;
-			stb::data::TParse_TParagraph::TData data2;
-			para.getData(&data2);
-			if (data2.type < 0x100) {
-				process_paragraph_reserved_(data2.type, data2.content, data2.param);
-				data.content = data2.next;
+		void* p = (void*)content;
+		data::TParse_TParagraph para(nullptr);
+		while (p < next) {
+			para.setRaw(p);
+
+			data::TParse_TParagraph::TData para_data;
+			para.getData(&para_data);
+			if (para_data.mType <= 255) {
+				process_paragraph_reserved_(para_data.mType, para_data.mContent, para_data.mParam);
 			} else {
-				do_paragraph(data2.type, data2.content, data2.param);
-				data.content = data2.next;
+				on_paragraph(para_data.mType, para_data.mContent, para_data.mParam);
 			}
+			p = (void*)para_data.mNext;
 		}
 		break;
+	default:
+		break;
 	}
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	addi     r4, r1, 0x20
-	stw      r31, 0x3c(r1)
-	mr       r31, r3
-	addi     r3, r1, 0xc
-	stw      r30, 0x38(r1)
-	lwz      r0, 0x24(r31)
-	stw      r0, 0xc(r1)
-	bl
-getData__Q47JStudio3stb4data16TParse_TSequenceCFPQ57JStudio3stb4data16TParse_TSequence5TData
-	lbz      r0, 0x20(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r3, 0x28(r1)
-	cmpwi    r0, 3
-	lwz      r30, 0x2c(r1)
-	stw      r30, 0x28(r31)
-	beq      lbl_8001065C
-	bge      lbl_800105D8
-	cmpwi    r0, 1
-	beq      lbl_800105F0
-	bge      lbl_80010654
-	b        lbl_80010708
-
-lbl_800105D8:
-	cmpwi    r0, 0x80
-	beq      lbl_800106A4
-	bge      lbl_80010708
-	cmpwi    r0, 5
-	bge      lbl_80010708
-	b        lbl_80010680
-
-lbl_800105F0:
-	rlwinm   r0, r4, 0x10, 0x18, 0x1f
-	cmpwi    r0, 2
-	beq      lbl_8001062C
-	bge      lbl_8001060C
-	cmpwi    r0, 1
-	bge      lbl_80010618
-	b        lbl_80010708
-
-lbl_8001060C:
-	cmpwi    r0, 4
-	bge      lbl_80010708
-	b        lbl_80010640
-
-lbl_80010618:
-	lhz      r3, 0x1c(r31)
-	clrlwi   r0, r4, 0x10
-	or       r0, r3, r0
-	sth      r0, 0x1c(r31)
-	b        lbl_80010708
-
-lbl_8001062C:
-	lhz      r3, 0x1c(r31)
-	clrlwi   r0, r4, 0x10
-	and      r0, r3, r0
-	sth      r0, 0x1c(r31)
-	b        lbl_80010708
-
-lbl_80010640:
-	lhz      r3, 0x1c(r31)
-	clrlwi   r0, r4, 0x10
-	xor      r0, r3, r0
-	sth      r0, 0x1c(r31)
-	b        lbl_80010708
-
-lbl_80010654:
-	stw      r4, 0x2c(r31)
-	b        lbl_80010708
-
-lbl_8001065C:
-	rlwinm.  r0, r4, 0, 8, 8
-	mr       r3, r4
-	beq      lbl_80010670
-	lwz      r0,
-gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data@sda21(r2) or r3, r4,
-r0
-
-lbl_80010670:
-	lwz      r0, 0x24(r31)
-	add      r0, r0, r3
-	stw      r0, 0x28(r31)
-	b        lbl_80010708
-
-lbl_80010680:
-	rlwinm.  r0, r4, 0, 8, 8
-	mr       r3, r4
-	beq      lbl_80010694
-	lwz      r0,
-gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data@sda21(r2) or r3, r4,
-r0
-
-lbl_80010694:
-	lwz      r0, 0x20(r31)
-	add      r0, r0, r3
-	stw      r0, 0x20(r31)
-	b        lbl_80010708
-
-lbl_800106A4:
-	li       r0, 0
-	stw      r0, 8(r1)
-	b        lbl_80010700
-
-lbl_800106B0:
-	stw      r3, 8(r1)
-	addi     r3, r1, 8
-	addi     r4, r1, 0x10
-	bl
-getData__Q47JStudio3stb4data17TParse_TParagraphCFPQ57JStudio3stb4data17TParse_TParagraph5TData
-	lwz      r4, 0x10(r1)
-	cmplwi   r4, 0xff
-	bgt      lbl_800106E0
-	lwz      r5, 0x18(r1)
-	mr       r3, r31
-	lwz      r6, 0x14(r1)
-	bl       process_paragraph_reserved___Q37JStudio3stb7TObjectFUlPCvUl
-	b        lbl_800106FC
-
-lbl_800106E0:
-	lwz      r12, 8(r31)
-	mr       r3, r31
-	lwz      r5, 0x18(r1)
-	lwz      r12, 0x14(r12)
-	lwz      r6, 0x14(r1)
-	mtctr    r12
-	bctrl
-
-lbl_800106FC:
-	lwz      r3, 0x1c(r1)
-
-lbl_80010700:
-	cmplw    r3, r30
-	blt      lbl_800106B0
-
-lbl_80010708:
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /**
@@ -650,144 +284,30 @@ lbl_80010708:
  * @note Size: 0x13C
  * process_paragraph_reserved___Q37JStudio3stb7TObjectFUlPCvUl
  */
-void TObject::process_paragraph_reserved_(u32 a1, void const* a2, u32 a3)
+void TObject::process_paragraph_reserved_(u32 type, const void* content, u32 size)
 {
-	switch (((u8)a1)) {
-	case 1: {
-		int flag = *(u32*)a2 >> 0x10 & 0xff;
-		s16 flip = *(u16*)a2;
-		switch (flip) {
-		case 1:
-			mFlag |= flip;
-			break;
-		case 2:
-			mFlag &= flip;
-			break;
-		case 3:
-			mFlag ^= flip;
-			break;
-		}
-	} break;
-	case 2: {
-		u32Wait_ = *(u32*)a2;
-	} break;
-	case 3: {
-		pSequence_next = (u8*)pSequence + *(u32*)a2;
-	} break;
-	case 0x80: {
-		do_data(0, 0, a2, a3);
-	} break;
-	case 0x81: {
-		int flag = (int)a2 + (*(u16*)((int)a2 + 2) + 3 & 0xfffffffc) + 4;
-		do_data((u8*)a2 + 4, (uint)(*(u16*)((int)a2 + 2)), &flag, a3 - (flag - (int)a2));
-	} break;
+	switch (type) {
+	case 0x1:
+		setFlag_operation(*(u32*)content);
+		break;
+	case 0x2:
+		setWait(*(u32*)content);
+		break;
+	case 0x3:
+		const void* seq = getSequenceOffset(*(s32*)content);
+		setNextSequence(seq);
+		break;
+	case 0x80:
+		on_data(nullptr, 0, content, size);
+		break;
+	case 0x81:
+		data::TParse_TParagraph_dataID dataID(content);
+		const void* temp = dataID.getContent();
+		on_data(dataID.getID(), dataID.getIDSize(), temp, size - ((u32)temp - (u32)dataID.getRaw()));
+		break;
+	case 0x82:
+		break;
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmpwi     r4, 0x80
-	  mr        r8, r5
-	  stw       r0, 0x14(r1)
-	  mr        r7, r6
-	  beq-      .loc_0xDC
-	  bge-      .loc_0x44
-	  cmpwi     r4, 0x2
-	  beq-      .loc_0xBC
-	  bge-      .loc_0x38
-	  cmpwi     r4, 0x1
-	  bge-      .loc_0x54
-	  b         .loc_0x12C
-
-	.loc_0x38:
-	  cmpwi     r4, 0x4
-	  bge-      .loc_0x12C
-	  b         .loc_0xC8
-
-	.loc_0x44:
-	  cmpwi     r4, 0x82
-	  beq-      .loc_0x12C
-	  bge-      .loc_0x12C
-	  b         .loc_0xFC
-
-	.loc_0x54:
-	  lwz       r5, 0x0(r8)
-	  rlwinm    r0,r5,16,24,31
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x94
-	  bge-      .loc_0x74
-	  cmpwi     r0, 0x1
-	  bge-      .loc_0x80
-	  b         .loc_0x12C
-
-	.loc_0x74:
-	  cmpwi     r0, 0x4
-	  bge-      .loc_0x12C
-	  b         .loc_0xA8
-
-	.loc_0x80:
-	  lhz       r4, 0x1C(r3)
-	  rlwinm    r0,r5,0,16,31
-	  or        r0, r4, r0
-	  sth       r0, 0x1C(r3)
-	  b         .loc_0x12C
-
-	.loc_0x94:
-	  lhz       r4, 0x1C(r3)
-	  rlwinm    r0,r5,0,16,31
-	  and       r0, r4, r0
-	  sth       r0, 0x1C(r3)
-	  b         .loc_0x12C
-
-	.loc_0xA8:
-	  lhz       r4, 0x1C(r3)
-	  rlwinm    r0,r5,0,16,31
-	  xor       r0, r4, r0
-	  sth       r0, 0x1C(r3)
-	  b         .loc_0x12C
-
-	.loc_0xBC:
-	  lwz       r0, 0x0(r8)
-	  stw       r0, 0x2C(r3)
-	  b         .loc_0x12C
-
-	.loc_0xC8:
-	  lwz       r4, 0x24(r3)
-	  lwz       r0, 0x0(r8)
-	  add       r0, r4, r0
-	  stw       r0, 0x28(r3)
-	  b         .loc_0x12C
-
-	.loc_0xDC:
-	  lwz       r12, 0x8(r3)
-	  mr        r6, r8
-	  li        r4, 0
-	  li        r5, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x12C
-
-	.loc_0xFC:
-	  lhz       r5, 0x2(r8)
-	  addi      r4, r8, 0x4
-	  lwz       r12, 0x8(r3)
-	  addi      r0, r5, 0x3
-	  rlwinm    r6,r0,0,0,29
-	  lwz       r12, 0x1C(r12)
-	  addi      r6, r6, 0x4
-	  add       r6, r8, r6
-	  sub       r0, r6, r8
-	  sub       r7, r7, r0
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x12C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /**
@@ -818,15 +338,15 @@ TObject_control::TObject_control(data::TParse_TBlock_object const&)
  * __ct__Q37JStudio3stb8TControlFv
  */
 TControl::TControl()
-    : _4(0)
-    , _8(0)
-    , pFactory(nullptr)
+    : _04(0)
+    , _08(0)
+    , mFactory(nullptr)
     , mObjectContainer()
     , mObject_control(nullptr, 0)
-    , _54(0)
+    , mSuspend(0)
 {
 	mStatus                  = 0;
-	mObject_control.pControl = this;
+	mObject_control.mControl = this;
 }
 
 /**
@@ -834,34 +354,20 @@ TControl::TControl()
  * @note Size: 0x5C
  * __dt__Q37JStudio3stb15TObject_controlFv
  */
-// stb::TObject_control::~TObject_control() { }
-
-} // namespace stb
-// } // namespace JStudio
-
-/**
- * @note Address: N/A
- * @note Size: 0x54
- */
-// void __dt__Q27JGadget37TLinkList<JStudio::stb::TObject, -12> Fv()
-//{
-// UNUSED FUNCTION
-//}
-
-// namespace JStudio {
+// TObject_control::~TObject_control() { }
 
 /**
  * @note Address: 0x8001094C
  * @note Size: 0x9C
  * __dt__Q37JStudio3stb8TControlFv
  */
-stb::TControl::~TControl() { mObject_control.pControl = nullptr; }
+TControl::~TControl() { mObject_control.mControl = nullptr; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x54
  */
-void stb::TControl::appendObject(JStudio::stb::TObject*)
+void TControl::appendObject(TObject*)
 {
 	// UNUSED FUNCTION
 }
@@ -870,7 +376,7 @@ void stb::TControl::appendObject(JStudio::stb::TObject*)
  * @note Address: N/A
  * @note Size: 0x38
  */
-void stb::TControl::removeObject(JStudio::stb::TObject*)
+void TControl::removeObject(TObject*)
 {
 	// UNUSED FUNCTION
 }
@@ -879,7 +385,7 @@ void stb::TControl::removeObject(JStudio::stb::TObject*)
  * @note Address: N/A
  * @note Size: 0x6C
  */
-void stb::TControl::removeObject_all()
+void TControl::removeObject_all()
 {
 	// UNUSED FUNCTION
 }
@@ -888,7 +394,7 @@ void stb::TControl::removeObject_all()
  * @note Address: N/A
  * @note Size: 0x64
  */
-void stb::TControl::destroyObject(JStudio::stb::TObject*)
+void TControl::destroyObject(TObject*)
 {
 	// UNUSED FUNCTION
 }
@@ -897,7 +403,7 @@ void stb::TControl::destroyObject(JStudio::stb::TObject*)
  * @note Address: N/A
  * @note Size: 0x94
  */
-void stb::TControl::destroyObject_all()
+void TControl::destroyObject_all()
 {
 	// UNUSED FUNCTION
 }
@@ -906,115 +412,19 @@ void stb::TControl::destroyObject_all()
  * @note Address: 0x800109E8
  * @note Size: 0x94
  */
-const JStudio::stb::TObject* stb::TControl::getObject(void const* id, u32 length)
+TObject* TControl::getObject(void const* id, u32 length)
 {
-	JGadget::TLinkList<TObject, -12>::iterator start = mObjectContainer.start();
+	JGadget::TLinkList<TObject, -12>::iterator start = mObjectContainer.begin();
 	JGadget::TLinkList<TObject, -12>::iterator end   = mObjectContainer.end();
 	JGadget::TLinkList<TObject, -12>::iterator bob   = std::find_if(start, end, object::TPRObject_ID_equal(id, length));
 	return (bob != end) ? &*bob : nullptr;
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	addi     r0, r3, 0x14
-	addi     r6, r1, 0x40
-	lwz      r7, 0x14(r3)
-	addi     r3, r1, 0x30
-	stw      r0, 0x14(r1)
-	stw      r4, 0x40(r1)
-	addi     r4, r1, 0x2c
-	stw      r5, 0x44(r1)
-	addi     r5, r1, 0x28
-	stw      r7, 0x1c(r1)
-	stw      r7, 0x18(r1)
-	stw      r7, 0x3c(r1)
-	stw      r0, 0x10(r1)
-	stw      r0, 0x38(r1)
-	stw      r0, 0x28(r1)
-	stw      r7, 0x2c(r1)
-	bl
-	"find_if<Q37JGadget37TLinkList<Q37JStudio3stb7TObject,-12>8iterator,Q37JStudio6object18TPRObject_ID_equal>__3stdFQ37JGadget37TLinkList<Q37JStudio3stb7TObject,-12>8iteratorQ37JGadget37TLinkList<Q37JStudio3stb7TObject,-12>8iteratorQ37JStudio6object18TPRObject_ID_equal"
-	lwz      r6, 0x30(r1)
-	lwz      r5, 0x38(r1)
-	stw      r6, 0x34(r1)
-	addi     r0, r6, -12
-	subf     r4, r5, r6
-	subf     r3, r6, r5
-	or       r3, r4, r3
-	stw      r5, 0x24(r1)
-	srawi    r3, r3, 0x1f
-	stw      r6, 0x20(r1)
-	and      r3, r0, r3
-	stw      r5, 0xc(r1)
-	stw      r6, 8(r1)
-	lwz      r0, 0x54(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
-
-/**
- * @note Address: 0x80010A7C
- * @note Size: 0x9C
- */
-// void find_if(JGadget::TNodeLinkList::iterator, JGadget::TNodeLinkList::iterator, JStudio::object::TPRObject_ID_equal)
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  stwu      r1, -0x30(r1)
-// 	  mflr      r0
-// 	  stw       r0, 0x34(r1)
-// 	  stw       r31, 0x2C(r1)
-// 	  mr        r31, r6
-// 	  stw       r30, 0x28(r1)
-// 	  mr        r30, r5
-// 	  stw       r29, 0x24(r1)
-// 	  mr        r29, r4
-// 	  stw       r28, 0x20(r1)
-// 	  mr        r28, r3
-// 	  b         .loc_0x3C
-
-// 	.loc_0x30:
-// 	  lwz       r3, 0x0(r29)
-// 	  lwz       r0, 0x0(r3)
-// 	  stw       r0, 0x0(r29)
-
-// 	.loc_0x3C:
-// 	  lwz       r3, 0x0(r30)
-// 	  lwz       r0, 0x0(r29)
-// 	  stw       r3, 0x14(r1)
-// 	  cmplw     r0, r3
-// 	  stw       r0, 0x10(r1)
-// 	  stw       r3, 0xC(r1)
-// 	  stw       r0, 0x8(r1)
-// 	  beq-      .loc_0x74
-// 	  lwz       r3, 0x0(r29)
-// 	  mr        r4, r31
-// 	  subi      r3, r3, 0xC
-// 	  bl        -0x95C
-// 	  rlwinm.   r0,r3,0,24,31
-// 	  beq+      .loc_0x30
-
-// 	.loc_0x74:
-// 	  lwz       r0, 0x0(r29)
-// 	  stw       r0, 0x0(r28)
-// 	  lwz       r0, 0x34(r1)
-// 	  lwz       r31, 0x2C(r1)
-// 	  lwz       r30, 0x28(r1)
-// 	  lwz       r29, 0x24(r1)
-// 	  lwz       r28, 0x20(r1)
-// 	  mtlr      r0
-// 	  addi      r1, r1, 0x30
-// 	  blr
-// 	*/
-// }
 
 /**
  * @note Address: N/A
  * @note Size: 0x7C
  */
-void stb::TControl::getObject_index(u32)
+void TControl::getObject_index(u32)
 {
 	// UNUSED FUNCTION
 }
@@ -1023,7 +433,7 @@ void stb::TControl::getObject_index(u32)
  * @note Address: N/A
  * @note Size: 0x84
  */
-void stb::TControl::reset()
+void TControl::reset()
 {
 	// UNUSED FUNCTION
 }
@@ -1032,8 +442,29 @@ void stb::TControl::reset()
  * @note Address: 0x80010B18
  * @note Size: 0xF0
  */
-bool stb::TControl::forward(u32)
+bool TControl::forward(u32 time)
 {
+	mSuspend                                       = referObject_control().getSuspend();
+	bool result                                    = referObject_control().forward(time);
+	int statusAnd                                  = 15;
+	int statusOr                                   = 0;
+	JGadget::TLinkList<TObject, -12>::iterator it  = mObjectContainer.begin();
+	JGadget::TLinkList<TObject, -12>::iterator end = mObjectContainer.end();
+	while (it != (end)) {
+		bool check   = false;
+		TObject* obj = (it++).operator->();
+		if (obj->forward(time) || result) {
+			check = true;
+		}
+		result = check;
+
+		statusAnd &= obj->getStatus();
+		statusOr |= obj->getStatus();
+	}
+
+	setStatus(statusAnd | statusOr << 16);
+
+	return result;
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -1111,27 +542,27 @@ lbl_80010BC4:
  * @note Size: 0x48
  * __dt__Q37JStudio3stb8TFactoryFv
  */
-stb::TFactory::~TFactory() { }
+TFactory::~TFactory() { }
 
 /**
  * @note Address: 0x80010C50
  * @note Size: 0x8
  */
-int stb::TFactory::create(JStudio::stb::data::TParse_TBlock_object const&) { return 0; }
+TObject* TFactory::create(data::TParse_TBlock_object const&) { return nullptr; }
 
 /**
  * @note Address: 0x80010C58
  * @note Size: 0x3C
  * destroy__Q37JStudio3stb8TFactoryFPQ37JStudio3stb7TObject
  */
-void stb::TFactory::destroy(JStudio::stb::TObject* object) { delete object; }
+void TFactory::destroy(TObject* object) { delete object; }
 
 /**
  * @note Address: 0x80010C94
  * @note Size: 0x20
  * __ct__Q37JStudio3stb6TParseFPQ37JStudio3stb8TControl
  */
-stb::TParse::TParse(JStudio::stb::TControl* control)
+TParse::TParse(TControl* control)
     : JGadget::binary::TParse_header_block()
     , mControl(control)
 {
@@ -1142,169 +573,108 @@ stb::TParse::TParse(JStudio::stb::TControl* control)
  * @note Size: 0x60
  * __dt__Q37JStudio3stb6TParseFv
  */
-stb::TParse::~TParse() { }
+TParse::~TParse() { }
 
 /**
  * @note Address: 0x80010D14
  * @note Size: 0xC8
  */
-bool stb::TParse::parseHeader_next(void const** data, u32* blockCount, u32 p3)
+bool TParse::parseHeader_next(const void** data, u32* blockCount, u32 flags)
 {
-	// const data::TParse_THeader* header = static_cast<const data::TParse_THeader*>(*data);
-	// *data                              = static_cast<const void*>(header + 1);
-	// *blockCount = header->blockCount;
-	const void* header = *data;
-	*data              = static_cast<const data::TParse_THeader*>(header) + 1;
-	*blockCount        = static_cast<const data::TParse_THeader*>(header)->blockCount;
-	if (memcmp(&static_cast<const data::TParse_THeader*>(header)->mSignature, &data::ga4cSignature, sizeof(u32)) != 0) {
+	const void* pData = *data;
+
+	const data::TParse_THeader header(pData);
+	*data       = header.getContent();
+	*blockCount = header.getBlockNum();
+
+	if (memcmp(header.getSignature(), &data::ga4cSignature, 4) != 0) {
 		return false;
 	}
-	// if (header->_04 != 0xFEFF) {
-	if (static_cast<const data::TParse_THeader*>(header)->_04 != 0xFEFF) {
+
+	if (header.getByteOrder() != 0xFEFF) {
 		return false;
 	}
-	// if (header->_06 < 1) {
-	if (static_cast<const data::TParse_THeader*>(header)->_06 < 1) {
+
+	u32 version = header.getVersion();
+	if (version < 1) {
+		return false;
+	} else if (version > 3) {
 		return false;
 	}
-	// if (header->_06 > 3) {
-	if (static_cast<const data::TParse_THeader*>(header)->_06 > 3) {
-		return false;
-	}
-	return parseHeader(*static_cast<const data::TParse_THeader*>(header), p3);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r6
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lwz      r7, 0(r4)
-	stw      r7, 8(r1)
-	addi     r0, r7, 0x20
-	stw      r0, 0(r4)
-	addi     r4, r2, ga4cSignature__Q37JStudio3stb4data@sda21
-	lwz      r3, 8(r1)
-	lwz      r0, 0xc(r3)
-	stw      r0, 0(r5)
-	li       r5, 4
-	lwz      r3, 8(r1)
-	bl       memcmp
-	cmpwi    r3, 0
-	beq      lbl_80010D6C
-	li       r3, 0
-	b        lbl_80010DC4
-
-lbl_80010D6C:
-	lwz      r3, 8(r1)
-	lhz      r0, 4(r3)
-	cmplwi   r0, 0xfeff
-	beq      lbl_80010D84
-	li       r3, 0
-	b        lbl_80010DC4
-
-lbl_80010D84:
-	lhz      r0, 6(r3)
-	cmplwi   r0, 1
-	bge      lbl_80010D98
-	li       r3, 0
-	b        lbl_80010DC4
-
-lbl_80010D98:
-	cmplwi   r0, 3
-	ble      lbl_80010DA8
-	li       r3, 0
-	b        lbl_80010DC4
-
-lbl_80010DA8:
-	mr       r3, r30
-	mr       r5, r31
-	lwz      r12, 0(r30)
-	addi     r4, r1, 8
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80010DC4:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return parseHeader(header, flags);
 }
 
 /**
  * @note Address: 0x80010DDC
  * @note Size: 0x54
  */
-bool stb::TParse::parseBlock_next(void const**, u32*, u32)
+bool TParse::parseBlock_next(const void** dat, u32* size, u32 flags)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r7, 0(r4)
-	stw      r7, 8(r1)
-	lwz      r0, 0(r7)
-	add      r0, r7, r0
-	stw      r0, 0(r4)
-	addi     r4, r1, 8
-	lwz      r7, 8(r1)
-	lwz      r0, 0(r7)
-	stw      r0, 0(r5)
-	mr       r5, r6
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	const void* content = *dat;
+
+	data::TParse_TBlock blk(content);
+	*dat  = blk.getNext();
+	*size = blk.getSize();
+	return parseBlock_block(blk, flags);
 }
 
 /**
  * @note Address: 0x80010E30
  * @note Size: 0x8
  */
-bool stb::TParse::parseHeader(JStudio::stb::data::TParse_THeader const&, u32) { return true; }
+bool TParse::parseHeader(data::TParse_THeader const&, u32) { return true; }
 
 /**
  * @note Address: 0x80010E38
  * @note Size: 0x38
  */
-void stb::TParse::parseBlock_block(JStudio::stb::data::TParse_TBlock const& block, u32 n)
-{
-	parseBlock_object(*block.filedata, n);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x0(r4)
-	  addi      r4, r1, 0x8
-	  stw       r0, 0x8(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+bool TParse::parseBlock_block(const data::TParse_TBlock& block, u32 flags) { return parseBlock_object(block.get(), flags); }
 
 /**
  * @note Address: 0x80010E70
  * @note Size: 0x154
  */
-void stb::TParse::parseBlock_object(data::TParse_TBlock_object const&, u32)
+bool TParse::parseBlock_object(const data::TParse_TBlock_object& object, u32 flags)
 {
+	TControl* control = getControl();
+
+	if (object.getType() == data::BLOCK_NONE) {
+		TObject_control& ref = control->referObject_control();
+		ref.reset(object.getContent());
+		return true;
+	}
+
+	if (flags & 0x10) {
+		TObject* newObj = control->getObject(object.getID(), object.getIDSize());
+		if (newObj) {
+			newObj->reset(object.getContent());
+			return true;
+		}
+	}
+
+	if (flags & 0x20) {
+		return true;
+	}
+
+	TFactory* factory = control->getFactory();
+	if (!factory) {
+		return false;
+	}
+
+	TObject* newObj = factory->create(object);
+	if (!newObj) {
+		if (flags & 0x40) {
+			return true;
+		}
+
+		char a5c[8];
+		char t[16];
+		int type = object.getType();
+		data::toString_block(a5c, type);
+		return false;
+	}
+	control->appendObject(newObj);
+	return true;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)
@@ -1406,4 +776,5 @@ void stb::TParse::parseBlock_object(data::TParse_TBlock_object const&, u32)
 	  blr
 	*/
 }
+} // namespace stb
 } // namespace JStudio

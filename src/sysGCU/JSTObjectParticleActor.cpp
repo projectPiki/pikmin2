@@ -4,7 +4,7 @@
 #include "Game/MoviePlayer.h"
 #include "SysShape/Joint.h"
 #include "stl/string.h"
-#include "JSystem/JStudio/stb-data.h"
+#include "JSystem/JStudio/stb-data-parse.h"
 #include "ParticleMgr.h"
 #include "Game/GameSystem.h"
 #include "Game/gameStages.h"

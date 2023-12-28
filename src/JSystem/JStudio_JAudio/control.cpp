@@ -42,10 +42,10 @@ TCreateObject::~TCreateObject() { }
  * @note Address: 0x80015D70
  * @note Size: 0x78
  */
-bool TCreateObject::create(JStudio::TObject** object, const JStudio::stb::data::TParse_TBlock_object& parseBlock)
+bool TCreateObject::create(JStudio::TObject** object, const JStudio::stb::data::TParse_TBlock_object& data)
 {
 	JStudioAudioCreateFunc createFunc;
-	switch (parseBlock.filedata->mDataType) {
+	switch (data.getType()) {
 	case 'JSND':
 		createFunc = createObject_SOUND_JAI_;
 		break;
@@ -53,7 +53,7 @@ bool TCreateObject::create(JStudio::TObject** object, const JStudio::stb::data::
 		return false;
 	}
 
-	*object = createFunc(parseBlock, mSound, mSystem);
+	*object = createFunc(data, mSound, mSystem);
 	return true;
 }
 } // namespace JStudio_JAudio

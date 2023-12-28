@@ -3,7 +3,7 @@
 
 #include "JSystem/JStudio/TAdaptor.h"
 #include "JSystem/JStudio/TCreateObject.h"
-#include "JSystem/JStudio/stb-data.h"
+#include "JSystem/JStudio/stb-data-parse.h"
 #include "JSystem/JMessage/TControl.h"
 
 namespace JStudio_JMessage {
