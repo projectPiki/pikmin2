@@ -98,13 +98,14 @@ void BaseFlockMgr::resolveCollision(f32 p1)
 			if (isFlagAlive(j)) {
 				for (int k = 0; k < getMaxObjects(); k++) {
 					if (isFlagAlive(k) && j != k) {
-						TFlock* flock1 = getFlock(j);
-						TFlock* flock2 = getFlock(k);
+						TFlock* flock1 = getFlock(j); // r31
+						TFlock* flock2 = getFlock(k); // r3
 						Vector3f sep   = *flock1 - *flock2;
-						if (sep.length() < p1) {
+						sep.y          = 0.0f;
+						if (sep.length2D() < p1) {
 							sep.normalise();
 							sep *= halfVal;
-							(Vector3f)* flock1 = *flock2 - sep;
+							(Vector3f)* flock1 = *flock1 - sep;
 							(Vector3f)* flock2 = *flock2 + sep;
 						}
 					}

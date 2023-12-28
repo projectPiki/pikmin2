@@ -659,8 +659,8 @@ struct BigTreasureElecAttack : public CNode {
 	bool update();
 
 	void init();
-	void start(Vector3f&, Vector3f&, bool);
-	void startInteract(BigTreasureElecAttack*);
+	void start(Vector3f& velocity, Vector3f& position, bool isVisibleNode);
+	void startInteract(BigTreasureElecAttack* connectedNode);
 	void finish();
 
 	inline BigTreasureElecAttack* getNext() const { return static_cast<BigTreasureElecAttack*>(mNext); }
@@ -668,16 +668,16 @@ struct BigTreasureElecAttack : public CNode {
 
 	// _00      = VTBL
 	// _00-_18  = CNode
-	Obj* mOwner;                         // _18
-	BigTreasureAttackData* mAttackData;  // _1C
-	bool _20;                            // _20
-	Sys::Triangle* mFloorTri;            // _24
-	Vector3f mVelocity;                  // _28
-	Vector3f mPosition;                  // _34
-	BigTreasureElecAttack* _40;          // _40
-	efx::TOootaElec* mEfxElec;           // _44
-	efx::TOootaElecparts* mEfxElecParts; // _48
-	efx::TOootaPhouden* mEfxPhouden;     // _4C
+	Obj* mOwner;                           // _18
+	BigTreasureAttackData* mAttackData;    // _1C
+	bool mIsVisibleNode;                   // _20, has spawned in overworld - first node doesn't spawn and stays in TD
+	Sys::Triangle* mFloorTri;              // _24
+	Vector3f mVelocity;                    // _28
+	Vector3f mPosition;                    // _34
+	BigTreasureElecAttack* mConnectedNode; // _40, next node in chain that was activated by this node
+	efx::TOootaElec* mEfxElec;             // _44
+	efx::TOootaElecparts* mEfxElecParts;   // _48
+	efx::TOootaPhouden* mEfxPhouden;       // _4C
 };
 
 struct BigTreasureFireAttack : public CNode {
@@ -688,7 +688,7 @@ struct BigTreasureFireAttack : public CNode {
 	bool update();
 
 	void init();
-	void start(Vector3f&, Vector3f&);
+	void start(Vector3f& emitDirection, Vector3f& emitPosition);
 	void finish();
 
 	inline BigTreasureFireAttack* getNext() const { return static_cast<BigTreasureFireAttack*>(mNext); }
@@ -710,7 +710,7 @@ struct BigTreasureGasAttack : public CNode {
 	bool update();
 
 	void init();
-	void start(Vector3f&, f32);
+	void start(Vector3f& emitPosition, f32 emitAngle);
 
 	inline BigTreasureGasAttack* getNext() const { return static_cast<BigTreasureGasAttack*>(mNext); }
 	inline BigTreasureGasAttack* getChild() const { return static_cast<BigTreasureGasAttack*>(mChild); }
@@ -732,7 +732,7 @@ struct BigTreasureWaterAttack : public CNode {
 	bool update();
 
 	void init();
-	void start(Vector3f&, Vector3f&);
+	void start(Vector3f& velocity, Vector3f& position);
 	void finish();
 
 	inline BigTreasureWaterAttack* getNext() const { return static_cast<BigTreasureWaterAttack*>(mNext); }
@@ -762,7 +762,7 @@ struct BigTreasureAttackMgr {
 	void startNewGasList();
 	void updateGasAttack();
 	void updateGasEmitPosition();
-	void updateGasSePosition(BigTreasureGasAttack* attack, int nodeType);
+	void updateGasSePosition(BigTreasureGasAttack* attack, int armIdx);
 
 	void startWaterAttack();
 	void startNewWaterList();
@@ -815,7 +815,7 @@ struct BigTreasureAttackMgr {
 	efx::TOootaElecLeg* mEfxElecLeg[4][3];         // _D0
 	efx::TOootaElecAttack1* mEfxElecAttack1;       // _100
 	efx::TOootaElecAttack2* mEfxElecAttack2;       // _104
-	int _108[3];                                   // _108
+	int mElecSENodeIDs[3];                         // _108
 	JointShadowRootNode* mShadowRootNode;          // _114
 	AttackShadowNode** mAttackShadowNodes;         // _118, array of 16 ptrs
 	BigTreasureAttackData* mAttackData;            // _11C

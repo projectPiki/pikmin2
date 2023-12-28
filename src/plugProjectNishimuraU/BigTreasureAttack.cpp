@@ -9,6 +9,7 @@
 #define FIRE_NAVI_FLICK_CHANCE  (0.33f)
 #define GAS_NAVI_FLICK_CHANCE   (0.67f)
 #define WATER_NAVI_FLICK_CHANCE (1.0f)
+#define ELEC_NAVI_FLICK_CHANCE  (0.5f)
 
 namespace Game {
 namespace BigTreasure {
@@ -350,16 +351,16 @@ void BigTreasureWaterAttack::finish()
  */
 BigTreasureElecAttack::BigTreasureElecAttack(Obj* obj, BigTreasureAttackParameter* data)
 {
-	mOwner      = obj;
-	mAttackData = data;
-	_20         = true;
-	mFloorTri   = nullptr;
+	mOwner         = obj;
+	mAttackData    = data;
+	mIsVisibleNode = true;
+	mFloorTri      = nullptr;
 	mVelocity.setZero();
 	mPosition.setZero();
-	_40           = nullptr;
-	mEfxElec      = new efx::TOootaElec;
-	mEfxElecParts = new efx::TOootaElecparts(&mPosition);
-	mEfxPhouden   = new efx::TOootaPhouden(&mPosition);
+	mConnectedNode = nullptr;
+	mEfxElec       = new efx::TOootaElec;
+	mEfxElecParts  = new efx::TOootaElecparts(&mPosition);
+	mEfxPhouden    = new efx::TOootaPhouden(&mPosition);
 }
 
 /**
@@ -375,14 +376,14 @@ void BigTreasureElecAttack::init()
  * @note Address: N/A
  * @note Size: 0x80
  */
-void BigTreasureElecAttack::start(Vector3f& velocity, Vector3f& position, bool check)
+void BigTreasureElecAttack::start(Vector3f& velocity, Vector3f& position, bool isVisibleNode)
 {
-	mFloorTri = nullptr;
-	mVelocity = velocity;
-	mPosition = position;
-	_20       = check;
-	_40       = nullptr;
-	if (_20) {
+	mFloorTri      = nullptr;
+	mVelocity      = velocity;
+	mPosition      = position;
+	mIsVisibleNode = isVisibleNode;
+	mConnectedNode = nullptr;
+	if (mIsVisibleNode) {
 		mEfxElecParts->create(nullptr);
 	}
 }
@@ -402,7 +403,7 @@ void BigTreasureElecAttack::startInteract(BigTreasureElecAttack*)
  */
 bool BigTreasureElecAttack::update()
 {
-	if (_20) {
+	if (mIsVisibleNode) {
 		Vector3f pos = mPosition;
 		pos.y += 20.0f;
 		Sys::Sphere moveSphere(pos, 20.0f);
@@ -432,9 +433,9 @@ bool BigTreasureElecAttack::update()
 		mPosition = mOwner->mModel->getJoint("otakara_elec_eff")->getWorldMatrix()->getBasis(3);
 	}
 
-	if (_40) {
-		Vector3f partnerSep = _40->mPosition - mPosition; // f30, f26, f31
-		f32 dist            = partnerSep.normalise();     // f29
+	if (mIsVisibleNode) {
+		Vector3f partnerSep = mConnectedNode->mPosition - mPosition; // f30, f26, f31
+		f32 dist            = partnerSep.normalise();                // f29
 
 		Vector3f yAxis(0.0f, 1.0f, 0.0f);
 		Vector3f crossVec1 = cross(partnerSep, yAxis); // f28, f25, f27
@@ -473,7 +474,7 @@ bool BigTreasureElecAttack::update()
 								continue;
 							}
 
-							if (randWeightFloat(1.0f) < 0.5f) {
+							if (randWeightFloat(1.0f) < ELEC_NAVI_FLICK_CHANCE) {
 								InteractFlick flick(mOwner, 0.0f, 0.0f, FLICK_BACKWARD_ANGLE);
 								creature->stimulate(flick);
 							} else {
@@ -1021,12 +1022,12 @@ lbl_802F4BFC:
  */
 void BigTreasureElecAttack::finish()
 {
-	_40 = nullptr;
+	mConnectedNode = nullptr;
 	mEfxElecParts->fade();
 	mEfxElec->fade();
 	mEfxPhouden->fade();
 
-	if (_20) {
+	if (mIsVisibleNode) {
 		efx::Arg fxArg(mPosition);
 		efx::TOootaPdead deadFX;
 		deadFX.create(&fxArg);
@@ -1134,11 +1135,11 @@ void BigTreasureAttackMgr::init()
 
 	FOREACH_NODE(BigTreasureElecAttack, mElecAttackNodes->mChild, elecNode)
 	{
-		elecNode->_20       = true;
-		elecNode->mFloorTri = nullptr;
+		elecNode->mIsVisibleNode = true;
+		elecNode->mFloorTri      = nullptr;
 		elecNode->mVelocity.setZero();
 		elecNode->mPosition.setZero();
-		elecNode->_40 = nullptr;
+		elecNode->mConnectedNode = nullptr;
 	}
 
 	Matrixf* fireMat = mObj->mModel->getJoint("otakara_fire_eff")->getWorldMatrix();
@@ -2373,10 +2374,10 @@ void BigTreasureAttackMgr::startElecAttack()
 		counter++;
 	}
 
-	f32 attackVal = (f32)mAttackData->mElecMaxNodes * 0.25f;
-	_108[0]       = attackVal * 1.0f;
-	_108[1]       = attackVal * 2.0f;
-	_108[2]       = attackVal * 3.0f;
+	f32 attackVal     = (f32)mAttackData->mElecMaxNodes * 0.25f;
+	mElecSENodeIDs[0] = attackVal * 1.0f;
+	mElecSENodeIDs[1] = attackVal * 2.0f;
+	mElecSENodeIDs[2] = attackVal * 3.0f;
 
 	/*
 	stwu     r1, -0xd0(r1)
@@ -2712,22 +2713,22 @@ void BigTreasureAttackMgr::startNewElecList()
 		mEfxElecAttack2->create(nullptr);
 
 		BigTreasureElecAttack* nextNode = elecNode->getNext();
-		if (nextNode && !elecNode->_40) {
-			elecNode->_40 = nextNode;
-			if (elecNode->_40) {
+		if (nextNode && !elecNode->mConnectedNode) {
+			elecNode->mConnectedNode = nextNode;
+			if (elecNode->mConnectedNode) {
 				elecNode->mEfxPhouden->create(nullptr);
-				elecNode->mEfxElec->setPosptr(&elecNode->mPosition, &elecNode->_40->mPosition);
+				elecNode->mEfxElec->setPosptr(&elecNode->mPosition, &elecNode->mConnectedNode->mPosition);
 				elecNode->mEfxElec->create(nullptr);
 			}
 		}
 
 		for (int i = 0; i < mAttackData->mElecPlacedNodes; i++) {
 			BigTreasureElecAttack* nextNextNode = elecNode->getNext();
-			if (nextNextNode && !nextNode->_40) {
-				nextNode->_40 = nextNextNode;
-				if (nextNode->_40) {
+			if (nextNextNode && !nextNode->mConnectedNode) {
+				nextNode->mConnectedNode = nextNextNode;
+				if (nextNode->mConnectedNode) {
 					nextNode->mEfxPhouden->create(nullptr);
-					nextNode->mEfxElec->setPosptr(&nextNode->mPosition, &nextNode->_40->mPosition);
+					nextNode->mEfxElec->setPosptr(&nextNode->mPosition, &nextNode->mConnectedNode->mPosition);
 					nextNode->mEfxElec->create(nullptr);
 				}
 			}
@@ -2752,13 +2753,13 @@ void BigTreasureAttackMgr::updateElecAttack()
 		BigTreasureElecAttack* prevNode = elecNode->getPrev();
 		elecNode->update();
 
-		if (elecNode == mActiveElecList->mChild && elecNode->_40) {
+		if (elecNode == mActiveElecList->mChild && elecNode->mConnectedNode) {
 			PSStartSoundVec(PSSE_EN_BIGTAKARA_E_SPARK, (Vec*)&elecNode->mPosition);
-		} else if (prevNode && prevNode->_40 && !elecNode->_40) {
+		} else if (prevNode && prevNode->mConnectedNode && !elecNode->mConnectedNode) {
 			PSStartSoundVec(PSSE_EN_BIGTAKARA_E_SPARK, (Vec*)&elecNode->mPosition);
-		} else if (elecNode->_40) {
+		} else if (elecNode->mConnectedNode) {
 			for (int j = 0; j < 3; j++) {
-				if (i == _108[j]) {
+				if (i == mElecSENodeIDs[j]) {
 					PSStartSoundVec(PSSE_EN_BIGTAKARA_E_SUSTAIN, (Vec*)&elecNode->mPosition);
 					break;
 				}

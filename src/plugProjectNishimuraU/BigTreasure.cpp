@@ -18,8 +18,10 @@
 namespace Game {
 namespace BigTreasure {
 
+#ifdef MATCHING
 static const int unusedBigTreasureArray[] = { 0, 0, 0 };
 static const char bigTreasureName[]       = "246-BigTreasure";
+#endif
 
 /**
  * @note Address: 0x802DBBB4

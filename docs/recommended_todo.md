@@ -97,7 +97,7 @@
 ### <section id="plugProjectKandoU">plugProjectKandoU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/flockMgr.cpp">flockMgr.cpp</a> | 7424 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/cellIterator.cpp">cellIterator.cpp</a> | 9436 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/flockMgr.cpp">flockMgr.cpp</a> | 7469 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/cellIterator.cpp">cellIterator.cpp</a> | 9436 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/mapMgrTraceMove.cpp">mapMgrTraceMove.cpp</a> | 9736 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiEnter.cpp">aiEnter.cpp</a> | 10815 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/naviWhistle.cpp">naviWhistle.cpp</a> | 11601 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/itemHole.cpp">itemHole.cpp</a> | 11707 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/itemHoney.cpp">itemHoney.cpp</a> | 12288 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/itemBigFountain.cpp">itemBigFountain.cpp</a> | 12667 |
@@ -176,7 +176,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/HoudaiShotGun.cpp">HoudaiShotGun.cpp</a> | 48297 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/SnakeWhole.cpp">SnakeWhole.cpp</a> | 49263 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/MiniHoudaiShotGun.cpp">MiniHoudaiShotGun.cpp</a> | 49823 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/KumaKochappyState.cpp">KumaKochappyState.cpp</a> | 50360 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/MiniHoudaiState.cpp">MiniHoudaiState.cpp</a> | 52311 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/RandMapUnit.cpp">RandMapUnit.cpp</a> | 68963 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/RandEnemyUnit.cpp">RandEnemyUnit.cpp</a> | 72782 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/BigTreasureAttack.cpp">BigTreasureAttack.cpp</a> | 77186 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/RandEnemyUnit.cpp">RandEnemyUnit.cpp</a> | 72782 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/BigTreasureAttack.cpp">BigTreasureAttack.cpp</a> | 77557 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/KumaChappyState.cpp">KumaChappyState.cpp</a> | 90147 |  |  |
 
 ### <section id="plugProjectOgawaU">plugProjectOgawaU</section>
