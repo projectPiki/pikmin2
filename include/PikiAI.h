@@ -261,6 +261,10 @@ struct ActAttack : public Action, virtual SysShape::MotionListener {
 	                              // _38 = MotionListener
 };
 
+struct BattleMessage {
+	ActBattle* mBattle; // _00
+};
+
 struct ActBattleArg : public ActionArg {
 	virtual const char* getName() { return "ActBattleArg"; } // _08 (weak)
 
@@ -277,13 +281,19 @@ struct ActBattleArg : public ActionArg {
 	bool mIsAttackStart;    // _08
 };
 
-#define PIKIAI_ACTBATTLE_APPROACH (0)
-#define PIKIAI_ACTBATTLE_BATTLE   (1)
-#define PIKIAI_ACTBATTLE_DAMAGE   (2)
-
 // Pikmin hitting eachother, like in VS mode
 struct ActBattle : public Action, virtual SysShape::MotionListener {
-	ActBattle(Game::Piki* p);
+	enum StateID {
+		BATTLE_Approach = 0,
+		BATTLE_Battle   = 1,
+		BATTLE_Damage   = 2,
+	};
+
+	enum BattleFlags {
+		BATTLEFLAG_InBattle = 0x2,
+	};
+
+	ActBattle(Game::Piki* piki);
 
 	virtual void init(ActionArg* settings);                                // _08
 	virtual int exec();                                                    // _0C
@@ -298,14 +308,22 @@ struct ActBattle : public Action, virtual SysShape::MotionListener {
 	int execBattle();
 	int execDamage();
 
+	Action* getTekiAction();
+	void send(BattleMessage& msg);
+	void recv(BattleMessage& msg);
+
+	inline void setFlag(u32 flag) { mFlags |= flag; }
+	inline void resetFlag(u32 flag) { mFlags &= ~flag; }
+	inline bool isFlag(u32 flag) const { return mFlags & flag; }
+
 	// _00     = VTBL
 	// _00-_0C = Action
 	// _0C-_10 = MotionListener*
 	Game::Piki* mOther;           // _10, vs battle piki attack
 	u8 mState;                    // _14
 	ActApproachPos* mApproachPos; // _18
-	s8 mFlags;                    // _1C
-	s8 mHitCount;                 // _1D
+	u8 mFlags;                    // _1C
+	u8 mHitCount;                 // _1D
 };
 
 struct ActBoreBase : public Action, virtual SysShape::MotionListener {

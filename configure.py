@@ -1000,7 +1000,7 @@ LIBS = [
             ["plugProjectKandoU/cellIterator", False],
             ["plugProjectKandoU/vsGS_VSGame", True],
             ["plugProjectKandoU/gameSoundEvent", True],
-            ["plugProjectKandoU/aiBattle", False],
+            ["plugProjectKandoU/aiBattle", True],
             ["plugProjectKandoU/gameDeathCount", True],
             ["plugProjectKandoU/aiBore", True],
             ["plugProjectKandoU/mapPartsView", True],
