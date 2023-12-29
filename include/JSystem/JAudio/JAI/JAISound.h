@@ -22,11 +22,11 @@ struct MoveParaSet;
 struct JAISound_0x34 {
 	inline void setVec(Vec& vec, f32 p1)
 	{
-		_00 = vec;
-		_0C = p1;
+		mPosition = vec;
+		_0C       = p1;
 	}
 
-	Vec _00;       // _00
+	Vec mPosition; // _00
 	f32 _0C;       // _0C
 	f32 _10;       // _10
 	f32 _14;       // _14
@@ -119,8 +119,8 @@ struct JAISound : public JSULink<JAISound> {
 	u32 _28;                        // _28
 	u32 _2C;                        // _2C
 	u32 _30;                        // _30
-	JAISound_0x34* _34;             // _34
-	void* _38;                      // _38
+	JAISound_0x34* mSoundObj;       // _34
+	void* mCreatureObj;             // _38
 	Vec* _3C;                       // _3C
 	void** mMainSoundPPointer;      // _40, ptr to main sound ptr
 	JAInter::SoundInfo* mSoundInfo; // _44

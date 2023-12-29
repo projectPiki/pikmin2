@@ -614,6 +614,7 @@ CollPart* CollTree::findCollPart(FindCollPartArg& findArg)
 			CollPart* currPart = partArray[i];
 			if (((findArg.mCondition == nullptr) || findArg.mCondition->satisfy(currPart)) && currPart->isSphere()) {
 				f32 dist = findArg.mPosition.mPosition.sqrDistance(currPart->mPosition) - SQUARE(currPart->mRadius);
+
 				if (dist < minDist) {
 					foundPart = currPart;
 					minDist   = dist;

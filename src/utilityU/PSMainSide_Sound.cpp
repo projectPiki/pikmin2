@@ -69,11 +69,11 @@ void SeSound::onRelease()
 	if (_1A == 0) {
 		return;
 	}
-	if (_38 == nullptr) {
+	if (mCreatureObj == nullptr) {
 		return;
 	}
 
-	Creature* creature = static_cast<Creature*>(_38);
+	Creature* creature = static_cast<Creature*>(mCreatureObj);
 	P2ASSERTLINE(184, creature);
 
 	if (creature->getPlayingHandleNum() != 0) {
@@ -86,13 +86,13 @@ void SeSound::onRelease()
  * @note Address: 0x8047102C
  * @note Size: 0x154
  */
-void SeSound::initParameter(void* d1, JAInter::Actor* actor, u32 a1, u32 a2, u8 a3, JAInter::SoundInfo* info)
+void SeSound::initParameter(void* mainSoundPtr, JAInter::Actor* actor, u32 id, u32 a2, u8 a3, JAInter::SoundInfo* info)
 {
-	JAISound::initParameter(d1, actor, a1, a2, a3, info);
+	JAISound::initParameter(mainSoundPtr, actor, id, a2, a3, info);
 	mPerspInfo.mIsSpecialSound = false;
 	if (_1A) {
-		if (_38) {
-			Creature* creature = static_cast<Creature*>(_38);
+		if (mCreatureObj) {
+			Creature* creature = static_cast<Creature*>(mCreatureObj);
 			P2ASSERTLINE(208, creature);
 
 			if (creature->getPlayingHandleNum() == 0) {
@@ -119,7 +119,7 @@ void SeSound::initParameter(void* d1, JAInter::Actor* actor, u32 a1, u32 a2, u8 
 f32 SeSound::setDistanceVolumeCommon(f32, u8 flag)
 {
 	setFxmix(CreaturePrm::cSeFxMix, 0, 1);
-	f32 dist = _34->mDistance;
+	f32 dist = mSoundObj->mDistance;
 	u8 test  = isValidSeType(mSoundID);
 
 	f32 dist2;
@@ -129,7 +129,7 @@ f32 SeSound::setDistanceVolumeCommon(f32, u8 flag)
 		dist2 = calcVolume(dist, flag, test);
 	}
 	dist2 = dist2 - _4A0;
-	if (!_1A || _38) {
+	if (!_1A || mCreatureObj) {
 		PSM::SceneBase* scene = static_cast<PSM::SceneBase*>(PSMGetSceneMgrCheck()->getEndScene());
 		P2ASSERTLINE(261, scene);
 		f32 calc = scene->getCamDistVol(mPlayerNum);
@@ -403,15 +403,15 @@ f32 SeSound::calcVolume(f32 p1, u8 p2, u8 p3)
 void SeSound::setSeDistancePan(u8 flag)
 {
 	f32 calc = 0.5f;
+
 	if (!_1A) {
-		calc = calcPan(_34->_00, _34->mDistance);
-	} else {
-		if (_38) {
-			Creature* creature = static_cast<Creature*>(_38);
-			P2ASSERTLINE(337, creature);
-			calc = creature->getJAIObject()->mPan;
-		}
+		calc = calcPan(mSoundObj->mPosition, mSoundObj->mDistance);
+	} else if (mCreatureObj) {
+		Creature* creature = static_cast<Creature*>(mCreatureObj);
+		P2ASSERTLINE(337, creature);
+		calc = creature->getJAIObject()->mPan;
 	}
+
 	setSeInterPan(4, calc, flag, 0);
 }
 
@@ -445,10 +445,10 @@ void SeSound::setSeDistanceDolby(u8 flag)
 {
 	f32 calc = 0.0f;
 	if (!_1A) {
-		calc = calcDolby(_34->_00, _34->mDistance);
+		calc = calcDolby(mSoundObj->mPosition, mSoundObj->mDistance);
 	} else {
-		if (_38) {
-			Creature* creature = static_cast<Creature*>(_38);
+		if (mCreatureObj) {
+			Creature* creature = static_cast<Creature*>(mCreatureObj);
 			calc               = creature->getJAIObject()->mDolby;
 		}
 	}

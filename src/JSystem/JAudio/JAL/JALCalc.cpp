@@ -53,12 +53,12 @@ f32 linearTransform(f32 x, f32 xStart, f32 xEnd, f32 yStart, f32 yEnd, bool unbo
 f32 getParamByExp(f32 x, f32 xStart, f32 xEnd, f32 y, f32 yStart, f32 yEnd, JALCalc::CurveSign curve)
 {
 	f32 result;
-	if (curve == CS_1) {
+	if (curve == CS_POSITIVE_CURVE) {
 		f32 newX    = exp(linearTransform(x, xStart, xEnd, 0.0f, y, true));
 		f32 newXEnd = exp(y);
 		result      = linearTransform(newX, 1.0f, newXEnd, yStart, yEnd, true);
 
-	} else if (curve == CS_0) {
+	} else if (curve == CS_NEGATIVE_CURVE) {
 		f32 newX      = exp(linearTransform(x, xStart, xEnd, y, 0.0f, true));
 		f32 newXStart = exp(y);
 		result        = linearTransform(newX, newXStart, 1.0f, yStart, yEnd, true);

@@ -69,6 +69,7 @@ void FieldVtxColorMgr::createFieldVtxColorInfo()
 	int infoCount = 0;
 	for (u16 i = 0; i < mModelData->getVertexNum(); i++) {
 		FieldVtxColorInfo& oldInfo = getColorInfo(i);
+
 		if (color[oldInfo.mColorIdx].a) {
 			newInfos[infoCount++] = oldInfo;
 		}

@@ -21,11 +21,11 @@ JAISound::JAISound()
     : JSULink<JAISound>(this)
     , _15(0)
     , _16(10)
-    , _38(nullptr)
+    , mCreatureObj(nullptr)
 {
 	// UNUSED FUNCTION
 	JKRHeap* heap = JAIBasic::msCurrentHeap;
-	_34           = new (heap, 0x20) JAISound_0x34[JAIGlobalParameter::getParamAudioCameraMax()];
+	mSoundObj           = new (heap, 0x20) JAISound_0x34[JAIGlobalParameter::getParamAudioCameraMax()];
 }
 
 /**
@@ -222,12 +222,12 @@ f32 JAISound::setDistanceVolumeCommon(f32 p1, u8 p2)
 {
 	f32 v1;
 	if (_18 != 4) {
-		v1 = _34[_18]._18;
+		v1 = mSoundObj[_18]._18;
 	} else {
-		v1 = _34[0]._18;
+		v1 = mSoundObj[0]._18;
 		for (u8 i = 1; i < JAIGlobalParameter::audioCameraMax; i++) {
-			if (_34[i]._18 < v1) {
-				v1 = _34[i]._18;
+			if (mSoundObj[i]._18 < v1) {
+				v1 = mSoundObj[i]._18;
 			}
 		}
 	}
@@ -260,9 +260,9 @@ f32 JAISound::setDistanceVolumeCommon(f32 p1, u8 p2)
 f32 JAISound::setDistancePanCommon()
 {
 	if (JAIGlobalParameter::audioCameraMax == 1) {
-		JAISound_0x34* v0 = _34;
-		f32 v1            = FABS(v0->_00.x);
-		f32 v2            = FABS(v0->_00.z);
+		JAISound_0x34* v0 = mSoundObj;
+		f32 v1            = FABS(v0->mPosition.x);
+		f32 v2            = FABS(v0->mPosition.z);
 		if (v1 < 1.0f && v2 < 1.0f) {
 			return 0.5f;
 		}
@@ -272,19 +272,19 @@ f32 JAISound::setDistancePanCommon()
 		if (JAIGlobalParameter::panDistanceMax < v2) {
 			v2 = JAIGlobalParameter::panDistanceMax;
 		}
-		if (v0->_00.x == 0.0f && v0->_00.z == 0.0f) {
+		if (v0->mPosition.x == 0.0f && v0->mPosition.z == 0.0f) {
 			return 0.5f;
 		}
-		if (v0->_00.x > 0.0f && v1 >= v2) {
+		if (v0->mPosition.x > 0.0f && v1 >= v2) {
 			return 1.0f
 			     - (JAIGlobalParameter::panDistance2Max - v1)
 			           / (JAIGlobalParameter::panAngleParameter * (JAIGlobalParameter::panDistance2Max - v2));
 		}
-		if (v0->_00.x <= 0.0f && v1 >= v2) {
+		if (v0->mPosition.x <= 0.0f && v1 >= v2) {
 			return (JAIGlobalParameter::panDistance2Max - v1)
 			     / (JAIGlobalParameter::panAngleParameter * (JAIGlobalParameter::panDistance2Max - v2));
 		}
-		return v0->_00.x / (JAIGlobalParameter::panAngleParameter2 * v2) + 0.5f;
+		return v0->mPosition.x / (JAIGlobalParameter::panAngleParameter2 * v2) + 0.5f;
 	}
 
 	// audioCameraMax != 1
@@ -617,16 +617,16 @@ lbl_800B42A0:
  */
 f32 JAISound::setDistanceDolbyCommon()
 {
-	JAISound_0x34* obj = _34;
-	if (_3C == 0 || obj->_00.z < JAIGlobalParameter::seDolbyFrontDistanceMax) {
+	JAISound_0x34* obj = mSoundObj;
+	if (_3C == 0 || obj->mPosition.z < JAIGlobalParameter::seDolbyFrontDistanceMax) {
 		return 0.0f;
 	}
-	if (obj->_00.z < 0.0f) {
-		return (JAIGlobalParameter::seDolbyCenterValue * (JAIGlobalParameter::seDolbyFrontDistanceMax - obj->_00.z))
+	if (obj->mPosition.z < 0.0f) {
+		return (JAIGlobalParameter::seDolbyCenterValue * (JAIGlobalParameter::seDolbyFrontDistanceMax - obj->mPosition.z))
 		     / JAIGlobalParameter::seDolbyFrontDistanceMax;
 	}
-	if (obj->_00.z < JAIGlobalParameter::seDolbyBehindDistanceMax) {
-		return (127.0f - JAIGlobalParameter::seDolbyCenterValue) * (obj->_00.z / JAIGlobalParameter::seDolbyBehindDistanceMax)
+	if (obj->mPosition.z < JAIGlobalParameter::seDolbyBehindDistanceMax) {
+		return (127.0f - JAIGlobalParameter::seDolbyCenterValue) * (obj->mPosition.z / JAIGlobalParameter::seDolbyBehindDistanceMax)
 		     + JAIGlobalParameter::seDolbyCenterValue;
 	}
 	return 127.0f;
@@ -1349,10 +1349,10 @@ void JAISe::setSeDistancePitch(u8 p1)
 	if (checkSwBit(0x4000) != 0) {
 		if (checkSwBit(0x2) == 0 && checkSwBit(0x100 | 0x200) == 0) {
 			if (JAIGlobalParameter::audioCameraMax == 1) {
-				if (_34->_18 >= JAIGlobalParameter::distanceMax) {
+				if (mSoundObj->_18 >= JAIGlobalParameter::distanceMax) {
 					pitch += JAIGlobalParameter::seDistancepitchMax;
 				} else {
-					pitch = JAIGlobalParameter::seDistancepitchMax * (_34->_18 / JAIGlobalParameter::distanceMax) + pitch;
+					pitch = JAIGlobalParameter::seDistancepitchMax * (mSoundObj->_18 / JAIGlobalParameter::distanceMax) + pitch;
 				}
 			}
 		}
@@ -1474,8 +1474,8 @@ void JAISe::setSeDistanceFxmix(u8 p1)
 {
 	u16 fx = JAIGlobalParameter::seDefaultFx;
 	if (checkSwBit(0x4) == 0 && JAIGlobalParameter::audioCameraMax == 1) {
-		if (_34->_18 < JAIGlobalParameter::distanceMax) {
-			fx = (JAIGlobalParameter::seDistanceFxParameter * (_34->_18 / JAIGlobalParameter::distanceMax));
+		if (mSoundObj->_18 < JAIGlobalParameter::distanceMax) {
+			fx = (JAIGlobalParameter::seDistanceFxParameter * (mSoundObj->_18 / JAIGlobalParameter::distanceMax));
 		} else {
 			fx = JAIGlobalParameter::seDistanceFxParameter;
 		}
@@ -2242,7 +2242,7 @@ void JAISound::initParameter(void* handlePtr, JAInter::Actor* actor, u32 id, u32
 {
 	mSoundID = id;
 	if (actor != nullptr) {
-		_38 = actor->mVec1;
+		mCreatureObj = actor->mVec1;
 		if (actor->mVec1 != nullptr) {
 			_3C = actor->mVec2;
 			_30 = actor->mUnk;
@@ -2252,7 +2252,7 @@ void JAISound::initParameter(void* handlePtr, JAInter::Actor* actor, u32 id, u32
 		}
 		_1A = actor->mFlag.boolView[0];
 	} else {
-		_38 = nullptr;
+		mCreatureObj = nullptr;
 		_3C = nullptr;
 		_1A = 0;
 		_30 = 0;
@@ -2266,9 +2266,9 @@ void JAISound::initParameter(void* handlePtr, JAInter::Actor* actor, u32 id, u32
 	mAdjustPriority            = 0;
 	_2C                        = 0;
 	if (_3C != nullptr) {
-		_34->_18 = JAIGlobalParameter::getParamDistanceMax() * 10.0f;
+		mSoundObj->_18 = JAIGlobalParameter::getParamDistanceMax() * 10.0f;
 	} else {
-		_34->_18 = 0.0f;
+		mSoundObj->_18 = 0.0f;
 	}
 }
 

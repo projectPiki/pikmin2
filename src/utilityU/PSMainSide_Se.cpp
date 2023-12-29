@@ -91,13 +91,13 @@ PSSystem::ClusterSe::PartInitArg ClusterFactory::partInit(u8 unknownID)
 WorldMapRocket::WorldMapRocket()
     : JADHioNode(nullptr)
 {
-	mState = PSMRocket_0;
-	_08    = 0.0f;
-	_0C    = 608.0f;
-	_10    = 4.0f;
-	_14    = 100.0f;
-	_18    = 260.0f;
-	_1C    = 4.0f;
+	mState     = PSMRocket_0;
+	mStartPosX = 0.0f;
+	mEndPosX   = 608.0f;
+	_10        = 4.0f;
+	mStartPosY = 100.0f;
+	mEndPosY   = 260.0f;
+	_1C        = 4.0f;
 }
 
 /**
@@ -118,22 +118,23 @@ JAISe* WorldMapRocket::startRocketSE(f32 posX, f32 posY)
 	static s8 init;
 
 	if (se) {
-		f32 calcX = JALCalc::linearTransform(posX, _08, _0C, 0.0f, 1.0f, false);
-		if (calcX < 0.5f) {
-			calcX = JALCalc::getParamByExp(calcX, 0.0f, 0.5f, _10, 0.0f, 0.5f, JALCalc::CS_1);
+		f32 curPosX = JALCalc::linearTransform(posX, mStartPosX, mEndPosX, 0.0f, 1.0f, false);
+		if (curPosX < 0.5f) {
+			curPosX = JALCalc::getParamByExp(curPosX, 0.0f, 0.5f, _10, 0.0f, 0.5f, JALCalc::CS_POSITIVE_CURVE);
 		} else {
-			calcX = JALCalc::getParamByExp(calcX, 0.5f, 1.0f, _10, 0.5f, 1.0f, JALCalc::CS_0);
+			curPosX = JALCalc::getParamByExp(curPosX, 0.5f, 1.0f, _10, 0.5f, 1.0f, JALCalc::CS_NEGATIVE_CURVE);
 		}
-		f32 calcY = JALCalc::linearTransform(posY, _14, _18, 0.0f, 1.0f, false);
-		if (calcY < 0.5f) {
-			calcY = JALCalc::getParamByExp(calcY, 0.0f, 0.5f, _1C, 0.0f, 0.5f, JALCalc::CS_1);
+
+		f32 curPosY = JALCalc::linearTransform(posY, mStartPosY, mEndPosY, 0.0f, 1.0f, false);
+		if (curPosY < 0.5f) {
+			curPosY = JALCalc::getParamByExp(curPosY, 0.0f, 0.5f, _1C, 0.0f, 0.5f, JALCalc::CS_POSITIVE_CURVE);
 		} else {
-			calcY = JALCalc::getParamByExp(calcY, 0.5f, 1.0f, _1C, 0.5f, 1.0f, JALCalc::CS_0);
+			curPosY = JALCalc::getParamByExp(curPosY, 0.5f, 1.0f, _1C, 0.5f, 1.0f, JALCalc::CS_NEGATIVE_CURVE);
 		}
 
 		if (mState != PSMRocket_3) {
-			se->setPan(calcX, 0, 0);
-			se->setDolby(calcY, 0, 0);
+			se->setPan(curPosX, 0, 0);
+			se->setDolby(curPosY, 0, 0);
 		}
 
 		switch (mState) {
@@ -1022,7 +1023,7 @@ JAISound* PSStartEnemyFatalHitSE(Game::EnemyBase* enemy, f32 p2)
 		Sys::Sphere sphere;
 		enemy->getBoundingSphere(sphere);
 		f32 rad    = sphere.mRadius;
-		f32 volume = JALCalc::getParamByExp(rad, 5.0f, 250.0f, 5.0f, 0.5f, 1.5f, JALCalc::CS_0);
+		f32 volume = JALCalc::getParamByExp(rad, 5.0f, 250.0f, 5.0f, 0.5f, 1.5f, JALCalc::CS_NEGATIVE_CURVE);
 		if (volume > 1.0f) {
 			volume = 1.0f;
 		}
@@ -1030,7 +1031,7 @@ JAISound* PSStartEnemyFatalHitSE(Game::EnemyBase* enemy, f32 p2)
 			volume = 0.5f;
 		}
 
-		f32 pitch = JALCalc::getParamByExp(rad, 250.0f, 5.0f, 5.0f, 0.7f, 1.7f, JALCalc::CS_1);
+		f32 pitch = JALCalc::getParamByExp(rad, 250.0f, 5.0f, 5.0f, 0.7f, 1.7f, JALCalc::CS_POSITIVE_CURVE);
 		if (pitch > 1.7f) {
 			pitch = 1.7f;
 		}
@@ -1239,7 +1240,8 @@ JAISe* PSStartTreasureLaderSE(f32 rate)
 	if (sound) {
 		f32 calc;
 		if (rate < sTreasureLader_PitchDistance) {
-			calc = JALCalc::getParamByExp(rate, 0.0f, 0.77f, sTreasureLader_DistanceExp, sTreasureLader_MinimumVolume, 1.0f, JALCalc::CS_1);
+			calc = JALCalc::getParamByExp(rate, 0.0f, 0.77f, sTreasureLader_DistanceExp, sTreasureLader_MinimumVolume, 1.0f,
+			                              JALCalc::CS_POSITIVE_CURVE);
 		} else {
 			calc = JALCalc::linearTransform(rate, 0.77f, 1.0f, 1.0f, 0.7f, false);
 		}
@@ -1454,7 +1456,7 @@ JAISe* PSStartTresureLaderNoiseSE(u8 state, f32 a1, f32)
 			sLaderNoiseWait  = sLaderNoiseFuefukiTimerCenter + delay;
 			if (sound) {
 				f32 calc = JALCalc::getParamByExp(a1, sLaderNoiseFuefukiSensMin, sLaderNoiseFuefukiSensMax, sLaderNoiseVolumeExp,
-				                                  sLaderNoiseFuefukiVolumeMin, sLaderNoiseFuefukiVolumeMax, JALCalc::CS_1);
+				                                  sLaderNoiseFuefukiVolumeMin, sLaderNoiseFuefukiVolumeMax, JALCalc::CS_POSITIVE_CURVE);
 				PSM::MiddleBossSeq* seq = PSMGetMiddleBossSeq();
 				if (seq && *seq->getHandleP()) {
 					f32 vol = (*seq->getHandleP())->getVolume(0);
