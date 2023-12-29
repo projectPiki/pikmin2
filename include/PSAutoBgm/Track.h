@@ -27,7 +27,7 @@ struct Module : public JADUtility::PrmSetBase {
 	JADUtility::PrmSlider<s16> _64;      // _64
 	JADUtility::PrmSlider<s16> _94;      // _94
 	JADUtility::PrmSlider<u8> _C4;       // _C4
-	JADUtility::PrmRadioButton<s8> _F4;  // _F4
+	JADUtility::PrmRadioButton<u8> _F4;  // _F4
 	JADUtility::PrmSlider<u8> _124;      // _124
 	JADUtility::PrmSlider<u8> _154;      // _154
 	JADUtility::PrmSlider<s16> _184;     // _184

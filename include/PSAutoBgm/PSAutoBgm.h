@@ -34,7 +34,7 @@ struct AutoBgmSeqTrackRoot : public PSSystem::SeqTrackRoot_JumpBgm {
 struct AutoBgm : public PSSystem::DirectedBgm {
 	AutoBgm(const char*, const char*, const JAInter::SoundInfo&, JADUtility::AccessMode, PSSystem::DirectorMgrBase*);
 
-	virtual ~AutoBgm() { mHeap->free(nullptr); }                                                          // _08 (weak)
+	virtual ~AutoBgm() { mHeap->free(mHeap, nullptr); }                                                   // _08 (weak)
 	virtual void scene1st(PSSystem::TaskChecker*);                                                        // _10
 	virtual void startSeq();                                                                              // _14
 	virtual void pauseOn(PSSystem::SeqBase::PauseMode);                                                   // _1C
