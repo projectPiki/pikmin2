@@ -72,7 +72,7 @@ struct J2DScrnBlockHeader {
  */
 struct J2DTextBoxBlock {
 	u16 _00;             // _00
-	u16 _02;             // _02
+	u16 mAnimPaneIndex;  // _02
 	u16 mMaterialNum;    // _04
 	s16 mCharSpacing;    // _06 - converted to f32
 	s16 mLineSpacing;    // _08 - converted to f32
@@ -902,12 +902,12 @@ struct J2DTextBoxEx : public J2DTextBox {
 	void setTevStage(bool);
 	void setStage(J2DTevStage*, stage_enum);
 	bool getBlackWhite(JUtility::TColor*, JUtility::TColor*) const;
-	void isSetBlackWhite(JUtility::TColor, JUtility::TColor) const;
+	bool isSetBlackWhite(JUtility::TColor, JUtility::TColor) const;
 
 	// _000      = VTBL
 	// _000-_138 = J2DTextBox
 	J2DMaterial* mMaterial;               // _138
-	u16 _13C;                             // _13C
+	u16 mAnimIndex;                       // _13C
 	u16 _13E;                             // _13E
 	u8 _140;                              // _140
 	J2DAnmVisibilityFull* mAnmVisibility; // _144

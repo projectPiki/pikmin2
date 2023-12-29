@@ -1,6 +1,5 @@
 #include "JSystem/J2D/J2DPane.h"
 #include "JSystem/J2D/J2DPrint.h"
-#include "types.h"
 
 /**
  * @note Address: 0x800596A8
@@ -25,17 +24,17 @@ J2DTextBoxEx::J2DTextBoxEx(J2DPane* parent, JSURandomInputStream* input, u32 fla
 	input->seek(panHeaderPos + panHeader.mBlockLength, SEEK_SET);
 
 	input->read(&info, sizeof(J2DTextBoxBlock));
-	_13C      = info._02;
-	_13E      = info.mMaterialNum;
-	mMaterial = nullptr;
+	mAnimIndex = info.mAnimPaneIndex;
+	_13E       = info.mMaterialNum;
+	mMaterial  = nullptr;
 
 	if (_13E != 0xFFFF) {
 		mMaterial             = &materials[_13E];
 		materials[_13E].mPane = this;
 		rewriteAlpha();
 
-		if (mMaterial != NULL) {
-			if (mMaterial->getTevBlock() != NULL) {
+		if (mMaterial) {
+			if (mMaterial->getTevBlock() != nullptr) {
 				mFont = static_cast<JUTResFont*>(mMaterial->getTevBlock()->getFont());
 			}
 		}
@@ -529,6 +528,29 @@ bool J2DTextBoxEx::setWhite(JUtility::TColor white)
  */
 bool J2DTextBoxEx::setBlackWhite(JUtility::TColor black, JUtility::TColor white)
 {
+	if (!mMaterial) {
+		return false;
+	}
+	if (!mMaterial->mTevBlock) {
+		return false;
+	}
+	if (!isSetBlackWhite(black, white)) {
+		return false;
+	}
+
+	bool set = false;
+	if (*(int*)&black && *(int*)&white) {
+		set = true;
+	}
+	mMaterial->mTevBlock->setTevStageNum(1 - set);
+	setTevStage(set);
+	if (set) {
+		J2DGXColorS10 color(black);
+		mMaterial->mTevBlock->setTevColor(0, color);
+		J2DGXColorS10 color2(white);
+		mMaterial->mTevBlock->setTevColor(1, color2);
+	}
+	return true;
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -698,8 +720,27 @@ lbl_8005A938:
  * @note Address: 0x8005A94C
  * @note Size: 0x194
  */
-bool J2DTextBoxEx::getBlackWhite(JUtility::TColor*, JUtility::TColor*) const
+bool J2DTextBoxEx::getBlackWhite(JUtility::TColor* black, JUtility::TColor* white) const
 {
+	if (!mMaterial) {
+		return false;
+	}
+	if (!mMaterial->mTevBlock) {
+		return false;
+	}
+
+	u8 num = mMaterial->mTevBlock->getTevStageNum();
+	black->set(0, 0, 0, 0);
+	white->set(255, 255, 255, 255);
+	if (num) {
+		JUtility::TColor color1, color2;
+		color1 = *mMaterial->mTevBlock->getTevColor(0);
+		color2 = *mMaterial->mTevBlock->getTevColor(1);
+
+		black->setRGBA(color1);
+		white->setRGBA(color2);
+	}
+	return true;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -817,53 +858,17 @@ lbl_8005AACC:
  * @note Address: 0x8005AAE0
  * @note Size: 0x94
  */
-void J2DTextBoxEx::isSetBlackWhite(JUtility::TColor, JUtility::TColor) const
+bool J2DTextBoxEx::isSetBlackWhite(JUtility::TColor black, JUtility::TColor white) const
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0(r4)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	cmplwi   r0, 0
-	bne      lbl_8005AB18
-	lwz      r3, 0(r5)
-	addis    r0, r3, 1
-	cmplwi   r0, 0xffff
-	bne      lbl_8005AB18
-	li       r3, 1
-	b        lbl_8005AB60
+	if (*(u32*)&black == 0 && *(u32*)&white == -1) {
+		return true;
+	}
 
-lbl_8005AB18:
-	lwz      r3, 0x138(r31)
-	lwz      r3, 0x70(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x58(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x138(r31)
-	lwz      r3, 0x70(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 1
-	bne      lbl_8005AB5C
-	li       r3, 0
-	b        lbl_8005AB60
-
-lbl_8005AB5C:
-	li       r3, 1
-
-lbl_8005AB60:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mMaterial->getTevBlock()->getTevStageNum();
+	if ((u8)mMaterial->getTevBlock()->getMaxStage() == 1) {
+		return false;
+	}
+	return true;
 }
 
 /**
@@ -872,6 +877,12 @@ lbl_8005AB60:
  */
 JUtility::TColor J2DTextBoxEx::getBlack() const
 {
+	JUtility::TColor black, white;
+	if (getBlackWhite(&black, &white)) {
+		return black;
+	}
+	return JUtility::TColor(0);
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -909,6 +920,11 @@ JUtility::TColor J2DTextBoxEx::getBlack() const
  */
 JUtility::TColor J2DTextBoxEx::getWhite() const
 {
+	JUtility::TColor black, white;
+	if (getBlackWhite(&black, &white)) {
+		return white;
+	}
+	return JUtility::TColor(255);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -944,44 +960,30 @@ JUtility::TColor J2DTextBoxEx::getWhite() const
  * @note Address: 0x8005AC34
  * @note Size: 0x20
  */
-void J2DTextBoxEx::setAlpha(u8)
+void J2DTextBoxEx::setAlpha(u8 alpha)
 {
-	/*
-	.loc_0x0:
-	  stb       r4, 0xB2(r3)
-	  lwz       r3, 0x138(r3)
-	  cmplwi    r3, 0
-	  beqlr-
-	  addic.    r3, r3, 0x10
-	  beqlr-
-	  stb       r4, 0x3(r3)
-	  blr
-	*/
+	mAlpha = alpha;
+	if (!mMaterial) {
+		return;
+	}
+	J2DColorBlock* color = &mMaterial->mColorBlock;
+	if (!color) {
+		return;
+	}
+	color->mColors[0].a = alpha;
 }
 
 /**
  * @note Address: 0x8005AC54
  * @note Size: 0x34
  */
-void J2DTextBoxEx::setCullBack(_GXCullMode)
+void J2DTextBoxEx::setCullBack(_GXCullMode cull)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stb       r4, 0xB1(r3)
-	  lwz       r5, 0x138(r3)
-	  cmplwi    r5, 0
-	  beq-      .loc_0x20
-	  stb       r4, 0x22(r5)
-	.loc_0x20:
-	  bl        -0x22030
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	mCullMode = cull;
+	if (mMaterial) {
+		mMaterial->mColorBlock.mCullMode = cull;
+	}
+	J2DPane::setCullBack(cull);
 }
 
 /**
@@ -990,320 +992,131 @@ void J2DTextBoxEx::setCullBack(_GXCullMode)
  */
 void J2DTextBoxEx::rewriteAlpha()
 {
-	/*
-	.loc_0x0:
-	  lwz       r4, 0x138(r3)
-	  cmplwi    r4, 0
-	  beqlr-
-	  lbz       r0, 0x13(r4)
-	  stb       r0, 0xB2(r3)
-	  blr
-	*/
+	if (!mMaterial) {
+		return;
+	}
+	mAlpha = mMaterial->mColorBlock.mColors[0].a;
 }
 
 /**
  * @note Address: 0x8005ACA0
  * @note Size: 0x8C
  */
-bool J2DTextBoxEx::isUsed(const ResFONT*)
+bool J2DTextBoxEx::isUsed(const ResFONT* font)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xA0(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r3, 0
-	  beq-      .loc_0x68
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0xA0(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplw     r3, r31
-	  bne-      .loc_0x68
-	  li        r3, 0x1
-	  b         .loc_0x74
-	.loc_0x68:
-	  mr        r3, r30
-	  mr        r4, r31
-	  bl        -0x22294
-	.loc_0x74:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (getFont() && getFont()->getResFont() == font) {
+		return true;
+	}
+	return J2DPane::isUsed(font);
 }
 
 /**
  * @note Address: 0x8005AD2C
  * @note Size: 0x2C
  */
-void J2DTextBoxEx::setAnimation(J2DAnmColor*)
+void J2DTextBoxEx::setAnimation(J2DAnmColor* anim)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x138(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1C
-	  bl        -0x85B4
-	.loc_0x1C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (mMaterial) {
+		mMaterial->setAnimation(anim);
+	}
 }
 
 /**
  * @note Address: 0x8005AD58
  * @note Size: 0x2C
  */
-void J2DTextBoxEx::setAnimation(J2DAnmTextureSRTKey*)
+void J2DTextBoxEx::setAnimation(J2DAnmTextureSRTKey* anim)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x138(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1C
-	  bl        -0x849C
-	.loc_0x1C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (mMaterial) {
+		mMaterial->setAnimation(anim);
+	}
 }
 
 /**
  * @note Address: 0x8005AD84
  * @note Size: 0x2C
  */
-void J2DTextBoxEx::setAnimation(J2DAnmTexPattern*)
+void J2DTextBoxEx::setAnimation(J2DAnmTexPattern* anim)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x138(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1C
-	  bl        -0x8324
-	.loc_0x1C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (mMaterial) {
+		mMaterial->setAnimation(anim);
+	}
 }
 
 /**
  * @note Address: 0x8005ADB0
  * @note Size: 0x2C
  */
-void J2DTextBoxEx::setAnimation(J2DAnmTevRegKey*)
+void J2DTextBoxEx::setAnimation(J2DAnmTevRegKey* anim)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x138(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1C
-	  bl        -0x81BC
-	.loc_0x1C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (mMaterial) {
+		mMaterial->setAnimation(anim);
+	}
 }
 
 /**
  * @note Address: 0x8005ADDC
  * @note Size: 0x8
  */
-void J2DTextBoxEx::setAnimation(J2DAnmVisibilityFull*)
-{
-	/*
-	.loc_0x0:
-	  stw       r4, 0x144(r3)
-	  blr
-	*/
-}
+void J2DTextBoxEx::setAnimation(J2DAnmVisibilityFull* anim) { mAnmVisibility = anim; }
 
 /**
  * @note Address: 0x8005ADE4
  * @note Size: 0x80
  */
-const J2DAnmTransform* J2DTextBoxEx::animationPane(const J2DAnmTransform*)
+const J2DAnmTransform* J2DTextBoxEx::animationPane(const J2DAnmTransform* anm)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x144(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x5C
-	  lhz       r4, 0x13C(r30)
-	  cmplwi    r4, 0xFFFF
-	  beq-      .loc_0x5C
-	  addi      r5, r1, 0x8
-	  bl        0x1D0C
-	  lbz       r0, 0x8(r1)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x54
-	  li        r0, 0x1
-	  stb       r0, 0xB0(r30)
-	  b         .loc_0x5C
-	.loc_0x54:
-	  li        r0, 0
-	  stb       r0, 0xB0(r30)
-	.loc_0x5C:
-	  mr        r3, r30
-	  mr        r4, r31
-	  bl        -0x21590
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	if (mAnmVisibility && mAnimIndex != 0xffff) {
+		u8 data[16];
+		mAnmVisibility->getVisibility(mAnimIndex, data);
+		if (data[0]) {
+			show();
+		} else {
+			hide();
+		}
+	}
+	J2DPane::animationPane(anm);
 }
 
 /**
  * @note Address: 0x8005AE64
  * @note Size: 0x8
  */
-J2DMaterial* J2DTextBoxEx::getMaterial() const
-{
-	/*
-	.loc_0x0:
-	  lwz       r3, 0x138(r3)
-	  blr
-	*/
-}
+J2DMaterial* J2DTextBoxEx::getMaterial() const { return mMaterial; }
 
 /**
  * @note Address: 0x8005AE6C
  * @note Size: 0x3C
  */
-void J2DTextBoxEx::setCullBack(bool)
+void J2DTextBoxEx::setCullBack(bool shouldCullBack)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  rlwinm.   r0,r4,0,24,31
-	  li        r4, 0
-	  beq-      .loc_0x1C
-	  li        r4, 0x2
-	.loc_0x1C:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	GXCullMode mode = GX_CULL_NONE;
+	if (shouldCullBack) {
+		mode = GX_CULL_BACK;
+	}
+	setCullBack(mode);
 }
 
 /**
  * @note Address: 0x8005AEA8
  * @note Size: 0x20
  */
-bool J2DTextBoxEx::isUsed(const ResTIMG*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        -0x224C0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+bool J2DTextBoxEx::isUsed(const ResTIMG* timg) { return J2DPane::isUsed(timg); }
 
 /**
  * @note Address: 0x8005AEC8
  * @note Size: 0x4
  */
-void J2DTextBoxEx::setAnimation(J2DAnmVtxColor*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void J2DTextBoxEx::setAnimation(J2DAnmVtxColor* anm) { }
 
 /**
  * @note Address: 0x8005AECC
  * @note Size: 0x20
  */
-void J2DTextBoxEx::setAnimation(J2DAnmTransform*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        -0x218E4
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void J2DTextBoxEx::setAnimation(J2DAnmTransform* anm) { J2DPane::setAnimation(anm); }
 
 /**
  * @note Address: 0x8005AEEC
  * @note Size: 0x20
  */
-void J2DTextBoxEx::setAnimation(J2DAnmBase*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        -0x219EC
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void J2DTextBoxEx::setAnimation(J2DAnmBase* anm) { J2DPane::setAnimation(anm); }
