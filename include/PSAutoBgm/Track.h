@@ -62,7 +62,7 @@ struct Track : public JADUtility::PrmSetRc<PSAutoBgm::Module> {
 
 	// _00      = VTABLE
 	// _04-_98  = PrmSetRc
-	u8 _98;                             // _98
+	u8 mIndex;                          // _98
 	u8 _99;                             // _99
 	u8 _9A[0x2];                        // _9A - possibly padding?
 	u32 _9C;                            // _9C - unknown

@@ -239,9 +239,10 @@ void StateBombWait::exec(EnemyBase* enemy)
 		sarai->mNextState = BOMBSARAI_Release;
 		sarai->finishMotion();
 	} else if (target) {
-		f32 minRange  = CG_PARMS(sarai)->mGeneral.mMaxAttackAngle.mValue; // f29
-		f32 maxRange  = CG_PARMS(sarai)->mGeneral.mMaxAttackRange.mValue; // f30
-		f32 angleDist = sarai->getAngDist(target);
+		f32 maxRange, minRange, angleDist;
+		minRange  = CG_PARMS(sarai)->mGeneral.mMaxAttackAngle(); // f29
+		maxRange  = CG_PARMS(sarai)->mGeneral.mMaxAttackRange(); // f30
+		angleDist = sarai->getAngDist(target);
 
 		if (sarai->isTargetAttackable(target, angleDist, maxRange, minRange)) {
 			sarai->mNextState = BOMBSARAI_Release;
@@ -250,7 +251,7 @@ void StateBombWait::exec(EnemyBase* enemy)
 			Vector3f saraiPos  = sarai->getPosition();
 			Vector3f targetPos = target->getPosition();
 
-			if (sqrDistanceXZ(saraiPos, targetPos) < SQUARE(CG_PARMS(sarai)->mGeneral.mAttackRadius.mValue)) {
+			if (sqrDistanceXZ(saraiPos, targetPos) < SQUARE(CG_PARMS(sarai)->mGeneral.mAttackRadius())) {
 				sarai->mNextState = BOMBSARAI_Release;
 				sarai->finishMotion();
 			} else {
@@ -268,7 +269,7 @@ void StateBombWait::exec(EnemyBase* enemy)
 		return;
 	}
 
-	if (height > CG_PROPERPARMS(sarai).mTransitHeight.mValue || sarai->mStateTimer > 5.0f) {
+	if (height > CG_PROPERPARMS(sarai).mTransitHeight || sarai->mStateTimer > 5.0f) {
 		StateID stateID = sarai->getNextStateOnHeight();
 		if (stateID >= 0) {
 			transit(sarai, stateID, nullptr);
@@ -689,18 +690,17 @@ void StateBombMove::exec(EnemyBase* enemy)
 		sarai->mNextState = BOMBSARAI_Release;
 		sarai->finishMotion();
 	} else if (target) {
-		f32 minRange  = CG_PARMS(sarai)->mGeneral.mMaxAttackAngle.mValue; // f29
-		f32 maxRange  = CG_PARMS(sarai)->mGeneral.mMaxAttackRange.mValue; // f30
-		f32 angleDist = sarai->getAngDist(target);
+		f32 minRange, maxRange, angleDist;
+		minRange  = CG_PARMS(sarai)->mGeneral.mMaxAttackAngle(); // f29
+		maxRange  = CG_PARMS(sarai)->mGeneral.mMaxAttackRange(); // f30
+		angleDist = sarai->getAngDist(target);
 
 		if (sarai->isTargetAttackable(target, angleDist, maxRange, minRange)) {
 			sarai->mNextState = BOMBSARAI_Release;
 			sarai->finishMotion();
 		} else {
-			// Vector3f saraiPos = sarai->getPosition();
 			targetPos = target->getPosition();
-
-			if (sqrDistanceXZ(saraiPos, targetPos) < SQUARE(CG_PARMS(sarai)->mGeneral.mAttackRadius.mValue)) {
+			if (sqrDistanceXZ(saraiPos, targetPos) < SQUARE(CG_PARMS(sarai)->mGeneral.mAttackRadius())) {
 				sarai->mNextState = BOMBSARAI_Release;
 				sarai->finishMotion();
 			}
@@ -717,8 +717,8 @@ void StateBombMove::exec(EnemyBase* enemy)
 	if (sarai->isFinishMotion()) {
 		sarai->mTargetVelocity = Vector3f(0.0f);
 	} else {
-		EnemyFunc::walkToTarget(sarai, targetPos, CG_PARMS(sarai)->mGeneral.mMoveSpeed.mValue, CG_PARMS(sarai)->mGeneral.mTurnSpeed.mValue,
-		                        CG_PARMS(sarai)->mGeneral.mMaxTurnAngle.mValue);
+		EnemyFunc::walkToTarget(sarai, targetPos, CG_PARMS(sarai)->mGeneral.mMoveSpeed(), CG_PARMS(sarai)->mGeneral.mTurnSpeed(),
+		                        CG_PARMS(sarai)->mGeneral.mMaxTurnAngle());
 	}
 
 	if (sarai->isEvent(0, EB_BitterQueued)) {
@@ -726,7 +726,7 @@ void StateBombMove::exec(EnemyBase* enemy)
 		return;
 	}
 
-	if (height > CG_PROPERPARMS(sarai).mTransitHeight.mValue || sarai->mStateTimer > 5.0f) {
+	if (height > CG_PROPERPARMS(sarai).mTransitHeight() || sarai->mStateTimer > 5.0f) {
 		StateID stateID = sarai->getNextStateOnHeight();
 		if (stateID >= 0) {
 			transit(sarai, stateID, nullptr);

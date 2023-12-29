@@ -220,7 +220,8 @@ void StateMove::exec(EnemyBase* enemy)
 
 		armor->setTargetVelocity();
 
-		if (armor->isTargetAttackable(target, angleDist, CG_PARMS(armor)->mGeneral.mTerritoryRadius(), CG_PARMS(armor)->mGeneral.mFov())) {
+		if (armor->isTargetAttackable(target, angleDist, CG_PARMS(armor)->mGeneral.mMaxAttackRange(),
+		                              CG_PARMS(armor)->mGeneral.mMaxAttackAngle())) {
 			armor->mNextState = ARMOR_Attack2;
 			armor->finishMotion();
 		} else {
