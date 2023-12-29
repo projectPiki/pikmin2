@@ -2,7 +2,6 @@
 #include "JSystem/J3D/J3DAnmLoader.h"
 #include "JSystem/J3D/J3DMtxCalc.h"
 #include "JSystem/J3D/J3DMtxBuffer.h"
-#include "types.h"
 
 /**
  * @note Address: 0x80015DF0
@@ -89,6 +88,95 @@ J3DMtxCalc* J3DUNewMtxCalcAnm(u32 blendType, J3DAnmTransform* anm0, J3DAnmTransf
  */
 void J3DMtxCalcBlend::calcBlend(Vec* scale, Vec* position, J3DAnmTransform** anims, f32* weights)
 {
+	u16 id          = J3DMtxCalc::getJoint()->getJntNo();
+	MtxP anmMtx     = J3DMtxCalc::getMtxBuffer()->getAnmMtx(id);
+	f32 totalWeight = 0.0f;
+	int num         = 0;
+	int maxAnim     = 0;
+	f32 minWeight   = 0.005f;
+
+	for (int i = 0; i < 4; i++) {
+		if (anims[i] && weights[i] > minWeight) {
+			totalWeight += weights[i];
+			maxAnim = i;
+			num++;
+		}
+	}
+
+	switch (num) {
+	case 0:
+		PSMTXIdentity(anmMtx);
+		scale->z    = 0.0f;
+		scale->y    = 0.0f;
+		scale->x    = 0.0f;
+		position->z = 0.0f;
+		position->y = 0.0f;
+		position->x = 0.0f;
+		break;
+	case 1:
+		J3DTransformInfo info;
+		anims[maxAnim]->getTransform(id, &info);
+		scale->x    = info.mScale.x;
+		scale->y    = info.mScale.y;
+		scale->z    = info.mScale.z;
+		position->x = info.mTranslation.x;
+		position->y = info.mTranslation.y;
+		position->z = info.mTranslation.z;
+
+		f32 cosx = JMASCosShort(info.mRotation.x);
+		f32 cosy = JMASCosShort(info.mRotation.y);
+		f32 cosz = JMASCosShort(info.mRotation.z);
+		f32 sinx = JMASinShort(info.mRotation.x);
+		f32 siny = JMASinShort(info.mRotation.x);
+		f32 sinz = JMASinShort(info.mRotation.x);
+
+		// this is all definitely wrong
+		anmMtx[2][0] = -cosx;
+		anmMtx[0][0] = cosz * cosy;
+		anmMtx[1][0] = sinx * cosy;
+
+		anmMtx[2][1] = cosy * siny;
+		anmMtx[2][2] = cosy * sinz;
+		anmMtx[2][3] = siny * cosz * cosx - sinz * sinx;
+
+		anmMtx[2][3] = sinz * sinx * cosx - siny * cosz;
+		anmMtx[2][3] = sinz * cosz * cosx + siny * sinx;
+		anmMtx[2][3] = siny * sinx * cosx + sinz * cosz;
+
+		break;
+	default:
+		scale->z    = 0.0f;
+		scale->y    = 0.0f;
+		scale->x    = 0.0f;
+		position->z = 0.0f;
+		position->y = 0.0f;
+		position->x = 0.0f;
+		Quaternion quat;
+		quat.w = 0.0f;
+		quat.z = 0.0f;
+		quat.y = 0.0f;
+		quat.x = 0.0f;
+
+		for (int i = 0; i <= maxAnim; i++) {
+			J3DAnmTransform* anm = anims[i];
+			if (anm && weights[i] > 0.005f) {
+				f32 calc = weights[i] / totalWeight;
+				J3DTransformInfo info;
+				anm->getTransform(id, &info);
+				scale->x += info.mScale.x * calc;
+				scale->y += info.mScale.y * calc;
+				scale->z += info.mScale.z * calc;
+				position->x += info.mTranslation.x * calc;
+				position->y += info.mTranslation.y * calc;
+				position->z += info.mTranslation.z * calc;
+				Quaternion quat2;
+				JMAEulerToQuat(info.mRotation.x, info.mRotation.y, info.mRotation.z, &quat2);
+				JMAQuatLerp(&quat, &quat, calc, &quat2);
+			}
+		}
+		PSMTXQuat(anmMtx, (PSQuaternion*)&quat);
+		break;
+	}
 	/*
 	stwu     r1, -0xb0(r1)
 	mflr     r0
@@ -331,6 +419,96 @@ lbl_80016750:
  */
 void J3DMtxCalcBlendSharedMotionT::calcBlend(Vec* scale, Vec* position, J3DAnmTransform** anims, f32* weights)
 {
+	J3DJoint* jnt   = J3DMtxCalc::getJoint();
+	u16 id          = J3DMtxCalc::getJoint()->mJointIdx;
+	MtxP anmMtx     = J3DMtxCalc::getMtxBuffer()->getAnmMtx(id);
+	f32 totalWeight = 0.0f;
+	int num         = 0;
+	int maxAnim     = 0;
+	f32 minWeight   = 0.005f;
+
+	for (int i = 0; i < 4; i++) {
+		if (anims[i] && weights[i] > minWeight) {
+			totalWeight += weights[i];
+			maxAnim = i;
+			num++;
+		}
+	}
+
+	switch (num) {
+	case 0:
+		PSMTXIdentity(anmMtx);
+		scale->z    = 0.0f;
+		scale->y    = 0.0f;
+		scale->x    = 0.0f;
+		position->z = 0.0f;
+		position->y = 0.0f;
+		position->x = 0.0f;
+		break;
+	case 1:
+		J3DTransformInfo info;
+		anims[maxAnim]->getTransform(id, &info);
+		scale->x    = info.mScale.x;
+		scale->y    = info.mScale.y;
+		scale->z    = info.mScale.z;
+		position->x = info.mTranslation.x * jnt->getTransformInfo().mTranslation.x;
+		position->y = info.mTranslation.y * jnt->getTransformInfo().mTranslation.y;
+		position->z = info.mTranslation.z * jnt->getTransformInfo().mTranslation.z;
+
+		f32 cosx = JMASCosShort(info.mRotation.x);
+		f32 cosy = JMASCosShort(info.mRotation.y);
+		f32 cosz = JMASCosShort(info.mRotation.z);
+		f32 sinx = JMASinShort(info.mRotation.x);
+		f32 siny = JMASinShort(info.mRotation.x);
+		f32 sinz = JMASinShort(info.mRotation.x);
+
+		// this is all definitely wrong
+		anmMtx[2][0] = -cosx;
+		anmMtx[0][0] = cosz * cosy;
+		anmMtx[1][0] = sinx * cosy;
+
+		anmMtx[2][1] = cosy * siny;
+		anmMtx[2][2] = cosy * sinz;
+		anmMtx[2][3] = siny * cosz * cosx - sinz * sinx;
+
+		anmMtx[2][3] = sinz * sinx * cosx - siny * cosz;
+		anmMtx[2][3] = sinz * cosz * cosx + siny * sinx;
+		anmMtx[2][3] = siny * sinx * cosx + sinz * cosz;
+
+		break;
+	default:
+		scale->z    = 0.0f;
+		scale->y    = 0.0f;
+		scale->x    = 0.0f;
+		position->z = 0.0f;
+		position->y = 0.0f;
+		position->x = 0.0f;
+		Quaternion quat;
+		quat.w = 0.0f;
+		quat.z = 0.0f;
+		quat.y = 0.0f;
+		quat.x = 0.0f;
+
+		for (int i = 0; i <= maxAnim; i++) {
+			J3DAnmTransform* anm = anims[i];
+			if (anm && weights[i] > 0.005f) {
+				f32 calc = weights[i] / totalWeight;
+				J3DTransformInfo info;
+				anm->getTransform(id, &info);
+				scale->x += info.mScale.x * calc;
+				scale->y += info.mScale.y * calc;
+				scale->z += info.mScale.z * calc;
+				position->x += (info.mTranslation.x * jnt->getTransformInfo().mTranslation.x) * calc;
+				position->y += (info.mTranslation.y * jnt->getTransformInfo().mTranslation.y) * calc;
+				position->z += (info.mTranslation.z * jnt->getTransformInfo().mTranslation.z) * calc;
+				Quaternion quat2;
+				JMAEulerToQuat(info.mRotation.x, info.mRotation.y, info.mRotation.z, &quat2);
+				JMAQuatLerp(&quat, &quat, calc, &quat2);
+			}
+		}
+		PSMTXQuat(anmMtx, (PSQuaternion*)&quat);
+		break;
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0xB0(r1)
