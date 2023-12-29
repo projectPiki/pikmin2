@@ -66,6 +66,16 @@ void C_MTXLightPerspective(Mtx mtx, f32 fovY, f32 aspect, f32 scaleS, f32 scaleT
 void C_MTXLightOrtho(Mtx mtx, f32 t, f32 b, f32 l, f32 r, f32 scaleS, f32 scaleT, f32 transS, f32 transT);
 ////////////////////////////////////////////
 
+////////////// MATRIX INLINES //////////////
+static inline void MTXSetPosition(Mtx mtx, const Vec* pos)
+{
+	mtx[0][3] = pos->x;
+	mtx[1][3] = pos->y;
+	mtx[2][3] = pos->z;
+}
+
+////////////////////////////////////////////
+
 #ifdef __cplusplus
 }
 #endif

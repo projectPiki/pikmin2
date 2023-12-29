@@ -20,7 +20,16 @@ struct J3DAnmLoaderDataBase {
 	void setResource(J3DAnmBase*, const void*);
 };
 
-enum J3DMtxCalcFlag { MTXCalc_0 };
+enum J3DMtxCalcFlag {
+	MTXCalc_Blend              = 0,
+	MTXCalc_BlendSharedMotionT = 1,
+};
+
+enum J3DMtxCalcBlendType {
+	MTXBLEND_Basic     = 0,
+	MTXBLEND_Softimage = 1,
+	MTXBLEND_Maya      = 2,
+};
 
 J3DMtxCalcAnmBase* J3DNewMtxCalcAnm(u32, J3DAnmTransform*);
 J3DMtxCalc* J3DUNewMtxCalcAnm(u32, J3DAnmTransform*, J3DAnmTransform*, J3DAnmTransform*, J3DAnmTransform*, J3DMtxCalcFlag);

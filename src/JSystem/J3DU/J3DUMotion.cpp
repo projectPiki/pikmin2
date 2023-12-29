@@ -1,499 +1,93 @@
 #include "JSystem/J3D/J3DAnmTransform.h"
 #include "JSystem/J3D/J3DAnmLoader.h"
 #include "JSystem/J3D/J3DMtxCalc.h"
+#include "JSystem/J3D/J3DMtxBuffer.h"
 #include "types.h"
 
 /**
  * @note Address: 0x80015DF0
  * @note Size: 0x590
  */
-J3DMtxCalc* J3DUNewMtxCalcAnm(u32, J3DAnmTransform*, J3DAnmTransform*, J3DAnmTransform*, J3DAnmTransform*, J3DMtxCalcFlag)
+J3DMtxCalc* J3DUNewMtxCalcAnm(u32 blendType, J3DAnmTransform* anm0, J3DAnmTransform* anm1, J3DAnmTransform* anm2, J3DAnmTransform* anm3,
+                              J3DMtxCalcFlag calcFlag)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  cmpwi     r3, 0x1
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r28, r4
-	  mr        r29, r5
-	  mr        r30, r6
-	  mr        r31, r7
-	  li        r27, 0
-	  beq-      .loc_0x204
-	  bge-      .loc_0x3C
-	  cmpwi     r3, 0
-	  bge-      .loc_0x48
-	  b         .loc_0x578
+	J3DMtxCalc* calc = nullptr;
+	switch (blendType) {
+	case MTXBLEND_Basic: {
+		switch (calcFlag) {
+		case MTXCalc_Blend:
+			calc = new J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlend, J3DMtxCalcScaleBlendBasic>,
+			                              J3DMtxCalcJ3DSysInitBasic>(anm0, 1.0f);
+			break;
+		case MTXCalc_BlendSharedMotionT:
+			calc = new J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlendSharedMotionT, J3DMtxCalcScaleBlendBasic>,
+			                              J3DMtxCalcJ3DSysInitBasic>(anm0, 1.0f);
+			break;
+		}
 
-	.loc_0x3C:
-	  cmpwi     r3, 0x3
-	  bge-      .loc_0x578
-	  b         .loc_0x3C0
+		calc->setAnmTransform(1, anm1);
+		calc->setAnmTransform(2, anm2);
+		calc->setAnmTransform(3, anm3);
 
-	.loc_0x48:
-	  cmpwi     r8, 0x1
-	  beq-      .loc_0xD0
-	  bge-      .loc_0x13C
-	  cmpwi     r8, 0
-	  bge-      .loc_0x60
-	  b         .loc_0x13C
+		calc->setWeight(0, 1.0f);
+		calc->setWeight(1, 0.0f);
+		calc->setWeight(2, 0.0f);
+		calc->setWeight(3, 0.0f);
+	} break;
 
-	.loc_0x60:
-	  li        r3, 0x28
-	  bl        0xE050
-	  cmplwi    r3, 0
-	  beq-      .loc_0xC8
-	  lis       r4, 0x804A
-	  lis       r5, 0x804A
-	  subi      r0, r4, 0x4C4
-	  lis       r4, 0x804A
-	  stw       r0, 0x0(r3)
-	  subi      r0, r5, 0x4F0
-	  li        r5, 0
-	  lfs       f1, -0x7EA8(r2)
-	  stw       r0, 0x0(r3)
-	  subi      r0, r4, 0x51C
-	  lfs       f0, -0x7EA4(r2)
-	  stw       r5, 0x4(r3)
-	  stfs      f1, 0x14(r3)
-	  stw       r5, 0x8(r3)
-	  stfs      f1, 0x18(r3)
-	  stw       r5, 0xC(r3)
-	  stfs      f1, 0x1C(r3)
-	  stw       r5, 0x10(r3)
-	  stfs      f1, 0x20(r3)
-	  stw       r0, 0x0(r3)
-	  stw       r28, 0x4(r3)
-	  stfs      f0, 0x14(r3)
+	case MTXBLEND_Softimage: {
+		switch (calcFlag) {
+		case MTXCalc_Blend:
+			calc = new J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlend, J3DMtxCalcScaleBlendSoftimage>,
+			                              J3DMtxCalcJ3DSysInitSoftimage>(anm0, 1.0f);
+			break;
+		case MTXCalc_BlendSharedMotionT:
+			calc = new J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlendSharedMotionT, J3DMtxCalcScaleBlendSoftimage>,
+			                              J3DMtxCalcJ3DSysInitSoftimage>(anm0, 1.0f);
+			break;
+		}
 
-	.loc_0xC8:
-	  mr        r27, r3
-	  b         .loc_0x13C
+		calc->setAnmTransform(1, anm1);
+		calc->setAnmTransform(2, anm2);
+		calc->setAnmTransform(3, anm3);
 
-	.loc_0xD0:
-	  li        r3, 0x28
-	  bl        0xDFE0
-	  cmplwi    r3, 0
-	  beq-      .loc_0x138
-	  lis       r4, 0x804A
-	  lis       r5, 0x804A
-	  subi      r0, r4, 0x4C4
-	  lis       r4, 0x804A
-	  stw       r0, 0x0(r3)
-	  subi      r0, r5, 0x4F0
-	  li        r5, 0
-	  lfs       f1, -0x7EA8(r2)
-	  stw       r0, 0x0(r3)
-	  subi      r0, r4, 0x548
-	  lfs       f0, -0x7EA4(r2)
-	  stw       r5, 0x4(r3)
-	  stfs      f1, 0x14(r3)
-	  stw       r5, 0x8(r3)
-	  stfs      f1, 0x18(r3)
-	  stw       r5, 0xC(r3)
-	  stfs      f1, 0x1C(r3)
-	  stw       r5, 0x10(r3)
-	  stfs      f1, 0x20(r3)
-	  stw       r0, 0x0(r3)
-	  stw       r28, 0x4(r3)
-	  stfs      f0, 0x14(r3)
+		calc->setWeight(0, 1.0f);
+		calc->setWeight(1, 0.0f);
+		calc->setWeight(2, 0.0f);
+		calc->setWeight(3, 0.0f);
+	} break;
 
-	.loc_0x138:
-	  mr        r27, r3
+	case MTXBLEND_Maya: {
+		switch (calcFlag) {
+		case MTXCalc_Blend:
+			calc = new J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlend, J3DMtxCalcScaleBlendMaya>,
+			                              J3DMtxCalcJ3DSysInitMaya>(anm0, 1.0f);
+			break;
+		case MTXCalc_BlendSharedMotionT:
+			calc = new J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlendSharedMotionT, J3DMtxCalcScaleBlendMaya>,
+			                              J3DMtxCalcJ3DSysInitMaya>(anm0, 1.0f);
+			break;
+		}
 
-	.loc_0x13C:
-	  mr        r3, r27
-	  mr        r5, r29
-	  lwz       r12, 0x0(r27)
-	  li        r4, 0x1
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r27
-	  mr        r5, r30
-	  lwz       r12, 0x0(r27)
-	  li        r4, 0x2
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r27
-	  mr        r5, r31
-	  lwz       r12, 0x0(r27)
-	  li        r4, 0x3
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r27
-	  lfs       f1, -0x7EA4(r2)
-	  lwz       r12, 0x0(r27)
-	  li        r4, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r27
-	  lfs       f1, -0x7EA8(r2)
-	  lwz       r12, 0x0(r27)
-	  li        r4, 0x1
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r27
-	  lfs       f1, -0x7EA8(r2)
-	  lwz       r12, 0x0(r27)
-	  li        r4, 0x2
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r27
-	  lfs       f1, -0x7EA8(r2)
-	  lwz       r12, 0x0(r27)
-	  li        r4, 0x3
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x578
+		calc->setAnmTransform(1, anm1);
+		calc->setAnmTransform(2, anm2);
+		calc->setAnmTransform(3, anm3);
 
-	.loc_0x204:
-	  cmpwi     r8, 0x1
-	  beq-      .loc_0x28C
-	  bge-      .loc_0x2F8
-	  cmpwi     r8, 0
-	  bge-      .loc_0x21C
-	  b         .loc_0x2F8
+		calc->setWeight(0, 1.0f);
+		calc->setWeight(1, 0.0f);
+		calc->setWeight(2, 0.0f);
+		calc->setWeight(3, 0.0f);
+	} break;
+	}
 
-	.loc_0x21C:
-	  li        r3, 0x28
-	  bl        0xDE94
-	  cmplwi    r3, 0
-	  beq-      .loc_0x284
-	  lis       r4, 0x804A
-	  lis       r5, 0x804A
-	  subi      r0, r4, 0x4C4
-	  lis       r4, 0x804A
-	  stw       r0, 0x0(r3)
-	  subi      r0, r5, 0x4F0
-	  li        r5, 0
-	  lfs       f1, -0x7EA8(r2)
-	  stw       r0, 0x0(r3)
-	  subi      r0, r4, 0x574
-	  lfs       f0, -0x7EA4(r2)
-	  stw       r5, 0x4(r3)
-	  stfs      f1, 0x14(r3)
-	  stw       r5, 0x8(r3)
-	  stfs      f1, 0x18(r3)
-	  stw       r5, 0xC(r3)
-	  stfs      f1, 0x1C(r3)
-	  stw       r5, 0x10(r3)
-	  stfs      f1, 0x20(r3)
-	  stw       r0, 0x0(r3)
-	  stw       r28, 0x4(r3)
-	  stfs      f0, 0x14(r3)
-
-	.loc_0x284:
-	  mr        r27, r3
-	  b         .loc_0x2F8
-
-	.loc_0x28C:
-	  li        r3, 0x28
-	  bl        0xDE24
-	  cmplwi    r3, 0
-	  beq-      .loc_0x2F4
-	  lis       r4, 0x804A
-	  lis       r5, 0x804A
-	  subi      r0, r4, 0x4C4
-	  lis       r4, 0x804A
-	  stw       r0, 0x0(r3)
-	  subi      r0, r5, 0x4F0
-	  li        r5, 0
-	  lfs       f1, -0x7EA8(r2)
-	  stw       r0, 0x0(r3)
-	  subi      r0, r4, 0x5A0
-	  lfs       f0, -0x7EA4(r2)
-	  stw       r5, 0x4(r3)
-	  stfs      f1, 0x14(r3)
-	  stw       r5, 0x8(r3)
-	  stfs      f1, 0x18(r3)
-	  stw       r5, 0xC(r3)
-	  stfs      f1, 0x1C(r3)
-	  stw       r5, 0x10(r3)
-	  stfs      f1, 0x20(r3)
-	  stw       r0, 0x0(r3)
-	  stw       r28, 0x4(r3)
-	  stfs      f0, 0x14(r3)
-
-	.loc_0x2F4:
-	  mr        r27, r3
-
-	.loc_0x2F8:
-	  mr        r3, r27
-	  mr        r5, r29
-	  lwz       r12, 0x0(r27)
-	  li        r4, 0x1
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r27
-	  mr        r5, r30
-	  lwz       r12, 0x0(r27)
-	  li        r4, 0x2
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r27
-	  mr        r5, r31
-	  lwz       r12, 0x0(r27)
-	  li        r4, 0x3
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r27
-	  lfs       f1, -0x7EA4(r2)
-	  lwz       r12, 0x0(r27)
-	  li        r4, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r27
-	  lfs       f1, -0x7EA8(r2)
-	  lwz       r12, 0x0(r27)
-	  li        r4, 0x1
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r27
-	  lfs       f1, -0x7EA8(r2)
-	  lwz       r12, 0x0(r27)
-	  li        r4, 0x2
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r27
-	  lfs       f1, -0x7EA8(r2)
-	  lwz       r12, 0x0(r27)
-	  li        r4, 0x3
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x578
-
-	.loc_0x3C0:
-	  cmpwi     r8, 0x1
-	  beq-      .loc_0x448
-	  bge-      .loc_0x4B4
-	  cmpwi     r8, 0
-	  bge-      .loc_0x3D8
-	  b         .loc_0x4B4
-
-	.loc_0x3D8:
-	  li        r3, 0x28
-	  bl        0xDCD8
-	  cmplwi    r3, 0
-	  beq-      .loc_0x440
-	  lis       r4, 0x804A
-	  lis       r5, 0x804A
-	  subi      r0, r4, 0x4C4
-	  lis       r4, 0x804A
-	  stw       r0, 0x0(r3)
-	  subi      r0, r5, 0x4F0
-	  li        r5, 0
-	  lfs       f1, -0x7EA8(r2)
-	  stw       r0, 0x0(r3)
-	  subi      r0, r4, 0x5CC
-	  lfs       f0, -0x7EA4(r2)
-	  stw       r5, 0x4(r3)
-	  stfs      f1, 0x14(r3)
-	  stw       r5, 0x8(r3)
-	  stfs      f1, 0x18(r3)
-	  stw       r5, 0xC(r3)
-	  stfs      f1, 0x1C(r3)
-	  stw       r5, 0x10(r3)
-	  stfs      f1, 0x20(r3)
-	  stw       r0, 0x0(r3)
-	  stw       r28, 0x4(r3)
-	  stfs      f0, 0x14(r3)
-
-	.loc_0x440:
-	  mr        r27, r3
-	  b         .loc_0x4B4
-
-	.loc_0x448:
-	  li        r3, 0x28
-	  bl        0xDC68
-	  cmplwi    r3, 0
-	  beq-      .loc_0x4B0
-	  lis       r4, 0x804A
-	  lis       r5, 0x804A
-	  subi      r0, r4, 0x4C4
-	  lis       r4, 0x804A
-	  stw       r0, 0x0(r3)
-	  subi      r0, r5, 0x4F0
-	  li        r5, 0
-	  lfs       f1, -0x7EA8(r2)
-	  stw       r0, 0x0(r3)
-	  subi      r0, r4, 0x5F8
-	  lfs       f0, -0x7EA4(r2)
-	  stw       r5, 0x4(r3)
-	  stfs      f1, 0x14(r3)
-	  stw       r5, 0x8(r3)
-	  stfs      f1, 0x18(r3)
-	  stw       r5, 0xC(r3)
-	  stfs      f1, 0x1C(r3)
-	  stw       r5, 0x10(r3)
-	  stfs      f1, 0x20(r3)
-	  stw       r0, 0x0(r3)
-	  stw       r28, 0x4(r3)
-	  stfs      f0, 0x14(r3)
-
-	.loc_0x4B0:
-	  mr        r27, r3
-
-	.loc_0x4B4:
-	  mr        r3, r27
-	  mr        r5, r29
-	  lwz       r12, 0x0(r27)
-	  li        r4, 0x1
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r27
-	  mr        r5, r30
-	  lwz       r12, 0x0(r27)
-	  li        r4, 0x2
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r27
-	  mr        r5, r31
-	  lwz       r12, 0x0(r27)
-	  li        r4, 0x3
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r27
-	  lfs       f1, -0x7EA4(r2)
-	  lwz       r12, 0x0(r27)
-	  li        r4, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r27
-	  lfs       f1, -0x7EA8(r2)
-	  lwz       r12, 0x0(r27)
-	  li        r4, 0x1
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r27
-	  lfs       f1, -0x7EA8(r2)
-	  lwz       r12, 0x0(r27)
-	  li        r4, 0x2
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r27
-	  lfs       f1, -0x7EA8(r2)
-	  lwz       r12, 0x0(r27)
-	  li        r4, 0x3
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x578:
-	  mr        r3, r27
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	return calc;
 }
-
-/**
- * @note Address: 0x80016380
- * @note Size: 0x4
- */
-void J3DMtxCalc::setWeight(u8, f32) { }
-
-/**
- * @note Address: 0x80016384
- * @note Size: 0x4
- */
-void J3DMtxCalc::setAnmTransform(u8, J3DAnmTransform*) { }
-
-/**
- * @note Address: 0x80016388
- * @note Size: 0x5C
- */
-J3DMtxCalcBlendAnmBase::~J3DMtxCalcBlendAnmBase()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_800163CC
-	lis      r3, __vt__22J3DMtxCalcBlendAnmBase@ha
-	addi     r0, r3, __vt__22J3DMtxCalcBlendAnmBase@l
-	stw      r0, 0(r31)
-	beq      lbl_800163BC
-	lis      r3, __vt__10J3DMtxCalc@ha
-	addi     r0, r3, __vt__10J3DMtxCalc@l
-	stw      r0, 0(r31)
-
-lbl_800163BC:
-	extsh.   r0, r4
-	ble      lbl_800163CC
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_800163CC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/**
- * @note Address: 0x800163E4
- * @note Size: 0x48
- */
-// J3DMtxCalc::~J3DMtxCalc()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	or.      r31, r3, r3
-// 	beq      lbl_80016414
-// 	lis      r5, __vt__10J3DMtxCalc@ha
-// 	extsh.   r0, r4
-// 	addi     r0, r5, __vt__10J3DMtxCalc@l
-// 	stw      r0, 0(r31)
-// 	ble      lbl_80016414
-// 	bl       __dl__FPv
-
-// lbl_80016414:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r31
-// 	lwz      r31, 0xc(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
 
 /**
  * @note Address: 0x8001642C
  * @note Size: 0x348
  */
-void J3DMtxCalcBlend::calcBlend(Vec*, Vec*, J3DAnmTransform**, f32*)
+void J3DMtxCalcBlend::calcBlend(Vec* scale, Vec* position, J3DAnmTransform** anims, f32* weights)
 {
 	/*
 	stwu     r1, -0xb0(r1)
@@ -735,7 +329,7 @@ lbl_80016750:
  * @note Address: 0x80016774
  * @note Size: 0x390
  */
-void J3DMtxCalcBlendSharedMotionT::calcBlend(Vec*, Vec*, J3DAnmTransform**, f32*)
+void J3DMtxCalcBlendSharedMotionT::calcBlend(Vec* scale, Vec* position, J3DAnmTransform** anims, f32* weights)
 {
 	/*
 	.loc_0x0:
@@ -993,11 +587,65 @@ void J3DMtxCalcBlendSharedMotionT::calcBlend(Vec*, Vec*, J3DAnmTransform**, f32*
 }
 
 /**
+ * @note Address: N/A
+ * @note Size: 0x124
+ */
+void J3DMtxCalcScaleBlendBasic::calcScaleBlend(const Vec& scale, const Vec& position)
+{
+	// TODO
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x174
+ */
+void J3DMtxCalcScaleBlendSoftimage::calcScaleBlend(const Vec& scale, const Vec& position)
+{
+	// TODO
+}
+
+/**
  * @note Address: 0x80016B04
  * @note Size: 0x198
  */
-void J3DMtxCalcScaleBlendMaya::calcScaleBlend(const Vec&, const Vec&)
+void J3DMtxCalcScaleBlendMaya::calcScaleBlend(const Vec& scale, const Vec& position)
 {
+	J3DJoint* joint      = J3DMtxCalc::getJoint();
+	J3DMtxBuffer* mtxBuf = J3DMtxCalc::getMtxBuffer();
+
+	u16 jntNo   = joint->getJntNo();
+	MtxP anmMtx = mtxBuf->getAnmMtx(jntNo);
+	MTXSetPosition(anmMtx, &position);
+
+	if (scale.x == 1.0f && scale.y == 1.0f && scale.z == 1.0f) {
+		mtxBuf->setScaleFlag(jntNo, 1);
+	} else {
+		mtxBuf->setScaleFlag(jntNo, 0);
+		JMAMTXApplyScale(anmMtx, anmMtx, scale.x, scale.y, scale.z);
+	}
+
+	if (joint->getScaleCompensate() == 1) {
+		f32 invX = JMath::fastReciprocal(J3DSys::mParentS.x);
+		f32 invY = JMath::fastReciprocal(J3DSys::mParentS.y);
+		f32 invZ = JMath::fastReciprocal(J3DSys::mParentS.z);
+
+		anmMtx[0][0] *= invX;
+		anmMtx[0][1] *= invX;
+		anmMtx[0][2] *= invX;
+		anmMtx[1][0] *= invY;
+		anmMtx[1][1] *= invY;
+		anmMtx[1][2] *= invY;
+		anmMtx[2][0] *= invZ;
+		anmMtx[2][1] *= invZ;
+		anmMtx[2][2] *= invZ;
+	}
+
+	PSMTXConcat(J3DSys::mCurrentMtx, anmMtx, J3DSys::mCurrentMtx);
+	PSMTXCopy(J3DSys::mCurrentMtx, anmMtx);
+
+	J3DSys::mParentS.x = scale.x;
+	J3DSys::mParentS.y = scale.y;
+	J3DSys::mParentS.z = scale.z;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1106,110 +754,6 @@ lbl_80016C40:
 	lwz      r29, 0x14(r1)
 	mtlr     r0
 	addi     r1, r1, 0x20
-	blr
-	*/
-}
-
-/**
- * @note Address: 0x80016C9C
- * @note Size: 0x8
- */
-void J3DMtxCalcBlendAnmBase::setAnmTransform(J3DAnmTransform* a1) { mAnim = a1; }
-
-/**
- * @note Address: 0x80016CA4
- * @note Size: 0x10
- */
-J3DAnmTransform* J3DMtxCalcBlendAnmBase::getAnmTransform(u8)
-{
-	/*
-	rlwinm   r0, r4, 2, 0x16, 0x1d
-	add      r3, r3, r0
-	lwz      r3, 4(r3)
-	blr
-	*/
-}
-
-/**
- * @note Address: 0x80016CB4
- * @note Size: 0x8
- */
-J3DAnmTransform* J3DMtxCalcBlendAnmBase::getAnmTransform()
-{
-	/*
-	lwz      r3, 4(r3)
-	blr
-	*/
-}
-
-/**
- * @note Address: 0x80016CBC
- * @note Size: 0x10
- */
-void J3DMtxCalcBlendAnmBase::getWeight(u8) const
-{
-	/*
-	rlwinm   r0, r4, 2, 0x16, 0x1d
-	add      r3, r3, r0
-	lfs      f1, 0x14(r3)
-	blr
-	*/
-}
-
-/**
- * @note Address: 0x80016CCC
- * @note Size: 0x10
- */
-void J3DMtxCalcBlendAnmBase::setAnmTransform(u8, J3DAnmTransform*)
-{
-	/*
-	rlwinm   r0, r4, 2, 0x16, 0x1d
-	add      r3, r3, r0
-	stw      r5, 4(r3)
-	blr
-	*/
-}
-
-/**
- * @note Address: 0x80016CDC
- * @note Size: 0x10
- */
-void J3DMtxCalcBlendAnmBase::setWeight(u8, f32)
-{
-	/*
-	rlwinm   r0, r4, 2, 0x16, 0x1d
-	add      r3, r3, r0
-	stfs     f1, 0x14(r3)
-	blr
-	*/
-}
-
-/**
- * @note Address: 0x80016CEC
- * @note Size: 0x4
- */
-void J3DMtxCalc::setAnmTransform(J3DAnmTransform*) { }
-
-/**
- * @note Address: 0x80016CF0
- * @note Size: 0x8
- */
-J3DAnmTransform* J3DMtxCalc::getAnmTransform(u8) { return nullptr; }
-
-/**
- * @note Address: 0x80016CF8
- * @note Size: 0x8
- */
-J3DAnmTransform* J3DMtxCalc::getAnmTransform() { return nullptr; }
-
-/**
- * @note Address: 0x80016D00
- * @note Size: 0x8
- */
-void J3DMtxCalc::getWeight(u8) const
-{
-	/*
-	lfs      f1, lbl_805164B8@sda21(r2)
 	blr
 	*/
 }

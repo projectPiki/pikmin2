@@ -417,7 +417,7 @@ void BlendAnimator::setAnimMgr(AnimMgr* mgr)
 	JUT_ASSERTLINE(442, info, "BlendAnimator : at least 1 motion is required!\n");
 
 	mMtxCalc = J3DUNewMtxCalcAnm(mgr->mModel->mJ3dModel->mModelData->mJointTree.mFlags & 0xf, info->mAnm, info->mAnm, nullptr, nullptr,
-	                             MTXCalc_0);
+	                             MTXCalc_Blend);
 }
 
 /**
