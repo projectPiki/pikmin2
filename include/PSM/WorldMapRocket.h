@@ -24,11 +24,11 @@ struct WorldMapRocket : public JADHioNode {
 
 	// _00 VTBL
 	rocketState mState; // _04
-	f32 mStartPosX;            // _08
-	f32 mEndPosX;            // _0C
+	f32 mStartPosX;     // _08
+	f32 mEndPosX;       // _0C
 	f32 _10;            // _10
-	f32 mStartPosY;            // _14
-	f32 mEndPosY;            // _18
+	f32 mStartPosY;     // _14
+	f32 mEndPosY;       // _18
 	f32 _1C;            // _1C
 };
 

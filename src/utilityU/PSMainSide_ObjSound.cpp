@@ -310,7 +310,7 @@ void Creature::loopCalc(FrameCalcArg& arg)
 		JAISound* se = jai->mSounds[i];
 		if (se) {
 			JAISound_0x34* data                   = se->mSoundObj;
-			data->mPosition                             = *pos;
+			data->mPosition                       = *pos;
 			data->mDistance                       = *dist;
 			static_cast<SeSound*>(se)->mPlayerNum = players;
 		}

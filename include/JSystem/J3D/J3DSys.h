@@ -95,6 +95,8 @@ struct J3DSys {
 
 	J3DModel* getModel() { return mModel; }
 
+	static Vec* getScale() { return &mCurrentS; }
+
 	static Mtx mCurrentMtx;
 	static Vec mCurrentS;
 	static Vec mParentS;

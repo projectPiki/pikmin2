@@ -347,7 +347,7 @@ void JAInter::Object::loop()
 		}
 
 		JAISound_0x34* v1 = mSounds[i]->mSoundObj;
-		v1->mPosition           = _28;
+		v1->mPosition     = _28;
 		v1->_0C           = _34;
 
 		if (!check) {

@@ -88,8 +88,11 @@ J3DMtxCalc* J3DUNewMtxCalcAnm(u32 blendType, J3DAnmTransform* anm0, J3DAnmTransf
  */
 void J3DMtxCalcBlend::calcBlend(Vec* scale, Vec* position, J3DAnmTransform** anims, f32* weights)
 {
-	u16 id          = J3DMtxCalc::getJoint()->getJntNo();
-	MtxP anmMtx     = J3DMtxCalc::getMtxBuffer()->getAnmMtx(id);
+	J3DJoint* joint      = J3DMtxCalc::getJoint();
+	J3DMtxBuffer* mtxBuf = J3DMtxCalc::getMtxBuffer();
+
+	u16 id          = joint->getJntNo();
+	MtxP anmMtx     = mtxBuf->getAnmMtx(id);
 	f32 totalWeight = 0.0f;
 	int num         = 0;
 	int maxAnim     = 0;
@@ -106,12 +109,8 @@ void J3DMtxCalcBlend::calcBlend(Vec* scale, Vec* position, J3DAnmTransform** ani
 	switch (num) {
 	case 0:
 		PSMTXIdentity(anmMtx);
-		scale->z    = 0.0f;
-		scale->y    = 0.0f;
-		scale->x    = 0.0f;
-		position->z = 0.0f;
-		position->y = 0.0f;
-		position->x = 0.0f;
+		scale->x = scale->y = scale->z = 0.0f;
+		position->x = position->y = position->z = 0.0f;
 		break;
 	case 1:
 		J3DTransformInfo info;
@@ -127,21 +126,19 @@ void J3DMtxCalcBlend::calcBlend(Vec* scale, Vec* position, J3DAnmTransform** ani
 		f32 cosy = JMASCosShort(info.mRotation.y);
 		f32 cosz = JMASCosShort(info.mRotation.z);
 		f32 sinx = JMASinShort(info.mRotation.x);
-		f32 siny = JMASinShort(info.mRotation.x);
-		f32 sinz = JMASinShort(info.mRotation.x);
+		f32 siny = JMASinShort(info.mRotation.y);
+		f32 sinz = JMASinShort(info.mRotation.z);
 
-		// this is all definitely wrong
-		anmMtx[2][0] = -cosx;
+		anmMtx[2][0] = -sinz;
 		anmMtx[0][0] = cosz * cosy;
-		anmMtx[1][0] = sinx * cosy;
+		anmMtx[1][0] = sinz * cosy;
 
-		anmMtx[2][1] = cosy * siny;
-		anmMtx[2][2] = cosy * sinz;
-		anmMtx[2][3] = siny * cosz * cosx - sinz * sinx;
-
-		anmMtx[2][3] = sinz * sinx * cosx - siny * cosz;
-		anmMtx[2][3] = sinz * cosz * cosx + siny * sinx;
-		anmMtx[2][3] = siny * sinx * cosx + sinz * cosz;
+		anmMtx[2][1] = cosy * sinz;
+		anmMtx[2][2] = cosy * cosx;
+		anmMtx[0][1] = (sinx * cosz) * siny - cosx * sinz;
+		anmMtx[1][2] = (cosx * sinz) * siny - sinx * cosz;
+		anmMtx[0][2] = (cosx * cosz) * siny + sinx * sinz;
+		anmMtx[1][1] = (sinx * sinz) * siny + cosx * cosz;
 
 		break;
 	default:
@@ -159,19 +156,22 @@ void J3DMtxCalcBlend::calcBlend(Vec* scale, Vec* position, J3DAnmTransform** ani
 
 		for (int i = 0; i <= maxAnim; i++) {
 			J3DAnmTransform* anm = anims[i];
-			if (anm && weights[i] > 0.005f) {
-				f32 calc = weights[i] / totalWeight;
-				J3DTransformInfo info;
-				anm->getTransform(id, &info);
-				scale->x += info.mScale.x * calc;
-				scale->y += info.mScale.y * calc;
-				scale->z += info.mScale.z * calc;
-				position->x += info.mTranslation.x * calc;
-				position->y += info.mTranslation.y * calc;
-				position->z += info.mTranslation.z * calc;
-				Quaternion quat2;
-				JMAEulerToQuat(info.mRotation.x, info.mRotation.y, info.mRotation.z, &quat2);
-				JMAQuatLerp(&quat, &quat, calc, &quat2);
+			if (anm) {
+				f32 calc = weights[i];
+				if (calc > 0.005f) {
+					calc /= totalWeight;
+					J3DTransformInfo info;
+					anm->getTransform(id, &info);
+					scale->x += info.mScale.x * calc;
+					scale->y += info.mScale.y * calc;
+					scale->z += info.mScale.z * calc;
+					position->x += info.mTranslation.x * calc;
+					position->y += info.mTranslation.y * calc;
+					position->z += info.mTranslation.z * calc;
+					Quaternion quat2;
+					JMAEulerToQuat(info.mRotation.x, info.mRotation.y, info.mRotation.z, &quat2);
+					JMAQuatLerp(&quat, &quat2, calc, &quat);
+				}
 			}
 		}
 		PSMTXQuat(anmMtx, (PSQuaternion*)&quat);
@@ -419,9 +419,11 @@ lbl_80016750:
  */
 void J3DMtxCalcBlendSharedMotionT::calcBlend(Vec* scale, Vec* position, J3DAnmTransform** anims, f32* weights)
 {
-	J3DJoint* jnt   = J3DMtxCalc::getJoint();
-	u16 id          = J3DMtxCalc::getJoint()->mJointIdx;
-	MtxP anmMtx     = J3DMtxCalc::getMtxBuffer()->getAnmMtx(id);
+	J3DJoint* jnt        = J3DMtxCalc::getJoint();
+	J3DMtxBuffer* mtxBuf = J3DMtxCalc::getMtxBuffer();
+
+	u16 id          = jnt->mJointIdx;
+	MtxP anmMtx     = mtxBuf->getAnmMtx(id);
 	f32 totalWeight = 0.0f;
 	int num         = 0;
 	int maxAnim     = 0;
@@ -448,32 +450,33 @@ void J3DMtxCalcBlendSharedMotionT::calcBlend(Vec* scale, Vec* position, J3DAnmTr
 	case 1:
 		J3DTransformInfo info;
 		anims[maxAnim]->getTransform(id, &info);
+		info.mTranslation.x *= jnt->getTransformInfo().mTranslation.x;
+		info.mTranslation.y *= jnt->getTransformInfo().mTranslation.y;
+		info.mTranslation.z *= jnt->getTransformInfo().mTranslation.z;
 		scale->x    = info.mScale.x;
 		scale->y    = info.mScale.y;
 		scale->z    = info.mScale.z;
-		position->x = info.mTranslation.x * jnt->getTransformInfo().mTranslation.x;
-		position->y = info.mTranslation.y * jnt->getTransformInfo().mTranslation.y;
-		position->z = info.mTranslation.z * jnt->getTransformInfo().mTranslation.z;
+		position->x = info.mTranslation.x;
+		position->y = info.mTranslation.y;
+		position->z = info.mTranslation.z;
 
 		f32 cosx = JMASCosShort(info.mRotation.x);
 		f32 cosy = JMASCosShort(info.mRotation.y);
 		f32 cosz = JMASCosShort(info.mRotation.z);
 		f32 sinx = JMASinShort(info.mRotation.x);
-		f32 siny = JMASinShort(info.mRotation.x);
-		f32 sinz = JMASinShort(info.mRotation.x);
+		f32 siny = JMASinShort(info.mRotation.y);
+		f32 sinz = JMASinShort(info.mRotation.z);
 
-		// this is all definitely wrong
-		anmMtx[2][0] = -cosx;
+		anmMtx[2][0] = -sinz;
 		anmMtx[0][0] = cosz * cosy;
-		anmMtx[1][0] = sinx * cosy;
+		anmMtx[1][0] = sinz * cosy;
 
-		anmMtx[2][1] = cosy * siny;
-		anmMtx[2][2] = cosy * sinz;
-		anmMtx[2][3] = siny * cosz * cosx - sinz * sinx;
-
-		anmMtx[2][3] = sinz * sinx * cosx - siny * cosz;
-		anmMtx[2][3] = sinz * cosz * cosx + siny * sinx;
-		anmMtx[2][3] = siny * sinx * cosx + sinz * cosz;
+		anmMtx[2][1] = cosy * sinz;
+		anmMtx[2][2] = cosy * cosx;
+		anmMtx[0][1] = (sinx * cosz) * siny - cosx * sinz;
+		anmMtx[1][2] = (cosx * sinz) * siny - sinx * cosz;
+		anmMtx[0][2] = (cosx * cosz) * siny + sinx * sinz;
+		anmMtx[1][1] = (sinx * sinz) * siny + cosx * cosz;
 
 		break;
 	default:
@@ -503,7 +506,7 @@ void J3DMtxCalcBlendSharedMotionT::calcBlend(Vec* scale, Vec* position, J3DAnmTr
 				position->z += (info.mTranslation.z * jnt->getTransformInfo().mTranslation.z) * calc;
 				Quaternion quat2;
 				JMAEulerToQuat(info.mRotation.x, info.mRotation.y, info.mRotation.z, &quat2);
-				JMAQuatLerp(&quat, &quat, calc, &quat2);
+				JMAQuatLerp(&quat, &quat2, calc, &quat);
 			}
 		}
 		PSMTXQuat(anmMtx, (PSQuaternion*)&quat);
@@ -770,7 +773,34 @@ void J3DMtxCalcBlendSharedMotionT::calcBlend(Vec* scale, Vec* position, J3DAnmTr
  */
 void J3DMtxCalcScaleBlendBasic::calcScaleBlend(const Vec& scale, const Vec& position)
 {
-	// TODO
+	J3DJoint* joint      = J3DMtxCalc::getJoint();
+	J3DMtxBuffer* mtxBuf = J3DMtxCalc::getMtxBuffer();
+	u16 jntNo            = joint->getJntNo();
+	MtxP anmMtx          = mtxBuf->getAnmMtx(jntNo);
+	f32 x                = J3DSys::mCurrentS.x * scale.x;
+	f32 y                = J3DSys::mCurrentS.y * scale.y;
+	f32 z                = J3DSys::mCurrentS.z * scale.z;
+	J3DSys::mCurrentS.x  = x;
+	J3DSys::mCurrentS.y  = y;
+	J3DSys::mCurrentS.z  = z;
+
+	BOOL isDefScale;
+	if (x == 1.0f && y == 1.0f && z == 1.0f) {
+		isDefScale = TRUE;
+	} else {
+		isDefScale = FALSE;
+	}
+
+	if (isDefScale == FALSE) {
+		mtxBuf->setScaleFlag(jntNo, 0);
+		JMAMTXApplyScale(anmMtx, anmMtx, scale.x, scale.y, scale.z);
+	} else {
+		mtxBuf->setScaleFlag(jntNo, 1);
+	}
+
+	MTXSetPosition(anmMtx, &position);
+	PSMTXConcat(J3DSys::mCurrentMtx, anmMtx, J3DSys::mCurrentMtx);
+	PSMTXCopy(J3DSys::mCurrentMtx, anmMtx);
 }
 
 /**
@@ -779,7 +809,36 @@ void J3DMtxCalcScaleBlendBasic::calcScaleBlend(const Vec& scale, const Vec& posi
  */
 void J3DMtxCalcScaleBlendSoftimage::calcScaleBlend(const Vec& scale, const Vec& position)
 {
-	// TODO
+	J3DJoint* joint      = J3DMtxCalc::getJoint();
+	J3DMtxBuffer* mtxBuf = J3DMtxCalc::getMtxBuffer();
+	u16 jntNo            = joint->mJointIdx;
+	MtxP anmMtx          = mtxBuf->getAnmMtx(jntNo);
+	anmMtx[0][3]         = position.x * scale.x;
+	anmMtx[1][3]         = position.y * scale.y;
+	anmMtx[2][3]         = position.z * scale.z;
+	J3DSys::mCurrentS.x  = J3DSys::mCurrentS.x * scale.x;
+	J3DSys::mCurrentS.y  = J3DSys::mCurrentS.y * scale.y;
+	J3DSys::mCurrentS.z  = J3DSys::mCurrentS.z * scale.z;
+
+	PSMTXConcat(J3DSys::mCurrentMtx, anmMtx, J3DSys::mCurrentMtx);
+	BOOL isDefScale;
+	if (J3DSys::mCurrentS.x == 1.0f && J3DSys::mCurrentS.y == 1.0f && J3DSys::mCurrentS.z == 1.0f) {
+		isDefScale = TRUE;
+	} else {
+		isDefScale = FALSE;
+	}
+
+	if (isDefScale == FALSE) {
+		mtxBuf->setScaleFlag(jntNo, 0);
+		JMAMTXApplyScale(J3DSys::mCurrentMtx, anmMtx, J3DSys::mCurrentS.x, J3DSys::mCurrentS.y, J3DSys::mCurrentS.z);
+
+		anmMtx[0][3] = J3DSys::mCurrentMtx[0][3];
+		anmMtx[1][3] = J3DSys::mCurrentMtx[1][3];
+		anmMtx[2][3] = J3DSys::mCurrentMtx[2][3];
+	} else {
+		mtxBuf->setScaleFlag(jntNo, 1);
+		PSMTXCopy(J3DSys::mCurrentMtx, anmMtx);
+	}
 }
 
 /**
@@ -791,7 +850,7 @@ void J3DMtxCalcScaleBlendMaya::calcScaleBlend(const Vec& scale, const Vec& posit
 	J3DJoint* joint      = J3DMtxCalc::getJoint();
 	J3DMtxBuffer* mtxBuf = J3DMtxCalc::getMtxBuffer();
 
-	u16 jntNo   = joint->getJntNo();
+	u16 jntNo   = joint->mJointIdx;
 	MtxP anmMtx = mtxBuf->getAnmMtx(jntNo);
 	MTXSetPosition(anmMtx, &position);
 
@@ -824,114 +883,4 @@ void J3DMtxCalcScaleBlendMaya::calcScaleBlend(const Vec& scale, const Vec& posit
 	J3DSys::mParentS.x = scale.x;
 	J3DSys::mParentS.y = scale.y;
 	J3DSys::mParentS.z = scale.z;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lfs      f2, 0(r4)
-	stw      r0, 0x24(r1)
-	lfs      f3, 4(r4)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lfs      f1, lbl_805164BC@sda21(r2)
-	stw      r30, 0x18(r1)
-	lfs      f0, 0(r31)
-	stw      r29, 0x14(r1)
-	fcmpu    cr0, f1, f0
-	lwz      r29, mJoint__10J3DMtxCalc@sda21(r13)
-	lwz      r5, mMtxBuffer__10J3DMtxCalc@sda21(r13)
-	lhz      r6, 0x14(r29)
-	lwz      r3, 0xc(r5)
-	mulli    r0, r6, 0x30
-	add      r30, r3, r0
-	stfs     f2, 0xc(r30)
-	lfs      f2, 8(r4)
-	stfs     f3, 0x1c(r30)
-	stfs     f2, 0x2c(r30)
-	bne      lbl_80016B88
-	lfs      f0, 4(r31)
-	fcmpu    cr0, f1, f0
-	bne      lbl_80016B88
-	lfs      f0, 8(r31)
-	fcmpu    cr0, f1, f0
-	bne      lbl_80016B88
-	lwz      r3, 4(r5)
-	li       r0, 1
-	stbx     r0, r3, r6
-	b        lbl_80016BAC
-
-lbl_80016B88:
-	lwz      r4, 4(r5)
-	li       r0, 0
-	lfs      f1, 0(r31)
-	mr       r3, r30
-	stbx     r0, r4, r6
-	mr       r4, r30
-	lfs      f2, 4(r31)
-	lfs      f3, 8(r31)
-	bl       JMAMTXApplyScale__FPA4_CfPA4_ffff
-
-lbl_80016BAC:
-	lbz      r0, 0x17(r29)
-	cmplwi   r0, 1
-	bne      lbl_80016C40
-	lis      r3, mParentS__6J3DSys@ha
-	lfsu     f1, mParentS__6J3DSys@l(r3)
-	lfs      f0, 0(r30)
-	fres     f3, f1
-	lfs      f2, 4(r3)
-	lfs      f1, 8(r3)
-	fmuls    f0, f0, f3
-	fres     f2, f2
-	stfs     f0, 0(r30)
-	lfs      f0, 4(r30)
-	fmuls    f0, f0, f3
-	fres     f1, f1
-	stfs     f0, 4(r30)
-	lfs      f0, 8(r30)
-	fmuls    f0, f0, f3
-	stfs     f0, 8(r30)
-	lfs      f0, 0x10(r30)
-	fmuls    f0, f0, f2
-	stfs     f0, 0x10(r30)
-	lfs      f0, 0x14(r30)
-	fmuls    f0, f0, f2
-	stfs     f0, 0x14(r30)
-	lfs      f0, 0x18(r30)
-	fmuls    f0, f0, f2
-	stfs     f0, 0x18(r30)
-	lfs      f0, 0x20(r30)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x20(r30)
-	lfs      f0, 0x24(r30)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x24(r30)
-	lfs      f0, 0x28(r30)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x28(r30)
-
-lbl_80016C40:
-	lis      r3, mCurrentMtx__6J3DSys@ha
-	mr       r4, r30
-	addi     r3, r3, mCurrentMtx__6J3DSys@l
-	mr       r5, r3
-	bl       PSMTXConcat
-	lis      r3, mCurrentMtx__6J3DSys@ha
-	mr       r4, r30
-	addi     r3, r3, mCurrentMtx__6J3DSys@l
-	bl       PSMTXCopy
-	lfs      f2, 0(r31)
-	lis      r3, mParentS__6J3DSys@ha
-	lfs      f1, 4(r31)
-	stfsu    f2, mParentS__6J3DSys@l(r3)
-	lfs      f0, 8(r31)
-	stfs     f1, 4(r3)
-	stfs     f0, 8(r3)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r0, 0x24(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }

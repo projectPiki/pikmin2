@@ -25,7 +25,7 @@ JAISound::JAISound()
 {
 	// UNUSED FUNCTION
 	JKRHeap* heap = JAIBasic::msCurrentHeap;
-	mSoundObj           = new (heap, 0x20) JAISound_0x34[JAIGlobalParameter::getParamAudioCameraMax()];
+	mSoundObj     = new (heap, 0x20) JAISound_0x34[JAIGlobalParameter::getParamAudioCameraMax()];
 }
 
 /**
@@ -2253,9 +2253,9 @@ void JAISound::initParameter(void* handlePtr, JAInter::Actor* actor, u32 id, u32
 		_1A = actor->mFlag.boolView[0];
 	} else {
 		mCreatureObj = nullptr;
-		_3C = nullptr;
-		_1A = 0;
-		_30 = 0;
+		_3C          = nullptr;
+		_1A          = 0;
+		_30          = 0;
 	}
 	mMainSoundPPointer         = (void**)handlePtr;
 	_28                        = p4;
