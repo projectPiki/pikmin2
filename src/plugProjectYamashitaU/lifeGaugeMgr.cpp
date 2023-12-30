@@ -220,24 +220,25 @@ void LifeGaugeList::draw(Graphics& gfx)
 
 	GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
 	f32 y = -x;
+	f32 z = 0.0f;
 
 	// Draw Top Left
-	GXPosition3f32(x, x, 0.0f);
+	GXPosition3f32(x, y, z);
 	GXColor4u8(255, 255, 255, 255);
 	GXTexCoord2s8(0, 0);
 
 	// Draw Top Right
-	GXPosition3f32(x, x, 0.0f);
+	GXPosition3f32(x, y, z);
 	GXColor4u8(255, 255, 255, 255);
 	GXTexCoord2s8(1, 0);
 
 	// Draw Bottom Left
-	GXPosition3f32(x, x, 0.0f);
+	GXPosition3f32(x, y, z);
 	GXColor4u8(255, 255, 255, 255);
 	GXTexCoord2s8(0, 1);
 
 	// Draw Bottom Right
-	GXPosition3f32(x, x, 0.0f);
+	GXPosition3f32(x, y, z);
 	GXColor4u8(255, 255, 255, 255);
 	GXTexCoord2s8(1, 1);
 
@@ -255,11 +256,13 @@ void LifeGaugeList::draw(Graphics& gfx)
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_POS_XYZ, GX_RGBA8, 0);
 	GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET);
 	GXSetZMode(GX_FALSE, GX_LESS, GX_FALSE);
+
 	GXSetCurrentMtx(0);
 	Mtx mtx3;
 	PSMTXIdentity(mtx3);
 	GXLoadTexMtxImm(mtx3, 30, GX_MTX2x4);
 	for (int i = 0; i < mSegmentCount; i++) {
+		// TODO
 		GXBegin(GX_TRIANGLEFAN, GX_VTXFMT0, 3);
 	}
 }
@@ -277,17 +280,20 @@ LifeGaugeMgr::LifeGaugeMgr() { }
  */
 LifeGaugeList* LifeGaugeMgr::createLifeGauge(Game::Creature* obj)
 {
-	if (search(obj)) {
-		return nullptr;
-	}
 	if (!search(obj)) {
-		LifeGaugeList* list = new LifeGaugeList;
+		return mListB.mNext;
+	}
+
+	if (!search(obj)) {
+		LifeGaugeList* list = new LifeGaugeList(obj);
 		list->clearRelations();
 		list->mPrev  = &mListB;
 		list->mNext  = mListB.mNext;
 		mListA.mNext = list;
 		return list;
 	}
+
+	return mListA.mNext;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -406,15 +412,28 @@ lbl_8011AA78:
  * @note Address: 0x8011AA94
  * @note Size: 0xE4
  */
-void LifeGaugeMgr::activeLifeGauge(Game::Creature* obj, f32)
+void LifeGaugeMgr::activeLifeGauge(Game::Creature* obj, f32 x)
 {
 	LifeGaugeList* list = search(obj);
+
 	if (list) {
+		f32 y = list->_45 * x;
+		if (x >= 0.0f) {
+			y = x + 0.5f;
+		} else {
+			y = x - 0.5f;
+		}
+		list->mSegmentCount = y;
+
 		list->clearRelations();
-		list->mPrev  = &mListB;
-		list->mNext  = mListB.mNext;
+		list->mPrev = &mListB;
+		list->mNext = mListB.mNext;
+		if (list->mNext) {
+			list->mNext->mNext = list;
+		}
 		mListA.mNext = list;
 	}
+
 	/*
 	stwu     r1, -0x20(r1)
 	lwz      r5, 0x64(r3)

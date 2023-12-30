@@ -31,19 +31,20 @@ struct LifeGauge {
  * @size{0x48}
  */
 struct LifeGaugeList : public JKRDisposer {
-	inline LifeGaugeList()
+	inline LifeGaugeList(Game::Creature* obj = nullptr)
 	    : mParam()
-	    , _3C(0.0f)
-	    , _45(32)
-	    , mSegmentCount(32)
-	    , mGameObject(nullptr)
-	    , mNext(nullptr)
-	    , mPrev(nullptr)
 	{
-		mParam.mIsGaugeShown = false;
 		_3C                  = 0.0f;
 		_45                  = 32;
 		mSegmentCount        = 32;
+		mGameObject          = obj;
+		mNext                = nullptr;
+		mPrev                = nullptr;
+		mParam.mIsGaugeShown = false;
+
+		_3C           = 0.0f;
+		_45           = 32;
+		mSegmentCount = 32;
 	}
 	virtual ~LifeGaugeList() { clearRelations(); } // _08 (weak)
 
@@ -88,10 +89,14 @@ struct LifeGaugeMgr {
 	inline LifeGaugeList* search(Game::Creature* obj)
 	{
 		for (LifeGaugeList* list = mListA.mNext; list; list = list->mNext) {
-			if (list->mGameObject == obj) {
-				return list;
+			if (list->mGameObject != obj) {
+				continue;
 			}
+
+			return list;
 		}
+
+		return nullptr;
 	}
 
 	LifeGaugeList mListA; // _00
