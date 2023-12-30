@@ -144,13 +144,12 @@ struct Prm : public PrmBase {
 	virtual ~Prm() { }                               // _08 (weak)
 	virtual void save(JSUMemoryOutputStream& output) // _0C (weak)
 	{
-		T val = mValue;
-		output.write(&val, sizeof(T));
+		output.write(mValue);
 		PrmBase::save(output);
 	}
 	virtual void load(JSUMemoryInputStream& input) // _10 (weak)
 	{
-		input.read(&mValue, sizeof(T));
+		input.read(mValue);
 		PrmBase::load(input);
 	}
 
@@ -159,19 +158,19 @@ struct Prm : public PrmBase {
 	T mValue; // _2C
 };
 
-template <>
-inline void Prm<char*>::save(JSUMemoryOutputStream& output)
-{
-	output.write(mValue);
-	PrmBase::save(output);
-}
+// template <>
+// inline void Prm<char*>::save(JSUMemoryOutputStream& output)
+// {
+// 	output.write(mValue);
+// 	PrmBase::save(output);
+// }
 
-template <>
-inline void Prm<char*>::load(JSUMemoryInputStream& input)
-{
-	input.read(mValue);
-	PrmBase::load(input);
-}
+// template <>
+// inline void Prm<char*>::load(JSUMemoryInputStream& input)
+// {
+// 	input.read(mValue);
+// 	PrmBase::load(input);
+// }
 
 /**
  * @size = 0x98

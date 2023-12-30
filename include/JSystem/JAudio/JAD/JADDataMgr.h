@@ -42,7 +42,7 @@ struct DataLoadMgrNode : virtual public DataMgrBase {
 	DataLoadMgrNode();
 
 	virtual ~DataLoadMgrNode();     // _08 (weak)
-	virtual bool isTempBuffaMode(); // _0C (weak)
+	virtual bool isTempBuffaMode() { return false; } // _0C (weak)
 	virtual void init()
 	{
 		_08 = 0;
@@ -64,7 +64,8 @@ struct DataLoadMgrNode : virtual public DataMgrBase {
 			strcpy(mLoadPath, path);
 		}
 	}
-	// void load(JADUtility::DataLoadMgrNode::ObjStatus, bool);
+
+	void load(JADUtility::DataLoadMgrNode::ObjStatus, bool);
 	// bool initInstanceExt();
 	// void loadDvd(u32*);
 
@@ -93,7 +94,7 @@ struct DataLoadMgrNode : virtual public DataMgrBase {
 struct DataMgrNode : public DataLoadMgrNode {
 	DataMgrNode();
 
-	virtual ~DataMgrNode() { }                                           // _08 (weak)
+	// virtual ~DataMgrNode() { }                                           // _08 (weak)
 	virtual void init() { DataLoadMgrNode::init(); }                     // _10 (weak)
 	virtual JKRHeap* getObjHeap()         = 0;                           // _14
 	virtual JKRHeap* getDataHeap()        = 0;                           // _18
@@ -123,13 +124,13 @@ struct PrmDataMgrNode : public DataMgrNode {
 	virtual JKRHeap* getDataHeap();     // _18 (weak)
 	virtual bool initInstance(void* buffer, s32 bufferLength)
 	{
-		bool success = initInstance();
-		if (success != false) {
+		if (initInstance()) {
 			JSUMemoryInputStream input;
 			input.setBuffer(buffer, bufferLength);
-			// TODO: vt _250 + 0x10
+			mPrmSetRc->load(input);
+			return true;
 		}
-		return success;
+		return false;
 	}                               // _1C (weak)
 	virtual bool initInstance() { } // _20 (weak)
 

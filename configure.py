@@ -408,7 +408,7 @@ LIBS = [
         "host": True,
         "objects": [
             ["JSystem/JAudio/JAU/JAUData", True],
-            ["JSystem/JAudio/JAU/JAUDataMgr", False],
+            ["JSystem/JAudio/JAU/JAUDataMgr", True],
         ],
     },
     {

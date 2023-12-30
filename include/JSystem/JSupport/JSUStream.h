@@ -28,6 +28,9 @@ struct JSUInputStream : public JSUIosBase {
 	s32 read(void*, s32);
 	char* read(char*);
 
+	inline s32 read(u8 val) { return read(&val, sizeof(val)); }
+	inline s32 read(s16 val) { return read(&val, sizeof(val)); }
+
 	/** @fabricated */
 	inline bool readBool()
 	{
@@ -153,6 +156,9 @@ struct JSUOutputStream : public JSUIosBase {
 
 	int write(const void*, s32);
 	void write(const char*);
+
+	int write(s16 val) { return write(&val, sizeof(val)); }
+	int write(u8 val) { return write(&val, sizeof(val)); }
 
 	/** @fabricated */
 	// template <typename T>
