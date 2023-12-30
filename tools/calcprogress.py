@@ -4,8 +4,7 @@
 #                                 Description                                  #
 ################################################################################
 # calcprogress: Used to calculate the progress of the Pikmin 2 decomp.         #
-# Prints to stdout for now, but eventually will have some form of storage,     #
-# i.e. CSV, so that it can be used for a webpage display.                      #
+# stores to CSV so that it can be used for a webpage display.                  #
 #                                                                              #
 # Usage: No arguments needed                                                   #
 ################################################################################
