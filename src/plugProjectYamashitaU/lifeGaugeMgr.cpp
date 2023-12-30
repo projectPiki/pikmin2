@@ -157,22 +157,24 @@ void LifeGauge::initLifeGaugeDraw()
 }
 
 /**
+ * Draws a single triangle using the given positions and color.
+ *
+ * @param vertices An array of three Vector3f positions representing the vertices of the triangle.
+ * @param color The color of the triangle.
+ *
  * @note Address: 0x8011A0DC
  * @note Size: 0xF0
- * TODO
  */
-void LifeGauge::drawOneTri(Vector3f* pos, Color4& clr)
+void LifeGauge::drawOneTri(Vector3f* vertices, Color4& color)
 {
-	// WTF?
 	GXBegin(GX_TRIANGLEFAN, GX_VTXFMT0, 3);
-	GXWGFifo.f32 = pos->x;
-	GXWGFifo.f32 = pos->y;
-	GXWGFifo.f32 = pos->z;
 
-	GXWGFifo.u8 = clr.r;
-	GXWGFifo.u8 = clr.g;
-	GXWGFifo.u8 = clr.b;
-	GXWGFifo.u8 = clr.a;
+	for (int i = 0; i < 3; i++) {
+		GXPosition3f32(vertices[i].x, vertices[i].y, vertices[i].z);
+		GXColor4u8(color.r, color.g, color.b, color.a);
+	}
+
+	GXEnd();
 }
 
 /**
@@ -185,6 +187,7 @@ void LifeGaugeList::draw(Graphics& gfx)
 	if (!mParam.mIsGaugeShown) {
 		return;
 	}
+
 	f32 x         = (1.25f * mParam.mRadius);
 	Viewport* cVp = gfx.mCurrentViewport;
 	cVp->getMatrix(true);
