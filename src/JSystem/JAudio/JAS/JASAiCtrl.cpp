@@ -492,298 +492,89 @@ static int getFrameSamples() { return sSubFrames * 0x50; }
  * @note Address: 0x800A8218
  * @note Size: 0xC0
  */
-static void mixMonoTrack(s16* p1, u32 p2, MixCallback callback)
+static void mixMonoTrack(s16* dest, u32 size, MixCallback callback)
 {
 	JASKernel::probeStart(5, "MONO-MIX");
-	s16* cbResult = callback(p2);
-	if (cbResult != nullptr) {
-		JASKernel::probeFinish(5);
-		for (u32 i = p2; i != 0; i--) {
-			p1[0] = JASCalc::clamp<s16, s32>(p1[0] + *cbResult);
-			p1[1] = JASCalc::clamp<s16, s32>(p1[1] + *cbResult);
-			p1 += 2;
-			cbResult++;
-		}
+	s16* src = callback(size);
+	if (!src) {
+		return;
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r6, lbl_80479624@ha
-	stw      r0, 0x24(r1)
-	addi     r0, r6, lbl_80479624@l
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	li       r3, 5
-	stw      r29, 0x14(r1)
-	mr       r29, r5
-	stw      r28, 0x10(r1)
-	mr       r28, r4
-	mr       r4, r0
-	bl       probeStart__9JASKernelFlPc
-	mr       r12, r29
-	mr       r3, r28
-	mtctr    r12
-	bctrl
-	or.      r31, r3, r3
-	beq      lbl_800A82B8
-	li       r3, 5
-	bl       probeFinish__9JASKernelFl
-	mr       r29, r28
-	b        lbl_800A82B0
-
-lbl_800A827C:
-	lha      r3, 0(r30)
-	lha      r0, 0(r31)
-	add      r3, r3, r0
-	bl       "clamp<s,l>__7JASCalcFl"
-	sth      r3, 0(r30)
-	lha      r3, 2(r30)
-	lha      r0, 0(r31)
-	add      r3, r3, r0
-	bl       "clamp<s,l>__7JASCalcFl"
-	sth      r3, 2(r30)
-	addi     r30, r30, 4
-	addi     r31, r31, 2
-	addi     r29, r29, -1
-
-lbl_800A82B0:
-	cmplwi   r29, 0
-	bne      lbl_800A827C
-
-lbl_800A82B8:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	JASKernel::probeFinish(5);
+	s16* destPtr = dest;
+	for (u32 i = size; i != 0; i--) {
+		destPtr[0] = JASCalc::clamp<s16, s32>(destPtr[0] + *src);
+		destPtr[1] = JASCalc::clamp<s16, s32>(destPtr[1] + *src);
+		destPtr += 2;
+		src++;
+	}
 }
 
 /**
  * @note Address: 0x800A82D8
  * @note Size: 0xC0
  */
-void mixMonoTrackWide(s16* p1, u32 p2, MixCallback callback)
+void mixMonoTrackWide(s16* dest, u32 size, MixCallback callback)
 {
 	JASKernel::probeStart(5, "MONO(W)-MIX");
-	s16* cbResult = callback(p2);
-	if (!cbResult) {
+	s16* src = callback(size);
+	if (!src) {
 		return;
 	}
 	JASKernel::probeFinish(5);
-	for (u32 i = p2; i != 0; i--) {
-		p1[0] = JASCalc::clamp<s16, s32>(p1[0] + *cbResult);
-		p1[1] = JASCalc::clamp<s16, s32>(p1[1] - *cbResult);
-		p1 += 2;
-		cbResult++;
+	s16* destPtr = dest;
+	for (u32 i = size; i != 0; i--) {
+		s32 val    = destPtr[0] + src[0];
+		destPtr[0] = JASCalc::clamp<s16, s32>(val);
+		val        = destPtr[1];
+		val -= src[0];
+		destPtr[1] = JASCalc::clamp<s16, s32>(val);
+		destPtr += 2;
+		src++;
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r6, lbl_80479630@ha
-	stw      r0, 0x24(r1)
-	addi     r0, r6, lbl_80479630@l
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	li       r3, 5
-	stw      r29, 0x14(r1)
-	mr       r29, r5
-	stw      r28, 0x10(r1)
-	mr       r28, r4
-	mr       r4, r0
-	bl       probeStart__9JASKernelFlPc
-	mr       r12, r29
-	mr       r3, r28
-	mtctr    r12
-	bctrl
-	or.      r31, r3, r3
-	beq      lbl_800A8378
-	li       r3, 5
-	bl       probeFinish__9JASKernelFl
-	mr       r29, r28
-	b        lbl_800A8370
-
-lbl_800A833C:
-	lha      r3, 0(r30)
-	lha      r0, 0(r31)
-	add      r3, r3, r0
-	bl       "clamp<s,l>__7JASCalcFl"
-	sth      r3, 0(r30)
-	lha      r3, 2(r30)
-	lha      r0, 0(r31)
-	subf     r3, r0, r3
-	bl       "clamp<s,l>__7JASCalcFl"
-	sth      r3, 2(r30)
-	addi     r30, r30, 4
-	addi     r31, r31, 2
-	addi     r29, r29, -1
-
-lbl_800A8370:
-	cmplwi   r29, 0
-	bne      lbl_800A833C
-
-lbl_800A8378:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
  * @note Address: 0x800A8398
  * @note Size: 0xE0
  */
-void mixExtraTrack(s16* p1, u32 p2, MixCallback callback)
+void mixExtraTrack(s16* dest, u32 size, MixCallback callback)
 {
 	JASKernel::probeStart(5, "DSPMIX");
-	s16* r31 = callback(p2);
-	if (!r31) {
+	s16* src1 = callback(size);
+	if (!src1) {
 		return;
 	}
 	JASKernel::probeFinish(5);
 
 	JASKernel::probeStart(6, "MIXING");
-	s16* r29 = r31 + getFrameSamples();
-	for (u32 i = p2; i != 0; i--) {
-		p1[0] = JASCalc::clamp<s16, s32>(p1[0] + r29[0]);
-		p1[1] = JASCalc::clamp<s16, s32>(p1[1] + r31[0]);
-		p1 += 2;
-		r29++;
-		r31++;
+	s16* destPtr = dest;
+	s16* src2    = src1 + getFrameSamples();
+	for (u32 i = size; i != 0; i--) {
+		destPtr[0] = JASCalc::clamp<s16, s32>(destPtr[0] + src2[0]);
+		destPtr[1] = JASCalc::clamp<s16, s32>(destPtr[1] + src1[0]);
+		destPtr += 2;
+		src2++;
+		src1++;
 	}
 	JASKernel::probeFinish(6);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	li       r3, 5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	addi     r4, r2, lbl_80516E90@sda21
-	stw      r28, 0x10(r1)
-	mr       r28, r5
-	bl       probeStart__9JASKernelFlPc
-	mr       r12, r28
-	mr       r3, r29
-	mtctr    r12
-	bctrl
-	or.      r31, r3, r3
-	beq      lbl_800A8458
-	li       r3, 5
-	bl       probeFinish__9JASKernelFl
-	li       r3, 6
-	addi     r4, r2, lbl_80516E98@sda21
-	bl       probeStart__9JASKernelFlPc
-	lwz      r0, sSubFrames__9JASDriver@sda21(r13)
-	mr       r28, r29
-	mulli    r0, r0, 0x50
-	slwi     r0, r0, 1
-	add      r29, r31, r0
-	b        lbl_800A8448
-
-lbl_800A8410:
-	lha      r3, 0(r30)
-	lha      r0, 0(r29)
-	add      r3, r3, r0
-	bl       "clamp<s,l>__7JASCalcFl"
-	sth      r3, 0(r30)
-	lha      r3, 2(r30)
-	lha      r0, 0(r31)
-	add      r3, r3, r0
-	bl       "clamp<s,l>__7JASCalcFl"
-	sth      r3, 2(r30)
-	addi     r30, r30, 4
-	addi     r29, r29, 2
-	addi     r31, r31, 2
-	addi     r28, r28, -1
-
-lbl_800A8448:
-	cmplwi   r28, 0
-	bne      lbl_800A8410
-	li       r3, 6
-	bl       probeFinish__9JASKernelFl
-
-lbl_800A8458:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
  * @note Address: 0x800A8478
  * @note Size: 0x8C
  */
-void mixInterleaveTrack(s16* p1, u32 p2, MixCallback callback)
+void mixInterleaveTrack(s16* dest, u32 size, MixCallback callback)
 {
-	s16* r31 = callback(p2);
-	if (r31) {
-		for (u32 i = p2 * 2; i != 0; i--) {
-			p1[0] = JASCalc::clamp<s16, s32>(p1[0] + r31[0]);
-			p1 += 1;
-			r31++;
-		}
+	s16* src = callback(size);
+	if (!src) {
+		return;
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	mr       r12, r5
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	mr       r3, r29
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0
-	beq      lbl_800A84E8
-	mr       r31, r30
-	mr       r30, r3
-	slwi     r29, r29, 1
-	b        lbl_800A84E0
-
-lbl_800A84C0:
-	lha      r3, 0(r31)
-	lha      r0, 0(r30)
-	add      r3, r3, r0
-	bl       "clamp<s,l>__7JASCalcFl"
-	sth      r3, 0(r31)
-	addi     r31, r31, 2
-	addi     r30, r30, 2
-	addi     r29, r29, -1
-
-lbl_800A84E0:
-	cmplwi   r29, 0
-	bne      lbl_800A84C0
-
-lbl_800A84E8:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	s16* destPtr = dest;
+	s16* srcPtr  = src;
+	for (u32 i = size * 2; i != 0; i--) {
+		destPtr[0] = JASCalc::clamp<s16, s32>(destPtr[0] + srcPtr[0]);
+		destPtr += 1;
+		srcPtr++;
+	}
 }
 } // namespace JASDriver

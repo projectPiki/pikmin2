@@ -73,12 +73,6 @@ extern u16 MAX_MIXERLEVEL;
 extern u16 MAX_AUTOMIXERLEVEL;
 extern u32 JAS_SYSTEM_OUTPUT_MODE;
 
-extern const f32 C5BASE_PITCHTABLE[0x80];
-
-extern JASCallbackMgr sDspSyncCallback;
-extern JASCallbackMgr sSubFrameCallback;
-extern JASCallbackMgr sUpdateDacCallback;
-
 } // namespace JASDriver
 
 #endif

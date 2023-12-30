@@ -329,7 +329,7 @@ LIBS = [
             ["JSystem/JAudio/JAS/JASTrackInterrupt", True],
             ["JSystem/JAudio/JAS/JASOscillator", False],
             ["JSystem/JAudio/JAS/JASChannel", False],
-            ["JSystem/JAudio/JAS/JASDriverIF", False],
+            ["JSystem/JAudio/JAS/JASDriverIF", True],
             ["JSystem/JAudio/JAS/JASDSPChannel", False],
             ["JSystem/JAudio/JAS/JASDSPInterface", False],
             ["JSystem/JAudio/JAS/JASAudioThread", True],
