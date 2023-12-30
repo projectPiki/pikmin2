@@ -16,7 +16,7 @@ JAUDIO_JAS_FILES:=\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASBank.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASTrackPort.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASOuterParam.o\
-	$(BUILD_DIR)/asm/JSystem/JAudio/JAS/JASPlayer_impl.o\
+	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASPlayer_impl.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASRegisterParam.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASSeqCtrl.o\
 	$(BUILD_DIR)/asm/JSystem/JAudio/JAS/JASSeqParser.o\

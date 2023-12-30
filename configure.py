@@ -321,7 +321,7 @@ LIBS = [
             ["JSystem/JAudio/JAS/JASBank", True],
             ["JSystem/JAudio/JAS/JASTrackPort", True],
             ["JSystem/JAudio/JAS/JASOuterParam", True],
-            ["JSystem/JAudio/JAS/JASPlayer_impl", False],
+            ["JSystem/JAudio/JAS/JASPlayer_impl", True],
             ["JSystem/JAudio/JAS/JASRegisterParam", True],
             ["JSystem/JAudio/JAS/JASSeqCtrl", True],
             ["JSystem/JAudio/JAS/JASSeqParser", False],
