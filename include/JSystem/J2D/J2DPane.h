@@ -88,26 +88,24 @@ struct J2DTextBoxBlock {
 	u16 _1E;             // _1E
 };
 
-/** @fabricated */
+// Representation of "PAN2" entry in a scrnblo2 file
 struct J2DPaneExBlock : J2DScrnBlockHeader {
-	u8 _08[2];        // _08
-	u16 _0A;          // _0A
-	bool mIsVisible;  // _0C
-	u8 mBasePosition; // _0D
-	u8 _0E;           // _0E
-	u8 _0F;           // _0F
-	u64 mTag;         // _10
-	u64 mMessageID;   // _18
-	f32 mWidth;       // _20
-	f32 mHeight;      // _24
-	f32 mWidthScale;  // _28
-	f32 mHeightScale; // _2C
-	f32 _30;          // _30
-	f32 _34;          // _34
-	f32 _38;          // _38
-	f32 _3C;          // _3C
-	f32 _40;          // _40
-	u8 _44[4];        // _44
+	u16 _08;          // _08, padding?
+	u16 mAnimIndex;   // _0A, "joint" index used for applying .bck animations
+	bool mIsVisible;  // _0C, whether the pane is visible by default, applies to all children as well
+	u8 mBasePosition; // _0D, anchor point for position, see J2DBasePosition enum
+	u16 _0E;          // _0E, padding
+	u64 mTag;         // _10, name of the pane
+	u64 mMessageID;   // _18, secondary tag of pane, usually used for message id
+	f32 mWidth;       // _20, pixel dimensions X (unused in j2dpane)
+	f32 mHeight;      // _24, pixel dimensions Y (unused in j2dpane)
+	f32 mWidthScale;  // _28, horizontal scale modifier
+	f32 mHeightScale; // _2C, vertical scale modifier
+	f32 mAngleX;      // _30, X axis rotation, never touched normally
+	f32 mAngleY;      // _34, Y axis rotation, never touched normally
+	f32 mAngleZ;      // _38, Z axis rotation, the one you probably want
+	f32 mOffsetX;     // _3C, base X position, relative to parent
+	f32 mOffsetY;     // _40, base Y position, relative to parent
 };
 
 /**
@@ -357,7 +355,7 @@ struct J2DPane {
 	static JGeometry::TBox2f static_mBounds;
 
 	// _00 VTBL
-	u16 _004;                        // _004
+	u16 mAnimPaneIndex;              // _004
 	u32 mBloBlockType;               // _008
 	u64 mTag;                        // _010
 	u64 mMessageID;                  // _018
@@ -907,7 +905,7 @@ struct J2DTextBoxEx : public J2DTextBox {
 	// _000      = VTBL
 	// _000-_138 = J2DTextBox
 	J2DMaterial* mMaterial;               // _138
-	u16 mAnimIndex;                       // _13C
+	u16 mAnimVisibilityIndex;             // _13C
 	u16 _13E;                             // _13E
 	u8 _140;                              // _140
 	J2DAnmVisibilityFull* mAnmVisibility; // _144

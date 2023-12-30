@@ -41,7 +41,7 @@ struct DataLoadMgrNode : virtual public DataMgrBase {
 
 	DataLoadMgrNode();
 
-	virtual ~DataLoadMgrNode();     // _08 (weak)
+	virtual ~DataLoadMgrNode();                      // _08 (weak)
 	virtual bool isTempBuffaMode() { return false; } // _0C (weak)
 	virtual void init()
 	{

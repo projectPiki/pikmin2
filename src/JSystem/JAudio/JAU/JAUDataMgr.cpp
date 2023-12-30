@@ -42,7 +42,7 @@ JADUtility::DataLoadMgrNode::DataLoadMgrNode()
  * @note Address: 0x800BA8B4
  * @note Size: 0xC8
  */
-JADUtility::DataLoadMgrNode::~DataLoadMgrNode() 
+JADUtility::DataLoadMgrNode::~DataLoadMgrNode()
 {
 	if (_08 == 3) {
 		_18 = nullptr;

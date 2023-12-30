@@ -24,9 +24,9 @@ J2DTextBoxEx::J2DTextBoxEx(J2DPane* parent, JSURandomInputStream* input, u32 fla
 	input->seek(panHeaderPos + panHeader.mBlockLength, SEEK_SET);
 
 	input->read(&info, sizeof(J2DTextBoxBlock));
-	mAnimIndex = info.mAnimPaneIndex;
-	_13E       = info.mMaterialNum;
-	mMaterial  = nullptr;
+	mAnimVisibilityIndex = info.mAnimPaneIndex;
+	_13E                 = info.mMaterialNum;
+	mMaterial            = nullptr;
 
 	if (_13E != 0xFFFF) {
 		mMaterial             = &materials[_13E];
@@ -1066,9 +1066,9 @@ void J2DTextBoxEx::setAnimation(J2DAnmVisibilityFull* anim) { mAnmVisibility = a
  */
 const J2DAnmTransform* J2DTextBoxEx::animationPane(const J2DAnmTransform* anm)
 {
-	if (mAnmVisibility && mAnimIndex != 0xffff) {
+	if (mAnmVisibility && mAnimVisibilityIndex != 0xffff) {
 		u8 data[16];
-		mAnmVisibility->getVisibility(mAnimIndex, data);
+		mAnmVisibility->getVisibility(mAnimVisibilityIndex, data);
 		if (data[0]) {
 			show();
 		} else {
