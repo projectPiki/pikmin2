@@ -136,7 +136,7 @@ void init()
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeCategoryMax(); i++) {
 		seRegist[i].init();
 		for (u32 j = 0; j < JAIGlobalParameter::getParamSeRegistMax(); j++) {
-			seRegist[i]._00->append(JAIBasic::msBasic->makeSe());
+			seRegist[i].mFreeList->append(JAIBasic::msBasic->makeSe());
 		}
 		sePlaySound[i] = new (JAIBasic::msCurrentHeap, 0x20) JAISound*[0x10];
 		for (int j = 0; j < 0x10; j++) {
@@ -1627,20 +1627,20 @@ void clearSeqMuteFromSeStop(JAISound*)
  */
 void checkSeMovePara()
 {
-	if (seHandle == nullptr || seHandle->mSeqParameter._279 == 2) {
+	if (seHandle == nullptr || seHandle->mSeqParameter.mPauseMode == SOUNDPAUSE_Unk2) {
 		return;
 	}
 	for (u8 i = 0; i < JAIGlobalParameter::getParamSeCategoryMax(); i++) {
-		for (JSULink<JAISound>* link = seRegist[i]._04->getFirst(); link != nullptr; link = link->getNext()) {
+		for (JSULink<JAISound>* link = seRegist[i].mUsedList->getFirst(); link != nullptr; link = link->getNext()) {
 			JAISound* sound = link->getObject();
 			for (u8 j = 0; j < 8; j++) {
 				JAISe* se = static_cast<JAISe*>(sound);
-				se->mSeParam._124[i].move();
-				se->mSeParam._1A4[i].move();
-				se->mSeParam._2A4[i].move();
+				se->mSeParam.mVolumes[i].move();
+				se->mSeParam.mPans[i].move();
+				se->mSeParam.mFxmixes[i].move();
 				se->mSeParam._324[i].move();
-				se->mSeParam._3A4[i].move();
-				se->mSeParam._224[i].move();
+				se->mSeParam.mDolbys[i].move();
+				se->mSeParam.mPitches[i].move();
 			}
 		}
 	}

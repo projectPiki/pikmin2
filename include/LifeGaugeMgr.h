@@ -24,7 +24,7 @@ struct LifeGauge {
 	f32 mTimer;             // _00
 	Color4 mLifeGaugeColor; // _04 // might be TColor
 	u8 mSegmentCount;       // _08
-	u8 mCircleResolution;                 // _09
+	u8 mCircleResolution;   // _09
 };
 
 /**

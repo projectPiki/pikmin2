@@ -39,7 +39,7 @@ void checkPlayingSeUpdateAddition(JAISe*, SeqUpdateData*, f32*, MoveParaSet*, u8
 u32 changeIDToCategory(u32);
 void releaseSeRegist(JAISe*);
 void storeSeBuffer(JAISe**, Actor*, u32, u32, u8, SoundInfo*);
-void releaseSeBuffer(JAISe*, u32);
+void releaseSeBuffer(JAISe* se, u32 fadeTime);
 void setSeSequenceStartCallback(StartCallback);
 
 // unused/inlined:

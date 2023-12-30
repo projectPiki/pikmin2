@@ -16,9 +16,11 @@ struct RandId {
 	JAISe* startSound(JAInter::Object*, u32, u32, u32);
 	void playSystemSe(u32, JAISound**, u32, u32);
 
-	f32 mId; // _00, notUsingMasterIDRatio according to ghidra
+	u32 getRandomId(u32, u32);
 
-	const static f32 cNotUsingMasterIdRatio;
+	static f32 cNotUsingMasterIdRatio;
+
+	f32 mId; // _00
 };
 
 struct SetSe {

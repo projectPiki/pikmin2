@@ -308,7 +308,7 @@ int JAIAnimeSound::checkLoopStartCount(f32 p1)
 	// if (mSoundData->_00 == 0) {
 	// 	return i;
 	// }
-	for (; i < mSoundData->_00; i++) {
+	for (; i < mSoundData->mEntries; i++) {
 		if (p1 <= mSoundData->_0C[i]._00) {
 			return i;
 		}

@@ -650,13 +650,13 @@ void SoundTable::CategoryMgr::initiate(u8 id)
  * @note Address: 0x80334B4C
  * @note Size: 0x18
  */
-void SoundTable::SePerspInfo::set(f32 a1, f32 a2, f32 a3, f32 a4, f32 a5)
+void SoundTable::SePerspInfo::set(f32 defDist, f32 baseDist, f32 a3, f32 a4, f32 forcedDist)
 {
-	mDefaultDistance = a1;
-	mBaseDistance    = a2;
+	mDefaultDistance = defDist;
+	mBaseDistance    = baseDist;
 	_08              = a3;
 	_0C              = a4;
-	mForcedDistance  = a5;
+	mForcedDistance  = forcedDist;
 }
 
 /**

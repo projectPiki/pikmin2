@@ -12,11 +12,11 @@ namespace PSSystem {
  * @note Address: 0x80340838
  * @note Size: 0xA4
  */
-EnvSeBase::EnvSeBase(u32 soundID, f32 p2)
+EnvSeBase::EnvSeBase(u32 soundID, f32 volume)
     : JSULink(this)
     , mMoveParam(0.0f, 0, 2, 0)
     , mSoundID((SoundID)soundID)
-    , _28(p2)
+    , mVolume(volume)
     , _2C(0.0f)
     , _30(0.3f)
     , mSound(nullptr)
@@ -91,7 +91,7 @@ void EnvSeBase::exec()
 		JAISound* sound = play();
 		if (sound) {
 			setPanAndDolby(sound);
-			sound->setVolume(_28, 0, 0);
+			sound->setVolume(mVolume, 0, 0);
 			sound->setFxmix(0.4f, 0, 0);
 			sound->setVolume(1.0f, 20, 5);
 			sound->setFxmix(_30, 0, 0);
@@ -105,7 +105,7 @@ void EnvSeBase::exec()
 		JAISound* sound = play();
 		if (sound) {
 			setPanAndDolby(sound);
-			sound->setVolume(_28, 0, 0);
+			sound->setVolume(mVolume, 0, 0);
 			sound->setFxmix(0.4f, 0, 0);
 			sound->setVolume(_2C, 0, 5);
 			sound->setFxmix(_30, 0, 0);

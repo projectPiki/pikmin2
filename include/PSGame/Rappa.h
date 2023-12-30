@@ -15,7 +15,7 @@ struct Rappa : public JKRDisposer {
 
 	void init(u16);
 	void setId(u32);
-	bool playRappa(bool, f32, f32, JAInter::Object*);
+	JAISound* playRappa(bool, f32, f32, JAInter::Object*);
 	u32 syncCpu_WaitChk(JASTrack*);
 	u32 syncCpu_TblNo(JASTrack*);
 
@@ -26,7 +26,8 @@ struct Rappa : public JKRDisposer {
 	u16 mTblNo; // _1E
 
 	static Rappa* sRappa[2];
-	static const s16 cBaseWaitTime;
+	static u16 cBaseWaitTime;
+	static f32 cRatio;
 };
 
 } // namespace PSGame

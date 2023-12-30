@@ -10,59 +10,59 @@
 struct JAISequence : public JAISound {
 	JAISequence();
 
-	virtual void setPortData(u8, u16);                                               // _08 (weak)
-	virtual u16 getPortData(u8);                                                     // _0C (weak)
-	virtual void stop(u32);                                                          // _14 (weak)
-	virtual void setVolume(f32 p1, u32 p2, u8 p3) { setSeqInterVolume(p3, p1, p2); } // _1C (weak)
-	virtual f32 getVolume(u8 p1) { return getSeqInterVolume(p1); }                   // _20 (weak)
-	virtual void setPan(f32, u32, u8);                                               // _24 (weak)
-	virtual f32 getPan(u8);                                                          // _28 (weak)
-	virtual void setPitch(f32, u32, u8);                                             // _2C (weak)
-	virtual f32 getPitch(u8);                                                        // _30 (weak)
-	virtual void setFxmix(f32, u32, u8);                                             // _34 (weak)
-	virtual f32 getFxmix(u8);                                                        // _38 (weak)
-	virtual void setDolby(f32, u32, u8);                                             // _3C (weak)
-	virtual f32 getDolby(u8);                                                        // _40 (weak)
-	virtual void setTempoProportion(f32, u32);                                       // _44 (weak)
-	virtual f32 getTempoProportion();                                                // _48 (weak)
-	virtual void setVolumeU7(u8, u32, u8);                                           // _4C (weak)
-	virtual u8 getVolumeU7(u8);                                                      // _50 (weak)
-	virtual void setPanU7(u8, u32, u8);                                              // _54 (weak)
-	virtual u8 getPanU7(u8);                                                         // _58 (weak)
-	virtual void setFxmixU7(u8, u32, u8);                                            // _5C (weak)
-	virtual u8 getFxmixU7(u8);                                                       // _60 (weak)
-	virtual void setDolbyU7(u8, u32, u8);                                            // _64 (weak)
-	virtual u8 getDolbyU7(u8);                                                       // _68 (weak)
-	virtual u32 getFadeCounter();                                                    // _A4
-	virtual void setPrepareFlag(u8);                                                 // _A8 (weak)
-	virtual void checkReady();                                                       // _AC (weak)
+	virtual void setPortData(u8, u16);                                                                     // _08 (weak)
+	virtual u16 getPortData(u8);                                                                           // _0C (weak)
+	virtual void stop(u32);                                                                                // _14 (weak)
+	virtual void setVolume(f32 value, u32 moveTime, u8 type) { setSeqInterVolume(type, value, moveTime); } // _1C (weak)
+	virtual f32 getVolume(u8 type) { return getSeqInterVolume(type); }                                     // _20 (weak)
+	virtual void setPan(f32 value, u32 moveTime, u8 type);                                                 // _24 (weak)
+	virtual f32 getPan(u8 type);                                                                           // _28 (weak)
+	virtual void setPitch(f32 value, u32 moveTime, u8 type);                                               // _2C (weak)
+	virtual f32 getPitch(u8 type);                                                                         // _30 (weak)
+	virtual void setFxmix(f32 value, u32 moveTime, u8 type);                                               // _34 (weak)
+	virtual f32 getFxmix(u8 type);                                                                         // _38 (weak)
+	virtual void setDolby(f32 value, u32 moveTime, u8 type);                                               // _3C (weak)
+	virtual f32 getDolby(u8 type);                                                                         // _40 (weak)
+	virtual void setTempoProportion(f32, u32);                                                             // _44 (weak)
+	virtual f32 getTempoProportion();                                                                      // _48 (weak)
+	virtual void setVolumeU7(u8 value, u32 moveTime, u8 type);                                             // _4C (weak)
+	virtual u8 getVolumeU7(u8 type);                                                                       // _50 (weak)
+	virtual void setPanU7(u8 value, u32 moveTime, u8 type);                                                // _54 (weak)
+	virtual u8 getPanU7(u8 type);                                                                          // _58 (weak)
+	virtual void setFxmixU7(u8 value, u32 moveTime, u8 type);                                              // _5C (weak)
+	virtual u8 getFxmixU7(u8 type);                                                                        // _60 (weak)
+	virtual void setDolbyU7(u8 value, u32 moveTime, u8 type);                                              // _64 (weak)
+	virtual u8 getDolbyU7(u8 type);                                                                        // _68 (weak)
+	virtual u32 getFadeCounter();                                                                          // _A4
+	virtual void setPrepareFlag(u8 flag) { setSeqPrepareFlag(flag); }                                      // _A8 (weak)
+	virtual void checkReady() { checkSeqReady(); }                                                         // _AC (weak)
 
-	void setSeqInterVolume(u8, f32, u32);
-	void setSeqInterPan(u8, f32, u32);
-	void setSeqInterPitch(u8, f32, u32);
+	void setSeqInterVolume(u8 type, f32 value, u32 moveTime);
+	void setSeqInterPan(u8 type, f32 value, u32 moveTime);
+	void setSeqInterPitch(u8 type, f32 value, u32 moveTime);
 	void setTrackInterruptSwitch(u8, u8);
-	void setTrackFxmix(u8, f32, u32);
+	void setTrackFxmix(u8 type, f32 value, u32 moveTime);
 	void setTrackPortData(u8, u8, u16);
 	void setSeqPrepareFlag(u8);
 	bool checkSeqReady();
 	f32 getSeqInterVolume(u8);
 
 	// unused/inlined:
-	void setSeqInterFxmix(u8, f32, u32);
-	void setSeqInterDolby(u8, f32, u32);
+	void setSeqInterFxmix(u8 type, f32 value, u32 moveTime);
+	void setSeqInterDolby(u8 type, f32 value, u32 moveTime);
 	void setSeqTempoProportion(f32, u32);
 	void setSeqPortData(u8, u16, u32);
 	void setWaveReadMode(s32, s32);
-	void setTrackVolume(u8, f32, u32);
+	void setTrackVolume(u8 type, f32 value, u32 moveTime);
 	void setTrackVolumeMulti(u8, u32, f32, u32);
 	void setTrackMuteSwitch(u8, u8);
 	void setTrackMuteSwitchMulti(u32, u8);
-	void setTrackPan(u8, f32, u32);
+	void setTrackPan(u8 type, f32 value, u32 moveTime);
 	void setTrackPanMulti(u8, u32, f32, u32);
-	void setTrackPitch(u8, f32, u32);
+	void setTrackPitch(u8 type, f32 value, u32 moveTime);
 	void setTrackPitchMulti(u8, u32, f32, u32);
 	void setTrackFxmixMulti(u8, u32, f32, u32);
-	void setTrackDolby(u8, f32, u32);
+	void setTrackDolby(u8 type, f32 value, u32 moveTime);
 	void setTrackDolbyMulti(u8, u32, f32, u32);
 	void getSeqInterPan(u8);
 	void getSeqInterPitch(u8);

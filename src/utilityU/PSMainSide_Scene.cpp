@@ -684,7 +684,7 @@ void Scene_Game::startMainSeq()
 			if (i) {
 				JAISound* se = *seq->getObject()->getHandleP();
 				if (se) {
-					se->setVolume(0, 0, 0);
+					se->setVolume(0.0f, 0, SOUNDPARAM_Unk0);
 				}
 			}
 			i++;
@@ -847,7 +847,7 @@ void Scene_Game::exec()
 		{
 			JAISound* se = *seq->getObject()->getHandleP();
 			if (se) {
-				se->setVolume(vol, 5, 5);
+				se->setVolume(vol, 5, SOUNDPARAM_Unk5);
 			}
 		}
 	}

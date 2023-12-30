@@ -5,33 +5,38 @@
 
 namespace JAInter {
 
+enum ParaSetResults {
+	MOVEPARA_SetCurrent = 0,
+	MOVEPARA_SetTarget  = 1,
+	MOVEPARA_AlreadySet = 2,
+};
 /**
  * @size = 0x10
  */
 struct MoveParaSet {
-	MoveParaSet(f32 v1 = 1.0f)
+	MoveParaSet(f32 value = 1.0f)
 	{
-		_04 = v1;
-		_00 = v1;
-		_0C = 0;
+		mCurrentValue = value;
+		mTargetValue  = value;
+		mMoveCounter  = 0;
 	}
 
-	int set(f32, u32);
-	BOOL move();
+	int set(f32 value, u32 steps); // set current value by supplying steps = 0; otherwise, sets base value
+	BOOL move();                   // if mMoveCounter != 0, moves mCurrentValue closer to mTargetValue by mMoveAmount
 
 	/** @fabricated */
 	inline MoveParaSet& operator=(const MoveParaSet& other)
 	{
-		_04 = other._04;
-		_00 = other._00;
-		_0C = other._0C;
+		mCurrentValue = other.mCurrentValue;
+		mTargetValue  = other.mTargetValue;
+		mMoveCounter  = other.mMoveCounter;
 		return *this;
 	}
 
-	f32 _00; // _00
-	f32 _04; // _04
-	f32 _08; // _08 - unknown
-	u32 _0C; // _0C - unknown
+	f32 mTargetValue;  // _00
+	f32 mCurrentValue; // _04
+	f32 mMoveAmount;   // _08
+	u32 mMoveCounter;  // _0C
 };
 
 /**

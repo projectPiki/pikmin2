@@ -229,12 +229,12 @@ void JAInter::ObjectBase::cancelSoundHandle(u8)
 JAInter::Object::Object(Vec* p1, JKRHeap* heap, u8 handleCount)
     : ObjectBase(p1, heap, handleCount)
 {
-	_28.x = 0.0f;
-	_28.y = 0.0f;
-	_28.z = 0.0f;
-	_34   = 0.0f;
-	_38   = 0.5f;
-	_3C   = 0.0f;
+	_28.x     = 0.0f;
+	_28.y     = 0.0f;
+	_28.z     = 0.0f;
+	mDistance = 0.0f;
+	mPan      = 0.5f;
+	mDolby    = 0.0f;
 }
 
 /**
@@ -343,17 +343,17 @@ void JAInter::Object::loop()
 
 		if (!check && _24) {
 			PSMTXMultVec(*JAIBasic::msBasic->mCameras->mMtx, _24, &_28);
-			_34 = dolsqrtf(_28.x * _28.x + _28.y * _28.y + _28.z * _28.z); // needs to be a more elaborate sqrt
+			mDistance = dolsqrtf(_28.x * _28.x + _28.y * _28.y + _28.z * _28.z); // needs to be a more elaborate sqrt
 		}
 
 		JAISound_0x34* v1 = mSounds[i]->mSoundObj;
 		v1->mPosition     = _28;
-		v1->_0C           = _34;
+		v1->_0C           = mDistance;
 
 		if (!check) {
 			if (_24) {
-				_38 = mSounds[i]->setDistancePanCommon();
-				_3C = mSounds[i]->setDistanceDolbyCommon();
+				mPan   = mSounds[i]->setDistancePanCommon();
+				mDolby = mSounds[i]->setDistanceDolbyCommon();
 			}
 			check = true;
 		}

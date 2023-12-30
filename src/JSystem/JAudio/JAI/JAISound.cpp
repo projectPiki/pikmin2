@@ -9,6 +9,8 @@
 #include "JSystem/JAudio/JAI/JAInter.h"
 #include "JSystem/JAudio/JAI/JAInter/SeMgr.h"
 #include "JSystem/JAudio/JAI/JAInter/StreamMgr.h"
+#include "JSystem/JAudio/JAI/JAInter/Object.h"
+#include "JSystem/JAudio/JAS/JASAramStream.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "types.h"
 
@@ -19,7 +21,7 @@
  */
 JAISound::JAISound()
     : JSULink<JAISound>(this)
-    , _15(0)
+    , mState(SOUNDSTATE_Inactive)
     , _16(10)
     , mCreatureObj(nullptr)
 {
@@ -75,7 +77,6 @@ JAISe::JAISe()
  */
 JAIStream::JAIStream()
     : JAISound()
-    , _64()
 {
 }
 
@@ -138,17 +139,17 @@ void JAISound::release()
  * @note Address: 0x800B3B9C
  * @note Size: 0x4C
  */
-void JAISound::start(u32 p1)
+void JAISound::start(u32 fadeTime)
 {
 	setPrepareFlag(0);
-	_28 = p1;
+	mFadeCounter = fadeTime;
 }
 
 /**
  * @note Address: 0x800B3BE8
  * @note Size: 0x30
  */
-void JAISound::stop(u32 p1) { JAIBasic::msBasic->stopSoundHandle(this, p1); }
+void JAISound::stop(u32 fadeTime) { JAIBasic::msBasic->stopSoundHandle(this, fadeTime); }
 
 /**
  * @note Address: 0x800B3C18
@@ -158,29 +159,15 @@ void JAISound::setPrepareFlag(u8 prepareFlag)
 {
 	switch (mSoundID & JAISoundID_TypeMask) {
 	case JAISoundID_Type_Sequence:
-		setPrepareFlag(prepareFlag);
+		static_cast<JAISequence*>(this)->setPrepareFlag(prepareFlag);
 		break;
 	case JAISoundID_Type_Se:
 		break;
 	case JAISoundID_Type_Stream:
-		setPrepareFlag(prepareFlag);
+		static_cast<JAIStream*>(this)->setPrepareFlag(prepareFlag);
 		break;
 	}
 }
-
-/**
- * @note Address: 0x800B3C90
- * @note Size: 0x20
- * setPrepareFlag__9JAIStreamFUc
- */
-void JAIStream::setPrepareFlag(u8 flag) { setStreamPrepareFlag(flag); }
-
-/**
- * @note Address: 0x800B3CB0
- * @note Size: 0x20
- * setPrepareFlag__11JAISequenceFUc
- */
-void JAISequence::setPrepareFlag(u8 flag) { setSeqPrepareFlag(flag); }
 
 /**
  * @note Address: 0x800B3CD0
@@ -190,29 +177,15 @@ void JAISound::checkReady()
 {
 	switch (mSoundID & JAISoundID_TypeMask) {
 	case JAISoundID_Type_Sequence:
-		checkReady();
+		static_cast<JAISequence*>(this)->checkReady();
 		break;
 	case JAISoundID_Type_Se:
 		break;
 	case JAISoundID_Type_Stream:
-		checkReady();
+		static_cast<JAIStream*>(this)->checkReady();
 		break;
 	}
 }
-
-/**
- * @note Address: 0x800B3D48
- * @note Size: 0x20
- * checkReady__9JAIStreamFv
- */
-void JAIStream::checkReady() { checkStreamReady(); }
-
-/**
- * @note Address: 0x800B3D68
- * @note Size: 0x20
- * checkReady__11JAISequenceFv
- */
-void JAISequence::checkReady() { checkSeqReady(); }
 
 /**
  * @note Address: 0x800B3D88
@@ -220,32 +193,34 @@ void JAISequence::checkReady() { checkSeqReady(); }
  */
 f32 JAISound::setDistanceVolumeCommon(f32 p1, u8 p2)
 {
-	f32 v1;
+	f32 dist;
 	if (_18 != 4) {
-		v1 = mSoundObj[_18]._18;
-	} else {
-		v1 = mSoundObj[0]._18;
+		dist = mSoundObj[_18].mDistance;
+	} else { // _18 == 4
+		dist = mSoundObj[0].mDistance;
 		for (u8 i = 1; i < JAIGlobalParameter::audioCameraMax; i++) {
-			if (mSoundObj[i]._18 < v1) {
-				v1 = mSoundObj[i]._18;
+			if (mSoundObj[i].mDistance < dist) {
+				dist = mSoundObj[i].mDistance;
 			}
 		}
 	}
-	if (v1 < JAIGlobalParameter::maxVolumeDistance) {
+
+	if (dist < JAIGlobalParameter::maxVolumeDistance) {
 		return 1.0f;
 	}
-	v1 -= JAIGlobalParameter::maxVolumeDistance;
+
+	dist -= JAIGlobalParameter::maxVolumeDistance;
 	p1 -= JAIGlobalParameter::maxVolumeDistance;
 	if (p2 > 3) {
 		p1 /= 1 << (p2 & 3) + 1;
 	} else if (p2 != 0) {
 		p1 *= 1 << (p2 & 3);
 	}
-	if (v1 < p1) {
+	if (dist < p1) {
 		if (p2 > 3) {
-			return 1.0f - v1 / p1;
+			return 1.0f - dist / p1;
 		}
-		return (1.0f - JAIGlobalParameter::minDistanceVolume) * (1.0f - v1 / p1) + JAIGlobalParameter::minDistanceVolume;
+		return (1.0f - JAIGlobalParameter::minDistanceVolume) * (1.0f - dist / p1) + JAIGlobalParameter::minDistanceVolume;
 	}
 	if (p2 > 3) {
 		return 0.0f;
@@ -260,31 +235,32 @@ f32 JAISound::setDistanceVolumeCommon(f32 p1, u8 p2)
 f32 JAISound::setDistancePanCommon()
 {
 	if (JAIGlobalParameter::audioCameraMax == 1) {
-		JAISound_0x34* v0 = mSoundObj;
-		f32 v1            = FABS(v0->mPosition.x);
-		f32 v2            = FABS(v0->mPosition.z);
-		if (v1 < 1.0f && v2 < 1.0f) {
+		JAISound_0x34* obj = mSoundObj;
+		f32 absX           = FABS(obj->mPosition.x);
+		f32 absZ           = FABS(obj->mPosition.z);
+		if (absX < 1.0f && absZ < 1.0f) {
 			return 0.5f;
 		}
-		if (JAIGlobalParameter::panDistanceMax < v1) {
-			v1 = JAIGlobalParameter::panDistanceMax;
+		if (JAIGlobalParameter::panDistanceMax < absX) {
+			absX = JAIGlobalParameter::panDistanceMax;
 		}
-		if (JAIGlobalParameter::panDistanceMax < v2) {
-			v2 = JAIGlobalParameter::panDistanceMax;
+		if (JAIGlobalParameter::panDistanceMax < absZ) {
+			absZ = JAIGlobalParameter::panDistanceMax;
 		}
-		if (v0->mPosition.x == 0.0f && v0->mPosition.z == 0.0f) {
-			return 0.5f;
+		f32 pan;
+		if (obj->mPosition.x == 0.0f && obj->mPosition.z == 0.0f) {
+			pan = 0.5f;
+		} else if (obj->mPosition.x > 0.0f && absX >= absZ) {
+			pan = 1.0f
+			    - (JAIGlobalParameter::panDistance2Max - absX)
+			          / (JAIGlobalParameter::panAngleParameter * (JAIGlobalParameter::panDistance2Max - absZ));
+		} else if (obj->mPosition.x <= 0.0f && absX >= absZ) {
+			pan = (JAIGlobalParameter::panDistance2Max - absX)
+			    / (JAIGlobalParameter::panAngleParameter * (JAIGlobalParameter::panDistance2Max - absZ));
+		} else {
+			pan = obj->mPosition.x / (JAIGlobalParameter::panAngleParameter2 * absZ) + 0.5f;
 		}
-		if (v0->mPosition.x > 0.0f && v1 >= v2) {
-			return 1.0f
-			     - (JAIGlobalParameter::panDistance2Max - v1)
-			           / (JAIGlobalParameter::panAngleParameter * (JAIGlobalParameter::panDistance2Max - v2));
-		}
-		if (v0->mPosition.x <= 0.0f && v1 >= v2) {
-			return (JAIGlobalParameter::panDistance2Max - v1)
-			     / (JAIGlobalParameter::panAngleParameter * (JAIGlobalParameter::panDistance2Max - v2));
-		}
-		return v0->mPosition.x / (JAIGlobalParameter::panAngleParameter2 * v2) + 0.5f;
+		return pan;
 	}
 
 	// audioCameraMax != 1
@@ -636,14 +612,14 @@ f32 JAISound::setDistanceDolbyCommon()
  * @note Address: 0x800B431C
  * @note Size: 0x88
  */
-void JAISequence::setSeqInterVolume(u8 p1, f32 p2, u32 p3)
+void JAISequence::setSeqInterVolume(u8 type, f32 value, u32 moveTime)
 {
-	int result = mSeqParameter._110[p1].set(p2, p3);
-	if (result == 1) {
-		mSeqParameter._284 |= 1 << p1;
+	int result = mSeqParameter.mVolumes[type].set(value, moveTime);
+	if (result == JAInter::MOVEPARA_SetTarget) {
+		mSeqParameter.mVolumeFlags |= 1 << type;
 	}
-	if (mSeqParameter._2C0 != nullptr && result != 2) {
-		mSeqParameter._2C0->_08 |= 0x40000;
+	if (mSeqParameter.mUpdateData && result != JAInter::MOVEPARA_AlreadySet) {
+		mSeqParameter.mUpdateData->mActiveTrackFlag |= JAInter::SOUNDACTIVE_Volume;
 	}
 }
 
@@ -651,14 +627,14 @@ void JAISequence::setSeqInterVolume(u8 p1, f32 p2, u32 p3)
  * @note Address: 0x800B43A4
  * @note Size: 0x88
  */
-void JAISequence::setSeqInterPan(u8 p1, f32 p2, u32 p3)
+void JAISequence::setSeqInterPan(u8 type, f32 value, u32 moveTime)
 {
-	int result = mSeqParameter._250[p1].set(p2, p3);
-	if (result == 1) {
-		mSeqParameter._288 |= 1 << p1;
+	int result = mSeqParameter.mPans[type].set(value, moveTime);
+	if (result == JAInter::MOVEPARA_SetTarget) {
+		mSeqParameter.mPanFlags |= 1 << type;
 	}
-	if (mSeqParameter._2C0 != nullptr && result != 2) {
-		mSeqParameter._2C0->_08 |= 0x80000;
+	if (mSeqParameter.mUpdateData && result != JAInter::MOVEPARA_AlreadySet) {
+		mSeqParameter.mUpdateData->mActiveTrackFlag |= JAInter::SOUNDACTIVE_Pan;
 	}
 }
 
@@ -666,14 +642,14 @@ void JAISequence::setSeqInterPan(u8 p1, f32 p2, u32 p3)
  * @note Address: 0x800B442C
  * @note Size: 0x88
  */
-void JAISequence::setSeqInterPitch(u8 p1, f32 p2, u32 p3)
+void JAISequence::setSeqInterPitch(u8 type, f32 value, u32 moveTime)
 {
-	int result = mSeqParameter._254[p1].set(p2, p3);
-	if (result == 1) {
-		mSeqParameter._28C |= 1 << p1;
+	int result = mSeqParameter.mPitches[type].set(value, moveTime);
+	if (result == JAInter::MOVEPARA_SetTarget) {
+		mSeqParameter.mPitchFlags |= 1 << type;
 	}
-	if (mSeqParameter._2C0 != nullptr && result != 2) {
-		mSeqParameter._2C0->_08 |= 0x100000;
+	if (mSeqParameter.mUpdateData && result != JAInter::MOVEPARA_AlreadySet) {
+		mSeqParameter.mUpdateData->mActiveTrackFlag |= JAInter::SOUNDACTIVE_Pitch;
 	}
 }
 
@@ -762,13 +738,13 @@ void JAISequence::setTrackMuteSwitchMulti(u32, u8)
  * @note Address: 0x800B44B4
  * @note Size: 0x28
  */
-void JAISequence::setTrackInterruptSwitch(u8 p1, u8 p2)
+void JAISequence::setTrackInterruptSwitch(u8 type, u8 value)
 {
-	mSeqParameter._2B8[p1] = p2;
-	if (mSeqParameter._2C0 == nullptr) {
+	mSeqParameter.mInterruptSwitches[type] = value;
+	if (mSeqParameter.mUpdateData == nullptr) {
 		return;
 	}
-	mSeqParameter._2C0->_08 |= 0x800000;
+	mSeqParameter.mUpdateData->mActiveTrackFlag |= JAInter::SOUNDACTIVE_TrackInterruptSwitch;
 }
 
 /**
@@ -811,17 +787,17 @@ void JAISequence::setTrackPitchMulti(u8, u32, f32, u32)
  * @note Address: 0x800B44DC
  * @note Size: 0xB0
  */
-void JAISequence::setTrackFxmix(u8 p1, f32 p2, u32 p3)
+void JAISequence::setTrackFxmix(u8 type, f32 value, u32 moveTime)
 {
-	if (_15 >= 4 && (mSeqParameter._2C0->_04 & 1 << p1) == 0) {
+	if (mState >= SOUNDSTATE_Playing && (mSeqParameter.mUpdateData->_04 & 1 << type) == 0) {
 		return;
 	}
-	int result = mSeqParameter._26C[p1].set(p2, p3);
-	if (result == 1) {
-		mSeqParameter._2A4 |= 1 << p1;
+	int result = mSeqParameter.mTrackFxmixes[type].set(value, moveTime);
+	if (result == JAInter::MOVEPARA_SetTarget) {
+		mSeqParameter.mTrackFxmixFlag |= 1 << type;
 	}
-	if (mSeqParameter._2C0 != nullptr && result != 2) {
-		mSeqParameter._2C0->_08 |= 0x800;
+	if (mSeqParameter.mUpdateData && result != JAInter::MOVEPARA_AlreadySet) {
+		mSeqParameter.mUpdateData->mActiveTrackFlag |= JAInter::SOUNDACTIVE_TrackFxmix;
 	}
 }
 
@@ -858,13 +834,13 @@ void JAISequence::setTrackDolbyMulti(u8, u32, f32, u32)
  */
 void JAISequence::setTrackPortData(u8 p1, u8 p2, u16 p3)
 {
-	if (mSeqParameter._2C0 == nullptr) {
+	if (mSeqParameter.mUpdateData == nullptr) {
 		return;
 	}
-	if (_15 >= 4) {
+	if (mState >= SOUNDSTATE_Playing) {
 		mSeqParameter.mTrack.writePortApp(getTrackPortRoute(p1, p2), p3);
 	} else {
-		mSeqParameter._2C0->_08 |= 0x1000;
+		mSeqParameter.mUpdateData->mActiveTrackFlag |= JAInter::SOUNDACTIVE_TrackPortData;
 		mSeqParameter._2B0 |= 1 << p1;
 		mSeqParameter._2B4[p1] |= 1 << p2;
 	}
@@ -884,28 +860,12 @@ void JAISe::setSeInterRandomPara(f32*, u32, f32, f32)
  * @note Address: 0x800B465C
  * @note Size: 0x158
  */
-void JAISe::setSeInterVolume(u8 p1, f32 p2, u32 p3, u8 p4)
+void JAISe::setSeInterVolume(u8 type, f32 value, u32 moveTime, u8 p4)
 {
-	// f32 v5 = p2;
-	// if (p4 != 0) {
-	// 	// TODO: I think this is a mapping function of TRandom_fast_. v3 and v1 are probably a max and min, in some order?
-	// 	// 	uint v3  = (p4 * 1000) / 0x7F;
-	// 	// 	v3       = (p4 * 1000 - (v3 >> 1)) + (v3 >> 6);
-	// 	// 	u32 v2   = JAInter::Const::random.nextFloat_0_1();
-	// 	// 	u32 v1   = v3 * 2;
-	// 	// 	v5       = 1.0f;
-	// 	// 	f32 v7 = (f32)((v2 - (v2 / v1) * v1) + 1) - ((f32)(v3) / 1000.0f);
-	// 	// 	if (p2 + v7 <= v5) {
-	// 	// 		v5 = 0.0f;
-	// 	// 		if (v5 - v7 <= p2) {
-	// 	// 			v5 = p2 + v7;
-	// 	// 		}
-	// 	// 	}
-	// 	v5 = JAInter::Const::random.nextFloat(p2, p4);
-	// }
-	// mSeParam._124[p1].set(v5, p3);
-	mSeParam._124[p1].set(p4 != 0 ? JAInter::Const::random.nextFloat(p2, p4) : p2, p3);
-
+	if (p4) {
+		value = JAInter::Const::random.nextFloat(value, p4);
+	}
+	mSeParam.mVolumes[type].set(value, moveTime);
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1006,8 +966,12 @@ lbl_800B4774:
  * @note Address: 0x800B47B4
  * @note Size: 0x158
  */
-void JAISe::setSeInterPan(u8, f32, u32, u8)
+void JAISe::setSeInterPan(u8 type, f32 value, u32 moveTime, u8 p4)
 {
+	if (p4) {
+		value = JAInter::Const::random.nextFloat(value, p4);
+	}
+	mSeParam.mPans[type].set(value, moveTime);
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1135,8 +1099,12 @@ void JAISe::setSeInterFir(u8, u8, u32, u8)
  * @note Address: 0x800B490C
  * @note Size: 0x158
  */
-void JAISe::setSeInterDolby(u8, f32, u32, u8)
+void JAISe::setSeInterDolby(u8 type, f32 value, u32 moveTime, u8 p4)
 {
+	if (p4) {
+		value = JAInter::Const::random.nextFloat(value, p4);
+	}
+	mSeParam.mDolbys[type].set(value, moveTime);
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1257,20 +1225,20 @@ void JAISe::getSePortData(u8)
  */
 void JAISe::setSeDistanceParameters()
 {
-	u8 v1 = mDistanceParameterMoveTime;
-	if (_15 == 2) {
-		v1 = 0;
+	u8 moveTime = mDistanceParameterMoveTime;
+	if (mState == SOUNDSTATE_Loaded) {
+		moveTime = 0;
 	}
-	setSeDistanceVolume(v1);
-	setSeDistancePan(v1);
-	setSeDistancePitch(v1);
+	setSeDistanceVolume(moveTime);
+	setSeDistancePan(moveTime);
+	setSeDistancePitch(moveTime);
 	setSePositionDopplar();
-	setSeDistanceFxmix(v1);
-	setSeDistanceFir(v1);
+	setSeDistanceFxmix(moveTime);
+	setSeDistanceFir(moveTime);
 	if (checkSwBit(0x400) == 0) {
-		setFxmix(JAIBasic::msBasic->getMapInfoFxParameter(_30), 0, 3);
+		setFxmix(JAIBasic::msBasic->getMapInfoFxParameter(_30), 0, SOUNDPARAM_Unk3);
 	}
-	setSeDistanceDolby(v1);
+	setSeDistanceDolby(moveTime);
 }
 
 /**
@@ -1278,66 +1246,38 @@ void JAISe::setSeDistanceParameters()
  * @note Size: 0x30
  * setFxmix__5JAISeFfUlUc
  */
-void JAISe::setFxmix(f32 p1, u32 p2, u8 p3) { mSeParam._2A4[p3].set(p1, p2); }
+void JAISe::setFxmix(f32 value, u32 moveTime, u8 type) { mSeParam.mFxmixes[type].set(value, moveTime); }
 
 /**
  * @note Address: 0x800B4BC0
  * @note Size: 0x70
  */
-void JAISe::setSeDistanceVolume(u8 p1)
+void JAISe::setSeDistanceVolume(u8 moveTime)
 {
-	mSeParam._124[4].set(
-	    checkSwBit(2) == 0 ? setDistanceVolumeCommon(JAIGlobalParameter::distanceMax, (mSoundInfo->mFlag >> 0x10) & 7) : 1.0f, p1);
+	mSeParam.mVolumes[SOUNDPARAM_Distance].set(
+	    checkSwBit(2) == 0 ? setDistanceVolumeCommon(JAIGlobalParameter::distanceMax, (mSoundInfo->mFlag >> 0x10) & 7) : 1.0f, moveTime);
 }
 
 /**
  * @note Address: 0x800B4C30
  * @note Size: 0x74
  */
-void JAISe::setSeDistancePan(u8)
+void JAISe::setSeDistancePan(u8 moveTime)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_80516FE8@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lbz      r0, 0x1a(r3)
-	cmplwi   r0, 0
-	bne      lbl_800B4C70
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0xc0(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_800B4C80
-
-lbl_800B4C70:
-	lwz      r3, 0x38(r30)
-	cmplwi   r3, 0
-	beq      lbl_800B4C80
-	lfs      f1, 0x38(r3)
-
-lbl_800B4C80:
-	addi     r3, r30, 0x22c
-	clrlwi   r4, r31, 0x18
-	bl       set__Q27JAInter11MoveParaSetFfUl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	f32 pan = 0.5f;
+	if (!_1A) {
+		pan = setDistancePanCommon();
+	} else if (mCreatureObj) {
+		pan = static_cast<JAInter::Object*>(mCreatureObj)->mPan;
+	}
+	mSeParam.mPans[SOUNDPARAM_Distance].set(pan, moveTime);
 }
 
 /**
  * @note Address: 0x800B4CA4
  * @note Size: 0x138
  */
-void JAISe::setSeDistancePitch(u8 p1)
+void JAISe::setSeDistancePitch(u8 moveTime)
 {
 	f32 pitch = 1.0f;
 	if (checkSwBit(0x10) != 0) {
@@ -1349,10 +1289,10 @@ void JAISe::setSeDistancePitch(u8 p1)
 	if (checkSwBit(0x4000) != 0) {
 		if (checkSwBit(0x2) == 0 && checkSwBit(0x100 | 0x200) == 0) {
 			if (JAIGlobalParameter::audioCameraMax == 1) {
-				if (mSoundObj->_18 >= JAIGlobalParameter::distanceMax) {
+				if (mSoundObj->mDistance >= JAIGlobalParameter::distanceMax) {
 					pitch += JAIGlobalParameter::seDistancepitchMax;
 				} else {
-					pitch = JAIGlobalParameter::seDistancepitchMax * (mSoundObj->_18 / JAIGlobalParameter::distanceMax) + pitch;
+					pitch = JAIGlobalParameter::seDistancepitchMax * (mSoundObj->mDistance / JAIGlobalParameter::distanceMax) + pitch;
 				}
 			}
 		}
@@ -1360,7 +1300,7 @@ void JAISe::setSeDistancePitch(u8 p1)
 	if (checkSwBit(0x40 | 0x80) != 0) {
 		pitch += _17 / 192.0f;
 	}
-	mSeParam._224[4].set(pitch, p1);
+	mSeParam.mPitches[SOUNDPARAM_Distance].set(pitch, moveTime);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1458,11 +1398,11 @@ lbl_800B4DC0:
 void JAISe::setSePositionDopplar()
 {
 	u32 moveTime = JAIGlobalParameter::dopplarMoveTime;
-	if (_15 == 2) {
+	if (mState == SOUNDSTATE_Loaded) {
 		moveTime = 1;
 	}
 	if (checkSwBit(0x100 | 0x200) != 0 && JAIGlobalParameter::audioCameraMax == 1) {
-		mSeParam._224[1].set(setPositionDopplarCommon(checkSwBit(0x100 | 0x200)), moveTime);
+		mSeParam.mPitches[SOUNDPARAM_Dopplar].set(setPositionDopplarCommon(checkSwBit(0x100 | 0x200)), moveTime);
 	}
 }
 
@@ -1470,20 +1410,20 @@ void JAISe::setSePositionDopplar()
  * @note Address: 0x800B4E5C
  * @note Size: 0xC8
  */
-void JAISe::setSeDistanceFxmix(u8 p1)
+void JAISe::setSeDistanceFxmix(u8 moveTime)
 {
-	u16 fx = JAIGlobalParameter::seDefaultFx;
+	u16 value = JAIGlobalParameter::seDefaultFx;
 	if (checkSwBit(0x4) == 0 && JAIGlobalParameter::audioCameraMax == 1) {
-		if (mSoundObj->_18 < JAIGlobalParameter::distanceMax) {
-			fx = (JAIGlobalParameter::seDistanceFxParameter * (mSoundObj->_18 / JAIGlobalParameter::distanceMax));
+		if (mSoundObj->mDistance < JAIGlobalParameter::distanceMax) {
+			value = (JAIGlobalParameter::seDistanceFxParameter * (mSoundObj->mDistance / JAIGlobalParameter::distanceMax));
 		} else {
-			fx = JAIGlobalParameter::seDistanceFxParameter;
+			value = JAIGlobalParameter::seDistanceFxParameter;
 		}
 	}
-	if (fx > 127) {
-		fx = 127;
+	if (value > 127) {
+		value = 127;
 	}
-	mSeParam._2A4[4].set((u8)fx / 127.0f, p1);
+	mSeParam.mFxmixes[SOUNDPARAM_Distance].set((u8)value / 127.0f, moveTime);
 }
 
 /**
@@ -1496,55 +1436,15 @@ void JAISe::setSeDistanceFir(u8) { }
  * @note Address: 0x800B4F28
  * @note Size: 0xA4
  */
-void JAISe::setSeDistanceDolby(u8)
+void JAISe::setSeDistanceDolby(u8 moveTime)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lfs      f1, lbl_80516FE4@sda21(r2)
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lbz      r0, 0x1a(r3)
-	cmplwi   r0, 0
-	bne      lbl_800B4F68
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0xc4(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_800B4F78
-
-lbl_800B4F68:
-	lwz      r3, 0x38(r30)
-	cmplwi   r3, 0
-	beq      lbl_800B4F78
-	lfs      f1, 0x3c(r3)
-
-lbl_800B4F78:
-	fctiwz   f0, f1
-	lis      r0, 0x4330
-	stw      r0, 0x10(r1)
-	addi     r3, r30, 0x42c
-	lfd      f2, lbl_80517018@sda21(r2)
-	clrlwi   r4, r31, 0x18
-	stfd     f0, 8(r1)
-	lfs      f0, lbl_80517020@sda21(r2)
-	lwz      r0, 0xc(r1)
-	clrlwi   r0, r0, 0x18
-	stw      r0, 0x14(r1)
-	lfd      f1, 0x10(r1)
-	fsubs    f1, f1, f2
-	fdivs    f1, f1, f0
-	bl       set__Q27JAInter11MoveParaSetFfUl
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	f32 dolby = 0.5f;
+	if (!_1A) {
+		dolby = setDistanceDolbyCommon();
+	} else if (mCreatureObj) {
+		dolby = static_cast<JAInter::Object*>(mCreatureObj)->mDolby;
+	}
+	mSeParam.mDolbys[SOUNDPARAM_Distance].set((u8)dolby / 127.0f, moveTime);
 }
 
 /**
@@ -1605,7 +1505,7 @@ void JAIStream::setStreamInterDolby(u8, f32, u32)
  * @note Address: 0x800B4FCC
  * @note Size: 0xC
  */
-void JAIStream::setStreamPrepareFlag(u8 p1) { JAInter::StreamMgr::streamUpdate->_02 = p1; }
+void JAIStream::setStreamPrepareFlag(u8 flag) { JAInter::StreamMgr::streamUpdate->mPrepareFlag = flag; }
 
 /**
  * @note Address: 0x800B4FD8
@@ -1613,7 +1513,7 @@ void JAIStream::setStreamPrepareFlag(u8 p1) { JAInter::StreamMgr::streamUpdate->
  */
 bool JAIStream::checkStreamReady()
 {
-	if (_15 == 3 && JAInter::StreamMgr::getSystemStatus() == 1) {
+	if (mState == SOUNDSTATE_Ready && JAInter::StreamMgr::getSystemStatus() == 1) {
 		return true;
 	}
 	return false;
@@ -1623,15 +1523,15 @@ bool JAIStream::checkStreamReady()
  * @note Address: 0x800B5018
  * @note Size: 0xA0
  */
-void JAIStream::setChannelVolume(u8 p1, f32 p2, u32 p3)
+void JAIStream::setChannelVolume(u8 type, f32 value, u32 moveTime)
 {
 	JAInter::StreamMgr::getChannelMax();
-	int result = _1C8[p1].set(p2, p3);
-	if (result == 1) {
-		_1B8 |= 1 << p1;
+	int result = mStreamParameter.mChannelVolumes[type].set(value, moveTime);
+	if (result == JAInter::MOVEPARA_SetTarget) {
+		mStreamParameter.mChannelVolumeFlags |= 1 << type;
 	}
-	if (result != 2) {
-		_1B4->_18 |= 0x40;
+	if (result != JAInter::MOVEPARA_AlreadySet) {
+		mStreamParameter.mUpdateData->mActiveTrackFlag |= JAInter::SOUNDACTIVE_ChannelVolume;
 	}
 }
 
@@ -1639,15 +1539,15 @@ void JAIStream::setChannelVolume(u8 p1, f32 p2, u32 p3)
  * @note Address: 0x800B50B8
  * @note Size: 0xA0
  */
-void JAIStream::setChannelPan(u8 p1, f32 p2, u32 p3)
+void JAIStream::setChannelPan(u8 type, f32 value, u32 moveTime)
 {
 	JAInter::StreamMgr::getChannelMax();
-	int result = _1CC[p1].set(p2, p3);
-	if (result == 1) {
-		_1BC |= 1 << p1;
+	int result = mStreamParameter.mChannelPans[type].set(value, moveTime);
+	if (result == JAInter::MOVEPARA_SetTarget) {
+		mStreamParameter.mChannelPanFlags |= 1 << type;
 	}
-	if (result != 2) {
-		_1B4->_18 |= 0x80;
+	if (result != JAInter::MOVEPARA_AlreadySet) {
+		mStreamParameter.mUpdateData->mActiveTrackFlag |= JAInter::SOUNDACTIVE_ChannelPan;
 	}
 }
 
@@ -1709,60 +1609,66 @@ void JAIStream::getChannelDolby(u8)
  * @note Address: 0x800B5158
  * @note Size: 0x1E8
  */
-void JAISound::setPauseMode(u8 p1, u8 p2)
+void JAISound::setPauseMode(u8 pauseMode, u8 volume)
 {
 	switch (mSoundID & JAISoundID_TypeMask) {
 	case JAISoundID_Type_Sequence: {
 		JAISequence* sequence = static_cast<JAISequence*>(this);
-		if (p1 == 3) {
-			p1 = 4;
+		if (!&sequence->mSeqParameter) {
+			break;
 		}
-		switch (p1) {
-		case 1:
-			setVolumeU7(p2, 1, 11);
-			break;
-		case 2:
-			sequence->mSeqParameter.mTrack.pause(true, true);
-			break;
-		case 0:
-			switch (sequence->mSeqParameter._279) {
-			case 1:
-				setVolume(1.0f, 1, 11);
+		if (pauseMode == SOUNDPAUSE_Unk3) {
+			pauseMode = SOUNDPAUSE_Unk4;
+		}
+		if (pauseMode) {
+			switch (pauseMode) {
+			case SOUNDPAUSE_Unk1:
+				sequence->setVolumeU7(volume, 1, SOUNDPARAM_Pause);
 				break;
-			case 2:
+			case SOUNDPAUSE_Unk2:
+				sequence->mSeqParameter.mTrack.pause(true, true);
+				break;
+			}
+		} else {
+			switch (sequence->mSeqParameter.mPauseMode) {
+			case SOUNDPAUSE_Unk1:
+				sequence->setVolume(1.0f, 1, SOUNDPARAM_Pause);
+				break;
+			case SOUNDPAUSE_Unk2:
 				sequence->mSeqParameter.mTrack.pause(false, true);
 				break;
 			}
-			break;
 		}
-		sequence->mSeqParameter._279 = p1;
+		sequence->mSeqParameter.mPauseMode = pauseMode;
 		break;
 	}
-	case JAISoundID_Type_Se:
-		break;
+
 	case JAISoundID_Type_Stream: {
 		JAIStream* stream = static_cast<JAIStream*>(this);
-		switch (p1) {
-		case 1:
-			// TODO: Will invoking it using the casted pointer actually inline JAIStream::setVolumeU7, without JAISequence::setVolumeU7
-			// getting inlined?
-			stream->setVolumeU7(p2, 1, 11);
-			break;
-		case 2:
-			// JAInter::StreamMgr::getStreamObjectPointer()->pause(true);
-			break;
-		case 0:
-			switch (stream->_48) {
-			case 1:
-				setVolume(1.0f, 1, 11);
-				break;
-			case 2:
-				// JAInter::StreamMgr::getStreamObjectPointer()->pause(false);
-				break;
-			}
+		if (!&stream->mStreamParameter) {
 			break;
 		}
-		stream->_48 = p1;
+		if (pauseMode) {
+			switch (pauseMode) {
+			case SOUNDPAUSE_Unk1:
+				stream->setVolume(volume / 127.0f, 1, SOUNDPARAM_Pause);
+				break;
+			case SOUNDPAUSE_Unk2:
+				JAInter::StreamMgr::getStreamObjectPointer()->pause(true);
+				break;
+			}
+
+		} else {
+			switch (stream->mStreamParameter.mPauseMode) {
+			case SOUNDPAUSE_Unk1:
+				stream->setVolume(1.0f, 1, SOUNDPARAM_Pause);
+				break;
+			case SOUNDPAUSE_Unk2:
+				JAInter::StreamMgr::getStreamObjectPointer()->pause(false);
+				break;
+			}
+		}
+		stream->mStreamParameter.mPauseMode = pauseMode;
 		break;
 	}
 	}
@@ -1924,33 +1830,18 @@ lbl_800B5328:
 }
 
 /**
- * @note Address: 0x800B5340
- * @note Size: 0x84
- */
-// void JAIStream::setVolume(f32 p1, u32 p2, u8 p3)
-// {
-// 	int result = _64[p3].set(p1, p2);
-// 	if (result == 1) {
-// 		_50 |= 1 << p3;
-// 	}
-// 	if (_1B4 != nullptr && result != 2) {
-// 		_1B4->_18 |= 0x40000;
-// 	}
-// }
-
-/**
  * @note Address: 0x800B53C4
  * @note Size: 0xAC
  * setVolumeU7__11JAISequenceFUcUlUc
  */
-void JAISequence::setVolumeU7(u8 p1, u32 p2, u8 p3)
+void JAISequence::setVolumeU7(u8 value, u32 moveTime, u8 type)
 {
-	int result = mSeqParameter._110[p3].set(p1 / 127.0f, p2);
-	if (result == 1) {
-		mSeqParameter._284 |= 1 << p3;
+	int result = mSeqParameter.mVolumes[type].set(value / 127.0f, moveTime);
+	if (result == JAInter::MOVEPARA_SetTarget) {
+		mSeqParameter.mVolumeFlags |= 1 << type;
 	}
-	if (mSeqParameter._2C0 != nullptr && result != 2) {
-		mSeqParameter._2C0->_08 |= 0x40000;
+	if (mSeqParameter.mUpdateData && result != JAInter::MOVEPARA_AlreadySet) {
+		mSeqParameter.mUpdateData->mActiveTrackFlag |= JAInter::SOUNDACTIVE_Volume;
 	}
 }
 
@@ -1959,7 +1850,7 @@ void JAISequence::setVolumeU7(u8 p1, u32 p2, u8 p3)
  * @note Size: 0xC
  * setSeqPrepareFlag__11JAISequenceFUc
  */
-void JAISequence::setSeqPrepareFlag(u8 seqPrepareFlag) { mSeqParameter._2C0->_02 = seqPrepareFlag; }
+void JAISequence::setSeqPrepareFlag(u8 seqPrepareFlag) { mSeqParameter.mUpdateData->mPrepareFlag = seqPrepareFlag; }
 
 /**
  * @note Address: 0x800B547C
@@ -1968,7 +1859,7 @@ void JAISequence::setSeqPrepareFlag(u8 seqPrepareFlag) { mSeqParameter._2C0->_02
  */
 bool JAISequence::checkSeqReady()
 {
-	if (_15 == 2 && mSeqParameter._27C == 0xFFFFFFFF) {
+	if (mState == SOUNDSTATE_Loaded && mSeqParameter._27C == 0xFFFFFFFF) {
 		return true;
 	}
 	return false;
@@ -1979,10 +1870,10 @@ bool JAISequence::checkSeqReady()
  * @note Size: 0x2C
  * getSeqInterVolume__11JAISequenceFUc
  */
-f32 JAISequence::getSeqInterVolume(u8 p1)
+f32 JAISequence::getSeqInterVolume(u8 type)
 {
-	if (_15 == 4 || _15 == 5) {
-		return mSeqParameter._110[p1]._04;
+	if (mState == SOUNDSTATE_Playing || mState == SOUNDSTATE_Fadeout) {
+		return mSeqParameter.mVolumes[type].mCurrentValue;
 	}
 	return -1.0f;
 }
@@ -2208,10 +2099,10 @@ u32 JAISound::checkSoundHandle(u32 id, void* p2)
  */
 u32 JAISequence::getFadeCounter()
 {
-	if ((JAInter::SequenceMgr::getPlayTrackInfo(_14)->_08 & 2) != 0) {
-		return _28;
+	if (JAInter::SequenceMgr::getPlayTrackInfo(_14)->mActiveTrackFlag & JAInter::SOUNDACTIVE_DoFadeout) {
+		return mFadeCounter;
 	}
-	return mSeqParameter._110[7]._0C - 1;
+	return mSeqParameter.mVolumes[SOUNDPARAM_Fadeout].mMoveCounter - 1;
 }
 
 /**
@@ -2219,7 +2110,7 @@ u32 JAISequence::getFadeCounter()
  * @note Size: 0xC
  * getFadeCounter__5JAISeFv
  */
-u32 JAISe::getFadeCounter() { return mSeParam._124[6]._0C - 1; }
+u32 JAISe::getFadeCounter() { return mSeParam.mVolumes[SOUNDPARAM_Direct].mMoveCounter - 1; }
 
 /**
  * @note Address: 0x800B55F0
@@ -2228,22 +2119,22 @@ u32 JAISe::getFadeCounter() { return mSeParam._124[6]._0C - 1; }
  */
 u32 JAIStream::getFadeCounter()
 {
-	if ((_1B4->_18 & 2) != 0) {
-		return _28;
+	if (mStreamParameter.mUpdateData->mActiveTrackFlag & JAInter::SOUNDACTIVE_DoFadeout) {
+		return mFadeCounter;
 	}
-	return _64[7]._0C - 1;
+	return mStreamParameter.mVolumes[SOUNDPARAM_Fadeout].mMoveCounter - 1;
 }
 
 /**
  * @note Address: 0x800B5614
  * @note Size: 0xE8
  */
-void JAISound::initParameter(void* handlePtr, JAInter::Actor* actor, u32 id, u32 p4, u8 p5, JAInter::SoundInfo* info)
+void JAISound::initParameter(void* handlePtr, JAInter::Actor* actor, u32 soundID, u32 fadeTime, u8 p5, JAInter::SoundInfo* info)
 {
-	mSoundID = id;
-	if (actor != nullptr) {
-		mCreatureObj = actor->mVec1;
-		if (actor->mVec1 != nullptr) {
+	mSoundID = soundID;
+	if (actor) {
+		mCreatureObj = actor->mObj;
+		if (actor->mObj) {
 			_3C = actor->mVec2;
 			_30 = actor->mUnk;
 		} else {
@@ -2258,17 +2149,17 @@ void JAISound::initParameter(void* handlePtr, JAInter::Actor* actor, u32 id, u32
 		_30          = 0;
 	}
 	mMainSoundPPointer         = (void**)handlePtr;
-	_28                        = p4;
+	mFadeCounter               = fadeTime;
 	_18                        = p5;
 	mSoundInfo                 = info;
 	_16                        = 10;
 	mDistanceParameterMoveTime = JAIGlobalParameter::getParamDistanceParameterMoveTime();
 	mAdjustPriority            = 0;
 	_2C                        = 0;
-	if (_3C != nullptr) {
-		mSoundObj->_18 = JAIGlobalParameter::getParamDistanceMax() * 10.0f;
+	if (_3C) {
+		mSoundObj->mDistance = JAIGlobalParameter::getParamDistanceMax() * 10.0f;
 	} else {
-		mSoundObj->_18 = 0.0f;
+		mSoundObj->mDistance = 0.0f;
 	}
 }
 
@@ -2279,8 +2170,8 @@ void JAISound::initParameter(void* handlePtr, JAInter::Actor* actor, u32 id, u32
  */
 void JAInter::LinkSound::init()
 {
-	_00 = new (JAIBasic::msCurrentHeap, 0x20) JSUList<JAISound>();
-	_04 = new (JAIBasic::msCurrentHeap, 0x20) JSUList<JAISound>();
+	mFreeList = new (JAIBasic::msCurrentHeap, 0x20) JSUList<JAISound>();
+	mUsedList = new (JAIBasic::msCurrentHeap, 0x20) JSUList<JAISound>();
 }
 
 /**
@@ -2290,10 +2181,10 @@ void JAInter::LinkSound::init()
 JAISound* JAInter::LinkSound::getSound()
 {
 	JAISound* sound         = nullptr;
-	JSULink<JAISound>* link = _00->getFirst();
-	if (link != nullptr) {
-		_00->remove(link);
-		_04->prepend(link);
+	JSULink<JAISound>* link = mFreeList->getFirst();
+	if (link) {
+		mFreeList->remove(link);
+		mUsedList->prepend(link);
 		sound = link->getObject();
 		sound->onGet();
 	}
@@ -2313,9 +2204,9 @@ void JAISound::onGet() { }
  */
 void JAInter::LinkSound::releaseSound(JAISound* sound)
 {
-	if (sound != nullptr) {
-		if (_04->remove(sound) != 0) {
-			_00->prepend(sound);
+	if (sound) {
+		if (mUsedList->remove(sound) != 0) {
+			mFreeList->prepend(sound);
 		}
 	}
 	sound->onRelease();
@@ -2350,22 +2241,22 @@ void JAInter::LinkSound::getUsedEndFirstObject()
  * @note Size: 0x98
  * set__Q27JAInter11MoveParaSetFfUl
  */
-int JAInter::MoveParaSet::set(f32 p1, u32 p2)
+int JAInter::MoveParaSet::set(f32 value, u32 moveTime)
 {
-	if (_0C == 0 && _04 == p1) {
-		return 2;
+	if (mMoveCounter == 0 && mCurrentValue == value) {
+		return MOVEPARA_AlreadySet;
 	}
-	if (_0C != 0 && _00 == p1) {
-		return 2;
+	if (mMoveCounter != 0 && mTargetValue == value) {
+		return MOVEPARA_AlreadySet;
 	}
-	_00 = p1;
-	if (p2 == 0) {
-		_04 = p1;
-		return 0;
+	mTargetValue = value;
+	if (moveTime == 0) {
+		mCurrentValue = value;
+		return MOVEPARA_SetCurrent;
 	}
-	_08 = (_04 - _00) / (p2 + 1);
-	_0C = p2 + 1;
-	return 1;
+	mMoveAmount  = (mCurrentValue - mTargetValue) / (moveTime + 1);
+	mMoveCounter = moveTime + 1;
+	return MOVEPARA_SetTarget;
 }
 
 /**
@@ -2376,15 +2267,15 @@ int JAInter::MoveParaSet::set(f32 p1, u32 p2)
 BOOL JAInter::MoveParaSet::move()
 {
 	BOOL result;
-	if (_0C == 0) {
+	if (mMoveCounter == 0) {
 		result = FALSE;
 	} else {
-		if (--_0C != 0) {
+		if (--mMoveCounter != 0) {
 			result = TRUE;
-			_04 -= _08;
+			mCurrentValue -= mMoveAmount;
 		} else {
-			result = FALSE;
-			_04    = _00;
+			result        = FALSE;
+			mCurrentValue = mTargetValue;
 		}
 	}
 	return result;
@@ -2395,10 +2286,10 @@ BOOL JAInter::MoveParaSet::move()
  * @note Size: 0x2C
  * getVolume__9JAIStreamFUc
  */
-f32 JAIStream::getVolume(u8 p1)
+f32 JAIStream::getVolume(u8 type)
 {
-	if (_15 == 4 || _15 == 5) {
-		return _64[p1]._04;
+	if (mState == SOUNDSTATE_Playing || mState == SOUNDSTATE_Fadeout) {
+		return mStreamParameter.mVolumes[type].mCurrentValue;
 	}
 	return -1.0f;
 }
@@ -2408,14 +2299,14 @@ f32 JAIStream::getVolume(u8 p1)
  * @note Size: 0xE4
  * setPan__9JAIStreamFfUlUc
  */
-void JAIStream::setPan(f32 p1, u32 p2, u8 p3)
+void JAIStream::setPan(f32 value, u32 moveTime, u8 type)
 {
-	int result = _1A8[p3].set(p1, p2);
-	if (result == 1) {
-		_58 |= 1 << p3;
+	int result = mStreamParameter.mPans[type].set(value, moveTime);
+	if (result == JAInter::MOVEPARA_SetTarget) {
+		mStreamParameter.mPanFlags |= 1 << type;
 	}
-	if (_1B4 != nullptr && result != 2) {
-		_1B4->_18 |= 0x80000;
+	if (mStreamParameter.mUpdateData && result != JAInter::MOVEPARA_AlreadySet) {
+		mStreamParameter.mUpdateData->mActiveTrackFlag |= JAInter::SOUNDACTIVE_Pan;
 	}
 }
 
@@ -2424,10 +2315,10 @@ void JAIStream::setPan(f32 p1, u32 p2, u8 p3)
  * @note Size: 0x30
  * getPan__9JAIStreamFUc
  */
-f32 JAIStream::getPan(u8 p1)
+f32 JAIStream::getPan(u8 type)
 {
-	if (_15 == 4 || _15 == 5) {
-		return _1A8[p1]._04;
+	if (mState == SOUNDSTATE_Playing || mState == SOUNDSTATE_Fadeout) {
+		return mStreamParameter.mPans[type].mCurrentValue;
 	}
 	return -1.0f;
 }
@@ -2437,14 +2328,14 @@ f32 JAIStream::getPan(u8 p1)
  * @note Size: 0xE4
  * setPitch__9JAIStreamFfUlUc
  */
-void JAIStream::setPitch(f32 p1, u32 p2, u8 p3)
+void JAIStream::setPitch(f32 value, u32 moveTime, u8 type)
 {
-	int result = _1A4[p3].set(p1, p2);
-	if (result == 1) {
-		_54 |= 1 << p3;
+	int result = mStreamParameter.mPitches[type].set(value, moveTime);
+	if (result == JAInter::MOVEPARA_SetTarget) {
+		mStreamParameter.mPitchFlags |= 1 << type;
 	}
-	if (_1B4 != nullptr && result != 2) {
-		_1B4->_18 |= 0x100000;
+	if (mStreamParameter.mUpdateData && result != JAInter::MOVEPARA_AlreadySet) {
+		mStreamParameter.mUpdateData->mActiveTrackFlag |= JAInter::SOUNDACTIVE_Pitch;
 	}
 }
 
@@ -2453,10 +2344,10 @@ void JAIStream::setPitch(f32 p1, u32 p2, u8 p3)
  * @note Size: 0x30
  * getPitch__9JAIStreamFUc
  */
-f32 JAIStream::getPitch(u8 p1)
+f32 JAIStream::getPitch(u8 type)
 {
-	if (_15 == 4 || _15 == 5) {
-		return _1A4[p1]._04;
+	if (mState == SOUNDSTATE_Playing || mState == SOUNDSTATE_Fadeout) {
+		return mStreamParameter.mPitches[type].mCurrentValue;
 	}
 	return -1.0f;
 }
@@ -2466,14 +2357,14 @@ f32 JAIStream::getPitch(u8 p1)
  * @note Size: 0xE4
  * setFxmix__9JAIStreamFfUlUc
  */
-void JAIStream::setFxmix(f32 p1, u32 p2, u8 p3)
+void JAIStream::setFxmix(f32 value, u32 moveTime, u8 type)
 {
-	int result = _1AC[p3].set(p1, p2);
-	if (result == 1) {
-		_5C |= 1 << p3;
+	int result = mStreamParameter.mFxmixes[type].set(value, moveTime);
+	if (result == JAInter::MOVEPARA_SetTarget) {
+		mStreamParameter.mFxmixFlags |= 1 << type;
 	}
-	if (_1B4 != nullptr && result != 2) {
-		_1B4->_18 |= 0x200000;
+	if (mStreamParameter.mUpdateData && result != JAInter::MOVEPARA_AlreadySet) {
+		mStreamParameter.mUpdateData->mActiveTrackFlag |= JAInter::SOUNDACTIVE_Fxmix;
 	}
 }
 
@@ -2482,10 +2373,10 @@ void JAIStream::setFxmix(f32 p1, u32 p2, u8 p3)
  * @note Size: 0x30
  * getFxmix__9JAIStreamFUc
  */
-f32 JAIStream::getFxmix(u8 p1)
+f32 JAIStream::getFxmix(u8 type)
 {
-	if (_15 == 4 || _15 == 5) {
-		return _1AC[p1]._04;
+	if (mState == SOUNDSTATE_Playing || mState == SOUNDSTATE_Fadeout) {
+		return mStreamParameter.mFxmixes[type].mCurrentValue;
 	}
 	return -1.0f;
 }
@@ -2495,14 +2386,14 @@ f32 JAIStream::getFxmix(u8 p1)
  * @note Size: 0xE4
  * setDolby__9JAIStreamFfUlUc
  */
-void JAIStream::setDolby(f32 p1, u32 p2, u8 p3)
+void JAIStream::setDolby(f32 value, u32 moveTime, u8 type)
 {
-	int result = _1B0[p3].set(p1, p2);
-	if (result == 1) {
-		_60 |= 1 << p3;
+	int result = mStreamParameter.mDolbys[type].set(value, moveTime);
+	if (result == JAInter::MOVEPARA_SetTarget) {
+		mStreamParameter.mDolbyFlags |= 1 << type;
 	}
-	if (_1B4 != nullptr && result != 2) {
-		_1B4->_18 |= 0x400000;
+	if (mStreamParameter.mUpdateData && result != JAInter::MOVEPARA_AlreadySet) {
+		mStreamParameter.mUpdateData->mActiveTrackFlag |= JAInter::SOUNDACTIVE_Dolby;
 	}
 }
 
@@ -2511,10 +2402,10 @@ void JAIStream::setDolby(f32 p1, u32 p2, u8 p3)
  * @note Size: 0x30
  * getDolby__9JAIStreamFUc
  */
-f32 JAIStream::getDolby(u8 p1)
+f32 JAIStream::getDolby(u8 type)
 {
-	if (_15 == 4 || _15 == 5) {
-		return _1B0[p1]._04;
+	if (mState == SOUNDSTATE_Playing || mState == SOUNDSTATE_Fadeout) {
+		return mStreamParameter.mDolbys[type].mCurrentValue;
 	}
 	return -1.0f;
 }
@@ -2531,49 +2422,49 @@ f32 JAIStream::getDolby(u8 p1)
  * @note Size: 0x40
  * getVolumeU7__9JAIStreamFUc
  */
-u8 JAIStream::getVolumeU7(u8 p1) { return getVolume(p1) * 127.0f; }
+u8 JAIStream::getVolumeU7(u8 type) { return getVolume(type) * 127.0f; }
 
 /**
  * @note Address: 0x800B5E50
  * @note Size: 0x58
  * setPanU7__9JAIStreamFUcUlUc
  */
-void JAIStream::setPanU7(u8 p1, u32 p2, u8 p3) { setPan(p1 / 127.0f, p2, p3); }
+void JAIStream::setPanU7(u8 value, u32 moveTime, u8 type) { setPan(value / 127.0f, moveTime, type); }
 
 /**
  * @note Address: 0x800B5EA8
  * @note Size: 0x40
  * getPanU7__9JAIStreamFUc
  */
-u8 JAIStream::getPanU7(u8 p1) { return getPan(p1) * 127.0f; }
+u8 JAIStream::getPanU7(u8 type) { return getPan(type) * 127.0f; }
 
 /**
  * @note Address: 0x800B5EE8
  * @note Size: 0x58
  * setFxmixU7__9JAIStreamFUcUlUc
  */
-void JAIStream::setFxmixU7(u8 p1, u32 p2, u8 p3) { setFxmix(p1 / 127.0f, p2, p3); }
+void JAIStream::setFxmixU7(u8 value, u32 moveTime, u8 type) { setFxmix(value / 127.0f, moveTime, type); }
 
 /**
  * @note Address: 0x800B5F40
  * @note Size: 0x40
  * getFxmixU7__9JAIStreamFUc
  */
-u8 JAIStream::getFxmixU7(u8 p1) { return getFxmix(p1) * 127.0f; }
+u8 JAIStream::getFxmixU7(u8 type) { return getFxmix(type) * 127.0f; }
 
 /**
  * @note Address: 0x800B5F80
  * @note Size: 0x58
  * setDolbyU7__9JAIStreamFUcUlUc
  */
-void JAIStream::setDolbyU7(u8 p1, u32 p2, u8 p3) { setDolby(p1 / 127.0f, p2, p3); }
+void JAIStream::setDolbyU7(u8 value, u32 moveTime, u8 type) { setDolby(value / 127.0f, moveTime, type); }
 
 /**
  * @note Address: 0x800B5FD8
  * @note Size: 0x40
  * getDolbyU7__9JAIStreamFUc
  */
-u8 JAIStream::getDolbyU7(u8 p1) { return getDolby(p1) * 127.0f; }
+u8 JAIStream::getDolbyU7(u8 type) { return getDolby(type) * 127.0f; }
 
 /**
  * @note Address: 0x800B6018
@@ -2604,233 +2495,209 @@ f32 JAISound::getTempoProportion() { return 1.0f; }
  * @note Address: 0x800B6034
  * @note Size: 0x30
  */
-void JAISound::setDirectVolume(f32 p1, u32 p2) { setVolume(p1, p2, 6); }
+void JAISound::setDirectVolume(f32 value, u32 moveTime) { setVolume(value, moveTime, SOUNDPARAM_Direct); }
 
 /**
  * @note Address: 0x800B6064
  * @note Size: 0x30
  */
-void JAISound::setDirectPan(f32 p1, u32 p2) { setPan(p1, p2, 6); }
+void JAISound::setDirectPan(f32 value, u32 moveTime) { setPan(value, moveTime, SOUNDPARAM_Direct); }
 
 /**
  * @note Address: 0x800B6094
  * @note Size: 0x30
  */
-void JAISound::setDirectPitch(f32 p1, u32 p2) { setPitch(p1, p2, 6); }
+void JAISound::setDirectPitch(f32 value, u32 moveTime) { setPitch(value, moveTime, SOUNDPARAM_Direct); }
 
 /**
  * @note Address: 0x800B60C4
  * @note Size: 0x30
  */
-void JAISound::setDirectFxmix(f32 p1, u32 p2) { setFxmix(p1, p2, 6); }
+void JAISound::setDirectFxmix(f32 value, u32 moveTime) { setFxmix(value, moveTime, SOUNDPARAM_Direct); }
 
 /**
  * @note Address: 0x800B60F4
  * @note Size: 0x30
  */
-void JAISound::setDirectDolby(f32 p1, u32 p2) { setDolby(p1, p2, 6); }
+void JAISound::setDirectDolby(f32 value, u32 moveTime) { setDolby(value, moveTime, SOUNDPARAM_Direct); }
 
 /**
  * @note Address: 0x800B6124
  * @note Size: 0x30
  */
-void JAISound::setDemoVolume(f32 p1, u32 p2) { setVolume(p1, p2, 2); }
+void JAISound::setDemoVolume(f32 value, u32 moveTime) { setVolume(value, moveTime, SOUNDPARAM_Demo); }
 
 /**
  * @note Address: 0x800B6154
  * @note Size: 0x30
  */
-void JAISound::setDemoPan(f32 p1, u32 p2) { setPan(p1, p2, 2); }
+void JAISound::setDemoPan(f32 value, u32 moveTime) { setPan(value, moveTime, SOUNDPARAM_Demo); }
 
 /**
  * @note Address: 0x800B6184
  * @note Size: 0x30
  */
-void JAISound::setDemoPitch(f32 p1, u32 p2) { setPitch(p1, p2, 2); }
+void JAISound::setDemoPitch(f32 value, u32 moveTime) { setPitch(value, moveTime, SOUNDPARAM_Demo); }
 
 /**
  * @note Address: 0x800B61B4
  * @note Size: 0x30
  */
-void JAISound::setDemoFxmix(f32 p1, u32 p2) { setFxmix(p1, p2, 2); }
+void JAISound::setDemoFxmix(f32 value, u32 moveTime) { setFxmix(value, moveTime, SOUNDPARAM_Demo); }
 
 /**
  * @note Address: 0x800B61E4
  * @note Size: 0x30
  */
-void JAISound::setDemoDolby(f32 p1, u32 p2) { setDolby(p1, p2, 2); }
+void JAISound::setDemoDolby(f32 value, u32 moveTime) { setDolby(value, moveTime, SOUNDPARAM_Demo); }
 
 /**
  * @note Address: 0x800B6214
  * @note Size: 0x30
  */
-void JAISound::setDemoVolumeU7(u8 p1, u32 p2) { setVolumeU7(p1, p2, 2); }
+void JAISound::setDemoVolumeU7(u8 value, u32 moveTime) { setVolumeU7(value, moveTime, SOUNDPARAM_Demo); }
 
 /**
  * @note Address: 0x800B6244
  * @note Size: 0x30
  */
-void JAISound::setDemoPanU7(u8 p1, u32 p2) { setPanU7(p1, p2, 2); }
+void JAISound::setDemoPanU7(u8 value, u32 moveTime) { setPanU7(value, moveTime, SOUNDPARAM_Demo); }
 
 /**
  * @note Address: 0x800B6274
  * @note Size: 0x30
  */
-void JAISound::setDemoFxmixU7(u8 p1, u32 p2) { setFxmixU7(p1, p2, 2); }
+void JAISound::setDemoFxmixU7(u8 value, u32 moveTime) { setFxmixU7(value, moveTime, SOUNDPARAM_Demo); }
 
 /**
  * @note Address: 0x800B62A4
  * @note Size: 0x30
  */
-void JAISound::setDemoDolbyU7(u8 p1, u32 p2) { setDolbyU7(p1, p2, 2); }
+void JAISound::setDemoDolbyU7(u8 value, u32 moveTime) { setDolbyU7(value, moveTime, SOUNDPARAM_Demo); }
 
 /**
  * @note Address: 0x800B62D4
  * @note Size: 0x8
  */
-void JAISound::setDistanceParameterMoveTime(u8 a1)
-{
-	// Generated from stb r4, 0x19(r3)
-	mDistanceParameterMoveTime = a1;
-}
+void JAISound::setDistanceParameterMoveTime(u8 moveTime) { mDistanceParameterMoveTime = moveTime; }
 
 /**
  * @note Address: 0x800B62DC
  * @note Size: 0x8
  */
-void JAISound::setAdjustPriority(s16 a1)
-{
-	// Generated from sth r4, 0x1C(r3)
-	mAdjustPriority = a1;
-}
+void JAISound::setAdjustPriority(s16 prio) { mAdjustPriority = prio; }
 
 /**
  * @note Address: 0x800B62E4
  * @note Size: 0x10
  * getVolume__5JAISeFUc
  */
-f32 JAISe::getVolume(u8 p1) { return mSeParam._124[p1]._04; }
+f32 JAISe::getVolume(u8 type) { return mSeParam.mVolumes[type].mCurrentValue; }
 
 /**
  * @note Address: 0x800B62F4
  * @note Size: 0x90
  * setPan__5JAISeFfUlUc
  */
-void JAISe::setPan(f32 p1, u32 p2, u8 p3) { mSeParam._1A4[p3].set(p1, p2); }
+void JAISe::setPan(f32 value, u32 moveTime, u8 type) { mSeParam.mPans[type].set(value, moveTime); }
 
 /**
  * @note Address: 0x800B6384
  * @note Size: 0x10
  * getPan__5JAISeFUc
  */
-f32 JAISe::getPan(u8 p1) { return mSeParam._1A4[p1]._04; }
+f32 JAISe::getPan(u8 type) { return mSeParam.mPans[type].mCurrentValue; }
 
 /**
  * @note Address: 0x800B6394
  * @note Size: 0x90
  * setPitch__5JAISeFfUlUc
  */
-void JAISe::setPitch(f32 p1, u32 p2, u8 p3) { mSeParam._224[p3].set(p1, p2); }
+void JAISe::setPitch(f32 value, u32 moveTime, u8 type) { mSeParam.mPitches[type].set(value, moveTime); }
 
 /**
  * @note Address: 0x800B6424
  * @note Size: 0x10
  * getPitch__5JAISeFUc
  */
-f32 JAISe::getPitch(u8 p1) { return mSeParam._224[p1]._04; }
+f32 JAISe::getPitch(u8 type) { return mSeParam.mPitches[type].mCurrentValue; }
 
 /**
  * @note Address: 0x800B6434
  * @note Size: 0x10
  * getFxmix__5JAISeFUc
  */
-f32 JAISe::getFxmix(u8 p1) { return mSeParam._2A4[p1]._04; }
+f32 JAISe::getFxmix(u8 type) { return mSeParam.mFxmixes[type].mCurrentValue; }
 
 /**
  * @note Address: 0x800B6444
  * @note Size: 0x90
  * setDolby__5JAISeFfUlUc
  */
-void JAISe::setDolby(f32 p1, u32 p2, u8 p3) { mSeParam._3A4[p3].set(p1, p2); }
+void JAISe::setDolby(f32 value, u32 moveTime, u8 type) { mSeParam.mDolbys[type].set(value, moveTime); }
 
 /**
  * @note Address: 0x800B64D4
  * @note Size: 0x10
  * getDolby__5JAISeFUc
  */
-f32 JAISe::getDolby(u8 p1) { return mSeParam._3A4[p1]._04; }
+f32 JAISe::getDolby(u8 type) { return mSeParam.mDolbys[type].mCurrentValue; }
 
 /**
  * @note Address: 0x800B64E4
  * @note Size: 0xB4
  * setVolumeU7__5JAISeFUcUlUc
  */
-void JAISe::setVolumeU7(u8 p1, u32 p2, u8 p3)
-{
-	f32 v1 = p1 / 127.0f;
-	mSeParam._124[p3].set(v1, p2);
-}
+void JAISe::setVolumeU7(u8 value, u32 moveTime, u8 type) { mSeParam.mVolumes[type].set(value / 127.0f, moveTime); }
 
 /**
  * @note Address: 0x800B6598
  * @note Size: 0x2C
  * getVolumeU7__5JAISeFUc
  */
-u8 JAISe::getVolumeU7(u8 p1) { return mSeParam._124[p1]._04 * 127.0f; }
+u8 JAISe::getVolumeU7(u8 type) { return mSeParam.mVolumes[type].mCurrentValue * 127.0f; }
 
 /**
  * @note Address: 0x800B65C4
  * @note Size: 0xB4
  * setPanU7__5JAISeFUcUlUc
  */
-void JAISe::setPanU7(u8 p1, u32 p2, u8 p3)
-{
-	f32 v1 = p1 / 127.0f;
-	mSeParam._1A4[p3].set(v1, p2);
-}
+void JAISe::setPanU7(u8 value, u32 moveTime, u8 type) { mSeParam.mPans[type].set(value / 127.0f, moveTime); }
 
 /**
  * @note Address: 0x800B6678
  * @note Size: 0x2C
  * getPanU7__5JAISeFUc
  */
-u8 JAISe::getPanU7(u8 p1) { return mSeParam._1A4[p1]._04 * 127.0f; }
+u8 JAISe::getPanU7(u8 type) { return mSeParam.mPans[type].mCurrentValue * 127.0f; }
 
 /**
  * @note Address: 0x800B66A4
  * @note Size: 0xB4
  * setFxmixU7__5JAISeFUcUlUc
  */
-void JAISe::setFxmixU7(u8 p1, u32 p2, u8 p3)
-{
-	f32 v1 = p1 / 127.0f;
-	mSeParam._2A4[p3].set(v1, p2);
-}
+void JAISe::setFxmixU7(u8 value, u32 moveTime, u8 type) { mSeParam.mFxmixes[type].set(value / 127.0f, moveTime); }
 
 /**
  * @note Address: 0x800B6758
  * @note Size: 0x2C
  * getFxmixU7__5JAISeFUc
  */
-u8 JAISe::getFxmixU7(u8 p1) { return mSeParam._2A4[p1]._04 * 127.0f; }
+u8 JAISe::getFxmixU7(u8 type) { return mSeParam.mFxmixes[type].mCurrentValue * 127.0f; }
 
 /**
  * @note Address: 0x800B6784
  * @note Size: 0xB4
  * setDolbyU7__5JAISeFUcUlUc
  */
-void JAISe::setDolbyU7(u8 p1, u32 p2, u8 p3)
-{
-	f32 v1 = p1 / 127.0f;
-	mSeParam._3A4[p3].set(v1, p2);
-}
+void JAISe::setDolbyU7(u8 value, u32 moveTime, u8 type) { mSeParam.mDolbys[type].set(value / 127.0f, moveTime); }
 
 /**
  * @note Address: 0x800B6838
  * @note Size: 0x2C
  * getDolbyU7__5JAISeFUc
  */
-u8 JAISe::getDolbyU7(u8 p1) { return mSeParam._3A4[p1]._04 * 127.0f; }
+u8 JAISe::getDolbyU7(u8 type) { return mSeParam.mDolbys[type].mCurrentValue * 127.0f; }
 
 /**
  * @note Address: 0x800B6864
@@ -2941,7 +2808,7 @@ u16 JAISe::getPortData(u8 p1)
 	if ((mSoundID & JAISoundID_TypeMask) == JAISoundID_Type_Se) {
 		u8 v1            = _14;
 		static u16 _port = -1;
-		if (JAInter::SeMgr::seHandle->_15 >= 4) {
+		if (JAInter::SeMgr::seHandle->mState >= SOUNDSTATE_Playing) {
 			u32 v2;
 			if ((JAInter::SeMgr::seHandle->mSoundID & 0x800) != 0) {
 				v2 = (v1 >> 4) + 0x20000000 + (v1 & 0xF) * 0x10 + p1 * 0x10000;
@@ -2951,9 +2818,9 @@ u16 JAISe::getPortData(u8 p1)
 			JAInter::SeMgr::seHandle->mSeqParameter.mTrack.readPortApp(v2, &_port);
 		}
 		return _port;
-	} else {
-		return 0;
 	}
+
+	return 0;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3018,10 +2885,10 @@ lbl_800B6A30:
  * @note Size: 0x30
  * getPan__11JAISequenceFUc
  */
-f32 JAISequence::getPan(u8 p1)
+f32 JAISequence::getPan(u8 type)
 {
-	if (_15 == 4 || _15 == 5) {
-		return mSeqParameter._250[p1]._04;
+	if (mState == SOUNDSTATE_Playing || mState == SOUNDSTATE_Fadeout) {
+		return mSeqParameter.mPans[type].mCurrentValue;
 	}
 	return -1.0f;
 }
@@ -3031,10 +2898,10 @@ f32 JAISequence::getPan(u8 p1)
  * @note Size: 0x30
  * getPitch__11JAISequenceFUc
  */
-f32 JAISequence::getPitch(u8 p1)
+f32 JAISequence::getPitch(u8 type)
 {
-	if (_15 == 4 || _15 == 5) {
-		return mSeqParameter._254[p1]._04;
+	if (mState == SOUNDSTATE_Playing || mState == SOUNDSTATE_Fadeout) {
+		return mSeqParameter.mPitches[type].mCurrentValue;
 	}
 	return -1.0f;
 }
@@ -3124,10 +2991,10 @@ lbl_800B6B7C:
  * @note Size: 0x30
  * getFxmix__11JAISequenceFUc
  */
-f32 JAISequence::getFxmix(u8 p1)
+f32 JAISequence::getFxmix(u8 type)
 {
-	if (_15 == 4 || _15 == 5) {
-		return mSeqParameter._258[p1]._04;
+	if (mState == SOUNDSTATE_Playing || mState == SOUNDSTATE_Fadeout) {
+		return mSeqParameter.mFxmixes[type].mCurrentValue;
 	}
 	return -1.0f;
 }
@@ -3230,10 +3097,10 @@ lbl_800B6CBC:
  * @note Size: 0x30
  * getDolby__11JAISequenceFUc
  */
-f32 JAISequence::getDolby(u8 p1)
+f32 JAISequence::getDolby(u8 type)
 {
-	if (_15 == 4 || _15 == 5) {
-		return mSeqParameter._25C[p1]._04;
+	if (mState == SOUNDSTATE_Playing || mState == SOUNDSTATE_Fadeout) {
+		return mSeqParameter.mDolbys[type].mCurrentValue;
 	}
 	return -1.0f;
 }
@@ -3304,8 +3171,8 @@ lbl_800B6D84:
  */
 f32 JAISequence::getTempoProportion()
 {
-	if (_15 == 4 || _15 == 5) {
-		return mSeqParameter._04;
+	if (mState == SOUNDSTATE_Playing || mState == SOUNDSTATE_Fadeout) {
+		return mSeqParameter.mCurrentValue;
 	}
 	return -1.0f;
 }
@@ -3315,7 +3182,7 @@ f32 JAISequence::getTempoProportion()
  * @note Size: 0x48
  * getVolumeU7__11JAISequenceFUc
  */
-u8 JAISequence::getVolumeU7(u8 p1) { return JAISequence::getVolume(p1) * 127.0f; }
+u8 JAISequence::getVolumeU7(u8 type) { return JAISequence::getVolume(type) * 127.0f; }
 
 /**
  * @note Address: 0x800B6DF8
@@ -3427,7 +3294,7 @@ lbl_800B6F38:
  * @note Size: 0x4C
  * getPanU7__11JAISequenceFUc
  */
-u8 JAISequence::getPanU7(u8 p1) { return JAISequence::getPan(p1) * 127.0f; }
+u8 JAISequence::getPanU7(u8 type) { return JAISequence::getPan(type) * 127.0f; }
 
 /**
  * @note Address: 0x800B6F8C
@@ -3539,7 +3406,7 @@ lbl_800B70CC:
  * @note Size: 0x4C
  * getFxmixU7__11JAISequenceFUc
  */
-u8 JAISequence::getFxmixU7(u8 p1) { return JAISequence::getFxmix(p1) * 127.0f; }
+u8 JAISequence::getFxmixU7(u8 type) { return JAISequence::getFxmix(type) * 127.0f; }
 
 /**
  * @note Address: 0x800B7120
@@ -3648,7 +3515,7 @@ lbl_800B724C:
  * @note Size: 0x4C
  * getDolbyU7__11JAISequenceFUc
  */
-u8 JAISequence::getDolbyU7(u8 p1) { return JAISequence::getDolby(p1) * 127.0f; }
+u8 JAISequence::getDolbyU7(u8 type) { return JAISequence::getDolby(type) * 127.0f; }
 
 /**
  * @note Address: 0x800B72A0

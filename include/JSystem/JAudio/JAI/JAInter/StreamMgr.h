@@ -13,39 +13,35 @@ struct BufferInfo {
 	u32 mLength; // _04
 };
 
-/**
- * @fabricated
- * @size{0x20}
- */
-struct StreamUpdate {
-	inline StreamUpdate()
-	    : _18(0)
-	    , _1C(nullptr)
+struct StreamUpdateData {
+	inline StreamUpdateData()
+	    : mActiveTrackFlag(0)
+	    , mStream(nullptr)
 	{
 	}
 
 	inline void reset()
 	{
-		_00 = 0;
-		_01 = 0;
-		_04 = 1.0f;
-		_08 = 1.0f;
-		_0C = 0.5f;
-		_10 = 0.5f;
-		_14 = 0.5f;
-		_1C = nullptr;
+		_00     = 0;
+		_01     = 0;
+		_04     = 1.0f;
+		_08     = 1.0f;
+		_0C     = 0.5f;
+		_10     = 0.5f;
+		_14     = 0.5f;
+		mStream = nullptr;
 	}
 
-	u8 _00;
-	u8 _01;
-	u8 _02;
-	f32 _04;
-	f32 _08;
-	f32 _0C;
-	f32 _10;
-	f32 _14;
-	u32 _18;
-	JAIStream* _1C;
+	u8 _00;               // _00
+	u8 _01;               // _01
+	u8 mPrepareFlag;      // _02
+	f32 _04;              // _04
+	f32 _08;              // _08
+	f32 _0C;              // _0C
+	f32 _10;              // _10
+	f32 _14;              // _14
+	u32 mActiveTrackFlag; // _18, see JAISoundTrackActiveFlags enum
+	JAIStream* mStream;   // _1C
 };
 
 typedef BufferInfo (*AllocCallback)(s32);
@@ -55,7 +51,7 @@ typedef void (*MgrCallback)();
 
 void init();
 void storeStreamBuffer(JAIStream**, JAInter::Actor*, u32, u32, u8, JAInter::SoundInfo*);
-void releaseStreamBuffer(JAIStream*, u32);
+void releaseStreamBuffer(JAIStream* stream, u32 fadeTime);
 void checkSystem();
 void PlayingStream();
 void changeCallback();
@@ -95,7 +91,7 @@ extern u8 prepareSw;
 extern u8 prepareFlag;
 extern u8 externalAram;
 extern u8 finishFlag;
-extern StreamUpdate* streamUpdate;
+extern StreamUpdateData* streamUpdate;
 extern u16* streamList;
 extern JAIStream* streamSound;
 extern void* initOnCodeStrm;

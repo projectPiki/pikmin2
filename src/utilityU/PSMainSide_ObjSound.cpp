@@ -871,8 +871,8 @@ void CreatureAnime::playActorAnimSound(JAInter::Actor* actor, f32 pitchmod, u8 a
 			if (*sound) {
 				_44[a2] = data;
 				_40[a2] = true;
-				(*sound)->setVolume((f32)data->_04[1] / 127.0f, 0, 5);
-				(*sound)->setPitch((f32)data->_10[5] * (1.0f - pitchmod), 0, 5);
+				(*sound)->setVolume((f32)data->_04[1] / 127.0f, 0, SOUNDPARAM_Unk5);
+				(*sound)->setPitch((f32)data->_10[5] * (1.0f - pitchmod), 0, SOUNDPARAM_Unk5);
 			}
 			//}
 			_68 += _5C;

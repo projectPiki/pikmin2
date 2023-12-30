@@ -25,7 +25,7 @@ struct MoveParamSet {
 };
 
 struct EnvSeBase : public JSULink<EnvSeBase> {
-	EnvSeBase(u32, f32);
+	EnvSeBase(u32 soundID, f32 volume);
 
 	virtual void exec();                         // _08
 	virtual JAISound* play();                    // _0C
@@ -42,13 +42,13 @@ struct EnvSeBase : public JSULink<EnvSeBase> {
 	// _10     = VTBL
 	MoveParamSet mMoveParam; // _14
 	SoundID mSoundID;        // _24
-	f32 _28;                 // _28
-	f32 _2C;                 // _2C
-	f32 _30;                 // _30
+	f32 mVolume;             // _28
+	f32 _2C;                 // _2C, also a volume?
+	f32 _30;                 // _30, fx mix value?
 	JAISound* mSound;        // _34
 	u8 mPauseFlag;           // _38
 	bool mIsOn;              // _39
-	u8 _3A;                  // _3A
+	u8 _3A;                  // _3A, forces mPauseFlag to 0?
 };
 
 struct EnvSeMgr {

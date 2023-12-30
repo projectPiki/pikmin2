@@ -176,11 +176,11 @@ void JAInter::SystemInterface::outerInit(JAInter::SeqUpdateData* updateData, JAS
 		// setSeqPortargsF32(updateData, p3, 7, seq->mSeqParameter._270[p3]._04);
 		// setSeqPortargsU32(updateData, p3, 9, 0);
 		// setSeqPortargsU32(updateData, p3, 2, 0x7F);
-		portArgs->_0C = seq->mSeqParameter._260[p3]._04;
-		portArgs->_10 = seq->mSeqParameter._268[p3]._04;
-		portArgs->_18 = seq->mSeqParameter._26C[p3]._04;
-		portArgs->_14 = seq->mSeqParameter._264[p3]._04;
-		portArgs->_1C = seq->mSeqParameter._270[p3]._04;
+		portArgs->_0C = seq->mSeqParameter._260[p3].mCurrentValue;
+		portArgs->_10 = seq->mSeqParameter._268[p3].mCurrentValue;
+		portArgs->_18 = seq->mSeqParameter.mTrackFxmixes[p3].mCurrentValue;
+		portArgs->_14 = seq->mSeqParameter._264[p3].mCurrentValue;
+		portArgs->_1C = seq->mSeqParameter.mTrackDolbys[p3].mCurrentValue;
 		portArgs->_24 = 0;
 		portArgs->_08 = 0x7F;
 		seqP->muteTrack(seq->mSeqParameter._2BC[p3]._0);

@@ -175,55 +175,55 @@ void Mgr::exec()
 
 	switch (mTypedProc.mCurrState) {
 	case 2:
-	case 3:
+	case 3: // only boss sound
 		if (mainSound) {
-			mainSound->setVolume(0.0f, 40, 0);
+			mainSound->setVolume(0.0f, 40, SOUNDPARAM_Unk0);
 		}
 		if (chSound) {
-			chSound->setVolume(0.0f, 40, 0);
+			chSound->setVolume(0.0f, 40, SOUNDPARAM_Unk0);
 		}
 		if (bossSound) {
-			bossSound->setVolume(1.0f, 40, 0);
+			bossSound->setVolume(1.0f, 40, SOUNDPARAM_Unk0);
 		}
 
 		break;
 	case 1:
-		f32 calc = mTypedProc.mMaxDistance - mTypedProc.mMiddleDist;
-		P2ASSERTBOUNDSINCLUSIVELINE2(167, 0.0f, calc, mTypedProc.mNearDist);
-		calc = JALCalc::linearTransform(calc, 0.0f, mTypedProc.mNearDist, 1.0f, 0.0f, false);
-		P2ASSERTBOUNDSINCLUSIVELINE2(172, 0.0f, calc, 1.0f);
-		f32 inv = 1.0f - calc;
+		f32 bossVolume = mTypedProc.mMaxDistance - mTypedProc.mMiddleDist;
+		P2ASSERTBOUNDSINCLUSIVELINE2(167, 0.0f, bossVolume, mTypedProc.mNearDist);
+		bossVolume = JALCalc::linearTransform(bossVolume, 0.0f, mTypedProc.mNearDist, 1.0f, 0.0f, false);
+		P2ASSERTBOUNDSINCLUSIVELINE2(172, 0.0f, bossVolume, 1.0f);
+		f32 otherVolume = 1.0f - bossVolume;
 		if (mainSound) {
-			mainSound->setVolume(inv, 40, 0);
+			mainSound->setVolume(otherVolume, 40, SOUNDPARAM_Unk0);
 		}
 		if (chSound) {
-			chSound->setVolume(inv, 40, 0);
+			chSound->setVolume(otherVolume, 40, SOUNDPARAM_Unk0);
 		}
 		if (bossSound) {
-			bossSound->setVolume(calc, 40, 0);
+			bossSound->setVolume(bossVolume, 40, SOUNDPARAM_Unk0);
 		}
 
 		break;
-	case 0:
+	case 0: // no boss sound
 		if (mainSound) {
-			mainSound->setVolume(1.0f, 40, 0);
+			mainSound->setVolume(1.0f, 40, SOUNDPARAM_Unk0);
 		}
 		if (chSound) {
-			chSound->setVolume(1.0f, 40, 0);
+			chSound->setVolume(1.0f, 40, SOUNDPARAM_Unk0);
 		}
 		if (bossSound) {
-			bossSound->setVolume(0.0f, 40, 0);
+			bossSound->setVolume(0.0f, 40, SOUNDPARAM_Unk0);
 		}
 		break;
-	case 4:
+	case 4: // no sound at all
 		if (mainSound) {
-			mainSound->setVolume(0.0f, 40, 0);
+			mainSound->setVolume(0.0f, 40, SOUNDPARAM_Unk0);
 		}
 		if (chSound) {
-			chSound->setVolume(0.0f, 40, 0);
+			chSound->setVolume(0.0f, 40, SOUNDPARAM_Unk0);
 		}
 		if (bossSound) {
-			bossSound->setVolume(0.0f, 40, 0);
+			bossSound->setVolume(0.0f, 40, SOUNDPARAM_Unk0);
 		}
 		break;
 	}

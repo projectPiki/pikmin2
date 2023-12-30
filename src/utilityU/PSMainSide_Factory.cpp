@@ -324,7 +324,7 @@ namespace PSM {
 JAISound* Env_Pollutin::play()
 {
 	EnvSeBase::play();
-	_28 = 1.0f;
+	mVolume = 1.0f;
 	if (_50 != 1.0f) {
 		P2ASSERTLINE(79, _50 < 1.0f);
 
@@ -333,14 +333,14 @@ JAISound* Env_Pollutin::play()
 			JAISound** se = seq->getHandleP();
 			f32 vol       = (*se)->getVolume(0);
 			if (vol > 0.0f) {
-				_28 = JALCalc::linearTransform(vol, 0.0f, 1.0f, 1.0f, _50, true);
+				mVolume = JALCalc::linearTransform(vol, 0.0f, 1.0f, 1.0f, _50, true);
 			}
 		} else {
 			PSM::Scene_Ground* scene = static_cast<PSM::Scene_Ground*>(PSMGetChildScene());
 			PSSystem::checkGameScene(scene);
 			PSSystem::SeqBase* seq = scene->getSeqMgr()->getSeq(1);
 			if (seq && *seq->getHandleP() && !strcmp(seq->mBmsFileName, "kuro_post.bms")) {
-				_28 = _50;
+				mVolume = _50;
 			}
 		}
 	}
@@ -377,7 +377,7 @@ JAISound* EnvSe_Perspective_AvoidY::play()
 		} else {
 			calc = JALCalc::linearTransform(dist, mInfo._08, mInfo._00, mInfo._0C, 0.0f, true);
 		}
-		_28 = calc;
+		mVolume = calc;
 	}
 
 	return mSound;

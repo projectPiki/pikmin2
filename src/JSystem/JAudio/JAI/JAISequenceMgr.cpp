@@ -26,10 +26,10 @@ void JAInter::SequenceMgr::init()
 
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqControlBufferMax(); i++) {
 		JAISequence* sequence = JAIBasic::msBasic->makeSequence();
-		seqControl._00->append(sequence);
+		seqControl.mFreeList->append(sequence);
 	}
 
-	for (JSULink<JAISound>* link = seqControl._00->getFirst(); link; link = link->getNext()) {
+	for (JSULink<JAISound>* link = seqControl.mFreeList->getFirst(); link; link = link->getNext()) {
 		JAISound* obj = link->getObject();
 	}
 	/*
@@ -361,11 +361,11 @@ JAInter::MuteBit::MuteBit()
  * @note Size: 0x12C
  */
 JAInter::SeqUpdateData::SeqUpdateData()
-    : _00(0)
+    : mPauseMode(SOUNDPAUSE_Unk0)
     , _01(0)
-    , _02(0)
+    , mPrepareFlag(0)
     , _03(0)
-    , _08(0)
+    , mActiveTrackFlag(0)
     , mSequence(nullptr)
     , _4C(new (JAIBasic::msCurrentHeap, 0x20) PlayerParameter[33])
 {
@@ -648,7 +648,7 @@ lbl_800B1100:
 	lwz      r3, arcPointer__Q27JAInter11SequenceMgr@sda21(r13)
 	lhz      r27, 6(r4)
 	mr       r4, r27
-	bl       getResSize__15JASResArcLoaderFP10JKRArchiveUs
+	bl       getResSize_mStateJASResArcLoaderFP10JKRArchiveUs
 	lwz      r12, customHeapCallback__Q27JAInter11SequenceMgr@sda21(r13)
 	mr       r26, r3
 	cmplwi   r12, 0
@@ -680,7 +680,7 @@ lbl_800B1100:
 	stb      r0, 3(r28)
 	mr       r8, r29
 	lwz      r3, arcPointer__Q27JAInter11SequenceMgr@sda21(r13)
-	bl       loadResourceAsync__15JASResArcLoaderFP10JKRArchiveUsPUcUlPFUlUl_vUl
+	bl       loadResourceAsync_mStateJASResArcLoaderFP10JKRArchiveUsPUcUlPFUlUl_vUl
 	b        lbl_800B14C8
 
 lbl_800B11B8:
@@ -688,7 +688,7 @@ lbl_800B11B8:
 	mr       r4, r27
 	mr       r5, r23
 	mr       r6, r26
-	bl       loadResource__15JASResArcLoaderFP10JKRArchiveUsPUcUl
+	bl       loadResource_mStateJASResArcLoaderFP10JKRArchiveUsPUcUl
 	lwz      r3, 0x48(r28)
 	li       r0, 2
 	stb      r0, 0x15(r3)
@@ -885,7 +885,7 @@ lbl_800B1438:
 	lwz      r3, arcPointer__Q27JAInter11SequenceMgr@sda21(r13)
 	mr       r6, r26
 	mr       r8, r22
-	bl       loadResourceAsync__15JASResArcLoaderFP10JKRArchiveUsPUcUlPFUlUl_vUl
+	bl       loadResourceAsync_mStateJASResArcLoaderFP10JKRArchiveUsPUcUlPFUlUl_vUl
 	b        lbl_800B14C8
 
 lbl_800B1464:
@@ -893,7 +893,7 @@ lbl_800B1464:
 	mr       r4, r27
 	mr       r5, r31
 	mr       r6, r26
-	bl       loadResource__15JASResArcLoaderFP10JKRArchiveUsPUcUl
+	bl       loadResource_mStateJASResArcLoaderFP10JKRArchiveUsPUcUl
 	lwz      r3, 0x48(r28)
 	li       r0, 2
 	stb      r0, 0x15(r3)
@@ -956,11 +956,11 @@ void JAInter::SequenceMgr::checkFadeoutSeq()
 {
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
 		SeqUpdateData* info = &seqTrackInfo[i];
-		if (info->mSequence != nullptr && info->mSequence->_15 == 5 && info->mSequence->getVolume(7) == 0.0f) {
+		if (info->mSequence && info->mSequence->mState == SOUNDSTATE_Fadeout && info->mSequence->getVolume(SOUNDPARAM_Fadeout) == 0.0f) {
 			info->mSequence->mSeqParameter.mTrack.stopSeq();
 			info->mSequence->clearMainSoundPPointer();
 			stopSeq(info->mSequence);
-			info->_08 = 0;
+			info->mActiveTrackFlag = 0;
 		}
 	}
 }
@@ -979,11 +979,11 @@ void JAInter::SequenceMgr::checkStoppedSeq()
 {
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
 		SeqUpdateData* info = &seqTrackInfo[i];
-		if (info->mSequence != nullptr && (info->mSequence->_15 == 4 || info->mSequence->_15 == 5)
+		if (info->mSequence && (info->mSequence->mState == SOUNDSTATE_Playing || info->mSequence->mState == SOUNDSTATE_Fadeout)
 		    && info->mSequence->mSeqParameter.mTrack._35B == 0) {
 			info->mSequence->clearMainSoundPPointer();
 			stopSeq(info->mSequence);
-			info->_08 = 0;
+			info->mActiveTrackFlag = 0;
 		}
 	}
 }
@@ -996,11 +996,11 @@ void JAInter::SequenceMgr::checkPlayingSeq()
 {
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
 		SeqUpdateData* info = seqTrackInfo + i;
-		if (info->mSequence != nullptr && info->mSequence->_15 >= 4) {
+		if (info->mSequence && info->mSequence->mState >= SOUNDSTATE_Playing) {
 			checkPlayingSeqTrack(i);
 			for (u8 j = 0; j < JAIGlobalParameter::getParamSeqTrackMax() + 1; j++) {
 				if (info->_44[j] != 0) {
-					if (j == 0x20 || (1 << j & info->mSequence->mSeqParameter._2C0->_04) != 0) {
+					if (j == 0x20 || (1 << j & info->mSequence->mSeqParameter.mUpdateData->_04) != 0) {
 						SystemInterface::setSeqPortargsU32(info, j, 2, info->_44[j]);
 						info->_4C[j]._30.addPortCmdOnce();
 					}
@@ -1017,10 +1017,10 @@ void JAInter::SequenceMgr::checkPlayingSeq()
 void JAInter::SequenceMgr::checkStartedSeq()
 {
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
-		SeqUpdateData* info = seqTrackInfo + i;
-		if (info->mSequence != nullptr && info->mSequence->_15 == 3
-		    && SystemInterface::checkSeqActiveFlag(&info->mSequence->mSeqParameter.mTrack) != 0) {
-			info->mSequence->_15 = 4;
+		SeqUpdateData* info = &seqTrackInfo[i];
+		if (info->mSequence && info->mSequence->mState == SOUNDSTATE_Ready
+		    && SystemInterface::checkSeqActiveFlag(&info->mSequence->mSeqParameter.mTrack)) {
+			info->mSequence->mState = SOUNDSTATE_Playing;
 			SystemInterface::trackInit(info);
 		}
 	}
@@ -1033,10 +1033,10 @@ void JAInter::SequenceMgr::checkStartedSeq()
 void JAInter::SequenceMgr::checkReadSeq()
 {
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
-		SeqUpdateData* info = seqTrackInfo + i;
+		SeqUpdateData* info = &seqTrackInfo[i];
 		JAISequence* seq    = info->mSequence;
-		if (seq != nullptr && seq->_15 == 2 && seq->mSeqParameter._27C == 0xFFFFFFFF && seq->mSeqParameter._2C0->_02 == 0
-		    && seq->mSeqParameter.mTrack._35B == 0) {
+		if (seq && seq->mState == SOUNDSTATE_Loaded && seq->mSeqParameter._27C == 0xFFFFFFFF
+		    && seq->mSeqParameter.mUpdateData->mPrepareFlag == 0 && seq->mSeqParameter.mTrack._35B == 0) {
 			seq->mSeqParameter.mTrack.setSeqData(info->_40, JASResArcLoader::getResSize(arcPointer, seq->mSoundInfo->mPriority));
 		}
 		SeqUpdateData* v1 = seqTrackInfo + info->mSequence->_14;
@@ -1054,13 +1054,13 @@ void JAInter::SequenceMgr::checkReadSeq()
 			v1->_34[j] = 0.0f;
 			v1->_44[j] = 0;
 		}
-		info->mSequence->_15 = 3;
-		if (1 < info->mSequence->_28) {
-			info->mSequence->setVolume(0.0f, 0, 7);
-			info->mSequence->setVolume(1.0f, info->mSequence->_28, 7);
+		info->mSequence->mState = SOUNDSTATE_Ready;
+		if (1 < info->mSequence->mFadeCounter) {
+			info->mSequence->setVolume(0.0f, 0, SOUNDPARAM_Fadeout);
+			info->mSequence->setVolume(1.0f, info->mSequence->mFadeCounter, SOUNDPARAM_Fadeout);
 		}
-		if (info->_00 != 0) {
-			info->mSequence->setPauseMode(info->_00, info->_01);
+		if (info->mPauseMode != SOUNDPAUSE_Unk0) {
+			info->mSequence->setPauseMode(info->mPauseMode, info->_01);
 			info->_0C = 1.1f;
 		}
 		JAIBasic::msBasic->setSeExtParameter(info->mSequence);
@@ -1108,7 +1108,7 @@ lbl_800B1850:
 	lwz      r4, 0x44(r30)
 	lwz      r3, arcPointer__Q27JAInter11SequenceMgr@sda21(r13)
 	lhz      r4, 6(r4)
-	bl       getResSize__15JASResArcLoaderFP10JKRArchiveUs
+	bl       getResSize_mStateJASResArcLoaderFP10JKRArchiveUs
 	lwz      r4, 0x40(r28)
 	mr       r5, r3
 	addi     r3, r30, 0x30c
@@ -2798,8 +2798,8 @@ void JAInter::SequenceMgr::checkCustomDvdLoadArc(u32 p1, u32 index)
 	JAISequence* sequence   = seqTrackInfo[index].mSequence;
 	seqTrackInfo[index]._03 = 0;
 	CustomHeapInfo info     = customHeapCallback(1, sequence->mSoundInfo->mOffsetNo, sequence);
-	if (sequence != nullptr && sequence->_15 == 1) {
-		sequence->_15 = 2;
+	if (sequence && sequence->mState == SOUNDSTATE_Stored) {
+		sequence->mState = SOUNDSTATE_Loaded;
 	} else {
 		CustomHeapInfo info2 = customHeapCallback(2, sequence->mSoundInfo->mOffsetNo, sequence);
 	}
@@ -3198,33 +3198,33 @@ void JAInter::SeqParameter::init()
 {
 	mTrack.assignExtBuffer(&mOuterParam);
 	// TODO: is this something like assigning a new (on stack) MoveParaSet? Can't do that to `this`, though...
-	_27C = 0xFFFFFFFF;
-	_04  = 1.0f;
-	_00  = 1.0f;
-	_0C  = 0;
-	_279 = 0;
-	_27A = 0;
-	_280 = 0;
-	_284 = 0;
-	_288 = 0;
-	_28C = 0;
-	_290 = 0;
-	_294 = 0;
-	_298 = 0;
-	_29C = 0;
-	_2A0 = 0;
-	_2A4 = 0;
-	_2A8 = 0;
-	_2AC = 0;
-	_2B0 = 0;
+	_27C            = 0xFFFFFFFF;
+	mCurrentValue   = 1.0f;
+	mTargetValue    = 1.0f;
+	mMoveCounter    = 0;
+	mPauseMode      = SOUNDPAUSE_Unk0;
+	_27A            = 0;
+	_280            = 0;
+	mVolumeFlags    = 0;
+	mPanFlags       = 0;
+	mPitchFlags     = 0;
+	_290            = 0;
+	_294            = 0;
+	_298            = 0;
+	_29C            = 0;
+	_2A0            = 0;
+	mTrackFxmixFlag = 0;
+	_2A8            = 0;
+	_2AC            = 0;
+	_2B0            = 0;
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqTrackMax(); i++) {
-		_260[i] = MoveParaSet();
-		_264[i] = MoveParaSetInitHalf();
-		_268[i] = MoveParaSet();
-		_26C[i] = MoveParaSetInitZero();
-		_270[i] = MoveParaSetInitZero();
-		_2B8[i] = 0;
-		_2B4[i] = 0;
+		_260[i]               = MoveParaSet();
+		_264[i]               = MoveParaSetInitHalf();
+		_268[i]               = MoveParaSet();
+		mTrackFxmixes[i]      = MoveParaSetInitZero();
+		mTrackDolbys[i]       = MoveParaSetInitZero();
+		mInterruptSwitches[i] = 0;
+		_2B4[i]               = 0;
 		for (int j = 0; j < 16; j++) {
 			_274[i][j] = 0;
 		}
@@ -3233,13 +3233,13 @@ void JAInter::SeqParameter::init()
 		_10[i] = MoveParaSetInitZero();
 	}
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax() + 12; i++) {
-		_110[i] = MoveParaSet();
+		mVolumes[i] = MoveParaSet();
 	}
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqParameterLines(); i++) {
-		_250[i] = MoveParaSetInitHalf();
-		_254[i] = MoveParaSet();
-		_258[i] = MoveParaSetInitZero();
-		_25C[i] = MoveParaSetInitHalf();
+		mPans[i]    = MoveParaSetInitHalf();
+		mPitches[i] = MoveParaSet();
+		mFxmixes[i] = MoveParaSetInitZero();
+		mDolbys[i]  = MoveParaSetInitHalf();
 	}
 	/*
 	stwu     r1, -0x50(r1)

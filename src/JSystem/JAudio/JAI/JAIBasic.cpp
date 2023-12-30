@@ -576,20 +576,20 @@ void JAIBasic::getPlayingSoundHandle(JAISound**, u32)
  * @note Address: 0x800AC920
  * @note Size: 0x88
  */
-void JAIBasic::stopSoundHandle(JAISound* handle, u32 p2)
+void JAIBasic::stopSoundHandle(JAISound* handle, u32 fadeTime)
 {
 	if (handle == nullptr) {
 		return;
 	}
 	switch (handle->mSoundID & JAISoundID_TypeMask) {
 	case JAISoundID_Type_Sequence:
-		JAInter::SequenceMgr::releaseSeqBuffer((JAISequence*)handle, p2);
+		JAInter::SequenceMgr::releaseSeqBuffer((JAISequence*)handle, fadeTime);
 		break;
 	case JAISoundID_Type_Se:
-		JAInter::SeMgr::releaseSeBuffer((JAISe*)handle, p2);
+		JAInter::SeMgr::releaseSeBuffer((JAISe*)handle, fadeTime);
 		break;
 	case JAISoundID_Type_Stream:
-		JAInter::StreamMgr::releaseStreamBuffer((JAIStream*)handle, p2);
+		JAInter::StreamMgr::releaseStreamBuffer((JAIStream*)handle, fadeTime);
 		break;
 	}
 }
@@ -646,8 +646,8 @@ void JAIBasic::stopAllSe(void*)
  */
 void JAIBasic::stopAllSe(u8 p1)
 {
-	JSULink<JAISound>* link = JAInter::SeMgr::seRegist[p1]._04->getFirst();
-	while (link != nullptr) {
+	JSULink<JAISound>* link = JAInter::SeMgr::seRegist[p1].mUsedList->getFirst();
+	while (link) {
 		JAISound* sound = link->getObject();
 		link            = link->getNext();
 		stopSoundHandle(sound, 0);
@@ -767,14 +767,14 @@ void JAIBasic::changeSoundScene(u32)
  * @note Size: 0x20
  * stop__9JAIStreamFUl
  */
-void JAIStream::stop(u32 p1) { JAInter::StreamMgr::releaseStreamBuffer(this, p1); }
+void JAIStream::stop(u32 fadeTime) { JAInter::StreamMgr::releaseStreamBuffer(this, fadeTime); }
 
 /**
  * @note Address: 0x800ACA74
  * @note Size: 0x20
  * stop__11JAISequenceFUl
  */
-void JAISequence::stop(u32 p1) { JAInter::SequenceMgr::releaseSeqBuffer(this, p1); }
+void JAISequence::stop(u32 fadeTime) { JAInter::SequenceMgr::releaseSeqBuffer(this, fadeTime); }
 
 /**
  * @note Address: 0x800ACA94
@@ -1255,12 +1255,12 @@ s32 JAIBasic::stopCallBack(void*)
 			}
 			JAInter::Fx::clearAllBuffer();
 			for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
-				if (JAInter::SequenceMgr::getPlayTrackInfo(i)->mSequence != nullptr) {
+				if (JAInter::SequenceMgr::getPlayTrackInfo(i)->mSequence) {
 					JAInter::SequenceMgr::getPlayTrackInfo(i)->mSequence->stop(0);
 				}
 			}
-			if (JAInter::StreamMgr::streamUpdate->_1C != nullptr) {
-				JAInter::StreamMgr::streamUpdate->_1C->stop(0);
+			if (JAInter::StreamMgr::streamUpdate->mStream) {
+				JAInter::StreamMgr::streamUpdate->mStream->stop(0);
 			}
 			msStopStatus = 2;
 		}

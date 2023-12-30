@@ -3,8 +3,13 @@
 #include "PSGame/EnvSe.h"
 #include "JSystem/JAudio/JALCalc.h"
 #include "PSSystem/PSSystemIF.h"
+#include "trig.h"
 
 namespace PSGame {
+f32 Rappa::cRatio                  = 15.0f;
+u16 Rappa::cBaseWaitTime           = 3;
+Rappa* Rappa::sRappa[2]            = { nullptr, nullptr };
+f32 RandId::cNotUsingMasterIdRatio = -1.0f;
 
 /**
  * @note Address: 0x8033F158
@@ -48,7 +53,7 @@ void SeMgr::playMessageVoice(u32 soundID, bool flag)
 		break;
 	case PSSE_MP_VOX_BODY_MN:
 		if (!flag) {
-			calc = 0.0f;
+			calc = 0.5f;
 		}
 		mod     = 0.0f;
 		message = 15;
@@ -98,8 +103,13 @@ Rappa::Rappa()
  */
 void Rappa::init(u16 id)
 {
-	P2ASSERTLINE(180, (bool)id < 2);
-	mId        = 0xe - id;
+	bool check  = true;
+	int idCheck = 1 - id;
+	if ((idCheck <= 0) == 0) {
+		check = false;
+	}
+	P2ASSERTLINE(180, check);
+	mId        = ((id == 0) >> 5 & 1) + 14;
 	sRappa[id] = this;
 	/*
 	stwu     r1, -0x10(r1)
@@ -161,90 +171,41 @@ void Rappa::setId(u32 id) { mId = id; }
  */
 Rappa::~Rappa()
 {
-	for (int i = 0; i <= 1; i++) {
+	for (u8 i = 0; i < 2; i++) {
 		if (sRappa[i] == this) {
 			sRappa[i] = nullptr;
 		}
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8033F638
-	lis      r3, __vt__Q26PSGame5Rappa@ha
-	li       r6, 0
-	addi     r0, r3, __vt__Q26PSGame5Rappa@l
-	addi     r5, r13, sRappa__Q26PSGame5Rappa@sda21
-	stw      r0, 0(r30)
-	li       r3, 0
-	b        lbl_8033F610
-
-lbl_8033F5F8:
-	rlwinm   r4, r6, 2, 0x16, 0x1d
-	lwzx     r0, r5, r4
-	cmplw    r0, r30
-	bne      lbl_8033F60C
-	stwx     r3, r5, r4
-
-lbl_8033F60C:
-	addi     r6, r6, 1
-
-lbl_8033F610:
-	clrlwi   r0, r6, 0x18
-	cmplwi   r0, 2
-	blt      lbl_8033F5F8
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__11JKRDisposerFv
-	extsh.   r0, r31
-	ble      lbl_8033F638
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8033F638:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
  * @note Address: 0x8033F654
  * @note Size: 0x170
  */
-bool Rappa::playRappa(bool flag, f32 x, f32 y, JAInter::Object* obj)
+JAISound* Rappa::playRappa(bool flag, f32 x, f32 y, JAInter::Object* obj)
 {
 	P2ASSERTLINE(204, mId != -1);
 
-	bool ret = false;
-	if (flag) {
-		if (y < 0.0f) {
-			y = -y;
-		}
-		if (x < 0.0f) {
-			x = -x;
-		}
-		if (y < x) {
-			y = x;
-		}
+	JAISound* sound = nullptr;
+	if (flag == true) {
+		f32 absY = (y >= 0.0f) ? y : -y;
+		f32 absX = (x >= 0.0f) ? x : -x;
 
-		if (y > 0.1f) {
-			ret = false;
+		f32 min = (absX > absY) ? absX : absY;
+
+		if (min < 0.1f) {
+			sound = nullptr;
 		} else {
-			obj->startSound(mId, 0);
-			f32 comp = _sqrtf((y - 1.0f) * -1.0f);
-			mWait    = comp * 15.0f + cBaseWaitTime;
+			sound = obj->startSound(mId, 0);
+
+			f32 val = (min - 1.0f);
+			val *= -1.0f;
+			f32 comp      = (val < 0.0f) ? 0.0f : (val > 1.0f) ? 1.0f : val;
+			int extraWait = comp * cRatio;
+			mWait         = extraWait + cBaseWaitTime;
 		}
 	}
-	return ret;
+	return sound;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -422,63 +383,9 @@ JAISound* SetSe::startSound(JAInter::Object* obj, u32 id1, u32 flag)
 		JAISound* ret = obj->startSound(id1, flag);
 		startCounter(id1);
 		return ret;
-	} else {
-		return nullptr;
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r6
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	stw      r29, 0x14(r1)
-	or.      r29, r4, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	bne      lbl_8033F904
-	lis      r3, lbl_804900C8@ha
-	lis      r5, lbl_804900D4@ha
-	addi     r3, r3, lbl_804900C8@l
-	li       r4, 0x150
-	addi     r5, r5, lbl_804900D4@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
 
-lbl_8033F904:
-	lwz      r3, 8(r28)
-	addis    r0, r3, 1
-	cmplwi   r0, 0xffff
-	bne      lbl_8033F94C
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	mr       r5, r31
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r0, r3
-	mr       r3, r28
-	mr       r31, r0
-	mr       r4, r30
-	bl       startCounter__Q26PSGame5SetSeFUl
-	mr       r3, r31
-	b        lbl_8033F950
-
-lbl_8033F94C:
-	li       r3, 0
-
-lbl_8033F950:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return nullptr;
 }
 
 /**
@@ -520,179 +427,45 @@ void SetSe::startCounter(u32 id)
 RandId::RandId() { mId = cNotUsingMasterIdRatio; }
 
 /**
- * @note Address: 0x8033FAA0
- * @note Size: 0x1E8
+ * @note Address: N/A
+ * @note Size: 0x1B0
  */
-JAISe* RandId::startSound(JAInter::Object* obj, u32 soundID, u32 range, u32 flag)
+u32 RandId::getRandomId(u32 soundID, u32 range)
 {
 	if (mId == -1.0f) {
 		P2ASSERTLINE(426, range > 1);
 		u32 inc = range * JALCalc::getRandom_0_1();
 		P2ASSERTLINE(429, inc < range);
-		soundID += inc;
-	} else {
-		P2ASSERTLINE(432, mId >= 0.0f);
-		P2ASSERTLINE(433, range > 1);
-		f32 comp = JALCalc::getRandom_0_1() - mId;
-		if (comp > 0.0f) {
-			P2ASSERTLINE(451, range > 1);
-			for (int i = 0; i < range; i++) {
-				comp -= (1.0f - mId) / range - 1.0f;
-				if (comp < 0.0f)
-					soundID += i;
-				break;
-			}
+		return soundID + inc;
+	}
+
+	P2ASSERTLINE(432, mId >= 0.0f);
+	P2ASSERTLINE(433, range > 1);
+	f32 comp = JALCalc::getRandom_0_1() - mId;
+	if (comp < 0.0f) {
+		return soundID;
+	}
+
+	f32 dec = (1.0f - mId) / ((f32)range - 1.0f);
+	for (int i = 1; i < range; i++) {
+		comp -= dec;
+		if (comp < 0.0f) {
+			return soundID + i;
 		}
 	}
+	P2ASSERTLINE(451, false);
+	return soundID;
+}
+
+/**
+ * @note Address: 0x8033FAA0
+ * @note Size: 0x1E8
+ */
+JAISe* RandId::startSound(JAInter::Object* obj, u32 soundID, u32 range, u32 flag)
+{
+	u32 randomID = getRandomId(soundID, range);
 	P2ASSERTLINE(460, obj);
-	obj->startSound(soundID, flag);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lfs       f0, -0x1C0(r2)
-	  stw       r0, 0x34(r1)
-	  stmw      r27, 0x1C(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  mr        r29, r5
-	  mr        r30, r6
-	  mr        r31, r7
-	  lfs       f1, 0x0(r3)
-	  fcmpu     cr0, f0, f1
-	  bne-      .loc_0xAC
-	  cmplwi    r30, 0x1
-	  bgt-      .loc_0x58
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0xC8
-	  li        r4, 0x1AA
-	  addi      r5, r5, 0xD4
-	  crclr     6, 0x6
-	  bl        -0x3154B4
-
-	.loc_0x58:
-	  bl        -0x285604
-	  lis       r0, 0x4330
-	  stw       r30, 0xC(r1)
-	  lfd       f2, -0x1B0(r2)
-	  stw       r0, 0x8(r1)
-	  lfd       f0, 0x8(r1)
-	  fsubs     f0, f0, f2
-	  fmuls     f1, f0, f1
-	  bl        -0x27DFCC
-	  mr        r27, r3
-	  cmplw     r27, r30
-	  blt-      .loc_0xA4
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0xC8
-	  li        r4, 0x1AD
-	  addi      r5, r5, 0xD4
-	  crclr     6, 0x6
-	  bl        -0x315500
-
-	.loc_0xA4:
-	  add       r27, r29, r27
-	  b         .loc_0x194
-
-	.loc_0xAC:
-	  lfs       f0, -0x1C8(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  beq-      .loc_0xD8
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0xC8
-	  li        r4, 0x1B0
-	  addi      r5, r5, 0xD4
-	  crclr     6, 0x6
-	  bl        -0x315534
-
-	.loc_0xD8:
-	  cmplwi    r30, 0x1
-	  bgt-      .loc_0xFC
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0xC8
-	  li        r4, 0x1B1
-	  addi      r5, r5, 0xD4
-	  crclr     6, 0x6
-	  bl        -0x315558
-
-	.loc_0xFC:
-	  bl        -0x2856A8
-	  lfs       f0, 0x0(r27)
-	  lfs       f4, -0x1C8(r2)
-	  fsubs     f5, f1, f0
-	  fcmpo     cr0, f5, f4
-	  bge-      .loc_0x11C
-	  mr        r27, r29
-	  b         .loc_0x194
-
-	.loc_0x11C:
-	  lis       r3, 0x4330
-	  lfs       f3, -0x1D0(r2)
-	  stw       r30, 0xC(r1)
-	  subi      r0, r30, 0x1
-	  lfd       f1, -0x1B0(r2)
-	  fsubs     f2, f3, f0
-	  stw       r3, 0x8(r1)
-	  li        r3, 0x1
-	  lfd       f0, 0x8(r1)
-	  fsubs     f0, f0, f1
-	  fsubs     f0, f0, f3
-	  fdivs     f0, f2, f0
-	  mtctr     r0
-	  cmplwi    r30, 0x1
-	  ble-      .loc_0x174
-
-	.loc_0x158:
-	  fsubs     f5, f5, f0
-	  fcmpo     cr0, f5, f4
-	  bge-      .loc_0x16C
-	  add       r27, r29, r3
-	  b         .loc_0x194
-
-	.loc_0x16C:
-	  addi      r3, r3, 0x1
-	  bdnz+     .loc_0x158
-
-	.loc_0x174:
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0xC8
-	  li        r4, 0x1C3
-	  addi      r5, r5, 0xD4
-	  crclr     6, 0x6
-	  bl        -0x3155EC
-	  mr        r27, r29
-
-	.loc_0x194:
-	  cmplwi    r28, 0
-	  bne-      .loc_0x1B8
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0xC8
-	  li        r4, 0x1CC
-	  addi      r5, r5, 0xD4
-	  crclr     6, 0x6
-	  bl        -0x315614
-
-	.loc_0x1B8:
-	  mr        r3, r28
-	  mr        r4, r27
-	  lwz       r12, 0x0(r28)
-	  mr        r5, r31
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lmw       r27, 0x1C(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
+	obj->startSound(randomID, flag);
 }
 
 /**
@@ -701,159 +474,8 @@ JAISe* RandId::startSound(JAInter::Object* obj, u32 soundID, u32 range, u32 flag
  */
 void RandId::playSystemSe(u32 soundID, JAISound** sound, u32 range, u32 flag)
 {
-	if (mId == -1.0f) {
-		P2ASSERTLINE(426, range > 1);
-		u32 inc = range * JALCalc::getRandom_0_1();
-		P2ASSERTLINE(429, inc < range);
-		soundID += inc;
-	} else {
-		P2ASSERTLINE(432, mId >= 0.0f);
-		P2ASSERTLINE(433, range > 1);
-		f32 comp = JALCalc::getRandom_0_1() - mId;
-		if (comp > 0.0f) {
-			P2ASSERTLINE(451, range > 1);
-			for (int i = 0; i < range; i++) {
-				comp -= (1.0f - mId) / range - 1.0f;
-				if (comp < 0.0f)
-					soundID += i;
-				break;
-			}
-		}
-	}
-	PSSystem::spSysIF->playSystemSe(soundID, sound, flag);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lfs       f0, -0x1C0(r2)
-	  stw       r0, 0x34(r1)
-	  stmw      r27, 0x1C(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  mr        r29, r5
-	  mr        r30, r6
-	  mr        r31, r7
-	  lfs       f1, 0x0(r3)
-	  fcmpu     cr0, f0, f1
-	  bne-      .loc_0xAC
-	  cmplwi    r30, 0x1
-	  bgt-      .loc_0x58
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0xC8
-	  li        r4, 0x1AA
-	  addi      r5, r5, 0xD4
-	  crclr     6, 0x6
-	  bl        -0x31569C
-
-	.loc_0x58:
-	  bl        -0x2857EC
-	  lis       r0, 0x4330
-	  stw       r30, 0xC(r1)
-	  lfd       f2, -0x1B0(r2)
-	  stw       r0, 0x8(r1)
-	  lfd       f0, 0x8(r1)
-	  fsubs     f0, f0, f2
-	  fmuls     f1, f0, f1
-	  bl        -0x27E1B4
-	  mr        r27, r3
-	  cmplw     r27, r30
-	  blt-      .loc_0xA4
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0xC8
-	  li        r4, 0x1AD
-	  addi      r5, r5, 0xD4
-	  crclr     6, 0x6
-	  bl        -0x3156E8
-
-	.loc_0xA4:
-	  add       r4, r28, r27
-	  b         .loc_0x194
-
-	.loc_0xAC:
-	  lfs       f0, -0x1C8(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  beq-      .loc_0xD8
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0xC8
-	  li        r4, 0x1B0
-	  addi      r5, r5, 0xD4
-	  crclr     6, 0x6
-	  bl        -0x31571C
-
-	.loc_0xD8:
-	  cmplwi    r30, 0x1
-	  bgt-      .loc_0xFC
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0xC8
-	  li        r4, 0x1B1
-	  addi      r5, r5, 0xD4
-	  crclr     6, 0x6
-	  bl        -0x315740
-
-	.loc_0xFC:
-	  bl        -0x285890
-	  lfs       f0, 0x0(r27)
-	  lfs       f4, -0x1C8(r2)
-	  fsubs     f5, f1, f0
-	  fcmpo     cr0, f5, f4
-	  bge-      .loc_0x11C
-	  mr        r4, r28
-	  b         .loc_0x194
-
-	.loc_0x11C:
-	  lis       r3, 0x4330
-	  lfs       f3, -0x1D0(r2)
-	  stw       r30, 0xC(r1)
-	  subi      r0, r30, 0x1
-	  lfd       f1, -0x1B0(r2)
-	  fsubs     f2, f3, f0
-	  stw       r3, 0x8(r1)
-	  li        r3, 0x1
-	  lfd       f0, 0x8(r1)
-	  fsubs     f0, f0, f1
-	  fsubs     f0, f0, f3
-	  fdivs     f0, f2, f0
-	  mtctr     r0
-	  cmplwi    r30, 0x1
-	  ble-      .loc_0x174
-
-	.loc_0x158:
-	  fsubs     f5, f5, f0
-	  fcmpo     cr0, f5, f4
-	  bge-      .loc_0x16C
-	  add       r4, r28, r3
-	  b         .loc_0x194
-
-	.loc_0x16C:
-	  addi      r3, r3, 0x1
-	  bdnz+     .loc_0x158
-
-	.loc_0x174:
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0xC8
-	  li        r4, 0x1C3
-	  addi      r5, r5, 0xD4
-	  crclr     6, 0x6
-	  bl        -0x3157D4
-	  mr        r4, r28
-
-	.loc_0x194:
-	  lwz       r3, -0x67A8(r13)
-	  mr        r5, r29
-	  mr        r6, r31
-	  bl        -0x77B8
-	  lmw       r27, 0x1C(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
+	u32 randomID = getRandomId(soundID, range);
+	PSSystem::spSysIF->playSystemSe(randomID, sound, flag);
 }
 
 /**
@@ -862,16 +484,16 @@ void RandId::playSystemSe(u32 soundID, JAISound** sound, u32 range, u32 flag)
  */
 void EnvSe_Pan::setPanAndDolby(JAISound* sound)
 {
-	sound->setPan(mPan, 0, 0);
-	sound->setDolby(mDolby, 0, 0);
+	sound->setPan(mPanDolby[0], 0, SOUNDPARAM_Unk0);
+	sound->setDolby(mPanDolby[1], 0, SOUNDPARAM_Unk0);
 }
 
 /**
  * @note Address: 0x8033FEB4
  * @note Size: 0x60
  */
-EnvSe_Perspective::EnvSe_Perspective(u32 a1, f32 a2, Vec a3)
-    : EnvSeBase(a1, a2)
+EnvSe_Perspective::EnvSe_Perspective(u32 soundID, f32 volume, Vec a3)
+    : EnvSeBase(soundID, volume)
 {
 	mVec = a3;
 }
@@ -884,88 +506,29 @@ JAISound* EnvSe_Perspective::play()
 {
 	PSSystem::spSysIF->startSoundVecT(mSoundID, &mSound, &mVec, 0, 0, 4);
 	return mSound;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r7, 0
-	li       r8, 0
-	stw      r0, 0x14(r1)
-	li       r9, 4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r5, r31, 0x34
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	addi     r6, r31, 0x3c
-	lwz      r4, 0x24(r31)
-	bl       "startSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc"
-	lwz      r0, 0x14(r1)
-	lwz      r3, 0x34(r31)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
  * @note Address: 0x8033FF60
  * @note Size: 0x88
  */
-EnvSe_AutoPan::EnvSe_AutoPan(u32 a1, f32 a2, f32 a3, f32 a4, f32 a5, f32 a6)
-    : EnvSe_Pan(a1, a2)
+EnvSe_AutoPan::EnvSe_AutoPan(u32 soundID, f32 pan, f32 dolby, f32 volume, f32 panInc, f32 dolbyInc)
+    : EnvSe_Pan(soundID, volume, pan, dolby)
 {
-	mPan       = a3;
-	mDolby     = a4;
-	_44        = a5;
-	_48        = a6;
-	mIsDolby   = true;
-	mDirection = true;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	addi     r11, r1, 0x30
-	bl       _savefpr_28
-	stw      r31, 0xc(r1)
-	fmr      f28, f1
-	mr       r31, r3
-	fmr      f29, f2
-	fmr      f30, f4
-	fmr      f31, f5
-	fmr      f1, f3
-	bl       __ct__Q28PSSystem9EnvSeBaseFUlf
-	lis      r4, __vt__Q26PSGame9EnvSe_Pan@ha
-	lis      r3, __vt__Q26PSGame13EnvSe_AutoPan@ha
-	addi     r4, r4, __vt__Q26PSGame9EnvSe_Pan@l
-	li       r0, 1
-	stw      r4, 0x10(r31)
-	addi     r4, r3, __vt__Q26PSGame13EnvSe_AutoPan@l
-	mr       r3, r31
-	stfs     f28, 0x3c(r31)
-	stfs     f29, 0x40(r31)
-	stw      r4, 0x10(r31)
-	stfs     f30, 0x44(r31)
-	stfs     f31, 0x48(r31)
-	stb      r0, 0x4c(r31)
-	stb      r0, 0x4d(r31)
-	addi     r11, r1, 0x30
-	bl       _restfpr_28
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	mStepValues[PD_Pan]     = panInc;
+	mStepValues[PD_Dolby]   = dolbyInc;
+	mIsIncreasing[PD_Pan]   = true;
+	mIsIncreasing[PD_Dolby] = true;
 }
 
 /**
  * @note Address: 0x8033FFE8
  * @note Size: 0xC
  */
-void EnvSe_AutoPan::setDirection(bool dolby, bool dir)
+void EnvSe_AutoPan::setDirection(bool isPanIncrease, bool isDolbyIncrease)
 {
-	mIsDolby   = dolby;
-	mDirection = dir;
+	mIsIncreasing[PD_Pan]   = isPanIncrease;
+	mIsIncreasing[PD_Dolby] = isDolbyIncrease;
 }
 
 /**
@@ -974,91 +537,25 @@ void EnvSe_AutoPan::setDirection(bool dolby, bool dir)
  */
 void EnvSe_AutoPan::setPanAndDolby(JAISound* sound)
 {
-	for (int i = 0; i < 2; i++) { }
+	// loop through both pan and dolby
+	for (u8 i = 0; i < PD_Count; i++) {
+		if (mIsIncreasing[i]) {
+			mPanDolby[i] += mStepValues[i];
+			if (mPanDolby[i] > 1.0f) {
+				mPanDolby[i]     = 2.0f - mPanDolby[i];
+				mIsIncreasing[i] = false;
+			}
+		} else {
+			mPanDolby[i] -= mStepValues[i];
+			if (mPanDolby[i] < 0.0f) {
+				mPanDolby[i] *= -1.0f;
+				mIsIncreasing[i] = true;
+			}
+		}
+	}
 
-	sound->setPan(mPan, 0, 0);
-	sound->setDolby(mDolby, 0, 0);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	b        lbl_803400AC
-
-lbl_80340018:
-	clrlwi   r3, r5, 0x18
-	addi     r4, r3, 0x4c
-	lbzx     r0, r30, r4
-	cmplwi   r0, 0
-	beq      lbl_8034006C
-	slwi     r0, r3, 2
-	lfs      f0, lbl_8051E190@sda21(r2)
-	add      r3, r30, r0
-	lfs      f2, 0x3c(r3)
-	lfs      f1, 0x44(r3)
-	fadds    f1, f2, f1
-	stfs     f1, 0x3c(r3)
-	lfs      f1, 0x3c(r3)
-	fcmpo    cr0, f1, f0
-	ble      lbl_803400A8
-	lfs      f0, lbl_8051E1B8@sda21(r2)
-	li       r0, 0
-	fsubs    f0, f0, f1
-	stfs     f0, 0x3c(r3)
-	stbx     r0, r30, r4
-	b        lbl_803400A8
-
-lbl_8034006C:
-	slwi     r0, r3, 2
-	lfs      f0, lbl_8051E198@sda21(r2)
-	add      r3, r30, r0
-	lfs      f2, 0x3c(r3)
-	lfs      f1, 0x44(r3)
-	fsubs    f1, f2, f1
-	stfs     f1, 0x3c(r3)
-	lfs      f1, 0x3c(r3)
-	fcmpo    cr0, f1, f0
-	bge      lbl_803400A8
-	lfs      f0, lbl_8051E1A0@sda21(r2)
-	li       r0, 1
-	fmuls    f0, f1, f0
-	stfs     f0, 0x3c(r3)
-	stbx     r0, r30, r4
-
-lbl_803400A8:
-	addi     r5, r5, 1
-
-lbl_803400AC:
-	clrlwi   r0, r5, 0x18
-	cmplwi   r0, 2
-	blt      lbl_80340018
-	mr       r3, r31
-	lfs      f1, 0x3c(r30)
-	lwz      r12, 0x10(r31)
-	li       r4, 0
-	li       r5, 0
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	lfs      f1, 0x40(r30)
-	lwz      r12, 0x10(r31)
-	li       r4, 0
-	li       r5, 0
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	sound->setPan(mPanDolby[PD_Pan], 0, SOUNDPARAM_Unk0);
+	sound->setDolby(mPanDolby[PD_Dolby], 0, SOUNDPARAM_Unk0);
 }
 
 /**
@@ -1066,7 +563,13 @@ lbl_803400AC:
  * @note Size: 0x21C
  */
 Builder_EvnSe_Perspective::Builder_EvnSe_Perspective(JGeometry::TBox3f box)
+    : _18(0)
+    , _1C(0)
+    , _20(0)
+    , mBox(box)
+    , _3C(0.0f)
 {
+	mBox.absolute();
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1236,8 +739,9 @@ lbl_80340310:
  * @note Address: 0x8034032C
  * @note Size: 0x2D0
  */
-void Builder_EvnSe_Perspective::build(f32, PSSystem::EnvSeMgr*)
+void Builder_EvnSe_Perspective::build(f32 p1, PSSystem::EnvSeMgr* mgr)
 {
+	P2ASSERTLINE(596, mgr);
 	/*
 	stwu     r1, -0xc0(r1)
 	mflr     r0
@@ -1450,7 +954,10 @@ lbl_803405AC:
  * @note Address: 0x803405FC
  * @note Size: 0xAC
  */
-EnvSe_Perspective* Builder_EvnSe_Perspective::newSeObj(u32 flag, f32 a2, Vec vec) { return new EnvSe_Perspective(flag, a2, vec); }
+EnvSe_Perspective* Builder_EvnSe_Perspective::newSeObj(u32 soundID, f32 volume, Vec vec)
+{
+	return new EnvSe_Perspective(soundID, volume, vec);
+}
 
 /**
  * @note Address: 0x803406A8
