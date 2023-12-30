@@ -17,9 +17,9 @@ LifeGauge::LifeGauge() { init(LIFEGAUGE_SEGMENTS); }
  */
 void LifeGauge::init(u8 c)
 {
-	mTimer        = 0.0f;
-	_09           = c;
-	mSegmentCount = c;
+	mTimer            = 0.0f;
+	mCircleResolution = c;
+	mSegmentCount     = c;
 }
 
 /**
@@ -28,7 +28,7 @@ void LifeGauge::init(u8 c)
  */
 void LifeGauge::update(f32 newFullness)
 {
-	f32 adjustedFullness = _09 * newFullness;
+	f32 adjustedFullness = mCircleResolution * newFullness;
 
 	if (adjustedFullness >= 0.0f) {
 		adjustedFullness = adjustedFullness + 0.5f;
@@ -39,7 +39,7 @@ void LifeGauge::update(f32 newFullness)
 	u8 newAdjustedValue = static_cast<u8>(adjustedFullness);
 
 	if (mSegmentCount != newAdjustedValue) {
-		f32 fb = fabs((newAdjustedValue - mSegmentCount) / static_cast<f32>(_09));
+		f32 fb = fabs((newAdjustedValue - mSegmentCount) / static_cast<f32>(mCircleResolution));
 
 		f32 delta          = fb * (sys->mDeltaTime * 150.0f);
 		const f32 minDelta = 0.4f;
@@ -83,32 +83,50 @@ void LifeGauge::update(f32 newFullness)
  * @note Size: 0x1BC
  * TODO
  */
-void LifeGauge::draw(f32 a2, f32 a3, f32 a4)
+void LifeGauge::draw(f32 size, f32 x, f32 y)
 {
-	Vector3f position;
-	Vector3f offsetPos;
+	Vector3f position(x, y, 0.0f); // Position of the center
 
-	position.x = a3;
-	position.y = a4;
-	position.z = 0.0f;
+	for (int i = 0; i < this->mSegmentCount; i++) {
+		// First vertex
+		f32 angleI = static_cast<f32>(i) / static_cast<f32>(this->mCircleResolution);
+		f32 angle  = TAU * angleI;
 
-	for (int i = 0; i < mSegmentCount; ++i) {
-		f32 angle = static_cast<f32>(i) / static_cast<f32>(this->_09);
-
-		offsetPos.x = (a2 * cos(angle * 6.2831855f - 1.5707964f)) + position.x;
-		offsetPos.y = (a2 * sin(angle * 6.2831855f - 1.5707964f)) + position.y;
+		Vector3f offsetPos;
+		offsetPos.x = (size * cos(angle)) + position.x;
+		offsetPos.y = (size * sin(angle)) + position.y;
 		offsetPos.z = position.z;
 
-		f32 x2 = (a2 * cos((angle + 1.0f) * 6.2831855f - 1.5707964f)) + position.x;
-		f32 y2 = (a2 * sin((angle + 1.0f) * 6.2831855f - 1.5707964f)) + position.y;
-		f32 z2 = position.z;
+		// Second vertex
+		f32 nextAngleI = static_cast<f32>(i + 1) / static_cast<f32>(this->mCircleResolution);
+		f32 nextAngle  = TAU * nextAngleI;
 
+		Vector3f secondVtx;
+		secondVtx.x = (size * cos(nextAngle)) + position.x;
+		secondVtx.y = (size * sin(nextAngle)) + position.y;
+		secondVtx.z = position.z;
+
+		// Draw the triangle
 		drawOneTri(&position, mLifeGaugeColor);
-
-		position.x = x2;
-		position.y = y2;
-		position.z = z2;
+		position = secondVtx;
 	}
+
+	// for (int i = 0; i < mSegmentCount; ++i) {
+	// 	f32 angle = static_cast<f32>(i) / static_cast<f32>(this->mCircleResolution);
+
+	// 	Vector3f offsetPos;
+	// 	offsetPos.x = (size * cos(angle * 6.2831855f - 1.5707964f)) + position.x;
+	// 	offsetPos.y = (size * sin(angle * 6.2831855f - 1.5707964f)) + position.y;
+	// 	offsetPos.z = position.z;
+
+	// 	Vector3f xyz;
+	// 	xyz.x = (size * cos((angle + 1.0f) * 6.2831855f - 1.5707964f)) + position.x;
+	// 	xyz.y = (size * sin((angle + 1.0f) * 6.2831855f - 1.5707964f)) + position.y;
+	// 	xyz.z = position.z;
+
+	// 	position = xyz;
+	// 	drawOneTri(&position, mLifeGaugeColor);
+	// }
 }
 
 /**
