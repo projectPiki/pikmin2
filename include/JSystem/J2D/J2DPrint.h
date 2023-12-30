@@ -7,8 +7,8 @@
 #include "types.h"
 struct J2DPrint {
 	struct TSize {
-		f32 _00; // _00
-		f32 _04; // _04
+		f32 mWidth; // _00
+		f32 _04;    // _04
 	};
 
 	J2DPrint(JUTFont*, f32);
@@ -23,14 +23,14 @@ struct J2DPrint {
 	void initiate();
 	void private_initiate(JUTFont*, f32, f32, JUtility::TColor, JUtility::TColor, JUtility::TColor, JUtility::TColor, bool);
 	JUTFont* setFont(JUTFont* font);
-	void setBuffer(u32);
+	static const u8* setBuffer(u32);
 	void setFontSize();
 	void locate(f32, f32);
-	f64 print(f32, f32, char const*, ...);
-	void print(f32, f32, u8, const char*, ...);
+	f32 print(f32, f32, char const*, ...);
+	f32 print(f32, f32, u8, const char*, ...);
 	f32 getWidth(const char*, ...);
 	void printReturn(const char*, f32, f32, J2DTextBoxHBinding, J2DTextBoxVBinding, f32, f32, u8);
-	void parse(const u8*, int, int, u16*, J2DPrint::TSize&, u8, bool);
+	f32 parse(const u8*, int, int, u16*, J2DPrint::TSize&, u8, bool);
 	void doCtrlCode(int);
 	void doEscapeCode(const u8**, u8);
 	void initchar();
@@ -55,32 +55,34 @@ struct J2DPrint {
 
 	static const u8* mStrBuff;
 	static size_t mStrBuffSize;
+	static bool mHeapFlag;
+	static bool mBufferNotEnough;
 
 	// _00 VTBL
-	JUTFont* mFont;                  // _04
-	JUtility::TColor _08;            // _08
-	JUtility::TColor _0C;            // _0C
-	f32 _10;                         // _10
-	f32 _14;                         // _14
-	f32 _18;                         // _18
-	f32 _1C;                         // _1C
-	s16 _20;                         // _20
-	u8 _22;                          // _22 - could be padding
-	f32 _24;                         // _24
-	f32 _28;                         // _28
-	f32 _2C;                         // _2C
-	f32 mCursorV;                    // _30
-	f32 _34;                         // _34
-	JUtility::TColor _38;            // _38
-	JUtility::TColor _3C;            // _3C
-	JUtility::TColor mCharColor;     // _40
-	JUtility::TColor mGradientColor; // _44
-	f32 _48;                         // _48
-	f32 _4C;                         // _4C
-	f32 mGlyphWidth;                 // _50
-	f32 mGlyphHeight;                // _54
-	s16 _58;                         // _58
-	u8 _5A;                          // _5A
+	JUTFont* mFont;                    // _04
+	JUtility::TColor mActiveCharColor; // _08, all these "Active" values are just copies of stuff later in the struct
+	JUtility::TColor mActiveGradColor; // _0C, they are copied to from the main ones in initchar
+	f32 mActiveScaleX;                 // _10
+	f32 mActiveScaleY;                 // _14
+	f32 mActiveGlyphWidth;             // _18
+	f32 mActiveGlyphHeight;            // _1C
+	s16 mActiveFontWidth;              // _20
+	u8 _22;                            // _22
+	f32 mPositionX;                    // _24
+	f32 mPositionY;                    // _28
+	f32 mCursorX;                      // _2C, same as position?
+	f32 mCursorY;                      // _30
+	f32 mRotation;                     // _34
+	JUtility::TColor mColorWhite;      // _38
+	JUtility::TColor mColorBlack;      // _3C
+	JUtility::TColor mCharColor;       // _40
+	JUtility::TColor mGradientColor;   // _44
+	f32 mFontScaleX;                   // _48
+	f32 mFontScaleY;                   // _4C
+	f32 mGlyphWidth;                   // _50
+	f32 mGlyphHeight;                  // _54
+	s16 mFontWidth;                    // _58
+	u8 _5A;                            // _5A
 };
 
 #endif

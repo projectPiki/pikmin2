@@ -1,258 +1,45 @@
 #include "JSystem/J2D/J2DPrint.h"
-#include "types.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "Dolphin/stl.h"
 
-/*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804A0880
-    lbl_804A0880:
-        .4byte lbl_8003EB18
-        .4byte lbl_8003EB34
-        .4byte lbl_8003EB8C
-        .4byte lbl_8003EC10
-        .4byte lbl_8003EC10
-        .4byte lbl_8003EBB0
-        .4byte lbl_8003EC10
-        .4byte lbl_8003EC10
-        .4byte lbl_8003EC10
-        .4byte lbl_8003EC10
-        .4byte lbl_8003EC10
-        .4byte lbl_8003EC10
-        .4byte lbl_8003EC10
-        .4byte lbl_8003EC10
-        .4byte lbl_8003EC10
-        .4byte lbl_8003EC10
-        .4byte lbl_8003EC10
-        .4byte lbl_8003EC10
-        .4byte lbl_8003EC10
-        .4byte lbl_8003EC10
-        .4byte lbl_8003EBC4
-        .4byte lbl_8003EBD8
-        .4byte lbl_8003EBEC
-        .4byte lbl_8003EC00
-    .global __vt__8J2DPrint
-    __vt__8J2DPrint:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__8J2DPrintFv
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global mStrBuff__8J2DPrint
-    mStrBuff__8J2DPrint:
-        .skip 0x4
-    .global mHeapFlag__8J2DPrint
-    mHeapFlag__8J2DPrint:
-        .skip 0x4
-    .global mStrBuffSize__8J2DPrint
-    mStrBuffSize__8J2DPrint:
-        .skip 0x4
-    .global mBufferNotEnough__8J2DPrint
-    mBufferNotEnough__8J2DPrint:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516818
-    lbl_80516818:
-        .4byte 0x00000000
-    .global lbl_8051681C
-    lbl_8051681C:
-        .4byte 0x42000000
-    .global lbl_80516820
-    lbl_80516820:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_80516828
-    lbl_80516828:
-        .float 0.5
-        .4byte 0x00000000
-    .global lbl_80516830
-    lbl_80516830:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_80516838
-    lbl_80516838:
-        .4byte 0x461C4000
-    .global lbl_8051683C
-    lbl_8051683C:
-        .float 1.0
-*/
+const u8* J2DPrint::mStrBuff;
+size_t J2DPrint::mStrBuffSize;
+bool J2DPrint::mHeapFlag;
+bool J2DPrint::mBufferNotEnough;
 
 /**
  * @note Address: 0x8003D750
  * @note Size: 0x94
  */
-J2DPrint::J2DPrint(JUTFont*, f32)
+J2DPrint::J2DPrint(JUTFont* font, f32 a1)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	li       r10, -1
-	lis      r5, __vt__8J2DPrint@ha
-	stw      r0, 0x34(r1)
-	addi     r6, r5, __vt__8J2DPrint@l
-	li       r0, 0
-	lfs      f2, lbl_80516818@sda21(r2)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	addi     r5, r1, 0x24
-	addi     r7, r1, 0x14
-	stw      r6, 0(r3)
-	addi     r6, r1, 0x1c
-	addi     r8, r1, 0xc
-	li       r9, 1
-	stw      r10, 8(r3)
-	stw      r10, 0xc(r3)
-	stw      r10, 0x38(r3)
-	stw      r10, 0x3c(r3)
-	stw      r10, 0x40(r3)
-	stw      r10, 0x44(r3)
-	stw      r10, 8(r1)
-	stw      r10, 0xc(r1)
-	stw      r0, 0x10(r1)
-	stw      r0, 0x14(r1)
-	stw      r10, 0x18(r1)
-	stw      r10, 0x1c(r1)
-	stw      r10, 0x20(r1)
-	stw      r10, 0x24(r1)
-	bl
-	private_initiate__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorb
-	lwz      r0, 0x34(r1)
-	mr       r3, r31
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	private_initiate(font, a1, 0.0f, JUtility::TColor(-1), JUtility::TColor(-1), JUtility::TColor(0), JUtility::TColor(-1), true);
 }
 
 /**
  * @note Address: 0x8003D7E4
  * @note Size: 0x98
  */
-J2DPrint::J2DPrint(JUTFont*, JUtility::TColor, JUtility::TColor)
+J2DPrint::J2DPrint(JUTFont* font, JUtility::TColor color1, JUtility::TColor color2)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	li       r12, -1
-	lfs      f1, lbl_80516818@sda21(r2)
-	stw      r0, 0x34(r1)
-	lis      r7, __vt__8J2DPrint@ha
-	addi     r0, r7, __vt__8J2DPrint@l
-	lwz      r10, 0(r6)
-	stw      r31, 0x2c(r1)
-	li       r11, 0
-	fmr      f2, f1
-	mr       r31, r3
-	stw      r0, 0(r3)
-	addi     r6, r1, 0x18
-	lwz      r0, 0(r5)
-	addi     r5, r1, 0x1c
-	stw      r12, 8(r3)
-	addi     r7, r1, 0x14
-	addi     r8, r1, 0xc
-	li       r9, 1
-	stw      r12, 0xc(r3)
-	stw      r12, 0x38(r3)
-	stw      r12, 0x3c(r3)
-	stw      r12, 0x40(r3)
-	stw      r12, 0x44(r3)
-	stw      r12, 8(r1)
-	stw      r12, 0xc(r1)
-	stw      r11, 0x10(r1)
-	stw      r11, 0x14(r1)
-	stw      r10, 0x18(r1)
-	stw      r0, 0x1c(r1)
-	bl
-	private_initiate__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorb
-	lwz      r0, 0x34(r1)
-	mr       r3, r31
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	private_initiate(font, 0.0f, 0.0f, color1, color2, JUtility::TColor(0), JUtility::TColor(-1), true);
 }
 
 /**
  * @note Address: 0x8003D87C
  * @note Size: 0x94
  */
-J2DPrint::J2DPrint(JUTFont*, f32, f32, JUtility::TColor, JUtility::TColor, JUtility::TColor, JUtility::TColor)
+J2DPrint::J2DPrint(JUTFont* font, f32 a1, f32 a2, JUtility::TColor color1, JUtility::TColor color2, JUtility::TColor color3,
+                   JUtility::TColor color4)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lwz       r12, 0x0(r8)
-	  lis       r9, 0x804A
-	  stw       r0, 0x24(r1)
-	  addi      r0, r9, 0x8E0
-	  lwz       r11, 0x0(r7)
-	  addi      r7, r1, 0xC
-	  stw       r31, 0x1C(r1)
-	  li        r31, -0x1
-	  lwz       r10, 0x0(r6)
-	  addi      r6, r1, 0x10
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  addi      r8, r1, 0x8
-	  li        r9, 0
-	  stw       r0, 0x0(r3)
-	  lwz       r0, 0x0(r5)
-	  addi      r5, r1, 0x14
-	  stw       r31, 0x8(r3)
-	  stw       r31, 0xC(r3)
-	  stw       r31, 0x38(r3)
-	  stw       r31, 0x3C(r3)
-	  stw       r31, 0x40(r3)
-	  stw       r31, 0x44(r3)
-	  stw       r12, 0x8(r1)
-	  stw       r11, 0xC(r1)
-	  stw       r10, 0x10(r1)
-	  stw       r0, 0x14(r1)
-	  bl        0xBC
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r30
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	private_initiate(font, a1, a2, color1, color2, color3, color4, false);
 }
 
 /**
  * @note Address: 0x8003D910
  * @note Size: 0x48
  */
-J2DPrint::~J2DPrint()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_8003D940
-	lis      r5, __vt__8J2DPrint@ha
-	extsh.   r0, r4
-	addi     r0, r5, __vt__8J2DPrint@l
-	stw      r0, 0(r31)
-	ble      lbl_8003D940
-	bl       __dl__FPv
-
-lbl_8003D940:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+J2DPrint::~J2DPrint() { }
 
 /**
  * @note Address: 0x8003D958
@@ -260,178 +47,47 @@ lbl_8003D940:
  */
 void J2DPrint::initiate()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 4(r3)
-	cmplwi   r0, 0
-	beq      lbl_8003D99C
-	lwz      r0, 0x3c(r3)
-	addi     r4, r1, 0xc
-	addi     r5, r1, 8
-	stw      r0, 8(r1)
-	lwz      r0, 0x38(r3)
-	stw      r0, 0xc(r1)
-	lwz      r3, 4(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8003D99C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mFont) {
+		mFont->setGX(mColorWhite, mColorBlack);
+	}
 }
 
 /**
  * @note Address: 0x8003D9AC
  * @note Size: 0x1E8
  */
-void J2DPrint::private_initiate(JUTFont*, f32, f32, JUtility::TColor, JUtility::TColor, JUtility::TColor, JUtility::TColor, bool)
+void J2DPrint::private_initiate(JUTFont* font, f32 width, f32 height, JUtility::TColor charColor, JUtility::TColor gradColor,
+                                JUtility::TColor whiteColor, JUtility::TColor blackColor, bool doUseFontHeight)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stfd      f31, 0x50(r1)
-	  psq_st    f31,0x58(r1),0,0
-	  stfd      f30, 0x40(r1)
-	  psq_st    f30,0x48(r1),0,0
-	  stmw      r25, 0x24(r1)
-	  lwz       r0, -0x76C0(r13)
-	  fmr       f30, f1
-	  fmr       f31, f2
-	  mr        r29, r3
-	  cmplwi    r0, 0
-	  mr        r25, r4
-	  mr        r26, r5
-	  mr        r27, r6
-	  mr        r30, r7
-	  mr        r31, r8
-	  mr        r28, r9
-	  bne-      .loc_0x58
-	  li        r3, 0x400
-	  bl        0x1D8
+	if (!mStrBuff) {
+		setBuffer(0x400);
+	}
+	mFont       = font;
+	mFontScaleX = width;
+	mFontScaleY = 32.0f;
+	if (mFont) {
+		mFontScaleY = (!doUseFontHeight) ? height : mFont->getLeading();
+	}
+	_5A = true;
+	locate(0.0f, 0.0f);
 
-	.loc_0x58:
-	  stw       r25, 0x4(r29)
-	  lfs       f0, -0x7B44(r2)
-	  stfs      f30, 0x48(r29)
-	  stfs      f0, 0x4C(r29)
-	  lwz       r3, 0x4(r29)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xB4
-	  rlwinm.   r0,r28,0,24,31
-	  bne-      .loc_0x84
-	  fmr       f0, f31
-	  b         .loc_0xB0
+	mCharColor     = (charColor);
+	mGradientColor = (gradColor);
+	mColorWhite    = (whiteColor);
+	mColorBlack    = (blackColor);
 
-	.loc_0x84:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x14(r1)
-	  lfd       f1, -0x7B40(r2)
-	  stw       r0, 0x10(r1)
-	  lfd       f0, 0x10(r1)
-	  fsubs     f0, f0, f1
+	if (!mFont) {
+		mFontWidth = 80;
+	} else {
+		mFontWidth = mFont->getWidth() * 4;
+	}
 
-	.loc_0xB0:
-	  stfs      f0, 0x4C(r29)
+	if (mFont) {
+		setFontSize();
+		mFont->setGX(mColorWhite, mColorBlack);
+	}
 
-	.loc_0xB4:
-	  lfs       f1, -0x7B48(r2)
-	  li        r0, 0x1
-	  stb       r0, 0x5A(r29)
-	  mr        r3, r29
-	  fmr       f2, f1
-	  bl        0x268
-	  lbz       r3, 0x0(r26)
-	  lbz       r0, 0x1(r26)
-	  stb       r3, 0x40(r29)
-	  lbz       r3, 0x2(r26)
-	  stb       r0, 0x41(r29)
-	  lbz       r0, 0x3(r26)
-	  stb       r3, 0x42(r29)
-	  lbz       r3, 0x0(r27)
-	  stb       r0, 0x43(r29)
-	  lbz       r0, 0x1(r27)
-	  stb       r3, 0x44(r29)
-	  lbz       r3, 0x2(r27)
-	  stb       r0, 0x45(r29)
-	  lbz       r0, 0x3(r27)
-	  stb       r3, 0x46(r29)
-	  lbz       r3, 0x0(r30)
-	  stb       r0, 0x47(r29)
-	  lbz       r0, 0x1(r30)
-	  stb       r3, 0x38(r29)
-	  lbz       r3, 0x2(r30)
-	  stb       r0, 0x39(r29)
-	  lbz       r0, 0x3(r30)
-	  stb       r3, 0x3A(r29)
-	  lbz       r3, 0x0(r31)
-	  stb       r0, 0x3B(r29)
-	  lbz       r0, 0x1(r31)
-	  stb       r3, 0x3C(r29)
-	  lbz       r3, 0x2(r31)
-	  stb       r0, 0x3D(r29)
-	  lbz       r0, 0x3(r31)
-	  stb       r3, 0x3E(r29)
-	  stb       r0, 0x3F(r29)
-	  lwz       r3, 0x4(r29)
-	  cmplwi    r3, 0
-	  bne-      .loc_0x164
-	  li        r0, 0x50
-	  sth       r0, 0x58(r29)
-	  b         .loc_0x17C
-
-	.loc_0x164:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r0,r3,2,0,29
-	  sth       r0, 0x58(r29)
-
-	.loc_0x17C:
-	  lwz       r0, 0x4(r29)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1BC
-	  mr        r3, r29
-	  bl        0x10C
-	  lwz       r0, 0x3C(r29)
-	  addi      r4, r1, 0xC
-	  addi      r5, r1, 0x8
-	  stw       r0, 0x8(r1)
-	  lwz       r0, 0x38(r29)
-	  stw       r0, 0xC(r1)
-	  lwz       r3, 0x4(r29)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x1BC:
-	  mr        r3, r29
-	  bl        0x164C
-	  psq_l     f31,0x58(r1),0,0
-	  lfd       f31, 0x50(r1)
-	  psq_l     f30,0x48(r1),0,0
-	  lfd       f30, 0x40(r1)
-	  lmw       r25, 0x24(r1)
-	  lwz       r0, 0x64(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
-	*/
+	initchar();
 }
 
 /**
@@ -440,68 +96,31 @@ void J2DPrint::private_initiate(JUTFont*, f32, f32, JUtility::TColor, JUtility::
  */
 JUTFont* J2DPrint::setFont(JUTFont* font)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r4, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r31, 4(r3)
-	beq      lbl_8003DBB4
-	stw      r4, 4(r3)
+	JUTFont* old = mFont;
+	if (font) {
+		mFont = font;
+	}
 
-lbl_8003DBB4:
-	cmplwi   r31, 0
-	bne      lbl_8003DBC0
-	bl       setFontSize__8J2DPrintFv
-
-lbl_8003DBC0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (!old) {
+		setFontSize();
+	}
+	return old;
 }
 
 /**
  * @note Address: 0x8003DBD8
  * @note Size: 0x6C
  */
-void J2DPrint::setBuffer(u32)
+const u8* J2DPrint::setBuffer(u32 size)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lbz      r0, mHeapFlag__8J2DPrint@sda21(r13)
-	lwz      r3, mStrBuff__8J2DPrint@sda21(r13)
-	cmplwi   r0, 0
-	mr       r31, r3
-	beq      lbl_8003DC08
-	bl       __dl__FPv
-
-lbl_8003DC08:
-	lwz      r4, sSystemHeap__7JKRHeap@sda21(r13)
-	mr       r3, r30
-	li       r5, 0
-	bl       __nwa__FUlP7JKRHeapi
-	li       r0, 1
-	stw      r3, mStrBuff__8J2DPrint@sda21(r13)
-	mr       r3, r31
-	stw      r30, mStrBuffSize__8J2DPrint@sda21(r13)
-	stb      r0, mHeapFlag__8J2DPrint@sda21(r13)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	const u8* buffer = mStrBuff;
+	if (mHeapFlag) {
+		delete mStrBuff;
+	}
+	mStrBuff     = new (JKRGetSystemHeap(), 0) u8[size];
+	mStrBuffSize = size;
+	mHeapFlag    = true;
+	return buffer;
 }
 
 /**
@@ -510,325 +129,147 @@ lbl_8003DC08:
  */
 void J2DPrint::setFontSize()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lwz      r3, 4(r3)
-	cmplwi   r3, 0
-	beq      lbl_8003DCC8
-	lwz      r12, 0(r3)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f1, lbl_80516820@sda21(r2)
-	stw      r0, 8(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f1
-	stfs     f0, 0x50(r31)
-	lwz      r3, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x14(r1)
-	lfd      f1, lbl_80516820@sda21(r2)
-	stw      r0, 0x10(r1)
-	lfd      f0, 0x10(r1)
-	fsubs    f0, f0, f1
-	stfs     f0, 0x54(r31)
-
-lbl_8003DCC8:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (mFont) {
+		mGlyphWidth  = mFont->getCellWidth();
+		mGlyphHeight = mFont->getCellHeight();
+	}
 }
 
 /**
  * @note Address: 0x8003DCDC
  * @note Size: 0x1C
  */
-void J2DPrint::locate(f32, f32)
+void J2DPrint::locate(f32 x, f32 y)
 {
-	/*
-	stfs     f1, 0x24(r3)
-	lfs      f0, lbl_80516818@sda21(r2)
-	stfs     f2, 0x28(r3)
-	stfs     f1, 0x2c(r3)
-	stfs     f2, 0x30(r3)
-	stfs     f0, 0x34(r3)
-	blr
-	*/
+	mPositionX = x;
+	mPositionY = y;
+	mCursorX   = x;
+	mCursorY   = y;
+	mRotation  = 0.0f;
 }
 
 /**
  * @note Address: 0x8003DCF8
  * @note Size: 0x114
  */
-f64 J2DPrint::print(f32, f32, const char*, ...)
+f32 J2DPrint::print(f32 x, f32 y, const char* format, ...)
 {
-	/*
-	stwu     r1, -0x90(r1)
-	mflr     r0
-	stw      r0, 0x94(r1)
-	stw      r31, 0x8c(r1)
-	mr       r31, r4
-	stw      r30, 0x88(r1)
-	mr       r30, r3
-	bne      cr1, lbl_8003DD38
-	stfd     f1, 0x28(r1)
-	stfd     f2, 0x30(r1)
-	stfd     f3, 0x38(r1)
-	stfd     f4, 0x40(r1)
-	stfd     f5, 0x48(r1)
-	stfd     f6, 0x50(r1)
-	stfd     f7, 0x58(r1)
-	stfd     f8, 0x60(r1)
+	locate(x, y);
 
-lbl_8003DD38:
-	stw      r3, 8(r1)
-	addi     r11, r1, 0x98
-	lfs      f0, lbl_80516818@sda21(r2)
-	addi     r0, r1, 8
-	stw      r4, 0xc(r1)
-	lis      r4, 0x202
-	mr       r3, r30
-	stw      r5, 0x10(r1)
-	stw      r6, 0x14(r1)
-	stw      r7, 0x18(r1)
-	stw      r8, 0x1c(r1)
-	stw      r9, 0x20(r1)
-	stw      r10, 0x24(r1)
-	stfs     f1, 0x24(r30)
-	stfs     f2, 0x28(r30)
-	stfs     f1, 0x2c(r30)
-	stfs     f2, 0x30(r30)
-	stfs     f0, 0x34(r30)
-	stw      r4, 0x70(r1)
-	stw      r11, 0x74(r1)
-	stw      r0, 0x78(r1)
-	bl       initchar__8J2DPrintFv
-	lwz      r3, mStrBuff__8J2DPrint@sda21(r13)
-	mr       r5, r31
-	lwz      r4, mStrBuffSize__8J2DPrint@sda21(r13)
-	addi     r6, r1, 0x70
-	bl       vsnprintf
-	or.      r5, r3, r3
-	bge      lbl_8003DDB4
-	lfs      f1, lbl_80516818@sda21(r2)
-	b        lbl_8003DDF4
+	va_list args;
+	va_start(args, format);
+	TSize size;
 
-lbl_8003DDB4:
-	lwz      r3, mStrBuffSize__8J2DPrint@sda21(r13)
-	cmplw    r5, r3
-	blt      lbl_8003DDCC
-	li       r0, 1
-	addi     r5, r3, -1
-	stb      r0, mBufferNotEnough__8J2DPrint@sda21(r13)
-
-lbl_8003DDCC:
-	lis      r6, 0x7FFFFFFF@ha
-	lwz      r4, mStrBuff__8J2DPrint@sda21(r13)
-	mr       r3, r30
-	addi     r8, r1, 0x68
-	addi     r6, r6, 0x7FFFFFFF@l
-	li       r7, 0
-	li       r9, 0xff
-	li       r10, 1
-	bl       parse__8J2DPrintFPCUciiPUsRQ28J2DPrint5TSizeUcb
-	lfs      f1, 0x68(r1)
-
-lbl_8003DDF4:
-	lwz      r0, 0x94(r1)
-	lwz      r31, 0x8c(r1)
-	lwz      r30, 0x88(r1)
-	mtlr     r0
-	addi     r1, r1, 0x90
-	blr
-	*/
+	initchar();
+	int len = vsnprintf((char*)mStrBuff, mStrBuffSize, format, args);
+	if (len < 0) {
+		return 0.0f;
+	} else {
+		if (len >= mStrBuffSize) {
+			len              = mStrBuffSize - 1;
+			mBufferNotEnough = true;
+		}
+		parse(mStrBuff, len, 0x7fffffff, nullptr, size, 255, true);
+	}
+	return size.mWidth;
 }
 
 /**
  * @note Address: 0x8003DE0C
  * @note Size: 0x120
  */
-void J2DPrint::print(f32, f32, u8, const char*, ...)
+f32 J2DPrint::print(f32 x, f32 y, u8 a, const char* format, ...)
 {
-	/*
-	stwu     r1, -0x90(r1)
-	mflr     r0
-	stw      r0, 0x94(r1)
-	stw      r31, 0x8c(r1)
-	mr       r31, r5
-	stw      r30, 0x88(r1)
-	mr       r30, r4
-	stw      r29, 0x84(r1)
-	mr       r29, r3
-	bne      cr1, lbl_8003DE54
-	stfd     f1, 0x28(r1)
-	stfd     f2, 0x30(r1)
-	stfd     f3, 0x38(r1)
-	stfd     f4, 0x40(r1)
-	stfd     f5, 0x48(r1)
-	stfd     f6, 0x50(r1)
-	stfd     f7, 0x58(r1)
-	stfd     f8, 0x60(r1)
+	locate(x, y);
 
-lbl_8003DE54:
-	stw      r3, 8(r1)
-	addi     r11, r1, 0x98
-	lfs      f0, lbl_80516818@sda21(r2)
-	addi     r0, r1, 8
-	stw      r4, 0xc(r1)
-	lis      r4, 0x302
-	mr       r3, r29
-	stw      r5, 0x10(r1)
-	stw      r6, 0x14(r1)
-	stw      r7, 0x18(r1)
-	stw      r8, 0x1c(r1)
-	stw      r9, 0x20(r1)
-	stw      r10, 0x24(r1)
-	stfs     f1, 0x24(r29)
-	stfs     f2, 0x28(r29)
-	stfs     f1, 0x2c(r29)
-	stfs     f2, 0x30(r29)
-	stfs     f0, 0x34(r29)
-	stw      r4, 0x70(r1)
-	stw      r11, 0x74(r1)
-	stw      r0, 0x78(r1)
-	bl       initchar__8J2DPrintFv
-	lwz      r3, mStrBuff__8J2DPrint@sda21(r13)
-	mr       r5, r31
-	lwz      r4, mStrBuffSize__8J2DPrint@sda21(r13)
-	addi     r6, r1, 0x70
-	bl       vsnprintf
-	or.      r5, r3, r3
-	bge      lbl_8003DED0
-	lfs      f1, lbl_80516818@sda21(r2)
-	b        lbl_8003DF10
+	va_list args;
+	va_start(args, format);
+	TSize size;
 
-lbl_8003DED0:
-	lwz      r3, mStrBuffSize__8J2DPrint@sda21(r13)
-	cmplw    r5, r3
-	blt      lbl_8003DEE8
-	li       r0, 1
-	addi     r5, r3, -1
-	stb      r0, mBufferNotEnough__8J2DPrint@sda21(r13)
-
-lbl_8003DEE8:
-	lis      r6, 0x7FFFFFFF@ha
-	lwz      r4, mStrBuff__8J2DPrint@sda21(r13)
-	mr       r3, r29
-	mr       r9, r30
-	addi     r6, r6, 0x7FFFFFFF@l
-	addi     r8, r1, 0x68
-	li       r7, 0
-	li       r10, 1
-	bl       parse__8J2DPrintFPCUciiPUsRQ28J2DPrint5TSizeUcb
-	lfs      f1, 0x68(r1)
-
-lbl_8003DF10:
-	lwz      r0, 0x94(r1)
-	lwz      r31, 0x8c(r1)
-	lwz      r30, 0x88(r1)
-	lwz      r29, 0x84(r1)
-	mtlr     r0
-	addi     r1, r1, 0x90
-	blr
-	*/
+	initchar();
+	int len = vsnprintf((char*)mStrBuff, mStrBuffSize, format, args);
+	if (len < 0) {
+		return 0.0f;
+	} else {
+		if (len >= mStrBuffSize) {
+			len              = mStrBuffSize - 1;
+			mBufferNotEnough = true;
+		}
+		parse(mStrBuff, len, 0x7fffffff, nullptr, size, a, true);
+	}
+	return size.mWidth;
 }
 
 /**
  * @note Address: 0x8003DF2C
  * @note Size: 0xEC
  */
-f32 J2DPrint::getWidth(const char*, ...)
+f32 J2DPrint::getWidth(const char* format, ...)
 {
-	/*
-	stwu     r1, -0x90(r1)
-	mflr     r0
-	stw      r0, 0x94(r1)
-	stw      r31, 0x8c(r1)
-	mr       r31, r4
-	stw      r30, 0x88(r1)
-	mr       r30, r3
-	bne      cr1, lbl_8003DF6C
-	stfd     f1, 0x28(r1)
-	stfd     f2, 0x30(r1)
-	stfd     f3, 0x38(r1)
-	stfd     f4, 0x40(r1)
-	stfd     f5, 0x48(r1)
-	stfd     f6, 0x50(r1)
-	stfd     f7, 0x58(r1)
-	stfd     f8, 0x60(r1)
+	initchar();
+	va_list args;
+	va_start(args, format);
+	TSize size;
 
-lbl_8003DF6C:
-	stw      r3, 8(r1)
-	mr       r3, r30
-	stw      r4, 0xc(r1)
-	stw      r5, 0x10(r1)
-	stw      r6, 0x14(r1)
-	stw      r7, 0x18(r1)
-	stw      r8, 0x1c(r1)
-	stw      r9, 0x20(r1)
-	stw      r10, 0x24(r1)
-	bl       initchar__8J2DPrintFv
-	addi     r4, r1, 0x98
-	addi     r0, r1, 8
-	lis      r3, 0x200
-	stw      r4, 0x74(r1)
-	lwz      r4, mStrBuffSize__8J2DPrint@sda21(r13)
-	addi     r6, r1, 0x70
-	stw      r3, 0x70(r1)
-	mr       r5, r31
-	lwz      r3, mStrBuff__8J2DPrint@sda21(r13)
-	stw      r0, 0x78(r1)
-	bl       vsnprintf
-	or.      r5, r3, r3
-	blt      lbl_8003DFD4
-	lwz      r0, mStrBuffSize__8J2DPrint@sda21(r13)
-	cmplw    r5, r0
-	ble      lbl_8003DFD8
-
-lbl_8003DFD4:
-	lwz      r5, mStrBuffSize__8J2DPrint@sda21(r13)
-
-lbl_8003DFD8:
-	lis      r6, 0x7FFFFFFF@ha
-	lwz      r4, mStrBuff__8J2DPrint@sda21(r13)
-	mr       r3, r30
-	addi     r8, r1, 0x68
-	addi     r6, r6, 0x7FFFFFFF@l
-	li       r7, 0
-	li       r9, 0xff
-	li       r10, 0
-	bl       parse__8J2DPrintFPCUciiPUsRQ28J2DPrint5TSizeUcb
-	lwz      r0, 0x94(r1)
-	lwz      r31, 0x8c(r1)
-	lfs      f1, 0x68(r1)
-	lwz      r30, 0x88(r1)
-	mtlr     r0
-	addi     r1, r1, 0x90
-	blr
-	*/
+	int len = vsnprintf((char*)mStrBuff, mStrBuffSize, format, args);
+	if (len < 0 || len > mStrBuffSize) {
+		len = mStrBuffSize;
+	}
+	parse(mStrBuff, len, 0x7fffffff, nullptr, size, 255, false);
+	return size.mWidth;
 }
 
 /**
  * @note Address: 0x8003E018
  * @note Size: 0x31C
  */
-void J2DPrint::printReturn(const char*, f32, f32, J2DTextBoxHBinding, J2DTextBoxVBinding, f32, f32, u8)
+void J2DPrint::printReturn(const char* str, f32 x, f32 y, J2DTextBoxHBinding hbind, J2DTextBoxVBinding vbind, f32 x2, f32 y2, u8 a)
 {
+	if (!mFont) {
+		return;
+	}
+
+	u16 buffer[256];
+	initchar();
+	mPositionX = mCursorX;
+	mPositionY = mCursorY;
+	int len    = strlen(str);
+	if (len >= mStrBuffSize) {
+		len              = mStrBuffSize - 1;
+		mBufferNotEnough = true;
+	}
+	TSize size;
+	f32 a2     = parse((const u8*)str, len, (int)x, buffer, size, a, false);
+	f32 height = mGlyphHeight / mFont->getCellHeight();
+	height *= mFont->getAscent();
+
+	switch (vbind) {
+	case J2DVBIND_Bottom:
+		y2 += (int)(y - (a2 + height) - 0.5f);
+		break;
+	case J2DVBIND_Center:
+		y2 += (int)((y - (a2 + height) - 0.5f)) / 2;
+		break;
+	}
+	for (u16* i = buffer; *i != 0xffff; i++) {
+		switch (hbind) {
+		case J2DHBIND_Left:
+			*i = 0;
+			break;
+		case J2DHBIND_Right:
+			*i = int(x - *i);
+			break;
+		case J2DHBIND_Center:
+			*i = (x - *i) / 2;
+			break;
+		}
+	}
+	initchar();
+	mCursorX += x2;
+	mCursorY += y2 + height;
+	mPositionX = mCursorX;
+	mPositionY = mCursorY;
+	parse((const u8*)str, len, x, buffer, size, a, true);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x2B0(r1)
@@ -1061,8 +502,13 @@ void J2DPrint::printReturn(const char*, f32, f32, J2DTextBoxHBinding, J2DTextBox
  * @note Address: 0x8003E334
  * @note Size: 0x7BC
  */
-void J2DPrint::parse(const u8*, int, int, u16*, J2DPrint::TSize&, u8, bool)
+f32 J2DPrint::parse(const u8*, int, int, u16*, J2DPrint::TSize&, u8, bool)
 {
+	if (!mFont) {
+		return 0.0f;
+	}
+	mFontScaleX = 10000.0f; // temp for sdata2
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x120(r1)
@@ -1633,111 +1079,43 @@ void J2DPrint::parse(const u8*, int, int, u16*, J2DPrint::TSize&, u8, bool)
  * @note Address: 0x8003EAF0
  * @note Size: 0x128
  */
-void J2DPrint::doCtrlCode(int)
+void J2DPrint::doCtrlCode(int code)
 {
-	/*
-	addi     r0, r4, -8
-	stwu     r1, -0x20(r1)
-	cmplwi   r0, 0x17
-	bgt      lbl_8003EC10
-	lis      r4, lbl_804A0880@ha
-	slwi     r0, r0, 2
-	addi     r4, r4, lbl_804A0880@l
-	lwzx     r0, r4, r0
-	mtctr    r0
-	bctr
-	.global  lbl_8003EB18
-
-lbl_8003EB18:
-	lfs      f2, 0x2c(r3)
-	lfs      f1, 0x34(r3)
-	lfs      f0, lbl_80516818@sda21(r2)
-	fsubs    f1, f2, f1
-	stfs     f1, 0x2c(r3)
-	stfs     f0, 0x34(r3)
-	b        lbl_8003EC10
-	.global  lbl_8003EB34
-
-lbl_8003EB34:
-	lha      r4, 0x20(r3)
-	extsh.   r0, r4
-	ble      lbl_8003EC10
-	lfs      f2, 0x2c(r3)
-	lis      r0, 0x4330
-	stw      r0, 0x10(r1)
-	fctiwz   f0, f2
-	lfd      f1, lbl_80516820@sda21(r2)
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	divw     r0, r0, r4
-	mullw    r0, r4, r0
-	add      r0, r4, r0
-	xoris    r0, r0, 0x8000
-	stw      r0, 0x14(r1)
-	lfd      f0, 0x10(r1)
-	fsubs    f0, f0, f1
-	stfs     f0, 0x2c(r3)
-	lfs      f0, 0x2c(r3)
-	fsubs    f0, f0, f2
-	stfs     f0, 0x34(r3)
-	b        lbl_8003EC10
-	.global  lbl_8003EB8C
-
-lbl_8003EB8C:
-	lfs      f0, lbl_80516818@sda21(r2)
-	stfs     f0, 0x34(r3)
-	lfs      f0, 0x24(r3)
-	stfs     f0, 0x2c(r3)
-	lfs      f1, 0x30(r3)
-	lfs      f0, 0x14(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x30(r3)
-	b        lbl_8003EC10
-	.global  lbl_8003EBB0
-
-lbl_8003EBB0:
-	lfs      f0, lbl_80516818@sda21(r2)
-	stfs     f0, 0x34(r3)
-	lfs      f0, 0x24(r3)
-	stfs     f0, 0x2c(r3)
-	b        lbl_8003EC10
-	.global  lbl_8003EBC4
-
-lbl_8003EBC4:
-	lfs      f1, 0x2c(r3)
-	lfs      f0, lbl_8051683C@sda21(r2)
-	fadds    f0, f1, f0
-	stfs     f0, 0x2c(r3)
-	b        lbl_8003EC10
-	.global  lbl_8003EBD8
-
-lbl_8003EBD8:
-	lfs      f1, 0x2c(r3)
-	lfs      f0, lbl_8051683C@sda21(r2)
-	fsubs    f0, f1, f0
-	stfs     f0, 0x2c(r3)
-	b        lbl_8003EC10
-	.global  lbl_8003EBEC
-
-lbl_8003EBEC:
-	lfs      f1, 0x30(r3)
-	lfs      f0, lbl_8051683C@sda21(r2)
-	fsubs    f0, f1, f0
-	stfs     f0, 0x30(r3)
-	b        lbl_8003EC10
-	.global  lbl_8003EC00
-
-lbl_8003EC00:
-	lfs      f1, 0x30(r3)
-	lfs      f0, lbl_8051683C@sda21(r2)
-	fadds    f0, f1, f0
-	stfs     f0, 0x30(r3)
-	.global  lbl_8003EC10
-
-lbl_8003EC10:
-	addi     r1, r1, 0x20
-	blr
-	*/
+	switch (code) {
+	case 8:
+		mCursorX -= mRotation;
+		mRotation = 0.0f;
+		break;
+	case 9:
+		s16 temp = mActiveFontWidth;
+		if (temp > 0) {
+			f32 oldX  = mCursorX;
+			mCursorX  = f32(temp + temp * ((int)mCursorX / temp));
+			mRotation = mCursorX - oldX;
+		}
+		break;
+	case 10:
+		mRotation = 0.0f;
+		mCursorX  = mPositionX;
+		mCursorY  = mCursorY + mActiveScaleY;
+		break;
+	case 13:
+		mRotation = 0.0f;
+		mCursorX  = mPositionX;
+		break;
+	case 0x1C:
+		mCursorX += 1.0f;
+		break;
+	case 0x1D:
+		mCursorX -= 1.0f;
+		break;
+	case 0x1E:
+		mCursorY -= 1.0f;
+		break;
+	case 0x1F:
+		mCursorY += 1.0f;
+		break;
+	}
 }
 
 /**
@@ -2180,37 +1558,15 @@ lbl_8003F1A4:
  */
 void J2DPrint::initchar()
 {
-	/*
-	lbz      r0, 0x40(r3)
-	stb      r0, 8(r3)
-	lbz      r0, 0x41(r3)
-	stb      r0, 9(r3)
-	lbz      r0, 0x42(r3)
-	stb      r0, 0xa(r3)
-	lbz      r0, 0x43(r3)
-	stb      r0, 0xb(r3)
-	lbz      r0, 0x44(r3)
-	stb      r0, 0xc(r3)
-	lbz      r0, 0x45(r3)
-	stb      r0, 0xd(r3)
-	lbz      r0, 0x46(r3)
-	stb      r0, 0xe(r3)
-	lbz      r0, 0x47(r3)
-	stb      r0, 0xf(r3)
-	lfs      f0, 0x48(r3)
-	stfs     f0, 0x10(r3)
-	lfs      f0, 0x4c(r3)
-	stfs     f0, 0x14(r3)
-	lbz      r0, 0x5a(r3)
-	stb      r0, 0x22(r3)
-	lha      r0, 0x58(r3)
-	sth      r0, 0x20(r3)
-	lfs      f0, 0x50(r3)
-	stfs     f0, 0x18(r3)
-	lfs      f0, 0x54(r3)
-	stfs     f0, 0x1c(r3)
-	blr
-	*/
+	mActiveCharColor = mCharColor;
+	mActiveGradColor = mGradientColor;
+
+	mActiveScaleX      = mFontScaleX;
+	mActiveScaleY      = mFontScaleY;
+	_22                = _5A;
+	mActiveFontWidth   = mFontWidth;
+	mActiveGlyphWidth  = mGlyphWidth;
+	mActiveGlyphHeight = mGlyphHeight;
 }
 
 /**
