@@ -881,7 +881,7 @@ SeqBase::~SeqBase()
 bool SeqBase::isPlaying()
 {
 	if (mSeqSound) {
-		u8 state = (u8)mSeqSound->mSeqParameter.mTrack.mSeqCtrl.mPlayingState;
+		u8 state = (u8)mSeqSound->mSeqParameter.mTrack.mSeqCtrl.mState.b[3];
 		if (state == 0 || state == 2) {
 			return false;
 		}
@@ -999,7 +999,7 @@ void SeqBase::exec()
 	}
 
 	if (!(*getHandleP()) && mSeqSound) {
-		u8 state = (u8)mSeqSound->mSeqParameter.mTrack.mSeqCtrl.mPlayingState;
+		u8 state = (u8)mSeqSound->mSeqParameter.mTrack.mSeqCtrl.mState.b[3];
 		if (state == 0 || state == 2) {
 			mSeqSound = nullptr;
 		}
