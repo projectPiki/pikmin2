@@ -2570,7 +2570,7 @@ void RoomMapMgr::entryToMapRoomCellMgr()
 s16 RoomMapMgr::findRoomIndex(Sys::Sphere& sphere)
 {
 	CellIteratorArg iterArg(sphere);
-	iterArg.mCellMgr                   = mapRoomCellMgr;
+	iterArg.mCellMgr  = mapRoomCellMgr;
 	iterArg.mOptimise = true;
 	CellIterator iter(iterArg);
 	CI_LOOP(iter)
