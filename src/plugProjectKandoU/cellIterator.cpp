@@ -16,8 +16,8 @@ CellIteratorArg::CellIteratorArg()
 
 	mCellMgr = cellMgr;
 
-	_1D                        = 0;
-	mIsSphereCollisionDisabled = false;
+	mUnused   = 0;
+	mOptimise = false;
 }
 
 /**
@@ -27,12 +27,12 @@ CellIteratorArg::CellIteratorArg()
  */
 CellIteratorArg::CellIteratorArg(Sys::Sphere& sphere)
 {
-	mSphere                    = sphere;
-	mCondition                 = nullptr;
-	mUseCustomRadius           = 0;
-	mCellMgr                   = Game::cellMgr;
-	_1D                        = 0;
-	mIsSphereCollisionDisabled = false;
+	mSphere          = sphere;
+	mCondition       = nullptr;
+	mUseCustomRadius = 0;
+	mCellMgr         = Game::cellMgr;
+	mUnused          = 0;
+	mOptimise        = false;
 }
 
 /**
@@ -177,7 +177,7 @@ bool CellIterator::satisfy()
 	Sys::Sphere boundingSphere;
 	obj->getBoundingSphere(boundingSphere);
 
-	if (!mArg.mIsSphereCollisionDisabled) {
+	if (!mArg.mOptimise) {
 		if (!mArg.mUseCustomRadius) {
 			f32 radius = mArg.mSphere.mRadius + boundingSphere.mRadius;
 			radius *= radius;

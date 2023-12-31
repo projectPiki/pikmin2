@@ -215,7 +215,7 @@ bool Obj::isAttackableTarget()
 	sphere.mPosition = pos;
 
 	CellIteratorArg iterArg(sphere);
-	iterArg.mIsSphereCollisionDisabled = true;
+	iterArg.mOptimise = true;
 	CellIterator iter(iterArg);
 	CI_LOOP(iter)
 	{

@@ -105,9 +105,7 @@ void Obj::collisionCallback(CollEvent& event)
 		if (stateID == ELECBUG_Discharge || stateID == ELECBUG_ChildDischarge) {
 			if (event.mCollidingCreature->isPiki() || event.mCollidingCreature->isNavi()) {
 				Vector3f sep = event.mCollidingCreature->getPosition();
-				sep -= mPosition;
-				sep.y = 0.0f;
-				sep.normalise();
+				Vector3f::getFlatDirectionFromTo(mPosition, sep);
 				Vector3f dir = Vector3f(sep.x * C_PARMS->mGeneral.mSearchDistance(), C_PARMS->mGeneral.mSearchHeight(),
 				                        sep.z * C_PARMS->mGeneral.mSearchDistance());
 
@@ -137,9 +135,7 @@ bool Obj::pressCallBack(Creature* source, f32 damage, CollPart* part)
 
 			if (stateID == ELECBUG_Discharge || stateID == ELECBUG_ChildDischarge) {
 				Vector3f sep = source->getPosition();
-				sep -= mPosition;
-				sep.y = 0.0f;
-				sep.normalise();
+				Vector3f::getFlatDirectionFromTo(mPosition, sep);
 				Vector3f dir(sep.x * C_PARMS->mGeneral.mSearchDistance(), C_PARMS->mGeneral.mSearchHeight(),
 				             sep.z * C_PARMS->mGeneral.mSearchDistance());
 				InteractDenki denki(this, C_PARMS->mGeneral.mAttackDamage(), &dir);
@@ -404,7 +400,7 @@ void Obj::checkInteract(Obj* partner)
 	searchSphere.mRadius   = dist;
 
 	CellIteratorArg iterArg(searchSphere);
-	iterArg.mIsSphereCollisionDisabled = true;
+	iterArg.mOptimise = true;
 	CellIterator iter(iterArg);
 	CI_LOOP(iter)
 	{

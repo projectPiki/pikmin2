@@ -103,7 +103,7 @@ bool BigTreasureFireAttack::update()
 	Sys::Sphere sphere(pos, 25.0f);
 
 	CellIteratorArg iterArg(sphere);
-	iterArg.mIsSphereCollisionDisabled = true;
+	iterArg.mOptimise = true;
 
 	CellIterator iter(iterArg);
 
@@ -209,7 +209,7 @@ bool BigTreasureGasAttack::update()
 	Sys::Sphere searchSphere(gasPos, 15.0f);
 
 	CellIteratorArg iterArg(searchSphere);
-	iterArg.mIsSphereCollisionDisabled = true;
+	iterArg.mOptimise = true;
 	CellIterator iter(iterArg);
 	CI_LOOP(iter)
 	{
@@ -303,7 +303,7 @@ bool BigTreasureWaterAttack::update()
 
 	Sys::Sphere searchSphere(mPosition, 30.0f);
 	CellIteratorArg iterArg(searchSphere);
-	iterArg.mIsSphereCollisionDisabled = true;
+	iterArg.mOptimise = true;
 	CellIterator iter(iterArg);
 
 	CI_LOOP(iter)
@@ -449,7 +449,7 @@ bool BigTreasureElecAttack::update()
 		spherePos += mPosition;
 		Sys::Sphere searchSphere(spherePos, 15.0f + halfDist);
 		CellIteratorArg iterArg(searchSphere);
-		iterArg.mIsSphereCollisionDisabled = true;
+		iterArg.mOptimise = true;
 		CellIterator iter(iterArg);
 		CI_LOOP(iter)
 		{

@@ -391,7 +391,7 @@ void PlatMgr::traceMove(MoveInfo& info, f32 step)
 	if (mUseCellMgr && platCellMgr) {
 		CellIteratorArg iterArg(*info.mMoveSphere);
 		iterArg.mCellMgr                   = platCellMgr;
-		iterArg.mIsSphereCollisionDisabled = true;
+		iterArg.mOptimise = true;
 		CellIterator iter(iterArg);
 		CI_LOOP(iter)
 		{
@@ -425,7 +425,7 @@ void PlatMgr::getCurrTri(CurrTriInfo& info)
 
 		CellIteratorArg iterArg(searchSphere);
 		iterArg.mCellMgr                   = platCellMgr;
-		iterArg.mIsSphereCollisionDisabled = true;
+		iterArg.mOptimise = true;
 		CellIterator iter(iterArg);
 
 		CI_LOOP(iter)

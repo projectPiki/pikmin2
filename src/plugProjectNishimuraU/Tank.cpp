@@ -266,7 +266,7 @@ bool Obj::isAttackable(bool check)
 	sphere.mRadius   = halfRatio;
 
 	CellIteratorArg iterArg(sphere);
-	iterArg.mIsSphereCollisionDisabled = true;
+	iterArg.mOptimise = true;
 
 	CellIterator iter(iterArg);
 

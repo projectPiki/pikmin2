@@ -141,9 +141,7 @@ Vector3f Obj::getTargetPosition(Creature* target)
 
 	f32 territory = C_PARMS->mGeneral.mTerritoryRadius.mValue;
 	if (sqrDistanceXZ(sep, homePos) > SQUARE(territory)) {
-		sep -= homePos;
-		sep.y = 0.0f;
-		sep.normalise();
+		Vector3f::getFlatDirectionFromTo(homePos, sep);
 		sep *= territory;
 		sep += homePos;
 	}

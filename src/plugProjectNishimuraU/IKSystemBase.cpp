@@ -290,9 +290,7 @@ Vector3f IKSystemBase::getMiddleDirection(Vector3f& topPos)
 	if (mIsBlendMotionActive) {
 		mLegJointMatrices[TOP]->getBasis(0, middleDir);
 	} else {
-		middleDir   = mTargetPosition - topPos;
-		middleDir.y = 0.0f;
-		middleDir.normalise();
+		middleDir.setFlatDirectionFromTo(topPos, mTargetPosition);
 		middleDir.y += 100.0f;
 	}
 

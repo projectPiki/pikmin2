@@ -348,11 +348,12 @@ void StateRolling::exec(EnemyBase* enemy)
 			dir *= increasedRad;
 			Vector3f newSep = queen->mHomePosition - position;
 
-			newSep   = dir + newSep;
-			newSep.y = 0.0f;
-			newSep.normalise();
+			newSep = dir + newSep;
+			newSep.toFlatDirection();
+
 			newSep.x *= CG_PARMS(queen)->mGeneral.mMoveSpeed();
 			newSep.z *= CG_PARMS(queen)->mGeneral.mMoveSpeed();
+
 			queen->mTargetVelocity = newSep;
 		}
 

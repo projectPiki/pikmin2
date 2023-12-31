@@ -39,6 +39,32 @@ struct Vector3 {
 		z = vec.z;
 	}
 
+	/**
+	 * Calculates the direction vector from 'from' to 'to' and stores the result in 'to'.
+	 * The y-component of the resulting vector is set to 0.
+	 *
+	 * @param from The starting point of the direction vector.
+	 * @param to The ending point of the direction vector.
+	 */
+	static inline void getFlatDirectionFromTo(Vector3& from, Vector3& to)
+	{
+		to -= from;
+		to.y = 0.0f;
+		to.normalise();
+	}
+
+	/**
+	 * Calculates the direction vector from 'from' to 'to' and stores the result in 'to'.
+	 *
+	 * @param from The starting point of the direction vector.
+	 * @param to The ending point of the direction vector.
+	 */
+	static inline void getDirectionFromTo(Vector3& from, Vector3& to)
+	{
+		to -= from;
+		to.normalise();
+	}
+
 	inline Vector3& operator=(const Vector3& other)
 	{
 		x = other.x;
@@ -178,22 +204,41 @@ struct Vector3 {
 
 	inline void setZero() { this->x = this->y = this->z = 0; }
 
+	inline void setDirectionFromTo(Vector3& from, Vector3& to)
+	{
+		*this = to - from;
+		this->normalise();
+	}
+
+	inline void setFlatDirectionFromTo(Vector3& from, Vector3& to)
+	{
+		*this   = to - from;
+		this->y = 0.0f;
+		this->normalise();
+	}
+
+	inline void toFlatDirection()
+	{
+		this->y = 0.0f;
+		this->normalise();
+	}
+
 	// Squared magnitude
-	inline f32 sqrMagnitude() const { return x * x + y * y + z * z; }
+	inline f32 sqrMagnitude() const { return this->x * this->x + this->y * this->y + this->z * this->z; }
 	// 2D magnitude
-	inline f32 sqrMagnitude2D() const { return x * x + z * z; }
+	inline f32 sqrMagnitude2D() const { return this->x * this->x + this->z * this->z; }
 	// Quick length
-	inline f32 qLength() const { return pikmin2_sqrtf(sqrMagnitude()); }
-	inline f32 qLength2D() const { return pikmin2_sqrtf(sqrMagnitude2D()); }
+	inline f32 qLength() const { return pikmin2_sqrtf(this->sqrMagnitude()); }
+	inline f32 qLength2D() const { return pikmin2_sqrtf(this->sqrMagnitude2D()); }
 
 	inline f32 qNormalise()
 	{
-		f32 length = qLength();
+		f32 length = this->qLength();
 		if (length > 0.0f) {
 			f32 len = 1.0f / length;
-			x *= len;
-			y *= len;
-			z *= len;
+			this->x *= len;
+			this->y *= len;
+			this->z *= len;
 			return len;
 		}
 		return 0.0f;

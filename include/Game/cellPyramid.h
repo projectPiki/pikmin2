@@ -220,11 +220,11 @@ struct CellIteratorArg {
 	CellIteratorArg(Sys::Sphere& sphere);
 
 	Sys::Sphere mSphere;               // _00
-	CellIteratorCondition* mCondition; // _10, this is a ptr to something with a vtable, and 0x8 of vtable returns a bool ._.
-	int mUseCustomRadius;              // _14, UNUSED but a name is better than nothing
+	CellIteratorCondition* mCondition; // _10
+	int mUseCustomRadius;              // _14, Useless flag,
 	CellPyramid* mCellMgr;             // _18
-	bool mIsSphereCollisionDisabled;   // _1C, if false, will calc overlapping bounding spheres rather than just "in cell or no"
-	u8 _1D;                            // _1D, set to 0 and unused
+	bool mOptimise;                    // _1C, if false, will calc overlapping bounding spheres rather than just "in cell or no"
+	u8 mUnused;                        // _1D, set to 0 and unused
 };
 
 #define CI_LOOP(it) for (it.first(); !it.isDone(); it.next())

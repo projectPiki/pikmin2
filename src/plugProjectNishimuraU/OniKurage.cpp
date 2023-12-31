@@ -463,7 +463,7 @@ Creature* Obj::getSearchedTarget(f32 offset)
 
 		Sys::Sphere sphere(mPosition, C_PARMS->mGeneral.mTerritoryRadius());
 		CellIteratorArg iterArg(sphere);
-		iterArg.mIsSphereCollisionDisabled = true;
+		iterArg.mOptimise = true;
 		CellIterator iter(iterArg);
 
 		CI_LOOP(iter)
@@ -746,7 +746,7 @@ bool Obj::isSuck(f32 offset, Creature* target)
 	} else {
 		Sys::Sphere sphere(mPosition, C_PARMS->mGeneral.mMaxAttackRange());
 		CellIteratorArg iterArg(sphere);
-		iterArg.mIsSphereCollisionDisabled = true;
+		iterArg.mOptimise = true;
 		CellIterator iter(iterArg);
 
 		CI_LOOP(iter)

@@ -821,9 +821,8 @@ void Obj::flickHandCollision(Creature* target)
 {
 	Vector3f targetPos = target->getPosition();
 	if (target->isNavi()) {
-		targetPos -= mPosition;
-		targetPos.y = 0.0f;
-		targetPos.normalise();
+		Vector3f::getFlatDirectionFromTo(mPosition, targetPos);
+
 		targetPos.y = 1.0f;
 		targetPos *= 300.0f;
 
@@ -840,9 +839,7 @@ void Obj::flickHandCollision(Creature* target)
 			return;
 		}
 
-		targetPos -= mPosition;
-		targetPos.y = 0.0f;
-		targetPos.normalise();
+		Vector3f::getFlatDirectionFromTo(mPosition, targetPos);
 		targetPos.y = 1.0f;
 		targetPos *= 300.0f;
 

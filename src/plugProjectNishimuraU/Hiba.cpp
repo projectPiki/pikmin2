@@ -146,7 +146,7 @@ void Obj::interactFireAttack()
 	sphere.mRadius = parms->mGeneral.mAttackRadius.mValue;
 
 	CellIteratorArg arg(sphere);
-	arg.mIsSphereCollisionDisabled = true;
+	arg.mOptimise = true;
 
 	CellIterator iterator(arg);
 	CI_LOOP(iterator)

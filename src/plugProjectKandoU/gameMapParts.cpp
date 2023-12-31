@@ -2571,7 +2571,7 @@ s16 RoomMapMgr::findRoomIndex(Sys::Sphere& sphere)
 {
 	CellIteratorArg iterArg(sphere);
 	iterArg.mCellMgr                   = mapRoomCellMgr;
-	iterArg.mIsSphereCollisionDisabled = true;
+	iterArg.mOptimise = true;
 	CellIterator iter(iterArg);
 	CI_LOOP(iter)
 	{

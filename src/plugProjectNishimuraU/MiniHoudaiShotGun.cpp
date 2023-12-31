@@ -165,7 +165,7 @@ bool MiniHoudaiShotGunNode::update()
 
 		Sys::Sphere searchSphere(searchCenter, searchRadius);
 		CellIteratorArg iterArg(searchSphere);
-		iterArg.mIsSphereCollisionDisabled = true;
+		iterArg.mOptimise = true;
 
 		CellIterator iter(iterArg);
 		CI_LOOP(iter)

@@ -134,12 +134,9 @@ bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
  */
 void Obj::wallCallback(const MoveInfo& moveInfo)
 {
-	mTargetPosition   = moveInfo.mReflectPosition;
-	mTargetPosition.y = 0.0f;
-	mTargetPosition.normalise();
-
+	mTargetPosition = moveInfo.mReflectPosition;
+	mTargetPosition.toFlatDirection();
 	mTargetPosition *= 1000.0f;
-
 	mTargetPosition += mPosition;
 }
 

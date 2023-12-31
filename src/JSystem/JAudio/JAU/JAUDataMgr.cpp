@@ -66,22 +66,27 @@ void JADUtility::DataLoadMgrNode::load(JADUtility::DataLoadMgrNode::ObjStatus st
  * @note Address: 0x800BA984
  * @note Size: 0xF0
  */
-bool JADUtility::DataLoadMgrNode::initInstanceExt(void* p1, s32 p2)
+bool JADUtility::DataLoadMgrNode::initInstanceExt(void* buffer, s32 bufferLength)
 {
 	JKRHeap* curHeap = JKRGetCurrentHeap();
-	if (getObjHeap() != nullptr) {
+
+	if (getObjHeap()) {
 		getObjHeap()->becomeCurrentHeap();
 	}
-	bool success = initInstance(p1, p2);
-	if (getObjHeap() != nullptr) {
+
+	bool success = initInstance(buffer, bufferLength);
+
+	if (getObjHeap()) {
 		curHeap->becomeCurrentHeap();
 	}
-	if (success == false) {
+
+	if (!success) {
 		_08 = 0;
 		_18 = nullptr;
 		return false;
 	}
-	setFlagsAsExternal(p1);
+
+	setFlagsAsExternal(buffer);
 	return true;
 }
 

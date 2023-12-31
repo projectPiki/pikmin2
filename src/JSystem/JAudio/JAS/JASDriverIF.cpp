@@ -150,12 +150,12 @@ u32 getOutputMode() { return JAS_SYSTEM_OUTPUT_MODE; }
  * @note Address: 0x800A4948
  * @note Size: 0x90
  */
-bool rejectCallback(s32 (*callback)(void*), void* p2)
+bool rejectCallback(s32 (*callback)(void*), void* argument)
 {
-	bool v1 = sDspSyncCallback.reject(callback, p2);
-	v1 |= sSubFrameCallback.reject(callback, p2);
-	v1 |= sUpdateDacCallback.reject(callback, p2);
-	return v1;
+	bool value = sDspSyncCallback.reject(callback, argument);
+	value |= sSubFrameCallback.reject(callback, argument);
+	value |= sUpdateDacCallback.reject(callback, argument);
+	return value;
 }
 
 /**

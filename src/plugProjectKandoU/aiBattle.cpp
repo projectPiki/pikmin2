@@ -49,6 +49,7 @@ Action* ActBattle::getTekiAction()
 	if (mOther && mOther->getCurrActionID() == PikiAI::ACT_Battle) {
 		return mOther->getCurrAction();
 	}
+
 	return nullptr;
 }
 
@@ -68,6 +69,7 @@ void ActBattle::send(BattleMessage& msg)
 void ActBattle::recv(BattleMessage& msg)
 {
 	ActBattle* battle = msg.mBattle;
+
 	if (battle && battle->mState != BATTLE_Damage) {
 		if (randFloat() > 0.5f) {
 			if (battle->mOther && randFloat() > 0.9f) {
@@ -85,7 +87,6 @@ void ActBattle::recv(BattleMessage& msg)
 /**
  * @note Address: 0x8022EDB0
  * @note Size: 0x300
- * TODO
  */
 void ActBattle::init(PikiAI::ActionArg* arg)
 {
@@ -96,6 +97,7 @@ void ActBattle::init(PikiAI::ActionArg* arg)
 			isBattleArg = true;
 		}
 	}
+
 	P2ASSERTLINE(179, isBattleArg);
 
 	PikiAI::ActBattleArg* battleArg = static_cast<PikiAI::ActBattleArg*>(arg);
@@ -120,7 +122,7 @@ void ActBattle::init(PikiAI::ActionArg* arg)
 	midPoint *= 0.5f;
 	Sys::Sphere searchSphere(midPoint, 10.0f);
 	Game::CellIteratorArg iterArg(searchSphere);
-	iterArg.mIsSphereCollisionDisabled = false;
+	iterArg.mOptimise = false;
 
 	Game::CellIterator iter(iterArg);
 	CI_LOOP(iter)

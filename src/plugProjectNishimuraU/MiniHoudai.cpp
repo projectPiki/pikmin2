@@ -528,7 +528,7 @@ bool Obj::isAttackableTarget()
 	Sys::Sphere sphere(pos, rad);
 	// sphere.mRadius = C_PARMS->mGeneral.mSearchDistance.mValue * 0.75f;
 	CellIteratorArg iterArg(sphere);
-	iterArg.mIsSphereCollisionDisabled = true;
+	iterArg.mOptimise = true;
 	CellIterator iter(iterArg);
 	CI_LOOP(iter)
 	{

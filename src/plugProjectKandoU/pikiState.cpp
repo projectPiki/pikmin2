@@ -3825,9 +3825,9 @@ void PikiFlyingState::init(Piki* piki, StateArg* stateArg)
 
 	piki->mSoundObj->startFreePikiSound(PSSE_PK_VC_THROWN, 90, 0);
 
-	_14 = 0;
-	_30 = 0;
-	_15 = 0;
+	mIsFlowerPiki = 0;
+	mFrameCounter = 0;
+	_15           = 0;
 	piki->setMoveVelocity(false);
 
 	efx::TPkEffect* effectsObj = piki->mEffectsObj;
@@ -3932,7 +3932,7 @@ bool PikiFlyingState::ignoreAtari(Piki* piki, Creature* creature)
  */
 void PikiFlyingState::exec(Piki* piki)
 {
-	if (_30++ >= 240) {
+	if (mFrameCounter++ >= 240) {
 		bounceCallback(piki, nullptr);
 		return;
 	}
@@ -3945,11 +3945,12 @@ void PikiFlyingState::exec(Piki* piki)
 	f32 gravityFactor = 0.8f * _aiConstants->mGravity.mData; // f30
 	f32 flowerFallFactor
 	    = _aiConstants->mGravity.mData * static_cast<PikiParms*>(piki->mParms)->mPikiParms.mFlowerPikiGravity.mValue; // f29
-	f32 fallDiff = gravityFactor - flowerFallFactor;
-	f32 thing    = (gravityFactor * 0.15f - 0.075f * fallDiff) - flowerFallFactor * 0.15f; // f28
 
-	if (_14 == 0 && piki->getHappa() == Flower && piki->mSimVelocity.y <= 0.0f) {
-		_14 = 1;
+	f32 fallDiff   = gravityFactor - flowerFallFactor;
+	f32 fallFactor = (gravityFactor * 0.15f - 0.075f * fallDiff) - flowerFallFactor * 0.15f; // f28
+
+	if (mIsFlowerPiki == 0 && piki->getHappa() == Flower && piki->mSimVelocity.y <= 0.0f) {
+		mIsFlowerPiki = 1;
 		piki->startMotion(IPikiAnims::HANG, IPikiAnims::HANG, nullptr, nullptr);
 
 		f32 throwHeight;
@@ -3959,28 +3960,28 @@ void PikiFlyingState::exec(Piki* piki)
 			throwHeight = naviMgr->mNaviParms->mNaviParms.mThrowHeightMax.mValue;
 		}
 
-		f32 sqrVal = thing * thing + (2.0f * throwHeight) * flowerFallFactor;
+		f32 sqrVal = fallFactor * fallFactor + (2.0f * throwHeight) * flowerFallFactor;
 		sqrVal     = _sqrtf(sqrVal);
 
-		_1C.x = piki->mSimVelocity.x;
-		_1C.y = 0.0f;
-		_1C.z = piki->mSimVelocity.z;
+		mVelocityDirection.x = piki->mSimVelocity.x;
+		mVelocityDirection.y = 0.0f;
+		mVelocityDirection.z = piki->mSimVelocity.z;
 
-		_1C.normalise();
+		mVelocityDirection.normalise();
 
-		f32 xSpeed      = piki->mSimVelocity.x * piki->mSimVelocity.x;
-		f32 zSpeed      = piki->mSimVelocity.z * piki->mSimVelocity.z;
-		f32 groundSpeed = xSpeed + zSpeed;
-		groundSpeed     = _sqrtf(groundSpeed);
-		_28             = groundSpeed;
-		_2C             = 0.5f * groundSpeed;
+		f32 xSpeed            = piki->mSimVelocity.x * piki->mSimVelocity.x;
+		f32 zSpeed            = piki->mSimVelocity.z * piki->mSimVelocity.z;
+		f32 totalXZSpeed      = xSpeed + zSpeed;
+		totalXZSpeed          = _sqrtf(totalXZSpeed);
+		mDirectionalSpeed     = totalXZSpeed;
+		mHalfDirectionalSpeed = 0.5f * totalXZSpeed;
 
 		piki->mSimVelocity.y = 0.0f;
 		piki->mVelocity.x    = piki->mSimVelocity.x;
 		piki->mVelocity.z    = piki->mSimVelocity.z;
 		piki->mVelocity      = 0.0f;
 		_10                  = 0.0f;
-	} else if (_14) {
+	} else if (mIsFlowerPiki) {
 		piki->mFaceDir = roundAng(piki->mFaceDir + PI * sys->mDeltaTime / 0.42f);
 		_10 += sys->mDeltaTime;
 

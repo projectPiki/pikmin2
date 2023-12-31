@@ -469,14 +469,14 @@ struct PikiFlyingState : public PikiState {
 	// _00     = VTBL
 	// _00-_10 = PikiState
 	f32 _10;      // _10
-	u8 _14;       // _14
+	u8 mIsFlowerPiki;       // _14
 	u8 _15;       // _15
 	u8 _16[0x2];  // _16, unknown/padding
 	u8 _18[0x4];  // _18, unknown
-	Vector3f _1C; // _1C
-	f32 _28;      // _28
-	f32 _2C;      // _2C
-	int _30;      // _30
+	Vector3f mVelocityDirection; // _1C
+	f32 mDirectionalSpeed;      // _28
+	f32 mHalfDirectionalSpeed;      // _2C
+	int mFrameCounter;      // _30
 };
 
 struct FountainonStateArg : public StateArg {
