@@ -146,11 +146,11 @@ void Obj::onInit(CreatureInitArg* arg)
 	disableEvent(0, EB_Cullable);
 	disableEvent(0, EB_LeaveCarcass);
 	disableEvent(0, EB_DeathEffectEnabled);
-	_2E0 = C_PARMS->_A10;
+	mEscapePhase = C_PARMS->_A10;
 
 	if (gameSystem->mSection && gameSystem->mSection->getCaveID() == 'y_01' && gameSystem && !gameSystem->isZukanMode()) {
 		mFSM->start(this, WRAITH_Walk, nullptr);
-		_2E0 = 2;
+		mEscapePhase = 2;
 	} else {
 		EnemyMgrBase* tyreMgr = generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_Tyre);
 		if (tyreMgr) {
@@ -170,18 +170,18 @@ void Obj::onInit(CreatureInitArg* arg)
 
 	mPostFlickState = -1;
 
-	mNextRoutePos   = mPosition;
-	mHomePosition   = mNextRoutePos;
-	mTargetPosition = mHomePosition;
-	_348            = 0;
-	_34C            = 0;
-	_35C            = nullptr;
-	_2E4            = 0;
-	_2E8            = 0;
-	_334            = 0;
-	mFreezeTimer    = 0;
-	_374            = 0.0f;
-	curB            = nullptr;
+	mNextRoutePos           = mPosition;
+	mHomePosition           = mNextRoutePos;
+	mTargetPosition         = mHomePosition;
+	mPathFindingHandle      = 0;
+	mFoundPath              = 0;
+	mPath                   = nullptr;
+	_2E4                    = 0;
+	mRouteFindTimer         = 0;
+	mRouteFindCooldownTimer = 0;
+	mFreezeTimer            = 0;
+	mEscapeMoveSpeed        = 0.0f;
+	curB                    = nullptr;
 
 	P2ASSERTLINE(209, mModel);
 
@@ -227,10 +227,10 @@ void Obj::onInit(CreatureInitArg* arg)
 	}
 
 	WPSearchArg wpSearch(mPosition, nullptr, 0, 10.0f);
-	s16 wpIndex = mapMgr->mRouteMgr->getNearestWayPoint(wpSearch)->mIndex;
-	_344        = wpIndex;
-	_342        = wpIndex;
-	_340        = wpIndex;
+	s16 wpIndex            = mapMgr->mRouteMgr->getNearestWayPoint(wpSearch)->mIndex;
+	mNextWaypointIndex     = wpIndex;
+	mPreviousWaypointIndex = wpIndex;
+	mCurrentWaypointIndex  = wpIndex;
 
 	mNextRoutePos   = mPosition;
 	mHomePosition   = mNextRoutePos;
@@ -244,8 +244,8 @@ void Obj::onInit(CreatureInitArg* arg)
 
 	mTargetColor = Color4(0xb5, 0xc0, 0xae, 0xff); // Transparent Color
 	_388         = Color4(0xff, 0x20, 0x16, 0xff);
-	_38C         = Color4(0x30, 0x3f, 0x57, 0x00);
-	mUsingColor  = mTargetColor;
+	mFadeColor   = Color4(0x30, 0x3f, 0x57, 0x00);
+	mActiveColor = mTargetColor;
 
 	modelData = mModel->mJ3dModel->mModelData;
 
@@ -257,7 +257,7 @@ void Obj::onInit(CreatureInitArg* arg)
 	_37C = modelData->mMaterialTable.mMaterials[kageMatIdx];
 
 	if (gameSystem && gameSystem->isZukanMode()) {
-		mWraithTimer = 0.0f;
+		mWraithFallTimer = 0.0f;
 	}
 
 	mEfxDead->mMtx = mModel->mJoints[mChestJointIndex].getWorldMatrix();
@@ -270,24 +270,24 @@ void Obj::onInit(CreatureInitArg* arg)
 Obj::Obj()
     : mPostFlickState(-1)
     , _2E4(0)
-    , _2E8(0)
-    , _2EC(0)
-    , _2F0(0)
-    , _2F4(0)
-    , _334(0)
-    , _338(false)
-    , mWraithTimer(10.0f)
-    , _340(-1)
-    , _342(-1)
-    , _344(-1)
-    , _348(0)
-    , _34C(0)
+    , mRouteFindTimer(0)
+    , mStepTimer(0)
+    , mStepPhase(0)
+    , mEscapeTimer(0)
+    , mRouteFindCooldownTimer(0)
+    , mIsSameWaypoint(false)
+    , mWraithFallTimer(10.0f)
+    , mCurrentWaypointIndex(-1)
+    , mPreviousWaypointIndex(-1)
+    , mNextWaypointIndex(-1)
+    , mPathFindingHandle(0)
+    , mFoundPath(0)
 {
 	mMatLoopAnimator = nullptr;
-	_35C             = nullptr;
+	mPath            = nullptr;
 	mFSM             = nullptr;
 	mTyre            = nullptr;
-	_378             = 1.0f;
+	mFadeTimer       = 1.0f;
 	_37C             = nullptr;
 	mEfxMove         = nullptr;
 	mEfxRun          = nullptr;
@@ -296,7 +296,7 @@ Obj::Obj()
 	_3A8             = 0;
 	_3A9             = 0;
 	_3AA             = 0;
-	_3AB             = 0;
+	mIsMoviePlaying  = 0;
 
 	mAnimator        = new ProperAnimator;
 	mMatLoopAnimator = new Sys::MatLoopAnimator;
@@ -306,7 +306,7 @@ Obj::Obj()
 	mEfxMove       = new efx::TKageMove(&mChestJointPosition, &mFaceDir);
 	mEfxRun        = new efx::TKageRun(&mChestJointPosition, &mFaceDir);
 	mEfxDead       = new efx::TKageDead1;
-	mEfxTyreup     = new efx::TKageTyreup(&_328, &mFaceDir);
+	mEfxTyreup     = new efx::TKageTyreup(&mLandPosition, &mFaceDir);
 	mEfxFrontFlick = new efx::TKageFlick(&mHandPositions[0]);
 	mEfxBackFlick  = new efx::TKageFlick(&mHandPositions[1]);
 }
@@ -321,39 +321,40 @@ void BlackMan::Obj::doUpdate()
 	isStopMotion();
 	isFinishMotion();
 	mFSM->exec(this);
-	if (_378 < 1.0f) {
-		_378 += C_PARMS->_A3C;
-		if (_378 > 1.0f) {
-			_378 = 1.0f;
+	if (mFadeTimer < 1.0f) {
+		mFadeTimer += C_PARMS->mFadeRate;
+		if (mFadeTimer > 1.0f) {
+			mFadeTimer = 1.0f;
 		}
 
-		f32 someVal = 1.0f - _378;
+		f32 inverseFade = 1.0f - mFadeTimer;
 
 		CollPart* kosi = mCollTree->getCollPart('kosi');
 		if (kosi->mSpecialID == 'st__' || getStateID() == WRAITH_Dead) {
-			_38C.a = _378 * 0xff;
+			mFadeColor.a = mFadeTimer * 0xff;
 		} else {
-			_38C.a        = _38C.a * someVal;
-			mUsingColor.r = mUsingColor.r * someVal + mTargetColor.r * _378;
-			mUsingColor.g = mUsingColor.g * someVal + mTargetColor.g * _378;
-			mUsingColor.b = mUsingColor.b * someVal + mTargetColor.b * _378;
+			mFadeColor.a   = mFadeColor.a * inverseFade;
+			mActiveColor.r = mActiveColor.r * inverseFade + mTargetColor.r * mFadeTimer;
+			mActiveColor.g = mActiveColor.g * inverseFade + mTargetColor.g * mFadeTimer;
+			mActiveColor.b = mActiveColor.b * inverseFade + mTargetColor.b * mFadeTimer;
 		}
 	}
 
-	mWraithTimer -= sys->mDeltaTime;
+	mWraithFallTimer -= sys->mDeltaTime;
 	if (isEvent(0, EB_HardConstrained) && getStateID() == WRAITH_Fall) {
-		f32 unkFallTimer = -C_PARMS->_A4C;
-		if (!mTyre || mWraithTimer < unkFallTimer) {
+		f32 fallTimer = -C_PARMS->_A4C;
+		if (!mTyre || mWraithFallTimer < fallTimer) {
 			hardConstraintOff();
 			mModel->showPackets();
 			mSoundObj->startSound(PSSE_EN_TIRE_FALL, 0);
 		} else {
 			f32 someTimer = C_PARMS->_A58;
-			if (!_3A9 && mWraithTimer < someTimer) {
+			if (!_3A9 && mWraithFallTimer < someTimer) {
 				if (gameSystem && gameSystem->isZukanMode()) {
 					_3A9                   = true;
 					mTyre->mIsShadowActive = true;
 				}
+
 				Navi* activeNavi = naviMgr->getActiveNavi();
 				if (!_3A9 && activeNavi && activeNavi->isAlive()) {
 
@@ -363,24 +364,26 @@ void BlackMan::Obj::doUpdate()
 
 					f32 sqrDist = sqrDistanceXZ(naviPos, pos);
 					if (isFinalFloor()) {
-						f32 fallRadius = C_PARMS->_A54;
+						f32 fallRadius = C_PARMS->mFallRadius;
 						if (sqrDist < SQUARE(fallRadius)) {
 							_3A9 = true;
 						}
 					} else if (sqrDist > 10000.0f) {
 						_3A9 = true;
 					}
+
 					if (_3A9) {
 						mTyre->mIsShadowActive = true;
 					}
 				}
+
 				if (!_3A9) {
-					mWraithTimer = someTimer;
+					mWraithFallTimer = someTimer;
 				}
 			}
 		}
 
-		if (mTyre && mTyre->isEvent(0, EB_HardConstrained) && mWraithTimer < 0.0f) {
+		if (mTyre && mTyre->isEvent(0, EB_HardConstrained) && mWraithFallTimer < 0.0f) {
 			if (gameSystem && !gameSystem->isZukanMode() && gameSystem->mSection && gameSystem->mSection->getCaveID() == 'y_04') {
 				PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 				PSSystem::checkSceneMgr(mgr);
@@ -401,18 +404,18 @@ void BlackMan::Obj::doUpdate()
 					moviePlayer->play(wraithMovieArg);
 					mTyre->movie_begin(false);
 					playData->setDemoFlag(DEMO_Waterwraith_Appears);
-					_3AB = true;
-					_3AA = true;
+					mIsMoviePlaying = true;
+					_3AA            = true;
 				}
 			}
-			if (!_3AB) {
+			if (!mIsMoviePlaying) {
 				mTyre->mSoundObj->startSound(PSSE_EN_TIRE_FALL, 0);
 			}
 			mTyre->hardConstraintOff();
 			mTyre->mModel->showPackets();
 		}
 	}
-	if (_3A9 && mWraithTimer < -1.0f && mTyre) {
+	if (_3A9 && mWraithFallTimer < -1.0f && mTyre) {
 		mTyre->scaleUpShadow();
 	}
 
@@ -917,10 +920,10 @@ void BlackMan::Obj::doSimulation(f32 speed)
 		mTyre->mWraithPosition = mPosition;
 	}
 
-	_2E8--;
+	mRouteFindTimer--;
 
-	if (_2E8 < 0) {
-		_2E8 = 0;
+	if (mRouteFindTimer < 0) {
+		mRouteFindTimer = 0;
 	}
 
 	EnemyBase::doSimulation(speed);
@@ -951,10 +954,10 @@ void BlackMan::Obj::doAnimationCullingOff()
 {
 	Color4 efxColor(0xff, 0xff, 0xff, 0xff);
 
-	if (_2F0 && mTyre) {
-		efxColor.r = mUsingColor.r;
-		efxColor.g = mUsingColor.g;
-		efxColor.b = mUsingColor.b;
+	if (mStepPhase && mTyre) {
+		efxColor.r = mActiveColor.r;
+		efxColor.g = mActiveColor.g;
+		efxColor.b = mActiveColor.b;
 	}
 
 	mEfxMove->setGlobalPrmColor(efxColor);
@@ -1014,7 +1017,7 @@ void BlackMan::Obj::doStartStoneState()
 	}
 
 	if (mTyre) {
-		mTyre->_30C = 0.0f; // roll speed maybe?
+		mTyre->mSingleRotationRatio = 0.0f; // roll speed maybe?
 	}
 
 	// since we are now a stone, pikmin can stick to us
@@ -1110,7 +1113,7 @@ void BlackMan::Obj::collisionCallback(Game::CollEvent& collEvent)
 		}
 	}
 
-	if (_2E0 != 2) {
+	if (mEscapePhase != 2) {
 		EnemyBase::collisionCallback(collEvent);
 	}
 }
@@ -1188,7 +1191,7 @@ bool BlackMan::Obj::earthquakeCallBack(Game::Creature* creature, f32 bounceFacto
 
 	if (C_PARMS->_A12 && (getStateID() == WRAITH_Walk || getStateID() == WRAITH_Tired)) {
 		mFreezeTimer = 0;
-		_2F4         = 0;
+		mEscapeTimer = 0;
 		mFSM->transit(this, WRAITH_Freeze, nullptr);
 	}
 	return EnemyBase::earthquakeCallBack(creature, bounceFactor);
@@ -1233,9 +1236,9 @@ void BlackMan::Obj::changeMaterial()
 	J3DModel* j3dModel      = mModel->mJ3dModel;
 	J3DModelData* modelData = j3dModel->getModelData();
 
-	_37C->mTevBlock->setTevKColor(0, mUsingColor);
+	_37C->mTevBlock->setTevKColor(0, mActiveColor);
 
-	_37C->mTevBlock->setTevKColor(3, _38C);
+	_37C->mTevBlock->setTevKColor(3, mFadeColor);
 
 	j3dModel->calcMaterial();
 
@@ -1532,16 +1535,16 @@ void BlackMan::Obj::walkFunc()
 	turnSpeed     = C_GENERALPARMS.mTurnSpeed();
 
 	if (C_PARMS->_A1A >= 0) {
-		_2F0 = C_PARMS->_A1A;
+		mStepPhase = C_PARMS->_A1A;
 	} else {
-		_2EC++;
+		mStepTimer++;
 	}
 
-	if (_2F0 == 0) {
-		if (_2EC > C_PROPERPARMS.mTimerToTwoStep) {
-			_2F0 = 1;
-			_2EC = 0;
-			_378 = 0.0f;
+	if (mStepPhase == 0) {
+		if (mStepTimer > C_PROPERPARMS.mTimerToTwoStep) {
+			mStepPhase = 1;
+			mStepTimer = 0;
+			mFadeTimer = 0.0f;
 		}
 	} else {
 		moveSpeed     = C_PROPERPARMS.mTravelSpeed();
@@ -1549,7 +1552,7 @@ void BlackMan::Obj::walkFunc()
 		turnSpeed     = C_PROPERPARMS.mRotationSpeed();
 	}
 
-	if (_2E0 == 2) {
+	if (mEscapePhase == 2) {
 		Navi* targetNavi = naviMgr->getActiveNavi();
 		turnSpeed        = C_PROPERPARMS.mEscapeSpeed();
 		if (targetNavi) {
@@ -1564,7 +1567,7 @@ void BlackMan::Obj::walkFunc()
 			}
 
 			if (sqrDist > SQUARE(800.0f)) {
-				_2F4 = 0;
+				mEscapeTimer = 0;
 				if (getCurrAnimIndex() != WRAITHANIM_Wait) {
 					finishMotion();
 				}
@@ -1572,7 +1575,7 @@ void BlackMan::Obj::walkFunc()
 					startMotion(WRAITHANIM_Wait, nullptr);
 				}
 			} else if (sqrDist > SQUARE(400.0f)) {
-				_2F4 = 0;
+				mEscapeTimer = 0;
 				if (getCurrAnimIndex() != WRAITHANIM_Walk) {
 					finishMotion();
 				}
@@ -1580,13 +1583,13 @@ void BlackMan::Obj::walkFunc()
 					startMotion(WRAITHANIM_Walk, nullptr);
 				}
 			} else {
-				_2F4++;
-				if (_2F4 > C_PROPERPARMS.mContinuousEscapeTimerLength() || getCurrAnimIndex() != WRAITHANIM_Run) {
+				mEscapeTimer++;
+				if (mEscapeTimer > C_PROPERPARMS.mContinuousEscapeTimerLength() || getCurrAnimIndex() != WRAITHANIM_Run) {
 					finishMotion();
 				}
 				if (isAnimEnd) {
-					if (_2F4 > C_PROPERPARMS.mContinuousEscapeTimerLength()) {
-						_2F4 = 0;
+					if (mEscapeTimer > C_PROPERPARMS.mContinuousEscapeTimerLength()) {
+						mEscapeTimer = 0;
 						mFSM->transit(this, WRAITH_Tired, nullptr);
 					} else {
 						startMotion(WRAITHANIM_Run, nullptr);
@@ -1602,8 +1605,8 @@ void BlackMan::Obj::walkFunc()
 			turnSpeed = C_PROPERPARMS.mWalkingSpeed();
 		}
 
-		_374 += (turnSpeed - _374) * 0.2f;
-		moveSpeed     = _374;
+		mEscapeMoveSpeed += (turnSpeed - mEscapeMoveSpeed) * 0.2f;
+		moveSpeed     = mEscapeMoveSpeed;
 		rotationSpeed = C_PROPERPARMS.mMaxEscapeRotationStep();
 		turnSpeed     = C_PROPERPARMS.mEscapeRotationSpeed();
 	} else if (ItemOnyon::mgr && ItemOnyon::mgr->mPod) {
@@ -1631,19 +1634,19 @@ void BlackMan::Obj::walkFunc()
 			}
 		}
 	}
-	if (mTyre && C_PARMS->_A10 != _2E0) {
-		_2E0 = C_PARMS->_A10;
-		if (_2E0 == 4) {
+	if (mTyre && C_PARMS->_A10 != mEscapePhase) {
+		mEscapePhase = C_PARMS->_A10;
+		if (mEscapePhase == 4) {
 			mCurrentVelocity = Vector3f(0.0f);
 			mTargetVelocity  = Vector3f(0.0f);
 			setPathFinder(false);
 		} else {
-			_34C = 0;
+			mFoundPath = 0;
 			releasePathFinder();
 		}
 	}
 
-	if (_2E0 == 4) {
+	if (mEscapePhase == 4) {
 		if (isEndPathFinder()) {
 			moveSpeed = C_PROPERPARMS.mPodMoveSpeed();
 		} else {
@@ -1659,29 +1662,29 @@ void BlackMan::Obj::walkFunc()
 		_2E4 = 0;
 	}
 	if (mTyre) {
-		mTyre->_314 = mFaceDir;
+		mTyre->mFaceDirection = mFaceDir;
 	}
 	f32 prevFaceDir = mFaceDir;
 	EnemyFunc::walkToTarget(this, mTargetPosition, moveSpeed, turnSpeed, rotationSpeed);
 
 	if (mTyre) {
-		Vector3f sep      = mPosition - mTyre->mWraithPosition;
-		f32 distance      = sep.length2D();
-		mTyre->_30C       = distance / WRAITH_ROLLER_CIRCUMFERENCE;
-		EnemyBase* tyre   = mTyre;
-		tyre->mFaceDir    = mFaceDir;
-		tyre->mRotation.y = tyre->mFaceDir;
+		Vector3f sep                = mPosition - mTyre->mWraithPosition;
+		f32 distance                = sep.length2D();
+		mTyre->mSingleRotationRatio = distance / WRAITH_ROLLER_CIRCUMFERENCE;
+		EnemyBase* tyre             = mTyre;
+		tyre->mFaceDir              = mFaceDir;
+		tyre->mRotation.y           = tyre->mFaceDir;
 	}
 
-	if (_2E8 == 0) {
-		_334++;
-		if (_334 > 60) {
+	if (mRouteFindTimer == 0) {
+		mRouteFindCooldownTimer++;
+		if (mRouteFindCooldownTimer > 60) {
 			if (sqrDistanceXZ(mPosition, mNextRoutePos) < SQUARE(10.0f)) {
-				_2E8 = 120;
+				mRouteFindTimer = 120;
 				findNextRoutePoint();
 			}
-			mNextRoutePos = mPosition;
-			_334          = 0;
+			mNextRoutePos           = mPosition;
+			mRouteFindCooldownTimer = 0;
 		}
 	}
 
@@ -1706,7 +1709,7 @@ void BlackMan::Obj::walkFunc()
 	}
 
 	if (mTyre) {
-		if (_2F0 == 0) {
+		if (mStepPhase == 0) {
 			mSoundObj->startSound(PSSE_EN_KAGE_ZURUZURU, 0);
 			mTyre->mSoundObj->startSound(PSSE_EN_KAGE_ROLLER, 0);
 			mTyre->mSoundObj->startSound(PSSE_EN_KAGE_MELODYLOOP, 0);
@@ -2348,59 +2351,59 @@ bool BlackMan::Obj::isReachToGoal(f32 rad) { return (u8)(sqrDistanceXZ(mPosition
  */
 void BlackMan::Obj::findNextRoutePoint()
 {
-	if (_34C || _2E0 == 4) {
+	if (mFoundPath || mEscapePhase == 4) {
 		findNextTraceRoutePoint();
 		return;
 	}
 
 	RouteMgr* routeMgr = mapMgr->mRouteMgr;
-	if (_2E8 > 0) {
-		if (_342 == _340 && _340 == _344) {
+	if (mRouteFindTimer > 0) {
+		if (mPreviousWaypointIndex == mCurrentWaypointIndex && mCurrentWaypointIndex == mNextWaypointIndex) {
 			mTargetPosition = mHomePosition;
 			return;
 		}
 
-		_2E8 = 0;
+		mRouteFindTimer = 0;
 
 		WPEdgeSearchArg edgeArg(mPosition);
 		if (routeMgr->getNearestEdge(edgeArg)) {
-			s16 nextIdx = _340; // r24
-			s16 prevIdx = _342; // r25
+			s16 nextIdx = mCurrentWaypointIndex;  // r24
+			s16 prevIdx = mPreviousWaypointIndex; // r25
 			if (!edgeArg.mWp1->isFlag(WPF_Closed)) {
 				if (routeMgr->getWayPoint(edgeArg.mWp1->mIndex)->mNumFromLinks == 1 && !edgeArg.mWp2->isFlag(WPF_Closed)) {
-					_342 = _340;
-					_340 = edgeArg.mWp2->mIndex;
+					mPreviousWaypointIndex = mCurrentWaypointIndex;
+					mCurrentWaypointIndex  = edgeArg.mWp2->mIndex;
 				} else {
-					_340 = edgeArg.mWp1->mIndex;
+					mCurrentWaypointIndex = edgeArg.mWp1->mIndex;
 					if (routeMgr->getWayPoint(edgeArg.mWp2->mIndex)->mNumFromLinks > 1 && !edgeArg.mWp2->isFlag(WPF_Closed)) {
-						_342 = edgeArg.mWp2->mIndex;
+						mPreviousWaypointIndex = edgeArg.mWp2->mIndex;
 					} else {
-						_342 = _340;
+						mPreviousWaypointIndex = mCurrentWaypointIndex;
 					}
 				}
 			} else {
-				_340 = edgeArg.mWp2->mIndex;
+				mCurrentWaypointIndex = edgeArg.mWp2->mIndex;
 				if (routeMgr->getWayPoint(edgeArg.mWp1->mIndex)->mNumFromLinks > 1 && !edgeArg.mWp1->isFlag(WPF_Closed)) {
-					_342 = edgeArg.mWp1->mIndex;
+					mPreviousWaypointIndex = edgeArg.mWp1->mIndex;
 				} else {
-					_342 = _340;
+					mPreviousWaypointIndex = mCurrentWaypointIndex;
 				}
 			}
 
-			if (_340 == nextIdx && _342 == prevIdx) {
+			if (mCurrentWaypointIndex == nextIdx && mPreviousWaypointIndex == prevIdx) {
 				mTargetPosition = mPosition;
 				mTargetPosition.x -= 100.0f * sinf(mFaceDir);
 				mTargetPosition.z -= 100.0f * cosf(mFaceDir);
 				return;
 			}
 
-			_342            = _340;
-			mTargetPosition = Vector3f(routeMgr->getWayPoint(_340)->mPosition);
+			mPreviousWaypointIndex = mCurrentWaypointIndex;
+			mTargetPosition        = Vector3f(routeMgr->getWayPoint(mCurrentWaypointIndex)->mPosition);
 			return;
 		}
 	}
 
-	WayPoint* currWP = routeMgr->getWayPoint(_340);
+	WayPoint* currWP = routeMgr->getWayPoint(mCurrentWaypointIndex);
 
 	P2ASSERTLINE(1557, currWP);
 
@@ -2439,7 +2442,7 @@ void BlackMan::Obj::findNextRoutePoint()
 		bool check  = false;                                    // r27
 		f32 minDist = SQUARE(C_GENERALPARMS.mSearchDistance()); // f31
 		int targetWPIdx;                                        // r26
-		switch (_2E0) {
+		switch (mEscapePhase) {
 		case 0: {
 			targetWPIdx = randInt(counter);
 		} break;
@@ -2447,8 +2450,8 @@ void BlackMan::Obj::findNextRoutePoint()
 			for (int i = 0; i < counter; i++) {
 				Iterator<Piki> iter(pikiMgr);
 				s16 idx = indices[i];
-				if (_342 == idx) {
-					if (_338 || !C_PARMS->_A15) {
+				if (mPreviousWaypointIndex == idx) {
+					if (mIsSameWaypoint || !C_PARMS->_A15) {
 						continue;
 					}
 
@@ -2495,7 +2498,7 @@ void BlackMan::Obj::findNextRoutePoint()
 			if (val < 0) {
 				for (int i = 0; i < 100; i++) {
 					targetWPIdx = randInt(counter);
-					if (_342 != indices[targetWPIdx]) {
+					if (mPreviousWaypointIndex != indices[targetWPIdx]) {
 						break;
 					}
 				}
@@ -2507,7 +2510,7 @@ void BlackMan::Obj::findNextRoutePoint()
 			f32 minNaviDist = 1000000.0f;
 			for (int i = 0; i < counter; i++) {
 				s16 idx = indices[i];
-				if (_342 != idx) {
+				if (mPreviousWaypointIndex != idx) {
 					WayPoint* wp     = routeMgr->getWayPoint(idx);
 					Navi* activeNavi = naviMgr->getActiveNavi();
 					if (activeNavi) {
@@ -2549,13 +2552,13 @@ void BlackMan::Obj::findNextRoutePoint()
 			f32 maxDot = 0.0f;
 			for (int i = 0; i < counter; i++) {
 				s16 idx = indices[i];
-				if (_342 == idx) {
+				if (mPreviousWaypointIndex == idx) {
 					continue;
 				}
 
-				WayPoint* wp1   = routeMgr->getWayPoint(_340);
+				WayPoint* wp1   = routeMgr->getWayPoint(mCurrentWaypointIndex);
 				Vector3f wp1Pos = wp1->mPosition;
-				WayPoint* wp2   = routeMgr->getWayPoint(_342);
+				WayPoint* wp2   = routeMgr->getWayPoint(mPreviousWaypointIndex);
 				Vector3f wp2Pos = wp2->mPosition;
 				Vector3f sep    = Vector3f(wp1Pos.x - wp2Pos.x, 0.0f, wp1Pos.z - wp2Pos.z); // 0xd4
 
@@ -2593,19 +2596,19 @@ void BlackMan::Obj::findNextRoutePoint()
 
 		s16 idx            = indices[targetWPIdx];
 		WayPoint* targetWP = routeMgr->getWayPoint(idx);
-		if (check || counter == 1 || idx != _342) {
-			if (_342 == idx) {
-				_338 = true;
+		if (check || counter == 1 || idx != mPreviousWaypointIndex) {
+			if (mPreviousWaypointIndex == idx) {
+				mIsSameWaypoint = true;
 			} else {
-				_338 = false;
+				mIsSameWaypoint = false;
 			}
 
-			_342 = _340;
-			_340 = idx;
+			mPreviousWaypointIndex = mCurrentWaypointIndex;
+			mCurrentWaypointIndex  = idx;
 		}
 	}
 
-	WayPoint* wp = routeMgr->getWayPoint(_340);
+	WayPoint* wp = routeMgr->getWayPoint(mCurrentWaypointIndex);
 	if (wp) {
 		mTargetPosition = Vector3f(wp->mPosition);
 	}
@@ -3704,25 +3707,25 @@ lbl_803A9A3C:
  */
 void BlackMan::Obj::findNextTraceRoutePoint()
 {
-	if (!_35C) {
+	if (!mPath) {
 		return;
 	}
-	FOREACH_NODE(PathNode, _35C, node)
+	FOREACH_NODE(PathNode, mPath, node)
 	{
-		if (node->mWpIndex != _340) {
+		if (node->mWpIndex != mCurrentWaypointIndex) {
 			continue;
 		}
 
-		_342 = _340;
+		mPreviousWaypointIndex = mCurrentWaypointIndex;
 
 		PathNode* nextNode = node->mNext;
 		if (nextNode) {
-			_340 = nextNode->mWpIndex;
+			mCurrentWaypointIndex = nextNode->mWpIndex;
 		} else {
-			_340 = _344;
+			mCurrentWaypointIndex = mNextWaypointIndex;
 		}
 
-		mTargetPosition = Vector3f(mapMgr->mRouteMgr->getWayPoint(_340)->mPosition);
+		mTargetPosition = Vector3f(mapMgr->mRouteMgr->getWayPoint(mCurrentWaypointIndex)->mPosition);
 		return;
 	}
 
@@ -3735,30 +3738,30 @@ void BlackMan::Obj::findNextTraceRoutePoint()
  */
 bool BlackMan::Obj::isEndPathFinder()
 {
-	if (_34C) {
+	if (mFoundPath) {
 		return true;
 	}
 
 	P2ASSERTLINE(1850, testPathfinder);
 
-	switch (testPathfinder->check(_348)) {
+	switch (testPathfinder->check(mPathFindingHandle)) {
 	case PATHFIND_MakePath:
-		testPathfinder->makepath(_348, &_35C);
-		_34C = 1;
+		testPathfinder->makepath(mPathFindingHandle, &mPath);
+		mFoundPath = 1;
 		return true;
 
 	case PATHFIND_Busy:
-		_34C = 0;
+		mFoundPath = 0;
 		return false;
 
 	case PATHFIND_Start:
-		_34C = 0;
+		mFoundPath = 0;
 		setPathFinder(true);
 		return false;
 
 	case PATHFIND_NoHandle:
 		JUT_PANICLINE(1870, "no handle pathFinder\n");
-		_34C = 0;
+		mFoundPath = 0;
 		return false;
 	}
 
@@ -3793,17 +3796,17 @@ bool BlackMan::Obj::setPathFinder(bool check)
 			idx1 = idx2;
 		}
 
-		_342 = _340;
-		_340 = idx1;
+		mPreviousWaypointIndex = mCurrentWaypointIndex;
+		mCurrentWaypointIndex  = idx1;
 
 		u32 flag = (check > 0) + 0xC3;
-		if (_348) {
-			testPathfinder->release(_348);
+		if (mPathFindingHandle) {
+			testPathfinder->release(mPathFindingHandle);
 		}
 
-		PathfindRequest request(_340, _344, flag);
-		_348            = testPathfinder->start(request);
-		mTargetPosition = Vector3f(routeMgr->getWayPoint(_340)->mPosition);
+		PathfindRequest request(mCurrentWaypointIndex, mNextWaypointIndex, flag);
+		mPathFindingHandle = testPathfinder->start(request);
+		mTargetPosition    = Vector3f(routeMgr->getWayPoint(mCurrentWaypointIndex)->mPosition);
 		return true;
 	}
 
@@ -3949,9 +3952,9 @@ lbl_803A9E28:
  */
 void BlackMan::Obj::releasePathFinder()
 {
-	_34C = 0;
-	if (testPathfinder && _348) {
-		testPathfinder->release(_348);
+	mFoundPath = 0;
+	if (testPathfinder && mPathFindingHandle) {
+		testPathfinder->release(mPathFindingHandle);
 	}
 }
 
@@ -3987,7 +3990,7 @@ void BlackMan::Obj::jointMtxCalc(int jointIdx)
 	Matrixf* handMat = mModel->getJoint(handJoints[jointIdx])->getWorldMatrix();
 
 	f32 val = 15.0f; // f7
-	if (_2F0 < 1) {
+	if (mStepPhase < 1) {
 		val = 0.0f;
 	}
 
@@ -4022,11 +4025,11 @@ void BlackMan::Obj::jointMtxCalc(int jointIdx)
 	Vector3f vec3(0.0f, 0.0f, 0.0f); // f22, f21, f20
 
 	if (jointIdx < 2 && C_PARMS->_A18) {
-		f32 sinVal1 = C_PARMS->_A40 * absF(sinf(mTyre->_2CC)); // f23
-		f32 sinVal2 = C_PARMS->_A44 * absF(sinf(mTyre->_2CC)); // f24
-		getStateID();                                          // unused
+		f32 sinVal1 = C_PARMS->_A40 * absF(sinf(mTyre->mCurrentRotation)); // f23
+		f32 sinVal2 = C_PARMS->_A44 * absF(sinf(mTyre->mCurrentRotation)); // f24
+		getStateID();                                                      // unused
 
-		if (mTyre->_2CC < 0.0f) {
+		if (mTyre->mCurrentRotation < 0.0f) {
 			if (jointIdx == 0) {
 				vec3.y = sinVal2;
 				vec3.x = tyreMat->mMatrix.structView.xx * sinVal1;
@@ -4475,7 +4478,7 @@ void BlackMan::Obj::bodyMtxCalc()
 	Vector3f pos; // f4, f5, f0
 
 	char* tyreJoints[2] = { "tyreFL", "TyreFR" };
-	if (mTyre->_2CC > 0.0f) {
+	if (mTyre->mCurrentRotation > 0.0f) {
 		pos = mTyre->mModel->getJoint(tyreJoints[0])->getWorldMatrix()->getBasis(3);
 	} else {
 		pos = mTyre->mModel->getJoint(tyreJoints[1])->getWorldMatrix()->getBasis(3);
@@ -4484,14 +4487,14 @@ void BlackMan::Obj::bodyMtxCalc()
 	pos -= mPosition;
 	pos.normalise();
 
-	f32 sinVal = absF(sinf(mTyre->_2CC));
+	f32 sinVal = absF(sinf(mTyre->mCurrentRotation));
 	chestMtx->mMatrix.structView.tx += sinVal * (C_PARMS->_A28 * pos.x);
 	chestMtx->mMatrix.structView.tz += sinVal * (C_PARMS->_A28 * pos.z);
 
 	PSMTXCopy(chestMtx->mMatrix.mtxView, J3DSys::mCurrentMtx);
 
 	Vector3f translation(0.0f, 0.0f, 0.0f); // 0x1c
-	f32 yRot = -C_PARMS->_A2C * sinf(mTyre->_2CC);
+	f32 yRot = -C_PARMS->mBodyRotationSpeed * sinf(mTyre->mCurrentRotation);
 	Vector3f rotation(0.0f, yRot, 0.0f);
 
 	Matrixf mat;
@@ -4708,8 +4711,8 @@ bool BlackMan::Obj::isTyreDead()
 	if (mTyre && mTyre->mHealth <= 0.0f) {
 		if (mAnimator->getAnimator().mFlags & 0x1) {
 			mTyre->enableEvent(0, EB_Invulnerable);
-			mTyre = nullptr;
-			_2E0  = 2;
+			mTyre        = nullptr;
+			mEscapePhase = 2;
 			return true;
 		}
 
@@ -4730,7 +4733,7 @@ bool BlackMan::Obj::isFallEnd()
 		result = true;
 	}
 
-	if (mTyre && (mTyre->isFreeze() || mTyre->_322)) {
+	if (mTyre && (mTyre->isFreeze() || mTyre->mLandedOnPellet)) {
 		result = true;
 	}
 
@@ -4753,7 +4756,7 @@ void BlackMan::Obj::moveRestart()
 	if (gameSystem && gameSystem->isZukanMode()) {
 		_3A8 = 0;
 
-	} else if (!isFinalFloor() && !_3A8 && !_3AB && gameSystem->mSection && gameSystem->mSection->getCaveID() == 'y_04') {
+	} else if (!isFinalFloor() && !_3A8 && !mIsMoviePlaying && gameSystem->mSection && gameSystem->mSection->getCaveID() == 'y_04') {
 		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 		PSSystem::checkSceneMgr(mgr);
 		mgr->checkScene();
@@ -4777,13 +4780,13 @@ void BlackMan::Obj::escape() { }
  * @note Address: 0x803AA9C4
  * @note Size: 0x8
  */
-void BlackMan::Obj::setTimer(f32 time) { mWraithTimer = time; }
+void BlackMan::Obj::setTimer(f32 time) { mWraithFallTimer = time; }
 
 /**
  * @note Address: 0x803AA9CC
  * @note Size: 0x8
  */
-f32 BlackMan::Obj::getTimer() { return mWraithTimer; }
+f32 BlackMan::Obj::getTimer() { return mWraithFallTimer; }
 
 /**
  * @note Address: 0x803AA9D4
@@ -4796,7 +4799,7 @@ void BlackMan::Obj::collisionStOn()
 	mCollTree->getCollPart('head')->mSpecialID = 'st__';
 
 	if (getCurrAnimIndex() != WRAITHANIM_Wait2) {
-		_378 = 0.0f;
+		mFadeTimer = 0.0f;
 	}
 }
 
@@ -4810,7 +4813,7 @@ void BlackMan::Obj::collisionStOff()
 	mCollTree->getCollPart('mune')->mSpecialID = '____';
 	mCollTree->getCollPart('head')->mSpecialID = '____';
 
-	_378 = 0.0f;
+	mFadeTimer = 0.0f;
 	flick();
 }
 
@@ -4858,9 +4861,9 @@ void BlackMan::Obj::recover()
 
 	mTyre->_2D4 = Vector3f(pos.x * 0.5f, pos.y * 0.5f, pos.z * 0.5f);
 
-	_328 = mTyre->_2D4;
+	mLandPosition = mTyre->_2D4;
 
-	mTyre->_2CC *= 0.8f;
+	mTyre->mCurrentRotation *= 0.8f;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -5027,7 +5030,7 @@ void BlackMan::Obj::tyreUpEffect()
 void BlackMan::Obj::tyreDownEffect()
 {
 	if (mTyre) {
-		mTyre->landEffect(_328);
+		mTyre->landEffect(mLandPosition);
 		mTyre->createEfxHamon();
 	}
 }

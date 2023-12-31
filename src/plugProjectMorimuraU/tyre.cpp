@@ -80,16 +80,16 @@ void Obj::onInit(CreatureInitArg* arg)
 	model->mJointTree.mJoints[mTyreFrontJointIndex]->mFunction = frontTyreCallBack;
 	model->mJointTree.mJoints[mTyreRearJointIndex]->mFunction  = rearTyreCallBack;
 
-	_314              = mFaceDir;
-	_2CC              = 0.0f;
-	_2C0              = 0.0f;
-	_2C4              = 0.0f;
-	_2C8              = mPosition.y;
+	mFaceDirection    = mFaceDir;
+	mCurrentRotation  = 0.0f;
+	mCurrentRotation  = 0.0f;
+	mRotationOffset   = 0.0f;
+	mRearWheelHeight  = mPosition.y;
 	mAnimCounter      = 0;
 	mFallingYPosition = 0.0f;
 	shadowMgr->delNormalShadow(this);
 	mShadowMgr->init();
-	_321         = 0;
+	mIsMoving    = 0;
 	mEfxPosition = mPosition;
 }
 
@@ -103,18 +103,18 @@ Obj::Obj()
     , mIsUnderground(true)
     , mIsShadowActive(false)
 {
-	mFsm         = nullptr;
-	mShadowScale = 0.01f;
-	_30C         = 0.0f;
-	_320         = 1;
-	_321         = 0;
-	_322         = 0;
-	mEfxSmoke1   = nullptr;
-	mEfxSmoke2   = nullptr;
-	mShadowMgr   = nullptr;
-	mEfxHamon    = nullptr;
-	_340         = 0;
-	mAnimator    = new ProperAnimator;
+	mFsm                 = nullptr;
+	mShadowScale         = 0.01f;
+	mSingleRotationRatio = 0.0f;
+	mToTriggerLandEffect = 1;
+	mIsMoving            = 0;
+	mLandedOnPellet      = 0;
+	mEfxSmoke1           = nullptr;
+	mEfxSmoke2           = nullptr;
+	mShadowMgr           = nullptr;
+	mEfxHamon            = nullptr;
+	mWaterBox            = 0;
+	mAnimator            = new ProperAnimator;
 	setFSM(new FSM);
 	mEfxSmoke1 = new efx::TKageTyresmoke(&mPosition, &mFaceDir);
 	mEfxSmoke2 = new efx::TKageTyresmoke(&mPosition, &mFaceDir);
@@ -209,10 +209,10 @@ void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
 void Obj::doStartStoneState()
 {
 	EnemyBase::doStartStoneState();
-	mTargetVelocity  = 0.0f;
-	mCurrentVelocity = 0.0f;
-	_30C             = 0.0f;
-	mAcceleration    = 0.0f;
+	mTargetVelocity      = 0.0f;
+	mCurrentVelocity     = 0.0f;
+	mSingleRotationRatio = 0.0f;
+	mAcceleration        = 0.0f;
 	disableEvent(0, EB_Untargetable);
 	mCollTree->getCollPart('tyr1')->mSpecialID = 'st__';
 	mCollTree->getCollPart('tyr2')->mSpecialID = 'st__';
@@ -275,8 +275,8 @@ void Obj::collisionCallback(CollEvent& event)
 				if (pelt->isPellet()) {
 					enableEvent(0, EB_Untargetable);
 					mAnimCounter      = C_PARMS->_833;
-					mFallingYPosition = (pelt->mConfig->mParams.mHeight.mData / mAnimCounter) * C_PARMS->_848;
-					_322              = true;
+					mFallingYPosition = (pelt->mConfig->mParams.mHeight.mData / mAnimCounter) * C_PARMS->mPelletHeightAdjustment;
+					mLandedOnPellet   = true;
 				}
 
 				Stickers stick(hitobj);
@@ -305,7 +305,7 @@ void Obj::collisionCallback(CollEvent& event)
 bool Obj::damageCallBack(Creature* obj, f32 damage, CollPart* coll)
 {
 	if (isEvent(0, EB_Bittered) || isFreeze()) {
-		if (isEvent(0, EB_Bittered) || !_321) {
+		if (isEvent(0, EB_Bittered) || !mIsMoving) {
 			return false;
 		} else {
 			return EnemyBase::damageCallBack(obj, damage, coll);
@@ -415,35 +415,35 @@ void Obj::frontRollMtxCalc()
 
 	Matrixf mat;
 	Vector3f rotation;
-	if (C_PARMS->_834 != 0.0f) {
-		rotation = Vector3f(0.0f, C_PARMS->_834, 0.0f);
+	if (C_PARMS->mStaticRotation != 0.0f) {
+		rotation = Vector3f(0.0f, C_PARMS->mStaticRotation, 0.0f);
 	} else {
-		f32 p1        = C_PARMS->_844;
-		f32 p2        = C_PARMS->_840;
-		f32 angleDist = angDist(mFaceDir, _314);
-		if (angleDist > p2) {
-			_2CC += angleDist * C_PARMS->_838;
-			if (_2CC > p1) {
-				_2CC = p1;
+		f32 maxRotation = C_PARMS->mMaxRotation;
+		f32 minRotation = C_PARMS->mMinRotation;
+		f32 angleDist   = angDist(mFaceDir, mFaceDirection);
+		if (angleDist > minRotation) {
+			mCurrentRotation += angleDist * C_PARMS->mRotationRate;
+			if (mCurrentRotation > maxRotation) {
+				mCurrentRotation = maxRotation;
 			}
-		} else if (angleDist < -p2) {
-			_2CC += angleDist * C_PARMS->_838;
-			if (_2CC < -p1) {
-				_2CC = -p1;
+		} else if (angleDist < -minRotation) {
+			mCurrentRotation += angleDist * C_PARMS->mRotationRate;
+			if (mCurrentRotation < -maxRotation) {
+				mCurrentRotation = -maxRotation;
 			}
-		} else if (_2CC > 0.0f) {
-			_2CC -= C_PARMS->_83C;
-			if (_2CC < 0.0f) {
-				_2CC = 0.0f;
+		} else if (mCurrentRotation > 0.0f) {
+			mCurrentRotation -= C_PARMS->mReverseRotationRate;
+			if (mCurrentRotation < 0.0f) {
+				mCurrentRotation = 0.0f;
 			}
 		} else {
-			_2CC += C_PARMS->_83C;
-			if (_2CC > 0.0f) {
-				_2CC = 0.0f;
+			mCurrentRotation += C_PARMS->mReverseRotationRate;
+			if (mCurrentRotation > 0.0f) {
+				mCurrentRotation = 0.0f;
 			}
 		}
 
-		rotation = Vector3f(0.0f, _2CC, 0.0f);
+		rotation = Vector3f(0.0f, mCurrentRotation, 0.0f);
 
 		mat.makeTR(translation, rotation);
 	}
@@ -453,7 +453,7 @@ void Obj::frontRollMtxCalc()
 	PSMTXConcat(worldMat->mMatrix.mtxView, mat.mMatrix.mtxView, worldMat->mMatrix.mtxView);
 	PSMTXConcat(J3DSys::mCurrentMtx, mat.mMatrix.mtxView, J3DSys::mCurrentMtx);
 
-	rotation = Vector3f(_2C0, 0.0f, 0.0f);
+	rotation = Vector3f(mCurrentRotation, 0.0f, 0.0f);
 	mat.makeTR(translation, rotation);
 	PSMTXConcat(worldMat->mMatrix.mtxView, mat.mMatrix.mtxView, worldMat->mMatrix.mtxView);
 	PSMTXConcat(J3DSys::mCurrentMtx, mat.mMatrix.mtxView, J3DSys::mCurrentMtx);
@@ -471,11 +471,11 @@ void Obj::rearRollMtxCalc()
 	f32 minY = mapMgr->getMinY(pos);
 
 	if (isFlying()) {
-		if (10.0f + _2C8 < mPosition.y) {
-			_2C8 += 2.0f;
+		if (10.0f + mRearWheelHeight < mPosition.y) {
+			mRearWheelHeight += 2.0f;
 		}
 	} else {
-		_2C8 -= 5.0f;
+		mRearWheelHeight -= 5.0f;
 	}
 
 	f32 val = 2.0f;
@@ -483,48 +483,50 @@ void Obj::rearRollMtxCalc()
 		val = 0.0f;
 	}
 
-	if (_2C8 <= minY + val) {
-		_2C8           = minY;
-		Vector3f fxPos = worldMat->getBasis(3);
-		fxPos.y        = minY;
-		f32 comp       = 50.0f;
-		if ((mPosition.y < minY + comp) && _320) {
+	if (mRearWheelHeight <= minY + val) {
+		mRearWheelHeight = minY;
+		Vector3f fxPos   = worldMat->getBasis(3);
+		fxPos.y          = minY;
+		f32 comp         = 50.0f;
+
+		if ((mPosition.y < minY + comp) && mToTriggerLandEffect) {
 			landEffect(fxPos);
-			_320 = 0;
+			mToTriggerLandEffect = 0;
 		}
 
 		if (mBounceTriangle) {
 			mEfxPosition = fxPos;
-			if (!_340) {
+			if (!mWaterBox) {
 				Sys::Sphere sphere(mEfxPosition, 80.0f);
 				if (mapMgr) {
-					_340 = mapMgr->findWater(sphere);
+					mWaterBox = mapMgr->findWater(sphere);
 				}
 
-				if (_340) {
+				if (mWaterBox) {
 					efx::ArgEnemyType fxArg(mEfxPosition, getEnemyTypeID(), mScaleModifier);
 					mEfxHamon->create(&fxArg);
-					mEfxPosition.y = *_340->getSeaHeightPtr();
+					mEfxPosition.y = *mWaterBox->getSeaHeightPtr();
 				}
 
 			} else {
 				Sys::Sphere sphere(mEfxPosition, 80.0f);
 				if (mapMgr) {
-					_340 = mapMgr->findWater(sphere);
+					mWaterBox = mapMgr->findWater(sphere);
 				}
 
-				if (!_340) {
+				if (!mWaterBox) {
 					mEfxHamon->fade();
 				}
 			}
 		}
 	}
 
-	f32 diff = _2C8;
+	f32 diff = mRearWheelHeight;
 	diff -= mPosition.y;
 	if (diff > 50.0f) {
 		diff = 50.0f;
 	}
+
 	f32 limit = 50.0f;
 	if (diff < -limit) {
 		diff = -limit;
@@ -535,7 +537,7 @@ void Obj::rearRollMtxCalc()
 	PSMTXCopy(worldMat->mMatrix.mtxView, J3DSys::mCurrentMtx);
 	Matrixf mat;
 	Vector3f translation = Vector3f(0.0f, 0.0f, 0.0f);
-	Vector3f rotation    = Vector3f(_2C0, 0.0f, 0.0f);
+	Vector3f rotation    = Vector3f(mCurrentRotation, 0.0f, 0.0f);
 	mat.makeTR(translation, rotation);
 	PSMTXConcat(worldMat->mMatrix.mtxView, mat.mMatrix.mtxView, worldMat->mMatrix.mtxView);
 	PSMTXConcat(J3DSys::mCurrentMtx, mat.mMatrix.mtxView, J3DSys::mCurrentMtx);
@@ -547,7 +549,7 @@ void Obj::rearRollMtxCalc()
  */
 void Obj::moveStart()
 {
-	_321 = true;
+	mIsMoving = true;
 	if (isFreeze()) {
 		mFsm->transit(this, TYRE_Move, nullptr);
 	}

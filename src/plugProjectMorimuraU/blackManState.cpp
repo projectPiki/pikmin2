@@ -47,7 +47,7 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* wraith = OBJ(enemy);
 	bool check;
-	if (wraith->mTyre == nullptr || wraith->_2E0 == 2) {
+	if (wraith->mTyre == nullptr || wraith->mEscapePhase == 2) {
 		check = false;
 	} else {
 		check = true;
@@ -558,7 +558,7 @@ StateFlick::StateFlick(int stateID)
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	bool check;
-	if (OBJ(enemy)->mTyre == nullptr || OBJ(enemy)->_2E0 == 2) {
+	if (OBJ(enemy)->mTyre == nullptr || OBJ(enemy)->mEscapePhase == 2) {
 		check = false;
 	} else {
 		check = true;

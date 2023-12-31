@@ -46,21 +46,22 @@ void Tyre::StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 void Tyre::StateMove::exec(EnemyBase* enemy)
 {
 	Obj* tyre    = OBJ(enemy);
-	f32 p1       = tyre->_30C;
 	Parms* parms = CG_PARMS(tyre);
-	p1 *= parms->mProperParms.mTyreRotationSpeed.mValue;
+
+	f32 rotationSpeed = tyre->mSingleRotationRatio;
+	rotationSpeed *= parms->mProperParms.mTyreRotationSpeed.mValue;
 
 	if (parms->mDoUseGlobalJointMgr != 0) {
-		f32 p2     = 0.2f * FABS(p1 - tyre->_2C4);
-		tyre->_2C4 = p2;
-		p2 += tyre->_2C0;
-		if (p2 > TAU) {
-			p2 -= TAU;
+		f32 rotation          = 0.2f * FABS(rotationSpeed - tyre->mRotationOffset);
+		tyre->mRotationOffset = rotation;
+		rotation += tyre->mCurrentRotation;
+		if (rotation > TAU) {
+			rotation -= TAU;
 		}
-		tyre->_2C0 = p2;
+		tyre->mCurrentRotation = rotation;
 	} else {
-		p1 *= EnemyAnimatorBase::defaultAnimSpeed;
-		tyre->mAnimator->mSpeed = p1;
+		rotationSpeed *= EnemyAnimatorBase::defaultAnimSpeed;
+		tyre->mAnimator->mSpeed = rotationSpeed;
 	}
 
 	if ((tyre->mHealth <= 0.0f) && tyre->isEvent(0, EB_Invulnerable)) {
@@ -128,7 +129,7 @@ void Tyre::StateFreeze::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* tyre = OBJ(enemy);
 	tyre->stopMotion();
-	_10                    = 0;
+	mFrozenTimer           = 0;
 	tyre->mCurrentVelocity = Vector3f(0.0f);
 	tyre->mTargetVelocity  = Vector3f(0.0f);
 	tyre->enableEvent(0, EB_Constrained);
@@ -144,7 +145,7 @@ void Tyre::StateFreeze::exec(EnemyBase* enemy)
 	Obj* tyre              = OBJ(enemy);
 	tyre->mCurrentVelocity = Vector3f(0.0f);
 	tyre->mTargetVelocity  = Vector3f(0.0f);
-	_10++;
+	mFrozenTimer++;
 	if ((tyre->mHealth <= 0.0f) && tyre->isEvent(0, EB_Invulnerable)) {
 		transit(tyre, TYRE_Dead, nullptr);
 	}

@@ -92,10 +92,10 @@ struct Obj : public EnemyBase {
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	EnemyBase* mOwner;                   // _2BC Waterwraith object
-	f32 _2C0;                            // _2C0
-	f32 _2C4;                            // _2C4
-	f32 _2C8;                            // _2C8
-	f32 _2CC;                            // _2CC
+	f32 mCurrentRotation;                // _2C0
+	f32 mRotationOffset;                 // _2C4
+	f32 mRearWheelHeight;                // _2C8
+	f32 mCurrentRotation;                // _2CC
 	u8 _2D0;                             // _2D0, unknown
 	bool mIsUnderground;                 // _2D1
 	bool mIsShadowActive;                // _2D2, unknown
@@ -104,21 +104,21 @@ struct Obj : public EnemyBase {
 	Vector3f mTyrePositions[2];          // _2EC
 	FSM* mFsm;                           // _304
 	f32 mShadowScale;                    // _308
-	f32 _30C;                            // _30C
+	f32 mSingleRotationRatio;            // _30C
 	u16 mTyreFrontJointIndex;            // _310
 	u16 mTyreRearJointIndex;             // _312
-	f32 _314;                            // _314
+	f32 mFaceDirection;                  // _314
 	int mAnimCounter;                    // _318
 	f32 mFallingYPosition;               // _31c
-	u8 _320;                             // _320
-	u8 _321;                             // _321
-	u8 _322;                             // _322
+	u8 mToTriggerLandEffect;             // _320
+	u8 mIsMoving;                        // _321
+	u8 mLandedOnPellet;                  // _322
 	Vector3f mEfxPosition;               // _324
 	efx::TKageTyresmoke* mEfxSmoke1;     // _330
 	efx::TKageTyresmoke* mEfxSmoke2;     // _334
 	TyreShadowMgr* mShadowMgr;           // _338
 	efx::TEnemyHamonChasePos* mEfxHamon; // _33C
-	WaterBox* _340;                      // _340
+	WaterBox* mWaterBox;                 // _340
 	                                     // _344 = PelletView
 };
 
@@ -165,16 +165,16 @@ struct Parms : public EnemyParmsBase {
 
 	Parms()
 	{
-		_830                 = 0;
-		_831                 = 0;
-		mDoUseGlobalJointMgr = true;
-		_833                 = 10;
-		_834                 = 0.0f;
-		_838                 = 0.75f;
-		_83C                 = 0.05f;
-		_840                 = 0.025f;
-		_844                 = 0.5f;
-		_848                 = 1.2f;
+		_830                    = 0;
+		_831                    = 0;
+		mDoUseGlobalJointMgr    = true;
+		_833                    = 10;
+		mStaticRotation         = 0.0f;
+		mRotationRate           = 0.75f;
+		mReverseRotationRate    = 0.05f;
+		mMinRotation            = 0.025f;
+		mMaxRotation            = 0.5f;
+		mPelletHeightAdjustment = 1.2f;
 	}
 
 	virtual void read(Stream& stream) // _08 (weak)
@@ -185,17 +185,17 @@ struct Parms : public EnemyParmsBase {
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms mProperParms; // _7F8
-	u8 _830;                  // _830, unknown
-	u8 _831;                  // _831, unknown
-	u8 mDoUseGlobalJointMgr;  // _832, unknown
-	u8 _833;                  // _833, unknown
-	f32 _834;                 // _834
-	f32 _838;                 // _838
-	f32 _83C;                 // _83C
-	f32 _840;                 // _840
-	f32 _844;                 // _844
-	f32 _848;                 // _848
+	ProperParms mProperParms;    // _7F8
+	u8 _830;                     // _830, unknown
+	u8 _831;                     // _831, unknown
+	u8 mDoUseGlobalJointMgr;     // _832, unknown
+	u8 _833;                     // _833, unknown
+	f32 mStaticRotation;         // _834
+	f32 mRotationRate;           // _838
+	f32 mReverseRotationRate;    // _83C
+	f32 mMinRotation;            // _840
+	f32 mMaxRotation;            // _844
+	f32 mPelletHeightAdjustment; // _848
 };
 
 enum AnimID {
@@ -274,7 +274,7 @@ struct StateFreeze : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	u32 _10; // _10
+	u32 mFrozenTimer; // _10
 };
 
 struct StateLand : public State {
