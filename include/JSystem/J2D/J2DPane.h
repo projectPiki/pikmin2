@@ -476,26 +476,19 @@ struct J2DPicture : public J2DPane {
 			mColor3.set(col4);
 		}
 
+		inline void operator=(JUtility::TColor* colors)
+		{
+			mColor0 = colors[0];
+			mColor1 = colors[1];
+			mColor2 = colors[2];
+			mColor3 = colors[3];
+		}
+
 		JUtility::TColor mColor0; // _00
 		JUtility::TColor mColor1; // _04
 		JUtility::TColor mColor2; // _08
 		JUtility::TColor mColor3; // _0C
 	};
-
-	/*
-	    struct TCornerColor {
-	    TCornerColor(u32 col1, u32 col2, u32 col3, u32 col4)
-	    {
-	        mColor[0].set(col1);
-	        mColor[1].set(col2);
-	        mColor[2].set(col3);
-	        mColor[3].set(col4);
-	    }
-	    TCornerColor() { }
-
-	    JUtility::TColor mColor[4]; // _00
-	};
-	*/
 
 	J2DPicture();
 	J2DPicture(J2DPane* parent, JSURandomInputStream* input, JKRArchive* archive);
@@ -513,7 +506,7 @@ struct J2DPicture : public J2DPane {
 	virtual bool isUsed(const ResFONT* resource) { return J2DPane::isUsed(resource); } // _50 (weak)
 	virtual void rewriteAlpha() { }                                                    // _58 (weak)
 	virtual void initiate(const ResTIMG*, const ResTLUT*);                             // _94
-	virtual void prepareTexture(u8);                                                   // _98
+	virtual bool prepareTexture(u8);                                                   // _98
 	virtual bool append(const ResTIMG*, f32);                                          // _9C (weak)
 	virtual bool append(const ResTIMG*, JUTPalette*, f32);                             // _A0 (weak)
 	virtual bool append(const char*, f32);                                             // _A4 (weak)
@@ -583,23 +576,23 @@ struct J2DPicture : public J2DPane {
 	void setTexCoord(const JGeometry::TVec2<s16>*);
 	void setTexCoord(const JUTTexture*, J2DBinding, J2DMirror, bool);
 	void setTexCoord(JGeometry::TVec2<s16>*, const JUTTexture*, J2DBinding, J2DMirror, bool);
-	u8 getTlutID(const ResTIMG*, u8);
+	GXTlut getTlutID(const ResTIMG*, u8);
 	void operator=(const J2DPicture&);
 
 	inline void setCornerColor(TCornerColor colors)
 	{
-		mCornerColors.mColor0.set(colors.mColor0);
-		mCornerColors.mColor1.set(colors.mColor1);
-		mCornerColors.mColor2.set(colors.mColor2);
-		mCornerColors.mColor3.set(colors.mColor3);
+		mCornerColors[0].set(colors.mColor0);
+		mCornerColors[1].set(colors.mColor1);
+		mCornerColors[2].set(colors.mColor2);
+		mCornerColors[3].set(colors.mColor3);
 	}
 
 	inline void setCornerColor(JUtility::TColor color)
 	{
-		mCornerColors.mColor0.set(color);
-		mCornerColors.mColor1.set(color);
-		mCornerColors.mColor2.set(color);
-		mCornerColors.mColor3.set(color);
+		mCornerColors[0].set(color);
+		mCornerColors[1].set(color);
+		mCornerColors[2].set(color);
+		mCornerColors[3].set(color);
 	}
 
 	inline void getCornerColor(TCornerColor& colors) { colors = mCornerColors; }
@@ -611,7 +604,7 @@ struct J2DPicture : public J2DPane {
 	// _000-_100 = J2DPane
 	JUTTexture* mTextures[4];            // _100
 	u8 mTextureCount;                    // _110
-	u8 _111;                             // _111
+	u8 mUsedTextureFlags;                // _111
 	JGeometry::TVec2<s16> mTexCoords[4]; // _112
 	u8 _122[2];                          // _122
 	f32 _124[4];                         // _124
@@ -619,9 +612,9 @@ struct J2DPicture : public J2DPane {
 	JUTPalette* mPalette;                // _144
 	JUtility::TColor mWhite;             // _148
 	JUtility::TColor mBlack;             // _14C
-	TCornerColor mCornerColors;          // _150
-	u32 _160;                            // _160, TColor?
-	u32 _164;                            // _164, TColor?
+	JUtility::TColor mCornerColors[4];   // _150, cant be TCornerColor because it needs to be array
+	JUtility::TColor _160;               // _160
+	JUtility::TColor _164;               // _164
 };
 
 // Size: 0x1A8
@@ -652,7 +645,7 @@ struct J2DPictureEx : public J2DPicture {
 	virtual void setAnimation(J2DAnmVtxColor* animation);                                                 // _78
 	virtual const J2DAnmTransform* animationPane(const J2DAnmTransform* animation);                       // _90
 	virtual void initiate(const ResTIMG*, const ResTLUT*);                                                // _94
-	virtual void prepareTexture(u8);                                                                      // _98
+	virtual bool prepareTexture(u8);                                                                      // _98
 	virtual bool append(const ResTIMG*, f32);                                                             // _9C (weak)
 	virtual bool append(const ResTIMG*, JUTPalette*, f32);                                                // _A0
 	virtual bool append(const char*, f32);                                                                // _A4 (weak)
