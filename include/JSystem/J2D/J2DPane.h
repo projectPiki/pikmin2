@@ -444,6 +444,14 @@ struct J2DScreen : public J2DPane {
 
 	static J2DDataManage* mDataManage;
 
+	const JGeometry::TBox2f getDefaultBounds()
+	{
+		JGeometry::TBox2f box;
+		box.i = JGeometry::TVec2f(0.0f, 0.0f);
+		box.f = JGeometry::TVec2f(640.0f, 480.0f);
+		return box;
+	}
+
 	// _000      = VTBL
 	// _000-_100 = J2DPane
 	bool mIsScissor;           // _100

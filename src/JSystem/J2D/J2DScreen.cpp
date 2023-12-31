@@ -11,84 +11,8 @@
 #include "JSystem/JSupport/JSUStream.h"
 #include "JSystem/JUtility/JUTNameTab.h"
 #include "JSystem/JUtility/TColor.h"
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__9J2DScreen
-    __vt__9J2DScreen:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__9J2DScreenFv
-        .4byte getTypeID__9J2DScreenCFv
-        .4byte move__7J2DPaneFff
-        .4byte add__7J2DPaneFff
-        .4byte resize__7J2DPaneFff
-        .4byte setCullBack__7J2DPaneFb
-        .4byte setCullBack__7J2DPaneF11_GXCullMode
-        .4byte setAlpha__7J2DPaneFUc
-        .4byte setConnectParent__7J2DPaneFb
-        .4byte calcMtx__9J2DScreenFv
-        .4byte update__7J2DPaneFv
-        .4byte drawSelf__7J2DPaneFff
-        .4byte drawSelf__9J2DScreenFffPA3_A4_f
-        .4byte search__9J2DScreenFUx
-        .4byte searchUserInfo__9J2DScreenFUx
-        .4byte makeMatrix__7J2DPaneFff
-        .4byte makeMatrix__7J2DPaneFffff
-        .4byte isUsed__9J2DScreenFPC7ResTIMG
-        .4byte isUsed__9J2DScreenFPC7ResFONT
-        .4byte clearAnmTransform__9J2DScreenFv
-        .4byte rewriteAlpha__7J2DPaneFv
-        .4byte setAnimation__9J2DScreenFP10J2DAnmBase
-        .4byte setAnimation__9J2DScreenFP15J2DAnmTransform
-        .4byte setAnimation__9J2DScreenFP11J2DAnmColor
-        .4byte setAnimation__9J2DScreenFP16J2DAnmTexPattern
-        .4byte setAnimation__9J2DScreenFP19J2DAnmTextureSRTKey
-        .4byte setAnimation__9J2DScreenFP15J2DAnmTevRegKey
-        .4byte setAnimation__9J2DScreenFP20J2DAnmVisibilityFull
-        .4byte setAnimation__9J2DScreenFP14J2DAnmVtxColor
-        .4byte animationTransform__7J2DPaneFPC15J2DAnmTransform
-        .4byte setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull
-        .4byte setAnimationVF__9J2DScreenFP20J2DAnmVisibilityFull
-        .4byte setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor
-        .4byte setAnimationVC__9J2DScreenFP14J2DAnmVtxColor
-        .4byte animationPane__7J2DPaneFPC15J2DAnmTransform
-        .4byte
-   createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUl
-        .4byte
-   createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUlP10JKRArchive
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global mDataManage__9J2DScreen
-    mDataManage__9J2DScreen:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516840
-    lbl_80516840:
-        .4byte 0x00000000
-    .global lbl_80516844
-    lbl_80516844:
-        .4byte 0x44200000
-    .global lbl_80516848
-    lbl_80516848:
-        .4byte 0x43F00000
-        .4byte 0x00000000
-    .global lbl_80516850
-    lbl_80516850:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_80516858
-    lbl_80516858:
-        .float -1.0
-    .global lbl_8051685C
-    lbl_8051685C:
-        .float 1.0
-*/
+#include "JSystem/J2D/J2DGrafContext.h"
+#include "JSystem/J2D/J2DMaterialFactory.h"
 
 J2DDataManage* J2DScreen::mDataManage;
 
@@ -97,12 +21,9 @@ J2DDataManage* J2DScreen::mDataManage;
  * @note Size: 0xA8
  */
 J2DScreen::J2DScreen()
-    : J2DPane(nullptr, true, 'root', JGeometry::TBox2f(0.0f, 0.0f, 640.0f, 480.0f))
-// : J2DPane(nullptr, true, 'root', JGeometry::TBox2f(JGeometry::TVec2f(0.0f), 640.0f, 480.0f))
-// : J2DPane(nullptr, true, 'root', JGeometry::TBox2f(0.0f, 0.0f, JGeometry::TVec2f(640.0f, 480.0f)))
+    : J2DPane(nullptr, true, 'root', getDefaultBounds())
 {
-	mColor.set(0xFFFFFFFF);
-	_004           = 0xFFFF;
+	mAnimPaneIndex = 0xFFFF;
 	mIsScissor     = false;
 	mMaterialCount = 0;
 	mMaterials     = nullptr;
@@ -817,15 +738,6 @@ u32 J2DScreen::makeHierarchyPanes(J2DPane* parent, JSURandomInputStream* input, 
 }
 
 /**
- * @note Address: 0x8003FF48
- * @note Size: 0x30
- */
-// J2DPane* J2DScreen::createPane(const J2DScrnBlockHeader& header, JSURandomInputStream* input, J2DPane* parent, u32 flags)
-// {
-// 	return createPane(header, input, parent, flags, nullptr);
-// }
-
-/**
  * @note Address: 0x8003FF78
  * @note Size: 0x334
  */
@@ -885,137 +797,39 @@ J2DPane* J2DScreen::createPane(const J2DScrnBlockHeader& header, JSURandomInputS
  * @note Address: 0x800402AC
  * @note Size: 0x1CC
  */
-void J2DScreen::draw(f32, f32, const J2DGrafContext*)
+void J2DScreen::draw(f32 x, f32 y, const J2DGrafContext* graf)
 {
-	/*
-	stwu     r1, -0x120(r1)
-	mflr     r0
-	stw      r0, 0x124(r1)
-	stfd     f31, 0x110(r1)
-	psq_st   f31, 280(r1), 0, qr0
-	stfd     f30, 0x100(r1)
-	psq_st   f30, 264(r1), 0, qr0
-	stw      r31, 0xfc(r1)
-	stw      r30, 0xf8(r1)
-	mr       r30, r3
-	fmr      f30, f1
-	lbz      r0, 0x100(r3)
-	fmr      f31, f2
-	mr       r31, r4
-	cmplwi   r0, 0
-	beq      lbl_80040300
-	addi     r3, r1, 0x14
-	addi     r4, r1, 0x10
-	addi     r5, r1, 0xc
-	addi     r6, r1, 8
-	bl       GXGetScissor
+	u32 x1, y1, wd, ht;
+	if (mIsScissor) {
+		GXGetScissor(&x1, &y1, &wd, &ht);
+	}
 
-lbl_80040300:
-	cmplwi   r31, 0
-	beq      lbl_80040328
-	fmr      f1, f30
-	lbz      r5, 0x100(r30)
-	fmr      f2, f31
-	mr       r3, r30
-	mr       r4, r31
-	li       r6, 1
-	bl       draw__7J2DPaneFffPC14J2DGrafContextbb
-	b        lbl_80040384
+	if (graf) {
+		J2DPane::draw(x, y, graf, mIsScissor, true);
+	} else {
+		J2DOrthoGraph ortho(0.0f, 0.0f, 640.0f, 480.0f, -1.0f, 1.0f);
+		ortho.setPort();
+		J2DPane::draw(x, y, &ortho, mIsScissor, true);
+	}
 
-lbl_80040328:
-	lfs      f1, lbl_80516840@sda21(r2)
-	addi     r3, r1, 0x18
-	lfs      f3, lbl_80516844@sda21(r2)
-	fmr      f2, f1
-	lfs      f4, lbl_80516848@sda21(r2)
-	lfs      f5, lbl_80516858@sda21(r2)
-	lfs      f6, lbl_8051685C@sda21(r2)
-	bl       __ct__13J2DOrthoGraphFffffff
-	addi     r3, r1, 0x18
-	bl       setPort__13J2DOrthoGraphFv
-	fmr      f1, f30
-	lbz      r5, 0x100(r30)
-	fmr      f2, f31
-	mr       r3, r30
-	addi     r4, r1, 0x18
-	li       r6, 1
-	bl       draw__7J2DPaneFffPC14J2DGrafContextbb
-	lis      r4, __vt__13J2DOrthoGraph@ha
-	lis      r3, __vt__14J2DGrafContext@ha
-	addi     r0, r4, __vt__13J2DOrthoGraph@l
-	stw      r0, 0x18(r1)
-	addi     r0, r3, __vt__14J2DGrafContext@l
-	stw      r0, 0x18(r1)
+	if (mIsScissor) {
+		GXSetScissor(x1, y1, wd, ht);
+	}
 
-lbl_80040384:
-	lbz      r0, 0x100(r30)
-	cmplwi   r0, 0
-	beq      lbl_800403A4
-	lwz      r3, 0x14(r1)
-	lwz      r4, 0x10(r1)
-	lwz      r5, 0xc(r1)
-	lwz      r6, 8(r1)
-	bl       GXSetScissor
-
-lbl_800403A4:
-	li       r3, 0
-	bl       GXSetNumIndStages
-	li       r31, 0
-
-lbl_800403B0:
-	mr       r3, r31
-	bl       GXSetTevDirect
-	addi     r31, r31, 1
-	cmpwi    r31, 0x10
-	blt      lbl_800403B0
-	li       r3, 1
-	bl       GXSetNumTevStages
-	li       r3, 0
-	li       r4, 4
-	bl       GXSetTevOp
-	li       r3, 0
-	li       r4, 0xff
-	li       r5, 0xff
-	li       r6, 4
-	bl       GXSetTevOrder
-	li       r3, 0xd
-	li       r4, 0
-	bl       GXSetVtxDesc
-	li       r3, 0
-	bl       GXSetCullMode
-	li       r3, 0
-	bl       GXSetNumTexGens
-	li       r3, 4
-	li       r4, 0
-	li       r5, 0
-	li       r6, 1
-	li       r7, 0
-	li       r8, 0
-	li       r9, 2
-	bl       GXSetChanCtrl
-	li       r31, 0
-
-lbl_8004042C:
-	mr       r3, r31
-	li       r4, 0
-	li       r5, 1
-	li       r6, 2
-	li       r7, 3
-	bl       GXSetTevSwapModeTable
-	addi     r31, r31, 1
-	cmpwi    r31, 4
-	blt      lbl_8004042C
-	psq_l    f31, 280(r1), 0, qr0
-	lfd      f31, 0x110(r1)
-	psq_l    f30, 264(r1), 0, qr0
-	lfd      f30, 0x100(r1)
-	lwz      r31, 0xfc(r1)
-	lwz      r0, 0x124(r1)
-	lwz      r30, 0xf8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x120
-	blr
-	*/
+	GXSetNumIndStages(0);
+	for (int i = 0; i < 16; i++) {
+		GXSetTevDirect((GXTevStageID)i);
+	}
+	GXSetNumTevStages(1);
+	GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
+	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+	GXSetVtxDesc(GX_VA_TEX0, GX_NONE);
+	GXSetCullMode(GX_CULL_NONE);
+	GXSetNumTexGens(0);
+	GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, 0, GX_DF_NONE, GX_AF_NONE);
+	for (int i = 0; i < 4; i++) {
+		GXSetTevSwapModeTable((GXTevSwapSel)i, GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE, GX_CH_ALPHA);
+	}
 }
 
 /**
@@ -1047,6 +861,26 @@ J2DPane* J2DScreen::searchUserInfo(u64 p1) { return (p1 == 0) ? nullptr : J2DPan
  */
 void J2DScreen::drawSelf(f32, f32, Mtx*)
 {
+	u8 test = ((u8)mColor * mAlpha) / 255;
+	if (test) {
+		JUtility::TColor color1;
+		color1.setRGBA(mColor);
+		GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET);
+		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+		GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+
+		f32 zero = 0.0f;
+		GXPosition3f32(zero, zero, zero);
+		GX_WRITE_U32((u32)color1);
+		GXPosition3f32(mBounds.getWidth(), zero, zero);
+		GX_WRITE_U32((u32)color1);
+		GXPosition3f32(mBounds.getWidth(), mBounds.getHeight(), zero);
+		GX_WRITE_U32((u32)color1);
+		GXPosition3f32(zero, mBounds.getHeight(), zero);
+		GX_WRITE_U32((u32)color1);
+
+		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1241,6 +1075,54 @@ lbl_8004075C:
  */
 bool J2DScreen::createMaterial(JSURandomInputStream* input, u32 flags, JKRArchive* archive)
 {
+	int initialPosition = input->getPosition();
+	int v1;
+	input->read(&v1, 8);
+	s16 materials;
+	input->read(materials);
+	mMaterialCount = materials;
+	input->skip(2);
+
+	if (flags & 0x1f0000) {
+		mMaterials = new J2DMaterial[mMaterialCount];
+	} else {
+		mMaterials = new (-4) J2DMaterial[mMaterialCount];
+	}
+
+	J2DMaterialBlock* blocks = new (-4) J2DMaterialBlock[v1];
+	if (mMaterials && blocks) {
+		input->seek(initialPosition, SEEK_SET);
+		input->read(blocks, v1);
+
+		J2DMaterialFactory factory(blocks[0]);
+		for (u16 i = 0; i < mMaterialCount; i++) {
+			factory.create(&mMaterials[i], i, flags, mTexRes, mFontRes, archive);
+		}
+		if ((flags & 0x1f0000)) {
+			ResNTAB* tab = new ResNTAB;
+			if (tab) {
+				mNameTab = new JUTNameTab(tab);
+				delete[] tab;
+			}
+		}
+		delete[] blocks;
+		return true;
+	}
+	delete[] blocks;
+	delete[] mMaterials;
+	mMaterialCount = 0;
+	mMaterials     = nullptr;
+	delete[] mTexRes;
+	mTexRes = nullptr;
+	delete[] mFontRes;
+	mFontRes = nullptr;
+	if (mNameTab) {
+		delete[] mNameTab->mNameTable;
+		delete mNameTab;
+		mNameTab = nullptr;
+	}
+	return false;
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x90(r1)
