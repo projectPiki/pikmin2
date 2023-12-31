@@ -74,14 +74,11 @@ struct EnemyNumInfo {
 	}
 	inline u8 getEnemyNumData(int enemyID)
 	{
-		u8 num = 0;
 		for (int i = 0; i < gEnemyInfoNum; i++) {
-			if (enemyID == mEnemyNumList[i].mEnemyID) {
-				num = mEnemyNumList[i].mCount;
-				break;
+			if (mEnemyNumList[i].mEnemyID == enemyID) {
+				return mEnemyNumList[i].mCount;
 			}
 		}
-		return num;
 	}
 
 	u8 _44[4];                  // _00
@@ -209,6 +206,23 @@ struct GeneralEnemyMgr : public GenericObjectMgr, public CNode {
 	// unused/inlined:
 	void birth(char*, EnemyBirthArg&);
 	inline char getEnemyMember(int id, int flags) { return EnemyInfoFunc::getEnemyMember(id, flags); }
+	inline u8 getEnemyCount(int enemyID, int mgrID)
+	{
+		u8 num = 0;
+
+		for (int i = 0; i < gEnemyInfoNum; i++) {
+			EnemyTypeID* typeID = &mEnemyNumInfo.mEnemyNumList[i];
+
+			bool eq = (u8)(enemyID == mgrID);
+			int id  = eq ? getEnemyMgrID(typeID->mEnemyID) : typeID->mEnemyID;
+
+			if (id == enemyID) {
+				num += typeID->mCount;
+			}
+		}
+
+		return num;
+	}
 	void setParmsDebugNameAndID();
 	void resetParmsDebugNameAndID();
 	void setParmsDebugSoundInfo();

@@ -717,27 +717,17 @@ void GeneralEnemyMgr::addEnemyNum(int enemyID, u8 max, GenObjectEnemy* genObj)
  */
 u8 GeneralEnemyMgr::getEnemyNum(int enemyID, bool doFullCount)
 {
-	u8 num = 0;
+
 	if (doFullCount) {
 		if (mEnemyNumInfo.mEnemyNumList) {
-			int mgrID = getEnemyMgrID(enemyID);
-
-			for (int i = 0; i < gEnemyInfoNum; i++) {
-				EnemyTypeID* typeID = &mEnemyNumInfo.mEnemyNumList[i];
-
-				bool eq = (u8)(enemyID == mgrID);
-				int id  = eq ? getEnemyMgrID(typeID->mEnemyID) : typeID->mEnemyID;
-
-				if (id == enemyID) {
-					num += typeID->mCount;
-				}
-			}
-
-			return num;
+			return (u8)getEnemyCount(enemyID, getEnemyMgrID(enemyID));
 		}
+
+		return 0;
 	}
 
 	return mEnemyNumInfo.getEnemyNumData(enemyID);
+
 	/*
 	stwu     r1, -0x10(r1)
 	clrlwi.  r0, r5, 0x18
