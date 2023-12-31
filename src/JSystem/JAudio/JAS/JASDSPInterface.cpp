@@ -16,6 +16,7 @@ static f32 sDSPVolume;
 static const u16 DSPADPCM_FILTER[32] ATTRIBUTE_ALIGN(32)
     = { 0x0,    0x0,    0x800,  0x0,    0x0,    0x800,  0x400, 0x400,  0x1000, 0xF800, 0xE00,  0xFA00, 0xC00,  0xFC00, 0x1200, 0xF600,
 	    0x1068, 0xF738, 0x12C0, 0xF704, 0x1400, 0xF400, 0x800, 0xF800, 0x400,  0xFC00, 0xFC00, 0x400,  0xFC00, 0x0,    0xF800, 0x0 };
+
 static const u16 DSPRES_FILTER[640] ATTRIBUTE_ALIGN(32) = {
 	0xC39,  0x66AD, 0xD46,  0xFFDF, 0xB39,  0x6696, 0xE5F,  0xFFD8, 0xA44,  0x6669, 0xF83,  0xFFD0, 0x95A,  0x6626, 0x10B4, 0xFFC8, 0x87D,
 	0x65CD, 0x11F0, 0xFFBF, 0x7AB,  0x655E, 0x1338, 0xFFB6, 0x6E4,  0x64D9, 0x148C, 0xFFAC, 0x628,  0x643F, 0x15EB, 0xFFA1, 0x577,  0x638F,
@@ -206,38 +207,38 @@ void getFXHandleNc(u8)
  * @note Address: 0x800A54E4
  * @note Size: 0x154
  */
-bool setFXLine(u8 lineIndex, s16* p2, FxlineConfig_* config)
+bool setFXLine(u8 lineIndex, s16* audioBuffer, FxlineConfig_* config)
 {
-	Fxline& fx  = getFXHandle(lineIndex);
-	BOOL enable = OSDisableInterrupts();
-	fx._00      = 0;
+	Fxline& fx       = getFXHandle(lineIndex);
+	BOOL enable      = OSDisableInterrupts();
+	fx.mBufferStatus = 0;
 
 	if (config) {
 		fx._0A = config->_04;
 		fx._08 = SEND_TABLE[config->_02];
 		fx._0E = config->_08;
 		fx._0C = SEND_TABLE[config->_06];
-		fx._02 = config->_0C;
+		fx._02 = config->mBufferCount;
 		for (int i = 0; i < 8; i++) {
 			fx._10[i] = config->_10[i];
 		}
 	}
 
-	if (p2 && config) {
+	if (audioBuffer && config) {
 		// TODO: sizeof
-		size_t bufLength = config->_0C * 0xA0;
-		fx._04           = p2;
-		JASCalc::bzero(p2, bufLength);
-		DCFlushRange(p2, bufLength);
+		size_t length   = config->mBufferCount * 0xA0;
+		fx.mAudioBuffer = audioBuffer;
+		JASCalc::bzero(audioBuffer, length);
+		DCFlushRange(audioBuffer, length);
 
-	} else if (!config || p2) {
-		fx._04 = p2;
+	} else if (!config || audioBuffer) {
+		fx.mAudioBuffer = audioBuffer;
 	}
 
-	if (fx._04) {
-		fx._00 = config->_00;
+	if (fx.mAudioBuffer) {
+		fx.mBufferStatus = config->mStatus;
 	} else {
-		fx._00 = 0;
+		fx.mBufferStatus = 0;
 	}
 
 	DCFlushRange(&fx, sizeof(fx));
@@ -261,12 +262,12 @@ void changeFXLineParam(u8, u8, u32)
  */
 void TChannel::init()
 {
-	mPauseFlag  = 0;
-	mIsFinished = false;
-	mForcedStop = false;
-	mIsActive   = false;
-	_58         = 0;
-	_68         = 0;
+	mPauseFlag          = 0;
+	mIsFinished         = false;
+	mForcedStop         = false;
+	mIsActive           = false;
+	mIsMixerInitialized = 0;
+	mBlockCount         = 0;
 	initFilter();
 }
 
@@ -297,11 +298,7 @@ void TChannel::playStart()
  * @note Address: 0x800A5714
  * @note Size: 0xC
  */
-void TChannel::playStop()
-{
-	// Generated from sth r0, 0x0(r3)
-	mIsActive = false;
-}
+void TChannel::playStop() { mIsActive = false; }
 
 /**
  * @note Address: 0x800A5720
@@ -355,43 +352,48 @@ u16 TChannel::getRemainSamples() const
  * @note Address: 0x800A5750
  * @note Size: 0x150
  */
-void TChannel::setWaveInfo(JASWaveInfo const& info, u32 p2, u32 p3)
+void TChannel::setWaveInfo(JASWaveInfo const& info, u32 dataOffset, u32 blockCount)
 {
 	static u8 COMP_BLOCKSAMPLES[8] = { 0x10, 0x10, 0x01, 0x01, 0x01, 0x10, 0x10, 0x01 };
 	static u8 COMP_BLOCKBYTES[8]   = { 0x9, 0x5, 0x8, 0x10, 0x1, 0x1, 0x1, 0x1 };
 
-	_118 = p2;
-	_64  = COMP_BLOCKSAMPLES[info._00];
-	_100 = COMP_BLOCKBYTES[info._00];
-	_68  = 0;
-	if (_100 < 4) {
+	mDataOffset      = dataOffset;
+	mSamplesPerBlock = COMP_BLOCKSAMPLES[info.mBlockType];
+	mBytesPerBlock   = COMP_BLOCKBYTES[info.mBlockType];
+
+	mBlockCount = 0;
+
+	if (mBytesPerBlock < 4) {
 		return;
 	}
+
 	_11C = info._1C;
 	_102 = info._10;
 	if (_102 != 0) {
-		if (p3 == 1) {
-			p3 = info._14;
+		if (blockCount == 1) {
+			blockCount = info.mBlockCount;
 		}
-		_110 = info._14;
+
+		_110 = info.mBlockCount;
 		_114 = info._18;
 		_104 = info._20;
 		_106 = info._22;
 	} else {
 		_114 = _11C;
 	}
-	if (p3 != 0 && _114 > p3) {
-		switch (info._00) {
+
+	if (blockCount != 0 && _114 > blockCount) {
+		switch (info.mBlockType) {
 		case 0:
 		case 1:
-			_68 = p3;
-			_118 += p3 * _100 >> 4;
-			_110 -= p3;
-			_114 -= p3;
+			mBlockCount = blockCount;
+			mDataOffset += blockCount * mBytesPerBlock >> 4;
+			_110 -= blockCount;
+			_114 -= blockCount;
 			break;
 		case 2:
 		case 3:
-			_68 = p3;
+			mBlockCount = blockCount;
 			break;
 		}
 	}
@@ -405,11 +407,11 @@ void TChannel::setWaveInfo(JASWaveInfo const& info, u32 p2, u32 p3)
  * @note Address: 0x800A58A0
  * @note Size: 0x18
  */
-void TChannel::setOscInfo(u32 p1)
+void TChannel::setOscInfo(u32 oscInfo)
 {
-	_118 = 0;
-	_64  = 0x10;
-	_100 = p1;
+	mDataOffset      = 0;
+	mSamplesPerBlock = 0x10;
+	mBytesPerBlock   = oscInfo;
 }
 
 /**
@@ -418,11 +420,11 @@ void TChannel::setOscInfo(u32 p1)
  */
 void TChannel::initAutoMixer()
 {
-	if (_58) {
-		_54 = _56;
+	if (mIsMixerInitialized) {
+		mCurrentMixerValue = mMixerLevel;
 	} else {
-		_54 = 0;
-		_58 = 1;
+		mCurrentMixerValue  = 0;
+		mIsMixerInitialized = 1;
 	}
 }
 
@@ -430,12 +432,12 @@ void TChannel::initAutoMixer()
  * @note Address: 0x800A58E4
  * @note Size: 0x2C
  */
-void TChannel::setAutoMixer(u16 p1, u8 p2, u8 p3, u8 p4, u8 p5)
+void TChannel::setAutoMixer(u16 level, u8 p2, u8 p3, u8 p4, u8 p5)
 {
-	_50 = (p2 << 8) | p3;
-	_52 = (p4 << 8) | (p4 << 1);
-	_56 = p1;
-	_58 = 1;
+	_50                 = (p2 << 8) | p3;
+	_52                 = (p4 << 8) | (p4 << 1);
+	mMixerLevel         = level;
+	mIsMixerInitialized = 1;
 }
 
 /**
@@ -474,6 +476,7 @@ void TChannel::setPitch(u16 pitch)
 	if (pitch >= 32767) {
 		pitch = 32767;
 	}
+
 	mPitch = pitch;
 }
 
@@ -563,17 +566,19 @@ void TChannel::initFilter()
  * @note Address: 0x800A5A30
  * @note Size: 0x38
  */
-void TChannel::setFilterMode(u16 p1)
+void TChannel::setFilterMode(u16 filterMode)
 {
-	u8 v1 = p1 & 0x1F;
-	if (p1 & 0x20) {
+	u8 v1 = filterMode & 0x1F;
+
+	if (filterMode & 0x20) {
 		if (v1 > 20) {
 			v1 = 20;
 		}
 	} else if (v1 > 24) {
 		v1 = 24;
 	}
-	mFilterMode = (p1 & 0x20) + v1;
+
+	mFilterMode = (filterMode & 0x20) + v1;
 }
 
 /**

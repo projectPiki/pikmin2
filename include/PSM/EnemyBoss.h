@@ -39,7 +39,7 @@ struct EnemyBoss : public EnemyBase {
 	bool mAppearFlag;         // _FC
 	bool mIsFirstAppear;      // _FD
 	u8 _FE;                   // _FE - unknown
-	u8 _FF;                   // _FF
+	u8 mHasReset;                   // _FF
 };
 
 /**

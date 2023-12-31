@@ -122,9 +122,9 @@ void TTitleMgr::init()
 	mCameraMgr.mPosition.y = 1.0f;
 	mCameraMgr.mPosition.z = 0.0f;
 
-	mCameraMgr._18C.x = 0.0f;
-	mCameraMgr._18C.y = 0.0f;
-	mCameraMgr._18C.z = -1.0f;
+	mCameraMgr.mLookAtRotation.x = 0.0f;
+	mCameraMgr.mLookAtRotation.y = 0.0f;
+	mCameraMgr.mLookAtRotation.z = -1.0f;
 
 	mCameraMgr.mLookAtPosition = mCameraMgr.mPosition;
 	mCameraMgr.mLookAtPosition.y -= 1.0f;

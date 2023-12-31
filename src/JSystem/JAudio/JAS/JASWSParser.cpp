@@ -48,13 +48,13 @@ JASBasicWaveBank* JASWSParser::createBasicWaveBank(void* stream)
 		for (int waveIndex = 0; waveIndex < ctrlRaw->mWaveCount; waveIndex++) {
 			TWave* waveRaw = JSUConvertOffsetToPtr<TWave>(header, archiveRaw->mWaveOffsets[waveIndex]);
 			JASWaveInfo info;
-			info._00               = waveRaw->_01;
+			info.mBlockType               = waveRaw->_01;
 			info._01               = waveRaw->_02;
 			info._04               = waveRaw->_04;
 			info.mOffset           = waveRaw->mOffset;
 			info._0C               = waveRaw->_0C;
 			info._10               = waveRaw->_10;
-			info._14               = waveRaw->_14;
+			info.mBlockCount               = waveRaw->_14;
 			info._18               = waveRaw->_18;
 			info._1C               = waveRaw->_1C;
 			info._20               = waveRaw->_20;
@@ -254,13 +254,13 @@ JASSimpleWaveBank* JASWSParser::createSimpleWaveBank(void* stream)
 	for (int waveIndex = 0; waveIndex < ctrlRaw->mWaveCount; waveIndex++) {
 		TWave* waveRaw = JSUConvertOffsetToPtr<TWave>(header, archiveRaw->mWaveOffsets[waveIndex]);
 		JASWaveInfo info;
-		info._00               = waveRaw->_01;
+		info.mBlockType               = waveRaw->_01;
 		info._01               = waveRaw->_02;
 		info._04               = waveRaw->_04;
 		info.mOffset           = waveRaw->mOffset;
 		info._0C               = waveRaw->_0C;
 		info._10               = waveRaw->_10;
-		info._14               = waveRaw->_14;
+		info.mBlockCount               = waveRaw->_14;
 		info._18               = waveRaw->_18;
 		info._1C               = waveRaw->_1C;
 		info._20               = waveRaw->_20;

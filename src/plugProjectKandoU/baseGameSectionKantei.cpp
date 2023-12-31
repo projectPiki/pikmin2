@@ -259,7 +259,7 @@ void BaseGameSection::ZoomCamera::makeLookAt()
 	f32 val2 = cosf(mAngleX);
 	f32 x2   = -val2 * cosf(mAngleY);
 
-	_18C = Vector3f(x2, y2, z2);
+	mLookAtRotation = Vector3f(x2, y2, z2);
 	/*
 	stwu     r1, -0x70(r1)
 	lfs      f0, lbl_8051A578@sda21(r2)

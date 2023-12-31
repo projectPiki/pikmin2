@@ -2015,7 +2015,7 @@ inline EnemyBoss::EnemyBoss(Game::EnemyBase* gameObj)
     , mAppearFlag(false)
     , mIsFirstAppear(0)
     , _FE(1)
-    , _FF(0)
+    , mHasReset(0)
 {
 	// UNUSED FUNCTION
 }

@@ -390,7 +390,7 @@ void Obj::setIKParameter()
 	mIkSystemParms->_00           = 12;
 	mIkSystemParms->_04           = 10.0f;
 	mIkSystemParms->_08           = 40.0f;
-	mIkSystemParms->_28           = 0.5f;
+	mIkSystemParms->mBendFactor   = 0.5f;
 	mIkSystemParms->mMaxTurnAngle = C_PARMS->mGeneral.mMaxTurnAngle.mValue;
 	mIkSystemParms->mMoveSpeed    = C_PARMS->mGeneral.mMoveSpeed.mValue;
 

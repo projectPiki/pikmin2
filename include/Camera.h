@@ -131,7 +131,7 @@ struct LookAtCamera : public Camera {
 	Matrixf mLookMatrix;      // _144
 	Vector3f mPosition;       // _174
 	Vector3f mLookAtPosition; // _180
-	Vector3f _18C;            // _18C
+	Vector3f mLookAtRotation; // _18C
 };
 
 struct BlendCamera : public Camera {
@@ -144,10 +144,10 @@ struct BlendCamera : public Camera {
 	void setCameras(Camera**);
 
 	// Camera _00 - _144
-	int mCameraCount;  // _144
-	Camera** mCameras; // _148
-	f32 mBlendFactor;  // _14C
-	Matrixf _150;      // _150
+	int mCameraCount;      // _144
+	Camera** mCameras;     // _148
+	f32 mBlendFactor;      // _14C
+	Matrixf mTargetMatrix; // _150
 };
 
 namespace PSM {

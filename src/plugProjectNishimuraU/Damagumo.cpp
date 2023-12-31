@@ -352,7 +352,7 @@ void Obj::setupIKSystem()
  */
 void Obj::setIKParameter()
 {
-	mIkSystemParms->_28                  = 0.67f;
+	mIkSystemParms->mBendFactor          = 0.67f;
 	mIkSystemParms->mMaxTurnAngle        = C_PARMS->mGeneral.mMaxTurnAngle.mValue;
 	mIkSystemParms->mMoveSpeed           = C_PARMS->mGeneral.mMoveSpeed.mValue;
 	mIkSystemParms->mBaseCoefficient     = C_PROPERPARMS.mBaseFactor.mValue;
@@ -597,7 +597,7 @@ void Obj::resetBossAppearBGM()
 	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
 	PSM::checkBoss(soundObj);
 	soundObj->setAppearFlag(false);
-	soundObj->_FF = 1;
+	soundObj->mHasReset = 1;
 }
 
 /**

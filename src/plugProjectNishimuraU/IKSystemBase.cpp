@@ -277,7 +277,7 @@ void IKSystemBase::makeBendRatio()
 
 	f32 ratio = 1.33f * ((1.0f - absVal(1.0f - mMoveRatio)) - 0.25f);
 
-	mBendRatio = mParams->_28 * boundAboveBelow(ratio, 0.0f, 1.0f);
+	mBendRatio = mParams->mBendFactor * boundAboveBelow(ratio, 0.0f, 1.0f);
 }
 
 /**

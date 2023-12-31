@@ -10,14 +10,14 @@ namespace JASDsp {
 // typedef s16 Fxline[0x10];
 /** @fabricated */
 struct Fxline {
-	u16 _00;    // _00
-	u16 _02;    // _02
-	s16* _04;   // _04
-	u16 _08;    // _08
-	u16 _0A;    // _0A
-	u16 _0C;    // _0C
-	u16 _0E;    // _0E
-	u16 _10[8]; // _10
+	u16 mBufferStatus; // _00
+	u16 _02;           // _02
+	s16* mAudioBuffer; // _04
+	u16 _08;           // _08
+	u16 _0A;           // _0A
+	u16 _0C;           // _0C
+	u16 _0E;           // _0E
+	u16 _10[8];        // _10
 
 	// u16 _12;  // _12
 	// u16 _14;  // _14
@@ -81,23 +81,23 @@ struct TChannel {
 	u8 _30[0x20];            // _30
 	u16 _50;                 // _50
 	u16 _52;                 // _52
-	u16 _54;                 // _54
-	u16 _56;                 // _56
-	u16 _58;                 // _58
+	u16 mCurrentMixerValue;  // _54
+	u16 mMixerLevel;         // _56
+	u16 mIsMixerInitialized; // _58
 	u16 _5A;                 // _5A
 	u8 _5C[4];               // _5C
 	u16 _60;                 // _60
 	u16 _62;                 // _62
-	u16 _64;                 // _64
+	u16 mSamplesPerBlock;    // _64
 	u16 _66;                 // _66
-	u32 _68;                 // _68
+	u32 mBlockCount;         // _68
 	u8 _6C[0xC];             // _6C
 	s16 _78[4];              // _78
 	s16 _80[20];             // _80
 	s16 _A8[4];              // _A8
 	u16 _B0[0x10];           // _B0
 	u8 _D0[0x30];            // _D0
-	u16 _100;                // _100
+	u16 mBytesPerBlock;      // _100
 	u16 _102;                // _102
 	s16 _104;                // _104
 	s16 _106;                // _106
@@ -106,7 +106,7 @@ struct TChannel {
 	u32 _10C;                // _10C
 	u32 _110;                // _110
 	u32 _114;                // _114
-	u32 _118;                // _118
+	u32 mDataOffset;         // _118
 	u32 _11C;                // _11C
 	s16 mFir8FilterParam[8]; // _120
 	u8 _130[0x18];           // _130
@@ -116,14 +116,14 @@ struct TChannel {
 };
 
 struct FxlineConfig_ {
-	u8 _00;     // _00
-	u16 _02;    // _02
-	s16 _04;    // _04
-	u16 _06;    // _06
-	s16 _08;    // _08
-	s16 _0A;    // _0A
-	u32 _0C;    // _0C
-	s16 _10[8]; // _10
+	u8 mStatus;       // _00
+	u16 _02;          // _02
+	s16 _04;          // _04
+	u16 _06;          // _06
+	s16 _08;          // _08
+	s16 _0A;          // _0A
+	u32 mBufferCount; // _0C
+	s16 _10[8];       // _10
 };
 
 void boot(DSPCallback callback);

@@ -847,7 +847,7 @@ LookAtCamera::LookAtCamera()
 {
 	mPosition       = Vector3f(0.0f, 0.0f, 1000.0f);
 	mLookAtPosition = 0.0f;
-	_18C            = Vector3f(0.0f, 1.0f, 0.0f);
+	mLookAtRotation = Vector3f(0.0f, 1.0f, 0.0f);
 	PSMTXIdentity(mLookMatrix.mMatrix.mtxView);
 	mViewMatrix = &mLookMatrix;
 }
@@ -863,7 +863,10 @@ LookAtCamera::LookAtCamera()
  * @note Address: 0x8041B6F4
  * @note Size: 0x34
  */
-void LookAtCamera::updateMatrix() { C_MTXLookAt(mLookMatrix.mMatrix.mtxView, (Vec*)&mPosition, (Vec*)&_18C, (Vec*)&mLookAtPosition); }
+void LookAtCamera::updateMatrix()
+{
+	C_MTXLookAt(mLookMatrix.mMatrix.mtxView, (Vec*)&mPosition, (Vec*)&mLookAtRotation, (Vec*)&mLookAtPosition);
+}
 
 /**
  * @note Address: 0x8041B728
@@ -888,8 +891,8 @@ void BlendCamera::setCameras(Camera** camList)
 
 	mBlendFactor = 0.0f;
 
-	PSMTXCopy(camList[0]->getViewMatrix(false)->mMatrix.mtxView, _150.mMatrix.mtxView);
-	mViewMatrix = &_150;
+	PSMTXCopy(camList[0]->getViewMatrix(false)->mMatrix.mtxView, mTargetMatrix.mMatrix.mtxView);
+	mViewMatrix = &mTargetMatrix;
 }
 
 /**
@@ -971,7 +974,7 @@ bool BlendCamera::doUpdate()
 
 	vect3.z = vect3.z * vectMatrix.mMatrix.structView.zz + vectMatrix.mMatrix.structView.zx + vectMatrix.mMatrix.structView.zy;
 
-	_150.makeTQ(vect3, slerpQuat);
+	mTargetMatrix.makeTQ(vect3, slerpQuat);
 
 	return;
 	/*

@@ -28,7 +28,7 @@ inline void disableAppearFlag(PSM::EnemyBase* soundObj)
 	PSM::EnemyBoss* bossObj = static_cast<PSM::EnemyBoss*>(soundObj);
 	if (bossObj) {
 		bossObj->setAppearFlag(false);
-		bossObj->_FF = true;
+		bossObj->mHasReset = true;
 	}
 }
 
