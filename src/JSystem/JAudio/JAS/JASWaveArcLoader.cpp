@@ -11,47 +11,6 @@
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global sCurrentDir__16JASWaveArcLoader
-    sCurrentDir__16JASWaveArcLoader:
-        .4byte 0x2F42616E
-        .4byte 0x6B732F00
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__10JASWaveArc
-    __vt__10JASWaveArc:
-        .4byte 0
-        .4byte 0
-        .4byte onDispose__10JASWaveArcFv
-        .4byte onLoadDone__10JASWaveArcFv
-        .4byte onEraseDone__10JASWaveArcFv
-    .global __vt__11JASDisposer
-    __vt__11JASDisposer:
-        .4byte 0
-        .4byte 0
-        .4byte onDispose__11JASDisposerFv
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global sAramHeap__16JASWaveArcLoader
-    sAramHeap__16JASWaveArcLoader:
-        .skip 0x8
-*/
-
 char JASWaveArcLoader::sCurrentDir[0x40] = "/Banks/";
 JASHeap* JASWaveArcLoader::sAramHeap;
 
@@ -192,7 +151,7 @@ bool JASWaveArc::sendLoadCmd()
 	LoadToAramCallbackArgs args;
 	args.mArc        = this;
 	args.mFileNumber = mFileNumber;
-	args._08         = mHeap._38;
+	args._08         = mHeap.mBase;
 	args._0C         = ++_58;
 	if (JASDvd::getThreadPointer()->sendCmdMsg(loadToAramCallback, &args, 0x10) == false) {
 		mHeap.free();

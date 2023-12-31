@@ -45,18 +45,18 @@ struct JASWaveArc : public JASDisposer {
 };
 
 struct JASWaveInfo {
-	u8 _00;    // _00
-	u8 _01;    // _01
-	f32 _04;   // _04
-	u32 _08;   // _08
-	u32 _0C;   // _0C
-	u32 _10;   // _10
-	u32 _14;   // _14
-	u32 _18;   // _18
-	u32 _1C;   // _1C
-	s16 _20;   // _20
-	s16 _22;   // _22
-	void* _24; // _24
+	u8 _00;      // _00
+	u8 _01;      // _01
+	f32 _04;     // _04
+	u32 mOffset; // _08
+	u32 _0C;     // _0C
+	u32 _10;     // _10
+	u32 _14;     // _14
+	u32 _18;     // _18
+	u32 _1C;     // _1C
+	s16 _20;     // _20
+	s16 _22;     // _22
+	void* _24;   // _24
 };
 
 struct JASWaveHandle {
@@ -92,13 +92,13 @@ struct JASBasicWaveBank : public JASWaveBank {
 
 		virtual ~TWaveHandle() { }                                        // _08 (weak)
 		virtual const JASWaveInfo* getWaveInfo() const { return &mInfo; } // _0C (weak)
-		virtual void* getWavePtr() const
+		virtual void* getWavePtr() const                                  // _10 (weak)
 		{
-			if (mHeap->_38 == nullptr) {
+			if (mHeap->mBase == nullptr) {
 				return nullptr;
 			}
-			return mHeap->_38 + mInfo._08;
-		} // _10 (weak)
+			return mHeap->mBase + mInfo.mOffset;
+		}
 
 		JASWaveInfo mInfo; // _04
 		JASHeap* mHeap;    // _2C

@@ -7,27 +7,6 @@
 #include "JSystem/JSupport/JSUList.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_JASHeapCtrl_cpp
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global JASDram
-    JASDram:
-        .skip 0x4
-    .global sAramBase__9JASKernel
-    sAramBase__9JASKernel:
-        .skip 0x4
-    .global sSystemHeap__9JASKernel
-    sSystemHeap__9JASKernel:
-        .skip 0x4
-    .global sCommandHeap__9JASKernel
-    sCommandHeap__9JASKernel:
-        .skip 0x4
-*/
-
 JKRSolidHeap* JASDram;
 
 /**
@@ -37,11 +16,11 @@ JKRSolidHeap* JASDram;
 JASHeap::JASHeap(JASDisposer* disposer)
     : mTree(this)
     , mDisposer(disposer)
-    , _38(nullptr)
-    , _3C(0)
+    , mBase(nullptr)
+    , mSize(0)
     , _40(0)
 {
-	OSInitMutex(&mMutexObject);
+	OSInitMutex(&mMutex);
 }
 
 /**
@@ -93,8 +72,64 @@ void JASHeap::initRootHeap(void*, u32)
  * @note Address: 0x800A6B10
  * @note Size: 0x1D0
  */
-bool JASHeap::alloc(JASHeap*, u32)
+bool JASHeap::alloc(JASHeap* parent, u32 size)
 {
+	OSLockMutex(&mMutex);
+	if (isAllocated()) {
+		OSUnlockMutex(&mMutex);
+		return false;
+	}
+	if (!parent->isAllocated()) {
+		OSUnlockMutex(&mMutex);
+		return false;
+	}
+	size           = OSRoundUp32B(size);
+	u32 curOffset  = parent->getCurOffset();
+	u32 tailOffset = parent->getTailOffset();
+	if (curOffset + size <= tailOffset) {
+		parent->insertChild(this, parent->getTailHeap(), parent->mBase + curOffset, size, false);
+		OSUnlockMutex(&mMutex);
+		return true;
+	}
+
+	s32 minOffset          = -1;
+	u8* minBase            = parent->mBase;
+	bool hasFoundNewOffset = false;
+	JASHeap* nextHeap      = nullptr;
+	void* base;
+	for (JSUTreeIterator<JASHeap> it = parent->mTree.getFirstChild(); it != parent->mTree.getEndChild(); it++) {
+		if (minBase >= parent->mBase + tailOffset) {
+			break;
+		}
+		u32 offset = u32(it->mBase) - u32(minBase);
+		if (offset >= size && offset < minOffset) {
+			nextHeap          = it.getObject();
+			base              = minBase;
+			minOffset         = offset;
+			hasFoundNewOffset = true;
+		}
+		u32 curSize = it->mSize;
+		minBase     = (u8*)it->mBase + curSize;
+	}
+
+	if (minBase != parent->mBase && minBase < parent->mBase + tailOffset) {
+		u32 offset = parent->mBase + parent->mSize - minBase;
+		if (offset >= size && offset < minOffset) {
+			nextHeap          = nullptr;
+			base              = minBase;
+			minOffset         = offset;
+			hasFoundNewOffset = true;
+		}
+	}
+
+	if (!hasFoundNewOffset) {
+		OSUnlockMutex(&mMutex);
+		return false;
+	}
+
+	parent->insertChild(this, nextHeap, base, size, false);
+	OSUnlockMutex(&mMutex);
+	return true;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -241,8 +276,28 @@ lbl_800A6CCC:
  * @note Address: 0x800A6CE0
  * @note Size: 0xE8
  */
-bool JASHeap::allocTail(JASHeap*, u32)
+bool JASHeap::allocTail(JASHeap* parent, u32 size)
 {
+	OSLockMutex(&mMutex);
+	if (isAllocated()) {
+		OSUnlockMutex(&mMutex);
+		return false;
+	}
+	if (!parent->isAllocated()) {
+		OSUnlockMutex(&mMutex);
+		return false;
+	}
+	size           = OSRoundUp32B(size);
+	u32 curOffset  = parent->getCurOffset();
+	u32 tailOffset = parent->getTailOffset();
+	if (curOffset + size > tailOffset) {
+		OSUnlockMutex(&mMutex);
+		return false;
+	}
+	parent->insertChild(this, parent->getTailHeap(), parent->mBase + tailOffset - size, size, true);
+	OSUnlockMutex(&mMutex);
+	return true;
+
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -322,12 +377,45 @@ void* JASHeap::allocAll(JASHeap*)
 	// UNUSED FUNCTION
 }
 
+#pragma dont_inline on
 /**
  * @note Address: 0x800A6DC8
  * @note Size: 0x124
  */
 bool JASHeap::free()
 {
+	OSLockMutex(&mMutex);
+	if (!isAllocated()) {
+		OSUnlockMutex(&mMutex);
+		return false;
+	}
+	JSUTreeIterator<JASHeap> nextIt;
+	for (JSUTreeIterator<JASHeap> it(mTree.getFirstChild()); it != mTree.getEndChild(); it = nextIt) {
+		nextIt = it;
+		nextIt++;
+		it->free();
+	}
+	JSUTree<JASHeap>* parentTree = mTree.getParent();
+	if (parentTree) {
+		JASHeap* parentHeap = parentTree->getObject();
+		if (parentHeap->_40 == this) {
+			JSUTreeIterator<JASHeap> stack_28(mTree.getPrevChild());
+			if (stack_28 != mTree.getEndChild()) {
+				parentHeap->_40 = stack_28.getObject();
+			} else {
+				parentHeap->_40 = nullptr;
+			}
+		}
+		parentTree->removeChild(&mTree);
+	}
+	mBase = nullptr;
+	_40   = nullptr;
+	mSize = 0;
+	if (mDisposer) {
+		mDisposer->onDispose();
+	}
+	OSUnlockMutex(&mMutex);
+	return true;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -426,6 +514,7 @@ lbl_800A6ED4:
 	blr
 	*/
 }
+#pragma dont_inline reset
 
 /**
  * @note Address: N/A
@@ -575,8 +664,26 @@ void JASHeap::dump(int)
  * @note Address: 0x800A6EEC
  * @note Size: 0xE0
  */
-void JASHeap::insertChild(JASHeap*, JASHeap*, void*, u32, bool)
+void JASHeap::insertChild(JASHeap* heap, JASHeap* next, void* base, u32 size, bool doFastInsert)
 {
+	OSLockMutex(&mMutex);
+	if (!doFastInsert) {
+		JSUTreeIterator<JASHeap> it;
+		if (!next) {
+			it = mTree.getLastChild();
+		} else {
+			it = next->mTree.getPrevChild();
+		}
+		JASHeap* r24 = it != mTree.getEndChild() ? it.getObject() : nullptr;
+		if (_40 == r24) {
+			_40 = heap;
+		}
+	}
+	heap->mBase = (u8*)base;
+	heap->mSize = size;
+	heap->_40   = nullptr;
+	mTree.insertChild(&next->mTree, &heap->mTree);
+	OSUnlockMutex(&mMutex);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -655,8 +762,24 @@ lbl_800A6FA8:
  * @note Address: 0x800A6FCC
  * @note Size: 0x8C
  */
-void JASHeap::getTailHeap()
+JASHeap* JASHeap::getTailHeap()
 {
+	JSUTreeIterator<JASHeap> it;
+	OSLockMutex(&mMutex);
+	if (!_40) {
+		it = mTree.getFirstChild();
+	} else {
+		it = _40->mTree.getNextChild();
+	}
+
+	if (it == mTree.getEndChild()) {
+		OSUnlockMutex(&mMutex);
+		return nullptr;
+	}
+
+	JASHeap* outHeap = it.getObject();
+	OSUnlockMutex(&mMutex);
+	return outHeap;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -708,8 +831,13 @@ lbl_800A7044:
  * @note Address: 0x800A7058
  * @note Size: 0xC4
  */
-int JASHeap::getTailOffset()
+u32 JASHeap::getTailOffset()
 {
+	OSLockMutex(&mMutex);
+	JASHeap* heap = getTailHeap();
+	u32 offset    = !heap ? mSize : heap->mBase - mBase;
+	OSUnlockMutex(&mMutex);
+	return offset;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -779,8 +907,12 @@ lbl_800A70F8:
  * @note Address: 0x800A711C
  * @note Size: 0x68
  */
-int JASHeap::getCurOffset()
+u32 JASHeap::getCurOffset()
 {
+	OSLockMutex(&mMutex);
+	u32 offset = !_40 ? 0 : _40->mBase + _40->mSize - mBase;
+	OSUnlockMutex(&mMutex);
+	return offset;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -884,9 +1016,9 @@ void JASSolidHeap::getRemain()
  */
 JASGenericMemPool::JASGenericMemPool()
 {
-	_00 = 0;
-	_04 = 0;
-	_08 = 0;
+	_00           = nullptr;
+	_04           = nullptr;
+	mFreeMemCount = 0;
 }
 
 /**
@@ -902,8 +1034,19 @@ JASGenericMemPool::~JASGenericMemPool()
  * @note Address: 0x800A7198
  * @note Size: 0x94
  */
-void JASGenericMemPool::newMemPool(u32, int)
+void JASGenericMemPool::newMemPool(u32 p1, int memCount)
 {
+	for (int i = 0; i < memCount; i++) {
+		void** mems = new (JASDram, 0) void*[p1];
+		mems[0]     = _00;
+		_00         = mems;
+
+		if (_04 == nullptr) {
+			_04 = mems;
+		}
+	}
+
+	mFreeMemCount += memCount;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -957,56 +1100,35 @@ lbl_800A71F8:
  */
 void* JASGenericMemPool::alloc(u32)
 {
-	/*
-	lwz      r5, 0(r3)
-	cmplwi   r5, 0
-	bne      lbl_800A7240
-	li       r3, 0
-	blr
+	void** mem = _00;
+	if (mem == nullptr) {
+		return nullptr;
+	}
 
-lbl_800A7240:
-	lwz      r0, 0(r5)
-	stw      r0, 0(r3)
-	lwz      r4, 8(r3)
-	addi     r0, r4, -1
-	stw      r0, 8(r3)
-	lwz      r0, 0(r3)
-	cmplwi   r0, 0
-	bne      lbl_800A7268
-	li       r0, 0
-	stw      r0, 4(r3)
+	_00 = (void**)mem[0];
+	mFreeMemCount--;
+	if (_00 == nullptr) {
+		_04 = nullptr;
+	}
 
-lbl_800A7268:
-	mr       r3, r5
-	blr
-	*/
+	return mem;
 }
 
 /**
  * @note Address: 0x800A7270
  * @note Size: 0x34
  */
-void JASGenericMemPool::free(void*, u32)
+void JASGenericMemPool::free(void* mem, u32)
 {
-	/*
-	li       r0, 0
-	stw      r0, 0(r4)
-	lwz      r5, 4(r3)
-	cmplwi   r5, 0
-	beq      lbl_800A728C
-	stw      r4, 0(r5)
-	b        lbl_800A7290
+	((void**)mem)[0] = nullptr;
+	if (_04) {
+		_04[0] = mem;
+	} else {
+		_00 = (void**)mem;
+	}
 
-lbl_800A728C:
-	stw      r4, 0(r3)
-
-lbl_800A7290:
-	stw      r4, 4(r3)
-	lwz      r4, 8(r3)
-	addi     r0, r4, 1
-	stw      r0, 8(r3)
-	blr
-	*/
+	_04 = (void**)mem;
+	mFreeMemCount++;
 }
 
 namespace JASKernel {
@@ -1020,8 +1142,11 @@ static JASCmdHeap* sCommandHeap;
  * @note Address: 0x800A72A4
  * @note Size: 0x118
  */
-void setupRootHeap(JKRSolidHeap*, u32)
+void setupRootHeap(JKRSolidHeap* heap, u32 size)
 {
+	sSystemHeap  = JKRExpHeap::create(size, heap, false);
+	sCommandHeap = new JASCmdHeap();
+	JASDram      = heap;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1129,14 +1254,14 @@ JASCmdHeap* getCommandHeap() { return sCommandHeap; }
  * @note Address: 0x800A73CC
  * @note Size: 0x7C
  */
-void setupAramHeap(u32 u1, u32 u2)
+void setupAramHeap(u32 aramBase, u32 aramSize)
 {
-	sAramBase = u1;
-	OSLockMutex(&audioAramHeap.mMutexObject);
-	audioAramHeap._38 = (u8*)(u1 + 31 & ~31);
-	audioAramHeap._40 = 0;
-	audioAramHeap._3C = u2 - ((u32)audioAramHeap._38 - u1);
-	OSUnlockMutex(&audioAramHeap.mMutexObject);
+	sAramBase = aramBase;
+	OSLockMutex(&audioAramHeap.mMutex);
+	audioAramHeap.mBase = (u8*)(aramBase + 31 & ~31);
+	audioAramHeap._40   = 0;
+	audioAramHeap.mSize = aramSize - ((u32)audioAramHeap.mBase - aramBase);
+	OSUnlockMutex(&audioAramHeap.mMutex);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

@@ -15,9 +15,11 @@ struct JASHeap {
 	bool allocTail(JASHeap*, u32);
 	bool free();
 	void insertChild(JASHeap*, JASHeap*, void*, u32, bool);
-	void getTailHeap();
-	int getTailOffset();
-	int getCurOffset();
+	JASHeap* getTailHeap();
+	u32 getTailOffset();
+	u32 getCurOffset();
+
+	bool isAllocated() { return mBase; }
 
 	// unused/inlined:
 	void adjustSize();
@@ -31,11 +33,11 @@ struct JASHeap {
 	void dump(int);
 
 	JSUTree<JASHeap> mTree; // _00
-	OSMutex mMutexObject;   // _1C
+	OSMutex mMutex;         // _1C
 	JASDisposer* mDisposer; // _34
-	u8* _38;                // _38
-	u32 _3C;                // _3C
-	u32 _40;                // _40
+	u8* mBase;              // _38
+	u32 mSize;              // _3C
+	JASHeap* _40;           // _40
 };
 
 struct JASSolidHeap : public JASHeap {

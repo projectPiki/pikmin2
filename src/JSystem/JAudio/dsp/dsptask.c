@@ -2,7 +2,7 @@
 #include "types.h"
 #include "JSystem/JAudio/DSP.h"
 
-static DSPTaskInfo audio_task;
+static DSPTaskInfo audio_task ATTRIBUTE_ALIGN(32);
 static u8 AUDIO_YIELD_BUFFER[8192] ATTRIBUTE_ALIGN(32);
 
 u8 jdsp[] = {
