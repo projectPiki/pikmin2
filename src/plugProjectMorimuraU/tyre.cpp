@@ -81,7 +81,7 @@ void Obj::onInit(CreatureInitArg* arg)
 	model->mJointTree.mJoints[mTyreRearJointIndex]->mFunction  = rearTyreCallBack;
 
 	mFaceDirection    = mFaceDir;
-	mCurrentRotation  = 0.0f;
+	mCurrentRotation2 = 0.0f;
 	mCurrentRotation  = 0.0f;
 	mRotationOffset   = 0.0f;
 	mRearWheelHeight  = mPosition.y;
@@ -422,24 +422,24 @@ void Obj::frontRollMtxCalc()
 		f32 minRotation = C_PARMS->mMinRotation;
 		f32 angleDist   = angDist(mFaceDir, mFaceDirection);
 		if (angleDist > minRotation) {
-			mCurrentRotation += angleDist * C_PARMS->mRotationRate;
-			if (mCurrentRotation > maxRotation) {
-				mCurrentRotation = maxRotation;
+			mCurrentRotation2 += angleDist * C_PARMS->mRotationRate;
+			if (mCurrentRotation2 > maxRotation) {
+				mCurrentRotation2 = maxRotation;
 			}
 		} else if (angleDist < -minRotation) {
-			mCurrentRotation += angleDist * C_PARMS->mRotationRate;
-			if (mCurrentRotation < -maxRotation) {
-				mCurrentRotation = -maxRotation;
+			mCurrentRotation2 += angleDist * C_PARMS->mRotationRate;
+			if (mCurrentRotation2 < -maxRotation) {
+				mCurrentRotation2 = -maxRotation;
 			}
-		} else if (mCurrentRotation > 0.0f) {
-			mCurrentRotation -= C_PARMS->mReverseRotationRate;
-			if (mCurrentRotation < 0.0f) {
-				mCurrentRotation = 0.0f;
+		} else if (mCurrentRotation2 > 0.0f) {
+			mCurrentRotation2 -= C_PARMS->mReverseRotationRate;
+			if (mCurrentRotation2 < 0.0f) {
+				mCurrentRotation2 = 0.0f;
 			}
 		} else {
-			mCurrentRotation += C_PARMS->mReverseRotationRate;
-			if (mCurrentRotation > 0.0f) {
-				mCurrentRotation = 0.0f;
+			mCurrentRotation2 += C_PARMS->mReverseRotationRate;
+			if (mCurrentRotation2 > 0.0f) {
+				mCurrentRotation2 = 0.0f;
 			}
 		}
 

@@ -40,8 +40,9 @@ void ObjFinalFloor::doCreate(JKRArchive* arc)
 		// Load the animation files.
 		void* file = JKRFileLoader::getGlbResource("final_floor.bck", arc);
 		mAnim1[i]  = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
-		file       = JKRFileLoader::getGlbResource("final_floor.bpk", arc);
-		mAnim2[i]  = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(file));
+
+		file      = JKRFileLoader::getGlbResource("final_floor.bpk", arc);
+		mAnim2[i] = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(file));
 
 		// Set the animations for the screen manager.
 		mScreen[i]->setAnimation(mAnim1[i]);

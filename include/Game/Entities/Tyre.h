@@ -95,7 +95,7 @@ struct Obj : public EnemyBase {
 	f32 mCurrentRotation;                // _2C0
 	f32 mRotationOffset;                 // _2C4
 	f32 mRearWheelHeight;                // _2C8
-	f32 mCurrentRotation;                // _2CC
+	f32 mCurrentRotation2;               // _2CC
 	u8 _2D0;                             // _2D0, unknown
 	bool mIsUnderground;                 // _2D1
 	bool mIsShadowActive;                // _2D2, unknown
