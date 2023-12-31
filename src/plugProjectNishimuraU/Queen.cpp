@@ -390,7 +390,7 @@ void Obj::createCrashFallRock()
 					if (rock) {
 						rock->init(nullptr);
 						rock->disableEvent(0, EB_Cullable);
-						CG_PARMS(rock)->mGeneral.mSightRadius.mValue = 1000.0f;
+						CG_GENERALPARMS(rock).mSightRadius.mValue = 1000.0f;
 					}
 				}
 			}

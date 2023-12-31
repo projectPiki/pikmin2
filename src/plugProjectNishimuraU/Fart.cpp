@@ -41,7 +41,7 @@ void Obj::changeMaterial()
 
 	j3dModel      = mModel->mJ3dModel;
 	modelData     = j3dModel->mModelData;
-	changeTexture = static_cast<Mgr*>(mMgr)->getChangeTexture();
+	changeTexture = C_MGR->getChangeTexture();
 
 	u16 idx                = modelData->mMaterialTable.mMaterialNames->getIndex("karada");
 	J3DMaterial* karadaMat = modelData->mMaterialTable.mMaterials[idx];

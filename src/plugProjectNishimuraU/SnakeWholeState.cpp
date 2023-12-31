@@ -133,7 +133,7 @@ void StateStay::exec(EnemyBase* enemy)
 {
 	Obj* snagret     = OBJ(enemy);
 	Creature* target = nullptr;
-	Parms* parms     = static_cast<Parms*>(snagret->mParms);
+	Parms* parms     = CG_PARMS(snagret);
 	if (snagret->mStateTimer > parms->mProperParms.mUndergroundTime.mValue) {
 		f32 territory    = parms->mGeneral.mTerritoryRadius.mValue;
 		Vector3f homePos = Vector3f(snagret->mHomePosition);
@@ -434,14 +434,14 @@ void StateDisappear::exec(EnemyBase* enemy)
 
 	if (snagret->mCurAnim->mIsPlaying) {
 		if ((u32)snagret->mCurAnim->mType == KEYEVENT_2) {
-			Parms* parms1 = static_cast<Parms*>(snagret->mParms);
+			Parms* parms1 = CG_PARMS(snagret);
 			EnemyFunc::flickNearbyNavi(snagret, parms1->mGeneral.mShakeRange.mValue, parms1->mGeneral.mShakeKnockback.mValue,
 			                           parms1->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
-			Parms* parms2 = static_cast<Parms*>(snagret->mParms);
+			Parms* parms2 = CG_PARMS(snagret);
 			EnemyFunc::flickNearbyPikmin(snagret, parms2->mGeneral.mShakeRange.mValue, parms2->mGeneral.mShakeKnockback.mValue,
 			                             parms2->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 
-			Parms* parms3 = static_cast<Parms*>(snagret->mParms);
+			Parms* parms3 = CG_PARMS(snagret);
 			EnemyFunc::flickStickPikmin(snagret, parms3->mGeneral.mShakeChance.mValue, parms3->mGeneral.mShakeKnockback.mValue,
 			                            parms3->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 			snagret->enableEvent(0, EB_NoInterrupt);
@@ -512,7 +512,7 @@ void StateWait::exec(EnemyBase* enemy)
 		snagret->mNextState = SNAKEWHOLE_Dead;
 		snagret->finishMotion();
 	} else if (EnemyFunc::isStartFlick(snagret, false)
-	           || snagret->mStateTimer > static_cast<Parms*>(snagret->mParms)->mProperParms.mWaitTime.mValue) {
+	           || snagret->mStateTimer > CG_PROPERPARMS(snagret).mWaitTime.mValue) {
 		snagret->mNextState = SNAKEWHOLE_Disappear;
 		snagret->finishMotion();
 	} else if (snagret->isOutTerritory()) {
@@ -738,7 +738,7 @@ void StateAttack::exec(EnemyBase* enemy)
 				Navi* navi = snagret->getAttackNavi(idx);
 
 				if (navi) {
-					Parms* parms = static_cast<Parms*>(snagret->mParms);
+					Parms* parms = CG_PARMS(snagret);
 					InteractAttack attack(snagret, parms->mGeneral.mAttackDamage.mValue, nullptr);
 					navi->stimulate(attack);
 				}
@@ -832,7 +832,7 @@ void StateEat::exec(EnemyBase* enemy)
 	Obj* snagret = OBJ(enemy);
 	if (snagret->mCurAnim->mIsPlaying) {
 		if ((u32)snagret->mCurAnim->mType == KEYEVENT_2) {
-			Parms* parms = static_cast<Parms*>(snagret->mParms);
+			Parms* parms = CG_PARMS(snagret);
 			EnemyFunc::swallowPikmin(snagret, parms->mProperParms.mPoisonDamage.mValue, nullptr);
 
 		} else if ((u32)snagret->mCurAnim->mType == KEYEVENT_END) {

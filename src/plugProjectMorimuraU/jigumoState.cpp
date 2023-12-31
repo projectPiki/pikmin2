@@ -61,7 +61,7 @@ void StateWait::exec(EnemyBase* enemy)
 {
 	if (OBJ(enemy)->mNextState < 0) {
 		FakePiki* target
-		    = OBJ(enemy)->getNearestPikiOrNavi(CG_PARMS(enemy)->mGeneral.mViewAngle.mValue, CG_PARMS(enemy)->mGeneral.mSightRadius.mValue);
+		    = OBJ(enemy)->getNearestPikiOrNavi(CG_GENERALPARMS(enemy).mViewAngle.mValue, CG_GENERALPARMS(enemy).mSightRadius.mValue);
 		if (target) {
 			enemy->mTargetCreature = target;
 			enemy->finishMotion();
@@ -126,7 +126,7 @@ void StateAppear::exec(EnemyBase* enemy)
 	mAppearTimer++;
 	if (mAppearTimer > CG_PROPERPARMS(enemy).mHidingTime.mValue) {
 		if (enemy->isStopMotion()) {
-			f32 terrRad = CG_PARMS(enemy)->mGeneral.mTerritoryRadius.mValue;
+			f32 terrRad = CG_GENERALPARMS(enemy).mTerritoryRadius.mValue;
 			bool check;
 			if (EnemyFunc::isThereOlimar(enemy, terrRad, nullptr)) {
 				check = true;
@@ -204,8 +204,8 @@ void StateHide::init(EnemyBase* enemy, StateArg* stateArg)
 	OBJ(enemy)->mIsOutsideHouse                       = false;
 	enemy->disableEvent(0, EB_LifegaugeVisible);
 
-	EnemyFunc::flickStickPikmin(enemy, CG_PARMS(enemy)->mGeneral.mShakeChance.mValue, CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue,
-	                            CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
+	EnemyFunc::flickStickPikmin(enemy, CG_GENERALPARMS(enemy).mShakeChance.mValue, CG_GENERALPARMS(enemy).mShakeKnockback.mValue,
+	                            CG_GENERALPARMS(enemy).mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 
 	enemy->setEmotionCaution();
 }
@@ -314,10 +314,10 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 void StateAttack::exec(EnemyBase* enemy)
 {
 	if (_11) {
-		FakePiki* target = OBJ(enemy)->getNearestPikiOrNavi(CG_PARMS(enemy)->mGeneral.mSearchAngle.mValue,
-		                                                    CG_PARMS(enemy)->mGeneral.mSearchDistance.mValue);
+		FakePiki* target = OBJ(enemy)->getNearestPikiOrNavi(CG_GENERALPARMS(enemy).mSearchAngle.mValue,
+		                                                    CG_GENERALPARMS(enemy).mSearchDistance.mValue);
 		if (target) {
-			enemy->turnToTarget(target, CG_PARMS(enemy)->mGeneral.mTurnSpeed(), CG_PARMS(enemy)->mGeneral.mMaxTurnAngle());
+			enemy->turnToTarget(target, CG_GENERALPARMS(enemy).mTurnSpeed(), CG_GENERALPARMS(enemy).mMaxTurnAngle());
 			OBJ(enemy)->mGoalPosition = Vector3f(target->getPosition());
 		}
 	}
@@ -348,8 +348,8 @@ void StateAttack::exec(EnemyBase* enemy)
 	}
 
 	if (_10) {
-		EnemyFunc::attackNavi(enemy, CG_PARMS(enemy)->mGeneral.mAttackRadius.mValue, CG_PARMS(enemy)->mGeneral.mAttackHitAngle.mValue,
-		                      CG_PARMS(enemy)->mGeneral.mAttackDamage.mValue, nullptr, nullptr);
+		EnemyFunc::attackNavi(enemy, CG_GENERALPARMS(enemy).mAttackRadius.mValue, CG_GENERALPARMS(enemy).mAttackHitAngle.mValue,
+		                      CG_GENERALPARMS(enemy).mAttackDamage.mValue, nullptr, nullptr);
 		OBJ(enemy)->walkFunc();
 
 		ConditionHeightCheckPiki heightCheck(enemy);
@@ -412,7 +412,7 @@ void StateMiss::exec(EnemyBase* enemy)
 {
 	if (CG_PARMS(enemy)->_8FC) {
 		Vector3f goalPos = OBJ(enemy)->getGoalPos();
-		f32 angleDist    = enemy->turnToTarget2(goalPos, CG_PARMS(enemy)->mGeneral.mTurnSpeed(), CG_PARMS(enemy)->mGeneral.mMaxTurnAngle());
+		f32 angleDist    = enemy->turnToTarget2(goalPos, CG_GENERALPARMS(enemy).mTurnSpeed(), CG_GENERALPARMS(enemy).mMaxTurnAngle());
 		if (absF(angleDist) < 0.05f) {
 			enemy->finishMotion();
 		}
@@ -598,10 +598,10 @@ void StateFlick::exec(EnemyBase* enemy)
 {
 	if (enemy->mCurAnim->mIsPlaying) {
 		if (enemy->mCurAnim->mType == KEYEVENT_2) {
-			f32 chance    = CG_PARMS(enemy)->mGeneral.mShakeChance.mValue;
-			f32 knockback = CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue;
-			f32 damage    = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
-			f32 range     = CG_PARMS(enemy)->mGeneral.mShakeRange.mValue;
+			f32 chance    = CG_GENERALPARMS(enemy).mShakeChance.mValue;
+			f32 knockback = CG_GENERALPARMS(enemy).mShakeKnockback.mValue;
+			f32 damage    = CG_GENERALPARMS(enemy).mShakeDamage.mValue;
+			f32 range     = CG_GENERALPARMS(enemy).mShakeRange.mValue;
 
 			EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
 			EnemyFunc::flickStickPikmin(enemy, chance, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
@@ -710,7 +710,7 @@ void StateSearch::exec(EnemyBase* enemy)
 {
 	int animIdx = enemy->getCurrAnimIndex(); // r29
 	FakePiki* target
-	    = OBJ(enemy)->getNearestPikiOrNavi(CG_PARMS(enemy)->mGeneral.mSearchAngle(), CG_PARMS(enemy)->mGeneral.mSearchDistance()); // r28
+	    = OBJ(enemy)->getNearestPikiOrNavi(CG_GENERALPARMS(enemy).mSearchAngle(), CG_GENERALPARMS(enemy).mSearchDistance()); // r28
 	enemy->mTargetCreature = target;
 	if (target) {
 		f32 angleDist = enemy->getCreatureViewAngle(target);
@@ -725,7 +725,7 @@ void StateSearch::exec(EnemyBase* enemy)
 			enemy->turnToTarget(target);
 		}
 	} else {
-		target = OBJ(enemy)->getNearestPikiOrNavi(CG_PARMS(enemy)->mGeneral.mViewAngle(), CG_PARMS(enemy)->mGeneral.mSightRadius());
+		target = OBJ(enemy)->getNearestPikiOrNavi(CG_GENERALPARMS(enemy).mViewAngle(), CG_GENERALPARMS(enemy).mSightRadius());
 		if (target) {
 			f32 angleDist = enemy->getCreatureViewAngle(target);
 			if (absF(angleDist) < 0.1f) {
@@ -749,7 +749,7 @@ void StateSearch::exec(EnemyBase* enemy)
 			Vector3f pos     = enemy->getPosition();
 			Vector3f goalPos = enemy->getGoalPos();
 			f32 dist         = pos.sqrDistance(goalPos);
-			f32 rad          = CG_PARMS(enemy)->mGeneral.mAttackRadius() * enemy->getScaleMod();
+			f32 rad          = CG_GENERALPARMS(enemy).mAttackRadius() * enemy->getScaleMod();
 			rad *= rad;
 			if (dist < rad) {
 				transit(enemy, JIGUMO_SAttack, nullptr);
@@ -802,8 +802,8 @@ void StateSAttack::exec(EnemyBase* enemy)
 			_10 = 1;
 		}
 
-		EnemyFunc::attackNavi(enemy, 50.0f * enemy->mScaleModifier, CG_PARMS(enemy)->mGeneral.mAttackHitAngle.mValue,
-		                      CG_PARMS(enemy)->mGeneral.mAttackDamage.mValue, nullptr, nullptr);
+		EnemyFunc::attackNavi(enemy, 50.0f * enemy->mScaleModifier, CG_GENERALPARMS(enemy).mAttackHitAngle.mValue,
+		                      CG_GENERALPARMS(enemy).mAttackDamage.mValue, nullptr, nullptr);
 	}
 
 	if (enemy->mCurAnim->mIsPlaying) {

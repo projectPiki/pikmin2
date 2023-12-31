@@ -270,7 +270,7 @@ void StateWait::exec(EnemyBase* enemy)
 		transit(sokkuri, SOKKURI_Flick, nullptr);
 
 	} else {
-		if (sokkuri->mTimer > static_cast<Parms*>(sokkuri->mParms)->mProperParms.mMaxWaitingTime.mValue) {
+		if (sokkuri->mTimer > CG_PROPERPARMS(sokkuri).mMaxWaitingTime.mValue) {
 			if (sokkuri->isDisappear()) {
 				sokkuri->mNextState = SOKKURI_Disappear;
 				sokkuri->finishMotion();
@@ -332,14 +332,14 @@ void StateMoveGround::exec(EnemyBase* enemy)
 		return;
 	}
 
-	Parms* parms = static_cast<Parms*>(sokkuri->mParms);
+	Parms* parms = CG_PARMS(sokkuri);
 	if (sokkuri->mTimer > parms->mProperParms.mMaxTravelTime.mValue) {
 		if (sokkuri->isDisappear()) {
 			sokkuri->mNextState = SOKKURI_Disappear;
 			sokkuri->finishMotion();
 
 		} else {
-			Parms* parms = static_cast<Parms*>(sokkuri->mParms);
+			Parms* parms = CG_PARMS(sokkuri);
 			if (randWeightFloat(1.0f) < parms->mProperParms.mWaitingProbability.mValue) {
 				sokkuri->mNextState = SOKKURI_Wait;
 				sokkuri->finishMotion();
@@ -415,7 +415,7 @@ void StateMoveWater::exec(EnemyBase* enemy)
 		sokkuri->finishMotion();
 
 	} else {
-		Parms* parms = static_cast<Parms*>(sokkuri->mParms);
+		Parms* parms = CG_PARMS(sokkuri);
 		if (sokkuri->mTimer > parms->mProperParms.mMaxTravelTime.mValue) {
 			if (sokkuri->mWaterBox) {
 				sokkuri->mTimer = 0.0f;
@@ -498,14 +498,14 @@ void StateFlick::exec(EnemyBase* enemy)
 			sokkuri->createDownEffect(0.6f, 0.55f);
 
 		} else if ((u32)sokkuri->mCurAnim->mType == KEYEVENT_3) {
-			Parms* parms1 = static_cast<Parms*>(sokkuri->mParms);
+			Parms* parms1 = CG_PARMS(sokkuri);
 			EnemyFunc::flickNearbyNavi(sokkuri, parms1->mGeneral.mShakeRange.mValue, parms1->mGeneral.mShakeKnockback.mValue,
 			                           parms1->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
-			Parms* parms2 = static_cast<Parms*>(sokkuri->mParms);
+			Parms* parms2 = CG_PARMS(sokkuri);
 			EnemyFunc::flickNearbyPikmin(sokkuri, parms2->mGeneral.mShakeRange.mValue, parms2->mGeneral.mShakeKnockback.mValue,
 			                             parms2->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 
-			Parms* parms3 = static_cast<Parms*>(sokkuri->mParms);
+			Parms* parms3 = CG_PARMS(sokkuri);
 			EnemyFunc::flickStickPikmin(sokkuri, parms3->mGeneral.mShakeChance.mValue, parms3->mGeneral.mShakeKnockback.mValue,
 			                            parms3->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 			sokkuri->mFlickTimer = 0.0f;

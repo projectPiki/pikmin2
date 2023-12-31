@@ -1474,9 +1474,9 @@ void Obj::clearCarryVelocity()
 bool Obj::carryTarget(f32 param)
 {
 	f32 turnSpeed, maxTurnAngle, speed;
-	speed        = param * CG_PARMS(this)->mProperParms.mCarrySpeed();
-	turnSpeed    = CG_PARMS(this)->mGeneral.mTurnSpeed();
-	maxTurnAngle = CG_PARMS(this)->mGeneral.mMaxTurnAngle();
+	speed        = param * CG_PROPERPARMS(this).mCarrySpeed();
+	turnSpeed    = CG_GENERALPARMS(this).mTurnSpeed();
+	maxTurnAngle = CG_GENERALPARMS(this).mMaxTurnAngle();
 	Pellet* pelt = getCarryTarget();
 	if (getStateID() == PANMODOKI_Pulled) {
 		turnSpeed *= 0.5f;
@@ -1489,8 +1489,8 @@ bool Obj::carryTarget(f32 param)
 	}
 	Vector3f wpPos = mNextWayPointPosition;
 	if (sqrDistanceXZ(mPosition, mNextWayPointPosition) < 10000.0f) {
-		turnSpeed    = CG_PARMS(this)->mProperParms.mFastTurnSpeed.mValue;
-		maxTurnAngle = CG_PARMS(this)->mProperParms.mMaxFastTurnAngle.mValue;
+		turnSpeed    = CG_PROPERPARMS(this).mFastTurnSpeed.mValue;
+		maxTurnAngle = CG_PROPERPARMS(this).mMaxFastTurnAngle.mValue;
 	}
 	if (pelt) {
 		mFaceDir = mCarryDir;

@@ -204,8 +204,8 @@ void StateJump::exec(EnemyBase* enemy)
 
 		fuefuki->mTargetVelocity = Vector3f(1500.0f * sinTheta, y, 1500.0f * cosTheta);
 
-		EnemyFunc::flickStickPikmin(fuefuki, CG_PARMS(fuefuki)->mGeneral.mShakeChance.mValue,
-		                            CG_PARMS(fuefuki)->mGeneral.mShakeKnockback.mValue, CG_PARMS(fuefuki)->mGeneral.mShakeDamage.mValue,
+		EnemyFunc::flickStickPikmin(fuefuki, CG_GENERALPARMS(fuefuki).mShakeChance.mValue,
+		                            CG_GENERALPARMS(fuefuki).mShakeKnockback.mValue, CG_GENERALPARMS(fuefuki).mShakeDamage.mValue,
 		                            FLICK_BACKWARD_ANGLE, nullptr);
 	}
 
@@ -233,14 +233,14 @@ void StateJump::exec(EnemyBase* enemy)
 			Vector3f targetVel = Vector3f(fuefuki->mTargetVelocity);
 			fuefuki->setVelocity(targetVel);
 
-			EnemyFunc::flickNearbyNavi(fuefuki, CG_PARMS(fuefuki)->mGeneral.mShakeRange.mValue,
-			                           CG_PARMS(fuefuki)->mGeneral.mShakeKnockback.mValue, CG_PARMS(fuefuki)->mGeneral.mShakeDamage.mValue,
+			EnemyFunc::flickNearbyNavi(fuefuki, CG_GENERALPARMS(fuefuki).mShakeRange.mValue,
+			                           CG_GENERALPARMS(fuefuki).mShakeKnockback.mValue, CG_GENERALPARMS(fuefuki).mShakeDamage.mValue,
 			                           FLICK_BACKWARD_ANGLE, nullptr);
-			EnemyFunc::flickNearbyPikmin(fuefuki, CG_PARMS(fuefuki)->mGeneral.mShakeRange.mValue,
-			                             CG_PARMS(fuefuki)->mGeneral.mShakeKnockback.mValue,
-			                             CG_PARMS(fuefuki)->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
-			EnemyFunc::flickStickPikmin(fuefuki, CG_PARMS(fuefuki)->mGeneral.mShakeChance.mValue,
-			                            CG_PARMS(fuefuki)->mGeneral.mShakeKnockback.mValue, CG_PARMS(fuefuki)->mGeneral.mShakeDamage.mValue,
+			EnemyFunc::flickNearbyPikmin(fuefuki, CG_GENERALPARMS(fuefuki).mShakeRange.mValue,
+			                             CG_GENERALPARMS(fuefuki).mShakeKnockback.mValue,
+			                             CG_GENERALPARMS(fuefuki).mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
+			EnemyFunc::flickStickPikmin(fuefuki, CG_GENERALPARMS(fuefuki).mShakeChance.mValue,
+			                            CG_GENERALPARMS(fuefuki).mShakeKnockback.mValue, CG_GENERALPARMS(fuefuki).mShakeDamage.mValue,
 			                            FLICK_BACKWARD_ANGLE, nullptr);
 
 			fuefuki->mFlickTimer = 0.0f;
@@ -398,8 +398,8 @@ void StateWalk::exec(EnemyBase* enemy)
 	Obj* fuefuki       = OBJ(enemy);
 	Vector3f targetPos = Vector3f(fuefuki->mTargetPosition);
 	if (!fuefuki->isFinishMotion()) {
-		EnemyFunc::walkToTarget(fuefuki, targetPos, CG_PARMS(fuefuki)->mGeneral.mMoveSpeed.mValue,
-		                        CG_PARMS(fuefuki)->mGeneral.mTurnSpeed.mValue, CG_PARMS(fuefuki)->mGeneral.mMaxTurnAngle.mValue);
+		EnemyFunc::walkToTarget(fuefuki, targetPos, CG_GENERALPARMS(fuefuki).mMoveSpeed.mValue,
+		                        CG_GENERALPARMS(fuefuki).mTurnSpeed.mValue, CG_GENERALPARMS(fuefuki).mMaxTurnAngle.mValue);
 		if (fuefuki->isArriveTarget()) {
 			if (fuefuki->mSquadTimer > 0.0f) {
 				fuefuki->mNextState = FUEFUKI_Turn;

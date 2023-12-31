@@ -147,7 +147,7 @@ bool MiniHoudaiShotGunNode::update()
 	newPos.y -= 10.0f;
 
 	f32 dist   = startPos.distance(newPos);
-	f32 radius = CG_PARMS(mOwner)->mGeneral.mAttackRadius();
+	f32 radius = CG_GENERALPARMS(mOwner).mAttackRadius();
 
 	if (dist > 0.0f) {
 		Vector3f searchCenter((newPos.x + startPos.x) * 0.5f, (newPos.y + startPos.y) * 0.5f, (newPos.z + startPos.z) * 0.5f);
@@ -198,7 +198,7 @@ bool MiniHoudaiShotGunNode::update()
 							if (target->isPiki()) {
 								blastDir.y = 100.0f;
 							}
-							InteractBomb blast(mOwner, CG_PARMS(mOwner)->mGeneral.mAttackDamage(), &blastDir);
+							InteractBomb blast(mOwner, CG_GENERALPARMS(mOwner).mAttackDamage(), &blastDir);
 							target->stimulate(blast);
 						} else if (target->isTeki() && target != mOwner) {
 							InteractBomb blast(mOwner, 100.0f, &Vector3f::zero);
@@ -1773,11 +1773,11 @@ bool MiniHoudaiShotGunMgr::searchShotGunRotation()
 	}
 
 	f32 val         = 250.0f;
-	f32 searchLimit = CG_PARMS(mOwner)->mGeneral.mSearchDistance.mValue / 2;
+	f32 searchLimit = CG_GENERALPARMS(mOwner).mSearchDistance.mValue / 2;
 	if (dist < searchLimit) {
 		f32 ratio = dist / searchLimit;
 		val       = val * ratio + (1.0f - ratio);
-		if (dist < CG_PARMS(mOwner)->mGeneral.mAttackRadius.mValue) {
+		if (dist < CG_GENERALPARMS(mOwner).mAttackRadius.mValue) {
 			dist *= 0.1f;
 		}
 	}

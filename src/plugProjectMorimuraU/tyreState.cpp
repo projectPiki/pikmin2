@@ -47,7 +47,7 @@ void Tyre::StateMove::exec(EnemyBase* enemy)
 {
 	Obj* tyre    = OBJ(enemy);
 	f32 p1       = tyre->_30C;
-	Parms* parms = static_cast<Parms*>(tyre->mParms);
+	Parms* parms = CG_PARMS(tyre);
 	p1 *= parms->mProperParms.mTyreRotationSpeed.mValue;
 
 	if (parms->mDoUseGlobalJointMgr != 0) {

@@ -25,7 +25,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	ChappyBase::Obj::onInit(initArg);
 	mGlobalAlpha   = 0xFF;
 	mHasHair       = true;
-	mEffectAnimMgr = &static_cast<Mgr*>(mMgr)->mEffectAnimMgr;
+	mEffectAnimMgr = &C_MGR->mEffectAnimMgr;
 }
 
 /**
@@ -133,8 +133,8 @@ void Obj::changeMaterial()
 	J3DModelData* modelData;
 	J3DModel* j3dModel = mModel->mJ3dModel;
 	modelData          = j3dModel->mModelData;
-	ResTIMG* texture0  = static_cast<Mgr*>(mMgr)->getChangeTexture0();
-	ResTIMG* texture1  = static_cast<Mgr*>(mMgr)->getChangeTexture1();
+	ResTIMG* texture0  = C_MGR->getChangeTexture0();
+	ResTIMG* texture1  = C_MGR->getChangeTexture1();
 
 	j3dModel->calcMaterial();
 

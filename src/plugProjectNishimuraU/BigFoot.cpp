@@ -538,7 +538,7 @@ void Obj::createMaterialAnimation() { mMatLoopAnimator = new Sys::MatLoopAnimato
  */
 void Obj::startMaterialAnimation()
 {
-	Mgr* mgr = static_cast<Mgr*>(mMgr);
+	Mgr* mgr = C_MGR;
 	mMatLoopAnimator->start((Sys::MatBaseAnimation*)mgr->mTevRegAnimation); // silly cast
 }
 

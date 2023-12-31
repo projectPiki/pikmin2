@@ -448,10 +448,10 @@ void StateFlick::exec(EnemyBase* enemy)
 {
 	if (enemy->mCurAnim->mIsPlaying) {
 		if (enemy->mCurAnim->mType == KEYEVENT_2) {
-			f32 rate      = CG_PARMS(enemy)->mGeneral.mShakeChance.mValue;
-			f32 knockback = CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue;
-			f32 damage    = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
-			f32 range     = CG_PARMS(enemy)->mGeneral.mShakeRange.mValue;
+			f32 rate      = CG_GENERALPARMS(enemy).mShakeChance.mValue;
+			f32 knockback = CG_GENERALPARMS(enemy).mShakeKnockback.mValue;
+			f32 damage    = CG_GENERALPARMS(enemy).mShakeDamage.mValue;
+			f32 range     = CG_GENERALPARMS(enemy).mShakeRange.mValue;
 
 			EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
 			EnemyFunc::flickStickPikmin(enemy, rate, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
@@ -547,7 +547,7 @@ void StateAttack::exec(EnemyBase* enemy)
 						Vector3f sep     = Vector3f(slotPos.y - naviPos.y, slotPos.z - naviPos.z, slotPos.x - naviPos.x); // why.
 						f32 dist         = _length2(sep);
 						if (dist < slot->mRadius) {
-							InteractAttack attack(enemy, CG_PARMS(enemy)->mGeneral.mAttackDamage.mValue, nullptr);
+							InteractAttack attack(enemy, CG_GENERALPARMS(enemy).mAttackDamage.mValue, nullptr);
 							navi->stimulate(attack);
 						}
 					}
@@ -556,10 +556,10 @@ void StateAttack::exec(EnemyBase* enemy)
 			break;
 
 		case KEYEVENT_6:
-			f32 rate      = CG_PARMS(enemy)->mGeneral.mShakeChance.mValue;
-			f32 knockback = CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue;
-			f32 damage    = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
-			f32 range     = CG_PARMS(enemy)->mGeneral.mShakeRange.mValue;
+			f32 rate      = CG_GENERALPARMS(enemy).mShakeChance.mValue;
+			f32 knockback = CG_GENERALPARMS(enemy).mShakeKnockback.mValue;
+			f32 damage    = CG_GENERALPARMS(enemy).mShakeDamage.mValue;
+			f32 range     = CG_GENERALPARMS(enemy).mShakeRange.mValue;
 
 			EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
 			EnemyFunc::flickStickPikmin(enemy, rate, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);

@@ -96,7 +96,7 @@ void StateStay::exec(EnemyBase* enemy)
 {
 	Obj* damagumo = OBJ(enemy);
 	bool isTarget;
-	f32 detectRadius = static_cast<Parms*>(damagumo->mParms)->mGeneral.mPrivateRadius.mValue;
+	f32 detectRadius = CG_GENERALPARMS(damagumo).mPrivateRadius.mValue;
 	if (EnemyFunc::isThereOlimar(damagumo, detectRadius, nullptr)) {
 		isTarget = true;
 	} else if (EnemyFunc::isTherePikmin(damagumo, detectRadius, nullptr)) {
@@ -271,7 +271,7 @@ void StateFlick::exec(EnemyBase* enemy)
 	Obj* damagumo = OBJ(enemy);
 	if (damagumo->mCurAnim->mIsPlaying) {
 		if ((u32)damagumo->mCurAnim->mType == KEYEVENT_2) {
-			Parms* parms = static_cast<Parms*>(damagumo->mParms);
+			Parms* parms = CG_PARMS(damagumo);
 			EnemyFunc::flickStickPikmin(damagumo, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 			                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
 			damagumo->mFlickTimer = 0.0f;

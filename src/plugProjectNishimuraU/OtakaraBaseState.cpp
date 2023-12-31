@@ -87,7 +87,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 void StateFlick::exec(EnemyBase* enemy)
 {
 	Obj* ota = OBJ(enemy);
-	if (ota->_2C4 > static_cast<Parms*>(ota->mParms)->mProperParms.mNormalAttack.mValue) {
+	if (ota->_2C4 > CG_PROPERPARMS(ota).mNormalAttack.mValue) {
 		ota->finishMotion();
 	}
 	ota->_2C4 += sys->mDeltaTime;
@@ -99,7 +99,7 @@ void StateFlick::exec(EnemyBase* enemy)
 	EnemyAnimKeyEvent* event = ota->mCurAnim;
 	if (event->mIsPlaying) {
 		if ((u32)event->mType == 2) {
-			Parms* parms = static_cast<Parms*>(ota->mParms);
+			Parms* parms = CG_PARMS(ota);
 			EnemyFunc::flickStickPikmin(ota, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 			                            parms->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 			ota->mFlickTimer = 0.0f;
@@ -223,7 +223,7 @@ void StateMove::exec(EnemyBase* enemy)
 		Vector3f pos     = ota->getPosition();
 		f32 angle        = angXZ(movePos.x, movePos.z, pos);
 		if (FABS(angDist(angle, ota->getFaceDir())) <= THIRD_PI) {
-			Parms* parms = static_cast<Parms*>(ota->mParms);
+			Parms* parms = CG_PARMS(ota);
 			EnemyFunc::walkToTarget(ota, movePos, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mTurnSpeed.mValue,
 			                        parms->mGeneral.mMaxTurnAngle.mValue);
 			if (ota->isTakeTreasure()) {
@@ -352,7 +352,7 @@ void StateTake::exec(EnemyBase* enemy)
 {
 	Obj* ota         = OBJ(enemy);
 	Vector3f movePos = Vector3f(ota->mMovePosition);
-	Parms* parms     = static_cast<Parms*>(ota->mParms);
+	Parms* parms     = CG_PARMS(ota);
 	EnemyFunc::walkToTarget(ota, movePos, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mTurnSpeed.mValue,
 	                        parms->mGeneral.mMaxTurnAngle.mValue);
 	EnemyAnimKeyEvent* event = ota->mCurAnim;
@@ -465,7 +465,7 @@ void StateItemMove::exec(EnemyBase* enemy)
 		Vector3f pos     = ota->getPosition();
 		f32 angle        = angXZ(movePos.x, movePos.z, pos);
 		if (FABS(angDist(angle, ota->getFaceDir())) <= THIRD_PI) {
-			Parms* parms = static_cast<Parms*>(ota->mParms);
+			Parms* parms = CG_PARMS(ota);
 			EnemyFunc::walkToTarget(ota, movePos, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mTurnSpeed.mValue,
 			                        parms->mGeneral.mMaxTurnAngle.mValue);
 		} else {
@@ -602,7 +602,7 @@ void StateItemFlick::init(EnemyBase* enemy, StateArg* stateArg)
 void StateItemFlick::exec(EnemyBase* enemy)
 {
 	Obj* ota = OBJ(enemy);
-	if (ota->_2C4 > static_cast<Parms*>(ota->mParms)->mProperParms.mOtakaraAttack.mValue) {
+	if (ota->_2C4 > CG_PROPERPARMS(ota).mOtakaraAttack.mValue) {
 		ota->finishMotion();
 	}
 	ota->_2C4 += sys->mDeltaTime;
@@ -610,7 +610,7 @@ void StateItemFlick::exec(EnemyBase* enemy)
 	EnemyAnimKeyEvent* event = ota->mCurAnim;
 	if (event->mIsPlaying) {
 		if ((u32)event->mType == 2) {
-			Parms* parms = static_cast<Parms*>(ota->mParms);
+			Parms* parms = CG_PARMS(ota);
 			EnemyFunc::flickStickPikmin(ota, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 			                            parms->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 			ota->mFlickTimer = 0.0f;
@@ -801,7 +801,7 @@ void StateBombMove::exec(EnemyBase* enemy)
 		Vector3f pos         = ota->getPosition();
 		f32 angle            = angXZ(creaturePos.x, creaturePos.z, pos);
 		if (FABS(angDist(angle, ota->getFaceDir())) <= THIRD_PI) {
-			Parms* parms = static_cast<Parms*>(ota->mParms);
+			Parms* parms = CG_PARMS(ota);
 			EnemyFunc::walkToTarget(ota, creaturePos, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mTurnSpeed.mValue,
 			                        parms->mGeneral.mMaxTurnAngle.mValue);
 		} else {

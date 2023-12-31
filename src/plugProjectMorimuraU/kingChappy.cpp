@@ -1592,7 +1592,7 @@ bool Obj::forceTransit(int stateID)
  * @note Address: 0x80360004
  * @note Size: 0x30
  */
-void Obj::requestTransit(int stateID) { static_cast<Mgr*>(mMgr)->requestState(this, stateID); }
+void Obj::requestTransit(int stateID) { C_MGR->requestState(this, stateID); }
 
 /**
  * @note Address: 0x80360034

@@ -93,7 +93,7 @@ void StateWait::exec(EnemyBase* enemy)
 	}
 
 	// If enough time has passed, attack
-	if (hiba->mTimer > static_cast<Parms*>(hiba->mParms)->mProperParms.mWaitTime.mValue) {
+	if (hiba->mTimer > CG_PROPERPARMS(hiba).mWaitTime.mValue) {
 		transit(hiba, GASHIBA_Attack, nullptr);
 	}
 }
@@ -126,8 +126,8 @@ void StateAttack::exec(EnemyBase* enemy)
 
 	// If dead or we're done attacking, then finish
 	if ((hiba->mHealth <= 0.0f)
-	    || ((static_cast<Parms*>(hiba->mParms)->mProperParms.mWaitTime.mValue > 0.0f)
-	        && (hiba->mTimer > static_cast<Parms*>(hiba->mParms)->mProperParms.mActiveTime.mValue))) {
+	    || ((CG_PROPERPARMS(hiba).mWaitTime.mValue > 0.0f)
+	        && (hiba->mTimer > CG_PROPERPARMS(hiba).mActiveTime.mValue))) {
 		hiba->finishMotion();
 	}
 
@@ -136,7 +136,7 @@ void StateAttack::exec(EnemyBase* enemy)
 	hiba->updateEfxLod();
 	hiba->updateLivingThing();
 
-	if (hiba->mTimer > static_cast<Parms*>(hiba->mParms)->mProperParms.mAttackStartTime.mValue) {
+	if (hiba->mTimer > CG_PROPERPARMS(hiba).mAttackStartTime.mValue) {
 		hiba->interactGasAttack();
 	}
 

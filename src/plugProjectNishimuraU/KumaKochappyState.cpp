@@ -112,10 +112,10 @@ void StateWait::exec(EnemyBase* enemy)
 	Creature* target = kuma->getSearchedTarget();
 	if (target) {
 		// more nonsense going on in here than this
-		f32 dist = kuma->turnToTarget(target, CG_PARMS(kuma)->mGeneral.mMaxTurnAngle.mValue, CG_PARMS(kuma)->mGeneral.mTurnSpeed.mValue);
+		f32 dist = kuma->turnToTarget(target, CG_GENERALPARMS(kuma).mMaxTurnAngle.mValue, CG_GENERALPARMS(kuma).mTurnSpeed.mValue);
 
 		// this isn't the comparison, probably a bool spat out from an inline
-		if (FABS(dist) <= CG_PARMS(kuma)->mGeneral.mTurnSpeed.mValue) {
+		if (FABS(dist) <= CG_GENERALPARMS(kuma).mTurnSpeed.mValue) {
 			kuma->mNextState = KUMAKOCHAPPY_Attack;
 			kuma->finishMotion();
 		} else {
@@ -432,13 +432,13 @@ void StateAttack::exec(EnemyBase* enemy)
 
 	if (kuma->mCurAnim->mIsPlaying) {
 		if (kuma->mCurAnim->mType == KEYEVENT_2) {
-			int naviEat  = EnemyFunc::attackNavi(kuma, CG_PARMS(kuma)->mGeneral.mAttackRadius.mValue,
-                                                CG_PARMS(kuma)->mGeneral.mAttackHitAngle.mValue,
-                                                CG_PARMS(kuma)->mGeneral.mAttackDamage.mValue, nullptr, nullptr);
+			int naviEat  = EnemyFunc::attackNavi(kuma, CG_GENERALPARMS(kuma).mAttackRadius.mValue,
+                                                CG_GENERALPARMS(kuma).mAttackHitAngle.mValue,
+                                                CG_GENERALPARMS(kuma).mAttackDamage.mValue, nullptr, nullptr);
 			int totalEat = naviEat + EnemyFunc::eatPikmin(kuma, nullptr);
 
-			EnemyFunc::flickStickPikmin(kuma, CG_PARMS(kuma)->mGeneral.mShakeChance.mValue, CG_PARMS(kuma)->mGeneral.mShakeKnockback.mValue,
-			                            CG_PARMS(kuma)->mGeneral.mShakeDamage.mValue, kuma->getFaceDir(), nullptr);
+			EnemyFunc::flickStickPikmin(kuma, CG_GENERALPARMS(kuma).mShakeChance.mValue, CG_GENERALPARMS(kuma).mShakeKnockback.mValue,
+			                            CG_GENERALPARMS(kuma).mShakeDamage.mValue, kuma->getFaceDir(), nullptr);
 
 			if (!totalEat) {
 				kuma->startMotion(KUMAKOCHAPPYANIM_Eat, nullptr);
@@ -462,10 +462,10 @@ void StateAttack::exec(EnemyBase* enemy)
 			if (target) {
 				// more nonsense going on in here than this
 				f32 dist
-				    = kuma->turnToTarget(target, CG_PARMS(kuma)->mGeneral.mMaxTurnAngle.mValue, CG_PARMS(kuma)->mGeneral.mTurnSpeed.mValue);
+				    = kuma->turnToTarget(target, CG_GENERALPARMS(kuma).mMaxTurnAngle.mValue, CG_GENERALPARMS(kuma).mTurnSpeed.mValue);
 
 				// this isn't the comparison, probably a bool spat out from an inline
-				if (FABS(dist) <= CG_PARMS(kuma)->mGeneral.mTurnSpeed.mValue) {
+				if (FABS(dist) <= CG_GENERALPARMS(kuma).mTurnSpeed.mValue) {
 					transit(kuma, KUMAKOCHAPPY_Attack, nullptr);
 					return;
 				} else {
@@ -477,7 +477,7 @@ void StateAttack::exec(EnemyBase* enemy)
 				Vector3f* parentPos = kuma->setTargetParentPosition();
 				if (parentPos) {
 					Vector3f pos = kuma->getPosition();
-					if (inRadius(CG_PARMS(kuma)->mGeneral.mHomeRadius.mValue, pos, *parentPos)) {
+					if (inRadius(CG_GENERALPARMS(kuma).mHomeRadius.mValue, pos, *parentPos)) {
 						transit(kuma, KUMAKOCHAPPY_Wait, nullptr);
 						return;
 					} else {
@@ -848,12 +848,12 @@ void StateFlick::exec(EnemyBase* enemy)
 
 	if (kuma->mCurAnim->mIsPlaying) {
 		if (kuma->mCurAnim->mType == KEYEVENT_2) {
-			EnemyFunc::flickStickPikmin(kuma, CG_PARMS(kuma)->mGeneral.mShakeChance.mValue, CG_PARMS(kuma)->mGeneral.mShakeKnockback.mValue,
-			                            CG_PARMS(kuma)->mGeneral.mShakeDamage.mValue, kuma->getFaceDir(), nullptr);
-			EnemyFunc::flickNearbyPikmin(kuma, CG_PARMS(kuma)->mGeneral.mShakeRange.mValue, CG_PARMS(kuma)->mGeneral.mShakeKnockback.mValue,
-			                             CG_PARMS(kuma)->mGeneral.mShakeDamage.mValue, kuma->getFaceDir(), nullptr);
-			EnemyFunc::flickNearbyNavi(kuma, CG_PARMS(kuma)->mGeneral.mShakeRange.mValue, CG_PARMS(kuma)->mGeneral.mShakeKnockback.mValue,
-			                           CG_PARMS(kuma)->mGeneral.mShakeDamage.mValue, kuma->getFaceDir(), nullptr);
+			EnemyFunc::flickStickPikmin(kuma, CG_GENERALPARMS(kuma).mShakeChance.mValue, CG_GENERALPARMS(kuma).mShakeKnockback.mValue,
+			                            CG_GENERALPARMS(kuma).mShakeDamage.mValue, kuma->getFaceDir(), nullptr);
+			EnemyFunc::flickNearbyPikmin(kuma, CG_GENERALPARMS(kuma).mShakeRange.mValue, CG_GENERALPARMS(kuma).mShakeKnockback.mValue,
+			                             CG_GENERALPARMS(kuma).mShakeDamage.mValue, kuma->getFaceDir(), nullptr);
+			EnemyFunc::flickNearbyNavi(kuma, CG_GENERALPARMS(kuma).mShakeRange.mValue, CG_GENERALPARMS(kuma).mShakeKnockback.mValue,
+			                           CG_GENERALPARMS(kuma).mShakeDamage.mValue, kuma->getFaceDir(), nullptr);
 			kuma->mFlickTimer = 0.0f;
 
 		} else if (kuma->mCurAnim->mType == KEYEVENT_END) {
@@ -871,10 +871,10 @@ void StateFlick::exec(EnemyBase* enemy)
 			if (target) {
 				// more nonsense going on in here than this
 				f32 dist
-				    = kuma->turnToTarget(target, CG_PARMS(kuma)->mGeneral.mMaxTurnAngle.mValue, CG_PARMS(kuma)->mGeneral.mTurnSpeed.mValue);
+				    = kuma->turnToTarget(target, CG_GENERALPARMS(kuma).mMaxTurnAngle.mValue, CG_GENERALPARMS(kuma).mTurnSpeed.mValue);
 
 				// this isn't the comparison, probably a bool spat out from an inline
-				if (FABS(dist) <= CG_PARMS(kuma)->mGeneral.mTurnSpeed.mValue) {
+				if (FABS(dist) <= CG_GENERALPARMS(kuma).mTurnSpeed.mValue) {
 					transit(kuma, KUMAKOCHAPPY_Attack, nullptr);
 					return;
 				} else {
@@ -886,7 +886,7 @@ void StateFlick::exec(EnemyBase* enemy)
 				Vector3f* parentPos = kuma->setTargetParentPosition();
 				if (parentPos) {
 					Vector3f pos = kuma->getPosition();
-					if (inRadius(CG_PARMS(kuma)->mGeneral.mHomeRadius.mValue, pos, *parentPos)) {
+					if (inRadius(CG_GENERALPARMS(kuma).mHomeRadius.mValue, pos, *parentPos)) {
 						transit(kuma, KUMAKOCHAPPY_Wait, nullptr);
 						return;
 					} else {
@@ -1272,14 +1272,14 @@ void StateWalk::exec(EnemyBase* enemy)
 	Creature* target = kuma->getSearchedTarget();
 	if (target) {
 		// more nonsense going on in here than this
-		f32 dist = kuma->turnToTarget(target, CG_PARMS(kuma)->mGeneral.mMaxTurnAngle.mValue, CG_PARMS(kuma)->mGeneral.mTurnSpeed.mValue);
+		f32 dist = kuma->turnToTarget(target, CG_GENERALPARMS(kuma).mMaxTurnAngle.mValue, CG_GENERALPARMS(kuma).mTurnSpeed.mValue);
 
 		// this isn't the comparison, probably a bool spat out from an inline
-		if (FABS(dist) <= CG_PARMS(kuma)->mGeneral.mTurnSpeed.mValue) {
+		if (FABS(dist) <= CG_GENERALPARMS(kuma).mTurnSpeed.mValue) {
 			kuma->mNextState = KUMAKOCHAPPY_Attack;
 			kuma->finishMotion();
 			kuma->setAnimSpeed(60.0f);
-		} else if (FABS(dist) <= CG_PARMS(kuma)->mGeneral.mMaxAttackAngle.mValue) {
+		} else if (FABS(dist) <= CG_GENERALPARMS(kuma).mMaxAttackAngle.mValue) {
 			check = false;
 			// transit(kuma, KUMAKOCHAPPY_Walk, nullptr);
 			// return;
@@ -1289,7 +1289,7 @@ void StateWalk::exec(EnemyBase* enemy)
 		Vector3f* parentPos = kuma->setTargetParentPosition();
 		if (parentPos) {
 			Vector3f pos = kuma->getPosition();
-			if (inRadius(CG_PARMS(kuma)->mGeneral.mHomeRadius.mValue, pos, *parentPos)) {
+			if (inRadius(CG_GENERALPARMS(kuma).mHomeRadius.mValue, pos, *parentPos)) {
 				kuma->mNextState = KUMAKOCHAPPY_Wait;
 				kuma->finishMotion();
 			} else {
@@ -1305,13 +1305,13 @@ void StateWalk::exec(EnemyBase* enemy)
 	if (kuma->isFinishMotion()) {
 		kuma->mTargetVelocity = Vector3f(0.0f);
 	} else if (check) {
-		f32 moveSpeed         = CG_PARMS(kuma)->mGeneral.mMoveSpeed.mValue;
+		f32 moveSpeed         = CG_GENERALPARMS(kuma).mMoveSpeed.mValue;
 		f32 sinTheta          = (f32)sin(kuma->getFaceDir());
 		f32 y                 = kuma->getTargetVelocity().y;
 		f32 cosTheta          = (f32)cos(kuma->getFaceDir());
 		kuma->mTargetVelocity = Vector3f(moveSpeed * sinTheta, y, moveSpeed * cosTheta);
 	} else {
-		f32 moveSpeed         = CG_PARMS(kuma)->mGeneral.mMoveSpeed.mValue * 0.5f;
+		f32 moveSpeed         = CG_GENERALPARMS(kuma).mMoveSpeed.mValue * 0.5f;
 		f32 sinTheta          = (f32)sin(kuma->getFaceDir());
 		f32 y                 = kuma->getTargetVelocity().y;
 		f32 cosTheta          = (f32)cos(kuma->getFaceDir());
@@ -1724,8 +1724,8 @@ void StateWalkPath::exec(EnemyBase* enemy)
 
 	Creature* target = kuma->getSearchedTarget();
 	if (target) {
-		f32 minRange = CG_PARMS(kuma)->mGeneral.mMaxAttackAngle();
-		f32 maxRange = CG_PARMS(kuma)->mGeneral.mMaxAttackRange();
+		f32 minRange = CG_GENERALPARMS(kuma).mMaxAttackAngle();
+		f32 maxRange = CG_GENERALPARMS(kuma).mMaxAttackRange();
 		f32 dist     = kuma->getAngDist(target);
 		if (kuma->isTargetAttackable(target, dist, minRange, maxRange)) {
 			kuma->mNextState = KUMAKOCHAPPY_Attack;
@@ -1740,11 +1740,11 @@ void StateWalkPath::exec(EnemyBase* enemy)
 		Vector3f* parentPos = kuma->setTargetParentPosition();
 		if (parentPos) {
 			Vector3f pos = kuma->getPosition();
-			if (inRadius(CG_PARMS(kuma)->mGeneral.mHomeRadius.mValue, pos, *parentPos)) {
+			if (inRadius(CG_GENERALPARMS(kuma).mHomeRadius.mValue, pos, *parentPos)) {
 				kuma->mNextState = KUMAKOCHAPPY_Wait;
 				kuma->finishMotion();
 			} else {
-				f32 dist = kuma->turnToTarget(*parentPos, CG_PARMS(kuma)->mGeneral.mTurnSpeed(), CG_PARMS(kuma)->mGeneral.mMaxTurnAngle());
+				f32 dist = kuma->turnToTarget(*parentPos, CG_GENERALPARMS(kuma).mTurnSpeed(), CG_GENERALPARMS(kuma).mMaxTurnAngle());
 			}
 		} else {
 			kuma->mNextState = KUMAKOCHAPPY_Wait;
@@ -1755,7 +1755,7 @@ void StateWalkPath::exec(EnemyBase* enemy)
 	if (kuma->isFinishMotion()) {
 		kuma->mTargetVelocity = Vector3f(0.0f);
 	} else {
-		f32 moveSpeed = CG_PARMS(kuma)->mGeneral.mSearchHeight.mValue; // ??????????????????????????????????
+		f32 moveSpeed = CG_GENERALPARMS(kuma).mSearchHeight.mValue; // ??????????????????????????????????
 		f32 sinTheta  = (f32)sin(kuma->getFaceDir());
 		f32 y         = kuma->getTargetVelocity().y;
 		f32 cosTheta  = (f32)cos(kuma->getFaceDir());

@@ -81,8 +81,8 @@ void StateWait::exec(EnemyBase* enemy)
 		tadpole->finishMotion();
 	}
 
-	Navi* navi = EnemyFunc::getNearestNavi(tadpole, CG_PARMS(tadpole)->mGeneral.mViewAngle.mValue,
-	                                       CG_PARMS(tadpole)->mGeneral.mSightRadius.mValue, nullptr, nullptr);
+	Navi* navi = EnemyFunc::getNearestNavi(tadpole, CG_GENERALPARMS(tadpole).mViewAngle.mValue,
+	                                       CG_GENERALPARMS(tadpole).mSightRadius.mValue, nullptr, nullptr);
 	if (navi) {
 		tadpole->mTargetPosition = Vector3f(tadpole->getTargetPosition(navi));
 		tadpole->mNextState      = TADPOLE_Amaze;
@@ -134,16 +134,16 @@ void StateMove::exec(EnemyBase* enemy)
 	Vector3f tadpolePos = tadpole->getPosition();
 	Vector3f targetPos  = Vector3f(tadpole->mTargetPosition);
 
-	EnemyFunc::walkToTarget(tadpole, targetPos, CG_PARMS(tadpole)->mGeneral.mMoveSpeed.mValue,
-	                        CG_PARMS(tadpole)->mGeneral.mTurnSpeed.mValue, CG_PARMS(tadpole)->mGeneral.mMaxTurnAngle.mValue);
+	EnemyFunc::walkToTarget(tadpole, targetPos, CG_GENERALPARMS(tadpole).mMoveSpeed.mValue,
+	                        CG_GENERALPARMS(tadpole).mTurnSpeed.mValue, CG_GENERALPARMS(tadpole).mMaxTurnAngle.mValue);
 
 	if (tadpole->mStateTimer > 3.0f || sqrDistanceXZ(tadpolePos, targetPos) < 100.0f) {
 		tadpole->mTargetVelocity = Vector3f(0.0f);
 		tadpole->finishMotion();
 	}
 
-	Navi* navi = EnemyFunc::getNearestNavi(tadpole, CG_PARMS(tadpole)->mGeneral.mViewAngle.mValue,
-	                                       CG_PARMS(tadpole)->mGeneral.mSightRadius.mValue, nullptr, nullptr);
+	Navi* navi = EnemyFunc::getNearestNavi(tadpole, CG_GENERALPARMS(tadpole).mViewAngle.mValue,
+	                                       CG_GENERALPARMS(tadpole).mSightRadius.mValue, nullptr, nullptr);
 	if (navi) {
 		tadpole->mTargetPosition = Vector3f(tadpole->getTargetPosition(navi));
 		tadpole->mNextState      = TADPOLE_Amaze;
@@ -196,9 +196,9 @@ void StateAmaze::exec(EnemyBase* enemy)
 		if (tadpole->mCurAnim->mType == KEYEVENT_2) {
 			tadpole->enableEvent(0, EB_NoInterrupt);
 			tadpole->createLeapEffect();
-			EnemyFunc::flickNearbyPikmin(tadpole, CG_PARMS(tadpole)->mGeneral.mShakeRange.mValue,
-			                             CG_PARMS(tadpole)->mGeneral.mShakeKnockback.mValue,
-			                             CG_PARMS(tadpole)->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
+			EnemyFunc::flickNearbyPikmin(tadpole, CG_GENERALPARMS(tadpole).mShakeRange.mValue,
+			                             CG_GENERALPARMS(tadpole).mShakeKnockback.mValue,
+			                             CG_GENERALPARMS(tadpole).mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 
 		} else if (tadpole->mCurAnim->mType == KEYEVENT_3) {
 			tadpole->disableEvent(0, EB_NoInterrupt);
@@ -237,14 +237,14 @@ void StateEscape::exec(EnemyBase* enemy)
 {
 	Obj* tadpole = OBJ(enemy);
 
-	Navi* navi = EnemyFunc::getNearestNavi(tadpole, CG_PARMS(tadpole)->mGeneral.mViewAngle.mValue,
-	                                       CG_PARMS(tadpole)->mGeneral.mSightRadius.mValue, nullptr, nullptr);
+	Navi* navi = EnemyFunc::getNearestNavi(tadpole, CG_GENERALPARMS(tadpole).mViewAngle.mValue,
+	                                       CG_GENERALPARMS(tadpole).mSightRadius.mValue, nullptr, nullptr);
 	if (navi) {
 		Vector3f tadpolePos = tadpole->getPosition(); // this is pointless
 		Vector3f targetPos  = tadpole->getTargetPosition(navi);
 
-		EnemyFunc::walkToTarget(tadpole, targetPos, CG_PARMS(tadpole)->mGeneral.mMoveSpeed.mValue,
-		                        CG_PARMS(tadpole)->mGeneral.mTurnSpeed.mValue, CG_PARMS(tadpole)->mGeneral.mMaxTurnAngle.mValue);
+		EnemyFunc::walkToTarget(tadpole, targetPos, CG_GENERALPARMS(tadpole).mMoveSpeed.mValue,
+		                        CG_GENERALPARMS(tadpole).mTurnSpeed.mValue, CG_GENERALPARMS(tadpole).mMaxTurnAngle.mValue);
 
 	} else {
 		tadpole->finishMotion();
@@ -331,7 +331,7 @@ void StateLeap::exec(EnemyBase* enemy)
 
 		diff.normalise();
 
-		diff *= CG_PARMS(tadpole)->mProperParms.mPitterPatterMoveSpeed.mValue;
+		diff *= CG_PROPERPARMS(tadpole).mPitterPatterMoveSpeed.mValue;
 
 		tadpole->mTargetVelocity.x = 0.1f * (diff.x - targetVel.x) + targetVel.x;
 		tadpole->mTargetVelocity.y = diff.y;
@@ -369,8 +369,8 @@ void StateLeap::exec(EnemyBase* enemy)
 			}
 
 		} else if (tadpole->mCurAnim->mType == KEYEVENT_END) {
-			Navi* navi = EnemyFunc::getNearestNavi(tadpole, CG_PARMS(tadpole)->mGeneral.mViewAngle.mValue,
-			                                       CG_PARMS(tadpole)->mGeneral.mSightRadius.mValue, nullptr, nullptr);
+			Navi* navi = EnemyFunc::getNearestNavi(tadpole, CG_GENERALPARMS(tadpole).mViewAngle.mValue,
+			                                       CG_GENERALPARMS(tadpole).mSightRadius.mValue, nullptr, nullptr);
 			if (navi) {
 				tadpole->mTargetPosition = Vector3f(tadpole->getTargetPosition(navi));
 				tadpole->mNextState      = TADPOLE_Amaze;

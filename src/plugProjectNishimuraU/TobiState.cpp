@@ -121,8 +121,8 @@ void StateStay::exec(EnemyBase* enemy)
 	Obj* tobi = OBJ(enemy);
 	tobi->setBridgeSearch();
 
-	Creature* target = EnemyFunc::getNearestPikminOrNavi(tobi, CG_PARMS(tobi)->mGeneral.mViewAngle.mValue,
-	                                                     CG_PARMS(tobi)->mGeneral.mSightRadius.mValue, nullptr, nullptr, nullptr);
+	Creature* target = EnemyFunc::getNearestPikminOrNavi(tobi, CG_GENERALPARMS(tobi).mViewAngle.mValue,
+	                                                     CG_GENERALPARMS(tobi).mSightRadius.mValue, nullptr, nullptr, nullptr);
 	if ((target || tobi->isBreakBridge()) && tobi->isAppearCheck()) {
 		tobi->mTargetCreature = target;
 		transit(tobi, TOBI_Appear, nullptr);
@@ -243,21 +243,21 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 void StateMove::exec(EnemyBase* enemy)
 {
 	Obj* tobi        = OBJ(enemy);
-	Creature* target = EnemyFunc::getNearestPikminOrNavi(tobi, CG_PARMS(tobi)->mGeneral.mViewAngle(),
-	                                                     CG_PARMS(tobi)->mGeneral.mSightRadius(), nullptr, nullptr, nullptr);
+	Creature* target = EnemyFunc::getNearestPikminOrNavi(tobi, CG_GENERALPARMS(tobi).mViewAngle(),
+	                                                     CG_GENERALPARMS(tobi).mSightRadius(), nullptr, nullptr, nullptr);
 	if (target) {
 		tobi->mTargetCreature = target;
 		f32 angleDist         = tobi->changeFaceDir2(target);
 		f32 x, y, z;
-		f32 speed = CG_PARMS(tobi)->mGeneral.mMoveSpeed();
+		f32 speed = CG_GENERALPARMS(tobi).mMoveSpeed();
 		x         = (f32)sin(tobi->getFaceDir());
 		y         = tobi->getTargetVelocity().y;
 		z         = (f32)cos(tobi->getFaceDir());
 
 		tobi->mTargetVelocity = Vector3f(speed * x, y, speed * z);
 
-		if (tobi->isTargetAttackable(target, angleDist, CG_PARMS(tobi)->mGeneral.mMaxAttackRange(),
-		                             CG_PARMS(tobi)->mGeneral.mMaxAttackAngle())) {
+		if (tobi->isTargetAttackable(target, angleDist, CG_GENERALPARMS(tobi).mMaxAttackRange(),
+		                             CG_GENERALPARMS(tobi).mMaxAttackAngle())) {
 			tobi->mNextState = TOBI_Attack2;
 			tobi->finishMotion();
 		} else {
@@ -266,13 +266,13 @@ void StateMove::exec(EnemyBase* enemy)
 
 			f32 dist = tobiPos.distance(homePos);
 
-			if (dist > CG_PARMS(tobi)->mGeneral.mTerritoryRadius()) {
+			if (dist > CG_GENERALPARMS(tobi).mTerritoryRadius()) {
 				tobi->mNextState = TOBI_GoHome;
 				tobi->finishMotion();
 			} else {
 				Creature* newTarget
-				    = EnemyFunc::getNearestPikminOrNavi(tobi, CG_PARMS(tobi)->mGeneral.mMaxAttackAngle(),
-				                                        CG_PARMS(tobi)->mGeneral.mMaxAttackRange(), nullptr, nullptr, nullptr);
+				    = EnemyFunc::getNearestPikminOrNavi(tobi, CG_GENERALPARMS(tobi).mMaxAttackAngle(),
+				                                        CG_GENERALPARMS(tobi).mMaxAttackRange(), nullptr, nullptr, nullptr);
 				if (newTarget) {
 					tobi->mNextState = TOBI_Attack2;
 					tobi->finishMotion();
@@ -673,7 +673,7 @@ void StateMoveSide::exec(EnemyBase* enemy)
 {
 	Obj* tobi = OBJ(enemy);
 
-	if (EnemyFunc::getNearestPikminOrNavi(tobi, CG_PARMS(tobi)->mGeneral.mViewAngle.mValue, CG_PARMS(tobi)->mGeneral.mSightRadius.mValue,
+	if (EnemyFunc::getNearestPikminOrNavi(tobi, CG_GENERALPARMS(tobi).mViewAngle.mValue, CG_GENERALPARMS(tobi).mSightRadius.mValue,
 	                                      nullptr, nullptr, nullptr)) {
 		tobi->mNextState = TOBI_Move;
 		tobi->finishMotion();
@@ -729,7 +729,7 @@ void StateMoveCentre::exec(EnemyBase* enemy)
 {
 	Obj* tobi = OBJ(enemy);
 
-	if (EnemyFunc::getNearestPikminOrNavi(tobi, CG_PARMS(tobi)->mGeneral.mViewAngle.mValue, CG_PARMS(tobi)->mGeneral.mSightRadius.mValue,
+	if (EnemyFunc::getNearestPikminOrNavi(tobi, CG_GENERALPARMS(tobi).mViewAngle.mValue, CG_GENERALPARMS(tobi).mSightRadius.mValue,
 	                                      nullptr, nullptr, nullptr)) {
 		tobi->mNextState = TOBI_Move;
 		tobi->finishMotion();
@@ -785,7 +785,7 @@ void StateMoveTop::exec(EnemyBase* enemy)
 {
 	Obj* tobi = OBJ(enemy);
 
-	if (EnemyFunc::getNearestPikminOrNavi(tobi, CG_PARMS(tobi)->mGeneral.mViewAngle.mValue, CG_PARMS(tobi)->mGeneral.mSightRadius.mValue,
+	if (EnemyFunc::getNearestPikminOrNavi(tobi, CG_GENERALPARMS(tobi).mViewAngle.mValue, CG_GENERALPARMS(tobi).mSightRadius.mValue,
 	                                      nullptr, nullptr, nullptr)) {
 		tobi->mNextState = TOBI_Move;
 		tobi->finishMotion();
@@ -841,11 +841,11 @@ void StateGoHome::exec(EnemyBase* enemy)
 {
 	Obj* tobi        = OBJ(enemy);
 	Vector3f homePos = Vector3f(tobi->mHomePosition);
-	EnemyFunc::walkToTarget(tobi, homePos, CG_PARMS(tobi)->mGeneral.mMoveSpeed.mValue, CG_PARMS(tobi)->mGeneral.mTurnSpeed.mValue,
-	                        CG_PARMS(tobi)->mGeneral.mMaxTurnAngle.mValue);
+	EnemyFunc::walkToTarget(tobi, homePos, CG_GENERALPARMS(tobi).mMoveSpeed.mValue, CG_GENERALPARMS(tobi).mTurnSpeed.mValue,
+	                        CG_GENERALPARMS(tobi).mMaxTurnAngle.mValue);
 
-	if (EnemyFunc::getNearestPikminOrNavi(tobi, CG_PARMS(tobi)->mGeneral.mMaxAttackRange.mValue,
-	                                      CG_PARMS(tobi)->mGeneral.mMaxAttackAngle.mValue, nullptr, nullptr, nullptr)) {
+	if (EnemyFunc::getNearestPikminOrNavi(tobi, CG_GENERALPARMS(tobi).mMaxAttackRange.mValue,
+	                                      CG_GENERALPARMS(tobi).mMaxAttackAngle.mValue, nullptr, nullptr, nullptr)) {
 		tobi->mNextState = TOBI_Attack2;
 		tobi->finishMotion();
 	} else {
@@ -853,7 +853,7 @@ void StateGoHome::exec(EnemyBase* enemy)
 		Vector3f position = tobi->getPosition();
 		Vector3f diff     = Vector3f(position.y - homePos2.y, position.z - homePos2.z, position.x - homePos2.x);
 
-		if (_length2(diff) < CG_PARMS(tobi)->mGeneral.mHomeRadius.mValue) {
+		if (_length2(diff) < CG_GENERALPARMS(tobi).mHomeRadius.mValue) {
 			tobi->mNextState = TOBI_Dive;
 			tobi->finishMotion();
 		}
@@ -906,10 +906,10 @@ void StateFly::exec(EnemyBase* enemy)
 	Obj* tobi = OBJ(enemy);
 	tobi->randomFlyingTarget();
 	Vector3f targetPos = Vector3f(tobi->mTargetPosition);
-	EnemyFunc::walkToTarget(tobi, targetPos, CG_PARMS(tobi)->mGeneral.mMoveSpeed.mValue, CG_PARMS(tobi)->mGeneral.mTurnSpeed.mValue,
-	                        CG_PARMS(tobi)->mGeneral.mMaxTurnAngle.mValue);
+	EnemyFunc::walkToTarget(tobi, targetPos, CG_GENERALPARMS(tobi).mMoveSpeed.mValue, CG_GENERALPARMS(tobi).mTurnSpeed.mValue,
+	                        CG_GENERALPARMS(tobi).mMaxTurnAngle.mValue);
 
-	if (tobi->mHealth / CG_PARMS(tobi)->mGeneral.mHealth.mValue > CG_PROPERPARMS(tobi).mLandHealthRatio.mValue) {
+	if (tobi->mHealth / CG_GENERALPARMS(tobi).mHealth.mValue > CG_PROPERPARMS(tobi).mLandHealthRatio.mValue) {
 		tobi->disableEvent(0, EB_Untargetable);
 		tobi->finishMotion();
 
@@ -953,7 +953,7 @@ void StateAttack1::init(EnemyBase* enemy, StateArg* stateArg)
 void StateAttack1::exec(EnemyBase* enemy)
 {
 	Obj* tobi = OBJ(enemy);
-	if (EnemyFunc::getNearestPikminOrNavi(tobi, CG_PARMS(tobi)->mGeneral.mViewAngle.mValue, CG_PARMS(tobi)->mGeneral.mSightRadius.mValue,
+	if (EnemyFunc::getNearestPikminOrNavi(tobi, CG_GENERALPARMS(tobi).mViewAngle.mValue, CG_GENERALPARMS(tobi).mSightRadius.mValue,
 	                                      nullptr, nullptr, nullptr)) {
 		tobi->mNextState = TOBI_Move;
 	} else if (tobi->isBreakBridge()) {
@@ -1022,8 +1022,8 @@ void StateAttack2::exec(EnemyBase* enemy)
 			tobi->disableEvent(0, EB_NoInterrupt);
 
 		} else if (tobi->mCurAnim->mType == KEYEVENT_4) {
-			EnemyFunc::attackNavi(tobi, CG_PARMS(tobi)->mGeneral.mAttackRadius.mValue, CG_PARMS(tobi)->mGeneral.mAttackHitAngle.mValue,
-			                      CG_PARMS(tobi)->mGeneral.mAttackDamage.mValue, nullptr, nullptr);
+			EnemyFunc::attackNavi(tobi, CG_GENERALPARMS(tobi).mAttackRadius.mValue, CG_GENERALPARMS(tobi).mAttackHitAngle.mValue,
+			                      CG_GENERALPARMS(tobi).mAttackDamage.mValue, nullptr, nullptr);
 			EnemyFunc::eatPikmin(tobi, nullptr);
 
 		} else if (tobi->mCurAnim->mType == KEYEVENT_END) {
@@ -1041,7 +1041,7 @@ void StateAttack2::exec(EnemyBase* enemy)
 			Vector3f position = tobi->getPosition();
 			Vector3f diff     = Vector3f(position.y - homePos2.y, position.z - homePos2.z, position.x - homePos2.x);
 
-			if (_length2(diff) > CG_PARMS(tobi)->mGeneral.mTerritoryRadius.mValue) {
+			if (_length2(diff) > CG_GENERALPARMS(tobi).mTerritoryRadius.mValue) {
 				transit(tobi, TOBI_GoHome, nullptr);
 				return;
 			}
@@ -1092,7 +1092,7 @@ void StateEat::exec(EnemyBase* enemy)
 			Vector3f position = tobi->getPosition();
 			Vector3f diff     = Vector3f(position.y - homePos2.y, position.z - homePos2.z, position.x - homePos2.x);
 
-			if (_length2(diff) > CG_PARMS(tobi)->mGeneral.mTerritoryRadius.mValue) {
+			if (_length2(diff) > CG_GENERALPARMS(tobi).mTerritoryRadius.mValue) {
 				transit(tobi, TOBI_GoHome, nullptr);
 				return;
 			}

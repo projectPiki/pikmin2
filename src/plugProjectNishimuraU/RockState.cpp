@@ -55,7 +55,7 @@ void StateWait::exec(EnemyBase* enemy)
 		}
 	} else {
 		bool isTarget;
-		f32 detectRadius = static_cast<Parms*>(rock->mParms)->mGeneral.mSightRadius.mValue;
+		f32 detectRadius = CG_GENERALPARMS(rock).mSightRadius.mValue;
 		if (EnemyFunc::isThereOlimar(rock, detectRadius, nullptr)) {
 			isTarget = true;
 		} else if (EnemyFunc::isTherePikmin(rock, detectRadius, nullptr)) {

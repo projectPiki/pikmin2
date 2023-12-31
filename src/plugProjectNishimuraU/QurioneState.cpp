@@ -237,7 +237,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	wisp->setAlive(false);
 	wisp->disableEvent(0, EB_Cullable);
 
-	Vector3f velocity(0.0f, static_cast<Parms*>(wisp->mParms)->mProperParms.mDeathRate.mValue, 0.0f);
+	Vector3f velocity(0.0f, CG_PROPERPARMS(wisp).mDeathRate.mValue, 0.0f);
 	wisp->setVelocity(velocity);
 	wisp->mTargetVelocity = velocity;
 

@@ -136,7 +136,7 @@ void StateDamage::exec(EnemyBase* enemy)
 				transit(sarai, BOMBSARAI_Dead, nullptr);
 				return;
 			}
-			if (sarai->mHealth / CG_PARMS(sarai)->mGeneral.mHealth.mValue > 0.5f) {
+			if (sarai->mHealth / CG_GENERALPARMS(sarai).mHealth.mValue > 0.5f) {
 				transit(sarai, BOMBSARAI_TakeOff1, nullptr);
 			} else {
 				transit(sarai, BOMBSARAI_TakeOff2, nullptr);
@@ -240,8 +240,8 @@ void StateBombWait::exec(EnemyBase* enemy)
 		sarai->finishMotion();
 	} else if (target) {
 		f32 maxRange, minRange, angleDist;
-		minRange  = CG_PARMS(sarai)->mGeneral.mMaxAttackAngle(); // f29
-		maxRange  = CG_PARMS(sarai)->mGeneral.mMaxAttackRange(); // f30
+		minRange  = CG_GENERALPARMS(sarai).mMaxAttackAngle(); // f29
+		maxRange  = CG_GENERALPARMS(sarai).mMaxAttackRange(); // f30
 		angleDist = sarai->getAngDist(target);
 
 		if (sarai->isTargetAttackable(target, angleDist, maxRange, minRange)) {
@@ -251,7 +251,7 @@ void StateBombWait::exec(EnemyBase* enemy)
 			Vector3f saraiPos  = sarai->getPosition();
 			Vector3f targetPos = target->getPosition();
 
-			if (sqrDistanceXZ(saraiPos, targetPos) < SQUARE(CG_PARMS(sarai)->mGeneral.mAttackRadius())) {
+			if (sqrDistanceXZ(saraiPos, targetPos) < SQUARE(CG_GENERALPARMS(sarai).mAttackRadius())) {
 				sarai->mNextState = BOMBSARAI_Release;
 				sarai->finishMotion();
 			} else {
@@ -632,8 +632,8 @@ void StateMove::exec(EnemyBase* enemy)
 				sarai->finishMotion();
 			}
 
-			EnemyFunc::walkToTarget(sarai, targetPos, CG_PARMS(sarai)->mGeneral.mMoveSpeed.mValue,
-			                        CG_PARMS(sarai)->mGeneral.mTurnSpeed.mValue, CG_PARMS(sarai)->mGeneral.mMaxTurnAngle.mValue);
+			EnemyFunc::walkToTarget(sarai, targetPos, CG_GENERALPARMS(sarai).mMoveSpeed.mValue,
+			                        CG_GENERALPARMS(sarai).mTurnSpeed.mValue, CG_GENERALPARMS(sarai).mMaxTurnAngle.mValue);
 		}
 	} else {
 		sarai->mTargetVelocity = Vector3f(0.0f);
@@ -691,8 +691,8 @@ void StateBombMove::exec(EnemyBase* enemy)
 		sarai->finishMotion();
 	} else if (target) {
 		f32 minRange, maxRange, angleDist;
-		minRange  = CG_PARMS(sarai)->mGeneral.mMaxAttackAngle(); // f29
-		maxRange  = CG_PARMS(sarai)->mGeneral.mMaxAttackRange(); // f30
+		minRange  = CG_GENERALPARMS(sarai).mMaxAttackAngle(); // f29
+		maxRange  = CG_GENERALPARMS(sarai).mMaxAttackRange(); // f30
 		angleDist = sarai->getAngDist(target);
 
 		if (sarai->isTargetAttackable(target, angleDist, maxRange, minRange)) {
@@ -700,7 +700,7 @@ void StateBombMove::exec(EnemyBase* enemy)
 			sarai->finishMotion();
 		} else {
 			targetPos = target->getPosition();
-			if (sqrDistanceXZ(saraiPos, targetPos) < SQUARE(CG_PARMS(sarai)->mGeneral.mAttackRadius())) {
+			if (sqrDistanceXZ(saraiPos, targetPos) < SQUARE(CG_GENERALPARMS(sarai).mAttackRadius())) {
 				sarai->mNextState = BOMBSARAI_Release;
 				sarai->finishMotion();
 			}
@@ -717,8 +717,8 @@ void StateBombMove::exec(EnemyBase* enemy)
 	if (sarai->isFinishMotion()) {
 		sarai->mTargetVelocity = Vector3f(0.0f);
 	} else {
-		EnemyFunc::walkToTarget(sarai, targetPos, CG_PARMS(sarai)->mGeneral.mMoveSpeed(), CG_PARMS(sarai)->mGeneral.mTurnSpeed(),
-		                        CG_PARMS(sarai)->mGeneral.mMaxTurnAngle());
+		EnemyFunc::walkToTarget(sarai, targetPos, CG_GENERALPARMS(sarai).mMoveSpeed(), CG_GENERALPARMS(sarai).mTurnSpeed(),
+		                        CG_GENERALPARMS(sarai).mMaxTurnAngle());
 	}
 
 	if (sarai->isEvent(0, EB_BitterQueued)) {
@@ -1387,8 +1387,8 @@ void StateFlick::exec(EnemyBase* enemy)
 
 	if (sarai->mCurAnim->mIsPlaying) {
 		if (sarai->mCurAnim->mType == KEYEVENT_2) {
-			EnemyFunc::flickStickPikmin(sarai, CG_PARMS(sarai)->mGeneral.mShakeChance.mValue,
-			                            CG_PARMS(sarai)->mGeneral.mShakeKnockback.mValue, CG_PARMS(sarai)->mGeneral.mShakeDamage.mValue,
+			EnemyFunc::flickStickPikmin(sarai, CG_GENERALPARMS(sarai).mShakeChance.mValue,
+			                            CG_GENERALPARMS(sarai).mShakeKnockback.mValue, CG_GENERALPARMS(sarai).mShakeDamage.mValue,
 			                            FLICK_BACKWARD_ANGLE, nullptr);
 			sarai->mFlickTimer = 0.0f;
 
@@ -1438,8 +1438,8 @@ void StateBombFlick::exec(EnemyBase* enemy)
 
 	if (sarai->mCurAnim->mIsPlaying) {
 		if (sarai->mCurAnim->mType == KEYEVENT_2) {
-			EnemyFunc::flickStickPikmin(sarai, CG_PARMS(sarai)->mGeneral.mShakeChance.mValue,
-			                            CG_PARMS(sarai)->mGeneral.mShakeKnockback.mValue, CG_PARMS(sarai)->mGeneral.mShakeDamage.mValue,
+			EnemyFunc::flickStickPikmin(sarai, CG_GENERALPARMS(sarai).mShakeChance.mValue,
+			                            CG_GENERALPARMS(sarai).mShakeKnockback.mValue, CG_GENERALPARMS(sarai).mShakeDamage.mValue,
 			                            FLICK_BACKWARD_ANGLE, nullptr);
 			sarai->mFlickTimer = 0.0f;
 

@@ -129,7 +129,7 @@ void StateStay::exec(EnemyBase* enemy)
 {
 	Obj* snagret     = OBJ(enemy);
 	Creature* target = nullptr;
-	Parms* parms     = static_cast<Parms*>(snagret->mParms);
+	Parms* parms     = CG_PARMS(snagret);
 	if (snagret->mStateTimer > parms->mProperParms.mUndergroundTime.mValue) {
 		f32 territory    = parms->mGeneral.mTerritoryRadius.mValue;
 		Vector3f homePos = Vector3f(snagret->mHomePosition);
@@ -396,14 +396,14 @@ void StateDisappear::exec(EnemyBase* enemy)
 
 	if (snagret->mCurAnim->mIsPlaying) {
 		if ((u32)snagret->mCurAnim->mType == KEYEVENT_2) {
-			Parms* parms1 = static_cast<Parms*>(snagret->mParms);
+			Parms* parms1 = CG_PARMS(snagret);
 			EnemyFunc::flickNearbyNavi(snagret, parms1->mGeneral.mShakeRange.mValue, parms1->mGeneral.mShakeKnockback.mValue,
 			                           parms1->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
-			Parms* parms2 = static_cast<Parms*>(snagret->mParms);
+			Parms* parms2 = CG_PARMS(snagret);
 			EnemyFunc::flickNearbyPikmin(snagret, parms2->mGeneral.mShakeRange.mValue, parms2->mGeneral.mShakeKnockback.mValue,
 			                             parms2->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 
-			Parms* parms3 = static_cast<Parms*>(snagret->mParms);
+			Parms* parms3 = CG_PARMS(snagret);
 			EnemyFunc::flickStickPikmin(snagret, parms3->mGeneral.mShakeChance.mValue, parms3->mGeneral.mShakeKnockback.mValue,
 			                            parms3->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 			snagret->finishWaitEffect();
@@ -460,22 +460,22 @@ void StateWait::exec(EnemyBase* enemy)
 		if (previousTarget->isAlive() && !previousTarget->isStickToMouth() && previousTarget->mSticker != snagret) {
 			// this inline needs fixing
 			if (snagret->isTargetOutOfRange(previousTarget, snagret->getCreatureViewAngle(previousTarget),
-			                                CG_PARMS(snagret)->mGeneral.mPrivateRadius(), CG_PARMS(snagret)->mGeneral.mSightRadius(),
-			                                CG_PARMS(snagret)->mGeneral.mFov(), CG_PARMS(snagret)->mGeneral.mViewAngle())) {
+			                                CG_GENERALPARMS(snagret).mPrivateRadius(), CG_GENERALPARMS(snagret).mSightRadius(),
+			                                CG_GENERALPARMS(snagret).mFov(), CG_GENERALPARMS(snagret).mViewAngle())) {
 				target = nullptr;
 			} else {
-				target = EnemyFunc::getNearestPikminOrNavi(snagret, CG_PARMS(snagret)->mGeneral.mViewAngle(),
-				                                           CG_PARMS(snagret)->mGeneral.mSightRadius(), nullptr, nullptr, nullptr);
+				target = EnemyFunc::getNearestPikminOrNavi(snagret, CG_GENERALPARMS(snagret).mViewAngle(),
+				                                           CG_GENERALPARMS(snagret).mSightRadius(), nullptr, nullptr, nullptr);
 			}
 
 		} else {
-			target = EnemyFunc::getNearestPikminOrNavi(snagret, CG_PARMS(snagret)->mGeneral.mViewAngle(),
-			                                           CG_PARMS(snagret)->mGeneral.mSightRadius(), nullptr, nullptr, nullptr);
+			target = EnemyFunc::getNearestPikminOrNavi(snagret, CG_GENERALPARMS(snagret).mViewAngle(),
+			                                           CG_GENERALPARMS(snagret).mSightRadius(), nullptr, nullptr, nullptr);
 		}
 
 	} else {
-		target = EnemyFunc::getNearestPikminOrNavi(snagret, CG_PARMS(snagret)->mGeneral.mViewAngle(),
-		                                           CG_PARMS(snagret)->mGeneral.mSightRadius(), nullptr, nullptr, nullptr);
+		target = EnemyFunc::getNearestPikminOrNavi(snagret, CG_GENERALPARMS(snagret).mViewAngle(),
+		                                           CG_GENERALPARMS(snagret).mSightRadius(), nullptr, nullptr, nullptr);
 	}
 
 	if (target) {
@@ -483,8 +483,8 @@ void StateWait::exec(EnemyBase* enemy)
 
 		// this is probably one of the turnToTarget inlines but currently they don't generate the right stack >:(
 		f32 angleDist, angle, turnSpeed, maxTurnAngle;
-		maxTurnAngle = CG_PARMS(snagret)->mGeneral.mMaxTurnAngle();
-		turnSpeed    = CG_PARMS(snagret)->mGeneral.mTurnSpeed();
+		maxTurnAngle = CG_GENERALPARMS(snagret).mMaxTurnAngle();
+		turnSpeed    = CG_GENERALPARMS(snagret).mTurnSpeed();
 
 		angleDist = snagret->getCreatureViewAngle(target);
 		angle     = clamp(angleDist * turnSpeed, PI * (DEG2RAD * maxTurnAngle));
@@ -1067,7 +1067,7 @@ void StateAttack::exec(EnemyBase* enemy)
 				Navi* navi = snagret->getAttackNavi(idx);
 
 				if (navi) {
-					Parms* parms = static_cast<Parms*>(snagret->mParms);
+					Parms* parms = CG_PARMS(snagret);
 					InteractAttack attack(snagret, parms->mGeneral.mAttackDamage.mValue, nullptr);
 					navi->stimulate(attack);
 				}
@@ -1144,7 +1144,7 @@ void StateEat::exec(EnemyBase* enemy)
 	Obj* snagret = OBJ(enemy);
 	if (snagret->mCurAnim->mIsPlaying) {
 		if ((u32)snagret->mCurAnim->mType == KEYEVENT_2) {
-			Parms* parms = static_cast<Parms*>(snagret->mParms);
+			Parms* parms = CG_PARMS(snagret);
 			EnemyFunc::swallowPikmin(snagret, parms->mProperParms.mPoisonDamage.mValue, nullptr);
 
 		} else if ((u32)snagret->mCurAnim->mType == KEYEVENT_END) {

@@ -94,7 +94,7 @@ void StateStay::exec(EnemyBase* enemy)
 	Obj* houdai = OBJ(enemy);
 	if (!houdai->isEvent(0, EB_TakingDamage)) {
 		bool isTarget;
-		f32 detectRadius = static_cast<Parms*>(houdai->mParms)->mGeneral.mPrivateRadius.mValue;
+		f32 detectRadius = CG_GENERALPARMS(houdai).mPrivateRadius.mValue;
 		if (EnemyFunc::isThereOlimar(houdai, detectRadius, nullptr)) {
 			isTarget = true;
 		} else if (EnemyFunc::isTherePikmin(houdai, detectRadius, nullptr)) {
@@ -149,7 +149,7 @@ void StateLand::exec(EnemyBase* enemy)
 	Obj* houdai = OBJ(enemy);
 	if (houdai->isStopMotion()) {
 		bool isTarget;
-		f32 detectRadius = static_cast<Parms*>(houdai->mParms)->mGeneral.mPrivateRadius.mValue;
+		f32 detectRadius = CG_GENERALPARMS(houdai).mPrivateRadius.mValue;
 		if (EnemyFunc::isThereOlimar(houdai, detectRadius, nullptr)) {
 			isTarget = true;
 		} else if (EnemyFunc::isTherePikmin(houdai, detectRadius, nullptr)) {
@@ -297,7 +297,7 @@ void StateFlick::exec(EnemyBase* enemy)
 			houdai->startChimneyEffect();
 
 		} else if ((u32)houdai->mCurAnim->mType == KEYEVENT_3) {
-			Parms* parms = static_cast<Parms*>(houdai->mParms);
+			Parms* parms = CG_PARMS(houdai);
 			EnemyFunc::flickStickPikmin(houdai, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 			                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
 			houdai->mFlickTimer = 0.0f;
@@ -406,7 +406,7 @@ void StateShot::exec(EnemyBase* enemy)
 	if (houdai->isStopMotion()) {
 		if (houdai->mShotGunState != 0) {
 			if (houdai->isFinishMotion()
-			    || houdai->mShotGunSearchTimer > static_cast<Parms*>(houdai->mParms)->mProperParms.mMaxShootingOff.mValue) {
+			    || houdai->mShotGunSearchTimer > CG_PROPERPARMS(houdai).mMaxShootingOff.mValue) {
 				houdai->setShotGunEmitKeepTimerOn();
 				houdai->startMotion();
 			}
@@ -438,7 +438,7 @@ void StateShot::exec(EnemyBase* enemy)
 
 	if (houdai->isShotGunRotation()) {
 		houdai->setShotGunTargetPosition();
-		if (houdai->mStateTimer > static_cast<Parms*>(houdai->mParms)->mGeneral.mSearchAngle.mValue) {
+		if (houdai->mStateTimer > CG_GENERALPARMS(houdai).mSearchAngle.mValue) {
 			houdai->mStateTimer = 0.0f;
 			houdai->finishMotion();
 		}
@@ -463,7 +463,7 @@ void StateShot::exec(EnemyBase* enemy)
 
 		} else if ((u32)houdai->mCurAnim->mType == KEYEVENT_3) {
 			if (!houdai->isFinishMotion()) {
-				Parms* parms = static_cast<Parms*>(houdai->mParms);
+				Parms* parms = CG_PARMS(houdai);
 				EnemyFunc::flickStickPikmin(houdai, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 				                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
 				houdai->mFlickTimer = 0.0f;
@@ -472,7 +472,7 @@ void StateShot::exec(EnemyBase* enemy)
 
 		} else if ((u32)houdai->mCurAnim->mType == KEYEVENT_4) {
 			if (!houdai->isFinishMotion()) {
-				Parms* parms2 = static_cast<Parms*>(houdai->mParms);
+				Parms* parms2 = CG_PARMS(houdai);
 				if (parms2->mGeneral.mSearchAngle.mValue - houdai->mStateTimer > parms2->mProperParms.mMaxShootingOff.mValue
 				    && houdai->mShotGunSearchTimer > parms2->mProperParms.mMaxShootingOn.mValue) {
 					houdai->setShotGunEmitKeepTimerOff();

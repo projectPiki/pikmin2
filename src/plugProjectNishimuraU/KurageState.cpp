@@ -197,7 +197,7 @@ void StateMove::exec(EnemyBase* enemy)
 			kurage->finishMotion();
 
 		} else {
-			Parms* parms = static_cast<Parms*>(kurage->mParms);
+			Parms* parms = CG_PARMS(kurage);
 			EnemyFunc::walkToTarget(kurage, targetPos, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mTurnSpeed.mValue,
 			                        parms->mGeneral.mMaxTurnAngle.mValue);
 		}
@@ -257,7 +257,7 @@ void StateChase::exec(EnemyBase* enemy)
 			kurage->finishMotion();
 
 		} else {
-			Parms* parms = static_cast<Parms*>(kurage->mParms);
+			Parms* parms = CG_PARMS(kurage);
 			EnemyFunc::walkToTarget(kurage, target, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mTurnSpeed.mValue,
 			                        parms->mGeneral.mMaxTurnAngle.mValue);
 		}
@@ -313,8 +313,8 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 void StateAttack::exec(EnemyBase* enemy)
 {
 	Obj* kurage = OBJ(enemy);
-	if (kurage->mHealth <= 0.0f || kurage->mStateTimer > static_cast<Parms*>(kurage->mParms)->mProperParms.mSuckTime.mValue
-	    || kurage->mFallTimer > static_cast<Parms*>(kurage->mParms)->mProperParms.mShakeTime.mValue) {
+	if (kurage->mHealth <= 0.0f || kurage->mStateTimer > CG_PROPERPARMS(kurage).mSuckTime.mValue
+	    || kurage->mFallTimer > CG_PROPERPARMS(kurage).mShakeTime.mValue) {
 		kurage->finishMotion();
 	}
 
@@ -535,7 +535,7 @@ void StateGround::init(EnemyBase* enemy, StateArg* stateArg)
 void StateGround::exec(EnemyBase* enemy)
 {
 	Obj* kurage = OBJ(enemy);
-	if (kurage->mStuckPikminCount == 0 || kurage->mStateTimer > static_cast<Parms*>(kurage->mParms)->mProperParms.mGroundTime.mValue) {
+	if (kurage->mStuckPikminCount == 0 || kurage->mStateTimer > CG_PROPERPARMS(kurage).mGroundTime.mValue) {
 		kurage->finishMotion();
 	}
 
@@ -587,7 +587,7 @@ void StateFlyFlick::exec(EnemyBase* enemy)
 	f32 val     = kurage->setHeightVelocity(kurage->getFlickPitchOffset(), 5.0f);
 	if (kurage->mCurAnim->mIsPlaying) {
 		if ((u32)kurage->mCurAnim->mType == KEYEVENT_2) {
-			Parms* parms = static_cast<Parms*>(kurage->mParms);
+			Parms* parms = CG_PARMS(kurage);
 			EnemyFunc::flickStickPikmin(kurage, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 			                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
 			kurage->mFlickTimer = 0.0f;
@@ -647,14 +647,14 @@ void StateGroundFlick::exec(EnemyBase* enemy)
 			rumbleMgr->startRumble(9, position, 2);
 
 		} else if ((u32)kurage->mCurAnim->mType == KEYEVENT_3) {
-			Parms* parms1 = static_cast<Parms*>(kurage->mParms);
+			Parms* parms1 = CG_PARMS(kurage);
 			EnemyFunc::flickNearbyNavi(kurage, parms1->mGeneral.mShakeRange.mValue, parms1->mGeneral.mShakeKnockback.mValue,
 			                           parms1->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
-			Parms* parms2 = static_cast<Parms*>(kurage->mParms);
+			Parms* parms2 = CG_PARMS(kurage);
 			EnemyFunc::flickNearbyPikmin(kurage, parms2->mGeneral.mShakeRange.mValue, parms2->mGeneral.mShakeKnockback.mValue,
 			                             parms2->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 
-			Parms* parms3 = static_cast<Parms*>(kurage->mParms);
+			Parms* parms3 = CG_PARMS(kurage);
 			EnemyFunc::flickStickPikmin(kurage, parms3->mGeneral.mShakeChance.mValue, parms3->mGeneral.mShakeKnockback.mValue,
 			                            parms3->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 			kurage->mFlickTimer = 0.0f;

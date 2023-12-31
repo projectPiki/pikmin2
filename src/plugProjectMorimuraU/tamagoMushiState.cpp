@@ -44,7 +44,7 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* mitite = OBJ(enemy);
 	mitite->startMotion(TAMAGOANIM_Move, nullptr);
 	mitite->resetWalkParm();
-	Parms* parms = static_cast<Parms*>(mitite->mParms);
+	Parms* parms = CG_PARMS(mitite);
 	p1           = parms->mProperParms.mMinimumWalkTime.mValue;
 	diff         = parms->mProperParms.mMaximumWalkTime.mValue - p1;
 
@@ -142,7 +142,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->enableEvent(0, EB_BitterImmune);
 
 	Obj* mitite  = OBJ(enemy);
-	Parms* parms = static_cast<Parms*>(mitite->mParms);
+	Parms* parms = CG_PARMS(mitite);
 	p1           = parms->mProperParms.mMinimumAppearanceTime.mValue;
 	diff         = parms->mProperParms.mMaximumAppearanceTime.mValue - p1;
 

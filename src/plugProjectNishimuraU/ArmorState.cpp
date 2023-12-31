@@ -88,8 +88,8 @@ void StateStay::exec(EnemyBase* enemy)
 {
 	Obj* armor = OBJ(enemy);
 	armor->setBridgeSearch();
-	f32 viewAngle  = CG_PARMS(armor)->mGeneral.mViewAngle;
-	f32 viewRadius = CG_PARMS(armor)->mGeneral.mSightRadius;
+	f32 viewAngle  = CG_GENERALPARMS(armor).mViewAngle;
+	f32 viewRadius = CG_GENERALPARMS(armor).mSightRadius;
 
 	Creature* targetCreature = EnemyFunc::getNearestPikminOrNavi(armor, viewAngle, viewRadius, nullptr, nullptr, nullptr);
 
@@ -212,16 +212,16 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 void StateMove::exec(EnemyBase* enemy)
 {
 	Obj* armor       = OBJ(enemy);
-	Creature* target = EnemyFunc::getNearestPikminOrNavi(armor, CG_PARMS(armor)->mGeneral.mViewAngle(),
-	                                                     CG_PARMS(armor)->mGeneral.mSightRadius(), nullptr, nullptr, nullptr);
+	Creature* target = EnemyFunc::getNearestPikminOrNavi(armor, CG_GENERALPARMS(armor).mViewAngle(),
+	                                                     CG_GENERALPARMS(armor).mSightRadius(), nullptr, nullptr, nullptr);
 	if (target) {
 		armor->mTargetCreature = target;
 		f32 angleDist          = armor->changeFaceDir2(target);
 
 		armor->setTargetVelocity();
 
-		if (armor->isTargetAttackable(target, angleDist, CG_PARMS(armor)->mGeneral.mMaxAttackRange(),
-		                              CG_PARMS(armor)->mGeneral.mMaxAttackAngle())) {
+		if (armor->isTargetAttackable(target, angleDist, CG_GENERALPARMS(armor).mMaxAttackRange(),
+		                              CG_GENERALPARMS(armor).mMaxAttackAngle())) {
 			armor->mNextState = ARMOR_Attack2;
 			armor->finishMotion();
 		} else {
@@ -229,13 +229,13 @@ void StateMove::exec(EnemyBase* enemy)
 			Vector3f pos     = armor->getPosition();
 			f32 homeDist     = pos.distance(homePos);
 
-			if (homeDist > CG_PARMS(armor)->mGeneral.mTerritoryRadius()) {
+			if (homeDist > CG_GENERALPARMS(armor).mTerritoryRadius()) {
 				armor->mNextState = ARMOR_GoHome;
 				armor->finishMotion();
 			} else {
 				Creature* newTarget
-				    = EnemyFunc::getNearestPikminOrNavi(armor, CG_PARMS(armor)->mGeneral.mMaxAttackAngle(),
-				                                        CG_PARMS(armor)->mGeneral.mMaxAttackRange(), nullptr, nullptr, nullptr);
+				    = EnemyFunc::getNearestPikminOrNavi(armor, CG_GENERALPARMS(armor).mMaxAttackAngle(),
+				                                        CG_GENERALPARMS(armor).mMaxAttackRange(), nullptr, nullptr, nullptr);
 				if (newTarget) {
 					armor->mNextState = ARMOR_Attack2;
 					armor->finishMotion();
@@ -638,8 +638,8 @@ void StateMoveSide::init(EnemyBase* enemy, StateArg* stateArg)
 void StateMoveSide::exec(EnemyBase* enemy)
 {
 	Obj* armor     = OBJ(enemy);
-	f32 viewAngle  = CG_PARMS(armor)->mGeneral.mViewAngle;
-	f32 viewRadius = CG_PARMS(armor)->mGeneral.mSightRadius;
+	f32 viewAngle  = CG_GENERALPARMS(armor).mViewAngle;
+	f32 viewRadius = CG_GENERALPARMS(armor).mSightRadius;
 
 	Creature* targetCreature = EnemyFunc::getNearestPikminOrNavi(armor, viewAngle, viewRadius, nullptr, nullptr, nullptr);
 
@@ -692,8 +692,8 @@ void StateMoveCentre::init(EnemyBase* enemy, StateArg* stateArg)
 void StateMoveCentre::exec(EnemyBase* enemy)
 {
 	Obj* armor     = OBJ(enemy);
-	f32 viewAngle  = CG_PARMS(armor)->mGeneral.mViewAngle;
-	f32 viewRadius = CG_PARMS(armor)->mGeneral.mSightRadius;
+	f32 viewAngle  = CG_GENERALPARMS(armor).mViewAngle;
+	f32 viewRadius = CG_GENERALPARMS(armor).mSightRadius;
 
 	Creature* targetCreature = EnemyFunc::getNearestPikminOrNavi(armor, viewAngle, viewRadius, nullptr, nullptr, nullptr);
 	if (targetCreature) {
@@ -745,8 +745,8 @@ void StateMoveTop::init(EnemyBase* enemy, StateArg* stateArg)
 void StateMoveTop::exec(EnemyBase* enemy)
 {
 	Obj* armor     = OBJ(enemy);
-	f32 viewAngle  = CG_PARMS(armor)->mGeneral.mViewAngle;
-	f32 viewRadius = CG_PARMS(armor)->mGeneral.mSightRadius;
+	f32 viewAngle  = CG_GENERALPARMS(armor).mViewAngle;
+	f32 viewRadius = CG_GENERALPARMS(armor).mSightRadius;
 
 	Creature* targetCreature = EnemyFunc::getNearestPikminOrNavi(armor, viewAngle, viewRadius, nullptr, nullptr, nullptr);
 	if (targetCreature) {
@@ -801,11 +801,11 @@ void StateGoHome::exec(EnemyBase* enemy)
 	Vector3f pos     = armor->getPosition();
 	Vector3f homePos = Vector3f(armor->mHomePosition);
 
-	EnemyFunc::walkToTarget(armor, homePos, CG_PARMS(armor)->mGeneral.mMoveSpeed.mValue, CG_PARMS(armor)->mGeneral.mTurnSpeed.mValue,
-	                        CG_PARMS(armor)->mGeneral.mMaxTurnAngle.mValue);
+	EnemyFunc::walkToTarget(armor, homePos, CG_GENERALPARMS(armor).mMoveSpeed.mValue, CG_GENERALPARMS(armor).mTurnSpeed.mValue,
+	                        CG_GENERALPARMS(armor).mMaxTurnAngle.mValue);
 
-	if (EnemyFunc::getNearestPikminOrNavi(armor, CG_PARMS(armor)->mGeneral.mMaxAttackRange.mValue,
-	                                      CG_PARMS(armor)->mGeneral.mMaxAttackAngle.mValue, nullptr, nullptr, nullptr)) {
+	if (EnemyFunc::getNearestPikminOrNavi(armor, CG_GENERALPARMS(armor).mMaxAttackRange.mValue,
+	                                      CG_GENERALPARMS(armor).mMaxAttackAngle.mValue, nullptr, nullptr, nullptr)) {
 		armor->mNextState = ARMOR_Attack2;
 		armor->finishMotion();
 	} else {
@@ -813,7 +813,7 @@ void StateGoHome::exec(EnemyBase* enemy)
 		Vector3f armorPos     = armor->getPosition();
 
 		f32 dist = armorPos.distance(armorHomePos);
-		if (dist < CG_PARMS(armor)->mGeneral.mHomeRadius.mValue) {
+		if (dist < CG_GENERALPARMS(armor).mHomeRadius.mValue) {
 			armor->mNextState = ARMOR_Dive;
 			armor->finishMotion();
 		}
@@ -859,8 +859,8 @@ void StateAttack1::init(EnemyBase* enemy, StateArg* stateArg)
 void StateAttack1::exec(EnemyBase* enemy)
 {
 	Obj* armor     = OBJ(enemy);
-	f32 viewAngle  = CG_PARMS(armor)->mGeneral.mViewAngle;
-	f32 viewRadius = CG_PARMS(armor)->mGeneral.mSightRadius;
+	f32 viewAngle  = CG_GENERALPARMS(armor).mViewAngle;
+	f32 viewRadius = CG_GENERALPARMS(armor).mSightRadius;
 
 	Creature* targetCreature = EnemyFunc::getNearestPikminOrNavi(armor, viewAngle, viewRadius, nullptr, nullptr, nullptr);
 	if (targetCreature) {
@@ -930,9 +930,9 @@ void StateAttack2::exec(EnemyBase* enemy)
 		if (armor->mCurAnim->mType == KEYEVENT_2) {
 			armor->createAttackEffect();
 		} else if (armor->mCurAnim->mType == KEYEVENT_3) {
-			f32 attackRadius = CG_PARMS(armor)->mGeneral.mAttackRadius;
-			f32 attackAngle  = CG_PARMS(armor)->mGeneral.mAttackHitAngle;
-			f32 attackDamage = CG_PARMS(armor)->mGeneral.mAttackDamage;
+			f32 attackRadius = CG_GENERALPARMS(armor).mAttackRadius;
+			f32 attackAngle  = CG_GENERALPARMS(armor).mAttackHitAngle;
+			f32 attackDamage = CG_GENERALPARMS(armor).mAttackDamage;
 			EnemyFunc::attackNavi(armor, attackRadius, attackAngle, attackDamage, nullptr, nullptr);
 
 			Vector3f armorPos = armor->getPosition();
@@ -1019,14 +1019,14 @@ void StateFlick::exec(EnemyBase* enemy)
 
 	if (armor->mCurAnim->mIsPlaying) {
 		if (armor->mCurAnim->mType == KEYEVENT_2) {
-			EnemyFunc::flickNearbyNavi(armor, CG_PARMS(armor)->mGeneral.mShakeRange.mValue,
-			                           CG_PARMS(armor)->mGeneral.mShakeKnockback.mValue, CG_PARMS(armor)->mGeneral.mShakeDamage.mValue,
+			EnemyFunc::flickNearbyNavi(armor, CG_GENERALPARMS(armor).mShakeRange.mValue,
+			                           CG_GENERALPARMS(armor).mShakeKnockback.mValue, CG_GENERALPARMS(armor).mShakeDamage.mValue,
 			                           armor->getFaceDir(), nullptr);
-			EnemyFunc::flickNearbyPikmin(armor, CG_PARMS(armor)->mGeneral.mShakeRange.mValue,
-			                             CG_PARMS(armor)->mGeneral.mShakeKnockback.mValue, CG_PARMS(armor)->mGeneral.mShakeDamage.mValue,
+			EnemyFunc::flickNearbyPikmin(armor, CG_GENERALPARMS(armor).mShakeRange.mValue,
+			                             CG_GENERALPARMS(armor).mShakeKnockback.mValue, CG_GENERALPARMS(armor).mShakeDamage.mValue,
 			                             armor->getFaceDir(), nullptr);
-			EnemyFunc::flickStickPikmin(armor, CG_PARMS(armor)->mGeneral.mShakeChance.mValue,
-			                            CG_PARMS(armor)->mGeneral.mShakeKnockback.mValue, CG_PARMS(armor)->mGeneral.mShakeDamage.mValue,
+			EnemyFunc::flickStickPikmin(armor, CG_GENERALPARMS(armor).mShakeChance.mValue,
+			                            CG_GENERALPARMS(armor).mShakeKnockback.mValue, CG_GENERALPARMS(armor).mShakeDamage.mValue,
 			                            armor->getFaceDir(), nullptr);
 			armor->mFlickTimer = 0.0f;
 

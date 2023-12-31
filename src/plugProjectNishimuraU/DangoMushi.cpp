@@ -700,8 +700,8 @@ void Obj::createCrashEnemy()
 				enemy->disableEvent(0, EB_Cullable); // rocks/eggs are always loaded to go off, even if you're not watching
 
 				// majorly increase trigger distance (for rocks, these are 75 and 150 by default; for eggs, 30 and 700)
-				CG_PARMS(enemy)->mGeneral.mPrivateRadius() = 1000.0f;
-				CG_PARMS(enemy)->mGeneral.mSightRadius()   = 1000.0f;
+				CG_GENERALPARMS(enemy).mPrivateRadius() = 1000.0f;
+				CG_GENERALPARMS(enemy).mSightRadius()   = 1000.0f;
 			}
 		}
 	}

@@ -151,19 +151,19 @@ void StateMove::exec(EnemyBase* enemy)
 		return;
 	}
 
-	Creature* creature = EnemyFunc::getNearestPikminOrNavi(baby, CG_PARMS(baby)->mGeneral.mViewAngle.mValue,
-	                                                       CG_PARMS(baby)->mGeneral.mSightRadius.mValue, nullptr, nullptr, nullptr);
+	Creature* creature = EnemyFunc::getNearestPikminOrNavi(baby, CG_GENERALPARMS(baby).mViewAngle.mValue,
+	                                                       CG_GENERALPARMS(baby).mSightRadius.mValue, nullptr, nullptr, nullptr);
 
 	if (creature) {
 
 		// Vector3f targetPos = creature->getPosition();
 		f32 angleDist = baby->turnToTarget(creature);
 
-		f32 limit   = PI * (DEG2RAD * CG_PARMS(baby)->mGeneral.mMaxAttackAngle());
+		f32 limit   = PI * (DEG2RAD * CG_GENERALPARMS(baby).mMaxAttackAngle());
 		f32 absDist = FABS(angleDist);
 
 		if (absDist <= limit) {
-			f32 speed    = CG_PARMS(baby)->mGeneral.mMoveSpeed.mValue;
+			f32 speed    = CG_GENERALPARMS(baby).mMoveSpeed.mValue;
 			f32 sintheta = (f32)sin(baby->getFaceDir());
 			f32 y        = baby->getTargetVelocity().y;
 			f32 costheta = (f32)cos(baby->getFaceDir());
@@ -171,7 +171,7 @@ void StateMove::exec(EnemyBase* enemy)
 			baby->mTargetVelocity = Vector3f(speed * sintheta, y, speed * costheta);
 
 		} else {
-			f32 speed    = CG_PARMS(baby)->mGeneral.mMoveSpeed.mValue * 0.25f;
+			f32 speed    = CG_GENERALPARMS(baby).mMoveSpeed.mValue * 0.25f;
 			f32 sintheta = (f32)sin(baby->getFaceDir());
 			f32 y        = baby->getTargetVelocity().y;
 			f32 costheta = (f32)cos(baby->getFaceDir());
@@ -179,8 +179,8 @@ void StateMove::exec(EnemyBase* enemy)
 			baby->mTargetVelocity = Vector3f(speed * sintheta, y, speed * costheta);
 		}
 
-		if (baby->isTargetAttackable(creature, angleDist, CG_PARMS(baby)->mGeneral.mMaxAttackRange.mValue,
-		                             CG_PARMS(baby)->mGeneral.mMaxAttackAngle.mValue)) {
+		if (baby->isTargetAttackable(creature, angleDist, CG_GENERALPARMS(baby).mMaxAttackRange.mValue,
+		                             CG_GENERALPARMS(baby).mMaxAttackAngle.mValue)) {
 			transit(baby, BABY_Attack, nullptr);
 		}
 
@@ -523,7 +523,7 @@ void StateAttack::exec(EnemyBase* enemy)
 	Obj* baby = OBJ(enemy);
 	if (baby->mCurAnim->mIsPlaying) {
 		if ((u32)baby->mCurAnim->mType == KEYEVENT_2) {
-			Parms* parms = static_cast<Parms*>(baby->mParms);
+			Parms* parms = CG_PARMS(baby);
 			EnemyFunc::attackNavi(baby, parms->mGeneral.mAttackRadius.mValue, parms->mGeneral.mAttackHitAngle.mValue,
 			                      parms->mGeneral.mAttackDamage.mValue, nullptr, nullptr);
 			EnemyFunc::eatPikmin(baby, nullptr);
@@ -532,7 +532,7 @@ void StateAttack::exec(EnemyBase* enemy)
 				baby->startMotion(BABYANIM_AttackFail, nullptr);
 			}
 		} else if ((u32)baby->mCurAnim->mType == KEYEVENT_3) {
-			Parms* parms = static_cast<Parms*>(baby->mParms);
+			Parms* parms = CG_PARMS(baby);
 			EnemyFunc::swallowPikmin(baby, parms->mProperParms.mPoisonDamage.mValue, nullptr);
 		} else if ((u32)baby->mCurAnim->mType == KEYEVENT_END) {
 			if (baby->mHealth <= 0.0f) {

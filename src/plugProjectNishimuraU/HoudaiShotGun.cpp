@@ -159,7 +159,7 @@ bool HoudaiShotGunNode::update()
 	newPos.y -= 10.0f;
 
 	f32 dist   = startPos.distance(newPos);
-	f32 radius = CG_PARMS(mOwner)->mGeneral.mAttackRadius();
+	f32 radius = CG_GENERALPARMS(mOwner).mAttackRadius();
 
 	if (dist > 0.0f) {
 		Vector3f searchCenter((newPos.x + startPos.x) * 0.5f, (newPos.y + startPos.y) * 0.5f, (newPos.z + startPos.z) * 0.5f);
@@ -218,7 +218,7 @@ bool HoudaiShotGunNode::update()
 					blastDir.y = 100.0f;
 				}
 				blastDir.z *= 100.0f;
-				InteractBomb blast(mOwner, CG_PARMS(mOwner)->mGeneral.mAttackDamage(), &blastDir);
+				InteractBomb blast(mOwner, CG_GENERALPARMS(mOwner).mAttackDamage(), &blastDir);
 				target->stimulate(blast);
 				continue;
 			}
@@ -1153,11 +1153,11 @@ void HoudaiShotGunMgr::emitShotGun()
 
 	xVec.normalise();
 
-	f32 factor = 2.0f * CG_PARMS(mOwner)->mGeneral.mAttackHitAngle();
+	f32 factor = 2.0f * CG_GENERALPARMS(mOwner).mAttackHitAngle();
 
-	xVec.x += randWeightFloat(factor) - CG_PARMS(mOwner)->mGeneral.mAttackHitAngle();
-	xVec.y += randWeightFloat(factor) - CG_PARMS(mOwner)->mGeneral.mAttackHitAngle();
-	xVec.z += randWeightFloat(factor) - CG_PARMS(mOwner)->mGeneral.mAttackHitAngle();
+	xVec.x += randWeightFloat(factor) - CG_GENERALPARMS(mOwner).mAttackHitAngle();
+	xVec.y += randWeightFloat(factor) - CG_GENERALPARMS(mOwner).mAttackHitAngle();
+	xVec.z += randWeightFloat(factor) - CG_GENERALPARMS(mOwner).mAttackHitAngle();
 
 	xVec.normalise();
 

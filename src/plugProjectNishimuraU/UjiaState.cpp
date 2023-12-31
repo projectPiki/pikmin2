@@ -119,8 +119,8 @@ void StateStay::exec(EnemyBase* enemy)
 		return;
 	}
 
-	Creature* target = EnemyFunc::getNearestPikminOrNavi(uji, CG_PARMS(uji)->mGeneral.mViewAngle.mValue,
-	                                                     CG_PARMS(uji)->mGeneral.mSightRadius.mValue, nullptr, nullptr, nullptr);
+	Creature* target = EnemyFunc::getNearestPikminOrNavi(uji, CG_GENERALPARMS(uji).mViewAngle.mValue,
+	                                                     CG_GENERALPARMS(uji).mSightRadius.mValue, nullptr, nullptr, nullptr);
 	if (target && uji->isAppearCheck()) {
 		uji->mTargetCreature = target;
 		transit(uji, UJIA_Appear, nullptr);
@@ -253,8 +253,8 @@ void StateMove::exec(EnemyBase* enemy)
 	} else {
 		Creature* target = uji->mTargetCreature;
 		if (target && target->isAlive()) {
-			f32 rotSpeed = CG_PARMS(uji)->mGeneral.mMaxTurnAngle();
-			f32 rotAccel = CG_PARMS(uji)->mGeneral.mTurnSpeed();
+			f32 rotSpeed = CG_GENERALPARMS(uji).mMaxTurnAngle();
+			f32 rotAccel = CG_GENERALPARMS(uji).mTurnSpeed();
 
 			Vector3f ujiPos    = uji->getPosition();
 			Vector3f targetPos = target->getPosition();
@@ -270,9 +270,9 @@ void StateMove::exec(EnemyBase* enemy)
 
 			uji->mFaceDir    = roundAng(turnSpeed + uji->getFaceDir());
 			uji->mRotation.y = uji->mFaceDir;
-			// uji->turnToTarget(target, CG_PARMS(uji)->mGeneral.mTurnSpeed.mValue,
-			// CG_PARMS(uji)->mGeneral.mMaxTurnAngle.mValue); uji->changeFaceDir(target);
-			f32 speed = CG_PARMS(uji)->mGeneral.mMoveSpeed.mValue;
+			// uji->turnToTarget(target, CG_GENERALPARMS(uji).mTurnSpeed.mValue,
+			// CG_GENERALPARMS(uji).mMaxTurnAngle.mValue); uji->changeFaceDir(target);
+			f32 speed = CG_GENERALPARMS(uji).mMoveSpeed.mValue;
 
 			f32 sinTheta = (f32)sin(uji->getFaceDir());
 			f32 y        = uji->getTargetVelocity().y;
@@ -280,9 +280,9 @@ void StateMove::exec(EnemyBase* enemy)
 
 			uji->mTargetVelocity = Vector3f(speed * sinTheta, y, speed * cosTheta);
 
-			f32 sightRad  = CG_PARMS(uji)->mGeneral.mSightRadius(); // f30
-			f32 fov       = CG_PARMS(uji)->mGeneral.mFov();         // f25
-			f32 viewAngle = CG_PARMS(uji)->mGeneral.mViewAngle();   // f26
+			f32 sightRad  = CG_GENERALPARMS(uji).mSightRadius(); // f30
+			f32 fov       = CG_GENERALPARMS(uji).mFov();         // f25
+			f32 viewAngle = CG_GENERALPARMS(uji).mViewAngle();   // f26
 
 			f32 xDiff = target->getPosition().x - uji->getPosition().x;
 			f32 yDiff = target->getPosition().y - uji->getPosition().y;
@@ -316,7 +316,7 @@ void StateMove::exec(EnemyBase* enemy)
 			} else {
 				Vector3f diff = uji->getPosition() - uji->mHomePosition;
 				f32 len       = diff.length();
-				if (len > CG_PARMS(uji)->mGeneral.mTerritoryRadius()) {
+				if (len > CG_GENERALPARMS(uji).mTerritoryRadius()) {
 					uji->mTargetCreature = nullptr;
 				}
 			}
@@ -836,14 +836,14 @@ void StateGoHome::exec(EnemyBase* enemy)
 {
 	Obj* uji         = OBJ(enemy);
 	Vector3f homePos = Vector3f(uji->mHomePosition);
-	EnemyFunc::walkToTarget(uji, homePos, CG_PARMS(uji)->mGeneral.mMoveSpeed.mValue, CG_PARMS(uji)->mGeneral.mTurnSpeed.mValue,
-	                        CG_PARMS(uji)->mGeneral.mMaxTurnAngle.mValue);
+	EnemyFunc::walkToTarget(uji, homePos, CG_GENERALPARMS(uji).mMoveSpeed.mValue, CG_GENERALPARMS(uji).mTurnSpeed.mValue,
+	                        CG_GENERALPARMS(uji).mMaxTurnAngle.mValue);
 
 	Vector3f homePos2 = uji->mHomePosition;
 	Vector3f position = uji->getPosition();
 	Vector3f diff     = Vector3f(position.y - homePos2.y, position.z - homePos2.z, position.x - homePos2.x);
 
-	if (_length2(diff) < CG_PARMS(uji)->mGeneral.mHomeRadius.mValue) {
+	if (_length2(diff) < CG_GENERALPARMS(uji).mHomeRadius.mValue) {
 		uji->finishMotion();
 	}
 

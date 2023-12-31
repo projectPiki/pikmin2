@@ -418,7 +418,7 @@ void StateHide::exec(EnemyBase* enemy)
 
 		} else if (enemy->mCurAnim->mType == KEYEVENT_END) {
 			OBJ(enemy)->fadeHideEffect();
-			enemy->mHealth = CG_PARMS(enemy)->mGeneral.mHealth.mValue;
+			enemy->mHealth = CG_GENERALPARMS(enemy).mHealth.mValue;
 			OBJ(enemy)->endCarry();
 			enemy->enableEvent(0, EB_BitterImmune);
 		}
@@ -603,7 +603,7 @@ void StateStick::exec(EnemyBase* enemy)
 			transit(enemy, PANMODOKI_Walk, nullptr);
 		}
 	} else {
-		EnemyFunc::walkToTarget(enemy, targetPos, 0.5f * CG_PARMS(enemy)->mGeneral.mMoveSpeed(), CG_PROPERPARMS(enemy).mFastTurnSpeed(),
+		EnemyFunc::walkToTarget(enemy, targetPos, 0.5f * CG_GENERALPARMS(enemy).mMoveSpeed(), CG_PROPERPARMS(enemy).mFastTurnSpeed(),
 		                        CG_PROPERPARMS(enemy).mMaxFastTurnAngle());
 
 		enemy->turnToTarget2(targetPos, CG_PROPERPARMS(enemy).mFastTurnSpeed(), CG_PROPERPARMS(enemy).mMaxFastTurnAngle());
@@ -689,7 +689,7 @@ void StateCarryEnd::exec(EnemyBase* enemy)
 			}
 
 		} else {
-			enemy->turnToTarget2(_10, CG_PARMS(enemy)->mGeneral.mTurnSpeed(), CG_PARMS(enemy)->mGeneral.mMaxTurnAngle());
+			enemy->turnToTarget2(_10, CG_GENERALPARMS(enemy).mTurnSpeed(), CG_GENERALPARMS(enemy).mMaxTurnAngle());
 			diff *= 0.05f;
 			enemy->forceMovePosition(diff);
 		}

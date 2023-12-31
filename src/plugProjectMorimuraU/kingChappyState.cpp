@@ -78,7 +78,7 @@ void StateWalk::exec(EnemyBase* enemy)
 		if (OBJ(enemy)->isOutOfTerritory(1.0f) || CG_PARMS(enemy)->_BC9 || _10 > CG_PROPERPARMS(enemy).mPeriodOfIncubation.mValue) {
 			OBJ(enemy)->mGoalPosition = enemy->mHomePosition;
 			_10                       = CG_PROPERPARMS(enemy).mPeriodOfIncubation.mValue;
-			if (OBJ(enemy)->isReachToGoal(CG_PARMS(enemy)->mGeneral.mHomeRadius.mValue)) {
+			if (OBJ(enemy)->isReachToGoal(CG_GENERALPARMS(enemy).mHomeRadius.mValue)) {
 				OBJ(enemy)->mNextState = KINGCHAPPY_Hide;
 				_10                    = 0;
 			}
@@ -197,7 +197,7 @@ void StateAttack::exec(EnemyBase* enemy)
 			Vector3f diff(slotPos.y - naviPos.y, slotPos.z - naviPos.z, slotPos.x - naviPos.x);
 			f32 len = _length2(diff);
 			if (len < slot->mRadius) {
-				InteractAttack attack(enemy, CG_PARMS(enemy)->mGeneral.mAttackDamage.mValue, nullptr);
+				InteractAttack attack(enemy, CG_GENERALPARMS(enemy).mAttackDamage.mValue, nullptr);
 				navi->stimulate(attack);
 			}
 		}
@@ -870,7 +870,7 @@ void StateFlick::exec(EnemyBase* enemy)
 				if (piki->isAlive()) {
 					Vector3f pikiPos = piki->getPosition();
 					if (yMax > pikiPos.y && yMin < pikiPos.y && sqrDistanceXZ(footPos, pikiPos) < trampleRange) {
-						InteractPress pikiPress(enemy, CG_PARMS(enemy)->mGeneral.mAttackDamage.mValue, nullptr);
+						InteractPress pikiPress(enemy, CG_GENERALPARMS(enemy).mAttackDamage.mValue, nullptr);
 						piki->stimulate(pikiPress);
 					}
 				}
@@ -886,17 +886,17 @@ void StateFlick::exec(EnemyBase* enemy)
 				if (navi->isAlive()) {
 					Vector3f naviPos = navi->getPosition();
 					if (yMax > naviPos.y && yMin < naviPos.y && sqrDistanceXZ(footPos, naviPos) < trampleRange) {
-						InteractPress naviPress(enemy, CG_PARMS(enemy)->mGeneral.mAttackDamage.mValue, nullptr);
+						InteractPress naviPress(enemy, CG_GENERALPARMS(enemy).mAttackDamage.mValue, nullptr);
 						navi->stimulate(naviPress);
 						naviCheck = false;
 					}
 				}
 			}
 
-			f32 rate      = CG_PARMS(enemy)->mGeneral.mShakeChance.mValue;
-			f32 knockback = CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue;
-			f32 damage    = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
-			f32 range     = CG_PARMS(enemy)->mGeneral.mShakeRange.mValue * enemy->mScaleModifier;
+			f32 rate      = CG_GENERALPARMS(enemy).mShakeChance.mValue;
+			f32 knockback = CG_GENERALPARMS(enemy).mShakeKnockback.mValue;
+			f32 damage    = CG_GENERALPARMS(enemy).mShakeDamage.mValue;
+			f32 range     = CG_GENERALPARMS(enemy).mShakeRange.mValue * enemy->mScaleModifier;
 
 			EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
 			EnemyFunc::flickStickPikmin(enemy, rate, knockback, damage, enemy->getFaceDir(), nullptr);
@@ -1635,10 +1635,10 @@ void StateWarCry::exec(EnemyBase* enemy)
 				}
 			}
 
-			f32 rate      = CG_PARMS(enemy)->mGeneral.mShakeChance.mValue;
-			f32 knockback = CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue;
-			f32 damage    = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
-			f32 range     = CG_PARMS(enemy)->mGeneral.mShakeRange.mValue * enemy->mScaleModifier;
+			f32 rate      = CG_GENERALPARMS(enemy).mShakeChance.mValue;
+			f32 knockback = CG_GENERALPARMS(enemy).mShakeKnockback.mValue;
+			f32 damage    = CG_GENERALPARMS(enemy).mShakeDamage.mValue;
+			f32 range     = CG_GENERALPARMS(enemy).mShakeRange.mValue * enemy->mScaleModifier;
 
 			EnemyFunc::flickStickPikmin(enemy, rate, knockback, damage, enemy->getFaceDir(), nullptr);
 			EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
@@ -2071,7 +2071,7 @@ void StateAppear::exec(EnemyBase* enemy)
 		case KEYEVENT_3:
 			_10             = 0;
 			f32 shakePower  = CG_PROPERPARMS(enemy).mAppearanceShakeOffPower.mValue;
-			f32 shakeDamage = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
+			f32 shakeDamage = CG_GENERALPARMS(enemy).mShakeDamage.mValue;
 			f32 shakeRange  = CG_PROPERPARMS(enemy).mAppearanceShakeOffRange.mValue;
 
 			EnemyFunc::flickNearbyPikmin(enemy, shakeRange, shakePower, shakeDamage, FLICK_BACKWARD_ANGLE, nullptr);

@@ -121,7 +121,7 @@ void StateTurn::exec(EnemyBase* enemy)
 
 	// f32 dist = bug->changeFaceDir(targetPos);
 
-	f32 dist = bug->turnToTarget(targetPos, CG_PARMS(bug)->mGeneral.mTurnSpeed(), CG_PARMS(bug)->mGeneral.mMaxTurnAngle());
+	f32 dist = bug->turnToTarget(targetPos, CG_GENERALPARMS(bug).mTurnSpeed(), CG_GENERALPARMS(bug).mMaxTurnAngle());
 	f64 abs  = fabs(dist);
 	if ((f32)(abs) <= PI / 6.0f) {
 		bug->finishMotion();
@@ -167,7 +167,7 @@ void StateMove::exec(EnemyBase* enemy)
 
 	Vector3f currentPos = bug->getPosition();
 	if (outsideRadius(25.0f, currentPos, targetPos)) {
-		EnemyParmsBase::Parms& general = CG_PARMS(bug)->mGeneral;
+		EnemyParmsBase::Parms& general = CG_GENERALPARMS(bug);
 		EnemyFunc::walkToTarget(bug, targetPos, general.mMoveSpeed, general.mTurnSpeed, general.mMaxTurnAngle);
 
 	} else {
@@ -248,7 +248,7 @@ void StateCharge::exec(EnemyBase* enemy)
 		Vector3f partnerPos = partner->getPosition();
 		Vector3f pos        = bugPos - partnerPos;
 		pos += bugPos;
-		partner->turnToTarget2(pos, 0.15f, CG_PARMS(bug)->mGeneral.mMaxTurnAngle());
+		partner->turnToTarget2(pos, 0.15f, CG_GENERALPARMS(bug).mMaxTurnAngle());
 	}
 	if (bug->mStateTimer > 3.0f) {
 		if (bug->mPartner) {
@@ -362,7 +362,7 @@ void StateChildCharge::exec(EnemyBase* enemy)
 		Vector3f partnerPos = partner->getPosition();
 		Vector3f pos        = bugPos - partnerPos;
 		pos += bugPos;
-		partner->turnToTarget2(pos, 0.15f, CG_PARMS(bug)->mGeneral.mMaxTurnAngle());
+		partner->turnToTarget2(pos, 0.15f, CG_GENERALPARMS(bug).mMaxTurnAngle());
 	}
 	if (bug->mStateTimer > 3.0f) {
 		if (partner) {

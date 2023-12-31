@@ -233,8 +233,8 @@ void StateFlick::exec(EnemyBase* enemy)
 
 	if (sarai->mCurAnim->mIsPlaying) {
 		if (sarai->mCurAnim->mType == KEYEVENT_2) {
-			EnemyFunc::flickStickPikmin(sarai, CG_PARMS(sarai)->mGeneral.mShakeChance.mValue,
-			                            CG_PARMS(sarai)->mGeneral.mShakeKnockback.mValue, CG_PARMS(sarai)->mGeneral.mShakeDamage.mValue,
+			EnemyFunc::flickStickPikmin(sarai, CG_GENERALPARMS(sarai).mShakeChance.mValue,
+			                            CG_GENERALPARMS(sarai).mShakeKnockback.mValue, CG_GENERALPARMS(sarai).mShakeDamage.mValue,
 			                            FLICK_BACKWARD_ANGLE, nullptr);
 			sarai->mFlickTimer = 0.0f;
 
@@ -357,7 +357,7 @@ void StateMove::exec(EnemyBase* enemy)
 		sarai->finishMotion();
 	} else {
 		EnemyFunc::walkToTarget(sarai, targetPos, CG_PROPERPARMS(sarai).mNormalMovementSpeed.mValue,
-		                        CG_PARMS(sarai)->mGeneral.mTurnSpeed.mValue, CG_PARMS(sarai)->mGeneral.mMaxTurnAngle.mValue);
+		                        CG_GENERALPARMS(sarai).mTurnSpeed.mValue, CG_GENERALPARMS(sarai).mMaxTurnAngle.mValue);
 	}
 
 	if (height > CG_PROPERPARMS(sarai).mStateTransitionHeight.mValue || sarai->_2C0 > 3.0f) {
@@ -1071,7 +1071,7 @@ void StateCatchFly::exec(EnemyBase* enemy)
 		sarai->finishMotion();
 	} else {
 		EnemyFunc::walkToTarget(sarai, targetPos, CG_PROPERPARMS(sarai).mGrabMovementSpeed.mValue,
-		                        CG_PARMS(sarai)->mGeneral.mTurnSpeed.mValue, CG_PARMS(sarai)->mGeneral.mMaxTurnAngle.mValue);
+		                        CG_GENERALPARMS(sarai).mTurnSpeed.mValue, CG_GENERALPARMS(sarai).mMaxTurnAngle.mValue);
 	}
 
 	if (!sarai->getCatchTargetNum()) {

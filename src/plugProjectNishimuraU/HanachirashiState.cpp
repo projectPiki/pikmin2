@@ -173,8 +173,8 @@ void StateMove::exec(EnemyBase* enemy)
 		hanachirashi->mTargetVelocity = Vector3f(0.0f);
 		hanachirashi->finishMotion();
 	} else {
-		EnemyFunc::walkToTarget(hanachirashi, targetPos, CG_PARMS(hanachirashi)->mGeneral.mMoveSpeed.mValue,
-		                        CG_PARMS(hanachirashi)->mGeneral.mTurnSpeed.mValue, CG_PARMS(hanachirashi)->mGeneral.mMaxTurnAngle.mValue);
+		EnemyFunc::walkToTarget(hanachirashi, targetPos, CG_GENERALPARMS(hanachirashi).mMoveSpeed.mValue,
+		                        CG_GENERALPARMS(hanachirashi).mTurnSpeed.mValue, CG_GENERALPARMS(hanachirashi).mMaxTurnAngle.mValue);
 	}
 
 	hanachirashi->mAirWaitTime += sys->mDeltaTime;
@@ -343,24 +343,24 @@ void StateChase::exec(EnemyBase* enemy)
 
 			Vector3f sep(hanachirashiPos.x - targetPos.x, 0.0f, hanachirashiPos.z - targetPos.z);
 			sep.normalise();
-			sep *= CG_PARMS(hanachirashi)->mGeneral.mMaxAttackRange();
+			sep *= CG_GENERALPARMS(hanachirashi).mMaxAttackRange();
 			Vector3f newPos = targetPos + sep;                                                            // f24, f23
 			f32 angle       = JMAAtan2Radian(newPos.x - hanachirashiPos.x, newPos.z - hanachirashiPos.z); // f29
 
-			hanachirashi->turnToTarget(target, CG_PARMS(hanachirashi)->mGeneral.mTurnSpeed(),
-			                           CG_PARMS(hanachirashi)->mGeneral.mMaxTurnAngle());
+			hanachirashi->turnToTarget(target, CG_GENERALPARMS(hanachirashi).mTurnSpeed(),
+			                           CG_GENERALPARMS(hanachirashi).mMaxTurnAngle());
 
 			if (sqrDistanceXZ(hanachirashiPos, newPos) > 225.0f) {
-				f32 x = CG_PARMS(hanachirashi)->mGeneral.mMoveSpeed() * sinf(angle);
+				f32 x = CG_GENERALPARMS(hanachirashi).mMoveSpeed() * sinf(angle);
 				f32 y = hanachirashi->getTargetVelocity().y;
-				f32 z = CG_PARMS(hanachirashi)->mGeneral.mMoveSpeed() * cosf(angle);
+				f32 z = CG_GENERALPARMS(hanachirashi).mMoveSpeed() * cosf(angle);
 
 				hanachirashi->mTargetVelocity = Vector3f(x, y, z);
 			} else {
 				hanachirashi->mTargetVelocity = Vector3f(0.0f);
 			}
 
-			if (sqrDistanceXZ(hanachirashiPos, homePos) > SQUARE(CG_PARMS(hanachirashi)->mGeneral.mTerritoryRadius())) {
+			if (sqrDistanceXZ(hanachirashiPos, homePos) > SQUARE(CG_GENERALPARMS(hanachirashi).mTerritoryRadius())) {
 				transit(hanachirashi, HANACHIRASHI_ChaseInside, nullptr);
 			} else if (hanachirashi->isTargetLost()) {
 				Piki* piki = hanachirashi->getSearchedPikmin();
@@ -785,7 +785,7 @@ void StateChaseInside::init(EnemyBase* enemy, StateArg* stateArg)
 
 		sep.normalise();
 
-		sep *= CG_PARMS(hanachirashi)->mGeneral.mSightRadius();
+		sep *= CG_GENERALPARMS(hanachirashi).mSightRadius();
 		pos += sep;
 		hanachirashi->mTargetPosition = pos;
 	} else {
@@ -812,14 +812,14 @@ void StateChaseInside::exec(EnemyBase* enemy)
 	} else {
 		Creature* target = hanachirashi->mTargetCreature;
 		if (target) {
-			hanachirashi->turnToTarget(target, CG_PARMS(hanachirashi)->mGeneral.mTurnSpeed(),
-			                           CG_PARMS(hanachirashi)->mGeneral.mMaxTurnAngle());
+			hanachirashi->turnToTarget(target, CG_GENERALPARMS(hanachirashi).mTurnSpeed(),
+			                           CG_GENERALPARMS(hanachirashi).mMaxTurnAngle());
 		}
 
 		f32 angle = JMAAtan2Radian(targetPos.x - hanachirashiPos.x, targetPos.z - hanachirashiPos.z);
-		f32 x     = CG_PARMS(hanachirashi)->mGeneral.mMoveSpeed() * sinf(angle);
+		f32 x     = CG_GENERALPARMS(hanachirashi).mMoveSpeed() * sinf(angle);
 		f32 y     = hanachirashi->getTargetVelocity().y;
-		f32 z     = CG_PARMS(hanachirashi)->mGeneral.mMoveSpeed() * cosf(angle);
+		f32 z     = CG_GENERALPARMS(hanachirashi).mMoveSpeed() * cosf(angle);
 
 		hanachirashi->mTargetVelocity = Vector3f(x, y, z);
 	}
@@ -1139,9 +1139,9 @@ void StateFlyFlick::exec(EnemyBase* enemy)
 
 	if (hanachirashi->mCurAnim->mIsPlaying) {
 		if (hanachirashi->mCurAnim->mType == KEYEVENT_2) {
-			EnemyFunc::flickStickPikmin(hanachirashi, CG_PARMS(hanachirashi)->mGeneral.mShakeChance.mValue,
-			                            CG_PARMS(hanachirashi)->mGeneral.mShakeKnockback.mValue,
-			                            CG_PARMS(hanachirashi)->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
+			EnemyFunc::flickStickPikmin(hanachirashi, CG_GENERALPARMS(hanachirashi).mShakeChance.mValue,
+			                            CG_GENERALPARMS(hanachirashi).mShakeKnockback.mValue,
+			                            CG_GENERALPARMS(hanachirashi).mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 			hanachirashi->mFlickTimer = 0.0f;
 
 		} else if (hanachirashi->mCurAnim->mType == KEYEVENT_END) {
@@ -1183,14 +1183,14 @@ void StateGroundFlick::exec(EnemyBase* enemy)
 
 	if (enemy->mCurAnim->mIsPlaying) {
 		if (enemy->mCurAnim->mType == KEYEVENT_2) {
-			EnemyFunc::flickNearbyNavi(enemy, CG_PARMS(enemy)->mGeneral.mShakeRange.mValue,
-			                           CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue, CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue,
+			EnemyFunc::flickNearbyNavi(enemy, CG_GENERALPARMS(enemy).mShakeRange.mValue,
+			                           CG_GENERALPARMS(enemy).mShakeKnockback.mValue, CG_GENERALPARMS(enemy).mShakeDamage.mValue,
 			                           FLICK_BACKWARD_ANGLE, nullptr);
-			EnemyFunc::flickNearbyPikmin(enemy, CG_PARMS(enemy)->mGeneral.mShakeRange.mValue,
-			                             CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue, CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue,
+			EnemyFunc::flickNearbyPikmin(enemy, CG_GENERALPARMS(enemy).mShakeRange.mValue,
+			                             CG_GENERALPARMS(enemy).mShakeKnockback.mValue, CG_GENERALPARMS(enemy).mShakeDamage.mValue,
 			                             FLICK_BACKWARD_ANGLE, nullptr);
-			EnemyFunc::flickStickPikmin(enemy, CG_PARMS(enemy)->mGeneral.mShakeChance.mValue,
-			                            CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue, CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue,
+			EnemyFunc::flickStickPikmin(enemy, CG_GENERALPARMS(enemy).mShakeChance.mValue,
+			                            CG_GENERALPARMS(enemy).mShakeKnockback.mValue, CG_GENERALPARMS(enemy).mShakeDamage.mValue,
 			                            FLICK_BACKWARD_ANGLE, nullptr);
 
 			enemy->mFlickTimer = 0.0f;

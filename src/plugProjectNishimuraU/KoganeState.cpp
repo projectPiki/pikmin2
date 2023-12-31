@@ -70,7 +70,7 @@ void StateAppear::cleanup(EnemyBase* enemy)
 	kogane->startMotion();
 
 	efx::TKoganeDive diveEffect;
-	efx::ArgScale scaleArg(kogane->getPosition(), static_cast<Parms*>(kogane->mParms)->mProperParms.mScale.mValue);
+	efx::ArgScale scaleArg(kogane->getPosition(), CG_PROPERPARMS(kogane).mScale.mValue);
 	diveEffect.create(&scaleArg);
 
 	kogane->startBodyEffect();
@@ -88,7 +88,7 @@ void StateDisappear::init(EnemyBase* enemy, StateArg* stateArg)
 	kogane->enableEvent(0, EB_BitterImmune);
 
 	efx::TKoganeDive diveEffect;
-	efx::ArgScale scaleArg(kogane->getPosition(), static_cast<Parms*>(kogane->mParms)->mProperParms.mScale.mValue);
+	efx::ArgScale scaleArg(kogane->getPosition(), CG_PROPERPARMS(kogane).mScale.mValue);
 	diveEffect.create(&scaleArg);
 
 	kogane->finishBodyEffect();
@@ -127,7 +127,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* kogane = OBJ(enemy);
 
-	Parms* parms = static_cast<Parms*>(kogane->mParms);
+	Parms* parms = CG_PARMS(kogane);
 	kogane->resetMoveTimer(parms->mProperParms.mMinTravelTime.mValue, parms->mProperParms.mMaxTravelTime.mValue);
 	kogane->setTargetPosition(nullptr);
 	kogane->startMotion(KOGANEANIM_Move, nullptr);
@@ -144,12 +144,12 @@ void StateMove::exec(EnemyBase* enemy)
 
 	kogane->koganeScaleUp();
 	Vector3f targetPos = Vector3f(kogane->mTargetPosition);
-	Parms* parms       = static_cast<Parms*>(kogane->mParms);
+	Parms* parms       = CG_PARMS(kogane);
 	EnemyFunc::walkToTarget(kogane, targetPos, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mTurnSpeed.mValue,
 	                        parms->mGeneral.mMaxTurnAngle.mValue);
 
-	if ((kogane->mAppearTimer > static_cast<Parms*>(kogane->mParms)->mProperParms.mMaxAppearTime.mValue)
-	    || (kogane->mMoveTimer > static_cast<Parms*>(kogane->mParms)->mProperParms.mMaxTravelTime.mValue)) {
+	if ((kogane->mAppearTimer > CG_PROPERPARMS(kogane).mMaxAppearTime.mValue)
+	    || (kogane->mMoveTimer > CG_PROPERPARMS(kogane).mMaxTravelTime.mValue)) {
 		kogane->finishMotion();
 	}
 
@@ -157,7 +157,7 @@ void StateMove::exec(EnemyBase* enemy)
 	kogane->mMoveTimer += sys->mDeltaTime;
 
 	if (kogane->mCurAnim->mIsPlaying && (u32)kogane->mCurAnim->mType == KEYEVENT_END) {
-		if (kogane->mAppearTimer > static_cast<Parms*>(kogane->mParms)->mProperParms.mMaxAppearTime.mValue) {
+		if (kogane->mAppearTimer > CG_PROPERPARMS(kogane).mMaxAppearTime.mValue) {
 			transit(kogane, KOGANE_Disappear, nullptr);
 		} else {
 			transit(kogane, KOGANE_Wait, nullptr);
@@ -179,7 +179,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* kogane = OBJ(enemy);
 
-	Parms* parms = static_cast<Parms*>(kogane->mParms);
+	Parms* parms = CG_PARMS(kogane);
 	kogane->resetMoveTimer(parms->mProperParms.mMinStopTime.mValue, parms->mProperParms.mMaxStopTime.mValue);
 
 	kogane->mTargetVelocity = Vector3f(0.0f);
@@ -195,7 +195,7 @@ void StateWait::exec(EnemyBase* enemy)
 	Obj* kogane = OBJ(enemy);
 
 	kogane->koganeScaleUp();
-	if (kogane->mMoveTimer > static_cast<Parms*>(kogane->mParms)->mProperParms.mMaxStopTime.mValue) {
+	if (kogane->mMoveTimer > CG_PROPERPARMS(kogane).mMaxStopTime.mValue) {
 		kogane->finishMotion();
 	}
 
@@ -224,7 +224,7 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 	kogane->disableEvent(0, EB_NoInterrupt);
 
 	efx::TKoganeHit hitEffect;
-	efx::ArgScale scaleArg(kogane->getPosition(), static_cast<Parms*>(kogane->mParms)->mProperParms.mScale.mValue);
+	efx::ArgScale scaleArg(kogane->getPosition(), CG_PROPERPARMS(kogane).mScale.mValue);
 	hitEffect.create(&scaleArg);
 
 	kogane->startMotion(KOGANEANIM_Damage, nullptr);

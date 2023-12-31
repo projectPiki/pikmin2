@@ -116,7 +116,7 @@ void StateStay::exec(EnemyBase* enemy)
 		return;
 	}
 
-	f32 privateRad = CG_PARMS(crab)->mGeneral.mPrivateRadius.mValue;
+	f32 privateRad = CG_GENERALPARMS(crab).mPrivateRadius.mValue;
 
 	bool isTarget;
 	if (EnemyFunc::isThereOlimar(crab, privateRad, nullptr)) {
@@ -189,8 +189,8 @@ void StateAppear::exec(EnemyBase* enemy)
 			Creature* target = crab->getSearchedTarget();
 			if (target && gameSystem && !gameSystem->isZukanMode()) {
 				f32 maxAttackRange, minAttackRange;
-				minAttackRange = CG_PARMS(crab)->mGeneral.mMaxAttackAngle();
-				maxAttackRange = CG_PARMS(crab)->mGeneral.mMaxAttackRange();
+				minAttackRange = CG_GENERALPARMS(crab).mMaxAttackAngle();
+				maxAttackRange = CG_GENERALPARMS(crab).mMaxAttackRange();
 
 				f32 viewAngle = crab->getCreatureViewAngle(target);
 				if (crab->isTargetAttackable(target, viewAngle, maxAttackRange, minAttackRange)) {
@@ -529,8 +529,8 @@ void StateWait::exec(EnemyBase* enemy)
 	Creature* target = crab->getSearchedTarget();
 	if (target && gameSystem && !gameSystem->isZukanMode()) {
 		f32 maxAttackRange, minAttackRange;
-		minAttackRange = CG_PARMS(crab)->mGeneral.mMaxAttackAngle();
-		maxAttackRange = CG_PARMS(crab)->mGeneral.mMaxAttackRange();
+		minAttackRange = CG_GENERALPARMS(crab).mMaxAttackAngle();
+		maxAttackRange = CG_GENERALPARMS(crab).mMaxAttackRange();
 
 		f32 viewAngle = crab->getCreatureViewAngle(target);
 		if (crab->isTargetAttackable(target, viewAngle, maxAttackRange, minAttackRange)) {
@@ -828,15 +828,15 @@ void StateMove::exec(EnemyBase* enemy)
 	if (target && gameSystem && !gameSystem->isZukanMode()) {
 		f32 viewAngle = crab->getCreatureViewAngle(target);
 
-		if (crab->isTargetAttackable(target, viewAngle, CG_PARMS(crab)->mGeneral.mMaxAttackRange(),
-		                             CG_PARMS(crab)->mGeneral.mMaxAttackAngle())) {
+		if (crab->isTargetAttackable(target, viewAngle, CG_GENERALPARMS(crab).mMaxAttackRange(),
+		                             CG_GENERALPARMS(crab).mMaxAttackAngle())) {
 			crab->mNextState = DANGOMUSHI_Attack;
 			crab->finishMotion();
 
 		} else {
-			crab->turnToTarget(target, CG_PARMS(crab)->mGeneral.mTurnSpeed(), CG_PARMS(crab)->mGeneral.mMaxTurnAngle());
-			if (FABS(viewAngle) <= PI * (DEG2RAD * CG_PARMS(crab)->mGeneral.mMaxAttackAngle())) {
-				f32 moveSpeed = CG_PARMS(crab)->mGeneral.mMoveSpeed();
+			crab->turnToTarget(target, CG_GENERALPARMS(crab).mTurnSpeed(), CG_GENERALPARMS(crab).mMaxTurnAngle());
+			if (FABS(viewAngle) <= PI * (DEG2RAD * CG_GENERALPARMS(crab).mMaxAttackAngle())) {
+				f32 moveSpeed = CG_GENERALPARMS(crab).mMoveSpeed();
 				f32 x         = sin(crab->getFaceDir());
 				f32 y         = crab->getTargetVelocity().y;
 				f32 z         = cos(crab->getFaceDir());
@@ -857,10 +857,10 @@ void StateMove::exec(EnemyBase* enemy)
 	} else {
 		Vector3f targetPos = crab->mTargetPosition;
 		f32 viewAngle      = crab->getCreatureViewAngle(targetPos);
-		crab->turnToTarget(targetPos, CG_PARMS(crab)->mGeneral.mTurnSpeed(), CG_PARMS(crab)->mGeneral.mMaxTurnAngle());
+		crab->turnToTarget(targetPos, CG_GENERALPARMS(crab).mTurnSpeed(), CG_GENERALPARMS(crab).mMaxTurnAngle());
 
 		if (FABS(viewAngle) <= HALF_PI) {
-			f32 moveSpeed = CG_PARMS(crab)->mGeneral.mMoveSpeed();
+			f32 moveSpeed = CG_GENERALPARMS(crab).mMoveSpeed();
 			f32 x         = sin(crab->getFaceDir());
 			f32 y         = crab->getTargetVelocity().y;
 			f32 z         = cos(crab->getFaceDir());

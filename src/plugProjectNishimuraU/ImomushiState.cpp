@@ -180,7 +180,7 @@ void StateStay::exec(EnemyBase* enemy)
 	Obj* imomushi = OBJ(enemy);
 	imomushi->mStateTimer += sys->mDeltaTime;
 	if ((imomushi->mStateTimer > 6.0f)
-	    && !(EnemyFunc::isTherePikmin(imomushi, CG_PARMS(imomushi)->mGeneral.mPrivateRadius.mValue, nullptr))) {
+	    && !(EnemyFunc::isTherePikmin(imomushi, CG_GENERALPARMS(imomushi).mPrivateRadius.mValue, nullptr))) {
 		if (imomushi->mTargetCreature = imomushi->getRandFruitsPlant()) {
 			transit(imomushi, IMOMUSHI_Appear, nullptr);
 		}
@@ -333,8 +333,8 @@ void StateMove::exec(EnemyBase* enemy)
 				}
 			}
 
-			EnemyFunc::walkToTarget(imomushi, creaturePos, CG_PARMS(imomushi)->mGeneral.mMoveSpeed.mValue,
-			                        CG_PARMS(imomushi)->mGeneral.mTurnSpeed.mValue, CG_PARMS(imomushi)->mGeneral.mMaxTurnAngle.mValue);
+			EnemyFunc::walkToTarget(imomushi, creaturePos, CG_GENERALPARMS(imomushi).mMoveSpeed.mValue,
+			                        CG_GENERALPARMS(imomushi).mTurnSpeed.mValue, CG_GENERALPARMS(imomushi).mMaxTurnAngle.mValue);
 		}
 
 	} else {
@@ -402,12 +402,12 @@ void StateGoHome::exec(EnemyBase* enemy)
 		f32 sqrMagXZ     = pos.x * pos.x + pos.z * pos.z;
 		Vector3f homePos = imomushi->mHomePosition;
 		// the mismatch is from sqrDistanceXZ
-		if (sqrMagXZ < SQUARE(CG_PARMS(imomushi)->mGeneral.mHomeRadius.mValue)) {
+		if (sqrMagXZ < SQUARE(CG_GENERALPARMS(imomushi).mHomeRadius.mValue)) {
 			imomushi->mNextState = IMOMUSHI_Dive;
 			imomushi->finishMotion();
 		}
-		EnemyFunc::walkToTarget(imomushi, homePos, CG_PARMS(imomushi)->mGeneral.mMoveSpeed.mValue,
-		                        CG_PARMS(imomushi)->mGeneral.mTurnSpeed.mValue, CG_PARMS(imomushi)->mGeneral.mMaxTurnAngle.mValue);
+		EnemyFunc::walkToTarget(imomushi, homePos, CG_GENERALPARMS(imomushi).mMoveSpeed.mValue,
+		                        CG_GENERALPARMS(imomushi).mTurnSpeed.mValue, CG_GENERALPARMS(imomushi).mMaxTurnAngle.mValue);
 	}
 
 	if ((imomushi->mCurAnim->mIsPlaying) && ((u32)imomushi->mCurAnim->mType == KEYEVENT_END)) {
@@ -727,8 +727,8 @@ void StateZukanMove::exec(EnemyBase* enemy)
 {
 	Obj* imomushi   = OBJ(enemy);
 	Vector3f target = Vector3f(imomushi->mZukanTargetPosition);
-	EnemyFunc::walkToTarget(imomushi, target, CG_PARMS(imomushi)->mGeneral.mMoveSpeed.mValue,
-	                        CG_PARMS(imomushi)->mGeneral.mTurnSpeed.mValue, CG_PARMS(imomushi)->mGeneral.mMaxTurnAngle.mValue);
+	EnemyFunc::walkToTarget(imomushi, target, CG_GENERALPARMS(imomushi).mMoveSpeed.mValue,
+	                        CG_GENERALPARMS(imomushi).mTurnSpeed.mValue, CG_GENERALPARMS(imomushi).mMaxTurnAngle.mValue);
 	if (imomushi->isInZukanTargetArea()) {
 		imomushi->setZukanTargetPosition();
 	}

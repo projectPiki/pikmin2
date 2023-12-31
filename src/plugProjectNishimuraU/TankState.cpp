@@ -90,7 +90,7 @@ void StateWait::exec(EnemyBase* enemy)
 			transit(enemy, TANK_Attack, nullptr);
 			return;
 		}
-		f32 sightRad     = CG_PARMS(tank)->mGeneral.mSightRadius.mValue;
+		f32 sightRad     = CG_GENERALPARMS(tank).mSightRadius.mValue;
 		Creature* target = EnemyFunc::getNearestPikminOrNavi(tank, view, sightRad, nullptr, nullptr, nullptr);
 		if (target) {
 			tank->mTargetCreature = target;
@@ -140,8 +140,8 @@ void StateMove::exec(EnemyBase* enemy)
 	Vector3f targetPos = Vector3f(tank->_2F8);
 
 	if (sqrDistanceXZ(pos, targetPos) > 2500.0f && tank->_2F0 < 3.0f) {
-		EnemyFunc::walkToTarget(tank, targetPos, CG_PARMS(tank)->mGeneral.mMoveSpeed(), CG_PARMS(tank)->mGeneral.mTurnSpeed(),
-		                        CG_PARMS(tank)->mGeneral.mMaxTurnAngle());
+		EnemyFunc::walkToTarget(tank, targetPos, CG_GENERALPARMS(tank).mMoveSpeed(), CG_GENERALPARMS(tank).mTurnSpeed(),
+		                        CG_GENERALPARMS(tank).mMaxTurnAngle());
 	} else {
 		tank->mTargetVelocity = Vector3f(0.0f);
 		tank->finishMotion();
@@ -157,7 +157,7 @@ void StateMove::exec(EnemyBase* enemy)
 		tank->finishMotion();
 	} else {
 		Creature* target
-		    = EnemyFunc::getNearestPikminOrNavi(tank, viewAngle, CG_PARMS(tank)->mGeneral.mSightRadius(), nullptr, nullptr, nullptr);
+		    = EnemyFunc::getNearestPikminOrNavi(tank, viewAngle, CG_GENERALPARMS(tank).mSightRadius(), nullptr, nullptr, nullptr);
 		if (target) {
 			tank->mTargetCreature = target;
 			tank->mCautionTimer   = 0.0f;
@@ -188,8 +188,8 @@ void StateMove::exec(EnemyBase* enemy)
 		if (target) {
 			// f32 angleDist = tank->getAngDist(target); // f26
 
-			if (tank->isTargetOutOfRange(target, tank->getAngDist(target), CG_PARMS(tank)->mGeneral.mPrivateRadius(),
-			                             CG_PARMS(tank)->mGeneral.mSightRadius(), CG_PARMS(tank)->mGeneral.mFov(),
+			if (tank->isTargetOutOfRange(target, tank->getAngDist(target), CG_GENERALPARMS(tank).mPrivateRadius(),
+			                             CG_GENERALPARMS(tank).mSightRadius(), CG_GENERALPARMS(tank).mFov(),
 			                             viewAngle)) { // slightly different inline?
 				transit(tank, TANK_Wait, nullptr);
 				return;
@@ -603,8 +603,8 @@ void StateMoveTurn::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* tank = OBJ(enemy);
 	tank->_2F4 += PI / 3;
 	Vector3f homePos(tank->mHomePosition);
-	tank->_2F8            = Vector3f(CG_PARMS(tank)->mGeneral.mTerritoryRadius() * sinf(tank->_2F4) + homePos.x, homePos.y,
-                          CG_PARMS(tank)->mGeneral.mTerritoryRadius() * cosf(tank->_2F4) + homePos.z);
+	tank->_2F8            = Vector3f(CG_GENERALPARMS(tank).mTerritoryRadius() * sinf(tank->_2F4) + homePos.x, homePos.y,
+                          CG_GENERALPARMS(tank).mTerritoryRadius() * cosf(tank->_2F4) + homePos.z);
 	tank->mTargetCreature = nullptr;
 	tank->mTargetVelocity = Vector3f(0.0f);
 	tank->startMotion(TANKANIM_Turn, nullptr);
@@ -692,7 +692,7 @@ void StateMoveTurn::exec(EnemyBase* enemy)
 	Obj* tank          = OBJ(enemy);
 	f32 view           = tank->getViewAngle();
 	Vector3f targetPos = tank->_2F8;
-	f32 deltaDir       = tank->turnToTarget2(targetPos, CG_PARMS(tank)->mGeneral.mTurnSpeed(), CG_PARMS(tank)->mGeneral.mMaxTurnAngle());
+	f32 deltaDir       = tank->turnToTarget2(targetPos, CG_GENERALPARMS(tank).mTurnSpeed(), CG_GENERALPARMS(tank).mMaxTurnAngle());
 	if (tank->mHealth <= 0.0f) {
 		transit(enemy, TANK_Dead, nullptr);
 		return;
@@ -701,7 +701,7 @@ void StateMoveTurn::exec(EnemyBase* enemy)
 		tank->finishMotion();
 		tank->setAnimSpeed(60.0f);
 	} else {
-		f32 sightRad     = CG_PARMS(tank)->mGeneral.mSightRadius.mValue;
+		f32 sightRad     = CG_GENERALPARMS(tank).mSightRadius.mValue;
 		Creature* target = EnemyFunc::getNearestPikminOrNavi(tank, view, sightRad, nullptr, nullptr, nullptr);
 		if (target) {
 			tank->finishMotion();
@@ -720,7 +720,7 @@ void StateMoveTurn::exec(EnemyBase* enemy)
 			transit(enemy, TANK_Attack, nullptr);
 			return;
 		}
-		f32 sightRad     = CG_PARMS(tank)->mGeneral.mSightRadius.mValue;
+		f32 sightRad     = CG_GENERALPARMS(tank).mSightRadius.mValue;
 		Creature* target = EnemyFunc::getNearestPikminOrNavi(tank, view, sightRad, nullptr, nullptr, nullptr);
 		if (target) {
 			tank->mTargetCreature = target;
@@ -778,8 +778,8 @@ void StateChaseTurn::exec(EnemyBase* enemy)
 		tank->mCautionTimer = 0.0f;
 		f32 angleDist       = tank->changeFaceDir2(target);
 		if (target->isAlive()) {
-			if (tank->isTargetOutOfRange(target, angleDist, CG_PARMS(tank)->mGeneral.mPrivateRadius(),
-			                             CG_PARMS(tank)->mGeneral.mSightRadius(), CG_PARMS(tank)->mGeneral.mFov(), viewAngle)) {
+			if (tank->isTargetOutOfRange(target, angleDist, CG_GENERALPARMS(tank).mPrivateRadius(),
+			                             CG_GENERALPARMS(tank).mSightRadius(), CG_GENERALPARMS(tank).mFov(), viewAngle)) {
 				tank->mTargetCreature = nullptr;
 				tank->finishMotion();
 			}
@@ -809,7 +809,7 @@ void StateChaseTurn::exec(EnemyBase* enemy)
 		}
 
 		Creature* target
-		    = EnemyFunc::getNearestPikminOrNavi(tank, viewAngle, CG_PARMS(tank)->mGeneral.mSightRadius(), nullptr, nullptr, nullptr);
+		    = EnemyFunc::getNearestPikminOrNavi(tank, viewAngle, CG_GENERALPARMS(tank).mSightRadius(), nullptr, nullptr, nullptr);
 		if (target) {
 			tank->mTargetCreature = target;
 			tank->mCautionTimer   = 0.0f;
@@ -1304,7 +1304,7 @@ void StateAttack::exec(EnemyBase* enemy)
 			transit(enemy, TANK_Flick, nullptr);
 			return;
 		}
-		f32 sightRad     = CG_PARMS(tank)->mGeneral.mSightRadius.mValue;
+		f32 sightRad     = CG_GENERALPARMS(tank).mSightRadius.mValue;
 		Creature* target = EnemyFunc::getNearestPikminOrNavi(tank, view, sightRad, nullptr, nullptr, nullptr);
 		if (target) {
 			tank->mTargetCreature = target;

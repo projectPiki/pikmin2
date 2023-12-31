@@ -30,7 +30,7 @@ void Obj::changeMaterial()
 	J3DModelData* modelData;
 	J3DModel* j3dModel = mModel->mJ3dModel;
 	modelData          = j3dModel->mModelData;
-	ResTIMG* texture   = static_cast<Mgr*>(mMgr)->getChangeTexture();
+	ResTIMG* texture   = C_MGR->getChangeTexture();
 
 	j3dModel->calcMaterial();
 

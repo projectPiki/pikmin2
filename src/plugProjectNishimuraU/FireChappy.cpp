@@ -218,11 +218,11 @@ void Obj::createMaterialAnimation() { mLoopAnimators = new Sys::MatLoopAnimator[
 void Obj::startMaterialAnimation()
 {
 	Sys::MatLoopAnimator* texLoopAnimator = &mLoopAnimators[0];
-	Sys::MatTexAnimation* texAnimation    = static_cast<Mgr*>(mMgr)->mTexAnimation;
+	Sys::MatTexAnimation* texAnimation    = C_MGR->mTexAnimation;
 	texLoopAnimator->start(texAnimation);
 
 	Sys::MatLoopAnimator* tevRegLoopAnimator = &mLoopAnimators[1];
-	Sys::MatTevRegAnimation* tevRegAnimation = static_cast<Mgr*>(mMgr)->mTevRegAnimation;
+	Sys::MatTevRegAnimation* tevRegAnimation = C_MGR->mTevRegAnimation;
 	tevRegLoopAnimator->start(tevRegAnimation);
 }
 

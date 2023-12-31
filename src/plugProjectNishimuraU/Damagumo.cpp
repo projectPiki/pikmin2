@@ -490,8 +490,8 @@ void Obj::createMaterialAnimation() { mMatLoopAnimator = new Sys::MatLoopAnimato
  */
 void Obj::startMaterialAnimation()
 {
-	mMatLoopAnimator[0].start(static_cast<Mgr*>(mMgr)->mTexAnimation);
-	mMatLoopAnimator[1].start(static_cast<Mgr*>(mMgr)->mTevRegAnimation);
+	mMatLoopAnimator[0].start(C_MGR->mTexAnimation);
+	mMatLoopAnimator[1].start(C_MGR->mTevRegAnimation);
 }
 
 /**

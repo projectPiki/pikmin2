@@ -97,7 +97,7 @@ void StateStay::exec(EnemyBase* enemy)
 {
 	Obj* bigfoot = OBJ(enemy);
 	bool isTarget;
-	f32 detectRadius = static_cast<Parms*>(bigfoot->mParms)->mGeneral.mPrivateRadius.mValue;
+	f32 detectRadius = CG_GENERALPARMS(bigfoot).mPrivateRadius.mValue;
 	if (EnemyFunc::isThereOlimar(bigfoot, detectRadius, nullptr)) {
 		isTarget = true;
 	} else if (EnemyFunc::isTherePikmin(bigfoot, detectRadius, nullptr)) {
@@ -262,7 +262,7 @@ void StateFlick::exec(EnemyBase* enemy)
 	Obj* bigfoot = OBJ(enemy);
 	if (bigfoot->mCurAnim->mIsPlaying) {
 		if ((u32)bigfoot->mCurAnim->mType == KEYEVENT_2) {
-			Parms* parms = static_cast<Parms*>(bigfoot->mParms);
+			Parms* parms = CG_PARMS(bigfoot);
 			EnemyFunc::flickStickPikmin(bigfoot, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 			                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
 			bigfoot->mFlickTimer = 0.0f;

@@ -91,7 +91,7 @@ void StateWait::exec(EnemyBase* enemy)
 	}
 
 	// If enough time has passed, attack
-	if (hiba->mTimer > static_cast<Parms*>(hiba->mParms)->mProperParms.mWaitTime.mValue) {
+	if (hiba->mTimer > CG_PROPERPARMS(hiba).mWaitTime.mValue) {
 		transit(hiba, HIBA_Attack, nullptr);
 	}
 }
@@ -123,7 +123,7 @@ void StateAttack::exec(EnemyBase* enemy)
 	Obj* hiba = OBJ(enemy);
 
 	// If dead or we're done being active, then finish
-	if ((hiba->mHealth <= 0.0f) || (hiba->mTimer > static_cast<Parms*>(hiba->mParms)->mProperParms.mActiveTime.mValue)) {
+	if ((hiba->mHealth <= 0.0f) || (hiba->mTimer > CG_PROPERPARMS(hiba).mActiveTime.mValue)) {
 		hiba->finishMotion();
 	}
 

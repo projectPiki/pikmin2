@@ -166,8 +166,8 @@ void StateMove::exec(EnemyBase* enemy)
 		mar->mTargetVelocity = Vector3f(0.0f);
 		mar->finishMotion();
 	} else {
-		EnemyFunc::walkToTarget(mar, targetPos, CG_PARMS(mar)->mGeneral.mMoveSpeed.mValue, CG_PARMS(mar)->mGeneral.mTurnSpeed.mValue,
-		                        CG_PARMS(mar)->mGeneral.mMaxTurnAngle.mValue);
+		EnemyFunc::walkToTarget(mar, targetPos, CG_GENERALPARMS(mar).mMoveSpeed.mValue, CG_GENERALPARMS(mar).mTurnSpeed.mValue,
+		                        CG_GENERALPARMS(mar).mMaxTurnAngle.mValue);
 	}
 
 	mar->_2C0 += sys->mDeltaTime;
@@ -336,23 +336,23 @@ void StateChase::exec(EnemyBase* enemy)
 
 			Vector3f sep(marPos.x - targetPos.x, 0.0f, marPos.z - targetPos.z);
 			sep.normalise();
-			sep *= CG_PARMS(mar)->mGeneral.mMaxAttackRange();
+			sep *= CG_GENERALPARMS(mar).mMaxAttackRange();
 			Vector3f newPos = targetPos + sep;                                          // f24, f23
 			f32 angle       = JMAAtan2Radian(newPos.x - marPos.x, newPos.z - marPos.z); // f29
 
-			mar->turnToTarget(target, CG_PARMS(mar)->mGeneral.mTurnSpeed(), CG_PARMS(mar)->mGeneral.mMaxTurnAngle());
+			mar->turnToTarget(target, CG_GENERALPARMS(mar).mTurnSpeed(), CG_GENERALPARMS(mar).mMaxTurnAngle());
 
 			if (sqrDistanceXZ(marPos, newPos) > 225.0f) {
-				f32 x = CG_PARMS(mar)->mGeneral.mMoveSpeed() * sinf(angle);
+				f32 x = CG_GENERALPARMS(mar).mMoveSpeed() * sinf(angle);
 				f32 y = mar->getTargetVelocity().y;
-				f32 z = CG_PARMS(mar)->mGeneral.mMoveSpeed() * cosf(angle);
+				f32 z = CG_GENERALPARMS(mar).mMoveSpeed() * cosf(angle);
 
 				mar->mTargetVelocity = Vector3f(x, y, z);
 			} else {
 				mar->mTargetVelocity = Vector3f(0.0f);
 			}
 
-			if (sqrDistanceXZ(marPos, homePos) > SQUARE(CG_PARMS(mar)->mGeneral.mTerritoryRadius())) {
+			if (sqrDistanceXZ(marPos, homePos) > SQUARE(CG_GENERALPARMS(mar).mTerritoryRadius())) {
 				transit(mar, MAR_ChaseInside, nullptr);
 			} else if (mar->isTargetLost()) {
 				Piki* piki = mar->getSearchedPikmin();
@@ -777,7 +777,7 @@ void StateChaseInside::init(EnemyBase* enemy, StateArg* stateArg)
 
 		sep.normalise();
 
-		sep *= CG_PARMS(mar)->mGeneral.mSightRadius();
+		sep *= CG_GENERALPARMS(mar).mSightRadius();
 		pos += sep;
 		mar->mTargetPosition = pos;
 	} else {
@@ -804,13 +804,13 @@ void StateChaseInside::exec(EnemyBase* enemy)
 	} else {
 		Creature* target = mar->mTargetCreature;
 		if (target) {
-			mar->turnToTarget(target, CG_PARMS(mar)->mGeneral.mTurnSpeed(), CG_PARMS(mar)->mGeneral.mMaxTurnAngle());
+			mar->turnToTarget(target, CG_GENERALPARMS(mar).mTurnSpeed(), CG_GENERALPARMS(mar).mMaxTurnAngle());
 		}
 
 		f32 angle = JMAAtan2Radian(targetPos.x - marPos.x, targetPos.z - marPos.z);
-		f32 x     = CG_PARMS(mar)->mGeneral.mMoveSpeed() * sinf(angle);
+		f32 x     = CG_GENERALPARMS(mar).mMoveSpeed() * sinf(angle);
 		f32 y     = mar->getTargetVelocity().y;
-		f32 z     = CG_PARMS(mar)->mGeneral.mMoveSpeed() * cosf(angle);
+		f32 z     = CG_GENERALPARMS(mar).mMoveSpeed() * cosf(angle);
 
 		mar->mTargetVelocity = Vector3f(x, y, z);
 	}
@@ -1121,8 +1121,8 @@ void StateFlyFlick::exec(EnemyBase* enemy)
 
 	if (mar->mCurAnim->mIsPlaying) {
 		if (mar->mCurAnim->mType == KEYEVENT_2) {
-			EnemyFunc::flickStickPikmin(mar, CG_PARMS(mar)->mGeneral.mShakeChance.mValue, CG_PARMS(mar)->mGeneral.mShakeKnockback.mValue,
-			                            CG_PARMS(mar)->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
+			EnemyFunc::flickStickPikmin(mar, CG_GENERALPARMS(mar).mShakeChance.mValue, CG_GENERALPARMS(mar).mShakeKnockback.mValue,
+			                            CG_GENERALPARMS(mar).mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 			mar->mFlickTimer = 0.0f;
 
 		} else if (mar->mCurAnim->mType == KEYEVENT_END) {
@@ -1163,14 +1163,14 @@ void StateGroundFlick::exec(EnemyBase* enemy)
 
 	if (enemy->mCurAnim->mIsPlaying) {
 		if (enemy->mCurAnim->mType == KEYEVENT_2) {
-			EnemyFunc::flickNearbyNavi(enemy, CG_PARMS(enemy)->mGeneral.mShakeRange.mValue,
-			                           CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue, CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue,
+			EnemyFunc::flickNearbyNavi(enemy, CG_GENERALPARMS(enemy).mShakeRange.mValue,
+			                           CG_GENERALPARMS(enemy).mShakeKnockback.mValue, CG_GENERALPARMS(enemy).mShakeDamage.mValue,
 			                           FLICK_BACKWARD_ANGLE, nullptr);
-			EnemyFunc::flickNearbyPikmin(enemy, CG_PARMS(enemy)->mGeneral.mShakeRange.mValue,
-			                             CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue, CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue,
+			EnemyFunc::flickNearbyPikmin(enemy, CG_GENERALPARMS(enemy).mShakeRange.mValue,
+			                             CG_GENERALPARMS(enemy).mShakeKnockback.mValue, CG_GENERALPARMS(enemy).mShakeDamage.mValue,
 			                             FLICK_BACKWARD_ANGLE, nullptr);
-			EnemyFunc::flickStickPikmin(enemy, CG_PARMS(enemy)->mGeneral.mShakeChance.mValue,
-			                            CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue, CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue,
+			EnemyFunc::flickStickPikmin(enemy, CG_GENERALPARMS(enemy).mShakeChance.mValue,
+			                            CG_GENERALPARMS(enemy).mShakeKnockback.mValue, CG_GENERALPARMS(enemy).mShakeDamage.mValue,
 			                            FLICK_BACKWARD_ANGLE, nullptr);
 
 			enemy->mFlickTimer = 0.0f;

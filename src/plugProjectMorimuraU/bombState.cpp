@@ -138,7 +138,7 @@ void StateBomb::exec(EnemyBase* enemy)
 			rumbleMgr->startRumble(15, effectPos, 2);
 
 			Vector3f position = enemy->getPosition();
-			Parms* parms      = static_cast<Parms*>(enemy->mParms);
+			Parms* parms      = CG_PARMS(enemy);
 			f32 offset        = parms->mProperParms.mBlastRangeHeight.mValue;
 			f32 max           = position.y + offset;
 			f32 min           = position.y - offset;
@@ -180,7 +180,7 @@ void StateBomb::exec(EnemyBase* enemy)
 								pikiWeight = 200.0f;
 							}
 
-							f32 force = static_cast<Parms*>(enemy->mParms)->mGeneral.mAttackDamage.mValue;
+							f32 force = CG_GENERALPARMS(enemy).mAttackDamage.mValue;
 							sep *= pikiWeight;
 							sep.y = pikiWeight;
 

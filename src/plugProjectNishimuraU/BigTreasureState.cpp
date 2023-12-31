@@ -149,7 +149,7 @@ void StateStay::exec(EnemyBase* enemy)
 	Obj* titan = OBJ(enemy);
 	if (titan->mStateTimer < 0.01f) {
 		bool isTarget;
-		f32 detectRadius = static_cast<Parms*>(titan->mParms)->mGeneral.mPrivateRadius.mValue;
+		f32 detectRadius = CG_GENERALPARMS(titan).mPrivateRadius.mValue;
 		if (EnemyFunc::isThereOlimar(titan, detectRadius, nullptr)) {
 			isTarget = true;
 		} else if (EnemyFunc::isTherePikmin(titan, detectRadius, nullptr)) {
@@ -195,7 +195,7 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 	titan->startMotion();
 	titan->createAppearBodyEffect();
 	titan->createAppearLegEffect(1);
-	Parms* parms = static_cast<Parms*>(titan->mParms);
+	Parms* parms = CG_PARMS(titan);
 	EnemyFunc::flickStickPikmin(titan, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 	                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
 	titan->setBossAppearBGM();
@@ -211,7 +211,7 @@ void StateLand::exec(EnemyBase* enemy)
 	if (titan->mCurAnim->mIsPlaying) {
 		if ((u32)titan->mCurAnim->mType == KEYEVENT_2) {
 			titan->createOnGroundEffect(1, titan->mWaterBox);
-			Parms* parms = static_cast<Parms*>(titan->mParms);
+			Parms* parms = CG_PARMS(titan);
 			EnemyFunc::flickStickPikmin(titan, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 			                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
 
@@ -220,7 +220,7 @@ void StateLand::exec(EnemyBase* enemy)
 
 		} else if ((u32)titan->mCurAnim->mType == KEYEVENT_4) {
 			titan->createOnGroundEffect(2, titan->mWaterBox);
-			Parms* parms = static_cast<Parms*>(titan->mParms);
+			Parms* parms = CG_PARMS(titan);
 			EnemyFunc::flickStickPikmin(titan, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 			                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
 
@@ -229,7 +229,7 @@ void StateLand::exec(EnemyBase* enemy)
 
 		} else if ((u32)titan->mCurAnim->mType == KEYEVENT_6) {
 			titan->createOnGroundEffect(0, titan->mWaterBox);
-			Parms* parms = static_cast<Parms*>(titan->mParms);
+			Parms* parms = CG_PARMS(titan);
 			EnemyFunc::flickStickPikmin(titan, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 			                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
 
@@ -238,7 +238,7 @@ void StateLand::exec(EnemyBase* enemy)
 
 		} else if ((u32)titan->mCurAnim->mType == KEYEVENT_8) {
 			titan->createOnGroundEffect(3, titan->mWaterBox);
-			Parms* parms = static_cast<Parms*>(titan->mParms);
+			Parms* parms = CG_PARMS(titan);
 			EnemyFunc::flickStickPikmin(titan, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 			                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
 
@@ -246,7 +246,7 @@ void StateLand::exec(EnemyBase* enemy)
 			Vector3f position = titan->getPosition();
 			cameraMgr->startVibration(2, position, 2);
 			rumbleMgr->startRumble(5, position, 2);
-			Parms* parms = static_cast<Parms*>(titan->mParms);
+			Parms* parms = CG_PARMS(titan);
 			EnemyFunc::flickStickPikmin(titan, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 			                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
 
@@ -434,7 +434,7 @@ void StateFlick::exec(EnemyBase* enemy)
 			titan->endBlendAnimation();
 
 		} else if ((u32)titan->mCurAnim->mType == KEYEVENT_2) {
-			Parms* parms = static_cast<Parms*>(titan->mParms);
+			Parms* parms = CG_PARMS(titan);
 			EnemyFunc::flickStickPikmin(titan, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 			                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
 			titan->mFlickTimer = 0.0f;
@@ -513,7 +513,7 @@ void StatePreAttack::exec(EnemyBase* enemy)
 
 		} else if ((u32)titan->mCurAnim->mType == KEYEVENT_2) {
 			titan->setAttackMaterialColor(true);
-			Parms* parms = static_cast<Parms*>(titan->mParms);
+			Parms* parms = CG_PARMS(titan);
 			EnemyFunc::flickStickPikmin(titan, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 			                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
 			titan->mFlickTimer = 0.0f;

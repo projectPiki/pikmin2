@@ -272,7 +272,7 @@ void StateAttacking::exec(EnemyBase* enemy)
 
 			f32 maxY   = 20.0f + pos.y;
 			f32 minY   = pos.y - 20.0f;
-			f32 radius = SQUARE(CG_PARMS(enemy)->mGeneral.mAttackRadius.mValue);
+			f32 radius = SQUARE(CG_GENERALPARMS(enemy).mAttackRadius.mValue);
 
 			Iterator<Piki> iterPiki(pikiMgr);
 
@@ -314,10 +314,10 @@ void StateAttacking::exec(EnemyBase* enemy)
 				}
 			}
 
-			f32 chance    = CG_PARMS(enemy)->mGeneral.mShakeChance.mValue;
-			f32 knockback = CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue;
-			f32 damage    = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
-			f32 range     = CG_PARMS(enemy)->mGeneral.mShakeRange.mValue;
+			f32 chance    = CG_GENERALPARMS(enemy).mShakeChance.mValue;
+			f32 knockback = CG_GENERALPARMS(enemy).mShakeKnockback.mValue;
+			f32 damage    = CG_GENERALPARMS(enemy).mShakeDamage.mValue;
+			f32 range     = CG_GENERALPARMS(enemy).mShakeRange.mValue;
 
 			EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
 			EnemyFunc::flickStickPikmin(enemy, chance, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
@@ -490,10 +490,10 @@ void StateFlick::exec(EnemyBase* enemy)
 	}
 
 	if (enemy->mCurAnim->mType == KEYEVENT_3) {
-		f32 rate      = CG_PARMS(enemy)->mGeneral.mShakeChance.mValue;
-		f32 knockback = CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue;
-		f32 damage    = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
-		f32 range     = CG_PARMS(enemy)->mGeneral.mShakeRange.mValue;
+		f32 rate      = CG_GENERALPARMS(enemy).mShakeChance.mValue;
+		f32 knockback = CG_GENERALPARMS(enemy).mShakeKnockback.mValue;
+		f32 damage    = CG_GENERALPARMS(enemy).mShakeDamage.mValue;
+		f32 range     = CG_GENERALPARMS(enemy).mShakeRange.mValue;
 
 		EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
 		EnemyFunc::flickStickPikmin(enemy, rate, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
