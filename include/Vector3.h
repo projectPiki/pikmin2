@@ -41,6 +41,18 @@ struct Vector3 {
 
 	/**
 	 * Calculates the direction vector from 'from' to 'to' and stores the result in 'to'.
+	 *
+	 * @param from The starting point of the direction vector.
+	 * @param to The ending point of the direction vector.
+	 */
+	static inline void getDirectionFromTo(Vector3& from, Vector3& to)
+	{
+		to -= from;
+		to.normalise();
+	}
+
+	/**
+	 * Calculates the direction vector from 'from' to 'to' and stores the result in 'to'.
 	 * The y-component of the resulting vector is set to 0.
 	 *
 	 * @param from The starting point of the direction vector.
@@ -50,18 +62,6 @@ struct Vector3 {
 	{
 		to -= from;
 		to.y = 0.0f;
-		to.normalise();
-	}
-
-	/**
-	 * Calculates the direction vector from 'from' to 'to' and stores the result in 'to'.
-	 *
-	 * @param from The starting point of the direction vector.
-	 * @param to The ending point of the direction vector.
-	 */
-	static inline void getDirectionFromTo(Vector3& from, Vector3& to)
-	{
-		to -= from;
 		to.normalise();
 	}
 
@@ -204,12 +204,25 @@ struct Vector3 {
 
 	inline void setZero() { this->x = this->y = this->z = 0; }
 
+	/**
+	 * Sets the direction of the vector from one point to another.
+	 *
+	 * @param from The starting point of the direction.
+	 * @param to The ending point of the direction.
+	 */
 	inline void setDirectionFromTo(Vector3& from, Vector3& to)
 	{
 		*this = to - from;
 		this->normalise();
 	}
 
+	/**
+	 * Sets the flat direction from one vector to another.
+	 * The resulting vector will have a zero y-component.
+	 *
+	 * @param from The starting vector.
+	 * @param to The target vector.
+	 */
 	inline void setFlatDirectionFromTo(Vector3& from, Vector3& to)
 	{
 		*this   = to - from;
@@ -217,6 +230,9 @@ struct Vector3 {
 		this->normalise();
 	}
 
+	/**
+	 * Sets the y component of the vector to 0 and normalizes the vector.
+	 */
 	inline void toFlatDirection()
 	{
 		this->y = 0.0f;
