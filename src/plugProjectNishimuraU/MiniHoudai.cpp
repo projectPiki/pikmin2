@@ -308,7 +308,7 @@ void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
 	if (mPellet) {
 		param.mPosition.y = mPosition.y + 50.0f;
 	} else {
-		param.mPosition.y = mPosition.y + C_PARMS->mGeneral.mLifeMeterHeight.mValue;
+		param.mPosition.y = mPosition.y + C_GENERALPARMS.mLifeMeterHeight.mValue;
 	}
 
 	param.mPosition.z          = mPosition.z;
@@ -326,7 +326,7 @@ void Obj::updateCaution()
 		mHealthGaugeTimer = 0.0f;
 	}
 
-	if (mHealthGaugeTimer < C_PARMS->mGeneral.mAlertDuration.mValue) {
+	if (mHealthGaugeTimer < C_GENERALPARMS.mAlertDuration.mValue) {
 		mHealthGaugeTimer += sys->mDeltaTime;
 	}
 }
@@ -335,7 +335,7 @@ void Obj::updateCaution()
  * @note Address: 0x802EC958
  * @note Size: 0x24
  */
-f32 Obj::getViewAngle() { return (mHealthGaugeTimer < C_PARMS->mGeneral.mAlertDuration()) ? 180.0f : C_PARMS->mGeneral.mViewAngle(); }
+f32 Obj::getViewAngle() { return (mHealthGaugeTimer < C_GENERALPARMS.mAlertDuration()) ? 180.0f : C_GENERALPARMS.mViewAngle(); }
 
 /**
  * @note Address: 0x802EC97C
@@ -418,7 +418,7 @@ void Obj::setLinkWayPoint()
 Creature* Obj::getSearchedTarget()
 {
 	f32 viewAngle    = getViewAngle();
-	Creature* target = EnemyFunc::getNearestPikminOrNavi(this, viewAngle, C_PARMS->mGeneral.mSightRadius(), nullptr, nullptr, nullptr);
+	Creature* target = EnemyFunc::getNearestPikminOrNavi(this, viewAngle, C_GENERALPARMS.mSightRadius(), nullptr, nullptr, nullptr);
 
 	if (target) {
 		mHealthGaugeTimer = 0.0f;
@@ -433,7 +433,7 @@ Creature* Obj::getSearchedTarget()
  */
 void Obj::updateTargetDistance()
 {
-	f32 radius = (mNearestWaypoint) ? mNearestWaypoint->mRadius : C_PARMS->mGeneral.mHomeRadius.mValue;
+	f32 radius = (mNearestWaypoint) ? mNearestWaypoint->mRadius : C_GENERALPARMS.mHomeRadius.mValue;
 
 	if (sqrDistanceXZ(mPosition, mWalkTargetPosition) < radius * radius) {
 		setLinkWayPoint();
@@ -453,8 +453,8 @@ void Obj::updateTargetDistance()
  */
 void Obj::updateHomePosition()
 {
-	mHomePosition = Vector3f(sinf(mFaceDir) * C_PARMS->mGeneral.mHomeRadius.mValue + mPosition.x, mPosition.y,
-	                         cosf(mFaceDir) * C_PARMS->mGeneral.mHomeRadius.mValue + mPosition.z);
+	mHomePosition = Vector3f(sinf(mFaceDir) * C_GENERALPARMS.mHomeRadius.mValue + mPosition.x, mPosition.y,
+	                         cosf(mFaceDir) * C_GENERALPARMS.mHomeRadius.mValue + mPosition.z);
 	/*
 	stwu     r1, -0x20(r1)
 	lfs      f0, lbl_8051CF8C@sda21(r2)
@@ -522,11 +522,11 @@ bool Obj::isAttackableTarget()
 	Vector3f dir        = getDirection(mFaceDir);
 	Vector3f perpDir(-dir.z, 0.0f, dir.x);
 
-	f32 offset   = C_PARMS->mGeneral.mSearchDistance.mValue * 0.5f;
+	f32 offset   = C_GENERALPARMS.mSearchDistance.mValue * 0.5f;
 	Vector3f pos = Vector3f(dir.x * offset + mPosition.x, dir.y * offset + mPosition.y, dir.z * offset + mPosition.z);
-	f32 rad      = C_PARMS->mGeneral.mSearchDistance.mValue * 0.75f;
+	f32 rad      = C_GENERALPARMS.mSearchDistance.mValue * 0.75f;
 	Sys::Sphere sphere(pos, rad);
-	// sphere.mRadius = C_PARMS->mGeneral.mSearchDistance.mValue * 0.75f;
+	// sphere.mRadius = C_GENERALPARMS.mSearchDistance.mValue * 0.75f;
 	CellIteratorArg iterArg(sphere);
 	iterArg.mOptimise = true;
 	CellIterator iter(iterArg);
@@ -546,7 +546,7 @@ bool Obj::isAttackableTarget()
 				targetPos -= shotGunPos;
 				if (absVal(targetPos.y) < 200.0f && absVal(dot(perpDir, targetPos)) < 25.0f) {
 					f32 dotProd = dot(dir, targetPos);
-					if (dotProd > 1.0f && dotProd < C_PARMS->mGeneral.mSearchDistance.mValue) {
+					if (dotProd > 1.0f && dotProd < C_GENERALPARMS.mSearchDistance.mValue) {
 						mTargetPosition = target->getPosition();
 						return true;
 					}

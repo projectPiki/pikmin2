@@ -168,7 +168,7 @@ void Obj::interactGasAttack()
 				Vector2f delta;
 				getDistance2D(position, delta);
 				if (SQUARE(delta.x) + SQUARE(delta.y) < radSqr) {
-					InteractGas gas(this, C_PARMS->mGeneral.mAttackDamage.mValue);
+					InteractGas gas(this, C_GENERALPARMS.mAttackDamage.mValue);
 					creature->stimulate(gas);
 				}
 			}
@@ -291,8 +291,8 @@ void Obj::updateLivingThing()
  */
 void Obj::setupLodParms()
 {
-	mLodParm.mFar        = C_PARMS->mProperParms.mLodNear.mValue;
-	mLodParm.mClose      = C_PARMS->mProperParms.mLodMiddle.mValue;
+	mLodParm.mFar        = C_PROPERPARMS.mLodNear.mValue;
+	mLodParm.mClose      = C_PROPERPARMS.mLodMiddle.mValue;
 	mLodParm.mIsCylinder = false;
 }
 

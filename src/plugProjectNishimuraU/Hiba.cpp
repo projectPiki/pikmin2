@@ -159,7 +159,7 @@ void Obj::interactFireAttack()
 				Vector2f delta;
 				getDistance2D(position, delta);
 				if (SQUARE(delta.x) + SQUARE(delta.y) < radSqr) {
-					InteractFire fire(this, C_PARMS->mGeneral.mAttackDamage.mValue);
+					InteractFire fire(this, C_GENERALPARMS.mAttackDamage.mValue);
 					creature->stimulate(fire);
 				}
 			}
@@ -173,8 +173,8 @@ void Obj::interactFireAttack()
  */
 void Obj::setupLodParms()
 {
-	mLodParm.mFar        = C_PARMS->mProperParms.mLodNear.mValue;
-	mLodParm.mClose      = C_PARMS->mProperParms.mLodMiddle.mValue;
+	mLodParm.mFar        = C_PROPERPARMS.mLodNear.mValue;
+	mLodParm.mClose      = C_PROPERPARMS.mLodMiddle.mValue;
 	mLodParm.mIsCylinder = false;
 }
 

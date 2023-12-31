@@ -62,8 +62,8 @@ void Obj::setParameters()
 		mMouthSlots.getSlot(i)->mRadius = rad;
 	}
 
-	mCurLodSphere.mRadius = mScaleModifier * C_PARMS->mGeneral.mOffCameraRadius();
-	mBodyRadius           = mScaleModifier * C_PARMS->mGeneral.mPikminDamageRadius();
+	mCurLodSphere.mRadius = mScaleModifier * C_GENERALPARMS.mOffCameraRadius();
+	mBodyRadius           = mScaleModifier * C_GENERALPARMS.mPikminDamageRadius();
 }
 
 /**
@@ -144,7 +144,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	P2ASSERTLINE(163, mKamuJointIdx); // S I R.
 
 	data->mJointTree.mJoints[mKamuJointIdx]->mFunction = &mouthScaleCallBack;
-	mBodyRadius                                        = mScaleModifier * C_PARMS->mGeneral.mPikminDamageRadius();
+	mBodyRadius                                        = mScaleModifier * C_GENERALPARMS.mPikminDamageRadius();
 }
 
 /**
@@ -269,7 +269,7 @@ void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
 	bool isVisible = false;
 
 	param.mPosition = Vector3f(
-	    mPosition.x, C_PARMS->mLifeGaugeOffset * mScaleModifier + (C_PARMS->mGeneral.mLifeMeterHeight() + mPosition.y), mPosition.z);
+	    mPosition.x, C_PARMS->mLifeGaugeOffset * mScaleModifier + (C_GENERALPARMS.mLifeMeterHeight() + mPosition.y), mPosition.z);
 	param.mCurHealthPercentage = (mHealth / mMaxHealth);
 	param.mRadius              = 10.0f;
 
@@ -570,7 +570,7 @@ void Obj::doFinishStoneState()
 		setAlive(false);
 		setAtari(false);
 	}
-	mBodyRadius = mScaleModifier * C_PARMS->mGeneral.mPikminDamageRadius();
+	mBodyRadius = mScaleModifier * C_GENERALPARMS.mPikminDamageRadius();
 	effectStart();
 }
 
@@ -594,10 +594,10 @@ void Obj::walkFunc()
 
 	f32 angleWeight, terrRad;
 	f32 walkSpeed = getWalkSpeed();                       // f29
-	terrRad       = C_PARMS->mGeneral.mTerritoryRadius(); // f30
+	terrRad       = C_GENERALPARMS.mTerritoryRadius(); // f30
 	angleWeight   = C_PARMS->mTurnWeight;                 // f31, 20.0f by default
-	f32 rotRate   = C_PARMS->mGeneral.mTurnSpeed();       // f28
-	f32 rotSpeed  = C_PARMS->mGeneral.mMaxTurnAngle();    // f27
+	f32 rotRate   = C_GENERALPARMS.mTurnSpeed();       // f28
+	f32 rotSpeed  = C_GENERALPARMS.mMaxTurnAngle();    // f27
 
 	int stateID = getStateID();
 
@@ -1355,7 +1355,7 @@ void Obj::calcBaseTrMatrix()
 	Vector3f pos;
 	f32 rotX;
 
-	rotX     = C_PARMS->mGeneral.mHeightOffsetFromFloor();
+	rotX     = C_GENERALPARMS.mHeightOffsetFromFloor();
 	frameLen = sys->getFrameLength();
 
 	if (gameSystem && gameSystem->mIsInCave) {
@@ -1525,7 +1525,7 @@ f32 Obj::getWalkSpeed()
 		return 0.0f;
 	}
 
-	return C_PARMS->mGeneral.mMoveSpeed();
+	return C_GENERALPARMS.mMoveSpeed();
 }
 
 /**

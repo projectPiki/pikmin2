@@ -195,7 +195,7 @@ void Obj::setQurioneStartPos(f32 slideDist)
  */
 void Obj::moveFaceDir()
 {
-	f32 moveSpeed = C_PARMS->mGeneral.mMoveSpeed.mValue;
+	f32 moveSpeed = C_GENERALPARMS.mMoveSpeed.mValue;
 	f32 x         = sin(getFaceDir());
 	f32 y         = getTargetVelocity().y;
 	f32 z         = cos(getFaceDir());
@@ -247,7 +247,7 @@ bool Obj::isAppear()
 		return true;
 	}
 
-	if (EnemyFunc::getNearestPikminOrNavi(this, C_PARMS->mGeneral.mViewAngle.mValue, C_PARMS->mGeneral.mSightRadius.mValue, nullptr,
+	if (EnemyFunc::getNearestPikminOrNavi(this, C_GENERALPARMS.mViewAngle.mValue, C_GENERALPARMS.mSightRadius.mValue, nullptr,
 	                                      nullptr, nullptr)) {
 		return true;
 	}

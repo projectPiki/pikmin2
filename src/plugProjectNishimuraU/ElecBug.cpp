@@ -106,14 +106,14 @@ void Obj::collisionCallback(CollEvent& event)
 			if (event.mCollidingCreature->isPiki() || event.mCollidingCreature->isNavi()) {
 				Vector3f sep = event.mCollidingCreature->getPosition();
 				Vector3f::getFlatDirectionFromTo(mPosition, sep);
-				Vector3f dir = Vector3f(sep.x * C_PARMS->mGeneral.mSearchDistance(), C_PARMS->mGeneral.mSearchHeight(),
-				                        sep.z * C_PARMS->mGeneral.mSearchDistance());
+				Vector3f dir = Vector3f(sep.x * C_GENERALPARMS.mSearchDistance(), C_GENERALPARMS.mSearchHeight(),
+				                        sep.z * C_GENERALPARMS.mSearchDistance());
 
 				if (event.mCollidingCreature->isNavi()) {
 					dir.y = 0.0f;
 				}
 
-				InteractDenki denki(this, C_PARMS->mGeneral.mAttackDamage(), &dir);
+				InteractDenki denki(this, C_GENERALPARMS.mAttackDamage(), &dir);
 				event.mCollidingCreature->stimulate(denki);
 			}
 		}
@@ -136,9 +136,9 @@ bool Obj::pressCallBack(Creature* source, f32 damage, CollPart* part)
 			if (stateID == ELECBUG_Discharge || stateID == ELECBUG_ChildDischarge) {
 				Vector3f sep = source->getPosition();
 				Vector3f::getFlatDirectionFromTo(mPosition, sep);
-				Vector3f dir(sep.x * C_PARMS->mGeneral.mSearchDistance(), C_PARMS->mGeneral.mSearchHeight(),
-				             sep.z * C_PARMS->mGeneral.mSearchDistance());
-				InteractDenki denki(this, C_PARMS->mGeneral.mAttackDamage(), &dir);
+				Vector3f dir(sep.x * C_GENERALPARMS.mSearchDistance(), C_GENERALPARMS.mSearchHeight(),
+				             sep.z * C_GENERALPARMS.mSearchDistance());
+				InteractDenki denki(this, C_GENERALPARMS.mAttackDamage(), &dir);
 				source->stimulate(denki);
 			}
 
@@ -240,8 +240,8 @@ void Obj::setTargetPosition()
 {
 	Vector3f homePos  = mHomePosition;
 	f32 randAngle     = randWeightFloat(TAU);
-	f32 radDiff       = C_PARMS->mGeneral.mTerritoryRadius() - C_PARMS->mGeneral.mHomeRadius();
-	f32 randDist      = C_PARMS->mGeneral.mHomeRadius() + randWeightFloat(radDiff);
+	f32 radDiff       = C_GENERALPARMS.mTerritoryRadius() - C_GENERALPARMS.mHomeRadius();
+	f32 randDist      = C_GENERALPARMS.mHomeRadius() + randWeightFloat(radDiff);
 	mTargetPosition.x = randDist * sinf(randAngle) + homePos.x;
 	mTargetPosition.y = homePos.y;
 	mTargetPosition.z = randDist * cosf(randAngle) + homePos.z;
@@ -392,8 +392,8 @@ void Obj::checkInteract(Obj* partner)
 
 	f32 dist = pos.distance(partnerPos); // f21
 
-	Vector3f denkiDir = crossVec * C_PARMS->mGeneral.mSearchDistance();
-	denkiDir.y        = C_PARMS->mGeneral.mSearchHeight();
+	Vector3f denkiDir = crossVec * C_GENERALPARMS.mSearchDistance();
+	denkiDir.y        = C_GENERALPARMS.mSearchHeight();
 
 	Sys::Sphere searchSphere;
 	searchSphere.mPosition = Vector3f(0.5f * (pos.x + partnerPos.x), 0.5f * (pos.y + partnerPos.y), 0.5f * (pos.z + partnerPos.z));
@@ -417,7 +417,7 @@ void Obj::checkInteract(Obj* partner)
 				if (sepDot < dist && sepDot > 0.0f && absVal(dot(vec3, creatureSep)) < 15.0f) {
 					f32 factor = creatureDot / absDot;
 					Vector3f dir(factor * denkiDir.x, denkiDir.y, factor * denkiDir.z);
-					InteractDenki denki(this, C_PARMS->mGeneral.mAttackDamage(), &dir);
+					InteractDenki denki(this, C_GENERALPARMS.mAttackDamage(), &dir);
 					creature->stimulate(denki);
 				}
 			}

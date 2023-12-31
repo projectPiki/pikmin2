@@ -257,12 +257,12 @@ Vector3f Kogane::Obj::getBodyJointPos()
 bool Kogane::Obj::koganeScaleUp()
 {
 	bool check = false;
-	if (mScaleTimer < C_PARMS->mProperParms.mScale.mValue) {
+	if (mScaleTimer < C_PROPERPARMS.mScale.mValue) {
 		mScaleTimer += sys->mDeltaTime * 10.0f;
 
-		if (mScaleTimer >= C_PARMS->mProperParms.mScale()) {
+		if (mScaleTimer >= C_PROPERPARMS.mScale()) {
 			check       = true;
-			mScaleTimer = C_PARMS->mProperParms.mScale();
+			mScaleTimer = C_PROPERPARMS.mScale();
 			disableEvent(0, EB_NoInterrupt);
 		}
 		f32 scale      = mScaleTimer;
@@ -308,8 +308,8 @@ void Kogane::Obj::setTargetPosition(Vector3f* goal)
 	} else {
 		f32 angle = 0.0f;
 		if (mScaleTimer > 0.1f) {
-			angle = randWeightFloat(C_PARMS->mProperParms.mTurnAngle.mValue * 2.0f);
-			angle -= C_PARMS->mProperParms.mTurnAngle.mValue;
+			angle = randWeightFloat(C_PROPERPARMS.mTurnAngle.mValue * 2.0f);
+			angle -= C_PROPERPARMS.mTurnAngle.mValue;
 		}
 		f32 theta         = PI * (DEG2RAD * angle) + getFaceDir();
 		mTargetPosition.x = 1000.0f * sinf(theta) + mPosition.x;
@@ -324,7 +324,7 @@ void Kogane::Obj::setTargetPosition(Vector3f* goal)
  */
 void Kogane::Obj::resetAppearTimer()
 {
-	f32 time     = C_PARMS->mProperParms.mMaxAppearTime.mValue - C_PARMS->mProperParms.mMinAppearTime.mValue;
+	f32 time     = C_PROPERPARMS.mMaxAppearTime.mValue - C_PROPERPARMS.mMinAppearTime.mValue;
 	mAppearTimer = randWeightFloat(time);
 }
 
@@ -335,7 +335,7 @@ void Kogane::Obj::resetAppearTimer()
 bool Kogane::Obj::isAppear()
 {
 	bool check;
-	f32 rad = C_PARMS->mGeneral.mSightRadius.mValue;
+	f32 rad = C_GENERALPARMS.mSightRadius.mValue;
 
 	if (EnemyFunc::isThereOlimar(this, rad, nullptr)) {
 		check = true;

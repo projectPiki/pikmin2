@@ -274,8 +274,8 @@ f32 Obj::setHeightVelocity()
  */
 void Obj::setRandTarget()
 {
-	f32 outsideRadius  = C_PARMS->mGeneral.mTerritoryRadius.mValue - C_PARMS->mGeneral.mHomeRadius.mValue;
-	f32 radius         = randWeightFloat(outsideRadius) + C_PARMS->mGeneral.mHomeRadius.mValue;
+	f32 outsideRadius  = C_GENERALPARMS.mTerritoryRadius.mValue - C_GENERALPARMS.mHomeRadius.mValue;
+	f32 radius         = randWeightFloat(outsideRadius) + C_GENERALPARMS.mHomeRadius.mValue;
 	Vector3f position  = getPosition();
 	Vector3f homePos   = mHomePosition;
 	Vector3f atanInput = position - homePos;
@@ -399,10 +399,10 @@ void Obj::addPitchRatio()
 Piki* Obj::getSearchedPikmin()
 {
 	f32 FOV      = PI;
-	f32 sight    = C_PARMS->mGeneral.mSightRadius.mValue;
+	f32 sight    = C_GENERALPARMS.mSightRadius.mValue;
 	f32 sqrSight = SQUARE(sight);
 	if (mStuckPikminCount == 0) {
-		FOV = C_PARMS->mGeneral.mViewAngle.mValue * DEG2RAD * PI;
+		FOV = C_GENERALPARMS.mViewAngle.mValue * DEG2RAD * PI;
 	}
 
 	Iterator<Piki> iPiki = pikiMgr;
@@ -431,13 +431,13 @@ bool Obj::isTargetLost()
 {
 	Creature* target = mTargetCreature;
 	if (target && target->isAlive() && !target->isStickToMouth() && target->mSticker != this) {
-		f32 viewAngle = C_PARMS->mGeneral.mViewAngle.mValue;
+		f32 viewAngle = C_GENERALPARMS.mViewAngle.mValue;
 		if (mStuckPikminCount) {
 			viewAngle = 180.0f;
 		}
 
-		f32 sightRad  = C_PARMS->mGeneral.mSightRadius.mValue;
-		f32 privRad   = C_PARMS->mGeneral.mPrivateRadius.mValue;
+		f32 sightRad  = C_GENERALPARMS.mSightRadius.mValue;
+		f32 privRad   = C_GENERALPARMS.mPrivateRadius.mValue;
 		f32 sightDiff = getCreatureViewAngle(target);
 
 		bool checkDist = isTargetAttackable(target, sightDiff, privRad, sightRad);
@@ -660,7 +660,7 @@ Creature* Obj::isAttackable()
 	Vector3f vec
 	    = Vector3f(parms->mGeneral.mMaxAttackRange.mValue * sinf(faceDir), 0.0f, parms->mGeneral.mMaxAttackRange.mValue * cosf(faceDir));
 	vec += getPosition();
-	f32 radius = SQUARE(C_PARMS->mGeneral.mMaxAttackAngle.mValue);
+	f32 radius = SQUARE(C_GENERALPARMS.mMaxAttackAngle.mValue);
 
 	Iterator<Piki> iter(pikiMgr);
 	CI_LOOP(iter)
@@ -955,12 +955,12 @@ Vector3f Obj::getAttackPosition()
 	Vector3f vec2 = mEfxPosition;
 	Vector3f vec1 = mFaceDirection;
 
-	vec1 *= C_PARMS->mGeneral.mAttackRadius.mValue;
+	vec1 *= C_GENERALPARMS.mAttackRadius.mValue;
 
 	vec1 += vec2;
 
-	f32 inc    = 25.0f / C_PARMS->mGeneral.mAttackRadius.mValue;
-	f32 t      = 100.0f / C_PARMS->mGeneral.mAttackRadius.mValue;
+	f32 inc    = 25.0f / C_GENERALPARMS.mAttackRadius.mValue;
+	f32 t      = 100.0f / C_GENERALPARMS.mAttackRadius.mValue;
 	f32 tCompl = 1.0f - t;
 
 	Vector3f prevPos = Vector3f(vec2.x * tCompl + vec1.x * t, vec2.y * tCompl + vec1.y * t, vec2.z * tCompl + vec1.z * t);
@@ -997,10 +997,10 @@ bool Obj::windTarget()
 		}
 	}
 
-	f32 radius    = mCurrentAttackRadius * C_PARMS->mGeneral.mAttackRadius.mValue;
+	f32 radius    = mCurrentAttackRadius * C_GENERALPARMS.mAttackRadius.mValue;
 	Vector3f vec1 = mEfxPosition;                                                        // f16
 	Vector3f vec2 = mFaceDirection;                                                      // f29
-	f32 slope     = (f32)tan(PI * (DEG2RAD * C_PARMS->mGeneral.mAttackHitAngle.mValue)); // f20
+	f32 slope     = (f32)tan(PI * (DEG2RAD * C_GENERALPARMS.mAttackHitAngle.mValue)); // f20
 
 	// this is probably a new vector
 	vec2.z = -vec2.z;

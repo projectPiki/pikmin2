@@ -94,7 +94,7 @@ void Obj::setParameters()
 			if (section && section->getCaveID() == 'f_01') { // if in Hole of Beasts
 				mCanCreateLarva                  = false;
 				mDoEasyRoll                      = true;
-				C_PARMS->mGeneral.mHealth.mValue = C_PROPERPARMS.mHoBHealth.mValue;
+				C_GENERALPARMS.mHealth.mValue = C_PROPERPARMS.mHoBHealth.mValue;
 			}
 		}
 	}
@@ -269,8 +269,8 @@ void Obj::rollingAttack()
 {
 	Vector3f pos     = getPosition();
 	const f32 angle  = getFaceDir();
-	f32 attackRadius = C_PARMS->mGeneral.mAttackRadius();
-	f32 attackAngle  = C_PARMS->mGeneral.mAttackHitAngle();
+	f32 attackRadius = C_GENERALPARMS.mAttackRadius();
+	f32 attackAngle  = C_GENERALPARMS.mAttackHitAngle();
 
 	Vector3f forward = getDirection(angle);
 	Vector3f back(-forward.z, 0.0f, forward.x);
@@ -289,7 +289,7 @@ void Obj::rollingAttack()
 			if (absVal(sep.y) < 50.0f) {
 				if (absVal(back.dot(sep)) < attackAngle) {
 					if (absVal(forward.dot(sep)) < attackRadius) {
-						InteractPress press(this, C_PARMS->mGeneral.mAttackDamage.mValue, nullptr);
+						InteractPress press(this, C_GENERALPARMS.mAttackDamage.mValue, nullptr);
 						creature->stimulate(press);
 					}
 				}
@@ -315,11 +315,11 @@ void Obj::flickPikmin(f32 angle)
 			CollPart* stuckPart = stuck->mStuckCollPart;
 			if (stuckPart) {
 				if (stuckPart->mCurrentID == 'nose' || stuckPart->mCurrentID == 'head' || stuckPart->mCurrentID == 'bod1') {
-					InteractFlick flick(this, C_PARMS->mGeneral.mShakeKnockback.mValue, C_PARMS->mGeneral.mShakeDamage.mValue, angle);
+					InteractFlick flick(this, C_GENERALPARMS.mShakeKnockback.mValue, C_GENERALPARMS.mShakeDamage.mValue, angle);
 					stuck->stimulate(flick);
 
 				} else if (stuckPart->mCurrentID == 'bod5') {
-					InteractFlick flick(this, C_PARMS->mGeneral.mShakeKnockback.mValue, C_PARMS->mGeneral.mShakeDamage.mValue, bodyAngle);
+					InteractFlick flick(this, C_GENERALPARMS.mShakeKnockback.mValue, C_GENERALPARMS.mShakeDamage.mValue, bodyAngle);
 					stuck->stimulate(flick);
 
 				} else {

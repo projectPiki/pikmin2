@@ -55,9 +55,9 @@ void Obj::setParameters()
 	mScaleModifier = scale;
 	mScale         = Vector3f(scale);
 	mCollTree->mPart->setScale(scale);
-	mCurLodSphere.mRadius = scale * C_PARMS->mGeneral.mOffCameraRadius.mValue;
+	mCurLodSphere.mRadius = scale * C_GENERALPARMS.mOffCameraRadius.mValue;
 	if (mBloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
-		C_PARMS->mGeneral.mHeightOffsetFromFloor.mValue = 50.0f;
+		C_GENERALPARMS.mHeightOffsetFromFloor.mValue = 50.0f;
 	}
 	mCollTree->getCollPart('weak')->setScale(C_PARMS->_A34); // scale of weak point (tail bulb)
 }
@@ -579,8 +579,8 @@ void Obj::doFinishStoneState()
 	mCollTree->getCollPart('head')->mSpecialID = '____';
 	mCollTree->getCollPart('kuti')->mSpecialID = '____';
 	mCollTree->getCollPart('ketu')->mSpecialID = '____';
-	EnemyFunc::flickStickPikmin(this, C_PARMS->mGeneral.mShakeChance.mValue, C_PARMS->mGeneral.mShakeKnockback.mValue,
-	                            C_PARMS->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
+	EnemyFunc::flickStickPikmin(this, C_GENERALPARMS.mShakeChance.mValue, C_GENERALPARMS.mShakeKnockback.mValue,
+	                            C_GENERALPARMS.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 	mFlickTimer = 0.0f;
 	createColorEffect();
 }
@@ -624,10 +624,10 @@ bool Obj::isReachToGoal(f32 radius)
 void Obj::walkFunc()
 {
 	f32 faceDirRads;
-	f32 speed         = C_PARMS->mGeneral.mMoveSpeed.mValue;
+	f32 speed         = C_GENERALPARMS.mMoveSpeed.mValue;
 	f32 inA1C         = C_PARMS->_A1C;
-	f32 rotationAccel = C_PARMS->mGeneral.mTurnSpeed.mValue;
-	f32 rotationSpeed = C_PARMS->mGeneral.mMaxTurnAngle.mValue;
+	f32 rotationAccel = C_GENERALPARMS.mTurnSpeed.mValue;
+	f32 rotationSpeed = C_GENERALPARMS.mMaxTurnAngle.mValue;
 
 	_2FC += C_PARMS->_A20;
 	if (_2FC > 360.0f) {
@@ -675,7 +675,7 @@ void Obj::walkFunc()
  */
 void Obj::setNextGoal()
 {
-	f32 rad = C_PARMS->mGeneral.mTerritoryRadius();
+	f32 rad = C_GENERALPARMS.mTerritoryRadius();
 	if (gameSystem && gameSystem->mIsInCave) {
 		rad = C_PROPERPARMS.mCaveTerritory();
 	}
@@ -958,13 +958,13 @@ bool Obj::isChangeNavi()
 
 	Navi* navi;
 	if (gameSystem && gameSystem->isTwoPlayerMode()) {
-		navi = EnemyFunc::getNearestNavi(this, 360.0f, C_PARMS->mGeneral.mSearchDistance(), nullptr, nullptr);
+		navi = EnemyFunc::getNearestNavi(this, 360.0f, C_GENERALPARMS.mSearchDistance(), nullptr, nullptr);
 	} else {
 		navi = naviMgr->getActiveNavi();
 	}
 
 	if (navi) {
-		f32 dist = C_PARMS->mGeneral.mSearchDistance();
+		f32 dist = C_GENERALPARMS.mSearchDistance();
 		if (mTargetNavi) {
 			dist *= 1.2f;
 		}
@@ -1174,11 +1174,11 @@ bool Obj::isFindTarget()
 		return false;
 	}
 
-	f32 minDist = C_PARMS->mGeneral.mSearchDistance();
+	f32 minDist = C_GENERALPARMS.mSearchDistance();
 	minDist *= minDist;
 
 	if (mTargetNavi) {
-		f32 searchDist = C_PARMS->mGeneral.mSearchDistance();
+		f32 searchDist = C_GENERALPARMS.mSearchDistance();
 		searchDist *= searchDist;
 		Vector3f pos     = mPosition;
 		Vector3f naviPos = Vector3f(mTargetNavi->getPosition().x, 0.0f, mTargetNavi->getPosition().z);
@@ -1190,10 +1190,10 @@ bool Obj::isFindTarget()
 	}
 
 	mTargetCreature
-	    = EnemyFunc::getNearestNavi(this, C_PARMS->mGeneral.mSearchAngle(), C_PARMS->mGeneral.mSearchDistance(), &minDist, nullptr);
+	    = EnemyFunc::getNearestNavi(this, C_GENERALPARMS.mSearchAngle(), C_GENERALPARMS.mSearchDistance(), &minDist, nullptr);
 	f32 naviDist = minDist;
 	Piki* piki
-	    = EnemyFunc::getNearestPikmin(this, C_PARMS->mGeneral.mSearchAngle(), C_PARMS->mGeneral.mSearchDistance(), &minDist, nullptr);
+	    = EnemyFunc::getNearestPikmin(this, C_GENERALPARMS.mSearchAngle(), C_GENERALPARMS.mSearchDistance(), &minDist, nullptr);
 	if (minDist < naviDist) {
 		mTargetCreature = piki;
 	}
@@ -1344,8 +1344,8 @@ lbl_80386074:
  */
 bool Obj::isAttackStart()
 {
-	f32 attackDist  = SQUARE(C_PARMS->mGeneral.mAttackRadius());      // f31
-	f32 attackAngle = TORADIANS(C_PARMS->mGeneral.mAttackHitAngle()); // f30
+	f32 attackDist  = SQUARE(C_GENERALPARMS.mAttackRadius());      // f31
+	f32 attackAngle = TORADIANS(C_GENERALPARMS.mAttackHitAngle()); // f30
 
 	if (mTargetNavi && mTargetNavi->isAlive()) {
 		f32 angle = getCreatureViewAngle(mTargetNavi);
@@ -1358,14 +1358,14 @@ bool Obj::isAttackStart()
 		}
 	}
 
-	Piki* piki = EnemyFunc::getNearestPikmin(this, attackAngle, C_PARMS->mGeneral.mAttackRadius(), nullptr, nullptr);
+	Piki* piki = EnemyFunc::getNearestPikmin(this, attackAngle, C_GENERALPARMS.mAttackRadius(), nullptr, nullptr);
 	if (piki) {
 		mTargetCreature = piki;
 		return true;
 	}
 
 	if (mBloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
-		Navi* navi = EnemyFunc::getNearestNavi(this, attackAngle, C_PARMS->mGeneral.mAttackRadius(), nullptr, nullptr);
+		Navi* navi = EnemyFunc::getNearestNavi(this, attackAngle, C_GENERALPARMS.mAttackRadius(), nullptr, nullptr);
 		if (navi) {
 			return true;
 		}
@@ -1557,7 +1557,7 @@ bool Obj::isNeedTurn()
  */
 bool Obj::isOutOfTerritory(f32 scale)
 {
-	f32 rad = C_PARMS->mGeneral.mTerritoryRadius();
+	f32 rad = C_GENERALPARMS.mTerritoryRadius();
 	if (gameSystem && gameSystem->mIsInCave) {
 		rad = C_PROPERPARMS.mCaveTerritory();
 	}
@@ -1583,7 +1583,7 @@ void Obj::returnHome()
 bool Obj::canMove()
 {
 	if (isOutOfTerritory(1.0f) && mTargetNavi) {
-		f32 rad = C_PARMS->mGeneral.mTerritoryRadius();
+		f32 rad = C_GENERALPARMS.mTerritoryRadius();
 		if (gameSystem && gameSystem->mIsInCave) {
 			rad = C_PROPERPARMS.mCaveTerritory();
 		}
@@ -1699,7 +1699,7 @@ bool Obj::outMove()
 		dir.y            = 0.0f;
 		dir.normalise(); // f2, f3, f4
 
-		f32 rad = C_PARMS->mGeneral.mTerritoryRadius();
+		f32 rad = C_GENERALPARMS.mTerritoryRadius();
 		if (gameSystem && gameSystem->mIsInCave) {
 			rad = C_PROPERPARMS.mCaveTerritory();
 		}

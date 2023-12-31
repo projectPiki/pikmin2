@@ -67,8 +67,8 @@ void Obj::setParameters()
 		mScaleModifier = scale;
 		mScale         = Vector3f(scale);
 		mCollTree->mPart->setScale(scale);
-		mCurLodSphere.mRadius                           = scale * C_PARMS->mGeneral.mOffCameraRadius.mValue;
-		C_PARMS->mGeneral.mHeightOffsetFromFloor.mValue = 60.0f;
+		mCurLodSphere.mRadius                           = scale * C_GENERALPARMS.mOffCameraRadius.mValue;
+		C_GENERALPARMS.mHeightOffsetFromFloor.mValue = 60.0f;
 	}
 }
 
@@ -151,7 +151,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 		mScaleModifier = scale;
 		mScale         = Vector3f(scale);
 		mCollTree->mPart->setScale(scale);
-		mCurLodSphere.mRadius = scale * C_PARMS->mGeneral.mOffCameraRadius.mValue;
+		mCurLodSphere.mRadius = scale * C_GENERALPARMS.mOffCameraRadius.mValue;
 	}
 }
 
@@ -964,8 +964,8 @@ void Obj::doFinishStoneState()
 	backPart->mSpecialID = '_t__';
 	CollPart* buttPart   = mCollTree->getCollPart('ketu');
 	buttPart->mSpecialID = '_t__';
-	EnemyFunc::flickStickPikmin(this, C_PARMS->mGeneral.mShakeChance.mValue, C_PARMS->mGeneral.mShakeKnockback.mValue,
-	                            C_PARMS->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
+	EnemyFunc::flickStickPikmin(this, C_GENERALPARMS.mShakeChance.mValue, C_GENERALPARMS.mShakeKnockback.mValue,
+	                            C_GENERALPARMS.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 	mFlickTimer = 0.0f;
 	createEffect(0);
 }
@@ -1121,7 +1121,7 @@ void Obj::getTonguePosVel(Vector3f& pos, Vector3f& vel)
  */
 void Obj::setNextGoal()
 {
-	f32 rad = C_PARMS->mGeneral.mTerritoryRadius();
+	f32 rad = C_GENERALPARMS.mTerritoryRadius();
 	if (sqrDistanceXZ(mPosition, mHomePosition) > SQUARE(rad)) {
 		mGoalPosition = mHomePosition;
 		checkTurn(true);
@@ -1163,12 +1163,12 @@ void Obj::searchTarget()
 		return;
 	}
 
-	f32 searchAngle = TORADIANS(C_PARMS->mGeneral.mSearchAngle()); // f31
-	f32 searchDist  = C_PARMS->mGeneral.mSearchDistance();
+	f32 searchAngle = TORADIANS(C_GENERALPARMS.mSearchAngle()); // f31
+	f32 searchDist  = C_GENERALPARMS.mSearchDistance();
 	searchDist *= searchDist;
 
 	mTargetCreature
-	    = EnemyFunc::getNearestNavi(this, C_PARMS->mGeneral.mSearchAngle(), C_PARMS->mGeneral.mSearchDistance(), &searchDist, nullptr);
+	    = EnemyFunc::getNearestNavi(this, C_GENERALPARMS.mSearchAngle(), C_GENERALPARMS.mSearchDistance(), &searchDist, nullptr);
 
 	f32 range = SQUARE(C_PROPERPARMS.mInvisibleRange()); // f30
 	f32 maxY, minY;
@@ -1555,7 +1555,7 @@ lbl_8035FE94:
  */
 bool Obj::isOutOfTerritory(f32 rangeScale)
 {
-	f32 radius = rangeScale * C_PARMS->mGeneral.mTerritoryRadius();
+	f32 radius = rangeScale * C_GENERALPARMS.mTerritoryRadius();
 	f32 dist   = sqrDistanceXZ(mHomePosition, mPosition);
 	return (dist > SQUARE(radius));
 }
@@ -1600,9 +1600,9 @@ void Obj::requestTransit(int stateID) { static_cast<Mgr*>(mMgr)->requestState(th
  */
 void Obj::walkFunc()
 {
-	f32 speed        = C_PARMS->mGeneral.mMoveSpeed();
-	f32 maxTurnAngle = C_PARMS->mGeneral.mMaxTurnAngle();
-	f32 turnSpeed    = C_PARMS->mGeneral.mTurnSpeed();
+	f32 speed        = C_GENERALPARMS.mMoveSpeed();
+	f32 maxTurnAngle = C_GENERALPARMS.mMaxTurnAngle();
+	f32 turnSpeed    = C_GENERALPARMS.mTurnSpeed();
 	if (_394) {
 		speed        = C_PROPERPARMS.mBigSpeed();
 		maxTurnAngle = C_PROPERPARMS.mBigRotationMaxSpeed();
@@ -1635,8 +1635,8 @@ f32 Obj::turnFunc(f32 scale)
 		targetPos = mTargetCreature->getPosition();
 	}
 
-	f32 maxAngle  = C_PARMS->mGeneral.mMaxTurnAngle();
-	f32 turnSpeed = C_PARMS->mGeneral.mTurnSpeed();
+	f32 maxAngle  = C_GENERALPARMS.mMaxTurnAngle();
+	f32 turnSpeed = C_GENERALPARMS.mTurnSpeed();
 
 	if (_394) {
 		maxAngle  = C_PROPERPARMS.mBigRotationMaxSpeed();
@@ -1806,14 +1806,14 @@ void Obj::checkAttack(bool check)
 		attackRange = C_PROPERPARMS.mBigAttackHitRange();
 		attackAngle = C_PROPERPARMS.mBigAttackAngle();
 	} else {
-		attackRange = C_PARMS->mGeneral.mMaxAttackRange();
-		attackAngle = C_PARMS->mGeneral.mMaxAttackAngle();
+		attackRange = C_GENERALPARMS.mMaxAttackRange();
+		attackAngle = C_GENERALPARMS.mMaxAttackAngle();
 	}
 
 	if (mTargetCreature && mTargetCreature->isAlive()) {
 		Creature* target = mTargetCreature;
-		if (isTargetOutOfRange(target, getCreatureViewAngle(target), C_PARMS->mGeneral.mPrivateRadius(), C_PARMS->mGeneral.mSightRadius(),
-		                       C_PARMS->mGeneral.mFov(), C_PARMS->mGeneral.mViewAngle())) {
+		if (isTargetOutOfRange(target, getCreatureViewAngle(target), C_GENERALPARMS.mPrivateRadius(), C_GENERALPARMS.mSightRadius(),
+		                       C_GENERALPARMS.mFov(), C_GENERALPARMS.mViewAngle())) {
 			mTargetCreature = nullptr;
 
 		} else {
@@ -2469,7 +2469,7 @@ void Obj::checkFlick(bool check)
 
 	_2E4 = check;
 
-	if (mHealth < 0.5f * C_PARMS->mGeneral.mHealth()) {
+	if (mHealth < 0.5f * C_GENERALPARMS.mHealth()) {
 		if (randFloat() < C_PROPERPARMS.mFlickShoutRate()) {
 			mFsm->transit(this, KINGCHAPPY_WarCry, nullptr);
 			return;

@@ -662,7 +662,7 @@ void Obj::lifeIncrement()
 {
 	mInstantDamage = 0.0f;
 	disableEvent(0, EB_TakingDamage);
-	mHealth = C_PARMS->mGeneral.mHealth();
+	mHealth = C_GENERALPARMS.mHealth();
 }
 
 /**
@@ -705,7 +705,7 @@ Creature* Obj::getRandFruitsPlant()
 {
 	int counter = 0;
 	ItemPlant::Plant* plantList[32];
-	f32 rad = SQUARE(C_PARMS->mGeneral.mTerritoryRadius());
+	f32 rad = SQUARE(C_GENERALPARMS.mTerritoryRadius());
 	Iterator<BaseItem> iter(ItemPlant::mgr);
 
 	CI_LOOP(iter)

@@ -350,7 +350,7 @@ void Obj::updateWhisle()
 		mWhistleRadiusModifier = 1.0f;
 	}
 
-	f32 whistleRadius = mWhistleRadiusModifier * C_PARMS->mGeneral.mAttackRadius.mValue;
+	f32 whistleRadius = mWhistleRadiusModifier * C_GENERALPARMS.mAttackRadius.mValue;
 	updateWhisleEffect(whistleRadius);
 
 	f32 whistleDiameter = whistleRadius * whistleRadius;
@@ -398,12 +398,12 @@ void Obj::setTargetPosition(bool check)
 		if (gameSystem && gameSystem->mIsInCave) {
 			randDist = randWeightFloat(25.0f) + 50.0f;
 		} else {
-			f32 range = (C_PARMS->mGeneral.mTerritoryRadius.mValue - C_PARMS->mGeneral.mHomeRadius.mValue);
-			randDist  = C_PARMS->mGeneral.mHomeRadius.mValue + randWeightFloat(range);
+			f32 range = (C_GENERALPARMS.mTerritoryRadius.mValue - C_GENERALPARMS.mHomeRadius.mValue);
+			randDist  = C_GENERALPARMS.mHomeRadius.mValue + randWeightFloat(range);
 		}
 	} else {
-		f32 range = (C_PARMS->mGeneral.mTerritoryRadius.mValue - C_PARMS->mGeneral.mHomeRadius.mValue);
-		randDist  = C_PARMS->mGeneral.mHomeRadius.mValue + randWeightFloat(range);
+		f32 range = (C_GENERALPARMS.mTerritoryRadius.mValue - C_GENERALPARMS.mHomeRadius.mValue);
+		randDist  = C_GENERALPARMS.mHomeRadius.mValue + randWeightFloat(range);
 		f32 ang1  = randWeightFloat(PI);
 		f32 ang2  = JMath::atanTable_.atan2_(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
 		f32 ang3  = HALF_PI;
@@ -428,7 +428,7 @@ bool Obj::isJumpAway()
 	}
 
 	if (!(mSquadTimer > 0.0f)) {
-		f32 privRad = C_PARMS->mGeneral.mPrivateRadius.mValue;
+		f32 privRad = C_GENERALPARMS.mPrivateRadius.mValue;
 		Sys::Sphere sphere(mPosition, privRad);
 		f32 privateDiameter = privRad * privRad;
 
@@ -535,7 +535,7 @@ void Obj::updateWhisleEffect(f32 scale)
 {
 	efx::ArgCursor argCursor(mPosition, scale);
 	mEfxWhistle->update(&argCursor);
-	mEfxWhistle->mAngleSpeed = C_PARMS->mGeneral.mAttackHitAngle.mValue;
+	mEfxWhistle->mAngleSpeed = C_GENERALPARMS.mAttackHitAngle.mValue;
 }
 
 /**

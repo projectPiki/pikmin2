@@ -224,8 +224,8 @@ f32 Obj::setHeightVelocity(f32 yOffset, f32 speedFactor)
  */
 void Obj::setRandTarget()
 {
-	f32 randRadius = randWeightFloat(C_PARMS->mGeneral.mTerritoryRadius.mValue - C_PARMS->mGeneral.mHomeRadius.mValue)
-	               + C_PARMS->mGeneral.mHomeRadius.mValue;
+	f32 randRadius = randWeightFloat(C_GENERALPARMS.mTerritoryRadius.mValue - C_GENERALPARMS.mHomeRadius.mValue)
+	               + C_GENERALPARMS.mHomeRadius.mValue;
 	Vector3f pos     = getPosition();
 	Vector3f homePos = mHomePosition;
 	f32 ang          = JMAAtan2Radian(pos.x - homePos.x, pos.z - homePos.z);
@@ -408,12 +408,12 @@ Creature* Obj::getSearchedTarget(f32 offset)
 {
 	Creature* target = nullptr;
 
-	if (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(C_PARMS->mGeneral.mTerritoryRadius())) {
+	if (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(C_GENERALPARMS.mTerritoryRadius())) {
 		f32 currY       = mPosition.y;
 		f32 minY        = currY - offset - 50.0f;
-		f32 fovAng      = PI * (DEG2RAD * C_PARMS->mGeneral.mViewAngle());
-		f32 maxDist     = SQUARE(C_PARMS->mGeneral.mSightRadius());
-		f32 attackRange = SQUARE(C_PARMS->mGeneral.mMaxAttackRange());
+		f32 fovAng      = PI * (DEG2RAD * C_GENERALPARMS.mViewAngle());
+		f32 maxDist     = SQUARE(C_GENERALPARMS.mSightRadius());
+		f32 attackRange = SQUARE(C_GENERALPARMS.mMaxAttackRange());
 
 		Iterator<Piki> iter(pikiMgr, nullptr, nullptr);
 
@@ -452,7 +452,7 @@ bool Obj::isSuck(f32 offset, Creature* target)
 
 	f32 currY    = mPosition.y;            // f30
 	f32 minY     = currY - offset - 50.0f; // f29
-	f32 maxRange = SQUARE(C_PARMS->mGeneral.mMaxAttackRange());
+	f32 maxRange = SQUARE(C_GENERALPARMS.mMaxAttackRange());
 
 	if (target) {
 		Vector3f targetPos = target->getPosition();
@@ -486,7 +486,7 @@ bool Obj::suckPikmin(f32 offset)
 {
 	f32 currY    = mPosition.y;
 	f32 minY     = currY - offset - 50.0f;
-	f32 maxRange = SQUARE(C_PARMS->mGeneral.mAttackRadius());
+	f32 maxRange = SQUARE(C_GENERALPARMS.mAttackRadius());
 
 	CollPart* part   = mCollTree->getCollPart('suck');
 	Vector3f partPos = part->mPosition;

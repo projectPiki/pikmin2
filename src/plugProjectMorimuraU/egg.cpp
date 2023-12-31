@@ -234,23 +234,23 @@ void Obj::genItem()
 	position.y += 2.0f;
 
 	f32 randVal = randFloat();
-	f32 test    = C_PARMS->mProperParms.mSingleNectarChance.mValue;
+	f32 test    = C_PROPERPARMS.mSingleNectarChance.mValue;
 	if (randVal < test) {
 		dropType = EGGDROP_SingleNectar;
 	} else {
-		test += C_PARMS->mProperParms.mDoubleNectarChance.mValue;
+		test += C_PROPERPARMS.mDoubleNectarChance.mValue;
 		if (randVal < test) {
 			dropType = EGGDROP_DoubleNectar;
 		} else {
-			test += C_PARMS->mProperParms.mMititesChance.mValue;
+			test += C_PROPERPARMS.mMititesChance.mValue;
 			if (randVal < test) {
 				dropType = EGGDROP_Mitites;
 			} else {
-				test += C_PARMS->mProperParms.mSpicyChance.mValue;
+				test += C_PROPERPARMS.mSpicyChance.mValue;
 				if (randVal < test) {
 					dropType = EGGDROP_Spicy;
 				} else {
-					test += C_PARMS->mProperParms.mBitterChance.mValue;
+					test += C_PROPERPARMS.mBitterChance.mValue;
 					if (randVal < test) {
 						dropType = EGGDROP_Bitter;
 					}

@@ -13,6 +13,10 @@
 #define CG_PARMS(x) (static_cast<Parms*>(x->mParms))
 #define C_PARMS     (CG_PARMS(this))
 
+// Shorthand cast to obj-specific 'parms->mGeneralParms'
+#define CG_GENERALPARMS(x) (CG_PARMS(x)->mGeneral)
+#define C_GENERALPARMS     (C_PARMS->mGeneral)
+
 // Shorthand cast to obj-specific 'parms->properParms'
 #define CG_PROPERPARMS(x) (CG_PARMS(x)->mProperParms)
 #define C_PROPERPARMS     (CG_PROPERPARMS(this))

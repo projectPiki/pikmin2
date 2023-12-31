@@ -383,15 +383,15 @@ bool Obj::isAttackLimitTime()
  */
 void Obj::getTargetPosition()
 {
-	if (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(C_PARMS->mGeneral.mTerritoryRadius())) {
+	if (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(C_GENERALPARMS.mTerritoryRadius())) {
 		ConditionNotStickClient condition(this);
-		Piki* piki = EnemyFunc::getNearestPikmin(this, C_PARMS->mGeneral.mViewAngle.mValue, C_PARMS->mGeneral.mSightRadius.mValue, nullptr,
+		Piki* piki = EnemyFunc::getNearestPikmin(this, C_GENERALPARMS.mViewAngle.mValue, C_GENERALPARMS.mSightRadius.mValue, nullptr,
 		                                         &condition);
 		if (piki) {
 			mTargetPosition = piki->getPosition();
 		} else if (sqrDistanceXZ(mPosition, mTargetPosition) < 625.0f) {
-			f32 range    = (C_PARMS->mGeneral.mTerritoryRadius.mValue - C_PARMS->mGeneral.mHomeRadius.mValue);
-			f32 randDist = C_PARMS->mGeneral.mHomeRadius.mValue + randWeightFloat(range);
+			f32 range    = (C_GENERALPARMS.mTerritoryRadius.mValue - C_GENERALPARMS.mHomeRadius.mValue);
+			f32 randDist = C_GENERALPARMS.mHomeRadius.mValue + randWeightFloat(range);
 			f32 ang2     = JMath::atanTable_.atan2_(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
 			f32 ang1     = randWeightFloat(PI);
 
@@ -449,8 +449,8 @@ void Obj::setupIKSystem()
  */
 void Obj::setIKParameter()
 {
-	mIkSystemParms->mMaxTurnAngle        = C_PARMS->mGeneral.mMaxTurnAngle.mValue;
-	mIkSystemParms->mMoveSpeed           = C_PARMS->mGeneral.mMoveSpeed.mValue;
+	mIkSystemParms->mMaxTurnAngle        = C_GENERALPARMS.mMaxTurnAngle.mValue;
+	mIkSystemParms->mMoveSpeed           = C_GENERALPARMS.mMoveSpeed.mValue;
 	mIkSystemParms->mBaseCoefficient     = C_PROPERPARMS.mBaseFactor.mValue;
 	mIkSystemParms->mRaiseSlowdownFactor = C_PROPERPARMS.mRaiseDecelFactor.mValue;
 	mIkSystemParms->mDownwardAccelFactor = C_PROPERPARMS.mDownwardDecelFactor.mValue;

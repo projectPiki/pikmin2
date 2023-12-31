@@ -336,9 +336,9 @@ void Obj::walkFunc()
 
 	f32 x, y, z;
 	f32 faceDirOffset;
-	f32 targetSpeed    = _2C8 * C_PARMS->mGeneral.mMoveSpeed();
+	f32 targetSpeed    = _2C8 * C_GENERALPARMS.mMoveSpeed();
 	f32 offsetFactor   = C_PARMS->_924 * _2CC;
-	f32 dirChangeLimit = _2C4 * C_PARMS->mGeneral.mMaxTurnAngle();
+	f32 dirChangeLimit = _2C4 * C_GENERALPARMS.mMaxTurnAngle();
 
 	_2FC += C_PARMS->_928;
 	if (_2FC > 360.0f) {
@@ -397,7 +397,7 @@ void Obj::walkFunc()
  */
 void Obj::setGoalRandom()
 {
-	f32 val     = C_PARMS->mGeneral.mTerritoryRadius();
+	f32 val     = C_GENERALPARMS.mTerritoryRadius();
 	f32 randVal = 0.5f * randFloat() + 0.5f;
 	val *= randVal;
 	mGoalPosition = mHomePosition;
@@ -429,7 +429,7 @@ void Obj::setGoalDirect(Vector3f& pos)
  */
 bool Obj::turnFunc()
 {
-	f32 angle = turnToTarget2(mGoalPosition, _2C4 * C_PARMS->mGeneral.mTurnSpeed(), _2C4 * C_PARMS->mGeneral.mMaxTurnAngle());
+	f32 angle = turnToTarget2(mGoalPosition, _2C4 * C_GENERALPARMS.mTurnSpeed(), _2C4 * C_GENERALPARMS.mMaxTurnAngle());
 	if (absF(angle) < 0.1f) {
 		return true;
 	}
@@ -577,8 +577,8 @@ void Obj::ballMove()
 	if (vel > 2.0f) {
 		vel = 2.0f;
 	}
-	EnemyFunc::walkToTarget(this, mGoalPosition, C_PARMS->mGeneral.mMoveSpeed.mValue * 0.2f, C_PARMS->mGeneral.mTurnSpeed.mValue * vel,
-	                        C_PARMS->mGeneral.mMaxTurnAngle.mValue * vel);
+	EnemyFunc::walkToTarget(this, mGoalPosition, C_GENERALPARMS.mMoveSpeed.mValue * 0.2f, C_GENERALPARMS.mTurnSpeed.mValue * vel,
+	                        C_GENERALPARMS.mMaxTurnAngle.mValue * vel);
 	mRotation.x *= 0.95f;
 	mRotation.z *= 0.95f;
 }

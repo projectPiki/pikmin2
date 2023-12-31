@@ -35,9 +35,9 @@ void Obj::birth(Vector3f& pos, f32 angle)
  */
 void Obj::setInitialSetting(EnemyInitialParamBase* param)
 {
-	mFallSpeed   = C_PARMS->mGeneral.mSearchDistance;
-	mFallOffset  = C_PARMS->mGeneral.mSearchHeight;
-	mScaleUpRate = C_PARMS->mGeneral.mSearchAngle;
+	mFallSpeed   = C_GENERALPARMS.mSearchDistance;
+	mFallOffset  = C_GENERALPARMS.mSearchHeight;
+	mScaleUpRate = C_GENERALPARMS.mSearchAngle;
 }
 
 /**
@@ -207,7 +207,7 @@ void Obj::collisionCallback(CollEvent& event)
 					target = mSourceEnemy;
 				}
 
-				InteractPress press(target, C_PARMS->mGeneral.mAttackDamage.mValue, nullptr);
+				InteractPress press(target, C_GENERALPARMS.mAttackDamage.mValue, nullptr);
 				event.mCollidingCreature->stimulate(press);
 			}
 		} else if (other->isTeki()) {
@@ -346,7 +346,7 @@ void Obj::initMoveVelocity()
 	f32 sinTheta = sinf(theta);
 
 	Vector3f vel(sinTheta, 0.0f, cosTheta);
-	vel *= C_PARMS->mGeneral.mMoveSpeed();
+	vel *= C_GENERALPARMS.mMoveSpeed();
 	mTargetVelocity = vel;
 	setVelocity(vel);
 	/*
@@ -435,7 +435,7 @@ void Obj::updateMoveVelocity()
 			target = naviMgr->getActiveNavi();
 		}
 		if (!target) {
-			target = EnemyFunc::getNearestPikminOrNavi(this, 180.0f, C_PARMS->mGeneral.mSightRadius.mValue, nullptr, nullptr, nullptr);
+			target = EnemyFunc::getNearestPikminOrNavi(this, 180.0f, C_GENERALPARMS.mSightRadius.mValue, nullptr, nullptr, nullptr);
 		}
 
 		Vector2f XZ;

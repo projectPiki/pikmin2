@@ -220,13 +220,13 @@ void Obj::getThrowupItemPosition(Vector3f* pos) { *pos = mModel->getJoint("kutij
  * @note Address: 0x802CEE64
  * @note Size: 0x3C
  */
-bool Obj::isOutTerritory() { return (u8)(sqrDistanceXZ(mPosition, mHomePosition) > SQUARE(C_PARMS->mGeneral.mTerritoryRadius())); }
+bool Obj::isOutTerritory() { return (u8)(sqrDistanceXZ(mPosition, mHomePosition) > SQUARE(C_GENERALPARMS.mTerritoryRadius())); }
 
 /**
  * @note Address: 0x802CEEA0
  * @note Size: 0x3C
  */
-bool Obj::isInHomeRange() { return (u8)(sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(C_PARMS->mGeneral.mHomeRadius())); }
+bool Obj::isInHomeRange() { return (u8)(sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(C_GENERALPARMS.mHomeRadius())); }
 
 /**
  * @note Address: 0x802CEEDC
@@ -246,7 +246,7 @@ void Obj::setJumpMove(Vector3f& targetPos)
 	if (FABS(angleDist) <= TORADIANS(30.0f)) {
 		Vector3f velocity = Vector3f(targetPos.x - mPosition.x, 0.0f, targetPos.z - mPosition.z);
 		f32 dist          = velocity.normalise();
-		f32 moveSpeed     = C_PARMS->mGeneral.mMoveSpeed.mValue;
+		f32 moveSpeed     = C_GENERALPARMS.mMoveSpeed.mValue;
 
 		f32 speed = dist;
 		if (dist > moveSpeed) {
@@ -309,7 +309,7 @@ void Obj::appearNearByTarget(Creature* target)
 	newPos *= 120.0f;
 	newPos += targetPos;
 
-	if (sqrDistanceXZ(mHomePosition, newPos) > SQUARE(C_PARMS->mGeneral.mTerritoryRadius())) {
+	if (sqrDistanceXZ(mHomePosition, newPos) > SQUARE(C_GENERALPARMS.mTerritoryRadius())) {
 		faceDir = JMAAtan2Radian(targetPos.x - mHomePosition.x, targetPos.z - mHomePosition.z);
 
 		faceDir = faceDir + (randWeightFloat(PI) - HALF_PI);
@@ -1796,9 +1796,9 @@ lbl_802D0534:
  */
 Creature* Obj::getSearchedTarget()
 {
-	f32 searchAngle = (mStuckPikminCount != 0) ? 180.0f : C_PARMS->mGeneral.mViewAngle.mValue;
+	f32 searchAngle = (mStuckPikminCount != 0) ? 180.0f : C_GENERALPARMS.mViewAngle.mValue;
 
-	return EnemyFunc::getNearestPikminOrNavi(this, searchAngle, C_PARMS->mGeneral.mSightRadius.mValue, nullptr, nullptr, nullptr);
+	return EnemyFunc::getNearestPikminOrNavi(this, searchAngle, C_GENERALPARMS.mSightRadius.mValue, nullptr, nullptr, nullptr);
 }
 
 /**
@@ -1930,8 +1930,8 @@ void Obj::lifeIncrement()
 	disableEvent(0, EB_TakingDamage);
 	mHealth += 10.0f;
 
-	if (mHealth > C_PARMS->mGeneral.mHealth()) {
-		mHealth = C_PARMS->mGeneral.mHealth();
+	if (mHealth > C_GENERALPARMS.mHealth()) {
+		mHealth = C_GENERALPARMS.mHealth();
 	}
 }
 

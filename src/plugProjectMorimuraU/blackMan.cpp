@@ -1073,7 +1073,7 @@ void BlackMan::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam& param)
 		Matrixf* waistJoint = (Matrixf*)mModel->mJ3dModel->mMtxBuffer->mWorldMatrices[mWaistJointIndex];
 
 		Vector3f lifeGaugePosition = waistJoint->getPosition();
-		lifeGaugePosition.y        = mPosition.y + C_PARMS->mGeneral.mLifeMeterHeight.mValue;
+		lifeGaugePosition.y        = mPosition.y + C_GENERALPARMS.mLifeMeterHeight.mValue;
 
 		param.mPosition = lifeGaugePosition;
 	}
@@ -1093,7 +1093,7 @@ void BlackMan::Obj::collisionCallback(Game::CollEvent& collEvent)
 		Piki* piki = static_cast<Piki*>(collCreature);
 
 		if (piki->getKind() != Purple) {
-			InteractFlick flick(this, C_PARMS->mGeneral.mShakeKnockback(), 0.0f, FLICK_BACKWARD_ANGLE);
+			InteractFlick flick(this, C_GENERALPARMS.mShakeKnockback(), 0.0f, FLICK_BACKWARD_ANGLE);
 			piki->stimulate(flick);
 			mSoundObj->startSound(PSSE_EN_KAGE_REJECT, 0);
 		} else if (stateID == WRAITH_Walk || stateID == WRAITH_Tired) {
@@ -1527,9 +1527,9 @@ void BlackMan::Obj::walkFunc()
 	}
 
 	f32 rotationSpeed, moveSpeed, turnSpeed; // should be f31, f30, f29
-	moveSpeed     = C_PARMS->mGeneral.mMoveSpeed();
-	rotationSpeed = C_PARMS->mGeneral.mMaxTurnAngle();
-	turnSpeed     = C_PARMS->mGeneral.mTurnSpeed();
+	moveSpeed     = C_GENERALPARMS.mMoveSpeed();
+	rotationSpeed = C_GENERALPARMS.mMaxTurnAngle();
+	turnSpeed     = C_GENERALPARMS.mTurnSpeed();
 
 	if (C_PARMS->_A1A >= 0) {
 		_2F0 = C_PARMS->_A1A;
@@ -1538,7 +1538,7 @@ void BlackMan::Obj::walkFunc()
 	}
 
 	if (_2F0 == 0) {
-		if (_2EC > C_PARMS->mProperParms.mTimerToTwoStep) {
+		if (_2EC > C_PROPERPARMS.mTimerToTwoStep) {
 			_2F0 = 1;
 			_2EC = 0;
 			_378 = 0.0f;
@@ -2435,10 +2435,10 @@ void BlackMan::Obj::findNextRoutePoint()
 	}
 
 	if (counter) {
-		int val     = -1;                                          // r28
-		bool check  = false;                                       // r27
-		f32 minDist = SQUARE(C_PARMS->mGeneral.mSearchDistance()); // f31
-		int targetWPIdx;                                           // r26
+		int val     = -1;                                       // r28
+		bool check  = false;                                    // r27
+		f32 minDist = SQUARE(C_GENERALPARMS.mSearchDistance()); // f31
+		int targetWPIdx;                                        // r26
 		switch (_2E0) {
 		case 0: {
 			targetWPIdx = randInt(counter);
@@ -4763,8 +4763,8 @@ void BlackMan::Obj::moveRestart()
 		_3A8 = 1;
 	}
 
-	EnemyFunc::flickStickPikmin(mTyre, C_PARMS->mGeneral.mShakeChance(), C_PARMS->mGeneral.mShakeKnockback(),
-	                            C_PARMS->mGeneral.mShakeDamage(), FLICK_BACKWARD_ANGLE, nullptr);
+	EnemyFunc::flickStickPikmin(mTyre, C_GENERALPARMS.mShakeChance(), C_GENERALPARMS.mShakeKnockback(), C_GENERALPARMS.mShakeDamage(),
+	                            FLICK_BACKWARD_ANGLE, nullptr);
 }
 
 /**
@@ -4820,8 +4820,8 @@ void BlackMan::Obj::collisionStOff()
  */
 void BlackMan::Obj::flick()
 {
-	EnemyFunc::flickStickPikmin(this, C_PARMS->mGeneral.mShakeChance(), C_PARMS->mGeneral.mShakeKnockback(),
-	                            C_PARMS->mGeneral.mShakeDamage(), FLICK_BACKWARD_ANGLE, nullptr);
+	EnemyFunc::flickStickPikmin(this, C_GENERALPARMS.mShakeChance(), C_GENERALPARMS.mShakeKnockback(), C_GENERALPARMS.mShakeDamage(),
+	                            FLICK_BACKWARD_ANGLE, nullptr);
 	mFlickTimer = 0.0f;
 }
 
@@ -4963,10 +4963,10 @@ lbl_803AAC94:
  */
 void BlackMan::Obj::recoverFlick()
 {
-	f32 chance    = C_PARMS->mGeneral.mShakeChance();
-	f32 knockback = C_PARMS->mGeneral.mShakeKnockback();
-	f32 damage    = C_PARMS->mGeneral.mShakeDamage();
-	f32 range     = C_PARMS->mGeneral.mShakeRange();
+	f32 chance    = C_GENERALPARMS.mShakeChance();
+	f32 knockback = C_GENERALPARMS.mShakeKnockback();
+	f32 damage    = C_GENERALPARMS.mShakeDamage();
+	f32 range     = C_GENERALPARMS.mShakeRange();
 
 	if (mTyre) {
 		EnemyFunc::flickStickPikmin(mTyre, chance, 2.0f * knockback, damage, mFaceDir, nullptr);

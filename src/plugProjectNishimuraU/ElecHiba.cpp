@@ -198,7 +198,7 @@ void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
 
 		param.mPosition *= 0.5f;
 
-		param.mPosition.y += C_PARMS->mGeneral.mLifeMeterHeight.mValue;
+		param.mPosition.y += C_GENERALPARMS.mLifeMeterHeight.mValue;
 
 		param.mCurHealthPercentage = mHealth / mMaxHealth;
 
@@ -273,9 +273,9 @@ void Obj::interactDenkiAttack(Vector3f& position)
 	spherePos.x     = (position.x - mPosition.x) / 2;
 	spherePos.y     = (position.y - mPosition.y) / 2;
 	spherePos.z     = (position.z - mPosition.z) / 2;
-	f32 attackRange = C_PARMS->mGeneral.mMaxAttackRange.mValue;
+	f32 attackRange = C_GENERALPARMS.mMaxAttackRange.mValue;
 	f32 negRange    = -attackRange;
-	f32 totalRange  = distance + C_PARMS->mGeneral.mMaxAttackRange.mValue;
+	f32 totalRange  = distance + C_GENERALPARMS.mMaxAttackRange.mValue;
 	f32 radius      = (totalRange - negRange) / 2;
 	Sys::Sphere sphere(spherePos, radius);
 
@@ -299,20 +299,20 @@ void Obj::interactDenkiAttack(Vector3f& position)
 				dotProd = -dotProd;
 			}
 
-			if (dotProd < C_PARMS->mGeneral.mAttackHitAngle.mValue) {
+			if (dotProd < C_GENERALPARMS.mAttackHitAngle.mValue) {
 				if (mVersusHibaType == VHT_Neutral) {
 					// some math to determine attack direction
 					// Vector3f attackDirection = something
-					InteractDenki zap(this, C_PARMS->mGeneral.mAttackDamage.mValue,
+					InteractDenki zap(this, C_GENERALPARMS.mAttackDamage.mValue,
 					                  &creaturePos); // should be &attackDirection eventually
 					creature->stimulate(zap);
 
 				} else if (mVersusHibaType == VHT_Red) {
-					InteractFire fire(this, C_PARMS->mGeneral.mAttackDamage.mValue);
+					InteractFire fire(this, C_GENERALPARMS.mAttackDamage.mValue);
 					creature->stimulate(fire);
 
 				} else if (mVersusHibaType == VHT_Blue) {
-					InteractBubble bubble(this, C_PARMS->mGeneral.mAttackDamage.mValue);
+					InteractBubble bubble(this, C_GENERALPARMS.mAttackDamage.mValue);
 					creature->stimulate(bubble);
 				}
 			}
@@ -772,8 +772,8 @@ void Obj::damageIncrement(f32 damage)
  */
 void Obj::setupLodParms()
 {
-	mLodParm.mFar        = C_PARMS->mProperParms.mLodNear.mValue;
-	mLodParm.mClose      = C_PARMS->mProperParms.mLodMiddle.mValue;
+	mLodParm.mFar        = C_PROPERPARMS.mLodNear.mValue;
+	mLodParm.mClose      = C_PROPERPARMS.mLodMiddle.mValue;
 	mLodParm.mIsCylinder = false;
 }
 

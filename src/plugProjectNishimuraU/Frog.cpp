@@ -94,7 +94,7 @@ void Obj::doSimulationFlying(f32 step)
 
 	mCurrentVelocity.y -= step * _aiConstants->mGravity.mData;
 	if (mCurrentVelocity.y > 0.0f) {
-		turnToTarget2(mTargetPosition, C_PARMS->mGeneral.mTurnSpeed(), C_PARMS->mGeneral.mMaxTurnAngle());
+		turnToTarget2(mTargetPosition, C_GENERALPARMS.mTurnSpeed(), C_GENERALPARMS.mMaxTurnAngle());
 	} else {
 		mCurrentVelocity.y = 0.0f;
 	}
@@ -171,7 +171,7 @@ void Obj::collisionCallback(CollEvent& event)
 			if (mIsFalling) {
 				if (creature->mBounceTriangle) {
 					if (creature->isNavi() || creature->isPiki()) {
-						InteractPress press(this, C_PARMS->mGeneral.mAttackDamage.mValue, nullptr);
+						InteractPress press(this, C_GENERALPARMS.mAttackDamage.mValue, nullptr);
 						event.mCollidingCreature->stimulate(press);
 					}
 				}
@@ -307,7 +307,7 @@ void Obj::updateCaution()
 		mAlertTimer = 0.0f;
 	}
 
-	if (mAlertTimer < C_PARMS->mGeneral.mAlertDuration()) {
+	if (mAlertTimer < C_GENERALPARMS.mAlertDuration()) {
 		mAlertTimer += sys->mDeltaTime;
 	}
 }
@@ -318,10 +318,10 @@ void Obj::updateCaution()
  */
 f32 Obj::getViewAngle()
 {
-	if (mAlertTimer < C_PARMS->mGeneral.mAlertDuration()) {
+	if (mAlertTimer < C_GENERALPARMS.mAlertDuration()) {
 		return 180.0f;
 	}
-	return C_PARMS->mGeneral.mViewAngle();
+	return C_GENERALPARMS.mViewAngle();
 }
 
 /**
@@ -349,7 +349,7 @@ void Obj::startJumpAttack()
  */
 void Obj::resetHomePosition()
 {
-	f32 dist        = 0.5f * C_PARMS->mGeneral.mHomeRadius();
+	f32 dist        = 0.5f * C_GENERALPARMS.mHomeRadius();
 	mHomePosition.x = dist * sinf(mFaceDir) + mPosition.x;
 	mHomePosition.y = mPosition.y;
 	mHomePosition.z = dist * cosf(mFaceDir) + mPosition.z;
@@ -361,8 +361,8 @@ void Obj::resetHomePosition()
  */
 void Obj::pressOnGround()
 {
-	EnemyFunc::flickStickPikmin(this, C_PARMS->mGeneral.mShakeChance(), C_PARMS->mGeneral.mShakeKnockback(),
-	                            C_PARMS->mGeneral.mShakeDamage(), FLICK_BACKWARD_ANGLE, nullptr);
+	EnemyFunc::flickStickPikmin(this, C_GENERALPARMS.mShakeChance(), C_GENERALPARMS.mShakeKnockback(),
+	                            C_GENERALPARMS.mShakeDamage(), FLICK_BACKWARD_ANGLE, nullptr);
 	mFlickTimer = 0.0f;
 	Sys::Sphere boundingSphere;
 	getBoundingSphere(boundingSphere);

@@ -126,7 +126,7 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
  */
 bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
-	bool isTakeDamage = damageCallBack(creature, static_cast<Parms*>(mParms)->mGeneral.mPurplePikiStunDamage, collpart);
+	bool isTakeDamage = damageCallBack(creature, C_GENERALPARMS.mPurplePikiStunDamage, collpart);
 	if (!(isEvent(0, EB_Bittered)) && isTakeDamage) {
 		enableEvent(0, EB_SquashOnDamageAnim);
 	}
@@ -305,7 +305,7 @@ void Obj::setNearestBridge()
 	mBridgeWidth          = 0.0f;
 
 	if (ItemBridge::mgr) {
-		f32 dist = SQUARE(C_PARMS->mGeneral.mTerritoryRadius.mValue);
+		f32 dist = SQUARE(C_GENERALPARMS.mTerritoryRadius.mValue);
 
 		Iterator<BaseItem> iter(ItemBridge::mgr);
 
@@ -407,7 +407,7 @@ bool Obj::moveBridgeSide()
 	startPos += zVec;
 
 	if (sqrDistanceXZ(mPosition, startPos) < 250.0f) {
-		f32 speed    = 0.75f * C_PARMS->mGeneral.mMoveSpeed.mValue;
+		f32 speed    = 0.75f * C_GENERALPARMS.mMoveSpeed.mValue;
 		f32 sinTheta = sin(getFaceDir());
 		f32 y        = getTargetVelocity().y;
 		f32 cosTheta = cos(getFaceDir());
@@ -421,7 +421,7 @@ bool Obj::moveBridgeSide()
 	} else {
 		changeFaceDir(startPos);
 
-		f32 speed    = C_PARMS->mGeneral.mMoveSpeed.mValue;
+		f32 speed    = C_GENERALPARMS.mMoveSpeed.mValue;
 		f32 sinTheta = sin(getFaceDir());
 		f32 y        = getTargetVelocity().y;
 		f32 cosTheta = cos(getFaceDir());
@@ -627,7 +627,7 @@ bool Obj::moveBridgeCentre()
 	startPos += xVec;
 
 	if (sqrDistanceXZ(mPosition, startPos) < 250.0f) {
-		f32 speed    = 0.75f * C_PARMS->mGeneral.mMoveSpeed.mValue;
+		f32 speed    = 0.75f * C_GENERALPARMS.mMoveSpeed.mValue;
 		f32 sinTheta = sin(getFaceDir());
 		f32 y        = getTargetVelocity().y;
 		f32 cosTheta = cos(getFaceDir());
@@ -641,7 +641,7 @@ bool Obj::moveBridgeCentre()
 	} else {
 		changeFaceDir(startPos);
 
-		f32 speed    = C_PARMS->mGeneral.mMoveSpeed.mValue;
+		f32 speed    = C_GENERALPARMS.mMoveSpeed.mValue;
 		f32 sinTheta = sin(getFaceDir());
 		f32 y        = getTargetVelocity().y;
 		f32 cosTheta = cos(getFaceDir());
@@ -857,7 +857,7 @@ bool Obj::moveBridgeTop()
 		return true;
 
 	} else if (dist < 750.0f) {
-		f32 speed    = C_PARMS->mGeneral.mMoveSpeed.mValue;
+		f32 speed    = C_GENERALPARMS.mMoveSpeed.mValue;
 		f32 sinTheta = sin(getFaceDir());
 		f32 y        = getTargetVelocity().y;
 		f32 cosTheta = cos(getFaceDir());
@@ -869,7 +869,7 @@ bool Obj::moveBridgeTop()
 		return true;
 
 	} else {
-		f32 speed    = C_PARMS->mGeneral.mMoveSpeed.mValue;
+		f32 speed    = C_GENERALPARMS.mMoveSpeed.mValue;
 		f32 sinTheta = sin(getFaceDir());
 		f32 y        = getTargetVelocity().y;
 		f32 cosTheta = cos(getFaceDir());

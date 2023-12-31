@@ -111,7 +111,7 @@ void Obj::setParameters()
 	if (gameSystem && gameSystem->mIsInCave && gameSystem->isStoryMode()) {
 		SingleGameSection* section = static_cast<SingleGameSection*>(gameSystem->mSection);
 		if (section && section->getCaveID() == 'l_02') {
-			C_PARMS->mGeneral.mTerritoryRadius.mValue = C_PROPERPARMS.mLastToTerritory.mValue;
+			C_GENERALPARMS.mTerritoryRadius.mValue = C_PROPERPARMS.mLastToTerritory.mValue;
 		}
 	}
 
@@ -306,15 +306,15 @@ void Obj::setTargetPattern()
  */
 void Obj::getTargetPosition()
 {
-	if (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(C_PARMS->mGeneral.mTerritoryRadius())) {
+	if (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(C_GENERALPARMS.mTerritoryRadius())) {
 		ConditionNotStickClient condition(this);
-		Piki* piki = EnemyFunc::getNearestPikmin(this, C_PARMS->mGeneral.mViewAngle.mValue, C_PARMS->mGeneral.mSightRadius.mValue, nullptr,
+		Piki* piki = EnemyFunc::getNearestPikmin(this, C_GENERALPARMS.mViewAngle.mValue, C_GENERALPARMS.mSightRadius.mValue, nullptr,
 		                                         &condition);
 		if (piki) {
 			mTargetPosition = piki->getPosition();
 		} else if (sqrDistanceXZ(mPosition, mTargetPosition) < 625.0f) {
-			f32 range    = (C_PARMS->mGeneral.mTerritoryRadius.mValue - C_PARMS->mGeneral.mHomeRadius.mValue);
-			f32 randDist = C_PARMS->mGeneral.mHomeRadius.mValue + randWeightFloat(range);
+			f32 range    = (C_GENERALPARMS.mTerritoryRadius.mValue - C_GENERALPARMS.mHomeRadius.mValue);
+			f32 randDist = C_GENERALPARMS.mHomeRadius.mValue + randWeightFloat(range);
 			f32 ang2     = JMath::atanTable_.atan2_(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
 			f32 ang1     = randWeightFloat(PI);
 
@@ -342,12 +342,12 @@ void Obj::setShotGunTargetPosition()
 	ConditionNotStickClient condition(this);
 	Creature* target;
 	if (mTargetNearest) { // target nearest navi or piki
-		target = EnemyFunc::getNearestPikminOrNavi(this, 180.0f, C_PARMS->mGeneral.mSearchDistance.mValue, nullptr, nullptr, &condition);
+		target = EnemyFunc::getNearestPikminOrNavi(this, 180.0f, C_GENERALPARMS.mSearchDistance.mValue, nullptr, nullptr, &condition);
 
 	} else { // target nearest navi's nearest piki (i.e. party)
-		target = EnemyFunc::getNearestNavi(this, 180.0f, C_PARMS->mGeneral.mSearchDistance.mValue, nullptr, nullptr);
+		target = EnemyFunc::getNearestNavi(this, 180.0f, C_GENERALPARMS.mSearchDistance.mValue, nullptr, nullptr);
 		if (target) {
-			target = EnemyFunc::getNearestPikmin(target, 180.0f, C_PARMS->mGeneral.mSearchDistance.mValue, nullptr, &condition);
+			target = EnemyFunc::getNearestPikmin(target, 180.0f, C_GENERALPARMS.mSearchDistance.mValue, nullptr, &condition);
 		}
 	}
 
@@ -356,7 +356,7 @@ void Obj::setShotGunTargetPosition()
 	} else if (mShotGunBurstTimer > 1.0f) {
 		mShotGunBurstTimer = 0.0f;
 		f32 randAngle      = randWeightFloat(TAU);
-		f32 randDist       = randWeightFloat(C_PARMS->mGeneral.mSearchDistance.mValue);
+		f32 randDist       = randWeightFloat(C_GENERALPARMS.mSearchDistance.mValue);
 
 		mShotGunTargetPosition = Vector3f(randDist * sinf(randAngle) + mPosition.x, mPosition.y, randDist * cosf(randAngle) + mPosition.z);
 	}
@@ -404,8 +404,8 @@ void Obj::setupIKSystem()
 void Obj::setIKParameter()
 {
 	mIkSystemParms->mBendFactor                 = 0.67f;
-	mIkSystemParms->mMaxTurnAngle        = C_PARMS->mGeneral.mMaxTurnAngle.mValue;
-	mIkSystemParms->mMoveSpeed           = C_PARMS->mGeneral.mMoveSpeed.mValue;
+	mIkSystemParms->mMaxTurnAngle        = C_GENERALPARMS.mMaxTurnAngle.mValue;
+	mIkSystemParms->mMoveSpeed           = C_GENERALPARMS.mMoveSpeed.mValue;
 	mIkSystemParms->mBaseCoefficient     = C_PROPERPARMS.mBaseFactor.mValue;
 	mIkSystemParms->mRaiseSlowdownFactor = C_PROPERPARMS.mRaiseDecelFactor.mValue;
 	mIkSystemParms->mDownwardAccelFactor = C_PROPERPARMS.mDownwardAccelFactor.mValue;
@@ -560,7 +560,7 @@ void Obj::updateShotGunTimer()
  * @note Address: 0x802C115C
  * @note Size: 0x1C
  */
-bool Obj::isTransitShotGunState() { return (mShotGunBurstTimer > C_PARMS->mGeneral.mSearchHeight.mValue); }
+bool Obj::isTransitShotGunState() { return (mShotGunBurstTimer > C_GENERALPARMS.mSearchHeight.mValue); }
 
 /**
  * @note Address: 0x802C1178
@@ -916,7 +916,7 @@ void Obj::createOnGroundEffect(int footIdx, WaterBox* wbox)
  */
 void Obj::createOffGroundEffect(int footIdx, WaterBox* wbox)
 {
-	f32 healthRatio = mHealth / C_PARMS->mGeneral.mHealth.mValue;
+	f32 healthRatio = mHealth / C_GENERALPARMS.mHealth.mValue;
 	if (footIdx == 0) {
 		if (healthRatio < 0.175f) {
 			getJAIObject()->startSound(PSSE_EN_HOUDAI_RAISE_M3, 0);
@@ -995,7 +995,7 @@ void Obj::updatePinchLife()
 		return;
 	}
 
-	f32 healthRatio = mHealth / C_PARMS->mGeneral.mHealth.mValue;
+	f32 healthRatio = mHealth / C_GENERALPARMS.mHealth.mValue;
 	if (mIsSmoking) {
 		if (healthRatio > 0.35f) {
 			finishPinchJointEffect();

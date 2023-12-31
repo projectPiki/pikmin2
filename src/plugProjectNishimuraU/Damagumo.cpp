@@ -211,7 +211,7 @@ void Obj::collisionCallback(CollEvent& event)
 		if (creature && event.mCollisionObj && creature->isAlive() && creature->mBounceTriangle) {
 			if (creature->isNavi() || creature->isPiki()) {
 				if (isCollisionCheck(event.mHitPart)) {
-					InteractPress press(this, C_PARMS->mGeneral.mAttackDamage.mValue, nullptr);
+					InteractPress press(this, C_GENERALPARMS.mAttackDamage.mValue, nullptr);
 					creature->stimulate(press);
 				}
 			} else if (creature->isTeki() && isCollisionCheck(event.mHitPart)) {
@@ -286,15 +286,15 @@ void Obj::getThrowupItemVelocity(Vector3f* velocity)
  */
 void Obj::getTargetPosition()
 {
-	if (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(C_PARMS->mGeneral.mTerritoryRadius())) {
+	if (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(C_GENERALPARMS.mTerritoryRadius())) {
 		ConditionNotStickClient condition(this);
-		Piki* piki = EnemyFunc::getNearestPikmin(this, C_PARMS->mGeneral.mViewAngle.mValue, C_PARMS->mGeneral.mSightRadius.mValue, nullptr,
+		Piki* piki = EnemyFunc::getNearestPikmin(this, C_GENERALPARMS.mViewAngle.mValue, C_GENERALPARMS.mSightRadius.mValue, nullptr,
 		                                         &condition);
 		if (piki) {
 			mTargetPosition = piki->getPosition();
 		} else if (sqrDistanceXZ(mPosition, mTargetPosition) < 625.0f) {
-			f32 range       = (C_PARMS->mGeneral.mTerritoryRadius.mValue - C_PARMS->mGeneral.mHomeRadius.mValue);
-			f32 randDist    = C_PARMS->mGeneral.mHomeRadius.mValue + randWeightFloat(range);
+			f32 range       = (C_GENERALPARMS.mTerritoryRadius.mValue - C_GENERALPARMS.mHomeRadius.mValue);
+			f32 randDist    = C_GENERALPARMS.mHomeRadius.mValue + randWeightFloat(range);
 			f32 angleToHome = JMath::atanTable_.atan2_(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
 
 			f32 randomAngle = randWeightFloat(PI);
@@ -353,8 +353,8 @@ void Obj::setupIKSystem()
 void Obj::setIKParameter()
 {
 	mIkSystemParms->mBendFactor          = 0.67f;
-	mIkSystemParms->mMaxTurnAngle        = C_PARMS->mGeneral.mMaxTurnAngle.mValue;
-	mIkSystemParms->mMoveSpeed           = C_PARMS->mGeneral.mMoveSpeed.mValue;
+	mIkSystemParms->mMaxTurnAngle        = C_GENERALPARMS.mMaxTurnAngle.mValue;
+	mIkSystemParms->mMoveSpeed           = C_GENERALPARMS.mMoveSpeed.mValue;
 	mIkSystemParms->mBaseCoefficient     = C_PROPERPARMS.mBaseFactor.mValue;
 	mIkSystemParms->mRaiseSlowdownFactor = C_PROPERPARMS.mRaiseDecelFactor.mValue;
 	mIkSystemParms->mDownwardAccelFactor = C_PROPERPARMS.mDownwardAccelFactor.mValue;
@@ -524,7 +524,7 @@ void Obj::updateMaterialAnimation()
 		}
 	} else {
 		mMatLoopAnimator[0].animate(30.0f);
-		mMatLoopAnimator[1].setCurrentFrame((1.0f - mHealth / C_PARMS->mGeneral.mHealth.mValue) * 50.0f);
+		mMatLoopAnimator[1].setCurrentFrame((1.0f - mHealth / C_GENERALPARMS.mHealth.mValue) * 50.0f);
 		mMatLoopAnimator[1].animate(0.0f);
 	}
 }
@@ -716,7 +716,7 @@ void Obj::createOffGroundEffect(int footIdx, WaterBox* wbox)
 		mFootFX[footIdx]->create(nullptr);
 	}
 
-	f32 healthRatio = mHealth / C_PARMS->mGeneral.mHealth.mValue;
+	f32 healthRatio = mHealth / C_GENERALPARMS.mHealth.mValue;
 	if (healthRatio < 0.175f) {
 		getJAIObject()->startSound(PSSE_EN_DAMAGUMO_RAISE3, 0);
 	} else if (healthRatio < 0.35f) {
@@ -808,7 +808,7 @@ void Obj::updatePinchLife()
 		return;
 	}
 
-	f32 healthRatio = mHealth / C_PARMS->mGeneral.mHealth.mValue;
+	f32 healthRatio = mHealth / C_GENERALPARMS.mHealth.mValue;
 	if (mIsSmoking) {
 		if (healthRatio > 0.35f) {
 			mIsSmoking = false;

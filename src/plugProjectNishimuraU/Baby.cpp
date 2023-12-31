@@ -248,7 +248,7 @@ void Obj::moveNoTarget()
 			mTargetPos.y = mHomePosition.y;
 			mTargetPos.z = randomAngle * cosf(angleToHome) + mHomePosition.z;
 		}
-		Parms* parms = static_cast<Parms*>(mParms);
+		Parms* parms = C_PARMS;
 		EnemyFunc::walkToTarget(this, mTargetPos, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mTurnSpeed.mValue,
 		                        parms->mGeneral.mMaxTurnAngle.mValue);
 	} else {
@@ -262,7 +262,7 @@ void Obj::moveNoTarget()
  */
 void Obj::createHoney()
 {
-	Parms* parms = static_cast<Parms*>(mParms);
+	Parms* parms = C_PARMS;
 	if (randWeightFloat(1.0f) < parms->mProperParms.mNectarChance.mValue) {
 		ItemHoney::InitArg arg(false, false);
 

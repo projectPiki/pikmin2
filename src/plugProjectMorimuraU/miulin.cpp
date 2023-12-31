@@ -155,7 +155,7 @@ Game::WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr
  */
 bool Obj::isAttackStart()
 {
-	f32 atkRadius    = SQUARE(C_PARMS->mGeneral.mAttackRadius.mValue);
+	f32 atkRadius    = SQUARE(C_GENERALPARMS.mAttackRadius.mValue);
 	f32 minAtkRange  = SQUARE(C_PROPERPARMS.mMinAttackRange.mValue);
 	f32 contAtkAngle = PI * (DEG2RAD * (C_PROPERPARMS.mContinuousPressAngle.mValue));
 
@@ -561,7 +561,7 @@ lbl_80364E80:
  */
 bool Obj::isFindTarget()
 {
-	f32 searchAngle = PI * (DEG2RAD * C_PARMS->mGeneral.mSearchAngle.mValue);
+	f32 searchAngle = PI * (DEG2RAD * C_GENERALPARMS.mSearchAngle.mValue);
 	mTargetCreature = nullptr;
 
 	if (isNowCaution()) {
@@ -570,10 +570,10 @@ bool Obj::isFindTarget()
 		return false;
 	}
 
-	f32 searchDist = C_PARMS->mGeneral.mSearchDistance.mValue;
+	f32 searchDist = C_GENERALPARMS.mSearchDistance.mValue;
 	searchDist *= searchDist;
 
-	mTargetCreature = EnemyFunc::getNearestNavi(this, C_PARMS->mGeneral.mSearchAngle.mValue, C_PARMS->mGeneral.mSearchDistance.mValue,
+	mTargetCreature = EnemyFunc::getNearestNavi(this, C_GENERALPARMS.mSearchAngle.mValue, C_GENERALPARMS.mSearchDistance.mValue,
 	                                            &searchDist, nullptr);
 
 	Iterator<Piki> iter(pikiMgr);
@@ -944,7 +944,7 @@ lbl_8036532C:
  * @note Address: 0x80365370
  * @note Size: 0x3C
  */
-bool Obj::isOutOfTerritory() { return sqrDistanceXZ(mHomePosition, mPosition) > SQUARE(C_PARMS->mGeneral.mTerritoryRadius.mValue); }
+bool Obj::isOutOfTerritory() { return sqrDistanceXZ(mHomePosition, mPosition) > SQUARE(C_GENERALPARMS.mTerritoryRadius.mValue); }
 
 /**
  * @note Address: 0x803653AC
@@ -957,7 +957,7 @@ bool Obj::isProhibitedSearch()
 	}
 
 	if (mIsSearching) {
-		f32 radius = C_PARMS->mGeneral.mTerritoryRadius.mValue;
+		f32 radius = C_GENERALPARMS.mTerritoryRadius.mValue;
 		radius *= 0.7f;
 
 		if (mFlickTimer > 0.0f) {
@@ -979,14 +979,14 @@ bool Obj::isProhibitedSearch()
  */
 bool Obj::isStartWalk()
 {
-	f32 viewAngle = C_PARMS->mGeneral.mViewAngle.mValue;
+	f32 viewAngle = C_GENERALPARMS.mViewAngle.mValue;
 	if (mFlickTimer > 0.0f) {
 		viewAngle   = 180.0f;
 		mFlickTimer = 0.0f;
 	}
 
 	mTargetCreature
-	    = EnemyFunc::getNearestPikminOrNavi(this, viewAngle, C_PARMS->mGeneral.mSearchDistance.mValue, nullptr, nullptr, nullptr);
+	    = EnemyFunc::getNearestPikminOrNavi(this, viewAngle, C_GENERALPARMS.mSearchDistance.mValue, nullptr, nullptr, nullptr);
 
 	if (mTargetCreature) {
 		mGoalPosition = mTargetCreature->getPosition();
@@ -1222,7 +1222,7 @@ f32 Obj::turnFunc(f32 factor)
 		targetPos = mTargetCreature->getPosition();
 	}
 
-	f32 angleDist = turnToTarget2(targetPos, factor * C_PARMS->mGeneral.mTurnSpeed(), factor * C_PARMS->mGeneral.mMaxTurnAngle());
+	f32 angleDist = turnToTarget2(targetPos, factor * C_GENERALPARMS.mTurnSpeed(), factor * C_GENERALPARMS.mMaxTurnAngle());
 
 	return FABS(angleDist);
 }
@@ -1234,7 +1234,7 @@ f32 Obj::turnFunc(f32 factor)
 bool Obj::isReachToGoal(f32 distance)
 {
 	if (mIsSearching) {
-		distance = C_PARMS->mGeneral.mHomeRadius.mValue;
+		distance = C_GENERALPARMS.mHomeRadius.mValue;
 	}
 
 	if (sqrDistanceXZ(mPosition, mGoalPosition) < SQUARE(distance)) {
@@ -1263,7 +1263,7 @@ void Obj::setNextGoal()
 		return;
 	}
 
-	f32 radius    = C_PARMS->mGeneral.mTerritoryRadius.mValue;
+	f32 radius    = C_GENERALPARMS.mTerritoryRadius.mValue;
 	mGoalPosition = mHomePosition;
 
 	f32 angle = TAU * randFloat();
@@ -1502,7 +1502,7 @@ lbl_80365D4C:
 bool Obj::isNowCaution()
 {
 	bool doBecomeAlert;
-	f32 privateRad = C_PARMS->mGeneral.mPrivateRadius.mValue;
+	f32 privateRad = C_GENERALPARMS.mPrivateRadius.mValue;
 	if (EnemyFunc::isThereOlimar(this, privateRad, nullptr)) {
 		doBecomeAlert = true;
 	} else if (EnemyFunc::isTherePikmin(this, privateRad, nullptr)) {
@@ -1512,7 +1512,7 @@ bool Obj::isNowCaution()
 	}
 
 	if (!doBecomeAlert) {
-		doBecomeAlert = mHealth < C_PARMS->mGeneral.mLifeBeforeAlert.mValue;
+		doBecomeAlert = mHealth < C_GENERALPARMS.mLifeBeforeAlert.mValue;
 	}
 
 	if (doBecomeAlert) {
@@ -1520,7 +1520,7 @@ bool Obj::isNowCaution()
 		return true;
 	}
 
-	return mAlertTimer < C_PARMS->mGeneral.mAlertDuration.mValue;
+	return mAlertTimer < C_GENERALPARMS.mAlertDuration.mValue;
 }
 
 /**

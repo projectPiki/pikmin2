@@ -331,7 +331,7 @@ bool Obj::bombCallBack(Creature* creature, Vector3f& direction, f32 damage)
 		if (static_cast<EnemyBase*>(creature)->getEnemyTypeID() == EnemyTypeID::EnemyID_Bomb) {
 			if (getStateID() == BOMB_Wait && _2C0 == 0) {
 				Vector3f creaturePos = creature->getPosition();
-				f32 rad              = C_PARMS->mGeneral.mAttackRadius.mValue;
+				f32 rad              = C_GENERALPARMS.mAttackRadius.mValue;
 				rad *= rad;
 				f32 factor = (1.0f - (sqrDistanceXZ(creaturePos, mPosition) / rad)) * (f32)C_PROPERPARMS.mTriggerLimit();
 				_2C0       = (int)factor + 1;

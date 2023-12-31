@@ -134,7 +134,7 @@ bool BombSarai::Obj::bombCallBack(Creature* creature, Vector3f& vec, f32 damage)
 void BombSarai::Obj::doFinishStoneState()
 {
 	EnemyBase::doFinishStoneState();
-	if (mHealth > 0.5f * C_PARMS->mGeneral.mHealth.mValue) {
+	if (mHealth > 0.5f * C_GENERALPARMS.mHealth.mValue) {
 		mFsm->transit(this, BOMBSARAI_TakeOff1, nullptr);
 	} else {
 		mFsm->transit(this, BOMBSARAI_TakeOff2, nullptr);
@@ -217,8 +217,8 @@ void BombSarai::Obj::setRandTarget()
 	if (gameSystem && gameSystem->mIsInCave) {
 		randAmp = 50.0f + randWeightFloat(50.0f);
 	} else {
-		randAmp = C_PARMS->mGeneral.mHomeRadius.mValue
-		        + randWeightFloat(C_PARMS->mGeneral.mTerritoryRadius.mValue - C_PARMS->mGeneral.mHomeRadius.mValue);
+		randAmp = C_GENERALPARMS.mHomeRadius.mValue
+		        + randWeightFloat(C_GENERALPARMS.mTerritoryRadius.mValue - C_GENERALPARMS.mHomeRadius.mValue);
 	}
 
 	f32 angleToHome = JMAAtan2Radian(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
@@ -283,8 +283,8 @@ void BombSarai::Obj::throwBomb(Vector3f& velocity)
  */
 Creature* BombSarai::Obj::getAttackablePikmin()
 {
-	if (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(C_PARMS->mGeneral.mTerritoryRadius())) {
-		return EnemyFunc::getNearestPikminOrNavi(this, C_PARMS->mGeneral.mViewAngle.mValue, C_PARMS->mGeneral.mSightRadius.mValue, nullptr,
+	if (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(C_GENERALPARMS.mTerritoryRadius())) {
+		return EnemyFunc::getNearestPikminOrNavi(this, C_GENERALPARMS.mViewAngle.mValue, C_GENERALPARMS.mSightRadius.mValue, nullptr,
 		                                         nullptr, nullptr);
 	}
 

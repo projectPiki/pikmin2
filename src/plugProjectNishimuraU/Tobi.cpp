@@ -206,9 +206,9 @@ void Obj::initMouthSlots()
 void Obj::lifeRecover()
 {
 	if (isFlying()) {
-		mHealth += 0.001f * C_PARMS->mGeneral.mHealth();
-		if (mHealth > C_PARMS->mGeneral.mHealth()) {
-			mHealth = C_PARMS->mGeneral.mHealth();
+		mHealth += 0.001f * C_GENERALPARMS.mHealth();
+		if (mHealth > C_GENERALPARMS.mHealth()) {
+			mHealth = C_GENERALPARMS.mHealth();
 		}
 	} else {
 		EnemyBase::lifeRecover();
@@ -244,7 +244,7 @@ void Obj::randomFlyingTarget()
 
 	if (targetDist < speed) {
 		f32 randAngle = randWeightFloat(TAU);
-		f32 randDist  = randWeightFloat(C_PARMS->mGeneral.mTerritoryRadius.mValue);
+		f32 randDist  = randWeightFloat(C_GENERALPARMS.mTerritoryRadius.mValue);
 
 		targetPos = Vector3f(randDist * sinf(randAngle), 0.0f, randDist * cosf(randAngle));
 		targetPos += mHomePosition;
@@ -406,7 +406,7 @@ lbl_8026A1BC:
  * @note Address: 0x8026A224
  * @note Size: 0x24
  */
-bool Obj::isFlyingLife() { return ((mHealth / C_PARMS->mGeneral.mHealth.mValue) < C_PROPERPARMS.mTakeOffHealthRatio.mValue); }
+bool Obj::isFlyingLife() { return ((mHealth / C_GENERALPARMS.mHealth.mValue) < C_PROPERPARMS.mTakeOffHealthRatio.mValue); }
 
 /**
  * @note Address: 0x8026A248
@@ -488,7 +488,7 @@ void Obj::setNearestBridge()
 	_2E4    = 0.0f;
 
 	if (ItemBridge::mgr) {
-		f32 radius = C_PARMS->mGeneral.mTerritoryRadius.mValue;
+		f32 radius = C_GENERALPARMS.mTerritoryRadius.mValue;
 		radius     = SQUARE(radius);
 		Iterator<BaseItem> iter(ItemBridge::mgr);
 		CI_LOOP(iter)
@@ -587,7 +587,7 @@ bool Obj::moveBridgeSide()
 	startPos += zVec;
 
 	if (sqrDistanceXZ(mPosition, startPos) < 250.0f) {
-		f32 speed    = 0.75f * C_PARMS->mGeneral.mMoveSpeed.mValue;
+		f32 speed    = 0.75f * C_GENERALPARMS.mMoveSpeed.mValue;
 		f32 sinTheta = sin(getFaceDir());
 		f32 y        = getTargetVelocity().y;
 		f32 cosTheta = cos(getFaceDir());
@@ -601,7 +601,7 @@ bool Obj::moveBridgeSide()
 	} else {
 		changeFaceDir(startPos);
 
-		f32 speed    = C_PARMS->mGeneral.mMoveSpeed.mValue;
+		f32 speed    = C_GENERALPARMS.mMoveSpeed.mValue;
 		f32 sinTheta = sin(getFaceDir());
 		f32 y        = getTargetVelocity().y;
 		f32 cosTheta = cos(getFaceDir());
@@ -808,7 +808,7 @@ bool Obj::moveBridgeCentre()
 	startPos += xVec;
 
 	if (sqrDistanceXZ(mPosition, startPos) < 250.0f) {
-		f32 speed    = 0.75f * C_PARMS->mGeneral.mMoveSpeed.mValue;
+		f32 speed    = 0.75f * C_GENERALPARMS.mMoveSpeed.mValue;
 		f32 sinTheta = sin(getFaceDir());
 		f32 y        = getTargetVelocity().y;
 		f32 cosTheta = cos(getFaceDir());
@@ -822,7 +822,7 @@ bool Obj::moveBridgeCentre()
 	} else {
 		changeFaceDir(startPos);
 
-		f32 speed    = C_PARMS->mGeneral.mMoveSpeed.mValue;
+		f32 speed    = C_GENERALPARMS.mMoveSpeed.mValue;
 		f32 sinTheta = sin(getFaceDir());
 		f32 y        = getTargetVelocity().y;
 		f32 cosTheta = cos(getFaceDir());
@@ -864,7 +864,7 @@ bool Obj::moveBridgeTop()
 		return true;
 
 	} else if (dist < 250.0f) {
-		f32 speed    = C_PARMS->mGeneral.mMoveSpeed.mValue;
+		f32 speed    = C_GENERALPARMS.mMoveSpeed.mValue;
 		f32 sinTheta = sin(getFaceDir());
 		f32 y        = getTargetVelocity().y;
 		f32 cosTheta = cos(getFaceDir());
@@ -876,7 +876,7 @@ bool Obj::moveBridgeTop()
 		return true;
 
 	} else {
-		f32 speed    = C_PARMS->mGeneral.mMoveSpeed.mValue;
+		f32 speed    = C_GENERALPARMS.mMoveSpeed.mValue;
 		f32 sinTheta = sin(getFaceDir());
 		f32 y        = getTargetVelocity().y;
 		f32 cosTheta = cos(getFaceDir());

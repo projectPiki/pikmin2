@@ -178,8 +178,8 @@ KumaChappy::Obj* KumaKochappy::Obj::setNearestParent()
 	KumaChappy::Obj* parent = nullptr;
 	KumaChappy::Mgr* mgr    = static_cast<KumaChappy::Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_KumaChappy));
 	if (mgr) {
-		f32 searchRad   = C_PARMS->mGeneral.mSearchDistance.mValue;
-		f32 searchAngle = C_PARMS->mGeneral.mSearchAngle.mValue;
+		f32 searchRad   = C_GENERALPARMS.mSearchDistance.mValue;
+		f32 searchAngle = C_GENERALPARMS.mSearchAngle.mValue;
 		f32 dist        = SQUARE(searchRad);
 
 		EnemyIterator<KumaChappy::Obj> iter((Container<KumaChappy::Obj>*)(GenericContainer*)(mgr), nullptr, nullptr);
@@ -253,7 +253,7 @@ void KumaKochappy::Obj::updateHomePosition() { mHomePosition = mPosition; }
  */
 Creature* KumaKochappy::Obj::getSearchedTarget()
 {
-	return EnemyFunc::getNearestPikminOrNavi(this, C_PARMS->mGeneral.mViewAngle.mValue, C_PARMS->mGeneral.mSightRadius.mValue, nullptr,
+	return EnemyFunc::getNearestPikminOrNavi(this, C_GENERALPARMS.mViewAngle.mValue, C_GENERALPARMS.mSightRadius.mValue, nullptr,
 	                                         nullptr, nullptr);
 }
 

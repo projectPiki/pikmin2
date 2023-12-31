@@ -236,7 +236,7 @@ void Obj::doFinishStoneState()
 	mCollTree->getCollPart('tyr4')->mSpecialID = '____';
 	mCollTree->getCollPart('tyr5')->mSpecialID = '____';
 	mCollTree->getCollPart('tyr6')->mSpecialID = '____';
-	EnemyFunc::flickStickPikmin(this, 1.0f, C_PARMS->mGeneral.mShakeKnockback.mValue, 0.0f, FLICK_BACKWARD_ANGLE, nullptr);
+	EnemyFunc::flickStickPikmin(this, 1.0f, C_GENERALPARMS.mShakeKnockback.mValue, 0.0f, FLICK_BACKWARD_ANGLE, nullptr);
 	if (getStateID() == TYRE_Move) {
 		createSmokeEffect();
 	}
@@ -259,7 +259,7 @@ void Obj::collisionCallback(CollEvent& event)
 
 			// for pikmin and captains touching the tires, use InteractPress on them
 			if ((hitobj->isPiki() || hitobj->isNavi()) && (hitobj->mBounceTriangle || hitobj->isStickTo())) {
-				InteractPress act(this, C_PARMS->mGeneral.mAttackDamage, nullptr);
+				InteractPress act(this, C_GENERALPARMS.mAttackDamage, nullptr);
 				hitobj->stimulate(act);
 			} else {
 				// EnemyBase* hitenemy = static_cast<EnemyBase*>(hitobj);
@@ -288,7 +288,7 @@ void Obj::collisionCallback(CollEvent& event)
 						Vector2f sep;
 						obj->getDistanceTo(this, sep);
 						if (sep.x * sep.x + sep.y * sep.y < 900.0f) {
-							InteractPress act(this, C_PARMS->mGeneral.mAttackDamage, nullptr);
+							InteractPress act(this, C_GENERALPARMS.mAttackDamage, nullptr);
 							obj->stimulate(act);
 						}
 					}
@@ -580,7 +580,7 @@ void Obj::collisionStOff()
 	mCollTree->getCollPart('tyr4')->mSpecialID = '____';
 	mCollTree->getCollPart('tyr5')->mSpecialID = '____';
 	mCollTree->getCollPart('tyr6')->mSpecialID = '____';
-	EnemyFunc::flickStickPikmin(this, 1.0f, C_PARMS->mGeneral.mShakeKnockback.mValue, 0.0f, FLICK_BACKWARD_ANGLE, nullptr);
+	EnemyFunc::flickStickPikmin(this, 1.0f, C_GENERALPARMS.mShakeKnockback.mValue, 0.0f, FLICK_BACKWARD_ANGLE, nullptr);
 }
 
 /**
@@ -600,7 +600,7 @@ void Obj::flick()
 			Vector3f pos    = Vector3f(mPosition.x, mPosition.y, mPosition.z);
 			Vector3f objPos = Vector3f(obj->getPosition().x, 0.0f, obj->getPosition().z);
 			if (sqrDistanceXZ(objPos, pos) < 900.0f) {
-				InteractPress act(this, C_PARMS->mGeneral.mAttackDamage, nullptr);
+				InteractPress act(this, C_GENERALPARMS.mAttackDamage, nullptr);
 				obj->stimulate(act);
 			}
 		}
@@ -613,16 +613,16 @@ void Obj::flick()
 		Vector3f pos    = Vector3f(mPosition.x, 0.0f, mPosition.z);
 		Vector3f objPos = Vector3f(obj->getPosition().x, 0.0f, obj->getPosition().z);
 		if (sqrDistanceXZ(objPos, pos) < 900.0f) {
-			InteractPress act(this, C_PARMS->mGeneral.mAttackDamage, nullptr);
+			InteractPress act(this, C_GENERALPARMS.mAttackDamage, nullptr);
 			obj->stimulate(act);
 		}
 	}
 
-	f32 range     = C_PARMS->mGeneral.mShakeChance.mValue;
-	f32 knockback = C_PARMS->mGeneral.mShakeKnockback.mValue;
-	f32 damage    = C_PARMS->mGeneral.mShakeDamage.mValue;
+	f32 range     = C_GENERALPARMS.mShakeChance.mValue;
+	f32 knockback = C_GENERALPARMS.mShakeKnockback.mValue;
+	f32 damage    = C_GENERALPARMS.mShakeDamage.mValue;
 
-	EnemyFunc::flickNearbyPikmin(this, C_PARMS->mGeneral.mShakeRange.mValue, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
+	EnemyFunc::flickNearbyPikmin(this, C_GENERALPARMS.mShakeRange.mValue, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
 	EnemyFunc::flickStickPikmin(this, range, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
 	/*
 	stwu     r1, -0xc0(r1)

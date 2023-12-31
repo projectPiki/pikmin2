@@ -607,7 +607,7 @@ void Obj::doSimulation(f32 simspeed)
 			pos.y += 20.0f;
 			f32 minY           = mapMgr->getMinY(pos);
 			mCarryingYPosition = minY;
-			f32 realY          = slotPos.y - static_cast<Parms*>(mParms)->_99C;
+			f32 realY          = slotPos.y - C_PARMS->_99C;
 			if (minY < realY) {
 				minY = realY;
 			}
@@ -724,8 +724,8 @@ void Obj::doFinishStoneState()
 {
 	EnemyBase::doFinishStoneState();
 	mCollTree->getCollPart('body')->mSpecialID = '____';
-	EnemyFunc::flickStickPikmin(this, C_PARMS->mGeneral.mShakeChance.mValue, C_PARMS->mGeneral.mShakeKnockback.mValue,
-	                            C_PARMS->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
+	EnemyFunc::flickStickPikmin(this, C_GENERALPARMS.mShakeChance.mValue, C_GENERALPARMS.mShakeKnockback.mValue,
+	                            C_GENERALPARMS.mShakeDamage.mValue, -1000.0, nullptr);
 	mFlickTimer = 0.0f;
 	int stateID = getStateID();
 	if (stateID == PANMODOKI_Pulled || stateID == PANMODOKI_Back) {
@@ -842,7 +842,7 @@ bool Obj::isCarryToGoal()
 		return false;
 	}
 
-	f32 homeRadius = static_cast<Parms*>(mParms)->mGeneral.mHomeRadius.mValue;
+	f32 homeRadius = C_GENERALPARMS.mHomeRadius.mValue;
 	if (mMoveSpeedTimer > 100) {
 		homeRadius = 60.0f;
 	}
@@ -1100,9 +1100,9 @@ lbl_803513B4:
  */
 void Obj::walkFunc()
 {
-	f32 moveSpeed = static_cast<Parms*>(mParms)->mGeneral.mMoveSpeed.mValue;
-	f32 rotSpeed  = static_cast<Parms*>(mParms)->mGeneral.mMaxTurnAngle.mValue;
-	f32 rotAccel  = static_cast<Parms*>(mParms)->mGeneral.mTurnSpeed.mValue;
+	f32 moveSpeed = C_GENERALPARMS.mMoveSpeed.mValue;
+	f32 rotSpeed  = C_GENERALPARMS.mMaxTurnAngle.mValue;
+	f32 rotAccel  = C_GENERALPARMS.mTurnSpeed.mValue;
 	f32 something = 100.0f;
 	if (getEnemyTypeID() == EnemyTypeID::EnemyID_OoPanModoki) {
 		something = 150.0f;
@@ -1126,8 +1126,8 @@ void Obj::walkFunc()
 			mNextWayPointPosition = mTargetCreature->getPosition();
 		}
 	} else {
-		rotSpeed = static_cast<Parms*>(mParms)->mProperParms.mMaxFastTurnAngle.mValue;
-		rotAccel = static_cast<Parms*>(mParms)->mProperParms.mFastTurnSpeed.mValue;
+		rotSpeed = C_PROPERPARMS.mMaxFastTurnAngle.mValue;
+		rotAccel = C_PROPERPARMS.mFastTurnSpeed.mValue;
 	}
 	EnemyFunc::walkToTarget(this, mNextWayPointPosition, moveSpeed, rotAccel, rotSpeed);
 	if (mBounceTriangle) {
@@ -1340,8 +1340,8 @@ Pellet* Obj::findNearestPellet()
 {
 	Pellet* resPellet = nullptr;
 	f32 minDist;
-	f32 maxAngle   = TORADIANS(C_PARMS->mGeneral.mSearchAngle());
-	f32 searchDist = C_PARMS->mGeneral.mSearchDistance();
+	f32 maxAngle   = TORADIANS(C_GENERALPARMS.mSearchAngle());
+	f32 searchDist = C_GENERALPARMS.mSearchDistance();
 	if (searchDist < 0.0f) {
 		searchDist = FLT_MAX;
 	} else {

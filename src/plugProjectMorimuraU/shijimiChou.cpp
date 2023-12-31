@@ -234,8 +234,8 @@ void Obj::doAnimationCullingOn()
 	if (mGroupLeader && mGroupLeader != this) {
 		if (mGroupLeader->getStateID() == SHIJIMICHOU_Leave) {
 			kill(nullptr);
-		} else if (FABS(mPosition.x - mHomePosition.x) > 3.0f * C_PARMS->mGeneral.mTerritoryRadius()
-		           || FABS(mPosition.z - mHomePosition.z) > 3.0f * C_PARMS->mGeneral.mTerritoryRadius()) {
+		} else if (FABS(mPosition.x - mHomePosition.x) > 3.0f * C_GENERALPARMS.mTerritoryRadius()
+		           || FABS(mPosition.z - mHomePosition.z) > 3.0f * C_GENERALPARMS.mTerritoryRadius()) {
 			kill(nullptr);
 		}
 	}
@@ -557,12 +557,12 @@ void Obj::fly()
 		return;
 	}
 
-	f32 moveSpeed = C_PARMS->mGeneral.mMoveSpeed();
+	f32 moveSpeed = C_GENERALPARMS.mMoveSpeed();
 	if (!C_PARMS->mDoManualFlight) {
-		EnemyFunc::walkToTarget(this, mGoalPosition, moveSpeed, C_PARMS->mGeneral.mTurnSpeed(), C_PARMS->mGeneral.mMaxTurnAngle());
+		EnemyFunc::walkToTarget(this, mGoalPosition, moveSpeed, C_GENERALPARMS.mTurnSpeed(), C_GENERALPARMS.mMaxTurnAngle());
 	} else {
-		f32 rotAccel = C_PARMS->mGeneral.mTurnSpeed();
-		f32 rotSpeed = C_PARMS->mGeneral.mMaxTurnAngle();
+		f32 rotAccel = C_GENERALPARMS.mTurnSpeed();
+		f32 rotSpeed = C_GENERALPARMS.mMaxTurnAngle();
 
 		mYawRate += C_PARMS->mYawRate;
 		if (mYawRate > 360.0f) {
@@ -890,8 +890,8 @@ void Obj::restFly()
 	if (sqrDistanceXZ(mPosition, mGoalPosition) < 1000.0f) {
 		setNextGoal();
 	} else {
-		EnemyFunc::walkToTarget(this, mGoalPosition, C_PARMS->mGeneral.mMoveSpeed(), C_PARMS->mGeneral.mTurnSpeed(),
-		                        C_PARMS->mGeneral.mMaxTurnAngle());
+		EnemyFunc::walkToTarget(this, mGoalPosition, C_GENERALPARMS.mMoveSpeed(), C_GENERALPARMS.mTurnSpeed(),
+		                        C_GENERALPARMS.mMaxTurnAngle());
 	}
 
 	mPosition.y += 0.05f * (mGoalPosition.y - mPosition.y);
@@ -1451,8 +1451,8 @@ void Obj::leave()
 			setTraceGoal();
 		}
 
-		EnemyFunc::walkToTarget(this, mGoalPosition, C_PARMS->mGeneral.mMoveSpeed(), C_PARMS->mGeneral.mTurnSpeed(),
-		                        C_PARMS->mGeneral.mMaxTurnAngle());
+		EnemyFunc::walkToTarget(this, mGoalPosition, C_GENERALPARMS.mMoveSpeed(), C_GENERALPARMS.mTurnSpeed(),
+		                        C_GENERALPARMS.mMaxTurnAngle());
 		mPosition.y += 0.02f * (mGoalPosition.y - mPosition.y);
 		mPitchRate += C_PROPERPARMS.mPitchRate();
 
@@ -1594,7 +1594,7 @@ void Obj::leaveInit()
 			targetPos.x -= 500.0f * sinf(angle);
 			targetPos.z -= 500.0f * cosf(angle);
 
-			EnemyFunc::walkToTarget(this, targetPos, C_PARMS->mLeaveInitSpeedFactor * C_PARMS->mGeneral.mMoveSpeed(), 1.0f, 180.0f);
+			EnemyFunc::walkToTarget(this, targetPos, C_PARMS->mLeaveInitSpeedFactor * C_GENERALPARMS.mMoveSpeed(), 1.0f, 180.0f);
 			Vector3f targetVel = getTargetVelocity();
 			setVelocity(targetVel);
 		}
@@ -1616,7 +1616,7 @@ void Obj::setNextGoal()
 		return;
 	}
 
-	f32 radius = C_PARMS->mGeneral.mTerritoryRadius();
+	f32 radius = C_GENERALPARMS.mTerritoryRadius();
 	if (mSpawnSource == SHIJIMISOURCE_Plants || mSpawnSource == SHIJIMISOURCE_Enemy) {
 		radius = 100.0f;
 	}

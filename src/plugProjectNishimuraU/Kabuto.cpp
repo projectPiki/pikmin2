@@ -178,8 +178,8 @@ WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
  */
 void Obj::setRandTarget()
 {
-	f32 randRadius = C_PARMS->mGeneral.mHomeRadius.mValue
-	               + randWeightFloat(C_PARMS->mGeneral.mTerritoryRadius.mValue - C_PARMS->mGeneral.mHomeRadius.mValue);
+	f32 randRadius = C_GENERALPARMS.mHomeRadius.mValue
+	               + randWeightFloat(C_GENERALPARMS.mTerritoryRadius.mValue - C_GENERALPARMS.mHomeRadius.mValue);
 	f32 angledist = JMAAtan2Radian(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
 	f32 angle     = HALF_PI + (angledist + randWeightFloat(PI));
 
@@ -193,7 +193,7 @@ void Obj::setRandTarget()
 Creature* Obj::getSearchedTarget()
 {
 	Creature* target
-	    = EnemyFunc::getNearestPikminOrNavi(this, getViewAngle(), C_PARMS->mGeneral.mSightRadius.mValue, nullptr, nullptr, nullptr);
+	    = EnemyFunc::getNearestPikminOrNavi(this, getViewAngle(), C_GENERALPARMS.mSightRadius.mValue, nullptr, nullptr, nullptr);
 	if (target) {
 		mAlertTimer = 0.0f;
 	}
@@ -208,10 +208,10 @@ bool Obj::isAttackableTarget()
 {
 	f32 theta       = mFaceDir;
 	Vector3f angles = getRotation(theta);
-	f32 scale       = 0.5f * C_PARMS->mGeneral.mSightRadius.mValue;
+	f32 scale       = 0.5f * C_GENERALPARMS.mSightRadius.mValue;
 	Vector3f pos    = Vector3f(scale * angles.x + mPosition.x, scale * angles.y + mPosition.y, scale * angles.z + mPosition.z);
 	Sys::Sphere sphere;
-	sphere.mRadius   = 0.75f * C_PARMS->mGeneral.mSightRadius.mValue;
+	sphere.mRadius   = 0.75f * C_GENERALPARMS.mSightRadius.mValue;
 	sphere.mPosition = pos;
 
 	CellIteratorArg iterArg(sphere);
@@ -228,11 +228,11 @@ bool Obj::isAttackableTarget()
 			if (check) {
 				Vector3f creaturePos = creature->getPosition();
 				Vector3f diff        = creaturePos - mPosition;
-				if (absVal(diff.x) < C_PARMS->mGeneral.mFov()) {
+				if (absVal(diff.x) < C_GENERALPARMS.mFov()) {
 					f32 dotProd = absVal(dot(diff, angles));
 					if (dotProd < 15.0f) {
 						f32 secondDotProd = dot(diff, angles);
-						if (secondDotProd > 15.0f && secondDotProd < C_PARMS->mGeneral.mSightRadius.mValue) {
+						if (secondDotProd > 15.0f && secondDotProd < C_GENERALPARMS.mSightRadius.mValue) {
 							return true;
 						}
 					}
@@ -484,7 +484,7 @@ void Obj::updateCaution()
 		mAlertTimer = 0.0f;
 	}
 
-	if (mAlertTimer < C_PARMS->mGeneral.mAlertDuration.mValue) {
+	if (mAlertTimer < C_GENERALPARMS.mAlertDuration.mValue) {
 		mAlertTimer += sys->mDeltaTime;
 	}
 }
@@ -495,11 +495,11 @@ void Obj::updateCaution()
  */
 f32 Obj::getViewAngle()
 {
-	if (mAlertTimer < C_PARMS->mGeneral.mAlertDuration.mValue) {
+	if (mAlertTimer < C_GENERALPARMS.mAlertDuration.mValue) {
 		return 180.0f;
 	}
 
-	return C_PARMS->mGeneral.mViewAngle.mValue;
+	return C_GENERALPARMS.mViewAngle.mValue;
 }
 
 /**
@@ -511,8 +511,8 @@ void Obj::lifeIncrement()
 	mInstantDamage = 0.0f;
 	disableEvent(0, EB_TakingDamage);
 	mHealth += 1.0f;
-	if (mHealth > C_PARMS->mGeneral.mHealth()) {
-		mHealth = C_PARMS->mGeneral.mHealth();
+	if (mHealth > C_GENERALPARMS.mHealth()) {
+		mHealth = C_GENERALPARMS.mHealth();
 	}
 }
 

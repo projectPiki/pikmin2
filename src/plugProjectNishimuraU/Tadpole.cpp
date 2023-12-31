@@ -110,10 +110,10 @@ void Obj::setRandTarget(bool check)
 {
 	f32 p1 = 0.0f;
 	if (!check) {
-		p1 = C_PARMS->mGeneral.mTerritoryRadius.mValue - C_PARMS->mGeneral.mHomeRadius.mValue;
+		p1 = C_GENERALPARMS.mTerritoryRadius.mValue - C_GENERALPARMS.mHomeRadius.mValue;
 	}
 
-	f32 radius          = randWeightFloat(p1) + C_PARMS->mGeneral.mHomeRadius.mValue;
+	f32 radius          = randWeightFloat(p1) + C_GENERALPARMS.mHomeRadius.mValue;
 	Vector3f tadpolePos = getPosition();
 	Vector3f homePos    = mHomePosition;
 	f32 angle           = JMath::atanTable_.atan2_(tadpolePos.x - homePos.x, tadpolePos.z - homePos.z);
@@ -136,10 +136,10 @@ Vector3f Obj::getTargetPosition(Creature* target)
 	sep.y        = 0.0f;
 	sep.normalise();
 
-	sep *= C_PARMS->mGeneral.mMoveSpeed.mValue;
+	sep *= C_GENERALPARMS.mMoveSpeed.mValue;
 	sep += tadpolePos;
 
-	f32 territory = C_PARMS->mGeneral.mTerritoryRadius.mValue;
+	f32 territory = C_GENERALPARMS.mTerritoryRadius.mValue;
 	if (sqrDistanceXZ(sep, homePos) > SQUARE(territory)) {
 		Vector3f::getFlatDirectionFromTo(homePos, sep);
 		sep *= territory;

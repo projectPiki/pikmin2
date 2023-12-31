@@ -232,7 +232,7 @@ void Obj::collisionCallback(CollEvent& evt)
 
 		// if rolling and we hit a piki, crush it.
 		if (mIsRolling && evt.mCollidingCreature->mBounceTriangle) {
-			InteractPress press(this, C_PARMS->mGeneral.mAttackDamage(), nullptr);
+			InteractPress press(this, C_GENERALPARMS.mAttackDamage(), nullptr);
 			evt.mCollidingCreature->stimulate(press);
 
 			// if we're swinging our arm and our arm hits something, do our arm effect (flick or wither)
@@ -360,7 +360,7 @@ bool Obj::addShadowScale()
 void Obj::setRandTarget()
 {
 	f32 randDist
-	    = C_PARMS->mGeneral.mHomeRadius() + randWeightFloat(C_PARMS->mGeneral.mTerritoryRadius() - C_PARMS->mGeneral.mHomeRadius());
+	    = C_GENERALPARMS.mHomeRadius() + randWeightFloat(C_GENERALPARMS.mTerritoryRadius() - C_GENERALPARMS.mHomeRadius());
 
 	f32 angDiff = JMAAtan2Radian(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
 	f32 ang1    = angDiff + randWeightFloat(PI);
@@ -381,7 +381,7 @@ bool Obj::isReachedTarget() { return sqrDistanceXZ(mPosition, mTargetPosition) <
  */
 Creature* Obj::getSearchedTarget()
 {
-	return EnemyFunc::getNearestPikminOrNavi(this, C_PARMS->mGeneral.mViewAngle(), C_PARMS->mGeneral.mSightRadius(), nullptr, nullptr,
+	return EnemyFunc::getNearestPikminOrNavi(this, C_GENERALPARMS.mViewAngle(), C_GENERALPARMS.mSightRadius(), nullptr, nullptr,
 	                                         nullptr);
 }
 
@@ -395,7 +395,7 @@ void Obj::rollingMove()
 	Navi* navi = naviMgr->getActiveNavi();
 	if (!navi) {
 		navi = static_cast<Navi*>(
-		    EnemyFunc::getNearestPikminOrNavi(this, 180.0f, C_PARMS->mGeneral.mSightRadius(), nullptr, nullptr, nullptr));
+		    EnemyFunc::getNearestPikminOrNavi(this, 180.0f, C_GENERALPARMS.mSightRadius(), nullptr, nullptr, nullptr));
 	}
 	if (navi) {
 		targetPos = navi->getPosition();
@@ -802,10 +802,10 @@ void Obj::setBodyCollision(bool check)
 			Creature* stuck = *iter;
 			if (stuck->isPiki()) {
 				if (static_cast<Piki*>(stuck)->getKind() == Purple) {
-					InteractFlick flick(this, C_PARMS->mGeneral.mShakeKnockback(), C_PARMS->mGeneral.mShakeDamage(), angle);
+					InteractFlick flick(this, C_GENERALPARMS.mShakeKnockback(), C_GENERALPARMS.mShakeDamage(), angle);
 					stuck->stimulate(flick);
 				} else {
-					InteractHanaChirashi wilt(this, C_PARMS->mGeneral.mAttackDamage(), &effectPos);
+					InteractHanaChirashi wilt(this, C_GENERALPARMS.mAttackDamage(), &effectPos);
 					stuck->stimulate(wilt);
 				}
 			}
@@ -826,7 +826,7 @@ void Obj::flickHandCollision(Creature* target)
 		targetPos.y = 1.0f;
 		targetPos *= 300.0f;
 
-		InteractHanaChirashi wither(this, C_PARMS->mGeneral.mAttackDamage(), &targetPos);
+		InteractHanaChirashi wither(this, C_GENERALPARMS.mAttackDamage(), &targetPos);
 		target->stimulate(wither);
 		return;
 	}
@@ -834,7 +834,7 @@ void Obj::flickHandCollision(Creature* target)
 	if (target->isPiki()) {
 		if (static_cast<Piki*>(target)->getKind() == Purple) {
 			f32 angle = JMAAtan2Radian(mPosition.x - targetPos.x, mPosition.z - targetPos.z);
-			InteractFlick flick(this, C_PARMS->mGeneral.mShakeKnockback(), C_PARMS->mGeneral.mShakeDamage(), angle);
+			InteractFlick flick(this, C_GENERALPARMS.mShakeKnockback(), C_GENERALPARMS.mShakeDamage(), angle);
 			target->stimulate(flick);
 			return;
 		}
@@ -843,7 +843,7 @@ void Obj::flickHandCollision(Creature* target)
 		targetPos.y = 1.0f;
 		targetPos *= 300.0f;
 
-		InteractHanaChirashi wither(this, C_PARMS->mGeneral.mAttackDamage(), &targetPos);
+		InteractHanaChirashi wither(this, C_GENERALPARMS.mAttackDamage(), &targetPos);
 		target->stimulate(wither);
 	}
 }
@@ -869,9 +869,9 @@ void Obj::resetMapCollisionSize(bool isBall)
 {
 	mIsBall = isBall;
 	if (isBall) {
-		C_PARMS->mGeneral.mHeightOffsetFromFloor() = 60.0f;
+		C_GENERALPARMS.mHeightOffsetFromFloor() = 60.0f;
 	} else {
-		C_PARMS->mGeneral.mHeightOffsetFromFloor() = 120.0f;
+		C_GENERALPARMS.mHeightOffsetFromFloor() = 120.0f;
 	}
 }
 
@@ -882,21 +882,21 @@ void Obj::resetMapCollisionSize(bool isBall)
 void Obj::updateMapCollisionSize()
 {
 	if (mIsBall) {
-		f32 heightOff = C_PARMS->mGeneral.mHeightOffsetFromFloor();
+		f32 heightOff = C_GENERALPARMS.mHeightOffsetFromFloor();
 		if (heightOff > 60.0f) {
-			C_PARMS->mGeneral.mHeightOffsetFromFloor() = -((250.0f * sys->mDeltaTime) - heightOff);
-			heightOff                                  = C_PARMS->mGeneral.mHeightOffsetFromFloor();
+			C_GENERALPARMS.mHeightOffsetFromFloor() = -((250.0f * sys->mDeltaTime) - heightOff);
+			heightOff                                  = C_GENERALPARMS.mHeightOffsetFromFloor();
 			if (heightOff < 60.0f) {
-				C_PARMS->mGeneral.mHeightOffsetFromFloor() = 60.0f;
+				C_GENERALPARMS.mHeightOffsetFromFloor() = 60.0f;
 			}
 		}
 	} else {
-		f32 heightOff = C_PARMS->mGeneral.mHeightOffsetFromFloor();
+		f32 heightOff = C_GENERALPARMS.mHeightOffsetFromFloor();
 		if (heightOff < 120.0f) {
-			C_PARMS->mGeneral.mHeightOffsetFromFloor() = ((250.0f * sys->mDeltaTime) + heightOff);
-			heightOff                                  = C_PARMS->mGeneral.mHeightOffsetFromFloor();
+			C_GENERALPARMS.mHeightOffsetFromFloor() = ((250.0f * sys->mDeltaTime) + heightOff);
+			heightOff                                  = C_GENERALPARMS.mHeightOffsetFromFloor();
 			if (heightOff > 120.0f) {
-				C_PARMS->mGeneral.mHeightOffsetFromFloor() = 120.0f;
+				C_GENERALPARMS.mHeightOffsetFromFloor() = 120.0f;
 			}
 		}
 	}

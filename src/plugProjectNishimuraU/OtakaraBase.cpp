@@ -194,7 +194,7 @@ bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
 	if (collpart) {
 		if (mTreasure) {
-			damageTreasure(C_PARMS->mProperParms.mOtakaraLife.mValue);
+			damageTreasure(C_PROPERPARMS.mOtakaraLife.mValue);
 		} else {
 			damageTreasure(damage);
 		}
@@ -210,7 +210,7 @@ bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 bool Obj::earthquakeCallBack(Creature* creature, f32 damage)
 {
 	if (mTreasure) {
-		damageTreasure(C_PARMS->mProperParms.mOtakaraLife.mValue);
+		damageTreasure(C_PROPERPARMS.mOtakaraLife.mValue);
 	}
 	return EnemyBase::earthquakeCallBack(creature, damage);
 }
@@ -342,7 +342,7 @@ void Obj::doEndMovie() { effectDrawOn(); }
 bool OtakaraBase::Obj::isMovePositionSet(bool ignoringTreasures)
 {
 	Creature* target = nullptr;
-	if (!ignoringTreasures && (_2E8 > C_PARMS->mProperParms.mTreasureCatch.mValue)) {
+	if (!ignoringTreasures && (_2E8 > C_PROPERPARMS.mTreasureCatch.mValue)) {
 		target = getNearestTreasure();
 	} else {
 		_2E8 += sys->mDeltaTime;
@@ -376,7 +376,7 @@ bool OtakaraBase::Obj::isMovePositionSet(bool ignoringTreasures)
 Pellet* OtakaraBase::Obj::getNearestTreasure()
 {
 	Pellet* treasure = nullptr;
-	f32 sightRadius  = C_PARMS->mGeneral.mSightRadius.mValue;
+	f32 sightRadius  = C_GENERALPARMS.mSightRadius.mValue;
 	f32 minDist      = sightRadius * sightRadius;
 	PelletIterator iterator;
 	CI_LOOP(iterator)
@@ -384,7 +384,7 @@ Pellet* OtakaraBase::Obj::getNearestTreasure()
 		Pellet* pellet = (Pellet*)(*iterator);
 		if (pellet->isAlive() && (pellet->mCaptureMatrix == nullptr && pellet->isPickable())) {
 			Vector3f position = pellet->getPosition();
-			if (sqrDistanceXZ(position, mHomePosition) < SQUARE(C_PARMS->mGeneral.mTerritoryRadius())) {
+			if (sqrDistanceXZ(position, mHomePosition) < SQUARE(C_GENERALPARMS.mTerritoryRadius())) {
 				Vector3f sep2 = mPosition;
 				sep2 -= position;
 				f32 dist2D = SQUARE(sep2.x) + SQUARE(sep2.z);
@@ -412,10 +412,10 @@ Vector3f Obj::getTargetPosition(Creature* target)
 	sep.y        = 0.0f;
 	sep.normalise();
 
-	sep *= C_PARMS->mGeneral.mMoveSpeed.mValue;
+	sep *= C_GENERALPARMS.mMoveSpeed.mValue;
 	sep += otakaraPosition;
 
-	f32 territory = C_PARMS->mGeneral.mTerritoryRadius.mValue;
+	f32 territory = C_GENERALPARMS.mTerritoryRadius.mValue;
 	if (sqrDistanceXZ(sep, homePos) > SQUARE(territory)) {
 		Vector3f::getFlatDirectionFromTo(homePos, sep);
 		sep *= territory;
@@ -433,7 +433,7 @@ void Obj::resetTreasure()
 	mTreasure         = nullptr;
 	mTreasureHealth   = 0.0f;
 	mBodyHeightOffset = 0.0f;
-	mCellRadius       = C_PARMS->mGeneral.mCellRadius.mValue;
+	mCellRadius       = C_GENERALPARMS.mCellRadius.mValue;
 
 	CollPart* collpart  = mCollTree->getCollPart('body');
 	collpart->mRadius   = 10.0f;
@@ -562,7 +562,7 @@ void Obj::attackTarget()
 {
 	f32 maxRange = getMaxAttackHeight();
 	f32 minRange = getMinAttackHeight();
-	f32 radius   = C_PARMS->mGeneral.mAttackRadius.mValue;
+	f32 radius   = C_GENERALPARMS.mAttackRadius.mValue;
 
 	f32 dist = SQUARE(radius);
 
@@ -694,7 +694,7 @@ bool Obj::stimulateBomb()
  */
 Creature* Obj::getChaseTargetCreature()
 {
-	return EnemyFunc::getNearestPikminOrNavi(this, C_PARMS->mGeneral.mViewAngle.mValue, C_PARMS->mGeneral.mSightRadius.mValue, nullptr,
+	return EnemyFunc::getNearestPikminOrNavi(this, C_GENERALPARMS.mViewAngle.mValue, C_GENERALPARMS.mSightRadius.mValue, nullptr,
 	                                         nullptr, nullptr);
 }
 } // namespace OtakaraBase

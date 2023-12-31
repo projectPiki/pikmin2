@@ -187,11 +187,11 @@ Vector3f Obj::getOffsetForMapCollision()
 Creature* Obj::getSearchedTarget()
 {
 	if (gameSystem && gameSystem->isZukanMode()) {
-		return EnemyFunc::getNearestPikmin(this, C_PARMS->mGeneral.mViewAngle.mValue, C_PARMS->mGeneral.mSightRadius.mValue, nullptr,
+		return EnemyFunc::getNearestPikmin(this, C_GENERALPARMS.mViewAngle.mValue, C_GENERALPARMS.mSightRadius.mValue, nullptr,
 		                                   nullptr);
 	}
 
-	return EnemyFunc::getNearestNavi(this, C_PARMS->mGeneral.mViewAngle.mValue, C_PARMS->mGeneral.mSightRadius.mValue, nullptr, nullptr);
+	return EnemyFunc::getNearestNavi(this, C_GENERALPARMS.mViewAngle.mValue, C_GENERALPARMS.mSightRadius.mValue, nullptr, nullptr);
 }
 
 /**
@@ -213,7 +213,7 @@ bool Obj::isAppear()
  */
 bool Obj::isDisappear()
 {
-	if (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(C_PARMS->mGeneral.mHomeRadius())) {
+	if (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(C_GENERALPARMS.mHomeRadius())) {
 		if (!getSearchedTarget()) {
 			return true;
 		}
@@ -253,7 +253,7 @@ void Obj::setNextMoveInfo()
  */
 void Obj::updateMoveState()
 {
-	if (sqrDistanceXZ(mPosition, mHomePosition) > SQUARE(C_PARMS->mGeneral.mTerritoryRadius())) {
+	if (sqrDistanceXZ(mPosition, mHomePosition) > SQUARE(C_GENERALPARMS.mTerritoryRadius())) {
 		mTargetPosition = mHomePosition;
 	}
 
@@ -266,7 +266,7 @@ void Obj::updateMoveState()
 		mMoveVelocity = adjustVal(mMoveVelocity, C_PROPERPARMS.mUnderwaterMoveSpeed.mValue, 10.0f);
 
 	} else {
-		mMoveVelocity = adjustVal(mMoveVelocity, C_PARMS->mGeneral.mMoveSpeed.mValue, 25.0f);
+		mMoveVelocity = adjustVal(mMoveVelocity, C_GENERALPARMS.mMoveSpeed.mValue, 25.0f);
 	}
 }
 
@@ -281,7 +281,7 @@ void Obj::resetMoveVelocity()
 		return;
 	}
 
-	mMoveVelocity = C_PARMS->mGeneral.mMoveSpeed.mValue;
+	mMoveVelocity = C_GENERALPARMS.mMoveSpeed.mValue;
 }
 
 /**

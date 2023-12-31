@@ -89,13 +89,13 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 
 		if (stateId == SARAI_Fall || stateId == SARAI_Damage || stateId == SARAI_TakeOff) {
 			shadowParam.mPosition.y -= 5.0f;
-			shadowParam.mBoundingSphere.mRadius = 100.0f + static_cast<Parms*>(mParms)->mProperParms.mNormalFlightHeight.mValue;
+			shadowParam.mBoundingSphere.mRadius = 100.0f + C_PROPERPARMS.mNormalFlightHeight.mValue;
 		} else if (mBounceTriangle) {
 			shadowParam.mPosition.y -= 5.0f;
 			shadowParam.mBoundingSphere.mRadius = 50.0f;
 		} else {
 			shadowParam.mPosition.y -= 20.0f;
-			shadowParam.mBoundingSphere.mRadius = 100.0f + static_cast<Parms*>(mParms)->mProperParms.mNormalFlightHeight.mValue;
+			shadowParam.mBoundingSphere.mRadius = 100.0f + C_PROPERPARMS.mNormalFlightHeight.mValue;
 		}
 	} else {
 		shadowParam.mPosition.y             = 2.5f + mPosition.y;
@@ -164,8 +164,8 @@ f32 Obj::setHeightVelocity()
 	int pikminWeightFactor
 	    = (mStuckPikminCount < 0) ? (0) : (mStuckPikminCount <= MAX_PIKMIN_STUCK_FACTOR ? (mStuckPikminCount) : (MAX_PIKMIN_STUCK_FACTOR));
 
-	f32 riseFactor     = static_cast<Parms*>(mParms)->mProperParms.mClimbingFactor0.mValue;
-	f32 climbingFactor = static_cast<Parms*>(mParms)->mProperParms.mClimbingFactor5.mValue;
+	f32 riseFactor     = C_PROPERPARMS.mClimbingFactor0.mValue;
+	f32 climbingFactor = C_PROPERPARMS.mClimbingFactor5.mValue;
 	f32 weight         = pikminWeightFactor;
 
 	// Custom linear interpolation (https://en.wikipedia.org/wiki/Linear_interpolation)
@@ -177,8 +177,8 @@ f32 Obj::setHeightVelocity()
 	f32 mapPosY = mapMgr->getMinY(mPosition);
 
 	// Get intended flight height
-	f32 flightHeight = getCatchTargetNum() ? static_cast<Parms*>(mParms)->mProperParms.mGrabFlightHeight.mValue    // Grab flight height
-	                                       : static_cast<Parms*>(mParms)->mProperParms.mNormalFlightHeight.mValue; // Normal flight height
+	f32 flightHeight = getCatchTargetNum() ? C_PROPERPARMS.mGrabFlightHeight.mValue    // Grab flight height
+	                                       : C_PROPERPARMS.mNormalFlightHeight.mValue; // Normal flight height
 
 	// Upward velocity is offset by map height
 	mCurrentVelocity.y = velFactor * ((mapPosY + flightHeight) - mPosition.y);
@@ -195,13 +195,13 @@ void Obj::setRandTarget()
 	// Set's a random target near the home radius, if in a cave then completely random
 	f32 radius;
 	if (getCatchTargetNum()) {
-		radius = randWeightFloat(static_cast<Parms*>(mParms)->mGeneral.mHomeRadius.mValue);
+		radius = randWeightFloat(C_GENERALPARMS.mHomeRadius.mValue);
 	} else if (gameSystem && gameSystem->mIsInCave) {
 		radius = 50.0f + randWeightFloat(50.0f);
 	} else {
-		radius = static_cast<Parms*>(mParms)->mGeneral.mHomeRadius.mValue
-		       + randWeightFloat(static_cast<Parms*>(mParms)->mGeneral.mTerritoryRadius.mValue
-		                         - static_cast<Parms*>(mParms)->mGeneral.mHomeRadius.mValue);
+		radius = C_GENERALPARMS.mHomeRadius.mValue
+		       + randWeightFloat(C_GENERALPARMS.mTerritoryRadius.mValue
+		                         - C_GENERALPARMS.mHomeRadius.mValue);
 	}
 
 	// Get the direction from the home position towards our position
@@ -229,14 +229,14 @@ void Obj::fallMeckGround()
 			continue;
 		}
 
-		InteractFallMeck fallMeck(this, static_cast<Parms*>(mParms)->mGeneral.mAttackDamage.mValue);
+		InteractFallMeck fallMeck(this, C_GENERALPARMS.mAttackDamage.mValue);
 		if (!c->stimulate(fallMeck)) {
 			continue;
 		}
 
 		Vector3f fallVelocity = Vector3f(0.0f);
 
-		const f32 fallMeckSpeed = static_cast<Parms*>(mParms)->mProperParms.mFallMeckSpeed.mValue;
+		const f32 fallMeckSpeed = C_PROPERPARMS.mFallMeckSpeed.mValue;
 		fallVelocity.y -= fallMeckSpeed;
 		c->setVelocity(fallVelocity);
 	}
@@ -286,8 +286,8 @@ int Obj::getNextStateOnHeight()
 			}
 		}
 
-		f32 va1 = static_cast<Parms*>(mParms)->mProperParms.mPayoffProbability1.mValue;
-		f32 va2 = static_cast<Parms*>(mParms)->mProperParms.mPayoffProbability5.mValue;
+		f32 va1 = C_PROPERPARMS.mPayoffProbability1.mValue;
+		f32 va2 = C_PROPERPARMS.mPayoffProbability5.mValue;
 
 		f32 fv1 = v1;
 		f32 f4  = (4.0f - fv1) / 4;
@@ -335,9 +335,9 @@ int Obj::getStickPikminNum() { return mStuckPikminCount - getCatchTargetNum(); }
 FakePiki* Obj::getAttackableTarget()
 {
 
-	if (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(C_PARMS->mGeneral.mTerritoryRadius())) {
-		f32 maxAngle = PI * (DEG2RAD * C_PARMS->mGeneral.mViewAngle());
-		f32 maxDist  = SQUARE(C_PARMS->mGeneral.mSightRadius());
+	if (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(C_GENERALPARMS.mTerritoryRadius())) {
+		f32 maxAngle = PI * (DEG2RAD * C_GENERALPARMS.mViewAngle());
+		f32 maxDist  = SQUARE(C_GENERALPARMS.mSightRadius());
 
 		Iterator<Piki> iterator(pikiMgr);
 		iterator.first();

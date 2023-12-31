@@ -193,14 +193,14 @@ bool Obj::doBecomeCarcass()
 void Obj::doUpdateCarcass()
 {
 	if (mPellet->isAlive()) {
-		if (mReviveTimer < C_PARMS->mProperParms.mHealthGaugeTimer()) {
+		if (mReviveTimer < C_PROPERPARMS.mHealthGaugeTimer()) {
 			mReviveTimer += sys->mDeltaTime;
-			if (lifeGaugeMgr && mReviveTimer >= C_PARMS->mProperParms.mHealthGaugeTimer()) {
+			if (lifeGaugeMgr && mReviveTimer >= C_PROPERPARMS.mHealthGaugeTimer()) {
 				lifeGaugeMgr->activeLifeGauge(this, 0.0f);
 			}
 
 		} else if (mHealth < mMaxHealth) {
-			mHealth += (mMaxHealth / C_PARMS->mProperParms.mRespawnRate()) * sys->getFrameLength();
+			mHealth += (mMaxHealth / C_PROPERPARMS.mRespawnRate()) * sys->getFrameLength();
 			if (mHealth >= mMaxHealth) {
 				mPellet->kill(nullptr);
 				f32 x = mBaseTrMatrix.mMatrix.structView.zx;
@@ -217,7 +217,7 @@ void Obj::doUpdateCarcass()
 				}
 			}
 		}
-	} else if (lifeGaugeMgr && mReviveTimer >= C_PARMS->mProperParms.mHealthGaugeTimer()) {
+	} else if (lifeGaugeMgr && mReviveTimer >= C_PROPERPARMS.mHealthGaugeTimer()) {
 		mReviveTimer = 0.0f;
 		mHealth      = 0.0f;
 		lifeGaugeMgr->inactiveLifeGauge(this);
@@ -234,7 +234,7 @@ void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
 	if (mPellet) {
 		param.mPosition.y = mPosition.y + 50.0f;
 	} else {
-		param.mPosition.y = mPosition.y + C_PARMS->mGeneral.mLifeMeterHeight.mValue;
+		param.mPosition.y = mPosition.y + C_GENERALPARMS.mLifeMeterHeight.mValue;
 	}
 	param.mPosition.z          = mPosition.z;
 	param.mCurHealthPercentage = mHealth / mMaxHealth;
@@ -342,7 +342,7 @@ Creature* Obj::getSearchedTarget()
 {
 	f32 angle = getViewAngle();
 
-	Creature* target = EnemyFunc::getNearestPikminOrNavi(this, angle, C_PARMS->mGeneral.mSightRadius, nullptr, nullptr, nullptr);
+	Creature* target = EnemyFunc::getNearestPikminOrNavi(this, angle, C_GENERALPARMS.mSightRadius, nullptr, nullptr, nullptr);
 	if (target) {
 		mReviveTimer = 0.0f;
 	}
@@ -360,7 +360,7 @@ void Obj::updateTargetDistance()
 	if (mCurrWP) {
 		radius = mCurrWP->mRadius;
 	} else {
-		radius = C_PARMS->mGeneral.mHomeRadius;
+		radius = C_GENERALPARMS.mHomeRadius;
 	}
 
 	if (sqrDistanceXZ(mPosition, mTargetPos) < radius * radius) {
@@ -382,8 +382,8 @@ void Obj::updateTargetDistance()
 void Obj::updateHomePosition()
 {
 
-	mHomePosition = Vector3f(C_PARMS->mGeneral.mHomeRadius.mValue * sinf(mFaceDir) + mPosition.x, mPosition.y,
-	                         C_PARMS->mGeneral.mHomeRadius.mValue * cosf(mFaceDir) + mPosition.z);
+	mHomePosition = Vector3f(C_GENERALPARMS.mHomeRadius.mValue * sinf(mFaceDir) + mPosition.x, mPosition.y,
+	                         C_GENERALPARMS.mHomeRadius.mValue * cosf(mFaceDir) + mPosition.z);
 	/*
 	stwu     r1, -0x20(r1)
 	lfs      f0, lbl_8051BB68@sda21(r2)

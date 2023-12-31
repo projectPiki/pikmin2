@@ -95,7 +95,7 @@ void Obj::setParameters()
 	if (gameSystem && gameSystem->mIsInCave && gameSystem->isStoryMode()) {
 		SingleGameSection* section = static_cast<SingleGameSection*>(gameSystem->mSection);
 		if (section && section->getCaveID() == 'f_02') { // White Flower Garden snagret has its own health value
-			C_PARMS->mGeneral.mHealth.mValue = C_PROPERPARMS.mWFGHealth.mValue;
+			C_GENERALPARMS.mHealth.mValue = C_PROPERPARMS.mWFGHealth.mValue;
 		}
 	}
 
@@ -281,7 +281,7 @@ void Obj::appearNearByTarget(Creature* target)
 	newPos *= 120.0f;
 	newPos += targetPos;
 
-	if (sqrDistanceXZ(mHomePosition, newPos) > SQUARE(C_PARMS->mGeneral.mTerritoryRadius())) {
+	if (sqrDistanceXZ(mHomePosition, newPos) > SQUARE(C_GENERALPARMS.mTerritoryRadius())) {
 		f32 angleDist = JMAAtan2Radian(targetPos.x - mHomePosition.x, targetPos.z - mHomePosition.z);
 
 		faceDir = angleDist + (randWeightFloat(PI) - HALF_PI);
@@ -1509,8 +1509,8 @@ void Obj::lifeIncrement()
 	disableEvent(0, EB_TakingDamage);
 	mHealth += 10.0f;
 
-	if (mHealth > C_PARMS->mGeneral.mHealth()) {
-		mHealth = C_PARMS->mGeneral.mHealth();
+	if (mHealth > C_GENERALPARMS.mHealth()) {
+		mHealth = C_GENERALPARMS.mHealth();
 	}
 }
 

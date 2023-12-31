@@ -224,7 +224,7 @@ void Obj::setNearestBridge()
 	_2D0    = 0.0f;
 
 	if (ItemBridge::mgr) {
-		f32 radius = C_PARMS->mGeneral.mTerritoryRadius.mValue;
+		f32 radius = C_GENERALPARMS.mTerritoryRadius.mValue;
 		radius     = SQUARE(radius);
 		Iterator<BaseItem> iter(ItemBridge::mgr);
 		CI_LOOP(iter)
@@ -323,7 +323,7 @@ bool Obj::moveBridgeSide()
 	startPos += zVec;
 
 	if (sqrDistanceXZ(mPosition, startPos) < 250.0f) {
-		f32 speed    = 0.75f * C_PARMS->mGeneral.mMoveSpeed.mValue;
+		f32 speed    = 0.75f * C_GENERALPARMS.mMoveSpeed.mValue;
 		f32 sinTheta = sin(getFaceDir());
 		f32 y        = getTargetVelocity().y;
 		f32 cosTheta = cos(getFaceDir());
@@ -337,7 +337,7 @@ bool Obj::moveBridgeSide()
 	} else {
 		changeFaceDir(startPos);
 
-		f32 speed    = C_PARMS->mGeneral.mMoveSpeed.mValue;
+		f32 speed    = C_GENERALPARMS.mMoveSpeed.mValue;
 		f32 sinTheta = sin(getFaceDir());
 		f32 y        = getTargetVelocity().y;
 		f32 cosTheta = cos(getFaceDir());
@@ -544,7 +544,7 @@ bool Obj::moveBridgeCentre()
 	startPos += xVec;
 
 	if (sqrDistanceXZ(mPosition, startPos) < 250.0f) {
-		f32 speed    = 0.75f * C_PARMS->mGeneral.mMoveSpeed.mValue;
+		f32 speed    = 0.75f * C_GENERALPARMS.mMoveSpeed.mValue;
 		f32 sinTheta = sin(getFaceDir());
 		f32 y        = getTargetVelocity().y;
 		f32 cosTheta = cos(getFaceDir());
@@ -558,7 +558,7 @@ bool Obj::moveBridgeCentre()
 	} else {
 		changeFaceDir(startPos);
 
-		f32 speed    = C_PARMS->mGeneral.mMoveSpeed.mValue;
+		f32 speed    = C_GENERALPARMS.mMoveSpeed.mValue;
 		f32 sinTheta = sin(getFaceDir());
 		f32 y        = getTargetVelocity().y;
 		f32 cosTheta = cos(getFaceDir());
@@ -772,7 +772,7 @@ bool Obj::moveBridgeTop()
 		return true;
 
 	} else if (dist < 250.0f) {
-		f32 speed    = C_PARMS->mGeneral.mMoveSpeed.mValue;
+		f32 speed    = C_GENERALPARMS.mMoveSpeed.mValue;
 		f32 sinTheta = sin(getFaceDir());
 		f32 y        = getTargetVelocity().y;
 		f32 cosTheta = cos(getFaceDir());
@@ -784,7 +784,7 @@ bool Obj::moveBridgeTop()
 		return true;
 
 	} else {
-		f32 speed    = C_PARMS->mGeneral.mMoveSpeed.mValue;
+		f32 speed    = C_GENERALPARMS.mMoveSpeed.mValue;
 		f32 sinTheta = sin(getFaceDir());
 		f32 y        = getTargetVelocity().y;
 		f32 cosTheta = cos(getFaceDir());

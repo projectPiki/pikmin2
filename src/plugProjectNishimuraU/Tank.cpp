@@ -255,7 +255,7 @@ bool Obj::isAttackable(bool check)
 	sinTheta = dir.x;
 	cosTheta = -dir.z;
 
-	f32 ratio = C_PARMS->mGeneral.mMaxAttackRange.mValue;
+	f32 ratio = C_GENERALPARMS.mMaxAttackRange.mValue;
 	if (check) {
 		ratio = emitCollideRatio(dir, targetPos, ratio);
 	}
@@ -320,7 +320,7 @@ f32 Obj::emitCollideRatio(Vector3f& dir, Vector3f& pos, f32 range)
 		Sys::Sphere sphere(ballPos, 2.5f);
 
 		Vector3f vec = dir;
-		vec *= (2.0f * C_PARMS->mGeneral.mMaxAttackRange.mValue);
+		vec *= (2.0f * C_GENERALPARMS.mMaxAttackRange.mValue);
 
 		MoveInfo moveInfo(&sphere, &vec, C_PARMS->mCreatureProps.mProps.mWallReflection.mValue);
 		moveInfo.mInfoOrigin = static_cast<Creature*>(this);
@@ -379,7 +379,7 @@ void Obj::updateCaution()
 		mCautionTimer = 0.0f;
 	}
 
-	if (mCautionTimer < C_PARMS->mGeneral.mAlertDuration.mValue) {
+	if (mCautionTimer < C_GENERALPARMS.mAlertDuration.mValue) {
 		mCautionTimer += sys->mDeltaTime;
 	}
 }
@@ -390,11 +390,11 @@ void Obj::updateCaution()
  */
 f32 Obj::getViewAngle()
 {
-	if (mCautionTimer < C_PARMS->mGeneral.mAlertDuration.mValue) {
+	if (mCautionTimer < C_GENERALPARMS.mAlertDuration.mValue) {
 		return 180.0f;
 	}
 
-	return C_PARMS->mGeneral.mViewAngle.mValue;
+	return C_GENERALPARMS.mViewAngle.mValue;
 }
 
 } // namespace Tank
