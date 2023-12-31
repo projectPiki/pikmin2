@@ -313,16 +313,16 @@ int JASTrack::inherit()
 	if (_362 != false && (_358 & 2) != 0) {
 		return -1;
 	}
-	if (mSeqCtrl._08 == -1) {
+	if (mSeqCtrl.mWaitTimer == -1) {
 		if (checkNoteStop(0) == 0) {
 			return 0;
 		}
-		mSeqCtrl._08 = 0;
+		mSeqCtrl.mWaitTimer = 0;
 	}
-	if (0 < mSeqCtrl._40) {
-		mSeqCtrl._40--;
+	if (0 < mSeqCtrl.mState.w) {
+		mSeqCtrl.mState.w--;
 	}
-	if (0 < mSeqCtrl._08) {
+	if (0 < mSeqCtrl.mWaitTimer) {
 		if (!mSeqCtrl.waitCountDown()) {
 			return 0;
 		}
@@ -554,15 +554,14 @@ void JASTrack::setInterrupt(u16 interrupt) { mIntrMgr.request(interrupt); }
  */
 bool JASTrack::tryInterrupt()
 {
-	if (mSeqCtrl._44 != 0) {
+	if (mSeqCtrl.mPreviousFilePtr) {
 		return false;
 	}
 	void* intr = mIntrMgr.checkIntr();
 	if (intr == nullptr) {
 		return false;
-	} else {
-		return mSeqCtrl.callIntr(intr);
 	}
+	return mSeqCtrl.callIntr(intr);
 }
 
 /**
@@ -950,10 +949,10 @@ void JASTrack::oscSetupSimpleEnv(u8 p1, u32 p2)
 	switch (p1) {
 	case 0:
 		_2A8[0]     = JASPlayer::sEnvelopeDef;
-		_2A8[0]._08 = reinterpret_cast<s16*>(mSeqCtrl._00 + p2);
+		_2A8[0]._08 = reinterpret_cast<s16*>(mSeqCtrl.mRawFilePtr + p2);
 		break;
 	case 1:
-		_2A8->_0C = reinterpret_cast<s16*>(mSeqCtrl._00 + p2);
+		_2A8->_0C = reinterpret_cast<s16*>(mSeqCtrl.mRawFilePtr + p2);
 		break;
 	default:
 		break;

@@ -51,7 +51,7 @@ JASBasicWaveBank* JASWSParser::createBasicWaveBank(void* stream)
 			info._00               = waveRaw->_01;
 			info._01               = waveRaw->_02;
 			info._04               = waveRaw->_04;
-			info._08               = waveRaw->_08;
+			info.mOffset           = waveRaw->mOffset;
 			info._0C               = waveRaw->_0C;
 			info._10               = waveRaw->_10;
 			info._14               = waveRaw->_14;
@@ -257,7 +257,7 @@ JASSimpleWaveBank* JASWSParser::createSimpleWaveBank(void* stream)
 		info._00               = waveRaw->_01;
 		info._01               = waveRaw->_02;
 		info._04               = waveRaw->_04;
-		info._08               = waveRaw->_08;
+		info.mOffset           = waveRaw->mOffset;
 		info._0C               = waveRaw->_0C;
 		info._10               = waveRaw->_10;
 		info._14               = waveRaw->_14;
