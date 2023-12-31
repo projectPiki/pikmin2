@@ -71,8 +71,8 @@ void IKSystemBase::startProgramedIK()
 	Vector3f topPos = mLegJointMatrices[TOP]->getBasis(3);
 	Vector3f midPos = mLegJointMatrices[MIDDLE]->getBasis(3);
 
-	mDistance1 = topPos.distance(midPos);
-	mDistance2 = midPos.distance(mTargetPosition);
+	mTopToMiddleDistance    = topPos.distance(midPos);
+	mMiddleToBottomDistance = midPos.distance(mTargetPosition);
 }
 
 /**
@@ -158,7 +158,7 @@ void IKSystemBase::makeMatrix()
 	Vector3f topPos    = mLegJointMatrices[TOP]->getBasis(3);
 	Vector3f middleDir = getMiddleDirection(topPos);
 	Vector3f jointPos;
-	NsMathExp::calcJointPos(topPos, mTargetPosition, mDistance1, mDistance2, middleDir, jointPos);
+	NsMathExp::calcJointPos(topPos, mTargetPosition, mTopToMiddleDistance, mMiddleToBottomDistance, middleDir, jointPos);
 
 	setTopJointRotation(topPos, jointPos);
 	setMiddleJointRotation(topPos, jointPos);

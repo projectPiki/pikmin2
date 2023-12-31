@@ -4,58 +4,74 @@
 namespace Game {
 namespace NsMathExp {
 /**
+ * Calculates the Lagrange interpolation for a given set of control points and a parameter t.
+ * The result is stored in the output vector.
+ *
+ * @param controlPoints The array of control points.
+ * @param t The parameter value.
+ * @param output The vector to store the result.
+ *
  * @note Address: 0x8023D7B0
  * @note Size: 0xA8
- * Aside from arg order and defines, identical to Pikmin 1's NsCalculation::calcLagrange
- * Matches!
  */
-void calcLagrange(const Vector3f* p_vec, f32 p2, Vector3f& new_vec)
-// calculates Lagrange, stores in new_vec
+void calcLagrange(const Vector3f* controlPoints, f32 t, Vector3f& output)
 {
-	f32 p2_sub1 = p2 - 1.0f;
-	f32 p2_sub2 = p2 - 2.0f;
-	new_vec.x   = p2_sub1 * (p_vec[2].x * 0.5f * p2) + (p2_sub2 * (p_vec[0].x * 0.5f * p2_sub1) - (p2_sub2 * (p_vec[1].x * p2)));
-	new_vec.y   = p2_sub1 * (p_vec[2].y * 0.5f * p2) + (p2_sub2 * (p_vec[0].y * 0.5f * p2_sub1) - (p2_sub2 * (p_vec[1].y * p2)));
-	new_vec.z   = p2_sub1 * (p_vec[2].z * 0.5f * p2) + (p2_sub2 * (p_vec[0].z * 0.5f * p2_sub1) - (p2_sub2 * (p_vec[1].z * p2)));
+	f32 tMinusOne = t - 1.0f;
+	f32 tMinusTwo = t - 2.0f;
+
+	output.x = tMinusOne * (controlPoints[2].x * 0.5f * t)
+	         + (tMinusTwo * (controlPoints[0].x * 0.5f * tMinusOne) - (tMinusTwo * (controlPoints[1].x * t)));
+	output.y = tMinusOne * (controlPoints[2].y * 0.5f * t)
+	         + (tMinusTwo * (controlPoints[0].y * 0.5f * tMinusOne) - (tMinusTwo * (controlPoints[1].y * t)));
+	output.z = tMinusOne * (controlPoints[2].z * 0.5f * t)
+	         + (tMinusTwo * (controlPoints[0].z * 0.5f * tMinusOne) - (tMinusTwo * (controlPoints[1].z * t)));
 }
 
 /**
  * @note Address: 0x8023D858
  * @note Size: 0x1D8
  */
-void calcJointPos(const Vector3f& inPos1, const Vector3f& inPos2, f32 p1, f32 p2, Vector3f& outPos1, Vector3f& outPos2)
+void calcJointPos(const Vector3f& topPosition, const Vector3f& bottomPosition, f32 topToMiddleDistance, f32 middleToBottomDistance,
+                  Vector3f& middleJointPos, Vector3f& bottomJointPosition)
 {
-	f32 p1Sqr    = p1 * p1;
-	f32 p2Sqr    = p2 * p2;
-	Vector3f vec = inPos2;
+	f32 distanceTopMiddle    = SQUARE(topToMiddleDistance);
+	f32 distanceMiddleBottom = SQUARE(middleToBottomDistance);
 
-	Vector3f sep = inPos2 - inPos1;
-	f32 sqrDist  = sep.sqrMagnitude(); // f11
-	if (!(sqrDist < 1.0E-6f)) {
-		f32 factor = (0.5f / sqrDist) * (sqrDist + (p1Sqr - p2Sqr)); // f3
-		Vector3f vec1(factor * sep.x + inPos1.x, factor * sep.y + inPos1.y, factor * sep.z + inPos1.z);
-		Vector3f vec2 = vec1 - inPos1;
-		f32 val1      = p1Sqr - SQUARE(vec2.x) - SQUARE(vec2.y) - SQUARE(vec2.z); // f30
+	Vector3f targetXyz         = bottomPosition;
+	Vector3f topToTargetVector = bottomPosition - topPosition;
+
+	f32 distanceTopToTarget = topToTargetVector.sqrMagnitude(); // f11
+	if (!(distanceTopToTarget < 1.0E-6f)) {
+		/*
+		 * The factor is calculated as half of the ratio of distanceTopToTarget to the sum of distanceTopToTarget and the difference between
+		 * distanceTopMiddle and distanceMiddleBottom.
+		 */
+		f32 factor = (0.5f / distanceTopToTarget) * (distanceTopToTarget + (distanceTopMiddle - distanceMiddleBottom)); // f3
+
+		Vector3f vec1(factor * topToTargetVector.x + topPosition.x, factor * topToTargetVector.y + topPosition.y,
+		              factor * topToTargetVector.z + topPosition.z);
+		Vector3f vec2 = vec1 - topPosition;
+		f32 val1      = distanceTopMiddle - SQUARE(vec2.x) - SQUARE(vec2.y) - SQUARE(vec2.z); // f30
 		if (!(val1 <= 0.0f)) {
-			Vector3f cross1 = cross(outPos1, sep);
-			outPos1         = cross(cross1, sep);
-			f32 outSqr      = outPos1.sqrMagnitude();
+			Vector3f cross1 = cross(middleJointPos, topToTargetVector);
+			middleJointPos  = cross(cross1, topToTargetVector);
+			f32 outSqr      = middleJointPos.sqrMagnitude();
 			if (outSqr != 0.0f) {
-				f32 len   = _sqrtf2(val1 / outSqr);
-				outPos2.x = len * outPos1.x + cross1.x;
-				outPos2.y = len * outPos1.y + cross1.y;
-				outPos2.z = len * outPos1.z + cross1.z;
+				f32 len               = _sqrtf2(val1 / outSqr);
+				bottomJointPosition.x = len * middleJointPos.x + cross1.x;
+				bottomJointPosition.y = len * middleJointPos.y + cross1.y;
+				bottomJointPosition.z = len * middleJointPos.z + cross1.z;
 				return;
 			}
 		}
 	}
 
-	f32 p1new = _sqrtf2(p1Sqr); // f7
-	f32 p2new = _sqrtf2(p2Sqr); // f3
+	f32 dtm           = _sqrtf2(distanceTopMiddle);    // f7
+	f32 dmb           = _sqrtf2(distanceMiddleBottom); // f3
+	f32 distanceRatio = dtm / (dtm + dmb);             // f6
 
-	f32 radSum = p1new / (p1new + p2new); // f6
-
-	outPos2 = Vector3f(radSum * vec.x + inPos1.x, radSum * vec.y + inPos1.y, radSum * vec.z + inPos1.z);
+	bottomJointPosition = Vector3f(distanceRatio * targetXyz.x + topPosition.x, distanceRatio * targetXyz.y + topPosition.y,
+	                               distanceRatio * targetXyz.z + topPosition.z);
 
 	/*
 	.loc_0x0:

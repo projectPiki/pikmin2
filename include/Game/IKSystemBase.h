@@ -173,8 +173,8 @@ struct IKSystemBase {
 	f32 mBendRatio;                // _08, aka rotation in radians
 	f32 mMoveRatio;                // _0C
 	f32 mTimer;                    // _10
-	f32 mDistance1;                // _14, some distance I'm not sure of
-	f32 mDistance2;                // _18, same as above
+	f32 mTopToMiddleDistance;                // _14, some distance I'm not sure of
+	f32 mMiddleToBottomDistance;                // _18, same as above
 	Vector3f mTargetPosition;      // _1C
 	Vector3f mIkPositions[3];      // _28
 	Matrixf* mLegJointMatrices[3]; // _4C
