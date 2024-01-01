@@ -78,7 +78,7 @@ struct J3DDrawBuffer {
 	inline void calcZRatio();
 	void setNonSort() { mSortType = J3DSORT_NonSort; }
 	void setZSort() { mSortType = J3DSORT_Z; }
-	void setZMtx(MtxP mtx) { mZMtx = mtx; }
+	void setZMtx(MtxP mtx) { mMtxZ = mtx; }
 
 	static sortFunc sortFuncTable[6];
 	static drawFunc drawFuncTable[2];
@@ -88,10 +88,10 @@ struct J3DDrawBuffer {
 	u32 mBufferSize;            // _04
 	EDrawType mDrawType;        // _08
 	ESortType mSortType;        // _0C
-	f32 mZNear;                 // _10
-	f32 mZFar;                  // _14
-	f32 mZRatio;                // _18
-	MtxP mZMtx;                 // _1C
+	f32 mNearZ;                 // _10
+	f32 mFarZ;                  // _14
+	f32 mRatioZ;                // _18
+	MtxP mMtxZ;                 // _1C
 	J3DPacket* mCallBackPacket; // _20
 };
 

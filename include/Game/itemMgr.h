@@ -27,8 +27,7 @@ namespace Game {
 struct BaseItem;
 struct WayPoint;
 
-struct _BaseItemMgrParent2 {
-};
+struct _BaseItemMgrParent2 { };
 
 struct BaseItemMgr : public GenericObjectMgr, virtual public _BaseItemMgrParent2 {
 	BaseItemMgr(int);

@@ -9,8 +9,6 @@
 #include "sqrt.h"
 
 // TODO: Implement the global namespace Vector3 functions into the class itself
-// TODO: Create a getDirection function (dest - src) -> y=0 -> normalise, either externally or internally
-
 template <typename T>
 struct Vector3 {
 	T x, y, z;
