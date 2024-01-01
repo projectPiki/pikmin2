@@ -7,120 +7,12 @@
  * @note Address: 0x80074440
  * @note Size: 0x170
  */
-void J3DGDSetGenMode(u8 p1, u8 p2, u8 p3, u8 p4, GXCullMode cullMode)
+void J3DGDSetGenMode(u8 texGenNum, u8 colorChanNum, u8 tevNum, u8 indTevNum, GXCullMode cullMode)
 {
-	__GDCheckOverflowed(10);
-	u32 v1 = (p3 - 1) * 0x400;
-	__GDWrite(0x61);
-	u32 v2 = p1 | (p2 << 4);
-	__GDWrite(0xFE);
-	__GDWrite(7);
-	__GDWrite(0xFC);
-	__GDWrite(0x3F);
 	static u8 cm2hw[4] = { 0, 2, 1, 3 };
-	__GDWrite(0x61);
-	u32 v3 = ((cm2hw[cullMode] << 0xE) | v1 | v2);
-	__GDWrite(v1 >> 0x18);
-	__GDWrite(p4 | (v3 >> 0x10));
-	__GDWrite(v3 >> 8);
-	__GDWrite(v2);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r28, r3
-	  mr        r29, r4
-	  mr        r27, r5
-	  mr        r30, r6
-	  mr        r31, r7
-	  lwz       r8, -0x7158(r13)
-	  lwz       r3, 0x8(r8)
-	  lwz       r0, 0xC(r8)
-	  addi      r3, r3, 0xA
-	  cmplw     r3, r0
-	  ble-      .loc_0x40
-	  bl        0x6D7C4
-
-	.loc_0x40:
-	  lwz       r4, -0x7158(r13)
-	  rlwinm    r3,r27,0,24,31
-	  subi      r5, r3, 0x1
-	  li        r0, 0x61
-	  lwz       r6, 0x8(r4)
-	  rlwinm    r5,r5,10,0,21
-	  li        r27, 0xFE
-	  li        r11, 0x7
-	  addi      r3, r6, 0x1
-	  li        r10, 0xFC
-	  stw       r3, 0x8(r4)
-	  rlwinm    r4,r28,0,24,31
-	  rlwinm    r3,r29,4,20,27
-	  li        r9, 0x3F
-	  stb       r0, 0x0(r6)
-	  or        r3, r4, r3
-	  or        r6, r5, r3
-	  subi      r7, r13, 0x7F98
-	  lwz       r12, -0x7158(r13)
-	  rlwinm    r8,r30,16,8,15
-	  lwz       r4, 0x8(r12)
-	  addi      r3, r4, 0x1
-	  stw       r3, 0x8(r12)
-	  stb       r27, 0x0(r4)
-	  lwz       r5, -0x7158(r13)
-	  lwz       r4, 0x8(r5)
-	  addi      r3, r4, 0x1
-	  stw       r3, 0x8(r5)
-	  stb       r11, 0x0(r4)
-	  lwz       r5, -0x7158(r13)
-	  lwz       r4, 0x8(r5)
-	  addi      r3, r4, 0x1
-	  stw       r3, 0x8(r5)
-	  stb       r10, 0x0(r4)
-	  lwz       r5, -0x7158(r13)
-	  lwz       r4, 0x8(r5)
-	  addi      r3, r4, 0x1
-	  stw       r3, 0x8(r5)
-	  stb       r9, 0x0(r4)
-	  lwz       r5, -0x7158(r13)
-	  lbzx      r3, r7, r31
-	  lwz       r4, 0x8(r5)
-	  rlwinm    r7,r3,14,0,17
-	  addi      r3, r4, 0x1
-	  stw       r3, 0x8(r5)
-	  or        r3, r7, r6
-	  or        r8, r8, r3
-	  stb       r0, 0x0(r4)
-	  rlwinm    r7,r8,8,24,31
-	  rlwinm    r6,r8,16,24,31
-	  rlwinm    r5,r8,24,24,31
-	  lwz       r4, -0x7158(r13)
-	  lwz       r3, 0x8(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r4)
-	  stb       r7, 0x0(r3)
-	  lwz       r4, -0x7158(r13)
-	  lwz       r3, 0x8(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r4)
-	  stb       r6, 0x0(r3)
-	  lwz       r4, -0x7158(r13)
-	  lwz       r3, 0x8(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r4)
-	  stb       r5, 0x0(r3)
-	  lwz       r4, -0x7158(r13)
-	  lwz       r3, 0x8(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r4)
-	  stb       r8, 0x0(r3)
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	__GDCheckOverflowed(10);
+	J3DGDWriteBPCmd(0x07FC3F | 0xFE << 24);
+	J3DGDWriteBPCmd(texGenNum << 0 | colorChanNum << 4 | (tevNum - 1) << 10 | cm2hw[cullMode] << 14 | indTevNum << 16 | 0x00 << 24);
 }
 
 // static u8 cm2hw$576[4]; // unused... not to be confused with the used version, cm2hw$551
@@ -140,135 +32,37 @@ static u8 J3DTexImage2Ids[8] = { 0x90, 0x91, 0x92, 0x93, 0xB0, 0xB1, 0xB2, 0xB3 
  * @note Address: 0x800745B0
  * @note Size: 0x15C
  */
-void J3DGDSetGenMode_3Param(u8 texGenNum, u8 tevStageNum, u8 indTexStageNum)
+void J3DGDSetGenMode_3Param(u8 texGenNum, u8 tevNum, u8 indTevNum)
 {
-	if (__GDCurrentDL->pDisplayListData + 10 > __GDCurrentDL->end) {
-		GDOverflowed();
-	}
-	u32 v1 = (tevStageNum - 1) * 0x400;
-	__GDWrite(0x61);
-	__GDWrite(0xFE);
-	__GDWrite(0x07);
-	__GDWrite(0x3C);
-	__GDWrite(0x0F);
-	__GDWrite(0x61);
-	__GDWrite(((u8*)&v1)[0]);
-	__GDWrite(indTexStageNum | ((u8*)&v1)[1]);
-	__GDWrite(((u8*)&v1)[2]);
-	__GDWrite(texGenNum);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r5
-	lwz      r6, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r6)
-	lwz      r0, 0xc(r6)
-	addi     r3, r3, 0xa
-	cmplw    r3, r0
-	ble      lbl_800745F0
-	bl       GDOverflowed
-
-lbl_800745F0:
-	lwz      r6, __GDCurrentDL@sda21(r13)
-	clrlwi   r3, r30, 0x18
-	addi     r3, r3, -1
-	li       r0, 0x61
-	lwz      r5, 8(r6)
-	slwi     r3, r3, 0xa
-	rlwimi   r3, r31, 0, 0x18, 0x1f
-	li       r30, 0xfe
-	addi     r4, r5, 1
-	li       r12, 7
-	stw      r4, 8(r6)
-	rlwinm   r4, r29, 0x10, 8, 0xf
-	or       r3, r4, r3
-	li       r11, 0x3c
-	stb      r0, 0(r5)
-	li       r10, 0xf
-	srwi     r8, r3, 0x18
-	rlwinm   r7, r3, 0x10, 0x18, 0x1f
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	rlwinm   r6, r3, 0x18, 0x18, 0x1f
-	lwz      r5, 8(r9)
-	addi     r4, r5, 1
-	stw      r4, 8(r9)
-	stb      r30, 0(r5)
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	lwz      r5, 8(r9)
-	addi     r4, r5, 1
-	stw      r4, 8(r9)
-	stb      r12, 0(r5)
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	lwz      r5, 8(r9)
-	addi     r4, r5, 1
-	stw      r4, 8(r9)
-	stb      r11, 0(r5)
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	lwz      r5, 8(r9)
-	addi     r4, r5, 1
-	stw      r4, 8(r9)
-	stb      r10, 0(r5)
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	lwz      r5, 8(r9)
-	addi     r4, r5, 1
-	stw      r4, 8(r9)
-	stb      r0, 0(r5)
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r5)
-	addi     r0, r4, 1
-	stw      r0, 8(r5)
-	stb      r8, 0(r4)
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r5)
-	addi     r0, r4, 1
-	stw      r0, 8(r5)
-	stb      r7, 0(r4)
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r5)
-	addi     r0, r4, 1
-	stw      r0, 8(r5)
-	stb      r6, 0(r4)
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r5)
-	addi     r0, r4, 1
-	stw      r0, 8(r5)
-	stb      r3, 0(r4)
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	__GDCheckOverflowed(10);
+	J3DGDWriteBPCmd(0x073C0F | 0xFE << 24);
+	J3DGDWriteBPCmd(texGenNum | (tevNum - 1) << 10 | indTevNum << 16 | 0x00 << 24);
 }
+
+inline u16 __GDLightID2Index(GXLightID id)
+{
+	u16 lightIdx = (31 - __cntlzw(id));
+	if (lightIdx > 7)
+		lightIdx = 0;
+	return lightIdx;
+}
+
+inline u16 __GDLightID2Offset(GXLightID id) { return __GDLightID2Index(id) * 0x10; }
 
 /**
  * @note Address: 0x8007470C
  * @note Size: 0x318
  */
-void J3DGDSetLightAttn(GXLightID id, f32 p2, f32 p3, f32 p4, f32 p5, f32 p6, f32 p7)
+void J3DGDSetLightAttn(GXLightID id, f32 a0, f32 a1, f32 a2, f32 k0, f32 k1, f32 k2)
 {
-	if (GX_MAX_LIGHT < id) {
-		id = GX_LIGHT_NULL;
-	}
-	u16 v1 = (id & 0xFFF) * 0x10 + 0x604;
-	__GDWrite(0x10);
-	__GDWrite(0x00);
-	__GDWrite(0x05);
-	__GDWriteU16(v1);
-	__GDWriteF32(p2);
-	__GDWriteF32(p3);
-	__GDWriteF32(p4);
-	__GDWriteF32(p5);
-	__GDWriteF32(p6);
-	__GDWriteF32(p7);
+	J3DGDWriteXFCmdHdr(0x0604 + __GDLightID2Offset(id), 6);
+	// why is the J3DGDWrite_f32 inline being WEIRD for us smh
+	J3DGDWrite_f32(a0);
+	J3DGDWrite_f32(a1);
+	J3DGDWrite_f32(a2);
+	J3DGDWrite_f32(k0);
+	J3DGDWrite_f32(k1);
+	J3DGDWrite_f32(k2);
 	/*
 	stwu     r1, -0x30(r1)
 	cntlzw   r0, r3
@@ -477,88 +271,21 @@ lbl_80074738:
  * @note Address: 0x80074A24
  * @note Size: 0x110
  */
-void J3DGDSetLightColor(_GXLightID, _GXColor)
+void J3DGDSetLightColor(GXLightID id, GXColor color)
 {
-	/*
-	cntlzw   r0, r3
-	lbz      r3, 1(r4)
-	subfic   r0, r0, 0x1f
-	lbz      r5, 0(r4)
-	clrlwi   r7, r0, 0x10
-	lbz      r6, 2(r4)
-	lbz      r0, 3(r4)
-	cmplwi   r7, 7
-	slwi     r3, r3, 0x10
-	rlwimi   r3, r5, 0x18, 0, 7
-	rlwimi   r3, r6, 8, 0x10, 0x17
-	or       r0, r0, r3
-	ble      lbl_80074A5C
-	li       r7, 0
-
-lbl_80074A5C:
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	rlwinm   r3, r7, 4, 0x10, 0x1b
-	addi     r10, r3, 0x603
-	li       r12, 0x10
-	lwz      r4, 8(r5)
-	li       r11, 0
-	rlwinm   r9, r10, 0x18, 0x18, 0x1f
-	srwi     r8, r0, 0x18
-	addi     r3, r4, 1
-	rlwinm   r7, r0, 0x10, 0x18, 0x1f
-	stw      r3, 8(r5)
-	rlwinm   r6, r0, 0x18, 0x18, 0x1f
-	stb      r12, 0(r4)
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r5)
-	addi     r3, r4, 1
-	stw      r3, 8(r5)
-	stb      r11, 0(r4)
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r5)
-	addi     r3, r4, 1
-	stw      r3, 8(r5)
-	stb      r11, 0(r4)
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r5)
-	addi     r3, r4, 1
-	stw      r3, 8(r5)
-	stb      r9, 0(r4)
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r5)
-	addi     r3, r4, 1
-	stw      r3, 8(r5)
-	stb      r10, 0(r4)
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r5)
-	addi     r3, r4, 1
-	stw      r3, 8(r5)
-	stb      r8, 0(r4)
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r5)
-	addi     r3, r4, 1
-	stw      r3, 8(r5)
-	stb      r7, 0(r4)
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r5)
-	addi     r3, r4, 1
-	stw      r3, 8(r5)
-	stb      r6, 0(r4)
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r5)
-	addi     r3, r4, 1
-	stw      r3, 8(r5)
-	stb      r0, 0(r4)
-	blr
-	*/
+	J3DGDWriteXFCmd(0x0603 + __GDLightID2Offset(id), (color.r << 24) | (color.g << 16) | (color.b << 8) | (color.a << 0));
 }
 
 /**
  * @note Address: 0x80074B34
  * @note Size: 0x1EC
  */
-void J3DGDSetLightPos(_GXLightID, f32, f32, f32)
+void J3DGDSetLightPos(GXLightID id, f32 x, f32 y, f32 z)
 {
+	J3DGDWriteXFCmdHdr(0x060A + __GDLightID2Offset(id), 3);
+	J3DGDWrite_f32(x);
+	J3DGDWrite_f32(y);
+	J3DGDWrite_f32(z);
 	/*
 	stwu     r1, -0x30(r1)
 	cntlzw   r0, r3
@@ -692,8 +419,12 @@ lbl_80074B60:
  * @note Address: 0x80074D20
  * @note Size: 0x1EC
  */
-void J3DGDSetLightDir(_GXLightID, f32, f32, f32)
+void J3DGDSetLightDir(GXLightID id, f32 x, f32 y, f32 z)
 {
+	J3DGDWriteXFCmdHdr(0x060D + __GDLightID2Offset(id), 3);
+	J3DGDWrite_f32(x);
+	J3DGDWrite_f32(y);
+	J3DGDWrite_f32(z);
 	/*
 	stwu     r1, -0x30(r1)
 	cntlzw   r0, r3
@@ -827,405 +558,244 @@ lbl_80074D4C:
  * @note Address: 0x80074F0C
  * @note Size: 0x548
  */
-void J3DGDSetVtxAttrFmtv(_GXVtxFmt, const _GXVtxAttrFmtList*, bool)
+void J3DGDSetVtxAttrFmtv(GXVtxFmt fmt, const GXVtxAttrFmtList* vtxAttr, bool forceNBT)
 {
-	/*
-	stwu     r1, -0xa0(r1)
-	mflr     r0
-	stw      r0, 0xa4(r1)
-	li       r0, 1
-	stmw     r14, 0x58(r1)
-	li       r31, 0
-	li       r30, 0
-	li       r14, 0
-	stw      r0, 0x48(r1)
-	li       r0, 4
-	li       r29, 1
-	li       r28, 4
-	stw      r0, 0x44(r1)
-	li       r0, 0
-	li       r27, 0
-	li       r26, 1
-	stw      r0, 0x40(r1)
-	li       r0, 4
-	li       r25, 4
-	li       r24, 0
-	stw      r0, 0x3c(r1)
-	li       r0, 1
-	li       r23, 1
-	li       r22, 4
-	stw      r0, 0x38(r1)
-	li       r0, 5
-	li       r21, 0
-	li       r20, 1
-	stw      r0, 0x34(r1)
-	li       r0, 1
-	li       r19, 4
-	li       r18, 0
-	stw      r0, 0x30(r1)
-	li       r0, 5
-	li       r17, 1
-	li       r16, 4
-	stw      r0, 0x2c(r1)
-	li       r0, 1
-	li       r15, 0
-	stw      r0, 0x28(r1)
-	li       r0, 4
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	stw      r0, 0x20(r1)
-	li       r0, 1
-	stw      r0, 0x1c(r1)
-	li       r0, 4
-	stw      r0, 0x18(r1)
-	li       r0, 0
-	stw      r0, 0x14(r1)
-	li       r0, 1
-	stw      r0, 0x10(r1)
-	li       r0, 4
-	stw      r3, 8(r1)
-	stw      r0, 0xc(r1)
-	b        lbl_80075130
+	GXCompCnt posCompCnt   = GX_POS_XYZ;
+	GXCompType posCompType = GX_F32;
+	u32 posCompShift       = 0;
 
-lbl_80074FEC:
-	addi     r0, r3, -9
-	cmplwi   r0, 0x10
-	bgt      lbl_8007512C
-	lis      r3, lbl_804A2048@ha
-	slwi     r0, r0, 2
-	addi     r3, r3, lbl_804A2048@l
-	lwzx     r0, r3, r0
-	mtctr    r0
-	bctr
-	.global  lbl_80075010
+	GXCompCnt nrmCount = GX_NRM_XYZ;
+	GXCompType nrmType = GX_F32;
+	bool nbt3          = false;
 
-lbl_80075010:
-	lwz      r0, 4(r4)
-	stw      r0, 0x48(r1)
-	lwz      r0, 8(r4)
-	stw      r0, 0x44(r1)
-	lbz      r0, 0xc(r4)
-	stw      r0, 0x40(r1)
-	b        lbl_8007512C
-	.global  lbl_8007502C
+	GXCompCnt clr0CompCnt   = GX_CLR_RGBA;
+	GXCompType clr0CompType = GX_RGBA8;
+	GXCompCnt clr1CompCnt   = GX_CLR_RGBA;
+	GXCompType clr1CompType = GX_RGBA8;
 
-lbl_8007502C:
-	lwz      r6, 4(r4)
-	lwz      r0, 8(r4)
-	cmpwi    r6, 2
-	stw      r0, 0x3c(r1)
-	bne      lbl_8007504C
-	li       r31, 1
-	li       r30, 1
-	b        lbl_8007512C
+	GXCompCnt tex0CompCnt   = GX_TEX_ST;
+	GXCompType tex0CompType = GX_F32;
+	u32 tex0CompShift       = 0;
+	GXCompCnt tex1CompCnt   = GX_TEX_ST;
+	GXCompType tex1CompType = GX_F32;
+	u32 tex1CompShift       = 0;
+	GXCompCnt tex2CompCnt   = GX_TEX_ST;
+	GXCompType tex2CompType = GX_F32;
+	u32 tex2CompShift       = 0;
+	GXCompCnt tex3CompCnt   = GX_TEX_ST;
+	GXCompType tex3CompType = GX_F32;
+	u32 tex3CompShift       = 0;
+	GXCompCnt tex4CompCnt   = GX_TEX_ST;
+	GXCompType tex4CompType = GX_F32;
+	u32 tex4CompShift       = 0;
+	GXCompCnt tex5CompCnt   = GX_TEX_ST;
+	GXCompType tex5CompType = GX_F32;
+	u32 tex5CompShift       = 0;
+	GXCompCnt tex6CompCnt   = GX_TEX_ST;
+	GXCompType tex6CompType = GX_F32;
+	u32 tex6CompShift       = 0;
+	GXCompCnt tex7CompCnt   = GX_TEX_ST;
+	GXCompType tex7CompType = GX_F32;
+	u32 tex7CompShift       = 0;
 
-lbl_8007504C:
-	clrlwi.  r0, r5, 0x18
-	li       r3, 1
-	bne      lbl_8007505C
-	mr       r3, r6
+	for (; vtxAttr->mAttr != GX_VA_NULL; vtxAttr++) {
+		switch (vtxAttr->mAttr) {
+		case GX_VA_POS:
+			posCompCnt   = vtxAttr->mCount;
+			posCompType  = vtxAttr->mType;
+			posCompShift = vtxAttr->mFrac;
+			break;
+		case GX_VA_NRM:
+		case GX_VA_NBT:
+			nrmType = vtxAttr->mType;
+			if (vtxAttr->mCount == GX_NRM_NBT3) {
+				nrmCount = GX_NRM_NBT;
+				nbt3     = true;
+			} else {
+				// possible fakematch? need to cast vtxAttr->mCount to int to put value in r0 temporarily
+				// nrmCount = forceNBT ? GX_NRM_NBT : vtxAttr->mCount;
+				nrmCount = (GXCompCnt)(forceNBT ? GX_NRM_NBT : (int)(vtxAttr->mCount));
+				nbt3     = false;
+			}
+			break;
+		case GX_VA_CLR0:
+			clr0CompCnt  = vtxAttr->mCount;
+			clr0CompType = vtxAttr->mType;
+			break;
+		case GX_VA_CLR1:
+			clr1CompCnt  = vtxAttr->mCount;
+			clr1CompType = vtxAttr->mType;
+			break;
+		case GX_VA_TEX0:
+			tex0CompCnt   = vtxAttr->mCount;
+			tex0CompType  = vtxAttr->mType;
+			tex0CompShift = vtxAttr->mFrac;
+			break;
+		case GX_VA_TEX1:
+			tex1CompCnt   = vtxAttr->mCount;
+			tex1CompType  = vtxAttr->mType;
+			tex1CompShift = vtxAttr->mFrac;
+			break;
+		case GX_VA_TEX2:
+			tex2CompCnt   = vtxAttr->mCount;
+			tex2CompType  = vtxAttr->mType;
+			tex2CompShift = vtxAttr->mFrac;
+			break;
+		case GX_VA_TEX3:
+			tex3CompCnt   = vtxAttr->mCount;
+			tex3CompType  = vtxAttr->mType;
+			tex3CompShift = vtxAttr->mFrac;
+			break;
+		case GX_VA_TEX4:
+			tex4CompCnt   = vtxAttr->mCount;
+			tex4CompType  = vtxAttr->mType;
+			tex4CompShift = vtxAttr->mFrac;
+			break;
+		case GX_VA_TEX5:
+			tex5CompCnt   = vtxAttr->mCount;
+			tex5CompType  = vtxAttr->mType;
+			tex5CompShift = vtxAttr->mFrac;
+			break;
+		case GX_VA_TEX6:
+			tex6CompCnt   = vtxAttr->mCount;
+			tex6CompType  = vtxAttr->mType;
+			tex6CompShift = vtxAttr->mFrac;
+			break;
+		case GX_VA_TEX7:
+			tex7CompCnt   = vtxAttr->mCount;
+			tex7CompType  = vtxAttr->mType;
+			tex7CompShift = vtxAttr->mFrac;
+			break;
+		default:
+			break;
+		}
+	}
 
-lbl_8007505C:
-	mr       r31, r3
-	li       r30, 0
-	b        lbl_8007512C
-	.global  lbl_80075068
+	GDOverflowCheck(18);
 
-lbl_80075068:
-	lwz      r0, 4(r4)
-	stw      r0, 0x38(r1)
-	lwz      r0, 8(r4)
-	stw      r0, 0x34(r1)
-	b        lbl_8007512C
-	.global  lbl_8007507C
+	J3DGDWriteCPCmd(0x70 + fmt, (posCompCnt << 0) | (posCompType << 1) | (posCompShift << 4) | (nrmCount << 9) | (nrmType << 10)
+	                                | (clr0CompCnt << 13) | (clr0CompType << 14) | (clr1CompCnt << 17) | (clr1CompType << 18)
+	                                | (tex0CompCnt << 21) | (tex0CompType << 22) | (tex0CompShift << 25) | (1 << 30) | (nbt3 << 31));
 
-lbl_8007507C:
-	lwz      r0, 4(r4)
-	stw      r0, 0x30(r1)
-	lwz      r0, 8(r4)
-	stw      r0, 0x2c(r1)
-	b        lbl_8007512C
-	.global  lbl_80075090
+	J3DGDWriteCPCmd(0x80 + fmt, (tex1CompCnt << 0) | (tex1CompType << 1) | (tex1CompShift << 4) | (tex2CompCnt << 9) | (tex2CompType << 10)
+	                                | (tex2CompShift << 13) | (tex3CompCnt << 18) | (tex3CompType << 19) | (tex3CompShift << 22)
+	                                | (tex4CompCnt << 27) | (tex4CompType << 28) | (1 << 31));
 
-lbl_80075090:
-	lwz      r0, 4(r4)
-	stw      r0, 0x28(r1)
-	lwz      r0, 8(r4)
-	stw      r0, 0x24(r1)
-	lbz      r0, 0xc(r4)
-	stw      r0, 0x20(r1)
-	b        lbl_8007512C
-	.global  lbl_800750AC
-
-lbl_800750AC:
-	lwz      r0, 4(r4)
-	stw      r0, 0x1c(r1)
-	lwz      r0, 8(r4)
-	stw      r0, 0x18(r1)
-	lbz      r0, 0xc(r4)
-	stw      r0, 0x14(r1)
-	b        lbl_8007512C
-	.global  lbl_800750C8
-
-lbl_800750C8:
-	lwz      r0, 4(r4)
-	lbz      r14, 0xc(r4)
-	stw      r0, 0x10(r1)
-	lwz      r0, 8(r4)
-	stw      r0, 0xc(r1)
-	b        lbl_8007512C
-	.global  lbl_800750E0
-
-lbl_800750E0:
-	lwz      r29, 4(r4)
-	lwz      r28, 8(r4)
-	lbz      r27, 0xc(r4)
-	b        lbl_8007512C
-	.global  lbl_800750F0
-
-lbl_800750F0:
-	lwz      r26, 4(r4)
-	lwz      r25, 8(r4)
-	lbz      r24, 0xc(r4)
-	b        lbl_8007512C
-	.global  lbl_80075100
-
-lbl_80075100:
-	lwz      r23, 4(r4)
-	lwz      r22, 8(r4)
-	lbz      r21, 0xc(r4)
-	b        lbl_8007512C
-	.global  lbl_80075110
-
-lbl_80075110:
-	lwz      r20, 4(r4)
-	lwz      r19, 8(r4)
-	lbz      r18, 0xc(r4)
-	b        lbl_8007512C
-	.global  lbl_80075120
-
-lbl_80075120:
-	lwz      r17, 4(r4)
-	lwz      r16, 8(r4)
-	lbz      r15, 0xc(r4)
-	.global  lbl_8007512C
-
-lbl_8007512C:
-	addi     r4, r4, 0x10
-
-lbl_80075130:
-	lwz      r3, 0(r4)
-	cmpwi    r3, 0xff
-	bne      lbl_80074FEC
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	lwz      r0, 0xc(r4)
-	addi     r3, r3, 0x12
-	cmplw    r3, r0
-	ble      lbl_80075158
-	bl       GDOverflowed
-
-lbl_80075158:
-	lwz      r0, 0x44(r1)
-	li       r5, 8
-	lwz      r4, 8(r1)
-	slwi     r3, r0, 1
-	lwz      r10, __GDCurrentDL@sda21(r13)
-	addi     r0, r4, 0x70
-	lwz      r4, 0x18(r1)
-	lwz      r9, 8(r10)
-	slwi     r6, r4, 1
-	lwz      r4, 8(r1)
-	lwz      r11, 0x48(r1)
-	addi     r8, r9, 1
-	addi     r7, r4, 0x80
-	lwz      r4, 0x40(r1)
-	stw      r8, 8(r10)
-	or       r3, r11, r3
-	slwi     r4, r4, 4
-	slwi     r8, r31, 9
-	or       r4, r4, r3
-	lwz      r3, 0x3c(r1)
-	stb      r5, 0(r9)
-	or       r9, r8, r4
-	lwz      r4, 0x38(r1)
-	slwi     r3, r3, 0xa
-	or       r3, r3, r9
-	lwz      r11, 0x28(r1)
-	slwi     r10, r4, 0xd
-	lwz      r4, 0x34(r1)
-	or       r10, r10, r3
-	lwz      r3, 0x30(r1)
-	slwi     r8, r4, 0xe
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	slwi     r9, r3, 0x11
-	slwi     r11, r11, 0x15
-	or       r8, r8, r10
-	lwz      r3, 8(r4)
-	lwz      r10, 0x2c(r1)
-	or       r8, r9, r8
-	addi     r12, r3, 1
-	stw      r12, 8(r4)
-	slwi     r10, r10, 0x12
-	lwz      r4, 0x24(r1)
-	or       r8, r10, r8
-	stb      r0, 0(r3)
-	or       r0, r11, r8
-	slwi     r9, r4, 0x16
-	lwz      r4, 0x20(r1)
-	or       r0, r9, r0
-	lwz      r3, __GDCurrentDL@sda21(r13)
-	slwi     r4, r4, 0x19
-	slwi     r9, r30, 0x1f
-	or       r0, r4, r0
-	lwz      r4, 8(r3)
-	oris     r8, r0, 0x4000
-	lwz      r0, 0x14(r1)
-	addi     r11, r4, 1
-	slwi     r12, r28, 0x13
-	slwi     r10, r0, 4
-	stw      r11, 8(r3)
-	or       r9, r9, r8
-	lwz      r0, 0x1c(r1)
-	slwi     r11, r29, 0x12
-	or       r8, r0, r6
-	srwi     r6, r9, 0x18
-	stb      r6, 0(r4)
-	or       r10, r10, r8
-	lwz      r0, 0x10(r1)
-	rlwinm   r8, r9, 0x10, 0x18, 0x1f
-	lwz      r4, 0xc(r1)
-	rlwinm   r3, r9, 0x18, 0x18, 0x1f
-	slwi     r0, r0, 9
-	lwz      r6, __GDCurrentDL@sda21(r13)
-	or       r0, r0, r10
-	slwi     r4, r4, 0xa
-	or       r0, r4, r0
-	slwi     r10, r14, 0xd
-	or       r0, r10, r0
-	lwz      r4, 8(r6)
-	or       r0, r11, r0
-	slwi     r10, r27, 0x16
-	addi     r14, r4, 1
-	slwi     r11, r26, 0x1b
-	stw      r14, 8(r6)
-	or       r0, r12, r0
-	or       r0, r10, r0
-	slwi     r6, r25, 0x1c
-	stb      r8, 0(r4)
-	or       r0, r11, r0
-	or       r0, r6, r0
-	lwz      r10, __GDCurrentDL@sda21(r13)
-	oris     r4, r0, 0x8000
-	srwi     r8, r4, 0x18
-	lwz      r6, 8(r10)
-	addi     r0, r6, 1
-	stw      r0, 8(r10)
-	stb      r3, 0(r6)
-	lwz      r6, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r6)
-	addi     r0, r3, 1
-	stw      r0, 8(r6)
-	stb      r9, 0(r3)
-	lwz      r6, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r6)
-	addi     r0, r3, 1
-	stw      r0, 8(r6)
-	stb      r5, 0(r3)
-	lwz      r6, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r6)
-	addi     r0, r3, 1
-	stw      r0, 8(r6)
-	stb      r7, 0(r3)
-	lwz      r6, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r6)
-	addi     r0, r3, 1
-	stw      r0, 8(r6)
-	stb      r8, 0(r3)
-	lwz      r11, __GDCurrentDL@sda21(r13)
-	slwi     r6, r23, 5
-	lwz      r3, 8(r1)
-	rlwinm   r12, r4, 0x10, 0x18, 0x1f
-	lwz      r10, 8(r11)
-	slwi     r7, r22, 6
-	or       r6, r24, r6
-	addi     r0, r3, 0x90
-	addi     r9, r10, 1
-	slwi     r8, r21, 9
-	stw      r9, 8(r11)
-	or       r6, r7, r6
-	or       r6, r8, r6
-	slwi     r7, r20, 0xe
-	stb      r12, 0(r10)
-	or       r6, r7, r6
-	slwi     r9, r19, 0xf
-	slwi     r7, r18, 0x12
-	lwz      r11, __GDCurrentDL@sda21(r13)
-	or       r6, r9, r6
-	or       r6, r7, r6
-	slwi     r8, r17, 0x17
-	lwz      r10, 8(r11)
-	or       r6, r8, r6
-	slwi     r9, r16, 0x18
-	rlwinm   r3, r4, 0x18, 0x18, 0x1f
-	addi     r8, r10, 1
-	slwi     r7, r15, 0x1b
-	stw      r8, 8(r11)
-	or       r6, r9, r6
-	or       r6, r7, r6
-	stb      r3, 0(r10)
-	srwi     r9, r6, 0x18
-	rlwinm   r8, r6, 0x10, 0x18, 0x1f
-	rlwinm   r7, r6, 0x18, 0x18, 0x1f
-	lwz      r11, __GDCurrentDL@sda21(r13)
-	lwz      r10, 8(r11)
-	addi     r3, r10, 1
-	stw      r3, 8(r11)
-	stb      r4, 0(r10)
-	lwz      r10, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r10)
-	addi     r3, r4, 1
-	stw      r3, 8(r10)
-	stb      r5, 0(r4)
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r5)
-	addi     r3, r4, 1
-	stw      r3, 8(r5)
-	stb      r0, 0(r4)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r9, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r8, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r7, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r6, 0(r3)
-	lmw      r14, 0x58(r1)
-	lwz      r0, 0xa4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xa0
-	blr
-	*/
+	J3DGDWriteCPCmd(0x90 + fmt, (tex4CompShift << 0) | (tex5CompCnt << 5) | (tex5CompType << 6) | (tex5CompShift << 9) | (tex6CompCnt << 14)
+	                                | (tex6CompType << 15) | (tex6CompShift << 18) | (tex7CompCnt << 23) | (tex7CompType << 24)
+	                                | (tex7CompShift << 27));
 }
 
 /**
  * @note Address: 0x80075454
  * @note Size: 0x1D0
  */
-void J3DGDSetTexCoordGen(_GXTexGenType, _GXTexGenSrc)
+void J3DGDSetTexCoordGen(GXTexGenType type, GXTexGenSrc src)
 {
+	u32 form        = 0;
+	u32 proj        = 0;
+	u32 row         = 5;
+	u32 embossSrc   = 5;
+	u32 embossLight = 0;
+
+	switch (src) {
+	case GX_TG_POS:
+		row  = 0;
+		form = 1;
+		break;
+	case GX_TG_NRM:
+		row  = 1;
+		form = 1;
+		break;
+	case GX_TG_BINRM:
+		row  = 3;
+		form = 1;
+		break;
+	case GX_TG_TANGENT:
+		row  = 4;
+		form = 1;
+		break;
+	case GX_TG_COLOR0:
+		row = 2;
+		break;
+	case GX_TG_COLOR1:
+		row = 2;
+		break;
+	case GX_TG_TEX0:
+		row = 5;
+		break;
+	case GX_TG_TEX1:
+		row = 6;
+		break;
+	case GX_TG_TEX2:
+		row = 7;
+		break;
+	case GX_TG_TEX3:
+		row = 8;
+		break;
+	case GX_TG_TEX4:
+		row = 9;
+		break;
+	case GX_TG_TEX5:
+		row = 10;
+		break;
+	case GX_TG_TEX6:
+		row = 11;
+		break;
+	case GX_TG_TEX7:
+		row = 12;
+		break;
+	case GX_TG_TEXCOORD0:
+		embossSrc = 0;
+		break;
+	case GX_TG_TEXCOORD1:
+		embossSrc = 1;
+		break;
+	case GX_TG_TEXCOORD2:
+		embossSrc = 2;
+		break;
+	case GX_TG_TEXCOORD3:
+		embossSrc = 3;
+		break;
+	case GX_TG_TEXCOORD4:
+		embossSrc = 4;
+		break;
+	case GX_TG_TEXCOORD5:
+		embossSrc = 5;
+		break;
+	case GX_TG_TEXCOORD6:
+		embossSrc = 6;
+		break;
+	}
+
+	switch (type) {
+	case GX_TG_MTX2X4:
+		src = (GXTexGenSrc)0;
+		break;
+	case GX_TG_MTX3X4:
+		src  = (GXTexGenSrc)0;
+		proj = 1;
+		break;
+	case GX_TG_BUMP0:
+	case GX_TG_BUMP1:
+	case GX_TG_BUMP2:
+	case GX_TG_BUMP3:
+	case GX_TG_BUMP4:
+	case GX_TG_BUMP5:
+	case GX_TG_BUMP6:
+	case GX_TG_BUMP7:
+		src         = (GXTexGenSrc)1;
+		embossLight = type - GX_TG_BUMP0;
+		break;
+	case GX_TG_SRTG:
+		if (src == GX_TG_COLOR0)
+			src = (GXTexGenSrc)2;
+		else
+			src = (GXTexGenSrc)3;
+		break;
+	}
+
+	J3DGDWrite_u32((proj << 1) | (form << 2) | (src << 4) | (row << 7) | (embossSrc << 12) | (embossLight << 15));
 	/*
 	cmplwi   r4, 0x14
 	li       r7, 0
@@ -1429,1801 +999,271 @@ lbl_80075598:
  * @note Address: 0x80075624
  * @note Size: 0x1FC
  */
-void J3DGDSetTexCoordScale2(_GXTexCoordID, u16, u8, u8, u16, u8, u8)
+void J3DGDSetTexCoordScale2(GXTexCoordID id, u16 scaleS, u8 biasS, u8 wrapS, u16 scaleT, u8 biasT, u8 wrapT)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r25, 0x14(r1)
-	  mr        r25, r3
-	  mr        r26, r4
-	  mr        r28, r5
-	  mr        r29, r6
-	  mr        r27, r7
-	  mr        r30, r8
-	  mr        r31, r9
-	  lwz       r10, -0x7158(r13)
-	  lwz       r3, 0x8(r10)
-	  lwz       r0, 0xC(r10)
-	  addi      r3, r3, 0xF
-	  cmplw     r3, r0
-	  ble-      .loc_0x48
-	  bl        0x6C5D8
-
-	.loc_0x48:
-	  lwz       r3, -0x7158(r13)
-	  rlwinm    r4,r25,1,0,30
-	  addi      r7, r4, 0x30
-	  rlwinm    r8,r26,0,16,31
-	  lwz       r10, 0x8(r3)
-	  addi      r6, r4, 0x31
-	  subi      r9, r8, 0x1
-	  rlwinm    r8,r28,16,8,15
-	  addi      r0, r10, 0x1
-	  rlwinm    r5,r27,0,16,31
-	  stw       r0, 0x8(r3)
-	  li        r4, 0x61
-	  or        r8, r9, r8
-	  li        r27, 0xFE
-	  stb       r4, 0x0(r10)
-	  rlwinm    r10,r29,17,7,14
-	  or        r9, r10, r8
-	  rlwinm    r7,r7,24,0,7
-	  lwz       r11, -0x7158(r13)
-	  subi      r8, r5, 0x1
-	  or        r5, r9, r7
-	  rlwinm    r7,r30,16,8,15
-	  lwz       r28, 0x8(r11)
-	  rlwinm    r9,r31,17,7,14
-	  or        r7, r8, r7
-	  li        r3, 0x3
-	  addi      r10, r28, 0x1
-	  li        r0, 0xFF
-	  stw       r10, 0x8(r11)
-	  or        r7, r9, r7
-	  rlwinm    r6,r6,24,0,7
-	  rlwinm    r12,r5,8,24,31
-	  stb       r27, 0x0(r28)
-	  or        r6, r7, r6
-	  rlwinm    r11,r5,16,24,31
-	  rlwinm    r10,r5,24,24,31
-	  lwz       r28, -0x7158(r13)
-	  rlwinm    r7,r6,8,24,31
-	  lwz       r9, 0x8(r28)
-	  addi      r8, r9, 0x1
-	  stw       r8, 0x8(r28)
-	  stb       r3, 0x0(r9)
-	  lwz       r9, -0x7158(r13)
-	  lwz       r8, 0x8(r9)
-	  addi      r3, r8, 0x1
-	  stw       r3, 0x8(r9)
-	  stb       r0, 0x0(r8)
-	  lwz       r9, -0x7158(r13)
-	  lwz       r8, 0x8(r9)
-	  addi      r3, r8, 0x1
-	  stw       r3, 0x8(r9)
-	  stb       r0, 0x0(r8)
-	  lwz       r8, -0x7158(r13)
-	  lwz       r3, 0x8(r8)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r8)
-	  stb       r4, 0x0(r3)
-	  lwz       r8, -0x7158(r13)
-	  lwz       r3, 0x8(r8)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r8)
-	  stb       r12, 0x0(r3)
-	  lwz       r8, -0x7158(r13)
-	  lwz       r3, 0x8(r8)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r8)
-	  stb       r11, 0x0(r3)
-	  lwz       r8, -0x7158(r13)
-	  lwz       r3, 0x8(r8)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r8)
-	  stb       r10, 0x0(r3)
-	  lwz       r8, -0x7158(r13)
-	  lwz       r3, 0x8(r8)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r8)
-	  stb       r5, 0x0(r3)
-	  lwz       r5, -0x7158(r13)
-	  lwz       r3, 0x8(r5)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r5)
-	  stb       r4, 0x0(r3)
-	  lwz       r4, -0x7158(r13)
-	  lwz       r3, 0x8(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r4)
-	  stb       r7, 0x0(r3)
-	  lwz       r4, -0x7158(r13)
-	  rlwinm    r7,r6,16,24,31
-	  rlwinm    r5,r6,24,24,31
-	  lwz       r3, 0x8(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r4)
-	  stb       r7, 0x0(r3)
-	  lwz       r4, -0x7158(r13)
-	  lwz       r3, 0x8(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r4)
-	  stb       r5, 0x0(r3)
-	  lwz       r4, -0x7158(r13)
-	  lwz       r3, 0x8(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r4)
-	  stb       r6, 0x0(r3)
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
+	GDOverflowCheck(15);
+	J3DGDWriteBPCmd(0xFE03FFFF);
+	J3DGDWriteBPCmd((scaleS - 1) | (biasS << 16) | (wrapS << 17) | (0x30 + id * 2) << 24);
+	J3DGDWriteBPCmd((scaleT - 1) | (biasT << 16) | (wrapT << 17) | (0x31 + id * 2) << 24);
 }
 
 /**
  * @note Address: 0x80075820
  * @note Size: 0x1AC
  */
-void J3DGDSetTexLookupMode(_GXTexMapID, _GXTexWrapMode, _GXTexWrapMode, _GXTexFilter, _GXTexFilter, f32, f32, f32, u8, u8, _GXAnisotropy)
+void J3DGDSetTexLookupMode(GXTexMapID id, GXTexWrapMode wrapS, GXTexWrapMode wrapT, GXTexFilter minFilter, GXTexFilter magFilter,
+                           f32 minLOD, f32 maxLOD, f32 lodBias, u8 biasClamp, u8 edgeLOD, GXAnisotropy maxAniso)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  rlwinm    r5,r5,2,0,29
-	  lfs       f0, -0x78C8(r2)
-	  subi      r11, r13, 0x7F94
-	  stw       r31, 0x2C(r1)
-	  subfic    r0, r7, 0x1
-	  fmuls     f0, f0, f3
-	  lfs       f4, -0x78C4(r2)
-	  stw       r30, 0x28(r1)
-	  subi      r30, r13, 0x7F6C
-	  fmuls     f1, f4, f1
-	  cntlzw    r31, r0
-	  lwz       r12, -0x7158(r13)
-	  fctiwz    f0, f0
-	  lbzx      r30, r30, r6
-	  rlwinm    r6,r9,0,24,31
-	  lwz       r7, 0x8(r12)
-	  cntlzw    r9, r6
-	  lbzx      r11, r11, r3
-	  addi      r0, r7, 0x1
-	  stfd      f0, 0x8(r1)
-	  or        r4, r4, r5
-	  rlwinm    r6,r31,31,20,27
-	  stw       r0, 0x8(r12)
-	  li        r0, 0x61
-	  fmuls     f0, f4, f2
-	  lwz       r12, 0xC(r1)
-	  stb       r0, 0x0(r7)
-	  or        r4, r6, r4
-	  rlwinm    r5,r30,5,0,26
-	  rlwinm    r7,r9,3,16,23
-	  or        r4, r5, r4
-	  lwz       r6, -0x7158(r13)
-	  rlwinm    r9,r12,9,15,22
-	  rlwinm    r10,r10,19,0,12
-	  or        r4, r7, r4
-	  lwz       r5, 0x8(r6)
-	  or        r4, r9, r4
-	  rlwinm    r8,r8,21,3,10
-	  or        r7, r10, r4
-	  rlwinm    r9,r11,24,0,7
-	  addi      r4, r5, 0x1
-	  fctiwz    f0, f0
-	  stw       r4, 0x8(r6)
-	  or        r4, r8, r7
-	  or        r11, r9, r4
-	  fctiwz    f1, f1
-	  rlwinm    r4,r11,8,24,31
-	  stb       r4, 0x0(r5)
-	  rlwinm    r8,r11,16,24,31
-	  rlwinm    r10,r11,24,24,31
-	  subi      r6, r13, 0x7F8C
-	  lwz       r7, -0x7158(r13)
-	  stfd      f0, 0x18(r1)
-	  lwz       r5, 0x8(r7)
-	  stfd      f1, 0x10(r1)
-	  addi      r4, r5, 0x1
-	  stw       r4, 0x8(r7)
-	  lwz       r4, 0x1C(r1)
-	  stb       r8, 0x0(r5)
-	  lwz       r5, 0x14(r1)
-	  rlwinm    r4,r4,8,16,23
-	  lwz       r9, -0x7158(r13)
-	  rlwimi    r4,r5,0,24,31
-	  lwz       r8, 0x8(r9)
-	  addi      r7, r8, 0x1
-	  stw       r7, 0x8(r9)
-	  stb       r10, 0x0(r8)
-	  lwz       r8, -0x7158(r13)
-	  lwz       r7, 0x8(r8)
-	  addi      r5, r7, 0x1
-	  stw       r5, 0x8(r8)
-	  stb       r11, 0x0(r7)
-	  lwz       r7, -0x7158(r13)
-	  lbzx      r3, r6, r3
-	  lwz       r5, 0x8(r7)
-	  rlwimi    r4,r3,24,0,7
-	  addi      r3, r5, 0x1
-	  stw       r3, 0x8(r7)
-	  rlwinm    r6,r4,8,24,31
-	  stb       r0, 0x0(r5)
-	  lwz       r5, -0x7158(r13)
-	  lwz       r3, 0x8(r5)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r5)
-	  stb       r6, 0x0(r3)
-	  lwz       r5, -0x7158(r13)
-	  rlwinm    r7,r4,16,24,31
-	  rlwinm    r6,r4,24,24,31
-	  lwz       r3, 0x8(r5)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r5)
-	  stb       r7, 0x0(r3)
-	  lwz       r5, -0x7158(r13)
-	  lwz       r3, 0x8(r5)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r5)
-	  stb       r6, 0x0(r3)
-	  lwz       r5, -0x7158(r13)
-	  lwz       r3, 0x8(r5)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r5)
-	  stb       r4, 0x0(r3)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  addi      r1, r1, 0x30
-	  blr
-	*/
+	J3DGDWriteBPCmd((wrapS) << 0 | (wrapT) << 2 | (magFilter == GX_LINEAR) << 4 | (GX2HWFiltConv[minFilter]) << 5 | (!edgeLOD) << 8
+	                | ((u8)(lodBias * 32.0f)) << 9 | (maxAniso) << 19 | (biasClamp) << 21 | (J3DGDTexMode0Ids[id] << 24));
+	J3DGDWriteBPCmd(((u8)(minLOD * 16.0f)) << 0 | ((u8)(maxLOD * 16.0f)) << 8 | (J3DGDTexMode1Ids[id] << 24));
 }
 
 /**
  * @note Address: 0x800759CC
  * @note Size: 0xA8
  */
-void J3DGDSetTexImgAttr(_GXTexMapID, u16, u16, _GXTexFmt)
+void J3DGDSetTexImgAttr(GXTexMapID id, u16 w, u16 h, GXTexFmt fmt)
 {
-	/*
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	addi     r8, r13, J3DGDTexImage0Ids@sda21
-	lbzx     r9, r8, r3
-	clrlwi   r8, r4, 0x10
-	lwz      r3, 8(r7)
-	clrlwi   r5, r5, 0x10
-	li       r4, 0x61
-	addi     r8, r8, -1
-	addi     r0, r3, 1
-	addi     r5, r5, -1
-	stw      r0, 8(r7)
-	slwi     r0, r5, 0xa
-	slwi     r5, r6, 0x14
-	slwi     r6, r9, 0x18
-	stb      r4, 0(r3)
-	or       r0, r8, r0
-	or       r0, r5, r0
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	or       r8, r6, r0
-	srwi     r7, r8, 0x18
-	lwz      r3, 8(r4)
-	rlwinm   r6, r8, 0x10, 0x18, 0x1f
-	rlwinm   r5, r8, 0x18, 0x18, 0x1f
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r7, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r6, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r5, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r8, 0(r3)
-	blr
-	*/
+	J3DGDWriteBPCmd((w - 1) | ((h - 1) << 10) | (fmt << 20) | (J3DGDTexImage0Ids[id] << 24));
 }
 
 /**
  * @note Address: 0x80075A74
  * @note Size: 0x90
  */
-void J3DGDSetTexImgPtr(_GXTexMapID, void*)
-{
-	/*
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	addi     r6, r13, J3DGDTexImage3Ids@sda21
-	lbzx     r0, r6, r3
-	addis    r6, r4, 0x8000
-	lwz      r3, 8(r5)
-	srwi     r7, r6, 5
-	slwi     r6, r0, 0x18
-	li       r4, 0x61
-	addi     r0, r3, 1
-	stw      r0, 8(r5)
-	or       r8, r7, r6
-	srwi     r7, r8, 0x18
-	stb      r4, 0(r3)
-	rlwinm   r6, r8, 0x10, 0x18, 0x1f
-	rlwinm   r5, r8, 0x18, 0x18, 0x1f
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r7, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r6, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r5, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r8, 0(r3)
-	blr
-	*/
-}
+void J3DGDSetTexImgPtr(GXTexMapID id, void* tex) { J3DGDWriteBPCmd((OSCachedToPhysical(tex) >> 5) | (J3DGDTexImage3Ids[id] << 24)); }
 
 /**
  * @note Address: 0x80075B04
  * @note Size: 0xD4
  */
-void J3DGDSetTexImgPtrRaw(_GXTexMapID, u32)
+void J3DGDSetTexImgPtrRaw(GXTexMapID id, u32 addr)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r5)
-	lwz      r0, 0xc(r5)
-	addi     r3, r3, 5
-	cmplw    r3, r0
-	ble      lbl_80075B3C
-	bl       GDOverflowed
-
-lbl_80075B3C:
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	addi     r3, r13, J3DGDTexImage3Ids@sda21
-	lbzx     r0, r3, r30
-	li       r5, 0x61
-	lwz      r3, 8(r4)
-	slwi     r6, r0, 0x18
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	or       r8, r31, r6
-	srwi     r7, r8, 0x18
-	stb      r5, 0(r3)
-	rlwinm   r6, r8, 0x10, 0x18, 0x1f
-	rlwinm   r5, r8, 0x18, 0x18, 0x1f
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r7, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r6, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r5, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r8, 0(r3)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	GDOverflowCheck(5);
+	J3DGDWriteBPCmd(addr | (J3DGDTexImage3Ids[id] << 24));
 }
 
 /**
  * @note Address: 0x80075BD8
  * @note Size: 0x98
  */
-void J3DGDSetTexTlut(_GXTexMapID, u32, _GXTlutFmt)
+void J3DGDSetTexTlut(GXTexMapID id, u32 addr, GXTlutFmt fmt)
 {
-	/*
-	lwz      r6, __GDCurrentDL@sda21(r13)
-	addi     r7, r13, J3DGDTexTlutIds@sda21
-	lbzx     r8, r7, r3
-	addis    r0, r4, 0xfff8
-	lwz      r3, 8(r6)
-	srwi     r7, r0, 9
-	li       r4, 0x61
-	slwi     r5, r5, 0xa
-	addi     r0, r3, 1
-	slwi     r8, r8, 0x18
-	stw      r0, 8(r6)
-	or       r0, r7, r5
-	or       r8, r8, r0
-	stb      r4, 0(r3)
-	srwi     r7, r8, 0x18
-	rlwinm   r6, r8, 0x10, 0x18, 0x1f
-	rlwinm   r5, r8, 0x18, 0x18, 0x1f
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r7, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r6, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r5, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r8, 0(r3)
-	blr
-	*/
+	J3DGDWriteBPCmd(((addr - 0x80000) >> 9) | fmt << 10 | J3DGDTexTlutIds[id] << 24);
 }
 
 /**
  * @note Address: 0x80075C70
  * @note Size: 0x2C8
  */
-void J3DGDLoadTlut(void*, u32, _GXTlutSize)
+void J3DGDLoadTlut(void* tex, u32 addr, GXTlutSize size)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	addis    r0, r3, 0x8000
-	srwi     r0, r0, 5
-	li       r8, 0x61
-	stw      r31, 0x1c(r1)
-	oris     r9, r0, 0x6400
-	li       r7, 0xfe
-	li       r6, 0xff
-	stw      r30, 0x18(r1)
-	li       r3, 0
-	rlwinm   r30, r9, 0x10, 0x18, 0x1f
-	rlwinm   r31, r9, 0x18, 0x18, 0x1f
-	stw      r29, 0x14(r1)
-	srwi     r29, r9, 0x18
-	lwz      r11, __GDCurrentDL@sda21(r13)
-	lwz      r10, 8(r11)
-	addi     r0, r10, 1
-	stw      r0, 8(r11)
-	li       r0, 0xf
-	stb      r8, 0(r10)
-	lwz      r12, __GDCurrentDL@sda21(r13)
-	lwz      r11, 8(r12)
-	addi     r10, r11, 1
-	stw      r10, 8(r12)
-	stb      r7, 0(r11)
-	lwz      r12, __GDCurrentDL@sda21(r13)
-	lwz      r11, 8(r12)
-	addi     r10, r11, 1
-	stw      r10, 8(r12)
-	stb      r6, 0(r11)
-	lwz      r12, __GDCurrentDL@sda21(r13)
-	lwz      r11, 8(r12)
-	addi     r10, r11, 1
-	stw      r10, 8(r12)
-	stb      r6, 0(r11)
-	lwz      r12, __GDCurrentDL@sda21(r13)
-	lwz      r11, 8(r12)
-	addi     r10, r11, 1
-	stw      r10, 8(r12)
-	stb      r3, 0(r11)
-	lwz      r12, __GDCurrentDL@sda21(r13)
-	lwz      r11, 8(r12)
-	addi     r10, r11, 1
-	stw      r10, 8(r12)
-	stb      r8, 0(r11)
-	lwz      r12, __GDCurrentDL@sda21(r13)
-	lwz      r11, 8(r12)
-	addi     r10, r11, 1
-	stw      r10, 8(r12)
-	stb      r0, 0(r11)
-	lwz      r12, __GDCurrentDL@sda21(r13)
-	lwz      r11, 8(r12)
-	addi     r10, r11, 1
-	stw      r10, 8(r12)
-	stb      r3, 0(r11)
-	lwz      r12, __GDCurrentDL@sda21(r13)
-	lwz      r11, 8(r12)
-	addi     r10, r11, 1
-	stw      r10, 8(r12)
-	stb      r3, 0(r11)
-	lwz      r12, __GDCurrentDL@sda21(r13)
-	lwz      r11, 8(r12)
-	addi     r10, r11, 1
-	stw      r10, 8(r12)
-	stb      r3, 0(r11)
-	lwz      r12, __GDCurrentDL@sda21(r13)
-	lwz      r11, 8(r12)
-	addi     r10, r11, 1
-	stw      r10, 8(r12)
-	stb      r8, 0(r11)
-	lwz      r12, __GDCurrentDL@sda21(r13)
-	lwz      r11, 8(r12)
-	addi     r10, r11, 1
-	stw      r10, 8(r12)
-	stb      r29, 0(r11)
-	lwz      r12, __GDCurrentDL@sda21(r13)
-	lwz      r11, 8(r12)
-	addi     r10, r11, 1
-	stw      r10, 8(r12)
-	stb      r30, 0(r11)
-	lwz      r12, __GDCurrentDL@sda21(r13)
-	lwz      r11, 8(r12)
-	addi     r10, r11, 1
-	stw      r10, 8(r12)
-	stb      r31, 0(r11)
-	lwz      r11, __GDCurrentDL@sda21(r13)
-	addis    r4, r4, 0xfff8
-	srwi     r10, r4, 9
-	slwi     r4, r5, 0xa
-	lwz      r5, 8(r11)
-	or       r4, r10, r4
-	oris     r29, r4, 0x6500
-	addi     r4, r5, 1
-	stw      r4, 8(r11)
-	srwi     r12, r29, 0x18
-	rlwinm   r11, r29, 0x10, 0x18, 0x1f
-	rlwinm   r10, r29, 0x18, 0x18, 0x1f
-	stb      r9, 0(r5)
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	lwz      r5, 8(r9)
-	addi     r4, r5, 1
-	stw      r4, 8(r9)
-	stb      r8, 0(r5)
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	lwz      r5, 8(r9)
-	addi     r4, r5, 1
-	stw      r4, 8(r9)
-	stb      r12, 0(r5)
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	lwz      r5, 8(r9)
-	addi     r4, r5, 1
-	stw      r4, 8(r9)
-	stb      r11, 0(r5)
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	lwz      r5, 8(r9)
-	addi     r4, r5, 1
-	stw      r4, 8(r9)
-	stb      r10, 0(r5)
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	lwz      r5, 8(r9)
-	addi     r4, r5, 1
-	stw      r4, 8(r9)
-	stb      r29, 0(r5)
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	lwz      r5, 8(r9)
-	addi     r4, r5, 1
-	stw      r4, 8(r9)
-	stb      r8, 0(r5)
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	lwz      r5, 8(r9)
-	addi     r4, r5, 1
-	stw      r4, 8(r9)
-	stb      r7, 0(r5)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r5, 8(r7)
-	addi     r4, r5, 1
-	stw      r4, 8(r7)
-	stb      r6, 0(r5)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r5, 8(r7)
-	addi     r4, r5, 1
-	stw      r4, 8(r7)
-	stb      r6, 0(r5)
-	lwz      r6, __GDCurrentDL@sda21(r13)
-	lwz      r5, 8(r6)
-	addi     r4, r5, 1
-	stw      r4, 8(r6)
-	stb      r3, 0(r5)
-	lwz      r6, __GDCurrentDL@sda21(r13)
-	lwz      r5, 8(r6)
-	addi     r4, r5, 1
-	stw      r4, 8(r6)
-	stb      r8, 0(r5)
-	lwz      r6, __GDCurrentDL@sda21(r13)
-	lwz      r5, 8(r6)
-	addi     r4, r5, 1
-	stw      r4, 8(r6)
-	stb      r0, 0(r5)
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r5)
-	addi     r0, r4, 1
-	stw      r0, 8(r5)
-	stb      r3, 0(r4)
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r5)
-	addi     r0, r4, 1
-	stw      r0, 8(r5)
-	stb      r3, 0(r4)
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r5)
-	addi     r0, r4, 1
-	stw      r0, 8(r5)
-	stb      r3, 0(r4)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	addi     r1, r1, 0x20
-	blr
-	*/
+	J3DGDWriteBPCmd(0xFFFF00 | 0xFE << 24);
+	J3DGDWriteBPCmd(0x0F << 24);
+
+	J3DGDWriteBPCmd((OSCachedToPhysical(tex) >> 5) | 0x64 << 24);
+	J3DGDWriteBPCmd(((addr - 0x80000) >> 9) | size << 10 | 0x65 << 24);
+
+	J3DGDWriteBPCmd(0xFFFF00 | 0xFE << 24);
+	J3DGDWriteBPCmd(0x0F << 24);
 }
 
 /**
  * @note Address: 0x80075F38
  * @note Size: 0x2D8
  */
-void J3DGDSetIndTexMtx(_GXIndTexMtxID, f32 (*)[3], s8)
+void J3DGDSetIndTexMtx(GXIndTexMtxID id, Mtx23 mtx, s8 exp)
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	cmpwi    r3, 8
-	stw      r0, 0x64(r1)
-	stmw     r24, 0x40(r1)
-	mr       r27, r5
-	beq      lbl_80075F94
-	bge      lbl_80075F70
-	cmpwi    r3, 4
-	beq      lbl_80075F94
-	bge      lbl_80075F84
-	cmpwi    r3, 1
-	bge      lbl_80075F7C
-	b        lbl_80075F94
+	s32 mtx32[6];
+	u32 idx;
 
-lbl_80075F70:
-	cmpwi    r3, 0xc
-	bge      lbl_80075F94
-	b        lbl_80075F8C
+	switch (id) {
+	case GX_ITM_0:
+	case GX_ITM_1:
+	case GX_ITM_2:
+		idx = (u32)(id - GX_ITM_0);
+		break;
+	case GX_ITM_S0:
+	case GX_ITM_S1:
+	case GX_ITM_S2:
+		idx = (u32)(id - GX_ITM_S0);
+		break;
+	case GX_ITM_T0:
+	case GX_ITM_T1:
+	case GX_ITM_T2:
+		idx = (u32)(id - GX_ITM_T0);
+		break;
+	default:
+		idx = 0;
+		break;
+	}
 
-lbl_80075F7C:
-	addi     r28, r3, -1
-	b        lbl_80075F98
+	exp += 17;
 
-lbl_80075F84:
-	addi     r28, r3, -5
-	b        lbl_80075F98
+	mtx32[0] = (s32)(mtx[0][0] * 1024.0f) & 0x7FF;
+	mtx32[1] = (s32)(mtx[1][0] * 1024.0f) & 0x7FF;
 
-lbl_80075F8C:
-	addi     r28, r3, -9
-	b        lbl_80075F98
+	mtx32[2] = (s32)(mtx[0][1] * 1024.0f) & 0x7FF;
+	mtx32[3] = (s32)(mtx[1][1] * 1024.0f) & 0x7FF;
 
-lbl_80075F94:
-	li       r28, 0
+	mtx32[4] = (s32)(mtx[0][2] * 1024.0f) & 0x7FF;
+	mtx32[5] = (s32)(mtx[1][2] * 1024.0f) & 0x7FF;
 
-lbl_80075F98:
-	lfs      f6, lbl_80516AA0@sda21(r2)
-	lfs      f2, 0(r4)
-	lfs      f1, 0xc(r4)
-	lfs      f0, 4(r4)
-	fmuls    f5, f6, f2
-	lfs      f2, 0x10(r4)
-	fmuls    f4, f6, f1
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	fmuls    f3, f6, f0
-	lfs      f1, 8(r4)
-	lfs      f0, 0x14(r4)
-	fmuls    f2, f6, f2
-	fmuls    f1, f6, f1
-	lwz      r3, 8(r5)
-	fmuls    f0, f6, f0
-	lwz      r0, 0xc(r5)
-	fctiwz   f5, f5
-	fctiwz   f4, f4
-	fctiwz   f3, f3
-	addi     r3, r3, 0xf
-	fctiwz   f2, f2
-	stfd     f5, 8(r1)
-	fctiwz   f1, f1
-	fctiwz   f0, f0
-	stfd     f4, 0x10(r1)
-	cmplw    r3, r0
-	lwz      r3, 0xc(r1)
-	stfd     f3, 0x18(r1)
-	lwz      r0, 0x14(r1)
-	clrlwi   r31, r3, 0x15
-	stfd     f2, 0x20(r1)
-	lwz      r3, 0x1c(r1)
-	clrlwi   r26, r0, 0x15
-	stfd     f1, 0x28(r1)
-	lwz      r0, 0x24(r1)
-	clrlwi   r30, r3, 0x15
-	stfd     f0, 0x30(r1)
-	lwz      r3, 0x2c(r1)
-	clrlwi   r25, r0, 0x15
-	lwz      r0, 0x34(r1)
-	clrlwi   r29, r3, 0x15
-	clrlwi   r24, r0, 0x15
-	ble      lbl_80076048
-	bl       GDOverflowed
+	GDOverflowCheck(15);
 
-lbl_80076048:
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	addi     r0, r27, 0x11
-	extsb    r3, r0
-	slwi     r8, r25, 0xb
-	lwz      r4, 8(r5)
-	mulli    r6, r28, 3
-	slwi     r10, r26, 0xb
-	addi     r0, r4, 1
-	stw      r0, 8(r5)
-	li       r0, 0x61
-	addi     r5, r6, 7
-	addi     r9, r6, 6
-	stb      r0, 0(r4)
-	rlwinm   r11, r3, 0x16, 8, 9
-	or       r4, r31, r10
-	or       r8, r30, r8
-	lwz      r12, __GDCurrentDL@sda21(r13)
-	or       r10, r11, r4
-	slwi     r4, r9, 0x18
-	rlwinm   r9, r3, 0x14, 8, 9
-	lwz      r11, 8(r12)
-	or       r4, r10, r4
-	srwi     r27, r4, 0x18
-	slwi     r7, r24, 0xb
-	addi     r10, r11, 1
-	slwi     r5, r5, 0x18
-	stw      r10, 8(r12)
-	or       r8, r9, r8
-	or       r5, r8, r5
-	addi     r6, r6, 8
-	stb      r27, 0(r11)
-	rlwinm   r8, r3, 0x12, 8, 9
-	or       r3, r29, r7
-	rlwinm   r30, r4, 0x10, 0x18, 0x1f
-	lwz      r28, __GDCurrentDL@sda21(r13)
-	or       r7, r8, r3
-	slwi     r3, r6, 0x18
-	rlwinm   r12, r4, 0x18, 0x18, 0x1f
-	lwz      r27, 8(r28)
-	or       r3, r7, r3
-	srwi     r11, r5, 0x18
-	rlwinm   r10, r5, 0x10, 0x18, 0x1f
-	addi     r6, r27, 1
-	rlwinm   r9, r5, 0x18, 0x18, 0x1f
-	stw      r6, 8(r28)
-	stb      r30, 0(r27)
-	lwz      r8, __GDCurrentDL@sda21(r13)
-	lwz      r7, 8(r8)
-	addi     r6, r7, 1
-	stw      r6, 8(r8)
-	stb      r12, 0(r7)
-	lwz      r8, __GDCurrentDL@sda21(r13)
-	lwz      r7, 8(r8)
-	addi     r6, r7, 1
-	stw      r6, 8(r8)
-	stb      r4, 0(r7)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r4, r6, 1
-	stw      r4, 8(r7)
-	stb      r0, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r4, r6, 1
-	stw      r4, 8(r7)
-	stb      r11, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r4, r6, 1
-	stw      r4, 8(r7)
-	stb      r10, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r4, r6, 1
-	stw      r4, 8(r7)
-	stb      r9, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r4, r6, 1
-	stw      r4, 8(r7)
-	stb      r5, 0(r6)
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	srwi     r8, r3, 0x18
-	rlwinm   r7, r3, 0x10, 0x18, 0x1f
-	rlwinm   r6, r3, 0x18, 0x18, 0x1f
-	lwz      r5, 8(r9)
-	addi     r4, r5, 1
-	stw      r4, 8(r9)
-	stb      r0, 0(r5)
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r5)
-	addi     r0, r4, 1
-	stw      r0, 8(r5)
-	stb      r8, 0(r4)
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r5)
-	addi     r0, r4, 1
-	stw      r0, 8(r5)
-	stb      r7, 0(r4)
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r5)
-	addi     r0, r4, 1
-	stw      r0, 8(r5)
-	stb      r6, 0(r4)
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r5)
-	addi     r0, r4, 1
-	stw      r0, 8(r5)
-	stb      r3, 0(r4)
-	lmw      r24, 0x40(r1)
-	lwz      r0, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+	J3DGDWriteBPCmd((mtx32[0] << 0) | (mtx32[1] << 11) | (((exp >> 0) & 0x03) << 22) | (0x06 + idx * 3) << 24);
+	J3DGDWriteBPCmd((mtx32[2] << 0) | (mtx32[3] << 11) | (((exp >> 2) & 0x03) << 22) | (0x07 + idx * 3) << 24);
+	J3DGDWriteBPCmd((mtx32[4] << 0) | (mtx32[5] << 11) | (((exp >> 4) & 0x03) << 22) | (0x08 + idx * 3) << 24);
 }
 
 /**
  * @note Address: 0x80076210
  * @note Size: 0xF0
  */
-void J3DGDSetIndTexCoordScale(_GXIndTexStageID, _GXIndTexScale, _GXIndTexScale, _GXIndTexScale, _GXIndTexScale)
+void J3DGDSetIndTexCoordScale(GXIndTexStageID id, GXIndTexScale s0, GXIndTexScale t0, GXIndTexScale s1, GXIndTexScale t1)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  mr        r29, r5
-	  mr        r30, r6
-	  mr        r31, r7
-	  lwz       r8, -0x7158(r13)
-	  lwz       r3, 0x8(r8)
-	  lwz       r0, 0xC(r8)
-	  addi      r3, r3, 0x5
-	  cmplw     r3, r0
-	  ble-      .loc_0x40
-	  bl        0x6B9F4
-
-	.loc_0x40:
-	  lwz       r8, -0x7158(r13)
-	  rlwinm    r0,r29,4,0,27
-	  srawi     r3, r27, 0x1
-	  li        r9, 0x61
-	  lwz       r7, 0x8(r8)
-	  addi      r5, r3, 0x25
-	  rlwinm    r3,r30,8,0,23
-	  or        r0, r28, r0
-	  addi      r6, r7, 0x1
-	  rlwinm    r4,r31,12,0,19
-	  stw       r6, 0x8(r8)
-	  or        r0, r3, r0
-	  or        r0, r4, r0
-	  rlwinm    r3,r5,24,0,7
-	  stb       r9, 0x0(r7)
-	  or        r8, r3, r0
-	  rlwinm    r7,r8,8,24,31
-	  lwz       r4, -0x7158(r13)
-	  rlwinm    r6,r8,16,24,31
-	  rlwinm    r5,r8,24,24,31
-	  lwz       r3, 0x8(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r4)
-	  stb       r7, 0x0(r3)
-	  lwz       r4, -0x7158(r13)
-	  lwz       r3, 0x8(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r4)
-	  stb       r6, 0x0(r3)
-	  lwz       r4, -0x7158(r13)
-	  lwz       r3, 0x8(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r4)
-	  stb       r5, 0x0(r3)
-	  lwz       r4, -0x7158(r13)
-	  lwz       r3, 0x8(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r4)
-	  stb       r8, 0x0(r3)
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	GDOverflowCheck(5);
+	J3DGDWriteBPCmd((s0) | (t0 << 4) | (s1 << 8) | (t1 << 12) | ((0x25 + (id >> 1)) << 24));
 }
 
 /**
  * @note Address: 0x80076300
  * @note Size: 0x1F8
  */
-void J3DGDSetIndTexOrder(u32, _GXTexCoordID, _GXTexMapID, _GXTexCoordID, _GXTexMapID, _GXTexCoordID, _GXTexMapID, _GXTexCoordID,
-                         _GXTexMapID)
+void J3DGDSetIndTexOrder(u32 num, GXTexCoordID tc0, GXTexMapID tm0, GXTexCoordID tc1, GXTexMapID tm1, GXTexCoordID tc2, GXTexMapID tm2,
+                         GXTexCoordID tc3, GXTexMapID tm3)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r23, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r30, 0x38(r1)
-	  mr        r23, r4
-	  mr        r24, r5
-	  mr        r25, r6
-	  mr        r26, r7
-	  mr        r27, r8
-	  mr        r28, r9
-	  mr        r29, r10
-	  lwz       r11, -0x7158(r13)
-	  lwz       r3, 0x8(r11)
-	  lwz       r0, 0xC(r11)
-	  addi      r3, r3, 0xA
-	  cmplw     r3, r0
-	  ble-      .loc_0x50
-	  bl        0x6B8F4
+	GDOverflowCheck(10);
+	J3DGDWriteBPCmd(((tm0 & 0x07) << 0) | ((tc0 & 0x07) << 3) | ((tm1 & 0x07) << 6) | ((tc1 & 0x07) << 9) | ((tm2 & 0x07) << 12)
+	                | ((tc2 & 0x07) << 15) | ((tm3 & 0x07) << 18) | ((tc3 & 0x07) << 21) | (0x27 << 24));
 
-	.loc_0x50:
-	  lwz       r6, -0x7158(r13)
-	  rlwinm    r8,r23,3,26,28
-	  rlwimi    r8,r24,0,29,31
-	  li        r7, 0x61
-	  lwz       r5, 0x8(r6)
-	  rlwimi    r8,r26,6,23,25
-	  rlwimi    r8,r25,9,20,22
-	  rlwinm    r3,r30,0,29,31
-	  addi      r0, r5, 0x1
-	  li        r4, 0x1
-	  stw       r0, 0x8(r6)
-	  rlwimi    r8,r28,12,17,19
-	  rlwimi    r8,r27,15,14,16
-	  rlwinm    r10,r24,0,29,31
-	  stb       r7, 0x0(r5)
-	  rlwimi    r8,r30,18,11,13
-	  rlwimi    r8,r29,21,8,10
-	  rlwinm    r0,r28,0,29,31
-	  lwz       r7, -0x7158(r13)
-	  oris      r12, r8, 0x2700
-	  rlwinm    r9,r12,16,24,31
-	  rlwinm    r11,r26,0,29,31
-	  lwz       r6, 0x8(r7)
-	  slw       r10, r4, r10
-	  addi      r5, r6, 0x1
-	  stw       r5, 0x8(r7)
-	  rlwinm    r5,r12,8,24,31
-	  stb       r5, 0x0(r6)
-	  rlwinm    r5,r12,24,24,31
-	  lwz       r8, -0x7158(r13)
-	  lwz       r7, 0x8(r8)
-	  addi      r6, r7, 0x1
-	  stw       r6, 0x8(r8)
-	  slw       r6, r4, r11
-	  slw       r8, r4, r0
-	  slw       r11, r4, r3
-	  stb       r9, 0x0(r7)
-	  li        r7, 0
-	  li        r9, 0
-	  lwz       r4, -0x7158(r13)
-	  lwz       r3, 0x8(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r4)
-	  stb       r5, 0x0(r3)
-	  lwz       r4, -0x7158(r13)
-	  lwz       r3, 0x8(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r4)
-	  stb       r12, 0x0(r3)
-	  mtctr     r31
-	  cmplwi    r31, 0
-	  ble-      .loc_0x16C
-
-	.loc_0x120:
-	  cmpwi     r9, 0x2
-	  beq-      .loc_0x158
-	  bge-      .loc_0x13C
-	  cmpwi     r9, 0
-	  beq-      .loc_0x148
-	  bge-      .loc_0x150
-	  b         .loc_0x164
-
-	.loc_0x13C:
-	  cmpwi     r9, 0x4
-	  bge-      .loc_0x164
-	  b         .loc_0x160
-
-	.loc_0x148:
-	  or        r7, r7, r10
-	  b         .loc_0x164
-
-	.loc_0x150:
-	  or        r7, r7, r6
-	  b         .loc_0x164
-
-	.loc_0x158:
-	  or        r7, r7, r8
-	  b         .loc_0x164
-
-	.loc_0x160:
-	  or        r7, r7, r11
-
-	.loc_0x164:
-	  addi      r9, r9, 0x1
-	  bdnz+     .loc_0x120
-
-	.loc_0x16C:
-	  lwz       r4, -0x7158(r13)
-	  oris      r9, r7, 0xF00
-	  li        r8, 0x61
-	  lwz       r3, 0x8(r4)
-	  rlwinm    r7,r9,8,24,31
-	  rlwinm    r6,r9,16,24,31
-	  rlwinm    r5,r9,24,24,31
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r4)
-	  stb       r8, 0x0(r3)
-	  lwz       r4, -0x7158(r13)
-	  lwz       r3, 0x8(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r4)
-	  stb       r7, 0x0(r3)
-	  lwz       r4, -0x7158(r13)
-	  lwz       r3, 0x8(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r4)
-	  stb       r6, 0x0(r3)
-	  lwz       r4, -0x7158(r13)
-	  lwz       r3, 0x8(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r4)
-	  stb       r5, 0x0(r3)
-	  lwz       r4, -0x7158(r13)
-	  lwz       r3, 0x8(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r4)
-	  stb       r9, 0x0(r3)
-	  lmw       r23, 0xC(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
+	u32 mask = 0;
+	for (u32 i = 0; i < num; i++) {
+		switch (i) {
+		case 0:
+			mask |= (1 << (tm0 & 0x07));
+			break;
+		case 1:
+			mask |= (1 << (tm1 & 0x07));
+			break;
+		case 2:
+			mask |= (1 << (tm2 & 0x07));
+			break;
+		case 3:
+			mask |= (1 << (tm3 & 0x07));
+			break;
+		}
+	}
+	J3DGDWriteBPCmd((mask) | (0x0F << 24));
 }
 
 /**
  * @note Address: 0x800764F8
  * @note Size: 0x188
  */
-void J3DGDSetTevOrder(_GXTevStageID, _GXTexCoordID, _GXTexMapID, _GXChannelID, _GXTexCoordID, _GXTexMapID, _GXChannelID)
+void J3DGDSetTevOrder(GXTevStageID stage, GXTexCoordID coord1, GXTexMapID map1, GXChannelID color1, GXTexCoordID coord2, GXTexMapID map2,
+                      GXChannelID color2)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  cmpwi     r4, 0x8
-	  stw       r0, 0x34(r1)
-	  stmw      r25, 0x14(r1)
-	  mr        r25, r3
-	  mr        r27, r5
-	  mr        r28, r6
-	  mr        r29, r8
-	  mr        r26, r9
-	  mr        r30, r4
-	  blt-      .loc_0x34
-	  li        r30, 0
+	static u8 c2r[] = { 0, 1, 0, 1, 0, 1, 7, 5, 6, 0, 0, 0, 0, 0, 0, 7 };
 
-	.loc_0x34:
-	  cmpwi     r7, 0x8
-	  mr        r31, r7
-	  blt-      .loc_0x44
-	  li        r31, 0
-
-	.loc_0x44:
-	  lwz       r4, -0x7158(r13)
-	  lwz       r3, 0x8(r4)
-	  lwz       r0, 0xC(r4)
-	  addi      r3, r3, 0x5
-	  cmplw     r3, r0
-	  ble-      .loc_0x60
-	  bl        0x6B6EC
-
-	.loc_0x60:
-	  rlwinm    r0,r25,1,31,31
-	  lis       r3, 0x804A
-	  add       r4, r0, r25
-	  rlwinm    r0,r26,0,28,31
-	  addi      r3, r3, 0x20E0
-	  cmpwi     r29, 0xFF
-	  srawi     r4, r4, 0x1
-	  lbzx      r0, r3, r0
-	  addi      r3, r4, 0x28
-	  li        r6, 0
-	  rlwinm    r3,r3,24,0,7
-	  rlwinm    r0,r0,19,0,12
-	  beq-      .loc_0xA0
-	  rlwinm.   r4,r29,0,23,23
-	  bne-      .loc_0xA0
-	  li        r6, 0x1
-
-	.loc_0xA0:
-	  lis       r4, 0x804A
-	  rlwinm    r7,r30,3,0,28
-	  rlwinm    r5,r28,0,28,31
-	  cmpwi     r27, 0xFF
-	  addi      r4, r4, 0x20E0
-	  rlwinm    r11,r6,18,6,13
-	  lbzx      r4, r4, r5
-	  rlwinm    r10,r31,15,0,16
-	  rlwinm    r9,r29,12,17,19
-	  rlwimi    r7,r27,0,29,31
-	  rlwinm    r8,r4,7,0,24
-	  li        r5, 0
-	  beq-      .loc_0xE0
-	  rlwinm.   r4,r27,0,23,23
-	  bne-      .loc_0xE0
-	  li        r5, 0x1
-
-	.loc_0xE0:
-	  lwz       r6, -0x7158(r13)
-	  rlwinm    r4,r5,6,18,25
-	  or        r4, r7, r4
-	  li        r7, 0x61
-	  lwz       r5, 0x8(r6)
-	  or        r4, r8, r4
-	  or        r8, r9, r4
-	  addi      r4, r5, 0x1
-	  stw       r4, 0x8(r6)
-	  or        r4, r10, r8
-	  or        r4, r11, r4
-	  stb       r7, 0x0(r5)
-	  or        r0, r0, r4
-	  or        r8, r3, r0
-	  lwz       r4, -0x7158(r13)
-	  rlwinm    r7,r8,8,24,31
-	  rlwinm    r6,r8,16,24,31
-	  rlwinm    r5,r8,24,24,31
-	  lwz       r3, 0x8(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r4)
-	  stb       r7, 0x0(r3)
-	  lwz       r4, -0x7158(r13)
-	  lwz       r3, 0x8(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r4)
-	  stb       r6, 0x0(r3)
-	  lwz       r4, -0x7158(r13)
-	  lwz       r3, 0x8(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r4)
-	  stb       r5, 0x0(r3)
-	  lwz       r4, -0x7158(r13)
-	  lwz       r3, 0x8(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r4)
-	  stb       r8, 0x0(r3)
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
+	GXTexCoordID r31 = coord1 >= 8 ? GX_TEXCOORD0 : coord1;
+	GXTexCoordID r30 = coord2 >= 8 ? GX_TEXCOORD0 : coord2;
+	GDOverflowCheck(5);
+	J3DGDWriteBPCmd(((map1 & 7) << 0) | (r31 << 3) | ((map1 != GX_TEXMAP_NULL && (map1 & GX_TEX_DISABLE) == 0) << 6)
+	                | (c2r[color1 & 0xf] << 7) | ((map2 & 7) << 12) | (r30 << 15)
+	                | ((map2 != GX_TEXMAP_NULL && (map2 & GX_TEX_DISABLE) == 0) << 18) | (c2r[color2 & 0xf] << 19)
+	                | ((stage / 2 + 0x28) << 24));
 }
 
 /**
  * @note Address: 0x80076680
  * @note Size: 0x168
  */
-void J3DGDSetTevKColor(_GXTevKColorID, _GXColor)
+void J3DGDSetTevKColor(GXTevKColorID id, GXColor color)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	slwi     r5, r3, 1
-	lbz      r8, 0(r4)
-	stw      r0, 0x14(r1)
-	addi     r7, r5, 0xe0
-	lbz      r0, 3(r4)
-	addi     r5, r5, 0xe1
-	stw      r31, 0xc(r1)
-	lbz      r6, 2(r4)
-	rlwimi   r8, r0, 0xc, 0xc, 0x13
-	stw      r30, 8(r1)
-	oris     r8, r8, 0x80
-	lbz      r4, 1(r4)
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	rlwimi   r6, r4, 0xc, 0xc, 0x13
-	slwi     r4, r7, 0x18
-	lwz      r3, 8(r9)
-	or       r31, r8, r4
-	lwz      r0, 0xc(r9)
-	addi     r3, r3, 0xa
-	cmplw    r3, r0
-	slwi     r0, r5, 0x18
-	oris     r3, r6, 0x80
-	or       r30, r3, r0
-	ble      lbl_800766EC
-	bl       GDOverflowed
+	u32 r0 = (color.r << 0) | (color.a << 12) | (1 << 23) | ((0xe0 + id * 2) << 24);
+	u32 r1 = (color.b << 0) | (color.g << 12) | (1 << 23) | ((0xe1 + id * 2) << 24);
 
-lbl_800766EC:
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	li       r11, 0x61
-	srwi     r10, r31, 0x18
-	rlwinm   r9, r31, 0x10, 0x18, 0x1f
-	lwz      r3, 8(r4)
-	rlwinm   r8, r31, 0x18, 0x18, 0x1f
-	srwi     r7, r30, 0x18
-	rlwinm   r6, r30, 0x10, 0x18, 0x1f
-	addi     r0, r3, 1
-	rlwinm   r5, r30, 0x18, 0x18, 0x1f
-	stw      r0, 8(r4)
-	stb      r11, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r10, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r9, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r8, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r31, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r11, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r7, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r6, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r5, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r30, 0(r3)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	GDOverflowCheck(10);
+	J3DGDWriteBPCmd(r0);
+	J3DGDWriteBPCmd(r1);
 }
 
 /**
  * @note Address: 0x800767E8
  * @note Size: 0x234
  */
-void J3DGDSetTevColorS10(_GXTevRegID, _GXColorS10)
+void J3DGDSetTevColorS10(GXTevRegID id, GXColorS10 color)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	slwi     r5, r3, 1
-	lha      r6, 2(r4)
-	stw      r0, 0x14(r1)
-	addi     r7, r5, 0xe0
-	lha      r0, 6(r4)
-	addi     r5, r5, 0xe1
-	stw      r31, 0xc(r1)
-	rlwinm   r6, r6, 0xc, 9, 0x13
-	lha      r9, 0(r4)
-	rlwinm   r8, r0, 0xc, 9, 0x13
-	stw      r30, 8(r1)
-	lha      r4, 4(r4)
-	rlwimi   r8, r9, 0, 0x15, 0x1f
-	lwz      r10, __GDCurrentDL@sda21(r13)
-	mr       r31, r8
-	rlwimi   r6, r4, 0, 0x15, 0x1f
-	lwz      r3, 8(r10)
-	mr       r30, r6
-	lwz      r0, 0xc(r10)
-	rlwimi   r31, r7, 0x18, 0, 7
-	addi     r3, r3, 0x14
-	rlwimi   r30, r5, 0x18, 0, 7
-	cmplw    r3, r0
-	ble      lbl_80076854
-	bl       GDOverflowed
+	u32 r0 = ((color.r & 0x7FF) << 0) | ((color.a & 0x7FF) << 12) | ((0xe0 + id * 2) << 24);
+	u32 r1 = ((color.b & 0x7FF) << 0) | ((color.g & 0x7FF) << 12) | ((0xe1 + id * 2) << 24);
 
-lbl_80076854:
-	lwz      r8, __GDCurrentDL@sda21(r13)
-	li       r0, 0x61
-	srwi     r12, r31, 0x18
-	rlwinm   r11, r31, 0x10, 0x18, 0x1f
-	lwz      r7, 8(r8)
-	rlwinm   r10, r31, 0x18, 0x18, 0x1f
-	srwi     r3, r30, 0x18
-	rlwinm   r4, r30, 0x10, 0x18, 0x1f
-	addi     r6, r7, 1
-	rlwinm   r5, r30, 0x18, 0x18, 0x1f
-	stw      r6, 8(r8)
-	clrlwi   r6, r30, 0x18
-	stb      r0, 0(r7)
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	lwz      r8, 8(r9)
-	addi     r7, r8, 1
-	stw      r7, 8(r9)
-	stb      r12, 0(r8)
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	lwz      r8, 8(r9)
-	addi     r7, r8, 1
-	stw      r7, 8(r9)
-	stb      r11, 0(r8)
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	lwz      r8, 8(r9)
-	addi     r7, r8, 1
-	stw      r7, 8(r9)
-	stb      r10, 0(r8)
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	lwz      r8, 8(r9)
-	addi     r7, r8, 1
-	stw      r7, 8(r9)
-	stb      r31, 0(r8)
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	lwz      r8, 8(r9)
-	addi     r7, r8, 1
-	stw      r7, 8(r9)
-	stb      r0, 0(r8)
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	lwz      r8, 8(r9)
-	addi     r7, r8, 1
-	stw      r7, 8(r9)
-	stb      r3, 0(r8)
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	lwz      r8, 8(r9)
-	addi     r7, r8, 1
-	stw      r7, 8(r9)
-	stb      r4, 0(r8)
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	lwz      r8, 8(r9)
-	addi     r7, r8, 1
-	stw      r7, 8(r9)
-	stb      r5, 0(r8)
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	lwz      r8, 8(r9)
-	addi     r7, r8, 1
-	stw      r7, 8(r9)
-	stb      r30, 0(r8)
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	lwz      r8, 8(r9)
-	addi     r7, r8, 1
-	stw      r7, 8(r9)
-	stb      r0, 0(r8)
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	lwz      r8, 8(r9)
-	addi     r7, r8, 1
-	stw      r7, 8(r9)
-	stb      r3, 0(r8)
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	lwz      r8, 8(r9)
-	addi     r7, r8, 1
-	stw      r7, 8(r9)
-	stb      r4, 0(r8)
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	lwz      r8, 8(r9)
-	addi     r7, r8, 1
-	stw      r7, 8(r9)
-	stb      r5, 0(r8)
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	lwz      r8, 8(r9)
-	addi     r7, r8, 1
-	stw      r7, 8(r9)
-	stb      r6, 0(r8)
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	lwz      r8, 8(r9)
-	addi     r7, r8, 1
-	stw      r7, 8(r9)
-	stb      r0, 0(r8)
-	lwz      r8, __GDCurrentDL@sda21(r13)
-	lwz      r7, 8(r8)
-	addi     r0, r7, 1
-	stw      r0, 8(r8)
-	stb      r3, 0(r7)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r7)
-	addi     r0, r3, 1
-	stw      r0, 8(r7)
-	stb      r4, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r5, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r6, 0(r3)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	GDOverflowCheck(20);
+	J3DGDWriteBPCmd(r0);
+	J3DGDWriteBPCmd(r1);
+
+	/* wtf? */
+	J3DGDWriteBPCmd(r1);
+	J3DGDWriteBPCmd(r1);
 }
 
 /**
  * @note Address: 0x80076A1C
  * @note Size: 0x360
  */
-void J3DGDSetFog(_GXFogType, f32, f32, f32, f32, _GXColor)
+void J3DGDSetFog(GXFogType type, f32 startZ, f32 endZ, f32 nearZ, f32 farZ, GXColor color)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	fcmpu    cr0, f4, f3
-	stw      r0, 0x34(r1)
-	stmw     r27, 0x1c(r1)
-	mr       r28, r3
-	mr       r29, r4
-	beq      lbl_80076A44
-	fcmpu    cr0, f2, f1
-	bne      lbl_80076A54
+	f32 A, B, C;
+	if (farZ == nearZ || endZ == startZ) {
+		A = 0.0f;
+		B = 0.5f;
+		C = 0.0f;
+	} else {
+		A = (farZ * nearZ) / ((farZ - nearZ) * (endZ - startZ));
+		B = farZ / (farZ - nearZ);
+		C = startZ / (endZ - startZ);
+	}
 
-lbl_80076A44:
-	lfs      f3, lbl_80516AA4@sda21(r2)
-	lfs      f4, lbl_80516AA8@sda21(r2)
-	stfs     f3, 0xc(r1)
-	b        lbl_80076A74
+	f32 mantissa = B;
+	u32 exponent = 1;
+	while (mantissa > 1.0) {
+		mantissa /= 2.0f;
+		exponent++;
+	}
 
-lbl_80076A54:
-	fsubs    f0, f4, f3
-	fsubs    f5, f2, f1
-	fmuls    f3, f4, f3
-	fdivs    f4, f4, f0
-	fmuls    f2, f0, f5
-	fdivs    f0, f1, f5
-	fdivs    f3, f3, f2
-	stfs     f0, 0xc(r1)
+	while (mantissa > 0.0f && mantissa < 0.5) {
+		mantissa *= 2.0f;
+		exponent--;
+	}
 
-lbl_80076A74:
-	lfs      f1, lbl_80516AA8@sda21(r2)
-	li       r31, 1
-	lfd      f0, lbl_80516AB0@sda21(r2)
-	b        lbl_80076A8C
+	f32 tA         = A / (1 << exponent);
+	u32 mantissa32 = (u32)(mantissa * 8388638.0f);
 
-lbl_80076A84:
-	fmuls    f4, f4, f1
-	addi     r31, r31, 1
+	u32 A32 = *(u32*)&tA;
+	u32 C32 = *(u32*)&C;
 
-lbl_80076A8C:
-	fcmpo    cr0, f4, f0
-	bgt      lbl_80076A84
-	lfd      f0, lbl_80516AC0@sda21(r2)
-	lfs      f2, lbl_80516AB8@sda21(r2)
-	lfs      f1, lbl_80516AA4@sda21(r2)
-	b        lbl_80076AAC
-
-lbl_80076AA4:
-	fmuls    f4, f4, f2
-	addi     r31, r31, -1
-
-lbl_80076AAC:
-	fcmpo    cr0, f4, f1
-	ble      lbl_80076ABC
-	fcmpo    cr0, f4, f0
-	blt      lbl_80076AA4
-
-lbl_80076ABC:
-	li       r3, 1
-	lis      r0, 0x4330
-	slw      r3, r3, r31
-	lfs      f0, lbl_80516AC8@sda21(r2)
-	xoris    r3, r3, 0x8000
-	stw      r0, 0x10(r1)
-	fmuls    f1, f0, f4
-	lfd      f2, lbl_80516AD0@sda21(r2)
-	stw      r3, 0x14(r1)
-	li       r7, 0x61
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lfd      f0, 0x10(r1)
-	lwz      r3, 8(r4)
-	fsubs    f0, f0, f2
-	lwz      r30, 0xc(r1)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	fdivs    f0, f3, f0
-	stb      r7, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stfs     f0, 8(r1)
-	lwz      r0, 8(r1)
-	srwi     r0, r0, 0xc
-	oris     r8, r0, 0xee00
-	srwi     r0, r8, 0x18
-	stb      r0, 0(r3)
-	rlwinm   r6, r8, 0x10, 0x18, 0x1f
-	rlwinm   r5, r8, 0x18, 0x18, 0x1f
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r6, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r5, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r8, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r7, 0(r3)
-	bl       __cvt_fp2unsigned
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	oris     r3, r3, 0xef00
-	oris     r4, r31, 0xf000
-	slwi     r0, r28, 0x15
-	lwz      r6, 8(r7)
-	srwi     r8, r3, 0x18
-	rlwimi   r0, r30, 0x14, 0xc, 0x1f
-	rlwinm   r27, r3, 0x10, 0x18, 0x1f
-	addi     r5, r6, 1
-	rlwinm   r31, r3, 0x18, 0x18, 0x1f
-	stw      r5, 8(r7)
-	oris     r5, r0, 0xf100
-	li       r0, 0x61
-	srwi     r28, r4, 0x18
-	stb      r8, 0(r6)
-	rlwinm   r12, r4, 0x10, 0x18, 0x1f
-	rlwinm   r11, r4, 0x18, 0x18, 0x1f
-	srwi     r9, r5, 0x18
-	lwz      r30, __GDCurrentDL@sda21(r13)
-	rlwinm   r8, r5, 0x10, 0x18, 0x1f
-	rlwinm   r7, r5, 0x18, 0x18, 0x1f
-	lwz      r10, 8(r30)
-	addi     r6, r10, 1
-	stw      r6, 8(r30)
-	stb      r27, 0(r10)
-	lwz      r30, __GDCurrentDL@sda21(r13)
-	lwz      r10, 8(r30)
-	addi     r6, r10, 1
-	stw      r6, 8(r30)
-	stb      r31, 0(r10)
-	lwz      r30, __GDCurrentDL@sda21(r13)
-	lwz      r10, 8(r30)
-	addi     r6, r10, 1
-	stw      r6, 8(r30)
-	stb      r3, 0(r10)
-	lwz      r10, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r10)
-	addi     r3, r6, 1
-	stw      r3, 8(r10)
-	stb      r0, 0(r6)
-	lwz      r10, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r10)
-	addi     r3, r6, 1
-	stw      r3, 8(r10)
-	stb      r28, 0(r6)
-	lwz      r10, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r10)
-	addi     r3, r6, 1
-	stw      r3, 8(r10)
-	stb      r12, 0(r6)
-	lwz      r10, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r10)
-	addi     r3, r6, 1
-	stw      r3, 8(r10)
-	stb      r11, 0(r6)
-	lwz      r10, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r10)
-	addi     r3, r6, 1
-	stw      r3, 8(r10)
-	stb      r4, 0(r6)
-	lwz      r6, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r6)
-	addi     r3, r4, 1
-	stw      r3, 8(r6)
-	stb      r0, 0(r4)
-	lwz      r6, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r6)
-	addi     r3, r4, 1
-	stw      r3, 8(r6)
-	stb      r9, 0(r4)
-	lwz      r6, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r6)
-	addi     r3, r4, 1
-	stw      r3, 8(r6)
-	stb      r8, 0(r4)
-	lwz      r6, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r6)
-	addi     r3, r4, 1
-	stw      r3, 8(r6)
-	stb      r7, 0(r4)
-	lwz      r9, __GDCurrentDL@sda21(r13)
-	lbz      r3, 1(r29)
-	lwz      r8, 8(r9)
-	lbz      r4, 2(r29)
-	rlwimi   r4, r3, 8, 0x10, 0x17
-	addi     r7, r8, 1
-	lbz      r6, 0(r29)
-	stw      r7, 8(r9)
-	rlwimi   r4, r6, 0x10, 8, 0xf
-	stb      r5, 0(r8)
-	oris     r9, r4, 0xf200
-	srwi     r7, r9, 0x18
-	lwz      r8, __GDCurrentDL@sda21(r13)
-	rlwinm   r6, r9, 0x10, 0x18, 0x1f
-	rlwinm   r5, r9, 0x18, 0x18, 0x1f
-	lwz      r4, 8(r8)
-	addi     r3, r4, 1
-	stw      r3, 8(r8)
-	stb      r0, 0(r4)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r7, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r6, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r5, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r9, 0(r3)
-	lmw      r27, 0x1c(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	J3DGDWriteBPCmd((A32 >> 12) | (0xee << 24));
+	J3DGDWriteBPCmd(mantissa32 | (0xef << 24));
+	J3DGDWriteBPCmd(exponent | (0xf0 << 24));
+	J3DGDWriteBPCmd((C32 >> 12) | (type << 21) | (0xf1 << 24));
+	J3DGDWriteBPCmd(color.b << 0 | color.g << 8 | color.r << 16 | (0xf2 << 24));
 }
 
 /**
  * @note Address: 0x80076D7C
  * @note Size: 0x13C
  */
-void J3DGDSetFogRangeAdj(u8, u16, _GXFogAdjTable*)
+void J3DGDSetFogRangeAdj(u8 enabled, u16 center, GXFogAdjTable* fogAdjTable)
 {
-	/*
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80076E2C
-	li       r0, 5
-	li       r6, 0
-	mtctr    r0
+	if (enabled) {
+		for (s32 i = 0; i < 10; i += 2) {
+			J3DGDWriteBPCmd((0xe9 + i / 2) << 24 | fogAdjTable->fogVals[i + 1] << 12 | fogAdjTable->fogVals[i] << 0);
+		}
+	}
 
-lbl_80076D90:
-	lwz      r8, __GDCurrentDL@sda21(r13)
-	addi     r10, r6, 0xe9
-	lhz      r0, 2(r5)
-	slwi     r12, r10, 0x18
-	lwz      r7, 8(r8)
-	li       r9, 0x61
-	lhz      r10, 0(r5)
-	slwi     r11, r0, 0xc
-	addi     r0, r7, 1
-	addi     r5, r5, 4
-	stw      r0, 8(r8)
-	or       r0, r12, r11
-	or       r12, r0, r10
-	addi     r6, r6, 1
-	stb      r9, 0(r7)
-	srwi     r11, r12, 0x18
-	rlwinm   r10, r12, 0x10, 0x18, 0x1f
-	rlwinm   r9, r12, 0x18, 0x18, 0x1f
-	lwz      r8, __GDCurrentDL@sda21(r13)
-	lwz      r7, 8(r8)
-	addi     r0, r7, 1
-	stw      r0, 8(r8)
-	stb      r11, 0(r7)
-	lwz      r8, __GDCurrentDL@sda21(r13)
-	lwz      r7, 8(r8)
-	addi     r0, r7, 1
-	stw      r0, 8(r8)
-	stb      r10, 0(r7)
-	lwz      r8, __GDCurrentDL@sda21(r13)
-	lwz      r7, 8(r8)
-	addi     r0, r7, 1
-	stw      r0, 8(r8)
-	stb      r9, 0(r7)
-	lwz      r8, __GDCurrentDL@sda21(r13)
-	lwz      r7, 8(r8)
-	addi     r0, r7, 1
-	stw      r0, 8(r8)
-	stb      r12, 0(r7)
-	bdnz     lbl_80076D90
-
-lbl_80076E2C:
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	clrlwi   r4, r4, 0x10
-	addi     r0, r4, 0x156
-	li       r6, 0x61
-	lwz      r4, 8(r5)
-	oris     r7, r0, 0xe800
-	rlwinm   r3, r3, 0xa, 0xe, 0x15
-	addi     r0, r4, 1
-	stw      r0, 8(r5)
-	or       r8, r7, r3
-	srwi     r7, r8, 0x18
-	stb      r6, 0(r4)
-	rlwinm   r6, r8, 0x10, 0x18, 0x1f
-	rlwinm   r5, r8, 0x18, 0x18, 0x1f
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r7, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r6, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r5, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r8, 0(r3)
-	blr
-	*/
+	u32 reg = (0xe8 << 24) | (center + 342) << 0 | enabled << 10;
+	J3DGDWriteBPCmd(reg);
 }
 
 /**
