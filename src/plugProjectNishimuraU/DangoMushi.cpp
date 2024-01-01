@@ -359,8 +359,7 @@ bool Obj::addShadowScale()
  */
 void Obj::setRandTarget()
 {
-	f32 randDist
-	    = C_GENERALPARMS.mHomeRadius() + randWeightFloat(C_GENERALPARMS.mTerritoryRadius() - C_GENERALPARMS.mHomeRadius());
+	f32 randDist = C_GENERALPARMS.mHomeRadius() + randWeightFloat(C_GENERALPARMS.mTerritoryRadius() - C_GENERALPARMS.mHomeRadius());
 
 	f32 angDiff = JMAAtan2Radian(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
 	f32 ang1    = angDiff + randWeightFloat(PI);
@@ -381,8 +380,7 @@ bool Obj::isReachedTarget() { return sqrDistanceXZ(mPosition, mTargetPosition) <
  */
 Creature* Obj::getSearchedTarget()
 {
-	return EnemyFunc::getNearestPikminOrNavi(this, C_GENERALPARMS.mViewAngle(), C_GENERALPARMS.mSightRadius(), nullptr, nullptr,
-	                                         nullptr);
+	return EnemyFunc::getNearestPikminOrNavi(this, C_GENERALPARMS.mViewAngle(), C_GENERALPARMS.mSightRadius(), nullptr, nullptr, nullptr);
 }
 
 /**
@@ -394,8 +392,8 @@ void Obj::rollingMove()
 	Vector3f targetPos;
 	Navi* navi = naviMgr->getActiveNavi();
 	if (!navi) {
-		navi = static_cast<Navi*>(
-		    EnemyFunc::getNearestPikminOrNavi(this, 180.0f, C_GENERALPARMS.mSightRadius(), nullptr, nullptr, nullptr));
+		navi
+		    = static_cast<Navi*>(EnemyFunc::getNearestPikminOrNavi(this, 180.0f, C_GENERALPARMS.mSightRadius(), nullptr, nullptr, nullptr));
 	}
 	if (navi) {
 		targetPos = navi->getPosition();
@@ -885,7 +883,7 @@ void Obj::updateMapCollisionSize()
 		f32 heightOff = C_GENERALPARMS.mHeightOffsetFromFloor();
 		if (heightOff > 60.0f) {
 			C_GENERALPARMS.mHeightOffsetFromFloor() = -((250.0f * sys->mDeltaTime) - heightOff);
-			heightOff                                  = C_GENERALPARMS.mHeightOffsetFromFloor();
+			heightOff                               = C_GENERALPARMS.mHeightOffsetFromFloor();
 			if (heightOff < 60.0f) {
 				C_GENERALPARMS.mHeightOffsetFromFloor() = 60.0f;
 			}
@@ -894,7 +892,7 @@ void Obj::updateMapCollisionSize()
 		f32 heightOff = C_GENERALPARMS.mHeightOffsetFromFloor();
 		if (heightOff < 120.0f) {
 			C_GENERALPARMS.mHeightOffsetFromFloor() = ((250.0f * sys->mDeltaTime) + heightOff);
-			heightOff                                  = C_GENERALPARMS.mHeightOffsetFromFloor();
+			heightOff                               = C_GENERALPARMS.mHeightOffsetFromFloor();
 			if (heightOff > 120.0f) {
 				C_GENERALPARMS.mHeightOffsetFromFloor() = 120.0f;
 			}

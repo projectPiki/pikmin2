@@ -995,8 +995,8 @@ void Obj::windTarget()
 	}
 
 	f32 radius    = _304 * C_GENERALPARMS.mAttackRadius.mValue;
-	Vector3f vec1 = _2E0;                                                                // f16
-	Vector3f vec2 = _2EC;                                                                // f29
+	Vector3f vec1 = _2E0;                                                             // f16
+	Vector3f vec2 = _2EC;                                                             // f29
 	f32 slope     = (f32)tan(PI * (DEG2RAD * C_GENERALPARMS.mAttackHitAngle.mValue)); // f20
 
 	// this is probably a new vector

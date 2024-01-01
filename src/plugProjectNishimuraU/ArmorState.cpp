@@ -212,8 +212,8 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 void StateMove::exec(EnemyBase* enemy)
 {
 	Obj* armor       = OBJ(enemy);
-	Creature* target = EnemyFunc::getNearestPikminOrNavi(armor, CG_GENERALPARMS(armor).mViewAngle(),
-	                                                     CG_GENERALPARMS(armor).mSightRadius(), nullptr, nullptr, nullptr);
+	Creature* target = EnemyFunc::getNearestPikminOrNavi(armor, CG_GENERALPARMS(armor).mViewAngle(), CG_GENERALPARMS(armor).mSightRadius(),
+	                                                     nullptr, nullptr, nullptr);
 	if (target) {
 		armor->mTargetCreature = target;
 		f32 angleDist          = armor->changeFaceDir2(target);
@@ -233,9 +233,8 @@ void StateMove::exec(EnemyBase* enemy)
 				armor->mNextState = ARMOR_GoHome;
 				armor->finishMotion();
 			} else {
-				Creature* newTarget
-				    = EnemyFunc::getNearestPikminOrNavi(armor, CG_GENERALPARMS(armor).mMaxAttackAngle(),
-				                                        CG_GENERALPARMS(armor).mMaxAttackRange(), nullptr, nullptr, nullptr);
+				Creature* newTarget = EnemyFunc::getNearestPikminOrNavi(
+				    armor, CG_GENERALPARMS(armor).mMaxAttackAngle(), CG_GENERALPARMS(armor).mMaxAttackRange(), nullptr, nullptr, nullptr);
 				if (newTarget) {
 					armor->mNextState = ARMOR_Attack2;
 					armor->finishMotion();
@@ -1019,15 +1018,12 @@ void StateFlick::exec(EnemyBase* enemy)
 
 	if (armor->mCurAnim->mIsPlaying) {
 		if (armor->mCurAnim->mType == KEYEVENT_2) {
-			EnemyFunc::flickNearbyNavi(armor, CG_GENERALPARMS(armor).mShakeRange.mValue,
-			                           CG_GENERALPARMS(armor).mShakeKnockback.mValue, CG_GENERALPARMS(armor).mShakeDamage.mValue,
-			                           armor->getFaceDir(), nullptr);
-			EnemyFunc::flickNearbyPikmin(armor, CG_GENERALPARMS(armor).mShakeRange.mValue,
-			                             CG_GENERALPARMS(armor).mShakeKnockback.mValue, CG_GENERALPARMS(armor).mShakeDamage.mValue,
-			                             armor->getFaceDir(), nullptr);
-			EnemyFunc::flickStickPikmin(armor, CG_GENERALPARMS(armor).mShakeChance.mValue,
-			                            CG_GENERALPARMS(armor).mShakeKnockback.mValue, CG_GENERALPARMS(armor).mShakeDamage.mValue,
-			                            armor->getFaceDir(), nullptr);
+			EnemyFunc::flickNearbyNavi(armor, CG_GENERALPARMS(armor).mShakeRange.mValue, CG_GENERALPARMS(armor).mShakeKnockback.mValue,
+			                           CG_GENERALPARMS(armor).mShakeDamage.mValue, armor->getFaceDir(), nullptr);
+			EnemyFunc::flickNearbyPikmin(armor, CG_GENERALPARMS(armor).mShakeRange.mValue, CG_GENERALPARMS(armor).mShakeKnockback.mValue,
+			                             CG_GENERALPARMS(armor).mShakeDamage.mValue, armor->getFaceDir(), nullptr);
+			EnemyFunc::flickStickPikmin(armor, CG_GENERALPARMS(armor).mShakeChance.mValue, CG_GENERALPARMS(armor).mShakeKnockback.mValue,
+			                            CG_GENERALPARMS(armor).mShakeDamage.mValue, armor->getFaceDir(), nullptr);
 			armor->mFlickTimer = 0.0f;
 
 		} else if (armor->mCurAnim->mType == KEYEVENT_END) {

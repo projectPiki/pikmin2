@@ -33,7 +33,7 @@ struct IKSystemParms {
 		mDownwardAccelFactor = 0.5f;
 		mMaxDecelFactor      = 10.0f;
 		mMinDecelFactor      = -2.0f;
-		mBendFactor                  = 0.0f;
+		mBendFactor          = 0.0f;
 		mMoveSpeed           = 75.0f;
 		_30                  = 0.0f;
 		_34                  = 30.0f;
@@ -56,7 +56,7 @@ struct IKSystemParms {
 	f32 mDownwardAccelFactor; // _1C
 	f32 mMaxDecelFactor;      // _20
 	f32 mMinDecelFactor;      // _24
-	f32 mBendFactor;                  // _28
+	f32 mBendFactor;          // _28
 	f32 mMoveSpeed;           // _2C
 	f32 _30;                  // _30
 	f32 _34;                  // _34
@@ -173,8 +173,8 @@ struct IKSystemBase {
 	f32 mBendRatio;                // _08, aka rotation in radians
 	f32 mMoveRatio;                // _0C
 	f32 mTimer;                    // _10
-	f32 mTopToMiddleDistance;                // _14, some distance I'm not sure of
-	f32 mMiddleToBottomDistance;                // _18, same as above
+	f32 mTopToMiddleDistance;      // _14, some distance I'm not sure of
+	f32 mMiddleToBottomDistance;   // _18, same as above
 	Vector3f mTargetPosition;      // _1C
 	Vector3f mIkPositions[3];      // _28
 	Matrixf* mLegJointMatrices[3]; // _4C

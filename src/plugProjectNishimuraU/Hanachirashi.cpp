@@ -998,8 +998,8 @@ bool Obj::windTarget()
 	}
 
 	f32 radius    = mCurrentAttackRadius * C_GENERALPARMS.mAttackRadius.mValue;
-	Vector3f vec1 = mEfxPosition;                                                        // f16
-	Vector3f vec2 = mFaceDirection;                                                      // f29
+	Vector3f vec1 = mEfxPosition;                                                     // f16
+	Vector3f vec2 = mFaceDirection;                                                   // f29
 	f32 slope     = (f32)tan(PI * (DEG2RAD * C_GENERALPARMS.mAttackHitAngle.mValue)); // f20
 
 	// this is probably a new vector

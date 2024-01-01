@@ -98,8 +98,8 @@ void StateWait::exec(EnemyBase* enemy)
 	}
 
 	if (frog->mCurAnim->mIsPlaying && frog->mCurAnim->mType == KEYEVENT_END) {
-		Creature* target = EnemyFunc::getNearestPikminOrNavi(frog, frog->getViewAngle(), CG_GENERALPARMS(frog).mSightRadius.mValue,
-		                                                     nullptr, nullptr, nullptr);
+		Creature* target = EnemyFunc::getNearestPikminOrNavi(frog, frog->getViewAngle(), CG_GENERALPARMS(frog).mSightRadius.mValue, nullptr,
+		                                                     nullptr, nullptr);
 		if (target) {
 			frog->mTargetCreature = target;
 			frog->mAlertTimer     = 0.0f;
@@ -449,9 +449,9 @@ void StateTurn::exec(EnemyBase* enemy)
 
 	if (target) {
 		frog->mAlertTimer = 0.0f;
-		f32 angdist = frog->turnToTarget(target, CG_GENERALPARMS(frog).mTurnSpeed.mValue, CG_GENERALPARMS(frog).mMaxTurnAngle.mValue);
-		f32 attackAngle = CG_GENERALPARMS(frog).mMaxAttackAngle();
-		f32 attackDist  = CG_GENERALPARMS(frog).mMaxAttackRange();
+		f32 angdist       = frog->turnToTarget(target, CG_GENERALPARMS(frog).mTurnSpeed.mValue, CG_GENERALPARMS(frog).mMaxTurnAngle.mValue);
+		f32 attackAngle   = CG_GENERALPARMS(frog).mMaxAttackAngle();
+		f32 attackDist    = CG_GENERALPARMS(frog).mMaxAttackRange();
 
 		bool check   = false;
 		Vector3f sep = frog->getTargetSeparation(target);
@@ -798,10 +798,10 @@ void StateJump::exec(EnemyBase* enemy)
 		if (frog->mCurAnim->mType == KEYEVENT_2) {
 			frog->startJumpAttack();
 
-			EnemyFunc::flickNearbyNavi(frog, CG_GENERALPARMS(frog).mShakeRange.mValue, 0.0f,
-			                           CG_GENERALPARMS(frog).mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
-			EnemyFunc::flickNearbyPikmin(frog, CG_GENERALPARMS(frog).mShakeRange.mValue, 0.0f,
-			                             CG_GENERALPARMS(frog).mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
+			EnemyFunc::flickNearbyNavi(frog, CG_GENERALPARMS(frog).mShakeRange.mValue, 0.0f, CG_GENERALPARMS(frog).mShakeDamage.mValue,
+			                           FLICK_BACKWARD_ANGLE, nullptr);
+			EnemyFunc::flickNearbyPikmin(frog, CG_GENERALPARMS(frog).mShakeRange.mValue, 0.0f, CG_GENERALPARMS(frog).mShakeDamage.mValue,
+			                             FLICK_BACKWARD_ANGLE, nullptr);
 
 			if (frog->mWaterBox) {
 				frog->getJAIObject()->startSound(PSSE_EN_FROG_WATERJUMP, 0);
@@ -1027,7 +1027,7 @@ void StateTurnToHome::exec(EnemyBase* enemy)
 	Obj* frog        = OBJ(enemy);
 	Vector3f homePos = frog->mHomePosition;
 	f32 maxAngle     = CG_GENERALPARMS(frog).mMaxAttackAngle();
-	f32 angdist = frog->turnToTarget(homePos, CG_GENERALPARMS(frog).mTurnSpeed.mValue, CG_GENERALPARMS(frog).mMaxTurnAngle.mValue);
+	f32 angdist      = frog->turnToTarget(homePos, CG_GENERALPARMS(frog).mTurnSpeed.mValue, CG_GENERALPARMS(frog).mMaxTurnAngle.mValue);
 
 	if (FABS(angdist) <= PI * (DEG2RAD * maxAngle)) {
 		frog->mNextState = FROG_GoHome;

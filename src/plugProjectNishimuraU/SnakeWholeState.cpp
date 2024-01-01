@@ -511,8 +511,7 @@ void StateWait::exec(EnemyBase* enemy)
 	if (snagret->mHealth <= 0.0f) {
 		snagret->mNextState = SNAKEWHOLE_Dead;
 		snagret->finishMotion();
-	} else if (EnemyFunc::isStartFlick(snagret, false)
-	           || snagret->mStateTimer > CG_PROPERPARMS(snagret).mWaitTime.mValue) {
+	} else if (EnemyFunc::isStartFlick(snagret, false) || snagret->mStateTimer > CG_PROPERPARMS(snagret).mWaitTime.mValue) {
 		snagret->mNextState = SNAKEWHOLE_Disappear;
 		snagret->finishMotion();
 	} else if (snagret->isOutTerritory()) {

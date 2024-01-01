@@ -778,8 +778,8 @@ void StateChaseTurn::exec(EnemyBase* enemy)
 		tank->mCautionTimer = 0.0f;
 		f32 angleDist       = tank->changeFaceDir2(target);
 		if (target->isAlive()) {
-			if (tank->isTargetOutOfRange(target, angleDist, CG_GENERALPARMS(tank).mPrivateRadius(),
-			                             CG_GENERALPARMS(tank).mSightRadius(), CG_GENERALPARMS(tank).mFov(), viewAngle)) {
+			if (tank->isTargetOutOfRange(target, angleDist, CG_GENERALPARMS(tank).mPrivateRadius(), CG_GENERALPARMS(tank).mSightRadius(),
+			                             CG_GENERALPARMS(tank).mFov(), viewAngle)) {
 				tank->mTargetCreature = nullptr;
 				tank->finishMotion();
 			}

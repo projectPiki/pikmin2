@@ -1189,11 +1189,9 @@ bool Obj::isFindTarget()
 		}
 	}
 
-	mTargetCreature
-	    = EnemyFunc::getNearestNavi(this, C_GENERALPARMS.mSearchAngle(), C_GENERALPARMS.mSearchDistance(), &minDist, nullptr);
-	f32 naviDist = minDist;
-	Piki* piki
-	    = EnemyFunc::getNearestPikmin(this, C_GENERALPARMS.mSearchAngle(), C_GENERALPARMS.mSearchDistance(), &minDist, nullptr);
+	mTargetCreature = EnemyFunc::getNearestNavi(this, C_GENERALPARMS.mSearchAngle(), C_GENERALPARMS.mSearchDistance(), &minDist, nullptr);
+	f32 naviDist    = minDist;
+	Piki* piki      = EnemyFunc::getNearestPikmin(this, C_GENERALPARMS.mSearchAngle(), C_GENERALPARMS.mSearchDistance(), &minDist, nullptr);
 	if (minDist < naviDist) {
 		mTargetCreature = piki;
 	}

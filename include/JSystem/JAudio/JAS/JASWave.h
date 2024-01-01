@@ -45,18 +45,18 @@ struct JASWaveArc : public JASDisposer {
 };
 
 struct JASWaveInfo {
-	u8 mBlockType;      // _00
-	u8 _01;      // _01
-	f32 _04;     // _04
-	u32 mOffset; // _08
-	u32 _0C;     // _0C
-	u32 _10;     // _10
-	u32 mBlockCount;     // _14
-	u32 _18;     // _18
-	u32 _1C;     // _1C
-	s16 _20;     // _20
-	s16 _22;     // _22
-	void* _24;   // _24
+	u8 mBlockType;   // _00
+	u8 _01;          // _01
+	f32 _04;         // _04
+	u32 mOffset;     // _08
+	u32 _0C;         // _0C
+	u32 _10;         // _10
+	u32 mBlockCount; // _14
+	u32 _18;         // _18
+	u32 _1C;         // _1C
+	s16 _20;         // _20
+	s16 _22;         // _22
+	void* _24;       // _24
 };
 
 struct JASWaveHandle {

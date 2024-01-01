@@ -536,9 +536,9 @@ void StateTurn::exec(EnemyBase* enemy)
 		Creature* target = mini->getSearchedTarget();
 		if (target) {
 			mini->mHealthGaugeTimer = 0.0f;
-			f32 angleSep = mini->turnToTarget(target, CG_GENERALPARMS(mini).mTurnSpeed(), CG_GENERALPARMS(mini).mMaxTurnAngle());
-			if (mini->isTargetOutOfRange(target, angleSep, CG_GENERALPARMS(mini).mPrivateRadius(),
-			                             CG_GENERALPARMS(mini).mSightRadius(), CG_GENERALPARMS(mini).mFov(), mini->getViewAngle())) {
+			f32 angleSep            = mini->turnToTarget(target, CG_GENERALPARMS(mini).mTurnSpeed(), CG_GENERALPARMS(mini).mMaxTurnAngle());
+			if (mini->isTargetOutOfRange(target, angleSep, CG_GENERALPARMS(mini).mPrivateRadius(), CG_GENERALPARMS(mini).mSightRadius(),
+			                             CG_GENERALPARMS(mini).mFov(), mini->getViewAngle())) {
 				mini->mNextState = MINIHOUDAI_Lost;
 				mini->finishMotion();
 			} else {
@@ -554,8 +554,7 @@ void StateTurn::exec(EnemyBase* enemy)
 			f32 dist         = sqrDistanceXZ(miniPos, homePos);
 			if (dist < SQUARE(CG_GENERALPARMS(mini).mHomeRadius())) {
 				Vector3f targetPos = mini->mWalkTargetPosition;
-				f32 angleSep
-				    = mini->turnToTarget(targetPos, CG_GENERALPARMS(mini).mTurnSpeed(), CG_GENERALPARMS(mini).mMaxTurnAngle());
+				f32 angleSep = mini->turnToTarget(targetPos, CG_GENERALPARMS(mini).mTurnSpeed(), CG_GENERALPARMS(mini).mMaxTurnAngle());
 
 				if (absF(angleSep) <= QUARTER_PI) {
 					mini->mNextState = MINIHOUDAI_WalkPath;
@@ -1157,7 +1156,7 @@ void StateTurnPath::exec(EnemyBase* enemy)
 			}
 		} else {
 			Vector3f targetPos = mini->mWalkTargetPosition;
-			f32 angleSep = mini->turnToTarget(targetPos, CG_GENERALPARMS(mini).mTurnSpeed(), CG_GENERALPARMS(mini).mMaxTurnAngle());
+			f32 angleSep       = mini->turnToTarget(targetPos, CG_GENERALPARMS(mini).mTurnSpeed(), CG_GENERALPARMS(mini).mMaxTurnAngle());
 			if (absF(angleSep) <= QUARTER_PI) {
 				mini->mNextState = MINIHOUDAI_WalkPath;
 				mini->finishMotion();
@@ -1223,9 +1222,8 @@ void StateWalk::exec(EnemyBase* enemy)
 			if (target) {
 				mini->mHealthGaugeTimer = 0.0f;
 				f32 angleSep            = mini->turnToTarget(target, turnSpeed, maxTurnAngle);
-				if (mini->isTargetOutOfRange(target, angleSep, CG_GENERALPARMS(mini).mPrivateRadius(),
-				                             CG_GENERALPARMS(mini).mSightRadius(), CG_GENERALPARMS(mini).mFov(),
-				                             mini->getViewAngle())) {
+				if (mini->isTargetOutOfRange(target, angleSep, CG_GENERALPARMS(mini).mPrivateRadius(), CG_GENERALPARMS(mini).mSightRadius(),
+				                             CG_GENERALPARMS(mini).mFov(), mini->getViewAngle())) {
 					mini->mNextState = MINIHOUDAI_Lost;
 					mini->finishMotion();
 				} else {

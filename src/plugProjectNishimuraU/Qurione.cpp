@@ -247,8 +247,8 @@ bool Obj::isAppear()
 		return true;
 	}
 
-	if (EnemyFunc::getNearestPikminOrNavi(this, C_GENERALPARMS.mViewAngle.mValue, C_GENERALPARMS.mSightRadius.mValue, nullptr,
-	                                      nullptr, nullptr)) {
+	if (EnemyFunc::getNearestPikminOrNavi(this, C_GENERALPARMS.mViewAngle.mValue, C_GENERALPARMS.mSightRadius.mValue, nullptr, nullptr,
+	                                      nullptr)) {
 		return true;
 	}
 

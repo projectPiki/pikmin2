@@ -67,7 +67,7 @@ void Obj::setParameters()
 		mScaleModifier = scale;
 		mScale         = Vector3f(scale);
 		mCollTree->mPart->setScale(scale);
-		mCurLodSphere.mRadius                           = scale * C_GENERALPARMS.mOffCameraRadius.mValue;
+		mCurLodSphere.mRadius                        = scale * C_GENERALPARMS.mOffCameraRadius.mValue;
 		C_GENERALPARMS.mHeightOffsetFromFloor.mValue = 60.0f;
 	}
 }

@@ -632,8 +632,8 @@ void StateMove::exec(EnemyBase* enemy)
 				sarai->finishMotion();
 			}
 
-			EnemyFunc::walkToTarget(sarai, targetPos, CG_GENERALPARMS(sarai).mMoveSpeed.mValue,
-			                        CG_GENERALPARMS(sarai).mTurnSpeed.mValue, CG_GENERALPARMS(sarai).mMaxTurnAngle.mValue);
+			EnemyFunc::walkToTarget(sarai, targetPos, CG_GENERALPARMS(sarai).mMoveSpeed.mValue, CG_GENERALPARMS(sarai).mTurnSpeed.mValue,
+			                        CG_GENERALPARMS(sarai).mMaxTurnAngle.mValue);
 		}
 	} else {
 		sarai->mTargetVelocity = Vector3f(0.0f);
@@ -1387,9 +1387,8 @@ void StateFlick::exec(EnemyBase* enemy)
 
 	if (sarai->mCurAnim->mIsPlaying) {
 		if (sarai->mCurAnim->mType == KEYEVENT_2) {
-			EnemyFunc::flickStickPikmin(sarai, CG_GENERALPARMS(sarai).mShakeChance.mValue,
-			                            CG_GENERALPARMS(sarai).mShakeKnockback.mValue, CG_GENERALPARMS(sarai).mShakeDamage.mValue,
-			                            FLICK_BACKWARD_ANGLE, nullptr);
+			EnemyFunc::flickStickPikmin(sarai, CG_GENERALPARMS(sarai).mShakeChance.mValue, CG_GENERALPARMS(sarai).mShakeKnockback.mValue,
+			                            CG_GENERALPARMS(sarai).mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 			sarai->mFlickTimer = 0.0f;
 
 		} else if (sarai->mCurAnim->mType == KEYEVENT_END) {
@@ -1438,9 +1437,8 @@ void StateBombFlick::exec(EnemyBase* enemy)
 
 	if (sarai->mCurAnim->mIsPlaying) {
 		if (sarai->mCurAnim->mType == KEYEVENT_2) {
-			EnemyFunc::flickStickPikmin(sarai, CG_GENERALPARMS(sarai).mShakeChance.mValue,
-			                            CG_GENERALPARMS(sarai).mShakeKnockback.mValue, CG_GENERALPARMS(sarai).mShakeDamage.mValue,
-			                            FLICK_BACKWARD_ANGLE, nullptr);
+			EnemyFunc::flickStickPikmin(sarai, CG_GENERALPARMS(sarai).mShakeChance.mValue, CG_GENERALPARMS(sarai).mShakeKnockback.mValue,
+			                            CG_GENERALPARMS(sarai).mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 			sarai->mFlickTimer = 0.0f;
 
 		} else if (sarai->mCurAnim->mType == KEYEVENT_END) {

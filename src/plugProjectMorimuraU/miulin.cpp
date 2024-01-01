@@ -573,8 +573,8 @@ bool Obj::isFindTarget()
 	f32 searchDist = C_GENERALPARMS.mSearchDistance.mValue;
 	searchDist *= searchDist;
 
-	mTargetCreature = EnemyFunc::getNearestNavi(this, C_GENERALPARMS.mSearchAngle.mValue, C_GENERALPARMS.mSearchDistance.mValue,
-	                                            &searchDist, nullptr);
+	mTargetCreature
+	    = EnemyFunc::getNearestNavi(this, C_GENERALPARMS.mSearchAngle.mValue, C_GENERALPARMS.mSearchDistance.mValue, &searchDist, nullptr);
 
 	Iterator<Piki> iter(pikiMgr);
 
@@ -985,8 +985,7 @@ bool Obj::isStartWalk()
 		mFlickTimer = 0.0f;
 	}
 
-	mTargetCreature
-	    = EnemyFunc::getNearestPikminOrNavi(this, viewAngle, C_GENERALPARMS.mSearchDistance.mValue, nullptr, nullptr, nullptr);
+	mTargetCreature = EnemyFunc::getNearestPikminOrNavi(this, viewAngle, C_GENERALPARMS.mSearchDistance.mValue, nullptr, nullptr, nullptr);
 
 	if (mTargetCreature) {
 		mGoalPosition = mTargetCreature->getPosition();

@@ -1163,15 +1163,12 @@ void StateGroundFlick::exec(EnemyBase* enemy)
 
 	if (enemy->mCurAnim->mIsPlaying) {
 		if (enemy->mCurAnim->mType == KEYEVENT_2) {
-			EnemyFunc::flickNearbyNavi(enemy, CG_GENERALPARMS(enemy).mShakeRange.mValue,
-			                           CG_GENERALPARMS(enemy).mShakeKnockback.mValue, CG_GENERALPARMS(enemy).mShakeDamage.mValue,
-			                           FLICK_BACKWARD_ANGLE, nullptr);
-			EnemyFunc::flickNearbyPikmin(enemy, CG_GENERALPARMS(enemy).mShakeRange.mValue,
-			                             CG_GENERALPARMS(enemy).mShakeKnockback.mValue, CG_GENERALPARMS(enemy).mShakeDamage.mValue,
-			                             FLICK_BACKWARD_ANGLE, nullptr);
-			EnemyFunc::flickStickPikmin(enemy, CG_GENERALPARMS(enemy).mShakeChance.mValue,
-			                            CG_GENERALPARMS(enemy).mShakeKnockback.mValue, CG_GENERALPARMS(enemy).mShakeDamage.mValue,
-			                            FLICK_BACKWARD_ANGLE, nullptr);
+			EnemyFunc::flickNearbyNavi(enemy, CG_GENERALPARMS(enemy).mShakeRange.mValue, CG_GENERALPARMS(enemy).mShakeKnockback.mValue,
+			                           CG_GENERALPARMS(enemy).mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
+			EnemyFunc::flickNearbyPikmin(enemy, CG_GENERALPARMS(enemy).mShakeRange.mValue, CG_GENERALPARMS(enemy).mShakeKnockback.mValue,
+			                             CG_GENERALPARMS(enemy).mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
+			EnemyFunc::flickStickPikmin(enemy, CG_GENERALPARMS(enemy).mShakeChance.mValue, CG_GENERALPARMS(enemy).mShakeKnockback.mValue,
+			                            CG_GENERALPARMS(enemy).mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 
 			enemy->mFlickTimer = 0.0f;
 		} else if (enemy->mCurAnim->mType == KEYEVENT_END) {

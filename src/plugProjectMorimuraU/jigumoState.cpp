@@ -314,8 +314,8 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 void StateAttack::exec(EnemyBase* enemy)
 {
 	if (_11) {
-		FakePiki* target = OBJ(enemy)->getNearestPikiOrNavi(CG_GENERALPARMS(enemy).mSearchAngle.mValue,
-		                                                    CG_GENERALPARMS(enemy).mSearchDistance.mValue);
+		FakePiki* target
+		    = OBJ(enemy)->getNearestPikiOrNavi(CG_GENERALPARMS(enemy).mSearchAngle.mValue, CG_GENERALPARMS(enemy).mSearchDistance.mValue);
 		if (target) {
 			enemy->turnToTarget(target, CG_GENERALPARMS(enemy).mTurnSpeed(), CG_GENERALPARMS(enemy).mMaxTurnAngle());
 			OBJ(enemy)->mGoalPosition = Vector3f(target->getPosition());

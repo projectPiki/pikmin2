@@ -204,9 +204,8 @@ void StateJump::exec(EnemyBase* enemy)
 
 		fuefuki->mTargetVelocity = Vector3f(1500.0f * sinTheta, y, 1500.0f * cosTheta);
 
-		EnemyFunc::flickStickPikmin(fuefuki, CG_GENERALPARMS(fuefuki).mShakeChance.mValue,
-		                            CG_GENERALPARMS(fuefuki).mShakeKnockback.mValue, CG_GENERALPARMS(fuefuki).mShakeDamage.mValue,
-		                            FLICK_BACKWARD_ANGLE, nullptr);
+		EnemyFunc::flickStickPikmin(fuefuki, CG_GENERALPARMS(fuefuki).mShakeChance.mValue, CG_GENERALPARMS(fuefuki).mShakeKnockback.mValue,
+		                            CG_GENERALPARMS(fuefuki).mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 	}
 
 	if (fuefuki->mStateTimer > CG_PROPERPARMS(fuefuki).mJumpTime.mValue) {
@@ -237,8 +236,8 @@ void StateJump::exec(EnemyBase* enemy)
 			                           CG_GENERALPARMS(fuefuki).mShakeKnockback.mValue, CG_GENERALPARMS(fuefuki).mShakeDamage.mValue,
 			                           FLICK_BACKWARD_ANGLE, nullptr);
 			EnemyFunc::flickNearbyPikmin(fuefuki, CG_GENERALPARMS(fuefuki).mShakeRange.mValue,
-			                             CG_GENERALPARMS(fuefuki).mShakeKnockback.mValue,
-			                             CG_GENERALPARMS(fuefuki).mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
+			                             CG_GENERALPARMS(fuefuki).mShakeKnockback.mValue, CG_GENERALPARMS(fuefuki).mShakeDamage.mValue,
+			                             FLICK_BACKWARD_ANGLE, nullptr);
 			EnemyFunc::flickStickPikmin(fuefuki, CG_GENERALPARMS(fuefuki).mShakeChance.mValue,
 			                            CG_GENERALPARMS(fuefuki).mShakeKnockback.mValue, CG_GENERALPARMS(fuefuki).mShakeDamage.mValue,
 			                            FLICK_BACKWARD_ANGLE, nullptr);
@@ -398,8 +397,8 @@ void StateWalk::exec(EnemyBase* enemy)
 	Obj* fuefuki       = OBJ(enemy);
 	Vector3f targetPos = Vector3f(fuefuki->mTargetPosition);
 	if (!fuefuki->isFinishMotion()) {
-		EnemyFunc::walkToTarget(fuefuki, targetPos, CG_GENERALPARMS(fuefuki).mMoveSpeed.mValue,
-		                        CG_GENERALPARMS(fuefuki).mTurnSpeed.mValue, CG_GENERALPARMS(fuefuki).mMaxTurnAngle.mValue);
+		EnemyFunc::walkToTarget(fuefuki, targetPos, CG_GENERALPARMS(fuefuki).mMoveSpeed.mValue, CG_GENERALPARMS(fuefuki).mTurnSpeed.mValue,
+		                        CG_GENERALPARMS(fuefuki).mMaxTurnAngle.mValue);
 		if (fuefuki->isArriveTarget()) {
 			if (fuefuki->mSquadTimer > 0.0f) {
 				fuefuki->mNextState = FUEFUKI_Turn;

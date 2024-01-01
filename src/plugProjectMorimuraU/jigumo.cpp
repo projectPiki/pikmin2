@@ -268,8 +268,8 @@ void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
 {
 	bool isVisible = false;
 
-	param.mPosition = Vector3f(
-	    mPosition.x, C_PARMS->mLifeGaugeOffset * mScaleModifier + (C_GENERALPARMS.mLifeMeterHeight() + mPosition.y), mPosition.z);
+	param.mPosition = Vector3f(mPosition.x, C_PARMS->mLifeGaugeOffset * mScaleModifier + (C_GENERALPARMS.mLifeMeterHeight() + mPosition.y),
+	                           mPosition.z);
 	param.mCurHealthPercentage = (mHealth / mMaxHealth);
 	param.mRadius              = 10.0f;
 
@@ -593,9 +593,9 @@ void Obj::walkFunc()
 	}
 
 	f32 angleWeight, terrRad;
-	f32 walkSpeed = getWalkSpeed();                       // f29
+	f32 walkSpeed = getWalkSpeed();                    // f29
 	terrRad       = C_GENERALPARMS.mTerritoryRadius(); // f30
-	angleWeight   = C_PARMS->mTurnWeight;                 // f31, 20.0f by default
+	angleWeight   = C_PARMS->mTurnWeight;              // f31, 20.0f by default
 	f32 rotRate   = C_GENERALPARMS.mTurnSpeed();       // f28
 	f32 rotSpeed  = C_GENERALPARMS.mMaxTurnAngle();    // f27
 

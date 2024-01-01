@@ -347,8 +347,7 @@ void StateChase::exec(EnemyBase* enemy)
 			Vector3f newPos = targetPos + sep;                                                            // f24, f23
 			f32 angle       = JMAAtan2Radian(newPos.x - hanachirashiPos.x, newPos.z - hanachirashiPos.z); // f29
 
-			hanachirashi->turnToTarget(target, CG_GENERALPARMS(hanachirashi).mTurnSpeed(),
-			                           CG_GENERALPARMS(hanachirashi).mMaxTurnAngle());
+			hanachirashi->turnToTarget(target, CG_GENERALPARMS(hanachirashi).mTurnSpeed(), CG_GENERALPARMS(hanachirashi).mMaxTurnAngle());
 
 			if (sqrDistanceXZ(hanachirashiPos, newPos) > 225.0f) {
 				f32 x = CG_GENERALPARMS(hanachirashi).mMoveSpeed() * sinf(angle);
@@ -812,8 +811,7 @@ void StateChaseInside::exec(EnemyBase* enemy)
 	} else {
 		Creature* target = hanachirashi->mTargetCreature;
 		if (target) {
-			hanachirashi->turnToTarget(target, CG_GENERALPARMS(hanachirashi).mTurnSpeed(),
-			                           CG_GENERALPARMS(hanachirashi).mMaxTurnAngle());
+			hanachirashi->turnToTarget(target, CG_GENERALPARMS(hanachirashi).mTurnSpeed(), CG_GENERALPARMS(hanachirashi).mMaxTurnAngle());
 		}
 
 		f32 angle = JMAAtan2Radian(targetPos.x - hanachirashiPos.x, targetPos.z - hanachirashiPos.z);
@@ -1183,15 +1181,12 @@ void StateGroundFlick::exec(EnemyBase* enemy)
 
 	if (enemy->mCurAnim->mIsPlaying) {
 		if (enemy->mCurAnim->mType == KEYEVENT_2) {
-			EnemyFunc::flickNearbyNavi(enemy, CG_GENERALPARMS(enemy).mShakeRange.mValue,
-			                           CG_GENERALPARMS(enemy).mShakeKnockback.mValue, CG_GENERALPARMS(enemy).mShakeDamage.mValue,
-			                           FLICK_BACKWARD_ANGLE, nullptr);
-			EnemyFunc::flickNearbyPikmin(enemy, CG_GENERALPARMS(enemy).mShakeRange.mValue,
-			                             CG_GENERALPARMS(enemy).mShakeKnockback.mValue, CG_GENERALPARMS(enemy).mShakeDamage.mValue,
-			                             FLICK_BACKWARD_ANGLE, nullptr);
-			EnemyFunc::flickStickPikmin(enemy, CG_GENERALPARMS(enemy).mShakeChance.mValue,
-			                            CG_GENERALPARMS(enemy).mShakeKnockback.mValue, CG_GENERALPARMS(enemy).mShakeDamage.mValue,
-			                            FLICK_BACKWARD_ANGLE, nullptr);
+			EnemyFunc::flickNearbyNavi(enemy, CG_GENERALPARMS(enemy).mShakeRange.mValue, CG_GENERALPARMS(enemy).mShakeKnockback.mValue,
+			                           CG_GENERALPARMS(enemy).mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
+			EnemyFunc::flickNearbyPikmin(enemy, CG_GENERALPARMS(enemy).mShakeRange.mValue, CG_GENERALPARMS(enemy).mShakeKnockback.mValue,
+			                             CG_GENERALPARMS(enemy).mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
+			EnemyFunc::flickStickPikmin(enemy, CG_GENERALPARMS(enemy).mShakeChance.mValue, CG_GENERALPARMS(enemy).mShakeKnockback.mValue,
+			                            CG_GENERALPARMS(enemy).mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 
 			enemy->mFlickTimer = 0.0f;
 		} else if (enemy->mCurAnim->mType == KEYEVENT_END) {

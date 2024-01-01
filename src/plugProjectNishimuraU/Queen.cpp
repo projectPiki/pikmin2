@@ -92,8 +92,8 @@ void Obj::setParameters()
 		} else if (gameSystem->mIsInCave && gameSystem->isStoryMode()) {
 			SingleGameSection* section = static_cast<SingleGameSection*>(gameSystem->mSection);
 			if (section && section->getCaveID() == 'f_01') { // if in Hole of Beasts
-				mCanCreateLarva                  = false;
-				mDoEasyRoll                      = true;
+				mCanCreateLarva               = false;
+				mDoEasyRoll                   = true;
 				C_GENERALPARMS.mHealth.mValue = C_PROPERPARMS.mHoBHealth.mValue;
 			}
 		}

@@ -34,648 +34,6 @@ namespace {
 const char* sDirName[4] = { "tutorial", "forest", "yakushima", "last" };
 };
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_singleGS_Zukan_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80482E60
-    lbl_80482E60:
-        .skip 0xC
-        .asciz "SingleGS_Zukan"
-        .skip 1
-    .global lbl_80482E7C
-    lbl_80482E7C:
-        .asciz "tutorial"
-        .skip 3
-    .global lbl_80482E88
-    lbl_80482E88:
-        .asciz "yakushima"
-        .skip 2
-        .4byte 0x907D8AD3
-        .4byte 0x8366836F
-        .4byte 0x8362834F
-        .4byte 0x00000000
-        .asciz "/user/Yamashita/enemyTex/arc.szs"
-        .skip 3
-        .asciz "ZZDummy/texture.bti"
-    .global lbl_80482EDC
-    lbl_80482EDC:
-        .asciz "singleGS_Zukan.cpp"
-        .skip 1
-        .asciz "P2Assert"
-        .skip 3
-        .asciz "%s/texture.bti"
-        .skip 1
-    .global lbl_80482F0C
-    lbl_80482F0C:
-        .4byte 0x907D8AD3
-        .4byte 0x834A8381
-        .4byte 0x83890000
-    .global lbl_80482F18
-    lbl_80482F18:
-        .asciz "radius:%6.3f"
-        .skip 3
-    .global lbl_80482F28
-    lbl_80482F28:
-        .asciz "angle :%6.3f"
-        .skip 3
-    .global lbl_80482F38
-    lbl_80482F38:
-        .asciz "height:%6.3f"
-        .skip 3
-    .global lbl_80482F48
-    lbl_80482F48:
-        .asciz "fovy  :%6.3f"
-        .skip 3
-    .global lbl_80482F58
-    lbl_80482F58:
-        .asciz "ExtraHeapFor2D null\n"
-        .skip 3
-    .global lbl_80482F70
-    lbl_80482F70:
-        .asciz "StartTeki"
-        .skip 2
-    .global lbl_80482F7C
-    lbl_80482F7C:
-        .asciz "StartPellet"
-    .global lbl_80482F88
-    lbl_80482F88:
-        .asciz "ModeChangeToTeki"
-        .skip 3
-    .global lbl_80482F9C
-    lbl_80482F9C:
-        .asciz "ChangeTeki"
-        .skip 1
-    .global lbl_80482FA8
-    lbl_80482FA8:
-        .asciz "ModeChangeToPellet"
-        .skip 1
-    .global lbl_80482FBC
-    lbl_80482FBC:
-        .asciz "ChangePellet"
-        .skip 3
-        .4byte lbl_80482F70
-        .4byte lbl_80482F7C
-        .4byte lbl_80482F88
-        .4byte lbl_8051A1C4
-        .4byte lbl_80482F9C
-        .4byte lbl_80482FA8
-        .4byte lbl_8051A1CC
-        .4byte lbl_80482FBC
-        .4byte lbl_8051A1D4
-        .asciz "PSGame.h"
-        .skip 3
-        .asciz "PSScene.h"
-        .skip 2
-        .asciz "get sound scene at\ninvalid timming\n"
-        .asciz "Unknown mode : %d \n"
-    .global lbl_80483040
-    lbl_80483040:
-        .asciz "Illegal next mode. %d \n"
-        .asciz "READY:%d Enemy:%d Item:%d"
-        .skip 2
-        .asciz "enemy:%d item:%d"
-        .skip 3
-        .asciz "heapA %d"
-        .skip 3
-        .asciz "heapB %d"
-        .skip 3
-        .asciz "user/Yamashita/zukan/%s/%s/arc.szs"
-        .skip 1
-        .asciz "PSCommon.h"
-        .skip 1
-        .asciz "course.txt"
-        .skip 1
-    .global lbl_804830DC
-    lbl_804830DC:
-        .asciz "FreeSizeA :%d \n"
-        .4byte 0x8379838C
-        .4byte 0x83628367
-        .4byte 0x919082C8
-        .4byte 0x82CC82C5
-        .4byte 0x8379838C
-        .4byte 0x83628367
-        .4byte 0x82F0838D
-        .4byte 0x815B8368
-        .4byte 0x82B582DC
-        .4byte 0x82B72066
-        .4byte 0x7265653A
-        .4byte 0x2564200A
-        .4byte 0x00000000
-        .4byte 0x82BE82B5
-        .4byte 0x82BD2066
-        .4byte 0x7265653A
-        .4byte 0x2564200A
-        .4byte 0x00000000
-        .4byte 0x934782F0
-        .4byte 0x8341838D
-        .4byte 0x8362834E
-        .4byte 0x20256495
-        .4byte 0x43814066
-        .4byte 0x7265653A
-        .4byte 0x2564200A
-        .4byte 0x00000000
-        .4byte 0x2A2A2042
-        .4byte 0x49525448
-        .4byte 0x20464149
-        .4byte 0x4C454420
-        .4byte 0x21212049
-        .4byte 0x443A2564
-        .4byte 0x200A0000
-    .global lbl_80483170
-    lbl_80483170:
-        .4byte 0x746F6F20
-        .4byte 0x6D616E79
-        .4byte 0x2070656C
-        .4byte 0x6C65740A
-        .4byte 0x00000000
-        .4byte 0x50696B69
-        .4byte 0x4B696C6C
-        .4byte 0x41726700
-        .4byte 0x43726561
-        .4byte 0x74757265
-        .4byte 0x4B696C6C
-        .4byte 0x41726700
-        .4byte 0x50656C6C
-        .4byte 0x6574496E
-        .4byte 0x69744172
-        .4byte 0x67000000
-        .4byte 0x50696B69
-        .4byte 0x496E6974
-        .4byte 0x41726700
-        .4byte 0x23202564
-        .4byte 0x2F25640D
-        .4byte 0x0A000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804C0A40
-    lbl_804C0A40:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000001
-        .4byte 0x00000002
-        .4byte 0x00000003
-        .4byte 0x00000000
-    .global "sDirName__28@unnamed@singleGS_Zukan_cpp@"
-    "sDirName__28@unnamed@singleGS_Zukan_cpp@":
-        .4byte lbl_80482E7C
-        .4byte lbl_8051A100
-        .4byte lbl_80482E88
-        .4byte lbl_8051A108
-        .4byte 0x00000000
-        .4byte 0xFFFFFFFF
-        .4byte dvdloadA__Q34Game10SingleGame10ZukanStateFv
-        .4byte 0x00000000
-        .4byte 0xFFFFFFFF
-        .4byte dvdloadB_teki__Q34Game10SingleGame10ZukanStateFv
-        .4byte 0x00000000
-        .4byte 0xFFFFFFFF
-        .4byte dvdloadB_pellet__Q34Game10SingleGame10ZukanStateFv
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q28Morimura19DispMemberZukanItem
-    __vt__Q28Morimura19DispMemberZukanItem:
-        .4byte 0
-        .4byte 0
-        .4byte getSize__Q28Morimura19DispMemberZukanItemFv
-        .4byte getOwnerID__Q28Morimura19DispMemberZukanItemFv
-        .4byte getMemberID__Q28Morimura19DispMemberZukanItemFv
-        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-    .global __vt__Q28Morimura20DispMemberZukanEnemy
-    __vt__Q28Morimura20DispMemberZukanEnemy:
-        .4byte 0
-        .4byte 0
-        .4byte getSize__Q28Morimura20DispMemberZukanEnemyFv
-        .4byte getOwnerID__Q28Morimura20DispMemberZukanEnemyFv
-        .4byte getMemberID__Q28Morimura20DispMemberZukanEnemyFv
-        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-    .global __vt__Q28Morimura19DispMemberZukanBase
-    __vt__Q28Morimura19DispMemberZukanBase:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-    .global "__vt__41Delegate<Q34Game10SingleGame10ZukanState>"
-    "__vt__41Delegate<Q34Game10SingleGame10ZukanState>":
-        .4byte 0
-        .4byte 0
-        .4byte "invoke__41Delegate<Q34Game10SingleGame10ZukanState>Fv"
-        .4byte 0
-        .4byte 0
-        .4byte 0
-    .global __vt__Q34Game10SingleGame10ZukanState
-    __vt__Q34Game10SingleGame10ZukanState:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
-        .4byte exec__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection
-        .4byte
-   cleanup__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection .4byte
-   "resume__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-        .4byte
-   "restart__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-        .4byte
-   "transit__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectioniPQ24Game8StateArg"
-        .4byte
-   draw__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionR8Graphics
-        .4byte
-   onOrimaDown__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectioni .4byte
-   onMovieStart__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-        .4byte
-   onMovieDone__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-        .4byte
-   onMovieCommand__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectioni .4byte
-   onHoleIn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game8ItemCave4Item
-        .4byte
-   onNextFloor__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game8ItemHole4Item
-        .4byte
-   onFountainReturn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item
-        .4byte
-   on_section_fadeout__Q34Game10SingleGame5StateFPQ24Game17SingleGameSection
-        .4byte
-   on_demo_timer__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionUl .4byte
-   0 .4byte 0 .4byte 0 .4byte 0 .4byte 0 .4byte 0 .4byte 0 .4byte 0 .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-    .global __vt__Q34Game15IllustratedBook6Camera
-    __vt__Q34Game15IllustratedBook6Camera:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game15IllustratedBook6CameraFv
-        .4byte getChildCount__5CNodeFv
-        .4byte "getObject__17Container<5Plane>FPv"
-        .4byte "getNext__22ArrayContainer<5Plane>FPv"
-        .4byte "getStart__22ArrayContainer<5Plane>Fv"
-        .4byte "getEnd__22ArrayContainer<5Plane>Fv"
-        .4byte "get__22ArrayContainer<5Plane>FPv"
-        .4byte "getAt__22ArrayContainer<5Plane>Fi"
-        .4byte "getTo__22ArrayContainer<5Plane>Fv"
-        .4byte writeObject__9CullPlaneFR6StreamR5Plane
-        .4byte readObject__9CullPlaneFR6StreamR5Plane
-        .4byte "write__22ArrayContainer<5Plane>FR6Stream"
-        .4byte "read__22ArrayContainer<5Plane>FR6Stream"
-        .4byte "alloc__22ArrayContainer<5Plane>Fi"
-        .4byte "addOne__22ArrayContainer<5Plane>FR5Plane"
-        .4byte "setArray__22ArrayContainer<5Plane>FP5Planei"
-        .4byte getViewMatrix__6CameraFb
-        .4byte getPosition__6CameraFv
-        .4byte updatePlanes__6CameraFv
-        .4byte updateScreenConstants__6CameraFv
-        .4byte getLookAtPosition___12LookAtCameraFv
-        .4byte getTargetDistance__6CameraFv
-        .4byte getPositionPtr__6CameraFv
-        .4byte on_getPositionPtr__12LookAtCameraFv
-        .4byte getSoundPositionPtr__6CameraFv
-        .4byte getSoundMatrixPtr__6CameraFv
-        .4byte isSpecialCamera__6CameraFv
-        .4byte updateMatrix__12LookAtCameraFv
-        .4byte doUpdate__Q34Game15IllustratedBook6CameraFv
-        .4byte startVibration__Q34Game15IllustratedBook6CameraFi
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-    .global __vt__Q34Game15IllustratedBook11EnemyTexMgr
-    __vt__Q34Game15IllustratedBook11EnemyTexMgr:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game15IllustratedBook11EnemyTexMgrFv
-    .global __vt__Q34Game15IllustratedBook10DebugParms
-    __vt__Q34Game15IllustratedBook10DebugParms:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game15IllustratedBook10DebugParmsFv
-        .4byte getChildCount__5CNodeFv
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515C48
-    lbl_80515C48:
-        .skip 0x4
-    .global lbl_80515C4C
-    lbl_80515C4C:
-        .skip 0x4
-    .global sParentHeapFreeSize_1
-    sParentHeapFreeSize_1:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051A100
-    lbl_8051A100:
-        .asciz "forest"
-        .skip 1
-    .global lbl_8051A108
-    lbl_8051A108:
-        .asciz "last"
-        .skip 3
-    .global lbl_8051A110
-    lbl_8051A110:
-        .float 0.05
-    .global lbl_8051A114
-    lbl_8051A114:
-        .4byte 0x42200000
-    .global lbl_8051A118
-    lbl_8051A118:
-        .4byte 0xC2C80000
-    .global lbl_8051A11C
-    lbl_8051A11C:
-        .float 1.0
-    .global lbl_8051A120
-    lbl_8051A120:
-        .4byte 0x43960000
-    .global lbl_8051A124
-    lbl_8051A124:
-        .4byte 0x42C80000
-    .global lbl_8051A128
-    lbl_8051A128:
-        .4byte 0x00000000
-    .global lbl_8051A12C
-    lbl_8051A12C:
-        .4byte 0x43AF0000
-    .global lbl_8051A130
-    lbl_8051A130:
-        .4byte 0x43FA0000
-    .global lbl_8051A134
-    lbl_8051A134:
-        .4byte 0x442F0000
-    .global lbl_8051A138
-    lbl_8051A138:
-        .4byte 0x42340000
-    .global lbl_8051A13C
-    lbl_8051A13C:
-        .float 0.1
-    .global lbl_8051A140
-    lbl_8051A140:
-        .4byte 0x42B40000
-    .global lbl_8051A144
-    lbl_8051A144:
-        .4byte 0x3F4CCCCD
-    .global lbl_8051A148
-    lbl_8051A148:
-        .float 0.5
-    .global lbl_8051A14C
-    lbl_8051A14C:
-        .4byte 0x3C03126F
-    .global lbl_8051A150
-    lbl_8051A150:
-        .4byte 0x40E00000
-    .global lbl_8051A154
-    lbl_8051A154:
-        .4byte 0x3DF5C28F
-    .global lbl_8051A158
-    lbl_8051A158:
-        .4byte 0x3F733333
-    .global lbl_8051A15C
-    lbl_8051A15C:
-        .4byte 0x41700000
-    .global lbl_8051A160
-    lbl_8051A160:
-        .float 0.3
-    .global lbl_8051A164
-    lbl_8051A164:
-        .4byte 0x3EB33333
-    .global lbl_8051A168
-    lbl_8051A168:
-        .float 0.15
-    .global lbl_8051A16C
-    lbl_8051A16C:
-        .4byte 0x3F2147AE
-    .global lbl_8051A170
-    lbl_8051A170:
-        .4byte 0x3F451EB8
-    .global lbl_8051A174
-    lbl_8051A174:
-        .4byte 0x41E80000
-    .global lbl_8051A178
-    lbl_8051A178:
-        .4byte 0x47000000
-    .global lbl_8051A17C
-    lbl_8051A17C:
-        .4byte 0xBF800000
-    .global lbl_8051A180
-    lbl_8051A180:
-        .4byte 0x41200000
-        .4byte 0x00000000
-    .global lbl_8051A188
-    lbl_8051A188:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_8051A190
-    lbl_8051A190:
-        .4byte 0x41F00000
-    .global lbl_8051A194
-    lbl_8051A194:
-        .4byte 0x43A2F983
-    .global lbl_8051A198
-    lbl_8051A198:
-        .4byte 0xC3A2F983
-    .global lbl_8051A19C
-    lbl_8051A19C:
-        .4byte 0x3F19999A
-    .global lbl_8051A1A0
-    lbl_8051A1A0:
-        .4byte 0x40C90FDB
-    .global lbl_8051A1A4
-    lbl_8051A1A4:
-        .4byte 0x38D1B717
-    .global lbl_8051A1A8
-    lbl_8051A1A8:
-        .4byte 0x3F400000
-    .global lbl_8051A1AC
-    lbl_8051A1AC:
-        .4byte 0x3CA3D70A
-    .global lbl_8051A1B0
-    lbl_8051A1B0:
-        .4byte 0x3E4CCCCD
-    .global lbl_8051A1B4
-    lbl_8051A1B4:
-        .4byte 0xBF000000
-    .global lbl_8051A1B8
-    lbl_8051A1B8:
-        .4byte 0x3F666666
-    .global lbl_8051A1BC
-    lbl_8051A1BC:
-        .asciz "zukan"
-        .skip 2
-    .global lbl_8051A1C4
-    lbl_8051A1C4:
-        .asciz "Teki"
-        .skip 3
-    .global lbl_8051A1CC
-    lbl_8051A1CC:
-        .asciz "Pellet"
-        .skip 1
-    .global lbl_8051A1D4
-    lbl_8051A1D4:
-        .asciz "None"
-        .skip 3
-    .global lbl_8051A1DC
-    lbl_8051A1DC:
-        .4byte 0x40400000
-    .global lbl_8051A1E0
-    lbl_8051A1E0:
-        .4byte 0x41100000
-        .4byte 0x00000000
-    .global lbl_8051A1E8
-    lbl_8051A1E8:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_8051A1F0
-    lbl_8051A1F0:
-        .float 0.25
-    .global lbl_8051A1F4
-    lbl_8051A1F4:
-        .4byte 0x3BA3D70A
-    .global lbl_8051A1F8
-    lbl_8051A1F8:
-        .4byte 0x75730000
-    .global lbl_8051A1FC
-    lbl_8051A1FC:
-        .4byte 0xC47A0000
-    .global lbl_8051A200
-    lbl_8051A200:
-        .4byte 0x447A0000
-    .global lbl_8051A204
-    lbl_8051A204:
-        .4byte 0x4B435000
-    .global lbl_8051A208
-    lbl_8051A208:
-        .4byte 0xCB435000
-    .global lbl_8051A20C
-    lbl_8051A20C:
-        .4byte 0x42800000
-    .global lbl_8051A210
-    lbl_8051A210:
-        .4byte 0x0A000000
-    .global lbl_8051A214
-    lbl_8051A214:
-        .4byte 0x420C0000
-    .global lbl_8051A218
-    lbl_8051A218:
-        .4byte 0x40490FDB
-    .global lbl_8051A21C
-    lbl_8051A21C:
-        .4byte 0x3BB60B61
-    .global lbl_8051A220
-    lbl_8051A220:
-        .4byte 0x43480000
-    .global lbl_8051A224
-    lbl_8051A224:
-        .4byte 0x64616D65
-        .4byte 0x6B0A0000
-        .4byte 0x00000000
-*/
-
 namespace Game {
 namespace IllustratedBook {
 
@@ -758,7 +116,7 @@ Camera::Camera(Controller* input)
     , mCurrViewAngle(45.0f)
     , mMinViewAngle(0.1f)
     , mMaxViewAngle(90.0f)
-    , _294(0.0f)
+    , mFocusLevel(0.0f)
     , _298(0.0f)
     , _29C(0.8f)
     , _2A0(Vector3f::zero)
@@ -769,24 +127,24 @@ Camera::Camera(Controller* input)
 {
 	setName("}ŠÓƒJƒƒ‰");
 	move(Vector3f::zero);
-	_2DC = 0.5f;
-	_2E0 = 0.5f;
-	_2E4 = 0.05f;
-	_2E8 = 0.008f;
-	_2EC = 7.0f;
-	_2F0 = 0.12f;
-	_2F4 = 0.95f;
-	_2F8 = 0.1f;
-	_2FC = 15.0f;
-	_300 = 0.3f;
-	_304 = 0.8f;
-	_308 = 0.35f;
-	_30C = 0.15f;
-	_310 = 0.15f;
-	_314 = 0.63f;
-	_318 = 0.5f;
-	_31C = 0.77f;
-	_320 = 0.5f;
+	_2DC            = 0.5f;
+	_2E0            = 0.5f;
+	_2E4            = 0.05f;
+	_2E8            = 0.008f;
+	_2EC            = 7.0f;
+	_2F0            = 0.12f;
+	_2F4            = 0.95f;
+	_2F8            = 0.1f;
+	_2FC            = 15.0f;
+	_300            = 0.3f;
+	mFovChangeSpeed = 0.8f;
+	_308            = 0.35f;
+	_30C            = 0.15f;
+	_310            = 0.15f;
+	_314            = 0.63f;
+	_318            = 0.5f;
+	_31C            = 0.77f;
+	_320            = 0.5f;
 }
 
 /**
@@ -946,6 +304,10 @@ lbl_80221420:
  */
 void Camera::debugDraw(Graphics&)
 {
+	OSReport("radius:%6.3f");
+	OSReport("angle :%6.3f");
+	OSReport("height:%6.3f");
+	OSReport("fovy  :%6.3f");
 	// UNUSED FUNCTION
 }
 
@@ -1796,6 +1158,25 @@ lbl_802222E4:
  */
 void Camera::updateFocus()
 {
+	f32 x   = FABS(_280 - _284);
+	f32 y   = FABS(_278 - _27C);
+	f32 fov = FABS(mCurrViewAngle - mViewAngle);
+	if (fov > 1.0f || y > 30.0f || x > 30.0f) {
+		mFocusLevel += 0.05f;
+	}
+
+	_298 += (0.2f - _298) * 0.02f;
+	if (_298 > 0.5f) {
+		_298 = 0.5f;
+	}
+	if (_298 < -0.5f) {
+		_298 = -0.5f;
+	}
+	_298 *= _29C;
+	mFocusLevel += _298;
+	if (mFocusLevel > 1.0f) {
+		mFocusLevel = 1.0f;
+	}
 	/*
 	lfs      f1, 0x288(r3)
 	lfs      f0, 0x28(r3)
@@ -1879,35 +1260,16 @@ unknown Camera::getFocus()
  * @note Address: 0x80222498
  * @note Size: 0x54
  */
-void Camera::addFovy(f32)
+void Camera::addFovy(f32 fov)
 {
-	/*
-	lfs      f2, 0x304(r3)
-	lfs      f0, 0x288(r3)
-	fmadds   f0, f1, f2, f0
-	stfs     f0, 0x288(r3)
-	lfs      f0, 0x288(r3)
-	lfs      f1, 0x28c(r3)
-	fcmpo    cr0, f0, f1
-	bge      lbl_802224BC
-	stfs     f1, 0x288(r3)
-
-lbl_802224BC:
-	lfs      f0, 0x288(r3)
-	lfs      f1, 0x290(r3)
-	fcmpo    cr0, f0, f1
-	ble      lbl_802224D0
-	stfs     f1, 0x288(r3)
-
-lbl_802224D0:
-	lfs      f0, 0x288(r3)
-	lfs      f1, 0x28(r3)
-	lfs      f2, 0x308(r3)
-	fsubs    f0, f0, f1
-	fmadds   f0, f2, f0, f1
-	stfs     f0, 0x28(r3)
-	blr
-	*/
+	mCurrViewAngle += fov * mFovChangeSpeed;
+	if (mCurrViewAngle < mMinViewAngle) {
+		mCurrViewAngle = mMinViewAngle;
+	}
+	if (mCurrViewAngle > mMaxViewAngle) {
+		mCurrViewAngle = mMaxViewAngle;
+	}
+	mViewAngle += _308 * (mCurrViewAngle - mViewAngle);
 }
 
 } // namespace IllustratedBook
@@ -1986,6 +1348,11 @@ void ZukanState::init(SingleGameSection* game, StateArg* arg)
 	gameSystem->mTimeMgr->resetFlag(1);
 }
 
+static const char* modeNames[9]
+    = { "StartTeki", "StartPellet", "ModeChangeToTeki", "Teki", "ChangeTeki", "ModeChangeToPellet", "Pellet", "ChangePellet", "None" };
+// supposed to be pointers to the above strings, but I cant get that to work, this fixes the size of rodata for now
+static const u32 dumb[9] = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
 /**
  * @note Address: N/A
  * @note Size: 0xE4
@@ -2010,8 +1377,6 @@ unknown ZukanState::startPelletMode(bool)
  */
 void ZukanState::setMode(CMode mode)
 {
-	static const char* modeNames[9]
-	    = { "StartTeki", "StartPellet", "ModeChangeToTeki", "Teki", "ChangeTeki", "ModeChangeToPellet", "Pellet", "ChangePellet", "None" };
 	if (mCurrMode != mode) {
 		mCurrMode = mode;
 	}
@@ -2076,10 +1441,10 @@ void ZukanState::exec(SingleGameSection* game)
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_ERROR, 0);
 			}
 			break;
-		case ModePellet:
+		case ModeChangeToPellet:
 			test = false;
 			if (Screen::gGame2DMgr->isZukanItem()) {
-				setMode(ModeChangeTeki);
+				setMode(ModeChangeToTeki);
 				Morimura::DispMemberZukanEnemy disp;
 				disp.mDebugExpHeap  = mExtraHeapFor2D;
 				disp.mTexture       = mTexture2;
@@ -3247,6 +2612,10 @@ void ZukanState::createEnemy(int id)
  */
 void ZukanState::createItem(int)
 {
+	OSReport("READY:%d Enemy:%d Item:%d");
+	OSReport("enemy:%d item:%d");
+	OSReport("heapA %d");
+	OSReport("heapB %d");
 	// UNUSED FUNCTION
 }
 
@@ -3311,7 +2680,12 @@ unknown ZukanState::execPellet(SingleGameSection* game)
  * @note Address: 0x80223A68
  * @note Size: 0x3C
  */
-int ZukanState::getMaxPelletID() { return PelletList::Mgr::getCount(PelletList::ITEM) + PelletList::Mgr::getCount(PelletList::OTAKARA); }
+int ZukanState::getMaxPelletID()
+{
+	int ota   = PelletList::Mgr::getCount(PelletList::OTAKARA);
+	int items = PelletList::Mgr::getCount(PelletList::ITEM);
+	return ota + items;
+}
 
 /**
  * @note Address: 0x80223AA4
@@ -3546,8 +2920,45 @@ lbl_80223D64:
  */
 void ZukanState::drawGradationEffect(SingleGameSection*, Graphics& gfx)
 {
+	f32 focus = FABS(mCamera->mFocusLevel);
+	if (focus > 0.9f) {
+		focus = 0.9f;
+	}
+	if (focus > 1.0f) {
+		focus = 1.0f;
+	}
+	JUTTexture* tex = mTexture;
+	tex->init();
 	GXInvalidateTexAll();
+	tex->capture(0, 0, GX_TF_RGB565, true, GX_FALSE);
+	tex->capture(0, 0, GX_TF_RGB565, true, GX_FALSE);
+
+	f32 min = 3.0f;
+	f32 max = -min;
+	for (int i = 0; i < 4; i++) {
+		J2DPicture pic(tex);
+		pic.setCornerColor(JUtility::TColor(255, 255, 255, 127));
+		GXSetAlphaUpdate(GX_FALSE);
+		pic.draw(min, min, mWindowBounds.getWidth(), mWindowBounds.getHeight(), false, false, false);
+		pic.setCornerColor(JUtility::TColor(255, 255, 255, 111));
+		pic.draw(max, min, mWindowBounds.getWidth(), mWindowBounds.getHeight(), false, false, false);
+		pic.setCornerColor(JUtility::TColor(255, 255, 255, 95));
+		pic.draw(min, max, mWindowBounds.getWidth(), mWindowBounds.getHeight(), false, false, false);
+		pic.setCornerColor(JUtility::TColor(255, 255, 255, 79));
+		pic.draw(max, max, mWindowBounds.getWidth(), mWindowBounds.getHeight(), false, false, false);
+		GXInvalidateTexAll();
+		tex->capture(0, 0, GX_TF_RGB565, true, GX_FALSE);
+	}
+
 	gfx.setupJ2DOrthoGraphDefault();
+	gfx.mOrthoGraph.setPort();
+
+	J2DPicture pic(mTexture2);
+	pic.insert(tex, pic.mTextureCount, 1.0f);
+	f32 inv = 1.0f - focus;
+	pic.setBlendColorRatio(focus, inv, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f);
+	pic.setBlendAlphaRatio(focus, inv, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f);
+	pic.draw(0.0f, 0.0f, false, false, false);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x390(r1)
@@ -3916,7 +3327,33 @@ void ZukanState::drawGradationEffect(SingleGameSection*, Graphics& gfx)
 void ZukanState::drawLightEffect(SingleGameSection* game, Graphics& gfx)
 {
 	GXInvalidateTexAll();
+	mTexture2->capture(0, 0, GX_TF_RGB565, true, GX_FALSE);
 	gfx.setupJ2DOrthoGraphDefault();
+	gfx.mOrthoGraph.setPort();
+
+	if (0.0f < _108) {
+		mTexture2->load(GX_TEXMAP0);
+		GXSetNumChans(1);
+		GXSetNumTevStages(1);
+		GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_ZERO, GX_CC_C0, GX_CC_TEXC, GX_CC_ZERO);
+		GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_DIVIDE_2, GX_TRUE, GX_TEVPREV);
+		GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_A0, GX_CA_TEXA, GX_CA_ZERO);
+		GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+		GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
+		GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, 0, GX_DF_NONE, GX_AF_NONE);
+		GXClearVtxDesc();
+		GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+		GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
+		GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_POS_XYZ, GX_RGBA8, 0);
+		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_F32, 0);
+		GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_ONE, GX_LO_SET);
+		GXSetZMode(GX_FALSE, GX_LESS, GX_FALSE);
+		GXSetCurrentMtx(0);
+		GXSetNumTexGens(1);
+		GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEXCOORD0, 0x3c, GX_FALSE, 0x7d);
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0xF0(r1)
@@ -4469,8 +3906,9 @@ void ZukanState::dvdloadA()
 	mParms->loadFile(arc);
 	mGameSect->addGenNode(mParms);
 	PSSystem::SingletonBase<PSM::ObjMgr>::newInstance();
-	// mWindowBounds = Rectf(0.0f, 0.0f, sys->getRenderModeObj()->fbWidth * 0.6f * 0.75f * 0.25f + 0.5f,
-	//                       sys->getRenderModeObj()->efbHeight * 0.75f * 0.25f + 0.5f);
+	Rectf bounds(0.0f, 0.0f, sys->getRenderModeObj()->fbWidth * 0.6f * 0.75f * 0.25f + 0.5f,
+	             sys->getRenderModeObj()->efbHeight * 0.75f * 0.25f + 0.5f);
+	mWindowBounds = bounds;
 	mCameraAspect = 0.0f;
 
 	mTexture2             = new JUTTexture(getWindowWidth(), getWindowHeight(), GX_TF_RGB565);
@@ -4500,10 +3938,6 @@ void ZukanState::dvdloadA()
 	vp2->updateCameraAspect();
 	vp1->_48 = mCameraAspect;
 	vp1->_50 = Vector2f(1.0f);
-	// vp1->_48       = mCameraAspect.x;
-	// vp1->mVpScaleY = mCameraAspect.y;
-	// vp1->port      = 1.0f;
-	// vp1->mVpScaleX = 1.0f;
 	vp1->setRect(mWindowBounds);
 
 	particleMgr->setViewport(*gfx);
@@ -4529,12 +3963,8 @@ void ZukanState::dvdloadA()
 	info.mCam1Position[0] = mCamera->getSoundPositionPtr();
 	info.mCam2Position[0] = mCamera->getSoundPositionPtr();
 	info.mCameraMtx[0]    = mCamera->getSoundMatrixPtr();
-	info.mBounds.minX     = -1000.0f;
-	info.mBounds.minY     = -1000.0f;
-	info.mBounds.minZ     = -1000.0f;
-	info.mBounds.maxX     = 1000.0f;
-	info.mBounds.maxY     = 1000.0f;
-	info.mBounds.maxZ     = 1000.0f;
+	info.mBounds.mMin     = -1000.0f;
+	info.mBounds.mMax     = 1000.0f;
 	info.setStageFlag(PSGame::SceneInfo::SCENEFLAG_Unk0, PSGame::SceneInfo::SFBS_1);
 	info.mSceneType = PSGame::SceneInfo::PIKLOPEDIA;
 
@@ -5347,7 +4777,7 @@ void ZukanState::dvdloadB_teki()
 		id                                                           = 0;
 	}
 	int count = mParms->mEnemyParms.mEnemyParms[mCurrentEnemyIndex].mParms.mAppearNum;
-	OSReport("“G‚ðƒAƒƒbƒN %d•Cfree:%d \n", count, JKRGetCurrentHeap()->getFreeSize());
+	OSReport("“G‚ðƒAƒƒbƒN %d•C@free:%d \n", count, JKRGetCurrentHeap()->getFreeSize());
 	TekiStat::Info* info = playData->mTekiStatMgr.getTekiInfo(mCurrentEnemyIndex);
 	bool makeSpectralids = info && info->mKilledTekiCount > 16;
 	if (makeSpectralids) {
@@ -7175,9 +6605,7 @@ unknown ZukanState::clearHeaps()
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 	PSSystem::checkSceneMgr(mgr);
 	mgr->deleteCurrentScene();
-	if (PSSystem::SingletonBase<PSM::ObjMgr>::sInstance) {
-		PSSystem::SingletonBase<PSM::ObjMgr>::sInstance->~ObjMgr();
-	}
+	delete PSSystem::SingletonBase<PSM::ObjMgr>::sInstance;
 	PSSystem::SingletonBase<PSM::ObjMgr>::sInstance = nullptr;
 	if (mMainHeap) {
 		mGameSect->restoreFBTexture();

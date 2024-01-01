@@ -921,10 +921,10 @@ void StateAttack::exec(EnemyBase* enemy)
 	if (chappy->mCurAnim->mIsPlaying) {
 		if (chappy->mCurAnim->mType == KEYEVENT_2) {
 			if (chappy->getCurrAnimIndex() == KUMACHAPPYANIM_Attack) {
-				int naviCheck = EnemyFunc::attackNavi(chappy, CG_GENERALPARMS(chappy).mAttackRadius(),
-				                                      CG_GENERALPARMS(chappy).mAttackHitAngle(),
-				                                      CG_GENERALPARMS(chappy).mAttackDamage(), nullptr, nullptr);
-				int eatCheck  = naviCheck + EnemyFunc::eatPikmin(chappy, nullptr);
+				int naviCheck
+				    = EnemyFunc::attackNavi(chappy, CG_GENERALPARMS(chappy).mAttackRadius(), CG_GENERALPARMS(chappy).mAttackHitAngle(),
+				                            CG_GENERALPARMS(chappy).mAttackDamage(), nullptr, nullptr);
+				int eatCheck = naviCheck + EnemyFunc::eatPikmin(chappy, nullptr);
 
 				EnemyFunc::flickStickPikmin(chappy, CG_GENERALPARMS(chappy).mShakeChance(), CG_GENERALPARMS(chappy).mShakeKnockback(),
 				                            CG_GENERALPARMS(chappy).mShakeDamage(), chappy->getFaceDir(), nullptr);
@@ -1812,8 +1812,7 @@ void StateTurn::exec(EnemyBase* enemy)
 		} else {
 			chappy->setNearestWayPoint();
 			Vector3f targetPos = chappy->mTargetPos;
-			f32 angleSep
-			    = chappy->turnToTarget(targetPos, CG_GENERALPARMS(chappy).mTurnSpeed(), CG_GENERALPARMS(chappy).mMaxTurnAngle());
+			f32 angleSep = chappy->turnToTarget(targetPos, CG_GENERALPARMS(chappy).mTurnSpeed(), CG_GENERALPARMS(chappy).mMaxTurnAngle());
 			if (absF(angleSep) <= (PI / 4)) {
 				chappy->mNextState = KUMACHAPPY_WalkPath;
 				chappy->finishMotion();
@@ -2332,8 +2331,7 @@ void StateTurnPath::exec(EnemyBase* enemy)
 			}
 		} else {
 			Vector3f targetPos = chappy->mTargetPos;
-			f32 angleSep
-			    = chappy->turnToTarget(targetPos, CG_GENERALPARMS(chappy).mTurnSpeed(), CG_GENERALPARMS(chappy).mMaxTurnAngle());
+			f32 angleSep = chappy->turnToTarget(targetPos, CG_GENERALPARMS(chappy).mTurnSpeed(), CG_GENERALPARMS(chappy).mMaxTurnAngle());
 			if (absF(angleSep) <= (PI / 4)) {
 				chappy->mNextState = KUMACHAPPY_WalkPath;
 				chappy->finishMotion();

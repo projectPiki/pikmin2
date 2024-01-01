@@ -200,8 +200,7 @@ void Obj::setRandTarget()
 		radius = 50.0f + randWeightFloat(50.0f);
 	} else {
 		radius = C_GENERALPARMS.mHomeRadius.mValue
-		       + randWeightFloat(C_GENERALPARMS.mTerritoryRadius.mValue
-		                         - C_GENERALPARMS.mHomeRadius.mValue);
+		       + randWeightFloat(C_GENERALPARMS.mTerritoryRadius.mValue - C_GENERALPARMS.mHomeRadius.mValue);
 	}
 
 	// Get the direction from the home position towards our position

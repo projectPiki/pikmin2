@@ -606,8 +606,7 @@ void StateGround::init(EnemyBase* enemy, StateArg* stateArg)
 void StateGround::exec(EnemyBase* enemy)
 {
 	Obj* kurage = OBJ(enemy);
-	if (kurage->mHealth <= 0.0f || kurage->mStuckPikminCount == 0
-	    || kurage->mStateTimer > CG_PROPERPARMS(kurage).mGroundTime.mValue) {
+	if (kurage->mHealth <= 0.0f || kurage->mStuckPikminCount == 0 || kurage->mStateTimer > CG_PROPERPARMS(kurage).mGroundTime.mValue) {
 		kurage->finishMotion();
 	}
 

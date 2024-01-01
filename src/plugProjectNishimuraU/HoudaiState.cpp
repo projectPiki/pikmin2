@@ -405,8 +405,7 @@ void StateShot::exec(EnemyBase* enemy)
 
 	if (houdai->isStopMotion()) {
 		if (houdai->mShotGunState != 0) {
-			if (houdai->isFinishMotion()
-			    || houdai->mShotGunSearchTimer > CG_PROPERPARMS(houdai).mMaxShootingOff.mValue) {
+			if (houdai->isFinishMotion() || houdai->mShotGunSearchTimer > CG_PROPERPARMS(houdai).mMaxShootingOff.mValue) {
 				houdai->setShotGunEmitKeepTimerOn();
 				houdai->startMotion();
 			}

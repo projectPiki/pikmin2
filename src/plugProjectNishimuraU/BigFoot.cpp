@@ -323,8 +323,8 @@ void Obj::getTargetPosition()
 
 		} else {
 			ConditionNotStickClient condition(this);
-			Piki* piki = EnemyFunc::getNearestPikmin(this, C_GENERALPARMS.mViewAngle.mValue, C_GENERALPARMS.mSightRadius.mValue,
-			                                         nullptr, &condition);
+			Piki* piki = EnemyFunc::getNearestPikmin(this, C_GENERALPARMS.mViewAngle.mValue, C_GENERALPARMS.mSightRadius.mValue, nullptr,
+			                                         &condition);
 			if (piki) {
 				mTargetPosition = piki->getPosition();
 			} else if (sqrDistanceXZ(mPosition, mTargetPosition) < 625.0f) {

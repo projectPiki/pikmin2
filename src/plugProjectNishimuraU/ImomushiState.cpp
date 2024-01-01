@@ -179,8 +179,7 @@ void StateStay::exec(EnemyBase* enemy)
 {
 	Obj* imomushi = OBJ(enemy);
 	imomushi->mStateTimer += sys->mDeltaTime;
-	if ((imomushi->mStateTimer > 6.0f)
-	    && !(EnemyFunc::isTherePikmin(imomushi, CG_GENERALPARMS(imomushi).mPrivateRadius.mValue, nullptr))) {
+	if ((imomushi->mStateTimer > 6.0f) && !(EnemyFunc::isTherePikmin(imomushi, CG_GENERALPARMS(imomushi).mPrivateRadius.mValue, nullptr))) {
 		if (imomushi->mTargetCreature = imomushi->getRandFruitsPlant()) {
 			transit(imomushi, IMOMUSHI_Appear, nullptr);
 		}
@@ -406,8 +405,8 @@ void StateGoHome::exec(EnemyBase* enemy)
 			imomushi->mNextState = IMOMUSHI_Dive;
 			imomushi->finishMotion();
 		}
-		EnemyFunc::walkToTarget(imomushi, homePos, CG_GENERALPARMS(imomushi).mMoveSpeed.mValue,
-		                        CG_GENERALPARMS(imomushi).mTurnSpeed.mValue, CG_GENERALPARMS(imomushi).mMaxTurnAngle.mValue);
+		EnemyFunc::walkToTarget(imomushi, homePos, CG_GENERALPARMS(imomushi).mMoveSpeed.mValue, CG_GENERALPARMS(imomushi).mTurnSpeed.mValue,
+		                        CG_GENERALPARMS(imomushi).mMaxTurnAngle.mValue);
 	}
 
 	if ((imomushi->mCurAnim->mIsPlaying) && ((u32)imomushi->mCurAnim->mType == KEYEVENT_END)) {
@@ -727,8 +726,8 @@ void StateZukanMove::exec(EnemyBase* enemy)
 {
 	Obj* imomushi   = OBJ(enemy);
 	Vector3f target = Vector3f(imomushi->mZukanTargetPosition);
-	EnemyFunc::walkToTarget(imomushi, target, CG_GENERALPARMS(imomushi).mMoveSpeed.mValue,
-	                        CG_GENERALPARMS(imomushi).mTurnSpeed.mValue, CG_GENERALPARMS(imomushi).mMaxTurnAngle.mValue);
+	EnemyFunc::walkToTarget(imomushi, target, CG_GENERALPARMS(imomushi).mMoveSpeed.mValue, CG_GENERALPARMS(imomushi).mTurnSpeed.mValue,
+	                        CG_GENERALPARMS(imomushi).mMaxTurnAngle.mValue);
 	if (imomushi->isInZukanTargetArea()) {
 		imomushi->setZukanTargetPosition();
 	}

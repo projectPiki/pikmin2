@@ -769,15 +769,12 @@ void Kabuto::StateFlick::exec(EnemyBase* enemy)
 	Obj* kabuto = OBJ(enemy);
 	if (kabuto->mCurAnim->mIsPlaying) {
 		if (kabuto->mCurAnim->mType == KEYEVENT_2) {
-			EnemyFunc::flickNearbyNavi(kabuto, CG_GENERALPARMS(kabuto).mShakeRange.mValue,
-			                           CG_GENERALPARMS(kabuto).mShakeKnockback.mValue, CG_GENERALPARMS(kabuto).mShakeDamage.mValue,
-			                           FLICK_BACKWARD_ANGLE, nullptr);
-			EnemyFunc::flickNearbyPikmin(kabuto, CG_GENERALPARMS(kabuto).mShakeRange.mValue,
-			                             CG_GENERALPARMS(kabuto).mShakeKnockback.mValue, CG_GENERALPARMS(kabuto).mShakeDamage.mValue,
-			                             kabuto->getFaceDir(), nullptr);
-			EnemyFunc::flickStickPikmin(kabuto, CG_GENERALPARMS(kabuto).mShakeChance.mValue,
-			                            CG_GENERALPARMS(kabuto).mShakeKnockback.mValue, CG_GENERALPARMS(kabuto).mShakeDamage.mValue,
-			                            kabuto->getFaceDir(), nullptr);
+			EnemyFunc::flickNearbyNavi(kabuto, CG_GENERALPARMS(kabuto).mShakeRange.mValue, CG_GENERALPARMS(kabuto).mShakeKnockback.mValue,
+			                           CG_GENERALPARMS(kabuto).mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
+			EnemyFunc::flickNearbyPikmin(kabuto, CG_GENERALPARMS(kabuto).mShakeRange.mValue, CG_GENERALPARMS(kabuto).mShakeKnockback.mValue,
+			                             CG_GENERALPARMS(kabuto).mShakeDamage.mValue, kabuto->getFaceDir(), nullptr);
+			EnemyFunc::flickStickPikmin(kabuto, CG_GENERALPARMS(kabuto).mShakeChance.mValue, CG_GENERALPARMS(kabuto).mShakeKnockback.mValue,
+			                            CG_GENERALPARMS(kabuto).mShakeDamage.mValue, kabuto->getFaceDir(), nullptr);
 			kabuto->mFlickTimer = 0.0f;
 
 			if (kabuto->mHealth <= 0.0f) {
@@ -1251,15 +1248,12 @@ void Kabuto::StateFixFlick::exec(EnemyBase* enemy)
 	Obj* kabuto = OBJ(enemy);
 	if (kabuto->mCurAnim->mIsPlaying) {
 		if (kabuto->mCurAnim->mType == KEYEVENT_2) {
-			EnemyFunc::flickNearbyNavi(kabuto, CG_GENERALPARMS(kabuto).mShakeRange.mValue,
-			                           CG_GENERALPARMS(kabuto).mShakeKnockback.mValue, CG_GENERALPARMS(kabuto).mShakeDamage.mValue,
-			                           FLICK_BACKWARD_ANGLE, nullptr);
-			EnemyFunc::flickNearbyPikmin(kabuto, CG_GENERALPARMS(kabuto).mShakeRange.mValue,
-			                             CG_GENERALPARMS(kabuto).mShakeKnockback.mValue, CG_GENERALPARMS(kabuto).mShakeDamage.mValue,
-			                             kabuto->getFaceDir(), nullptr);
-			EnemyFunc::flickStickPikmin(kabuto, CG_GENERALPARMS(kabuto).mShakeChance.mValue,
-			                            CG_GENERALPARMS(kabuto).mShakeKnockback.mValue, CG_GENERALPARMS(kabuto).mShakeDamage.mValue,
-			                            kabuto->getFaceDir(), nullptr);
+			EnemyFunc::flickNearbyNavi(kabuto, CG_GENERALPARMS(kabuto).mShakeRange.mValue, CG_GENERALPARMS(kabuto).mShakeKnockback.mValue,
+			                           CG_GENERALPARMS(kabuto).mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
+			EnemyFunc::flickNearbyPikmin(kabuto, CG_GENERALPARMS(kabuto).mShakeRange.mValue, CG_GENERALPARMS(kabuto).mShakeKnockback.mValue,
+			                             CG_GENERALPARMS(kabuto).mShakeDamage.mValue, kabuto->getFaceDir(), nullptr);
+			EnemyFunc::flickStickPikmin(kabuto, CG_GENERALPARMS(kabuto).mShakeChance.mValue, CG_GENERALPARMS(kabuto).mShakeKnockback.mValue,
+			                            CG_GENERALPARMS(kabuto).mShakeDamage.mValue, kabuto->getFaceDir(), nullptr);
 			kabuto->mFlickTimer = 0.0f;
 
 			if (kabuto->mHealth <= 0.0f) {

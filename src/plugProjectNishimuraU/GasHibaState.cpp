@@ -126,8 +126,7 @@ void StateAttack::exec(EnemyBase* enemy)
 
 	// If dead or we're done attacking, then finish
 	if ((hiba->mHealth <= 0.0f)
-	    || ((CG_PROPERPARMS(hiba).mWaitTime.mValue > 0.0f)
-	        && (hiba->mTimer > CG_PROPERPARMS(hiba).mActiveTime.mValue))) {
+	    || ((CG_PROPERPARMS(hiba).mWaitTime.mValue > 0.0f) && (hiba->mTimer > CG_PROPERPARMS(hiba).mActiveTime.mValue))) {
 		hiba->finishMotion();
 	}
 

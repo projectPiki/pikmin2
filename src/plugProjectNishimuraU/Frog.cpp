@@ -361,8 +361,8 @@ void Obj::resetHomePosition()
  */
 void Obj::pressOnGround()
 {
-	EnemyFunc::flickStickPikmin(this, C_GENERALPARMS.mShakeChance(), C_GENERALPARMS.mShakeKnockback(),
-	                            C_GENERALPARMS.mShakeDamage(), FLICK_BACKWARD_ANGLE, nullptr);
+	EnemyFunc::flickStickPikmin(this, C_GENERALPARMS.mShakeChance(), C_GENERALPARMS.mShakeKnockback(), C_GENERALPARMS.mShakeDamage(),
+	                            FLICK_BACKWARD_ANGLE, nullptr);
 	mFlickTimer = 0.0f;
 	Sys::Sphere boundingSphere;
 	getBoundingSphere(boundingSphere);

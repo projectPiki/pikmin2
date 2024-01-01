@@ -474,8 +474,8 @@ void StateWait::exec(EnemyBase* enemy)
 		}
 
 	} else {
-		target = EnemyFunc::getNearestPikminOrNavi(snagret, CG_GENERALPARMS(snagret).mViewAngle(),
-		                                           CG_GENERALPARMS(snagret).mSightRadius(), nullptr, nullptr, nullptr);
+		target = EnemyFunc::getNearestPikminOrNavi(snagret, CG_GENERALPARMS(snagret).mViewAngle(), CG_GENERALPARMS(snagret).mSightRadius(),
+		                                           nullptr, nullptr, nullptr);
 	}
 
 	if (target) {

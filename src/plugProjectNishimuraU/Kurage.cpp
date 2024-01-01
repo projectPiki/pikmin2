@@ -224,8 +224,8 @@ f32 Obj::setHeightVelocity(f32 yOffset, f32 speedFactor)
  */
 void Obj::setRandTarget()
 {
-	f32 randRadius = randWeightFloat(C_GENERALPARMS.mTerritoryRadius.mValue - C_GENERALPARMS.mHomeRadius.mValue)
-	               + C_GENERALPARMS.mHomeRadius.mValue;
+	f32 randRadius
+	    = randWeightFloat(C_GENERALPARMS.mTerritoryRadius.mValue - C_GENERALPARMS.mHomeRadius.mValue) + C_GENERALPARMS.mHomeRadius.mValue;
 	Vector3f pos     = getPosition();
 	Vector3f homePos = mHomePosition;
 	f32 ang          = JMAAtan2Radian(pos.x - homePos.x, pos.z - homePos.z);

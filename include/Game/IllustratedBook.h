@@ -75,7 +75,7 @@ struct Camera : public LookAtCamera {
 	f32 mCurrViewAngle;         // _288
 	f32 mMinViewAngle;          // _28C
 	f32 mMaxViewAngle;          // _290
-	f32 _294;                   // _294
+	f32 mFocusLevel;            // _294
 	f32 _298;                   // _298
 	f32 _29C;                   // _29C
 	Vector3f _2A0;              // _2A0
@@ -93,7 +93,7 @@ struct Camera : public LookAtCamera {
 	f32 _2F8;                   // _2F8
 	f32 _2FC;                   // _2FC
 	f32 _300;                   // _300
-	f32 _304;                   // _304
+	f32 mFovChangeSpeed;        // _304
 	f32 _308;                   // _308
 	f32 _30C;                   // _30C
 	f32 _310;                   // _310

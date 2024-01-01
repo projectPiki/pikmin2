@@ -178,8 +178,8 @@ WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
  */
 void Obj::setRandTarget()
 {
-	f32 randRadius = C_GENERALPARMS.mHomeRadius.mValue
-	               + randWeightFloat(C_GENERALPARMS.mTerritoryRadius.mValue - C_GENERALPARMS.mHomeRadius.mValue);
+	f32 randRadius
+	    = C_GENERALPARMS.mHomeRadius.mValue + randWeightFloat(C_GENERALPARMS.mTerritoryRadius.mValue - C_GENERALPARMS.mHomeRadius.mValue);
 	f32 angledist = JMAAtan2Radian(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
 	f32 angle     = HALF_PI + (angledist + randWeightFloat(PI));
 

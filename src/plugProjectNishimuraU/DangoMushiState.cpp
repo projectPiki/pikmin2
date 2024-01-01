@@ -828,8 +828,7 @@ void StateMove::exec(EnemyBase* enemy)
 	if (target && gameSystem && !gameSystem->isZukanMode()) {
 		f32 viewAngle = crab->getCreatureViewAngle(target);
 
-		if (crab->isTargetAttackable(target, viewAngle, CG_GENERALPARMS(crab).mMaxAttackRange(),
-		                             CG_GENERALPARMS(crab).mMaxAttackAngle())) {
+		if (crab->isTargetAttackable(target, viewAngle, CG_GENERALPARMS(crab).mMaxAttackRange(), CG_GENERALPARMS(crab).mMaxAttackAngle())) {
 			crab->mNextState = DANGOMUSHI_Attack;
 			crab->finishMotion();
 

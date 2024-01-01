@@ -432,9 +432,9 @@ void StateAttack::exec(EnemyBase* enemy)
 
 	if (kuma->mCurAnim->mIsPlaying) {
 		if (kuma->mCurAnim->mType == KEYEVENT_2) {
-			int naviEat  = EnemyFunc::attackNavi(kuma, CG_GENERALPARMS(kuma).mAttackRadius.mValue,
-                                                CG_GENERALPARMS(kuma).mAttackHitAngle.mValue,
-                                                CG_GENERALPARMS(kuma).mAttackDamage.mValue, nullptr, nullptr);
+			int naviEat
+			    = EnemyFunc::attackNavi(kuma, CG_GENERALPARMS(kuma).mAttackRadius.mValue, CG_GENERALPARMS(kuma).mAttackHitAngle.mValue,
+			                            CG_GENERALPARMS(kuma).mAttackDamage.mValue, nullptr, nullptr);
 			int totalEat = naviEat + EnemyFunc::eatPikmin(kuma, nullptr);
 
 			EnemyFunc::flickStickPikmin(kuma, CG_GENERALPARMS(kuma).mShakeChance.mValue, CG_GENERALPARMS(kuma).mShakeKnockback.mValue,
@@ -461,8 +461,7 @@ void StateAttack::exec(EnemyBase* enemy)
 			Creature* target = kuma->getSearchedTarget();
 			if (target) {
 				// more nonsense going on in here than this
-				f32 dist
-				    = kuma->turnToTarget(target, CG_GENERALPARMS(kuma).mMaxTurnAngle.mValue, CG_GENERALPARMS(kuma).mTurnSpeed.mValue);
+				f32 dist = kuma->turnToTarget(target, CG_GENERALPARMS(kuma).mMaxTurnAngle.mValue, CG_GENERALPARMS(kuma).mTurnSpeed.mValue);
 
 				// this isn't the comparison, probably a bool spat out from an inline
 				if (FABS(dist) <= CG_GENERALPARMS(kuma).mTurnSpeed.mValue) {
@@ -870,8 +869,7 @@ void StateFlick::exec(EnemyBase* enemy)
 			Creature* target = kuma->getSearchedTarget();
 			if (target) {
 				// more nonsense going on in here than this
-				f32 dist
-				    = kuma->turnToTarget(target, CG_GENERALPARMS(kuma).mMaxTurnAngle.mValue, CG_GENERALPARMS(kuma).mTurnSpeed.mValue);
+				f32 dist = kuma->turnToTarget(target, CG_GENERALPARMS(kuma).mMaxTurnAngle.mValue, CG_GENERALPARMS(kuma).mTurnSpeed.mValue);
 
 				// this isn't the comparison, probably a bool spat out from an inline
 				if (FABS(dist) <= CG_GENERALPARMS(kuma).mTurnSpeed.mValue) {

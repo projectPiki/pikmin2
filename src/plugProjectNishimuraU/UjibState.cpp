@@ -691,8 +691,8 @@ void StateMoveSide::exec(EnemyBase* enemy)
 {
 	Obj* uji = OBJ(enemy);
 
-	if (EnemyFunc::getNearestPikminOrNavi(uji, CG_GENERALPARMS(uji).mViewAngle.mValue, CG_GENERALPARMS(uji).mSightRadius.mValue,
-	                                      nullptr, nullptr, nullptr)) {
+	if (EnemyFunc::getNearestPikminOrNavi(uji, CG_GENERALPARMS(uji).mViewAngle.mValue, CG_GENERALPARMS(uji).mSightRadius.mValue, nullptr,
+	                                      nullptr, nullptr)) {
 		uji->mNextState = UJIB_Move;
 		uji->finishMotion();
 	} else if (uji->isBreakBridge()) {
@@ -742,8 +742,8 @@ void StateMoveCentre::exec(EnemyBase* enemy)
 {
 	Obj* uji = OBJ(enemy);
 
-	if (EnemyFunc::getNearestPikminOrNavi(uji, CG_GENERALPARMS(uji).mViewAngle.mValue, CG_GENERALPARMS(uji).mSightRadius.mValue,
-	                                      nullptr, nullptr, nullptr)) {
+	if (EnemyFunc::getNearestPikminOrNavi(uji, CG_GENERALPARMS(uji).mViewAngle.mValue, CG_GENERALPARMS(uji).mSightRadius.mValue, nullptr,
+	                                      nullptr, nullptr)) {
 		uji->mNextState = UJIB_Move;
 		uji->finishMotion();
 	} else if (uji->isBreakBridge()) {
@@ -793,8 +793,8 @@ void StateMoveTop::exec(EnemyBase* enemy)
 {
 	Obj* uji = OBJ(enemy);
 
-	if (EnemyFunc::getNearestPikminOrNavi(uji, CG_GENERALPARMS(uji).mViewAngle.mValue, CG_GENERALPARMS(uji).mSightRadius.mValue,
-	                                      nullptr, nullptr, nullptr)) {
+	if (EnemyFunc::getNearestPikminOrNavi(uji, CG_GENERALPARMS(uji).mViewAngle.mValue, CG_GENERALPARMS(uji).mSightRadius.mValue, nullptr,
+	                                      nullptr, nullptr)) {
 		uji->mNextState = UJIB_Move;
 		uji->finishMotion();
 	} else if (uji->isBreakBridge()) {
@@ -847,8 +847,8 @@ void StateGoHome::exec(EnemyBase* enemy)
 	EnemyFunc::walkToTarget(uji, homePos, CG_GENERALPARMS(uji).mMoveSpeed.mValue, CG_GENERALPARMS(uji).mTurnSpeed.mValue,
 	                        CG_GENERALPARMS(uji).mMaxTurnAngle.mValue);
 
-	if (EnemyFunc::getNearestPikminOrNavi(uji, CG_GENERALPARMS(uji).mMaxAttackRange.mValue,
-	                                      CG_GENERALPARMS(uji).mMaxAttackAngle.mValue, nullptr, nullptr, nullptr)) {
+	if (EnemyFunc::getNearestPikminOrNavi(uji, CG_GENERALPARMS(uji).mMaxAttackRange.mValue, CG_GENERALPARMS(uji).mMaxAttackAngle.mValue,
+	                                      nullptr, nullptr, nullptr)) {
 		uji->mNextState = UJIB_Attack2;
 		uji->finishMotion();
 	} else {
@@ -900,8 +900,8 @@ void StateAttack1::init(EnemyBase* enemy, StateArg* stateArg)
 void StateAttack1::exec(EnemyBase* enemy)
 {
 	Obj* uji = OBJ(enemy);
-	if (EnemyFunc::getNearestPikminOrNavi(uji, CG_GENERALPARMS(uji).mViewAngle.mValue, CG_GENERALPARMS(uji).mSightRadius.mValue,
-	                                      nullptr, nullptr, nullptr)) {
+	if (EnemyFunc::getNearestPikminOrNavi(uji, CG_GENERALPARMS(uji).mViewAngle.mValue, CG_GENERALPARMS(uji).mSightRadius.mValue, nullptr,
+	                                      nullptr, nullptr)) {
 		uji->mNextState = UJIB_Move;
 	} else if (uji->isBreakBridge()) {
 		if (uji->moveBridgeTop()) {

@@ -253,8 +253,8 @@ void KumaKochappy::Obj::updateHomePosition() { mHomePosition = mPosition; }
  */
 Creature* KumaKochappy::Obj::getSearchedTarget()
 {
-	return EnemyFunc::getNearestPikminOrNavi(this, C_GENERALPARMS.mViewAngle.mValue, C_GENERALPARMS.mSightRadius.mValue, nullptr,
-	                                         nullptr, nullptr);
+	return EnemyFunc::getNearestPikminOrNavi(this, C_GENERALPARMS.mViewAngle.mValue, C_GENERALPARMS.mSightRadius.mValue, nullptr, nullptr,
+	                                         nullptr);
 }
 
 /**

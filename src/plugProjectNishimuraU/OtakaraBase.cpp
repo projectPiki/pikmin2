@@ -694,8 +694,8 @@ bool Obj::stimulateBomb()
  */
 Creature* Obj::getChaseTargetCreature()
 {
-	return EnemyFunc::getNearestPikminOrNavi(this, C_GENERALPARMS.mViewAngle.mValue, C_GENERALPARMS.mSightRadius.mValue, nullptr,
-	                                         nullptr, nullptr);
+	return EnemyFunc::getNearestPikminOrNavi(this, C_GENERALPARMS.mViewAngle.mValue, C_GENERALPARMS.mSightRadius.mValue, nullptr, nullptr,
+	                                         nullptr);
 }
 } // namespace OtakaraBase
 } // namespace Game

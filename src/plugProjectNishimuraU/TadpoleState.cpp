@@ -134,8 +134,8 @@ void StateMove::exec(EnemyBase* enemy)
 	Vector3f tadpolePos = tadpole->getPosition();
 	Vector3f targetPos  = Vector3f(tadpole->mTargetPosition);
 
-	EnemyFunc::walkToTarget(tadpole, targetPos, CG_GENERALPARMS(tadpole).mMoveSpeed.mValue,
-	                        CG_GENERALPARMS(tadpole).mTurnSpeed.mValue, CG_GENERALPARMS(tadpole).mMaxTurnAngle.mValue);
+	EnemyFunc::walkToTarget(tadpole, targetPos, CG_GENERALPARMS(tadpole).mMoveSpeed.mValue, CG_GENERALPARMS(tadpole).mTurnSpeed.mValue,
+	                        CG_GENERALPARMS(tadpole).mMaxTurnAngle.mValue);
 
 	if (tadpole->mStateTimer > 3.0f || sqrDistanceXZ(tadpolePos, targetPos) < 100.0f) {
 		tadpole->mTargetVelocity = Vector3f(0.0f);
@@ -197,8 +197,8 @@ void StateAmaze::exec(EnemyBase* enemy)
 			tadpole->enableEvent(0, EB_NoInterrupt);
 			tadpole->createLeapEffect();
 			EnemyFunc::flickNearbyPikmin(tadpole, CG_GENERALPARMS(tadpole).mShakeRange.mValue,
-			                             CG_GENERALPARMS(tadpole).mShakeKnockback.mValue,
-			                             CG_GENERALPARMS(tadpole).mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
+			                             CG_GENERALPARMS(tadpole).mShakeKnockback.mValue, CG_GENERALPARMS(tadpole).mShakeDamage.mValue,
+			                             FLICK_BACKWARD_ANGLE, nullptr);
 
 		} else if (tadpole->mCurAnim->mType == KEYEVENT_3) {
 			tadpole->disableEvent(0, EB_NoInterrupt);
@@ -243,8 +243,8 @@ void StateEscape::exec(EnemyBase* enemy)
 		Vector3f tadpolePos = tadpole->getPosition(); // this is pointless
 		Vector3f targetPos  = tadpole->getTargetPosition(navi);
 
-		EnemyFunc::walkToTarget(tadpole, targetPos, CG_GENERALPARMS(tadpole).mMoveSpeed.mValue,
-		                        CG_GENERALPARMS(tadpole).mTurnSpeed.mValue, CG_GENERALPARMS(tadpole).mMaxTurnAngle.mValue);
+		EnemyFunc::walkToTarget(tadpole, targetPos, CG_GENERALPARMS(tadpole).mMoveSpeed.mValue, CG_GENERALPARMS(tadpole).mTurnSpeed.mValue,
+		                        CG_GENERALPARMS(tadpole).mMaxTurnAngle.mValue);
 
 	} else {
 		tadpole->finishMotion();

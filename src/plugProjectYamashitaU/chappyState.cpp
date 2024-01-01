@@ -1931,8 +1931,8 @@ lbl_801181BC:
  */
 void StateAttack::transitState(EnemyBase* enemy)
 {
-	Creature* target = EnemyFunc::getNearestPikminOrNavi(enemy, OBJ(enemy)->mSearchAngle, CG_GENERALPARMS(enemy).mSearchDistance(),
-	                                                     nullptr, nullptr, nullptr);
+	Creature* target = EnemyFunc::getNearestPikminOrNavi(enemy, OBJ(enemy)->mSearchAngle, CG_GENERALPARMS(enemy).mSearchDistance(), nullptr,
+	                                                     nullptr, nullptr);
 	if (target) {
 		enemy->mTargetCreature = target;
 
@@ -2278,8 +2278,8 @@ void StateTurnToHome::exec(EnemyBase* enemy)
 			enemy->finishMotion();
 			mNextState = CHAPPY_GoHome;
 		} else {
-			Creature* target = EnemyFunc::getNearestPikminOrNavi(enemy, OBJ(enemy)->mSearchAngle,
-			                                                     CG_GENERALPARMS(enemy).mSearchDistance(), nullptr, nullptr, nullptr);
+			Creature* target = EnemyFunc::getNearestPikminOrNavi(enemy, OBJ(enemy)->mSearchAngle, CG_GENERALPARMS(enemy).mSearchDistance(),
+			                                                     nullptr, nullptr, nullptr);
 			if (target) {
 				enemy->mTargetCreature = target;
 
@@ -2848,8 +2848,8 @@ void StateGoHome::exec(EnemyBase* enemy)
 			enemy->mTargetCreature = target;
 
 			Creature* attackTarget = enemy->mTargetCreature;
-			if (enemy->isTargetAttackable(attackTarget, enemy->getCreatureViewAngle(attackTarget),
-			                              CG_GENERALPARMS(enemy).mMaxAttackRange(), CG_GENERALPARMS(enemy).mMaxAttackAngle())) {
+			if (enemy->isTargetAttackable(attackTarget, enemy->getCreatureViewAngle(attackTarget), CG_GENERALPARMS(enemy).mMaxAttackRange(),
+			                              CG_GENERALPARMS(enemy).mMaxAttackAngle())) {
 				enemy->finishMotion();
 				enemy->mTargetVelocity = Vector3f(0.0f);
 				OBJ(enemy)->setAnimationSpeed(60.0f);
