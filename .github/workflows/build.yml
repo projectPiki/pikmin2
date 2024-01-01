@@ -51,5 +51,5 @@ jobs:
       run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
     - name: Build
       run: |
-        python configure.py --map --compilers /compilers
+        python configure.py --map --compilers /compilers/GC
         make -j$(nproc) MAPGENFLAG=1 VERSION=${{matrix.version}} COMPILERS=/compilers/GC
