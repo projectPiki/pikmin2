@@ -74,6 +74,7 @@ struct EnemyNumInfo {
 	}
 	inline u8 getEnemyNumData(int enemyID)
 	{
+		// mr vs li issue here
 		for (int i = 0; i < gEnemyInfoNum; i++) {
 			if (mEnemyNumList[i].mEnemyID == enemyID) {
 				return mEnemyNumList[i].mCount;
@@ -208,16 +209,17 @@ struct GeneralEnemyMgr : public GenericObjectMgr, public CNode {
 	inline char getEnemyMember(int id, int flags) { return EnemyInfoFunc::getEnemyMember(id, flags); }
 	inline u8 getEnemyCount(int enemyID, int mgrID)
 	{
-		u8 num = 0;
+		// clrlwi issue here
+		u8 num = enemyID;
 
 		for (int i = 0; i < gEnemyInfoNum; i++) {
-			EnemyTypeID* typeID = &mEnemyNumInfo.mEnemyNumList[i];
+			EnemyTypeID& typeID = mEnemyNumInfo.mEnemyNumList[i];
 
 			bool eq = (u8)(enemyID == mgrID);
-			int id  = eq ? getEnemyMgrID(typeID->mEnemyID) : typeID->mEnemyID;
+			int id  = eq ? getEnemyMgrID(typeID.mEnemyID) : typeID.mEnemyID;
 
 			if (id == enemyID) {
-				num += typeID->mCount;
+				num += typeID.mCount;
 			}
 		}
 

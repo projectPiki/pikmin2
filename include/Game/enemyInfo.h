@@ -163,12 +163,15 @@ int getEnemyID(char* name, int flags);
 inline int getEnemyMgrID(int enemyID)
 {
 	int idx = -1;
+
 	for (int i = 0; i < gEnemyInfoNum; i++) {
 		char id = gEnemyInfo[i].mId;
+
 		if (id == enemyID) {
 			idx = (gEnemyInfo[i].mFlags & 1) ? enemyID : gEnemyInfo[i].mParentID;
 		}
 	}
+
 	return idx;
 }
 
