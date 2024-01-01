@@ -1886,7 +1886,8 @@ def main():
     gnu_as = args.powerpc / f"powerpc-eabi-as{exe}"
 
     #The dkp files for Linux don't have the powerpc-eabi prefix.
-    if os.uname().sysname == "Linux":
+    from sys import executable as PYTHON, platform
+    if platform != "win32":
         gnu_as = args.powerpc / f"as"
 
     mwcc_cmd = f"{chain}{wine}{mwcc} $cflags -MMD -c $in -o $basedir"
