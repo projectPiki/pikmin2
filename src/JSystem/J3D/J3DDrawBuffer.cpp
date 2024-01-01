@@ -18,85 +18,7 @@ drawFunc J3DDrawBuffer::drawFuncTable[2] = {
 
 void J3DDrawBuffer::calcZRatio() { mZRatio = (mZFar - mZNear) / (f32)mBufferSize; }
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_J3DDrawBuffer_cpp
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804A1930
-    lbl_804A1930:
-        .4byte 0x00000000
-        .4byte 0xFFFFFFFF
-        .4byte entryMatSort__13J3DDrawBufferFP12J3DMatPacket
-        .4byte 0x00000000
-        .4byte 0xFFFFFFFF
-        .4byte entryMatAnmSort__13J3DDrawBufferFP12J3DMatPacket
-        .4byte 0x00000000
-        .4byte 0xFFFFFFFF
-        .4byte entryZSort__13J3DDrawBufferFP12J3DMatPacket
-        .4byte 0x00000000
-        .4byte 0xFFFFFFFF
-        .4byte entryModelSort__13J3DDrawBufferFP12J3DMatPacket
-        .4byte 0x00000000
-        .4byte 0xFFFFFFFF
-        .4byte entryInvalidSort__13J3DDrawBufferFP12J3DMatPacket
-        .4byte 0x00000000
-        .4byte 0xFFFFFFFF
-        .4byte entryNonSort__13J3DDrawBufferFP12J3DMatPacket
-    .global sortFuncTable__13J3DDrawBuffer
-    sortFuncTable__13J3DDrawBuffer:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0xFFFFFFFF
-        .4byte drawHead__13J3DDrawBufferCFv
-        .4byte 0x00000000
-        .4byte 0xFFFFFFFF
-        .4byte drawTail__13J3DDrawBufferCFv
-    .global drawFuncTable__13J3DDrawBuffer
-    drawFuncTable__13J3DDrawBuffer:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global entryNum__13J3DDrawBuffer
-    entryNum__13J3DDrawBuffer:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516A00
-    lbl_80516A00:
-        .float 1.0
-    .global lbl_80516A04
-    lbl_80516A04:
-        .4byte 0x461C4000
-    .global lbl_80516A08
-    lbl_80516A08:
-        .4byte 0x43300000
-        .4byte 0x00000000
-*/
+int J3DDrawBuffer::entryNum;
 
 /**
  * @note Address: 0x800659A4
@@ -121,8 +43,6 @@ void J3DDrawBuffer::initialize()
 J3DErrType J3DDrawBuffer::allocBuffer(u32 bufSize)
 {
 	mBuffer = new (0x20) J3DPacket*[bufSize];
-	// if (mBuffer == nullptr)
-	//	return JET_OutOfMemory;
 
 	mBufferSize = bufSize;
 	frameInit();
@@ -245,89 +165,10 @@ bool J3DDrawBuffer::entryZSort(J3DMatPacket* i_packet)
 	}
 
 	u32 idx = (mBufferSize - 1) - uvar4;
-	i_packet->setNextPacket(mBuffer[idx]);
+	i_packet->setNextPacket(mBuffer[(mBufferSize - 1) - uvar4]); // why is this necessary to match smh
 	mBuffer[idx] = i_packet;
 
 	return true;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lfs      f3, lbl_80516A00@sda21(r2)
-	stw      r0, 0x34(r1)
-	li       r0, 0
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	stw      r0, 4(r4)
-	lis      r4, j3dSys@ha
-	addi     r3, r4, j3dSys@l
-	stw      r0, 8(r31)
-	lwz      r4, 0x2c(r31)
-	stw      r0, 4(r4)
-	stw      r0, 8(r4)
-	lwz      r4, 0x1c(r30)
-	psq_l    f5, 32(r3), 0, qr0
-	lfs      f2, 0xc(r4)
-	lfs      f1, 0x1c(r4)
-	lfs      f0, 0x2c(r4)
-	stfs     f2, 0x14(r1)
-	psq_l    f2, 40(r3), 0, qr0
-	stfs     f0, 0x1c(r1)
-	lwz      r4, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	lwz      r3, 0x18(r1)
-	stw      r0, 0x10(r1)
-	lfs      f0, 0x10(r30)
-	lfs      f4, 0x10(r1)
-	stw      r4, 8(r1)
-	ps_merge00 f4, f4, f3
-	lfs      f6, 0x18(r30)
-	stw      r3, 0xc(r1)
-	fadds    f0, f0, f6
-	psq_l    f1, 8(r1), 0, qr0
-	ps_mul   f5, f1, f5
-	ps_madd  f2, f4, f2, f5
-	ps_sum0  f2, f2, f2, f2
-	fneg     f1, f2
-	fcmpo    cr0, f0, f1
-	bge      lbl_80065FA0
-	lfs      f0, 0x14(r30)
-	fsubs    f0, f0, f6
-	fcmpo    cr0, f0, f1
-	ble      lbl_80065F94
-	fdivs    f1, f1, f6
-	bl       __cvt_fp2unsigned
-	mr       r6, r3
-	b        lbl_80065FA4
-
-lbl_80065F94:
-	lwz      r3, 4(r30)
-	addi     r6, r3, -1
-	b        lbl_80065FA4
-
-lbl_80065FA0:
-	li       r6, 0
-
-lbl_80065FA4:
-	lwz      r5, 4(r30)
-	li       r3, 1
-	lwz      r4, 0(r30)
-	addi     r0, r5, -1
-	subf     r0, r6, r0
-	slwi     r5, r0, 2
-	lwzx     r0, r4, r5
-	stw      r0, 4(r31)
-	lwz      r4, 0(r30)
-	stwx     r31, r4, r5
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**

@@ -6,7 +6,7 @@ J3D_FILES:=\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DShape.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DMaterial.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DTevs.o\
-	$(BUILD_DIR)/asm/JSystem/J3D/J3DDrawBuffer.o\
+	$(BUILD_DIR)/src/JSystem/J3D/J3DDrawBuffer.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DModel.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DAnimation.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DMaterialAnm.o\
