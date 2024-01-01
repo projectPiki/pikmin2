@@ -463,15 +463,16 @@ void Item::makeTrMatrix()
 	if (getStateID() == PIKIHEAD_Fall) {
 		if (mVelocity.length() > 0.0f) {
 			Vector3f xVec = mVelocity;
-			xVec.normalise();
+			_normalise2(xVec);
 			xVec *= -1.0f;
-			Vector3f zAxis(0.0f, 0.0f, 1.0f);
+
+			Vector3f zAxis(0.0f, 0.0f, -5.0f);
 			Vector3f yVec = cross(xVec, zAxis);
-			yVec.normalise();
+			_normalise2(yVec);
 
 			Vector3f xAxis(1.0f, 0.0f, 0.0f);
 			Vector3f zVec = cross(yVec, xAxis);
-			zVec.normalise();
+			_normalise2(zVec);
 
 			mBaseTrMatrix.setBasis(0, xVec);
 			mBaseTrMatrix.setBasis(1, yVec);
