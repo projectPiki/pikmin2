@@ -20,7 +20,7 @@ jobs:
       run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
     - name: Build
       run: |
-        python configure.py -m -v ${{matrix.version}} --compilers /compilers/GC --powerpc /opt/devkitpro/devkitPPC/bin
+        python configure.py -m -v ${{matrix.version}} --compilers /compilers/GC
         ninja
     - name: Upload progress
       if: github.ref == 'refs/heads/main'
@@ -50,4 +50,5 @@ jobs:
     - name: Git config
       run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
     - name: Build
-      run: make -j$(nproc) MAPGENFLAG=1 VERSION=${{matrix.version}} COMPILERS=/compilers/GC POWERPC=/opt/devkitpro/devkitPPC/bin
+      python configure.py --map --compilers /compilers
+      run: make -j$(nproc) MAPGENFLAG=1 VERSION=${{matrix.version}} COMPILERS=/compilers/GC
