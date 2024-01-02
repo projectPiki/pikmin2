@@ -717,14 +717,13 @@ void ObjDayEndResultItem::doDraw(Graphics& gfx)
 	{
 		int pokos = cNode->mTotalPokos;
 		int isOdd = i % 2;
-		f32 check = (f32)i * mItemRowHeight + mCurrentScrollYPos;
+		f32 check = i * mItemRowHeight + mCurrentScrollYPos;
 		if (check < -mItemRowHeight || mGXScissorBottomY < check) {
 			panes[isOdd]->add(0.0f, offs);
 		} else {
-			int isEven = !(i % 2);
-			panes[isEven]->hide();
+			panes[!isOdd]->hide();
 			panes[isOdd]->show();
-			panes[isEven]->add(0.0f, offs);
+			panes[isOdd]->add(0.0f, offs);
 
 			setTex(mScreenMain, icons[isOdd], cNode->mTexture->mTexInfo);
 			if (!cNode->mMesgTag) {
@@ -740,9 +739,8 @@ void ObjDayEndResultItem::doDraw(Graphics& gfx)
 	}
 
 	for (i; i < 6; i++) {
-		int isOdd  = i % 2;
-		int isEven = !(i % 2);
-		panes[isEven]->hide();
+		int isOdd = i % 2;
+		panes[!isOdd]->hide();
 		panes[isOdd]->show();
 		panes[isOdd]->add(0.0f, offs);
 		mScreenMain->search(icons[isOdd])->hide();
@@ -1978,9 +1976,7 @@ static const int someDumbUnusedArray[0x40] = { 0 }; // not actually unused accor
 void ObjDayEndResultIncP::callIncPSE(int id)
 {
 	u32 soundID;
-
-	u32 test = id & ~1;
-	if (((u32)(id & 1) ^ test) - test) {
+	if (id % 2) {
 		u32 count2 = *mPikiCountersList[id - 1]->mCountPtr;
 		u32 count1 = *mPikiCountersList[id]->mCountPtr;
 		if (count2 < count1) {
@@ -1995,50 +1991,6 @@ void ObjDayEndResultIncP::callIncPSE(int id)
 	}
 
 	PSSystem::spSysIF->playSystemSe(soundID, 0);
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-srwi     r5, r4, 0x1f
-stw      r0, 0x14(r1)
-clrlwi   r0, r4, 0x1f
-xor      r0, r0, r5
-subf.    r0, r5, r0
-beq      lbl_80407858
-lwz      r3, 0xac(r3)
-slwi     r0, r4, 2
-add      r4, r3, r0
-lwzx     r3, r3, r0
-lwz      r4, -4(r4)
-lwz      r3, 0x20(r3)
-lwz      r4, 0x20(r4)
-lwz      r3, 0(r3)
-lwz      r0, 0(r4)
-cmplw    r0, r3
-bge      lbl_80407844
-li       r4, 0x1828
-b        lbl_8040785C
-
-lbl_80407844:
-ble      lbl_80407850
-li       r4, 0x182a
-b        lbl_8040785C
-
-lbl_80407850:
-li       r4, 0x1806
-b        lbl_8040785C
-
-lbl_80407858:
-li       r4, 0x1806
-
-lbl_8040785C:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
 }
 
 /**
