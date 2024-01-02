@@ -437,8 +437,8 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 	int next;
 	FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode)
 	{
-		u32 isOdd = i & 1;
-		f32 calc  = (f32)i * mScrollUpDown + mScrollPos;
+		int isOdd = i % 2;
+		f32 calc  = i * mScrollUpDown + mScrollPos;
 
 		if (calc < -mScrollUpDown || mScissorMax < calc) {
 			paneList[isOdd]->add(0.0f, offs);
@@ -454,9 +454,8 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 				next = cNode->getNextIndex(cNode->mQuantity, cNode->mLostNum);
 				setAlpha(isOdd, 255);
 			}
-			int isEven = !(i % 2);
-			paneList[isOdd]->hide();
-			paneList[isEven]->show();
+			paneList[!isOdd]->hide();
+			paneList[isOdd]->show();
 			paneList[isOdd]->add(0.0f, offs);
 			setTex(mScreenMain, icontags[isOdd], cNode->mTexture->mTexInfo);
 			u64 tag = cNode->mMesgTag;
@@ -473,8 +472,8 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 	}
 
 	for (; i < 6; i++) {
-		int isOdd = i & 1;
-		paneList[isOdd]->hide();
+		int isOdd = i % 2;
+		paneList[!isOdd]->hide();
 		paneList[isOdd]->show();
 		paneList[isOdd]->add(0.0f, offs);
 		setAlpha(isOdd, 255);
@@ -1529,7 +1528,7 @@ void ObjCaveResult::statusLost()
 		{
 			if (cNode->mLostNum != 0 && ((int)(cNode->mItemMgr->mFlags & LOSTITEM_Unk2) != 2)) {
 				pos.y = mScrollUpDown * (i - 3 - mScrollSelIndexMax) + _100;
-				cNode->mItemMgr->init(pos, i & 1);
+				cNode->mItemMgr->init(pos, i % 2);
 				mChangeStateDelay = mScrollTargetDist;
 				return;
 			}
