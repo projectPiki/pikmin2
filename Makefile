@@ -95,12 +95,7 @@ else
   endif
   # Disable wine debug output for cleanliness
   export WINEDEBUG ?= -all
-  # The Linux dkp files don't have the powerpc-eabi prefix
-  ifeq ($(shell uname -s), Darwin)
-    AS := $(POWERPC)/powerpc-eabi-as
-  else
-    AS := $(POWERPC)/as
-  endif
+  AS := $(POWERPC)/powerpc-eabi-as
   PYTHON  := python3
 endif
 COMPILERS ?= tools/mwcc_compiler
