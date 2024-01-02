@@ -53,6 +53,12 @@ struct J2DPrint {
 		mGlyphHeight = (p2 > 0.0f) ? p2 : 0.0f;
 	}
 
+	inline void setColors(JUtility::TColor color1, JUtility::TColor color2)
+	{
+		mCharColor     = color2;
+		mGradientColor = color1;
+	}
+
 	static const u8* mStrBuff;
 	static size_t mStrBuffSize;
 	static bool mHeapFlag;

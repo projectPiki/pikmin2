@@ -1,83 +1,44 @@
-#include "CarryInfo.h"
-#include "Controller.h"
-#include "Dolphin/dvd.h"
-#include "DvdThreadCommand.h"
 #include "Game/BaseGameSection.h"
-#include "Game/BaseHIO.h"
 #include "Game/CameraMgr.h"
-#include "Game/TimeMgr.h"
-#include "Game/gameGenerator.h"
-#include "Game/gameGeneratorCache.h"
-#include "Game/gamePlayData.h"
-#include "Game/gameStages.h"
-#include "Game/GameSystem.h"
-#include "Game/MapMgr.h"
 #include "Game/MoviePlayer.h"
 #include "Game/rumble.h"
-#include "Game/shadowMgr.h"
-#include "Graphics.h"
-#include "IDelegate.h"
-#include "JSystem/J2D/J2DTypes.h"
-#include "JSystem/JFramework/JFWDisplay.h"
-#include "JSystem/JKernel/JKRDvdRipper.h"
-#include "JSystem/JUtility/JUTXfb.h"
-#include "LifeGaugeMgr.h"
-#include "P2Macros.h"
-#include "Screen/Game2DMgr.h"
-#include "og/Screen/ogScreen.h"
-#include "System.h"
-#include "stream.h"
-#include "wipe.h"
-#include "nans.h"
-#include "SysTimers.h"
 #include "Game/PelletBirthBuffer.h"
-#include "PSSystem/PSCommon.h"
-#include "Sys/DrawBuffers.h"
-#include "Game/Entities/ItemBigFountain.h"
-#include "PSSystem/PSGame.h"
-#include "PSSystem/PSScene.h"
-#include "TParticle2dMgr.h"
-#include "LifeGaugeMgr.h"
-#include "Game/DynParticle.h"
 #include "Game/Cave/Info.h"
 #include "Game/Cave/RandMapUnit.h"
 #include "Game/Farm.h"
-
-#include "Dolphin/rand.h"
-
-#include "Game/Entities/PelletCarcass.h"
-#include "Game/Entities/PelletFruit.h"
-#include "Game/Entities/PelletItem.h"
-#include "Game/Entities/PelletNumber.h"
-#include "Game/Entities/PelletOtakara.h"
-
 #include "Game/GameLight.h"
-
-#include "Dolphin/dvd.h"
-#include "System.h"
-
-#include "og/ogLib2D.h"
-#include "Screen/Game2DMgr.h"
 #include "Game/PikiMgr.h"
 #include "Game/Navi.h"
 #include "Game/generalEnemyMgr.h"
 #include "Game/Entities/ItemOnyon.h"
 #include "Game/Entities/ItemPikihead.h"
 #include "Game/PikiState.h"
-#include "PikiAI.h"
-
 #include "Game/DeathMgr.h"
+#include "Game/pathfinder.h"
+#include "Game/AIConstants.h"
+#include "Game/Entities/ItemBigFountain.h"
+#include "Game/Entities/PelletCarcass.h"
+#include "Game/Entities/PelletFruit.h"
+#include "Game/Entities/PelletItem.h"
+#include "Game/Entities/PelletNumber.h"
+#include "Game/Entities/PelletOtakara.h"
 
+#include "JSystem/JFramework/JFWDisplay.h"
+#include "LifeGaugeMgr.h"
+#include "Screen/Game2DMgr.h"
+#include "PSSystem/PSCommon.h"
+#include "Sys/DrawBuffers.h"
+#include "TParticle2dMgr.h"
+#include "PikiAI.h"
+#include "Dolphin/rand.h"
 #include "utilityU.h"
 #include "PSGame/Global.h"
-#include "Splitter.h"
-
+#include "og/ogLib2D.h"
 #include "JSystem/J2D/J2DPrint.h"
 #include "TexCaster.h"
-#include "Game/pathfinder.h"
 #include "og/Screen/ogScreen.h"
-#include "Game/AIConstants.h"
 #include "efx/OnyonSpot.h"
+#include "nans.h"
 
 namespace og {
 namespace Screen {
@@ -96,7 +57,7 @@ void setBlendPane(J2DBlendInfo, J2DScreen*, u64*)
 } // namespace Screen
 } // namespace og
 
-static const int padding[]    = { 0, 0, 0 };
+static const u32 padding[]    = { 0, 0, 0 };
 static const char className[] = "baseGameSection";
 
 static Delegate1<Game::BaseGameSection, Game::CameraArg*>* cameraMgrCallback;
@@ -112,7 +73,6 @@ u8 BaseGameSection::sOptDraw = 3;
  */
 BaseGameSection::BaseGameSection(JKRHeap* heap)
     : BaseHIOSection(heap)
-    , mDvdThreadCommand()
 {
 	mXfbFlags = 0;
 	setDisplay(JFWDisplay::createManager(nullptr, mDisplayHeap, JUTXfb::DoubleBuffer, true), 1);
@@ -210,13 +170,7 @@ void BaseGameSection::loadSync(IDelegate* delegate, bool p2)
 
 u32 BaseGameSection::waitSyncLoad(bool dontPause)
 {
-	static int col;
-	static s8 init;
-
-	if (!init) {
-		col  = 0;
-		init = 1;
-	}
+	static int col = 0;
 	col++;
 	endFrame();
 	if (!dontPause) {
@@ -598,10 +552,6 @@ void BaseGameSection::initResources()
 	setupFloatMemory();
 }
 
-Vector2f getRectSkew() { return Vector2f(0.0f, -80.0f); }
-
-Vector2f getBottomLeft() { return Vector2f(0.0f, 0.0f); }
-
 /**
  * @note Address: 0x8014C328
  * @note Size: 0x1E4
@@ -625,16 +575,14 @@ void BaseGameSection::initViewports(Graphics& gfx)
 	mTreasureGetViewport        = new Viewport;
 	mTreasureGetViewport->mVpId = 2;
 
-	u16 x               = sys->getRenderModeObj()->fbWidth;
-	u16 y               = sys->getRenderModeObj()->efbHeight;
-	Vector2f screenSize = Vector2f(x, y);
+	u16 x = sys->getRenderModeObj()->fbWidth;
+	u16 y = sys->getRenderModeObj()->efbHeight;
 	sys->getRenderModeObj();
 	sys->getRenderModeObj();
-	// there's probably some rect ctor or setter that takes vector2fs tbh
-	// float moment
-	Rectf rect;
-	rect.p1 = getBottomLeft() + getRectSkew();
-	rect.p2 = getRectSkew() + screenSize;
+
+	f32 left = 0.0f;
+	f32 top  = left - 80.0f;
+	Rectf rect(left, top, left + x, top + y);
 	mTreasureGetViewport->setRect(rect);
 	mTreasureGetViewport->setCamera(mTreasureZoomCamera);
 }
@@ -1275,12 +1223,12 @@ void BaseGameSection::setDefaultPSSceneInfo(PSGame::SceneInfo& sceneInfo)
 	Vector3f min = box.mMin;
 	Vector3f max = box.mMax;
 
-	sceneInfo.mBounds.minX = min.x;
-	sceneInfo.mBounds.minY = min.y;
-	sceneInfo.mBounds.minZ = min.z;
-	sceneInfo.mBounds.maxX = max.x;
-	sceneInfo.mBounds.maxY = max.y;
-	sceneInfo.mBounds.maxZ = max.z;
+	sceneInfo.mBounds.mMin.x = min.x;
+	sceneInfo.mBounds.mMin.y = min.y;
+	sceneInfo.mBounds.mMin.z = min.z;
+	sceneInfo.mBounds.mMax.x = max.x;
+	sceneInfo.mBounds.mMax.y = max.y;
+	sceneInfo.mBounds.mMax.z = max.z;
 }
 
 /**
@@ -1480,10 +1428,10 @@ void BaseGameSection::draw2D(Graphics& gfx)
 	gfx.mOrthoGraph.setPort();
 	draw_Ogawa2D(gfx);
 	if (_168) {
-		_168->capture(mTexData1, _170, GX_TF_IA8, false, 0);
+		_168->capture(mTexData1, _170, GX_TF_RGB565, false, 0);
 	}
 	if (!_168 && mXfbFlags & 2) {
-		mXfbImage->capture(mXfbBoundsX, mXfbBoundsY, GX_TF_IA8, true, 0);
+		mXfbImage->capture(mXfbBoundsX, mXfbBoundsY, GX_TF_RGB565, true, 0);
 		mXfbFlags &= ~2;
 		mXfbFlags |= 1;
 		mXfbFlags |= 4;
@@ -1492,8 +1440,7 @@ void BaseGameSection::draw2D(Graphics& gfx)
 	gfx.mOrthoGraph.setPort();
 	J2DPrint print(JFWSystem::systemFont, 0.0f);
 	print.initiate();
-	print.mCharColor     = JUtility::TColor(0x9e, 0xdb, 0xff, 0xff);
-	print.mGradientColor = JUtility::TColor(0x38, 0x9f, 0xf7, 0xff);
+	print.setColors(JUtility::TColor(0x38, 0x9f, 0xf7, 0xff), JUtility::TColor(0x9e, 0xdb, 0xff, 0xff));
 	JKRHeap::sCurrentHeap->getFreeSize();
 	// print was likely showing how much head space was left
 }
@@ -2051,7 +1998,7 @@ void BaseGameSection::setupFixMemory_dvdload()
 	mMizuTexture  = new JUTTexture(file);
 	sys->heapStatusStart("fbTexture", nullptr);
 
-	mXfbImage               = new JUTTexture();
+	mXfbImage = new JUTTexture((u32)(sys->getRenderModeObj()->fbWidth >> 1), (u32)(sys->getRenderModeObj()->efbHeight >> 1), GX_TF_RGB565);
 	gameSystem->mXfbTexture = mXfbImage;
 
 	sys->heapStatusEnd("fbTexture");
@@ -2423,7 +2370,10 @@ void BaseGameSection::setupFloatMemory()
 	rumbleMgr->init();
 	addGenNode(rumbleMgr);
 
-	bool incave = gameSystem->mIsInCave;
+	bool incave = false;
+	if (gameSystem->mIsInCave) {
+		incave = true;
+	}
 	sys->heapStatusStart("itemMgr", nullptr);
 	itemMgr = new ItemMgr;
 	if (isDevelopSection()) {
@@ -2459,7 +2409,7 @@ void BaseGameSection::setupFloatMemory()
 				sprintf(path, "user/Abe/vs/%s", getEditorFilename());
 				mapunit = new Cave::EditMapUnit;
 				mapunit->read(path);
-				mapunit->setEditNumber(getCurrFloor());
+				mapunit->setEditNumber(getVsEditNumber());
 			}
 		}
 		if (challengeDisablePelplant()) {
@@ -2506,8 +2456,8 @@ void BaseGameSection::setupFloatMemory()
 		BoundBox2d bounds2(FLOAT_DIST_MAX, FLOAT_DIST_MAX, FLOAT_DIST_MIN, FLOAT_DIST_MIN);
 		mapMgr->getBoundBox2d(bounds2);
 		sys->heapStatusStart("MapRoomCellMgr", nullptr);
-		platCellMgr = new CellPyramid;
-		platCellMgr->create(bounds, 170.0f);
+		mapRoomCellMgr = new CellPyramid;
+		mapRoomCellMgr->create(bounds2, 170.0f);
 		sys->heapStatusEnd("MapRoomCellMgr");
 
 		static_cast<RoomMapMgr*>(mapMgr)->entryToMapRoomCellMgr();
@@ -2581,7 +2531,7 @@ void BaseGameSection::setupFloatMemory()
 	if (Farm::farmMgr) {
 		Farm::farmMgr->setupSound();
 	}
-	OSReport("<f32> Done\n");
+	OSReport("<float> Done\n"); // anyone else who changes this to f32 gets 40 years in the dungeon
 
 	/*
 	stwu     r1, -0x2c0(r1)
