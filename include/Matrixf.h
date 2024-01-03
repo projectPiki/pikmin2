@@ -64,11 +64,11 @@ struct Matrixf {
 	/**
 	 * @fabricated
 	 */
-	void setBasis(int p1, Vector3f& p2)
+	void setBasis(int index, Vector3f& v)
 	{
-		(*this)(0, p1) = p2.x;
-		(*this)(1, p1) = p2.y;
-		(*this)(2, p1) = p2.z;
+		(*this)(0, index) = v.x;
+		(*this)(1, index) = v.y;
+		(*this)(2, index) = v.z;
 	}
 
 	inline Vector3f mtxMult(Vector3f& vec)

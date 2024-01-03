@@ -22,6 +22,14 @@ struct JointShadowParm {
 	f32 _1C;            // _1C
 	f32 mShadowScale;   // _20
 	f32 _24;            // _24
+
+	inline void setBoth(f32 x, f32 y)
+	{
+		mShadowScale = 0.0f;
+		_24          = -17.5f;
+		_18          = x;
+		_1C          = y;
+	}
 };
 
 struct JointShadowNode : public CNode {

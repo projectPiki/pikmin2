@@ -8,41 +8,41 @@ namespace Game {
  * @note Address: 0x802F2040
  * @note Size: 0x278
  */
-void TubeShadowTransNode::makeShadowSRT(JointShadowParm& parm, Vector3f& pos1, Vector3f& pos2)
+void TubeShadowTransNode::makeShadowSRT(JointShadowParm& parm, Vector3f& originalPos, Vector3f& transformedPos)
 {
-	Matrixf* mat = mJoint->getWorldMatrix();
+	Matrixf* worldMtx = mJoint->getWorldMatrix();
 
-	Vector3f xVec, yVec;
-	mat->getBasis(0, xVec);
-	mat->getBasis(1, yVec);
+	Vector3f xAxis, yAxis;
+	worldMtx->getBasis(0, xAxis);
+	worldMtx->getBasis(1, yAxis);
 
-	mat->getTranslation(pos1);
-	pos2.x = pos1.x + (xVec.x * parm._18 + yVec.x * parm._1C);
-	pos2.y = pos1.y + (xVec.y * parm._18 + yVec.y * parm._1C);
-	pos2.z = pos1.z + (xVec.z * parm._18 + yVec.z * parm._1C);
+	worldMtx->getTranslation(originalPos);
+	transformedPos.x = originalPos.x + (xAxis.x * parm._18 + yAxis.x * parm._1C);
+	transformedPos.y = originalPos.y + (xAxis.y * parm._18 + yAxis.y * parm._1C);
+	transformedPos.z = originalPos.z + (xAxis.z * parm._18 + yAxis.z * parm._1C);
 
-	Vector3f newX;
-	newX.x = (pos2.x - pos1.x) * 0.5f;
-	newX.y = (pos2.y - pos1.y) * 0.5f;
-	newX.z = (pos2.z - pos1.z) * 0.5f;
+	Vector3f x;
+	x.x = (transformedPos.x - originalPos.x) * 0.5f;
+	x.y = (transformedPos.y - originalPos.y) * 0.5f;
+	x.z = (transformedPos.z - originalPos.z) * 0.5f;
 
-	Vector3f newZ(newX.y * parm.mRotation.z - newX.z * parm.mRotation.y, newX.z * parm.mRotation.x - newX.x * parm.mRotation.z,
-	              newX.x * parm.mRotation.y - newX.y * parm.mRotation.x);
-	newZ.normalise();
+	Vector3f scale(x.y * parm.mRotation.z - x.z * parm.mRotation.y, x.z * parm.mRotation.x - x.x * parm.mRotation.z,
+	               x.x * parm.mRotation.y - x.y * parm.mRotation.x);
+	scale.normalise();
 
-	Vector3f newPos;
-	newPos.x = (pos2.x + pos1.x) * 0.5f + parm.mRotation.x * parm._24;
-	newPos.y = (pos2.y + pos1.y) * 0.5f + parm.mRotation.y * parm._24;
-	newPos.z = (pos2.z + pos1.z) * 0.5f + parm.mRotation.z * parm._24;
+	Vector3f w;
+	w.x = (transformedPos.x + originalPos.x) * 0.5f + parm.mRotation.x * parm._24;
+	w.y = (transformedPos.y + originalPos.y) * 0.5f + parm.mRotation.y * parm._24;
+	w.z = (transformedPos.z + originalPos.z) * 0.5f + parm.mRotation.z * parm._24;
 
-	Vector3f newY = parm.mRotation;
-	newY *= (100.0f + (newPos.y - parm.mPosition.y));
-	newZ *= parm.mShadowScale;
+	Vector3f y = parm.mRotation;
+	y *= (100.0f + (w.y - parm.mPosition.y));
+	scale *= parm.mShadowScale;
 
-	mMainMtx->setBasis(0, newX);
-	mMainMtx->setBasis(1, newY);
-	mMainMtx->setBasis(2, newZ);
-	mMainMtx->setBasis(3, newPos);
+	mMainMtx->setBasis(0, x);
+	mMainMtx->setBasis(1, y);
+	mMainMtx->setBasis(2, scale);
+	mMainMtx->setBasis(3, w);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x80(r1)

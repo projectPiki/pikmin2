@@ -259,7 +259,7 @@ struct PlayCamera : public LookAtCamera {
 	f32 mCurrTargetDistance;         // _1A8
 	f32 mGoalTargetDistance;         // _1AC
 	f32 mCameraAngleCurrent;         // _1B0
-	f32 mCameraAngleGoal;            // _1B4
+	f32 mCameraAngleTarget;          // _1B4
 	f32 mCurrVerticalAngle;          // _1B8
 	f32 mGoalVerticalAngle;          // _1BC
 	f32 mGoalFOV;                    // _1C0

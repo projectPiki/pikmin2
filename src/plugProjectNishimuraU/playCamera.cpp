@@ -22,7 +22,7 @@ PlayCamera::PlayCamera(Navi* target)
 
 	mGoalTargetDistance = 100.0f;
 	mCurrTargetDistance = 100.0f;
-	mCameraAngleGoal    = 0.0f;
+	mCameraAngleTarget  = 0.0f;
 	mCameraAngleCurrent = 0.0f;
 	mGoalVerticalAngle  = 0.0f;
 	mCurrVerticalAngle  = 0.0f;
@@ -88,7 +88,7 @@ void PlayCamera::init()
 
 	f32 angle = mTargetObj->getFaceDir() + PI;
 	clampAngle(angle);
-	mCameraAngleGoal    = angle;
+	mCameraAngleTarget  = angle;
 	mCameraAngleCurrent = angle;
 	mCurrVerticalAngle  = mGoalVerticalAngle;
 	mViewAngle          = mGoalFOV;
@@ -104,7 +104,7 @@ void PlayCamera::init()
  */
 void PlayCamera::setCameraAngle(f32 angle)
 {
-	mCameraAngleGoal    = angle;
+	mCameraAngleTarget  = angle;
 	mCameraAngleCurrent = angle;
 	updateMatrix();
 }
@@ -155,7 +155,7 @@ void PlayCamera::changePlayerMode(bool updateDir)
 	if (updateDir) {
 		setTargetThetaToWhistle();
 	} else {
-		mCameraAngleGoal = mCameraAngleCurrent;
+		mCameraAngleTarget = mCameraAngleCurrent;
 	}
 	updateMatrix();
 	setProjection();
@@ -519,7 +519,7 @@ void PlayCamera::setTargetThetaToWhistle()
 {
 	Vector3f pos         = mTargetObj->getPosition();
 	NaviWhistle* whistle = mTargetObj->mWhistle;
-	mCameraAngleGoal     = JMath::atanTable_.atan2_(pos.x - whistle->mPosition.x, pos.z - whistle->mPosition.z);
+	mCameraAngleTarget   = JMath::atanTable_.atan2_(pos.x - whistle->mPosition.x, pos.z - whistle->mPosition.z);
 }
 
 /**
@@ -552,9 +552,9 @@ void PlayCamera::changeTargetTheta()
 		mFollowTime -= sys->mDeltaTime;
 		setTargetThetaToWhistle();
 	} else {
-		f32 angle = mCameraAngleGoal - mSmoothMoveSpeed;
+		f32 angle = mCameraAngleTarget - mSmoothMoveSpeed;
 		clampAngle(angle);
-		mCameraAngleGoal = angle;
+		mCameraAngleTarget = angle;
 	}
 	mSmoothMoveSpeed *= mCameraParms->mRotDampRate.mValue;
 }
@@ -613,7 +613,7 @@ void PlayCamera::updateParms(int flag)
 	mLookAtPosition = (mLookAtPosition * invrate) + (mGoalPosition * rate);
 
 	CameraParms* parms = mCameraParms;
-	f32 anglein        = mCameraAngleGoal;
+	f32 anglein        = mCameraAngleTarget;
 	f32 angleout       = mCameraAngleCurrent;
 	if (anglein >= angleout) {
 		if (TAU - (anglein - angleout) < (anglein - angleout)) {
@@ -783,7 +783,7 @@ void PlayCamera::otherVibFinished(int id)
 bool PlayCamera::isModCameraFinished()
 {
 	if (mChangePlayerState == 1) {
-		f32 anglein  = mCameraAngleGoal;
+		f32 anglein  = mCameraAngleTarget;
 		f32 angleout = mCameraAngleCurrent;
 		if (anglein >= angleout) {
 			if (TAU - (anglein - angleout) < (anglein - angleout)) {
@@ -985,10 +985,10 @@ f32 PlayCamera::getCollisionCameraTargetPhi(f32 angle, f32 dist)
 	dist /= 15.0f; // f19
 	angle *= TORADIANS(1.0f);
 
-	f32 cosTheta = cosf(mCameraAngleGoal); // f22
-	f32 sinTheta = sinf(mCameraAngleGoal); // f26
-	f32 sinPhi   = sinf(angle);            // f24
-	f32 cosPhi   = cosf(angle);            // f23
+	f32 cosTheta = cosf(mCameraAngleTarget); // f22
+	f32 sinTheta = sinf(mCameraAngleTarget); // f26
+	f32 sinPhi   = sinf(angle);              // f24
+	f32 cosPhi   = cosf(angle);              // f23
 
 	for (int i = 1; i <= 15; i++) {
 		f32 rad       = dist * (f32)i;

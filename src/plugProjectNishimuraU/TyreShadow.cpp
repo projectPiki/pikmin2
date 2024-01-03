@@ -253,12 +253,7 @@ void TyreShadowMgr::update()
 
 	f32 scale1 = 31.5f * mGlobalScale;
 	f32 scale2 = 17.5f * mGlobalScale;
-
-	parm.mShadowScale = 0.0f;
-	parm._24          = -17.5f;
-	parm._18          = scale1;
-	parm._1C          = scale2;
-
+	parm.setBoth(scale1, scale2);
 	mFrontShadow->makeShadowSRT(parm, mFrontMatrix);
 	mBackShadow->makeShadowSRT(parm, mBackMatrix);
 	/*
