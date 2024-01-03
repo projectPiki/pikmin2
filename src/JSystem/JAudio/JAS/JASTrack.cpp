@@ -24,7 +24,7 @@ JASTrack::JASTrack()
     , _144(nullptr)
     , mTimedParam()
     , mRegisterParam()
-    , _2F8(nullptr)
+    , mParentTrack(nullptr)
     , _340(0.0f)
     , _344(0.0f)
     , _348(0)
@@ -32,15 +32,15 @@ JASTrack::JASTrack()
     , _350(0)
     , _352(0x78)
     , _354(0x78)
-    , _356(0)
+    , mTranspose(0)
     , _357(0)
-    , _358(0)
+    , mPauseStatus(0)
     , mVolumeMode(0)
     , _35A(0)
     , _35B(0)
     , _362(false)
     , _363(0)
-    , _364(0)
+    , mTimeRelate(0)
     , _365(0)
     , _366(0)
 {
@@ -120,15 +120,15 @@ void JASTrack::init()
 	mRegisterParam.init();
 
 	for (int i = 0; i < 2; i++) {
-		_2D8[i] = 15;
-		_2A8[i] = JASPlayer::sEnvelopeDef;
+		_2D8[i]     = 15;
+		mOscData[i] = JASPlayer::sEnvelopeDef;
 	}
 
-	_2F8    = nullptr;
-	_2FC[0] = nullptr;
+	mParentTrack  = nullptr;
+	mChildList[0] = nullptr;
 
 	for (int i = 1; i < 16; i++) {
-		_2FC[i] = 0;
+		mChildList[i] = 0;
 	}
 	if (mExtBuffer) {
 		mExtBuffer->initExtBuffer();
@@ -142,12 +142,12 @@ void JASTrack::init()
 	_352 = 0x78;
 	_354 = 0x30;
 	updateTempo();
-	_356        = 0;
-	_357        = 0;
-	_358        = 10;
-	mVolumeMode = 0;
-	_35A        = 0;
-	_35B        = 0;
+	mTranspose   = 0;
+	_357         = 0;
+	mPauseStatus = 10;
+	mVolumeMode  = 0;
+	_35A         = 0;
+	_35B         = 0;
 
 	_35C                = 0;
 	_35F                = 0;
@@ -161,10 +161,10 @@ void JASTrack::init()
 	_361                = 0;
 	mChannelUpdater._4C = 0xD;
 
-	_362 = false;
-	_363 = 0;
-	_364 = 1;
-	_365 = 0;
+	_362        = false;
+	_363        = 0;
+	mTimeRelate = 1;
+	_365        = 0;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -310,7 +310,7 @@ int JASTrack::inherit()
 	// 	mSeqCtrl._40--;
 	// }
 	// if (0 < mSeqCtrl._08) { }
-	if (_362 != false && (_358 & 2) != 0) {
+	if (_362 != false && (mPauseStatus & 2) != 0) {
 		return -1;
 	}
 	if (mSeqCtrl.mWaitTimer == -1) {
@@ -340,8 +340,8 @@ int JASTrack::inherit()
 s8 JASTrack::mainProc()
 {
 	int v1 = 0;
-	if (_365 != 0 && _2F8 != nullptr) {
-		f32 v2 = (f32)_352 / (f32)_2F8->_352;
+	if (_365 != 0 && mParentTrack != nullptr) {
+		f32 v2 = (f32)_352 / (f32)mParentTrack->_352;
 		if (1.0f < v2) {
 			v2 = 1.0f;
 		}
@@ -373,11 +373,11 @@ s8 JASTrack::mainProc()
 		return -1;
 	}
 	for (v1 = 0; v1 < 16; v1++) {
-		JASTrack* v3 = _2FC[v1];
+		JASTrack* v3 = mChildList[v1];
 		// if (v3 != nullptr && v3->_35B != 0 && v3->mainProc() == -1) {
 		if (v3 != nullptr && v3->_35B != 0) {
 			v3->close();
-			_2FC[v1] = nullptr;
+			mChildList[v1] = nullptr;
 		}
 	}
 	return 0;
@@ -718,7 +718,7 @@ void JASTrack::connectBus(int p1, int p2) { mChannelUpdater._36[p1] = p2; }
  */
 int JASTrack::noteOn(u8 channelIndex, s32 p2, s32 p3, s32 p4, u32 p5)
 {
-	if (_363 && (_358 & 0x40)) {
+	if (_363 && (mPauseStatus & 0x40)) {
 		return -1;
 	}
 	if ((_35A & 1 << channelIndex)) {
@@ -755,15 +755,15 @@ void JASTrack::overwriteOsc(JASChannel* channel)
 		if (v1 != 15) {
 			const u32 v2 = v1 & 3;
 			if ((v1 & 8) != 0) {
-				channel->copyOsc(v2, _2A8 + i);
+				channel->copyOsc(v2, mOscData + i);
 			} else {
 				if ((v1 & 4) != 0) {
-					const s16* v3 = _2A8[i]._0C;
-					channel->copyOsc(v2, _2A8 + i);
-					_2A8[i]._0C = v3;
+					const s16* v3 = mOscData[i]._0C;
+					channel->copyOsc(v2, mOscData + i);
+					mOscData[i]._0C = v3;
 				}
 			}
-			channel->overwriteOsc(v2, _2A8 + i);
+			channel->overwriteOsc(v2, mOscData + i);
 		}
 	}
 	/*
@@ -948,11 +948,11 @@ void JASTrack::oscSetupSimpleEnv(u8 p1, u32 p2)
 {
 	switch (p1) {
 	case 0:
-		_2A8[0]     = JASPlayer::sEnvelopeDef;
-		_2A8[0]._08 = reinterpret_cast<s16*>(mSeqCtrl.mRawFilePtr + p2);
+		mOscData[0]     = JASPlayer::sEnvelopeDef;
+		mOscData[0]._08 = reinterpret_cast<s16*>(mSeqCtrl.mRawFilePtr + p2);
 		break;
 	case 1:
-		_2A8->_0C = reinterpret_cast<s16*>(mSeqCtrl.mRawFilePtr + p2);
+		mOscData->_0C = reinterpret_cast<s16*>(mSeqCtrl.mRawFilePtr + p2);
 		break;
 	default:
 		break;
@@ -976,13 +976,13 @@ void JASTrack::oscSetupSimple(u8 p1)
 {
 	switch (p1) {
 	case 0:
-		_2A8[1] = JASPlayer::sVibratoDef;
+		mOscData[1] = JASPlayer::sVibratoDef;
 		break;
 	case 1:
-		_2A8[0] = JASPlayer::sTremoroDef;
+		mOscData[0] = JASPlayer::sTremoroDef;
 		break;
 	case 2:
-		_2A8[1] = JASPlayer::sTremoroDef;
+		mOscData[1] = JASPlayer::sTremoroDef;
 		break;
 	default:
 		break;
@@ -1006,22 +1006,22 @@ void JASTrack::updateTimedParam()
 			f32 v1 = mTimedParam.mMoveParams[i]._00;
 			switch (i) {
 			case 6:
-				_2A8[0]._10 = v1;
+				mOscData[0]._10 = v1;
 				break;
 			case 7:
-				_2A8[0]._04 = v1;
+				mOscData[0]._04 = v1;
 				break;
 			case 8:
-				_2A8[0]._14 = v1;
+				mOscData[0]._14 = v1;
 				break;
 			case 9:
-				_2A8[1]._10 = v1;
+				mOscData[1]._10 = v1;
 				break;
 			case 10:
-				_2A8[1]._04 = v1;
+				mOscData[1]._04 = v1;
 				break;
 			case 11:
-				_2A8[1]._14 = v1;
+				mOscData[1]._14 = v1;
 				break;
 			}
 		}
@@ -1995,11 +1995,11 @@ void JASTrack::updateSeq(u32 p1, bool recursive)
 		updateTrack(p1);
 	}
 	for (int i = 0; i < 16; i++) {
-		if (_2FC[i] != nullptr && _2FC[i]->_35B != 0) {
+		if (mChildList[i] != nullptr && mChildList[i]->_35B != 0) {
 			if (recursive) {
-				_2FC[i]->updateSeq(p1, recursive);
+				mChildList[i]->updateSeq(p1, recursive);
 			} else {
-				_2FC[i]->_34C |= p1;
+				mChildList[i]->_34C |= p1;
 			}
 		}
 	}
@@ -3033,7 +3033,7 @@ bool JASTrack::start(void* p1, u32 p2)
  * @note Address: 0x800A155C
  * @note Size: 0x1DC
  */
-void JASTrack::openChild(u8, u8)
+JASTrack* JASTrack::openChild(u8, u8)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3215,7 +3215,7 @@ lbl_800A1768:
  * @note Address: 0x800A1778
  * @note Size: 0x94
  */
-void JASTrack::readReg32(u8)
+u32 JASTrack::readReg32(u8)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4389,10 +4389,10 @@ lbl_800A2418:
  */
 int JASTrack::getTranspose() const
 {
-	if (_2F8) {
-		return _356 + _2F8->getTranspose();
+	if (mParentTrack) {
+		return mTranspose + mParentTrack->getTranspose();
 	}
-	return _356;
+	return mTranspose;
 }
 
 /**
@@ -4402,7 +4402,7 @@ int JASTrack::getTranspose() const
 void JASTrack::setTempo(u16 tempo)
 {
 	_352 = tempo;
-	if (_2F8 == nullptr) {
+	if (mParentTrack == nullptr) {
 		updateTempo();
 	} else {
 		_365 = 1;
@@ -4437,7 +4437,7 @@ lbl_800A25C8:
 void JASTrack::setTimebase(u16 timebase)
 {
 	_354 = timebase;
-	if (_2F8 == nullptr) {
+	if (mParentTrack == nullptr) {
 		updateTempo();
 	}
 	/*
@@ -4619,9 +4619,9 @@ JASVibrate::JASVibrate() { init(); }
 void JASVibrate::init()
 {
 	// TODO: Might be wrong value
-	_08 = 0.055f;
-	_04 = 0.0f;
-	_00 = 0.0f;
+	mPitch = 0.055f;
+	mDepth = 0.0f;
+	_00    = 0.0f;
 	/*
 	lfs      f1, lbl_80516DB0@sda21(r2)
 	lfs      f0, lbl_80516D78@sda21(r2)
@@ -4638,7 +4638,7 @@ void JASVibrate::init()
  */
 void JASVibrate::incCounter()
 {
-	_00 += _08;
+	_00 += mPitch;
 	if (_00 >= 4.0) { // intentional double
 		_00 -= 4.0f;
 	}
@@ -4651,12 +4651,12 @@ void JASVibrate::incCounter()
 f32 JASVibrate::getValue() const
 {
 	f32 result;
-	if (_04 == 0.0f) {
+	if (mDepth == 0.0f) {
 		result = 1.0f;
 	} else {
 		result = _00 * HALF_PI;
 		result = JMath::getSinCosTable()->cos(result);
-		result = JASPlayer::pitchToCent(result * _04, 12.0f);
+		result = JASPlayer::pitchToCent(result * mDepth, 12.0f);
 	}
 	return result;
 

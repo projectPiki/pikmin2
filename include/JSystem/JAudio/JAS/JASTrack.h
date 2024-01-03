@@ -21,9 +21,9 @@ struct JASVibrate {
 	void incCounter();
 	f32 getValue() const;
 
-	f32 _00; // _00
-	f32 _04; // _04 - depth?
-	f32 _08; // _08 - pitch?
+	f32 _00;    // _00
+	f32 mDepth; // _04 - depth?
+	f32 mPitch; // _08 - pitch?
 };
 
 /**
@@ -189,9 +189,9 @@ struct JASTrack : JSUList<JASChannel> {
 	void stopSeqMain();
 	void close();
 	bool start(void*, u32);
-	void openChild(u8, u8);
+	JASTrack* openChild(u8, u8);
 	void exchangeRegisterValue(u8);
-	void readReg32(u8);
+	u32 readReg32(u8);
 	u32 readReg16(u8);
 	void writeRegDirect(u8, u16);
 	void writeRegParam(u8);
@@ -255,11 +255,11 @@ struct JASTrack : JSUList<JASChannel> {
 	TimedParam_ mTimedParam;           // _148
 	JASRegisterParam mRegisterParam;   // _268
 	u8 _298[0x10];                     // _298 - unknown
-	JASOscillator::Data _2A8[2];       // _2A8
+	JASOscillator::Data mOscData[2];   // _2A8
 	u32 _2D8[2];                       // _2D8
 	s16 _2E0[12];                      // _2E0
-	JASTrack* _2F8;                    // _2F8
-	JASTrack* _2FC[16];                // _2FC
+	JASTrack* mParentTrack;            // _2F8
+	JASTrack* mChildList[16];          // _2FC
 	JASOuterParam* mExtBuffer;         // _33C
 	f32 _340;                          // _340
 	f32 _344;                          // _344
@@ -268,9 +268,9 @@ struct JASTrack : JSUList<JASChannel> {
 	u16 _350;                          // _350
 	u16 _352;                          // _352
 	u16 _354;                          // _354
-	s8 _356;                           // _356
+	s8 mTranspose;                     // _356
 	u8 _357;                           // _357
-	u8 _358;                           // _358
+	u8 mPauseStatus;                   // _358
 	u8 mVolumeMode;                    // _359
 	u8 _35A;                           // _35A
 	u8 _35B;                           // _35B
@@ -282,7 +282,7 @@ struct JASTrack : JSUList<JASChannel> {
 	u8 _361;                           // _361
 	bool _362;                         // _362
 	u8 _363;                           // _363
-	u8 _364;                           // _364
+	u8 mTimeRelate;                    // _364
 	u8 _365;                           // _365
 	u8 _366;                           // _366
 
