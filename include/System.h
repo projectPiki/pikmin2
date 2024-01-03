@@ -18,10 +18,6 @@ void Pikmin2DefaultMemoryErrorRoutine(void*, u32, s32);
 void kando_panic_f(bool, const char*, s32, const char*, ...);
 extern void preUserCallback(u16, OSContext*, u32, u32);
 
-// const char* cMapFileName = "/pikmin2UP.map";
-
-//_GXRenderModeObj* renderMode;
-
 struct HeapInfo : public Node, public JKRDisposer {
 	virtual ~HeapInfo(); // _20 (weak)
 
@@ -38,9 +34,9 @@ struct HeapInfo : public Node, public JKRDisposer {
 	// _00-_24 = Node
 	// _20     = VTBL (Node)
 	// _24-_3C = JKRDisposer
-	u32 _3C;         // _3C, unknown
+	u32 _3C;         // _3C
 	int _40;         // _40
-	u32 _44;         // _44, unknown
+	u32 _44;         // _44
 	HeapStatus* _48; // _48
 	HeapStatus* _4C; // _4C
 };
@@ -73,9 +69,33 @@ struct Mgr;
 #define SINGLE_FRAME_LENGTH (1.0f / 60.0f) // 0.016666668f
 
 struct System : public OSMutex {
-	enum ERenderMode { NTSC_Standard = 0, NTSC_Progressive, PAL_Standard, PAL_60Hz };
+	/**
+	 * @brief Enumeration representing different render modes.
+	 */
+	enum ERenderMode {
+		RM_NTSC_Standard = 0,
+		RM_NTSC_Progressive,
+		RM_PAL_Standard,
+		RM_PAL_60Hz,
+	};
 
-	enum LanguageID { LANG_ENGLISH = 0, LANG_FRENCH, LANG_GERMAN, LANG_HOL_UNUSED, LANG_ITALIAN, LANG_JAPANESE, LANG_SPANISH };
+	/**
+	 * @brief Enumeration representing different language IDs.
+	 */
+	enum LanguageID {
+		LANG_English = 0,
+		LANG_French,
+		LANG_German,
+		LANG_Unused, // Hol?
+		LANG_Italian,
+		LANG_Japanese,
+		LANG_Spanish,
+	};
+
+	enum Flags {
+		SF_LoadResident = 1 << 0,
+	};
+
 	struct FragmentationChecker {
 		FragmentationChecker(char*, bool);
 		~FragmentationChecker();
@@ -167,9 +187,13 @@ struct System : public OSMutex {
 	static ERenderMode mRenderMode;
 	static GXVerifyArg sVerifyArg;
 
-	inline f32 getFrameLength() const { return mDeltaTime; }
-	inline f32 getFrameRate(f32 mod) const { return getFrameLength() / mod; }
-	inline f32 updateTimer(f32& timer, f32 mod) const { timer += mod * mDeltaTime; }
+	inline f32 getDeltaTime() const { return mDeltaTime; }
+	inline f32 getFrameRate(f32 timeScale) const { return getDeltaTime() / timeScale; }
+	inline f32 updateTimer(f32& timer, f32 timeScale) const { timer += timeScale * mDeltaTime; }
+
+	inline void setFlag(u32 flag) { mFlags.typeView |= flag; }
+	inline void resetFlag(u32 flag) { mFlags.typeView &= ~flag; }
+	inline bool isFlag(u32 flag) const { return mFlags.typeView & flag; }
 
 	// _00-_18 = OSMutex
 	JKRHeap* mBackupHeap;                 // _18
@@ -191,10 +215,10 @@ struct System : public OSMutex {
 	struct JKRTask* mTask;                // _58
 	Game::MemoryCard::Mgr* mCardMgr;      // _5C
 	Game::CommonSaveData::Mgr* mPlayData; // _60
-	f32 mFpsFactor;                       // _64
+	f32 mFrameRate;                       // _64
 	DvdThreadCommand mThreadCommand;      // _68
 	LanguageID mRegion;                   // _D4
-	BitFlag<u32> mFlags;                  // _D8 (1 = loadResident)
+	BitFlag<u32> mFlags;                  // _D8
 	struct JUTRomFont* mRomFont;          // _DC
 };
 

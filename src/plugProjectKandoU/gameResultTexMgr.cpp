@@ -50,7 +50,7 @@ void ResultTexMgr::Mgr::create(ResultTexMgr::Arg& arg)
 
 	if (arg.mRegionMode == REGIONID_Null) {
 		switch (sys->mRegion) {
-		case System::LANG_JAPANESE:
+		case System::LANG_Japanese:
 			sprintf(pathBuffer, "/user/Matoba/resulttex/%s/arc.szs", "jpn");
 			break;
 		default:

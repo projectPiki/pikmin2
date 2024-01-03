@@ -81,7 +81,7 @@ f32 TControl::getScrollPosition()
 void TControl::scroll(f32 rate)
 {
 	if (rate != 0.0f) {
-		mCurrentScroll += rate * _6C * 60.0f * sys->getFrameLength();
+		mCurrentScroll += rate * _6C * 60.0f * sys->getDeltaTime();
 		if (mCurrentScroll < mMaxScroll) {
 			mCurrentScroll = mMaxScroll;
 		}
@@ -122,7 +122,7 @@ bool TControl::update(Controller* control1, Controller* control2)
 	mMaxScroll = scroll * calc;
 
 	f32 calc2            = mTextRenderProc->_58;
-	f32 val              = mScrollSpeed * (mCurrentScroll - calc2) * 60.0f * sys->getFrameLength();
+	f32 val              = mScrollSpeed * (mCurrentScroll - calc2) * 60.0f * sys->getDeltaTime();
 	mTextRenderProc->_58 = val + mTextRenderProc->_58;
 }
 

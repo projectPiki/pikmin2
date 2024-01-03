@@ -542,7 +542,7 @@ void TOmake::doOpenScreen(ArgOpen* arg)
 		mPaneListMesgShadow[5]->setMsgID('4844_00');
 	}
 
-	if (sys->mRegion != System::LANG_JAPANESE) {
+	if (sys->mRegion != System::LANG_Japanese) {
 		J2DTextBox* pane = mPaneListMesg[6];
 		pane->setCharColor(mColor8);
 		pane->setGradientColor(mColor9);

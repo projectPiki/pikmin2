@@ -620,7 +620,7 @@ void BootSection::drawNintendoLogo(Graphics& gfx)
 
 	J2DPicture pic(mNintendoLogoTexture);
 	JUtility::TColor color;
-	if (sys->mRegion == System::LANG_JAPANESE) {
+	if (sys->mRegion == System::LANG_Japanese) {
 		color.set(NINTENDOLOGO_COLOR_JP);
 	} else {
 		color.set(NINTENDOLOGO_COLOR_US);
@@ -824,7 +824,7 @@ bool BootSection::doUpdate()
 				VIFlush();
 				VIWaitForRetrace();
 				VIWaitForRetrace();
-				sys->changeRenderMode(System::NTSC_Progressive);
+				sys->changeRenderMode(System::RM_NTSC_Progressive);
 			}
 			break;
 		case JUTFader::Status_In:
@@ -851,7 +851,7 @@ bool BootSection::doUpdate()
 			if (mProgressiveScreen->isFinish()) {
 				mFadeTimer = 0.0f;
 				setMode(SID_DOLBY_LOGO_2);
-				sys->changeRenderMode(System::NTSC_Standard);
+				sys->changeRenderMode(System::RM_NTSC_Standard);
 			}
 			break;
 		case JUTFader::Status_In:
@@ -1475,7 +1475,7 @@ void BootSection::updateLoadMemoryCard()
 void BootSection::updateNintendoLogo()
 {
 	int lastMode = mStateID;
-	if (!Game::gGameConfig.mParms.mNintendoVersion.mData && sys->mRenderMode != System::NTSC_Progressive) {
+	if (!Game::gGameConfig.mParms.mNintendoVersion.mData && sys->mRenderMode != System::RM_NTSC_Progressive) {
 		if ((OSGetProgressiveMode() == 1 || mController->mButton.mButton & Controller::PRESS_B) && VIGetDTVStatus() == 1) {
 			mDoOpenProgressive = true;
 		} else if (VIGetDTVStatus() != 1) {

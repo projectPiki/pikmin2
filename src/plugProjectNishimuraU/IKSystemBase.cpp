@@ -35,7 +35,7 @@ void IKSystemBase::init()
 
 	mBendRatio = 0.0f;
 	mMoveRatio = 0.0f;
-	mTimer     = 0.0f;
+	mMoveTimer = 0.0f;
 
 	mParams = nullptr;
 }
@@ -64,7 +64,7 @@ void IKSystemBase::startProgramedIK()
 
 	mBendRatio = 0.0f;
 	mMoveRatio = 2.0f;
-	mTimer     = 0.0f;
+	mMoveTimer = 0.0f;
 
 	mTargetPosition = mLegJointMatrices[BOTTOM]->getBasis(3);
 
@@ -85,7 +85,7 @@ void IKSystemBase::startMovePosition(Vector3f& targetMove)
 
 	mBendRatio = 0.0f;
 	mMoveRatio = 0.0f;
-	mTimer     = 0.0f;
+	mMoveTimer = 0.0f;
 
 	// Set top position directly
 	mIkPositions[TOP] = mTargetPosition;
@@ -95,8 +95,8 @@ void IKSystemBase::startMovePosition(Vector3f& targetMove)
 	mIkPositions[BOTTOM] = targetMove;
 
 	// Interpolate between top and bottom to get middle
-	f32 fc  = mParams->_0C;
-	f32 fcn = 1.0f - mParams->_0C;
+	f32 fc  = mParams->mMoveInterpolationRate;
+	f32 fcn = 1.0f - mParams->mMoveInterpolationRate;
 
 	mIkPositions[MIDDLE].x = (fc * mIkPositions[BOTTOM].x) + (fcn * mIkPositions[TOP].x);
 	mIkPositions[MIDDLE].y = (fc * mIkPositions[BOTTOM].y) + (fcn * mIkPositions[TOP].y);
@@ -176,14 +176,14 @@ void IKSystemBase::makeMatrix()
 void IKSystemBase::moveBottomJointPosition()
 {
 	if (mMoveRatio < 1.0f) {
-		mTimer += mParams->mRaiseSlowdownFactor;
+		mMoveTimer += mParams->mRaiseSlowdownFactor;
 	} else {
-		mTimer += mParams->mDownwardAccelFactor;
+		mMoveTimer += mParams->mDownwardAccelFactor;
 	}
 
-	mTimer = boundAboveBelow(mTimer, mParams->mMinDecelFactor, mParams->mMaxDecelFactor);
+	mMoveTimer = boundAboveBelow(mMoveTimer, mParams->mMinDecelFactor, mParams->mMaxDecelFactor);
+	mMoveRatio += (mParams->mBottomJointMoveSpeed + mMoveTimer) * sys->getDeltaTime();
 
-	mMoveRatio += (mParams->mBaseCoefficient + mTimer) * sys->getFrameLength();
 	NsMathExp::calcLagrange(mIkPositions, mMoveRatio, mTargetPosition);
 }
 
@@ -207,7 +207,7 @@ Vector3f IKSystemBase::getCollisionCentre()
 {
 	Matrixf* footMtx = mLegJointMatrices[BOTTOM];
 	Vector3f collVec = footMtx->getBasis(0);
-	collVec *= mParams->_04;
+	collVec *= mParams->mFootPositionOffset;
 	Vector3f pos = footMtx->getBasis(3);
 	collVec += pos;
 	return collVec;
@@ -233,18 +233,19 @@ bool IKSystemBase::onGroundPosition()
 		isNewTargetHeight = true;
 	}
 
-	if (mParams->_00 > 0) {
+	if (mParams->mLegCount > 0) {
 		Vector3f offset;
 		mLegJointMatrices[BOTTOM]->getBasis(0, offset);
 
-		offset *= mParams->_04;
+		offset *= mParams->mFootPositionOffset;
 		offset += mTargetPosition;
 
 		f32 angle = 0.0f;
-		f32 inc   = TAU / (f32)(mParams->_00);
+		f32 inc   = TAU / (f32)(mParams->mLegCount);
 
-		for (int i = 0; i < mParams->_00; i++) {
-			Vector3f samplePos = Vector3f(mParams->_08 * sinf(angle) + offset.x, offset.y, mParams->_08 * cosf(angle) + offset.z);
+		for (int i = 0; i < mParams->mLegCount; i++) {
+			Vector3f samplePos = Vector3f(mParams->mFootPositionRadius * sinf(angle) + offset.x, offset.y,
+			                              mParams->mFootPositionRadius * cosf(angle) + offset.z);
 
 			f32 sampleMinY = mapMgr->getMinY(samplePos);
 

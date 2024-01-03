@@ -33,7 +33,7 @@ void JFWDisplay::ctor_subroutine(bool doEnableAlpha)
 	mZClear             = 0xFFFFFF;
 	mGamma              = 0;
 	mFader              = nullptr;
-	mSecondsPer60Frames = 1;
+	mFrameRate = 1;
 	mTickRate           = 0;
 	mCombinationRatio   = 0.0f;
 	_30                 = 0;
@@ -348,7 +348,7 @@ void JFWDisplay::beginRender()
 	JUTProcBar::getManager()->wholeLoopStart();
 	JUTProcBar::getManager()->idleStart();
 
-	waitForTick(mTickRate, mSecondsPer60Frames);
+	waitForTick(mTickRate, mFrameRate);
 	JUTVideo::getManager()->waitRetraceIfNeed();
 
 	u32 tick = OSGetTick();
@@ -447,7 +447,7 @@ void JFWDisplay::endFrame()
 void JFWDisplay::waitBlanking(int blankTime)
 {
 	while (blankTime-- > 0) {
-		waitForTick(mTickRate, mSecondsPer60Frames);
+		waitForTick(mTickRate, mFrameRate);
 	}
 }
 

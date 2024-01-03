@@ -4980,7 +4980,7 @@ int ActClimb::exec()
 		mParent->mSimVelocity *= -1.0f;
 	}
 
-	mParent->move(sys->getFrameLength());
+	mParent->move(sys->getDeltaTime());
 
 	if (mIsClimbTowards) {
 		if (mParent->mClimbingPosition.y < 0.0f) {

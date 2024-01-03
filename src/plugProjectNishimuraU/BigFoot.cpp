@@ -314,7 +314,7 @@ void Obj::getTargetPosition()
 {
 	if (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(C_GENERALPARMS.mTerritoryRadius())) {
 		if (mIsEnraged) {
-			f32 adjustAngle = (randWeightFloat(2.0f * mIkSystemParms->_34) - mIkSystemParms->_34) * DEG2RAD * PI;
+			f32 adjustAngle = (randWeightFloat(2.0f * mIkSystemParms->mEnragedAngle) - mIkSystemParms->mEnragedAngle) * DEG2RAD * PI;
 			f32 randAngle   = mFaceDir + adjustAngle;
 			// different stomping behavior if enraged
 			mTargetPosition.x = C_PROPERPARMS.mMovementOffset() * sinf(randAngle) + mPosition.x;
@@ -387,27 +387,27 @@ void Obj::setupIKSystem()
  */
 void Obj::setIKParameter()
 {
-	mIkSystemParms->_00           = 12;
-	mIkSystemParms->_04           = 10.0f;
-	mIkSystemParms->_08           = 40.0f;
-	mIkSystemParms->mBendFactor   = 0.5f;
-	mIkSystemParms->mMaxTurnAngle = C_GENERALPARMS.mMaxTurnAngle.mValue;
-	mIkSystemParms->mMoveSpeed    = C_GENERALPARMS.mMoveSpeed.mValue;
+	mIkSystemParms->mLegCount           = 12;
+	mIkSystemParms->mFootPositionOffset = 10.0f;
+	mIkSystemParms->mFootPositionRadius = 40.0f;
+	mIkSystemParms->mBendFactor         = 0.5f;
+	mIkSystemParms->mMaxTurnAngle       = C_GENERALPARMS.mMaxTurnAngle.mValue;
+	mIkSystemParms->mMoveSpeed          = C_GENERALPARMS.mMoveSpeed.mValue;
 
 	if (mIsEnraged) {
-		mIkSystemParms->mBaseCoefficient     = C_PROPERPARMS.mEnragedBaseCoefficient.mValue;
-		mIkSystemParms->mRaiseSlowdownFactor = C_PROPERPARMS.mEnragedRaiseSlowdownFactor.mValue;
-		mIkSystemParms->mDownwardAccelFactor = C_PROPERPARMS.mEnragedDownwardAccelFactor.mValue;
-		mIkSystemParms->mMaxDecelFactor      = C_PROPERPARMS.mEnragedMaxDecelFactor.mValue;
-		mIkSystemParms->mMinDecelFactor      = C_PROPERPARMS.mEnragedMinDecelFactor.mValue;
-		mIkSystemParms->mHeightOffset        = C_PROPERPARMS.mEnragedLegSwing.mValue;
+		mIkSystemParms->mBottomJointMoveSpeed = C_PROPERPARMS.mEnragedBaseCoefficient.mValue;
+		mIkSystemParms->mRaiseSlowdownFactor  = C_PROPERPARMS.mEnragedRaiseSlowdownFactor.mValue;
+		mIkSystemParms->mDownwardAccelFactor  = C_PROPERPARMS.mEnragedDownwardAccelFactor.mValue;
+		mIkSystemParms->mMaxDecelFactor       = C_PROPERPARMS.mEnragedMaxDecelFactor.mValue;
+		mIkSystemParms->mMinDecelFactor       = C_PROPERPARMS.mEnragedMinDecelFactor.mValue;
+		mIkSystemParms->mHeightOffset         = C_PROPERPARMS.mEnragedLegSwing.mValue;
 	} else {
-		mIkSystemParms->mBaseCoefficient     = C_PROPERPARMS.mBaseCoefficient.mValue;
-		mIkSystemParms->mRaiseSlowdownFactor = C_PROPERPARMS.mRaiseSlowdownFactor.mValue;
-		mIkSystemParms->mDownwardAccelFactor = C_PROPERPARMS.mDownwardAccelFactor.mValue;
-		mIkSystemParms->mMaxDecelFactor      = C_PROPERPARMS.mMaxDecelFactor.mValue;
-		mIkSystemParms->mMinDecelFactor      = C_PROPERPARMS.mMinDecelFactor.mValue;
-		mIkSystemParms->mHeightOffset        = C_PROPERPARMS.mLegSwing.mValue;
+		mIkSystemParms->mBottomJointMoveSpeed = C_PROPERPARMS.mBaseCoefficient.mValue;
+		mIkSystemParms->mRaiseSlowdownFactor  = C_PROPERPARMS.mRaiseSlowdownFactor.mValue;
+		mIkSystemParms->mDownwardAccelFactor  = C_PROPERPARMS.mDownwardAccelFactor.mValue;
+		mIkSystemParms->mMaxDecelFactor       = C_PROPERPARMS.mMaxDecelFactor.mValue;
+		mIkSystemParms->mMinDecelFactor       = C_PROPERPARMS.mMinDecelFactor.mValue;
+		mIkSystemParms->mHeightOffset         = C_PROPERPARMS.mLegSwing.mValue;
 	}
 }
 
@@ -424,7 +424,7 @@ void Obj::setIKSystemTargetPosition(Vector3f& targetPos) { mIkSystemMgr->mTarget
 void Obj::updateIKSystem()
 {
 	mIkSystemMgr->doUpdate();
-	mPosition   = Vector3f(mIkSystemMgr->mCenterPosition);
+	mPosition   = Vector3f(mIkSystemMgr->mCentrePosition);
 	mFaceDir    = mIkSystemMgr->mFaceDir;
 	mRotation.y = mFaceDir;
 }

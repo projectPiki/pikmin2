@@ -35,7 +35,7 @@ Floor::Floor() { }
 void Floor::doUserCallBackFunc(Resource::MgrCommand*)
 {
 	if (mDispMember->isID(OWNER_OGA, MEMBER_FLOOR)) {
-		const char* path = (sys->mRegion == System::LANG_JAPANESE) ? "res_floor_name_jpn.szs" : "res_floor_name_eng_pal.szs";
+		const char* path = (sys->mRegion == System::LANG_Japanese) ? "res_floor_name_jpn.szs" : "res_floor_name_eng_pal.szs";
 		og::newScreen::makeLanguageResName(mName, path);
 		LoadResource::Arg loadArg(mName);
 		LoadResource::Node* resourceNode = gLoadResourceMgr->mountArchive(loadArg);

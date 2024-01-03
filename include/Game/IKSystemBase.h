@@ -23,47 +23,47 @@ struct JointGroundCallBack;
 struct IKSystemParms {
 	inline IKSystemParms()
 	{
-		_00                  = -1;
-		_04                  = 0.0f;
-		_08                  = 0.0f;
-		_0C                  = 0.75f;
-		mHeightOffset        = 120.0f;
-		mBaseCoefficient     = 3.0f;
-		mRaiseSlowdownFactor = -0.15f;
-		mDownwardAccelFactor = 0.5f;
-		mMaxDecelFactor      = 10.0f;
-		mMinDecelFactor      = -2.0f;
-		mBendFactor          = 0.0f;
-		mMoveSpeed           = 75.0f;
-		_30                  = 0.0f;
-		_34                  = 30.0f;
-		mMaxTurnAngle        = 60.0f;
-		_3C                  = 0.1f;
-		_40                  = 0.7f;
-		_44                  = -1.5f;
+		mLegCount                   = -1;
+		mFootPositionOffset         = 0.0f;
+		mFootPositionRadius         = 0.0f;
+		mMoveInterpolationRate      = 0.75f;
+		mHeightOffset               = 120.0f;
+		mBottomJointMoveSpeed       = 3.0f;
+		mRaiseSlowdownFactor        = -0.15f;
+		mDownwardAccelFactor        = 0.5f;
+		mMaxDecelFactor             = 10.0f;
+		mMinDecelFactor             = -2.0f;
+		mBendFactor                 = 0.0f;
+		mMoveSpeed                  = 75.0f;
+		mMinimumMoveSpeed           = 0.0f;
+		mEnragedAngle               = 30.0f;
+		mMaxTurnAngle               = 60.0f;
+		mTraceMoveRate              = 0.1f;
+		mTraceVelocityDampingFactor = 0.7f;
+		mTraceHeightOffset          = -1.5f;
 	}
 
-	inline f32 getViewAngle() const { return _34; } // this is a guess, don't at me
+	inline f32 getViewAngle() const { return mEnragedAngle; } // this is a guess, don't at me
 	inline f32 getMaxTurnAngle() const { return mMaxTurnAngle; }
 
-	int _00;                  // _00
-	f32 _04;                  // _04
-	f32 _08;                  // _08
-	f32 _0C;                  // _0C
-	f32 mHeightOffset;        // _10
-	f32 mBaseCoefficient;     // _14
-	f32 mRaiseSlowdownFactor; // _18
-	f32 mDownwardAccelFactor; // _1C
-	f32 mMaxDecelFactor;      // _20
-	f32 mMinDecelFactor;      // _24
-	f32 mBendFactor;          // _28
-	f32 mMoveSpeed;           // _2C
-	f32 _30;                  // _30
-	f32 _34;                  // _34
-	f32 mMaxTurnAngle;        // _38
-	f32 _3C;                  // _3C
-	f32 _40;                  // _40
-	f32 _44;                  // _44
+	int mLegCount;                   // _00, number of legs in the IK system
+	f32 mFootPositionOffset;         // _04, distance between each of the feet
+	f32 mFootPositionRadius;         // _08, radius of the circle that the feet are on
+	f32 mMoveInterpolationRate;      // _0C, rate at which the IK system moves
+	f32 mHeightOffset;               // _10, height offset for the IK system
+	f32 mBottomJointMoveSpeed;       // _14
+	f32 mRaiseSlowdownFactor;        // _18, -0.15f, used for calculating the speed of the raising foot slowing down
+	f32 mDownwardAccelFactor;        // _1C, 0.5f, used for calculating the speed of the raising foot stepping
+	f32 mMaxDecelFactor;             // _20, 10.0f
+	f32 mMinDecelFactor;             // _24, -2.0f
+	f32 mBendFactor;                 // _28, 0.0f, used for calculating the bend ratio
+	f32 mMoveSpeed;                  // _2C, 75.0f, used for calculating the speed of the IK system
+	f32 mMinimumMoveSpeed;           // _30, 0.0f
+	f32 mEnragedAngle;               // _34, 30.0f
+	f32 mMaxTurnAngle;               // _38
+	f32 mTraceMoveRate;              // _3C
+	f32 mTraceVelocityDampingFactor; // _40
+	f32 mTraceHeightOffset;          // _44
 };
 
 struct IKSystemBase {
@@ -165,14 +165,14 @@ struct IKSystemBase {
 
 	bool onGround();
 
-	bool mIsIKEnabled;             // _00
-	bool mIsBlendMotionActive;     // _01
-	bool mIsOnGround;              // _02
-	bool mWasOnGround;             // _03
-	bool mScaleJoints;             // _04
-	f32 mBendRatio;                // _08, aka rotation in radians
-	f32 mMoveRatio;                // _0C
-	f32 mTimer;                    // _10
+	bool mIsIKEnabled;             // _00, if IK is enabled
+	bool mIsBlendMotionActive;     // _01, if it's smoothing and blending two motions together (not sure what this means)
+	bool mIsOnGround;              // _02, if the IK system is on the ground
+	bool mWasOnGround;             // _03, if the IK system was on the ground
+	bool mScaleJoints;             // _04, if the joints should be scaled
+	f32 mBendRatio;                // _08, bend rotation in radians of the leg joints
+	f32 mMoveRatio;                // _0C, the progress of the joint movement, where 1.0f is the completion of the movement
+	f32 mMoveTimer;                // _10
 	f32 mTopToMiddleDistance;      // _14, some distance I'm not sure of
 	f32 mMiddleToBottomDistance;   // _18, same as above
 	Vector3f mTargetPosition;      // _1C
@@ -227,9 +227,9 @@ struct IKSystemMgr {
 	f32 mLegHeight[IK_LEG_COUNT];              // _0C
 	int mLegStates[IK_LEG_COUNT];              // _1C
 	Vector3f mTargetPosition;                  // _2C
-	Vector3f mCenterPosition;                  // _38, position applied to actual game object
+	Vector3f mCentrePosition;                  // _38, position applied to actual game object
 	Vector3f mTraceCentrePosition;             // _44
-	Vector3f _50;                              // _50
+	Vector3f mTraceCentreVelocity;             // _50
 	Vector3f mLegTargetPosition[IK_LEG_COUNT]; // _5C
 	IKSystemBase* mIKSystems;                  // _8C, list of 4
 	EnemyBase* mOwner;                         // _90

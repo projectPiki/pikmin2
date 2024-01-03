@@ -48,10 +48,10 @@ void IKSystemMgr::init(EnemyBase* obj, JointGroundCallBack* callback)
 	}
 
 	mTargetPosition.x = mTargetPosition.y = mTargetPosition.z = 0.0f;
-	mCenterPosition                                           = mOwner->getPosition();
+	mCentrePosition                                           = mOwner->getPosition();
 	mTraceCentrePosition                                      = mOwner->getPosition();
 
-	_50.x = _50.y = _50.z = 0.0f;
+	mTraceCentreVelocity.x = mTraceCentreVelocity.y = mTraceCentreVelocity.z = 0.0f;
 
 	for (int i = 0; i < IK_LEG_COUNT; i++) {
 		mIKSystems[i].init();
@@ -313,15 +313,15 @@ void IKSystemMgr::updateController()
 			}
 		} else if (mLegStates[i] == 2) {
 			mLegStates[i] = 3;
-			_50.y += mParams->_44;
+			mTraceCentreVelocity.y += mParams->mTraceHeightOffset;
 			if (mJointGroundCallBack) {
 				Vector3f pos = mIKSystems[i].getBottomJointPosition();
 				Sys::Sphere bounds(pos, 5.0f);
 				Game::WaterBox* water = mapMgr->findWater(bounds);
 				mJointGroundCallBack->invokeOnGround(i, water);
 			}
-			int newid = (i + 1 < 0) ? i + 5 : (i + 1 > 3) ? i - 3 : i + 1;
 
+			int newid = (i + 1 < 0) ? i + 5 : (i + 1 > 3) ? i - 3 : i + 1;
 			if (newid > 0 && !mOnGround) {
 				mIKSystems[newid].startMovePosition(mLegTargetPosition[newid]);
 				mLegStates[newid] = 1;
@@ -356,10 +356,10 @@ void IKSystemMgr::setNextCentrePosition()
 			nextPos.normalise();
 			nextPos *= mParams->mMoveSpeed;
 			nextPos += ownerPos;
-		} else if (dist < mParams->_30) {
+		} else if (dist < mParams->mMinimumMoveSpeed) {
 			nextPos -= ownerPos;
 			nextPos.normalise();
-			nextPos *= mParams->_30;
+			nextPos *= mParams->mMinimumMoveSpeed;
 			nextPos += ownerPos;
 		}
 	} else {
@@ -393,7 +393,7 @@ void IKSystemMgr::calcFaceDir()
 		pos0 = mIKSystems[0].getBottomJointPosition();
 		pos1 = mIKSystems[1].getBottomJointPosition();
 		// this feels wrong
-		f32 angle = JMath::atanTable_.atan2_((pos0.x + pos1.x) / 2 - mCenterPosition.x, (pos0.z + pos1.z) / 2 - mCenterPosition.z);
+		f32 angle = JMath::atanTable_.atan2_((pos0.x + pos1.x) / 2 - mCentrePosition.x, (pos0.z + pos1.z) / 2 - mCentrePosition.z);
 		mFaceDir  = angle;
 		angle     = mFaceDir;
 		clampAngle(angle);
@@ -418,15 +418,15 @@ void IKSystemMgr::calcCentrePosition()
 		positions[2] = mIKSystems[2].getBottomJointPosition(); // 0x7C
 		positions[3] = mIKSystems[3].getBottomJointPosition(); // 0x88
 
-		mCenterPosition.x = mCenterPosition.y = mCenterPosition.z = 0.0f;
+		mCentrePosition.x = mCentrePosition.y = mCentrePosition.z = 0.0f;
 
 		for (int i = 0; i < 4; i++) {
-			mCenterPosition.x += positions[i].x;
-			mCenterPosition.z += positions[i].z;
+			mCentrePosition.x += positions[i].x;
+			mCentrePosition.z += positions[i].z;
 		}
 
-		mCenterPosition.x *= 0.25f;
-		mCenterPosition.z *= 0.25f;
+		mCentrePosition.x *= 0.25f;
+		mCentrePosition.z *= 0.25f;
 
 		f32 heights[4];              // 0x54
 		heights[0] = positions[0].y; // 0x54
@@ -448,11 +448,11 @@ void IKSystemMgr::calcCentrePosition()
 
 		f32 weights[4] = { 0.4f, 0.3f, 0.2f, 0.1f };
 		for (int i = 0; i < 4; i++) {
-			mCenterPosition.y += weights[i] * heights[i];
+			mCentrePosition.y += weights[i] * heights[i];
 		}
 
 	} else {
-		mCenterPosition = mOwner->getPosition();
+		mCentrePosition = mOwner->getPosition();
 	}
 }
 
@@ -463,14 +463,15 @@ void IKSystemMgr::calcCentrePosition()
 void IKSystemMgr::calcTraceCentrePosition()
 {
 	if (mIsIKActive) {
-		Vector3f sep = mCenterPosition - mTraceCentrePosition;
-		sep *= mParams->_3C;
-		_50 += sep;
-		mTraceCentrePosition += _50;
-		_50 *= mParams->_40;
+		// Get displacement from trace center to actual center
+		Vector3f sep = mCentrePosition - mTraceCentrePosition;
+		sep *= mParams->mTraceMoveRate;
+		mTraceCentreVelocity += sep;
+		mTraceCentrePosition += mTraceCentreVelocity;
+		mTraceCentreVelocity *= mParams->mTraceVelocityDampingFactor;
 		return;
 	}
 
-	mTraceCentrePosition = mCenterPosition;
+	mTraceCentrePosition = mCentrePosition;
 }
 } // namespace Game

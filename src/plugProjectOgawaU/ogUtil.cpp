@@ -32,25 +32,25 @@ void getLanguageDir(char*& path)
 	// UNUSED FUNCTION
 	if (LOCALIZED) {
 		switch (sys->mRegion) {
-		case System::LANG_ENGLISH:
+		case System::LANG_English:
 			path = "eng/";
 			break;
-		case System::LANG_FRENCH:
+		case System::LANG_French:
 			path = "fra/";
 			break;
-		case System::LANG_GERMAN:
+		case System::LANG_German:
 			path = "ger/";
 			break;
-		case System::LANG_ITALIAN:
+		case System::LANG_Italian:
 			path = "ita/";
 			break;
-		case System::LANG_JAPANESE:
+		case System::LANG_Japanese:
 			path = "jpn/";
 			break;
-		case System::LANG_SPANISH:
+		case System::LANG_Spanish:
 			path = "spa/";
 			break;
-		case System::LANG_HOL_UNUSED:
+		case System::LANG_Unused:
 		default:
 			path = "";
 			break;

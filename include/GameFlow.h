@@ -15,7 +15,7 @@ struct SectionInfo {
 	union {
 		u32 abcd;
 		u8 mSectionId, b, c, d;
-	} id; // _04
+	} mId; // _04
 };
 
 struct GameFlow : public ISectionMgr {

@@ -162,7 +162,7 @@ void ActEnter::initStay()
  */
 int ActEnter::execStay()
 {
-	mTimer -= sys->getFrameLength();
+	mTimer -= sys->getDeltaTime();
 	mParent->mVelocity = 0.0f;
 	if (mTimer <= 0.0f) {
 		mState = ENTER_ShipSuck;

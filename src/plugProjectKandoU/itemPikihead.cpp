@@ -52,7 +52,7 @@ void FallState::init(Item* item, StateArg* arg)
  * @note Address: 0x801D8DE8
  * @note Size: 0x38
  */
-void FallState::exec(Item* item) { item->applyAirDrag(sys->getFrameLength(), _10, _14); }
+void FallState::exec(Item* item) { item->applyAirDrag(sys->getDeltaTime(), _10, _14); }
 
 /**
  * @note Address: 0x801D8E20
@@ -136,7 +136,7 @@ void BuryState::exec(Item* item)
 {
 	// timer only starts counting down after animation finishes
 	if (mAnimDone) {
-		mTimer -= sys->getFrameLength();
+		mTimer -= sys->getDeltaTime();
 		if (mTimer <= 0.0f) {
 			transit(item, PIKIHEAD_Hatuga, nullptr);
 		}
@@ -174,7 +174,7 @@ void TaneState::exec(Item* item)
 {
 	// timer only starts counting down after animation finishes
 	if (mAnimDone) {
-		mTimer -= sys->getFrameLength();
+		mTimer -= sys->getDeltaTime();
 		if (mTimer <= 0.0f) {
 			transit(item, PIKIHEAD_Hatuga, nullptr);
 		}
@@ -327,7 +327,7 @@ void SioreState::init(Item* item, StateArg* arg)
 void SioreState::exec(Item* item)
 {
 	if (mAnimDone) {
-		mTimer -= sys->getFrameLength();
+		mTimer -= sys->getDeltaTime();
 		if (mTimer <= 0.0f) {
 			transit(item, PIKIHEAD_Bury, nullptr);
 		}

@@ -478,8 +478,8 @@ System::System()
     , mDisplay(nullptr)
     , mDeltaTime(SINGLE_FRAME_LENGTH)
     , mPlayData(nullptr)
-    , mFpsFactor(1.0f)
-    , mRegion(System::LANG_ENGLISH)
+    , mFrameRate(1.0f)
+    , mRegion(System::LANG_English)
 {
 	sys            = this;
 	sUseABXCommand = true;
@@ -918,7 +918,7 @@ void System::initialize()
 	if (sys->mRenderModeStatus == 'vald') {
 		System::setRenderMode(mRenderMode);
 	} else {
-		System::setRenderMode(NTSC_Standard);
+		System::setRenderMode(RM_NTSC_Standard);
 	}
 
 	JFWSystem::CSetUpParam::maxStdHeaps      = 1;
@@ -1280,16 +1280,16 @@ void System::changeRenderMode(ERenderMode newmode)
 	}
 
 	switch (newmode) {
-	case NTSC_Standard:
+	case RM_NTSC_Standard:
 		OSSetProgressiveMode(0);
 		break;
-	case NTSC_Progressive:
+	case RM_NTSC_Progressive:
 		OSSetProgressiveMode(1);
 		break;
-	case PAL_Standard:
+	case RM_PAL_Standard:
 		OSSetEuRgb60Mode(0);
 		break;
-	case PAL_60Hz:
+	case RM_PAL_60Hz:
 		OSSetEuRgb60Mode(1);
 		break;
 	default:
@@ -1450,10 +1450,10 @@ void System::setFrameRate(int newFactor)
 {
 	JFWDisplay* display = mDisplay;
 	JUT_ASSERTLINE(2343, display, "no display\n");
-	mFpsFactor                   = (f32)newFactor;
-	mDeltaTime                   = mFpsFactor / 60.0f;
-	display->mSecondsPer60Frames = newFactor;
-	display->mTickRate           = 0;
+	mFrameRate          = (f32)newFactor;
+	mDeltaTime          = mFrameRate / 60.0f;
+	display->mFrameRate = newFactor;
+	display->mTickRate  = 0;
 	/*
 	    stwu     r1, -0x20(r1)
 	    mflr     r0

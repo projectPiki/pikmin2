@@ -77,7 +77,8 @@ void Section::doExit()
 void Section::loadResident()
 {
 	JKRHeap* backup = JKRGetCurrentHeap();
-	if (!(sys->mFlags.isSet(1))) {
+
+	if (!sys->isFlag(System::SF_LoadResident)) {
 		sys->mSysHeap->becomeCurrentHeap();
 		sys->heapStatusStart("titleSection::loadResident", nullptr);
 
@@ -90,8 +91,9 @@ void Section::loadResident()
 		JUT_ASSERTLINE(590, arc, "%s : mount failed !!\n", path);
 
 		sys->heapStatusEnd("titleSection::loadResident");
-		sys->mFlags.set(1);
+		sys->setFlag(System::SF_LoadResident);
 	}
+
 	gPikmin2AramMgr->load();
 	backup->becomeCurrentHeap();
 }
@@ -127,7 +129,7 @@ void Section::init()
 	for (int i = 0; i < GameFlow::SECTION_COUNT; i++) {
 		SectionInfo* data = GameFlow::getSectionInfo(i);
 		if (data) {
-			if ((!Game::gGameConfig.mParms.mMarioClubDevelop.mData || data->id.c) && data->id.b) {
+			if ((!Game::gGameConfig.mParms.mMarioClubDevelop.mData || data->mId.c) && data->mId.b) {
 				mMenu->addOption(i, data->mName, nullptr, true);
 				sects++;
 			}
@@ -166,7 +168,7 @@ void Section::menuSelect(Menu& menu)
 {
 	if (menu.mState == 2 || menu.mState == 1) {
 		mIsMainActive                = false;
-		GameFlow::mActiveSectionFlag = menu.mCurrentItem->_0C;
+		GameFlow::mActiveSectionFlag = menu.mCurrentItem->mSectionFlags;
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
 	}
 }

@@ -200,7 +200,7 @@ void Obj::doUpdateCarcass()
 			}
 
 		} else if (mHealth < mMaxHealth) {
-			mHealth += (mMaxHealth / C_PROPERPARMS.mRespawnRate()) * sys->getFrameLength();
+			mHealth += (mMaxHealth / C_PROPERPARMS.mRespawnRate()) * sys->getDeltaTime();
 			if (mHealth >= mMaxHealth) {
 				mPellet->kill(nullptr);
 				f32 x = mBaseTrMatrix.mMatrix.structView.zx;

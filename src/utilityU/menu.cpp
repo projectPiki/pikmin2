@@ -29,8 +29,8 @@ Menu::Menu(JUTGamePad* control, JUTFont* font, bool flag)
 	_4C          = 0;
 	_50          = 0;
 	_54          = 0;
-	_40          = 190;
-	_44          = 220;
+	mPositionX   = 190;
+	mPositionY   = 220;
 	_48          = 260;
 	_58          = true;
 	_59          = true;
@@ -454,11 +454,11 @@ Menu::KeyEvent::KeyEvent(cTypeFlag type, u32 a1, IDelegate1<Menu&>* delegate)
 Menu::MenuItem::MenuItem(cTypeFlag type, int a1, char* name)
     : mLink(this)
 {
-	_04   = 1;
-	mName = name;
-	_0C   = a1;
-	mType = type;
-	_00   = 0;
+	_04           = 1;
+	mName         = name;
+	mSectionFlags = a1;
+	mType         = type;
+	_00           = 0;
 }
 
 /**

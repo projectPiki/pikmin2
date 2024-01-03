@@ -80,17 +80,17 @@ void Mgr::loadResource()
 
 	if (gGameConfig.mParms.mPelletMultiLang.mData) {
 		switch (sys->mRegion) {
-		case System::LANG_FRENCH:
-		case System::LANG_GERMAN:
-		case System::LANG_ITALIAN:
+		case System::LANG_French:
+		case System::LANG_German:
+		case System::LANG_Italian:
 			break;
-		case System::LANG_JAPANESE:
+		case System::LANG_Japanese:
 			sprintf(pathBuffer, "/user/Abe/Pellet/%s/pelletlist_%s.szs", "jpn", "jpn");
 			break;
-		case System::LANG_ENGLISH:
+		case System::LANG_English:
 			sprintf(pathBuffer, "/user/Abe/Pellet/%s/pelletlist_%s.szs", "us", "us");
 			break;
-		case System::LANG_SPANISH:
+		case System::LANG_Spanish:
 			break;
 		}
 		archive = JKRMountArchive(pathBuffer, JKRArchive::EMM_Mem, JKRHeap::getCurrentHeap(), JKRArchive::EMD_Tail);

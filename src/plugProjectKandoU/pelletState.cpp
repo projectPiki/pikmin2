@@ -1843,7 +1843,7 @@ u32 PelletReturnState::execMove(Pellet* pelt)
 
 	f32 yoffs;
 	f32 time      = mTimer;
-	f32 frameTime = sys->getFrameLength();
+	f32 frameTime = sys->getDeltaTime();
 
 	if (time < 0.1f) {
 		yoffs            = 0.0f;

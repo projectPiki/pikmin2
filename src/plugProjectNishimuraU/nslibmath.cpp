@@ -31,6 +31,16 @@ void calcLagrange(const Vector3f* controlPoints, f32 t, Vector3f& output)
  * @note Address: 0x8023D858
  * @note Size: 0x1D8
  */
+/**
+ * Calculates the position of the middle joint and bottom joint based on the given parameters.
+ *
+ * @param topPosition The position of the top joint.
+ * @param bottomPosition The position of the bottom joint.
+ * @param topToMiddleDistance The distance between the top joint and the middle joint.
+ * @param middleToBottomDistance The distance between the middle joint and the bottom joint.
+ * @param middleJointPos [out] The calculated position of the middle joint.
+ * @param bottomJointPosition [out] The calculated position of the bottom joint.
+ */
 void calcJointPos(const Vector3f& topPosition, const Vector3f& bottomPosition, f32 topToMiddleDistance, f32 middleToBottomDistance,
                   Vector3f& middleJointPos, Vector3f& bottomJointPosition)
 {
@@ -42,22 +52,22 @@ void calcJointPos(const Vector3f& topPosition, const Vector3f& bottomPosition, f
 
 	f32 distanceTopToTarget = topToTargetVector.sqrMagnitude(); // f11
 	if (!(distanceTopToTarget < 1.0E-6f)) {
-		/*
-		 * The factor is calculated as half of the ratio of distanceTopToTarget to the sum of distanceTopToTarget and the difference between
-		 * distanceTopMiddle and distanceMiddleBottom.
-		 */
 		f32 factor = (0.5f / distanceTopToTarget) * (distanceTopToTarget + (distanceTopMiddle - distanceMiddleBottom)); // f3
 
-		Vector3f vec1(factor * topToTargetVector.x + topPosition.x, factor * topToTargetVector.y + topPosition.y,
-		              factor * topToTargetVector.z + topPosition.z);
-		Vector3f vec2 = vec1 - topPosition;
-		f32 val1      = distanceTopMiddle - SQUARE(vec2.x) - SQUARE(vec2.y) - SQUARE(vec2.z); // f30
-		if (!(val1 <= 0.0f)) {
+		Vector3f scaledTopToTarget(factor * topToTargetVector.x + topPosition.x, factor * topToTargetVector.y + topPosition.y,
+		                           factor * topToTargetVector.z + topPosition.z);
+
+		Vector3f offsetFromTop = scaledTopToTarget - topPosition;
+
+		f32 distanceAdjustment = distanceTopMiddle - SQUARE(offsetFromTop.x) - SQUARE(offsetFromTop.y) - SQUARE(offsetFromTop.z); // f30
+
+		if (!(distanceAdjustment <= 0.0f)) {
 			Vector3f cross1 = cross(middleJointPos, topToTargetVector);
 			middleJointPos  = cross(cross1, topToTargetVector);
-			f32 outSqr      = middleJointPos.sqrMagnitude();
+
+			f32 outSqr = middleJointPos.sqrMagnitude();
 			if (outSqr != 0.0f) {
-				f32 len               = _sqrtf2(val1 / outSqr);
+				f32 len               = _sqrtf2(distanceAdjustment / outSqr);
 				bottomJointPosition.x = len * middleJointPos.x + cross1.x;
 				bottomJointPosition.y = len * middleJointPos.y + cross1.y;
 				bottomJointPosition.z = len * middleJointPos.z + cross1.z;

@@ -273,7 +273,7 @@ void Obj::doUpdateCarcass()
 				lifeGaugeMgr->activeLifeGauge(this, 0.0f);
 			}
 		} else if (mHealth < mMaxHealth) {
-			mHealth += (mMaxHealth / C_PROPERPARMS.mRespawnRate.mValue) * sys->getFrameLength();
+			mHealth += (mMaxHealth / C_PROPERPARMS.mRespawnRate.mValue) * sys->getDeltaTime();
 			if (mHealth >= mMaxHealth) {
 				mPellet->kill(nullptr);
 				f32 zx = mBaseTrMatrix.mMatrix.structView.zx;

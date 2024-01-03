@@ -4729,19 +4729,19 @@ void BasePelletMgr::load()
 
 	if (gGameConfig.mParms.mPelletMultiLang.mData != 0) {
 		switch (sys->mRegion) {
-		case System::LANG_JAPANESE:
+		case System::LANG_Japanese:
 			sprintf(buffer, "/user/Abe/Pellet/%s/", "jpn");
 			file = buffer;
 			break;
-		case System::LANG_ENGLISH:
+		case System::LANG_English:
 			sprintf(buffer, "/user/Abe/Pellet/%s/", "us");
 			file = buffer;
 			break;
-		case System::LANG_FRENCH:
-		case System::LANG_GERMAN:
+		case System::LANG_French:
+		case System::LANG_German:
 		// case System::LANG_HOL_UNUSED:
-		case System::LANG_ITALIAN:
-		case System::LANG_SPANISH:
+		case System::LANG_Italian:
+		case System::LANG_Spanish:
 			sprintf(buffer, "/user/Abe/Pellet/%s/", "pal");
 			file = buffer;
 			break;
@@ -4815,19 +4815,19 @@ void BasePelletMgr::load_texArc(char* filename)
 
 	if (gGameConfig.mParms.mPelletMultiLang.mData != 0) {
 		switch (sys->mRegion) {
-		case System::LANG_JAPANESE:
+		case System::LANG_Japanese:
 			sprintf(buffer, "/user/Abe/Pellet/%s/", "jpn");
 			directory = buffer;
 			break;
-		case System::LANG_ENGLISH:
+		case System::LANG_English:
 			sprintf(buffer, "/user/Abe/Pellet/%s/", "us");
 			directory = buffer;
 			break;
-		case System::LANG_FRENCH:
-		case System::LANG_GERMAN:
+		case System::LANG_French:
+		case System::LANG_German:
 		// case System::LANG_HOL_UNUSED:
-		case System::LANG_ITALIAN:
-		case System::LANG_SPANISH:
+		case System::LANG_Italian:
+		case System::LANG_Spanish:
 			sprintf(buffer, "/user/Abe/Pellet/%s/", "pal");
 			directory = buffer;
 			break;
@@ -5220,19 +5220,19 @@ JKRArchive* BasePelletMgr::openTextArc(char* arc)
 	char* file = nullptr;
 	if (gGameConfig.mParms.mPelletMultiLang.mData != 0) {
 		switch (sys->mRegion) {
-		case System::LANG_JAPANESE:
+		case System::LANG_Japanese:
 			sprintf(directory, "/user/Abe/Pellet/%s/", "jpn");
 			file = directory;
 			break;
-		case System::LANG_ENGLISH:
+		case System::LANG_English:
 			sprintf(directory, "/user/Abe/Pellet/%s/", "us");
 			file = directory;
 			break;
-		case System::LANG_FRENCH:
-		case System::LANG_GERMAN:
+		case System::LANG_French:
+		case System::LANG_German:
 		// case System::LANG_HOL_UNUSED:
-		case System::LANG_ITALIAN:
-		case System::LANG_SPANISH:
+		case System::LANG_Italian:
+		case System::LANG_Spanish:
 			sprintf(directory, "/user/Abe/Pellet/%s/", "pal");
 			file = directory;
 			break;

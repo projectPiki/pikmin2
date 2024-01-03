@@ -200,7 +200,7 @@ void FakePiki::clearDoAnimCallback() { mDoAnimCallback = nullptr; }
 void FakePiki::updateWalkAnimation()
 {
 	Vector3f sep  = Vector3f(mPosition.x - mPositionBeforeMovie.x, 0.0f, mPosition.z - mPositionBeforeMovie.z);
-	f32 animSpeed = sep.length() / sys->getFrameLength();
+	f32 animSpeed = sep.length() / sys->getDeltaTime();
 
 	int boundIdx;
 	if (mAnimator.mBoundAnimator.mAnimInfo) {

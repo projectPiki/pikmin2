@@ -29,10 +29,10 @@ struct Menu {
 		MenuItem* getPrev();
 		void checkEvents(Menu*, int);
 
-		int _00;     // _00
-		bool _04;    // _04
-		char* mName; // _08
-		int _0C;     // _0C
+		int _00;           // _00
+		bool _04;          // _04
+		char* mName;       // _08
+		int mSectionFlags; // _0C
 		int mType;
 		JSUPtrList mList; // _14
 		JSUPtrLink mLink; // _20
@@ -45,8 +45,8 @@ struct Menu {
 
 	inline void setPosition(int x, int y)
 	{
-		_40 = x;
-		_44 = y;
+		mPositionX = x;
+		mPositionY = y;
 	}
 
 	JUTGamePad* mControl;   // _00
@@ -63,8 +63,8 @@ struct Menu {
 	int mState;             // _34
 	f32 mTimer;             // _38
 	f32 mTimer2;            // _3C
-	int _40;                // _40
-	int _44;                // _44
+	int mPositionX;         // _40
+	int mPositionY;         // _44
 	int _48;                // _48
 	int _4C;                // _4C
 	int _50;                // _50

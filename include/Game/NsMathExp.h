@@ -5,8 +5,12 @@
 
 namespace Game {
 namespace NsMathExp {
-void calcLagrange(const Vector3f* p_vec, f32 p2, Vector3f& new_vec);
-void calcJointPos(const Vector3f& inPos1, const Vector3f& inPos2, f32 p1, f32 p2, Vector3f& outPos1, Vector3f& outPos2);
+
+void calcLagrange(const Vector3f* controlPoints, f32 t, Vector3f& output);
+
+void calcJointPos(const Vector3f& topPosition, const Vector3f& bottomPosition, f32 topToMiddleDistance, f32 middleToBottomDistance,
+                  Vector3f& middleJointPos, Vector3f& bottomJointPosition);
+
 } // namespace NsMathExp
 } // namespace Game
 

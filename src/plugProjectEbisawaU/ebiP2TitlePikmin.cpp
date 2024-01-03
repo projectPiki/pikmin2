@@ -511,7 +511,7 @@ void Pikmin::TUnit::init(ebi::title::Pikmin::TMgr* mgr, s32 color)
 	mFrameControlB.init(mManager->mAnimator->_18->mMaxFrame);
 
 	switch (sys->mRegion) {
-	case System::LANG_JAPANESE:
+	case System::LANG_Japanese:
 		mParms[1] = mManager->mParams.mJpnScale();
 		break;
 	default:

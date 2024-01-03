@@ -142,7 +142,7 @@ void Mgr::setupTex()
 void Mgr::setupFont(char const* path, JKRExpHeap* heap)
 {
 	// Japanese uses a separate font loading system since it's so big
-	if (sys->mRegion == System::LANG_JAPANESE) {
+	if (sys->mRegion == System::LANG_Japanese) {
 		JKRAram::sAramObject->mAramHeap->getFreeSize();
 
 		JKRArchive* fontarc = JKRMountArchive(sFontResName[sys->mRegion], JKRArchive::EMM_Mem, heap, JKRArchive::EMD_Tail);

@@ -161,19 +161,19 @@ GameConfig::GameConfig()
 bool GameConfig::load(char*)
 {
 	if (strcmp(gGameConfig.mParms.mLanguage.mData, "eng") == 0) {
-		sys->mRegion = System::LANG_ENGLISH;
+		sys->mRegion = System::LANG_English;
 	} else if (strcmp(gGameConfig.mParms.mLanguage.mData, "fra") == 0) {
-		sys->mRegion = System::LANG_FRENCH;
+		sys->mRegion = System::LANG_French;
 	} else if (strcmp(gGameConfig.mParms.mLanguage.mData, "ger") == 0) {
-		sys->mRegion = System::LANG_GERMAN;
+		sys->mRegion = System::LANG_German;
 	} else if (strcmp(gGameConfig.mParms.mLanguage.mData, "hol") == 0) {
-		sys->mRegion = System::LANG_ENGLISH;
+		sys->mRegion = System::LANG_English;
 	} else if (strcmp(gGameConfig.mParms.mLanguage.mData, "ita") == 0) {
-		sys->mRegion = System::LANG_ITALIAN;
+		sys->mRegion = System::LANG_Italian;
 	} else if (strcmp(gGameConfig.mParms.mLanguage.mData, "jpn") == 0) {
-		sys->mRegion = System::LANG_JAPANESE;
+		sys->mRegion = System::LANG_Japanese;
 	} else if (strcmp(gGameConfig.mParms.mLanguage.mData, "spa") == 0) {
-		sys->mRegion = System::LANG_SPANISH;
+		sys->mRegion = System::LANG_Spanish;
 	}
 	return false;
 }

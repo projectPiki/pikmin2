@@ -1356,7 +1356,7 @@ void Obj::calcBaseTrMatrix()
 	f32 rotX;
 
 	rotX     = C_GENERALPARMS.mHeightOffsetFromFloor();
-	frameLen = sys->getFrameLength();
+	frameLen = sys->getDeltaTime();
 
 	if (gameSystem && gameSystem->mIsInCave) {
 		f32 minY = mapMgr->getMinY(mPosition);
