@@ -6,6 +6,7 @@ static MTRCallbackType MTRCallback;
 static u8 EXIInputFlag;
 static u8* pEXIInputFlag;
 static void (*DBGCallback)(u32, OSContext*);
+static s32 RecvDataLeng;
 /**
  * @note Address: N/A
  * @note Size: 0x34
@@ -20,9 +21,10 @@ void DBGEXIInit()
  * @note Address: N/A
  * @note Size: 0x28
  */
-void DBGEXISelect(void)
+static inline u32 DBGEXISelect(u32 v)
 {
-	// UNUSED FUNCTION
+	__EXIRegs[10] = (__EXIRegs[10] & 0x405) | (v << 4) | 0xc0;
+	return 1;
 }
 
 /**
@@ -42,8 +44,9 @@ u32 DBGEXISync(void)
 {
 	u32 signal;
 	do {
-		signal = __EXIRegs[6];
-	} while ((signal & 1) != 0);
+		signal = __EXIRegs[13];
+	} while (signal & 1);
+	
 	return 1;
 }
 
@@ -51,72 +54,36 @@ u32 DBGEXISync(void)
  * @note Address: 0x800D0550
  * @note Size: 0x298
  */
-void DBGEXIImm(u8* a, u32 b, u32 c)
+static u32 DBGEXIImm(void* buffer, s32 bytecounter, u32 write)
 {
-	int iVar1;
-	int byteCount;
-	int i;
-	uint outReg;
 	u8* tempPointer;
-	uint uVar5;
-
-	if (c != 0) {
-		byteCount = 0;
-		outReg    = 0;
-		if (b > 0) {
-			if ((b > 8) && (b - 8 > 0)) {
-				tempPointer = a;
-				for (uVar5 = (b - 1) / 8; uVar5; uVar5--) {
-					for (i = 0; i < 8; i++) {
-						outReg |= tempPointer[i] << (3 - (byteCount + i)) * 8;
-					}
-					tempPointer = tempPointer + 8;
-					byteCount += 8;
-				}
-			}
-			tempPointer = a + byteCount;
-			iVar1       = b - byteCount;
-			if (byteCount < b) {
-				do {
-					outReg |= *tempPointer << (3 - byteCount) * 8;
-					tempPointer++;
-					byteCount++;
-					iVar1--;
-				} while (iVar1 != 0);
-			}
+	u32 writeOutValue;
+	int i;
+	
+	if (write) {
+		tempPointer = buffer;
+		writeOutValue = 0;
+		for (i = 0; i < bytecounter; i++)
+		{
+			u8* temp = ((u8*)buffer) + i;
+			writeOutValue |= *temp << ((3 - i) << 3);
 		}
-		__EXIRegs[7] = outReg;
+		__EXIRegs[14] = writeOutValue;
 	}
-	__EXIRegs[8] = (c << 2 | 1U | (b + -1) * 0x10);
-
+	
+	__EXIRegs[13] = 1 | write << 2 | (bytecounter - 1) << 4;
 	DBGEXISync();
 
-	if (c == 0) {
-		byteCount = 0;
-		outReg    = __EXIRegs[7];
-		if (0 < b) {
-			if ((8 < b) && (uVar5 = b - 1U >> 3, 0 < b + -8)) {
-				for (uVar5 = (b - 1) / 8; uVar5 != 0; uVar5--) {
-					for (i = 0; i < 8; i++) {
-						a[i] = (u8)(outReg >> (3 - (byteCount + i)) * 8);
-					}
-					a = &a[8];
-					byteCount += 8;
-					uVar5 -= 1;
-				}
-			}
-			iVar1 = b - byteCount;
-			if (byteCount < b) {
-				do {
-					*a = (u8)(outReg >> (3 - byteCount) * 8);
-					a++;
-					byteCount++;
-					iVar1--;
-				} while (iVar1 != 0);
-			}
+	if (!write) {
+		writeOutValue = __EXIRegs[14];
+		tempPointer = buffer;
+		for (i = 0; i < bytecounter; i++)
+		{
+			*tempPointer++ = writeOutValue >> ((3 - i) << 3);
 		}
 	}
-	return;
+
+	return 1;
 	/*
 	.loc_0x0:
 	 stwu      r1, -0x48(r1)
@@ -343,7 +310,7 @@ void DBGWriteMailbox(void)
  * @note Address: 0x800D04A4
  * @note Size: 0xAC
  */
-void DBGReadMailbox(void)
+static void DBGReadMailbox(u32*)
 {
 	/*
 	.loc_0x0:
@@ -477,8 +444,28 @@ void DBGRead(void)
  * @note Address: 0x800D02EC
  * @note Size: 0xDC
  */
-void DBGWrite(void)
+u32 DBGWrite(u32 count, u32* buffer, s32 param3)
 {
+	u32 res;
+	u8 res2;
+	// u32 v = ((count & 0x1fffc) << 8) | 0xa0000000;
+	// __EXIRegs[10] &= (__EXIRegs[10] & 0x405) | 0xc0;
+	DBGEXISelect(count & 0x1fffc);
+	res = DBGEXIImm(&count, sizeof(count), 1);
+	// DBGEXISync();
+	res2 = (res & 32 == 0);
+	// while (param3 != 0)
+	// {
+	// 	v = *buffer;
+	// 	buffer++;
+	// 	DBGEXIImm(&v, sizeof(v), 1);
+	// 	param3 -=4;
+	// 	if (param3 < 0)
+	// 	{
+	// 		param3 = 0;
+	// 	}
+	// }
+	return res2;
 	/*
 	.loc_0x0:
 	 mflr      r0
@@ -551,9 +538,10 @@ void DBGWrite(void)
  * @note Address: 0x800D0240
  * @note Size: 0xAC
  */
-void DBGReadStatus(void)
+static void DBGReadStatus(u32* v)
 {
-	DBGEXIImm(0, 0, 0);
+	u32 ivar5 = DBGEXISelect(4);
+	DBGEXIImm(v, 4, 0);
 	/*
 	.loc_0x0:
 	 mflr      r0
@@ -670,6 +658,16 @@ void DBInitInterrupts(void)
  */
 void CheckMailBox(void)
 {
+	u32 v[2];
+	DBGReadStatus(v);
+	if (v[0] & 1)
+	{
+		DBGReadMailbox(v);
+		if ((v[0] & 0x1f000000) == 0x1f000000)
+		{
+
+		}
+	}
 	// UNUSED FUNCTION
 }
 
@@ -677,8 +675,16 @@ void CheckMailBox(void)
  * @note Address: 0x800D005C
  * @note Size: 0x9C
  */
-void DBQueryData(void)
+s16 DBQueryData(void)
 {
+	EXIInputFlag = 0;
+	if (!RecvDataLeng)
+	{
+		BOOL interrupts = OSDisableInterrupts();
+		CheckMailBox();
+		OSRestoreInterrupts(interrupts);
+	}
+	return RecvDataLeng;
 	/*
 	.loc_0x0:
 	 mflr      r0
@@ -783,7 +789,12 @@ void DBRead(void)
  */
 BOOL DBWrite(const void* src, u32 size)
 {
-
+	u32 interrupts;
+	interrupts = OSDisableInterrupts();
+	DBGEXISync();
+	DBGEXIImm(0, 0, 0);
+	DBGEXISync();
+	OSEnableInterrupts(interrupts);
 	/*
 	.loc_0x0:
 	 mflr      r0
