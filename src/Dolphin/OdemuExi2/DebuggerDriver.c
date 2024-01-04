@@ -139,6 +139,7 @@ static inline BOOL DBGWriteMailbox(u32 p1)
  * @note Address: 0x800D04A4
  * @note Size: 0xAC
  */
+#pragma dont_inline on
 static BOOL DBGReadMailbox(u32* p1)
 {
 	BOOL total = FALSE;
@@ -157,6 +158,7 @@ static BOOL DBGReadMailbox(u32* p1)
     
 	return IS_FALSE(total);
 }
+#pragma dont_inline reset
 
 /**
  * @note Address: 0x800D03C8
@@ -232,6 +234,7 @@ static BOOL DBGWrite(u32 count, void* buffer, s32 param3)
  * @note Address: 0x800D0240
  * @note Size: 0xAC
  */
+#pragma dont_inline on
 static BOOL DBGReadStatus(u32* p1)
 {
 	BOOL total = FALSE;
@@ -250,6 +253,7 @@ static BOOL DBGReadStatus(u32* p1)
     
 	return IS_FALSE(total);
 }
+#pragma dont_inline reset
 
 /**
  * @note Address: 0x800D0204
