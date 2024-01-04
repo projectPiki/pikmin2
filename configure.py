@@ -579,7 +579,7 @@ LIBS = [
         "cflags": "$cflags_base -inline deferred",
         "host": False,
         "objects": [
-            ["Dolphin/OdemuExi2/DebuggerDriver", False],
+            ["Dolphin/OdemuExi2/DebuggerDriver", True],
         ],
     },
     {

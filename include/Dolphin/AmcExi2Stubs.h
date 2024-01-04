@@ -8,7 +8,7 @@ extern "C" {
 #endif // ifdef __cplusplus
 
 // EXI callback function pointer type
-typedef void (*AmcEXICallback)(s16 exception, OSContext* context);
+typedef __OSInterruptHandler AmcEXICallback;
 
 // EXI error codes
 typedef enum {

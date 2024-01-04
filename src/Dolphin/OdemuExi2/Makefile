@@ -1,5 +1,5 @@
 ODEMUEXI2_FILES:=\
-	$(BUILD_DIR)/asm/Dolphin/OdemuExi2/DebuggerDriver.o\
+	$(BUILD_DIR)/src/Dolphin/OdemuExi2/DebuggerDriver.o\
 
 $(ODEMUEXI2_FILES): CFLAGS += -common off -inline deferred
 $(ODEMUEXI2_FILES): MWCC_VERSION := 1.2.5n
