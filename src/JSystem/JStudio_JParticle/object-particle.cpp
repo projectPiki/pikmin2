@@ -556,7 +556,8 @@ void JStudio_JParticle::TAdaptor_particle::beginParticle_fadeIn_(u32 p1)
 
 	JGeometry::TVec3f vec = (JGeometry::TVec3f) { 0.0f, 0.0f, 0.0f };
 
-	mEmitter = mEmitterManager->createSimpleEmitterID(vec, _188, (u8)(_188 >> 24), (u8)(_188 >> 16), &mCallback, nullptr);
+	mEmitter = mEmitterManager->createSimpleEmitterID(vec, _188, (_188 >> 24) & 0xff, (_188 >> 16) & 0xff, &mCallback,
+	                                                  nullptr); // instruction order swap
 
 	if (mEmitter) {
 		mEmitter->setFlag(JPAEMIT_Unk7);
