@@ -2,16 +2,27 @@
 #include "Dolphin/os.h"
 #include "Dolphin/hw_regs.h"
 typedef void (*MTRCallbackType)(int);
+
 static MTRCallbackType MTRCallback;
-static u8 EXIInputFlag;
-static u8* pEXIInputFlag;
 static void (*DBGCallback)(u32, OSContext*);
+
+static u32 SendMailData;
 static s32 RecvDataLeng;
+
+static u8* pEXIInputFlag;
+static u8 EXIInputFlag;
+
+static u8 SendCount = 0x80;
+
+#define IS_TRUE(x) ((x) != FALSE)
+#define IS_FALSE(x) !IS_TRUE(x)
+#define ROUND_UP(x, align) (((x) + (align)-1) & (-(align)))
+
 /**
  * @note Address: N/A
  * @note Size: 0x34
  */
-void DBGEXIInit()
+inline void DBGEXIInit()
 {
 	__OSMaskInterrupts(0x18000);
 	__EXIRegs[10] = 0;
@@ -23,38 +34,42 @@ void DBGEXIInit()
  */
 static inline u32 DBGEXISelect(u32 v)
 {
-	__EXIRegs[10] = (__EXIRegs[10] & 0x405) | (v << 4) | 0xc0;
-	return 1;
+    u32 regs = __EXIRegs[10];
+    regs &= 0x405;
+    regs |= 0x80 | (v << 4);
+	__EXIRegs[10] = regs;
+	return TRUE;
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0x1C
  */
-void DBGEXIDeselect(void)
+inline BOOL DBGEXIDeselect(void)
 {
-	// UNUSED FUNCTION
+	__EXIRegs[10] &= 0x405;
+	return TRUE;
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0x1C
  */
-u32 DBGEXISync(void)
+static inline BOOL DBGEXISync()
 {
 	u32 signal;
 	do {
 		signal = __EXIRegs[13];
 	} while (signal & 1);
 	
-	return 1;
+	return TRUE;
 }
 
 /**
  * @note Address: 0x800D0550
  * @note Size: 0x298
  */
-static u32 DBGEXIImm(void* buffer, s32 bytecounter, u32 write)
+static BOOL DBGEXIImm(void* buffer, s32 bytecounter, u32 write)
 {
 	u8* tempPointer;
 	u32 writeOutValue;
@@ -83,207 +98,14 @@ static u32 DBGEXIImm(void* buffer, s32 bytecounter, u32 write)
 		}
 	}
 
-	return 1;
-	/*
-	.loc_0x0:
-	 stwu      r1, -0x48(r1)
-	 cmplwi    r5, 0
-	 stmw      r22, 0x20(r1)
-	 beq-      .loc_0x144
-	 li        r29, 0
-	 cmpw      r29, r4
-	 li        r30, 0
-	 bge-      .loc_0x13C
-	 cmpwi     r4, 0x8
-	 subi      r6, r4, 0x8
-	 ble-      .loc_0x284
-	 addi      r0, r6, 0x7
-	 rlwinm    r0,r0,29,3,31
-	 cmpwi     r6, 0
-	 mtctr     r0
-	 addi      r31, r3, 0
-	 ble-      .loc_0x284
-
-	.loc_0x44:
-	 subfic    r6, r29, 0x3
-	 lbz       r12, 0x0(r31)
-	 addi      r0, r29, 0x1
-	 lbz       r11, 0x1(r31)
-	 rlwinm    r10,r6,3,0,28
-	 lbz       r9, 0x2(r31)
-	 subfic    r8, r0, 0x3
-	 lbz       r7, 0x3(r31)
-	 addi      r6, r29, 0x2
-	 lbz       r0, 0x4(r31)
-	 slw       r12, r12, r10
-	 lbz       r23, 0x5(r31)
-	 rlwinm    r10,r8,3,0,28
-	 lbz       r25, 0x6(r31)
-	 subfic    r6, r6, 0x3
-	 lbz       r27, 0x7(r31)
-	 rlwinm    r8,r6,3,0,28
-	 neg       r6, r29
-	 addi      r22, r29, 0x4
-	 rlwinm    r6,r6,3,0,28
-	 subfic    r22, r22, 0x3
-	 addi      r24, r29, 0x5
-	 rlwinm    r22,r22,3,0,28
-	 subfic    r24, r24, 0x3
-	 addi      r26, r29, 0x6
-	 rlwinm    r24,r24,3,0,28
-	 subfic    r26, r26, 0x3
-	 addi      r28, r29, 0x7
-	 rlwinm    r26,r26,3,0,28
-	 subfic    r28, r28, 0x3
-	 rlwinm    r28,r28,3,0,28
-	 or        r30, r30, r12
-	 slw       r10, r11, r10
-	 or        r30, r30, r10
-	 slw       r8, r9, r8
-	 or        r30, r30, r8
-	 slw       r6, r7, r6
-	 or        r30, r30, r6
-	 slw       r0, r0, r22
-	 or        r30, r30, r0
-	 slw       r0, r23, r24
-	 or        r30, r30, r0
-	 slw       r0, r25, r26
-	 or        r30, r30, r0
-	 slw       r0, r27, r28
-	 or        r30, r30, r0
-	 addi      r31, r31, 0x8
-	 addi      r29, r29, 0x8
-	 bdnz+     .loc_0x44
-	 b         .loc_0x284
-
-	.loc_0x10C:
-	 sub       r0, r4, r29
-	 cmpw      r29, r4
-	 mtctr     r0
-	 bge-      .loc_0x13C
-
-	.loc_0x11C:
-	 subfic    r0, r29, 0x3
-	 lbz       r6, 0x0(r7)
-	 rlwinm    r0,r0,3,0,28
-	 slw       r0, r6, r0
-	 or        r30, r30, r0
-	 addi      r7, r7, 0x1
-	 addi      r29, r29, 0x1
-	 bdnz+     .loc_0x11C
-
-	.loc_0x13C:
-	 lis       r6, 0xCC00
-	 stw       r30, 0x6838(r6)
-
-	.loc_0x144:
-	 subi      r0, r4, 0x1
-	 lis       r6, 0xCC00
-	 rlwinm    r7,r5,2,0,29
-	 addi      r8, r6, 0x6800
-	 ori       r6, r7, 0x1
-	 rlwinm    r0,r0,4,0,27
-	 or        r0, r6, r0
-	 stwu      r0, 0x34(r8)
-
-	.loc_0x164:
-	 lwz       r0, 0x0(r8)
-	 rlwinm.   r0,r0,0,31,31
-	 bne+      .loc_0x164
-	 cmplwi    r5, 0
-	 bne-      .loc_0x27C
-	 li        r5, 0
-	 lis       r6, 0xCC00
-	 cmpw      r5, r4
-	 lwz       r0, 0x6838(r6)
-	 bge-      .loc_0x27C
-	 cmpwi     r4, 0x8
-	 subi      r7, r4, 0x8
-	 ble-      .loc_0x250
-	 addi      r6, r7, 0x7
-	 rlwinm    r6,r6,29,3,31
-	 cmpwi     r7, 0
-	 mtctr     r6
-	 ble-      .loc_0x250
-
-	.loc_0x1AC:
-	 subfic    r6, r5, 0x3
-	 rlwinm    r7,r6,3,0,28
-	 addi      r6, r5, 0x1
-	 srw       r8, r0, r7
-	 subfic    r6, r6, 0x3
-	 stb       r8, 0x0(r3)
-	 rlwinm    r7,r6,3,0,28
-	 addi      r6, r5, 0x2
-	 srw       r12, r0, r7
-	 subfic    r6, r6, 0x3
-	 stb       r12, 0x1(r3)
-	 rlwinm    r6,r6,3,0,28
-	 srw       r11, r0, r6
-	 neg       r6, r5
-	 stb       r11, 0x2(r3)
-	 rlwinm    r7,r6,3,0,28
-	 addi      r6, r5, 0x4
-	 srw       r10, r0, r7
-	 subfic    r6, r6, 0x3
-	 stb       r10, 0x3(r3)
-	 rlwinm    r7,r6,3,0,28
-	 addi      r6, r5, 0x5
-	 srw       r9, r0, r7
-	 subfic    r6, r6, 0x3
-	 stb       r9, 0x4(r3)
-	 rlwinm    r7,r6,3,0,28
-	 srw       r8, r0, r7
-	 addi      r6, r5, 0x6
-	 stb       r8, 0x5(r3)
-	 subfic    r7, r6, 0x3
-	 addi      r6, r5, 0x7
-	 rlwinm    r7,r7,3,0,28
-	 srw       r7, r0, r7
-	 subfic    r6, r6, 0x3
-	 stb       r7, 0x6(r3)
-	 rlwinm    r6,r6,3,0,28
-	 srw       r6, r0, r6
-	 stb       r6, 0x7(r3)
-	 addi      r3, r3, 0x8
-	 addi      r5, r5, 0x8
-	 bdnz+     .loc_0x1AC
-
-	.loc_0x250:
-	 sub       r6, r4, r5
-	 cmpw      r5, r4
-	 mtctr     r6
-	 bge-      .loc_0x27C
-
-	.loc_0x260:
-	 subfic    r4, r5, 0x3
-	 rlwinm    r4,r4,3,0,28
-	 srw       r4, r0, r4
-	 stb       r4, 0x0(r3)
-	 addi      r3, r3, 0x1
-	 addi      r5, r5, 0x1
-	 bdnz+     .loc_0x260
-
-	.loc_0x27C:
-	 li        r3, 0x1
-	 b         .loc_0x28C
-
-	.loc_0x284:
-	 add       r7, r3, r29
-	 b         .loc_0x10C
-
-	.loc_0x28C:
-	 lmw       r22, 0x20(r1)
-	 addi      r1, r1, 0x48
-	 blr
-	*/
+	return TRUE;
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0x18
  */
-void DBGEXIClearInterrupts(void)
+inline void DBGEXIClearInterrupts(void)
 {
 	// UNUSED FUNCTION
 }
@@ -292,7 +114,7 @@ void DBGEXIClearInterrupts(void)
  * @note Address: N/A
  * @note Size: 0xAC
  */
-void DBGCheckID(void)
+inline void DBGCheckID(void)
 {
 	// UNUSED FUNCTION
 }
@@ -301,297 +123,132 @@ void DBGCheckID(void)
  * @note Address: N/A
  * @note Size: 0x8C
  */
-void DBGWriteMailbox(void)
+static inline BOOL DBGWriteMailbox(u32 p1)
 {
-	// UNUSED FUNCTION
+	BOOL total = FALSE;
+	p1 &= (p1 & 0x1fffffff) | (0xc0000000);
+	total |= IS_FALSE(DBGEXISelect(4));
+	total |= IS_FALSE(DBGEXIImm(&p1, sizeof(p1), 1));
+	total |= IS_FALSE(DBGEXISync());
+	total |= IS_FALSE(DBGEXIDeselect());
+
+	return IS_FALSE(total);
 }
 
 /**
  * @note Address: 0x800D04A4
  * @note Size: 0xAC
  */
-static void DBGReadMailbox(u32*)
+static BOOL DBGReadMailbox(u32* p1)
 {
-	/*
-	.loc_0x0:
-	 mflr      r0
-	 li        r4, 0x2
-	 stw       r0, 0x4(r1)
-	 lis       r0, 0x6000
-	 stwu      r1, -0x38(r1)
-	 stmw      r27, 0x24(r1)
-	 lis       r30, 0xCC00
-	 addi      r27, r3, 0
-	 addi      r29, r30, 0x6800
-	 addi      r3, r1, 0x18
-	 lwz       r5, 0x6828(r30)
-	 andi.     r5, r5, 0x405
-	 ori       r5, r5, 0xC0
-	 stwu      r5, 0x28(r29)
-	 li        r5, 0x1
-	 stw       r0, 0x18(r1)
-	 bl        .loc_0xAC
-	 cntlzw    r0, r3
-	 rlwinm    r31,r0,27,5,31
+	BOOL total = FALSE;
+	u32 v;
 
-	.loc_0x4C:
-	 addi      r28, r30, 0x6800
-	 lwzu      r0, 0x34(r28)
-	 rlwinm.   r0,r0,0,31,31
-	 bne+      .loc_0x4C
-	 addi      r3, r27, 0
-	 li        r4, 0x4
-	 li        r5, 0
-	 bl        .loc_0xAC
-	 cntlzw    r0, r3
-	 rlwinm    r0,r0,27,5,31
-	 or        r3, r31, r0
+    DBGEXISelect(4);
 
-	.loc_0x78:
-	 lwz       r0, 0x0(r28)
-	 rlwinm.   r0,r0,0,31,31
-	 bne+      .loc_0x78
-	 lwz       r4, 0x0(r29)
-	 cntlzw    r0, r3
-	 rlwinm    r3,r0,27,5,31
-	 andi.     r0, r4, 0x405
-	 stw       r0, 0x0(r29)
-	 lmw       r27, 0x24(r1)
-	 lwz       r0, 0x3C(r1)
-	 addi      r1, r1, 0x38
-	 mtlr      r0
-	 blr
+	v = 0x60000000;
+	total |= IS_FALSE(DBGEXIImm(&v, 2, 1));
+	total |= IS_FALSE(DBGEXISync());
 
-	.loc_0xAC:
-	*/
+	total |= IS_FALSE(DBGEXIImm(p1, 4, 0));
+	total |= IS_FALSE(DBGEXISync());
+
+    total |= IS_FALSE(DBGEXIDeselect());
+    
+	return IS_FALSE(total);
 }
 
 /**
  * @note Address: 0x800D03C8
  * @note Size: 0xDC
  */
-void DBGRead(void)
+static BOOL DBGRead(u32 count, u32* buffer, s32 param3)
 {
-	/*
-	.loc_0x0:
-	 mflr      r0
-	 stw       r0, 0x4(r1)
-	 rlwinm    r0,r3,8,7,21
-	 oris      r0, r0, 0x2000
-	 stwu      r1, -0x40(r1)
-	 stmw      r26, 0x28(r1)
-	 lis       r29, 0xCC00
-	 addi      r30, r5, 0
-	 addi      r26, r4, 0
-	 addi      r31, r29, 0x6800
-	 addi      r3, r1, 0x24
-	 li        r4, 0x4
-	 li        r5, 0x1
-	 lwz       r6, 0x6828(r29)
-	 andi.     r6, r6, 0x405
-	 ori       r6, r6, 0xC0
-	 stwu      r6, 0x28(r31)
-	 stw       r0, 0x24(r1)
-	 bl        0x140
-	 cntlzw    r0, r3
-	 rlwinm    r0,r0,27,5,31
-	 mr        r27, r0
+	BOOL total = FALSE;
+    u32* buf_p = (u32*)buffer;
+	u32 v1;
+	u32 v;
 
-	.loc_0x58:
-	 addi      r28, r29, 0x6800
-	 lwzu      r0, 0x34(r28)
-	 rlwinm.   r0,r0,0,31,31
-	 bne+      .loc_0x58
-	 b         .loc_0xAC
+	DBGEXISelect(4);
+	
+	v1 = (count & 0x1fffc) << 8 | 0x20000000;
+	total |= IS_FALSE(DBGEXIImm(&v1, sizeof(v1), 1));
+	total |= IS_FALSE(DBGEXISync());
 
-	.loc_0x6C:
-	 addi      r3, r1, 0x20
-	 li        r4, 0x4
-	 li        r5, 0
-	 bl        0x110
-	 cntlzw    r0, r3
-	 rlwinm    r0,r0,27,5,31
-	 or        r27, r27, r0
+	while (param3)
+	{
+		total |= IS_FALSE(DBGEXIImm(&v, sizeof(v), 0));
+		total |= IS_FALSE(DBGEXISync());
 
-	.loc_0x88:
-	 lwz       r0, 0x0(r28)
-	 rlwinm.   r0,r0,0,31,31
-	 bne+      .loc_0x88
-	 lwz       r0, 0x20(r1)
-	 subic.    r30, r30, 0x4
-	 stw       r0, 0x0(r26)
-	 addi      r26, r26, 0x4
-	 bge-      .loc_0xAC
-	 li        r30, 0
+		*buf_p++ = v;
 
-	.loc_0xAC:
-	 cmpwi     r30, 0
-	 bne+      .loc_0x6C
-	 lwz       r4, 0x0(r31)
-	 cntlzw    r0, r27
-	 rlwinm    r3,r0,27,5,31
-	 andi.     r0, r4, 0x405
-	 stw       r0, 0x0(r31)
-	 lmw       r26, 0x28(r1)
-	 lwz       r0, 0x44(r1)
-	 addi      r1, r1, 0x40
-	 mtlr      r0
-	 blr
-	*/
+		param3 -= 4;
+		if (param3 < 0)
+		{
+			param3 = 0;
+		}
+	}
+
+	total |= IS_FALSE(DBGEXIDeselect());
+	return IS_FALSE(total);
 }
 
 /**
  * @note Address: 0x800D02EC
  * @note Size: 0xDC
  */
-u32 DBGWrite(u32 count, u32* buffer, s32 param3)
+static BOOL DBGWrite(u32 count, void* buffer, s32 param3)
 {
-	u32 res;
-	u8 res2;
-	// u32 v = ((count & 0x1fffc) << 8) | 0xa0000000;
-	// __EXIRegs[10] &= (__EXIRegs[10] & 0x405) | 0xc0;
-	DBGEXISelect(count & 0x1fffc);
-	res = DBGEXIImm(&count, sizeof(count), 1);
-	// DBGEXISync();
-	res2 = (res & 32 == 0);
-	// while (param3 != 0)
-	// {
-	// 	v = *buffer;
-	// 	buffer++;
-	// 	DBGEXIImm(&v, sizeof(v), 1);
-	// 	param3 -=4;
-	// 	if (param3 < 0)
-	// 	{
-	// 		param3 = 0;
-	// 	}
-	// }
-	return res2;
-	/*
-	.loc_0x0:
-	 mflr      r0
-	 stw       r0, 0x4(r1)
-	 rlwinm    r0,r3,8,7,21
-	 oris      r0, r0, 0xA000
-	 stwu      r1, -0x40(r1)
-	 stmw      r26, 0x28(r1)
-	 lis       r29, 0xCC00
-	 addi      r30, r5, 0
-	 addi      r26, r4, 0
-	 addi      r31, r29, 0x6800
-	 addi      r3, r1, 0x24
-	 li        r4, 0x4
-	 li        r5, 0x1
-	 lwz       r6, 0x6828(r29)
-	 andi.     r6, r6, 0x405
-	 ori       r6, r6, 0xC0
-	 stwu      r6, 0x28(r31)
-	 stw       r0, 0x24(r1)
-	 bl        0x21C
-	 cntlzw    r0, r3
-	 rlwinm    r0,r0,27,5,31
-	 mr        r27, r0
+	BOOL total = FALSE;
+    u32* buf_p = (u32*)buffer;
+	u32 v1;
+	u32 v;
 
-	.loc_0x58:
-	 addi      r28, r29, 0x6800
-	 lwzu      r0, 0x34(r28)
-	 rlwinm.   r0,r0,0,31,31
-	 bne+      .loc_0x58
-	 b         .loc_0xAC
+	DBGEXISelect(4);
+	
+	v1 = (count & 0x1fffc) << 8 | 0xa0000000;
+	total |= IS_FALSE(DBGEXIImm(&v1, sizeof(v1), 1));
+	total |= IS_FALSE(DBGEXISync());
 
-	.loc_0x6C:
-	 lwz       r0, 0x0(r26)
-	 addi      r3, r1, 0x20
-	 li        r4, 0x4
-	 stw       r0, 0x20(r1)
-	 li        r5, 0x1
-	 addi      r26, r26, 0x4
-	 bl        0x1E0
-	 cntlzw    r0, r3
-	 rlwinm    r0,r0,27,5,31
-	 or        r27, r27, r0
+	while (param3)
+	{
+		v = *buf_p++;
 
-	.loc_0x94:
-	 lwz       r0, 0x0(r28)
-	 rlwinm.   r0,r0,0,31,31
-	 bne+      .loc_0x94
-	 subic.    r30, r30, 0x4
-	 bge-      .loc_0xAC
-	 li        r30, 0
+		total |= IS_FALSE(DBGEXIImm(&v, sizeof(v), 1));
+		total |= IS_FALSE(DBGEXISync());
 
-	.loc_0xAC:
-	 cmpwi     r30, 0
-	 bne+      .loc_0x6C
-	 lwz       r4, 0x0(r31)
-	 cntlzw    r0, r27
-	 rlwinm    r3,r0,27,5,31
-	 andi.     r0, r4, 0x405
-	 stw       r0, 0x0(r31)
-	 lmw       r26, 0x28(r1)
-	 lwz       r0, 0x44(r1)
-	 addi      r1, r1, 0x40
-	 mtlr      r0
-	 blr
-	*/
+		param3 -= 4;
+		if (param3 < 0)
+		{
+			param3 = 0;
+		}
+	}
+
+	total |= IS_FALSE(DBGEXIDeselect());
+	return IS_FALSE(total);
 }
 
 /**
  * @note Address: 0x800D0240
  * @note Size: 0xAC
  */
-static void DBGReadStatus(u32* v)
+static BOOL DBGReadStatus(u32* p1)
 {
-	u32 ivar5 = DBGEXISelect(4);
-	DBGEXIImm(v, 4, 0);
-	/*
-	.loc_0x0:
-	 mflr      r0
-	 li        r4, 0x2
-	 stw       r0, 0x4(r1)
-	 lis       r0, 0x4000
-	 stwu      r1, -0x38(r1)
-	 stmw      r27, 0x24(r1)
-	 lis       r30, 0xCC00
-	 addi      r27, r3, 0
-	 addi      r29, r30, 0x6800
-	 addi      r3, r1, 0x18
-	 lwz       r5, 0x6828(r30)
-	 andi.     r5, r5, 0x405
-	 ori       r5, r5, 0xC0
-	 stwu      r5, 0x28(r29)
-	 li        r5, 0x1
-	 stw       r0, 0x18(r1)
-	 bl        0x2D0
-	 cntlzw    r0, r3
-	 rlwinm    r31,r0,27,5,31
+	BOOL total = FALSE;
+	u32 v;
 
-	.loc_0x4C:
-	 addi      r28, r30, 0x6800
-	 lwzu      r0, 0x34(r28)
-	 rlwinm.   r0,r0,0,31,31
-	 bne+      .loc_0x4C
-	 addi      r3, r27, 0
-	 li        r4, 0x4
-	 li        r5, 0
-	 bl        0x2A8
-	 cntlzw    r0, r3
-	 rlwinm    r0,r0,27,5,31
-	 or        r3, r31, r0
+    DBGEXISelect(4);
 
-	.loc_0x78:
-	 lwz       r0, 0x0(r28)
-	 rlwinm.   r0,r0,0,31,31
-	 bne+      .loc_0x78
-	 lwz       r4, 0x0(r29)
-	 cntlzw    r0, r3
-	 rlwinm    r3,r0,27,5,31
-	 andi.     r0, r4, 0x405
-	 stw       r0, 0x0(r29)
-	 lmw       r27, 0x24(r1)
-	 lwz       r0, 0x3C(r1)
-	 addi      r1, r1, 0x38
-	 mtlr      r0
-	 blr
-	*/
+	v = 0x40000000;
+	total |= IS_FALSE(DBGEXIImm(&v, 2, 1));
+	total |= IS_FALSE(DBGEXISync());
+
+	total |= IS_FALSE(DBGEXIImm(p1, 4, 0));
+	total |= IS_FALSE(DBGEXISync());
+
+    total |= IS_FALSE(DBGEXIDeselect());
+    
+	return IS_FALSE(total);
 }
 
 /**
@@ -611,7 +268,7 @@ static void MWCallback(u32 a, OSContext* b)
  * @note Address: 0x800D01C4
  * @note Size: 0x40
  */
-void DBGHandler(s16 a, OSContext* b)
+static void DBGHandler(s16 a, OSContext* b)
 {
 	*__PIRegs = 0x1000;
 	if (DBGCallback) {
@@ -656,27 +313,32 @@ void DBInitInterrupts(void)
  * @note Address: N/A
  * @note Size: 0x150
  */
-void CheckMailBox(void)
+static inline void CheckMailBox(void)
 {
-	u32 v[2];
-	DBGReadStatus(v);
-	if (v[0] & 1)
+	u32 v;
+	DBGReadStatus(&v);
+	if (v & 1)
 	{
-		DBGReadMailbox(v);
-		if ((v[0] & 0x1f000000) == 0x1f000000)
+		DBGReadMailbox(&v);
+        v &= 0x1fffffff;
+        
+		if ((v & 0x1f000000) == 0x1f000000)
 		{
-
+			SendMailData = v;
+			RecvDataLeng = v & 0x7fff;
+			EXIInputFlag = 1;
 		}
 	}
-	// UNUSED FUNCTION
 }
 
 /**
  * @note Address: 0x800D005C
  * @note Size: 0x9C
  */
-s16 DBQueryData(void)
+u32 DBQueryData(void)
 {
+	u32 v2;
+	u32 v;
 	EXIInputFlag = 0;
 	if (!RecvDataLeng)
 	{
@@ -737,8 +399,19 @@ s16 DBQueryData(void)
  * @note Address: 0x800CFFD0
  * @note Size: 0x8C
  */
-void DBRead(void)
+BOOL DBRead(u32* buffer, s32 count)
 {
+	u32 interrupts = OSDisableInterrupts();
+	u32 v = SendMailData & 0x10000 ? 0x1000 : 0;
+	
+	DBGRead(v + 0x1e000, buffer, ROUND_UP(count, 4));
+
+	RecvDataLeng = 0;
+	EXIInputFlag = 0;
+
+	OSRestoreInterrupts(interrupts);
+
+	return 0;
 	/*
 	.loc_0x0:
 	 mflr      r0
@@ -789,12 +462,35 @@ void DBRead(void)
  */
 BOOL DBWrite(const void* src, u32 size)
 {
+	u32 v2;
+	u32 busyFlag;
+	u32 newSize;
 	u32 interrupts;
 	interrupts = OSDisableInterrupts();
-	DBGEXISync();
-	DBGEXIImm(0, 0, 0);
-	DBGEXISync();
-	OSEnableInterrupts(interrupts);
+
+	do {
+		DBGReadStatus(&busyFlag);
+	} while (busyFlag & 2);
+	
+	SendCount++;
+	v2 = ((SendCount & 1) ? 0x1000 : 0);
+
+	while(!DBGWrite(v2 | 0x1c000, src, ROUND_UP(size, 4)));
+
+	do {
+		DBGReadStatus(&busyFlag);
+	} while(busyFlag & 2);
+
+	v2 = SendCount;
+	while (!DBGWriteMailbox((0x1f000000) | v2 << 0x10 | size));
+
+	do {
+		while(!DBGReadStatus(&busyFlag));
+	} while(busyFlag & 2);
+	
+	OSRestoreInterrupts(interrupts);
+
+	return 0;
 	/*
 	.loc_0x0:
 	 mflr      r0
