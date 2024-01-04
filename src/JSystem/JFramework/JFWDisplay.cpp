@@ -27,21 +27,21 @@ JFWDisplay* JFWDisplay::sManager;
  */
 void JFWDisplay::ctor_subroutine(bool doEnableAlpha)
 {
-	mIsAlphaEnabled     = doEnableAlpha;
-	mClamp              = 3;
-	mClearColor         = TCOLOR_BLACK;
-	mZClear             = 0xFFFFFF;
-	mGamma              = 0;
-	mFader              = nullptr;
-	mFrameRate = 1;
-	mTickRate           = 0;
-	mCombinationRatio   = 0.0f;
-	_30                 = 0;
-	_2C                 = OSGetTick();
-	_34                 = 0;
-	_38                 = 0;
-	_3A                 = 0;
-	mDrawDoneMethod     = JFWDRAW_Unk0;
+	mIsAlphaEnabled   = doEnableAlpha;
+	mClamp            = 3;
+	mClearColor       = TCOLOR_BLACK;
+	mZClear           = 0xFFFFFF;
+	mGamma            = 0;
+	mFader            = nullptr;
+	mFrameRate        = 1;
+	mTickRate         = 0;
+	mCombinationRatio = 0.0f;
+	_30               = 0;
+	_2C               = OSGetTick();
+	_34               = 0;
+	_38               = 0;
+	_3A               = 0;
+	mDrawDoneMethod   = JFWDRAW_Unk0;
 	clearEfb_init();
 	JUTProcBar::create();
 	JUTProcBar::clear();

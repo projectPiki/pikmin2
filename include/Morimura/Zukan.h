@@ -12,6 +12,8 @@
 #include "Morimura/ScrollList.h"
 #include "kh/khUtil.h"
 
+#define ENEMY_ZUKAN_COUNT 81
+
 struct JKRExpHeap;
 
 namespace Game {
@@ -24,6 +26,8 @@ struct EnemyTexMgr;
 } // namespace Game
 
 namespace Morimura {
+
+extern int eIDInfo[ENEMY_ZUKAN_COUNT][2];
 
 struct TCallbackScrollMsg : public og::Screen::CallBack_Message {
 	TCallbackScrollMsg();
@@ -348,8 +352,6 @@ struct TEnemyZukanIndex {
 
 struct TEnemyZukan : public TZukanBase {
 
-#define ENEMY_ZUKAN_COUNT 81
-
 	// Represents the order of enemies in the piklopedia
 	enum EnemyZukanEnemyList {
 		Zukan_Chappy,
@@ -438,6 +440,9 @@ struct TEnemyZukan : public TZukanBase {
 	TEnemyZukan()
 	    : TZukanBase("enemyZukan")
 	{
+		mValueCounter    = nullptr;
+		mDefeatedCounter = nullptr;
+		mPikiLostCounter = nullptr;
 	}
 
 	virtual ~TEnemyZukan() { mDispEnemy->mDebugExpHeap->freeAll(); } // _08 (weak)
@@ -467,6 +472,17 @@ struct TEnemyZukan : public TZukanBase {
 	virtual void openConfirmWindow();                                      // _E0
 	virtual bool isNewSupply(int, bool);                                   // _E4
 	virtual bool isPanelExist();                                           // _E8
+
+	inline int* getEnemyInfo(int index)
+	{
+		int* data = eIDInfo[0];
+		for (int i = 0; i < ENEMY_ZUKAN_COUNT; i++) {
+			if (eIDInfo[i][0] == index) {
+				return eIDInfo[i];
+			}
+		}
+		return eIDInfo[0];
+	}
 
 	u32 getPrice(int);
 	u32 getDefeatNum(int);

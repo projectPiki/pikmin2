@@ -375,6 +375,8 @@ struct TZukanWindow : public TScreenBase {
 	void moveIcon(f32);
 	void changeIconTexture(int, ResTIMG*);
 
+	inline bool checkState(u8 state) { return mState == state; }
+
 	// _00     = VTBL
 	// _00-_18 = TScreenBase
 	u8 _18;                               // _18

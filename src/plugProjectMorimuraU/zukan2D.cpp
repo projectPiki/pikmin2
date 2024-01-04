@@ -46,6 +46,11 @@ JUtility::TColor TZukanBase::mCategoryColor1b;
 JKRHeap* TZukanBase::mDebugHeapParent;
 JKRExpHeap* TZukanBase::mDebugHeap;
 
+// these represent the highest index (index that the hoard shows you in-game) of each sets treasures
+// for example the first set is ids 1 through 7
+int TItemZukan::mCategoryArray[TREASUREHOARD_CATEGORY_NUM]
+    = { 7, 16, 22, 27, 42, 51, 57, 63, 71, 79, 86, 94, 103, 109, 120, 126, 146, 156, 160, 166, 168, 176, 183, 196, 201 };
+
 // this table connects piklopedia order to the actual game enemy id order
 int eIDInfo[ENEMY_ZUKAN_COUNT][2] = {
 	{ TEnemyZukan::Zukan_Chappy, Game::EnemyTypeID::EnemyID_Chappy },
@@ -70,8 +75,8 @@ int eIDInfo[ENEMY_ZUKAN_COUNT][2] = {
 	{ TEnemyZukan::Zukan_Kogane, Game::EnemyTypeID::EnemyID_Kogane },
 	{ TEnemyZukan::Zukan_Wealthy, Game::EnemyTypeID::EnemyID_Wealthy },
 	{ TEnemyZukan::Zukan_Fart, Game::EnemyTypeID::EnemyID_Fart },
-	{ TEnemyZukan::Zukan_UjiA, Game::EnemyTypeID::EnemyID_UjiA },
 	{ TEnemyZukan::Zukan_UjiB, Game::EnemyTypeID::EnemyID_UjiB },
+	{ TEnemyZukan::Zukan_UjiA, Game::EnemyTypeID::EnemyID_UjiA },
 	{ TEnemyZukan::Zukan_Tobi, Game::EnemyTypeID::EnemyID_Tobi },
 	{ TEnemyZukan::Zukan_Armor, Game::EnemyTypeID::EnemyID_Armor },
 	{ TEnemyZukan::Zukan_Imomushi, Game::EnemyTypeID::EnemyID_Imomushi },
@@ -82,8 +87,6 @@ int eIDInfo[ENEMY_ZUKAN_COUNT][2] = {
 	{ TEnemyZukan::Zukan_Demon, Game::EnemyTypeID::EnemyID_Demon },
 	{ TEnemyZukan::Zukan_BombSarai, Game::EnemyTypeID::EnemyID_BombSarai },
 	{ TEnemyZukan::Zukan_Fuefuki, Game::EnemyTypeID::EnemyID_Fuefuki },
-	{ TEnemyZukan::Zukan_Kurage, Game::EnemyTypeID::EnemyID_Kurage },
-	{ TEnemyZukan::Zukan_OniKurage, Game::EnemyTypeID::EnemyID_OniKurage },
 	{ TEnemyZukan::Zukan_FireOtakara, Game::EnemyTypeID::EnemyID_FireOtakara },
 	{ TEnemyZukan::Zukan_ElecOtakara, Game::EnemyTypeID::EnemyID_ElecOtakara },
 	{ TEnemyZukan::Zukan_WaterOtakara, Game::EnemyTypeID::EnemyID_WaterOtakara },
@@ -93,6 +96,9 @@ int eIDInfo[ENEMY_ZUKAN_COUNT][2] = {
 	{ TEnemyZukan::Zukan_Frog, Game::EnemyTypeID::EnemyID_Frog },
 	{ TEnemyZukan::Zukan_MaroFrog, Game::EnemyTypeID::EnemyID_MaroFrog },
 	{ TEnemyZukan::Zukan_Tadpole, Game::EnemyTypeID::EnemyID_Tadpole },
+	{ TEnemyZukan::Zukan_OniKurage, Game::EnemyTypeID::EnemyID_OniKurage },
+	{ TEnemyZukan::Zukan_Kurage, Game::EnemyTypeID::EnemyID_Kurage },
+	{ TEnemyZukan::Zukan_PelPlant, Game::EnemyTypeID::EnemyID_Pelplant },
 	{ TEnemyZukan::Zukan_BluePom, Game::EnemyTypeID::EnemyID_BluePom },
 	{ TEnemyZukan::Zukan_RedPom, Game::EnemyTypeID::EnemyID_RedPom },
 	{ TEnemyZukan::Zukan_YellowPom, Game::EnemyTypeID::EnemyID_YellowPom },
@@ -103,9 +109,8 @@ int eIDInfo[ENEMY_ZUKAN_COUNT][2] = {
 	{ TEnemyZukan::Zukan_Sokkuri, Game::EnemyTypeID::EnemyID_Sokkuri },
 	{ TEnemyZukan::Zukan_ShijimiChou, Game::EnemyTypeID::EnemyID_ShijimiChou },
 	{ TEnemyZukan::Zukan_Qurione, Game::EnemyTypeID::EnemyID_Qurione },
-	{ TEnemyZukan::Zukan_Miulin, Game::EnemyTypeID::EnemyID_Miulin },
 	{ TEnemyZukan::Zukan_PanModoki, Game::EnemyTypeID::EnemyID_PanModoki },
-	{ TEnemyZukan::Zukan_PelPlant, Game::EnemyTypeID::EnemyID_Pelplant },
+	{ TEnemyZukan::Zukan_Miulin, Game::EnemyTypeID::EnemyID_Miulin },
 	{ TEnemyZukan::Zukan_HikariKinoko, Game::EnemyTypeID::EnemyID_HikariKinoko },
 	{ TEnemyZukan::Zukan_Clover, Game::EnemyTypeID::EnemyID_Clover },
 	{ TEnemyZukan::Zukan_Ooinu_l, Game::EnemyTypeID::EnemyID_Ooinu_l },
@@ -117,24 +122,19 @@ int eIDInfo[ENEMY_ZUKAN_COUNT][2] = {
 	{ TEnemyZukan::Zukan_Magaret, Game::EnemyTypeID::EnemyID_Magaret },
 	{ TEnemyZukan::Zukan_Zenmai, Game::EnemyTypeID::EnemyID_Zenmai },
 	{ TEnemyZukan::Zukan_Wakame_l, Game::EnemyTypeID::EnemyID_Wakame_l },
-	{ TEnemyZukan::Zukan_Queen, Game::EnemyTypeID::EnemyID_Queen },
-	{ TEnemyZukan::Zukan_SnakeCrow, Game::EnemyTypeID::EnemyID_SnakeCrow },
-	{ TEnemyZukan::Zukan_Damagumo, Game::EnemyTypeID::EnemyID_Damagumo },
 	{ TEnemyZukan::Zukan_KingChappy, Game::EnemyTypeID::EnemyID_KingChappy },
-	{ TEnemyZukan::Zukan_OoPanModoki, Game::EnemyTypeID::EnemyID_OoPanModoki },
-	{ TEnemyZukan::Zukan_SnakeWhole, Game::EnemyTypeID::EnemyID_SnakeWhole },
-	{ TEnemyZukan::Zukan_Houdai, Game::EnemyTypeID::EnemyID_Houdai },
-	{ TEnemyZukan::Zukan_UmiMushi, Game::EnemyTypeID::EnemyID_UmiMushi },
-	{ TEnemyZukan::Zukan_BlackMan, Game::EnemyTypeID::EnemyID_BlackMan },
-	{ TEnemyZukan::Zukan_DangoMushi, Game::EnemyTypeID::EnemyID_DangoMushi },
+	{ TEnemyZukan::Zukan_Queen, Game::EnemyTypeID::EnemyID_Queen },
+	{ TEnemyZukan::Zukan_Damagumo, Game::EnemyTypeID::EnemyID_Damagumo },
 	{ TEnemyZukan::Zukan_BigFoot, Game::EnemyTypeID::EnemyID_BigFoot },
+	{ TEnemyZukan::Zukan_Houdai, Game::EnemyTypeID::EnemyID_Houdai },
 	{ TEnemyZukan::Zukan_BigTreasure, Game::EnemyTypeID::EnemyID_BigTreasure },
+	{ TEnemyZukan::Zukan_UmiMushi, Game::EnemyTypeID::EnemyID_UmiMushi },
+	{ TEnemyZukan::Zukan_OoPanModoki, Game::EnemyTypeID::EnemyID_OoPanModoki },
+	{ TEnemyZukan::Zukan_SnakeCrow, Game::EnemyTypeID::EnemyID_SnakeCrow },
+	{ TEnemyZukan::Zukan_SnakeWhole, Game::EnemyTypeID::EnemyID_SnakeWhole },
+	{ TEnemyZukan::Zukan_DangoMushi, Game::EnemyTypeID::EnemyID_DangoMushi },
+	{ TEnemyZukan::Zukan_BlackMan, Game::EnemyTypeID::EnemyID_BlackMan },
 };
-
-// these represent the highest index (index that the hoard shows you in-game) of each sets treasures
-// for example the first set is ids 1 through 7
-int TItemZukan::mCategoryArray[TREASUREHOARD_CATEGORY_NUM]
-    = { 7, 16, 22, 27, 42, 51, 57, 63, 71, 79, 86, 94, 103, 109, 120, 126, 146, 156, 160, 166, 168, 176, 183, 196, 201 };
 
 /**
  * @note Address: 0x80370C08
@@ -438,7 +438,7 @@ bool TZukanBase::doUpdate()
 		if (!mIsBigWindowOpened && !mWindow->mState) {
 			Controller* pad = mController;
 			if (pad->getButton() & Controller::ANALOG_UP) {
-				if (!mIsPreDebt || !mCanScroll) {
+				if (mIsPreDebt && !mCanScroll) {
 					if (mCurrentSelect > 0) {
 						mIndexGroup->upIndex();
 					} else {
@@ -451,7 +451,7 @@ bool TZukanBase::doUpdate()
 					mIndexGroup->upIndex();
 				}
 			} else if (pad->getButton() & Controller::ANALOG_DOWN) {
-				if (!mIsPreDebt || !mCanScroll) {
+				if (mIsPreDebt && !mCanScroll) {
 					bool cantScroll = true;
 					if (_234 < 0) {
 						if ((float)mCurrentSelect < (float)mMaxSelectZukan / 3.0f - 1.0f) {
@@ -525,7 +525,8 @@ bool TZukanBase::doUpdate()
 					windowOpenClose(getXMsgID(mIndexPaneList[mCurrentSelect]->getIndex()));
 				}
 			} else {
-				if (!(u8)mWindow->mState) {
+				bool check = mWindow->checkState(TZukanWindow::STATE_Inactive);
+				if (!check) {
 					// scroll through message box with analog stick
 					f32 z = pad->mMStick.mYPos;
 					if (z >= 0.5f || z <= -0.5f) {
@@ -651,7 +652,8 @@ bool TZukanBase::doUpdate()
 	}
 
 	// manage fade out of cstick/arrow when near bottom of scroll list
-	if ((u8)mWindow->mState != 1) {
+	bool check = mWindow->checkState(TZukanWindow::STATE_Inactive);
+	if (!check) {
 		f32 calc = mWindow->getPosRate();
 		if (calc < 0.2f) {
 			calc *= 5.0f;
@@ -833,8 +835,8 @@ void TZukanBase::doDraw(Graphics& gfx)
 		c.a = mMessageBoxBGAlpha;
 		graf->setColor(c);
 		GXSetAlphaUpdate(GX_FALSE);
-		u32 y    = System::getRenderModeObj()->efbHeight;
-		u32 x    = System::getRenderModeObj()->fbWidth;
+		u16 y    = System::getRenderModeObj()->efbHeight;
+		u16 x    = System::getRenderModeObj()->fbWidth;
 		f32 zero = 0.0f;
 		JGeometry::TBox2f box(0.0f, 0.0f, zero + x, zero + y);
 		graf->fillBox(box);
@@ -857,15 +859,15 @@ void TZukanBase::doDraw(Graphics& gfx)
 	color.set(0, 0, 0, 0);
 	if (static_cast<TDEnemyScene*>(getOwner())->mConfirmEndWindow->mHasDrawn) {
 		if (static_cast<TDEnemyScene*>(getOwner())->mConfirmEndWindow->mIsActive) {
-			if (mMessageBoxBGAlpha > 21) {
-				mMessageBoxBGAlpha -= 20;
-			} else {
-				mMessageBoxBGAlpha = 0;
-			}
-		} else {
 			mMessageBoxBGAlpha += 20;
 			if (mMessageBoxBGAlpha > 200) {
 				mMessageBoxBGAlpha = 200;
+			}
+		} else {
+			if (mMessageBoxBGAlpha > 20) {
+				mMessageBoxBGAlpha -= 20;
+			} else {
+				mMessageBoxBGAlpha = 0;
 			}
 		}
 		color.a = mMessageBoxBGAlpha;
@@ -879,8 +881,8 @@ void TZukanBase::doDraw(Graphics& gfx)
 		GXSetAlphaUpdate(GX_TRUE);
 	}
 
-	JUtility::TColor c(0, 0, 0, 255 - mFadeAlpha);
-	graf->setColor(c);
+	color.a = 255 - mFadeAlpha;
+	graf->setColor(color);
 	GXSetAlphaUpdate(GX_FALSE);
 	u32 y    = System::getRenderModeObj()->efbHeight;
 	u32 x    = System::getRenderModeObj()->fbWidth;
@@ -989,14 +991,12 @@ void TZukanBase::indexPaneInit(J2DScreen* screen)
 		mIndexPaneList[i] = new TIndexPane(this, static_cast<P2DScreen::Mgr_tuning*>(screen), tags[i]);
 		mIndexPaneList[i]->createIconInfo(3, getIdMax());
 		for (int j = 0; j < 3; j++) {
-			TIconInfo* icon = mIndexPaneList[i]->mIconInfos[j];
-			J2DPane* pane1  = screen->search(panetags[i][3][j]);
-			J2DPane* pane2  = screen->search(panetags[i][2][j]);
-			TScaleUpCounter* counter
-			    = setScaleUpCounter2(mListScreen->mScreenObj, panetags[i][0][j], panetags[i][1][j], &icon->mParentIndex, 3, mArchive);
-			icon->init(counter, pane1, pane2);
+			TIconInfo* icon                  = mIndexPaneList[i]->mIconInfos[j];
+			P2DScreen::Mgr_tuning* screenobj = mListScreen->mScreenObj;
+			icon->init(setScaleUpCounter2(screenobj, panetags[i][0][j], panetags[i][1][j], &icon->mParentIndex, 3, mArchive),
+			           screen->search(panetags[i][2][j]), screen->search(panetags[i][3][j]));
 			if (mCanComplete) {
-				J2DPictureEx* pic = new J2DPictureEx('test', *screen->search(panetags[i][0][j])->getBounds(), "w08_48_gra.bti", 0x1100000);
+				J2DPictureEx* pic = new J2DPictureEx('test', *screen->search(panetags[i][3][j])->getBounds(), "w08_48_gra.bti", 0x1100000);
 				P2ASSERTLINE(1129, pic);
 				mIndexPaneList[i]->mIconInfos[j]->mPic = pic;
 				screen->search(tags[i])->appendChild(pic);
@@ -1027,7 +1027,7 @@ void TZukanBase::indexPaneInit(J2DScreen* screen)
 		} else {
 			setShortenIndex(i, test, true);
 		}
-		if (idk > -1 && _B0) {
+		if (idk >= 0 && _B0) {
 			pane->setMsgID(getNameID(idk));
 		}
 	}
@@ -1501,7 +1501,8 @@ void TZukanBase::changeName()
  */
 void TZukanBase::doUpdateIn()
 {
-	if ((u8)mWindow->mState != TZukanWindow::STATE_Inactive && mWindow->_18) {
+	bool check = mWindow->checkState(TZukanWindow::STATE_Inactive);
+	if (check && mWindow->_18) {
 		mWindow->_18 = false;
 		if (mCurrCharacterOpened) {
 			doPushXButton();
@@ -1921,13 +1922,13 @@ lbl_80374788:
 void TZukanBase::windowOpenClose(u64 mesg)
 {
 	if (mIsCurrentSelUnlocked) {
-		int flag = mWindow->mState;
-		if ((u8)flag & 5) {
+		bool check = mWindow->checkState(TZukanWindow::STATE_Inactive);
+		if (check) {
 
 			mPaneMessageDemo->setMsgID(mesg);
 			mMessageBoxBGAlpha = 0;
 			mWindow->windowOpen();
-		} else if (flag != 3) {
+		} else if (mWindow->mState != TZukanWindow::STATE_Exit) {
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
 			mWindow->windowClose();
 		}
@@ -2054,8 +2055,8 @@ void TEnemyZukanIndex::getIndexInfo(int)
 void TEnemyZukan::doCreate(JKRArchive* arc)
 {
 	mScrollParm._00 = 10.0f;
-	mScrollParm._04 = 1.1f;
-	mScrollParm._08 = 0.99f;
+	mScrollParm._08 = 1.1f;
+	mScrollParm._04 = 0.99f;
 	mScrollParm._0C = 1.5f;
 	mScrollParm._10 = 2.5f;
 
@@ -2135,9 +2136,8 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 	if (mIsPreDebt) {
 		if (mIsSection) {
 			rand();
-			int max  = getIdMax();
-			int test = randWeightFloat(50.0f);
-			test++;
+			int max   = getIdMax();
+			int test  = randInt(50) + 1;
 			int test2 = randInt(10);
 			test2     = 85 - test2;
 			for (int i = 0; i < max; i++) {
@@ -2153,7 +2153,7 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 			}
 			int k = 0;
 			for (int i = 0; i < max; i++) {
-				if (i < test || test2 < i) {
+				if (i < test || test2 > i) {
 					mViewablePanelIDList[i] = i;
 					if (_234 < 0 && mIsBigIconList[i]) {
 						_234 = k;
@@ -2385,7 +2385,7 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 		if (mIsPreDebt) {
 			for (int i = 0; i < mMaxSelectZukan; i++) {
 				backupindex = i;
-				if (index == mViewablePanelIDList[i])
+				if (index != mViewablePanelIDList[i])
 					break;
 				max2--;
 				backupindex = index;
@@ -2403,29 +2403,7 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 				}
 				if (backupindex > index2 && (index == backupindex || mIndexPaneList[mCurrentSelect]->mSizeType != 0))
 					break;
-
-				for (int j = 0; j < mMaxSelect; j++) {
-					TIndexPane* idpane = mIndexPaneList[j];
-					J2DPane* pane      = idpane->mPane;
-					pane->mOffset.y    = idpane->_1C - yoffs;
-					pane->calcMtx();
-					mIndexPaneList[j]->_1C = mIndexPaneList[j]->mPane->mOffset.y;
-				}
-				mRightOffset = 1; // backupindex - max2;
-
-				// updateIndex(true);
-				// TIndexGroup* grp = mIndexGroup;
-				// grp->_14         = xoffs;
-				// grp->_20         = 0.0f;
-				// changePaneInfo();
 			}
-
-			mRightOffset = backupindex - max2;
-			bool assert  = false;
-			if (mRightOffset < 0 || mRightOffset < 3) {
-				assert = true;
-			}
-			P2ASSERTLINE(2431, assert);
 
 			if (mIndexPaneList[mCurrentSelect]->mSizeType == 0) {
 				yoffs = -yoffs * 0.5f;
@@ -2436,22 +2414,29 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 					pane->calcMtx();
 					mIndexPaneList[j]->_1C = mIndexPaneList[j]->mPane->mOffset.y;
 				}
-				// mRightOffset = 1;
+				mRightOffset = 1;
 			} else {
-				updateIndex(true);
-				TIndexGroup* grp   = mIndexGroup;
-				grp->mScrollOffset = xoffs;
-				grp->mStateID      = 0;
-				// mRightOffset = backupindex - max2;
-				// if (mRightOffset < 0 || mRightOffset > 2) {
-				//	JUT_PANICLINE(2431, "P2ASSERT");
-				//}
+				mRightOffset = backupindex - max2;
+				P2ASSERTBOUNDSLINE(2431, 0, mRightOffset, 3);
 			}
 			changePaneInfo();
 		} else {
-			mRightOffset = backupindex % 3;
+
+			for (int j = 0; j < mMaxSelect; j++) {
+				TIndexPane* idpane = mIndexPaneList[j];
+				J2DPane* pane      = idpane->mPane;
+				pane->mOffset.y    = idpane->_1C - yoffs;
+				pane->calcMtx();
+				mIndexPaneList[j]->_1C = mIndexPaneList[j]->mPane->mOffset.y;
+			}
+			updateIndex(true);
+			TIndexGroup* grp   = mIndexGroup;
+			grp->mScrollOffset = xoffs;
+			grp->mStateID      = 0.0f;
 			changePaneInfo();
 		}
+		mRightOffset = backupindex % 3;
+		changePaneInfo();
 	}
 
 	mCurrIndex = mIndexPaneList[mCurrentSelect]->getIndex();
@@ -2581,13 +2566,7 @@ bool TEnemyZukan::isListShow(int index)
 		return mDebugUnlockedList[index];
 
 	if (Game::playData) {
-		int* data = eIDInfo[0];
-		for (int i = 0; i < ENEMY_ZUKAN_COUNT; i++) {
-			if (eIDInfo[i][0] == index) {
-				data = eIDInfo[i];
-				break;
-			}
-		}
+		int* data                  = getEnemyInfo(index);
 		Game::TekiStat::Info* info = Game::playData->mTekiStatMgr.getTekiInfo(data[1]);
 		if (info->mState.isSet(TEKISTAT_STATE_UPDATED)) {
 			return true;
@@ -2615,11 +2594,11 @@ void TEnemyZukan::indexPaneInit(J2DScreen* screen)
 		             'Tmenu05', 'Tmenu07', 'Tmenu06', 'Tmenu08', 'Tmenu09', 'Tmenu10', 'Tmenu11' };
 
 	J2DPane* pane = screen->search(tags[_90]);
-	P2ASSERTLINE(1083, pane);
+	P2ASSERTLINE(2650, pane);
 	_A0 = pane->mOffset.y;
 
 	J2DPane* pane2 = screen->search(tags[_98]);
-	P2ASSERTLINE(1086, pane2);
+	P2ASSERTLINE(2653, pane2);
 	_A4 = pane2->mOffset.y;
 
 	// clang-format off
@@ -2695,6 +2674,10 @@ void TEnemyZukan::indexPaneInit(J2DScreen* screen)
 							'Pme11_00', 'Pme11_01', 'Pme11_02' };
 	// clang-format on
 
+	if (mIsPreDebt) {
+		_243 = true;
+	}
+
 	bool flag = false;
 	if (mIsPreDebt && mMaxPane == 0) {
 		flag = true;
@@ -2710,15 +2693,14 @@ void TEnemyZukan::indexPaneInit(J2DScreen* screen)
 		mIndexPaneList[i] = new TIndexPane(this, static_cast<P2DScreen::Mgr_tuning*>(screen), tags[i]);
 		mIndexPaneList[i]->createIconInfo(3, getIdMax());
 		for (int j = 0; j < 3; j++) {
-			TIconInfo* icon = mIndexPaneList[i]->mIconInfos[j];
-			J2DPane* pane1  = screen->search(panetags[i][3][j]);
-			J2DPane* pane2  = screen->search(panetags[i][2][j]);
-			TScaleUpCounter* counter
-			    = setScaleUpCounter2(mListScreen->mScreenObj, panetags[i][0][j], panetags[i][1][j], &icon->mParentIndex, 3, mArchive);
-			icon->init(counter, pane1, pane2);
+			TIconInfo* icon                  = mIndexPaneList[i]->mIconInfos[j];
+			P2DScreen::Mgr_tuning* screenobj = mListScreen->mScreenObj;
+			icon->init(setScaleUpCounter2(screenobj, panetags[i][0][j], panetags[i][1][j], &icon->mParentIndex, 2, mArchive),
+			           screen->search(panetags[i][2][j]), screen->search(panetags[i][3][j]));
+
 			if (mCanComplete) {
-				J2DPictureEx* pic = new J2DPictureEx('test', *screen->search(panetags[i][0][j])->getBounds(), "w08_48_gra.bti", 0x1100000);
-				P2ASSERTLINE(1129, pic);
+				J2DPictureEx* pic = new J2DPictureEx('test', *screen->search(panetags[i][3][j])->getBounds(), "w08_48_gra.bti", 0x1100000);
+				P2ASSERTLINE(2705, pic);
 				mIndexPaneList[i]->mIconInfos[j]->mPic = pic;
 				screen->search(tags[i])->appendChild(pic);
 				screen->search(tags[i])->appendChild(screen->search(panetags[i][3][j]));
@@ -2732,8 +2714,8 @@ void TEnemyZukan::indexPaneInit(J2DScreen* screen)
 		}
 
 		if (mDoEnableBigIcon && i > 0) {
-			int id    = mIndexPaneList[i]->getListIndex();
-			bool test = true;
+			int id   = mIndexPaneList[i]->getListIndex();
+			int test = true;
 			switch (mIndexPaneList[i - 1]->mSizeType) {
 			case 1:
 				test = id + 1;
@@ -2753,7 +2735,7 @@ void TEnemyZukan::indexPaneInit(J2DScreen* screen)
 			}
 			if (test) {
 				if (mIsPreDebt) {
-					if (test < mMaxSelectZukan && mIsBigIconList[mViewablePanelIDList[test]]) {
+					if (test < mMaxPane && mIsBigIconList[mViewablePanelIDList[test]]) {
 						mIndexPaneList[i]->mSizeType = 2;
 					}
 				} else {
@@ -2777,11 +2759,16 @@ void TEnemyZukan::indexPaneInit(J2DScreen* screen)
 				if (mMaxPane < 3) {
 					flag = true;
 				}
+				_90++;
+				if (mMaxSelect >= _90) {
+					_90 = 0;
+				}
 			}
 		} else {
 			setShortenIndex(i, test, true);
 		}
-		if (idk > -1 && _B0) {
+
+		if (idk >= 0 && _B0) {
 			pane->setMsgID(getNameID(idk));
 		}
 	}
@@ -4185,18 +4172,7 @@ u64 TEnemyZukan::getYMsgID(int id) { return mOffsetMsg_YDesc->getMsgID(id); }
  * @note Address: 0x80377724
  * @note Size: 0x50
  */
-int TEnemyZukan::getModelIndex(int index)
-{
-	int i = 0;
-	int j = 1;
-	while (i < ENEMY_ZUKAN_COUNT) {
-		if (index == eIDInfo[i][0]) {
-			return eIDInfo[i][j];
-		}
-		i++;
-	}
-	return eIDInfo[0][j];
-}
+int TEnemyZukan::getModelIndex(int index) { return getEnemyInfo(index)[1]; }
 
 /**
  * @note Address: 0x80377774
@@ -4245,13 +4221,7 @@ bool TEnemyZukan::isNewSupply(int index, bool flag)
 			index = mViewablePanelIDList[index];
 		}
 
-		int* data = eIDInfo[0];
-		for (int i = 0; i < ENEMY_ZUKAN_COUNT; i++) {
-			if (eIDInfo[i][0] == index) {
-				data = eIDInfo[i];
-				break;
-			}
-		}
+		int* data                  = getEnemyInfo(index);
 		Game::TekiStat::Info* info = Game::playData->mTekiStatMgr.getTekiInfo(data[1]);
 		if (info && info->mState.isSet(TEKISTAT_STATE_UPDATED) && !(info->mState.isSet(TEKISTAT_STATE_OUT_OF_DATE))) {
 			return true;
@@ -4310,24 +4280,19 @@ void TEnemyZukan::openConfirmWindow()
 u32 TEnemyZukan::getPrice(int index)
 {
 	if (mShowAllObjects || mIsSection) {
-		return randFloat() * 1000.0f + 1;
+		return randFloat() * 1000.0f + 1.0f;
 	}
 
 	if (Game::playData) {
-		int* data = eIDInfo[0];
-		for (int i = 0; i < ENEMY_ZUKAN_COUNT; i++) {
-			if (eIDInfo[i][0] == index) {
-				data = eIDInfo[i];
-				break;
-			}
-		}
-		Game::TekiStat::Info* info = Game::playData->mTekiStatMgr.getTekiInfo(data[1]);
+		int* data                  = getEnemyInfo(index);
+		int id                     = data[1];
+		Game::TekiStat::Info* info = Game::playData->mTekiStatMgr.getTekiInfo(id);
 		if (!(info->mState.isSet(TEKISTAT_STATE_UPDATED))) {
 			return 0;
 		}
 
 		Game::PelletConfigList* list = Game::PelletList::Mgr::getConfigList(Game::PelletList::CARCASS);
-		Game::PelletConfig* config   = list->getPelletConfig(Game::EnemyInfoFunc::getEnemyName(data[1], 0xffff));
+		Game::PelletConfig* config   = list->getPelletConfig(Game::EnemyInfoFunc::getEnemyName(id, 0xffff));
 		if (config) {
 			return config->mParams.mMoney.mData;
 		}
@@ -4346,18 +4311,14 @@ u32 TEnemyZukan::getDefeatNum(int index)
 	}
 
 	if (Game::playData) {
-		int* data = eIDInfo[0];
-		for (int i = 0; i < ENEMY_ZUKAN_COUNT; i++) {
-			if (eIDInfo[i][0] == index) {
-				data = eIDInfo[i];
-				break;
-			}
-		}
+		int* data                  = getEnemyInfo(index);
 		Game::TekiStat::Info* info = Game::playData->mTekiStatMgr.getTekiInfo(data[1]);
-		if (info && info->mState.isSet(TEKISTAT_STATE_UPDATED)) {
-			return info->mKilledTekiCount;
+		if (info) {
+			if (info->mState.isSet(TEKISTAT_STATE_UPDATED)) {
+				return info->mKilledTekiCount;
+			}
+			return 0;
 		}
-		return 0;
 	}
 	return 0;
 }
@@ -4369,24 +4330,20 @@ u32 TEnemyZukan::getDefeatNum(int index)
 u32 TEnemyZukan::getKilledNum(int index)
 {
 	if (mShowAllObjects || mIsSection) {
-		return randWeightFloat(100000.0f) + 1.0f;
+		return randFloat() * 10000.0f + 1.0f;
 	}
 
 	if (Game::playData) {
-		int* data = eIDInfo[0];
-		for (int i = 0; i < ENEMY_ZUKAN_COUNT; i++) {
-			if (eIDInfo[i][0] == index) {
-				data = eIDInfo[i];
-				break;
-			}
-		}
+		int* data                  = getEnemyInfo(index);
 		Game::TekiStat::Info* info = Game::playData->mTekiStatMgr.getTekiInfo(data[1]);
-		if (info && info->mState.isSet(TEKISTAT_STATE_UPDATED)) {
-			return info->mKilledPikminCount;
+		if (info) {
+			if (info->mState.isSet(TEKISTAT_STATE_UPDATED)) {
+				return info->mKilledPikminCount;
+			}
+			return 0;
 		}
-		return 0;
 	}
-	return randWeightFloat(100000.0f) + 1.0f;
+	return randFloat() * 10000.0f + 1.0f;
 }
 
 /**
@@ -4514,10 +4471,13 @@ bool TItemZukan::doUpdate()
 			if (mWindow->mState == TZukanWindow::STATE_Inactive) {
 				if (mEfxTimer == 0) {
 					J2DPane* pane = mYButtonPane;
+					Vector2f pos(pane->mPositionMtx[0][3], -((pane->getHeight()) * 2.0f - pane->mPositionMtx[1][3]));
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_WMAP_ZUKAN_NEW, 0);
 					for (int i = 0; i < 5; i++) {
-						efx2d::Arg arg(30.0f * i + pane->mPositionMtx[0][3], -((pane->getHeight()) * 2.0f - pane->mPositionMtx[1][3]));
+						efx2d::Arg arg(30.0f * i + pos.x, pos.y);
 						efx2d::T2DChangesmoke efx;
+						efx._04 = 0;
+						efx._05 = 0;
 						efx.create(&arg);
 					}
 				}
@@ -4993,7 +4953,7 @@ void TItemZukan::doUpdateOut()
 	TZukanBase::doUpdateOut();
 	if (mCanComplete) {
 		for (int i = 0; i < mMaxSelect; i++) {
-			f32 alpha = (f32)mColorAnmItem->mColor.a / 255.0f;
+			f32 alpha = (f32)mColorAnm->mColor.a / 255.0f;
 			if (alpha < 0.0f) {
 				alpha = 0.0f;
 			}
@@ -5271,7 +5231,7 @@ void TItemZukan::getUpdateIndex(int& id, bool flag)
 			id -= mRowSize;
 			if (id < 0) {
 				int test2 = mMaxPane;
-				if (mMaxPane >= 3) {
+				if (test2 >= 3) {
 					test2 = mMaxPane % 3;
 					if (!test2) {
 						test2 = 3;
@@ -5333,9 +5293,7 @@ void TItemZukan::doCreate(JKRArchive* arc)
 	mScrollParm._0C = 1.5f;
 	mScrollParm._10 = 2.0f;
 
-	mCategoryColor0b.g = 95;
-	mCategoryColor0b.b = 0;               // ???
-	mCategoryColor0b.setRGB(230, 230, 0); //???
+	mCategoryColor0b.r = mCategoryColor0b.g = mCategoryColor0b.b = 230;
 
 	mCategoryColor1w.setRGB(0, 0, 255);
 	mCategoryColor1b.setRGB(0, 128, 255);
@@ -5376,7 +5334,7 @@ void TItemZukan::doCreate(JKRArchive* arc)
 			mDispItem->mDispWorldMapInfoWin0 = new og::Screen::DispMemberWorldMapInfoWin0;
 			getOwner()->setDispMember(mDispItem);
 		} else {
-			JUT_PANICLINE(4181, "set DebugHeapParent. mail to morimun.\n");
+			JUT_PANICLINE(4174, "set DebugHeapParent. mail to morimun.\n");
 		}
 	} else {
 		mDispItem->mDispWorldMapInfoWin0 = new og::Screen::DispMemberWorldMapInfoWin0;
@@ -6533,7 +6491,7 @@ bool TItemZukan::isPanelExist()
 	if (id == max) {
 		return false;
 	} else {
-		return max == id + mRightOffset;
+		return (u8)(max >= id + mRightOffset);
 	}
 }
 
@@ -6709,8 +6667,8 @@ void TZukanWindow::create(char const* filename, u32 flag)
 	mScreenObj = new P2DScreen::Mgr_tuning;
 	mScreenObj->set(filename, flag, mArchive);
 
-	mScissor = new TCallbackScissor;
-	mScissor->setDefaultBounds();
+	mScissor          = new TCallbackScissor;
+	mScissor->mBounds = JGeometry::TBox2f(0.0f, 0.0f, 640.0f, 480.0f);
 	mScreenObj->addCallBack('mg_demo', mScissor);
 
 	mPaneWinCap = mScreenObj->search('Wwincap');
@@ -6720,7 +6678,7 @@ void TZukanWindow::create(char const* filename, u32 flag)
 	mScreenObj->addCallBack('mg_demo', mMsgCallback);
 
 	TCallbackScissor* scissor = new TCallbackScissor;
-	scissor->setDefaultBounds();
+	scissor->mBounds          = JGeometry::TBox2f(0.0f, 0.0f, 640.0f, 480.0f);
 	mScreenObj->addCallBack('mg_demo', scissor);
 
 	mAnimScreens = new og::Screen::AnimScreen*[mAnimScreenCountMax];
@@ -6773,8 +6731,9 @@ void TZukanWindow::update()
 		}
 		break;
 	case STATE_Exit:
-		if (mAnimScreens[0]->mCurrentFrame < 1.0f) {
-			mState = STATE_Inactive;
+		if (mAnimScreens[0]->mCurrentFrame <= 1.0f) {
+			mAnimScreens[0]->mCurrentFrame = 0.0f;
+			mState                         = STATE_Inactive;
 		}
 		break;
 	}
@@ -6800,7 +6759,7 @@ void TZukanWindow::update()
 		mScreenObj->animation();
 
 		f32 scale  = mScaleMgr->calc();
-		f32 scale2 = mAnimScreens[1]->mCurrentFrame * 2.0f / 12.0f;
+		f32 scale2 = mAnimScreens[0]->mCurrentFrame * 2.0f / 12.0f;
 		if (scale2 > 1.0f) {
 			scale2 = 1.0f;
 		}
@@ -6809,16 +6768,16 @@ void TZukanWindow::update()
 		if (mIconYHeightSin > TAU) {
 			mIconYHeightSin -= TAU;
 		}
-		f32 y = mScrollPosition;
+		f32 y = FABS(mScrollPosition);
+		y     = ((15.0f - y) / 15.0f);
 		if (TZukanBase::mIconMove) {
 			mPaneIcon->setOffset(mCharacterIconXOffset + mPaneIcon->mOffset.x,
-			                     ((15.0f - FABS(y)) / 15.0f) * sinf(mIconYHeightSin) + mScrollPosition + mPaneIcon->mOffset.y);
+			                     y * sinf(mIconYHeightSin) + mScrollPosition + mPaneIcon->mOffset.y);
 		}
 	}
-	Vector3f pos1             = mPaneWinCap->getGlbVtx(0);
-	Vector3f pos2             = mPaneWinCap->getGlbVtx(3);
-	TCallbackScissor* scissor = mScissor;
-	scissor->mBounds.set(pos1.x + 10.0f, pos1.y + 5.0f, pos2.x - 10.0f, pos2.y - 10.0f);
+	JGeometry::TVec3f pos1 = mPaneWinCap->getGlbVtx(0);
+	JGeometry::TVec3f pos2 = mPaneWinCap->getGlbVtx(3);
+	mScissor->mBounds      = JGeometry::TBox2f(pos1.x + 10.0f, pos1.y + 5.0f, pos2.x - 10.0f, pos2.y - 10.0f);
 }
 
 /**

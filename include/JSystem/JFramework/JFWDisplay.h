@@ -82,7 +82,7 @@ struct JFWDisplay {
 
 	void setTickRate(u32 rate)
 	{
-		mTickRate           = rate;
+		mTickRate  = rate;
 		mFrameRate = 0;
 	}
 
@@ -95,7 +95,7 @@ struct JFWDisplay {
 	JUTXfb* mXfb;                 // _10
 	u16 mGamma;                   // _14
 	EDrawDone mDrawDoneMethod;    // _18
-	u16 mFrameRate;      // _1C
+	u16 mFrameRate;               // _1C
 	u32 mTickRate;                // _20
 	bool mIsAlphaEnabled;         // _24
 	u16 mClamp;                   // _26
