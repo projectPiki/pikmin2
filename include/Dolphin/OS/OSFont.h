@@ -48,7 +48,7 @@ BOOL OSInitFont(OSFontHeader* fontInfo);
 char* OSGetFontTexture(char* string, void** image, s32* x, s32* y, s32* width);
 
 // Low-level functions.
-u32 OSLoadFont(void* fontInfo, void* temp);
+u32 OSLoadFont(OSFontHeader* fontInfo, void* temp);
 
 // Unused/inlined in P2.
 char* OSGetFontTexel(char* string, void* image, s32 pos, s32 stride, s32* width);

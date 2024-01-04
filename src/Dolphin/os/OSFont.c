@@ -404,7 +404,7 @@ static void ReadROM(void* string, int len, int offset)
  * @note Address: N/A
  * @note Size: 0x16C
  */
-u32 ReadFont(void* img, u16 encode, void* fontInfo)
+static u32 ReadFont(void* img, u16 encode, void* fontInfo)
 {
 	SheetImage = fontInfo;
 	if (OSGetFontEncode() == encode) {
@@ -413,21 +413,17 @@ u32 ReadFont(void* img, u16 encode, void* fontInfo)
 		ReadROM(img, OS_FONT_ROM_SIZE_ANSI, 0x1FCF00);
 	}
 
-	if (((u8*)img)[0] == 'Y' && ((u8*)img)[1] == 'a' && ((u8*)img)[2] == 'y') {
-		return ((u32*)img)[1];
-	}
-
-	return 0;
+	return GetFontSize(img);
 }
 
 /**
  * @note Address: 0x800EE18C
  * @note Size: 0x334
  */
-u32 OSLoadFont(void* fontInfo, void* temp)
+u32 OSLoadFont(OSFontHeader* fontInfo, void* temp)
 {
 	if (ReadFont(temp, OS_FONT_ENCODE_SJIS, nullptr)) {
-		Decode(temp, fontInfo);
+		Decode(temp, (void*)fontInfo);
 		FontData = fontInfo;
 	}
 	/*
@@ -1045,7 +1041,7 @@ char* OSGetFontWidth(char* string, s32* width)
 {
 	OSFontHeader* font;
 	u8* font_u8;
-	u32 code;
+	int code;
 
 	string = (const char*)ParseString(OSGetFontEncode(), (const u8*)string, &font, &code);
 
