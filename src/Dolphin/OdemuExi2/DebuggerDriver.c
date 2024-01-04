@@ -341,8 +341,6 @@ static inline void CheckMailBox(void)
  */
 u32 DBQueryData(void)
 {
-	u32 v2;
-	u32 v;
 	EXIInputFlag = 0;
 	if (!RecvDataLeng)
 	{
