@@ -125,12 +125,13 @@ inline void DBGCheckID(void)
  */
 static inline BOOL DBGWriteMailbox(u32 p1)
 {
+	u32 v;
 	BOOL total = FALSE;
-	p1 &= (p1 & 0x1fffffff) | (0xc0000000);
-	total |= IS_FALSE(DBGEXISelect(4));
-	total |= IS_FALSE(DBGEXIImm(&p1, sizeof(p1), 1));
-	total |= IS_FALSE(DBGEXISync());
-	total |= IS_FALSE(DBGEXIDeselect());
+	DBGEXISelect(4);
+    v = (p1 & 0x1fffffff) | (0xc0000000);
+    total |= IS_FALSE(DBGEXIImm(&v, sizeof(v), 1));
+    total |= IS_FALSE(DBGEXISync());
+    total |= IS_FALSE(DBGEXIDeselect());
 
 	return IS_FALSE(total);
 }
@@ -234,8 +235,7 @@ static BOOL DBGWrite(u32 count, void* buffer, s32 param3)
  * @note Address: 0x800D0240
  * @note Size: 0xAC
  */
-#pragma dont_inline on
-static BOOL DBGReadStatus(u32* p1)
+inline static BOOL _DBGReadStatus(u32* p1)
 {
 	BOOL total = FALSE;
 	u32 v;
@@ -252,6 +252,11 @@ static BOOL DBGReadStatus(u32* p1)
     total |= IS_FALSE(DBGEXIDeselect());
     
 	return IS_FALSE(total);
+}
+#pragma dont_inline on
+static BOOL DBGReadStatus(u32* p1)
+{
+	return _DBGReadStatus(p1);
 }
 #pragma dont_inline reset
 
@@ -471,7 +476,7 @@ BOOL DBWrite(const void* src, u32 size)
 	interrupts = OSDisableInterrupts();
 
 	do {
-		DBGReadStatus(&busyFlag);
+		_DBGReadStatus(&busyFlag);
 	} while (busyFlag & 2);
 	
 	SendCount++;
@@ -480,14 +485,14 @@ BOOL DBWrite(const void* src, u32 size)
 	while(!DBGWrite(v2 | 0x1c000, src, ROUND_UP(size, 4)));
 
 	do {
-		DBGReadStatus(&busyFlag);
+		_DBGReadStatus(&busyFlag);
 	} while(busyFlag & 2);
 
 	v2 = SendCount;
 	while (!DBGWriteMailbox((0x1f000000) | v2 << 0x10 | size));
 
 	do {
-		while(!DBGReadStatus(&busyFlag));
+		while(!_DBGReadStatus(&busyFlag));
 	} while(busyFlag & 2);
 	
 	OSRestoreInterrupts(interrupts);
