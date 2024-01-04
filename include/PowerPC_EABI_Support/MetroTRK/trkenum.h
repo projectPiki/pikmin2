@@ -137,6 +137,16 @@ typedef enum {
 } ReceiverState;
 
 typedef enum {
+	DSMSGMEMORY_Segmented     = 0x01, /* non-flat addr space */
+	DSMSGMEMORY_Extended      = 0x02, /* > 32-bit data addr */
+	DSMSGMEMORY_Protected     = 0x04, /* non-user memory */
+	DSMSGMEMORY_Userview      = 0x08, /* breakpoints are invisible */
+	DSMSGMEMORY_Space_program = 0x00,
+	DSMSGMEMORY_Space_data    = 0x40,
+	DSMSGMEMORY_Space_io      = 0x80
+};
+
+typedef enum {
 	NUBEVENT_Null       = 0,
 	NUBEVENT_Shutdown   = 1,
 	NUBEVENT_Request    = 2,

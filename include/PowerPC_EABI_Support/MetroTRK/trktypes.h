@@ -34,7 +34,7 @@ typedef struct MessageBuffer {
 	BOOL isInUse;            // _04
 	u32 length;              // _08
 	u32 position;            // _0C
-	u8 data[TRKMSGBUF_SIZE]; // _0C
+	u8 data[TRKMSGBUF_SIZE]; // _10
 } MessageBuffer;
 
 // Struct for storing DB communication functions (size 0x28).
