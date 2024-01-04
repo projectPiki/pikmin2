@@ -227,6 +227,18 @@ TZukanBase::TZukanBase(char* name)
 }
 
 /**
+ * @note Address: 80370ED0
+ * @note Size: 0xFC
+ */
+TZukanBase::~TZukanBase()
+{
+	if (mDebugHeap) {
+		mDebugHeap->destroy();
+	}
+	mDebugHeap = nullptr;
+}
+
+/**
  * @note Address: N/A
  * @note Size: 0x44
  */
@@ -529,8 +541,8 @@ bool TZukanBase::doUpdate()
 				if (!check) {
 					// scroll through message box with analog stick
 					f32 z = pad->mMStick.mYPos;
-					if (z >= 0.5f || z <= -0.5f) {
-						if (z <= -0.5f) {
+					if (pad->mMStick.mYPos >= 0.5f || pad->mMStick.mYPos <= -0.5f) {
+						if (pad->mMStick.mYPos <= -0.5f) {
 							z = -1.0f;
 						}
 						if (z >= 0.5f) {
@@ -614,8 +626,9 @@ bool TZukanBase::doUpdate()
 	mPaneWindowBack_Child->place(box);
 	J2DPane* win = mPaneBigWindow;
 	if (win) {
-		f32 factor = 0.5f;
-		win->updateScale((scale + 1.0f) * factor);
+		f32 winScale = scale + 1.0f;
+		winScale *= 0.5f;
+		win->updateScale(winScale);
 	}
 
 	f32 calc = 0.35f;
@@ -637,7 +650,9 @@ bool TZukanBase::doUpdate()
 	mPaneNew1->setAlpha(color.a);
 	color.a = 0;
 	mPaneNew1->setBlack(color);
-	static_cast<J2DPicture*>(mWindow->mPaneIconLight)->setAlpha(mWindow->getAnimColor().a);
+	GXColor animColor;
+	mWindow->getAnimColor(animColor);
+	static_cast<J2DPicture*>(mWindow->mPaneIconLight)->setAlpha(animColor.a);
 
 	if (!mIsEffectRequired) {
 		mCameraFadeInLevel += 0.3f;
@@ -654,16 +669,17 @@ bool TZukanBase::doUpdate()
 	// manage fade out of cstick/arrow when near bottom of scroll list
 	bool check = mWindow->checkState(TZukanWindow::STATE_Inactive);
 	if (!check) {
-		f32 calc = mWindow->getPosRate();
-		if (calc < 0.2f) {
-			calc *= 5.0f;
+		f32 alpha = mWindow->getPosRate();
+		if (alpha < 0.2f) {
+			alpha *= 5.0f;
 		} else {
-			calc = 1.0f;
+			alpha = 1.0f;
 		}
-		mWindow->mScreenObj->search('mg_yaji')->setAlpha(calc * 255.0f);
-		mWindow->mScreenObj->search('Pbtn_cu1')->setAlpha(calc * 255.0f);
-		mPaneMesgWindowStickCap->setAlpha(calc);
-		mPaneMesgWindowStick->setAlpha(calc);
+		// alpha = 255.0f * alpha;
+		mWindow->mScreenObj->search('mg_yaji')->setAlpha(alpha * 255.0f);
+		mWindow->mScreenObj->search('Pbtn_cu1')->setAlpha(alpha * 255.0f);
+		mPaneMesgWindowStickCap->setAlpha(alpha * 255.0f);
+		mPaneMesgWindowStick->setAlpha(alpha * 255.0f);
 	}
 
 	if (mIsInFadeInOut) {
@@ -778,7 +794,7 @@ void TZukanBase::updateButtonAlpha(u8 target)
  */
 void TZukanBase::doDraw(Graphics& gfx)
 {
-	J2DPerspGraph* graf = &gfx.mPerspGraph;
+	J2DPerspGraph* graf = gfx.getPerspGraph();
 	mBGScreen->draw(gfx, graf);
 
 	GXSetScissor(mPanelListBounds.i.x, mPanelListBounds.i.y, mPanelListBounds.f.x - mPanelListBounds.i.x,
@@ -791,7 +807,8 @@ void TZukanBase::doDraw(Graphics& gfx)
 		if (idpane->mPane->isVisible()) {
 			if (idpane->mSizeType == 0) {
 				for (int j = 0; j < 3; j++) {
-					int id = mIndexPaneList[i]->getListIndex() + j;
+					int index = mIndexPaneList[i]->getListIndex();
+					int id    = index + j;
 					if (mIndexPaneList[i]->mIconInfos[j]->mParentIndex && isNewSupply(id, false)) {
 						mPaneNew1->mGlobalMtx[0][3] = mNewOffset.x + mIndexPaneList[i]->mIconInfos[j]->mPane->mGlobalMtx[0][3];
 						mPaneNew1->mGlobalMtx[1][3] = mNewOffset.y + mIndexPaneList[i]->mIconInfos[j]->mPane->mGlobalMtx[1][3];
@@ -817,8 +834,8 @@ void TZukanBase::doDraw(Graphics& gfx)
 		mEffectScreen->draw(gfx, graf);
 	}
 
-	if (!(mWindow->mState & 4)) {
-		if (mWindow->mState == 3) {
+	if ((mWindow->checkState(TZukanWindow::STATE_Inactive) == false)) { // needs to be == false to match
+		if (mWindow->checkState(TZukanWindow::STATE_Exit)) {
 			if (mMessageBoxBGAlpha > 20) {
 				mMessageBoxBGAlpha -= 20;
 			} else {
@@ -1572,11 +1589,11 @@ void TZukanBase::doUpdateOut()
 				if (id1 < 0 || mMaxSelectZukan <= 3) {
 					test = false;
 				} else if (id1 > id2) {
-					if (mIndexPaneList[i]->_1C > mIndexPaneList[mCurrentSelect]->_1C) { // fcmpo swap
+					if (mIndexPaneList[mCurrentSelect]->getPaneY() > mIndexPaneList[i]->getPaneY()) { // fcmpo swap
 						test = false;
 					}
 				} else {
-					if (mIndexPaneList[i]->_1C < mIndexPaneList[mCurrentSelect]->_1C) { // fcmpo swap
+					if (mIndexPaneList[mCurrentSelect]->getPaneY() < mIndexPaneList[i]->getPaneY()) { // fcmpo swap
 						test = false;
 					}
 				}
@@ -2047,6 +2064,24 @@ void TEnemyZukanIndex::getIndexInfo(int)
 {
 	// UNUSED FUNCTION
 }
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x5C
+ */
+TEnemyZukan::TEnemyZukan()
+    : TZukanBase("enemyZukan")
+{
+	mValueCounter    = nullptr;
+	mDefeatedCounter = nullptr;
+	mPikiLostCounter = nullptr;
+}
+
+/**
+ * @note Address: 0x80374A94
+ * @note Size: 0x124
+ */
+TEnemyZukan::~TEnemyZukan() { mDispEnemy->mDebugExpHeap->freeAll(); }
 
 /**
  * @note Address: 0x80374BB8
@@ -4396,6 +4431,35 @@ bool TItemZukan::isCategoryComplete()
 {
 	// UNUSED FUNCTION
 }
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x148
+ */
+TItemZukan::TItemZukan()
+    : TZukanBase("itemZukan")
+{
+	mColorAnmItem           = nullptr;
+	mValueCounter           = nullptr;
+	mWeightCounter          = nullptr;
+	mOrimaIconTexture       = nullptr;
+	mCurrCharacterIconID    = 1;
+	mOffsetMsgCategoryNames = nullptr;
+	mEfxTimer               = 0;
+	mDemoState              = ZUKANDEMO_Init;
+	mDemoScrollTargetRow    = 0;
+	mDemoStateButtonAlpha   = 0.0f;
+	for (int i = 0; i < TREASUREHOARD_CATEGORY_NUM; i++) {
+		mCategoryShowUnlock[i] = false;
+		mCategoryIsComplete[i] = false;
+	}
+}
+
+/**
+ * @note Address: 80377F78
+ * @note Size: 0x124
+ */
+TItemZukan::~TItemZukan() { mDispItem->mDebugExpHeap->freeAll(); }
 
 /**
  * @note Address: 0x8037809C

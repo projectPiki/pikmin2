@@ -82,6 +82,8 @@ struct TIndexPane {
 
 	inline void setPaneOffset(f32 offset) { mPane->setOffsetY(_1C + offset); }
 
+	inline f32 getPaneY() const { return _1C; } // may need to rename later
+
 	int mIndex;             // _00
 	J2DPane* mPane;         // _04
 	J2DPane* mPane2;        // _08

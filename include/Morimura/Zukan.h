@@ -129,13 +129,7 @@ struct TDItemScene : public THIOScene {
 struct TZukanBase : public TScrollList {
 	TZukanBase(char*);
 
-	virtual ~TZukanBase()
-	{
-		if (mDebugHeap) {
-			mDebugHeap->destroy();
-		}
-		mDebugHeap = nullptr;
-	}                                   // _08 (weak)
+	virtual ~TZukanBase();              // _08 (weak)
 	virtual void doCreate(JKRArchive*); // _4C
 	virtual void doUpdateFadeinFinish()
 	{
@@ -437,16 +431,10 @@ struct TEnemyZukan : public TZukanBase {
 		Zukan_BigTreasure
 	};
 
-	TEnemyZukan()
-	    : TZukanBase("enemyZukan")
-	{
-		mValueCounter    = nullptr;
-		mDefeatedCounter = nullptr;
-		mPikiLostCounter = nullptr;
-	}
+	TEnemyZukan();
 
-	virtual ~TEnemyZukan() { mDispEnemy->mDebugExpHeap->freeAll(); } // _08 (weak)
-	virtual void doCreate(JKRArchive*);                              // _4C
+	virtual ~TEnemyZukan();             // _08
+	virtual void doCreate(JKRArchive*); // _4C
 	virtual og::Screen::DispMemberBase* getDispMemberBase()
 	{
 		if (mIsSection) {
@@ -504,28 +492,11 @@ struct TItemZukan : public TZukanBase {
 	// 2 appears to not exist
 	enum StateID { ZUKANDEMO_Init = 0, ZUKANDEMO_Scrolling = 1, ZUKANDEMO_Reading = 3, ZUKANDEMO_AppearEffect = 4 };
 
-	TItemZukan()
-	    : TZukanBase("itemZukan")
-	{
-		mColorAnmItem           = nullptr;
-		mValueCounter           = nullptr;
-		mWeightCounter          = nullptr;
-		mOrimaIconTexture       = nullptr;
-		mCurrCharacterIconID    = 1;
-		mOffsetMsgCategoryNames = nullptr;
-		mEfxTimer               = 0;
-		mDemoState              = ZUKANDEMO_Init;
-		mDemoScrollTargetRow    = 0;
-		mDemoStateButtonAlpha   = 0.0f;
-		for (int i = 0; i < TREASUREHOARD_CATEGORY_NUM; i++) {
-			mCategoryShowUnlock[i] = false;
-			mCategoryIsComplete[i] = false;
-		}
-	}
+	TItemZukan();
 
-	virtual ~TItemZukan() { mDispItem->mDebugExpHeap->freeAll(); } // _08 (weak)
-	virtual void doCreate(JKRArchive*);                            // _4C
-	virtual bool doUpdate();                                       // _58
+	virtual ~TItemZukan();              // _08
+	virtual void doCreate(JKRArchive*); // _4C
+	virtual bool doUpdate();            // _58
 	virtual og::Screen::DispMemberBase* getDispMemberBase()
 	{
 		if (mIsSection) {
