@@ -416,6 +416,8 @@ static u32 ReadFont(void* img, u16 encode, void* fontInfo)
 	return GetFontSize(img);
 }
 
+#pragma dont_inline on
+// once this matches, remove the dont_inline pragma. it shouldn't auto inline into OSInitFont
 /**
  * @note Address: 0x800EE18C
  * @note Size: 0x334
@@ -659,7 +661,7 @@ u32 OSLoadFont(OSFontHeader* fontInfo, void* temp)
 	  blr
 	*/
 }
-
+#pragma dont_inline reset
 /**
  * @note Address: 0x800EE4C0
  * @note Size: 0x3B0
@@ -693,54 +695,23 @@ static void ExpandFontSheet(u8* source, u8* dest)
 BOOL OSInitFont(OSFontHeader* font)
 {
 	u8* sheets;
-
-	switch (OSGetFontEncode()) {
-	case OS_FONT_ENCODE_ANSI:
-		FontData = font;
-		if (ReadFont((u8*)font + 0x1D120, OS_FONT_ENCODE_ANSI, FontData) == 0) {
-			return FALSE;
-		}
-
-		sheets               = (u8*)FontData + FontData->sheetImage;
-		FontData->sheetImage = ROUND_UP(FontData->sheetImage, 32);
-		ExpandFontSheet(sheets, (u8*)FontData + FontData->sheetImage);
-		break;
-	case OS_FONT_ENCODE_SJIS:
-		FontData = font;
-		if (ReadFont((u8*)font + 0xD3F00, OS_FONT_ENCODE_SJIS, FontData) == 0) {
-			return FALSE;
-		}
-
-		sheets               = (u8*)FontData + FontData->sheetImage;
-		FontData->sheetImage = ROUND_UP(FontData->sheetImage, 32);
-		ExpandFontSheet(sheets, (u8*)FontData + FontData->sheetImage);
-		break;
-	case OS_FONT_ENCODE_2:
-		break;
-	case OS_FONT_ENCODE_UTF8:
-	case OS_FONT_ENCODE_UTF16:
-	case OS_FONT_ENCODE_UTF32:
-		FontData = font;
-		if (ReadFont((u8*)font + 0xF4020, OS_FONT_ENCODE_ANSI, FontData) == 0) {
-			return FALSE;
-		}
-
-		sheets               = (u8*)FontData + FontData->sheetImage;
-		FontData->sheetImage = ROUND_UP(FontData->sheetImage, 32);
-		ExpandFontSheet(sheets, (u8*)FontData + FontData->sheetImage);
-
-		FontData = (OSFontHeader*)((u8*)FontData + 0x20120);
-		if (ReadFont((u8*)font + 0xF4020, OS_FONT_ENCODE_SJIS, FontData) == 0) {
-			return FALSE;
-		}
-
-		sheets               = (u8*)FontData + FontData->sheetImage;
-		FontData->sheetImage = ROUND_UP(FontData->sheetImage, 32);
-		ExpandFontSheet(sheets, (u8*)FontData + FontData->sheetImage);
-		break;
+	void* a;
+	u32 ass;
+	BOOL isAss;
+	if (OSGetFontEncode() == OS_FONT_ENCODE_SJIS) {
+		a = (u8*)font + 0xD3F00;
+	} else {
+		a = (u8*)font + 0x1D120;
+	}
+	ass = OSLoadFont(font, a);
+	if (ass) {
+		isAss       = TRUE;
+		sheets      = (u8*)FontData + FontData->sheetImage;
+		*SheetImage = OSRoundUp32B(FontData->sheetImage);
+		ExpandFontSheet(sheets, (u8*)SheetImage);
 	}
 
-	return TRUE;
+	return isAss;
 	/*
 	.loc_0x0:
 	  mflr      r0
