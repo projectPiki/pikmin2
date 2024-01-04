@@ -811,30 +811,13 @@ char* OSGetFontTexture(char* string, void** image, s32* x, s32* y, s32* width)
 	u32 tmp;
 
 	OSFontHeader* font2;
-	u16 code2 = 0;
-	switch (OSGetFontEncode()) {
-	case OS_FONT_ENCODE_ANSI:
-		font2 = FontData;
-		code2 = (u8)*string;
-		if (code == '\0') {
-			break;
-		}
-		++string;
-		break;
-	case OS_FONT_ENCODE_SJIS:
-		font2 = FontData;
-		code2 = (u8)*string;
-		if (code == '\0') {
-			break;
-		}
-		++string;
-		if (IsSjisLeadByte((u8)code2) && IsSjisTrailByte((u8)*string)) {
+	u16 code2 = (u8)*string;
+	if (OSGetFontEncode() == OS_FONT_ENCODE_SJIS) {
+		if (IsSjisLeadByte((u8)code2)) {
 			code2 = (u16)((code2 << 8) | (u8)*string++);
 		}
-		break;
 	}
 
-	font = font2;
 	code = GetFontCode(code2);
 
 	// return (char*) string;
