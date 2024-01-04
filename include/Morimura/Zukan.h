@@ -534,24 +534,24 @@ struct TItemZukan : public TZukanBase {
 	// _00      = VTBL1
 	// _18      = VTBL2
 	// _00-_248 = TZukanBase
-	DispMemberZukanItem* mDispItem;                      // _248
-	kh::Screen::khUtilColorAnm* mColorAnmItem;           // _24C
-	TScaleUpCounter* mValueCounter;                      // _250
-	TScaleUpCounter* mWeightCounter;                     // _254
-	J2DGXColorS10 mOrimaMesgWindowColor;                 // _258
-	J2DGXColorS10 mOrimaMesgIconColor1;                  // _260
-	J2DGXColorS10 mOrimaMesgIconColor2;                  // _268
-	ResTIMG* mOrimaIconTexture;                          // _270
-	int mCurrCharacterIconID;                            // _274
-	int mCategoryIsComplete[TREASUREHOARD_CATEGORY_NUM]; // _278 (for categories with 1, the sales pitch is unlocked)
-	int mCategoryShowUnlock[TREASUREHOARD_CATEGORY_NUM]; // _2DC (for categories with 1, show the unlock text/animation)
-	int mCategoryColorID[TREASUREHOARD_CATEGORY_NUM];    // _340 (1 or 0 for category color, yes all 3 of these could have been bools)
-	TOffsetMsgSet* mOffsetMsgCategoryNames;              // _3A4 (You've completed the biggest file in the game series!)
-	int mEfxTimer;                                       // _3A8
-	int mDemoState;                                      // _3AC
-	int mDemoScrollTargetRow;                            // _3B0
-	int _3B4;                                            // _3B4
-	f32 mDemoStateButtonAlpha;                           // _3B8
+	DispMemberZukanItem* mDispItem;                       // _248
+	kh::Screen::khUtilColorAnm* mColorAnmItem;            // _24C
+	TScaleUpCounter* mValueCounter;                       // _250
+	TScaleUpCounter* mWeightCounter;                      // _254
+	J2DGXColorS10 mOrimaMesgWindowColor;                  // _258
+	J2DGXColorS10 mOrimaMesgIconColor1;                   // _260
+	J2DGXColorS10 mOrimaMesgIconColor2;                   // _268
+	ResTIMG* mOrimaIconTexture;                           // _270
+	int mCurrCharacterIconID;                             // _274
+	BOOL mCategoryIsComplete[TREASUREHOARD_CATEGORY_NUM]; // _278 (for categories with 1, the sales pitch is unlocked)
+	BOOL mCategoryShowUnlock[TREASUREHOARD_CATEGORY_NUM]; // _2DC (for categories with 1, show the unlock text/animation)
+	int mCategoryColorID[TREASUREHOARD_CATEGORY_NUM];     // _340 (1 or 0 for category color, yes all 3 of these could have been bools)
+	TOffsetMsgSet* mOffsetMsgCategoryNames;               // _3A4 (You've completed the biggest file in the game series!)
+	int mEfxTimer;                                        // _3A8
+	int mDemoState;                                       // _3AC
+	int mDemoScrollTargetRow;                             // _3B0
+	int _3B4;                                             // _3B4
+	f32 mDemoStateButtonAlpha;                            // _3B8
 
 	static int mCategoryArray[];
 };

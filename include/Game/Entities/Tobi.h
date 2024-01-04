@@ -47,28 +47,28 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);                             // _30
-	virtual void doDirectDraw(Graphics& gfx);                                   // _50
-	virtual bool isUnderground();                                               // _D0 (weak)
-	virtual void getShadowParam(ShadowParam& settings);                         // _134
-	virtual ~Obj() { }                                                          // _1BC (weak)
-	virtual void setInitialSetting(EnemyInitialParamBase* params);              // _1C4
-	virtual void doUpdate();                                                    // _1CC
-	virtual void doDebugDraw(Graphics& gfx);                                    // _1EC
-	virtual void initMouthSlots();                                              // _22C
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();                         // _258 (weak)
-	virtual MouthSlots* getMouthSlots();                                        // _25C (weak)
-	virtual bool pressCallBack(Creature* source, f32 damage, CollPart* part);   // _27C
-	bool flyCollisionCallBack(Creature* source, f32 damage, CollPart* part);    // _280
-	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part); // _284
-	virtual void doStartStoneState();                                           // _2A4
-	virtual void doFinishStoneState();                                          // _2A8
-	virtual void doStartEarthquakeFitState();                                   // _2B8
-	virtual void doFinishEarthquakeFitState();                                  // _2BC
-	virtual void lifeRecover();                                                 // _2C0
-	virtual void startCarcassMotion();                                          // _2C4
-	virtual f32 getDownSmokeScale();                                            // _2EC (weak)
-	virtual void setFSM(FSM* fsm);                                              // _2F8
+	virtual void onInit(CreatureInitArg* settings);                                          // _30
+	virtual void doDirectDraw(Graphics& gfx);                                                // _50
+	virtual void getShadowParam(ShadowParam& settings);                                      // _134
+	virtual ~Obj() { }                                                                       // _1BC (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase* params);                           // _1C4
+	virtual void doUpdate();                                                                 // _1CC
+	virtual void doDebugDraw(Graphics& gfx);                                                 // _1EC
+	virtual void initMouthSlots();                                                           // _22C
+	virtual bool pressCallBack(Creature* source, f32 damage, CollPart* part);                // _27C
+	bool flyCollisionCallBack(Creature* source, f32 damage, CollPart* part);                 // _280
+	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part);              // _284
+	virtual void doStartStoneState();                                                        // _2A4
+	virtual void doFinishStoneState();                                                       // _2A8
+	virtual void doStartEarthquakeFitState();                                                // _2B8
+	virtual void doFinishEarthquakeFitState();                                               // _2BC
+	virtual void lifeRecover();                                                              // _2C0
+	virtual void startCarcassMotion();                                                       // _2C4
+	virtual void setFSM(FSM* fsm);                                                           // _2F8
+	virtual bool isUnderground() { return mIsUnderground; }                                  // _D0 (weak)
+	virtual MouthSlots* getMouthSlots() { return &mMouthSlots; }                             // _25C (weak)
+	virtual f32 getDownSmokeScale() { return 0.35f; }                                        // _2EC (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_Tobi; } // _258 (weak)
 	//////////////// VTABLE END
 
 	void lifeIncrement();

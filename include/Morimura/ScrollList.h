@@ -88,7 +88,7 @@ struct TIndexPane {
 	J2DPane* mPane;         // _04
 	J2DPane* mPane2;        // _08
 	int mSizeType;          // _0C
-	int mIconCount;         // _10, number of entries, per row, 3 in piklopedias case
+	int mIconCount;         // _10, Number of entries per row; 3 in Piklopedia's case
 	int mMaxTextureId;      // _14
 	f32 _18;                // _18
 	f32 _1C;                // _1C

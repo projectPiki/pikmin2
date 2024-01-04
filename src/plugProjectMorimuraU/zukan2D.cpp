@@ -46,10 +46,36 @@ JUtility::TColor TZukanBase::mCategoryColor1b;
 JKRHeap* TZukanBase::mDebugHeapParent;
 JKRExpHeap* TZukanBase::mDebugHeap;
 
-// these represent the highest index (index that the hoard shows you in-game) of each sets treasures
+// these represent the highest index (index that the hoard shows you in-game) of each set's treasures
 // for example the first set is ids 1 through 7
-int TItemZukan::mCategoryArray[TREASUREHOARD_CATEGORY_NUM]
-    = { 7, 16, 22, 27, 42, 51, 57, 63, 71, 79, 86, 94, 103, 109, 120, 126, 146, 156, 160, 166, 168, 176, 183, 196, 201 };
+int TItemZukan::mCategoryArray[TREASUREHOARD_CATEGORY_NUM] = {
+	// treasure id of final category member
+	7,   // Succulent Series
+	16,  // Nature's Candy Series
+	22,  // Xenoflora Series
+	27,  // Gourmet Series
+	42,  // Sweet Tooth Series
+	51,  // Paleontology Series
+	57,  // Ancient Secrets Series
+	63,  // Cook's Arsenal Series
+	71,  // Tortured Artist Series
+	79,  // Modern Amenities Series
+	86,  // Frigid Series
+	94,  // Hyper-technology Series
+	103, // Industrial Set
+	109, // Husband's Tears Series
+	120, // Space Love Series
+	126, // Crystallized Emotion Series
+	146, // Dream Series
+	156, // Blast from the Past Series
+	160, // Mystical Energy Series
+	166, // Massive Receptacle Series
+	168, // Survival Series
+	176, // Ancient Ad Series
+	183, // Odd Logo Series
+	196, // Explorer's Friend Series
+	201, // Titan Dweevil Series
+};
 
 // this table connects piklopedia order to the actual game enemy id order
 int eIDInfo[ENEMY_ZUKAN_COUNT][2] = {
@@ -6888,7 +6914,7 @@ void TZukanWindow::msgScroll(f32 scroll) { mMsgCallback->scroll(scroll); }
 /**
  * @note Address: 0x8037C380
  * @note Size: 0x30
- * Retuns a ratio of how far through the message box you are
+ * Returns a ratio of how far through the message box you are
  */
 f32 TZukanWindow::getPosRate() { return 1.0f - mMsgCallback->mControl->getScrollPosition(); }
 

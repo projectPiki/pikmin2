@@ -23,7 +23,7 @@ static u8 SendCount = 0x80;
  * @note Address: N/A
  * @note Size: 0x34
  */
-inline void DBGEXIInit()
+void DBGEXIInit()
 {
 	__OSMaskInterrupts(0x18000);
 	__EXIRegs[10] = 0;
@@ -33,7 +33,7 @@ inline void DBGEXIInit()
  * @note Address: N/A
  * @note Size: 0x28
  */
-static inline u32 DBGEXISelect(u32 v)
+static u32 DBGEXISelect(u32 v)
 {
 	u32 regs = __EXIRegs[10];
 	regs &= 0x405;
@@ -46,7 +46,7 @@ static inline u32 DBGEXISelect(u32 v)
  * @note Address: N/A
  * @note Size: 0x1C
  */
-inline BOOL DBGEXIDeselect(void)
+BOOL DBGEXIDeselect(void)
 {
 	__EXIRegs[10] &= 0x405;
 	return TRUE;
@@ -56,10 +56,11 @@ inline BOOL DBGEXIDeselect(void)
  * @note Address: N/A
  * @note Size: 0x1C
  */
-static inline BOOL DBGEXISync()
+static BOOL DBGEXISync()
 {
-	while (__EXIRegs[13] & 1);
-	
+	while (__EXIRegs[13] & 1)
+		;
+
 	return TRUE;
 }
 
@@ -101,7 +102,7 @@ static BOOL DBGEXIImm(void* buffer, s32 bytecounter, u32 write)
  * @note Address: N/A
  * @note Size: 0x18
  */
-inline void DBGEXIClearInterrupts(void)
+void DBGEXIClearInterrupts(void)
 {
 	// UNUSED FUNCTION
 }
@@ -110,7 +111,7 @@ inline void DBGEXIClearInterrupts(void)
  * @note Address: N/A
  * @note Size: 0xAC
  */
-inline void DBGCheckID(void)
+void DBGCheckID(void)
 {
 	// UNUSED FUNCTION
 }
@@ -119,18 +120,18 @@ inline void DBGCheckID(void)
  * @note Address: N/A
  * @note Size: 0x8C
  */
-static inline BOOL DBGWriteMailbox(u32 p1)
+static BOOL DBGWriteMailbox(u32 p1)
 {
-    u32 cmd = 0xc0000000;
+	u32 cmd = 0xc0000000;
 	u32 v;
-    u32 base = p1;
+	u32 base   = p1;
 	BOOL total = FALSE;
 
 	DBGEXISelect(4);
-    v = (base & 0x1fffffff) | (cmd);
-    total |= IS_FALSE(DBGEXIImm(&v, sizeof(v), 1));
-    total |= IS_FALSE(DBGEXISync());
-    total |= IS_FALSE(DBGEXIDeselect());
+	v = (base & 0x1fffffff) | (cmd);
+	total |= IS_FALSE(DBGEXIImm(&v, sizeof(v), 1));
+	total |= IS_FALSE(DBGEXISync());
+	total |= IS_FALSE(DBGEXIDeselect());
 
 	return IS_FALSE(total);
 }
@@ -210,8 +211,7 @@ static BOOL DBGWrite(u32 count, void* buffer, s32 param3)
 	total |= IS_FALSE(DBGEXIImm(&v1, sizeof(v1), 1));
 	total |= IS_FALSE(DBGEXISync());
 
-	while (param3 != 0)
-	{
+	while (param3 != 0) {
 		v = *buf_p++;
 
 		total |= IS_FALSE(DBGEXIImm(&v, sizeof(v), 1));
@@ -315,7 +315,7 @@ void DBInitInterrupts(void)
  * @note Address: N/A
  * @note Size: 0x150
  */
-static inline void CheckMailBox(void)
+static void CheckMailBox(void)
 {
 	u32 v;
 	DBGReadStatus(&v);
@@ -371,10 +371,10 @@ BOOL DBRead(u32* buffer, s32 count)
  */
 BOOL DBWrite(void* src, u32 size)
 {
-    u32 v;
+	u32 v;
 	u32 busyFlag;
 	BOOL interrupts = OSDisableInterrupts();
-    
+
 	do {
 		_DBGReadStatus(&busyFlag);
 	} while (busyFlag & 2);
@@ -382,19 +382,22 @@ BOOL DBWrite(void* src, u32 size)
 	SendCount++;
 	v = ((SendCount & 1) ? 0x1000 : 0);
 
-	while(!DBGWrite(v | 0x1c000, src, ROUND_UP(size, 4)));
+	while (!DBGWrite(v | 0x1c000, src, ROUND_UP(size, 4)))
+		;
 
 	do {
 		_DBGReadStatus(&busyFlag);
-	} while(busyFlag & 2);
-    
+	} while (busyFlag & 2);
+
 	v = SendCount;
-	while (!DBGWriteMailbox((0x1f000000) | v << 0x10 | size));
+	while (!DBGWriteMailbox((0x1f000000) | v << 0x10 | size))
+		;
 
 	do {
-		while(!_DBGReadStatus(&busyFlag));
-	} while(busyFlag & 2);
-    
+		while (!_DBGReadStatus(&busyFlag))
+			;
+	} while (busyFlag & 2);
+
 	OSRestoreInterrupts(interrupts);
 
 	return 0;

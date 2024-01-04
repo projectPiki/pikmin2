@@ -1055,28 +1055,5 @@ void Obj::createEatEffect()
 	eatFX.create(&fxArg);
 }
 
-/**
- * @note Address: 0x8025B110
- * @note Size: 0x8
- */
-bool Obj::isUnderground() { return mIsUnderground; }
-
-/**
- * @note Address: 0x8025B118
- * @note Size: 0x8
- */
-MouthSlots* Obj::getMouthSlots() { return &mMouthSlots; }
-
-/**
- * @note Address: 0x8025B120
- * @note Size: 0x8
- */
-f32 Obj::getDownSmokeScale() { return 0.35f; }
-
-/**
- * @note Address: 0x8025B128
- * @note Size: 0x8
- */
-EnemyTypeID::EEnemyTypeID Obj::getEnemyTypeID() { return EnemyTypeID::EnemyID_UjiB; }
 } // namespace Ujib
 } // namespace Game

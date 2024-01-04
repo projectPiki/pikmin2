@@ -21,7 +21,7 @@
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk_glue.c">TRK_MINNOW_DOLPHIN/dolphin_trk_glue.c</a> | 10625 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk.c">TRK_MINNOW_DOLPHIN/dolphin_trk.c</a> | 13669 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/support.c">TRK_MINNOW_DOLPHIN/support.c</a> | 13673 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/msgbuf.c">TRK_MINNOW_DOLPHIN/msgbuf.c</a> | 15192 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/msghndlr.c">TRK_MINNOW_DOLPHIN/msghndlr.c</a> | 29447 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/os/OSFont.c">os/OSFont.c</a> | 31552 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/msghndlr.c">TRK_MINNOW_DOLPHIN/msghndlr.c</a> | 29447 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/os/OSFont.c">os/OSFont.c</a> | 31668 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/targimpl.c">TRK_MINNOW_DOLPHIN/targimpl.c</a> | 52416 |  |  |
 
 ### <section id="JSystem">JSystem</section>
@@ -140,7 +140,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/panModoki.cpp">panModoki.cpp</a> | 53589 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/umiMushi.cpp">umiMushi.cpp</a> | 58724 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/kingChappy.cpp">kingChappy.cpp</a> | 63903 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/hiScore2D.cpp">hiScore2D.cpp</a> | 102657 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/blackMan.cpp">blackMan.cpp</a> | 123464 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/challengeResult2D.cpp">challengeResult2D.cpp</a> | 146509 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/challengeSelect2D.cpp">challengeSelect2D.cpp</a> | 169821 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/zukan2D.cpp">zukan2D.cpp</a> | 175928 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/challengeSelect2D.cpp">challengeSelect2D.cpp</a> | 169821 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/zukan2D.cpp">zukan2D.cpp</a> | 176616 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/vsSelect2D.cpp">vsSelect2D.cpp</a> | 200498 |  |  |
 
 ### <section id="plugProjectNishimuraU">plugProjectNishimuraU</section>
@@ -156,10 +156,10 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/JointShadowBase.cpp">JointShadowBase.cpp</a> | 18202 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Rock.cpp">Rock.cpp</a> | 19428 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ImomushiState.cpp">ImomushiState.cpp</a> | 19552 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Imomushi.cpp">Imomushi.cpp</a> | 19686 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/UjiaState.cpp">UjiaState.cpp</a> | 20986 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ElecHiba.cpp">ElecHiba.cpp</a> | 21757 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/QueenState.cpp">QueenState.cpp</a> | 22414 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/MiniHoudai.cpp">MiniHoudai.cpp</a> | 22750 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Ujia.cpp">Ujia.cpp</a> | 22942 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Queen.cpp">Queen.cpp</a> | 23038 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Ujib.cpp">Ujib.cpp</a> | 23577 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/BigTreasureShadow.cpp">BigTreasureShadow.cpp</a> | 25193 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/UjibState.cpp">UjibState.cpp</a> | 25546 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Tobi.cpp">Tobi.cpp</a> | 25879 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/QueenState.cpp">QueenState.cpp</a> | 22414 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Ujia.cpp">Ujia.cpp</a> | 22567 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/MiniHoudai.cpp">MiniHoudai.cpp</a> | 22750 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Queen.cpp">Queen.cpp</a> | 23038 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Ujib.cpp">Ujib.cpp</a> | 23083 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/BigTreasureShadow.cpp">BigTreasureShadow.cpp</a> | 25193 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Tobi.cpp">Tobi.cpp</a> | 25385 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/UjibState.cpp">UjibState.cpp</a> | 25546 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Armor.cpp">Armor.cpp</a> | 25973 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ArmorState.cpp">ArmorState.cpp</a> | 26409 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/TobiState.cpp">TobiState.cpp</a> | 27052 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/SaraiState.cpp">SaraiState.cpp</a> | 27154 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/MarState.cpp">MarState.cpp</a> | 28183 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/FrogState.cpp">FrogState.cpp</a> | 30812 |

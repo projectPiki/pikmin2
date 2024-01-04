@@ -1028,23 +1028,5 @@ void Obj::createBridgeEffect()
 	eatFX.create(&fxArg);
 }
 
-/**
- * @note Address: 0x8026750C
- * @note Size: 0x8
- */
-bool Obj::isUnderground() { return mIsUnderground; }
-
-/**
- * @note Address: 0x80267514
- * @note Size: 0x8
- */
-f32 Obj::getDownSmokeScale() { return 0.35f; }
-
-/**
- * @note Address: 0x8026751C
- * @note Size: 0x8
- */
-EnemyTypeID::EEnemyTypeID Obj::getEnemyTypeID() { return EnemyTypeID::EnemyID_UjiA; }
-
 } // namespace Ujia
 } // namespace Game
