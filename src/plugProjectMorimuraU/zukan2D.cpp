@@ -243,7 +243,7 @@ TZukanBase::TZukanBase(char* name)
 	mCanScroll             = true;
 	_243                   = false;
 	mIsInDemo              = false;
-	mMaxSelect             = 10;
+	mNumActiveRows         = 10;
 	mRowSize               = 3;
 	mTimerLength           = 0.25f;
 	mPaneCursorCorners[0]  = nullptr;
@@ -420,7 +420,8 @@ bool TZukanBase::doUpdate()
 			}
 			mIsBigWindowOpened = false;
 			mRequestTimer      = 0;
-		} else if (isListShow(mIndexPaneList[mCurrentSelect]->getIndex()) && mIndexPaneList[mCurrentSelect]->getIndex() == mCurrIndex) {
+		} else if (isListShow(mIndexPaneList[mCurrActiveRowSel]->getIndex())
+		           && mIndexPaneList[mCurrActiveRowSel]->getIndex() == mCurrIndex) {
 			if (!mIsEffectRequired) {
 				if (mRequestTimer > mRequestTimerMax) {
 					mState = 1;
@@ -432,7 +433,7 @@ bool TZukanBase::doUpdate()
 				}
 			}
 		} else {
-			mCurrIndex        = mIndexPaneList[mCurrentSelect]->getIndex();
+			mCurrIndex        = mIndexPaneList[mCurrActiveRowSel]->getIndex();
 			mIsEffectRequired = false;
 			if (mIsBigWindowOpened) {
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_CAMERAVIEW_CHANGE, 0);
@@ -477,7 +478,7 @@ bool TZukanBase::doUpdate()
 			Controller* pad = mController;
 			if (pad->getButton() & Controller::ANALOG_UP) {
 				if (mIsPreDebt && !mCanScroll) {
-					if (mCurrentSelect > 0) {
+					if (mCurrActiveRowSel > 0) {
 						mIndexGroup->upIndex();
 					} else {
 						if (!mIsErrorSoundState) {
@@ -492,11 +493,11 @@ bool TZukanBase::doUpdate()
 				if (mIsPreDebt && !mCanScroll) {
 					bool cantScroll = true;
 					if (_234 < 0) {
-						if ((float)mCurrentSelect < (float)mMaxSelectZukan / 3.0f - 1.0f) {
+						if ((float)mCurrActiveRowSel < (float)mMaxSelectZukan / 3.0f - 1.0f) {
 							cantScroll = false;
 						}
 					} else {
-						if (mIndexPaneList[mCurrentSelect]->getListIndex() < mMaxPane - 1) {
+						if (mIndexPaneList[mCurrActiveRowSel]->getListIndex() < mMaxPane - 1) {
 							cantScroll = false;
 						}
 					}
@@ -512,7 +513,7 @@ bool TZukanBase::doUpdate()
 					mIndexGroup->downIndex();
 				}
 			} else if (pad->getButtonDown() & Controller::ANALOG_RIGHT) {
-				if (mIndexPaneList[mCurrentSelect]->mSizeType == 0 && isPanelExist()) {
+				if (mIndexPaneList[mCurrActiveRowSel]->mSizeType == 0 && isPanelExist()) {
 					mRightOffset++;
 					if (mRightOffset > 2) {
 						mRightOffset = 2;
@@ -521,7 +522,7 @@ bool TZukanBase::doUpdate()
 					}
 				}
 			} else if (pad->getButtonDown() & Controller::ANALOG_LEFT) {
-				if (mIndexPaneList[mCurrentSelect]->mSizeType == 0) {
+				if (mIndexPaneList[mCurrActiveRowSel]->mSizeType == 0) {
 					mRightOffset--;
 					if (mRightOffset < 0) {
 						mRightOffset = 0;
@@ -560,7 +561,7 @@ bool TZukanBase::doUpdate()
 					mIsBigWindowOpened = true;
 				}
 				if (mWindow->mState) {
-					windowOpenClose(getXMsgID(mIndexPaneList[mCurrentSelect]->getIndex()));
+					windowOpenClose(getXMsgID(mIndexPaneList[mCurrActiveRowSel]->getIndex()));
 				}
 			} else {
 				bool check = mWindow->checkState(TZukanWindow::STATE_Inactive);
@@ -626,10 +627,13 @@ bool TZukanBase::doUpdate()
 	if (updateList() || isHorizontalScroll) {
 		changePaneInfo();
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
-		TIndexPane* pane = mIndexPaneList[mCurrentSelect];
-		if (pane->mSizeType) {
-			for (int i = 0; i < mMaxSelect; i++) {
-				if (mIndexPaneList[mCurrentSelect]->getListIndex() == mIndexPaneList[i]->getListIndex()) {
+		TIndexPane* pane = mIndexPaneList[mCurrActiveRowSel];
+
+		// for large panes (bosses), always do the scale animation on the middle pane (if its whats selected),
+		// otherwise do it based on the horizontal selection
+		if (pane->mSizeType != 0) {
+			for (int i = 0; i < mNumActiveRows; i++) {
+				if (mIndexPaneList[mCurrActiveRowSel]->getListIndex() == mIndexPaneList[i]->getListIndex()) {
 					mIndexPaneList[i]->mIconInfos[1]->startScaleUp(0.5f);
 				}
 			}
@@ -722,7 +726,7 @@ bool TZukanBase::doUpdate()
 	mPaneWindowBack->setOffset(xpos, ypos);
 	mPaneWindowBack_Child->setOffset(xpos, ypos);
 	if (mState == 1) {
-		mCurrObjectID = getModelIndex(mIndexPaneList[mCurrentSelect]->getIndex());
+		mCurrObjectID = getModelIndex(mIndexPaneList[mCurrActiveRowSel]->getIndex());
 		if (!mIsCurrentSelUnlocked) {
 			mCurrObjectID = -1;
 		}
@@ -740,7 +744,7 @@ bool TZukanBase::doUpdate()
 	}
 
 	if (getDispDataZukan()->mPrevSelection && mCanInput) {
-		*getDispDataZukan()->mPrevSelection = mIndexPaneList[mCurrentSelect]->getIndex();
+		*getDispDataZukan()->mPrevSelection = mIndexPaneList[mCurrActiveRowSel]->getIndex();
 	}
 
 	return false;
@@ -828,7 +832,7 @@ void TZukanBase::doDraw(Graphics& gfx)
 	mListScreen->draw(gfx, graf);
 	mIconScreen->draw(gfx, *graf);
 
-	for (int i = 0; i < mMaxSelect; i++) {
+	for (int i = 0; i < mNumActiveRows; i++) {
 		TIndexPane* idpane = mIndexPaneList[i];
 		if (idpane->mPane->isVisible()) {
 			if (idpane->mSizeType == 0) {
@@ -952,19 +956,19 @@ void TZukanBase::doUpdateFadeoutFinish()
  */
 void TZukanBase::indexPaneInit(J2DScreen* screen)
 {
-	_90            = 0;
-	mCurrentSelect = 4;
-	_98            = mMaxSelect - 1;
+	mCurrMinActiveRow = 0;
+	mCurrActiveRowSel = 4; // the current selected row will be the minimum active row + 4
+	mCurrMaxActiveRow = mNumActiveRows - 1;
 
 	u64 tags[10] = { 'Tmenu00', 'Tmenu01', 'Tmenu02', 'Tmenu03', 'Tmenu04', 'Tmenu05', 'Tmenu07', 'Tmenu06', 'Tmenu08', 'Tmenu09' };
 
-	J2DPane* pane = screen->search(tags[_90]);
+	J2DPane* pane = screen->search(tags[mCurrMinActiveRow]);
 	P2ASSERTLINE(1083, pane);
-	_A0 = pane->mOffset.y;
+	mMinSelYOffset = pane->mOffset.y;
 
-	J2DPane* pane2 = screen->search(tags[_98]);
+	J2DPane* pane2 = screen->search(tags[mCurrMaxActiveRow]);
 	P2ASSERTLINE(1086, pane2);
-	_A4 = pane2->mOffset.y;
+	mMaxSelYOffset = pane2->mOffset.y;
 
 	// clang-format off
 	u64 panetags[10][4][3] = {
@@ -1024,13 +1028,13 @@ void TZukanBase::indexPaneInit(J2DScreen* screen)
 		flag = true;
 	}
 
-	mIndexPaneList = new TIndexPane*[mMaxSelect];
-	for (int i = 0; i < mMaxSelect; i++) {
+	mIndexPaneList = new TIndexPane*[mNumActiveRows];
+	for (int i = 0; i < mNumActiveRows; i++) {
 		mIndexPaneList[i] = nullptr;
 	}
 
 	int idk = 0;
-	for (int i = 0; i < mMaxSelect; i++) {
+	for (int i = 0; i < mNumActiveRows; i++) {
 		mIndexPaneList[i] = new TIndexPane(this, static_cast<P2DScreen::Mgr_tuning*>(screen), tags[i]);
 		mIndexPaneList[i]->createIconInfo(3, getIdMax());
 		for (int j = 0; j < 3; j++) {
@@ -1492,9 +1496,9 @@ void TZukanBase::paneInit()
 	mPaneMessageDemo = mWindow->mScreenObj->search('mg_demo');
 	P2ASSERTLINE(1215, mPaneMessageDemo);
 
-	f32 offs = 20.0f;
-	mYOffset = mIndexPaneList[mCurrentSelect]->_1C - 10.0f;
-	_AC      = mYOffset + offs;
+	f32 offs                = 20.0f;
+	mSelectionYOffset       = mIndexPaneList[mCurrActiveRowSel]->mYOffset - 10.0f;
+	mCursorSelectionYOffset = mSelectionYOffset + offs;
 }
 
 /**
@@ -1505,12 +1509,12 @@ void TZukanBase::changePaneInfo()
 {
 	mIsErrorSoundState = true;
 	mDoFadeNameAlpha   = true;
-	mDisplayIndex      = mIndexPaneList[mCurrentSelect]->getIndex() + 1;
+	mDisplayIndex      = mIndexPaneList[mCurrActiveRowSel]->getIndex() + 1;
 	setDetail();
 
 	// Before paying debt, change stick anim if youre at the bottom or top of the list
 	if (mIsPreDebt && !mCanScroll) {
-		int sel = mCurrentSelect;
+		int sel = mCurrActiveRowSel;
 		if (sel == 0) {
 			mStickAnim->stickDown();
 		} else if (sel == mMaxSelectZukan / 3) {
@@ -1527,7 +1531,7 @@ void TZukanBase::changePaneInfo()
  */
 void TZukanBase::changeName()
 {
-	int id = mIndexPaneList[mCurrentSelect]->getIndex();
+	int id = mIndexPaneList[mCurrActiveRowSel]->getIndex();
 	if (id >= 0) {
 		J2DTextBoxEx* pane = mPaneEnemyName;
 		pane->setMsgID(getNameID(id));
@@ -1567,12 +1571,12 @@ void TZukanBase::doUpdateOut()
 	}
 	mCursorScale = sinf(mCursorAnimTimer) * mCursorAnimMagnitude + 0.85f;
 
-	for (int i = 0; i < mMaxSelect; i++) {
+	for (int i = 0; i < mNumActiveRows; i++) {
 		mIndexPaneList[i]->update();
 	}
 	int offs2 = mRightOffset;
 
-	TIndexPane* pane = mIndexPaneList[mCurrentSelect];
+	TIndexPane* pane = mIndexPaneList[mCurrActiveRowSel];
 	if (pane->mSizeType != 0) {
 		mPaneSelectIcon->setOffset(mSelectIconPos.x + 62.0f, mSelectIconPos.y);
 		offs2 = 1;
@@ -1589,13 +1593,13 @@ void TZukanBase::doUpdateOut()
 			}
 			mRightOffset = offs2;
 			changePaneInfo();
-			mIndexPaneList[mCurrentSelect]->mIconInfos[mRightOffset]->startScaleUp(1.0f);
+			mIndexPaneList[mCurrActiveRowSel]->mIconInfos[mRightOffset]->startScaleUp(1.0f);
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
 		}
 		mPaneSelectIcon->setOffset(mSelectIconPos.x + (mRightOffset * 62.0f), mSelectIconPos.y);
 	}
 
-	J2DPane* panel = mIndexPaneList[mCurrentSelect]->mIconInfos[offs2]->mPane;
+	J2DPane* panel = mIndexPaneList[mCurrActiveRowSel]->mIconInfos[offs2]->mPane;
 	for (u8 i = 0; i < 4; i++) {
 		if (mIsPreDebt && !mMaxPane) {
 			mPaneCursorCorners[i]->hide();
@@ -1606,20 +1610,20 @@ void TZukanBase::doUpdateOut()
 		}
 	}
 
-	for (int i = 0; i < mMaxSelect; i++) {
+	for (int i = 0; i < mNumActiveRows; i++) {
 		if (mIsPreDebt) {
 			bool test = true;
-			if (!mCanScroll && (i != mCurrentSelect || mMaxPane == 0)) {
+			if (!mCanScroll && (i != mCurrActiveRowSel || mMaxPane == 0)) {
 				int id1 = mIndexPaneList[i]->getListIndex();
-				int id2 = mIndexPaneList[mCurrentSelect]->getListIndex();
+				int id2 = mIndexPaneList[mCurrActiveRowSel]->getListIndex();
 				if (id1 < 0 || mMaxSelectZukan <= 3) {
 					test = false;
 				} else if (id1 > id2) {
-					if (mIndexPaneList[mCurrentSelect]->getPaneY() > mIndexPaneList[i]->getPaneY()) { // fcmpo swap
+					if (mIndexPaneList[mCurrActiveRowSel]->getPaneYOffset() > mIndexPaneList[i]->getPaneYOffset()) {
 						test = false;
 					}
 				} else {
-					if (mIndexPaneList[mCurrentSelect]->getPaneY() < mIndexPaneList[i]->getPaneY()) { // fcmpo swap
+					if (mIndexPaneList[mCurrActiveRowSel]->getPaneYOffset() < mIndexPaneList[i]->getPaneYOffset()) {
 						test = false;
 					}
 				}
@@ -1686,10 +1690,10 @@ void TZukanBase::doPushXButton()
 		mIsBigWindowOpened = false;
 		if (mWindow->mState == 0) {
 			mCurrCharacterOpened = false;
-			windowOpenClose(getXMsgID(mIndexPaneList[mCurrentSelect]->getIndex()));
+			windowOpenClose(getXMsgID(mIndexPaneList[mCurrActiveRowSel]->getIndex()));
 			setXWindow();
 		} else {
-			windowOpenClose(getXMsgID(mIndexPaneList[mCurrentSelect]->getIndex()));
+			windowOpenClose(getXMsgID(mIndexPaneList[mCurrActiveRowSel]->getIndex()));
 			if (mCurrCharacterOpened) {
 				mWindow->_18 = 1;
 			}
@@ -1710,10 +1714,10 @@ void TZukanBase::doPushYButton()
 		mIsBigWindowOpened = false;
 		if (mWindow->mState == 0) {
 			mCurrCharacterOpened = true;
-			windowOpenClose(getYMsgID(mIndexPaneList[mCurrentSelect]->getIndex()));
+			windowOpenClose(getYMsgID(mIndexPaneList[mCurrActiveRowSel]->getIndex()));
 			setYWindow();
 		} else {
-			windowOpenClose(getYMsgID(mIndexPaneList[mCurrentSelect]->getIndex()));
+			windowOpenClose(getYMsgID(mIndexPaneList[mCurrActiveRowSel]->getIndex()));
 			if (!mCurrCharacterOpened) {
 				mWindow->_18 = 1;
 			}
@@ -1732,7 +1736,7 @@ void TZukanBase::doPushBButton()
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_CAMERAVIEW_CHANGE, 0);
 	} else {
 		if (mWindow->mState != 0) {
-			windowOpenClose(getXMsgID(mIndexPaneList[mCurrentSelect]->getIndex()));
+			windowOpenClose(getXMsgID(mIndexPaneList[mCurrActiveRowSel]->getIndex()));
 		} else {
 			openConfirmWindow();
 		}
@@ -1982,7 +1986,7 @@ void TZukanBase::windowOpenClose(u64 mesg)
  * @note Address: 0x80374824
  * @note Size: 0x74
  */
-bool TZukanBase::isPanelExist() { return (mIndexPaneList[mCurrentSelect]->getIndex() + mRightOffset) < getIdMax(); }
+bool TZukanBase::isPanelExist() { return (mIndexPaneList[mCurrActiveRowSel]->getIndex() + mRightOffset) < getIdMax(); }
 
 /**
  * @note Address: 0x80374898
@@ -2051,7 +2055,7 @@ int TZukanBase::checkRequest(int& data)
 int TZukanBase::getCurrSelectId()
 {
 	if (mIsCurrentSelUnlocked) {
-		return getModelIndex(mIndexPaneList[mCurrentSelect]->getIndex());
+		return getModelIndex(mIndexPaneList[mCurrActiveRowSel]->getIndex());
 	}
 
 	return -1;
@@ -2403,18 +2407,18 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 
 	f32 yoffs = mIndexPaneList[1]->mPane->mOffset.y - mIndexPaneList[0]->mPane->mOffset.y;
 
-	if (mIsPreDebt && mMaxSelectZukan <= (mMaxSelect - 1) * 3) {
+	if (mIsPreDebt && mMaxSelectZukan <= (mNumActiveRows - 1) * 3) {
 		mCanScroll = false;
 	}
 
 	f32 xoffs = 0.0f;
 	for (int i = 0; i < 6; i++) {
-		for (int j = 0; j < mMaxSelect; j++) {
+		for (int j = 0; j < mNumActiveRows; j++) {
 			TIndexPane* idpane = mIndexPaneList[j];
 			J2DPane* pane      = idpane->mPane;
-			pane->mOffset.y    = idpane->_1C + yoffs;
+			pane->mOffset.y    = idpane->mYOffset + yoffs;
 			pane->calcMtx();
-			mIndexPaneList[j]->_1C = mIndexPaneList[j]->mPane->mOffset.y;
+			mIndexPaneList[j]->mYOffset = mIndexPaneList[j]->mPane->mOffset.y;
 		}
 		updateIndex(false);
 		TIndexGroup* grp   = mIndexGroup;
@@ -2454,7 +2458,7 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 		}
 		if (backupindex < 3) {
 			while (true) {
-				int index  = mIndexPaneList[mCurrentSelect]->getListIndex();
+				int index  = mIndexPaneList[mCurrActiveRowSel]->getListIndex();
 				int index2 = index + 3;
 				if (mIsPreDebt) {
 					int max = _234;
@@ -2462,18 +2466,18 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 						index2 = max;
 					}
 				}
-				if (backupindex > index2 && (index == backupindex || mIndexPaneList[mCurrentSelect]->mSizeType != 0))
+				if (backupindex > index2 && (index == backupindex || mIndexPaneList[mCurrActiveRowSel]->mSizeType != 0))
 					break;
 			}
 
-			if (mIndexPaneList[mCurrentSelect]->mSizeType == 0) {
+			if (mIndexPaneList[mCurrActiveRowSel]->mSizeType == 0) {
 				yoffs = -yoffs * 0.5f;
-				for (int j = 0; j < mMaxSelect; j++) {
+				for (int j = 0; j < mNumActiveRows; j++) {
 					TIndexPane* idpane = mIndexPaneList[j];
 					J2DPane* pane      = idpane->mPane;
-					pane->mOffset.y    = idpane->_1C - yoffs;
+					pane->mOffset.y    = idpane->mYOffset - yoffs;
 					pane->calcMtx();
-					mIndexPaneList[j]->_1C = mIndexPaneList[j]->mPane->mOffset.y;
+					mIndexPaneList[j]->mYOffset = mIndexPaneList[j]->mPane->mOffset.y;
 				}
 				mRightOffset = 1;
 			} else {
@@ -2483,12 +2487,12 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 			changePaneInfo();
 		} else {
 
-			for (int j = 0; j < mMaxSelect; j++) {
+			for (int j = 0; j < mNumActiveRows; j++) {
 				TIndexPane* idpane = mIndexPaneList[j];
 				J2DPane* pane      = idpane->mPane;
-				pane->mOffset.y    = idpane->_1C - yoffs;
+				pane->mOffset.y    = idpane->mYOffset - yoffs;
 				pane->calcMtx();
-				mIndexPaneList[j]->_1C = mIndexPaneList[j]->mPane->mOffset.y;
+				mIndexPaneList[j]->mYOffset = mIndexPaneList[j]->mPane->mOffset.y;
 			}
 			updateIndex(true);
 			TIndexGroup* grp   = mIndexGroup;
@@ -2500,7 +2504,7 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 		changePaneInfo();
 	}
 
-	mCurrIndex = mIndexPaneList[mCurrentSelect]->getIndex();
+	mCurrIndex = mIndexPaneList[mCurrActiveRowSel]->getIndex();
 	if (mCurrIndex >= 0) {
 		J2DPane* pane = mPaneMessageDemo;
 		u64 tag       = getXMsgID(mCurrIndex);
@@ -2516,7 +2520,7 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
  */
 void TEnemyZukan::setDetail()
 {
-	int cindex = mIndexPaneList[mCurrentSelect]->getIndex();
+	int cindex = mIndexPaneList[mCurrActiveRowSel]->getIndex();
 	mInfoVal1  = getPrice(cindex);
 	JUT_ASSERTLINE(2491, mInfoVal1 < 10000, "price (%d) = %d\n", cindex, mInfoVal1);
 
@@ -2644,23 +2648,23 @@ bool TEnemyZukan::isListShow(int index)
  */
 void TEnemyZukan::indexPaneInit(J2DScreen* screen)
 {
-	_90            = 0;
-	mCurrentSelect = 4;
-	_98            = mMaxSelect - 1;
-	mMaxSelect     = 14;
-	mCurrentSelect = 6;
-	_98            = mMaxSelect - 1;
+	mCurrMinActiveRow = 0;
+	mCurrActiveRowSel = 4;
+	mCurrMaxActiveRow = mNumActiveRows - 1;
+	mNumActiveRows    = 14; // 14 rows of enemies are active at once
+	mCurrActiveRowSel = 6;
+	mCurrMaxActiveRow = mNumActiveRows - 1;
 
 	u64 tags[14] = { 'Tmenu12', 'Tmenu13', 'Tmenu00', 'Tmenu01', 'Tmenu02', 'Tmenu03', 'Tmenu04',
 		             'Tmenu05', 'Tmenu07', 'Tmenu06', 'Tmenu08', 'Tmenu09', 'Tmenu10', 'Tmenu11' };
 
-	J2DPane* pane = screen->search(tags[_90]);
+	J2DPane* pane = screen->search(tags[mCurrMinActiveRow]);
 	P2ASSERTLINE(2650, pane);
-	_A0 = pane->mOffset.y;
+	mMinSelYOffset = pane->mOffset.y;
 
-	J2DPane* pane2 = screen->search(tags[_98]);
+	J2DPane* pane2 = screen->search(tags[mCurrMaxActiveRow]);
 	P2ASSERTLINE(2653, pane2);
-	_A4 = pane2->mOffset.y;
+	mMaxSelYOffset = pane2->mOffset.y;
 
 	// clang-format off
 	u64 panetags[14][4][3] = {
@@ -2744,13 +2748,13 @@ void TEnemyZukan::indexPaneInit(J2DScreen* screen)
 		flag = true;
 	}
 
-	mIndexPaneList = new TIndexPane*[mMaxSelect];
-	for (int i = 0; i < mMaxSelect; i++) {
+	mIndexPaneList = new TIndexPane*[mNumActiveRows];
+	for (int i = 0; i < mNumActiveRows; i++) {
 		mIndexPaneList[i] = nullptr;
 	}
 
 	int idk = 0;
-	for (int i = 0; i < mMaxSelect; i++) {
+	for (int i = 0; i < mNumActiveRows; i++) {
 		mIndexPaneList[i] = new TIndexPane(this, static_cast<P2DScreen::Mgr_tuning*>(screen), tags[i]);
 		mIndexPaneList[i]->createIconInfo(3, getIdMax());
 		for (int j = 0; j < 3; j++) {
@@ -2820,9 +2824,9 @@ void TEnemyZukan::indexPaneInit(J2DScreen* screen)
 				if (mMaxPane < 3) {
 					flag = true;
 				}
-				_90++;
-				if (mMaxSelect >= _90) {
-					_90 = 0;
+				mCurrMinActiveRow++;
+				if (mNumActiveRows >= mCurrMinActiveRow) {
+					mCurrMinActiveRow = 0;
 				}
 			}
 		} else {
@@ -3364,7 +3368,7 @@ void TEnemyZukan::getUpdateIndex(int& id, bool flag)
 		}
 		int id2 = id;
 		if (mIsBigIconList[mViewablePanelIDList[id2]]) {
-			int test = mIndexPaneList[_90]->mSizeType;
+			int test = mIndexPaneList[mCurrMinActiveRow]->mSizeType;
 			switch (test) {
 			case 1:
 			case 3:
@@ -3382,17 +3386,17 @@ void TEnemyZukan::getUpdateIndex(int& id, bool flag)
 		return;
 	}
 
-	if (mMaxSelectZukan <= mMaxSelect * 3) {
-		id = mIndexPaneList[_90]->getListIndex();
+	if (mMaxSelectZukan <= mNumActiveRows * 3) {
+		id = mIndexPaneList[mCurrMinActiveRow]->getListIndex();
 		return;
 	}
 
-	bool flag2                     = false;
-	mIndexPaneList[_90]->mSizeType = 0;
-	bool flag3                     = id != mIndexPaneList[_90]->getListIndex();
-	int count                      = 0;
-	for (int i = 0; i < mMaxSelect; i++) {
-		if (mIndexPaneList[_90]->getListIndex() == id) {
+	bool flag2                                   = false;
+	mIndexPaneList[mCurrMinActiveRow]->mSizeType = 0;
+	bool flag3                                   = id != mIndexPaneList[mCurrMinActiveRow]->getListIndex();
+	int count                                    = 0;
+	for (int i = 0; i < mNumActiveRows; i++) {
+		if (mIndexPaneList[mCurrMinActiveRow]->getListIndex() == id) {
 			count++;
 		}
 	}
@@ -3401,11 +3405,11 @@ void TEnemyZukan::getUpdateIndex(int& id, bool flag)
 		flag2 = true;
 		id++;
 	} else {
-		TIndexPane* pane = mIndexPaneList[_90];
+		TIndexPane* pane = mIndexPaneList[mCurrMinActiveRow];
 		switch (pane->mSizeType) {
 		case 2:
 			if (flag3) {
-				mIndexPaneList[_90]->mSizeType = 1;
+				mIndexPaneList[mCurrMinActiveRow]->mSizeType = 1;
 			} else {
 				JUT_PANICLINE(2921, nullptr);
 			}
@@ -3431,15 +3435,15 @@ void TEnemyZukan::getUpdateIndex(int& id, bool flag)
 			if (flag3) {
 				pane->mSizeType = 2;
 				if (mIsPreDebt) {
-					mIndexPaneList[_90]->setIndex(id);
+					mIndexPaneList[mCurrMinActiveRow]->setIndex(id);
 				} else {
-					setShortenIndex(_90, id, flag);
+					setShortenIndex(mCurrMinActiveRow, id, flag);
 				}
 			} else {
 				flag2 = true;
 				id++;
 			}
-			mIndexPaneList[_90]->mSizeType = 1;
+			mIndexPaneList[mCurrMinActiveRow]->mSizeType = 1;
 		}
 	}
 
@@ -3454,14 +3458,14 @@ void TEnemyZukan::getUpdateIndex(int& id, bool flag)
 				test = mViewablePanelIDList[test];
 			}
 			if (mIsBigIconList[test]) {
-				mIndexPaneList[_90]->mSizeType = 2;
+				mIndexPaneList[mCurrMinActiveRow]->mSizeType = 2;
 			}
 		}
 	}
 	if (id > idmax) {
 		id = idmax;
 	}
-	mIndexPaneList[_90]->setIndex(id);
+	mIndexPaneList[mCurrMinActiveRow]->setIndex(id);
 
 	/*
 	stwu     r1, -0x30(r1)
@@ -4299,7 +4303,7 @@ bool TEnemyZukan::isNewSupply(int index, bool flag)
  */
 bool TEnemyZukan::isPanelExist()
 {
-	int id = mIndexPaneList[mCurrentSelect]->getIndex();
+	int id = mIndexPaneList[mCurrActiveRowSel]->getIndex();
 	if (id < 0)
 		return false;
 
@@ -4594,7 +4598,7 @@ bool TItemZukan::doUpdate()
  */
 void TItemZukan::demoSet()
 {
-	if (mDemoScrollTargetRow != mIndexPaneList[mCurrentSelect]->getIndex()) {
+	if (mDemoScrollTargetRow != mIndexPaneList[mCurrActiveRowSel]->getIndex()) {
 		mIndexGroup->downIndex();
 	} else {
 		if (mWindow->mState == TZukanWindow::STATE_Inactive) {
@@ -4620,7 +4624,7 @@ void TItemZukan::setShortenIndex(int paneID, int index, bool flag)
 	if (mCanScroll && (bool)_3B4 == 1) {
 		if (flag) {
 			int id2 = paneID - 1;
-			if (id2 > mMaxSelect) {
+			if (id2 > mNumActiveRows) {
 				id2 = 0;
 			}
 			pane = mIndexPaneList[id2];
@@ -4628,7 +4632,7 @@ void TItemZukan::setShortenIndex(int paneID, int index, bool flag)
 			int id2 = paneID + 1;
 			id      = 3;
 			if (id2 > 0) {
-				id2 = mMaxSelect - 1;
+				id2 = mNumActiveRows - 1;
 			}
 			pane = mIndexPaneList[id2];
 		}
@@ -4681,7 +4685,7 @@ void TItemZukan::setShortenIndex(int paneID, int index, bool flag)
 	}
 
 	if (active) {
-		for (int i = 0; i < mMaxSelect; i++) {
+		for (int i = 0; i < mNumActiveRows; i++) {
 			if (mIndexPaneList[i]) {
 				for (int j = 0; j < 3; j++) {
 					TIconInfo* icon    = mIndexPaneList[i]->mIconInfos[j];
@@ -5042,7 +5046,7 @@ void TItemZukan::doUpdateOut()
 {
 	TZukanBase::doUpdateOut();
 	if (mCanComplete) {
-		for (int i = 0; i < mMaxSelect; i++) {
+		for (int i = 0; i < mNumActiveRows; i++) {
 			f32 alpha = (f32)mColorAnm->mColor.a / 255.0f;
 			if (alpha < 0.0f) {
 				alpha = 0.0f;
@@ -5479,7 +5483,7 @@ void TItemZukan::doCreate(JKRArchive* arc)
 		}
 	}
 
-	if (mIsPreDebt && mMaxSelectZukan <= (mMaxSelect - 1) * 3) {
+	if (mIsPreDebt && mMaxSelectZukan <= (mNumActiveRows - 1) * 3) {
 		mCanScroll = false;
 	}
 
@@ -5699,12 +5703,12 @@ void TItemZukan::doCreate(JKRArchive* arc)
 
 	f32 xoffs = 0.0f;
 	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < mMaxSelect; j++) {
+		for (int j = 0; j < mNumActiveRows; j++) {
 			TIndexPane* idpane = mIndexPaneList[j];
 			J2DPane* pane      = idpane->mPane;
-			pane->mOffset.y    = idpane->_1C + yoffs;
+			pane->mOffset.y    = idpane->mYOffset + yoffs;
 			pane->calcMtx();
-			mIndexPaneList[j]->_1C = mIndexPaneList[j]->mPane->mOffset.y;
+			mIndexPaneList[j]->mYOffset = mIndexPaneList[j]->mPane->mOffset.y;
 		}
 		updateIndex(false);
 		TIndexGroup* grp   = mIndexGroup;
@@ -5747,12 +5751,12 @@ void TItemZukan::doCreate(JKRArchive* arc)
 
 		if (backupindex > 3) {
 			for (int i = 0; i < backupindex / 3; i++) {
-				for (int j = 0; j < mMaxSelect; j++) {
+				for (int j = 0; j < mNumActiveRows; j++) {
 					TIndexPane* idpane = mIndexPaneList[j];
 					J2DPane* pane      = idpane->mPane;
-					pane->mOffset.y    = idpane->_1C - yoffs;
+					pane->mOffset.y    = idpane->mYOffset - yoffs;
 					pane->calcMtx();
-					mIndexPaneList[j]->_1C = mIndexPaneList[j]->mPane->mOffset.y;
+					mIndexPaneList[j]->mYOffset = mIndexPaneList[j]->mPane->mOffset.y;
 				}
 				updateIndex(true);
 				TIndexGroup* grp   = mIndexGroup;
@@ -5765,7 +5769,7 @@ void TItemZukan::doCreate(JKRArchive* arc)
 		}
 	}
 
-	mCurrIndex = mIndexPaneList[mCurrentSelect]->getIndex();
+	mCurrIndex = mIndexPaneList[mCurrActiveRowSel]->getIndex();
 	if (mCurrIndex >= 0) {
 		J2DPane* pane = mPaneMessageDemo;
 		u64 tag       = getXMsgID(mCurrIndex);
@@ -5805,10 +5809,9 @@ void TItemZukan::doDemoDraw(Graphics& gfx)
 	mPaneMenu->setAlpha(255);
 	gfx.mOrthoGraph.setPort();
 
-	GXSetScissor(mPanelListBounds.i.x, mPanelListBounds.i.y, mPanelListBounds.f.x - mPanelListBounds.i.x,
-	             mPanelListBounds.f.y - mPanelListBounds.i.y);
+	GXSetScissor(mPanelListBounds.i.x, mPanelListBounds.i.y, mPanelListBounds.getWidth(), mPanelListBounds.getHeight());
 
-	for (int i = 0; i < mMaxSelect; i++) {
+	for (int i = 0; i < mNumActiveRows; i++) {
 		for (int j = 0; j < 3; j++) {
 			TIconInfo* icon = mIndexPaneList[i]->mIconInfos[j];
 			if (mSelection == icon->mCategoryID && icon->mPane->isVisible()) {
@@ -5850,7 +5853,7 @@ void TItemZukan::doDemoDraw(Graphics& gfx)
 		mPaneNew1->setBlack(color);
 		mIconScreen->draw(gfx, *graf);
 
-		for (int i = 0; i < mMaxSelect; i++) {
+		for (int i = 0; i < mNumActiveRows; i++) {
 			if (mIndexPaneList[i]->mPane->isVisible()) {
 				for (int j = 0; j < 3; j++) {
 					TIconInfo* icon = mIndexPaneList[i]->mIconInfos[j];
@@ -6391,7 +6394,7 @@ lbl_8037AC74:
  */
 void TItemZukan::setDetail()
 {
-	int id = mIndexPaneList[mCurrentSelect]->getIndex();
+	int id = mIndexPaneList[mCurrActiveRowSel]->getIndex();
 	if (id < 0) {
 		mIsCurrentSelUnlocked = false;
 		mValueCounter->setBlind(true);
@@ -6427,7 +6430,7 @@ void TItemZukan::setDetail()
 bool TItemZukan::isComplete()
 {
 	if (mCanComplete) {
-		int id = mIndexPaneList[mCurrentSelect]->mIconInfos[mRightOffset]->mCategoryID;
+		int id = mIndexPaneList[mCurrActiveRowSel]->mIconInfos[mRightOffset]->mCategoryID;
 		if (id < 0)
 			return false;
 
@@ -6566,7 +6569,7 @@ bool TItemZukan::isNewSupply(int id, bool flag)
  */
 bool TItemZukan::isPanelExist()
 {
-	int id = mIndexPaneList[mCurrentSelect]->getIndex();
+	int id = mIndexPaneList[mCurrActiveRowSel]->getIndex();
 	if (id < 0) {
 		return false;
 	}

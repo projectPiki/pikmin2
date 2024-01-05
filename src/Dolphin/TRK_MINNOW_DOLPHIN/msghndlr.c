@@ -207,7 +207,7 @@ DSError TRKDoReadMemory(MessageBuffer* buffer)
 	}
 
 	tempLength = length;
-	
+
 	if (options & DSMSGMEMORY_Space_data) {
 		result = TRKTargetAccessARAM(buf, start, &tempLength, TRUE);
 	} else {

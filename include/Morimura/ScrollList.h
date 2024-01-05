@@ -21,22 +21,31 @@ struct TIndexGroup {
 	inline void reset()
 	{
 		mScrollOffset = 0.0f;
-		mStateID      = 0;
+		mStateID      = IDGroup_Idle;
 	}
+
+	enum StateID {
+		IDGroup_Idle = 0,
+		IDGroup_Down = 1,
+		IDGroup_Up   = 2,
+	};
+
+	inline bool isActive() const { return mStateID == IDGroup_Idle; }
+	inline bool isState(u8 state) const { return mStateID == state; }
 
 	inline f32 getHeight() { return mHeight; }
 
-	f32 mMaxRollSpeed;        // _00
-	f32 mSpeedSlowdownFactor; // _04
-	f32 mRollSpeedMod;        // _08
-	f32 mSpeedSpeedupFactor;  // _0C
-	f32 mInitialRollSpeed;    // _10
-	f32 mScrollOffset;        // _14
-	f32 mHeight;              // _18
-	f32 mRollSpeed;           // _1C
-	int mStateID;             // _20
-	u8 _24;                   // _24
-	f32 mMoveTimer;           // _28
+	f32 mMaxRollSpeed;        // _00, maximum scroll speed when holding up/down
+	f32 mSpeedSlowdownFactor; // _04, rate of deceleration near end of movement
+	f32 mRollSpeedMod;        // _08, base speed modifier
+	f32 mSpeedSpeedupFactor;  // _0C, base rate of acceleration
+	f32 mInitialRollSpeed;    // _10, starting vertical speed when input is entered
+	f32 mScrollOffset;        // _14, distance from current position to goal position
+	f32 mHeight;              // _18, vertical distance between each row
+	f32 mRollSpeed;           // _1C, current vertical movement speed
+	int mStateID;             // _20, see StateID enum
+	bool mIsActiveSpeedUp;    // _24, enabled when moving while input is still held
+	f32 mMoveDirection;       // _28, 1.0f when moving up, -1.0f when moving down
 	f32 mOffsetDifference;    // _2C
 };
 
@@ -66,10 +75,10 @@ struct TIndexPane {
 		mPane2        = nullptr;
 		mSizeType     = 0;
 		mIconCount    = 0;
-		_18           = 0.0f;
+		mPaneSize     = 0.0f;
 		mIconInfos    = nullptr;
 		mOwner        = owner;
-		_1C           = mPane->mOffset.y;
+		mYOffset      = mPane->mOffset.y;
 	}
 
 	void setIndex(int index);
@@ -80,9 +89,9 @@ struct TIndexPane {
 
 	void doIconOffsetY();
 
-	inline void setPaneOffset(f32 offset) { mPane->setOffsetY(_1C + offset); }
+	inline void setPaneOffset(f32 offset) { mPane->setOffsetY(mYOffset + offset); }
 
-	inline f32 getPaneY() const { return _1C; } // may need to rename later
+	inline f32 getPaneYOffset() const { return mYOffset; }
 
 	int mIndex;             // _00
 	J2DPane* mPane;         // _04
@@ -90,8 +99,8 @@ struct TIndexPane {
 	int mSizeType;          // _0C
 	int mIconCount;         // _10, Number of entries per row; 3 in Piklopedia's case
 	int mMaxTextureId;      // _14
-	f32 _18;                // _18
-	f32 _1C;                // _1C
+	f32 mPaneSize;          // _18, 0.0f for small icons, anything else for big
+	f32 mYOffset;           // _1C
 	TIconInfo** mIconInfos; // _20
 	TScrollList* mOwner;    // _24
 };
@@ -135,17 +144,17 @@ struct TScrollList : public TTestBase {
 	Controller* mController;     // _80
 	TIndexGroup* mIndexGroup;    // _84
 	TIndexPane** mIndexPaneList; // _88
-	bool mDoEnableBigIcon;       // _8C
-	s16 mMaxSelect;              // _8E
-	int _90;                     // _90
-	int mCurrentSelect;          // _94
-	int _98;                     // _98
-	int mRowSize;                // _9C
-	f32 _A0;                     // _A0
-	f32 _A4;                     // _A4
-	f32 mYOffset;                // _A8
-	f32 _AC;                     // _AC
-	u8 _B0;                      // _B0
+	bool mDoEnableBigIcon;       // _8C, used for bosses in piklopedia
+	s16 mNumActiveRows;          // _8E, number of active panes at a given time
+	int mCurrMinActiveRow;       // _90, out of the currently active panes, this is the index of the upper-most one
+	int mCurrActiveRowSel;       // _94, out of the currently active panes, this is the index of the selected one
+	int mCurrMaxActiveRow;       // _98, out of the currently active panes, this is the index of the bottom-most one
+	int mRowSize;                // _9C, number of entries per row
+	f32 mMinSelYOffset;          // _A0, Y position of top of list
+	f32 mMaxSelYOffset;          // _A4, Y position of bottom of list
+	f32 mSelectionYOffset;       // _A8, Y position of the selected row
+	f32 mCursorSelectionYOffset; // _AC, Y position of detection for what is currently selected (mSelectionYOffset with an offset)
+	u8 _B0;                      // _B0, enabled for hiScore2D, but doesn't do anything?
 
 	static int mRightOffset;
 	static bool mForceResetParm;

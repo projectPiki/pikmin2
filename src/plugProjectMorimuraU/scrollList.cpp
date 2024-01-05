@@ -15,8 +15,8 @@ TIndexGroup::TIndexGroup()
 	mHeight              = 0.0f;
 	mRollSpeed           = 0.0f;
 	mStateID             = 0;
-	_24                  = 0;
-	mMoveTimer           = 0.0f;
+	mIsActiveSpeedUp     = false;
+	mMoveDirection       = 0.0f;
 	mMaxRollSpeed        = 8.0f;
 	mSpeedSlowdownFactor = 0.9f;
 	mRollSpeedMod        = 1.1f;
@@ -31,13 +31,13 @@ TIndexGroup::TIndexGroup()
 bool TIndexGroup::upIndex()
 {
 	bool ret = false;
-	if (mStateID == 0) {
-		if (mMoveTimer <= 0.0f) {
+	if (mStateID == IDGroup_Idle) {
+		if (mMoveDirection <= 0.0f) {
 			mRollSpeed = mInitialRollSpeed;
 		}
-		mMoveTimer = 1.0f;
-		mStateID   = 2;
-		ret        = true;
+		mMoveDirection = 1.0f;
+		mStateID       = IDGroup_Up;
+		ret            = true;
 	}
 	rollSpUp();
 	return ret;
@@ -50,13 +50,13 @@ bool TIndexGroup::upIndex()
 bool TIndexGroup::downIndex()
 {
 	bool ret = false;
-	if (mStateID == 0) {
-		if (mMoveTimer >= 0.0f) {
+	if (mStateID == IDGroup_Idle) {
+		if (mMoveDirection >= 0.0f) {
 			mRollSpeed = mInitialRollSpeed;
 		}
-		mMoveTimer = -1.0f;
-		mStateID   = 1;
-		ret        = true;
+		mMoveDirection = -1.0f;
+		mStateID       = IDGroup_Down;
+		ret            = true;
 	}
 	rollSpUp();
 	return ret;
@@ -68,7 +68,7 @@ bool TIndexGroup::downIndex()
  */
 void TIndexGroup::speedUpdate(bool check)
 {
-	if (mRollSpeed > mInitialRollSpeed && !_24) {
+	if (mRollSpeed > mInitialRollSpeed && !mIsActiveSpeedUp) {
 		if (FABS(mScrollOffset) < 0.7f * mHeight) {
 			mRollSpeed *= mSpeedSpeedupFactor;
 		} else {
@@ -83,9 +83,9 @@ void TIndexGroup::speedUpdate(bool check)
  */
 bool TIndexGroup::offsetUpdate(f32 offset)
 {
-	if (mStateID != 0) {
+	if (mStateID != IDGroup_Idle) {
 		f32 val;
-		if (mStateID == 2) {
+		if (mStateID == IDGroup_Up) {
 			val = mRollSpeed;
 		} else {
 			val = -mRollSpeed;
@@ -117,7 +117,7 @@ bool TIndexGroup::offsetUpdate(f32 offset)
 void TIndexGroup::rollSpUp()
 {
 	mRollSpeed *= mRollSpeedMod;
-	_24 = 1;
+	mIsActiveSpeedUp = 1;
 	if (mRollSpeed > mMaxRollSpeed) {
 		mRollSpeed = mMaxRollSpeed;
 	}
@@ -131,7 +131,7 @@ void TIndexPane::update()
 {
 	if (mIconInfos) {
 		f32 calc = 1.0f;
-		if (_18 != 0.0f) {
+		if (mPaneSize != 0.0f) {
 			calc = 2.0f;
 		}
 		for (int i = 0; i < mIconCount; i++) {
@@ -184,20 +184,20 @@ void TIndexPane::setIndex(int index)
 		}
 		switch (mSizeType) {
 		case 0:
-			_18 = 0.0f;
+			mPaneSize = 0.0f;
 			break;
 		case 3:
 			mIconInfos[0]->setInfo(-1, nullptr);
 			mIconInfos[2]->setInfo(-1, nullptr);
-			_18 = -20.0f;
+			mPaneSize = -20.0f;
 			break;
 		case 2:
 			mIconInfos[0]->setInfo(-1, nullptr);
 			mIconInfos[2]->setInfo(-1, nullptr);
-			_18 = 20.0f;
+			mPaneSize = 20.0f;
 			break;
 		case 1:
-			_18 = 0.01f;
+			mPaneSize = 0.01f;
 			break;
 		}
 		doIconOffsetY();
@@ -242,13 +242,13 @@ void TIndexPane::doIconOffsetY()
 {
 	if (mIconInfos) {
 		J2DPane* pane = mIconInfos[1]->mPane;
-		pane->setOffset(pane->mOffset.x, _18 + mIconInfos[0]->mPane->mOffset.y);
+		pane->setOffset(pane->mOffset.x, mPaneSize + mIconInfos[0]->mPane->mOffset.y);
 		pane->updateScale(1.0f);
-		if (_18 != 0.0f) {
+		if (mPaneSize != 0.0f) {
 			pane->updateScale(2.0f);
 		}
 		if (mIconInfos[1]->mPic) {
-			mIconInfos[1]->mPic->setOffset(mIconInfos[1]->mPic->mOffset.x, _18 - 13.5f);
+			mIconInfos[1]->mPic->setOffset(mIconInfos[1]->mPic->mOffset.x, mPaneSize - 13.5f);
 		}
 	}
 }
@@ -385,22 +385,22 @@ void TListScreen::create(char const* filename, u32 flag)
 TScrollList::TScrollList(char* name)
     : TTestBase(name)
 {
-	mMainScreen      = nullptr;
-	mController      = nullptr;
-	mIndexGroup      = nullptr;
-	mIndexPaneList   = nullptr;
-	mDoEnableBigIcon = false;
-	mMaxSelect       = 0;
-	_90              = 0;
-	mCurrentSelect   = 0;
-	_98              = 0;
-	mRowSize         = 1;
-	_A0              = 0.0f;
-	_A4              = 0.0f;
-	mYOffset         = 0.0f;
-	_AC              = 0.0f;
-	_B0              = 0.0f;
-	mRightOffset     = 0;
+	mMainScreen             = nullptr;
+	mController             = nullptr;
+	mIndexGroup             = nullptr;
+	mIndexPaneList          = nullptr;
+	mDoEnableBigIcon        = false;
+	mNumActiveRows          = 0;
+	mCurrMinActiveRow       = 0;
+	mCurrActiveRowSel       = 0;
+	mCurrMaxActiveRow       = 0;
+	mRowSize                = 1;
+	mMinSelYOffset          = 0.0f;
+	mMaxSelYOffset          = 0.0f;
+	mSelectionYOffset       = 0.0f;
+	mCursorSelectionYOffset = 0.0f;
+	_B0                     = false;
+	mRightOffset            = 0;
 }
 
 /**
@@ -409,26 +409,26 @@ TScrollList::TScrollList(char* name)
  */
 void TScrollList::updateIndex(bool check)
 {
+	// find the index of a pane within the bounds of the current selection position
 	int idx = -1;
-	for (int i = 0; i < mMaxSelect; i++) {
-		// TIndexPane* indexPane = mIndexPaneList[i];
-		J2DPane* pane          = mIndexPaneList[i]->mPane;
-		mIndexPaneList[i]->_1C = pane->mOffset.y;
-		if (mIndexPaneList[i]->_1C < _AC && mIndexPaneList[i]->_1C > mYOffset) {
+	for (int i = 0; i < mNumActiveRows; i++) {
+		mIndexPaneList[i]->mYOffset = mIndexPaneList[i]->mPane->mOffset.y;
+		if (mIndexPaneList[i]->mYOffset < mCursorSelectionYOffset && mIndexPaneList[i]->mYOffset > mSelectionYOffset) {
 			idx = i;
 		}
 	}
 
 	if (mDoEnableBigIcon) {
 		if (idx < 0) {
-			for (int i = 0; i < mMaxSelect; i++) {
-				if (mIndexPaneList[i]->_1C < _AC + 20.0f && mIndexPaneList[i]->_1C > mYOffset - 20.0f) {
+			for (int i = 0; i < mNumActiveRows; i++) {
+				if (mIndexPaneList[i]->mYOffset < mCursorSelectionYOffset + 20.0f
+				    && mIndexPaneList[i]->mYOffset > mSelectionYOffset - 20.0f) {
 					idx = i;
 				}
 			}
 		}
 		P2ASSERTLINE(517, idx >= 0);
-		mCurrentSelect = idx;
+		mCurrActiveRowSel = idx;
 	}
 
 	getIdMax();
@@ -439,61 +439,59 @@ void TScrollList::updateIndex(bool check)
 			check2 = true;
 		}
 		if (check) {
-			mIndexPaneList[_90]->_1C = mIndexPaneList[_98]->mPane->mOffset.y + mIndexGroup->getHeight();
-			if (mIndexPaneList[_90]->_1C >= _A4) {
+			mIndexPaneList[mCurrMinActiveRow]->mYOffset = mIndexPaneList[mCurrMaxActiveRow]->mPane->mOffset.y + mIndexGroup->getHeight();
+			if (mIndexPaneList[mCurrMinActiveRow]->mYOffset >= mMaxSelYOffset) {
 				check2 = true;
 			}
 
-			mIndexPaneList[_90]->setPaneOffset(0.0f);
+			mIndexPaneList[mCurrMinActiveRow]->setPaneOffset(0.0f);
 
-			int updateIdx = mIndexPaneList[_98]->mIndex;
+			int updateIdx = mIndexPaneList[mCurrMaxActiveRow]->mIndex;
 			getUpdateIndex(updateIdx, check);
-			setShortenIndex(_90, updateIdx, check);
-			setPaneCharacter(_90);
-			_98 = _90;
-			_90++;
-			if (_90 >= mMaxSelect) {
-				_90 = 0;
+			setShortenIndex(mCurrMinActiveRow, updateIdx, check);
+			setPaneCharacter(mCurrMinActiveRow);
+			mCurrMaxActiveRow = mCurrMinActiveRow;
+			mCurrMinActiveRow++;
+			if (mCurrMinActiveRow >= mNumActiveRows) {
+				mCurrMinActiveRow = 0;
 			}
 
 			if (!mDoEnableBigIcon) {
-				mCurrentSelect++;
-				if (mCurrentSelect >= mMaxSelect) {
-					mCurrentSelect = 0;
+				mCurrActiveRowSel++;
+				if (mCurrActiveRowSel >= mNumActiveRows) {
+					mCurrActiveRowSel = 0;
 				}
 			}
-			if (!check2) {
-				continue;
+			if (check2) {
+				break;
 			}
-			break;
 		} else {
-			mIndexPaneList[_98]->_1C = mIndexPaneList[_90]->mPane->mOffset.y - mIndexGroup->getHeight();
-			if (mIndexPaneList[_90]->_1C - 1.25 * mIndexGroup->getHeight() <= _A0) {
+			mIndexPaneList[mCurrMaxActiveRow]->mYOffset = mIndexPaneList[mCurrMinActiveRow]->mPane->mOffset.y - mIndexGroup->getHeight();
+			if (mIndexPaneList[mCurrMinActiveRow]->mYOffset - 1.25f * mIndexGroup->getHeight() <= mMinSelYOffset) {
 				check2 = true;
 			}
 
-			mIndexPaneList[_98]->setPaneOffset(0.0f);
+			mIndexPaneList[mCurrMaxActiveRow]->setPaneOffset(0.0f);
 
-			int updateIdx = mIndexPaneList[_90]->mIndex;
+			int updateIdx = mIndexPaneList[mCurrMinActiveRow]->mIndex;
 			getUpdateIndex(updateIdx, check);
-			setShortenIndex(_98, updateIdx, check);
-			setPaneCharacter(_98);
-			_90 = _98;
-			_98--;
-			if (_98 < 0) {
-				_98 = mMaxSelect - 1;
+			setShortenIndex(mCurrMaxActiveRow, updateIdx, check);
+			setPaneCharacter(mCurrMaxActiveRow);
+			mCurrMinActiveRow = mCurrMaxActiveRow;
+			mCurrMaxActiveRow--;
+			if (mCurrMaxActiveRow < 0) {
+				mCurrMaxActiveRow = mNumActiveRows - 1;
 			}
 
 			if (!mDoEnableBigIcon) {
-				mCurrentSelect--;
-				if (mCurrentSelect < 0) {
-					mCurrentSelect = mMaxSelect - 1;
+				mCurrActiveRowSel--;
+				if (mCurrActiveRowSel < 0) {
+					mCurrActiveRowSel = mNumActiveRows - 1;
 				}
 			}
-			if (!check2) {
-				continue;
+			if (check2) {
+				break;
 			}
-			break;
 		}
 	}
 
@@ -814,13 +812,13 @@ void TScrollList::getUpdateIndex(int& id, bool flag)
 		if (id >= getIdMax()) {
 			id = 0;
 		}
-		mIndexPaneList[_90]->setIndex(id);
+		mIndexPaneList[mCurrMinActiveRow]->setIndex(id);
 	} else {
 		id = id - mRowSize;
 		if (id < 0) {
 			id = getIdMax() - mRowSize;
 		}
-		mIndexPaneList[_98]->setIndex(id);
+		mIndexPaneList[mCurrMaxActiveRow]->setIndex(id);
 	}
 }
 
@@ -830,23 +828,23 @@ void TScrollList::getUpdateIndex(int& id, bool flag)
  */
 bool TScrollList::updateList()
 {
-	if (mIndexGroup->mStateID == 0) {
+	if (mIndexGroup->isActive() != false) {
 		mIndexGroup->mRollSpeed = mIndexGroup->mInitialRollSpeed;
 	}
 
 	mIndexGroup->speedUpdate(true);
 
 	f32 val               = 1.0f;
-	TIndexPane* indexPane = mIndexPaneList[mCurrentSelect];
+	TIndexPane* indexPane = mIndexPaneList[mCurrActiveRowSel];
 	if (indexPane->mSizeType != 0) {
 		val += 0.5f;
 	}
 
 	TIndexGroup* group = mIndexGroup;
 
-	if (group->mStateID == 1) {
-		int idx = mCurrentSelect + 1;
-		if (idx >= mMaxSelect) {
+	if (mIndexGroup->isState(1) != false) {
+		int idx = mCurrActiveRowSel + 1;
+		if (idx >= mNumActiveRows) {
 			idx = 0;
 		}
 
@@ -856,7 +854,7 @@ bool TScrollList::updateList()
 			if (indexPane->mIndex == nextPane->mIndex) {
 				idx++;
 				val -= 0.5f;
-				if (idx >= mMaxSelect) {
+				if (idx >= mNumActiveRows) {
 					idx = 0;
 				}
 
@@ -865,10 +863,10 @@ bool TScrollList::updateList()
 				}
 			}
 		}
-	} else if (group->mStateID != 0) {
-		int idx = mCurrentSelect - 1;
+	} else if (mIndexGroup->mStateID != TIndexGroup::IDGroup_Idle) {
+		int idx = mCurrActiveRowSel - 1;
 		if (idx < 0) {
-			idx = mMaxSelect - 1;
+			idx = mNumActiveRows - 1;
 		}
 
 		TIndexPane* prevPane = mIndexPaneList[idx];
@@ -878,7 +876,7 @@ bool TScrollList::updateList()
 				val -= 0.5f;
 				idx--;
 				if (idx < 0) {
-					idx = mMaxSelect - 1;
+					idx = mNumActiveRows - 1;
 				}
 
 				if (mIndexPaneList[idx]->mSizeType != 0) {
@@ -894,32 +892,32 @@ bool TScrollList::updateList()
 	bool result = group->offsetUpdate(val);
 
 	f32 val2 = mIndexGroup->mScrollOffset;
-	for (int i = 0; i < mMaxSelect; i++) {
+	for (int i = 0; i < mNumActiveRows; i++) {
 		TIndexPane* pane = mIndexPaneList[i];
-		pane->mPane->setOffsetY(pane->_1C + val2);
+		pane->mPane->setOffsetY(pane->mYOffset + val2);
 		changeTextTevBlock(i);
 	}
 
 	if (result) {
-		if (mIndexGroup->_24) {
+		if (mIndexGroup->mIsActiveSpeedUp) {
 			val2 = mIndexGroup->mOffsetDifference;
 		} else {
 			val2 = 0.0f;
 		}
 
 		changeIndex();
-	} else if (mIndexGroup->mStateID == 0) {
+	} else if (mIndexGroup->isActive() != false) {
 		f32 val3 = -0.5f * mIndexGroup->mScrollOffset;
 		val2     = mIndexGroup->mScrollOffset + val3;
 	}
 
 	mIndexGroup->mScrollOffset = val2;
-	for (int i = 0; i < mMaxSelect; i++) {
+	for (int i = 0; i < mNumActiveRows; i++) {
 		TIndexPane* pane = mIndexPaneList[i];
-		pane->mPane->setOffsetY(pane->_1C + val2);
+		pane->mPane->setOffsetY(pane->mYOffset + val2);
 	}
 
-	mIndexGroup->_24 = 0;
+	mIndexGroup->mIsActiveSpeedUp = 0;
 
 	return result;
 
@@ -1207,7 +1205,7 @@ lbl_803A3598:
  */
 void TScrollList::changeIndex()
 {
-	updateIndex(mIndexGroup->mStateID == 1);
+	updateIndex(mIndexGroup->isState(1));
 	mIndexGroup->reset();
 }
 

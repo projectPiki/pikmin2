@@ -404,7 +404,7 @@ THiScore::THiScore()
 	mColorBlock[0]     = nullptr;
 	mColorBlock[1]     = nullptr;
 	_1F8               = 0.0f;
-	mMaxSelect         = 5;
+	mNumActiveRows     = 5; // 5 high score images active at once
 
 	for (int i = 0; i < 6; i++) {
 		mScoreCounts[i]   = 0;
@@ -450,8 +450,8 @@ void THiScore::doCreate(JKRArchive* arc)
 	}
 
 	if (!mIsAllTreasures) {
-		mScaleMgrList = new og::Screen::ScaleMgr*[mMaxSelect];
-		for (int i = 0; i < mMaxSelect; i++) {
+		mScaleMgrList = new og::Screen::ScaleMgr*[mNumActiveRows];
+		for (int i = 0; i < mNumActiveRows; i++) {
 			mScaleMgrList[i] = new og::Screen::ScaleMgr;
 		}
 	}
@@ -515,25 +515,25 @@ void THiScore::doCreate(JKRArchive* arc)
 		P2ASSERTLINE(384, mSelIconCorners[3]);
 	}
 
-	_B0            = 1;
-	_90            = 0;
-	mCurrentSelect = 2;
-	_98            = mMaxSelect - 1;
+	_B0               = 1;
+	mCurrMinActiveRow = 0;
+	mCurrActiveRowSel = 2; // selection will be the minimum currently visible + 2
+	mCurrMaxActiveRow = mNumActiveRows - 1;
 
 	u64 tags1[5] = { 'Nmenu00', 'Nmenu01', 'Nmenu02', 'Nmenu03', 'Nmenu04' };
 	u64 tags2[5] = { 'Tmenu00', 'Tmenu01', 'Tmenu02', 'Tmenu03', 'Tmenu04' };
 
-	J2DPane* pane = screen->search(tags1[_90]);
+	J2DPane* pane = screen->search(tags1[mCurrMinActiveRow]);
 	P2ASSERTLINE(401, pane);
-	_A0 = pane->mOffset.y;
+	mMinSelYOffset = pane->mOffset.y;
 
-	pane = screen->search(tags1[_98]);
+	pane = screen->search(tags1[mCurrMaxActiveRow]);
 	P2ASSERTLINE(405, pane);
-	_A4 = pane->mOffset.y;
+	mMaxSelYOffset = pane->mOffset.y;
 
-	mIndexPaneList = new TIndexPane*[mMaxSelect];
+	mIndexPaneList = new TIndexPane*[mNumActiveRows];
 
-	for (int i = 0; i < mMaxSelect; i++) {
+	for (int i = 0; i < mNumActiveRows; i++) {
 		mIndexPaneList[i]         = new TIndexPane(nullptr, screen, tags1[i]);
 		mIndexPaneList[i]->mPane2 = screen->search(tags2[i]);
 
@@ -552,7 +552,7 @@ void THiScore::doCreate(JKRArchive* arc)
 	}
 
 	if (mIsAllTreasures) {
-		for (int i = 0; i < mMaxSelect; i++) {
+		for (int i = 0; i < mNumActiveRows; i++) {
 			J2DPane* cPane = mIndexPaneList[i]->mPane;
 			cPane->appendChild(cPane->getFirstChildPane()->getFirstChildPane());
 
@@ -623,15 +623,15 @@ void THiScore::doCreate(JKRArchive* arc)
 	f32 yoffs = mIndexGroup->mHeight;
 	for (int i = 0; i < 2; i++) {
 
-		for (int j = 0; j < mMaxSelect; j++) {
+		for (int j = 0; j < mNumActiveRows; j++) {
 			TIndexPane* IDPane = mIndexPaneList[j];
-			IDPane->mPane->setOffset(IDPane->mPane->mOffset.x, IDPane->_1C + yoffs);
-			mIndexPaneList[j]->_1C = mIndexPaneList[j]->mPane->mOffset.y;
+			IDPane->mPane->setOffset(IDPane->mPane->mOffset.x, IDPane->mYOffset + yoffs);
+			mIndexPaneList[j]->mYOffset = mIndexPaneList[j]->mPane->mOffset.y;
 		}
 		updateIndex(0);
 		TIndexGroup* grp   = mIndexGroup;
 		grp->mScrollOffset = 0.0f;
-		grp->mStateID      = 0;
+		grp->mStateID      = TIndexGroup::IDGroup_Idle;
 		changePaneInfo();
 	}
 
@@ -1821,7 +1821,7 @@ bool THiScore::doUpdate()
 		changePaneInfo();
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
 		if (mScaleMgrList) {
-			mScaleMgrList[mCurrentSelect]->up(0.1f, 20.0f, 0.5f, 0.0f);
+			mScaleMgrList[mCurrActiveRowSel]->up(0.1f, 20.0f, 0.5f, 0.0f);
 		}
 		for (int i = 0; i < 6; i++) {
 			mScaleCounter1[i]->forceScaleUp(true);
@@ -1895,17 +1895,17 @@ bool THiScore::doUpdate()
 	mHighScorePic->addOffsetY(mPictureOffsetY);
 
 	if (mScaleMgrList) {
-		for (int i = 0; i < mMaxSelect; i++) {
+		for (int i = 0; i < mNumActiveRows; i++) {
 			mIndexPaneList[i]->mPane->updateScale(mScaleMgrList[i]->calc());
 		}
 	} else {
-		for (int i = 0; i < mMaxSelect; i++) {
+		for (int i = 0; i < mNumActiveRows; i++) {
 			mIndexPaneList[i]->mPane->getFirstChildPane()->updateScale(1.0f, 2.0f);
 		}
 	}
 
 	if (mIsAllTreasures) {
-		for (int i = 0; i < mMaxSelect; i++) {
+		for (int i = 0; i < mNumActiveRows; i++) {
 			TIndexPane* pane = mIndexPaneList[i];
 			pane->mPane2->setOffset(pane->mPane->mOffset.x, 0.5f * -_1FC);
 		}
@@ -1918,10 +1918,10 @@ bool THiScore::doUpdate()
 		}
 		_19C          = _194 * sinf(mPaneAngle2) + 0.85f;
 		f32 test      = 0.0f;
-		J2DPane* pane = mIndexPaneList[mCurrentSelect]->mPane->getFirstChildPane();
+		J2DPane* pane = mIndexPaneList[mCurrActiveRowSel]->mPane->getFirstChildPane();
 		if (mIsAllTreasures) {
 			test = -_1FC * 0.5f;
-			pane = mIndexPaneList[mCurrentSelect]->mPane2;
+			pane = mIndexPaneList[mCurrActiveRowSel]->mPane2;
 		}
 		pane->setBasePosition(J2DPOS_Center);
 		for (int i = 0; i < 4; i++) {
@@ -2741,7 +2741,7 @@ void THiScore::paneInit()
 {
 	mHighScorePic->changeTexture(mPicTexture[0], 0);
 
-	J2DTextBox* pane = static_cast<J2DTextBox*>(mIndexPaneList[_90]->mPane2->getFirstChildPane());
+	J2DTextBox* pane = static_cast<J2DTextBox*>(mIndexPaneList[mCurrMinActiveRow]->mPane2->getFirstChildPane());
 	mTevBlock[0]     = new J2DTevBlock2;
 	copyTevBlock(mTevBlock[0], pane->getMaterial()->mTevBlock);
 
@@ -2757,11 +2757,11 @@ void THiScore::paneInit()
 	mColors[3].b = col->b;
 	mColors[3].a = col->a;
 
-	pane           = static_cast<J2DTextBox*>(mIndexPaneList[_90]->mPane2);
+	pane           = static_cast<J2DTextBox*>(mIndexPaneList[mCurrMinActiveRow]->mPane2);
 	mColorBlock[0] = new J2DColorBlock;
 	copyColorBlock(mColorBlock[0], &pane->getMaterial()->mColorBlock);
 
-	pane         = static_cast<J2DTextBox*>(mIndexPaneList[_98]->mPane2->getFirstChildPane());
+	pane         = static_cast<J2DTextBox*>(mIndexPaneList[mCurrMaxActiveRow]->mPane2->getFirstChildPane());
 	mTevBlock[1] = new J2DTevBlock2;
 	copyTevBlock(mTevBlock[1], pane->getMaterial()->mTevBlock);
 
@@ -2777,13 +2777,13 @@ void THiScore::paneInit()
 	mColors[1].b = col->b;
 	mColors[1].a = col->a;
 
-	pane           = static_cast<J2DTextBox*>(mIndexPaneList[_98]->mPane2);
+	pane           = static_cast<J2DTextBox*>(mIndexPaneList[mCurrMaxActiveRow]->mPane2);
 	mColorBlock[1] = new J2DColorBlock;
 	copyColorBlock(mColorBlock[1], &pane->getMaterial()->mColorBlock);
 
-	f32 y    = 20.0f;
-	mYOffset = mIndexPaneList[mCurrentSelect]->_1C - 10.0f;
-	_AC      = mYOffset + y;
+	f32 y                   = 20.0f;
+	mSelectionYOffset       = mIndexPaneList[mCurrActiveRowSel]->getPaneYOffset() - 10.0f;
+	mCursorSelectionYOffset = mSelectionYOffset + y;
 }
 
 /**
@@ -2819,7 +2819,7 @@ void THiScore::changePaneInfo()
 {
 	_1F8 = 0.0f;
 
-	int id = mIndexPaneList[mCurrentSelect]->getIndex();
+	int id = mIndexPaneList[mCurrActiveRowSel]->getIndex();
 
 	if (mIsAllTreasures || (mIsSection && mForceClear)) {
 		mHighScorePic->hide();
@@ -2837,7 +2837,7 @@ void THiScore::changePaneInfo()
 
 	// show the : when the current selection is play time only
 	bool isTime = false;
-	int id2     = mIndexPaneList[mCurrentSelect]->getIndex();
+	int id2     = mIndexPaneList[mCurrActiveRowSel]->getIndex();
 	if (id2 == 15) {
 		isTime = true;
 	}
@@ -2896,8 +2896,8 @@ void THiScore::changePaneInfo()
 	if (!mLoopDrum) {
 		mState = 0;
 		mStickAnimMgr->stickUpDown();
-		int id3 = mIndexPaneList[mCurrentSelect]->getIndex();
-		f32 y1  = mIndexPaneList[mCurrentSelect]->_1C;
+		int id3 = mIndexPaneList[mCurrActiveRowSel]->getIndex();
+		f32 y1  = mIndexPaneList[mCurrActiveRowSel]->getPaneYOffset();
 
 		if (id3 == 0) {
 			mState = 1;
@@ -2914,12 +2914,12 @@ void THiScore::changePaneInfo()
 			mErrorSoundCounter = 1;
 		}
 
-		for (int i = 0; i < mMaxSelect; i++) {
+		for (int i = 0; i < mNumActiveRows; i++) {
 			mIndexPaneList[i]->mPane->show();
 			mIndexPaneList[i]->mPane2->show();
 			if (mIndexPaneList[i]->getIndex() != id3) {
 				TIndexPane* pane = mIndexPaneList[i];
-				f32 y2           = pane->_1C;
+				f32 y2           = pane->getPaneYOffset();
 				pane->getIndex();
 				if (mIndexPaneList[i]->getIndex() > id3 && y1 > y2 || mIndexPaneList[i]->getIndex() < id3 && y1 < y2) {
 					mIndexPaneList[i]->mPane->hide();
@@ -3539,10 +3539,10 @@ int THiScore::getRecord(int type, int id)
 void THiScore::changeTextTevBlock(int p1)
 {
 	J2DTextBox* textbox  = static_cast<J2DTextBox*>(mIndexPaneList[p1]->mPane2->getFirstChildPane()); // r29
-	f32 val              = mIndexPaneList[p1]->_1C + mIndexGroup->mScrollOffset;
+	f32 val              = mIndexPaneList[p1]->getPaneYOffset() + mIndexGroup->mScrollOffset;
 	J2DTextBox* startBox = static_cast<J2DTextBox*>(mIndexPaneList[p1]->mPane2); // r28
 
-	if (mIndexGroup->mStateID == 0 && val < _AC && val > mYOffset) {
+	if (mIndexGroup->mStateID == TIndexGroup::IDGroup_Idle && val < mCursorSelectionYOffset && val > mSelectionYOffset) {
 		changeTevBlock(mTevBlock[0], textbox->getMaterial()->mTevBlock);
 		_1F8 += 0.1f;
 		if (_1F8 > TAU) {
@@ -3938,15 +3938,15 @@ void THiScore::updateLayout()
 	_1FC      = ydiff * 2.0f;
 
 	if (mIsAllTreasures) {
-		for (int i = 0; i < mMaxSelect; i++) {
+		for (int i = 0; i < mNumActiveRows; i++) {
 			TIndexPane* idpane = mIndexPaneList[i];
-			idpane->mPane->setOffsetY(idpane->_1C + (ydiff * mClearListHeightRate) * f32(i - mCurrentSelect));
-			idpane->_1C = idpane->mPane->mOffset.y;
+			idpane->mPane->setOffsetY(idpane->mYOffset + (ydiff * mClearListHeightRate) * f32(i - mCurrActiveRowSel));
+			idpane->mYOffset = idpane->mPane->mOffset.y;
 		}
 
-		ydiff = mIndexPaneList[0]->mPane->mOffset.y - mIndexPaneList[1]->mPane->mOffset.y;
-		_A0   = mIndexPaneList[_90]->mPane->mOffset.y;
-		_A4   = mIndexPaneList[_98]->mPane->mOffset.y;
+		ydiff          = mIndexPaneList[0]->mPane->mOffset.y - mIndexPaneList[1]->mPane->mOffset.y;
+		mMinSelYOffset = mIndexPaneList[mCurrMinActiveRow]->mPane->mOffset.y;
+		mMaxSelYOffset = mIndexPaneList[mCurrMaxActiveRow]->mPane->mOffset.y;
 	}
 	mIndexGroup->mHeight = ydiff;
 	/*

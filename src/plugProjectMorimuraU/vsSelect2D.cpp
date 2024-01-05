@@ -935,8 +935,8 @@ TVsSelect::TVsSelect()
     , mFaceChangeSpeed(60.0f)
     , mDoDebugScores(false)
 {
-	mMaxSelect = 5;
-	for (int i = 0; i < mMaxSelect; i++) {
+	mNumActiveRows = 5; // 5 course thumbnails are loaded at a time
+	for (int i = 0; i < mNumActiveRows; i++) {
 		mActiveCourseThumbs[i] = nullptr;
 		mPaneLevelWindows[i]   = nullptr;
 	}
@@ -1334,20 +1334,20 @@ void TVsSelect::doCreate(JKRArchive* arc)
 
 	changeSlotPage();
 
-	screen         = mListScreen->mScreenObj;
-	_90            = 0;
-	mCurrentSelect = 2;
-	_98            = mMaxSelect - 1;
+	screen            = mListScreen->mScreenObj;
+	mCurrMinActiveRow = 0;
+	mCurrActiveRowSel = 2;
+	mCurrMaxActiveRow = mNumActiveRows - 1;
 
 	u64 stageTags[5] = { 'Tmenu00', 'Tmenu01', 'Tmenu02', 'Tmenu03', 'Tmenu04' };
-	J2DPane* icon    = screen->search(stageTags[_90]);
+	J2DPane* icon    = screen->search(stageTags[mCurrMinActiveRow]);
 	P2ASSERTLINE(1227, icon);
-	_A0  = icon->mOffset.y;
-	icon = screen->search(stageTags[_98]);
+	mMinSelYOffset = icon->mOffset.y;
+	icon           = screen->search(stageTags[mCurrMaxActiveRow]);
 	P2ASSERTLINE(1231, icon);
-	_A4            = icon->mOffset.y;
-	mIndexPaneList = new TIndexPane*[mMaxSelect];
-	for (int i = 0; i < mMaxSelect; i++) {
+	mMaxSelYOffset = icon->mOffset.y;
+	mIndexPaneList = new TIndexPane*[mNumActiveRows];
+	for (int i = 0; i < mNumActiveRows; i++) {
 		mIndexPaneList[i] = new TIndexPane(this, screen, stageTags[i]);
 		mIndexPaneList[i]->mPane->setMsgID('0000_01');
 		mIndexPaneList[i]->setIndex(i);
@@ -1388,10 +1388,10 @@ void TVsSelect::doCreate(JKRArchive* arc)
 
 	int max = (mStageCount - something) + 2;
 	for (int i = 0; i < max; i++) {
-		for (int j = 0; j < mMaxSelect; j++) {
+		for (int j = 0; j < mNumActiveRows; j++) {
 			TIndexPane* indpane = mIndexPaneList[j];
-			indpane->mPane->setOffsetY(indpane->_1C + calc);
-			mIndexPaneList[j]->_1C = mIndexPaneList[j]->mPane->mOffset.y;
+			indpane->mPane->setOffsetY(indpane->mYOffset + calc);
+			mIndexPaneList[j]->mYOffset = mIndexPaneList[j]->mPane->mOffset.y;
 		}
 		updateIndex(0);
 		mIndexGroup->reset();
@@ -4133,14 +4133,14 @@ bool TVsSelect::doUpdate()
 				           || mController->getButton() & (Controller::PRESS_DPAD_DOWN)) {
 					if (mStickAnimState != 1) {
 						mIndexGroup->upIndex();
-					} else if (mIndexGroup->mStateID == 0 && !mIsSelectIndexChange) {
+					} else if (mIndexGroup->mStateID == TIndexGroup::IDGroup_Idle && !mIsSelectIndexChange) {
 						mIsSelectIndexChange = true;
 						PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_ERROR, 0);
 					}
 				} else if (mController->getButton() & (Controller::ANALOG_UP) || mController->getButton() & (Controller::PRESS_DPAD_UP)) {
 					if (mStickAnimState != 2) {
 						mIndexGroup->downIndex();
-					} else if (mIndexGroup->mStateID == 0 && !mIsSelectIndexChange) {
+					} else if (mIndexGroup->mStateID == TIndexGroup::IDGroup_Idle && !mIsSelectIndexChange) {
 						mIsSelectIndexChange = true;
 						PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_ERROR, 0);
 					}
@@ -4268,9 +4268,9 @@ bool TVsSelect::doUpdate()
 	mPaneSpot->updateScale(-calc * something);
 
 	f32 dist = 0.0f;
-	if (mIndexGroup->mStateID != 1) {
+	if (mIndexGroup->mStateID != TIndexGroup::IDGroup_Down) {
 		dist = 30.0f;
-	} else if (mIndexGroup->mStateID == 2) {
+	} else if (mIndexGroup->mStateID == TIndexGroup::IDGroup_Up) {
 		dist = -30.0f;
 	}
 	mLevelNameYPos += (dist - mLevelNameYPos) * 0.3f;
@@ -4360,12 +4360,12 @@ bool TVsSelect::doUpdate()
 	}
 	mPaneStars->setAlpha(mPaneStarAlpha * 255.0f);
 
-	for (int i = 0; i < mMaxSelect; i++) {
+	for (int i = 0; i < mNumActiveRows; i++) {
 		mActiveCourseThumbs[i]->updateScale(mWindowScale);
 		mActiveCourseThumbs[i]->setBasePosition(J2DPOS_Center);
 		mPaneLevelWindows[i]->updateScale(mWindowScale);
 		mPaneLevelWindows[i]->setBasePosition(J2DPOS_Center);
-		if (i != mCurrentSelect) {
+		if (i != mCurrActiveRowSel) {
 			mIndexPaneList[i]->mPane->setAlpha(mOtherLevelsFadeAlpha * 255.0f);
 		} else {
 			u8 alpha      = -1;
@@ -4377,7 +4377,7 @@ bool TVsSelect::doUpdate()
 		}
 	}
 
-	if (mIndexGroup->mStateID == 0) {
+	if (mIndexGroup->mStateID == TIndexGroup::IDGroup_Idle) {
 		_234 += 0.05f;
 		if (_234 > 1.0f) {
 			_234 = 1.0f;
@@ -6655,7 +6655,7 @@ void TVsSelect::doUpdateFadeoutFinish()
 	P2ASSERTLINE(2096, mDispMember);
 	mDispMember->mOlimarHandicap     = mHandicapSel[0];
 	mDispMember->mLouieHandicap      = mHandicapSel[1];
-	mDispMember->mSelectedStageIndex = mIndexPaneList[mCurrentSelect]->getIndex();
+	mDispMember->mSelectedStageIndex = mIndexPaneList[mCurrActiveRowSel]->getIndex();
 	if (mIsDemoStarted) {
 		mDispMember->mState = 3;
 	} else {
@@ -6687,7 +6687,7 @@ void TVsSelect::paneInit()
 	mPaneLevelWindows[3] = mListScreen->mScreenObj->search('Pliswin3');
 	mPaneLevelWindows[4] = mListScreen->mScreenObj->search('Pliswin4');
 
-	for (int i = 0; i < mMaxSelect; i++) {
+	for (int i = 0; i < mNumActiveRows; i++) {
 		JUT_ASSERTLINE(2139, mActiveCourseThumbs[i], "coursename[%d] not find\n", i);
 		JUT_ASSERTLINE(2140, mPaneLevelWindows[i], "pictureframe[%d] not find\n", i);
 	}
@@ -6695,9 +6695,9 @@ void TVsSelect::paneInit()
 	mPaneSpot = mMainScreen->mScreenObj->search('Pspot0');
 	P2ASSERTLINE(2145, mPaneSpot);
 
-	f32 test = 20.0f;
-	mYOffset = mIndexPaneList[mCurrentSelect]->_1C - 10.0f;
-	_AC      = mYOffset + test;
+	f32 test                = 20.0f;
+	mSelectionYOffset       = mIndexPaneList[mCurrActiveRowSel]->getPaneYOffset() - 10.0f;
+	mCursorSelectionYOffset = mSelectionYOffset + test;
 
 	mPaneStars = mMainScreen->mScreenObj->search('Nstarpik');
 	P2ASSERTLINE(2154, mPaneStars);
@@ -6711,7 +6711,7 @@ void TVsSelect::paneInit()
  */
 void TVsSelect::changePaneInfo()
 {
-	int id        = mIndexPaneList[mCurrentSelect]->getIndex();
+	int id        = mIndexPaneList[mCurrActiveRowSel]->getIndex();
 	J2DPane* pane = mPaneLevelName;
 	u64 tag       = getNameID(id);
 	pane->setMsgID(tag);
@@ -6720,8 +6720,8 @@ void TVsSelect::changePaneInfo()
 	if (!mLoopDrum) {
 		mStickAnimState = 0;
 		mStickAnim->stickUpDown();
-		int id = mIndexPaneList[mCurrentSelect]->getIndex();
-		f32 y  = mIndexPaneList[mCurrentSelect]->_1C;
+		int id = mIndexPaneList[mCurrActiveRowSel]->getIndex();
+		f32 y  = mIndexPaneList[mCurrActiveRowSel]->getPaneYOffset();
 		if (id == 0) {
 			mStickAnimState = 1;
 			mStickAnim->stickDown();
@@ -6736,16 +6736,16 @@ void TVsSelect::changePaneInfo()
 			f32 calc                   = 0.0f;
 			mIsSelectIndexChange       = 1;
 			mIndexGroup->mScrollOffset = 0.0f;
-			for (int i = 0; i < mMaxSelect; i++) {
-				mIndexPaneList[i]->mPane->setOffsetY(calc + mIndexPaneList[i]->_1C);
+			for (int i = 0; i < mNumActiveRows; i++) {
+				mIndexPaneList[i]->mPane->setOffsetY(calc + mIndexPaneList[i]->getPaneYOffset());
 			}
 		}
 
-		for (int i = 0; i < mMaxSelect; i++) {
+		for (int i = 0; i < mNumActiveRows; i++) {
 			mIndexPaneList[i]->mPane->show();
 			if (id != mIndexPaneList[i]->getIndex()) {
 				TIndexPane* ind = mIndexPaneList[i];
-				f32 y2          = ind->_1C;
+				f32 y2          = ind->getPaneYOffset();
 				ind->getIndex();
 				if ((mIndexPaneList[i]->getIndex() > id && y > y2) || (mIndexPaneList[i]->getIndex() < id && y < y2)) {
 					mIndexPaneList[i]->mPane->hide();
@@ -7195,8 +7195,8 @@ void TVsSelect::doScreenEffect()
 				mDispMember->mState = 1;
 				P2ASSERTLINE(2374, getOwner());
 				getOwner()->endScene(nullptr);
-				for (int i = 0; i < mMaxSelect; i++) {
-					if (i != mCurrentSelect) {
+				for (int i = 0; i < mNumActiveRows; i++) {
+					if (i != mCurrActiveRowSel) {
 						mIndexPaneList[i]->mPane->hide();
 					}
 				}
@@ -7751,7 +7751,7 @@ lbl_803A0548:
  */
 void TVsSelect::changeCourseTexture()
 {
-	for (int i = 0; i < mMaxSelect; i++) {
+	for (int i = 0; i < mNumActiveRows; i++) {
 		int id = getCourseID(i);
 		mActiveCourseThumbs[i]->changeTexture(mLevelTextures[id], 0);
 	}
@@ -7763,11 +7763,11 @@ void TVsSelect::changeCourseTexture()
  */
 void TVsSelect::changeIndirectTexture()
 {
-	int id = mIndexPaneList[mCurrentSelect]->getIndex();
+	int id = mIndexPaneList[mCurrActiveRowSel]->getIndex();
 	id     = getCourseID(id);
 	mIndPane->mTexture1->storeTIMG(mLevelTextures[id], (u8)0);
 	mIndPic->changeTexture(mLevelTextures[id], 0);
-	mActiveCourseThumbs[mCurrentSelect]->changeTexture(mIndPane->mTexture3->mTexInfo, 0);
+	mActiveCourseThumbs[mCurrActiveRowSel]->changeTexture(mIndPane->mTexture3->mTexInfo, 0);
 }
 
 /**
@@ -7776,7 +7776,7 @@ void TVsSelect::changeIndirectTexture()
  */
 void TVsSelect::setShortenIndex(int id, int id2, bool)
 {
-	P2ASSERTLINE(2503, id < mMaxSelect);
+	P2ASSERTLINE(2503, id < mNumActiveRows);
 	id2 = getCourseID(id2);
 	mActiveCourseThumbs[id]->changeTexture(mLevelTextures[id2], 0);
 }
