@@ -118,7 +118,7 @@ struct Obj : public EnemyBase {
 	efx::TKageTyresmoke* mEfxSmoke2;     // _334
 	TyreShadowMgr* mShadowMgr;           // _338
 	efx::TEnemyHamonChasePos* mEfxHamon; // _33C
-	WaterBox* mWaterBox;                 // _340
+	WaterBox* mWaterBoxTyre;             // _340, EnemyBase already has an mWaterBox
 	                                     // _344 = PelletView
 };
 

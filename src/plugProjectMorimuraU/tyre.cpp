@@ -113,7 +113,7 @@ Obj::Obj()
 	mEfxSmoke2           = nullptr;
 	mShadowMgr           = nullptr;
 	mEfxHamon            = nullptr;
-	mWaterBox            = 0;
+	mWaterBoxTyre        = nullptr;
 	mAnimator            = new ProperAnimator;
 	setFSM(new FSM);
 	mEfxSmoke1 = new efx::TKageTyresmoke(&mPosition, &mFaceDir);
@@ -443,7 +443,7 @@ void Obj::frontRollMtxCalc()
 			}
 		}
 
-		rotation = Vector3f(0.0f, mCurrentRotation, 0.0f);
+		rotation = Vector3f(0.0f, mCurrentRotation2, 0.0f);
 
 		mat.makeTR(translation, rotation);
 	}
@@ -496,25 +496,25 @@ void Obj::rearRollMtxCalc()
 
 		if (mBounceTriangle) {
 			mEfxPosition = fxPos;
-			if (!mWaterBox) {
+			if (!mWaterBoxTyre) {
 				Sys::Sphere sphere(mEfxPosition, 80.0f);
 				if (mapMgr) {
-					mWaterBox = mapMgr->findWater(sphere);
+					mWaterBoxTyre = mapMgr->findWater(sphere);
 				}
 
-				if (mWaterBox) {
+				if (mWaterBoxTyre) {
 					efx::ArgEnemyType fxArg(mEfxPosition, getEnemyTypeID(), mScaleModifier);
 					mEfxHamon->create(&fxArg);
-					mEfxPosition.y = *mWaterBox->getSeaHeightPtr();
+					mEfxPosition.y = *mWaterBoxTyre->getSeaHeightPtr();
 				}
 
 			} else {
 				Sys::Sphere sphere(mEfxPosition, 80.0f);
 				if (mapMgr) {
-					mWaterBox = mapMgr->findWater(sphere);
+					mWaterBoxTyre = mapMgr->findWater(sphere);
 				}
 
-				if (!mWaterBox) {
+				if (!mWaterBoxTyre) {
 					mEfxHamon->fade();
 				}
 			}
