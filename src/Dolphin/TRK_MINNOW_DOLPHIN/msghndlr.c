@@ -65,11 +65,11 @@ DSError TRKStandardACK(MessageBuffer* buffer, MessageCommandID commandID, DSRepl
 {
 	CommandReply reply;
 
-	memset((void*)&reply, 0, sizeof(CommandReply));
+	memset(&reply, 0, sizeof(CommandReply));
 	reply.commandID.b  = commandID;
 	reply._00          = 0x40;
 	reply.replyError.b = replyError;
-	TRKWriteUARTN((void*)&reply, sizeof(CommandReply));
+	TRKWriteUARTN(&reply, sizeof(CommandReply));
 	return DS_NoError;
 }
 
@@ -163,35 +163,12 @@ void TRKDoCPUType(void)
  * @note Address: 0x800BD150
  * @note Size: 0x244
  */
-inline DSReplyError TranslateDSErrorToReplyError(DSError result)
-{
-	switch (result) {
-	case DS_CWDSException:
-		return DSREPLY_CWDSException;
-		break;
-	case DS_InvalidMemory:
-		return DSREPLY_InvalidMemoryRange;
-		break;
-	case DS_InvalidProcessID:
-		return DSREPLY_InvalidProcessID;
-		break;
-	case DS_InvalidThreadID:
-		return DSREPLY_InvalidThreadID;
-		break;
-	case DS_OSError:
-		return DSREPLY_OSError;
-		break;
-	default:
-		return DSREPLY_CWDSError;
-		break;
-	}
-}
-
 DSError TRKDoReadMemory(MessageBuffer* buffer)
 {
 	u8 buf[0x820] __attribute__((aligned(32)));
 	size_t tempLength;
-	DSError result;
+	int result;
+	int replyErr;
 	int options;
 	size_t length;
 	u32 start;
@@ -232,176 +209,30 @@ DSError TRKDoReadMemory(MessageBuffer* buffer)
 	}
 
 	if (result) {
-		return TRKStandardACK(buffer, DSMSG_ReplyACK, TranslateDSErrorToReplyError(result));
+		switch (result) {
+		case DS_CWDSException:
+			replyErr = DSREPLY_CWDSException;
+			break;
+		case DS_InvalidMemory:
+			replyErr = DSREPLY_InvalidMemoryRange;
+			break;
+		case DS_InvalidProcessID:
+			replyErr = DSREPLY_InvalidProcessID;
+			break;
+		case DS_InvalidThreadID:
+			replyErr = DSREPLY_InvalidThreadID;
+			break;
+		case DS_OSError:
+			replyErr = DSREPLY_OSError;
+			break;
+		default:
+			replyErr = DSREPLY_CWDSError;
+			break;
+		}
+		return TRKStandardACK(buffer, DSMSG_ReplyACK, replyErr);
 	}
 
 	return TRKSendACK(buffer);
-	/*
-	.loc_0x0:
-	  rlwinm    r11,r1,0,27,31
-	  mr        r12, r1
-	  subfic    r11, r11, -0x940
-	  stwux     r1, r1, r11
-	  mflr      r0
-	  stw       r0, 0x4(r12)
-	  stmw      r26, -0x18(r12)
-	  mr        r31, r3
-	  lis       r3, 0x8048
-	  subi      r29, r3, 0x66F0
-	  addi      r4, r29, 0x1B0
-	  li        r3, 0x1
-	  lwz       r26, 0x20(r31)
-	  lhz       r27, 0x1C(r31)
-	  lbz       r30, 0x18(r31)
-	  mr        r6, r26
-	  lbz       r5, 0x14(r31)
-	  mr        r7, r27
-	  mr        r8, r30
-	  crclr     6, 0x6
-	  bl        0x43A8
-	  rlwinm.   r0,r30,0,30,30
-	  beq-      .loc_0x98
-	  addi      r3, r1, 0x64
-	  li        r4, 0
-	  li        r5, 0x40
-	  bl        -0xB8104
-	  li        r3, 0x80
-	  li        r5, 0x40
-	  li        r0, 0x12
-	  stb       r3, 0x68(r1)
-	  addi      r3, r1, 0x64
-	  li        r4, 0x40
-	  stw       r5, 0x64(r1)
-	  stb       r0, 0x6C(r1)
-	  bl        0x33FC
-	  li        r3, 0
-	  b         .loc_0x22C
-
-	.loc_0x98:
-	  rlwinm.   r28,r30,0,25,25
-	  stw       r27, 0x20(r1)
-	  beq-      .loc_0xC0
-	  mr        r4, r26
-	  addi      r3, r1, 0x100
-	  addi      r5, r1, 0x20
-	  li        r6, 0x1
-	  bl        0x1080
-	  mr        r30, r3
-	  b         .loc_0xE0
-
-	.loc_0xC0:
-	  rlwinm    r0,r30,29,31,31
-	  mr        r4, r26
-	  addi      r3, r1, 0x100
-	  addi      r5, r1, 0x20
-	  xori      r6, r0, 0x1
-	  li        r7, 0x1
-	  bl        0x241C
-	  mr        r30, r3
-
-	.loc_0xE0:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x137C
-	  cmpwi     r30, 0
-	  bne-      .loc_0x168
-	  addi      r3, r1, 0xA4
-	  li        r4, 0
-	  li        r5, 0x40
-	  bl        -0xB819C
-	  lwz       r4, 0x20(r1)
-	  li        r0, 0x80
-	  stb       r30, 0xAC(r1)
-	  mr        r3, r31
-	  addi      r4, r4, 0x40
-	  li        r5, 0x40
-	  stw       r4, 0xA4(r1)
-	  addi      r4, r1, 0xA4
-	  stb       r0, 0xA8(r1)
-	  bl        -0x1490
-	  cmpwi     r28, 0
-	  beq-      .loc_0x154
-	  rlwinm    r0,r26,0,27,31
-	  addi      r4, r1, 0x100
-	  lwz       r5, 0x20(r1)
-	  mr        r3, r31
-	  add       r4, r4, r0
-	  bl        -0x14B0
-	  mr        r30, r3
-	  b         .loc_0x168
-
-	.loc_0x154:
-	  lwz       r5, 0x20(r1)
-	  mr        r3, r31
-	  addi      r4, r1, 0x100
-	  bl        -0x14C8
-	  mr        r30, r3
-
-	.loc_0x168:
-	  cmpwi     r30, 0
-	  beq-      .loc_0x1F8
-	  subi      r0, r30, 0x700
-	  cmplwi    r0, 0x6
-	  bgt-      .loc_0x1BC
-	  lis       r3, 0x804A
-	  rlwinm    r0,r0,2,0,29
-	  addi      r3, r3, 0x6894
-	  lwzx      r0, r3, r0
-	  mtctr     r0
-	  bctr
-	  li        r28, 0x15
-	  b         .loc_0x1C0
-	  li        r28, 0x13
-	  b         .loc_0x1C0
-	  li        r28, 0x21
-	  b         .loc_0x1C0
-	  li        r28, 0x22
-	  b         .loc_0x1C0
-	  li        r28, 0x20
-	  b         .loc_0x1C0
-
-	.loc_0x1BC:
-	  li        r28, 0x3
-
-	.loc_0x1C0:
-	  addi      r3, r1, 0x24
-	  li        r4, 0
-	  li        r5, 0x40
-	  bl        -0xB8268
-	  li        r3, 0x80
-	  li        r0, 0x40
-	  stb       r3, 0x28(r1)
-	  addi      r3, r1, 0x24
-	  li        r4, 0x40
-	  stw       r0, 0x24(r1)
-	  stb       r28, 0x2C(r1)
-	  bl        0x329C
-	  li        r3, 0
-	  b         .loc_0x22C
-
-	.loc_0x1F8:
-	  addi      r4, r29, 0x60
-	  li        r3, 0x1
-	  crclr     6, 0x6
-	  bl        0x41F4
-	  mr        r3, r31
-	  bl        -0x1B14
-	  addi      r4, r29, 0x80
-	  mr        r29, r3
-	  li        r3, 0x1
-	  mr        r5, r29
-	  crclr     6, 0x6
-	  bl        0x41D4
-	  mr        r3, r29
-
-	.loc_0x22C:
-	  lwz       r10, 0x0(r1)
-	  lmw       r26, -0x18(r10)
-	  lwz       r0, 0x4(r10)
-	  mtlr      r0
-	  mr        r1, r10
-	  blr
-	*/
 }
 
 /**
@@ -410,11 +241,12 @@ DSError TRKDoReadMemory(MessageBuffer* buffer)
  */
 DSError TRKDoWriteMemory(MessageBuffer* b)
 {
+	u8 buf[0x820] __attribute__((aligned(32)));
 	size_t tempLength;
 	int options;
-	DSError result;
+	int result;
+	int replyErr;
 	size_t length;
-	u8 buf[0x820] __attribute__((aligned(32)));
 	u32 start;
 
 	start   = *(u32*)(&b->data[16]);
@@ -450,172 +282,30 @@ DSError TRKDoWriteMemory(MessageBuffer* b)
 	}
 
 	if (result != DS_NoError) {
-		return TRKStandardACK(b, DSMSG_ReplyACK, TranslateDSErrorToReplyError(result));
+		switch (result) {
+		case DS_CWDSException:
+			replyErr = DSREPLY_CWDSException;
+			break;
+		case DS_InvalidMemory:
+			replyErr = DSREPLY_InvalidMemoryRange;
+			break;
+		case DS_InvalidProcessID:
+			replyErr = DSREPLY_InvalidProcessID;
+			break;
+		case DS_InvalidThreadID:
+			replyErr = DSREPLY_InvalidThreadID;
+			break;
+		case DS_OSError:
+			replyErr = DSREPLY_OSError;
+			break;
+		default:
+			replyErr = DSREPLY_CWDSError;
+			break;
+		}
+		return TRKStandardACK(b, DSMSG_ReplyACK, replyErr);
 	}
 
 	return TRKSendACK(b);
-	/*
-	.loc_0x0:
-	  rlwinm    r11,r1,0,27,31
-	  mr        r12, r1
-	  subfic    r11, r11, -0x940
-	  stwux     r1, r1, r11
-	  mflr      r0
-	  stw       r0, 0x4(r12)
-	  stmw      r27, -0x14(r12)
-	  mr        r27, r3
-	  lis       r3, 0x8048
-	  subi      r31, r3, 0x66F0
-	  addi      r4, r31, 0x180
-	  li        r3, 0x1
-	  lwz       r28, 0x20(r27)
-	  lhz       r29, 0x1C(r27)
-	  lbz       r30, 0x18(r27)
-	  mr        r6, r28
-	  lbz       r5, 0x14(r27)
-	  mr        r7, r29
-	  mr        r8, r30
-	  crclr     6, 0x6
-	  bl        0x45E4
-	  rlwinm.   r0,r30,0,30,30
-	  beq-      .loc_0x98
-	  addi      r3, r1, 0x64
-	  li        r4, 0
-	  li        r5, 0x40
-	  bl        -0xB7EC8
-	  li        r3, 0x80
-	  li        r5, 0x40
-	  li        r0, 0x12
-	  stb       r3, 0x68(r1)
-	  addi      r3, r1, 0x64
-	  li        r4, 0x40
-	  stw       r5, 0x64(r1)
-	  stb       r0, 0x6C(r1)
-	  bl        0x3638
-	  li        r3, 0
-	  b         .loc_0x224
-
-	.loc_0x98:
-	  stw       r29, 0x20(r1)
-	  mr        r3, r27
-	  li        r4, 0x40
-	  bl        -0x112C
-	  rlwinm.   r0,r30,0,25,25
-	  beq-      .loc_0xE4
-	  rlwinm    r0,r28,0,27,31
-	  addi      r4, r1, 0x100
-	  lwz       r5, 0x20(r1)
-	  mr        r3, r27
-	  add       r4, r4, r0
-	  bl        -0x127C
-	  mr        r4, r28
-	  addi      r3, r1, 0x100
-	  addi      r5, r1, 0x20
-	  li        r6, 0
-	  bl        0x1298
-	  mr        r30, r3
-	  b         .loc_0x114
-
-	.loc_0xE4:
-	  lwz       r5, 0x20(r1)
-	  mr        r3, r27
-	  addi      r4, r1, 0x100
-	  bl        -0x12A8
-	  rlwinm    r0,r30,29,31,31
-	  mr        r4, r28
-	  addi      r3, r1, 0x100
-	  addi      r5, r1, 0x20
-	  xori      r6, r0, 0x1
-	  li        r7, 0
-	  bl        0x2624
-	  mr        r30, r3
-
-	.loc_0x114:
-	  mr        r3, r27
-	  li        r4, 0
-	  bl        -0x1174
-	  cmpwi     r30, 0
-	  bne-      .loc_0x160
-	  addi      r3, r1, 0xA4
-	  li        r4, 0
-	  li        r5, 0x40
-	  bl        -0xB7F94
-	  li        r3, 0x40
-	  li        r0, 0x80
-	  stw       r3, 0xA4(r1)
-	  mr        r3, r27
-	  addi      r4, r1, 0xA4
-	  li        r5, 0x40
-	  stb       r0, 0xA8(r1)
-	  stb       r30, 0xAC(r1)
-	  bl        -0x1284
-	  mr        r30, r3
-
-	.loc_0x160:
-	  cmpwi     r30, 0
-	  beq-      .loc_0x1F0
-	  subi      r0, r30, 0x700
-	  cmplwi    r0, 0x6
-	  bgt-      .loc_0x1B4
-	  lis       r3, 0x804A
-	  rlwinm    r0,r0,2,0,29
-	  addi      r3, r3, 0x6878
-	  lwzx      r0, r3, r0
-	  mtctr     r0
-	  bctr
-	  li        r30, 0x15
-	  b         .loc_0x1B8
-	  li        r30, 0x13
-	  b         .loc_0x1B8
-	  li        r30, 0x21
-	  b         .loc_0x1B8
-	  li        r30, 0x22
-	  b         .loc_0x1B8
-	  li        r30, 0x20
-	  b         .loc_0x1B8
-
-	.loc_0x1B4:
-	  li        r30, 0x3
-
-	.loc_0x1B8:
-	  addi      r3, r1, 0x24
-	  li        r4, 0
-	  li        r5, 0x40
-	  bl        -0xB8024
-	  li        r3, 0x80
-	  li        r0, 0x40
-	  stb       r3, 0x28(r1)
-	  addi      r3, r1, 0x24
-	  li        r4, 0x40
-	  stw       r0, 0x24(r1)
-	  stb       r30, 0x2C(r1)
-	  bl        0x34E0
-	  li        r3, 0
-	  b         .loc_0x224
-
-	.loc_0x1F0:
-	  addi      r4, r31, 0x60
-	  li        r3, 0x1
-	  crclr     6, 0x6
-	  bl        0x4438
-	  mr        r3, r27
-	  bl        -0x18D0
-	  addi      r4, r31, 0x80
-	  mr        r31, r3
-	  li        r3, 0x1
-	  mr        r5, r31
-	  crclr     6, 0x6
-	  bl        0x4418
-	  mr        r3, r31
-
-	.loc_0x224:
-	  lwz       r10, 0x0(r1)
-	  lmw       r27, -0x14(r10)
-	  lwz       r0, 0x4(r10)
-	  mtlr      r0
-	  mr        r1, r10
-	  blr
-	*/
 }
 
 /**
@@ -624,8 +314,7 @@ DSError TRKDoWriteMemory(MessageBuffer* b)
  */
 DSError TRKDoReadRegisters(MessageBuffer* b)
 {
-	DSError error;
-	DSReplyError replyError;
+	int error;
 	u8 options;
 	u16 firstRegister;
 	u16 lastRegister;
@@ -671,6 +360,7 @@ DSError TRKDoReadRegisters(MessageBuffer* b)
 
 	// Check if there was an error, and respond accordingly
 	if (error != DS_NoError) {
+		int replyError;
 		switch (error) {
 		case DS_UnsupportedError:
 			replyError = DSREPLY_UnsupportedOptionError;
@@ -707,13 +397,12 @@ DSError TRKDoReadRegisters(MessageBuffer* b)
  */
 DSError TRKDoWriteRegisters(MessageBuffer* b)
 {
-	DSError error;
-	DSReplyError replyError;
+	int error;
+	int replyError;
 	u8 options;
 	u16 firstRegister;
 	u16 lastRegister;
 	size_t registersLength;
-	CommandReply local_50;
 
 	options       = b->data[8];
 	firstRegister = *(u16*)(b->data + 12);
@@ -749,6 +438,7 @@ DSError TRKDoWriteRegisters(MessageBuffer* b)
 	TRKResetBuffer(b, 0);
 
 	if (error == DS_NoError) {
+		CommandReply local_50;
 		memset(&local_50, 0, sizeof(CommandReply));
 		local_50._00          = 0x40;
 		local_50.commandID.b  = DSMSG_ReplyACK;

@@ -7,7 +7,7 @@ TRK_MINNOW_DOLPHIN_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/serpoll.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/usr_put.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/dispatch.o\
-	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/msghndlr.o\
+	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/msghndlr.o\
 	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/support.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/mutex_TRK.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/notify.o\
