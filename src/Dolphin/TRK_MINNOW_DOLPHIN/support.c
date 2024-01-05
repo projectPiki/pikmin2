@@ -1,61 +1,67 @@
 #include "PowerPC_EABI_Support/MetroTRK/trk.h"
-
+#include "Dolphin/print.h"
 /**
  * @note Address: 0x800BDAE8
  * @note Size: 0x220
  */
 DSError TRKSuppAccessFile(u32 file_handle, u8* data, size_t* count, DSIOResult* io_result, BOOL need_reply, BOOL read)
 {
-	u32 length;
-	DSError error;
-	int replyBufferId;
-	MessageBuffer* replyBuffer;
-	int bufferId;
-	MessageBuffer* buffer;
-	u32 i;
-	u8 replyIOResult;
-	u32 replyLength;
-	BOOL exit;
 	CommandReply reply;
+	int error;
+	int replyBufferId;
+	int bufferId;
+	BOOL exit;
+	int i;
+	u32 length;
+	u32 replyLength;
+	u8 replyIOResult;
+	MessageBuffer* replyBuffer;
+	MessageBuffer* buffer;
 
-	if (data == nullptr || *count == 0) {
+	if (!data || !*count) {
 		return DS_ParameterError;
 	}
 
-	for (exit = FALSE, *io_result = DS_IONoError, i = 0, error = DS_NoError; !exit && i < *count && error == DS_NoError && *io_result == 0;
-	     i += length) {
+	*io_result = DS_IONoError;
+	exit = FALSE;
+	error = DS_NoError;
+	length = 0;
+	
+	for (i = 0; !exit && i < *count && !error && !*io_result; i += length) {
 		memset(&reply, 0, sizeof(CommandReply));
 
-		length = (*count - i <= 0x800) ? *count - i : 0x800;
+		length = MIN(0x800, *count - i);
 
-		reply.commandID.m = read ? DSMSG_ReadFile : DSMSG_WriteFile;
+		reply.commandID.b = read ? DSMSG_ReadFile : DSMSG_WriteFile;
 
 		if (read) {
 			reply._00 = 0x40;
 		} else {
-			reply._00 = length + 0x40;
+			reply._00 = 0x40 + length;
 		}
 
 		reply.replyError.r = file_handle;
 		*(u16*)&reply._0C  = length;
 
 		TRKGetFreeBuffer(&bufferId, &buffer);
-		error = TRKAppendBuffer_ui8(buffer, (u8*)&reply, 0x40);
+		error = TRKAppendBuffer_ui8(buffer, (u8*)&reply, sizeof(reply));
 
-		if (!read && error == DS_NoError) {
+		if (!read && !error) {
 			error = TRKAppendBuffer_ui8(buffer, data + i, length);
 		}
 
-		if (error == DS_NoError) {
+		if (!error) {
 			if (need_reply) {
-				error = TRKRequestSend(buffer, &replyBufferId, 5, 3, need_reply == 0);
+				error = TRKRequestSend(buffer, &replyBufferId, read ? 5 : 5, 3, !(read && (file_handle == 0)));
 				if (error == DS_NoError) {
-					replyBuffer = TRKGetBuffer(replyBufferId);
+					replyBuffer = (MessageBuffer*)TRKGetBuffer(replyBufferId);
 				}
-				replyIOResult = (u8) * (u32*)(replyBuffer->data + 0x10);
+				
+				replyIOResult = *(u32*)(replyBuffer->data + 0x10);
 				replyLength   = *(u16*)(replyBuffer->data + 0x14);
-				if (read && error == DS_NoError && replyLength <= length) {
-					TRKSetBufferPosition(replyBuffer, 0x40);
+
+				if (read && !error && replyLength <= length) {
+					TRKSetBufferPosition(replyBuffer, sizeof(reply));
 					error = TRKReadBuffer_ui8(replyBuffer, data + i, replyLength);
 					if (error == DS_MessageBufferReadError) {
 						error = DS_NoError;
@@ -79,6 +85,7 @@ DSError TRKSuppAccessFile(u32 file_handle, u8* data, size_t* count, DSIOResult* 
 
 	*count = i;
 	return error;
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x90(r1)
@@ -256,27 +263,38 @@ DSError TRKSuppAccessFile(u32 file_handle, u8* data, size_t* count, DSIOResult* 
  * @note Address: 0x800BD908
  * @note Size: 0x1E0
  */
-DSError TRKRequestSend(MessageBuffer* msgBuf, int* bufferId, u32 p1, u32 p2, u32 p3)
+DSError TRKRequestSend(MessageBuffer* msgBuf, int* bufferId, u32 p1, u32 p2, int p3)
 {
-	DSError error = DS_NoError;
+	int error = DS_NoError;
 	MessageBuffer* buffer;
+	u32 counter;
+	int count;
 	u8 msgCmd;
-	u8 msgReplyError;
-	BOOL badReply;
-	int count = p2 + 1;
-
+	int msgReplyError;
+	BOOL badReply = TRUE;
+    
 	*bufferId = -1;
 
-	while (count != 0 && *bufferId == -1 && error == DS_NoError) {
+	for (count = p2 + 1; count != 0 && *bufferId == -1 && error == DS_NoError; count--) {
 		MWTRACE(1, "Calling MessageSend\n");
 		error = TRKMessageSend(msgBuf);
 		if (error == DS_NoError) {
-			badReply = FALSE;
+
+			if (p3) {
+				counter = 0;
+			}
 
 			while (TRUE) {
 				do {
 					*bufferId = TRKTestForPacket();
-				} while (*bufferId == -1);
+					if (*bufferId != -1)
+						break;
+				} while (!p3 || ++counter < 79999980);
+
+				if (*bufferId == -1)
+					break;
+
+				badReply = 0;
 
 				buffer = TRKGetBuffer(*bufferId);
 				TRKSetBufferPosition(buffer, 0);
@@ -286,6 +304,7 @@ DSError TRKRequestSend(MessageBuffer* msgBuf, int* bufferId, u32 p1, u32 p2, u32
 
 				if (msgCmd >= DSMSG_ReplyACK)
 					break;
+
 				TRKProcessInput(*bufferId);
 				*bufferId = -1;
 			}
@@ -312,7 +331,6 @@ DSError TRKRequestSend(MessageBuffer* msgBuf, int* bufferId, u32 p1, u32 p2, u32
 				}
 			}
 		}
-		count--;
 	}
 
 	if (*bufferId == -1) {
@@ -320,156 +338,8 @@ DSError TRKRequestSend(MessageBuffer* msgBuf, int* bufferId, u32 p1, u32 p2, u32
 	}
 
 	return error;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  li        r0, -0x1
-	  stmw      r21, 0x14(r1)
-	  mr        r22, r4
-	  lis       r4, 0x8048
-	  mr        r21, r3
-	  mr        r23, r7
-	  addi      r27, r6, 0x1
-	  subi      r31, r4, 0x6508
-	  li        r30, 0
-	  li        r24, 0x1
-	  stw       r0, 0x0(r22)
-	  b         .loc_0x19C
-
-	.loc_0x3C:
-	  addi      r4, r31, 0
-	  li        r3, 0x1
-	  crclr     6, 0x6
-	  bl        0x3BF8
-	  mr        r3, r21
-	  bl        -0x2110
-	  mr.       r30, r3
-	  bne-      .loc_0x198
-	  cmpwi     r23, 0
-	  beq-      .loc_0x68
-	  li        r28, 0
-
-	.loc_0x68:
-	  bl        -0x172C
-	  stw       r3, 0x0(r22)
-	  lwz       r3, 0x0(r22)
-	  cmpwi     r3, -0x1
-	  bne-      .loc_0x98
-	  cmpwi     r23, 0
-	  beq+      .loc_0x68
-	  lis       r4, 0x4C5
-	  addi      r28, r28, 0x1
-	  subi      r0, r4, 0x4C14
-	  cmplw     r28, r0
-	  blt+      .loc_0x68
-
-	.loc_0x98:
-	  cmpwi     r3, -0x1
-	  beq-      .loc_0xF8
-	  li        r24, 0
-	  bl        -0x1A4C
-	  li        r4, 0
-	  mr        r29, r3
-	  bl        -0x1B2C
-	  lwz       r4, 0x8(r29)
-	  addi      r3, r29, 0x10
-	  bl        -0x478
-	  lbz       r26, 0x14(r29)
-	  addi      r4, r31, 0x18
-	  li        r3, 0x1
-	  mr        r5, r26
-	  mr        r6, r26
-	  crclr     6, 0x6
-	  bl        0x3B68
-	  cmplwi    r26, 0x80
-	  bge-      .loc_0xF8
-	  lwz       r3, 0x0(r22)
-	  bl        -0x185C
-	  li        r0, -0x1
-	  stw       r0, 0x0(r22)
-	  b         .loc_0x68
-
-	.loc_0xF8:
-	  lwz       r0, 0x0(r22)
-	  cmpwi     r0, -0x1
-	  beq-      .loc_0x198
-	  lwz       r0, 0x8(r29)
-	  cmplwi    r0, 0x40
-	  bge-      .loc_0x114
-	  li        r24, 0x1
-
-	.loc_0x114:
-	  cmpwi     r30, 0
-	  bne-      .loc_0x13C
-	  cmpwi     r24, 0
-	  bne-      .loc_0x13C
-	  lbz       r25, 0x18(r29)
-	  addi      r4, r31, 0x40
-	  li        r3, 0x1
-	  mr        r5, r25
-	  crclr     6, 0x6
-	  bl        0x3B08
-
-	.loc_0x13C:
-	  cmpwi     r30, 0
-	  bne-      .loc_0x178
-	  cmpwi     r24, 0
-	  bne-      .loc_0x178
-	  cmpwi     r26, 0x80
-	  mr        r5, r26
-	  bne-      .loc_0x160
-	  cmpwi     r25, 0
-	  beq-      .loc_0x178
-
-	.loc_0x160:
-	  mr        r6, r25
-	  addi      r4, r31, 0x54
-	  li        r3, 0x8
-	  crclr     6, 0x6
-	  bl        0x3AD0
-	  li        r24, 0x1
-
-	.loc_0x178:
-	  cmpwi     r30, 0
-	  bne-      .loc_0x188
-	  cmpwi     r24, 0
-	  beq-      .loc_0x198
-
-	.loc_0x188:
-	  lwz       r3, 0x0(r22)
-	  bl        -0x1B98
-	  li        r0, -0x1
-	  stw       r0, 0x0(r22)
-
-	.loc_0x198:
-	  subi      r27, r27, 0x1
-
-	.loc_0x19C:
-	  cmpwi     r27, 0
-	  beq-      .loc_0x1B8
-	  lwz       r0, 0x0(r22)
-	  cmpwi     r0, -0x1
-	  bne-      .loc_0x1B8
-	  cmpwi     r30, 0
-	  beq+      .loc_0x3C
-
-	.loc_0x1B8:
-	  lwz       r0, 0x0(r22)
-	  cmpwi     r0, -0x1
-	  bne-      .loc_0x1C8
-	  li        r30, 0x800
-
-	.loc_0x1C8:
-	  mr        r3, r30
-	  lmw       r21, 0x14(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-	*/
 }
+
 
 /**
  * @note Address: 0x800BD7EC
