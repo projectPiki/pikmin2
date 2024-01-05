@@ -283,11 +283,11 @@ struct TZukanBase : public TScrollList {
 	static struct StaticValues {
 		inline StaticValues()
 		{
-			_00 = 8.0f;
-			_04 = 0.9f;
-			_08 = 1.1f;
-			_0C = 1.5f;
-			_10 = 2.0f;
+			mMaxRollSpeed        = 8.0f;
+			mSpeedSlowdownFactor = 0.9f;
+			mRollSpeedMod        = 1.1f;
+			mSpeedSpeedupFactor  = 1.5f;
+			mInitialRollSpeed    = 2.0f;
 
 			mNewOffset.set(0.0f, -12.5f);
 			mLargeNewOffset.set(0.0f, -30.0f);
@@ -304,11 +304,11 @@ struct TZukanBase : public TScrollList {
 			mCategoryColor1b.set(255, 255, 255, 0);
 		}
 
-		f32 _00; // _00
-		f32 _04; // _04
-		f32 _08; // _08
-		f32 _0C; // _0C
-		f32 _10; // _10
+		f32 mMaxRollSpeed;        // _00
+		f32 mSpeedSlowdownFactor; // _04
+		f32 mRollSpeedMod;        // _08
+		f32 mSpeedSpeedupFactor;  // _0C
+		f32 mInitialRollSpeed;    // _10
 	} mScrollParm;
 
 	static s16 mRequestTimerMax;
@@ -490,7 +490,17 @@ struct TItemZukan : public TZukanBase {
 #define TREASUREHOARD_CATEGORY_NUM 25
 
 	// 2 appears to not exist
-	enum StateID { ZUKANDEMO_Init = 0, ZUKANDEMO_Scrolling = 1, ZUKANDEMO_Reading = 3, ZUKANDEMO_AppearEffect = 4 };
+	enum StateID {
+		ZUKANDEMO_Init         = 0,
+		ZUKANDEMO_Scrolling    = 1,
+		ZUKANDEMO_Reading      = 3,
+		ZUKANDEMO_AppearEffect = 4,
+	};
+	enum ColorID {
+		COLOR_Color0     = 0,          // green by default
+		COLOR_Color1     = 1,          // blue by default
+		COLOR_NotPresent = 0xFFFFFFFF, // series currently doesn't show in hoard
+	};
 
 	TItemZukan();
 
@@ -543,9 +553,9 @@ struct TItemZukan : public TZukanBase {
 	J2DGXColorS10 mOrimaMesgIconColor2;                   // _268
 	ResTIMG* mOrimaIconTexture;                           // _270
 	int mCurrCharacterIconID;                             // _274
-	BOOL mCategoryIsComplete[TREASUREHOARD_CATEGORY_NUM]; // _278 (for categories with 1, the sales pitch is unlocked)
-	BOOL mCategoryShowUnlock[TREASUREHOARD_CATEGORY_NUM]; // _2DC (for categories with 1, show the unlock text/animation)
-	int mCategoryColorID[TREASUREHOARD_CATEGORY_NUM];     // _340 (1 or 0 for category color, yes all 3 of these could have been bools)
+	BOOL mCategoryIsComplete[TREASUREHOARD_CATEGORY_NUM]; // _278, for categories with TRUE, the sales pitch is unlocked
+	BOOL mCategoryShowUnlock[TREASUREHOARD_CATEGORY_NUM]; // _2DC, for categories with TRUE, show the unlock text/animation
+	int mCategoryColorID[TREASUREHOARD_CATEGORY_NUM];     // _340, 0xFFFFFFFF = not unlocked, 0 = green highlight, 1 = blue highlight
 	TOffsetMsgSet* mOffsetMsgCategoryNames;               // _3A4 (You've completed the biggest file in the game series!)
 	int mEfxTimer;                                        // _3A8
 	int mDemoState;                                       // _3AC

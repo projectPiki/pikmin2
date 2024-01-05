@@ -407,7 +407,7 @@ TScrollList::TScrollList(char* name)
  * @note Address: 0x803A2D48
  * @note Size: 0x428
  */
-void TScrollList::updateIndex(bool check)
+void TScrollList::updateIndex(bool doScrollDown)
 {
 	// find the index of a pane within the bounds of the current selection position
 	int idx = -1;
@@ -438,7 +438,7 @@ void TScrollList::updateIndex(bool check)
 		if (!mDoEnableBigIcon) {
 			check2 = true;
 		}
-		if (check) {
+		if (doScrollDown) {
 			mIndexPaneList[mCurrMinActiveRow]->mYOffset = mIndexPaneList[mCurrMaxActiveRow]->mPane->mOffset.y + mIndexGroup->getHeight();
 			if (mIndexPaneList[mCurrMinActiveRow]->mYOffset >= mMaxSelYOffset) {
 				check2 = true;
@@ -447,8 +447,8 @@ void TScrollList::updateIndex(bool check)
 			mIndexPaneList[mCurrMinActiveRow]->setPaneOffset(0.0f);
 
 			int updateIdx = mIndexPaneList[mCurrMaxActiveRow]->mIndex;
-			getUpdateIndex(updateIdx, check);
-			setShortenIndex(mCurrMinActiveRow, updateIdx, check);
+			getUpdateIndex(updateIdx, doScrollDown);
+			setShortenIndex(mCurrMinActiveRow, updateIdx, doScrollDown);
 			setPaneCharacter(mCurrMinActiveRow);
 			mCurrMaxActiveRow = mCurrMinActiveRow;
 			mCurrMinActiveRow++;
@@ -474,8 +474,8 @@ void TScrollList::updateIndex(bool check)
 			mIndexPaneList[mCurrMaxActiveRow]->setPaneOffset(0.0f);
 
 			int updateIdx = mIndexPaneList[mCurrMinActiveRow]->mIndex;
-			getUpdateIndex(updateIdx, check);
-			setShortenIndex(mCurrMaxActiveRow, updateIdx, check);
+			getUpdateIndex(updateIdx, doScrollDown);
+			setShortenIndex(mCurrMaxActiveRow, updateIdx, doScrollDown);
 			setPaneCharacter(mCurrMaxActiveRow);
 			mCurrMinActiveRow = mCurrMaxActiveRow;
 			mCurrMaxActiveRow--;
@@ -805,9 +805,9 @@ lbl_803A3150:
  * @note Address: 0x803A3170
  * @note Size: 0xDC
  */
-void TScrollList::getUpdateIndex(int& id, bool flag)
+void TScrollList::getUpdateIndex(int& id, bool doScrollDown)
 {
-	if (flag) {
+	if (doScrollDown) {
 		id = id + mRowSize;
 		if (id >= getIdMax()) {
 			id = 0;

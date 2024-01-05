@@ -57,6 +57,8 @@ struct TScreenBase {
 
 	void addAnim(char*);
 
+	inline P2DScreen::Mgr_tuning* getScreenObj() { return mScreenObj; }
+
 	// _00 = VTBL
 	og::Screen::AnimScreen** mAnimScreens; // _04
 	P2DScreen::Mgr_tuning* mScreenObj;     // _08

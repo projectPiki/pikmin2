@@ -132,14 +132,14 @@
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/tamagoMushi.cpp">tamagoMushi.cpp</a> | 13404 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/panModokiState.cpp">panModokiState.cpp</a> | 21666 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/scrollList.cpp">scrollList.cpp</a> | 25834 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/tyre.cpp">tyre.cpp</a> | 26672 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/scrollList.cpp">scrollList.cpp</a> | 25892 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/tyre.cpp">tyre.cpp</a> | 26672 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/dayEndCount.cpp">dayEndCount.cpp</a> | 26683 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/hurryUp2D.cpp">hurryUp2D.cpp</a> | 27145 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/miulin.cpp">miulin.cpp</a> | 34325 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/jigumo.cpp">jigumo.cpp</a> | 41070 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/shijimiChou.cpp">shijimiChou.cpp</a> | 43374 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/kingChappyState.cpp">kingChappyState.cpp</a> | 49428 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/panModoki.cpp">panModoki.cpp</a> | 53589 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/umiMushi.cpp">umiMushi.cpp</a> | 58724 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/kingChappy.cpp">kingChappy.cpp</a> | 63903 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/hiScore2D.cpp">hiScore2D.cpp</a> | 103201 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/blackMan.cpp">blackMan.cpp</a> | 123464 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/challengeResult2D.cpp">challengeResult2D.cpp</a> | 146509 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/challengeSelect2D.cpp">challengeSelect2D.cpp</a> | 169821 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/zukan2D.cpp">zukan2D.cpp</a> | 177583 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/blackMan.cpp">blackMan.cpp</a> | 123464 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/zukan2D.cpp">zukan2D.cpp</a> | 140975 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/challengeResult2D.cpp">challengeResult2D.cpp</a> | 146509 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/challengeSelect2D.cpp">challengeSelect2D.cpp</a> | 169821 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/vsSelect2D.cpp">vsSelect2D.cpp</a> | 200915 |  |  |
 
 ### <section id="plugProjectNishimuraU">plugProjectNishimuraU</section>

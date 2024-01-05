@@ -93,6 +93,10 @@ struct TIndexPane {
 
 	inline f32 getPaneYOffset() const { return mYOffset; }
 
+	inline f32 getPaneOffsetY() const { return mPane->getOffsetY(); }
+
+	inline TIconInfo* getIconInfo(int idx) { return mIconInfos[idx]; }
+
 	int mIndex;             // _00
 	J2DPane* mPane;         // _04
 	J2DPane* mPane2;        // _08
@@ -119,22 +123,24 @@ struct TListScreen : public TScreenBase {
 struct TScrollList : public TTestBase {
 	TScrollList(char* name);
 
-	virtual ~TScrollList() { }                       // _08 (weak)
-	virtual bool isListShow(int) { return true; }    // _7C (weak)
-	virtual void paneInit()       = 0;               // _80
-	virtual void changePaneInfo() = 0;               // _84
-	virtual int getIdMax()        = 0;               // _88
-	virtual u64 getNameID(int)    = 0;               // _8C
-	virtual void getUpdateIndex(int& id, bool flag); // _90
-	virtual void setShortenIndex(int, int, bool) { } // _94 (weak)
-	virtual void doUpdateIn() { }                    // _98 (weak)
-	virtual void doUpdateOut() { }                   // _9C (weak)
-	virtual void changeTextTevBlock(int) { }         // _A0 (weak)
-	virtual void updateIndex(bool);                  // _A4
-	virtual void setPaneCharacter(int) { }           // _A8 (weak)
+	virtual ~TScrollList() { }                               // _08 (weak)
+	virtual bool isListShow(int) { return true; }            // _7C (weak)
+	virtual void paneInit()       = 0;                       // _80
+	virtual void changePaneInfo() = 0;                       // _84
+	virtual int getIdMax()        = 0;                       // _88
+	virtual u64 getNameID(int)    = 0;                       // _8C
+	virtual void getUpdateIndex(int& id, bool doScrollDown); // _90
+	virtual void setShortenIndex(int, int, bool) { }         // _94 (weak)
+	virtual void doUpdateIn() { }                            // _98 (weak)
+	virtual void doUpdateOut() { }                           // _9C (weak)
+	virtual void changeTextTevBlock(int) { }                 // _A0 (weak)
+	virtual void updateIndex(bool);                          // _A4
+	virtual void setPaneCharacter(int) { }                   // _A8 (weak)
 
 	bool updateList();
 	void changeIndex();
+
+	inline TIndexPane* getIndexPane(int i) { return mIndexPaneList[i]; }
 
 	// _00     = VTBL1
 	// _18     = VTBL2
