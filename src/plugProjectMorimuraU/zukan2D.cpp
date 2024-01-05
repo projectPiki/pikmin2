@@ -1924,11 +1924,7 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 					if (mIndexPaneList[mCurrActiveRowSel]->mSizeType != 0) {
 						yoffs = -yoffs * 0.5f;
 						for (int j = 0; j < mNumActiveRows; j++) {
-							TIndexPane* idpane = mIndexPaneList[j];
-							J2DPane* pane      = idpane->mPane;
-							pane->mOffset.y    = idpane->mYOffset + yoffs;
-							pane->calcMtx();
-							mIndexPaneList[j]->mYOffset = mIndexPaneList[j]->mPane->mOffset.y;
+							paneStuff(j, yoffs);
 						}
 						mRightOffset = 1;
 					} else {
@@ -1940,11 +1936,7 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 				}
 
 				for (int j = 0; j < mNumActiveRows; j++) {
-					TIndexPane* idpane = mIndexPaneList[j];
-					J2DPane* pane      = idpane->mPane;
-					pane->mOffset.y    = idpane->mYOffset - yoffs;
-					pane->calcMtx();
-					mIndexPaneList[j]->mYOffset = mIndexPaneList[j]->mPane->mOffset.y;
+					paneStuff(j, -yoffs);
 				}
 				updateIndex(true);
 				TIndexGroup* grp   = mIndexGroup;
@@ -2991,17 +2983,18 @@ void TItemZukan::setShortenIndex(int paneID, int index, bool flag)
 
 	TIndexPane* pane = nullptr;
 	int id           = 1;
+	int id2          = paneID;
 	if (mCanScroll) {
 		if ((_3B4 % 2) == 1) {
 			if (flag) {
-				id      = 3;
-				int id2 = paneID - 1; // WHY DON'T YOU WANNA GO IN r5
+				id = 3;
+				id2--; // WHY DON'T YOU WANNA GO IN r5
 				if (id2 < 0) {
 					id2 = mNumActiveRows - 1;
 				}
 				pane = mIndexPaneList[id2];
 			} else {
-				int id2 = paneID + 1;
+				id2++;
 				if (id2 >= mNumActiveRows) {
 					id2 = 0;
 				}
@@ -3040,21 +3033,6 @@ void TItemZukan::setShortenIndex(int paneID, int index, bool flag)
 						id2                     = catId;
 					}
 				}
-				// TIconInfo* icon = mIndexPaneList[paneID]->mIconInfos[2];
-				// if (id2 == icon->mCategoryID && icon->mParentIndex) {
-				// 	active                              = true;
-				// 	mCategoryColorID[icon->mCategoryID] = 1 - mCategoryColorID[id2];
-				// }
-				// icon = mIndexPaneList[paneID]->mIconInfos[1];
-				// if (id2 == icon->mCategoryID && icon->mParentIndex) {
-				// 	active                              = true;
-				// 	mCategoryColorID[icon->mCategoryID] = 1 - mCategoryColorID[id2];
-				// }
-				// icon = mIndexPaneList[paneID]->mIconInfos[0];
-				// if (id2 == icon->mCategoryID && icon->mParentIndex) {
-				// 	active                              = true;
-				// 	mCategoryColorID[icon->mCategoryID] = 1 - mCategoryColorID[id2];
-				// }
 			}
 		}
 	}
@@ -3085,333 +3063,6 @@ void TItemZukan::setShortenIndex(int paneID, int index, bool flag)
 			}
 		}
 	}
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stmw     r26, 0x28(r1)
-	mr       r29, r3
-	mr       r30, r4
-	mr       r31, r6
-	bl       setShortenIndex__Q28Morimura10TZukanBaseFiib
-	lbz      r0, 0x242(r29)
-	li       r7, 0
-	li       r4, 1
-	cmplwi   r0, 0
-	beq      lbl_80378604
-	lwz      r0, 0x3b4(r29)
-	srwi     r3, r0, 0x1f
-	clrlwi   r0, r0, 0x1f
-	xor      r0, r0, r3
-	subf     r0, r3, r0
-	cmpwi    r0, 1
-	bne      lbl_80378604
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_803785E4
-	addic.   r5, r30, -1
-	li       r4, 3
-	bge      lbl_803785D4
-	lha      r3, 0x8e(r29)
-	addi     r5, r3, -1
-
-lbl_803785D4:
-	lwz      r3, 0x88(r29)
-	slwi     r0, r5, 2
-	lwzx     r7, r3, r0
-	b        lbl_80378604
-
-lbl_803785E4:
-	lha      r0, 0x8e(r29)
-	addi     r5, r30, 1
-	cmpw     r5, r0
-	blt      lbl_803785F8
-	li       r5, 0
-
-lbl_803785F8:
-	lwz      r3, 0x88(r29)
-	slwi     r0, r5, 2
-	lwzx     r7, r3, r0
-
-lbl_80378604:
-	cmplwi   r7, 0
-	li       r0, 0
-	beq      lbl_80378820
-	li       r3, -1
-	li       r5, 0
-	mtctr    r4
-	cmpwi    r4, 0
-	ble      lbl_80378644
-
-lbl_80378624:
-	lwz      r4, 0x20(r7)
-	lwzx     r6, r4, r5
-	lwz      r4, 0x18(r6)
-	cmplwi   r4, 0
-	beq      lbl_8037863C
-	lwz      r3, 0(r6)
-
-lbl_8037863C:
-	addi     r5, r5, 4
-	bdnz     lbl_80378624
-
-lbl_80378644:
-	cmpwi    r3, 0
-	blt      lbl_80378820
-	clrlwi.  r4, r31, 0x18
-	beq      lbl_8037873C
-	lwz      r4, 0x88(r29)
-	slwi     r6, r30, 2
-	lwzx     r4, r6, r4
-	lwz      r4, 0x20(r4)
-	lwz      r4, 0(r4)
-	lwz      r7, 0(r4)
-	cmpw     r3, r7
-	beq      lbl_803786A4
-	lwz      r4, 0x18(r4)
-	cmplwi   r4, 0
-	beq      lbl_803786A4
-	slwi     r3, r3, 2
-	slwi     r4, r7, 2
-	addi     r5, r3, 0x340
-	mr       r3, r7
-	lwzx     r5, r29, r5
-	addi     r4, r4, 0x340
-	li       r0, 1
-	subfic   r5, r5, 1
-	stwx     r5, r29, r4
-
-lbl_803786A4:
-	lwz      r4, 0x88(r29)
-	lwzx     r4, r6, r4
-	lwz      r4, 0x20(r4)
-	lwz      r4, 4(r4)
-	lwz      r7, 0(r4)
-	cmpw     r3, r7
-	beq      lbl_803786F0
-	lwz      r4, 0x18(r4)
-	cmplwi   r4, 0
-	beq      lbl_803786F0
-	slwi     r3, r3, 2
-	slwi     r4, r7, 2
-	addi     r5, r3, 0x340
-	mr       r3, r7
-	lwzx     r5, r29, r5
-	addi     r4, r4, 0x340
-	li       r0, 1
-	subfic   r5, r5, 1
-	stwx     r5, r29, r4
-
-lbl_803786F0:
-	lwz      r4, 0x88(r29)
-	lwzx     r4, r6, r4
-	lwz      r4, 0x20(r4)
-	lwz      r4, 8(r4)
-	lwz      r7, 0(r4)
-	cmpw     r3, r7
-	beq      lbl_80378820
-	lwz      r4, 0x18(r4)
-	cmplwi   r4, 0
-	beq      lbl_80378820
-	slwi     r3, r3, 2
-	slwi     r4, r7, 2
-	addi     r5, r3, 0x340
-	li       r0, 1
-	lwzx     r5, r29, r5
-	addi     r4, r4, 0x340
-	subfic   r5, r5, 1
-	stwx     r5, r29, r4
-	b        lbl_80378820
-
-lbl_8037873C:
-	lwz      r4, 0x88(r29)
-	slwi     r6, r30, 2
-	lwzx     r4, r6, r4
-	lwz      r4, 0x20(r4)
-	lwz      r4, 8(r4)
-	lwz      r7, 0(r4)
-	cmpw     r3, r7
-	beq      lbl_8037878C
-	lwz      r4, 0x18(r4)
-	cmplwi   r4, 0
-	beq      lbl_8037878C
-	slwi     r3, r3, 2
-	slwi     r4, r7, 2
-	addi     r5, r3, 0x340
-	mr       r3, r7
-	lwzx     r5, r29, r5
-	addi     r4, r4, 0x340
-	li       r0, 1
-	subfic   r5, r5, 1
-	stwx     r5, r29, r4
-
-lbl_8037878C:
-	lwz      r4, 0x88(r29)
-	lwzx     r4, r6, r4
-	lwz      r4, 0x20(r4)
-	lwz      r4, 4(r4)
-	lwz      r7, 0(r4)
-	cmpw     r3, r7
-	beq      lbl_803787D8
-	lwz      r4, 0x18(r4)
-	cmplwi   r4, 0
-	beq      lbl_803787D8
-	slwi     r3, r3, 2
-	slwi     r4, r7, 2
-	addi     r5, r3, 0x340
-	mr       r3, r7
-	lwzx     r5, r29, r5
-	addi     r4, r4, 0x340
-	li       r0, 1
-	subfic   r5, r5, 1
-	stwx     r5, r29, r4
-
-lbl_803787D8:
-	lwz      r4, 0x88(r29)
-	lwzx     r4, r6, r4
-	lwz      r4, 0x20(r4)
-	lwz      r4, 0(r4)
-	lwz      r7, 0(r4)
-	cmpw     r3, r7
-	beq      lbl_80378820
-	lwz      r4, 0x18(r4)
-	cmplwi   r4, 0
-	beq      lbl_80378820
-	slwi     r3, r3, 2
-	slwi     r4, r7, 2
-	addi     r5, r3, 0x340
-	li       r0, 1
-	lwzx     r5, r29, r5
-	addi     r4, r4, 0x340
-	subfic   r5, r5, 1
-	stwx     r5, r29, r4
-
-lbl_80378820:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_80378904
-	li       r28, 0
-	li       r31, 0
-	b        lbl_803788F4
-
-lbl_80378834:
-	lwz      r3, 0x88(r29)
-	lwzx     r0, r3, r31
-	cmplwi   r0, 0
-	beq      lbl_803789B0
-	li       r27, 0
-	li       r30, 0
-
-lbl_8037884C:
-	lwz      r0, 0x88(r29)
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwzx     r4, r31, r0
-	lwz      r12, 0xb0(r12)
-	lwz      r4, 0x20(r4)
-	lwzx     r4, r4, r30
-	lwz      r26, 4(r4)
-	lwz      r4, 0(r4)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0
-	bne      lbl_803788B0
-	lwz      r5, mCategoryColor0w__Q28Morimura10TZukanBase@sda21(r13)
-	mr       r3, r26
-	lwz      r0, mCategoryColor0b__Q28Morimura10TZukanBase@sda21(r13)
-	addi     r4, r1, 0x24
-	stw      r5, 0x20(r1)
-	addi     r5, r1, 0x20
-	stw      r0, 0x24(r1)
-	lwz      r12, 0(r26)
-	lwz      r12, 0x130(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803788DC
-
-lbl_803788B0:
-	lwz      r5, mCategoryColor1w__Q28Morimura10TZukanBase@sda21(r13)
-	mr       r3, r26
-	lwz      r0, mCategoryColor1b__Q28Morimura10TZukanBase@sda21(r13)
-	addi     r4, r1, 0x1c
-	stw      r5, 0x18(r1)
-	addi     r5, r1, 0x18
-	stw      r0, 0x1c(r1)
-	lwz      r12, 0(r26)
-	lwz      r12, 0x130(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803788DC:
-	addi     r27, r27, 1
-	addi     r30, r30, 4
-	cmpwi    r27, 3
-	blt      lbl_8037884C
-	addi     r31, r31, 4
-	addi     r28, r28, 1
-
-lbl_803788F4:
-	lha      r0, 0x8e(r29)
-	cmpw     r28, r0
-	blt      lbl_80378834
-	b        lbl_803789B0
-
-lbl_80378904:
-	slwi     r31, r30, 2
-	li       r26, 0
-	li       r30, 0
-
-lbl_80378910:
-	lwz      r0, 0x88(r29)
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwzx     r4, r31, r0
-	lwz      r12, 0xb0(r12)
-	lwz      r4, 0x20(r4)
-	lwzx     r4, r4, r30
-	lwz      r27, 4(r4)
-	lwz      r4, 0(r4)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0
-	bne      lbl_80378974
-	lwz      r5, mCategoryColor0w__Q28Morimura10TZukanBase@sda21(r13)
-	mr       r3, r27
-	lwz      r0, mCategoryColor0b__Q28Morimura10TZukanBase@sda21(r13)
-	addi     r4, r1, 0x14
-	stw      r5, 0x10(r1)
-	addi     r5, r1, 0x10
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r27)
-	lwz      r12, 0x130(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803789A0
-
-lbl_80378974:
-	lwz      r5, mCategoryColor1w__Q28Morimura10TZukanBase@sda21(r13)
-	mr       r3, r27
-	lwz      r0, mCategoryColor1b__Q28Morimura10TZukanBase@sda21(r13)
-	addi     r4, r1, 0xc
-	stw      r5, 8(r1)
-	addi     r5, r1, 8
-	stw      r0, 0xc(r1)
-	lwz      r12, 0(r27)
-	lwz      r12, 0x130(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803789A0:
-	addi     r26, r26, 1
-	addi     r30, r30, 4
-	cmpwi    r26, 3
-	blt      lbl_80378910
-
-lbl_803789B0:
-	lmw      r26, 0x28(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /**
@@ -3881,11 +3532,7 @@ void TItemZukan::doCreate(JKRArchive* arc)
 	f32 xoffs = 0.0f;
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < mNumActiveRows; j++) {
-			TIndexPane* idpane = mIndexPaneList[j];
-			J2DPane* pane      = idpane->mPane;
-			pane->mOffset.y    = idpane->mYOffset + yoffs;
-			pane->calcMtx();
-			mIndexPaneList[j]->mYOffset = mIndexPaneList[j]->mPane->mOffset.y;
+			paneStuff(j, yoffs);
 		}
 		updateIndex(false);
 		TIndexGroup* grp   = mIndexGroup;
@@ -3931,11 +3578,7 @@ void TItemZukan::doCreate(JKRArchive* arc)
 		if (index > 2) {
 			for (int i = 0; i < index / 3; i++) {
 				for (int j = 0; j < mNumActiveRows; j++) {
-					TIndexPane* idpane = mIndexPaneList[j];
-					J2DPane* pane      = idpane->mPane;
-					pane->mOffset.y    = idpane->mYOffset - yoffs;
-					pane->calcMtx();
-					mIndexPaneList[j]->mYOffset = mIndexPaneList[j]->mPane->mOffset.y;
+					paneStuff(j, -yoffs);
 				}
 				updateIndex(true);
 				TIndexGroup* grp   = mIndexGroup;

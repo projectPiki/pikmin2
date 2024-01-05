@@ -141,6 +141,14 @@ struct TScrollList : public TTestBase {
 	void changeIndex();
 
 	inline TIndexPane* getIndexPane(int i) { return mIndexPaneList[i]; }
+	inline void paneStuff(int j, f32 yoffs)
+	{
+		TIndexPane* idpane = mIndexPaneList[j]; // the mismatch lives here. it's the idpane temp being silly
+		J2DPane* pane      = idpane->mPane;
+		pane->mOffset.y    = idpane->mYOffset + yoffs;
+		pane->calcMtx();
+		mIndexPaneList[j]->mYOffset = mIndexPaneList[j]->mPane->mOffset.y;
+	}
 
 	// _00     = VTBL1
 	// _18     = VTBL2
