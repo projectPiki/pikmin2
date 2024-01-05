@@ -2497,8 +2497,7 @@ void BlackMan::Obj::findNextRoutePoint()
 
 			if (val < 0) {
 				for (int i = 0; i < 100; i++) {
-					targetWPIdx = randInt(counter);
-					if (mPreviousWaypointIndex != indices[targetWPIdx]) {
+					if (mPreviousWaypointIndex != indices[targetWPIdx = randInt(counter)]) {
 						break;
 					}
 				}
@@ -2534,7 +2533,7 @@ void BlackMan::Obj::findNextRoutePoint()
 			if (val < 0 || counter <= 2) {
 				targetWPIdx = randInt(counter);
 			} else {
-				for (int i = 0; i < 10; i++) {
+				for (int i = 0; i < 10; i++) { // mismatch here, try ten times to get a value different from "val"
 					targetWPIdx = randInt(counter);
 					if (targetWPIdx != val) {
 						break;
@@ -4025,11 +4024,11 @@ void BlackMan::Obj::jointMtxCalc(int jointIdx)
 	Vector3f vec3(0.0f, 0.0f, 0.0f); // f22, f21, f20
 
 	if (jointIdx < 2 && C_PARMS->_A18) {
-		f32 sinVal1 = C_PARMS->_A40 * absF(sinf(mTyre->mCurrentRotation)); // f23
-		f32 sinVal2 = C_PARMS->_A44 * absF(sinf(mTyre->mCurrentRotation)); // f24
-		getStateID();                                                      // unused
+		f32 sinVal1 = C_PARMS->_A40 * absF(sinf(mTyre->mCurrentRotation2)); // f23
+		f32 sinVal2 = C_PARMS->_A44 * absF(sinf(mTyre->mCurrentRotation2)); // f24
+		getStateID();                                                       // unused
 
-		if (mTyre->mCurrentRotation < 0.0f) {
+		if (mTyre->mCurrentRotation2 < 0.0f) {
 			if (jointIdx == 0) {
 				vec3.y = sinVal2;
 				vec3.x = tyreMat->mMatrix.structView.xx * sinVal1;
@@ -4478,7 +4477,7 @@ void BlackMan::Obj::bodyMtxCalc()
 	Vector3f pos; // f4, f5, f0
 
 	char* tyreJoints[2] = { "tyreFL", "TyreFR" };
-	if (mTyre->mCurrentRotation > 0.0f) {
+	if (mTyre->mCurrentRotation2 > 0.0f) {
 		pos = mTyre->mModel->getJoint(tyreJoints[0])->getWorldMatrix()->getBasis(3);
 	} else {
 		pos = mTyre->mModel->getJoint(tyreJoints[1])->getWorldMatrix()->getBasis(3);
@@ -4487,14 +4486,14 @@ void BlackMan::Obj::bodyMtxCalc()
 	pos -= mPosition;
 	pos.normalise();
 
-	f32 sinVal = absF(sinf(mTyre->mCurrentRotation));
+	f32 sinVal = absF(sinf(mTyre->mCurrentRotation2));
 	chestMtx->mMatrix.structView.tx += sinVal * (C_PARMS->_A28 * pos.x);
 	chestMtx->mMatrix.structView.tz += sinVal * (C_PARMS->_A28 * pos.z);
 
 	PSMTXCopy(chestMtx->mMatrix.mtxView, J3DSys::mCurrentMtx);
 
 	Vector3f translation(0.0f, 0.0f, 0.0f); // 0x1c
-	f32 yRot = -C_PARMS->mBodyRotationSpeed * sinf(mTyre->mCurrentRotation);
+	f32 yRot = -C_PARMS->mBodyRotationSpeed * sinf(mTyre->mCurrentRotation2);
 	Vector3f rotation(0.0f, yRot, 0.0f);
 
 	Matrixf mat;
@@ -4863,101 +4862,7 @@ void BlackMan::Obj::recover()
 
 	mLandPosition = mTyre->_2D4;
 
-	mTyre->mCurrentRotation *= 0.8f;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r4, 0x364(r3)
-	cmplwi   r4, 0
-	beq      lbl_803AAC94
-	lwz      r0, 0x1e0(r31)
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	bne      lbl_803AABE4
-	lwz      r0, 0x1e0(r4)
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	beq      lbl_803AABE4
-	bl       getMotionFrame__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051F4B0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_803AABC0
-	lfs      f0, lbl_8051F4DC@sda21(r2)
-	mr       r3, r31
-	lfs      f1, defaultAnimSpeed__Q24Game17EnemyAnimatorBase@sda21(r2)
-	fneg     f0, f0
-	fmuls    f1, f1, f0
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	b        lbl_803AABEC
-
-lbl_803AABC0:
-	mr       r3, r31
-	bl       getMotionFrame__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051F480@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_803AABEC
-	lfs      f1, defaultAnimSpeed__Q24Game17EnemyAnimatorBase@sda21(r2)
-	mr       r3, r31
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	b        lbl_803AABEC
-
-lbl_803AABE4:
-	mr       r3, r31
-	bl       resetAnimSpeed__Q24Game9EnemyBaseFv
-
-lbl_803AABEC:
-	lwz      r3, 0x364(r31)
-	li       r0, 1
-	lfs      f5, lbl_8051F4DC@sda21(r2)
-	stb      r0, 0x2d0(r3)
-	lfs      f0, lbl_8051F55C@sda21(r2)
-	lwz      r4, 0x174(r31)
-	lhz      r3, 0x36c(r31)
-	lwz      r5, 8(r4)
-	lhz      r0, 0x36e(r31)
-	mulli    r4, r3, 0x30
-	lwz      r5, 0x84(r5)
-	lwz      r3, 0x364(r31)
-	lwz      r5, 0xc(r5)
-	mulli    r0, r0, 0x30
-	add      r4, r5, r4
-	add      r5, r5, r0
-	lfs      f2, 0xc(r4)
-	lfs      f1, 0xc(r5)
-	lfs      f3, 0x1c(r4)
-	fadds    f1, f2, f1
-	lfs      f2, 0x1c(r5)
-	lfs      f4, 0x2c(r4)
-	fadds    f2, f3, f2
-	lfs      f3, 0x2c(r5)
-	fmuls    f1, f5, f1
-	fadds    f3, f4, f3
-	fmuls    f2, f5, f2
-	stfs     f1, 0x2d4(r3)
-	fmuls    f1, f5, f3
-	stfs     f2, 0x2d8(r3)
-	stfs     f1, 0x2dc(r3)
-	lwz      r3, 0x364(r31)
-	lfs      f1, 0x2d4(r3)
-	stfs     f1, 0x328(r31)
-	lfs      f1, 0x2d8(r3)
-	stfs     f1, 0x32c(r31)
-	lfs      f1, 0x2dc(r3)
-	stfs     f1, 0x330(r31)
-	lwz      r3, 0x364(r31)
-	lfs      f1, 0x2cc(r3)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x2cc(r3)
-
-lbl_803AAC94:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mTyre->mCurrentRotation2 *= 0.8f;
 }
 
 /**
