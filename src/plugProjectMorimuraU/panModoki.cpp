@@ -1756,8 +1756,7 @@ bool Obj::setPathFinder(bool cond)
 		mWpIndex2 = nearIdx;
 
 		// this bit is being weird
-		int cond2 = (cond > 0) & 0xFF;
-		int flag  = (0x1 + 0x2 + 0x40 + 0x80) + cond2;
+		int flag = (0x1 + 0x2 + 0x40 + 0x80) + !!cond;
 
 		if (mPathID) {
 			testPathfinder->release(mPathID);
