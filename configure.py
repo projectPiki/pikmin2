@@ -430,7 +430,7 @@ LIBS = [
             ["Dolphin/TRK_MINNOW_DOLPHIN/usr_put", True],
             ["Dolphin/TRK_MINNOW_DOLPHIN/dispatch", True],
             ["Dolphin/TRK_MINNOW_DOLPHIN/msghndlr", True],
-            ["Dolphin/TRK_MINNOW_DOLPHIN/support", False],
+            ["Dolphin/TRK_MINNOW_DOLPHIN/support", True],
             ["Dolphin/TRK_MINNOW_DOLPHIN/mutex_TRK", True],
             ["Dolphin/TRK_MINNOW_DOLPHIN/notify", True],
             ["Dolphin/TRK_MINNOW_DOLPHIN/flush_cache", True],
