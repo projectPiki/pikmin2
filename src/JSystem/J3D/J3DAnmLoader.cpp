@@ -322,8 +322,8 @@ void J3DAnmFullLoader_v15::setAnmCluster(J3DAnmClusterFull* animation, const J3D
 	animation->mAttribute    = data->_08;
 	animation->mCurrentFrame = 0.0f;
 
-	animation->mTables = JSUConvertOffsetToPtr<J3DAnmClusterFullTable>(data, data->_10);
-	animation->_0C     = JSUConvertOffsetToPtr<f32>(data, data->_14);
+	animation->mTables  = JSUConvertOffsetToPtr<J3DAnmClusterFullTable>(data, data->_10);
+	animation->mWeights = JSUConvertOffsetToPtr<f32>(data, data->_14);
 }
 
 /**
@@ -490,14 +490,14 @@ void J3DAnmKeyLoader_v15::setAnmTextureSRT(J3DAnmTextureSRTKey* animation, const
 	animation->_18                = data->_10;
 	animation->_1A                = data->_12;
 
-	animation->_10               = JSUConvertOffsetToPtr<J3DAnmTransformKeyTable>(data, (void*)data->mTableOffset);
+	animation->mTable1           = JSUConvertOffsetToPtr<J3DAnmTransformKeyTable>(data, (void*)data->mTableOffset);
 	animation->mUpdateMaterialID = JSUConvertOffsetToPtr<u16>(data, (void*)data->mUpdateMatIDOffset);
 	animation->_30.setResource(JSUConvertOffsetToPtr<ResNTAB>(data, (void*)data->mNameTab1Offset));
-	animation->mUpdateTexMtxID = JSUConvertOffsetToPtr<u8>(data, (void*)data->mUpdateTexMtxIDOffset);
-	animation->_40             = JSUConvertOffsetToPtr<Vec>(data, (void*)data->unkOffset);
-	animation->_1C             = JSUConvertOffsetToPtr<f32>(data, (void*)data->mScaleValOffset);
-	animation->_20             = JSUConvertOffsetToPtr<s16>(data, (void*)data->mRotValOffset);
-	animation->_24             = JSUConvertOffsetToPtr<f32>(data, (void*)data->mTransValOffset);
+	animation->mUpdateTexMtxID   = JSUConvertOffsetToPtr<u8>(data, (void*)data->mUpdateTexMtxIDOffset);
+	animation->_40               = JSUConvertOffsetToPtr<Vec>(data, (void*)data->unkOffset);
+	animation->mScale1Vals       = JSUConvertOffsetToPtr<f32>(data, (void*)data->mScaleValOffset);
+	animation->mRotation1Vals    = JSUConvertOffsetToPtr<s16>(data, (void*)data->mRotValOffset);
+	animation->mTranslation1Vals = JSUConvertOffsetToPtr<f32>(data, (void*)data->mTransValOffset);
 	if (data->mNameTab2Offset != nullptr) {
 		animation->_64.setResource(JSUConvertOffsetToPtr<ResNTAB>(data, (void*)data->mNameTab2Offset));
 	}
@@ -572,7 +572,7 @@ void J3DAnmKeyLoader_v15::setAnmCluster(J3DAnmClusterKey* animation, const J3DAn
 	animation->mAttribute    = data->_08;
 	animation->mCurrentFrame = 0.0f;
 	animation->mTables       = JSUConvertOffsetToPtr<J3DAnmClusterKeyTable>(data, (void*)data->_10);
-	animation->_0C           = JSUConvertOffsetToPtr<f32>(data, (void*)data->_14);
+	animation->mWeights      = JSUConvertOffsetToPtr<f32>(data, (void*)data->_14);
 }
 
 /**

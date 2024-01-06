@@ -20,10 +20,10 @@ struct J3DAnmTextureSRTKey : public J3DAnmBase {
 		_18                = 0;
 		_16                = 0;
 		mUpdateMaterialNum = 0;
-		_10                = nullptr;
-		_24                = nullptr;
-		_1C                = nullptr;
-		_20                = nullptr;
+		mTable1            = nullptr;
+		mTranslation1Vals  = nullptr;
+		mScale1Vals        = nullptr;
+		mRotation1Vals     = nullptr;
 		_48                = 0;
 		_46                = 0;
 		_44                = 0;
@@ -51,32 +51,32 @@ struct J3DAnmTextureSRTKey : public J3DAnmBase {
 
 	// _00     = VTBL
 	// _00-_0C = J3DAnmBase
-	u32 _0C;                      // _0C
-	J3DAnmTransformKeyTable* _10; // _10
-	u16 mUpdateMaterialNum;       // _14
-	u16 _16;                      // _16
-	u16 _18;                      // _18
-	u16 _1A;                      // _1A
-	f32* _1C;                     // _1C
-	s16* _20;                     // _20
-	f32* _24;                     // _24
-	u8* mUpdateTexMtxID;          // _28
-	u16* mUpdateMaterialID;       // _2C
-	JUTNameTab _30;               // _30
-	Vec* _40;                     // _40
-	u16 _44;                      // _44
-	u16 _46;                      // _46
-	u16 _48;                      // _48
-	u16 _4A;                      // _4A
-	f32* _4C;                     // _4C
-	s16* _50;                     // _50
-	f32* _54;                     // _54
-	J3DAnmTransformKeyTable* _58; // _58
-	u8* _5C;                      // _5C
-	u16* _60;                     // _60
-	JUTNameTab _64;               // _64
-	Vec* _74;                     // _74
-	u32 mTexMtxCalcType;          // _78
+	u32 _0C;                          // _0C
+	J3DAnmTransformKeyTable* mTable1; // _10
+	u16 mUpdateMaterialNum;           // _14
+	u16 _16;                          // _16
+	u16 _18;                          // _18
+	u16 _1A;                          // _1A
+	f32* mScale1Vals;                 // _1C
+	s16* mRotation1Vals;              // _20
+	f32* mTranslation1Vals;           // _24
+	u8* mUpdateTexMtxID;              // _28
+	u16* mUpdateMaterialID;           // _2C
+	JUTNameTab _30;                   // _30
+	Vec* _40;                         // _40
+	u16 _44;                          // _44
+	u16 _46;                          // _46
+	u16 _48;                          // _48
+	u16 _4A;                          // _4A
+	f32* _4C;                         // _4C
+	s16* _50;                         // _50
+	f32* _54;                         // _54
+	J3DAnmTransformKeyTable* _58;     // _58
+	u8* _5C;                          // _5C
+	u16* _60;                         // _60
+	JUTNameTab _64;                   // _64
+	Vec* _74;                         // _74
+	u32 mTexMtxCalcType;              // _78
 };
 
 struct J3DAnmTextureSRTKeyData : J3DAnmFullData {

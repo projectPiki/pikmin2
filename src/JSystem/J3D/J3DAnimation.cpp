@@ -11,127 +11,8 @@
 #include "JSystem/JUtility/JUTNameTab.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__14J3DAnmColorKey
-    __vt__14J3DAnmColorKey:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__14J3DAnmColorKeyFv
-        .4byte getKind__14J3DAnmColorKeyCFv
-        .4byte getColor__14J3DAnmColorKeyCFUsP8_GXColor
-    .global __vt__10J3DAnmBase
-    __vt__10J3DAnmBase:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__10J3DAnmBaseFv
-        .4byte 0
-    .global __vt__11J3DAnmColor
-    __vt__11J3DAnmColor:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__11J3DAnmColorFv
-        .4byte getKind__11J3DAnmColorCFv
-        .4byte getColor__11J3DAnmColorCFUsP8_GXColor
-    .global __vt__15J3DAnmColorFull
-    __vt__15J3DAnmColorFull:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__15J3DAnmColorFullFv
-        .4byte getKind__15J3DAnmColorFullCFv
-        .4byte getColor__15J3DAnmColorFullCFUsP8_GXColor
-    .global __vt__17J3DAnmVtxColorKey
-    __vt__17J3DAnmVtxColorKey:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__17J3DAnmVtxColorKeyFv
-        .4byte getKind__17J3DAnmVtxColorKeyCFv
-        .4byte getColor__17J3DAnmVtxColorKeyCFUcUsP8_GXColor
-    .global __vt__14J3DAnmVtxColor
-    __vt__14J3DAnmVtxColor:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__14J3DAnmVtxColorFv
-        .4byte getKind__14J3DAnmVtxColorCFv
-        .4byte getColor__14J3DAnmVtxColorCFUcUsP8_GXColor
-    .global __vt__18J3DAnmVtxColorFull
-    __vt__18J3DAnmVtxColorFull:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__18J3DAnmVtxColorFullFv
-        .4byte getKind__18J3DAnmVtxColorFullCFv
-        .4byte getColor__18J3DAnmVtxColorFullCFUcUsP8_GXColor
-    .global __vt__16J3DAnmClusterKey
-    __vt__16J3DAnmClusterKey:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__16J3DAnmClusterKeyFv
-        .4byte getKind__16J3DAnmClusterKeyCFv
-        .4byte getWeight__16J3DAnmClusterKeyCFUs
-    .global __vt__13J3DAnmCluster
-    __vt__13J3DAnmCluster:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__13J3DAnmClusterFv
-        .4byte getKind__13J3DAnmClusterCFv
-        .4byte getWeight__13J3DAnmClusterCFUs
-    .global __vt__17J3DAnmClusterFull
-    __vt__17J3DAnmClusterFull:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__17J3DAnmClusterFullFv
-        .4byte getKind__17J3DAnmClusterFullCFv
-        .4byte getWeight__17J3DAnmClusterFullCFUs
-    .global __vt__19J3DAnmTransformFull
-    __vt__19J3DAnmTransformFull:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__19J3DAnmTransformFullFv
-        .4byte getKind__19J3DAnmTransformFullCFv
-        .4byte getTransform__19J3DAnmTransformFullCFUsP16J3DTransformInfo
-    .global __vt__15J3DAnmTransform
-    __vt__15J3DAnmTransform:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__15J3DAnmTransformFv
-        .4byte getKind__15J3DAnmTransformCFv
-        .4byte 0
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516A18
-    lbl_80516A18:
-        .float 1.0
-    .global lbl_80516A1C
-    lbl_80516A1C:
-        .4byte 0x00000000
-    .global lbl_80516A20
-    lbl_80516A20:
-        .4byte 0x3A83126F
-        .4byte 0x00000000
-    .global lbl_80516A28
-    lbl_80516A28:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_80516A30
-    lbl_80516A30:
-        .float 0.5
-    .global lbl_80516A34
-    lbl_80516A34:
-        .4byte 0x437F0000
-    .global lbl_80516A38
-    lbl_80516A38:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_80516A40
-    lbl_80516A40:
-        .4byte 0xC4800000
-    .global lbl_80516A44
-    lbl_80516A44:
-        .4byte 0x447FC000
-*/
+template <class T>
+f32 J3DGetKeyFrameInterpolation(f32, J3DAnmKeyTableBase*, T*);
 
 /**
  * @note Address: 0x80067678
@@ -226,74 +107,86 @@ void J3DFrameCtrl::update()
  * @note Address: 0x80067B1C
  * @note Size: 0x360
  */
-void J3DAnmTransformFull::getTransform(u16 p1, J3DTransformInfo* info) const
+void J3DAnmTransformFull::getTransform(u16 idx, J3DTransformInfo* info) const
 {
-	/**
-	u16 tableIndex                    = p1 * 3;
-	J3DAnmTransformFullTable::Row* v1 = _20->_00[tableIndex];
-	J3DAnmTransformFullTable::Row* v2 = _20->_00[tableIndex + 1];
-	J3DAnmTransformFullTable::Row* v3 = _20->_00[tableIndex + 2];
-	if (mFTime < 0.0f) {
-	    info->mScale.x     = _0C[v1[0][1]];
-	    info->mScale.y     = _0C[v2[0][1]];
-	    info->mScale.z     = _0C[v3[0][1]];
-	    info->mEulerRot.x  = _10[v1[1][1]];
-	    info->mEulerRot.y  = _10[v2[1][1]];
-	    info->mEulerRot.z  = _10[v3[1][1]];
-	    info->mZRotation.x = _14[v1[2][1]];
-	    info->mZRotation.y = _14[v2[2][1]];
-	    info->mZRotation.z = _14[v3[2][1]];
+	u16 tableIdx                     = idx * 3;
+	J3DAnmTransformFullTable* xTable = &mTable[tableIdx];
+	J3DAnmTransformFullTable* yTable = &mTable[tableIdx + 1];
+	J3DAnmTransformFullTable* zTable = &mTable[tableIdx + 2];
+
+	if (getFrame() < 0.0f) {
+		info->mScale.x = mScaleVals[xTable->mScaleOffset];
+		info->mScale.y = mScaleVals[yTable->mScaleOffset];
+		info->mScale.z = mScaleVals[zTable->mScaleOffset];
+
+		info->mRotation.x = mRotationVals[xTable->mRotationOffset];
+		info->mRotation.y = mRotationVals[yTable->mRotationOffset];
+		info->mRotation.z = mRotationVals[zTable->mRotationOffset];
+
+		info->mTranslation.x = mTranslationVals[xTable->mTranslationOffset];
+		info->mTranslation.y = mTranslationVals[yTable->mTranslationOffset];
+		info->mTranslation.z = mTranslationVals[zTable->mTranslationOffset];
+
 	} else {
-	    u32 v4 = (int)(0.5f + mFTime);
-	    if (v4 >= v1[0][0]) {
-	        info->mScale.x = _0C[v1[0][0] - 1 + v1[0][1]];
-	    } else {
-	        info->mScale.x = _0C[v1[0][1] + v4];
-	    }
-	    if (v4 >= v1[1][0]) {
-	        info->mEulerRot.x = _10[v1[1][0] - 1 + v1[1][1]];
-	    } else {
-	        info->mEulerRot.x = _10[v1[1][1] + v4];
-	    }
-	    if (v4 >= v1[2][0]) {
-	        info->mZRotation.x = _14[v1[2][0] - 1 + v1[2][1]];
-	    } else {
-	        info->mZRotation.x = _14[v1[2][1] + v4];
-	    }
+		u32 maxFrame = (int)(getFrame() + 0.5f);
 
-	    if (v4 >= v2[0][0]) {
-	        info->mScale.y = _0C[v2[0][0] - 1 + v2[0][1]];
-	    } else {
-	        info->mScale.y = _0C[v2[0][1] + v4];
-	    }
-	    if (v4 >= v2[1][0]) {
-	        info->mEulerRot.y = _10[v2[1][0] - 1 + v2[1][1]];
-	    } else {
-	        info->mEulerRot.y = _10[v2[1][1] + v4];
-	    }
-	    if (v4 >= v2[2][0]) {
-	        info->mZRotation.y = _14[v2[2][0] - 1 + v2[2][1]];
-	    } else {
-	        info->mZRotation.y = _14[v2[2][1] + v4];
-	    }
+		// X VALUES
+		if (maxFrame >= xTable->mScaleMaxFrame) {
+			info->mScale.x = mScaleVals[xTable->mScaleMaxFrame - 1 + xTable->mScaleOffset];
+		} else {
+			info->mScale.x = mScaleVals[xTable->mScaleOffset + maxFrame];
+		}
 
-	    if (v4 >= v3[0][0]) {
-	        info->mScale.z = _0C[v3[0][0] - 1 + v3[0][1]];
-	    } else {
-	        info->mScale.z = _0C[v3[0][1] + v4];
-	    }
-	    if (v4 >= v3[1][0]) {
-	        info->mEulerRot.z = _10[v3[1][0] - 1 + v3[1][1]];
-	    } else {
-	        info->mEulerRot.z = _10[v3[1][1] + v4];
-	    }
-	    if (v4 >= v3[2][0]) {
-	        info->mZRotation.z = _14[v3[2][0] - 1 + v3[2][1]];
-	    } else {
-	        info->mZRotation.z = _14[v3[2][1] + v4];
-	    }
+		if (maxFrame >= xTable->mRotationMaxFrame) {
+			info->mRotation.x = mRotationVals[xTable->mRotationMaxFrame - 1 + xTable->mRotationOffset];
+		} else {
+			info->mRotation.x = mRotationVals[xTable->mRotationOffset + maxFrame];
+		}
+
+		if (maxFrame >= xTable->mTranslationMaxFrame) {
+			info->mTranslation.x = mTranslationVals[xTable->mTranslationMaxFrame - 1 + xTable->mTranslationOffset];
+		} else {
+			info->mTranslation.x = mTranslationVals[xTable->mTranslationOffset + maxFrame];
+		}
+
+		// Y VALUES
+		if (maxFrame >= yTable->mScaleMaxFrame) {
+			info->mScale.y = mScaleVals[yTable->mScaleMaxFrame - 1 + yTable->mScaleOffset];
+		} else {
+			info->mScale.y = mScaleVals[yTable->mScaleOffset + maxFrame];
+		}
+
+		if (maxFrame >= yTable->mRotationMaxFrame) {
+			info->mRotation.y = mRotationVals[yTable->mRotationMaxFrame - 1 + yTable->mRotationOffset];
+		} else {
+			info->mRotation.y = mRotationVals[yTable->mRotationOffset + maxFrame];
+		}
+
+		if (maxFrame >= yTable->mTranslationMaxFrame) {
+			info->mTranslation.y = mTranslationVals[yTable->mTranslationMaxFrame - 1 + yTable->mTranslationOffset];
+		} else {
+			info->mTranslation.y = mTranslationVals[yTable->mTranslationOffset + maxFrame];
+		}
+
+		// Z VALUES
+		if (maxFrame >= zTable->mScaleMaxFrame) {
+			info->mScale.z = mScaleVals[zTable->mScaleMaxFrame - 1 + zTable->mScaleOffset];
+		} else {
+			info->mScale.z = mScaleVals[zTable->mScaleOffset + maxFrame];
+		}
+
+		if (maxFrame >= zTable->mRotationMaxFrame) {
+			info->mRotation.z = mRotationVals[zTable->mRotationMaxFrame - 1 + zTable->mRotationOffset];
+		} else {
+			info->mRotation.z = mRotationVals[zTable->mRotationOffset + maxFrame];
+		}
+
+		if (maxFrame >= zTable->mTranslationMaxFrame) {
+			info->mTranslation.z = mTranslationVals[zTable->mTranslationMaxFrame - 1 + zTable->mTranslationOffset];
+		} else {
+			info->mTranslation.z = mTranslationVals[zTable->mTranslationOffset + maxFrame];
+		}
 	}
-	*/
 }
 
 /**
@@ -303,459 +196,118 @@ void J3DAnmTransformFull::getTransform(u16 p1, J3DTransformInfo* info) const
  */
 void J3DAnmTransformKey::calcTransform(f32 p1, u16 p2, J3DTransformInfo* info) const
 {
-	/**
-	u16 v0                 = p2 * 3;
-	J3DAnmKeyTableBase* v1 = _24[v0]._00;
-	J3DAnmKeyTableBase* v2 = _24[v0 + 1]._00;
-	J3DAnmKeyTableBase* v3 = _24[v0 + 2]._00;
+	u16 idx                       = p2 * 3;
+	J3DAnmTransformKeyTable* xInf = &mTable[idx];
+	J3DAnmTransformKeyTable* yInf = &mTable[idx + 1];
+	J3DAnmTransformKeyTable* zInf = &mTable[idx + 2];
 
-	switch (v1[0]._00) {
+	switch (xInf->mScaleInfo.mMaxFrame) {
 	case 0:
-	    info->mScale.x = 1.0f;
-	    break;
+		info->mScale.x = 1;
+		break;
 	case 1:
-	    info->mScale.x = _0C[v1[0]._02];
-	    break;
+		info->mScale.x = mScaleVals[xInf->mScaleInfo.mOffset];
+		break;
 	default:
-	    info->mScale.x = J3DGetKeyFrameInterpolation(p1, v1, _0C + v1[0]._02);
-	    break;
+		info->mScale.x = J3DGetKeyFrameInterpolation<f32>(p1, &xInf->mScaleInfo, &mScaleVals[xInf->mScaleInfo.mOffset]);
 	}
 
-	switch (v2[0]._00) {
+	switch (yInf->mScaleInfo.mMaxFrame) {
 	case 0:
-	    info->mScale.y = 1.0f;
-	    break;
+		info->mScale.y = 1;
+		break;
 	case 1:
-	    info->mScale.y = _0C[v2[0]._02];
-	    break;
+		info->mScale.y = mScaleVals[yInf->mScaleInfo.mOffset];
+		break;
 	default:
-	    info->mScale.y = J3DGetKeyFrameInterpolation(p1, v2, _0C + v2[0]._02);
-	    break;
+		info->mScale.y = J3DGetKeyFrameInterpolation<f32>(p1, &yInf->mScaleInfo, &mScaleVals[yInf->mScaleInfo.mOffset]);
 	}
 
-	switch (v3[0]._00) {
+	switch (zInf->mScaleInfo.mMaxFrame) {
 	case 0:
-	    info->mScale.z = 1.0f;
-	    break;
+		info->mScale.z = 1;
+		break;
 	case 1:
-	    info->mScale.z = _0C[v3[0]._02];
-	    break;
+		info->mScale.z = mScaleVals[zInf->mScaleInfo.mOffset];
+		break;
 	default:
-	    info->mScale.z = J3DGetKeyFrameInterpolation(p1, v3, _0C + v3[0]._02);
-	    break;
+		info->mScale.z = J3DGetKeyFrameInterpolation<f32>(p1, &zInf->mScaleInfo, &mScaleVals[zInf->mScaleInfo.mOffset]);
 	}
 
-	switch (v1[1]._00) {
+	switch (xInf->mRotationInfo.mMaxFrame) {
 	case 0:
-	    info->mEulerRot.x = 0;
-	    break;
+		info->mRotation.x = 0;
+		break;
 	case 1:
-	    info->mEulerRot.x = _10[v1[1]._02] << _20;
-	    break;
+		info->mRotation.x = mRotationVals[xInf->mRotationInfo.mOffset] << _20;
+		break;
 	default:
-	    info->mEulerRot.x = (int)J3DGetKeyFrameInterpolation(p1, v1 + 1, _10 + v1[1]._02) << _20;
-	    break;
+		info->mRotation.x
+		    = static_cast<s32>(J3DGetKeyFrameInterpolation<s16>(p1, &xInf->mRotationInfo, &mRotationVals[xInf->mRotationInfo.mOffset]))
+		   << _20;
 	}
 
-	switch (v2[1]._00) {
+	switch (yInf->mRotationInfo.mMaxFrame) {
 	case 0:
-	    info->mEulerRot.y = 0;
-	    break;
+		info->mRotation.y = 0;
+		break;
 	case 1:
-	    info->mEulerRot.y = _10[v2[1]._02] << _20;
-	    break;
+		info->mRotation.y = mRotationVals[yInf->mRotationInfo.mOffset] << _20;
+		break;
 	default:
-	    info->mEulerRot.y = (int)J3DGetKeyFrameInterpolation(p1, v2 + 1, _10 + v2[1]._02) << _20;
-	    break;
+		info->mRotation.y
+		    = static_cast<s32>(J3DGetKeyFrameInterpolation<s16>(p1, &yInf->mRotationInfo, &mRotationVals[yInf->mRotationInfo.mOffset]))
+		   << _20;
 	}
 
-	switch (v3[1]._00) {
+	switch (zInf->mRotationInfo.mMaxFrame) {
 	case 0:
-	    info->mEulerRot.z = 0;
-	    break;
+		info->mRotation.z = 0;
+		break;
 	case 1:
-	    info->mEulerRot.z = _10[v3[1]._02] << _20;
-	    break;
+		info->mRotation.z = mRotationVals[zInf->mRotationInfo.mOffset] << _20;
+		break;
 	default:
-	    info->mEulerRot.z = (int)J3DGetKeyFrameInterpolation(p1, v3 + 1, _10 + v3[1]._02) << _20;
-	    break;
+		info->mRotation.z
+		    = static_cast<s32>(J3DGetKeyFrameInterpolation<s16>(p1, &zInf->mRotationInfo, &mRotationVals[zInf->mRotationInfo.mOffset]))
+		   << _20;
 	}
 
-	switch (v1[2]._00) {
+	switch (xInf->mTranslationInfo.mMaxFrame) {
 	case 0:
-	    info->mZRotation.x = 0.0f;
-	    break;
+		info->mTranslation.x = 0;
+		break;
 	case 1:
-	    info->mZRotation.x = _14[v1[2]._02];
-	    break;
+		info->mTranslation.x = mTranslationVals[xInf->mTranslationInfo.mOffset];
+		break;
 	default:
-	    info->mZRotation.x = J3DGetKeyFrameInterpolation(p1, v1 + 2, _14 + v1[2]._02);
-	    break;
+		info->mTranslation.x
+		    = J3DGetKeyFrameInterpolation<f32>(p1, &xInf->mTranslationInfo, &mTranslationVals[xInf->mTranslationInfo.mOffset]);
 	}
 
-	switch (v2[2]._00) {
+	switch (yInf->mTranslationInfo.mMaxFrame) {
 	case 0:
-	    info->mZRotation.y = 0.0f;
-	    break;
+		info->mTranslation.y = 0;
+		break;
 	case 1:
-	    info->mZRotation.y = _14[v2[2]._02];
-	    break;
+		info->mTranslation.y = mTranslationVals[yInf->mTranslationInfo.mOffset];
+		break;
 	default:
-	    info->mZRotation.y = J3DGetKeyFrameInterpolation(p1, v2 + 2, _14 + v2[2]._02);
-	    break;
+		info->mTranslation.y
+		    = J3DGetKeyFrameInterpolation<f32>(p1, &yInf->mTranslationInfo, &mTranslationVals[yInf->mTranslationInfo.mOffset]);
 	}
 
-	switch (v3[2]._00) {
+	switch (zInf->mTranslationInfo.mMaxFrame) {
 	case 0:
-	    info->mZRotation.z = 0.0f;
-	    break;
+		info->mTranslation.z = 0;
+		break;
 	case 1:
-	    info->mZRotation.z = _14[v3[2]._02];
-	    break;
+		info->mTranslation.z = mTranslationVals[zInf->mTranslationInfo.mOffset];
+		break;
 	default:
-	    info->mZRotation.z = J3DGetKeyFrameInterpolation(p1, v3 + 2, _14 + v3[2]._02);
-	    break;
+		info->mTranslation.z
+		    = J3DGetKeyFrameInterpolation<f32>(p1, &zInf->mTranslationInfo, &mTranslationVals[zInf->mTranslationInfo.mOffset]);
 	}
-	*/
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stfd      f31, 0x30(r1)
-	  psq_st    f31,0x38(r1),0,0
-	  stmw      r27, 0x1C(r1)
-	  mulli     r0, r4, 0x3
-	  mr        r27, r3
-	  lwz       r6, 0x24(r3)
-	  fmr       f31, f1
-	  mr        r28, r5
-	  rlwinm    r3,r0,0,16,31
-	  mulli     r0, r3, 0x12
-	  addi      r4, r3, 0x1
-	  addi      r3, r3, 0x2
-	  add       r31, r6, r0
-	  lhz       r0, 0x0(r31)
-	  mulli     r4, r4, 0x12
-	  cmpwi     r0, 0x1
-	  mulli     r3, r3, 0x12
-	  add       r30, r6, r4
-	  add       r29, r6, r3
-	  beq-      .loc_0x78
-	  bge-      .loc_0x90
-	  cmpwi     r0, 0
-	  bge-      .loc_0x6C
-	  b         .loc_0x90
-
-	.loc_0x6C:
-	  lfs       f0, -0x7948(r2)
-	  stfs      f0, 0x0(r28)
-	  b         .loc_0xB0
-
-	.loc_0x78:
-	  lhz       r0, 0x2(r31)
-	  lwz       r3, 0xC(r27)
-	  rlwinm    r0,r0,2,0,29
-	  lfsx      f0, r3, r0
-	  stfs      f0, 0x0(r28)
-	  b         .loc_0xB0
-
-	.loc_0x90:
-	  lhz       r0, 0x2(r31)
-	  fmr       f1, f31
-	  lwz       r4, 0xC(r27)
-	  mr        r3, r31
-	  rlwinm    r0,r0,2,0,29
-	  add       r4, r4, r0
-	  bl        0x2054
-	  stfs      f1, 0x0(r28)
-
-	.loc_0xB0:
-	  lhz       r0, 0x0(r30)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0xD8
-	  bge-      .loc_0xF0
-	  cmpwi     r0, 0
-	  bge-      .loc_0xCC
-	  b         .loc_0xF0
-
-	.loc_0xCC:
-	  lfs       f0, -0x7948(r2)
-	  stfs      f0, 0x4(r28)
-	  b         .loc_0x110
-
-	.loc_0xD8:
-	  lhz       r0, 0x2(r30)
-	  lwz       r3, 0xC(r27)
-	  rlwinm    r0,r0,2,0,29
-	  lfsx      f0, r3, r0
-	  stfs      f0, 0x4(r28)
-	  b         .loc_0x110
-
-	.loc_0xF0:
-	  lhz       r0, 0x2(r30)
-	  fmr       f1, f31
-	  lwz       r4, 0xC(r27)
-	  mr        r3, r30
-	  rlwinm    r0,r0,2,0,29
-	  add       r4, r4, r0
-	  bl        0x1FF4
-	  stfs      f1, 0x4(r28)
-
-	.loc_0x110:
-	  lhz       r0, 0x0(r29)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x138
-	  bge-      .loc_0x150
-	  cmpwi     r0, 0
-	  bge-      .loc_0x12C
-	  b         .loc_0x150
-
-	.loc_0x12C:
-	  lfs       f0, -0x7948(r2)
-	  stfs      f0, 0x8(r28)
-	  b         .loc_0x170
-
-	.loc_0x138:
-	  lhz       r0, 0x2(r29)
-	  lwz       r3, 0xC(r27)
-	  rlwinm    r0,r0,2,0,29
-	  lfsx      f0, r3, r0
-	  stfs      f0, 0x8(r28)
-	  b         .loc_0x170
-
-	.loc_0x150:
-	  lhz       r0, 0x2(r29)
-	  fmr       f1, f31
-	  lwz       r4, 0xC(r27)
-	  mr        r3, r29
-	  rlwinm    r0,r0,2,0,29
-	  add       r4, r4, r0
-	  bl        0x1F94
-	  stfs      f1, 0x8(r28)
-
-	.loc_0x170:
-	  lhz       r0, 0x6(r31)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x198
-	  bge-      .loc_0x1B8
-	  cmpwi     r0, 0
-	  bge-      .loc_0x18C
-	  b         .loc_0x1B8
-
-	.loc_0x18C:
-	  li        r0, 0
-	  sth       r0, 0xC(r28)
-	  b         .loc_0x1EC
-
-	.loc_0x198:
-	  lhz       r0, 0x8(r31)
-	  lwz       r4, 0x10(r27)
-	  rlwinm    r3,r0,1,0,30
-	  lwz       r0, 0x20(r27)
-	  lhax      r3, r4, r3
-	  slw       r0, r3, r0
-	  sth       r0, 0xC(r28)
-	  b         .loc_0x1EC
-
-	.loc_0x1B8:
-	  lhz       r0, 0x8(r31)
-	  fmr       f1, f31
-	  lwz       r4, 0x10(r27)
-	  addi      r3, r31, 0x6
-	  rlwinm    r0,r0,1,0,30
-	  add       r4, r4, r0
-	  bl        0x1CF8
-	  fctiwz    f0, f1
-	  lwz       r0, 0x20(r27)
-	  stfd      f0, 0x8(r1)
-	  lwz       r3, 0xC(r1)
-	  slw       r0, r3, r0
-	  sth       r0, 0xC(r28)
-
-	.loc_0x1EC:
-	  lhz       r0, 0x6(r30)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x214
-	  bge-      .loc_0x234
-	  cmpwi     r0, 0
-	  bge-      .loc_0x208
-	  b         .loc_0x234
-
-	.loc_0x208:
-	  li        r0, 0
-	  sth       r0, 0xE(r28)
-	  b         .loc_0x268
-
-	.loc_0x214:
-	  lhz       r0, 0x8(r30)
-	  lwz       r4, 0x10(r27)
-	  rlwinm    r3,r0,1,0,30
-	  lwz       r0, 0x20(r27)
-	  lhax      r3, r4, r3
-	  slw       r0, r3, r0
-	  sth       r0, 0xE(r28)
-	  b         .loc_0x268
-
-	.loc_0x234:
-	  lhz       r0, 0x8(r30)
-	  fmr       f1, f31
-	  lwz       r4, 0x10(r27)
-	  addi      r3, r30, 0x6
-	  rlwinm    r0,r0,1,0,30
-	  add       r4, r4, r0
-	  bl        0x1C7C
-	  fctiwz    f0, f1
-	  lwz       r0, 0x20(r27)
-	  stfd      f0, 0x8(r1)
-	  lwz       r3, 0xC(r1)
-	  slw       r0, r3, r0
-	  sth       r0, 0xE(r28)
-
-	.loc_0x268:
-	  lhz       r0, 0x6(r29)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x290
-	  bge-      .loc_0x2B0
-	  cmpwi     r0, 0
-	  bge-      .loc_0x284
-	  b         .loc_0x2B0
-
-	.loc_0x284:
-	  li        r0, 0
-	  sth       r0, 0x10(r28)
-	  b         .loc_0x2E4
-
-	.loc_0x290:
-	  lhz       r0, 0x8(r29)
-	  lwz       r4, 0x10(r27)
-	  rlwinm    r3,r0,1,0,30
-	  lwz       r0, 0x20(r27)
-	  lhax      r3, r4, r3
-	  slw       r0, r3, r0
-	  sth       r0, 0x10(r28)
-	  b         .loc_0x2E4
-
-	.loc_0x2B0:
-	  lhz       r0, 0x8(r29)
-	  fmr       f1, f31
-	  lwz       r4, 0x10(r27)
-	  addi      r3, r29, 0x6
-	  rlwinm    r0,r0,1,0,30
-	  add       r4, r4, r0
-	  bl        0x1C00
-	  fctiwz    f0, f1
-	  lwz       r0, 0x20(r27)
-	  stfd      f0, 0x8(r1)
-	  lwz       r3, 0xC(r1)
-	  slw       r0, r3, r0
-	  sth       r0, 0x10(r28)
-
-	.loc_0x2E4:
-	  lhz       r0, 0xC(r31)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x30C
-	  bge-      .loc_0x324
-	  cmpwi     r0, 0
-	  bge-      .loc_0x300
-	  b         .loc_0x324
-
-	.loc_0x300:
-	  lfs       f0, -0x7944(r2)
-	  stfs      f0, 0x14(r28)
-	  b         .loc_0x344
-
-	.loc_0x30C:
-	  lhz       r0, 0xE(r31)
-	  lwz       r3, 0x14(r27)
-	  rlwinm    r0,r0,2,0,29
-	  lfsx      f0, r3, r0
-	  stfs      f0, 0x14(r28)
-	  b         .loc_0x344
-
-	.loc_0x324:
-	  lhz       r0, 0xE(r31)
-	  fmr       f1, f31
-	  lwz       r4, 0x14(r27)
-	  addi      r3, r31, 0xC
-	  rlwinm    r0,r0,2,0,29
-	  add       r4, r4, r0
-	  bl        0x1DC0
-	  stfs      f1, 0x14(r28)
-
-	.loc_0x344:
-	  lhz       r0, 0xC(r30)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x36C
-	  bge-      .loc_0x384
-	  cmpwi     r0, 0
-	  bge-      .loc_0x360
-	  b         .loc_0x384
-
-	.loc_0x360:
-	  lfs       f0, -0x7944(r2)
-	  stfs      f0, 0x18(r28)
-	  b         .loc_0x3A4
-
-	.loc_0x36C:
-	  lhz       r0, 0xE(r30)
-	  lwz       r3, 0x14(r27)
-	  rlwinm    r0,r0,2,0,29
-	  lfsx      f0, r3, r0
-	  stfs      f0, 0x18(r28)
-	  b         .loc_0x3A4
-
-	.loc_0x384:
-	  lhz       r0, 0xE(r30)
-	  fmr       f1, f31
-	  lwz       r4, 0x14(r27)
-	  addi      r3, r30, 0xC
-	  rlwinm    r0,r0,2,0,29
-	  add       r4, r4, r0
-	  bl        0x1D60
-	  stfs      f1, 0x18(r28)
-
-	.loc_0x3A4:
-	  lhz       r0, 0xC(r29)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x3CC
-	  bge-      .loc_0x3E4
-	  cmpwi     r0, 0
-	  bge-      .loc_0x3C0
-	  b         .loc_0x3E4
-
-	.loc_0x3C0:
-	  lfs       f0, -0x7944(r2)
-	  stfs      f0, 0x1C(r28)
-	  b         .loc_0x404
-
-	.loc_0x3CC:
-	  lhz       r0, 0xE(r29)
-	  lwz       r3, 0x14(r27)
-	  rlwinm    r0,r0,2,0,29
-	  lfsx      f0, r3, r0
-	  stfs      f0, 0x1C(r28)
-	  b         .loc_0x404
-
-	.loc_0x3E4:
-	  lhz       r0, 0xE(r29)
-	  fmr       f1, f31
-	  lwz       r4, 0x14(r27)
-	  addi      r3, r29, 0xC
-	  rlwinm    r0,r0,2,0,29
-	  add       r4, r4, r0
-	  bl        0x1D00
-	  stfs      f1, 0x1C(r28)
-
-	.loc_0x404:
-	  psq_l     f31,0x38(r1),0,0
-	  lfd       f31, 0x30(r1)
-	  lmw       r27, 0x1C(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-	*/
 }
 
 /**
@@ -764,277 +316,92 @@ void J3DAnmTransformKey::calcTransform(f32 p1, u16 p2, J3DTransformInfo* info) c
  */
 void J3DAnmTextureSRTKey::calcTransform(f32 p1, u16 p2, J3DTextureSRTInfo* info) const
 {
-	/**
-	u16 v0                 = p2 * 3;
-	J3DAnmKeyTableBase* v1 = _10[v0]._00;
-	J3DAnmKeyTableBase* v2 = _10[v0 + 1]._00;
-	J3DAnmKeyTableBase* v3 = _10[v0 + 2]._00;
+	u16 idx                       = p2 * 3;
+	J3DAnmTransformKeyTable* xInf = &mTable1[idx];
+	J3DAnmTransformKeyTable* yInf = &mTable1[idx + 1];
+	J3DAnmTransformKeyTable* zInf = &mTable1[idx + 2];
 
-	switch (v1[0]._00) {
+	switch (xInf->mScaleInfo.mMaxFrame) {
 	case 0:
-	    info->mScaleX = 1.0f;
-	    break;
+		info->mScaleX = 1;
+		break;
 	case 1:
-	    info->mScaleX = _1C[v1[0]._02];
-	    break;
+		info->mScaleX = mScale1Vals[xInf->mScaleInfo.mOffset];
+		break;
 	default:
-	    info->mScaleX = J3DGetKeyFrameInterpolation(p1, v1, _1C + v1[0]._02);
-	    break;
+		info->mScaleX = J3DGetKeyFrameInterpolation<f32>(p1, &xInf->mScaleInfo, &mScale1Vals[xInf->mScaleInfo.mOffset]);
 	}
 
-	switch (v2[0]._00) {
+	switch (yInf->mScaleInfo.mMaxFrame) {
 	case 0:
-	    info->mScaleY = 1.0f;
-	    break;
+		info->mScaleY = 1;
+		break;
 	case 1:
-	    info->mScaleY = _1C[v2[0]._02];
-	    break;
+		info->mScaleY = mScale1Vals[yInf->mScaleInfo.mOffset];
+		break;
 	default:
-	    info->mScaleY = J3DGetKeyFrameInterpolation(p1, v2, _1C + v2[0]._02);
-	    break;
+		info->mScaleY = J3DGetKeyFrameInterpolation<f32>(p1, &yInf->mScaleInfo, &mScale1Vals[yInf->mScaleInfo.mOffset]);
 	}
 
-	switch (v3[1]._00) {
+	switch (zInf->mRotationInfo.mMaxFrame) {
 	case 0:
-	    info->_08 = 0;
-	    break;
+		info->mRotation = 0;
+		break;
 	case 1:
-	    info->_08 = _20[v3[1]._02] << _0C;
-	    break;
+		info->mRotation = mRotation1Vals[zInf->mRotationInfo.mOffset] << _0C;
+		break;
 	default:
-	    info->_08 = (int)J3DGetKeyFrameInterpolation(p1, v3 + 1, _20 + v3[1]._02) << _0C;
-	    break;
+		info->mRotation
+		    = static_cast<s32>(J3DGetKeyFrameInterpolation<s16>(p1, &zInf->mRotationInfo, &mRotation1Vals[zInf->mRotationInfo.mOffset]))
+		   << _0C;
 	}
 
-	switch (v1[2]._00) {
+	switch (xInf->mTranslationInfo.mMaxFrame) {
 	case 0:
-	    info->_0C = 0.0f;
-	    break;
+		info->mTranslationX = 0;
+		break;
 	case 1:
-	    info->_0C = _24[v1[2]._02];
-	    break;
+		info->mTranslationX = mTranslation1Vals[xInf->mTranslationInfo.mOffset];
+		break;
 	default:
-	    info->_0C = J3DGetKeyFrameInterpolation(p1, v1 + 2, _24 + v1[2]._02);
-	    break;
+		info->mTranslationX
+		    = J3DGetKeyFrameInterpolation<f32>(p1, &xInf->mTranslationInfo, &mTranslation1Vals[xInf->mTranslationInfo.mOffset]);
 	}
 
-	switch (v2[2]._00) {
+	switch (yInf->mTranslationInfo.mMaxFrame) {
 	case 0:
-	    info->_10 = 0.0f;
-	    break;
+		info->mTranslationY = 0;
+		break;
 	case 1:
-	    info->_10 = _24[v2[2]._02];
-	    break;
+		info->mTranslationY = mTranslation1Vals[yInf->mTranslationInfo.mOffset];
+		break;
 	default:
-	    info->_10 = J3DGetKeyFrameInterpolation(p1, v2 + 2, _24 + v2[2]._02);
-	    break;
+		info->mTranslationY
+		    = J3DGetKeyFrameInterpolation<f32>(p1, &yInf->mTranslationInfo, &mTranslation1Vals[yInf->mTranslationInfo.mOffset]);
 	}
-	*/
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stfd      f31, 0x30(r1)
-	  psq_st    f31,0x38(r1),0,0
-	  stmw      r27, 0x1C(r1)
-	  mulli     r0, r4, 0x3
-	  mr        r27, r3
-	  lwz       r6, 0x10(r3)
-	  fmr       f31, f1
-	  mr        r28, r5
-	  rlwinm    r3,r0,0,16,31
-	  mulli     r0, r3, 0x12
-	  addi      r4, r3, 0x1
-	  addi      r3, r3, 0x2
-	  add       r31, r6, r0
-	  lhz       r0, 0x0(r31)
-	  mulli     r4, r4, 0x12
-	  cmpwi     r0, 0x1
-	  mulli     r3, r3, 0x12
-	  add       r30, r6, r4
-	  add       r29, r6, r3
-	  beq-      .loc_0x78
-	  bge-      .loc_0x90
-	  cmpwi     r0, 0
-	  bge-      .loc_0x6C
-	  b         .loc_0x90
-
-	.loc_0x6C:
-	  lfs       f0, -0x7948(r2)
-	  stfs      f0, 0x0(r28)
-	  b         .loc_0xB0
-
-	.loc_0x78:
-	  lhz       r0, 0x2(r31)
-	  lwz       r3, 0x1C(r27)
-	  rlwinm    r0,r0,2,0,29
-	  lfsx      f0, r3, r0
-	  stfs      f0, 0x0(r28)
-	  b         .loc_0xB0
-
-	.loc_0x90:
-	  lhz       r0, 0x2(r31)
-	  fmr       f1, f31
-	  lwz       r4, 0x1C(r27)
-	  mr        r3, r31
-	  rlwinm    r0,r0,2,0,29
-	  add       r4, r4, r0
-	  bl        0x1C34
-	  stfs      f1, 0x0(r28)
-
-	.loc_0xB0:
-	  lhz       r0, 0x0(r30)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0xD8
-	  bge-      .loc_0xF0
-	  cmpwi     r0, 0
-	  bge-      .loc_0xCC
-	  b         .loc_0xF0
-
-	.loc_0xCC:
-	  lfs       f0, -0x7948(r2)
-	  stfs      f0, 0x4(r28)
-	  b         .loc_0x110
-
-	.loc_0xD8:
-	  lhz       r0, 0x2(r30)
-	  lwz       r3, 0x1C(r27)
-	  rlwinm    r0,r0,2,0,29
-	  lfsx      f0, r3, r0
-	  stfs      f0, 0x4(r28)
-	  b         .loc_0x110
-
-	.loc_0xF0:
-	  lhz       r0, 0x2(r30)
-	  fmr       f1, f31
-	  lwz       r4, 0x1C(r27)
-	  mr        r3, r30
-	  rlwinm    r0,r0,2,0,29
-	  add       r4, r4, r0
-	  bl        0x1BD4
-	  stfs      f1, 0x4(r28)
-
-	.loc_0x110:
-	  lhz       r0, 0x6(r29)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x138
-	  bge-      .loc_0x158
-	  cmpwi     r0, 0
-	  bge-      .loc_0x12C
-	  b         .loc_0x158
-
-	.loc_0x12C:
-	  li        r0, 0
-	  sth       r0, 0x8(r28)
-	  b         .loc_0x18C
-
-	.loc_0x138:
-	  lhz       r0, 0x8(r29)
-	  lwz       r4, 0x20(r27)
-	  rlwinm    r3,r0,1,0,30
-	  lwz       r0, 0xC(r27)
-	  lhax      r3, r4, r3
-	  slw       r0, r3, r0
-	  sth       r0, 0x8(r28)
-	  b         .loc_0x18C
-
-	.loc_0x158:
-	  lhz       r0, 0x8(r29)
-	  fmr       f1, f31
-	  lwz       r4, 0x20(r27)
-	  addi      r3, r29, 0x6
-	  rlwinm    r0,r0,1,0,30
-	  add       r4, r4, r0
-	  bl        0x1938
-	  fctiwz    f0, f1
-	  lwz       r0, 0xC(r27)
-	  stfd      f0, 0x8(r1)
-	  lwz       r3, 0xC(r1)
-	  slw       r0, r3, r0
-	  sth       r0, 0x8(r28)
-
-	.loc_0x18C:
-	  lhz       r0, 0xC(r31)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x1B4
-	  bge-      .loc_0x1CC
-	  cmpwi     r0, 0
-	  bge-      .loc_0x1A8
-	  b         .loc_0x1CC
-
-	.loc_0x1A8:
-	  lfs       f0, -0x7944(r2)
-	  stfs      f0, 0xC(r28)
-	  b         .loc_0x1EC
-
-	.loc_0x1B4:
-	  lhz       r0, 0xE(r31)
-	  lwz       r3, 0x24(r27)
-	  rlwinm    r0,r0,2,0,29
-	  lfsx      f0, r3, r0
-	  stfs      f0, 0xC(r28)
-	  b         .loc_0x1EC
-
-	.loc_0x1CC:
-	  lhz       r0, 0xE(r31)
-	  fmr       f1, f31
-	  lwz       r4, 0x24(r27)
-	  addi      r3, r31, 0xC
-	  rlwinm    r0,r0,2,0,29
-	  add       r4, r4, r0
-	  bl        0x1AF8
-	  stfs      f1, 0xC(r28)
-
-	.loc_0x1EC:
-	  lhz       r0, 0xC(r30)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x214
-	  bge-      .loc_0x22C
-	  cmpwi     r0, 0
-	  bge-      .loc_0x208
-	  b         .loc_0x22C
-
-	.loc_0x208:
-	  lfs       f0, -0x7944(r2)
-	  stfs      f0, 0x10(r28)
-	  b         .loc_0x24C
-
-	.loc_0x214:
-	  lhz       r0, 0xE(r30)
-	  lwz       r3, 0x24(r27)
-	  rlwinm    r0,r0,2,0,29
-	  lfsx      f0, r3, r0
-	  stfs      f0, 0x10(r28)
-	  b         .loc_0x24C
-
-	.loc_0x22C:
-	  lhz       r0, 0xE(r30)
-	  fmr       f1, f31
-	  lwz       r4, 0x24(r27)
-	  addi      r3, r30, 0xC
-	  rlwinm    r0,r0,2,0,29
-	  add       r4, r4, r0
-	  bl        0x1A98
-	  stfs      f1, 0x10(r28)
-
-	.loc_0x24C:
-	  psq_l     f31,0x38(r1),0,0
-	  lfd       f31, 0x30(r1)
-	  lmw       r27, 0x1C(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-	*/
 }
 
 /**
  * @note Address: 0x80068504
  * @note Size: 0x94
  */
-f32 J3DAnmClusterFull::getWeight(u16 p1) const
+f32 J3DAnmClusterFull::getWeight(u16 idx) const
 {
+	int index    = idx;
+	int maxFrame = (getFrame() + 0.5f);
+	if (getFrame() < 0.0f) {
+		return mWeights[getTable(index)->mOffset];
+	}
+	if (maxFrame >= getTable(index)->mMaxFrame) {
+		return mWeights[getTable(index)->mMaxFrame - 1 + getTable(index)->mOffset];
+	}
+	// u16 maxFrame = getTable(idx)->mMaxFrame;
+	// if (0.0f <= getFrame() && getFrame() < maxFrame)
+	//     return mWeights[(s32)getFrame() + getTable(idx)->mOffset];
+	// if (getFrame() < 0.0f)
+	//     return mWeights[getTable(idx)->mOffset];
+	// else
+	//     return mWeights[maxFrame - 1 + getTable(idx)->mOffset];
 	/*
 	    int v4                     = (int)(0.5f + mFTime);
 	    u32 index                  = p1;
@@ -1140,9 +507,9 @@ f32 J3DAnmClusterKey::getWeight(u16 p1) const
 	case 0:
 		return 1.0f;
 	case 1:
-		return _0C[mTables[p1]._02];
+		return mWeights[mTables[p1]._02];
 	default:
-		return J3DGetKeyFrameInterpolation<f32>(mCurrentFrame, &mTables[p1], &_0C[mTables[p1]._02]);
+		return J3DGetKeyFrameInterpolation<f32>(mCurrentFrame, &mTables[p1], &mWeights[mTables[p1]._02]);
 	}
 }
 
@@ -1994,10 +1361,10 @@ lbl_80069110:
  */
 void J3DAnmTevRegKey::getTevColorReg(u16 p1, _GXColorS10* color) const
 {
-	_48[p1].mTables[0].getColorField(mCurrentFrame, &color->r, _50);
-	_48[p1].mTables[1].getColorField(mCurrentFrame, &color->g, _54);
-	_48[p1].mTables[2].getColorField(mCurrentFrame, &color->b, _58);
-	_48[p1].mTables[3].getColorField(mCurrentFrame, &color->a, _5C);
+	// _48[p1].mTables[0].getColorField(mCurrentFrame, &color->r, _50);
+	// _48[p1].mTables[1].getColorField(mCurrentFrame, &color->g, _54);
+	// _48[p1].mTables[2].getColorField(mCurrentFrame, &color->b, _58);
+	// _48[p1].mTables[3].getColorField(mCurrentFrame, &color->a, _5C);
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -2668,294 +2035,44 @@ f32 J3DAnmCluster::getWeight(u16) const
  */
 // J3DAnmKind J3DAnmTransform::getKind() const { return J3DAnmKind_Transform; }
 
-/**
- * @note Address: 0x80069D44
- * @note Size: 0x234
- * J3DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs
- */
-// void J3DGetKeyFrameInterpolation<s16>(f32, J3DAnmKeyTableBase*, s16*)
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	lis      r5, 0x4330
-// 	lfd      f2, lbl_80516A28@sda21(r2)
-// 	lha      r0, 0(r4)
-// 	stw      r5, 8(r1)
-// 	xoris    r0, r0, 0x8000
-// 	stw      r0, 0xc(r1)
-// 	lfd      f0, 8(r1)
-// 	fsubs    f0, f0, f2
-// 	fcmpo    cr0, f1, f0
-// 	bge      lbl_80069D8C
-// 	lha      r0, 2(r4)
-// 	stw      r5, 8(r1)
-// 	xoris    r0, r0, 0x8000
-// 	stw      r0, 0xc(r1)
-// 	lfd      f0, 8(r1)
-// 	fsubs    f1, f0, f2
-// 	b        lbl_80069F70
-
-// lbl_80069D8C:
-// 	lhz      r0, 4(r3)
-// 	cmplwi   r0, 0
-// 	bne      lbl_80069E88
-// 	lhz      r6, 0(r3)
-// 	stw      r5, 8(r1)
-// 	addi     r0, r6, -1
-// 	mulli    r3, r0, 6
-// 	lhax     r0, r4, r3
-// 	xoris    r0, r0, 0x8000
-// 	stw      r0, 0xc(r1)
-// 	lfd      f0, 8(r1)
-// 	fsubs    f0, f0, f2
-// 	fcmpo    cr0, f0, f1
-// 	cror     2, 0, 2
-// 	bne      lbl_80069E2C
-// 	add      r3, r4, r3
-// 	stw      r5, 8(r1)
-// 	lha      r0, 2(r3)
-// 	xoris    r0, r0, 0x8000
-// 	stw      r0, 0xc(r1)
-// 	lfd      f0, 8(r1)
-// 	fsubs    f1, f0, f2
-// 	b        lbl_80069F70
-// 	b        lbl_80069E2C
-
-// lbl_80069DEC:
-// 	srwi     r7, r6, 1
-// 	stw      r5, 8(r1)
-// 	mulli    r0, r7, 3
-// 	slwi     r3, r0, 1
-// 	lhax     r0, r4, r3
-// 	xoris    r0, r0, 0x8000
-// 	stw      r0, 0xc(r1)
-// 	lfd      f0, 8(r1)
-// 	fsubs    f0, f0, f2
-// 	fcmpo    cr0, f1, f0
-// 	cror     2, 1, 2
-// 	bne      lbl_80069E28
-// 	add      r4, r4, r3
-// 	subf     r6, r7, r6
-// 	b        lbl_80069E2C
-
-// lbl_80069E28:
-// 	mr       r6, r7
-
-// lbl_80069E2C:
-// 	cmplwi   r6, 1
-// 	bgt      lbl_80069DEC
-// 	psq_l    f2, 0(r4), 1, qr5
-// 	psq_l    f0, 6(r4), 1, qr5
-// 	psq_l    f7, 2(r4), 1, qr5
-// 	fsubs    f5, f0, f2
-// 	psq_l    f6, 8(r4), 1, qr5
-// 	fsubs    f3, f1, f2
-// 	psq_l    f0, 10(r4), 1, qr5
-// 	fsubs    f4, f6, f7
-// 	fdivs    f3, f3, f5
-// 	psq_l    f1, 4(r4), 1, qr5
-// 	fmadds   f0, f0, f5, f7
-// 	fnmsubs  f4, f5, f1, f4
-// 	fmuls    f2, f3, f3
-// 	fsubs    f0, f0, f6
-// 	fsubs    f0, f0, f4
-// 	fmuls    f0, f2, f0
-// 	fmadds   f1, f5, f1, f0
-// 	fmadds   f1, f1, f3, f7
-// 	fmadds   f1, f4, f2, f1
-// 	fsubs    f1, f1, f0
-// 	b        lbl_80069F70
-
-// lbl_80069E88:
-// 	lhz      r6, 0(r3)
-// 	stw      r5, 8(r1)
-// 	addi     r0, r6, -1
-// 	slwi     r3, r0, 3
-// 	lhax     r0, r4, r3
-// 	xoris    r0, r0, 0x8000
-// 	stw      r0, 0xc(r1)
-// 	lfd      f0, 8(r1)
-// 	fsubs    f0, f0, f2
-// 	fcmpo    cr0, f0, f1
-// 	cror     2, 0, 2
-// 	bne      lbl_80069F18
-// 	add      r3, r4, r3
-// 	stw      r5, 8(r1)
-// 	lha      r0, 2(r3)
-// 	xoris    r0, r0, 0x8000
-// 	stw      r0, 0xc(r1)
-// 	lfd      f0, 8(r1)
-// 	fsubs    f1, f0, f2
-// 	b        lbl_80069F70
-// 	b        lbl_80069F18
-
-// lbl_80069EDC:
-// 	rlwinm   r3, r6, 2, 0, 0x1c
-// 	stw      r5, 8(r1)
-// 	lhax     r0, r4, r3
-// 	srwi     r7, r6, 1
-// 	xoris    r0, r0, 0x8000
-// 	stw      r0, 0xc(r1)
-// 	lfd      f0, 8(r1)
-// 	fsubs    f0, f0, f2
-// 	fcmpo    cr0, f1, f0
-// 	cror     2, 1, 2
-// 	bne      lbl_80069F14
-// 	add      r4, r4, r3
-// 	subf     r6, r7, r6
-// 	b        lbl_80069F18
-
-// lbl_80069F14:
-// 	mr       r6, r7
-
-// lbl_80069F18:
-// 	cmplwi   r6, 1
-// 	bgt      lbl_80069EDC
-// 	psq_l    f2, 0(r4), 1, qr5
-// 	psq_l    f0, 8(r4), 1, qr5
-// 	psq_l    f7, 2(r4), 1, qr5
-// 	fsubs    f5, f0, f2
-// 	psq_l    f6, 10(r4), 1, qr5
-// 	fsubs    f3, f1, f2
-// 	psq_l    f0, 12(r4), 1, qr5
-// 	fsubs    f4, f6, f7
-// 	fdivs    f3, f3, f5
-// 	psq_l    f1, 6(r4), 1, qr5
-// 	fmadds   f0, f0, f5, f7
-// 	fnmsubs  f4, f5, f1, f4
-// 	fmuls    f2, f3, f3
-// 	fsubs    f0, f0, f6
-// 	fsubs    f0, f0, f4
-// 	fmuls    f0, f2, f0
-// 	fmadds   f1, f5, f1, f0
-// 	fmadds   f1, f1, f3, f7
-// 	fmadds   f1, f4, f2, f1
-// 	fsubs    f1, f1, f0
-
-// lbl_80069F70:
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/**
- * @note Address: 0x80069F78
- * @note Size: 0x17C
- * J3DGetKeyFrameInterpolation<f>__FfP18J3DAnmKeyTableBasePf
- */
-// void J3DGetKeyFrameInterpolation<f32>(f32, J3DAnmKeyTableBase*, f32*)
-// {
-// 	/*
-// 	lfs      f0, 0(r4)
-// 	fcmpo    cr0, f1, f0
-// 	bge      lbl_80069F8C
-// 	lfs      f1, 4(r4)
-// 	blr
-
-// lbl_80069F8C:
-// 	lhz      r0, 4(r3)
-// 	cmplwi   r0, 0
-// 	bne      lbl_8006A048
-// 	lhz      r3, 0(r3)
-// 	addi     r0, r3, -1
-// 	mulli    r0, r0, 0xc
-// 	lfsx     f0, r4, r0
-// 	fcmpo    cr0, f0, f1
-// 	cror     2, 0, 2
-// 	bne      lbl_80069FF0
-// 	add      r3, r4, r0
-// 	lfs      f1, 4(r3)
-// 	blr
-// 	b        lbl_80069FF0
-
-// lbl_80069FC4:
-// 	srwi     r5, r3, 1
-// 	mulli    r0, r5, 3
-// 	slwi     r0, r0, 2
-// 	lfsx     f0, r4, r0
-// 	fcmpo    cr0, f1, f0
-// 	cror     2, 1, 2
-// 	bne      lbl_80069FEC
-// 	add      r4, r4, r0
-// 	subf     r3, r5, r3
-// 	b        lbl_80069FF0
-
-// lbl_80069FEC:
-// 	mr       r3, r5
-
-// lbl_80069FF0:
-// 	cmplwi   r3, 1
-// 	bgt      lbl_80069FC4
-// 	lfs      f0, 0(r4)
-// 	lfs      f2, 0xc(r4)
-// 	fsubs    f5, f1, f0
-// 	lfs      f6, 4(r4)
-// 	fsubs    f4, f2, f0
-// 	lfs      f2, 0x10(r4)
-// 	lfs      f7, 8(r4)
-// 	lfs      f8, 0x14(r4)
-// 	fdivs    f3, f5, f4
-// 	fmuls    f0, f3, f3
-// 	fsubs    f4, f6, f2
-// 	fadds    f1, f3, f3
-// 	fsubs    f2, f0, f3
-// 	fmsubs   f0, f1, f2, f0
-// 	fmadds   f1, f7, f2, f7
-// 	fmadds   f0, f0, f4, f6
-// 	fmadds   f1, f8, f2, f1
-// 	fmsubs   f1, f3, f7, f1
-// 	fnmsubs  f1, f5, f1, f0
-// 	blr
-
-// lbl_8006A048:
-// 	lhz      r3, 0(r3)
-// 	addi     r0, r3, -1
-// 	slwi     r0, r0, 4
-// 	lfsx     f0, r4, r0
-// 	fcmpo    cr0, f0, f1
-// 	cror     2, 0, 2
-// 	bne      lbl_8006A09C
-// 	add      r3, r4, r0
-// 	lfs      f1, 4(r3)
-// 	blr
-// 	b        lbl_8006A09C
-
-// lbl_8006A074:
-// 	rlwinm   r0, r3, 3, 0, 0x1b
-// 	srwi     r5, r3, 1
-// 	lfsx     f0, r4, r0
-// 	fcmpo    cr0, f1, f0
-// 	cror     2, 1, 2
-// 	bne      lbl_8006A098
-// 	add      r4, r4, r0
-// 	subf     r3, r5, r3
-// 	b        lbl_8006A09C
-
-// lbl_8006A098:
-// 	mr       r3, r5
-
-// lbl_8006A09C:
-// 	cmplwi   r3, 1
-// 	bgt      lbl_8006A074
-// 	lfs      f0, 0(r4)
-// 	lfs      f2, 0x10(r4)
-// 	fsubs    f5, f1, f0
-// 	lfs      f6, 4(r4)
-// 	fsubs    f4, f2, f0
-// 	lfs      f2, 0x14(r4)
-// 	lfs      f7, 0xc(r4)
-// 	lfs      f8, 0x18(r4)
-// 	fdivs    f3, f5, f4
-// 	fmuls    f0, f3, f3
-// 	fsubs    f4, f6, f2
-// 	fadds    f1, f3, f3
-// 	fsubs    f2, f0, f3
-// 	fmsubs   f0, f1, f2, f0
-// 	fmadds   f1, f7, f2, f7
-// 	fmadds   f0, f0, f4, f6
-// 	fmadds   f1, f8, f2, f1
-// 	fmsubs   f1, f3, f7, f1
-// 	fnmsubs  f1, f5, f1, f0
-// 	blr
-// 	*/
-// }
+template <typename T>
+f32 J3DGetKeyFrameInterpolation(f32 frame, J3DAnmKeyTableBase* table, T* values)
+{
+	if (frame < values[0]) {
+		return values[1];
+	} else {
+		if (table->mType == 0) {
+			if (values[(table->mMaxFrame - 1) * 3] <= frame) {
+				return values[(table->mMaxFrame - 1) * 3 + 1];
+			} else {
+				u32 tmp = table->mMaxFrame;
+				while (tmp > 1) {
+					u32 halfTmp = tmp / 2;
+					u32 upIdx   = halfTmp * 3;
+					if (frame >= values[upIdx]) {
+						values = values + upIdx;
+						tmp -= halfTmp;
+					} else {
+						tmp = halfTmp;
+					}
+				}
+				return J3DHermiteInterpolation<T>(frame, &values[0], &values[1], &values[2], &values[3], &values[4], &values[5]);
+			}
+		} else if (values[(table->mMaxFrame - 1) * 4] <= frame) {
+			return values[(table->mMaxFrame - 1) * 4 + 1];
+		} else {
+			u32 tmp = table->mMaxFrame;
+			while (tmp > 1) {
+				u32 halfTmp = tmp / 2;
+				u32 upIdx   = halfTmp * 4;
+				if (frame >= values[upIdx]) {
+					values = values + upIdx;
+					tmp -= halfTmp;
+				} else {
+					tmp = halfTmp;
+				}
+			}
+			return J3DHermiteInterpolation<T>(frame, &values[0], &values[1], &values[3], &values[4], &values[5], &values[6]);
+		}
+	}
+}

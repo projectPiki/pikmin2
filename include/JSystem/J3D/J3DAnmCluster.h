@@ -7,7 +7,7 @@
 
 struct J3DAnmCluster : public J3DAnmBase {
 	inline J3DAnmCluster()
-	    : _0C(nullptr)
+	    : mWeights(nullptr)
 	{
 	}
 
@@ -17,11 +17,12 @@ struct J3DAnmCluster : public J3DAnmBase {
 
 	// _00     = VTBL
 	// _00-_0C = J3DAnmBase
-	f32* _0C; // _0C
+	f32* mWeights; // _0C
 };
 
 struct J3DAnmClusterFullTable {
-	u16 _00[2]; // _00
+	u16 mMaxFrame; // _00
+	u16 mOffset;   // _02
 };
 
 /**
