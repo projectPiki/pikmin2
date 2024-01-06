@@ -454,7 +454,7 @@ J2DPictureEx::~J2DPictureEx()
  * @note Address: 0x800552DC
  * @note Size: 0xF8
  */
-void J2DPictureEx::prepareTexture(u8)
+bool J2DPictureEx::prepareTexture(u8)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -570,7 +570,7 @@ void J2DPictureEx::drawTexCoord(f32 p1, f32 p2, f32 p3, f32 p4, s16 p5, s16 p6, 
 		return;
 	}
 	GXLoadPosMtxImm(v1, 0);
-	JUtility::TColor colors[4] = { mCornerColors.mColor0, mCornerColors.mColor1, mCornerColors.mColor2, mCornerColors.mColor3 };
+	JUtility::TColor colors[4] = { mCornerColors[0], mCornerColors[1], mCornerColors[2], mCornerColors[3] };
 	if (mMaterial) {
 		if ((mMaterial->mColorBlock.mChannels[1].mData & 1) == 1) {
 			if (mMaterial->mMaterialAlphaCalc == 1) {

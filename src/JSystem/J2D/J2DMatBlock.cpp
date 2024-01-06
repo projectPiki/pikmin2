@@ -5119,13 +5119,13 @@ void J2DIndBlockFull::initialize()
 {
 	mTexStageNum = 0;
 	for (int i = 0; i < ARRAY_SIZE(mTexOrders); i++) {
-		mTexOrders[i] = j2dDefaultIndTexOrderNull;
+		mTexOrders[i].mOrder = j2dDefaultIndTexOrderNull;
 	}
 	for (int i = 0; i < ARRAY_SIZE(mTexMtxes); i++) {
 		mTexMtxes[i].mMtxInfo = j2dDefaultIndTexMtxInfo;
 	}
 	for (int i = 0; i < ARRAY_SIZE(mTexCoordScales); i++) {
-		mTexCoordScales[i] = j2dDefaultIndTexCoordScaleInfo;
+		mTexCoordScales[i].mScaleInfo = j2dDefaultIndTexCoordScaleInfo;
 	}
 }
 

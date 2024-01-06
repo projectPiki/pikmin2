@@ -419,7 +419,7 @@ void MoviePlayer::loadResource()
 	mStudioFactory->appendCreateObject(mPikminCreateObjectAudio);
 
 	mStudioControl               = new JStudio::TControl;
-	mStudioControl->pFactory     = mStudioFactory;
+	mStudioControl->mFactory     = mStudioFactory;
 	mStudioControl->_60.pFactory = &mStudioFactory->mFvbFactory;
 	mStudioControl->_58          = 0.03333333507180214;
 
@@ -649,7 +649,7 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 				mTextControl->update(input1, input2);
 			}
 		}
-		if (mDemoState == 5 && mFlags.isSet(0x80000000) && !mStudioControl->mObject_control._20) {
+		if (mDemoState == 5 && mFlags.isSet(0x80000000) && !mStudioControl->mObject_control.mSuspend) {
 			if ((input1->getButtonDown() & 0xf70) || (input2 && (input2->getButtonDown() & 0xf70)) && mCurrentConfig->isSkippable()) {
 				skip();
 			} else if ((input1->getButtonDown() & Controller::PRESS_START)
@@ -684,8 +684,8 @@ bool MoviePlayer::start(Camera* cam)
 		setCamera(cam);
 	}
 	if (mStbFile) {
-		mCounter                            = 0;
-		mStudioControl->mObject_control._20 = 0;
+		mCounter                                 = 0;
+		mStudioControl->mObject_control.mSuspend = 0;
 		mObjectSystem->start();
 	}
 	return isFlag(MVP_IsActive);
@@ -1036,7 +1036,7 @@ void MoviePlayer::suspend(s32)
  */
 void MoviePlayer::unsuspend(s32 msg, bool flag)
 {
-	mStudioControl->mObject_control._20 -= msg;
+	mStudioControl->mObject_control.mSuspend -= msg;
 	if (flag) {
 		int id = mCurrentConfig->mMsgPauseNum;
 		if (id == 0 || id <= mMessageEndCount) {
@@ -1059,8 +1059,8 @@ void MoviePlayer::resetFrame()
 	JUTAssertion::setMessageCount(0);
 	if (mStudioControl->mStatus) {
 		parse(1);
-		mCounter                            = 0;
-		mStudioControl->mObject_control._20 = 0;
+		mCounter                                 = 0;
+		mStudioControl->mObject_control.mSuspend = 0;
 	}
 }
 

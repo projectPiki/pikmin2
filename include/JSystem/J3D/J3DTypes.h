@@ -372,10 +372,19 @@ struct J3DTextureSRTInfo {
 	f32 mTranslationY; // _10
 };
 
+// hate this but whatever's in here can't have constructors bc of J3DTransform
 struct J3DTransformInfo {
-	JGeometry::TVec3f mScale;        // _00
-	JGeometry::TVec3<s16> mRotation; // _0C
-	JGeometry::TVec3f mTranslation;  // _14
+	inline J3DTransformInfo& operator=(const J3DTransformInfo& b)
+	{
+		mScale       = b.mScale;
+		mRotation    = b.mRotation;
+		mTranslation = b.mTranslation;
+		return *this;
+	}
+
+	Vec mScale;       // _00
+	SVec mRotation;   // _0C
+	Vec mTranslation; // _14
 };
 
 extern const J3DTransformInfo j3dDefaultTransformInfo;

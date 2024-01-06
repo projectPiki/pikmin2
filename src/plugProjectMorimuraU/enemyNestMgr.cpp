@@ -48,7 +48,7 @@ J3DModelData* Mgr::loadModelData(JKRArchive* archive)
 	if (enemyBMD) {
 		mModelData = J3DModelLoaderDataBase::load(enemyBMD, 0x20240010);
 		mModelData->newSharedDisplayList(0x40000);
-		mModelData->simpleCalcMaterial(0, j3dDefaultMtx);
+		mModelData->simpleCalcMaterial(0, *(Mtx*)(&j3dDefaultMtx));
 		mModelData->makeSharedDL();
 	}
 
@@ -63,7 +63,7 @@ J3DModelData* Mgr::loadModelData(JKRArchive* archive)
 	if (enemyBMD) {
 		mJigumoHouseData = J3DModelLoaderDataBase::load(enemyBMD, 0x20240010);
 		mJigumoHouseData->newSharedDisplayList(0x40000);
-		mJigumoHouseData->simpleCalcMaterial(0, j3dDefaultMtx);
+		mJigumoHouseData->simpleCalcMaterial(0, *(Mtx*)(&j3dDefaultMtx));
 		mJigumoHouseData->makeSharedDL();
 	}
 

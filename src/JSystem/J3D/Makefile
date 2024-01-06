@@ -2,7 +2,7 @@ J3D_FILES:=\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DSys.o\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DVertex.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DTransform.o\
-	$(BUILD_DIR)/asm/JSystem/J3D/J3DPacket.o\
+	$(BUILD_DIR)/src/JSystem/J3D/J3DPacket.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DShape.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DMaterial.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DTevs.o\

@@ -300,13 +300,13 @@ void Model::jointVisible(bool newVisibility, int jointIndex)
 	if (newVisibility != false) {
 		for (J3DMaterial* material = mJ3dModel->mModelData->mJointTree.mJoints[(u16)jointIndex]->mMaterial; material != nullptr;
 		     material              = material->mNext) {
-			material->mShape->mFlags &= ~J3DShape_IsHidden;
+			material->mShape->mFlags &= ~J3DShape_Hide;
 		}
 		return;
 	}
 	for (J3DMaterial* material = mJ3dModel->mModelData->mJointTree.mJoints[(u16)jointIndex]->mMaterial; material != nullptr;
 	     material              = material->mNext) {
-		material->mShape->mFlags |= J3DShape_IsHidden;
+		material->mShape->mFlags |= J3DShape_Hide;
 	}
 }
 
@@ -320,7 +320,7 @@ void Model::hide()
 	for (u16 i = 0; i < mJointCount; i++) {
 		for (J3DMaterial* material = mJ3dModel->mModelData->mJointTree.mJoints[i]->mMaterial; material != nullptr;
 		     material              = material->mNext) {
-			material->mShape->mFlags |= J3DShape_IsHidden;
+			material->mShape->mFlags |= J3DShape_Hide;
 		}
 	}
 }
@@ -334,7 +334,7 @@ void Model::show()
 	for (u16 i = 0; i < mJointCount; i++) {
 		for (J3DMaterial* material = mJ3dModel->mModelData->mJointTree.mJoints[i]->mMaterial; material != nullptr;
 		     material              = material->mNext) {
-			material->mShape->mFlags &= ~J3DShape_IsHidden;
+			material->mShape->mFlags &= ~J3DShape_Hide;
 		}
 	}
 }

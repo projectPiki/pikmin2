@@ -89,11 +89,11 @@ void Conductor::createTables(JASTrack* track)
 	u16 v2;
 	track->readPortAppDirect(2, &v1);
 	track->readPortAppDirect(3, &v2);
-	_A8 = (u32)((v2 | (v1 << 16)) + track->mSeqCtrl._00);
+	_A8 = (u32)((v2 | (v1 << 16)) + track->mSeqCtrl.mRawFilePtr);
 
 	track->readPortAppDirect(4, &v1);
 	track->readPortAppDirect(5, &v2);
-	_AC = (u32)((v2 | (v1 << 16)) + track->mSeqCtrl._00);
+	_AC = (u32)((v2 | (v1 << 16)) + track->mSeqCtrl.mRawFilePtr);
 	P2ASSERTLINE(230, _A8 != 0);
 	P2ASSERTLINE(231, _AC != 0);
 	/*
@@ -1071,12 +1071,12 @@ u32 Module::seqCpuSync_AutoBgm_Module(JASTrack* track1, u16 cmd, u32 p3, JASTrac
 		track1->setParam(0, val1 / 127.0f, -1);
 		track1->setParam(3, val2 / 127.0f, -1);
 
-		track1->_356 = _1E4.mValue;
-		_2A4         = 0;
-		_2C0         = 0;
-		_2C2         = -1;
-		_2B8[0]->_08 = 0;
-		_2B8[1]->_08 = 0;
+		track1->mTranspose = _1E4.mValue;
+		_2A4               = 0;
+		_2C0               = 0;
+		_2C2               = -1;
+		_2B8[0]->_08       = 0;
+		_2B8[1]->_08       = 0;
 
 		bool check = false;
 		if (!_2B8[0]->mSlider.mValue && !_2B8[1]->mSlider.mValue) {

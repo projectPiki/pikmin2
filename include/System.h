@@ -19,6 +19,8 @@ void kando_panic_f(bool, const char*, s32, const char*, ...);
 extern void preUserCallback(u16, OSContext*, u32, u32);
 
 struct HeapInfo : public Node, public JKRDisposer {
+	inline HeapInfo(char* name) { mName = name; }
+
 	virtual ~HeapInfo(); // _20 (weak)
 
 	void search(HeapInfo*);

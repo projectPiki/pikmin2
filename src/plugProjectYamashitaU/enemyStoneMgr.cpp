@@ -53,7 +53,7 @@ void Mgr::loadResource()
 		loadModDat    = J3DModelLoaderDataBase::load(modDat, 0x240000 | 0x240000);
 		mModelData[i] = loadModDat;
 		mModelData[i]->newSharedDisplayList(0x40000);
-		mModelData[i]->simpleCalcMaterial(0, j3dDefaultMtx);
+		mModelData[i]->simpleCalcMaterial(0, *(Mtx*)(&j3dDefaultMtx));
 		mModelData[i]->makeSharedDL();
 	}
 	sys->heapStatusEnd("EnemyStone::Mgr::stoneModel");

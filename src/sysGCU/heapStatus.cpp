@@ -47,7 +47,7 @@ HeapStatus::HeapStatus()
 	mHeapInfo._40 = -1;
 	mHeapInfo._44 = 0;
 	mHeapInfo._48 = this;
-	mHeapInfo._50 = 0;
+	_50           = 0;
 	mHeapInfo._4C = this;
 	/*
 	stwu     r1, -0x20(r1)

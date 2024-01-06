@@ -115,7 +115,7 @@ struct J3DTevColorAnm {
 
 	void setAnmFlag(bool flag) { mAnmFlag = flag; }
 	bool getAnmFlag() const { return mAnmFlag; }
-	void calc(GXColorS10* pColor) const { mAnm->getTevColorReg(mIndex, pColor); }
+	void calc(GXColorS10* color) const { mAnm->getTevColorReg(mIndex, color); }
 
 	u16 mIndex;            // _00
 	u16 mAnmFlag;          // _02

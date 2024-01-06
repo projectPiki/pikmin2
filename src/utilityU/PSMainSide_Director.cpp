@@ -746,7 +746,7 @@ TrackOnDirectorBase::TrackOnDirectorBase(int type, const char* name, s32 in, s32
  */
 void TrackOnDirectorBase::onPlayInit(JASTrack* track)
 {
-	track->_358 |= 0x60;
+	track->mPauseStatus |= 0x60;
 	track->muteTrack(true);
 }
 

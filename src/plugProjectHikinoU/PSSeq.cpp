@@ -2424,7 +2424,7 @@ SeqBase* SeqMgr::findSeq(JASTrack* track)
 				}
 				// needs to not unroll
 				// for (int i = 0; i < 16; i++) {
-				if (temp->_2FC[0] == track) {
+				if (temp->mChildList[0] == track) {
 					return link->getObject();
 				}
 				//}

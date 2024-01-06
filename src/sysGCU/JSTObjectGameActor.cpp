@@ -256,13 +256,13 @@ void ObjectGameActor::parseUserData_(u32 data1, void const* data2)
 	JStudio::stb::data::TParse_TParagraph_data::TData tdata;
 	JStudio::stb::data::TParse_TParagraph_data data(data2);
 	data.getData(&tdata);
-	if (tdata.status) {
+	if (tdata.mStatus) {
 		bool test = false;
-		if (tdata.fileCount && tdata.status == 0x32 && tdata._10) {
+		if (tdata.mFileCount && tdata.mStatus == 0x32 && tdata._10) {
 			test = true;
 		}
 		if (test) {
-			for (u16* i = (u16*)tdata.fileCount; i != (u16*)tdata.fileCount + tdata.dataSize; i++) {
+			for (u16* i = (u16*)tdata.mFileCount; i != (u16*)tdata.mFileCount + tdata.mDataSize; i++) {
 				mMovieCommandData[count] = i[0];
 			}
 		}

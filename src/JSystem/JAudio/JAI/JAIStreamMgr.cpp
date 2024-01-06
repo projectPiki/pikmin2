@@ -1973,7 +1973,7 @@ void JAInter::StreamMgr::prepareSystem(s32 inode)
 		if (aramParentHeap != nullptr) {
 			aramBufferHeap->alloc(aramParentHeap, 10 * sChannelMax * JAIGlobalParameter::getParamStreamDecodedBufferBlocks() >> 1);
 		}
-		start  = (u32)aramBufferHeap->_38;
+		start  = (u32)aramBufferHeap->mBase;
 		length = 10 * sChannelMax * JAIGlobalParameter::getParamStreamDecodedBufferBlocks() >> 1;
 	}
 	streamSystem->init(start, length, systemCallBack, nullptr);
@@ -2066,7 +2066,7 @@ void JAInter::StreamMgr::playDirect(char* path)
 				if (aramParentHeap != nullptr) {
 					aramBufferHeap->alloc(aramParentHeap, sChannelMax * JAIGlobalParameter::getParamStreamDecodedBufferBlocks() * 10 >> 1);
 				}
-				info.mStart  = aramBufferHeap->_38;
+				info.mStart  = aramBufferHeap->mBase;
 				info.mLength = sChannelMax * JAIGlobalParameter::getParamStreamDecodedBufferBlocks() * 10 >> 1;
 			}
 			streamSystem->init(reinterpret_cast<u32>(info.mStart), info.mLength, systemCallBack, nullptr);

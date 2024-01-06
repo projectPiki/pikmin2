@@ -23,10 +23,10 @@ struct J3DShapeMtx;
 #define J3DShapeMtx_Multi    0x3
 
 enum J3DShapeFlags {
-	J3DShape_IsHidden  = 0x1,
+	J3DShape_Hide      = 0x1,
 	J3DShape_SkinPos   = 0x4,
 	J3DShape_SkinNorm  = 0x8,
-	J3DShape_unk0x10   = 0x10,
+	J3DShape_Hidden    = 0x10,
 	J3DShape_EnableLOD = 0x100,
 	J3DShape_NoMtx     = 0x200,
 	J3DShape_Invalid   = 0xFFFFFFFF,
@@ -72,8 +72,8 @@ struct J3DShape {
 	void setVcdVatCmd(void* pVatCmd) { mVcdVatCmd = (u8*)pVatCmd; }
 	void setDrawMtx(Mtx** pDrawMtx) { mDrawMtx = pDrawMtx; }
 	void setNrmMtx(Mtx33** pNrmMtx) { mNrmMtx = pNrmMtx; }
-	void show() { offFlag(J3DShape_IsHidden); }
-	void hide() { onFlag(J3DShape_IsHidden); }
+	void show() { offFlag(J3DShape_Hide); }
+	void hide() { onFlag(J3DShape_Hide); }
 	void setCurrentViewNoPtr(u32* pViewNoPtr) { mCurrentViewNumber = pViewNoPtr; }
 	void setScaleFlagArray(u8* pScaleFlagArray) { mScaleFlagArray = pScaleFlagArray; }
 	void setTexMtxLoadType(u32 type) { mFlags = (mFlags & 0xFFFF0FFF) | type; }

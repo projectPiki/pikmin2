@@ -1,63 +1,16 @@
 #include "JSystem/J3D/J3DTypes.h"
+#include "JSystem/J3D/J3DTransform.h"
 #include "Vector3.h"
 
-/*
-    Generated from dpostproc
+const J3DTransformInfo j3dDefaultTransformInfo = {
+	{ 1.0f, 1.0f, 1.0f },
+	{ 0, 0, 0 },
+	{ 0.0f, 0.0f, 0.0f },
+};
+const Vec j3dDefaultScale = { 1.0f, 1.0f, 1.0f };
+const Mtx j3dDefaultMtx   = { 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f };
 
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global j3dDefaultTransformInfo
-    j3dDefaultTransformInfo:
-        .float 1.0
-        .float 1.0
-        .float 1.0
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global j3dDefaultScale
-    j3dDefaultScale:
-        .float 1.0
-        .float 1.0
-        .float 1.0
-    .global j3dDefaultMtx
-    j3dDefaultMtx:
-        .float 1.0
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .float 1.0
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .float 1.0
-        .4byte 0x00000000
-    .global lbl_8047889C
-    lbl_8047889C:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-
-    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-    .global Unit01
-    Unit01:
-        .skip 4
-        .float 1.0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516998
-    lbl_80516998:
-        .4byte 0x00000000
-    .global lbl_8051699C
-    lbl_8051699C:
-        .float 1.0
-    .global lbl_805169A0
-    lbl_805169A0:
-        .float 0.5
-        .4byte 0x00000000
-*/
+static f32 Unit01[] = { 0.0f, 1.0f };
 
 /**
  * @note Address: 0x8005EE78
@@ -291,17 +244,17 @@ lbl_8005F014:
  * @note Address: 0x8005F0A4
  * @note Size: 0xC8
  */
-void J3DPSCalcInverseTranspose(Mtx, Mtx33)
+ASM void J3DPSCalcInverseTranspose(register Mtx src, register Mtx33 dst)
 {
-	/*
-	psq_l    f0, 0(r3), 1, qr0
-	psq_l    f1, 4(r3), 0, qr0
-	psq_l    f2, 16(r3), 1, qr0
+#ifdef __MWERKS__ // clang-format off
+	psq_l    f0, 0(src), 1, 0
+	psq_l    f1, 4(src), 0, 0
+	psq_l    f2, 16(src), 1, 0
 	ps_merge10 f6, f1, f0
-	psq_l    f3, 20(r3), 0, qr0
-	psq_l    f4, 32(r3), 1, qr0
+	psq_l    f3, 20(src), 0, 0
+	psq_l    f4, 32(src), 1, 0
 	ps_merge10 f7, f3, f2
-	psq_l    f5, 36(r3), 0, qr0
+	psq_l    f5, 36(src), 0, 0
 	ps_mul   f11, f3, f6
 	ps_merge10 f8, f5, f4
 	ps_mul   f13, f5, f7
@@ -334,487 +287,345 @@ lbl_8005F118:
 	ps_nmsub f0, f7, f5, f6
 	ps_muls0 f13, f13, f0
 	ps_muls0 f12, f12, f0
-	psq_st   f13, 0(r4), 0, qr0
+	psq_st   f13, 0(dst), 0, 0
 	ps_muls0 f11, f11, f0
-	psq_st   f12, 12(r4), 0, qr0
+	psq_st   f12, 12(dst), 0, 0
 	ps_muls0 f10, f10, f0
-	psq_st   f11, 24(r4), 0, qr0
+	psq_st   f11, 24(dst), 0, 0
 	ps_muls0 f9, f9, f0
-	psq_st   f10, 8(r4), 1, qr0
+	psq_st   f10, 8(dst), 1, 0
 	ps_muls0 f8, f8, f0
-	psq_st   f9, 20(r4), 1, qr0
+	psq_st   f9, 20(r4), 1, 0
 	li       r3, 1
-	psq_st   f8, 32(r4), 1, qr0
+	psq_st   f8, 32(r4), 1, 0
 	blr
-	*/
+#endif // clang-format on
 }
 
 /**
  * @note Address: 0x8005F16C
  * @note Size: 0xB0
  */
-void J3DGetTranslateRotateMtx(const J3DTransformInfo&, Mtx)
+void J3DGetTranslateRotateMtx(const J3DTransformInfo& tx, Mtx dst)
 {
-	/*
-	lha      r5, 0xe(r3)
-	lis      r6, sincosTable___5JMath@ha
-	addi     r6, r6, sincosTable___5JMath@l
-	lha      r0, 0x10(r3)
-	rlwinm   r5, r5, 0x1e, 0x12, 0x1c
-	lha      r7, 0xc(r3)
-	lfsx     f8, r6, r5
-	rlwinm   r9, r0, 0x1e, 0x12, 0x1c
-	addi     r8, r6, 4
-	rlwinm   r0, r7, 0x1e, 0x12, 0x1c
-	fneg     f0, f8
-	lfsx     f6, r8, r5
-	lfsx     f10, r8, r9
-	lfsx     f4, r6, r0
-	lfsx     f5, r8, r0
-	fmuls    f1, f10, f6
-	lfsx     f9, r6, r9
-	fmuls    f12, f4, f10
-	fmuls    f3, f6, f4
-	lfs      f2, 0x14(r3)
-	stfs     f0, 0x20(r4)
-	fmuls    f0, f9, f6
-	stfs     f1, 0(r4)
-	fmuls    f11, f5, f9
-	fmuls    f7, f6, f5
-	lfs      f1, 0x18(r3)
-	stfs     f0, 0x10(r4)
-	fmuls    f10, f5, f10
-	lfs      f0, 0x1c(r3)
-	stfs     f3, 0x24(r4)
-	fmuls    f9, f4, f9
-	fmsubs   f6, f12, f8, f11
-	stfs     f7, 0x28(r4)
-	fmsubs   f5, f11, f8, f12
-	fmadds   f4, f10, f8, f9
-	stfs     f6, 4(r4)
-	fmadds   f3, f9, f8, f10
-	stfs     f5, 0x18(r4)
-	stfs     f4, 8(r4)
-	stfs     f3, 0x14(r4)
-	stfs     f2, 0xc(r4)
-	stfs     f1, 0x1c(r4)
-	stfs     f0, 0x2c(r4)
-	blr
-	*/
+	f32 sx = JMASSin(tx.mRotation.x), cx = JMASCos(tx.mRotation.x);
+	f32 sy = JMASSin(tx.mRotation.y), cy = JMASCos(tx.mRotation.y);
+	f32 sz = JMASSin(tx.mRotation.z), cz = JMASCos(tx.mRotation.z);
+
+	dst[2][0] = -sy;
+	dst[0][0] = cz * cy;
+	dst[1][0] = sz * cy;
+	dst[2][1] = cy * sx;
+	dst[2][2] = cy * cx;
+
+	f32 cxsz  = cx * sz;
+	f32 sxcz  = sx * cz;
+	dst[0][1] = sxcz * sy - cxsz;
+	dst[1][2] = cxsz * sy - sxcz;
+
+	f32 sxsz  = sx * sz;
+	f32 cxcz  = cx * cz;
+	dst[0][2] = cxcz * sy + sxsz;
+	dst[1][1] = sxsz * sy + cxcz;
+
+	dst[0][3] = tx.mTranslation.x;
+	dst[1][3] = tx.mTranslation.y;
+	dst[2][3] = tx.mTranslation.z;
 }
 
 /**
  * @note Address: 0x8005F21C
  * @note Size: 0xB0
  */
-void J3DGetTranslateRotateMtx(s16, s16, s16, f32, f32, f32, Mtx)
+void J3DGetTranslateRotateMtx(s16 rx, s16 ry, s16 rz, f32 tx, f32 ty, f32 tz, Mtx dst)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  stfd      f31, 0x10(r1)
-	  psq_st    f31,0x18(r1),0,0
-	  lis       r7, 0x8050
-	  rlwinm    r4,r4,30,18,28
-	  addi      r7, r7, 0x71A0
-	  rlwinm    r5,r5,30,18,28
-	  lfsx      f10, r7, r4
-	  addi      r8, r7, 0x4
-	  rlwinm    r0,r3,30,18,28
-	  lfsx      f6, r8, r4
-	  lfsx      f12, r8, r5
-	  fneg      f4, f10
-	  lfsx      f8, r7, r0
-	  lfsx      f9, r8, r0
-	  fmuls     f5, f12, f6
-	  lfsx      f11, r7, r5
-	  fmuls     f0, f6, f8
-	  fmuls     f31, f8, f12
-	  stfs      f4, 0x20(r6)
-	  fmuls     f4, f11, f6
-	  fmuls     f13, f9, f11
-	  stfs      f5, 0x0(r6)
-	  fmuls     f7, f6, f9
-	  fmuls     f8, f8, f11
-	  stfs      f4, 0x10(r6)
-	  fmuls     f9, f9, f12
-	  fmsubs    f6, f31, f10, f13
-	  stfs      f0, 0x24(r6)
-	  fmsubs    f5, f13, f10, f31
-	  fmadds    f4, f9, f10, f8
-	  stfs      f7, 0x28(r6)
-	  fmadds    f0, f8, f10, f9
-	  stfs      f6, 0x4(r6)
-	  stfs      f5, 0x18(r6)
-	  stfs      f4, 0x8(r6)
-	  stfs      f0, 0x14(r6)
-	  stfs      f1, 0xC(r6)
-	  stfs      f2, 0x1C(r6)
-	  stfs      f3, 0x2C(r6)
-	  psq_l     f31,0x18(r1),0,0
-	  lfd       f31, 0x10(r1)
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	f32 sx = JMASSin(rx), cx = JMASCos(rx);
+	f32 sy = JMASSin(ry), cy = JMASCos(ry);
+	f32 sz = JMASSin(rz), cz = JMASCos(rz);
+
+	dst[2][0] = -sy;
+	dst[0][0] = cz * cy;
+	dst[1][0] = sz * cy;
+	dst[2][1] = cy * sx;
+	dst[2][2] = cy * cx;
+
+	f32 cxsz  = cx * sz;
+	f32 sxcz  = sx * cz;
+	dst[0][1] = sxcz * sy - cxsz;
+	dst[1][2] = cxsz * sy - sxcz;
+
+	f32 sxsz  = sx * sz;
+	f32 cxcz  = cx * cz;
+	dst[0][2] = cxcz * sy + sxsz;
+	dst[1][1] = sxsz * sy + cxcz;
+
+	dst[0][3] = tx;
+	dst[1][3] = ty;
+	dst[2][3] = tz;
 }
 
 /**
  * @note Address: 0x8005F2CC
  * @note Size: 0xAC
  */
-void J3DGetTextureMtx(const J3DTextureSRTInfo&, const Vec&, Mtx)
+void J3DGetTextureMtx(const J3DTextureSRTInfo& srt, const Vec& center, Mtx dst)
 {
-	/*
-	lha      r0, 8(r3)
-	lis      r6, sincosTable___5JMath@ha
-	addi     r7, r6, sincosTable___5JMath@l
-	lfs      f2, 0(r3)
-	rlwinm   r0, r0, 0x1e, 0x12, 0x1c
-	lfs      f6, 4(r4)
-	add      r6, r7, r0
-	lfsx     f0, r7, r0
-	lfs      f1, 4(r6)
-	lfs      f3, 4(r3)
-	fmuls    f5, f2, f0
-	fmuls    f4, f2, f1
-	lfs      f9, 0(r4)
-	fmuls    f10, f3, f0
-	lfs      f7, 0xc(r3)
-	fmuls    f11, f3, f1
-	fneg     f2, f4
-	fmuls    f0, f5, f6
-	stfs     f4, 0(r5)
-	fneg     f8, f5
-	lfs      f4, 0x10(r3)
-	fneg     f3, f10
-	fmadds   f2, f2, f9, f0
-	stfs     f8, 4(r5)
-	lfs      f1, lbl_80516998@sda21(r2)
-	fadds    f5, f9, f2
-	lfs      f0, lbl_8051699C@sda21(r2)
-	fmuls    f2, f11, f6
-	fadds    f5, f7, f5
-	fmsubs   f2, f3, f9, f2
-	stfs     f5, 8(r5)
-	fadds    f2, f6, f2
-	stfs     f10, 0x10(r5)
-	fadds    f2, f4, f2
-	stfs     f11, 0x14(r5)
-	stfs     f2, 0x18(r5)
-	stfs     f1, 0x2c(r5)
-	stfs     f1, 0x24(r5)
-	stfs     f1, 0x20(r5)
-	stfs     f1, 0x1c(r5)
-	stfs     f1, 0xc(r5)
-	stfs     f0, 0x28(r5)
-	blr
-	*/
+	f32 sr = JMASSin(srt.mRotation), cr = JMASCos(srt.mRotation);
+
+	f32 cx = srt.mScaleX * cr;
+	f32 sx = srt.mScaleX * sr;
+	f32 sy = srt.mScaleY * sr;
+	f32 cy = srt.mScaleY * cr;
+
+	dst[0][0] = cx;
+	dst[0][1] = -sx;
+	dst[0][2] = (-cx * center.x + sx * center.y) + center.x + srt.mTranslationX;
+
+	dst[1][0] = sy;
+	dst[1][1] = cy;
+	dst[1][2] = (-sy * center.x - cy * center.y) + center.y + srt.mTranslationY;
+
+	dst[2][3] = 0.0f;
+	dst[2][1] = 0.0f;
+	dst[2][0] = 0.0f;
+	dst[1][3] = 0.0f;
+	dst[0][3] = 0.0f;
+	dst[2][2] = 1.0f;
 }
 
 /**
  * @note Address: 0x8005F378
  * @note Size: 0xAC
  */
-void J3DGetTextureMtxOld(const J3DTextureSRTInfo&, const Vec&, Mtx)
+void J3DGetTextureMtxOld(const J3DTextureSRTInfo& srt, const Vec& center, Mtx dst)
 {
-	/*
-	lha      r0, 8(r3)
-	lis      r6, sincosTable___5JMath@ha
-	addi     r7, r6, sincosTable___5JMath@l
-	lfs      f2, 0(r3)
-	rlwinm   r0, r0, 0x1e, 0x12, 0x1c
-	lfs      f6, 4(r4)
-	add      r6, r7, r0
-	lfsx     f0, r7, r0
-	lfs      f1, 4(r6)
-	lfs      f3, 4(r3)
-	fmuls    f5, f2, f0
-	fmuls    f4, f2, f1
-	lfs      f9, 0(r4)
-	fmuls    f10, f3, f0
-	lfs      f7, 0xc(r3)
-	fmuls    f11, f3, f1
-	fneg     f2, f4
-	fmuls    f0, f5, f6
-	stfs     f4, 0(r5)
-	fneg     f8, f5
-	lfs      f4, 0x10(r3)
-	fneg     f3, f10
-	fmadds   f2, f2, f9, f0
-	stfs     f8, 4(r5)
-	lfs      f1, lbl_80516998@sda21(r2)
-	fadds    f5, f9, f2
-	lfs      f0, lbl_8051699C@sda21(r2)
-	fmuls    f2, f11, f6
-	fadds    f5, f7, f5
-	fmsubs   f2, f3, f9, f2
-	stfs     f5, 0xc(r5)
-	fadds    f2, f6, f2
-	stfs     f10, 0x10(r5)
-	fadds    f2, f4, f2
-	stfs     f11, 0x14(r5)
-	stfs     f2, 0x1c(r5)
-	stfs     f1, 0x2c(r5)
-	stfs     f1, 0x24(r5)
-	stfs     f1, 0x20(r5)
-	stfs     f1, 0x18(r5)
-	stfs     f1, 8(r5)
-	stfs     f0, 0x28(r5)
-	blr
-	*/
+	f32 sr = JMASSin(srt.mRotation), cr = JMASCos(srt.mRotation);
+
+	f32 cx = srt.mScaleX * cr;
+	f32 sx = srt.mScaleX * sr;
+	f32 sy = srt.mScaleY * sr;
+	f32 cy = srt.mScaleY * cr;
+
+	dst[0][0] = cx;
+	dst[0][1] = -sx;
+	dst[0][3] = (-cx * center.x + sx * center.y) + center.x + srt.mTranslationX;
+
+	dst[1][0] = sy;
+	dst[1][1] = cy;
+	dst[1][3] = (-sy * center.x - cy * center.y) + center.y + srt.mTranslationY;
+
+	dst[2][3] = 0.0f;
+	dst[2][1] = 0.0f;
+	dst[2][0] = 0.0f;
+	dst[1][2] = 0.0f;
+	dst[0][2] = 0.0f;
+	dst[2][2] = 1.0f;
 }
 
 /**
  * @note Address: 0x8005F424
  * @note Size: 0xA8
  */
-void J3DGetTextureMtxMaya(const J3DTextureSRTInfo&, Mtx)
+void J3DGetTextureMtxMaya(const J3DTextureSRTInfo& srt, Mtx dst)
 {
-	/*
-	lfs      f9, lbl_805169A0@sda21(r2)
-	lis      r5, sincosTable___5JMath@ha
-	lfs      f0, 0x10(r3)
-	addi     r5, r5, sincosTable___5JMath@l
-	lha      r0, 8(r3)
-	fsubs    f1, f0, f9
-	lfs      f8, 4(r3)
-	rlwinm   r0, r0, 0x1e, 0x12, 0x1c
-	lfs      f0, 0xc(r3)
-	lfsx     f10, r5, r0
-	add      r5, r5, r0
-	fadds    f6, f1, f8
-	lfs      f11, 4(r5)
-	lfs      f4, 0(r3)
-	fsubs    f12, f0, f9
-	fmuls    f7, f8, f10
-	lfs      f1, lbl_80516998@sda21(r2)
-	fmuls    f3, f4, f11
-	lfs      f0, lbl_8051699C@sda21(r2)
-	fmuls    f2, f10, f6
-	fneg     f4, f4
-	stfs     f3, 0(r4)
-	fneg     f3, f12
-	fmsubs   f5, f12, f11, f2
-	fmuls    f2, f11, f6
-	stfs     f7, 4(r4)
-	fmuls    f4, f4, f10
-	fadds    f5, f9, f5
-	fmsubs   f2, f3, f10, f2
-	fmuls    f3, f8, f11
-	stfs     f5, 8(r4)
-	fadds    f2, f9, f2
-	stfs     f4, 0x10(r4)
-	stfs     f3, 0x14(r4)
-	stfs     f2, 0x18(r4)
-	stfs     f1, 0x2c(r4)
-	stfs     f1, 0x24(r4)
-	stfs     f1, 0x20(r4)
-	stfs     f1, 0x1c(r4)
-	stfs     f1, 0xc(r4)
-	stfs     f0, 0x28(r4)
-	blr
-	*/
+	f32 sr = JMASSin(srt.mRotation), cr = JMASCos(srt.mRotation);
+	f32 tx = srt.mTranslationX - 0.5f;
+	f32 ty = srt.mTranslationY - 0.5f;
+
+	dst[0][0] = srt.mScaleX * cr;
+	dst[0][1] = srt.mScaleY * sr;
+	dst[0][2] = tx * cr - sr * (ty + srt.mScaleY) + 0.5f;
+
+	dst[1][0] = -srt.mScaleX * sr;
+	dst[1][1] = srt.mScaleY * cr;
+	dst[1][2] = -tx * sr - cr * (ty + srt.mScaleY) + 0.5f;
+
+	dst[2][3] = 0.0f;
+	dst[2][1] = 0.0f;
+	dst[2][0] = 0.0f;
+	dst[1][3] = 0.0f;
+	dst[0][3] = 0.0f;
+	dst[2][2] = 1.0f;
 }
 
 /**
  * @note Address: 0x8005F4CC
  * @note Size: 0xA8
  */
-void J3DGetTextureMtxMayaOld(const J3DTextureSRTInfo&, Mtx)
+void J3DGetTextureMtxMayaOld(const J3DTextureSRTInfo& srt, Mtx dst)
 {
-	/*
-	lfs      f9, lbl_805169A0@sda21(r2)
-	lis      r5, sincosTable___5JMath@ha
-	lfs      f0, 0x10(r3)
-	addi     r5, r5, sincosTable___5JMath@l
-	lha      r0, 8(r3)
-	fsubs    f1, f0, f9
-	lfs      f8, 4(r3)
-	rlwinm   r0, r0, 0x1e, 0x12, 0x1c
-	lfs      f0, 0xc(r3)
-	lfsx     f10, r5, r0
-	add      r5, r5, r0
-	fadds    f6, f1, f8
-	lfs      f11, 4(r5)
-	lfs      f4, 0(r3)
-	fsubs    f12, f0, f9
-	fmuls    f7, f8, f10
-	lfs      f1, lbl_80516998@sda21(r2)
-	fmuls    f3, f4, f11
-	lfs      f0, lbl_8051699C@sda21(r2)
-	fmuls    f2, f10, f6
-	fneg     f4, f4
-	stfs     f3, 0(r4)
-	fneg     f3, f12
-	fmsubs   f5, f12, f11, f2
-	fmuls    f2, f11, f6
-	stfs     f7, 4(r4)
-	fmuls    f4, f4, f10
-	fadds    f5, f9, f5
-	fmsubs   f2, f3, f10, f2
-	fmuls    f3, f8, f11
-	stfs     f5, 0xc(r4)
-	fadds    f2, f9, f2
-	stfs     f4, 0x10(r4)
-	stfs     f3, 0x14(r4)
-	stfs     f2, 0x1c(r4)
-	stfs     f1, 0x2c(r4)
-	stfs     f1, 0x24(r4)
-	stfs     f1, 0x20(r4)
-	stfs     f1, 0x18(r4)
-	stfs     f1, 8(r4)
-	stfs     f0, 0x28(r4)
-	blr
-	*/
+	f32 sr = JMASSin(srt.mRotation), cr = JMASCos(srt.mRotation);
+	f32 tx = srt.mTranslationX - 0.5f;
+	f32 ty = srt.mTranslationY - 0.5f;
+
+	dst[0][0] = srt.mScaleX * cr;
+	dst[0][1] = srt.mScaleY * sr;
+	dst[0][3] = tx * cr - sr * (ty + srt.mScaleY) + 0.5f;
+
+	dst[1][0] = -srt.mScaleX * sr;
+	dst[1][1] = srt.mScaleY * cr;
+	dst[1][3] = -tx * sr - cr * (ty + srt.mScaleY) + 0.5f;
+
+	dst[2][3] = 0.0f;
+	dst[2][1] = 0.0f;
+	dst[2][0] = 0.0f;
+	dst[1][2] = 0.0f;
+	dst[0][2] = 0.0f;
+	dst[2][2] = 1.0f;
 }
 
 /**
  * @note Address: 0x8005F574
  * @note Size: 0x64
  */
-void J3DScaleNrmMtx(Mtx, const Vec&)
+ASM void J3DScaleNrmMtx(register Mtx mtx, const register Vec& scl)
 {
-	/*
-	psq_l    f2, 0(r4), 0, qr0
-	psq_l    f0, 0(r3), 0, qr0
-	lfs      f3, 8(r4)
-	lfs      f1, 8(r3)
-	ps_mul   f4, f0, f2
-	psq_st   f4, 0(r3), 0, qr0
-	fmuls    f4, f1, f3
-	stfs     f4, 8(r3)
-	psq_l    f2, 0(r4), 0, qr0
-	psq_l    f0, 16(r3), 0, qr0
-	lfs      f3, 8(r4)
-	lfs      f1, 0x18(r3)
-	ps_mul   f4, f0, f2
-	psq_st   f4, 16(r3), 0, qr0
-	fmuls    f4, f1, f3
-	stfs     f4, 0x18(r3)
-	psq_l    f2, 0(r4), 0, qr0
-	psq_l    f0, 32(r3), 0, qr0
-	lfs      f3, 8(r4)
-	lfs      f1, 0x28(r3)
-	ps_mul   f4, f0, f2
-	psq_st   f4, 32(r3), 0, qr0
-	fmuls    f4, f1, f3
-	stfs     f4, 0x28(r3)
+#ifdef __MWERKS__ // clang-format off
+	nofralloc;
+
+	psq_l  fp2, 0(scl), 0, 0
+	psq_l  fp0, 0(mtx), 0, 0
+	lfs    fp3, 8(scl)
+	lfs    fp1, 8(mtx)
+	ps_mul f4, fp0, fp2
+	psq_st f4, 0(mtx), 0, 0
+	fmuls  f4, fp1, fp3
+	stfs   f4, 8(mtx)
+
+	/* Row 1 */
+	psq_l  fp2, 0(scl), 0, 0
+	psq_l  fp0, 16(mtx), 0, 0
+	lfs    fp3, 8(scl)
+	lfs    fp1, 24(mtx)
+	ps_mul f4, fp0, fp2
+	psq_st f4, 16(mtx), 0, 0
+	fmuls  f4, fp1, fp3
+	stfs   f4, 24(mtx)
+
+	/* Row 2 */
+	psq_l  fp2, 0(scl), 0, 0
+	psq_l  fp0, 32(mtx), 0, 0
+	lfs    fp3, 8(scl)
+	lfs    fp1, 40(mtx)
+	ps_mul f4, fp0, fp2
+	psq_st f4, 32(mtx), 0, 0
+	fmuls  f4, fp1, fp3
+	stfs   f4, 40(mtx)
 	blr
-	*/
+#endif // clang-format on
 }
 
 /**
  * @note Address: 0x8005F5D8
  * @note Size: 0x54
  */
-void J3DScaleNrmMtx33(Mtx33, const Vec&)
-{
-	/*
-	psq_l    f0, 0(r3), 0, qr0
-	psq_l    f6, 0(r4), 0, qr0
-	lfs      f1, 8(r3)
-	lfs      f7, 8(r4)
+ASM void J3DScaleNrmMtx33(register Mtx33 mtx, const register Vec& scale) {
+#ifdef __MWERKS__ // clang-format off
+	psq_l    f0, 0(mtx), 0, 0
+	psq_l    f6, 0(scale), 0, 0
+	lfs      f1, 8(mtx)
+	lfs      f7, 8(scale)
 	ps_mul   f0, f0, f6
-	psq_l    f2, 12(r3), 0, qr0
+	psq_l    f2, 12(mtx), 0, 0
 	fmuls    f1, f1, f7
-	lfs      f3, 0x14(r3)
+	lfs      f3, 0x14(mtx)
 	ps_mul   f2, f2, f6
-	psq_l    f4, 24(r3), 0, qr0
+	psq_l    f4, 24(mtx), 0, 0
 	fmuls    f3, f3, f7
-	lfs      f5, 0x20(r3)
+	lfs      f5, 0x20(mtx)
 	ps_mul   f4, f4, f6
-	psq_st   f0, 0(r3), 0, qr0
+	psq_st   f0, 0(mtx), 0, 0
 	fmuls    f5, f5, f7
-	stfs     f1, 8(r3)
-	psq_st   f2, 12(r3), 0, qr0
-	stfs     f3, 0x14(r3)
-	psq_st   f4, 24(r3), 0, qr0
-	stfs     f5, 0x20(r3)
+	stfs     f1, 8(mtx)
+	psq_st   f2, 12(mtx), 0, 0
+	stfs     f3, 0x14(mtx)
+	psq_st   f4, 24(mtx), 0, 0
+	stfs     f5, 0x20(mtx)
 	blr
-	*/
+#endif // clang-format on
 }
 
 /**
  * @note Address: 0x8005F62C
  * @note Size: 0x124
  */
-void J3DMtxProjConcat(Mtx, Mtx, Mtx)
+ASM void J3DMtxProjConcat(register Mtx mtx1, register Mtx mtx2, register Mtx dst)
 {
-	/*
-	psq_l    f2, 0(r3), 0, qr0
-	psq_l    f3, 8(r3), 0, qr0
+#ifdef __MWERKS__ // clang-format off
+	psq_l    f2, 0(mtx1), 0, 0
+	psq_l    f3, 8(mtx1), 0, 0
 	ps_merge00 f6, f2, f2
 	ps_merge11 f7, f2, f2
 	ps_merge00 f8, f3, f3
 	ps_merge11 f9, f3, f3
-	psq_l    f10, 0(r4), 0, qr0
-	psq_l    f11, 16(r4), 0, qr0
-	psq_l    f12, 32(r4), 0, qr0
-	psq_l    f13, 48(r4), 0, qr0
+	psq_l    f10, 0(mtx2), 0, 0
+	psq_l    f11, 16(mtx2), 0, 0
+	psq_l    f12, 32(mtx2), 0, 0
+	psq_l    f13, 48(mtx2), 0, 0
 	ps_mul   f0, f6, f10
 	ps_madd  f0, f7, f11, f0
 	ps_madd  f0, f8, f12, f0
 	ps_madd  f0, f9, f13, f0
-	psq_st   f0, 0(r5), 0, qr0
-	psq_l    f10, 8(r4), 0, qr0
-	psq_l    f11, 24(r4), 0, qr0
-	psq_l    f12, 40(r4), 0, qr0
-	psq_l    f13, 56(r4), 0, qr0
+	psq_st   f0, 0(dst), 0, 0
+	psq_l    f10, 8(mtx2), 0, 0
+	psq_l    f11, 24(mtx2), 0, 0
+	psq_l    f12, 40(mtx2), 0, 0
+	psq_l    f13, 56(mtx2), 0, 0
 	ps_mul   f0, f6, f10
 	ps_madd  f0, f7, f11, f0
 	ps_madd  f0, f8, f12, f0
 	ps_madd  f0, f9, f13, f0
-	psq_st   f0, 8(r5), 0, qr0
-	psq_l    f2, 16(r3), 0, qr0
-	psq_l    f3, 24(r3), 0, qr0
+	psq_st   f0, 8(dst), 0, 0
+	psq_l    f2, 16(mtx1), 0, 0
+	psq_l    f3, 24(mtx1), 0, 0
 	ps_merge00 f6, f2, f2
 	ps_merge11 f7, f2, f2
 	ps_merge00 f8, f3, f3
 	ps_merge11 f9, f3, f3
-	psq_l    f10, 0(r4), 0, qr0
-	psq_l    f11, 16(r4), 0, qr0
-	psq_l    f12, 32(r4), 0, qr0
-	psq_l    f13, 48(r4), 0, qr0
+	psq_l    f10, 0(mtx2), 0, 0
+	psq_l    f11, 16(mtx2), 0, 0
+	psq_l    f12, 32(mtx2), 0, 0
+	psq_l    f13, 48(mtx2), 0, 0
 	ps_mul   f0, f6, f10
 	ps_madd  f0, f7, f11, f0
 	ps_madd  f0, f8, f12, f0
 	ps_madd  f0, f9, f13, f0
-	psq_st   f0, 16(r5), 0, qr0
-	psq_l    f10, 8(r4), 0, qr0
-	psq_l    f11, 24(r4), 0, qr0
-	psq_l    f12, 40(r4), 0, qr0
-	psq_l    f13, 56(r4), 0, qr0
+	psq_st   f0, 16(dst), 0, 0
+	psq_l    f10, 8(mtx2), 0, 0
+	psq_l    f11, 24(mtx2), 0, 0
+	psq_l    f12, 40(mtx2), 0, 0
+	psq_l    f13, 56(mtx2), 0, 0
 	ps_mul   f0, f6, f10
 	ps_madd  f0, f7, f11, f0
 	ps_madd  f0, f8, f12, f0
 	ps_madd  f0, f9, f13, f0
-	psq_st   f0, 24(r5), 0, qr0
-	psq_l    f2, 32(r3), 0, qr0
-	psq_l    f3, 40(r3), 0, qr0
+	psq_st   f0, 24(dst), 0, 0
+	psq_l    f2, 32(mtx1), 0, 0
+	psq_l    f3, 40(mtx1), 0, 0
 	ps_merge00 f6, f2, f2
 	ps_merge11 f7, f2, f2
 	ps_merge00 f8, f3, f3
 	ps_merge11 f9, f3, f3
-	psq_l    f10, 0(r4), 0, qr0
-	psq_l    f11, 16(r4), 0, qr0
-	psq_l    f12, 32(r4), 0, qr0
-	psq_l    f13, 48(r4), 0, qr0
+	psq_l    f10, 0(mtx2), 0, 0
+	psq_l    f11, 16(mtx2), 0, 0
+	psq_l    f12, 32(mtx2), 0, 0
+	psq_l    f13, 48(mtx2), 0, 0
 	ps_mul   f0, f6, f10
 	ps_madd  f0, f7, f11, f0
 	ps_madd  f0, f8, f12, f0
 	ps_madd  f0, f9, f13, f0
-	psq_st   f0, 32(r5), 0, qr0
-	psq_l    f10, 8(r4), 0, qr0
-	psq_l    f11, 24(r4), 0, qr0
-	psq_l    f12, 40(r4), 0, qr0
-	psq_l    f13, 56(r4), 0, qr0
+	psq_st   f0, 32(dst), 0, 0
+	psq_l    f10, 8(mtx2), 0, 0
+	psq_l    f11, 24(mtx2), 0, 0
+	psq_l    f12, 40(mtx2), 0, 0
+	psq_l    f13, 56(mtx2), 0, 0
 	ps_mul   f0, f6, f10
 	ps_madd  f0, f7, f11, f0
 	ps_madd  f0, f8, f12, f0
 	ps_madd  f0, f9, f13, f0
-	psq_st   f0, 40(r5), 0, qr0
+	psq_st   f0, 40(dst), 0, 0
 	blr
-	*/
+#endif // clang-format on
 }
 
 /**

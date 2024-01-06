@@ -396,7 +396,7 @@ bool TParse::parseHeader(JStudio::stb::data::TParse_THeader const&, u32)
  * @note Size: 0x44
  * parseBlock_block__Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl
  */
-void TParse::parseBlock_block(JStudio::stb::data::TParse_TBlock const&, u32)
+bool TParse::parseBlock_block(JStudio::stb::data::TParse_TBlock const&, u32)
 {
 	/*
 	.loc_0x0:

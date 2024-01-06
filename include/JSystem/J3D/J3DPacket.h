@@ -66,8 +66,8 @@ struct J3DPacket {
 	}
 
 	virtual bool entry(J3DDrawBuffer*); // _08
-	virtual void draw();                // _0C (weak)
-	virtual ~J3DPacket();               // _10 (weak)
+	virtual void draw() { }             // _0C (weak)
+	virtual ~J3DPacket() { }            // _10 (weak)
 
 	void addChildPacket(J3DPacket*);
 
@@ -93,12 +93,7 @@ struct J3DDrawPacket : public J3DPacket {
 		J3DDP_IsLocked = 0x1,
 	};
 
-	inline J3DDrawPacket()
-	    : mFlags(0)
-	    , mDisplayList(nullptr)
-	    , mTexMtxObj(nullptr)
-	{
-	}
+	J3DDrawPacket();
 
 	virtual void draw();      // _0C
 	virtual ~J3DDrawPacket(); // _10
@@ -126,6 +121,23 @@ struct J3DDrawPacket : public J3DPacket {
 	J3DTexMtxObj* mTexMtxObj;        // _24
 };
 
+// STRIPPED STRUCT - needed to generate weak functions, info taken from Wind Waker
+struct J3DCallBackPacket : public J3DPacket {
+	typedef void (*CallBack)(J3DCallBackPacket* pPacket, u32 timing);
+
+	J3DCallBackPacket()
+	    : mCallBack(nullptr)
+	{
+	}
+
+	virtual void draw();             // _0C
+	virtual ~J3DCallBackPacket() { } // _10 (weak)
+
+	// _00     = VTBL
+	// _00-_10 = J3DPacket
+	CallBack mCallBack; // _10
+};
+
 /**
  * @size{0x3C}
  */
@@ -139,6 +151,7 @@ struct J3DShapePacket : public J3DDrawPacket {
 	J3DErrType newDifferedTexMtx(J3DTexDiffFlag);
 	int calcDifferedBufferSize(u32);
 	void drawFast();
+	void prepareDraw() const;
 
 	void setShape(J3DShape* pShape) { mShape = pShape; }
 	void setModel(J3DModel* pModel) { mModel = pModel; }

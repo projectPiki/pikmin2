@@ -13,6 +13,12 @@ typedef struct Vec {
 	f32 z;
 } Vec;
 
+typedef struct SVec {
+	s16 x;
+	s16 y;
+	s16 z;
+} SVec;
+
 void PSVECAdd(const Vec*, const Vec*, Vec*);
 void PSVECSubtract(const Vec*, const Vec*, Vec*);
 void PSVECNormalize(const Vec*, Vec*);
