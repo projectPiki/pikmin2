@@ -73,7 +73,7 @@ struct TIndexPane {
 		mIndex        = 0;
 		mPane         = pane;
 		mPane2        = nullptr;
-		mSizeType     = 0;
+		mSizeType     = Size_Small;
 		mIconCount    = 0;
 		mPaneSize     = 0.0f;
 		mIconInfos    = nullptr;
@@ -95,7 +95,16 @@ struct TIndexPane {
 
 	inline f32 getPaneOffsetY() const { return mPane->getOffsetY(); }
 
-	inline TIconInfo* getIconInfo(int idx) { return mIconInfos[idx]; }
+	inline TIconInfo* getIconInfo(int idx) const { return mIconInfos[idx]; }
+
+	inline J2DPane* getMainPane() const { return mPane; }
+
+	enum SizeType {
+		Size_Small  = 0, // small icons in piklopedia, supports 3 icons per row
+		Size_Small2 = 1, // also small icons in piklopedia?
+		Size_Big    = 2, // used for boss icons in piklopedia
+		Size_Big2   = 3, // also used for boss icons in piklopedia?
+	};
 
 	int mIndex;             // _00
 	J2DPane* mPane;         // _04
@@ -140,14 +149,13 @@ struct TScrollList : public TTestBase {
 	bool updateList();
 	void changeIndex();
 
-	inline TIndexPane* getIndexPane(int i) { return mIndexPaneList[i]; }
-	inline void paneStuff(int j, f32 yoffs)
+	inline TIndexPane* getIndexPane(int i) const { return mIndexPaneList[i]; }
+
+	inline void updateIDPaneYOffset(int id, f32 yoffs)
 	{
-		TIndexPane* idpane = mIndexPaneList[j]; // the mismatch lives here. it's the idpane temp being silly
-		J2DPane* pane      = idpane->mPane;
-		pane->mOffset.y    = idpane->mYOffset + yoffs;
-		pane->calcMtx();
-		mIndexPaneList[j]->mYOffset = mIndexPaneList[j]->mPane->mOffset.y;
+		// should be using r4 instead of r3
+		getIndexPane(id)->setPaneOffset(yoffs);
+		getIndexPane(id)->mYOffset = getIndexPane(id)->getPaneOffsetY();
 	}
 
 	// _00     = VTBL1

@@ -27,7 +27,14 @@ struct EnemyTexMgr;
 
 namespace Morimura {
 
-extern int eIDInfo[ENEMY_ZUKAN_COUNT][2];
+struct TEnemyZukanIndex {
+	static TEnemyZukanIndex& getIndexInfo(int);
+
+	int mZukanID; // _00
+	int mEnemyID; // _04
+};
+
+extern TEnemyZukanIndex eIDInfo[ENEMY_ZUKAN_COUNT];
 
 struct TCallbackScrollMsg : public og::Screen::CallBack_Message {
 	TCallbackScrollMsg();
@@ -340,10 +347,6 @@ struct TZukanBase : public TScrollList {
 	static JKRExpHeap* mDebugHeap;
 };
 
-struct TEnemyZukanIndex {
-	void getIndexInfo(int);
-};
-
 struct TEnemyZukan : public TZukanBase {
 
 	// Represents the order of enemies in the piklopedia
@@ -460,17 +463,6 @@ struct TEnemyZukan : public TZukanBase {
 	virtual void openConfirmWindow();                                      // _E0
 	virtual bool isNewSupply(int, bool);                                   // _E4
 	virtual bool isPanelExist();                                           // _E8
-
-	inline int* getEnemyInfo(int index)
-	{
-		int* data = eIDInfo[0];
-		for (int i = 0; i < ENEMY_ZUKAN_COUNT; i++) {
-			if (eIDInfo[i][0] == index) {
-				return eIDInfo[i];
-			}
-		}
-		return eIDInfo[0];
-	}
 
 	u32 getPrice(int);
 	u32 getDefeatNum(int);
