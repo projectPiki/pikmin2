@@ -56,8 +56,10 @@ inline void J3DGDWrite_u32(u32 param)
 
 inline void J3DGDWrite_f32(f32 param)
 {
-	u32 tmp = *(u32*)&param;
-	J3DGDWrite_u32(tmp);
+	__GDWrite((*(u32*)&param >> 24) & 0xff);
+	__GDWrite((*(u32*)&param >> 16) & 0xff);
+	__GDWrite((*(u32*)&param >> 8) & 0xff);
+	__GDWrite(*(u32*)&param & 0xff);
 }
 
 inline void J3DGDWriteBPCmd(u32 cmd)
