@@ -246,10 +246,10 @@ void J3DAnmFullLoader_v15::setAnmColor(J3DAnmColorFull* animation, const J3DAnmC
 	animation->mUpdateMaterialNum = data->mUpdateMaterialNum;
 
 	animation->mTable            = JSUConvertOffsetToPtr<J3DAnmColorFullTable>(data, (void*)data->mTableOffset);
-	animation->_2C               = JSUConvertOffsetToPtr<u8>(data, (void*)data->mRValuesOffset);
-	animation->_30               = JSUConvertOffsetToPtr<u8>(data, (void*)data->mGValuesOffset);
-	animation->_34               = JSUConvertOffsetToPtr<u8>(data, (void*)data->mBValuesOffset);
-	animation->_38               = JSUConvertOffsetToPtr<u8>(data, (void*)data->mAValuesOffset);
+	animation->mRedVals          = JSUConvertOffsetToPtr<u8>(data, (void*)data->mRValuesOffset);
+	animation->mGreenVals        = JSUConvertOffsetToPtr<u8>(data, (void*)data->mGValuesOffset);
+	animation->mBlueVals         = JSUConvertOffsetToPtr<u8>(data, (void*)data->mBValuesOffset);
+	animation->mAlphaVals        = JSUConvertOffsetToPtr<u8>(data, (void*)data->mAValuesOffset);
 	animation->mUpdateMaterialID = JSUConvertOffsetToPtr<u16>(data, (void*)data->mUpdateMaterialIDOffset);
 	animation->mNameTab.setResource(JSUConvertOffsetToPtr<ResNTAB>(data, (void*)data->mNameTabOffset));
 }

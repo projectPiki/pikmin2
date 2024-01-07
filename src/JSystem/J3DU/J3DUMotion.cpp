@@ -115,39 +115,36 @@ void J3DMtxCalcBlend::calcBlend(Vec* scale, Vec* position, J3DAnmTransform** ani
 	case 1:
 		J3DTransformInfo info;
 		anims[maxAnim]->getTransform(id, &info);
-		scale->x    = info.mScale.x;
-		scale->y    = info.mScale.y;
-		scale->z    = info.mScale.z;
-		position->x = info.mTranslation.x;
-		position->y = info.mTranslation.y;
-		position->z = info.mTranslation.z;
+		*scale    = info.mScale;
+		*position = info.mTranslation;
 
-		f32 cosx = JMASCosShort(info.mRotation.x);
-		f32 cosy = JMASCosShort(info.mRotation.y);
-		f32 cosz = JMASCosShort(info.mRotation.z);
-		f32 sinx = JMASinShort(info.mRotation.x);
-		f32 siny = JMASinShort(info.mRotation.y);
-		f32 sinz = JMASinShort(info.mRotation.z);
+		f32 cosX = JMASCosShort(info.mRotation.x);
+		f32 cosY = JMASCosShort(info.mRotation.y);
+		f32 cosZ = JMASCosShort(info.mRotation.z);
+		f32 sinX = JMASinShort(info.mRotation.x);
+		f32 sinY = JMASinShort(info.mRotation.y);
+		f32 sinZ = JMASinShort(info.mRotation.z);
 
-		anmMtx[2][0] = -sinz;
-		anmMtx[0][0] = cosz * cosy;
-		anmMtx[1][0] = sinz * cosy;
+		f32 cosYZ = (cosY * cosZ);
+		f32 sinYZ = (sinY * sinZ);
+		f32 cosXZ = (cosX * cosZ);
+		f32 sinXZ = (sinX * sinZ);
 
-		anmMtx[2][1] = cosy * sinz;
-		anmMtx[2][2] = cosy * cosx;
-		anmMtx[0][1] = (sinx * cosz) * siny - cosx * sinz;
-		anmMtx[1][2] = (cosx * sinz) * siny - sinx * cosz;
-		anmMtx[0][2] = (cosx * cosz) * siny + sinx * sinz;
-		anmMtx[1][1] = (sinx * sinz) * siny + cosx * cosz;
+		anmMtx[2][0] = -sinZ;
+		anmMtx[0][0] = cosYZ;
+		anmMtx[1][0] = sinYZ;
+
+		anmMtx[2][1] = cosY * sinZ;
+		anmMtx[2][2] = cosY * cosX;
+		anmMtx[0][1] = (sinX * cosZ) * sinY - cosX * sinZ;
+		anmMtx[1][2] = (cosX * sinZ) * sinY - sinX * cosZ;
+		anmMtx[0][2] = (cosXZ)*sinY + sinXZ;
+		anmMtx[1][1] = (sinXZ)*sinY + cosXZ;
 
 		break;
 	default:
-		scale->z    = 0.0f;
-		scale->y    = 0.0f;
-		scale->x    = 0.0f;
-		position->z = 0.0f;
-		position->y = 0.0f;
-		position->x = 0.0f;
+		scale->x = scale->y = scale->z = 0.0f;
+		position->x = position->y = position->z = 0.0f;
 		Quaternion quat;
 		quat.w = 0.0f;
 		quat.z = 0.0f;
@@ -440,12 +437,8 @@ void J3DMtxCalcBlendSharedMotionT::calcBlend(Vec* scale, Vec* position, J3DAnmTr
 	switch (num) {
 	case 0:
 		PSMTXIdentity(anmMtx);
-		scale->z    = 0.0f;
-		scale->y    = 0.0f;
-		scale->x    = 0.0f;
-		position->z = 0.0f;
-		position->y = 0.0f;
-		position->x = 0.0f;
+		scale->x = scale->y = scale->z = 0.0f;
+		position->x = position->y = position->z = 0.0f;
 		break;
 	case 1:
 		J3DTransformInfo info;
@@ -453,12 +446,8 @@ void J3DMtxCalcBlendSharedMotionT::calcBlend(Vec* scale, Vec* position, J3DAnmTr
 		info.mTranslation.x *= jnt->getTransformInfo().mTranslation.x;
 		info.mTranslation.y *= jnt->getTransformInfo().mTranslation.y;
 		info.mTranslation.z *= jnt->getTransformInfo().mTranslation.z;
-		scale->x    = info.mScale.x;
-		scale->y    = info.mScale.y;
-		scale->z    = info.mScale.z;
-		position->x = info.mTranslation.x;
-		position->y = info.mTranslation.y;
-		position->z = info.mTranslation.z;
+		*scale    = info.mScale;
+		*position = info.mTranslation;
 
 		f32 cosx = JMASCosShort(info.mRotation.x);
 		f32 cosy = JMASCosShort(info.mRotation.y);

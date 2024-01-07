@@ -632,7 +632,7 @@ ASM void J3DMtxProjConcat(register Mtx mtx1, register Mtx mtx2, register Mtx dst
  * @note Address: 0x8005F750
  * @note Size: 0xDC
  */
-void J3DPSMtxArrayConcat(Mtx, Mtx, Mtx, u32)
+void J3DPSMtxArrayConcat(Mtx mtxA, Mtx mtxB, Mtx dst, u32 count)
 {
 	/*
 	.loc_0x0:

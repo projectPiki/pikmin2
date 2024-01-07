@@ -48,6 +48,8 @@ struct J3DAnmVtxColorFull : public J3DAnmVtxColor {
 	virtual J3DAnmKind getKind() const { return J3DAnmKind_VtxColorFull; } // _0C (weak)
 	virtual void getColor(u8, u16, GXColor*) const;                        // _10
 
+	inline J3DAnmColorFullTable* getAnmTable(u8 idx) const { return mTable[idx]; }
+
 	// _00     = VTBL
 	// _00-_18 = J3DAnmVtxColor
 	J3DAnmColorFullTable* mTable[2]; // _18
@@ -82,6 +84,8 @@ struct J3DAnmVtxColorKey : public J3DAnmVtxColor {
 	virtual ~J3DAnmVtxColorKey() { }                                      // _08 (weak)
 	virtual J3DAnmKind getKind() const { return J3DAnmKind_VtxColorKey; } // _0C (weak)
 	virtual void getColor(u8, u16, GXColor*) const;                       // _10
+
+	inline J3DAnmColorKeyTable* getAnmTable(u8 idx) const { return mTable[idx]; }
 
 	J3DAnmColorKeyTable* mTable[2]; // _18
 	s16* mRedVals;                  // _20

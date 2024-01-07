@@ -44,6 +44,18 @@ struct J3DAnmColor : public J3DAnmBase {
 };
 
 struct J3DAnmColorFullTable {
+	enum Colors {
+		RED   = 0,
+		GREEN = 1,
+		BLUE  = 2,
+		ALPHA = 3,
+	};
+
+	enum Kind {
+		MaxFrame = 0,
+		Offset   = 1,
+	};
+
 	inline void getField(u32 fieldIndex, int p2, u8* result, u8* values)
 	{
 		if (p2 >= mData[fieldIndex][0]) {
@@ -61,10 +73,10 @@ struct J3DAnmColorFullTable {
  */
 struct J3DAnmColorFull : public J3DAnmColor {
 	inline J3DAnmColorFull()
-	    : _2C(nullptr)
-	    , _30(nullptr)
-	    , _34(nullptr)
-	    , _38(nullptr)
+	    : mRedVals(nullptr)
+	    , mGreenVals(nullptr)
+	    , mBlueVals(nullptr)
+	    , mAlphaVals(nullptr)
 	    , mTable(nullptr)
 	{
 	}
@@ -75,10 +87,10 @@ struct J3DAnmColorFull : public J3DAnmColor {
 
 	// _00     = VTBL
 	// _00-_2C = J3DAnmColor
-	u8* _2C;                      // _2C
-	u8* _30;                      // _30
-	u8* _34;                      // _34
-	u8* _38;                      // _38
+	u8* mRedVals;                 // _2C
+	u8* mGreenVals;               // _30
+	u8* mBlueVals;                // _34
+	u8* mAlphaVals;               // _38
 	J3DAnmColorFullTable* mTable; // _3C
 };
 
@@ -143,6 +155,12 @@ struct J3DAnmColorKeyData : J3DFileBlockBase {
  * @size{0x18}
  */
 struct J3DAnmColorKeyTable {
+	enum Color {
+		RED   = 0,
+		GREEN = 1,
+		BLUE  = 2,
+		ALPHA = 3,
+	};
 	J3DAnmKeyTableBase mColorInfo[4]; // _00, R=0, G=1, B=2, A=3
 };
 

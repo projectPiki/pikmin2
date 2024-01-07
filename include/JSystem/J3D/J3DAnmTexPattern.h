@@ -31,6 +31,8 @@ struct J3DAnmTexPattern : public J3DAnmBase {
 
 	void getTexNo(u16, u16*) const;
 
+	inline J3DAnmTexPatternFullTable* getAnmTable(u8 idx) const { return &mAnmTable[idx]; }
+
 	// _00     = VTBL
 	// _00-_0C = J3DAnmBase
 	u16* _0C;                             // _0C

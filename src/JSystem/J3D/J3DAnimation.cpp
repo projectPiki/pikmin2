@@ -387,113 +387,17 @@ void J3DAnmTextureSRTKey::calcTransform(f32 p1, u16 p2, J3DTextureSRTInfo* info)
  */
 f32 J3DAnmClusterFull::getWeight(u16 idx) const
 {
-	int index    = idx;
-	int maxFrame = (getFrame() + 0.5f);
+	int index      = idx;
+	int maxFrame   = (getFrame() + 0.5f);
+	int tableFrame = mTables[index].mMaxFrame;
 	if (getFrame() < 0.0f) {
-		return mWeights[getTable(index)->mOffset];
+		return mWeights[mTables[index].mOffset];
 	}
-	if (maxFrame >= getTable(index)->mMaxFrame) {
-		return mWeights[getTable(index)->mMaxFrame - 1 + getTable(index)->mOffset];
+	if (maxFrame >= tableFrame) {
+		return mWeights[tableFrame - 1 + mTables[index].mOffset];
 	}
-	// u16 maxFrame = getTable(idx)->mMaxFrame;
-	// if (0.0f <= getFrame() && getFrame() < maxFrame)
-	//     return mWeights[(s32)getFrame() + getTable(idx)->mOffset];
-	// if (getFrame() < 0.0f)
-	//     return mWeights[getTable(idx)->mOffset];
-	// else
-	//     return mWeights[maxFrame - 1 + getTable(idx)->mOffset];
-	/*
-	    int v4                     = (int)(0.5f + mFTime);
-	    u32 index                  = p1;
-	    J3DAnmClusterFullTable* v1 = _10;
-	    if (mFTime < 0.0f) {
-	        return _0C[v1[index]._00[1]];
-	    }
-	    if (v4 >= v1[index]._00[0]) {
-	        int v2 = v1[index]._00[0] - 1 + v1[index]._00[1];
-	        return _0C[v2];
-	    }
-	    return _0C[v1[index]._00[1] + v4];
-	*/
-	// int v4 = (int)(0.5f + mFTime);
 
-	// J3DAnmClusterFullTable* v1 = _10;
-	// if (mFTime < 0.0f) {
-	// 	return _0C[getTable(p1)->_02];
-	// }
-	// if (v4 >= getTable(p1)->_00) {
-	// 	int v2 = getTable(p1)->_00 + getTable(p1)->_02 - 1;
-	// 	return _0C[v2];
-	// }
-	// return _0C[getTable(p1)->_02 + v4];
-
-	// int v4                     = (int)(0.5f + mFTime);
-
-	// J3DAnmClusterFullTable* v1 = _10;
-	// if (mFTime < 0.0f) {
-	// 	return _0C[v1[p1]._02];
-	// }
-	// if (v4 >= v1[p1]._00) {
-	// 	int v2 = v1[p1]._00 + v1[p1]._02 - 1;
-	// 	return _0C[v2];
-	// }
-	// return _0C[v1[p1]._02 + v4];
-
-	// int v4  = (int)(0.5f + mFTime);
-	// u16* v1 = &_10[p1]._00;
-	// if (mFTime < 0.0f) {
-	// 	return _0C[v1[1]];
-	// }
-	// if (v4 >= v1[0]) {
-	// 	return _0C[v1[0] + v1[1] - 1];
-	// }
-	// return _0C[v4 + v1[1]];
-
-	/*
-	lfs      f1, lbl_80516A30@sda21(r2)
-	rlwinm   r0, r4, 2, 0xe, 0x1d
-	lfs      f2, 8(r3)
-	lfs      f0, lbl_80516A1C@sda21(r2)
-	fadds    f1, f1, f2
-	stwu     r1, -0x10(r1)
-	fcmpo    cr0, f2, f0
-	lwz      r4, 0x10(r3)
-	fctiwz   f0, f1
-	lhzx     r6, r4, r0
-	stfd     f0, 8(r1)
-	lwz      r5, 0xc(r1)
-	bge      lbl_80068550
-	add      r4, r4, r0
-	lwz      r3, 0xc(r3)
-	lhz      r0, 2(r4)
-	slwi     r0, r0, 2
-	lfsx     f1, r3, r0
-	b        lbl_80068590
-
-lbl_80068550:
-	cmpw     r5, r6
-	blt      lbl_80068578
-	add      r4, r4, r0
-	lwz      r5, 0xc(r3)
-	lhz      r0, 2(r4)
-	add      r3, r6, r0
-	addi     r0, r3, -1
-	slwi     r0, r0, 2
-	lfsx     f1, r5, r0
-	b        lbl_80068590
-
-lbl_80068578:
-	add      r4, r4, r0
-	lwz      r3, 0xc(r3)
-	lhz      r0, 2(r4)
-	add      r0, r5, r0
-	slwi     r0, r0, 2
-	lfsx     f1, r3, r0
-
-lbl_80068590:
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return mWeights[maxFrame + mTables[index].mOffset];
 }
 
 /**
@@ -501,147 +405,108 @@ lbl_80068590:
  * @note Size: 0x84
  * getWeight__16J3DAnmClusterKeyCFUs
  */
-f32 J3DAnmClusterKey::getWeight(u16 p1) const
+f32 J3DAnmClusterKey::getWeight(u16 idx) const
 {
-	switch (mTables[p1]._00) {
+	switch (mTables[idx].mMaxFrame) {
 	case 0:
 		return 1.0f;
 	case 1:
-		return mWeights[mTables[p1]._02];
-	default:
-		return J3DGetKeyFrameInterpolation<f32>(mCurrentFrame, &mTables[p1], &mWeights[mTables[p1]._02]);
+		return mWeights[mTables[idx].mOffset];
 	}
+
+	return J3DGetKeyFrameInterpolation<f32>(mCurrentFrame, &mTables[idx], &mWeights[mTables[idx].mOffset]);
 }
 
 /**
  * @note Address: 0x8006861C
  * @note Size: 0x178
  */
-void J3DAnmVtxColorFull::getColor(u8, u16, _GXColor*) const
+void J3DAnmVtxColorFull::getColor(u8 col, u16 idx, GXColor* outColor) const
 {
-	/*
-	.loc_0x0:
-	  rlwinm    r0,r4,2,22,29
-	  lfs       f1, 0x8(r3)
-	  add       r4, r3, r0
-	  lfs       f0, -0x7944(r2)
-	  lwz       r4, 0x18(r4)
-	  rlwinm    r0,r5,4,12,27
-	  fcmpo     cr0, f1, f0
-	  stwu      r1, -0x10(r1)
-	  add       r4, r4, r0
-	  bge-      .loc_0x6C
-	  lwz       r5, 0x20(r3)
-	  lhz       r0, 0x2(r4)
-	  lwz       r7, 0x24(r3)
-	  lbzx      r0, r5, r0
-	  lwz       r5, 0x28(r3)
-	  stb       r0, 0x0(r6)
-	  lwz       r3, 0x2C(r3)
-	  lhz       r0, 0x6(r4)
-	  lbzx      r0, r7, r0
-	  stb       r0, 0x1(r6)
-	  lhz       r0, 0xA(r4)
-	  lbzx      r0, r5, r0
-	  stb       r0, 0x2(r6)
-	  lhz       r0, 0xE(r4)
-	  lbzx      r0, r3, r0
-	  stb       r0, 0x3(r6)
-	  b         .loc_0x170
+	int index                   = idx;
+	J3DAnmColorFullTable* table = &getAnmTable(col)[idx];
+	if (getFrame() < 0.0f) {
+		outColor->r = mRedVals[table->mData[J3DAnmColorFullTable::RED][J3DAnmColorFullTable::Offset]];
+		outColor->g = mGreenVals[table->mData[J3DAnmColorFullTable::GREEN][J3DAnmColorFullTable::Offset]];
+		outColor->b = mBlueVals[table->mData[J3DAnmColorFullTable::BLUE][J3DAnmColorFullTable::Offset]];
+		outColor->a = mAlphaVals[table->mData[J3DAnmColorFullTable::ALPHA][J3DAnmColorFullTable::Offset]];
+		return;
+	}
 
-	.loc_0x6C:
-	  lfs       f0, -0x7930(r2)
-	  lhz       r8, 0x0(r4)
-	  fadds     f0, f0, f1
-	  fctiwz    f0, f0
-	  stfd      f0, 0x8(r1)
-	  lwz       r0, 0xC(r1)
-	  cmpw      r0, r8
-	  blt-      .loc_0xA8
-	  lwz       r7, 0x20(r3)
-	  lhz       r5, 0x2(r4)
-	  add       r5, r7, r5
-	  add       r5, r5, r8
-	  lbz       r5, -0x1(r5)
-	  stb       r5, 0x0(r6)
-	  b         .loc_0xBC
+	int maxFrame = getFrame() + 0.5f;
+	int redMax   = table->mData[J3DAnmColorFullTable::RED][J3DAnmColorFullTable::MaxFrame];
+	if (maxFrame >= redMax) {
+		outColor->r = mRedVals[table->mData[J3DAnmColorFullTable::RED][J3DAnmColorFullTable::Offset] - 1 + redMax];
+	} else {
+		outColor->r = mRedVals[table->mData[J3DAnmColorFullTable::RED][J3DAnmColorFullTable::Offset] + maxFrame];
+	}
 
-	.loc_0xA8:
-	  lhz       r5, 0x2(r4)
-	  lwz       r7, 0x20(r3)
-	  add       r5, r5, r0
-	  lbzx      r5, r7, r5
-	  stb       r5, 0x0(r6)
+	int greenMax = table->mData[J3DAnmColorFullTable::GREEN][J3DAnmColorFullTable::MaxFrame];
+	if (maxFrame >= greenMax) {
+		outColor->g = mGreenVals[table->mData[J3DAnmColorFullTable::GREEN][J3DAnmColorFullTable::Offset] - 1 + greenMax];
+	} else {
+		outColor->g = mGreenVals[table->mData[J3DAnmColorFullTable::GREEN][J3DAnmColorFullTable::Offset] + maxFrame];
+	}
 
-	.loc_0xBC:
-	  lhz       r8, 0x4(r4)
-	  cmpw      r0, r8
-	  blt-      .loc_0xE4
-	  lwz       r7, 0x24(r3)
-	  lhz       r5, 0x6(r4)
-	  add       r5, r7, r5
-	  add       r5, r5, r8
-	  lbz       r5, -0x1(r5)
-	  stb       r5, 0x1(r6)
-	  b         .loc_0xF8
+	int blueMax = table->mData[J3DAnmColorFullTable::BLUE][J3DAnmColorFullTable::MaxFrame];
+	if (maxFrame >= blueMax) {
+		outColor->b = mBlueVals[table->mData[J3DAnmColorFullTable::BLUE][J3DAnmColorFullTable::Offset] - 1 + blueMax];
+	} else {
+		outColor->b = mBlueVals[table->mData[J3DAnmColorFullTable::BLUE][J3DAnmColorFullTable::Offset] + maxFrame];
+	}
 
-	.loc_0xE4:
-	  lhz       r5, 0x6(r4)
-	  lwz       r7, 0x24(r3)
-	  add       r5, r5, r0
-	  lbzx      r5, r7, r5
-	  stb       r5, 0x1(r6)
-
-	.loc_0xF8:
-	  lhz       r8, 0x8(r4)
-	  cmpw      r0, r8
-	  blt-      .loc_0x120
-	  lwz       r7, 0x28(r3)
-	  lhz       r5, 0xA(r4)
-	  add       r5, r7, r5
-	  add       r5, r5, r8
-	  lbz       r5, -0x1(r5)
-	  stb       r5, 0x2(r6)
-	  b         .loc_0x134
-
-	.loc_0x120:
-	  lhz       r5, 0xA(r4)
-	  lwz       r7, 0x28(r3)
-	  add       r5, r5, r0
-	  lbzx      r5, r7, r5
-	  stb       r5, 0x2(r6)
-
-	.loc_0x134:
-	  lhz       r5, 0xC(r4)
-	  cmpw      r0, r5
-	  blt-      .loc_0x15C
-	  lwz       r3, 0x2C(r3)
-	  lhz       r0, 0xE(r4)
-	  add       r0, r3, r0
-	  add       r3, r0, r5
-	  lbz       r0, -0x1(r3)
-	  stb       r0, 0x3(r6)
-	  b         .loc_0x170
-
-	.loc_0x15C:
-	  lhz       r4, 0xE(r4)
-	  lwz       r3, 0x2C(r3)
-	  add       r0, r4, r0
-	  lbzx      r0, r3, r0
-	  stb       r0, 0x3(r6)
-
-	.loc_0x170:
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	int alphaMax = table->mData[J3DAnmColorFullTable::ALPHA][J3DAnmColorFullTable::MaxFrame];
+	if (maxFrame >= alphaMax) {
+		outColor->a = mAlphaVals[table->mData[J3DAnmColorFullTable::ALPHA][J3DAnmColorFullTable::Offset] - 1 + alphaMax];
+	} else {
+		outColor->a = mAlphaVals[table->mData[J3DAnmColorFullTable::ALPHA][J3DAnmColorFullTable::Offset] + maxFrame];
+	}
 }
 
 /**
  * @note Address: 0x80068794
  * @note Size: 0x2F4
  */
-void J3DAnmVtxColorKey::getColor(u8, u16, _GXColor*) const
+void J3DAnmVtxColorKey::getColor(u8 col, u16 idx, GXColor* outColor) const
 {
+	int index                  = idx;
+	J3DAnmColorKeyTable* table = &getAnmTable(col)[idx];
+	if (getFrame() < 0.0f) {
+		outColor->r = mRedVals[table->mColorInfo[J3DAnmColorKeyTable::RED].mOffset];
+		outColor->g = mGreenVals[table->mColorInfo[J3DAnmColorKeyTable::GREEN].mOffset];
+		outColor->b = mBlueVals[table->mColorInfo[J3DAnmColorKeyTable::BLUE].mOffset];
+		outColor->a = mAlphaVals[table->mColorInfo[J3DAnmColorKeyTable::ALPHA].mOffset];
+		return;
+	}
+
+	// int maxFrame = getFrame() + 0.5f;
+	// int redMax = table->mData[J3DAnmColorFullTable::RED][J3DAnmColorFullTable::MaxFrame];
+	// if (maxFrame >= redMax) {
+	// 	outColor->r = mRedVals[table->mData[J3DAnmColorFullTable::RED][J3DAnmColorFullTable::Offset] - 1 + redMax];
+	// } else {
+	// 	outColor->r = mRedVals[table->mData[J3DAnmColorFullTable::RED][J3DAnmColorFullTable::Offset] + maxFrame];
+	// }
+
+	// int greenMax = table->mData[J3DAnmColorFullTable::GREEN][J3DAnmColorFullTable::MaxFrame];
+	// if (maxFrame >= greenMax) {
+	// 	outColor->g = mGreenVals[table->mData[J3DAnmColorFullTable::GREEN][J3DAnmColorFullTable::Offset] - 1 + greenMax];
+	// } else {
+	// 	outColor->g = mGreenVals[table->mData[J3DAnmColorFullTable::GREEN][J3DAnmColorFullTable::Offset] + maxFrame];
+	// }
+
+	// int blueMax = table->mData[J3DAnmColorFullTable::BLUE][J3DAnmColorFullTable::MaxFrame];
+	// if (maxFrame >= blueMax) {
+	// 	outColor->b = mBlueVals[table->mData[J3DAnmColorFullTable::BLUE][J3DAnmColorFullTable::Offset] - 1 + blueMax];
+	// } else {
+	// 	outColor->b = mBlueVals[table->mData[J3DAnmColorFullTable::BLUE][J3DAnmColorFullTable::Offset] + maxFrame];
+	// }
+
+	// int alphaMax = table->mData[J3DAnmColorFullTable::ALPHA][J3DAnmColorFullTable::MaxFrame];
+	// if (maxFrame >= alphaMax) {
+	// 	outColor->a = mAlphaVals[table->mData[J3DAnmColorFullTable::ALPHA][J3DAnmColorFullTable::Offset] - 1 + alphaMax];
+	// } else {
+	// 	outColor->a = mAlphaVals[table->mData[J3DAnmColorFullTable::ALPHA][J3DAnmColorFullTable::Offset] + maxFrame];
+	// }
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -904,45 +769,44 @@ void J3DAnmColor::searchUpdateMaterialID(J3DModelData* data)
  * @note Address: 0x80068B30
  * @note Size: 0x170
  */
-void J3DAnmColorFull::getColor(u16 tableIndex, _GXColor* color) const
+void J3DAnmColorFull::getColor(u16 tableIndex, GXColor* color) const
 {
 	J3DAnmColorFullTable* table = mTable + tableIndex;
-	if (mCurrentFrame < 0.0f) {
-		color->r = _2C[table->mData[0][1]];
-		color->g = _30[table->mData[1][1]];
-		color->b = _34[table->mData[2][1]];
-		color->a = _38[table->mData[3][1]];
-	} else {
-		int v4 = 0.5f + mCurrentFrame;
-		if (v4 >= table->mData[0][0]) {
-			color->r = _2C[table->mData[0][1] - 1 + table->mData[0][0]];
-		} else {
-			color->r = _2C[table->mData[0][1] + v4];
-		}
-		if (v4 >= table->mData[1][0]) {
-			color->g = _30[table->mData[1][1] - 1 + table->mData[1][0]];
-		} else {
-			color->g = _30[table->mData[1][1] + v4];
-		}
-		if (v4 >= table->mData[2][0]) {
-			color->b = _34[table->mData[2][1] - 1 + table->mData[2][0]];
-		} else {
-			color->b = _34[table->mData[2][1] + v4];
-		}
-		if (v4 >= table->mData[3][0]) {
-			color->a = _38[table->mData[3][1] - 1 + table->mData[3][0]];
-		} else {
-			color->a = _38[table->mData[3][1] + v4];
-		}
-		// table->getField(0, v4, &color->r, _2C);
-		// table->getField(1, v4, &color->g, _30);
-		// table->getField(2, v4, &color->b, _34);
-		// table->getField(3, v4, &color->a, _38);
+	if (getFrame() < 0.0f) {
+		color->r = mRedVals[table->mData[J3DAnmColorFullTable::RED][J3DAnmColorFullTable::Offset]];
+		color->g = mGreenVals[table->mData[J3DAnmColorFullTable::GREEN][J3DAnmColorFullTable::Offset]];
+		color->b = mBlueVals[table->mData[J3DAnmColorFullTable::BLUE][J3DAnmColorFullTable::Offset]];
+		color->a = mAlphaVals[table->mData[J3DAnmColorFullTable::ALPHA][J3DAnmColorFullTable::Offset]];
+		return;
+	}
 
-		// color->r = table->getField(0, v4, _2C);
-		// color->g = table->getField(1, v4, _30);
-		// color->b = table->getField(2, v4, _34);
-		// color->a = table->getField(3, v4, _38);
+	int frame  = getFrame() + 0.5f;
+	int redMax = table->mData[J3DAnmColorFullTable::RED][J3DAnmColorFullTable::MaxFrame];
+	if (frame >= redMax) {
+		color->r = mRedVals[table->mData[J3DAnmColorFullTable::RED][J3DAnmColorFullTable::Offset] - 1 + redMax];
+	} else {
+		color->r = mRedVals[table->mData[J3DAnmColorFullTable::RED][J3DAnmColorFullTable::Offset] + frame];
+	}
+
+	int greenMax = table->mData[J3DAnmColorFullTable::GREEN][J3DAnmColorFullTable::MaxFrame];
+	if (frame >= greenMax) {
+		color->g = mGreenVals[table->mData[J3DAnmColorFullTable::GREEN][J3DAnmColorFullTable::Offset] - 1 + greenMax];
+	} else {
+		color->g = mGreenVals[table->mData[J3DAnmColorFullTable::GREEN][J3DAnmColorFullTable::Offset] + frame];
+	}
+
+	int blueMax = table->mData[J3DAnmColorFullTable::BLUE][J3DAnmColorFullTable::MaxFrame];
+	if (frame >= blueMax) {
+		color->b = mBlueVals[table->mData[J3DAnmColorFullTable::BLUE][J3DAnmColorFullTable::Offset] - 1 + blueMax];
+	} else {
+		color->b = mBlueVals[table->mData[J3DAnmColorFullTable::BLUE][J3DAnmColorFullTable::Offset] + frame];
+	}
+
+	int alphaMax = table->mData[J3DAnmColorFullTable::ALPHA][J3DAnmColorFullTable::MaxFrame];
+	if (frame >= alphaMax) {
+		color->a = mAlphaVals[table->mData[J3DAnmColorFullTable::ALPHA][J3DAnmColorFullTable::Offset] - 1 + alphaMax];
+	} else {
+		color->a = mAlphaVals[table->mData[J3DAnmColorFullTable::ALPHA][J3DAnmColorFullTable::Offset] + frame];
 	}
 }
 
@@ -1187,73 +1051,22 @@ lbl_80068F48:
  * @note Address: 0x80068F6C
  * @note Size: 0xB4
  */
-void J3DAnmTexPattern::getTexNo(u16 p1, u16* p2) const
+void J3DAnmTexPattern::getTexNo(u16 idx, u16* texNo) const
 {
-	int index                     = p1;
-	J3DAnmTexPatternFullTable* v1 = mAnmTable;
-	if (mCurrentFrame < 0.0f) {
-		*p2 = _0C[v1[index].mData[0][1]];
+	int index                        = idx;
+	J3DAnmTexPatternFullTable* table = mAnmTable;
+	u32 maxFrame                     = table[index].mData[0][0];
+	if (getFrame() < 0.0f) {
+		*texNo = _0C[table[index].mData[0][1]];
 		return;
 	}
-	if (mCurrentFrame >= v1[index].mData[0][0]) {
-		int v2 = v1[index].mData[0][0] - 1 + v1[index].mData[0][1];
-		*p2    = _0C[v2];
+
+	if (getFrame() >= (f32)maxFrame) {
+		*texNo = _0C[maxFrame - 1 + table[index].mData[0][1]];
 		return;
 	}
-	*p2 = _0C[v1[index].mData[0][1] + (int)mCurrentFrame];
-	/*
-	lfs      f2, 8(r3)
-	rlwinm   r4, r4, 3, 0xd, 0x1c
-	lfs      f0, lbl_80516A1C@sda21(r2)
-	stwu     r1, -0x10(r1)
-	lwz      r6, 0x10(r3)
-	fcmpo    cr0, f2, f0
-	lhzx     r7, r6, r4
-	bge      lbl_80068FA8
-	add      r4, r6, r4
-	lwz      r3, 0xc(r3)
-	lhz      r0, 2(r4)
-	slwi     r0, r0, 1
-	lhzx     r0, r3, r0
-	sth      r0, 0(r5)
-	b        lbl_80069018
 
-lbl_80068FA8:
-	lis      r0, 0x4330
-	stw      r7, 0xc(r1)
-	lfd      f1, lbl_80516A38@sda21(r2)
-	stw      r0, 8(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f1
-	fcmpo    cr0, f2, f0
-	cror     2, 1, 2
-	bne      lbl_80068FF0
-	add      r4, r6, r4
-	lwz      r6, 0xc(r3)
-	lhz      r0, 2(r4)
-	add      r3, r7, r0
-	addi     r0, r3, -1
-	slwi     r0, r0, 1
-	lhzx     r0, r6, r0
-	sth      r0, 0(r5)
-	b        lbl_80069018
-
-lbl_80068FF0:
-	fctiwz   f0, f2
-	add      r4, r6, r4
-	lhz      r0, 2(r4)
-	lwz      r4, 0xc(r3)
-	stfd     f0, 8(r1)
-	lwz      r3, 0xc(r1)
-	add      r0, r3, r0
-	slwi     r0, r0, 1
-	lhzx     r0, r4, r0
-	sth      r0, 0(r5)
-
-lbl_80069018:
-	addi     r1, r1, 0x10
-	blr
-	*/
+	*texNo = _0C[(int)mCurrentFrame + table[index].mData[0][1]];
 }
 
 /**
