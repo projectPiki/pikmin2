@@ -117,9 +117,6 @@ typedef struct TRKState {
 	BOOL isStopped;        // _98
 	BOOL inputActivated;   // _9C
 	void* inputPendingPtr; // _A0
-	u32 _A4;               // _A4
-	u32 _A8;               // _A8
-	u32 _AC;               // _AC
 } TRKState;
 
 typedef struct TRKState_PPC {

@@ -3,16 +3,19 @@
 #include "PowerPC_EABI_Support/MetroTRK/trkenum.h"
 #include "PowerPC_EABI_Support/MetroTRK/dstypes.h"
 #include "PowerPC_EABI_Support/MetroTRK/memmap.h"
+
 typedef struct StopInfo_PPC {
 	u32 PC;
 	u32 PCInstruction;
 	u16 exceptionID;
+	u8 pad[2];
 } StopInfo_PPC;
 
 typedef struct TRKExceptionStatus {
 	StopInfo_PPC exceptionInfo;
 	u8 inTRK;
 	u8 exceptionDetected;
+	u8 pad[2];
 } TRKExceptionStatus;
 
 typedef struct TRKStepStatus {
@@ -37,16 +40,16 @@ void TRKInterruptHandlerEnableInterrupts();
 static void GetThreadInfo(int*, int*);
 DSError TRKPPCAccessSPR(void* srcDestPtr, u32 spr, BOOL read);
 DSError TRKPPCAccessPairedSingleRegister(void* srcDestPtr, u32 psr, BOOL read);
-DSError TRKPPCAccessSpecialReg(void* srcDestPtr, u32* instructionData);
+DSError TRKPPCAccessSpecialReg(void* srcDestPtr, u32* instructionData, BOOL read);
 DSError TRKPPCAccessFPRegister(void* srcDestPtr, u32 fpr, BOOL read);
 void WriteFPSCR(f64*);
 void ReadFPSCR(f64*);
 
-u128 TRKvalue128_temp;
-Default_PPC gTRKSaveState;
-ProcessorState_PPC gTRKCPUState;
 static u16 TRK_saved_exceptionID = 0;
 TRKState gTRKState;
+Default_PPC gTRKSaveState;
+ProcessorState_PPC gTRKCPUState;
+u128 TRKvalue128_temp;
 
 // Instruction macros
 #define INSTR_NOP                                0x60000000
@@ -60,6 +63,9 @@ TRKState gTRKState;
 #define INSTR_MFSPR(rDest, spr)                  (0x7C000000 | (rDest << 21) | ((spr & 0xFE0) << 6) | ((spr & 0x1F) << 16) | 0x2A6)
 #define INSTR_MTSPR(spr, rSrc)                   (0x7C000000 | (rSrc << 21) | ((spr & 0xFE0) << 6) | ((spr & 0x1F) << 16) | 0x3A6)
 
+#define DSFetch_u32(_p_)    (*((u32 *)_p_))
+#define DSFetch_u64(_p_)    (*((u64 *)_p_))
+
 void __TRK_set_MSR(register u32 msr);
 u32 __TRK_get_MSR();
 void TRK_ppc_memcpy(register void* dest, register const void* src, register int n, register u32 param_4, register u32 param_5);
@@ -68,286 +74,87 @@ void TRK_ppc_memcpy(register void* dest, register const void* src, register int 
  * @note Address: 0x800BF790
  * @note Size: 0x2A4
  */
-DSError TRKValidMemory32(const void* addr, size_t length, ValidMemoryOptions readWriteable)
+DSError TRKValidMemory32(const void *addr, size_t length, ValidMemoryOptions readWriteable)
 {
-	int result;
-	memRange* map;
-	size_t r31;
-	int ind;
+    DSError err = DS_InvalidMemory;            /* assume range is invalid */
 
-	length += (u32)addr;
-	r31 = (length - 1);
+    const u8 *start;
+    const u8 *end;
 
-	// result = DS_InvalidMemory; //r6;
+    s32 i;
 
-	if (r31 < (u32)addr) {
-		return DS_InvalidMemory;
-	}
+    /*
+    ** Get start and end addresses for the memory range and
+    ** verify that they are reasonable.
+    */
 
-	map = (memRange*)gTRKMemMap;
-	ind = 0;
+    start = (const u8 *)addr;
+    end = ((const u8 *)addr + (length - 1));
 
-	if ((size_t)addr <= (size_t)map->end && r31 >= (size_t)map->start) {
-		ind = 0;
-		if ((readWriteable == VALIDMEM_Readable && !gTRKMemMap[readWriteable].readable)
-		    || (readWriteable == VALIDMEM_Writeable && !gTRKMemMap[readWriteable].writeable)) {
-			result = DS_InvalidMemory;
-		} else {
-			result = DS_NoError;
+    if (end < start)
+        return DS_InvalidMemory;
 
-			if ((size_t)addr < (size_t)gTRKMemMap[readWriteable].start) {
-				result = TRKValidMemory32(addr, (size_t)gTRKMemMap[readWriteable].start - (size_t)addr, readWriteable);
-			}
+    /*
+    ** Iterate through the gTRKMemMap array to determine if the requested
+    ** range falls within the valid ranges in the map.
+    */
 
-			if (result == DS_NoError && r31 > (size_t)gTRKMemMap[ind].end) {
-				result = TRKValidMemory32((void*)gTRKMemMap[ind].end, r31 - (size_t)gTRKMemMap[ind].end, readWriteable);
-			}
-		}
-	}
+    for (i = 0; (i < (s32)(sizeof(gTRKMemMap) / sizeof(memRange))); i++)
+    {
+        /*
+        ** If the requested range is not completely above
+        ** the valid range AND it is not completely below
+        ** the valid range then it must overlap somewhere.
+        ** If the requested range overlaps with one of the
+        ** valid ranges, do some additional checking.
+        **
+        */
 
-	return result;
-	// DSError result;
-	// memRange* map = 0;
-	// u32 adressable_size;
+        if ((start <= (const u8 *)gTRKMemMap[i].end) && (end >= (const u8 *)gTRKMemMap[i].start))
+        {
+            /*
+            ** First, verify that the read/write attributes are
+            ** acceptable.  If so, then recursively check any
+            ** part of the requested range that falls before or
+            ** after the valid range.
+            */
 
-	// length += (size_t)addr;
-	// adressable_size = (length - 1);
+            if (((readWriteable == VALIDMEM_Readable) && !gTRKMemMap[i].readable) ||
+                ((readWriteable == VALIDMEM_Writeable) && !gTRKMemMap[i].writeable))
+            {
+                err = DS_InvalidMemory;
+            }
+            else
+            {
+                err = DS_NoError;
 
-	// result = DS_InvalidMemory; //r6;
+                /*
+                ** If a portion of the requested range falls before
+                ** the current valid range, then recursively
+                ** check it.
+                */
 
-	// if(adressable_size < (size_t)addr){
-	// 	return result;
-	// }
+                if (start < (const u8 *)gTRKMemMap[i].start)
+                    err = TRKValidMemory32(start, (u32)((const u8 *)gTRKMemMap[i].start - start), readWriteable);
 
-	// map = (memRange*)&gTRKMemMap;
+                /*
+                ** If a portion of the requested range falls after
+                ** the current valid range, then recursively
+                ** check it.
+                ** Note: Only do this step if the previous check
+                ** did not detect invalid access.
+                */
 
-	// if((size_t)addr <= (size_t)map->end && adressable_size >= (size_t)map->start){
-	// 	if((readWriteable == DS_InvalidMemory && gTRKMemMap.readable == 0 ) || (readWriteable == VALIDMEM_Writeable)){
-	// 		result = DS_InvalidMemory;
-	// 	}else{
-	// 		result = DS_NoError;
+                if ((err == DS_NoError) && (end > (const u8 *)gTRKMemMap[i].end))
+                    err = TRKValidMemory32((const u8 *)gTRKMemMap[i].end, (u32)(end - (const u8 *)gTRKMemMap[i].end), readWriteable);
 
-	// 		if((size_t)addr < (size_t)gTRKMemMap.start){
-	// 			result = TRKValidMemory32(addr, (size_t)gTRKMemMap.start - (size_t)addr, readWriteable);
-	// 		}
+            }
 
-	// 		if(result == DS_NoError && adressable_size > (size_t)gTRKMemMap.end){
-	// 			result = TRKValidMemory32(gTRKMemMap.end, adressable_size - (size_t)gTRKMemMap.end, readWriteable);
-	// 		}
-	// 	}
-	// }
+            break;
+        }
+    }
 
-	// return result;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  add       r27, r4, r3
-	  subi      r27, r27, 0x1
-	  mr        r26, r5
-	  cmplw     r27, r3
-	  li        r5, 0x700
-	  bge-      .loc_0x30
-	  li        r3, 0x700
-	  b         .loc_0x290
-
-	.loc_0x30:
-	  lis       r4, 0x8048
-	  li        r6, 0
-	  subi      r31, r4, 0x6460
-	  lwz       r0, 0x4(r31)
-	  cmplw     r3, r0
-	  bgt-      .loc_0x28C
-	  lwz       r0, 0x0(r31)
-	  cmplw     r27, r0
-	  blt-      .loc_0x28C
-	  cmpwi     r26, 0
-	  bne-      .loc_0x70
-	  rlwinm    r0,r6,4,0,27
-	  add       r4, r31, r0
-	  lwz       r0, 0x8(r4)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x94
-
-	.loc_0x70:
-	  cmpwi     r26, 0x1
-	  bne-      .loc_0x9C
-	  lis       r4, 0x8048
-	  rlwinm    r0,r6,4,0,27
-	  subi      r4, r4, 0x6460
-	  add       r4, r4, r0
-	  lwz       r0, 0xC(r4)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x9C
-
-	.loc_0x94:
-	  li        r5, 0x700
-	  b         .loc_0x28C
-
-	.loc_0x9C:
-	  lis       r4, 0x8048
-	  rlwinm    r29,r6,4,0,27
-	  subi      r4, r4, 0x6460
-	  li        r5, 0
-	  lwzx      r0, r4, r29
-	  cmplw     r3, r0
-	  bge-      .loc_0x198
-	  sub       r0, r0, r3
-	  li        r6, 0x700
-	  add       r30, r0, r3
-	  subi      r30, r30, 0x1
-	  cmplw     r30, r3
-	  bge-      .loc_0xD4
-	  b         .loc_0x194
-
-	.loc_0xD4:
-	  lwz       r0, 0x4(r31)
-	  li        r5, 0
-	  cmplw     r3, r0
-	  bgt-      .loc_0x194
-	  lwz       r0, 0x0(r31)
-	  cmplw     r30, r0
-	  blt-      .loc_0x194
-	  cmpwi     r26, 0
-	  bne-      .loc_0x10C
-	  rlwinm    r0,r5,4,0,27
-	  add       r4, r4, r0
-	  lwz       r0, 0x8(r4)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x130
-
-	.loc_0x10C:
-	  cmpwi     r26, 0x1
-	  bne-      .loc_0x138
-	  lis       r4, 0x8048
-	  rlwinm    r0,r5,4,0,27
-	  subi      r4, r4, 0x6460
-	  add       r4, r4, r0
-	  lwz       r0, 0xC(r4)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x138
-
-	.loc_0x130:
-	  li        r6, 0x700
-	  b         .loc_0x194
-
-	.loc_0x138:
-	  lis       r4, 0x8048
-	  rlwinm    r28,r5,4,0,27
-	  subi      r4, r4, 0x6460
-	  li        r6, 0
-	  lwzx      r0, r4, r28
-	  cmplw     r3, r0
-	  bge-      .loc_0x164
-	  mr        r5, r26
-	  sub       r4, r0, r3
-	  bl        .loc_0x0
-	  mr        r6, r3
-
-	.loc_0x164:
-	  cmpwi     r6, 0
-	  bne-      .loc_0x194
-	  lis       r3, 0x8048
-	  subi      r0, r3, 0x6460
-	  add       r3, r0, r28
-	  lwz       r3, 0x4(r3)
-	  cmplw     r30, r3
-	  ble-      .loc_0x194
-	  mr        r5, r26
-	  sub       r4, r30, r3
-	  bl        .loc_0x0
-	  mr        r6, r3
-
-	.loc_0x194:
-	  mr        r5, r6
-
-	.loc_0x198:
-	  cmpwi     r5, 0
-	  bne-      .loc_0x28C
-	  lis       r3, 0x8048
-	  subi      r4, r3, 0x6460
-	  addi      r28, r4, 0x4
-	  lwzx      r3, r28, r29
-	  cmplw     r27, r3
-	  ble-      .loc_0x28C
-	  sub       r0, r27, r3
-	  li        r6, 0x700
-	  add       r30, r0, r3
-	  subi      r30, r30, 0x1
-	  cmplw     r30, r3
-	  bge-      .loc_0x1D4
-	  b         .loc_0x288
-
-	.loc_0x1D4:
-	  lwz       r0, 0x4(r31)
-	  li        r5, 0
-	  cmplw     r3, r0
-	  bgt-      .loc_0x288
-	  lwz       r0, 0x0(r31)
-	  cmplw     r30, r0
-	  blt-      .loc_0x288
-	  cmpwi     r26, 0
-	  bne-      .loc_0x20C
-	  rlwinm    r0,r5,4,0,27
-	  add       r4, r4, r0
-	  lwz       r0, 0x8(r4)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x230
-
-	.loc_0x20C:
-	  cmpwi     r26, 0x1
-	  bne-      .loc_0x238
-	  lis       r4, 0x8048
-	  rlwinm    r0,r5,4,0,27
-	  subi      r4, r4, 0x6460
-	  add       r4, r4, r0
-	  lwz       r0, 0xC(r4)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x238
-
-	.loc_0x230:
-	  li        r6, 0x700
-	  b         .loc_0x288
-
-	.loc_0x238:
-	  lis       r4, 0x8048
-	  rlwinm    r27,r5,4,0,27
-	  subi      r4, r4, 0x6460
-	  li        r6, 0
-	  lwzx      r0, r4, r27
-	  cmplw     r3, r0
-	  bge-      .loc_0x264
-	  mr        r5, r26
-	  sub       r4, r0, r3
-	  bl        .loc_0x0
-	  mr        r6, r3
-
-	.loc_0x264:
-	  cmpwi     r6, 0
-	  bne-      .loc_0x288
-	  lwzx      r3, r28, r27
-	  cmplw     r30, r3
-	  ble-      .loc_0x288
-	  mr        r5, r26
-	  sub       r4, r30, r3
-	  bl        .loc_0x0
-	  mr        r6, r3
-
-	.loc_0x288:
-	  mr        r5, r6
-
-	.loc_0x28C:
-	  mr        r3, r5
-
-	.loc_0x290:
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+    return err;
 }
 
 /**
@@ -510,8 +317,36 @@ DSError TRKTargetReadInstruction(void* data, u32 start)
  * @note Address: 0x800BF504
  * @note Size: 0xF4
  */
-void TRKTargetAccessDefault(void)
-{
+DSError TRKTargetAccessDefault(u32 firstRegister, u32 lastRegister, MessageBuffer* b, size_t* registersLengthPtr, BOOL read){
+	DSError error;
+	u32 count;
+	u32* data;
+	TRKExceptionStatus tempExceptionStatus;
+	
+	if (lastRegister > 0x24) {
+		return DS_InvalidRegister;
+	}
+	
+	tempExceptionStatus = gTRKExceptionStatus;
+	gTRKExceptionStatus.exceptionDetected = FALSE;
+	
+	data = gTRKCPUState.Default.GPR + firstRegister;
+	count = (lastRegister - firstRegister) + 1;
+	*registersLengthPtr = count * sizeof(u32);
+		
+	if(read){
+		error = TRKAppendBuffer_ui32(b, data, count);
+	}else{
+		error = TRKReadBuffer_ui32(b, data, count);
+	}
+		
+	if(gTRKExceptionStatus.exceptionDetected){
+		*registersLengthPtr = 0;
+		error = DS_CWDSException;
+	}
+		
+	gTRKExceptionStatus = tempExceptionStatus;
+	return error;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -594,10 +429,10 @@ void TRKTargetAccessDefault(void)
  */
 DSError TRKTargetAccessFP(u32 firstRegister, u32 lastRegister, MessageBuffer* b, size_t* registersLengthPtr, BOOL read)
 {
-	DSError error;
-	u32 uVar6;
 	u64 temp;
+	DSError error;
 	TRKExceptionStatus tempExceptionStatus;
+	u32 current;
 
 	if (lastRegister > 0x21) {
 		return DS_InvalidRegister;
@@ -606,23 +441,19 @@ DSError TRKTargetAccessFP(u32 firstRegister, u32 lastRegister, MessageBuffer* b,
 	tempExceptionStatus                   = gTRKExceptionStatus;
 	gTRKExceptionStatus.exceptionDetected = FALSE;
 
-	uVar6 = __TRK_get_MSR();
-	__TRK_set_MSR(uVar6 | 0x2000);
-	temp                = firstRegister;
+	__TRK_set_MSR(__TRK_get_MSR() | 0x2000);
+
 	*registersLengthPtr = 0;
 	error               = DS_NoError;
 
-	while (firstRegister <= lastRegister && error == DS_NoError) {
+	for (current = firstRegister; (current <= lastRegister) && (error == DS_NoError); current++, *registersLengthPtr += sizeof(f64)) {
 		if (read) {
-			TRKPPCAccessFPRegister(&temp, firstRegister, read);
+			TRKPPCAccessFPRegister(&temp, current, read);
 			error = TRKAppendBuffer1_ui64(b, temp);
 		} else {
 			TRKReadBuffer1_ui64(b, &temp);
-			error = TRKPPCAccessFPRegister(&temp, firstRegister, read);
+			error = TRKPPCAccessFPRegister(&temp, current, read);
 		}
-
-		firstRegister++;
-		*registersLengthPtr += 8;
 	}
 
 	if (gTRKExceptionStatus.exceptionDetected) {
@@ -1173,49 +1004,58 @@ DSError TRKTargetAccessExtended1(u32 firstRegister, u32 lastRegister, MessageBuf
  * @note Address: 0x800BEA50
  * @note Size: 0x438
  */
-DSError TRKTargetAccessExtended2(u32 firstRegister, u32 lastRegister, MessageBuffer* b, size_t* registersLengthPtr, BOOL read)
+DSError TRKTargetAccessExtended2(u32 firstRegister, u32 lastRegister, MessageBuffer* b, size_t* registerStorageSize, BOOL read)
 {
-	TRKExceptionStatus tempExceptionStatus;
-	DSError error;
-	u32 temp2;
-	u64 temp;
+	TRKExceptionStatus savedException;
+	u32 current;
+	u32 value32; // (32 bits)
+	DSError err;
 
-	if (lastRegister > 0x1f) {
+	if (lastRegister > 0x1f)
 		return DS_InvalidRegister;
-	}
 
-	tempExceptionStatus                   = gTRKExceptionStatus;
+	/*
+	** Save any existing exception status and clear the exception flag.
+	** This allows detection of exceptions that occur ONLY within this
+	** function.
+	*/
+
+	savedException                        = gTRKExceptionStatus;
 	gTRKExceptionStatus.exceptionDetected = FALSE;
 
-	TRKPPCAccessSPR(&temp2, 0x398, TRUE);
-	temp2 |= 0xA0000000;
-	TRKPPCAccessSPR(&temp2, 0x398, TRUE);
-	temp2 = 0;
-	TRKPPCAccessSPR(&temp2, 0x390, FALSE);
-	*registersLengthPtr = 0;
-	error               = DS_NoError;
+	TRKPPCAccessSPR(&value32, SPR_HID2, TRUE);
 
-	while (firstRegister <= lastRegister && error == DS_NoError) {
+	value32 |= 0xA0000000;
+	TRKPPCAccessSPR(&value32, SPR_HID2, FALSE);
+
+	value32 = 0;
+	TRKPPCAccessSPR(&value32, SPR_GQR0, FALSE);
+
+	*registerStorageSize = 0;
+	err                  = DS_NoError;
+
+	for (current = firstRegister; (current <= lastRegister) && (err == DS_NoError); current++) {
+		u64 value64; // (64 bits)
+
 		if (read) {
-			error = TRKPPCAccessPairedSingleRegister(&temp2, firstRegister, read);
-			error = TRKAppendBuffer1_ui64(b, temp);
+			TRKPPCAccessPairedSingleRegister(&value64, current, read);
+			err = TRKAppendBuffer1_ui64(b, value64);
 		} else {
-			error = TRKReadBuffer1_ui64(b, &temp);
-			error = TRKPPCAccessPairedSingleRegister(&temp, firstRegister, read);
+			TRKReadBuffer1_ui64(b, &value64);
+			err = TRKPPCAccessPairedSingleRegister(&value64, current, read);
 		}
 
-		firstRegister++;
-		*registersLengthPtr += 8;
+		*registerStorageSize += sizeof(u64);
 	}
 
 	if (gTRKExceptionStatus.exceptionDetected) {
-		*registersLengthPtr = 0;
-		error               = DS_CWDSException;
+		*registerStorageSize = 0;
+		err                  = DS_CWDSException;
 	}
 
-	gTRKExceptionStatus = tempExceptionStatus;
+	gTRKExceptionStatus = savedException;
 
-	return error;
+	return err;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x130(r1)
@@ -2153,22 +1993,49 @@ BOOL TRKTargetStop()
  * @note Address: N/A
  * @note Size: 0x108
  */
-DSError TRKPPCAccessSPR(void* srcDestPtr, u32 spr, BOOL read)
+DSError TRKPPCAccessSPR(void *value, u32 spr_register_num, BOOL read)
 {
-	// all nop by default
-	u32 instructionData[] = {
-		INSTR_NOP, INSTR_NOP, INSTR_NOP, INSTR_NOP, INSTR_NOP, INSTR_NOP, INSTR_NOP, INSTR_NOP, INSTR_NOP, INSTR_NOP,
-	};
+    /* Initialize instruction array with nop */
 
-	if (read) {
-		instructionData[0] = INSTR_MFSPR(4, spr); // mfspr r4, spr
-		instructionData[1] = INSTR_STW(4, 0, 3);  // stw r4, 0(r3)
-	} else {
-		instructionData[0] = INSTR_LWZ(4, 0, 3);  // lwz r4, 0(r3)
-		instructionData[1] = INSTR_MTSPR(spr, 4); // mtspr spr, r4
-	}
+    u32 access_func[10] = {INSTR_NOP,
+                                       INSTR_NOP,
+                                       INSTR_NOP,
+                                       INSTR_NOP,
+                                       INSTR_NOP,
+                                       INSTR_NOP,
+                                       INSTR_NOP,
+                                       INSTR_NOP,
+                                       INSTR_NOP,
+                                       INSTR_NOP};
+    /*
+    ** Construct a small assembly function to perform the
+    ** requested access and call it.  The read/write function
+    ** is in the form:
+    **
+    ** read:
+    **        mfspr    r4, spr_register_num
+    **        stw      r4, 0(r3)
+    **        blr
+    **
+    ** write:
+    **        lwz      r4, 0(r3)
+    **        mtspr    spr_register_num, r4
+    **        blr
+    **
+    */
 
-	return TRKPPCAccessSpecialReg(srcDestPtr, instructionData);
+    if (read)
+    {
+        access_func[0] = INSTR_MFSPR(4, spr_register_num);
+        access_func[1] = (u32)INSTR_STW(4, 0, 3);
+    }
+    else
+    {
+        access_func[0] = (u32)INSTR_LWZ(4, 0, 3);
+        access_func[1] = INSTR_MTSPR(spr_register_num, 4);
+    }
+
+    return TRKPPCAccessSpecialReg(value, access_func, read);
 }
 
 /**
@@ -2187,7 +2054,7 @@ DSError TRKPPCAccessPairedSingleRegister(void* srcDestPtr, u32 psr, BOOL read)
 		instructionData[0] = INSTR_PSQ_L(psr, 0, 3, 0, 0); // psq_l psr, 0(r3), 0, 0
 	}
 
-	return TRKPPCAccessSpecialReg(srcDestPtr, instructionData);
+	return TRKPPCAccessSpecialReg(srcDestPtr, instructionData, read);
 }
 
 /**
@@ -2208,7 +2075,7 @@ DSError TRKPPCAccessFPRegister(void* srcDestPtr, u32 fpr, BOOL read)
 			instructionData1[0] = INSTR_LFD(fpr, 0, 3); // lfd fpr, 0(r3)
 		}
 
-		error = TRKPPCAccessSpecialReg(srcDestPtr, instructionData1);
+		error = TRKPPCAccessSpecialReg(srcDestPtr, instructionData1, read);
 	} else if (fpr == 0x20) {
 		if (read) {
 			ReadFPSCR(srcDestPtr);
@@ -2219,13 +2086,12 @@ DSError TRKPPCAccessFPRegister(void* srcDestPtr, u32 fpr, BOOL read)
 		*(u64*)srcDestPtr &= 0xFFFFFFFF;
 	} else if (fpr == 0x21) {
 		if (!read) {
-			*(u32*)srcDestPtr = *(u32*)((u32)srcDestPtr + 4);
+			*(u32*)srcDestPtr = *((u32*)(srcDestPtr) + 1);
 		}
 
 		error = TRKPPCAccessSPR(srcDestPtr, SPR_FPECR, read);
-
 		if (read) {
-			*(u64*)srcDestPtr = (*(u64*)srcDestPtr >> 32) & 0xFFFFFFFF;
+			DSFetch_u64(srcDestPtr) = DSFetch_u32(srcDestPtr) & 0xffffffffLL;
 		}
 	}
 
@@ -2236,13 +2102,69 @@ DSError TRKPPCAccessFPRegister(void* srcDestPtr, u32 fpr, BOOL read)
  * @note Address: N/A
  * @note Size: 0x68
  */
-DSError TRKPPCAccessSpecialReg(void* srcDestPtr, u32* instructionData)
+#define DEBUG_VECTORREG_ACCESS    0
+
+
+DSError TRKPPCAccessSpecialReg(void *value, u32 *access_func, BOOL read)
 {
-	instructionData[9] = INSTR_BLR; // Set the last entry as blr
-	TRK_flush_cache((u32)instructionData, 0x28);
-	// Call the instruction data array as code
-	((RegAccessFunc)instructionData)(srcDestPtr, TRKvalue128_temp);
-	return DS_NoError;
+#if defined(__MWERKS__)
+    #pragma unused(read)
+#elif defined(__GNUC__)
+    UNUSED(read);
+#endif
+
+    typedef void (*asm_access_type)(void *, void *);
+
+    asm_access_type asm_access;
+
+    /*
+    ** Construct a small assembly function to perform the
+    ** requested access and call it.  The read/write function
+    ** is in the form:
+    **
+    **        <access_func>
+    **        blr
+    */
+
+    /*
+    ** Put blr instruction at the end of access function (it should be
+    ** a 5-instruction array w/the last one empty).
+    */
+
+    access_func[9] = INSTR_BLR;
+
+    /*
+    ** Now that the instruction array is built, get a function pointer to it.
+    */
+
+    asm_access = (asm_access_type)access_func;
+
+#if DEBUG_VECTORREG_ACCESS
+
+    __puts("\r\nasm_access: ");
+    __puthex8((u32)asm_access);
+    __puts("   access_func: ");
+    __puthex8((u32)access_func);
+
+    for (i = 0; i < 10; i++)
+    {
+        __puts("\r\ninst[");
+        __puthex2(i);
+        __puts("]: ");
+        __puthex8(access_func[i]);
+        __puts("  ;  ");
+        __puthex8(*((u32 *)asm_access + i));
+    }
+
+    __puts("\r\n");
+
+#endif
+
+    // Flush cache
+    TRK_flush_cache((u32)access_func, (sizeof(access_func) * 10));
+    (*asm_access)(value, (void *)&TRKvalue128_temp);
+
+    return DS_NoError;
 }
 
 /**
@@ -2399,269 +2321,257 @@ asm void ReadFPSCR(register f64*)
  * @note Address: 0x800BE1E8
  * @note Size: 0x54
  */
-void TRKInterruptHandlerEnableInterrupts(void)
+#ifdef __MWERKS__ // clang-format off
+asm void TRKInterruptHandlerEnableInterrupts(void)
 {
-	/*
-	.loc_0x0:
-	  lis       r2, 0x804F
-	  ori       r2, r2, 0x4284
-	  lwz       r0, 0x8C(r2)
-	  sync
-	  mtmsr     r0
-	  sync
-	  lwz       r0, 0x80(r2)
-	  mtlr      r0
-	  lwz       r0, 0x84(r2)
-	  mtctr     r0
-	  lwz       r0, 0x88(r2)
-	  mtxer     r0
-	  lwz       r0, 0x94(r2)
-	  mtdsisr   r0
-	  lwz       r0, 0x90(r2)
-	  mtdar     r0
-	  lmw       r3, 0xC(r2)
-	  lwz       r0, 0x0(r2)
-	  lwz       r1, 0x4(r2)
-	  lwz       r2, 0x8(r2)
-	  b         0x76C
-	*/
+	nofralloc;
+	lis       r2, gTRKState@h
+	ori       r2, r2, gTRKState@l
+	lwz       r0, TRKState_PPC.MSR(r2)
+	sync
+	mtmsr     r0
+	sync
+	lwz       r0, TRKState_PPC.LR(r2)
+	mtlr      r0
+	lwz       r0, TRKState_PPC.CTR(r2)
+	mtctr     r0
+	lwz       r0, TRKState_PPC.XER(r2)
+	mtxer     r0
+	lwz       r0, TRKState_PPC.DSISR(r2)
+	mtdsisr   r0
+	lwz       r0, TRKState_PPC.DAR(r2)
+	mtdar     r0
+	lmw       r3, TRKState_PPC.GPR[3](r2)
+	lwz       r0, TRKState_PPC.GPR[0](r2)
+	lwz       r1, TRKState_PPC.GPR[1](r2)
+	lwz       r2, TRKState_PPC.GPR[2](r2)
+	b         TRKPostInterruptEvent
 }
+#endif // clang-format on
 
 /**
  * @note Address: 0x800BE124
  * @note Size: 0xC4
  */
-void TRKSwapAndGo(void)
-{
-	/*
-	.loc_0x0:
-	  lis       r3, 0x804F
-	  ori       r3, r3, 0x4284
-	  stmw      r0, 0x0(r3)
-	  mfmsr     r0
-	  stw       r0, 0x8C(r3)
-	  mflr      r0
-	  stw       r0, 0x80(r3)
-	  mfctr     r0
-	  stw       r0, 0x84(r3)
-	  mfxer     r0
-	  stw       r0, 0x88(r3)
-	  mfdsisr   r0
-	  stw       r0, 0x94(r3)
-	  mfdar     r0
-	  stw       r0, 0x90(r3)
-	  li        r1, -0x7FFE
-	  not       r1, r1
-	  mfmsr     r3
-	  and       r3, r3, r1
-	  mtmsr     r3
-	  lis       r2, 0x804F
-	  ori       r2, r2, 0x4284
-	  lwz       r2, 0xA0(r2)
-	  lbz       r2, 0x0(r2)
-	  cmpwi     r2, 0
-	  beq-      .loc_0x7C
-	  lis       r2, 0x804F
-	  ori       r2, r2, 0x4284
-	  li        r3, 0x1
-	  stb       r3, 0x9C(r2)
-	  b         .loc_0xC4
-
-	.loc_0x7C:
-	  lis       r2, 0x804A
-	  ori       r2, r2, 0x68BC
-	  li        r3, 0
-	  stb       r3, 0xC(r2)
-	  bl        0x1A68
-	  lis       r2, 0x804F
-	  ori       r2, r2, 0x4328
-	  lmw       r27, 0x80(r2)
-	  mtsrr0    r27
-	  mtlr      r28
-	  mtcr      r29
-	  mtctr     r30
-	  mtxer     r31
-	  lmw       r3, 0xC(r2)
-	  lwz       r0, 0x0(r2)
-	  lwz       r1, 0x4(r2)
-	  lwz       r2, 0x8(r2)
-	  rfi
-
-	.loc_0xC4:
-	*/
+#ifdef __MWERKS__ // clang-format off
+asm void TRKSwapAndGo(){
+	nofralloc
+	lis r3, gTRKState@h
+	ori r3, r3, gTRKState@l
+	stmw r0, TRKState_PPC.GPR[0](r3)
+	mfmsr r0
+	stw r0, TRKState_PPC.MSR(r3)
+	mflr r0
+	stw r0, TRKState_PPC.LR(r3)
+	mfctr r0
+	stw r0, TRKState_PPC.CTR(r3)
+	mfxer r0
+	stw r0, TRKState_PPC.XER(r3)
+	mfdsisr r0
+	stw r0, TRKState_PPC.DSISR(r3)
+	mfdar r0
+	stw r0, TRKState_PPC.DAR(r3)
+	li r1, -0x7ffe
+	nor r1, r1, r1
+	mfmsr r3
+	and r3, r3, r1
+	mtmsr r3
+	lis r2, gTRKState@h
+	ori r2, r2, gTRKState@l
+	lwz r2, TRKState_PPC.inputPendingPtr(r2)
+	lbz r2, TRKState_PPC.GPR[0](r2)
+	cmpwi r2, 0
+	beq L_802CF930
+	lis r2, gTRKState@h
+	ori r2, r2, gTRKState@l
+	li r3, 1
+	stb r3, TRKState_PPC.inputActivated(r2)
+	b TRKInterruptHandlerEnableInterrupts
+L_802CF930:
+	lis r2, gTRKExceptionStatus@h
+	ori r2, r2, gTRKExceptionStatus@l
+	li r3, 0
+	stb r3, 0xc(r2)
+	bl TRKRestoreExtended1Block
+	lis r2, gTRKCPUState@h
+	ori r2, r2, gTRKCPUState@l
+	lmw r27, ProcessorState_PPC.Default.PC(r2)
+	mtsrr0 r27
+	mtlr r28
+	mtcrf 0xff, r29
+	mtctr r30
+	mtxer r31
+	lmw r3, ProcessorState_PPC.Default.GPR[3](r2)
+	lwz r0, ProcessorState_PPC.Default.GPR[0](r2)
+	lwz r1, ProcessorState_PPC.Default.GPR[1](r2)
+	lwz r2, ProcessorState_PPC.Default.GPR[2](r2)
+	rfi
 }
+#endif // clang-format on
 
 /**
  * @note Address: 0x800BE088
  * @note Size: 0x9C
  */
-static void TRKExceptionHandler(u16)
-{
-	/*
-	.loc_0x0:
-	  lis       r2, 0x804A
-	  ori       r2, r2, 0x68BC
-	  sth       r3, 0x8(r2)
-	  mfsrr0    r3
-	  stw       r3, 0x0(r2)
-	  lhz       r3, 0x8(r2)
-	  cmpwi     r3, 0x200
-	  beq-      .loc_0x6C
-	  cmpwi     r3, 0x300
-	  beq-      .loc_0x6C
-	  cmpwi     r3, 0x400
-	  beq-      .loc_0x6C
-	  cmpwi     r3, 0x600
-	  beq-      .loc_0x6C
-	  cmpwi     r3, 0x700
-	  beq-      .loc_0x6C
-	  cmpwi     r3, 0x800
-	  beq-      .loc_0x6C
-	  cmpwi     r3, 0x1000
-	  beq-      .loc_0x6C
-	  cmpwi     r3, 0x1100
-	  beq-      .loc_0x6C
-	  cmpwi     r3, 0x1200
-	  beq-      .loc_0x6C
-	  cmpwi     r3, 0x1300
-	  beq-      .loc_0x6C
-	  b         .loc_0x78
-
-	.loc_0x6C:
-	  mfsrr0    r3
-	  addi      r3, r3, 0x4
-	  mtsrr0    r3
-
-	.loc_0x78:
-	  lis       r2, 0x804A
-	  ori       r2, r2, 0x68BC
-	  li        r3, 0x1
-	  stb       r3, 0xD(r2)
-	  mfsprg    r3, 0x3
-	  mtcr      r3
-	  mfsprg    r2, 0x1
-	  mfsprg    r3, 0x2
-	  rfi
-	*/
+#ifdef __MWERKS__ // clang-format off
+static asm void TRKExceptionHandler(u16 r3){ 
+	nofralloc
+	lis r2, gTRKExceptionStatus@h
+	ori r2, r2, gTRKExceptionStatus@l
+	sth r3, TRKExceptionStatus.exceptionInfo.exceptionID(r2)
+	mfsrr0 r3
+	stw r3, TRKExceptionStatus.exceptionInfo.PC(r2)
+	lhz r3, TRKExceptionStatus.exceptionInfo.exceptionID(r2)
+	cmpwi r3, 0x200
+	beq LAB_00010ba4
+	cmpwi r3, 0x300
+	beq LAB_00010ba4
+	cmpwi r3, 0x400
+	beq LAB_00010ba4
+	cmpwi r3, 0x600
+	beq LAB_00010ba4
+	cmpwi r3, 0x700
+	beq LAB_00010ba4
+	cmpwi r3, 0x800
+	beq LAB_00010ba4
+	cmpwi r3, 0x1000
+	beq LAB_00010ba4
+	cmpwi r3, 0x1100
+	beq LAB_00010ba4
+	cmpwi r3, 0x1200
+	beq LAB_00010ba4
+	cmpwi r3, 0x1300
+	beq LAB_00010ba4
+	b LAB_00010bb0
+LAB_00010ba4:
+	mfsrr0 r3
+	addi r3, r3, 0x4
+	mtsrr0 r3
+LAB_00010bb0:
+	lis r2, gTRKExceptionStatus@h
+	ori r2, r2, gTRKExceptionStatus@l
+	li r3, 0x1
+	stb r3, TRKExceptionStatus.exceptionDetected(r2)
+	mfsprg r3, 3
+	mtcrf 0xff, r3
+	mfsprg r2, 1
+	mfsprg r3, 2
+	rfi
 }
+#endif // clang-format on
 
 /**
  * @note Address: 0x800BDEF4
  * @note Size: 0x194
  */
-void TRKInterruptHandler(void)
-{
-	/*
-	.loc_0x0:
-	  mtsrr0    r2
-	  mtsrr1    r4
-	  mfsprg    r4, 0x3
-	  mfcr      r2
-	  mtsprg    3, r2
-	  lis       r2, 0x804F
-	  ori       r2, r2, 0x4284
-	  lwz       r2, 0x8C(r2)
-	  ori       r2, r2, 0x8002
-	  xori      r2, r2, 0x8002
-	  sync
-	  mtmsr     r2
-	  sync
-	  lis       r2, 0x804F
-	  ori       r2, r2, 0x4280
-	  sth       r3, 0x0(r2)
-	  cmpwi     r3, 0x500
-	  bne-      .loc_0xC8
-	  lis       r2, 0x804F
-	  ori       r2, r2, 0x4328
-	  mflr      r3
-	  stw       r3, 0x42C(r2)
-	  bl        0x25A0
-	  lis       r2, 0x804F
-	  ori       r2, r2, 0x4328
-	  lwz       r3, 0x42C(r2)
-	  mtlr      r3
-	  lis       r2, 0x804F
-	  ori       r2, r2, 0x4284
-	  lwz       r2, 0xA0(r2)
-	  lbz       r2, 0x0(r2)
-	  cmpwi     r2, 0
-	  beq-      .loc_0xAC
-	  lis       r2, 0x804A
-	  ori       r2, r2, 0x68BC
-	  lbz       r2, 0xC(r2)
-	  cmpwi     r2, 0x1
-	  beq-      .loc_0xAC
-	  lis       r2, 0x804F
-	  ori       r2, r2, 0x4284
-	  li        r3, 0x1
-	  stb       r3, 0x9C(r2)
-	  b         .loc_0xC8
-
-	.loc_0xAC:
-	  lis       r2, 0x804F
-	  ori       r2, r2, 0x4758
-	  lwz       r3, 0x88(r2)
-	  mtcr      r3
-	  lwz       r3, 0xC(r2)
-	  lwz       r2, 0x8(r2)
-	  rfi
-
-	.loc_0xC8:
-	  lis       r2, 0x804F
-	  ori       r2, r2, 0x4280
-	  lhz       r3, 0x0(r2)
-	  lis       r2, 0x804A
-	  ori       r2, r2, 0x68BC
-	  lbz       r2, 0xC(r2)
-	  cmpwi     r2, 0
-	  bne-      .loc_0x194
-	  lis       r2, 0x804F
-	  ori       r2, r2, 0x4328
-	  stw       r0, 0x0(r2)
-	  stw       r1, 0x4(r2)
-	  mfsprg    r0, 0x1
-	  stw       r0, 0x8(r2)
-	  sth       r3, 0x2F8(r2)
-	  sth       r3, 0x2FA(r2)
-	  mfsprg    r0, 0x2
-	  stw       r0, 0xC(r2)
-	  stmw      r4, 0x10(r2)
-	  mfsrr0    r27
-	  mflr      r28
-	  mfsprg    r29, 0x3
-	  mfctr     r30
-	  mfxer     r31
-	  stmw      r27, 0x80(r2)
-	  bl        0x1A40
-	  lis       r2, 0x804A
-	  ori       r2, r2, 0x68BC
-	  li        r3, 0x1
-	  stb       r3, 0xC(r2)
-	  lis       r2, 0x804F
-	  ori       r2, r2, 0x4284
-	  lwz       r0, 0x8C(r2)
-	  sync
-	  mtmsr     r0
-	  sync
-	  lwz       r0, 0x80(r2)
-	  mtlr      r0
-	  lwz       r0, 0x84(r2)
-	  mtctr     r0
-	  lwz       r0, 0x88(r2)
-	  mtxer     r0
-	  lwz       r0, 0x94(r2)
-	  mtdsisr   r0
-	  lwz       r0, 0x90(r2)
-	  mtdar     r0
-	  lmw       r3, 0xC(r2)
-	  lwz       r0, 0x0(r2)
-	  lwz       r1, 0x4(r2)
-	  lwz       r2, 0x8(r2)
-	  b         0x920
-
-	.loc_0x194:
-	*/
+#ifdef __MWERKS__ // clang-format off
+asm void TRKInterruptHandler() {
+	nofralloc
+	mtsrr0 r2
+	mtsrr1 r4
+	mfsprg r4, 3
+	mfcr r2
+	mtsprg 3, r2
+	lis r2, gTRKState@h
+	ori r2, r2, gTRKState@l
+	lwz r2, TRKState_PPC.MSR(r2)
+	ori r2, r2, 0x8002
+	xori r2, r2, 0x8002
+	sync
+	mtmsr r2
+	sync
+	lis r2, TRK_saved_exceptionID@h
+	ori r2, r2, TRK_saved_exceptionID@l
+	sth r3, 0(r2)
+	cmpwi r3, 0x500
+	bne L_802CF694
+	lis r2, gTRKCPUState@h
+	ori r2, r2, gTRKCPUState@l
+	mflr r3
+	stw r3, ProcessorState_PPC.transport_handler_saved_ra(r2)
+	// bl TRKUARTInterruptHandler
+	lis r2, gTRKCPUState@h
+	ori r2, r2, gTRKCPUState@l
+	lwz r3, ProcessorState_PPC.transport_handler_saved_ra(r2)
+	mtlr r3
+	lis r2, gTRKState@h
+	ori r2, r2, gTRKState@l
+	lwz r2, TRKState_PPC.inputPendingPtr(r2)
+	lbz r2, TRKState_PPC.GPR[0](r2)
+	cmpwi r2, 0
+	beq L_802CF678
+	lis r2, gTRKExceptionStatus@h
+	ori r2, r2, gTRKExceptionStatus@l
+	lbz r2, TRKExceptionStatus.inTRK(r2)
+	cmpwi r2, 1
+	beq L_802CF678
+	lis r2, gTRKState@h
+	ori r2, r2, gTRKState@l
+	li r3, 1
+	stb r3, TRKState_PPC.inputActivated(r2)
+	b L_802CF694
+L_802CF678:
+	lis r2, gTRKSaveState@h
+	ori r2, r2, gTRKSaveState@l
+	lwz r3, Default_PPC.CR(r2)
+	mtcrf 0xff, r3
+	lwz r3, Default_PPC.GPR[3](r2)
+	lwz r2, Default_PPC.GPR[2](r2)
+	rfi 
+L_802CF694:
+	lis r2, TRK_saved_exceptionID@h
+	ori r2, r2, TRK_saved_exceptionID@l
+	lhz r3, 0(r2)
+	lis r2, gTRKExceptionStatus@h
+	ori r2, r2, gTRKExceptionStatus@l
+	lbz r2, TRKExceptionStatus.inTRK(r2)
+	cmpwi r2, 0
+	bne TRKExceptionHandler
+	lis r2, gTRKCPUState@h
+	ori r2, r2, gTRKCPUState@l
+	stw r0, ProcessorState_PPC.Default.GPR[0](r2)
+	stw r1, ProcessorState_PPC.Default.GPR[1](r2)
+	mfsprg r0, 1
+	stw r0, ProcessorState_PPC.Default.GPR[2](r2)
+	sth r3, ProcessorState_PPC.Extended1.exceptionID(r2)
+	sth r3, (ProcessorState_PPC.Extended1.exceptionID + 2)(r2)
+	mfsprg r0, 2
+	stw r0, ProcessorState_PPC.Default.GPR[3](r2)
+	stmw r4, ProcessorState_PPC.Default.GPR[4](r2)
+	mfsrr0 r27
+	mflr r28
+	mfsprg r29, 3
+	mfctr r30
+	mfxer r31
+	stmw r27, ProcessorState_PPC.Default.PC(r2)
+	bl TRKSaveExtended1Block
+	lis r2, gTRKExceptionStatus@h
+	ori r2, r2, gTRKExceptionStatus@l
+	li r3, 1
+	stb r3, TRKExceptionStatus.inTRK(r2)
+	lis r2, gTRKState@h
+	ori r2, r2, gTRKState@l
+	lwz r0, TRKState_PPC.MSR(r2)
+	sync
+	mtmsr r0
+	sync
+	lwz r0, TRKState_PPC.LR(r2)
+	mtlr r0
+	lwz r0, TRKState_PPC.CTR(r2)
+	mtctr r0
+	lwz r0, TRKState_PPC.XER(r2)
+	mtxer r0
+	lwz r0, TRKState_PPC.DSISR(r2)
+	mtdsisr r0
+	lwz r0, TRKState_PPC.DAR(r2)
+	mtdar r0
+	lmw r3, TRKState_PPC.GPR[3](r2)
+	lwz r0, TRKState_PPC.GPR[0](r2)
+	lwz r1, TRKState_PPC.GPR[1](r2)
+	lwz r2, TRKState_PPC.GPR[2](r2)
+	b TRKPostInterruptEvent
 }
+#endif // clang-format on
 
 /**
  * @note Address: 0x800BDEB8
