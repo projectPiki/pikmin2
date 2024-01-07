@@ -115,8 +115,8 @@ typedef struct TRKState {
 	u32 dar;             // _90
 	u32 dsisr;           // _94
 	BOOL isStopped;      // _98
-	u32 inputActivated;  // _9C
-	u32 inputPendingPtr; // _A0
+	BOOL inputActivated;  // _9C
+	void* inputPendingPtr; // _A0
 	u32 _A4;             // _A4
 	u32 _A8;             // _A8
 	u32 _AC;             // _AC
