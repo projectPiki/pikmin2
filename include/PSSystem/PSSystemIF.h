@@ -10,6 +10,7 @@
 #include "P2Macros.h"
 #include "PSGame/BASARC.h"
 #include "JSystem/JMath.h"
+#include "PSM/Se.h"
 
 namespace PSSystem {
 
@@ -28,6 +29,8 @@ struct SetupArg {
 	char* mPath;         // _14
 };
 
+typedef PSM::SeSound* (*MakeSeCallback)();
+
 // Size: 0x4C
 struct SysIF : public JAIBasic {
 	SysIF(const SetupArg&);
@@ -43,7 +46,7 @@ struct SysIF : public JAIBasic {
 	void mainLoop();
 	void setConfigVol_Se(f32);
 	void setConfigVol_Bgm(f32);
-	void start1stSeq();
+	static void start1stSeq();
 
 	f32 mSfxVolume; // _20
 	f32 mBgmVolume; // _24
@@ -52,7 +55,7 @@ struct SysIF : public JAIBasic {
 	FxMgr mFxMgr;   // _44
 	u32 _48;        // _48
 
-	static void* sMakeJAISeCallback;
+	static MakeSeCallback sMakeJAISeCallback;
 };
 
 template <typename T>

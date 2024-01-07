@@ -364,7 +364,7 @@ SeqHeap::~SeqHeap() { delete[] mFileData; }
  * @note Address: 0x8033123C
  * @note Size: 0x200
  */
-void SeqHeap::requestCallback(u32 request, u16 res, JAISequence* seq)
+JAInter::SequenceMgr::CustomHeapInfo SeqHeap::requestCallback(u32 request, u16 res, JAISequence* seq)
 {
 	static int oldID = 0;
 
