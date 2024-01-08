@@ -1,4 +1,5 @@
 #include "PowerPC_EABI_Support/MetroTRK/trk.h"
+#include "Dolphin/ar.h"
 
 extern u8 _db_stack_addr[];
 #define EXCEPTIONMASK_ADDR 0x80000044
@@ -310,8 +311,43 @@ void __read_aram_1block(void)
  * @note Address: 0x800BFEFC
  * @note Size: 0x1EC
  */
-void TRK__write_aram(void)
+void TRK__write_aram(int c, void* p2, void* p3)
 {
+	u32 err;
+	int i;
+	register int count = c;
+
+	register int counter;
+	if ((size_t)p2 < 0x4000 || *(u32*)p2 > 0x8000000 || )
+	{
+		return;
+	}
+	counter = 0;
+	for (i = 0; i < c; i++)
+	{
+		asm { dcbf counter, count }
+		counter += 0x20;
+	}
+	
+	do {
+		err = ARGetDMAStatus();
+	} while (err);
+
+	__ARGetInterruptStatus();
+	__ARClearInterrupt();
+	
+	ARStartDMA(1,(u32)p2,(u32)p3,0x20);
+	__ARGetInterruptStatus();
+	TRK_memcpy((void*)c,p2,0);
+	__ARClearInterrupt();
+	ARStartDMA(1,0,0,0);
+	__ARGetInterruptStatus();
+	TRK_memcpy((void*)c,p2,0);
+	__ARClearInterrupt();
+	ARStartDMA(0,0,0,0);
+	__ARGetInterruptStatus();
+	__ARClearInterrupt();
+
 	/*
 	.loc_0x0:
 	  rlwinm    r11,r1,0,27,31
