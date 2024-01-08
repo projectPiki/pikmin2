@@ -186,13 +186,16 @@ struct ArcMgr : public JKRDisposer {
 		P2ASSERTLINE(92, mArchive);
 	}
 
-	virtual ~ArcMgr(); // _08
-
 	static void createInstance()
 	{
 		P2ASSERTLINE(71, !sInstance);
 		sInstance = new ArcMgr<T>;
 		P2ASSERTLINE(74, sInstance);
+	}
+
+	virtual ~ArcMgr() // _08
+	{
+		P2ASSERTLINE(77, false); // lol
 	}
 
 	static ArcMgr* sInstance;

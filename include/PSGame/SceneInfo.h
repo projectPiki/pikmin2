@@ -51,33 +51,19 @@ struct SceneInfo {
 
 	SceneInfo(SceneInfo& other) { (*this) = other; }
 
-	inline void operator=(SceneInfo& other)
-	{
-		mStageFlags = other.mStageFlags;
-		mSceneType  = other.mSceneType;
-		mCameras    = other.mCameras;
-
-		// stupid
-		Vector3f* temp   = other.mCam1Position[0];
-		mCam1Position[0] = other.mCam1Position[1];
-		mCam1Position[1] = temp;
-
-		temp             = other.mCam2Position[0];
-		mCam2Position[0] = other.mCam2Position[1];
-		mCam2Position[1] = temp;
-
-		Matrixf* temp2 = other.mCameraMtx[0];
-		mCameraMtx[0]  = other.mCameraMtx[1];
-		mCameraMtx[1]  = temp2;
-
-		mBounds = (other.mBounds);
-	}
-
 	virtual bool isCaveFloor() { return false; } // _08 (weak)
 
 	void setStageFlag(FlagDef, FlagBitShift);
 	FlagDef getFlag(FlagBitShift) const;
 	void setStageCamera() const;
+
+	inline u8 getSceneType() const { return mSceneType; }
+
+	inline void setCam1(Vector3f* pos2, Vector3f* pos1)
+	{
+		mCam1Position[0] = pos1;
+		mCam1Position[1] = pos2;
+	}
 
 	// _00 = VTBL
 	u16 mStageFlags;            // _04

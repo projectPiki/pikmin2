@@ -20,6 +20,16 @@ struct SingletonBase {
 		return SingletonBase<T>::sInstance;
 	}
 
+	static inline T* newHeapInstance()
+	{
+		P2ASSERTLINE(126, !SingletonBase<T>::sInstance);
+		if (!SingletonBase<T>::sInstance) {
+			SingletonBase<T>::sInstance = new (JKRGetCurrentHeap(), -4) T;
+		}
+		P2ASSERTLINE(129, SingletonBase<T>::sInstance);
+		return SingletonBase<T>::sInstance;
+	}
+
 	// SingletonBase(T* obj) { sInstance = obj; }
 
 	virtual ~SingletonBase() { sInstance = nullptr; }; // _00

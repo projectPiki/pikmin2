@@ -7,7 +7,7 @@
 #include "PSSystem/SeqData.h"
 
 namespace PSGame {
-struct ConductorList : public PSSystem::TextDataBase, PSSystem::SingletonBase<ConductorList> {
+struct ConductorList : public PSSystem::TextDataBase, public PSSystem::SingletonBase<ConductorList> {
 	struct CaveInfo {
 		CaveInfo()
 		{
@@ -16,10 +16,10 @@ struct ConductorList : public PSSystem::TextDataBase, PSSystem::SingletonBase<Co
 		}
 
 		u8 mFileNameCount; // _00, num file names in _04
-		char** mFileNames; // _04, array of file names
+		char* mFileNames;  // _04, array of file names
 	};
 
-	inline ConductorList();
+	ConductorList();
 
 	virtual ~ConductorList();         // _08 (weak)
 	virtual bool read(Stream& input); // _0C
