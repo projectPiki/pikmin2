@@ -20,7 +20,7 @@ struct Module : public JADUtility::PrmSetBase {
 	static void removeCallback(u8, void*);
 	u32 seqCpuSync_AutoBgm_Module(JASTrack*, u16, u32, JASTrack*);
 	void setTableAddress(JASTrack*);
-	void cycleLoop(JASTrack*);
+	u16 cycleLoop(JASTrack*);
 
 	// _00      = VTABLE
 	// _04-_64  = PrmSetBase
@@ -41,6 +41,7 @@ struct Module : public JADUtility::PrmSetBase {
 	u8 _2AC;                             // _2AC - unknown
 	uint _2B0;                           // _2B0
 	u8 _2B4;                             // _2B4
+	u16 _2B6;                            // _2B6
 	CycleBase* _2B8[2];                  // _2B8 - 0 = OnCycle, 1 = OffCycle
 	u8 _2C0;                             // _2C0 - cycle index?
 	u8 _2C1;                             // _2C1

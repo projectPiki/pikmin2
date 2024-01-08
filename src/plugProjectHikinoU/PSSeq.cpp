@@ -2228,7 +2228,7 @@ u16 JumpBgmSeq::outputJumpRequest() { return mJumpPort.output(); }
  * @note Address: 0x80333950
  * @note Size: 0x40
  */
-int JumpBgmSeq::getSeqStartPoint()
+u16 JumpBgmSeq::getSeqStartPoint()
 {
 	int start = mJumpPort._50;
 	onJump(start);

@@ -394,9 +394,6 @@ JAIStream* SysIF::makeStream()
  * @note Address: 0x80338C5C
  * @note Size: 0x58
  */
-StreamSound::StreamSound()
-{
-	// broken until StreamSound inherits public JAIStream
-}
+StreamSound::StreamSound() { }
 
 } // namespace PSSystem

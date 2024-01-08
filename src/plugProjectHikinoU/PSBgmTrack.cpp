@@ -20,10 +20,10 @@ void BeatMgr::proc()
  * @note Address: 0x803422D4
  * @note Size: 0x28
  */
-bool SeqTrackBase::update()
+u16 SeqTrackBase::update()
 {
 	mTaskEntryMgr.update();
-	return false;
+	return 0;
 }
 
 /**

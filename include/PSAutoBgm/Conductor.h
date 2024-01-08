@@ -23,7 +23,7 @@ struct Conductor : public JADUtility::PrmSetRc<PSAutoBgm::Track> {
 	virtual void* getEraseLink() { return &_98; } // _1C (weak)
 
 	void removeCallback(u8, void*);
-	u32 seqCpuSync_AutoBgm(JASTrack*, u16, u32, JASTrack*);
+	u16 seqCpuSync_AutoBgm(JASTrack*, u16, u32, JASTrack*);
 	void createTables(JASTrack*);
 
 	// _00      = VTABLE

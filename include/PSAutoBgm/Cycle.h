@@ -16,12 +16,12 @@ struct Module;
  * @size = 0x40
  */
 struct CycleBase {
-	virtual void play(JASTrack*);            // _08
+	virtual u16 play(JASTrack*);             // _08
 	virtual int getCycleType() { return 1; } // _0C (weak)
 	virtual u32 avoidCheck() { return 0; }   // _10 (weak)
 
-	u32 cycleTop(JASTrack*);
-	u32 checkCloser(JASTrack*);
+	u16 cycleTop(JASTrack*);
+	u16 checkCloser(JASTrack*);
 
 	// _00  = VTABLE
 	Module* mModule;                   // _04
@@ -36,7 +36,7 @@ struct CycleBase {
 struct OnCycle : public CycleBase {
 	OnCycle(Module*);
 
-	virtual void play(JASTrack*);            // _08
+	virtual u16 play(JASTrack*);             // _08
 	virtual int getCycleType() { return 0; } // _0C (weak)
 	virtual u32 avoidCheck();                // _10
 

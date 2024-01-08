@@ -2,7 +2,7 @@
 #define _PSM_NAVI_H
 
 #include "PSM/CreatureObj.h"
-#include "PSGame/Rappa.h"
+#include "PSGame/PSSe.h"
 
 namespace Game {
 struct Navi;

@@ -59,7 +59,7 @@ void Conductor::removeCallback(u8 p1, void* p2)
  * @note Address: 0x803392E8
  * @note Size: 0x11C
  */
-u32 Conductor::seqCpuSync_AutoBgm(JASTrack* track1, u16 cmd, u32 p3, JASTrack* track2)
+u16 Conductor::seqCpuSync_AutoBgm(JASTrack* track1, u16 cmd, u32 p3, JASTrack* track2)
 {
 	switch (cmd) {
 	case 0x300:
@@ -1403,7 +1403,7 @@ lbl_8033AEC4:
  * @note Address: 0x8033AEF4
  * @note Size: 0x154
  */
-void Module::cycleLoop(JASTrack*)
+u16 Module::cycleLoop(JASTrack*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1516,7 +1516,7 @@ lbl_8033B030:
  * @note Address: 0x8033B048
  * @note Size: 0x10
  */
-u32 CycleBase::cycleTop(JASTrack* track)
+u16 CycleBase::cycleTop(JASTrack* track)
 {
 	_3C = 0;
 	return 0;
@@ -1526,7 +1526,7 @@ u32 CycleBase::cycleTop(JASTrack* track)
  * @note Address: 0x8033B058
  * @note Size: 0x1BC
  */
-void CycleBase::play(JASTrack* track)
+u16 CycleBase::play(JASTrack* track)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1661,7 +1661,7 @@ lbl_8033B1F8:
  * @note Address: 0x8033B214
  * @note Size: 0x78
  */
-u32 CycleBase::checkCloser(JASTrack*)
+u16 CycleBase::checkCloser(JASTrack*)
 {
 	if (mModule->_F4.mValue == 1 && _3C != mModule->_2B4) {
 		return 0;
@@ -1790,7 +1790,7 @@ lbl_8033B3CC:
  * @note Address: 0x8033B468
  * @note Size: 0x360
  */
-void OnCycle::play(JASTrack*)
+u16 OnCycle::play(JASTrack*)
 {
 	/*
 	stwu     r1, -0x30(r1)

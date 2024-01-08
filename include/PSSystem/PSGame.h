@@ -62,7 +62,7 @@ inline PSGame::SoundTable::SePerspInfo* getSoundCategoryInfo(PSGame::SoundTable:
 }; // namespace PSSystem
 
 namespace PSGame {
-void seqCpuSync(JASTrack* track, u16 command);
+u16 seqCpuSync(JASTrack* track, u16 command);
 };
 
 #endif

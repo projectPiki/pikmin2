@@ -16,6 +16,8 @@
 #include "PSSystem/PSGame.h"
 #include "JSystem/JAudio/JALCalc.h"
 #include "JSystem/JAudio/JAI/JAInter/SeMgr.h"
+#include "Game/gamePlayData.h"
+#include "PSGame/PSSe.h"
 
 namespace PSGame {
 
@@ -703,6 +705,8 @@ f32 SoundTable::SePerspInfo::getDistVol(f32 factor, u8 flag)
 		return 0.0f;
 	}
 }
+
+const f32 CameraMgr::sDefaultVol = 0.8f;
 
 /**
  * @note Address: 0x80334CC8
@@ -3322,13 +3326,156 @@ void ConductorSelector::getConductorFile(char const* path, CaveFloorInfo&, u8*, 
  * @note Address: 0x803372E0
  * @note Size: 0x94C
  */
-void seqCpuSync(JASTrack* track, u16 command)
+u16 seqCpuSync(JASTrack* track, u16 command)
 {
 	switch (command) {
+	case 0x3000:
+		// even though the inline already HAS an assertion
+		P2ASSERTLINE(1875, Rappa::getRappa(0));
+		return Rappa::getRappa(0)->syncCpu_TblNo(track);
+	case 0x3001:
+		P2ASSERTLINE(1879, Rappa::getRappa(0));
+		return Rappa::getRappa(0)->syncCpu_WaitChk(track);
+	case 0x3002:
+		P2ASSERTLINE(1883, Rappa::getRappa(1));
+		return Rappa::getRappa(1)->syncCpu_TblNo(track);
+	case 0x3003:
+		P2ASSERTLINE(1887, Rappa::getRappa(1));
+		return Rappa::getRappa(1)->syncCpu_WaitChk(track);
+	case 0x5000:
+		return Game::playData->mStoryFlags & Game::STORY_DebtPaid;
+	case 0:
+		u16 ret = 0;
+		for (int i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
+			if (JAInter::SequenceMgr::getPlayTrackInfo(i)->mSequence) {
+				JAISequence* seq = JAInter::SequenceMgr::getPlayTrackInfo(i)->mSequence;
+				JASTrack* temp;
+				JASTrack* ref = &seq->mSeqParameter.mTrack;
+				if (JAInter::SequenceMgr::getPlayTrackInfo(i)->mSequence->mSoundID & 0x800) {
+					temp = track->mParentTrack->mParentTrack;
+				} else {
+					temp = track->mParentTrack;
+				}
+				if (ref == temp) {
+					u32 route                   = JAInter::routeToTrack(track->_348);
+					PSSystem::SeqBase* childSeq = PSMGetSceneMgrCheck()->findSeq(track);
+					P2ASSERTLINE(1923, childSeq);
+					JAInter::SystemInterface::outerInit(JAInter::SequenceMgr::getPlayTrackInfo(i), temp, route, childSeq->mSoundInfo.mFlag,
+					                                    0);
+					JAInter::SequenceMgr::getPlayTrackInfo(i)->_04 |= 1 << route;
+					ret = 0;
+					i   = JAIGlobalParameter::getParamSeqPlayTrackMax(); // stupid way to break but ok
+				}
+			}
+		}
+		return ret;
 	case 1:
-		JAIBasic::setParameterSeqSync(track, 1);
-		break;
+		return JAIBasic::setParameterSeqSync(track, command);
 	}
+
+	P2ASSERTLINE(1948, PSSystem::spSceneMgr);
+	u32 testID     = track->_348;
+	JASTrack* root = track;
+	while (root->mParentTrack) {
+		root = root->mParentTrack;
+	}
+	PSSystem::SeqBase* seq = PSSystem::spSceneMgr->getPlayingSeq(root);
+	P2ASSERTLINE(1957, seq);
+	JAISound** se = seq->getHandleP();
+	u32 seExists  = *se != nullptr;
+	if (seExists == 0) {
+		switch (command) {
+		case 0x2e00:
+			return 30;
+		case 0x900:
+			return 1;
+		case 0xc00:
+			return 4;
+		case 0xd00:
+			return 1;
+		case 0x300:
+			return 0;
+		case 0x800:
+		case 0x600:
+			return 10;
+		default:
+			return 0;
+		}
+	} else {
+		switch (command) {
+		case 0x1e00: {
+			PSSystem::SeqTrackRoot* roottrack = (PSSystem::SeqTrackRoot*)PSSystem::getObject(track, 18);
+			return roottrack->update();
+		}
+		case 0x1f00: {
+			if (seExists <= 0) {
+				return 0;
+			}
+			PSSystem::SeqTrackRoot* roottrack = (PSSystem::SeqTrackRoot*)PSSystem::getObject(track, 18);
+			return roottrack->update();
+		}
+		case 0x2e00: {
+			PSSystem::SeqTrackRoot* roottrack = (PSSystem::SeqTrackRoot*)PSSystem::getObject(track, 18);
+			return roottrack->beatUpdate();
+		}
+		case 0x900: {
+			PSAutoBgm::Module* module = (PSAutoBgm::Module*)PSSystem::getObject(track, 20);
+			P2ASSERTLINE(2028, module);
+			return module->cycleLoop(track);
+		}
+		case 0xa00: {
+			PSAutoBgm::Module* module = (PSAutoBgm::Module*)PSSystem::getObject(track, 20);
+			P2ASSERTLINE(2036, module);
+			return module->_2B8[module->_2C0]->cycleTop(track);
+		}
+		case 0xc00: {
+			PSAutoBgm::Module* module = (PSAutoBgm::Module*)PSSystem::getObject(track, 20);
+			P2ASSERTLINE(2043, module);
+			return module->_2B8[module->_2C0]->play(track);
+		}
+		case 0xd00: {
+			PSAutoBgm::Module* module = (PSAutoBgm::Module*)PSSystem::getObject(track, 20);
+			P2ASSERTLINE(2049, module);
+			return module->_2B8[module->_2C0]->checkCloser(track);
+		}
+		case 0xb00: {
+			PSAutoBgm::Module* module = (PSAutoBgm::Module*)PSSystem::getObject(track, 20);
+			P2ASSERTLINE(2055, module);
+			module->_2B6 = -1;
+			return 0;
+		}
+		}
+	}
+
+	if (!seq) {
+		seq = PSSystem::spSceneMgr->findSeq(track);
+	}
+
+	switch (command) {
+	case 0x4000:
+		P2ASSERTLINE(2085, seq->getCastType() == 4);
+		return static_cast<PSSystem::JumpBgmSeq*>(seq)->getSeqStartPoint();
+	case 0x4001:
+		P2ASSERTLINE(2095, seq->getCastType() == 4);
+		return static_cast<PSSystem::JumpBgmSeq*>(seq)->outputJumpRequest();
+	case 0xe00:
+		P2ASSERTBOOLLINE(2107, seq->getCastType() == 2 || seq->getCastType() == 4 || seq->getCastType() == 3);
+		static_cast<PSSystem::DirectedBgm*>(seq)->initRootTrack_onPlaying(track);
+		return 0;
+	case 0xf00:
+		P2ASSERTBOOLLINE(2117, seq->getCastType() == 2 || seq->getCastType() == 4 || seq->getCastType() == 3);
+		static_cast<PSSystem::DirectedBgm*>(seq)->initChildTrack_onPlaying(track, track->_348 & 0xf);
+		return 0;
+	case 0x600:
+	case 0x300:
+	case 0x800:
+		JADUtility::PrmSetRc<PSAutoBgm::Track>* prm = static_cast<PSAutoBgm::AutoBgm*>(seq)->mConductorMgr.mPrmSetRc;
+		P2ASSERTLINE(2128, prm);
+		return ((PSAutoBgm::Conductor*)prm)->seqCpuSync_AutoBgm(track, command, testID, root);
+	default:
+		return 0;
+	}
+
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0

@@ -3,15 +3,9 @@
 
 #include "CNode.h"
 #include "SysShape/AnimInfo.h"
+#include "PSGame/SoundCreatureMgr.h"
 
 struct JKRFileLoader;
-
-namespace PSGame {
-class SoundCreatureMgr {
-public:
-	void registerAnime(J3DAnmBase*, const char*);
-};
-} // namespace PSGame
 
 namespace SysShape {
 struct Model;

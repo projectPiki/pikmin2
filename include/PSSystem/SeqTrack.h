@@ -27,7 +27,7 @@ struct BeatMgr {
  * @size 0x2C
  */
 struct SeqTrackBase {
-	virtual bool update();        // _08
+	virtual u16 update();         // _08
 	virtual void init(JASTrack*); // _0C
 	virtual void onStopSeq() = 0; // _10
 
@@ -42,7 +42,7 @@ struct SeqTrackBase {
 struct SeqTrackRoot : public SeqTrackBase {
 	SeqTrackRoot();
 
-	virtual bool update() // _08 (weak)
+	virtual u16 update() // _08 (weak)
 	{
 		mBeatMgr.proc();
 		return SeqTrackBase::update();

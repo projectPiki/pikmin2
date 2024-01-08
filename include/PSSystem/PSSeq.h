@@ -125,7 +125,7 @@ struct JumpBgmSeq : public DirectedBgm {
 	virtual u8 getCastType() { return 4; }             // _24 (weak)
 	virtual void onPlayingFrame();                     // _30
 	virtual PSSystem::SeqTrackRoot* newSeqTrackRoot(); // _44
-	virtual int getSeqStartPoint();                    // _4C
+	virtual u16 getSeqStartPoint();                    // _4C
 	virtual void requestJumpBgmQuickly(u16);           // _50
 	virtual void requestJumpBgmOnBeat(u16);            // _54
 	virtual void requestJumpBgmEveryBeat(u16);         // _58
