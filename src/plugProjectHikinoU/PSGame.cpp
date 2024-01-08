@@ -21,6 +21,8 @@
 namespace PSGame {
 
 char newSeqName[32];
+bool ConductorList::sToolMode;
+ConductorList* PSSystem::SingletonBase<PSGame::ConductorList>::sInstance;
 
 /**
  * @note Address: 0x80334268
@@ -1589,8 +1591,9 @@ lbl_80335A60:
  */
 PSSystem::Scene* PikSceneMgr::newAndSetCurrentScene(SceneInfo& info)
 {
-	P2ASSERTLINE(1093, info.mSceneType != SceneInfo::SCENE_NULL);
-	JUT_ASSERTLINE(1094, info.mSceneType < SceneInfo::SCENE_COUNT, "scene no‚ª•s³");
+	u8 sceneType = info.mSceneType;
+	P2ASSERTLINE(1093, sceneType != SceneInfo::SCENE_NULL);
+	JUT_ASSERTLINE(1094, (u8)sceneType < SceneInfo::SCENE_COUNT, "scene no‚ª•s³");
 
 	checkScene();
 
@@ -1613,10 +1616,9 @@ PSSystem::Scene* PikSceneMgr::newAndSetCurrentScene(SceneInfo& info)
 		needboss = true;
 	}
 
-	CaveFloorInfo& cinfo = static_cast<CaveFloorInfo&>(info);
 	// Check for submerged castle theme
 	if (info.isCaveFloor() && info.mSceneType == SceneInfo::COURSE_YAKUSHIMA) {
-		if (cinfo.getCaveNoFromID() == 3 && !cinfo.isBossFloor()) {
+		if (static_cast<CaveFloorInfo&>(info).getCaveNoFromID() == 3 && !static_cast<CaveFloorInfo&>(info).isBossFloor()) {
 			needboss = false;
 		}
 	}
@@ -1628,7 +1630,7 @@ PSSystem::Scene* PikSceneMgr::newAndSetCurrentScene(SceneInfo& info)
 
 	SceneInfo* newinfo;
 	if (info.isCaveFloor()) {
-		newinfo = new CaveFloorInfo(cinfo);
+		newinfo = new CaveFloorInfo(static_cast<CaveFloorInfo&>(info));
 	} else {
 		newinfo = new SceneInfo(info);
 	}
@@ -2087,10 +2089,9 @@ void PikSceneMgr::initAdditionalBgm(SceneInfo& info, PSSystem::Scene* scene)
 		break;
 	}
 
-	CaveFloorInfo& cinfo = static_cast<CaveFloorInfo&>(info);
 	// Check for submerged castle theme
 	if (info.isCaveFloor() && info.mSceneType == SceneInfo::COURSE_YAKUSHIMA) {
-		if (cinfo.getCaveNoFromID() == 3 && !cinfo.isBossFloor()) {
+		if (static_cast<CaveFloorInfo&>(info).getCaveNoFromID() == 3 && !static_cast<CaveFloorInfo&>(info).isBossFloor()) {
 			seq = newBgmSeq("kuro_post.bms", sound);
 			P2ASSERTLINE(1353, seq);
 			scene->appendSeq(seq);
@@ -4296,140 +4297,18 @@ void PSPlayerChangeToLugie()
  */
 PSSystem::DirectedBgm* PSGetDirectedMainBgmA()
 {
-	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
-	PSSystem::Scene* scene     = mgr->getChildScene();
-	PSSystem::DirectedBgm* seq = (PSSystem::DirectedBgm*)scene->mSeqMgr.getFirstSeqA();
+	PSSystem::DirectedBgm* seq = (PSSystem::DirectedBgm*)PSMGetSceneMgrCheck()->getChildScene()->getSeqMgr()->getFirstSeqA();
 	if (seq) {
-		bool valid = false;
-		if (seq->getCastType() == 2 || seq->getCastType() == 3 || seq->getCastType() == 4) {
-			valid = true;
-		}
-		P2ASSERTLINE(2241, valid);
+		P2ASSERTLINE(2241, seq->isDirectedType());
 		return seq;
 	} else {
-		JUT_PANICLINE(2244, "P2Assert");
-		return nullptr;
+		P2ASSERTLINE(2244, false);
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r3, lbl_8048F918@ha
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	addi     r30, r3, lbl_8048F918@l
-	stw      r29, 0x14(r1)
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80337F7C
-	addi     r3, r30, 0x190
-	addi     r5, r30, 0xc
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80337F7C:
-	lwz      r31, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r31, 0
-	bne      lbl_80337F9C
-	addi     r3, r30, 0x190
-	addi     r5, r30, 0xc
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80337F9C:
-	lwz      r0, 4(r31)
-	cmplwi   r0, 0
-	bne      lbl_80337FBC
-	addi     r3, r30, 0x254
-	addi     r5, r30, 0xc
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80337FBC:
-	lwz      r3, 4(r31)
-	lwz      r31, 4(r3)
-	cmplwi   r31, 0
-	bne      lbl_80337FE0
-	addi     r3, r30, 0x254
-	addi     r5, r30, 0x4ec
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80337FE0:
-	addi     r3, r31, 0x10
-	bl       getFirstSeqA__Q28PSSystem6SeqMgrFv
-	or.      r29, r3, r3
-	beq      lbl_80338078
-	lwz      r12, 0x10(r3)
-	li       r31, 0
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 2
-	beq      lbl_80338050
-	mr       r3, r29
-	lwz      r12, 0x10(r29)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 3
-	beq      lbl_80338050
-	mr       r3, r29
-	lwz      r12, 0x10(r29)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 4
-	bne      lbl_80338054
-
-lbl_80338050:
-	li       r31, 1
-
-lbl_80338054:
-	clrlwi.  r0, r31, 0x18
-	bne      lbl_80338070
-	addi     r3, r30, 0
-	addi     r5, r30, 0xc
-	li       r4, 0x8c1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80338070:
-	mr       r3, r29
-	b        lbl_80338090
-
-lbl_80338078:
-	addi     r3, r30, 0
-	addi     r5, r30, 0xc
-	li       r4, 0x8c4
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	li       r3, 0
-
-lbl_80338090:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return nullptr;
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0xC
  */
-void PSSetBgmSelectAsToolMode()
-{
-	// UNUSED FUNCTION
-}
+void PSSetBgmSelectAsToolMode() { PSSystem::DirectorBase::sToolMode = true; }

@@ -330,7 +330,7 @@ lbl_8033F798:
  * @note Address: 0x8033F7C4
  * @note Size: 0x3C
  */
-u32 Rappa::syncCpu_WaitChk(JASTrack* track)
+u16 Rappa::syncCpu_WaitChk(JASTrack* track)
 {
 	track->readPortAppDirect(0xb, &mTblNo);
 	return mWait;
@@ -340,7 +340,7 @@ u32 Rappa::syncCpu_WaitChk(JASTrack* track)
  * @note Address: 0x8033F800
  * @note Size: 0x8
  */
-u32 Rappa::syncCpu_TblNo(JASTrack* track) { return mTblNo; }
+u16 Rappa::syncCpu_TblNo(JASTrack* track) { return mTblNo; }
 
 /**
  * @note Address: 0x8033F808

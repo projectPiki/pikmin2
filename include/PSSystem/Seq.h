@@ -44,6 +44,8 @@ struct SeqBase : JSULink<SeqBase> {
 	virtual JAISound** getHandleP() = 0; // _3C
 	virtual void setConfigVolume();      // _40
 
+	inline bool isDirectedType() { return (getCastType() == 2 || getCastType() == 3 || getCastType() == 4); }
+
 	void* getFileEntry();
 
 	// _00-_10  = JSULink<SeqBase>
