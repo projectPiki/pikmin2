@@ -4,6 +4,8 @@
 #include "PowerPC_EABI_Support/MetroTRK/dstypes.h"
 #include "PowerPC_EABI_Support/MetroTRK/memmap.h"
 
+extern void TRKUARTInterruptHandler(void); // should probably go in a header
+
 typedef struct StopInfo_PPC {
 	u32 PC;
 	u32 PCInstruction;
@@ -24,14 +26,13 @@ typedef struct TRKStepStatus {
 	u32 count;                 // 0x8
 	u32 rangeStart;            // 0xC
 	u32 rangeEnd;              // 0x10
-	u32 unk14;
 } TRKStepStatus;
 
 ProcessorRestoreFlags_PPC gTRKRestoreFlags = { FALSE, FALSE };
 
 static TRKExceptionStatus gTRKExceptionStatus = { { 0, 0, 0 }, TRUE, 0 };
 
-static TRKStepStatus gTRKStepStatus = { FALSE, DSSTEP_IntoCount, 0, 0, 0 };
+static TRKStepStatus gTRKStepStatus = { FALSE, DSSTEP_IntoCount, 0, 0 };
 
 typedef void (*RegAccessFunc)(void* srcDestPtr, u128 val);
 
@@ -2470,7 +2471,7 @@ asm void TRKInterruptHandler() {
 	ori r2, r2, gTRKCPUState@l
 	mflr r3
 	stw r3, ProcessorState_PPC.transport_handler_saved_ra(r2)
-	// bl TRKUARTInterruptHandler
+	bl TRKUARTInterruptHandler
 	lis r2, gTRKCPUState@h
 	ori r2, r2, gTRKCPUState@l
 	lwz r3, ProcessorState_PPC.transport_handler_saved_ra(r2)

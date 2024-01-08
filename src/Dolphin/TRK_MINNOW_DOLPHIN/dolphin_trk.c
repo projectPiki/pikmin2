@@ -71,7 +71,7 @@ void __TRK_copy_vectors(void)
 	int i;
 	u32 r29;
 
-	if (r3 <= 0x44 && r3 + 0x4000 > 0x44 && ((u32*)(&gTRKCPUState.Extended1))[36] & 3) {
+	if (r3 <= 0x44 && r3 + 0x4000 > 0x44 && gTRKCPUState.Extended1.DBAT3U_ & 3) {
 		r3 = 0x44;
 	} else {
 		r3 = EXCEPTIONMASK_ADDR;
