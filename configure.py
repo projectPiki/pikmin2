@@ -83,7 +83,7 @@ LIBS = [
         "host": True,
         "objects": [
             ["JSystem/J3DU/J3DUDL", True],
-            ["JSystem/J3DU/J3DUMotion", False],
+            ["JSystem/J3DU/J3DUMotion", True],
             ["JSystem/J3DU/J3DUShadow", True],
             ["JSystem/J3DU/J3DUMtxCache", True],
         ],

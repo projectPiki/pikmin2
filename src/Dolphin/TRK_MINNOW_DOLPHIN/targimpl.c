@@ -63,8 +63,8 @@ u128 TRKvalue128_temp;
 #define INSTR_MFSPR(rDest, spr)                  (0x7C000000 | (rDest << 21) | ((spr & 0xFE0) << 6) | ((spr & 0x1F) << 16) | 0x2A6)
 #define INSTR_MTSPR(spr, rSrc)                   (0x7C000000 | (rSrc << 21) | ((spr & 0xFE0) << 6) | ((spr & 0x1F) << 16) | 0x3A6)
 
-#define DSFetch_u32(_p_)    (*((u32 *)_p_))
-#define DSFetch_u64(_p_)    (*((u64 *)_p_))
+#define DSFetch_u32(_p_) (*((u32*)_p_))
+#define DSFetch_u64(_p_) (*((u64*)_p_))
 
 void __TRK_set_MSR(register u32 msr);
 u32 __TRK_get_MSR();
@@ -74,87 +74,81 @@ void TRK_ppc_memcpy(register void* dest, register const void* src, register int 
  * @note Address: 0x800BF790
  * @note Size: 0x2A4
  */
-DSError TRKValidMemory32(const void *addr, size_t length, ValidMemoryOptions readWriteable)
+DSError TRKValidMemory32(const void* addr, size_t length, ValidMemoryOptions readWriteable)
 {
-    DSError err = DS_InvalidMemory;            /* assume range is invalid */
+	DSError err = DS_InvalidMemory; /* assume range is invalid */
 
-    const u8 *start;
-    const u8 *end;
+	const u8* start;
+	const u8* end;
 
-    s32 i;
+	s32 i;
 
-    /*
-    ** Get start and end addresses for the memory range and
-    ** verify that they are reasonable.
-    */
+	/*
+	** Get start and end addresses for the memory range and
+	** verify that they are reasonable.
+	*/
 
-    start = (const u8 *)addr;
-    end = ((const u8 *)addr + (length - 1));
+	start = (const u8*)addr;
+	end   = ((const u8*)addr + (length - 1));
 
-    if (end < start)
-        return DS_InvalidMemory;
+	if (end < start)
+		return DS_InvalidMemory;
 
-    /*
-    ** Iterate through the gTRKMemMap array to determine if the requested
-    ** range falls within the valid ranges in the map.
-    */
+	/*
+	** Iterate through the gTRKMemMap array to determine if the requested
+	** range falls within the valid ranges in the map.
+	*/
 
-    for (i = 0; (i < (s32)(sizeof(gTRKMemMap) / sizeof(memRange))); i++)
-    {
-        /*
-        ** If the requested range is not completely above
-        ** the valid range AND it is not completely below
-        ** the valid range then it must overlap somewhere.
-        ** If the requested range overlaps with one of the
-        ** valid ranges, do some additional checking.
-        **
-        */
+	for (i = 0; (i < (s32)(sizeof(gTRKMemMap) / sizeof(memRange))); i++) {
+		/*
+		** If the requested range is not completely above
+		** the valid range AND it is not completely below
+		** the valid range then it must overlap somewhere.
+		** If the requested range overlaps with one of the
+		** valid ranges, do some additional checking.
+		**
+		*/
 
-        if ((start <= (const u8 *)gTRKMemMap[i].end) && (end >= (const u8 *)gTRKMemMap[i].start))
-        {
-            /*
-            ** First, verify that the read/write attributes are
-            ** acceptable.  If so, then recursively check any
-            ** part of the requested range that falls before or
-            ** after the valid range.
-            */
+		if ((start <= (const u8*)gTRKMemMap[i].end) && (end >= (const u8*)gTRKMemMap[i].start)) {
+			/*
+			** First, verify that the read/write attributes are
+			** acceptable.  If so, then recursively check any
+			** part of the requested range that falls before or
+			** after the valid range.
+			*/
 
-            if (((readWriteable == VALIDMEM_Readable) && !gTRKMemMap[i].readable) ||
-                ((readWriteable == VALIDMEM_Writeable) && !gTRKMemMap[i].writeable))
-            {
-                err = DS_InvalidMemory;
-            }
-            else
-            {
-                err = DS_NoError;
+			if (((readWriteable == VALIDMEM_Readable) && !gTRKMemMap[i].readable)
+			    || ((readWriteable == VALIDMEM_Writeable) && !gTRKMemMap[i].writeable)) {
+				err = DS_InvalidMemory;
+			} else {
+				err = DS_NoError;
 
-                /*
-                ** If a portion of the requested range falls before
-                ** the current valid range, then recursively
-                ** check it.
-                */
+				/*
+				** If a portion of the requested range falls before
+				** the current valid range, then recursively
+				** check it.
+				*/
 
-                if (start < (const u8 *)gTRKMemMap[i].start)
-                    err = TRKValidMemory32(start, (u32)((const u8 *)gTRKMemMap[i].start - start), readWriteable);
+				if (start < (const u8*)gTRKMemMap[i].start)
+					err = TRKValidMemory32(start, (u32)((const u8*)gTRKMemMap[i].start - start), readWriteable);
 
-                /*
-                ** If a portion of the requested range falls after
-                ** the current valid range, then recursively
-                ** check it.
-                ** Note: Only do this step if the previous check
-                ** did not detect invalid access.
-                */
+				/*
+				** If a portion of the requested range falls after
+				** the current valid range, then recursively
+				** check it.
+				** Note: Only do this step if the previous check
+				** did not detect invalid access.
+				*/
 
-                if ((err == DS_NoError) && (end > (const u8 *)gTRKMemMap[i].end))
-                    err = TRKValidMemory32((const u8 *)gTRKMemMap[i].end, (u32)(end - (const u8 *)gTRKMemMap[i].end), readWriteable);
+				if ((err == DS_NoError) && (end > (const u8*)gTRKMemMap[i].end))
+					err = TRKValidMemory32((const u8*)gTRKMemMap[i].end, (u32)(end - (const u8*)gTRKMemMap[i].end), readWriteable);
+			}
 
-            }
+			break;
+		}
+	}
 
-            break;
-        }
-    }
-
-    return err;
+	return err;
 }
 
 /**
@@ -317,34 +311,35 @@ DSError TRKTargetReadInstruction(void* data, u32 start)
  * @note Address: 0x800BF504
  * @note Size: 0xF4
  */
-DSError TRKTargetAccessDefault(u32 firstRegister, u32 lastRegister, MessageBuffer* b, size_t* registersLengthPtr, BOOL read){
+DSError TRKTargetAccessDefault(u32 firstRegister, u32 lastRegister, MessageBuffer* b, size_t* registersLengthPtr, BOOL read)
+{
 	DSError error;
 	u32 count;
 	u32* data;
 	TRKExceptionStatus tempExceptionStatus;
-	
+
 	if (lastRegister > 0x24) {
 		return DS_InvalidRegister;
 	}
-	
-	tempExceptionStatus = gTRKExceptionStatus;
+
+	tempExceptionStatus                   = gTRKExceptionStatus;
 	gTRKExceptionStatus.exceptionDetected = FALSE;
-	
-	data = gTRKCPUState.Default.GPR + firstRegister;
-	count = (lastRegister - firstRegister) + 1;
+
+	data                = gTRKCPUState.Default.GPR + firstRegister;
+	count               = (lastRegister - firstRegister) + 1;
 	*registersLengthPtr = count * sizeof(u32);
-		
-	if(read){
+
+	if (read) {
 		error = TRKAppendBuffer_ui32(b, data, count);
-	}else{
+	} else {
 		error = TRKReadBuffer_ui32(b, data, count);
 	}
-		
-	if(gTRKExceptionStatus.exceptionDetected){
+
+	if (gTRKExceptionStatus.exceptionDetected) {
 		*registersLengthPtr = 0;
-		error = DS_CWDSException;
+		error               = DS_CWDSException;
 	}
-		
+
 	gTRKExceptionStatus = tempExceptionStatus;
 	return error;
 	/*
@@ -1993,49 +1988,37 @@ BOOL TRKTargetStop()
  * @note Address: N/A
  * @note Size: 0x108
  */
-DSError TRKPPCAccessSPR(void *value, u32 spr_register_num, BOOL read)
+DSError TRKPPCAccessSPR(void* value, u32 spr_register_num, BOOL read)
 {
-    /* Initialize instruction array with nop */
+	/* Initialize instruction array with nop */
 
-    u32 access_func[10] = {INSTR_NOP,
-                                       INSTR_NOP,
-                                       INSTR_NOP,
-                                       INSTR_NOP,
-                                       INSTR_NOP,
-                                       INSTR_NOP,
-                                       INSTR_NOP,
-                                       INSTR_NOP,
-                                       INSTR_NOP,
-                                       INSTR_NOP};
-    /*
-    ** Construct a small assembly function to perform the
-    ** requested access and call it.  The read/write function
-    ** is in the form:
-    **
-    ** read:
-    **        mfspr    r4, spr_register_num
-    **        stw      r4, 0(r3)
-    **        blr
-    **
-    ** write:
-    **        lwz      r4, 0(r3)
-    **        mtspr    spr_register_num, r4
-    **        blr
-    **
-    */
+	u32 access_func[10] = { INSTR_NOP, INSTR_NOP, INSTR_NOP, INSTR_NOP, INSTR_NOP, INSTR_NOP, INSTR_NOP, INSTR_NOP, INSTR_NOP, INSTR_NOP };
+	/*
+	** Construct a small assembly function to perform the
+	** requested access and call it.  The read/write function
+	** is in the form:
+	**
+	** read:
+	**        mfspr    r4, spr_register_num
+	**        stw      r4, 0(r3)
+	**        blr
+	**
+	** write:
+	**        lwz      r4, 0(r3)
+	**        mtspr    spr_register_num, r4
+	**        blr
+	**
+	*/
 
-    if (read)
-    {
-        access_func[0] = INSTR_MFSPR(4, spr_register_num);
-        access_func[1] = (u32)INSTR_STW(4, 0, 3);
-    }
-    else
-    {
-        access_func[0] = (u32)INSTR_LWZ(4, 0, 3);
-        access_func[1] = INSTR_MTSPR(spr_register_num, 4);
-    }
+	if (read) {
+		access_func[0] = INSTR_MFSPR(4, spr_register_num);
+		access_func[1] = (u32)INSTR_STW(4, 0, 3);
+	} else {
+		access_func[0] = (u32)INSTR_LWZ(4, 0, 3);
+		access_func[1] = INSTR_MTSPR(spr_register_num, 4);
+	}
 
-    return TRKPPCAccessSpecialReg(value, access_func, read);
+	return TRKPPCAccessSpecialReg(value, access_func, read);
 }
 
 /**
@@ -2102,69 +2085,67 @@ DSError TRKPPCAccessFPRegister(void* srcDestPtr, u32 fpr, BOOL read)
  * @note Address: N/A
  * @note Size: 0x68
  */
-#define DEBUG_VECTORREG_ACCESS    0
+#define DEBUG_VECTORREG_ACCESS 0
 
-
-DSError TRKPPCAccessSpecialReg(void *value, u32 *access_func, BOOL read)
+DSError TRKPPCAccessSpecialReg(void* value, u32* access_func, BOOL read)
 {
 #if defined(__MWERKS__)
-    #pragma unused(read)
+#pragma unused(read)
 #elif defined(__GNUC__)
-    UNUSED(read);
+	UNUSED(read);
 #endif
 
-    typedef void (*asm_access_type)(void *, void *);
+	typedef void (*asm_access_type)(void*, void*);
 
-    asm_access_type asm_access;
+	asm_access_type asm_access;
 
-    /*
-    ** Construct a small assembly function to perform the
-    ** requested access and call it.  The read/write function
-    ** is in the form:
-    **
-    **        <access_func>
-    **        blr
-    */
+	/*
+	** Construct a small assembly function to perform the
+	** requested access and call it.  The read/write function
+	** is in the form:
+	**
+	**        <access_func>
+	**        blr
+	*/
 
-    /*
-    ** Put blr instruction at the end of access function (it should be
-    ** a 5-instruction array w/the last one empty).
-    */
+	/*
+	** Put blr instruction at the end of access function (it should be
+	** a 5-instruction array w/the last one empty).
+	*/
 
-    access_func[9] = INSTR_BLR;
+	access_func[9] = INSTR_BLR;
 
-    /*
-    ** Now that the instruction array is built, get a function pointer to it.
-    */
+	/*
+	** Now that the instruction array is built, get a function pointer to it.
+	*/
 
-    asm_access = (asm_access_type)access_func;
+	asm_access = (asm_access_type)access_func;
 
 #if DEBUG_VECTORREG_ACCESS
 
-    __puts("\r\nasm_access: ");
-    __puthex8((u32)asm_access);
-    __puts("   access_func: ");
-    __puthex8((u32)access_func);
+	__puts("\r\nasm_access: ");
+	__puthex8((u32)asm_access);
+	__puts("   access_func: ");
+	__puthex8((u32)access_func);
 
-    for (i = 0; i < 10; i++)
-    {
-        __puts("\r\ninst[");
-        __puthex2(i);
-        __puts("]: ");
-        __puthex8(access_func[i]);
-        __puts("  ;  ");
-        __puthex8(*((u32 *)asm_access + i));
-    }
+	for (i = 0; i < 10; i++) {
+		__puts("\r\ninst[");
+		__puthex2(i);
+		__puts("]: ");
+		__puthex8(access_func[i]);
+		__puts("  ;  ");
+		__puthex8(*((u32*)asm_access + i));
+	}
 
-    __puts("\r\n");
+	__puts("\r\n");
 
 #endif
 
-    // Flush cache
-    TRK_flush_cache((u32)access_func, (sizeof(access_func) * 10));
-    (*asm_access)(value, (void *)&TRKvalue128_temp);
+	// Flush cache
+	TRK_flush_cache((u32)access_func, (sizeof(access_func) * 10));
+	(*asm_access)(value, (void*)&TRKvalue128_temp);
 
-    return DS_NoError;
+	return DS_NoError;
 }
 
 /**

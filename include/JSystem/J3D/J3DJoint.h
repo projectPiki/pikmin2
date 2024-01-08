@@ -29,7 +29,7 @@ struct J3DJoint {
 	void entryIn();
 	void recursiveCalc();
 
-	u16 getJntNo() const { return mJointIdx; }
+	const u16 getJntNo() const { return mJointIdx; }
 	J3DMaterial* getMesh() { return mMaterial; }
 	JGeometry::TVec3f* getMax() { return &mMax; }
 	JGeometry::TVec3f* getMin() { return &mMin; }

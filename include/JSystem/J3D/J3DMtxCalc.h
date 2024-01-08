@@ -191,9 +191,9 @@ struct J3DMtxCalcBlendAnm : public J3DMtxCalcBlendAnmBase {
 	}
 
 	virtual ~J3DMtxCalcBlendAnm() { }                                                   // _08 (weak)
-	virtual void setAnmTransform(u8 idx, J3DAnmTransform* anim) { mAnims[idx] = anim; } // _14 (weak)
-	virtual void setWeight(u8 idx, f32 weight) { mWeights[idx] = weight; }              // _1C (weak)
 	virtual void init(const Vec& vec, const Mtx& mtx) { Init::init(vec, mtx); }         // _24 (weak)
+	virtual void setWeight(u8 idx, f32 weight) { mWeights[idx] = weight; }              // _1C (weak)
+	virtual void setAnmTransform(u8 idx, J3DAnmTransform* anim) { mAnims[idx] = anim; } // _14 (weak)
 	virtual void calc() { Adaptor::calc(this); }                                        // _28 (weak)
 
 	// _00     = VTBL
