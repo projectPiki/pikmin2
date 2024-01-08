@@ -318,7 +318,7 @@ void TRK__write_aram(int c, void* p2, void* p3)
 	register int count = c;
 
 	register int counter;
-	if ((size_t)p2 < 0x4000 || *(u32*)p2 > 0x8000000 || )
+	if ((size_t)p2 < 0x4000 || *(u32*)p2 > 0x8000000 || 0)
 	{
 		return;
 	}
