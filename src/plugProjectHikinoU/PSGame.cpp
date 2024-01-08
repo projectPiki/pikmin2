@@ -11,7 +11,6 @@
 #include "PSM/BossSeq.h"
 #include "PSSystem/ConductorList.h"
 #include "PSGame/SeMgr.h"
-#include "PSSystem/PSStream.h"
 #include "PSGame/Global.h"
 #include "PSSystem/PSGame.h"
 #include "JSystem/JAudio/JALCalc.h"
@@ -836,9 +835,9 @@ void SysFactory::newSoundSystem()
 
 	backupheap->becomeCurrentHeap();
 	newheap->adjustSize();
-	OSLockMutex(&sysif->mMutex);
-	sysif->_40 = true;
-	OSUnlockMutex(&sysif->mMutex);
+	OSLockMutex(&sysif->mChecker.mMutex);
+	sysif->mChecker._18 = true;
+	OSUnlockMutex(&sysif->mChecker.mMutex);
 	OSDisableInterrupts();
 	PSSystem::spSysIF = sysif;
 	OSEnableInterrupts();

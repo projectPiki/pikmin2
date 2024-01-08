@@ -1,7 +1,7 @@
 HIKINO_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSSeq.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSGame.o\
-	$(BUILD_DIR)/asm/plugProjectHikinoU/PSSystemIF.o\
+	$(BUILD_DIR)/src/plugProjectHikinoU/PSSystemIF.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSAutoBgm.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSBnkMgr.o\
 	$(BUILD_DIR)/src/plugProjectHikinoU/PSTaskBase.o\

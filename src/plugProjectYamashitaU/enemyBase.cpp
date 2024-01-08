@@ -36,7 +36,6 @@
 #include "PSM/ObjMgr.h"
 #include "PSSystem/PSCommon.h"
 #include "PSSystem/PSSystemIF.h"
-#include "PSSystem/PSStream.h"
 #include "PSGame/Global.h"
 
 // Utility

@@ -2,7 +2,7 @@
 #define _PSM_SCENE_H
 
 #include "PSGame/SceneInfo.h"
-#include "PSSystem/PSStream.h"
+#include "PSSystem/PSSystemIF.h"
 #include "types.h"
 #include "PSGame/PikScene.h"
 #include "PSGame/CameraMgr.h"

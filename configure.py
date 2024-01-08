@@ -1364,7 +1364,7 @@ LIBS = [
         "objects": [
             ["plugProjectHikinoU/PSSeq", False],
             ["plugProjectHikinoU/PSGame", False],
-            ["plugProjectHikinoU/PSSystemIF", False],
+            ["plugProjectHikinoU/PSSystemIF", True],
             ["plugProjectHikinoU/PSAutoBgm", False],
             ["plugProjectHikinoU/PSBnkMgr", False],
             ["plugProjectHikinoU/PSTaskBase", True],

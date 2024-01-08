@@ -1,10 +1,8 @@
 #include "JSystem/JAudio/JAI/JAInter.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "PSGame/SeMgr.h"
-#include "PSSystem/PSStream.h"
 #include "PSSystem/PSSystemIF.h"
 #include "PSSystem/SeqData.h"
-#include "PSSystem/SeqSound.h"
 #include "stream.h"
 #include "PSSystem/BankMgr.h"
 #include "JSystem/JAudio/JAi/JAInter/SeMgr.h"
@@ -14,6 +12,8 @@
 
 namespace PSSystem {
 u8 sDistanceParameterMoveTime = 5;
+SysIF* spSysIF;
+JMath::TRandom_fast_ oRandom(0);
 MakeSeCallback PSSystem::SysIF::sMakeJAISeCallback;
 
 /**
@@ -22,30 +22,9 @@ MakeSeCallback PSSystem::SysIF::sMakeJAISeCallback;
  */
 u32 getObject(JASTrack* track, u8 p2)
 {
-	return track->readReg16(p2 + 1) | track->readReg16(p2);
-
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       readReg16__8JASTrackFUc
-	addi     r0, r31, 1
-	mr       r31, r3
-	mr       r3, r30
-	clrlwi   r4, r0, 0x18
-	bl       readReg16__8JASTrackFUc
-	lwz      r0, 0x14(r1)
-	rlwimi   r3, r31, 0x10, 0, 0xf
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	u32 hi = track->readReg16(p2);
+	u32 lo = track->readReg16(p2 + 1);
+	return ((hi << 16) & 0xFFFF0000 | (lo)&0x0000FFFF);
 }
 
 /**
@@ -54,34 +33,8 @@ u32 getObject(JASTrack* track, u8 p2)
  */
 void setObject(JASTrack* track, void* p2, u8 p3)
 {
-	track->writeRegDirect(p3, reinterpret_cast<u32>(p2) >> 0x10);
-	track->writeRegDirect(p3 + 1, (u8)(p2));
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	srwi     r5, r4, 0x10
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	mr       r4, r31
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bl       writeRegDirect__8JASTrackFUcUs
-	addi     r0, r31, 1
-	clrlwi   r5, r30, 0x10
-	mr       r3, r29
-	clrlwi   r4, r0, 0x18
-	bl       writeRegDirect__8JASTrackFUcUs
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	track->writeRegDirect(p3, (u32)p2 >> 16);
+	track->writeRegDirect(p3 + 1, (u32)p2 & 0xFFFF);
 }
 
 /**
@@ -90,8 +43,6 @@ void setObject(JASTrack* track, void* p2, u8 p3)
  */
 SysIF::SysIF(const SetupArg& arg)
 {
-	OSInitMutex(&mMutex);
-
 	_48 = 0;
 	P2ASSERTLINE(141, arg.mHeap);
 	P2ASSERTLINE(142, arg.mHeapSize != 0);
@@ -104,92 +55,8 @@ SysIF::SysIF(const SetupArg& arg)
 	initDriver(arg.mHeap, arg.mHeapSize, 1);
 	initInterface(1);
 	initIF(arg);
-	mSfxVolume = 0.0f;
-	mBgmVolume = 0.0f;
-
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       __ct__8JAIBasicFv
-	lis      r4, __vt__Q28PSSystem5SysIF@ha
-	addi     r3, r30, 0x28
-	addi     r0, r4, __vt__Q28PSSystem5SysIF@l
-	stw      r0, 0(r30)
-	bl       OSInitMutex
-	li       r0, 0
-	addi     r3, r30, 0x44
-	stw      r0, 0x40(r30)
-	bl       __ct__Q28PSSystem5FxMgrFv
-	lwz      r0, 0(r31)
-	li       r3, 0
-	stw      r3, 0x48(r30)
-	cmplwi   r0, 0
-	bne      lbl_80338490
-	lis      r3, lbl_8048FE28@ha
-	lis      r5, lbl_8048FE38@ha
-	addi     r3, r3, lbl_8048FE28@l
-	li       r4, 0x8d
-	addi     r5, r5, lbl_8048FE38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80338490:
-	lwz      r0, 4(r31)
-	cmplwi   r0, 0
-	bne      lbl_803384B8
-	lis      r3, lbl_8048FE28@ha
-	lis      r5, lbl_8048FE38@ha
-	addi     r3, r3, lbl_8048FE28@l
-	li       r4, 0x8e
-	addi     r5, r5, lbl_8048FE38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803384B8:
-	mr       r3, r30
-	li       r4, 2
-	bl       setInitFileLoadSwitch__8JAIBasicFUc
-	lwz      r3, 0x10(r31)
-	bl       setParamInitDataPointer__18JAIGlobalParameterFPv
-	li       r3, 1
-	bl       setParamStreamInsideBufferCut__18JAIGlobalParameterFb
-	lbz      r3, sDistanceParameterMoveTime__8PSSystem@sda21(r13)
-	bl       setParamDistanceParameterMoveTime__18JAIGlobalParameterFUc
-	bl       createInstance__Q28PSSystem7BankMgrFv
-	bl       preInit__Q28PSSystem7BankMgrFv
-	lis      r3, start1stSeq__Q28PSSystem5SysIFFv@ha
-	addi     r3, r3, start1stSeq__Q28PSSystem5SysIFFv@l
-	bl       setSeSequenceStartCallback__Q27JAInter5SeMgrFPFv_v
-	lwz      r4, 0(r31)
-	mr       r3, r30
-	lwz      r5, 4(r31)
-	li       r6, 1
-	bl       initDriver__8JAIBasicFP12JKRSolidHeapUlUc
-	mr       r3, r30
-	li       r4, 1
-	bl       initInterface__8JAIBasicFUc
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_8051E150@sda21(r2)
-	mr       r3, r30
-	stfs     f0, 0x20(r30)
-	stfs     f0, 0x24(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mSfxVolume = 1.0f;
+	mBgmVolume = 1.0f;
 }
 
 /**
@@ -258,7 +125,7 @@ JAISe* SysIF::makeSe()
  */
 void SysIF::mainLoop()
 {
-	if (_40 == 1) {
+	if (mChecker._18 == 1) {
 		getSceneMgr()->exec();
 		getSeMgrInstance()->execAllSe();
 		processFrameWork();
@@ -351,49 +218,5 @@ bool TextDataBase::onlyLoad(const char* path, JKRDvdRipper::EAllocDirection dire
 	mFile = JKRDvdToMainRam(const_cast<char*>(path), nullptr, Switch_0, 0, nullptr, direction, 0, nullptr, nullptr);
 	return !!mFile; // ???
 }
-
-/**
- * @note Address: 0x80338B18
- * @note Size: 0xC
- */
-void SysIF::start1stSeq() { JAInter::SeMgr::seHandle = nullptr; }
-
-/**
- * @note Address: 0x80338B24
- * @note Size: 0x70
- */
-JAISequence* SysIF::makeSequence()
-{
-	if (mHeap) {
-		return new (mHeap, 0) SeqSound;
-	} else {
-		return new (JASDram, 0) SeqSound;
-	}
-}
-
-/**
- * @note Address: 0x80338B94
- * @note Size: 0x58
- */
-SeqSound::SeqSound() { }
-
-/**
- * @note Address: 0x80338BEC
- * @note Size: 0x70
- */
-JAIStream* SysIF::makeStream()
-{
-	if (mHeap) {
-		return new (mHeap, 0) StreamSound;
-	} else {
-		return new (JASDram, 0) StreamSound;
-	}
-}
-
-/**
- * @note Address: 0x80338C5C
- * @note Size: 0x58
- */
-StreamSound::StreamSound() { }
 
 } // namespace PSSystem
