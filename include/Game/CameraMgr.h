@@ -223,6 +223,25 @@ struct PlayCamera : public LookAtCamera {
 	virtual void startVibration(int) { }                              // _7C (weak)
 	virtual void init();                                              // _80
 
+	inline f32 adjustAngle(f32 in, f32 out)
+	{
+		CameraParms* parms = mCameraParms;
+
+		if (in >= out) {
+			f32 x = in - out;
+			if (TAU - x < x) {
+				in -= TAU;
+			}
+		} else {
+			f32 x = out - in;
+			if (TAU - x < x) {
+				in += TAU;
+			}
+		}
+
+		mCameraAngleCurrent += parms->mRotSpeed.mValue * (in - out);
+	}
+
 	void setCameraParms(CameraParms* parms);
 	void setVibrationParms(VibrationParms* parms);
 	void setCameraAngle(f32 angle);

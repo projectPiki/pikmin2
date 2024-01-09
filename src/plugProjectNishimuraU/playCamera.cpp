@@ -612,20 +612,8 @@ void PlayCamera::updateParms(int flag)
 	}
 	mLookAtPosition = (mLookAtPosition * invrate) + (mGoalPosition * rate);
 
-	CameraParms* parms = mCameraParms;
-	f32 anglein        = mCameraAngleTarget;
-	f32 angleout       = mCameraAngleCurrent;
-	if (anglein >= angleout) {
-		if (TAU - (anglein - angleout) < (anglein - angleout)) {
-			anglein -= TAU;
-		}
-	} else {
-		if (TAU - (angleout - anglein) < (angleout - anglein)) {
-			anglein += TAU;
-		}
-	}
+	adjustAngle(mCameraAngleCurrent, mCameraAngleTarget);
 
-	mCameraAngleCurrent += parms->mRotSpeed.mValue * (anglein - angleout);
 	f32 angle = mCameraAngleCurrent;
 	clampAngle(angle);
 	mCameraAngleCurrent = angle;
