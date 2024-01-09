@@ -435,7 +435,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(enemy->mSoundObj); // get sound object
 		PSM::checkBoss(soundObj);                                                  // make sure we have sound object
 		if (soundObj) {                                                            // REALLY MAKE SURE WE HAVE SOUND OBJECT
-			soundObj->jumpRequest(4);
+			soundObj->jumpRequest(PSM::EnemyMidBoss::BossBgm_Flick);
 		}
 	}
 }
@@ -498,7 +498,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(enemy->mSoundObj); // get sound object
 		PSM::checkBoss(soundObj);                                                  // make sure we have sound object
 		if (soundObj) {                                                            // REALLY MAKE SURE WE HAVE SOUND OBJECT
-			soundObj->jumpRequest(3);
+			soundObj->jumpRequest(PSM::EnemyMidBoss::BossBgm_Attack);
 		}
 	}
 }

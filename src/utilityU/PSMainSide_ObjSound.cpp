@@ -2376,7 +2376,7 @@ void EnemyBoss::onDeathMotionTop()
 			}
 		}
 		if (canJump) {
-			jumpRequest(10);
+			jumpRequest(PSM::EnemyMidBoss::BossBgm_Defeated);
 		}
 	}
 }
@@ -2500,7 +2500,7 @@ void EnemyMidBoss::onAppear1st()
 {
 	Scene_Game* scene = PSMGetGameScene();
 	if (scene) {
-		scene->bossAppear(this, 9);
+		scene->bossAppear(this, PSM::EnemyMidBoss::BossBgm_Appear);
 	}
 }
 
@@ -2565,7 +2565,7 @@ void EnemyBigBoss::jumpRequest(u16 state)
 void EnemyBigBoss::onDeathMotionTop()
 {
 	_E8 = 0;
-	jumpRequest(13);
+	jumpRequest(PSM::EnemyBigBoss::BigBossBgm_Defeated);
 }
 
 /**

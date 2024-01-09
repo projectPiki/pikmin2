@@ -103,12 +103,12 @@ struct Parms : public EnemyParmsBase {
 
 	Parms()
 	{
-		_BC8 = 0;
-		_BC9 = 0;
-		_BCA = 1;
-		_BCB = 1;
-		_BCC = 0;
-		_BD0 = 3.0f;
+		mDoForceHide       = false;
+		_BC9               = 0;
+		mDoUseFootCallback = true;
+		_BCB               = 1;
+		mDoForceBig        = false;
+		_BD0               = 3.0f;
 	}
 
 	virtual void read(Stream& stream) // _08 (weak)
@@ -120,11 +120,11 @@ struct Parms : public EnemyParmsBase {
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms mProperParms; // _7F8
-	u8 _BC8;                  // _BC8
+	bool mDoForceHide;        // _BC8
 	u8 _BC9;                  // _BC9
-	u8 _BCA;                  // _BCA
+	bool mDoUseFootCallback;  // _BCA
 	u8 _BCB;                  // _BCB
-	u8 _BCC;                  // _BCC
+	bool mDoForceBig;         // _BCC
 	f32 _BD0;                 // _BD0
 };
 
@@ -229,49 +229,61 @@ struct Obj : public EnemyBase {
 	void fadeEffect(int);
 	void createBounceEffect();
 
+	// for createEffect/fadeEffect
+	enum KingEfxType {
+		KingEfx_Drool       = 0,
+		KingEfx_Dive        = 1,
+		KingEfx_Roar        = 2,
+		KingEfx_RoarInd     = 3,
+		KingEfx_EatBomb     = 4,
+		KingEfx_NoseSmoke   = 5,
+		KingEfx_AttackDrool = 6,
+		KingEfx_Dead        = 7,
+		KingEfx_Hiding      = 8,
+	};
+
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	Vector3f mGoalPosition;              // _2BC, initialised as mHomePosition
-	MouthSlots mMouthSlots;              // _2C8
-	SysShape::Joint* mMouthJoint1;       // _2D0, 'kuti'
-	SysShape::Joint* mBodyJoint;         // _2D4, 'kosijnt'
-	SysShape::Joint* mTongueJoint1;      // _2D8, 'bero6'
-	SysShape::Joint* mTongueJoint2;      // _2DC, 'bero5'
-	SysShape::Joint* mMouthJoint2;       // _2E0, 'kuti'
-	u8 _2E4;                             // _2E4
-	StateID mNextState;                  // _2E8
-	u8 _2EC;                             // _2EC
-	int _2F0;                            // _2F0
-	Vector3f _2F4;                       // _2F4, initialised as mHomePosition (but y = 0.0f)
-	Vector3f _300;                       // _300
-	int _30C;                            // _30C
-	u16 mLFootJointIndex;                // _310, index for 'asiL'
-	Vector3f mLFootPosition;             // _314
-	f32 _320;                            // _320
-	u16 mRFootJointIndex;                // _324, index for 'asiR'
-	Vector3f mRFootPosition;             // _328
-	f32 _334;                            // _334
-	u8 _338;                             // _338
-	u8 _339[0x3];                        // _339, padding probably
-	u16* mJointIndices;                  // _33C, indices for world matrices/joints?
-	WaterBox* _340;                      // _340, nearest water?? maybe??
-	WalkSmokeEffect::Mgr mWalkSmokeMgr;  // _344
-	FSM* mFsm;                           // _34C
-	efx::TKchYodare* mEfxYodare;         // _350
-	efx::TKchDiveSand* mEfxDiveSand;     // _354
-	efx::TKchDiveWat* mEfxDiveWater;     // _358
-	efx::TKchCryAB* mEfxCryAB;           // _35C
-	efx::TKchCryInd* mEfxCryInd;         // _360
-	efx::TKchSmokeHana* mEfxSmoke;       // _364
-	efx::TKchAttackYodare* mEfxAttack;   // _368
-	efx::TKchDeadYodare* mEfxDeadYodare; // _36C
-	efx::TKchDeadHana* mEfxDeadHana;     // _370
-	efx::TEnemyHamonChasePos* _374;      // _374
-	efx::TEnemyHamonChasePos* _378;      // _378
-	Vector3f _37C;                       // _37C
-	Vector3f _388;                       // _388
-	u8 _394;                             // _394
-	                                     // _398 = PelletView
+	Vector3f mGoalPosition;                       // _2BC, initialised as mHomePosition
+	MouthSlots mMouthSlots;                       // _2C8
+	SysShape::Joint* mMouthJoint1;                // _2D0, 'kuti'
+	SysShape::Joint* mBodyJoint;                  // _2D4, 'kosijnt'
+	SysShape::Joint* mTongueJoint1;               // _2D8, 'bero6'
+	SysShape::Joint* mTongueJoint2;               // _2DC, 'bero5'
+	SysShape::Joint* mMouthJoint2;                // _2E0, 'kuti'
+	bool mAllowAnimBlending;                      // _2E4
+	StateID mNextState;                           // _2E8
+	bool mDoCheckAppear;                          // _2EC
+	int mSearchDelayTimer;                        // _2F0, delay being able to search for target after touching a wall
+	Vector3f mPrevWalkingCheckPosition;           // _2F4, initialised as mHomePosition (but y = 0.0f)
+	Vector3f mFootPosition;                       // _300, used for determining jump crushing
+	int mWalkingTimer;                            // _30C
+	u16 mLFootJointIndex;                         // _310, index for 'asiL'
+	Vector3f mLFootPosition;                      // _314
+	f32 mLFootHeightRatio;                        // _320
+	u16 mRFootJointIndex;                         // _324, index for 'asiR'
+	Vector3f mRFootPosition;                      // _328
+	f32 mRFootHeightRatio;                        // _334
+	bool mCanEatBombs;                            // _338
+	u16* mMouthJointIndices;                      // _33C, indices for mouth joints
+	WaterBox* mCurrentWaterBox;                   // _340, no one told morimura theres an enemybase level waterbox
+	WalkSmokeEffect::Mgr mWalkSmokeMgr;           // _344
+	FSM* mFsm;                                    // _34C
+	efx::TKchYodare* mEfxYodare;                  // _350
+	efx::TKchDiveSand* mEfxDiveSand;              // _354
+	efx::TKchDiveWat* mEfxDiveWater;              // _358
+	efx::TKchCryAB* mEfxCryAB;                    // _35C
+	efx::TKchCryInd* mEfxCryInd;                  // _360
+	efx::TKchSmokeHana* mEfxSmoke;                // _364
+	efx::TKchAttackYodare* mEfxAttack;            // _368
+	efx::TKchDeadYodare* mEfxDeadYodare;          // _36C
+	efx::TKchDeadHana* mEfxDeadHana;              // _370
+	efx::TEnemyHamonChasePos* mRightEyeRippleEfx; // _374
+	efx::TEnemyHamonChasePos* mLeftEyeRippleEfx;  // _378
+	Vector3f mRightEyePosition;                   // _37C
+	Vector3f mLeftEyePosition;                    // _388
+	bool mIsBig;                                  // _394, ie. is the Bulblax Kingdom Emperor
+	                                              // _398 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -349,7 +361,7 @@ struct StateAppear : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	u8 _10; // _10
+	bool mHasNotShaken; // _10, set to false after appear shake, is used for nothing
 };
 
 struct StateAttack : public State {
@@ -361,10 +373,10 @@ struct StateAttack : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	int _10; // _10
-	int _14; // _14
-	int _18; // _18
-	u8 _1C;  // _1C
+	int mEatenPikis;  // _10
+	int _14;          // _14, used for absolutely nothing :D
+	int mEatenBombs;  // _18
+	bool mDoCheckEat; // _1C
 };
 
 struct StateCaution : public State {
@@ -386,7 +398,7 @@ struct StateDamage : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	int _10; // _10, unknown
+	int mStunTimer; // _10
 };
 
 struct StateDead : public State {
@@ -401,7 +413,7 @@ struct StateDead : public State {
 };
 
 struct StateEatArg : public StateArg {
-	u8 _00; // _00, corresponds to _10 in StateEat
+	bool mDoStunAfter; // _00, true if eaten bomb
 };
 
 struct StateEat : public State {
@@ -412,7 +424,7 @@ struct StateEat : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	u8 _10; // _10, unknown
+	bool mDoStunAfter; // _10
 };
 
 struct StateFlick : public State {
@@ -446,8 +458,8 @@ struct StateHideWait : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	int _10; // _10, unknown
-	u8 _14;  // _14
+	int mCanCheckAppearTimer; // _10
+	bool mHasMadeEfx;         // _14
 };
 
 struct StateSwallow : public State {
@@ -479,8 +491,8 @@ struct StateWalk : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	int _10; // _10, unknown
-	u32 _14; // _14, unknown
+	int mNoTargetTimer; // _10
+	u32 _14;            // _14, used for nothing again
 };
 
 struct StateWarCry : public State {

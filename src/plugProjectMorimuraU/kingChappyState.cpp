@@ -55,7 +55,7 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	OBJ(enemy)->startMotionSelf(KINGANIM_Move, nullptr);
 	OBJ(enemy)->resetFootPos();
 	if (enemy->mTargetCreature) {
-		_10 = 0;
+		mNoTargetTimer = 0;
 	}
 
 	OBJ(enemy)->mNextState = KINGCHAPPY_NULL;
@@ -71,16 +71,18 @@ void StateWalk::exec(EnemyBase* enemy)
 	if (OBJ(enemy)->mNextState < 0) {
 		OBJ(enemy)->walkFunc();
 		OBJ(enemy)->checkTurn(true);
+
 		if (!enemy->mTargetCreature) {
-			_10++;
+			mNoTargetTimer++;
 		}
 
-		if (OBJ(enemy)->isOutOfTerritory(1.0f) || CG_PARMS(enemy)->_BC9 || _10 > CG_PROPERPARMS(enemy).mPeriodOfIncubation.mValue) {
+		if (OBJ(enemy)->isOutOfTerritory(1.0f) || CG_PARMS(enemy)->_BC9
+		    || mNoTargetTimer > CG_PROPERPARMS(enemy).mPeriodOfIncubation.mValue) {
 			OBJ(enemy)->mGoalPosition = enemy->mHomePosition;
-			_10                       = CG_PROPERPARMS(enemy).mPeriodOfIncubation.mValue;
+			mNoTargetTimer            = CG_PROPERPARMS(enemy).mPeriodOfIncubation.mValue;
 			if (OBJ(enemy)->isReachToGoal(CG_GENERALPARMS(enemy).mHomeRadius.mValue)) {
 				OBJ(enemy)->mNextState = KINGCHAPPY_Hide;
-				_10                    = 0;
+				mNoTargetTimer         = 0;
 			}
 		} else if (OBJ(enemy)->isReachToGoal(20.0f)) {
 			OBJ(enemy)->setNextGoal();
@@ -128,12 +130,12 @@ StateAttack::StateAttack(int stateID)
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	OBJ(enemy)->startMotionSelf(KINGANIM_Attack, nullptr);
-	enemy->mTargetVelocity = Vector3f(0.0f);
-	_10                    = 0;
-	_14                    = 0;
-	_18                    = 0;
-	_1C                    = 0;
-	OBJ(enemy)->_338       = 0;
+	enemy->mTargetVelocity   = Vector3f(0.0f);
+	mEatenPikis              = 0;
+	_14                      = 0;
+	mEatenBombs              = 0;
+	mDoCheckEat              = false;
+	OBJ(enemy)->mCanEatBombs = false;
 }
 
 /**
@@ -142,15 +144,15 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
-	if (_1C) {
+	if (mDoCheckEat) {
 		int bombVal = OBJ(enemy)->eatBomb();
-		if (bombVal > _18) {
-			_18 = bombVal;
+		if (bombVal > mEatenBombs) {
+			mEatenBombs = bombVal;
 		}
 
 		int pikiVal = EnemyFunc::eatPikmin(enemy, nullptr);
-		if (pikiVal > _10) {
-			_10 = pikiVal;
+		if (pikiVal > mEatenPikis) {
+			mEatenPikis = pikiVal;
 		}
 	}
 
@@ -165,16 +167,16 @@ void StateAttack::exec(EnemyBase* enemy)
 	mapMgr->traceMove(moveInfo, sys->mDeltaTime);
 
 	if (moveInfo.mBounceTriangle || moveInfo.mWallTriangle) {
-		OBJ(enemy)->_2E4 = 1;
-		OBJ(enemy)->fadeEffect(6);
-		if (_18 > 0) {
+		OBJ(enemy)->mAllowAnimBlending = true;
+		OBJ(enemy)->fadeEffect(Obj::KingEfx_AttackDrool);
+		if (mEatenBombs > 0) {
 			StateEatArg eatArg;
-			eatArg._00 = 1;
+			eatArg.mDoStunAfter = true;
 			transit(enemy, KINGCHAPPY_Eat, &eatArg);
 			return;
 		}
 
-		if (_10 > 0) {
+		if (mEatenPikis > 0) {
 			transit(enemy, KINGCHAPPY_Swallow, nullptr);
 			return;
 		}
@@ -214,29 +216,29 @@ void StateAttack::exec(EnemyBase* enemy)
 			PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(enemy->mSoundObj);
 			PSM::checkBoss(soundObj);
 			if (soundObj) {
-				soundObj->jumpRequest(3);
+				soundObj->jumpRequest(PSM::EnemyMidBoss::BossBgm_Attack);
 			}
 			break;
 
 		case KEYEVENT_3:
-			_1C = 1;
-			OBJ(enemy)->createEffect(6);
+			mDoCheckEat = true;
+			OBJ(enemy)->createEffect(Obj::KingEfx_AttackDrool);
 			break;
 
 		case KEYEVENT_5:
-			OBJ(enemy)->fadeEffect(6);
+			OBJ(enemy)->fadeEffect(Obj::KingEfx_AttackDrool);
 			break;
 
 		case KEYEVENT_6:
-			OBJ(enemy)->_338 = 1;
+			OBJ(enemy)->mCanEatBombs = true;
 			break;
 
 		case KEYEVENT_END:
-			if (_18 > 0) {
+			if (mEatenBombs > 0) {
 				StateEatArg eatArg;
-				eatArg._00 = 1;
+				eatArg.mDoStunAfter = true;
 				transit(enemy, KINGCHAPPY_Eat, &eatArg);
-			} else if (_10 > 0) {
+			} else if (mEatenPikis > 0) {
 				transit(enemy, KINGCHAPPY_Swallow, nullptr);
 			} else {
 				transit(enemy, KINGCHAPPY_Walk, nullptr);
@@ -733,8 +735,8 @@ lbl_80359D80:
  */
 void StateAttack::cleanup(EnemyBase* enemy)
 {
-	OBJ(enemy)->fadeEffect(6);
-	OBJ(enemy)->_338 = 1;
+	OBJ(enemy)->fadeEffect(Obj::KingEfx_AttackDrool);
+	OBJ(enemy)->mCanEatBombs = true;
 }
 
 /**
@@ -757,7 +759,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->mCurrentVelocity = Vector3f(0.0f);
 	enemy->mTargetVelocity  = Vector3f(0.0f);
 	enemy->deathProcedure();
-	OBJ(enemy)->createEffect(7);
+	OBJ(enemy)->createEffect(Obj::KingEfx_Dead);
 
 	Vector3f pos = enemy->getPosition();
 	cameraMgr->startVibration(12, pos, 2);
@@ -796,7 +798,7 @@ void StateDead::exec(EnemyBase* enemy)
  * @note Address: 0x80359FBC
  * @note Size: 0x28
  */
-void StateDead::cleanup(EnemyBase* enemy) { OBJ(enemy)->fadeEffect(7); }
+void StateDead::cleanup(EnemyBase* enemy) { OBJ(enemy)->fadeEffect(Obj::KingEfx_Dead); }
 
 /**
  * @note Address: 0x80359FE4
@@ -851,15 +853,15 @@ void StateFlick::exec(EnemyBase* enemy)
 			PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(enemy->mSoundObj);
 			PSM::checkBoss(soundObj);
 			if (soundObj) {
-				soundObj->jumpRequest(4);
+				soundObj->jumpRequest(PSM::EnemyMidBoss::BossBgm_Flick);
 			}
 
 			break;
 
 		case KEYEVENT_3:
-			f32 yMax         = 25.0f + OBJ(enemy)->_300.y;                                              // f31
-			f32 yMin         = OBJ(enemy)->_300.y - 30.0f;                                              // f30
-			Vector3f footPos = OBJ(enemy)->_300;                                                        // f28, na, f27
+			f32 yMax         = 25.0f + OBJ(enemy)->mFootPosition.y;                                     // f31
+			f32 yMin         = OBJ(enemy)->mFootPosition.y - 30.0f;                                     // f30
+			Vector3f footPos = OBJ(enemy)->mFootPosition;                                               // f28, na, f27
 			f32 trampleRange = SQUARE(CG_PROPERPARMS(enemy).mTramplingRange() * enemy->mScaleModifier); // f29
 
 			Iterator<Piki> iterPiki(pikiMgr);
@@ -1594,11 +1596,11 @@ void StateWarCry::exec(EnemyBase* enemy)
 			break;
 
 		case KEYEVENT_2:
-			OBJ(enemy)->createEffect(3);
+			OBJ(enemy)->createEffect(Obj::KingEfx_RoarInd);
 			break;
 
 		case KEYEVENT_3:
-			OBJ(enemy)->createEffect(2);
+			OBJ(enemy)->createEffect(Obj::KingEfx_Roar);
 			OBJ(enemy)->requestTransit(KINGCHAPPY_Appear);
 			OBJ(enemy)->requestTransit(KINGCHAPPY_WarCry);
 			Vector3f rumblePos = enemy->getPosition();
@@ -1648,11 +1650,11 @@ void StateWarCry::exec(EnemyBase* enemy)
 			break;
 
 		case KEYEVENT_5:
-			OBJ(enemy)->fadeEffect(2);
+			OBJ(enemy)->fadeEffect(Obj::KingEfx_Roar);
 			break;
 
 		case KEYEVENT_6:
-			OBJ(enemy)->fadeEffect(3);
+			OBJ(enemy)->fadeEffect(Obj::KingEfx_RoarInd);
 			break;
 
 		case KEYEVENT_END:
@@ -1674,8 +1676,8 @@ void StateWarCry::exec(EnemyBase* enemy)
  */
 void StateWarCry::cleanup(EnemyBase* enemy)
 {
-	OBJ(enemy)->fadeEffect(2);
-	OBJ(enemy)->fadeEffect(3);
+	OBJ(enemy)->fadeEffect(Obj::KingEfx_Roar);
+	OBJ(enemy)->fadeEffect(Obj::KingEfx_RoarInd);
 }
 
 /**
@@ -1695,7 +1697,7 @@ StateDamage::StateDamage(int stateID)
 void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	OBJ(enemy)->startMotionSelf(KINGANIM_Damage, nullptr);
-	_10 = 0;
+	mStunTimer = 0;
 }
 
 /**
@@ -1704,9 +1706,9 @@ void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDamage::exec(EnemyBase* enemy)
 {
-	if (_10 > 0) {
-		_10++;
-		if (_10 > CG_PROPERPARMS(enemy).mBombDamageTime.mValue) {
+	if (mStunTimer > 0) {
+		mStunTimer++;
+		if (mStunTimer > CG_PROPERPARMS(enemy).mBombDamageTime.mValue) {
 			enemy->finishMotion();
 		}
 	}
@@ -1718,11 +1720,11 @@ void StateDamage::exec(EnemyBase* enemy)
 			break;
 
 		case KEYEVENT_2:
-			OBJ(enemy)->createEffect(4);
+			OBJ(enemy)->createEffect(Obj::KingEfx_EatBomb);
 			break;
 
 		case KEYEVENT_3:
-			OBJ(enemy)->createEffect(5);
+			OBJ(enemy)->createEffect(Obj::KingEfx_NoseSmoke);
 			break;
 
 		case KEYEVENT_4:
@@ -1736,7 +1738,7 @@ void StateDamage::exec(EnemyBase* enemy)
 			break;
 
 		case KEYEVENT_6:
-			_10 = 1;
+			mStunTimer = 1;
 			break;
 
 		case KEYEVENT_END:
@@ -1758,8 +1760,8 @@ void StateDamage::exec(EnemyBase* enemy)
  */
 void StateDamage::cleanup(EnemyBase* enemy)
 {
-	OBJ(enemy)->fadeEffect(5);
-	OBJ(enemy)->fadeEffect(4);
+	OBJ(enemy)->fadeEffect(Obj::KingEfx_NoseSmoke);
+	OBJ(enemy)->fadeEffect(Obj::KingEfx_EatBomb);
 }
 
 /**
@@ -1828,7 +1830,7 @@ StateEat::StateEat(int stateID)
 void StateEat::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	OBJ(enemy)->startMotionSelf(KINGANIM_Eat, nullptr);
-	_10 = static_cast<StateEatArg*>(stateArg)->_00;
+	mDoStunAfter = static_cast<StateEatArg*>(stateArg)->mDoStunAfter;
 }
 
 /**
@@ -1842,7 +1844,7 @@ void StateEat::exec(EnemyBase* enemy)
 			OBJ(enemy)->endBlendAnimation();
 
 		} else if (enemy->mCurAnim->mType == KEYEVENT_END) {
-			if (_10) {
+			if (mDoStunAfter) {
 				transit(enemy, KINGCHAPPY_Damage, nullptr);
 			} else {
 				transit(enemy, KINGCHAPPY_Swallow, nullptr);
@@ -1893,7 +1895,7 @@ void StateHide::exec(EnemyBase* enemy)
 			break;
 
 		case KEYEVENT_2:
-			OBJ(enemy)->createEffect(1);
+			OBJ(enemy)->createEffect(Obj::KingEfx_Dive);
 			if (enemy->mWaterBox) {
 				enemy->mSoundObj->startSound(PSSE_EN_KING_WATER_APPEAR, 0);
 			} else {
@@ -1902,7 +1904,7 @@ void StateHide::exec(EnemyBase* enemy)
 			break;
 
 		case KEYEVENT_4:
-			OBJ(enemy)->fadeEffect(1);
+			OBJ(enemy)->fadeEffect(Obj::KingEfx_Dive);
 			break;
 
 		case KEYEVENT_END:
@@ -1921,8 +1923,8 @@ void StateHide::exec(EnemyBase* enemy)
  */
 void StateHide::cleanup(EnemyBase* enemy)
 {
-	OBJ(enemy)->fadeEffect(1);
-	OBJ(enemy)->fadeEffect(0);
+	OBJ(enemy)->fadeEffect(Obj::KingEfx_Dive);
+	OBJ(enemy)->fadeEffect(Obj::KingEfx_Drool);
 	enemy->fadeEfxHamon();
 }
 
@@ -1942,12 +1944,12 @@ StateHideWait::StateHideWait(int stateID)
  */
 void StateHideWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	_10 = 0;
+	mCanCheckAppearTimer = 0;
 	OBJ(enemy)->startMotionSelf(KINGANIM_HideWait, nullptr);
 	enemy->disableEvent(0, EB_LifegaugeVisible);
 	enemy->hardConstraintOn();
-	OBJ(enemy)->fadeEffect(0);
-	_14 = 0;
+	OBJ(enemy)->fadeEffect(Obj::KingEfx_Drool);
+	mHasMadeEfx = false;
 	enemy->enableEvent(0, EB_BitterImmune);
 }
 
@@ -1958,14 +1960,15 @@ void StateHideWait::init(EnemyBase* enemy, StateArg* stateArg)
 void StateHideWait::exec(EnemyBase* enemy)
 {
 	enemy->fadeEfxHamon();
-	if (!_14 && enemy->mWaterBox) {
-		OBJ(enemy)->createEffect(8);
-		_14 = 1;
+	if (!mHasMadeEfx && enemy->mWaterBox) {
+		// WHY is this not just in init
+		OBJ(enemy)->createEffect(Obj::KingEfx_Hiding);
+		mHasMadeEfx = 1;
 	}
 
-	_10++;
+	mCanCheckAppearTimer++;
 
-	if (OBJ(enemy)->_2EC || _10 > CG_PROPERPARMS(enemy).mTimeToAppearance.mValue) {
+	if (OBJ(enemy)->mDoCheckAppear || mCanCheckAppearTimer > CG_PROPERPARMS(enemy).mTimeToAppearance.mValue) {
 		f32 range = CG_PROPERPARMS(enemy).mDistanceToSpawn.mValue * enemy->mScaleModifier;
 
 		bool doWake;
@@ -1979,7 +1982,7 @@ void StateHideWait::exec(EnemyBase* enemy)
 
 		if (doWake) {
 			transit(enemy, KINGCHAPPY_Appear, nullptr);
-			OBJ(enemy)->_2EC = 0;
+			OBJ(enemy)->mDoCheckAppear = false;
 		}
 	}
 
@@ -1988,7 +1991,7 @@ void StateHideWait::exec(EnemyBase* enemy)
 			OBJ(enemy)->endBlendAnimation();
 		} else if (enemy->mCurAnim->mType == KEYEVENT_END) {
 			transit(enemy, KINGCHAPPY_Appear, nullptr);
-			OBJ(enemy)->_2EC = 0;
+			OBJ(enemy)->mDoCheckAppear = false;
 		}
 	}
 }
@@ -1999,7 +2002,7 @@ void StateHideWait::exec(EnemyBase* enemy)
  */
 void StateHideWait::cleanup(EnemyBase* enemy)
 {
-	OBJ(enemy)->fadeEffect(8);
+	OBJ(enemy)->fadeEffect(Obj::KingEfx_Hiding);
 	enemy->disableEvent(0, EB_BitterImmune);
 }
 
@@ -2024,7 +2027,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->setEmotionExcitement();
 	enemy->disableEvent(0, EB_BitterImmune);
 	enemy->enableEvent(0, EB_NoInterrupt);
-	_10 = 1;
+	mHasNotShaken = true;
 
 	f32 faceDir  = enemy->getFaceDir();
 	Vector3f pos = enemy->getPosition();
@@ -2040,7 +2043,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 		enemy->mSoundObj->startSound(PSSE_EN_KING_APPEAR, 0);
 	}
 
-	OBJ(enemy)->createEffect(0);
+	OBJ(enemy)->createEffect(Obj::KingEfx_Drool);
 	enemy->createEfxHamon();
 	cameraMgr->startVibration(15, pos, 2);
 	rumbleMgr->startRumble(12, pos, 2);
@@ -2069,7 +2072,7 @@ void StateAppear::exec(EnemyBase* enemy)
 			break;
 
 		case KEYEVENT_3:
-			_10             = 0;
+			mHasNotShaken   = false;
 			f32 shakePower  = CG_PROPERPARMS(enemy).mAppearanceShakeOffPower.mValue;
 			f32 shakeDamage = CG_GENERALPARMS(enemy).mShakeDamage.mValue;
 			f32 shakeRange  = CG_PROPERPARMS(enemy).mAppearanceShakeOffRange.mValue;

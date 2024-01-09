@@ -220,10 +220,10 @@ struct ArgKchYodare : public Arg {
 	{
 	}
 
-	ArgKchYodare(Vector3f position, f32 scale)
+	ArgKchYodare(Vector3f position, f32 y)
 	    : Arg(position)
 	{
-		mScale = scale;
+		mGroundYPos = y;
 	}
 
 	virtual const char* getName() // _08 (weak)
@@ -233,7 +233,7 @@ struct ArgKchYodare : public Arg {
 
 	// _00     = VTBL
 	// _00-_10 = Arg
-	f32 mScale; // _10
+	f32 mGroundYPos; // _10
 };
 
 struct ArgKouhai : public Arg {

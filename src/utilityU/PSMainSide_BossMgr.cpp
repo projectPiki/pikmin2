@@ -163,12 +163,12 @@ void Mgr::exec()
 		if (state == 0 && mTypedProc.mPrevState) {
 			MiddleBossSeq* seq = PSMGetMiddleBossSeq();
 			if (seq->mJumpPort._70) {
-				seq->requestJumpBgmOnBeat(0);
+				seq->requestJumpBgmOnBeat(PSM::EnemyMidBoss::BossBgm_InactiveLoop);
 			}
 		} else if ((state == 3 || state == 2) && (mTypedProc.mPrevState == 1 || mTypedProc.mPrevState == 0)) {
 			MiddleBossSeq* seq = PSMGetMiddleBossSeq();
 			if (!seq->mJumpPort._70) {
-				seq->requestJumpBgmOnBeat(1);
+				seq->requestJumpBgmOnBeat(PSM::EnemyMidBoss::BossBgm_MainLoop);
 			}
 		}
 	}

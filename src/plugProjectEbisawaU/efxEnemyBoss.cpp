@@ -611,10 +611,10 @@ bool TKchYodareBaseChaseMtx::create(Arg* arg)
 	P2ASSERTLINE(389, nameCheck);
 
 	ArgKchYodare* argp = static_cast<ArgKchYodare*>(arg);
-	f32 scale          = argp->mScale;
+	f32 y              = argp->mGroundYPos;
 	mParticleCallBack.mHitGround.create(nullptr);
 	mParticleCallBack.mHitWater.create(nullptr);
-	mScale = scale;
+	mGroundYPos = y;
 
 	if (TSync::create(arg)) {
 		mEmitter->mParticleCallback = &mParticleCallBack;

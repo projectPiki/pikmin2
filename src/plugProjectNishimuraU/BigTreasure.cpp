@@ -1462,7 +1462,7 @@ void Obj::startBossChargeBGM()
 {
 	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
 	PSM::checkBoss(soundObj);
-	soundObj->jumpRequest(2);
+	soundObj->jumpRequest(PSM::EnemyBigBoss::BigBossBgm_AttackPrep);
 }
 
 /**
@@ -1474,19 +1474,19 @@ void Obj::startBossAttackBGM()
 	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
 	PSM::checkBoss(soundObj);
 
-	int jumpReqIdx = 3;
+	int jumpReqIdx = PSM::EnemyBigBoss::BigBossBgm_FlareCannon;
 	switch (mAttackIndex) {
 	case 0:
-		jumpReqIdx = 7;
+		jumpReqIdx = PSM::EnemyBigBoss::BigBossBgm_ShockTherapist;
 		break;
 	case 1:
-		jumpReqIdx = 3;
+		jumpReqIdx = PSM::EnemyBigBoss::BigBossBgm_FlareCannon;
 		break;
 	case 2:
-		jumpReqIdx = 5;
+		jumpReqIdx = PSM::EnemyBigBoss::BigBossBgm_ComedyBomb;
 		break;
 	case 3:
-		jumpReqIdx = 6;
+		jumpReqIdx = PSM::EnemyBigBoss::BigBossBgm_MonsterPump;
 		break;
 	}
 
@@ -1512,19 +1512,19 @@ void Obj::finishBossAttackBGM()
 
 	switch (counter) {
 	case 0:
-		jumpReqIdx = 11;
+		jumpReqIdx = PSM::EnemyBigBoss::BigBossBgm_NoWeapons;
 		break;
 	case 1:
-		jumpReqIdx = 10;
+		jumpReqIdx = PSM::EnemyBigBoss::BigBossBgm_1Weapon;
 		break;
 	case 2:
-		jumpReqIdx = 9;
+		jumpReqIdx = PSM::EnemyBigBoss::BigBossBgm_2Weapons;
 		break;
 	case 3:
-		jumpReqIdx = 8;
+		jumpReqIdx = PSM::EnemyBigBoss::BigBossBgm_3Weapons;
 		break;
 	case 4:
-		jumpReqIdx = 1;
+		jumpReqIdx = PSM::EnemyBigBoss::BigBossBgm_4Weapons;
 		break;
 	}
 
@@ -1539,7 +1539,7 @@ void Obj::startBossFlickBGM()
 {
 	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
 	PSM::checkBoss(soundObj);
-	soundObj->jumpRequest(4);
+	soundObj->jumpRequest(PSM::EnemyBigBoss::BigBossBgm_NoWeaponsFlick);
 }
 
 /**
@@ -1551,7 +1551,7 @@ void Obj::startBossItemDropBGM()
 	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
 	PSM::checkBoss(soundObj);
 
-	int jumpReqIdx = 8;
+	int jumpReqIdx = PSM::EnemyBigBoss::BigBossBgm_3Weapons;
 	int counter    = 0;
 	for (int i = 0; i < 4; i++) {
 		if (mTreasures[i]) {
@@ -1561,16 +1561,16 @@ void Obj::startBossItemDropBGM()
 
 	switch (counter) {
 	case 0:
-		jumpReqIdx = 11;
+		jumpReqIdx = PSM::EnemyBigBoss::BigBossBgm_NoWeapons;
 		break;
 	case 1:
-		jumpReqIdx = 10;
+		jumpReqIdx = PSM::EnemyBigBoss::BigBossBgm_1Weapon;
 		break;
 	case 2:
-		jumpReqIdx = 9;
+		jumpReqIdx = PSM::EnemyBigBoss::BigBossBgm_2Weapons;
 		break;
 	case 3:
-		jumpReqIdx = 8;
+		jumpReqIdx = PSM::EnemyBigBoss::BigBossBgm_3Weapons;
 		break;
 	}
 

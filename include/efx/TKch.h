@@ -184,7 +184,7 @@ struct TKchYodareBaseChaseMtx : public TChaseMtx {
 	inline TKchYodareBaseChaseMtx(Mtx mtx, u16 effectID)
 	    : TChaseMtx(effectID, (Matrixf*)mtx)
 	{
-		mScale = 0.0f;
+		mGroundYPos = 0.0f;
 	}
 
 	virtual bool create(Arg*); // _08
@@ -219,11 +219,15 @@ struct TKchYodareBaseChaseMtx : public TChaseMtx {
 	// _00      = VTBL
 	// _00-_14  = TChaseMtx
 	TParticleCallBack_KchYodare mParticleCallBack; // _14
-	f32 mScale;                                    // _50
+	f32 mGroundYPos;                               // _50
 };
 
 struct TKchAttackYodare : public TKchYodareBaseChaseMtx {
-	TKchAttackYodare(Mtx mtx);
+	TKchAttackYodare(Mtx mtx)
+	    : TKchYodareBaseChaseMtx(mtx, PID_KchYodareBase_1)
+	{
+		FORCE_DONT_INLINE;
+	}
 
 	virtual ~TKchAttackYodare() { } // _48 (weak)
 
@@ -232,7 +236,11 @@ struct TKchAttackYodare : public TKchYodareBaseChaseMtx {
 };
 
 struct TKchDeadYodare : public TKchYodareBaseChaseMtx {
-	TKchDeadYodare(Mtx mtx);
+	TKchDeadYodare(Mtx mtx)
+	    : TKchYodareBaseChaseMtx(mtx, PID_KchYodareBase_Dead)
+	{
+		FORCE_DONT_INLINE;
+	}
 
 	virtual ~TKchDeadYodare() { } // _48 (weak)
 
@@ -241,7 +249,11 @@ struct TKchDeadYodare : public TKchYodareBaseChaseMtx {
 };
 
 struct TKchYodare : public TKchYodareBaseChaseMtx {
-	TKchYodare(Mtx mtx);
+	TKchYodare(Mtx mtx)
+	    : TKchYodareBaseChaseMtx(mtx, PID_KchYodareBase_2)
+	{
+		FORCE_DONT_INLINE;
+	}
 
 	virtual ~TKchYodare() { } // _48 (weak)
 

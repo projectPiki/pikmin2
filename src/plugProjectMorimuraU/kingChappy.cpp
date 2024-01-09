@@ -21,8 +21,8 @@ namespace Game {
 namespace KingChappy {
 Obj* curK;
 
-static const int unusedKingChappyArray[] = { 0, 0, 0 };
-static const char kingChappyName[]       = "kingChappy";
+static const u32 padding[]    = { 0, 0, 0 };
+static const char className[] = "kingChappy";
 
 /**
  * @note Address: 0x8035CCE8
@@ -61,8 +61,8 @@ static bool rFootCallBack(J3DJoint* joint, int footIdx)
 void Obj::setParameters()
 {
 	EnemyBase::setParameters();
-	if (_394 || C_PARMS->_BCC) {
-		_394           = 1;
+	if (mIsBig || C_PARMS->mDoForceBig) {
+		mIsBig         = true;
 		f32 scale      = C_PROPERPARMS.mBigScale.mValue;
 		mScaleModifier = scale;
 		mScale         = Vector3f(scale);
@@ -103,14 +103,14 @@ void Obj::onInit(CreatureInitArg* initArg)
 
 	mFsm->start(this, KINGCHAPPY_HideWait, nullptr);
 
-	mHomePosition   = mPosition;
-	mGoalPosition   = mHomePosition;
-	mHomePosition.y = 0.0f;
-	_2EC            = 1;
-	_2F0            = 0;
-	_2F4            = mHomePosition;
-	_30C            = 0;
-	_338            = 0;
+	mHomePosition             = mPosition;
+	mGoalPosition             = mHomePosition;
+	mHomePosition.y           = 0.0f;
+	mDoCheckAppear            = true;
+	mSearchDelayTimer         = 0;
+	mPrevWalkingCheckPosition = mHomePosition;
+	mWalkingTimer             = 0;
+	mCanEatBombs              = false;
 
 	P2ASSERTLINE(121, mModel);
 	J3DJoint* joint;
@@ -126,8 +126,8 @@ void Obj::onInit(CreatureInitArg* initArg)
 	P2ASSERTLINE(132, joint2);
 	joint2->mFunction = &rFootCallBack;
 
-	_320 = 0.0f;
-	_334 = 0.0f;
+	mLFootHeightRatio = 0.0f;
+	mRFootHeightRatio = 0.0f;
 
 	mEfxYodare->mMtx     = mMouthJoint2->getWorldMatrix();
 	mEfxCryInd->mMtx     = mMouthJoint2->getWorldMatrix();
@@ -140,12 +140,12 @@ void Obj::onInit(CreatureInitArg* initArg)
 	PSM::checkBoss(soundObj);
 	soundObj->setAppearFlag(false);
 
-	_394 = 0;
+	mIsBig = false;
 
-	// increase size of emperor if _BCC is set, or if we're in Bulblax Kingdom
+	// Use big emperor if mDoForceBig is set, or if we're in Bulblax Kingdom
 	SingleGameSection* section = static_cast<SingleGameSection*>(gameSystem->mSection);
-	if (C_PARMS->_BCC || (section && section->getCaveID() == 'f_03')) {
-		_394           = 1;
+	if (C_PARMS->mDoForceBig || (section && section->getCaveID() == 'f_03')) {
+		mIsBig         = true;
 		mHealth        = C_PROPERPARMS.mBigLife.mValue;
 		f32 scale      = C_PROPERPARMS.mBigScale.mValue;
 		mScaleModifier = scale;
@@ -164,13 +164,13 @@ Obj::Obj()
     , mBodyJoint(nullptr)
     , mTongueJoint1(nullptr)
     , mTongueJoint2(nullptr)
-    , _2E4(0)
-    , _2EC(1)
-    , _2F0(0)
-    , _30C(0)
+    , mAllowAnimBlending(false)
+    , mDoCheckAppear(true)
+    , mSearchDelayTimer(0)
+    , mWalkingTimer(0)
     , mLFootJointIndex(0)
     , mRFootJointIndex(0)
-    , _340(nullptr)
+    , mCurrentWaterBox(nullptr)
     , mFsm(nullptr)
     , mEfxYodare(nullptr)
     , mEfxDiveSand(nullptr)
@@ -181,9 +181,9 @@ Obj::Obj()
     , mEfxAttack(nullptr)
     , mEfxDeadYodare(nullptr)
     , mEfxDeadHana(nullptr)
-    , _374(nullptr)
-    , _378(nullptr)
-    , _394(0)
+    , mLeftEyeRippleEfx(nullptr)
+    , mRightEyeRippleEfx(nullptr)
+    , mIsBig(false)
 {
 
 	mAnimator = new ProperAnimator;
@@ -200,44 +200,9 @@ Obj::Obj()
 	mEfxDeadYodare = new efx::TKchDeadYodare(nullptr);
 	mEfxDeadHana   = new efx::TKchDeadHana;
 
-	_374 = new efx::TEnemyHamonChasePos(&_37C);
-	_378 = new efx::TEnemyHamonChasePos(&_388);
+	mRightEyeRippleEfx = new efx::TEnemyHamonChasePos(&mRightEyePosition);
+	mLeftEyeRippleEfx  = new efx::TEnemyHamonChasePos(&mLeftEyePosition);
 }
-} // namespace KingChappy
-} // namespace Game
-
-namespace efx {
-/**
- * @note Address: 0x8035D810
- * @note Size: 0x1D8
- */
-TKchDeadYodare::TKchDeadYodare(Mtx mtx)
-    : TKchYodareBaseChaseMtx(mtx, PID_KchYodareBase_Dead)
-{
-}
-
-/**
- * @note Address: 0x8035DD24
- * @note Size: 0x1D8
- */
-TKchAttackYodare::TKchAttackYodare(Mtx mtx)
-    : TKchYodareBaseChaseMtx(mtx, PID_KchYodareBase_1)
-{
-}
-
-/**
- * @note Address: 0x8035DEFC
- * @note Size: 0x1D8
- */
-TKchYodare::TKchYodare(Mtx mtx)
-    : TKchYodareBaseChaseMtx(mtx, PID_KchYodareBase_2)
-{
-}
-
-} // namespace efx
-
-namespace Game {
-namespace KingChappy {
 
 /**
  * @note Address: 0x8035E0D4
@@ -256,16 +221,15 @@ void Obj::setFSM(FSM* fsm)
  */
 void Obj::doUpdate()
 {
-	if (!_340) {
+	if (!mCurrentWaterBox) {
 		Sys::Sphere sphere(mPosition, 500.0f);
 		P2ASSERTLINE(235, mapMgr->mSeaMgr);
-		_340 = mapMgr->mSeaMgr->findWater2d(sphere);
+		mCurrentWaterBox = mapMgr->mSeaMgr->findWater2d(sphere);
 	}
 
-	_300 = mPosition;
-
-	_300.x -= 10.0f * sinf(mFaceDir);
-	_300.z -= 10.0f * cosf(mFaceDir);
+	mFootPosition = mPosition;
+	mFootPosition.x -= 10.0f * sinf(mFaceDir);
+	mFootPosition.z -= 10.0f * cosf(mFaceDir);
 
 	mScale = Vector3f(mScaleModifier);
 	mCollTree->mPart->setScale(mScaleModifier);
@@ -298,8 +262,8 @@ void Obj::doAnimationUpdateAnimator()
 		SysShape::BlendLinearFun linearBlend;
 		animator->animate(&linearBlend, 60.0f * sys->mDeltaTime, frameRate, frameRate);
 
-		SysShape::Model* model                                        = mModel;
-		model->mJ3dModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = static_cast<J3DMtxCalcAnmBase*>(animator->mAnimator.getCalc());
+		SysShape::Model* model = mModel;
+		model->mJ3dModel->mModelData->mJointTree.getJointNodePointer(0)->setMtxCalc(animator->mAnimator.getCalc());
 	} else {
 		EnemyBase::doAnimationUpdateAnimator();
 	}
@@ -321,14 +285,14 @@ void Obj::onKill(CreatureKillArg* killArg)
  */
 void Obj::doAnimationCullingOff()
 {
-	if (C_PARMS->_BCA) {
-		if (getStateID() == KINGCHAPPY_Walk || _320 != 0.0f || _334 != 0.0f) {
+	if (C_PARMS->mDoUseFootCallback) {
+		if (getStateID() == KINGCHAPPY_Walk || mLFootHeightRatio != 0.0f || mRFootHeightRatio != 0.0f) {
 			curK = this;
 		}
 	}
 
-	if (C_PARMS->_BC8) {
-		C_PARMS->_BC8 = 0;
+	if (C_PARMS->mDoForceHide) {
+		C_PARMS->mDoForceHide = 0;
 		mFsm->transit(this, KINGCHAPPY_Hide, nullptr);
 	}
 
@@ -359,8 +323,7 @@ void Obj::doAnimationCullingOff()
 		Matrixf* mat;
 		Creature* stuckCreature = mMouthSlots.getStuckCreature(i);
 		if (stuckCreature) {
-			mat = (Matrixf*)mModel->mJ3dModel->mMtxBuffer->mWorldMatrices[mJointIndices[i]];
-			// mat = mModel->mJ3dModel->mMtxBuffer->getWorldMatrix(_33C[i]);
+			mat             = (Matrixf*)mModel->mJ3dModel->mMtxBuffer->mWorldMatrices[mMouthJointIndices[i]];
 			Vector3f xBasis = mat->getBasis(0);
 			Vector3f yBasis = mat->getBasis(1);
 			Vector3f zBasis = mat->getBasis(2);
@@ -373,7 +336,7 @@ void Obj::doAnimationCullingOff()
 			}
 
 			if (stuckCreature->isTeki()) {
-				if (_338 && static_cast<EnemyBase*>(stuckCreature)->getEnemyTypeID() == EnemyTypeID::EnemyID_Bomb) {
+				if (mCanEatBombs && static_cast<EnemyBase*>(stuckCreature)->getEnemyTypeID() == EnemyTypeID::EnemyID_Bomb) {
 					static_cast<Bomb::Obj*>(stuckCreature)->_2BD = 1;
 				}
 			} else {
@@ -827,9 +790,9 @@ lbl_8035E934:
  */
 void Obj::doSimulation(f32 rate)
 {
-	_2F0--;
-	if (_2F0 < 0) {
-		_2F0 = 0;
+	mSearchDelayTimer--;
+	if (mSearchDelayTimer < 0) {
+		mSearchDelayTimer = 0;
 	}
 
 	EnemyBase::doSimulation(rate);
@@ -891,8 +854,8 @@ void Obj::collisionCallback(CollEvent& event) { event.mHitPart->mCurrentID == ('
  */
 void Obj::wallCallback(MoveInfo const& moveInfo)
 {
-	_2F0            = 120;
-	mTargetCreature = nullptr;
+	mSearchDelayTimer = 120;
+	mTargetCreature   = nullptr;
 	setNextGoal();
 }
 
@@ -967,7 +930,7 @@ void Obj::doFinishStoneState()
 	EnemyFunc::flickStickPikmin(this, C_GENERALPARMS.mShakeChance.mValue, C_GENERALPARMS.mShakeKnockback.mValue,
 	                            C_GENERALPARMS.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 	mFlickTimer = 0.0f;
-	createEffect(0);
+	createEffect(KingEfx_Drool);
 }
 
 /**
@@ -985,8 +948,8 @@ void Obj::doStartMovie()
 	mEfxAttack->startDemoDrawOff();
 	mEfxDeadYodare->startDemoDrawOff();
 	mEfxDeadHana->startDemoDrawOff();
-	_374->startDemoDrawOff();
-	_378->startDemoDrawOff();
+	mRightEyeRippleEfx->startDemoDrawOff();
+	mLeftEyeRippleEfx->startDemoDrawOff();
 }
 
 /**
@@ -1004,8 +967,8 @@ void Obj::doEndMovie()
 	mEfxAttack->endDemoDrawOn();
 	mEfxDeadYodare->endDemoDrawOn();
 	mEfxDeadHana->endDemoDrawOn();
-	_374->endDemoDrawOn();
-	_378->endDemoDrawOn();
+	mRightEyeRippleEfx->endDemoDrawOn();
+	mLeftEyeRippleEfx->endDemoDrawOn();
 }
 
 /**
@@ -1016,11 +979,11 @@ void Obj::initMouthSlots()
 {
 	char* slotNames[] = { "kamu1", "kamu2", "kamu3", "kamu4", "kamu5", "kamu6", "kamu7", "kamu8", "kamu9" };
 	mMouthSlots.alloc(9);
-	mJointIndices = new u16[9];
+	mMouthJointIndices = new u16[9];
 	for (int i = 0; i < mMouthSlots.mMax; i++) {
 		mMouthSlots.setup(i, mModel, slotNames[i]);
 		mMouthSlots.getSlot(i)->mRadius = 25.0f * mScaleModifier;
-		mJointIndices[i]                = mModel->getJointIndex(slotNames[i]);
+		mMouthJointIndices[i]           = mModel->getJointIndex(slotNames[i]);
 	}
 }
 
@@ -1151,7 +1114,7 @@ void Obj::searchTarget()
 {
 	mTargetCreature = nullptr;
 
-	if (_2F0 > 0) {
+	if (mSearchDelayTimer > 0) {
 		return;
 	}
 
@@ -1576,7 +1539,7 @@ bool Obj::forceTransit(int stateID)
 		return false;
 	case KINGCHAPPY_WarCry:
 		if (currStateID == KINGCHAPPY_Walk && mFlickTimer > 0.0f) {
-			_2E4 = 1;
+			mAllowAnimBlending = true;
 			mFsm->transit(this, stateID, nullptr);
 			break;
 		}
@@ -1603,7 +1566,7 @@ void Obj::walkFunc()
 	f32 speed        = C_GENERALPARMS.mMoveSpeed();
 	f32 maxTurnAngle = C_GENERALPARMS.mMaxTurnAngle();
 	f32 turnSpeed    = C_GENERALPARMS.mTurnSpeed();
-	if (_394) {
+	if (mIsBig) {
 		speed        = C_PROPERPARMS.mBigSpeed();
 		maxTurnAngle = C_PROPERPARMS.mBigRotationMaxSpeed();
 		turnSpeed    = C_PROPERPARMS.mBigRotationSpeedRate();
@@ -1611,16 +1574,20 @@ void Obj::walkFunc()
 
 	searchTarget();
 	EnemyFunc::walkToTarget(this, mGoalPosition, speed, turnSpeed, maxTurnAngle);
-	_30C++;
-	if (_30C > 120) {
-		if (sqrDistanceXZ(mPosition, _2F4) < 900.0f) {
-			_2F0            = 120;
-			mTargetCreature = nullptr;
-			mGoalPosition   = mHomePosition;
+
+	// every 120 frames of walking, check if emperor moved less than sqrt(900) units
+	// since the last check, if it has, remove the active search target.
+	// this certainly explains why its so bad at chasing stuff
+	mWalkingTimer++;
+	if (mWalkingTimer > 120) {
+		if (sqrDistanceXZ(mPosition, mPrevWalkingCheckPosition) < 900.0f) {
+			mSearchDelayTimer = 120;
+			mTargetCreature   = nullptr;
+			mGoalPosition     = mHomePosition;
 		}
 
-		_2F4 = mPosition;
-		_30C = 0;
+		mPrevWalkingCheckPosition = mPosition;
+		mWalkingTimer             = 0;
 	}
 }
 
@@ -1638,7 +1605,7 @@ f32 Obj::turnFunc(f32 scale)
 	f32 maxAngle  = C_GENERALPARMS.mMaxTurnAngle();
 	f32 turnSpeed = C_GENERALPARMS.mTurnSpeed();
 
-	if (_394) {
+	if (mIsBig) {
 		maxAngle  = C_PROPERPARMS.mBigRotationMaxSpeed();
 		turnSpeed = C_PROPERPARMS.mBigRotationSpeedRate();
 	}
@@ -1802,7 +1769,7 @@ void Obj::checkAttack(bool check)
 	}
 
 	f32 attackRange, attackAngle; // f27, f26
-	if (_394) {
+	if (mIsBig) {
 		attackRange = C_PROPERPARMS.mBigAttackHitRange();
 		attackAngle = C_PROPERPARMS.mBigAttackAngle();
 	} else {
@@ -1824,7 +1791,7 @@ void Obj::checkAttack(bool check)
 				Vector3f targetPos = mTargetCreature->getPosition();
 
 				if (sqrDistanceXZ(mPosition, targetPos) > SQUARE(range)) {
-					_2E4 = check;
+					mAllowAnimBlending = check;
 					mFsm->transit(this, KINGCHAPPY_Attack, nullptr);
 					mTargetCreature = nullptr;
 				} else {
@@ -1860,7 +1827,7 @@ void Obj::checkAttack(bool check)
 			Vector3f targetPos = bomb->getPosition();
 
 			if (sqrDistanceXZ(mPosition, targetPos) > SQUARE(range)) {
-				_2E4 = check;
+				mAllowAnimBlending = check;
 				mFsm->transit(this, KINGCHAPPY_Attack, nullptr);
 				mTargetCreature = nullptr;
 			}
@@ -2467,7 +2434,7 @@ void Obj::checkFlick(bool check)
 		return;
 	}
 
-	_2E4 = check;
+	mAllowAnimBlending = check;
 
 	if (mHealth < 0.5f * C_GENERALPARMS.mHealth()) {
 		if (randFloat() < C_PROPERPARMS.mFlickShoutRate()) {
@@ -2499,8 +2466,8 @@ void Obj::checkDead(bool check)
 	}
 
 	if (mHealth <= 0.0f) {
-		_2E4 = check;
-		// Parms* parms = C_PARMS;
+		mAllowAnimBlending = check;
+
 		if (randFloat() < C_PROPERPARMS.mDeathRate()) {
 			mFsm->transit(this, KINGCHAPPY_WarCry, nullptr);
 			return;
@@ -2528,7 +2495,7 @@ void Obj::checkTurn(bool check)
 
 	f32 angle = getCreatureViewAngle(mGoalPosition);
 	if (absF(angle) > TORADIANS(C_PROPERPARMS.mRequiredTurningAngleDeg())) {
-		_2E4 = check;
+		mAllowAnimBlending = check;
 		mFsm->transit(this, KINGCHAPPY_Turn, nullptr);
 	}
 }
@@ -2545,7 +2512,7 @@ void Obj::startMotionSelf(int animIdx, SysShape::MotionListener* listener)
 
 	bool isBlendAnimating    = false;
 	ProperAnimator* animator = static_cast<ProperAnimator*>(mAnimator);
-	if (_2E4 && !animator->mAnimator.mIsBlendEnabled) {
+	if (mAllowAnimBlending && !animator->mAnimator.mIsBlendEnabled) {
 		SysShape::Animator& sysAnim = animator->getAnimator(0);
 		f32 frame;
 		if (sysAnim.mAnimInfo) {
@@ -2574,7 +2541,7 @@ void Obj::startMotionSelf(int animIdx, SysShape::MotionListener* listener)
 	if (!isBlendAnimating) {
 		startMotion(animIdx, listener);
 	}
-	_2E4 = 0;
+	mAllowAnimBlending = false;
 }
 
 /**
@@ -2602,13 +2569,19 @@ void Obj::endBlendAnimation()
  * @note Address: 0x80361398
  * @note Size: 0x44
  */
-void Obj::leftFootMtxCalc() { footMtxCalc(mModel->mJ3dModel->mMtxBuffer->mWorldMatrices[mLFootJointIndex], &mLFootPosition, &_320); }
+void Obj::leftFootMtxCalc()
+{
+	footMtxCalc(mModel->mJ3dModel->mMtxBuffer->mWorldMatrices[mLFootJointIndex], &mLFootPosition, &mLFootHeightRatio);
+}
 
 /**
  * @note Address: 0x803613DC
  * @note Size: 0x44
  */
-void Obj::rightFootMtxCalc() { footMtxCalc(mModel->mJ3dModel->mMtxBuffer->mWorldMatrices[mRFootJointIndex], &mRFootPosition, &_334); }
+void Obj::rightFootMtxCalc()
+{
+	footMtxCalc(mModel->mJ3dModel->mMtxBuffer->mWorldMatrices[mRFootJointIndex], &mRFootPosition, &mRFootHeightRatio);
+}
 
 /**
  * @note Address: 0x80361420
@@ -2655,10 +2628,10 @@ void Obj::footMtxCalc(Mtx mtx, Vector3f* pos, f32* p1)
  */
 void Obj::resetFootPos()
 {
-	mLFootPosition = mModel->mJ3dModel->mMtxBuffer->getWorldMatrix(mLFootJointIndex)->getBasis(3);
-	_320           = 0.0f;
-	mRFootPosition = mModel->mJ3dModel->mMtxBuffer->getWorldMatrix(mRFootJointIndex)->getBasis(3);
-	_334           = 0.0f;
+	mLFootPosition    = mModel->mJ3dModel->mMtxBuffer->getWorldMatrix(mLFootJointIndex)->getPosition();
+	mLFootHeightRatio = 0.0f;
+	mRFootPosition    = mModel->mJ3dModel->mMtxBuffer->getWorldMatrix(mRFootJointIndex)->getPosition();
+	mRFootHeightRatio = 0.0f;
 }
 
 /**
@@ -2688,16 +2661,16 @@ void Obj::createEffect(int effectID)
 	efx::ArgKchYodare fxArgYodare(mPosition, -1000.0f);
 
 	switch (effectID) {
-	case 0: // yodare
-		if (_340) {
-			fxArgYodare.mScale = *_340->getSeaHeightPtr();
+	case KingEfx_Drool: // drool effect
+		if (mCurrentWaterBox) {
+			fxArgYodare.mGroundYPos = *mCurrentWaterBox->getSeaHeightPtr();
 		}
 
 		mEfxYodare->create(&fxArgYodare);
 		mEfxYodare->setGlobalScale(mScaleModifier);
 		break;
 
-	case 1: // dive
+	case 1: // diving dust/water splash
 		if (mWaterBox) {
 			mEfxDiveWater->create(&fxArg);
 			mEfxDiveWater->setGlobalScale(mScaleModifier);
@@ -2707,17 +2680,17 @@ void Obj::createEffect(int effectID)
 		}
 		break;
 
-	case 2: // war cry AB
+	case 2: // roaring falling rocks/shockwave
 		mEfxCryAB->create(&fxArg);
 		mEfxCryAB->setGlobalScale(mScaleModifier);
 		break;
 
-	case 3: // war cry ind
+	case 3: // roaring distortion effect
 		mEfxCryInd->create(&fxArg);
 		mEfxCryInd->setGlobalScale(mScaleModifier);
 		break;
 
-	case 4: // damage
+	case 4: // explosion after eating a bomb
 		efx::ArgScale fxArgScale(mPosition, mScaleModifier);
 
 		efx::TKchDamage damageFX(mMouthJoint2->getWorldMatrix());
@@ -2725,23 +2698,23 @@ void Obj::createEffect(int effectID)
 		damageFX.mMtx = mMouthJoint2->getWorldMatrix();
 		break;
 
-	case 5: // smoke
+	case 5: // nostril smoke
 		mEfxSmoke->create(&fxArg);
 		mEfxSmoke->setGlobalScale(mScaleModifier);
 		break;
 
-	case 6: // attack
-		if (_340) {
-			fxArgYodare.mScale = *_340->getSeaHeightPtr();
+	case 6: // attacking drool
+		if (mCurrentWaterBox) {
+			fxArgYodare.mGroundYPos = *mCurrentWaterBox->getSeaHeightPtr();
 		}
 
 		mEfxAttack->create(&fxArgYodare);
 		mEfxAttack->setGlobalScale(mScaleModifier);
 		break;
 
-	case 7: // dead yodare
-		if (_340) {
-			fxArgYodare.mScale = *_340->getSeaHeightPtr();
+	case 7: // death drool effects
+		if (mCurrentWaterBox) {
+			fxArgYodare.mGroundYPos = *mCurrentWaterBox->getSeaHeightPtr();
 		}
 
 		mEfxDeadYodare->create(&fxArgYodare);
@@ -2751,18 +2724,19 @@ void Obj::createEffect(int effectID)
 		mEfxDeadHana->setGlobalScale(mScaleModifier);
 		break;
 
-	case 8: // eyes?
+	case 8: // hiding underwater eye ripples
 		if (mWaterBox) {
-			_37C   = mModel->getJoint("eye3R")->getWorldMatrix()->getBasis(3);
-			_37C.y = *mWaterBox->getSeaHeightPtr();
+			mRightEyePosition   = mModel->getJoint("eye3R")->getWorldMatrix()->getPosition();
+			mRightEyePosition.y = *mWaterBox->getSeaHeightPtr();
 
-			efx::ArgEnemyType fxArgEnemy(_37C, EnemyTypeID::EnemyID_Tadpole, 1.0f);
-			_374->create(&fxArgEnemy);
+			// Use the water ripples made by wogpoles for emperors eyes, I mean sure, it works I guess
+			efx::ArgEnemyType fxArgEnemy(mRightEyePosition, EnemyTypeID::EnemyID_Tadpole, 1.0f);
+			mRightEyeRippleEfx->create(&fxArgEnemy);
 
-			_388   = mModel->getJoint("eye3L")->getWorldMatrix()->getBasis(3);
-			_388.y = *mWaterBox->getSeaHeightPtr();
+			mLeftEyePosition   = mModel->getJoint("eye3L")->getWorldMatrix()->getPosition();
+			mLeftEyePosition.y = *mWaterBox->getSeaHeightPtr();
 
-			_378->create(&fxArgEnemy);
+			mLeftEyeRippleEfx->create(&fxArgEnemy);
 		}
 		break;
 	}
@@ -2799,8 +2773,8 @@ void Obj::fadeEffect(int effectID)
 		mEfxDeadHana->fade();
 		break;
 	case 8:
-		_374->fade();
-		_378->fade();
+		mRightEyeRippleEfx->fade();
+		mLeftEyeRippleEfx->fade();
 		break;
 	}
 }

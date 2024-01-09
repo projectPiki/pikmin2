@@ -569,7 +569,7 @@ void Obj::startBossFlickBGM()
 {
 	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
 	PSM::checkBoss(soundObj);
-	soundObj->jumpRequest(4);
+	soundObj->jumpRequest(PSM::EnemyMidBoss::BossBgm_Flick);
 }
 
 /**

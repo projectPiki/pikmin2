@@ -1276,7 +1276,7 @@ void Obj::startBossFlickBGM()
 {
 	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
 	PSM::checkBoss(soundObj);
-	soundObj->jumpRequest(4);
+	soundObj->jumpRequest(PSM::EnemyMidBoss::BossBgm_Flick);
 }
 
 /**
@@ -1287,7 +1287,7 @@ void Obj::startBossAttackLoopBGM()
 {
 	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
 	PSM::checkBoss(soundObj);
-	soundObj->jumpRequest(8);
+	soundObj->jumpRequest(PSM::EnemyMidBoss::BossBgm_AttackLong);
 }
 
 /**
@@ -1298,7 +1298,7 @@ void Obj::finishBossAttackLoopBGM()
 {
 	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
 	PSM::checkBoss(soundObj);
-	soundObj->jumpRequest(1);
+	soundObj->jumpRequest(PSM::EnemyMidBoss::BossBgm_MainLoop);
 }
 
 /**

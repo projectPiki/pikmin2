@@ -515,7 +515,7 @@ void Scene_Game::bossKilled(PSM::EnemyBoss* obj)
 	if (!mgr->checkBossActive() && seq) {
 		seq = PSMGetMiddleBossSeq();
 		if (seq && (seq->mJumpPort._70 == 2 || seq->mJumpPort._70 == 8)) {
-			obj->jumpRequest(1);
+			obj->jumpRequest(PSM::EnemyMidBoss::BossBgm_MainLoop);
 		}
 	}
 
@@ -1887,7 +1887,7 @@ void Scene_Cave::bossKilled(PSM::EnemyBoss* obj)
 			if (!check) {
 				seq->stopSeq(40);
 			} else if (seq->mJumpPort._70 == 2 || seq->mJumpPort._70 == 8) {
-				obj->jumpRequest(1);
+				obj->jumpRequest(PSM::EnemyMidBoss::BossBgm_MainLoop);
 			}
 		}
 	} else {
@@ -1896,7 +1896,7 @@ void Scene_Cave::bossKilled(PSM::EnemyBoss* obj)
 		if (!check && seq) {
 			seq = PSMGetMiddleBossSeq();
 			if (seq && (seq->mJumpPort._70 == 2 || seq->mJumpPort._70 == 8)) {
-				obj->jumpRequest(1);
+				obj->jumpRequest(PSM::EnemyMidBoss::BossBgm_MainLoop);
 			}
 		}
 	}

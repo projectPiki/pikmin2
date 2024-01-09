@@ -367,7 +367,7 @@ void StateEscape::init(EnemyBase* enemy, StateArg* stateArg)
 	PSM::EnemyMidBoss* soundObj = static_cast<PSM::EnemyMidBoss*>(wraith->mSoundObj);
 	PSM::checkMidBoss(soundObj);
 	if (soundObj != nullptr && soundObj->mAppearFlag) {
-		soundObj->jumpRequest(11);
+		soundObj->jumpRequest(PSM::EnemyMidBoss::BossBgm_WaterwraithEscape);
 	}
 }
 
@@ -486,7 +486,7 @@ void StateRecover::init(EnemyBase* enemy, StateArg* stateArg)
 		PSM::EnemyMidBoss* soundObj = static_cast<PSM::EnemyMidBoss*>(enemy->mSoundObj);
 		PSM::checkMidBoss(soundObj);
 		if (soundObj != nullptr && soundObj->mAppearFlag) {
-			soundObj->jumpRequest(3);
+			soundObj->jumpRequest(PSM::EnemyMidBoss::BossBgm_Attack);
 		}
 	}
 
@@ -569,14 +569,14 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 		PSM::EnemyMidBoss* soundObj = static_cast<PSM::EnemyMidBoss*>(enemy->mSoundObj);
 		PSM::checkMidBoss(soundObj);
 		if (soundObj != nullptr && soundObj->mAppearFlag) {
-			soundObj->jumpRequest(4);
+			soundObj->jumpRequest(PSM::EnemyMidBoss::BossBgm_Flick);
 		}
 	} else {
 		enemy->startMotion(WRAITHANIM_Flick2, nullptr);
 		PSM::EnemyMidBoss* soundObj = static_cast<PSM::EnemyMidBoss*>(enemy->mSoundObj);
 		PSM::checkMidBoss(soundObj);
 		if (soundObj != nullptr && soundObj->mAppearFlag) {
-			soundObj->jumpRequest(12);
+			soundObj->jumpRequest(PSM::EnemyMidBoss::BossBgm_WaterwraithFlick);
 		}
 	}
 

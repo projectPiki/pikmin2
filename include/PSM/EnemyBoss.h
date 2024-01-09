@@ -55,6 +55,23 @@ struct EnemyMidBoss : public EnemyBoss {
 	virtual void postPikiAttack(bool);                                  // _D8
 	virtual void onAppear1st();                                         // _E8
 
+	// Representation of the different states of m_boss.bms
+	enum BossBgmState {
+		BossBgm_InactiveLoop      = 0, // only beginning part of main loop
+		BossBgm_MainLoop          = 1,
+		BossBgm_AttackPrep        = 2,
+		BossBgm_Attack            = 3,
+		BossBgm_Flick             = 4,
+		BossBgm_Attack2           = 5, // the 3 alternate attacks dont seem to be called directly
+		BossBgm_Attack3           = 6,
+		BossBgm_Attack4           = 7,
+		BossBgm_AttackLong        = 8,
+		BossBgm_Appear            = 9,
+		BossBgm_Defeated          = 10,
+		BossBgm_WaterwraithEscape = 11,
+		BossBgm_WaterwraithFlick  = 12,
+	};
+
 	u32 mNumLinks;                 // _100
 	f32 _104;                      // _104
 	JSULink<PSM::EnemyBoss> mLink; // _108
@@ -74,6 +91,24 @@ struct EnemyBigBoss : public EnemyMidBoss {
 	virtual void onAppear1st();                                         // _E8
 
 	u16 mCurrBgmState; // _11C
+
+	// Representation of the different states of l_boss.bms
+	enum BossBgmState {
+		BigBossBgm_Null           = 0, // crashes game?
+		BigBossBgm_4Weapons       = 1,
+		BigBossBgm_AttackPrep     = 2,
+		BigBossBgm_FlareCannon    = 3,
+		BigBossBgm_NoWeaponsFlick = 4,
+		BigBossBgm_ComedyBomb     = 5,
+		BigBossBgm_MonsterPump    = 6,
+		BigBossBgm_ShockTherapist = 7,
+		BigBossBgm_3Weapons       = 8,
+		BigBossBgm_2Weapons       = 9,
+		BigBossBgm_1Weapon        = 10,
+		BigBossBgm_NoWeapons      = 11,
+		BigBossBgm_Intro          = 12, // Unused intro to TD theme
+		BigBossBgm_Defeated       = 13,
+	};
 
 	static EnemyBigBoss* sBigBoss;
 };

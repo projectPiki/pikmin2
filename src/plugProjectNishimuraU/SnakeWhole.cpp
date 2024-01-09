@@ -1986,7 +1986,7 @@ void Obj::startBossAttackBGM()
 	} else {
 		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
 		PSM::checkBoss(soundObj);
-		soundObj->jumpRequest(3);
+		soundObj->jumpRequest(PSM::EnemyMidBoss::BossBgm_Attack);
 	}
 }
 
@@ -1998,7 +1998,7 @@ void Obj::startBossFlickBGM()
 {
 	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
 	PSM::checkBoss(soundObj);
-	soundObj->jumpRequest(4);
+	soundObj->jumpRequest(PSM::EnemyMidBoss::BossBgm_Flick);
 }
 
 /**

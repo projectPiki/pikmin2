@@ -321,27 +321,24 @@ void TRK__write_aram(int c, void* p2, void* p3)
 	u32 r;
 	u32 g;
 
-	if ((size_t)p2 < 0x4000 || *(u32*)p2 > 0x8000000)
-	{
+	if ((size_t)p2 < 0x4000 || *(u32*)p2 > 0x8000000) {
 		return;
 	}
-	
+
 	counter = 0;
 
-	for (i = 0; i < c; i++)
-	{
+	for (i = 0; i < c; i++) {
 		asm { dcbf counter, count }
 		counter += 0x20;
 	}
-	
+
 	do {
 		err = ARGetDMAStatus();
 	} while (err);
 
 	r = __ARGetInterruptStatus();
 	g = 0x8000000;
-	if ((u32)p2 & 0x1f)
-	{
+	if ((u32)p2 & 0x1f) {
 		g = (u32)p2 & ~0x1f;
 		__ARClearInterrupt();
 
@@ -351,11 +348,10 @@ void TRK__write_aram(int c, void* p2, void* p3)
 		} while (!(__ARGetInterruptStatus() & 0xffff));
 
 		TRK_memcpy((void*)c, buff, counter);
-		asm{dcbf counter, count}
+		asm {dcbf counter, count }
 	}
 
-	if (((*(u32*)p3) + g) & 0x1f)
-	{
+	if (((*(u32*)p3) + g) & 0x1f) {
 		if ((*(u32*)p3) != (g & ~0x1f)) {
 			__ARClearInterrupt();
 			ARStartDMA(1, 0, 0, 0);
@@ -364,13 +360,12 @@ void TRK__write_aram(int c, void* p2, void* p3)
 		}
 		TRK_memcpy((void*)c, p2, 0);
 
-		asm {dcbf counter, count}
+		asm {dcbf counter, count }
 	}
 	__sync();
 	__ARClearInterrupt();
-	ARStartDMA(0,0,0,0);
-	if(!(r & 0xffff))
-	{
+	ARStartDMA(0, 0, 0, 0);
+	if (!(r & 0xffff)) {
 		do {
 		} while (!(__ARGetInterruptStatus() & 0xffff));
 
