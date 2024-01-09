@@ -9,10 +9,10 @@
 // void __ct__Q27JGadget18TList_pointer_voidFRCQ27JGadget14TAllocator<void*>()
 JGadget::TList_pointer_void::TList_pointer_void(const JGadget::TVoidAllocator& allocator)
 {
-	_00 = allocator._00;
-	_04 = 0;
-	_08 = &_08;
-	_0C = &_08;
+	_00         = allocator._00;
+	mChildCount = 0;
+	mNext       = &mNext;
+	mPrev       = &mNext;
 }
 
 /**
@@ -39,6 +39,18 @@ JGadget::TList_pointer_void::TList_pointer_void(const JGadget::TVoidAllocator& a
  */
 JGadget::TList_pointer_void::~TList_pointer_void()
 {
+	TList_object* current = static_cast<TList_object*>(mNext);
+	TList_object* next    = current->mNext;
+	while (next != current) {
+		TList_object* tempNext = static_cast<TList_object*>(mNext);
+		next->mPrev->mNext     = next->mNext;
+		tempNext->mPrev        = next->mPrev;
+
+		delete next;
+		next = tempNext;
+		mChildCount--;
+	}
+
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -169,39 +181,45 @@ void JGadget::TList_pointer_void::insert(JGadget::TList_pointer_void::iterator, 
  * @note Address: 0x800275FC
  * @note Size: 0x70
  */
-void JGadget::TList_pointer_void::erase(JGadget::TList_pointer_void::iterator)
+void JGadget::TList_pointer_void::erase(JGadget::TList_pointer_void::iterator it)
 {
+	// what the FUCK
+	TList_object** element   = reinterpret_cast<TList_object**>(it.mElement);
+	TList_object* next       = (*element)->mNext;
+	(*element)->mPrev->mNext = next;
+	next->mPrev              = (*element)->mPrev;
+	delete *element;
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lwz       r5, 0x0(r5)
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  mr        r3, r5
-	  lwz       r31, 0x0(r5)
-	  lwz       r4, 0x4(r5)
-	  stw       r5, 0x8(r1)
-	  stw       r31, 0x0(r4)
-	  lwz       r0, 0x4(r5)
-	  stw       r0, 0x4(r31)
-	  bl        -0x3588
-	  lwz       r3, 0x4(r30)
-	  subi      r0, r3, 0x1
-	  stw       r0, 0x4(r30)
-	  stw       r31, 0x0(r29)
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+.loc_0x0:
+  stwu      r1, -0x20(r1)
+  mflr      r0
+  lwz       r5, 0x0(r5)
+  stw       r0, 0x24(r1)
+  stw       r31, 0x1C(r1)
+  stw       r30, 0x18(r1)
+  mr        r30, r4
+  stw       r29, 0x14(r1)
+  mr        r29, r3
+  mr        r3, r5
+  lwz       r31, 0x0(r5)
+  lwz       r4, 0x4(r5)
+  stw       r5, 0x8(r1)
+  stw       r31, 0x0(r4)
+  lwz       r0, 0x4(r5)
+  stw       r0, 0x4(r31)
+  bl        -0x3588
+  lwz       r3, 0x4(r30)
+  subi      r0, r3, 0x1
+  stw       r0, 0x4(r30)
+  stw       r31, 0x0(r29)
+  lwz       r0, 0x24(r1)
+  lwz       r31, 0x1C(r1)
+  lwz       r30, 0x18(r1)
+  lwz       r29, 0x14(r1)
+  mtlr      r0
+  addi      r1, r1, 0x20
+  blr
+*/
 }
 
 /**

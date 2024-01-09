@@ -18,6 +18,11 @@ struct TList {
 	TList& operator=(const TList& other);
 };
 
+struct TList_object {
+	TList_object* mNext; // _00
+	TList_object* mPrev; // _04
+};
+
 struct TList_pointer_void : public TList<void*, TVoidAllocator> {
 	TList_pointer_void(); // unused/inlined?
 	TList_pointer_void(const TVoidAllocator& allocator);
@@ -37,10 +42,10 @@ struct TList_pointer_void : public TList<void*, TVoidAllocator> {
 	TList_pointer_void& operator=(const TList_pointer_void& other);
 
 	// not sure what goes in here vs what goes in TList (or things above that)
-	u8 _00;    // _00, unknown
-	u32 _04;   // _04, unknown
-	void* _08; // _08, probably mNext? type unknown
-	void* _0C; // _0C, probably mPrev? type unknown
+	u8 _00;          // _00, unknown
+	u32 mChildCount; // _04
+	void* mNext;     // _08
+	void* mPrev;     // _0C
 };
 
 template <typename Iterator, typename Value>
