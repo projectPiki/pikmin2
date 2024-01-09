@@ -68,9 +68,9 @@ struct CylinderList {
 	void createCylinder(int, f32);
 	void draw();
 
-	u8 mTriangleNum; // _00
-	void* mDLData;   // _04
-	int mSize;       // _08
+	u8 mTriangleCount; // _00
+	void* mDLData;     // _04
+	int mSize;         // _08
 };
 
 struct CylinderBase {
@@ -95,6 +95,24 @@ struct CylinderBase {
 	void fillShadowRect();
 	void fillRectAlphaZero();
 	void drawCylinderList(int);
+
+	inline f32 getRadius(int i)
+	{
+		f32 size = 1.0f;
+		switch (i) {
+		case 1:
+			size = 1.05f;
+			break;
+		case 0:
+		case 2:
+			size = 1.35f;
+			break;
+		default:
+			break;
+		}
+
+		return size;
+	}
 
 	// VTBL _00
 	CylinderList** mDisplayListObj; // _04

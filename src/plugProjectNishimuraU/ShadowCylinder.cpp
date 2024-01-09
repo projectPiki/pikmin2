@@ -40,58 +40,63 @@ static f32 sCylinderVertPos[30];
  */
 CylinderList::CylinderList(int index)
 {
-	mTriangleNum = 0;
-	mDLData      = nullptr;
-	mSize        = 0;
+	mTriangleCount = 0;
+	mDLData        = nullptr;
+	mSize          = 0;
 	switch (index) {
 	case 0:
-		mTriangleNum = 12;
-		mDLData      = sHighCylinderDL;
-		mSize        = 141;
+		mTriangleCount = 12;
+		mDLData        = sHighCylinderDL;
+		mSize          = 141;
 		break;
 	case 1:
-		mTriangleNum = 8;
-		mDLData      = sMidCylinderDL;
-		mSize        = 109;
+		mTriangleCount = 8;
+		mDLData        = sMidCylinderDL;
+		mSize          = 109;
 		break;
 	case 2:
-		mTriangleNum = 4;
-		mDLData      = sLowCylinderDL;
-		mSize        = 77;
+		mTriangleCount = 4;
+		mDLData        = sLowCylinderDL;
+		mSize          = 77;
 		break;
 	}
-	P2ASSERTBOOLLINE(188, mTriangleNum && mDLData && mSize);
+	P2ASSERTBOOLLINE(188, mTriangleCount && mDLData && mSize);
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0x210
  */
-void CylinderList::createCylinder(int id, f32 calc)
+void CylinderList::createCylinder(int cylinderType, f32 radius)
 {
-	int a = 0;
-	switch (id) {
+	// THIS NEEDS TO BE AN INLINE!
+	int vertexIndex = 0;
+	switch (cylinderType) {
 	case 1:
-		a = 72;
+		vertexIndex = 72;
+		break;
+	case 0:
+	case 2:
+		vertexIndex = 120;
 		break;
 	default:
 		break;
-	case 2:
-		a = 120;
-		break;
 	}
-	f32 test = TAU / mTriangleNum;
-	for (int i = 0; i < mTriangleNum; i++) {
-		f32 a2                  = i * test;
-		f32 a3                  = a2 - (test * 0.5f);
-		sCylinderVertPos[a]     = calc * cosf(a3);
-		sCylinderVertPos[a + 1] = 0.0f;
-		sCylinderVertPos[a + 2] = calc * sinf(a3);
 
-		int b                   = a + (i + mTriangleNum) * 3;
-		sCylinderVertPos[b]     = calc * cosf(a3);
-		sCylinderVertPos[b + 1] = -1.0f;
-		sCylinderVertPos[b + 2] = calc * sinf(a3);
+	f32 angleStep = TAU / mTriangleCount;
+	for (int i = 0; i < mTriangleCount; i++) {
+		f32 currentAngle  = i * angleStep;
+		f32 adjustedAngle = currentAngle - (angleStep * 0.5f);
+
+		sCylinderVertPos[vertexIndex]     = radius * cosf(adjustedAngle);
+		sCylinderVertPos[vertexIndex + 1] = 0.0f;
+		sCylinderVertPos[vertexIndex + 2] = radius * sinf(adjustedAngle);
+
+		int bottomVertexIndex = vertexIndex + (i + mTriangleCount) * 3;
+
+		sCylinderVertPos[bottomVertexIndex]     = radius * cosf(adjustedAngle);
+		sCylinderVertPos[bottomVertexIndex + 1] = -1.0f;
+		sCylinderVertPos[bottomVertexIndex + 2] = radius * sinf(adjustedAngle);
 	}
 }
 
@@ -112,23 +117,15 @@ CylinderBase::CylinderBase()
 {
 	mDisplayListObj = new CylinderList*[3];
 	for (int i = 0; i < 3; i++) {
-		f32 calc = 1.0f;
-		switch (i) {
-		case 1:
-			calc = 1.05f;
-			break;
-		default:
-			break;
-		case 2:
-			calc = 1.35f;
-			break;
-		}
+		f32 radius = getRadius(i);
 
 		mDisplayListObj[i] = new CylinderList(i);
-		mDisplayListObj[i]->createCylinder(i, calc);
+		mDisplayListObj[i]->createCylinder(i, radius);
 	}
-	u16 y              = sys->getRenderModeObj()->efbHeight;
-	u16 x              = sys->getRenderModeObj()->fbWidth;
+
+	u16 y = sys->getRenderModeObj()->efbHeight;
+	u16 x = sys->getRenderModeObj()->fbWidth;
+
 	mScreenBounds.p1.x = 0.0f;
 	mScreenBounds.p1.y = 0.0f;
 	mScreenBounds.p2.x = x;
@@ -578,10 +575,7 @@ void CylinderBase::makeSRT(Matrixf& mtx, Game::ShadowParam& param)
  */
 int CylinderBase::getCylinderType(Game::ShadowParam& param, int camID)
 {
-	f32 dist = (mCameraSizeMod[camID] * param.mSize)
-	         / (mCamLookAt[camID].x * (param.mPosition.x - mCamPosition[camID].x)
-	            + mCamLookAt[camID].y * (param.mPosition.y - mCamPosition[camID].y)
-	            + mCamLookAt[camID].z * (param.mPosition.z - mCamPosition[camID].z));
+	f32 dist = (mCameraSizeMod[camID] * param.mSize) / mCamLookAt[camID].dot(param.mPosition - mCamPosition[camID]);
 
 	if (dist > mParms->mLodNear()) {
 		return 0;
@@ -589,8 +583,9 @@ int CylinderBase::getCylinderType(Game::ShadowParam& param, int camID)
 		return 1;
 	} else if (dist > 0.0f) {
 		return 2;
+	} else {
+		return 0;
 	}
-	return 0;
 }
 
 /**
