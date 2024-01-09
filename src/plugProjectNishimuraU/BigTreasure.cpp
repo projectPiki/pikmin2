@@ -1476,16 +1476,16 @@ void Obj::startBossAttackBGM()
 
 	int jumpReqIdx = PSM::EnemyBigBoss::BigBossBgm_FlareCannon;
 	switch (mAttackIndex) {
-	case 0:
+	case BIGATTACK_Elec:
 		jumpReqIdx = PSM::EnemyBigBoss::BigBossBgm_ShockTherapist;
 		break;
-	case 1:
+	case BIGATTACK_Fire:
 		jumpReqIdx = PSM::EnemyBigBoss::BigBossBgm_FlareCannon;
 		break;
-	case 2:
+	case BIGATTACK_Gas:
 		jumpReqIdx = PSM::EnemyBigBoss::BigBossBgm_ComedyBomb;
 		break;
-	case 3:
+	case BIGATTACK_Water:
 		jumpReqIdx = PSM::EnemyBigBoss::BigBossBgm_MonsterPump;
 		break;
 	}
@@ -1631,19 +1631,19 @@ void Obj::setBossAppearBGM()
 
 	switch (counter) {
 	case 0:
-		jumpReqIdx = 11;
+		jumpReqIdx = PSM::EnemyBigBoss::BigBossBgm_NoWeapons;
 		break;
 	case 1:
-		jumpReqIdx = 10;
+		jumpReqIdx = PSM::EnemyBigBoss::BigBossBgm_1Weapon;
 		break;
 	case 2:
-		jumpReqIdx = 9;
+		jumpReqIdx = PSM::EnemyBigBoss::BigBossBgm_2Weapons;
 		break;
 	case 3:
-		jumpReqIdx = 8;
+		jumpReqIdx = PSM::EnemyBigBoss::BigBossBgm_3Weapons;
 		break;
 	case 4:
-		jumpReqIdx = 1;
+		jumpReqIdx = PSM::EnemyBigBoss::BigBossBgm_4Weapons;
 		break;
 	}
 

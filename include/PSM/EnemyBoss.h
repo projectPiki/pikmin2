@@ -32,6 +32,9 @@ struct EnemyBoss : public EnemyBase {
 	void dyingFrameWork();
 	bool isOnDisappearing();
 
+	// _00     = VTBL 1
+	// _28     = VTBL 2
+	// _00-_E0 = EnemyBase
 	f32 mNaviDistance;        // _E0
 	u16 mDisappearTimer;      // _E4
 	u32 _E8;                  // _E8
@@ -46,15 +49,6 @@ struct EnemyBoss : public EnemyBase {
  * @size = 0x11C
  */
 struct EnemyMidBoss : public EnemyBoss {
-	EnemyMidBoss(Game::EnemyBase*);
-
-	virtual ~EnemyMidBoss();                                            // _14 (weak)
-	virtual CreatureCastType getCastType() { return CCT_EnemyMidBoss; } // _1C (weak)
-	virtual void onCalcOn();                                            // _28
-	virtual void jumpRequest(u16);                                      // _D4
-	virtual void postPikiAttack(bool);                                  // _D8
-	virtual void onAppear1st();                                         // _E8
-
 	// Representation of the different states of m_boss.bms
 	enum BossBgmState {
 		BossBgm_InactiveLoop      = 0, // only beginning part of main loop
@@ -72,6 +66,18 @@ struct EnemyMidBoss : public EnemyBoss {
 		BossBgm_WaterwraithFlick  = 12,
 	};
 
+	EnemyMidBoss(Game::EnemyBase*);
+
+	virtual ~EnemyMidBoss();                                            // _14 (weak)
+	virtual CreatureCastType getCastType() { return CCT_EnemyMidBoss; } // _1C (weak)
+	virtual void onCalcOn();                                            // _28
+	virtual void jumpRequest(u16);                                      // _D4
+	virtual void postPikiAttack(bool);                                  // _D8
+	virtual void onAppear1st();                                         // _E8
+
+	// _00      = VTBL 1
+	// _28      = VTBL 2
+	// _00-_100 = EnemyBoss
 	u32 mNumLinks;                 // _100
 	f32 _104;                      // _104
 	JSULink<PSM::EnemyBoss> mLink; // _108
@@ -82,16 +88,6 @@ struct EnemyMidBoss : public EnemyBoss {
  * @size = 0x11E
  */
 struct EnemyBigBoss : public EnemyMidBoss {
-	EnemyBigBoss(Game::EnemyBase*);
-
-	virtual ~EnemyBigBoss();                                            // _14 (weak)
-	virtual CreatureCastType getCastType() { return CCT_EnemyBigBoss; } // _1C (weak)
-	virtual void jumpRequest(u16);                                      // _D4
-	virtual void onDeathMotionTop();                                    // _E0
-	virtual void onAppear1st();                                         // _E8
-
-	u16 mCurrBgmState; // _11C
-
 	// Representation of the different states of l_boss.bms
 	enum BossBgmState {
 		BigBossBgm_Null           = 0, // crashes game?
@@ -110,7 +106,20 @@ struct EnemyBigBoss : public EnemyMidBoss {
 		BigBossBgm_Defeated       = 13,
 	};
 
+	EnemyBigBoss(Game::EnemyBase*);
+
+	virtual ~EnemyBigBoss();                                            // _14 (weak)
+	virtual CreatureCastType getCastType() { return CCT_EnemyBigBoss; } // _1C (weak)
+	virtual void jumpRequest(u16);                                      // _D4
+	virtual void onDeathMotionTop();                                    // _E0
+	virtual void onAppear1st();                                         // _E8
+
 	static EnemyBigBoss* sBigBoss;
+
+	// _00      = VTBL 1
+	// _28      = VTBL 2
+	// _00-_11C = EnemyMidBoss
+	u16 mCurrBgmState; // _11C
 };
 
 } // namespace PSM
