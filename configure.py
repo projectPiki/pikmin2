@@ -1456,7 +1456,7 @@ LIBS = [
             ["plugProjectEbisawaU/efxEnemy", False],
             ["plugProjectEbisawaU/efxObject", False],
             ["plugProjectEbisawaU/efxPikmin", False],
-            ["plugProjectEbisawaU/particle2dMgr", False],
+            ["plugProjectEbisawaU/particle2dMgr", True],
             ["plugProjectEbisawaU/efx2dBase", True],
             ["plugProjectEbisawaU/efx2dEffect", False],
             ["plugProjectEbisawaU/particleMgr", False],

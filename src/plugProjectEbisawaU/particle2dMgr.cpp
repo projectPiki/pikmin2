@@ -91,118 +91,28 @@ void TParticle2dMgr::createHeap(u32 p1)
  */
 void TParticle2dMgr::createMgr(char* path, u32 u1, u32 u2, u32 u3)
 {
+
 	JUT_ASSERTLINE(83, mSolidHeap, "effect heap not allocated !\n");
+
+	// don't even ASK me about these.
+	int b, a;
+	a = u1;
+	b = u2;
 
 	sys->heapStatusStart("TParticle2dMgr::createMgr", nullptr);
 	JKRHeap* backup = JKRGetCurrentHeap();
 	mSolidHeap->becomeCurrentHeap();
 	const void* file = JKRDvdToMainRam(path, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_TOP, 0, nullptr, nullptr);
 	JUT_ASSERTLINE(94, file, "ParticleResource (%s) not found\n", path);
+
 	backup->becomeCurrentHeap();
 
 	mResourceManager = new (mSolidHeap, 0) JPAResourceManager(file, mSolidHeap);
-	mActiveEmitter   = new (mSolidHeap, 0) JPAEmitterManager((u8)u1, u2, mSolidHeap, 8, 2); // AAAAAAAAAAAAAAAAAAAAA
+	mActiveEmitter   = new (mSolidHeap, 0) JPAEmitterManager(a, b, mSolidHeap, 8, 2); // screaming shitting crying
 
 	mActiveEmitter->entryResourceManager(mResourceManager, 0);
 	mSolidHeap->adjustSize();
 	sys->heapStatusEnd("TParticle2dMgr::createMgr");
-
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r25, 0x14(r1)
-	  mr        r31, r3
-	  lis       r3, 0x8049
-	  mr        r25, r4
-	  mr        r26, r5
-	  mr        r27, r6
-	  addi      r30, r3, 0x5A70
-	  lwz       r0, 0x38(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x48
-	  addi      r3, r30, 0x48
-	  addi      r5, r30, 0x68
-	  li        r4, 0x53
-	  crclr     6, 0x6
-	  bl        -0x38ECC4
-
-	.loc_0x48:
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r30, 0x88
-	  li        r5, 0
-	  bl        0x6A048
-	  lwz       r29, -0x77D4(r13)
-	  lwz       r3, 0x38(r31)
-	  bl        -0x395D7C
-	  li        r0, 0
-	  mr        r3, r25
-	  stw       r0, 0x8(r1)
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0
-	  li        r7, 0
-	  li        r8, 0x1
-	  li        r9, 0
-	  li        r10, 0
-	  bl        -0x39A1C4
-	  mr.       r28, r3
-	  bne-      .loc_0xB0
-	  mr        r6, r25
-	  addi      r3, r30, 0x48
-	  addi      r5, r30, 0xA4
-	  li        r4, 0x5E
-	  crclr     6, 0x6
-	  bl        -0x38ED2C
-
-	.loc_0xB0:
-	  mr        r3, r29
-	  bl        -0x395DD0
-	  lwz       r4, 0x38(r31)
-	  li        r3, 0x14
-	  li        r5, 0
-	  bl        -0x395444
-	  mr.       r0, r3
-	  beq-      .loc_0xE0
-	  lwz       r5, 0x38(r31)
-	  mr        r4, r28
-	  bl        -0x320EC8
-	  mr        r0, r3
-
-	.loc_0xE0:
-	  stw       r0, 0x34(r31)
-	  li        r3, 0x30
-	  li        r5, 0
-	  lwz       r4, 0x38(r31)
-	  bl        -0x395470
-	  mr.       r0, r3
-	  beq-      .loc_0x118
-	  lwz       r6, 0x38(r31)
-	  mr        r4, r26
-	  mr        r5, r27
-	  li        r7, 0x8
-	  li        r8, 0x2
-	  bl        -0x328E98
-	  mr        r0, r3
-
-	.loc_0x118:
-	  stw       r0, 0x30(r31)
-	  li        r5, 0
-	  lwz       r3, 0x30(r31)
-	  lwz       r4, 0x34(r31)
-	  bl        -0x32867C
-	  lwz       r3, 0x38(r31)
-	  bl        -0x3944A8
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r30, 0x88
-	  bl        0x69F68
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
 }
 
 /**

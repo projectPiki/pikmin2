@@ -3,7 +3,7 @@ EBISAWA_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxEnemy.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxObject.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxPikmin.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/particle2dMgr.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/particle2dMgr.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/efx2dBase.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efx2dEffect.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/particleMgr.o\
