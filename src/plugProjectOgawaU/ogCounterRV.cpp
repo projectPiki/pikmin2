@@ -23,7 +23,7 @@ CallBack_CounterRV::CallBack_CounterRV(char** characterTexturePaths, u16 ketaCou
 		ketaCount = 2;
 	}
 	mCounterLimit        = ketaCount;
-	_30                  = p3;
+	mMaxCounterLimit     = p3;
 	mCountPtr            = nullptr;
 	mInitialDisplayValue = 0;
 	mCurrDisplayValue    = 0;
@@ -47,8 +47,8 @@ CallBack_CounterRV::CallBack_CounterRV(char** characterTexturePaths, u16 ketaCou
 	mScaleUpSoundID   = PSSE_UNSET;
 	mScaleDownSoundID = PSSE_UNSET;
 	_9C               = 1;
-	_A4               = 0.0f;
-	_A0               = 0.0f;
+	mPaneOffsetX      = 0.0f;
+	mPaneOffsetY      = 0.0f;
 }
 
 /**
@@ -145,7 +145,7 @@ void CallBack_CounterRV::setZeroAlpha(u8 a1) { mZeroAlpha = a1; }
 void CallBack_CounterRV::startPuyoUp(f32 p1)
 {
 	mIsPuyoAnim = true;
-	int max     = (mCurrCounters >= mCounterLimit) ? mCounterLimit : mCurrCounters;
+	int max     = (mCurrentCounters >= mCounterLimit) ? mCounterLimit : mCurrentCounters;
 	for (int i = 0; i < max; i++) {
 		mCounters[i]->mScaleMgr->up(msVal._00, msVal._04, msVal._08, 0.025f * i * p1);
 	}
@@ -254,7 +254,7 @@ void CallBack_CounterRV::init(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u
 
 	mPane12DistX = mPanePosition.x - mPic2->mOffset.x;
 	mPane13DistX = mPaneSize.x + (mPanePosition.x - mPic3->mOffset.x);
-	_3C          = 1.0f;
+	mKetaScaleX  = 1.0f;
 	mPic1->hide();
 	mPic2->hide();
 	mPic3->hide();
@@ -279,11 +279,11 @@ void CallBack_CounterRV::init(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u
 		newpane->setInfluencedAlpha(alphatype, false);
 		mCounters[0] = new CounterKeta(static_cast<J2DPicture*>(newpane));
 
-		for (int i = 1; i < _30; i++) {
+		for (int i = 1; i < mMaxCounterLimit; i++) {
 			J2DPane* newpane = screen->search(0);
 			mCounters[i]     = new CounterKeta(static_cast<J2DPicture*>(newpane));
 		}
-		for (int i = _30 / 2; i < mCounterLimit; i++) {
+		for (int i = mMaxCounterLimit / 2; i < mCounterLimit; i++) {
 			J2DPane* newpane = CopyPictureToPane(mPic1, mMotherPane, mPanePosition.x, mPanePosition.y, 'ogPic_0' + i);
 			newpane->setBasePosition((J2DBasePosition)mBasePosition);
 			newpane->setInfluencedAlpha(alphatype, false);
@@ -664,11 +664,11 @@ void CallBack_CounterRV::setKetaSub(int count, bool flag1, bool flag2)
 		if (i < count) {
 			mCounters[i]->mPicture->show();
 			u8 alpha = mPaneAlpha;
-			if (i + 1 > mCurrCounters && !mIsBlind) {
+			if (i + 1 > mCurrentCounters && !mIsBlind) {
 				alpha = mZeroAlpha;
 			}
 			mCounters[i]->mPicture->setAlpha(alpha);
-			if (i + 1 <= mCurrCounters) {
+			if (i + 1 <= mCurrentCounters) {
 				setCounterUpDown(i, flag1, flag2);
 			} else {
 				if (!mIsBlind && mIsPuyoAnimZero) {
@@ -717,70 +717,85 @@ void CallBack_CounterRV::setValue(bool flag1, bool flag2)
 			mInitialDisplayValue = 0;
 			mCurrDisplayValue    = 0;
 		}
-		mCurrCounters = CalcKeta(mInitialDisplayValue);
-		int newmax    = mCurrCounters;
-		if (mCurrCounters < _30) {
-			newmax = _30;
-		}
-		setKetaSub(newmax, flag1, flag2);
-		if (newmax > mCounterLimit) {
-			newmax = mCounterLimit;
-		}
-		_A4 = 0.0f;
-		_3C = 0.0f;
-		if (newmax > 1) {
-			f32 temp = mPane12DistX * (newmax - 1) + mPaneSize.x;
-			if (temp > mPane13DistX) {
-				_3C = mPane13DistX / temp;
-				_A4 = mPaneSize.x * 0.5f * (1.0f - _3C);
-			}
-		}
-		J2DPictureEx* pic      = mPic1;
-		f32 f1                 = pic->mAngleX;
-		f32 f2                 = pic->mAngleY;
-		f32 angle              = pic->mAngleZ;
-		JUtility::TColor col1  = pic->getWhite();
-		JUtility::TColor col2  = pic->getBlack();
-		JGeometry::TBox2f* box = pic->getBounds();
 
-		mPaneBounds.x = box->i.x;
-		mPaneBounds.y = box->i.y;
-		_A0           = 0.0f;
-		if (mCenteringMode == ECM_Unknown1) {
-			if (mCurrCounters < _30) {
-				_A0 = -(_3C * mPane12DistX * (_30 - mCurrCounters) * 0.5f);
+		mCurrentCounters = CalcKeta(mInitialDisplayValue);
+		u16 maxCounter   = mCurrentCounters < (s32)mMaxCounterLimit ? mMaxCounterLimit : mCurrentCounters;
+
+		setKetaSub(maxCounter, flag1, flag2);
+		if (maxCounter > mCounterLimit) {
+			maxCounter = mCounterLimit;
+		}
+
+		mPaneOffsetX = 0.0f;
+		mKetaScaleX  = 1.0f;
+
+		if (maxCounter >= 2) {
+			f32 temp = mPane12DistX * (maxCounter - 1) + mPaneSize.x;
+			if (temp > mPane13DistX) {
+				mKetaScaleX  = mPane13DistX / temp;
+				mPaneOffsetX = mPaneSize.x * 0.5f * (1.0f - mKetaScaleX);
 			}
+		}
+
+		f32 angleX                = mPic1->mAngleX;
+		f32 angleY                = mPic1->mAngleY;
+		f32 angleZ                = mPic1->mAngleZ;
+		JUtility::TColor whiteCol = mPic1->getWhite();
+		JUtility::TColor blackCol = mPic1->getBlack();
+		JGeometry::TBox2f* bounds = mPic1->getBounds();
+
+		mPaneBounds.x = bounds->i.x;
+		mPaneBounds.y = bounds->i.y;
+		if (mCenteringMode == ECM_Unknown1) {
+			if (mCurrentCounters < mMaxCounterLimit) {
+				f32 x        = (mMaxCounterLimit - mCurrentCounters) * 0.5f;
+				mPaneOffsetY = (mKetaScaleX * mPane12DistX * -x);
+			}
+
 			mPaneAlpha = 0;
 		} else if (mCenteringMode == ECM_UNKNOWN_2) {
-			if (mCurrCounters < _30) {
-				_A0 = -(_3C * mPane12DistX * (_30 - mCurrCounters));
+			if (mCurrentCounters < mMaxCounterLimit) {
+				f32 x        = -(mMaxCounterLimit - mCurrentCounters);
+				mPaneOffsetY = (mKetaScaleX * mPane12DistX * x);
 			}
+
 			mPaneAlpha = 0;
 		}
+
 		for (int i = 0; i < mCounterLimit; i++) {
 			J2DPicture* pane = mCounters[i]->mPicture;
 			if (pane) {
+				// Calculate the new x position
+				f32 newXPosition = static_cast<f32>(i) * (-mPane12DistX * mKetaScaleX);
+
+				// Create a new box
 				JGeometry::TBox2f box;
-				box.i.y = mPaneBounds.y;
-				box.i.x = _A4 + i * -mPane12DistX * _3C + _A0;
+
+				// Set the initial x and y positions of the box
+				box.i.x = mPaneBounds.x + mPaneOffsetX + newXPosition;
+				box.i.y = mPaneBounds.y + mPaneOffsetY;
+
+				// Set the final x and y positions of the box
+				box.f.x = box.i.x + mPaneSize.x;
 				box.f.y = box.i.y + mPaneSize.y;
-				box.f.x = box.i.x + mPaneSize.x + mPaneBounds.x;
+
+				// Place the pane at the calculated box position
 				pane->place(box);
+
 				if (mIsPuyoAnimZero) {
 					pane->setBasePosition(J2DPOS_Center);
 					CounterKeta* keta = mCounters[i];
-					keta->mSize.x     = _3C;
+					keta->mSize.x     = mKetaScaleX;
 					keta->mSize.y     = mPaneScale.y;
 				} else {
 					pane->setBasePosition((J2DBasePosition)mBasePosition);
-					pane->updateScale(_3C, mPaneScale.y);
+					pane->updateScale(mKetaScaleX, mPaneScale.y);
 				}
-				pane->mAngleX = f1;
-				pane->mAngleY = f2;
-				pane->mAngleZ = angle;
+
+				pane->setAllAngles(angleX, angleY, angleZ);
 				pane->calcMtx();
-				pane->setWhite(col1);
-				pane->setBlack(col2);
+				pane->setWhite(whiteCol);
+				pane->setBlack(blackCol);
 			}
 		}
 	}

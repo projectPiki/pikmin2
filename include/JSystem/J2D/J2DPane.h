@@ -312,6 +312,13 @@ struct J2DPane {
 		calcMtx();
 	}
 
+	inline void setAllAngles(f32 x, f32 y, f32 z)
+	{
+		mAngleX = x;
+		mAngleY = y;
+		mAngleZ = z;
+	}
+
 	inline void setMsgID(u64 msgID) { mMessageID = msgID; } // called setUserInfo in TP
 
 	const Mtx* getMtx() const { return &mPositionMtx; }

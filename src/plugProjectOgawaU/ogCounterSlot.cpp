@@ -56,7 +56,7 @@ void CallBack_CounterSlot::setPuyoParam(f32 parm1, f32 parm2, f32 parm3)
  */
 void CallBack_CounterSlot::update()
 {
-	int goal = mCurrCounters;
+	int goal = mCurrentCounters;
 	if (goal > mCounterLimit) {
 		goal = mCounterLimit;
 	}
@@ -74,7 +74,7 @@ void CallBack_CounterSlot::update()
 		if (mTimer >= mUpdateInterval) {
 			mTimer = 0.0f;
 			_B0++;
-			if ((int)_B0 >= (int)mCurrCounters) {
+			if ((int)_B0 >= (int)mCurrentCounters) {
 				if ((int)_B0 >= (int)mCounterLimit) {
 					_A8 = false;
 					_AB = true;
@@ -147,11 +147,11 @@ void CallBack_CounterSlot::setValue(bool flag1, bool flag2)
 		mInitialDisplayValue = 0;
 		mCurrDisplayValue    = 0;
 	}
-	mCurrCounters = CalcKeta(mInitialDisplayValue);
+	mCurrentCounters = CalcKeta(mInitialDisplayValue);
 
-	int counts = mCurrCounters;
-	if (counts < _30) {
-		counts = _30;
+	int counts = mCurrentCounters;
+	if (counts < mMaxCounterLimit) {
+		counts = mMaxCounterLimit;
 	}
 
 	for (int i = 0; i < mCounterLimit; i++) {
@@ -170,7 +170,7 @@ void CallBack_CounterSlot::setValue(bool flag1, bool flag2)
 				if (_AC) {
 					keta->mIsVisible = true;
 				}
-				if (i + 1 > mCurrCounters) {
+				if (i + 1 > mCurrentCounters) {
 					if (mIsBlind) {
 						keta->setAlpha(255);
 					} else {
