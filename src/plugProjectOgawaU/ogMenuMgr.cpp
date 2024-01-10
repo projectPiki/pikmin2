@@ -210,10 +210,10 @@ void MenuMgr::init(J2DScreen* screen, u16 options, u64 tag1, u64 tag2, u64 tag3,
 	mPaneList3    = new J2DPane*[options];
 	mScaleMgrs    = new ScaleMgr[options];
 
-	u64 mesg0 = 0;
-	if (tag1)
+	u64 mesg0;
+	if (tag1) {
 		mesg0 = MojiToNum(tag1, 2);
-
+	}
 	u64 mesg1 = MojiToNum(tag2, 2);
 	u64 mesg2 = MojiToNum(tag3, 2);
 
