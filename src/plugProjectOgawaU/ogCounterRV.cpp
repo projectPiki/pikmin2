@@ -1152,12 +1152,13 @@ CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr* mgr, u64 tag, u32* dat
 			a = i - 1;
 			break;
 		}
+
 		tag3 = tag4;
 		pane->hide();
 	}
 
 	CallBack_CounterRV* counter = new CallBack_CounterRV(const_cast<char**>(SujiTex32), flag1, a, arc);
-	counter->init(mgr, tag1, tag2, tag3, data, flag2);
+	counter->init(mgr, tag1, tag2, tag2, data, flag2);
 	counter->mIsPuyoAnim = isPuyo;
 	mgr->addCallBack(tag1, counter);
 	return counter;

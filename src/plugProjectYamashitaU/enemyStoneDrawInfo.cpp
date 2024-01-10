@@ -710,11 +710,12 @@ bool DrawInfo::getPosAndScale(Vector3f* pos, f32* scale)
 		f32* row2 = &mtx.mMatrix.structView.xy;
 		f32* row3 = &mtx.mMatrix.structView.xx;
 		for (int i = 0; i < 3; i++) {
-			Vector3f vec = Vector3f(row1[i], row2[i], row3[i]);
-			*scale += vec.length();
+			Vector3f result = Vector3f(row1[i], row2[i], row3[i]);
+			f32 length      = result.length();
+			*scale += length;
 		}
 
-		*scale = *scale / 3.0f;
+		*scale /= 3.0f;
 		mtx.getTranslation(*pos);
 		return true;
 	}
