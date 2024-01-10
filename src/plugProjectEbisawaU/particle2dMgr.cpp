@@ -66,12 +66,11 @@ void TParticle2dMgr::deleteInstance()
  */
 TParticle2dMgr::TParticle2dMgr()
     : CNode("TParticle2dMgr")
-    , JKRDisposer()
     , mSolidHeap(nullptr)
 {
-	_30              = nullptr;
+	mActiveEmitter   = nullptr;
 	mResourceManager = nullptr;
-	mEmitterManager  = nullptr;
+	mEmitterBackup   = nullptr;
 }
 
 /**
@@ -97,14 +96,14 @@ void TParticle2dMgr::createMgr(char* path, u32 u1, u32 u2, u32 u3)
 	sys->heapStatusStart("TParticle2dMgr::createMgr", nullptr);
 	JKRHeap* backup = JKRGetCurrentHeap();
 	mSolidHeap->becomeCurrentHeap();
-	void* file = JKRDvdToMainRam(path, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+	const void* file = JKRDvdToMainRam(path, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_TOP, 0, nullptr, nullptr);
 	JUT_ASSERTLINE(94, file, "ParticleResource (%s) not found\n", path);
 	backup->becomeCurrentHeap();
 
 	mResourceManager = new (mSolidHeap, 0) JPAResourceManager(file, mSolidHeap);
-	mEmitterManager  = new (mSolidHeap, 0) JPAEmitterManager(u1, u2, mSolidHeap, 8, 2);
+	mActiveEmitter   = new (mSolidHeap, 0) JPAEmitterManager((u8)u1, u2, mSolidHeap, 8, 2); // AAAAAAAAAAAAAAAAAAAAA
 
-	mEmitterManager->entryResourceManager(mResourceManager, 0);
+	mActiveEmitter->entryResourceManager(mResourceManager, 0);
 	mSolidHeap->adjustSize();
 	sys->heapStatusEnd("TParticle2dMgr::createMgr");
 
@@ -221,6 +220,8 @@ void TParticle2dMgr::exitMgr()
  */
 void TParticle2dMgr::destroyHeap()
 {
+	mSolidHeap->destroy();
+	mSolidHeap = nullptr;
 	// UNUSED FUNCTION
 }
 
@@ -230,13 +231,14 @@ void TParticle2dMgr::destroyHeap()
  */
 void TParticle2dMgr::setSceneEmitterAndResourceManager(JPAEmitterManager* emitterManager, JPAResourceManager* resourceManager)
 {
-	P2ASSERTLINE(132, mEmitterManager == nullptr);
-	mEmitterManager = _30;
-	_30             = emitterManager;
-	_30->clearResourceManager(0);
-	_30->entryResourceManager(mResourceManager, 0);
-	_30->clearResourceManager(1);
-	_30->entryResourceManager(resourceManager, 1);
+	P2ASSERTLINE(132, mEmitterBackup == nullptr);
+	mEmitterBackup = mActiveEmitter;
+
+	mActiveEmitter = emitterManager;
+	mActiveEmitter->clearResourceManager(0);
+	mActiveEmitter->entryResourceManager(mResourceManager, 0);
+	mActiveEmitter->clearResourceManager(1);
+	mActiveEmitter->entryResourceManager(resourceManager, 1);
 }
 
 /**
@@ -245,11 +247,12 @@ void TParticle2dMgr::setSceneEmitterAndResourceManager(JPAEmitterManager* emitte
  */
 void TParticle2dMgr::clearSceneEmitterAndResourceManager()
 {
-	_30->clearResourceManager(1);
-	_30->clearResourceManager(0);
-	P2ASSERTLINE(149, mEmitterManager);
-	_30             = mEmitterManager;
-	mEmitterManager = nullptr;
+	mActiveEmitter->clearResourceManager(1);
+	mActiveEmitter->clearResourceManager(0);
+
+	P2ASSERTLINE(149, mEmitterBackup);
+	mActiveEmitter = mEmitterBackup;
+	mEmitterBackup = nullptr;
 }
 
 /**
@@ -258,21 +261,21 @@ void TParticle2dMgr::clearSceneEmitterAndResourceManager()
  */
 void TParticle2dMgr::setSceneResourceManager(JPAResourceManager* resourceManager)
 {
-	_30->clearResourceManager(1);
-	_30->entryResourceManager(resourceManager, 1);
+	mActiveEmitter->clearResourceManager(1);
+	mActiveEmitter->entryResourceManager(resourceManager, 1);
 }
 
 /**
  * @note Address: 0x803B9588
  * @note Size: 0x28
  */
-void TParticle2dMgr::clearSceneResourceManager() { _30->clearResourceManager(1); }
+void TParticle2dMgr::clearSceneResourceManager() { mActiveEmitter->clearResourceManager(1); }
 
 /**
  * @note Address: 0x803B95B0
  * @note Size: 0x24
  */
-void TParticle2dMgr::update() { _30->calc(); }
+void TParticle2dMgr::update() { mActiveEmitter->calc(); }
 
 /**
  * @note Address: 0x803B95D4
@@ -282,110 +285,24 @@ void TParticle2dMgr::draw(u8 a, u16 flag)
 {
 	if (flag == 1) {
 		JPADrawInfo info;
-		PSMTXIdentity(info.mtx1);
+		Mtx iden;
+		PSMTXIdentity(iden);
 		u16 width  = System::getRenderModeObj()->fbWidth;
 		u16 height = System::getRenderModeObj()->efbHeight;
-		PSMTXCopy(info.mtx1, info.mtx2);
+		PSMTXCopy(iden, info.mtx1);
 		C_MTXLightOrtho(info.mtx2, 0.0f, height, 0.0f, width, 0.5f, 0.5f, 0.5f, 0.5f);
-		mEmitterManager->draw(&info, a);
+		mActiveEmitter->draw(&info, (u8)a);
 	} else {
-		Graphics* gfx = sys->mGfx;
+		Graphics* gfx = sys->getGfx();
+		u16 height    = System::getRenderModeObj()->efbHeight;
+		u16 width     = System::getRenderModeObj()->fbWidth;
+		f32 fov       = gfx->mPerspGraph.getFovY();
+
 		JPADrawInfo info;
-		u16 height = System::getRenderModeObj()->efbHeight;
-		u16 width  = System::getRenderModeObj()->fbWidth;
-		f32 fov    = gfx->mPerspGraph.mFovY;
-		PSMTXCopy(gfx->mPerspGraph.mPosMtx, info.mtx2);
+		PSMTXCopy(gfx->mPerspGraph.mPosMtx, info.mtx1);
 		C_MTXLightPerspective(info.mtx2, fov, (f32)width / (f32)height, 0.5f, -0.5f, 0.5f, 0.5f);
-		mEmitterManager->draw(&info, a);
+		mActiveEmitter->draw(&info, (u8)a);
 	}
-	/*
-	stwu     r1, -0x130(r1)
-	mflr     r0
-	stw      r0, 0x134(r1)
-	stfd     f31, 0x120(r1)
-	psq_st   f31, 296(r1), 0, qr0
-	stmw     r27, 0x10c(r1)
-	clrlwi   r0, r5, 0x10
-	mr       r27, r3
-	cmplwi   r0, 1
-	mr       r28, r4
-	bne      lbl_803B9680
-	addi     r3, r1, 8
-	bl       PSMTXIdentity
-	bl       getRenderModeObj__6SystemFv
-	lhz      r31, 4(r3)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r30, 6(r3)
-	addi     r3, r1, 8
-	addi     r4, r1, 0x98
-	bl       PSMTXCopy
-	lis      r0, 0x4330
-	lfs      f5, lbl_8051F6C4@sda21(r2)
-	stw      r30, 0xfc(r1)
-	addi     r3, r1, 0xc8
-	lfs      f1, lbl_8051F6C0@sda21(r2)
-	fmr      f6, f5
-	stw      r0, 0xf8(r1)
-	fmr      f7, f5
-	lfd      f4, lbl_8051F6D0@sda21(r2)
-	fmr      f3, f1
-	lfd      f0, 0xf8(r1)
-	stw      r31, 0x104(r1)
-	fmr      f8, f5
-	fsubs    f2, f0, f4
-	stw      r0, 0x100(r1)
-	lfd      f0, 0x100(r1)
-	fsubs    f4, f0, f4
-	bl       C_MTXLightOrtho
-	lwz      r3, 0x30(r27)
-	addi     r4, r1, 0x98
-	clrlwi   r5, r28, 0x18
-	bl       draw__17JPAEmitterManagerFPC11JPADrawInfoUc
-	b        lbl_803B9700
-
-lbl_803B9680:
-	lwz      r3, sys@sda21(r13)
-	lwz      r31, 0x24(r3)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r30, 6(r3)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r29, 4(r3)
-	addi     r3, r31, 0x210
-	lfs      f31, 0x24c(r31)
-	addi     r4, r1, 0x38
-	bl       PSMTXCopy
-	lis      r0, 0x4330
-	lfs      f3, lbl_8051F6C4@sda21(r2)
-	stw      r29, 0x104(r1)
-	fmr      f1, f31
-	lfd      f7, lbl_8051F6D0@sda21(r2)
-	fmr      f5, f3
-	stw      r0, 0x100(r1)
-	fmr      f6, f3
-	lfs      f4, lbl_8051F6C8@sda21(r2)
-	lfd      f0, 0x100(r1)
-	addi     r3, r1, 0x68
-	stw      r30, 0xfc(r1)
-	fsubs    f2, f0, f7
-	stw      r0, 0xf8(r1)
-	lfd      f0, 0xf8(r1)
-	fsubs    f0, f0, f7
-	fdivs    f2, f2, f0
-	bl       C_MTXLightPerspective
-	lwz      r3, 0x30(r27)
-	addi     r4, r1, 0x38
-	clrlwi   r5, r28, 0x18
-	bl       draw__17JPAEmitterManagerFPC11JPADrawInfoUc
-
-lbl_803B9700:
-	psq_l    f31, 296(r1), 0, qr0
-	lfd      f31, 0x120(r1)
-	lmw      r27, 0x10c(r1)
-	lwz      r0, 0x134(r1)
-	mtlr     r0
-	addi     r1, r1, 0x130
-	blr
-	*/
 }
 
 /**
@@ -404,7 +321,7 @@ void TParticle2dMgr::setXfb(const ResTIMG*)
 JPABaseEmitter* TParticle2dMgr::create(u16 p1, Vector2<f32>& p2, u8 p3, u8 p4)
 {
 	JGeometry::TVec3f vec(p2.x, p2.y, 0.0f);
-	return _30->createSimpleEmitterID(vec, p1, p3, p4, nullptr, nullptr);
+	return mActiveEmitter->createSimpleEmitterID(vec, p1, p3, p4, nullptr, nullptr);
 }
 
 /**
@@ -414,7 +331,7 @@ JPABaseEmitter* TParticle2dMgr::create(u16 p1, Vector2<f32>& p2, u8 p3, u8 p4)
 void TParticle2dMgr::kill(JPABaseEmitter* emitter)
 {
 	if (emitter) {
-		_30->forceDeleteEmitter(emitter);
+		mActiveEmitter->forceDeleteEmitter(emitter);
 	}
 }
 
@@ -434,13 +351,15 @@ void TParticle2dMgr::fade(JPABaseEmitter* emitter)
  * @note Address: 0x803B97B4
  * @note Size: 0x24
  */
-void TParticle2dMgr::killAll() { _30->forceDeleteAllEmitter(); }
+void TParticle2dMgr::killAll() { mActiveEmitter->forceDeleteAllEmitter(); }
 
 /**
  * @note Address: 0x803B97D8
  * @note Size: 0x28
  */
-void TParticle2dMgr::killGroup(u8 p1) { _30->forceDeleteGroupEmitter((int)p1); }
+void TParticle2dMgr::killGroup(u8 p1) { mActiveEmitter->forceDeleteGroupEmitter((int)p1); }
+
+static const char* dummy = "IP2_dummy";
 
 /**
  * @note Address: N/A

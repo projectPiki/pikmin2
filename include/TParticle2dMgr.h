@@ -43,10 +43,10 @@ struct TParticle2dMgr : public CNode, JKRDisposer {
 	// _00		= VTBL
 	// _00-_18	= CNode
 	// _18-_30	= JKRDisposer
-	JPAEmitterManager* _30;               // _30
+	JPAEmitterManager* mActiveEmitter;    // _30
 	JPAResourceManager* mResourceManager; // _34
 	JKRSolidHeap* mSolidHeap;             // _38
-	JPAEmitterManager* mEmitterManager;   // _3C
+	JPAEmitterManager* mEmitterBackup;    // _3C
 	u8 _40[4];                            // _40
 
 	static TParticle2dMgr* _instance;

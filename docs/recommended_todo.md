@@ -74,8 +74,8 @@
 ### <section id="plugProjectEbisawaU">plugProjectEbisawaU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebi2DGraph.cpp">ebi2DGraph.cpp</a> | 4173 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/efx2dEffect.cpp">efx2dEffect.cpp</a> | 10340 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebi2DCallBack.cpp">ebi2DCallBack.cpp</a> | 10457 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/particle2dMgr.cpp">particle2dMgr.cpp</a> | 10505 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebi2DGraph.cpp">ebi2DGraph.cpp</a> | 4173 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/particle2dMgr.cpp">particle2dMgr.cpp</a> | 8639 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/efx2dEffect.cpp">efx2dEffect.cpp</a> | 10340 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebi2DCallBack.cpp">ebi2DCallBack.cpp</a> | 10457 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/efxObject.cpp">efxObject.cpp</a> | 11238 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiScreenSaveMenu.cpp">ebiScreenSaveMenu.cpp</a> | 11502 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiP2Title.cpp">ebiP2Title.cpp</a> | 23731 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/efxPikmin.cpp">efxPikmin.cpp</a> | 33206 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/efxBase.cpp">efxBase.cpp</a> | 35283 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/efxEnemy.cpp">efxEnemy.cpp</a> | 39166 |

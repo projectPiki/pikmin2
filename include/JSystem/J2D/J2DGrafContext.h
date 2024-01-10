@@ -77,6 +77,8 @@ struct J2DPerspGraph : public J2DGrafContext {
 	void set(f32, f32, f32);
 	void setFovy(f32);
 
+	inline f32 getFovY() const { return mFovY; }
+
 	// _00 		= VTBL
 	// _00-_BC	= J2DGrafContext
 	f32 mFovY; // _BC
