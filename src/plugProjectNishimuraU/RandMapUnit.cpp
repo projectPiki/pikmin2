@@ -3044,107 +3044,45 @@ lbl_802485B0:
  */
 void RandMapUnit::closeDoorCheck()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r26, 0x18(r1)
-	lwz      r3, 0x20(r3)
-	lwz      r31, 0x28(r3)
-	lwz      r30, 0x10(r31)
-	b        lbl_802486DC
+	Cave::MapNode* rootNode = mGenerator->mPlacedMapNodes;
+	for (Cave::MapNode* currentNode = static_cast<Cave::MapNode*>(rootNode->mChild); currentNode;
+	     currentNode                = static_cast<Cave::MapNode*>(currentNode->mNext)) {
+		// Iterate over all doors of the current node
+		for (int doorIdx = 0; doorIdx < currentNode->getNumDoors(); ++doorIdx) {
+			// If the door is closed, skip it
+			if (currentNode->isDoorClose(doorIdx)) {
+				continue;
+			}
 
-lbl_802485E4:
-	li       r29, 0
-	b        lbl_802486C8
+			int offsetX, offsetY;
+			currentNode->getDoorOffset(doorIdx, offsetX, offsetY);
 
-lbl_802485EC:
-	mr       r3, r30
-	mr       r4, r29
-	bl       isDoorClose__Q34Game4Cave7MapNodeFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802486C4
-	mr       r3, r30
-	mr       r4, r29
-	addi     r5, r1, 0x14
-	addi     r6, r1, 0x10
-	bl       getDoorOffset__Q34Game4Cave7MapNodeFiRiRi
-	mr       r3, r30
-	mr       r4, r29
-	bl       getDoorNode__Q34Game4Cave7MapNodeFi
-	lwz      r27, 0x10(r31)
-	mr       r28, r3
-	b        lbl_802486BC
+			// Get the node connected to the door and its offset
+			Cave::DoorNode* doorNode = currentNode->getDoorNode(doorIdx);
 
-lbl_8024862C:
-	cmplw    r30, r27
-	beq      lbl_802486B8
-	li       r26, 0
-	b        lbl_802486A8
+			// Iterate over all child nodes of the root node again
+			for (Cave::MapNode* otherNode = static_cast<Cave::MapNode*>(rootNode->mChild); otherNode;
+			     otherNode                = static_cast<Cave::MapNode*>(otherNode->mNext)) {
+				// If the nodes are the same, skip it
+				if (currentNode == otherNode) {
+					continue;
+				}
 
-lbl_8024863C:
-	mr       r3, r27
-	mr       r4, r26
-	bl       getDoorNode__Q34Game4Cave7MapNodeFi
-	mr       r4, r3
-	mr       r3, r28
-	bl       isDoorAdjust__Q34Game4Cave8DoorNodeFPQ34Game4Cave8DoorNode
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802486A4
-	mr       r3, r27
-	mr       r4, r26
-	addi     r5, r1, 0xc
-	addi     r6, r1, 8
-	bl       getDoorOffset__Q34Game4Cave7MapNodeFiRiRi
-	lwz      r3, 0x14(r1)
-	lwz      r0, 0xc(r1)
-	cmpw     r3, r0
-	bne      lbl_802486A4
-	lwz      r3, 0x10(r1)
-	lwz      r0, 8(r1)
-	cmpw     r3, r0
-	bne      lbl_802486A4
-	mr       r3, r30
-	mr       r4, r29
-	mr       r5, r27
-	mr       r6, r26
-	bl       setDoorClose__Q34Game4Cave7MapNodeFiPQ34Game4Cave7MapNodei
+				// Iterate over all doors of the other node
+				for (int otherDoorIdx = 0; otherDoorIdx < otherNode->getNumDoors(); ++otherDoorIdx) {
+					// If the door nodes are the same and the offsets are the same, close the door
+					if (doorNode->isDoorAdjust(otherNode->getDoorNode(otherDoorIdx))) {
+						int otherOffsetX, otherOffsetY;
+						otherNode->getDoorOffset(otherDoorIdx, otherOffsetX, otherOffsetY);
 
-lbl_802486A4:
-	addi     r26, r26, 1
-
-lbl_802486A8:
-	mr       r3, r27
-	bl       getNumDoors__Q34Game4Cave7MapNodeFv
-	cmpw     r26, r3
-	blt      lbl_8024863C
-
-lbl_802486B8:
-	lwz      r27, 4(r27)
-
-lbl_802486BC:
-	cmplwi   r27, 0
-	bne      lbl_8024862C
-
-lbl_802486C4:
-	addi     r29, r29, 1
-
-lbl_802486C8:
-	mr       r3, r30
-	bl       getNumDoors__Q34Game4Cave7MapNodeFv
-	cmpw     r29, r3
-	blt      lbl_802485EC
-	lwz      r30, 4(r30)
-
-lbl_802486DC:
-	cmplwi   r30, 0
-	bne      lbl_802485E4
-	lmw      r26, 0x18(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+						if (offsetX == otherOffsetX && offsetY == otherOffsetY) {
+							currentNode->setDoorClose(doorIdx, otherNode, otherDoorIdx);
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 /**
