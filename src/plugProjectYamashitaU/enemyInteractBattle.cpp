@@ -51,22 +51,22 @@ bool InteractAttack::actEnemy(EnemyBase* enemy)
 	bool isSuccess = false;
 
 	if (!enemy->isEvent(0, EB_Invulnerable)) {
-		bool flag = false;
+		bool toDamage = false;
 		if (mCreature->isNavi()) {
 			if (static_cast<Navi*>(mCreature)->mNaviIndex == NAVIID_Olimar) {
 				if (!enemy->isEvent(0, EB_AttackingNavi0)) {
-					flag = true;
+					toDamage = true;
 					enemy->enableEvent(0, EB_AttackingNavi0);
 				}
 			} else if (!enemy->isEvent(0, EB_AttackingNavi1)) {
-				flag = true;
+				toDamage = true;
 				enemy->enableEvent(0, EB_AttackingNavi1);
 			}
 		} else {
-			flag = true;
+			toDamage = true;
 		}
 
-		if (flag) {
+		if (toDamage) {
 			if (enemy->isEvent(0, EB_Bittered)) {
 				mDamage *= enemy->getDamageCoeStoneState();
 			}

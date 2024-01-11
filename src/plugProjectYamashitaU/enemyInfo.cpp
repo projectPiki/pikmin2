@@ -119,30 +119,28 @@ namespace EnemyInfoFunc {
 inline EnemyInfo* getInfo(int enemyID, int enemyFlags)
 {
 	EnemyInfo* result = nullptr;
-	for (int enemy_num = gEnemyInfoNum, slot = 0; enemy_num > 0; --enemy_num) {
-		if ((enemyID == gEnemyInfo[slot].mId) && ((enemyFlags & (u32)gEnemyInfo[slot].mFlags) != 0)) {
+
+	for (int remaining = gEnemyInfoNum, slot = 0; remaining > 0; remaining--, slot++) {
+		if (enemyID == gEnemyInfo[slot].mId && IS_FLAG(enemyFlags, gEnemyInfo[slot].mFlags)) {
 			result = &gEnemyInfo[slot];
 			break;
 		}
-		++slot;
 	}
+
 	return result;
 }
 
 EnemyInfo* getEnemyInfo(int enemyID, int enemyFlags)
 {
 	EnemyInfo* result = nullptr;
-	int slot          = 0;
-	int enemy_num     = gEnemyInfoNum;
 
-	while (enemy_num > 0) {
-		if ((enemyID == gEnemyInfo[slot].mId) && ((enemyFlags & (u32)gEnemyInfo[slot].mFlags) != 0)) {
-			result = gEnemyInfo + slot;
+	for (int slot = 0, remaining = gEnemyInfoNum; remaining > 0; remaining--, slot++) {
+		if (enemyID == gEnemyInfo[slot].mId && IS_FLAG(enemyFlags, gEnemyInfo[slot].mFlags)) {
+			result = &gEnemyInfo[slot];
 			break;
 		}
-		--enemy_num;
-		++slot;
 	}
+
 	return result;
 }
 
@@ -180,12 +178,14 @@ char getEnemyMember(int enemyID, int enemyFlags)
 int getEnemyID(char* name, int enemyFlags)
 {
 	EnemyInfo* result = nullptr;
-	for (int slot = 0; slot < gEnemyInfoNum; ++slot) {
-		if ((stricmp(gEnemyInfo[slot].mName, name) == 0) && ((enemyFlags & (u32)gEnemyInfo[slot].mFlags) != 0)) {
-			result = &gEnemyInfo[slot];
+
+	for (int i = 0; i < gEnemyInfoNum; i++) {
+		if (stricmp(gEnemyInfo[i].mName, name) == 0 && IS_FLAG(enemyFlags, gEnemyInfo[i].mFlags)) {
+			result = &gEnemyInfo[i];
 			break;
 		}
 	}
+
 	return result->mId;
 }
 } // namespace EnemyInfoFunc

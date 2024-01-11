@@ -3163,6 +3163,65 @@ void RandMapUnit::deleteMapNode(MapNode* tile)
  */
 void RandMapUnit::createLoopMapNodeCheck()
 {
+	if (!mNeedsLoopMapNodeCheck) {
+		return;
+	}
+
+	mNeedsLoopMapNodeCheck = false;
+
+	int unclosedDoors;
+	Cave::MapNode* rootNode = mGenerator->mPlacedMapNodes;
+	for (Cave::MapNode* currentNode = static_cast<Cave::MapNode*>(rootNode->mChild); currentNode;
+	     currentNode                = static_cast<Cave::MapNode*>(currentNode->mNext)) {
+		for (int doorIdx = 0; doorIdx < currentNode->getNumDoors(); doorIdx++) {
+			if (currentNode->isDoorClose(doorIdx)) {
+				continue;
+			}
+
+			unclosedDoors++;
+		}
+	}
+
+	for (int doorIdx = 0; doorIdx < unclosedDoors; ++doorIdx) {
+		if (mCapCandidateCount >= 16) {
+			continue;
+		}
+
+		f32 x = randWeightFloat(1.0f);
+		if (x < mCapMax) {
+			Cave::MapNode* selectedNode = nullptr;
+
+			rootNode = mGenerator->mPlacedMapNodes;
+			for (Cave::MapNode* currentNode = static_cast<Cave::MapNode*>(rootNode->mChild); currentNode;
+			     currentNode                = static_cast<Cave::MapNode*>(currentNode->mNext)) {
+
+				int unclosedDoorIdx;
+				for (int doorIdx = 0;; ++doorIdx) {
+					if (doorIdx == currentNode->getNumDoors()) {
+						break;
+					}
+
+					if (currentNode->isDoorClose(doorIdx)) {
+						continue;
+					}
+
+					if (unclosedDoorIdx == doorIdx) {
+						Cave::MapNode* node = (Cave::MapNode*)currentNode->getDoorNode(doorIdx);
+
+						int x, y;
+						node->getDoorOffset(doorIdx, x, y);
+						if (node->getNumDoors()) {
+							mCapCandidateNodes[mCapCandidateCount]         = node;
+							mCapCandidateDoorIndices[mCapCandidateCount++] = doorIdx;
+							break;
+						}
+					}
+
+					++unclosedDoorIdx;
+				}
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0

@@ -51,8 +51,8 @@ void FSMState::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx) { PSMTXIdentity(mtx-
  */
 void FSMStateExpansion::init(DrawInfo* drawInfo, StateArg* stateArg)
 {
-	drawInfo->_3C = 0.1f;
-	_10           = 0;
+	drawInfo->mDrawTimeLimit = 0.1f;
+	_10                      = 0;
 }
 
 /**
@@ -61,9 +61,9 @@ void FSMStateExpansion::init(DrawInfo* drawInfo, StateArg* stateArg)
  */
 void FSMStateExpansion::exec(DrawInfo* drawInfo)
 {
-	drawInfo->_38 += sys->mDeltaTime;
+	drawInfo->mDrawTimer += sys->mDeltaTime;
 
-	if (!_10 && drawInfo->_38 > 0.0f) {
+	if (!_10 && drawInfo->mDrawTimer > 0.0f) {
 		_10 = 1;
 		Vector3f pos;
 		f32 scale;
@@ -84,8 +84,8 @@ void FSMStateExpansion::exec(DrawInfo* drawInfo)
 		}
 	}
 
-	if (drawInfo->_38 > drawInfo->_3C) {
-		drawInfo->_38 = drawInfo->_3C;
+	if (drawInfo->mDrawTimer > drawInfo->mDrawTimeLimit) {
+		drawInfo->mDrawTimer = drawInfo->mDrawTimeLimit;
 		transit(drawInfo, STONESTATE_ExpansionFull, nullptr);
 	}
 }
@@ -120,7 +120,7 @@ f32 pikmin2_sinf(f32 x)
  */
 void FSMStateExpansion::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 {
-	f32 theta = drawInfo->_38 / drawInfo->_3C;
+	f32 theta = drawInfo->mDrawTimer / drawInfo->mDrawTimeLimit;
 	boundAngle(theta);
 
 	f32 sinTheta = pikmin2_sinf(theta * HALF_PI);
@@ -145,8 +145,8 @@ void FSMStateExpansionFull::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
  */
 void FSMStateFit::init(DrawInfo* drawInfo, StateArg* stateArg)
 {
-	drawInfo->_38 = 0.0f;
-	drawInfo->_3C = 1.0f / 30.0f;
+	drawInfo->mDrawTimer     = 0.0f;
+	drawInfo->mDrawTimeLimit = 1.0f / 30.0f;
 }
 
 /**
@@ -155,9 +155,9 @@ void FSMStateFit::init(DrawInfo* drawInfo, StateArg* stateArg)
  */
 void FSMStateFit::exec(DrawInfo* drawInfo)
 {
-	drawInfo->_38 += sys->mDeltaTime;
-	if (drawInfo->_38 > drawInfo->_3C) {
-		drawInfo->_38 = drawInfo->_3C;
+	drawInfo->mDrawTimer += sys->mDeltaTime;
+	if (drawInfo->mDrawTimer > drawInfo->mDrawTimeLimit) {
+		drawInfo->mDrawTimer = drawInfo->mDrawTimeLimit;
 		transit(drawInfo, STONESTATE_BaseState4, nullptr);
 	}
 }
@@ -174,7 +174,7 @@ void FSMStateFit::cleanup(DrawInfo* drawInfo) { }
  */
 void FSMStateFit::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 {
-	f32 theta = drawInfo->_38 / drawInfo->_3C;
+	f32 theta = drawInfo->mDrawTimer / drawInfo->mDrawTimeLimit;
 	boundAngle(theta);
 
 	f32 cosTheta = cos(theta * HALF_PI); // ????? THIS DOESN'T EVEN GET USED, WTF YAMASHITA
@@ -189,9 +189,9 @@ void FSMStateFit::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
  */
 void FSMStateShake::init(DrawInfo* drawInfo, StateArg* stateArg)
 {
-	_14           = 7.0f;
-	drawInfo->_3C = 0.07f * _14;
-	_10           = 0;
+	_14                      = 7.0f;
+	drawInfo->mDrawTimeLimit = 0.07f * _14;
+	_10                      = 0;
 }
 
 /**
@@ -200,29 +200,29 @@ void FSMStateShake::init(DrawInfo* drawInfo, StateArg* stateArg)
  */
 void FSMStateShake::exec(DrawInfo* drawInfo)
 {
-	drawInfo->_38 += sys->mDeltaTime;
-	if (drawInfo->_38 > drawInfo->_3C) {
-		drawInfo->_38 = drawInfo->_3C;
+	drawInfo->mDrawTimer += sys->mDeltaTime;
+	if (drawInfo->mDrawTimer > drawInfo->mDrawTimeLimit) {
+		drawInfo->mDrawTimer = drawInfo->mDrawTimeLimit;
 		switch (_10) {
 		case 0:
-			drawInfo->_38 = 0.0f;
-			drawInfo->_3C = 0.14f * _14;
-			_10           = 1;
+			drawInfo->mDrawTimer     = 0.0f;
+			drawInfo->mDrawTimeLimit = 0.14f * _14;
+			_10                      = 1;
 			break;
 		case 1:
-			drawInfo->_38 = 0.0f;
-			drawInfo->_3C = 0.14f * _14;
-			_10           = 2;
+			drawInfo->mDrawTimer     = 0.0f;
+			drawInfo->mDrawTimeLimit = 0.14f * _14;
+			_10                      = 2;
 			break;
 		case 2:
-			drawInfo->_38 = 0.0f;
-			drawInfo->_3C = 0.35f * _14;
-			_10           = 3;
+			drawInfo->mDrawTimer     = 0.0f;
+			drawInfo->mDrawTimeLimit = 0.35f * _14;
+			_10                      = 3;
 			break;
 		case 3:
-			drawInfo->_38 = 0.0f;
-			drawInfo->_3C = 0.3f * _14;
-			_10           = 4;
+			drawInfo->mDrawTimer     = 0.0f;
+			drawInfo->mDrawTimeLimit = 0.3f * _14;
+			_10                      = 4;
 			break;
 		case 4:
 			transit(drawInfo, STONESTATE_Breakable, nullptr);
@@ -230,7 +230,7 @@ void FSMStateShake::exec(DrawInfo* drawInfo)
 		}
 	}
 
-	f32 ratio = drawInfo->_38 / drawInfo->_3C;
+	f32 ratio = drawInfo->mDrawTimer / drawInfo->mDrawTimeLimit;
 
 	switch (_10) {
 	case 0:
@@ -265,7 +265,7 @@ void FSMStateShake::cleanup(DrawInfo* drawInfo) { }
  */
 void FSMStateShake::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 {
-	f32 theta = drawInfo->_38 / drawInfo->_3C;
+	f32 theta = drawInfo->mDrawTimer / drawInfo->mDrawTimeLimit;
 	boundAngle(theta);
 
 	f32 p1;
@@ -527,7 +527,7 @@ void FSMStateShake::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
  */
 void FSMStateBreakable::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 {
-	f32 theta            = drawInfo->_38 * 15.2f * TAU;
+	f32 theta            = drawInfo->mDrawTimer * 15.2f * TAU;
 	Vector3f translation = Vector3f(0.2f * pikmin2_sinf(theta), 0.0f, 0.2f * cosf(theta));
 	f32 sinTheta         = (f32)sin(theta);
 	Vector3f rotation    = Vector3f(PI * (DEG2RAD * (4.0f * sinTheta)), 0.0f, 0.0f);
@@ -538,13 +538,13 @@ void FSMStateBreakable::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
  * @note Address: 0x80129184
  * @note Size: 0xC
  */
-void FSMStateBreakable::init(DrawInfo* drawInfo, StateArg* stateArg) { drawInfo->_38 = 0.0f; }
+void FSMStateBreakable::init(DrawInfo* drawInfo, StateArg* stateArg) { drawInfo->mDrawTimer = 0.0f; }
 
 /**
  * @note Address: 0x80129190
  * @note Size: 0x18
  */
-void FSMStateBreakable::exec(DrawInfo* drawInfo) { drawInfo->_38 += sys->mDeltaTime; }
+void FSMStateBreakable::exec(DrawInfo* drawInfo) { drawInfo->mDrawTimer += sys->mDeltaTime; }
 
 /**
  * @note Address: 0x801291A8
@@ -633,10 +633,10 @@ void FSMStateDead::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx) { PSMTXIdentity(
 DrawInfo::DrawInfo(bool doInitFSM)
     : CNode("")
 {
-	_38      = 0.0f;
-	_3C      = 0.0f;
-	mObjInfo = nullptr;
-	mMatrix  = nullptr;
+	mDrawTimer     = 0.0f;
+	mDrawTimeLimit = 0.0f;
+	mObjInfo       = nullptr;
+	mMatrix        = nullptr;
 
 	if (doInitFSM) {
 		mFsm.init(this);
@@ -651,10 +651,10 @@ DrawInfo::DrawInfo(bool doInitFSM)
 void DrawInfo::reset()
 {
 	del();
-	mObjInfo = nullptr;
-	mMatrix  = nullptr;
-	_38      = 0.0f;
-	_3C      = 0.0f;
+	mObjInfo       = nullptr;
+	mMatrix        = nullptr;
+	mDrawTimer     = 0.0f;
+	mDrawTimeLimit = 0.0f;
 	mFsm.start(this, STONESTATE_BaseState0, nullptr);
 }
 
@@ -814,7 +814,7 @@ lbl_801297C4:
 void DrawInfo::appear(EnemyBase* enemy, f32 p1)
 {
 	sOwnerEnemy = enemy;
-	_38         = p1;
+	mDrawTimer  = p1;
 	mFsm.transit(this, STONESTATE_Expansion, nullptr);
 	sOwnerEnemy = nullptr;
 }
@@ -837,7 +837,7 @@ void DrawInfo::fit(EnemyBase* enemy)
 void DrawInfo::shake(EnemyBase* enemy, f32 p1)
 {
 	sOwnerEnemy = enemy;
-	_38         = p1;
+	mDrawTimer  = p1;
 	mFsm.transit(this, STONESTATE_Shake, nullptr);
 	sOwnerEnemy = nullptr;
 }
