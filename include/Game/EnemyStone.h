@@ -72,8 +72,8 @@ struct DrawInfo : public CNode {
 
 	StateMachine mFsm;       // _18
 	FSMState* mCurrentState; // _34
-	f32 mDrawTimer;                 // _38
-	f32 mDrawTimeLimit;                 // _3C
+	f32 mDrawTimer;          // _38
+	f32 mDrawTimeLimit;      // _3C
 	ObjInfo* mObjInfo;       // _40
 	Matrixf* mMatrix;        // _44
 };

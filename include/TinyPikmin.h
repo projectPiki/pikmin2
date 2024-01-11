@@ -27,7 +27,7 @@ struct TinyPikmin {
 	void draw();
 	void drawPikmin(f32, f32, f32, f32);
 
-	u32 mState;       // _00
+	int mState;       // _00
 	s32 mColor;       // _04
 	f32 _08;          // _08
 	f32 _0C;          // _0C

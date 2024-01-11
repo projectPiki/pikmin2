@@ -20,6 +20,8 @@
 #include "PSM/Scene.h"
 #include "ebi/Progre.h"
 #include "trig.h"
+
+u32 unused[4] = { 1, 2, 3, 0 }; // has to be generated before nans
 #include "nans.h"
 
 static const u32 padding[]        = { 0, 0, 0 };
@@ -46,18 +48,51 @@ TinyPikmin::TinyPikmin()
  * @note Address: N/A
  * @note Size: 0x110
  */
-void TinyPikmin::init(int, f32, f32, f32)
+void TinyPikmin::init(int color, f32 delay, f32 u2, f32 x)
 {
-	// UNUSED FUNCTION
+	mState  = INACTIVE;
+	mColor  = color;
+	_08     = delay + u2;
+	_0C     = 166.0f;
+	mPosX   = 0.0f;
+	mPosY   = 70.0f;
+	mTimer2 = randFloat();
+	mTimer  = 0.0f;
+	_24     = x;
+	mVelX   = 0.0f;
+	mVelY   = 0.0f;
+	mAngle  = 0.0f;
+
+	switch (mColor) {
+	case White:
+		mTimerFactor = 2.0f;
+		break;
+	case Purple:
+		mTimerFactor = 1.0f;
+		if (sTinyPikminMgr->mDoSlamPikmin) {
+			mPosY = -200.0f;
+		}
+		break;
+	default:
+		mTimerFactor = 1.5f;
+	}
+
+	if (sTinyPikminMgr->mMode == 1) {
+		mPosY = -200.0f;
+	}
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0x90
  */
-void TinyPikmin::wind(f32)
+void TinyPikmin::wind(f32 xVel)
 {
-	// UNUSED FUNCTION
+	if (mState != INACTIVE && mState != WAIT) {
+		mState = SLAMMED;
+		mVelX += xVel;
+		mVelY -= randFloat() * 20.0f + 10.0f;
+	}
 }
 
 /**
@@ -116,15 +151,13 @@ void TinyPikmin::update()
 						Vector2f vec(piki->_08 - _08, piki->_0C - _0C);
 						f32 dist = _lenVec2D(vec);
 						if (dist < 300.0f) {
+							f32 x   = (1.0f - dist / 300.0f) * 20.0f;
 							f32 dir = 1.0f;
 							if (piki->_08 < _08) {
 								dir = -1.0f;
 							}
-							if (piki->mState != INACTIVE && piki->mState != WAIT) {
-								piki->mState = SLAMMED;
-								piki->mVelX += (1.0f - dist / 300.0f) * 20.0f * dir;
-								piki->mVelY -= randFloat() * 20.0f + 10.0f;
-							}
+							x *= dir;
+							piki->wind(x);
 						}
 					}
 				}
@@ -138,19 +171,19 @@ void TinyPikmin::update()
 				mVelY  = randFloat() * -4.0f + 4.0f;
 			}
 			if (randFloat() > 0.9f) {
-				f32 test;
+				f32 weight;
 				switch (mColor) {
 				case Purple:
-					test = 0.5f;
+					weight = 0.5f;
 					break;
 				case White:
-					test = 2.0f;
+					weight = 2.0f;
 					break;
 				default:
-					test = 1.0f;
+					weight = 1.0f;
 					break;
 				}
-				mVelY = test * randFloat() * -4.0f + -1.0f;
+				mVelY = weight * randFloat() * -4.0f + -1.0f;
 			}
 		}
 		break;
@@ -164,7 +197,7 @@ void TinyPikmin::update()
 			mPosY += mVelY;
 		}
 		break;
-	case 4:
+	case SLAMMED:
 		mVelX *= 0.98f;
 		mVelY += TINYPIKMIN_FALL_ACCEL;
 		mPosX += mVelX;
@@ -195,12 +228,12 @@ void TinyPikmin::draw()
 {
 	if (mState != INACTIVE) {
 		f32 x, y;
-		if (mPosY > 0.0f) {
+		if (mPosY < 0.0f) {
 			y = FABS(mPosY / 10.0f);
 			if (y > 1.0f) {
 				y = 1.0f;
 			}
-			y = x * 0.2f + 1.0f;
+			y *= x * 0.2f + 1.0f;
 			x = (1.0f - x) * 0.2f + 0.8f;
 		} else {
 			y = 1.0f;
@@ -209,12 +242,9 @@ void TinyPikmin::draw()
 		f32 angle = mTimer2 * TAU;
 		x *= sinf(angle) * 0.1f + 1.0f;
 		y *= -(sinf(angle) * 0.08f - 1.0f);
-		f32 xoffs       = _08 + mPosX;
-		f32 yoffs       = _0C + mPosY;
-		J2DPicture* pic = sTinyPikminMgr->sPikminTex[mColor];
-		pic->updateScale(x, y);
-		pic->rotate(pic->getWidth() / 2, pic->getHeight() / 2, J2DROTATE_Z, mAngle);
-		pic->draw(pic->getWidth() / 2 - xoffs, yoffs - (pic->getHeight() / 2), false, false, false);
+		f32 yoffs = _0C + mPosY;
+		f32 xoffs = _08 + mPosX;
+		drawPikmin(x, y, xoffs, yoffs);
 	}
 }
 
@@ -222,9 +252,12 @@ void TinyPikmin::draw()
  * @note Address: N/A
  * @note Size: 0x100
  */
-void TinyPikmin::drawPikmin(f32, f32, f32, f32)
+void TinyPikmin::drawPikmin(f32 x, f32 y, f32 xoffs, f32 yoffs)
 {
-	// UNUSED FUNCTION
+	J2DPicture* pic = sTinyPikminMgr->sPikminTex[mColor];
+	pic->updateScale(x, y);
+	pic->rotate(pic->getWidth() / 2, pic->getHeight() / 2, J2DROTATE_Z, mAngle);
+	pic->draw(pic->getWidth() / 2 - xoffs, pic->getHeight() / 2 - yoffs, false, false, false);
 }
 
 /**
@@ -311,12 +344,12 @@ void TinyPikminMgr::init()
 
 	f32 delay = test2 * 0.5f + 175.0f;
 	for (int i = 0; i < sTinyPikminNum; i++) {
-		if (mDoSlamPikmin || i == sTinyPikminNum - 1) {
+		if (!mDoSlamPikmin || i == sTinyPikminNum - 1) {
 			color = TinyPikmin::Purple;
 		} else if (!changecolor) {
-			color = randFloat() * 4.0f;
+			color = randInt(4);
 		} else if (!changecolor) {
-			color = randFloat() * 5.0f;
+			color = randInt(5);
 		}
 
 		f32 x;
@@ -325,35 +358,7 @@ void TinyPikminMgr::init()
 		} else {
 			x = ((f32)i * test1) + (test1 * randFloat());
 		}
-		TinyPikmin* piki = &mPikis[i];
-		piki->mState     = TinyPikmin::INACTIVE;
-		piki->mColor     = color;
-		piki->_08        = delay + values[i];
-		piki->_0C        = 166.0f;
-		piki->mPosX      = 0.0f;
-		piki->mPosY      = 70.0f;
-		piki->mTimer2    = randFloat();
-		piki->mTimer     = 0.0f;
-		piki->_24        = x;
-		piki->mVelX      = 0.0f;
-		piki->mVelY      = 0.0f;
-		piki->mAngle     = 0.0f;
-		switch (piki->mColor) {
-		case TinyPikmin::White:
-			piki->mTimerFactor = 2.0f;
-			break;
-		case TinyPikmin::Purple:
-			piki->mTimerFactor = 1.0f;
-			if (sTinyPikminMgr->mDoSlamPikmin) {
-				piki->mPosY = -200.0f;
-			}
-			break;
-		default:
-			piki->mTimerFactor = 1.5f;
-		}
-		if (sTinyPikminMgr->mMode == 1) {
-			piki->mPosY = -200.0f;
-		}
+		mPikis[i].init(color, delay, values[i], x);
 	}
 	delete[] values;
 }
@@ -524,9 +529,15 @@ void BootSection::loadResident()
  * @note Address: N/A
  * @note Size: 0x8C
  */
-void BootSection::drawScreenProgre(Graphics&)
+void BootSection::drawScreenProgre(Graphics& gfx)
 {
-	// UNUSED FUNCTION
+	gfx.mPerspGraph.setPort();
+	mProgressiveScreen->draw();
+	gfx.mPerspGraph.setPort();
+	if (particle2dMgr) {
+		particle2dMgr->draw(1, 0);
+		particle2dMgr->draw(0, 0);
+	}
 }
 
 /**
@@ -547,33 +558,15 @@ void BootSection::doDraw(Graphics& gfx)
 		break;
 	case 5:
 		drawProgressive(gfx);
-		gfx.mPerspGraph.setPort();
-		mProgressiveScreen->draw();
-		gfx.mPerspGraph.setPort();
-		if (particle2dMgr) {
-			particle2dMgr->draw(1, 0);
-			particle2dMgr->draw(0, 0);
-		}
+		drawScreenProgre(gfx);
 		break;
 	case 7:
 		drawSetInterlace(gfx);
-		gfx.mPerspGraph.setPort();
-		mProgressiveScreen->draw();
-		gfx.mPerspGraph.setPort();
-		if (particle2dMgr) {
-			particle2dMgr->draw(1, 0);
-			particle2dMgr->draw(0, 0);
-		}
+		drawScreenProgre(gfx);
 		break;
 	case 8:
 		drawSetProgressive(gfx);
-		gfx.mPerspGraph.setPort();
-		mProgressiveScreen->draw();
-		gfx.mPerspGraph.setPort();
-		if (particle2dMgr) {
-			particle2dMgr->draw(1, 0);
-			particle2dMgr->draw(0, 0);
-		}
+		drawScreenProgre(gfx);
 		break;
 	case 9:
 	case 10:
@@ -1577,12 +1570,12 @@ void BootSection::run()
 {
 	mDisplayHeap->becomeCurrentHeap();
 	sys->dvdLoadUseCallBack(&mThreadCommand, new Delegate<BootSection>(this, &BootSection::loadBootResource));
-	// runWait(&waitLoadResource);
+	runWait(&waitLoadResource);
 	sys->loadResourceFirst();
 	setMode(0);
 	::Section::run();
 	gPikmin2AramMgr->setLoadPermission(false);
-	// runWait(&waitLoadResource);
+	runWait(&waitLoadResource);
 	sys->heapStatusDump(true);
 	mIsMainActive = false;
 }
@@ -1599,7 +1592,7 @@ void BootSection::runWait(RunWaitCallback func)
 		beginRender();
 		draw(*mGraphics);
 		endRender();
-		dorun = func(0, 0);
+		dorun = (this->*func)();
 		endFrame();
 	}
 }

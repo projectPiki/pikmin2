@@ -94,8 +94,8 @@ struct Mgr_tuning : public Mgr {
 	// _00-_138 = Mgr
 	f32 mScreenScaleX; // _138
 	f32 mScreenScaleY; // _13C
-	f32 mTranslationX;        // _140
-	f32 mTranslationY;        // _144
+	f32 mTranslationX; // _140
+	f32 mTranslationY; // _144
 };
 } // namespace P2DScreen
 

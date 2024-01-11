@@ -10,7 +10,7 @@
 #define NINTENDOLOGO_HEIGHT 104.0f
 
 // Nintendo logo is blue in japanese, red elsewhere
-#define NINTENDOLOGO_COLOR_JP 0, 0, 70, 255
+#define NINTENDOLOGO_COLOR_JP 0, 70, 255, 255
 #define NINTENDOLOGO_COLOR_US 220, 0, 0, 255
 
 #define DOLBYLOGO_XPOS   189.0f
@@ -31,7 +31,7 @@ struct TScreenProgre;
 }
 
 struct BootSection : public Game::BaseHIOSection {
-	typedef bool RunWaitCallback(const void*, void*);
+	typedef bool (BootSection::*RunWaitCallback)();
 
 	enum StateID {
 		SID_LOAD_RESOURCE_FIRST = 0,
