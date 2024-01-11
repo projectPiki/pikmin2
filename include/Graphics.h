@@ -117,6 +117,8 @@ struct Graphics {
 
 	static char* lastTokenName;
 
+	inline int getViewportNum() const { return mActiveViewports; }
+
 	// _000-_268 = Graphics members
 	// _26C-_270 = VTBL (sure)
 	// _270-_29E = other members

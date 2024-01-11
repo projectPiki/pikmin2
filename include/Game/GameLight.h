@@ -273,6 +273,7 @@ struct GameLightMgr : public LightMgr {
 	inline void setFlag(u32 flag) { mFlags.typeView |= flag; }
 	inline void resetFlag(u32 flag) { mFlags.typeView &= ~flag; }
 	inline bool isFlag(u32 flag) const { return mFlags.typeView & flag; }
+	inline LightObj* getMainLight() const { return mMainLight; }
 
 	// _00      = VTBL
 	// _00-_50  = LightMgr

@@ -57,7 +57,7 @@ struct ParticleMgr : public CNode {
 
 	// Unused/inlined:
 	void destroyHeap();
-	void cull(Sys::Sphere&);           // Might return bool?
+	bool cull(Sys::Sphere&);           // Might return bool?
 	void cullCylinder(Sys::Cylinder&); // Might return bool?
 	void draw2d();
 	ModelEffectData* getModelEffectData(u64);

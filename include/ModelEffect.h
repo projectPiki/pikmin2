@@ -31,10 +31,10 @@ struct ModelEffectData : public CNode {
 };
 
 struct ModelEffectDataRoot : public ModelEffectData {
-	virtual ~ModelEffectDataRoot();                           // _08 (weak)
-	virtual void loadResources();                             // _10 (weak)
-	virtual u64 getID();                                      // _14 (weak)
-	virtual ModelEffect* onCreate(ModelEffectCreateArg* arg); // _18 (weak)
+	virtual ~ModelEffectDataRoot() { }                                           // _08 (weak)
+	virtual void loadResources() { }                                             // _10 (weak)
+	virtual u64 getID() { return 'ROOT'; }                                       // _14 (weak)
+	virtual ModelEffect* onCreate(ModelEffectCreateArg* arg) { return nullptr; } // _18 (weak)
 };
 
 struct ModelEffect {
