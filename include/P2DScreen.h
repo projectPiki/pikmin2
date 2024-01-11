@@ -66,8 +66,8 @@ struct Mgr_tuning : public Mgr {
 
 	inline void setXY(f32 x, f32 y)
 	{
-		mSomeX = x + mstTuningTransX;
-		mSomeY = y + mstTuningTransY;
+		mTranslationX = x + mstTuningTransX;
+		mTranslationY = y + mstTuningTransY;
 	}
 
 	inline void scaleScreen(f32 scale)
@@ -94,8 +94,8 @@ struct Mgr_tuning : public Mgr {
 	// _00-_138 = Mgr
 	f32 mScreenScaleX; // _138
 	f32 mScreenScaleY; // _13C
-	f32 mSomeX;        // _140
-	f32 mSomeY;        // _144
+	f32 mTranslationX;        // _140
+	f32 mTranslationY;        // _144
 };
 } // namespace P2DScreen
 

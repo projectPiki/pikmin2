@@ -12,26 +12,33 @@ namespace P2DScreen {
 Mgr::Mgr() { }
 
 /**
+ * Adds a callback function to the Mgr object.
+ *
+ * @param tag The tag associated with the callback.
+ * @param newNode The node to be added as a callback.
+ * @return A pointer to the J2DPane object.
+ *
  * @note Address: 0x80434B24
  * @note Size: 0x138
  */
-J2DPane* Mgr::addCallBack(u64 tag, Node* node)
+J2DPane* Mgr::addCallBack(u64 tag, Node* newNode)
 {
-	P2ASSERTLINE(73, node);
-	s8* tagbyteview = (s8*)&tag;
+	P2ASSERTLINE(73, newNode);
+	s8* tagBytes = (s8*)&tag;
 
 	J2DPane* pane = search(tag);
 	if (pane) {
-		node->mPane = pane;
-		node->doInit();
-		mScreenNode.add(node);
+		newNode->mPane = pane;
+		newNode->doInit();
+		mScreenNode.add(newNode);
 	} else {
 		for (int i = 0; i < 8; i++) {
-			if (!tagbyteview[i]) {
-				tagbyteview[i] = 0x3f;
+			if (!tagBytes[i]) {
+				tagBytes[i] = 0x3F;
 			}
 		}
 	}
+
 	return pane;
 }
 
@@ -39,12 +46,12 @@ J2DPane* Mgr::addCallBack(u64 tag, Node* node)
  * @note Address: 0x80434C5C
  * @note Size: 0x84
  */
-void Mgr::addCallBackPane(J2DPane* pane, Node* node)
+void Mgr::addCallBackPane(J2DPane* pane, Node* newNode)
 {
-	P2ASSERTLINE(97, node);
-	node->mPane = pane;
-	node->doInit();
-	mScreenNode.add(node);
+	P2ASSERTLINE(97, newNode);
+	newNode->mPane = pane;
+	newNode->doInit();
+	mScreenNode.add(newNode);
 }
 
 /**
@@ -78,8 +85,8 @@ const f32 Mgr_tuning::mstTuningTransY = -15.2f;
 Mgr_tuning::Mgr_tuning()
     : mScreenScaleX(0.95f)
     , mScreenScaleY(0.95f)
-    , mSomeX(-15.2f)
-    , mSomeY(-15.2f)
+    , mTranslationX(-15.2f)
+    , mTranslationY(-15.2f)
 {
 }
 
@@ -89,11 +96,13 @@ Mgr_tuning::Mgr_tuning()
  */
 void Mgr_tuning::draw(Graphics& gfx, J2DGrafContext& context)
 {
-	u16 x = System::getRenderModeObj()->fbWidth;
-	u16 y = System::getRenderModeObj()->efbHeight;
-	rotate(x * 0.5f, y * 0.5f, J2DROTATE_Z, 0.0f);
+	u16 frameBufferWidth  = System::getRenderModeObj()->fbWidth;
+	u16 frameBufferHeight = System::getRenderModeObj()->efbHeight;
+
+	rotate(frameBufferWidth * 0.5f, frameBufferHeight * 0.5f, J2DROTATE_Z, 0.0f);
 	updateScale(mScreenScaleX, mScreenScaleY);
-	setOffset(mSomeX, mSomeY);
+	setOffset(mTranslationX, mTranslationY);
+
 	Mgr::draw(gfx, context);
 }
 
