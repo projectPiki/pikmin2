@@ -2246,8 +2246,29 @@ lbl_80247B40:
  * @note Address: 0x80247B5C
  * @note Size: 0xC0
  */
-int RandMapUnit::getLeftToLinkDoorDir(int, int, int)
+int RandMapUnit::getLeftToLinkDoorDir(int doorType, int doorPosition, int doorOrientation)
 {
+	if (doorPosition > -2) {
+		return doorOrientation;
+	}
+
+	switch (doorOrientation) {
+	case -1:
+		return (doorType && doorType != 1) ? 3 : 0;
+	case 1:
+		return (doorType == 1 || doorType == 2) ? 2 : 3;
+	case 0:
+		return (doorType && doorType != 3) ? 3 : 0;
+	default:
+		if (doorOrientation < -1) {
+			return 0;
+		} else {
+			return static_cast<u64>(doorOrientation) + 3;
+		}
+	}
+
+	return (doorType && doorType != 3) ? 3 : 0;
+
 	/*
 	cmpwi    r5, -2
 	ble      lbl_80247B7C
@@ -2258,28 +2279,28 @@ int RandMapUnit::getLeftToLinkDoorDir(int, int, int)
 	and      r3, r0, r3
 	blr
 
-lbl_80247B7C:
+	lbl_80247B7C:
 	cmpwi    r6, -1
 	bge      lbl_80247B8C
 	li       r3, 0
 	blr
 
-lbl_80247B8C:
+	lbl_80247B8C:
 	bne      lbl_80247BB0
 	cmpwi    r4, 0
 	beq      lbl_80247BA0
 	cmpwi    r4, 1
 	bne      lbl_80247BA8
 
-lbl_80247BA0:
+	lbl_80247BA0:
 	li       r3, 0
 	blr
 
-lbl_80247BA8:
+	lbl_80247BA8:
 	li       r3, 3
 	blr
 
-lbl_80247BB0:
+	lbl_80247BB0:
 	cmpwi    r6, 0
 	bne      lbl_80247BD8
 	cmpwi    r4, 0
@@ -2287,15 +2308,15 @@ lbl_80247BB0:
 	cmpwi    r4, 3
 	bne      lbl_80247BD0
 
-lbl_80247BC8:
+	lbl_80247BC8:
 	li       r3, 0
 	blr
 
-lbl_80247BD0:
+	lbl_80247BD0:
 	li       r3, 3
 	blr
 
-lbl_80247BD8:
+	lbl_80247BD8:
 	cmpwi    r6, 1
 	bne      lbl_80247C00
 	cmpwi    r4, 1
@@ -2303,15 +2324,15 @@ lbl_80247BD8:
 	cmpwi    r4, 2
 	bne      lbl_80247BF8
 
-lbl_80247BF0:
+	lbl_80247BF0:
 	li       r3, 2
 	blr
 
-lbl_80247BF8:
+	lbl_80247BF8:
 	li       r3, 3
 	blr
 
-lbl_80247C00:
+	lbl_80247C00:
 	li       r4, 1
 	srwi     r3, r6, 0x1f
 	subfc    r0, r6, r4
@@ -2328,6 +2349,65 @@ lbl_80247C00:
  */
 MapNode* RandMapUnit::getLoopEndMapUnit()
 {
+	Cave::MapUnitGenerator* generator = this->mGenerator;
+	Cave::MapNode* mapNodeKinds       = generator->mMapNodeKinds;
+	Cave::MapNode* currentNode        = static_cast<Cave::MapNode*>(generator->mPlacedMapNodes->mChild);
+	Cave::DoorNode* openDoorNode      = nullptr;
+	int doorOffsetX = 0, doorOffsetY = 0;
+	int doorTypes[3] = { 0, 2, 1 };
+
+	// Find an open door
+	while (currentNode && !openDoorNode) {
+		for (int doorIndex = 0; doorIndex < currentNode->getNumDoors(); ++doorIndex) {
+			if (!currentNode->isDoorClose(doorIndex)) {
+				openDoorNode = currentNode->getDoorNode(doorIndex);
+				currentNode->getDoorOffset(doorIndex, doorOffsetX, doorOffsetY);
+				break;
+			}
+		}
+		currentNode = static_cast<Cave::MapNode*>(currentNode->mNext);
+	}
+
+	if (!currentNode || !openDoorNode) {
+		return nullptr;
+	}
+
+	for (int typeIndex = 0; typeIndex < 3; ++typeIndex) {
+		for (int mapIndex = 0; mapIndex < mDoorCount; ++mapIndex) {
+			Cave::MapNode* mapNode = &mapNodeKinds[doorTypes[typeIndex]];
+
+			if (!mapNode) {
+				continue;
+			}
+
+			int doorIndices[8];
+			for (int i = 0; i < mapIndex; ++i) {
+				doorIndices[i] = i;
+			}
+
+			// Shuffle the doorIndices
+			for (int i = mapIndex; i > 0; --i) {
+				int j          = randWeightFloat(i);
+				int temp       = doorIndices[i];
+				doorIndices[i] = doorIndices[j];
+				doorIndices[j] = temp;
+			}
+
+			for (int i = 0; i < mapIndex + 1; ++i) {
+				if (!mapNode->isDoorSet(openDoorNode, doorOffsetX, doorOffsetY, doorIndices[i]) || !mChecker->isPutOnMap(mapNode)) {
+					continue;
+				}
+				return mapNode;
+			}
+
+			if (mapNode->mNext) {
+				break;
+			}
+		}
+	}
+
+	return nullptr;
+
 	/*
 	stwu     r1, -0xd0(r1)
 	mflr     r0
@@ -2630,6 +2710,175 @@ void RandMapUnit::addMap(UnitInfo* info, int x, int y, bool updatePriority)
  */
 void RandMapUnit::changeMapPriority(UnitInfo* info)
 {
+	int unitKind                      = info->getUnitKind();
+	Cave::MapUnitGenerator* generator = mGenerator;
+	Cave::MapNode& rootMapNode        = generator->mMapNodeKinds[unitKind << 6];
+
+	if (unitKind == Cave::UNITKIND_Room) {
+		Cave::MapNode* placed = generator->mPlacedMapNodes;
+
+		info->getUnitName();
+		// Probably some debug stuff here
+
+		int x[8][16];
+		int y[8][16];
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 16; j++) {
+				x[i][j] = 0;
+				y[i][j] = 0;
+			}
+		}
+
+		Cave::MapNode* kinds = generator->mMapNodeKinds;
+	}
+
+	// v7 = Game::Cave::UnitInfo::getUnitKind(a2);
+	// v8 = a1->dword20;
+	// v9 = *(v8 + 16) + (v7 << 6);
+	// if (v7 == 1) {
+	// 	v10 = *(v8 + 40);
+	// 	Game::Cave::UnitInfo::getUnitName(a2);
+	// 	v11 = v52;
+	// 	v12 = v51;
+	// 	v13 = v52;
+	// 	v14 = v51;
+	// 	v15 = 0;
+	// 	v16 = *(a1->dword24 + 4) - 4;
+	// 	v17 = 8;
+	// 	do {
+	// 		*v13    = 0;
+	// 		*v14    = 0;
+	// 		v13[1]  = 0;
+	// 		v14[1]  = 0;
+	// 		v13[2]  = 0;
+	// 		v14[2]  = 0;
+	// 		v13[3]  = 0;
+	// 		v14[3]  = 0;
+	// 		v13[4]  = 0;
+	// 		v14[4]  = 0;
+	// 		v13[5]  = 0;
+	// 		v14[5]  = 0;
+	// 		v13[6]  = 0;
+	// 		v14[6]  = 0;
+	// 		v13[7]  = 0;
+	// 		v14[7]  = 0;
+	// 		v13[8]  = 0;
+	// 		v14[8]  = 0;
+	// 		v13[9]  = 0;
+	// 		v14[9]  = 0;
+	// 		v13[10] = 0;
+	// 		v14[10] = 0;
+	// 		v13[11] = 0;
+	// 		v14[11] = 0;
+	// 		v13[12] = 0;
+	// 		v14[12] = 0;
+	// 		v13[13] = 0;
+	// 		v14[13] = 0;
+	// 		v13[14] = 0;
+	// 		v14[14] = 0;
+	// 		v13[15] = 0;
+	// 		v13 += 16;
+	// 		v14[15] = 0;
+	// 		v14 += 16;
+	// 		--v17;
+	// 	} while (v17);
+	// 	v18 = *(v10 + 16);
+	// 	v19 = v51;
+	// 	v20 = v52;
+	// 	while (v18) {
+	// 		if (Game::Cave::UnitInfo::getUnitKind(*(v18 + 24)) == 1) {
+	// 			v21 = v51;
+	// 			v22 = 1;
+	// 			for (i = 0; i < v15; ++i) {
+	// 				v24 = Game::Cave::MapNode::getUnitName(v18);
+	// 				if (!strcmp(*v21, v24)) {
+	// 					v22 = 0;
+	// 					++v52[i];
+	// 					break;
+	// 				}
+	// 				++v21;
+	// 			}
+	// 			if (v22) {
+	// 				v25 = Game::Cave::MapNode::getUnitName(v18);
+	// 				v26 = *v20;
+	// 				++v15;
+	// 				*v19++ = v25;
+	// 				*v20++ = v26 + 1;
+	// 			}
+	// 		}
+	// 		v18 = *(v18 + 4);
+	// 	}
+	// 	v27 = v51;
+	// 	for (j = 0; j < v15 - 1; ++j) {
+	// 		v29 = j + 1;
+	// 		v30 = &v52[j + 1];
+	// 		v31 = &v51[j + 1];
+	// 		v32 = v15 - (j + 1);
+	// 		if (j + 1 < v15) {
+	// 			do {
+	// 				v33 = *v11;
+	// 				if (*v11 > *v30) {
+	// 					v34  = *v27;
+	// 					v35  = *v31;
+	// 					*v11 = *v30;
+	// 					*v27 = v35;
+	// 					*v30 = v33;
+	// 					*v31 = v34;
+	// 				}
+	// 				++v30;
+	// 				++v31;
+	// 				++v29;
+	// 				--v32;
+	// 			} while (v32);
+	// 		}
+	// 		++v11;
+	// 		++v27;
+	// 	}
+	// 	for (k = 0; k < v15; ++k) {
+	// 		v37 = 0;
+	// 		do {
+	// 			for (l = *(v9 + 16); l; l = *(l + 4)) {
+	// 				v39 = Game::Cave::MapNode::getUnitName(l);
+	// 				if (!strcmp(v39, *v12)) {
+	// 					CNode::del(l);
+	// 					CNode::add(v9, l);
+	// 				}
+	// 			}
+	// 			++v37;
+	// 		} while (v37 < 4);
+	// 		v40 = 0;
+	// 		do {
+	// 			v53          = rand() ^ 0x80000000 | 0x4330000000000000LL;
+	// 			LODWORD(v54) = (4.0 * ((*&v53 - 4.503601774854144e15) / 32768.0));
+	// 			v41          = CNode::getChildAt(v9, v16 + LODWORD(v54));
+	// 			v42          = v41;
+	// 			if (v41) {
+	// 				CNode::del(v41);
+	// 				CNode::add(v9, v42);
+	// 			}
+	// 			++v40;
+	// 		} while (v40 < 4);
+	// 		++v12;
+	// 	}
+	// } else {
+	// 	v43 = 4 * v7;
+	// 	for (m = 0;; ++m) {
+	// 		v47 = *(v43 + a1->dword24);
+	// 		if (m >= v47)
+	// 			break;
+	// 		LODWORD(v54) = rand() ^ 0x80000000;
+	// 		HIDWORD(v54) = 1127219200;
+	// 		LODWORD(v53) = v47 ^ 0x80000000;
+	// 		HIDWORD(v53) = 1127219200;
+	// 		LODWORD(v55) = ((*&v53 - 4.503601774854144e15) * ((v54 - 4.503601774854144e15) / 32768.0));
+	// 		v45          = CNode::getChildAt(v9, SLODWORD(v55));
+	// 		v46          = v45;
+	// 		if (v45) {
+	// 			CNode::del(v45);
+	// 			CNode::add(v9, v46);
+	// 		}
+	// 	}
+	// }
 	/*
 	stwu     r1, -0x480(r1)
 	mflr     r0
@@ -2939,103 +3188,54 @@ lbl_8024846C:
  */
 void RandMapUnit::moveCentre()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r22, 8(r1)
-	mr       r31, r3
-	li       r29, -12800
-	li       r28, -12800
-	li       r27, 0x3200
-	li       r26, 0x3200
-	lwz      r3, 0x20(r3)
-	lwz      r30, 0x28(r3)
-	lwz      r25, 0x10(r30)
-	b        lbl_80248538
+	int minX = -12800;
+	int minY = -12800;
+	int maxX = 12800;
+	int maxY = 12800;
 
-lbl_802484CC:
-	mr       r3, r25
-	bl       getNodeOffsetX__Q34Game4Cave7MapNodeFv
-	mr       r0, r3
-	lwz      r3, 0x18(r25)
-	mr       r24, r0
-	bl       getUnitSizeX__Q34Game4Cave8UnitInfoFv
-	add      r23, r24, r3
-	mr       r3, r25
-	bl       getNodeOffsetY__Q34Game4Cave7MapNodeFv
-	mr       r0, r3
-	lwz      r3, 0x18(r25)
-	mr       r22, r0
-	bl       getUnitSizeY__Q34Game4Cave8UnitInfoFv
-	cmpw     r24, r27
-	add      r0, r22, r3
-	bge      lbl_80248510
-	mr       r27, r24
+	Cave::MapNode* rootNode = mGenerator->mPlacedMapNodes;
+	for (Cave::MapNode* currentNode = static_cast<Cave::MapNode*>(rootNode->mChild); currentNode;
+	     currentNode                = static_cast<Cave::MapNode*>(currentNode->mNext)) {
 
-lbl_80248510:
-	cmpw     r23, r29
-	ble      lbl_8024851C
-	mr       r29, r23
+		int nodeOffsetX = currentNode->getNodeOffsetX();
+		int nodeSizeX   = currentNode->mUnitInfo->getUnitSizeX() + nodeOffsetX;
+		int nodeOffsetY = currentNode->getNodeOffsetY();
+		int nodeSizeY   = currentNode->mUnitInfo->getUnitSizeY() + nodeOffsetY;
 
-lbl_8024851C:
-	cmpw     r22, r26
-	bge      lbl_80248528
-	mr       r26, r22
+		if (nodeOffsetX < maxX)
+			maxX = nodeOffsetX;
+		if (nodeSizeX > minX)
+			minX = nodeSizeX;
+		if (nodeOffsetY < maxY)
+			maxY = nodeOffsetY;
+		if (nodeSizeY > minY)
+			minY = nodeSizeY;
+	}
 
-lbl_80248528:
-	cmpw     r0, r28
-	ble      lbl_80248534
-	mr       r28, r0
+	// Move all nodes so that the bounding box is at the origin
+	for (Cave::MapNode* currentNode = static_cast<Cave::MapNode*>(rootNode->mChild); currentNode;
+	     currentNode                = static_cast<Cave::MapNode*>(currentNode->mNext)) {
+		int nodeOffsetX = currentNode->getNodeOffsetX();
+		int nodeOffsetY = currentNode->getNodeOffsetY();
 
-lbl_80248534:
-	lwz      r25, 4(r25)
+		int x = nodeOffsetX - maxX;
+		int y = nodeOffsetY - maxY;
 
-lbl_80248538:
-	cmplwi   r25, 0
-	bne      lbl_802484CC
-	lwz      r22, 0x10(r30)
-	b        lbl_80248574
+		currentNode->setOffset(x, y);
+	}
 
-lbl_80248548:
-	mr       r3, r22
-	bl       getNodeOffsetX__Q34Game4Cave7MapNodeFv
-	mr       r30, r3
-	mr       r3, r22
-	bl       getNodeOffsetY__Q34Game4Cave7MapNodeFv
-	mr       r0, r3
-	mr       r3, r22
-	subf     r4, r27, r30
-	subf     r5, r26, r0
-	bl       setOffset__Q34Game4Cave7MapNodeFii
-	lwz      r22, 4(r22)
+	if (!mMapHasDiameter36) {
+		int x = minX - maxX;
 
-lbl_80248574:
-	cmplwi   r22, 0
-	bne      lbl_80248548
-	lbz      r0, 0xc(r31)
-	cmplwi   r0, 0
-	bne      lbl_802485B0
-	subf     r0, r27, r29
-	cmpwi    r0, 0x23
-	ble      lbl_8024859C
-	li       r0, 1
-	stb      r0, 0xc(r31)
+		if (x > 35) {
+			mMapHasDiameter36 = true;
+		}
 
-lbl_8024859C:
-	subf     r0, r26, r28
-	cmpwi    r0, 0x23
-	ble      lbl_802485B0
-	li       r0, 1
-	stb      r0, 0xc(r31)
-
-lbl_802485B0:
-	lmw      r22, 8(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+		int y = minY - maxY;
+		if (y > 35) {
+			mMapHasDiameter36 = true;
+		}
+	}
 }
 
 /**
