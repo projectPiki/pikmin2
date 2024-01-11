@@ -56,7 +56,7 @@ Player* PlayerFileInfo::getPlayer(int idx)
  * @note Address: 0x804429A0
  * @note Size: 0x80
  */
-bool PlayerFileInfo::isBrokenFile(int idx) { return getPlayer(idx)->mFlag != 0; }
+bool PlayerFileInfo::isBrokenFile(int idx) { return getPlayer(idx)->mFlag; }
 
 /**
  * @note Address: 0x80442A20
