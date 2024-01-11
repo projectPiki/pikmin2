@@ -1,36 +1,18 @@
 #include "Matrixf.h"
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80520510
-    lbl_80520510:
-        .float 1.0
-    .global lbl_80520514
-    lbl_80520514:
-        .float 0.0
-    .global lbl_80520518
-    lbl_80520518:
-        .float 325.9493
-    .global lbl_8052051C
-    lbl_8052051C:
-        .float -325.9493
-    .global lbl_80520520
-    lbl_80520520:
-        .float 1.5707964
-    .global lbl_80520524
-    lbl_80520524:
-        .float 2.0
-*/
+#include "Quat.h"
+#include "trig.h"
 
 /**
  * @note Address: N/A
  * @note Size: 0x228
  */
-void Matrixf::makeNaturalPosture(Vector3f&)
+void Matrixf::makeNaturalPosture(Vector3f& direction)
 {
+	direction.x = 1.0f;
+	direction.y = 0.0f; // this is just here for sdata2
+	direction.z = cosf(1.0f);
+	direction.y = sinf(1.0f);
+
 	// UNUSED FUNCTION
 }
 
@@ -38,8 +20,33 @@ void Matrixf::makeNaturalPosture(Vector3f&)
  * @note Address: 0x80427F90
  * @note Size: 0x344
  */
-void Matrixf::makeNaturalPosture(Vector3f&, f32)
+void Matrixf::makeNaturalPosture(Vector3f& direction, f32 a1)
 {
+	Vector3f xDir = direction;
+	Vector3f zDir = direction;
+	if (FABS(direction.x) > FABS(direction.z)) {
+		f32 c = sinf(a1); // something in the ballpark of this probably
+		xDir.normalise();
+		zDir.normalise();
+	} else {
+		f32 c = sinf(a1 + HALF_PI);
+		xDir.normalise();
+		zDir.normalise();
+	}
+
+	mMatrix.structView.xx = xDir.x;
+	mMatrix.structView.xy = xDir.y;
+	mMatrix.structView.xz = xDir.z;
+
+	mMatrix.structView.yx = direction.x;
+	mMatrix.structView.yy = direction.y;
+	mMatrix.structView.yz = direction.z;
+
+	mMatrix.structView.zx = zDir.x;
+	mMatrix.structView.zy = zDir.y;
+	mMatrix.structView.zz = zDir.z;
+
+	setBasis(3, Vector3f::zero);
 	/*
 	stwu     r1, -0x20(r1)
 	lfs      f2, 8(r4)
@@ -299,8 +306,28 @@ void Matrixf::print(char*) { }
  * @note Address: 0x804282D8
  * @note Size: 0x288
  */
-void Matrixf::makeSRT(Vector3f&, Vector3f&, Vector3f&)
+void Matrixf::makeSRT(Vector3f& s, Vector3f& r, Vector3f& t)
 {
+	f32 sx = sinf(r.x);
+	f32 sy = sinf(r.y);
+	f32 sz = sinf(r.z);
+	f32 cx = cosf(r.x);
+	f32 cy = cosf(r.y);
+	f32 cz = cosf(r.z);
+
+	mMatrix.structView.xx = s.x * (cy * cz);
+	mMatrix.structView.xy = s.x * (cy * sz);
+	mMatrix.structView.xz = s.x * (-sy);
+
+	mMatrix.structView.yx = s.y * (sx * sy * cz - cx * sz);
+	mMatrix.structView.yy = s.y * (sx * sy * sz + cx * cz);
+	mMatrix.structView.yz = s.y * (sx * cy);
+
+	mMatrix.structView.zx = s.z * (cx * cz * sy + sx * sz);
+	mMatrix.structView.zy = s.z * (cx * sz * sy - sx * cz);
+	mMatrix.structView.zz = s.z * (cx * cy);
+
+	setBasis(3, t);
 	/*
 	stwu     r1, -0x60(r1)
 	stfd     f31, 0x50(r1)
@@ -489,38 +516,51 @@ lbl_80428478:
  * @note Address: 0x80428560
  * @note Size: 0x50
  */
-void Matrixf::makeST(Vector3f&, Vector3f&)
+void Matrixf::makeST(Vector3f& s, Vector3f& t)
 {
-	/*
-	lfs      f0, 0(r4)
-	lfs      f1, lbl_80520514@sda21(r2)
-	stfs     f0, 0(r3)
-	stfs     f1, 0x10(r3)
-	stfs     f1, 0x20(r3)
-	stfs     f1, 4(r3)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x14(r3)
-	stfs     f1, 0x24(r3)
-	stfs     f1, 8(r3)
-	stfs     f1, 0x18(r3)
-	lfs      f0, 8(r4)
-	stfs     f0, 0x28(r3)
-	lfs      f0, 0(r5)
-	stfs     f0, 0xc(r3)
-	lfs      f0, 4(r5)
-	stfs     f0, 0x1c(r3)
-	lfs      f0, 8(r5)
-	stfs     f0, 0x2c(r3)
-	blr
-	*/
+	// setBasis isn't cooperating for this one
+	mMatrix.mtxView[0][0] = s.x;
+	mMatrix.mtxView[1][0] = 0.0f;
+	mMatrix.mtxView[2][0] = 0.0f;
+
+	mMatrix.mtxView[0][1] = 0.0f;
+	mMatrix.mtxView[1][1] = s.y;
+	mMatrix.mtxView[2][1] = 0.0f;
+
+	mMatrix.mtxView[0][2] = 0.0f;
+	mMatrix.mtxView[1][2] = 0.0f;
+	mMatrix.mtxView[2][2] = s.z;
+
+	setBasis(3, t);
 }
 
 /**
  * @note Address: 0x804285B0
  * @note Size: 0x290
  */
-void Matrixf::makeSR(Vector3f&, Vector3f&)
+void Matrixf::makeSR(Vector3f& s, Vector3f& r)
 {
+	f32 sx = sinf(r.x);
+	f32 sy = sinf(r.y);
+	f32 sz = sinf(r.z);
+	f32 cx = cosf(r.x);
+	f32 cy = cosf(r.y);
+	f32 cz = cosf(r.z);
+
+	mMatrix.structView.xx = s.x * (cy * cz);
+	mMatrix.structView.xy = s.x * (cy * sz);
+	mMatrix.structView.xz = s.x * (-sy);
+
+	mMatrix.structView.yx = s.y * (sx * sy * cz - cx * sz);
+	mMatrix.structView.yy = s.y * (sx * sy * sz + cx * cz);
+	mMatrix.structView.yz = s.y * (sx * cy);
+
+	mMatrix.structView.zx = s.z * (cx * cz * sy + sx * sz);
+	mMatrix.structView.zy = s.z * (cx * sz * sy - sx * cz);
+	mMatrix.structView.zz = s.z * (cx * cy);
+
+	setBasis(3, 0.0f, 0.0f, 0.0f);
+
 	/*
 	stwu     r1, -0x70(r1)
 	stfd     f31, 0x60(r1)
@@ -711,36 +751,42 @@ lbl_80428758:
  * @note Address: 0x80428840
  * @note Size: 0x48
  */
-void Matrixf::makeT(Vector3f&)
+void Matrixf::makeT(Vector3f& t)
 {
-	/*
-	lfs      f1, lbl_80520510@sda21(r2)
-	lfs      f0, lbl_80520514@sda21(r2)
-	stfs     f1, 0(r3)
-	stfs     f0, 0x10(r3)
-	stfs     f0, 0x20(r3)
-	stfs     f0, 4(r3)
-	stfs     f1, 0x14(r3)
-	stfs     f0, 0x24(r3)
-	stfs     f0, 8(r3)
-	stfs     f0, 0x18(r3)
-	stfs     f1, 0x28(r3)
-	lfs      f0, 0(r4)
-	stfs     f0, 0xc(r3)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x1c(r3)
-	lfs      f0, 8(r4)
-	stfs     f0, 0x2c(r3)
-	blr
-	*/
+	setBasis(0, 1.0f, 0.0f, 0.0f);
+	setBasis(1, 0.0f, 1.0f, 0.0f);
+	setBasis(2, 0.0f, 0.0f, 1.0f);
+	setBasis(3, t);
 }
 
 /**
  * @note Address: 0x80428888
  * @note Size: 0x230
  */
-void Matrixf::makeTR(Vector3f&, Vector3f&)
+void Matrixf::makeTR(Vector3f& t, Vector3f& r)
 {
+
+	f32 sx = sinf(r.x);
+	f32 sy = sinf(r.y);
+	f32 sz = sinf(r.z);
+	f32 cx = cosf(r.x);
+	f32 cy = cosf(r.y);
+	f32 cz = cosf(r.z);
+
+	mMatrix.structView.xx = cy * cz;
+	mMatrix.structView.xy = cy * sz;
+	mMatrix.structView.xz = -sy;
+
+	mMatrix.structView.yx = sx * sy * cz - cx * sz;
+	mMatrix.structView.yy = sx * sy * sz + cx * cz;
+	mMatrix.structView.yz = sx * cy;
+
+	mMatrix.structView.zx = cx * cz * sy + sx * sz;
+	mMatrix.structView.zy = cx * sz * sy - sx * cz;
+	mMatrix.structView.zz = cx * cy;
+
+	setBasis(3, t);
+
 	/*
 	stwu     r1, -0x50(r1)
 	lfs      f0, lbl_80520514@sda21(r2)
@@ -916,8 +962,35 @@ void Matrixf::makeSQT(Vector3f&, Quat&, Vector3f&)
  * @note Address: 0x80428AB8
  * @note Size: 0xD0
  */
-void Matrixf::makeTQ(Vector3f&, Quat&)
+void Matrixf::makeTQ(Vector3f& t, Quat& q)
 {
+	f32 w = q.w;
+	f32 x = q.x;
+	f32 y = q.y;
+	f32 z = q.z;
+
+	f32 ww = w * 2.0f * w;
+	f32 yy = y * 2.0f * y;
+	f32 zz = z * 2.0f * z;
+
+	f32 dumb = z * 2.0f * w;
+	f32 invz = 1.0f - zz;
+	invz *= z;
+	f32 invy = 1.0f - yy * y;
+
+	mMatrix.structView.xx = invz - ww;
+	mMatrix.structView.yx = yy * z - x * w;
+	mMatrix.structView.zx = yy * w + x * z;
+
+	mMatrix.structView.xy = yy * z + x * w;
+	mMatrix.structView.yy = invy - ww;
+	mMatrix.structView.zy = dumb - x * y;
+
+	mMatrix.structView.xz = yy * w - x * z;
+	mMatrix.structView.yz = dumb + x * y;
+	mMatrix.structView.zz = invy - zz;
+
+	setBasis(3, t);
 	/*
 	stwu     r1, -0x20(r1)
 	stfd     f31, 0x10(r1)
@@ -978,8 +1051,35 @@ void Matrixf::makeTQ(Vector3f&, Quat&)
  * @note Address: 0x80428B88
  * @note Size: 0xC8
  */
-void Matrixf::makeQ(Quat&)
+void Matrixf::makeQ(Quat& q)
 {
+	f32 w = q.w;
+	f32 x = q.x;
+	f32 y = q.y;
+	f32 z = q.z;
+
+	f32 ww = w * 2.0f * w;
+	f32 yy = y * 2.0f * y;
+	f32 zz = z * 2.0f * z;
+
+	f32 wz   = z * 2.0f * w;
+	f32 invz = 1.0f - zz;
+	invz *= z;
+	f32 invy = 1.0f - yy * y;
+
+	mMatrix.structView.xx = invz - ww;
+	mMatrix.structView.yx = yy * z - x * w;
+	mMatrix.structView.zx = yy * w + x * z;
+
+	mMatrix.structView.xy = yy * z + x * w;
+	mMatrix.structView.yy = invy - ww;
+	mMatrix.structView.zy = wz - x * y;
+
+	mMatrix.structView.xz = yy * w - x * z;
+	mMatrix.structView.yz = wz + x * y;
+	mMatrix.structView.zz = invy - zz;
+
+	setBasis(3, 0.0f, 0.0f, 0.0f);
 	/*
 	stwu     r1, -0x20(r1)
 	stfd     f31, 0x10(r1)

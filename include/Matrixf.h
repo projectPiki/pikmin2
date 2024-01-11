@@ -71,6 +71,13 @@ struct Matrixf {
 		(*this)(2, index) = v.z;
 	}
 
+	void setBasis(int index, f32 x, f32 y, f32 z)
+	{
+		(*this)(0, index) = x;
+		(*this)(1, index) = y;
+		(*this)(2, index) = z;
+	}
+
 	inline Vector3f mtxMult(Vector3f& vec)
 	{
 		Vector3f outVec;
