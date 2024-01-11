@@ -1592,7 +1592,7 @@ LIBS = [
             ["sysGCU/resourceMgr", False],
             ["sysGCU/resourceMgr2D", True],
             ["sysGCU/sysMaterialAnim", False],
-            ["sysGCU/P2DScreen", False],
+            ["sysGCU/P2DScreen", True],
             ["sysGCU/movieMessage", False],
             ["sysGCU/moviePlayerPauseAndDraw", True],
             ["sysGCU/JSTObjectSpecialActor", True],

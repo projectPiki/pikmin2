@@ -18,120 +18,21 @@ Mgr::Mgr() { }
 J2DPane* Mgr::addCallBack(u64 tag, Node* node)
 {
 	P2ASSERTLINE(73, node);
+	s8* tagbyteview = (s8*)&tag;
+
 	J2DPane* pane = search(tag);
 	if (pane) {
 		node->mPane = pane;
 		node->doInit();
 		mScreenNode.add(node);
 	} else {
-		vs8 something[8];
 		for (int i = 0; i < 8; i++) {
-			if (!something[i]) {
-				something[i] = 0x3f;
+			if (!tagbyteview[i]) {
+				tagbyteview[i] = 0x3f;
 			}
 		}
 	}
 	return pane;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	or.      r30, r7, r7
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	stw      r5, 8(r1)
-	stw      r6, 0xc(r1)
-	bne      lbl_80434B6C
-	lis      r3, lbl_8049A6C0@ha
-	lis      r5, lbl_8049A6D0@ha
-	addi     r3, r3, lbl_8049A6C0@l
-	li       r4, 0x49
-	addi     r5, r5, lbl_8049A6D0@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80434B6C:
-	mr       r3, r29
-	lwz      r5, 8(r1)
-	lwz      r12, 0(r29)
-	lwz      r6, 0xc(r1)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r31, r3, r3
-	beq      lbl_80434BB8
-	stw      r31, 0x18(r30)
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r30
-	addi     r3, r29, 0x118
-	bl       add__5CNodeFP5CNode
-	b        lbl_80434C3C
-
-lbl_80434BB8:
-	lbz      r3, 8(r1)
-	li       r0, 0x3f
-	extsb.   r3, r3
-	bne      lbl_80434BCC
-	stb      r0, 8(r1)
-
-lbl_80434BCC:
-	lbz      r3, 9(r1)
-	extsb.   r3, r3
-	bne      lbl_80434BDC
-	stb      r0, 9(r1)
-
-lbl_80434BDC:
-	lbz      r3, 0xa(r1)
-	extsb.   r3, r3
-	bne      lbl_80434BEC
-	stb      r0, 0xa(r1)
-
-lbl_80434BEC:
-	lbz      r3, 0xb(r1)
-	extsb.   r3, r3
-	bne      lbl_80434BFC
-	stb      r0, 0xb(r1)
-
-lbl_80434BFC:
-	lbz      r3, 0xc(r1)
-	extsb.   r3, r3
-	bne      lbl_80434C0C
-	stb      r0, 0xc(r1)
-
-lbl_80434C0C:
-	lbz      r3, 0xd(r1)
-	extsb.   r3, r3
-	bne      lbl_80434C1C
-	stb      r0, 0xd(r1)
-
-lbl_80434C1C:
-	lbz      r3, 0xe(r1)
-	extsb.   r3, r3
-	bne      lbl_80434C2C
-	stb      r0, 0xe(r1)
-
-lbl_80434C2C:
-	lbz      r3, 0xf(r1)
-	extsb.   r3, r3
-	bne      lbl_80434C3C
-	stb      r0, 0xf(r1)
-
-lbl_80434C3C:
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
