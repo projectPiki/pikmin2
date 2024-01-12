@@ -2119,7 +2119,7 @@ void FakePiki::doAnimation()
 		if (useMoveRotation()) {
 			f32 frameLen = sys->mDeltaTime;
 			if (mVelocity.sqrMagnitude2D() > 1.0f) {
-				mFaceDir = (frameLen * (angDist(JMAAtan2Radian(mVelocity.z, mVelocity.x), mFaceDir) * 0.8f)) * 10.0f + mFaceDir;
+				mFaceDir = (frameLen * (angDist(JMAAtan2Radian(mVelocity.x, mVelocity.z), mFaceDir) * 0.8f)) * 10.0f + mFaceDir;
 				mFaceDir = roundAng(mFaceDir);
 			}
 		}
@@ -2133,7 +2133,7 @@ void FakePiki::doAnimation()
 	updateTrMatrix();
 	if (isNavi() && static_cast<Navi*>(this)->mPellet) {
 		static_cast<Navi*>(this)->viewMakeMatrix(mBaseTrMatrix);
-		mPosition = Vector3f(mBaseTrMatrix.getBasis(3));
+		mPosition = mBaseTrMatrix.getPosition(); // mismatch here in this inline
 	}
 	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->getJ3DModel()->mPosMtx);
 	sCurrNeckTheta = mNeckTheta;
