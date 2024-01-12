@@ -52,7 +52,6 @@ struct TMainTitleMgr {
 	u32 mExitMenuCounterMax;         // _1660
 
 	static const f32 kFadeOutTime; // 1.0f
-	static f32 kFadeTime;          // 0.5f
 };
 } // namespace ebi
 

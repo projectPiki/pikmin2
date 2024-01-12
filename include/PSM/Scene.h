@@ -381,4 +381,12 @@ inline PSGame::SceneInfo* PSGameGetSceneInfo()
 	return static_cast<PSM::SceneBase*>(mgr->getChildScene())->getSceneInfoA();
 }
 
+inline void PSMStartMainSeq()
+{
+	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(mgr);
+	mgr->checkScene();
+	mgr->mScenes->mChild->startMainSeq();
+}
+
 #endif

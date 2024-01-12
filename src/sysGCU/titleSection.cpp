@@ -19,11 +19,12 @@
 #include "JSystem/JUtility/JUTProcBar.h"
 #include "Dolphin/rand.h"
 #include "Morimura/HiScore.h"
+#include "ebi/E2DGraph.h"
 #include "menu.h"
 #include "nans.h"
 
-static const char idk[]  = "\0\0\0\0\0\0\0\0\0";
-static const char name[] = "titleSection";
+static const u32 padding[]    = { 0, 0, 0 };
+static const char className[] = "titleSection";
 
 namespace {
 static u8 sMovieIndex[7] = { 0, 2, 4, 1, 3, 11, 11 };
@@ -109,7 +110,7 @@ void Section::init()
 	sys->heapStatusStart("JMANewSinTable", nullptr);
 	sys->heapStatusEnd("JMANewSinTable");
 
-	initHIO(new HIORootNode(this, "タイトルセクション"));
+	initHIO(new HIORootNode(this, "タイトルセクション")); // "Title Section"
 
 	sys->heapStatusStart("frameBuffer", nullptr);
 	setDisplay(JFWDisplay::createManager(nullptr, mDisplayHeap, JUTXfb::DoubleBuffer, false), 1);
@@ -134,11 +135,14 @@ void Section::init()
 				sects++;
 			}
 		} else {
-			mMenu->addOption(i, "NO NAME", nullptr, true);
+			char* test = "NO NAME"; // another 4 bytes of 0 is supposed to generate with this, but with it still being in sdata2?
+			mMenu->addOption(i, test, nullptr, true);
 			sects++;
 		}
 	}
-	mMenu->setPosition(300, sys->getRenderModeObj()->efbHeight - (sects * JFWSystem::systemFont->getHeight() + 60));
+
+	JUTFont* font = JFWSystem::systemFont;
+	mMenu->setPosition(300, sys->getRenderModeObj()->efbHeight - (sects * font->getHeight() + 60));
 
 	sys->heapStatusEnd("TitleSection::init");
 
@@ -221,6 +225,8 @@ void Section::drawShortCuts(Graphics& gfx)
  */
 void Section::drawShortCut(Graphics&, int, int, int, char*)
 {
+	mTimeStep = randFloat(); // here for sdata2
+
 	// UNUSED FUNCTION
 }
 
@@ -230,6 +236,7 @@ void Section::drawShortCut(Graphics&, int, int, int, char*)
  */
 void Section::drawDebugInfo(Graphics& gfx)
 {
+	// size indicates this function was entired stubbed out before release
 	// UNUSED FUNCTION
 }
 
@@ -239,16 +246,6 @@ void Section::drawDebugInfo(Graphics& gfx)
  */
 void Section::updateMenu()
 {
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: 0x8044AC90
- * @note Size: 0x688
- */
-void Section::doUpdateMainTitle()
-{
-	mGoToDemoTimer += sys->mDeltaTime;
 	if (mDoCheckShortCut) {
 		mMenu->doUpdate(false);
 		if (mMenu->mState == 2 || mMenu->mState == 1) {
@@ -270,6 +267,16 @@ void Section::doUpdateMainTitle()
 			}
 		}
 	}
+}
+
+/**
+ * @note Address: 0x8044AC90
+ * @note Size: 0x688
+ */
+void Section::doUpdateMainTitle()
+{
+	mGoToDemoTimer += sys->mDeltaTime;
+	updateMenu();
 	mMainTitleMgr.update();
 	if (mController1->isButton(~JUTGamePad::False)) {
 		mGoToDemoTimer = 0.0f;
@@ -366,7 +373,17 @@ void Section::doUpdateMainTitle()
  */
 void Section::doUpdateHiScore()
 {
-	// UNUSED FUNCTION
+	Screen::gGame2DMgr->update();
+	if (Screen::gGame2DMgr->isEndHighScore()) {
+
+		PSSystem::SeqBase* seq = PSSystemGetSeqCheck(BGM_HiScore);
+		seq->stopSeq(0);
+		mState = State_MainTitle;
+		int idk;
+		mMainTitleMgr.startMenuSet(idk, ebi::TMainTitleMgr::Select_HiScore);
+		PSSystemGetSeqCheck(BGM_MainTheme)->startSeq();
+		Screen::gGame2DMgr->mScreenMgr->reset();
+	}
 }
 
 /**
@@ -384,7 +401,7 @@ void Section::doUpdateOmake()
 		PSSystem::checkSceneMgr(mgr);
 		mgr->checkScene();
 		PSSystem::SeqBase* seq = PSSystem::getSeqData(mgr, BGM_Bonus);
-		f32 rate               = ebi::TMainTitleMgr::kFadeTime / sys->mDeltaTime;
+		f32 rate               = ebi::E2DFader::kFadeTime / sys->mDeltaTime;
 		rate                   = (rate >= 0.0f) ? rate + 0.5f : rate - 0.5f;
 		seq->stopSeq((int)rate);
 	}
@@ -442,7 +459,20 @@ void Section::doUpdateOmake()
  */
 void Section::doUpdateOption()
 {
-	// UNUSED FUNCTION
+	mOptionMgr.update();
+	if (mOptionMgr.mIsFinished) {
+
+		PSSystem::SeqBase* seq = PSSystemGetSeqCheck(BGM_Options);
+		f32 rate               = ebi::E2DFader::kFadeTime / sys->mDeltaTime;
+		rate                   = (rate >= 0.0f) ? rate + 0.5f : rate - 0.5f;
+		seq->stopSeq((int)rate);
+	}
+	if (mOptionMgr.isFinish()) {
+		mState = State_MainTitle;
+		int idk;
+		mMainTitleMgr.startMenuSet(idk, ebi::TMainTitleMgr::Select_Options);
+		PSSystemGetSeqCheck(BGM_MainTheme)->startSeq();
+	}
 }
 
 /**
@@ -492,50 +522,25 @@ bool Section::doUpdate()
 		break;
 	case State_Options:
 		if (isFinishable()) {
-			mOptionMgr.update();
-			if (mOptionMgr.mIsFinished) {
-
-				PSSystem::SeqBase* seq = PSSystemGetSeq(BGM_Options);
-				f32 rate               = ebi::TMainTitleMgr::kFadeTime / sys->mDeltaTime;
-				rate                   = (rate >= 0.0f) ? rate + 0.5f : rate - 0.5f;
-				seq->stopSeq((int)rate);
-			}
-			if (mOptionMgr.isFinish()) {
-				mState = State_MainTitle;
-				int idk;
-				mMainTitleMgr.startMenuSet(idk, ebi::TMainTitleMgr::Select_Options);
-				PSSystem::SeqBase* seq = PSSystemGetSeq(BGM_MainTheme);
-				seq->startSeq();
-			}
+			doUpdateOption();
 		}
 		break;
 	case State_Bonus:
 		doUpdateOmake();
 		break;
 	case State_HiScore:
-		Screen::gGame2DMgr->update();
-		if (Screen::gGame2DMgr->isEndHighScore()) {
-
-			PSSystem::SeqBase* seq = PSSystemGetSeq(BGM_HiScore);
-			seq->stopSeq(0);
-			mState = State_MainTitle;
-			int idk;
-			mMainTitleMgr.startMenuSet(idk, ebi::TMainTitleMgr::Select_HiScore);
-			seq = PSSystemGetSeq(BGM_MainTheme);
-			seq->startSeq();
-			Screen::gGame2DMgr->mScreenMgr->reset();
-		}
+		doUpdateHiScore();
 		break;
 	case 5:
 		if (sys->dvdLoadSyncNoBlock(&mThreadCommand)) {
 			mState = State_MainTitle;
 			int idk;
 			mMainTitleMgr.startMenuSet(idk, ebi::TMainTitleMgr::Select_Options);
-			PSSystem::SeqBase* seq = PSSystemGetSeq(BGM_MainTheme);
-			seq->startSeq();
+			PSSystemGetSeqCheck(BGM_MainTheme)->startSeq();
 		}
 		break;
 	}
+
 	BaseHIOSection::doUpdate();
 	particle2dMgr->update();
 	return mIsMainActive;
@@ -555,7 +560,7 @@ bool Section::isFinishable()
  * @note Address: 0x8044BEE0
  * @note Size: 0x8C
  */
-void Section::doLoadingStart() { sys->dvdLoadUseCallBack(&mThreadCommand, new Delegate<Section>(this, nullptr)); }
+void Section::doLoadingStart() { sys->dvdLoadUseCallBack(&mThreadCommand, new Delegate<Section>(this, loadResource)); }
 
 /**
  * @note Address: 0x8044BF6C
@@ -563,16 +568,12 @@ void Section::doLoadingStart() { sys->dvdLoadUseCallBack(&mThreadCommand, new De
  */
 bool Section::doLoading()
 {
-	bool flag = sys->dvdLoadSyncNoBlock(&mThreadCommand);
-	if (flag) {
+	bool done = sys->dvdLoadSyncNoBlock(&mThreadCommand);
+	if (done) {
 		sys->dvdLoadUseCallBack(&mThreadCommand, mButtonCallback);
-
-		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-		PSSystem::checkSceneMgr(mgr);
-		mgr->checkScene();
-		mgr->mScenes->mChild->startMainSeq();
+		PSMStartMainSeq();
 	}
-	return u8(flag == 0);
+	return u8(done == 0);
 }
 
 /**
@@ -602,7 +603,7 @@ void Section::loadResource()
 	sys->heapStatusStart("titleMgr", nullptr);
 	int id;
 	if (sSeasonIndex == -1) {
-		id = randFloat() * 12.0f;
+		id = randInt(12);
 	} else {
 		id = 12;
 	}
@@ -666,8 +667,11 @@ void Section::loadResource()
 
 	sys->heapStatusStart("hiscoreTexture", nullptr);
 	mHiScoreTex = nullptr;
+
+	const char* name = "res_hiscoreTexture.szs";
 	char buf[52];
-	og::newScreen::makeLanguageResName(buf, "res_hiscoreTexture.szs");
+	og::newScreen::makeLanguageResName(buf, name);
+
 	mHiScoreTex = JKRMountArchive(buf, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	JUT_ASSERTLINE(1700, mHiScoreTex, "arcName = %s\n", buf);
 	sys->heapStatusEnd("hiscoreTexture");
