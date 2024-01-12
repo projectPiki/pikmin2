@@ -1384,7 +1384,6 @@ int RandMapUnit::getUpToLinkDoorDir(int direction, int xDiff, int yDiff)
 int RandMapUnit::getRightToLinkDoorDir(int direction, int xDiff, int yDiff)
 {
 	if (xDiff == 0) {
-		// Fucks up without the cast.
 		return yDiff > CD_Up ? CD_Down : (int)CD_Up;
 	}
 
@@ -1453,81 +1452,11 @@ int RandMapUnit::getDownToLinkDoorDir(int direction, int xDiff, int yDiff)
 		if (direction == CD_Up || direction == CD_Right) {
 			return CD_Right;
 		}
+
 		return CD_Down;
 	}
 
-	return (xDiff > 1) + 2; // this is wrong
-	                        /*
-	                        cmpwi    r6, 0
-	                        bne      lbl_80247ABC
-	                        cmpwi    r5, 0
-	                        li       r3, 3
-	                        blelr
-	                        li       r3, 1
-	                        blr
-	                    
-	                    lbl_80247ABC:
-	                        cmpwi    r5, -1
-	                        bge      lbl_80247ACC
-	                        li       r3, 3
-	                        blr
-	                    
-	                    lbl_80247ACC:
-	                        bne      lbl_80247AF0
-	                        cmpwi    r4, 0
-	                        beq      lbl_80247AE0
-	                        cmpwi    r4, 3
-	                        bne      lbl_80247AE8
-	                    
-	                    lbl_80247AE0:
-	                        li       r3, 3
-	                        blr
-	                    
-	                    lbl_80247AE8:
-	                        li       r3, 2
-	                        blr
-	                    
-	                    lbl_80247AF0:
-	                        cmpwi    r5, 0
-	                        bne      lbl_80247B18
-	                        cmpwi    r4, 2
-	                        beq      lbl_80247B08
-	                        cmpwi    r4, 3
-	                        bne      lbl_80247B10
-	                    
-	                    lbl_80247B08:
-	                        li       r3, 3
-	                        blr
-	                    
-	                    lbl_80247B10:
-	                        li       r3, 2
-	                        blr
-	                    
-	                    lbl_80247B18:
-	                        cmpwi    r5, 1
-	                        bne      lbl_80247B40
-	                        cmpwi    r4, 0
-	                        beq      lbl_80247B30
-	                        cmpwi    r4, 1
-	                        bne      lbl_80247B38
-	                    
-	                    lbl_80247B30:
-	                        li       r3, 1
-	                        blr
-	                    
-	                    lbl_80247B38:
-	                        li       r3, 2
-	                        blr
-	                    
-	                    lbl_80247B40:
-	                        li       r4, 1
-	                        srwi     r3, r5, 0x1f
-	                        subfc    r0, r5, r4
-	                        srwi     r0, r4, 0x1f
-	                        subfe    r3, r0, r3
-	                        addi     r3, r3, 2
-	                        blr
-	                        */
+	return xDiff > CD_Right ? CD_Right : (int)CD_Down;
 }
 
 /**
@@ -1537,7 +1466,7 @@ int RandMapUnit::getDownToLinkDoorDir(int direction, int xDiff, int yDiff)
 int RandMapUnit::getLeftToLinkDoorDir(int direction, int xDiff, int yDiff)
 {
 	if (xDiff > -2) {
-		return (yDiff == 2); // this isn't right
+		return yDiff > CD_Up ? CD_Down : (int)CD_Up;
 	}
 
 	if (yDiff < -1) {
@@ -1562,83 +1491,11 @@ int RandMapUnit::getLeftToLinkDoorDir(int direction, int xDiff, int yDiff)
 		if (direction == CD_Right || direction == CD_Down) {
 			return CD_Down;
 		}
+
 		return CD_Left;
 	}
 
-	return (yDiff == 1) + 3; // this isn't right
-
-	/*
-	cmpwi    r5, -2
-	ble      lbl_80247B7C
-	neg      r3, r6
-	li       r0, 2
-	andc     r3, r3, r6
-	srawi    r3, r3, 0x1f
-	and      r3, r0, r3
-	blr
-
-	lbl_80247B7C:
-	cmpwi    r6, -1
-	bge      lbl_80247B8C
-	li       r3, 0
-	blr
-
-	lbl_80247B8C:
-	bne      lbl_80247BB0
-	cmpwi    r4, 0
-	beq      lbl_80247BA0
-	cmpwi    r4, 1
-	bne      lbl_80247BA8
-
-	lbl_80247BA0:
-	li       r3, 0
-	blr
-
-	lbl_80247BA8:
-	li       r3, 3
-	blr
-
-	lbl_80247BB0:
-	cmpwi    r6, 0
-	bne      lbl_80247BD8
-	cmpwi    r4, 0
-	beq      lbl_80247BC8
-	cmpwi    r4, 3
-	bne      lbl_80247BD0
-
-	lbl_80247BC8:
-	li       r3, 0
-	blr
-
-	lbl_80247BD0:
-	li       r3, 3
-	blr
-
-	lbl_80247BD8:
-	cmpwi    r6, 1
-	bne      lbl_80247C00
-	cmpwi    r4, 1
-	beq      lbl_80247BF0
-	cmpwi    r4, 2
-	bne      lbl_80247BF8
-
-	lbl_80247BF0:
-	li       r3, 2
-	blr
-
-	lbl_80247BF8:
-	li       r3, 3
-	blr
-
-	lbl_80247C00:
-	li       r4, 1
-	srwi     r3, r6, 0x1f
-	subfc    r0, r6, r4
-	srwi     r0, r4, 0x1f
-	subfe    r3, r0, r3
-	addi     r3, r3, 3
-	blr
-	*/
+	return yDiff > CD_Right ? CD_Down : (int)CD_Left;
 }
 
 /**
@@ -2011,26 +1868,60 @@ void RandMapUnit::changeMapPriority(UnitInfo* info)
 	int unitKind                      = info->getUnitKind();
 	Cave::MapUnitGenerator* generator = mGenerator;
 	Cave::MapNode& rootMapNode        = generator->mMapNodeKinds[unitKind << 6];
-
 	if (unitKind == Cave::UNITKIND_Room) {
 		Cave::MapNode* placed = generator->mPlacedMapNodes;
-
 		info->getUnitName();
-		// Probably some debug stuff here
+		int addedUnitCount = 0;
 
-		int x[8][16];
-		int y[8][16];
+		char* x[8][16];
+		char* y[8][16];
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 16; j++) {
-				x[i][j] = 0;
-				y[i][j] = 0;
+				x[i][j] = nullptr;
+				y[i][j] = nullptr;
 			}
 		}
 
-		Cave::MapNode* kinds = generator->mMapNodeKinds;
+		char** unitCountsFirst = x[0];
+		char** unitNamesFirst  = y[0];
+		for (MapNode* i = (MapNode*)placed->mChild; i; i = (MapNode*)i->mNext) {
+			if (i->mUnitInfo->getUnitKind() == Cave::UNITKIND_Room) {
+				bool toAdd = true;
+
+				for (int index = 0; index < addedUnitCount; index++) {
+					if (!strcmp((char*)y[0], i->getUnitName())) {
+						toAdd = false;
+						x[0][index]++;
+						break;
+					}
+				}
+
+				if (toAdd) {
+					char* unitName = i->getUnitName();
+
+					char* previousName = unitCountsFirst[0];
+					addedUnitCount++;
+					unitNamesFirst[0] = unitName;
+					unitNamesFirst++;
+					unitCountsFirst[0] = previousName + 1;
+				}
+			}
+		}
+
+	} else {
+		int childCount;
+		for (int i = 0; i < (childCount = mUnitKindChildCounts[unitKind]); ++i) {
+			f32 randomIndex = randFloat() * static_cast<f32>(childCount);
+
+			CNode* selectedNode = rootMapNode.getChildAt(randomIndex);
+			if (selectedNode) {
+				selectedNode->del();
+				rootMapNode.add(selectedNode);
+			}
+		}
 	}
 
-	// v7 = Game::Cave::UnitInfo::getUnitKind(a2);
+	// unitKind = Game::Cave::UnitInfo::getUnitKind(a2);
 	// v8 = a1->dword20;
 	// v9 = *(v8 + 16) + (v7 << 6);
 	// if (v7 == 1) {
@@ -2212,7 +2103,7 @@ void RandMapUnit::changeMapPriority(UnitInfo* info)
 	addi     r28, r3, -4
 	mtctr    r0
 
-lbl_80248140:
+	lbl_80248140:
 	li       r0, 0
 	stw      r0, 0(r4)
 	stw      r0, 0(r5)
@@ -2254,7 +2145,7 @@ lbl_80248140:
 	mr       r24, r30
 	b        lbl_80248278
 
-lbl_802481E0:
+	lbl_802481E0:
 	lwz      r3, 0x18(r23)
 	bl       getUnitKind__Q34Game4Cave8UnitInfoFv
 	cmpwi    r3, 1
@@ -2264,7 +2155,7 @@ lbl_802481E0:
 	li       r21, 0
 	b        lbl_80248240
 
-lbl_80248200:
+	lbl_80248200:
 	mr       r3, r23
 	bl       getUnitName__Q34Game4Cave7MapNodeFv
 	mr       r4, r3
@@ -2280,15 +2171,15 @@ lbl_80248200:
 	stwx     r0, r4, r5
 	b        lbl_80248248
 
-lbl_80248238:
+	lbl_80248238:
 	addi     r26, r26, 4
 	addi     r21, r21, 1
 
-lbl_80248240:
+	lbl_80248240:
 	cmpw     r21, r27
 	blt      lbl_80248200
 
-lbl_80248248:
+	lbl_80248248:
 	clrlwi.  r0, r22, 0x18
 	beq      lbl_80248274
 	mr       r3, r23
@@ -2301,10 +2192,10 @@ lbl_80248248:
 	stw      r0, 0(r24)
 	addi     r24, r24, 4
 
-lbl_80248274:
+	lbl_80248274:
 	lwz      r23, 4(r23)
 
-lbl_80248278:
+	lbl_80248278:
 	cmplwi   r23, 0
 	bne      lbl_802481E0
 	mr       r6, r31
@@ -2312,7 +2203,7 @@ lbl_80248278:
 	li       r9, 0
 	b        lbl_802482FC
 
-lbl_80248290:
+	lbl_80248290:
 	addi     r10, r9, 1
 	addi     r4, r1, 0x208
 	slwi     r7, r10, 2
@@ -2324,7 +2215,7 @@ lbl_80248290:
 	cmpw     r10, r27
 	bge      lbl_802482F0
 
-lbl_802482B8:
+	lbl_802482B8:
 	lwz      r7, 0(r30)
 	lwz      r8, 0(r4)
 	cmpw     r7, r8
@@ -2336,18 +2227,18 @@ lbl_802482B8:
 	stw      r7, 0(r4)
 	stw      r11, 0(r5)
 
-lbl_802482E0:
+	lbl_802482E0:
 	addi     r4, r4, 4
 	addi     r5, r5, 4
 	addi     r10, r10, 1
 	bdnz     lbl_802482B8
 
-lbl_802482F0:
+	lbl_802482F0:
 	addi     r30, r30, 4
 	addi     r6, r6, 4
 	addi     r9, r9, 1
 
-lbl_802482FC:
+	lbl_802482FC:
 	cmpw     r9, r3
 	blt      lbl_80248290
 	lfd      f29, lbl_8051A770@sda21(r2)
@@ -2357,14 +2248,14 @@ lbl_802482FC:
 	lfs      f30, lbl_8051A780@sda21(r2)
 	b        lbl_802483D4
 
-lbl_8024831C:
+	lbl_8024831C:
 	li       r22, 0
 
-lbl_80248320:
+	lbl_80248320:
 	lwz      r23, 0x10(r29)
 	b        lbl_80248358
 
-lbl_80248328:
+	lbl_80248328:
 	mr       r3, r23
 	bl       getUnitName__Q34Game4Cave7MapNodeFv
 	lwz      r4, 0(r31)
@@ -2377,10 +2268,10 @@ lbl_80248328:
 	mr       r4, r23
 	bl       add__5CNodeFP5CNode
 
-lbl_80248354:
+	lbl_80248354:
 	lwz      r23, 4(r23)
 
-lbl_80248358:
+	lbl_80248358:
 	cmplwi   r23, 0
 	bne      lbl_80248328
 	addi     r22, r22, 1
@@ -2388,7 +2279,7 @@ lbl_80248358:
 	blt      lbl_80248320
 	li       r22, 0
 
-lbl_80248370:
+	lbl_80248370:
 	bl       rand
 	xoris    r0, r3, 0x8000
 	stw      r30, 0x408(r1)
@@ -2410,19 +2301,19 @@ lbl_80248370:
 	mr       r4, r23
 	bl       add__5CNodeFP5CNode
 
-lbl_802483C0:
+	lbl_802483C0:
 	addi     r22, r22, 1
 	cmpwi    r22, 4
 	blt      lbl_80248370
 	addi     r31, r31, 4
 	addi     r21, r21, 1
 
-lbl_802483D4:
+	lbl_802483D4:
 	cmpw     r21, r27
 	blt      lbl_8024831C
 	b        lbl_8024846C
 
-lbl_802483E0:
+	lbl_802483E0:
 	lfd      f30, lbl_8051A770@sda21(r2)
 	slwi     r24, r3, 2
 	lfs      f31, lbl_8051A778@sda21(r2)
@@ -2430,7 +2321,7 @@ lbl_802483E0:
 	lis      r27, 0x4330
 	b        lbl_8024845C
 
-lbl_802483F8:
+	lbl_802483F8:
 	bl       rand
 	xoris    r3, r3, 0x8000
 	xoris    r0, r25, 0x8000
@@ -2456,16 +2347,16 @@ lbl_802483F8:
 	mr       r4, r22
 	bl       add__5CNodeFP5CNode
 
-lbl_80248458:
+	lbl_80248458:
 	addi     r21, r21, 1
 
-lbl_8024845C:
+	lbl_8024845C:
 	lwz      r0, 0x24(r23)
 	lwzx     r25, r24, r0
 	cmpw     r21, r25
 	blt      lbl_802483F8
 
-lbl_8024846C:
+	lbl_8024846C:
 	psq_l    f31, 1144(r1), 0, qr0
 	lfd      f31, 0x470(r1)
 	psq_l    f30, 1128(r1), 0, qr0
