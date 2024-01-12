@@ -1,5 +1,6 @@
 #include "Game/Cave/RandMapUnit.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
+#include "PowerPC_EABI_Support/MSL_C/MSL_Common/arith.h"
 #include "Dolphin/rand.h"
 #include "types.h"
 
@@ -109,16 +110,15 @@ void EditMapUnit::setEditNumber(int editNo)
 RandMapUnit::RandMapUnit(MapUnitGenerator* generator)
 {
 	mGenerator           = generator;
-	MapNode* nodeArray   = mGenerator->mMapNodeKinds;
+	MapNode* nodeArray   = mGenerator->getMapNodeKinds();
 	MapNode* placedNodes = mGenerator->getPlacedNodes();
 
 	mUnitKindChildCounts = new int[3];
-
 	for (int i = 0; i < 3; i++) {
 		mUnitKindChildCounts[i] = nodeArray[i].getChildCount();
 	}
 
-	FloorInfo* info = mGenerator->mFloorInfo;
+	FloorInfo* info = mGenerator->getFloorInfo();
 	if (info) {
 		mRoomCount  = info->getRoomNum();
 		mRouteRatio = info->getRouteRatio();
@@ -148,131 +148,6 @@ RandMapUnit::RandMapUnit(MapUnitGenerator* generator)
 	mCapCandidateCount       = 0;
 	mCapCandidateNodes       = new MapNode*[16];
 	mCapCandidateDoorIndices = new int[16];
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r26, 0x18(r1)
-	mr       r26, r4
-	mr       r31, r3
-	stw      r26, 0x20(r3)
-	li       r3, 0xc
-	lwz      r4, 0x20(r31)
-	lwz      r29, 0x10(r4)
-	lwz      r30, 0x28(r4)
-	bl       __nwa__FUl
-	stw      r3, 0x24(r31)
-	li       r27, 0
-	li       r28, 0
-
-lbl_80245FBC:
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x24(r31)
-	addi     r27, r27, 1
-	cmpwi    r27, 3
-	addi     r29, r29, 0x40
-	stwx     r3, r4, r28
-	addi     r28, r28, 4
-	blt      lbl_80245FBC
-	lwz      r3, 0x20(r31)
-	lwz      r29, 8(r3)
-	cmplwi   r29, 0
-	beq      lbl_8024606C
-	mr       r3, r29
-	bl       getRoomNum__Q34Game4Cave9FloorInfoFv
-	stw      r3, 4(r31)
-	mr       r3, r29
-	bl       getRouteRatio__Q34Game4Cave9FloorInfoFv
-	stfs     f1, 8(r31)
-	mr       r3, r29
-	bl       getCapMax__Q34Game4Cave9FloorInfoFv
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f3, lbl_8051A770@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f1, lbl_8051A764@sda21(r2)
-	lfd      f2, 8(r1)
-	lfs      f0, lbl_8051A760@sda21(r2)
-	fsubs    f2, f2, f3
-	fmuls    f1, f1, f2
-	fcmpo    cr0, f1, f0
-	bge      lbl_80246050
-	b        lbl_80246064
-
-lbl_80246050:
-	lfs      f0, lbl_8051A768@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80246060
-	b        lbl_80246064
-
-lbl_80246060:
-	fmr      f0, f1
-
-lbl_80246064:
-	stfs     f0, 0x14(r31)
-	b        lbl_80246080
-
-lbl_8024606C:
-	li       r0, 2
-	lfs      f0, lbl_8051A760@sda21(r2)
-	stw      r0, 4(r31)
-	stfs     f0, 8(r31)
-	stfs     f0, 0x14(r31)
-
-lbl_80246080:
-	li       r0, 0
-	stb      r0, 0xc(r31)
-	stw      r0, 0(r31)
-	lwz      r3, 0xc(r26)
-	lwz      r27, 0x10(r3)
-	b        lbl_802460B4
-
-lbl_80246098:
-	mr       r3, r27
-	bl       getNumDoors__Q34Game4Cave7MapNodeFv
-	lwz      r0, 0(r31)
-	cmpw     r3, r0
-	ble      lbl_802460B0
-	stw      r3, 0(r31)
-
-lbl_802460B0:
-	lwz      r27, 4(r27)
-
-lbl_802460B4:
-	cmplwi   r27, 0
-	bne      lbl_80246098
-	li       r3, 4
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_802460D8
-	mr       r4, r30
-	bl       __ct__Q34Game4Cave14RandMapCheckerFPQ34Game4Cave7MapNode
-	mr       r0, r3
-
-lbl_802460D8:
-	stw      r0, 0x28(r31)
-	li       r4, 1
-	li       r0, 0
-	li       r3, 0x40
-	stb      r4, 0xd(r31)
-	stw      r0, 0x10(r31)
-	bl       __nwa__FUl
-	stw      r3, 0x18(r31)
-	li       r3, 0x40
-	bl       __nwa__FUl
-	stw      r3, 0x1c(r31)
-	mr       r3, r31
-	lmw      r26, 0x18(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -466,8 +341,8 @@ void RandMapUnit::changeTwoToOneMapUnit()
 	int firstNamesCount  = 0;
 	int secondNamesCount = 0;
 
-	MapNode* nodeArray   = mGenerator->mMapNodeKinds;
-	MapNode* placedNodes = mGenerator->mPlacedMapNodes;
+	MapNode* nodeArray   = mGenerator->getMapNodeKinds();
+	MapNode* placedNodes = mGenerator->getPlacedNodes();
 
 	FOREACH_NODE(MapNode, nodeArray[2].mChild, currNode)
 	{
@@ -479,7 +354,6 @@ void RandMapUnit::changeTwoToOneMapUnit()
 	}
 
 	char* secondUnitNames[16];
-
 	FOREACH_NODE(MapNode, nodeArray[2].mChild, currNode)
 	{
 		if (currNode->mUnitInfo->getUnitSizeX() == 1 && currNode->mUnitInfo->getUnitSizeY() == 2 && currNode->getNumDoors() == 2
@@ -491,7 +365,7 @@ void RandMapUnit::changeTwoToOneMapUnit()
 
 	if (firstNamesCount && secondNamesCount) {
 		MapNode* currNode = static_cast<MapNode*>(placedNodes->mChild);
-		while (currNode) {
+		for (; currNode; currNode = static_cast<MapNode*>(currNode->mNext)) {
 			MapNode* nextNode = static_cast<MapNode*>(currNode->mNext);
 			bool check        = false;
 			for (int i = 0; i < firstNamesCount; i++) {
@@ -515,16 +389,16 @@ void RandMapUnit::changeTwoToOneMapUnit()
 			}
 
 			if (targetNode) {
-				int X     = targetNode->getNodeOffsetX();
-				int currX = currNode->getNodeOffsetX();
-				if (currX < X) {
-					X = currX;
+				int X        = targetNode->getNodeOffsetX();
+				int currentX = currNode->getNodeOffsetX();
+				if (currentX < X) {
+					X = currentX;
 				}
 
-				int Y     = targetNode->getNodeOffsetY();
-				int currY = currNode->getNodeOffsetY();
-				if (Y < currY) {
-					Y = currY;
+				int Y        = targetNode->getNodeOffsetY();
+				int currentY = currNode->getNodeOffsetY();
+				if (currentY < Y) {
+					Y = currentY;
 				}
 
 				int xDiff = (targetNode->getNodeOffsetX() != currNode->getNodeOffsetX());
@@ -544,8 +418,6 @@ void RandMapUnit::changeTwoToOneMapUnit()
 
 				nextNode = static_cast<MapNode*>(placedNodes->mChild);
 			}
-
-			currNode = nextNode;
 		}
 	}
 	/*
@@ -824,8 +696,8 @@ lbl_80246920:
  */
 void RandMapUnit::setEditorMapUnit()
 {
-	EditMapUnit* editUnit = mGenerator->getEditMapUnit();
 	MapNode* mapNode      = mGenerator->getMemMapList();
+	EditMapUnit* editUnit = mGenerator->getEditMapUnit();
 
 	int editNo = editUnit->mEditNum;
 	if (editNo < 0) {
@@ -844,101 +716,6 @@ void RandMapUnit::setEditorMapUnit()
 			}
 		}
 	}
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stmw     r24, 0x20(r1)
-	mr       r24, r3
-	lwz      r3, 0x20(r3)
-	lwz      r30, 0x30(r3)
-	lwz      r31, 0xc(r3)
-	lwz      r0, 0x1c(r30)
-	cmpwi    r0, 0
-	bge      lbl_802469B0
-	lwz      r25, 4(r30)
-	bl       rand
-	lis      r4, 0x4330
-	xoris    r0, r3, 0x8000
-	stw      r0, 0xc(r1)
-	xoris    r0, r25, 0x8000
-	lfd      f2, lbl_8051A770@sda21(r2)
-	stw      r4, 8(r1)
-	lfs      f0, lbl_8051A778@sda21(r2)
-	lfd      f1, 8(r1)
-	stw      r0, 0x14(r1)
-	fsubs    f1, f1, f2
-	stw      r4, 0x10(r1)
-	fdivs    f1, f1, f0
-	lfd      f0, 0x10(r1)
-	fsubs    f0, f0, f2
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-
-lbl_802469B0:
-	lwz      r3, 8(r30)
-	slwi     r28, r0, 2
-	li       r26, 0
-	li       r29, 0
-	lwzx     r3, r3, r28
-	addi     r27, r3, -1
-	b        lbl_80246A54
-
-lbl_802469CC:
-	lwz      r25, 0x10(r31)
-	b        lbl_80246A44
-
-lbl_802469D4:
-	mr       r3, r25
-	bl       getDirection__Q34Game4Cave7MapNodeFv
-	lwz      r0, 0x10(r30)
-	lwzx     r0, r28, r0
-	lwzx     r0, r29, r0
-	cmpw     r0, r3
-	bne      lbl_80246A40
-	mr       r3, r25
-	bl       getUnitName__Q34Game4Cave7MapNodeFv
-	lwz      r0, 0xc(r30)
-	lwzx     r0, r28, r0
-	lwzx     r4, r29, r0
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_80246A40
-	lwz      r3, 0x14(r30)
-	subf     r0, r26, r27
-	lwz      r4, 0x18(r30)
-	cntlzw   r0, r0
-	lwzx     r5, r28, r3
-	mr       r3, r24
-	lwzx     r6, r28, r4
-	srwi     r7, r0, 5
-	lwz      r4, 0x18(r25)
-	lwzx     r5, r29, r5
-	lwzx     r6, r29, r6
-	bl       addMap__Q34Game4Cave11RandMapUnitFPQ34Game4Cave8UnitInfoiib
-
-lbl_80246A40:
-	lwz      r25, 4(r25)
-
-lbl_80246A44:
-	cmplwi   r25, 0
-	bne      lbl_802469D4
-	addi     r29, r29, 4
-	addi     r26, r26, 1
-
-lbl_80246A54:
-	lwz      r0, 8(r30)
-	lwzx     r0, r28, r0
-	cmpw     r26, r0
-	blt      lbl_802469CC
-	lmw      r24, 0x20(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /**
@@ -1062,9 +839,8 @@ void RandMapUnit::setUnitDoorSorting(int kind)
 			}
 
 			if (openDoorNum < 10) {
-				int doorCount;
-				for (int i = 0; i < (doorCount = mDoorCount); i++) {
-					int randIdx          = randInt(doorCount);
+				for (int i = 0; i < mDoorCount; i++) {
+					int randIdx          = randInt(mDoorCount);
 					int currOffset       = doorOffsets[i];
 					doorOffsets[i]       = doorOffsets[randIdx];
 					doorOffsets[randIdx] = currOffset;
@@ -1092,253 +868,6 @@ void RandMapUnit::setUnitDoorSorting(int kind)
 			}
 		}
 	}
-	/*
-	stwu     r1, -0xa0(r1)
-	mflr     r0
-	stw      r0, 0xa4(r1)
-	stfd     f31, 0x90(r1)
-	psq_st   f31, 152(r1), 0, qr0
-	stfd     f30, 0x80(r1)
-	psq_st   f30, 136(r1), 0, qr0
-	stmw     r25, 0x64(r1)
-	cmpwi    r4, 2
-	mr       r30, r3
-	bne      lbl_802470B0
-	lwz      r5, 0x20(r30)
-	slwi     r0, r4, 6
-	lwz      r4, 0x10(r5)
-	add      r31, r4, r0
-	bl       getOpenDoorNum__Q34Game4Cave11RandMapUnitFv
-	cmpwi    r3, 4
-	bge      lbl_80246ED8
-	lwz      r3, 0(r30)
-	li       r10, 0
-	cmpwi    r3, 0
-	ble      lbl_80247010
-	cmpwi    r3, 8
-	addi     r3, r3, -8
-	ble      lbl_80246EA8
-	addi     r0, r3, 7
-	addi     r9, r1, 8
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r3, 0
-	ble      lbl_80246EA8
-
-lbl_80246E3C:
-	lwz      r8, 0(r30)
-	addi     r0, r10, 1
-	addi     r7, r10, 2
-	addi     r6, r10, 3
-	subf     r3, r10, r8
-	addi     r5, r10, 4
-	stw      r3, 0(r9)
-	subf     r0, r0, r8
-	addi     r4, r10, 5
-	addi     r3, r10, 6
-	stw      r0, 4(r9)
-	addi     r0, r10, 7
-	subf     r7, r7, r8
-	subf     r6, r6, r8
-	stw      r7, 8(r9)
-	subf     r5, r5, r8
-	subf     r4, r4, r8
-	subf     r3, r3, r8
-	stw      r6, 0xc(r9)
-	subf     r0, r0, r8
-	addi     r10, r10, 8
-	stw      r5, 0x10(r9)
-	stw      r4, 0x14(r9)
-	stw      r3, 0x18(r9)
-	stw      r0, 0x1c(r9)
-	addi     r9, r9, 0x20
-	bdnz     lbl_80246E3C
-
-lbl_80246EA8:
-	slwi     r0, r10, 2
-	addi     r3, r1, 8
-	add      r3, r3, r0
-	b        lbl_80246EC8
-
-lbl_80246EB8:
-	subf     r0, r10, r0
-	addi     r10, r10, 1
-	stw      r0, 0(r3)
-	addi     r3, r3, 4
-
-lbl_80246EC8:
-	lwz      r0, 0(r30)
-	cmpw     r10, r0
-	blt      lbl_80246EB8
-	b        lbl_80247010
-
-lbl_80246ED8:
-	lwz      r4, 0(r30)
-	li       r10, 0
-	cmpwi    r4, 0
-	ble      lbl_80246F84
-	cmpwi    r4, 8
-	addi     r4, r4, -8
-	ble      lbl_80246F58
-	addi     r0, r4, 7
-	addi     r9, r1, 8
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r4, 0
-	ble      lbl_80246F58
-
-lbl_80246F0C:
-	addi     r4, r10, 1
-	addi     r0, r10, 2
-	stw      r4, 0(r9)
-	addi     r8, r10, 3
-	addi     r7, r10, 4
-	addi     r6, r10, 5
-	stw      r0, 4(r9)
-	addi     r5, r10, 6
-	addi     r4, r10, 7
-	addi     r0, r10, 8
-	stw      r8, 8(r9)
-	addi     r10, r10, 8
-	stw      r7, 0xc(r9)
-	stw      r6, 0x10(r9)
-	stw      r5, 0x14(r9)
-	stw      r4, 0x18(r9)
-	stw      r0, 0x1c(r9)
-	addi     r9, r9, 0x20
-	bdnz     lbl_80246F0C
-
-lbl_80246F58:
-	slwi     r0, r10, 2
-	addi     r4, r1, 8
-	add      r4, r4, r0
-	b        lbl_80246F78
-
-lbl_80246F68:
-	addi     r0, r10, 1
-	addi     r10, r10, 1
-	stw      r0, 0(r4)
-	addi     r4, r4, 4
-
-lbl_80246F78:
-	lwz      r0, 0(r30)
-	cmpw     r10, r0
-	blt      lbl_80246F68
-
-lbl_80246F84:
-	cmpwi    r3, 0xa
-	bge      lbl_80247010
-	addi     r28, r1, 8
-	lfd      f30, lbl_8051A770@sda21(r2)
-	lfs      f31, lbl_8051A778@sda21(r2)
-	mr       r26, r28
-	li       r25, 0
-	lis      r29, 0x4330
-	b        lbl_80247004
-
-lbl_80246FA8:
-	bl       rand
-	xoris    r3, r3, 0x8000
-	xoris    r0, r27, 0x8000
-	stw      r3, 0x4c(r1)
-	addi     r25, r25, 1
-	lwz      r4, 0(r28)
-	stw      r29, 0x48(r1)
-	lfd      f0, 0x48(r1)
-	stw      r0, 0x54(r1)
-	fsubs    f0, f0, f30
-	stw      r29, 0x50(r1)
-	fdivs    f1, f0, f31
-	lfd      f0, 0x50(r1)
-	fsubs    f0, f0, f30
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x58(r1)
-	lwz      r0, 0x5c(r1)
-	slwi     r3, r0, 2
-	lwzx     r0, r26, r3
-	stw      r0, 0(r28)
-	addi     r28, r28, 4
-	stwx     r4, r26, r3
-
-lbl_80247004:
-	lwz      r27, 0(r30)
-	cmpw     r25, r27
-	blt      lbl_80246FA8
-
-lbl_80247010:
-	addi     r28, r1, 8
-	li       r25, 0
-	b        lbl_802470A4
-
-lbl_8024701C:
-	lwz      r27, 0x10(r31)
-	li       r26, 0
-	b        lbl_80247044
-
-lbl_80247028:
-	mr       r3, r27
-	bl       getNumDoors__Q34Game4Cave7MapNodeFv
-	lwz      r0, 0(r28)
-	cmpw     r0, r3
-	bne      lbl_80247040
-	addi     r26, r26, 1
-
-lbl_80247040:
-	lwz      r27, 4(r27)
-
-lbl_80247044:
-	cmplwi   r27, 0
-	bne      lbl_80247028
-	li       r27, 0
-	b        lbl_80247094
-
-lbl_80247054:
-	lwz      r29, 0x10(r31)
-	b        lbl_80247088
-
-lbl_8024705C:
-	mr       r3, r29
-	bl       getNumDoors__Q34Game4Cave7MapNodeFv
-	lwz      r0, 0(r28)
-	cmpw     r0, r3
-	bne      lbl_80247084
-	mr       r3, r29
-	bl       del__5CNodeFv
-	mr       r3, r31
-	mr       r4, r29
-	bl       add__5CNodeFP5CNode
-
-lbl_80247084:
-	lwz      r29, 4(r29)
-
-lbl_80247088:
-	cmplwi   r29, 0
-	bne      lbl_8024705C
-	addi     r27, r27, 1
-
-lbl_80247094:
-	cmpw     r27, r26
-	blt      lbl_80247054
-	addi     r28, r28, 4
-	addi     r25, r25, 1
-
-lbl_802470A4:
-	lwz      r0, 0(r30)
-	cmpw     r25, r0
-	blt      lbl_8024701C
-
-lbl_802470B0:
-	psq_l    f31, 152(r1), 0, qr0
-	lfd      f31, 0x90(r1)
-	psq_l    f30, 136(r1), 0, qr0
-	lfd      f30, 0x80(r1)
-	lmw      r25, 0x64(r1)
-	lwz      r0, 0xa4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xa0
-	blr
-	*/
 }
 
 /**
@@ -1366,44 +895,61 @@ void RandMapUnit::setRandomDoorIndex(int* list, int max)
 MapNode* RandMapUnit::getLoopRandMapUnit()
 {
 	MapNode* tileList[512];
-	int openDoorNum     = getOpenDoorNum();
-	const int loopCount = getLoopMapNode(tileList);
+	int openDoorNum = getOpenDoorNum();
+	int loopCount   = getLoopMapNode(tileList);
 
+	int doorIdx, x, y;
+	MapNode* firstLink;
 	for (int i = 0; i < openDoorNum; i++) {
-		int doorIdx;
-		int x;
-		int y;
-		MapNode* firstLink;
 		MapNode* tile = getCalcDoorIndex(doorIdx, x, y, i);
 
-		if (isLoopMapNodeCheck(tile, doorIdx)) {
-			DoorNode* door = tile->getDoorNode(doorIdx);
-			int d;
-			firstLink = getLinkDoorNodeFirst(tile, doorIdx, x, y, d);
-			if (firstLink) {
-				int directions[2];
+		// Skip if loop map node check fails
+		if (!isLoopMapNodeCheck(tile, doorIdx)) {
+			continue;
+		}
 
-				const int tileDir = tile->getDoorDirect(doorIdx);
-				const int linkDir = getLinkDoorDirection(tile, doorIdx, firstLink, d);
+		DoorNode* door = tile->getDoorNode(doorIdx);
+		int d;
+		firstLink = getLinkDoorNodeFirst(tile, doorIdx, x, y, d);
 
-				directions[0] = linkDir;
-				directions[1] = tileDir;
+		// Skip if no first link
+		if (!firstLink) {
+			continue;
+		}
 
-				int oppDir = (tileDir + 2) % 4; // will end up being opposite cardinal direction (left -> right, up -> down, etc)
+		// Get the direction of the door in the tile
+		const int tileDir = tile->getDoorDirect(doorIdx);
 
-				for (int j = 0; j < 2; j++) {
-					for (int k = 0; k < loopCount; k++) {
-						int loopDir0 = tileList[k]->getDoorDirect(CD_Up);
-						int loopDir1 = tileList[k]->getDoorDirect(CD_Right);
-						if (loopDir0 == oppDir && loopDir1 == directions[j]) {
-							if (tileList[k]->isDoorSet(door, x, y, 0) && mChecker->isPutOnMap(tileList[k])) {
-								return tileList[k];
-							}
-						} else if (loopDir1 == oppDir && loopDir0 == directions[j]) {
-							if (tileList[k]->isDoorSet(door, x, y, 1) && mChecker->isPutOnMap(tileList[k])) {
-								return tileList[k];
-							}
-						}
+		// Get the direction of the door in the first link
+		const int linkDir = getLinkDoorDirection(tile, doorIdx, firstLink, d);
+
+		int directions[2];
+		directions[0] = linkDir;
+		directions[1] = tileDir;
+
+		// Calculate the opposite direction of the tile's door (left -> right, up -> down, etc.)
+		int oppDir = (tileDir + 2) % 4;
+
+		for (int j = 0; j < 2; j++) {
+			for (int k = 0; k < loopCount; k++) {
+				// Get the directions of the doors in the current tile
+				int loopDir0 = tileList[k]->getDoorDirect(CD_Up);
+				int loopDir1 = tileList[k]->getDoorDirect(CD_Right);
+
+				// Check if the first door's direction is the opposite of the tile's door and the second door's direction matches the
+				// current direction
+				if (loopDir0 == oppDir && loopDir1 == directions[j]) {
+					// Check if the door is set and if the tile can be put on the map
+					if (tileList[k]->isDoorSet(door, x, y, 0) && mChecker->isPutOnMap(tileList[k])) {
+						return tileList[k];
+					}
+				}
+				// Check if the second door's direction is the opposite of the tile's door and the first door's direction matches the
+				// current direction
+				else if (loopDir1 == oppDir && loopDir0 == directions[j]) {
+					// Check if the door is set and if the tile can be put on the map
+					if (tileList[k]->isDoorSet(door, x, y, 1) && mChecker->isPutOnMap(tileList[k])) {
+						return tileList[k];
 					}
 				}
 			}
@@ -1560,20 +1106,31 @@ lbl_8024742C:
  */
 MapNode* RandMapUnit::getCalcDoorIndex(int& doorIdx, int& doorOffsetX, int& doorOffsetY, int targetDoorCount)
 {
-	int counter = 0;
+	int doorCount = 0;
 
+	// Iterate over all placed nodes
 	FOREACH_NODE(MapNode, mGenerator->getPlacedNodes()->mChild, currTile)
 	{
-		doorIdx = 0; // zero idea how to get these to line up, something funky is going on
+		// Remove this line and all registers are different
+		// Keep this line and they line up, but you're one instruction over...
+		// WTF? (HP + Intns 2024)
+		doorIdx = 0;
+
+		// Iterate over all doors in the current node
 		for (doorIdx = 0; doorIdx < currTile->getNumDoors(); doorIdx++) {
-			if (!currTile->isDoorClose(doorIdx)) {
-				if (counter == targetDoorCount) {
-					currTile->getDoorNode(doorIdx);
-					currTile->getDoorOffset(doorIdx, doorOffsetX, doorOffsetY);
-					return currTile;
-				}
-				counter++;
+			// Skip if the door is closed
+			if (currTile->isDoorClose(doorIdx)) {
+				continue;
 			}
+
+			// If we've reached the target door count, get the door offset and return the current node
+			if (doorCount == targetDoorCount) {
+				currTile->getDoorNode(doorIdx);
+				currTile->getDoorOffset(doorIdx, doorOffsetX, doorOffsetY);
+				return currTile;
+			}
+
+			doorCount++;
 		}
 	}
 
@@ -1663,13 +1220,16 @@ MapNode* RandMapUnit::getLinkDoorNodeFirst(MapNode* tile, int doorIdx, int b, in
 		}
 
 		for (int i = 0; i < currTile->getNumDoors(); i++) {
+			// Matches the logic within weird register shit in getLoopRandMapUnit. INLINE???
 			if (!currTile->isDoorClose(i)) {
 				currTile->getDoorNode(i);
+
 				int x, y;
 				currTile->getDoorOffset(i, x, y);
 
 				if (isInLinkArea(doorDirect, b, c, x, y)) {
-					int idx = (b % y) + (x % c); // NO idea what's meant to go on here
+					int idx = _abs(b - x) + _abs(c - y);
+
 					if (idx < minIdx) {
 						d      = i;
 						minIdx = idx;
@@ -1681,98 +1241,6 @@ MapNode* RandMapUnit::getLinkDoorNodeFirst(MapNode* tile, int doorIdx, int b, in
 	}
 
 	return target;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stmw      r22, 0x18(r1)
-	  mr        r23, r4
-	  mr        r22, r3
-	  mr        r24, r6
-	  mr        r25, r7
-	  mr        r26, r8
-	  mr        r3, r23
-	  mr        r4, r5
-	  li        r31, 0xFF
-	  bl        -0x4510
-	  lwz       r4, 0x20(r22)
-	  mr        r30, r3
-	  li        r29, 0
-	  lwz       r3, 0x28(r4)
-	  lwz       r28, 0x10(r3)
-	  b         .loc_0x10C
-
-	.loc_0x4C:
-	  cmplw     r23, r28
-	  beq-      .loc_0x108
-	  li        r27, 0
-	  b         .loc_0xF8
-
-	.loc_0x5C:
-	  mr        r3, r28
-	  mr        r4, r27
-	  bl        -0x4254
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xF4
-	  mr        r3, r28
-	  mr        r4, r27
-	  bl        -0x40FC
-	  mr        r3, r28
-	  mr        r4, r27
-	  addi      r5, r1, 0xC
-	  addi      r6, r1, 0x8
-	  bl        -0x4548
-	  lwz       r7, 0xC(r1)
-	  mr        r3, r22
-	  lwz       r8, 0x8(r1)
-	  mr        r4, r30
-	  mr        r5, r24
-	  mr        r6, r25
-	  bl        .loc_0x12C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xF4
-	  lwz       r3, 0x8(r1)
-	  lwz       r0, 0xC(r1)
-	  sub       r4, r25, r3
-	  srawi     r5, r4, 0x1F
-	  sub       r0, r24, r0
-	  srawi     r3, r0, 0x1F
-	  xor       r4, r5, r4
-	  xor       r0, r3, r0
-	  sub       r4, r4, r5
-	  sub       r0, r0, r3
-	  add       r0, r0, r4
-	  cmpw      r0, r31
-	  bge-      .loc_0xF4
-	  stw       r27, 0x0(r26)
-	  mr        r31, r0
-	  mr        r29, r28
-
-	.loc_0xF4:
-	  addi      r27, r27, 0x1
-
-	.loc_0xF8:
-	  mr        r3, r28
-	  bl        -0x35A4
-	  cmpw      r27, r3
-	  blt+      .loc_0x5C
-
-	.loc_0x108:
-	  lwz       r28, 0x4(r28)
-
-	.loc_0x10C:
-	  cmplwi    r28, 0
-	  bne+      .loc_0x4C
-	  mr        r3, r29
-	  lmw       r22, 0x18(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-
-	.loc_0x12C:
-	*/
 }
 
 /**
@@ -1783,8 +1251,9 @@ bool RandMapUnit::isInLinkArea(int direction, int p2, int p3, int p4, int p5)
 {
 	int xDiff = p4 - p2;
 	int yDiff = p5 - p3;
-	int xCalc = xDiff % p4; // what even should be here, logically?
-	int yCalc = yDiff % p5;
+	int xCalc = _abs(xDiff);
+	int yCalc = _abs(yDiff);
+
 	switch (direction) {
 	case CD_Up:
 		if (xCalc < 10 && yCalc < 10 && yDiff <= 0) {
@@ -1807,73 +1276,8 @@ bool RandMapUnit::isInLinkArea(int direction, int p2, int p3, int p4, int p5)
 		}
 		break;
 	}
+
 	return false;
-	/*
-	subf     r7, r5, r7
-	subf     r8, r6, r8
-	srawi    r6, r7, 0x1f
-	cmpwi    r4, 2
-	srawi    r3, r8, 0x1f
-	xor      r5, r6, r7
-	xor      r0, r3, r8
-	subf     r5, r6, r5
-	subf     r0, r3, r0
-	beq      lbl_802476BC
-	bge      lbl_80247670
-	cmpwi    r4, 0
-	beq      lbl_8024767C
-	bge      lbl_8024769C
-	b        lbl_802476FC
-
-lbl_80247670:
-	cmpwi    r4, 4
-	bge      lbl_802476FC
-	b        lbl_802476DC
-
-lbl_8024767C:
-	cmpwi    r5, 0xa
-	bge      lbl_802476FC
-	cmpwi    r0, 0xa
-	bge      lbl_802476FC
-	cmpwi    r8, 0
-	bgt      lbl_802476FC
-	li       r3, 1
-	blr
-
-lbl_8024769C:
-	cmpwi    r5, 0xa
-	bge      lbl_802476FC
-	cmpwi    r7, 0
-	blt      lbl_802476FC
-	cmpwi    r0, 0xa
-	bge      lbl_802476FC
-	li       r3, 1
-	blr
-
-lbl_802476BC:
-	cmpwi    r5, 0xa
-	bge      lbl_802476FC
-	cmpwi    r0, 0xa
-	bge      lbl_802476FC
-	cmpwi    r8, 0
-	blt      lbl_802476FC
-	li       r3, 1
-	blr
-
-lbl_802476DC:
-	cmpwi    r5, 0xa
-	bge      lbl_802476FC
-	cmpwi    r7, 0
-	bgt      lbl_802476FC
-	cmpwi    r0, 0xa
-	bge      lbl_802476FC
-	li       r3, 1
-	blr
-
-lbl_802476FC:
-	li       r3, 0
-	blr
-	*/
 }
 
 /**
@@ -1980,7 +1384,8 @@ int RandMapUnit::getUpToLinkDoorDir(int direction, int xDiff, int yDiff)
 int RandMapUnit::getRightToLinkDoorDir(int direction, int xDiff, int yDiff)
 {
 	if (xDiff == 0) {
-		return (yDiff == 2); // this isn't right
+		// Fucks up without the cast.
+		return yDiff > CD_Up ? CD_Down : (int)CD_Up;
 	}
 
 	if (yDiff < -1) {
@@ -1998,6 +1403,7 @@ int RandMapUnit::getRightToLinkDoorDir(int direction, int xDiff, int yDiff)
 		if (direction == CD_Up || direction == CD_Right) {
 			return CD_Up;
 		}
+
 		return CD_Right;
 	}
 
@@ -2005,83 +1411,11 @@ int RandMapUnit::getRightToLinkDoorDir(int direction, int xDiff, int yDiff)
 		if (direction == CD_Down || direction == CD_Left) {
 			return CD_Down;
 		}
+
 		return CD_Right;
 	}
 
-	return (yDiff > 1) + 1; // CD_Down if true, CD_Right if not
-	                        /*
-	                        cmpwi    r5, 0
-	                        bne      lbl_802479FC
-	                        neg      r3, r6
-	                        li       r0, 2
-	                        andc     r3, r3, r6
-	                        srawi    r3, r3, 0x1f
-	                        and      r3, r0, r3
-	                        blr
-	                    
-	                    lbl_802479FC:
-	                        cmpwi    r6, -1
-	                        bge      lbl_80247A0C
-	                        li       r3, 0
-	                        blr
-	                    
-	                    lbl_80247A0C:
-	                        bne      lbl_80247A30
-	                        cmpwi    r4, 0
-	                        beq      lbl_80247A20
-	                        cmpwi    r4, 3
-	                        bne      lbl_80247A28
-	                    
-	                    lbl_80247A20:
-	                        li       r3, 0
-	                        blr
-	                    
-	                    lbl_80247A28:
-	                        li       r3, 1
-	                        blr
-	                    
-	                    lbl_80247A30:
-	                        cmpwi    r6, 0
-	                        bne      lbl_80247A58
-	                        cmpwi    r4, 0
-	                        beq      lbl_80247A48
-	                        cmpwi    r4, 1
-	                        bne      lbl_80247A50
-	                    
-	                    lbl_80247A48:
-	                        li       r3, 0
-	                        blr
-	                    
-	                    lbl_80247A50:
-	                        li       r3, 1
-	                        blr
-	                    
-	                    lbl_80247A58:
-	                        cmpwi    r6, 1
-	                        bne      lbl_80247A80
-	                        cmpwi    r4, 2
-	                        beq      lbl_80247A70
-	                        cmpwi    r4, 3
-	                        bne      lbl_80247A78
-	                    
-	                    lbl_80247A70:
-	                        li       r3, 2
-	                        blr
-	                    
-	                    lbl_80247A78:
-	                        li       r3, 1
-	                        blr
-	                    
-	                    lbl_80247A80:
-	                        li       r0, 1
-	                        xor      r0, r6, r0
-	                        srawi    r3, r0, 1
-	                        and      r0, r0, r6
-	                        subf     r0, r0, r3
-	                        srwi     r3, r0, 0x1f
-	                        addi     r3, r3, 1
-	                        blr
-	                        */
+	return (yDiff > 1) + 1;
 }
 
 /**

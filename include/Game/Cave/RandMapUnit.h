@@ -51,6 +51,8 @@ struct MapUnitGenerator {
 
 	inline MapNode* getPlacedNodes() { return mPlacedMapNodes; }
 	inline MapNode* getVisitedNodes() { return mVisitedMapNodes; }
+	inline MapNode* getMapNodeKinds() { return mMapNodeKinds; }
+	inline FloorInfo* getFloorInfo() { return mFloorInfo; }
 
 	inline MapNode* getStartNode() { return mMemMapList->getChild(); }
 
