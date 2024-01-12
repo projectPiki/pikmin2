@@ -1371,15 +1371,15 @@ MapNode* RandMapUnit::getLoopRandMapUnit()
 
 	for (int i = 0; i < openDoorNum; i++) {
 		int doorIdx;
-		int b;
-		int c;
+		int x;
+		int y;
 		MapNode* firstLink;
-		MapNode* tile = getCalcDoorIndex(doorIdx, b, c, i);
+		MapNode* tile = getCalcDoorIndex(doorIdx, x, y, i);
 
 		if (isLoopMapNodeCheck(tile, doorIdx)) {
 			DoorNode* door = tile->getDoorNode(doorIdx);
 			int d;
-			firstLink = getLinkDoorNodeFirst(tile, doorIdx, b, c, d);
+			firstLink = getLinkDoorNodeFirst(tile, doorIdx, x, y, d);
 			if (firstLink) {
 				int directions[2];
 
@@ -1396,11 +1396,11 @@ MapNode* RandMapUnit::getLoopRandMapUnit()
 						int loopDir0 = tileList[k]->getDoorDirect(CD_Up);
 						int loopDir1 = tileList[k]->getDoorDirect(CD_Right);
 						if (loopDir0 == oppDir && loopDir1 == directions[j]) {
-							if (tileList[k]->isDoorSet(door, b, c, 0) && mChecker->isPutOnMap(tileList[k])) {
+							if (tileList[k]->isDoorSet(door, x, y, 0) && mChecker->isPutOnMap(tileList[k])) {
 								return tileList[k];
 							}
 						} else if (loopDir1 == oppDir && loopDir0 == directions[j]) {
-							if (tileList[k]->isDoorSet(door, b, c, 1) && mChecker->isPutOnMap(tileList[k])) {
+							if (tileList[k]->isDoorSet(door, x, y, 1) && mChecker->isPutOnMap(tileList[k])) {
 								return tileList[k];
 							}
 						}
@@ -1564,9 +1564,8 @@ MapNode* RandMapUnit::getCalcDoorIndex(int& doorIdx, int& doorOffsetX, int& door
 
 	FOREACH_NODE(MapNode, mGenerator->getPlacedNodes()->mChild, currTile)
 	{
-		// INTNS: shouldn't this just be a for loop?
-		doorIdx = 0; // this line is the jank one. registers line up if you do doorIdx = counter, but that's wrong
-		while (doorIdx < currTile->getNumDoors()) {
+		doorIdx = 0; // zero idea how to get these to line up, something funky is going on
+		for (doorIdx = 0; doorIdx < currTile->getNumDoors(); doorIdx++) {
 			if (!currTile->isDoorClose(doorIdx)) {
 				if (counter == targetDoorCount) {
 					currTile->getDoorNode(doorIdx);
@@ -1575,7 +1574,6 @@ MapNode* RandMapUnit::getCalcDoorIndex(int& doorIdx, int& doorOffsetX, int& door
 				}
 				counter++;
 			}
-			doorIdx++;
 		}
 	}
 
@@ -1652,9 +1650,37 @@ lbl_802474F4:
  * @note Address: 0x80247508
  * @note Size: 0x12C
  */
-MapNode* RandMapUnit::getLinkDoorNodeFirst(MapNode* tile, int a, int b, int c, int& d)
+MapNode* RandMapUnit::getLinkDoorNodeFirst(MapNode* tile, int doorIdx, int b, int c, int& d)
 {
+	int minIdx      = 255;
+	int doorDirect  = tile->getDoorDirect(doorIdx);
+	MapNode* target = nullptr;
 
+	FOREACH_NODE(MapNode, mGenerator->getPlacedNodes()->mChild, currTile)
+	{
+		if (tile == currTile) {
+			continue;
+		}
+
+		for (int i = 0; i < currTile->getNumDoors(); i++) {
+			if (!currTile->isDoorClose(i)) {
+				currTile->getDoorNode(i);
+				int x, y;
+				currTile->getDoorOffset(i, x, y);
+
+				if (isInLinkArea(doorDirect, b, c, x, y)) {
+					int idx = (b % y) + (x % c); // NO idea what's meant to go on here
+					if (idx < minIdx) {
+						d      = i;
+						minIdx = idx;
+						target = currTile;
+					}
+				}
+			}
+		}
+	}
+
+	return target;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x40(r1)
@@ -1753,8 +1779,35 @@ MapNode* RandMapUnit::getLinkDoorNodeFirst(MapNode* tile, int a, int b, int c, i
  * @note Address: 0x80247634
  * @note Size: 0xD0
  */
-bool RandMapUnit::isInLinkArea(int, int, int, int, int)
+bool RandMapUnit::isInLinkArea(int direction, int p2, int p3, int p4, int p5)
 {
+	int xDiff = p4 - p2;
+	int yDiff = p5 - p3;
+	int xCalc = xDiff % p4; // what even should be here, logically?
+	int yCalc = yDiff % p5;
+	switch (direction) {
+	case CD_Up:
+		if (xCalc < 10 && yCalc < 10 && yDiff <= 0) {
+			return true;
+		}
+		break;
+	case CD_Right:
+		if (xCalc < 10 && xDiff >= 0 && yCalc < 10) {
+			return true;
+		}
+		break;
+	case CD_Down:
+		if (xCalc < 10 && yCalc < 10 && yDiff >= 0) {
+			return true;
+		}
+		break;
+	case CD_Left:
+		if (xCalc < 10 && xDiff <= 0 && yCalc < 10) {
+			return true;
+		}
+		break;
+	}
+	return false;
 	/*
 	subf     r7, r5, r7
 	subf     r8, r6, r8
@@ -1827,447 +1880,358 @@ lbl_802476FC:
  * @note Address: 0x80247704
  * @note Size: 0x130
  */
-u32 RandMapUnit::getLoopMapNode(MapNode**)
+u32 RandMapUnit::getLoopMapNode(MapNode** nodes)
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stfd     f31, 0x50(r1)
-	psq_st   f31, 88(r1), 0, qr0
-	stfd     f30, 0x40(r1)
-	psq_st   f30, 72(r1), 0, qr0
-	stmw     r26, 0x28(r1)
-	lwz      r3, 0x20(r3)
-	mr       r26, r4
-	mr       r30, r26
-	li       r28, 0
-	lwz      r3, 0x10(r3)
-	lwz      r29, 0x90(r3)
-	b        lbl_80247780
+	int counter = 0;
+	FOREACH_NODE(MapNode, mGenerator->mMapNodeKinds[UNITKIND_Corridor].mChild, node)
+	{
+		if (node->mUnitInfo->getUnitSizeX() == 1 && node->mUnitInfo->getUnitSizeY() == 1 && node->getNumDoors() == 2) {
+			nodes[counter] = node;
+			counter++;
+		}
+	}
 
-lbl_80247740:
-	lwz      r3, 0x18(r29)
-	bl       getUnitSizeX__Q34Game4Cave8UnitInfoFv
-	cmpwi    r3, 1
-	bne      lbl_8024777C
-	lwz      r3, 0x18(r29)
-	bl       getUnitSizeY__Q34Game4Cave8UnitInfoFv
-	cmpwi    r3, 1
-	bne      lbl_8024777C
-	mr       r3, r29
-	bl       getNumDoors__Q34Game4Cave7MapNodeFv
-	cmpwi    r3, 2
-	bne      lbl_8024777C
-	stw      r29, 0(r30)
-	addi     r30, r30, 4
-	addi     r28, r28, 1
+	if (counter) {
+		for (int i = 0; i < counter; i++) {
+			int randIdx       = randInt(counter);
+			MapNode* prevNode = nodes[i];
+			nodes[i]          = nodes[randIdx];
+			nodes[randIdx]    = prevNode;
+		}
+	}
 
-lbl_8024777C:
-	lwz      r29, 4(r29)
-
-lbl_80247780:
-	cmplwi   r29, 0
-	bne      lbl_80247740
-	cmpwi    r28, 0
-	beq      lbl_8024780C
-	lfd      f30, lbl_8051A770@sda21(r2)
-	mr       r29, r26
-	lfs      f31, lbl_8051A778@sda21(r2)
-	xoris    r31, r28, 0x8000
-	li       r27, 0
-	lis      r30, 0x4330
-	b        lbl_80247804
-
-lbl_802477AC:
-	bl       rand
-	xoris    r0, r3, 0x8000
-	stw      r30, 8(r1)
-	lwz      r4, 0(r29)
-	addi     r27, r27, 1
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	stw      r31, 0x14(r1)
-	fsubs    f0, f0, f30
-	stw      r30, 0x10(r1)
-	fdivs    f1, f0, f31
-	lfd      f0, 0x10(r1)
-	fsubs    f0, f0, f30
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	slwi     r3, r0, 2
-	lwzx     r0, r26, r3
-	stw      r0, 0(r29)
-	addi     r29, r29, 4
-	stwx     r4, r26, r3
-
-lbl_80247804:
-	cmpw     r27, r28
-	blt      lbl_802477AC
-
-lbl_8024780C:
-	mr       r3, r28
-	psq_l    f31, 88(r1), 0, qr0
-	lfd      f31, 0x50(r1)
-	psq_l    f30, 72(r1), 0, qr0
-	lfd      f30, 0x40(r1)
-	lmw      r26, 0x28(r1)
-	lwz      r0, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+	return counter;
 }
 
 /**
  * @note Address: 0x80247834
  * @note Size: 0xEC
  */
-int RandMapUnit::getLinkDoorDirection(MapNode*, int, MapNode*, int)
+int RandMapUnit::getLinkDoorDirection(MapNode* tileA, int doorIdxA, MapNode* tileB, int doorIdxB)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r27, 0x1C(r1)
-	  mr        r31, r5
-	  mr        r28, r4
-	  mr        r27, r3
-	  mr        r29, r6
-	  mr        r30, r7
-	  mr        r3, r28
-	  mr        r4, r31
-	  addi      r5, r1, 0x14
-	  addi      r6, r1, 0x10
-	  bl        -0x481C
-	  mr        r3, r29
-	  mr        r4, r30
-	  addi      r5, r1, 0xC
-	  addi      r6, r1, 0x8
-	  bl        -0x4830
-	  mr        r3, r28
-	  mr        r4, r31
-	  bl        -0x4860
-	  mr        r31, r3
-	  mr        r3, r29
-	  mr        r4, r30
-	  bl        -0x4870
-	  cmpwi     r31, 0
-	  lwz       r7, 0x14(r1)
-	  lwz       r5, 0xC(r1)
-	  mr        r4, r3
-	  lwz       r6, 0x10(r1)
-	  lwz       r0, 0x8(r1)
-	  sub       r5, r5, r7
-	  sub       r6, r0, r6
-	  bne-      .loc_0x98
-	  mr        r3, r27
-	  bl        .loc_0xEC
-	  b         .loc_0xD8
+	int x1, y1;
+	tileA->getDoorOffset(doorIdxA, x1, y1);
+	int x2, y2;
+	tileB->getDoorOffset(doorIdxB, x2, y2);
+	int direction1 = tileA->getDoorDirect(doorIdxA);
+	int direction2 = tileB->getDoorDirect(doorIdxB);
 
-	.loc_0x98:
-	  cmpwi     r31, 0x1
-	  bne-      .loc_0xAC
-	  mr        r3, r27
-	  bl        0x104
-	  b         .loc_0xD8
+	int xDiff = x2 - x1;
+	int yDiff = y2 - y1;
 
-	.loc_0xAC:
-	  cmpwi     r31, 0x2
-	  bne-      .loc_0xC0
-	  mr        r3, r27
-	  bl        0x1B4
-	  b         .loc_0xD8
+	if (direction1 == CD_Up) {
+		return getUpToLinkDoorDir(direction2, xDiff, yDiff);
+	} else if (direction1 == CD_Right) {
+		return getRightToLinkDoorDir(direction2, xDiff, yDiff);
+	} else if (direction1 == CD_Down) {
+		return getDownToLinkDoorDir(direction2, xDiff, yDiff);
+	} else if (direction1 == CD_Left) {
+		return getLeftToLinkDoorDir(direction2, xDiff, yDiff);
+	}
 
-	.loc_0xC0:
-	  cmpwi     r31, 0x3
-	  bne-      .loc_0xD4
-	  mr        r3, r27
-	  bl        0x25C
-	  b         .loc_0xD8
-
-	.loc_0xD4:
-	  li        r3, -0x1
-
-	.loc_0xD8:
-	  lmw       r27, 0x1C(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-
-	.loc_0xEC:
-	*/
+	return -1;
 }
 
 /**
  * @note Address: 0x80247920
  * @note Size: 0xBC
  */
-int RandMapUnit::getUpToLinkDoorDir(int, int, int)
+int RandMapUnit::getUpToLinkDoorDir(int direction, int xDiff, int yDiff)
 {
-	/*
-	cmpwi    r6, -2
-	ble      lbl_8024793C
-	cmpwi    r5, 0
-	li       r3, 1
-	bgelr
-	li       r3, 3
-	blr
+	if (yDiff > -2) {
+		if (xDiff < 0) {
+			return CD_Left;
+		}
+		return CD_Right;
+	}
 
-lbl_8024793C:
-	cmpwi    r5, -1
-	bge      lbl_8024794C
-	li       r3, 3
-	blr
+	if (xDiff < -1) {
+		return CD_Left;
+	}
 
-lbl_8024794C:
-	bne      lbl_80247970
-	cmpwi    r4, 2
-	beq      lbl_80247960
-	cmpwi    r4, 3
-	bne      lbl_80247968
+	if (xDiff == -1) {
+		if (direction == CD_Down || direction == CD_Left) {
+			return CD_Left;
+		}
+		return CD_Up;
+	}
 
-lbl_80247960:
-	li       r3, 3
-	blr
+	if (xDiff == 0) {
+		if (direction == CD_Up || direction == CD_Left) {
+			return CD_Left;
+		}
+		return CD_Up;
+	}
 
-lbl_80247968:
-	li       r3, 0
-	blr
+	if (xDiff == 1) {
+		if (direction == CD_Right || direction == CD_Down) {
+			return CD_Right;
+		}
+		return CD_Up;
+	}
 
-lbl_80247970:
-	cmpwi    r5, 0
-	bne      lbl_80247998
-	cmpwi    r4, 0
-	beq      lbl_80247988
-	cmpwi    r4, 3
-	bne      lbl_80247990
-
-lbl_80247988:
-	li       r3, 3
-	blr
-
-lbl_80247990:
-	li       r3, 0
-	blr
-
-lbl_80247998:
-	cmpwi    r5, 1
-	bne      lbl_802479C0
-	cmpwi    r4, 1
-	beq      lbl_802479B0
-	cmpwi    r4, 2
-	bne      lbl_802479B8
-
-lbl_802479B0:
-	li       r3, 1
-	blr
-
-lbl_802479B8:
-	li       r3, 0
-	blr
-
-lbl_802479C0:
-	li       r0, 1
-	xor      r0, r5, r0
-	srawi    r3, r0, 1
-	and      r0, r0, r5
-	subf     r0, r0, r3
-	srwi     r3, r0, 0x1f
-	blr
-	*/
+	return xDiff > 1; // CD_Right if true, CD_Up if not
 }
 
 /**
  * @note Address: 0x802479DC
  * @note Size: 0xC4
  */
-int RandMapUnit::getRightToLinkDoorDir(int, int, int)
+int RandMapUnit::getRightToLinkDoorDir(int direction, int xDiff, int yDiff)
 {
-	/*
-	cmpwi    r5, 0
-	bne      lbl_802479FC
-	neg      r3, r6
-	li       r0, 2
-	andc     r3, r3, r6
-	srawi    r3, r3, 0x1f
-	and      r3, r0, r3
-	blr
+	if (xDiff == 0) {
+		return (yDiff == 2); // this isn't right
+	}
 
-lbl_802479FC:
-	cmpwi    r6, -1
-	bge      lbl_80247A0C
-	li       r3, 0
-	blr
+	if (yDiff < -1) {
+		return CD_Up;
+	}
 
-lbl_80247A0C:
-	bne      lbl_80247A30
-	cmpwi    r4, 0
-	beq      lbl_80247A20
-	cmpwi    r4, 3
-	bne      lbl_80247A28
+	if (yDiff == -1) {
+		if (direction == CD_Up || direction == CD_Left) {
+			return CD_Up;
+		}
+		return CD_Right;
+	}
 
-lbl_80247A20:
-	li       r3, 0
-	blr
+	if (yDiff == 0) {
+		if (direction == CD_Up || direction == CD_Right) {
+			return CD_Up;
+		}
+		return CD_Right;
+	}
 
-lbl_80247A28:
-	li       r3, 1
-	blr
+	if (yDiff == 1) {
+		if (direction == CD_Down || direction == CD_Left) {
+			return CD_Down;
+		}
+		return CD_Right;
+	}
 
-lbl_80247A30:
-	cmpwi    r6, 0
-	bne      lbl_80247A58
-	cmpwi    r4, 0
-	beq      lbl_80247A48
-	cmpwi    r4, 1
-	bne      lbl_80247A50
-
-lbl_80247A48:
-	li       r3, 0
-	blr
-
-lbl_80247A50:
-	li       r3, 1
-	blr
-
-lbl_80247A58:
-	cmpwi    r6, 1
-	bne      lbl_80247A80
-	cmpwi    r4, 2
-	beq      lbl_80247A70
-	cmpwi    r4, 3
-	bne      lbl_80247A78
-
-lbl_80247A70:
-	li       r3, 2
-	blr
-
-lbl_80247A78:
-	li       r3, 1
-	blr
-
-lbl_80247A80:
-	li       r0, 1
-	xor      r0, r6, r0
-	srawi    r3, r0, 1
-	and      r0, r0, r6
-	subf     r0, r0, r3
-	srwi     r3, r0, 0x1f
-	addi     r3, r3, 1
-	blr
-	*/
+	return (yDiff > 1) + 1; // CD_Down if true, CD_Right if not
+	                        /*
+	                        cmpwi    r5, 0
+	                        bne      lbl_802479FC
+	                        neg      r3, r6
+	                        li       r0, 2
+	                        andc     r3, r3, r6
+	                        srawi    r3, r3, 0x1f
+	                        and      r3, r0, r3
+	                        blr
+	                    
+	                    lbl_802479FC:
+	                        cmpwi    r6, -1
+	                        bge      lbl_80247A0C
+	                        li       r3, 0
+	                        blr
+	                    
+	                    lbl_80247A0C:
+	                        bne      lbl_80247A30
+	                        cmpwi    r4, 0
+	                        beq      lbl_80247A20
+	                        cmpwi    r4, 3
+	                        bne      lbl_80247A28
+	                    
+	                    lbl_80247A20:
+	                        li       r3, 0
+	                        blr
+	                    
+	                    lbl_80247A28:
+	                        li       r3, 1
+	                        blr
+	                    
+	                    lbl_80247A30:
+	                        cmpwi    r6, 0
+	                        bne      lbl_80247A58
+	                        cmpwi    r4, 0
+	                        beq      lbl_80247A48
+	                        cmpwi    r4, 1
+	                        bne      lbl_80247A50
+	                    
+	                    lbl_80247A48:
+	                        li       r3, 0
+	                        blr
+	                    
+	                    lbl_80247A50:
+	                        li       r3, 1
+	                        blr
+	                    
+	                    lbl_80247A58:
+	                        cmpwi    r6, 1
+	                        bne      lbl_80247A80
+	                        cmpwi    r4, 2
+	                        beq      lbl_80247A70
+	                        cmpwi    r4, 3
+	                        bne      lbl_80247A78
+	                    
+	                    lbl_80247A70:
+	                        li       r3, 2
+	                        blr
+	                    
+	                    lbl_80247A78:
+	                        li       r3, 1
+	                        blr
+	                    
+	                    lbl_80247A80:
+	                        li       r0, 1
+	                        xor      r0, r6, r0
+	                        srawi    r3, r0, 1
+	                        and      r0, r0, r6
+	                        subf     r0, r0, r3
+	                        srwi     r3, r0, 0x1f
+	                        addi     r3, r3, 1
+	                        blr
+	                        */
 }
 
 /**
  * @note Address: 0x80247AA0
  * @note Size: 0xBC
  */
-int RandMapUnit::getDownToLinkDoorDir(int, int, int)
+int RandMapUnit::getDownToLinkDoorDir(int direction, int xDiff, int yDiff)
 {
-	/*
-	cmpwi    r6, 0
-	bne      lbl_80247ABC
-	cmpwi    r5, 0
-	li       r3, 3
-	blelr
-	li       r3, 1
-	blr
+	if (yDiff == 0) {
+		if (xDiff > 0) {
+			return CD_Right;
+		}
+		return CD_Left;
+	}
 
-lbl_80247ABC:
-	cmpwi    r5, -1
-	bge      lbl_80247ACC
-	li       r3, 3
-	blr
+	if (xDiff < -1) {
+		return CD_Left;
+	}
 
-lbl_80247ACC:
-	bne      lbl_80247AF0
-	cmpwi    r4, 0
-	beq      lbl_80247AE0
-	cmpwi    r4, 3
-	bne      lbl_80247AE8
+	if (xDiff == -1) {
+		if (direction == CD_Up || direction == CD_Left) {
+			return CD_Left;
+		}
+		return CD_Down;
+	}
 
-lbl_80247AE0:
-	li       r3, 3
-	blr
+	if (xDiff == 0) {
+		if (direction == CD_Down || direction == CD_Left) {
+			return CD_Left;
+		}
+		return CD_Down;
+	}
 
-lbl_80247AE8:
-	li       r3, 2
-	blr
+	if (xDiff == 1) {
+		if (direction == CD_Up || direction == CD_Right) {
+			return CD_Right;
+		}
+		return CD_Down;
+	}
 
-lbl_80247AF0:
-	cmpwi    r5, 0
-	bne      lbl_80247B18
-	cmpwi    r4, 2
-	beq      lbl_80247B08
-	cmpwi    r4, 3
-	bne      lbl_80247B10
-
-lbl_80247B08:
-	li       r3, 3
-	blr
-
-lbl_80247B10:
-	li       r3, 2
-	blr
-
-lbl_80247B18:
-	cmpwi    r5, 1
-	bne      lbl_80247B40
-	cmpwi    r4, 0
-	beq      lbl_80247B30
-	cmpwi    r4, 1
-	bne      lbl_80247B38
-
-lbl_80247B30:
-	li       r3, 1
-	blr
-
-lbl_80247B38:
-	li       r3, 2
-	blr
-
-lbl_80247B40:
-	li       r4, 1
-	srwi     r3, r5, 0x1f
-	subfc    r0, r5, r4
-	srwi     r0, r4, 0x1f
-	subfe    r3, r0, r3
-	addi     r3, r3, 2
-	blr
-	*/
+	return (xDiff > 1) + 2; // this is wrong
+	                        /*
+	                        cmpwi    r6, 0
+	                        bne      lbl_80247ABC
+	                        cmpwi    r5, 0
+	                        li       r3, 3
+	                        blelr
+	                        li       r3, 1
+	                        blr
+	                    
+	                    lbl_80247ABC:
+	                        cmpwi    r5, -1
+	                        bge      lbl_80247ACC
+	                        li       r3, 3
+	                        blr
+	                    
+	                    lbl_80247ACC:
+	                        bne      lbl_80247AF0
+	                        cmpwi    r4, 0
+	                        beq      lbl_80247AE0
+	                        cmpwi    r4, 3
+	                        bne      lbl_80247AE8
+	                    
+	                    lbl_80247AE0:
+	                        li       r3, 3
+	                        blr
+	                    
+	                    lbl_80247AE8:
+	                        li       r3, 2
+	                        blr
+	                    
+	                    lbl_80247AF0:
+	                        cmpwi    r5, 0
+	                        bne      lbl_80247B18
+	                        cmpwi    r4, 2
+	                        beq      lbl_80247B08
+	                        cmpwi    r4, 3
+	                        bne      lbl_80247B10
+	                    
+	                    lbl_80247B08:
+	                        li       r3, 3
+	                        blr
+	                    
+	                    lbl_80247B10:
+	                        li       r3, 2
+	                        blr
+	                    
+	                    lbl_80247B18:
+	                        cmpwi    r5, 1
+	                        bne      lbl_80247B40
+	                        cmpwi    r4, 0
+	                        beq      lbl_80247B30
+	                        cmpwi    r4, 1
+	                        bne      lbl_80247B38
+	                    
+	                    lbl_80247B30:
+	                        li       r3, 1
+	                        blr
+	                    
+	                    lbl_80247B38:
+	                        li       r3, 2
+	                        blr
+	                    
+	                    lbl_80247B40:
+	                        li       r4, 1
+	                        srwi     r3, r5, 0x1f
+	                        subfc    r0, r5, r4
+	                        srwi     r0, r4, 0x1f
+	                        subfe    r3, r0, r3
+	                        addi     r3, r3, 2
+	                        blr
+	                        */
 }
 
 /**
  * @note Address: 0x80247B5C
  * @note Size: 0xC0
  */
-int RandMapUnit::getLeftToLinkDoorDir(int doorType, int doorPosition, int doorOrientation)
+int RandMapUnit::getLeftToLinkDoorDir(int direction, int xDiff, int yDiff)
 {
-	if (doorPosition > -2) {
-		return doorOrientation;
+	if (xDiff > -2) {
+		return (yDiff == 2); // this isn't right
 	}
 
-	switch (doorOrientation) {
-	case -1:
-		return (doorType && doorType != 1) ? 3 : 0;
-	case 1:
-		return (doorType == 1 || doorType == 2) ? 2 : 3;
-	case 0:
-		return (doorType && doorType != 3) ? 3 : 0;
-	default:
-		if (doorOrientation < -1) {
-			return 0;
-		} else {
-			return static_cast<u64>(doorOrientation) + 3;
+	if (yDiff < -1) {
+		return CD_Up;
+	}
+
+	if (yDiff == -1) {
+		if (direction == CD_Up || direction == CD_Right) {
+			return CD_Up;
 		}
+		return CD_Left;
 	}
 
-	return (doorType && doorType != 3) ? 3 : 0;
+	if (yDiff == 0) {
+		if (direction == CD_Up || direction == CD_Left) {
+			return CD_Up;
+		}
+		return CD_Left;
+	}
+
+	if (yDiff == 1) {
+		if (direction == CD_Right || direction == CD_Down) {
+			return CD_Down;
+		}
+		return CD_Left;
+	}
+
+	return (yDiff == 1) + 3; // this isn't right
 
 	/*
 	cmpwi    r5, -2
