@@ -78,11 +78,10 @@ struct TekiInfo : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	EnemyTypeID::EEnemyTypeID mEnemyID; // _18
-	int mWeight;                        // _1C
-	BaseGen::CaveGenType mType;         // _20
-	u8 mDropMode;                       // _24
-	u8 : 0;
+	EnemyTypeID::EEnemyTypeID mEnemyID;                // _18
+	int mWeight;                                       // _1C
+	BaseGen::CaveGenType mType;                        // _20
+	u8 mDropMode;                                      // _24
 	Game::PelletMgr::OtakaraItemCode mOtakaraItemCode; // _26
 };
 
@@ -230,7 +229,7 @@ struct CaveInfo : public CNode {
 	struct Parms : Parameters {
 		inline Parms()
 		    : Parameters(nullptr, "CaveInfo")
-		    , mFloorMax(this, 'c000', "ŠK‘w", 1, 1, 128)
+		    , mFloorMax(this, 'c000', "ŠK‘w", 1, 1, 128) // 'floor'
 		{
 		}
 

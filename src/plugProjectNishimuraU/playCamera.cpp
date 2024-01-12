@@ -178,7 +178,7 @@ bool PlayCamera::isSpecialCamera()
  * @note Address: 0x8023F85C
  * @note Size: 0xE8
  */
-bool PlayCamera::doUpdate()
+void PlayCamera::doUpdate()
 {
 	u32 state = updateCameraMode();
 	if (state & 0x10) {
@@ -205,7 +205,8 @@ bool PlayCamera::doUpdate()
 			updateVibration(i);
 		}
 	}
-	return isModCameraFinished();
+	isModCameraFinished();
+	return;
 }
 
 /**

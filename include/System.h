@@ -191,7 +191,7 @@ struct System : public OSMutex {
 
 	inline f32 getDeltaTime() const { return mDeltaTime; }
 	inline f32 getFrameRate(f32 timeScale) const { return getDeltaTime() / timeScale; }
-	inline f32 updateTimer(f32& timer, f32 timeScale) const { timer += timeScale * mDeltaTime; }
+	inline void updateTimer(f32& timer, f32 timeScale) const { timer += timeScale * mDeltaTime; }
 	inline Graphics* getGfx() { return mGfx; }
 
 	inline void setFlag(u32 flag) { mFlags.typeView |= flag; }

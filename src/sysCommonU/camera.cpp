@@ -915,7 +915,7 @@ void BlendCamera::setBlendFactor(f32 factor)
  * @note Address: 0x8041B994
  * @note Size: 0x2A8
  */
-bool BlendCamera::doUpdate()
+void BlendCamera::doUpdate()
 {
 	int blend          = mBlendFactor;
 	int blendIndex     = blend;

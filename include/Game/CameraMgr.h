@@ -219,7 +219,7 @@ struct PlayCamera : public LookAtCamera {
 	virtual Vector3f getLookAtPosition_() { return mLookAtPosition; } // _58 (weak)
 	virtual bool isSpecialCamera();                                   // _70
 	virtual void updateMatrix();                                      // _74
-	virtual bool doUpdate();                                          // _78
+	virtual void doUpdate();                                          // _78
 	virtual void startVibration(int) { }                              // _7C (weak)
 	virtual void init();                                              // _80
 

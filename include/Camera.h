@@ -79,7 +79,7 @@ struct Camera : public CullFrustum {
 	}
 	virtual bool isSpecialCamera() { return false; } // _70 (weak)
 	virtual void updateMatrix() { }                  // _74 (weak)
-	virtual bool doUpdate() { }                      // _78 (weak)
+	virtual void doUpdate() { }                      // _78 (weak)
 
 	f32 calcProperDistance(f32, f32);
 	f32 calcScreenSize(Sys::Sphere&);
@@ -138,7 +138,7 @@ struct BlendCamera : public Camera {
 	BlendCamera(int, Camera**);
 
 	virtual ~BlendCamera() { } // _08 (weak)
-	virtual bool doUpdate();   // _78
+	virtual void doUpdate();   // _78
 
 	void setBlendFactor(f32);
 	void setCameras(Camera**);

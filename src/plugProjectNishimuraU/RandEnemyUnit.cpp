@@ -56,17 +56,16 @@ void RandEnemyUnit::setEnemySlot()
  */
 void RandEnemyUnit::setEnemyTypeWeight()
 {
+	int enemyTypes[4] = { BaseGen::CGT_EnemyEasy, BaseGen::CGT_EnemyHard, BaseGen::CGT_DoorSeam, BaseGen::CGT_EnemySpecial }; // _38
+
+	int weightList[4]; // _28
+	int countList[4];  // _18
 	int totalWeights = 0;
 
 	for (int i = 0; i < 4; i++) {
 		mTypeCount[i] = 0;
 		mTypeMax[i]   = 0;
 	}
-
-	int enemyTypes[4] = { BaseGen::CGT_EnemyEasy, BaseGen::CGT_EnemyHard, BaseGen::CGT_DoorSeam, BaseGen::CGT_EnemySpecial }; // _38
-
-	int weightList[4]; // _28
-	int countList[4];  // _18
 
 	for (int i = 0; i < 4; i++) {
 		weightList[i] = 0;
@@ -95,10 +94,11 @@ void RandEnemyUnit::setEnemyTypeWeight()
 	}
 
 	int tallyWeights[4];
-	tallyWeights[1] = weightList[0] + weightList[1];
-	tallyWeights[2] = weightList[0] + weightList[1] + weightList[2];
+
 	tallyWeights[0] = weightList[0];
-	tallyWeights[3] = weightList[0] + weightList[1] + weightList[2] + weightList[3];
+	tallyWeights[1] = tallyWeights[0] + weightList[1];
+	tallyWeights[2] = tallyWeights[1] + weightList[2];
+	tallyWeights[3] = tallyWeights[2] + weightList[3];
 
 	int totalNum = countList[0];
 	for (int i = 1; i < 4; i++) {
@@ -397,13 +397,13 @@ void RandEnemyUnit::setEnemyTypeA()
 		}
 		if (mTypeCount[TEKITYPE_A] < mTypeMax[TEKITYPE_A]) {
 			for (int i = 0; i < 100; i++) {
-				int a = 0;
-				int b = 0;
-				int c = 0;
-				setSlotEnemyTypeA(a, b, -1);
-				setUnitRandEnemyTypeA(c, a, b);
-				if (mMapTile && mSpawn && mEnemyUnit && c) {
-					makeSetEnemyTypeA(mMapTile, mSpawn, mEnemyUnit, c);
+				int max   = 0;
+				int min   = 0;
+				int count = 0;
+				setSlotEnemyTypeA(max, min, -1);
+				setUnitRandEnemyTypeA(count, max, min);
+				if (mMapTile && mSpawn && mEnemyUnit && count) {
+					makeSetEnemyTypeA(mMapTile, mSpawn, mEnemyUnit, count);
 					if (mTypeCount[TEKITYPE_A] < mTypeMax[TEKITYPE_A]) {
 						continue;
 					}
@@ -495,8 +495,97 @@ void RandEnemyUnit::setVersusEnemyTypeC()
  * @note Address: 0x80249350
  * @note Size: 0x2F8
  */
-void RandEnemyUnit::setSlotEnemyTypeC(int&, int)
+void RandEnemyUnit::setSlotEnemyTypeC(int& doorIdx, int vsColor)
 {
+
+	MapNode* mapTiles[256];   // 0x808
+	int openDoorIndices[256]; // 0x408
+	int doorScores[256];      // 0x8
+
+	int counter    = 0; // r22
+	int scoreTally = 0; // r21
+
+	MapNode* placedNodes = mGenerator->getPlacedNodes(); // r17
+
+	if (mGenerator->mIsVersusMode) { // Versus mode
+		int vsScore = 0;
+		int sign    = 0;
+		if (vsColor == Blue) {
+			MapNode* redOnyon = mMapScore->getFixObjNode(FIXNODE_VsRedOnyon);
+			if (redOnyon) {
+				vsScore = redOnyon->getVersusScore();
+				sign    = -1;
+			}
+		} else if (vsColor == Red) {
+			MapNode* blueOnyon = mMapScore->getFixObjNode(FIXNODE_VsBlueOnyon);
+			if (blueOnyon) {
+				vsScore = blueOnyon->getVersusScore();
+				sign    = 1;
+			}
+		}
+		MapNode* node;
+		for (node = static_cast<MapNode*>(placedNodes->mChild); node; node = static_cast<MapNode*>(node->mNext)) {
+			// caps are always connected to not-caps, so don't need to worry about them
+			if (node->mUnitInfo->getUnitKind() == UNITKIND_Room || node->mUnitInfo->getUnitKind() == UNITKIND_Corridor) {
+				int numDoors = node->getNumDoors();
+				for (int i = 0; i < numDoors; i++) {
+					if (!node->isGateSetDoor(i)) {
+						mapTiles[counter]        = node;
+						openDoorIndices[counter] = i;
+						doorScores[counter]      = sign * (vsScore + mapTiles[counter]->getVersusScore());
+						if (doorScores[counter] <= 0) {
+							doorScores[counter] = 1;
+						}
+						scoreTally += doorScores[counter];
+						counter++;
+					}
+				}
+			}
+		}
+
+	} else { // story mode
+		MapNode* node;
+		for (node = static_cast<MapNode*>(placedNodes->mChild); node; node = static_cast<MapNode*>(node->mNext)) {
+			// caps are always connected to not-caps, so don't need to worry about them
+			if (node->mUnitInfo->getUnitKind() == UNITKIND_Room || node->mUnitInfo->getUnitKind() == UNITKIND_Corridor) {
+				int numDoors = node->getNumDoors();
+
+				int scoreWeight = 1; // corridor weight
+				if (node->mUnitInfo->getUnitKind() == UNITKIND_Room) {
+					scoreWeight = 100; // room weight
+				}
+
+				// make list of all open doors, their map tiles, and their score
+				for (int i = 0; i < numDoors; i++) {
+					if (!node->isGateSetDoor(i)) { // if door is open
+						mapTiles[counter]        = node;
+						openDoorIndices[counter] = i;
+						doorScores[counter]      = scoreWeight;
+						scoreTally += doorScores[counter];
+						counter++;
+					}
+				}
+			}
+		}
+	}
+
+	mMapTile = nullptr;
+	mSpawn   = nullptr;
+
+	if (counter == 0) {
+		return;
+	}
+
+	int randScoreThreshold = (f32)scoreTally * randFloat();
+	int scoreCounter       = 0;
+	for (int i = 0; i < counter; i++) {
+		scoreCounter += doorScores[i];
+		if (scoreCounter > randScoreThreshold) {
+			mMapTile = mapTiles[i];
+			doorIdx  = openDoorIndices[i];
+			return;
+		}
+	}
 	/*
 	stwu     r1, -0xc60(r1)
 	mflr     r0
@@ -743,193 +832,68 @@ lbl_80249634:
  */
 void RandEnemyUnit::setUnitRandEnemyTypeC()
 {
-	/*
-	stwu     r1, -0x430(r1)
-	mflr     r0
-	li       r9, 0
-	stw      r0, 0x434(r1)
-	addi     r5, r1, 0x208
-	stw      r31, 0x42c(r1)
-	addi     r31, r1, 8
-	mr       r6, r31
-	stw      r30, 0x428(r1)
-	li       r30, 0
-	stw      r29, 0x424(r1)
-	li       r29, 0
-	stw      r28, 0x420(r1)
-	mr       r28, r3
-	lwz      r3, 0(r3)
-	lwz      r3, 0x14(r3)
-	lwz      r10, 0x10(r3)
-	b        lbl_80249720
+	EnemyUnit* enemyList[128];
+	int weightList[128];
 
-lbl_80249690:
-	lwz      r8, 0x18(r10)
-	lwz      r4, 0(r8)
-	cmplwi   r4, 0
-	beq      lbl_8024971C
-	lwz      r0, 0x20(r4)
-	cmpwi    r0, 5
-	bne      lbl_8024971C
-	lis      r3, 0x66666667@ha
-	lwz      r7, 0x1c(r4)
-	addi     r0, r3, 0x66666667@l
-	mulhw    r0, r0, r7
-	srawi    r3, r0, 2
-	srwi     r4, r3, 0x1f
-	srawi    r0, r0, 2
-	add      r3, r3, r4
-	mulli    r4, r3, 0xa
-	srwi     r3, r0, 0x1f
-	add.     r11, r0, r3
-	subf     r3, r4, r7
-	beq      lbl_802496F8
-	lwz      r0, 0x18(r28)
-	add      r9, r9, r11
-	cmpw     r9, r0
-	ble      lbl_802496F8
-	stw      r8, 0x38(r28)
-	b        lbl_802497C8
+	int counter     = 0;
+	int weightTally = 0;
 
-lbl_802496F8:
-	cmpwi    r3, 0
-	beq      lbl_8024971C
-	stw      r3, 0(r6)
-	addi     r30, r30, 1
-	lwz      r0, 0(r6)
-	addi     r6, r6, 4
-	stw      r8, 0(r5)
-	addi     r5, r5, 4
-	add      r29, r29, r0
+	EnemyUnit* enemy;
+	int weightCounter = 0;
+	EnemyNode* node;
 
-lbl_8024971C:
-	lwz      r10, 4(r10)
+	for (node = static_cast<EnemyNode*>(mGenerator->mMainEnemies->mChild); node; node = static_cast<EnemyNode*>(node->mNext)) {
+		enemy = node->mEnemyUnit;
+		if (enemy->mTekiInfo && enemy->mTekiInfo->mType == BaseGen::CGT_DoorSeam) {
+			int ones = enemy->mTekiInfo->mWeight % 10;
+			int tens = enemy->mTekiInfo->mWeight / 10;
+			if (tens) {
+				weightCounter += tens;
+				if (weightCounter > mTypeCount[TEKITYPE_C]) {
+					mEnemyUnit = enemy;
+					return;
+				}
+			}
 
-lbl_80249720:
-	cmplwi   r10, 0
-	bne      lbl_80249690
-	li       r0, 0
-	cmpwi    r29, 0
-	stw      r0, 0x38(r28)
-	beq      lbl_802497C8
-	bl       rand
-	lis      r4, 0x4330
-	xoris    r0, r3, 0x8000
-	stw      r0, 0x40c(r1)
-	xoris    r0, r29, 0x8000
-	lfd      f2, lbl_8051A790@sda21(r2)
-	li       r5, 0
-	stw      r4, 0x408(r1)
-	li       r6, 0
-	lfs      f0, lbl_8051A788@sda21(r2)
-	lfd      f1, 0x408(r1)
-	stw      r0, 0x414(r1)
-	fsubs    f1, f1, f2
-	stw      r4, 0x410(r1)
-	fdivs    f1, f1, f0
-	lfd      f0, 0x410(r1)
-	fsubs    f0, f0, f2
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x418(r1)
-	lwz      r3, 0x41c(r1)
-	mtctr    r30
-	cmpwi    r30, 0
-	ble      lbl_802497C8
+			if (ones) {
+				enemyList[counter]  = enemy;
+				weightList[counter] = ones;
+				weightTally += weightList[counter];
+				counter++;
+			}
+		}
+	}
 
-lbl_80249798:
-	lwz      r0, 0(r31)
-	add      r5, r5, r0
-	cmpw     r5, r3
-	ble      lbl_802497BC
-	slwi     r0, r6, 2
-	addi     r3, r1, 0x208
-	lwzx     r0, r3, r0
-	stw      r0, 0x38(r28)
-	b        lbl_802497C8
+	mEnemyUnit = nullptr;
+	if (weightTally == 0) {
+		return;
+	}
 
-lbl_802497BC:
-	addi     r31, r31, 4
-	addi     r6, r6, 1
-	bdnz     lbl_80249798
-
-lbl_802497C8:
-	lwz      r0, 0x434(r1)
-	lwz      r31, 0x42c(r1)
-	lwz      r30, 0x428(r1)
-	lwz      r29, 0x424(r1)
-	lwz      r28, 0x420(r1)
-	mtlr     r0
-	addi     r1, r1, 0x430
-	blr
-	*/
+	int randWeightThreshold = (f32)weightTally * randFloat();
+	int ctr                 = 0;
+	for (int i = 0; i < counter; i++) {
+		ctr += weightList[i];
+		if (ctr > randWeightThreshold) {
+			mEnemyUnit = enemyList[i];
+			return;
+		}
+	}
 }
 
 /**
  * @note Address: 0x802497E8
  * @note Size: 0xD8
  */
-void RandEnemyUnit::makeSetEnemyTypeC(MapNode*, int, EnemyUnit*)
+void RandEnemyUnit::makeSetEnemyTypeC(MapNode* tile, int doorIdx, EnemyUnit* enemy)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stfd      f31, 0x40(r1)
-	  psq_st    f31,0x48(r1),0,0
-	  stmw      r27, 0x2C(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  mr        r29, r5
-	  mr        r30, r6
-	  addi      r3, r1, 0x8
-	  bl        -0x5B74
-	  lfs       f2, 0x8(r1)
-	  mr        r3, r28
-	  lfs       f1, 0xC(r1)
-	  mr        r4, r29
-	  lfs       f0, 0x10(r1)
-	  stfs      f2, 0x14(r1)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  bl        -0x5850
-	  fmr       f31, f1
-	  li        r3, 0x38
-	  bl        -0x2259A0
-	  mr.       r31, r3
-	  beq-      .loc_0x7C
-	  mr        r4, r30
-	  li        r5, 0
-	  li        r6, 0x1
-	  bl        -0x5694
-	  mr        r31, r3
-
-	.loc_0x7C:
-	  fmr       f1, f31
-	  mr        r3, r31
-	  addi      r4, r1, 0x14
-	  bl        -0x546C
-	  mr        r3, r31
-	  mr        r4, r29
-	  bl        -0x5458
-	  lwz       r3, 0x1C(r28)
-	  mr        r4, r31
-	  bl        0x1C7B80
-	  lwz       r3, 0x18(r27)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x18(r27)
-	  lwz       r3, 0x8(r27)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r27)
-	  psq_l     f31,0x48(r1),0,0
-	  lfd       f31, 0x40(r1)
-	  lmw       r27, 0x2C(r1)
-	  lwz       r0, 0x54(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
-	*/
+	Vector3f doorPos     = tile->getDoorGlobalPosition(doorIdx);
+	f32 doorDir          = tile->getDoorGlobalDirection(doorIdx);
+	EnemyNode* enemyNode = new EnemyNode(enemy, nullptr, 1);
+	enemyNode->setGlobalData(doorPos, doorDir);
+	enemyNode->setBirthDoorIndex(doorIdx);
+	tile->mEnemyNode->add(enemyNode);
+	mTypeCount[TEKITYPE_C]++;
+	mTotalCount++;
 }
 
 /**
@@ -979,8 +943,118 @@ void RandEnemyUnit::setVersusEnemyTypeF()
  * @note Address: 0x80249A3C
  * @note Size: 0x3E0
  */
-void RandEnemyUnit::setSlotEnemyTypeF(int)
+void RandEnemyUnit::setSlotEnemyTypeF(int p1)
 {
+	MapNode* nodeList[128];
+	BaseGen* spawnList[128];
+	int scoreList[128];
+	Vector3f vecArray[3];
+	f32 floatArray[3] = { 300.0f, 150.0f, 150.0f }; // 0x2C
+
+	int counter      = 0;
+	int vsScore      = 0;
+	int vsSign       = 0;
+	int spawnCounter = 0;
+	int scoreTally   = 0;
+
+	MapNode* placedNodes = mGenerator->getPlacedNodes();
+	if (mGenerator->mIsVersusMode) {
+		MapNode* onyon;
+		for (int i = 3; i <= 4; i++) {
+			onyon               = mMapScore->getFixObjNode(i);
+			BaseGen* onyonSpawn = mMapScore->getFixObjGen(i);
+			if (!onyon) {
+				continue;
+			}
+
+			Vector3f spawnPos   = onyon->getBaseGenGlobalPosition(onyonSpawn);
+			vecArray[counter]   = spawnPos;
+			floatArray[counter] = 400.0f;
+
+			if (p1 == 0 && counter == 0) {
+				vsScore = onyon->getVersusScore();
+				vsSign  = -1;
+			} else if (p1 == 1 && counter == 1) {
+				vsScore = onyon->getVersusScore();
+				vsSign  = 1;
+			}
+			counter++;
+		}
+	} else {
+		MapNode* exit;
+		for (int i = 0; i <= 2; i++) {
+			exit               = mMapScore->getFixObjNode(i);
+			BaseGen* exitSpawn = mMapScore->getFixObjGen(i);
+			if (exit) {
+				Vector3f spawnPos = exit->getBaseGenGlobalPosition(exitSpawn);
+				vecArray[counter] = spawnPos;
+				counter++;
+			}
+		}
+	}
+
+	FOREACH_NODE(MapNode, placedNodes->mChild, node)
+	{
+		if (node->mUnitInfo->getUnitKind() != UNITKIND_Room) {
+			continue;
+		}
+
+		BaseGen* spawnRoot = node->mUnitInfo->getBaseGen();
+		if (!spawnRoot) {
+			continue;
+		}
+
+		FOREACH_NODE(BaseGen, spawnRoot->mChild, spawn)
+		{
+			if (spawn->mSpawnType != BaseGen::CGT_EnemySpecial) {
+				continue;
+			}
+
+			if (isEnemySetGen(node, spawn)) {
+				continue;
+			}
+
+			bool check = true;
+			for (int i = 0; i < counter; i++) {
+				if (check) {
+					Vector3f spawnPos = node->getBaseGenGlobalPosition(spawn);
+					if (spawnPos.distance(vecArray[i]) < floatArray[i]) {
+						check = false;
+					}
+				}
+			}
+
+			if (check) {
+				nodeList[spawnCounter]  = node;
+				spawnList[spawnCounter] = spawn;
+				scoreList[spawnCounter] = vsSign * (vsScore + nodeList[spawnCounter]->getVersusScore());
+				if (scoreList[spawnCounter] <= 0) {
+					scoreList[spawnCounter] = 1;
+				}
+
+				scoreTally += scoreList[spawnCounter];
+				spawnCounter++;
+			}
+		}
+	}
+
+	mMapTile = nullptr;
+	mSpawn   = nullptr;
+
+	if (spawnCounter == 0) {
+		return;
+	}
+
+	int randScoreThreshold = (f32)scoreTally * randFloat();
+	int scoreCounter       = 0;
+	for (int i = 0; i < spawnCounter; i++) {
+		scoreCounter += scoreList[i];
+		if (scoreCounter > randScoreThreshold) {
+			mMapTile = nodeList[i];
+			mSpawn   = spawnList[i];
+			return;
+		}
+	}
 	/*
 	stwu     r1, -0x6d0(r1)
 	mflr     r0
@@ -1254,173 +1328,65 @@ lbl_80249E08:
  */
 void RandEnemyUnit::setUnitRandEnemyTypeF()
 {
-	/*
-	stwu     r1, -0x430(r1)
-	mflr     r0
-	li       r9, 0
-	stw      r0, 0x434(r1)
-	addi     r5, r1, 0x208
-	stw      r31, 0x42c(r1)
-	addi     r31, r1, 8
-	mr       r6, r31
-	stw      r30, 0x428(r1)
-	li       r30, 0
-	stw      r29, 0x424(r1)
-	li       r29, 0
-	stw      r28, 0x420(r1)
-	mr       r28, r3
-	lwz      r3, 0(r3)
-	lwz      r3, 0x14(r3)
-	lwz      r10, 0x10(r3)
-	b        lbl_80249EF4
+	EnemyUnit* enemyList[128];
+	int weightList[128];
 
-lbl_80249E64:
-	lwz      r8, 0x18(r10)
-	lwz      r4, 0(r8)
-	cmplwi   r4, 0
-	beq      lbl_80249EF0
-	lwz      r0, 0x20(r4)
-	cmpwi    r0, 8
-	bne      lbl_80249EF0
-	lis      r3, 0x66666667@ha
-	lwz      r7, 0x1c(r4)
-	addi     r0, r3, 0x66666667@l
-	mulhw    r0, r0, r7
-	srawi    r3, r0, 2
-	srwi     r4, r3, 0x1f
-	srawi    r0, r0, 2
-	add      r3, r3, r4
-	mulli    r4, r3, 0xa
-	srwi     r3, r0, 0x1f
-	add.     r11, r0, r3
-	subf     r3, r4, r7
-	beq      lbl_80249ECC
-	lwz      r0, 0x1c(r28)
-	add      r9, r9, r11
-	cmpw     r9, r0
-	ble      lbl_80249ECC
-	stw      r8, 0x38(r28)
-	b        lbl_80249F9C
+	int counter     = 0;
+	int weightTally = 0;
 
-lbl_80249ECC:
-	cmpwi    r3, 0
-	beq      lbl_80249EF0
-	stw      r3, 0(r6)
-	addi     r30, r30, 1
-	lwz      r0, 0(r6)
-	addi     r6, r6, 4
-	stw      r8, 0(r5)
-	addi     r5, r5, 4
-	add      r29, r29, r0
+	EnemyUnit* enemy;
+	int weightCounter = 0;
+	EnemyNode* node;
 
-lbl_80249EF0:
-	lwz      r10, 4(r10)
+	for (node = static_cast<EnemyNode*>(mGenerator->mMainEnemies->mChild); node; node = static_cast<EnemyNode*>(node->mNext)) {
+		enemy = node->mEnemyUnit;
+		if (enemy->mTekiInfo && enemy->mTekiInfo->mType == BaseGen::CGT_EnemySpecial) {
+			int ones = enemy->mTekiInfo->mWeight % 10;
+			int tens = enemy->mTekiInfo->mWeight / 10;
+			if (tens) {
+				weightCounter += tens;
+				if (weightCounter > mTypeCount[TEKITYPE_F]) {
+					mEnemyUnit = enemy;
+					return;
+				}
+			}
 
-lbl_80249EF4:
-	cmplwi   r10, 0
-	bne      lbl_80249E64
-	li       r0, 0
-	cmpwi    r29, 0
-	stw      r0, 0x38(r28)
-	beq      lbl_80249F9C
-	bl       rand
-	lis      r4, 0x4330
-	xoris    r0, r3, 0x8000
-	stw      r0, 0x40c(r1)
-	xoris    r0, r29, 0x8000
-	lfd      f2, lbl_8051A790@sda21(r2)
-	li       r5, 0
-	stw      r4, 0x408(r1)
-	li       r6, 0
-	lfs      f0, lbl_8051A788@sda21(r2)
-	lfd      f1, 0x408(r1)
-	stw      r0, 0x414(r1)
-	fsubs    f1, f1, f2
-	stw      r4, 0x410(r1)
-	fdivs    f1, f1, f0
-	lfd      f0, 0x410(r1)
-	fsubs    f0, f0, f2
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x418(r1)
-	lwz      r3, 0x41c(r1)
-	mtctr    r30
-	cmpwi    r30, 0
-	ble      lbl_80249F9C
+			if (ones) {
+				enemyList[counter]  = enemy;
+				weightList[counter] = ones;
+				weightTally += weightList[counter];
+				counter++;
+			}
+		}
+	}
 
-lbl_80249F6C:
-	lwz      r0, 0(r31)
-	add      r5, r5, r0
-	cmpw     r5, r3
-	ble      lbl_80249F90
-	slwi     r0, r6, 2
-	addi     r3, r1, 0x208
-	lwzx     r0, r3, r0
-	stw      r0, 0x38(r28)
-	b        lbl_80249F9C
+	mEnemyUnit = nullptr;
+	if (weightTally == 0) {
+		return;
+	}
 
-lbl_80249F90:
-	addi     r31, r31, 4
-	addi     r6, r6, 1
-	bdnz     lbl_80249F6C
-
-lbl_80249F9C:
-	lwz      r0, 0x434(r1)
-	lwz      r31, 0x42c(r1)
-	lwz      r30, 0x428(r1)
-	lwz      r29, 0x424(r1)
-	lwz      r28, 0x420(r1)
-	mtlr     r0
-	addi     r1, r1, 0x430
-	blr
-	*/
+	int randWeightThreshold = (f32)weightTally * randFloat();
+	int ctr                 = 0;
+	for (int i = 0; i < counter; i++) {
+		ctr += weightList[i];
+		if (ctr > randWeightThreshold) {
+			mEnemyUnit = enemyList[i];
+			return;
+		}
+	}
 }
 
 /**
  * @note Address: 0x80249FBC
  * @note Size: 0x88
  */
-void RandEnemyUnit::makeSetEnemyTypeF(MapNode*, BaseGen*, EnemyUnit*)
+void RandEnemyUnit::makeSetEnemyTypeF(MapNode* tile, BaseGen* spawn, EnemyUnit* enemy)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  mr        r29, r5
-	  mr        r30, r6
-	  li        r3, 0x38
-	  bl        -0x22613C
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  mr        r4, r30
-	  mr        r5, r29
-	  li        r6, 0x1
-	  bl        -0x5E30
-	  mr        r31, r3
-
-	.loc_0x44:
-	  mr        r3, r31
-	  mr        r4, r28
-	  bl        -0x5DAC
-	  lwz       r3, 0x1C(r28)
-	  mr        r4, r31
-	  bl        0x1C73F4
-	  lwz       r3, 0x1C(r27)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x1C(r27)
-	  lwz       r3, 0x8(r27)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r27)
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	EnemyNode* enemyNode = new EnemyNode(enemy, spawn, 1);
+	enemyNode->makeGlobalData(tile);
+	tile->mEnemyNode->add(enemyNode);
+	mTypeCount[TEKITYPE_F]++;
+	mTotalCount++;
 }
 
 /**
@@ -1469,8 +1435,119 @@ void RandEnemyUnit::setVersusEnemyTypeB()
  * @note Address: 0x8024A1C0
  * @note Size: 0x3E0
  */
-void RandEnemyUnit::setSlotEnemyTypeB(int)
+void RandEnemyUnit::setSlotEnemyTypeB(int p1)
 {
+	MapNode* nodeList[128];
+	BaseGen* spawnList[128];
+	int scoreList[128];
+	Vector3f vecArray[3];
+	f32 floatArray[3] = { 300.0f, 150.0f, 150.0f }; // 0x2C
+
+	int counter      = 0;
+	int vsScore      = 0;
+	int vsSign       = 0;
+	int spawnCounter = 0;
+	int scoreTally   = 0;
+
+	MapNode* placedNodes = mGenerator->getPlacedNodes();
+	if (mGenerator->mIsVersusMode) {
+		MapNode* onyon;
+		BaseGen* onyonSpawn;
+		for (int i = 3; i <= 4; i++) {
+			onyon      = mMapScore->getFixObjNode(i);
+			onyonSpawn = mMapScore->getFixObjGen(i);
+			if (!onyon) {
+				continue;
+			}
+
+			Vector3f spawnPos   = onyon->getBaseGenGlobalPosition(onyonSpawn);
+			vecArray[counter]   = spawnPos;
+			floatArray[counter] = 400.0f;
+
+			if (p1 == 0 && counter == 0) {
+				vsScore = onyon->getVersusScore();
+				vsSign  = -1;
+			} else if (p1 == 1 && counter == 1) {
+				vsScore = onyon->getVersusScore();
+				vsSign  = 1;
+			}
+			counter++;
+		}
+	} else {
+		MapNode* exit;
+		for (int i = 0; i <= 2; i++) {
+			exit               = mMapScore->getFixObjNode(i);
+			BaseGen* exitSpawn = mMapScore->getFixObjGen(i);
+			if (exit) {
+				Vector3f spawnPos = exit->getBaseGenGlobalPosition(exitSpawn);
+				vecArray[counter] = spawnPos;
+				counter++;
+			}
+		}
+	}
+
+	FOREACH_NODE(MapNode, placedNodes->mChild, node)
+	{
+		if (node->mUnitInfo->getUnitKind() != UNITKIND_Room) {
+			continue;
+		}
+
+		BaseGen* spawnRoot = node->mUnitInfo->getBaseGen();
+		if (!spawnRoot) {
+			continue;
+		}
+
+		FOREACH_NODE(BaseGen, spawnRoot->mChild, spawn)
+		{
+			if (spawn->mSpawnType != BaseGen::CGT_EnemyHard) {
+				continue;
+			}
+
+			if (isEnemySetGen(node, spawn)) {
+				continue;
+			}
+
+			bool check = true;
+			for (int i = 0; i < counter; i++) {
+				if (check) {
+					Vector3f spawnPos = node->getBaseGenGlobalPosition(spawn);
+					if (spawnPos.distance(vecArray[i]) < floatArray[i]) {
+						check = false;
+					}
+				}
+			}
+
+			if (check) {
+				nodeList[spawnCounter]  = node;
+				spawnList[spawnCounter] = spawn;
+				scoreList[spawnCounter] = vsSign * (vsScore + nodeList[spawnCounter]->getVersusScore());
+				if (scoreList[spawnCounter] <= 0) {
+					scoreList[spawnCounter] = 1;
+				}
+
+				scoreTally += scoreList[spawnCounter];
+				spawnCounter++;
+			}
+		}
+	}
+
+	mMapTile = nullptr;
+	mSpawn   = nullptr;
+
+	if (spawnCounter == 0) {
+		return;
+	}
+
+	int randScoreThreshold = (f32)scoreTally * randFloat();
+	int scoreCounter       = 0;
+	for (int i = 0; i < spawnCounter; i++) {
+		scoreCounter += scoreList[i];
+		if (scoreCounter > randScoreThreshold) {
+			mMapTile = nodeList[i];
+			mSpawn   = spawnList[i];
+			return;
+		}
+	}
 	/*
 	stwu     r1, -0x6d0(r1)
 	mflr     r0
@@ -1744,173 +1821,65 @@ lbl_8024A58C:
  */
 void RandEnemyUnit::setUnitRandEnemyTypeB()
 {
-	/*
-	stwu     r1, -0x430(r1)
-	mflr     r0
-	li       r9, 0
-	stw      r0, 0x434(r1)
-	addi     r5, r1, 0x208
-	stw      r31, 0x42c(r1)
-	addi     r31, r1, 8
-	mr       r6, r31
-	stw      r30, 0x428(r1)
-	li       r30, 0
-	stw      r29, 0x424(r1)
-	li       r29, 0
-	stw      r28, 0x420(r1)
-	mr       r28, r3
-	lwz      r3, 0(r3)
-	lwz      r3, 0x14(r3)
-	lwz      r10, 0x10(r3)
-	b        lbl_8024A678
+	EnemyUnit* enemyList[128];
+	int weightList[128];
 
-lbl_8024A5E8:
-	lwz      r8, 0x18(r10)
-	lwz      r4, 0(r8)
-	cmplwi   r4, 0
-	beq      lbl_8024A674
-	lwz      r0, 0x20(r4)
-	cmpwi    r0, 1
-	bne      lbl_8024A674
-	lis      r3, 0x66666667@ha
-	lwz      r7, 0x1c(r4)
-	addi     r0, r3, 0x66666667@l
-	mulhw    r0, r0, r7
-	srawi    r3, r0, 2
-	srwi     r4, r3, 0x1f
-	srawi    r0, r0, 2
-	add      r3, r3, r4
-	mulli    r4, r3, 0xa
-	srwi     r3, r0, 0x1f
-	add.     r11, r0, r3
-	subf     r3, r4, r7
-	beq      lbl_8024A650
-	lwz      r0, 0x14(r28)
-	add      r9, r9, r11
-	cmpw     r9, r0
-	ble      lbl_8024A650
-	stw      r8, 0x38(r28)
-	b        lbl_8024A720
+	int counter     = 0;
+	int weightTally = 0;
 
-lbl_8024A650:
-	cmpwi    r3, 0
-	beq      lbl_8024A674
-	stw      r3, 0(r6)
-	addi     r30, r30, 1
-	lwz      r0, 0(r6)
-	addi     r6, r6, 4
-	stw      r8, 0(r5)
-	addi     r5, r5, 4
-	add      r29, r29, r0
+	EnemyUnit* enemy;
+	int weightCounter = 0;
+	EnemyNode* node;
 
-lbl_8024A674:
-	lwz      r10, 4(r10)
+	for (node = static_cast<EnemyNode*>(mGenerator->mMainEnemies->mChild); node; node = static_cast<EnemyNode*>(node->mNext)) {
+		enemy = node->mEnemyUnit;
+		if (enemy->mTekiInfo && enemy->mTekiInfo->mType == BaseGen::CGT_EnemyHard) {
+			int ones = enemy->mTekiInfo->mWeight % 10;
+			int tens = enemy->mTekiInfo->mWeight / 10;
+			if (tens) {
+				weightCounter += tens;
+				if (weightCounter > mTypeCount[TEKITYPE_B]) {
+					mEnemyUnit = enemy;
+					return;
+				}
+			}
 
-lbl_8024A678:
-	cmplwi   r10, 0
-	bne      lbl_8024A5E8
-	li       r0, 0
-	cmpwi    r29, 0
-	stw      r0, 0x38(r28)
-	beq      lbl_8024A720
-	bl       rand
-	lis      r4, 0x4330
-	xoris    r0, r3, 0x8000
-	stw      r0, 0x40c(r1)
-	xoris    r0, r29, 0x8000
-	lfd      f2, lbl_8051A790@sda21(r2)
-	li       r5, 0
-	stw      r4, 0x408(r1)
-	li       r6, 0
-	lfs      f0, lbl_8051A788@sda21(r2)
-	lfd      f1, 0x408(r1)
-	stw      r0, 0x414(r1)
-	fsubs    f1, f1, f2
-	stw      r4, 0x410(r1)
-	fdivs    f1, f1, f0
-	lfd      f0, 0x410(r1)
-	fsubs    f0, f0, f2
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x418(r1)
-	lwz      r3, 0x41c(r1)
-	mtctr    r30
-	cmpwi    r30, 0
-	ble      lbl_8024A720
+			if (ones) {
+				enemyList[counter]  = enemy;
+				weightList[counter] = ones;
+				weightTally += weightList[counter];
+				counter++;
+			}
+		}
+	}
 
-lbl_8024A6F0:
-	lwz      r0, 0(r31)
-	add      r5, r5, r0
-	cmpw     r5, r3
-	ble      lbl_8024A714
-	slwi     r0, r6, 2
-	addi     r3, r1, 0x208
-	lwzx     r0, r3, r0
-	stw      r0, 0x38(r28)
-	b        lbl_8024A720
+	mEnemyUnit = nullptr;
+	if (weightTally == 0) {
+		return;
+	}
 
-lbl_8024A714:
-	addi     r31, r31, 4
-	addi     r6, r6, 1
-	bdnz     lbl_8024A6F0
-
-lbl_8024A720:
-	lwz      r0, 0x434(r1)
-	lwz      r31, 0x42c(r1)
-	lwz      r30, 0x428(r1)
-	lwz      r29, 0x424(r1)
-	lwz      r28, 0x420(r1)
-	mtlr     r0
-	addi     r1, r1, 0x430
-	blr
-	*/
+	int randWeightThreshold = (f32)weightTally * randFloat();
+	int ctr                 = 0;
+	for (int i = 0; i < counter; i++) {
+		ctr += weightList[i];
+		if (ctr > randWeightThreshold) {
+			mEnemyUnit = enemyList[i];
+			return;
+		}
+	}
 }
 
 /**
  * @note Address: 0x8024A740
  * @note Size: 0x88
  */
-void RandEnemyUnit::makeSetEnemyTypeB(MapNode*, BaseGen*, EnemyUnit*)
+void RandEnemyUnit::makeSetEnemyTypeB(MapNode* tile, BaseGen* spawn, EnemyUnit* enemy)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  mr        r29, r5
-	  mr        r30, r6
-	  li        r3, 0x38
-	  bl        -0x2268C0
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  mr        r4, r30
-	  mr        r5, r29
-	  li        r6, 0x1
-	  bl        -0x65B4
-	  mr        r31, r3
-
-	.loc_0x44:
-	  mr        r3, r31
-	  mr        r4, r28
-	  bl        -0x6530
-	  lwz       r3, 0x1C(r28)
-	  mr        r4, r31
-	  bl        0x1C6C70
-	  lwz       r3, 0x14(r27)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x14(r27)
-	  lwz       r3, 0x8(r27)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r27)
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	EnemyNode* enemyNode = new EnemyNode(enemy, spawn, 1);
+	enemyNode->makeGlobalData(tile);
+	tile->mEnemyNode->add(enemyNode);
+	mTypeCount[TEKITYPE_B]++;
+	mTotalCount++;
 }
 
 /**
@@ -2186,114 +2155,47 @@ lbl_8024AA6C:
  * @note Address: 0x8024AA94
  * @note Size: 0x144
  */
-BaseGen* RandEnemyUnit::getVersusEasyEnemyBaseGen(MapNode*, BaseGen*)
+BaseGen* RandEnemyUnit::getVersusEasyEnemyBaseGen(MapNode* refTile, BaseGen* refSpawn)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stfd      f31, 0x30(r1)
-	  psq_st    f31,0x38(r1),0,0
-	  stmw      r25, 0x14(r1)
-	  mr        r25, r3
-	  lfs       f31, -0x3BB4(r2)
-	  lwz       r3, 0x0(r3)
-	  mr        r26, r4
-	  mr        r27, r5
-	  li        r31, 0
-	  lwz       r3, 0x28(r3)
-	  li        r30, 0
-	  lwz       r29, 0x10(r3)
-	  b         .loc_0x10C
+	f32 minDist              = 12800.0f;
+	BaseGen* goodEnoughSpawn = nullptr; // within 200 units of refSpawn
+	BaseGen* closestSpawn    = nullptr;
 
-	.loc_0x40:
-	  cmplw     r29, r26
-	  bne-      .loc_0x108
-	  lwz       r3, 0x18(r29)
-	  bl        -0x7F20
-	  cmplwi    r3, 0
-	  beq-      .loc_0x108
-	  lwz       r28, 0x10(r3)
-	  b         .loc_0x100
+	FOREACH_NODE(MapNode, mGenerator->mPlacedMapNodes->mChild, node)
+	{
+		if (node != refTile) {
+			continue;
+		}
 
-	.loc_0x60:
-	  lwz       r0, 0x18(r28)
-	  cmpwi     r0, 0
-	  bne-      .loc_0xFC
-	  mr        r3, r25
-	  mr        r4, r29
-	  mr        r5, r28
-	  bl        0xD2C
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xFC
-	  lfs       f1, 0x20(r28)
-	  lfs       f0, 0x20(r27)
-	  lfs       f3, 0x1C(r28)
-	  fsubs     f4, f1, f0
-	  lfs       f2, 0x1C(r27)
-	  lfs       f1, 0x24(r28)
-	  lfs       f0, 0x24(r27)
-	  fsubs     f3, f3, f2
-	  fmuls     f4, f4, f4
-	  fsubs     f2, f1, f0
-	  lfs       f0, -0x3BC0(r2)
-	  fmadds    f1, f3, f3, f4
-	  fmuls     f2, f2, f2
-	  fadds     f1, f2, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0xD4
-	  ble-      .loc_0xD8
-	  fsqrte    f0, f1
-	  fmuls     f1, f0, f1
-	  b         .loc_0xD8
+		BaseGen* rootSpawn = node->mUnitInfo->getBaseGen();
+		if (!rootSpawn) {
+			continue;
+		}
+		FOREACH_NODE(BaseGen, rootSpawn->mChild, spawn)
+		{
+			if (spawn->mSpawnType != BaseGen::CGT_EnemyEasy) {
+				continue;
+			}
 
-	.loc_0xD4:
-	  fmr       f1, f0
+			if (isEnemySetGen(node, spawn)) {
+				continue;
+			}
 
-	.loc_0xD8:
-	  lfs       f0, -0x3BB0(r2)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0xEC
-	  mr        r31, r28
-	  b         .loc_0xFC
+			f32 dist = spawn->mPosition.distance(refSpawn->mPosition);
+			if (dist < 200.0f) {
+				goodEnoughSpawn = spawn;
+			} else if (dist < minDist) {
+				closestSpawn = spawn;
+				minDist      = dist;
+			}
+		}
+	}
 
-	.loc_0xEC:
-	  fcmpo     cr0, f1, f31
-	  bge-      .loc_0xFC
-	  mr        r30, r28
-	  fmr       f31, f1
+	if (closestSpawn) {
+		return closestSpawn;
+	}
 
-	.loc_0xFC:
-	  lwz       r28, 0x4(r28)
-
-	.loc_0x100:
-	  cmplwi    r28, 0
-	  bne+      .loc_0x60
-
-	.loc_0x108:
-	  lwz       r29, 0x4(r29)
-
-	.loc_0x10C:
-	  cmplwi    r29, 0
-	  bne+      .loc_0x40
-	  cmplwi    r30, 0
-	  beq-      .loc_0x124
-	  mr        r3, r30
-	  b         .loc_0x128
-
-	.loc_0x124:
-	  mr        r3, r31
-
-	.loc_0x128:
-	  psq_l     f31,0x38(r1),0,0
-	  lfd       f31, 0x30(r1)
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-	*/
+	return goodEnoughSpawn;
 }
 
 /**
@@ -2302,6 +2204,38 @@ BaseGen* RandEnemyUnit::getVersusEasyEnemyBaseGen(MapNode*, BaseGen*)
  */
 void RandEnemyUnit::setVersusEnemyTypeA()
 {
+	int count = 0;
+	FOREACH_NODE(EnemyNode, mGenerator->mMainEnemies->mChild, currEnemy)
+	{
+		TekiInfo* info = currEnemy->getTekiInfo();
+		if (info && info->mType == BaseGen::CGT_EnemyEasy) {
+			count += info->mWeight / 10;
+			if (count > mTypeCount[TEKITYPE_A]) {
+				int max = (count - mTypeCount[TEKITYPE_A]);
+
+				int vsColor = randInt(2);
+
+				for (int i = 0; i < max; i++, vsColor ^= 1) {
+					if (count <= mTypeCount[TEKITYPE_A]) {
+						continue;
+					}
+					int max = 0;
+					int min = 0;
+					setSlotEnemyTypeA(max, min, vsColor);
+
+					max = (max < count - mTypeCount[TEKITYPE_A]) ? max : count - mTypeCount[TEKITYPE_A];
+
+					int enemiesToMake = (max <= min) ? max : min + randInt(max - min + 1);
+
+					if (mMapTile && mSpawn && enemiesToMake) {
+						makeSetEnemyTypeA(mMapTile, mSpawn, currEnemy->mEnemyUnit, enemiesToMake);
+						continue;
+					}
+					return;
+				}
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -2448,8 +2382,119 @@ lbl_8024AD98:
  * @note Address: 0x8024ADAC
  * @note Size: 0x3D4
  */
-void RandEnemyUnit::setSlotEnemyTypeA(int&, int&, int)
+void RandEnemyUnit::setSlotEnemyTypeA(int& max, int& min, int vsColor)
 {
+	MapNode* nodeList[128];
+	BaseGen* spawnList[128];
+	int scoreList[128];
+	Vector3f vecArray[2];
+	f32 floatArray[2] = { 400.0f, 400.0f }; // 0x2C
+
+	int counter      = 0;
+	int vsScore      = 0;
+	int vsSign       = 0;
+	int spawnCounter = 0;
+	int scoreTally   = 0;
+
+	MapNode* placedNodes = mGenerator->getPlacedNodes();
+	if (mGenerator->mIsVersusMode) {
+		MapNode* onyon;
+		BaseGen* onyonSpawn;
+		for (int i = 3; i <= 4; i++) {
+			onyon      = mMapScore->getFixObjNode(i);
+			onyonSpawn = mMapScore->getFixObjGen(i);
+			if (!onyon) {
+				continue;
+			}
+
+			Vector3f spawnPos = onyon->getBaseGenGlobalPosition(onyonSpawn);
+			vecArray[counter] = spawnPos;
+
+			if (vsColor == Blue && counter == 0) {
+				vsScore = onyon->getVersusScore();
+				vsSign  = -1;
+			} else if (vsColor == Red && counter == 1) {
+				vsScore = onyon->getVersusScore();
+				vsSign  = 1;
+			}
+			counter++;
+		}
+	} else {
+		MapNode* exit      = mMapScore->getFixObjNode(FIXNODE_Pod);
+		BaseGen* exitSpawn = mMapScore->getFixObjGen(FIXNODE_Pod);
+		if (exit) {
+			Vector3f spawnPos   = exit->getBaseGenGlobalPosition(exitSpawn);
+			vecArray[counter]   = spawnPos;
+			floatArray[counter] = 300.0f;
+			counter++;
+		}
+	}
+
+	FOREACH_NODE(MapNode, placedNodes->mChild, node)
+	{
+		if (node->mUnitInfo->getUnitKind() != UNITKIND_Room) {
+			continue;
+		}
+
+		BaseGen* spawnRoot = node->mUnitInfo->getBaseGen();
+		if (!spawnRoot) {
+			continue;
+		}
+
+		FOREACH_NODE(BaseGen, spawnRoot->mChild, spawn)
+		{
+			if (spawn->mSpawnType != BaseGen::CGT_EnemyEasy) {
+				continue;
+			}
+
+			if (isEnemySetGen(node, spawn)) {
+				continue;
+			}
+
+			bool check = true;
+			for (int i = 0; i < counter; i++) {
+				if (check) {
+					Vector3f spawnPos = node->getBaseGenGlobalPosition(spawn);
+					if (spawnPos.distance(vecArray[i]) < floatArray[i]) {
+						check = false;
+					}
+				}
+			}
+
+			if (check) {
+				nodeList[spawnCounter]  = node;
+				spawnList[spawnCounter] = spawn;
+				scoreList[spawnCounter] = vsSign * (vsScore + nodeList[spawnCounter]->getVersusScore());
+				if (scoreList[spawnCounter] <= 0) {
+					scoreList[spawnCounter] = 1;
+				}
+
+				scoreTally += scoreList[spawnCounter];
+				spawnCounter++;
+			}
+		}
+	}
+
+	mMapTile = nullptr;
+	mSpawn   = nullptr;
+
+	if (spawnCounter == 0) {
+		return;
+	}
+
+	int randScoreThreshold = (f32)scoreTally * randFloat();
+	int scoreCounter       = 0;
+	for (int i = 0; i < spawnCounter; i++) {
+		scoreCounter += scoreList[i];
+		if (scoreCounter > randScoreThreshold) {
+			mMapTile = nodeList[i];
+			mSpawn   = spawnList[i];
+
+			max = spawnList[i]->mMaximum;
+			min = spawnList[i]->mMinimum;
+			return;
+		}
+	}
 	/*
 	stwu     r1, -0x6c0(r1)
 	mflr     r0
@@ -2716,206 +2761,125 @@ lbl_8024B16C:
  * @note Address: 0x8024B180
  * @note Size: 0x298
  */
-void RandEnemyUnit::setUnitRandEnemyTypeA(int&, int, int)
+void RandEnemyUnit::setUnitRandEnemyTypeA(int& count, int max, int min)
 {
-	/*
-	stwu     r1, -0x440(r1)
-	mflr     r0
-	li       r9, 0
-	stw      r0, 0x444(r1)
-	stmw     r25, 0x424(r1)
-	mr       r25, r3
-	mr       r27, r5
-	addi     r31, r1, 8
-	mr       r28, r6
-	mr       r26, r4
-	mr       r6, r31
-	addi     r5, r1, 0x208
-	li       r30, 0
-	li       r29, 0
-	lwz      r3, 0(r3)
-	lwz      r3, 0x14(r3)
-	lwz      r10, 0x10(r3)
-	b        lbl_8024B2D8
+	EnemyUnit* enemyList[128];
+	int weightList[128];
 
-lbl_8024B1C8:
-	lwz      r8, 0x18(r10)
-	lwz      r4, 0(r8)
-	cmplwi   r4, 0
-	beq      lbl_8024B2D4
-	lwz      r0, 0x20(r4)
-	cmpwi    r0, 0
-	bne      lbl_8024B2D4
-	lis      r3, 0x66666667@ha
-	lwz      r7, 0x1c(r4)
-	addi     r0, r3, 0x66666667@l
-	mulhw    r0, r0, r7
-	srawi    r3, r0, 2
-	srwi     r4, r3, 0x1f
-	srawi    r0, r0, 2
-	add      r3, r3, r4
-	mulli    r4, r3, 0xa
-	srwi     r3, r0, 0x1f
-	add.     r11, r0, r3
-	subf     r3, r4, r7
-	beq      lbl_8024B2B0
-	lwz      r0, 0x10(r25)
-	add      r9, r9, r11
-	cmpw     r9, r0
-	ble      lbl_8024B2B0
-	stw      r8, 0x38(r25)
-	lwz      r0, 0x10(r25)
-	subf     r25, r0, r9
-	cmpw     r27, r25
-	bge      lbl_8024B240
-	mr       r25, r27
+	int counter     = 0;
+	int weightTally = 0;
 
-lbl_8024B240:
-	cmpw     r25, r28
-	bgt      lbl_8024B250
-	stw      r25, 0(r26)
-	b        lbl_8024B404
+	EnemyUnit* enemy;
+	int weightCounter = 0;
+	EnemyNode* node;
 
-lbl_8024B250:
-	bl       rand
-	lis      r4, 0x4330
-	xoris    r0, r3, 0x8000
-	stw      r0, 0x40c(r1)
-	subf     r3, r28, r25
-	addi     r0, r3, 1
-	lfd      f2, lbl_8051A790@sda21(r2)
-	stw      r4, 0x408(r1)
-	xoris    r0, r0, 0x8000
-	lfs      f0, lbl_8051A788@sda21(r2)
-	lfd      f1, 0x408(r1)
-	stw      r0, 0x414(r1)
-	fsubs    f1, f1, f2
-	stw      r4, 0x410(r1)
-	fdivs    f1, f1, f0
-	lfd      f0, 0x410(r1)
-	fsubs    f0, f0, f2
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x418(r1)
-	lwz      r0, 0x41c(r1)
-	add      r0, r28, r0
-	stw      r0, 0(r26)
-	b        lbl_8024B404
+	for (node = static_cast<EnemyNode*>(mGenerator->mMainEnemies->mChild); node; node = static_cast<EnemyNode*>(node->mNext)) {
+		enemy = node->mEnemyUnit;
+		if (enemy->mTekiInfo && enemy->mTekiInfo->mType == BaseGen::CGT_EnemyEasy) {
+			int ones = enemy->mTekiInfo->mWeight % 10;
+			int tens = enemy->mTekiInfo->mWeight / 10;
+			if (tens) {
+				weightCounter += tens;
+				if (weightCounter > mTypeCount[TEKITYPE_A]) {
+					mEnemyUnit = enemy;
 
-lbl_8024B2B0:
-	cmpwi    r3, 0
-	beq      lbl_8024B2D4
-	stw      r3, 0(r6)
-	addi     r30, r30, 1
-	lwz      r0, 0(r6)
-	addi     r6, r6, 4
-	stw      r8, 0(r5)
-	addi     r5, r5, 4
-	add      r29, r29, r0
+					int goalAmt = weightCounter - mTypeCount[TEKITYPE_A];
+					if (max < goalAmt) {
+						goalAmt = max;
+					}
+					if (goalAmt <= min) {
+						count = goalAmt;
+						return;
+					}
 
-lbl_8024B2D4:
-	lwz      r10, 4(r10)
+					count = min + randInt(goalAmt - min + 1);
+					return;
+				}
+			}
 
-lbl_8024B2D8:
-	cmplwi   r10, 0
-	bne      lbl_8024B1C8
-	li       r0, 0
-	cmpwi    r29, 0
-	stw      r0, 0x38(r25)
-	beq      lbl_8024B404
-	bl       rand
-	lis      r4, 0x4330
-	xoris    r0, r3, 0x8000
-	stw      r0, 0x41c(r1)
-	xoris    r0, r29, 0x8000
-	lfd      f2, lbl_8051A790@sda21(r2)
-	li       r5, 0
-	stw      r4, 0x418(r1)
-	li       r6, 0
-	lfs      f0, lbl_8051A788@sda21(r2)
-	lfd      f1, 0x418(r1)
-	stw      r0, 0x414(r1)
-	fsubs    f1, f1, f2
-	stw      r4, 0x410(r1)
-	fdivs    f1, f1, f0
-	lfd      f0, 0x410(r1)
-	fsubs    f0, f0, f2
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x408(r1)
-	lwz      r3, 0x40c(r1)
-	mtctr    r30
-	cmpwi    r30, 0
-	ble      lbl_8024B404
+			if (ones) {
+				enemyList[counter]  = enemy;
+				weightList[counter] = ones;
+				weightTally += weightList[counter];
+				counter++;
+			}
+		}
+	}
 
-lbl_8024B350:
-	lwz      r0, 0(r31)
-	add      r5, r5, r0
-	cmpw     r5, r3
-	ble      lbl_8024B3F8
-	slwi     r0, r6, 2
-	addi     r3, r1, 0x208
-	lwzx     r0, r3, r0
-	stw      r0, 0x38(r25)
-	lwz      r3, 8(r25)
-	lwz      r0, 0xc(r25)
-	subf     r25, r3, r0
-	cmpw     r27, r25
-	bge      lbl_8024B388
-	mr       r25, r27
+	mEnemyUnit = nullptr;
+	if (weightTally == 0) {
+		return;
+	}
 
-lbl_8024B388:
-	cmpw     r25, r28
-	bgt      lbl_8024B398
-	stw      r25, 0(r26)
-	b        lbl_8024B404
+	int randWeightThreshold = (f32)weightTally * randFloat();
+	int ctr                 = 0;
+	for (int i = 0; i < counter; i++) {
+		ctr += weightList[i];
+		if (ctr > randWeightThreshold) {
+			mEnemyUnit = enemyList[i];
 
-lbl_8024B398:
-	bl       rand
-	lis      r4, 0x4330
-	xoris    r0, r3, 0x8000
-	stw      r0, 0x41c(r1)
-	subf     r3, r28, r25
-	addi     r0, r3, 1
-	lfd      f2, lbl_8051A790@sda21(r2)
-	stw      r4, 0x418(r1)
-	xoris    r0, r0, 0x8000
-	lfs      f0, lbl_8051A788@sda21(r2)
-	lfd      f1, 0x418(r1)
-	stw      r0, 0x414(r1)
-	fsubs    f1, f1, f2
-	stw      r4, 0x410(r1)
-	fdivs    f1, f1, f0
-	lfd      f0, 0x410(r1)
-	fsubs    f0, f0, f2
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x408(r1)
-	lwz      r0, 0x40c(r1)
-	add      r0, r28, r0
-	stw      r0, 0(r26)
-	b        lbl_8024B404
+			int goalAmt = mMaxEnemies - mTotalCount;
+			if (max < goalAmt) {
+				goalAmt = max;
+			}
 
-lbl_8024B3F8:
-	addi     r31, r31, 4
-	addi     r6, r6, 1
-	bdnz     lbl_8024B350
+			if (goalAmt <= min) {
+				count = goalAmt;
+				return;
+			}
 
-lbl_8024B404:
-	lmw      r25, 0x424(r1)
-	lwz      r0, 0x444(r1)
-	mtlr     r0
-	addi     r1, r1, 0x440
-	blr
-	*/
+			count = min + randInt(goalAmt - min + 1);
+			return;
+		}
+	}
 }
 
 /**
  * @note Address: 0x8024B418
  * @note Size: 0x420
  */
-void RandEnemyUnit::makeSetEnemyTypeA(MapNode*, BaseGen*, EnemyUnit*, int)
+void RandEnemyUnit::makeSetEnemyTypeA(MapNode* tile, BaseGen* spawn, EnemyUnit* enemy, int count)
 {
+	Vector3f vecArray[16];
+	Vector3f spawnPos = tile->getBaseGenGlobalPosition(spawn);
+	f32 radius        = spawn->mRadius;
+	for (int i = 0; i < count; i++) {
+		f32 randDist  = randWeightFloat(radius);
+		f32 randAngle = randWeightFloat(TAU);
+		vecArray[i].x = randDist * sinf(randAngle) + spawnPos.x;
+		vecArray[i].y = spawnPos.y;
+		vecArray[i].z = randDist * cosf(randAngle) + spawnPos.z;
+	}
+
+	for (int i = 0; i < 5; i++) {             // r5
+		for (int j = 0; j < count; j++) {     // r6
+			for (int k = 0; k < count; k++) { // r7
+				if (j == k) {
+					continue;
+				}
+				// issues are here
+				Vector3f sep = vecArray[j];
+				sep          = sep - vecArray[k];
+				f32 dist     = vecArray[j].distance(vecArray[k]);
+				if (dist < 35.0f) {
+					sep.normalise();
+					sep *= (0.5f * (35.0f - dist));
+					vecArray[j] += sep;
+					vecArray[k] -= sep;
+				}
+			}
+		}
+	}
+
+	for (int i = 0; i < count; i++) {
+		EnemyNode* enemyNode = new EnemyNode(enemy, spawn, 1);
+		f32 dir              = JMAAtan2Radian(vecArray[i].x - spawnPos.x, vecArray[i].z - spawnPos.z);
+		enemyNode->setGlobalData(vecArray[i], dir);
+		tile->mEnemyNode->add(enemyNode);
+	}
+
+	mTypeCount[TEKITYPE_A] += count;
+	mTotalCount += count;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x1D0(r1)
@@ -3227,34 +3191,17 @@ void RandEnemyUnit::makeSetEnemyTypeA(MapNode*, BaseGen*, EnemyUnit*, int)
  * @note Address: 0x8024B838
  * @note Size: 0x3C
  */
-bool RandEnemyUnit::isEnemySetGen(MapNode*, BaseGen*)
+bool RandEnemyUnit::isEnemySetGen(MapNode* tile, BaseGen* spawn)
 {
-	/*
-	.loc_0x0:
-	  cmplwi    r5, 0
-	  beq-      .loc_0x34
-	  lwz       r3, 0x1C(r4)
-	  lwz       r3, 0x10(r3)
-	  b         .loc_0x2C
+	if (spawn) {
+		for (EnemyNode* node = static_cast<EnemyNode*>(tile->mEnemyNode->mChild); node; node = static_cast<EnemyNode*>(node->mNext)) {
+			if (node->mSpawn == spawn) {
+				return true;
+			}
+		}
+	}
 
-	.loc_0x14:
-	  lwz       r0, 0x1C(r3)
-	  cmplw     r0, r5
-	  bne-      .loc_0x28
-	  li        r3, 0x1
-	  blr
-
-	.loc_0x28:
-	  lwz       r3, 0x4(r3)
-
-	.loc_0x2C:
-	  cmplwi    r3, 0
-	  bne+      .loc_0x14
-
-	.loc_0x34:
-	  li        r3, 0
-	  blr
-	*/
+	return false;
 }
 } // namespace Cave
 } // namespace Game
