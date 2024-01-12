@@ -26,6 +26,7 @@
 #include "kh/khPayDept.h"
 #include "nans.h"
 #include "utilityU.h"
+#include "Game/NaviState.h"
 
 #define LOUIE_START_X   (-1260.0f)
 #define LOUIE_START_Y   (-80.0f)
@@ -389,6 +390,7 @@ void GameState::on_demo_timer(SingleGameSection* game, u32 id)
 			moviePlayArg.mAngle  = navi->getFaceDir();
 			moviePlayer->play(moviePlayArg);
 			playData->setDemoFlag(DEMO_UNUSED_Camera_Demo);
+		} else {
 			return;
 		}
 		game->disableTimer(DEMOTIMER_Camera_Tutorial);
@@ -499,13 +501,13 @@ void GameState::exec(SingleGameSection* game)
 		return;
 	case 4:
 		JUT_PANICLINE(1318, "smenu_escape\n");
-		break;
+		return;
 	}
 
 	// Check open pause menu
 	if (!gameSystem->isFlag(GAMESYS_DisablePause) && moviePlayer->mDemoState == 0 && !gameSystem->paused()
 	    && game->mControllerP1->getButtonDown() & Controller::PRESS_START) {
-		og::Screen::DispMemberSMenuAll disp; // this ctor should be weak, but needs to not inline here?
+		og::Screen::DispMemberSMenuAll disp;
 		game->setDispMemberSMenu(disp);
 		if (Screen::gGame2DMgr->open_SMenu(disp)) {
 			gameSystem->setPause(true, "open-sm", 3);
@@ -1088,7 +1090,7 @@ void GameState::onMovieCommand(SingleGameSection*, int) { }
  * @note Address: 0x80215688
  * @note Size: 0x158
  */
-void GameState::onMovieStart(SingleGameSection* game, MovieConfig* config, u32, u32 id)
+void GameState::onMovieStart(SingleGameSection* game, MovieConfig* config, u32, u32 naviID)
 {
 	Screen::gGame2DMgr->startFadeBG_CourseName();
 	Screen::gGame2DMgr->startCount_CourseName();
@@ -1103,14 +1105,12 @@ void GameState::onMovieStart(SingleGameSection* game, MovieConfig* config, u32, 
 
 	if (config->is("s03_orimadown")) {
 		Screen::Game2DMgr::GameOverTitle naviType;
-		if (id == 0) {
+		if (naviID == 0) {
 			naviType = Screen::Game2DMgr::GOTITLE_OlimarDown;
 			game->setPlayerMode(0);
 		} else {
-			naviType = Screen::Game2DMgr::GOTITLE_LouieDown;
-			if ((playData->mStoryFlags & STORY_DebtPaid)) {
-				naviType = Screen::Game2DMgr::GOTITLE_PresidentDown;
-			}
+			naviType = (playData->mStoryFlags & STORY_DebtPaid) ? Screen::Game2DMgr::GOTITLE_PresidentDown
+			                                                    : Screen::Game2DMgr::GOTITLE_LouieDown;
 			game->setPlayerMode(1);
 		}
 		Screen::gGame2DMgr->open_GameOver(naviType);
@@ -1118,117 +1118,12 @@ void GameState::onMovieStart(SingleGameSection* game, MovieConfig* config, u32, 
 
 	if (config->is("s09_holein")) {
 		bool isSC = false;
-		if (id == 'y_04')
+		if (naviID == 'y_04')
 			isSC = true;
 		game->saveMainMapSituation(isSC);
 		Vector3f pos = game->mCurrentCave->getPosition();
 		game->prepareHoleIn(pos, false);
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  lis       r6, 0x8048
-	  stw       r0, 0x44(r1)
-	  stmw      r27, 0x2C(r1)
-	  mr        r27, r4
-	  mr        r28, r5
-	  mr        r29, r7
-	  addi      r31, r6, 0x2150
-	  lwz       r3, -0x6560(r13)
-	  bl        0x1E819C
-	  lwz       r3, -0x6560(r13)
-	  bl        0x1E824C
-	  mr        r3, r28
-	  addi      r4, r31, 0xC0
-	  bl        0x21C208
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x50
-	  mr        r3, r27
-	  bl        -0xC41A0
-
-	.loc_0x50:
-	  mr        r3, r28
-	  addi      r4, r31, 0x1FC
-	  bl        0x21C1EC
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x70
-	  lwz       r3, -0x6560(r13)
-	  li        r4, 0x4
-	  bl        0x1E8258
-
-	.loc_0x70:
-	  mr        r3, r28
-	  addi      r4, r31, 0x20C
-	  bl        0x21C1CC
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xD4
-	  cmplwi    r29, 0
-	  bne-      .loc_0xA0
-	  mr        r3, r27
-	  li        r30, 0x1
-	  li        r4, 0
-	  bl        -0xC7E08
-	  b         .loc_0xC8
-
-	.loc_0xA0:
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0x2
-	  lbz       r0, 0x2F(r3)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0xB8
-	  li        r4, 0x3
-
-	.loc_0xB8:
-	  mr        r30, r4
-	  mr        r3, r27
-	  li        r4, 0x1
-	  bl        -0xC7E34
-
-	.loc_0xC8:
-	  lwz       r3, -0x6560(r13)
-	  mr        r4, r30
-	  bl        0x1E81F4
-
-	.loc_0xD4:
-	  mr        r3, r28
-	  addi      r4, r31, 0x21C
-	  bl        0x21C168
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x144
-	  subis     r0, r29, 0x795F
-	  li        r4, 0
-	  cmplwi    r0, 0x3034
-	  bne-      .loc_0xFC
-	  li        r4, 0x1
-
-	.loc_0xFC:
-	  mr        r3, r27
-	  bl        -0xC1AC0
-	  lwz       r4, 0x184(r27)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  mr        r3, r27
-	  lfs       f1, 0xC(r1)
-	  addi      r4, r1, 0x14
-	  lfs       f0, 0x10(r1)
-	  li        r5, 0
-	  stfs      f2, 0x14(r1)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  bl        -0xC7698
-
-	.loc_0x144:
-	  lmw       r27, 0x2C(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-	*/
 }
 
 /**
@@ -1320,7 +1215,7 @@ void GameState::onMovieDone(SingleGameSection* game, MovieConfig* config, u32, u
 		louie->mFaceDir = roundAng(LOUIE_START_DIR);
 		pos.y           = mapMgr->getMinY(pos);
 		louie->setPosition(pos, false);
-		louie->mFsm->transit(louie, 0, nullptr);
+		louie->mFsm->start(louie, 0, nullptr);
 	}
 
 	// After first time using president (start gameplay if no other cutscenes)
@@ -1343,7 +1238,7 @@ void GameState::onMovieDone(SingleGameSection* game, MovieConfig* config, u32, u
 	// Regular/first time course landing, check usual stuff after it
 	if (config->is("s00_coursein") || config->is("x01_coursein_forest") || config->is("x01_coursein_yakushima")
 	    || config->is("x01_coursein_last")) {
-		if ((playData->mStoryFlags & STORYSAVE_DebtPaid) && !playData->isDemoFlag(DEMO_President_Start)) {
+		if ((playData->mStoryFlags & STORY_DebtPaid) && !playData->isDemoFlag(DEMO_President_Start)) {
 			playData->setDemoFlag(DEMO_President_Start);
 			char* name = const_cast<char*>(game->mCurrentCourseInfo->mName);
 			MoviePlayArg moviePlayArg("g35_president_gamestart", name, game->mMovieFinishCallback, 0);
@@ -1480,15 +1375,8 @@ bool GameState::needRepayDemo()
 		return false;
 	}
 
-	bool ret = false;
 	playData->getRepayLevel();
-	if (playData->checkRepayLevelFirstClear() || playData->isCompletePelletTrigger()) {
-		ret = true;
-	} else {
-		ret = false;
-	}
-
-	return ret;
+	return (playData->checkRepayLevelFirstClear() && playData->isCompletePelletTrigger());
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

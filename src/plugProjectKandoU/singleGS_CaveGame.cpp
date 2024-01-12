@@ -1132,18 +1132,16 @@ void CaveState::onMovieStart(SingleGameSection* game, MovieConfig* config, u32, 
 	}
 
 	if (config->is("s03_orimadown")) {
-		Screen::Game2DMgr::GameOverTitle id;
+		Screen::Game2DMgr::GameOverTitle naviType;
 		if (naviID == 0) {
-			id = Screen::Game2DMgr::GOTITLE_OlimarDown;
+			naviType = Screen::Game2DMgr::GOTITLE_OlimarDown;
 			game->setPlayerMode(0);
 		} else {
-			id = Screen::Game2DMgr::GOTITLE_LouieDown;
-			if (playData->mStoryFlags & STORY_DebtPaid) {
-				id = Screen::Game2DMgr::GOTITLE_PresidentDown;
-			}
+			naviType = (playData->mStoryFlags & STORY_DebtPaid) ? Screen::Game2DMgr::GOTITLE_PresidentDown
+			                                                    : Screen::Game2DMgr::GOTITLE_LouieDown;
 			game->setPlayerMode(1);
 		}
-		Screen::gGame2DMgr->open_GameOver(id);
+		Screen::gGame2DMgr->open_GameOver(naviType);
 	}
 
 	if (config->is("s09_holein")) {

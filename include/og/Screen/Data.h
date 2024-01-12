@@ -56,6 +56,25 @@ struct DataGame {
 };
 
 struct DataMap {
+	DataMap()
+	{
+		mNapsackDetectorFlags = 1;
+		mOnyonPikminCounts[0] = 7654321;
+		mOnyonPikminCounts[1] = 654321;
+		mOnyonPikminCounts[2] = 54321;
+		mOnyonPikminCounts[3] = 4321;
+		mOnyonPikminCounts[4] = 321;
+
+		mCurrentPikminCounts[0] = 10;
+		mCurrentPikminCounts[1] = 20;
+		mCurrentPikminCounts[2] = 30;
+		mCurrentPikminCounts[3] = 40;
+		mCurrentPikminCounts[4] = 50;
+
+		mFreePikmin = 60;
+		mPokos      = 70;
+	}
+
 	u32 mNapsackDetectorFlags;   // _00
 	u32 mOnyonPikminCounts[5];   // _04, indexed by MapPiki enum
 	u32 mCurrentPikminCounts[5]; // _18, indexed by MapPiki enum

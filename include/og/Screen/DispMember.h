@@ -480,6 +480,18 @@ struct DispMemberSMenuCont : public DispMemberBase {
 
 // size 0x28
 struct DispMemberSMenuItem : public DispMemberBase {
+	DispMemberSMenuItem()
+	{
+		mSpicySprayCount  = 111;
+		mSpicyBerryCount  = 22;
+		mBitterSprayCount = 333;
+		mBitterBerryCount = 44;
+		for (int i = 0; i < 12; i++) {
+			mExplorationKitInventory[i] = 0;
+		}
+		mIsBitterUnlocked = false;
+		mIsSpicyUnlocked  = false;
+	}
 
 	virtual u32 getSize() { return sizeof(DispMemberSMenuItem); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }                // _0C (weak)
@@ -498,6 +510,18 @@ struct DispMemberSMenuItem : public DispMemberBase {
 
 // size 0x4C
 struct DispMemberSMenuMap : public DispMemberBase {
+	DispMemberSMenuMap()
+	{
+		mInCave          = false;
+		mActiveNavi      = false;
+		mCourseIndex     = 0;
+		mCurrentCave     = 't_01';
+		mUnlockedReds    = true;
+		mUnlockedYellows = true;
+		mUnlockedBlues   = true;
+		mUnlockedWhites  = true;
+		mUnlockedPurples = true;
+	}
 
 	virtual u32 getSize() { return sizeof(DispMemberSMenuMap); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }               // _0C (weak)
@@ -519,6 +543,12 @@ struct DispMemberSMenuMap : public DispMemberBase {
 
 // size 0x14
 struct DispMemberSMenuPause : public DispMemberBase {
+	DispMemberSMenuPause()
+	{
+		mDebtRemaining = 1234;
+		mPokoCount     = 2469;
+		mExitStatus    = 1;
+	}
 
 	virtual u32 getSize() { return sizeof(DispMemberSMenuPause); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }                 // _0C (weak)
@@ -572,7 +602,11 @@ struct DispMemberSMenuPauseVS : public DispMemberBase {
 
 // size 0xC4
 struct DispMemberSMenuAll : public DispMemberBase {
-	DispMemberSMenuAll();
+	DispMemberSMenuAll()
+	{
+		mOpenMode = 0;
+		mIsDay1   = false;
+	}
 
 	enum OpenType {
 		Open_StoryMode, // start on map
@@ -583,6 +617,15 @@ struct DispMemberSMenuAll : public DispMemberBase {
 	virtual u32 getSize() { return sizeof(DispMemberSMenuAll); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }               // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_START_MENU_ALL; }  // _10 (weak)
+	virtual void doSetSubMemberAll()
+	{
+		setSubMember(&mSMenuPause);
+		setSubMember(&mSMenuPauseDoukutu);
+		setSubMember(&mSMenuItem);
+		setSubMember(&mSMenuMap);
+		setSubMember(&mSMenuVS);
+		setSubMember(&mSMenuCont);
+	} // _14 (weak)
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
