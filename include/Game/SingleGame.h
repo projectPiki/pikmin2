@@ -130,7 +130,7 @@ struct CaveResultState : public State {
 
 	// Unused/inlined:
 	void initNext(SingleGameSection*);
-	unknown open2D(SingleGameSection*);
+	void open2D(SingleGameSection*);
 
 	// _00     = VTBL
 	// _00-_10 = State
