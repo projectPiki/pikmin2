@@ -51,7 +51,7 @@ void Creature::updateLOD(Game::AILODParm& parm)
 	int vpStats[2];
 	Graphics* gfx     = sys->mGfx;
 	int viewportCount = gfx->mActiveViewports;
-	int currFlag      = 2;
+	u32 currFlag      = 2;
 
 	for (int i = 0; i < viewportCount; i++) {
 		Viewport* vp = gfx->getViewport(i);
@@ -93,16 +93,21 @@ void Creature::updateLOD(Game::AILODParm& parm)
 		Viewport* vp0 = gfx->getViewport(0);
 		Viewport* vp1 = gfx->getViewport(1);
 		if (!vp0->viewable()) {
-			mLod.mSndVpId = 1;
+			mLod.mSndVpId = 0;
 		} else {
 			if (!vp1->viewable()) {
 				mLod.mSndVpId = 0;
 			} else {
 				P2ASSERTLINE(175, vp0->mCamera);
 				P2ASSERTLINE(176, vp1->mCamera);
+
 				Vector3f pos0 = *vp0->mCamera->getSoundPositionPtr();
 				Vector3f pos1 = *vp1->mCamera->getSoundPositionPtr();
-				if (pos1.sqrDistance(lodSphere.mPosition) < pos0.sqrDistance(lodSphere.mPosition)) {
+
+				f32 dist0 = pos0.sqrDistance(lodSphere.mPosition);
+				f32 dist1 = pos1.sqrDistance(lodSphere.mPosition);
+
+				if (dist0 < dist1) {
 					mLod.mSndVpId = 0;
 				} else {
 					mLod.mSndVpId = 1;

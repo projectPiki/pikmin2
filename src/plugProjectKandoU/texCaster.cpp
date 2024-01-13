@@ -194,7 +194,7 @@ void Mgr::loadResource()
  * @note Address: 0x8023CC44
  * @note Size: 0x550
  */
-Caster* Mgr::create(Sys::Sphere& sphere, f32 p1)
+Caster* Mgr::create(Sys::Sphere& sphere, f32 rotationAngle)
 {
 	Sys::CreateTriangleArg triArg;
 	triArg.mBoundingSphere = sphere;
@@ -205,7 +205,20 @@ Caster* Mgr::create(Sys::Sphere& sphere, f32 p1)
 	if (triArg.mCount == 0) {
 		triArg.mCount    = 2;
 		triArg.mVertices = new Vector3f[6];
-		// float math
+
+		Vector3f spherePos = sphere.mPosition;
+		float sphereRad    = sphere.mRadius;
+
+		triArg.mVertices[0] = Vector3f(spherePos.x - sphereRad, spherePos.y, spherePos.z - sphereRad);
+		triArg.mVertices[1] = Vector3f(spherePos.x + sphereRad, spherePos.y, spherePos.z + sphereRad);
+		triArg.mVertices[2] = Vector3f(spherePos.x - sphereRad, spherePos.y, spherePos.z + sphereRad);
+		triArg.mVertices[3] = Vector3f(spherePos.x + sphereRad, spherePos.y, spherePos.z - sphereRad);
+		triArg.mVertices[4] = Vector3f(spherePos.x - sphereRad, spherePos.y, spherePos.z + sphereRad);
+		triArg.mVertices[5] = Vector3f(spherePos.x + sphereRad, spherePos.y, spherePos.z + sphereRad);
+
+		for (int i = 0; i < 6; i++) {
+			triArg.mVertices[i].y += triArg._10;
+		}
 	}
 
 	Caster* caster            = new Caster;
@@ -214,9 +227,22 @@ Caster* Mgr::create(Sys::Sphere& sphere, f32 p1)
 	caster->mTriangleCount    = triArg.mCount;
 	caster->mTexturePositions = new f32*[caster->mTriangleCount * 6];
 
-	for (int i = 0; i < caster->mTriangleCount; i++) {
-		for (int j = 0; j < 3; j++) {
-			// float math
+	for (int triangleIndex = 0; triangleIndex < caster->mTriangleCount; triangleIndex++) {
+		for (int vertexIndex = 0; vertexIndex < 3; vertexIndex++) {
+			// Calculate the texture position for each vertex
+			Vector3f currentVertex = caster->mVertices[triangleIndex * 3 + vertexIndex];
+			float deltaZ           = currentVertex.z - sphere.mPosition.z;
+			float deltaX           = currentVertex.x - sphere.mPosition.x;
+			float scaleFactor      = (30.0f / sphere.mRadius) * 0.03125f;
+
+			// Rotate the texture coordinates based on some angle rotationAngle
+			Vector2f rotationVector(sin(rotationAngle), cos(rotationAngle));
+
+			caster->mTexturePositions[triangleIndex * 3 + vertexIndex] = new f32[2];
+			caster->mTexturePositions[triangleIndex * 3 + vertexIndex][0]
+			    = 0.5f + ((deltaZ * rotationVector.x + deltaX * rotationVector.y) * scaleFactor);
+			caster->mTexturePositions[triangleIndex * 3 + vertexIndex][1]
+			    = 0.5f + ((deltaZ * rotationVector.y - deltaX * rotationVector.x) * scaleFactor);
 		}
 	}
 
