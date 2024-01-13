@@ -85,6 +85,8 @@ struct Vector3 {
 		z = other.z;
 	}
 
+	inline operator Vector2f() const { return Vector2f(x, y); }
+
 	// /**
 	//  * @fabricated
 	//  */
@@ -127,6 +129,8 @@ struct Vector3 {
 		y = _y;
 		z = _z;
 	}
+
+	inline void set(f32 xyz) { x = y = z = xyz; }
 
 	/**
 	 * @fabricated
@@ -196,6 +200,21 @@ struct Vector3 {
 	{
 		this->x += other.x;
 		this->z += other.z;
+	}
+
+	inline void addXY(const Vector3& other)
+	{
+		this->x += other.x;
+		this->y += other.y;
+	}
+
+	inline void scaleXY(const Vector3& other)
+	{
+		f32 newVal = this->x * other.x;
+		this->x    = newVal;
+
+		newVal  = this->y * other.y;
+		this->y = newVal;
 	}
 
 	inline T dot(const Vector3& other) { return this->x * other.x + this->y * other.y + this->z * other.z; }
@@ -315,6 +334,12 @@ inline void getScaledXZVec(Vector3f& vec, f32 x, f32 z, f32 scale)
 {
 	vec.x = x * scale;
 	vec.z = z * scale;
+}
+
+inline void getScaledXYVec(Vector3f& vec, const f32& x, const f32& z, f32 scale)
+{
+	vec.x = x * scale;
+	vec.y = z * scale;
 }
 
 template <>

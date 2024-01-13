@@ -51,7 +51,7 @@ void calcJointPos(const Vector3f& topPosition, const Vector3f& bottomPosition, f
 	Vector3f topToTargetVector = bottomPosition - topPosition;
 
 	f32 distanceTopToTarget = topToTargetVector.sqrMagnitude(); // f11
-	if (!(distanceTopToTarget < 1.0E-6f)) {
+	if (!(distanceTopToTarget < 0.000001f)) {
 		f32 factor = (0.5f / distanceTopToTarget) * (distanceTopToTarget + (distanceTopMiddle - distanceMiddleBottom)); // f3
 
 		Vector3f scaledTopToTarget(factor * topToTargetVector.x + topPosition.x, factor * topToTargetVector.y + topPosition.y,
