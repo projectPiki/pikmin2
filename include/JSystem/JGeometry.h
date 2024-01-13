@@ -277,6 +277,14 @@ struct TBox2 : TBox<TVec2<T> > {
 		}
 	}
 
+	inline void setX(const T& x) {
+		this->f.x = this->i.x = x;
+	}
+
+	inline void setY(const T& y) {
+		this->f.y = this->i.y  = y;
+	}
+
 	// /** @fabricated */
 	// TBox2<T>& addingPos(TBox2<T>& result, const TVec2<T>& pos) {
 	// 	return TBox2<T>(i.adding(pos), f.adding(pos));

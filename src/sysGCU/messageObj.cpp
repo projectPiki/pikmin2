@@ -162,16 +162,7 @@ void TControl::draw(Mtx a, Mtx b)
  * @note Address: 0x80438F7C
  * @note Size: 0x50
  */
-void TControl::setLocate(int x, int y) // JGeometry::TBox2f shenanigans
-{
-	f32 xpos                  = x;
-	f32 ypos                  = y;
-	TRenderingProcessor* proc = mTextRenderProc;
-	proc->mLocate.i.x         = xpos;
-	proc->mLocate.f.x         = xpos;
-	proc->mLocate.i.y         = ypos;
-	proc->mLocate.f.y         = ypos;
-}
+void TControl::setLocate(int x, int y) { mTextRenderProc->setLocate(x, y); }
 
 /**
  * @note Address: 0x80438FCC

@@ -92,6 +92,12 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 	}
 
 	// unused/inlined:
+	inline void setLocate(s32 x, s32 y)
+	{
+		mLocate.setX(x);
+		mLocate.setY(y);
+	}
+
 	void setDrawLocateX();
 	void setDrawLocateY();
 	void addDrawLines();
