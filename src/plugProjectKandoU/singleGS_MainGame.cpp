@@ -31,7 +31,7 @@
 #define LOUIE_START_X   (-1260.0f)
 #define LOUIE_START_Y   (-80.0f)
 #define LOUIE_START_Z   (4350.0f)
-#define LOUIE_START_DIR (7.6969f) // in radians (even though this is above tau lol). it's like 81 degrees.
+#define LOUIE_START_DIR (7.6969025f) // in radians (even though this is above tau lol). it's like 81 degrees.
 
 static const u32 padding[]    = { 0, 0, 0 };
 static const char className[] = "SingleGS_Game";
@@ -378,20 +378,20 @@ void GameState::on_demo_timer(SingleGameSection* game, u32 id)
 		game->disableTimer(DEMOTIMER_Piki_Seed_In_Ground);
 	} else if (id == DEMOTIMER_Camera_Tutorial) {
 		if (!playData->isDemoFlag(DEMO_UNUSED_Camera_Demo)) {
-			if (!naviMgr->getActiveNavi())
+			if (naviMgr->getActiveNavi()) {
+				char* name = const_cast<char*>(game->mCurrentCourseInfo->mName);
+				MoviePlayArg moviePlayArg("g33_camera_demo", name, game->mMovieFinishCallback, 0);
+				Navi* navi = naviMgr->getAt(NAVIID_Olimar);
+				if (!navi) {
+					navi = naviMgr->getActiveNavi();
+				}
+				moviePlayArg.mOrigin = navi->getPosition();
+				moviePlayArg.mAngle  = navi->getFaceDir();
+				moviePlayer->play(moviePlayArg);
+				playData->setDemoFlag(DEMO_UNUSED_Camera_Demo);
+			} else {
 				return;
-			char* name = const_cast<char*>(game->mCurrentCourseInfo->mName);
-			MoviePlayArg moviePlayArg("g33_camera_demo", name, game->mMovieFinishCallback, 0);
-			Navi* navi = naviMgr->getAt(NAVIID_Olimar);
-			if (!navi) {
-				navi = naviMgr->getActiveNavi();
 			}
-			moviePlayArg.mOrigin = navi->getPosition();
-			moviePlayArg.mAngle  = navi->getFaceDir();
-			moviePlayer->play(moviePlayArg);
-			playData->setDemoFlag(DEMO_UNUSED_Camera_Demo);
-		} else {
-			return;
 		}
 		game->disableTimer(DEMOTIMER_Camera_Tutorial);
 	}
@@ -412,7 +412,7 @@ void GameState::exec(SingleGameSection* game)
 		particle2dMgr->update();
 		Screen::gGame2DMgr->update();
 		if ((u8)Screen::gGame2DMgr->check_Save()) {
-			LoadArg arg(100, 0, 0, 1);
+			LoadArg arg(100, true, false, false);
 			transit(game, SGS_Load, &arg);
 		}
 		return;
@@ -441,6 +441,8 @@ void GameState::exec(SingleGameSection* game)
 	// Check if anything needs to be done following a % of debt cutscene
 	int repaystate = updateRepayDemo();
 	switch (repaystate) {
+	case 1:
+		return;
 	case 3: { // end the day, go to ending
 		pikiMgr->forceEnterPikmins(false);
 		game->saveToGeneratorCache(game->mCurrentCourseInfo);
@@ -459,7 +461,7 @@ void GameState::exec(SingleGameSection* game)
 		transit(game, SGS_Ending, &arg);
 		return;
 	}
-	case 1:
+
 	case 2: {
 		PSPause_StartMenuOff();
 		gameSystem->setPause(false, "repay-done", 3);
@@ -501,17 +503,17 @@ void GameState::exec(SingleGameSection* game)
 		return;
 	case 4:
 		JUT_PANICLINE(1318, "smenu_escape\n");
-		return;
-	}
-
-	// Check open pause menu
-	if (!gameSystem->isFlag(GAMESYS_DisablePause) && moviePlayer->mDemoState == 0 && !gameSystem->paused()
-	    && game->mControllerP1->getButtonDown() & Controller::PRESS_START) {
-		og::Screen::DispMemberSMenuAll disp;
-		game->setDispMemberSMenu(disp);
-		if (Screen::gGame2DMgr->open_SMenu(disp)) {
-			gameSystem->setPause(true, "open-sm", 3);
-			gameSystem->setMoviePause(true, "open-sm");
+		break;
+	default:
+		// Check open pause menu
+		if (!gameSystem->isFlag(GAMESYS_DisablePause) && moviePlayer->mDemoState == 0 && !gameSystem->paused()
+		    && game->mControllerP1->getButtonDown() & Controller::PRESS_START) {
+			og::Screen::DispMemberSMenuAll disp;
+			game->setDispMemberSMenu(disp);
+			if (Screen::gGame2DMgr->open_SMenu(disp)) {
+				gameSystem->setPause(true, "open-sm", 3);
+				gameSystem->setMoviePause(true, "open-sm");
+			}
 		}
 	}
 
@@ -555,496 +557,6 @@ void GameState::exec(SingleGameSection* game)
 			director->directOff();
 		}
 	}
-
-	/*
-	stwu     r1, -0x140(r1)
-	mflr     r0
-	stw      r0, 0x144(r1)
-	stw      r31, 0x13c(r1)
-	stw      r30, 0x138(r1)
-	mr       r30, r4
-	stw      r29, 0x134(r1)
-	mr       r29, r3
-	lis      r3, lbl_80482150@ha
-	lbz      r0, 0x18(r29)
-	addi     r31, r3, lbl_80482150@l
-	cmplwi   r0, 0
-	bne      lbl_802152DC
-	lbz      r0, 0x20(r29)
-	cmplwi   r0, 0
-	beq      lbl_80214CB8
-	lwz      r3, particle2dMgr@sda21(r13)
-	bl       update__14TParticle2dMgrFv
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	bl       update__Q26Screen9Game2DMgrFv
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	bl       check_Save__Q26Screen9Game2DMgrCFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802152DC
-	li       r7, 0
-	li       r3, 1
-	li       r0, 0x64
-	stb      r3, 0x18(r1)
-	mr       r3, r29
-	mr       r4, r30
-	stb      r7, 0x19(r1)
-	addi     r6, r1, 0x18
-	li       r5, 2
-	stb      r7, 0x1a(r1)
-	sth      r0, 0x1c(r1)
-	lwz      r12, 0(r29)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802152DC
-
-lbl_80214CB8:
-	mr       r3, r30
-	bl       doUpdate__Q24Game15BaseGameSectionFv
-	lwz      r3, 0x250(r30)
-	lwz      r0, 4(r29)
-	lwz      r3, 4(r3)
-	cmpw     r3, r0
-	bne      lbl_802152DC
-	mr       r3, r30
-	bl       updateMainMapScreen__Q24Game17SingleGameSectionFv
-	li       r3, -1
-	bl       getMapPikmins__Q24Game8GameStatFi
-	cmpwi    r3, 0xf
-	blt      lbl_80214D4C
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	lwz      r0, 0x18(r3)
-	cmpwi    r0, 0
-	bne      lbl_80214D4C
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 0x30
-	bl       isDemoFlag__Q24Game8PlayDataFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80214D4C
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 1
-	bl       hasBootContainer__Q24Game8PlayDataFi
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80214D4C
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 0x30
-	bl       setDemoFlag__Q24Game8PlayDataFi
-	mr       r3, r30
-	lfs      f1, lbl_80519FB4@sda21(r2)
-	lwz      r12, 0(r30)
-	li       r4, 7
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80214D4C:
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	lwz      r0, 0x18(r3)
-	cmpwi    r0, 0
-	bne      lbl_80214D74
-	mr       r3, r29
-	bl       needRepayDemo__Q34Game10SingleGame9GameStateFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80214D74
-	mr       r3, r29
-	bl       startRepayDemo__Q34Game10SingleGame9GameStateFv
-
-lbl_80214D74:
-	mr       r3, r29
-	bl       updateRepayDemo__Q34Game10SingleGame9GameStateFv
-	cmpwi    r3, 3
-	beq      lbl_80214DA8
-	bge      lbl_80214D98
-	cmpwi    r3, 1
-	beq      lbl_802152DC
-	bge      lbl_80214E68
-	b        lbl_80214E84
-
-lbl_80214D98:
-	cmpwi    r3, 5
-	bge      lbl_80214E84
-	b        lbl_80214E08
-	b        lbl_802152DC
-
-lbl_80214DA8:
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	li       r4, 0
-	bl       forceEnterPikmins__Q24Game7PikiMgrFUc
-	lwz      r4, 0x22c(r30)
-	mr       r3, r30
-	bl       saveToGeneratorCache__Q24Game15BaseGameSectionFPQ24Game10CourseInfo
-	mr       r3, r30
-	bl       advanceDayCount__Q24Game15BaseGameSectionFv
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	addi     r5, r31, 0x1e0
-	li       r4, 0
-	li       r6, 3
-	bl       setPause__Q24Game10GameSystemFbPci
-	li       r0, 0
-	mr       r3, r29
-	stb      r0, 0xc(r1)
-	mr       r4, r30
-	addi     r6, r1, 0xc
-	li       r5, 0xb
-	lwz      r12, 0(r29)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802152DC
-
-lbl_80214E08:
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	li       r4, 0
-	bl       forceEnterPikmins__Q24Game7PikiMgrFUc
-	lwz      r4, 0x22c(r30)
-	mr       r3, r30
-	bl       saveToGeneratorCache__Q24Game15BaseGameSectionFPQ24Game10CourseInfo
-	mr       r3, r30
-	bl       advanceDayCount__Q24Game15BaseGameSectionFv
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	addi     r5, r31, 0x1e0
-	li       r4, 0
-	li       r6, 3
-	bl       setPause__Q24Game10GameSystemFbPci
-	li       r0, 2
-	mr       r3, r29
-	stb      r0, 8(r1)
-	mr       r4, r30
-	addi     r6, r1, 8
-	li       r5, 0xb
-	lwz      r12, 0(r29)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802152DC
-
-lbl_80214E68:
-	bl       PSPause_StartMenuOff__Fv
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	addi     r5, r31, 0x1e0
-	li       r4, 0
-	li       r6, 3
-	bl       setPause__Q24Game10GameSystemFbPci
-	b        lbl_802152DC
-
-lbl_80214E84:
-	lbz      r0, 0x180(r30)
-	cmplwi   r0, 0
-	beq      lbl_80214EA0
-	mr       r3, r30
-	bl       updateCaveMenus__Q24Game17SingleGameSectionFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802152DC
-
-lbl_80214EA0:
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	lwz      r4, 0x10c(r30)
-	bl       setGamePad__Q26Screen9Game2DMgrFP10Controller
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	bl       check_SMenu__Q26Screen9Game2DMgrFv
-	cmpwi    r3, 2
-	beq      lbl_80214F08
-	bge      lbl_80214ED0
-	cmpwi    r3, 0
-	beq      lbl_802150B4
-	bge      lbl_80214EE0
-	b        lbl_8021502C
-
-lbl_80214ED0:
-	cmpwi    r3, 4
-	beq      lbl_80215014
-	bge      lbl_8021502C
-	b        lbl_80214F68
-
-lbl_80214EE0:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r4, 0
-	addi     r5, r2, lbl_80519FB8@sda21
-	bl       setMoviePause__Q24Game10GameSystemFbPc
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r4, 0
-	addi     r5, r2, lbl_80519FB8@sda21
-	li       r6, 3
-	bl       setPause__Q24Game10GameSystemFbPci
-	b        lbl_802150B4
-
-lbl_80214F08:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r4, 0
-	addi     r5, r2, lbl_80519FC0@sda21
-	lbz      r0, 0x3c(r3)
-	rlwinm   r0, r0, 0, 0x1b, 0x19
-	stb      r0, 0x3c(r3)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	bl       setMoviePause__Q24Game10GameSystemFbPc
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r4, 0
-	addi     r5, r2, lbl_80519FC0@sda21
-	li       r6, 3
-	bl       setPause__Q24Game10GameSystemFbPci
-	li       r0, 0
-	mr       r3, r29
-	sth      r0, 0x14(r1)
-	mr       r4, r30
-	addi     r6, r1, 0x14
-	li       r5, 5
-	lwz      r12, 0(r29)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802152DC
-
-lbl_80214F68:
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	lwz      r3, 0x18(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 1
-	beq      lbl_80214FA0
-	addi     r3, r31, 0x7c
-	addi     r5, r31, 0x94
-	li       r4, 0x518
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80214FA0:
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r0, 0
-	stb      r0, 0x20(r3)
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	bl       clearDeadCount__Q24Game7NaviMgrFv
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r4, 0
-	addi     r5, r2, lbl_80519FC8@sda21
-	lbz      r0, 0x3c(r3)
-	rlwinm   r0, r0, 0, 0x1b, 0x19
-	stb      r0, 0x3c(r3)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	bl       setMoviePause__Q24Game10GameSystemFbPc
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r4, 0
-	addi     r5, r2, lbl_80519FC8@sda21
-	li       r6, 3
-	bl       setPause__Q24Game10GameSystemFbPci
-	mr       r3, r30
-	bl       clearHeap__Q24Game15BaseGameSectionFv
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802152DC
-
-lbl_80215014:
-	addi     r3, r31, 0x7c
-	addi     r5, r31, 0x1ec
-	li       r4, 0x526
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	b        lbl_802150B4
-
-lbl_8021502C:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lbz      r0, 0x3c(r3)
-	rlwinm.  r0, r0, 0, 0x1c, 0x1c
-	bne      lbl_802150B4
-	lwz      r4, moviePlayer__4Game@sda21(r13)
-	lwz      r0, 0x18(r4)
-	cmpwi    r0, 0
-	bne      lbl_802150B4
-	bl       paused__Q24Game10GameSystemFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802150B4
-	lwz      r3, 0x10c(r30)
-	lwz      r0, 0x1c(r3)
-	rlwinm.  r0, r0, 0, 0x13, 0x13
-	beq      lbl_802150B4
-	addi     r3, r1, 0x60
-	bl       __ct__Q32og6Screen18DispMemberSMenuAllFv
-	mr       r3, r30
-	addi     r4, r1, 0x60
-	bl
-setDispMemberSMenu__Q24Game17SingleGameSectionFRQ32og6Screen18DispMemberSMenuAll
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	addi     r4, r1, 0x60
-	bl       open_SMenu__Q26Screen9Game2DMgrFRQ32og6Screen18DispMemberSMenuAll
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802150B4
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r4, 1
-	addi     r5, r2, lbl_80519FD0@sda21
-	li       r6, 3
-	bl       setPause__Q24Game10GameSystemFbPci
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r4, 1
-	addi     r5, r2, lbl_80519FD0@sda21
-	bl       setMoviePause__Q24Game10GameSystemFbPc
-
-lbl_802150B4:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	bl       paused_soft__Q24Game10GameSystemFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80215134
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lbz      r0, 0x3c(r3)
-	rlwinm.  r0, r0, 0, 0x1c, 0x1c
-	bne      lbl_80215134
-	lwz      r3, 0x40(r3)
-	bl       isDayOver__Q24Game7TimeMgrFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80215134
-	lbz      r0, 0x180(r30)
-	cmplwi   r0, 0
-	bne      lbl_80215134
-	lwz      r4, gameSystem__4Game@sda21(r13)
-	lbz      r3, 0x3c(r4)
-	rlwinm.  r0, r3, 0, 0x1a, 0x1a
-	beq      lbl_80215134
-	rlwinm   r3, r3, 0, 0x1b, 0x19
-	li       r0, 0
-	stb      r3, 0x3c(r4)
-	mr       r3, r29
-	mr       r4, r30
-	addi     r6, r1, 0x10
-	sth      r0, 0x10(r1)
-	li       r5, 5
-	lwz      r12, 0(r29)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802152DC
-
-lbl_80215134:
-	lbz      r0, 0x10(r29)
-	cmplwi   r0, 0
-	bne      lbl_80215278
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	lwz      r0, 0x18(r3)
-	cmpwi    r0, 0
-	bne      lbl_80215278
-	li       r3, -1
-	bl       getAllPikmins__Q24Game8GameStatFi
-	mr       r29, r3
-	li       r3, -1
-	bl       getZikatuPikmins__Q24Game8GameStatFi
-	subf.    r0, r3, r29
-	bne      lbl_80215278
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 1
-	bl       hasBootContainer__Q24Game8PlayDataFi
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80215278
-	lwz      r5, gameSystem__4Game@sda21(r13)
-	addi     r4, r31, 0x1fc
-	lfs      f0, lbl_80519FA8@sda21(r2)
-	li       r0, 0
-	lbz      r3, 0x3c(r5)
-	rlwinm   r3, r3, 0, 0x1b, 0x19
-	stb      r3, 0x3c(r5)
-	lwz      r5, 0xc8(r30)
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	stw      r4, 0x2c(r1)
-	stw      r0, 0x30(r1)
-	stw      r5, 0x38(r1)
-	stfs     f0, 0x44(r1)
-	stfs     f0, 0x48(r1)
-	stfs     f0, 0x4c(r1)
-	stfs     f0, 0x50(r1)
-	stw      r0, 0x54(r1)
-	stw      r0, 0x3c(r1)
-	stw      r0, 0x34(r1)
-	stw      r0, 0x58(r1)
-	stw      r0, 0x40(r1)
-	stw      r0, 0x5c(r1)
-	bl       getActiveNavi__Q24Game7NaviMgrFv
-	or.      r29, r3, r3
-	bne      lbl_80215218
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r4, 1
-	lwz      r3, 0x58(r3)
-	lwz      r0, 0xe4(r3)
-	cmpwi    r0, 0
-	bne      lbl_80215200
-	li       r4, 0
-
-lbl_80215200:
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	mr       r29, r3
-
-lbl_80215218:
-	lwz      r0, 0xcc(r30)
-	mr       r4, r29
-	addi     r3, r1, 0x20
-	stw      r0, 0x3c(r1)
-	lwz      r12, 0(r29)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x20(r1)
-	mr       r3, r29
-	lfs      f1, 0x24(r1)
-	lfs      f0, 0x28(r1)
-	stfs     f2, 0x44(r1)
-	stfs     f1, 0x48(r1)
-	stfs     f0, 0x4c(r1)
-	lwz      r12, 0(r29)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0x50(r1)
-	addi     r4, r1, 0x2c
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	bl       play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
-	b        lbl_802152DC
-
-lbl_80215278:
-	bl       PSMGetPikminNumD__Fv
-	mr       r0, r3
-	li       r3, -1
-	mr       r29, r0
-	bl       getMapPikmins_exclude_Me__Q24Game8GameStatFi
-	cmpwi    r3, 0xa
-	bge      lbl_802152C0
-	lwz      r0, mSoundDeathCount__Q24Game8DeathMgr@sda21(r13)
-	cmpwi    r0, 0
-	ble      lbl_802152C0
-	cmplwi   r29, 0
-	beq      lbl_802152DC
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802152DC
-
-lbl_802152C0:
-	cmplwi   r29, 0
-	beq      lbl_802152DC
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802152DC:
-	lwz      r0, 0x144(r1)
-	lwz      r31, 0x13c(r1)
-	lwz      r30, 0x138(r1)
-	lwz      r29, 0x134(r1)
-	mtlr     r0
-	addi     r1, r1, 0x140
-	blr
-	*/
 }
 
 /**
@@ -1295,6 +807,7 @@ void GameState::onMovieDone(SingleGameSection* game, MovieConfig* config, u32, u
 			return;
 		}
 
+		// @intns: only remaining regswaps are in this loop - Piki* piki should load into r25 not r28.
 		Iterator<Piki> iterator(pikiMgr);
 		CI_LOOP(iterator)
 		{
@@ -1375,47 +888,17 @@ bool GameState::needRepayDemo()
 		return false;
 	}
 
+	bool result = false;
 	playData->getRepayLevel();
-	return (playData->checkRepayLevelFirstClear() && playData->isCompletePelletTrigger());
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lbz      r0, 0x19(r3)
-	cmplwi   r0, 0
-	beq      lbl_80217280
-	li       r3, 0
-	b        lbl_802172BC
+	if (playData->checkRepayLevelFirstClear()) {
+		result = true;
+	}
 
-lbl_80217280:
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r31, 0
-	bl       getRepayLevel__Q24Game8PlayDataFv
-	lwz      r3, playData__4Game@sda21(r13)
-	bl       checkRepayLevelFirstClear__Q24Game8PlayDataFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802172A0
-	li       r31, 1
+	if (playData->isCompletePelletTrigger()) {
+		return true;
+	}
 
-lbl_802172A0:
-	lwz      r3, playData__4Game@sda21(r13)
-	bl       isCompletePelletTrigger__Q24Game8PlayDataFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802172B8
-	li       r3, 1
-	b        lbl_802172BC
-
-lbl_802172B8:
-	mr       r3, r31
-
-lbl_802172BC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return result;
 }
 
 /**
