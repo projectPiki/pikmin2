@@ -30,6 +30,7 @@ extern "C" {
 #define M_SQRT3 1.73205f
 
 #define DEG2RAD        (1.0f / 180.0f)
+#define RAD2DEG        (57.295776f)
 #define TORADIANS(val) (PI * (DEG2RAD * val))
 
 extern int __float_nan[];

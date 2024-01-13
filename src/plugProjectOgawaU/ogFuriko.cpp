@@ -85,24 +85,29 @@ void CallBack_Furiko::setParam(f32 p1, f32 p2, f32 p3)
  */
 void CallBack_Furiko::update()
 {
+	// Updates @ 30FPS
 	f32 time = sys->mDeltaTime / 0.033333f;
+
 	if (mPane && mCanUpdate) {
 		Vector2f diff = mCurrPosition - mGoalPosition;
-		f32 dist      = _lenVec2D(diff);
+
+		f32 dist = _lenVec2D(diff);
 		if (dist > 0.0f) {
-			f32 offs          = dist - mOffset;
+			f32 offs = dist - mOffset;
+
 			f32 weightX       = -(mChangeModifier.x * mGrowth - offs * (diff.x / dist) * time);
 			mChangeModifier.x = time * weightX + mChangeModifier.x;
+
 			f32 weightY       = -(mChangeModifier.y * mGrowth - offs * (diff.y / dist) * time);
 			mChangeModifier.y = time * (mParam2 + weightY) + mChangeModifier.y;
 
 			mGoalPosition.x += mChangeModifier.x * time;
 			mGoalPosition.y += mChangeModifier.y * time;
-			f32 angle      = JMath::atanTable_.atan2_((mCurrPosition.y - mGoalPosition.y), -(mCurrPosition.x - mGoalPosition.x));
-			mCurrPaneAngle = angle * 57.295776f + 90.0f;
-			J2DPane* pane  = mPane;
-			pane->mAngleZ  = mCurrPaneAngle;
-			pane->calcMtx();
+
+			f32 angle      = mCurrPosition.angleBetween(mGoalPosition);
+			mCurrPaneAngle = (angle * RAD2DEG) + 90.0f;
+
+			mPane->setAngle(mCurrPaneAngle);
 		}
 		mCanUpdate = false;
 	}
@@ -286,178 +291,6 @@ void setFurikoScreen(P2DScreen::Mgr* screen)
 			pane->mMessageID = (u64)setCallBack_Furiko(screen, tag);
 		}
 	}
-	/*
-stwu     r1, -0x40(r1)
-mflr     r0
-lis      r7, lbl_8048F550@ha
-lis      r6, 0x66666667@ha
-stw      r0, 0x44(r1)
-lis      r5, 0x6B6F3030@ha
-lis      r4, 0x66757269@ha
-stmw     r21, 0x14(r1)
-mr       r22, r3
-addi     r27, r7, lbl_8048F550@l
-addi     r28, r6, 0x66666667@l
-addi     r29, r5, 0x6B6F3030@l
-addi     r30, r4, 0x66757269@l
-li       r25, 0
-
-lbl_8032A478:
-mulhw    r5, r28, r25
-lwz      r12, 0(r22)
-mr       r3, r22
-lwz      r12, 0x3c(r12)
-srawi    r0, r5, 2
-srwi     r4, r0, 0x1f
-add      r0, r0, r4
-mulli    r0, r0, 0xa
-subf     r4, r0, r25
-srawi    r0, r4, 0x1f
-addc     r6, r4, r29
-adde     r7, r0, r30
-srawi    r0, r5, 2
-srwi     r4, r0, 0x1f
-add      r5, r0, r4
-mulhw    r0, r28, r5
-srawi    r0, r0, 2
-srwi     r4, r0, 0x1f
-add      r0, r0, r4
-mulli    r0, r0, 0xa
-subf     r0, r0, r5
-slwi     r4, r0, 8
-srawi    r0, r4, 0x1f
-addc     r6, r6, r4
-adde     r5, r7, r0
-mr       r23, r6
-mr       r24, r5
-mtctr    r12
-bctrl
-or.      r31, r3, r3
-beq      lbl_8032A690
-li       r3, 0x4c
-bl       __nw__FUl
-or.      r26, r3, r3
-beq      lbl_8032A58C
-bl       __ct__5CNodeFv
-lis      r3, __vt__Q29P2DScreen4Node@ha
-lis      r4, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen4Node@l
-lis      r3, __vt__Q32og6Screen15CallBack_Furiko@ha
-stw      r0, 0(r26)
-li       r5, 0
-addi     r4, r4, __vt__Q29P2DScreen12CallBackNode@l
-addi     r3, r3, __vt__Q32og6Screen15CallBack_Furiko@l
-stw      r5, 0x18(r26)
-li       r0, 1
-lfs      f3, lbl_8051DEA8@sda21(r2)
-stw      r4, 0(r26)
-lfs      f2, lbl_8051DEAC@sda21(r2)
-stw      r3, 0(r26)
-lfs      f1, lbl_8051DEB0@sda21(r2)
-stw      r5, 0x1c(r26)
-lfs      f0, lbl_8051DEB4@sda21(r2)
-stb      r5, 0x20(r26)
-stb      r0, 0x21(r26)
-stfs     f3, 0x24(r26)
-stfs     f3, 0x28(r26)
-stfs     f2, 0x2c(r26)
-stfs     f1, 0x30(r26)
-stfs     f0, 0x34(r26)
-lfs      f0, 0x24(r26)
-stfs     f0, 0x38(r26)
-lfs      f1, 0x28(r26)
-lfs      f0, 0x2c(r26)
-fadds    f0, f1, f0
-stfs     f0, 0x3c(r26)
-stfs     f3, 0x40(r26)
-stfs     f3, 0x44(r26)
-stfs     f3, 0x48(r26)
-
-lbl_8032A58C:
-cmplwi   r26, 0
-bne      lbl_8032A5A8
-addi     r3, r27, 0
-addi     r5, r27, 0x1c
-li       r4, 0xe3
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8032A5A8:
-mr       r3, r22
-mr       r6, r23
-mr       r5, r24
-bl       TagSearch__Q22og6ScreenFP9J2DScreenUx
-or.      r21, r3, r3
-bne      lbl_8032A5D4
-addi     r3, r27, 0
-addi     r5, r27, 0x1c
-li       r4, 0xe5
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8032A5D4:
-cmplwi   r21, 0
-beq      lbl_8032A654
-stw      r21, 0x1c(r26)
-lfs      f0, lbl_8051DEA8@sda21(r2)
-lwz      r3, 0x1c(r26)
-stfs     f0, 0xc0(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x2c(r12)
-mtctr    r12
-bctrl
-lfs      f0, lbl_8051DEAC@sda21(r2)
-li       r3, 0
-lfs      f1, lbl_8051DEB0@sda21(r2)
-li       r0, 1
-stfs     f0, 0x2c(r26)
-lfs      f0, lbl_8051DEB4@sda21(r2)
-stfs     f1, 0x30(r26)
-lfs      f2, lbl_8051DEA8@sda21(r2)
-stfs     f0, 0x34(r26)
-stb      r3, 0x20(r26)
-stb      r0, 0x21(r26)
-stfs     f2, 0x24(r26)
-stfs     f2, 0x28(r26)
-lfs      f0, 0x24(r26)
-stfs     f0, 0x38(r26)
-lfs      f1, 0x28(r26)
-lfs      f0, 0x2c(r26)
-fadds    f0, f1, f0
-stfs     f0, 0x3c(r26)
-stfs     f2, 0x40(r26)
-stfs     f2, 0x44(r26)
-b        lbl_8032A668
-
-lbl_8032A654:
-addi     r3, r27, 0
-addi     r5, r27, 0x10
-li       r4, 0x76
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8032A668:
-mr       r3, r22
-mr       r6, r23
-mr       r5, r24
-mr       r7, r26
-bl       addCallBack__Q29P2DScreen3MgrFUxPQ29P2DScreen4Node
-stw      r26, 0x1c(r21)
-li       r0, 0
-stw      r0, 0x18(r21)
-stw      r26, 0x1c(r31)
-stw      r0, 0x18(r31)
-
-lbl_8032A690:
-addi     r25, r25, 1
-cmpwi    r25, 0x64
-blt      lbl_8032A478
-lmw      r21, 0x14(r1)
-lwz      r0, 0x44(r1)
-mtlr     r0
-addi     r1, r1, 0x40
-blr
-	*/
 }
 
 /**
@@ -467,7 +300,7 @@ blr
 CallBack_Furiko* getFurikoPtr(P2DScreen::Mgr* screen, u64 tag)
 {
 	J2DPane* pane = TagSearch(screen, tag);
-	return (CallBack_Furiko*)pane->mMessageID; /// ?????????
+	return (CallBack_Furiko*)pane->mMessageID;
 }
 } // namespace Screen
 } // namespace og

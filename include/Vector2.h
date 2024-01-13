@@ -27,6 +27,12 @@ struct Vector2 {
 		this->y += y;
 	}
 
+	inline f32 angleBetween(Vector2& other)
+	{
+		f32 angle = JMath::atanTable_.atan2_((this->y - other.y), -(this->x - other.x));
+		return angle;
+	}
+
 	Vector2& operator+=(const Vector2& other)
 	{
 		x += other.x;
@@ -84,6 +90,9 @@ inline f32 _lenVec2D(Vector2f& vec)
 	f32 length = a.y + vec.x * vec.x;
 	return _sqrtf(a.y + vec.x * vec.x);
 }
+
+// should be
+// inline f32 _lenVec2D(Vector2f& vec) { return _sqrtf(SQUARE(vec.x) + SQUARE(vec.y)); }
 
 template <>
 inline f32 Vector2f::length() const
