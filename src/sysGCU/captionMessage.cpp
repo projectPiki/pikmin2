@@ -45,37 +45,11 @@ BOOL TRenderingProcessor::doDrawCommon(f32 x, f32 y, Matrixf* mtx1, Matrixf* mtx
 
 	if (mtx2) {
 		PSMTXCopy(mtx.mMatrix.mtxView, mtx2->mMatrix.mtxView);
-		// offset for shadow
-		// f32 shadowX                 = 10.0f;
-		// f32 shadowY                 = 5.0f;
-		// mtx2->mMatrix.structView.tx = mtx2->mMatrix.structView.tx + 10.0f;
-		// mtx2->mMatrix.structView.ty = 5.0f + mtx2->mMatrix.structView.ty;
-		// (*mtx2)(0, 3) += 10.0f;
-		// (*mtx2)(1, 3) += 5.0f;
-		// Vector2f v1(10.0f, 5.0f);
-		// mtx2->translateXY(v1);
-		// mtx2->translateXY(10.0f, 5.0f);
-		// Vector3f translation;
-		// mtx2->getTranslation(translation);
-		// translation.x += 10.0f;
-		// translation.y += 5.0f;
 
-		// f32 x = (*mtx2)(0, 3);
-		// x += 10.0f;
-		// f32 y = (*mtx2)(1, 3);
-		// y += 5.0f;
-		// (*mtx2)(0, 3) = x;
-		// (*mtx2)(1, 3) = y;
-
-		// f32& x = (*mtx2)(0, 3);
-		// f32& y = (*mtx2)(1, 3);
-		// x += 10.0f;
-		// y += 5.0f;
-
-		// Vector3f vec((*mtx2)(0, 3), (*mtx2)(1, 3), (*mtx2)(2,3));
 		Vector2f translation;
 		mtx2->getTranslationXY(translation);
-		translation += Vector2f(10.0f, 6.0f);
+
+		translation.add(5.0f, 10.0f);
 		mtx2->setTranslationXY(translation);
 
 		PSMTXConcat(mMtx1->mMatrix.mtxView, mtx2->mMatrix.mtxView, mtx2->mMatrix.mtxView);

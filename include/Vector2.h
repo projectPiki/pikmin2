@@ -21,6 +21,12 @@ struct Vector2 {
 		y = val;
 	}
 
+	inline void add(const f32& x, const f32& y)
+	{
+		this->x += x;
+		this->y += y;
+	}
+
 	Vector2& operator+=(const Vector2& other)
 	{
 		x += other.x;
