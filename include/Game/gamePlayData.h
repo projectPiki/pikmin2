@@ -140,6 +140,8 @@ struct KindCounter {
 		return ret;
 	}
 
+	inline int getNumKinds() const { return mNumKinds; }
+
 	u16 mNumKinds; // _00
 	u8* mKinds;    // _04
 };
@@ -230,6 +232,10 @@ struct PelletCropMemory {
 	// Unused/inlined:
 	void obtainPellet(Pellet*);
 	int calcNumKinds();
+
+	KindCounter& getOtakara() { return mOtakara; }
+	KindCounter& getItem() { return mItem; }
+	KindCounter& getCarcass() { return mCarcass; }
 
 	// _00	= VTBL
 	KindCounter mOtakara; // _04

@@ -433,6 +433,14 @@ struct MainResultState : public State {
 	// Unused/inlined:
 	unknown open2D(SingleGameSection* game);
 
+	enum ResultStatus {
+		Result_LoadData     = 0,
+		Result_Unused1      = 1,
+		Result_OpenWait     = 2,
+		Result_ScreenActive = 3,
+		Result_Finish       = 4,
+	};
+
 	// _00     = VTBL
 	// _00-_10 = State
 	u16 mStatus;                                    // _10
