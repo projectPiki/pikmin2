@@ -18,7 +18,7 @@ TRenderingProcessor::TRenderingProcessor(JMessage::TReference* ref)
  * @note Address: 0x80450FC0
  * @note Size: 0xC
  */
-void TRenderingProcessor::doGetDrawInfo(Window::DrawInfo* info) { info->_20 = 0.266667f; }
+void TRenderingProcessor::doGetDrawInfo(Window::DrawInfo* info) { info->_20 = 0.26666669f; }
 
 /**
  * @note Address: 0x80450FCC
@@ -49,7 +49,9 @@ BOOL TRenderingProcessor::doDrawCommon(f32 x, f32 y, Matrixf* mtx1, Matrixf* mtx
 		Vector2f translation;
 		mtx2->getTranslationXY(translation);
 
-		translation.add(5.0f, 10.0f);
+		f32 x = 10.0f;
+		f32 y = 5.0f;
+		translation.add(x, y);
 		mtx2->setTranslationXY(translation);
 
 		PSMTXConcat(mMtx1->mMatrix.mtxView, mtx2->mMatrix.mtxView, mtx2->mMatrix.mtxView);
