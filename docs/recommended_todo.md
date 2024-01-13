@@ -176,7 +176,7 @@
 ### <section id="plugProjectOgawaU">plugProjectOgawaU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCopyPane.cpp">ogCopyPane.cpp</a> | 7720 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogFuriko.cpp">ogFuriko.cpp</a> | 10913 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogFuriko.cpp">ogFuriko.cpp</a> | 6877 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCopyPane.cpp">ogCopyPane.cpp</a> | 7644 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounterSlot.cpp">ogCounterSlot.cpp</a> | 15249 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogTitleMsg.cpp">ogTitleMsg.cpp</a> | 17563 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjSMenuItem.cpp">ogObjSMenuItem.cpp</a> | 26247 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogMenuMgr.cpp">ogMenuMgr.cpp</a> | 26474 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounterRV.cpp">ogCounterRV.cpp</a> | 33666 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjContena.cpp">ogObjContena.cpp</a> | 50114 |
@@ -206,7 +206,7 @@
 ### <section id="sysGCU">sysGCU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/aramMgr.cpp">aramMgr.cpp</a> | 4257 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/captionMessage.cpp">captionMessage.cpp</a> | 4591 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/captionMessage.cpp">captionMessage.cpp</a> | 3769 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/aramMgr.cpp">aramMgr.cpp</a> | 4257 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/messageMgr.cpp">messageMgr.cpp</a> | 6794 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/section.cpp">section.cpp</a> | 8000 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/JSTObjectCamera.cpp">JSTObjectCamera.cpp</a> | 8577 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/JSTObjectGameActor.cpp">JSTObjectGameActor.cpp</a> | 9261 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/loadResource.cpp">loadResource.cpp</a> | 9618 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/JSTObjectParticleActor.cpp">JSTObjectParticleActor.cpp</a> | 10412 |
@@ -214,7 +214,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/sysShape.cpp">sysShape.cpp</a> | 15097 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/sysShapeModel.cpp">sysShapeModel.cpp</a> | 16152 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/JSTObjectSystem.cpp">JSTObjectSystem.cpp</a> | 17997 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/titleSection.cpp">titleSection.cpp</a> | 19653 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/JSTObjectActor.cpp">JSTObjectActor.cpp</a> | 19712 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/resourceMgr.cpp">resourceMgr.cpp</a> | 21536 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/matMath.cpp">matMath.cpp</a> | 26213 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/moviePlayer.cpp">moviePlayer.cpp</a> | 31003 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/matMath.cpp">matMath.cpp</a> | 26213 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/moviePlayer.cpp">moviePlayer.cpp</a> | 30656 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/windowMessage.cpp">windowMessage.cpp</a> | 37888 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/bootSection.cpp">bootSection.cpp</a> | 38162 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/system.cpp">system.cpp</a> | 38671 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/movieMessage.cpp">movieMessage.cpp</a> | 46884 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/memoryCard.cpp">memoryCard.cpp</a> | 48550 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/screenMgr.cpp">screenMgr.cpp</a> | 50710 |

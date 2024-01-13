@@ -63,6 +63,8 @@ struct ParticleMgr : public CNode {
 	ModelEffectData* getModelEffectData(u64);
 	void testCreateModelEffect(int, int, Vector3f&);
 
+	inline JPAEmitterManager* getManager() const { return mEmitterManager; }
+
 	Game::GameLightMgr* mLightMgr;              // _18
 	NodeObjectMgr<ModelEffect> mModelEffectMgr; // _1C
 	u8 _58[8];                                  // _58

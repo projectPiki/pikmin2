@@ -256,6 +256,7 @@ struct MoviePlayer : public JKRDisposer {
 	inline void setFlag(u32 flag) { mFlags.typeView |= flag; }
 	inline void resetFlag(u32 flag) { mFlags.typeView &= ~flag; }
 	inline bool isFlag(u32 flag) const { return mFlags.typeView & flag; }
+	inline bool isDrawLoad() { return mDemoState == 2 || mDemoState == 3 || mDemoState == 4; }
 
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer

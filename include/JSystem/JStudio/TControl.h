@@ -46,6 +46,12 @@ struct TControl : stb::TControl {
 	// unused/inlined:
 	void forward_value(u32);
 
+	inline void create(JStudio::stb::TFactory* factory, JStudio::fvb::TFactory* fvb)
+	{
+		mFactory     = factory;
+		_60.pFactory = fvb;
+	}
+
 	f64 _58;           // _58
 	fvb::TControl _60; // _60 - JStudio::fvb::TControl?
 	u8 _74;            // _74

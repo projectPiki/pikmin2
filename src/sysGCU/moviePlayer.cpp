@@ -18,8 +18,8 @@
 #include "utilityU.h"
 #include "nans.h"
 
-static const int unusedArray[] = { 0, 0, 0 };
-static const char name[]       = "moviePlayer";
+static const u32 padding[]    = { 0, 0, 0 };
+static const char className[] = "moviePlayer";
 
 namespace Game {
 
@@ -343,29 +343,31 @@ void MoviePlayer::hasSuspendedContext()
  */
 void MoviePlayer::getSuspendedContext()
 {
-	// MovieContext* context = mStoreContextActive.getChild();
-	// if (context) {
-	// 	context->del();
-	// 	mStoreContextInactive.add(context);
-	// 	mActiveContextNum--;
-	// 	mTargetNavi   = context->mNavi;
-	// 	mActingCamera = context->mCamera;
-	// 	mTargetObject = context->mTargetObject;
-	// 	u8 flag       = play(context->mConfig, context->mArg, true);
-	// 	switch (flag) {
-	// 	case MOVIEPLAY_SUCCESS:
-	// 		return true;
-	// 	case MOVIEPLAY_NOCONFIG:
-	// 		return false;
-	// 	case MOVIEPLAY_INQUEUE:
-	// 		return true;
-	// 	case MOVIEPLAY_QUEUEFAIL:
-	// 		JUT_PANICLINE(767, "[QUE_FAILED] %s\n", context->mArg.mMovieName);
-	// 		return false;
-	// 	}
-	// } else {
-	// 	JUT_PANICLINE(772, " キューになにもないぞーー(T^T)\n"); // "there's nothing in the queue (T^T)"
-	// }
+	// this is used in update I think? or it might be one of the above functions
+	// it needs to exist for rodata either way
+	MovieContext* context = mStoreContextActive.getChild();
+	if (context) {
+		context->del();
+		mStoreContextInactive.add(context);
+		mActiveContextNum--;
+		mTargetNavi   = context->mNavi;
+		mActingCamera = context->mCamera;
+		mTargetObject = context->mTargetObject;
+		u8 flag       = play(context->mConfig, context->mArg, true);
+		switch (flag) {
+		case MOVIEPLAY_SUCCESS:
+			// return true;
+		case MOVIEPLAY_NOCONFIG:
+			// return false;
+		case MOVIEPLAY_INQUEUE:
+			// return true;
+		case MOVIEPLAY_QUEUEFAIL:
+			JUT_PANICLINE(767, "[QUE_FAILED] %s\n", context->mArg.mMovieName);
+			// return false;
+		}
+	} else {
+		JUT_PANICLINE(772, " キューになにもないぞーー(T^T)\n"); // "there's nothing in the queue (T^T)"
+	}
 }
 
 /**
@@ -413,15 +415,16 @@ void MoviePlayer::loadResource()
 	mStudioFactory = new JStudio::TFactory;
 	mStudioFactory->appendCreateObject(mStudioStageCreateObject);
 	mStudioFactory->appendCreateObject(mesgobj);
-	mStudioParticleCreateObject = new JStudio_JParticle::TCreateObject(mObjectSystem, particleMgr->mEmitterManager);
+	mStudioParticleCreateObject = new JStudio_JParticle::TCreateObject(mObjectSystem, particleMgr->getManager());
 	mStudioFactory->appendCreateObject(mStudioParticleCreateObject);
-	mPikminCreateObjectAudio = new Pikmin_TCreateObject_JAudio(PSSystem::spSysIF, mObjectSystem);
+
+	PSSystem::SysIF* sysif   = PSSystem::spSysIF;
+	mPikminCreateObjectAudio = new Pikmin_TCreateObject_JAudio(sysif, mObjectSystem);
 	mStudioFactory->appendCreateObject(mPikminCreateObjectAudio);
 
-	mStudioControl               = new JStudio::TControl;
-	mStudioControl->mFactory     = mStudioFactory;
-	mStudioControl->_60.pFactory = &mStudioFactory->mFvbFactory;
-	mStudioControl->_58          = 0.03333333507180214;
+	mStudioControl = new JStudio::TControl;
+	mStudioControl->create(mStudioFactory, (!mStudioFactory) ? nullptr : (&mStudioFactory->mFvbFactory));
+	mStudioControl->_58 = 0.03333333507180214;
 
 	sys->heapStatusStart("movieResource", nullptr);
 
@@ -481,7 +484,8 @@ bool MoviePlayer::parse(bool flag)
 		test = 0x40;
 	}
 
-	if (!parse.parse_next(&mStbFile, test)) {
+	const void* file = mStbFile;
+	if (!parse.parse_next(&file, test)) {
 		JUT_PANICLINE(1004, "データを解釈できましぇん\n"); // "I can interpret the data"
 		return false;
 	} else {
@@ -499,7 +503,6 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 	switch (mDemoState) {
 	case 0:
 		return false;
-		break;
 	case 1:
 		if (mFadeTimer > 0.0f) {
 			mFadeTimer -= sys->mDeltaTime;
@@ -521,20 +524,20 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 			setCamera(getActiveGameCamera());
 			sys->endChangeCurrentHeap();
 		}
-		if (mThreadCommand.mMode == 2 && mFadeTimer > 0.0f) {
+		if (mThreadCommand.mMode == 2 && mFadeTimer <= 0.0f) {
 			gameSystem->setPause(false, "moviePl:loaddone", 3);
 			gameSystem->paused();
-			if (mDelegate1) {
-				mDelegate1->invoke(mCurrentConfig, 0, mNaviID);
+			if (mDelegate2) {
+				mDelegate2->invoke(mCurrentConfig, 0, mNaviID);
 			}
-			if (!mCurrentConfig->mPositionFlag & 1) {
-				setTransform(mTransform, mCameraAngle);
+			if (!(mCurrentConfig->mPositionFlag & 1)) {
+				setTransform(mCameraPosition, mCameraAngle);
 			}
 			start(nullptr);
 			setPauseAndDraw(mCurrentConfig);
 			mDemoState = 5;
 			u16 flag   = mCurrentConfig->mDrawType;
-			if (!flag & 4 || flag & 2) {
+			if (flag & 4 || flag & 2) {
 				gameSystem->startFadein(0.5f);
 			} else {
 				gameSystem->startFadewhite();
@@ -557,10 +560,12 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 			mObjectSystem->entry();
 		}
 		mFadeTimer -= sys->mDeltaTime;
-		if (mFadeTimer > 1.1f && !mCanFinish) {
+		if (mFadeTimer < 1.1f && !mCanFinish) {
 			if (isFlag(MVP_IsFinished)) {
 				resetFrame();
-				while (mStudioControl->forward(1)) {
+				bool end = 0;
+				while (end == false) {
+					end = bool(mStudioControl->forward(1) == false);
 					mObjectSystem->update();
 					if (mTextControl) {
 						mTextControl->update(input1, input2);
@@ -577,12 +582,13 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 			if (Screen::gGame2DMgr) {
 				Screen::gGame2DMgr->restartFinalFloorSound();
 			}
-			if (mDelegate2) {
-				mDelegate2->invoke(config, 0, mNaviID);
+			if (mDelegate1) {
+				mDelegate1->invoke(config, 0, mNaviID);
 			}
 			gameSystem->startFadein(1.0f);
 			if (mStoreContextActive.getChild()) {
 				PSMCancelToPauseOffMainBgm();
+				// this whole part is an unused function from this file, but the returns need to be handled correctly so idk
 				MovieContext* context = mStoreContextActive.getChild();
 				if (context) {
 					context->del();
@@ -611,24 +617,34 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 			if (mDemoState == 2 || mDemoState == 1) {
 				PSMCancelToPauseOffMainBgm();
 			}
-		} else if (mFadeTimer < 0.0f) {
+		} else if (mFadeTimer <= 0.0f) {
 			mDemoState = 0;
 		}
-		break;
+		return true;
 	}
+
 	if (isFlag(MVP_IsActive)) {
-		if (!(input1->getButtonDown() & 0xf70) && (!input2 || !(input2->getButtonDown() & 0xf70))) {
+
+		if ((input1->getButton() & 0xf70) || (input2 && (input2->getButton() & 0xf70))) {
 			mFlags.typeView |= 0x80000000;
 		}
 
-		if (mStudioControl->mStatus < 1) {
+		if ((int)mStudioControl->mSuspend <= 0) {
 			mCounter++;
 		}
 		if (mCurrentConfig->mPositionFlag & 0x10) {
 			Vector3f* pos = mOffset;
 			if (pos) {
-				mTransform = pos->normalise();
-				setTransform(mTransform, mCameraAngle);
+				Vector3f test   = *pos;
+				Vector3f offset = mCameraPosition - test;
+				f32 norm        = offset.normalise();
+				if (norm > 10.0f) {
+					norm = 10.0f;
+				}
+				test *= norm;
+				test += offset;
+				mCameraPosition = test;
+				setTransform(mCameraPosition, mCameraAngle);
 			}
 		}
 		if (!mStudioControl->forward(1)) {
@@ -649,8 +665,8 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 				mTextControl->update(input1, input2);
 			}
 		}
-		if (mDemoState == 5 && mFlags.isSet(0x80000000) && !mStudioControl->mObject_control.mSuspend) {
-			if ((input1->getButtonDown() & 0xf70) || (input2 && (input2->getButtonDown() & 0xf70)) && mCurrentConfig->isSkippable()) {
+		if (mDemoState == 5 && mFlags.isSet(0x80000000) && !mStudioControl->mSuspend) {
+			if ((input1->getButtonDown() & 0xf70) || (input2 && (input2->getButton() & 0xf70)) && mCurrentConfig->isSkippable()) {
 				skip();
 			} else if ((input1->getButtonDown() & Controller::PRESS_START)
 			           || (input2 && (input2->getButtonDown() & Controller::PRESS_START)) && !mCurrentConfig->isNeverSkippable()) {
@@ -699,7 +715,7 @@ bool MoviePlayer::stop()
 {
 	if (isFlag(MVP_IsActive)) {
 		clearPauseAndDraw();
-		resetFlag(MVP_IsFinished);
+		resetFlag(MVP_IsActive);
 		resetFlag(MVP_Unk32);
 		if (mObjectSystem) {
 			mObjectSystem->stop();
@@ -717,9 +733,10 @@ bool MoviePlayer::stop()
 		}
 		mMovieHeap->freeAll();
 		int size = mMovieHeap->getTotalFreeSize();
-		JUT_ASSERTLINE(1339, size == mMovieHeapFreeSize, "curr=%d init=%d free invalid\n", size, mMovieHeapFreeSize);
+		JUT_ASSERTLINE(1339, size == (int)mMovieHeapFreeSize, "curr=%d init=%d free invalid\n", size, mMovieHeapFreeSize);
 		mCurrentConfig = nullptr;
 	}
+
 	mTargetNavi   = nullptr;
 	mTargetObject = nullptr;
 	mAltNavi      = nullptr;
@@ -747,24 +764,28 @@ void MoviePlayer::setCamera(Camera* cam)
 		objcam = static_cast<P2JST::ObjectCamera*>(mObjectSystem->findObject("camera", JStage::TEO_Camera));
 	}
 
-	if (objcam) {
-		cam->getSoundMatrixPtr();
-		cam->getSoundPositionPtr();
-		cam->getSoundPositionPtr();
+	if (!objcam) {
+		PSM::DemoArg arg;
+		arg.mName       = (mCurrentConfig) ? mCurrentConfig->mParam.mFolderName.mName : nullptr;
+		arg.mCameraName = mCameraName;
+		arg.mBgmID      = mStreamID;
+		if (getActiveGameCamera()) {
+			mDemoPSM->init((Vec*)getActiveGameCamera()->getSoundPositionPtr(), (Vec*)getActiveGameCamera()->getSoundPositionPtr(),
+			               getActiveGameCamera()->getSoundMatrixPtr()->mMatrix.mtxView, arg);
+		} else {
+			mDemoPSM->init(nullptr, nullptr, nullptr, arg);
+		}
 		mDemoPSM->onDemoTop();
 	} else {
 		P2ASSERTLINE(1453, objcam);
 		objcam->setCamera(getActiveGameCamera());
 
 		PSM::DemoArg arg;
-		arg.mName       = mCurrentConfig->mParam.mFolderName.mName;
+		arg.mName       = (mCurrentConfig) ? mCurrentConfig->mParam.mFolderName.mName : nullptr;
 		arg.mCameraName = mCameraName;
 		arg.mBgmID      = mStreamID;
-
-		cam->getSoundPositionPtr();
-		cam->getSoundPositionPtr();
-		cam->getSoundMatrixPtr();
-		// mDemoPSM->init();
+		Matrixf* mtx    = cam->getSoundMatrixPtr();
+		mDemoPSM->init((Vec*)cam->getSoundPositionPtr(), (Vec*)cam->getSoundPositionPtr(), mtx->mMatrix.mtxView, arg);
 
 		cam->getViewMatrix(false);
 		cam->getViewMatrix(false)->print("viewmat");
@@ -1039,9 +1060,11 @@ void MoviePlayer::unsuspend(s32 msg, bool flag)
 	mStudioControl->mObject_control.mSuspend -= msg;
 	if (flag) {
 		int id = mCurrentConfig->mMsgPauseNum;
-		if (id == 0 || id <= mMessageEndCount) {
+		if (id == 0 || mMessageEndCount >= id) {
 			gameSystem->setPause(true, "moviePl:unsuspend", 0);
-			// some math that leads to nothing?
+			for (int i = 0; i < 100; i++) {
+				// silly
+			}
 		} else {
 			gameSystem->setPause(false, "moviePl:g33/susp", 3);
 		}
@@ -1057,8 +1080,8 @@ void MoviePlayer::unsuspend(s32 msg, bool flag)
 void MoviePlayer::resetFrame()
 {
 	JUTAssertion::setMessageCount(0);
-	if (mStudioControl->mStatus) {
-		parse(1);
+	if ((u32)mStudioControl->mObjectContainer.mCount != 0) {
+		parse(false);
 		mCounter                                 = 0;
 		mStudioControl->mObject_control.mSuspend = 0;
 	}
@@ -1071,7 +1094,7 @@ void MoviePlayer::resetFrame()
 void MoviePlayer::setTransform(Vector3f& pos, f32 angle)
 {
 	mTransform                 = pos;
-	mTransformAngle            = angle * (PI / 180) * PI;
+	mTransformAngle            = angle * DEG2RAD * PI;
 	JStudio::TControl* control = mStudioControl;
 	control->_75               = 1;
 	control->_74               = 1;
@@ -1109,101 +1132,21 @@ void MoviePlayer::isLoadingBlack()
  */
 void MoviePlayer::drawLoading(Graphics& gfx)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	li       r0, 0
-	stw      r31, 0x4c(r1)
-	stw      r30, 0x48(r1)
-	mr       r30, r4
-	stw      r29, 0x44(r1)
-	mr       r29, r3
-	lwz      r3, 0x18(r3)
-	cmpwi    r3, 2
-	beq      lbl_8042E62C
-	cmpwi    r3, 3
-	beq      lbl_8042E62C
-	cmpwi    r3, 4
-	bne      lbl_8042E630
+	if (isDrawLoad()) {
+		gfx.mOrthoGraph.setPort();
+		JUtility::TColor c(0, 0, 0, 255);
 
-lbl_8042E62C:
-	li       r0, 1
-
-lbl_8042E630:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_8042E718
-	addi     r3, r30, 0xbc
-	lwz      r12, 0xbc(r30)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	li       r8, 0
-	li       r0, 0xff
-	stb      r8, 0x18(r1)
-	addi     r31, r30, 0xbc
-	mr       r3, r31
-	addi     r4, r1, 8
-	stb      r8, 0x19(r1)
-	addi     r5, r1, 0xc
-	addi     r6, r1, 0x10
-	addi     r7, r1, 0x14
-	stb      r8, 0x1a(r1)
-	stb      r0, 0x1b(r1)
-	lwz      r0, 0x18(r1)
-	stw      r0, 0x14(r1)
-	stw      r0, 0x10(r1)
-	stw      r0, 0xc(r1)
-	stw      r0, 8(r1)
-	bl
-setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
-	lwz      r3, 0xb0(r29)
-	cmplwi   r3, 0
-	beq      lbl_8042E6AC
-	lhz      r0, 0xc0(r3)
-	rlwinm   r0, r0, 0x1e, 0x1f, 0x1f
-	b        lbl_8042E6B0
-
-lbl_8042E6AC:
-	li       r0, 0
-
-lbl_8042E6B0:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_8042E718
-	bl       getRenderModeObj__6SystemFv
-	lhz      r30, 6(r3)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r4, 4(r3)
-	lis      r0, 0x4330
-	lfs      f3, lbl_80520610@sda21(r2)
-	mr       r3, r31
-	stw      r4, 0x34(r1)
-	addi     r4, r1, 0x1c
-	lfd      f2, lbl_80520670@sda21(r2)
-	stw      r0, 0x30(r1)
-	lfd      f0, 0x30(r1)
-	stw      r30, 0x3c(r1)
-	fsubs    f1, f0, f2
-	stw      r0, 0x38(r1)
-	lfd      f0, 0x38(r1)
-	fadds    f1, f3, f1
-	stfs     f3, 0x1c(r1)
-	fsubs    f0, f0, f2
-	stfs     f3, 0x20(r1)
-	fadds    f0, f3, f0
-	stfs     f1, 0x24(r1)
-	stfs     f0, 0x28(r1)
-	bl       "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
-
-lbl_8042E718:
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	lwz      r29, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+		J2DOrthoGraph& graf = gfx.mOrthoGraph;
+		graf.setColor(c);
+		u8 doBox = (mCurrentConfig) ? (mCurrentConfig->mDrawType >> 1) & 1 : false;
+		if (doBox) {
+			u32 y    = System::getRenderModeObj()->efbHeight;
+			u32 x    = System::getRenderModeObj()->fbWidth;
+			f32 zero = 0.0f;
+			JGeometry::TBox2f box(0.0f, 0.0f, zero + x, zero + y);
+			graf.fillBox(box);
+		}
+	}
 }
 
 /**
@@ -1218,7 +1161,12 @@ void MoviePlayer::skip()
 	mCanFinish = false;
 	gameSystem->startFadeout(1.0f);
 	mDemoPSM->onDemoFadeoutStart(30);
-	gameSystem->setPause(false, "moviePl:skip", 1);
+	gameSystem->setPause(true, "moviePl:skip", 0);
+
+	// oh, thats nasty
+	while (mStudioControl->mObjectContainer.Iterator_isEnd_(
+	    *(JGadget::TNodeLinkList::const_iterator*)&mStudioControl->mObjectContainer.begin())) { }
+
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1301,6 +1249,11 @@ lbl_8042E7FC:
  */
 void MoviePlayer::draw2d()
 {
+	// here for rodata
+	OSReport("<suspend>");
+	OSReport("frame %4d", 0);
+	OSReport("use  %.1fK");
+	OSReport("heap %.1fK");
 	// UNUSED FUNCTION
 }
 
