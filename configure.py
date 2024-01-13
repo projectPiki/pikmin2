@@ -1598,7 +1598,7 @@ LIBS = [
             ["sysGCU/JSTObjectSpecialActor", True],
             ["sysGCU/messageSequence", True],
             ["sysGCU/messageMgr", False],
-            ["sysGCU/messageObj", False],
+            ["sysGCU/messageObj", True],
             ["sysGCU/messageRendering", False],
             ["sysGCU/message", True],
             ["sysGCU/modelEffect", True],

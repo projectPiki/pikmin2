@@ -8,17 +8,12 @@ namespace P2JME {
  * @note Size: 0x74
  */
 TControl::TControl()
+    : mSequenceProc(nullptr)
+    , mTextRenderProc(nullptr)
+    , mResContainer(nullptr)
+    , mTimer(0.0f)
 {
-	mSequenceProc   = nullptr;
-	mTextRenderProc = nullptr;
-	mResContainer   = nullptr;
-	mTimer          = 0.0f;
-	for (int i = 0; i < sizeof(mStatus); i++) {
-		mStatus.byteView[i] = 0;
-	}
-	for (int i = 0; i < sizeof(mStatus); i++) {
-		mStatus.byteView[i] = 0;
-	}
+	mStatus.clear();
 }
 
 /**
@@ -98,9 +93,7 @@ void TControl::reset()
 {
 	JMessage::TControl::reset();
 	mTimer = 0.0f;
-	for (int i = 0; i < sizeof(mStatus); i++) {
-		mStatus.byteView[i] = 0;
-	}
+	mStatus.clear();
 	mSequenceProc->reset();
 	mTextRenderProc->reset();
 }
@@ -115,12 +108,12 @@ bool TControl::update()
 	if (mTextRenderProc) {
 		mTextRenderProc->update();
 	}
-	if (IS_FLAG(mStatus.typeView, 1)) {
+	if (mStatus.isSet(1)) {
 		if (!ret)
-			SET_FLAG(mStatus.typeView, 2);
+			mStatus.set(2);
 	} else {
 		if (ret)
-			SET_FLAG(mStatus.typeView, 1);
+			mStatus.set(1);
 	}
 	return ret;
 }

@@ -60,10 +60,7 @@ struct TControl : public JMessage::TControl {
 	TRenderingProcessor* mTextRenderProc;        // _40
 	JMessage::TResourceContainer* mResContainer; // _44
 	f32 mTimer;                                  // _48
-	union {
-		u8 byteView[4];
-		u32 typeView;
-	} mStatus; // _4C
+	BitFlag<u32> mStatus;                        // _4C
 };
 
 namespace Window {
