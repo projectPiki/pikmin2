@@ -201,7 +201,7 @@ struct JUTGamePad : public JKRDisposer {
 
 	static JUTGamePad* getGamePad(int);
 
-	inline bool isConnected() const { return (0 <= mPortNum && mPortNum < 4); }
+	inline bool isConnected() const { return (mPortNum >= 0 && mPortNum < 4); }
 	inline bool isButtonDown(u32 buttons) { return mButton.mButtonDown & buttons; }
 	inline bool isButton(u32 buttons) { return mButton.mButton & buttons; }
 
@@ -266,6 +266,7 @@ struct JUTGamePad : public JKRDisposer {
 		if (mPortNum != -1 && mButtonReset.mIsReset != false) {
 			isPushingReset = true;
 		}
+
 		return isPushingReset;
 	}
 

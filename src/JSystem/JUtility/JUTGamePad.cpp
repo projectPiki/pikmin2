@@ -53,9 +53,11 @@ JUTGamePad::JUTGamePad(JUTGamePad::EPadPort portNum)
     , mListLink(this)
 {
 	mPortNum = portNum;
-	if (0 <= mPortNum) {
+
+	if (mPortNum >= 0) {
 		mPadAssign[portNum]++;
 	}
+
 	initList();
 	mPadList.append(&mListLink);
 	update();
@@ -91,10 +93,11 @@ JUTGamePad::JUTGamePad()
  */
 JUTGamePad::~JUTGamePad()
 {
-	if (0 <= mPortNum) {
+	if (mPortNum >= 0) {
 		mPadAssign[mPortNum]--;
 		mPortNum = -1;
 	}
+
 	mPadList.remove(&mListLink);
 }
 
@@ -104,10 +107,12 @@ JUTGamePad::~JUTGamePad()
  */
 void JUTGamePad::initList()
 {
-	if (mListInitialized == false) {
-		mPadList.initiate();
-		mListInitialized = true;
+	if (mListInitialized) {
+		return;
 	}
+
+	mPadList.initiate();
+	mListInitialized = true;
 }
 
 /**
@@ -117,9 +122,8 @@ void JUTGamePad::initList()
  */
 void JUTGamePad::init()
 {
-	PADSetSpec(5);
-	sAnalogMode = PAD_MODE_3;
-	PADSetAnalogMode(PAD_MODE_3);
+	PADSetSpec(PAD_SPEC_5);
+	setAnalogMode(PAD_MODE_3);
 	PADInit();
 }
 
@@ -455,7 +459,8 @@ void JUTGamePad::setStatus_sticks_subroutine(PADStatus*)
 void JUTGamePad::assign()
 {
 	for (int i = 0; i < PAD_MAX_CONTROLLERS; i++) {
-		if (mPadStatus[i].err == 0 && mPadAssign[i] == 0) {
+		// is mPadAssign u8?
+		if (mPadStatus[i].err == 0 && ((u8*)JUTGamePad::mPadAssign)[i] == 0) {
 			mPortNum      = i;
 			mPadAssign[i] = 1;
 			mPadButton[i].setRepeat(mButton._24, mButton._28, mButton._2C);
