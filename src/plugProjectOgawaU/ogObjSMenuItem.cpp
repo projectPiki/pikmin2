@@ -100,18 +100,17 @@ void ObjSMenuItem::doCreate(JKRArchive* arc)
 	mPaneSpray0->move(msVal._08, msVal._0C);
 	mPaneSpray1->move(msVal._10, msVal._14);
 
-	og::Screen::DispMemberSMenuItem* disp = mDisp;
-	if (!disp->mIsBitterUnlocked && !disp->mIsSpicyUnlocked) {
+	if (!mDisp->mIsBitterUnlocked && !mDisp->mIsSpicyUnlocked) {
 		og::Screen::TagSearch(mScreenItems, 'Nwin0')->hide();
 		og::Screen::TagSearch(mScreenItems, 'Nwin1')->hide();
 		og::Screen::TagSearch(mScreenItems, 'NULL_002')->add(-96.0f, 0.0f);
 		mPaneSpraySub0->hide();
 		mPaneSpraySub1->hide();
-	} else if (!disp->mIsBitterUnlocked) {
+	} else if (!mDisp->mIsBitterUnlocked) {
 		og::Screen::TagSearch(mScreenItems, 'Nwin0')->hide();
 		og::Screen::TagSearch(mScreenItems, 'Nwin1')->add(0.0f, -100.0f);
 		mPaneSpraySub0->hide();
-	} else if (!disp->mIsSpicyUnlocked) {
+	} else if (!mDisp->mIsSpicyUnlocked) {
 		og::Screen::TagSearch(mScreenItems, 'Nwin0')->add(0.0f, 80.0f);
 		og::Screen::TagSearch(mScreenItems, 'Nwin1')->hide();
 		mPaneSpraySub1->hide();
