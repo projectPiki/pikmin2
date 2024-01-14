@@ -95,7 +95,7 @@ void LoadState::exec(SingleGameSection* gs)
 
 	} else {
 		if (_14 && !_15) {
-			sys->dvdLoadUseCallBack(&gs->mDvdThread, gs->_224);
+			sys->dvdLoadUseCallBack(&gs->mDvdThread, gs->mLoadGameCallback);
 			_15 = true;
 		}
 		if (gs->mDvdThread.mMode == 2) {

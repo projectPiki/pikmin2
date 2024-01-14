@@ -103,7 +103,6 @@ void SingleGame::FSM::transit(SingleGameSection* game, int sceneNum, Game::State
 /**
  * @note Address: 0x80152548
  * @note Size: 0x40
- * TODO
  */
 SingleGame::State* SingleGame::FSM::getState(int index)
 {
@@ -118,9 +117,9 @@ SingleGame::State* SingleGame::FSM::getState(int index)
  */
 SingleGame::State* SingleGame::State::accountEarnings(SingleGameSection* game, PelletCropMemory* pelletMem, bool flag)
 {
+	KindCounter& ocounter    = pelletMem->getOtakara();
 	PelletOtakara::Mgr* omgr = PelletOtakara::mgr;
-	KindCounter& ocounter    = pelletMem->mOtakara;
-	for (int i = 0; i < ocounter.mNumKinds; i++) {
+	for (int i = 0; i < ocounter.getNumKinds(); i++) {
 		PelletConfig* config = omgr->getPelletConfig(i);
 		if (config) {
 			int money = config->mParams.mMoney.mData;
@@ -142,8 +141,8 @@ SingleGame::State* SingleGame::State::accountEarnings(SingleGameSection* game, P
 
 	if (!game->mDoTrackCarcass) {
 		PelletCarcass::Mgr* cmgr = PelletCarcass::mgr;
-		KindCounter& ccounter    = pelletMem->mCarcass;
-		for (int i = 0; i < ccounter.mNumKinds; i++) {
+		KindCounter& ccounter    = pelletMem->getCarcass();
+		for (int i = 0; i < ccounter.getNumKinds(); i++) {
 			PelletConfig* config = cmgr->getPelletConfig(i);
 			if (config) {
 				int money = config->mParams.mMoney.mData;
@@ -155,8 +154,8 @@ SingleGame::State* SingleGame::State::accountEarnings(SingleGameSection* game, P
 	}
 
 	PelletItem::Mgr* imgr = PelletItem::mgr;
-	KindCounter& icounter = pelletMem->mItem;
-	for (int i = 0; i < icounter.mNumKinds; i++) {
+	KindCounter& icounter = pelletMem->getItem();
+	for (int i = 0; i < icounter.getNumKinds(); i++) {
 		PelletConfig* config = imgr->getPelletConfig(i);
 		if (config) {
 			int money = config->mParams.mMoney.mData;
@@ -331,7 +330,6 @@ SingleGame::State* SingleGame::State::accountEarnings(SingleGameSection* game, P
 /**
  * @note Address: 0x80152788
  * @note Size: 0x160
- * TODO
  */
 void SingleGame::CaveDayEndState::init(SingleGameSection* game, StateArg* arg)
 {
@@ -358,7 +356,6 @@ void SingleGame::CaveDayEndState::init(SingleGameSection* game, StateArg* arg)
 /**
  * @note Address: 0x801528E8
  * @note Size: 0xB4
- * TODO
  */
 void SingleGame::CaveDayEndState::exec(SingleGameSection* section)
 {
@@ -379,7 +376,6 @@ void SingleGame::CaveDayEndState::exec(SingleGameSection* section)
 /**
  * @note Address: 0x801529CC
  * @note Size: 0x3C
- * TODO
  */
 void SingleGame::CaveDayEndState::draw(SingleGameSection* section, Graphics& gfx)
 {
@@ -399,10 +395,10 @@ void SingleGame::CaveDayEndState::cleanup(SingleGameSection* section) { gameSyst
  */
 SingleGameSection::SingleGameSection(JKRHeap* heap)
     : BaseGameSection(heap)
-    , mOpenMenuFlags()
+    , mOpenMenuFlags(0)
 {
-	mPlayerMode = 2;
-	_240        = new Delegate<Game::SingleGameSection>(this, nullptr);
+	mPlayerMode       = 2;
+	mCaveSaveCallback = new Delegate<Game::SingleGameSection>(this, saveCaveMore);
 	newCaveOtakaraEarningsAndDrops();
 }
 
@@ -433,8 +429,8 @@ void SingleGameSection::onInit()
 	_194        = false;
 	clearCaveMenus();
 
-	_11C = 0;
-	_224 = new Delegate<Game::SingleGameSection>(this, nullptr);
+	_11C              = 0;
+	mLoadGameCallback = new Delegate<Game::SingleGameSection>(this, setupFloatMemory);
 
 	mFsm = new SingleGame::FSM;
 	mFsm->init(this);
@@ -447,7 +443,7 @@ void SingleGameSection::onInit()
 	mDoEnd = false;
 
 	Radar::mgr = new Radar::Mgr;
-	disableTimer(0);
+	disableTimer(DEMOTIMER_None);
 }
 
 /**
@@ -842,7 +838,11 @@ void SingleGameSection::clearCaveMenus()
 void SingleGameSection::openCaveInMenu(ItemCave::Item* cave, int naviID)
 {
 	u32 id    = cave->mCaveID.getID();
-	bool isSC = id == 'y_04';
+	bool isSC = false;
+	if (id == 'y_04') {
+		isSC = true;
+	}
+
 	if (!_194 && !(mOpenMenuFlags & 1)) {
 		mCaveIndex = id;
 		og::Screen::DispMemberAnaDemo disp;
@@ -880,294 +880,6 @@ void SingleGameSection::openCaveInMenu(ItemCave::Item* cave, int naviID)
 			gameSystem->setMoviePause(true, "open_caveIn");
 		}
 	}
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stmw     r26, 0x48(r1)
-	mr       r28, r4
-	mr       r27, r3
-	mr       r29, r5
-	li       r31, 0
-	lwz      r4, 0x1f0(r4)
-	addis    r0, r4, 0x86a1
-	cmplwi   r0, 0x3034
-	bne      lbl_80153FE4
-	li       r31, 1
-
-lbl_80153FE4:
-	lbz      r0, 0x194(r27)
-	cmplwi   r0, 0
-	bne      lbl_801543B4
-	lbz      r0, 0x180(r27)
-	clrlwi.  r0, r0, 0x1f
-	bne      lbl_801543B4
-	lis      r3, __vt__Q32og6Screen14DispMemberBase@ha
-	stw      r4, 0x190(r27)
-	li       r8, 0
-	li       r4, 1
-	addi     r9, r3, __vt__Q32og6Screen14DispMemberBase@l
-	stw      r8, 0x38(r1)
-	lis      r7, __vt__Q32og6Screen17DispMemberAnaDemo@ha
-	lis      r3, 0x745F3031@ha
-	addi     r0, r3, 0x745F3031@l
-	li       r6, 0x18
-	li       r5, 0x45
-	stw      r9, 0x18(r1)
-	addi     r7, r7, __vt__Q32og6Screen17DispMemberAnaDemo@l
-	mr       r3, r28
-	stw      r8, 0x1c(r1)
-	stw      r7, 0x18(r1)
-	stw      r6, 0x20(r1)
-	stw      r5, 0x24(r1)
-	stb      r4, 0x37(r1)
-	stw      r4, 0x28(r1)
-	stw      r4, 0x2c(r1)
-	stw      r0, 0x30(r1)
-	stb      r8, 0x34(r1)
-	stb      r8, 0x35(r1)
-	stw      r8, 0x38(r1)
-	bl       getCaveOtakaraNum__Q34Game8ItemCave4ItemFv
-	stw      r3, 0x20(r1)
-	mr       r3, r28
-	bl       getCaveOtakaraMax__Q34Game8ItemCave4ItemFv
-	stw      r3, 0x24(r1)
-	li       r3, -1
-	lwz      r4, playData__4Game@sda21(r13)
-	lbz      r0, 0x2f(r4)
-	clrlwi   r0, r0, 0x1f
-	stb      r0, 0x35(r1)
-	bl       getMapPikmins__Q24Game8GameStatFi
-	mr       r30, r3
-	li       r3, -1
-	bl       getZikatuPikmins__Q24Game8GameStatFi
-	li       r4, 0
-	lwz      r0, pikiMgr__4Game@sda21(r13)
-	lis      r5, "__vt__22Iterator<Q24Game4Piki>"@ha
-	subf     r6, r3, r30
-	addi     r3, r5, "__vt__22Iterator<Q24Game4Piki>"@l
-	cmplwi   r4, 0
-	stw      r6, 0x2c(r1)
-	li       r30, 0
-	stw      r3, 8(r1)
-	stw      r4, 0x14(r1)
-	stw      r4, 0xc(r1)
-	stw      r0, 0x10(r1)
-	bne      lbl_801540E8
-	mr       r3, r0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801542D4
-
-lbl_801540E8:
-	mr       r3, r0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_80154158
-
-lbl_80154104:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801542D4
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_80154158:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80154104
-	b        lbl_801542D4
-
-lbl_80154178:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x17c(r3)
-	mr       r26, r3
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	stw      r0, 0x17c(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80154218
-	mr       r3, r26
-	bl       getCurrActionID__Q24Game4PikiFv
-	cmpwi    r3, 0
-	bne      lbl_80154218
-	mr       r3, r26
-	bl       getStateID__Q24Game4PikiFv
-	cmpwi    r3, 6
-	beq      lbl_80154218
-	cmpwi    r3, 0x12
-	beq      lbl_80154218
-	lwz      r3, 0x2c4(r26)
-	cmplwi   r3, 0
-	beq      lbl_80154218
-	lhz      r0, 0x2dc(r3)
-	cmpw     r29, r0
-	bne      lbl_80154218
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_80154208
-	lbz      r0, 0x2b8(r26)
-	cmpwi    r0, 0
-	bne      lbl_80154218
-
-lbl_80154208:
-	lwz      r0, 0x17c(r26)
-	addi     r30, r30, 1
-	ori      r0, r0, 0x40
-	stw      r0, 0x17c(r26)
-
-lbl_80154218:
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_80154244
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801542D4
-
-lbl_80154244:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801542B8
-
-lbl_80154264:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801542D4
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_801542B8:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80154264
-
-lbl_801542D4:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_80154178
-	stw      r30, 0x28(r1)
-	addi     r4, r1, 0x18
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	lwz      r0, 0x190(r27)
-	stw      r0, 0x30(r1)
-	bl open_CaveInMenu__Q26Screen9Game2DMgrFRQ32og6Screen17DispMemberAnaDemo
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801543B4
-	lwz      r5, playData__4Game@sda21(r13)
-	li       r4, 3
-	li       r0, 0
-	mr       r3, r27
-	stb      r4, 0x19(r5)
-	stw      r0, 0x1c(r5)
-	lwz      r12, 0(r27)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, playData__4Game@sda21(r13)
-	lwz      r4, 0x48(r4)
-	bl       setCurrentCourse__Q24Game8PlayDataFi
-	lwz      r3, playData__4Game@sda21(r13)
-	addi     r4, r28, 0x1e8
-	li       r5, 0
-	bl       setCurrentCave__Q24Game8PlayDataFR4ID32i
-	mr       r3, r27
-	lwz      r12, 0(r27)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	addi     r4, r28, 0x1e8
-	bl       getCaveinfoFilename_FromID__Q24Game10CourseInfoFR4ID32
-	stw      r28, 0x184(r27)
-	lis      r3, lbl_8047CF34@ha
-	addi     r5, r3, lbl_8047CF34@l
-	li       r4, 1
-	lbz      r0, 0x180(r27)
-	li       r6, 3
-	ori      r0, r0, 1
-	stb      r0, 0x180(r27)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	bl       setPause__Q24Game10GameSystemFbPci
-	lis      r4, lbl_8047CF34@ha
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	addi     r5, r4, lbl_8047CF34@l
-	li       r4, 1
-	bl       setMoviePause__Q24Game10GameSystemFbPc
-
-lbl_801543B4:
-	lmw      r26, 0x48(r1)
-	lwz      r0, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
 }
 
 /**
@@ -1255,6 +967,8 @@ bool SingleGameSection::updateCaveMenus()
 	u32 flag = mOpenMenuFlags;
 	if (flag & 1) {
 		switch (Screen::gGame2DMgr->check_CaveInMenu()) {
+		case 0:
+			break;
 		case 1:
 			playData->mNaviLifeMax[NAVIID_Olimar] = naviMgr->mNaviParms->mNaviParms.mMaxHealth;
 			playData->mNaviLifeMax[NAVIID_Louie]  = naviMgr->mNaviParms->mNaviParms.mMaxHealth;
@@ -1268,13 +982,14 @@ bool SingleGameSection::updateCaveMenus()
 			gameSystem->setMoviePause(false, "cave-no");
 			mOpenMenuFlags &= ~1;
 			break;
-		case 0:
 		case 3:
 			gameSystem->setMoviePause(false, "cave-zenkai");
 			break;
 		}
 	} else if (flag & 2) {
 		switch (Screen::gGame2DMgr->check_CaveMoreMenu()) {
+		case 0:
+			break;
 		case 1:
 			playData->mNaviLifeMax[NAVIID_Olimar] = naviMgr->getAt(NAVIID_Olimar)->mHealth;
 			playData->mNaviLifeMax[NAVIID_Louie]  = naviMgr->getAt(NAVIID_Louie)->mHealth;
@@ -1288,7 +1003,6 @@ bool SingleGameSection::updateCaveMenus()
 			gameSystem->setMoviePause(false, "more-no");
 			mOpenMenuFlags &= ~2;
 			break;
-		case 0:
 		case 3:
 			gameSystem->setMoviePause(false, "more-zenkai");
 			break;
@@ -1301,6 +1015,9 @@ bool SingleGameSection::updateCaveMenus()
 			mOpenMenuFlags &= ~4;
 			goMainMap(mFountain);
 			return true;
+		case 0:
+		case 3:
+			break;
 		case 2:
 			gameSystem->setPause(false, "kank-no", 3);
 			gameSystem->setMoviePause(false, "kank-no");
@@ -1308,230 +1025,7 @@ bool SingleGameSection::updateCaveMenus()
 			break;
 		}
 	}
-
 	return false;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lis      r3, lbl_8047CD98@ha
-	stw      r30, 8(r1)
-	addi     r30, r3, lbl_8047CD98@l
-	lbz      r4, 0x180(r31)
-	clrlwi.  r0, r4, 0x1f
-	beq      lbl_80154838
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	bl       check_CaveInMenu__Q26Screen9Game2DMgrFv
-	cmpwi    r3, 2
-	beq      lbl_801547F0
-	bge      lbl_8015476C
-	cmpwi    r3, 0
-	beq      lbl_80154A00
-	bge      lbl_80154778
-	b        lbl_80154A00
-
-lbl_8015476C:
-	cmpwi    r3, 4
-	bge      lbl_80154A00
-	b        lbl_80154824
-
-lbl_80154778:
-	lwz      r6, naviMgr__4Game@sda21(r13)
-	addi     r5, r30, 0x1c4
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 0
-	lwz      r7, 0xc8(r6)
-	li       r6, 3
-	lfs      f0, 0x9d0(r7)
-	stfs     f0, 0x24(r3)
-	lwz      r7, naviMgr__4Game@sda21(r13)
-	lwz      r3, playData__4Game@sda21(r13)
-	lwz      r7, 0xc8(r7)
-	lfs      f0, 0x9d0(r7)
-	stfs     f0, 0x28(r3)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	bl       setPause__Q24Game10GameSystemFbPci
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	addi     r5, r30, 0x1c4
-	li       r4, 0
-	bl       setMoviePause__Q24Game10GameSystemFbPc
-	lbz      r0, 0x180(r31)
-	mr       r3, r31
-	rlwinm   r0, r0, 0, 0x18, 0x1e
-	stb      r0, 0x180(r31)
-	lwz      r12, 0(r31)
-	lwz      r4, 0x184(r31)
-	lwz      r12, 0x70(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 1
-	b        lbl_80154A04
-
-lbl_801547F0:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r4, 0
-	addi     r5, r2, lbl_805185CC@sda21
-	li       r6, 3
-	bl       setPause__Q24Game10GameSystemFbPci
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r4, 0
-	addi     r5, r2, lbl_805185CC@sda21
-	bl       setMoviePause__Q24Game10GameSystemFbPc
-	lbz      r0, 0x180(r31)
-	rlwinm   r0, r0, 0, 0x18, 0x1e
-	stb      r0, 0x180(r31)
-	b        lbl_80154A00
-
-lbl_80154824:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	addi     r5, r30, 0x1d0
-	li       r4, 0
-	bl       setMoviePause__Q24Game10GameSystemFbPc
-	b        lbl_80154A00
-
-lbl_80154838:
-	rlwinm.  r0, r4, 0, 0x1e, 0x1e
-	beq      lbl_80154950
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	bl       check_CaveMoreMenu__Q26Screen9Game2DMgrFv
-	cmpwi    r3, 2
-	beq      lbl_80154908
-	bge      lbl_80154864
-	cmpwi    r3, 0
-	beq      lbl_80154A00
-	bge      lbl_80154870
-	b        lbl_80154A00
-
-lbl_80154864:
-	cmpwi    r3, 4
-	bge      lbl_80154A00
-	b        lbl_8015493C
-
-lbl_80154870:
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x2a0(r3)
-	li       r4, 1
-	lwz      r3, playData__4Game@sda21(r13)
-	stfs     f0, 0x24(r3)
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x2a0(r3)
-	addi     r5, r30, 0x1dc
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 0
-	li       r6, 3
-	stfs     f0, 0x28(r3)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	bl       setPause__Q24Game10GameSystemFbPci
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	addi     r5, r30, 0x1dc
-	li       r4, 0
-	bl       setMoviePause__Q24Game10GameSystemFbPc
-	lbz      r0, 0x180(r31)
-	mr       r3, r31
-	rlwinm   r0, r0, 0, 0x1f, 0x1d
-	stb      r0, 0x180(r31)
-	lwz      r12, 0(r31)
-	lwz      r4, 0x188(r31)
-	lwz      r12, 0x6c(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 1
-	b        lbl_80154A04
-
-lbl_80154908:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r4, 0
-	addi     r5, r2, lbl_805185D4@sda21
-	li       r6, 3
-	bl       setPause__Q24Game10GameSystemFbPci
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r4, 0
-	addi     r5, r2, lbl_805185D4@sda21
-	bl       setMoviePause__Q24Game10GameSystemFbPc
-	lbz      r0, 0x180(r31)
-	rlwinm   r0, r0, 0, 0x1f, 0x1d
-	stb      r0, 0x180(r31)
-	b        lbl_80154A00
-
-lbl_8015493C:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	addi     r5, r30, 0x1e8
-	li       r4, 0
-	bl       setMoviePause__Q24Game10GameSystemFbPc
-	b        lbl_80154A00
-
-lbl_80154950:
-	rlwinm.  r0, r4, 0, 0x1d, 0x1d
-	beq      lbl_80154A00
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	bl       check_KanketuMenu__Q26Screen9Game2DMgrFv
-	cmpwi    r3, 2
-	beq      lbl_801549D0
-	bge      lbl_80154A00
-	cmpwi    r3, 0
-	beq      lbl_80154A00
-	bge      lbl_80154980
-	b        lbl_80154A00
-	b        lbl_80154A00
-
-lbl_80154980:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	addi     r5, r30, 0x1f4
-	li       r4, 0
-	li       r6, 3
-	bl       setPause__Q24Game10GameSystemFbPci
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	addi     r5, r30, 0x1f4
-	li       r4, 0
-	bl       setMoviePause__Q24Game10GameSystemFbPc
-	lbz      r0, 0x180(r31)
-	mr       r3, r31
-	rlwinm   r0, r0, 0, 0x1e, 0x1c
-	stb      r0, 0x180(r31)
-	lwz      r12, 0(r31)
-	lwz      r4, 0x18c(r31)
-	lwz      r12, 0x74(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 1
-	b        lbl_80154A04
-
-lbl_801549D0:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r4, 0
-	addi     r5, r2, lbl_805185DC@sda21
-	li       r6, 3
-	bl       setPause__Q24Game10GameSystemFbPci
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r4, 0
-	addi     r5, r2, lbl_805185DC@sda21
-	bl       setMoviePause__Q24Game10GameSystemFbPc
-	lbz      r0, 0x180(r31)
-	rlwinm   r0, r0, 0, 0x1e, 0x1c
-	stb      r0, 0x180(r31)
-
-lbl_80154A00:
-	li       r3, 0
-
-lbl_80154A04:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -1599,13 +1093,22 @@ void SingleGameSection::createFallPikmins()
 	for (int color = 0; color < PikiColorCount; color++) {
 		for (int happa = 0; happa < 3; happa++) {
 			for (int i = 0; i < playData->mCaveSaveData.mCavePikis.getCount(color, happa); i++) {
+				Vector3f randpos;
+				randpos.x = (40.0f * randFloat() + 15.0f);
+				randpos.y = 770 + (120.0f * randFloat() + 850.0f);
+
+				f32 mod   = randFloat() * TAU;
+				randpos.z = cosf(randpos.x);
+				randpos.x *= sinf(mod);
+
 				PikiMgr::mBirthMode = 2;
 				Piki* piki          = pikiMgr->birth();
 				PikiMgr::mBirthMode = 0;
+				origin += randpos;
 				if (piki) {
 					PikiInitArg arg(PIKISTATE_Tane);
 					piki->init(&arg);
-					piki->setPosition(origin, true);
+					piki->setPosition(origin, false);
 					piki->mFaceDir = randFloat() * TAU;
 					piki->changeShape(color);
 					piki->changeHappa(happa);
@@ -1960,31 +1463,33 @@ void SingleGameSection::setDispMemberSMenu(og::Screen::DispMemberSMenuAll& disp)
 	                             playData->mOlimarData[0].hasItem(OlimarData::ODII_FiveManNapsack));
 
 	// Map screen data
-	disp.mSMenuMap.mDataMap.mOnyonPikminCounts[0]   = playData->mPikiContainer.getColorSum(1);
-	disp.mSMenuMap.mDataMap.mOnyonPikminCounts[1]   = playData->mPikiContainer.getColorSum(2);
-	disp.mSMenuMap.mDataMap.mOnyonPikminCounts[2]   = playData->mPikiContainer.getColorSum(0);
-	disp.mSMenuMap.mDataMap.mOnyonPikminCounts[3]   = playData->mPikiContainer.getColorSum(4);
-	disp.mSMenuMap.mDataMap.mOnyonPikminCounts[4]   = playData->mPikiContainer.getColorSum(3);
+	disp.mSMenuMap.mDataMap.mOnyonPikminCounts[0] = playData->mPikiContainer.getColorSum(1);
+	disp.mSMenuMap.mDataMap.mOnyonPikminCounts[1] = playData->mPikiContainer.getColorSum(2);
+	disp.mSMenuMap.mDataMap.mOnyonPikminCounts[2] = playData->mPikiContainer.getColorSum(0);
+	disp.mSMenuMap.mDataMap.mOnyonPikminCounts[3] = playData->mPikiContainer.getColorSum(4);
+	disp.mSMenuMap.mDataMap.mOnyonPikminCounts[4] = playData->mPikiContainer.getColorSum(3);
+
 	GameStat::PikiNaviCounter& formation            = GameStat::formationPikis;
 	disp.mSMenuMap.mDataMap.mCurrentPikminCounts[0] = formation.getCount(id, 1);
 	disp.mSMenuMap.mDataMap.mCurrentPikminCounts[1] = formation.getCount(id, 2);
 	disp.mSMenuMap.mDataMap.mCurrentPikminCounts[2] = formation.getCount(id, 0);
 	disp.mSMenuMap.mDataMap.mCurrentPikminCounts[3] = formation.getCount(id, 4);
 	disp.mSMenuMap.mDataMap.mCurrentPikminCounts[4] = formation.getCount(id, 3);
-	int form                                        = GameStat::formationPikis;
-	int work                                        = GameStat::workPikis;
-	int alive                                       = GameStat::alivePikis;
-	disp.mSMenuMap.mDataMap.mFreePikmin             = alive - form - work;
-	disp.mSMenuMap.mDataMap.mPokos                  = _aiConstants->mDebt.mData - playData->mPokoCount;
-	disp.mSMenuMap.mInCave                          = gameSystem->mIsInCave;
-	disp.mSMenuMap.mActiveNavi                      = gameSystem->mIsInCave == 0; // ?
-	disp.mSMenuMap.mUnlockedReds                    = playData->hasContainer(Red);
-	disp.mSMenuMap.mUnlockedYellows                 = playData->hasContainer(Yellow);
-	disp.mSMenuMap.mUnlockedBlues                   = playData->hasContainer(Blue);
-	disp.mSMenuMap.mUnlockedWhites                  = playData->hasContainer(White);
-	disp.mSMenuMap.mUnlockedPurples                 = playData->hasContainer(Purple);
-	disp.mSMenuMap.mCurrentCave                     = mCaveIndex;
-	disp.mSMenuMap.mCourseIndex                     = mCurrentCourseInfo->mCourseIndex;
+
+	int form                            = GameStat::formationPikis;
+	int work                            = GameStat::workPikis;
+	int alive                           = GameStat::alivePikis;
+	disp.mSMenuMap.mDataMap.mFreePikmin = alive - form - work;
+	disp.mSMenuMap.mDataMap.mPokos      = _aiConstants->mDebt.mData - playData->mPokoCount;
+	disp.mSMenuMap.mInCave              = gameSystem->mIsInCave;
+	disp.mSMenuMap.mActiveNavi          = gameSystem->mIsInCave == 0; // ?
+	disp.mSMenuMap.mUnlockedReds        = playData->hasContainer(Red);
+	disp.mSMenuMap.mUnlockedYellows     = playData->hasContainer(Yellow);
+	disp.mSMenuMap.mUnlockedBlues       = playData->hasContainer(Blue);
+	disp.mSMenuMap.mUnlockedWhites      = playData->hasContainer(White);
+	disp.mSMenuMap.mUnlockedPurples     = playData->hasContainer(Purple);
+	disp.mSMenuMap.mCurrentCave         = mCaveIndex;
+	disp.mSMenuMap.mCourseIndex         = mCurrentCourseInfo->mCourseIndex;
 
 	// Items screen data
 	disp.mSMenuItem.mSpicySprayCount  = playData->getDopeCount(SPRAY_TYPE_BITTER);
@@ -2395,12 +1900,17 @@ int SingleGameSection::calcOtakaraLevel(f32& dist)
 		Vector3f pos = navi->getPosition();
 		Vector3f out;
 		otastate = Radar::mgr->calcNearestTreasure(pos, 900.0f, out, dist);
-		if (otastate != 2) { // some garbage
-			rand();
+		if (otastate == 2) {
+
+			// some dumbness here
+			if ((dist / 900.0f) - 1.0f < 0.0f) {
+				return otastate;
+			} else if (otastate == 1) {
+				rand();
+			}
 		}
 	}
 	return otastate;
-	// UNUSED FUNCTION
 }
 
 /**
@@ -2499,401 +2009,6 @@ void SingleGameSection::updateMainMapScreen()
 	setDispMemberNavi(disp.mLouieData, 1);
 
 	Screen::gGame2DMgr->setDispMember(&disp);
-	/*
-	stwu     r1, -0xd0(r1)
-	mflr     r0
-	lis      r11, __vt__Q32og6Screen16DispMemberGround@ha
-	lis      r5, __vt__Q32og6Screen21DispMemberDayEndCount@ha
-	stw      r0, 0xd4(r1)
-	lis      r4, __vt__Q32og6Screen14DispMemberBase@ha
-	lfs      f3, lbl_8051861C@sda21(r2)
-	li       r12, 0
-	stw      r31, 0xcc(r1)
-	li       r8, 1
-	lfs      f2, lbl_80518620@sda21(r2)
-	li       r6, 0xa
-	stw      r30, 0xc8(r1)
-	li       r7, 2
-	lfs      f1, lbl_80518624@sda21(r2)
-	li       r10, 0x4d2
-	stw      r29, 0xc4(r1)
-	addi     r29, r4, __vt__Q32og6Screen14DispMemberBase@l
-	lfs      f4, lbl_805185C8@sda21(r2)
-	lis      r4, __vt__Q32og6Screen17DispMemberHurryUp@ha
-	lfs      f0, lbl_80518618@sda21(r2)
-	li       r9, 0x32
-	stw      r29, 0x30(r1)
-	addi     r11, r11, __vt__Q32og6Screen16DispMemberGround@l
-	mr       r30, r3
-	addi     r5, r5, __vt__Q32og6Screen21DispMemberDayEndCount@l
-	stw      r29, 0x98(r1)
-	addi     r0, r4, __vt__Q32og6Screen17DispMemberHurryUp@l
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	stw      r29, 0xa8(r1)
-	stw      r12, 0x34(r1)
-	stw      r11, 0x30(r1)
-	stfs     f4, 0x38(r1)
-	stw      r12, 0x3c(r1)
-	stw      r12, 0x44(r1)
-	stw      r10, 0x40(r1)
-	stw      r9, 0x48(r1)
-	stb      r12, 0x4c(r1)
-	stw      r12, 0x50(r1)
-	stfs     f3, 0x54(r1)
-	stw      r8, 0x58(r1)
-	stw      r7, 0x5c(r1)
-	stw      r6, 0x60(r1)
-	stw      r6, 0x64(r1)
-	stb      r8, 0x68(r1)
-	stfs     f3, 0x6c(r1)
-	stw      r8, 0x70(r1)
-	stw      r7, 0x74(r1)
-	stw      r6, 0x78(r1)
-	stw      r6, 0x7c(r1)
-	stb      r8, 0x80(r1)
-	stw      r12, 0x9c(r1)
-	stw      r5, 0x98(r1)
-	stfs     f2, 0xa4(r1)
-	stfs     f2, 0xa0(r1)
-	stw      r12, 0xac(r1)
-	stw      r0, 0xa8(r1)
-	stfs     f1, 0xb4(r1)
-	stfs     f1, 0xb0(r1)
-	stb      r12, 0x8e(r1)
-	stfs     f0, 0x84(r1)
-	stb      r12, 0x8c(r1)
-	stb      r8, 0x8d(r1)
-	stw      r8, 0x88(r1)
-	stb      r12, 0x8f(r1)
-	stb      r12, 0x90(r1)
-	stb      r12, 0x91(r1)
-	stb      r12, 0x92(r1)
-	stb      r12, 0x93(r1)
-	stb      r12, 0x94(r1)
-	bl       getActiveNavi__Q24Game7NaviMgrFv
-	lfs      f0, lbl_80518618@sda21(r2)
-	cmplwi   r3, 0
-	li       r29, 5
-	stfs     f0, 8(r1)
-	beq      lbl_801556A0
-	mr       r4, r3
-	addi     r3, r1, 0x24
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x24(r1)
-	addi     r4, r1, 0xc
-	lfs      f1, 0x28(r1)
-	addi     r5, r1, 0x18
-	lfs      f0, 0x2c(r1)
-	addi     r6, r1, 8
-	stfs     f2, 0xc(r1)
-	lwz      r3, mgr__5Radar@sda21(r13)
-	stfs     f1, 0x10(r1)
-	lfs      f1, lbl_80518618@sda21(r2)
-	stfs     f0, 0x14(r1)
-	bl       "calcNearestTreasure__Q25Radar3MgrFR10Vector3<f>fR10Vector3<f>Rf"
-	mr       r29, r3
-	cmpwi    r29, 2
-	bne      lbl_80155694
-	lfs      f1, 8(r1)
-	lfs      f0, lbl_80518618@sda21(r2)
-	lfs      f2, lbl_8051861C@sda21(r2)
-	fdivs    f1, f1, f0
-	lfs      f0, lbl_805185C8@sda21(r2)
-	fsubs    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	blt      lbl_801556A0
-	b        lbl_801556A0
-
-lbl_80155694:
-	cmpwi    r29, 1
-	bne      lbl_801556A0
-	bl       rand
-
-lbl_801556A0:
-	lfs      f0, 8(r1)
-	li       r31, 0
-	stw      r29, 0x88(r1)
-	stfs     f0, 0x84(r1)
-	lbz      r0, 0x23e(r30)
-	cmplwi   r0, 0
-	bne      lbl_801556E0
-	cmpwi    r29, 0
-	bne      lbl_801556E0
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	bl       is_GameGround__Q26Screen9Game2DMgrFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801556E0
-	li       r0, 1
-	li       r31, 1
-	stb      r0, 0x23e(r30)
-
-lbl_801556E0:
-	lbz      r0, 0x23d(r30)
-	cmplwi   r0, 0
-	bne      lbl_801556FC
-	cmpwi    r29, 0
-	bne      lbl_801556FC
-	li       r0, 1
-	stb      r0, 0x23d(r30)
-
-lbl_801556FC:
-	lbz      r0, 0x23d(r30)
-	cmplwi   r0, 0
-	beq      lbl_80155724
-	cmpwi    r29, 0
-	beq      lbl_80155724
-	cmpwi    r29, 5
-	beq      lbl_80155724
-	li       r0, 0
-	stb      r0, 0x23d(r30)
-	stb      r0, 0x23e(r30)
-
-lbl_80155724:
-	lbz      r0, 0x23d(r30)
-	li       r4, 8
-	lwz      r3, playData__4Game@sda21(r13)
-	stb      r0, 0x93(r1)
-	addi     r3, r3, 0x48
-	stb      r31, 0x94(r1)
-	bl       hasItem__Q24Game10OlimarDataFi
-	stb      r3, 0x8c(r1)
-	li       r3, -1
-	lwz      r4, gameSystem__4Game@sda21(r13)
-	lwz      r4, 0x40(r4)
-	lwz      r4, 0x218(r4)
-	neg      r0, r4
-	or       r0, r0, r4
-	srwi     r0, r0, 0x1f
-	stb      r0, 0x8d(r1)
-	bl       getMapPikmins__Q24Game8GameStatFi
-	mr       r29, r3
-	li       r3, -1
-	bl       getZikatuPikmins__Q24Game8GameStatFi
-	subf     r0, r3, r29
-	li       r3, -1
-	stw      r0, 0x48(r1)
-	bl       getAllPikmins__Q24Game8GameStatFi
-	mr       r29, r3
-	li       r3, -1
-	bl       getZikatuPikmins__Q24Game8GameStatFi
-	subf     r0, r3, r29
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	stw      r0, 0x40(r1)
-	lwz      r3, 0x40(r3)
-	lwz      r4, 0x218(r3)
-	addi     r0, r4, 1
-	stw      r0, 0x3c(r1)
-	bl       getSunGaugeRatio__Q24Game7TimeMgrFv
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 0x1e
-	stfs     f1, 0x38(r1)
-	lwz      r0, 0xe8(r3)
-	stw      r0, 0x50(r1)
-	bl       isDemoFlag__Q24Game8PlayDataFi
-	mr       r29, r3
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 0x1d
-	bl       isDemoFlag__Q24Game8PlayDataFi
-	mr       r31, r3
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 0x38
-	bl       isDemoFlag__Q24Game8PlayDataFi
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801557FC
-	li       r0, 1
-	stb      r0, 0x8f(r1)
-	b        lbl_80155804
-
-lbl_801557FC:
-	li       r0, 0
-	stb      r0, 0x8f(r1)
-
-lbl_80155804:
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 0x37
-	bl       isDemoFlag__Q24Game8PlayDataFi
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80155824
-	li       r0, 1
-	stb      r0, 0x90(r1)
-	b        lbl_8015582C
-
-lbl_80155824:
-	li       r0, 0
-	stb      r0, 0x90(r1)
-
-lbl_8015582C:
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	bl       is_GameGround__Q26Screen9Game2DMgrFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80155880
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	lwz      r0, 0x18(r3)
-	cmpwi    r0, 0
-	bne      lbl_80155880
-	clrlwi.  r0, r29, 0x18
-	beq      lbl_80155880
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 0x38
-	bl       isDemoFlag__Q24Game8PlayDataFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80155880
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 0x38
-	bl       setDemoFlag__Q24Game8PlayDataFi
-	li       r0, 1
-	stb      r0, 0x91(r1)
-	b        lbl_80155888
-
-lbl_80155880:
-	li       r0, 0
-	stb      r0, 0x91(r1)
-
-lbl_80155888:
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	bl       is_GameGround__Q26Screen9Game2DMgrFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801558DC
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	lwz      r0, 0x18(r3)
-	cmpwi    r0, 0
-	bne      lbl_801558DC
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_801558DC
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 0x37
-	bl       isDemoFlag__Q24Game8PlayDataFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801558DC
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 0x37
-	bl       setDemoFlag__Q24Game8PlayDataFi
-	li       r0, 1
-	stb      r0, 0x92(r1)
-	b        lbl_801558E4
-
-lbl_801558DC:
-	li       r0, 0
-	stb      r0, 0x92(r1)
-
-lbl_801558E4:
-	lwz      r3, playData__4Game@sda21(r13)
-	lbz      r0, 0x2f(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_801558FC
-	li       r0, 1
-	stb      r0, 0x8e(r1)
-
-lbl_801558FC:
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	bl       getActiveNavi__Q24Game7NaviMgrFv
-	cmplwi   r3, 0
-	li       r31, 2
-	beq      lbl_80155914
-	lhz      r31, 0x2dc(r3)
-
-lbl_80155914:
-	lis      r3, formationPikis__Q24Game8GameStat@ha
-	lwzu     r12, formationPikis__Q24Game8GameStat@l(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x58(r1)
-	li       r4, 1
-	lwz      r3, playData__4Game@sda21(r13)
-	bl       getDopeCount__Q24Game8PlayDataFi
-	stw      r3, 0x60(r1)
-	li       r4, 0
-	lwz      r3, playData__4Game@sda21(r13)
-	bl       getDopeCount__Q24Game8PlayDataFi
-	stw      r3, 0x64(r1)
-	li       r4, 0
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	mr       r29, r3
-	bl       getLifeRatio__Q24Game4NaviFv
-	stfs     f1, 0x54(r1)
-	mr       r3, r29
-	bl       ogGetNextThrowPiki__Q24Game4NaviFv
-	cmpwi    r31, 0
-	stw      r3, 0x5c(r1)
-	bne      lbl_80155998
-	li       r3, 1
-	li       r0, 0
-	stb      r3, 0x68(r1)
-	stb      r0, 0x80(r1)
-	b        lbl_801559E4
-
-lbl_80155998:
-	cmpwi    r31, 1
-	bne      lbl_801559B4
-	li       r3, 0
-	li       r0, 1
-	stb      r3, 0x68(r1)
-	stb      r0, 0x80(r1)
-	b        lbl_801559E4
-
-lbl_801559B4:
-	lwz      r0, 0xe4(r30)
-	cmpwi    r0, 0
-	bne      lbl_801559D4
-	li       r3, 0
-	li       r0, 1
-	stb      r3, 0x68(r1)
-	stb      r0, 0x80(r1)
-	b        lbl_801559E4
-
-lbl_801559D4:
-	li       r3, 1
-	li       r0, 0
-	stb      r3, 0x68(r1)
-	stb      r0, 0x80(r1)
-
-lbl_801559E4:
-	lis      r3, formationPikis__Q24Game8GameStat@ha
-	addi     r3, r3, formationPikis__Q24Game8GameStat@l
-	lwzu     r12, 0x20(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x70(r1)
-	li       r4, 1
-	lwz      r3, playData__4Game@sda21(r13)
-	bl       getDopeCount__Q24Game8PlayDataFi
-	stw      r3, 0x78(r1)
-	li       r4, 0
-	lwz      r3, playData__4Game@sda21(r13)
-	bl       getDopeCount__Q24Game8PlayDataFi
-	stw      r3, 0x7c(r1)
-	li       r4, 1
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	mr       r29, r3
-	bl       getLifeRatio__Q24Game4NaviFv
-	stfs     f1, 0x6c(r1)
-	mr       r3, r29
-	bl       ogGetNextThrowPiki__Q24Game4NaviFv
-	stw      r3, 0x74(r1)
-	addi     r4, r1, 0x30
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	bl       setDispMember__Q26Screen9Game2DMgrFPQ32og6Screen14DispMemberBase
-	lwz      r0, 0xd4(r1)
-	lwz      r31, 0xcc(r1)
-	lwz      r30, 0xc8(r1)
-	lwz      r29, 0xc4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xd0
-	blr
-	*/
 }
 
 /**
@@ -2929,8 +2044,8 @@ void SingleGameSection::updateCaveScreen()
 		mNeedTreasureCalc    = false;
 	}
 
-	disp.mAllTreasureGotten = mTreasureRadarActive;
-	disp.mRadarEnabled      = flag;
+	disp.mRadarEnabled      = mTreasureRadarActive;
+	disp.mAllTreasureGotten = flag;
 
 	if (Screen::gGame2DMgr->is_GameCave() && moviePlayer->mDemoState == 0) {
 		disp.mAppearRadar = false;
@@ -2954,7 +2069,8 @@ void SingleGameSection::updateCaveScreen()
 	disp.mDataGame.mTotalPikminCount = GameStat::getAllPikmins(-1);
 	disp.mDataGame.mDayNum           = gameSystem->mTimeMgr->mDayCount + 1;
 	disp.mDataGame.mSunGaugeRatio    = gameSystem->mTimeMgr->getSunGaugeRatio();
-	disp.mDataGame.mPokoCount        = playData->mCavePokoCount + playData->mPokoCount;
+
+	disp.mDataGame.mPokoCount = playData->mCavePokoCount + playData->mPokoCount; // regswap here
 
 	if (playData->mStoryFlags & STORY_DebtPaid) {
 		disp.mPayDebt = true;
@@ -3339,8 +2455,8 @@ void SingleGameSection::newCaveOtakaraEarningsAndDrops()
 {
 	int otakaraCount = PelletList::Mgr::getCount(PelletList::OTAKARA);
 	int itemCount    = PelletList::Mgr::getCount(PelletList::ITEM);
-	_254.alloc(otakaraCount);
-	_25C.alloc(itemCount);
+	mCaveTreasureCounter.alloc(otakaraCount);
+	mCaveUpgradeCounter.alloc(itemCount);
 	mOtakaraCounter.alloc(otakaraCount);
 	mItemCounter.alloc(itemCount);
 	mDoTrackCarcass = 0;
@@ -3352,8 +2468,8 @@ void SingleGameSection::newCaveOtakaraEarningsAndDrops()
  */
 void SingleGameSection::clearCaveOtakaraEarningsAndDrops()
 {
-	_254.clear();
-	_25C.clear();
+	mCaveTreasureCounter.clear();
+	mCaveUpgradeCounter.clear();
 	mOtakaraCounter.clear();
 	mItemCounter.clear();
 	mDoTrackCarcass = 0;

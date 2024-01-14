@@ -22,7 +22,7 @@ struct State;
 } // namespace SingleGame
 
 enum DemoTimers {
-	DEMOTIMER_Unk0                   = 0,
+	DEMOTIMER_None                   = 0,
 	DEMOTIMER_Piki_Seed_In_Ground    = 1, // plays if you dont pluck the first red pikmin in 10 seconds
 	DEMOTIMER_Camera_Tutorial        = 2, // Entirely unused, the camera tutorial was meant to use it, but nothing starts its timer
 	DEMOTIMER_Unlock_Switch_To_Louie = 3,
@@ -95,35 +95,35 @@ struct SingleGameSection : public BaseGameSection {
 
 	inline void setCurrState(StateType* state) { mCurrentState = state; }
 
-	f32 mTimer;                                    // _174
-	bool mTimerEnabled;                            // _178
-	u32 mTimerType;                                // _17C
-	u8 mOpenMenuFlags;                             // _180
-	struct Game::ItemCave::Item* mCurrentCave;     // _184
-	struct Game::ItemHole::Item* mHole;            // _188
-	struct Game::ItemBigFountain::Item* mFountain; // _18C
-	u32 mCaveIndex;                                // _190
-	bool _194;                                     // _194
-	char mCaveFilename[0x20];                      // _195
-	bool mDoEnd;                                   // _1B5
-	DvdThreadCommand mDvdThread;                   // _1B8
-	Delegate<Game::SingleGameSection>* _224;       // _224
-	u8 _228;                                       // _228
-	Game::CourseInfo* mCurrentCourseInfo;          // _22C
-	ID32 mCaveID;                                  // _230
-	bool mInCave;                                  // _23C
-	u8 mTreasureRadarActive;                       // _23D
-	bool mNeedTreasureCalc;                        // _23E
-	Delegate<Game::SingleGameSection>* _240;       // _240
-	efx::TChasePos* mWeatherEfx;                   // _244
-	int mCurrentFloor;                             // _248
-	Game::SingleGame::FSM* mFsm;                   // _24C
-	Game::SingleGame::GameState* mCurrentState;    // _250
-	KindCounter _254;                              // _254
-	KindCounter _25C;                              // _25C
-	KindCounter mOtakaraCounter;                   // _264
-	KindCounter mItemCounter;                      // _26C
-	u8 mDoTrackCarcass;                            // _274
+	f32 mTimer;                                           // _174
+	bool mTimerEnabled;                                   // _178
+	u32 mTimerType;                                       // _17C
+	u8 mOpenMenuFlags;                                    // _180
+	struct Game::ItemCave::Item* mCurrentCave;            // _184
+	struct Game::ItemHole::Item* mHole;                   // _188
+	struct Game::ItemBigFountain::Item* mFountain;        // _18C
+	u32 mCaveIndex;                                       // _190
+	bool _194;                                            // _194
+	char mCaveFilename[0x20];                             // _195
+	bool mDoEnd;                                          // _1B5
+	DvdThreadCommand mDvdThread;                          // _1B8
+	Delegate<Game::SingleGameSection>* mLoadGameCallback; // _224
+	u8 _228;                                              // _228
+	Game::CourseInfo* mCurrentCourseInfo;                 // _22C
+	ID32 mCaveID;                                         // _230
+	bool mInCave;                                         // _23C
+	bool mTreasureRadarActive;                            // _23D
+	bool mNeedTreasureCalc;                               // _23E
+	Delegate<Game::SingleGameSection>* mCaveSaveCallback; // _240
+	efx::TChasePos* mWeatherEfx;                          // _244
+	int mCurrentFloor;                                    // _248
+	Game::SingleGame::FSM* mFsm;                          // _24C
+	Game::SingleGame::GameState* mCurrentState;           // _250
+	KindCounter mCaveTreasureCounter;                     // _254
+	KindCounter mCaveUpgradeCounter;                      // _25C
+	KindCounter mOtakaraCounter;                          // _264
+	KindCounter mItemCounter;                             // _26C
+	u8 mDoTrackCarcass;                                   // _274
 #if BUILDTARGET == USADEMO1
 	u8 _DemoPadding2[0x4];
 #endif

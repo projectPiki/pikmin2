@@ -148,7 +148,7 @@ struct DispMemberCave : public DispMemberBase {
 	int mRadarState;         // _58
 	u8 mDrawSensor;          // _5C
 	u8 mPayDebt;             // _5D
-	u8 mIsFinalFloor;        // _5E
+	bool mIsFinalFloor;      // _5E
 	u8 mAppearRadar;         // _5F
 	bool mRadarEnabled;      // _60
 	bool mAllTreasureGotten; // _61
