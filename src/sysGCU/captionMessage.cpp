@@ -18,7 +18,7 @@ TRenderingProcessor::TRenderingProcessor(JMessage::TReference* ref)
  * @note Address: 0x80450FC0
  * @note Size: 0xC
  */
-void TRenderingProcessor::doGetDrawInfo(Window::DrawInfo* info) { info->_20 = 0.26666669f; }
+void TRenderingProcessor::doGetDrawInfo(Window::DrawInfo* info) { info->mTimeLimit = 0.26666669f; }
 
 /**
  * @note Address: 0x80450FCC
@@ -37,7 +37,7 @@ BOOL TRenderingProcessor::doDrawCommon(f32 x, f32 y, Matrixf* mtx1, Matrixf* mtx
 	if (info) {
 		Vector3f t(x, y, 0.0f);
 		mtx.makeT(t);
-		ret = ret * (info->mTimer / info->_20);
+		ret = ret * (info->mTimer / info->mTimeLimit);
 	} else {
 		Vector3f t(x, y, 0.0f);
 		mtx.makeT(t);

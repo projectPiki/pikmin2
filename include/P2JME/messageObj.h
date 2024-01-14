@@ -74,7 +74,7 @@ struct DrawInfo : public CNode {
 
 	f32 getCalc()
 	{
-		f32 calc = mTimer / _20;
+		f32 calc = mTimer / mTimeLimit;
 		calc *= TAU * 2.0f;
 		return calc;
 	}
@@ -83,7 +83,7 @@ struct DrawInfo : public CNode {
 	// _00-_18 = CNode
 	u32 _18;    // _18
 	f32 mTimer; // _1C
-	f32 _20;    // _20
+	f32 mTimeLimit;    // _20
 };
 
 struct DrawInfoMgr {

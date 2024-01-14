@@ -236,9 +236,9 @@ namespace Window {
 DrawInfo::DrawInfo()
     : CNode("")
 {
-	_18    = -1;
-	mTimer = 0.0f;
-	_20    = 0.5f;
+	_18        = -1;
+	mTimer     = 0.0f;
+	mTimeLimit = 0.5f;
 }
 
 /**
@@ -1373,8 +1373,8 @@ void TRenderingProcessor::update()
 	FOREACH_NODE(DrawInfo, mDrawInfo.mInfoList1.mChild, node)
 	{
 		node->mTimer += sys->mDeltaTime;
-		if (node->mTimer > node->_20) {
-			node->mTimer = node->_20;
+		if (node->mTimer > node->mTimeLimit) {
+			node->mTimer = node->mTimeLimit;
 		}
 	}
 }
