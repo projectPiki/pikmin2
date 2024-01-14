@@ -44,11 +44,11 @@ void Obj::onInit(CreatureInitArg* initArg)
 		_2C0 *= 5;
 	}
 
-	_2C4 = 0.7f + 0.3f * randFloat();
-	_2C8 = 0.7f + 0.3f * randFloat();
-	_2CC = 0.3f + 0.7f * randFloat();
-	_2FC = 0.0f;
-	_300 = false;
+	mRandomTurnFactor   = 0.7f + 0.3f * randFloat();
+	mRandomSpeedFactor  = 0.7f + 0.3f * randFloat();
+	_2CC                = 0.3f + 0.7f * randFloat();
+	mMoveRotationOffset = 0.0f;
+	_300                = false;
 
 	Vector3f dir = Vector3f(sinf(mFaceDir), 0.0f, cosf(mFaceDir));
 	setGoalDirect(dir);
@@ -335,58 +335,58 @@ void Obj::walkFunc()
 	mRotation.z *= 0.9f;
 
 	f32 x, y, z;
-	f32 faceDirOffset;
-	f32 targetSpeed    = _2C8 * C_GENERALPARMS.mMoveSpeed();
+	f32 newDir;
+	f32 targetSpeed    = mRandomSpeedFactor * C_GENERALPARMS.mMoveSpeed();
 	f32 offsetFactor   = C_PARMS->_924 * _2CC;
-	f32 dirChangeLimit = _2C4 * C_GENERALPARMS.mMaxTurnAngle();
+	f32 dirChangeLimit = mRandomTurnFactor * C_GENERALPARMS.mMaxTurnAngle();
 
-	_2FC += C_PARMS->_928;
-	if (_2FC > 360.0f) {
-		_2FC -= 360.0f;
+	mMoveRotationOffset += C_PARMS->mRotationStep;
+	if (mMoveRotationOffset > 360.0f) {
+		mMoveRotationOffset -= 360.0f;
 	}
 
-	f32 sinVal = offsetFactor * (f32)sin(_2FC);
-	if (C_PARMS->_920) {
+	f32 sinVal = offsetFactor * (f32)sin(mMoveRotationOffset);
+	if (C_PARMS->mDisableWanderRotation) {
 		sinVal = 0.0f;
 	}
 
-	f32 val       = sinVal * _2D0;
-	faceDirOffset = TORADIANS(val);
+	const f32 dir = sinVal * mMoveRotationTimer;
+	newDir        = TORADIANS(dir);
 
-	_2D0 += 0.1f;
-	if (_2D0 > 1.0f) {
-		_2D0 = 1.0f;
+	mMoveRotationTimer += 0.1f;
+	if (mMoveRotationTimer > 1.0f) {
+		mMoveRotationTimer = 1.0f;
 	}
 
-	if (C_PARMS->_921) {
-		_2D4 += 1.0f;
-		if (_2D4 > _2D8) {
-			_2DC = !_2DC;
-			_2D8 = C_PARMS->_92C * randFloat();
-			_2D4 = 0.0f;
+	if (C_PARMS->mEnableSpeedAdjustment) {
+		mWalkSpeedAdjustmentTimer += 1.0f;
+		if (mWalkSpeedAdjustmentTimer > mWalkSpeedAdjustmentTimeLimit) {
+			mWalkSpeedAdjustmentEnabled   = !mWalkSpeedAdjustmentEnabled;
+			mWalkSpeedAdjustmentTimeLimit = C_PARMS->mWalkSpeedAdjustmentTimeLimit * randFloat();
+			mWalkSpeedAdjustmentTimer     = 0.0f;
 		}
 
-		if (_2DC && _2D4 < _2D8) {
-			targetSpeed *= (C_PARMS->_930 * (1.0f - (_2D4 / _2D8)));
+		if (mWalkSpeedAdjustmentEnabled && mWalkSpeedAdjustmentTimer < mWalkSpeedAdjustmentTimeLimit) {
+			targetSpeed *= (C_PARMS->mWalkSpeedReductionFactor * (1.0f - (mWalkSpeedAdjustmentTimer / mWalkSpeedAdjustmentTimeLimit)));
 		}
 	}
 
-	mFaceDir = _2EC;
+	mFaceDir = mPreviousFaceDir;
 
-	f32 angle = mFaceDir + faceDirOffset;
-	x         = targetSpeed * sinf(angle);
-	y         = getTargetVelocity().y;
-	z         = targetSpeed * cosf(angle);
-	_2EC      = mFaceDir;
-	if (absF(faceDirOffset) > dirChangeLimit) {
-		if (faceDirOffset > 0.0f) {
-			faceDirOffset = dirChangeLimit;
+	f32 angle        = mFaceDir + newDir;
+	x                = targetSpeed * sinf(angle);
+	y                = getTargetVelocity().y;
+	z                = targetSpeed * cosf(angle);
+	mPreviousFaceDir = mFaceDir;
+	if (absF(newDir) > dirChangeLimit) {
+		if (newDir > 0.0f) {
+			newDir = dirChangeLimit;
 		} else {
-			faceDirOffset = -dirChangeLimit;
+			newDir = -dirChangeLimit;
 		}
 	}
 
-	updateFaceDir(mFaceDir + roundAng(faceDirOffset));
+	updateFaceDir(mFaceDir + roundAng(newDir));
 
 	mTargetVelocity = Vector3f(x, y, z);
 }
@@ -429,7 +429,8 @@ void Obj::setGoalDirect(Vector3f& pos)
  */
 bool Obj::turnFunc()
 {
-	f32 angle = turnToTarget2(mGoalPosition, _2C4 * C_GENERALPARMS.mTurnSpeed(), _2C4 * C_GENERALPARMS.mMaxTurnAngle());
+	f32 angle
+	    = turnToTarget2(mGoalPosition, mRandomTurnFactor * C_GENERALPARMS.mTurnSpeed(), mRandomTurnFactor * C_GENERALPARMS.mMaxTurnAngle());
 	if (absF(angle) < 0.1f) {
 		return true;
 	}
@@ -467,11 +468,11 @@ bool Obj::isReachToGoal(f32 goalRadius)
  */
 void Obj::resetWalkParm()
 {
-	_2D0 = 0.0f;
-	_2D4 = 0.0f;
-	_2D8 = C_PARMS->_92C;
-	_2DC = false;
-	_2EC = mFaceDir;
+	mMoveRotationTimer            = 0.0f;
+	mWalkSpeedAdjustmentTimer     = 0.0f;
+	mWalkSpeedAdjustmentTimeLimit = C_PARMS->mWalkSpeedAdjustmentTimeLimit;
+	mWalkSpeedAdjustmentEnabled   = false;
+	mPreviousFaceDir              = mFaceDir;
 }
 
 /**

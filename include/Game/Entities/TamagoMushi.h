@@ -47,20 +47,20 @@ struct Parms : public EnemyParmsBase {
 
 	Parms()
 	{
-		_920 = 0;
-		_921 = 0;
-		_922 = 0;
-		_923 = 0;
-		_924 = 40.0f;
-		_928 = 0.3f;
-		_92C = 10.0f;
-		_930 = 0.2f;
-		_934 = 50.0f;
-		_938 = 80.0f;
-		_93C = 80.0f;
-		_940 = 0.0f;
-		_944 = 30.0f;
-		_948 = 150.0f;
+		mDisableWanderRotation        = 0;
+		mEnableSpeedAdjustment        = 0;
+		_922                          = 0;
+		_923                          = 0;
+		_924                          = 40.0f;
+		mRotationStep                 = 0.3f;
+		mWalkSpeedAdjustmentTimeLimit = 10.0f;
+		mWalkSpeedReductionFactor     = 0.2f;
+		_934                          = 50.0f;
+		_938                          = 80.0f;
+		_93C                          = 80.0f;
+		_940                          = 0.0f;
+		_944                          = 30.0f;
+		_948                          = 150.0f;
 	}
 
 	virtual void read(Stream& stream) // _08 (weak)
@@ -71,21 +71,21 @@ struct Parms : public EnemyParmsBase {
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms mProperParms; // _7F8
-	u8 _920;                  // _920
-	u8 _921;                  // _921
-	u8 _922;                  // _922
-	u8 _923;                  // _923
-	f32 _924;                 // _924
-	f32 _928;                 // _928
-	f32 _92C;                 // _92C
-	f32 _930;                 // _930
-	f32 _934;                 // _934
-	f32 _938;                 // _938
-	f32 _93C;                 // _93C
-	f32 _940;                 // _940
-	f32 _944;                 // _944
-	f32 _948;                 // _948
+	ProperParms mProperParms;          // _7F8
+	u8 mDisableWanderRotation;         // _920
+	u8 mEnableSpeedAdjustment;         // _921
+	u8 _922;                           // _922
+	u8 _923;                           // _923
+	f32 _924;                          // _924
+	f32 mRotationStep;                 // _928
+	f32 mWalkSpeedAdjustmentTimeLimit; // _92C
+	f32 mWalkSpeedReductionFactor;     // _930
+	f32 _934;                          // _934
+	f32 _938;                          // _938
+	f32 _93C;                          // _93C
+	f32 _940;                          // _940
+	f32 _944;                          // _944
+	f32 _948;                          // _948
 };
 
 struct Obj : public EnemyBase {
@@ -140,25 +140,25 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	int _2BC;                     // _2BC
-	int _2C0;                     // _2C0
-	f32 _2C4;                     // _2C4
-	f32 _2C8;                     // _2C8
-	f32 _2CC;                     // _2CC
-	f32 _2D0;                     // _2D0
-	f32 _2D4;                     // _2D4
-	f32 _2D8;                     // _2D8
-	bool _2DC;                    // _2DC
-	Vector3f mGoalPosition;       // _2E0
-	f32 _2EC;                     // _2EC
-	bool _2F0;                    // _2F0
-	Obj* mLeader;                 // _2F4
-	SysShape::Joint* mKoshiJoint; // _2F8
-	f32 _2FC;                     // _2FC
-	bool _300;                    // _300
-	int _304;                     // _304, unknown
-	FSM* mFsm;                    // _308
-	                              // _30C = PelletView
+	int _2BC;                          // _2BC
+	int _2C0;                          // _2C0
+	f32 mRandomTurnFactor;             // _2C4
+	f32 mRandomSpeedFactor;            // _2C8
+	f32 _2CC;                          // _2CC
+	f32 mMoveRotationTimer;            // _2D0
+	f32 mWalkSpeedAdjustmentTimer;     // _2D4
+	f32 mWalkSpeedAdjustmentTimeLimit; // _2D8
+	bool mWalkSpeedAdjustmentEnabled;  // _2DC
+	Vector3f mGoalPosition;            // _2E0
+	f32 mPreviousFaceDir;              // _2EC
+	bool _2F0;                         // _2F0
+	Obj* mLeader;                      // _2F4
+	SysShape::Joint* mKoshiJoint;      // _2F8
+	f32 mMoveRotationOffset;           // _2FC
+	bool _300;                         // _300
+	int _304;                          // _304, unknown
+	FSM* mFsm;                         // _308
+	                                   // _30C = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
