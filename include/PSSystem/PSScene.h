@@ -8,6 +8,10 @@
 #include "PSSystem/Seq.h"
 #include "PSSystem/WaveScene.h"
 
+namespace PSM {
+struct SceneBase;
+}
+
 namespace PSSystem {
 
 /**
@@ -37,6 +41,8 @@ struct Scene {
 		P2ASSERTLINE(74, mWaveLoader);
 		mWaveLoader->mWaveSceneID[1] = id;
 	}
+
+	inline PSM::SceneBase* toSceneBase() { return reinterpret_cast<PSM::SceneBase*>(this); }
 
 	// _00 = VTBL
 	Scene* mChild;           // _04
