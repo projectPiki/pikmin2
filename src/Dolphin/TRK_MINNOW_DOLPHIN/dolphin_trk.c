@@ -307,28 +307,36 @@ void __read_aram_1block(void)
 	// UNUSED FUNCTION
 }
 
+#define __dcbi(a, b) asm { dcbi a, b }
+
 /**
  * @note Address: 0x800BFEFC
  * @note Size: 0x1EC
  */
-void TRK__write_aram(int c, void* p2, void* p3)
+void TRK__write_aram(int c, register u32 p2, void* p3)
 {
-	u8 buff[0x40] ATTRIBUTE_ALIGN(16);
+	u8 buff[60] ATTRIBUTE_ALIGN(16);
 	u32 err;
 	int i;
 	register int count = c;
 	register int counter;
-	u32 r;
+	u16 r;
 	u32 g;
+	u32 uVar1;
+	u32 uVar4;
+	u32 uVar2;
 
-	if ((size_t)p2 < 0x4000 || *(u32*)p2 > 0x8000000) {
+
+	if ((size_t)p2 < 0x4000 || p2 + *(u32*)p3 > 0x8000000) {
 		return;
 	}
 
+	uVar1   = p2 & ~0x1f;
 	counter = 0;
+	uVar2   = *(u32*)p3 + (p2 & 0x1f) + 0x1f & ~0x1f;
 
 	for (i = 0; i < c; i++) {
-		asm { dcbf counter, count }
+		__dcbf((void*)counter, count);
 		counter += 0x20;
 	}
 
@@ -338,36 +346,35 @@ void TRK__write_aram(int c, void* p2, void* p3)
 
 	r = __ARGetInterruptStatus();
 	g = 0x8000000;
-	if ((u32)p2 & 0x1f) {
-		g = (u32)p2 & ~0x1f;
+	if (p2 & 0x1f) {
+		__dcbi(counter, count);
 		__ARClearInterrupt();
 
-		ARStartDMA(1, (u32)p2, (u32)p3, 0x20);
+		ARStartDMA(1, p2, (u32)p3, 0x20);
 
-		do {
-		} while (!(__ARGetInterruptStatus() & 0xffff));
+		while (!__ARGetInterruptStatus()) { }
 
-		TRK_memcpy((void*)c, buff, counter);
-		asm {dcbf counter, count }
+		TRK_memcpy((void*)c, buff, p2);
+		__dcbf((void*)counter, count);
 	}
 
 	if (((*(u32*)p3) + g) & 0x1f) {
 		if ((*(u32*)p3) != (g & ~0x1f)) {
+			__dcbi(0, count);
 			__ARClearInterrupt();
-			ARStartDMA(1, 0, 0, 0);
-			while (!(__ARGetInterruptStatus() & 0xffff))
-				;
-		}
-		TRK_memcpy((void*)c, p2, 0);
+			ARStartDMA(1, (size_t)buff, (u32)p2, 0x20);
 
-		asm {dcbf counter, count }
+			while (!__ARGetInterruptStatus()) { }
+		}
+		TRK_memcpy((void*)((size_t)c + p2), buff, 0x20 - counter);
+
+		__dcbf((void*)c, p2);
 	}
 	__sync();
 	__ARClearInterrupt();
-	ARStartDMA(0, 0, 0, 0);
-	if (!(r & 0xffff)) {
-		do {
-		} while (!(__ARGetInterruptStatus() & 0xffff));
+	ARStartDMA(0, c, uVar1, uVar2);
+	if (!r) {
+		while (!__ARGetInterruptStatus()) { }
 
 		__ARClearInterrupt();
 	}

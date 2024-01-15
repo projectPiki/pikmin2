@@ -52,7 +52,7 @@ u32 ARGetInternalSize();
 void ARClear(u32 flag);
 
 ////////////////////////////////////////////
-
+u16 __ARGetInterruptStatus();
 //////////////// AR DEFINES ////////////////
 // AR defines.
 #define AR_STACK_INDEX_ENTRY_SIZE sizeof(u32)
