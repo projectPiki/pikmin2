@@ -326,7 +326,6 @@ void TRK__write_aram(int c, register u32 p2, void* p3)
 	u32 uVar4;
 	u32 uVar2;
 
-
 	if ((size_t)p2 < 0x4000 || p2 + *(u32*)p3 > 0x8000000) {
 		return;
 	}

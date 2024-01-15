@@ -112,7 +112,7 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	BaseItemMgr* mNodeItemMgr;    // _180
 	u32 _184;                     // _184
 	u32 _188;                     // _188
-	Sys::Triangle* _18C;          // _18C
+	Sys::Triangle* mCollTriangle; // _18C
 	Vector3f mVelocity;           // _190
 	Vector3f mPosition;           // _19C
 	SysShape::Animator mAnimator; // _1A8

@@ -81,9 +81,9 @@ struct DrawInfo : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	u32 _18;    // _18
-	f32 mTimer; // _1C
-	f32 mTimeLimit;    // _20
+	u32 _18;        // _18
+	f32 mTimer;     // _1C
+	f32 mTimeLimit; // _20
 };
 
 struct DrawInfoMgr {

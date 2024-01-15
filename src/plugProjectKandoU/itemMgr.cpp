@@ -862,9 +862,29 @@ void BaseItem::move(f32 p1)
 	Sys::Sphere moveSphere(mPosition, getMapCollisionRadius());
 	MoveInfo info(&moveSphere, &mVelocity, 1.0f);
 	info.mInfoOrigin = this;
+
 	mapMgr->traceMove(info, p1);
+	Sys::Triangle* mapTri = info.mBounceTriangle;
 	platMgr->traceMove(info, p1);
-	// TODO: looks like an inline involving info._44?
+
+	if (!mCollTriangle) {
+		if (!mapTri) {
+			if (info.mBounceTriangle) {
+				bounceCallback(info.mBounceTriangle);
+				mCollTriangle = info.mBounceTriangle;
+			} else {
+				mCollTriangle = nullptr;
+			}
+		} else {
+			bounceCallback(mapTri);
+			mCollTriangle = mapTri;
+		}
+	} else {
+		mCollTriangle = nullptr;
+	}
+
+	mPosition = moveSphere.mPosition;
+	mPosition.y -= moveSphere.mRadius;
 
 	/*
 	stwu     r1, -0xe0(r1)
@@ -1052,13 +1072,6 @@ void CFSMItem::initFSM()
 }
 
 /**
- * @generated{init__Q24Game30StateMachine<Q24Game8CFSMItem>FPQ24Game8CFSMItem}
- * @note Address: 0x801CC9F4
- * @note Size: 0x4
- */
-// void StateMachine<Game::CFSMItem>::init(Game::CFSMItem*) { }
-
-/**
  * doAI__Q24Game8CFSMItemFv
  * @note Address: 0x801CC9F8
  * @note Size: 0x34
@@ -1069,11 +1082,7 @@ void CFSMItem::doAI() { mFsm->exec(this); }
  * @note Address: 0x801CCA2C
  * @note Size: 0x8
  */
-void CFSMItem::setCurrState(FSMState<CFSMItem>* state)
-{
-	// Generated from stw r4, 0x1DC(r3)
-	mCurrentState = state;
-}
+void CFSMItem::setCurrState(FSMState<CFSMItem>* state) { mCurrentState = state; }
 
 /**
  * @note Address: 0x801CCA34
@@ -1105,13 +1114,6 @@ void CFSMItem::bounceCallback(Sys::Triangle* tri)
 }
 
 /**
- * @generated
- * @note Address: 0x801CCA9C
- * @note Size: 0x4
- */
-// void CItemState::onBounce(Game::CFSMItem*, Sys::Triangle*) { }
-
-/**
  * @note Address: 0x801CCAA0
  * @note Size: 0x44
  */
@@ -1121,13 +1123,6 @@ void CFSMItem::collisionCallback(Game::CollEvent& event)
 		static_cast<CItemState*>(mCurrentState)->onCollision(this, event);
 	}
 }
-
-/**
- * @generated
- * @note Address: 0x801CCAE4
- * @note Size: 0x4
- */
-// void CItemState::onCollision(Game::CFSMItem*, Game::CollEvent&) { }
 
 /**
  * @note Address: 0x801CCAE8
@@ -1141,13 +1136,6 @@ void CFSMItem::platCallback(Game::PlatEvent& event)
 }
 
 /**
- * @generated
- * @note Address: 0x801CCB2C
- * @note Size: 0x4
- */
-// void CItemState::onPlatCollision(Game::CFSMItem*, Game::PlatEvent&) { }
-
-/**
  * @note Address: 0x801CCB30
  * @note Size: 0x44
  */
@@ -1157,13 +1145,6 @@ void CFSMItem::onKeyEvent(const SysShape::KeyEvent& event)
 		static_cast<CItemState*>(mCurrentState)->onKeyEvent(this, event);
 	}
 }
-
-/**
- * @generated
- * @note Address: 0x801CCB74
- * @note Size: 0x4
- */
-// void CItemState::onKeyEvent(Game::CFSMItem*, const SysShape::KeyEvent&) { }
 
 /**
  * actItem__Q24Game14InteractAttackFPQ24Game8BaseItem
@@ -1267,7 +1248,8 @@ void BaseItemMgr::loadArchive(char* fileName)
 	char pathBuffer[512];
 	sprintf(pathBuffer, "%s/%s", mObjectPathComponent, fileName);
 	LoadResource::Arg loadArg(pathBuffer);
-	loadArg.mHeap                = JKRHeap::sCurrentHeap;
+	loadArg.mHeap = JKRGetCurrentHeap();
+
 	LoadResource::Node* loadNode = gLoadResourceMgr->mountArchive(loadArg);
 	if (loadNode) {
 		mArchive = (JKRMemArchive*)loadNode->mArchive;
@@ -1344,59 +1326,13 @@ JKRArchive* BaseItemMgr::openTextArc(char* fileName)
 {
 	char pathBuffer[512];
 	sprintf(pathBuffer, "%s/%s", mObjectPathComponent, fileName);
+
 	LoadResource::Arg loadArg(pathBuffer);
+	loadArg.mHeap     = JKRGetCurrentHeap();
 	loadArg.mAllocDir = JKRDvdRipper::ALLOC_DIR_BOTTOM;
-	loadArg.mHeap     = JKRHeap::sCurrentHeap;
-	// LoadResource::Node* loadNode = gLoadResourceMgr->mountArchive(loadArg);
-	// mNode = loadNode;
-	mResourceNode = gLoadResourceMgr->mountArchive(loadArg);
-	// JKRArchive* archive;
-	// if (mNode ) {
-	// 	archive = mNode->mArchive;
-	// } else {
-	// 	archive = nullptr;
-	// }
-	// return archive;
-	return (mResourceNode != nullptr) ? mResourceNode->mArchive : nullptr;
-	/*
-	stwu     r1, -0x240(r1)
-	mflr     r0
-	mr       r6, r4
-	addi     r4, r2, lbl_80519628@sda21
-	stw      r0, 0x244(r1)
-	stw      r31, 0x23c(r1)
-	mr       r31, r3
-	lwz      r5, 0x28(r3)
-	addi     r3, r1, 0x38
-	crclr    6
-	bl       sprintf
-	addi     r3, r1, 8
-	addi     r4, r1, 0x38
-	bl       __ct__Q212LoadResource3ArgFPCc
-	lwz      r5, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r0, 2
-	stw      r0, 0x24(r1)
-	addi     r4, r1, 8
-	lwz      r3, gLoadResourceMgr@sda21(r13)
-	stw      r5, 0x20(r1)
-	bl       mountArchive__Q212LoadResource3MgrFRQ212LoadResource3Arg
-	stw      r3, 0xc(r31)
-	lwz      r3, 0xc(r31)
-	cmplwi   r3, 0
-	beq      lbl_801CD238
-	lwz      r3, 0x34(r3)
-	b        lbl_801CD23C
+	mResourceNode     = gLoadResourceMgr->mountArchive(loadArg);
 
-lbl_801CD238:
-	li       r3, 0
-
-lbl_801CD23C:
-	lwz      r0, 0x244(r1)
-	lwz      r31, 0x23c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x240
-	blr
-	*/
+	return (mResourceNode) ? mResourceNode->mArchive : nullptr;
 }
 
 /**
@@ -1415,7 +1351,7 @@ void BaseItemMgr::closeTextArc(JKRArchive*)
  */
 Platform* BaseItemMgr::loadPlatform(JKRFileLoader* loader, char* p2)
 {
-	Platform* platform = new Platform();
+	Platform* platform = new Platform;
 	platform->load(loader, p2);
 	return platform;
 }
@@ -1426,7 +1362,7 @@ Platform* BaseItemMgr::loadPlatform(JKRFileLoader* loader, char* p2)
  */
 PlatAttacher* BaseItemMgr::loadPlatAttacher(JKRFileLoader* loader, char* path)
 {
-	PlatAttacher* attacher = new PlatAttacher();
+	PlatAttacher* attacher = new PlatAttacher;
 	// Why does PlatAttacher not have a ::load? Ah well.
 	// It clearly doesn't, given the assertion was written in this file....
 	void* data = JKRFileLoader::getGlbResource(path, loader);
@@ -1465,206 +1401,8 @@ void BaseItemMgr::setupSoundViewerAndBas() { }
  */
 TNodeItemMgr::TNodeItemMgr()
     : BaseItemMgr(0)
-    , Container<BaseItem>()
-    , mNodeObjectMgr()
 {
 }
-
-/**
- * @generated{__dt__31NodeObjectMgr<Q24Game8BaseItem>Fv}
- * @note Address: 0x801CD56C
- * @note Size: 0xC8
- */
-// void NodeObjectMgr<Game::BaseItem>::~NodeObjectMgr()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r4
-// 	stw      r30, 8(r1)
-// 	or.      r30, r3, r3
-// 	beq      lbl_801CD618
-// 	lis      r3, "__vt__31NodeObjectMgr<Q24Game8BaseItem>"@ha
-// 	addic.   r0, r30, 0x20
-// 	addi     r3, r3, "__vt__31NodeObjectMgr<Q24Game8BaseItem>"@l
-// 	stw      r3, 0(r30)
-// 	addi     r0, r3, 0x2c
-// 	stw      r0, 0x1c(r30)
-// 	beq      lbl_801CD5C0
-// 	lis      r4, "__vt__29TObjectNode<Q24Game8BaseItem>"@ha
-// 	addi     r3, r30, 0x20
-// 	addi     r0, r4, "__vt__29TObjectNode<Q24Game8BaseItem>"@l
-// 	li       r4, 0
-// 	stw      r0, 0x20(r30)
-// 	bl       __dt__5CNodeFv
-
-// lbl_801CD5C0:
-// 	cmplwi   r30, 0
-// 	beq      lbl_801CD608
-// 	lis      r3, "__vt__27ObjectMgr<Q24Game8BaseItem>"@ha
-// 	addi     r3, r3, "__vt__27ObjectMgr<Q24Game8BaseItem>"@l
-// 	stw      r3, 0(r30)
-// 	addi     r0, r3, 0x2c
-// 	stw      r0, 0x1c(r30)
-// 	beq      lbl_801CD608
-// 	lis      r3, "__vt__27Container<Q24Game8BaseItem>"@ha
-// 	addi     r0, r3, "__vt__27Container<Q24Game8BaseItem>"@l
-// 	stw      r0, 0(r30)
-// 	beq      lbl_801CD608
-// 	lis      r4, __vt__16GenericContainer@ha
-// 	mr       r3, r30
-// 	addi     r0, r4, __vt__16GenericContainer@l
-// 	li       r4, 0
-// 	stw      r0, 0(r30)
-// 	bl       __dt__5CNodeFv
-
-// lbl_801CD608:
-// 	extsh.   r0, r31
-// 	ble      lbl_801CD618
-// 	mr       r3, r30
-// 	bl       __dl__FPv
-
-// lbl_801CD618:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r30
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/**
- * @generated{__dt__29TObjectNode<Q24Game8BaseItem>Fv}
- * @note Address: 0x801CD634
- * @note Size: 0x60
- */
-// void TObjectNode<Game::BaseItem>::~TObjectNode()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r4
-// 	stw      r30, 8(r1)
-// 	or.      r30, r3, r3
-// 	beq      lbl_801CD678
-// 	lis      r5, "__vt__29TObjectNode<Q24Game8BaseItem>"@ha
-// 	li       r4, 0
-// 	addi     r0, r5, "__vt__29TObjectNode<Q24Game8BaseItem>"@l
-// 	stw      r0, 0(r30)
-// 	bl       __dt__5CNodeFv
-// 	extsh.   r0, r31
-// 	ble      lbl_801CD678
-// 	mr       r3, r30
-// 	bl       __dl__FPv
-
-// lbl_801CD678:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r30
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/**
- * @generated{__dt__27ObjectMgr<Q24Game8BaseItem>Fv}
- * @note Address: 0x801CD694
- * @note Size: 0x88
- */
-// void ObjectMgr<Game::BaseItem>::~ObjectMgr()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r4
-// 	stw      r30, 8(r1)
-// 	or.      r30, r3, r3
-// 	beq      lbl_801CD700
-// 	lis      r4, "__vt__27ObjectMgr<Q24Game8BaseItem>"@ha
-// 	addi     r4, r4, "__vt__27ObjectMgr<Q24Game8BaseItem>"@l
-// 	stw      r4, 0(r30)
-// 	addi     r0, r4, 0x2c
-// 	stw      r0, 0x1c(r30)
-// 	beq      lbl_801CD6F0
-// 	lis      r4, "__vt__27Container<Q24Game8BaseItem>"@ha
-// 	addi     r0, r4, "__vt__27Container<Q24Game8BaseItem>"@l
-// 	stw      r0, 0(r30)
-// 	beq      lbl_801CD6F0
-// 	lis      r5, __vt__16GenericContainer@ha
-// 	li       r4, 0
-// 	addi     r0, r5, __vt__16GenericContainer@l
-// 	stw      r0, 0(r30)
-// 	bl       __dt__5CNodeFv
-
-// lbl_801CD6F0:
-// 	extsh.   r0, r31
-// 	ble      lbl_801CD700
-// 	mr       r3, r30
-// 	bl       __dl__FPv
-
-// lbl_801CD700:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r30
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/**
- * @generated{__dt__27Container<Q24Game8BaseItem>Fv}
- * @note Address: 0x801CD71C
- * @note Size: 0x70
- */
-// void Container<Game::BaseItem>::~Container()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r4
-// 	stw      r30, 8(r1)
-// 	or.      r30, r3, r3
-// 	beq      lbl_801CD770
-// 	lis      r4, "__vt__27Container<Q24Game8BaseItem>"@ha
-// 	addi     r0, r4, "__vt__27Container<Q24Game8BaseItem>"@l
-// 	stw      r0, 0(r30)
-// 	beq      lbl_801CD760
-// 	lis      r5, __vt__16GenericContainer@ha
-// 	li       r4, 0
-// 	addi     r0, r5, __vt__16GenericContainer@l
-// 	stw      r0, 0(r30)
-// 	bl       __dt__5CNodeFv
-
-// lbl_801CD760:
-// 	extsh.   r0, r31
-// 	ble      lbl_801CD770
-// 	mr       r3, r30
-// 	bl       __dl__FPv
-
-// lbl_801CD770:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r30
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
 
 /**
  * @note Address: 0x801CD78C
@@ -1674,7 +1412,7 @@ BaseItem* TNodeItemMgr::birth()
 {
 	BaseItem* item              = doNew();
 	item->mNodeItemMgr          = this;
-	TObjectNode<BaseItem>* node = new TObjectNode<BaseItem>();
+	TObjectNode<BaseItem>* node = new TObjectNode<BaseItem>;
 	node->mContents             = item;
 	mNodeObjectMgr.mNode.add(node);
 	node->mContents->constructor();
@@ -1689,7 +1427,7 @@ BaseItem* TNodeItemMgr::birth()
 void TNodeItemMgr::entry(BaseItem* item)
 {
 	item->mNodeItemMgr          = this;
-	TObjectNode<BaseItem>* node = new TObjectNode<BaseItem>();
+	TObjectNode<BaseItem>* node = new TObjectNode<BaseItem>;
 	node->mContents             = item;
 	mNodeObjectMgr.mNode.add(node);
 	node->mContents->constructor();
@@ -1703,152 +1441,11 @@ void TNodeItemMgr::entry(BaseItem* item)
 void TNodeItemMgr::initDependency()
 {
 	Iterator<BaseItem> iterator(&mNodeObjectMgr);
-	iterator.first();
-	while (!iterator.isDone()) {
+	CI_LOOP(iterator)
+	{
 		BaseItem* item = (*iterator);
 		item->initDependency();
-		iterator.next();
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
-	addi     r3, r3, 0x4c
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
-	cmplwi   r0, 0
-	stw      r4, 8(r1)
-	stw      r0, 0x14(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_801CD8F8
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801CDA64
-
-lbl_801CD8F8:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801CD964
-
-lbl_801CD910:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801CDA64
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_801CD964:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801CD910
-	b        lbl_801CDA64
-
-lbl_801CD984:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1bc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_801CD9D4
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801CDA64
-
-lbl_801CD9D4:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801CDA48
-
-lbl_801CD9F4:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801CDA64
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_801CDA48:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801CD9F4
-
-lbl_801CDA64:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_801CD984
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -1874,83 +1471,17 @@ void TNodeItemMgr::killAll()
  * @note Address: 0x801CDB3C
  * @note Size: 0xC4
  */
-ItemMgr::ItemMgr() { mName = "驛｢?ｽｧ??ｽｽ?ｽ｢驛｢?ｽｧ??ｽｽ?ｽ､驛｢??驛｢??驛｢譎??ｽｧ?ｽｭ郢晢ｽｭ驛｢譎｢?ｽｽ?ｽｼ驛｢?ｽｧ??ｽｽ?ｽｸ驛｢譎｢?ｽｽ?ｽ｣"; }
+ItemMgr::ItemMgr()
+{
+	mName = "アイテムマネージャ"; // "Item Manager"
+}
 
 /**
  * __dt__Q24Game7ItemMgrFv
  * @note Address: 0x801CDC00
  * @note Size: 0xE8
  */
-ItemMgr::~ItemMgr()
-{
-	clearGlobalPointers();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	stw      r30, 8(r1)
-	mr       r30, r4
-	beq      lbl_801CDCCC
-	lis      r4, __vt__Q24Game7ItemMgr@ha
-	addi     r4, r4, __vt__Q24Game7ItemMgr@l
-	stw      r4, 0(r31)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x1c(r31)
-	bl       clearGlobalPointers__Q24Game7ItemMgrFv
-	cmplwi   r31, 0
-	beq      lbl_801CDCBC
-	lis      r3, "__vt__33NodeObjectMgr<16GenericObjectMgr>"@ha
-	addic.   r0, r31, 0x20
-	addi     r3, r3, "__vt__33NodeObjectMgr<16GenericObjectMgr>"@l
-	stw      r3, 0(r31)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x1c(r31)
-	beq      lbl_801CDC74
-	lis      r4, "__vt__31TObjectNode<16GenericObjectMgr>"@ha
-	addi     r3, r31, 0x20
-	addi     r0, r4, "__vt__31TObjectNode<16GenericObjectMgr>"@l
-	li       r4, 0
-	stw      r0, 0x20(r31)
-	bl       __dt__5CNodeFv
-
-lbl_801CDC74:
-	cmplwi   r31, 0
-	beq      lbl_801CDCBC
-	lis      r3, "__vt__29ObjectMgr<16GenericObjectMgr>"@ha
-	addi     r3, r3, "__vt__29ObjectMgr<16GenericObjectMgr>"@l
-	stw      r3, 0(r31)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x1c(r31)
-	beq      lbl_801CDCBC
-	lis      r3, "__vt__29Container<16GenericObjectMgr>"@ha
-	addi     r0, r3, "__vt__29Container<16GenericObjectMgr>"@l
-	stw      r0, 0(r31)
-	beq      lbl_801CDCBC
-	lis      r4, __vt__16GenericContainer@ha
-	mr       r3, r31
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0(r31)
-	bl       __dt__5CNodeFv
-
-lbl_801CDCBC:
-	extsh.   r0, r30
-	ble      lbl_801CDCCC
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_801CDCCC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+ItemMgr::~ItemMgr() { clearGlobalPointers(); }
 
 /**
  * @note Address: 0x801CDCE8
@@ -1958,7 +1489,7 @@ lbl_801CDCCC:
  */
 void ItemMgr::addMgr(BaseItemMgr* mgr)
 {
-	TObjectNode<GenericObjectMgr>* node = new TObjectNode<GenericObjectMgr>();
+	TObjectNode<GenericObjectMgr>* node = new TObjectNode<GenericObjectMgr>;
 	node->mContents                     = mgr;
 	mNode.add(node);
 }
@@ -1971,11 +1502,10 @@ void ItemMgr::addMgr(BaseItemMgr* mgr)
 void ItemMgr::initDependency()
 {
 	Iterator<GenericObjectMgr> iterator(this);
-	iterator.first();
-	while (!iterator.isDone()) {
+	CI_LOOP(iterator)
+	{
 		BaseItemMgr* item = (BaseItemMgr*)(*iterator);
 		item->initDependency();
-		iterator.next();
 	}
 }
 
@@ -1987,11 +1517,10 @@ void ItemMgr::initDependency()
 void ItemMgr::doAnimation()
 {
 	Iterator<GenericObjectMgr> iterator(this);
-	iterator.first();
-	while (!iterator.isDone()) {
+	CI_LOOP(iterator)
+	{
 		GenericObjectMgr* item = (*iterator);
 		item->doAnimation();
-		iterator.next();
 	}
 }
 
@@ -2003,11 +1532,10 @@ void ItemMgr::doAnimation()
 void ItemMgr::doEntry()
 {
 	Iterator<GenericObjectMgr> iterator(this);
-	iterator.first();
-	while (!iterator.isDone()) {
+	CI_LOOP(iterator)
+	{
 		GenericObjectMgr* item = (*iterator);
 		item->doEntry();
-		iterator.next();
 	}
 }
 
@@ -2019,11 +1547,10 @@ void ItemMgr::doEntry()
 void ItemMgr::doSetView(int viewportNumber)
 {
 	Iterator<GenericObjectMgr> iterator(this);
-	iterator.first();
-	while (!iterator.isDone()) {
+	CI_LOOP(iterator)
+	{
 		GenericObjectMgr* item = (*iterator);
 		item->doSetView(viewportNumber);
-		iterator.next();
 	}
 }
 
@@ -2035,11 +1562,10 @@ void ItemMgr::doSetView(int viewportNumber)
 void ItemMgr::doViewCalc()
 {
 	Iterator<GenericObjectMgr> iterator(this);
-	iterator.first();
-	while (!iterator.isDone()) {
+	CI_LOOP(iterator)
+	{
 		GenericObjectMgr* item = (*iterator);
 		item->doViewCalc();
-		iterator.next();
 	}
 }
 
@@ -2051,11 +1577,10 @@ void ItemMgr::doViewCalc()
 void ItemMgr::doSimulation(f32 p1)
 {
 	Iterator<GenericObjectMgr> iterator(this);
-	iterator.first();
-	while (!iterator.isDone()) {
+	CI_LOOP(iterator)
+	{
 		GenericObjectMgr* item = (*iterator);
 		item->doSimulation(p1);
-		iterator.next();
 	}
 }
 
@@ -2073,11 +1598,10 @@ void ItemMgr::doDirectDraw(Graphics&) { }
 void ItemMgr::doSimpleDraw(Viewport* viewport)
 {
 	Iterator<GenericObjectMgr> iterator(this);
-	iterator.first();
-	while (!iterator.isDone()) {
+	CI_LOOP(iterator)
+	{
 		GenericObjectMgr* item = (*iterator);
 		item->doSimpleDraw(viewport);
-		iterator.next();
 	}
 }
 
@@ -2089,11 +1613,10 @@ void ItemMgr::doSimpleDraw(Viewport* viewport)
 void ItemMgr::setupSoundViewerAndBas()
 {
 	Iterator<GenericObjectMgr> iterator(this);
-	iterator.first();
-	while (!iterator.isDone()) {
+	CI_LOOP(iterator)
+	{
 		BaseItemMgr* item = (BaseItemMgr*)(*iterator);
 		item->setupSoundViewerAndBas();
-		iterator.next();
 	}
 }
 
@@ -2105,11 +1628,10 @@ void ItemMgr::setupSoundViewerAndBas()
 void ItemMgr::loadResources()
 {
 	Iterator<GenericObjectMgr> iterator(this);
-	iterator.first();
-	while (!iterator.isDone()) {
+	CI_LOOP(iterator)
+	{
 		GenericObjectMgr* item = (*iterator);
 		item->loadResources();
-		iterator.next();
 	}
 }
 
@@ -2121,13 +1643,12 @@ int ItemMgr::getIndexByMgr(Game::BaseItemMgr* mgr)
 {
 	int index = 0;
 	Iterator<GenericObjectMgr> iterator(this);
-	iterator.first();
-	while (!iterator.isDone()) {
+	CI_LOOP(iterator)
+	{
 		if (*iterator == mgr) {
 			return index;
 		}
 		index++;
-		iterator.next();
 	}
 	return -1;
 }
@@ -2140,165 +1661,15 @@ BaseItemMgr* ItemMgr::getMgrByIndex(int index)
 {
 	int i = 0;
 	Iterator<GenericObjectMgr> iterator(this);
-	iterator.first();
-	do {
+	CI_LOOP(iterator)
+	{
+		BaseItemMgr* mgr = (BaseItemMgr*)(*iterator);
 		if (i == index) {
-			return (BaseItemMgr*)(*iterator);
+			return mgr;
 		}
 		i++;
-		iterator.next();
-	} while (!iterator.isDone());
+	}
 	return nullptr;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, "__vt__28Iterator<16GenericObjectMgr>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r5, r5, "__vt__28Iterator<16GenericObjectMgr>"@l
-	stw      r31, 0x1c(r1)
-	cmplwi   r0, 0
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r0, 0x14(r1)
-	stw      r5, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_801CF0E8
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801CF254
-
-lbl_801CF0E8:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801CF154
-
-lbl_801CF100:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801CF254
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_801CF154:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801CF100
-	b        lbl_801CF254
-
-lbl_801CF174:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	cmpw     r31, r30
-	bne      lbl_801CF194
-	b        lbl_801CF278
-
-lbl_801CF194:
-	lwz      r0, 0x14(r1)
-	addi     r31, r31, 1
-	cmplwi   r0, 0
-	bne      lbl_801CF1C4
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801CF254
-
-lbl_801CF1C4:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801CF238
-
-lbl_801CF1E4:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801CF254
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_801CF238:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801CF1E4
-
-lbl_801CF254:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_801CF174
-	li       r3, 0
-
-lbl_801CF278:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -2308,1637 +1679,14 @@ lbl_801CF278:
 BaseItemMgr* ItemMgr::getMgrByID(ID32& id)
 {
 	Iterator<GenericObjectMgr> iterator(this);
-	iterator.first();
-	while (!iterator.isDone()) {
+	CI_LOOP(iterator)
+	{
 		BaseItemMgr* item = (BaseItemMgr*)(*iterator);
 		if (id.match(item->generatorGetID(), '*')) {
 			return item;
 		}
-		iterator.next();
 	}
 	return nullptr;
 }
 
-/**
- * @note Address: 0x801CF4B4
- * @note Size: 0x11C
- */
-// TNodeItemMgr::~TNodeItemMgr()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r4
-// 	stw      r30, 8(r1)
-// 	or.      r30, r3, r3
-// 	beq      lbl_801CF5B4
-// 	lis      r3, __vt__Q24Game12TNodeItemMgr@ha
-// 	addic.   r0, r30, 0x4c
-// 	addi     r3, r3, __vt__Q24Game12TNodeItemMgr@l
-// 	stw      r3, 0(r30)
-// 	addi     r0, r3, 0x74
-// 	stw      r0, 0x30(r30)
-// 	beq      lbl_801CF570
-// 	lis      r4, "__vt__31NodeObjectMgr<Q24Game8BaseItem>"@ha
-// 	addic.   r3, r30, 0x6c
-// 	addi     r4, r4, "__vt__31NodeObjectMgr<Q24Game8BaseItem>"@l
-// 	stw      r4, 0x4c(r30)
-// 	addi     r0, r4, 0x2c
-// 	stw      r0, 0x68(r30)
-// 	beq      lbl_801CF520
-// 	lis      r4, "__vt__29TObjectNode<Q24Game8BaseItem>"@ha
-// 	addi     r0, r4, "__vt__29TObjectNode<Q24Game8BaseItem>"@l
-// 	stw      r0, 0x6c(r30)
-// 	li       r4, 0
-// 	bl       __dt__5CNodeFv
-
-// lbl_801CF520:
-// 	addic.   r0, r30, 0x4c
-// 	beq      lbl_801CF570
-// 	lis      r3, "__vt__27ObjectMgr<Q24Game8BaseItem>"@ha
-// 	addic.   r0, r30, 0x4c
-// 	addi     r3, r3, "__vt__27ObjectMgr<Q24Game8BaseItem>"@l
-// 	stw      r3, 0x4c(r30)
-// 	addi     r0, r3, 0x2c
-// 	stw      r0, 0x68(r30)
-// 	beq      lbl_801CF570
-// 	lis      r3, "__vt__27Container<Q24Game8BaseItem>"@ha
-// 	addic.   r0, r30, 0x4c
-// 	addi     r0, r3, "__vt__27Container<Q24Game8BaseItem>"@l
-// 	stw      r0, 0x4c(r30)
-// 	beq      lbl_801CF570
-// 	lis      r4, __vt__16GenericContainer@ha
-// 	addi     r3, r30, 0x4c
-// 	addi     r0, r4, __vt__16GenericContainer@l
-// 	li       r4, 0
-// 	stw      r0, 0x4c(r30)
-// 	bl       __dt__5CNodeFv
-
-// lbl_801CF570:
-// 	addic.   r0, r30, 0x30
-// 	beq      lbl_801CF5A4
-// 	lis      r3, "__vt__27Container<Q24Game8BaseItem>"@ha
-// 	addic.   r0, r30, 0x30
-// 	addi     r0, r3, "__vt__27Container<Q24Game8BaseItem>"@l
-// 	stw      r0, 0x30(r30)
-// 	beq      lbl_801CF5A4
-// 	lis      r4, __vt__16GenericContainer@ha
-// 	addi     r3, r30, 0x30
-// 	addi     r0, r4, __vt__16GenericContainer@l
-// 	li       r4, 0
-// 	stw      r0, 0x30(r30)
-// 	bl       __dt__5CNodeFv
-
-// lbl_801CF5A4:
-// 	extsh.   r0, r31
-// 	ble      lbl_801CF5B4
-// 	mr       r3, r30
-// 	bl       __dl__FPv
-
-// lbl_801CF5B4:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r30
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/**
- * kill__Q24Game12TNodeItemMgrFPQ24Game8BaseItem
- * @note Address: 0x801CF5D0
- * @note Size: 0x24
- */
-void TNodeItemMgr::kill(Game::BaseItem* item)
-{
-	mNodeObjectMgr.delNode(item);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0x4c
-	stw      r0, 0x14(r1)
-	bl       "delNode__31NodeObjectMgr<Q24Game8BaseItem>FPQ24Game8BaseItem"
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/**
- * doAnimation__Q24Game12TNodeItemMgrFv
- * @note Address: 0x801CF5F4
- * @note Size: 0x2C
- */
-void TNodeItemMgr::doAnimation() { mNodeObjectMgr.doAnimation(); }
-
-/**
- * doEntry__Q24Game12TNodeItemMgrFv
- * @note Address: 0x801CF620
- * @note Size: 0x2C
- */
-void TNodeItemMgr::doEntry() { mNodeObjectMgr.doEntry(); }
-
-/**
- * doSetView__Q24Game12TNodeItemMgrFi
- * @note Address: 0x801CF64C
- * @note Size: 0x2C
- */
-void TNodeItemMgr::doSetView(int viewportNumber) { mNodeObjectMgr.doSetView(viewportNumber); }
-
-/**
- * @note Address: 0x801CF678
- * @note Size: 0x2C
- */
-void TNodeItemMgr::doViewCalc()
-{
-	mNodeObjectMgr.doViewCalc();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x70(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/**
- * @note Address: 0x801CF6A4
- * @note Size: 0x2C
- */
-void TNodeItemMgr::doSimulation(f32 rate)
-{
-	mNodeObjectMgr.doSimulation(rate);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x74(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/**
- * @note Address: 0x801CF6D0
- * @note Size: 0x2C
- */
-void TNodeItemMgr::doDirectDraw(Graphics& gfx)
-{
-	mNodeObjectMgr.doDirectDraw(gfx);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x78(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/**
- * @note Address: 0x801CF6FC
- * @note Size: 0x2C
- */
-void* TNodeItemMgr::getEnd() { return mNodeObjectMgr.getEnd(); }
-
-/**
- * @generated
- * @note Address: 0x801CF728
- * @note Size: 0x8
- */
-// void* NodeObjectMgr<Game::BaseItem>::getEnd() { return 0x0; }
-
-/**
- * @note Address: 0x801CF730
- * @note Size: 0x2C
- */
-void* TNodeItemMgr::getStart() { return mNodeObjectMgr.getStart(); }
-
-/**
- * @generated
- * @note Address: 0x801CF75C
- * @note Size: 0x8
- */
-// void* NodeObjectMgr<Game::BaseItem>::getStart()
-// {
-// 	/*
-// 	lwz      r3, 0x30(r3)
-// 	blr
-// 	*/
-// }
-
-/**
- * @note Address: 0x801CF764
- * @note Size: 0x2C
- */
-void* TNodeItemMgr::getNext(void* item) { return mNodeObjectMgr.getNext(item); }
-
-/**
- * @generated
- * @note Address: 0x801CF790
- * @note Size: 0x8
- */
-// void NodeObjectMgr<Game::BaseItem>::getNext(void*)
-// {
-// 	/*
-// 	lwz      r3, 4(r4)
-// 	blr
-// 	*/
-// }
-
-/**
- * @note Address: 0x801CF798
- * @note Size: 0x2C
- */
-BaseItem* TNodeItemMgr::get(void* item)
-{
-	return mNodeObjectMgr.get(item);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/**
- * @generated
- * @note Address: 0x801CF7C4
- * @note Size: 0x8
- */
-// BaseItem* NodeObjectMgr<Game::BaseItem>::get(void*)
-// {
-// 	/*
-// 	lwz      r3, 0x18(r4)
-// 	blr
-// 	*/
-// }
-
-/**
- * @note Address: 0x801CF7CC
- * @note Size: 0x4
- */
-// void BaseItemMgr::doAnimation() { }
-
-/**
- * @note Address: 0x801CF7D0
- * @note Size: 0x4
- */
-// void BaseItemMgr::doEntry() { }
-
-/**
- * @note Address: 0x801CF7D4
- * @note Size: 0x4
- */
-// void BaseItemMgr::doSetView(int) { }
-
-/**
- * @note Address: 0x801CF7D8
- * @note Size: 0x4
- */
-// void BaseItemMgr::doViewCalc() { }
-
-/**
- * @note Address: 0x801CF7DC
- * @note Size: 0x4
- */
-// void BaseItemMgr::doSimulation(f32) { }
-
-/**
- * @note Address: 0x801CF7E0
- * @note Size: 0x4
- */
-// void BaseItemMgr::doDirectDraw(Graphics&) { }
-
-} // namespace Game
-
-/**
- * @generated
- * @note Address: 0x801CF7E4
- * @note Size: 0x44
- */
-// void NodeObjectMgr<Game::BaseItem>::delNode(Game::BaseItem*)
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	lwz      r3, 0x30(r3)
-// 	b        lbl_801CF810
-
-// lbl_801CF7F8:
-// 	lwz      r0, 0x18(r3)
-// 	cmplw    r0, r4
-// 	bne      lbl_801CF80C
-// 	bl       del__5CNodeFv
-// 	b        lbl_801CF818
-
-// lbl_801CF80C:
-// 	lwz      r3, 4(r3)
-
-// lbl_801CF810:
-// 	cmplwi   r3, 0
-// 	bne      lbl_801CF7F8
-
-// lbl_801CF818:
-// 	lwz      r0, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/**
- * @generated
- * @note Address: 0x801CF828
- * @note Size: 0x18
- */
-// void NodeObjectMgr<Game::BaseItem>::resetMgr()
-// {
-// 	/*
-// 	li       r0, 0
-// 	stw      r0, 0x30(r3)
-// 	stw      r0, 0x2c(r3)
-// 	stw      r0, 0x28(r3)
-// 	stw      r0, 0x24(r3)
-// 	blr
-// 	*/
-// }
-
-/**
- * @generated
- * @note Address: 0x801CF840
- * @note Size: 0x1E4
- */
-// void ObjectMgr<Game::BaseItem>::doAnimation()
-// {
-// 	/*
-// 	stwu     r1, -0x20(r1)
-// 	mflr     r0
-// 	lis      r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
-// 	stw      r0, 0x24(r1)
-// 	li       r0, 0
-// 	addi     r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
-// 	cmplwi   r0, 0
-// 	stw      r0, 0x14(r1)
-// 	stw      r4, 8(r1)
-// 	stw      r0, 0xc(r1)
-// 	stw      r3, 0x10(r1)
-// 	bne      lbl_801CF888
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x18(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-// 	b        lbl_801CF9F4
-
-// lbl_801CF888:
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x18(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-// 	b        lbl_801CF8F4
-
-// lbl_801CF8A0:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x20(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	mr       r4, r3
-// 	lwz      r3, 0x14(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 8(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	clrlwi.  r0, r3, 0x18
-// 	bne      lbl_801CF9F4
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x14(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-
-// lbl_801CF8F4:
-// 	lwz      r12, 8(r1)
-// 	addi     r3, r1, 8
-// 	lwz      r12, 0x10(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	clrlwi.  r0, r3, 0x18
-// 	beq      lbl_801CF8A0
-// 	b        lbl_801CF9F4
-
-// lbl_801CF914:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x20(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x3c(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lwz      r0, 0x14(r1)
-// 	cmplwi   r0, 0
-// 	bne      lbl_801CF964
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x14(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-// 	b        lbl_801CF9F4
-
-// lbl_801CF964:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x14(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-// 	b        lbl_801CF9D8
-
-// lbl_801CF984:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x20(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	mr       r4, r3
-// 	lwz      r3, 0x14(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 8(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	clrlwi.  r0, r3, 0x18
-// 	bne      lbl_801CF9F4
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x14(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-
-// lbl_801CF9D8:
-// 	lwz      r12, 8(r1)
-// 	addi     r3, r1, 8
-// 	lwz      r12, 0x10(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	clrlwi.  r0, r3, 0x18
-// 	beq      lbl_801CF984
-
-// lbl_801CF9F4:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x1c(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lwz      r4, 0xc(r1)
-// 	cmplw    r4, r3
-// 	bne      lbl_801CF914
-// 	lwz      r0, 0x24(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x20
-// 	blr
-// 	*/
-// }
-
-/**
- * @generated
- * @note Address: 0x801CFA24
- * @note Size: 0x1E4
- */
-// void ObjectMgr<Game::BaseItem>::doEntry()
-// {
-// 	/*
-// 	stwu     r1, -0x20(r1)
-// 	mflr     r0
-// 	lis      r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
-// 	stw      r0, 0x24(r1)
-// 	li       r0, 0
-// 	addi     r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
-// 	cmplwi   r0, 0
-// 	stw      r0, 0x14(r1)
-// 	stw      r4, 8(r1)
-// 	stw      r0, 0xc(r1)
-// 	stw      r3, 0x10(r1)
-// 	bne      lbl_801CFA6C
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x18(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-// 	b        lbl_801CFBD8
-
-// lbl_801CFA6C:
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x18(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-// 	b        lbl_801CFAD8
-
-// lbl_801CFA84:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x20(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	mr       r4, r3
-// 	lwz      r3, 0x14(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 8(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	clrlwi.  r0, r3, 0x18
-// 	bne      lbl_801CFBD8
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x14(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-
-// lbl_801CFAD8:
-// 	lwz      r12, 8(r1)
-// 	addi     r3, r1, 8
-// 	lwz      r12, 0x10(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	clrlwi.  r0, r3, 0x18
-// 	beq      lbl_801CFA84
-// 	b        lbl_801CFBD8
-
-// lbl_801CFAF8:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x20(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x40(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lwz      r0, 0x14(r1)
-// 	cmplwi   r0, 0
-// 	bne      lbl_801CFB48
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x14(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-// 	b        lbl_801CFBD8
-
-// lbl_801CFB48:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x14(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-// 	b        lbl_801CFBBC
-
-// lbl_801CFB68:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x20(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	mr       r4, r3
-// 	lwz      r3, 0x14(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 8(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	clrlwi.  r0, r3, 0x18
-// 	bne      lbl_801CFBD8
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x14(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-
-// lbl_801CFBBC:
-// 	lwz      r12, 8(r1)
-// 	addi     r3, r1, 8
-// 	lwz      r12, 0x10(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	clrlwi.  r0, r3, 0x18
-// 	beq      lbl_801CFB68
-
-// lbl_801CFBD8:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x1c(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lwz      r4, 0xc(r1)
-// 	cmplw    r4, r3
-// 	bne      lbl_801CFAF8
-// 	lwz      r0, 0x24(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x20
-// 	blr
-// 	*/
-// }
-
-/**
- * @generated
- * @note Address: 0x801CFC08
- * @note Size: 0x1F4
- */
-// void ObjectMgr<Game::BaseItem>::doSetView(int)
-// {
-// 	/*
-// 	stwu     r1, -0x20(r1)
-// 	mflr     r0
-// 	lis      r5, "__vt__26Iterator<Q24Game8BaseItem>"@ha
-// 	stw      r0, 0x24(r1)
-// 	li       r0, 0
-// 	addi     r5, r5, "__vt__26Iterator<Q24Game8BaseItem>"@l
-// 	stw      r31, 0x1c(r1)
-// 	cmplwi   r0, 0
-// 	mr       r31, r4
-// 	stw      r0, 0x14(r1)
-// 	stw      r5, 8(r1)
-// 	stw      r0, 0xc(r1)
-// 	stw      r3, 0x10(r1)
-// 	bne      lbl_801CFC58
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x18(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-// 	b        lbl_801CFDC8
-
-// lbl_801CFC58:
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x18(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-// 	b        lbl_801CFCC4
-
-// lbl_801CFC70:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x20(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	mr       r4, r3
-// 	lwz      r3, 0x14(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 8(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	clrlwi.  r0, r3, 0x18
-// 	bne      lbl_801CFDC8
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x14(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-
-// lbl_801CFCC4:
-// 	lwz      r12, 8(r1)
-// 	addi     r3, r1, 8
-// 	lwz      r12, 0x10(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	clrlwi.  r0, r3, 0x18
-// 	beq      lbl_801CFC70
-// 	b        lbl_801CFDC8
-
-// lbl_801CFCE4:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x20(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lwz      r12, 0(r3)
-// 	mr       r4, r31
-// 	lwz      r12, 0x44(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lwz      r0, 0x14(r1)
-// 	cmplwi   r0, 0
-// 	bne      lbl_801CFD38
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x14(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-// 	b        lbl_801CFDC8
-
-// lbl_801CFD38:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x14(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-// 	b        lbl_801CFDAC
-
-// lbl_801CFD58:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x20(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	mr       r4, r3
-// 	lwz      r3, 0x14(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 8(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	clrlwi.  r0, r3, 0x18
-// 	bne      lbl_801CFDC8
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x14(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-
-// lbl_801CFDAC:
-// 	lwz      r12, 8(r1)
-// 	addi     r3, r1, 8
-// 	lwz      r12, 0x10(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	clrlwi.  r0, r3, 0x18
-// 	beq      lbl_801CFD58
-
-// lbl_801CFDC8:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x1c(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lwz      r4, 0xc(r1)
-// 	cmplw    r4, r3
-// 	bne      lbl_801CFCE4
-// 	lwz      r0, 0x24(r1)
-// 	lwz      r31, 0x1c(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x20
-// 	blr
-// 	*/
-// }
-
-/**
- * @generated
- * @note Address: 0x801CFDFC
- * @note Size: 0x1E4
- */
-// void ObjectMgr<Game::BaseItem>::doViewCalc()
-// {
-// 	/*
-// 	stwu     r1, -0x20(r1)
-// 	mflr     r0
-// 	lis      r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
-// 	stw      r0, 0x24(r1)
-// 	li       r0, 0
-// 	addi     r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
-// 	cmplwi   r0, 0
-// 	stw      r0, 0x14(r1)
-// 	stw      r4, 8(r1)
-// 	stw      r0, 0xc(r1)
-// 	stw      r3, 0x10(r1)
-// 	bne      lbl_801CFE44
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x18(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-// 	b        lbl_801CFFB0
-
-// lbl_801CFE44:
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x18(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-// 	b        lbl_801CFEB0
-
-// lbl_801CFE5C:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x20(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	mr       r4, r3
-// 	lwz      r3, 0x14(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 8(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	clrlwi.  r0, r3, 0x18
-// 	bne      lbl_801CFFB0
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x14(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-
-// lbl_801CFEB0:
-// 	lwz      r12, 8(r1)
-// 	addi     r3, r1, 8
-// 	lwz      r12, 0x10(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	clrlwi.  r0, r3, 0x18
-// 	beq      lbl_801CFE5C
-// 	b        lbl_801CFFB0
-
-// lbl_801CFED0:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x20(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x48(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lwz      r0, 0x14(r1)
-// 	cmplwi   r0, 0
-// 	bne      lbl_801CFF20
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x14(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-// 	b        lbl_801CFFB0
-
-// lbl_801CFF20:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x14(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-// 	b        lbl_801CFF94
-
-// lbl_801CFF40:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x20(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	mr       r4, r3
-// 	lwz      r3, 0x14(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 8(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	clrlwi.  r0, r3, 0x18
-// 	bne      lbl_801CFFB0
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x14(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-
-// lbl_801CFF94:
-// 	lwz      r12, 8(r1)
-// 	addi     r3, r1, 8
-// 	lwz      r12, 0x10(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	clrlwi.  r0, r3, 0x18
-// 	beq      lbl_801CFF40
-
-// lbl_801CFFB0:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x1c(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lwz      r4, 0xc(r1)
-// 	cmplw    r4, r3
-// 	bne      lbl_801CFED0
-// 	lwz      r0, 0x24(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x20
-// 	blr
-// 	*/
-// }
-
-/**
- * @generated
- * @note Address: 0x801CFFE0
- * @note Size: 0x1F4
- */
-// void ObjectMgr<Game::BaseItem>::doSimulation(f32)
-// {
-// 	/*
-// 	stwu     r1, -0x20(r1)
-// 	mflr     r0
-// 	lis      r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
-// 	stw      r0, 0x24(r1)
-// 	li       r0, 0
-// 	addi     r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
-// 	stfd     f31, 0x18(r1)
-// 	fmr      f31, f1
-// 	cmplwi   r0, 0
-// 	stw      r4, 8(r1)
-// 	stw      r0, 0x14(r1)
-// 	stw      r0, 0xc(r1)
-// 	stw      r3, 0x10(r1)
-// 	bne      lbl_801D0030
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x18(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-// 	b        lbl_801D01A0
-
-// lbl_801D0030:
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x18(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-// 	b        lbl_801D009C
-
-// lbl_801D0048:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x20(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	mr       r4, r3
-// 	lwz      r3, 0x14(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 8(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	clrlwi.  r0, r3, 0x18
-// 	bne      lbl_801D01A0
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x14(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-
-// lbl_801D009C:
-// 	lwz      r12, 8(r1)
-// 	addi     r3, r1, 8
-// 	lwz      r12, 0x10(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	clrlwi.  r0, r3, 0x18
-// 	beq      lbl_801D0048
-// 	b        lbl_801D01A0
-
-// lbl_801D00BC:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x20(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lwz      r12, 0(r3)
-// 	fmr      f1, f31
-// 	lwz      r12, 0x4c(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lwz      r0, 0x14(r1)
-// 	cmplwi   r0, 0
-// 	bne      lbl_801D0110
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x14(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-// 	b        lbl_801D01A0
-
-// lbl_801D0110:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x14(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-// 	b        lbl_801D0184
-
-// lbl_801D0130:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x20(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	mr       r4, r3
-// 	lwz      r3, 0x14(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 8(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	clrlwi.  r0, r3, 0x18
-// 	bne      lbl_801D01A0
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x14(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-
-// lbl_801D0184:
-// 	lwz      r12, 8(r1)
-// 	addi     r3, r1, 8
-// 	lwz      r12, 0x10(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	clrlwi.  r0, r3, 0x18
-// 	beq      lbl_801D0130
-
-// lbl_801D01A0:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x1c(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lwz      r4, 0xc(r1)
-// 	cmplw    r4, r3
-// 	bne      lbl_801D00BC
-// 	lwz      r0, 0x24(r1)
-// 	lfd      f31, 0x18(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x20
-// 	blr
-// 	*/
-// }
-
-/**
- * @generated
- * @note Address: 0x801D01D4
- * @note Size: 0x1F4
- */
-// void ObjectMgr<Game::BaseItem>::doDirectDraw(Graphics&)
-// {
-// 	/*
-// 	stwu     r1, -0x20(r1)
-// 	mflr     r0
-// 	lis      r5, "__vt__26Iterator<Q24Game8BaseItem>"@ha
-// 	stw      r0, 0x24(r1)
-// 	li       r0, 0
-// 	addi     r5, r5, "__vt__26Iterator<Q24Game8BaseItem>"@l
-// 	stw      r31, 0x1c(r1)
-// 	cmplwi   r0, 0
-// 	mr       r31, r4
-// 	stw      r0, 0x14(r1)
-// 	stw      r5, 8(r1)
-// 	stw      r0, 0xc(r1)
-// 	stw      r3, 0x10(r1)
-// 	bne      lbl_801D0224
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x18(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-// 	b        lbl_801D0394
-
-// lbl_801D0224:
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x18(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-// 	b        lbl_801D0290
-
-// lbl_801D023C:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x20(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	mr       r4, r3
-// 	lwz      r3, 0x14(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 8(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	clrlwi.  r0, r3, 0x18
-// 	bne      lbl_801D0394
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x14(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-
-// lbl_801D0290:
-// 	lwz      r12, 8(r1)
-// 	addi     r3, r1, 8
-// 	lwz      r12, 0x10(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	clrlwi.  r0, r3, 0x18
-// 	beq      lbl_801D023C
-// 	b        lbl_801D0394
-
-// lbl_801D02B0:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x20(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lwz      r12, 0(r3)
-// 	mr       r4, r31
-// 	lwz      r12, 0x50(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lwz      r0, 0x14(r1)
-// 	cmplwi   r0, 0
-// 	bne      lbl_801D0304
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x14(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-// 	b        lbl_801D0394
-
-// lbl_801D0304:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x14(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-// 	b        lbl_801D0378
-
-// lbl_801D0324:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x20(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	mr       r4, r3
-// 	lwz      r3, 0x14(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 8(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	clrlwi.  r0, r3, 0x18
-// 	bne      lbl_801D0394
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r4, 0xc(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x14(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 0xc(r1)
-
-// lbl_801D0378:
-// 	lwz      r12, 8(r1)
-// 	addi     r3, r1, 8
-// 	lwz      r12, 0x10(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	clrlwi.  r0, r3, 0x18
-// 	beq      lbl_801D0324
-
-// lbl_801D0394:
-// 	lwz      r3, 0x10(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x1c(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lwz      r4, 0xc(r1)
-// 	cmplw    r4, r3
-// 	bne      lbl_801D02B0
-// 	lwz      r0, 0x24(r1)
-// 	lwz      r31, 0x1c(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x20
-// 	blr
-// 	*/
-// }
-
-/**
- * @generated
- * @note Address: 0x801D03C8
- * @note Size: 0x2C
- */
-// void Container<Game::BaseItem>::getObject(void*)
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x20(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lwz      r0, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/**
- * @generated
- * @note Address: 0x801D03F4
- * @note Size: 0x8
- */
-// u32 Container<Game::BaseItem>::getAt(int) { return 0x0; }
-
-/**
- * @generated
- * @note Address: 0x801D03FC
- * @note Size: 0x8
- */
-// u32 Container<Game::BaseItem>::getTo() { return 0x0; }
-
-namespace Game {
-
-/**
- * @generated
- * @note Address: 0x801D0404
- * @note Size: 0x38
- */
-// void StateMachine<Game::CFSMItem>::exec(Game::CFSMItem*)
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	lwz      r3, 0x1dc(r4)
-// 	cmplwi   r3, 0
-// 	beq      lbl_801D042C
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0xc(r12)
-// 	mtctr    r12
-// 	bctrl
-
-// lbl_801D042C:
-// 	lwz      r0, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/**
- * @generated
- * @note Address: 0x801D043C
- * @note Size: 0x4
- */
-// void FSMState<Game::CFSMItem>::exec(Game::CFSMItem*) { }
-
-/**
- * @generated
- * @note Address: 0x801D0440
- * @note Size: 0x8
- */
-// void CFSMItem::@376 @onKeyEvent(const SysShape::KeyEvent&)
-// {
-// 	/*
-// 	addi     r3, r3, -376
-// 	b        onKeyEvent__Q24Game8CFSMItemFRCQ28SysShape8KeyEvent
-// 	*/
-// }
-
-} // namespace Game
-
-/**
- * @generated
- * @note Address: 0x801D0448
- * @note Size: 0x8
- */
-// void NodeObjectMgr<Game::BaseItem>::@28 @resetMgr()
-// {
-// 	/*
-// 	addi     r3, r3, -28
-// 	b        "resetMgr__31NodeObjectMgr<Q24Game8BaseItem>Fv"
-// 	*/
-// }
-
-/**
- * @generated
- * @note Address: 0x801D0450
- * @note Size: 0x8
- */
-// void ObjectMgr<Game::BaseItem>::@28 @doDirectDraw(Graphics&)
-// {
-// 	/*
-// 	addi     r3, r3, -28
-// 	b        "doDirectDraw__27ObjectMgr<Q24Game8BaseItem>FR8Graphics"
-// 	*/
-// }
-
-/**
- * @generated
- * @note Address: 0x801D0458
- * @note Size: 0x8
- */
-// void ObjectMgr<Game::BaseItem>::@28 @doSimulation(f32)
-// {
-// 	/*
-// 	addi     r3, r3, -28
-// 	b        "doSimulation__27ObjectMgr<Q24Game8BaseItem>Ff"
-// 	*/
-// }
-
-/**
- * @generated
- * @note Address: 0x801D0460
- * @note Size: 0x8
- */
-// void ObjectMgr<Game::BaseItem>::@28 @doViewCalc()
-// {
-// 	/*
-// 	addi     r3, r3, -28
-// 	b        "doViewCalc__27ObjectMgr<Q24Game8BaseItem>Fv"
-// 	*/
-// }
-
-/**
- * @generated
- * @note Address: 0x801D0468
- * @note Size: 0x8
- */
-// void ObjectMgr<Game::BaseItem>::@28 @doSetView(int)
-// {
-// 	/*
-// 	addi     r3, r3, -28
-// 	b        "doSetView__27ObjectMgr<Q24Game8BaseItem>Fi"
-// 	*/
-// }
-
-/**
- * @generated
- * @note Address: 0x801D0470
- * @note Size: 0x8
- */
-// void ObjectMgr<Game::BaseItem>::@28 @doEntry()
-// {
-// 	/*
-// 	addi     r3, r3, -28
-// 	b        "doEntry__27ObjectMgr<Q24Game8BaseItem>Fv"
-// 	*/
-// }
-
-/**
- * @generated
- * @note Address: 0x801D0478
- * @note Size: 0x8
- */
-// void ObjectMgr<Game::BaseItem>::@28 @doAnimation()
-// {
-// 	/*
-// 	addi     r3, r3, -28
-// 	b        "doAnimation__27ObjectMgr<Q24Game8BaseItem>Fv"
-// 	*/
-// }
-
-namespace Game {
-
-/**
- * @generated
- * @note Address: 0x801D0480
- * @note Size: 0x8
- */
-// void TNodeItemMgr::@48 @getEnd()
-// {
-// 	/*
-// 	addi     r3, r3, -48
-// 	b        getEnd__Q24Game12TNodeItemMgrFv
-// 	*/
-// }
-
-/**
- * @generated
- * @note Address: 0x801D0488
- * @note Size: 0x8
- */
-// void TNodeItemMgr::@48 @getStart()
-// {
-// 	/*
-// 	addi     r3, r3, -48
-// 	b        getStart__Q24Game12TNodeItemMgrFv
-// 	*/
-// }
-
-/**
- * @generated
- * @note Address: 0x801D0490
- * @note Size: 0x8
- */
-// void TNodeItemMgr::@48 @getNext(void*)
-// {
-// 	/*
-// 	addi     r3, r3, -48
-// 	b        getNext__Q24Game12TNodeItemMgrFPv
-// 	*/
-// }
-
-/**
- * @generated
- * @note Address: 0x801D0498
- * @note Size: 0x8
- */
-// void TNodeItemMgr::@48 @get(void*)
-// {
-// 	/*
-// 	addi     r3, r3, -48
-// 	b        get__Q24Game12TNodeItemMgrFPv
-// 	*/
-// }
-
-/**
- * @generated
- * @note Address: 0x801D04A0
- * @note Size: 0x8
- */
-// TNodeItemMgr::@48 @~TNodeItemMgr()
-// {
-// 	/*
-// 	addi     r3, r3, -48
-// 	b        __dt__Q24Game12TNodeItemMgrFv
-// 	*/
-// }
-
-/**
- * @generated
- * @note Address: 0x801D04A8
- * @note Size: 0x8
- */
-// void ItemMgr::@28 @loadResources()
-// {
-// 	/*
-// 	addi     r3, r3, -28
-// 	b        loadResources__Q24Game7ItemMgrFv
-// 	*/
-// }
-
-/**
- * @generated
- * @note Address: 0x801D04B0
- * @note Size: 0x8
- */
-// void ItemMgr::@28 @doSimpleDraw(Viewport*)
-// {
-// 	/*
-// 	addi     r3, r3, -28
-// 	b        doSimpleDraw__Q24Game7ItemMgrFP8Viewport
-// 	*/
-// }
-
-/**
- * @generated
- * @note Address: 0x801D04B8
- * @note Size: 0x8
- */
-// void ItemMgr::@28 @doDirectDraw(Graphics&)
-// {
-// 	/*
-// 	addi     r3, r3, -28
-// 	b        doDirectDraw__Q24Game7ItemMgrFR8Graphics
-// 	*/
-// }
-
-/**
- * @generated
- * @note Address: 0x801D04C0
- * @note Size: 0x8
- */
-// void ItemMgr::@28 @doSimulation(f32)
-// {
-// 	/*
-// 	addi     r3, r3, -28
-// 	b        doSimulation__Q24Game7ItemMgrFf
-// 	*/
-// }
-
-/**
- * @generated
- * @note Address: 0x801D04C8
- * @note Size: 0x8
- */
-// void ItemMgr::@28 @doViewCalc()
-// {
-// 	/*
-// 	addi     r3, r3, -28
-// 	b        doViewCalc__Q24Game7ItemMgrFv
-// 	*/
-// }
-
-/**
- * @generated
- * @note Address: 0x801D04D0
- * @note Size: 0x8
- */
-// void ItemMgr::@28 @doSetView(int)
-// {
-// 	/*
-// 	addi     r3, r3, -28
-// 	b        doSetView__Q24Game7ItemMgrFi
-// 	*/
-// }
-
-/**
- * @generated
- * @note Address: 0x801D04D8
- * @note Size: 0x8
- */
-// void ItemMgr::@28 @doEntry()
-// {
-// 	/*
-// 	addi     r3, r3, -28
-// 	b        doEntry__Q24Game7ItemMgrFv
-// 	*/
-// }
-
-/**
- * @generated
- * @note Address: 0x801D04E0
- * @note Size: 0x8
- */
-// void ItemMgr::@28 @doAnimation()
-// {
-// 	/*
-// 	addi     r3, r3, -28
-// 	b        doAnimation__Q24Game7ItemMgrFv
-// 	*/
-// }
 } // namespace Game

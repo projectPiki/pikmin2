@@ -122,23 +122,23 @@ struct TNodeItemMgr : public BaseItemMgr, public Container<BaseItem> {
 	TNodeItemMgr();
 
 	// vtable 1
-	virtual void doAnimation();                 // _08 (weak)
-	virtual void doEntry();                     // _0C (weak)
-	virtual void doSetView(int viewportNumber); // _10 (weak)
-	virtual void doViewCalc();                  // _14 (weak)
-	virtual void doSimulation(f32 rate);        // _18 (weak)
-	virtual void doDirectDraw(Graphics& gfx);   // _1C (weak)
-	virtual void initDependency();              // _38
-	virtual void killAll();                     // _3C
+	virtual void doAnimation() { mNodeObjectMgr.doAnimation(); }                             // _08 (weak)
+	virtual void doEntry() { mNodeObjectMgr.doEntry(); }                                     // _0C (weak)
+	virtual void doSetView(int viewportNumber) { mNodeObjectMgr.doSetView(viewportNumber); } // _10 (weak)
+	virtual void doViewCalc() { mNodeObjectMgr.doViewCalc(); }                               // _14 (weak)
+	virtual void doSimulation(f32 rate) { mNodeObjectMgr.doSimulation(rate); }               // _18 (weak)
+	virtual void doDirectDraw(Graphics& gfx) { mNodeObjectMgr.doDirectDraw(gfx); }           // _1C (weak)
+	virtual void initDependency();                                                           // _38
+	virtual void killAll();                                                                  // _3C
 
 	// vtable 2
-	virtual BaseItem* doNew() = 0; // _A0
-	virtual void kill(BaseItem*);  // _A4 (weak)
-	virtual BaseItem* get(void*);  // _A8 (weak)
-	virtual void* getNext(void*);  // _BC (weak)
-	virtual void* getStart();      // _B0 (weak)
-	virtual void* getEnd();        // _B4 (weak)
-	virtual ~TNodeItemMgr() { }    // _B8 (weak)
+	virtual BaseItem* doNew() = 0;                                           // _A0
+	virtual void kill(BaseItem* item) { mNodeObjectMgr.delNode(item); }      // _A4 (weak)
+	virtual BaseItem* get(void* ptr) { return mNodeObjectMgr.get(ptr); }     // _A8 (weak)
+	virtual void* getNext(void* ptr) { return mNodeObjectMgr.getNext(ptr); } // _BC (weak)
+	virtual void* getStart() { return mNodeObjectMgr.getStart(); }           // _B0 (weak)
+	virtual void* getEnd() { return mNodeObjectMgr.getEnd(); }               // _B4 (weak)
+	virtual ~TNodeItemMgr() { }                                              // _B8 (weak)
 
 	BaseItem* birth();
 	void entry(BaseItem*);
