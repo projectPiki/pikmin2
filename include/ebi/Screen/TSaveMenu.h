@@ -15,7 +15,7 @@ struct TSaveMenu : public TScreenBase {
 	enum MsgType { MESSAGE_SaveOption, MESSAGE_Saving, MESSAGE_SaveSuccess, MESSAGE_NoSaveOption };
 
 	TSaveMenu()
-	    : _14(0, 0, 0, 255)
+	    : mBGColor(0, 0, 0, 255)
 	    , mAlpha(255)
 	    , mDrawState(0)
 	    , mOpenCloseCounter(0)
@@ -53,11 +53,24 @@ struct TSaveMenu : public TScreenBase {
 	void startMsgState_(enumMsgState);
 	void updateMsg_();
 
+	inline void getMenuMinMax(int& index1, int& index2) const
+	{
+		// this stupid pointless cast is necessary for match (it wont reload the value otherwise)
+		int state = *(int*)&mMesgState;
+		if (state == MESSAGE_SaveOption) {
+			index1 = 0;
+			index2 = 1;
+		} else if (state == MESSAGE_NoSaveOption) {
+			index1 = 0;
+			index2 = 1;
+		}
+	}
+
 	// _00     = VTBL
 	// _00-_08 = TScreenBase
 	Controller* mController;                     // _0C
 	int _10;                                     // _10
-	JUtility::TColor _14;                        // _14
+	JUtility::TColor mBGColor;                   // _14
 	u8 mAlpha;                                   // _18
 	int mDrawState;                              // _1C
 	u32 mOpenCloseCounter;                       // _20
@@ -75,12 +88,11 @@ struct TSaveMenu : public TScreenBase {
 	J2DPane* mPaneNoText;                        // _58
 	J2DPane* mPaneQuestionText;                  // _5C
 	og::Screen::AnimText_Screen* mAnimScreen[3]; // _60
-	// These two TYesNowCursors are emiting vtables for some reason
-	TYesNoCursor mCursor1;                // _6C
-	TYesNoCursor mCursor2;                // _A4
-	og::Screen::CallBack_Furiko* mFuriko; // _DC
-	f32 mScreenMovePos;                   // _E0
-	f32 mFadeTimer;                       // _E4
+	TYesNoCursor mCursor1;                       // _6C
+	TYesNoCursor mCursor2;                       // _A4
+	og::Screen::CallBack_Furiko* mFuriko;        // _DC
+	f32 mScreenMovePos;                          // _E0
+	f32 mFadeTimer;                              // _E4
 };
 } // namespace Screen
 } // namespace ebi

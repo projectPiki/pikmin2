@@ -171,8 +171,8 @@ void TSaveMenu::doDraw()
 	if (mDrawState) {
 		graf2 = &sys->mGfx->mPerspGraph;
 		graf2->setPort();
-		u8 alpha = _14;
-		JUtility::TColor color(_14);
+		u8 alpha = mBGColor;
+		JUtility::TColor color(mBGColor);
 		switch (mDrawState) {
 		case 1: {
 			f32 calc;
@@ -195,7 +195,7 @@ void TSaveMenu::doDraw()
 			break;
 		}
 		}
-		graf->setColor(color);
+		graf2->setColor(color);
 		u32 y    = System::getRenderModeObj()->efbHeight;
 		u32 x    = System::getRenderModeObj()->fbWidth;
 		f32 zero = 0.0f;
@@ -366,57 +366,59 @@ void TSaveMenu::updateMsg_()
 			startMsgState_(MSG_Idle);
 		}
 		break;
-	case MSG_Idle:
-		int index1, index2;
-		if (mMesgState == MESSAGE_SaveOption) {
-			index1 = 0;
-			index2 = 1;
-		} else if (mMesgState == MESSAGE_NoSaveOption) {
-			index1 = 0;
-			index2 = 1;
+	case MSG_Idle: {
+		switch (mMesgState) {
+		default:
+			break;
+		case MESSAGE_SaveOption:
+		case MESSAGE_NoSaveOption:
+			int index1, index2;
+			getMenuMinMax(index1, index2);
+			if (mController->isMoveUp()) {
+				if (!mSelectedOption) {
+					mSelectedOption = true;
+					mAnimScreen[index1]->blink(0.6f, 0.0f);
+					mAnimScreen[index2]->blink(0.0f, 0.0f);
+					mCursor1.mIsLeft = mSelectedOption;
+					mCursor2.mIsLeft = mSelectedOption;
+					PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
+				}
+			} else if (mController->isMoveDown()) {
+				if (mSelectedOption == true) {
+					mSelectedOption = false;
+					mAnimScreen[index1]->blink(0.0f, 0.0f);
+					mAnimScreen[index2]->blink(0.6f, 0.0f);
+					mCursor1.mIsLeft = mSelectedOption;
+					mCursor2.mIsLeft = mSelectedOption;
+					PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
+				}
+			} else if (mController->getButtonDown() & Controller::PRESS_A) {
+				mPressedA = true;
+				if (mSelectedOption) {
+					mSelectState = 0;
+					mCursor1.start();
+					mCursor2.start();
+				} else {
+					mSelectState = 1;
+					mCursor1.stop();
+					mCursor2.stop();
+				}
+				startMsgState_(MSG_Close);
+				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
+			} else if (mController->getButtonDown() & Controller::PRESS_B) {
+				mSelectState = 2;
+				mPressedA    = true;
+				mCursor1.mCursor.kill();
+				mCursor2.mCursor.kill();
+				startMsgState_(MSG_Close);
+				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0);
+			}
+			break;
+		case MESSAGE_Saving:
+			PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ACCESS, 0);
 		}
 
-		if (mController->isMoveUp()) {
-			if (!mSelectedOption) {
-				mSelectedOption = true;
-				mAnimScreen[index1]->blink(0.6f, 0.0f);
-				mAnimScreen[index2]->blink(0.0f, 0.0f);
-				mCursor1.mIsLeft = mSelectedOption;
-				mCursor2.mIsLeft = mSelectedOption;
-				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
-			}
-		} else if (mController->isMoveDown()) {
-			if (mSelectedOption == true) {
-				mSelectedOption = false;
-				mAnimScreen[index1]->blink(0.0f, 0.0f);
-				mAnimScreen[index2]->blink(0.6f, 0.0f);
-				mCursor1.mIsLeft = mSelectedOption;
-				mCursor2.mIsLeft = mSelectedOption;
-				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
-			}
-		} else if (mController->mButton.mButtonDown & Controller::PRESS_A) {
-			mPressedA = true;
-			if (mSelectedOption) {
-				mSelectState = 0;
-				mCursor1.start();
-				mCursor2.start();
-			} else {
-				mSelectState = 1;
-				mCursor1.stop();
-				mCursor2.stop();
-			}
-			startMsgState_(MSG_Close);
-			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
-		} else if (mController->mButton.mButtonDown & Controller::PRESS_B) {
-			mSelectState = 2;
-			mPressedA    = true;
-			mCursor1.mCursor.kill();
-			mCursor2.mCursor.kill();
-			startMsgState_(MSG_Close);
-			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0);
-		} else
-			PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ACCESS, 0); // ???
-		break;
+	} break;
 	case MSG_Close:
 		og::Screen::AnimText_Screen* screen;
 		switch (mMesgState) {
