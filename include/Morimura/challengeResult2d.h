@@ -94,6 +94,8 @@ struct TChallengeResultCounter {
 	void getFillRate();
 	void update();
 
+	inline bool checkState(u8 state) { return mState == state; }
+
 	u32* mDisplayValue; // _00
 	u32 _04;            // _04
 	int mState;         // _08
@@ -205,7 +207,7 @@ struct TChallengeResult : public TTestBase {
 	f32 _1D4;                                      // _1D4
 	f32 _1D8;                                      // _1D8
 	s16 _1DC;                                      // _1DC
-	u16 mTestDefaultPokoScore;                     // _1DE
+	s16 mTestDefaultPokoScore;                     // _1DE
 	bool mIsSaveOpen;                              // _1E0
 	int mRankInSlot;                               // _1E4
 	u8 _1E8;                                       // _1E8
@@ -239,11 +241,6 @@ struct TClearTexture {
 	JKRArchive* mArchive; // _04
 	J2DPictureEx* mPane1; // _08
 	J2DPictureEx* mPane2; // _0C
-	int _10;              // _10
-	int _14;              // _14
-	int _18;              // _18
-	int _1C;              // _1C
-	int _20;              // _20
 };
 
 struct TChallengeResultScene : public THIOScene {
