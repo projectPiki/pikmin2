@@ -8,7 +8,8 @@
 extern "C" {
 #endif // ifdef __cplusplus
 
-#define HW_REG(reg, type) *(volatile type*)(u32)(reg) // generic HW_REG macro (please do not use this)
+#define HW_RESET_FLAG(x, flag) (((x) & ~(flag)) | (flag))
+#define HW_REG(reg, type)      *(volatile type*)(u32)(reg) // generic HW_REG macro (please do not use this)
 
 /////// HARDWARE REGISTERS ///////
 // Video Interface registers.
@@ -91,20 +92,20 @@ vu32 __PIRegs[12] AT_ADDRESS(0xCC003000);
 #define PI_RESETCODE (9) // reset code, used by OSReset
 
 // PI Interrupt causes.
-#define PI_INTRPT_ERR       (0x1) // GP runtime error
-#define PI_INTRPT_RSW       (0x2) // reset switch
-#define PI_INTRPT_DVD       (0x4) // DVD/DI interrupt
-#define PI_INTRPT_SI        (0x8) // serial/controller interrupt
-#define PI_INTRPT_EXI       (0x10) // external mem interrupt
-#define PI_INTRPT_AI        (0x20) // audio streaming interrupt
-#define PI_INTRPT_DSP       (0x40) // digital signal proc interrupt
-#define PI_INTRPT_MEM       (0x80) // memory interface interrupt
-#define PI_INTRPT_VI        (0x100) // video interface interrupt
-#define PI_INTRPT_PE_TOKEN  (0x200) // pixel engine token
-#define PI_INTRPT_PE_FINISH (0x400) // pixel engine finish
-#define PI_INTRPT_CP        (0x800) // command FIFO
-#define PI_INTRPT_DEBUG     (0x1000) // external debugger
-#define PI_INTRPT_HSP       (0x2000) // high speed port
+#define PI_INTRPT_ERR       (0x1)     // GP runtime error
+#define PI_INTRPT_RSW       (0x2)     // reset switch
+#define PI_INTRPT_DVD       (0x4)     // DVD/DI interrupt
+#define PI_INTRPT_SI        (0x8)     // serial/controller interrupt
+#define PI_INTRPT_EXI       (0x10)    // external mem interrupt
+#define PI_INTRPT_AI        (0x20)    // audio streaming interrupt
+#define PI_INTRPT_DSP       (0x40)    // digital signal proc interrupt
+#define PI_INTRPT_MEM       (0x80)    // memory interface interrupt
+#define PI_INTRPT_VI        (0x100)   // video interface interrupt
+#define PI_INTRPT_PE_TOKEN  (0x200)   // pixel engine token
+#define PI_INTRPT_PE_FINISH (0x400)   // pixel engine finish
+#define PI_INTRPT_CP        (0x800)   // command FIFO
+#define PI_INTRPT_DEBUG     (0x1000)  // external debugger
+#define PI_INTRPT_HSP       (0x2000)  // high speed port
 #define PI_INTRPT_RSWST     (0x10000) // reset switch state (1 when pressed)
 
 // Memory Interface registers.
@@ -182,7 +183,7 @@ vu32 __SIRegs[64] AT_ADDRESS(0xCC006400);
 #define SI_CHAN_2_BTN_1 (7) // button 1
 #define SI_CHAN_2_BTN_2 (8) // button 2
 // Channel 3/Joy-channel 4
-#define SI_CHAN_3_BUF   (9) // output buffer
+#define SI_CHAN_3_BUF   (9)  // output buffer
 #define SI_CHAN_3_BTN_1 (10) // button 1
 #define SI_CHAN_3_BTN_2 (11) // button 2
 
@@ -224,6 +225,11 @@ vu32 __AIRegs[8] AT_ADDRESS(0xCC006C00);
 #define AI_VOLUME         (1) // volume
 #define AI_SAMPLE_COUNTER (2) // number of stereo samples output
 #define AI_INTRPT_TIMING  (3) // interrupt timing
+
+#define AI_CONTROL_PLAY_STATE          (0x1)
+#define AI_CONTROL_STREAM_SAMPLE_RATE  (0x2)
+#define AI_CONTROL_STREAM_SAMPLE_COUNT (0x20)
+#define AI_CONTROL_DSP_SAMPLE_RATE     (0x40)
 
 //////////////////////////////////
 
