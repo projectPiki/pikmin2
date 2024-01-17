@@ -1,10 +1,6 @@
 #include "JSystem/JStudio/object.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-*/
-
 namespace JStudio {
 
 /**
@@ -13,14 +9,14 @@ namespace JStudio {
  */
 bool object::TIDData::isEqual(JStudio::object::TIDData const& a, JStudio::object::TIDData const& b)
 {
-	// u32 bytesRemaining = a.lengthInBytes_0x4;
-	if (a.lengthInBytes_0x4 != b.lengthInBytes_0x4) {
+	// u32 bytesRemaining = a.mLength;
+	if (a.mLength != b.mLength) {
 		return false;
 	}
-	u32 bytesRemaining = a.lengthInBytes_0x4;
-	u32* aStr          = (u32*)a.idString_0x0;
-	u32* bStr          = (u32*)b.idString_0x0;
-	// if (a.idString_0x0 == b.idString_0x0) {
+	u32 bytesRemaining = a.mLength;
+	u32* aStr          = (u32*)a.mIDString;
+	u32* bStr          = (u32*)b.mIDString;
+	// if (a.mIDString == b.mIDString) {
 	if (aStr == bStr) {
 		// they point to the same id
 		return true;

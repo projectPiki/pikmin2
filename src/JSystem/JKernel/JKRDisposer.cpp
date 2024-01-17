@@ -1,18 +1,6 @@
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "JSystem/JKernel/JKRHeap.h"
 
-/*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__11JKRDisposer
-    __vt__11JKRDisposer:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__11JKRDisposerFv
-        .4byte 0
-*/
-
 /**
  * @note Address: 0x8001CFCC
  * @note Size: 0x68

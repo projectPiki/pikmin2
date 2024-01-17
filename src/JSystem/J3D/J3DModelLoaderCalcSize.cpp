@@ -9,10 +9,6 @@
 #include "JSystem/JSupport/JSU.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-*/
-
 /**
  * @note Address: 0x80087900
  * @note Size: 0x40

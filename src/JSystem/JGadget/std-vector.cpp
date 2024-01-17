@@ -2,10 +2,6 @@
 #include "JSystem/JGadget/vector.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-*/
-
 typedef JGadget::TVector<void*, JGadget::TAllocator> TVPVBase;
 
 namespace JGadget {

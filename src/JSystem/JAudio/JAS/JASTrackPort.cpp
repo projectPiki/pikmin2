@@ -1,10 +1,6 @@
 #include "JSystem/JAudio/JAS/JASTrack.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-*/
-
 /**
  * @note Address: 0x8009C310
  * @note Size: 0x88
