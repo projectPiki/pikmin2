@@ -9,43 +9,47 @@ namespace JStudio {
  */
 bool object::TIDData::isEqual(JStudio::object::TIDData const& a, JStudio::object::TIDData const& b)
 {
-	// u32 bytesRemaining = a.mLength;
 	if (a.mLength != b.mLength) {
 		return false;
 	}
+
 	u32 bytesRemaining = a.mLength;
+	
 	u32* aStr          = (u32*)a.mIDString;
 	u32* bStr          = (u32*)b.mIDString;
-	// if (a.mIDString == b.mIDString) {
-	if (aStr == bStr) {
+	if (b.mIDString == a.mIDString) {
 		// they point to the same id
 		return true;
 	}
-	for (; bytesRemaining >= 4; bytesRemaining -= 4, aStr++, bStr++) {
+
+	for (bytesRemaining; bytesRemaining >= 4; bytesRemaining -= 4, aStr++, bStr++) {
 		if (*aStr != *bStr) {
 			return false;
 		}
 	}
+	
+	u8* aStrBytes = (u8*)aStr;
+	u8* bStrBytes = (u8*)bStr;
 	switch (bytesRemaining) {
 	case 3:
-		if (*(u8*)aStr != *(u8*)bStr) {
+		if (*aStrBytes != *bStrBytes) {
 			return false;
 		}
-		aStr = (u32*)((u8*)aStr + 1);
-		bStr = (u32*)((u8*)bStr + 1);
+		aStrBytes++;
+		bStrBytes++;
 	case 2:
-		if (*(u8*)aStr != *(u8*)bStr) {
+		if (*aStrBytes != *bStrBytes) {
 			return false;
 		}
-		aStr = (u32*)((u8*)aStr + 1);
-		bStr = (u32*)((u8*)bStr + 1);
+		aStrBytes++;
+		bStrBytes++;
 	case 1:
-		if (*(u8*)aStr != *(u8*)bStr) {
+		if (*aStrBytes != *bStrBytes) {
 			return false;
 		}
-	default:
-		return true;
 	}
+
+	return true;
 	/*
 	.loc_0x0:
 	  lwz       r5, 0x4(r3)
