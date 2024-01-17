@@ -344,9 +344,11 @@ DSError TRKTargetAccessExtended1(u32 firstRegister, u32 lastRegister, MessageBuf
 DSError TRKTargetAccessExtended2(u32 firstRegister, u32 lastRegister, MessageBuffer* b, size_t* registerStorageSize, BOOL read)
 {
 	TRKExceptionStatus savedException;
-	u32 current;
-	u32 value32; // (32 bits)
+	u32 i;
+	u32 value_buf0[1];
+	u32 value_buf[2];
 	DSError err;
+	u32 access_func[10];
 
 	if (lastRegister > 0x1f)
 		return DS_InvalidRegister;
@@ -360,26 +362,25 @@ DSError TRKTargetAccessExtended2(u32 firstRegister, u32 lastRegister, MessageBuf
 	savedException                        = gTRKExceptionStatus;
 	gTRKExceptionStatus.exceptionDetected = FALSE;
 
-	TRKPPCAccessSPR(&value32, SPR_HID2, TRUE);
+	TRKPPCAccessSPR(value_buf0, SPR_HID2, TRUE);
 
-	value32 |= 0xA0000000;
-	TRKPPCAccessSPR(&value32, SPR_HID2, FALSE);
+	value_buf0[0] |= 0xA0000000;
+	TRKPPCAccessSPR(value_buf0, SPR_HID2, FALSE);
 
-	value32 = 0;
-	TRKPPCAccessSPR(&value32, SPR_GQR0, FALSE);
+	value_buf0[0] = 0;
+	TRKPPCAccessSPR(value_buf0, SPR_GQR0, FALSE);
 
 	*registerStorageSize = 0;
 	err                  = DS_NoError;
 
-	for (current = firstRegister; (current <= lastRegister) && (err == DS_NoError); current++) {
-		u64 value64; // (64 bits)
+	for (i = firstRegister; (i <= lastRegister) && (err == DS_NoError); i++) {
 
 		if (read) {
-			TRKPPCAccessPairedSingleRegister(&value64, current, read);
-			err = TRKAppendBuffer1_ui64(b, value64);
+			err = TRKPPCAccessPairedSingleRegister((u64*)value_buf, i, read);
+			err = TRKAppendBuffer1_ui64(b, *(u64*)value_buf);
 		} else {
-			TRKReadBuffer1_ui64(b, &value64);
-			err = TRKPPCAccessPairedSingleRegister(&value64, current, read);
+			err = TRKReadBuffer1_ui64(b, (u64*)value_buf);
+			err = TRKPPCAccessPairedSingleRegister((u64*)value_buf, i, read);
 		}
 
 		*registerStorageSize += sizeof(u64);
@@ -393,299 +394,6 @@ DSError TRKTargetAccessExtended2(u32 firstRegister, u32 lastRegister, MessageBuf
 	gTRKExceptionStatus = savedException;
 
 	return err;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x130(r1)
-	  mflr      r0
-	  stw       r0, 0x134(r1)
-	  stmw      r19, 0xFC(r1)
-	  mr        r23, r4
-	  cmplwi    r23, 0x1F
-	  mr        r27, r3
-	  mr        r24, r5
-	  mr        r25, r6
-	  mr        r26, r7
-	  ble-      .loc_0x34
-	  li        r3, 0x701
-	  b         .loc_0x424
-
-	.loc_0x34:
-	  lis       r3, 0x8048
-	  lis       r5, 0x804A
-	  subi      r29, r3, 0x6450
-	  lis       r4, 0x7C99
-	  lwz       r0, 0x0(r29)
-	  addi      r31, r5, 0x68BC
-	  lwz       r8, 0x4(r29)
-	  lis       r3, 0x4E80
-	  lwz       r7, 0x24(r29)
-	  subi      r6, r4, 0x1D5A
-	  stw       r0, 0xC4(r1)
-	  addi      r0, r3, 0x20
-	  lwz       r19, 0x0(r31)
-	  li        r30, 0
-	  lwz       r22, 0xC(r31)
-	  lis       r5, 0x9083
-	  stw       r8, 0xC8(r1)
-	  addi      r3, r1, 0xC4
-	  lwz       r20, 0x4(r31)
-	  li        r4, 0x28
-	  stw       r7, 0xE8(r1)
-	  lwz       r21, 0x8(r31)
-	  lwz       r28, 0x8(r29)
-	  lwz       r12, 0xC(r29)
-	  lwz       r11, 0x10(r29)
-	  lwz       r10, 0x14(r29)
-	  lwz       r9, 0x18(r29)
-	  lwz       r8, 0x1C(r29)
-	  lwz       r7, 0x20(r29)
-	  stw       r19, 0x14(r1)
-	  stw       r20, 0x18(r1)
-	  stw       r21, 0x1C(r1)
-	  stw       r22, 0x20(r1)
-	  stb       r30, 0xD(r31)
-	  stw       r28, 0xCC(r1)
-	  stw       r12, 0xD0(r1)
-	  stw       r11, 0xD4(r1)
-	  stw       r10, 0xD8(r1)
-	  stw       r9, 0xDC(r1)
-	  stw       r8, 0xE0(r1)
-	  stw       r7, 0xE4(r1)
-	  stw       r6, 0xC4(r1)
-	  stw       r5, 0xC8(r1)
-	  stw       r0, 0xE8(r1)
-	  bl        -0xD7C
-	  lis       r3, 0x804F
-	  addi      r12, r1, 0xC4
-	  addi      r4, r3, 0x47EC
-	  addi      r3, r1, 0x8
-	  mtctr     r12
-	  bctrl
-	  lis       r3, 0x8048
-	  lwz       r5, 0x8(r1)
-	  subi      r29, r3, 0x6450
-	  lis       r4, 0x7C99
-	  lwz       r8, 0x0(r29)
-	  lis       r3, 0x4E80
-	  lwz       r0, 0x4(r29)
-	  oris      r30, r5, 0xA000
-	  lwz       r7, 0x24(r29)
-	  subi      r5, r4, 0x1C5A
-	  stw       r0, 0xA0(r1)
-	  addi      r0, r3, 0x20
-	  lwz       r28, 0x8(r29)
-	  lis       r6, 0x8083
-	  stw       r8, 0x9C(r1)
-	  addi      r3, r1, 0x9C
-	  lwz       r12, 0xC(r29)
-	  li        r4, 0x28
-	  stw       r7, 0xC0(r1)
-	  lwz       r11, 0x10(r29)
-	  lwz       r10, 0x14(r29)
-	  lwz       r9, 0x18(r29)
-	  lwz       r8, 0x1C(r29)
-	  lwz       r7, 0x20(r29)
-	  stw       r30, 0x8(r1)
-	  stw       r28, 0xA4(r1)
-	  stw       r12, 0xA8(r1)
-	  stw       r11, 0xAC(r1)
-	  stw       r10, 0xB0(r1)
-	  stw       r9, 0xB4(r1)
-	  stw       r8, 0xB8(r1)
-	  stw       r7, 0xBC(r1)
-	  stw       r6, 0x9C(r1)
-	  stw       r5, 0xA0(r1)
-	  stw       r0, 0xC0(r1)
-	  bl        -0xE24
-	  lis       r3, 0x804F
-	  addi      r12, r1, 0x9C
-	  addi      r4, r3, 0x47EC
-	  addi      r3, r1, 0x8
-	  mtctr     r12
-	  bctrl
-	  lis       r3, 0x8048
-	  lis       r4, 0x7C91
-	  subi      r29, r3, 0x6450
-	  lis       r3, 0x4E80
-	  lwz       r8, 0x0(r29)
-	  li        r30, 0
-	  lwz       r6, 0x4(r29)
-	  subi      r5, r4, 0x1C5A
-	  lwz       r7, 0x24(r29)
-	  addi      r0, r3, 0x20
-	  stw       r6, 0x78(r1)
-	  lis       r6, 0x8083
-	  lwz       r28, 0x8(r29)
-	  addi      r3, r1, 0x74
-	  stw       r8, 0x74(r1)
-	  li        r4, 0x28
-	  lwz       r12, 0xC(r29)
-	  stw       r7, 0x98(r1)
-	  lwz       r11, 0x10(r29)
-	  lwz       r10, 0x14(r29)
-	  lwz       r9, 0x18(r29)
-	  lwz       r8, 0x1C(r29)
-	  lwz       r7, 0x20(r29)
-	  stw       r30, 0x8(r1)
-	  stw       r28, 0x7C(r1)
-	  stw       r12, 0x80(r1)
-	  stw       r11, 0x84(r1)
-	  stw       r10, 0x88(r1)
-	  stw       r9, 0x8C(r1)
-	  stw       r8, 0x90(r1)
-	  stw       r7, 0x94(r1)
-	  stw       r6, 0x74(r1)
-	  stw       r5, 0x78(r1)
-	  stw       r0, 0x98(r1)
-	  bl        -0xEC8
-	  lis       r3, 0x804F
-	  addi      r12, r1, 0x74
-	  addi      r4, r3, 0x47EC
-	  addi      r3, r1, 0x8
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0
-	  rlwinm    r30,r27,21,0,10
-	  stw       r0, 0x0(r25)
-	  addi      r29, r1, 0x4C
-	  addi      r28, r1, 0x24
-	  li        r3, 0
-	  b         .loc_0x3D4
-
-	.loc_0x268:
-	  cmpwi     r26, 0
-	  beq-      .loc_0x318
-	  lis       r3, 0x8048
-	  lwzu      r12, -0x6428(r3)
-	  oris      r0, r30, 0xE003
-	  lwz       r11, 0x4(r3)
-	  lwz       r10, 0x8(r3)
-	  lwz       r9, 0xC(r3)
-	  lwz       r8, 0x10(r3)
-	  lwz       r7, 0x14(r3)
-	  lwz       r6, 0x18(r3)
-	  lwz       r5, 0x1C(r3)
-	  lwz       r4, 0x20(r3)
-	  lwz       r3, 0x24(r3)
-	  stw       r12, 0x4C(r1)
-	  stw       r11, 0x50(r1)
-	  stw       r10, 0x54(r1)
-	  stw       r9, 0x58(r1)
-	  stw       r8, 0x5C(r1)
-	  stw       r7, 0x60(r1)
-	  stw       r6, 0x64(r1)
-	  stw       r5, 0x68(r1)
-	  stw       r4, 0x6C(r1)
-	  stw       r3, 0x70(r1)
-	  beq-      .loc_0x2D0
-	  oris      r0, r30, 0xF003
-
-	.loc_0x2D0:
-	  lis       r3, 0x4E80
-	  stw       r0, 0x4C(r1)
-	  addi      r0, r3, 0x20
-	  mr        r3, r29
-	  stw       r0, 0x70(r1)
-	  li        r4, 0x28
-	  bl        -0xF80
-	  lis       r3, 0x804F
-	  addi      r12, r1, 0x4C
-	  addi      r4, r3, 0x47EC
-	  addi      r3, r1, 0xC
-	  mtctr     r12
-	  bctrl
-	  lwz       r5, 0xC(r1)
-	  mr        r3, r24
-	  lwz       r6, 0x10(r1)
-	  bl        -0x3100
-	  b         .loc_0x3C0
-
-	.loc_0x318:
-	  mr        r3, r24
-	  addi      r4, r1, 0xC
-	  bl        -0x335C
-	  lis       r3, 0x8048
-	  lwzu      r12, -0x6428(r3)
-	  cmpwi     r26, 0
-	  oris      r0, r30, 0xE003
-	  lwz       r11, 0x4(r3)
-	  lwz       r10, 0x8(r3)
-	  lwz       r9, 0xC(r3)
-	  lwz       r8, 0x10(r3)
-	  lwz       r7, 0x14(r3)
-	  lwz       r6, 0x18(r3)
-	  lwz       r5, 0x1C(r3)
-	  lwz       r4, 0x20(r3)
-	  lwz       r3, 0x24(r3)
-	  stw       r12, 0x24(r1)
-	  stw       r11, 0x28(r1)
-	  stw       r10, 0x2C(r1)
-	  stw       r9, 0x30(r1)
-	  stw       r8, 0x34(r1)
-	  stw       r7, 0x38(r1)
-	  stw       r6, 0x3C(r1)
-	  stw       r5, 0x40(r1)
-	  stw       r4, 0x44(r1)
-	  stw       r3, 0x48(r1)
-	  beq-      .loc_0x388
-	  oris      r0, r30, 0xF003
-
-	.loc_0x388:
-	  lis       r3, 0x4E80
-	  stw       r0, 0x24(r1)
-	  addi      r0, r3, 0x20
-	  mr        r3, r28
-	  stw       r0, 0x48(r1)
-	  li        r4, 0x28
-	  bl        -0x1038
-	  lis       r3, 0x804F
-	  addi      r12, r1, 0x24
-	  addi      r4, r3, 0x47EC
-	  addi      r3, r1, 0xC
-	  mtctr     r12
-	  bctrl
-	  li        r3, 0
-
-	.loc_0x3C0:
-	  lwz       r4, 0x0(r25)
-	  addis     r30, r30, 0x20
-	  addi      r27, r27, 0x1
-	  addi      r0, r4, 0x8
-	  stw       r0, 0x0(r25)
-
-	.loc_0x3D4:
-	  cmplw     r27, r23
-	  bgt-      .loc_0x3E4
-	  cmpwi     r3, 0
-	  beq+      .loc_0x268
-
-	.loc_0x3E4:
-	  lbz       r0, 0xD(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x3FC
-	  li        r0, 0
-	  li        r3, 0x702
-	  stw       r0, 0x0(r25)
-
-	.loc_0x3FC:
-	  lis       r4, 0x804A
-	  lwz       r6, 0x14(r1)
-	  addi      r7, r4, 0x68BC
-	  lwz       r5, 0x18(r1)
-	  lwz       r4, 0x1C(r1)
-	  lwz       r0, 0x20(r1)
-	  stw       r6, 0x0(r7)
-	  stw       r5, 0x4(r7)
-	  stw       r4, 0x8(r7)
-	  stw       r0, 0xC(r7)
-
-	.loc_0x424:
-	  lmw       r19, 0xFC(r1)
-	  lwz       r0, 0x134(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x130
-	  blr
-	*/
 }
 
 /**
@@ -1212,7 +920,7 @@ DSError TRKPPCAccessSpecialReg(void* value, u32* access_func, BOOL read)
 
 	// Flush cache
 	TRK_flush_cache((u32)access_func, (sizeof(access_func) * 10));
-	(*asm_access)(value, (void*)&TRKvalue128_temp);
+	(*asm_access)((u32*)value, (void*)&TRKvalue128_temp);
 
 	return DS_NoError;
 }
@@ -1270,185 +978,69 @@ DSError TRKTargetAccessARAM(u32 p1, u32 p2, u32* p3, BOOL read)
 }
 
 /**
- * @note Address: 0x800BE260
- * @note Size: 0x24
+ * @note Address: 0x800BDEA8
+ * @note Size: 0x8
  */
 #ifdef __MWERKS__ // clang-format off
-asm void WriteFPSCR(register f64*){
-	nofralloc
-	stwu	r1, -0x40(r1)
-	stfd	f31, 0x10(r1)
-	psq_st	f31, 0x20(r1), 0, 0
-	lfd		f31, 0(r3)
-	mtfsf	0xff, f31
-	psq_l	f31, 0x20(r1), 0, 0
-	lfd		f31, 0x10(r1)
-	addi	r1,	r1, 0x40
-	blr 
-}
-#endif // clang-format on
-
-/**
- * @note Address: 0x800BE23C
- * @note Size: 0x24
- */
-#ifdef __MWERKS__ // clang-format off
-asm void ReadFPSCR(register f64*)
+asm u32 __TRK_get_MSR(void)
 {
 	nofralloc
-	stwu	r1, -0x40(r1)
-	stfd	f31, 0x10(r1)
-	psq_st	f31, 0x20(r1),0,0
-	mffs	f31
-	stfd	f31, 0x0(r3)
-	psq_l	f31, 0x20(r1),0,0
-	lfd		f31, 0x10(r1)
-	addi	r1, r1, 0x40
-	blr
-	
-}
-#endif // clang-format on
-
-/**
- * @note Address: 0x800BE1E8
- * @note Size: 0x54
- */
-#ifdef __MWERKS__ // clang-format off
-asm void TRKInterruptHandlerEnableInterrupts(void)
-{
-	nofralloc;
-	lis       r2, gTRKState@h
-	ori       r2, r2, gTRKState@l
-	lwz       r0, TRKState_PPC.MSR(r2)
-	sync
-	mtmsr     r0
-	sync
-	lwz       r0, TRKState_PPC.LR(r2)
-	mtlr      r0
-	lwz       r0, TRKState_PPC.CTR(r2)
-	mtctr     r0
-	lwz       r0, TRKState_PPC.XER(r2)
-	mtxer     r0
-	lwz       r0, TRKState_PPC.DSISR(r2)
-	mtdsisr   r0
-	lwz       r0, TRKState_PPC.DAR(r2)
-	mtdar     r0
-	lmw       r3, TRKState_PPC.GPR[3](r2)
-	lwz       r0, TRKState_PPC.GPR[0](r2)
-	lwz       r1, TRKState_PPC.GPR[1](r2)
-	lwz       r2, TRKState_PPC.GPR[2](r2)
-	b         TRKPostInterruptEvent
-}
-#endif // clang-format on
-
-/**
- * @note Address: 0x800BE124
- * @note Size: 0xC4
- */
-#ifdef __MWERKS__ // clang-format off
-asm void TRKSwapAndGo(){
-	nofralloc
-	lis r3, gTRKState@h
-	ori r3, r3, gTRKState@l
-	stmw r0, TRKState_PPC.GPR[0](r3)
-	mfmsr r0
-	stw r0, TRKState_PPC.MSR(r3)
-	mflr r0
-	stw r0, TRKState_PPC.LR(r3)
-	mfctr r0
-	stw r0, TRKState_PPC.CTR(r3)
-	mfxer r0
-	stw r0, TRKState_PPC.XER(r3)
-	mfdsisr r0
-	stw r0, TRKState_PPC.DSISR(r3)
-	mfdar r0
-	stw r0, TRKState_PPC.DAR(r3)
-	li r1, -0x7ffe
-	nor r1, r1, r1
 	mfmsr r3
-	and r3, r3, r1
-	mtmsr r3
-	lis r2, gTRKState@h
-	ori r2, r2, gTRKState@l
-	lwz r2, TRKState_PPC.inputPendingPtr(r2)
-	lbz r2, TRKState_PPC.GPR[0](r2)
-	cmpwi r2, 0
-	beq L_802CF930
-	lis r2, gTRKState@h
-	ori r2, r2, gTRKState@l
-	li r3, 1
-	stb r3, TRKState_PPC.inputActivated(r2)
-	b TRKInterruptHandlerEnableInterrupts
-L_802CF930:
-	lis r2, gTRKExceptionStatus@h
-	ori r2, r2, gTRKExceptionStatus@l
-	li r3, 0
-	stb r3, 0xc(r2)
-	bl TRKRestoreExtended1Block
-	lis r2, gTRKCPUState@h
-	ori r2, r2, gTRKCPUState@l
-	lmw r27, ProcessorState_PPC.Default.PC(r2)
-	mtsrr0 r27
-	mtlr r28
-	mtcrf 0xff, r29
-	mtctr r30
-	mtxer r31
-	lmw r3, ProcessorState_PPC.Default.GPR[3](r2)
-	lwz r0, ProcessorState_PPC.Default.GPR[0](r2)
-	lwz r1, ProcessorState_PPC.Default.GPR[1](r2)
-	lwz r2, ProcessorState_PPC.Default.GPR[2](r2)
-	rfi
+	blr
 }
 #endif // clang-format on
 
 /**
- * @note Address: 0x800BE088
- * @note Size: 0x9C
+ * @note Address: 0x800BDEB0
+ * @note Size: 0x8
  */
 #ifdef __MWERKS__ // clang-format off
-static asm void TRKExceptionHandler(u16 r3){ 
-	nofralloc
-	lis r2, gTRKExceptionStatus@h
-	ori r2, r2, gTRKExceptionStatus@l
-	sth r3, TRKExceptionStatus.exceptionInfo.exceptionID(r2)
-	mfsrr0 r3
-	stw r3, TRKExceptionStatus.exceptionInfo.PC(r2)
-	lhz r3, TRKExceptionStatus.exceptionInfo.exceptionID(r2)
-	cmpwi r3, 0x200
-	beq LAB_00010ba4
-	cmpwi r3, 0x300
-	beq LAB_00010ba4
-	cmpwi r3, 0x400
-	beq LAB_00010ba4
-	cmpwi r3, 0x600
-	beq LAB_00010ba4
-	cmpwi r3, 0x700
-	beq LAB_00010ba4
-	cmpwi r3, 0x800
-	beq LAB_00010ba4
-	cmpwi r3, 0x1000
-	beq LAB_00010ba4
-	cmpwi r3, 0x1100
-	beq LAB_00010ba4
-	cmpwi r3, 0x1200
-	beq LAB_00010ba4
-	cmpwi r3, 0x1300
-	beq LAB_00010ba4
-	b LAB_00010bb0
-LAB_00010ba4:
-	mfsrr0 r3
-	addi r3, r3, 0x4
-	mtsrr0 r3
-LAB_00010bb0:
-	lis r2, gTRKExceptionStatus@h
-	ori r2, r2, gTRKExceptionStatus@l
-	li r3, 0x1
-	stb r3, TRKExceptionStatus.exceptionDetected(r2)
-	mfsprg r3, 3
-	mtcrf 0xff, r3
-	mfsprg r2, 1
-	mfsprg r3, 2
-	rfi
+asm void __TRK_set_MSR(register u32 v)
+{
+	mtmsr v
+	blr
+}
+#endif // clang-format on
+
+/**
+ * @note Address: 0x800BDEB8
+ * @note Size: 0x3C
+ */
+#ifdef __MWERKS__ // clang-format off
+static asm void TRK_ppc_memcpy(register void* dest, register const void* src, register int n, register u32 param_4, register u32 param_5){
+	#define msr		r8
+	#define byte	r9
+	#define count	r10
+		nofralloc
+
+		mfmsr msr
+		li count, 0
+	
+	top_loop:
+		cmpw count, n
+		beq out_loop
+
+		mtmsr param_5
+		sync
+
+		lbzx byte, count, src
+
+		mtmsr param_4
+		sync
+
+		stbx byte, count, dest
+
+		addi count, count, 1
+
+		b top_loop
+	out_loop:
+		mtmsr msr
+		sync
+
+		blr
+	#undef count
+	#undef byte
+	#undef msr
 }
 #endif // clang-format on
 
@@ -1566,222 +1158,184 @@ L_802CF694:
 #endif // clang-format on
 
 /**
- * @note Address: 0x800BDEB8
- * @note Size: 0x3C
+ * @note Address: 0x800BE088
+ * @note Size: 0x9C
  */
-
 #ifdef __MWERKS__ // clang-format off
-static asm void TRK_ppc_memcpy(register void* dest, register const void* src, register int n, register u32 param_4, register u32 param_5){
-	#define msr		r8
-	#define byte	r9
-	#define count	r10
-		nofralloc
-
-		mfmsr msr
-		li count, 0
-	
-	top_loop:
-		cmpw count, n
-		beq out_loop
-
-		mtmsr param_5
-		sync
-
-		lbzx byte, count, src
-
-		mtmsr param_4
-		sync
-
-		stbx byte, count, dest
-
-		addi count, count, 1
-
-		b top_loop
-	out_loop:
-		mtmsr msr
-		sync
-
-		blr
-	#undef count
-	#undef byte
-	#undef msr
+static asm void TRKExceptionHandler(u16 r3){ 
+	nofralloc
+	lis r2, gTRKExceptionStatus@h
+	ori r2, r2, gTRKExceptionStatus@l
+	sth r3, TRKExceptionStatus.exceptionInfo.exceptionID(r2)
+	mfsrr0 r3
+	stw r3, TRKExceptionStatus.exceptionInfo.PC(r2)
+	lhz r3, TRKExceptionStatus.exceptionInfo.exceptionID(r2)
+	cmpwi r3, 0x200
+	beq LAB_00010ba4
+	cmpwi r3, 0x300
+	beq LAB_00010ba4
+	cmpwi r3, 0x400
+	beq LAB_00010ba4
+	cmpwi r3, 0x600
+	beq LAB_00010ba4
+	cmpwi r3, 0x700
+	beq LAB_00010ba4
+	cmpwi r3, 0x800
+	beq LAB_00010ba4
+	cmpwi r3, 0x1000
+	beq LAB_00010ba4
+	cmpwi r3, 0x1100
+	beq LAB_00010ba4
+	cmpwi r3, 0x1200
+	beq LAB_00010ba4
+	cmpwi r3, 0x1300
+	beq LAB_00010ba4
+	b LAB_00010bb0
+LAB_00010ba4:
+	mfsrr0 r3
+	addi r3, r3, 0x4
+	mtsrr0 r3
+LAB_00010bb0:
+	lis r2, gTRKExceptionStatus@h
+	ori r2, r2, gTRKExceptionStatus@l
+	li r3, 0x1
+	stb r3, TRKExceptionStatus.exceptionDetected(r2)
+	mfsprg r3, 3
+	mtcrf 0xff, r3
+	mfsprg r2, 1
+	mfsprg r3, 2
+	rfi
 }
 #endif // clang-format on
 
 /**
- * @note Address: N/A
- * @note Size: 0x8
- */
-void __TRK_get_DBAT3L(void)
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x8
- */
-void __TRK_get_DBAT3U(void)
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x8
- */
-void __TRK_get_DBAT2L(void)
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x8
- */
-void __TRK_get_DBAT2U(void)
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x8
- */
-void __TRK_get_DBAT1L(void)
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x8
- */
-void __TRK_get_DBAT1U(void)
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x8
- */
-void __TRK_get_DBAT0L(void)
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x8
- */
-void __TRK_get_DBAT0U(void)
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x8
- */
-void __TRK_get_IBAT3L(void)
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x8
- */
-void __TRK_get_IBAT3U(void)
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x8
- */
-void __TRK_get_IBAT2L(void)
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x8
- */
-void __TRK_get_IBAT2U(void)
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x8
- */
-void __TRK_get_IBAT1L(void)
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x8
- */
-void __TRK_get_IBAT1U(void)
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x8
- */
-void __TRK_get_IBAT0L(void)
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x8
- */
-void __TRK_get_IBAT0U(void)
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x8
- */
-void __TRK_get_PVR(void)
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: 0x800BDEB0
- * @note Size: 0x8
+ * @note Address: 0x800BE124
+ * @note Size: 0xC4
  */
 #ifdef __MWERKS__ // clang-format off
-asm void __TRK_set_MSR(register u32 v)
-{
-	mtmsr v
-	blr
+asm void TRKSwapAndGo(){
+	nofralloc
+	lis r3, gTRKState@h
+	ori r3, r3, gTRKState@l
+	stmw r0, TRKState_PPC.GPR[0](r3)
+	mfmsr r0
+	stw r0, TRKState_PPC.MSR(r3)
+	mflr r0
+	stw r0, TRKState_PPC.LR(r3)
+	mfctr r0
+	stw r0, TRKState_PPC.CTR(r3)
+	mfxer r0
+	stw r0, TRKState_PPC.XER(r3)
+	mfdsisr r0
+	stw r0, TRKState_PPC.DSISR(r3)
+	mfdar r0
+	stw r0, TRKState_PPC.DAR(r3)
+	li r1, -0x7ffe
+	nor r1, r1, r1
+	mfmsr r3
+	and r3, r3, r1
+	mtmsr r3
+	lis r2, gTRKState@h
+	ori r2, r2, gTRKState@l
+	lwz r2, TRKState_PPC.inputPendingPtr(r2)
+	lbz r2, TRKState_PPC.GPR[0](r2)
+	cmpwi r2, 0
+	beq L_802CF930
+	lis r2, gTRKState@h
+	ori r2, r2, gTRKState@l
+	li r3, 1
+	stb r3, TRKState_PPC.inputActivated(r2)
+	b TRKInterruptHandlerEnableInterrupts
+L_802CF930:
+	lis r2, gTRKExceptionStatus@h
+	ori r2, r2, gTRKExceptionStatus@l
+	li r3, 0
+	stb r3, 0xc(r2)
+	bl TRKRestoreExtended1Block
+	lis r2, gTRKCPUState@h
+	ori r2, r2, gTRKCPUState@l
+	lmw r27, ProcessorState_PPC.Default.PC(r2)
+	mtsrr0 r27
+	mtlr r28
+	mtcrf 0xff, r29
+	mtctr r30
+	mtxer r31
+	lmw r3, ProcessorState_PPC.Default.GPR[3](r2)
+	lwz r0, ProcessorState_PPC.Default.GPR[0](r2)
+	lwz r1, ProcessorState_PPC.Default.GPR[1](r2)
+	lwz r2, ProcessorState_PPC.Default.GPR[2](r2)
+	rfi
 }
 #endif // clang-format on
 
 /**
- * @note Address: 0x800BDEA8
- * @note Size: 0x8
+ * @note Address: 0x800BE1E8
+ * @note Size: 0x54
  */
 #ifdef __MWERKS__ // clang-format off
-asm u32 __TRK_get_MSR(void)
+asm void TRKInterruptHandlerEnableInterrupts(void)
+{
+	nofralloc;
+	lis       r2, gTRKState@h
+	ori       r2, r2, gTRKState@l
+	lwz       r0, TRKState_PPC.MSR(r2)
+	sync
+	mtmsr     r0
+	sync
+	lwz       r0, TRKState_PPC.LR(r2)
+	mtlr      r0
+	lwz       r0, TRKState_PPC.CTR(r2)
+	mtctr     r0
+	lwz       r0, TRKState_PPC.XER(r2)
+	mtxer     r0
+	lwz       r0, TRKState_PPC.DSISR(r2)
+	mtdsisr   r0
+	lwz       r0, TRKState_PPC.DAR(r2)
+	mtdar     r0
+	lmw       r3, TRKState_PPC.GPR[3](r2)
+	lwz       r0, TRKState_PPC.GPR[0](r2)
+	lwz       r1, TRKState_PPC.GPR[1](r2)
+	lwz       r2, TRKState_PPC.GPR[2](r2)
+	b         TRKPostInterruptEvent
+}
+#endif // clang-format on
+
+/**
+ * @note Address: 0x800BE23C
+ * @note Size: 0x24
+ */
+#ifdef __MWERKS__ // clang-format off
+asm void ReadFPSCR(register f64*)
 {
 	nofralloc
-	mfmsr r3
+	stwu	r1, -0x40(r1)
+	stfd	f31, 0x10(r1)
+	psq_st	f31, 0x20(r1),0,0
+	mffs	f31
+	stfd	f31, 0x0(r3)
+	psq_l	f31, 0x20(r1),0,0
+	lfd		f31, 0x10(r1)
+	addi	r1, r1, 0x40
 	blr
+	
+}
+#endif // clang-format on
+
+/**
+ * @note Address: 0x800BE260
+ * @note Size: 0x24
+ */
+#ifdef __MWERKS__ // clang-format off
+asm void WriteFPSCR(register f64*){
+	nofralloc
+	stwu	r1, -0x40(r1)
+	stfd	f31, 0x10(r1)
+	psq_st	f31, 0x20(r1), 0, 0
+	lfd		f31, 0(r3)
+	mtfsf	0xff, f31
+	psq_l	f31, 0x20(r1), 0, 0
+	lfd		f31, 0x10(r1)
+	addi	r1,	r1, 0x40
+	blr 
 }
 #endif // clang-format on
