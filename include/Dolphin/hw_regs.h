@@ -150,6 +150,8 @@ vu16 __DSPRegs[32] AT_ADDRESS(0xCC005000);
 #define DSP_DMA_CONTROL_LEN (27)
 #define DSP_DMA_BYTES_LEFT  (29)
 
+#define DSP_DMA_START_FLAG (0x8000) // set to start DSP
+
 // DVD Interface registers.
 vu32 __DIRegs[16] AT_ADDRESS(0xCC006000);
 
@@ -224,6 +226,13 @@ vu32 __AIRegs[8] AT_ADDRESS(0xCC006C00);
 #define AI_VOLUME         (1) // volume
 #define AI_SAMPLE_COUNTER (2) // number of stereo samples output
 #define AI_INTRPT_TIMING  (3) // interrupt timing
+
+#define AI_CONTROL_PLAY_STATE          (0x1)
+#define AI_CONTROL_STREAM_SAMPLE_RATE  (0x2)
+#define AI_CONTROL_DSP_SAMPLE_COUNT    (0x4)
+#define AI_CONTROL_UNKNOWN8            (0x8)
+#define AI_CONTROL_STREAM_SAMPLE_COUNT (0x20)
+#define AI_CONTROL_DSP_SAMPLE_RATE     (0x40)
 
 //////////////////////////////////
 
