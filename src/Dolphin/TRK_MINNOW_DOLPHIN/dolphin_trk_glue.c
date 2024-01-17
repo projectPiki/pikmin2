@@ -40,38 +40,38 @@ int InitMetroTRKCommTable(int hwId)
 		gDBCommTable.pre_continue_func    = udp_cc_pre_continue;
 		gDBCommTable.post_stop_func       = udp_cc_post_stop;
 		gDBCommTable.init_interrupts_func = nullptr;
-		result                            = 0;
+		return 0;
+	}
 
-	} else if (hwId == HARDWARE_GDEV) { // NDEV hardware
+	if (hwId == HARDWARE_GDEV) { // NDEV hardware
 		OSReport("MetroTRK : Set to GDEV hardware\n");
 		// Initialize gDBCommTable
-		// need to work out what the deal with the typedef is for these functions
-		// gDBCommTable.initialize_func      = gdev_cc_initialize;
-		// gDBCommTable.open_func            = gdev_cc_open;
-		// gDBCommTable.close_func           = gdev_cc_close;
-		// gDBCommTable.read_func            = gdev_cc_read;
-		// gDBCommTable.write_func           = gdev_cc_write;
-		// gDBCommTable.shutdown_func        = gdev_cc_shutdown;
-		// gDBCommTable.peek_func            = gdev_cc_peek;
-		// gDBCommTable.pre_continue_func    = gdev_cc_pre_continue;
-		// gDBCommTable.post_stop_func       = gdev_cc_post_stop;
-		// gDBCommTable.init_interrupts_func = gdev_cc_initinterrupts;
-		result = 0;
+		result                            = Hu_IsStub();
+		gDBCommTable.initialize_func      = gdev_cc_initialize;
+		gDBCommTable.open_func            = gdev_cc_open;
+		gDBCommTable.close_func           = gdev_cc_close;
+		gDBCommTable.read_func            = gdev_cc_read;
+		gDBCommTable.write_func           = gdev_cc_write;
+		gDBCommTable.shutdown_func        = gdev_cc_shutdown;
+		gDBCommTable.peek_func            = gdev_cc_peek;
+		gDBCommTable.pre_continue_func    = gdev_cc_pre_continue;
+		gDBCommTable.post_stop_func       = gdev_cc_post_stop;
+		gDBCommTable.init_interrupts_func = gdev_cc_initinterrupts;
 
 	} else if (hwId == HARDWARE_AMC_DDH) {
 		OSReport("MetroTRK : Set to AMC DDH hardware\n");
+		result = AMC_IsStub();
 		// Initialize gDBCommTable
-		// gDBCommTable.initialize_func      = ddh_cc_initialize;
-		// gDBCommTable.open_func            = ddh_cc_open;
-		// gDBCommTable.close_func           = ddh_cc_close;
-		// gDBCommTable.read_func            = ddh_cc_read;
-		// gDBCommTable.write_func           = ddh_cc_write;
-		// gDBCommTable.shutdown_func        = ddh_cc_shutdown;
-		// gDBCommTable.peek_func            = ddh_cc_peek;
-		// gDBCommTable.pre_continue_func    = ddh_cc_pre_continue;
-		// gDBCommTable.post_stop_func       = ddh_cc_post_stop;
-		// gDBCommTable.init_interrupts_func = ddh_cc_initinterrupts;
-		result = 0;
+		gDBCommTable.initialize_func      = ddh_cc_initialize;
+		gDBCommTable.open_func            = ddh_cc_open;
+		gDBCommTable.close_func           = ddh_cc_close;
+		gDBCommTable.read_func            = ddh_cc_read;
+		gDBCommTable.write_func           = ddh_cc_write;
+		gDBCommTable.shutdown_func        = ddh_cc_shutdown;
+		gDBCommTable.peek_func            = ddh_cc_peek;
+		gDBCommTable.pre_continue_func    = ddh_cc_pre_continue;
+		gDBCommTable.post_stop_func       = ddh_cc_post_stop;
+		gDBCommTable.init_interrupts_func = ddh_cc_initinterrupts;
 
 	} else { // unknown hardware
 		OSReport("MetroTRK : Set to UNKNOWN hardware. (%ld)\n", hwId);
@@ -80,174 +80,6 @@ int InitMetroTRKCommTable(int hwId)
 	}
 
 	return result;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x8048
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, 0x1
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  stw       r29, 0x14(r1)
-	  subi      r29, r4, 0x63B8
-	  mr        r4, r30
-	  addi      r3, r29, 0x8
-	  crclr     6, 0x6
-	  bl        0x2CFA0
-	  lis       r3, 0x804F
-	  li        r0, 0
-	  cmpwi     r30, 0x2
-	  stb       r0, 0x4810(r3)
-	  bne-      .loc_0xEC
-	  addi      r3, r29, 0x20
-	  crclr     6, 0x6
-	  bl        0x2CF80
-	  lis       r30, 0x804F
-	  lis       r12, 0x800C
-	  lis       r11, 0x804A
-	  lis       r10, 0x800C
-	  lis       r9, 0x800C
-	  lis       r8, 0x800C
-	  lis       r7, 0x800C
-	  lis       r6, 0x800C
-	  lis       r5, 0x800C
-	  lis       r4, 0x800C
-	  lis       r3, 0x800C
-	  addi      r31, r30, 0x4810
-	  li        r29, 0x1
-	  addi      r30, r12, 0xC48
-	  addi      r12, r11, 0x6920
-	  addi      r11, r10, 0xC38
-	  addi      r10, r9, 0xC30
-	  addi      r9, r8, 0xC28
-	  addi      r8, r7, 0xC20
-	  addi      r7, r6, 0xC40
-	  addi      r6, r5, 0xC18
-	  addi      r5, r4, 0xC10
-	  addi      r4, r3, 0xC08
-	  li        r0, 0
-	  stb       r29, 0x0(r31)
-	  li        r3, 0
-	  stw       r30, 0x0(r12)
-	  stw       r11, 0x18(r12)
-	  stw       r10, 0x1C(r12)
-	  stw       r9, 0x10(r12)
-	  stw       r8, 0x14(r12)
-	  stw       r7, 0x8(r12)
-	  stw       r6, 0xC(r12)
-	  stw       r5, 0x20(r12)
-	  stw       r4, 0x24(r12)
-	  stw       r0, 0x4(r12)
-	  b         .loc_0x250
-
-	.loc_0xEC:
-	  cmpwi     r30, 0x1
-	  bne-      .loc_0x188
-	  addi      r3, r29, 0x38
-	  crclr     6, 0x6
-	  bl        0x2CED8
-	  bl        0x2A7A8
-	  lis       r31, 0x800C
-	  lis       r12, 0x800C
-	  addi      r31, r31, 0x14C0
-	  lis       r30, 0x804A
-	  lis       r11, 0x800C
-	  lis       r10, 0x800C
-	  lis       r9, 0x800C
-	  lis       r8, 0x800C
-	  lis       r7, 0x800C
-	  lis       r6, 0x800C
-	  lis       r5, 0x800C
-	  lis       r4, 0x800C
-	  stwu      r31, 0x6920(r30)
-	  addi      r12, r12, 0x1494
-	  addi      r11, r11, 0x148C
-	  addi      r10, r10, 0x1398
-	  addi      r9, r9, 0x12D8
-	  addi      r8, r8, 0x14B8
-	  addi      r7, r7, 0x1220
-	  addi      r6, r6, 0x12B4
-	  addi      r5, r5, 0x1290
-	  addi      r0, r4, 0x11FC
-	  stw       r12, 0x18(r30)
-	  mr        r31, r3
-	  stw       r11, 0x1C(r30)
-	  stw       r10, 0x10(r30)
-	  stw       r9, 0x14(r30)
-	  stw       r8, 0x8(r30)
-	  stw       r7, 0xC(r30)
-	  stw       r6, 0x20(r30)
-	  stw       r5, 0x24(r30)
-	  stw       r0, 0x4(r30)
-	  b         .loc_0x24C
-
-	.loc_0x188:
-	  cmpwi     r30, 0
-	  bne-      .loc_0x224
-	  addi      r3, r29, 0x5C
-	  crclr     6, 0x6
-	  bl        0x2CE3C
-	  bl        0x11DB8
-	  lis       r31, 0x800C
-	  lis       r12, 0x800C
-	  addi      r31, r31, 0xF0C
-	  lis       r30, 0x804A
-	  lis       r11, 0x800C
-	  lis       r10, 0x800C
-	  lis       r9, 0x800C
-	  lis       r8, 0x800C
-	  lis       r7, 0x800C
-	  lis       r6, 0x800C
-	  lis       r5, 0x800C
-	  lis       r4, 0x800C
-	  stwu      r31, 0x6920(r30)
-	  addi      r12, r12, 0xEE0
-	  addi      r11, r11, 0xED8
-	  addi      r10, r10, 0xDEC
-	  addi      r9, r9, 0xD2C
-	  addi      r8, r8, 0xF04
-	  addi      r7, r7, 0xC74
-	  addi      r6, r6, 0xD08
-	  addi      r5, r5, 0xCE4
-	  addi      r0, r4, 0xC50
-	  stw       r12, 0x18(r30)
-	  mr        r31, r3
-	  stw       r11, 0x1C(r30)
-	  stw       r10, 0x10(r30)
-	  stw       r9, 0x14(r30)
-	  stw       r8, 0x8(r30)
-	  stw       r7, 0xC(r30)
-	  stw       r6, 0x20(r30)
-	  stw       r5, 0x24(r30)
-	  stw       r0, 0x4(r30)
-	  b         .loc_0x24C
-
-	.loc_0x224:
-	  mr        r4, r30
-	  addi      r3, r29, 0x80
-	  crclr     6, 0x6
-	  bl        0x2CDA4
-	  addi      r3, r29, 0xAC
-	  crclr     6, 0x6
-	  bl        0x2CD98
-	  addi      r3, r29, 0xDC
-	  crclr     6, 0x6
-	  bl        0x2CD8C
-
-	.loc_0x24C:
-	  mr        r3, r31
-
-	.loc_0x250:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
 }
 
 /**

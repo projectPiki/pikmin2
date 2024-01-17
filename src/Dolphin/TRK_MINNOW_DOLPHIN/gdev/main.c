@@ -13,20 +13,20 @@ static BOOL gIsInitialized;
  * @note Address: 0x800C14C0
  * @note Size: 0x88
  */
-BOOL gdev_cc_initialize(vu8** inputPendingPtrRef, AmcEXICallback monitorCallback)
+int gdev_cc_initialize(void* inputPendingPtrRef, AmcEXICallback monitorCallback)
 {
 	MWTRACE(1, "CALLING EXI2_Init\n");
 	DBInitComm(inputPendingPtrRef, monitorCallback);
 	MWTRACE(1, "DONE CALLING EXI2_Init\n");
 	CircleBufferInitialize(&gRecvCB, gRecvBuf, GDEV_BUF_SIZE);
-	return FALSE;
+	return 0;
 }
 
 /**
  * @note Address: 0x800C14B8
  * @note Size: 0x8
  */
-BOOL gdev_cc_shutdown() { return FALSE; }
+int gdev_cc_shutdown() { return 0; }
 
 /**
  * @note Address: 0x800C1494
@@ -39,20 +39,20 @@ int gdev_cc_open()
 	}
 
 	gIsInitialized = TRUE;
-	return FALSE;
+	return 0;
 }
 
 /**
  * @note Address: 0x800C148C
  * @note Size: 0x8
  */
-BOOL gdev_cc_close() { return FALSE; }
+int gdev_cc_close() { return 0; }
 
 /**
  * @note Address: 0x800C1398
  * @note Size: 0xF4
  */
-u32 gdev_cc_read(u8* data, u32 size)
+int gdev_cc_read(u8* data, int size)
 {
 	u8 buff[GDEV_BUF_SIZE];
 	int p1;
@@ -92,13 +92,13 @@ u32 gdev_cc_read(u8* data, u32 size)
  * @note Address: 0x800C12D8
  * @note Size: 0xC0
  */
-int gdev_cc_write(int bytes, int length)
+int gdev_cc_write(const u8* bytes, int length)
 {
 	int exi2Len;
 	int n_copy;
 	u32 hexCopy;
 
-	hexCopy = bytes;
+	hexCopy = (u32)bytes;
 	n_copy  = length;
 
 	if (gIsInitialized == FALSE) {
@@ -125,20 +125,20 @@ int gdev_cc_write(int bytes, int length)
  * @note Address: 0x800C12B4
  * @note Size: 0x24
  */
-BOOL gdev_cc_pre_continue()
+int gdev_cc_pre_continue()
 {
 	DBClose();
-	return FALSE;
+	return 0;
 }
 
 /**
  * @note Address: 0x800C1290
  * @note Size: 0x24
  */
-BOOL gdev_cc_post_stop()
+int gdev_cc_post_stop()
 {
 	DBOpen();
-	return FALSE;
+	return 0;
 }
 
 /**
@@ -168,8 +168,8 @@ int gdev_cc_peek()
  * @note Address: 0x800C11FC
  * @note Size: 0x24
  */
-BOOL gdev_cc_initinterrupts()
+int gdev_cc_initinterrupts()
 {
 	DBInitInterrupts();
-	return FALSE;
+	return 0;
 }

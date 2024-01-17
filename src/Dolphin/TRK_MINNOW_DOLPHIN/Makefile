@@ -19,7 +19,7 @@ TRK_MINNOW_DOLPHIN_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/__exception.o\
 	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/main_TRK.o\
-	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk_glue.o\
+	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk_glue.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/targcont.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/target_options.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/mslsupp.o\
