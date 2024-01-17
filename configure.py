@@ -354,7 +354,7 @@ LIBS = [
         "host": True,
         "objects": [
             ["JSystem/JAudio/dsp/dspproc", True],
-            ["JSystem/JAudio/dsp/dsptask", False],
+            ["JSystem/JAudio/dsp/dsptask", True],
             ["JSystem/JAudio/dsp/osdsp", True],
             ["JSystem/JAudio/dsp/osdsp_task", True],
         ],

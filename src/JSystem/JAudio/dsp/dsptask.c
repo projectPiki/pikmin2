@@ -2,15 +2,10 @@
 #include "types.h"
 #include "JSystem/JAudio/DSP.h"
 
-typedef struct {
-	DSPTaskInfo info;
-	u8 filler[0x10]; 
-} DSPAudioTaskInfo;
-
-static DSPAudioTaskInfo audio_task ATTRIBUTE_ALIGN(32); // why is this 0x60 bytes big? it should be 0x50 if it were a DSPTaskInfo
+static DSPTaskInfo audio_task ATTRIBUTE_ALIGN(32);
 static u8 AUDIO_YIELD_BUFFER[8192] ATTRIBUTE_ALIGN(32);
 
-u8 jdsp[] = {
+u8 jdsp[] ATTRIBUTE_ALIGN(32) = {
 	0x02, 0x9F, 0x00, 0x12, 0x00, 0x00, 0x00, 0x00, 0x02, 0xFF, 0x00, 0x00, 0x02, 0xFF, 0x00, 0x00, 0x02, 0xFF, 0x00, 0x00, 0x02, 0xFF,
 	0x00, 0x00, 0x02, 0xFF, 0x00, 0x00, 0x02, 0x9F, 0x05, 0xB8, 0x02, 0x9F, 0x00, 0x4E, 0x12, 0x05, 0x02, 0xBF, 0x00, 0x57, 0x81, 0x00,
 	0x00, 0x9F, 0x10, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00, 0x5F, 0x1B, 0x1E, 0x02, 0xBF, 0x06, 0x88, 0x02, 0xBF, 0x04, 0xC0, 0x02, 0xBF,
@@ -373,21 +368,21 @@ static void DspHandShake(void* a1)
 void DspBoot(DSPCallback callback)
 {
 	DspInitWork();
-	audio_task.info.priority          = 0xF0;
-	audio_task.info.iram_mmem_addr    = (u16*)(jdsp + 0x80000000);
-	audio_task.info.iram_length       = sizeof(jdsp);
-	audio_task.info.iram_addr         = nullptr;
-	audio_task.info.dram_mmem_addr    = (u16*)(AUDIO_YIELD_BUFFER + 0x80000000);
-	audio_task.info.dram_length       = sizeof(AUDIO_YIELD_BUFFER);
-	audio_task.info.dram_addr         = 0;
-	audio_task.info.dsp_init_vector   = 0;
-	audio_task.info.dsp_resume_vector = 0x10;
-	audio_task.info.init_cb           = DspHandShake;
-	audio_task.info.res_cb            = nullptr;
-	audio_task.info.done_cb           = nullptr;
-	audio_task.info.req_cb            = callback;
+	audio_task.priority          = 0xF0;
+	audio_task.iram_mmem_addr    = (u16*)(jdsp + 0x80000000);
+	audio_task.iram_length       = sizeof(jdsp);
+	audio_task.iram_addr         = nullptr;
+	audio_task.dram_mmem_addr    = (u16*)(AUDIO_YIELD_BUFFER + 0x80000000);
+	audio_task.dram_length       = sizeof(AUDIO_YIELD_BUFFER);
+	audio_task.dram_addr         = 0;
+	audio_task.dsp_init_vector   = 0;
+	audio_task.dsp_resume_vector = 0x10;
+	audio_task.init_cb           = DspHandShake;
+	audio_task.res_cb            = nullptr;
+	audio_task.done_cb           = nullptr;
+	audio_task.req_cb            = callback;
 	DSPInit();
-	DSPAddPriorTask(&audio_task.info);
+	DSPAddPriorTask(&audio_task);
 }
 
 /**
@@ -431,86 +426,6 @@ int DSPSendCommands2(u32* p1, u32 mailCount, void (*callBack)(u16))
 
 	OSRestoreInterrupts(interruptFlag);
 	return startWorkStatus;
-
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  addi      r11, r1, 0x20
-	  bl        0x17260
-	  mr        r26, r3
-	  mr        r27, r4
-	  mr        r30, r5
-
-	.loc_0x20:
-	  bl        0x6A0
-	  cmpwi     r3, 0
-	  beq+      .loc_0x20
-	  bl        0x4420C
-	  mr        r29, r3
-	  bl        0x3027C
-	  cmplwi    r3, 0
-	  beq-      .loc_0x50
-	  mr        r3, r29
-	  bl        0x4421C
-	  li        r3, -0x1
-	  b         .loc_0xD0
-
-	.loc_0x50:
-	  mr        r3, r27
-	  bl        0x30294
-	  bl        0x302A4
-	  nop
-
-	.loc_0x60:
-	  bl        0x30250
-	  cmplwi    r3, 0
-	  bne+      .loc_0x60
-	  cmplwi    r27, 0
-	  bne-      .loc_0x78
-	  li        r27, 0x1
-
-	.loc_0x78:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x90
-	  lwz       r3, 0x0(r26)
-	  mr        r4, r30
-	  bl        0xB8
-	  mr        r28, r3
-
-	.loc_0x90:
-	  li        r30, 0
-	  li        r31, 0
-	  b         .loc_0xBC
-
-	.loc_0x9C:
-	  lwzx      r3, r26, r31
-	  bl        0x30248
-	  nop
-
-	.loc_0xA8:
-	  bl        0x30208
-	  cmplwi    r3, 0
-	  bne+      .loc_0xA8
-	  addi      r30, r30, 0x1
-	  addi      r31, r31, 0x4
-
-	.loc_0xBC:
-	  cmplw     r30, r27
-	  blt+      .loc_0x9C
-	  mr        r3, r29
-	  bl        0x44198
-	  mr        r3, r28
-
-	.loc_0xD0:
-	  addi      r11, r1, 0x20
-	  bl        0x171E8
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
 }
 
 typedef struct {
@@ -530,23 +445,6 @@ void DspInitWork()
 	for (u32 i = 0; i < 16; i++) {
 		taskwork[i]._04 = nullptr;
 	}
-
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  lis       r4, 0x804F
-	  li        r0, 0x10
-	  mr        r6, r3
-	  addi      r5, r4, 0x27E0
-	  mtctr     r0
-
-	.loc_0x18:
-	  add       r4, r5, r3
-	  addi      r3, r3, 0x8
-	  stw       r6, 0x4(r4)
-	  bdnz+     .loc_0x18
-	  blr
-	*/
 }
 
 static u32 taskreadp;

@@ -1,6 +1,6 @@
 JAUDIO_DSP_FILES:=\
 	$(BUILD_DIR)/src/JSystem/JAudio/dsp/dspproc.o\
-	$(BUILD_DIR)/asm/JSystem/JAudio/dsp/dsptask.o\
+	$(BUILD_DIR)/src/JSystem/JAudio/dsp/dsptask.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/dsp/osdsp.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/dsp/osdsp_task.o\
 
