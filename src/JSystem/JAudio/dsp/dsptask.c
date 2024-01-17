@@ -2,7 +2,12 @@
 #include "types.h"
 #include "JSystem/JAudio/DSP.h"
 
-static DSPTaskInfo audio_task ATTRIBUTE_ALIGN(32);
+typedef struct {
+	DSPTaskInfo info;
+	u8 filler[0x10]; 
+} DSPAudioTaskInfo;
+
+static DSPAudioTaskInfo audio_task ATTRIBUTE_ALIGN(32); // why is this 0x60 bytes big? it should be 0x50 if it were a DSPTaskInfo
 static u8 AUDIO_YIELD_BUFFER[8192] ATTRIBUTE_ALIGN(32);
 
 u8 jdsp[] = {
@@ -368,21 +373,21 @@ static void DspHandShake(void* a1)
 void DspBoot(DSPCallback callback)
 {
 	DspInitWork();
-	audio_task.priority          = 0xF0;
-	audio_task.iram_mmem_addr    = (u16*)(jdsp + 0x80000000);
-	audio_task.iram_length       = sizeof(jdsp);
-	audio_task.iram_addr         = nullptr;
-	audio_task.dram_mmem_addr    = (u16*)(AUDIO_YIELD_BUFFER + 0x80000000);
-	audio_task.dram_length       = sizeof(AUDIO_YIELD_BUFFER);
-	audio_task.dram_addr         = 0;
-	audio_task.dsp_init_vector   = 0;
-	audio_task.dsp_resume_vector = 0x10;
-	audio_task.init_cb           = DspHandShake;
-	audio_task.res_cb            = nullptr;
-	audio_task.done_cb           = nullptr;
-	audio_task.req_cb            = callback;
+	audio_task.info.priority          = 0xF0;
+	audio_task.info.iram_mmem_addr    = (u16*)(jdsp + 0x80000000);
+	audio_task.info.iram_length       = sizeof(jdsp);
+	audio_task.info.iram_addr         = nullptr;
+	audio_task.info.dram_mmem_addr    = (u16*)(AUDIO_YIELD_BUFFER + 0x80000000);
+	audio_task.info.dram_length       = sizeof(AUDIO_YIELD_BUFFER);
+	audio_task.info.dram_addr         = 0;
+	audio_task.info.dsp_init_vector   = 0;
+	audio_task.info.dsp_resume_vector = 0x10;
+	audio_task.info.init_cb           = DspHandShake;
+	audio_task.info.res_cb            = nullptr;
+	audio_task.info.done_cb           = nullptr;
+	audio_task.info.req_cb            = callback;
 	DSPInit();
-	DSPAddPriorTask(&audio_task);
+	DSPAddPriorTask(&audio_task.info);
 }
 
 /**

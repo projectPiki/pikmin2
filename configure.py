@@ -349,7 +349,7 @@ LIBS = [
     },
     {
         "lib": "JAudio_DSP",
-        "cflags": "$cflags_pikmin -lang=c++ -func_align 32 -inline noauto -common off -use_lmw_stmw off",
+        "cflags": "$cflags_pikmin -lang=c++ -func_align 32 -inline noauto -common off -use_lmw_stmw off -O4,s",
         "mw_version": "2.6",
         "host": True,
         "objects": [
