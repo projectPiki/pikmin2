@@ -78,110 +78,17 @@ void __TRK_copy_vectors(void)
 		r3 = EXCEPTIONMASK_ADDR;
 	}
 
-	isrOffsetPtr = TRK_ISR_OFFSETS;
 	i            = 0;
 	r29          = *(u32*)r3;
+	isrOffsetPtr = TRK_ISR_OFFSETS;
 
 	do {
 		if ((r29 & (1 << i)) && i != 4) {
-			TRK_copy_vector(*isrOffsetPtr);
+			TRK_copy_vector(isrOffsetPtr[i]);
 		}
 
 		i++;
-		isrOffsetPtr++;
 	} while (i <= 14);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r3, 0x804F
-	  stw       r0, 0x24(r1)
-	  addi      r3, r3, 0x4800
-	  stmw      r27, 0xC(r1)
-	  lwz       r3, 0x0(r3)
-	  cmplwi    r3, 0x44
-	  bgt-      .loc_0x4C
-	  addi      r0, r3, 0x4000
-	  cmplwi    r0, 0x44
-	  ble-      .loc_0x4C
-	  lis       r3, 0x804F
-	  addi      r3, r3, 0x4328
-	  lwz       r0, 0x238(r3)
-	  rlwinm.   r0,r0,0,30,31
-	  beq-      .loc_0x4C
-	  li        r5, 0x44
-	  b         .loc_0x54
-
-	.loc_0x4C:
-	  lis       r3, 0x8000
-	  addi      r5, r3, 0x44
-
-	.loc_0x54:
-	  lis       r4, 0x804A
-	  lis       r3, 0x804F
-	  lwz       r29, 0x0(r5)
-	  addi      r31, r4, 0x68E0
-	  addi      r28, r3, 0x4328
-	  li        r30, 0
-
-	.loc_0x6C:
-	  li        r0, 0x1
-	  slw       r0, r0, r30
-	  and.      r0, r29, r0
-	  beq-      .loc_0x108
-	  cmpwi     r30, 0x4
-	  beq-      .loc_0x108
-	  lis       r3, 0x804F
-	  lwz       r6, 0x0(r31)
-	  addi      r3, r3, 0x4800
-	  lwz       r3, 0x0(r3)
-	  cmplw     r6, r3
-	  blt-      .loc_0xBC
-	  addi      r0, r3, 0x4000
-	  cmplw     r6, r0
-	  bge-      .loc_0xBC
-	  lwz       r0, 0x238(r28)
-	  rlwinm.   r0,r0,0,30,31
-	  beq-      .loc_0xBC
-	  mr        r27, r6
-	  b         .loc_0xE4
-
-	.loc_0xBC:
-	  lis       r0, 0x7E00
-	  cmplw     r6, r0
-	  blt-      .loc_0xDC
-	  lis       r0, 0x8000
-	  cmplw     r6, r0
-	  bgt-      .loc_0xDC
-	  mr        r27, r6
-	  b         .loc_0xE4
-
-	.loc_0xDC:
-	  rlwinm    r0,r6,0,2,31
-	  oris      r27, r0, 0x8000
-
-	.loc_0xE4:
-	  lis       r4, 0x8000
-	  mr        r3, r27
-	  addi      r0, r4, 0x3154
-	  li        r5, 0x100
-	  add       r4, r0, r6
-	  bl        -0xBD230
-	  mr        r3, r27
-	  li        r4, 0x100
-	  bl        -0x25B4
-
-	.loc_0x108:
-	  addi      r30, r30, 0x1
-	  addi      r31, r31, 0x4
-	  cmpwi     r30, 0xE
-	  ble+      .loc_0x6C
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
 }
 
 /**
@@ -196,12 +103,54 @@ DSError TRKInitializeTarget()
 	return DS_NoError;
 }
 
+#define __dcbi(a, b)    asm { dcbi a, b }
+#define __dcbfASM(a, b) asm { dcbf a, b }
+
 /**
  * @note Address: 0x800C00E8
  * @note Size: 0x134
  */
-void TRK__read_aram(void)
+void TRK__read_aram(register int c, register u32 p2, void* p3)
 {
+	u32 err;
+	int i;
+	register int counter;
+	u16 r;
+	u32 g;
+	u32 x;
+	u32 size;
+
+	if ((size_t)p2 < 0x4000 || p2 + *(u32*)p3 > 0x8000000) {
+		return;
+	}
+
+	x       = p2 & ~0x1F;
+	size    = *(u32*)p3 + (p2 & 0x1F);
+	size    = OSRoundUp32B(size);
+	counter = 0;
+
+	for (i = 0; i < size; i++) {
+		__dcbi(counter, c);
+		counter += 0x20;
+	}
+
+	do {
+		err = ARGetDMAStatus();
+	} while (err);
+
+	r = __ARGetInterruptStatus();
+	g = 0x8000000;
+	__ARClearInterrupt();
+
+	ARStartDMA(1, c, x, size);
+
+	while (!__ARGetInterruptStatus()) { }
+
+	if (!r) {
+		__ARClearInterrupt();
+	}
+	// TRK_memcpy((void*)c, buff, p2);
+	// __dcbf((void*)counter, count);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -307,24 +256,22 @@ void __read_aram_1block(void)
 	// UNUSED FUNCTION
 }
 
-#define __dcbi(a, b) asm { dcbi a, b }
-
 /**
  * @note Address: 0x800BFEFC
  * @note Size: 0x1EC
  */
-void TRK__write_aram(int c, register u32 p2, void* p3)
+void TRK__write_aram(register int c, register u32 p2, void* p3)
 {
-	u8 buff[60] ATTRIBUTE_ALIGN(16);
+	u8 buff[32] ATTRIBUTE_ALIGN(32);
 	u32 err;
 	int i;
 	register int count = c;
-	register int counter;
-	u16 r;
-	u32 g;
+	register u32 bf;
 	u32 uVar1;
-	u32 uVar4;
-	u32 uVar2;
+	u32 size;
+	u16 r;
+	register u32 g;
+	register int counter;
 
 	if ((size_t)p2 < 0x4000 || p2 + *(u32*)p3 > 0x8000000) {
 		return;
@@ -332,9 +279,10 @@ void TRK__write_aram(int c, register u32 p2, void* p3)
 
 	uVar1   = p2 & ~0x1f;
 	counter = 0;
-	uVar2   = *(u32*)p3 + (p2 & 0x1f) + 0x1f & ~0x1f;
+	size    = *(u32*)p3 + (p2 & 0x1f);
+	size    = OSRoundUp32B(size);
 
-	for (i = 0; i < c; i++) {
+	for (i = 0; i < size; i++) {
 		__dcbf((void*)counter, count);
 		counter += 0x20;
 	}
@@ -345,33 +293,42 @@ void TRK__write_aram(int c, register u32 p2, void* p3)
 
 	r = __ARGetInterruptStatus();
 	g = 0x8000000;
-	if (p2 & 0x1f) {
-		__dcbi(counter, count);
+
+	counter = p2 & 0x1f;
+	if (counter) {
+		g  = uVar1;
+		bf = (u32)buff;
+		__dcbi(r0, bf);
 		__ARClearInterrupt();
 
-		ARStartDMA(1, p2, (u32)p3, 0x20);
+		ARStartDMA(1, bf, uVar1, 0x20);
 
 		while (!__ARGetInterruptStatus()) { }
 
-		TRK_memcpy((void*)c, buff, p2);
-		__dcbf((void*)counter, count);
+		TRK_memcpy((void*)c, buff, counter);
+		__dcbfASM(r0, c);
 	}
 
-	if (((*(u32*)p3) + g) & 0x1f) {
-		if ((*(u32*)p3) != (g & ~0x1f)) {
-			__dcbi(0, count);
+	p2 += *(u32*)p3;
+	counter = p2 & 0x1f;
+	if (counter) {
+		u32 val = p2 & ~0x1F;
+		if (val != g) {
+			bf = (u32)buff;
+			__dcbi(r0, bf);
 			__ARClearInterrupt();
-			ARStartDMA(1, (size_t)buff, (u32)p2, 0x20);
+			ARStartDMA(1, bf, val, 0x20);
 
 			while (!__ARGetInterruptStatus()) { }
 		}
-		TRK_memcpy((void*)((size_t)c + p2), buff, 0x20 - counter);
+		g = c + p2;
+		TRK_memcpy((void*)g, (void*)(buff + counter), 0x20 - counter);
 
-		__dcbf((void*)c, p2);
+		__dcbfASM(r0, g);
 	}
 	__sync();
 	__ARClearInterrupt();
-	ARStartDMA(0, c, uVar1, uVar2);
+	ARStartDMA(0, c, uVar1, size);
 	if (!r) {
 		while (!__ARGetInterruptStatus()) { }
 

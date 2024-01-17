@@ -32,6 +32,9 @@ int GetTRKConnected(void);
 DSError TRKGetFreeBuffer(int*, MessageBuffer**);
 void OutputData(void* data, int length);
 void TRKResetBuffer(MessageBuffer* msg, BOOL keepData);
+
+DSError TRKReadBuffer1_ui64(MessageBuffer* buffer, u64* data);
+DSError TRKAppendBuffer1_ui64(MessageBuffer* buffer, const u64 data);
 ////////////////////////////////////
 
 /////// DOLPHIN TRK FUNCTIONS //////
