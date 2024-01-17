@@ -22,12 +22,12 @@ static projectionFunc p_prj[3] = {
 	loadPrjAnm,
 };
 
-typedef void (*rotTypeFunc)(f32, f32, f32 (&)[3][4]);
+typedef void (*rotTypeFunc)(f32, f32, Mtx&);
 static rotTypeFunc p_rot[5] = {
 	rotTypeY, rotTypeX, rotTypeZ, rotTypeXYZ, rotTypeY,
 };
 
-typedef void (*planeFunc)(f32 (*)[4], f32, f32);
+typedef void (*planeFunc)(MtxP, f32, f32);
 static planeFunc p_plane[3] = {
 	basePlaneTypeXY,
 	basePlaneTypeXZ,
@@ -1762,7 +1762,7 @@ void dirTypePrevPtcl(const JPAEmitterWorkData* work, const JPABaseParticle* ptcl
  * @note Address: 0x8008CA88
  * @note Size: 0x40
  */
-void rotTypeY(f32, f32, f32 (&)[3][4])
+void rotTypeY(f32, f32, Mtx&)
 {
 	/*
 	stfs     f2, 0(r3)
@@ -1788,7 +1788,7 @@ void rotTypeY(f32, f32, f32 (&)[3][4])
  * @note Address: 0x8008CAC8
  * @note Size: 0x40
  */
-void rotTypeX(f32, f32, f32 (&)[3][4])
+void rotTypeX(f32, f32, Mtx&)
 {
 	/*
 	lfs      f4, lbl_80516B4C@sda21(r2)
@@ -1814,7 +1814,7 @@ void rotTypeX(f32, f32, f32 (&)[3][4])
  * @note Address: 0x8008CB08
  * @note Size: 0x40
  */
-void rotTypeZ(f32, f32, f32 (&)[3][4])
+void rotTypeZ(f32, f32, Mtx&)
 {
 	/*
 	fneg     f4, f1
@@ -1840,7 +1840,7 @@ void rotTypeZ(f32, f32, f32 (&)[3][4])
  * @note Address: 0x8008CB48
  * @note Size: 0x5C
  */
-void rotTypeXYZ(f32, f32, f32 (&)[3][4])
+void rotTypeXYZ(f32, f32, Mtx&)
 {
 	/*
 	lfs      f3, lbl_80516B4C@sda21(r2)

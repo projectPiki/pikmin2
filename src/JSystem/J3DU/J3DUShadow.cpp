@@ -213,7 +213,7 @@ void J3DUShadowInfo::renderShape() const
  * @note Address: N/A
  * @note Size: 0xC4
  */
-void J3DUShadowInfo::getTexMtx(f32 (*)[4]) const
+void J3DUShadowInfo::getTexMtx(MtxP) const
 {
 	// UNUSED FUNCTION
 }
@@ -222,7 +222,7 @@ void J3DUShadowInfo::getTexMtx(f32 (*)[4]) const
  * @note Address: N/A
  * @note Size: 0xB8
  */
-void J3DUShadowInfo::getTexMtxForGX(f32 (*)[4]) const
+void J3DUShadowInfo::getTexMtxForGX(MtxP) const
 {
 	// UNUSED FUNCTION
 }
@@ -231,7 +231,7 @@ void J3DUShadowInfo::getTexMtxForGX(f32 (*)[4]) const
  * @note Address: N/A
  * @note Size: 0x834
  */
-void J3DUIsShadowInViewFrustum(const J3DUShadowInfo&, f32 (*)[4], const J3DUClipper&, const Vec&, const JGeometry::TPartition3<f32>&)
+void J3DUIsShadowInViewFrustum(const J3DUShadowInfo&, MtxP, const J3DUClipper&, const Vec&, const JGeometry::TPartition3<f32>&)
 {
 	// UNUSED FUNCTION
 }

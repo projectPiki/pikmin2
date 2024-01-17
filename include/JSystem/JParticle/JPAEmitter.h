@@ -41,10 +41,10 @@ enum JPAEmitterFlags {
 void noLoadPrj(const JPAEmitterWorkData* workData, const Mtx mtx);
 void loadPrj(const JPAEmitterWorkData* workData, const Mtx p2);
 void loadPrjAnm(const JPAEmitterWorkData* workData, const Mtx p2);
-void rotTypeX(f32, f32, f32 (&)[3][4]);
-void rotTypeY(f32, f32, f32 (&)[3][4]);
-void rotTypeZ(f32, f32, f32 (&)[3][4]);
-void rotTypeXYZ(f32, f32, f32 (&)[3][4]);
+void rotTypeX(f32, f32, Mtx&);
+void rotTypeY(f32, f32, Mtx&);
+void rotTypeZ(f32, f32, Mtx&);
+void rotTypeXYZ(f32, f32, Mtx&);
 void basePlaneTypeXY(f32 (*)[4], f32, f32);
 void basePlaneTypeXZ(f32 (*)[4], f32, f32);
 void basePlaneTypeX(f32 (*)[4], f32, f32);

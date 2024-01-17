@@ -24,23 +24,6 @@ J2DPane::J2DPane()
 }
 
 /**
- * @note Address: 0x80036BB0
- * @note Size: 0x40
- */
-void J2DPane::calcMtx()
-{
-	if (mTree.getList()) {
-		makeMatrix(mOffset.x, mOffset.y);
-	}
-}
-
-/**
- * @note Address: 0x80036BF0
- * @note Size: 0x3C
- */
-void J2DPane::makeMatrix(f32 f1, f32 f2) { makeMatrix(f1, f2, -mBounds.i.x, -mBounds.i.y); }
-
-/**
  * @note Address: 0x80036C2C
  * @note Size: 0x88
  */
@@ -1161,28 +1144,4 @@ void J2DPane::updateTransform(const J2DAnmTransform* transform)
 		mOffset.y = info.mTranslation.z;
 		calcMtx();
 	}
-}
-
-/**
- * @note Address: 0x80039A6C
- * @note Size: 0x3C
- * setCullBack__7J2DPaneFb
- */
-void J2DPane::setCullBack(bool shouldCullBack)
-{
-	GXCullMode cullMode = GX_CULL_NONE;
-	if (shouldCullBack) {
-		cullMode = GX_CULL_BACK;
-	}
-	setCullBack((GXCullMode)cullMode);
-}
-
-/**
- * @note Address: 0x80039AA8
- * @note Size: 0x10
- */
-bool J2DPane::setConnectParent(bool connectParent)
-{
-	mIsConnected = 0;
-	return false;
 }

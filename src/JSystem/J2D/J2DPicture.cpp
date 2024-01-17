@@ -619,17 +619,6 @@ J2DPicture::J2DPicture(u64 id, const JGeometry::TBox2f& bounds)
 }
 
 /**
- * @note Address: 0x8003A714
- * @note Size: 0x9C
- * setBlendRatio__10J2DPictureFffffffff
- */
-void J2DPicture::setBlendRatio(f32 p1, f32 p2, f32 p3, f32 p4, f32 p5, f32 p6, f32 p7, f32 p8)
-{
-	setBlendColorRatio(p1, p2, p3, p4, p5, p6, p7, p8);
-	setBlendAlphaRatio(p1, p2, p3, p4, p5, p6, p7, p8);
-}
-
-/**
  * @note Address: 0x8003A7B0
  * @note Size: 0x3F4
  * TODO: Among other issues, the ctors for JUTPalette and JUTTexture seem incompatible with this function. But we also know what the default
@@ -2362,7 +2351,7 @@ void J2DPicture::drawOut(const JGeometry::TBox2f&, const JGeometry::TBox2f&)
  * @note Address: 0x8003C324
  * @note Size: 0x23C
  */
-void J2DPicture::drawTexCoord(f32, f32, f32, f32, s16, s16, s16, s16, s16, s16, s16, s16, f32 (*)[3][4])
+void J2DPicture::drawTexCoord(f32, f32, f32, f32, s16, s16, s16, s16, s16, s16, s16, s16, Mtx*)
 {
 	/*
 	.loc_0x0:

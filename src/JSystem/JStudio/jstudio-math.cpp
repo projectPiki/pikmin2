@@ -43,7 +43,7 @@ namespace JStudio {
  * @note Address: N/A
  * @note Size: 0x158
  */
-void math::getRotation_xyz(f32 (*)[4], f32, f32, f32)
+void math::getRotation_xyz(MtxP, f32, f32, f32)
 {
 	// UNUSED FUNCTION
 }
@@ -52,7 +52,7 @@ void math::getRotation_xyz(f32 (*)[4], f32, f32, f32)
  * @note Address: 0x80010FC4
  * @note Size: 0x1B0
  */
-void math::getTransformation_SRxyzT(f32 (*)[4], Vec const&, Vec const&, Vec const&)
+void math::getTransformation_SRxyzT(MtxP, Vec const&, Vec const&, Vec const&)
 {
 	/*
 	.loc_0x0:
@@ -171,7 +171,7 @@ void math::getTransformation_SRxyzT(f32 (*)[4], Vec const&, Vec const&, Vec cons
  * @note Address: N/A
  * @note Size: 0x1B4
  */
-void math::transform_SRxyzT(f32 (*)[4], f32 const (*)[4], Vec const&, Vec const&, Vec const&)
+void math::transform_SRxyzT(MtxP, f32 const (*)[4], Vec const&, Vec const&, Vec const&)
 {
 	// UNUSED FUNCTION
 }

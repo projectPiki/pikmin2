@@ -229,7 +229,7 @@ void JMAMTXApplyScale(register const Mtx src, register Mtx dst, register f32 xSc
  * @note Address: N/A
  * @note Size: 0x74
  */
-void JMAMTXScaleApply(const f32 (*)[4], f32 (*)[4], f32, f32, f32)
+void JMAMTXScaleApply(const MtxP, MtxP, f32, f32, f32)
 {
 	// UNUSED FUNCTION
 }

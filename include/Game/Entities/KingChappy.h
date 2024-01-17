@@ -222,7 +222,7 @@ struct Obj : public EnemyBase {
 	void endBlendAnimation();
 	void leftFootMtxCalc();
 	void rightFootMtxCalc();
-	void footMtxCalc(f32 (*)[4], Vector3f*, f32*);
+	void footMtxCalc(Mtx, Vector3f*, f32*);
 	void resetFootPos();
 	void fadeAllEffect();
 	void createEffect(int);
