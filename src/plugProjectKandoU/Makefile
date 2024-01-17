@@ -50,7 +50,7 @@ KANDO_FILES:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/vsGameSection.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gamePlatMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemGate.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/itemMgr.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/itemMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiBreakGate.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameStat.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemHole.o\

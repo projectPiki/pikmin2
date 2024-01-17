@@ -186,7 +186,7 @@ void VsGameSection::onInit()
 	loadVsStageList();
 
 	mFsm = new VsGame::FSM();
-	mFsm->init(this);
+	static_cast<VsGame::FSM*>(mFsm)->init(this);
 	initPlayData();
 	mFsm->start(this, VsGame::VGS_Title, nullptr);
 

@@ -26,6 +26,7 @@ struct Node;
 namespace Game {
 struct BaseItem;
 struct WayPoint;
+struct ItemMgr;
 
 struct _BaseItemMgrParent2 {
 };
@@ -118,38 +119,6 @@ struct NodeItemMgr : public BaseItemMgr, public Container<T> {
 	NodeObjectMgr<T> mNodeObjectMgr; // _4C
 };
 
-struct TNodeItemMgr : public BaseItemMgr, public Container<BaseItem> {
-	TNodeItemMgr();
-
-	// vtable 1
-	virtual void doAnimation() { mNodeObjectMgr.doAnimation(); }                             // _08 (weak)
-	virtual void doEntry() { mNodeObjectMgr.doEntry(); }                                     // _0C (weak)
-	virtual void doSetView(int viewportNumber) { mNodeObjectMgr.doSetView(viewportNumber); } // _10 (weak)
-	virtual void doViewCalc() { mNodeObjectMgr.doViewCalc(); }                               // _14 (weak)
-	virtual void doSimulation(f32 rate) { mNodeObjectMgr.doSimulation(rate); }               // _18 (weak)
-	virtual void doDirectDraw(Graphics& gfx) { mNodeObjectMgr.doDirectDraw(gfx); }           // _1C (weak)
-	virtual void initDependency();                                                           // _38
-	virtual void killAll();                                                                  // _3C
-
-	// vtable 2
-	virtual BaseItem* doNew() = 0;                                           // _A0
-	virtual void kill(BaseItem* item) { mNodeObjectMgr.delNode(item); }      // _A4 (weak)
-	virtual BaseItem* get(void* ptr) { return mNodeObjectMgr.get(ptr); }     // _A8 (weak)
-	virtual void* getNext(void* ptr) { return mNodeObjectMgr.getNext(ptr); } // _BC (weak)
-	virtual void* getStart() { return mNodeObjectMgr.getStart(); }           // _B0 (weak)
-	virtual void* getEnd() { return mNodeObjectMgr.getEnd(); }               // _B4 (weak)
-	virtual ~TNodeItemMgr() { }                                              // _B8 (weak)
-
-	BaseItem* birth();
-	void entry(BaseItem*);
-
-	// _00     = VTBL (BaseItemMgr)
-	// _00-_30 = BaseItemMgr
-	// _30     = VTBL (Container)
-	// _30-_4C = Container
-	NodeObjectMgr<BaseItem> mNodeObjectMgr; // _4C
-};
-
 struct ItemMgr : public NodeObjectMgr<GenericObjectMgr> {
 	ItemMgr();
 
@@ -181,6 +150,37 @@ struct ItemMgr : public NodeObjectMgr<GenericObjectMgr> {
 	// _00-_1C = Container
 	// _1C     = VTBL 2
 	// _1C-3C  = NodeObjectMgr
+};
+
+struct TNodeItemMgr : public BaseItemMgr, public Container<BaseItem> {
+	TNodeItemMgr();
+
+	virtual BaseItem* doNew() = 0;                                                            // _A0
+	virtual void kill(BaseItem* item) { mNodeObjectMgr.delNode(item); }                       // _A4 (weak)
+	virtual void doAnimation() { getObjectMgr()->doAnimation(); }                             // _08 (weak)
+	virtual void doEntry() { getObjectMgr()->doEntry(); }                                     // _0C (weak)
+	virtual void doSetView(int viewportNumber) { getObjectMgr()->doSetView(viewportNumber); } // _10 (weak)
+	virtual void doViewCalc() { getObjectMgr()->doViewCalc(); }                               // _14 (weak)
+	virtual void doSimulation(f32 rate) { getObjectMgr()->doSimulation(rate); }               // _18 (weak)
+	virtual void doDirectDraw(Graphics& gfx) { getObjectMgr()->doDirectDraw(gfx); }           // _1C (weak)
+	virtual void initDependency();                                                            // _38
+	virtual void killAll();                                                                   // _3C
+	virtual BaseItem* get(void* ptr) { return mNodeObjectMgr.get(ptr); }                      // _A8 (weak)
+	virtual void* getNext(void* ptr) { return mNodeObjectMgr.getNext(ptr); }                  // _BC (weak)
+	virtual void* getStart() { return mNodeObjectMgr.getStart(); }                            // _B0 (weak)
+	virtual void* getEnd() { return mNodeObjectMgr.getEnd(); }                                // _B4 (weak)
+	// virtual ~TNodeItemMgr() { }                                              // _B8 (weak)
+
+	BaseItem* birth();
+	void entry(BaseItem*);
+
+	inline ItemMgr* getObjectMgr() { return reinterpret_cast<ItemMgr*>(&mNodeObjectMgr); }
+
+	// _00     = VTBL (BaseItemMgr)
+	// _00-_30 = BaseItemMgr
+	// _30     = VTBL (Container)
+	// _30-_4C = Container
+	NodeObjectMgr<BaseItem> mNodeObjectMgr; // _4C
 };
 
 template <typename T>

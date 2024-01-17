@@ -8,6 +8,8 @@
 
 namespace Game {
 
+ItemMgr* itemMgr;
+
 /**
  * @note Address: 0x801CBFE8
  * @note Size: 0x100
@@ -191,15 +193,19 @@ void BaseItem::updateCollTree()
  * @note Address: 0x801CC648
  * @note Size: 0x1C4
  */
-void BaseItem::move(f32 p1)
+void BaseItem::move(f32 step)
 {
-	Sys::Sphere moveSphere(mPosition, getMapCollisionRadius());
+	f32 collRad  = getMapCollisionRadius();
+	Vector3f pos = mPosition;
+	pos.y += collRad;
+	Sys::Sphere moveSphere(pos, collRad);
+
 	MoveInfo info(&moveSphere, &mVelocity, 1.0f);
 	info.mInfoOrigin = this;
 
-	mapMgr->traceMove(info, p1);
+	mapMgr->traceMove(info, step);
 	Sys::Triangle* mapTri = info.mBounceTriangle;
-	platMgr->traceMove(info, p1);
+	platMgr->traceMove(info, step);
 
 	if (!mCollTriangle) {
 		if (!mapTri) {
@@ -218,131 +224,7 @@ void BaseItem::move(f32 p1)
 	}
 
 	mPosition = moveSphere.mPosition;
-	mPosition.y -= moveSphere.mRadius;
-
-	/*
-	stwu     r1, -0xe0(r1)
-	mflr     r0
-	stw      r0, 0xe4(r1)
-	stfd     f31, 0xd0(r1)
-	psq_st   f31, 216(r1), 0, qr0
-	stfd     f30, 0xc0(r1)
-	psq_st   f30, 200(r1), 0, qr0
-	stw      r31, 0xbc(r1)
-	stw      r30, 0xb8(r1)
-	lwz      r12, 0(r3)
-	fmr      f30, f1
-	mr       r30, r3
-	lwz      r12, 0x1dc(r12)
-	mtctr    r12
-	bctrl
-	fmr      f31, f1
-	lfs      f6, 0x1a0(r30)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f7, 0x1a4(r30)
-	lfs      f5, 0x19c(r30)
-	li       r5, 0
-	fadds    f6, f6, f31
-	addi     r3, r3, sincosTable___5JMath@l
-	stw      r5, 0x2c(r1)
-	addi     r7, r1, 8
-	lfs      f4, lbl_8051961C@sda21(r2)
-	addi     r6, r30, 0x190
-	lfs      f3, lbl_80519618@sda21(r2)
-	li       r0, -1
-	lfs      f2, 0x800(r3)
-	fmr      f1, f30
-	lfs      f0, lbl_80519620@sda21(r2)
-	addi     r4, r1, 0x18
-	stfs     f5, 8(r1)
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	stfs     f6, 0xc(r1)
-	stfs     f7, 0x10(r1)
-	stfs     f31, 0x14(r1)
-	stw      r7, 0x18(r1)
-	stw      r6, 0x1c(r1)
-	stfs     f4, 0x20(r1)
-	stfs     f3, 0x24(r1)
-	stw      r5, 0x28(r1)
-	stw      r5, 0x5c(r1)
-	stb      r5, 0x8c(r1)
-	stb      r5, 0x31(r1)
-	stb      r5, 0x30(r1)
-	stw      r5, 0x60(r1)
-	stb      r5, 0xa8(r1)
-	stw      r5, 0xac(r1)
-	stfs     f2, 0x44(r1)
-	stfs     f0, 0x48(r1)
-	stw      r0, 0xb0(r1)
-	stw      r5, 0x64(r1)
-	stb      r5, 0x32(r1)
-	stw      r30, 0x2c(r1)
-	lwz      r12, 4(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	fmr      f1, f30
-	lwz      r31, 0x5c(r1)
-	lwz      r3, platMgr__4Game@sda21(r13)
-	addi     r4, r1, 0x18
-	bl       traceMove__Q24Game7PlatMgrFRQ24Game8MoveInfof
-	lwz      r0, 0x18c(r30)
-	cmplwi   r0, 0
-	bne      lbl_801CC7B8
-	cmplwi   r31, 0
-	bne      lbl_801CC798
-	lwz      r4, 0x5c(r1)
-	cmplwi   r4, 0
-	beq      lbl_801CC78C
-	lwz      r12, 0(r30)
-	mr       r3, r30
-	lwz      r12, 0xe8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x5c(r1)
-	stw      r0, 0x18c(r30)
-	b        lbl_801CC7C0
-
-lbl_801CC78C:
-	li       r0, 0
-	stw      r0, 0x18c(r30)
-	b        lbl_801CC7C0
-
-lbl_801CC798:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0xe8(r12)
-	mtctr    r12
-	bctrl
-	stw      r31, 0x18c(r30)
-	b        lbl_801CC7C0
-
-lbl_801CC7B8:
-	li       r0, 0
-	stw      r0, 0x18c(r30)
-
-lbl_801CC7C0:
-	lfs      f0, 8(r1)
-	stfs     f0, 0x19c(r30)
-	lfs      f0, 0xc(r1)
-	stfs     f0, 0x1a0(r30)
-	lfs      f0, 0x10(r1)
-	stfs     f0, 0x1a4(r30)
-	lfs      f0, 0x1a0(r30)
-	fsubs    f0, f0, f31
-	stfs     f0, 0x1a0(r30)
-	psq_l    f31, 216(r1), 0, qr0
-	lfd      f31, 0xd0(r1)
-	psq_l    f30, 200(r1), 0, qr0
-	lfd      f30, 0xc0(r1)
-	lwz      r31, 0xbc(r1)
-	lwz      r0, 0xe4(r1)
-	lwz      r30, 0xb8(r1)
-	mtlr     r0
-	addi     r1, r1, 0xe0
-	blr
-	*/
+	mPosition.y -= collRad;
 }
 
 /**

@@ -939,7 +939,7 @@ LIBS = [
             ["plugProjectKandoU/vsGameSection", True],
             ["plugProjectKandoU/gamePlatMgr", True],
             ["plugProjectKandoU/itemGate", False],
-            ["plugProjectKandoU/itemMgr", False],
+            ["plugProjectKandoU/itemMgr", True],
             ["plugProjectKandoU/aiBreakGate", False],
             ["plugProjectKandoU/gameStat", True],
             ["plugProjectKandoU/itemHole", False],
