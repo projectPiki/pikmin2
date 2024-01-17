@@ -1752,7 +1752,7 @@ void Obj::createOnGroundEffect(int footIdx, WaterBox* wbox)
 
 	PSStartSoundVec(PSSE_EN_BIGTAKARA_WALK, (Vec*)&mJointPositions[footIdx][3]);
 	cameraMgr->startVibration(6, effectPos, 2);
-	rumbleMgr->startRumble(14, effectPos, 2);
+	rumbleMgr->startRumble(14, effectPos, RUMBLEID_Both);
 }
 
 /**

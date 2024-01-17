@@ -763,7 +763,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 
 	Vector3f pos = enemy->getPosition();
 	cameraMgr->startVibration(12, pos, 2);
-	rumbleMgr->startRumble(13, pos, 2);
+	rumbleMgr->startRumble(13, pos, RUMBLEID_Both);
 
 	enemy->disableEvent(0, EB_Cullable);
 }
@@ -784,7 +784,7 @@ void StateDead::exec(EnemyBase* enemy)
 			OBJ(enemy)->createBounceEffect();
 			Vector3f pos = enemy->getPosition();
 			cameraMgr->startVibration(3, pos, 2);
-			rumbleMgr->startRumble(11, pos, 2);
+			rumbleMgr->startRumble(11, pos, RUMBLEID_Both);
 			break;
 
 		case KEYEVENT_END:
@@ -848,7 +848,7 @@ void StateFlick::exec(EnemyBase* enemy)
 			}
 
 			cameraMgr->startVibration(3, pos, 2);
-			rumbleMgr->startRumble(11, pos, 2);
+			rumbleMgr->startRumble(11, pos, RUMBLEID_Both);
 
 			PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(enemy->mSoundObj);
 			PSM::checkBoss(soundObj);
@@ -1605,7 +1605,7 @@ void StateWarCry::exec(EnemyBase* enemy)
 			OBJ(enemy)->requestTransit(KINGCHAPPY_WarCry);
 			Vector3f rumblePos = enemy->getPosition();
 			cameraMgr->startVibration(26, rumblePos, 2);
-			rumbleMgr->startRumble(3, rumblePos, 2);
+			rumbleMgr->startRumble(3, rumblePos, RUMBLEID_Both);
 			break;
 
 		case KEYEVENT_4:
@@ -1879,7 +1879,7 @@ void StateHide::init(EnemyBase* enemy, StateArg* stateArg)
 
 	Vector3f pos = enemy->getPosition();
 	cameraMgr->startVibration(6, pos, 2);
-	rumbleMgr->startRumble(13, pos, 2);
+	rumbleMgr->startRumble(13, pos, RUMBLEID_Both);
 }
 
 /**
@@ -2046,7 +2046,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	OBJ(enemy)->createEffect(Obj::KingEfx_Drool);
 	enemy->createEfxHamon();
 	cameraMgr->startVibration(15, pos, 2);
-	rumbleMgr->startRumble(12, pos, 2);
+	rumbleMgr->startRumble(12, pos, RUMBLEID_Both);
 
 	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(enemy->mSoundObj);
 	PSM::checkBoss(soundObj);
@@ -2085,7 +2085,7 @@ void StateAppear::exec(EnemyBase* enemy)
 			OBJ(enemy)->createBounceEffect();
 			Vector3f pos = enemy->getPosition();
 			cameraMgr->startVibration(6, pos, 2);
-			rumbleMgr->startRumble(11, pos, 2);
+			rumbleMgr->startRumble(11, pos, RUMBLEID_Both);
 			break;
 
 		case KEYEVENT_END:

@@ -140,7 +140,7 @@ void StateAppear::exec(EnemyBase* enemy)
 				enemy->startMotion();
 
 				Vector3f pos = enemy->getPosition();
-				rumbleMgr->startRumble(8, pos, 2);
+				rumbleMgr->startRumble(8, pos, RUMBLEID_Both);
 
 				FakePiki* target       = OBJ(enemy)->getNearestPikiOrNavi(360.0f, terrRad);
 				enemy->mTargetCreature = target;
@@ -270,7 +270,7 @@ void StateDead::exec(EnemyBase* enemy)
 			OBJ(enemy)->boundEffect();
 			Vector3f pos = enemy->getPosition();
 			cameraMgr->startVibration(0, pos, 2);
-			rumbleMgr->startRumble(8, pos, 2);
+			rumbleMgr->startRumble(8, pos, RUMBLEID_Both);
 		}
 
 		if (enemy->mCurAnim->mType == KEYEVENT_END) {
@@ -587,7 +587,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 
 	Vector3f pos = enemy->getPosition();
 	cameraMgr->startVibration(0, pos, 2);
-	rumbleMgr->startRumble(8, pos, 2);
+	rumbleMgr->startRumble(8, pos, RUMBLEID_Both);
 }
 
 /**

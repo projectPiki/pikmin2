@@ -22,7 +22,7 @@ struct Camera : public LookAtCamera {
 	Camera(Controller*);
 
 	virtual ~Camera() { }             // _08 (weak)
-	virtual bool doUpdate();          // _78
+	virtual void doUpdate();          // _78
 	virtual void startVibration(int); // _7C
 
 	void move(const Vector3f&);

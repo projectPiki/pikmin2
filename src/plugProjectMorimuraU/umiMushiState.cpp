@@ -430,7 +430,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	if (enemy->getEnemyTypeID() == EnemyTypeID::EnemyID_UmiMushi) {
 		Vector3f pos = enemy->getPosition();
 		cameraMgr->startVibration(9, pos, 2);
-		rumbleMgr->startRumble(13, pos, 2);
+		rumbleMgr->startRumble(13, pos, RUMBLEID_Both);
 
 		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(enemy->mSoundObj); // get sound object
 		PSM::checkBoss(soundObj);                                                  // make sure we have sound object
@@ -529,7 +529,7 @@ void StateAttack::exec(EnemyBase* enemy)
 			OBJ(enemy)->attackEffect();
 			if (enemy->getEnemyTypeID() == EnemyTypeID::EnemyID_UmiMushi) {
 				Vector3f pos = enemy->getPosition();
-				rumbleMgr->startRumble(12, pos, 2);
+				rumbleMgr->startRumble(12, pos, RUMBLEID_Both);
 			}
 			break;
 

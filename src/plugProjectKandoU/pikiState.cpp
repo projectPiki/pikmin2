@@ -2859,7 +2859,7 @@ void PikiHipDropState::collisionCallback(Piki* piki, CollEvent& collEvent)
 	if (!collEvent.mCollidingCreature->isPiki()) {
 		Vector3f position = piki->getPosition();
 		efx::createSimpleBlackDrop(position);
-		rumbleMgr->startRumble(11, position, 2);
+		rumbleMgr->startRumble(11, position, RUMBLEID_Both);
 		cameraMgr->startVibration(6, position, 2);
 
 		if (!collEvent.mCollidingCreature->isTeki()) {
@@ -3113,7 +3113,7 @@ void PikiHipDropState::dosin(Piki* piki)
 {
 	Vector3f position = piki->getPosition();
 	efx::createSimpleBlackDrop(position);
-	rumbleMgr->startRumble(11, position, 2);
+	rumbleMgr->startRumble(11, position, RUMBLEID_Both);
 	cameraMgr->startVibration(6, position, 2);
 	piki->startSound(PSSE_PK_SE_DOSUN, false);
 	_14 = 2;

@@ -135,7 +135,7 @@ void StateBomb::exec(EnemyBase* enemy)
 			}
 
 			cameraMgr->startVibration(12, effectPos, 2);
-			rumbleMgr->startRumble(15, effectPos, 2);
+			rumbleMgr->startRumble(15, effectPos, RUMBLEID_Both);
 
 			Vector3f position = enemy->getPosition();
 			Parms* parms      = CG_PARMS(enemy);

@@ -42,7 +42,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 
 	Vector3f position = damagumo->getPosition();
 	cameraMgr->startVibration(0, position, 2);
-	rumbleMgr->startRumble(10, position, 2);
+	rumbleMgr->startRumble(10, position, RUMBLEID_Both);
 }
 
 /**
@@ -160,7 +160,7 @@ void StateLand::exec(EnemyBase* enemy)
 
 			Vector3f position = damagumo->getPosition();
 			cameraMgr->startVibration(15, position, 2);
-			rumbleMgr->startRumble(15, position, 2);
+			rumbleMgr->startRumble(15, position, RUMBLEID_Both);
 
 		} else if ((u32)damagumo->mCurAnim->mType == KEYEVENT_3) {
 			damagumo->createOnGroundEffect(3, damagumo->mWaterBox);

@@ -578,7 +578,7 @@ void Obj::bounceCallback(Sys::Triangle* triangle)
 void Obj::damageRumble()
 {
 	cameraMgr->startVibration(3, mPosition, 2);
-	rumbleMgr->startRumble(11, mPosition, 2);
+	rumbleMgr->startRumble(11, mPosition, RUMBLEID_Both);
 }
 
 /**
@@ -2169,13 +2169,13 @@ Obj::Obj()
  * @note Address: 0x80353C00
  * @note Size: 0x34
  */
-void Obj::appearRumble() { rumbleMgr->startRumble(11, mPosition, 2); }
+void Obj::appearRumble() { rumbleMgr->startRumble(11, mPosition, RUMBLEID_Both); }
 
 /**
  * @note Address: 0x80353C34
  * @note Size: 0x34
  */
-void Obj::hideRumble() { rumbleMgr->startRumble(10, mPosition, 2); }
+void Obj::hideRumble() { rumbleMgr->startRumble(10, mPosition, RUMBLEID_Both); }
 
 /**
  * @note Address: 0x80353C68

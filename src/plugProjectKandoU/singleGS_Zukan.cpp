@@ -153,162 +153,26 @@ Camera::Camera(Controller* input)
  */
 void Camera::startVibration(int type)
 {
-	f32 calc = type / 29.0f;
-	Vector3f mod;
-	mod.x = randFloat() - 0.5f;
 	f32 factor;
-	if (randFloat() < 0.5f) {
-		factor = 1.0f;
-	} else {
-		factor = -1.0f;
-	}
-	mod.z = (randFloat() + 1.0f) * factor;
-	mod.y = randFloat() - 0.5f;
+	f32 calc = type / 29.0f;
+	Vector3f mod(randFloat() - 0.5f, (randFloat() + 1.0f) * (randFloat() < 0.5f ? -1.0f : 1.0f), randFloat() - 0.5f);
 	mod.normalise();
-	mVibrationForce += mod * (calc * 10.0f);
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	stfd     f30, 0x50(r1)
-	psq_st   f30, 88(r1), 0, qr0
-	stfd     f29, 0x40(r1)
-	psq_st   f29, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	xoris    r4, r4, 0x8000
-	lis      r0, 0x4330
-	stw      r4, 0xc(r1)
-	mr       r31, r3
-	lfd      f2, lbl_8051A188@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f0, lbl_8051A174@sda21(r2)
-	lfd      f1, 8(r1)
-	fsubs    f1, f1, f2
-	fdivs    f29, f1, f0
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x14(r1)
-	lfd      f3, lbl_8051A188@sda21(r2)
-	stw      r0, 0x10(r1)
-	lfs      f1, lbl_8051A178@sda21(r2)
-	lfd      f2, 0x10(r1)
-	lfs      f0, lbl_8051A148@sda21(r2)
-	fsubs    f2, f2, f3
-	fdivs    f1, f2, f1
-	fsubs    f30, f1, f0
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x1c(r1)
-	lfd      f3, lbl_8051A188@sda21(r2)
-	stw      r0, 0x18(r1)
-	lfs      f1, lbl_8051A178@sda21(r2)
-	lfd      f2, 0x18(r1)
-	lfs      f0, lbl_8051A148@sda21(r2)
-	fsubs    f2, f2, f3
-	fdivs    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_80221368
-	lfs      f31, lbl_8051A17C@sda21(r2)
-	b        lbl_8022136C
-
-lbl_80221368:
-	lfs      f31, lbl_8051A11C@sda21(r2)
-
-lbl_8022136C:
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x24(r1)
-	lfd      f3, lbl_8051A188@sda21(r2)
-	stw      r0, 0x20(r1)
-	lfs      f1, lbl_8051A178@sda21(r2)
-	lfd      f2, 0x20(r1)
-	lfs      f0, lbl_8051A11C@sda21(r2)
-	fsubs    f2, f2, f3
-	fdivs    f1, f2, f1
-	fadds    f0, f0, f1
-	fmuls    f31, f0, f31
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x2c(r1)
-	fmuls    f4, f31, f31
-	lfd      f3, lbl_8051A188@sda21(r2)
-	fmuls    f5, f30, f30
-	stw      r0, 0x28(r1)
-	lfs      f2, lbl_8051A178@sda21(r2)
-	lfd      f0, 0x28(r1)
-	lfs      f1, lbl_8051A148@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_8051A128@sda21(r2)
-	fdivs    f2, f3, f2
-	fsubs    f2, f2, f1
-	fmadds   f1, f2, f2, f4
-	fadds    f1, f5, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_802213FC
-	ble      lbl_80221400
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_80221400
-
-lbl_802213FC:
-	fmr      f1, f0
-
-lbl_80221400:
-	lfs      f0, lbl_8051A128@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80221420
-	lfs      f0, lbl_8051A11C@sda21(r2)
-	fdivs    f0, f0, f1
-	fmuls    f2, f2, f0
-	fmuls    f31, f31, f0
-	fmuls    f30, f30, f0
-
-lbl_80221420:
-	lfs      f1, lbl_8051A180@sda21(r2)
-	lfs      f0, 0x2d0(r31)
-	fmuls    f1, f1, f29
-	fmuls    f2, f2, f1
-	fmuls    f31, f31, f1
-	fmuls    f30, f30, f1
-	fadds    f0, f0, f2
-	stfs     f0, 0x2d0(r31)
-	lfs      f0, 0x2d4(r31)
-	fadds    f0, f0, f31
-	stfs     f0, 0x2d4(r31)
-	lfs      f0, 0x2d8(r31)
-	fadds    f0, f0, f30
-	stfs     f0, 0x2d8(r31)
-	psq_l    f31, 104(r1), 0, qr0
-	lfd      f31, 0x60(r1)
-	psq_l    f30, 88(r1), 0, qr0
-	lfd      f30, 0x50(r1)
-	psq_l    f29, 72(r1), 0, qr0
-	lfd      f29, 0x40(r1)
-	lwz      r0, 0x74(r1)
-	lwz      r31, 0x3c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
+	mod *= (calc * 10.0f);
+	mVibrationForce += mod;
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0x184
  */
-void Camera::debugDraw(Graphics&)
+void Camera::debugDraw(Graphics& gfx)
 {
 	OSReport("radius:%6.3f");
 	OSReport("angle :%6.3f");
 	OSReport("height:%6.3f");
 	OSReport("fovy  :%6.3f");
-	// UNUSED FUNCTION
+	mHorizontalAngle = 30.0f;
+	// just to line stuff up.
 }
 
 /**
@@ -376,7 +240,6 @@ void Camera::resetControl()
  */
 void Camera::setAtOffset(const Vector3f& vec)
 {
-	// is this func supposed to be const? if it is then I have no clue how this would work
 	mObjectOffset.x = vec.x;
 	mObjectOffset.y = vec.y;
 	mObjectOffset.z = vec.z;
@@ -386,8 +249,104 @@ void Camera::setAtOffset(const Vector3f& vec)
  * @note Address: 0x802218A8
  * @note Size: 0x904
  */
-bool Camera::doUpdate()
+void Camera::doUpdate()
 {
+	Vector3f cameraPos = Vector3f::zero; // f31, f30, f29
+	Sys::Sphere targetSphere;            // 0x24
+	if (mTargetObject) {
+		mTargetObject->getBoundingSphere(targetSphere);
+		f32 minY = mapMgr->getMinY(targetSphere.mPosition);
+		if (targetSphere.mPosition.y < minY) {
+			targetSphere.mPosition.y = minY;
+		}
+	} else {
+		targetSphere.mPosition = _1B8;
+	}
+
+	mGoalPosition += _1F0;
+	mPositionList[mCurrentPositionIndex] = targetSphere.mPosition;
+
+	if (++mCurrentPositionIndex >= 10) {
+		mCurrentPositionIndex = 0;
+	}
+
+	for (int i = 0; i < 10; i++) {
+		cameraPos += mPositionList[i];
+	}
+
+	cameraPos *= 0.1f;
+
+	_1F0 += (cameraPos - mGoalPosition) * 0.1f;
+	_1F0 *= 0.6f;
+
+	if (!Screen::gGame2DMgr->isAppearConfirmWindow()) {
+		int fovInc = ((mController->getButton() / 4) & JUTGamePad::PRESS_DPAD_LEFT)
+		           - ((mController->getButton() / 8) & JUTGamePad::PRESS_DPAD_LEFT);
+		addFovy(fovInc);
+
+		f32 angleRatio = (mViewAngle - mMinViewAngle) / (mMaxViewAngle - mMinViewAngle);
+
+		mCurrentHeight += _2FC * mController->getSubStickY();
+		if (mCurrentHeight < mMinHeight) {
+			mCurrentHeight = mMinHeight;
+		}
+		if (mCurrentHeight > mMaxHeight) {
+			mCurrentHeight = mMaxHeight;
+		}
+
+		mHorizontalAngle += _2F8 * mController->getSubStickX();
+		if (mHorizontalAngle > TAU) {
+			mHorizontalAngle -= TAU;
+		}
+
+		if (mHorizontalAngle < 0.0f) {
+			mHorizontalAngle = mHorizontalAngle + TAU;
+		}
+
+		if (Screen::gGame2DMgr->isZukanEnlargedWindow()) {
+			_27C = 100.0f * mController->getMainStickX();
+			_284 = 100.0f * mController->getMainStickY();
+		} else {
+			_27C = 0.0f;
+			_284 = 0.0f;
+		}
+
+		f32 factor = (angleRatio * (_30C - _310) + _310);
+		_278 += factor * (_27C - _278);
+		_280 += factor * (_284 - _280);
+
+		Vector3f pos = Vector3f(mObjectRadius * sinf(mHorizontalAngle) + _1B8.x, _1B8.y, mObjectRadius * cosf(mHorizontalAngle) + _1B8.z);
+		pos.y        = mCurrentHeight + mapMgr->getMinY(pos);
+
+		Vector3f sep = pos - _1A0;
+		sep *= _300;
+		_1A0 += sep;
+
+		Sys::Sphere moveSphere(_1A0, 10.0f);
+		MoveInfo info(&moveSphere, &Vector3f::zero, 0.0f);
+
+		mapMgr->traceMove(info, sys->mDeltaTime);
+
+		f32 newMinY = mapMgr->getMinY(moveSphere.mPosition) + 10.0f;
+		if (moveSphere.mPosition.y < newMinY) {
+			moveSphere.mPosition.y = newMinY;
+		}
+
+		_1A0 = moveSphere.mPosition;
+	}
+
+	Vector3f sep = mGoalPosition - mPosition;
+	f32 dist     = sep.length();
+	if (dist > 0.0001f) {
+		sep *= 1.0f / dist;
+	} else {
+		sep = Vector3f(0.0f, -1.0f, 0.0f);
+	}
+
+	_1AC = sep; // placeholder
+
+	updateCameraShake();
+	updateFocus();
 	/*
 	stwu     r1, -0x120(r1)
 	mflr     r0
@@ -6199,7 +6158,7 @@ void ZukanState::clearHeapB_common()
 	particleMgr->killAll();
 	particleMgr->reset();
 	shadowMgr->killAll();
-	rumbleMgr->stopRumble(2);
+	rumbleMgr->stopRumble(RUMBLEID_Both);
 	mCurrObjHeap->freeAll();
 	mCurrObjHeap->destroy();
 	mCurrObjHeap = nullptr;
@@ -6222,7 +6181,7 @@ void ZukanState::clearHeapB_teki()
 			if (i < 200) {
 				buffer[i++] = pelt;
 			} else {
-				JUT_PANICLINE(3221, "too many pellet\n");
+				JUT_PANICLINE(3164, "too many pellet\n");
 			}
 		}
 		for (int j = 0; j < i; j++) {
@@ -6231,304 +6190,26 @@ void ZukanState::clearHeapB_teki()
 		pelletMgr->resetMgrs();
 		dynParticleMgr->resetMgr();
 
-		i = 0;
+		int j = 0;
 		Piki* buffer2[200];
 		Iterator<Piki> iterator2(pikiMgr);
-		CI_LOOP(iterator2) { buffer2[i++] = *iterator2; }
-		for (int j = 0; j < i; j++) {
-			PikiKillArg arg(0x10001);
-			buffer2[j]->kill(&arg);
+		CI_LOOP(iterator2) { buffer2[j++] = *iterator2; }
+
+		PikiKillArg arg(0x10001);
+		for (int k = 0; k < j; k++) {
+			buffer2[k]->kill(&arg);
 		}
 		pikiMgr->resetMgr();
 		if (generalEnemyMgr) {
+			generalEnemyMgr->killAll();
 			gameSystem->detachObjectMgr(generalEnemyMgr);
 			generalEnemyMgr = nullptr;
+			mCurrentEnemy   = nullptr;
 		}
 
 		clearHeapB_common();
 	}
 	mMainHeap->becomeCurrentHeap();
-	/*
-	stwu     r1, -0x690(r1)
-	mflr     r0
-	stw      r0, 0x694(r1)
-	stmw     r26, 0x678(r1)
-	mr       r30, r3
-	lwz      r0, 0xdc(r3)
-	cmplwi   r0, 0
-	beq      lbl_80226BC0
-	addi     r3, r1, 0x20
-	li       r26, 0
-	li       r29, 0
-	bl       __ct__Q24Game14PelletIteratorFv
-	addi     r3, r1, 0x20
-	bl       first__Q24Game14PelletIteratorFv
-	lis      r4, lbl_80482EDC@ha
-	lis      r3, lbl_80483170@ha
-	addi     r27, r1, 0x350
-	addi     r31, r4, lbl_80482EDC@l
-	addi     r28, r3, lbl_80483170@l
-	b        lbl_802268AC
-
-lbl_80226870:
-	addi     r3, r1, 0x20
-	bl       __ml__Q24Game14PelletIteratorFv
-	cmpwi    r26, 0xc8
-	bge      lbl_80226890
-	stwx     r3, r27, r29
-	addi     r26, r26, 1
-	addi     r29, r29, 4
-	b        lbl_802268A4
-
-lbl_80226890:
-	mr       r3, r31
-	mr       r5, r28
-	li       r4, 0xc5c
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_802268A4:
-	addi     r3, r1, 0x20
-	bl       next__Q24Game14PelletIteratorFv
-
-lbl_802268AC:
-	addi     r3, r1, 0x20
-	bl       isDone__Q24Game14PelletIteratorFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80226870
-	addi     r27, r1, 0x350
-	li       r28, 0
-	b        lbl_802268DC
-
-lbl_802268C8:
-	lwz      r3, 0(r27)
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-	addi     r27, r27, 4
-	addi     r28, r28, 1
-
-lbl_802268DC:
-	cmpw     r28, r26
-	blt      lbl_802268C8
-	lwz      r3, pelletMgr__4Game@sda21(r13)
-	bl       resetMgrs__Q24Game9PelletMgrFv
-	lwz      r3, dynParticleMgr__4Game@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x80(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	lis      r4, "__vt__22Iterator<Q24Game4Piki>"@ha
-	stw      r0, 0x1c(r1)
-	addi     r4, r4, "__vt__22Iterator<Q24Game4Piki>"@l
-	cmplwi   r0, 0
-	stw      r4, 0x10(r1)
-	li       r31, 0
-	li       r29, 0
-	stw      r0, 0x14(r1)
-	stw      r3, 0x18(r1)
-	bne      lbl_80226948
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-	b        lbl_802269D0
-
-lbl_80226948:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-	b        lbl_802269B4
-
-lbl_80226960:
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802269D0
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-
-lbl_802269B4:
-	lwz      r12, 0x10(r1)
-	addi     r3, r1, 0x10
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80226960
-
-lbl_802269D0:
-	addi     r28, r1, 0x30
-	b        lbl_80226AB4
-
-lbl_802269D8:
-	lwz      r3, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x1c(r1)
-	addi     r31, r31, 1
-	stwx     r3, r28, r29
-	addi     r29, r29, 4
-	cmplwi   r0, 0
-	bne      lbl_80226A24
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-	b        lbl_80226AB4
-
-lbl_80226A24:
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-	b        lbl_80226A98
-
-lbl_80226A44:
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80226AB4
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-
-lbl_80226A98:
-	lwz      r12, 0x10(r1)
-	addi     r3, r1, 0x10
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80226A44
-
-lbl_80226AB4:
-	lwz      r3, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x14(r1)
-	cmplw    r4, r3
-	bne      lbl_802269D8
-	lis      r3, __vt__Q24Game15CreatureKillArg@ha
-	lis      r4, 0x00010001@ha
-	addi     r0, r3, __vt__Q24Game15CreatureKillArg@l
-	lis      r3, __vt__Q24Game11PikiKillArg@ha
-	stw      r0, 8(r1)
-	addi     r4, r4, 0x00010001@l
-	addi     r0, r3, __vt__Q24Game11PikiKillArg@l
-	addi     r27, r1, 0x30
-	stw      r4, 0xc(r1)
-	li       r26, 0
-	stw      r0, 8(r1)
-	b        lbl_80226B18
-
-lbl_80226B04:
-	lwz      r3, 0(r27)
-	addi     r4, r1, 8
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-	addi     r27, r27, 4
-	addi     r26, r26, 1
-
-lbl_80226B18:
-	cmpw     r26, r31
-	blt      lbl_80226B04
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x80(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, generalEnemyMgr__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80226B5C
-	bl       killAll__Q24Game15GeneralEnemyMgrFv
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r4, generalEnemyMgr__4Game@sda21(r13)
-	bl       detachObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr
-	li       r0, 0
-	stw      r0, generalEnemyMgr__4Game@sda21(r13)
-	stw      r0, 0xa4(r30)
-
-lbl_80226B5C:
-	lwz      r3, farmMgr__Q24Game4Farm@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80226B6C
-	bl       initAllFarmObjectNodes__Q34Game4Farm7FarmMgrFv
-
-lbl_80226B6C:
-	lwz      r3, pelletMgr__4Game@sda21(r13)
-	bl       resetMgrs__Q24Game9PelletMgrFv
-	lwz      r3, cellMgr__4Game@sda21(r13)
-	bl       clearAllCollBuffer__Q24Game11CellPyramidFv
-	lwz      r3, cellMgr__4Game@sda21(r13)
-	bl       clear__Q24Game11CellPyramidFv
-	lwz      r3, particleMgr@sda21(r13)
-	bl       killAll__11ParticleMgrFv
-	lwz      r3, particleMgr@sda21(r13)
-	bl       reset__11ParticleMgrFv
-	lwz      r3, shadowMgr__4Game@sda21(r13)
-	bl       killAll__Q24Game9ShadowMgrFv
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	li       r4, 2
-	bl       stopRumble__Q24Game9RumbleMgrFi
-	lwz      r3, 0xdc(r30)
-	bl       freeAll__7JKRHeapFv
-	lwz      r3, 0xdc(r30)
-	bl       destroy__7JKRHeapFv
-	li       r0, 0
-	stw      r0, 0xdc(r30)
-
-lbl_80226BC0:
-	lwz      r3, 0xd8(r30)
-	bl       becomeCurrentHeap__7JKRHeapFv
-	lmw      r26, 0x678(r1)
-	lwz      r0, 0x694(r1)
-	mtlr     r0
-	addi     r1, r1, 0x690
-	blr
-	*/
 }
 
 /**
@@ -6574,31 +6255,7 @@ unknown ZukanState::clearHeaps()
 	if (mCurrentEnemy) {
 		clearHeapB_teki();
 	} else if (mCurrentPellet) {
-		if (mCurrObjHeap) {
-			if (mCurrentPellet) {
-				Pellet* buffer[200];
-				int i = 0;
-				PelletIterator iterator;
-				CI_LOOP(iterator)
-				{
-					// you know, just in case you had 200 pellets loaded at once
-					Pellet* pelt = *iterator;
-					if (i < 200) {
-						buffer[i++] = pelt;
-					} else {
-						JUT_PANICLINE(3221, "too many pellet\n");
-					}
-				}
-				for (int j = 0; j < i; j++) {
-					buffer[j]->kill(nullptr);
-				}
-				pelletMgr->resetMgrs();
-				dynParticleMgr->resetMgr();
-				mCurrentPellet = nullptr;
-			}
-			clearHeapB_common();
-		}
-		mMainHeap->becomeCurrentHeap();
+		clearHeapB_pellet();
 	} else {
 		clearHeapB_common();
 	}
@@ -6642,278 +6299,6 @@ unknown ZukanState::clearHeaps()
 	mCurrObjHeap = nullptr;
 	mMainHeap    = nullptr;
 	mParentHeap  = nullptr;
-	/*
-	stwu     r1, -0x350(r1)
-	mflr     r0
-	lis      r4, lbl_80482E60@ha
-	stw      r0, 0x354(r1)
-	stmw     r27, 0x33c(r1)
-	mr       r31, r3
-	addi     r28, r4, lbl_80482E60@l
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x80(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0xa4(r31)
-	cmplwi   r0, 0
-	beq      lbl_80226D98
-	mr       r3, r31
-	bl       clearHeapB_teki__Q34Game10SingleGame10ZukanStateFv
-	b        lbl_80226F44
-
-lbl_80226D98:
-	lwz      r3, 0xac(r31)
-	cmplwi   r3, 0
-	beq      lbl_80226EE0
-	lwz      r0, 0xdc(r31)
-	cmplwi   r0, 0
-	beq      lbl_80226ED4
-	cmplwi   r3, 0
-	beq      lbl_80226E70
-	li       r27, 0
-	addi     r3, r1, 8
-	mr       r30, r27
-	bl       __ct__Q24Game14PelletIteratorFv
-	addi     r3, r1, 8
-	bl       first__Q24Game14PelletIteratorFv
-	addi     r29, r1, 0x18
-	b        lbl_80226E14
-
-lbl_80226DD8:
-	addi     r3, r1, 8
-	bl       __ml__Q24Game14PelletIteratorFv
-	cmpwi    r27, 0xc8
-	bge      lbl_80226DF8
-	stwx     r3, r29, r30
-	addi     r27, r27, 1
-	addi     r30, r30, 4
-	b        lbl_80226E0C
-
-lbl_80226DF8:
-	addi     r3, r28, 0x7c
-	addi     r5, r28, 0x310
-	li       r4, 0xc95
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80226E0C:
-	addi     r3, r1, 8
-	bl       next__Q24Game14PelletIteratorFv
-
-lbl_80226E14:
-	addi     r3, r1, 8
-	bl       isDone__Q24Game14PelletIteratorFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80226DD8
-	addi     r30, r1, 0x18
-	li       r29, 0
-	b        lbl_80226E44
-
-lbl_80226E30:
-	lwz      r3, 0(r30)
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-	addi     r30, r30, 4
-	addi     r29, r29, 1
-
-lbl_80226E44:
-	cmpw     r29, r27
-	blt      lbl_80226E30
-	lwz      r3, pelletMgr__4Game@sda21(r13)
-	bl       resetMgrs__Q24Game9PelletMgrFv
-	lwz      r3, dynParticleMgr__4Game@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x80(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, 0xac(r31)
-
-lbl_80226E70:
-	lwz      r3, farmMgr__Q24Game4Farm@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80226E80
-	bl       initAllFarmObjectNodes__Q34Game4Farm7FarmMgrFv
-
-lbl_80226E80:
-	lwz      r3, pelletMgr__4Game@sda21(r13)
-	bl       resetMgrs__Q24Game9PelletMgrFv
-	lwz      r3, cellMgr__4Game@sda21(r13)
-	bl       clearAllCollBuffer__Q24Game11CellPyramidFv
-	lwz      r3, cellMgr__4Game@sda21(r13)
-	bl       clear__Q24Game11CellPyramidFv
-	lwz      r3, particleMgr@sda21(r13)
-	bl       killAll__11ParticleMgrFv
-	lwz      r3, particleMgr@sda21(r13)
-	bl       reset__11ParticleMgrFv
-	lwz      r3, shadowMgr__4Game@sda21(r13)
-	bl       killAll__Q24Game9ShadowMgrFv
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	li       r4, 2
-	bl       stopRumble__Q24Game9RumbleMgrFi
-	lwz      r3, 0xdc(r31)
-	bl       freeAll__7JKRHeapFv
-	lwz      r3, 0xdc(r31)
-	bl       destroy__7JKRHeapFv
-	li       r0, 0
-	stw      r0, 0xdc(r31)
-
-lbl_80226ED4:
-	lwz      r3, 0xd8(r31)
-	bl       becomeCurrentHeap__7JKRHeapFv
-	b        lbl_80226F44
-
-lbl_80226EE0:
-	lwz      r3, farmMgr__Q24Game4Farm@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80226EF0
-	bl       initAllFarmObjectNodes__Q34Game4Farm7FarmMgrFv
-
-lbl_80226EF0:
-	lwz      r3, pelletMgr__4Game@sda21(r13)
-	bl       resetMgrs__Q24Game9PelletMgrFv
-	lwz      r3, cellMgr__4Game@sda21(r13)
-	bl       clearAllCollBuffer__Q24Game11CellPyramidFv
-	lwz      r3, cellMgr__4Game@sda21(r13)
-	bl       clear__Q24Game11CellPyramidFv
-	lwz      r3, particleMgr@sda21(r13)
-	bl       killAll__11ParticleMgrFv
-	lwz      r3, particleMgr@sda21(r13)
-	bl       reset__11ParticleMgrFv
-	lwz      r3, shadowMgr__4Game@sda21(r13)
-	bl       killAll__Q24Game9ShadowMgrFv
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	li       r4, 2
-	bl       stopRumble__Q24Game9RumbleMgrFi
-	lwz      r3, 0xdc(r31)
-	bl       freeAll__7JKRHeapFv
-	lwz      r3, 0xdc(r31)
-	bl       destroy__7JKRHeapFv
-	li       r0, 0
-	stw      r0, 0xdc(r31)
-
-lbl_80226F44:
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80226F64
-	addi     r3, r28, 0x190
-	addi     r5, r28, 0x90
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80226F64:
-	lwz      r27, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r27, 0
-	bne      lbl_80226F84
-	addi     r3, r28, 0x190
-	addi     r5, r28, 0x90
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80226F84:
-	mr       r3, r27
-	bl       deleteCurrentScene__Q28PSSystem8SceneMgrFv
-	lwz      r3,
-"sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13) cmplwi   r3, 0
-	beq      lbl_80226FAC
-	lwz      r12, 0x28(r3)
-	li       r4, 1
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80226FAC:
-	li       r0, 0
-	stw      r0,
-"sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13) lwz      r0,
-0xd8(r31) cmplwi   r0, 0 beq      lbl_8022709C lwz      r3, 0x94(r31) bl
-restoreFBTexture__Q24Game15BaseGameSectionFv lwz      r4,
-generalEnemyMgr__4Game@sda21(r13) cmplwi   r4, 0 beq      lbl_80226FE4 lwz r3,
-gameSystem__4Game@sda21(r13) bl
-detachObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr li       r0, 0 stw r0,
-generalEnemyMgr__4Game@sda21(r13)
-
-lbl_80226FE4:
-	lwz      r4, mapMgr__4Game@sda21(r13)
-	cmplwi   r4, 0
-	beq      lbl_80226FF4
-	lwz      r4, 0(r4)
-
-lbl_80226FF4:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	bl       detachObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr
-	lwz      r3, 0x94(r31)
-	lwz      r3, 0x128(r3)
-	bl       del__5CNodeFv
-	lwz      r3, 0x94(r31)
-	li       r0, 0
-	stw      r0, 0x128(r3)
-	stw      r0, mapMgr__4Game@sda21(r13)
-	lwz      r3, 0x98(r31)
-	bl       del__5CNodeFv
-	li       r0, 0
-	stw      r0, 0x98(r31)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	bl       del__5CNodeFv
-	li       r0, 0
-	lwz      r3, shadowMgr__4Game@sda21(r13)
-	stw      r0, cameraMgr__4Game@sda21(r13)
-	bl       del__5CNodeFv
-	li       r0, 0
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	stw      r0, shadowMgr__4Game@sda21(r13)
-	bl       del__5CNodeFv
-	li       r0, 0
-	stw      r0, rumbleMgr__4Game@sda21(r13)
-	stw      r0, 0x94(r31)
-	lwz      r3, sys@sda21(r13)
-	lwz      r3, 0x24(r3)
-	bl       deleteViewports__8GraphicsFv
-	li       r0, 0
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	stw      r0, cellMgr__4Game@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x80(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x100(r31)
-	bl       del__5CNodeFv
-	lwz      r3, 0x104(r31)
-	bl       del__5CNodeFv
-	lwz      r3, 0xd8(r31)
-	bl       destroy__7JKRHeapFv
-
-lbl_8022709C:
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	lwz      r3, 0x18(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0xd4(r31)
-	cmplwi   r0, 0
-	beq      lbl_802270D8
-	lwz      r3, 0xf0(r31)
-	bl       destroy__7JKRHeapFv
-	li       r0, 0
-	stw      r0, 0xf0(r31)
-	lwz      r3, 0xd4(r31)
-	bl       destroy__7JKRHeapFv
-
-lbl_802270D8:
-	li       r0, 0
-	stw      r0, 0xdc(r31)
-	stw      r0, 0xd8(r31)
-	stw      r0, 0xd4(r31)
-	lmw      r27, 0x33c(r1)
-	lwz      r0, 0x354(r1)
-	mtlr     r0
-	addi     r1, r1, 0x350
-	blr
-	*/
 }
 
 /**
