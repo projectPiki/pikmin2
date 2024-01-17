@@ -129,7 +129,7 @@ void TRK__read_aram(register int c, register u32 p2, void* p3)
 	size    = OSRoundUp32B(size);
 	counter = 0;
 
-	for (i = 0; i < size; i++) {
+	for (i = 0; i < size; i += 0x20) {
 		__dcbi(counter, c);
 		counter += 0x20;
 	}
@@ -149,102 +149,6 @@ void TRK__read_aram(register int c, register u32 p2, void* p3)
 	if (!r) {
 		__ARClearInterrupt();
 	}
-	// TRK_memcpy((void*)c, buff, p2);
-	// __dcbf((void*)counter, count);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  cmplwi    r4, 0x4000
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  blt-      .loc_0x114
-	  lwz       r5, 0x0(r5)
-	  lis       r0, 0x800
-	  add       r3, r4, r5
-	  cmplw     r3, r0
-	  ble-      .loc_0x40
-	  b         .loc_0x114
-
-	.loc_0x40:
-	  rlwinm    r0,r4,0,27,31
-	  rlwinm    r30,r4,0,0,26
-	  add       r29, r5, r0
-	  li        r4, 0
-	  addi      r0, r29, 0x1F
-	  rlwinm    r29,r0,0,0,26
-	  cmplwi    r29, 0
-	  addi      r3, r29, 0x1F
-	  rlwinm    r3,r3,27,5,31
-	  ble-      .loc_0xD0
-	  rlwinm.   r0,r3,29,3,31
-	  mtctr     r0
-	  beq-      .loc_0xC0
-
-	.loc_0x74:
-	  dcbi      r4, r28
-	  addi      r4, r4, 0x20
-	  dcbi      r4, r28
-	  addi      r4, r4, 0x20
-	  dcbi      r4, r28
-	  addi      r4, r4, 0x20
-	  dcbi      r4, r28
-	  addi      r4, r4, 0x20
-	  dcbi      r4, r28
-	  addi      r4, r4, 0x20
-	  dcbi      r4, r28
-	  addi      r4, r4, 0x20
-	  dcbi      r4, r28
-	  addi      r4, r4, 0x20
-	  dcbi      r4, r28
-	  addi      r4, r4, 0x20
-	  bdnz+     .loc_0x74
-	  andi.     r3, r3, 0x7
-	  beq-      .loc_0xD0
-
-	.loc_0xC0:
-	  mtctr     r3
-
-	.loc_0xC4:
-	  dcbi      r4, r28
-	  addi      r4, r4, 0x20
-	  bdnz+     .loc_0xC4
-
-	.loc_0xD0:
-	  bl        0x12500
-	  cmplwi    r3, 0
-	  bne+      .loc_0xD0
-	  bl        0x127F4
-	  mr        r31, r3
-	  bl        0x127CC
-	  mr        r4, r28
-	  mr        r5, r30
-	  mr        r6, r29
-	  li        r3, 0x1
-	  bl        0x12514
-
-	.loc_0xFC:
-	  bl        0x127D4
-	  rlwinm.   r0,r3,0,16,31
-	  beq+      .loc_0xFC
-	  rlwinm.   r0,r31,0,16,31
-	  bne-      .loc_0x114
-	  bl        0x127A0
-
-	.loc_0x114:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
 }
 
 /**
@@ -264,7 +168,6 @@ void TRK__write_aram(register int c, register u32 p2, void* p3)
 {
 	u8 buff[32] ATTRIBUTE_ALIGN(32);
 	u32 err;
-	int i;
 	register int count = c;
 	register u32 bf;
 	u32 uVar1;
@@ -272,6 +175,7 @@ void TRK__write_aram(register int c, register u32 p2, void* p3)
 	u16 r;
 	register u32 g;
 	register int counter;
+	u32 i;
 
 	if ((size_t)p2 < 0x4000 || p2 + *(u32*)p3 > 0x8000000) {
 		return;
@@ -282,7 +186,7 @@ void TRK__write_aram(register int c, register u32 p2, void* p3)
 	size    = *(u32*)p3 + (p2 & 0x1f);
 	size    = OSRoundUp32B(size);
 
-	for (i = 0; i < size; i++) {
+	for (i = 0; i < size; i += 0x20) {
 		__dcbf((void*)counter, count);
 		counter += 0x20;
 	}
@@ -334,221 +238,6 @@ void TRK__write_aram(register int c, register u32 p2, void* p3)
 
 		__ARClearInterrupt();
 	}
-
-	/*
-	.loc_0x0:
-	  rlwinm    r11,r1,0,27,31
-	  mr        r12, r1
-	  subfic    r11, r11, -0x80
-	  stwux     r1, r1, r11
-	  mflr      r0
-	  stw       r0, 0x4(r12)
-	  stmw      r23, -0x24(r12)
-	  mr        r31, r4
-	  cmplwi    r31, 0x4000
-	  mr        r30, r3
-	  mr        r23, r5
-	  blt-      .loc_0x1D4
-	  lwz       r4, 0x0(r23)
-	  lis       r0, 0x800
-	  add       r3, r31, r4
-	  cmplw     r3, r0
-	  ble-      .loc_0x48
-	  b         .loc_0x1D4
-
-	.loc_0x48:
-	  rlwinm    r0,r31,0,27,31
-	  rlwinm    r27,r31,0,0,26
-	  add       r26, r4, r0
-	  li        r24, 0
-	  addi      r0, r26, 0x1F
-	  rlwinm    r26,r0,0,0,26
-	  cmplwi    r26, 0
-	  addi      r3, r26, 0x1F
-	  rlwinm    r3,r3,27,5,31
-	  ble-      .loc_0xD8
-	  rlwinm.   r0,r3,29,3,31
-	  mtctr     r0
-	  beq-      .loc_0xC8
-
-	.loc_0x7C:
-	  dcbf      r24, r30
-	  addi      r24, r24, 0x20
-	  dcbf      r24, r30
-	  addi      r24, r24, 0x20
-	  dcbf      r24, r30
-	  addi      r24, r24, 0x20
-	  dcbf      r24, r30
-	  addi      r24, r24, 0x20
-	  dcbf      r24, r30
-	  addi      r24, r24, 0x20
-	  dcbf      r24, r30
-	  addi      r24, r24, 0x20
-	  dcbf      r24, r30
-	  addi      r24, r24, 0x20
-	  dcbf      r24, r30
-	  addi      r24, r24, 0x20
-	  bdnz+     .loc_0x7C
-	  andi.     r3, r3, 0x7
-	  beq-      .loc_0xD8
-
-	.loc_0xC8:
-	  mtctr     r3
-
-	.loc_0xCC:
-	  dcbf      r24, r30
-	  addi      r24, r24, 0x20
-	  bdnz+     .loc_0xCC
-
-	.loc_0xD8:
-	  bl        0x126E4
-	  cmplwi    r3, 0
-	  bne+      .loc_0xD8
-	  bl        0x129D8
-	  rlwinm.   r24,r31,0,27,31
-	  mr        r29, r3
-	  lis       r25, 0x800
-	  beq-      .loc_0x13C
-	  addi      r28, r1, 0x20
-	  mr        r25, r27
-	  dcbi      r0, r28
-	  bl        0x12998
-	  mr        r4, r28
-	  mr        r5, r27
-	  li        r3, 0x1
-	  li        r6, 0x20
-	  bl        0x126E0
-
-	.loc_0x11C:
-	  bl        0x129A0
-	  rlwinm.   r0,r3,0,16,31
-	  beq+      .loc_0x11C
-	  mr        r3, r30
-	  mr        r5, r24
-	  addi      r4, r1, 0x20
-	  bl        -0xBCF00
-	  dcbf      r0, r30
-
-	.loc_0x13C:
-	  lwz       r0, 0x0(r23)
-	  add       r31, r31, r0
-	  rlwinm.   r24,r31,0,27,31
-	  beq-      .loc_0x1A0
-	  rlwinm    r23,r31,0,0,26
-	  cmplw     r23, r25
-	  beq-      .loc_0x184
-	  addi      r28, r1, 0x20
-	  dcbi      r0, r28
-	  bl        0x1293C
-	  mr        r4, r28
-	  mr        r5, r23
-	  li        r3, 0x1
-	  li        r6, 0x20
-	  bl        0x12684
-
-	.loc_0x178:
-	  bl        0x12944
-	  rlwinm.   r0,r3,0,16,31
-	  beq+      .loc_0x178
-
-	.loc_0x184:
-	  add       r25, r30, r31
-	  addi      r4, r1, 0x20
-	  mr        r3, r25
-	  subfic    r5, r24, 0x20
-	  add       r4, r4, r24
-	  bl        -0xBCF64
-	  dcbf      r0, r25
-
-	.loc_0x1A0:
-	  sync
-	  bl        0x128F8
-	  mr        r4, r30
-	  mr        r5, r27
-	  mr        r6, r26
-	  li        r3, 0
-	  bl        0x12640
-	  rlwinm.   r0,r29,0,16,31
-	  bne-      .loc_0x1D4
-
-	.loc_0x1C4:
-	  bl        0x128F8
-	  rlwinm.   r0,r3,0,16,31
-	  beq+      .loc_0x1C4
-	  bl        0x128CC
-
-	.loc_0x1D4:
-	  lwz       r10, 0x0(r1)
-	  lmw       r23, -0x24(r10)
-	  lwz       r0, 0x4(r10)
-	  mtlr      r0
-	  mr        r1, r10
-	  blr
-	*/
-}
-
-/**
- * @note Address: 0x800BFE68
- * @note Size: 0x94
- */
-ASM void InitMetroTRK_BBA(void)
-{
-#ifdef __MWERKS__ // clang-format off
-	nofralloc
-	addi r1, r1, -4
-	stw r3, 0(r1)
-	lis r3, gTRKCPUState@h
-	ori r3, r3, gTRKCPUState@l
-	stmw r0, ProcessorState_PPC.Default.GPR(r3) //Save the gprs
-	lwz r4, 0(r1)
-	addi r1, r1, 4
-	stw r1, ProcessorState_PPC.Default.GPR[1](r3)
-	stw r4, ProcessorState_PPC.Default.GPR[3](r3)
-	mflr r4
-	stw r4, ProcessorState_PPC.Default.LR(r3)
-	stw r4, ProcessorState_PPC.Default.PC(r3)
-	mfcr r4
-	stw r4, ProcessorState_PPC.Default.CR(r3)
-	//Turn on external interrupts
-	mfmsr r4
-	ori r3, r4, (1 << (31 - 16))
-	mtmsr r3
-	mtsrr1 r4 //Copy original msr to srr1
-	//Save misc registers to gTRKCPUState
-	bl TRKSaveExtended1Block
-	lis r3, gTRKCPUState@h
-	ori r3, r3, gTRKCPUState@l
-	lmw r0, ProcessorState_PPC.Default.GPR(r3) //Restore the gprs
-	//Reset IABR and DABR
-	li r0, 0
-	mtspr  0x3f2, r0
-	mtspr 0x3f5, r0
-	//Restore the stack pointer
-	lis r1, _db_stack_addr@h
-	ori r1, r1, _db_stack_addr@l
-	li r3, 2
-	bl InitMetroTRKCommTable //Initialize comm table as BBA hardware
-	/*
-	If InitMetroTRKCommTable returned 1 (failure), something went wrong
-	or whatever reason. If everything goes as expected, we proceed with
-	starting up TRK.
-	*/
-	cmpwi r3, 1
-	bne initCommTableSuccess
-	/*
-	BUG: The code probably orginally reloaded gTRKCPUState here, but
-	as is it will read the returned value of InitMetroTRKCommTable
-	as a TRKCPUState struct pointer, causing the CPU to return to
-	a garbage code address.
-	*/
-	lwz r4, ProcessorState_PPC.Default.LR(r3)
-	mtlr r4
-	lmw r0, ProcessorState_PPC.Default.GPR(r3)
-	blr
-initCommTableSuccess:
-	b TRK_main //Jump to TRK_main
-	blr
-#endif // clang-format on
 }
 
 /**
@@ -610,6 +299,70 @@ ASM void InitMetroTRK(void)
 	lwz r4, ProcessorState_PPC.Default.LR(r3)
 	mtlr r4
 	lmw r0, ProcessorState_PPC.Default.GPR(r3) //Restore the gprs
+	blr
+initCommTableSuccess:
+	b TRK_main //Jump to TRK_main
+	blr
+#endif // clang-format on
+}
+
+/**
+ * @note Address: 0x800BFE68
+ * @note Size: 0x94
+ */
+ASM void InitMetroTRK_BBA(void)
+{
+#ifdef __MWERKS__ // clang-format off
+	nofralloc
+	addi r1, r1, -4
+	stw r3, 0(r1)
+	lis r3, gTRKCPUState@h
+	ori r3, r3, gTRKCPUState@l
+	stmw r0, ProcessorState_PPC.Default.GPR(r3) //Save the gprs
+	lwz r4, 0(r1)
+	addi r1, r1, 4
+	stw r1, ProcessorState_PPC.Default.GPR[1](r3)
+	stw r4, ProcessorState_PPC.Default.GPR[3](r3)
+	mflr r4
+	stw r4, ProcessorState_PPC.Default.LR(r3)
+	stw r4, ProcessorState_PPC.Default.PC(r3)
+	mfcr r4
+	stw r4, ProcessorState_PPC.Default.CR(r3)
+	//Turn on external interrupts
+	mfmsr r4
+	ori r3, r4, (1 << (31 - 16))
+	mtmsr r3
+	mtsrr1 r4 //Copy original msr to srr1
+	//Save misc registers to gTRKCPUState
+	bl TRKSaveExtended1Block
+	lis r3, gTRKCPUState@h
+	ori r3, r3, gTRKCPUState@l
+	lmw r0, ProcessorState_PPC.Default.GPR(r3) //Restore the gprs
+	//Reset IABR and DABR
+	li r0, 0
+	mtspr  0x3f2, r0
+	mtspr 0x3f5, r0
+	//Restore the stack pointer
+	lis r1, _db_stack_addr@h
+	ori r1, r1, _db_stack_addr@l
+	li r3, 2
+	bl InitMetroTRKCommTable //Initialize comm table as BBA hardware
+	/*
+	If InitMetroTRKCommTable returned 1 (failure), something went wrong
+	or whatever reason. If everything goes as expected, we proceed with
+	starting up TRK.
+	*/
+	cmpwi r3, 1
+	bne initCommTableSuccess
+	/*
+	BUG: The code probably orginally reloaded gTRKCPUState here, but
+	as is it will read the returned value of InitMetroTRKCommTable
+	as a TRKCPUState struct pointer, causing the CPU to return to
+	a garbage code address.
+	*/
+	lwz r4, ProcessorState_PPC.Default.LR(r3)
+	mtlr r4
+	lmw r0, ProcessorState_PPC.Default.GPR(r3)
 	blr
 initCommTableSuccess:
 	b TRK_main //Jump to TRK_main

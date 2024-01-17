@@ -443,7 +443,7 @@ LIBS = [
             ],
             ["Dolphin/TRK_MINNOW_DOLPHIN/mpc_7xx_603e", True],
             ["Dolphin/TRK_MINNOW_DOLPHIN/__exception", True],
-            ["Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk", False],
+            ["Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk", True],
             ["Dolphin/TRK_MINNOW_DOLPHIN/main_TRK", True],
             ["Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk_glue", True],
             ["Dolphin/TRK_MINNOW_DOLPHIN/targcont", True],
