@@ -41,11 +41,11 @@ typedef struct OSFontHeader {
 ///////// FONT FUNCTIONS /////////
 // Common functions.
 u16 OSGetFontEncode();
-char* OSGetFontWidth(char* string, s32* width);
+char* OSGetFontWidth(const char* string, s32* width);
 
 // High-level functions.
 BOOL OSInitFont(OSFontHeader* fontInfo);
-char* OSGetFontTexture(char* string, void** image, s32* x, s32* y, s32* width);
+char* OSGetFontTexture(const char* string, void** image, s32* x, s32* y, s32* width);
 
 // Low-level functions.
 u32 OSLoadFont(OSFontHeader* fontInfo, void* temp);

@@ -7,7 +7,7 @@ OS_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/os/OSCache.o\
 	$(BUILD_DIR)/src/Dolphin/os/OSContext.o\
 	$(BUILD_DIR)/src/Dolphin/os/OSError.o\
-	$(BUILD_DIR)/asm/Dolphin/os/OSFont.o\
+	$(BUILD_DIR)/src/Dolphin/os/OSFont.o\
 	$(BUILD_DIR)/src/Dolphin/os/OSInterrupt.o\
 	$(BUILD_DIR)/src/Dolphin/os/OSLink.o\
 	$(BUILD_DIR)/src/Dolphin/os/OSMessage.o\

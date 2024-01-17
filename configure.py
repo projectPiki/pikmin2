@@ -754,7 +754,7 @@ LIBS = [
             ["Dolphin/os/OSCache", True],
             ["Dolphin/os/OSContext", True],
             ["Dolphin/os/OSError", True],
-            ["Dolphin/os/OSFont", False],
+            ["Dolphin/os/OSFont", True],
             ["Dolphin/os/OSInterrupt", True],
             ["Dolphin/os/OSLink", True],
             ["Dolphin/os/OSMessage", True],
