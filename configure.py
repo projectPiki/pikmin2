@@ -421,7 +421,7 @@ LIBS = [
             ["Dolphin/TRK_MINNOW_DOLPHIN/nubevent", True],
             ["Dolphin/TRK_MINNOW_DOLPHIN/nubinit", True],
             ["Dolphin/TRK_MINNOW_DOLPHIN/msg", True],
-            ["Dolphin/TRK_MINNOW_DOLPHIN/msgbuf", False],
+            ["Dolphin/TRK_MINNOW_DOLPHIN/msgbuf", True],
             [
                 "Dolphin/TRK_MINNOW_DOLPHIN/serpoll",
                 True,

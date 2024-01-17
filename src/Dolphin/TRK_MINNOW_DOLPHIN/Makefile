@@ -3,7 +3,7 @@ TRK_MINNOW_DOLPHIN_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/nubevent.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/nubinit.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/msg.o\
-	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/msgbuf.o\
+	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/msgbuf.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/serpoll.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/usr_put.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/dispatch.o\
