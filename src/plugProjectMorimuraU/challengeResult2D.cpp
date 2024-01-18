@@ -29,7 +29,7 @@ f32 TChallengeResult::mAngVelMax       = 20.0f;
 f32 TChallengeResult::mAccel           = 0.1f;
 bool TChallengeResult::mTestDemo       = true;
 bool TChallengeResult::mComplete       = true;
-u16 TChallengeResult::mTestRankInOrder = 0xFFFF;
+s16 TChallengeResult::mTestRankInOrder = 0xFFFF;
 f32 TChallengeResult::mFlashInterval   = 40.0f;
 f32 TChallengeResult::mDemoSpeedUpRate = 2.0f;
 f32 TChallengeResult::mDemoSpeedUpMax  = 3.0f;
@@ -157,7 +157,10 @@ void TChallengeResultDemoScreen::setComplete(bool isComplete)
  */
 void TChallengeResultDemoScreen::reset()
 {
-	// UNUSED FUNCTION
+	mIsActive = true;
+	for (int i = 0; i < mAnimScreenCountMax; i++) {
+		mAnimScreens[i]->mCurrentFrame = 0.0f;
+	}
 }
 
 /**
@@ -809,9 +812,19 @@ void TCounterRV::setValue(bool flag1, bool flag2)
  * @note Address: N/A
  * @note Size: 0x150
  */
-void TCounterRV::createKiraEffect(f32, int)
+void TCounterRV::createKiraEffect(f32 scale, int max)
 {
-	// UNUSED FUNCTION
+	for (int i = 0; i < max; i++) {
+		J2DPicture* pic = mCounters[i]->mPicture;
+		P2ASSERTLINE(597, pic);
+		pic->setBasePosition(J2DPOS_Center);
+		Vector2f pos;
+		pos.x = pic->getGlbVtx(0).x + pic->getWidth() / 2;
+		pos.y = pic->getGlbVtx(0).y + pic->getHeight() / 2;
+		efx2d::Arg arg(pos);
+		mEfxCountKiras[i]->mScale = scale;
+		mEfxCountKiras[i]->create(&arg);
+	}
 }
 
 /**
@@ -856,6 +869,33 @@ void TCounterRV::reset()
  */
 void TChallengeResultCounter::start()
 {
+	if (mState == 1) {
+		return;
+	}
+	mCurrentValue = *mDisplayValue;
+	_0C           = 0;
+	_20           = 0;
+	_1C           = 0;
+	mState        = 1;
+	for (int i = 0; i < _14; i++) {
+		_24[i] = 0;
+	}
+
+	int digits = 1;
+	for (int i = *mDisplayValue; i >= 10; i--) {
+		digits++;
+		i += i / 10;
+	}
+	mDigits = digits;
+
+	int test = *mDisplayValue;
+	for (; digits > 1; digits--) {
+		int calc    = (int)pow(10.0f, f64(digits - 1));
+		int test2   = test / calc;
+		_24[--test] = test2;
+		test -= test2 * calc;
+	}
+	_24[0] = test;
 	// UNUSED FUNCTION
 }
 
@@ -885,7 +925,7 @@ void TChallengeResultCounter::update()
 {
 	if (mState == 1) {
 		int calc = 0;
-		for (int j = 0; j < _10; j++) {
+		for (int j = 0; j < mDigits; j++) {
 			int test = pow(10.0f, j);
 			if (j > _0C) {
 				calc += test * _24[j];
@@ -900,8 +940,8 @@ void TChallengeResultCounter::update()
 			if (!_20) {
 				if (mState == 1) {
 					_0C++;
-					if (_0C >= _10) {
-						*mDisplayValue = _04;
+					if (_0C >= mDigits) {
+						*mDisplayValue = mCurrentValue;
 						mState         = 2;
 					}
 				}
@@ -946,8 +986,8 @@ void TClearTexture::changeTexture(bool on)
  */
 void TClearTexture::getPosition(Vector2f& pos)
 {
-	pos.x = mPane1->getWidth() + mPane1->getGlbVtx(0).x;
-	pos.y = mPane1->getHeight() + mPane1->getGlbVtx(0).y;
+	pos.x = mPane1->getGlbVtx(0).x + mPane1->getWidth();
+	pos.y = mPane1->getGlbVtx(0).y + mPane1->getHeight();
 }
 
 /**
@@ -956,8 +996,8 @@ void TClearTexture::getPosition(Vector2f& pos)
  */
 void TClearTexture::getEffectPosition(Vector2f& pos)
 {
-	pos.x = mPane1->getWidth() * 0.5f + mPane1->getGlbVtx(0).x;
-	pos.y = mPane1->getHeight() * 0.5f + mPane1->getGlbVtx(0).y;
+	pos.x = mPane1->getWidth() / 2 + mPane1->getGlbVtx(0).x;
+	pos.y = mPane1->getHeight() / 2 + mPane1->getGlbVtx(0).y;
 }
 
 /**
@@ -979,9 +1019,9 @@ TChallengeResult::TChallengeResult()
     , mScissorPic(nullptr)
     , mPane1(nullptr)
     , mPane2(nullptr)
-    , mPane3(nullptr)
-    , mPane4(nullptr)
-    , mPane5(nullptr)
+    , mPanePlayerNum(nullptr)
+    , mPanePlayerNumShadow(nullptr)
+    , mPaneAButton(nullptr)
     , mPane6(nullptr)
 {
 	mMesgOffs    = nullptr;
@@ -1001,10 +1041,10 @@ TChallengeResult::TChallengeResult()
 	_1E8                  = 0;
 	_1E9                  = 0;
 
-	mTimer     = 0.0f;
-	mTimer2    = 0.0f;
-	mStageList = nullptr;
-	mSpeed     = mDemoSpeedUpRate;
+	mTimer             = 0.0f;
+	mAButtonAlphaTimer = 0.0f;
+	mStageList         = nullptr;
+	mSpeed             = mDemoSpeedUpRate;
 
 	for (int i = 0; i < 3; i++) {
 		mCounters1[i]        = nullptr;
@@ -1152,10 +1192,10 @@ void TChallengeResult::doCreate(JKRArchive* arc)
 	P2ASSERTLINE(1058, mPane1);
 	mPane2 = screen->search('Tyel2');
 	P2ASSERTLINE(1061, mPane2);
-	mPane3 = screen->search('Tyel3');
-	P2ASSERTLINE(1064, mPane3);
-	mPane4 = screen->search('Tyel4');
-	P2ASSERTLINE(1067, mPane4);
+	mPanePlayerNum = screen->search('Tyel3');
+	P2ASSERTLINE(1064, mPanePlayerNum);
+	mPanePlayerNumShadow = screen->search('Tyel4');
+	P2ASSERTLINE(1067, mPanePlayerNumShadow);
 
 	mOnyonMovePane[0] = new TMovePane;
 	mOnyonPane[0]     = screen->search('NRED');
@@ -1334,9 +1374,9 @@ void TChallengeResult::doCreate(JKRArchive* arc)
 		mPosList1[i].y = pane->mOffset.y;
 	}
 
-	mPane5 = screen->search('Nabtn');
-	P2ASSERTLINE(1270, mPane5);
-	mPane5->setInfluencedAlpha(false, false);
+	mPaneAButton = screen->search('Nabtn');
+	P2ASSERTLINE(1270, mPaneAButton);
+	mPaneAButton->setInfluencedAlpha(false, false);
 
 	mResultDemoScreen = new TChallengeResultDemoScreen(arc, 2);
 	mResultDemoScreen->create("challenge_modo_result_demo.blo", 0x20000);
@@ -1487,18 +1527,18 @@ bool TChallengeResult::doUpdate()
 	}
 
 	if (mDemoState == 6) {
-		mPane3->show();
-		if (mTimer2 < 1.0f) {
-			mTimer2 += 0.1f;
-			if (mTimer2 > 1.0f) {
-				mTimer2 = 1.0f;
+		mPanePlayerNum->show();
+		if (mAButtonAlphaTimer < 1.0f) {
+			mAButtonAlphaTimer += 0.1f;
+			if (mAButtonAlphaTimer > 1.0f) {
+				mAButtonAlphaTimer = 1.0f;
 			}
-			u8 alpha = mResultScreen->getScreenAlpha();
-			mPane5->setAlpha(mTimer2 * alpha);
 		}
+		u8 alpha = mResultScreen->getScreenAlpha();
+		mPaneAButton->setAlpha(mAButtonAlphaTimer * alpha);
 	} else {
-		mTimer2 = 0.0f;
-		mPane5->hide();
+		mAButtonAlphaTimer = 0.0f;
+		mPaneAButton->hide();
 	}
 
 	if (mDemoState != 0) {
@@ -2266,16 +2306,16 @@ void TChallengeResult::setInfo()
 	}
 
 	mFlags[3] = 0;
-	mPane5->hide();
+	mPaneAButton->hide();
 
 	int test = randFloat() * 6.0f;
 	if (test >= 5) {
 		test = 5;
 	}
-	int id = cRandArray[test * 3];
-	for (int i = 0; i < 3; i++, id++) {
+	const int* data = &cRandArray[test * 3];
+	for (int i = 0; i < 3; i++) {
 		TMovePane* pane = mOnyonMovePane[i];
-		pane->setPane(mOnyonPane[id]);
+		pane->setPane(mOnyonPane[data[i]]);
 		mPosList2[i] = 0.0f;
 		mHighScoreCounter[i]->getMotherPane()->hide();
 		mHighScoreCounter[i]->reset();
@@ -2294,7 +2334,7 @@ void TChallengeResult::setInfo()
 	mCounter2->reset();
 
 	mMoveTimer = 0.0f;
-	mFlags[0]  = false;
+	mFlags[0]  = 0;
 	mFlags[1]  = false;
 	mFlags[2]  = false;
 
@@ -2312,7 +2352,7 @@ void TChallengeResult::setInfo()
 	if (mIsSection) {
 		mRankInSlot = mTestRankInOrder;
 		if (randFloat() < 0.5f) {
-			mFlags[0] |= 1;
+			mFlags[0] |= ChalResult_Is2Player;
 		}
 		if (mTestDemo) {
 			if (mComplete) {
@@ -2374,12 +2414,12 @@ void TChallengeResult::setInfo()
 	JUT_ASSERTLINE(1718, mPokoCount < 100000, "money = %d\n", mPokoCount);
 	JUT_ASSERTLINE(1719, mPikiCount < 10000, "piki = %d\n", mPikiCount);
 
-	if (mFlags[0] & 1) {
-		mPane3->setMsgID('4861_00'); // "1-Player Challenge"
-		mPane4->setMsgID('4861_00'); // "1-Player Challenge"
+	if (mFlags[0] & ChalResult_Is2Player) {
+		mPanePlayerNum->setMsgID('4861_00');       // "1-Player Challenge"
+		mPanePlayerNumShadow->setMsgID('4861_00'); // "1-Player Challenge"
 	} else {
-		mPane3->setMsgID('4870_00'); // "2-Player Challenge"
-		mPane4->setMsgID('4870_00'); // "2-Player Challenge"
+		mPanePlayerNum->setMsgID('4870_00');       // "2-Player Challenge"
+		mPanePlayerNumShadow->setMsgID('4870_00'); // "2-Player Challenge"
 	}
 
 	mResultDemoScreen->startDemo();
@@ -3527,16 +3567,15 @@ void TChallengeResult::updateDemo()
 
 		bool check = true;
 		for (int i = 0; i < 3; i++) {
-			int id1   = mOnyonMovePane[i]->_48;
-			int id2   = mOnyonMovePane[i]->mState;
-			bool asrt = id1 <= 3 && id1 >= 0;
-			P2ASSERTLINE(1813, asrt);
+			int id1 = mOnyonMovePane[i]->_48;
+			int id2 = mOnyonMovePane[i]->mState;
+			P2ASSERTBOUNDSLINE(1813, 0, id1, 3);
 			if (mResultCounters[id1]->checkState(2) == false) {
 				TMovePane* mpane = mOnyonMovePane[i];
 				if (mpane->mCounter > 0) {
 					if (id2 == 0) {
 						mpane->mState = 2;
-						id2           = mResultCounters[id1]->_10;
+						id2           = mResultCounters[id1]->mDigits;
 						f32 x         = mVecUnit[id1]._00.x;
 						f32 y         = (f32)id2 / (f32)mResultCounters[id1]->_18;
 						if (id2 == 1) {
@@ -3615,7 +3654,7 @@ void TChallengeResult::updateDemo()
 					mOnyonMovePane[id]->mState   = 1;
 					mOnyonMovePane[id]->mCounter = 1;
 
-					int id2 = mResultCounters[3]->_10;
+					int id2 = mResultCounters[3]->mDigits;
 					f32 x   = mVecUnit[id]._00.x;
 					f32 y   = (f32)id2 / (f32)mResultCounters[3]->_18;
 					if (id2 == 1) {
@@ -3710,7 +3749,7 @@ void TChallengeResult::updateDemo()
 					if (i == id) {
 						mOnyonMovePane[i]->mOffset = Vector2f(x, _168._00.y + pic->mGlobalMtx[1][3]);
 					} else {
-						int id2 = mResultCounters[3]->_10;
+						int id2 = mResultCounters[3]->mDigits;
 						f32 y   = (f32)id2 / (f32)mResultCounters[3]->_18;
 						if (id2 == 1) {
 							y += 0.05f;
@@ -3730,18 +3769,7 @@ void TChallengeResult::updateDemo()
 		if (mFlags[3]) {
 			f32 calc[3] = { 1.0f, 0.9f, 0.8f };
 			P2ASSERTLINE(2002, mRankInSlot >= 0);
-			f32 x             = calc[mRankInSlot];
-			TCounterRV* count = mHighScoreCounter[mRankInSlot];
-			int max           = mResultCounters[3]->_10;
-			for (int i = 0; i < max; i++) {
-				J2DPicture* pic = count->mCounters[i]->mPicture;
-				P2ASSERTLINE(597, pic);
-				pic->setBasePosition(J2DPOS_Center);
-				f32 x = pic->getGlbVtx(0).x;
-				Vector2f pos(pic->getWidth() / 2 + x, pic->getHeight() / 2 + pic->getGlbVtx(0).y);
-				efx2d::Arg arg(pos);
-				count->mEfxCountKiras[i]->create(&arg);
-			}
+			mHighScoreCounter[mRankInSlot]->createKiraEffect(calc[mRankInSlot], mResultCounters[3]->mDigits);
 			changeAnimDemo();
 		}
 		break;
@@ -3749,7 +3777,6 @@ void TChallengeResult::updateDemo()
 	case 4: {
 		for (int i = 0; i < 3; i++) {
 			TMovePane* mpane = mOnyonMovePane[i];
-			// if (mpane->mCounter) {
 			if (mpane->mState == 0) {
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_CHALLENGE_ONY_SPIN, 0);
 				mOnyonMovePane[i]->mState   = 5;
@@ -3796,7 +3823,6 @@ void TChallengeResult::updateDemo()
 					}
 				}
 			}
-			//}
 		}
 		break;
 	}
@@ -5189,55 +5215,60 @@ void TChallengeResult::changeAnimDemo()
 		mDemoState = 4;
 		if (mComplete) {
 			PSSystem::spSysIF->playSystemSe(PSSE_CHALLENGE_PERFECTCLEAR, 0);
-			u16 x = sys->getRenderModeObj()->fbWidth;
 			u16 y = sys->getRenderModeObj()->efbHeight;
-			efx2d::Arg arg(Vector2f(x, y));
+			u16 x = sys->getRenderModeObj()->fbWidth;
+			Vector2f pos((f32)x / 2, (f32)y / 2);
+			efx2d::Arg arg(pos);
 			mEfxCompLoop->create(&arg);
+
 			mResultDemoScreen->mScreenObj->search('Nribon');
-			efx2d::Arg arg2(140.0f, 100.0f);
+
+			Vector2f pos2(140.0f, 100.0f);
+			efx2d::Arg arg2(pos2);
 			efx2d::T2DCavecomp efx;
 			efx.create(&arg2);
 		} else {
 			PSSystem::spSysIF->playSystemSe(PSSE_CHALLENGE_COURSECLEAR, 0);
 		}
+		mResultDemoScreen->reset();
 
-		TChallengeResultDemoScreen* screen = mResultDemoScreen;
-		screen->mIsActive                  = true;
-		for (int i = 0; i < screen->mAnimScreenCountMax; i++) {
-			screen->mAnimScreens[i]->mCurrentFrame = 0.0f;
-		}
-		int test = randWeightFloat(6.0f);
+		int test = randFloat() * 6.0f;
 		if (test >= 5) {
 			test = 5;
 		}
-		test = cRandArray[test];
+		const int* data = &cRandArray[test * 3];
 		for (int i = 0; i < 3; i++) {
-			Vector2f pos(mOnyonMovePane[i]->mOffset.x, mOnyonMovePane[i]->mOffset.y);
-			mClearTexture[test]->_00 = 1;
-			mClearTexture[test]->getPosition(pos);
+			Vector2f pos;
+			mClearTexture[data[i]]->getPosition(pos);
+			mClearTexture[data[i]]->_00 = 1;
+
+			mOnyonMovePane[i]->_44    = test;
+			TMovePane* pane           = mOnyonMovePane[i];
+			pane->mOffset.x           = pos.x;
+			pane->mOffset.y           = pos.y;
 			mOnyonMovePane[i]->mState = 1;
 		}
 	} else {
-		if (mFlags[0] & 2) {
+		if (mFlags[2]) {
 			if (mComplete) {
 				PSSystem::spSysIF->playSystemSe(PSSE_CHALLENGE_PERFECTCLEAR, 0);
-				u16 x = sys->getRenderModeObj()->fbWidth;
 				u16 y = sys->getRenderModeObj()->efbHeight;
-				efx2d::Arg arg(Vector2f(x, y));
+				u16 x = sys->getRenderModeObj()->fbWidth;
+				Vector2f pos((f32)x / 2, (f32)y / 2);
+				efx2d::Arg arg(pos);
 				mEfxCompLoop->create(&arg);
+
 				mResultDemoScreen->mScreenObj->search('Nribon');
 
-				efx2d::Arg arg2(140.0f, 100.0f);
+				// raining confetti particles
+				Vector2f pos2(140.0f, 100.0f);
+				efx2d::Arg arg2(pos2);
 				efx2d::T2DCavecomp efx;
 				efx.create(&arg2);
 			} else {
 				PSSystem::spSysIF->playSystemSe(PSSE_CHALLENGE_COURSECLEAR, 0);
 			}
-			TChallengeResultDemoScreen* screen = mResultDemoScreen;
-			screen->mIsActive                  = true;
-			for (int i = 0; i < screen->mAnimScreenCountMax; i++) {
-				screen->mAnimScreens[i]->mCurrentFrame = 0.0f;
-			}
+			mResultDemoScreen->reset();
 		}
 		mDemoState       = 6;
 		TMovePane* mpane = mOnyonMovePane[0];
@@ -5630,15 +5661,7 @@ void TChallengeResult::startRankInDemo()
 	if (mRankInSlot >= 0) {
 		mMoveTimer = 1.0f;
 		mCounter2->getMotherPane()->show();
-
-		TCounterRV* count = mHighScoreCounter[mRankInSlot];
-		for (int i = 0; i < mResultCounters[3]->_10; i++) {
-			J2DPicture* pic = count->mCounters[i]->mPicture;
-			P2ASSERTLINE(597, pic);
-			pic->setBasePosition(J2DPOS_Center);
-			efx2d::Arg arg(0.5f * pic->getWidth() + pic->getGlbVtx(0).x, 0.5f * pic->getHeight() + pic->getGlbVtx(0).y);
-			count->mEfxCountKiras[i]->create(&arg);
-		}
+		mCounter2->createKiraEffect(1.0f, mResultCounters[3]->mDigits);
 
 		for (int i = 0; i < 3; i++) {
 			if (i == mRankInSlot) {
@@ -5646,7 +5669,7 @@ void TChallengeResult::startRankInDemo()
 			}
 			mPosList2[i].x = 400.0f;
 			mPosList2[i].y = 0.0f;
-			mHighScoreCounter[i]->getMotherPane()->setOffset(mPosList2[i].x, mPosList2[i].y);
+			mHighScoreCounter[i]->getMotherPane()->setOffset(mPosList1[i].x + mPosList2[i].x, mPosList1[i].y);
 		}
 
 		mTimer = 0.0f;

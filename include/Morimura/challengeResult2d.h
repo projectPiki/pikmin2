@@ -79,7 +79,7 @@ struct TChallengeResultCounter {
 	TChallengeResultCounter(u32* val, int a1, int a2)
 	{
 		mDisplayValue = val;
-		_04           = *val;
+		mCurrentValue = *val;
 		mState        = 0;
 		_0C           = 0;
 		_1C           = 0;
@@ -97,10 +97,10 @@ struct TChallengeResultCounter {
 	inline bool checkState(u8 state) { return mState == state; }
 
 	u32* mDisplayValue; // _00
-	u32 _04;            // _04
+	u32 mCurrentValue;  // _04
 	int mState;         // _08
 	int _0C;            // _0C
-	int _10;            // _10
+	int mDigits;        // _10
 	int _14;            // _14
 	int _18;            // _18
 	int _1C;            // _1C
@@ -153,11 +153,15 @@ struct TChallengeResult : public TTestBase {
 	static f32 mAccel;                   // 0.1f
 	static bool mTestDemo;               // true
 	static bool mComplete;               // true
-	static u16 mTestRankInOrder;         // 0xFFFF
+	static s16 mTestRankInOrder;         // 0xFFFF
 	static f32 mFlashInterval;           // 40.0f
 	static f32 mDemoSpeedUpRate;         // 2.0f
 	static f32 mDemoSpeedUpMax;          // 3.0f
 	static JUtility::TColor mFlashColor; // 255, 255, 0, 255
+
+	enum ResultFlags {
+		ChalResult_Is2Player = 1,
+	};
 
 	// _00     = VTBL1
 	// _18     = VTBL2
@@ -178,9 +182,9 @@ struct TChallengeResult : public TTestBase {
 	TScissorPane* mScissorPic;                     // _BC
 	J2DPane* mPane1;                               // _C0
 	J2DPane* mPane2;                               // _C4
-	J2DPane* mPane3;                               // _C8
-	J2DPane* mPane4;                               // _CC
-	J2DPane* mPane5;                               // _D0
+	J2DPane* mPanePlayerNum;                       // _C8
+	J2DPane* mPanePlayerNumShadow;                 // _CC
+	J2DPane* mPaneAButton;                         // _D0
 	J2DPane* mPane6;                               // _D4
 	TMovePane* mOnyonMovePane[3];                  // _D8
 	J2DPane* mOnyonPane[3];                        // _E4
@@ -214,7 +218,7 @@ struct TChallengeResult : public TTestBase {
 	u8 _1E9;                                       // _1E9
 	f32 mTimer;                                    // _1EC
 	f32 mSpeed;                                    // _1F0
-	f32 mTimer2;                                   // _1F4
+	f32 mAButtonAlphaTimer;                        // _1F4
 	Game::ChallengeGame::StageList* mStageList;    // _1F8
 };
 
