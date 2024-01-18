@@ -574,8 +574,8 @@ struct ZukanState : public State {
 	void execChangePellet(SingleGameSection* game);
 	void execChangeTeki(SingleGameSection* game);
 	void execModeChange(SingleGameSection* game, CMode mode);
-	unknown execPellet(SingleGameSection* game);
-	unknown execTeki(SingleGameSection* game);
+	void execPellet(SingleGameSection* game);
+	void execTeki(SingleGameSection* game);
 	void setMode(CMode mode);
 	void startWipe(f32 DemoTimers);
 
@@ -589,8 +589,8 @@ struct ZukanState : public State {
 	unknown debugDraw(Graphics&);
 	void dvdloadB_common();
 
-	inline int getWindowWidth() { return mWindowBounds.p2.x - mWindowBounds.p1.x; }
-	inline int getWindowHeight() { return mWindowBounds.p2.y - mWindowBounds.p1.y; }
+	inline f32 getWindowWidth() { return mWindowBounds.p2.x - mWindowBounds.p1.x; }
+	inline f32 getWindowHeight() { return mWindowBounds.p2.y - mWindowBounds.p1.y; }
 
 	// _00     = VTBL
 	// _00-_10 = State

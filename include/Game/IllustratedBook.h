@@ -3,6 +3,7 @@
 
 #include "Game/Creature.h"
 #include "Game/IconTexture.h"
+#include "Game/enemyInfo.h"
 #include "JSystem/JUtility/TColor.h"
 #include "Camera.h"
 #include "Controller.h"
@@ -34,7 +35,7 @@ struct Camera : public LookAtCamera {
 
 	// Unused/inlined:
 	void debugDraw(Graphics&);
-	unknown getFocus();
+	f32 getFocus();
 	void setAtOffset(const Vector3f&);
 
 	inline void setMinMaxHeight(f32 min, f32 max)
@@ -181,9 +182,9 @@ struct DebugParms : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	Color4 _18; // _18
-	f32 _1C[6];
-	BitFlag<u16> mFlags;
+	Color4 _18;          // _18
+	f32 _1C[6];          // _1C
+	BitFlag<u16> mFlags; // _34
 };
 
 struct PositionParms : public CNode {
@@ -259,7 +260,7 @@ struct EnemyModeParms : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	EnemyParms mEnemyParms[102]; // _18, array of parms for each enemy, 0-101
+	EnemyParms mEnemyParms[EnemyTypeID::EnemyID_COUNT]; // _18, array of parms for each enemy, 0-101
 };
 
 struct ItemParms : public CNode {
