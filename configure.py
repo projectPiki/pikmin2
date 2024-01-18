@@ -35,7 +35,7 @@ LIBS = [
             ["JSystem/JStudio/jstudio-control", False],
             ["JSystem/JStudio/jstudio-data", True],
             ["JSystem/JStudio/jstudio-object", False],
-            ["JSystem/JStudio/object-id", False],
+            ["JSystem/JStudio/object-id", True],
             ["JSystem/JStudio/stb", False],
             ["JSystem/JStudio/stb-data", True],
             ["JSystem/JStudio/jstudio-math", False],

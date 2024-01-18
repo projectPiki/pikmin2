@@ -18,6 +18,8 @@ struct TIDData {
 	~TIDData() { } // unused/inlined
 
 	static bool isEqual(TIDData const&, TIDData const&);
+	inline const void* getID() const { return mIDString; }
+	inline u32 getIDSize() const { return mLength; }
 
 	const void* mIDString; // _00
 	u32 mLength;           // _04, in bytes
