@@ -284,15 +284,12 @@ struct TChallengePiki {
 	struct posInfo { // smh morimura why is this lower case
 		posInfo() { }
 
-		int mState;       // _00
-		f32 mTimer;       // _04
-		int _08;          // _08
-		f32 mCurrentXPos; // _0C
-		f32 mCurrentYPos; // _10
-		f32 mInitialXPos; // _14
-		f32 mInitialYPos; // _18
-		f32 mVelocityX;   // _1C
-		f32 mVelocityY;   // _20
+		int mState;           // _00
+		f32 mTimer;           // _04
+		int _08;              // _08
+		Vector2f mCurrentPos; // _0C
+		Vector2f mInitialPos; // _14
+		Vector2f mDeviation;  // _1C
 	};
 
 	enum PikiState {
@@ -314,7 +311,7 @@ struct TChallengePiki {
 	J2DPane* mPanes[3];   // _00
 	f32 mGoalXPos;        // _0C
 	f32 mGoalYPos;        // _10
-	Vector2f mVec[2];     // _14, I think these are actually pointers to something
+	Vector2f mVec[2];     // _14
 	posInfo mPosInfo[50]; // _24
 	int mMaxPiki;         // _72C
 	f32 mYOffset;         // _730

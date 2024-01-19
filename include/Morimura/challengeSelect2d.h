@@ -51,15 +51,17 @@ struct TChallengePlayModeScreen : public TScreenBase {
 	TChallengePlayModeScreen(JKRArchive*, int);
 
 	enum PlayModeScreenState {
-		PlayModeScreen_Open  = 1,
-		PlayModeScreen_Close = 3,
+		PlayModeScreen_Closed = 0,
+		PlayModeScreen_Open   = 1,
+		PlayModeScreen_Active = 2,
+		PlayModeScreen_Close  = 3,
 	};
 
 	virtual void create(const char*, u32);        // _08
 	virtual void update();                        // _0C
 	virtual void draw(Graphics&, J2DPerspGraph*); // _10
 
-	inline bool isActive(u8 state) const { return mState == state; }
+	inline bool isState(u8 state) const { return mState == state; }
 
 	// _00     = VTBL
 	// _00-_18 = TScreenBase
@@ -98,10 +100,10 @@ struct TChallengeSelect : public TTestBase {
 	TChallengeSelect();
 
 	struct DebugStageData {
-		u8 _00;           // _00
+		u8 mIsUnlocked;   // _00
 		u8 mIsChange;     // _01
-		u8 _02;           // _02
-		u8 _03;           // _03
+		u8 mIsComplete;   // _02
+		u8 mIsPerfect;    // _03
 		int mFloors;      // _04
 		int mSpicySpray;  // _08
 		int mBitterSpray; // _0C
@@ -188,7 +190,7 @@ struct TChallengeSelect : public TTestBase {
 	u32 mPikiCounts[5];                         // _108
 	u32 mDopeCount[2];                          // _11C
 	u32 mFloorCount;                            // _124
-	bool _128;                                  // _128
+	u8 mBgAlpha;                                // _128
 	int mStageChangeCounter;                    // _12C
 	int mMaxStages;                             // _130
 	u8 _134;                                    // _134

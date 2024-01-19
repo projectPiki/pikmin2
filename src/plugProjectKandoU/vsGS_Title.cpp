@@ -124,8 +124,8 @@ void TitleState::dvdload()
 			displayData->mSprayCounts[0] = fileData->mStartNumBitter;
 			displayData->mSprayCounts[1] = fileData->mStartNumSpicy;
 			displayData->mPikiContainer  = &fileData->mPikiContainer;
-			displayData->mHighscore1     = &scores->mHighscores[0];
-			displayData->mHighscore2     = &scores->mHighscores[1];
+			displayData->mHighscore1P    = &scores->mHighscores[0];
+			displayData->mHighscore2P    = &scores->mHighscores[1];
 			displayData->mStageIndex     = fileData->mStageIndex;
 			displayData->mDisplayFlag.clear();
 

@@ -24,8 +24,8 @@ Challenge2D_TitleInfo::Info::Info()
 	mSprayCounts[0] = 0;
 	mTimeLimit      = 0;
 	mPikiContainer  = nullptr;
-	mHighscore2     = nullptr;
-	mHighscore1     = nullptr;
+	mHighscore2P    = nullptr;
+	mHighscore1P    = nullptr;
 	mStageIndex     = 0;
 	mDisplayFlag.clear();
 }

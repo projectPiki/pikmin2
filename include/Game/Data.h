@@ -58,7 +58,7 @@ struct PlayChallengeGameData {
 		}
 
 		BitFlag<u16> mFlags;      // _00
-		Highscore mHighscores[2]; // _04
+		Highscore mHighscores[2]; // _04, 0 = 1Player, 1 = 2Player
 	};
 
 	PlayChallengeGameData();

@@ -24,8 +24,8 @@ struct Challenge2D_TitleInfo {
 		int mSprayCounts[2];           // _04
 		int mTimeLimit;                // _0C
 		PikiContainer* mPikiContainer; // _10
-		Highscore* mHighscore1;        // _14
-		Highscore* mHighscore2;        // _18
+		Highscore* mHighscore1P;       // _14
+		Highscore* mHighscore2P;       // _18
 		u32 mStageIndex;               // _1C
 		BitFlag<u8> mDisplayFlag;      // _20
 	};

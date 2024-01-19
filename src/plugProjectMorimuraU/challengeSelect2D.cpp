@@ -74,9 +74,25 @@ void TChallengePiki::reset()
  * @note Address: N/A
  * @note Size: 0x2D8
  */
-void TChallengePiki::jumpStart(f32)
+void TChallengePiki::jumpStart(f32 time)
 {
-	// UNUSED FUNCTION
+	mVec[0]  = Vector2f(mPanes[0]->getGlbVtx(0).x - mPanes[1]->getGlbVtx(1).x, mPanes[0]->getGlbVtx(0).y - mPanes[1]->getGlbVtx(1).y);
+	mVec[1]  = Vector2f(mPanes[0]->getGlbVtx(0).x - mPanes[2]->getGlbVtx(0).x, mPanes[0]->getGlbVtx(0).y - mPanes[2]->getGlbVtx(0).y);
+	mYOffset = -500.0f;
+	for (int i = 0; i < 50; i++) {
+		mPosInfo[i].mTimer      = (0.1f * randFloat()) + -(0.1f * (f32)i - time);
+		mPosInfo[i].mCurrentPos = Vector2f(mPanes[0]->getGlbVtx(0).x, mPanes[0]->getGlbVtx(0).y);
+		//	mPosInfo[i].mInitialPos = mPosInfo[i].mCurrentPos;
+		// whole thing wont inline when this is enabled
+		mPosInfo[i]._08 = i % 3;
+
+		mPosInfo[i].mDeviation.x = 30.0f * randFloat();
+		if (randFloat() > 0.5f) {
+			mPosInfo[i].mDeviation.x *= -1.0f;
+		}
+		mPosInfo[i].mDeviation.y = 10.0f * randFloat() + 15.0f;
+		mPosInfo[i].mState       = ChallengePiki_Standby;
+	}
 }
 
 /**
@@ -120,20 +136,21 @@ void TChallengePiki::update()
 					if (time > HALF_PI) {
 						mPosInfo[i].mState = 3;
 					}
-					mPosInfo[i].mCurrentXPos = -(mPosInfo[i].mVelocityX * sinf(mPosInfo[i].mTimer) - mPosInfo[i].mInitialXPos);
-					mPosInfo[i].mCurrentYPos = (FABS(sinf(mPosInfo[i].mTimer * 2.0f) * mPosInfo[i].mVelocityY) - mPosInfo[i].mInitialYPos);
+					mPosInfo[i].mCurrentPos.x = -(mPosInfo[i].mDeviation.x * sinf(mPosInfo[i].mTimer) - mPosInfo[i].mInitialPos.x);
+					mPosInfo[i].mCurrentPos.y
+					    = (FABS(sinf(mPosInfo[i].mTimer * 2.0f) * mPosInfo[i].mDeviation.y) - mPosInfo[i].mInitialPos.y);
 				}
 				break;
 			case 1:
 				break;
 			case 3:
-				if (mPosInfo[i].mCurrentYPos > TChallengeSelect::mCircleY) {
-					mPosInfo[i].mCurrentYPos -= TChallengeSelect::mMoveSpeed;
+				if (mPosInfo[i].mCurrentPos.y > TChallengeSelect::mCircleY) {
+					mPosInfo[i].mCurrentPos.y -= TChallengeSelect::mMoveSpeed;
 				} else {
-					mPosInfo[i].mState       = ChallengePiki_Jumping;
-					mPosInfo[i].mInitialXPos = mPosInfo[i].mCurrentXPos;
-					mPosInfo[i].mInitialYPos = mPosInfo[i].mCurrentYPos;
-					mPosInfo[i].mTimer       = 0.0f;
+					mPosInfo[i].mState        = ChallengePiki_Jumping;
+					mPosInfo[i].mInitialPos.x = mPosInfo[i].mCurrentPos.x;
+					mPosInfo[i].mInitialPos.y = mPosInfo[i].mCurrentPos.y;
+					mPosInfo[i].mTimer        = 0.0f;
 				}
 				break;
 			case ChallengePiki_Jumping:
@@ -149,20 +166,20 @@ void TChallengePiki::update()
 				if (thing == 1) {
 					calc = 8.0f;
 				}
-				mPosInfo[i].mCurrentXPos
-				    = mPosInfo[i].mInitialXPos + (mPosInfo[i].mTimer * (calc + mGoalXPos - mPosInfo[i].mInitialXPos)) / PI;
-				mPosInfo[i].mCurrentYPos = -(sinf(mPosInfo[i].mTimer) * 70.0f - mPosInfo[i].mInitialYPos);
+				mPosInfo[i].mCurrentPos.x
+				    = mPosInfo[i].mInitialPos.x + (mPosInfo[i].mTimer * (calc + mGoalXPos - mPosInfo[i].mInitialPos.x)) / PI;
+				mPosInfo[i].mCurrentPos.y = -(sinf(mPosInfo[i].mTimer) * 70.0f - mPosInfo[i].mInitialPos.y);
 				break;
 			case ChallengePiki_Falling:
-				if (mPosInfo[i].mCurrentYPos < mGoalYPos - 40.0f) {
-					mPosInfo[i].mCurrentYPos += TChallengeSelect::mMoveSpeed;
+				if (mPosInfo[i].mCurrentPos.y < mGoalYPos - 40.0f) {
+					mPosInfo[i].mCurrentPos.y += TChallengeSelect::mMoveSpeed;
 				} else {
 					JAISound* sound
 					    = PSSystem::SingletonBase<PSGame::SeMgr>::getInstance()->mSetSeList[5]->playSystemSe(PSSE_PK_SE_ONY_SEED_GROUND, 0);
 					if (sound) {
-						sound->setPan(0.7f, 0, 0);
+						sound->setPan(0.3f, 0, 0);
 					}
-					mPosInfo[i].mCurrentYPos = -100.0f;
+					mPosInfo[i].mCurrentPos.y = -100.0f;
 					TChallengeSelect::mDivePikiNum++;
 					mPosInfo[i].mState = ChallengePiki_Inactive;
 				}
@@ -493,16 +510,33 @@ lbl_8038C8D0:
  */
 void TChallengePiki::draw()
 {
-	// UNUSED FUNCTION
+	int max = mMaxPiki;
+	if (max > 50) {
+		max = 50;
+	}
+
+	for (int i = 0; i < max; i++) {
+		static_cast<J2DPicture*>(mPanes[0])->draw(mPosInfo[i].mCurrentPos.x, mPosInfo[i].mCurrentPos.y, mPanes[0]->getWidth(),
+		                                          mPanes[0]->getHeight(), false, false, false);
+		mPanes[0]->calcMtx();
+		static_cast<J2DPicture*>(mPanes[1])->draw(mPosInfo[i].mCurrentPos.x - mVec[0].x, mPosInfo[i].mCurrentPos.y - mVec[0].y,
+		                                          mPanes[1]->getWidth(), mPanes[1]->getHeight(), false, false, false);
+		mPanes[1]->calcMtx();
+
+		static_cast<J2DPicture*>(mPanes[2])->draw(mPosInfo[i].mCurrentPos.x - mVec[1].x, mPosInfo[i].mCurrentPos.y - mVec[1].y,
+		                                          mPanes[2]->getWidth(), mPanes[2]->getHeight(), false, false, false);
+		mPanes[2]->calcMtx();
+	}
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0x1C
  */
-void TChallengePiki::setGoalPos(Vector2f&)
+void TChallengePiki::setGoalPos(Vector2f& pos)
 {
-	// UNUSED FUNCTION
+	mGoalXPos = pos.x;
+	mGoalYPos = pos.y;
 }
 
 /**
@@ -553,9 +587,16 @@ TChallengeDoping::TChallengeDoping(J2DPane* pane1, J2DPane* pane2, J2DPane* pane
  * @note Address: N/A
  * @note Size: 0x6C
  */
-void TChallengeDoping::setLevel(int)
+void TChallengeDoping::setLevel(int level)
 {
-	// UNUSED FUNCTION
+	mCurrentFillLevel = mGoalFillLevel;
+	mBubblePanes[0]->hide();
+	mBubblePanes[1]->hide();
+	mBubblePanes[2]->hide();
+	mGoalFillLevel = level / 3.0f;
+	if (mGoalFillLevel > 1.0f) {
+		mGoalFillLevel = 1.0f;
+	}
 }
 
 /**
@@ -621,9 +662,12 @@ TChallengePanel::TChallengePanel(J2DPictureEx* pane1, J2DPane* pane2, J2DPane* p
  * @note Address: N/A
  * @note Size: 0x74
  */
-void TChallengePanel::stateInitialize(JKRArchive*, int, int)
+void TChallengePanel::stateInitialize(JKRArchive* arc, int state, int index)
 {
-	// UNUSED FUNCTION
+	mArchive = arc;
+	mPane1->changeTexture(TChallengeSelect::mIconTexture[state], 0);
+	mState = state;
+	mIndex = index;
 }
 
 /**
@@ -720,7 +764,16 @@ void TChallengePanel::update(int index, bool flag)
 
 	int id  = mIndex;
 	int sel = (index / 5) % 5; // uhhhh something like this
-	if (index != id) {
+	if (index != sel) {
+		mXOffset += (1.0f * TChallengeSelect::mPanelMoveVal * FABS(sinf(mTimer)) - mXOffset) * 0.2f;
+		mYOffset *= 0.9f;
+	} else if (index == id) {
+		mXOffset += (1.0f * TChallengeSelect::mPanelMoveVal * FABS(sinf(mTimer)) - mXOffset) * 0.2f;
+		mYOffset *= 0.9f;
+	} else if (index == id) {
+		mXOffset *= 0.9f;
+		mYOffset *= 0.9f;
+	} else {
 		mXOffset *= 0.9f;
 		mYOffset *= 0.9f;
 	}
@@ -1998,7 +2051,7 @@ TChallengeSelect::TChallengeSelect()
 	mEfxDive              = nullptr;
 	mCurrentSelection     = 0;
 	mFloorCount           = 0;
-	_128                  = false;
+	mBgAlpha              = 0;
 	mStageChangeCounter   = 0;
 	_134                  = true;
 	mIsInDemo             = false;
@@ -2082,26 +2135,26 @@ void TChallengeSelect::doCreate(JKRArchive* arc)
 	if (mIsSection) {
 		int id = randFloat() * 30.0f;
 		if (mAllCourseOpen) {
-			id = 30;
+			id = CHALLENGE_COURSE_COUNT;
 		}
 		test       = (f32)id * randFloat();
-		mStageData = new DebugStageData*[30];
-		for (int i = 0; i < 30; i++) {
-			mStageData[i]            = new DebugStageData;
-			mStageData[i]->_03       = 0;
-			mStageData[i]->_02       = 0;
-			mStageData[i]->mIsChange = 0;
-			mStageData[i]->_00       = 0;
+		mStageData = new DebugStageData*[CHALLENGE_COURSE_COUNT];
+		for (int i = 0; i < CHALLENGE_COURSE_COUNT; i++) {
+			mStageData[i]              = new DebugStageData;
+			mStageData[i]->mIsPerfect  = false;
+			mStageData[i]->mIsComplete = false;
+			mStageData[i]->mIsChange   = false;
+			mStageData[i]->mIsUnlocked = false;
 			if (i <= id) {
 				f32 comp = randFloat();
 				if (comp < 0.2f) {
-					mStageData[i]->_03 = 1;
+					mStageData[i]->mIsPerfect = true;
 				} else if (comp < 0.5f) {
-					mStageData[i]->_02 = 1;
+					mStageData[i]->mIsComplete = true;
 				} else {
-					mStageData[i]->_00 = 1;
+					mStageData[i]->mIsUnlocked = true;
 				}
-				if (!mStageData[i]->_03) {
+				if (!mStageData[i]->mIsPerfect) {
 					if (randFloat() < 0.5f) {
 						mStageData[i]->mIsChange = true;
 					}
@@ -2212,47 +2265,42 @@ void TChallengeSelect::doCreate(JKRArchive* arc)
 			'Pfl02', 'Pselec02', 'Pana02',
 			'Pfl03', 'Pselec03', 'Pana03',
 			'Pfl04', 'Pselec04', 'Pana04',
-			'Pfl05', 'Pselec05', 'Pana05',
-			'Pfl06', 'Pselec06', 'Pana06',
+			'Pfl05', 'Pselec05', 'Pana09',
+			'Pfl06', 'Pselec06', 'Pana08',
 			'Pfl07', 'Pselec07', 'Pana07',
-			'Pfl08', 'Pselec08', 'Pana08',
-			'Pfl09', 'Pselec09', 'Pana09',
-			'Pfl10', 'Pselec10', 'Pana10',
-			'Pfl11', 'Pselec11', 'Pana11',
+			'Pfl08', 'Pselec08', 'Pana06',
+			'Pfl09', 'Pselec09', 'Pana05',
+			'Pfl10', 'Pselec10', 'Pana14',
+			'Pfl11', 'Pselec11', 'Pana13',
 			'Pfl12', 'Pselec12', 'Pana12',
-			'Pfl13', 'Pselec13', 'Pana13',
-			'Pfl14', 'Pselec14', 'Pana14',
-			'Pfl15', 'Pselec15', 'Pana15',
-			'Pfl16', 'Pselec16', 'Pana16',
+			'Pfl13', 'Pselec13', 'Pana11',
+			'Pfl14', 'Pselec14', 'Pana10',
+			'Pfl15', 'Pselec15', 'Pana19',
+			'Pfl16', 'Pselec16', 'Pana18',
 			'Pfl17', 'Pselec17', 'Pana17',
-			'Pfl18', 'Pselec18', 'Pana18',
-			'Pfl19', 'Pselec19', 'Pana19',
-			'Pfl20', 'Pselec20', 'Pana20',
-			'Pfl21', 'Pselec21', 'Pana21',
+			'Pfl18', 'Pselec18', 'Pana16',
+			'Pfl19', 'Pselec19', 'Pana15',
+			'Pfl20', 'Pselec20', 'Pana24',
+			'Pfl21', 'Pselec21', 'Pana23',
 			'Pfl22', 'Pselec22', 'Pana22',
-			'Pfl23', 'Pselec23', 'Pana23',
-			'Pfl24', 'Pselec24', 'Pana24',
-			'Pfl25', 'Pselec25', 'Pana25',
-			'Pfl26', 'Pselec26', 'Pana26',
+			'Pfl23', 'Pselec23', 'Pana21',
+			'Pfl24', 'Pselec24', 'Pana20',
+			'Pfl25', 'Pselec25', 'Pana29',
+			'Pfl26', 'Pselec26', 'Pana28',
 			'Pfl27', 'Pselec27', 'Pana27',
-			'Pfl28', 'Pselec28', 'Pana28',
-			'Pfl29', 'Pselec29', 'Pana29' };
+			'Pfl28', 'Pselec28', 'Pana26',
+			'Pfl29', 'Pselec29', 'Pana25' };
 	// clang-format on
 
-	mPanelList = new TChallengePanel*[30];
-	for (int i = 0; i < 30; i++) {
+	mPanelList = new TChallengePanel*[CHALLENGE_COURSE_COUNT];
+	for (int i = 0; i < CHALLENGE_COURSE_COUNT; i++) {
 		mPanelList[i] = new TChallengePanel(static_cast<J2DPictureEx*>(screen->search(panelTags[0][i])), screen->search(panelTags[1][i]),
 		                                    screen->search(panelTags[2][i]));
 		int state     = getState(i);
-		TChallengePanel* panel = mPanelList[i];
-		panel->mArchive        = mArchive;
-		panel->mPane1->changeTexture(mIconTexture[state], 0);
-		panel->mState      = state;
-		panel->mIndex      = i;
-		int after          = getAfterState(state);
-		panel              = mPanelList[i];
-		panel->mAfterState = after;
+		mPanelList[i]->stateInitialize(mArchive, state, i);
+		mPanelList[i]->mAfterState = getAfterState(state);
 	}
+
 	mMaxStages = getIndexMax();
 	if (mMaxStages > 0) {
 		mMaxStages--;
@@ -4211,7 +4259,8 @@ lbl_80390760:
  */
 bool TChallengeSelect::doUpdate()
 {
-	if (mPlayModeScreen->mState == 2) {
+	if (mPlayModeScreen->isState(TChallengePlayModeScreen::PlayModeScreen_Active)) {
+		// Check that player 2s controller is plugged in
 		if (JUTGamePad::mPadStatus[1].err == -1) {
 			mConnect2p = false;
 		} else {
@@ -4292,53 +4341,52 @@ bool TChallengeSelect::doUpdate()
 					closeWindow();
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
 				} else {
-					_128 = false;
+					mBgAlpha = 0;
 					static_cast<TChallengeSelectScene*>(getOwner())->mConfirmEndWindow->start(nullptr);
 				}
 			}
 		} else {
 			TChallengePlayModeScreen* screen = mPlayModeScreen;
-			if (screen->isActive(0)) {
+			if (screen->isState(0)) {
 				if (rulesClosed) {
 					u32 button = input->getButton();
-					if ((button & Controller::PRESS_DPAD_DOWN) || (button & Controller::ANALOG_DOWN)) {
+					if ((button & Controller::ANALOG_DOWN) || (button & Controller::PRESS_DPAD_DOWN)) {
 						if (mStageChangeCounter == 0) {
 							if (mLevelNameMoveState < 0) {
 								mLevelNameMoveState = 1;
 
-								int max = mMaxStages;
-								if (mDownOffset < max / 5) {
+								if (mDownOffset < mMaxStages / 5) {
 									mDownOffset++;
-									if (mRightOffset + mDownOffset * 5 <= max) {
+									if (mRightOffset + mDownOffset * 5 <= mMaxStages) {
 										updatePanel = true;
-									} else {
-										updatePanel = true;
-										mDownOffset = 0;
 									}
+								} else {
+									updatePanel = true;
+									mDownOffset = 0;
 								}
 							}
 						}
 						mStageChangeCounter++;
-					} else if ((button & Controller::PRESS_DPAD_UP) || (button & Controller::ANALOG_UP)) {
+					} else if ((button & Controller::ANALOG_UP) || (button & Controller::PRESS_DPAD_UP)) {
 						if (mStageChangeCounter == 0) {
 							if (mLevelNameMoveState < 0) {
 								mLevelNameMoveState = 0;
 
-								if (mDownOffset < 1) {
+								if (mDownOffset > 0) {
+									mDownOffset--;
+									updatePanel = true;
+								} else {
 									int max     = mMaxStages;
 									updatePanel = true;
-									mDownOffset = max;
+									mDownOffset = max / 5;
 									if (mRightOffset + mDownOffset * 5 > mMaxStages) {
 										mDownOffset--;
 									}
-								} else {
-									mDownOffset--;
-									updatePanel = true;
 								}
 							}
 						}
 						mStageChangeCounter++;
-					} else if ((button & Controller::PRESS_DPAD_RIGHT) || (button & Controller::ANALOG_RIGHT)) {
+					} else if ((button & Controller::ANALOG_RIGHT) || (button & Controller::PRESS_DPAD_RIGHT)) {
 						if (mStageChangeCounter == 0) {
 							if (mLevelNameMoveState < 0) {
 								mLevelNameMoveState = 3;
@@ -4353,7 +4401,7 @@ bool TChallengeSelect::doUpdate()
 							}
 						}
 						mStageChangeCounter++;
-					} else if ((button & Controller::PRESS_DPAD_LEFT) || (button & Controller::ANALOG_LEFT)) {
+					} else if ((button & Controller::ANALOG_LEFT) || (button & Controller::PRESS_DPAD_LEFT)) {
 						if (mStageChangeCounter == 0) {
 							if (mLevelNameMoveState < 0) {
 								mLevelNameMoveState = 2;
@@ -6168,6 +6216,96 @@ lbl_80391C0C:
  */
 void TChallengeSelect::doDraw(Graphics& gfx)
 {
+	J2DPerspGraph* graf = &gfx.mPerspGraph;
+	mSelectScreen->draw(gfx, graf);
+
+	gfx.mOrthoGraph.setPort();
+	for (int i = 0; i < 5; i++) {
+		mChallengePiki[i]->draw();
+	}
+
+	bool drawBg = false;
+	if (static_cast<TChallengeSelectScene*>(getOwner())->mConfirmEndWindow->mHasDrawn) {
+		drawBg = true;
+		if (static_cast<TChallengeSelectScene*>(getOwner())->mConfirmEndWindow->mIsActive) {
+			mBgAlpha += 20;
+			if (mBgAlpha > 200) {
+				mBgAlpha = 200;
+			}
+		} else {
+			if (mBgAlpha > 20) {
+				mBgAlpha -= 20;
+			} else {
+				mBgAlpha = 0;
+			}
+		}
+	} else {
+		int rulestate = mRulesScreen->mState;
+		if (rulestate) {
+			drawBg = true;
+			if (rulestate == 3) {
+				mBgAlpha += 20;
+				if (mBgAlpha > 200) {
+					mBgAlpha = 200;
+				}
+			} else {
+				if (mBgAlpha > 25) {
+					mBgAlpha -= 25;
+				} else {
+					mBgAlpha = 0;
+				}
+			}
+		} else {
+			rulestate = mPlayModeScreen->mState;
+			if (!mPlayModeScreen->isState(0)) {
+				drawBg = true;
+				if (rulestate == 3) {
+					if (mBgAlpha > 25) {
+						mBgAlpha -= 25;
+					} else {
+						mBgAlpha = 0;
+					}
+
+				} else {
+					mBgAlpha += 20;
+					if (mBgAlpha > 200) {
+						mBgAlpha = 200;
+					}
+				}
+			}
+		}
+	}
+
+	gfx.mPerspGraph.setPort();
+
+	if (drawBg) {
+		JUtility::TColor color1;
+		color1.set(50, 0, 0, 0);
+		color1.a = 255 - mBgAlpha;
+		graf->setColor(color1);
+		GXSetAlphaUpdate(GX_FALSE);
+		u32 y    = System::getRenderModeObj()->efbHeight;
+		u32 x    = System::getRenderModeObj()->fbWidth;
+		f32 zero = 0.0f;
+		JGeometry::TBox2f box(0.0f, 0.0f, zero + x, zero + y);
+		graf->fillBox(box);
+		GXSetAlphaUpdate(GX_TRUE);
+	}
+
+	mPlayModeScreen->draw(gfx, graf);
+	mRulesScreen->draw(gfx, graf);
+
+	JUtility::TColor color1;
+	color1.set(0, 0, 0, 255 - mFadeAlpha);
+	graf->setColor(color1);
+	GXSetAlphaUpdate(GX_FALSE);
+	u32 y    = System::getRenderModeObj()->efbHeight;
+	u32 x    = System::getRenderModeObj()->fbWidth;
+	f32 zero = 0.0f;
+	JGeometry::TBox2f box(0.0f, 0.0f, zero + x, zero + y);
+	graf->fillBox(box);
+	GXSetAlphaUpdate(GX_TRUE);
+
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0
@@ -6190,20 +6328,20 @@ void TChallengeSelect::doDraw(Graphics& gfx)
 	li       r23, 0
 	mr       r24, r28
 
-lbl_80391C9C:
+	lbl_80391C9C:
 	lwz      r26, 0x9c(r24)
 	lwz      r3, 0x72c(r26)
 	cmpwi    r3, 0x32
 	ble      lbl_80391CB0
 	li       r3, 0x32
 
-lbl_80391CB0:
+	lbl_80391CB0:
 	addi     r27, r3, -1
 	mulli    r0, r27, 0x24
 	add      r25, r26, r0
 	b        lbl_80391DF4
 
-lbl_80391CC0:
+	lbl_80391CC0:
 	lwz      r30, 0(r26)
 	li       r4, 0
 	lfs      f1, 0x30(r25)
@@ -6282,7 +6420,7 @@ lbl_80391CC0:
 	addi     r25, r25, -36
 	addi     r27, r27, -1
 
-lbl_80391DF4:
+	lbl_80391DF4:
 	cmpwi    r27, 0
 	bge      lbl_80391CC0
 	addi     r23, r23, 1
@@ -6319,7 +6457,7 @@ lbl_80391DF4:
 	stb      r0, 0x128(r28)
 	b        lbl_80391F6C
 
-lbl_80391E80:
+	lbl_80391E80:
 	lbz      r3, 0x128(r28)
 	cmplwi   r3, 0x14
 	ble      lbl_80391E98
@@ -6327,12 +6465,12 @@ lbl_80391E80:
 	stb      r0, 0x128(r28)
 	b        lbl_80391F6C
 
-lbl_80391E98:
+	lbl_80391E98:
 	li       r0, 0
 	stb      r0, 0x128(r28)
 	b        lbl_80391F6C
 
-lbl_80391EA4:
+	lbl_80391EA4:
 	lwz      r3, 0x88(r28)
 	lwz      r0, 0x18(r3)
 	cmpwi    r0, 0
@@ -6347,12 +6485,12 @@ lbl_80391EA4:
 	stb      r0, 0x128(r28)
 	b        lbl_80391F6C
 
-lbl_80391ED8:
+	lbl_80391ED8:
 	li       r0, 0
 	stb      r0, 0x128(r28)
 	b        lbl_80391F6C
 
-lbl_80391EE4:
+	lbl_80391EE4:
 	lbz      r3, 0x128(r28)
 	addi     r0, r3, 0x14
 	stb      r0, 0x128(r28)
@@ -6363,7 +6501,7 @@ lbl_80391EE4:
 	stb      r0, 0x128(r28)
 	b        lbl_80391F6C
 
-lbl_80391F08:
+	lbl_80391F08:
 	lwz      r3, 0x84(r28)
 	lwz      r3, 0x80(r3)
 	cntlzw   r0, r3
@@ -6379,12 +6517,12 @@ lbl_80391F08:
 	stb      r0, 0x128(r28)
 	b        lbl_80391F6C
 
-lbl_80391F40:
+	lbl_80391F40:
 	li       r0, 0
 	stb      r0, 0x128(r28)
 	b        lbl_80391F6C
 
-lbl_80391F4C:
+	lbl_80391F4C:
 	lbz      r3, 0x128(r28)
 	addi     r0, r3, 0x14
 	stb      r0, 0x128(r28)
@@ -6394,7 +6532,7 @@ lbl_80391F4C:
 	li       r0, 0xc8
 	stb      r0, 0x128(r28)
 
-lbl_80391F6C:
+	lbl_80391F6C:
 	addi     r3, r29, 0x190
 	lwz      r12, 0x190(r29)
 	lwz      r12, 0x14(r12)
@@ -6424,7 +6562,7 @@ lbl_80391F6C:
 	stw      r0, 0x24(r1)
 	stw      r0, 0x20(r1)
 	bl
-setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
+	setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
 	li       r3, 0
 	bl       GXSetAlphaUpdate
 	bl       getRenderModeObj__6SystemFv
@@ -6454,7 +6592,7 @@ setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColo
 	li       r3, 1
 	bl       GXSetAlphaUpdate
 
-lbl_80392050:
+	lbl_80392050:
 	lwz      r3, 0x84(r28)
 	mr       r4, r29
 	mr       r5, r31
@@ -6490,7 +6628,7 @@ lbl_80392050:
 	stw      r0, 0x14(r1)
 	stw      r0, 0x10(r1)
 	bl
-setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
+	setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
 	li       r3, 0
 	bl       GXSetAlphaUpdate
 	bl       getRenderModeObj__6SystemFv
@@ -6545,302 +6683,82 @@ void TChallengeSelect::doUpdateFadeoutFinish()
  * @note Address: 0x803921D8
  * @note Size: 0x3F8
  */
-void TChallengeSelect::setInfo(int)
+void TChallengeSelect::setInfo(int stageID)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stfd     f30, 0x30(r1)
-	psq_st   f30, 56(r1), 0, qr0
-	stfd     f29, 0x20(r1)
-	psq_st   f29, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r28, r4
-	lis      r4, lbl_80493FC0@ha
-	cmpwi    r28, 0x1e
-	mr       r30, r3
-	addi     r31, r4, lbl_80493FC0@l
-	blt      lbl_80392238
-	addi     r3, r31, 0x14
-	addi     r5, r31, 0x2c
-	li       r4, 0x8b6
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	P2ASSERTLINE(2230, stageID < CHALLENGE_COURSE_COUNT);
 
-lbl_80392238:
-	lbz      r0, mIsSection__Q28Morimura9TTestBase@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_803922EC
-	lwz      r3, 0x98(r30)
-	slwi     r0, r28, 2
-	lwzx     r29, r3, r0
-	lwz      r0, 0x10(r29)
-	stw      r0, 0x108(r30)
-	lwz      r0, 0x18(r29)
-	stw      r0, 0x10c(r30)
-	lwz      r0, 0x14(r29)
-	stw      r0, 0x110(r30)
-	lwz      r0, 0x1c(r29)
-	stw      r0, 0x114(r30)
-	lwz      r0, 0x20(r29)
-	stw      r0, 0x118(r30)
-	lwz      r0, 0xc(r29)
-	stw      r0, 0x11c(r30)
-	lwz      r0, 8(r29)
-	stw      r0, 0x120(r30)
-	lwz      r0, 4(r29)
-	stw      r0, 0x124(r30)
-	lwz      r0, 0x24(r29)
-	cmpwi    r0, -1
-	bne      lbl_803922AC
-	lwz      r3, 0xb8(r30)
-	li       r4, 1
-	bl       setBlind__Q32og6Screen18CallBack_CounterRVFb
-	b        lbl_803922BC
+	if (mIsSection) {
+		// debug way of setting stage data
+		DebugStageData* data = mStageData[stageID];
+		mPikiCounts[0]       = data->mPikis[0];
+		mPikiCounts[1]       = data->mPikis[2];
+		mPikiCounts[2]       = data->mPikis[1];
+		mPikiCounts[3]       = data->mPikis[3];
+		mPikiCounts[4]       = data->mPikis[4];
+		mDopeCount[0]        = data->mBitterSpray;
+		mDopeCount[1]        = data->mSpicySpray;
+		mFloorCount          = data->mFloors;
+		if (data->mScore1 == -1) {
+			mHighScoreCounter[0]->setBlind(true);
+		} else {
+			mHighScoreValue[0] = data->mScore1;
+			mHighScoreCounter[0]->setBlind(false);
+		}
 
-lbl_803922AC:
-	stw      r0, 0x100(r30)
-	li       r4, 0
-	lwz      r3, 0xb8(r30)
-	bl       setBlind__Q32og6Screen18CallBack_CounterRVFb
+		if (data->mScore2 == -1) {
+			mHighScoreCounter[1]->setBlind(true);
+		} else {
+			mHighScoreValue[1] = data->mScore2;
+			mHighScoreCounter[1]->setBlind(false);
+		}
+	} else {
+		// regular way of setting stage data
+		Game::Challenge2D_TitleInfo::Info* info = (*mDisp->mTitleInfo)(stageID);
+		mPikiCounts[0]                          = info->mPikiContainer->getColorSum(Game::Red);
+		mPikiCounts[1]                          = info->mPikiContainer->getColorSum(Game::Yellow);
+		mPikiCounts[2]                          = info->mPikiContainer->getColorSum(Game::Blue);
+		mPikiCounts[3]                          = info->mPikiContainer->getColorSum(Game::White);
+		mPikiCounts[4]                          = info->mPikiContainer->getColorSum(Game::Purple);
+		mDopeCount[0]                           = info->mSprayCounts[0];
+		mDopeCount[1]                           = info->mSprayCounts[1];
+		mFloorCount                             = info->mFloorCount;
 
-lbl_803922BC:
-	lwz      r0, 0x28(r29)
-	cmpwi    r0, -1
-	bne      lbl_803922D8
-	lwz      r3, 0xbc(r30)
-	li       r4, 1
-	bl       setBlind__Q32og6Screen18CallBack_CounterRVFb
-	b        lbl_803923E8
+		if (info->mHighscore1P->getScore(0) == -1) {
+			mHighScoreCounter[0]->setBlind(true);
+		} else {
+			mHighScoreValue[0] = info->mHighscore1P->getScore(0);
+			mHighScoreCounter[0]->setBlind(false);
+		}
 
-lbl_803922D8:
-	stw      r0, 0x104(r30)
-	li       r4, 0
-	lwz      r3, 0xbc(r30)
-	bl       setBlind__Q32og6Screen18CallBack_CounterRVFb
-	b        lbl_803923E8
+		if (info->mHighscore2P->getScore(0) == -1) {
+			mHighScoreCounter[1]->setBlind(true);
+		} else {
+			mHighScoreValue[1] = info->mHighscore2P->getScore(0);
+			mHighScoreCounter[1]->setBlind(false);
+		}
+	}
 
-lbl_803922EC:
-	lwz      r3, 0x90(r30)
-	mr       r4, r28
-	lwz      r3, 8(r3)
-	bl       __cl__Q24Game21Challenge2D_TitleInfoFi
-	mr       r29, r3
-	li       r4, 1
-	lwz      r3, 0x10(r3)
-	bl       getColorSum__Q24Game13PikiContainerFi
-	stw      r3, 0x108(r30)
-	li       r4, 2
-	lwz      r3, 0x10(r29)
-	bl       getColorSum__Q24Game13PikiContainerFi
-	stw      r3, 0x10c(r30)
-	li       r4, 0
-	lwz      r3, 0x10(r29)
-	bl       getColorSum__Q24Game13PikiContainerFi
-	stw      r3, 0x110(r30)
-	li       r4, 4
-	lwz      r3, 0x10(r29)
-	bl       getColorSum__Q24Game13PikiContainerFi
-	stw      r3, 0x114(r30)
-	li       r4, 3
-	lwz      r3, 0x10(r29)
-	bl       getColorSum__Q24Game13PikiContainerFi
-	stw      r3, 0x118(r30)
-	li       r4, 0
-	lwz      r0, 4(r29)
-	stw      r0, 0x11c(r30)
-	lwz      r0, 8(r29)
-	stw      r0, 0x120(r30)
-	lwz      r0, 0(r29)
-	stw      r0, 0x124(r30)
-	lwz      r3, 0x14(r29)
-	bl       getScore__Q24Game9HighscoreFi
-	cmpwi    r3, -1
-	bne      lbl_8039238C
-	lwz      r3, 0xb8(r30)
-	li       r4, 1
-	bl       setBlind__Q32og6Screen18CallBack_CounterRVFb
-	b        lbl_803923A8
+	// make sure all new values are legal
+	JUT_ASSERTLINE(2295, mHighScoreValue[0] <= 1000000, "hiscore1p = %d\n", mHighScoreValue[0]);
+	JUT_ASSERTLINE(2296, mHighScoreValue[1] <= 1000000, "hiscore2p = %d\n", mHighScoreValue[1]);
+	for (int i = 0; i < 5; i++) {
+		JUT_ASSERTLINE(2298, mPikiCounts[i] <= 100, "piki(%d) = %d\n", i, mPikiCounts[i]);
+	}
+	for (int i = 0; i < 2; i++) {
+		JUT_ASSERTLINE(2302, mDopeCount[i] <= 100, "doping(%d) = %d\n", i, mDopeCount[i]);
+	}
+	JUT_ASSERTLINE(2305, mFloorCount <= 100, "floor = %d\n", mFloorCount);
 
-lbl_8039238C:
-	lwz      r3, 0x14(r29)
-	li       r4, 0
-	bl       getScore__Q24Game9HighscoreFi
-	stw      r3, 0x100(r30)
-	li       r4, 0
-	lwz      r3, 0xb8(r30)
-	bl       setBlind__Q32og6Screen18CallBack_CounterRVFb
-
-lbl_803923A8:
-	lwz      r3, 0x18(r29)
-	li       r4, 0
-	bl       getScore__Q24Game9HighscoreFi
-	cmpwi    r3, -1
-	bne      lbl_803923CC
-	lwz      r3, 0xbc(r30)
-	li       r4, 1
-	bl       setBlind__Q32og6Screen18CallBack_CounterRVFb
-	b        lbl_803923E8
-
-lbl_803923CC:
-	lwz      r3, 0x18(r29)
-	li       r4, 0
-	bl       getScore__Q24Game9HighscoreFi
-	stw      r3, 0x104(r30)
-	li       r4, 0
-	lwz      r3, 0xbc(r30)
-	bl       setBlind__Q32og6Screen18CallBack_CounterRVFb
-
-lbl_803923E8:
-	lis      r3, 0x000F4240@ha
-	lwz      r6, 0x100(r30)
-	addi     r0, r3, 0x000F4240@l
-	cmplw    r6, r0
-	ble      lbl_80392410
-	addi     r3, r31, 0x14
-	addi     r5, r31, 0x6e0
-	li       r4, 0x8f7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80392410:
-	lis      r3, 0x000F4240@ha
-	lwz      r6, 0x104(r30)
-	addi     r0, r3, 0x000F4240@l
-	cmplw    r6, r0
-	ble      lbl_80392438
-	addi     r3, r31, 0x14
-	addi     r5, r31, 0x6f0
-	li       r4, 0x8f8
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80392438:
-	li       r28, 0
-	mr       r29, r30
-
-lbl_80392440:
-	lwz      r7, 0x108(r29)
-	cmplwi   r7, 0x64
-	ble      lbl_80392464
-	mr       r6, r28
-	addi     r3, r31, 0x14
-	addi     r5, r31, 0x700
-	li       r4, 0x8fa
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80392464:
-	addi     r28, r28, 1
-	addi     r29, r29, 4
-	cmpwi    r28, 5
-	blt      lbl_80392440
-	li       r28, 0
-	mr       r29, r30
-
-lbl_8039247C:
-	lwz      r7, 0x11c(r29)
-	cmplwi   r7, 0x64
-	ble      lbl_803924A0
-	mr       r6, r28
-	addi     r3, r31, 0x14
-	addi     r5, r31, 0x710
-	li       r4, 0x8fe
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803924A0:
-	addi     r28, r28, 1
-	addi     r29, r29, 4
-	cmpwi    r28, 2
-	blt      lbl_8039247C
-	lwz      r6, 0x124(r30)
-	cmplwi   r6, 0x64
-	ble      lbl_803924D0
-	addi     r3, r31, 0x14
-	addi     r5, r31, 0x724
-	li       r4, 0x901
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803924D0:
-	lfd      f29, lbl_8051EFB0@sda21(r2)
-	mr       r29, r30
-	lfs      f30, lbl_8051EFEC@sda21(r2)
-	li       r28, 0
-	lfs      f31, lbl_8051EFF0@sda21(r2)
-	lis      r31, 0x4330
-
-lbl_803924E8:
-	lwz      r3, 0xb8(r29)
-	li       r4, 1
-	bl       forceScaleUp__Q28Morimura15TScaleUpCounterFb
-	lwz      r3, 0xd4(r29)
-	li       r4, 1
-	bl       forceScaleUp__Q28Morimura15TScaleUpCounterFb
-	lwz      r0, 0x11c(r29)
-	li       r4, 0
-	lwz      r5, 0xb0(r29)
-	xoris    r0, r0, 0x8000
-	stw      r31, 8(r1)
-	lfs      f1, 0x10(r5)
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	stfs     f1, 0x14(r5)
-	fsubs    f0, f0, f29
-	lwz      r3, 4(r5)
-	fdivs    f0, f0, f30
-	stb      r4, 0xb0(r3)
-	lwz      r3, 8(r5)
-	stb      r4, 0xb0(r3)
-	lwz      r3, 0xc(r5)
-	stb      r4, 0xb0(r3)
-	stfs     f0, 0x10(r5)
-	lfs      f0, 0x10(r5)
-	fcmpo    cr0, f0, f31
-	ble      lbl_80392558
-	stfs     f31, 0x10(r5)
-
-lbl_80392558:
-	addi     r28, r28, 1
-	addi     r29, r29, 4
-	cmpwi    r28, 2
-	blt      lbl_803924E8
-	li       r28, 0
-	mr       r29, r30
-
-lbl_80392570:
-	lwz      r3, 0xc0(r29)
-	li       r4, 1
-	bl       forceScaleUp__Q28Morimura15TScaleUpCounterFb
-	addi     r28, r28, 1
-	addi     r29, r29, 4
-	cmpwi    r28, 5
-	blt      lbl_80392570
-	lwz      r3, 0xdc(r30)
-	li       r4, 1
-	bl       forceScaleUp__Q28Morimura15TScaleUpCounterFb
-	psq_l    f31, 72(r1), 0, qr0
-	lfd      f31, 0x40(r1)
-	psq_l    f30, 56(r1), 0, qr0
-	lfd      f30, 0x30(r1)
-	psq_l    f29, 40(r1), 0, qr0
-	lfd      f29, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x54(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	// make all the counters shake
+	for (int i = 0; i < 2; i++) {
+		mHighScoreCounter[i]->forceScaleUp(true);
+		mDopeCounter[i]->forceScaleUp(true);
+		mDoping[i]->setLevel(mDopeCount[i]);
+	}
+	for (int i = 0; i < 5; i++) {
+		mPikiCounters[i]->forceScaleUp(true);
+	}
+	mFloorCounter->forceScaleUp(true);
 }
 
 /**
@@ -6870,41 +6788,41 @@ void TChallengeSelect::setStageName(int id)
  */
 int TChallengeSelect::getState(int id)
 {
-	P2ASSERTLINE(2359, id < 30);
+	FORCE_DONT_INLINE; // bad but needed for isChangeState, unless theres a proper way
+
+	P2ASSERTLINE(2359, id < CHALLENGE_COURSE_COUNT);
 	if (mIsSection) {
-		if (mStageData[id]->_03) {
-			return 3;
+		if (mStageData[id]->mIsPerfect) {
+			return TChallengePanel::ChallengePanel_Perfect;
 		}
-		if (mStageData[id]->_02) {
-			return 2;
+		if (mStageData[id]->mIsComplete) {
+			return TChallengePanel::ChallengePanel_Cleared;
 		}
-		if (mStageData[id]->_00) {
-			return 1;
+		if (mStageData[id]->mIsUnlocked) {
+			return TChallengePanel::ChallengePanel_Unbeaten;
 		}
 	} else {
-		Game::Challenge2D_TitleInfo& title      = *mDisp->mTitleInfo;
-		Game::Challenge2D_TitleInfo::Info* info = title(id);
-		u8 flag                                 = info->mDisplayFlag.typeView;
+		u8 flag = (*mDisp->mTitleInfo)(id)->mDisplayFlag.typeView;
 		if (flag & 0x20) {
 			return (int)(-(flag >> 4 & 1)) + 2; // highly questionable
 		}
 		if (flag & 0x10) {
-			return 1;
+			return TChallengePanel::ChallengePanel_Unbeaten;
 		}
 		if (flag & 8) {
-			return 0;
+			return TChallengePanel::ChallengePanel_NotOpen;
 		}
 		if (flag & 4) {
-			return 3;
+			return TChallengePanel::ChallengePanel_Perfect;
 		}
 		if (flag & 2) {
-			return 2;
+			return TChallengePanel::ChallengePanel_Cleared;
 		}
 		if (flag & 1) {
-			return 1;
+			return TChallengePanel::ChallengePanel_Unbeaten;
 		}
 	}
-	return 0;
+	return TChallengePanel::ChallengePanel_NotOpen;
 }
 
 /**
@@ -6913,73 +6831,20 @@ int TChallengeSelect::getState(int id)
  */
 int TChallengeSelect::getAfterState(int id)
 {
-	P2ASSERTLINE(2409, id < 30);
+	P2ASSERTLINE(2409, id < CHALLENGE_COURSE_COUNT);
 	if (mIsSection) {
-		return 3;
+		return TChallengePanel::ChallengePanel_Perfect;
 	} else {
-		Game::Challenge2D_TitleInfo& title      = *mDisp->mTitleInfo;
-		Game::Challenge2D_TitleInfo::Info* info = title(id);
-		if (info->mDisplayFlag.typeView & 4) {
-			return 3;
-		} else if (info->mDisplayFlag.typeView & 2) {
-			return 2;
-		} else {
-			return info->mDisplayFlag.typeView & 1;
+		Game::Challenge2D_TitleInfo::Info* info = (*mDisp->mTitleInfo)(id);
+		if (info->mDisplayFlag.isSet(4)) {
+			return TChallengePanel::ChallengePanel_Perfect;
+		} else if (info->mDisplayFlag.isSet(2)) {
+			return TChallengePanel::ChallengePanel_Cleared;
+		} else if (info->mDisplayFlag.isSet(1)) {
+			return TChallengePanel::ChallengePanel_Unbeaten;
 		}
+		return TChallengePanel::ChallengePanel_NotOpen;
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	cmpwi    r31, 0x1e
-	stw      r30, 8(r1)
-	mr       r30, r3
-	blt      lbl_8039280C
-	lis      r3, lbl_80493FD4@ha
-	lis      r5, lbl_80493FEC@ha
-	addi     r3, r3, lbl_80493FD4@l
-	li       r4, 0x969
-	addi     r5, r5, lbl_80493FEC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8039280C:
-	lbz      r0, mIsSection__Q28Morimura9TTestBase@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_80392820
-	li       r3, 3
-	b        lbl_80392858
-
-lbl_80392820:
-	lwz      r3, 0x90(r30)
-	mr       r4, r31
-	lwz      r3, 8(r3)
-	bl       __cl__Q24Game21Challenge2D_TitleInfoFi
-	lbz      r3, 0x20(r3)
-	rlwinm.  r0, r3, 0, 0x1d, 0x1d
-	beq      lbl_80392844
-	li       r3, 3
-	b        lbl_80392858
-
-lbl_80392844:
-	rlwinm.  r0, r3, 0, 0x1e, 0x1e
-	beq      lbl_80392854
-	li       r3, 2
-	b        lbl_80392858
-
-lbl_80392854:
-	clrlwi   r3, r3, 0x1f
-
-lbl_80392858:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -6988,96 +6853,24 @@ lbl_80392858:
  */
 bool TChallengeSelect::isChangeState(int id)
 {
-	P2ASSERTLINE(2435, id < 30);
+	P2ASSERTLINE(2435, id < CHALLENGE_COURSE_COUNT);
 	if (mIsSection) {
 		if (mStageData[id]->mIsChange)
 			return true;
 	} else {
-		Game::Challenge2D_TitleInfo& title      = *mDisp->mTitleInfo;
-		Game::Challenge2D_TitleInfo::Info* info = title(id);
+		Game::Challenge2D_TitleInfo::Info* info = (*mDisp->mTitleInfo)(id);
 		getState(id);
-		if (info->mDisplayFlag.typeView & 8) {
+		if (info->mDisplayFlag.isSet(8)) {
 			return true;
 		}
-		if (info->mDisplayFlag.typeView & 0x10) {
+		if (info->mDisplayFlag.isSet(16)) {
 			return true;
 		}
-		if (info->mDisplayFlag.typeView & 0x20) {
+		if (info->mDisplayFlag.isSet(32)) {
 			return true;
 		}
 	}
 	return false;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	cmpwi    r30, 0x1e
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	blt      lbl_803928B4
-	lis      r3, lbl_80493FD4@ha
-	lis      r5, lbl_80493FEC@ha
-	addi     r3, r3, lbl_80493FD4@l
-	li       r4, 0x983
-	addi     r5, r5, lbl_80493FEC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803928B4:
-	lbz      r0, mIsSection__Q28Morimura9TTestBase@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_803928E0
-	lwz      r3, 0x98(r29)
-	slwi     r0, r30, 2
-	lwzx     r3, r3, r0
-	lbz      r0, 1(r3)
-	cmplwi   r0, 0
-	beq      lbl_80392934
-	li       r3, 1
-	b        lbl_80392938
-
-lbl_803928E0:
-	lwz      r3, 0x90(r29)
-	mr       r4, r30
-	lwz      r3, 8(r3)
-	bl       __cl__Q24Game21Challenge2D_TitleInfoFi
-	mr       r31, r3
-	mr       r3, r29
-	mr       r4, r30
-	bl       getState__Q28Morimura16TChallengeSelectFi
-	lbz      r3, 0x20(r31)
-	rlwinm.  r0, r3, 0, 0x1c, 0x1c
-	beq      lbl_80392914
-	li       r3, 1
-	b        lbl_80392938
-
-lbl_80392914:
-	rlwinm.  r0, r3, 0, 0x1b, 0x1b
-	beq      lbl_80392924
-	li       r3, 1
-	b        lbl_80392938
-
-lbl_80392924:
-	rlwinm.  r0, r3, 0, 0x1a, 0x1a
-	beq      lbl_80392934
-	li       r3, 1
-	b        lbl_80392938
-
-lbl_80392934:
-	li       r3, 0
-
-lbl_80392938:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -7088,15 +6881,14 @@ int TChallengeSelect::getIndexMax()
 {
 	if (mIsSection) {
 		for (int i = 0; i < CHALLENGE_COURSE_COUNT; i++) {
-			if (mPanelList[i]->mState == 0) {
+			if (mPanelList[i]->mState == TChallengePanel::ChallengePanel_NotOpen) {
 				return i;
 			}
 		}
 	} else {
 		for (int i = 0; i < CHALLENGE_COURSE_COUNT; i++) {
-			Game::Challenge2D_TitleInfo& title      = *mDisp->mTitleInfo;
-			Game::Challenge2D_TitleInfo::Info* info = title(i);
-			if (mPanelList[i]->mState == 0 && !(info->mDisplayFlag.typeView & 8)) {
+			Game::Challenge2D_TitleInfo::Info* info = (*mDisp->mTitleInfo)(i);
+			if (mPanelList[i]->mState == TChallengePanel::ChallengePanel_NotOpen && !(info->mDisplayFlag.isSet(8))) {
 				return i;
 			}
 		}
@@ -7138,7 +6930,12 @@ void TChallengeSelect::reset()
  */
 void TChallengeSelect::jumpStart()
 {
-	// UNUSED FUNCTION
+	for (int i = 0; i < 5; i++) {
+		J2DPane* pane = mPanelList[mCurrentSelection]->mPane2;
+		Vector2f pos(pane->mGlobalMtx[0][3], pane->mGlobalMtx[1][3]);
+		mChallengePiki[i]->setGoalPos(pos);
+		mChallengePiki[i]->jumpStart(-0.5f * (f32)i);
+	}
 }
 
 /**
@@ -7148,6 +6945,8 @@ void TChallengeSelect::jumpStart()
 void TChallengeSelect::demoStart()
 {
 	reset();
+	mIsInDemo = true;
+	jumpStart();
 	/*
 	stwu     r1, -0x1a0(r1)
 	mflr     r0
