@@ -71,7 +71,7 @@ EnemyTexMgr::EnemyTexMgr()
  * @note Address: N/A
  * @note Size: 0xF0
  */
-unknown EnemyTexMgr::create()
+void EnemyTexMgr::create()
 {
 	IconTexture::Mgr::create(EnemyTypeID::EnemyID_COUNT);
 	mLoader.loadResource("/user/Yamashita/enemyTex/arc.szs");
@@ -1237,7 +1237,7 @@ static const u32 dumb[9] = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
  * @note Address: N/A
  * @note Size: 0xE4
  */
-unknown ZukanState::startTekiMode(bool)
+void ZukanState::startTekiMode(bool)
 {
 	// UNUSED FUNCTION
 }
@@ -1246,7 +1246,7 @@ unknown ZukanState::startTekiMode(bool)
  * @note Address: N/A
  * @note Size: 0xE4
  */
-unknown ZukanState::startPelletMode(bool)
+void ZukanState::startPelletMode(bool)
 {
 	// UNUSED FUNCTION
 }
@@ -3276,12 +3276,38 @@ void ZukanState::drawGradationEffect(SingleGameSection*, Graphics& gfx)
 void ZukanState::drawLightEffect(SingleGameSection* game, Graphics& gfx)
 {
 	GXInvalidateTexAll();
-	mTexture2->capture(0, 0, GX_TF_RGB565, true, GX_FALSE);
+	mTexture->capture(0, 0, GX_TF_RGB565, true, GX_FALSE);
 	gfx.setupJ2DOrthoGraphDefault();
 	gfx.mOrthoGraph.setPort();
 
-	if (0.0f < _108) {
-		mTexture2->load(GX_TEXMAP0);
+	Vector3f sep = mCamera->mLookAtPosition - mCamera->mPosition;
+	sep.normalise();
+
+	Color4 color; // r30, r29, r28, r27
+	if (mCurrMode == ModePellet) {
+		sep.y += JMath::sincosTable_.mTable[113].first;
+		sep.y /= JMath::sincosTable_.mTable[56].first;
+		sep.y += 0.1f;
+		color = mParms->mColorSetting._5C;
+	} else {
+		sep.y += JMath::sincosTable_.mTable[85].first;
+		sep.y /= JMath::sincosTable_.mTable[56].first;
+		color = mParms->mColorSetting._5C;
+	}
+
+	if (sep.y < 0.0f) {
+		sep.y = 0.0f;
+	} else if (sep.y > 1.0f) {
+		sep.y = 1.0f;
+	}
+
+	_108 += mDebugParms->_1C[0] * (sep.y - _108);
+
+	if (_108 > 0.0f) {
+		f32 x = mWindowBounds.getWidth();  // f27
+		f32 y = mWindowBounds.getHeight(); // f26
+
+		mTexture->load(GX_TEXMAP0);
 		GXSetNumChans(1);
 		GXSetNumTevStages(1);
 		GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_ZERO, GX_CC_C0, GX_CC_TEXC, GX_CC_ZERO);
@@ -3301,7 +3327,95 @@ void ZukanState::drawLightEffect(SingleGameSection* game, Graphics& gfx)
 		GXSetZMode(GX_FALSE, GX_LESS, GX_FALSE);
 		GXSetCurrentMtx(0);
 		GXSetNumTexGens(1);
-		GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEXCOORD0, 0x3c, GX_FALSE, 0x7d);
+		GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEXCOORD0, GX_IDENTITY, GX_FALSE, GX_PTIDENTITY);
+
+		for (int i = 0; i < 4; i++) {
+			f32 thisFactor = (f32)i / 4;
+			f32 nextFactor = (f32)(i + 1) / 4;
+			f32 factor     = (_108 - thisFactor) / (nextFactor); // f2
+			if (factor > 1.0f) {
+				factor = 1.0f;
+			}
+
+			if (factor > 0.0f) {
+				f32 alphaF = factor * (f32)color.a;
+				color.a    = (alphaF >= 0.0f) ? 0.5f + alphaF : alphaF - 0.5f;
+				GXSetTevColor(GX_TEVREG0, color.toGXColor());
+
+				f32 u    = 0.005f * (f32)(i + 1); // f22
+				f32 v    = -u;                    // f24
+				f32 zero = 0.0f;
+				f32 one  = 1.0f;
+
+				GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
+				GXPosition3f32(zero, zero, zero);
+				GXColor4u8(255, 255, 255, 255);
+				GXPosition2f32(u, v);
+
+				GXPosition3f32(x + zero, zero, zero);
+				GXColor4u8(255, 255, 255, 255);
+				GXPosition2f32(one + u, v);
+
+				GXPosition3f32(zero, y + zero, zero);
+				GXColor4u8(255, 255, 255, 255);
+				GXPosition2f32(u, one + v);
+
+				GXPosition3f32(x + zero, y + zero, zero);
+				GXColor4u8(255, 255, 255, 255);
+				GXPosition2f32(one + u, one + v);
+
+				GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
+				GXPosition3f32(zero, zero, zero);
+				GXColor4u8(255, 255, 255, 255);
+				GXPosition2f32(v, v);
+
+				GXPosition3f32(x + zero, zero, zero);
+				GXColor4u8(255, 255, 255, 255);
+				GXPosition2f32(one + v, v);
+
+				GXPosition3f32(zero, y + zero, zero);
+				GXColor4u8(255, 255, 255, 255);
+				GXPosition2f32(v, one + v);
+
+				GXPosition3f32(x + zero, y + zero, zero);
+				GXColor4u8(255, 255, 255, 255);
+				GXPosition2f32(one + v, one + v);
+
+				GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
+				GXPosition3f32(zero, zero, zero);
+				GXColor4u8(255, 255, 255, 255);
+				GXPosition2f32(u, u);
+
+				GXPosition3f32(x + zero, zero, zero);
+				GXColor4u8(255, 255, 255, 255);
+				GXPosition2f32(one + u, u);
+
+				GXPosition3f32(zero, y + zero, zero);
+				GXColor4u8(255, 255, 255, 255);
+				GXPosition2f32(u, one + u);
+
+				GXPosition3f32(x + zero, y + zero, zero);
+				GXColor4u8(255, 255, 255, 255);
+				GXPosition2f32(one + u, one + u);
+
+				GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
+				GXPosition3f32(zero, zero, zero);
+				GXColor4u8(255, 255, 255, 255);
+				GXPosition2f32(v, u);
+
+				GXPosition3f32(x + zero, zero, zero);
+				GXColor4u8(255, 255, 255, 255);
+				GXPosition2f32(1.0f + v, u);
+
+				GXPosition3f32(zero, y + zero, zero);
+				GXColor4u8(255, 255, 255, 255);
+				GXPosition2f32(v, 1.0f + u);
+
+				GXPosition3f32(x + zero, y + zero, zero);
+				GXColor4u8(255, 255, 255, 255);
+				GXPosition2f32(1.0f + v, 1.0f + u);
+			}
+		}
 	}
 	/*
 	.loc_0x0:
@@ -3834,7 +3948,7 @@ void ZukanState::drawLightEffect(SingleGameSection* game, Graphics& gfx)
  * @note Address: N/A
  * @note Size: 0x404
  */
-unknown ZukanState::debugDraw(Graphics&)
+void ZukanState::debugDraw(Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -3847,7 +3961,7 @@ void ZukanState::dvdloadA()
 {
 	mMainHeap = JKRExpHeap::create(mParentHeap->getFreeSize(), mParentHeap, true);
 	mMainHeap->becomeCurrentHeap();
-	char path[256];
+	char path[256]; // 0x160
 	sprintf(path, "user/Yamashita/zukan/%s/%s/arc.szs", "us", sDirName[mMapIndex]);
 	JKRArchive* arc = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Tail);
 	P2ASSERTLINE(2457, arc);
@@ -3855,8 +3969,11 @@ void ZukanState::dvdloadA()
 	mParms->loadFile(arc);
 	mGameSect->addGenNode(mParms);
 	PSSystem::SingletonBase<PSM::ObjMgr>::newInstance();
-	Rectf bounds(0.0f, 0.0f, sys->getRenderModeObj()->fbWidth * 0.6f * 0.75f * 0.25f + 0.5f,
-	             sys->getRenderModeObj()->efbHeight * 0.75f * 0.25f + 0.5f);
+	u16 width     = sys->getRenderModeObj()->fbWidth;
+	u16 height    = sys->getRenderModeObj()->efbHeight;
+	int newWidth  = (int)((f32)width * 0.6f * 0.75f * 0.25f + 0.5f) * 4;
+	int newHeight = (int)((f32)height * 0.75f * 0.25f + 0.5f) * 4;
+	Rectf bounds(0.0f, 0.0f, newWidth, newHeight);
 	mWindowBounds = bounds;
 	mCameraAspect = 0.0f;
 
@@ -3931,16 +4048,15 @@ void ZukanState::dvdloadA()
 	void* file = arc->getResource("course.txt");
 	P2ASSERTLINE(2603, file);
 	RamStream stream(file, -1);
-	stream.mMode = STREAM_MODE_TEXT;
-	stream.resetPosition(1, 1);
+	stream.resetPosition(true, 1);
 	mCourseInfo = new CourseInfo;
 	mCourseInfo->read(stream);
 	mCourseInfo->dump();
 	Stages::createMapMgr(mCourseInfo, nullptr);
 
 	cellMgr     = new CellPyramid;
-	platCellMgr = cellMgr;
-	BoundBox2d bound(128000.0f, 128000.0f, -128000.0f, -128000.0f);
+	platCellMgr = nullptr;
+	BoundBox2d bound(12800000.0f, 12800000.0f, -12800000.0f, -12800000.0f);
 	mapMgr->getBoundBox2d(bound);
 	JKRGetCurrentHeap()->getFreeSize();
 	cellMgr->create(bound, 64.0f);
@@ -6029,7 +6145,7 @@ void ZukanState::clearHeapB_pellet()
  * @note Address: 0x80226D50
  * @note Size: 0x3AC
  */
-unknown ZukanState::clearHeaps()
+void ZukanState::clearHeaps()
 {
 	pikiMgr->resetMgr();
 	if (mCurrentEnemy) {
@@ -6093,7 +6209,7 @@ void ZukanState::cleanup(SingleGameSection* game)
 	gameSystem->mMode                  = GSM_STORY_MODE;
 	gameSystem->mTimeMgr->mSpeedFactor = 1.0f;
 	mBackupHeap->becomeCurrentHeap();
-	JUT_ASSERTLINE(3346, (int)mBackupHeap->getFreeSize() == sParentHeapFreeSize, "damek");
+	JUT_ASSERTLINE(3346, (int)mBackupHeap->getFreeSize() == sParentHeapFreeSize, "damek\n");
 }
 
 } // namespace SingleGame

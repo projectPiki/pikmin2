@@ -532,15 +532,15 @@ struct ZukanState : public State {
 	 * @real
 	 */
 	enum CMode {
-		ModeStartTeki = 0,
-		ModeStartPellet,
-		ModeChangeToTeki,
-		ModeTeki,
-		ModeChangeTeki,
-		ModeChangeToPellet,
-		ModePellet,
-		ModeChangePellet,
-		ModeNone,
+		ModeStartTeki      = 0,
+		ModeStartPellet    = 1,
+		ModeChangeToTeki   = 2,
+		ModeTeki           = 3,
+		ModeChangeTeki     = 4,
+		ModeChangeToPellet = 5,
+		ModePellet         = 6,
+		ModeChangePellet   = 7,
+		ModeNone           = 8,
 	};
 
 	/**
@@ -561,7 +561,7 @@ struct ZukanState : public State {
 	void clearHeapB_common();
 	void clearHeapB_pellet();
 	void clearHeapB_teki();
-	unknown clearHeaps();
+	void clearHeaps();
 	static PelletList::cKind convertPelletID(int&, int);
 	void createEnemy(int);
 	void createPellet(int);
@@ -583,10 +583,10 @@ struct ZukanState : public State {
 	static PelletConfig* getCurrentPelletConfig(int id);
 
 	// Unused/inlined:
-	unknown startTekiMode(bool);
-	unknown startPelletMode(bool);
+	void startTekiMode(bool);
+	void startPelletMode(bool);
 	void createItem(int);
-	unknown debugDraw(Graphics&);
+	void debugDraw(Graphics&);
 	void dvdloadB_common();
 
 	inline f32 getWindowWidth() { return mWindowBounds.p2.x - mWindowBounds.p1.x; }
