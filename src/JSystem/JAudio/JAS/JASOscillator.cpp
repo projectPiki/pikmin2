@@ -2,149 +2,48 @@
 #include "JSystem/JAudio/JAS/JASDriver.h"
 #include "types.h"
 
-const f32 relTableSampleCell[17] = { 1.0f,
-	                                 0.9704890251159668f,
-	                                 0.7812740206718445f,
-	                                 0.5462809801101685f,
-	                                 0.39979198575019836f,
-	                                 0.28931498527526855f,
-	                                 0.21210399270057678f,
-	                                 0.15747599303722382f,
-	                                 0.1126129999756813f,
-	                                 0.08178959786891937f,
-	                                 0.057985201478004456f,
-	                                 0.04364150017499924f,
-	                                 0.03082370012998581f,
-	                                 0.023712899535894394f,
-	                                 0.015259300358593464f,
-	                                 0.00915555004030466f,
-	                                 0.0f };
-const f32 relTableSqRoot[17]     = { 1.0f,      0.8789060115814209f,  0.765625f, 0.6601560115814209f, 0.5625f,   0.4726560115814209f,
-                                 0.390625f, 0.3164060115814209f,  0.25f,     0.1914059966802597f, 0.140625f, 0.09765619784593582f,
-                                 0.0625f,   0.03515620157122612f, 0.015625f, 0.00390625f,         0.0f };
-const f32 relTableSquare[17]     = {
-    1.0f,
-    0.9682459831237793f,
-    0.9354140162467957f,
-    0.9013879895210266f,
-    0.8660249710083008f,
-    0.8291559815406799f,
-    0.790569007396698f,
-    0.75f,
-    0.7071070075035095f,
-    0.66143798828125f,
-    0.6123719811439514f,
-    0.55901700258255f,
-    0.5f,
-    0.433012992143631f,
-    0.35355299711227417f,
-    0.25f,
-    0.0f,
+const f32 JASOscillator::relTableSampleCell[17] = { 1.0f,
+	                                                0.9704890251159668f,
+	                                                0.7812740206718445f,
+	                                                0.5462809801101685f,
+	                                                0.39979198575019836f,
+	                                                0.28931498527526855f,
+	                                                0.21210399270057678f,
+	                                                0.15747599303722382f,
+	                                                0.1126129999756813f,
+	                                                0.08178959786891937f,
+	                                                0.057985201478004456f,
+	                                                0.04364150017499924f,
+	                                                0.03082370012998581f,
+	                                                0.023712899535894394f,
+	                                                0.015259300358593464f,
+	                                                0.00915555004030466f,
+	                                                0.0f };
+const f32 JASOscillator::relTableSqRoot[17]
+    = { 1.0f,      0.8789060115814209f,  0.765625f, 0.6601560115814209f, 0.5625f,   0.4726560115814209f,
+	    0.390625f, 0.3164060115814209f,  0.25f,     0.1914059966802597f, 0.140625f, 0.09765619784593582f,
+	    0.0625f,   0.03515620157122612f, 0.015625f, 0.00390625f,         0.0f };
+const f32 JASOscillator::relTableSquare[17] = {
+	1.0f,
+	0.9682459831237793f,
+	0.9354140162467957f,
+	0.9013879895210266f,
+	0.8660249710083008f,
+	0.8291559815406799f,
+	0.790569007396698f,
+	0.75f,
+	0.7071070075035095f,
+	0.66143798828125f,
+	0.6123719811439514f,
+	0.55901700258255f,
+	0.5f,
+	0.433012992143631f,
+	0.35355299711227417f,
+	0.25f,
+	0.0f,
 };
 
-const s16 oscTableForceStop[6] = { 0, 15, 0, 15, 0, 0 };
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global relTableSampleCell__13JASOscillator
-    relTableSampleCell__13JASOscillator:
-        .float 1.0
-        .4byte 0x3F7871F8
-        .4byte 0x3F480193
-        .4byte 0x3F0BD912
-        .4byte 0x3ECCB189
-        .4byte 0x3E942118
-        .4byte 0x3E5931CA
-        .4byte 0x3E214163
-        .4byte 0x3DE6A1A5
-        .4byte 0x3DA7814E
-        .4byte 0x3D6D81E4
-        .4byte 0x3D32C16E
-        .4byte 0x3CFC81FC
-        .4byte 0x3CC2418E
-        .4byte 0x3C7A0225
-        .4byte 0x3C160129
-        .4byte 0x00000000
-    .global relTableSqRoot__13JASOscillator
-    relTableSqRoot__13JASOscillator:
-        .float 1.0
-        .4byte 0x3F60FFFC
-        .4byte 0x3F440000
-        .4byte 0x3F28FFFC
-        .4byte 0x3F100000
-        .4byte 0x3EF1FFF8
-        .4byte 0x3EC80000
-        .4byte 0x3EA1FFF8
-        .float 0.25
-        .4byte 0x3E43FFEF
-        .4byte 0x3E100000
-        .4byte 0x3DC7FFF9
-        .4byte 0x3D800000
-        .4byte 0x3D0FFFF3
-        .4byte 0x3C800000
-        .4byte 0x3B800000
-        .4byte 0x00000000
-    .global relTableSquare__13JASOscillator
-    relTableSquare__13JASOscillator:
-        .float 1.0
-        .4byte 0x3F77DEF8
-        .4byte 0x3F6F774B
-        .4byte 0x3F66C15D
-        .4byte 0x3F5DB3D0
-        .4byte 0x3F544391
-        .4byte 0x3F4A62BB
-        .4byte 0x3F400000
-        .4byte 0x3F3504F7
-        .4byte 0x3F295400
-        .4byte 0x3F1CC469
-        .4byte 0x3F0F1BBD
-        .float 0.5
-        .4byte 0x3EDDB3E1
-        .4byte 0x3EB504E6
-        .float 0.25
-        .4byte 0x00000000
-    .global oscTableForceStop__13JASOscillator
-    oscTableForceStop__13JASOscillator:
-        .4byte 0x0000000F
-        .4byte 0x0000000F
-        .4byte 0x00000000
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516DD8
-    lbl_80516DD8:
-        .4byte 0x00000000
-    .global lbl_80516DDC
-    lbl_80516DDC:
-        .float 1.0
-    .global lbl_80516DE0
-    lbl_80516DE0:
-        .4byte 0x42A00000
-    .global lbl_80516DE4
-    lbl_80516DE4:
-        .4byte 0x44160000
-    .global lbl_80516DE8
-    lbl_80516DE8:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_80516DF0
-    lbl_80516DF0:
-        .4byte 0x47000000
-        .4byte 0x00000000
-    .global lbl_80516DF8
-    lbl_80516DF8:
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_80516E00
-    lbl_80516E00:
-        .4byte 0x41800000
-        .4byte 0x00000000
-    .global lbl_80516E08
-    lbl_80516E08:
-        .4byte 0x43300000
-        .4byte 0x00000000
-*/
+const s16 JASOscillator::oscTableForceStop[6] = { 0, 15, 0, 15, 0, 0 };
 
 /**
  * @note Address: 0x800A2B78
@@ -248,31 +147,34 @@ void JASOscillator::forceStop()
  */
 bool JASOscillator::release()
 {
-	if (_1C == 4) {
+	f32 temp_f31;
+
+	if ((u8)_1C == 4) {
 		return false;
 	}
-	if (mData->_08 != mData->_0C) {
+	mData = mData;
+	if ((u32)mData->_08 != (u32)mData->_0C) {
 		_18 = 0;
 		_04 = 0.0f;
 		_0C = _08;
 	}
-	if (mData->_0C == nullptr && _1A == 0) {
+	if (((u32)mData->_0C == 0) && ((u16)_1A == 0)) {
 		_1A = 0x10;
 	}
-	if (_1A != 0) {
-		_1C    = 5;
-		_1D    = _1A >> 0xE;
-		u16 v1 = (_1A & 0x3FFF ^ 0x80000000);
-		_04    = ((JASDriver::getDacRate() / 80.0f) / 600.0f) * v1;
+	if ((u16)_1A != 0) {
+		_1C      = 5;
+		_1D      = (u8)((_1A >> 0xE) & 3);
+		temp_f31 = (f32)(_1A & 0x3FFF);
+		_04      = (f32)(temp_f31 * ((JASDriver::getDacRate() / 80.0f) / 600.0f));
 		if (_04 < 1.0f) {
 			_04 = 1.0f;
 		}
-		_14 = _04;
-		_0C = 0.0f;
-		if (_1D == 0) {
-			_10 = (_0C - _08) / _04;
+		_14 = (f32)_04;
+		_0C = (f32)0.0f;
+		if ((u8)_1D == 0) {
+			_10 = (f32)((_0C - _08) / _04);
 		} else {
-			_10 = _0C - _08;
+			_10 = (f32)(_0C - _08);
 		}
 	} else {
 		_1C = 3;
@@ -609,7 +511,7 @@ lbl_800A312C:
 
 lbl_800A313C:
 	fmr      f1, f30
-	bl       __cvt_fp2unsigned
+	bl       __0Cvt_fp2unsigned
 	lis      r0, 0x4330
 	stw      r3, 0x14(r1)
 	lfd      f1, lbl_80516E08@sda21(r2)

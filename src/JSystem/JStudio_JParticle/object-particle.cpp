@@ -232,8 +232,8 @@ void JStudio_JParticle::TAdaptor_particle::TJPACallback_::execute(JPABaseEmitter
 		return;
 	}
 
-	f64 val1 = (f64)mAdaptor->_190;
-	f64 val2 = (f64)mAdaptor->_194;
+	f64 val1 = mAdaptor->_190; // u32 stored as f64
+	f64 val2 = mAdaptor->_194; // u32 stored as f64
 
 	f64 alpha = 1.0;
 	switch (mAdaptor->_18C) {
