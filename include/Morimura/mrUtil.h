@@ -284,8 +284,22 @@ struct TChallengePiki {
 	struct posInfo { // smh morimura why is this lower case
 		posInfo() { }
 
-		int mState; // _00
-		int _04[8]; // _04
+		int mState;       // _00
+		f32 mTimer;       // _04
+		int _08;          // _08
+		f32 mCurrentXPos; // _0C
+		f32 mCurrentYPos; // _10
+		f32 mInitialXPos; // _14
+		f32 mInitialYPos; // _18
+		f32 mVelocityX;   // _1C
+		f32 mVelocityY;   // _20
+	};
+
+	enum PikiState {
+		ChallengePiki_Inactive = 0,
+		ChallengePiki_Standby  = 2,
+		ChallengePiki_Jumping  = 4,
+		ChallengePiki_Falling  = 5,
 	};
 
 	TChallengePiki(J2DPane*, J2DPane*, J2DPane*);
@@ -298,12 +312,12 @@ struct TChallengePiki {
 	bool isDemoEnd();
 
 	J2DPane* mPanes[3];   // _00
-	f32 _0C;              // _0C
-	f32 _10;              // _10
-	Vector2f mVec[2];     // _14
+	f32 mGoalXPos;        // _0C
+	f32 mGoalYPos;        // _10
+	Vector2f mVec[2];     // _14, I think these are actually pointers to something
 	posInfo mPosInfo[50]; // _24
 	int mMaxPiki;         // _72C
-	f32 _730;             // _730
+	f32 mYOffset;         // _730
 };
 
 struct TChallengeDoping {
@@ -312,10 +326,10 @@ struct TChallengeDoping {
 	void setLevel(int);
 	void update();
 
-	J2DPane* mPaneBase; // _00
-	J2DPane* mPanes[3]; // _04
-	f32 _10;            // _10
-	f32 _14;            // _14
+	J2DPane* mPaneBase;       // _00
+	J2DPane* mBubblePanes[3]; // _04
+	f32 mGoalFillLevel;       // _10
+	f32 mCurrentFillLevel;    // _14
 };
 
 struct TChallengePanel {
@@ -329,20 +343,27 @@ struct TChallengePanel {
 	void update(int, bool);
 	void startScaleUp();
 
+	enum ChallengePanelState {
+		ChallengePanel_NotOpen  = 0, // yellow bud
+		ChallengePanel_Unbeaten = 1, // leaf
+		ChallengePanel_Cleared  = 2, // white flower
+		ChallengePanel_Perfect  = 3, // purple flower
+	};
+
 	JKRArchive* mArchive;            // _00
 	J2DPictureEx* mPane1;            // _04
 	J2DPane* mPane2;                 // _08
 	J2DPane* mPane3;                 // _0C
 	og::Screen::ScaleMgr* mScaleMgr; // _10
-	f32 _14;                         // _14
-	f32 _18;                         // _18
+	f32 mCurrentScale;               // _14
+	f32 mSelectAnimAlpha;            // _18
 	int mState;                      // _1C
 	int mAfterState;                 // _20
-	bool _24;                        // _24
-	f32 _28;                         // _28
-	f32 _2C;                         // _2C
+	bool mIsUnlock;                  // _24
+	f32 mXOffset;                    // _28
+	f32 mYOffset;                    // _2C
 	int mIndex;                      // _30
-	f32 _34;                         // _34
+	f32 mTimer;                      // _34
 };
 
 struct TZukanWindow : public TScreenBase {

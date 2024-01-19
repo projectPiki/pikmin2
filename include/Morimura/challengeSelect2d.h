@@ -51,12 +51,15 @@ struct TChallengePlayModeScreen : public TScreenBase {
 	TChallengePlayModeScreen(JKRArchive*, int);
 
 	enum PlayModeScreenState {
-
+		PlayModeScreen_Open  = 1,
+		PlayModeScreen_Close = 3,
 	};
 
 	virtual void create(const char*, u32);        // _08
 	virtual void update();                        // _0C
 	virtual void draw(Graphics&, J2DPerspGraph*); // _10
+
+	inline bool isActive(u8 state) const { return mState == state; }
 
 	// _00     = VTBL
 	// _00-_18 = TScreenBase
@@ -174,7 +177,7 @@ struct TChallengeSelect : public TTestBase {
 	TScaleUpCounter* mPikiCounters[5];          // _C0
 	TScaleUpCounter* mDopeCounter[2];           // _D4
 	TScaleUpCounter* mFloorCounter;             // _DC
-	J2DPane* mPaneTYel[2];                      // _E0
+	J2DPane* mPaneLevelName[2];                 // _E0
 	J2DPane* mPaneSelect;                       // _E8
 	TOffsetMsgSet* mOffsMesg;                   // _EC
 	efx2d::T2DChalDive* mEfxDive;               // _F0
@@ -186,15 +189,15 @@ struct TChallengeSelect : public TTestBase {
 	u32 mDopeCount[2];                          // _11C
 	u32 mFloorCount;                            // _124
 	bool _128;                                  // _128
-	int mStageSel;                              // _12C
+	int mStageChangeCounter;                    // _12C
 	int mMaxStages;                             // _130
 	u8 _134;                                    // _134
-	bool _135;                                  // _135
+	bool mIsInDemo;                             // _135
 	u8 _136;                                    // _136
-	f32 _138;                                   // _138
-	f32 _13C;                                   // _13C
-	int _140;                                   // _140
-	bool _144;                                  // _144
+	f32 mSelectionEffectAngle;                  // _138
+	f32 mLevelNameMoveTimer;                    // _13C
+	int mLevelNameMoveState;                    // _140
+	bool mDoCreatePikiDiveEfx;                  // _144
 	f32 _148;                                   // _148
 	f32 _14C;                                   // _14C
 

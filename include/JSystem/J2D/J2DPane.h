@@ -273,6 +273,12 @@ struct J2DPane {
 		calcMtx();
 	}
 
+	inline void multScale(f32 scale)
+	{
+		mScale *= scale;
+		calcMtx();
+	}
+
 	inline void setAlphaFromFloat(f32 alpha)
 	{
 		if (alpha >= 0.0f) {
@@ -302,6 +308,12 @@ struct J2DPane {
 		calcMtx();
 	}
 
+	inline void addOffset(f32 x, f32 y)
+	{
+		mOffset += JGeometry::TVec2f(x, y);
+		calcMtx();
+	}
+
 	inline void addOffsetY(f32 y)
 	{
 		mOffset.y += y;
@@ -319,6 +331,12 @@ struct J2DPane {
 	inline void setAngleY(f32 a)
 	{
 		mAngleY = a;
+		calcMtx();
+	}
+
+	inline void setAngleX(f32 a)
+	{
+		mAngleX = a;
 		calcMtx();
 	}
 

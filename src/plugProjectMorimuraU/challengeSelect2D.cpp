@@ -3,7 +3,10 @@
 #include "Game/gameChallenge2D.h"
 #include "trig.h"
 #include "Game/GameConfig.h"
+#include "efx2d/T2DChangesmoke.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
+#include "PSSystem/PSSystemIF.h"
+#include "Controller.h"
 
 namespace Morimura {
 
@@ -45,9 +48,9 @@ TChallengePiki::TChallengePiki(J2DPane* pane1, J2DPane* pane2, J2DPane* pane3)
 	for (int i = 0; i < 3; i++) {
 		P2ASSERTLINE(72, mPanes[i]);
 	}
-	_0C  = 0.0f;
-	_10  = 0.0f;
-	_730 = 0.0f;
+	mGoalXPos = 0.0f;
+	mGoalYPos = 0.0f;
+	mYOffset  = 0.0f;
 	for (int i = 0; i < 50; i++) {
 		mPosInfo[i].mState = 0;
 	}
@@ -59,9 +62,9 @@ TChallengePiki::TChallengePiki(J2DPane* pane1, J2DPane* pane2, J2DPane* pane3)
  */
 void TChallengePiki::reset()
 {
-	_0C  = 0.0f;
-	_10  = 0.0f;
-	_730 = 0.0f;
+	mGoalXPos = 0.0f;
+	mGoalYPos = 0.0f;
+	mYOffset  = 0.0f;
 	for (int i = 0; i < 50; i++) {
 		mPosInfo[i].mState = 0;
 	}
@@ -82,6 +85,91 @@ void TChallengePiki::jumpStart(f32)
  */
 void TChallengePiki::update()
 {
+	if (mMaxPiki > 0) {
+		for (int i = 0; i < 3; i++) {
+			mPanes[i]->addOffsetY(mYOffset);
+		}
+	}
+
+	for (int i = 0; i < mMaxPiki; i++) {
+
+		if (i < 50) {
+			bool isJump = false;
+			if (mPosInfo[i].mTimer < 0.0f) {
+				isJump = true;
+			}
+			mPosInfo[i].mTimer += TChallengeSelect::mTimerSpeed;
+
+			if (isJump && mPosInfo[i].mTimer > 0.0f) {
+				JAISound* sound
+				    = PSSystem::SingletonBase<PSGame::SeMgr>::getInstance()->mSetSeList[5]->playSystemSe(PSSE_PK_VC_JUMP_INTO_HOLE, 0);
+				if (sound) {
+					sound->setPan(0.7f, 0, 0);
+				}
+			}
+
+			f32 time = mPosInfo[i].mTimer;
+			if (time > TAU) {
+				mPosInfo[i].mTimer -= TAU;
+			}
+
+			switch (mPosInfo[i].mState) {
+			case ChallengePiki_Standby:
+				f32 time = mPosInfo[i].mTimer;
+				if (time > 0.0f) {
+					if (time > HALF_PI) {
+						mPosInfo[i].mState = 3;
+					}
+					mPosInfo[i].mCurrentXPos = -(mPosInfo[i].mVelocityX * sinf(mPosInfo[i].mTimer) - mPosInfo[i].mInitialXPos);
+					mPosInfo[i].mCurrentYPos = (FABS(sinf(mPosInfo[i].mTimer * 2.0f) * mPosInfo[i].mVelocityY) - mPosInfo[i].mInitialYPos);
+				}
+				break;
+			case 1:
+				break;
+			case 3:
+				if (mPosInfo[i].mCurrentYPos > TChallengeSelect::mCircleY) {
+					mPosInfo[i].mCurrentYPos -= TChallengeSelect::mMoveSpeed;
+				} else {
+					mPosInfo[i].mState       = ChallengePiki_Jumping;
+					mPosInfo[i].mInitialXPos = mPosInfo[i].mCurrentXPos;
+					mPosInfo[i].mInitialYPos = mPosInfo[i].mCurrentYPos;
+					mPosInfo[i].mTimer       = 0.0f;
+				}
+				break;
+			case ChallengePiki_Jumping:
+				if (mPosInfo[i].mTimer > PI) {
+					mPosInfo[i].mState = ChallengePiki_Falling;
+					mPosInfo[i].mTimer = PI;
+				}
+				int thing = mPosInfo[i]._08;
+				f32 calc  = 0.0f;
+				if (thing == 0) {
+					calc = -8.0f;
+				}
+				if (thing == 1) {
+					calc = 8.0f;
+				}
+				mPosInfo[i].mCurrentXPos
+				    = mPosInfo[i].mInitialXPos + (mPosInfo[i].mTimer * (calc + mGoalXPos - mPosInfo[i].mInitialXPos)) / PI;
+				mPosInfo[i].mCurrentYPos = -(sinf(mPosInfo[i].mTimer) * 70.0f - mPosInfo[i].mInitialYPos);
+				break;
+			case ChallengePiki_Falling:
+				if (mPosInfo[i].mCurrentYPos < mGoalYPos - 40.0f) {
+					mPosInfo[i].mCurrentYPos += TChallengeSelect::mMoveSpeed;
+				} else {
+					JAISound* sound
+					    = PSSystem::SingletonBase<PSGame::SeMgr>::getInstance()->mSetSeList[5]->playSystemSe(PSSE_PK_SE_ONY_SEED_GROUND, 0);
+					if (sound) {
+						sound->setPan(0.7f, 0, 0);
+					}
+					mPosInfo[i].mCurrentYPos = -100.0f;
+					TChallengeSelect::mDivePikiNum++;
+					mPosInfo[i].mState = ChallengePiki_Inactive;
+				}
+				break;
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -423,7 +511,22 @@ void TChallengePiki::setGoalPos(Vector2f&)
  */
 bool TChallengePiki::isDemoEnd()
 {
-	// UNUSED FUNCTION
+	int max = mMaxPiki;
+	if (max == 0) {
+		return true;
+	}
+
+	if (max > 50) {
+		max = 50;
+	}
+
+	for (int i = 0; i < max; i++) {
+		if (mPosInfo[i].mState != ChallengePiki_Inactive) {
+			return false;
+		}
+	}
+
+	return true;
 }
 
 /**
@@ -432,16 +535,17 @@ bool TChallengePiki::isDemoEnd()
  */
 TChallengeDoping::TChallengeDoping(J2DPane* pane1, J2DPane* pane2, J2DPane* pane3, J2DPane* pane4)
 {
-	mPaneBase = pane1;
-	_10       = 0.0f;
-	_14       = 0.0f;
+	mPaneBase         = pane1;
+	mGoalFillLevel    = 0.0f;
+	mCurrentFillLevel = 0.0f;
 	P2ASSERTLINE(284, mPaneBase);
 	mPaneBase->setBasePosition(J2DPOS_BottomCenter);
-	mPanes[0] = pane2;
-	mPanes[1] = pane3;
-	mPanes[2] = pane4;
+
+	mBubblePanes[0] = pane2;
+	mBubblePanes[1] = pane3;
+	mBubblePanes[2] = pane4;
 	for (int i = 0; i < 3; i++) {
-		P2ASSERTLINE(290, mPanes[i]);
+		P2ASSERTLINE(290, mBubblePanes[i]);
 	}
 }
 
@@ -460,7 +564,32 @@ void TChallengeDoping::setLevel(int)
  */
 void TChallengeDoping::update()
 {
-	// UNUSED FUNCTION
+	f32 diff = mGoalFillLevel - mCurrentFillLevel;
+	if (FABS(diff) > 0.05f) {
+		diff *= 0.1f;
+	}
+	mCurrentFillLevel += diff;
+	if (mCurrentFillLevel < 0.0f) {
+		mCurrentFillLevel = 0.0f;
+	}
+	if (mCurrentFillLevel > 1.0f) {
+		mCurrentFillLevel = 1.0f;
+	}
+	mPaneBase->updateScale(mCurrentFillLevel);
+
+	f32 calc = mCurrentFillLevel * 3.0f;
+	mBubblePanes[0]->hide();
+	mBubblePanes[1]->hide();
+	mBubblePanes[2]->hide();
+	if (calc >= 3.0f) {
+		mBubblePanes[0]->show();
+	}
+	if (calc >= 2.0f) {
+		mBubblePanes[1]->show();
+	}
+	if (calc >= 1.0f) {
+		mBubblePanes[2]->show();
+	}
 }
 
 /**
@@ -469,23 +598,23 @@ void TChallengeDoping::update()
  */
 TChallengePanel::TChallengePanel(J2DPictureEx* pane1, J2DPane* pane2, J2DPane* pane3)
 {
-	mArchive    = nullptr;
-	mPane1      = pane1;
-	mPane2      = pane2;
-	mPane3      = pane3;
-	mScaleMgr   = nullptr;
-	_14         = 1.0f;
-	_18         = 0.0f;
-	mState      = 0;
-	mAfterState = 0;
-	_24         = false;
-	_34         = 0.0f;
+	mArchive         = nullptr;
+	mPane1           = pane1;
+	mPane2           = pane2;
+	mPane3           = pane3;
+	mScaleMgr        = nullptr;
+	mCurrentScale    = 1.0f;
+	mSelectAnimAlpha = 0.0f;
+	mState           = 0;
+	mAfterState      = 0;
+	mIsUnlock        = false;
+	mTimer           = 0.0f;
 	P2ASSERTLINE(358, pane1);
 	P2ASSERTLINE(359, pane2);
 	P2ASSERTLINE(360, pane3);
 	mScaleMgr = new og::Screen::ScaleMgr;
-	_28       = 0.0f;
-	_2C       = 0.0f;
+	mXOffset  = 0.0f;
+	mYOffset  = 0.0f;
 }
 
 /**
@@ -512,7 +641,31 @@ void TChallengePanel::changeState()
  */
 void TChallengePanel::addAlpha()
 {
-	// UNUSED FUNCTION
+	mCurrentScale = TChallengeSelect::mSelectIconScale;
+	if (mCurrentScale > TChallengeSelect::mSelectIconScale) {
+		mCurrentScale = TChallengeSelect::mSelectIconScale;
+	}
+
+	f32 alpha = mSelectAnimAlpha + TChallengeSelect::mAlphaSpeed;
+	if (alpha < 1.0f) {
+		mSelectAnimAlpha = alpha;
+	} else {
+		if (mIsUnlock) {
+			startScaleUp();
+			mIsUnlock = false;
+			if (mState < 3) {
+				mState = mAfterState;
+				PSSystem::spSysIF->playSystemSe(PSSE_SY_CHALLENGE_FLOWER, 0);
+				mPane1->changeTexture(TChallengeSelect::mIconTexture[mState], 0);
+				J2DPane* pane = mPane1;
+				Vector2f pos(pane->mGlobalMtx[0][3], pane->mGlobalMtx[1][3]);
+				efx2d::Arg arg(pos);
+				efx2d::T2DChangesmoke efx;
+				efx.create(&arg);
+			}
+		}
+		mSelectAnimAlpha = 1.0f;
+	}
 }
 
 /**
@@ -521,16 +674,25 @@ void TChallengePanel::addAlpha()
  */
 void TChallengePanel::decAlpha()
 {
-	// UNUSED FUNCTION
+	mCurrentScale *= 0.95f;
+	if (mCurrentScale < 1.0f) {
+		mCurrentScale = 1.0f;
+	}
+	if (mSelectAnimAlpha > TChallengeSelect::mAlphaSpeed) {
+		mSelectAnimAlpha -= TChallengeSelect::mAlphaSpeed;
+	} else {
+		mSelectAnimAlpha = 0.0f;
+	}
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0x64
  */
-void TChallengePanel::alphaUpdate(f32)
+void TChallengePanel::alphaUpdate(f32 mult)
 {
-	// UNUSED FUNCTION
+	f32 alpha = TChallengeSelect::mFrameAnimAlpha * (mult * mSelectAnimAlpha);
+	mPane2->setAlpha(alpha);
 }
 
 /**
@@ -546,8 +708,36 @@ bool TChallengePanel::canSelect()
  * @note Address: 0x8038C8F8
  * @note Size: 0x3D0
  */
-void TChallengePanel::update(int, bool)
+void TChallengePanel::update(int index, bool flag)
 {
+	if (flag) {
+		mTimer = 0.0f;
+	}
+	mTimer += TChallengeSelect::mPanelMoveRate;
+	if (mTimer > TAU) {
+		mTimer -= TAU;
+	}
+
+	int id  = mIndex;
+	int sel = (index / 5) % 5; // uhhhh something like this
+	if (index != id) {
+		mXOffset *= 0.9f;
+		mYOffset *= 0.9f;
+	}
+
+	f32 scale = mScaleMgr->calc();
+
+	mPane1->addOffset(mXOffset, mYOffset);
+	mPane1->setBasePosition(J2DPOS_Center);
+	mPane1->multScale(mCurrentScale * scale);
+
+	mPane2->addOffset(mXOffset, mYOffset);
+	mPane2->setBasePosition(J2DPOS_Center);
+	mPane2->multScale(mCurrentScale * scale);
+
+	mPane3->addOffset(mXOffset, mYOffset);
+	mPane3->setBasePosition(J2DPOS_Center);
+	mPane3->multScale(mCurrentScale * scale);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -824,10 +1014,7 @@ lbl_8038CB44:
  * @note Address: N/A
  * @note Size: 0x34
  */
-void TChallengePanel::startScaleUp()
-{
-	// UNUSED FUNCTION
-}
+void TChallengePanel::startScaleUp() { mScaleMgr->up(0.3f, 30.0f, 0.6f, 0.0f); }
 
 /**
  * @note Address: 0x8038CCC8
@@ -1713,18 +1900,46 @@ lbl_8038E95C:
  * @note Address: N/A
  * @note Size: 0x124
  */
-void TChallengePlayModeScreen::setState(PlayModeScreenState)
+void TChallengePlayModeScreen::setState(PlayModeScreenState state)
 {
-	// UNUSED FUNCTION
+	mState = state;
+	switch (mState) {
+	case PlayModeScreen_Open:
+		mTimer = 0.0f;
+		for (int i = 0; i < 4; i++) {
+			mAnimScreen[i]->open((0.1f * (f32)i) + 0.1f);
+		}
+		break;
+	case PlayModeScreen_Close:
+		mTimer = 0.0f;
+		for (int i = 0; i < 4; i++) {
+			mAnimScreen[i]->close();
+		}
+		mEfxCursor1->kill();
+		mEfxCursor2->kill();
+		break;
+	}
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0xE4
  */
-void TChallengePlayModeScreen::setBlink(f32)
+void TChallengePlayModeScreen::setBlink(f32 max)
 {
-	// UNUSED FUNCTION
+	if (!TChallengeSelect::mSelected1p) {
+		mScaleMgr[0]->up(0.25f, 20.0f, 0.4f, 0.0f);
+		mAnimScreen[1]->blink(max, 0.0f);
+		mAnimScreen[2]->blink(0.0f, 0.0f);
+	} else {
+		mAnimScreen[1]->blink(0.0f, 0.0f);
+		mAnimScreen[2]->blink(max, 0.0f);
+		if (TChallengeSelect::mConnect2p) {
+			mScaleMgr[1]->up(0.25f, 20.0f, 0.4f, 0.0f);
+		} else {
+			mScaleMgr[1]->up(0.15f, 15.0f, 0.3f, 0.0f);
+		}
+	}
 }
 
 /**
@@ -1770,30 +1985,30 @@ void TChallengeSelectExplanationWindow::screenScaleUp() { }
 TChallengeSelect::TChallengeSelect()
     : TTestBase("challengeSelect")
 {
-	mStageList        = nullptr;
-	mSelectScreen     = nullptr;
-	mPlayModeScreen   = nullptr;
-	mRulesScreen      = nullptr;
-	mControls         = nullptr;
-	mDisp             = nullptr;
-	mPanelList        = nullptr;
-	mFloorCounter     = nullptr;
-	mPaneSelect       = nullptr;
-	mOffsMesg         = nullptr;
-	mEfxDive          = nullptr;
-	mCurrentSelection = 0;
-	mFloorCount       = 0;
-	_128              = false;
-	mStageSel         = 0;
-	_134              = true;
-	_135              = false;
-	_136              = false;
-	_138              = 0.0f;
-	_13C              = 1.0f;
-	_140              = -1;
-	_144              = false;
-	_148              = 0.0f;
-	_14C              = 1.0f;
+	mStageList            = nullptr;
+	mSelectScreen         = nullptr;
+	mPlayModeScreen       = nullptr;
+	mRulesScreen          = nullptr;
+	mControls             = nullptr;
+	mDisp                 = nullptr;
+	mPanelList            = nullptr;
+	mFloorCounter         = nullptr;
+	mPaneSelect           = nullptr;
+	mOffsMesg             = nullptr;
+	mEfxDive              = nullptr;
+	mCurrentSelection     = 0;
+	mFloorCount           = 0;
+	_128                  = false;
+	mStageChangeCounter   = 0;
+	_134                  = true;
+	mIsInDemo             = false;
+	_136                  = false;
+	mSelectionEffectAngle = 0.0f;
+	mLevelNameMoveTimer   = 1.0f;
+	mLevelNameMoveState   = -1;
+	mDoCreatePikiDiveEfx  = false;
+	_148                  = 0.0f;
+	_14C                  = 1.0f;
 
 	mRightOffset = 0;
 	mDownOffset  = 0;
@@ -1809,7 +2024,7 @@ TChallengeSelect::TChallengeSelect()
 	for (int i = 0; i < 2; i++) {
 		mHighScoreCounter[i] = nullptr;
 		mHighScoreValue[i]   = 0;
-		mPaneTYel[i]         = nullptr;
+		mPaneLevelName[i]    = nullptr;
 		mDopeCounter[i]      = nullptr;
 		mDopeCount[i]        = 0;
 		mDoping[i]           = nullptr;
@@ -1960,11 +2175,13 @@ void TChallengeSelect::doCreate(JKRArchive* arc)
 	mChallengePiki[2] = new TChallengePiki(screen->search('Pb_fw'), screen->search('Pb_pk_r'), screen->search('Pb_pk_l'));
 	mChallengePiki[3] = new TChallengePiki(screen->search('Pw_fw'), screen->search('Pw_pk_r'), screen->search('Pw_pk_l'));
 	mChallengePiki[4] = new TChallengePiki(screen->search('Pbl_fw'), screen->search('Pbl_pk_r'), screen->search('Pbl_pk_l'));
-	mPaneTYel[0]      = screen->search('Tyel1');
-	mPaneTYel[1]      = screen->search('Tyel2');
+
+	mPaneLevelName[0] = screen->search('Tyel1');
+	mPaneLevelName[1] = screen->search('Tyel2');
 	for (int i = 0; i < 2; i++) {
-		P2ASSERTLINE(1525, mPaneTYel[i]);
+		P2ASSERTLINE(1525, mPaneLevelName[i]);
 	}
+
 	mDoping[0] = new TChallengeDoping(screen->search('PICT_027'), screen->search('PICT_025'), screen->search('PICT_026'),
 	                                  screen->search('PICT_027'));
 	mDoping[1] = new TChallengeDoping(screen->search('PICT_027'), screen->search('PICT_025'), screen->search('PICT_026'),
@@ -2046,7 +2263,7 @@ void TChallengeSelect::doCreate(JKRArchive* arc)
 		if (isChangeState(i)) {
 			TChallengePanel* panel = mPanelList[i];
 			if (panel->mState < 3) {
-				panel->_24 = true;
+				panel->mIsUnlock = true;
 			}
 		}
 	}
@@ -3994,6 +4211,376 @@ lbl_80390760:
  */
 bool TChallengeSelect::doUpdate()
 {
+	if (mPlayModeScreen->mState == 2) {
+		if (JUTGamePad::mPadStatus[1].err == -1) {
+			mConnect2p = false;
+		} else {
+			if (!mConnect2p) {
+				mPlayModeScreen->mDoShowNoController = false;
+			}
+			mConnect2p = true;
+		}
+	}
+
+	bool updatePanel = false;
+	bool rulesClosed = false;
+	if (!mRulesScreen->mState) {
+		rulesClosed = true;
+	}
+	int oldSelState = mLevelNameMoveState;
+	int oldID       = mCurrentSelection;
+
+	if (mCanInput && mDisp->_1C == 0 && !static_cast<TChallengeSelectScene*>(getOwner())->mConfirmEndWindow->mHasDrawn) {
+		Controller* input = mControls;
+		if (input->getButtonDown() & Controller::PRESS_Z) {
+			if (mPlayModeScreen->mState == 0) {
+				if (mRulesScreen->mScaleGrowRate <= 0.0f) {
+					openWindow();
+					PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
+				} else {
+					closeWindow();
+					PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
+				}
+			}
+		} else if (input->getButtonDown() & (Controller::PRESS_A | Controller::PRESS_START)) {
+			if (!rulesClosed) {
+				TChallengePlayModeScreen* screen = mPlayModeScreen;
+				int state                        = screen->mState;
+				if ((u8)state != false) {
+					if (state == 2) {
+						if (mSelected1p || (mConnect2p && !mSelected1p)) {
+							screen->setState(TChallengePlayModeScreen::PlayModeScreen_Close);
+							if (!mIsSection) {
+								_134 = true;
+								demoStart();
+								mDisp->_1C = 1;
+							}
+							mDisp->mStageNumber = mCurrentSelection;
+							mDisp->mPlayType    = 0;
+							if (!mSelected1p) {
+								mDisp->mPlayType = 1;
+							}
+							PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
+						} else {
+							screen->mDoShowNoController = true;
+							PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_ERROR, 0);
+						}
+					}
+				} else {
+					if (TChallengeSelect::mSelected1p) {
+						screen->mAnimScreen[1]->blink(TChallengeSelect::mTextFlashVal, 0.0f);
+						screen->mAnimScreen[2]->blink(0.0f, 0.0f);
+					} else {
+						screen->mAnimScreen[1]->blink(0.0f, 0.0f);
+						screen->mAnimScreen[2]->blink(TChallengeSelect::mTextFlashVal, 0.0f);
+					}
+					mPlayModeScreen->mDoShowNoController = false;
+					mPlayModeScreen->setState(TChallengePlayModeScreen::PlayModeScreen_Open);
+					PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
+				}
+			}
+		} else if (input->getButtonDown() & Controller::PRESS_B) {
+			TChallengePlayModeScreen* screen = mPlayModeScreen;
+			int state                        = screen->mState;
+			if ((u8)state != false) {
+				if (state == 2) {
+					screen->setState(TChallengePlayModeScreen::PlayModeScreen_Close);
+					PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
+				}
+			} else {
+				if (!rulesClosed) {
+					closeWindow();
+					PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
+				} else {
+					_128 = false;
+					static_cast<TChallengeSelectScene*>(getOwner())->mConfirmEndWindow->start(nullptr);
+				}
+			}
+		} else {
+			TChallengePlayModeScreen* screen = mPlayModeScreen;
+			if (screen->isActive(0)) {
+				if (rulesClosed) {
+					u32 button = input->getButton();
+					if ((button & Controller::PRESS_DPAD_DOWN) || (button & Controller::ANALOG_DOWN)) {
+						if (mStageChangeCounter == 0) {
+							if (mLevelNameMoveState < 0) {
+								mLevelNameMoveState = 1;
+
+								int max = mMaxStages;
+								if (mDownOffset < max / 5) {
+									mDownOffset++;
+									if (mRightOffset + mDownOffset * 5 <= max) {
+										updatePanel = true;
+									} else {
+										updatePanel = true;
+										mDownOffset = 0;
+									}
+								}
+							}
+						}
+						mStageChangeCounter++;
+					} else if ((button & Controller::PRESS_DPAD_UP) || (button & Controller::ANALOG_UP)) {
+						if (mStageChangeCounter == 0) {
+							if (mLevelNameMoveState < 0) {
+								mLevelNameMoveState = 0;
+
+								if (mDownOffset < 1) {
+									int max     = mMaxStages;
+									updatePanel = true;
+									mDownOffset = max;
+									if (mRightOffset + mDownOffset * 5 > mMaxStages) {
+										mDownOffset--;
+									}
+								} else {
+									mDownOffset--;
+									updatePanel = true;
+								}
+							}
+						}
+						mStageChangeCounter++;
+					} else if ((button & Controller::PRESS_DPAD_RIGHT) || (button & Controller::ANALOG_RIGHT)) {
+						if (mStageChangeCounter == 0) {
+							if (mLevelNameMoveState < 0) {
+								mLevelNameMoveState = 3;
+
+								if (mRightOffset < 4 && mRightOffset + mDownOffset * 5 < mMaxStages) {
+									mRightOffset++;
+									updatePanel = true;
+								} else {
+									mRightOffset = 0;
+									updatePanel  = true;
+								}
+							}
+						}
+						mStageChangeCounter++;
+					} else if ((button & Controller::PRESS_DPAD_LEFT) || (button & Controller::ANALOG_LEFT)) {
+						if (mStageChangeCounter == 0) {
+							if (mLevelNameMoveState < 0) {
+								mLevelNameMoveState = 2;
+
+								if (mRightOffset > 1) {
+									mRightOffset--;
+									updatePanel = true;
+								} else {
+									mRightOffset = 4;
+									updatePanel  = true;
+								}
+							}
+						}
+						mStageChangeCounter++;
+					} else {
+						mStageChangeCounter = 0;
+						if (_14C < 1.0f) {
+							_14C = 1.0f;
+						}
+						_14C += 0.2f;
+						if (_14C >= 2.0f) {
+							_14C = 2.0f;
+						}
+					}
+				}
+			} else {
+				u32 button = input->getButton();
+				if ((button & Controller::PRESS_DPAD_DOWN) || (button & Controller::ANALOG_DOWN)) {
+					if (mSelected1p) {
+						screen->setBlink(mTextFlashVal);
+						PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
+					}
+					mSelected1p = false;
+				} else if ((button & Controller::PRESS_DPAD_UP) || (button & Controller::ANALOG_UP)) {
+					if (!mSelected1p) {
+						screen->setBlink(mTextFlashVal);
+						PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
+					}
+					mSelected1p                 = true;
+					screen->mDoShowNoController = false;
+				}
+			}
+		}
+	}
+
+	if (mDisp->mTitleInfo->mCount == 1 && !mIsSection) {
+		_134       = false;
+		mDisp->_1C = 1;
+		getOwner()->endScene(nullptr);
+	}
+
+	int max = mMaxStages;
+	if (max <= mRightOffset + mDownOffset * 5) {
+		mDownOffset  = max / 5;
+		mRightOffset = max % 5;
+		if (mRightOffset > mMaxStages) {
+			mRightOffset = mMaxStages;
+		}
+		mCurrentSelection = mRightOffset + mDownOffset * 5;
+		if (mCurrentSelection > mMaxStages) {
+			mCurrentSelection = 0;
+		}
+	}
+
+	if (oldSelState >= 0 && oldSelState != mCurrentSelection) {
+		mStageChangeCounter = 0;
+		_14C                = 2.0f;
+	}
+
+	if (_14C * 8.0f < (f32)mStageChangeCounter) {
+		mStageChangeCounter = 0;
+		_14C *= 0.7f;
+		if (_14C < 0.25f) {
+			_14C = 0.25f;
+		}
+	}
+
+	if (updatePanel) {
+		mCurrentSelection = mRightOffset + mDownOffset * 5;
+		if (oldID != mCurrentSelection) {
+			_136 = true;
+			setInfo(mCurrentSelection);
+			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
+			mPanelList[mCurrentSelection]->startScaleUp();
+		} else {
+			mStageChangeCounter = 0;
+			_14C                = 2.0f;
+		}
+	}
+
+	mSelectScreen->update();
+	mPlayModeScreen->update();
+	mRulesScreen->update();
+
+	mFrameAnimAlpha = mSelectScreen->getScreenAlpha();
+	if (mIsInDemo && mFrameAnimAlpha < 150) {
+		mFrameAnimAlpha = 150;
+	}
+
+	// update the 30 level icons
+	for (int i = 0; i < CHALLENGE_COURSE_COUNT; i++) {
+		TChallengePanel* panel = mPanelList[i];
+		panel->update(mCurrentSelection, updatePanel);
+		if (i == mCurrentSelection || panel->mIsUnlock) {
+			panel->addAlpha();
+		} else {
+			panel->decAlpha();
+		}
+		panel->alphaUpdate(1.0f);
+	}
+
+	// update the 5 pikmin types
+	for (int i = 0; i < 5; i++) {
+		mChallengePiki[i]->update();
+	}
+
+	// update the state of the level name when it moves
+	if (_136) {
+		mLevelNameMoveTimer *= 0.65f;
+		if (mLevelNameMoveTimer < 0.2f) {
+			_136 = false;
+			setStageName(mCurrentSelection);
+			switch (mLevelNameMoveState) {
+			case 0:
+				mLevelNameMoveState = 1;
+				break;
+			case 1:
+				mLevelNameMoveState = 0;
+				break;
+			case 2:
+				mLevelNameMoveState = 3;
+				break;
+			case 3:
+				mLevelNameMoveState = 2;
+				break;
+			}
+		}
+	} else if (f32(mStageChangeCounter) == 0.0f && _14C == 2.0f) {
+		mLevelNameMoveTimer += 0.25f;
+		if (mLevelNameMoveState > 1) {
+			mLevelNameMoveTimer += 0.15f;
+		}
+		if (mLevelNameMoveTimer > 1.0f) {
+			mLevelNameMoveTimer = 1.0f;
+			mLevelNameMoveState = -1;
+		}
+	}
+
+	// update spray bottles and the level name
+	for (int i = 0; i < 2; i++) {
+		mDoping[i]->update();
+
+		// update the movement of the level name as needed
+		mPaneLevelName[i]->setAlpha(255);
+		f32 calc  = 1.0f - mLevelNameMoveTimer;
+		f32 XGoal = 0.0f;
+		f32 YGoal = 0.0f;
+		switch (mLevelNameMoveState) {
+		case 0:
+			XGoal = 1.3f;
+			break;
+		case 1:
+			XGoal = -1.3f;
+			break;
+		case 2:
+			YGoal = 1.25f;
+			break;
+		case 3:
+			YGoal = -1.25f;
+			break;
+		}
+		mPaneLevelName[i]->addOffset(calc * XGoal * mPaneLevelName[i]->getWidth(), calc * YGoal * mPaneLevelName[i]->getHeight());
+	}
+
+	// when in the entering demo, rotate the circular selection effect in the X axis
+	if (mIsInDemo) {
+		mSelectionEffectAngle += 5.0f;
+		f32 max = -(mDownOffset * 5.0f - 90.0f);
+		if (max > mSelectionEffectAngle) {
+			mSelectionEffectAngle = max;
+		}
+	}
+	mPanelList[mCurrentSelection]->mPane2->setAngleX(mSelectionEffectAngle);
+
+	// Check ending the scene and beginning the game, once all pikmin are done moving
+	if (mIsInDemo) {
+		bool end = true;
+		for (int i = 0; i < 5; i++) {
+			if (!mChallengePiki[i]->isDemoEnd()) {
+				end = false;
+			}
+		}
+
+		if (end) {
+			mEfxDive->kill();
+			if (mDivePikiNum > 0) {
+				J2DPane* pane = mPanelList[mCurrentSelection]->mPane2;
+				Vector2f pos(pane->mGlobalMtx[0][3], pane->mGlobalMtx[1][3]);
+				efx2d::Arg arg(pos);
+				efx2d::T2DChalDiveEnd efx;
+				efx.create(&arg);
+			}
+			mIsInDemo = false;
+			if (mIsSection) {
+				reset();
+			} else {
+				getOwner()->endScene(nullptr);
+			}
+		}
+	}
+
+	// Check making a dive effect when needed
+	if (mDivePikiNum && !mDoCreatePikiDiveEfx) {
+		mDoCreatePikiDiveEfx = true;
+		J2DPane* pane        = mPanelList[mCurrentSelection]->mPane2;
+		Vector2f pos(pane->mGlobalMtx[0][3], pane->mGlobalMtx[1][3]);
+		efx2d::Arg arg(pos);
+		mEfxDive->create(&arg);
+	}
+
+	// debug for forcing the entering demo to start
+	if (mIsSection && mForceDemoStart) {
+		mForceDemoStart = false;
+		demoStart();
+	}
+
+	return false;
 	/*
 	stwu     r1, -0x100(r1)
 	mflr     r0
@@ -6262,17 +6849,17 @@ lbl_80392570:
  */
 void TChallengeSelect::setStageName(int id)
 {
-	J2DPane* pane1 = mPaneTYel[0];
+	J2DPane* pane1 = mPaneLevelName[0];
 	if (mIsSection) {
 		Game::ChallengeGame::StageData* data = mStageList->getStageData(id);
 		pane1->setMsgID(mOffsMesg->getMsgID(data->mStageIndex - 1));
-		pane1 = mPaneTYel[1];
+		pane1 = mPaneLevelName[1];
 		pane1->setMsgID(mOffsMesg->getMsgID(data->mStageIndex - 1));
 	} else {
-		// using operator() properly isnt working
-		Game::Challenge2D_TitleInfo::Info* info = mDisp->mTitleInfo->operator()(id);
+		Game::Challenge2D_TitleInfo& title      = *mDisp->mTitleInfo;
+		Game::Challenge2D_TitleInfo::Info* info = title(id);
 		pane1->setMsgID(mOffsMesg->getMsgID(info->mStageIndex - 1));
-		pane1 = mPaneTYel[1];
+		pane1 = mPaneLevelName[1];
 		pane1->setMsgID(mOffsMesg->getMsgID(info->mStageIndex - 1));
 	}
 }
@@ -6295,7 +6882,8 @@ int TChallengeSelect::getState(int id)
 			return 1;
 		}
 	} else {
-		Game::Challenge2D_TitleInfo::Info* info = mDisp->mTitleInfo->operator()(id);
+		Game::Challenge2D_TitleInfo& title      = *mDisp->mTitleInfo;
+		Game::Challenge2D_TitleInfo::Info* info = title(id);
 		u8 flag                                 = info->mDisplayFlag.typeView;
 		if (flag & 0x20) {
 			return (int)(-(flag >> 4 & 1)) + 2; // highly questionable
@@ -6329,7 +6917,8 @@ int TChallengeSelect::getAfterState(int id)
 	if (mIsSection) {
 		return 3;
 	} else {
-		Game::Challenge2D_TitleInfo::Info* info = mDisp->mTitleInfo->operator()(id);
+		Game::Challenge2D_TitleInfo& title      = *mDisp->mTitleInfo;
+		Game::Challenge2D_TitleInfo::Info* info = title(id);
 		if (info->mDisplayFlag.typeView & 4) {
 			return 3;
 		} else if (info->mDisplayFlag.typeView & 2) {
@@ -6404,7 +6993,8 @@ bool TChallengeSelect::isChangeState(int id)
 		if (mStageData[id]->mIsChange)
 			return true;
 	} else {
-		Game::Challenge2D_TitleInfo::Info* info = mDisp->mTitleInfo->operator()(id);
+		Game::Challenge2D_TitleInfo& title      = *mDisp->mTitleInfo;
+		Game::Challenge2D_TitleInfo::Info* info = title(id);
 		getState(id);
 		if (info->mDisplayFlag.typeView & 8) {
 			return true;
@@ -6497,20 +7087,21 @@ lbl_80392938:
 int TChallengeSelect::getIndexMax()
 {
 	if (mIsSection) {
-		for (int i = 0; i < 30; i++) {
+		for (int i = 0; i < CHALLENGE_COURSE_COUNT; i++) {
 			if (mPanelList[i]->mState == 0) {
 				return i;
 			}
 		}
 	} else {
-		for (int i = 0; i < 30; i++) {
-			Game::Challenge2D_TitleInfo::Info* info = mDisp->mTitleInfo->operator()(i);
+		for (int i = 0; i < CHALLENGE_COURSE_COUNT; i++) {
+			Game::Challenge2D_TitleInfo& title      = *mDisp->mTitleInfo;
+			Game::Challenge2D_TitleInfo::Info* info = title(i);
 			if (mPanelList[i]->mState == 0 && !(info->mDisplayFlag.typeView & 8)) {
 				return i;
 			}
 		}
 	}
-	return 30;
+	return CHALLENGE_COURSE_COUNT;
 }
 
 /**
@@ -6531,14 +7122,14 @@ void TChallengeSelect::closeWindow() { mRulesScreen->closeWindow(); }
  */
 void TChallengeSelect::reset()
 {
-	_135 = false;
-	_138 = 0.0f;
+	mIsInDemo             = false;
+	mSelectionEffectAngle = 0.0f;
 	for (int i = 0; i < 5; i++) {
 		mChallengePiki[i]->reset();
 		mChallengePiki[i]->mMaxPiki = mPikiCounts[i];
 	}
-	mDivePikiNum = 0;
-	_144         = false;
+	mDivePikiNum         = 0;
+	mDoCreatePikiDiveEfx = false;
 }
 
 /**

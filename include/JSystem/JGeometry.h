@@ -74,6 +74,13 @@ struct TVec2 {
 		return *this;
 	}
 
+	TVec2<T>& operator*=(const TVec2<T>& other)
+	{
+		x *= other.x;
+		y *= other.y;
+		return *this;
+	}
+
 	bool isAbove(const TVec2<T>& other) const { return (x >= other.x) && (y >= other.y) ? true : false; }
 
 	T x;
