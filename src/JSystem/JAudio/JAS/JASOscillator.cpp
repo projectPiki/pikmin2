@@ -1,5 +1,6 @@
 #include "JSystem/JAudio/JAS/JASOscillator.h"
 #include "JSystem/JAudio/JAS/JASDriver.h"
+#include "JSystem/JMath.h"
 #include "types.h"
 
 const f32 JASOscillator::relTableSampleCell[17] = { 1.0f,
@@ -165,7 +166,8 @@ bool JASOscillator::release()
 		_1C      = 5;
 		_1D      = (u8)((_1A >> 0xE) & 3);
 		temp_f31 = (f32)(_1A & 0x3FFF);
-		_04      = (f32)(temp_f31 * ((JASDriver::getDacRate() / 80.0f) / 600.0f));
+		temp_f31 *= ((JASDriver::getDacRate() / 80.0f) / 600.0f);
+		_04 = temp_f31;
 		if (_04 < 1.0f) {
 			_04 = 1.0f;
 		}
@@ -180,122 +182,119 @@ bool JASOscillator::release()
 		_1C = 3;
 	}
 	return true;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lbz      r0, 0x1c(r3)
-	cmplwi   r0, 4
-	bne      lbl_800A2D58
-	li       r3, 0
-	b        lbl_800A2E74
-
-lbl_800A2D58:
-	lwz      r4, 0(r31)
-	lwz      r3, 8(r4)
-	lwz      r0, 0xc(r4)
-	cmplw    r3, r0
-	beq      lbl_800A2D84
-	li       r0, 0
-	lfs      f0, lbl_80516DD8@sda21(r2)
-	sth      r0, 0x18(r31)
-	stfs     f0, 4(r31)
-	lfs      f0, 8(r31)
-	stfs     f0, 0xc(r31)
-
-lbl_800A2D84:
-	lwz      r3, 0(r31)
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	bne      lbl_800A2DA8
-	lhz      r0, 0x1a(r31)
-	cmplwi   r0, 0
-	bne      lbl_800A2DA8
-	li       r0, 0x10
-	sth      r0, 0x1a(r31)
-
-lbl_800A2DA8:
-	lhz      r0, 0x1a(r31)
-	cmplwi   r0, 0
-	beq      lbl_800A2E68
-	li       r3, 5
-	lis      r0, 0x4330
-	stb      r3, 0x1c(r31)
-	lfd      f1, lbl_80516DE8@sda21(r2)
-	lhz      r3, 0x1a(r31)
-	stw      r0, 8(r1)
-	rlwinm   r0, r3, 0x12, 0x1e, 0x1f
-	stb      r0, 0x1d(r31)
-	lhz      r0, 0x1a(r31)
-	clrlwi   r0, r0, 0x12
-	xoris    r0, r0, 0x8000
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f31, f0, f1
-	bl       getDacRate__9JASDriverFv
-	lfs      f0, lbl_80516DE0@sda21(r2)
-	lfs      f2, lbl_80516DE4@sda21(r2)
-	fdivs    f1, f1, f0
-	lfs      f0, lbl_80516DDC@sda21(r2)
-	fdivs    f1, f1, f2
-	fmuls    f31, f31, f1
-	stfs     f31, 4(r31)
-	lfs      f1, 4(r31)
-	fcmpo    cr0, f1, f0
-	bge      lbl_800A2E1C
-	stfs     f0, 4(r31)
-
-lbl_800A2E1C:
-	lfs      f1, 4(r31)
-	lfs      f0, lbl_80516DD8@sda21(r2)
-	stfs     f1, 0x14(r31)
-	stfs     f0, 0xc(r31)
-	lbz      r0, 0x1d(r31)
-	cmplwi   r0, 0
-	bne      lbl_800A2E54
-	lfs      f2, 0xc(r31)
-	lfs      f1, 8(r31)
-	lfs      f0, 4(r31)
-	fsubs    f1, f2, f1
-	fdivs    f0, f1, f0
-	stfs     f0, 0x10(r31)
-	b        lbl_800A2E70
-
-lbl_800A2E54:
-	lfs      f1, 0xc(r31)
-	lfs      f0, 8(r31)
-	fsubs    f0, f1, f0
-	stfs     f0, 0x10(r31)
-	b        lbl_800A2E70
-
-lbl_800A2E68:
-	li       r0, 3
-	stb      r0, 0x1c(r31)
-
-lbl_800A2E70:
-	li       r3, 1
-
-lbl_800A2E74:
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
  * @note Address: 0x800A2E90
  * @note Size: 0x374
  */
-f32 JASOscillator::calc(const s16*)
+f32 JASOscillator::calc(const s16* p1)
 {
+	f32 val31 = 0.0f;
+	while (_04 <= 0.0f) {
+		int idx = _18 * 3;
+		_08     = _0C;
+		if (_1C == 5) {
+			_1C = 0;
+			break;
+		}
+
+		int val  = p1[idx];
+		int val2 = p1[idx + 1];
+		int val3 = p1[idx + 2];
+		if (val == 13) {
+			_18 = val3;
+			continue;
+		}
+
+		if (val == 15) {
+			_1C = 0;
+			break;
+		}
+
+		if (val == 14) {
+			_1C = 2;
+			return _08 * mData->_10 + mData->_14;
+		}
+
+		_1D = val;
+
+		if ((s16)val2 == 0) {
+			_0C = val3 / 32768.0f;
+			_18++;
+			continue;
+		}
+
+		_04 = (f32)val2 * ((JASDriver::getDacRate() / 80.0f) / 600.0f);
+		_14 = _04;
+		_0C = val3 / 32768.0f;
+
+		if (_1D == 0) {
+			_10 = (_0C - _08) / _04;
+		} else {
+			_10 = _0C - _08;
+		}
+
+		_18++;
+	}
+
+	if (mData->_10 == 0.0f) {
+		return mData->_14;
+	}
+
+	f32 factor;       // f2
+	if (_14 == 0.0) { // yes this is a double. someone forgot an f
+		factor = _0C;
+		_08    = _0C;
+	} else {
+		if (_1D == 0 || (val31 = _10) == 0.0f) {
+			factor = _0C - (_10 * _04);
+			_08    = factor;
+		} else if (_1D == 3 || _1D == 1 || _1D == 2) {
+			const f32* table = nullptr; // r27
+			switch (_1D) {
+			case 3:
+				table = relTableSampleCell;
+				break;
+			case 1:
+				table = relTableSquare;
+				break;
+			case 2:
+				table = relTableSqRoot;
+				break;
+			}
+
+			f32 val30;
+
+			if (val31 < 0.0f) {
+				val30 = 16.0f * (1.0f - (_04 / _14));
+			} else {
+				val30 = 16.0f * (_04 / _14);
+			}
+
+			u32 idx  = val30;
+			f32 val4 = val30 - (f32)idx;
+			if (idx >= 16) {
+				idx  = 15;
+				val4 = 1.0f;
+			}
+
+			f32 valAbs = JMAAbs(val31 * (val4 * (table[idx + 1] - table[idx]) + table[idx]));
+
+			if (_10 < 0.0f) {
+				factor = _0C + valAbs;
+			} else {
+				factor = _0C - (_10 - valAbs);
+			}
+
+			_08 = factor;
+		} else {
+			factor = _0C - val31 * _04;
+			_08    = factor;
+		}
+	}
+
+	return factor * mData->_10 + mData->_14;
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
