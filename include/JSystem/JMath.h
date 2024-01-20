@@ -246,7 +246,7 @@ void JMAVECLerp(const Vec*, const Vec*, Vec*, f32);
 void JMAMTXApplyScale(const Mtx, Mtx, f32, f32, f32);
 void JMAMTXScaleApply(const Mtx, Mtx, f32, f32, f32);
 
-inline f32 JMAAbs(f32 input) { return __fabs(input); }
+inline f32 JMAAbs(f32 input) { return __fabsf(input); }
 
 inline f32 JMAAtan2Radian(f32 y, f32 x) { return JMath::atanTable_.atan2Radian(y, x); };
 
