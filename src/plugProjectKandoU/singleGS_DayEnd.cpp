@@ -104,9 +104,12 @@ void DayEndState::exec(SingleGameSection* game)
 			switch (mDayEndType) {
 			case 0:
 				MoviePlayArg arg("s01_dayend", const_cast<char*>(game->mCurrentCourseInfo->mName), game->mMovieFinishCallback, 0);
+
+				// this is all wrong
 				int treasures = 0;
-				// treasures += playData->mMainCropMemory->mItem.calcCollectedNum();
-				// treasures += playData->mMainCropMemory->mOtakara.calcCollectedNum();
+				treasures += playData->mMainCropMemory->mItem.calcCollectedNum();
+				treasures += playData->mMainCropMemory->mOtakara.calcCollectedNum();
+
 				if (treasures == 0) {
 					arg.mStreamID = 0xc0011004;
 				} else if (treasures <= 14) {
@@ -115,30 +118,32 @@ void DayEndState::exec(SingleGameSection* game)
 					arg.mStreamID = 0xc0011003;
 				}
 				JUT_ASSERTLINE(222, naviMgr->getAliveOrima(ALIVEORIMA_Active), "no alive:s01_dayend");
-				Navi* navi      = naviMgr->getActiveNavi();
-				arg.mPelletName = nullptr;
+				Navi* navi = naviMgr->getActiveNavi();
+				int id     = 0;
 				if (navi) {
-					arg.mPelletName = (char*)navi->mNaviIndex;
-					if ((int)arg.mPelletName == NAVIID_Captain2 && playData->isStoryFlag(STORY_DebtPaid)) {
-						arg.mPelletName = (char*)2;
+					id = navi->mNaviIndex;
+					if (id == NAVIID_Captain2 && playData->isStoryFlag(STORY_DebtPaid)) {
+						id++;
 					}
 				}
+				arg.mPelletName    = (char*)id;
 				arg.mDelegateStart = game->mMovieStartCallback;
 				moviePlayer->play(arg);
 				gameSystem->setPause(true, "s01_dayend", 3);
 				mStatus = 1;
 				break;
 			case 1: {
-				MoviePlayArg arg("s06_dayend_pikminzero", const_cast<char*>(game->mCurrentCourseInfo->mName), game->mMovieFinishCallback,
-				                 0);
+				char* name = const_cast<char*>(game->mCurrentCourseInfo->mName);
+				MoviePlayArg arg("s06_dayend_pikminzero", name, game->mMovieFinishCallback, 0);
 				arg.mDelegateStart = game->mMovieStartCallback;
 				moviePlayer->play(arg);
-				gameSystem->setPause(1, "s06_dayend", 3);
+				gameSystem->setPause(0, "s06_dayend", 3);
 				mStatus = 1;
 				break;
 			}
 			case 2: {
-				MoviePlayArg arg("s04_dayend_orimadown", const_cast<char*>(game->mCurrentCourseInfo->mName), game->mMovieFinishCallback, 0);
+				char* name = const_cast<char*>(game->mCurrentCourseInfo->mName);
+				MoviePlayArg arg("s04_dayend_orimadown", name, game->mMovieFinishCallback, 0);
 				arg.mDelegateStart = game->mMovieStartCallback;
 				moviePlayer->play(arg);
 				gameSystem->setPause(0, "s04_dayend", 3);
@@ -485,7 +490,7 @@ void DayEndState::onMovieStart(SingleGameSection* game, MovieConfig* config, u32
 			PSMTXMultVec(mapMgr->getDemoMatrix()->mMatrix.mtxView, &origin, &out);
 			origin = out;
 
-			Piki* pikiBuffer[103];
+			Piki* pikiBuffer[100];
 			int i = 0;
 			Iterator<Piki> iterator(pikiMgr);
 			CI_LOOP(iterator)
@@ -509,6 +514,7 @@ void DayEndState::onMovieStart(SingleGameSection* game, MovieConfig* config, u32
 				JUT_ASSERTLINE(376, navi, "no alive navi");
 				PikiAI::ActFormationInitArg arg(navi);
 				piki->mNavi = navi;
+				arg._09     = 1;
 				piki->mBrain->start(PikiAI::ACT_Formation, &arg);
 				piki->movie_begin(false);
 			}
@@ -967,7 +973,7 @@ void DayEndState::onMovieCommand(SingleGameSection* game, int id)
 {
 	switch (id) {
 	case 1:
-		Vector3f origin(0.0f);
+		Vector3f origin = (0.0f);
 		if (mapMgr->getDemoMatrix()) {
 			Matrixf* mtx = mapMgr->getDemoMatrix();
 			Vector3f out;
@@ -975,24 +981,29 @@ void DayEndState::onMovieCommand(SingleGameSection* game, int id)
 			origin   = out;
 			origin.y = mapMgr->getMinY(origin);
 		}
+
 		Sys::Sphere bounds(origin, 180.0f);
 		generalEnemyMgr->createDayendEnemies(bounds);
-		for (int i = 0; i <= 4; i++) {
-			for (int j = 0; j <= 2; j++) {
-				for (int k = 0; k < mLeftBehindPikis.getCount(i, j); k++) {
+
+		// Spawn all left behind Pikmin
+		for (int color = 0; color <= 4; color++) {
+			for (int happa = 0; happa <= 2; happa++) {
+				for (int i = 0; i < mLeftBehindPikis.getCount(color, happa); i++) {
 					Piki* piki = pikiMgr->birth();
 					if (piki) {
 						PikiInitArg arg(PIKISTATE_Escape);
 						piki->init(&arg);
+
 						f32 angle = randFloat() * TAU;
-						f32 zero  = 0.0f;
-						Vector3f pos(cosf(angle) * 30.0f, origin.y + zero, sinf(angle) * 30.0f);
+						Vector3f pos(sinf(angle) * 30.0f, 0.0f, cosf(angle) * 30.0f);
+						pos += origin;
 						if (mapMgr) {
 							pos.y = mapMgr->getMinY(pos);
 						}
 						piki->setPosition(pos, false);
-						piki->changeShape(i);
-						piki->changeHappa(j);
+
+						piki->changeShape(color);
+						piki->changeHappa(happa);
 						piki->movie_begin(false);
 					}
 				}

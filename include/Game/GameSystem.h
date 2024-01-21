@@ -26,7 +26,7 @@ enum GameSystemFlags {
 	GAMESYS_IsPlaying           = 0x2,  // set when the game is running
 	GAMESYS_DisableCollision    = 0x4,  // disables collision detection
 	GAMESYS_DisablePause        = 0x8,  // disables pausing
-	GAMESYS_DisableDeathCounter = 0x10, // disables the death counter
+	GAMESYS_DisableDeathCounter = 0x10, // disables the pikmin death counter, used to make left behind pikis not increase it in the cutscene
 	GAMESYS_IsGameWorldActive   = 0x20, // set when the game world is active
 };
 
