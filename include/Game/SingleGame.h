@@ -188,18 +188,29 @@ struct CaveState : public State {
 };
 
 struct DayEndArg : public StateArg {
-	DayEndArg(u16 p1)
-	    : mEndType(p1)
+	DayEndArg(u16 endType)
+	    : mEndType(endType)
 	{
 	}
 
-	u16 mEndType;
+	u16 mEndType; // _00
 };
 
 /**
  * @size{0x20}
  */
 struct DayEndState : public State {
+	enum DayEndType {
+		DETYPE_Normal       = 0,
+		DETYPE_PikminZero   = 1,
+		DETYPE_CaptainsDown = 2,
+	};
+
+	enum DayEndStatus {
+		DESTATE_PlayCutscene = 0, // before/during cutscene; plays cutscene
+		DESTATE_Cleanup      = 1, // after cutscene; cleans up data, advances day, triggers day end results
+	};
+
 	inline DayEndState()
 	    : State(SGS_DayEnd)
 	{

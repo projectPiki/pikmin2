@@ -90,7 +90,7 @@ void GameState::init(SingleGameSection* game, StateArg* arg)
 
 	switch (startType) {
 	case Start_EndDay: {
-		DayEndArg dayEndArg(2);
+		DayEndArg dayEndArg(DayEndState::DETYPE_CaptainsDown);
 		transit(game, SGS_DayEnd, &dayEndArg);
 		return;
 	} break;
@@ -488,7 +488,7 @@ void GameState::exec(SingleGameSection* game)
 		gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 		gameSystem->setMoviePause(false, "sm-ugot");
 		gameSystem->setPause(false, "sm-ugot", 3);
-		DayEndArg arg(0);
+		DayEndArg arg(DayEndState::DETYPE_Normal);
 		transit(game, SGS_DayEnd, &arg);
 		return;
 	case 3:
@@ -521,7 +521,7 @@ void GameState::exec(SingleGameSection* game)
 	if (!gameSystem->paused_soft() && !gameSystem->isFlag(GAMESYS_DisablePause) && gameSystem->mTimeMgr->isDayOver()
 	    && !game->mOpenMenuFlags && gameSystem->isFlag(GAMESYS_IsGameWorldActive)) {
 		gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
-		DayEndArg arg(0);
+		DayEndArg arg(DayEndState::DETYPE_Normal);
 		transit(game, SGS_DayEnd, &arg);
 		return;
 	}
@@ -661,7 +661,7 @@ void GameState::onMovieDone(SingleGameSection* game, MovieConfig* config, u32, u
 
 	// End day after first treasure day end cutscene
 	if (config->is("x07_first_recovery")) {
-		DayEndArg arg(0);
+		DayEndArg arg(DayEndState::DETYPE_Normal);
 		transit(game, SGS_DayEnd, &arg);
 		return;
 	}
@@ -703,7 +703,7 @@ void GameState::onMovieDone(SingleGameSection* game, MovieConfig* config, u32, u
 		if (repay && playData->getRepayLevel() == 9) {
 			startRepayDemo();
 		} else {
-			DayEndArg arg(0);
+			DayEndArg arg(DayEndState::DETYPE_Normal);
 			transit(game, SGS_DayEnd, &arg);
 		}
 		return;
@@ -863,7 +863,7 @@ void GameState::onMovieDone(SingleGameSection* game, MovieConfig* config, u32, u
 			}
 		} else {
 			gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
-			DayEndArg arg(2);
+			DayEndArg arg(DayEndState::DETYPE_CaptainsDown);
 			transit(game, SGS_DayEnd, &arg);
 		}
 		return;
@@ -872,7 +872,7 @@ void GameState::onMovieDone(SingleGameSection* game, MovieConfig* config, u32, u
 	if (config->is("s05_pikminzero")) {
 		Screen::gGame2DMgr->close_GameOver();
 		gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
-		DayEndArg arg(1);
+		DayEndArg arg(DayEndState::DETYPE_PikminZero);
 		transit(game, SGS_DayEnd, &arg);
 		return;
 	}

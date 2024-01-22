@@ -199,7 +199,7 @@ void PikiMgr::load(int modelFlag)
 	for (int i = 0; i < 5; i++) {
 		J3DModelData* model = mHappaModel[i];
 		model->newSharedDisplayList(0x40000);
-		model->simpleCalcMaterial(0, j3dDefaultMtx);
+		model->simpleCalcMaterial(0, *(Mtx*)j3dDefaultMtx);
 		model->makeSharedDL();
 	}
 }

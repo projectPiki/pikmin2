@@ -598,14 +598,14 @@ void CaveState::onMovieCommand(SingleGameSection* game, int command)
 
 	KindCounter& counter = mem->mOtakara;
 	for (int i = 0; i < counter.mNumKinds; i++) {
-		if ((*counter(i))) {
-			lost += *counter(i);
+		if ((counter(i))) {
+			lost += counter(i);
 		}
 	}
 	KindCounter& counter2 = mem->mItem;
 	for (int i = 0; i < counter2.mNumKinds; i++) {
-		if ((*counter2(i))) {
-			lost += *counter2(i);
+		if ((counter2(i))) {
+			lost += counter2(i);
 		}
 	}
 
@@ -624,37 +624,37 @@ void CaveState::onMovieCommand(SingleGameSection* game, int command)
 		KindCounter& counter  = mem->mOtakara;
 		for (int i = 0; i < counter.mNumKinds; i++) {
 			int j = 0;
-			for (int k = 0; k < *counter(i); k++) {
+			for (int k = 0; k < counter(i); k++) {
 				pelmgr->getPelletConfig(i);
 				if (randFloat() <= calc / (f32)lost) {
 					pelmgr->getPelletConfig(i);
 					playData->losePellet(pelmgr, i);
-					*(game->mOtakaraCounter(i)) += 1;
+					(game->mOtakaraCounter(i)) += 1;
 					j++;
 					calc -= 1.0f;
 				}
 				lost--;
 			}
-			u8* flag = counter(i);
-			*flag -= j;
+			// u8* flag = counter(i);
+			counter(i) -= j;
 		}
 
 		pelmgr                = PelletItem::mgr;
 		KindCounter& counter3 = mem->mItem;
 		for (int i = 0; i < counter3.mNumKinds; i++) {
 			int j = 0;
-			for (int k = 0; k < *counter3(i); k++) {
+			for (int k = 0; k < counter3(i); k++) {
 				pelmgr->getPelletConfig(i);
 				if (randFloat() <= calc / (f32)lost) {
 					pelmgr->getPelletConfig(i);
-					*(game->mItemCounter(i)) += 1;
+					(game->mItemCounter(i)) += 1;
 					playData->losePellet(pelmgr, i);
 					j++;
 					calc -= 1.0f;
 				}
 				lost--;
 			}
-			*(counter3(i)) -= j;
+			(counter3(i)) -= j;
 		}
 	}
 

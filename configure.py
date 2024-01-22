@@ -1016,7 +1016,7 @@ LIBS = [
             ["plugProjectKandoU/aiRescue", True],
             ["plugProjectKandoU/baseGameSectionDraw", True],
             ["plugProjectKandoU/singleGS_Load", True],
-            ["plugProjectKandoU/singleGS_DayEnd", False],
+            ["plugProjectKandoU/singleGS_DayEnd", True],
             ["plugProjectKandoU/baseGameSectionKantei", False],
             ["plugProjectKandoU/sweepPrune", True],
             ["plugProjectKandoU/texCaster", False],

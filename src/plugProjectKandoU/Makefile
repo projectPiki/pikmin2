@@ -127,7 +127,7 @@ KANDO_FILES:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/aiRescue.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/baseGameSectionDraw.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/singleGS_Load.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_DayEnd.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/singleGS_DayEnd.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/baseGameSectionKantei.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/sweepPrune.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/texCaster.o\

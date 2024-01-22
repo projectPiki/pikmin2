@@ -56,9 +56,10 @@ typedef enum EPikiKind {
 } EPikiKind;
 
 typedef enum EPikiHappa {
-	Leaf   = 0,
-	Bud    = 1,
-	Flower = 2,
+	Leaf          = 0,
+	Bud           = 1,
+	Flower        = 2,
+	MaxHappaStage = Flower,
 	PikiGrowthStageCount,
 
 	Bud_Red    = 3,

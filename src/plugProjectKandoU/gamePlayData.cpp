@@ -82,14 +82,14 @@ void KindCounter::addTo(KindCounter& other)
  * @note Address: 0x801E5400
  * @note Size: 0x78
  */
-u8* KindCounter::operator()(int index)
+u8& KindCounter::operator()(int index)
 {
 	bool isValidIndex = false;
 	if (0 <= index && index < mNumKinds) {
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(330, isValidIndex);
-	return &mKinds[index];
+	return mKinds[index];
 }
 
 /**
@@ -374,24 +374,24 @@ bool PelletFirstMemory::firstCarryPellet(Pellet* pellet)
 	if (pellet->getKind() == PELTYPE_TREASURE) {
 		int id = pellet->getConfigIndex();
 
-		if (!(*mOtakara(id) & 2)) {
-			*mOtakara(id) |= 2;
+		if (!(mOtakara(id) & 2)) {
+			mOtakara(id) |= 2;
 			pellet->getConfigName();
 			return true;
 		}
 
 	} else if (pellet->getKind() == PELTYPE_UPGRADE) {
 		int id = pellet->getConfigIndex();
-		if (!(*mItem(id) & 2)) {
-			*mItem(id) |= 2;
+		if (!(mItem(id) & 2)) {
+			mItem(id) |= 2;
 			pellet->getConfigName();
 			return true;
 		}
 
 	} else if (pellet->getKind() == PELTYPE_CARCASS) {
 		int id = pellet->getConfigIndex();
-		if (!(*mCarcass(id) & 2)) {
-			*mCarcass(id) |= 2;
+		if (!(mCarcass(id) & 2)) {
+			mCarcass(id) |= 2;
 			pellet->getConfigName();
 			return true;
 		}
@@ -407,11 +407,11 @@ bool PelletFirstMemory::firstCarryPellet(Pellet* pellet)
 void PelletFirstMemory::obtainPellet(BasePelletMgr* mgr, int id)
 {
 	if (mgr->getMgrID() == PELTYPE_TREASURE) {
-		*mOtakara(id) |= 2;
+		mOtakara(id) |= 2;
 		mgr->getPelletConfig(id);
 
 	} else if (mgr->getMgrID() == PELTYPE_UPGRADE) {
-		*mItem(id) |= 2;
+		mItem(id) |= 2;
 		mgr->getPelletConfig(id);
 
 	} else {
@@ -426,11 +426,11 @@ void PelletFirstMemory::obtainPellet(BasePelletMgr* mgr, int id)
 void PelletFirstMemory::losePellet(Game::BasePelletMgr* mgr, int id)
 {
 	if (mgr->getMgrID() == PELTYPE_TREASURE) {
-		*mOtakara(id) &= ~0x2;
+		mOtakara(id) &= ~0x2;
 		mgr->getPelletConfig(id);
 
 	} else if (mgr->getMgrID() == PELTYPE_UPGRADE) {
-		*mItem(id) &= ~0x2;
+		mItem(id) &= ~0x2;
 		mgr->getPelletConfig(id);
 
 	} else {
@@ -1136,44 +1136,6 @@ void PlayData::setContainer(int pikminColor)
 	}
 	P2ASSERTLINE(1024, isValidIndex);
 	mHasContainerFlags |= (1 << pikminColor);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	blt      lbl_801E71AC
-	cmpwi    r31, 5
-	bge      lbl_801E71AC
-	li       r0, 1
-
-lbl_801E71AC:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_801E71D0
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x400
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E71D0:
-	li       r0, 1
-	lbz      r3, 0x2c(r30)
-	slw      r0, r0, r31
-	or       r0, r3, r0
-	stb      r0, 0x2c(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -1350,21 +1312,21 @@ void PlayData::obtainPellet_Main(Game::Pellet* pellet)
 	PelletCropMemory* mem = mMainCropMemory;
 	if (pellet->getKind() == PELTYPE_TREASURE) {
 		int id = pellet->getConfigIndex();
-		(*mem->mOtakara(id))++;
+		(mem->mOtakara(id))++;
 		pellet->getConfigName();
-		(*mem->mOtakara(id));
+		(mem->mOtakara(id));
 
 	} else if (pellet->getKind() == PELTYPE_UPGRADE) {
 		int id = pellet->getConfigIndex();
-		(*mem->mItem(id))++;
+		(mem->mItem(id))++;
 		pellet->getConfigName();
-		(*mem->mItem(id));
+		(mem->mItem(id));
 
 	} else if (pellet->getKind() == PELTYPE_CARCASS) {
 		int id = pellet->getConfigIndex();
-		(*mem->mCarcass(id))++;
+		(mem->mCarcass(id))++;
 		pellet->getConfigName();
-		(*mem->mCarcass(id));
+		(mem->mCarcass(id));
 	}
 
 	BasePelletMgr* mgr = 0;
@@ -1389,21 +1351,21 @@ void PlayData::obtainPellet_Cave(Game::Pellet* pellet)
 	PelletCropMemory* mem = mCaveCropMemory;
 	if (pellet->getKind() == PELTYPE_TREASURE) {
 		int id = pellet->getConfigIndex();
-		(*mem->mOtakara(id))++;
+		(mem->mOtakara(id))++;
 		pellet->getConfigName();
-		(*mem->mOtakara(id));
+		(mem->mOtakara(id));
 
 	} else if (pellet->getKind() == PELTYPE_UPGRADE) {
 		int id = pellet->getConfigIndex();
-		(*mem->mItem(id))++;
+		(mem->mItem(id))++;
 		pellet->getConfigName();
-		(*mem->mItem(id));
+		(mem->mItem(id));
 
 	} else if (pellet->getKind() == PELTYPE_CARCASS) {
 		int id = pellet->getConfigIndex();
-		(*mem->mCarcass(id))++;
+		(mem->mCarcass(id))++;
 		pellet->getConfigName();
-		(*mem->mCarcass(id));
+		(mem->mCarcass(id));
 	}
 }
 
@@ -1426,11 +1388,11 @@ void PlayData::confirmCaveCropMemory() { }
 bool PlayData::isPelletEverGot(u8 type, u8 id)
 {
 	if (type == PELTYPE_UPGRADE) {
-		int itemID = *mZukanStat->mItem(id);
+		int itemID = mZukanStat->mItem(id);
 		return itemID > 0;
 	}
 	if (type == PELTYPE_TREASURE) {
-		int treasureID = *mZukanStat->mOtakara(id);
+		int treasureID = mZukanStat->mOtakara(id);
 		return treasureID > 0;
 	}
 	JUT_PANICLINE(1406, "otakara or item !");
@@ -1446,7 +1408,7 @@ bool PlayData::isPelletZukanVisible(int id)
 	PelletConfig* config   = list->getPelletConfig_ByDictionaryNo(id);
 	if (config) {
 		int index = config->mParams.mIndex;
-		if (IS_FLAG(*mZukanStat->mOtakara(index), 2)) {
+		if (IS_FLAG(mZukanStat->mOtakara(index), 2)) {
 			return true;
 		}
 	} else {
@@ -1454,7 +1416,7 @@ bool PlayData::isPelletZukanVisible(int id)
 		config = list->getPelletConfig_ByDictionaryNo(id);
 		if (config) {
 			int index = config->mParams.mIndex;
-			if (IS_FLAG(*mZukanStat->mItem(index), 2)) {
+			if (IS_FLAG(mZukanStat->mItem(index), 2)) {
 				return true;
 			}
 		}
@@ -1472,7 +1434,7 @@ bool PlayData::isPelletZukanWhatsNew(int id)
 	PelletConfig* config   = list->getPelletConfig_ByDictionaryNo(id);
 	if (config) {
 		int index = config->mParams.mIndex;
-		u8 kinds  = *mZukanStat->mOtakara(index);
+		u8 kinds  = mZukanStat->mOtakara(index);
 		if (kinds & 2 && !(kinds & 4)) {
 			return true;
 		}
@@ -1481,7 +1443,7 @@ bool PlayData::isPelletZukanWhatsNew(int id)
 		config = list->getPelletConfig_ByDictionaryNo(id);
 		if (config) {
 			int index = config->mParams.mIndex;
-			u8 kinds  = *mZukanStat->mItem(index);
+			u8 kinds  = mZukanStat->mItem(index);
 			if (kinds & 2 && !(kinds & 4)) {
 				return true;
 			}
@@ -1498,16 +1460,16 @@ bool PlayData::hasPelletZukanWhatsNew()
 {
 	PelletFirstMemory* zukanStat = getZukanStat();
 	for (int i = 0; i < zukanStat->mOtakara.mNumKinds; i++) {
-		u8 kinds = *zukanStat->mOtakara(i);
-		if (kinds && !(IS_FLAG(*zukanStat->mOtakara(i), 4)))
+		u8 kinds = zukanStat->mOtakara(i);
+		if (kinds && !(IS_FLAG(zukanStat->mOtakara(i), 4)))
 			return true;
 	}
 
 	PelletFirstMemory* zukanStat2 = getZukanStat();
 	for (int i = 0; i < zukanStat2->mItem.mNumKinds; i++) {
 
-		u8 kinds = *zukanStat2->mItem(i);
-		if (kinds && !(IS_FLAG(*zukanStat2->mItem(i), 4)))
+		u8 kinds = zukanStat2->mItem(i);
+		if (kinds && !(IS_FLAG(zukanStat2->mItem(i), 4)))
 			return true;
 	}
 	return false;
@@ -1521,17 +1483,17 @@ void PlayData::setPelletZukanOutOfDateAll()
 {
 	PelletFirstMemory* zukanStat = getZukanStat();
 	for (int i = 0; i < zukanStat->mOtakara.mNumKinds; i++) {
-		u8 kinds = *zukanStat->mOtakara(i);
+		u8 kinds = zukanStat->mOtakara(i);
 		if (kinds) {
-			SET_FLAG(*zukanStat->mOtakara(i), 4);
+			SET_FLAG(zukanStat->mOtakara(i), 4);
 		}
 	}
 
 	PelletFirstMemory* zukanStat2 = getZukanStat();
 	for (int i = 0; i < zukanStat2->mItem.mNumKinds; i++) {
-		u8 kinds = *zukanStat2->mItem(i);
+		u8 kinds = zukanStat2->mItem(i);
 		if (kinds) {
-			SET_FLAG(*zukanStat2->mItem(i), 4);
+			SET_FLAG(zukanStat2->mItem(i), 4);
 		}
 	}
 }

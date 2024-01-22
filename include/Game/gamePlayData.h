@@ -120,7 +120,7 @@ struct KindCounter {
 
 	void alloc(int);
 	void clear();
-	u8* operator()(int);
+	u8& operator()(int);
 	bool completeAll();
 	int getEarnKinds();
 
@@ -135,7 +135,7 @@ struct KindCounter {
 	{
 		int ret = 0;
 		for (int i = 0; i < mNumKinds; i++) {
-			ret += *operator()(i);
+			ret += operator()(i);
 		}
 		return ret;
 	}
