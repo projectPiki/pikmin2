@@ -33,6 +33,8 @@ struct SeqTrackBase {
 
 	TaskEntryMgr* getTaskEntryList();
 
+	inline void removeEntry() { getTaskEntryList()->removeAllEntry(); }
+
 	TaskEntryMgr mTaskEntryMgr; // _04
 };
 

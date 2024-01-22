@@ -1375,7 +1375,7 @@ LIBS = [
             ["plugProjectHikinoU/PSSeBase", True],
             ["plugProjectHikinoU/PSScene", True],
             ["plugProjectHikinoU/PSBgmTrack", True],
-            ["plugProjectHikinoU/PSDirector", False],
+            ["plugProjectHikinoU/PSDirector", True],
         ],
     },
     {

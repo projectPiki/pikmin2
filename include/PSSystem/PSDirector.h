@@ -134,13 +134,6 @@ struct DirectorMgrBase : public JADHioNode {
 	void lock();
 	void unlock();
 
-	inline void powerOff()
-	{
-		for (u8 i = 0; i < mDirectorCount; i++) {
-			mDirectors[i]->powerOff();
-		}
-	}
-
 	inline DirectorBase* getDirector(u8 id)
 	{
 		P2ASSERTLINE(181, id < mDirectorCount);

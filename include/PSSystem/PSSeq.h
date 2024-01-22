@@ -68,19 +68,6 @@ struct DirectedBgm : public BgmSeq {
 		P2ASSERTLINE(415, check);
 	}
 
-	inline void removeAllChildren()
-	{
-		assertValidTrack();
-		mRootTrack->getTaskEntryList()->removeAllEntry();
-		for (u8 i = 0; i < 16; i++) {
-			int count = i;
-			P2ASSERTLINE(419, count < 16);
-			if (mChildTracks[count]) {
-				mChildTracks[count]->getTaskEntryList()->removeAllEntry();
-			}
-		}
-	}
-
 	inline SeqTrackChild* getChildTrack(int i)
 	{
 		P2ASSERTLINE(419, i < 16);

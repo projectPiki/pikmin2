@@ -12,7 +12,7 @@ HIKINO_FILES:=\
 	$(BUILD_DIR)/src/plugProjectHikinoU/PSSeBase.o\
 	$(BUILD_DIR)/src/plugProjectHikinoU/PSScene.o\
 	$(BUILD_DIR)/src/plugProjectHikinoU/PSBgmTrack.o\
-	$(BUILD_DIR)/asm/plugProjectHikinoU/PSDirector.o\
+	$(BUILD_DIR)/src/plugProjectHikinoU/PSDirector.o\
 
 $(HIKINO_FILES): CFLAGS += -sym on
 
