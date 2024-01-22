@@ -204,48 +204,51 @@ void MainResultState::createResultNodes()
 {
 	JKRHeap* backup = JKRGetCurrentHeap();
 	mMainHeap->becomeCurrentHeap();
-	PelletCropMemory* mem = playData->mMainCropMemory;
-
 	PelletItem::Mgr* itemMgr = PelletItem::mgr;
-	KindCounter& counter     = mem->getItem();
+	PelletCropMemory* mem    = playData->mMainCropMemory;
+	KindCounter& counter     = mem->mItem;
 	for (int i = 0; i < counter.getNumKinds(); i++) {
-		if (*counter(i)) {
+		if (counter(i)) {
+			int money;
 			PelletConfig* config = itemMgr->getPelletConfig(i);
 			int id               = PelletList::Mgr::getOffsetFromDictionaryNo(config->mParams.mDictionary.mData - 1);
 			u64 tag              = Result::TNode::convertByMorimun(id);
 			Result::TNode* node  = new Result::TNode;
-			int money            = config->mParams.mMoney.mData;
-			node->setTNode(tag, mResultTex.getItemTexture(i), *counter(i), money * *counter(i), money);
+			money                = config->mParams.mMoney.mData;
+			node->setTNode(tag, mResultTex.getItemTexture(i), counter(i), money * counter(i), money);
 			mResultNode.add(node);
-			playData->mTreasureCount += *counter(i);
+			playData->mTreasureCount += counter(i);
 		}
 	}
 
+	KindCounter& counter2      = mem->mOtakara;
+	int i                      = 0;
 	PelletOtakara::Mgr* otaMgr = PelletOtakara::mgr;
-	KindCounter& counter2      = mem->getOtakara();
-	for (int i = 0; i < counter2.getNumKinds(); i++) {
-		if (*counter2(i)) {
+	for (i = 0; i < counter2.getNumKinds(); i++) {
+		if (counter2(i)) {
 			PelletConfig* config = otaMgr->getPelletConfig(i);
 			int id               = PelletList::Mgr::getOffsetFromDictionaryNo(config->mParams.mDictionary.mData - 1);
 			u64 tag              = Result::TNode::convertByMorimun(id);
 			Result::TNode* node  = new Result::TNode;
 			int money            = config->mParams.mMoney.mData;
-			node->setTNode(tag, mResultTex.getOtakaraTexture(i), *counter2(i), money * *counter2(i), money);
+			node->setTNode(tag, mResultTex.getOtakaraTexture(i), counter2(i), money * counter2(i), money);
 			mResultNode.add(node);
-			playData->mTreasureCount += *counter2(i);
+			playData->mTreasureCount += counter2(i);
 		}
 	}
 
+	KindCounter& counter3          = mem->mCarcass;
+	int j                          = 0;
 	PelletCarcass::Mgr* carcassMgr = PelletCarcass::mgr;
-	KindCounter& counter3          = mem->getCarcass();
 	int money                      = 0;
 	int num                        = 0;
-	for (int i = 0; i < counter3.getNumKinds(); i++) {
-		if (*counter3(i)) {
-			PelletConfig* config = carcassMgr->getPelletConfig(i);
-			num += *counter3(i);
-			int cValue = config->mParams.mMoney.mData;
-			money += *counter3(i) * cValue;
+	for (j = 0; j < counter3.getNumKinds(); j++) {
+		if (counter3(j)) {
+			PelletConfig* config = carcassMgr->getPelletConfig(j);
+			num += counter3(j);
+			int cValue     = config->mParams.mMoney.mData;
+			int counterVal = counter3(j);
+			money += counterVal * cValue;
 		}
 	}
 
@@ -261,251 +264,6 @@ void MainResultState::createResultNodes()
 	_1C   = 0;
 	Screen::gGame2DMgr->setGamePad(mControl);
 	backup->becomeCurrentHeap();
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stmw     r20, 0x10(r1)
-	mr       r31, r3
-	lwz      r30, sCurrentHeap__7JKRHeap@sda21(r13)
-	lwz      r3, 0xc0(r3)
-	bl       becomeCurrentHeap__7JKRHeapFv
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r26, 0
-	lwz      r29, mgr__Q24Game10PelletItem@sda21(r13)
-	lwz      r28, 0xb4(r3)
-	addi     r27, r28, 0xc
-	b        lbl_8021A7D8
-
-lbl_8021A6F8:
-	mr       r3, r27
-	mr       r4, r26
-	bl       __cl__Q24Game11KindCounterFi
-	lbz      r0, 0(r3)
-	cmplwi   r0, 0
-	beq      lbl_8021A7D4
-	mr       r3, r29
-	mr       r4, r26
-	bl       getPelletConfig__Q24Game13BasePelletMgrFi
-	mr       r24, r3
-	lhz      r3, 0x254(r3)
-	addi     r3, r3, -1
-	bl       getOffsetFromDictionaryNo__Q34Game10PelletList3MgrFi
-	bl       convertByMorimun__Q34Game6Result5TNodeFi
-	mr       r0, r3
-	mr       r20, r4
-	li       r3, 0x50
-	mr       r21, r0
-	bl       __nw__FUl
-	or.      r23, r3, r3
-	beq      lbl_8021A754
-	bl       __ct__Q34Game6Result5TNodeFv
-	mr       r23, r3
-
-lbl_8021A754:
-	lwz      r22, 0x170(r24)
-	mr       r3, r27
-	mr       r4, r26
-	bl       __cl__Q24Game11KindCounterFi
-	lbz      r0, 0(r3)
-	mr       r3, r27
-	mr       r4, r26
-	mullw    r25, r22, r0
-	bl       __cl__Q24Game11KindCounterFi
-	lbz      r24, 0(r3)
-	mr       r4, r26
-	addi     r3, r31, 0x24
-	bl       getItemTexture__Q34Game12ResultTexMgr3MgrFi
-	mr       r7, r3
-	mr       r3, r23
-	mr       r6, r20
-	mr       r5, r21
-	mr       r8, r24
-	mr       r9, r25
-	mr       r10, r22
-	bl       setTNode__Q34Game6Result5TNodeFUxP10JUTTextureiii
-	mr       r4, r23
-	addi     r3, r31, 0x68
-	bl       add__Q24Game5DNodeFPQ24Game5DNode
-	mr       r3, r27
-	mr       r4, r26
-	bl       __cl__Q24Game11KindCounterFi
-	lwz      r4, playData__4Game@sda21(r13)
-	lbz      r3, 0(r3)
-	lwz      r0, 0xbc(r4)
-	add      r0, r0, r3
-	stw      r0, 0xbc(r4)
-
-lbl_8021A7D4:
-	addi     r26, r26, 1
-
-lbl_8021A7D8:
-	lhz      r0, 0(r27)
-	cmpw     r26, r0
-	blt      lbl_8021A6F8
-	lwz      r29, mgr__Q24Game13PelletOtakara@sda21(r13)
-	addi     r26, r28, 4
-	li       r27, 0
-	b        lbl_8021A8D4
-
-lbl_8021A7F4:
-	mr       r3, r26
-	mr       r4, r27
-	bl       __cl__Q24Game11KindCounterFi
-	lbz      r0, 0(r3)
-	cmplwi   r0, 0
-	beq      lbl_8021A8D0
-	mr       r3, r29
-	mr       r4, r27
-	bl       getPelletConfig__Q24Game13BasePelletMgrFi
-	mr       r24, r3
-	lhz      r3, 0x254(r3)
-	addi     r3, r3, -1
-	bl       getOffsetFromDictionaryNo__Q34Game10PelletList3MgrFi
-	bl       convertByMorimun__Q34Game6Result5TNodeFi
-	mr       r0, r3
-	mr       r21, r4
-	li       r3, 0x50
-	mr       r20, r0
-	bl       __nw__FUl
-	or.      r23, r3, r3
-	beq      lbl_8021A850
-	bl       __ct__Q34Game6Result5TNodeFv
-	mr       r23, r3
-
-lbl_8021A850:
-	lwz      r22, 0x170(r24)
-	mr       r3, r26
-	mr       r4, r27
-	bl       __cl__Q24Game11KindCounterFi
-	lbz      r0, 0(r3)
-	mr       r3, r26
-	mr       r4, r27
-	mullw    r24, r22, r0
-	bl       __cl__Q24Game11KindCounterFi
-	lbz      r25, 0(r3)
-	mr       r4, r27
-	addi     r3, r31, 0x24
-	bl       getOtakaraTexture__Q34Game12ResultTexMgr3MgrFi
-	mr       r7, r3
-	mr       r3, r23
-	mr       r6, r21
-	mr       r5, r20
-	mr       r8, r25
-	mr       r9, r24
-	mr       r10, r22
-	bl       setTNode__Q34Game6Result5TNodeFUxP10JUTTextureiii
-	mr       r4, r23
-	addi     r3, r31, 0x68
-	bl       add__Q24Game5DNodeFPQ24Game5DNode
-	mr       r3, r26
-	mr       r4, r27
-	bl       __cl__Q24Game11KindCounterFi
-	lwz      r4, playData__4Game@sda21(r13)
-	lbz      r3, 0(r3)
-	lwz      r0, 0xbc(r4)
-	add      r0, r0, r3
-	stw      r0, 0xbc(r4)
-
-lbl_8021A8D0:
-	addi     r27, r27, 1
-
-lbl_8021A8D4:
-	lhz      r0, 0(r26)
-	cmpw     r27, r0
-	blt      lbl_8021A7F4
-	lwz      r22, mgr__Q24Game13PelletCarcass@sda21(r13)
-	addi     r20, r28, 0x14
-	li       r26, 0
-	li       r27, 0
-	li       r21, 0
-	b        lbl_8021A954
-
-lbl_8021A8F8:
-	mr       r3, r20
-	mr       r4, r21
-	bl       __cl__Q24Game11KindCounterFi
-	lbz      r0, 0(r3)
-	cmplwi   r0, 0
-	beq      lbl_8021A950
-	mr       r3, r22
-	mr       r4, r21
-	bl       getPelletConfig__Q24Game13BasePelletMgrFi
-	mr       r28, r3
-	mr       r3, r20
-	mr       r4, r21
-	bl       __cl__Q24Game11KindCounterFi
-	lbz      r0, 0(r3)
-	mr       r3, r20
-	lwz      r23, 0x170(r28)
-	mr       r4, r21
-	add      r27, r27, r0
-	bl       __cl__Q24Game11KindCounterFi
-	lbz      r0, 0(r3)
-	mullw    r0, r0, r23
-	add      r26, r26, r0
-
-lbl_8021A950:
-	addi     r21, r21, 1
-
-lbl_8021A954:
-	lhz      r0, 0(r20)
-	cmpw     r21, r0
-	blt      lbl_8021A8F8
-	cmpwi    r27, 0
-	ble      lbl_8021A9C4
-	lwz      r4, playData__4Game@sda21(r13)
-	li       r3, 0x50
-	lwz      r0, 0xbc(r4)
-	add      r0, r0, r27
-	stw      r0, 0xbc(r4)
-	bl       __nw__FUl
-	or.      r23, r3, r3
-	beq      lbl_8021A990
-	bl       __ct__Q34Game6Result5TNodeFv
-	mr       r23, r3
-
-lbl_8021A990:
-	addi     r3, r31, 0x24
-	bl       getCarcassTexture__Q34Game12ResultTexMgr3MgrFv
-	mr       r7, r3
-	mr       r3, r23
-	mr       r8, r27
-	mr       r9, r26
-	li       r6, 0
-	li       r5, 0
-	li       r10, -1
-	bl       setTNode__Q34Game6Result5TNodeFUxP10JUTTextureiii
-	mr       r4, r23
-	addi     r3, r31, 0x68
-	bl       add__Q24Game5DNodeFPQ24Game5DNode
-
-lbl_8021A9C4:
-	lwz      r3, playData__4Game@sda21(r13)
-	lwz      r3, 0xb4(r3)
-	bl       clear__Q24Game16PelletCropMemoryFv
-	li       r3, 0x74
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8021A9E8
-	bl       __ct__Q32kh6Screen4IncPFv
-	mr       r0, r3
-
-lbl_8021A9E8:
-	stw      r0, 0xb8(r31)
-	li       r0, 0
-	stb      r0, 0x1c(r31)
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	lwz      r4, 0x18(r31)
-	bl       setGamePad__Q26Screen9Game2DMgrFP10Controller
-	mr       r3, r30
-	bl       becomeCurrentHeap__7JKRHeapFv
-	lmw      r20, 0x10(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /**

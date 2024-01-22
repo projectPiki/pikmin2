@@ -87,6 +87,8 @@ struct PrimTagParm : public TagParm {
 	virtual void doRead(Stream&);  // _04
 	virtual void doDump();         // _0C
 
+	inline T& operator()() { return mData; }
+
 	T mData; // _0C
 };
 

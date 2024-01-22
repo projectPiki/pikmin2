@@ -979,7 +979,7 @@ LIBS = [
             ["plugProjectKandoU/aiTeki", True],
             ["plugProjectKandoU/singleGS_MainGame", False],
             ["plugProjectKandoU/singleGS_CaveGame", False],
-            ["plugProjectKandoU/singleGS_MainResult", False],
+            ["plugProjectKandoU/singleGS_MainResult", True],
             ["plugProjectKandoU/singleGS_CaveResult", False],
             ["plugProjectKandoU/singleGS_WorldMap", True],
             ["plugProjectKandoU/singleGS_FileSelect", True],

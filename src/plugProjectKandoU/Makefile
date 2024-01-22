@@ -90,7 +90,7 @@ KANDO_FILES:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/aiTeki.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_MainGame.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_CaveGame.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_MainResult.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/singleGS_MainResult.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_CaveResult.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/singleGS_WorldMap.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/singleGS_FileSelect.o\
