@@ -134,6 +134,10 @@ struct ItemGate : public WorkItem<ItemGate, GateFSM, GateState> {
 
 	inline f32 getGateHealth();
 
+	// unused/inlined:
+	void startDamageMotion();
+	void startDownMotion();
+
 	// _00      = VTBL
 	// _00-_1E0 = FSMItem
 	Mabiki mMabiki;                     // _1EC

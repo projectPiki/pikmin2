@@ -90,25 +90,25 @@ template <typename T>
 struct NodeItemMgr : public BaseItemMgr, public Container<T> {
 	NodeItemMgr(); // weak
 
+	T* birth(); // weak
+
 	// vtable 1
+	virtual void initDependency();                                                           // _38
+	virtual void kill(T*);                                                                   // _A0 (weak)
 	virtual void doAnimation() { mNodeObjectMgr.doAnimation(); }                             // _08 (weak)
 	virtual void doEntry() { mNodeObjectMgr.doEntry(); }                                     // _0C (weak)
 	virtual void doSetView(int viewportNumber) { mNodeObjectMgr.doSetView(viewportNumber); } // _10 (weak)
 	virtual void doViewCalc() { mNodeObjectMgr.doViewCalc(); }                               // _14 (weak)
 	virtual void doSimulation(f32 step) { mNodeObjectMgr.doSimulation(step); }               // _18 (weak)
 	virtual void doDirectDraw(Graphics& gfx) { mNodeObjectMgr.doDirectDraw(gfx); }           // _1C (weak)
-	virtual void initDependency();                                                           // _38
-	virtual void killAll();                                                                  // _3C
 
 	// vtable 2
-	virtual void kill(T*);                                                   // _A0 (weak)
 	virtual T* get(void* idx) { return mNodeObjectMgr.get(idx); }            // _A4 (weak)
 	virtual void* getNext(void* idx) { return mNodeObjectMgr.getNext(idx); } // _A8 (weak)
 	virtual void* getStart() { return mNodeObjectMgr.getStart(); }           // _AC (weak)
 	virtual void* getEnd() { return mNodeObjectMgr.getEnd(); }               // _B0 (weak)
+	virtual void killAll();                                                  // _3C
 	virtual ~NodeItemMgr() { }                                               // _B4 (weak)
-
-	T* birth(); // weak
 
 	void entry(T* item);
 
@@ -278,6 +278,18 @@ void NodeItemMgr<T>::initDependency()
 {
 	Iterator<T> iter(&mNodeObjectMgr);
 	CI_LOOP(iter) { (*iter)->initDependency(); }
+}
+
+template <typename T>
+T* NodeItemMgr<T>::birth()
+{
+	T* item              = new T;
+	item->mNodeItemMgr   = this;
+	TObjectNode<T>* node = new TObjectNode<T>;
+	node->mContents      = item;
+	mNodeObjectMgr.mNode.add(node);
+	node->mContents->constructor();
+	return item;
 }
 
 template <typename T>

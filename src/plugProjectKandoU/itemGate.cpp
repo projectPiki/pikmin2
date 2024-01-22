@@ -251,6 +251,34 @@ void ItemGate::initMotion()
 }
 
 /**
+ * @note Address: N/A
+ * @note Size: 0x48
+ */
+void ItemGate::startDamageMotion()
+{
+	mAnimator.startAnim(mSegmentsDown, this);
+	mAnimSpeed = 30.0f;
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x128
+ */
+void ItemGate::startDownMotion()
+{
+	mAnimator.startAnim(mSegmentsDown + 3, this);
+	mAnimSpeed = 30.0f;
+	if (mColor == 0) {
+		efx::TGate1Down gateDown(&mBaseTrMatrix);
+		gateDown.create(nullptr);
+	} else {
+		efx::TGate2Down gateDown(&mBaseTrMatrix);
+		gateDown.create(nullptr);
+	}
+	mMabiki.mBuffer += 200;
+}
+
+/**
  * @note Address: 0x801C80B0
  * @note Size: 0x290
  */
@@ -726,48 +754,6 @@ void ItemGate::getLifeGaugeParam(Game::LifeGaugeParam& param)
 	param.mRadius              = 10.0f;
 	param.mCurHealthPercentage = getGateHealth() / (mMaxSegmentHealth * mMaxSegments);
 	param.mIsGaugeShown        = mLod.mFlags & 4;
-	/*
-	stwu     r1, -0x20(r1)
-	lis      r0, 0x4330
-	lfs      f1, lbl_805195E8@sda21(r2)
-	lfs      f0, 0x19c(r3)
-	stw      r0, 8(r1)
-	lfd      f3, lbl_805195A8@sda21(r2)
-	stfs     f0, 0(r4)
-	lfs      f0, lbl_805195B0@sda21(r2)
-	lfs      f2, 0x1a0(r3)
-	stw      r0, 0x10(r1)
-	stfs     f2, 4(r4)
-	lfs      f2, 0x1a4(r3)
-	stfs     f2, 8(r4)
-	lfs      f2, 4(r4)
-	fadds    f1, f2, f1
-	stfs     f1, 4(r4)
-	stfs     f0, 0x10(r4)
-	lwz      r6, 0x210(r3)
-	lwz      r5, 0x20c(r3)
-	xoris    r0, r6, 0x8000
-	lfs      f4, 0x204(r3)
-	stw      r0, 0x14(r1)
-	subf     r5, r5, r6
-	addi     r0, r5, -1
-	lfs      f1, 0x200(r3)
-	xoris    r0, r0, 0x8000
-	lfd      f0, 0x10(r1)
-	stw      r0, 0xc(r1)
-	fsubs    f0, f0, f3
-	lfd      f2, 8(r1)
-	fsubs    f2, f2, f3
-	fmuls    f0, f4, f0
-	fmadds   f1, f4, f2, f1
-	fdivs    f0, f1, f0
-	stfs     f0, 0xc(r4)
-	lbz      r0, 0xd8(r3)
-	rlwinm   r0, r0, 0x1e, 0x1f, 0x1f
-	stb      r0, 0x14(r4)
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -794,138 +780,6 @@ ItemGateMgr::ItemGateMgr()
 	void* brk = JKRFileLoader::getGlbResource("gate_soft.brk", nullptr);
 	mMatTevRegAnim.attachResource(brk, mModelData[0]);
 	sys->heapStatusEnd("ItemGate");
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	extsh.   r0, r4
-	lis      r4, lbl_80480188@ha
-	stw      r31, 0x1c(r1)
-	addi     r31, r4, lbl_80480188@l
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	beq      lbl_801C89B0
-	addi     r0, r30, 0x88
-	stw      r0, 4(r30)
-
-lbl_801C89B0:
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 1
-	bl       __ct__Q24Game11BaseItemMgrFi
-	lis      r3, __vt__Q24Game11ItemGateMgr@ha
-	addi     r29, r30, 0x30
-	addi     r0, r3, __vt__Q24Game11ItemGateMgr@l
-	stw      r0, 0(r30)
-	mr       r3, r29
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__16GenericContainer@ha
-	lis      r3, "__vt__27Container<Q24Game8ItemGate>"@ha
-	addi     r0, r4, __vt__16GenericContainer@l
-	lis      r5, __vt__16GenericObjectMgr@ha
-	stw      r0, 0(r29)
-	addi     r0, r3, "__vt__27Container<Q24Game8ItemGate>"@l
-	lis      r4, "__vt__27ObjectMgr<Q24Game8ItemGate>"@ha
-	lis      r3, "__vt__31NodeObjectMgr<Q24Game8ItemGate>"@ha
-	stw      r0, 0(r29)
-	li       r0, 0
-	addi     r6, r4, "__vt__27ObjectMgr<Q24Game8ItemGate>"@l
-	addi     r4, r3, "__vt__31NodeObjectMgr<Q24Game8ItemGate>"@l
-	stb      r0, 0x18(r29)
-	addi     r0, r5, __vt__16GenericObjectMgr@l
-	addi     r28, r29, 0x20
-	addi     r5, r6, 0x2c
-	stw      r0, 0x1c(r29)
-	addi     r0, r4, 0x2c
-	mr       r3, r28
-	stw      r6, 0(r29)
-	stw      r5, 0x1c(r29)
-	stw      r4, 0(r29)
-	stw      r0, 0x1c(r29)
-	bl       __ct__5CNodeFv
-	lis      r4, "__vt__29TObjectNode<Q24Game8ItemGate>"@ha
-	addi     r3, r30, 0x74
-	addi     r0, r4, "__vt__29TObjectNode<Q24Game8ItemGate>"@l
-	stw      r0, 0(r28)
-	bl       __ct__Q23Sys18MatTevRegAnimationFv
-	addi     r0, r2, lbl_805195EC@sda21
-	addi     r4, r31, 0x40
-	stw      r0, 8(r30)
-	li       r5, 0
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	addi     r0, r31, 0x4c
-	mr       r3, r30
-	stw      r0, 0x28(r30)
-	li       r4, 1
-	bl       setModelSize__Q24Game11BaseItemMgrFi
-	mr       r3, r30
-	addi     r4, r31, 0x68
-	bl       loadArchive__Q24Game11BaseItemMgrFPc
-	mr       r3, r30
-	addi     r4, r31, 0x78
-	li       r5, 0
-	lis      r6, 0x2000
-	bl       loadBmd__Q24Game11BaseItemMgrFPciUl
-	mr       r3, r30
-	addi     r4, r31, 0x88
-	bl       openTextArc__Q24Game11BaseItemMgrFPc
-	mr       r0, r3
-	mr       r3, r30
-	mr       r29, r0
-	addi     r5, r31, 0x98
-	mr       r4, r29
-	bl       loadAnimMgr__Q24Game11BaseItemMgrFP13JKRFileLoaderPc
-	mr       r3, r30
-	mr       r4, r29
-	addi     r5, r31, 0xa8
-	bl       loadCollision__Q24Game11BaseItemMgrFP13JKRFileLoaderPc
-	mr       r3, r30
-	mr       r4, r29
-	addi     r5, r31, 0xb8
-	bl       loadPlatform__Q24Game11BaseItemMgrFP13JKRFileLoaderPc
-	stw      r3, 0x6c(r30)
-	mr       r3, r30
-	mr       r4, r29
-	addi     r5, r31, 0xc4
-	bl       loadPlatform__Q24Game11BaseItemMgrFP13JKRFileLoaderPc
-	stw      r3, 0x70(r30)
-	mr       r3, r30
-	mr       r4, r29
-	bl       closeTextArc__Q24Game11BaseItemMgrFP10JKRArchive
-	addi     r3, r31, 0xd0
-	li       r4, 1
-	li       r5, 0
-	li       r6, 1
-	bl
-mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection
-	lwz      r3, 0x1c(r30)
-	li       r4, 0
-	lwz      r3, 0(r3)
-	bl       enableMaterialAnim__Q28SysShape5ModelFP12J3DModelDatai
-	addi     r3, r31, 0xf0
-	li       r4, 0
-	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-	lwz      r5, 0x1c(r30)
-	mr       r4, r3
-	addi     r3, r30, 0x74
-	lwz      r5, 0(r5)
-	bl       attachResource__Q23Sys16MatBaseAnimationFPvP12J3DModelData
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r31, 0x40
-	bl       heapStatusEnd__6SystemFPc
-	lwz      r0, 0x24(r1)
-	mr       r3, r30
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -984,137 +838,6 @@ BaseItem* ItemGateMgr::birth()
 	objNode->mContents->constructor();
 	sys->heapStatusEnd("ItemGate");
 	return item;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, lbl_804801C8@ha
-	li       r5, 0
-	stw      r0, 0x24(r1)
-	addi     r4, r4, lbl_804801C8@l
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r29, 0x14(r1)
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	li       r3, 0x284
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_801C90EC
-	li       r4, 0x404
-	bl       __ct__Q24Game8BaseItemFi
-	lis      r3,
-"__vt__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>"@ha
-	li       r0, 0
-	addi     r4, r3,
-"__vt__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>"@l
-	li       r3, 0x1c
-	stw      r4, 0(r31)
-	addi     r4, r4, 0x1b0
-	stw      r4, 0x178(r31)
-	stw      r0, 0x1d8(r31)
-	stw      r0, 0x1dc(r31)
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_801C9030
-	lis      r4, "__vt__Q24Game30StateMachine<Q24Game8ItemGate>"@ha
-	lis      r5, "__vt__Q24Game25ItemFSM<Q24Game8ItemGate>"@ha
-	addi     r0, r4, "__vt__Q24Game30StateMachine<Q24Game8ItemGate>"@l
-	lis      r4, __vt__Q24Game7GateFSM@ha
-	stw      r0, 0(r3)
-	li       r6, -1
-	addi     r5, r5, "__vt__Q24Game25ItemFSM<Q24Game8ItemGate>"@l
-	addi     r0, r4, __vt__Q24Game7GateFSM@l
-	stw      r6, 0x18(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0(r3)
-
-lbl_801C9030:
-	stw      r3, 0x1d8(r31)
-	mr       r4, r31
-	lwz      r3, 0x1d8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lis      r4,
-"__vt__Q24Game60WorkItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>"@ha
-	addi     r3, r31, 0x1e0
-	addi     r4, r4,
-"__vt__Q24Game60WorkItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>"@l
-	stw      r4, 0(r31)
-	addi     r0, r4, 0x1b0
-	stw      r0, 0x178(r31)
-	bl       __ct__Q24Game11TSoundEventFv
-	lis      r3, __vt__Q24Game8ItemGate@ha
-	lis      r4, __ct__5PlaneFv@ha
-	addi     r5, r3, __vt__Q24Game8ItemGate@l
-	li       r6, 0x10
-	stw      r5, 0(r31)
-	addi     r0, r5, 0x1b0
-	addi     r3, r31, 0x224
-	addi     r4, r4, __ct__5PlaneFv@l
-	stw      r0, 0x178(r31)
-	li       r5, 0
-	li       r7, 4
-	bl       __construct_array
-	li       r3, 8
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801C90B0
-	bl       __ct__8CollTreeFv
-	mr       r0, r3
-
-lbl_801C90B0:
-	stw      r0, 0x114(r31)
-	li       r3, 0
-	lfs      f0, lbl_80519590@sda21(r2)
-	li       r0, 3
-	lfs      f1, lbl_80519594@sda21(r2)
-	stfs     f0, 0x1d0(r31)
-	lfs      f0, lbl_80519598@sda21(r2)
-	stfs     f1, 0x200(r31)
-	stfs     f0, 0x208(r31)
-	stw      r3, 0x20c(r31)
-	stw      r0, 0x210(r31)
-	stfs     f1, 0x204(r31)
-	stb      r3, 0x218(r31)
-	stw      r3, 0x21c(r31)
-	stw      r3, 0x220(r31)
-
-lbl_801C90EC:
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r29, r3, r3
-	beq      lbl_801C910C
-	bl       __ct__5CNodeFv
-	lis      r3, "__vt__29TObjectNode<Q24Game8ItemGate>"@ha
-	addi     r0, r3, "__vt__29TObjectNode<Q24Game8ItemGate>"@l
-	stw      r0, 0(r29)
-
-lbl_801C910C:
-	stw      r31, 0x18(r29)
-	mr       r4, r29
-	addi     r3, r30, 0x50
-	bl       add__5CNodeFP5CNode
-	lwz      r3, 0x18(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lis      r4, lbl_804801C8@ha
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r4, lbl_804801C8@l
-	bl       heapStatusEnd__6SystemFPc
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -1247,9 +970,10 @@ void GateWaitState::onKeyEvent(Game::ItemGate*, const SysShape::KeyEvent&) { }
  */
 void GateDamagedState::init(Game::ItemGate* item, Game::StateArg* arg)
 {
-	item->mAnimator.startAnim(item->mSegmentsDown, item);
-	item->mAnimSpeed = 30.0f;
-	mNotInAnim       = false;
+	item->startDamageMotion();
+	// item->mAnimator.startAnim(item->mSegmentsDown, item);
+	// item->mAnimSpeed = 30.0f;
+	mNotInAnim = false;
 }
 
 /**
@@ -1262,12 +986,10 @@ void GateDamagedState::exec(Game::ItemGate* gate)
 	gate->mDamage = 0.0f;
 	if (gate->mCurrentSegmentHealth < 0.0f) {
 		transit(gate, GATESTATE_Down, nullptr);
-	} else {
-		if (mNotInAnim) {
-			if (gate->mDamage > 0.0f) { // flow swap
-				gate->mAnimator.startAnim(gate->mSegmentsDown, gate);
-				gate->mAnimSpeed = 30.0f;
-			}
+	} else if (mNotInAnim) {
+		if (gate->mDamage > 0.0f) { // flow swap
+			gate->mAnimator.startAnim(gate->mSegmentsDown, gate);
+			gate->mAnimSpeed = 30.0f;
 		} else {
 			transit(gate, GATESTATE_Wait, nullptr);
 		}
@@ -1298,16 +1020,7 @@ void GateDamagedState::onKeyEvent(Game::ItemGate*, const SysShape::KeyEvent&) { 
  */
 void GateDownState::init(Game::ItemGate* gate, Game::StateArg* arg)
 {
-	gate->mAnimator.startAnim(gate->mSegmentsDown + 3, gate);
-	gate->mAnimSpeed = 30.0f;
-	if (gate->mColor == 0) {
-		efx::TGate1Down gateDown(&gate->mBaseTrMatrix);
-		gateDown.create(nullptr);
-	} else {
-		efx::TGate2Down gateDown(&gate->mBaseTrMatrix);
-		gateDown.create(nullptr);
-	}
-	gate->mMabiki.mBuffer += 200;
+	gate->startDownMotion();
 	gate->startSound(PSSE_EV_WORK_WALLDOWN);
 	if (gate->mSegmentsDown + 1 == gate->mMaxSegments) {
 		if (gameSystem->isFlag(GAMESYS_IsGameWorldActive) && !playData->isDemoFlag(DEMO_First_Gate_Down)) {
@@ -1370,108 +1083,6 @@ void GateDownState::onKeyEvent(Game::ItemGate* gate, const SysShape::KeyEvent& k
 	} else {
 		transit(gate, GATESTATE_Wait, nullptr);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lwz      r5, 0x20c(r4)
-	addi     r0, r5, 1
-	stw      r0, 0x20c(r4)
-	lfs      f0, 0x204(r4)
-	stfs     f0, 0x200(r4)
-	lwz      r5, 0x20c(r4)
-	lwz      r0, 0x210(r4)
-	cmpw     r5, r0
-	bne      lbl_801C9C8C
-	lwz      r3, 0x1f4(r31)
-	li       r4, 0
-	bl       setCollision__Q24Game12PlatInstanceFb
-	lwz      r3, platMgr__4Game@sda21(r13)
-	lwz      r4, 0x1f4(r31)
-	bl       delInstance__Q24Game7PlatMgrFPQ24Game12PlatInstance
-	mr       r3, r31
-	li       r4, 0
-	lwz      r12, 0(r31)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x1fc(r31)
-	li       r4, 1
-	bl       setOpen__Q24Game8WayPointFb
-	lbz      r0, 0x218(r31)
-	cmplwi   r0, 0
-	beq      lbl_801C9C24
-	lwz      r3, 0x21c(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x220(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801C9C24:
-	addi     r3, r31, 0x1e0
-	bl       finish__Q24Game11TSoundEventFv
-	lwz      r3, 0x17c(r31)
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0xa
-	beq      lbl_801C9C64
-	lis      r3, lbl_804801A0@ha
-	lis      r5, lbl_804801BC@ha
-	addi     r3, r3, lbl_804801A0@l
-	li       r4, 0x3e5
-	addi     r5, r5, lbl_804801BC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801C9C64:
-	lwz      r3, 0x17c(r31)
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x94(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	li       r4, 0x181c
-	li       r5, 0
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	b        lbl_801C9CD0
-
-lbl_801C9C8C:
-	lfs      f1, 0x208(r31)
-	lfs      f0, lbl_80519598@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_801C9CB8
-	lwz      r12, 0(r3)
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_801C9CD0
-
-lbl_801C9CB8:
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801C9CD0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -1480,7 +1091,7 @@ lbl_801C9CD0:
  */
 ItemDengekiGate::Mgr::Mgr()
 {
-	mName = "電撃ゲート"; // electric shock gate
+	mItemName = "電撃ゲート"; // electric shock gate
 	sys->heapStatusStart("ItemDengekiGate", nullptr);
 	mObjectPathComponent = "user/Kando/objects/gates";
 	setModelSize(1);
@@ -1560,44 +1171,6 @@ void ItemDengekiGate::Mgr::generatorWrite(Stream& stream, Game::GenItemParm* par
 	stream.textWriteTab(stream.mTabCount);
 	stream.writeFloat(gateParam->mLife);
 	stream.textWriteText("\t#ライフ\r\n"); // life
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r3, lbl_80480188@ha
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	addi     r31, r3, lbl_80480188@l
-	stw      r30, 0x18(r1)
-	or.      r30, r5, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	bne      lbl_801CA210
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x34
-	li       r4, 0x499
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801CA210:
-	lwz      r4, 0x414(r29)
-	mr       r3, r29
-	bl       textWriteTab__6StreamFi
-	lfs      f1, 4(r30)
-	mr       r3, r29
-	bl       writeFloat__6StreamFf
-	mr       r3, r29
-	addi     r4, r31, 0x124
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -1645,31 +1218,7 @@ char* ItemDengekiGate::Mgr::getCaveName(int outsideCave)
  * @note Address: 0x801CA380
  * @note Size: 0x4C
  */
-int ItemDengekiGate::Mgr::getCaveID(char* cave)
-{
-	return -(strncmp("e-gate", cave, strlen("e-gate")) != 0);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r2, lbl_80519600@sda21
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	bl       strlen
-	mr       r5, r3
-	mr       r4, r31
-	addi     r3, r2, lbl_80519600@sda21
-	bl       strncmp
-	neg      r0, r3
-	or       r0, r0, r3
-	srawi    r3, r0, 0x1f
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+int ItemDengekiGate::Mgr::getCaveID(char* cave) { return -(strncmp("e-gate", cave, strlen("e-gate")) != 0); }
 
 /**
  * @note Address: 0x801CA3CC
