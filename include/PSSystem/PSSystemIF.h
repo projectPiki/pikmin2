@@ -222,20 +222,18 @@ inline PSSystem::SysIF* PSGetSystemIFA()
 
 inline u32 isValidSeType(u32 soundID)
 {
-	// this is wrong, but its stupid either way
-	u32 mode = soundID >> 30;
-	u8 ret   = (soundID >> 12) & 0xF;
-	if (mode == 0) {
-		return ret;
+	// problem here
+	if ((soundID >> 30) == 0) {
+		return (soundID >> 12) & 0xF;
 	}
 
-	if (mode == 2) {
-		JUT_PANICLINE(31, "P2Assert");
-	} else if (mode == 3) {
-		JUT_PANICLINE(35, "P2Assert");
+	if ((soundID >> 30) == 2) {
+		P2ASSERTLINE(31, false);
+	} else {
+		P2ASSERTLINE(35, (soundID >> 30) != 3);
 	}
 
-	JUT_PANICLINE(37, "P2Assert");
+	P2ASSERTLINE(37, false);
 	return 0;
 }
 
