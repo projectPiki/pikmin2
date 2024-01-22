@@ -193,24 +193,24 @@ struct OlimarData {
 	 */
 	static inline int getMapType(bool hasPrototypeDetector, bool hasNapsack)
 	{
+		int mapType;
 		bool flag = false;
 		if (hasPrototypeDetector && hasNapsack) {
 			flag = true;
 		}
 
 		if (flag) {
-			return 3;
+			mapType = 3;
+		} else if (hasPrototypeDetector) {
+			mapType = 1;
+		} else {
+			mapType = 0;
+			if (hasNapsack) {
+				mapType = 2;
+			}
 		}
 
-		if (hasNapsack) {
-			return 1;
-		}
-
-		if (hasPrototypeDetector) {
-			return 0;
-		}
-
-		return 2;
+		return mapType;
 	}
 
 	u8 mFlags[2]; // _00
@@ -469,6 +469,9 @@ struct PlayData : public CNode {
 		mLoadType           = a;
 		mBeforeSaveDelegate = delegate;
 	}
+
+	inline int getPokoCount() const { return mPokoCount; }
+	inline int getCavePokoCount() const { return mCavePokoCount; }
 
 	bool _18;                               // _18
 	u8 mLoadType;                           // _19, see SaveFlags enum
