@@ -118,58 +118,56 @@ SingleGame::State* SingleGame::FSM::getState(int index)
 SingleGame::State* SingleGame::State::accountEarnings(SingleGameSection* game, PelletCropMemory* pelletMem, bool flag)
 {
 	int money;
+
+	// Calculate value of collected Treasures
 	PelletOtakara::Mgr* omgr = PelletOtakara::mgr;
 	KindCounter& ocounter    = pelletMem->mOtakara;
 	for (int i = 0; i < ocounter.getNumKinds(); i++) {
 		PelletConfig* config = omgr->getPelletConfig(i);
 		if (config) {
-			money   = config->mParams.mMoney.mData;
-			int num = money * ocounter(i);
+			money = config->mParams.mMoney();
 			// Increase poko count by quantity of the item * its value
-			playData->mPokoCount += num;
+			playData->addPokos(money * ocounter(i));
 
 			if (ocounter(i)) {
 				playData->obtainPellet(omgr, i);
-				if (flag) {
-					if (!strcmp("yes", config->mParams.mUnique.mData)) {
-						playData->incCaveOtakara(game->mCurrentCourseInfo->mCourseIndex, game->mCaveID);
-					}
+
+				if (flag && !strcmp("yes", config->mParams.mUnique.mData)) {
+					playData->incCaveOtakara(game->mCurrentCourseInfo->mCourseIndex, game->mCaveID);
 				}
 			}
 		}
 	}
 
+	// Calculate value of Enemy Carcasses
 	if (!game->mDoTrackCarcass) {
-		KindCounter& ccounter    = pelletMem->mCarcass;
+		KindCounter& ccounter    = pelletMem->getCarcass();
 		PelletCarcass::Mgr* cmgr = PelletCarcass::mgr;
 		for (int i = 0; i < ccounter.getNumKinds(); i++) {
 			PelletConfig* config = cmgr->getPelletConfig(i);
 			if (config) {
-				int money = config->mParams.mMoney.mData;
-				int num   = money * ccounter(i);
-				// int poko = num * money;
+				money = config->mParams.mMoney();
 				// Increase poko count by quantity of the item * its value
-				playData->mPokoCount += num;
+				playData->addPokos(money * ccounter(i));
 			}
 		}
 	}
 
-	KindCounter& icounter = pelletMem->mItem;
+	// Calculate value of Explorers Kit Items
+	KindCounter& icounter = pelletMem->getItem();
 	PelletItem::Mgr* imgr = PelletItem::mgr;
-	for (int i = 0; i < icounter.getNumKinds(); i++) {
+	for (int i = 0; i < icounter.mNumKinds; i++) {
 		PelletConfig* config = imgr->getPelletConfig(i);
 		if (config) {
-			int money = config->mParams.mMoney.mData;
-			int num   = money * icounter(i);
+			money = config->mParams.mMoney();
 			// Increase poko count by quantity of the item * its value
-			playData->mPokoCount += num;
+			playData->addPokos(money * icounter(i));
 
 			if (icounter(i)) {
 				playData->obtainPellet(imgr, i);
-				if (flag) {
-					if (!strcmp("yes", config->mParams.mUnique.mData)) {
-						playData->incCaveOtakara(game->mCurrentCourseInfo->mCourseIndex, game->mCaveID);
-					}
+
+				if (flag && !strcmp("yes", config->mParams.mUnique.mData)) {
+					playData->incCaveOtakara(game->mCurrentCourseInfo->mCourseIndex, game->mCaveID);
 				}
 			}
 		}
@@ -1099,9 +1097,9 @@ void SingleGameSection::createFallPikmins()
 
 				Vector3f randpos = Vector3f(randDist * sinf(randAngle), randHeight, randDist * cosf(randAngle));
 
-				PikiMgr::mBirthMode = 2;
+				PikiMgr::mBirthMode = PikiMgr::PSM_Replace;
 				Piki* piki          = pikiMgr->birth();
-				PikiMgr::mBirthMode = 0;
+				PikiMgr::mBirthMode = PikiMgr::PSM_Normal;
 				randpos += origin;
 				if (piki) {
 					PikiInitArg arg(PIKISTATE_Tane);
@@ -1228,8 +1226,6 @@ int SingleGameSection::calcOtakaraLevel(f32& dist)
 		Vector3f out;
 		otastate = Radar::mgr->calcNearestTreasure(pos, 900.0f, out, dist);
 		if (otastate == 2) {
-
-			// some dumbness here
 			if (!(1.0f - (dist / 900.0f) < 0.0f)) {
 				return otastate;
 			} else {

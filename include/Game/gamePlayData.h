@@ -131,15 +131,6 @@ struct KindCounter {
 	void copyFrom(KindCounter&);
 	inline void addTo(KindCounter&);
 
-	inline int calcCollectedNum()
-	{
-		int ret = 0;
-		for (int i = 0; i < mNumKinds; i++) {
-			ret += operator()(i);
-		}
-		return ret;
-	}
-
 	inline int getNumKinds() const { return mNumKinds; }
 
 	u16 mNumKinds; // _00
@@ -472,6 +463,8 @@ struct PlayData : public CNode {
 
 	inline int getPokoCount() const { return mPokoCount; }
 	inline int getCavePokoCount() const { return mCavePokoCount; }
+
+	inline void addPokos(int pokos) { mPokoCount += pokos; }
 
 	bool _18;                               // _18
 	u8 mLoadType;                           // _19, see SaveFlags enum
