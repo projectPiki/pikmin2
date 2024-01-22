@@ -81,6 +81,12 @@ struct DirectedBgm : public BgmSeq {
 		}
 	}
 
+	inline SeqTrackChild* getChildTrack(int i)
+	{
+		P2ASSERTLINE(419, i < 16);
+		return mChildTracks[i];
+	}
+
 	// _00-_10  = JSULink<SeqBase>
 	// _10      = VTABLE
 	// _14-_6C  = BgmSeq

@@ -47,8 +47,8 @@ struct AutoBgm : public PSSystem::DirectedBgm {
 
 	void setPikiMaskNum(u8* cond)
 	{
-		int num = 0;
-		for (int i = 0; i < 16; i++) {
+		u8 num = 0;
+		for (u8 i = 0; i < 16; i++) {
 			if (cond[i]) {
 				num++;
 			}

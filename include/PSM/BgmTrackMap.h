@@ -26,7 +26,7 @@ struct BgmTrackMap {
 	inline int getPikNum()
 	{
 		int num = 0;
-		for (int i = 0; i < 16; i++) {
+		for (u8 i = 0; i < 16; i++) {
 			if (mPikNum[i]) {
 				num++;
 			}
@@ -34,12 +34,12 @@ struct BgmTrackMap {
 		return num;
 	}
 
-	inline int getPikMaskNum()
+	inline int getPikMaskFlag()
 	{
-		int num = 0;
-		for (int i = 0; i < 8; i++) {
+		u8 num = 0;
+		for (u8 i = 0; i < 8; i++) {
 			if (mPikMask[i]) {
-				num++;
+				num |= mPikMask[i] << i;
 			}
 		}
 		return num;

@@ -5,7 +5,7 @@
 #include "JSystem/JAudio/JAD/JADHioNode.h"
 #include "JSystem/JAudio/JAS/JASTrack.h"
 #include "PSSystem/PSSeq.h"
-//#include "PSSystem/SeqTrack.h"
+// #include "PSSystem/SeqTrack.h"
 
 namespace PSSystem {
 struct SeqTrackBase;
@@ -37,26 +37,6 @@ struct DirectorBase : public JADHioNode {
 	void powerOff();
 
 	inline u8 getTrackCount() const { return mTrackNum; }
-
-	inline void setupTracks(int startID, int maxID, SeqTrackBase** tracks)
-	{
-		for (u8 i = 0; i < maxID; i++) {
-			int id = i + startID;
-			P2ASSERTLINE(419, id < 16);
-			setTrack(i, tracks[id]);
-		}
-	}
-	// there should only be a single inline judging by the line number, but i have no clue how to handle this condition check
-	inline void setupTracks(int startID, int maxID, SeqTrackBase** tracks, u8* cond)
-	{
-		for (int i = 0; i < maxID; i++) {
-			int id = i + startID;
-			if (cond[i]) {
-				P2ASSERTLINE(419, id < 16);
-			}
-			setTrack(i, tracks[id]);
-		}
-	}
 
 	inline bool needDirection()
 	{

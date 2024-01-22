@@ -73,8 +73,9 @@ struct Mgr : ::PSSystem::SingletonBase<Mgr> {
 
 	inline void setUpdator(::PSSystem::DirectorBase* director)
 	{
-		if (mTypedProc.mLinkCount) {
-			mTypedProc.mBossUpdator = new DirectorUpdator(director, mTypedProc.mLinkCount, DirectorUpdator::TYPE_0);
+		u8 count = mTypedProc.mLinkCount;
+		if (count) {
+			mTypedProc.mDirectorUpdator = new DirectorUpdator(director, count, DirectorUpdator::TYPE_0);
 		}
 	}
 

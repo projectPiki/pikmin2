@@ -157,8 +157,8 @@ struct PikAttackDirector : public TrackOnDirectorBase {
 };
 
 struct ListDirectorActor : public ::PSSystem::DirectorCopyActor, public JSUList<Game::Creature> {
-	ListDirectorActor()
-	    : ::PSSystem::DirectorCopyActor(nullptr, nullptr)
+	ListDirectorActor(PSSystem::DirectorBase* director)
+	    : ::PSSystem::DirectorCopyActor(director, nullptr)
 	{
 	}
 	virtual void onUpdateFromMasterD(); // _0C
@@ -199,6 +199,7 @@ struct TrackOnDirector_Voting : public TrackOnDirectorBase {
 	TrackOnDirector_Voting(int track, const char* name, int p1, int p2)
 	    : TrackOnDirectorBase(track, name, p1, p2)
 	{
+		mVoteState = 0;
 	}
 	virtual ~TrackOnDirector_Voting() { } // _08 (weak)
 	virtual void execInner();             // _1C

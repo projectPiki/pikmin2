@@ -9,6 +9,7 @@
 namespace PSM {
 struct DirectorMgr_Scene : public ::PSSystem::DirectorMgrBase, public JKRDisposer {
 
+	// For caves/overworlds only, Bosses and 2P-battle theme has a seperate manager
 	enum DirectorType {
 		Director_Working   = 0,
 		Director_Treasure  = 1,
