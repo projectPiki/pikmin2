@@ -92,7 +92,7 @@ void PikiMgr::setupPiki(Piki* piki)
 Piki* PikiMgr::birth()
 {
 	switch (mBirthMode) {
-	case 0: {
+	case PikiMgr::PSM_Normal: {
 		int pikiCount   = mActiveCount;
 		int sproutCount = 0;
 		if (ItemPikihead::mgr) {
@@ -104,10 +104,10 @@ Piki* PikiMgr::birth()
 		return nullptr;
 	}
 
-	case 1:
+	case PikiMgr::PSM_Force:
 		return MonoObjectMgr::birth();
 
-	case 2: {
+	case PikiMgr::PSM_Replace: {
 		int pikiCount   = mActiveCount;
 		int sproutCount = 0;
 		if (ItemPikihead::mgr) {

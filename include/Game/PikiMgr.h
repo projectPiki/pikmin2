@@ -22,6 +22,12 @@ namespace Game {
 struct PikiContainer;
 
 struct PikiMgr : public MonoObjectMgr<Piki> {
+	enum PikiSpawnMode {
+		PSM_Normal,
+		PSM_Force,
+		PSM_Replace,
+	};
+
 	PikiMgr();
 
 	// vtable 1

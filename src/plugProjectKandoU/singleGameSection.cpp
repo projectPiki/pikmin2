@@ -1149,8 +1149,8 @@ void SingleGameSection::setDispMemberSMenu(og::Screen::DispMemberSMenuAll& disp)
 
 	// what even is this
 	disp.mSMenuMap.mDataMap.mNapsackDetectorFlags
-	    = OlimarData::getMapType(playData->mOlimarData[0].hasItem(OlimarData::ODII_PrototypeDetector),
-	                             playData->mOlimarData[0].hasItem(OlimarData::ODII_FiveManNapsack));
+	    = OlimarData::getDetectorFlags(playData->mOlimarData[0].hasItem(OlimarData::ODII_PrototypeDetector),
+	                                   playData->mOlimarData[0].hasItem(OlimarData::ODII_FiveManNapsack));
 
 	// Map screen data
 	disp.mSMenuMap.mDataMap.mOnyonPikminCounts[og::Screen::MAPPIKI_Red]    = playData->mPikiContainer.getColorSum(Red);

@@ -389,9 +389,9 @@ bool InteractBury::actPiki(Game::Piki* piki)
 	}
 
 	if (currTriangle && !currTriangle->mCode.isBald() && piki->might_bury() && ItemPikihead::mgr) {
-		PikiMgr::mBirthMode          = 1;
+		PikiMgr::mBirthMode          = PikiMgr::PSM_Force;
 		ItemPikihead::Item* pikiHead = (ItemPikihead::Item*)ItemPikihead::mgr->birth();
-		PikiMgr::mBirthMode          = 0;
+		PikiMgr::mBirthMode          = PikiMgr::PSM_Normal;
 		Vector3f pikiPos             = piki->getPosition();
 		f32 minY                     = mapMgr->getMinY(pikiPos);
 		pikiPos.y                    = minY;

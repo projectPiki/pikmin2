@@ -186,12 +186,12 @@ struct OlimarData {
 	 * @param hasPrototypeDetector A boolean indicating whether the Prototype Detector item has been collected.
 	 * @param hasNapsack A boolean indicating whether the Five-Man Napsack item has been collected.
 	 * @return An integer representing the map type:
-	 *         - 0: If only the Prototype Detector item has been collected.
-	 *         - 1: If only the Five-Man Napsack item has been collected.
-	 *         - 2: If neither the Prototype Detector item nor the Five-Man Napsack item has been collected.
-	 *         - 3: If both the Prototype Detector item and the Five-Man Napsack item has been collected.
+	 * 		0 = None
+	 * 		1 = Prototype Detector
+	 * 		2 = Napsack
+	 * 		3 = Both
 	 */
-	static inline int getMapType(bool hasPrototypeDetector, bool hasNapsack)
+	static inline int getDetectorFlags(bool hasPrototypeDetector, bool hasNapsack)
 	{
 		int mapType;
 		bool flag = false;
