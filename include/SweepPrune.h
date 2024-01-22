@@ -48,10 +48,4 @@ struct World {
 };
 } // namespace SweepPrune
 
-struct SweepCallback : public SweepPrune::World::Callback {
-	virtual void invoke(SweepPrune::Object*, SweepPrune::Object*);
-
-	// vt _00
-};
-
 #endif

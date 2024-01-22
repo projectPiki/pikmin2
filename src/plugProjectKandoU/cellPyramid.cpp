@@ -6,6 +6,7 @@
 #include "fdlibm.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "P2Macros.h"
+#include "trig.h"
 
 namespace Game {
 
@@ -268,7 +269,7 @@ void CellObject::updateCollisionBuffer(CellObject* them) { mCollisionBuffer.inse
  * @note Address: N/A
  * @note Size: 0x80
  */
-inline void CellObject::resolveUsingBuffer()
+void CellObject::resolveUsingBuffer()
 {
 	// UNUSED FUNCTION
 }
@@ -300,7 +301,7 @@ CollisionBuffer::CollisionBuffer()
  * @note Address: N/A
  * @note Size: 0x18
  */
-inline void CollisionBuffer::init(CellObject*, CollNode*, int)
+void CollisionBuffer::init(CellObject*, CollNode*, int)
 {
 	// UNUSED FUNCTION
 }
@@ -473,7 +474,7 @@ int CollisionBuffer::findIndex(CellObject* object)
  * @note Address: N/A
  * @note Size: 0xA4
  */
-inline void CellLayer::resolveCollision()
+void CellLayer::resolveCollision()
 {
 	for (int i = 0; i < mSizeX * mSizeY; ++i) {
 		if (mCells[i].mLeg) {
@@ -523,7 +524,7 @@ void CellPyramid::resolveCollision()
 	case 2:
 		if (sSpeedUpResolveColl) {
 			for (int i = 0; i < mLayerCount; i++) {
-				for (Cell* cell = mLayers[i].mCell.mNextCell; cell != nullptr; cell = cell->mNextCell) {
+				for (Cell* cell = mLayers[i].mCurrCell.mNextCell; cell != nullptr; cell = cell->mNextCell) {
 					if (cell->mTotalObjectCount != 0) {
 						cell->resolveCollision_3();
 					}
@@ -531,7 +532,7 @@ void CellPyramid::resolveCollision()
 			}
 		} else {
 			for (int i = 0; i < mLayerCount; i++) {
-				for (Cell* cell = mLayers[i].mCell.mNextCell; cell != nullptr; cell = cell->mNextCell) {
+				for (Cell* cell = mLayers[i].mCurrCell.mNextCell; cell != nullptr; cell = cell->mNextCell) {
 					if (cell->mTotalObjectCount != 0) {
 						cell->resolveCollision_1();
 					}
@@ -548,7 +549,7 @@ void CellPyramid::resolveCollision()
  * @note Address: 0x80157538
  * @note Size: 0x294
  */
-inline void Cell::rec_resolveColl()
+void Cell::rec_resolveColl()
 {
 	for (int i = 0; i < 4; i++) {
 		if ((mNeighboringCells[i] != nullptr) && (1 < mNeighboringCells[i]->mTotalObjectCount)) {
@@ -613,7 +614,7 @@ void CellPyramid::clearAllCollBuffer()
  * @note Address: N/A
  * @note Size: 0x94
  */
-inline void Cell::appendList()
+void Cell::appendList()
 {
 	// UNUSED FUNCTION
 }
@@ -622,9 +623,18 @@ inline void Cell::appendList()
  * @note Address: N/A
  * @note Size: 0x84
  */
-inline void Cell::remove()
+void Cell::remove()
 {
-	// UNUSED FUNCTION
+	if ((!mLeg) && (Cell::sCurrCellMgr)) {
+		P2ASSERTLINE(786, Cell::sCurrCellMgr);
+		if (mPrevCell) {
+			mPrevCell->mNextCell = mNextCell;
+			if (mNextCell) {
+				mNextCell->mPrevCell = mPrevCell;
+			}
+		}
+		mNextCell = mPrevCell = nullptr;
+	}
 }
 
 /**
@@ -632,7 +642,7 @@ inline void Cell::remove()
  * @note Address: 0x801578B8
  * @note Size: 0x158
  */
-inline void Cell::exit(CellLeg* exitingLeg, bool isPikiOrNavi)
+void Cell::exit(CellLeg* exitingLeg, bool isPikiOrNavi)
 {
 	// If the exiting leg is the current leg, update the current leg
 	if (mLeg == exitingLeg) {
@@ -645,45 +655,32 @@ inline void Cell::exit(CellLeg* exitingLeg, bool isPikiOrNavi)
 	// If the exiting object is a Piki or Navi, update the local and total counts
 	if ((isPikiOrNavi) && (mLocalPikiNaviCount != 0)) {
 		mLocalPikiNaviCount--;
-		for (Cell* currentCell = mHeadCell; currentCell != nullptr; currentCell = currentCell->mHeadCell) {
+		for (Cell* currentCell = mHeadCell; currentCell; currentCell = currentCell->mHeadCell) {
 			currentCell->mTotalPikiNaviCount--;
 		}
 	}
 
 	// Decrease the total object count for this cell and all cells above it
 	mTotalObjectCount--;
-	for (Cell* currentCell = mHeadCell; currentCell != nullptr; currentCell = currentCell->mHeadCell) {
+	for (Cell* currentCell = mHeadCell; currentCell; currentCell = currentCell->mHeadCell) {
 		currentCell->mTotalObjectCount--;
 	}
 
 	// Update the previous leg's next leg if it exists
-	CellLeg* previousLeg = exitingLeg->mPrev;
-	if (previousLeg) {
-		previousLeg->mNext = exitingLeg->mNext;
+	if (exitingLeg->mPrev) {
+		exitingLeg->mPrev->mNext = exitingLeg->mNext;
 	}
 
 	// Update the next leg's previous leg if it exists
-	CellLeg* nextLeg = exitingLeg->mNext;
-	if (nextLeg) {
-		nextLeg->mPrev = exitingLeg->mPrev;
+	if (exitingLeg->mNext) {
+		exitingLeg->mNext->mPrev = exitingLeg->mPrev;
 	}
 
 	// Clear the exiting leg's previous and next legs
-	exitingLeg->mPrev = nullptr;
-	exitingLeg->mNext = nullptr;
+	exitingLeg->mNext = exitingLeg->mPrev = nullptr;
 
 	// If there are no more legs and a current cell manager exists, remove this cell from the cell list
-	if ((mLeg == nullptr) && (Cell::sCurrCellMgr != nullptr)) {
-		P2ASSERTLINE(786, Cell::sCurrCellMgr != nullptr);
-		if (mPrevCell) {
-			mPrevCell->mNextCell = mNextCell;
-			if (mNextCell) {
-				mNextCell->mPrevCell = mPrevCell;
-			}
-		}
-		mPrevCell = nullptr;
-		mNextCell = nullptr;
-	}
+	remove();
 }
 
 /**
@@ -740,7 +737,7 @@ void Cell::entry(CellLeg* leg, bool isPikiOrNavi)
 	if (!currCell3 && Cell::sCurrCellMgr) {
 		P2ASSERTLINE(763, Cell::sCurrCellMgr);
 
-		Cell* layerCell = &Cell::sCurrCellMgr->mLayers[mLayerIdx].mCell;
+		Cell* layerCell = &Cell::sCurrCellMgr->mLayers[mLayerIdx].mCurrCell;
 		Cell* nextCell  = layerCell->mNextCell;
 
 		if (nextCell) {
@@ -759,11 +756,11 @@ void Cell::entry(CellLeg* leg, bool isPikiOrNavi)
  * @note Address: N/A
  * @note Size: 0x58
  */
-inline void CellLayer::clear()
+void CellLayer::clear()
 {
 	// UNUSED FUNCTION
-	mCell.mNextCell = nullptr;
-	mCell.mPrevCell = nullptr;
+	mCurrCell.mNextCell = nullptr;
+	mCurrCell.mPrevCell = nullptr;
 	for (int i = 0; i < mSizeX * mSizeY; i++) {
 		mCells[i].clear();
 		mCells[i].mLayerIdx = mLayerIdx;
@@ -774,9 +771,20 @@ inline void CellLayer::clear()
  * @note Address: N/A
  * @note Size: 0xD0
  */
-inline void CellLayer::createBottom(int, int) // might be x and y
+void CellLayer::createBottom(int sizeX, int sizeY)
 {
-	// UNUSED FUNCTION
+	mSizeX              = sizeX;
+	mSizeY              = sizeY;
+	mLayerSize          = 1;
+	mLayerIdx           = 0;
+	mCells              = new Cell[mSizeX * mSizeY];
+	mCurrCell.mNextCell = nullptr;
+	mCurrCell.mPrevCell = nullptr;
+
+	for (int i = 0; i < mSizeX * mSizeY; i++) {
+		mCells[i].clear();
+		mCells[i].mLayerIdx = mLayerIdx;
+	}
 }
 
 /**
@@ -785,9 +793,9 @@ inline void CellLayer::createBottom(int, int) // might be x and y
  * @note Address: 0x80157CFC
  * @note Size: 0x48
  */
-inline Cell* CellLayer::operator()(int x, int y)
+Cell* CellLayer::operator()(int x, int y)
 {
-	if ((0 > x) || (0 > y) || (x >= mSizeX) || (y >= mSizeY)) {
+	if ((x < 0) || (y < 0) || (x >= mSizeX) || (y >= mSizeY)) {
 		return nullptr;
 	}
 	return &mCells[x + y * mSizeX];
@@ -797,8 +805,46 @@ inline Cell* CellLayer::operator()(int x, int y)
  * @note Address: 0x80157D44
  * @note Size: 0x578
  */
-void CellLayer::pileup(CellLayer&)
+void CellLayer::pileup(CellLayer& layer)
 {
+	mLayerSize = layer.mLayerSize * 2;
+	mLayerIdx  = layer.mLayerIdx + 1;
+	mSizeX     = (f32)ceil((f32)layer.mSizeX / 2);
+	mSizeY     = (f32)ceil((f32)layer.mSizeY / 2);
+
+	mCells              = new Cell[mSizeX * mSizeY];
+	mCurrCell.mNextCell = nullptr;
+	mCurrCell.mPrevCell = nullptr;
+
+	for (int i = 0; i < mSizeX * mSizeY; i++) {
+		mCells[i].mLayerIdx = mLayerIdx;
+	}
+
+	for (int x2 = 0, x1 = 0; x1 < mSizeX; x2 += 2, x1++) {
+		for (int y2 = 0, y1 = 0; y1 < mSizeY; y2 += 2, y1++) {
+			Cell* currCell                 = (*this)(x1, y1);
+			currCell->mNeighboringCells[0] = (*this)(x2, y2);
+			currCell->mNeighboringCells[1] = (*this)(x2 + 1, y2);
+			currCell->mNeighboringCells[2] = (*this)(x2, y2 + 1);
+			currCell->mNeighboringCells[3] = (*this)(x2 + 1, y2 + 1);
+
+			if ((*this)(x2, y2)) {
+				(*this)(x2, y2)->mHeadCell = currCell;
+			}
+
+			if ((*this)(x2 + 1, y2)) {
+				(*this)(x2 + 1, y2)->mHeadCell = currCell;
+			}
+
+			if ((*this)(x2, y2 + 1)) {
+				(*this)(x2, y2 + 1)->mHeadCell = currCell;
+			}
+
+			if ((*this)(x2 + 1, y2 + 1)) {
+				(*this)(x2 + 1, y2 + 1)->mHeadCell = currCell;
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1256,7 +1302,7 @@ lbl_80158294:
  * @note Size: 0x4
  */
 // void drawCell__Q24Game9CellLayerFR8GraphicsR10Vector3f iif()
-inline void CellLayer::drawCell(Graphics&, Vector3f&, int, int, f32) const
+void CellLayer::drawCell(Graphics&, Vector3f&, int, int, f32) const
 {
 	// UNUSED FUNCTION
 }
@@ -1294,8 +1340,42 @@ void CellPyramid::clear()
  * @note Size: 0x190
  */
 // void calcExtent__Q24Game11CellPyramidFRQ23Sys6SphereRiR7Rect<i>()
-void CellPyramid::calcExtent(Sys::Sphere&, int&, Recti&)
+void CellPyramid::calcExtent(Sys::Sphere& sphere, int& layerIdx, Recti& outRect)
 {
+	f32 exponent = 2.0f * sphere.mRadius * mInverseScale;  // f30
+	f32 log2     = (f32)log10(exponent) / (f32)log10(2.0); // change to log base 2
+	if (log2 < 0.0f) {
+		log2 = 0.0f;
+	}
+
+	int layer = (f32)ceil(log2);
+	if (layer >= mLayerCount) {
+		layer = mLayerCount - 1;
+	}
+
+	u16 layerSize = getLayer(layer)->mLayerSize;
+	f32 scale     = 1.0f / ((f32)layerSize * mScale); // f9
+
+	f32 radius = sphere.mRadius;
+	f32 left   = mBounds.x;
+	f32 right  = mBounds.y;
+
+	f32 xLow = sphere.mPosition.x - radius;
+	f32 xHi  = sphere.mPosition.x + radius;
+	f32 yLow = sphere.mPosition.z - radius;
+	f32 yHi  = sphere.mPosition.z + radius;
+
+	f32 xLowDiff = xLow - right;
+	f32 yLowDiff = yLow - left;
+	f32 xHiDiff  = xHi - right;
+	f32 yHiDiff  = yHi - left;
+
+	outRect.p1.x = xLowDiff * scale;
+	outRect.p1.y = yLowDiff * scale;
+	outRect.p2.x = xHiDiff * scale;
+	outRect.p2.y = yHiDiff * scale;
+
+	layerIdx = layer;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x70(r1)
@@ -1454,8 +1534,8 @@ void CellPyramid::entry(CellObject* object, Sys::Sphere& sphere, int& layerIndex
 	f32 sphereRadius       = sphere.mRadius;
 	f32 sphereX            = sphere.mPosition.x;
 	f32 sphereZ            = sphere.mPosition.z;
-	f32 rightBoundary      = mRight;
-	f32 leftBoundary       = mLeft;
+	f32 rightBoundary      = mBounds.y;
+	f32 leftBoundary       = mBounds.x;
 	f32 inverseScaleFactor = 1.0f / ((mLayers[layerIndex].mLayerSize) * mScale);
 
 	// Calculate the bounding rectangle
@@ -1470,6 +1550,7 @@ void CellPyramid::entry(CellObject* object, Sys::Sphere& sphere, int& layerIndex
 	// Check if layerIndex is out of bounds
 	if ((layerIndex < 0) || (mLayerCount <= layerIndex)) {
 		JUT_PANICLINE(1206, "illegal layerLevel %d : out of bounds 0`%d\n", layerIndex, mLayerCount);
+		return;
 	}
 
 	int objectLayerIndex    = 0;
@@ -1593,44 +1674,39 @@ void CellPyramid::create(BoundBox2d& box, f32 scale)
 {
 	mFreeMemory = JKRHeap::sCurrentHeap->getFreeSize();
 
-	mLeft         = box.mMin.x;
-	mRight        = box.mMax.x;
-	mScale        = scale;
-	mInverseScale = 1.0f / scale;
+	mBounds.set(box.mMin.y, box.mMin.x);
+	// setLeftRight(box.mMin.x, box.mMin.y);
+	// mLeft         = box.mMin.x;
+	// mRight        = box.mMax.x;
 
 	// Calculate dimensions in pixels
-	int pixelWidth  = (f32)ceil((FABS(box.mMin.x - box.mMax.x) * mInverseScale));
-	int pixelHeight = (f32)ceil(FABS(box.mMin.y - box.mMax.y) * mInverseScale);
+	f32 absDiffX    = absF(box.mMax.x - box.mMin.x);
+	f32 absDiffY    = absF(box.mMax.y - box.mMin.y);
+	mScale          = scale;
+	mInverseScale   = 1.0f / scale;
+	int pixelWidth  = (f32)ceil(absDiffX * mInverseScale);
+	int pixelHeight = (f32)ceil(absDiffY * mInverseScale);
 
 	if (pixelWidth > 200 || pixelHeight > 200) {
-		mScale        = scale * 1.5f;
-		mInverseScale = 1.0f / (scale * 1.5f);
-		pixelWidth    = (f32)ceil((FABS(box.mMin.x - box.mMax.x) * mInverseScale));
-		pixelHeight   = (f32)ceil((FABS(box.mMin.y - box.mMax.y) * mInverseScale));
+		scale *= 1.5f;
+		mScale        = scale;
+		mInverseScale = 1.0f / (scale);
+		pixelWidth    = (f32)ceil(absDiffX * mInverseScale);
+		pixelHeight   = (f32)ceil(absDiffY * mInverseScale);
 	}
 
-	int maxDimension = MAX(pixelHeight, pixelWidth);
+	int maxDimension = pixelWidth > pixelHeight ? pixelWidth : pixelHeight;
 
 	int layerCount = (f32)ceil((f32)log10((f32)maxDimension) / (f32)log10(2.0f));
 	pow(2.0, (f64)layerCount);
 
-	mLayerCount                = layerCount + 1;
-	mLayers                    = new CellLayer[mLayerCount];
-	mLayers[0].mSizeX          = pixelWidth;
-	mLayers[0].mSizeY          = pixelHeight;
-	mLayers[0].mLayerSize      = 0;
-	mLayers[0].mLayerIdx       = 1;
-	mLayers[0].mCells          = new Cell[mLayers[0].mSizeX * mLayers[0].mSizeY];
-	mLayers[0].mCell.mNextCell = nullptr;
-	mLayers[0].mCell.mPrevCell = nullptr;
-
-	for (int i = 0; i < mLayers[0].mSizeX * mLayers[0].mSizeY; i++) {
-		mLayers[0].mCells[i].clear();
-		mLayers[0].mCells[i].mLayerIdx = mLayers[0].mLayerIdx;
-	}
+	mLayerCount       = layerCount + 1;
+	mLayers           = new CellLayer[mLayerCount];
+	CellLayer* layer0 = getLayer(0);
+	layer0->createBottom(pixelWidth, pixelHeight);
 
 	for (int i = 1; i < mLayerCount; i++) {
-		mLayers[i].pileup(mLayers[i - 1]);
+		getLayer(i)->pileup(mLayers[i - 1]);
 	}
 
 	mFreeMemory = mFreeMemory - JKRHeap::sCurrentHeap->getFreeSize();
@@ -1845,7 +1921,7 @@ void CellPyramid::create(BoundBox2d& box, f32 scale)
  * @note Size: 0x3C
  */
 CellLayer::CellLayer()
-    : mCell()
+    : mCurrCell()
 {
 }
 
@@ -1853,7 +1929,7 @@ CellLayer::CellLayer()
  * @note Address: N/A
  * @note Size: 0x4
  */
-inline void CellPyramid::drawCell(Graphics&, Sys::Sphere&)
+void CellPyramid::drawCell(Graphics&, Sys::Sphere&)
 {
 	// UNUSED FUNCTION
 }
@@ -1863,7 +1939,7 @@ inline void CellPyramid::drawCell(Graphics&, Sys::Sphere&)
  * @note Size: 0x68
  */
 // void assertExtent__Q24Game9CellLayerFR7Rect<int>()
-inline void CellLayer::assertExtent(Recti&) const
+void CellLayer::assertExtent(Recti&) const
 {
 	// UNUSED FUNCTION
 }
@@ -1873,7 +1949,7 @@ inline void CellLayer::assertExtent(Recti&) const
  * @note Size: 0x40
  */
 // void checkPoint__Q24Game9CellLayerFR10Vector2<int>()
-inline void CellLayer::checkPoint(Vector2<int>&) const
+void CellLayer::checkPoint(Vector2<int>&) const
 {
 	// UNUSED FUNCTION
 }
@@ -1888,7 +1964,7 @@ int CellPyramid::getPikiCount(int layerLevel, Recti& extent)
 	if (disableAICulling) {
 		return 1;
 	}
-	JUT_ASSERTLINE(1565, (layerLevel >= 0) && (layerLevel < mLayerCount), "illegal layerLevel %d : out of bounds 0ã€?%d\n", layerLevel,
+	JUT_ASSERTLINE(1565, (layerLevel >= 0) && (layerLevel < mLayerCount), "illegal layerLevel %d : out of bounds 0`%d\n", layerLevel,
 	               mLayerCount);
 	CellLayer* layer = &mLayers[layerLevel];
 	int sum          = 0;
@@ -1908,7 +1984,7 @@ int CellPyramid::getPikiCount(int layerLevel, Recti& extent)
  * @note Size: 0x4
  */
 // void drawCell__Q24Game11CellPyramidFR8GraphicsiR7Rect<int> f()
-inline void CellPyramid::drawCell(Graphics&, int, Rect<int>&, f32) const
+void CellPyramid::drawCell(Graphics&, int, Rect<int>&, f32) const
 {
 	// UNUSED FUNCTION
 }
@@ -1917,7 +1993,7 @@ inline void CellPyramid::drawCell(Graphics&, int, Rect<int>&, f32) const
  * @note Address: N/A
  * @note Size: 0x4
  */
-inline void CellPyramid::drawCell(Graphics&, int)
+void CellPyramid::drawCell(Graphics&, int)
 {
 	// UNUSED FUNCTION
 }
@@ -1926,7 +2002,7 @@ inline void CellPyramid::drawCell(Graphics&, int)
  * @note Address: N/A
  * @note Size: 0x4
  */
-inline void CellPyramid::drawCell(Graphics&)
+void CellPyramid::drawCell(Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -1935,7 +2011,7 @@ inline void CellPyramid::drawCell(Graphics&)
  * @note Address: N/A
  * @note Size: 0x88
  */
-inline void CellPyramid::dumpCount(int&, int&)
+void CellPyramid::dumpCount(int&, int&)
 {
 	// UNUSED FUNCTION
 }
@@ -2191,36 +2267,3 @@ void Cell::resolveCollision_3()
 	*/
 }
 } // namespace Game
-
-/**
- * @note Address: 0x80159240
- * @note Size: 0x4C
- */
-void SweepCallback::invoke(SweepPrune::Object*, SweepPrune::Object*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r4, 0
-	stw      r0, 0x14(r1)
-	beq      lbl_80159258
-	addi     r4, r4, -4
-
-lbl_80159258:
-	cmplwi   r5, 0
-	beq      lbl_80159264
-	addi     r5, r5, -4
-
-lbl_80159264:
-	mr       r3, r4
-	mr       r4, r5
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}

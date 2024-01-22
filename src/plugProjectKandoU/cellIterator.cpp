@@ -323,8 +323,8 @@ void CellIterator::calcExtent()
 	f32 z            = mArg.mSphere.mPosition.z;
 	f32 x            = mArg.mSphere.mPosition.x;
 
-	f32 a = mArg.mCellMgr->mRight;
-	f32 b = mArg.mCellMgr->mLeft;
+	f32 a = mArg.mCellMgr->mBounds.y;
+	f32 b = mArg.mCellMgr->mBounds.x;
 
 	f32 norm = 1.0f / (mgr->mScale * mgr->mLayers[mCurrLayerIdx].mLayerSize);
 

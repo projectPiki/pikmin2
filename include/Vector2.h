@@ -27,6 +27,12 @@ struct Vector2 {
 		this->y += y;
 	}
 
+	inline void set(f32 x, f32 y)
+	{
+		this->x = x;
+		this->y = y;
+	}
+
 	inline f32 angleBetween(Vector2& other)
 	{
 		f32 angle = JMath::atanTable_.atan2_((this->y - other.y), -(this->x - other.x));

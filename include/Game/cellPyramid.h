@@ -168,7 +168,7 @@ struct CellLayer {
 	u16 mLayerSize; // _04
 	u16 mLayerIdx;  // _06
 	Cell* mCells;   // _08
-	Cell mCell;     // _0C
+	Cell mCurrCell; // _0C
 };
 
 struct CellPyramid : public SweepPrune::World {
@@ -190,13 +190,14 @@ struct CellPyramid : public SweepPrune::World {
 	void drawCell(Graphics&);
 	void dumpCount(int&, int&);
 
+	inline CellLayer* getLayer(int i) { return &mLayers[i]; }
+
 	int mFreeMemory;    // _28
 	int mLayerCount;    // _2C
 	CellLayer* mLayers; // _30
 	f32 mScale;         // _34
 	f32 mInverseScale;  // _38
-	f32 mLeft;          // _3C
-	f32 mRight;         // _40
+	Vector2f mBounds;   // _3C
 	/**
 	 * Incremented at the start of every resolve/search pass.
 	 * Passed on to CellObjects to prevent evaluating multiple times per pass.
@@ -260,5 +261,16 @@ extern CellPyramid* cellMgr;
 extern CellPyramid* platCellMgr;
 extern CellPyramid* mapRoomCellMgr;
 } // namespace Game
+
+struct SweepCallback : public SweepPrune::World::Callback {
+	virtual void invoke(SweepPrune::Object* objA, SweepPrune::Object* objB) // _08
+	{
+		Game::CellObject* cObjA = static_cast<Game::CellObject*>(objA);
+		Game::CellObject* cObjB = static_cast<Game::CellObject*>(objB);
+		cObjA->checkCollision(cObjB);
+	}
+
+	// vt _00
+};
 
 #endif
