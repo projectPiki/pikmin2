@@ -84,11 +84,11 @@ struct State : public FSMState<SingleGameSection> {
 	virtual void on_section_fadeout(SingleGameSection*) { }                       // _40 (weak)
 	virtual void on_demo_timer(SingleGameSection*, u32) { }                       // _44 (weak)
 
-	State* accountEarnings(SingleGameSection*, PelletCropMemory*, bool);
+	void accountEarnings(SingleGameSection*, PelletCropMemory*, bool);
 
 	// _00     = VTBL
 	// _00-_0C = FSMState
-	u8 _0C[4]; // _0C
+	char* mName; // _0C, unused/educated guess
 };
 
 /**

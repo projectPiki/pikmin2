@@ -466,6 +466,8 @@ struct PlayData : public CNode {
 
 	inline void addPokos(int pokos) { mPokoCount += pokos; }
 
+	// _00     = VTBL
+	// _00-_18 = CNode
 	bool _18;                               // _18
 	u8 mLoadType;                           // _19, see SaveFlags enum
 	void* mBeforeSaveDelegate;              // _1C

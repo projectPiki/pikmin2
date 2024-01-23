@@ -86,8 +86,9 @@ void SingleGame::FSM::init(SingleGameSection* section)
  * @note Address: N/A
  * @note Size: 0x38
  */
-void SingleGame::FSM::draw(SingleGameSection* game, Graphics&)
+void SingleGame::FSM::draw(SingleGameSection* game, Graphics& gfx)
 {
+	static_cast<State*>(mStates[0])->draw(game, gfx);
 	// UNUSED FUNCTION
 }
 
@@ -115,19 +116,19 @@ SingleGame::State* SingleGame::FSM::getState(int index)
  * @note Address: 0x80152588
  * @note Size: 0x200
  */
-SingleGame::State* SingleGame::State::accountEarnings(SingleGameSection* game, PelletCropMemory* pelletMem, bool flag)
+void SingleGame::State::accountEarnings(SingleGameSection* game, PelletCropMemory* pelletMem, bool flag)
 {
-	int money;
-
+	PelletItem::Mgr* imgr;
+	PelletCarcass::Mgr* cmgr;
+	PelletOtakara::Mgr* omgr;
 	// Calculate value of collected Treasures
-	PelletOtakara::Mgr* omgr = PelletOtakara::mgr;
-	KindCounter& ocounter    = pelletMem->mOtakara;
+	omgr                  = PelletOtakara::mgr;
+	KindCounter& ocounter = pelletMem->mOtakara;
 	for (int i = 0; i < ocounter.getNumKinds(); i++) {
 		PelletConfig* config = omgr->getPelletConfig(i);
 		if (config) {
-			money = config->mParams.mMoney();
 			// Increase poko count by quantity of the item * its value
-			playData->addPokos(money * ocounter(i));
+			playData->addPokos(ocounter(i) * config->getPokoValue());
 
 			if (ocounter(i)) {
 				playData->obtainPellet(omgr, i);
@@ -141,27 +142,25 @@ SingleGame::State* SingleGame::State::accountEarnings(SingleGameSection* game, P
 
 	// Calculate value of Enemy Carcasses
 	if (!game->mDoTrackCarcass) {
-		KindCounter& ccounter    = pelletMem->getCarcass();
-		PelletCarcass::Mgr* cmgr = PelletCarcass::mgr;
+		cmgr                  = PelletCarcass::mgr;
+		KindCounter& ccounter = pelletMem->mCarcass;
 		for (int i = 0; i < ccounter.getNumKinds(); i++) {
 			PelletConfig* config = cmgr->getPelletConfig(i);
 			if (config) {
-				money = config->mParams.mMoney();
 				// Increase poko count by quantity of the item * its value
-				playData->addPokos(money * ccounter(i));
+				playData->addPokos(ccounter(i) * config->getPokoValue());
 			}
 		}
 	}
 
 	// Calculate value of Explorers Kit Items
-	KindCounter& icounter = pelletMem->getItem();
-	PelletItem::Mgr* imgr = PelletItem::mgr;
-	for (int i = 0; i < icounter.mNumKinds; i++) {
+	imgr                  = PelletItem::mgr;
+	KindCounter& icounter = pelletMem->mItem;
+	for (int i = 0; i < icounter.getNumKinds(); i++) {
 		PelletConfig* config = imgr->getPelletConfig(i);
 		if (config) {
-			money = config->mParams.mMoney();
 			// Increase poko count by quantity of the item * its value
-			playData->addPokos(money * icounter(i));
+			playData->addPokos(icounter(i) * config->getPokoValue());
 
 			if (icounter(i)) {
 				playData->obtainPellet(imgr, i);
@@ -172,157 +171,6 @@ SingleGame::State* SingleGame::State::accountEarnings(SingleGameSection* game, P
 			}
 		}
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r24, 0x10(r1)
-	  mr        r30, r5
-	  mr        r29, r4
-	  mr        r31, r6
-	  addi      r25, r30, 0x4
-	  li        r24, 0
-	  lwz       r26, -0x6AE0(r13)
-	  b         .loc_0xC4
-
-	.loc_0x2C:
-	  mr        r3, r26
-	  mr        r4, r24
-	  bl        0x197CC
-	  mr.       r28, r3
-	  beq-      .loc_0xC0
-	  lwz       r27, 0x170(r28)
-	  mr        r3, r25
-	  mr        r4, r24
-	  bl        0x92E2C
-	  lbz       r0, 0x0(r3)
-	  mr        r3, r25
-	  lwz       r5, -0x6B70(r13)
-	  mr        r4, r24
-	  mullw     r6, r0, r27
-	  lwz       r0, 0xE8(r5)
-	  add       r0, r0, r6
-	  stw       r0, 0xE8(r5)
-	  bl        0x92E08
-	  lbz       r0, 0x0(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xC0
-	  lwz       r3, -0x6B70(r13)
-	  mr        r4, r26
-	  mr        r5, r24
-	  bl        0x94F80
-	  rlwinm.   r0,r31,0,24,31
-	  beq-      .loc_0xC0
-	  lwz       r4, 0x180(r28)
-	  subi      r3, r2, 0x5DA0
-	  bl        -0x87F68
-	  cmpwi     r3, 0
-	  bne-      .loc_0xC0
-	  lwz       r4, 0x22C(r29)
-	  addi      r5, r29, 0x230
-	  lwz       r3, -0x6B70(r13)
-	  lwz       r4, 0x48(r4)
-	  bl        0x9631C
-
-	.loc_0xC0:
-	  addi      r24, r24, 0x1
-
-	.loc_0xC4:
-	  lhz       r0, 0x0(r25)
-	  cmpw      r24, r0
-	  blt+      .loc_0x2C
-	  lbz       r0, 0x274(r29)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x138
-	  lwz       r28, -0x6B00(r13)
-	  addi      r24, r30, 0x14
-	  li        r25, 0
-	  b         .loc_0x12C
-
-	.loc_0xEC:
-	  mr        r3, r28
-	  mr        r4, r25
-	  bl        0x1970C
-	  cmplwi    r3, 0
-	  beq-      .loc_0x128
-	  lwz       r27, 0x170(r3)
-	  mr        r3, r24
-	  mr        r4, r25
-	  bl        0x92D6C
-	  lbz       r0, 0x0(r3)
-	  lwz       r3, -0x6B70(r13)
-	  mullw     r4, r0, r27
-	  lwz       r0, 0xE8(r3)
-	  add       r0, r0, r4
-	  stw       r0, 0xE8(r3)
-
-	.loc_0x128:
-	  addi      r25, r25, 0x1
-
-	.loc_0x12C:
-	  lhz       r0, 0x0(r24)
-	  cmpw      r25, r0
-	  blt+      .loc_0xEC
-
-	.loc_0x138:
-	  lwz       r28, -0x6AD8(r13)
-	  addi      r24, r30, 0xC
-	  li        r25, 0
-	  b         .loc_0x1E0
-
-	.loc_0x148:
-	  mr        r3, r28
-	  mr        r4, r25
-	  bl        0x196B0
-	  mr.       r30, r3
-	  beq-      .loc_0x1DC
-	  lwz       r27, 0x170(r30)
-	  mr        r3, r24
-	  mr        r4, r25
-	  bl        0x92D10
-	  lbz       r0, 0x0(r3)
-	  mr        r3, r24
-	  lwz       r5, -0x6B70(r13)
-	  mr        r4, r25
-	  mullw     r6, r0, r27
-	  lwz       r0, 0xE8(r5)
-	  add       r0, r0, r6
-	  stw       r0, 0xE8(r5)
-	  bl        0x92CEC
-	  lbz       r0, 0x0(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1DC
-	  lwz       r3, -0x6B70(r13)
-	  mr        r4, r28
-	  mr        r5, r25
-	  bl        0x94E64
-	  rlwinm.   r0,r31,0,24,31
-	  beq-      .loc_0x1DC
-	  lwz       r4, 0x180(r30)
-	  subi      r3, r2, 0x5DA0
-	  bl        -0x88084
-	  cmpwi     r3, 0
-	  bne-      .loc_0x1DC
-	  lwz       r4, 0x22C(r29)
-	  addi      r5, r29, 0x230
-	  lwz       r3, -0x6B70(r13)
-	  lwz       r4, 0x48(r4)
-	  bl        0x96200
-
-	.loc_0x1DC:
-	  addi      r25, r25, 0x1
-
-	.loc_0x1E0:
-	  lhz       r0, 0x0(r24)
-	  cmpw      r25, r0
-	  blt+      .loc_0x148
-	  lmw       r24, 0x10(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
 }
 
 /**
@@ -879,12 +727,6 @@ void SingleGameSection::openCaveInMenu(ItemCave::Item* cave, int naviID)
 		}
 	}
 }
-
-/**
- * @note Address: 0x801543C8
- * @note Size: 0x8
- */
-CourseInfo* SingleGameSection::getCurrentCourseInfo() { return mCurrentCourseInfo; }
 
 /**
  * @note Address: 0x801543D0
