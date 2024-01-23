@@ -292,6 +292,9 @@ u64 __strtoull(int base, int max_width, int (*ReadProc)(void*, int, int), void* 
 }
 
 /**
+ * @brief STRing TO Unsigned Long. Converts any numbers (of base `base`) at start of input string `str` to u32 and returns.
+ * Any remaining string part goes in `end`.
+ *
  * @note Address: 0x800CBA28
  * @note Size: 0xAC
  */
@@ -330,6 +333,9 @@ void strtoull(void)
 }
 
 /**
+ * @brief STRing TO Long. Converts any numbers (of base `base`) at start of input string `str` to s32 and returns.
+ * Any remaining string part goes in `end`.
+ *
  * @note Address: 0x800CB938
  * @note Size: 0xF0
  */

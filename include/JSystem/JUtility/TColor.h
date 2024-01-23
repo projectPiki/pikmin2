@@ -5,8 +5,11 @@
 #include "types.h"
 #include "Dolphin/gx.h"
 
-#define TCOLOR_BLACK JUtility::TColor(0x0, 0x0, 0x0, 0x0)
-#define TCOLOR_WHITE JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF)
+#define TCOLOR_BLACK_U8 JUtility::TColor(0x0, 0x0, 0x0, 0x0)
+#define TCOLOR_WHITE_U8 JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF)
+
+#define TCOLOR_BLACK_U32 JUtility::TColor(0)
+#define TCOLOR_WHITE_U32 JUtility::TColor(0xFFFFFFFF)
 
 namespace JUtility {
 struct TColor : public GXColor {

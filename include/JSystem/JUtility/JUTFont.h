@@ -5,6 +5,9 @@
 #include "JSystem/JUtility/TColor.h"
 #include "string.h"
 
+#define ASCII_PRINTABLE_MIN (0x20) // space
+#define ASCII_PRINTABLE_MAX (0x80) // one more than last printable symbol (0x7F = delete)
+
 struct JKRAramBlock;
 struct JKRHeap;
 
@@ -77,31 +80,31 @@ struct JUTFont {
 	typedef bool (*IsLeadByte)(int);
 
 	struct TWidth {
-		u8 w0;
-		u8 w1;
+		u8 w0; // _00
+		u8 w1; // _01
 	};
 
 	JUTFont();
 
-	virtual ~JUTFont() { }                                               // _08
-	virtual void setGX() = 0;                                            // _0C
-	virtual void setGX(JUtility::TColor, JUtility::TColor) { setGX(); }; // _10
-	virtual f32 drawChar_scale(f32, f32, f32, f32, int, bool) = 0;       // _14
-	virtual int getLeading() const                            = 0;       // _18
-	virtual int getAscent() const                             = 0;       // _1C
-	virtual int getDescent() const                            = 0;       // _20
-	virtual int getHeight() const                             = 0;       // _24
-	virtual int getWidth() const                              = 0;       // _28
-	virtual void getWidthEntry(int, JUTFont::TWidth*) const   = 0;       // _2C
-	virtual int getCellWidth() const { return getWidth(); };             // _30
-	virtual int getCellHeight() const { return getHeight(); };           // _34
-	virtual int getFontType() const           = 0;                       // _38
-	virtual const ResFONT* getResFont() const = 0;                       // _3C
-	virtual bool isLeadByte(int) const        = 0;                       // _40
+	virtual ~JUTFont() { }                                                           // _08
+	virtual void setGX() = 0;                                                        // _0C
+	virtual void setGX(JUtility::TColor black, JUtility::TColor white) { setGX(); }; // _10
+	virtual f32 drawChar_scale(f32, f32, f32, f32, int, bool) = 0;                   // _14
+	virtual int getLeading() const                            = 0;                   // _18
+	virtual int getAscent() const                             = 0;                   // _1C
+	virtual int getDescent() const                            = 0;                   // _20
+	virtual int getHeight() const                             = 0;                   // _24
+	virtual int getWidth() const                              = 0;                   // _28
+	virtual void getWidthEntry(int, JUTFont::TWidth*) const   = 0;                   // _2C
+	virtual int getCellWidth() const { return getWidth(); };                         // _30
+	virtual int getCellHeight() const { return getHeight(); };                       // _34
+	virtual int getFontType() const           = 0;                                   // _38
+	virtual const ResFONT* getResFont() const = 0;                                   // _3C
+	virtual bool isLeadByte(int) const        = 0;                                   // _40
 
 	void initialize_state();
-	void setCharColor(JUtility::TColor);
-	void setGradColor(JUtility::TColor, JUtility::TColor);
+	void setCharColor(JUtility::TColor color);
+	void setGradColor(JUtility::TColor bottomColor, JUtility::TColor topColor);
 	f32 drawString_size_scale(f32, f32, f32, f32, const char*, u32, bool);
 
 	void drawString(int posX, int posY, const char* str, bool visible) { drawString_size(posX, posY, str, strlen(str), visible); }
@@ -124,6 +127,8 @@ struct JUTFont {
 	}
 
 	bool isValid() const { return mIsValid; }
+	bool isFixed() const { return mIsFixed; }
+	int getFixedWidth() const { return mFixedWidth; }
 
 	static bool isLeadByte_1Byte(int);
 	static bool isLeadByte_2Byte(int);

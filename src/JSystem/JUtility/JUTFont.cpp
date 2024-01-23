@@ -40,12 +40,12 @@ void JUTFont::setCharColor(JUtility::TColor color)
  * @note Size: 0x64
  * Matches
  */
-void JUTFont::setGradColor(JUtility::TColor color, JUtility::TColor color2)
+void JUTFont::setGradColor(JUtility::TColor bottomColor, JUtility::TColor topColor)
 {
-	mColor1 = color;
-	mColor2 = color;
-	mColor3 = color2;
-	mColor4 = color2;
+	mColor1 = bottomColor;
+	mColor2 = bottomColor;
+	mColor3 = topColor;
+	mColor4 = topColor;
 }
 
 /**

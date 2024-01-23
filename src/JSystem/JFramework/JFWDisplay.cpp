@@ -29,7 +29,7 @@ void JFWDisplay::ctor_subroutine(bool doEnableAlpha)
 {
 	mIsAlphaEnabled   = doEnableAlpha;
 	mClamp            = 3;
-	mClearColor       = TCOLOR_BLACK;
+	mClearColor       = TCOLOR_BLACK_U8;
 	mZClear           = 0xFFFFFF;
 	mGamma            = 0;
 	mFader            = nullptr;

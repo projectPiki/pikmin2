@@ -196,7 +196,7 @@ LIBS = [
             ["JSystem/J2D/J2DGrafContext", True],
             ["JSystem/J2D/J2DPane", False],
             ["JSystem/J2D/J2DPicture", False],
-            ["JSystem/J2D/J2DPrint", False],
+            ["JSystem/J2D/J2DPrint", True],
             ["JSystem/J2D/J2DScreen", False],
             ["JSystem/J2D/J2DTextBox", True],
             ["JSystem/J2D/J2DWindow", False],

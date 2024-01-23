@@ -148,8 +148,8 @@ void DvdStatus::draw()
 
 			print.initiate();
 
-			print.mCharColor.set(TCOLOR_WHITE);
-			print.mGradientColor.set(TCOLOR_WHITE);
+			print.mCharColor.set(TCOLOR_WHITE_U8);
+			print.mGradientColor.set(TCOLOR_WHITE_U8);
 
 			print.print(40.0f, 200.0f, errorMsgSet[_00]);
 		}
