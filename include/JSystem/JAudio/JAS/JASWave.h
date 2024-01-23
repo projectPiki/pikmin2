@@ -46,8 +46,8 @@ struct JASWaveArc : public JASDisposer {
 
 struct JASWaveInfo {
 	u8 mBlockType;   // _00
-	u8 _01;          // _01
-	f32 _04;         // _04
+	u8 mKey;         // _01
+	f32 mSampleRate; // _04
 	u32 mOffset;     // _08
 	u32 _0C;         // _0C
 	u32 _10;         // _10
@@ -235,40 +235,47 @@ struct THeader {
 	u32 mArchiveBankOffset; // _10
 	u32 mCtrlGroupOffset;   // _14
 };
+
 struct TCtrlWave {
 	u32 _00; // _00
 };
+
 struct TWave {
-	u8 _00;      // _00
-	u8 _01;      // _01
-	u8 _02;      // _02
-	f32 _04;     // _04
-	u32 mOffset; // _08
-	u32 _0C;     // _0C
-	u32 _10;     // _10
-	u32 _14;     // _14
-	u32 _18;     // _18
-	u32 _1C;     // _1C
-	s16 _20;     // _20
-	s16 _22;     // _22
+	u8 _00;           // _00, xayr tools skip this value
+	u8 mFormat;       // _01
+	u8 mKey;          // _02
+	f32 mSampleRate;  // _04
+	u32 mAwOffset;    // _08
+	u32 mAwLength;    // _0C
+	u32 mLoop;        // _10
+	u32 mLoopStart;   // _14
+	u32 mLoopEnd;     // _18
+	u32 mSampleCount; // _1C
+	s16 mLast;        // _20
+	s16 mPenult;      // _22
 };
+
 struct TWaveArchive {
 	char mFileName[0x74]; // _00 - unknown length
 	u32 mWaveOffsets[1];  // _74 - dynamic length
 };
+
 struct TWaveArchiveBank {
 	u8 _00[8];              // _00 - unknown/padding
 	u32 mArchiveOffsets[1]; // _08 - dynamic length
 };
+
 struct TCtrl {
 	u8 _00[4];               // _00 - unknown/padding
 	u32 mWaveCount;          // _04
 	u32 mCtrlWaveOffsets[1]; // _08 - dynamic length
 };
+
 struct TCtrlScene {
 	u8 _00[12];      // _00 - unknown/padding
 	u32 mCtrlOffset; // _0C
 };
+
 struct TCtrlGroup {
 	u8 _00[8];                // _00 - unknown/padding
 	u32 mCtrlGroupCount;      // _08

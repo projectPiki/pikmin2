@@ -135,8 +135,8 @@ BankRandPrm::BankRandPrm()
     : mInst()
 {
 	mInst.setTarget(1);
-	mInst._08 = 1.0f;
-	mInst._0C = 0.0f;
+	mInst.mFloor   = 1.0f;
+	mInst.mCeiling = 0.0f;
 }
 
 /**

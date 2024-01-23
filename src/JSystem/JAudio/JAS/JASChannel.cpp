@@ -5,117 +5,6 @@
 #include "JSystem/JAudio/JAS/JASOscillator.h"
 #include "JSystem/JAudio/JAS/JASWave.h"
 #include "JSystem/JSupport/JSUList.h"
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global calc_sw_table__10JASChannel
-    calc_sw_table__10JASChannel:
-        .4byte 0x00000000
-        .4byte 0x00010000
-        .4byte 0x01000100
-        .4byte 0x00010100
-        .4byte 0x01020001
-        .4byte 0x00000201
-        .4byte 0x00020201
-        .4byte 0x00000100
-        .4byte 0x01010002
-        .4byte 0x01010001
-        .4byte 0x01010101
-        .4byte 0x02010200
-        .4byte 0x01020101
-        .4byte 0x02020100
-        .4byte 0x00020001
-        .4byte 0x02000202
-        .4byte 0x01000201
-        .4byte 0x01020102
-        .4byte 0x02020002
-        .4byte 0x02010202
-        .4byte 0x02000000
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804A43D8
-    lbl_804A43D8:
-        .4byte lbl_800A4580
-        .4byte lbl_800A4554
-        .4byte lbl_800A455C
-        .4byte lbl_800A4564
-        .4byte lbl_800A4580
-        .4byte lbl_800A456C
-        .4byte lbl_800A4574
-        .4byte lbl_800A457C
-    .global lbl_804A43F8
-    lbl_804A43F8:
-        .4byte lbl_800A44A0
-        .4byte lbl_800A4474
-        .4byte lbl_800A447C
-        .4byte lbl_800A4484
-        .4byte lbl_800A44A0
-        .4byte lbl_800A448C
-        .4byte lbl_800A4494
-        .4byte lbl_800A449C
-    .global __vt__10JASChannel
-    __vt__10JASChannel:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte "@16@__dt__10JASChannelFv"
-        .4byte __dt__10JASChannelFv
-    .global
-   "__vt__109JASPoolAllocObject<10JASChannel,Q217JASCreationPolicy15NewFromRootHeap,Q217JASThreadingModel14SingleThreaded>"
-    "__vt__109JASPoolAllocObject<10JASChannel,Q217JASCreationPolicy15NewFromRootHeap,Q217JASThreadingModel14SingleThreaded>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "__dt__109JASPoolAllocObject<10JASChannel,Q217JASCreationPolicy15NewFromRootHeap,Q217JASThreadingModel14SingleThreaded>Fv"
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516E10
-    lbl_80516E10:
-        .float 1.0
-    .global lbl_80516E14
-    lbl_80516E14:
-        .float 0.5
-    .global lbl_80516E18
-    lbl_80516E18:
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_80516E20
-    lbl_80516E20:
-        .4byte 0x3FE00000
-        .4byte 0x00000000
-    .global lbl_80516E28
-    lbl_80516E28:
-        .4byte 0x45800000
-    .global lbl_80516E2C
-    lbl_80516E2C:
-        .4byte 0x42FF0000
-    .global lbl_80516E30
-    lbl_80516E30:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_80516E38
-    lbl_80516E38:
-        .4byte 0xC3A2F983
-    .global lbl_80516E3C
-    lbl_80516E3C:
-        .4byte 0x43A2F983
-    .global lbl_80516E40
-    lbl_80516E40:
-        .4byte 0x3FC90FDB
-    .global lbl_80516E44
-    lbl_80516E44:
-        .4byte 0x3EA6F933
-    .global lbl_80516E48
-    lbl_80516E48:
-        .4byte 0x3EB20D99
-        .4byte 0x00000000
-*/
 
 /**
  * @note Address: 0x800A3204
@@ -132,28 +21,28 @@ JASChannel::JASChannel(Callback* callback, void* p2)
     , _C0(1.0f)
     , _C4(0)
     , _C8(0)
-    , _F8(1.0f)
+    , mModifiedPitch(1.0f)
     , _FC(1.0f)
 {
-	_E8    = nullptr;
-	_E4    = 0;
-	_EC    = 0;
-	_CC    = 0.5f;
-	_D4    = 0.0f;
-	_DC    = 0.0f;
-	_D0    = 0.5f;
-	_D8    = 0.0f;
-	_E0    = 0.0f;
-	_B0[0] = 0x150;
-	_B2    = 0x210;
-	_B4    = 0x352;
-	_B6    = 0x412;
-	_B8    = 0;
-	_BA    = 0;
-	_BC    = 0x13F;
-	_108   = 0x1A;
-	_109   = 1;
-	_10A   = 1;
+	mWaveInfo   = nullptr;
+	mWaveFormat = 0;
+	_EC         = 0;
+	_CC         = 0.5f;
+	_D4         = 0.0f;
+	_DC         = 0.0f;
+	_D0         = 0.5f;
+	_D8         = 0.0f;
+	_E0         = 0.0f;
+	_B0[0]      = 0x150;
+	_B2         = 0x210;
+	_B4         = 0x352;
+	_B6         = 0x412;
+	_B8         = 0;
+	_BA         = 0;
+	_BC         = 0x13F;
+	_108        = 0x1A;
+	_109        = 1;
+	_10A        = 1;
 	for (u32 i = 0; i < 4; i++) {
 		_30[i].init();
 	}
@@ -167,75 +56,6 @@ JASChannel::JASChannel(Callback* callback, void* p2)
  * @note Size: 0x30
  */
 JASOscillator::JASOscillator() { init(); }
-
-/**
- * @note Address: 0x800A3394
- * @note Size: 0xA4
- */
-// void JASPoolAllocObject<JASChannel, JASCreationPolicy::NewFromRootHeap, JASThreadingModel::SingleThreaded>::~JASPoolAllocObject()
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  stwu      r1, -0x20(r1)
-// 	  mflr      r0
-// 	  stw       r0, 0x24(r1)
-// 	  stw       r31, 0x1C(r1)
-// 	  stw       r30, 0x18(r1)
-// 	  mr.       r30, r3
-// 	  beq-      .loc_0x88
-// 	  lis       r3, 0x804A
-// 	  extsh.    r0, r4
-// 	  addi      r0, r3, 0x4430
-// 	  stw       r0, 0x0(r30)
-// 	  ble-      .loc_0x88
-// 	  lwz       r0, -0x75DC(r13)
-// 	  cmplwi    r0, 0
-// 	  bne-      .loc_0x78
-// 	  bl        0x4B868
-// 	  lwz       r0, -0x75DC(r13)
-// 	  stw       r3, 0x8(r1)
-// 	  cmplwi    r0, 0
-// 	  bne-      .loc_0x70
-// 	  lwz       r4, -0x7548(r13)
-// 	  li        r3, 0xC
-// 	  li        r5, 0
-// 	  bl        -0x7F4B0
-// 	  mr.       r31, r3
-// 	  beq-      .loc_0x6C
-// 	  bl        0x3D88
-
-// 	.loc_0x6C:
-// 	  stw       r31, -0x75DC(r13)
-
-// 	.loc_0x70:
-// 	  lwz       r3, 0x8(r1)
-// 	  bl        0x4B858
-
-// 	.loc_0x78:
-// 	  lwz       r3, -0x75DC(r13)
-// 	  mr        r4, r30
-// 	  li        r5, 0x4
-// 	  bl        0x3E58
-
-// 	.loc_0x88:
-// 	  lwz       r0, 0x24(r1)
-// 	  mr        r3, r30
-// 	  lwz       r31, 0x1C(r1)
-// 	  lwz       r30, 0x18(r1)
-// 	  mtlr      r0
-// 	  addi      r1, r1, 0x20
-// 	  blr
-// 	*/
-// }
-
-/**
- * @note Address: N/A
- * @note Size: 0x54
- */
-// void JSULink<JASChannel>::~JSULink()
-// {
-// 	// UNUSED FUNCTION
-// }
 
 /**
  * @note Address: 0x800A3438
@@ -352,11 +172,7 @@ void JASChannel::setMixConfig(int index, u16 mixConfig) { _B0[index] = mixConfig
  * @note Address: 0x800A3588
  * @note Size: 0x8
  */
-void JASChannel::directReleaseOsc(u16 a1)
-{
-	// Generated from sth r4, 0x4A(r3)
-	_30[0]._1A = a1;
-}
+void JASChannel::directReleaseOsc(u16 a1) { _30[0].mRelease = a1; }
 
 /**
  * @note Address: N/A
@@ -377,12 +193,12 @@ void JASChannel::copyOsc(int index, JASOscillator::Data* toData)
 	if (!fromData) {
 		return;
 	}
-	toData->_00 = fromData->_00;
-	toData->_04 = fromData->_04;
-	toData->_08 = fromData->_08;
-	toData->_0C = fromData->_0C;
-	toData->_10 = fromData->_10;
-	toData->_14 = fromData->_14;
+	toData->mTarget  = fromData->mTarget;
+	toData->mRate    = fromData->mRate;
+	toData->mAttack  = fromData->mAttack;
+	toData->mRelease = fromData->mRelease;
+	toData->mWidth   = fromData->mWidth;
+	toData->mVertex  = fromData->mVertex;
 }
 
 /**
@@ -398,15 +214,15 @@ void JASChannel::overwriteOsc(int index, JASOscillator::Data* data) { _30[index]
 void JASChannel::setKeySweepTarget(u8 p1, u32 p2)
 {
 	u32 v1;
-	if (_E4 == 2 || _E8 == nullptr) {
+	if (mWaveFormat == 2 || mWaveInfo == nullptr) {
 		v1 = p1;
 	} else {
-		v1 = p1 + 60 - _E8->_01;
+		v1 = p1 + 60 - mWaveInfo->mKey;
 	}
 	f32 pitch = JASDriver::key2pitch_c5(v1);
-	pitch *= _F0;
+	pitch *= mActivePitch;
 	if (p2 == 0) {
-		_F8 = pitch;
+		mModifiedPitch = pitch;
 	} else {
 		_C0 = pitch;
 	}
@@ -417,11 +233,7 @@ void JASChannel::setKeySweepTarget(u8 p1, u32 p2)
  * @note Address: 0x800A3694
  * @note Size: 0x8
  */
-void JASChannel::setPauseFlag(bool a1)
-{
-	// Generated from stb r4, 0x1C(r3)
-	_1C = a1;
-}
+void JASChannel::setPauseFlag(bool a1) { _1C = a1; }
 
 /**
  * @note Address: 0x800A369C
@@ -479,7 +291,7 @@ void JASChannel::release(u16 p1)
 		return;
 	}
 	if (p1 != 0) {
-		_30[0]._1A = p1;
+		_30[0].mRelease = p1;
 	}
 	for (u32 i = 0; i < 4; i++) {
 		if (_30[i].mData != nullptr) {
@@ -1820,7 +1632,7 @@ void JASChannel::sweepProc()
 	if (_C4 == 0) {
 		return;
 	}
-	_F8 += (_C0 - _F8) / _C4;
+	mModifiedPitch += (_C0 - mModifiedPitch) / _C4;
 	_C4--;
 	/*
 	stwu     r1, -0x10(r1)

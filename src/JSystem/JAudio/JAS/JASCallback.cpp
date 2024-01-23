@@ -1,11 +1,6 @@
 #include "Dolphin/os.h"
 #include "JSystem/JAudio/JAS/JASCallbackMgr.h"
 #include "JSystem/JAudio/JAS/JASMutexLock.h"
-#include "types.h"
-
-/*
-    Generated from dpostproc
-*/
 
 /**
  * @note Address: 0x800A6500

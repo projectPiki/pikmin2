@@ -1,7 +1,6 @@
 #include "JSystem/JAudio/JAS/JASCallbackMgr.h"
 #include "JSystem/JAudio/JAS/JASDriver.h"
 #include "JSystem/JAudio/JAS/JASDsp.h"
-#include "types.h"
 
 namespace JASDriver {
 

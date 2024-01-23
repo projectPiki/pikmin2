@@ -23,17 +23,15 @@ struct JASInstEffect {
  */
 struct JASInstRand : public JASInstEffect {
 	JASInstRand()
-	    : JASInstEffect()
-	    , _08(1.0f)
-	    , _0C(0.0f)
+	    : mFloor(1.0f)
+	    , mCeiling(0.0f)
 	{
 	}
 
 	virtual f32 getY(int, int) const; // _08
-	// virtual void _0C(); 					// _0C - maybe.
 
-	f32 _08;
-	f32 _0C;
+	f32 mFloor;   // _08
+	f32 mCeiling; // _0C
 };
 
 /**
@@ -41,23 +39,21 @@ struct JASInstRand : public JASInstEffect {
  */
 struct JASInstSense : public JASInstEffect {
 	JASInstSense()
-	    : JASInstEffect()
-	    , _08(0)
-	    , _09(60)
-	    , _0C(1.0f)
-	    , _10(1.0f)
+	    : mRegister(0)
+	    , mKey(60)
+	    , mFloor(1.0f)
+	    , mCeiling(1.0f)
 	{
 	}
 
 	virtual f32 getY(int, int) const; // _08
-	// virtual void _0C(); 					// _0C - maybe.
 
 	void setParams(int, int, f32, f32);
 
-	u8 _08;  // _08
-	u8 _09;  // _09
-	f32 _0C; // _0C
-	f32 _10; // _10
+	u8 mRegister; // _08
+	u8 mKey;      // _09
+	f32 mFloor;   // _0C
+	f32 mCeiling; // _10
 };
 
 /**
@@ -65,30 +61,30 @@ struct JASInstSense : public JASInstEffect {
  */
 struct JASInstParam {
 	inline JASInstParam()
-	    : _00(0)
-	    , _04(0)
+	    : mWaveFormat(0)
+	    , mWaveID(0)
 	    , mOscData(nullptr)
 	    , mOscCount(0)
-	    , _10(1.0f)
-	    , _14(1.0f)
-	    , _18(0.5f)
+	    , mVolume(1.0f)
+	    , mPitch(1.0f)
+	    , mPanning(0.5f)
 	    , _1C(0.0f)
 	    , _20(0.0f)
-	    , _24(0)
+	    , mIsPercussion(false)
 	    , _26(0)
 	{
 	}
 
-	u8 _00;                         // _00
-	u32 _04;                        // _04
+	u8 mWaveFormat;                 // _00
+	u32 mWaveID;                    // _04
 	JASOscillator::Data** mOscData; // _08
-	u32 mOscCount;                  // _0C - possibly oscillator count?
-	f32 _10;                        // _10
-	f32 _14;                        // _14
-	f32 _18;                        // _18
+	u32 mOscCount;                  // _0C
+	f32 mVolume;                    // _10
+	f32 mPitch;                     // _14
+	f32 mPanning;                   // _18
 	f32 _1C;                        // _1C
 	f32 _20;                        // _20
-	u8 _24;                         // _24
+	bool mIsPercussion;             // _24
 	u8 _25;                         // _25
 	u16 _26;                        // _26
 };
@@ -102,10 +98,10 @@ struct JASInst {
 	 * @size{0x10}
 	 */
 	struct TVeloRegion {
-		s32 _00;
-		u32 _04;
-		f32 _08;
-		f32 _0C;
+		s32 mVelocity; // _00
+		u32 mWaveID;   // _04
+		f32 mVolume;   // _08
+		f32 mPitch;    // _0C
 	};
 
 	/**
@@ -126,7 +122,7 @@ struct JASBasicInst : public JASInst {
 		TVeloRegion* getVeloRegion(int);
 		TVeloRegion* getVeloRegion(int) const;
 
-		int _00;                   // _00
+		int mBaseKey;              // _00
 		u32 mVeloRegionCount;      // _04 - velo region count?
 		TVeloRegion* mVeloRegions; // _08 - velo region pointer?
 	};
@@ -156,8 +152,8 @@ struct JASBasicInst : public JASInst {
 	TKeymap* getKeyRegion(int) const;
 
 	// _00 = VTABLE
-	f32 _04;                        // _04
-	f32 _08;                        // _08
+	f32 mPitch;                     // _04
+	f32 mVolume;                    // _08
 	JASInstEffect** mEffects;       // _0C
 	u32 mEffectCount;               // _10
 	JASOscillator::Data** mOscData; // _14

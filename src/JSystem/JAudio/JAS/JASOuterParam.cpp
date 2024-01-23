@@ -1,15 +1,4 @@
 #include "JSystem/JAudio/JAS/JASTrack.h"
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516D10
-    lbl_80516D10:
-        .4byte 0x00000000
-        .4byte 0x00000000
-*/
 
 /**
  * @note Address: 0x8009C400
@@ -44,11 +33,7 @@ void JASOuterParam::initExtBuffer()
  * @note Address: 0x8009C45C
  * @note Size: 0x8
  */
-void JASOuterParam::setOuterSwitch(u16 newValue)
-{
-	// Generated from sth r4, 0x0(r3)
-	mOuterSwitch = newValue;
-}
+void JASOuterParam::setOuterSwitch(u16 newValue) { mOuterSwitch = newValue; }
 
 /**
  * @note Address: N/A
@@ -70,11 +55,7 @@ bool JASOuterParam::checkOuterSwitch(u16 p1) { return mOuterSwitch & p1; }
  * @note Address: 0x8009C480
  * @note Size: 0x8
  */
-void JASOuterParam::setOuterUpdate(u16 newValue)
-{
-	// Generated from sth r4, 0x2(r3)
-	mOuterUpdate = newValue;
-}
+void JASOuterParam::setOuterUpdate(u16 newValue) { mOuterUpdate = newValue; }
 
 /**
  * @note Address: 0x8009C488

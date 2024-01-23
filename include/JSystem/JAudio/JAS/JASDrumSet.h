@@ -21,9 +21,9 @@ struct JASDrumSet : public JASInst {
 		const TVeloRegion* getVeloRegion(int index) const { return mVeloRegions + index; }
 		JASInstEffect* getEffect(int index) { return mEffects[index]; }
 
-		f32 _00;                   // _00
-		f32 _04;                   // _04
-		f32 _08;                   // _08
+		f32 mPitch;                // _00
+		f32 mVolume;               // _04
+		f32 mPanning;              // _08
 		u16 mRelease;              // _0C
 		JASInstEffect** mEffects;  // _10
 		u32 mEffectCount;          // _14

@@ -8,7 +8,6 @@
 #include "JSystem/JAudio/JAS/JASInst.h"
 #include "JSystem/JAudio/JAS/JASMutexLock.h"
 #include "JSystem/JAudio/JAS/JASWave.h"
-#include "types.h"
 
 namespace JASBankMgr {
 
@@ -137,7 +136,7 @@ JASChannel* noteOn(int bankIndex, int instIndex, u8 p3, u8 p4, u16 p5, void (*p6
 	if (waveBank == nullptr) {
 		return nullptr;
 	}
-	JASWaveHandle* waveHandle = waveBank->getWaveHandle(instParam._04);
+	JASWaveHandle* waveHandle = waveBank->getWaveHandle(instParam.mWaveID);
 	if (waveHandle == nullptr) {
 		return nullptr;
 	}
@@ -158,20 +157,20 @@ JASChannel* noteOn(int bankIndex, int instIndex, u8 p3, u8 p4, u16 p5, void (*p6
 		return nullptr;
 	}
 	channel->setPanPower(1.0f, 1.0f, 1.0f);
-	channel->_BC = p5;
-	channel->_E8 = waveInfo;
-	channel->_EC = wavePtr;
-	channel->_E4 = instParam._00;
-	channel->_F0 = instParam._14 * (waveInfo->_04 / JASDriver::getDacRate());
-	channel->_F8 = channel->_F0;
-	if (instParam._24 == 0) {
-		channel->_F8 *= JASDriver::key2pitch_c5(p3 + 60 - waveInfo->_01);
+	channel->_BC            = p5;
+	channel->mWaveInfo      = waveInfo;
+	channel->_EC            = wavePtr;
+	channel->mWaveFormat    = instParam.mWaveFormat;
+	channel->mActivePitch   = instParam.mPitch * (waveInfo->mSampleRate / JASDriver::getDacRate());
+	channel->mModifiedPitch = channel->mActivePitch;
+	if (instParam.mIsPercussion == 0) {
+		channel->mModifiedPitch *= JASDriver::key2pitch_c5(p3 + 60 - waveInfo->mKey);
 	}
-	channel->_F4 = instParam._10;
-	channel->_FC = p4 / 127.0f;
+	channel->mVolume = instParam.mVolume;
+	channel->_FC     = p4 / 127.0f;
 	channel->_FC *= channel->_FC;
-	channel->_FC *= channel->_F4;
-	channel->_CC = instParam._18;
+	channel->_FC *= channel->mVolume;
+	channel->_CC = instParam.mPanning;
 	channel->_D4 = instParam._1C;
 	channel->_DC = instParam._20;
 	for (int i = 0; i < instParam.mOscCount; i++) {
@@ -206,14 +205,14 @@ static JASChannel* noteOnOsc(int p1, u8 p2, u8 p3, u16 p4, void (*p5)(u32, JASCh
 		return nullptr;
 	}
 	channel->setPanPower(1.0f, 1.0f, 1.0f);
-	channel->_BC = p4;
-	channel->_EC = (void*)p1;
-	channel->_E4 = 2;
-	channel->_F0 = 16736.015f / JASDriver::getDacRate();
-	channel->_F8 = channel->_F0;
-	channel->_F8 *= JASDriver::key2pitch_c5(p2);
-	channel->_F4 = 1.0f;
-	channel->_FC = p3 / 127.0f;
+	channel->_BC            = p4;
+	channel->_EC            = (void*)p1;
+	channel->mWaveFormat    = 2;
+	channel->mActivePitch   = 16736.015f / JASDriver::getDacRate();
+	channel->mModifiedPitch = channel->mActivePitch;
+	channel->mModifiedPitch *= JASDriver::key2pitch_c5(p2);
+	channel->mVolume = 1.0f;
+	channel->_FC     = p3 / 127.0f;
 	channel->_FC *= channel->_FC;
 	channel->setOscInit(0, &OSC_ENV);
 	if (channel->play()) {
@@ -228,9 +227,10 @@ static JASChannel* noteOnOsc(int p1, u8 p2, u8 p3, u16 p4, void (*p5)(u32, JASCh
  */
 void gateOn(JASChannel* channel, u8 p2, u8 p3)
 {
-	channel->_F8 = channel->_F0 * JASDriver::key2pitch_c5(channel->_E4 == 2 ? p2 : p2 + 60 - channel->_E8->_01);
+	channel->mModifiedPitch
+	    = channel->mActivePitch * JASDriver::key2pitch_c5(channel->mWaveFormat == 2 ? p2 : p2 + 60 - channel->mWaveInfo->mKey);
 	channel->_FC = p3 / 127.0f;
-	channel->_FC = channel->_FC * channel->_FC * channel->_F4;
+	channel->_FC = channel->_FC * channel->_FC * channel->mVolume;
 }
 
 /**

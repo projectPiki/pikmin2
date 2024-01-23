@@ -463,13 +463,13 @@ int JASSeqParser::cmdSimpleEnv(JASTrack* track, u32* args)
  */
 int JASSeqParser::cmdSimpleADSR(JASTrack* track, u32* args)
 {
-	track->mOscData[0]     = JASPlayer::sAdsrDef;
-	track->mOscData[0]._08 = track->_2E0;
-	track->_2E0[1]         = args[0];
-	track->_2E0[4]         = args[1];
-	track->_2E0[7]         = args[2];
-	track->_2E0[8]         = args[3];
-	track->_350            = args[4];
+	track->mOscData[0]         = JASPlayer::sAdsrDef;
+	track->mOscData[0].mAttack = track->_2E0;
+	track->_2E0[1]             = args[0];
+	track->_2E0[4]             = args[1];
+	track->_2E0[7]             = args[2];
+	track->_2E0[8]             = args[3];
+	track->_350                = args[4];
 	return 0;
 }
 

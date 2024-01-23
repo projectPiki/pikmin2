@@ -1,6 +1,5 @@
 #include "JSystem/JAudio/JAS/JASCalc.h"
 #include "Dolphin/os.h"
-#include "types.h"
 
 namespace JASCalc {
 

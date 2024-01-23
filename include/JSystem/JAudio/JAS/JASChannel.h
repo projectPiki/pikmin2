@@ -53,44 +53,44 @@ struct JASChannel : JSULink<JASChannel>,
 
 	// vtable 1: _10
 	// vtable 2: _14
-	s32 _18;                // _18
-	u8 _1C;                 // _1C
-	JASDSPChannel* _20;     // _20
-	Callback* _24;          // _24
-	void* _28;              // _28
-	u32 _2C;                // _2C
-	JASOscillator _30[4];   // _30
-	u16 _B0[1];             // _B0
-	u16 _B2;                // _B2
-	s16 _B4;                // _B4
-	s16 _B6;                // _B6
-	s16 _B8;                // _B8
-	s16 _BA;                // _BA
-	u16 _BC;                // _BC
-	f32 _C0;                // _C0
-	u32 _C4;                // _C4
-	u32 _C8;                // _C8
-	f32 _CC;                // _CC
-	f32 _D0;                // _D0
-	f32 _D4;                // _D4
-	f32 _D8;                // _D8
-	f32 _DC;                // _DC
-	f32 _E0;                // _E0
-	u8 _E4;                 // _E4
-	const JASWaveInfo* _E8; // _E8
-	void* _EC;              // _EC
-	f32 _F0;                // _F0
-	f32 _F4;                // _F4
-	f32 _F8;                // _F8
-	f32 _FC;                // _FC
-	f32 _100;               // _100
-	f32 _104;               // _104
-	u8 _108;                // _108
-	u8 _109;                // _109
-	u8 _10A;                // _10A
-	f32 _10C;               // _10C
-	f32 _110;               // _110
-	f32 _114;               // _114
+	s32 _18;                      // _18
+	u8 _1C;                       // _1C
+	JASDSPChannel* _20;           // _20
+	Callback* _24;                // _24
+	void* _28;                    // _28
+	u32 _2C;                      // _2C
+	JASOscillator _30[4];         // _30
+	u16 _B0[1];                   // _B0
+	u16 _B2;                      // _B2
+	s16 _B4;                      // _B4
+	s16 _B6;                      // _B6
+	s16 _B8;                      // _B8
+	s16 _BA;                      // _BA
+	u16 _BC;                      // _BC
+	f32 _C0;                      // _C0
+	u32 _C4;                      // _C4
+	u32 _C8;                      // _C8
+	f32 _CC;                      // _CC
+	f32 _D0;                      // _D0
+	f32 _D4;                      // _D4
+	f32 _D8;                      // _D8
+	f32 _DC;                      // _DC
+	f32 _E0;                      // _E0
+	u8 mWaveFormat;               // _E4
+	const JASWaveInfo* mWaveInfo; // _E8
+	void* _EC;                    // _EC
+	f32 mActivePitch;             // _F0
+	f32 mVolume;                  // _F4
+	f32 mModifiedPitch;           // _F8
+	f32 _FC;                      // _FC
+	f32 _100;                     // _100
+	f32 _104;                     // _104
+	u8 _108;                      // _108
+	u8 _109;                      // _109
+	u8 _10A;                      // _10A
+	f32 _10C;                     // _10C
+	f32 _110;                     // _110
+	f32 _114;                     // _114
 
 	static const u8 calc_sw_table[27][3];
 };

@@ -1,7 +1,6 @@
 #include "JSystem/JAudio/JAS/JASHeap.h"
 #include "JSystem/JAudio/JAS/JASWave.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "types.h"
 
 /**
  * @note Address: 0x8009B6C4

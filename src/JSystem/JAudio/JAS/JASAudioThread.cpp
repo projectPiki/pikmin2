@@ -8,7 +8,6 @@
 #include "JSystem/JAudio/JAS/JASGenericMemPool.h"
 #include "JSystem/JAudio/JAS/JASChannel.h"
 #include "JSystem/JKernel/JKRThread.h"
-#include "types.h"
 
 JASAudioThread* JASAudioThread::sAudioThread;
 OSThreadQueue JASAudioThread::sThreadQueue;

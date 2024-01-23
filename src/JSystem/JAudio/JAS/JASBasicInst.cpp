@@ -2,15 +2,14 @@
 #include "JSystem/JAudio/JAS/JASCalc.h"
 #include "JSystem/JAudio/JAS/JASInst.h"
 #include "JSystem/JAudio/JAS/JASOscillator.h"
-#include "types.h"
 
 /**
  * @note Address: 0x80099888
  * @note Size: 0x44
  */
 JASBasicInst::JASBasicInst()
-    : _04(1.0f)
-    , _08(1.0f)
+    : mPitch(1.0f)
+    , mVolume(1.0f)
     , mEffects(nullptr)
     , mEffectCount(0)
     , mOscData(nullptr)
@@ -19,13 +18,6 @@ JASBasicInst::JASBasicInst()
     , mKeymap(nullptr)
 {
 }
-
-/**
- * @note Address: 0x800998CC
- * @note Size: 0x48
- * __dt__7JASInstFv
- */
-// JASInst::~JASInst() { }
 
 /**
  * @note Address: 0x80099914
@@ -54,12 +46,12 @@ void JASBasicInst::searchKeymap(int) const
  */
 bool JASBasicInst::getParam(int p1, int p2, JASInstParam* param) const
 {
-	param->_00       = 0;
-	param->_24       = 0;
-	param->mOscData  = mOscData;
-	param->mOscCount = mOscCount;
-	param->_10       = _04;
-	param->_14       = _08;
+	param->mWaveFormat   = 0;
+	param->mIsPercussion = false;
+	param->mOscData      = mOscData;
+	param->mOscCount     = mOscCount;
+	param->mVolume       = mPitch;  // these pitch and volumes seem to be swapped
+	param->mPitch        = mVolume; // might be an error in xayrs tools
 	for (int i = 0; i < mEffectCount; i++) {
 		JASInstEffect* effect = mEffects[i];
 		if (effect != nullptr) {
@@ -67,13 +59,13 @@ bool JASBasicInst::getParam(int p1, int p2, JASInstParam* param) const
 			f32 y = effect->getY(p1, p2);
 			switch (effect->mTarget) {
 			case 0:
-				param->_10 *= y;
+				param->mVolume *= y;
 				break;
 			case 1:
-				param->_14 *= y;
+				param->mPitch *= y;
 				break;
 			case 2:
-				param->_18 += y - 0.5; // double is intentional
+				param->mPanning += y - 0.5; // double is intentional
 				break;
 			case 3:
 				param->_1C += y;
@@ -86,7 +78,7 @@ bool JASBasicInst::getParam(int p1, int p2, JASInstParam* param) const
 	}
 	const TKeymap* keymap = nullptr;
 	for (int i = 0; i < mKeymapCount; i++) {
-		if (p1 <= mKeymap[i]._00) {
+		if (p1 <= mKeymap[i].mBaseKey) {
 			keymap = &mKeymap[i];
 			break;
 		}
@@ -96,10 +88,10 @@ bool JASBasicInst::getParam(int p1, int p2, JASInstParam* param) const
 	}
 	for (int i = 0; i < keymap->mVeloRegionCount; i++) {
 		TVeloRegion* veloRegion = keymap->getVeloRegion(i);
-		if (p2 <= veloRegion->_00) {
-			param->_10 *= veloRegion->_08;
-			param->_14 *= veloRegion->_0C;
-			param->_04 = veloRegion->_04;
+		if (p2 <= veloRegion->mVelocity) {
+			param->mVolume *= veloRegion->mVolume;
+			param->mPitch *= veloRegion->mPitch;
+			param->mWaveID = veloRegion->mWaveID;
 			return true;
 		}
 	}
@@ -129,7 +121,7 @@ void JASBasicInst::setKeyRegionCount(u32 count)
  */
 JASBasicInst::TKeymap::TKeymap()
 {
-	_00              = -1;
+	mBaseKey         = -1;
 	mVeloRegionCount = 0;
 	mVeloRegions     = nullptr;
 }

@@ -4,7 +4,6 @@
 #include "JSystem/JAudio/JAS/JASDvd.h"
 #include "JSystem/JAudio/JAS/JASHeap.h"
 #include "JSystem/JAudio/JAS/JASMutexLock.h"
-#include "types.h"
 #include "JSystem/JAudio/JAS/JASAramStream.h"
 #include "JSystem/JAudio/JAS/JASThread.h"
 #include "JSystem/JKernel/JKRAram.h"

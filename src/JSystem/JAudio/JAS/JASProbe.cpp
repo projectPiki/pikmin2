@@ -2,7 +2,6 @@
 #include "JSystem/JAudio/JAS/JASKernel.h"
 #include "JSystem/JAudio/JAS/JASMutexLock.h"
 #include "JSystem/JAudio/JAS/JASProbe.h"
-#include "types.h"
 
 static JASProbe* sProbes;
 static u32 sProbeCount; // unused

@@ -3,7 +3,6 @@
 #include "Dolphin/os.h"
 #include "stdarg.h"
 #include "stdio.h"
-#include "types.h"
 
 static OSMutex sMutex;
 static char* sBuffer;

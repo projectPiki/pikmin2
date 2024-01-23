@@ -3,7 +3,6 @@
 #include "JSystem/JAudio/JAS/JASMutexLock.h"
 #include "JSystem/JAudio/JAS/JASWave.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "types.h"
 
 /**
  * @note Address: 0x80099E60

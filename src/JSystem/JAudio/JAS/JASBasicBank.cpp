@@ -1,7 +1,6 @@
 #include "JSystem/JAudio/JAS/JASBank.h"
 #include "JSystem/JAudio/JAS/JASCalc.h"
 #include "JSystem/JAudio/JAS/JASInst.h"
-#include "types.h"
 
 /**
  * @note Address: 0x800996FC

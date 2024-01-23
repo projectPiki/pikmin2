@@ -3,7 +3,6 @@
 #include "JSystem/JAudio/JAS/JASResArcLoader.h"
 #include "JSystem/JAudio/JAS/JASThread.h"
 #include "JSystem/JKernel/JKRArchive.h"
-#include "types.h"
 
 /**
  * @note Address: 0x800A7670

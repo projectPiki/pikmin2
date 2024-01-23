@@ -2,16 +2,6 @@
 #include "JSystem/JAudio/JAS/JASDvd.h"
 #include "JSystem/JAudio/JAS/JASHeap.h"
 #include "JSystem/JAudio/JAS/JASThread.h"
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global sThread__6JASDvd
-    sThread__6JASDvd:
-        .skip 0x8
-*/
 
 JASTaskThread* JASDvd::sThread;
 

@@ -6,19 +6,6 @@
 #include "JSystem/JAudio/JAS/JASMutexLock.h"
 #include "JSystem/JAudio/JAS/JASThread.h"
 #include "JSystem/JKernel/JKRThread.h"
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__13JASTaskThread
-    __vt__13JASTaskThread:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__13JASTaskThreadFv
-        .4byte run__13JASTaskThreadFv
-*/
 
 /**
  * @note Address: 0x800A8840

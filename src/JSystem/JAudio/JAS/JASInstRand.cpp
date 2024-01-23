@@ -2,35 +2,6 @@
 #include "JSystem/JAudio/JALCalc.h"
 #include "JSystem/JAudio/JAS/JASInst.h"
 #include "JSystem/JMath.h"
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__11JASInstRand
-    __vt__11JASInstRand:
-        .4byte 0
-        .4byte 0
-        .4byte getY__11JASInstRandCFii
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global init$644
-    init$644:
-        .skip 0x4
-    .global oRandom$643
-    oRandom$643:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516CF0
-    lbl_80516CF0:
-        .4byte 0x40000000
-    .global lbl_80516CF4
-    lbl_80516CF4:
-        .float 1.0
-*/
 
 /**
  * @note Address: 0x8009B4E8
@@ -38,14 +9,17 @@
  */
 f32 JASInstRand::getY(int, int) const
 {
-	// static JMath::TRandom_fast_ oRandom(0);
-	// oRandom.value = oRandom.value * 1664525 + 1013904223;
-	// return -((1.0f - __float_epsilon) * 1.0f - ((f32)(oRandom.value >> 9 | 0x3f800000) - 1.0f) * 2.0f) * _0C + _08;
+	static JMath::TRandom_fast_ oRandom(0);
 
-	f32 v = -((1.0f - __float_epsilon[0]) * 1.0f - JALCalc::getRandom_0_1() * 2.0f);
-	v *= _0C;
-	v += _08;
-	return v;
+	f32 test = 1.0f; // needs to exist since compiler ignores (x * 1.0f) otherwise
+
+	f32 base = (1.0f - FLT_EPSILON);
+
+	f32 y = base - oRandom.nextFloat_0_1() * 2.0f * test;
+	y *= mCeiling;
+	y += mFloor;
+	return y;
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

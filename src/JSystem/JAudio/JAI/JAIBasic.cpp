@@ -867,9 +867,9 @@ u16 JAIBasic::setParameterSeqSync(JASTrack* p1, u16 p2)
 				JASTrack* seqTrack = &JAInter::SequenceMgr::getPlayTrackInfo(i)->mSequence->mSeqParameter.mTrack;
 				JASTrack* v1;
 				if ((JAInter::SequenceMgr::getPlayTrackInfo(i)->mSequence->mSoundID & 0x800) != 0) {
-					v1 = p1->_2F8->_2F8;
+					v1 = p1->mParentTrack->mParentTrack;
 				} else {
-					v1 = p1->_2F8;
+					v1 = p1->mParentTrack;
 				}
 				if (seqTrack == v1) {
 					u32 v2 = JAInter::routeToTrack(p1->_348);

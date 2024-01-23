@@ -5,7 +5,6 @@
 #include "JSystem/JAudio/JAS/JASMutexLock.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JSupport/JSUList.h"
-#include "types.h"
 
 JKRSolidHeap* JASDram;
 

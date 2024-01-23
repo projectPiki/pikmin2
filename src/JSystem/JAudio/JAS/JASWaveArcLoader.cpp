@@ -9,7 +9,6 @@
 #include "JSystem/JAudio/JAS/JASWave.h"
 #include "JSystem/JKernel/JKRDvdAramRipper.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
-#include "types.h"
 
 char JASWaveArcLoader::sCurrentDir[0x40] = "/Banks/";
 JASHeap* JASWaveArcLoader::sAramHeap;
@@ -75,13 +74,6 @@ JASWaveArc::JASWaveArc()
     , _58(0)
 {
 }
-
-/**
- * @note Address: 0x8009BB00
- * @note Size: 0x78
- * __dt__7JASHeapFv
- */
-// JASHeap::~JASHeap() { }
 
 /**
  * @note Address: N/A
@@ -292,9 +284,3 @@ void JASWaveArc::setFileName(const char* fileName)
 		setEntryNum(entryNum);
 	}
 }
-
-/**
- * @note Address: 0x8009C02C
- * @note Size: 0x4
- */
-// void JASDisposer::onDispose() { }

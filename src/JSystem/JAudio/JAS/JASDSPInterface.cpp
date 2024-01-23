@@ -5,7 +5,6 @@
 #include "JSystem/JAudio/JAS/JASHeap.h"
 #include "JSystem/JAudio/JAS/JASMutexLock.h"
 #include "JSystem/JAudio/JAS/JASWave.h"
-#include "types.h"
 
 namespace JASDsp {
 

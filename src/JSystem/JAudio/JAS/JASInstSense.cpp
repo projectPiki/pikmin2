@@ -1,33 +1,4 @@
 #include "JSystem/JAudio/JAS/JASInst.h"
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__12JASInstSense
-    __vt__12JASInstSense:
-        .4byte 0
-        .4byte 0
-        .4byte getY__12JASInstSenseCFii
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516CF8
-    lbl_80516CF8:
-        .4byte 0x42FE0000
-    .global lbl_80516CFC
-    lbl_80516CFC:
-        .float 1.0
-    .global lbl_80516D00
-    lbl_80516D00:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_80516D08
-    lbl_80516D08:
-        .4byte 0x43300000
-        .4byte 0x00000000
-*/
 
 /**
  * @note Address: 0x8009B58C
@@ -36,7 +7,7 @@
 f32 JASInstSense::getY(int p1, int p2) const
 {
 	int v1 = 0;
-	switch (_08) {
+	switch (mRegister) {
 	case 1:
 		v1 = p2;
 		break;
@@ -44,30 +15,14 @@ f32 JASInstSense::getY(int p1, int p2) const
 		v1 = p1;
 		break;
 	}
-	if (_09 == 0x7F || _09 == 0) {
-		return _0C + (v1 * (_10 - _0C)) / 127.0f;
-	} else if (v1 < _09) {
-		return (1.0f - _0C) * ((f32)v1 / (f32)_09) + _0C;
+
+	if (mKey == 0x7F || mKey == 0) {
+		return mFloor + (v1 * (mCeiling - mFloor)) / 127.0f;
+	} else if (v1 < mKey) {
+		return (1.0f - mFloor) * ((f32)v1 / (f32)mKey) + mFloor;
 	} else {
-		return (_10 - 1.0f) * ((f32)(v1 - _09) / (f32)(0x7F - _09)) + 1.0f;
+		return (mCeiling - 1.0f) * ((f32)(v1 - mKey) / (f32)(0x7F - mKey)) + 1.0f;
 	}
-	// switch (_08) {
-	// 	case 2:
-	// 		break;
-	// 	case 1:
-	// 		p1 = p2;
-	// 		break;
-	// 	default:
-	// 		p1 = 0;
-	// 		break;
-	// }
-	// if (_09 == 0x7F || _09 == 0) {
-	// 	return _0C + (p1 * (_10 - _0C)) / 127.0f;
-	// } else if (p1 < _09) {
-	// 	return (1.0f - _0C) * ((f32)p1 / (f32)_09) + _0C;
-	// } else {
-	// 	return (_10 - 1.0f) * ((f32)(p1 - _09) / (f32)(0x7F - _09)) + 1.0f;
-	// }
 
 	/*
 	lbz      r0, 8(r3)
@@ -164,10 +119,10 @@ lbl_8009B6A8:
  * @note Address: 0x8009B6B0
  * @note Size: 0x14
  */
-void JASInstSense::setParams(int p1, int p2, f32 p3, f32 p4)
+void JASInstSense::setParams(int reg, int key, f32 floor, f32 ceiling)
 {
-	_08 = p1;
-	_09 = p2;
-	_0C = p3;
-	_10 = p4;
+	mRegister = reg;
+	mKey      = key;
+	mFloor    = floor;
+	mCeiling  = ceiling;
 }

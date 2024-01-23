@@ -1,6 +1,5 @@
 #include "JSystem/JAudio/JAS/JASDsp.h"
 #include "JSystem/JAudio/JAS/JASHeap.h"
-#include "types.h"
 
 JASDSPChannel* JASDSPChannel::sDspChannels;
 

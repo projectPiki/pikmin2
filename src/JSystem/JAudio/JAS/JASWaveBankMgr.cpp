@@ -1,7 +1,6 @@
 #include "JSystem/JAudio/JAS/JASCalc.h"
 #include "JSystem/JAudio/JAS/JASHeap.h"
 #include "JSystem/JAudio/JAS/JASWave.h"
-#include "types.h"
 
 int JASWaveBankMgr::sTableSize;
 JASWaveBank** JASWaveBankMgr::sWaveBank;

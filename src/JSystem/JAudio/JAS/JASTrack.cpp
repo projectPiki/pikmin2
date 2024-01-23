@@ -9,7 +9,6 @@
 #include "JSystem/JAudio/JAS/JASTrack.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JMath.h"
-#include "types.h"
 
 static f32 c32 = 1.0f;
 
@@ -758,9 +757,9 @@ void JASTrack::overwriteOsc(JASChannel* channel)
 				channel->copyOsc(v2, mOscData + i);
 			} else {
 				if ((v1 & 4) != 0) {
-					const s16* v3 = mOscData[i]._0C;
+					const s16* v3 = mOscData[i].mRelease;
 					channel->copyOsc(v2, mOscData + i);
-					mOscData[i]._0C = v3;
+					mOscData[i].mRelease = v3;
 				}
 			}
 			channel->overwriteOsc(v2, mOscData + i);
@@ -948,13 +947,11 @@ void JASTrack::oscSetupSimpleEnv(u8 p1, u32 p2)
 {
 	switch (p1) {
 	case 0:
-		mOscData[0]     = JASPlayer::sEnvelopeDef;
-		mOscData[0]._08 = reinterpret_cast<s16*>(mSeqCtrl.mRawFilePtr + p2);
+		mOscData[0]         = JASPlayer::sEnvelopeDef;
+		mOscData[0].mAttack = reinterpret_cast<s16*>(mSeqCtrl.mRawFilePtr + p2);
 		break;
 	case 1:
-		mOscData->_0C = reinterpret_cast<s16*>(mSeqCtrl.mRawFilePtr + p2);
-		break;
-	default:
+		mOscData->mAttack = reinterpret_cast<s16*>(mSeqCtrl.mRawFilePtr + p2);
 		break;
 	}
 }
@@ -1006,22 +1003,22 @@ void JASTrack::updateTimedParam()
 			f32 v1 = mTimedParam.mMoveParams[i]._00;
 			switch (i) {
 			case 6:
-				mOscData[0]._10 = v1;
+				mOscData[0].mWidth = v1;
 				break;
 			case 7:
-				mOscData[0]._04 = v1;
+				mOscData[0].mRate = v1;
 				break;
 			case 8:
-				mOscData[0]._14 = v1;
+				mOscData[0].mVertex = v1;
 				break;
 			case 9:
-				mOscData[1]._10 = v1;
+				mOscData[1].mWidth = v1;
 				break;
 			case 10:
-				mOscData[1]._04 = v1;
+				mOscData[1].mRate = v1;
 				break;
 			case 11:
-				mOscData[1]._14 = v1;
+				mOscData[1].mVertex = v1;
 				break;
 			}
 		}

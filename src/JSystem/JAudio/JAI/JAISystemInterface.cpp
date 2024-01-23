@@ -26,10 +26,12 @@ u8 JAInter::SystemInterface::checkSeqActiveFlag(JASTrack* track)
 {
 	if (track != nullptr && track->_35B != 0) {
 		// this looks like it should be a loop, but loops don't seem to unroll quite right (2 sets of 8 instead of 1 set of 16)
-		if (track->_2FC[0] != nullptr || track->_2FC[1] != nullptr || track->_2FC[2] != nullptr || track->_2FC[3] != nullptr
-		    || track->_2FC[4] != nullptr || track->_2FC[5] != nullptr || track->_2FC[6] != nullptr || track->_2FC[7] != nullptr
-		    || track->_2FC[8] != nullptr || track->_2FC[9] != nullptr || track->_2FC[10] != nullptr || track->_2FC[11] != nullptr
-		    || track->_2FC[12] != nullptr || track->_2FC[13] != nullptr || track->_2FC[14] != nullptr || track->_2FC[15] != nullptr) {
+		if (track->mChildList[0] != nullptr || track->mChildList[1] != nullptr || track->mChildList[2] != nullptr
+		    || track->mChildList[3] != nullptr || track->mChildList[4] != nullptr || track->mChildList[5] != nullptr
+		    || track->mChildList[6] != nullptr || track->mChildList[7] != nullptr || track->mChildList[8] != nullptr
+		    || track->mChildList[9] != nullptr || track->mChildList[10] != nullptr || track->mChildList[11] != nullptr
+		    || track->mChildList[12] != nullptr || track->mChildList[13] != nullptr || track->mChildList[14] != nullptr
+		    || track->mChildList[15] != nullptr) {
 			return track->_35B;
 		}
 		return 0;
@@ -45,11 +47,11 @@ JASTrack* JAInter::SystemInterface::trackToSeqp(JAISequence* seq, u8 p2)
 {
 	JASTrack* result = nullptr;
 	if ((seq->mSoundID & 0x800) != 0) {
-		if (seq->mSeqParameter.mTrack._2FC[p2 >> 4] != nullptr) {
-			result = seq->mSeqParameter.mTrack._2FC[p2 >> 4]->_2FC[p2 & 0xF];
+		if (seq->mSeqParameter.mTrack.mChildList[p2 >> 4] != nullptr) {
+			result = seq->mSeqParameter.mTrack.mChildList[p2 >> 4]->mChildList[p2 & 0xF];
 		}
 	} else {
-		result = seq->mSeqParameter.mTrack._2FC[p2 & 0xF];
+		result = seq->mSeqParameter.mTrack.mChildList[p2 & 0xF];
 	}
 	return result;
 }
@@ -64,11 +66,11 @@ JASTrack* JAInter::SystemInterface::trackToSeqp(JASTrack* track, u8 p2, u32 p3)
 	// UNUSED FUNCTION
 	JASTrack* result = nullptr;
 	if ((p3 & 0x800) != 0) {
-		if (track->_2FC[p2 >> 4] != nullptr) {
-			result = track->_2FC[p2 >> 4]->_2FC[p2 & 0xF];
+		if (track->mChildList[p2 >> 4] != nullptr) {
+			result = track->mChildList[p2 >> 4]->mChildList[p2 & 0xF];
 		}
 	} else {
-		result = track->_2FC[p2 & 0xF];
+		result = track->mChildList[p2 & 0xF];
 	}
 	return result;
 }

@@ -1,15 +1,5 @@
 #include "JSystem/JAudio/JAS/JASWave.h"
 #include "JSystem/JSupport/JSU.h"
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global sUsedHeapSize__11JASWSParser
-    sUsedHeapSize__11JASWSParser:
-        .skip 0x8
-*/
 
 /**
  * @note Address: 0x80098A68
@@ -48,17 +38,17 @@ JASBasicWaveBank* JASWSParser::createBasicWaveBank(void* stream)
 		for (int waveIndex = 0; waveIndex < ctrlRaw->mWaveCount; waveIndex++) {
 			TWave* waveRaw = JSUConvertOffsetToPtr<TWave>(header, archiveRaw->mWaveOffsets[waveIndex]);
 			JASWaveInfo info;
-			info.mBlockType        = waveRaw->_01;
-			info._01               = waveRaw->_02;
-			info._04               = waveRaw->_04;
-			info.mOffset           = waveRaw->mOffset;
-			info._0C               = waveRaw->_0C;
-			info._10               = waveRaw->_10;
-			info.mBlockCount       = waveRaw->_14;
-			info._18               = waveRaw->_18;
-			info._1C               = waveRaw->_1C;
-			info._20               = waveRaw->_20;
-			info._22               = waveRaw->_22;
+			info.mBlockType        = waveRaw->mFormat;
+			info.mKey              = waveRaw->mKey;
+			info.mSampleRate       = waveRaw->mSampleRate;
+			info.mOffset           = waveRaw->mAwOffset;
+			info._0C               = waveRaw->mAwLength;
+			info._10               = waveRaw->mLoop;
+			info.mBlockCount       = waveRaw->mLoopStart;
+			info._18               = waveRaw->mLoopEnd;
+			info._1C               = waveRaw->mSampleCount;
+			info._20               = waveRaw->mLast;
+			info._22               = waveRaw->mPenult;
 			TCtrlWave* ctrlWaveRaw = JSUConvertOffsetToPtr<TCtrlWave>(header, ctrlRaw->mCtrlWaveOffsets[waveIndex]);
 			size_t size            = ctrlWaveRaw->_00 & 0xFFFF;
 			waveGroup->setWaveInfo(waveIndex, size, info);
@@ -254,17 +244,17 @@ JASSimpleWaveBank* JASWSParser::createSimpleWaveBank(void* stream)
 	for (int waveIndex = 0; waveIndex < ctrlRaw->mWaveCount; waveIndex++) {
 		TWave* waveRaw = JSUConvertOffsetToPtr<TWave>(header, archiveRaw->mWaveOffsets[waveIndex]);
 		JASWaveInfo info;
-		info.mBlockType        = waveRaw->_01;
-		info._01               = waveRaw->_02;
-		info._04               = waveRaw->_04;
-		info.mOffset           = waveRaw->mOffset;
-		info._0C               = waveRaw->_0C;
-		info._10               = waveRaw->_10;
-		info.mBlockCount       = waveRaw->_14;
-		info._18               = waveRaw->_18;
-		info._1C               = waveRaw->_1C;
-		info._20               = waveRaw->_20;
-		info._22               = waveRaw->_22;
+		info.mBlockType        = waveRaw->mFormat;
+		info.mKey              = waveRaw->mKey;
+		info.mSampleRate       = waveRaw->mSampleRate;
+		info.mOffset           = waveRaw->mAwOffset;
+		info._0C               = waveRaw->mAwLength;
+		info._10               = waveRaw->mLoop;
+		info.mBlockCount       = waveRaw->mLoopStart;
+		info._18               = waveRaw->mLoopEnd;
+		info._1C               = waveRaw->mSampleCount;
+		info._20               = waveRaw->mLast;
+		info._22               = waveRaw->mPenult;
 		TCtrlWave* ctrlWaveRaw = JSUConvertOffsetToPtr<TCtrlWave>(header, ctrlRaw->mCtrlWaveOffsets[waveIndex]);
 		bank->setWaveInfo(ctrlWaveRaw->_00 & 0xFFFF, info);
 	}
@@ -427,45 +417,3 @@ size_t JASWSParser::getUsedHeapSize()
 {
 	// UNUSED FUNCTION
 }
-
-/**
- * @note Address: 0x80098E8C
- * @note Size: 0x18
- */
-// void JSUConvertOffsetToPtr<JASWSParser::TCtrlWave>(const void*, u32) { }
-
-/**
- * @note Address: 0x80098EA4
- * @note Size: 0x18
- */
-// void JSUConvertOffsetToPtr<JASWSParser::TWave>(const void*, u32) { }
-
-/**
- * @note Address: 0x80098EBC
- * @note Size: 0x18
- */
-// void JSUConvertOffsetToPtr<JASWSParser::TWaveArchive>(const void*, u32) { }
-
-/**
- * @note Address: 0x80098ED4
- * @note Size: 0x18
- */
-// void JSUConvertOffsetToPtr<JASWSParser::TWaveArchiveBank>(const void*, u32) { }
-
-/**
- * @note Address: 0x80098EEC
- * @note Size: 0x18
- */
-// void JSUConvertOffsetToPtr<JASWSParser::TCtrl>(const void*, u32) { }
-
-/**
- * @note Address: 0x80098F04
- * @note Size: 0x18
- */
-// void JSUConvertOffsetToPtr<JASWSParser::TCtrlScene>(const void*, u32) { }
-
-/**
- * @note Address: 0x80098F1C
- * @note Size: 0x18
- */
-// void JSUConvertOffsetToPtr<JASWSParser::TCtrlGroup>(const void*, u32) { }

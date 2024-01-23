@@ -1,6 +1,5 @@
 #include "Dolphin/os.h"
 #include "JSystem/JAudio/JAS/JASPortCmd.h"
-#include "types.h"
 
 JASPortCmd::TPortHead JASPortCmd::sCommandListOnce;
 JASPortCmd::TPortHead JASPortCmd::sCommandListStay;
