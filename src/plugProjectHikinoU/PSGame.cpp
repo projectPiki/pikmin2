@@ -800,19 +800,20 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 {
 	P2ASSERTLINE(1378, wScene);
 	JADUtility::AccessMode mode = (JADUtility::AccessMode)mAccessMode;
-	u8 num                      = 1;
 	PSSystem::BgmSeq* bgm       = nullptr;
 
 	JAInter::SoundInfo sound = { 0x00001f00, 0x7F, 0xFF, 0, 0x3F800000, 0x32000000 };
+	sound.mPriority          = 1;
 
 	CaveFloorInfo& cinfo = static_cast<CaveFloorInfo&>(info);
-	P2ASSERTBOUNDSLINE(1393, 0, num, 5);
+	P2ASSERTLINE(1393, sound.mPriority < 5);
 
 	if (info.isCaveFloor()) {
 		switch (info.mSceneType) {
 		case SceneInfo::CHALLENGE_MODE:
 			const char* path = "/user/Totaka/ChallengeBgmList.txt";
 			PSSystem::SingletonBase<ConductorList>::newHeapInstance();
+
 			ConductorList* list = PSSystem::SingletonBase<ConductorList>::getInstance();
 			bool loaded         = list->load(path, JKRDvdRipper::ALLOC_DIR_BOTTOM);
 			P2ASSERTLINE(1417, loaded);
@@ -820,6 +821,7 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 			u8 wScene2;
 			char* bmsName;
 			list->getSeqAndWaveFromConductor(name, &wScene2, &bmsName);
+
 			*wScene = wScene2;
 			bgm     = newAutoBgm(name, bmsName, sound, (JADUtility::AccessMode)mode, info, nullptr);
 			delete PSSystem::SingletonBase<ConductorList>::sInstance;
@@ -875,7 +877,7 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 				txtpath = "/user/Totaka/BgmList_BgmTest.txt";
 				break;
 			}
-			PSSystem::SingletonBase<PSGame::ConductorList>::newInstance();
+			PSSystem::SingletonBase<PSGame::ConductorList>::newHeapInstance();
 			ConductorList* list = PSSystem::SingletonBase<PSGame::ConductorList>::getInstance();
 			bool loaded         = list->load(txtpath, JKRDvdRipper::ALLOC_DIR_BOTTOM);
 			P2ASSERTLINE(1601, loaded);
@@ -2054,7 +2056,7 @@ u16 seqCpuSync(JASTrack* track, u16 command)
 					temp = track->mParentTrack;
 				}
 				if (ref == temp) {
-					u32 route                   = JAInter::routeToTrack(track->_348);
+					u16 route                   = JAInter::routeToTrack(track->_348);
 					PSSystem::SeqBase* childSeq = PSMGetSceneMgrCheck()->findSeq(track);
 					P2ASSERTLINE(1923, childSeq);
 					JAInter::SystemInterface::outerInit(JAInter::SequenceMgr::getPlayTrackInfo(i), temp, route, childSeq->mSoundInfo.mFlag,
