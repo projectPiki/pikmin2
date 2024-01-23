@@ -15,7 +15,7 @@ void setWsInitCallback(void (*)(u32*));
 
 extern InitCallback wsInitCallback;
 extern InitCallback bnkInitCallback;
-extern u8* aafPointer;
+extern u32* aafPointer;
 } // namespace InitData
 } // namespace JAInter
 

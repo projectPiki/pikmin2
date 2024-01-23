@@ -1,6 +1,6 @@
 JAUDIO_JAI_FILES:=\
 	$(BUILD_DIR)/asm/JSystem/JAudio/JAI/JAIAnimation.o\
-	$(BUILD_DIR)/asm/JSystem/JAudio/JAI/JAIBankWave.o\
+	$(BUILD_DIR)/src/JSystem/JAudio/JAI/JAIBankWave.o\
 	$(BUILD_DIR)/asm/JSystem/JAudio/JAI/JAIBasic.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAI/JAIConst.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAI/JAIDummyObject.o\

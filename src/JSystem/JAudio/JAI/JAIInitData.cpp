@@ -2,7 +2,9 @@
 #include "JSystem/JAudio/JAI/JAInter.h"
 #include "JSystem/JAudio/JAI/JAInter/BankWave.h"
 #include "JSystem/JAudio/JAI/JAInter/InitData.h"
+#include "JSystem/JAudio/JAI/JAInter/Fx.h"
 #include "JSystem/JAudio/JAI/JAIGlobalParameter.h"
+#include "JSystem/JAudio/JAI/JAIStream.h"
 #include "JSystem/JAudio/JAS/JASHeap.h"
 #include "Dolphin/stl.h"
 #include "types.h"
@@ -44,7 +46,7 @@
         .skip 1
 */
 
-u8* JAInter::InitData::aafPointer;
+u32* JAInter::InitData::aafPointer;
 JAInter::InitData::InitCallback JAInter::InitData::wsInitCallback  = initWsList;
 JAInter::InitData::InitCallback JAInter::InitData::bnkInitCallback = initBnkList;
 
@@ -75,78 +77,13 @@ BOOL JAInter::InitData::checkInitDataFile()
 			return FALSE;
 		}
 	}
-	loadTmpDVDFile(JAIGlobalParameter::getParamInitDataFileName(), &aafPointer);
+	loadTmpDVDFile(JAIGlobalParameter::getParamInitDataFileName(), (u8**)&aafPointer);
 	if (aafPointer != nullptr) {
 		checkInitDataOnMemory();
-		deleteTmpDVDFile(&aafPointer);
+		deleteTmpDVDFile((u8**)&aafPointer);
 		return TRUE;
 	}
 	return FALSE;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	bl       getParamInitDataFileName__18JAIGlobalParameterFv
-	bl       checkFileExsistence__Q27JAInter15SystemInterfaceFPc
-	cmpwi    r3, 0
-	bne      lbl_800ADC50
-	bl       getParamInitDataFileName__18JAIGlobalParameterFv
-	bl       strlen
-	mr       r31, r3
-	bl       getParamAudioResPath__18JAIGlobalParameterFv
-	bl       strlen
-	mr       r4, r3
-	addi     r0, r31, 1
-	lwz      r3, JASDram@sda21(r13)
-	add      r4, r4, r0
-	li       r5, 0
-	bl       alloc__7JKRHeapFUli
-	mr       r30, r3
-	bl       getParamInitDataFileName__18JAIGlobalParameterFv
-	mr       r31, r3
-	bl       getParamAudioResPath__18JAIGlobalParameterFv
-	mr       r5, r3
-	mr       r3, r30
-	mr       r6, r31
-	addi     r4, r2, lbl_80516F40@sda21
-	li       r7, 0
-	crclr    6
-	bl       sprintf
-	mr       r3, r30
-	bl       setParamInitDataFileName__18JAIGlobalParameterFPc
-	bl       getParamInitDataFileName__18JAIGlobalParameterFv
-	bl       checkFileExsistence__Q27JAInter15SystemInterfaceFPc
-	cmpwi    r3, 0
-	bne      lbl_800ADC50
-	li       r3, 0
-	b        lbl_800ADC80
-
-lbl_800ADC50:
-	bl       getParamInitDataFileName__18JAIGlobalParameterFv
-	addi     r4, r13, aafPointer__Q27JAInter8InitData@sda21
-	bl       loadTmpDVDFile__7JAInterFPcPPUc
-	lwz      r0, aafPointer__Q27JAInter8InitData@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_800ADC7C
-	bl       checkInitDataOnMemory__Q27JAInter8InitDataFv
-	addi     r3, r13, aafPointer__Q27JAInter8InitData@sda21
-	bl       deleteTmpDVDFile__7JAInterFPPUc
-	li       r3, 1
-	b        lbl_800ADC80
-
-lbl_800ADC7C:
-	li       r3, 0
-
-lbl_800ADC80:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -155,6 +92,63 @@ lbl_800ADC80:
  */
 void JAInter::InitData::checkInitDataOnMemory()
 {
+	u32 r30 = 0;
+	u32 r29 = true;
+	u8 r31;
+	u8* temp;
+	while (r29) {
+		switch (aafPointer[r30++]) {
+		case 0:
+			r29 = false;
+			break;
+		case 1: {
+			u8* var1 = (u8*)aafPointer + aafPointer[r30++];
+			u32 var2 = aafPointer[r30++];
+			SoundTable::init(transInitDataFile(var1, var2), var2);
+			r30 += 1;
+			break;
+		}
+		case 2:
+			bnkInitCallback(&r30);
+			break;
+		case 3:
+			wsInitCallback(&r30);
+			break;
+		case 4:
+			r30 += 3;
+			break;
+		case 5:
+			StreamMgr::initOnCodeStrm        = transInitDataFile((u8*)(aafPointer + r30), 8);
+			*(u8**)StreamMgr::initOnCodeStrm = transInitDataFile((u8*)aafPointer + aafPointer[r30], aafPointer[r30 + 1]);
+			StreamMgr::streamList            = *(u16**)StreamMgr::initOnCodeStrm;
+			r30 += 3;
+			break;
+		case 6: {
+			u32* r28 = (u32*)transInitDataFile((u8*)aafPointer + aafPointer[r30], aafPointer[r30 + 1]);
+			JAIGlobalParameter::setParamSoundSceneMax(*r28);
+			JAIBasic::getInterface()->_1C = (u8**)(r28 + 1);
+			for (int i = 0; i < JAIGlobalParameter::getParamSoundSceneMax(); i++) {
+				JAIBasic::getInterface()->_1C[i] += (u32)r28;
+			}
+			r30 += 3;
+			break;
+		}
+		case 7:
+			Fx::initOnCodeFxScene = (Fx::Init*)transInitDataFile((u8*)aafPointer + aafPointer[r30], aafPointer[r30 + 1]);
+			r30 += 3;
+			break;
+		case 8: {
+			u8* tmp = transInitDataFile((u8*)aafPointer + aafPointer[r30], (aafPointer[r30 + 1] & 0xFFF0) + 16); // aaaaaaaaaaaaa
+			JAIBasic::getInterface()->_18 = (u32)tmp;
+			r30 += 3;
+			break;
+		}
+		default:
+			while (aafPointer[r30++]) { }
+			break;
+		}
+	}
+	BankWave::initCallback();
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -355,150 +349,37 @@ lbl_800ADEC8:
  */
 void JAInter::InitData::initBnkList(u32* p1)
 {
-	// TODO: This is still very rough and not right.
 	u32 count  = 0;
-	int offset = *p1 * sizeof(int);
-	u8* start  = aafPointer + offset;
-	for (; reinterpret_cast<int*>(aafPointer + offset) != 0; offset += 0xC) {
-		count += 3;
-	}
+	u8 val31   = 0;
+	int offset = *p1;
+	u8* start  = (u8*)&(aafPointer[offset]);
+	for (; aafPointer[offset + count] != 0; count += 3) { }
 	BankWave::initOnCodeBnk = (BankWave::TCodeBnk*)transInitDataFile(start, (count / 3) * 0xC + 4);
-	while (reinterpret_cast<u32*>(aafPointer)[*p1] != 0) {
-		BankWave::initOnCodeBnk[*p1]._00 = *reinterpret_cast<int*>(aafPointer) + BankWave::initOnCodeBnk[*p1]._00;
+	while ((aafPointer)[*p1] != 0) {
+		BankWave::initOnCodeBnk[val31]._00 = (int*)((u32) reinterpret_cast<int*>(aafPointer) + (u32)BankWave::initOnCodeBnk[val31]._00);
 		*p1 += 3;
+		val31++;
 	}
 	*p1 += 1;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r6, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r0, 0(r3)
-	lwz      r5, aafPointer__Q27JAInter8InitData@sda21(r13)
-	slwi     r4, r0, 2
-	add      r3, r5, r4
-	b        lbl_800ADF38
-
-lbl_800ADF30:
-	addi     r4, r4, 0xc
-	addi     r6, r6, 3
-
-lbl_800ADF38:
-	lwzx     r0, r5, r4
-	cmplwi   r0, 0
-	bne      lbl_800ADF30
-	lis      r4, 0xAAAAAAAB@ha
-	addi     r0, r4, 0xAAAAAAAB@l
-	mulhwu   r0, r0, r6
-	srwi     r0, r0, 1
-	mulli    r4, r0, 0xc
-	addi     r4, r4, 4
-	bl       transInitDataFile__7JAInterFPUcUl
-	stw      r3, initOnCodeBnk__Q27JAInter8BankWave@sda21(r13)
-	b        lbl_800ADF90
-
-lbl_800ADF68:
-	clrlwi   r0, r31, 0x18
-	lwz      r4, initOnCodeBnk__Q27JAInter8BankWave@sda21(r13)
-	mulli    r3, r0, 0xc
-	addi     r31, r31, 1
-	lwzx     r0, r4, r3
-	add      r0, r5, r0
-	stwx     r0, r4, r3
-	lwz      r3, 0(r30)
-	addi     r0, r3, 3
-	stw      r0, 0(r30)
-
-lbl_800ADF90:
-	lwz      r3, 0(r30)
-	lwz      r5, aafPointer__Q27JAInter8InitData@sda21(r13)
-	slwi     r0, r3, 2
-	lwzx     r0, r5, r0
-	cmplwi   r0, 0
-	bne      lbl_800ADF68
-	addi     r0, r3, 1
-	stw      r0, 0(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
  * @note Address: 0x800ADFC8
  * @note Size: 0xD8
  */
-void JAInter::InitData::initWsList(u32*)
+void JAInter::InitData::initWsList(u32* p1)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r6, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r0, 0(r3)
-	lwz      r5, aafPointer__Q27JAInter8InitData@sda21(r13)
-	slwi     r4, r0, 2
-	add      r3, r5, r4
-	b        lbl_800AE004
-
-lbl_800ADFFC:
-	addi     r4, r4, 0xc
-	addi     r6, r6, 3
-
-lbl_800AE004:
-	lwzx     r0, r5, r4
-	cmplwi   r0, 0
-	bne      lbl_800ADFFC
-	lis      r4, 0xAAAAAAAB@ha
-	addi     r0, r4, 0xAAAAAAAB@l
-	mulhwu   r0, r0, r6
-	srwi     r0, r0, 1
-	mulli    r4, r0, 0xc
-	addi     r4, r4, 4
-	bl       transInitDataFile__7JAInterFPUcUl
-	stw      r3, initOnCodeWs__Q27JAInter8BankWave@sda21(r13)
-	b        lbl_800AE068
-
-lbl_800AE034:
-	clrlwi   r0, r31, 0x18
-	lwz      r4, initOnCodeWs__Q27JAInter8BankWave@sda21(r13)
-	mulli    r3, r0, 0xc
-	addi     r31, r31, 1
-	lwzx     r0, r4, r3
-	add      r0, r5, r0
-	stwx     r0, r4, r3
-	lwz      r3, wsMax__Q27JAInter8BankWave@sda21(r13)
-	addi     r0, r3, 1
-	stw      r0, wsMax__Q27JAInter8BankWave@sda21(r13)
-	lwz      r3, 0(r30)
-	addi     r0, r3, 3
-	stw      r0, 0(r30)
-
-lbl_800AE068:
-	lwz      r3, 0(r30)
-	lwz      r5, aafPointer__Q27JAInter8InitData@sda21(r13)
-	slwi     r0, r3, 2
-	lwzx     r0, r5, r0
-	cmplwi   r0, 0
-	bne      lbl_800AE034
-	addi     r0, r3, 1
-	stw      r0, 0(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	u32 count  = 0;
+	u8 val31   = 0;
+	int offset = *p1;
+	u8* start  = (u8*)&(aafPointer[offset]);
+	for (; aafPointer[offset + count] != 0; count += 3) { }
+	BankWave::initOnCodeWs = (BankWave::TCodeWS*)transInitDataFile(start, (count / 3) * 0xC + 4);
+	while ((aafPointer)[*p1] != 0) {
+		BankWave::initOnCodeWs[val31]._00 = (int*)((u32) reinterpret_cast<int*>(aafPointer) + (u32)BankWave::initOnCodeWs[val31]._00);
+		BankWave::wsMax++;
+		*p1 += 3;
+		val31++;
+	}
+	*p1 += 1;
 }

@@ -366,7 +366,7 @@ LIBS = [
         "host": True,
         "objects": [
             ["JSystem/JAudio/JAI/JAIAnimation", False],
-            ["JSystem/JAudio/JAI/JAIBankWave", False],
+            ["JSystem/JAudio/JAI/JAIBankWave", True],
             ["JSystem/JAudio/JAI/JAIBasic", False],
             ["JSystem/JAudio/JAI/JAIConst", True],
             ["JSystem/JAudio/JAI/JAIDummyObject", True],
