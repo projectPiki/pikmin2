@@ -11,10 +11,10 @@ struct JASInstEffect {
 	}
 
 	virtual f32 getY(int, int) const = 0; // _08
-	// virtual void _0C(); 					// _0C - maybe.
 
 	void setTarget(int);
 
+	// _00 = VTBL
 	u8 mTarget; // _04
 };
 
@@ -30,6 +30,10 @@ struct JASInstRand : public JASInstEffect {
 
 	virtual f32 getY(int, int) const; // _08
 
+	inline f32 calcY(f32 in, f32 rnd, f32 mult) const { return rnd - (mult * in); }
+
+	// _00 = VTBL
+	// _00-_08 = JASInstEffect
 	f32 mFloor;   // _08
 	f32 mCeiling; // _0C
 };
@@ -50,6 +54,8 @@ struct JASInstSense : public JASInstEffect {
 
 	void setParams(int, int, f32, f32);
 
+	// _00 = VTBL
+	// _00-_08 = JASInstEffect
 	u8 mRegister; // _08
 	u8 mKey;      // _09
 	f32 mFloor;   // _0C

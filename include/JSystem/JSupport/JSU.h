@@ -23,7 +23,7 @@ T* JSUConvertOffsetToPtr(const void* base, const void* offset)
 	if (offset == 0) {
 		return nullptr;
 	}
-	return reinterpret_cast<T*>(reinterpret_cast<s32>(base) + reinterpret_cast<s32>(offset));
+	return (T*)((s32)(base) + (s32)(offset));
 }
 
 template <typename T>
@@ -32,7 +32,7 @@ T* JSUConvertOffsetToPtr(const void* base, u32 offset)
 	if (offset == 0) {
 		return nullptr;
 	}
-	return reinterpret_cast<T*>(reinterpret_cast<u32>(base) + offset);
+	return (T*)((s32)base + offset);
 }
 
 #endif

@@ -17,23 +17,24 @@ u32 JASWSParser::getGroupCount(void* stream)
  */
 JASBasicWaveBank* JASWSParser::createBasicWaveBank(void* stream)
 {
+	TWaveArchive* archiveRaw;
 	JKRHeap* heap           = JASWaveBank::getCurrentHeap();
 	const u32 priorFreeSize = heap->getFreeSize();
+	const THeader* header   = static_cast<THeader*>(stream);
 	JASBasicWaveBank* bank  = new (heap, 0) JASBasicWaveBank();
 	if (bank == nullptr) {
 		return nullptr;
 	}
-	const THeader* header = static_cast<THeader*>(stream);
-	size_t maxSize        = 0;
 
 	const TCtrlGroup* ctrlGroupRaw = JSUConvertOffsetToPtr<TCtrlGroup>(header, header->mCtrlGroupOffset);
 	bank->setGroupCount(ctrlGroupRaw->mCtrlGroupCount);
+	size_t maxSize = 0;
 	for (int groupIndex = 0; groupIndex < ctrlGroupRaw->mCtrlGroupCount; groupIndex++) {
 		TCtrlScene* ctrlSceneRaw                = JSUConvertOffsetToPtr<TCtrlScene>(header, ctrlGroupRaw->mCtrlSceneOffsets[groupIndex]);
 		TCtrl* ctrlRaw                          = JSUConvertOffsetToPtr<TCtrl>(header, ctrlSceneRaw->mCtrlOffset);
 		JASBasicWaveBank::TWaveGroup* waveGroup = bank->getWaveGroup(groupIndex);
 		TWaveArchiveBank* archiveBankRaw        = JSUConvertOffsetToPtr<TWaveArchiveBank>(header, header->mArchiveBankOffset);
-		TWaveArchive* archiveRaw                = JSUConvertOffsetToPtr<TWaveArchive>(header, archiveBankRaw->mArchiveOffsets[groupIndex]);
+		archiveRaw                              = JSUConvertOffsetToPtr<TWaveArchive>(header, archiveBankRaw->mArchiveOffsets[groupIndex]);
 		waveGroup->setWaveCount(ctrlRaw->mWaveCount);
 		for (int waveIndex = 0; waveIndex < ctrlRaw->mWaveCount; waveIndex++) {
 			TWave* waveRaw = JSUConvertOffsetToPtr<TWave>(header, archiveRaw->mWaveOffsets[waveIndex]);
@@ -50,7 +51,7 @@ JASBasicWaveBank* JASWSParser::createBasicWaveBank(void* stream)
 			info._20               = waveRaw->mLast;
 			info._22               = waveRaw->mPenult;
 			TCtrlWave* ctrlWaveRaw = JSUConvertOffsetToPtr<TCtrlWave>(header, ctrlRaw->mCtrlWaveOffsets[waveIndex]);
-			size_t size            = ctrlWaveRaw->_00 & 0xFFFF;
+			size_t size            = (u16)ctrlWaveRaw->_00;
 			waveGroup->setWaveInfo(waveIndex, size, info);
 			if (maxSize < size) {
 				maxSize = size;
@@ -216,6 +217,7 @@ lbl_80098C80:
  */
 JASSimpleWaveBank* JASWSParser::createSimpleWaveBank(void* stream)
 {
+	const TWaveArchive* archiveRaw;
 	JKRHeap* heap                  = JASWaveBank::getCurrentHeap();
 	const u32 priorFreeSize        = heap->getFreeSize();
 	const THeader* header          = static_cast<THeader*>(stream);
@@ -232,7 +234,7 @@ JASSimpleWaveBank* JASWSParser::createSimpleWaveBank(void* stream)
 	const TCtrlScene* ctrlSceneRaw         = JSUConvertOffsetToPtr<TCtrlScene>(header, ctrlGroupRaw->mCtrlSceneOffsets[0]);
 	const TCtrl* ctrlRaw                   = JSUConvertOffsetToPtr<TCtrl>(header, ctrlSceneRaw->mCtrlOffset);
 	const TWaveArchiveBank* archiveBankRaw = JSUConvertOffsetToPtr<TWaveArchiveBank>(header, header->mArchiveBankOffset);
-	const TWaveArchive* archiveRaw         = JSUConvertOffsetToPtr<TWaveArchive>(header, archiveBankRaw->mArchiveOffsets[0]);
+	archiveRaw                             = JSUConvertOffsetToPtr<TWaveArchive>(header, archiveBankRaw->mArchiveOffsets[0]);
 	for (int waveIndex = 0; waveIndex < ctrlRaw->mWaveCount; waveIndex++) {
 		TCtrlWave* ctrlWaveRaw = JSUConvertOffsetToPtr<TCtrlWave>(header, ctrlRaw->mCtrlWaveOffsets[waveIndex]);
 		size_t size            = ctrlWaveRaw->_00 & 0xFFFF;

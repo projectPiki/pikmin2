@@ -7,8 +7,8 @@ JAUDIO_JAS_FILES:=\
 	$(BUILD_DIR)/asm/JSystem/JAudio/JAS/JASBNKParser.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASDrumSet.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASInstEffect.o\
-	$(BUILD_DIR)/asm/JSystem/JAudio/JAS/JASInstRand.o\
-	$(BUILD_DIR)/asm/JSystem/JAudio/JAS/JASInstSense.o\
+	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASInstRand.o\
+	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASInstSense.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASSimpleWaveBank.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASWaveArcLoader.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASWaveBank.o\
