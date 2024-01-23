@@ -40,6 +40,13 @@ void getProbeMax(s32);
  * It's more like a stack...
  */
 struct JASCmdHeap {
+	JASCmdHeap()
+	    : mHead(nullptr)
+	{
+		OSInitMutex(&mMutex); // this might be JASMutexLock
+		grow();
+	}
+
 	typedef void (*Command)(void*);
 	struct Header {
 		Command mCommand; // _00
@@ -75,7 +82,7 @@ struct JASCmdHeap {
 	{
 		JASCmdHeap::Block* previousHead = mHead;
 
-		if (previousHead != nullptr && previousHead->mMsgCount == 0) {
+		if (previousHead != nullptr && (u32)previousHead->mMsgCount == 0) {
 			// No need!
 			previousHead->mUsedLength = 0;
 			return true;

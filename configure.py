@@ -337,7 +337,7 @@ LIBS = [
             ["JSystem/JAudio/JAS/JASCallback", True],
             ["JSystem/JAudio/JAS/JASCmdStack", True],
             ["JSystem/JAudio/JAS/JASDvdThread", True],
-            ["JSystem/JAudio/JAS/JASHeapCtrl", False],
+            ["JSystem/JAudio/JAS/JASHeapCtrl", True],
             ["JSystem/JAudio/JAS/JASProbe", True],
             ["JSystem/JAudio/JAS/JASResArcLoader", True],
             ["JSystem/JAudio/JAS/JASReport", True],
