@@ -755,9 +755,11 @@ void J2DPane::setInfluencedAlpha(bool isInfluencedAlpha, bool check)
  */
 JGeometry::TVec3f J2DPane::getGlbVtx(u8 idx) const
 {
-	JGeometry::TVec3f out;
+	JGeometry::TVec3<f32> out;
 	if (idx >= 4) {
-		out = JGeometry::TVec3f(0.0f);
+		out.x = 0;
+		out.y = 0;
+		out.z = 0;
 		return out;
 	} else {
 		f32 x, y;
@@ -778,6 +780,29 @@ JGeometry::TVec3f J2DPane::getGlbVtx(u8 idx) const
 		out.z = x * mGlobalMtx[2][0] + y * mGlobalMtx[2][1] + mGlobalMtx[2][3];
 		return out;
 	}
+	// JGeometry::TVec3f out;
+	// if (idx >= 4) {
+	// 	out = JGeometry::TVec3f(0.0f);
+	// 	return out;
+	// } else {
+	// 	f32 x, y;
+	// 	if (idx & 1) {
+	// 		x = mBounds.f.x;
+	// 	} else {
+	// 		x = mBounds.i.x;
+	// 	}
+
+	// 	if (idx & 2) {
+	// 		y = mBounds.f.y;
+	// 	} else {
+	// 		y = mBounds.i.y;
+	// 	}
+
+	// 	out.x = x * mGlobalMtx[0][0] + y * mGlobalMtx[0][1] + mGlobalMtx[0][3];
+	// 	out.y = x * mGlobalMtx[1][0] + y * mGlobalMtx[1][1] + mGlobalMtx[1][3];
+	// 	out.z = x * mGlobalMtx[2][0] + y * mGlobalMtx[2][1] + mGlobalMtx[2][3];
+	// 	return out;
+	// }
 	/*
 	clrlwi   r6, r5, 0x18
 	stwu     r1, -0x20(r1)

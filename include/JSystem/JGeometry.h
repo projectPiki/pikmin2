@@ -89,25 +89,25 @@ struct TVec2 {
 
 template <typename T>
 struct TVec3 {
-	inline TVec3() { }
-	inline TVec3(T value)
-	    : x(value)
-	    , y(value)
-	    , z(value)
-	{
-	}
-	inline TVec3(T inX, T inY, T inZ)
-	    : x(inX)
-	    , y(inY)
-	    , z(inZ) {};
+	// inline TVec3() { }
+	// inline TVec3(T value)
+	//     : x(value)
+	//     , y(value)
+	//     , z(value)
+	// {
+	// }
+	// inline TVec3(T inX, T inY, T inZ)
+	//     : x(inX)
+	//     , y(inY)
+	//     , z(inZ) {};
 
-	// TODO: Determine if this could've actually existed, or if I'm just making it up.
-	inline TVec3(const TVec3<T>& other)
-	{
-		x = other.x;
-		y = other.y;
-		z = other.z;
-	}
+	// // TODO: Determine if this could've actually existed, or if I'm just making it up.
+	// inline TVec3(const TVec3<T>& other)
+	// {
+	// 	x = other.x;
+	// 	y = other.y;
+	// 	z = other.z;
+	// }
 
 	// TODO: Determine if this could've actually existed, or if I'm just making
 	// it up.
@@ -163,12 +163,12 @@ struct TVec3 {
 		return other;
 	}
 
-	inline TVec3(Vec& vec)
-	{
-		x = vec.x;
-		y = vec.y;
-		z = vec.z;
-	}
+	// inline TVec3(Vec& vec)
+	// {
+	// 	x = vec.x;
+	// 	y = vec.y;
+	// 	z = vec.z;
+	// }
 
 	void zero() { x = y = z = 0.0f; }
 

@@ -44,7 +44,7 @@ void TPkOneEmitterSimple::executeAfter(JPABaseEmitter* emitter)
 			for (int i = 0; i < count; i++) {
 				JPABaseParticle* particle = emitter->createParticle();
 				if (particle) {
-					particle->mOffsetPosition = JGeometry::TVec3f(pos.x, pos.y, pos.z);
+					particle->mOffsetPosition.set(pos.x, pos.y, pos.z);
 				}
 			}
 		}

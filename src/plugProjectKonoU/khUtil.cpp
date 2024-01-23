@@ -58,10 +58,10 @@ void setInfAlpha(J2DPane* pane)
  */
 f32 getPaneCenterX(J2DPane* pane)
 {
-	Vector3f vec1 = pane->getGlbVtx(0);
-	Vector3f vec2 = pane->getGlbVtx(1);
-	Vector3f vec3 = pane->getGlbVtx(2);
-	Vector3f vec4 = pane->getGlbVtx(3);
+	JGeometry::TVec3f vec1 = pane->getGlbVtx(0);
+	JGeometry::TVec3f vec2 = pane->getGlbVtx(1);
+	JGeometry::TVec3f vec3 = pane->getGlbVtx(2);
+	JGeometry::TVec3f vec4 = pane->getGlbVtx(3);
 
 	return (vec1.x + vec2.x + vec3.x + vec4.x) * 0.25f;
 }
@@ -72,10 +72,10 @@ f32 getPaneCenterX(J2DPane* pane)
  */
 f32 getPaneCenterY(J2DPane* pane)
 {
-	Vector3f vec1 = pane->getGlbVtx(0);
-	Vector3f vec2 = pane->getGlbVtx(1);
-	Vector3f vec3 = pane->getGlbVtx(2);
-	Vector3f vec4 = pane->getGlbVtx(3);
+	JGeometry::TVec3f vec1 = pane->getGlbVtx(0);
+	JGeometry::TVec3f vec2 = pane->getGlbVtx(1);
+	JGeometry::TVec3f vec3 = pane->getGlbVtx(2);
+	JGeometry::TVec3f vec4 = pane->getGlbVtx(3);
 
 	return (vec1.y + vec2.y + vec3.y + vec4.y) * 0.25f;
 }

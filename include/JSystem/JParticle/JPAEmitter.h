@@ -147,7 +147,7 @@ struct JPABaseEmitter {
 
 	inline void setScale(f32 scale)
 	{
-		mGlobalScl    = JGeometry::TVec3f(scale);
+		mGlobalScl.set(scale, scale, scale);
 		mGlobalPScl.x = scale;
 		mGlobalPScl.y = scale;
 	}
@@ -161,7 +161,7 @@ struct JPABaseEmitter {
 
 	inline void setScale(f32 scaleXY, f32 scaleZ)
 	{
-		mGlobalScl    = JGeometry::TVec3f(scaleXY, scaleXY, scaleZ);
+		mGlobalScl.set(scaleXY, scaleXY, scaleZ);
 		mGlobalPScl.x = scaleXY;
 		mGlobalPScl.y = scaleXY;
 	}
@@ -173,7 +173,7 @@ struct JPABaseEmitter {
 		mGlobalScl.z = scale.z;
 	}
 
-	inline void setScaleOnly(f32 scale) { mGlobalScl = JGeometry::TVec3f(scale); }
+	inline void setScaleOnly(f32 scale) { mGlobalScl.set(scale, scale, scale); }
 
 	inline void setGlobalScale(f32 x, f32 y)
 	{

@@ -32,8 +32,8 @@ void CallBack_DrawAfter::update() { }
 void CallBack_DrawAfter::draw(Graphics& gfx, J2DGrafContext& context)
 {
 	if (mIsVisible) {
-		Vector3f globalVtx0 = _1C->getGlbVtx(0);
-		Vector3f globalVtx3 = _1C->getGlbVtx(3);
+		JGeometry::TVec3f globalVtx0 = _1C->getGlbVtx(0);
+		JGeometry::TVec3f globalVtx3 = _1C->getGlbVtx(3);
 
 		gfx.mOrthoGraph.setPort();
 

@@ -341,10 +341,9 @@ void OtakaraSensor::calcAppear()
 				mScaleMgr->up(0.7f, 40.0f, 0.5f, 0.0f);
 				mAppearTimer = 3.0f;
 				efx2d::T2DSensorGet efx;
-				Vector3f pos1   = mPane1->getGlbVtx(0);
-				Vector3f pos2   = mPane1->getGlbVtx(3);
-				Vector3f midPos = pos1 + pos2;
-				Vector2f argVec(midPos.x / 2 + mAppearEfxOffset.x, midPos.y / 2 + mAppearEfxOffset.y);
+				JGeometry::TVec3f pos1 = mPane1->getGlbVtx(0);
+				JGeometry::TVec3f pos2 = mPane1->getGlbVtx(3);
+				Vector2f argVec((pos1.x + pos2.x) / 2 + mAppearEfxOffset.x, (pos1.y + pos2.y) / 2 + mAppearEfxOffset.y);
 				efx2d::Arg arg = argVec;
 				efx.create(&arg);
 				ogSound->setGetSensor();
@@ -360,10 +359,9 @@ void OtakaraSensor::calcAppear()
 void OtakaraSensor::startGraySensor()
 {
 	efx2d::T2DSensorComp efx;
-	Vector3f pos1   = mPane1->getGlbVtx(0);
-	Vector3f pos2   = mPane1->getGlbVtx(3);
-	Vector3f midPos = pos1 + pos2;
-	Vector2f argVec(midPos.x / 2 + mCompleteEfxOffset.x, midPos.y / 2 + mCompleteEfxOffset.y);
+	JGeometry::TVec3f pos1 = mPane1->getGlbVtx(0);
+	JGeometry::TVec3f pos2 = mPane1->getGlbVtx(3);
+	Vector2f argVec((pos1.x + pos2.x) / 2 + mCompleteEfxOffset.x, (pos1.y + pos2.y) / 2 + mCompleteEfxOffset.y);
 	efx2d::Arg arg = argVec;
 	efx.create(&arg);
 }
@@ -452,10 +450,9 @@ void OtakaraSensor::calcReaction()
 				if (mAppearTimer <= 0.0f) {
 					mScaleMgr->up(mCurrReactionLevel * 0.1f, 30.0f, 0.8f, 0.0f);
 					efx2d::T2DSensorAct efx;
-					Vector3f pos1   = mPane1->getGlbVtx(0);
-					Vector3f pos2   = mPane1->getGlbVtx(3);
-					Vector3f midPos = pos1 + pos2;
-					Vector2f argVec(midPos.x / 2 + mCompleteEfxOffset.x, midPos.y / 2 + mCompleteEfxOffset.y);
+					JGeometry::TVec3f pos1 = mPane1->getGlbVtx(0);
+					JGeometry::TVec3f pos2 = mPane1->getGlbVtx(3);
+					Vector2f argVec((pos1.x + pos2.x) / 2 + mCompleteEfxOffset.x, (pos1.y + pos2.y) / 2 + mCompleteEfxOffset.y);
 					efx2d::Arg arg = argVec;
 					efx.create(&arg);
 				}

@@ -194,7 +194,7 @@ LIBS = [
             ["JSystem/J2D/J2DOrthoGraph", True],
             ["JSystem/J2D/J2DPerspGraph", True],
             ["JSystem/J2D/J2DGrafContext", True],
-            ["JSystem/J2D/J2DPane", False],
+            ["JSystem/J2D/J2DPane", True],
             ["JSystem/J2D/J2DPicture", False],
             ["JSystem/J2D/J2DPrint", True],
             ["JSystem/J2D/J2DScreen", False],

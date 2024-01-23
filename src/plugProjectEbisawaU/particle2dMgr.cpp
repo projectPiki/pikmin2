@@ -230,7 +230,8 @@ void TParticle2dMgr::setXfb(const ResTIMG*)
  */
 JPABaseEmitter* TParticle2dMgr::create(u16 p1, Vector2<f32>& p2, u8 p3, u8 p4)
 {
-	JGeometry::TVec3f vec(p2.x, p2.y, 0.0f);
+	JGeometry::TVec3f vec;
+	vec.set(p2.x, p2.y, 0.0f);
 	return mActiveEmitter->createSimpleEmitterID(vec, p1, p3, p4, nullptr, nullptr);
 }
 
