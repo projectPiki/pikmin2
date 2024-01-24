@@ -112,82 +112,10 @@ bool J2DScreen::set(const char* name, u32 flags, JKRArchive* archive)
 	void* resource = JKRFileLoader::getGlbResource(name, archive);
 	if (resource) {
 		size_t resSize = archive->getExpandedResSize(resource);
-		JSUMemoryInputStream input;
-		input.setBuffer(resource, resSize);
+		JSUMemoryInputStream input(resource, resSize);
 		return set(&input, flags);
 	}
 	return false;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	mr       r30, r6
-	stw      r29, 0x24(r1)
-	mr       r29, r5
-	stw      r28, 0x20(r1)
-	mr       r28, r3
-	mr       r3, r4
-	mr       r4, r30
-	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-	or.      r31, r3, r3
-	beq      lbl_8003F704
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lis      r5, __vt__10JSUIosBase@ha
-	li       r6, 0
-	addi     r0, r5, __vt__10JSUIosBase@l
-	lis      r4, __vt__14JSUInputStream@ha
-	stw      r0, 8(r1)
-	addi     r0, r4, __vt__14JSUInputStream@l
-	lis      r5, __vt__20JSURandomInputStream@ha
-	lis      r4, __vt__20JSUMemoryInputStream@ha
-	stw      r0, 8(r1)
-	addi     r0, r5, __vt__20JSURandomInputStream@l
-	addi     r7, r1, 8
-	mr       r5, r3
-	stw      r0, 8(r1)
-	addi     r0, r4, __vt__20JSUMemoryInputStream@l
-	mr       r3, r7
-	mr       r4, r31
-	stb      r6, 0xc(r1)
-	stw      r0, 8(r1)
-	bl       setBuffer__20JSUMemoryInputStreamFPCvl
-	mr       r3, r28
-	mr       r5, r29
-	addi     r4, r1, 8
-	bl       set__9J2DScreenFP20JSURandomInputStreamUl
-	lis      r4, __vt__20JSUMemoryInputStream@ha
-	mr       r31, r3
-	addi     r0, r4, __vt__20JSUMemoryInputStream@l
-	addi     r3, r1, 8
-	lis      r4, __vt__20JSURandomInputStream@ha
-	stw      r0, 8(r1)
-	addi     r0, r4, __vt__20JSURandomInputStream@l
-	stw      r0, 8(r1)
-	li       r4, 0
-	bl       __dt__14JSUInputStreamFv
-	mr       r3, r31
-	b        lbl_8003F708
-
-lbl_8003F704:
-	li       r3, 0
-
-lbl_8003F708:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	lwz      r28, 0x20(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -260,19 +188,19 @@ bool J2DScreen::getScreenInformation(JSURandomInputStream* input)
  */
 u32 J2DScreen::makeHierarchyPanes(J2DPane* parent, JSURandomInputStream* input, u32 flags, JKRArchive* archive)
 {
-	J2DScrnBlockHeader header;
 	J2DPane* currentPane = parent;
 	while (true) {
+		J2DScrnBlockHeader header;
 		input->peek(&header, sizeof(header));
 		switch (header.mBloBlockType) {
 		case 'EXT1':
 			input->seek(header.mBlockLength, SEEK_CUR);
 			return 1;
-			break;
+
 		case 'BGN1': {
 			input->seek(header.mBlockLength, SEEK_CUR);
-			u32 result = makeHierarchyPanes(currentPane, input, flags, archive);
-			if (result != 0) {
+			s32 result = makeHierarchyPanes(currentPane, input, flags, archive);
+			if (result) {
 				return result;
 			}
 			break;
@@ -280,16 +208,16 @@ u32 J2DScreen::makeHierarchyPanes(J2DPane* parent, JSURandomInputStream* input, 
 		case 'END1':
 			input->seek(header.mBlockLength, SEEK_CUR);
 			return 0;
-			break;
+
 		case 'TEX1':
 			mTexRes = getResReference(input, flags);
-			if (mTexRes == nullptr) {
+			if (!mTexRes) {
 				return 2;
 			}
 			break;
 		case 'FNT1':
 			mFontRes = getResReference(input, flags);
-			if (mFontRes == nullptr) {
+			if (!mFontRes) {
 				return 2;
 			}
 			break;
@@ -299,12 +227,12 @@ u32 J2DScreen::makeHierarchyPanes(J2DPane* parent, JSURandomInputStream* input, 
 			}
 			break;
 		default:
-			if (archive == nullptr) {
+			if (!archive) {
 				currentPane = createPane(header, input, parent, flags);
 			} else {
 				currentPane = createPane(header, input, parent, flags, archive);
 			}
-			if (currentPane == nullptr) {
+			if (!currentPane) {
 				return 2;
 			}
 			break;
@@ -859,28 +787,31 @@ J2DPane* J2DScreen::searchUserInfo(u64 p1) { return (p1 == 0) ? nullptr : J2DPan
  * @note Address: 0x80040528
  * @note Size: 0x158
  */
-void J2DScreen::drawSelf(f32, f32, Mtx*)
+void J2DScreen::drawSelf(f32 x, f32 y, Mtx* mtx)
 {
-	u8 test = ((u8)mColor * mAlpha) / 255;
-	if (test) {
-		JUtility::TColor color1;
-		color1.setRGBA(mColor);
-		GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET);
-		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
-		GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-
-		f32 zero = 0.0f;
-		GXPosition3f32(zero, zero, zero);
-		GX_WRITE_U32((u32)color1);
-		GXPosition3f32(mBounds.getWidth(), zero, zero);
-		GX_WRITE_U32((u32)color1);
-		GXPosition3f32(mBounds.getWidth(), mBounds.getHeight(), zero);
-		GX_WRITE_U32((u32)color1);
-		GXPosition3f32(zero, mBounds.getHeight(), zero);
-		GX_WRITE_U32((u32)color1);
-
-		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
+	JUtility::TColor color(mColor);
+	u8 alpha = ((color.a * mAlpha) / 255);
+	if (!alpha) {
+		return;
 	}
+
+	JUtility::TColor colorAlpha((color & 0xFFFFFF00) | alpha);
+	color = colorAlpha;
+	GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+
+	f32 zero = 0.0f;
+	GXPosition3f32(zero, zero, zero);
+	GXColor1u32(color);
+	GXPosition3f32(mBounds.getWidth(), zero, zero);
+	GXColor1u32(color);
+	GXPosition3f32(mBounds.getWidth(), mBounds.getHeight(), zero);
+	GXColor1u32(color);
+	GXPosition3f32(zero, mBounds.getHeight(), zero);
+	GXColor1u32(color);
+
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -979,94 +910,24 @@ lbl_8004066C:
  */
 J2DResReference* J2DScreen::getResReference(JSURandomInputStream* input, u32 flags)
 {
-	int initialPosition = input->getPosition();
+	s32 initialPosition = input->getPosition();
 	input->skip(4);
-	int v1;
-	input->read(&v1, 4);
+	s32 size1, size2;
+	size1 = input->readS32();
 	input->skip(4);
-	int v2;
-	input->read(&v2, 4);
-	input->seek(initialPosition + v2, SEEK_SET);
-	s32 byteCount = v1 - v2;
-	J2DResReference* data;
+	size2 = input->readS32();
+	input->seek(initialPosition + size2, SEEK_SET);
+	size1 = size1 - size2;
+	char* data;
 	if (flags & (J3DMLF_17 | J3DMLF_18 | J3DMLF_19 | J3DMLF_20 | J3DMLF_21)) {
-		data = new J2DResReference[byteCount];
+		data = new char[size1];
 	} else {
-		data = new (-4) J2DResReference[byteCount];
+		data = new (-4) char[size1];
 	}
 	if (data) {
-		input->read(data, byteCount);
+		input->read(data, size1);
 	}
-	return data;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r27, 0x1c(r1)
-	mr       r27, r4
-	mr       r28, r5
-	mr       r3, r27
-	lwz      r12, 0(r27)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r31, r3
-	mr       r3, r27
-	lwz      r12, 0(r27)
-	li       r4, 4
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r27
-	addi     r4, r1, 0xc
-	li       r5, 4
-	bl       read__14JSUInputStreamFPvl
-	mr       r3, r27
-	lwz      r29, 0xc(r1)
-	lwz      r12, 0(r27)
-	li       r4, 4
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r27
-	addi     r4, r1, 8
-	li       r5, 4
-	bl       read__14JSUInputStreamFPvl
-	lwz      r30, 8(r1)
-	mr       r3, r27
-	li       r5, 0
-	add      r4, r31, r30
-	bl       seek__20JSURandomInputStreamFl17JSUStreamSeekFrom
-	rlwinm.  r0, r28, 0, 0xb, 0xf
-	subf     r29, r30, r29
-	beq      lbl_80040734
-	mr       r3, r29
-	bl       __nwa__FUl
-	mr       r4, r3
-	b        lbl_80040744
-
-lbl_80040734:
-	mr       r3, r29
-	li       r4, -4
-	bl       __nwa__FUli
-	mr       r4, r3
-
-lbl_80040744:
-	cmplwi   r4, 0
-	mr       r30, r4
-	beq      lbl_8004075C
-	mr       r3, r27
-	mr       r5, r29
-	bl       read__14JSUInputStreamFPvl
-
-lbl_8004075C:
-	mr       r3, r30
-	lmw      r27, 0x1c(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	return (J2DResReference*)data;
 }
 
 /**
@@ -1076,11 +937,9 @@ lbl_8004075C:
 bool J2DScreen::createMaterial(JSURandomInputStream* input, u32 flags, JKRArchive* archive)
 {
 	int initialPosition = input->getPosition();
-	int v1;
-	input->read(&v1, 8);
-	s16 materials;
-	input->read(materials);
-	mMaterialCount = materials;
+	s32 size1;
+	size1          = input->readS32();
+	mMaterialCount = input->readU16();
 	input->skip(2);
 
 	if (flags & 0x1f0000) {
@@ -1089,10 +948,10 @@ bool J2DScreen::createMaterial(JSURandomInputStream* input, u32 flags, JKRArchiv
 		mMaterials = new (-4) J2DMaterial[mMaterialCount];
 	}
 
-	J2DMaterialBlock* blocks = new (-4) J2DMaterialBlock[v1];
+	J2DMaterialBlock* blocks = new (-4) J2DMaterialBlock[size1];
 	if (mMaterials && blocks) {
 		input->seek(initialPosition, SEEK_SET);
-		input->read(blocks, v1);
+		input->read(blocks, size1);
 
 		J2DMaterialFactory factory(blocks[0]);
 		for (u16 i = 0; i < mMaterialCount; i++) {

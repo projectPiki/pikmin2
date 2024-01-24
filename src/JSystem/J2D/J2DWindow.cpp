@@ -22,9 +22,9 @@ J2DWindow::J2DWindow()
     , mPalette(nullptr)
 {
 	_144 = 0;
-	setContentsColor(JUtility::TColor(0xFFFFFFFF));
-	mBlack = 0;
-	mWhite = 0xFFFFFFFF;
+	setContentsColor(TCOLOR_WHITE_U32);
+	mBlack = TCOLOR_BLACK_U32;
+	mWhite = TCOLOR_WHITE_U32;
 }
 
 /**
@@ -500,13 +500,14 @@ void J2DWindow::drawContents(const JGeometry::TBox2f& box)
 			}
 			GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
 			GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-			GXPosition3f32(box.i.x, box.i.y, 0.0f);
+			f32 zero = 0.0f;
+			GXPosition3f32(box.i.x, box.i.y, zero);
 			GXColor1u32(color1);
-			GXPosition3f32(box.f.x, box.i.y, 0.0f);
+			GXPosition3f32(box.f.x, box.i.y, zero);
 			GXColor1u32(color3);
-			GXPosition3f32(box.f.x, box.f.y, 0.0f);
+			GXPosition3f32(box.f.x, box.f.y, zero);
 			GXColor1u32(color4);
-			GXPosition3f32(box.i.x, box.f.y, 0.0f);
+			GXPosition3f32(box.i.x, box.f.y, zero);
 			GXColor1u32(color2);
 			GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
 		} else {
@@ -739,20 +740,22 @@ void J2DWindow::drawContentsTexture(f32 x0, f32 y0, f32 xOffset, f32 yOffset)
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGBA6, 0);
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
 
+	f32 z = 0.0f;
+
 	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-	GXPosition3f32(x0, y0, 0.0f);
+	GXPosition3f32(x0, y0, z);
 	GXColor1u32(contentsColor.mColorA);
 	GXTexCoord2f32(xTex0, yTex0);
 
-	GXPosition3f32(x1, y0, 0.0f);
+	GXPosition3f32(x1, y0, z);
 	GXColor1u32(contentsColor.mColorB);
 	GXTexCoord2f32(xTex1, yTex0);
 
-	GXPosition3f32(x1, y1, 0.0f);
+	GXPosition3f32(x1, y1, z);
 	GXColor1u32(contentsColor.mColorD);
 	GXTexCoord2f32(xTex1, yTex1);
 
-	GXPosition3f32(x0, y1, 0.0f);
+	GXPosition3f32(x0, y1, z);
 	GXColor1u32(contentsColor.mColorC);
 	GXTexCoord2f32(xTex0, yTex1);
 

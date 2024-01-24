@@ -521,7 +521,7 @@ J2DPicture::J2DPicture(const ResTIMG* img)
 	mUsedTextureFlags = 0;
 	mTextureCount     = 0;
 	if (img != nullptr) {
-		append(img, 0.0f);
+		append(img, 1.0f);
 	}
 	mPalette = nullptr;
 	initinfo();
@@ -554,7 +554,7 @@ J2DPicture::J2DPicture(const char* p1)
 	mUsedTextureFlags = 0;
 	mTextureCount     = 0;
 	if (p1) {
-		append(p1, 0.0f);
+		append(p1, 1.0f);
 	}
 	mPalette = nullptr;
 	initinfo();
@@ -587,7 +587,7 @@ J2DPicture::J2DPicture(JUTTexture* texture)
 	mUsedTextureFlags = 0;
 	mTextureCount     = 0;
 	if (texture) {
-		append(texture, 0.0f);
+		append(texture, 1.0f);
 	}
 	mPalette = nullptr;
 	initinfo();
@@ -633,29 +633,24 @@ void J2DPicture::private_readStream(J2DPane* parent, JSURandomInputStream* input
 	makePaneStream(parent, input);
 
 	u32 v1 = 0;
-	u8 v2;
-	input->read(&v2, sizeof(u8));
+	u8 v2  = input->readByte();
 
-	ResTIMG* img = (ResTIMG*)getPointer(input, 'TIMG', archive);
-	ResTLUT* lut = (ResTLUT*)getPointer(input, 'TLUT', archive);
-	u8 v3;
-	input->read(&v3, sizeof(u8));
-	s8 countdown = v2 - 3;
+	ResTIMG* img  = (ResTIMG*)getPointer(input, 'TIMG', archive);
+	ResTLUT* lut  = (ResTLUT*)getPointer(input, 'TLUT', archive);
+	J2DBinding v3 = (J2DBinding)input->readByte();
+	s8 countdown  = v2 - 3;
 	if (v2 != 3) {
-		u8 v4;
-		input->read(&v4, sizeof(u8));
-		v1        = v4;
+		v1        = input->readByte();
 		countdown = v2 - 4;
 	}
 
 	if (countdown != 0) {
-		u8 v120;
-		input->read(&v120, sizeof(u8));
+		input->readByte();
 		countdown--;
 	}
 
-	mBlack = 0x0;
-	mWhite = 0xFFFFFFFF;
+	mBlack = TCOLOR_BLACK_U32;
+	mWhite = TCOLOR_WHITE_U32;
 
 	if (countdown != 0) {
 		GXColor black;
@@ -690,11 +685,11 @@ void J2DPicture::private_readStream(J2DPane* parent, JSURandomInputStream* input
 	mTextureCount     = 0;
 	mUsedTextureFlags = 1;
 	if (img) {
-		mTextures[0] = new JUTTexture;
+		mTextures[0] = new JUTTexture(img);
 		mTextureCount++;
 	}
 	if (lut) {
-		mPalette = new JUTPalette;
+		mPalette = new JUTPalette(0, lut);
 		mTextures[0]->attachPalette(mPalette);
 	}
 

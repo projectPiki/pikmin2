@@ -487,9 +487,7 @@ struct J2DScreen : public J2DPane {
 
 	const JGeometry::TBox2f getDefaultBounds()
 	{
-		JGeometry::TBox2f box;
-		box.i = JGeometry::TVec2f(0.0f, 0.0f);
-		box.f = JGeometry::TVec2f(640.0f, 480.0f);
+		JGeometry::TBox2f box(0.0f, 0.0f, 640.f, 480.0f);
 		return box;
 	}
 

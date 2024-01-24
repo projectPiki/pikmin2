@@ -86,6 +86,13 @@ struct JSUInputStream : public JSUIosBase {
 		return temp;
 	}
 
+	inline s32 readS32()
+	{
+		s32 val;
+		this->read(&val, sizeof(val));
+		return val;
+	}
+
 	/** @fabricated */
 	// template <typename T>
 	// inline s32 readT(T& obj)
@@ -115,6 +122,8 @@ struct JSURandomInputStream : public JSUInputStream {
 };
 
 struct JSUMemoryInputStream : public JSURandomInputStream {
+	JSUMemoryInputStream(const void* res, u32 size) { setBuffer(res, size); }
+
 	virtual ~JSUMemoryInputStream() { }                   // _08 (weak)
 	virtual int readData(void*, s32);                     // _14
 	virtual int getLength() const { return mLength; }     // _18 (weak)
