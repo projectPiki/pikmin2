@@ -89,7 +89,7 @@ f32 OuterParamTask::getPreParam(JASTrack& track)
 	case 0x8:
 		return track.mExtBuffer->_14;
 	case 0x40:
-		return track.mExtBuffer->_18;
+		return track.mExtBuffer->mTempo;
 	default:
 		JUT_PANICLINE(135, "P2Assert");
 		return 0.0f;

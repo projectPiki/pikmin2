@@ -76,7 +76,8 @@ struct JASOuterParam {
 	s16 getIntFirFilter(u8 index);
 	void setFirFilter(s16*);
 	void onSwitch(u16);
-	f32 getTempo() const;
+	// weak, but forced to exist via recursion in JASTrack::updateTempo
+	f32 getTempo() const { return mTempo; }
 
 	// unused/inlined:
 	u16 getSwitch(); // maybe getOuterSwitch?
@@ -89,7 +90,7 @@ struct JASOuterParam {
 	f32 _0C;           // _0C
 	f32 _10;           // _10
 	f32 _14;           // _14
-	f32 _18;           // _18 - tempo?
+	f32 mTempo;        // _18
 	s16 mFirFilter[8]; // _1C - firFilter?
 };
 
@@ -190,7 +191,7 @@ struct JASTrack : JSUList<JASChannel> {
 	void close();
 	bool start(void*, u32);
 	JASTrack* openChild(u8, u8);
-	void exchangeRegisterValue(u8);
+	u32 exchangeRegisterValue(u8);
 	u32 readReg32(u8);
 	u32 readReg16(u8);
 	void writeRegDirect(u8, u16);
@@ -243,7 +244,7 @@ struct JASTrack : JSUList<JASChannel> {
 	JASSeqCtrl mSeqCtrl;               // _0C
 	JASTrackPort mTrackPort;           // _54
 	JASIntrMgr mIntrMgr;               // _94
-	JASChannel* _C0[8];                // _C0
+	JASChannel* mChannels[8];          // _C0
 	u32 _E0;                           // _E0
 	u8 _E4;                            // _E4
 	u8 _E5;                            // _E5
@@ -262,17 +263,17 @@ struct JASTrack : JSUList<JASChannel> {
 	JASTrack* mChildList[16];          // _2FC
 	JASOuterParam* mExtBuffer;         // _33C
 	f32 _340;                          // _340
-	f32 _344;                          // _344
+	f32 mCurrentTempo;                 // _344, actual calculated tempo for playback
 	u32 _348;                          // _348
 	u32 _34C;                          // _34C - unknown
 	u16 _350;                          // _350
-	u16 _352;                          // _352
-	u16 _354;                          // _354
+	u16 mTempo;                        // _352, direct value read from bms
+	u16 mTimeBase;                     // _354
 	s8 mTranspose;                     // _356
 	u8 _357;                           // _357
 	u8 mPauseStatus;                   // _358
 	u8 mVolumeMode;                    // _359
-	u8 _35A;                           // _35A
+	u8 mNoteMask;                      // _35A
 	u8 _35B;                           // _35B
 	u8 _35C;                           // _35C
 	u8 _35D;                           // _35D
@@ -280,8 +281,8 @@ struct JASTrack : JSUList<JASChannel> {
 	u8 _35F;                           // _35F
 	u8 _360;                           // _360
 	u8 _361;                           // _361
-	bool _362;                         // _362
-	u8 _363;                           // _363
+	bool mIsPaused;                    // _362
+	bool mIsMuted;                     // _363
 	u8 mTimeRelate;                    // _364
 	u8 _365;                           // _365
 	u8 _366;                           // _366

@@ -44,7 +44,7 @@ TaskEntryMgr* SeqTrackBase::getTaskEntryList() { return &mTaskEntryMgr; }
  * __ct__Q28PSSystem12SeqTrackRootFv
  */
 SeqTrackRoot::SeqTrackRoot()
-    : _34(2.0f)
+    : mSwingMagnitude(2.0f)
     , mSwingState(0)
     , _3E(0x3C)
     , _100(2)
@@ -59,8 +59,8 @@ void SeqTrackRoot::init(JASTrack* track)
 {
 	P2ASSERTLINE(229, track != nullptr);
 	mTaskEntryMgr.mTrack = track;
-	_2C                  = track->_352;
-	_2E                  = _2C;
+	mStandardTempo       = track->mTempo;
+	mActiveTempo         = mStandardTempo;
 	mBeatMgr._00         = 0;
 	initSwingRatio();
 }
@@ -71,8 +71,8 @@ void SeqTrackRoot::init(JASTrack* track)
  */
 void SeqTrackRoot::initSwingRatio()
 {
-	_32 = _2C * (_34 + 1.0f) / 2;
-	_30 = _32 / _34;
+	mSwingTempoMax = mStandardTempo * (mSwingMagnitude + 1.0f) / 2;
+	mSwingTempoMin = mSwingTempoMax / mSwingMagnitude;
 }
 
 /**
@@ -81,9 +81,9 @@ void SeqTrackRoot::initSwingRatio()
  */
 void SeqTrackRoot::pitchModulation(f32 f1, f32 f2, u32 arg, PSSystem::DirectorBase* base)
 {
-	mTaskEntryMgr.removeEntry(&_16C);
-	_16C.makeEntry(f1, f2, arg);
-	mTaskEntryMgr.appendEntry(&_16C, base);
+	mTaskEntryMgr.removeEntry(&mPitchModTask);
+	mPitchModTask.makeEntry(f1, f2, arg);
+	mTaskEntryMgr.appendEntry(&mPitchModTask, base);
 }
 
 /**
@@ -92,9 +92,9 @@ void SeqTrackRoot::pitchModulation(f32 f1, f32 f2, u32 arg, PSSystem::DirectorBa
  */
 void SeqTrackRoot::tempoChange(f32 tempo, u32 arg, PSSystem::DirectorBase* base)
 {
-	mTaskEntryMgr.removeEntry(&_40);
-	_40.makeEntry(tempo, arg);
-	mTaskEntryMgr.appendEntry(&_40, base);
+	mTaskEntryMgr.removeEntry(&mTempoTask);
+	mTempoTask.makeEntry(tempo, arg);
+	mTaskEntryMgr.appendEntry(&mTempoTask, base);
 }
 
 /**
@@ -112,14 +112,15 @@ u16 SeqTrackRoot::beatUpdate()
 	mBeatMgr._00 = (mBeatMgr._00 & 1 ^ 1) & 0x00FF | 0x80;
 	if (mSwingState == 1) {
 		if (mBeatMgr._00 & 1) {
-			_2E = _30;
+			mActiveTempo = mSwingTempoMin;
 		} else {
-			_2E = _32;
+			mActiveTempo = mSwingTempoMax;
 		}
 	} else {
-		_2E = _2C;
+		mActiveTempo = mStandardTempo;
 	}
-	mTaskEntryMgr.mTrack->setTempo(_2E);
+
+	mTaskEntryMgr.mTrack->setTempo(mActiveTempo);
 	onBeatTop();
 	return _3E;
 }

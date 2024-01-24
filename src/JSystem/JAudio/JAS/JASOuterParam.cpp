@@ -12,7 +12,7 @@ JASOuterParam::JASOuterParam()
     , _0C(0.0f)
     , _10(0.0f)
     , _14(0.0f)
-    , _18(0.0f)
+    , mTempo(0.0f)
 {
 	for (int i = 0; i < 8; i++) {
 		mFirFilter[i] = 0;
@@ -103,7 +103,7 @@ void JASOuterParam::setParam(u8 p1, f32 p2)
 		v1 = &_14;
 		break;
 	case 64:
-		v1 = &_18;
+		v1 = &mTempo;
 		break;
 	default:
 		return;

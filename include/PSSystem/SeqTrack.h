@@ -60,19 +60,19 @@ struct SeqTrackRoot : public SeqTrackBase {
 
 	// _00      = VTABLE
 	// _04-_2C  = SeqBase
-	u16 _2C;                     // _2C
-	u16 _2E;                     // _2E
-	u16 _30;                     // _30
-	u16 _32;                     // _32
-	f32 _34;                     // _34
-	int mSwingState;             // _38, 0 = olimar, 1 = louie
-	BeatMgr mBeatMgr;            // _3C
-	u8 _3D;                      // _3D - possibly padding or part of BeatMgr
-	u16 _3E;                     // _3E
-	TaskEntry_Tempo _40;         // _40
-	TaskEntry_OuterParam _100;   // _100
-	TaskEntry_PitMod _16C;       // _16C
-	TaskEntry_BankRandTask _20C; // _20C
+	u16 mStandardTempo;             // _2C, for olimar
+	u16 mActiveTempo;               // _2E, actual active tempo
+	u16 mSwingTempoMin;             // _30, min tempo for louie swing
+	u16 mSwingTempoMax;             // _32, max tempo for louie swing
+	f32 mSwingMagnitude;            // _34, how significant the swing is (?)
+	int mSwingState;                // _38, 0 = olimar, 1 = louie
+	BeatMgr mBeatMgr;               // _3C
+	u8 _3D;                         // _3D - possibly padding or part of BeatMgr
+	u16 _3E;                        // _3E
+	TaskEntry_Tempo mTempoTask;     // _40, for low health
+	TaskEntry_OuterParam _100;      // _100
+	TaskEntry_PitMod mPitchModTask; // _16C, for taking damage
+	TaskEntry_BankRandTask _20C;    // _20C
 };
 
 struct SeqTrackRoot_JumpBgm : public SeqTrackRoot {
