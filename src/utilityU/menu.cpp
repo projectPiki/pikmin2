@@ -24,7 +24,7 @@ Menu::Menu(JUTGamePad* control, JUTFont* font, bool flag)
 	mItemCount     = 0;
 	mLastItem      = nullptr;
 	mCurrentItem   = nullptr;
-	mSelf2         = nullptr;
+	_14            = nullptr;
 	mSelf          = nullptr;
 	_4C            = 0;
 	_50            = 0;

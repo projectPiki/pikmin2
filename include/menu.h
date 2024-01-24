@@ -125,7 +125,7 @@ struct Menu {
 	bool mFlag;             // _08
 	int _0C;                // _0C
 	Menu* mSelf;            // _10
-	Menu* mSelf2;           // _14
+	Menu* _14;              // _14
 	JSUPtrList mItemList;   // _18
 	MenuItem* mCurrentItem; // _24
 	MenuItem* mLastItem;    // _28

@@ -9,6 +9,10 @@ struct ISection;
 struct Section;
 struct JKRHeap;
 
+/**
+ * @struct SectionInfo
+ * @brief Structure that holds information about a game section.
+ */
 struct SectionInfo {
 	char* mName; // _00
 
@@ -18,6 +22,10 @@ struct SectionInfo {
 	} mId; // _04
 };
 
+/**
+ * @class GameFlow
+ * @brief Class that manages the flow of the game sections.
+ */
 struct GameFlow : public ISectionMgr {
 	/**
 	 * @brief Enumeration of section names in the game flow.
@@ -61,9 +69,19 @@ struct GameFlow : public ISectionMgr {
 		SN_SECTION_COUNT,       /** Total size of the enum */
 	};
 
+	/**
+	 * @brief Default constructor for GameFlow class.
+	 */
 	GameFlow();
+
+	/**
+	 * @brief Destructor for GameFlow class.
+	 */
 	~GameFlow();
 
+	/**
+	 * @brief Runs the game.
+	 */
 	inline void runGame()
 	{
 		JKRExpHeap* expHeap;
@@ -82,13 +100,35 @@ struct GameFlow : public ISectionMgr {
 		parentHeap->becomeCurrentHeap();
 	}
 
-	virtual void run();                                                                                    // _08
-	virtual ISection* getCurrentSection() { return (mSection) ? mSection->getCurrentSection() : nullptr; } // _0C (weak)
+	/**
+	 * @brief Loops infinitely, calling runGame() each time.
+	 */
+	virtual void run();
 
+	/**
+	 * @brief Gets the current game section.
+	 * @return Pointer to the current game section.
+	 */
+	virtual ISection* getCurrentSection() { return (mSection) ? mSection->getCurrentSection() : nullptr; }
+
+	/**
+	 * @brief Sets the current game section.
+	 */
 	void setSection();
 
-	static SectionInfo* getSectionInfo(int);
-	static ISection* createSection(JKRHeap*);
+	/**
+	 * @brief Gets the information of a game section.
+	 * @param sectionId The ID of the section.
+	 * @return Pointer to the SectionInfo structure.
+	 */
+	static SectionInfo* getSectionInfo(int sectionId);
+
+	/**
+	 * @brief Creates a game section.
+	 * @param heap The heap to allocate the section from.
+	 * @return Pointer to the created game section.
+	 */
+	static ISection* createSection(JKRHeap* heap);
 
 	static u32 mActiveSectionFlag;
 

@@ -1927,11 +1927,11 @@ void Graphics::drawTile(Sys::Sphere&, Sys::Sphere&, JUTTexture*)
  * @note Address: 0x80426CB8
  * @note Size: 0x70C
  */
-void Graphics::drawCone(Vector3f& vec1, Vector3f& vec2, f32 p3, int limit)
+void Graphics::drawCone(Vector3f& start, Vector3f& end, f32 angle, int limit)
 {
-	f32 angle    = TORADIANS(p3); // f7
-	Vector3f sep = vec2 - vec1;   // f2, f0, f1
-	f32 dist     = sep.length();  // f31
+	f32 angle    = TORADIANS(angle); // f7
+	Vector3f sep = end - start;      // f2, f0, f1
+	f32 dist     = sep.length();     // f31
 
 	f32 sinTheta = sinf(angle);
 	f32 cosTheta = cosf(angle);
@@ -1960,7 +1960,7 @@ void Graphics::drawCone(Vector3f& vec1, Vector3f& vec2, f32 p3, int limit)
 	mtx.setBasis(0, xVec);
 	mtx.setBasis(1, yVec);
 	mtx.setBasis(2, sep);
-	mtx.setBasis(3, vec1);
+	mtx.setBasis(3, start);
 
 	Matrixf concatMtx; // 0x8
 	PSMTXConcat(mMatrix.mMatrix.mtxView, mtx.mMatrix.mtxView, concatMtx.mMatrix.mtxView);
@@ -2509,7 +2509,7 @@ Graphics::Graphics()
 {
 	deleteViewports();
 	mDrawColor.set(255, 255, 255, 255);
-	_088.set(255, 255, 255, 255);
+	mWhiteColor.set(255, 255, 255, 255);
 	mActiveTokens = 0;
 	GXSetDrawSyncCallback(graphicsTokenCallback);
 	mCurrentViewport = nullptr;
@@ -2838,7 +2838,7 @@ void Graphics::initPerspPrintf(Viewport* vp)
  * @note Address: 0x80427ADC
  * @note Size: 0x3C4
  */
-void Graphics::perspPrintf(PerspPrintfInfo& info, Vector3f& vec, char* format, ...)
+void Graphics::perspPrintf(PerspPrintfInfo& info, Vector3f& position, char* format, ...)
 {
 	va_list args;
 	va_start(args, format);
@@ -2846,7 +2846,7 @@ void Graphics::perspPrintf(PerspPrintfInfo& info, Vector3f& vec, char* format, .
 	vsprintf(buf, format, args);
 
 	Matrixf mtx;
-	mtx.set(info.mScale, vec, mCurrentViewport->getViewMatrix());
+	mtx.set(info.mScale, position, mCurrentViewport->getViewMatrix());
 
 	Matrixf concatMtx;
 	PSMTXConcat(mCurrentViewport->getViewMatrix()->mMatrix.mtxView, mtx.mMatrix.mtxView, concatMtx.mMatrix.mtxView);
@@ -2861,22 +2861,22 @@ void Graphics::perspPrintf(PerspPrintfInfo& info, Vector3f& vec, char* format, .
 	J2DPrint printer(info.mFont, color1, color2);
 	printer.initiate();
 
-	switch (info._0C) {
+	switch (info.mPrintType) {
 	case 1:
-		printer.print((f32)info._04, (f32)info._08, buf);
+		printer.print((f32)info.mPerspectiveOffsetX, (f32)info.mPerspectiveOffsetY, buf);
 		break;
 
 	case 2: {
 		f32 width = printer.getWidth(buf);
 		f32 val   = (width >= 0.0f) ? 0.5f + width : width - 0.5f;
-		int x     = info._04 - (int)val;
-		printer.print(x, (f32)info._08, buf);
+		int x     = info.mPerspectiveOffsetX - (int)val;
+		printer.print(x, (f32)info.mPerspectiveOffsetY, buf);
 	} break;
 	default: {
 		f32 width = 0.5f * printer.getWidth(buf);
 		f32 val   = (width >= 0.0f) ? 0.5f + width : width - 0.5f;
-		int x     = info._04 - (int)val;
-		printer.print(x, (f32)info._08, buf);
+		int x     = info.mPerspectiveOffsetX - (int)val;
+		printer.print(x, (f32)info.mPerspectiveOffsetY, buf);
 	} break;
 	}
 
