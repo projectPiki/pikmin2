@@ -96,6 +96,7 @@ void Obj::getShadowParam(ShadowParam& param)
 	} else {
 		param.mBoundingSphere.mRadius = 10.0f;
 	}
+
 	param.mSize = 10.0f;
 }
 
@@ -108,9 +109,9 @@ bool Obj::pressCallBack(Creature* obj, f32 damage, CollPart* part)
 	if (obj && !isEvent(0, EB_Bittered) && getStateID() > 2) {
 		mFsm->transit(this, BABY_Press, nullptr);
 		return true;
-	} else {
-		return false;
 	}
+
+	return false;
 }
 
 /**

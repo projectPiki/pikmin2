@@ -282,96 +282,120 @@ void J2DPrint::printReturn(const char* str, f32 x, f32 y, J2DTextBoxHBinding hbi
  * @note Address: 0x8003E334
  * @note Size: 0x7BC
  */
-f32 J2DPrint::parse(const u8* str, int length, int x, u16* buffer, J2DPrint::TSize& size, u8 alpha, bool param_7)
+f32 J2DPrint::parse(const u8* inputString, int inputLength, int maxWidth, u16* outputBuffer, J2DPrint::TSize& textSize, u8 alpha,
+                    bool isDrawing)
 {
 	if (!mFont) {
 		return 0.0f;
 	}
 
-	const u8* inputStr = str;
-	u16 bufferPos      = 0;
+	const u8* originalInput = inputString;
+	u16 outputBufferPos     = 0;
 
-	f32 cursorX  = mCursorX;
-	f32 cursorY  = mCursorY;
-	f32 f31      = mCursorX;
-	f32 local_a8 = mCursorY;
-	int currChar = *(str++);
-	f32 f29      = mCursorX;
+	f32 initialCursorX = mCursorX;
+	f32 initialCursorY = mCursorY;
 
-	f32 local_ac = mCursorX;
-	f32 local_b0 = mCursorY;
-	f32 local_b4 = mCursorY;
+	f32 maxLineWidth  = mCursorX;
+	f32 maxLineHeight = mCursorY;
 
-	JUtility::TColor activeCharColor = mActiveCharColor;
-	JUtility::TColor activeGradColor = mActiveGradColor;
+	int currentChar = *(inputString++);
 
-	f32 local_c0;
-	activeCharColor.a = activeCharColor.a * alpha / 255;
-	activeGradColor.a = activeGradColor.a * alpha / 255;
+	f32 minCursorX = mCursorX;
+
+	f32 boundingBoxLeft   = mCursorX;
+	f32 boundingBoxTop    = mCursorY;
+	f32 boundingBoxBottom = mCursorY;
+
+	JUtility::TColor textColor     = mActiveCharColor;
+	JUtility::TColor gradientColor = mActiveGradColor;
+
+	f32 lastCursorX;
+
+	textColor.a     = textColor.a * alpha / 255;
+	gradientColor.a = gradientColor.a * alpha / 255;
+
 	JUtility::TColor* topColor;
 	if (mActiveIsGradient) {
-		topColor = &activeGradColor;
+		topColor = &gradientColor;
 	} else {
-		topColor = &activeCharColor;
+		topColor = &textColor;
 	}
-	mFont->setGradColor(activeCharColor, *topColor);
-	bool isLead;
-	bool r25;
+
+	mFont->setGradColor(textColor, *topColor);
+
+	bool isMultiByteChar;
+	bool isPrintable;
 	do {
-		isLead = false;
-		if (mFont->isLeadByte(currChar)) {
-			currChar = (currChar << 8) | (*(str++));
-			isLead   = true;
+		isMultiByteChar = false;
+		// Check if the current character is a lead byte. In some multi-byte character encodings, a lead byte indicates the start of a
+		// multi-byte character.
+		if (mFont->isLeadByte(currentChar)) {
+			// If the current character is a lead byte, combine it with the next byte to form a 16-bit multi-byte character, then increment
+			// the input string pointer.
+			currentChar = (currentChar << 8) | (*(inputString++));
+
+			// Set isLeadingByte to true, indicating that a lead byte (and thus a multi-byte character) has been processed.
+			isMultiByteChar = true;
 		}
 
-		if (currChar == 0 || ((u32)str - (u32)inputStr) > length) {
-			if (!param_7 && buffer != nullptr) {
-				buffer[bufferPos] = 0.5f + f31;
+		// Verify if the string's end is reached or if the current position exceeds the expected length.
+		if (currentChar == '\0' || ((u32)inputString - (u32)originalInput) > inputLength) {
+			// If not currently drawing and the output buffer exists
+			if (!isDrawing && outputBuffer) {
+				// Add the maximum line width to the current position in the output buffer.
+				outputBuffer[outputBufferPos] = 0.5f + maxLineWidth;
 			}
-			bufferPos++;
+
+			outputBufferPos++;
 			break;
 
 		} else {
-			r25      = true;
-			local_c0 = mCursorX;
-			if (currChar < ASCII_PRINTABLE_MIN) {
-				if (currChar == 0x1B) { // cancel ASCII code
-					u16 escapeCode = doEscapeCode(&str, alpha);
+			isPrintable = true;
+			lastCursorX = mCursorX;
+
+			// If the current char is not a printable character (escape sequence, control code, etc.)
+			if (currentChar < ASCII_PRINTABLE_MIN) {
+				// 0x1B, the escape character, is used to indicate the start of an escape sequence.
+				if (currentChar == '\x1B') {
+					u16 escapeCode = doEscapeCode(&inputString, alpha);
 					if (escapeCode == 'HM') {
-						if (!param_7 && buffer) {
-							buffer[bufferPos] = 0.5f + f31;
+						if (!isDrawing && outputBuffer) {
+							outputBuffer[outputBufferPos] = 0.5f + maxLineWidth;
 						}
-						mCursorX = cursorX;
-						mCursorY = cursorY;
-						bufferPos++;
-						if (bufferPos == 0x100) {
+
+						mCursorX = initialCursorX;
+						mCursorY = initialCursorY;
+
+						outputBufferPos++;
+						if (outputBufferPos == 0x100) {
 							break;
 						}
-						f31 = 0.0f;
+
+						maxLineWidth = 0.0f;
 					}
 					if (escapeCode != 0) {
-						r25 = false;
+						isPrintable = false;
 					}
 				} else {
-					doCtrlCode(currChar);
-					r25 = false;
-					if (currChar == 10) {
-						if (!param_7 && buffer) {
-							buffer[bufferPos] = 0.5f + f31;
+					doCtrlCode(currentChar);
+					isPrintable = false;
+					if (currentChar == 10) {
+						if (!isDrawing && outputBuffer) {
+							outputBuffer[outputBufferPos] = 0.5f + maxLineWidth;
 						}
-						bufferPos++;
-						if (bufferPos == 0x100) {
+						outputBufferPos++;
+						if (outputBufferPos == 0x100) {
 							break;
 						}
-						f31 = 0.0f;
+						maxLineWidth = 0.0f;
 					}
 				}
 
-			} else if (isLead && ((u32)str - (u32)inputStr > (u32)length)) {
-				if (!param_7 && buffer) {
-					buffer[bufferPos] = 0.5f + f31;
+			} else if (isMultiByteChar && ((u32)inputString - (u32)originalInput > (u32)inputLength)) {
+				if (!isDrawing && outputBuffer) {
+					outputBuffer[outputBufferPos] = 0.5f + maxLineWidth;
 				}
-				bufferPos++;
+				outputBufferPos++;
 				break;
 
 			} else {
@@ -379,40 +403,40 @@ f32 J2DPrint::parse(const u8* str, int length, int x, u16* buffer, J2DPrint::TSi
 					mRotation = mFont->getFixedWidth();
 				} else {
 					JUTFont::TWidth uStack_ec;
-					mFont->getWidthEntry(currChar, &uStack_ec);
+					mFont->getWidthEntry(currentChar, &uStack_ec);
 					mRotation = uStack_ec.w1;
 				}
 
 				mRotation *= mActiveGlyphWidth / mFont->getCellWidth();
-				f32 fVar6    = ((mCursorX + mRotation) - mPositionX);
-				fVar6        = 10000.0f * fVar6;
-				f32 local_90 = ((s32)fVar6) / 10000.0f;
-				if (local_90 > x && mCursorX > cursorX) {
-					u32 local_e4;
-					if (isLead) {
-						local_e4 = 2;
+				f32 lineEndX         = ((mCursorX + mRotation) - mPositionX);
+				lineEndX             = 10000.0f * lineEndX;
+				f32 lineEndXAdjusted = ((s32)lineEndX) / 10000.0f;
+				if (lineEndXAdjusted > maxWidth && mCursorX > initialCursorX) {
+					u32 inputOffset;
+					if (isMultiByteChar) {
+						inputOffset = 2;
 					} else {
-						local_e4 = 1;
+						inputOffset = 1;
 					}
-					str -= local_e4;
+					inputString -= inputOffset;
 					mCursorY += mActiveScaleY;
-					if (!param_7 && (buffer != nullptr)) {
-						buffer[bufferPos] = 0.5f + f31;
+					if (!isDrawing && (outputBuffer != nullptr)) {
+						outputBuffer[outputBufferPos] = 0.5f + maxLineWidth;
 					}
-					bufferPos++;
-					if (bufferPos == 0x100) {
+					outputBufferPos++;
+					if (outputBufferPos == 0x100) {
 						break;
 					}
-					mCursorX = mPositionX;
-					f31      = 0.0f;
-					r25      = false;
+					mCursorX     = mPositionX;
+					maxLineWidth = 0.0f;
+					isPrintable  = false;
 				} else {
-					if (param_7) {
-						if (buffer != nullptr) {
-							mFont->drawChar_scale(mCursorX + (f32)(s16)buffer[bufferPos], mCursorY, (int)mActiveGlyphWidth,
-							                      (int)mActiveGlyphHeight, currChar, true);
+					if (isDrawing) {
+						if (outputBuffer != nullptr) {
+							mFont->drawChar_scale(mCursorX + (f32)(s16)outputBuffer[outputBufferPos], mCursorY, (int)mActiveGlyphWidth,
+							                      (int)mActiveGlyphHeight, currentChar, true);
 						} else {
-							mFont->drawChar_scale(mCursorX, mCursorY, (int)mActiveGlyphWidth, (int)mActiveGlyphHeight, currChar, true);
+							mFont->drawChar_scale(mCursorX, mCursorY, (int)mActiveGlyphWidth, (int)mActiveGlyphHeight, currentChar, true);
 						}
 					}
 					mCursorX += mRotation;
@@ -420,48 +444,48 @@ f32 J2DPrint::parse(const u8* str, int length, int x, u16* buffer, J2DPrint::TSi
 			}
 		}
 
-		if (r25) {
-			if (mCursorX - cursorX > f31) {
-				f31 = mCursorX - cursorX;
+		if (isPrintable) {
+			if (mCursorX - initialCursorX > maxLineWidth) {
+				maxLineWidth = mCursorX - initialCursorX;
 			}
 			mCursorX += mActiveScaleX;
 			mRotation += mActiveScaleX;
-			f32 local_cc = (mActiveGlyphHeight / mFont->getHeight()) * mFont->getDescent();
-			if (local_a8 < mCursorY + local_cc) {
-				local_a8 = mCursorY + local_cc;
+			f32 scaledFontDescent = (mActiveGlyphHeight / mFont->getHeight()) * mFont->getDescent();
+			if (maxLineHeight < mCursorY + scaledFontDescent) {
+				maxLineHeight = mCursorY + scaledFontDescent;
 			}
-			if (mCursorX > local_ac) {
-				local_ac = mCursorX;
+			if (mCursorX > boundingBoxLeft) {
+				boundingBoxLeft = mCursorX;
 			}
-			if (mCursorX < f29) {
-				f29 = mCursorX;
+			if (mCursorX < minCursorX) {
+				minCursorX = mCursorX;
 			}
-			if (local_c0 < f29) {
-				f29 = local_c0;
+			if (lastCursorX < minCursorX) {
+				minCursorX = lastCursorX;
 			}
-			if (mCursorY > local_b4) {
-				local_b4 = mCursorY;
+			if (mCursorY > boundingBoxBottom) {
+				boundingBoxBottom = mCursorY;
 			}
-			if (mCursorY < local_b0) {
-				local_b0 = mCursorY;
+			if (mCursorY < boundingBoxTop) {
+				boundingBoxTop = mCursorY;
 			}
 		}
-		currChar = *(str++);
+		currentChar = *(inputString++);
 
 	} while (true);
 
-	if (buffer != nullptr) {
-		buffer[bufferPos] = 0xFFFF;
+	if (outputBuffer != nullptr) {
+		outputBuffer[outputBufferPos] = 0xFFFF;
 	}
 
-	size.mWidth  = local_ac - f29;
-	size.mHeight = local_b4 - local_b0 + mFont->getLeading();
+	textSize.mWidth  = boundingBoxLeft - minCursorX;
+	textSize.mHeight = boundingBoxBottom - boundingBoxTop + mFont->getLeading();
 
-	if (!param_7) {
-		mCursorX = cursorX;
-		mCursorY = cursorY;
+	if (!isDrawing) {
+		mCursorX = initialCursorX;
+		mCursorY = initialCursorY;
 	}
-	return local_a8 - cursorY;
+	return maxLineHeight - initialCursorY;
 }
 
 /**
@@ -526,10 +550,12 @@ u16 J2DPrint::doEscapeCode(const u8** strPtr, u8 alpha)
 			currChar = **strPtr;
 			(*strPtr)++;
 		}
+
 		if (currChar >= ASCII_PRINTABLE_MAX || currChar < ASCII_PRINTABLE_MIN) {
 			*strPtr = inputStr; // reset string
 			return 0;
 		}
+
 		code = ((code) << 8) | currChar;
 	}
 
@@ -552,15 +578,15 @@ u16 J2DPrint::doEscapeCode(const u8** strPtr, u8 alpha)
 		mCursorX += getNumberF32(strPtr, 1.0f, 0.0f, 10);
 		break;
 
-	case 'LU': // ?? up
+	case 'LU': // current line up
 		mCursorY -= mActiveScaleY;
 		break;
 
-	case 'LD': // ?? down
+	case 'LD': // current line down
 		mCursorY += mActiveScaleY;
 		break;
 
-	case 'ST': // ??
+	case 'ST': // string terminator
 		s32 width = getNumberS32(strPtr, mActiveFontWidth, mActiveFontWidth, 10);
 		if (width > 0) {
 			mActiveFontWidth = width;
