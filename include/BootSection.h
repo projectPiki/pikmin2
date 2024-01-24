@@ -10,8 +10,8 @@
 #define NINTENDOLOGO_HEIGHT 104.0f
 
 // Nintendo logo is blue in japanese, red elsewhere
-#define NINTENDOLOGO_COLOR_JP 0, 70, 255, 255
-#define NINTENDOLOGO_COLOR_US 220, 0, 0, 255
+#define NINTENDOLOGO_COLOR_JP (0, 70, 255, 255)
+#define NINTENDOLOGO_COLOR_US (220, 0, 0, 255)
 
 #define DOLBYLOGO_XPOS   189.0f
 #define DOLBYLOGO_YPOS   150.0f
@@ -30,21 +30,34 @@ namespace ebi {
 struct TScreenProgre;
 }
 
+/**
+ * @brief The BootSection is responsible for booting and initializing the game.
+ *
+ * It inherits from the BaseHIOSection class and provides functionality for loading resources, displaying logos,
+ * setting display modes, and handling user input during the boot process.
+ */
 struct BootSection : public Game::BaseHIOSection {
+	/**
+	 * @brief Pointer to a member function of the BootSection class that returns a bool and takes no arguments.
+	 * This type is used as a callback for running and waiting operations.
+	 */
 	typedef bool (BootSection::*RunWaitCallback)();
 
+	/**
+	 * @brief Enumeration of state IDs for the boot section.
+	 */
 	enum StateID {
-		SID_LOAD_RESOURCE_FIRST = 0,
-		SID_LOAD_MEMORY_CARD,
-		SID_INIT_NINTENDO_LOGO,
-		SID_UNUSED_3,
-		SID_NINTENDO_LOGO,
-		SID_WAIT_PROGRESSIVE,
-		SID_SET_INTERLACE,
-		SID_SET_PROGRESSIVE,
-		SID_DOLBY_LOGO_1,
-		SID_DOLBY_LOGO_2,
-		SID_NULL = -1
+		SID_LOAD_RESOURCE_FIRST = 0, /**< Load resource first state ID */
+		SID_LOAD_MEMORY_CARD,        /**< Load memory card state ID */
+		SID_INIT_NINTENDO_LOGO,      /**< Initialize Nintendo logo state ID */
+		SID_UNUSED_3,                /**< Unused state ID */
+		SID_NINTENDO_LOGO,           /**< Nintendo logo state ID */
+		SID_WAIT_PROGRESSIVE,        /**< Wait progressive state ID */
+		SID_SET_INTERLACE,           /**< Set interlace state ID */
+		SID_SET_PROGRESSIVE,         /**< Set progressive state ID */
+		SID_DOLBY_LOGO_1,            /**< Dolby logo 1 state ID */
+		SID_DOLBY_LOGO_2,            /**< Dolby logo 2 state ID */
+		SID_NULL = -1                /**< Null state ID */
 	};
 
 	BootSection(JKRHeap*);

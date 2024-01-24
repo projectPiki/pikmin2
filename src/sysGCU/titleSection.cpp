@@ -127,16 +127,17 @@ void Section::init()
 	mMenu->addKeyEvent(Menu::KeyEvent::UNK1, 512, new Delegate1<Section, Menu&>(this, &menuCancel));
 	mMenu->addKeyEvent(Menu::KeyEvent::UNK0, 256, new Delegate1<Section, Menu&>(this, &menuSelect));
 	int sects = 0;
-	for (int i = 0; i < GameFlow::SECTION_COUNT; i++) {
+	for (int i = 0; i < GameFlow::SN_SECTION_COUNT; i++) {
 		SectionInfo* data = GameFlow::getSectionInfo(i);
+
 		if (data) {
-			if ((!Game::gGameConfig.mParms.mMarioClubDevelop.mData || data->mId.c) && data->mId.b) {
+			if ((!Game::gGameConfig.mParms.mMarioClubDevelop() || data->mId.c) && data->mId.b) {
 				mMenu->addOption(i, data->mName, nullptr, true);
 				sects++;
 			}
 		} else {
-			char* test = "NO NAME"; // another 4 bytes of 0 is supposed to generate with this, but with it still being in sdata2?
-			mMenu->addOption(i, test, nullptr, true);
+			char* name = "NO NAME";
+			mMenu->addOption(i, name, nullptr, true);
 			sects++;
 		}
 	}
@@ -304,13 +305,13 @@ void Section::doUpdateMainTitle()
 		mIsMainActive = false;
 		switch (id) {
 		case ebi::TMainTitleMgr::Select_Story:
-			GameFlow::mActiveSectionFlag = GameFlow::SingleGame;
+			GameFlow::mActiveSectionFlag = GameFlow::SN_SingleGame;
 			break;
 		case ebi::TMainTitleMgr::Select_Challenge:
-			GameFlow::mActiveSectionFlag = GameFlow::ChallengeGame;
+			GameFlow::mActiveSectionFlag = GameFlow::SN_ChallengeGame;
 			break;
 		case ebi::TMainTitleMgr::Select_Vs:
-			GameFlow::mActiveSectionFlag = GameFlow::VSGame;
+			GameFlow::mActiveSectionFlag = GameFlow::SN_VSGame;
 			break;
 		case ebi::TMainTitleMgr::Select_Options:
 			mState = State_Options;
@@ -351,7 +352,7 @@ void Section::doUpdateMainTitle()
 			mIsMainActive = true;
 			break;
 		default:
-			GameFlow::mActiveSectionFlag = GameFlow::MainTitle;
+			GameFlow::mActiveSectionFlag = GameFlow::SN_MainTitle;
 			break;
 		}
 	} else {
@@ -359,7 +360,7 @@ void Section::doUpdateMainTitle()
 			if (!Game::gGameConfig.mParms.mKFesVersion.mData && !Game::gGameConfig.mParms.mNintendoVersion.mData) {
 				mMainTitleMgr.forceQuit();
 				mIsMainActive                = false;
-				GameFlow::mActiveSectionFlag = GameFlow::Demo;
+				GameFlow::mActiveSectionFlag = GameFlow::SN_Demo;
 			} else {
 				mGoToDemoTimer = 0.0f;
 			}

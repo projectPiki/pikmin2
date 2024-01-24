@@ -16,27 +16,27 @@ Menu::Menu(JUTGamePad* control, JUTFont* font, bool flag)
 	mFlag = flag;
 	_0C   = 0;
 
-	MenuItem* rootItem = new MenuItem(MenuItem::UNK0, 0, "root");
-	rootItem->_04      = false;
+	MenuItem* rootItem  = new MenuItem(MenuItem::UNK0, 0, "root");
+	rootItem->mIsActive = false;
 	mItemList.append(&rootItem->mLink);
 
-	_2C          = 0;
-	mItemCount   = 0;
-	mLastItem    = nullptr;
-	mCurrentItem = nullptr;
-	mSelf2       = nullptr;
-	mSelf        = nullptr;
-	_4C          = 0;
-	_50          = 0;
-	_54          = 0;
-	mPositionX   = 190;
-	mPositionY   = 220;
-	_48          = 260;
-	_58          = true;
-	_59          = true;
-	mState       = 0;
-	mTimer       = 0.0f;
-	mTimer2      = 0.0f;
+	_2C            = 0;
+	mItemCount     = 0;
+	mLastItem      = nullptr;
+	mCurrentItem   = nullptr;
+	mSelf2         = nullptr;
+	mSelf          = nullptr;
+	_4C            = 0;
+	_50            = 0;
+	_54            = 0;
+	mPositionX     = 190;
+	mPositionY     = 220;
+	_48            = 260;
+	mIsInitialised = true;
+	mIsUpdated     = true;
+	mState         = 0;
+	mTimer         = 0.0f;
+	mTimer2        = 0.0f;
 
 	volatile int idk1, idk2, idk3, idk4;
 	idk4 = 190;
@@ -51,16 +51,16 @@ Menu::Menu(JUTGamePad* control, JUTFont* font, bool flag)
  * @note Address: 0x804562B0
  * @note Size: 0xC0
  */
-void Menu::addOption(int index, char* name, IDelegate1<Menu&>* delegate, bool flag)
+void Menu::addOption(int optionIdx, char* optionName, IDelegate1<Menu&>* pressAction, bool isActive)
 {
-	mLastItem      = new MenuItem(MenuItem::UNK1, index, name);
-	mLastItem->_04 = flag;
+	mLastItem            = new MenuItem(MenuItem::UNK1, optionIdx, optionName);
+	mLastItem->mIsActive = isActive;
 	mItemList.append(&mLastItem->mLink);
-	if (delegate) {
-		addKeyEvent(KeyEvent::UNK0, _5C, delegate);
+	if (pressAction) {
+		addKeyEvent(KeyEvent::UNK0, _5C, pressAction);
 	}
 
-	if (!mCurrentItem && mLastItem->_04) {
+	if (!mCurrentItem && mLastItem->mIsActive) {
 		mCurrentItem = mLastItem;
 	}
 
@@ -112,45 +112,52 @@ void Menu::doUpdate(bool flag)
 		break;
 	case 2:
 		if (flag) {
-			_59 = true;
+			mIsUpdated = true;
 		}
 		u32 input = mControl->getButtonDown();
 		if (input & Controller::PRESS_DOWN) {
 			mCurrentItem->checkEvents(this, 2);
 			mCurrentItem = mCurrentItem->getNext();
+
 			if (!mCurrentItem) {
 				mCurrentItem = (MenuItem*)mItemList.mHead->mValue;
 			}
+
 			MenuItem* item;
-			while (item = mCurrentItem, !item->mName || !item->_04) {
+			while (item = mCurrentItem, !item->mName || !item->mIsActive) {
 				item         = mCurrentItem->getNext();
 				mCurrentItem = item;
 				if (!mCurrentItem) {
 					mCurrentItem = (MenuItem*)mItemList.mHead->mValue;
 				}
 			}
-			_59 = true;
+
+			mIsUpdated = true;
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
 		} else if (input & Controller::PRESS_UP) {
 			mCurrentItem->checkEvents(this, 2);
 			mCurrentItem = mCurrentItem->getPrev();
+
 			if (!mCurrentItem) {
 				mCurrentItem = (MenuItem*)mItemList.mHead->mValue;
 			}
+
 			MenuItem* item;
-			while (item = mCurrentItem, !item->mName || !item->_04) {
+			while (item = mCurrentItem, !item->mName || !item->mIsActive) {
 				item         = mCurrentItem->getPrev();
 				mCurrentItem = item;
 				if (!mCurrentItem) {
 					mCurrentItem = (MenuItem*)mItemList.mHead->mValue;
 				}
 			}
-			_59 = true;
+
+			mIsUpdated = true;
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
 		}
-		if (_58) {
-			_58 = false;
-			_59 = true;
+
+		if (mIsInitialised) {
+			mIsInitialised = false;
+			mIsUpdated     = true;
 		}
 		break;
 	}
@@ -454,7 +461,7 @@ Menu::KeyEvent::KeyEvent(cTypeFlag type, u32 a1, IDelegate1<Menu&>* delegate)
 Menu::MenuItem::MenuItem(cTypeFlag type, int a1, char* name)
     : mLink(this)
 {
-	_04           = 1;
+	mIsActive     = 1;
 	mName         = name;
 	mSectionFlags = a1;
 	mType         = type;

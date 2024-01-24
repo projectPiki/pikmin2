@@ -268,12 +268,14 @@ TinyPikminMgr::TinyPikminMgr()
 {
 	P2ASSERTLINE(731, !sTinyPikminMgr);
 	sTinyPikminMgr = this;
+
 	int pikis;
 	if (randFloat() < TINYPIKMINMGR_HIGHCOUNT_CHANCE) {
 		pikis = TINYPIKMINMGR_LOWERCOUNT;
 	} else {
 		pikis = TINYPIKMINMGR_HIGHERCOUNT;
 	}
+
 	sTinyPikminNum = pikis;
 	mPikis         = new TinyPikmin[sTinyPikminNum];
 	if (randFloat() > 0.5f) {
@@ -421,24 +423,30 @@ BootSection::BootSection(JKRHeap* heap)
     , mDoOpenProgressive(false)
     , mLogoShakeStrength(0.0f)
 {
-	sBootSection            = this;
+	sBootSection = this;
+
 	Game::HIORootNode* node = new Game::HIORootNode(this);
-	node->mName             = "ブートセクション";
+	node->setName("ブートセクション");
 	initHIO(node);
 
 	setDisplay(JFWDisplay::createManager(nullptr, mDisplayHeap, JUTXfb::DoubleBuffer, false), 1);
 	sys->setFrameRate(1);
+
 	mButtonCallback = new Delegate<BootSection>(this, &BootSection::loadResident);
+
 	JUTProcBar::sManager->setVisible(false);
 	JUTProcBar::sManager->setVisibleHeapBar(false);
+
 	mController = new Controller(JUTGamePad::PORT_0);
-	new Controller(JUTGamePad::PORT_1);
+	/*mController2 =*/new Controller(JUTGamePad::PORT_1);
+
 	sys->createRomFont(JKRGetCurrentHeap());
 	gPikmin2AramMgr->setLoadPermission(true);
 	particle2dMgr = nullptr;
 
 	mPikiMgr = new TinyPikminMgr;
 	mPikiMgr->init();
+
 	mTimeStep = 0.5f;
 }
 

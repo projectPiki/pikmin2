@@ -50,7 +50,7 @@ static SectionInfo sSectionInfo[] = {
 	{ "EXP_S", 0x22000000 },
 };
 } // namespace
-u32 GameFlow::mActiveSectionFlag = Boot;
+u32 GameFlow::mActiveSectionFlag = SN_Boot;
 
 /**
  * @note Address: 0x804241A4
@@ -58,7 +58,7 @@ u32 GameFlow::mActiveSectionFlag = Boot;
  */
 GameFlow::GameFlow()
 {
-	mActiveSectionFlag = Boot;
+	mActiveSectionFlag = SN_Boot;
 	mSection           = nullptr;
 }
 
@@ -89,13 +89,13 @@ void GameFlow::setSection()
 	JKRHeap::sCurrentHeap->getFreeSize();
 
 	switch (mActiveSectionFlag) {
-	case Boot:
+	case SN_Boot:
 		mSection           = new BootSection(JKRHeap::sCurrentHeap);
-		mActiveSectionFlag = RootMenu;
+		mActiveSectionFlag = SN_RootMenu;
 		break;
-	case RootMenu:
+	case SN_RootMenu:
 		mSection           = new RootMenuSection(JKRHeap::sCurrentHeap);
-		mActiveSectionFlag = MainTitle;
+		mActiveSectionFlag = SN_MainTitle;
 		break;
 	default:
 		JUT_PANICLINE(188, "Unknown SectionFlag. %d \n", mActiveSectionFlag);
@@ -111,9 +111,9 @@ SectionInfo* GameFlow::getSectionInfo(int id)
 {
 	SectionInfo* sectionInfo = nullptr;
 
-	P2ASSERTBOUNDSLINE(201, 0, id, SECTION_COUNT);
+	P2ASSERTBOUNDSLINE(201, 0, id, SN_SECTION_COUNT);
 
-	for (u32 i = 0; i < SECTION_COUNT; i++) {
+	for (u32 i = 0; i < SN_SECTION_COUNT; i++) {
 		if (id == sSectionInfo[i].mId.mSectionId) {
 			sectionInfo = &sSectionInfo[i];
 			break;
@@ -131,19 +131,19 @@ ISection* GameFlow::createSection(JKRHeap* heap)
 {
 	ISection* section;
 	switch (mActiveSectionFlag) {
-	case Demo:
+	case SN_Demo:
 		section = new Demo::Section(heap);
 		break;
-	case MainTitle:
+	case SN_MainTitle:
 		section = new Title::Section(heap);
 		break;
-	case SingleGame:
+	case SN_SingleGame:
 		section = new Game::SingleGameSection(heap);
 		break;
-	case ChallengeGame:
+	case SN_ChallengeGame:
 		section = new Game::VsGameSection(heap, false);
 		break;
-	case VSGame:
+	case SN_VSGame:
 		section = new Game::VsGameSection(heap, true);
 		break;
 	default:
@@ -151,6 +151,6 @@ ISection* GameFlow::createSection(JKRHeap* heap)
 		break;
 	}
 
-	mActiveSectionFlag = MainTitle;
+	mActiveSectionFlag = SN_MainTitle;
 	return section;
 }

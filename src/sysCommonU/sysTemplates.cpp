@@ -7,8 +7,8 @@
  * @note Size: 0x10
  */
 BitFlags::BitFlags()
-    : mFlagArr(0)
-    , mFlagCnt(0)
+    : mFlagList(0)
+    , mFlagListSize(0)
 {
 }
 
@@ -18,7 +18,7 @@ BitFlags::BitFlags()
  */
 void BitFlags::dump()
 {
-	for (s32 i = 0; i < mFlagCnt; i++) { }
+	for (s32 i = 0; i < mFlagListSize; i++) { }
 }
 
 /**
@@ -27,8 +27,8 @@ void BitFlags::dump()
  */
 void BitFlags::read(Stream& stream)
 {
-	for (s32 i = 0; i < mFlagCnt; i++) {
-		mFlagArr[i] = stream.readByte();
+	for (s32 i = 0; i < mFlagListSize; i++) {
+		mFlagList[i] = stream.readByte();
 	}
 }
 
@@ -38,8 +38,8 @@ void BitFlags::read(Stream& stream)
  */
 void BitFlags::write(Stream& stream)
 {
-	for (s32 i = 0; i < mFlagCnt; i++) {
-		stream.writeByte(mFlagArr[i]);
+	for (s32 i = 0; i < mFlagListSize; i++) {
+		stream.writeByte(mFlagList[i]);
 	}
 }
 
@@ -47,15 +47,17 @@ void BitFlags::write(Stream& stream)
  * @note Address: 0x8041C2D0
  * @note Size: 0x54
  */
-void BitFlags::create(u16 arg1, u8* flags)
+void BitFlags::create(u16 totalSize, u8* flags)
 {
-	_04      = arg1;
-	mFlagCnt = (arg1 >> 3) + 1;
+	mTotalValueAmount = totalSize;
+
+	// Divides by 8 and rounds up (to accomodate anything non-divisible by 8), as each u8 contains 8 bits
+	mFlagListSize = (totalSize >> 3) + 1;
 
 	if (flags) {
-		mFlagArr = flags;
+		mFlagList = flags;
 	} else {
-		mFlagArr = new u8[mFlagCnt];
+		mFlagList = new u8[mFlagListSize];
 	}
 }
 
@@ -65,8 +67,8 @@ void BitFlags::create(u16 arg1, u8* flags)
  */
 void BitFlags::reset()
 {
-	for (s32 i = 0; i < mFlagCnt; i++) {
-		mFlagArr[i] = 0;
+	for (s32 i = 0; i < mFlagListSize; i++) {
+		mFlagList[i] = 0;
 	}
 }
 
@@ -90,7 +92,7 @@ void BitFlags::setFlag(u16 input)
 {
 	u16 index = input >> 3;
 	input     = (input - (input & ~7));
-	mFlagArr[index] |= 1 << input;
+	mFlagList[index] |= 1 << input;
 }
 
 /**
@@ -101,7 +103,7 @@ void BitFlags::resetFlag(u16 input)
 {
 	u16 index = input >> 3;
 	input     = (input - (input & ~7));
-	mFlagArr[index] &= ~(1 << input);
+	mFlagList[index] &= ~(1 << input);
 }
 
 /**
@@ -112,5 +114,5 @@ bool BitFlags::isFlag(u16 input)
 {
 	u16 index = input >> 3;
 	input     = (input - (input & ~7));
-	return (mFlagArr[index] & (1 << input)) != 0;
+	return (mFlagList[index] & (1 << input)) != 0;
 }
