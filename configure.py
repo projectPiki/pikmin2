@@ -960,7 +960,7 @@ LIBS = [
             ["plugProjectKandoU/pikiContainer", True],
             ["plugProjectKandoU/gameGeneratorCache", False],
             ["plugProjectKandoU/itemTreasure", True],
-            ["plugProjectKandoU/itemDownFloor", False],
+            ["plugProjectKandoU/itemDownFloor", True],
             ["plugProjectKandoU/kandoLib", True],
             ["plugProjectKandoU/itemBarrel", True],
             ["plugProjectKandoU/pelletNumber", True],

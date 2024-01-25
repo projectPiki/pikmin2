@@ -206,18 +206,18 @@ struct FSMItem : public BaseItem {
 
 	// vtable 1
 	// vtable 2
-	virtual void doAI();                                     // _10
 	virtual void bounceCallback(Sys::Triangle* tri);         // _E0
 	virtual void collisionCallback(CollEvent& event);        // _E4
 	virtual void platCallback(PlatEvent& event);             // _E8
+	virtual void doAI() { mFsm->exec((ItemClass*)this); }    // _10
 	virtual void onKeyEvent(const SysShape::KeyEvent& event) // _68 (thunked at _00)
 	{
 		if (mCurrentState) {
 			mCurrentState->onKeyEvent((ItemClass*)this, event);
 		}
 	}
-	int getStateID();
 
+	int getStateID();
 	inline void setCurrState(StateType* state) { mCurrentState = state; }
 	inline StateType* getCurrState() { return mCurrentState; }
 
@@ -253,12 +253,12 @@ int FSMItem<ItemClass, FSMClass, StateClass>::getStateID()
 	}
 	return -1;
 }
-template <typename ItemClass, typename FSMClass, typename StateClass>
-void FSMItem<ItemClass, FSMClass, StateClass>::doAI()
-{
-	mFsm->exec((ItemClass*)this);
-}
 
+// template <typename ItemClass, typename FSMClass, typename StateClass>
+// void FSMItem<ItemClass, FSMClass, StateClass>::doAI()
+// {
+
+// }
 template <typename ItemClass, typename FSMClass, typename StateClass>
 void FSMItem<ItemClass, FSMClass, StateClass>::bounceCallback(Sys::Triangle* tri)
 {

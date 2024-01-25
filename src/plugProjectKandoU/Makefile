@@ -71,7 +71,7 @@ KANDO_FILES:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/pikiContainer.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameGeneratorCache.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/itemTreasure.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/itemDownFloor.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/itemDownFloor.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/kandoLib.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/itemBarrel.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/pelletNumber.o\

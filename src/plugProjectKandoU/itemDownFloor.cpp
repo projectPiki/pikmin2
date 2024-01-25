@@ -168,10 +168,7 @@ void Item::onKeyEvent(SysShape::KeyEvent const& keyEvent)
  * @note Address: N/A
  * @note Size: 0x68
  */
-void Item::initMotion()
-{
-	// UNUSED FUNCTION
-}
+void Item::initMotion() { FSMItem::doAI(); }
 
 /**
  * @note Address: 0x801F5488
