@@ -3181,9 +3181,10 @@ void JPAResource::calc_p(JPAEmitterWorkData* workData, JPABaseParticle* particle
  */
 void JPAResource::calc_c(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
-	if (mCalcParticleChildFuncList == nullptr) {
+	if (!mCalcParticleChildFuncList) {
 		return;
 	}
+
 	for (int i = mCalcParticleChildFuncListNum - 1; 0 <= i; i--) {
 		mCalcParticleChildFuncList[i](workData, particle);
 	}
@@ -3236,130 +3237,57 @@ lbl_80097D28:
  * @note Address: 0x80097D44
  * @note Size: 0x138
  */
-void JPAResource::calcKey(JPAEmitterWorkData*)
+void JPAResource::calcKey(JPAEmitterWorkData* data)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stmw     r27, 0x1c(r1)
-	mr       r27, r3
-	lfd      f31, lbl_80516C68@sda21(r2)
-	lbz      r3, 0x3f(r3)
-	mr       r28, r4
-	lis      r31, 0x4330
-	addi     r29, r3, -1
-	slwi     r30, r29, 2
-	b        lbl_80097E58
+	for (int i = mKeyBlockNum - 1; i >= 0; i--) {
+		f32 calc = mKeyBlocks[i]->calc(data->mEmitter->mTick);
 
-lbl_80097D7C:
-	lwz      r3, 0(r28)
-	lwz      r4, 0x34(r27)
-	lwz      r0, 0x100(r3)
-	stw      r31, 8(r1)
-	lwzx     r3, r4, r30
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f1, f0, f31
-	bl       calc__11JPAKeyBlockFf
-	lwz      r3, 0x34(r27)
-	lwzx     r3, r3, r30
-	lwz      r3, 0(r3)
-	lbz      r0, 8(r3)
-	cmplwi   r0, 0xa
-	bgt      lbl_80097E50
-	lis      r3, lbl_804A3558@ha
-	slwi     r0, r0, 2
-	addi     r3, r3, lbl_804A3558@l
-	lwzx     r0, r3, r0
-	mtctr    r0
-	bctr
-	.global  lbl_80097DD0
-
-lbl_80097DD0:
-	lwz      r3, 0(r28)
-	stfs     f1, 0x28(r3)
-	b        lbl_80097E50
-	.global  lbl_80097DDC
-
-lbl_80097DDC:
-	fctiwz   f0, f1
-	lwz      r3, 0(r28)
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	sth      r0, 0x54(r3)
-	b        lbl_80097E50
-	.global  lbl_80097DF4
-
-lbl_80097DF4:
-	lwz      r3, 0(r28)
-	stfs     f1, 0x30(r3)
-	b        lbl_80097E50
-	.global  lbl_80097E00
-
-lbl_80097E00:
-	fctiwz   f0, f1
-	lwz      r3, 0(r28)
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	sth      r0, 0x52(r3)
-	b        lbl_80097E50
-	.global  lbl_80097E18
-
-lbl_80097E18:
-	lwz      r3, 0(r28)
-	stfs     f1, 0x34(r3)
-	b        lbl_80097E50
-	.global  lbl_80097E24
-
-lbl_80097E24:
-	lwz      r3, 0(r28)
-	stfs     f1, 0x38(r3)
-	b        lbl_80097E50
-	.global  lbl_80097E30
-
-lbl_80097E30:
-	lwz      r3, 0(r28)
-	stfs     f1, 0x3c(r3)
-	b        lbl_80097E50
-	.global  lbl_80097E3C
-
-lbl_80097E3C:
-	lwz      r3, 0(r28)
-	stfs     f1, 0x40(r3)
-	b        lbl_80097E50
-	.global  lbl_80097E48
-
-lbl_80097E48:
-	lwz      r3, 0(r28)
-	stfs     f1, 0xfc(r3)
-	.global  lbl_80097E50
-
-lbl_80097E50:
-	addi     r30, r30, -4
-	addi     r29, r29, -1
-
-lbl_80097E58:
-	cmpwi    r29, 0
-	bge      lbl_80097D7C
-	psq_l    f31, 56(r1), 0, qr0
-	lfd      f31, 0x30(r1)
-	lmw      r27, 0x1c(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+		switch (mKeyBlocks[i]->mDataStart->mFlag) {
+		case 0:
+			data->mEmitter->setRate(calc);
+			break;
+		case 1:
+			data->mEmitter->setVolumeSize(calc);
+			break;
+		case 3:
+			data->mEmitter->mVolumeMinRad = calc;
+			break;
+		case 4:
+			data->mEmitter->setLifeTime(calc);
+			break;
+		case 6:
+			data->mEmitter->mAwayFromCenterSpeed = calc;
+			break;
+		case 7:
+			data->mEmitter->mAwayFromAxisSpeed = calc;
+			break;
+		case 8:
+			data->mEmitter->mDirSpeed = calc;
+			break;
+		case 9:
+			data->mEmitter->mSpread = calc;
+			break;
+		case 10:
+			data->mEmitter->mScaleOut = calc;
+			break;
+		}
+	}
 }
 
 /**
  * @note Address: 0x80097E7C
  * @note Size: 0x1DC
  */
-void JPAResource::calcWorkData_c(JPAEmitterWorkData*)
+void JPAResource::calcWorkData_c(JPAEmitterWorkData* data)
 {
+	data->mVolumeSize = data->mEmitter->mVolumeSize;
+	data->mVolumeMinRad = data->mEmitter->mVolumeMinRad;
+	data->mVolumeSweep = data->mEmitter->mVolumeSweep;
+	data->mVolumeX = 0;
+	data->mVolumeAngleNum = 0;
+	data->mVolumeAngleMax = 1;
+	data->mDivNumber = mDynamicsBlock->mData->mDivNumber;
+	
 	/*
 	stwu     r1, -0xb0(r1)
 	mflr     r0

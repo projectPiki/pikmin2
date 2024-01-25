@@ -124,19 +124,28 @@ struct JPAFieldBlock {
 	f32 _28;               // _28
 };
 
+struct JPAKeyBlockData {
+	u32 mMagic;        // _00
+	u32 mBlockSize;    // _04
+	u8 mFlag;          // _08
+	u8 mKeyFrameCount; // _09
+	u8 mIsLoopEnabled; // _0A
+	u8 _0B;            // _0B
+};
+
 /**
  * @size{0x8}
  */
 struct JPAKeyBlock {
 	JPAKeyBlock(const u8*);
 
-	void calc(f32);
+	f32 calc(f32);
 
 	// Unused/inlined:
 	void init_jpa(const u8*, JKRHeap*);
 
-	const u8* mDataStart; // _00
-	const f32* _04;       // _04
+	const JPAKeyBlockData* mDataStart; // _00
+	const f32* _04;                    // _04
 };
 
 #endif
