@@ -1957,10 +1957,10 @@ void Graphics::drawCone(Vector3f& start, Vector3f& end, f32 angle, int limit)
 	}
 
 	Matrixf mtx; // 0x38
-	mtx.setBasis(0, xVec);
-	mtx.setBasis(1, yVec);
-	mtx.setBasis(2, sep);
-	mtx.setBasis(3, start);
+	mtx.setColumn(0, xVec);
+	mtx.setColumn(1, yVec);
+	mtx.setColumn(2, sep);
+	mtx.setColumn(3, start);
 
 	Matrixf concatMtx; // 0x8
 	PSMTXConcat(mMatrix.mMatrix.mtxView, mtx.mMatrix.mtxView, concatMtx.mMatrix.mtxView);

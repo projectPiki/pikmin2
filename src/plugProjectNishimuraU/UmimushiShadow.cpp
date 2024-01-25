@@ -9,10 +9,10 @@ namespace Game {
 void UmimushiTubeShadowNode::makeShadowSRT(JointShadowParm& parm, Matrixf* mat, Vector3f& vec1, Vector3f& vec2)
 {
 	Vector3f xVec;
-	mat->getBasis(0, xVec);
+	mat->getColumn(0, xVec);
 	Vector3f yVec;
-	mat->getBasis(1, yVec);
-	mat->getBasis(3, vec2);
+	mat->getColumn(1, yVec);
+	mat->getColumn(3, vec2);
 
 	vec2.x += xVec.x * parm._18 + yVec.x * parm._1C;
 	vec2.y += xVec.y * parm._18 + yVec.y * parm._1C;
@@ -23,7 +23,7 @@ void UmimushiTubeShadowNode::makeShadowSRT(JointShadowParm& parm, Matrixf* mat, 
 	diff.normalise();
 
 	// more stuff here
-	mMainMtx->setBasis(2, diff);
+	mMainMtx->setColumn(2, diff);
 
 	/*
 	.loc_0x0:
@@ -165,8 +165,8 @@ void UmimushiSphereShadowNode::makeShadowSRT(JointShadowParm& parm, Matrixf* mat
 	Vector3f zVec;
 
 	if (isAlive) { // regswaps
-		xVec = mat->getBasis(0) * (parm.mShadowScale + 2.5f);
-		zVec = mat->getBasis(2) * parm.mShadowScale;
+		xVec = mat->getColumn(0) * (parm.mShadowScale + 2.5f);
+		zVec = mat->getColumn(2) * parm.mShadowScale;
 	} else {
 		xVec = Vector3f(parm.mShadowScale, 0.0f, 0.0f);
 		zVec = Vector3f(0.0f, 0.0f, parm.mShadowScale);
@@ -177,10 +177,10 @@ void UmimushiSphereShadowNode::makeShadowSRT(JointShadowParm& parm, Matrixf* mat
 
 	Vector3f yVec(0.0f, (vec.y - parm.mPosition.y) + 25.0f, 0.0f);
 
-	mMainMtx->setBasis(0, xVec);
-	mMainMtx->setBasis(1, yVec);
-	mMainMtx->setBasis(2, zVec);
-	mMainMtx->setBasis(3, pos);
+	mMainMtx->setColumn(0, xVec);
+	mMainMtx->setColumn(1, yVec);
+	mMainMtx->setColumn(2, zVec);
+	mMainMtx->setColumn(3, pos);
 	/*
 	.loc_0x0:
 	  rlwinm.   r0,r7,0,24,31
@@ -282,7 +282,7 @@ void UmimushiShadowMgr::update()
 	parm.mPosition = position;
 	parm.mRotation = Vector3f(0.0f, 1.0f, 0.0f);
 
-	vec1 = mWeakMatrix1->getBasis(3);
+	vec1 = mWeakMatrix1->getColumn(3);
 
 	parm._18          = -12.5f;
 	parm._1C          = 0.0f;

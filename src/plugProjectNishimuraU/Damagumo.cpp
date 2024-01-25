@@ -265,7 +265,7 @@ void Obj::doEndMovie() { effectDrawOn(); }
  */
 void Obj::getThrowupItemPosition(Vector3f* position)
 {
-	*position = mModel->getJoint("kosi")->getWorldMatrix()->getBasis(3);
+	*position = mModel->getJoint("kosi")->getWorldMatrix()->getColumn(3);
 	position->y -= 30.0f;
 }
 

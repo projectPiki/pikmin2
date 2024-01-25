@@ -829,9 +829,9 @@ bool Obj::suckNavi(f32 offset)
 					MouthCollPart* slot = mMouthSlots.getSlot(i);
 					if (!slot->mStuckCreature) {
 						Matrixf* worldMat = mModel->getJoint("Proom")->getWorldMatrix();
-						Vector3f xVec     = worldMat->getBasis(0);
-						Vector3f yVec     = worldMat->getBasis(1);
-						Vector3f zVec     = worldMat->getBasis(2);
+						Vector3f xVec     = worldMat->getColumn(0);
+						Vector3f yVec     = worldMat->getColumn(1);
+						Vector3f zVec     = worldMat->getColumn(2);
 
 						xVec.normalise();
 						yVec.normalise();

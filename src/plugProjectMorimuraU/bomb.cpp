@@ -21,7 +21,7 @@ void Obj::onStartCapture()
 {
 	mFsm->start(this, BOMB_Wait, nullptr);
 	if (mCaptureMatrix) {
-		Vector3f position = mCaptureMatrix->getBasis(3);
+		Vector3f position = mCaptureMatrix->getColumn(3);
 		onSetPosition(position);
 		mCurrentVelocity = Vector3f(0.0f);
 		mTargetVelocity  = Vector3f(0.0f);
@@ -169,9 +169,9 @@ void Obj::doAnimationCullingOff()
 	mCurAnim->mIsPlaying = false;
 	doAnimationUpdateAnimator();
 	bool check   = true;
-	Vector3f vec = mBaseTrMatrix.getBasis(3);
+	Vector3f vec = mBaseTrMatrix.getColumn(3);
 	if (mCaptureMatrix) {
-		Vector3f checkVec = mCaptureMatrix->getBasis(3);
+		Vector3f checkVec = mCaptureMatrix->getColumn(3);
 		if (vec.x != checkVec.x || vec.y != checkVec.y || vec.z != checkVec.z) {
 			check = true;
 			PSMTXCopy(mCaptureMatrix->mMatrix.mtxView, mBaseTrMatrix.mMatrix.mtxView);
@@ -221,7 +221,7 @@ void Obj::doSimulation(f32 simSpeed)
 		updateStick(dir);
 		updateCell();
 	} else if (mCaptureMatrix) {
-		mPosition = mCaptureMatrix->getBasis(3);
+		mPosition = mCaptureMatrix->getColumn(3);
 		updateSpheres();
 	} else {
 		EnemyBase::doSimulation(simSpeed);

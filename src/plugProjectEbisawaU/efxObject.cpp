@@ -43,7 +43,7 @@ bool TTsuyuGrow0::create(Arg* arg)
 	Matrixf mtxRot;
 	Vector3f pos = arg->mPosition;
 	PSMTXRotRad(mtxRot.mMatrix.mtxView, 'y', static_cast<ArgRotY*>(arg)->mFaceDir);
-	mtxRot.setBasis(3, pos);
+	mtxRot.setColumn(3, pos);
 
 	if (TSimple1::create(arg)) {
 		mEmitters[0]->setGlobalRTMatrix(mtxRot.mMatrix.mtxView);
@@ -127,7 +127,7 @@ bool TEgateBC::create(Arg* arg)
 	Matrixf mtxRot;
 	Vector3f pos = arg->mPosition;
 	PSMTXRotRad(mtxRot.mMatrix.mtxView, 'y', static_cast<ArgRotY*>(arg)->mFaceDir);
-	mtxRot.setBasis(3, pos);
+	mtxRot.setColumn(3, pos);
 
 	if (TForever2::create(arg)) {
 		for (int i = 0; i < (int)ARRAY_SIZE(mItems); i++) {

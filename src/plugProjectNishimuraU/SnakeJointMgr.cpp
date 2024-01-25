@@ -145,12 +145,12 @@ void SnakeJointMgr::makeMatrix()
 
 		f32 modRatio = (cJointModRatio[i] * _20);
 		Vector3f newPos(pos.x, _2C * modRatio + pos.y, pos.z);
-		mJointMatrices[i]->setBasis(3, newPos);
+		mJointMatrices[i]->setColumn(3, newPos);
 	}
 
 	for (int i = 0; i < 5; i++) {
-		Vector3f xVec  = mJointMatrices[i + 1]->getBasis(3) - mJointMatrices[i]->getBasis(3); // f0, f1, f2
-		Vector3f nextZ = mJointMatrices[i + 1]->getBasis(2);
+		Vector3f xVec  = mJointMatrices[i + 1]->getColumn(3) - mJointMatrices[i]->getColumn(3); // f0, f1, f2
+		Vector3f nextZ = mJointMatrices[i + 1]->getColumn(2);
 		Vector3f yVec  = cross(xVec, nextZ);
 		Vector3f zVec  = cross(xVec, yVec);
 		f32 len        = xVec.normalise();
@@ -159,9 +159,9 @@ void SnakeJointMgr::makeMatrix()
 
 		f32 factor = len / dists[i];
 		xVec *= factor;
-		mJointMatrices[i]->setBasis(0, xVec);
-		mJointMatrices[i]->setBasis(1, yVec);
-		mJointMatrices[i]->setBasis(2, zVec);
+		mJointMatrices[i]->setColumn(0, xVec);
+		mJointMatrices[i]->setColumn(1, yVec);
+		mJointMatrices[i]->setColumn(2, zVec);
 	}
 
 	PSMTXCopy(mJointMatrices[5]->mMatrix.mtxView, J3DSys::mCurrentMtx);

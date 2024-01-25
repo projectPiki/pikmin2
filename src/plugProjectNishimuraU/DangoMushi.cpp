@@ -917,9 +917,9 @@ bool Obj::flickHandCollision()
 		f32 yWeights[] = { -20.0f, -40.0f };
 		f32 zWeights[] = { 15.0f, 15.0f };
 
-		armMtx->getBasis(0, armX);      // f31, f30, f29
-		armMtx->getBasis(1, armY);      // f28, f27, f26
-		armMtx->getBasis(2, armZ);      // f25, f24, f23
+		armMtx->getColumn(0, armX);      // f31, f30, f29
+		armMtx->getColumn(1, armY);      // f28, f27, f26
+		armMtx->getColumn(2, armZ);      // f25, f24, f23
 		armMtx->getTranslation(armPos); // f22, f21, f20
 
 		armX.normalise();
@@ -1472,8 +1472,8 @@ void Obj::createMoveHandEffect()
 	if (state == DANGOMUSHI_Move || state == DANGOMUSHI_Attack) {
 		Matrixf* armMtx = mModel->getJoint("hand_R")->getWorldMatrix();
 		Vector3f armX, armY, armPos;
-		armMtx->getBasis(0, armX);
-		armMtx->getBasis(1, armY);
+		armMtx->getColumn(0, armX);
+		armMtx->getColumn(1, armY);
 		armMtx->getTranslation(armPos);
 
 		armX.normalise();

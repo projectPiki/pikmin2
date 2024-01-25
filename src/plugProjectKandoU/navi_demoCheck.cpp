@@ -206,7 +206,7 @@ bool Navi::demoCheck()
 					MoviePlayArg arg("g04_find_treasure", nullptr, nullptr, 0);
 					arg.mOrigin = pelt->getPosition();
 					Vector3f test;
-					pelt->mBaseTrMatrix.getBasis(2, test);
+					pelt->mBaseTrMatrix.getColumn(2, test);
 					arg.mAngle                 = JMath::atanTable_.atan2_(test.x, test.z);
 					moviePlayer->mTargetObject = pelt;
 					moviePlayer->play(arg);
@@ -242,7 +242,7 @@ bool Navi::demoCheck()
 					MoviePlayArg arg(path, nullptr, nullptr, 0);
 					arg.mOrigin = pelt->getPosition();
 					Vector3f test;
-					pelt->mBaseTrMatrix.getBasis(2, test);
+					pelt->mBaseTrMatrix.getColumn(2, test);
 					arg.mAngle                 = JMath::atanTable_.atan2_(test.x, test.z);
 					moviePlayer->mTargetObject = pelt;
 					moviePlayer->play(arg);
@@ -266,7 +266,7 @@ bool Navi::demoCheck()
 					MoviePlayArg arg("g37_get_louie", nullptr, nullptr, 0);
 					arg.mOrigin = pelt->getPosition();
 					Vector3f test;
-					pelt->mBaseTrMatrix.getBasis(2, test);
+					pelt->mBaseTrMatrix.getColumn(2, test);
 					arg.mAngle                 = JMath::atanTable_.atan2_(test.x, test.z);
 					moviePlayer->mTargetObject = pelt;
 					moviePlayer->play(arg);

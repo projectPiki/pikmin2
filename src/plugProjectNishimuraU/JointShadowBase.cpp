@@ -13,8 +13,8 @@ void TubeShadowTransNode::makeShadowSRT(JointShadowParm& parm, Vector3f& origina
 	Matrixf* worldMtx = mJoint->getWorldMatrix();
 
 	Vector3f xAxis, yAxis;
-	worldMtx->getBasis(0, xAxis);
-	worldMtx->getBasis(1, yAxis);
+	worldMtx->getColumn(0, xAxis);
+	worldMtx->getColumn(1, yAxis);
 
 	worldMtx->getTranslation(originalPos);
 	transformedPos.x = originalPos.x + (xAxis.x * parm._18 + yAxis.x * parm._1C);
@@ -39,10 +39,10 @@ void TubeShadowTransNode::makeShadowSRT(JointShadowParm& parm, Vector3f& origina
 	y *= (100.0f + (w.y - parm.mPosition.y));
 	scale *= parm.mShadowScale;
 
-	mMainMtx->setBasis(0, x);
-	mMainMtx->setBasis(1, y);
-	mMainMtx->setBasis(2, scale);
-	mMainMtx->setBasis(3, w);
+	mMainMtx->setColumn(0, x);
+	mMainMtx->setColumn(1, y);
+	mMainMtx->setColumn(2, scale);
+	mMainMtx->setColumn(3, w);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x80(r1)
@@ -221,8 +221,8 @@ void TubeShadowSetNode::makeShadowSRT(JointShadowParm& parm, Vector3f& pos1, Vec
 	Matrixf* mat = mJoint->getWorldMatrix();
 
 	Vector3f xVec, yVec;
-	mat->getBasis(0, xVec);
-	mat->getBasis(1, yVec);
+	mat->getColumn(0, xVec);
+	mat->getColumn(1, yVec);
 
 	mat->getTranslation(pos2);
 	pos2.x = pos2.x + (xVec.x * parm._18 + yVec.x * parm._1C);
@@ -247,10 +247,10 @@ void TubeShadowSetNode::makeShadowSRT(JointShadowParm& parm, Vector3f& pos1, Vec
 	newY *= (100.0f + (newPos.y - parm.mPosition.y));
 	newZ *= parm.mShadowScale;
 
-	mMainMtx->setBasis(0, newX);
-	mMainMtx->setBasis(1, newY);
-	mMainMtx->setBasis(2, newZ);
-	mMainMtx->setBasis(3, newPos);
+	mMainMtx->setColumn(0, newX);
+	mMainMtx->setColumn(1, newY);
+	mMainMtx->setColumn(2, newZ);
+	mMainMtx->setColumn(3, newPos);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x80(r1)
@@ -444,10 +444,10 @@ void TubeShadowPosNode::makeShadowSRT(JointShadowParm& parm, Vector3f& pos1, Vec
 	newY *= (100.0f + (newPos.y - parm.mPosition.y));
 	newZ *= parm.mShadowScale;
 
-	mMainMtx->setBasis(0, newX);
-	mMainMtx->setBasis(1, newY);
-	mMainMtx->setBasis(2, newZ);
-	mMainMtx->setBasis(3, newPos);
+	mMainMtx->setColumn(0, newX);
+	mMainMtx->setColumn(1, newY);
+	mMainMtx->setColumn(2, newZ);
+	mMainMtx->setColumn(3, newPos);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x70(r1)
@@ -586,10 +586,10 @@ void SphereShadowNode::makeShadowSRT(JointShadowParm& parm, Vector3f& pos)
 	newY *= (100.0f + (pos.y - parm.mPosition.y));
 	newZ *= parm.mShadowScale;
 
-	mMainMtx->setBasis(0, newX);
-	mMainMtx->setBasis(1, newY);
-	mMainMtx->setBasis(2, newZ);
-	mMainMtx->setBasis(3, newPos);
+	mMainMtx->setColumn(0, newX);
+	mMainMtx->setColumn(1, newY);
+	mMainMtx->setColumn(2, newZ);
+	mMainMtx->setColumn(3, newPos);
 	/*
 	.loc_0x0:
 	  lfs       f1, -0x11EC(r2)

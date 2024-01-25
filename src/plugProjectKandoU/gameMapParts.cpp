@@ -5580,7 +5580,7 @@ void RoomMapMgr::makeOneRoom(f32 centreX, f32 centreY, f32 direction, char* unit
 			Vector3f rotation3(0.0f, faceAngle, 0.0f);
 			mtx2.makeTR(Vector3f::zero, rotation3);
 
-			doorInfo->mLookAtPos = mtx2.getBasis(3) + (Vector3f)(doorDirs[door->mDir]); // not right, just a placeholder
+			doorInfo->mLookAtPos = mtx2.getColumn(3) + (Vector3f)(doorDirs[door->mDir]); // not right, just a placeholder
 
 		} else {
 			P2ASSERTBOOLLINE(3530, wp->mIndex >= 0 && wp->mIndex < counter);

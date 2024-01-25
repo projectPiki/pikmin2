@@ -16,10 +16,10 @@ void QueenShadowNode::makeShadowSRT()
 
 	Vector3f matVecs[4];
 	Matrixf* matCopy = mMainMtx;
-	matCopy->getBasis(0, matVecs[0]);
-	matCopy->getBasis(1, matVecs[1]);
-	matCopy->getBasis(2, matVecs[2]);
-	matCopy->getBasis(3, matVecs[3]);
+	matCopy->getColumn(0, matVecs[0]);
+	matCopy->getColumn(1, matVecs[1]);
+	matCopy->getColumn(2, matVecs[2]);
+	matCopy->getColumn(3, matVecs[3]);
 
 	f32 length   = matVecs[2].length();
 	matVecs[0].x = length;
@@ -36,10 +36,10 @@ void QueenShadowNode::makeShadowSRT()
 
 	matVecs[3].y = mapMgr->getMinY(matVecs[3]) + 1.5f;
 
-	mMainMtx->setBasis(0, matVecs[0]);
-	mMainMtx->setBasis(1, matVecs[1]);
-	mMainMtx->setBasis(2, matVecs[2]);
-	mMainMtx->setBasis(3, matVecs[3]);
+	mMainMtx->setColumn(0, matVecs[0]);
+	mMainMtx->setColumn(1, matVecs[1]);
+	mMainMtx->setColumn(2, matVecs[2]);
+	mMainMtx->setColumn(3, matVecs[3]);
 }
 
 /**

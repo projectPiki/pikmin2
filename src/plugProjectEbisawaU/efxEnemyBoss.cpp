@@ -27,7 +27,7 @@ bool TDangoCrash::create(Arg* arg)
 		Matrixf mtx;
 		Vector3f vecDir(0.0f, 1.0f, 0.0f);
 		// Vector3f vecAng (x, y, z);
-		mtx.setAngleMtx(vecDir, ang, Vector3f::zero);
+		mtx.setTransformationMtx(vecDir, ang, Vector3f::zero);
 		for (int i = 0; i < 2; i++) {
 			mEmitters[i]->setGlobalRTMatrix(mtx.mMatrix.mtxView);
 		}
@@ -770,7 +770,7 @@ bool THdamaHit2W::create(efx::Arg* arg)
 		Matrixf mtx;
 		Vector3f vecDir(0.0f, 1.0f, 0.0f);
 		Vector3f vecAng(x, y, z);
-		mtx.setAngleMtx(vecDir, vecAng,
+		mtx.setTransformationMtx(vecDir, vecAng,
 		                Vector3f::zero); // not quite right for this one, needs something else to happen to vecAng first I think?
 
 		for (int i = 0; i < 3; i++) {

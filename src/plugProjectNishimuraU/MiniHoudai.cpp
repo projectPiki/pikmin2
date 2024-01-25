@@ -125,7 +125,7 @@ void Obj::setFSM(FSM* fsm)
  */
 void Obj::getShadowParam(ShadowParam& param)
 {
-	param.mPosition = mModel->getJoint("kosi")->getWorldMatrix()->getBasis(3);
+	param.mPosition = mModel->getJoint("kosi")->getWorldMatrix()->getColumn(3);
 	param.mPosition.y -= 17.5f;
 
 	f32 minHeight = 5.0f + mPosition.y;

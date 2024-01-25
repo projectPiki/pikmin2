@@ -219,7 +219,7 @@ void PikiCarrotState::exec(Piki* piki)
 		Matrixf concatMtx;
 		Vector3f translation(0.0f, -10.0f, 0.0f);
 		natMatrix.setTranslation(translation);
-		piki->mBaseTrMatrix = concatMatrixf(natMatrix, matST);
+		piki->mBaseTrMatrix = natMatrix + matST;
 
 		Vector3f newPos = piki->getPosition();
 		piki->mBaseTrMatrix.setTranslation(newPos);

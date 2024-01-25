@@ -38,10 +38,10 @@ void AttackShadowNode::makeShadowSRT()
 	matVecs[3]   = Vector3f(mPosition->x, mPosition->y, mPosition->z);
 	matVecs[3].y = mapMgr->getMinY(matVecs[3]) + 2.5f;
 
-	mMainMtx->setBasis(0, matVecs[0]);
-	mMainMtx->setBasis(1, matVecs[1]);
-	mMainMtx->setBasis(2, matVecs[2]);
-	mMainMtx->setBasis(3, matVecs[3]);
+	mMainMtx->setColumn(0, matVecs[0]);
+	mMainMtx->setColumn(1, matVecs[1]);
+	mMainMtx->setColumn(2, matVecs[2]);
+	mMainMtx->setColumn(3, matVecs[3]);
 }
 
 /**
@@ -430,7 +430,7 @@ bool BigTreasureElecAttack::update()
 		mVelocity.y -= 20.0f;
 
 	} else {
-		mPosition = mOwner->mModel->getJoint("otakara_elec_eff")->getWorldMatrix()->getBasis(3);
+		mPosition = mOwner->mModel->getJoint("otakara_elec_eff")->getWorldMatrix()->getColumn(3);
 	}
 
 	if (mIsVisibleNode) {
@@ -1280,8 +1280,8 @@ void BigTreasureAttackMgr::finishFireAttack() { mEfxFire->fade(); }
 void BigTreasureAttackMgr::updateFireEmitPosition()
 {
 	Matrixf* mat = mObj->mModel->getJoint("otakara_fire_eff")->getWorldMatrix();
-	mat->getBasis(0, mFireEmitDirection);
-	mat->getBasis(3, mFireNodePosition[BIGFIRE_Root]);
+	mat->getColumn(0, mFireEmitDirection);
+	mat->getColumn(3, mFireNodePosition[BIGFIRE_Root]);
 }
 
 /**
@@ -1735,7 +1735,7 @@ void BigTreasureAttackMgr::finishGasAttack()
  */
 void BigTreasureAttackMgr::updateGasEmitPosition()
 {
-	mGasEmitPosition = mObj->mModel->getJoint("otakara_gas_eff")->getWorldMatrix()->getBasis(3);
+	mGasEmitPosition = mObj->mModel->getJoint("otakara_gas_eff")->getWorldMatrix()->getColumn(3);
 }
 
 /**
@@ -2205,7 +2205,7 @@ void BigTreasureAttackMgr::finishWaterAttack() { }
  */
 void BigTreasureAttackMgr::updateWaterEmitPosition()
 {
-	mWaterEmitPosition = mObj->mModel->getJoint("otakara_water_eff")->getWorldMatrix()->getBasis(3);
+	mWaterEmitPosition = mObj->mModel->getJoint("otakara_water_eff")->getWorldMatrix()->getColumn(3);
 }
 
 /**
@@ -2336,7 +2336,7 @@ void BigTreasureAttackMgr::startElecAttack()
 		}
 	}
 
-	Vector3f effectPos = mObj->mModel->getJoint("otakara_elec_eff")->getWorldMatrix()->getBasis(3); // f31, f30, f29
+	Vector3f effectPos = mObj->mModel->getJoint("otakara_elec_eff")->getWorldMatrix()->getColumn(3); // f31, f30, f29
 
 	BigTreasureElecAttack* elecNode = static_cast<BigTreasureElecAttack*>(mElecAttackNodes->mChild);
 	if (elecNode) {

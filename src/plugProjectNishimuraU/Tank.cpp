@@ -357,7 +357,7 @@ void Obj::updateEmit()
 	Matrixf* mat = mJoint->getWorldMatrix();
 	if (mat) {
 		mat->getTranslation(_2CC);
-		mat->getBasis(0, _2D8);
+		mat->getColumn(0, _2D8);
 
 		_2D8.normalise();
 

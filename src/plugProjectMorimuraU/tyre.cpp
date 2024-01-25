@@ -448,8 +448,8 @@ void Obj::frontRollMtxCalc()
 		mat.makeTR(translation, rotation);
 	}
 
-	mTyrePositions[0] = mModel->getJoint("tyreFL")->getWorldMatrix()->getBasis(3);
-	mTyrePositions[1] = mModel->getJoint("tyreFR")->getWorldMatrix()->getBasis(3);
+	mTyrePositions[0] = mModel->getJoint("tyreFL")->getWorldMatrix()->getColumn(3);
+	mTyrePositions[1] = mModel->getJoint("tyreFR")->getWorldMatrix()->getColumn(3);
 	PSMTXConcat(worldMat->mMatrix.mtxView, mat.mMatrix.mtxView, worldMat->mMatrix.mtxView);
 	PSMTXConcat(J3DSys::mCurrentMtx, mat.mMatrix.mtxView, J3DSys::mCurrentMtx);
 
@@ -466,7 +466,7 @@ void Obj::frontRollMtxCalc()
 void Obj::rearRollMtxCalc()
 {
 	Matrixf* worldMat = mModel->mJoints[mTyreRearJointIndex].getWorldMatrix();
-	Vector3f pos      = worldMat->getBasis(3);
+	Vector3f pos      = worldMat->getColumn(3);
 	pos.y += 100.0f;
 	f32 minY = mapMgr->getMinY(pos);
 
@@ -485,7 +485,7 @@ void Obj::rearRollMtxCalc()
 
 	if (mRearWheelHeight <= minY + val) {
 		mRearWheelHeight = minY;
-		Vector3f fxPos   = worldMat->getBasis(3);
+		Vector3f fxPos   = worldMat->getColumn(3);
 		fxPos.y          = minY;
 		f32 comp         = 50.0f;
 
@@ -1047,11 +1047,11 @@ lbl_803AE2F0:
  */
 void Obj::deadEffect()
 {
-	efx::Arg arg(mModel->mJoints[mTyreRearJointIndex].getWorldMatrix()->getBasis(3));
+	efx::Arg arg(mModel->mJoints[mTyreRearJointIndex].getWorldMatrix()->getColumn(3));
 	efx::TKageTyredead efx;
 	efx.create(&arg);
 
-	arg.mPosition = (mModel->mJoints[mTyreFrontJointIndex].getWorldMatrix()->getBasis(3));
+	arg.mPosition = (mModel->mJoints[mTyreFrontJointIndex].getWorldMatrix()->getColumn(3));
 	efx.create(&arg);
 
 	mIsShadowActive = false;

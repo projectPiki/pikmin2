@@ -411,7 +411,7 @@ void Kogane::Obj::createPellet(int type, int num)
 	f32 offs  = TAU / 3 / (num + 1);
 
 	Matrixf* mtx = mModel->getJoint("body")->getWorldMatrix();
-	Vector3f pos = mtx->getBasis(3);
+	Vector3f pos = mtx->getColumn(3);
 
 	for (int i = 0; i < num; i++) {
 		PelletNumberInitArg arg(type, hasColors[randInt(colors)]);
@@ -620,7 +620,7 @@ void Kogane::Obj::createDoping(u8 type, int num)
 	f32 offs  = TAU / 3 / (num + 1);
 
 	Matrixf* mtx = mModel->getJoint("body")->getWorldMatrix();
-	Vector3f pos = mtx->getBasis(3);
+	Vector3f pos = mtx->getColumn(3);
 
 	for (int i = 0; i < num; i++) {
 		ItemHoney::InitArg arg(type, 0);

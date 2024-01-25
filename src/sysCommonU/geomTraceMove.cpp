@@ -29,7 +29,7 @@ void OBBTree::traceMove_new(Matrixf& startMatrix, Matrixf& endMatrix, Game::Move
 		// Create a sphere representing the trace movement
 		Sphere traceSphere(moveSphere->mPosition, traceRadius);
 
-		rootSphere.mPosition = rootSphere.mPosition + startMatrix.getPosition();
+		rootSphere.mPosition = rootSphere.mPosition + startMatrix.getTranslation();
 
 		// If there's no intersection between the two spheres, return early
 		if (!rootSphere.intersect(traceSphere)) {

@@ -1327,8 +1327,8 @@ void MiniHoudaiShotGunMgr::emitShotGun()
 		}
 
 		Vector3f xVec, gunPos;
-		mHeadMtx->getBasis(0, xVec);
-		mHeadMtx->getBasis(3, gunPos);
+		mHeadMtx->getColumn(0, xVec);
+		mHeadMtx->getColumn(3, gunPos);
 
 		xVec.normalise();
 
@@ -1756,7 +1756,7 @@ void MiniHoudaiShotGunMgr::forceFinishShotGun()
  * @note Address: 0x802EF2E8
  * @note Size: 0x20
  */
-Vector3f MiniHoudaiShotGunMgr::getShotGunPosition() { return mHeadMtx->getBasis(3); }
+Vector3f MiniHoudaiShotGunMgr::getShotGunPosition() { return mHeadMtx->getColumn(3); }
 
 /**
  * @note Address: 0x802EF308
@@ -2050,17 +2050,17 @@ void MiniHoudaiShotGunMgr::rotateVertical(J3DJoint* joint)
 	Matrixf* gunMtx = mHeadMtx;
 
 	Vector3f xVec, yVec, zVec;
-	gunMtx->getBasis(0, xVec);
-	gunMtx->getBasis(1, yVec);
-	gunMtx->getBasis(2, zVec);
+	gunMtx->getColumn(0, xVec);
+	gunMtx->getColumn(1, yVec);
+	gunMtx->getColumn(2, zVec);
 
 	f32 xScale = xVec.normalise();
 	f32 yScale = yVec.normalise();
 	f32 zScale = zVec.normalise();
 
-	gunMtx->setBasis(0, xVec);
-	gunMtx->setBasis(1, yVec);
-	gunMtx->setBasis(2, zVec);
+	gunMtx->setColumn(0, xVec);
+	gunMtx->setColumn(1, yVec);
+	gunMtx->setColumn(2, zVec);
 
 	Matrixf rotMtx;
 	PSMTXRotRad(rotMtx.mMatrix.mtxView, 'Z', mAngle);
@@ -2071,17 +2071,17 @@ void MiniHoudaiShotGunMgr::rotateVertical(J3DJoint* joint)
 
 	Vector3f newX, newY, newZ;
 
-	gunMtx->getBasis(0, newX);
-	gunMtx->getBasis(1, newY);
-	gunMtx->getBasis(2, newZ);
+	gunMtx->getColumn(0, newX);
+	gunMtx->getColumn(1, newY);
+	gunMtx->getColumn(2, newZ);
 
 	newX *= xScale;
 	newY *= yScale;
 	newZ *= zScale;
 
-	gunMtx->setBasis(0, newX);
-	gunMtx->setBasis(1, newY);
-	gunMtx->setBasis(2, newZ);
+	gunMtx->setColumn(0, newX);
+	gunMtx->setColumn(1, newY);
+	gunMtx->setColumn(2, newZ);
 
 	PSMTXCopy(mHeadMtx->mMatrix.mtxView, J3DSys::mCurrentMtx);
 }

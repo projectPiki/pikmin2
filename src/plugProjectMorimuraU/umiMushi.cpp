@@ -2217,20 +2217,20 @@ void Obj::eyeScaleMtxCalc()
 	} else {
 		_35C = 0.45f;
 	}
-	Vector3f xVec = mtx->getBasis(0);
+	Vector3f xVec = mtx->getColumn(0);
 	xVec.normalise();
-	Vector3f yVec = mtx->getBasis(1);
+	Vector3f yVec = mtx->getColumn(1);
 	yVec.normalise();
-	Vector3f zVec = mtx->getBasis(2);
+	Vector3f zVec = mtx->getColumn(2);
 	zVec.normalise();
 
 	f32 scale        = _35C;
 	Vector3f newXVec = xVec * scale;
 	Vector3f newYVec = yVec * scale;
 	Vector3f newZVec = zVec * scale;
-	mtx->setBasis(0, newXVec);
-	mtx->setBasis(1, newYVec);
-	mtx->setBasis(2, newZVec);
+	mtx->setColumn(0, newXVec);
+	mtx->setColumn(1, newYVec);
+	mtx->setColumn(2, newZVec);
 
 	f32 y = mtx->mMatrix.structView.ty; // f30
 
@@ -2461,20 +2461,20 @@ lbl_80387358:
 void Obj::weakScaleMtxCalc()
 {
 	Matrixf* mtx  = mModel->mJ3dModel->mMtxBuffer->getWorldMatrix(mWeakJointIdx);
-	Vector3f xVec = mtx->getBasis(0);
+	Vector3f xVec = mtx->getColumn(0);
 	xVec.normalise();
-	Vector3f yVec = mtx->getBasis(1);
+	Vector3f yVec = mtx->getColumn(1);
 	yVec.normalise();
-	Vector3f zVec = mtx->getBasis(2);
+	Vector3f zVec = mtx->getColumn(2);
 	zVec.normalise();
 
 	f32 scale        = C_PARMS->_A34;
 	Vector3f newXVec = xVec * scale;
 	Vector3f newYVec = yVec * scale;
 	Vector3f newZVec = zVec * scale;
-	mtx->setBasis(0, newXVec);
-	mtx->setBasis(1, newYVec);
-	mtx->setBasis(2, newZVec);
+	mtx->setColumn(0, newXVec);
+	mtx->setColumn(1, newYVec);
+	mtx->setColumn(2, newZVec);
 }
 
 } // namespace UmiMushi

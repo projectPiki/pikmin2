@@ -8,6 +8,8 @@
 #include "Vector2.h"
 #include "sqrt.h"
 
+struct Matrixf;
+
 // TODO: Implement the global namespace Vector3 functions into the class itself
 template <typename T>
 struct Vector3 {
@@ -171,6 +173,7 @@ struct Vector3 {
 	//     return newVector;
 	// }
 	// inline void operator*=(const f32 other) { *this = Vector3(x * other, y * other, z * other); }
+	inline void operator*=(Matrixf& other);
 	inline void operator*=(const f32 other)
 	{
 		this->x *= other;

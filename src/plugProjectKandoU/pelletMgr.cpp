@@ -117,7 +117,7 @@ s32 Pellet::getCreatureID()
 void Pellet::getShadowParam(ShadowParam& shadow)
 {
 	Vector3f col;
-	mBaseTrMatrix.getBasis(1, col);
+	mBaseTrMatrix.getColumn(1, col);
 
 	if (-(SQUARE(FABS(col.y)) - 1.0f) > 0.0f) {
 		col.y = col.y;
@@ -1860,7 +1860,7 @@ void Pellet::setPanModokiRotation(f32 direction)
 	mFaceDir = direction;
 
 	Vector3f yVec;
-	mBaseTrMatrix.getBasis(1, yVec);
+	mBaseTrMatrix.getColumn(1, yVec);
 	yVec.normalise();
 
 	Matrixf mat;

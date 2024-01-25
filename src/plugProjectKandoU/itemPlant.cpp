@@ -813,7 +813,7 @@ void ProcAnimator::calcAngles()
 		mAngle[i] = aCosY;
 		mXRot[i]  = aCosY;
 
-		Vector3f posX = currMat->getBasis(0);
+		Vector3f posX = currMat->getColumn(0);
 		f32 xLen      = posX.length();
 		if (xLen > 0.0f) {
 			posX.y *= 1.0f / xLen;
@@ -937,7 +937,7 @@ void ProcAnimator::update(f32 faceDir, f32 p2)
 
 		currMat->setTranslation(newPos); // 0x68 -> 0x74
 
-		Vector3f posX = currMat->getBasis(0);
+		Vector3f posX = currMat->getColumn(0);
 		f32 scale     = posX.length(); // f2
 
 		Vector3f xVec = Vector3f(0.0f, scale * cosf(theta), scale * sinf(theta));  // 0x50
@@ -948,9 +948,9 @@ void ProcAnimator::update(f32 faceDir, f32 p2)
 		yVec = originMat.mtxMult(yVec); // 0xBC, 0x44, (0x14) -> (0x44)
 		zVec = originMat.mtxMult(zVec); // 0xBC, 0x38, (0x8)  -> (0x38)
 
-		currMat->setBasis(0, xVec); // 0x50
-		currMat->setBasis(1, yVec); // 0x44
-		currMat->setBasis(2, zVec); // 0x38
+		currMat->setColumn(0, xVec); // 0x50
+		currMat->setColumn(1, yVec); // 0x44
+		currMat->setColumn(2, zVec); // 0x38
 	}
 	/*
 	stwu     r1, -0x180(r1)

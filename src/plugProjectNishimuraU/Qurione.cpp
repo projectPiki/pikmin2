@@ -353,7 +353,7 @@ void Obj::setupEffect()
  */
 void Obj::createHitEffect()
 {
-	Vector3f fxPos = mModel->getJoint("body_jnt2")->getWorldMatrix()->getBasis(3);
+	Vector3f fxPos = mModel->getJoint("body_jnt2")->getWorldMatrix()->getColumn(3);
 	efx::Arg fxArg(fxPos);
 	efx::TQuriHit hitFX;
 

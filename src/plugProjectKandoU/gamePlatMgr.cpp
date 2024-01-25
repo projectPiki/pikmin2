@@ -84,9 +84,9 @@ void PlatInstance::getCurrTri(CurrTriInfo& info)
 
 	if (info.mGetFullInfo) {
 		if (useFixCollision && isFlag(PLATFLAG_IsCollisionStatic)) {
-			info.mNormalVec = mtx.mult(info.mNormalVec);
+			info.mNormalVec *= mtx;
 		} else {
-			info.mNormalVec = mtx.mult(info.mNormalVec);
+			info.mNormalVec *= mtx;
 		}
 	}
 
@@ -107,7 +107,7 @@ void PlatInstance::traceMove(MoveInfo& info, f32 step)
 	Matrixf invMtx;
 	if (MapMgr::mTraceMoveOptLevel >= 2) {
 		Sys::Sphere sphere = mPlatform->getTriDivider()->mRoot.mSphere;
-		sphere.mPosition   = sphere.mPosition + mMatrix->getBasis(3);
+		sphere.mPosition   = sphere.mPosition + mMatrix->getColumn(3);
 
 		if (!sphere.intersect(*info.mMoveSphere)) {
 			return;

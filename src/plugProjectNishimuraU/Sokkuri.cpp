@@ -173,7 +173,7 @@ Vector3f Obj::getOffsetForMapCollision()
 		return Vector3f::zero;
 	}
 
-	Vector3f offset = mModel->getJoint("leaf_joint1")->getWorldMatrix()->getBasis(3);
+	Vector3f offset = mModel->getJoint("leaf_joint1")->getWorldMatrix()->getColumn(3);
 	offset.x -= mPosition.x;
 	offset.y = 0.0f;
 	offset.z -= mPosition.z;

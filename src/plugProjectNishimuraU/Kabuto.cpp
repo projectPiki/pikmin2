@@ -91,7 +91,7 @@ void Obj::setFSM(FSM* fsm)
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
-	shadowParam.mPosition                 = mModel->getJoint("center")->getWorldMatrix()->getBasis(3);
+	shadowParam.mPosition                 = mModel->getJoint("center")->getWorldMatrix()->getColumn(3);
 	shadowParam.mPosition.y               = mPosition.y + 5.0f;
 	shadowParam.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 

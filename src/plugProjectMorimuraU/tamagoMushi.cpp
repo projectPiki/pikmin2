@@ -279,7 +279,7 @@ bool Obj::earthquakeCallBack(Creature* creature, f32 damage) { return pressCallB
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
-	shadowParam.mPosition = mKoshiJoint->getWorldMatrix()->getBasis(3);
+	shadowParam.mPosition = mKoshiJoint->getWorldMatrix()->getColumn(3);
 
 	if (mPellet || getStateID() == TAMAGOMUSHI_Dead) {
 		shadowParam.mPosition.y = mPosition.y + 2.0f;

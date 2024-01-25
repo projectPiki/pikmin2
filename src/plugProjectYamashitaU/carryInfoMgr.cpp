@@ -166,18 +166,18 @@ void CarryInfo::draw(Graphics& gfx, CarryInfoParam& param)
 		Matrixf* mtx = vp->getMatrix(1);
 		Matrixf newmtx;
 
-		Vector3f temp = mtx->getBasis(0);
+		Vector3f temp = mtx->getColumn(0);
 		temp *= mScale;
-		newmtx.setBasis(0, temp);
-		temp = mtx->getBasis(1);
+		newmtx.setColumn(0, temp);
+		temp = mtx->getColumn(1);
 		temp *= mScale;
-		newmtx.setBasis(1, temp);
-		temp = mtx->getBasis(2);
+		newmtx.setColumn(1, temp);
+		temp = mtx->getColumn(2);
 		temp *= mScale;
-		newmtx.setBasis(2, temp);
-		temp = mtx->getBasis(3);
+		newmtx.setColumn(2, temp);
+		temp = mtx->getColumn(3);
 		temp *= mScale;
-		newmtx.setBasis(3, temp);
+		newmtx.setColumn(3, temp);
 
 		Matrixf storemtx;
 		PSMTXConcat(vp->getMatrix(1)->mMatrix.mtxView, newmtx.mMatrix.mtxView, storemtx.mMatrix.mtxView);

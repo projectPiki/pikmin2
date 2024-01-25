@@ -1148,8 +1148,8 @@ void HoudaiShotGunMgr::emitShotGun()
 	}
 
 	Vector3f xVec, gunPos;
-	mGunMtx->getBasis(0, xVec);
-	mGunMtx->getBasis(3, gunPos);
+	mGunMtx->getColumn(0, xVec);
+	mGunMtx->getColumn(3, gunPos);
 
 	xVec.normalise();
 
@@ -1506,7 +1506,7 @@ void HoudaiShotGunMgr::forceFinishShotGun()
  */
 bool HoudaiShotGunMgr::searchShotGunRotation()
 {
-	Vector3f sep  = mTargetPosition - mGunMtx->getBasis(3);
+	Vector3f sep  = mTargetPosition - mGunMtx->getColumn(3);
 	f32 headPitch = JMAAtan2Radian(mHeadMtx->mMatrix.mtxView[0][1], mHeadMtx->mMatrix.mtxView[2][1]);
 	f32 turnAngle = JMAAtan2Radian(-sep.x, -sep.z);
 	f32 angleDist = angDist(headPitch, turnAngle);
@@ -1909,17 +1909,17 @@ void HoudaiShotGunMgr::rotateVertical(J3DJoint* joint)
 	Matrixf* gunMtx = mGunMtx;
 
 	Vector3f xVec, yVec, zVec;
-	gunMtx->getBasis(0, xVec);
-	gunMtx->getBasis(1, yVec);
-	gunMtx->getBasis(2, zVec);
+	gunMtx->getColumn(0, xVec);
+	gunMtx->getColumn(1, yVec);
+	gunMtx->getColumn(2, zVec);
 
 	f32 xScale = xVec.normalise();
 	f32 yScale = yVec.normalise();
 	f32 zScale = zVec.normalise();
 
-	gunMtx->setBasis(0, xVec);
-	gunMtx->setBasis(1, yVec);
-	gunMtx->setBasis(2, zVec);
+	gunMtx->setColumn(0, xVec);
+	gunMtx->setColumn(1, yVec);
+	gunMtx->setColumn(2, zVec);
 
 	Matrixf rotMtx;
 	PSMTXRotRad(rotMtx.mMatrix.mtxView, 'Z', mPitch);
@@ -1930,17 +1930,17 @@ void HoudaiShotGunMgr::rotateVertical(J3DJoint* joint)
 
 	Vector3f newX, newY, newZ;
 
-	gunMtx->getBasis(0, newX);
-	gunMtx->getBasis(1, newY);
-	gunMtx->getBasis(2, newZ);
+	gunMtx->getColumn(0, newX);
+	gunMtx->getColumn(1, newY);
+	gunMtx->getColumn(2, newZ);
 
 	newX *= xScale;
 	newY *= yScale;
 	newZ *= zScale;
 
-	gunMtx->setBasis(0, newX);
-	gunMtx->setBasis(1, newY);
-	gunMtx->setBasis(2, newZ);
+	gunMtx->setColumn(0, newX);
+	gunMtx->setColumn(1, newY);
+	gunMtx->setColumn(2, newZ);
 
 	PSMTXCopy(mGunMtx->mMatrix.mtxView, J3DSys::mCurrentMtx);
 }
@@ -1959,8 +1959,8 @@ void HoudaiShotGunMgr::setShotGunLockOnPosition()
 {
 	bool isHeightChanged = false;
 	Vector3f xVec, pos;
-	mGunMtx->getBasis(0, xVec);
-	mGunMtx->getBasis(3, pos);
+	mGunMtx->getColumn(0, xVec);
+	mGunMtx->getColumn(3, pos);
 
 	xVec.normalise();
 
@@ -1986,7 +1986,7 @@ void HoudaiShotGunMgr::setShotGunLockOnPosition()
 		efx::Arg fxArg(mLockOnPosition);
 		mEfxSight->create(&fxArg);
 
-		mGunMtx->getBasis(0, nrm);
+		mGunMtx->getColumn(0, nrm);
 		nrm.x = -nrm.x;
 		nrm.y = -nrm.y;
 		nrm.z = -nrm.z;

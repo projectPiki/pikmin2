@@ -133,7 +133,7 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 void Obj::getShadowParam(ShadowParam& shadow)
 {
 	Matrixf* baseMatrix              = mModel->getJoint("mune")->getWorldMatrix();
-	shadow.mPosition                 = baseMatrix->getPosition();
+	shadow.mPosition                 = baseMatrix->getTranslation();
 	shadow.mPosition.y               = mPosition.y + mShadowOffset;
 	shadow.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 	if (isFlying() || !mBounceTriangle) {
@@ -245,7 +245,7 @@ void Obj::getThrowupItemVelocity(Vector3f* velocity)
  * @note Address: 0x8027FC4C
  * @note Size: 0x50
  */
-Vector3f Obj::getHeadJointPos() { return mModel->getJoint("head")->getWorldMatrix()->getPosition(); }
+Vector3f Obj::getHeadJointPos() { return mModel->getJoint("head")->getWorldMatrix()->getTranslation(); }
 
 /**
  * @note Address: 0x8027FC9C

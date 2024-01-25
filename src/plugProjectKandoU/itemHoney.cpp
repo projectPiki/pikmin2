@@ -494,7 +494,7 @@ void Item::onStartCapture() { mFsm->start(this, HONEY_Fall, nullptr); }
  */
 void Item::onUpdateCapture(Matrixf& mtx)
 {
-	mBaseTrMatrix.getBasis(3, mPosition);
+	mBaseTrMatrix.getColumn(3, mPosition);
 	mVelocity = Vector3f(0.0f);
 	entryShape();
 }

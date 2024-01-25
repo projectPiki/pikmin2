@@ -52,10 +52,10 @@ BOOL TRenderingProcessor::doDrawCommon(f32 x, f32 y, Matrixf* mtx1, Matrixf* mtx
 		// mtx2->setBasis(3, translation.x + offset.x, translation.y + offset.y, translation.z);
 
 		// another option, also wrong:
-		Vector3f translation = mtx2->getBasis(3);
+		Vector3f translation = mtx2->getColumn(3);
 		translation.x += 10.0f;
 		translation.y += 5.0f;
-		mtx2->setBasis(3, translation.x, translation.y, translation.z);
+		mtx2->setColumn(3, translation.x, translation.y, translation.z);
 
 		PSMTXConcat(mMtx1->mMatrix.mtxView, mtx2->mMatrix.mtxView, mtx2->mMatrix.mtxView);
 		PSMTXConcat(mMtx2->mMatrix.mtxView, mtx2->mMatrix.mtxView, mtx2->mMatrix.mtxView);

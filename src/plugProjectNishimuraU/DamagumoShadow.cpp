@@ -82,7 +82,7 @@ void DamagumoShadowMgr::update()
 	shadowParm.mRotation = Vector3f(0.5f, 3.0f, 0.5f);
 	shadowParm.mRotation.normalise();
 
-	Vector3f translation = mMatrix->getBasis(3);
+	Vector3f translation = mMatrix->getColumn(3);
 	translation.y += -30.0f;
 
 	f32 shadowScale = mObj->mShadowScale;

@@ -172,7 +172,7 @@ void Obj::setFSM(FSM* fsm)
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
-	shadowParam.mPosition                 = mModel->getJoint("kutijnt1")->getWorldMatrix()->getBasis(3);
+	shadowParam.mPosition                 = mModel->getJoint("kutijnt1")->getWorldMatrix()->getColumn(3);
 	shadowParam.mPosition.y               = mPosition.y + 2.5f;
 	shadowParam.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 	shadowParam.mBoundingSphere.mRadius   = 20.0f;
@@ -260,13 +260,13 @@ void Obj::initMouthSlots()
  * @note Address: 0x80293848
  * @note Size: 0x58
  */
-void Obj::getThrowupItemPosition(Vector3f* pos) { *pos = mModel->getJoint("kutijnt1")->getWorldMatrix()->getBasis(3); }
+void Obj::getThrowupItemPosition(Vector3f* pos) { *pos = mModel->getJoint("kutijnt1")->getWorldMatrix()->getColumn(3); }
 
 /**
  * @note Address: 0x802938A0
  * @note Size: 0x58
  */
-void Obj::getCommonEffectPos(Vector3f& pos) { pos = mModel->getJoint("kutijnt1")->getWorldMatrix()->getBasis(3); }
+void Obj::getCommonEffectPos(Vector3f& pos) { pos = mModel->getJoint("kutijnt1")->getWorldMatrix()->getColumn(3); }
 
 /**
  * @note Address: 0x802938F8
@@ -1711,7 +1711,7 @@ void Obj::createDeadStartEffect() { mEfxDead->create(nullptr); }
  */
 void Obj::createDeadFinishEffect()
 {
-	Vector3f fxPos = mModel->getJoint("kutijnt1")->getWorldMatrix()->getBasis(3);
+	Vector3f fxPos = mModel->getJoint("kutijnt1")->getWorldMatrix()->getColumn(3);
 	efx::Arg fxArg(fxPos);
 	efx::THebiDeadHane_ver01 deadFX;
 	deadFX.create(&fxArg);
@@ -1723,7 +1723,7 @@ void Obj::createDeadFinishEffect()
  */
 void Obj::createDownHeadEffect(f32 scale)
 {
-	Vector3f fxPos = mModel->getJoint("kutijnt1")->getWorldMatrix()->getBasis(3);
+	Vector3f fxPos = mModel->getJoint("kutijnt1")->getWorldMatrix()->getColumn(3);
 	fxPos.y -= 15.0f;
 	createBounceEffect(fxPos, scale);
 

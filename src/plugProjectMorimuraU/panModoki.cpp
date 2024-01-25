@@ -231,7 +231,7 @@ void Obj::updateCaptureMatrix()
 		Matrixf* matrix = mKamuJoint->getWorldMatrix();
 
 		Vector3f xVec;
-		matrix->getBasis(0, xVec);
+		matrix->getColumn(0, xVec);
 		Vector3f slotPos;
 		calcSlotGlobalPos(slotPos);
 

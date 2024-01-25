@@ -1462,7 +1462,7 @@ void FakePiki::move(f32 rate)
 
 	Vector3f translation;
 	if (isFPFlag(FPFLAGS_Unk5) && mModel) {
-		translation = mModel->mJoints[1].getWorldMatrix()->getBasis(3);
+		translation = mModel->mJoints[1].getWorldMatrix()->getColumn(3);
 		pos         = translation;
 	}
 
@@ -2133,7 +2133,7 @@ void FakePiki::doAnimation()
 	updateTrMatrix();
 	if (isNavi() && static_cast<Navi*>(this)->mPellet) {
 		static_cast<Navi*>(this)->viewMakeMatrix(mBaseTrMatrix);
-		mPosition = mBaseTrMatrix.getPosition(); // mismatch here in this inline
+		mPosition = mBaseTrMatrix.getTranslation(); // mismatch here in this inline
 	}
 	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->getJ3DModel()->mPosMtx);
 	sCurrNeckTheta = mNeckTheta;

@@ -94,9 +94,9 @@ void Obj::doAnimationStick()
 	crossVec.normalise();
 	_2E4.normalise();
 
-	mBaseTrMatrix.setBasis(0, crossVec);
-	mBaseTrMatrix.setBasis(1, _2E4);
-	mBaseTrMatrix.setBasis(2, _2D8);
+	mBaseTrMatrix.setColumn(0, crossVec);
+	mBaseTrMatrix.setColumn(1, _2E4);
+	mBaseTrMatrix.setColumn(2, _2D8);
 
 	if (_2C1) {
 		Vector3f pos = mPosition;
@@ -519,7 +519,7 @@ void Obj::setFSM(FSM* fsm)
  */
 void Obj::getShadowParam(ShadowParam& param)
 {
-	param.mPosition = mModel->getJoint("koshi1jnt")->getWorldMatrix()->getBasis(3);
+	param.mPosition = mModel->getJoint("koshi1jnt")->getWorldMatrix()->getColumn(3);
 	param.mPosition.y -= 5.0f;
 	param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 	if (isStickTo()) {

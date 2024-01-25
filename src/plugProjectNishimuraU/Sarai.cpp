@@ -82,7 +82,7 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
 	Matrixf* bodyMtx      = mModel->getJoint("bodyjnt")->getWorldMatrix();
-	shadowParam.mPosition = bodyMtx->getBasis(3);
+	shadowParam.mPosition = bodyMtx->getColumn(3);
 
 	if (isAlive()) {
 		s32 stateId = getStateID();

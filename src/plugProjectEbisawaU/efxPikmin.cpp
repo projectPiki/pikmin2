@@ -282,7 +282,7 @@ void TFueactCircle::execute(JPABaseEmitter* emit)
 	P2ASSERTLINE(530, mMtx);
 	P2ASSERTLINE(531, mPos);
 
-	Vector3f sep = *mPos - mMtx->getBasis(3);
+	Vector3f sep = *mPos - mMtx->getColumn(3);
 
 	// super wacky normalisation.
 	f32 sqrLen = sep.x * sep.x + sep.y * sep.y + sep.z * sep.z;
@@ -394,7 +394,7 @@ void TFueactCircle::execute(JPABaseEmitter*, JPABaseParticle* prt)
 	P2ASSERTLINE(530, mMtx);
 	P2ASSERTLINE(531, mPos);
 
-	Vector3f ang = *mPos - mMtx->getBasis(0);
+	Vector3f ang = *mPos - mMtx->getColumn(0);
 	if (ang.normalise() > 175.0f) {
 		ang.normalise();
 		ang *= 175.0f;
@@ -613,7 +613,7 @@ void TFueactBiriBase::doExecuteEmitterOperation(JPABaseEmitter* emit)
 	P2ASSERTLINE(530, mMtx);
 	P2ASSERTLINE(531, mPos);
 
-	Vector3f ang = *mPos - mMtx->getBasis(0);
+	Vector3f ang = *mPos - mMtx->getColumn(0);
 	ang.normalise();
 	Matrixf mtx; // i cant even
 	JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mMtx->mMatrix.mtxView, mPos);

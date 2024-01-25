@@ -100,7 +100,7 @@ void BombSarai::Obj::setFSM(BombSarai::FSM* fsm)
 void BombSarai::Obj::getShadowParam(ShadowParam& shadowParam)
 {
 	Matrixf* worldMat     = mModel->getJoint("body_joint1")->getWorldMatrix();
-	shadowParam.mPosition = worldMat->getBasis(3);
+	shadowParam.mPosition = worldMat->getColumn(3);
 
 	if (isFlying()) {
 		shadowParam.mPosition.y -= 15.0f;

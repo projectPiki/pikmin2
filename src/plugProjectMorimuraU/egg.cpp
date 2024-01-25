@@ -100,7 +100,7 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 void Obj::doSimulation(f32 constraint)
 {
 	if (mCaptureMatrix) {
-		mPosition = mCaptureMatrix->getBasis(3);
+		mPosition = mCaptureMatrix->getColumn(3);
 		updateSpheres();
 	} else {
 		EnemyBase::doSimulation(constraint);
@@ -116,10 +116,10 @@ void Obj::doAnimationCullingOff()
 	mCurAnim->mIsPlaying = false;
 	doAnimationUpdateAnimator();
 	bool check;
-	Vector3f vec = mBaseTrMatrix.getBasis(3);
+	Vector3f vec = mBaseTrMatrix.getColumn(3);
 	if (mCaptureMatrix) {
 		check             = false;
-		Vector3f checkVec = mCaptureMatrix->getBasis(3);
+		Vector3f checkVec = mCaptureMatrix->getColumn(3);
 		if (vec.x != checkVec.x || vec.y != checkVec.y || vec.z != checkVec.z) {
 			check = true;
 			PSMTXCopy(mCaptureMatrix->mMatrix.mtxView, mBaseTrMatrix.mMatrix.mtxView);
@@ -200,7 +200,7 @@ bool Obj::needShadow()
 void Obj::onStartCapture()
 {
 	if (mCaptureMatrix) {
-		Vector3f position = mCaptureMatrix->getBasis(3);
+		Vector3f position = mCaptureMatrix->getColumn(3);
 		onSetPosition(position);
 		mCurrentVelocity = Vector3f(0.0f);
 		mTargetVelocity  = Vector3f(0.0f);

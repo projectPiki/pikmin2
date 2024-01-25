@@ -10,10 +10,10 @@ namespace Game {
 void TyreTubeShadowNode::makeShadowSRT(JointShadowParm& shadowParm, Matrixf* mat)
 {
 	Vector3f matVecs[4];
-	matVecs[0] = Vector3f(mat->getBasis(0));
-	matVecs[3] = mat->getBasis(3);
+	matVecs[0] = Vector3f(mat->getColumn(0));
+	matVecs[3] = mat->getColumn(3);
 
-	Vector3f xVec = Vector3f(mat->getBasis(0));
+	Vector3f xVec = Vector3f(mat->getColumn(0));
 	xVec.normalise();
 	xVec       = xVec * shadowParm._18;
 	matVecs[0] = xVec;
@@ -33,11 +33,11 @@ void TyreTubeShadowNode::makeShadowSRT(JointShadowParm& shadowParm, Matrixf* mat
 		matVecs[1].y = (matVecs[3].y - minY) * 5.0f;
 	}
 
-	mMainMtx->setBasis(0, matVecs[0]);
+	mMainMtx->setColumn(0, matVecs[0]);
 
-	mMainMtx->setBasis(1, matVecs[1]);
-	mMainMtx->setBasis(2, matVecs[2]);
-	mMainMtx->setBasis(3, matVecs[3]);
+	mMainMtx->setColumn(1, matVecs[1]);
+	mMainMtx->setColumn(2, matVecs[2]);
+	mMainMtx->setColumn(3, matVecs[3]);
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0

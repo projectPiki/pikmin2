@@ -126,7 +126,7 @@ void FSMStateExpansion::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 	f32 sinTheta = pikmin2_sinf(theta * HALF_PI);
 
 	PSMTXIdentity(mtx->mMatrix.mtxView);
-	scaleMatrix(mtx, sinTheta);
+	mtx->scale(sinTheta);
 }
 
 /**
@@ -136,7 +136,7 @@ void FSMStateExpansion::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 void FSMStateExpansionFull::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 {
 	PSMTXIdentity(mtx->mMatrix.mtxView);
-	scaleMatrix(mtx, 1.0f);
+	mtx->scale(1.0f);
 }
 
 /**
@@ -180,7 +180,7 @@ void FSMStateFit::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 	f32 cosTheta = cos(theta * HALF_PI); // ????? THIS DOESN'T EVEN GET USED, WTF YAMASHITA
 
 	PSMTXIdentity(mtx->mMatrix.mtxView);
-	scaleMatrix(mtx, 1.0f);
+	mtx->scale(1.0f);
 }
 
 /**

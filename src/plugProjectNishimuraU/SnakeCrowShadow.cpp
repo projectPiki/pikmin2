@@ -37,10 +37,10 @@ void SnakeCrowTubeShadowNode::makeShadowSRT(JointShadowParm& parm, Vector3f& pos
 		mtx[1].y += diff;
 	}
 
-	mMainMtx->setBasis(0, mtx[0]);
-	mMainMtx->setBasis(1, mtx[1]);
-	mMainMtx->setBasis(2, mtx[2]);
-	mMainMtx->setBasis(3, mtx[3]);
+	mMainMtx->setColumn(0, mtx[0]);
+	mMainMtx->setColumn(1, mtx[1]);
+	mMainMtx->setColumn(2, mtx[2]);
+	mMainMtx->setColumn(3, mtx[3]);
 
 	/*
 	.loc_0x0:
@@ -218,10 +218,10 @@ void SnakeCrowSphereShadowNode::makeShadowSRT(JointShadowParm& parm, Vector3f& p
 		mtx[1].y += diff;
 	}
 
-	mMainMtx->setBasis(0, mtx[0]);
-	mMainMtx->setBasis(1, mtx[1]);
-	mMainMtx->setBasis(2, mtx[2]);
-	mMainMtx->setBasis(3, mtx[3]);
+	mMainMtx->setColumn(0, mtx[0]);
+	mMainMtx->setColumn(1, mtx[1]);
+	mMainMtx->setColumn(2, mtx[2]);
+	mMainMtx->setColumn(3, mtx[3]);
 }
 
 namespace SnakeCrow {
@@ -304,7 +304,7 @@ void SnakeCrowShadowMgr::update()
 	Vector3f positions[8];
 
 	for (int i = 0; i < 8; i++) {
-		positions[i] = mMatrices[i]->getBasis(3);
+		positions[i] = mMatrices[i]->getColumn(3);
 	}
 
 	for (int i = 0; i < 8; i++) {
@@ -314,8 +314,8 @@ void SnakeCrowShadowMgr::update()
 		} else {
 			Vector3f kutiPos1;
 			Vector3f kutiPos2;
-			mMatrices[i]->getBasis(0, kutiPos1);
-			mMatrices[i]->getBasis(0, kutiPos2);
+			mMatrices[i]->getColumn(0, kutiPos1);
+			mMatrices[i]->getColumn(0, kutiPos2);
 			kutiPos1 *= 80.0f;
 			kutiPos1 += positions[i];
 			kutiPos2 += positions[i];
@@ -323,7 +323,7 @@ void SnakeCrowShadowMgr::update()
 		}
 
 		parm.mShadowScale  = cSphereShadowRadius[i];
-		Vector3f spherePos = mMatrices[i]->getBasis(3);
+		Vector3f spherePos = mMatrices[i]->getColumn(3);
 		mSphereNodes[i]->makeShadowSRT(parm, spherePos);
 	}
 	/*

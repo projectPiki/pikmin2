@@ -388,10 +388,10 @@ void ObjectParticleActor::emit()
 		pos = mGameObject->getPosition();
 		if (mGameObject->mModel && mModelJointIndex >= 0) {
 			PSMTXCopy(mGameObject->mModel->mJoints[mModelJointIndex].getWorldMatrix()->mMatrix.mtxView, mMatrix.mMatrix.mtxView);
-			pos = mMatrix.getPosition();
+			pos = mMatrix.getTranslation();
 		} else if (mModelJointIndex == -1) {
 			PSMTXCopy(mGameObject->mBaseTrMatrix.mMatrix.mtxView, mMatrix.mMatrix.mtxView);
-			pos = mMatrix.getBasis(3);
+			pos = mMatrix.getColumn(3);
 		} else {
 			pos = Vector3f(mTranslation2.x, mTranslation2.y, mTranslation2.z);
 			Vector3f vec2(0.0f, moviePlayer->mTransformAngle, 0.0f);

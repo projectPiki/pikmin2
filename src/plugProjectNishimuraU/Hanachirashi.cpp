@@ -128,8 +128,8 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Obj::getShadowParam(ShadowParam& shadow)
 {
-	Vector3f bodyVec = mModel->getJoint("mune")->getWorldMatrix()->getBasis(3);
-	Vector3f headVec = mModel->getJoint("head")->getWorldMatrix()->getBasis(3);
+	Vector3f bodyVec = mModel->getJoint("mune")->getWorldMatrix()->getColumn(3);
+	Vector3f headVec = mModel->getJoint("head")->getWorldMatrix()->getColumn(3);
 	shadow.mPosition = headVec;
 	shadow.mPosition += bodyVec;
 	shadow.mPosition *= 0.5f;
@@ -246,7 +246,7 @@ void Obj::getThrowupItemVelocity(Vector3f* velocity)
  * @note Address: 0x802A22D0
  * @note Size: 0x50
  */
-Vector3f Obj::getHeadJointPos() { return mModel->getJoint("head")->getWorldMatrix()->getPosition(); }
+Vector3f Obj::getHeadJointPos() { return mModel->getJoint("head")->getWorldMatrix()->getTranslation(); }
 
 /**
  * @note Address: 0x802A2320

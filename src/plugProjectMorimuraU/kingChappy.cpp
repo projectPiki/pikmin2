@@ -324,9 +324,9 @@ void Obj::doAnimationCullingOff()
 		Creature* stuckCreature = mMouthSlots.getStuckCreature(i);
 		if (stuckCreature) {
 			mat             = (Matrixf*)mModel->mJ3dModel->mMtxBuffer->mWorldMatrices[mMouthJointIndices[i]];
-			Vector3f xBasis = mat->getBasis(0);
-			Vector3f yBasis = mat->getBasis(1);
-			Vector3f zBasis = mat->getBasis(2);
+			Vector3f xBasis = mat->getColumn(0);
+			Vector3f yBasis = mat->getColumn(1);
+			Vector3f zBasis = mat->getColumn(2);
 
 			f32 length = yBasis.normalise();
 
@@ -2628,9 +2628,9 @@ void Obj::footMtxCalc(Mtx mtx, Vector3f* pos, f32* p1)
  */
 void Obj::resetFootPos()
 {
-	mLFootPosition    = mModel->mJ3dModel->mMtxBuffer->getWorldMatrix(mLFootJointIndex)->getPosition();
+	mLFootPosition    = mModel->mJ3dModel->mMtxBuffer->getWorldMatrix(mLFootJointIndex)->getTranslation();
 	mLFootHeightRatio = 0.0f;
-	mRFootPosition    = mModel->mJ3dModel->mMtxBuffer->getWorldMatrix(mRFootJointIndex)->getPosition();
+	mRFootPosition    = mModel->mJ3dModel->mMtxBuffer->getWorldMatrix(mRFootJointIndex)->getTranslation();
 	mRFootHeightRatio = 0.0f;
 }
 
@@ -2726,14 +2726,14 @@ void Obj::createEffect(int effectID)
 
 	case 8: // hiding underwater eye ripples
 		if (mWaterBox) {
-			mRightEyePosition   = mModel->getJoint("eye3R")->getWorldMatrix()->getPosition();
+			mRightEyePosition   = mModel->getJoint("eye3R")->getWorldMatrix()->getTranslation();
 			mRightEyePosition.y = *mWaterBox->getSeaHeightPtr();
 
 			// Use the water ripples made by wogpoles for emperors eyes, I mean sure, it works I guess
 			efx::ArgEnemyType fxArgEnemy(mRightEyePosition, EnemyTypeID::EnemyID_Tadpole, 1.0f);
 			mRightEyeRippleEfx->create(&fxArgEnemy);
 
-			mLeftEyePosition   = mModel->getJoint("eye3L")->getWorldMatrix()->getPosition();
+			mLeftEyePosition   = mModel->getJoint("eye3L")->getWorldMatrix()->getTranslation();
 			mLeftEyePosition.y = *mWaterBox->getSeaHeightPtr();
 
 			mLeftEyeRippleEfx->create(&fxArgEnemy);

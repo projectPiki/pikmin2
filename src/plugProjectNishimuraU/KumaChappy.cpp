@@ -134,7 +134,7 @@ Vector3f Obj::getOffsetForMapCollision()
 	}
 
 	Matrixf* mtx = mModel->getJoint("ago")->getWorldMatrix();
-	Vector3f pos = mtx->getBasis(3);
+	Vector3f pos = mtx->getColumn(3);
 	pos -= mPosition;
 	pos.y = 0.0f;
 	return pos;

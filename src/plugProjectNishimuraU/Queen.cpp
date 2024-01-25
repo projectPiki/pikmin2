@@ -602,7 +602,7 @@ void Obj::createBabyChappy()
 	Baby::Mgr* babyMgr = static_cast<Baby::Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_Baby));
 	if (babyMgr) {
 		EnemyBirthArg birthArg;
-		birthArg.mPosition = mModel->getJoint("body_end")->getWorldMatrix()->getBasis(3);
+		birthArg.mPosition = mModel->getJoint("body_end")->getWorldMatrix()->getColumn(3);
 		birthArg.mFaceDir  = PI + getFaceDir();
 
 		Baby::Obj* baby = static_cast<Baby::Obj*>(babyMgr->birth(birthArg));

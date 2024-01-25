@@ -132,7 +132,7 @@ void Obj::setFSM(FSM* fsm)
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
-	shadowParam.mPosition                 = mModel->getJoint("kutijnt1")->getWorldMatrix()->getBasis(3);
+	shadowParam.mPosition                 = mModel->getJoint("kutijnt1")->getWorldMatrix()->getColumn(3);
 	shadowParam.mPosition.y               = mPosition.y + 2.5f;
 	shadowParam.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 	if (isEvent(1, EB2_Earthquake)) {
@@ -214,7 +214,7 @@ void Obj::initMouthSlots()
  * @note Address: 0x802CEE0C
  * @note Size: 0x58
  */
-void Obj::getThrowupItemPosition(Vector3f* pos) { *pos = mModel->getJoint("kutijnt1")->getWorldMatrix()->getBasis(3); }
+void Obj::getThrowupItemPosition(Vector3f* pos) { *pos = mModel->getJoint("kutijnt1")->getWorldMatrix()->getColumn(3); }
 
 /**
  * @note Address: 0x802CEE64
@@ -2059,7 +2059,7 @@ void Obj::setupEffect()
 	Matrixf* footMat = mModel->getJoint("foot_joint1")->getWorldMatrix();
 	mEfxDead->setMtxptr(footMat->mMatrix.mtxView);
 
-	mFitEffectPos = mModel->getJoint("kutijnt1")->getWorldMatrix()->getBasis(3);
+	mFitEffectPos = mModel->getJoint("kutijnt1")->getWorldMatrix()->getColumn(3);
 }
 
 /**
@@ -2097,7 +2097,7 @@ void Obj::createDeadStartEffect() { mEfxDead->create(nullptr); }
  */
 void Obj::createDeadFinishEffect()
 {
-	Vector3f fxPos = mModel->getJoint("kutijnt1")->getWorldMatrix()->getBasis(3);
+	Vector3f fxPos = mModel->getJoint("kutijnt1")->getWorldMatrix()->getColumn(3);
 	efx::Arg fxArg(fxPos);
 	efx::TCphebiDeadHane deadFX;
 	deadFX.create(&fxArg);
@@ -2145,7 +2145,7 @@ void Obj::createEfxHamon()
  */
 Vector3f* Obj::getFitEffectPos()
 {
-	mFitEffectPos = mModel->getJoint("kutijnt1")->getWorldMatrix()->getBasis(3);
+	mFitEffectPos = mModel->getJoint("kutijnt1")->getWorldMatrix()->getColumn(3);
 	return &mFitEffectPos;
 }
 

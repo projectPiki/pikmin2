@@ -38,10 +38,10 @@ void SnakeWholeTubeShadowNode::makeShadowSRT(JointShadowParm& parm, Vector3f& po
 		mtx[1].y += diff;
 	}
 
-	mMainMtx->setBasis(0, mtx[0]);
-	mMainMtx->setBasis(1, mtx[1]);
-	mMainMtx->setBasis(2, mtx[2]);
-	mMainMtx->setBasis(3, mtx[3]);
+	mMainMtx->setColumn(0, mtx[0]);
+	mMainMtx->setColumn(1, mtx[1]);
+	mMainMtx->setColumn(2, mtx[2]);
+	mMainMtx->setColumn(3, mtx[3]);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -216,10 +216,10 @@ void SnakeWholeSphereShadowNode::makeShadowSRT(JointShadowParm& parm, Vector3f& 
 		mtx[1].y += diff;
 	}
 
-	mMainMtx->setBasis(0, mtx[0]);
-	mMainMtx->setBasis(1, mtx[1]);
-	mMainMtx->setBasis(2, mtx[2]);
-	mMainMtx->setBasis(3, mtx[3]);
+	mMainMtx->setColumn(0, mtx[0]);
+	mMainMtx->setColumn(1, mtx[1]);
+	mMainMtx->setColumn(2, mtx[2]);
+	mMainMtx->setColumn(3, mtx[3]);
 }
 
 namespace SnakeWhole {
@@ -303,7 +303,7 @@ void SnakeWholeShadowMgr::update()
 	Vector3f positions[9];
 
 	for (int i = 0; i < 9; i++) {
-		positions[i] = mMatrices[i]->getBasis(3);
+		positions[i] = mMatrices[i]->getColumn(3);
 	}
 
 	for (int i = 0; i < 9; i++) {
@@ -313,8 +313,8 @@ void SnakeWholeShadowMgr::update()
 		} else {
 			Vector3f kutiPos1;
 			Vector3f kutiPos2;
-			mMatrices[i]->getBasis(0, kutiPos1);
-			mMatrices[i]->getBasis(0, kutiPos2);
+			mMatrices[i]->getColumn(0, kutiPos1);
+			mMatrices[i]->getColumn(0, kutiPos2);
 			kutiPos1 *= 80.0f;
 			kutiPos1 += positions[i];
 			kutiPos2 += positions[i];
@@ -322,7 +322,7 @@ void SnakeWholeShadowMgr::update()
 		}
 
 		parm.mShadowScale  = cSphereShadowRadius[i];
-		Vector3f spherePos = mMatrices[i]->getBasis(3);
+		Vector3f spherePos = mMatrices[i]->getColumn(3);
 		mSphereNodes[i]->makeShadowSRT(parm, spherePos);
 	}
 	/*

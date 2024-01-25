@@ -66,10 +66,10 @@ void IKSystemBase::startProgramedIK()
 	mMoveRatio = 2.0f;
 	mMoveTimer = 0.0f;
 
-	mTargetPosition = mLegJointMatrices[BOTTOM]->getBasis(3);
+	mTargetPosition = mLegJointMatrices[BOTTOM]->getColumn(3);
 
-	Vector3f topPos = mLegJointMatrices[TOP]->getBasis(3);
-	Vector3f midPos = mLegJointMatrices[MIDDLE]->getBasis(3);
+	Vector3f topPos = mLegJointMatrices[TOP]->getColumn(3);
+	Vector3f midPos = mLegJointMatrices[MIDDLE]->getColumn(3);
 
 	mTopToMiddleDistance    = topPos.distance(midPos);
 	mMiddleToBottomDistance = midPos.distance(mTargetPosition);
@@ -155,7 +155,7 @@ void IKSystemBase::makeMatrix()
 		return;
 	}
 
-	Vector3f topPos    = mLegJointMatrices[TOP]->getBasis(3);
+	Vector3f topPos    = mLegJointMatrices[TOP]->getColumn(3);
 	Vector3f middleDir = getMiddleDirection(topPos);
 	Vector3f jointPos;
 	NsMathExp::calcJointPos(topPos, mTargetPosition, mTopToMiddleDistance, mMiddleToBottomDistance, middleDir, jointPos);
@@ -206,9 +206,9 @@ Vector3f IKSystemBase::getBottomJointPosition() { return mTargetPosition; }
 Vector3f IKSystemBase::getCollisionCentre()
 {
 	Matrixf* footMtx = mLegJointMatrices[BOTTOM];
-	Vector3f collVec = footMtx->getBasis(0);
+	Vector3f collVec = footMtx->getColumn(0);
 	collVec *= mParams->mFootPositionOffset;
-	Vector3f pos = footMtx->getBasis(3);
+	Vector3f pos = footMtx->getColumn(3);
 	collVec += pos;
 	return collVec;
 }
@@ -235,7 +235,7 @@ bool IKSystemBase::onGroundPosition()
 
 	if (mParams->mLegCount > 0) {
 		Vector3f offset;
-		mLegJointMatrices[BOTTOM]->getBasis(0, offset);
+		mLegJointMatrices[BOTTOM]->getColumn(0, offset);
 
 		offset *= mParams->mFootPositionOffset;
 		offset += mTargetPosition;
@@ -289,7 +289,7 @@ Vector3f IKSystemBase::getMiddleDirection(Vector3f& topPos)
 {
 	Vector3f middleDir;
 	if (mIsBlendMotionActive) {
-		mLegJointMatrices[TOP]->getBasis(0, middleDir);
+		mLegJointMatrices[TOP]->getColumn(0, middleDir);
 	} else {
 		middleDir.setFlatDirectionFromTo(topPos, mTargetPosition);
 		middleDir.y += 100.0f;
@@ -310,7 +310,7 @@ void IKSystemBase::setTopJointRotation(Vector3f& topPos, Vector3f& jointPos)
 
 	if (mIsBlendMotionActive) {
 		Vector3f oldY;
-		mLegJointMatrices[TOP]->getBasis(1, oldY);
+		mLegJointMatrices[TOP]->getColumn(1, oldY);
 		zVec = cross(xVec, oldY);
 		yVec = cross(zVec, xVec);
 	} else {
@@ -327,8 +327,8 @@ void IKSystemBase::setTopJointRotation(Vector3f& topPos, Vector3f& jointPos)
 	if (mScaleJoints) {
 		Vector3f oldY;
 		Vector3f oldZ;
-		mLegJointMatrices[TOP]->getBasis(1, oldY);
-		mLegJointMatrices[TOP]->getBasis(2, oldZ);
+		mLegJointMatrices[TOP]->getColumn(1, oldY);
+		mLegJointMatrices[TOP]->getColumn(2, oldZ);
 
 		f32 yLen = oldY.length();
 		f32 zLen = oldZ.length();
@@ -337,9 +337,9 @@ void IKSystemBase::setTopJointRotation(Vector3f& topPos, Vector3f& jointPos)
 		zVec *= zLen;
 	}
 
-	mLegJointMatrices[TOP]->setBasis(0, xVec);
-	mLegJointMatrices[TOP]->setBasis(1, yVec);
-	mLegJointMatrices[TOP]->setBasis(2, zVec);
+	mLegJointMatrices[TOP]->setColumn(0, xVec);
+	mLegJointMatrices[TOP]->setColumn(1, yVec);
+	mLegJointMatrices[TOP]->setColumn(2, zVec);
 }
 
 /**
@@ -354,7 +354,7 @@ void IKSystemBase::setMiddleJointRotation(Vector3f& topPos, Vector3f& jointPos)
 
 	if (mIsBlendMotionActive) {
 		Vector3f oldY;
-		mLegJointMatrices[MIDDLE]->getBasis(1, oldY);
+		mLegJointMatrices[MIDDLE]->getColumn(1, oldY);
 		zVec = cross(xVec, oldY);
 		yVec = cross(zVec, xVec);
 	} else {
@@ -371,8 +371,8 @@ void IKSystemBase::setMiddleJointRotation(Vector3f& topPos, Vector3f& jointPos)
 	if (mScaleJoints) {
 		Vector3f oldY;
 		Vector3f oldZ;
-		mLegJointMatrices[MIDDLE]->getBasis(1, oldY);
-		mLegJointMatrices[MIDDLE]->getBasis(2, oldZ);
+		mLegJointMatrices[MIDDLE]->getColumn(1, oldY);
+		mLegJointMatrices[MIDDLE]->getColumn(2, oldZ);
 
 		f32 yLen = oldY.length();
 		f32 zLen = oldZ.length();
@@ -381,9 +381,9 @@ void IKSystemBase::setMiddleJointRotation(Vector3f& topPos, Vector3f& jointPos)
 		zVec *= zLen;
 	}
 
-	mLegJointMatrices[MIDDLE]->setBasis(0, xVec);
-	mLegJointMatrices[MIDDLE]->setBasis(1, yVec);
-	mLegJointMatrices[MIDDLE]->setBasis(2, zVec);
+	mLegJointMatrices[MIDDLE]->setColumn(0, xVec);
+	mLegJointMatrices[MIDDLE]->setColumn(1, yVec);
+	mLegJointMatrices[MIDDLE]->setColumn(2, zVec);
 }
 
 /**
@@ -403,11 +403,11 @@ void IKSystemBase::makeBottomMatrix(Vector3f& pos)
 	Vector3f newY(0.0f, -1.0f, 0.0f);
 
 	Vector3f newZ;
-	mLegJointMatrices[MIDDLE]->getBasis(2, newZ);
+	mLegJointMatrices[MIDDLE]->getColumn(2, newZ);
 
-	mLegJointMatrices[BOTTOM]->setBasis(0, newX);
-	mLegJointMatrices[BOTTOM]->setBasis(1, newY);
-	mLegJointMatrices[BOTTOM]->setBasis(2, newZ);
+	mLegJointMatrices[BOTTOM]->setColumn(0, newX);
+	mLegJointMatrices[BOTTOM]->setColumn(1, newY);
+	mLegJointMatrices[BOTTOM]->setColumn(2, newZ);
 
 	Matrixf rotMtx;
 	PSMTXRotRad(rotMtx.mMatrix.mtxView, 'Z', mBendRatio);

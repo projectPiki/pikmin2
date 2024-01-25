@@ -94,7 +94,7 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 {
 	Matrixf* worldMat = mShadowJoint->getWorldMatrix();
 	if (worldMat) {
-		shadowParam.mPosition = worldMat->getBasis(3);
+		shadowParam.mPosition = worldMat->getColumn(3);
 		shadowParam.mPosition.y -= 17.5f;
 		f32 minY = 5.0f + mPosition.y;
 		if (shadowParam.mPosition.y < minY) {

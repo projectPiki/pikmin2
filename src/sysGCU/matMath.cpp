@@ -46,7 +46,7 @@ void Matrixf::makeNaturalPosture(Vector3f& direction, f32 a1)
 	mMatrix.structView.zy = zDir.y;
 	mMatrix.structView.zz = zDir.z;
 
-	setBasis(3, Vector3f::zero);
+	setColumn(3, Vector3f::zero);
 	/*
 	stwu     r1, -0x20(r1)
 	lfs      f2, 8(r4)
@@ -327,7 +327,7 @@ void Matrixf::makeSRT(Vector3f& s, Vector3f& r, Vector3f& t)
 	mMatrix.structView.zy = s.z * (cx * sz * sy - sx * cz);
 	mMatrix.structView.zz = s.z * (cx * cy);
 
-	setBasis(3, t);
+	setColumn(3, t);
 	/*
 	stwu     r1, -0x60(r1)
 	stfd     f31, 0x50(r1)
@@ -531,7 +531,7 @@ void Matrixf::makeST(Vector3f& s, Vector3f& t)
 	mMatrix.mtxView[1][2] = 0.0f;
 	mMatrix.mtxView[2][2] = s.z;
 
-	setBasis(3, t);
+	setColumn(3, t);
 }
 
 /**
@@ -559,7 +559,7 @@ void Matrixf::makeSR(Vector3f& s, Vector3f& r)
 	mMatrix.structView.zy = s.z * (cx * sz * sy - sx * cz);
 	mMatrix.structView.zz = s.z * (cx * cy);
 
-	setBasis(3, 0.0f, 0.0f, 0.0f);
+	setColumn(3, 0.0f, 0.0f, 0.0f);
 
 	/*
 	stwu     r1, -0x70(r1)
@@ -753,10 +753,10 @@ lbl_80428758:
  */
 void Matrixf::makeT(Vector3f& t)
 {
-	setBasis(0, 1.0f, 0.0f, 0.0f);
-	setBasis(1, 0.0f, 1.0f, 0.0f);
-	setBasis(2, 0.0f, 0.0f, 1.0f);
-	setBasis(3, t);
+	setColumn(0, 1.0f, 0.0f, 0.0f);
+	setColumn(1, 0.0f, 1.0f, 0.0f);
+	setColumn(2, 0.0f, 0.0f, 1.0f);
+	setColumn(3, t);
 }
 
 /**
@@ -785,7 +785,7 @@ void Matrixf::makeTR(Vector3f& t, Vector3f& r)
 	mMatrix.structView.zy = cx * sz * sy - sx * cz;
 	mMatrix.structView.zz = cx * cy;
 
-	setBasis(3, t);
+	setColumn(3, t);
 
 	/*
 	stwu     r1, -0x50(r1)
@@ -990,7 +990,7 @@ void Matrixf::makeTQ(Vector3f& t, Quat& q)
 	mMatrix.structView.yz = dumb + x * y;
 	mMatrix.structView.zz = invy - zz;
 
-	setBasis(3, t);
+	setColumn(3, t);
 	/*
 	stwu     r1, -0x20(r1)
 	stfd     f31, 0x10(r1)
@@ -1079,7 +1079,7 @@ void Matrixf::makeQ(Quat& q)
 	mMatrix.structView.yz = wz + x * y;
 	mMatrix.structView.zz = invy - zz;
 
-	setBasis(3, 0.0f, 0.0f, 0.0f);
+	setColumn(3, 0.0f, 0.0f, 0.0f);
 	/*
 	stwu     r1, -0x20(r1)
 	stfd     f31, 0x10(r1)

@@ -1457,7 +1457,7 @@ void PelletAppearState::exec(Pellet* pelt)
 		} else {
 			if (!mEfxMade) {
 				Vector3f translation;
-				pelt->mBaseTrMatrix.getBasis(3, translation);
+				pelt->mBaseTrMatrix.getColumn(3, translation);
 				efx::TTsuyuGrowon growOnFX;
 				efx::Arg arg(translation);
 				growOnFX.create(&arg);

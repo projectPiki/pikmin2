@@ -474,9 +474,9 @@ void Item::makeTrMatrix()
 			Vector3f zVec = cross(yVec, xAxis);
 			_normalise2(zVec);
 
-			mBaseTrMatrix.setBasis(0, xVec);
-			mBaseTrMatrix.setBasis(1, yVec);
-			mBaseTrMatrix.setBasis(2, zVec);
+			mBaseTrMatrix.setColumn(0, xVec);
+			mBaseTrMatrix.setColumn(1, yVec);
+			mBaseTrMatrix.setColumn(2, zVec);
 			mBaseTrMatrix.setTranslation(mPosition);
 		}
 	} else {

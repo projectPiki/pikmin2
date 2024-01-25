@@ -1122,7 +1122,7 @@ void Navi::platCallback(PlatEvent& plat)
 	Creature* obj = plat.mObj;
 	if (plat.mInstance->mId.match('elec', '*')) {
 		if (!playData->mOlimarData->hasItem(OlimarData::ODII_DreamMaterial)) {
-			Vector3f origin = plat.mInstance->mMatrix->getBasis(2);
+			Vector3f origin = plat.mInstance->mMatrix->getColumn(2);
 			Vector3f objPos = obj->getPosition();
 			if (((mPosition.x - objPos.x) * origin.x + ((mPosition.y - objPos.y) * origin.y) + (mPosition.z - objPos.z) * origin.z)
 			    < 0.0f) {
@@ -1590,10 +1590,10 @@ void Navi::updateCursor()
 
 	Matrixf mtx;
 
-	mtx.setBasis(0, xVec);
-	mtx.setBasis(1, yVec);
-	mtx.setBasis(2, zVec);
-	mtx.setBasis(3, whistlePos);
+	mtx.setColumn(0, xVec);
+	mtx.setColumn(1, yVec);
+	mtx.setColumn(2, zVec);
+	mtx.setColumn(3, whistlePos);
 
 	PSMTXCopy(mtx.mMatrix.mtxView, mMarkerModel->mJ3dModel->mPosMtx);
 	PSMTXCopy(mtx.mMatrix.mtxView, mCursorModel->mJ3dModel->mPosMtx);

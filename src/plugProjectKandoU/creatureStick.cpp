@@ -254,12 +254,12 @@ void Creature::updateStick(Vector3f& pos)
 				mStuckCollPart->calcPoseMatrix(rotate, mBaseTrMatrix);
 
 				if (isPiki()) {
-					scaleMatrix2(mBaseTrMatrix, mScale);
+					mBaseTrMatrix *= mScale;
 				}
 			} else {
 				mStuckCollPart->calcPoseMatrix(pos, mBaseTrMatrix);
 				if (isPiki()) {
-					scaleMatrix2(mBaseTrMatrix, mScale);
+					mBaseTrMatrix *= mScale;
 				}
 			}
 

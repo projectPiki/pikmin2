@@ -1156,7 +1156,7 @@ void Obj::createDisAppearEffect()
 void Obj::createBridgeEffect()
 {
 	Matrixf* mat = mModel->getJoint("kamujnt")->getWorldMatrix();
-	Vector3f pos = mat->getBasis(3);
+	Vector3f pos = mat->getColumn(3);
 	efx::Arg fxArg(pos);
 	efx::TYoroiEat eatFX;
 

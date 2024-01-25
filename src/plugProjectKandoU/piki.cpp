@@ -1251,7 +1251,7 @@ void Piki::doColorChange()
 	}
 
 	mLeafStemOffset = Vector3f(5.0f, 0.0f, 0.0f);
-	MatrixMultiplyVec(worldMat, mLeafStemOffset);
+	mLeafStemOffset = worldMat->mtxMult(mLeafStemOffset);
 
 	happa1->getWorldMatrix()->getTranslation(mLeafStemPosition);
 }

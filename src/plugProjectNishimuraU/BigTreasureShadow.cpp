@@ -147,7 +147,7 @@ void BigTreasureShadowMgr::update()
 	parm.mPosition = mObj->getTraceCentrePosition();
 	parm.mRotation = Vector3f(0.5f, 3.0f, 0.5f);
 	parm.mRotation.normalise();
-	*mKosiPosition = mBodyMatrix->getBasis(3);
+	*mKosiPosition = mBodyMatrix->getColumn(3);
 	mKosiPosition->y += -20.0f;
 
 	f32 p1 = 5.0f * mObj->mShadowScale;
@@ -241,7 +241,7 @@ void BigTreasureShadowMgr::updateTreasureShadow(JointShadowParm& parm)
 				mRootNode->add(mTreasureShadowNodes[i]);
 			}
 
-			Vector3f treasurePos = getTreasureMatrix(i)->getBasis(3);
+			Vector3f treasurePos = getTreasureMatrix(i)->getColumn(3);
 			mTreasureShadowNodes[i]->makeShadowSRT(parm, treasurePos);
 
 		} else if (mTreasureShadowNodes[i]->mParent) {
@@ -262,9 +262,9 @@ void BigTreasureShadowMgr::updateHandShadow(JointShadowParm& parm)
 
 	for (int i = 0; i < 2; i++) {
 		parm.mShadowScale = 4.0f * mObj->mShadowScale;
-		Vector3f pos1     = getArmMatrices(i)[0]->getBasis(3);
-		Vector3f pos2     = getArmMatrices(i)[1]->getBasis(3);
-		Vector3f pos3     = getArmMatrices(i)[2]->getBasis(3);
+		Vector3f pos1     = getArmMatrices(i)[0]->getColumn(3);
+		Vector3f pos2     = getArmMatrices(i)[1]->getColumn(3);
+		Vector3f pos3     = getArmMatrices(i)[2]->getColumn(3);
 		Vector3f pos4     = pos3;
 		Vector3f pos5     = pos3;
 
@@ -273,8 +273,8 @@ void BigTreasureShadowMgr::updateHandShadow(JointShadowParm& parm)
 
 		Vector3f xVec, yVec;
 
-		getArmMatrices(i)[2]->getBasis(0, xVec);
-		getArmMatrices(i)[2]->getBasis(1, yVec);
+		getArmMatrices(i)[2]->getColumn(0, xVec);
+		getArmMatrices(i)[2]->getColumn(1, yVec);
 
 		parm.mShadowScale = 3.0f * mObj->mShadowScale;
 
@@ -530,14 +530,14 @@ void BigTreasureShadowMgr::updateAntennaShadow(JointShadowParm& parm)
 	for (int i = 0; i < 2; i++) {
 		parm.mShadowScale = 5.0f * mObj->mShadowScale;
 
-		Vector3f pos1 = getAntennaMatrices(i)[0]->getBasis(3);
-		Vector3f pos2 = getAntennaMatrices(i)[1]->getBasis(3);
+		Vector3f pos1 = getAntennaMatrices(i)[0]->getColumn(3);
+		Vector3f pos2 = getAntennaMatrices(i)[1]->getColumn(3);
 
 		mAntennaTubeNodes[i][0]->makeShadowSRT(parm, pos1, pos2);
 
 		Vector3f xVec1, yVec1;
-		getAntennaMatrices(i)[1]->getBasis(0, xVec1);
-		getAntennaMatrices(i)[1]->getBasis(1, yVec1);
+		getAntennaMatrices(i)[1]->getColumn(0, xVec1);
+		getAntennaMatrices(i)[1]->getColumn(1, yVec1);
 
 		parm.mShadowScale = 4.0f * mObj->mShadowScale;
 

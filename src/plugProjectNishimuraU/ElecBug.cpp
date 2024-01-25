@@ -87,7 +87,7 @@ void Obj::setFSM(FSM* fsm)
 void Obj::getShadowParam(ShadowParam& param)
 {
 	Matrixf* bodyJointMtx = mModel->getJoint("body")->getWorldMatrix();
-	param.mPosition       = bodyJointMtx->getBasis(3);
+	param.mPosition       = bodyJointMtx->getColumn(3);
 	param.mPosition.y -= 5.0f;
 	param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 	param.mBoundingSphere.mRadius   = 15.0f;

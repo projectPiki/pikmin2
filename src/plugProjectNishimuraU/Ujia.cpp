@@ -76,7 +76,7 @@ void Obj::setFSM(FSM* fsm)
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
-	shadowParam.mPosition = mModel->getJoint("kosijnt")->getWorldMatrix()->getBasis(3);
+	shadowParam.mPosition = mModel->getJoint("kosijnt")->getWorldMatrix()->getColumn(3);
 	shadowParam.mPosition.y -= 2.5f;
 	shadowParam.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 	if (isEvent(1, EB2_Earthquake)) {
@@ -1022,7 +1022,7 @@ void Obj::createDisAppearEffect()
  */
 void Obj::createBridgeEffect()
 {
-	Vector3f fxPos = mModel->getJoint("kamujnt")->getWorldMatrix()->getBasis(3);
+	Vector3f fxPos = mModel->getJoint("kamujnt")->getWorldMatrix()->getColumn(3);
 	efx::Arg fxArg(fxPos);
 	efx::TUjinkoEat eatFX;
 	eatFX.create(&fxArg);

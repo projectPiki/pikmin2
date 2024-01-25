@@ -4002,7 +4002,7 @@ void BlackMan::Obj::jointMtxCalc(int jointIdx)
 
 	Vector2f yScale(0.0f, val);
 	Vector3f newPos  = tyreMat->getScaledTranslation(yScale);
-	Vector3f handPos = handMat->getBasis(3);
+	Vector3f handPos = handMat->getColumn(3);
 	Vector3f diff    = newPos - handPos; // f31, f30, f29
 	handMat->setTranslation(newPos);
 
@@ -4043,7 +4043,7 @@ void BlackMan::Obj::jointMtxCalc(int jointIdx)
 			vec2.x = vec3.x;
 			vec2.z = vec3.z;
 		} else {
-			Vector3f tyreMatPos = tyreMat->getBasis(3);
+			Vector3f tyreMatPos = tyreMat->getColumn(3);
 			Vector3f tyrePos    = mTyre->mTyrePositions[jointIdx];
 			vec2                = vec3 + (tyreMatPos - tyrePos);
 		}
@@ -4477,9 +4477,9 @@ void BlackMan::Obj::bodyMtxCalc()
 
 	char* tyreJoints[2] = { "tyreFL", "TyreFR" };
 	if (mTyre->mCurrentRotation2 > 0.0f) {
-		pos = mTyre->mModel->getJoint(tyreJoints[0])->getWorldMatrix()->getBasis(3);
+		pos = mTyre->mModel->getJoint(tyreJoints[0])->getWorldMatrix()->getColumn(3);
 	} else {
-		pos = mTyre->mModel->getJoint(tyreJoints[1])->getWorldMatrix()->getBasis(3);
+		pos = mTyre->mModel->getJoint(tyreJoints[1])->getWorldMatrix()->getColumn(3);
 	}
 
 	pos -= mPosition;

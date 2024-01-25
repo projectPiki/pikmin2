@@ -305,7 +305,7 @@ void Obj::doEndMovie() { effectDrawOn(); }
  * @note Address: 0x802DC4BC
  * @note Size: 0x50
  */
-void Obj::getThrowupItemPosition(Vector3f* position) { *position = mModel->getJoint("kosi")->getWorldMatrix()->getBasis(3); }
+void Obj::getThrowupItemPosition(Vector3f* position) { *position = mModel->getJoint("kosi")->getWorldMatrix()->getColumn(3); }
 
 /**
  * @note Address: 0x802DC50C
@@ -1859,7 +1859,7 @@ void Obj::createDeadBombLegEffect(int idx)
  */
 void Obj::createDeadBombBodyEffect()
 {
-	Vector3f effectPos = mModel->getJoint("kosi")->getWorldMatrix()->getBasis(3);
+	Vector3f effectPos = mModel->getJoint("kosi")->getWorldMatrix()->getColumn(3);
 	efx::Arg fxArg(effectPos);
 	efx::TOootaBombBody bombBodyFX;
 	bombBodyFX.create(&fxArg);

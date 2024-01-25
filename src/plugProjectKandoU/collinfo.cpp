@@ -1097,7 +1097,7 @@ void CollPart::calcPoseMatrix(Vector3f& input, Matrixf& poseMatrix)
 	case COLLTYPE_SPHERE:
 		Matrixf mtx;
 		makeMatrixTo(mtx);
-		Vector3f pos  = mtx.getBasis(3);
+		Vector3f pos  = mtx.getColumn(3);
 		Vector3f diff = pos - input;
 		f32 len       = diff.normalise();
 		if (len == 0.0f) {
@@ -1106,14 +1106,14 @@ void CollPart::calcPoseMatrix(Vector3f& input, Matrixf& poseMatrix)
 		Vector3f zAxis(0.0f, 0.0f, 1.0f);
 		Vector3f crossProd = cross(diff, zAxis);
 		crossProd.normalise();
-		poseMatrix.setBasis(0, crossProd);
+		poseMatrix.setColumn(0, crossProd);
 		f32 zVal = diff.y * crossProd.x;
 		Vector3f otherVec;
 		otherVec.x = diff.y * crossProd.z - diff.z * crossProd.y;
 		otherVec.y = diff.z * crossProd.x - diff.x * crossProd.z;
 		otherVec.z = diff.x * crossProd.y - diff.y * crossProd.x;
-		poseMatrix.setBasis(1, otherVec);
-		poseMatrix.setBasis(2, diff);
+		poseMatrix.setColumn(1, otherVec);
+		poseMatrix.setColumn(2, diff);
 		break;
 
 	case COLLTYPE_TUBETREE:
@@ -1151,9 +1151,9 @@ void CollPart::calcPoseMatrix(Vector3f& input, Matrixf& poseMatrix)
 		axisCross.normalise();
 		Vector3f thirdAxis = cross(axisCross, axis);
 		thirdAxis.normalise();
-		poseMatrix.setBasis(0, axisCross);
-		poseMatrix.setBasis(1, axis);
-		poseMatrix.setBasis(2, thirdAxis);
+		poseMatrix.setColumn(0, axisCross);
+		poseMatrix.setColumn(1, axis);
+		poseMatrix.setColumn(2, thirdAxis);
 		break;
 	}
 	/*

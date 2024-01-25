@@ -267,7 +267,7 @@ void Obj::doEndMovie() { effectDrawOn(); }
  * @note Address: 0x802C0484
  * @note Size: 0x50
  */
-void Obj::getThrowupItemPosition(Vector3f* position) { *position = mModel->getJoint("kosi")->getWorldMatrix()->getBasis(3); }
+void Obj::getThrowupItemPosition(Vector3f* position) { *position = mModel->getJoint("kosi")->getWorldMatrix()->getColumn(3); }
 
 /**
  * @note Address: 0x802C04D4
@@ -1093,7 +1093,7 @@ void Obj::finishChimneyEffect()
  */
 void Obj::createShotGunOpenEffect()
 {
-	Vector3f effectPos = mModel->getJoint("kosi")->getWorldMatrix()->getBasis(3);
+	Vector3f effectPos = mModel->getJoint("kosi")->getWorldMatrix()->getColumn(3);
 
 	efx::Arg fxArg(effectPos);
 	efx::THdamaOpen openFX;

@@ -94,7 +94,7 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Obj::getShadowParam(ShadowParam& param)
 {
-	mKoshiJoint->getWorldMatrix()->getBasis(3, param.mPosition);
+	mKoshiJoint->getWorldMatrix()->getColumn(3, param.mPosition);
 	param.mPosition.y               = mPosition.y + 2.0f;
 	param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 	param.mBoundingSphere.mRadius   = 20.0f;
