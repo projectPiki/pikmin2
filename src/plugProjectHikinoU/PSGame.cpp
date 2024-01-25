@@ -55,7 +55,7 @@ ConductorList::~ConductorList()
 {
 	for (u8 i = 0; i < mCaveCount; i++) {
 		// works, but theres something weird going on here
-		delete[](&mCaveInfos->mFileNames)[i * 2];
+		delete[] (&mCaveInfos->mFileNames)[i * 2];
 	}
 
 	delete[] mCaveInfos;
@@ -327,17 +327,17 @@ CameraMgr::CameraMgr()
 {
 	mIsSpecial[0]        = false;
 	mIsSpecial[1]        = false;
-	mDistanceNear        = 61.66f;
-	mDistanceMiddle      = 131.25f;
-	mDistanceFar         = 215.04f;
-	mDistanceFarthest    = 330.18f;
-	_28                  = 1.0f;
-	_2C                  = 0.8f;
-	_30                  = 0.71f;
-	_34                  = 0.62f;
+	mMinDistance         = 61.66f;
+	mMidDistance         = 131.25f;
+	mFarDistance         = 215.04f;
+	mMaxDistance         = 330.18f;
+	mMinDistVolume       = 1.0f;
+	mMidVolume           = 0.8f;
+	mFarVolume           = 0.71f;
+	mMaxDistVolume       = 0.62f;
 	mZoomCamVolumeMod    = 0.45f;
-	mCamDistVolume[0]    = mDistanceMiddle;
-	mCamDistVolume[1]    = mDistanceMiddle;
+	mCamDistVolume[0]    = mMidDistance;
+	mCamDistVolume[1]    = mMidDistance;
 	mDistVolumeFactor[0] = 1.0f;
 	mDistVolumeFactor[1] = 1.0f;
 }
@@ -357,6 +357,7 @@ f32 CameraMgr::getBgmCamVol(u8 id)
 	if (mIsSpecial[id]) {
 		return mZoomCamVolumeMod;
 	}
+
 	return 1.0f;
 }
 
@@ -364,10 +365,10 @@ f32 CameraMgr::getBgmCamVol(u8 id)
  * @note Address: 0x80334DF4
  * @note Size: 0x4C
  */
-void CameraMgr::update(u8 id, f32 base)
+void CameraMgr::update(u8 id, f32 distance)
 {
-	f32 dist              = getVol_DistBetweenCamAndLookat(base);
-	mCamDistVolume[id]    = dist;
+	f32 volume            = getVol_DistBetweenCamAndLookat(distance);
+	mCamDistVolume[id]    = volume;
 	mDistVolumeFactor[id] = 1.0f;
 }
 
@@ -383,12 +384,12 @@ f32 CameraMgr::getCurrentCamDistVol(u8 id) { return mCamDistVolume[id]; }
  */
 f32 CameraMgr::getVol_DistBetweenCamAndLookat(f32 dist)
 {
-	if (dist <= mDistanceMiddle) {
-		return JALCalc::linearTransform(dist, mDistanceNear, mDistanceMiddle, _28, _2C, false);
-	} else if (dist <= mDistanceFar) {
-		return JALCalc::linearTransform(dist, mDistanceMiddle, mDistanceFar, _2C, _30, false);
+	if (dist <= mMidDistance) {
+		return JALCalc::linearTransform(dist, mMinDistance, mMidDistance, mMinDistVolume, mMidVolume, false);
+	} else if (dist <= mFarDistance) {
+		return JALCalc::linearTransform(dist, mMidDistance, mFarDistance, mMidVolume, mFarVolume, false);
 	} else {
-		return JALCalc::linearTransform(dist, mDistanceFar, mDistanceFarthest, _30, _34, false);
+		return JALCalc::linearTransform(dist, mFarDistance, mMaxDistance, mFarVolume, mMaxDistVolume, false);
 	}
 }
 
@@ -696,9 +697,9 @@ PSSystem::Scene* PikSceneMgr::newAndSetCurrentScene(SceneInfo& info)
  * @note Address: 0x80335F4C
  * @note Size: 0x98
  */
-PSSystem::BgmSeq* PikSceneMgr::newBgmSeq(char const* name, JAInter::SoundInfo& info)
+PSSystem::BgmSeq* PikSceneMgr::newBgmSeq(char const* bmsFilePath, JAInter::SoundInfo& info)
 {
-	PSSystem::BgmSeq* seq = new PSSystem::BgmSeq(name, info);
+	PSSystem::BgmSeq* seq = new PSSystem::BgmSeq(bmsFilePath, info);
 	P2ASSERTLINE(1223, seq);
 	seq->init();
 	return seq;

@@ -14,7 +14,19 @@ enum CurveSign {
 extern const f32 cEqualCSlope;
 extern const f32 cEqualPSlope;
 
+/**
+ * Linearly transforms a value from one range to another.
+ *
+ * @param x The value to be transformed.
+ * @param xStart The start of the input range.
+ * @param xEnd The end of the input range.
+ * @param yStart The start of the output range.
+ * @param yEnd The end of the output range.
+ * @param unbounded If true, the transformed value can exceed the output range.
+ * @return The transformed value.
+ */
 f32 linearTransform(f32 x, f32 xStart, f32 xEnd, f32 yStart, f32 yEnd, bool doQuickCalc);
+
 f32 getParamByExp(f32 x, f32 xStart, f32 xEnd, f32 y, f32 yStart, f32 yEnd, CurveSign curve);
 f32 getRandom(f32, f32, f32);
 f32 getRandom_0_1();

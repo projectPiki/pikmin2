@@ -484,18 +484,18 @@ void RandId::playSystemSe(u32 soundID, JAISound** sound, u32 range, u32 flag)
  */
 void EnvSe_Pan::setPanAndDolby(JAISound* sound)
 {
-	sound->setPan(mPanDolby[0], 0, SOUNDPARAM_Unk0);
-	sound->setDolby(mPanDolby[1], 0, SOUNDPARAM_Unk0);
+	sound->setPan(mPanDolby[PD_Pan], 0, SOUNDPARAM_Unk0);
+	sound->setDolby(mPanDolby[PD_Dolby], 0, SOUNDPARAM_Unk0);
 }
 
 /**
  * @note Address: 0x8033FEB4
  * @note Size: 0x60
  */
-EnvSe_Perspective::EnvSe_Perspective(u32 soundID, f32 volume, Vec a3)
+EnvSe_Perspective::EnvSe_Perspective(u32 soundID, f32 volume, Vec pos)
     : EnvSeBase(soundID, volume)
 {
-	mVec = a3;
+	mPosition = pos;
 }
 
 /**
@@ -504,7 +504,7 @@ EnvSe_Perspective::EnvSe_Perspective(u32 soundID, f32 volume, Vec a3)
  */
 JAISound* EnvSe_Perspective::play()
 {
-	PSSystem::spSysIF->startSoundVecT(mSoundID, &mSound, &mVec, 0, 0, 4);
+	PSSystem::spSysIF->startSoundVecT(mSoundID, &mSound, &mPosition, 0, 0, 4);
 	return mSound;
 }
 
@@ -954,9 +954,9 @@ lbl_803405AC:
  * @note Address: 0x803405FC
  * @note Size: 0xAC
  */
-EnvSe_Perspective* Builder_EvnSe_Perspective::newSeObj(u32 soundID, f32 volume, Vec vec)
+EnvSe_Perspective* Builder_EvnSe_Perspective::newSeObj(u32 soundID, f32 volume, Vec pos)
 {
-	return new EnvSe_Perspective(soundID, volume, vec);
+	return new EnvSe_Perspective(soundID, volume, pos);
 }
 
 /**

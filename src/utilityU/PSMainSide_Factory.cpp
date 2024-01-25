@@ -361,14 +361,14 @@ JAISound* EnvSe_Perspective_AvoidY::play()
 	}
 	Scene_Game* scene = PSMGetGameScene();
 	if (hasNavi && scene->mPersEnvMgr && scene->mPersEnvMgr->playOk(this)) {
-		mVec.y       = _48 + navi->getPosition().y;
+		mPosition.y  = _48 + navi->getPosition().y;
 		Vector3f pos = navi->getPosition();
-		f32 x        = mVec.x - pos.x;
-		f32 z        = mVec.z - pos.z;
+		f32 x        = mPosition.x - pos.x;
+		f32 z        = mPosition.z - pos.z;
 		f32 dist     = (x * x) + (z * z);
 		dist         = _sqrtf(dist);
-		int players  = PSSystem::SingletonBase<ObjCalcBase>::getInstance()->getPlayerNo(mVec);
-		PSSystem::spSysIF->startSoundVecT(mSoundID, &mSound, &mVec, 0, 0, players);
+		int players  = PSSystem::SingletonBase<ObjCalcBase>::getInstance()->getPlayerNo(mPosition);
+		PSSystem::spSysIF->startSoundVecT(mSoundID, &mSound, &mPosition, 0, 0, players);
 		f32 calc;
 		if (dist < mInfo._08) {
 			calc = JALCalc::linearTransform(dist, mInfo._04, mInfo._08, 0.0f, mInfo._0C, true);
@@ -599,10 +599,10 @@ SceneMgr::SceneMgr()
  * @note Address: 0x8045A200
  * @note Size: 0xD8
  */
-PSSystem::BgmSeq* SceneMgr::newMainBgm(const char* name, JAInter::SoundInfo& info)
+PSSystem::BgmSeq* SceneMgr::newMainBgm(const char* bmsFilePath, JAInter::SoundInfo& info)
 {
 	DirectorMgr_Scene* director = new DirectorMgr_Scene(nullptr, 8);
-	PSSystem::JumpBgmSeq* seq   = new PSSystem::JumpBgmSeq(name, info, director);
+	PSSystem::JumpBgmSeq* seq   = new PSSystem::JumpBgmSeq(bmsFilePath, info, director);
 
 	P2ASSERTLINE(349, seq);
 	seq->init();
@@ -3002,11 +3002,11 @@ EnvSeObjBuilder::EnvSeObjBuilder(JGeometry::TBox3f p1)
  * @note Address: 0x8045C12C
  * @note Size: 0x164
  */
-PSSystem::BgmSeq* SceneMgr::newAutoBgm(const char* bmsname, const char* cndname, JAInter::SoundInfo& info, JADUtility::AccessMode mode,
-                                       PSGame::SceneInfo& sceneinfo, PSSystem::DirectorMgrBase* mgr)
+PSSystem::BgmSeq* SceneMgr::newAutoBgm(const char* conductorFileName, const char* bmsFileName, JAInter::SoundInfo& soundInfo,
+                                       JADUtility::AccessMode mode, PSGame::SceneInfo& sceneinfo, PSSystem::DirectorMgrBase* directorMgr)
 {
-	DirectorMgr_Scene* scene = new DirectorMgr_Scene_AutoBgm(mgr, 8);
-	PSAutoBgm::AutoBgm* bgm  = new PSAutoBgm::AutoBgm(bmsname, cndname, info, mode, mgr);
+	DirectorMgr_Scene* scene = new DirectorMgr_Scene_AutoBgm(directorMgr, 8);
+	PSAutoBgm::AutoBgm* bgm  = new PSAutoBgm::AutoBgm(conductorFileName, bmsFileName, soundInfo, mode, directorMgr);
 	P2ASSERTLINE(1015, bgm);
 	bgm->init();
 	scene->initTrackMap(*bgm);
