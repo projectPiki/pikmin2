@@ -653,9 +653,9 @@ void Quat::set(f32 a, f32 b, f32 c, f32 d)
  * @note Address: N/A
  * @note Size: 0x20
  */
-void Quat::set(f32, Vector3f&)
+void Quat::set(f32 w, Vector3f& xyz)
 {
-	// UNUSED FUNCTION
+	set(w, xyz.x, xyz.y, xyz.z);
 }
 
 /**
