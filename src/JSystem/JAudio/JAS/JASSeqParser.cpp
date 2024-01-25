@@ -78,9 +78,8 @@ int JASSeqParser::cmdRet(JASTrack* track, u32* args)
 		if (!ctrl->mLoopIndex) {
 			looped = false;
 		} else {
-			looped = true;
-			ctrl->mLoopIndex--;
-			ctrl->mCurrentFilePtr = ctrl->mLoopStartPositions[ctrl->mLoopIndex];
+			looped                = true;
+			ctrl->mCurrentFilePtr = ctrl->mLoopStartPositions[--ctrl->mLoopIndex];
 		}
 
 		if (!looped) {
@@ -89,49 +88,6 @@ int JASSeqParser::cmdRet(JASTrack* track, u32* args)
 	}
 
 	return 0;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lwz      r0, 0(r5)
-	clrlwi   r5, r0, 0x18
-	bl       conditionCheck__12JASSeqParserFP8JASTrackUc
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8009CCEC
-	addi     r4, r31, 0xc
-	lwz      r3, 0x18(r31)
-	cmplwi   r3, 0
-	bne      lbl_8009CCC0
-	li       r5, 0
-	b        lbl_8009CCDC
-
-lbl_8009CCC0:
-	addi     r3, r3, -1
-	li       r5, 1
-	slwi     r0, r3, 2
-	stw      r3, 0xc(r4)
-	add      r3, r4, r0
-	lwz      r0, 0x10(r3)
-	stw      r0, 4(r4)
-
-lbl_8009CCDC:
-	clrlwi.  r0, r5, 0x18
-	bne      lbl_8009CCEC
-	li       r3, 3
-	b        lbl_8009CCF0
-
-lbl_8009CCEC:
-	li       r3, 0
-
-lbl_8009CCF0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -144,8 +100,8 @@ int JASSeqParser::cmdJmp(JASTrack* track, u32* args)
 	u8 flag          = *ctrl->mCurrentFilePtr++;
 	bool usetrackptr = false;
 	int trackptr     = 0;
-
 	u32 data;
+
 	if (flag & 0x80) {
 		u8 cData = *ctrl->mCurrentFilePtr++;
 
@@ -357,28 +313,9 @@ int JASSeqParser::cmdParentWritePort(JASTrack* track, u32* args)
  */
 int JASSeqParser::cmdChildWritePort(JASTrack* track, u32* args)
 {
-	u8 a1 = args[0] & 0xf;
-	track->mChildList[(u16)args[0] & 0x3c]->writePortAppDirect(a1, args[1]);
+	u8 a1 = args[0] & 0xF;
+	track->mChildList[(args[0] / 16) & 0xF]->writePortAppDirect(a1, args[1]);
 	return 0;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r6, 0(r5)
-	lwz      r0, 4(r5)
-	rlwinm   r3, r6, 0x1e, 0x1a, 0x1d
-	clrlwi   r5, r6, 0x1c
-	add      r3, r4, r3
-	lwz      r3, 0x2fc(r3)
-	mr       r4, r5
-	clrlwi   r5, r0, 0x10
-	bl       writePortAppDirect__8JASTrackFUlUs
-	lwz      r0, 0x14(r1)
-	li       r3, 0
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -399,14 +336,6 @@ int JASSeqParser::cmdCheckPortExport(JASTrack* track, u32* args)
 {
 	track->mRegisterParam._00[3] = track->mTrackPort._10[args[0]];
 	return 0;
-	/*
-	lwz      r0, 0(r5)
-	li       r3, 0
-	add      r5, r4, r0
-	lbz      r0, 0x64(r5)
-	sth      r0, 0x26e(r4)
-	blr
-	*/
 }
 
 /**
@@ -603,30 +532,7 @@ int JASSeqParser::cmdRetI(JASTrack* track, u32* args)
 	track->mIntrMgr._00 = 1;
 	track->mSeqCtrl.retIntr();
 	track->tryInterrupt();
-	return track->mSeqCtrl.mWaitTimer != 0;
-
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 1
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	addi     r3, r31, 0xc
-	stb      r0, 0x94(r4)
-	bl       retIntr__10JASSeqCtrlFv
-	mr       r3, r31
-	bl       tryInterrupt__8JASTrackFv
-	lwz      r3, 0x14(r31)
-	lwz      r31, 0xc(r1)
-	neg      r0, r3
-	andc     r0, r0, r3
-	srwi     r3, r0, 0x1f
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return track->mSeqCtrl.mWaitTimer > 0;
 }
 
 /**
@@ -720,23 +626,8 @@ int JASSeqParser::cmdPanPowSet(JASTrack* track, u32* args)
  */
 int JASSeqParser::cmdFIRSet(JASTrack* track, u32* args)
 {
-	track->mExtBuffer->setFirFilter((s16*)track->mSeqCtrl.mRawFilePtr + args[0]);
+	track->mExtBuffer->setFirFilter((s16*)((u32)track->mSeqCtrl.mRawFilePtr + args[0]));
 	return 0;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r6, 0xc(r4)
-	lwz      r0, 0(r5)
-	lwz      r3, 0x33c(r4)
-	add      r4, r6, r0
-	bl       setFirFilter__13JASOuterParamFPs
-	lwz      r0, 0x14(r1)
-	li       r3, 0
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -757,8 +648,8 @@ int JASSeqParser::cmdEXTSet(JASTrack* track, u32* args)
  */
 int JASSeqParser::cmdPanSwSet(JASTrack* track, u32* args)
 {
-	u8 stuff[]  = { 0, 0, 0, 1, 1, 2, 2, 0 };
-	u8 stuff2[] = { 0, 1, 2, 0, 2, 0, 2, 0 };
+	u8 stuff[]  = { 0, 0, 0, 1, 1, 2, 2 };
+	u8 stuff2[] = { 0, 1, 2, 0, 2, 0, 2 };
 
 	track->_35C                = stuff[args[0] >> 5];
 	track->_35F                = stuff2[args[0] >> 5];
@@ -775,70 +666,6 @@ int JASSeqParser::cmdPanSwSet(JASTrack* track, u32* args)
 	track->mChannelUpdater._4C = args[2] & 0x1f;
 	track->_34C |= 0x1c;
 	return 0;
-	/*
-	stwu     r1, -0x20(r1)
-	li       r3, 0
-	stw      r31, 0x1c(r1)
-	addi     r7, r1, 0x10
-	addi     r6, r1, 8
-	lwz      r31, lbl_80516D40@sda21(r2)
-	lhz      r12, lbl_80516D44@sda21(r2)
-	lbz      r11, lbl_80516D46@sda21(r2)
-	lwz      r0, 0(r5)
-	lwz      r10, lbl_80516D48@sda21(r2)
-	lhz      r9, lbl_80516D4C@sda21(r2)
-	srwi     r0, r0, 5
-	lbz      r8, lbl_80516D4E@sda21(r2)
-	stw      r31, 0x10(r1)
-	sth      r12, 0x14(r1)
-	stb      r11, 0x16(r1)
-	lbzx     r0, r7, r0
-	stw      r10, 8(r1)
-	stb      r0, 0x35c(r4)
-	lwz      r0, 0(r5)
-	sth      r9, 0xc(r1)
-	srwi     r0, r0, 5
-	stb      r8, 0xe(r1)
-	lbzx     r0, r6, r0
-	stb      r0, 0x35f(r4)
-	lwz      r0, 0(r5)
-	clrlwi   r0, r0, 0x1b
-	stb      r0, 0x13e(r4)
-	lwz      r0, 0x34c(r4)
-	ori      r0, r0, 0x1c
-	stw      r0, 0x34c(r4)
-	lwz      r0, 4(r5)
-	srwi     r0, r0, 5
-	lbzx     r0, r7, r0
-	stb      r0, 0x35d(r4)
-	lwz      r0, 4(r5)
-	srwi     r0, r0, 5
-	lbzx     r0, r6, r0
-	stb      r0, 0x360(r4)
-	lwz      r0, 4(r5)
-	clrlwi   r0, r0, 0x1b
-	stb      r0, 0x13f(r4)
-	lwz      r0, 0x34c(r4)
-	ori      r0, r0, 0x1c
-	stw      r0, 0x34c(r4)
-	lwz      r0, 8(r5)
-	srwi     r0, r0, 5
-	lbzx     r0, r7, r0
-	stb      r0, 0x35e(r4)
-	lwz      r0, 8(r5)
-	srwi     r0, r0, 5
-	lbzx     r0, r6, r0
-	stb      r0, 0x361(r4)
-	lwz      r0, 8(r5)
-	clrlwi   r0, r0, 0x1b
-	stb      r0, 0x140(r4)
-	lwz      r0, 0x34c(r4)
-	ori      r0, r0, 0x1c
-	stw      r0, 0x34c(r4)
-	lwz      r31, 0x1c(r1)
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -847,17 +674,8 @@ int JASSeqParser::cmdPanSwSet(JASTrack* track, u32* args)
  */
 int JASSeqParser::cmdOscRoute(JASTrack* track, u32* args)
 {
-	track->_2D8[args[0] & 0x3c] = args[0] & 0xf;
+	track->_2D8[(args[0] / 16) & 0xF] = args[0] & 0xF;
 	return 0;
-	/*
-	lwz      r5, 0(r5)
-	li       r3, 0
-	rlwinm   r0, r5, 0x1e, 0x1a, 0x1d
-	clrlwi   r5, r5, 0x1c
-	add      r4, r4, r0
-	stw      r5, 0x2d8(r4)
-	blr
-	*/
 }
 
 /**
@@ -866,28 +684,10 @@ int JASSeqParser::cmdOscRoute(JASTrack* track, u32* args)
  */
 int JASSeqParser::cmdVibDepth(JASTrack* track, u32* args)
 {
-	track->mVibrate.mDepth = ((u8)args[0] << 8 | (u8)args[0] << 1) / 393204.0f;
+	f32 depth = ((u8)args[0] << 8 | (u8)args[0] << 1);
+	depth /= 393204.0f;
+	track->mVibrate.mDepth = depth;
 	return 0;
-	/*
-	stwu     r1, -0x10(r1)
-	lis      r0, 0x4330
-	lfd      f2, lbl_80516D58@sda21(r2)
-	li       r3, 0
-	lwz      r6, 0(r5)
-	stw      r0, 8(r1)
-	rlwinm   r5, r6, 8, 0x10, 0x17
-	rlwinm   r0, r6, 1, 0x17, 0x1e
-	or       r0, r5, r0
-	lfs      f0, lbl_80516D50@sda21(r2)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0xc(r1)
-	lfd      f1, 8(r1)
-	fsubs    f1, f1, f2
-	fdivs    f1, f1, f0
-	stfs     f1, 0xec(r4)
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -896,24 +696,10 @@ int JASSeqParser::cmdVibDepth(JASTrack* track, u32* args)
  */
 int JASSeqParser::cmdVibDepthMidi(JASTrack* track, u32* args)
 {
-	track->mVibrate.mDepth = (args[0]) / 393204.0f;
+	f32 depth = args[0];
+	depth /= 393204.0f;
+	track->mVibrate.mDepth = depth;
 	return 0;
-	/*
-	stwu     r1, -0x10(r1)
-	lis      r0, 0x4330
-	lfd      f2, lbl_80516D38@sda21(r2)
-	li       r3, 0
-	lwz      r5, 0(r5)
-	stw      r0, 8(r1)
-	lfs      f0, lbl_80516D50@sda21(r2)
-	stw      r5, 0xc(r1)
-	lfd      f1, 8(r1)
-	fsubs    f1, f1, f2
-	fdivs    f1, f1, f0
-	stfs     f1, 0xec(r4)
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -922,28 +708,10 @@ int JASSeqParser::cmdVibDepthMidi(JASTrack* track, u32* args)
  */
 int JASSeqParser::cmdVibPitch(JASTrack* track, u32* args)
 {
-	track->mVibrate.mPitch = u16((u8)args[0] << 8 | (u8)args[0] << 1) / 294903.0f;
+	f32 pitch = u16((u8)args[0] << 8 | (u8)args[0] << 1);
+	pitch /= 294903.0f;
+	track->mVibrate.mPitch = pitch;
 	return 0;
-	/*
-	stwu     r1, -0x10(r1)
-	lis      r0, 0x4330
-	lfd      f2, lbl_80516D38@sda21(r2)
-	li       r3, 0
-	lwz      r6, 0(r5)
-	stw      r0, 8(r1)
-	rlwinm   r5, r6, 8, 0x10, 0x17
-	rlwinm   r0, r6, 1, 0x17, 0x1e
-	or       r0, r5, r0
-	lfs      f0, lbl_80516D60@sda21(r2)
-	clrlwi   r0, r0, 0x10
-	stw      r0, 0xc(r1)
-	lfd      f1, 8(r1)
-	fsubs    f1, f1, f2
-	fdivs    f1, f1, f0
-	stfs     f1, 0xf0(r4)
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -980,91 +748,28 @@ int JASSeqParser::cmdIIRSet(JASTrack* track, u32* args)
  */
 int JASSeqParser::cmdIIRCutOff(JASTrack* track, u32* args)
 {
-	u8 arg                                 = (u8)args[0] * 8;
-	track->mTimedParam.mMoveParams[12]._04 = JASPlayer::CUTOFF_TO_IIR_TABLE[(int)arg] / 32768.0f;
+	// u16 arg                                 = ((u8)args[0]) * 4;
+	s16* table                             = &JASPlayer::CUTOFF_TO_IIR_TABLE[((u8)args[0]) * 4];
+	track->mTimedParam.mMoveParams[12]._04 = table[0] / 32767.0f;
 	track->mTimedParam.mMoveParams[12]._00 = track->mTimedParam.mMoveParams[12]._04;
 	track->mTimedParam.mMoveParams[12]._0C = 0.0f;
 	track->mTimedParam.mMoveParams[12]._08 = 1.0f;
 
-	track->mTimedParam.mMoveParams[13]._04 = JASPlayer::CUTOFF_TO_IIR_TABLE[(int)arg + 1] / 32768.0f;
+	track->mTimedParam.mMoveParams[13]._04 = table[1] / 32767.0f;
 	track->mTimedParam.mMoveParams[13]._00 = track->mTimedParam.mMoveParams[13]._04;
 	track->mTimedParam.mMoveParams[13]._0C = 0.0f;
 	track->mTimedParam.mMoveParams[13]._08 = 1.0f;
 
-	track->mTimedParam.mMoveParams[14]._04 = JASPlayer::CUTOFF_TO_IIR_TABLE[(int)arg + 2] / 32768.0f;
+	track->mTimedParam.mMoveParams[14]._04 = table[2] / 32767.0f;
 	track->mTimedParam.mMoveParams[14]._00 = track->mTimedParam.mMoveParams[14]._04;
 	track->mTimedParam.mMoveParams[14]._0C = 0.0f;
 	track->mTimedParam.mMoveParams[14]._08 = 1.0f;
 
-	track->mTimedParam.mMoveParams[15]._04 = JASPlayer::CUTOFF_TO_IIR_TABLE[(int)arg + 3] / 32768.0f;
+	track->mTimedParam.mMoveParams[15]._04 = table[3] / 32767.0f;
 	track->mTimedParam.mMoveParams[15]._00 = track->mTimedParam.mMoveParams[15]._04;
 	track->mTimedParam.mMoveParams[15]._0C = 0.0f;
 	track->mTimedParam.mMoveParams[15]._08 = 1.0f;
 	return 0;
-	/*
-	stwu     r1, -0x30(r1)
-	lis      r0, 0x4330
-	lis      r3, CUTOFF_TO_IIR_TABLE__9JASPlayer@ha
-	lfd      f4, lbl_80516D58@sda21(r2)
-	lwz      r5, 0(r5)
-	addi     r3, r3, CUTOFF_TO_IIR_TABLE__9JASPlayer@l
-	stw      r0, 8(r1)
-	rlwinm   r5, r5, 3, 0x15, 0x1c
-	lfs      f3, lbl_80516D70@sda21(r2)
-	add      r6, r3, r5
-	lfs      f2, lbl_80516D68@sda21(r2)
-	lha      r5, 0(r6)
-	li       r3, 0
-	lfs      f1, lbl_80516D6C@sda21(r2)
-	xoris    r5, r5, 0x8000
-	stw      r0, 0x10(r1)
-	stw      r5, 0xc(r1)
-	lfd      f0, 8(r1)
-	stw      r0, 0x18(r1)
-	fsubs    f0, f0, f4
-	stw      r0, 0x20(r1)
-	fdivs    f0, f0, f3
-	stfs     f0, 0x20c(r4)
-	lfs      f0, 0x20c(r4)
-	stfs     f0, 0x208(r4)
-	stfs     f2, 0x214(r4)
-	stfs     f1, 0x210(r4)
-	lha      r0, 2(r6)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0x14(r1)
-	lfd      f0, 0x10(r1)
-	fsubs    f0, f0, f4
-	fdivs    f0, f0, f3
-	stfs     f0, 0x21c(r4)
-	lfs      f0, 0x21c(r4)
-	stfs     f0, 0x218(r4)
-	stfs     f2, 0x224(r4)
-	stfs     f1, 0x220(r4)
-	lha      r0, 4(r6)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0x1c(r1)
-	lfd      f0, 0x18(r1)
-	fsubs    f0, f0, f4
-	fdivs    f0, f0, f3
-	stfs     f0, 0x22c(r4)
-	lfs      f0, 0x22c(r4)
-	stfs     f0, 0x228(r4)
-	stfs     f2, 0x234(r4)
-	stfs     f1, 0x230(r4)
-	lha      r0, 6(r6)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0x24(r1)
-	lfd      f0, 0x20(r1)
-	fsubs    f0, f0, f4
-	fdivs    f0, f0, f3
-	stfs     f0, 0x23c(r4)
-	lfs      f0, 0x23c(r4)
-	stfs     f0, 0x238(r4)
-	stfs     f2, 0x244(r4)
-	stfs     f1, 0x240(r4)
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**

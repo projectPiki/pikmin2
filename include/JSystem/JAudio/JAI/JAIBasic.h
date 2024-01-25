@@ -54,6 +54,7 @@ struct JAIBasic {
 	static u16 setParameterSeqSync(JASTrack*, u16);
 
 	static JAIBasic* getInterface() { return msBasic; }
+	static JKRHeap* getCurrentHeap() { return msCurrentHeap; }
 
 	template <typename T>
 	void startSoundActorT(u32 id, T** handlePtr, JAInter::Actor* actor, u32 p4, u8 p5);

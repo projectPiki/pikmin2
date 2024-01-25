@@ -124,26 +124,26 @@ void init()
 		for (u32 soundScene = 0; soundScene < JAIGlobalParameter::getParamSoundSceneMax(); soundScene++) {
 			u32 sumOfCategories = 0;
 			for (u32 category = 0; category < JAIGlobalParameter::getParamSeCategoryMax(); category++) {
-				sumOfCategories += JAIBasic::msBasic->_1C[soundScene][category];
+				sumOfCategories += JAIBasic::msBasic->_1C[soundScene][category * 2];
 			}
-			if (sumOfCategories > JAIGlobalParameter::getParamSeTrackMax()) {
+			if (JAIGlobalParameter::getParamSeTrackMax() < sumOfCategories) {
 				JAIGlobalParameter::setParamSeTrackMax(sumOfCategories);
 			}
 		}
 	}
-	seRegist    = new (JAIBasic::msCurrentHeap, 0x20) LinkSound[JAIGlobalParameter::getParamSeCategoryMax()];
-	sePlaySound = new (JAIBasic::msCurrentHeap, 0x20) JAISound**[JAIGlobalParameter::getParamSeCategoryMax()];
+	seRegist    = new (JAIBasic::getCurrentHeap(), 0x20) LinkSound[JAIGlobalParameter::getParamSeCategoryMax()];
+	sePlaySound = new (JAIBasic::getCurrentHeap(), 0x20) JAISound**[JAIGlobalParameter::getParamSeCategoryMax()];
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeCategoryMax(); i++) {
 		seRegist[i].init();
 		for (u32 j = 0; j < JAIGlobalParameter::getParamSeRegistMax(); j++) {
 			seRegist[i].mFreeList->append(JAIBasic::msBasic->makeSe());
 		}
-		sePlaySound[i] = new (JAIBasic::msCurrentHeap, 0x20) JAISound*[0x10];
+		sePlaySound[i] = new (JAIBasic::getCurrentHeap(), 0x20) JAISound*[0x10];
 		for (int j = 0; j < 0x10; j++) {
 			sePlaySound[i][j] = nullptr;
 		}
 	}
-	seTrackUpdate = new (JAIBasic::msCurrentHeap, 0x20) TrackUpdate[JAIGlobalParameter::getParamSeTrackMax()];
+	seTrackUpdate = new (JAIBasic::getCurrentHeap(), 0x20) TrackUpdate[JAIGlobalParameter::getParamSeTrackMax()];
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeTrackMax(); i++) {
 		TrackUpdate* trackUpdate = seTrackUpdate + i;
 		trackUpdate->_04         = 1.0f;
@@ -154,296 +154,25 @@ void init()
 		trackUpdate->_14         = 0.0f;
 	}
 	// TODO: ???
-	new (JAIBasic::msCurrentHeap, 0x20)
+	new (JAIBasic::getCurrentHeap(), 0x20)
 	    SeParameter[JAIGlobalParameter::getParamSeCategoryMax() * JAIGlobalParameter::getParamSeRegistMax()];
-	u16** v1 = JAIBasic::msBasic->_1C;
-	if (JAIBasic::msBasic->_1C == nullptr) {
-		categoryInfoTable = new (JAIBasic::msCurrentHeap, 0x20) u16*[JAIGlobalParameter::getParamSoundSceneMax()];
+	u16** v1 = (u16**)JAIBasic::msBasic->_1C;
+	if (JAIBasic::msBasic->_1C) {
+		categoryInfoTable = v1;
+	} else {
+		categoryInfoTable = new (JAIBasic::getCurrentHeap(), 0x20) u16*[JAIGlobalParameter::getParamSoundSceneMax()];
 		v1                = categoryInfoTable;
 		for (u32 i = 0; i < JAIGlobalParameter::getParamSoundSceneMax(); i++) {
 			categoryInfoTable[i] = JAInter::Const::sCInfos_0;
 		}
 	}
-	categoryInfoTable = v1;
-	seEntryCancel     = new (JAIBasic::msCurrentHeap, 0x20) u8[JAIGlobalParameter::getParamSeCategoryMax()];
-	seCategoryVolume  = new (JAIBasic::msCurrentHeap, 0x20) f32[JAIGlobalParameter::getParamSeCategoryMax()];
+
+	seEntryCancel    = new (JAIBasic::getCurrentHeap(), 0x20) u8[JAIGlobalParameter::getParamSeCategoryMax()];
+	seCategoryVolume = new (JAIBasic::getCurrentHeap(), 0x20) f32[JAIGlobalParameter::getParamSeCategoryMax()];
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeCategoryMax(); i++) {
 		seEntryCancel[i]    = 0;
 		seCategoryVolume[i] = 1.0f;
 	}
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stfd     f30, 0x30(r1)
-	psq_st   f30, 56(r1), 0, qr0
-	stfd     f29, 0x20(r1)
-	psq_st   f29, 40(r1), 0, qr0
-	stmw     r27, 0xc(r1)
-	lwz      r3, msBasic__8JAIBasic@sda21(r13)
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0
-	beq      lbl_800AE14C
-	li       r3, 0
-	bl       setParamSeTrackMax__18JAIGlobalParameterFUl
-	li       r31, 0
-	li       r30, 0
-	b        lbl_800AE140
-
-lbl_800AE0EC:
-	li       r28, 0
-	li       r27, 0
-	li       r29, 0
-	b        lbl_800AE118
-
-lbl_800AE0FC:
-	lwz      r3, msBasic__8JAIBasic@sda21(r13)
-	addi     r27, r27, 1
-	lwz      r0, 0x1c(r3)
-	lwzx     r3, r30, r0
-	lbzx     r0, r3, r29
-	addi     r29, r29, 2
-	add      r28, r28, r0
-
-lbl_800AE118:
-	bl       getParamSeCategoryMax__18JAIGlobalParameterFv
-	cmplw    r27, r3
-	blt      lbl_800AE0FC
-	bl       getParamSeTrackMax__18JAIGlobalParameterFv
-	cmplw    r3, r28
-	bge      lbl_800AE138
-	mr       r3, r28
-	bl       setParamSeTrackMax__18JAIGlobalParameterFUl
-
-lbl_800AE138:
-	addi     r30, r30, 4
-	addi     r31, r31, 1
-
-lbl_800AE140:
-	bl       getParamSoundSceneMax__18JAIGlobalParameterFv
-	cmplw    r31, r3
-	blt      lbl_800AE0EC
-
-lbl_800AE14C:
-	lwz      r29, msCurrentHeap__8JAIBasic@sda21(r13)
-	bl       getParamSeCategoryMax__18JAIGlobalParameterFv
-	slwi     r3, r3, 3
-	mr       r4, r29
-	li       r5, 0x20
-	bl       __nwa__FUlP7JKRHeapi
-	stw      r3, seRegist__Q27JAInter5SeMgr@sda21(r13)
-	lwz      r29, msCurrentHeap__8JAIBasic@sda21(r13)
-	bl       getParamSeCategoryMax__18JAIGlobalParameterFv
-	slwi     r3, r3, 2
-	mr       r4, r29
-	li       r5, 0x20
-	bl       __nwa__FUlP7JKRHeapi
-	li       r31, 0
-	stw      r3, sePlaySound__Q27JAInter5SeMgr@sda21(r13)
-	mr       r30, r31
-	li       r29, 0
-	b        lbl_800AE294
-
-lbl_800AE194:
-	lwz      r0, seRegist__Q27JAInter5SeMgr@sda21(r13)
-	add      r3, r0, r31
-	bl       init__Q27JAInter9LinkSoundFv
-	li       r27, 0
-	b        lbl_800AE1D0
-
-lbl_800AE1A8:
-	lwz      r3, msBasic__8JAIBasic@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, seRegist__Q27JAInter5SeMgr@sda21(r13)
-	mr       r4, r3
-	lwzx     r3, r31, r0
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	addi     r27, r27, 1
-
-lbl_800AE1D0:
-	bl       getParamSeRegistMax__18JAIGlobalParameterFv
-	cmplw    r27, r3
-	blt      lbl_800AE1A8
-	lwz      r4, msCurrentHeap__8JAIBasic@sda21(r13)
-	li       r3, 0x40
-	li       r5, 0x20
-	bl       __nwa__FUlP7JKRHeapi
-	lwz      r5, sePlaySound__Q27JAInter5SeMgr@sda21(r13)
-	li       r0, 2
-	li       r4, 0
-	stwx     r3, r5, r30
-	mtctr    r0
-
-lbl_800AE200:
-	lwz      r0, sePlaySound__Q27JAInter5SeMgr@sda21(r13)
-	li       r11, 0
-	addi     r9, r4, 4
-	addi     r8, r4, 8
-	lwzx     r3, r30, r0
-	addi     r7, r4, 0xc
-	addi     r6, r4, 0x10
-	addi     r5, r4, 0x14
-	stwx     r11, r3, r4
-	addi     r3, r4, 0x18
-	addi     r0, r4, 0x1c
-	addi     r4, r4, 0x20
-	lwz      r10, sePlaySound__Q27JAInter5SeMgr@sda21(r13)
-	lwzx     r10, r30, r10
-	stwx     r11, r10, r9
-	lwz      r9, sePlaySound__Q27JAInter5SeMgr@sda21(r13)
-	lwzx     r9, r30, r9
-	stwx     r11, r9, r8
-	lwz      r8, sePlaySound__Q27JAInter5SeMgr@sda21(r13)
-	lwzx     r8, r30, r8
-	stwx     r11, r8, r7
-	lwz      r7, sePlaySound__Q27JAInter5SeMgr@sda21(r13)
-	lwzx     r7, r30, r7
-	stwx     r11, r7, r6
-	lwz      r6, sePlaySound__Q27JAInter5SeMgr@sda21(r13)
-	lwzx     r6, r30, r6
-	stwx     r11, r6, r5
-	lwz      r5, sePlaySound__Q27JAInter5SeMgr@sda21(r13)
-	lwzx     r5, r30, r5
-	stwx     r11, r5, r3
-	lwz      r3, sePlaySound__Q27JAInter5SeMgr@sda21(r13)
-	lwzx     r3, r30, r3
-	stwx     r11, r3, r0
-	bdnz     lbl_800AE200
-	addi     r31, r31, 8
-	addi     r30, r30, 4
-	addi     r29, r29, 1
-
-lbl_800AE294:
-	bl       getParamSeCategoryMax__18JAIGlobalParameterFv
-	cmplw    r29, r3
-	blt      lbl_800AE194
-	lwz      r29, msCurrentHeap__8JAIBasic@sda21(r13)
-	bl       getParamSeTrackMax__18JAIGlobalParameterFv
-	mulli    r3, r3, 0x18
-	mr       r4, r29
-	li       r5, 0x20
-	bl       __nwa__FUlP7JKRHeapi
-	stw      r3, seTrackUpdate__Q27JAInter5SeMgr@sda21(r13)
-	li       r27, 0
-	lfs      f29, lbl_80516F48@sda21(r2)
-	li       r30, 0
-	lfs      f30, lbl_80516F4C@sda21(r2)
-	li       r29, 0xff
-	lfs      f31, lbl_80516F50@sda21(r2)
-	b        lbl_800AE300
-
-lbl_800AE2D8:
-	lwz      r0, seTrackUpdate__Q27JAInter5SeMgr@sda21(r13)
-	addi     r27, r27, 1
-	add      r3, r0, r30
-	addi     r30, r30, 0x18
-	stfs     f29, 4(r3)
-	stfs     f29, 8(r3)
-	stfs     f30, 0xc(r3)
-	stfs     f31, 0x10(r3)
-	stb      r29, 0(r3)
-	stfs     f30, 0x14(r3)
-
-lbl_800AE300:
-	bl       getParamSeTrackMax__18JAIGlobalParameterFv
-	cmplw    r27, r3
-	blt      lbl_800AE2D8
-	bl       getParamSeRegistMax__18JAIGlobalParameterFv
-	mr       r29, r3
-	bl       getParamSeCategoryMax__18JAIGlobalParameterFv
-	mullw    r29, r3, r29
-	lwz      r4, msCurrentHeap__8JAIBasic@sda21(r13)
-	li       r5, 0x20
-	mulli    r3, r29, 0x43c
-	addi     r3, r3, 0x10
-	bl       __nwa__FUlP7JKRHeapi
-	lis      r4, __ct__Q27JAInter11SeParameterFv@ha
-	mr       r7, r29
-	addi     r4, r4, __ct__Q27JAInter11SeParameterFv@l
-	li       r5, 0
-	li       r6, 0x43c
-	bl       __construct_new_array
-	lwz      r3, msBasic__8JAIBasic@sda21(r13)
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0
-	beq      lbl_800AE360
-	stw      r0, categoryInfoTable__Q27JAInter5SeMgr@sda21(r13)
-	b        lbl_800AE3AC
-
-lbl_800AE360:
-	lwz      r29, msCurrentHeap__8JAIBasic@sda21(r13)
-	bl       getParamSoundSceneMax__18JAIGlobalParameterFv
-	slwi     r3, r3, 2
-	mr       r4, r29
-	li       r5, 0x20
-	bl       __nwa__FUlP7JKRHeapi
-	lis      r4, sCInfos_0__Q27JAInter5Const@ha
-	stw      r3, categoryInfoTable__Q27JAInter5SeMgr@sda21(r13)
-	addi     r29, r4, sCInfos_0__Q27JAInter5Const@l
-	li       r27, 0
-	li       r30, 0
-	b        lbl_800AE3A0
-
-lbl_800AE390:
-	lwz      r3, categoryInfoTable__Q27JAInter5SeMgr@sda21(r13)
-	addi     r27, r27, 1
-	stwx     r29, r3, r30
-	addi     r30, r30, 4
-
-lbl_800AE3A0:
-	bl       getParamSoundSceneMax__18JAIGlobalParameterFv
-	cmplw    r27, r3
-	blt      lbl_800AE390
-
-lbl_800AE3AC:
-	lwz      r29, msCurrentHeap__8JAIBasic@sda21(r13)
-	bl       getParamSeCategoryMax__18JAIGlobalParameterFv
-	mr       r4, r29
-	li       r5, 0x20
-	bl       __nwa__FUlP7JKRHeapi
-	stw      r3, seEntryCancel__Q27JAInter5SeMgr@sda21(r13)
-	lwz      r29, msCurrentHeap__8JAIBasic@sda21(r13)
-	bl       getParamSeCategoryMax__18JAIGlobalParameterFv
-	slwi     r3, r3, 2
-	mr       r4, r29
-	li       r5, 0x20
-	bl       __nwa__FUlP7JKRHeapi
-	li       r30, 0
-	stw      r3, seCategoryVolume__Q27JAInter5SeMgr@sda21(r13)
-	lfs      f31, lbl_80516F48@sda21(r2)
-	mr       r29, r30
-	li       r27, 0
-	b        lbl_800AE40C
-
-lbl_800AE3F4:
-	lwz      r3, seEntryCancel__Q27JAInter5SeMgr@sda21(r13)
-	stbx     r29, r3, r27
-	addi     r27, r27, 1
-	lwz      r3, seCategoryVolume__Q27JAInter5SeMgr@sda21(r13)
-	stfsx    f31, r3, r30
-	addi     r30, r30, 4
-
-lbl_800AE40C:
-	bl       getParamSeCategoryMax__18JAIGlobalParameterFv
-	cmplw    r27, r3
-	blt      lbl_800AE3F4
-	psq_l    f31, 72(r1), 0, qr0
-	lfd      f31, 0x40(r1)
-	psq_l    f30, 56(r1), 0, qr0
-	lfd      f30, 0x30(r1)
-	psq_l    f29, 40(r1), 0, qr0
-	lfd      f29, 0x20(r1)
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x54(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /**
