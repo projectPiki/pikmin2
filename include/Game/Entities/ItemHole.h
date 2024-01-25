@@ -184,22 +184,22 @@ void StateMachine<CFSMItem>::start(CFSMItem* obj, int stateID, StateArg* stateAr
 	transit(obj, stateID, stateArg);
 }
 
-// template <>
-// void StateMachine<CFSMItem>::transit(CFSMItem* obj, int stateID, StateArg* stateArg)
-// {
-// 	int index           = mIdToIndexArray[stateID];
-// 	CFSMItem::StateType* state = obj->getCurrState();
-// 	if (state) {
-// 		state->cleanup(obj);
-// 		mCurrentID = state->mId;
-// 	}
+template <>
+void StateMachine<CFSMItem>::transit(CFSMItem* obj, int stateID, StateArg* stateArg)
+{
+	int index                  = mIdToIndexArray[stateID];
+	CFSMItem::StateType* state = obj->getCurrState();
+	if (state) {
+		state->cleanup(obj);
+		mCurrentID = state->mId;
+	}
 
-// 	ASSERT_HANG(index < mLimit);
+	ASSERT_HANG(index < mLimit);
 
-// 	state              = static_cast<CFSMItem::StateType*>(mStates[index]);
-// 	obj->setCurrState(state);
-// 	state->init(obj, stateArg);
-// }
+	state = static_cast<CFSMItem::StateType*>(mStates[index]);
+	obj->setCurrState(state);
+	state->init(obj, stateArg);
+}
 } // namespace Game
 
 #endif
