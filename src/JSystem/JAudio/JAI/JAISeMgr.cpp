@@ -131,19 +131,19 @@ void init()
 			}
 		}
 	}
-	seRegist    = new (JAIBasic::getCurrentHeap(), 0x20) LinkSound[JAIGlobalParameter::getParamSeCategoryMax()];
-	sePlaySound = new (JAIBasic::getCurrentHeap(), 0x20) JAISound**[JAIGlobalParameter::getParamSeCategoryMax()];
+	seRegist    = new (JAIBasic::getCurrentJAIHeap(), 0x20) LinkSound[JAIGlobalParameter::getParamSeCategoryMax()];
+	sePlaySound = new (JAIBasic::getCurrentJAIHeap(), 0x20) JAISound**[JAIGlobalParameter::getParamSeCategoryMax()];
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeCategoryMax(); i++) {
 		seRegist[i].init();
 		for (u32 j = 0; j < JAIGlobalParameter::getParamSeRegistMax(); j++) {
 			seRegist[i].mFreeList->append(JAIBasic::msBasic->makeSe());
 		}
-		sePlaySound[i] = new (JAIBasic::getCurrentHeap(), 0x20) JAISound*[0x10];
+		sePlaySound[i] = new (JAIBasic::getCurrentJAIHeap(), 0x20) JAISound*[0x10];
 		for (int j = 0; j < 0x10; j++) {
 			sePlaySound[i][j] = nullptr;
 		}
 	}
-	seTrackUpdate = new (JAIBasic::getCurrentHeap(), 0x20) TrackUpdate[JAIGlobalParameter::getParamSeTrackMax()];
+	seTrackUpdate = new (JAIBasic::getCurrentJAIHeap(), 0x20) TrackUpdate[JAIGlobalParameter::getParamSeTrackMax()];
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeTrackMax(); i++) {
 		TrackUpdate* trackUpdate = seTrackUpdate + i;
 		trackUpdate->_04         = 1.0f;
@@ -154,21 +154,21 @@ void init()
 		trackUpdate->_14         = 0.0f;
 	}
 	// TODO: ???
-	new (JAIBasic::getCurrentHeap(), 0x20)
+	new (JAIBasic::getCurrentJAIHeap(), 0x20)
 	    SeParameter[JAIGlobalParameter::getParamSeCategoryMax() * JAIGlobalParameter::getParamSeRegistMax()];
 	u16** v1 = (u16**)JAIBasic::msBasic->_1C;
 	if (JAIBasic::msBasic->_1C) {
 		categoryInfoTable = v1;
 	} else {
-		categoryInfoTable = new (JAIBasic::getCurrentHeap(), 0x20) u16*[JAIGlobalParameter::getParamSoundSceneMax()];
+		categoryInfoTable = new (JAIBasic::getCurrentJAIHeap(), 0x20) u16*[JAIGlobalParameter::getParamSoundSceneMax()];
 		v1                = categoryInfoTable;
 		for (u32 i = 0; i < JAIGlobalParameter::getParamSoundSceneMax(); i++) {
 			categoryInfoTable[i] = JAInter::Const::sCInfos_0;
 		}
 	}
 
-	seEntryCancel    = new (JAIBasic::getCurrentHeap(), 0x20) u8[JAIGlobalParameter::getParamSeCategoryMax()];
-	seCategoryVolume = new (JAIBasic::getCurrentHeap(), 0x20) f32[JAIGlobalParameter::getParamSeCategoryMax()];
+	seEntryCancel    = new (JAIBasic::getCurrentJAIHeap(), 0x20) u8[JAIGlobalParameter::getParamSeCategoryMax()];
+	seCategoryVolume = new (JAIBasic::getCurrentJAIHeap(), 0x20) f32[JAIGlobalParameter::getParamSeCategoryMax()];
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeCategoryMax(); i++) {
 		seEntryCancel[i]    = 0;
 		seCategoryVolume[i] = 1.0f;

@@ -158,6 +158,8 @@ struct JASBasicWaveBank : public JASWaveBank {
 	void setGroupCount(u32);
 	void setWaveTableSize(u32);
 
+	inline TWaveInfo** getTable() { return mWaveTable; }
+
 	// unused/inlined:
 	void incWaveTable(const JASBasicWaveBank::TWaveGroup*);
 	void decWaveTable(const JASBasicWaveBank::TWaveGroup*);

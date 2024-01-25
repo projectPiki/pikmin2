@@ -1,25 +1,8 @@
 #include "JSystem/JAudio/JAI/JAIBasic.h"
 #include "JSystem/JAudio/JAI/JAInter.h"
 #include "JSystem/JAudio/JAI/JAInter/HeapMgr.h"
+#include "JSystem/JAudio/JAI/JAIGlobalParameter.h"
 #include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global sAutoHeap__Q27JAInter7HeapMgr
-    sAutoHeap__Q27JAInter7HeapMgr:
-        .skip 0x4
-    .global sStayHeap__Q27JAInter7HeapMgr
-    sStayHeap__Q27JAInter7HeapMgr:
-        .skip 0x4
-    .global sAutoHeapCount__Q27JAInter7HeapMgr
-    sAutoHeapCount__Q27JAInter7HeapMgr:
-        .skip 0x4
-    .global sStayHeapCount__Q27JAInter7HeapMgr
-    sStayHeapCount__Q27JAInter7HeapMgr:
-        .skip 0x4
-*/
 
 JAInter::HeapBlock* JAInter::HeapMgr::sAutoHeap;
 JAInter::HeapBlock* JAInter::HeapMgr::sStayHeap;
@@ -30,23 +13,25 @@ u32 JAInter::HeapMgr::sStayHeapCount;
  * @note Address: 0x800B0340
  * @note Size: 0x254
  */
-void JAInter::HeapMgr::init(u8 p1, u32 p2, u8 p3, u32 p4)
+void JAInter::HeapMgr::init(u8 stayCount, u32 stayPtrSize, u8 autoCount, u32 autoPtrSize)
 {
-	sAutoHeap = new (JAIBasic::msCurrentHeap, 0x20) HeapBlock[p3];
-	for (u32 i = 0; i < p3; i++) {
-		sAutoHeap[i]._00 = 0;
-		sAutoHeap[i]._0C = 0;
-		sAutoHeap[i]._08 = -1;
-		sAutoHeap[i]._10 = -1;
-		sAutoHeap[i]._04 = new (JAIBasic::msCurrentHeap, 0x20) u8[p4];
+	sAutoHeap = new (JAIBasic::getCurrentJAIHeap(), 0x20) HeapBlock[autoCount];
+	for (u32 i = 0; i < autoCount; i++) {
+		getAutoHeap(i)->setStatus(0);
+		getAutoHeap(i)->set0C(0);
+		getAutoHeap(i)->setSoundID(-1);
+		getAutoHeap(i)->setUsedHeapID(-1);
+		getAutoHeap(i)->setPointer(new (JAIBasic::getCurrentJAIHeap(), 0x20) u8[autoPtrSize]);
 	}
-	sStayHeap        = new (JAIBasic::msCurrentHeap, 0x20) HeapBlock[p1];
-	sStayHeap[0]._04 = new (JAIBasic::msCurrentHeap, 0x20) u8[p2];
-	for (u8 i = 0; i < p1; i++) {
-		sStayHeap[i]._00 = 0;
-		sStayHeap[i]._0C = 0;
-		sStayHeap[i]._08 = -1;
-		sStayHeap[i]._10 = -1;
+
+	sStayHeap           = new (JAIBasic::getCurrentJAIHeap(), 0x20) HeapBlock[stayCount];
+	sStayHeap->mPointer = new (JAIBasic::getCurrentJAIHeap(), 0x20) u8[stayPtrSize];
+
+	for (u32 i = 0; i < stayCount; i++) {
+		getStayHeap(i)->setStatus(0);
+		getStayHeap(i)->set0C(0);
+		getStayHeap(i)->setSoundID(-1);
+		getStayHeap(i)->setUsedHeapID(-1);
 	}
 	/*
 	.loc_0x0:
@@ -254,94 +239,30 @@ u32 JAInter::HeapMgr::getStayHeapCount()
  * @note Address: 0x800B059C
  * @note Size: 0x100
  */
-void JAInter::HeapMgr::checkOnMemory(u32, u8*)
+void* JAInter::HeapMgr::checkOnMemory(u32 soundID, u8* p2)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	b        lbl_800B0614
-
-lbl_800B05C4:
-	clrlwi   r0, r31, 0x18
-	lwz      r3, sAutoHeap__Q27JAInter7HeapMgr@sda21(r13)
-	mulli    r4, r0, 0x14
-	add      r3, r3, r4
-	lwz      r0, 8(r3)
-	cmplw    r29, r0
-	bne      lbl_800B0610
-	lbz      r0, 0(r3)
-	cmplwi   r0, 1
-	bne      lbl_800B05F4
-	li       r3, -1
-	b        lbl_800B0680
-
-lbl_800B05F4:
-	cmplwi   r30, 0
-	beq      lbl_800B0600
-	stb      r31, 0(r30)
-
-lbl_800B0600:
-	lwz      r3, sAutoHeap__Q27JAInter7HeapMgr@sda21(r13)
-	addi     r0, r4, 4
-	lwzx     r3, r3, r0
-	b        lbl_800B0680
-
-lbl_800B0610:
-	addi     r31, r31, 1
-
-lbl_800B0614:
-	bl       getParamAutoHeapMax__18JAIGlobalParameterFv
-	clrlwi   r0, r31, 0x18
-	cmplw    r0, r3
-	blt      lbl_800B05C4
-	lwz      r3, sStayHeap__Q27JAInter7HeapMgr@sda21(r13)
-	li       r6, 0
-	lwz      r4, sStayHeapCount__Q27JAInter7HeapMgr@sda21(r13)
-	b        lbl_800B0670
-
-lbl_800B0634:
-	clrlwi   r0, r6, 0x18
-	mulli    r5, r0, 0x14
-	addi     r0, r5, 8
-	lwzx     r0, r3, r0
-	cmplw    r29, r0
-	bne      lbl_800B066C
-	cmplwi   r30, 0
-	beq      lbl_800B065C
-	li       r0, 0xff
-	stb      r0, 0(r30)
-
-lbl_800B065C:
-	lwz      r3, sStayHeap__Q27JAInter7HeapMgr@sda21(r13)
-	addi     r0, r5, 4
-	lwzx     r3, r3, r0
-	b        lbl_800B0680
-
-lbl_800B066C:
-	addi     r6, r6, 1
-
-lbl_800B0670:
-	clrlwi   r0, r6, 0x18
-	cmplw    r0, r4
-	blt      lbl_800B0634
-	li       r3, 0
-
-lbl_800B0680:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (u8 i = 0; i < JAIGlobalParameter::getParamAutoHeapMax(); i++) {
+		if (soundID != sAutoHeap[i].mSoundID) {
+			continue;
+		}
+		if (sAutoHeap[i].mStatus == 1) {
+			return (void*)-1;
+		}
+		if (p2) {
+			*p2 = i;
+		}
+		return sAutoHeap[i].getPointer();
+	}
+	for (u8 i = 0; i < sStayHeapCount; i++) {
+		if (soundID != sStayHeap[i].mSoundID) {
+			continue;
+		}
+		if (p2) {
+			*p2 = 255;
+		}
+		return sStayHeap[i].getPointer();
+	}
+	return nullptr;
 }
 
 /**
@@ -353,18 +274,7 @@ void JAInter::HeapMgr::releaseAutoHeapPointer(u8 index)
 	if (index == 0xFF) {
 		return;
 	}
-	sAutoHeap[index]._10 = -1;
-	/*
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 0xff
-	beqlr
-	mulli    r3, r0, 0x14
-	lwz      r4, sAutoHeap__Q27JAInter7HeapMgr@sda21(r13)
-	li       r5, -1
-	addi     r0, r3, 0x10
-	stwx     r5, r4, r0
-	blr
-	*/
+	getAutoHeap(index)->setUsedHeapID(-1);
 }
 
 /**
@@ -380,116 +290,42 @@ void JAInter::HeapMgr::changeAutoHeapPointerToPosition(u8*)
  * @note Address: 0x800B06C0
  * @note Size: 0xE8
  */
-void JAInter::HeapMgr::checkUsefulAutoHeapPosition()
+u8 JAInter::HeapMgr::checkUsefulAutoHeapPosition()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	li       r29, -1
-	stw      r28, 0x10(r1)
-	li       r28, 0
-	b        lbl_800B0710
-
-lbl_800B06F0:
-	lwz      r3, sAutoHeap__Q27JAInter7HeapMgr@sda21(r13)
-	addi     r0, r31, 8
-	lwzx     r3, r3, r0
-	addis    r0, r3, 1
-	cmplwi   r0, 0xffff
-	beq      lbl_800B071C
-	addi     r31, r31, 0x14
-	addi     r30, r30, 1
-
-lbl_800B0710:
-	bl       getParamAutoHeapMax__18JAIGlobalParameterFv
-	cmplw    r30, r3
-	blt      lbl_800B06F0
-
-lbl_800B071C:
-	bl       getParamAutoHeapMax__18JAIGlobalParameterFv
-	cmplw    r30, r3
-	bne      lbl_800B0784
-	li       r30, 0
-	li       r31, 0
-	b        lbl_800B0768
-
-lbl_800B0734:
-	lwz      r0, sAutoHeap__Q27JAInter7HeapMgr@sda21(r13)
-	add      r3, r0, r31
-	lwz      r4, 0xc(r3)
-	cmplw    r29, r4
-	ble      lbl_800B0760
-	lwz      r3, 0x10(r3)
-	addis    r0, r3, 1
-	cmplwi   r0, 0xffff
-	bne      lbl_800B0760
-	mr       r28, r30
-	mr       r29, r4
-
-lbl_800B0760:
-	addi     r31, r31, 0x14
-	addi     r30, r30, 1
-
-lbl_800B0768:
-	bl       getParamAutoHeapMax__18JAIGlobalParameterFv
-	cmplw    r30, r3
-	blt      lbl_800B0734
-	addis    r0, r29, 1
-	cmplwi   r0, 0xffff
-	beq      lbl_800B0784
-	mr       r30, r28
-
-lbl_800B0784:
-	lwz      r0, 0x24(r1)
-	clrlwi   r3, r30, 0x18
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	int i   = 0;
+	u32 r29 = -1;
+	int r28 = 0;
+	for (; i < JAIGlobalParameter::getParamAutoHeapMax(); i++) {
+		if (getAutoHeap(i)->mSoundID == -1) {
+			break;
+		}
+	}
+	if (i == JAIGlobalParameter::getParamAutoHeapMax()) {
+		for (i = 0; i < JAIGlobalParameter::getParamAutoHeapMax(); i++) {
+			if (r29 > getAutoHeap(i)->_0C && getAutoHeap(i)->getUsedHeapID() == -1) {
+				r28 = i;
+				r29 = getAutoHeap(i)->_0C;
+			}
+		}
+		if (r29 != -1) {
+			i = r28;
+		}
+	}
+	return i;
 }
 
 /**
  * @note Address: 0x800B07A8
  * @note Size: 0x48
  */
-void* JAInter::HeapMgr::getFreeAutoHeapPointer(u8 index, u32 p2)
+void* JAInter::HeapMgr::getFreeAutoHeapPointer(u8 index, u32 soundID)
 {
-	sAutoHeap[index]._08 = p2;
-	void* ptr            = sAutoHeap[index]._04;
-	sAutoHeap[index]._10 = sAutoHeapCount;
-	sAutoHeap[index]._0C = sAutoHeapCount;
+	getAutoHeap(index)->mSoundID = soundID;
+	void* ptr                    = getAutoHeap(index)->mPointer;
+	getAutoHeap(index)->setUsedHeapID(sAutoHeapCount);
+	getAutoHeap(index)->_0C = sAutoHeapCount;
 	sAutoHeapCount++;
 	return ptr;
-	/*
-	clrlwi   r0, r3, 0x18
-	lwz      r3, sAutoHeap__Q27JAInter7HeapMgr@sda21(r13)
-	mulli    r5, r0, 0x14
-	addi     r0, r5, 8
-	stwx     r4, r3, r0
-	addi     r0, r5, 0xc
-	lwz      r3, sAutoHeap__Q27JAInter7HeapMgr@sda21(r13)
-	lwz      r4, sAutoHeapCount__Q27JAInter7HeapMgr@sda21(r13)
-	add      r5, r3, r5
-	lwz      r3, 4(r5)
-	stw      r4, 0x10(r5)
-	lwz      r5, sAutoHeapCount__Q27JAInter7HeapMgr@sda21(r13)
-	lwz      r4, sAutoHeap__Q27JAInter7HeapMgr@sda21(r13)
-	stwx     r5, r4, r0
-	lwz      r4, sAutoHeapCount__Q27JAInter7HeapMgr@sda21(r13)
-	addi     r0, r4, 1
-	stw      r0, sAutoHeapCount__Q27JAInter7HeapMgr@sda21(r13)
-	blr
-	*/
 }
 
 /**
@@ -502,86 +338,32 @@ u32 JAInter::HeapMgr::checkUsefulStayHeapPosition() { return sStayHeapCount & 0x
  * @note Address: 0x800B07FC
  * @note Size: 0x108
  */
-void* JAInter::HeapMgr::getFreeStayHeapPointer(u32, u32)
+void* JAInter::HeapMgr::getFreeStayHeapPointer(u32 p1, u32 soundID)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	bl       getParamStayHeapMax__18JAIGlobalParameterFv
-	lwz      r0, sStayHeapCount__Q27JAInter7HeapMgr@sda21(r13)
-	cmplw    r0, r3
-	blt      lbl_800B0838
-	li       r3, 0
-	b        lbl_800B08E4
+	void* stayPtr;
+	if (sStayHeapCount >= JAIGlobalParameter::getParamStayHeapMax()) {
+		return nullptr;
+	}
 
-lbl_800B0838:
-	mulli    r3, r0, 0x14
-	lwz      r4, sStayHeap__Q27JAInter7HeapMgr@sda21(r13)
-	lwz      r31, 4(r4)
-	addi     r0, r3, 4
-	lwzx     r30, r4, r0
-	bl       getParamStayHeapSize__18JAIGlobalParameterFv
-	add      r3, r31, r3
-	add      r0, r28, r30
-	cmplw    r0, r3
-	bge      lbl_800B08DC
-	bl       getParamStayHeapMax__18JAIGlobalParameterFv
-	lwz      r0, sStayHeapCount__Q27JAInter7HeapMgr@sda21(r13)
-	cmplw    r0, r3
-	bge      lbl_800B08DC
-	mulli    r3, r0, 0x14
-	lwz      r4, sStayHeap__Q27JAInter7HeapMgr@sda21(r13)
-	clrlwi.  r0, r28, 0x1b
-	rlwinm   r5, r28, 0, 0, 0x1a
-	add      r3, r4, r3
-	lwz      r30, 4(r3)
-	stw      r29, 8(r3)
-	lwz      r0, sStayHeapCount__Q27JAInter7HeapMgr@sda21(r13)
-	lwz      r4, sStayHeap__Q27JAInter7HeapMgr@sda21(r13)
-	mulli    r3, r0, 0x14
-	addi     r0, r3, 4
-	lwzx     r0, r4, r0
-	add      r31, r5, r0
-	beq      lbl_800B08AC
-	addi     r31, r31, 0x20
+	void* basePtr = getStayHeap(0)->getPointer();
 
-lbl_800B08AC:
-	lwz      r3, sStayHeapCount__Q27JAInter7HeapMgr@sda21(r13)
-	addi     r0, r3, 1
-	stw      r0, sStayHeapCount__Q27JAInter7HeapMgr@sda21(r13)
-	bl       getParamStayHeapMax__18JAIGlobalParameterFv
-	lwz      r0, sStayHeapCount__Q27JAInter7HeapMgr@sda21(r13)
-	cmplw    r0, r3
-	bge      lbl_800B08E0
-	mulli    r3, r0, 0x14
-	lwz      r4, sStayHeap__Q27JAInter7HeapMgr@sda21(r13)
-	addi     r0, r3, 4
-	stwx     r31, r4, r0
-	b        lbl_800B08E0
-
-lbl_800B08DC:
-	li       r30, 0
-
-lbl_800B08E0:
-	mr       r3, r30
-
-lbl_800B08E4:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	stayPtr = getStayHeap(sStayHeapCount)->getPointer();
+	if (p1 + u32(stayPtr) < u32(basePtr) + JAIGlobalParameter::getParamStayHeapSize()
+	    && sStayHeapCount < JAIGlobalParameter::getParamStayHeapMax()) {
+		stayPtr                               = getStayHeap(sStayHeapCount)->getPointer();
+		getStayHeap(sStayHeapCount)->mSoundID = soundID;
+		basePtr                               = (void*)(u32(getStayHeap(sStayHeapCount)->getPointer()) + ALIGN_PREV(p1, 32));
+		if (IS_NOT_ALIGNED(p1, 32)) {
+			basePtr = (void*)(u32(basePtr) + 32);
+		}
+		sStayHeapCount++;
+		if (sStayHeapCount < JAIGlobalParameter::getParamStayHeapMax()) {
+			sStayHeap[sStayHeapCount].setPointer(basePtr);
+		}
+	} else {
+		stayPtr = nullptr;
+	}
+	return stayPtr;
 }
 
 /**
@@ -624,13 +406,13 @@ void JAInter::HeapMgr::getAutoHeapPointer(u32)
  * @note Address: 0x800B0904
  * @note Size: 0x14
  */
-void JAInter::HeapMgr::setAutoHeapLoadedFlag(u8 index, u8 flag) { sAutoHeap[index]._00 = flag; }
+void JAInter::HeapMgr::setAutoHeapLoadedFlag(u8 index, u8 flag) { sAutoHeap[index].mStatus = flag; }
 
 /**
  * @note Address: 0x800B0918
  * @note Size: 0x14
  */
-void JAInter::HeapMgr::setStayHeapLoadedFlag(u8 index, u8 flag) { sStayHeap[index]._00 = flag; }
+void JAInter::HeapMgr::setStayHeapLoadedFlag(u8 index, u8 flag) { sStayHeap[index].mStatus = flag; }
 
 /**
  * @note Address: 0x800B092C
@@ -638,7 +420,7 @@ void JAInter::HeapMgr::setStayHeapLoadedFlag(u8 index, u8 flag) { sStayHeap[inde
  */
 JAInter::HeapBlock::HeapBlock()
 {
-	_0C = 0;
-	_08 = -1;
-	_10 = -1;
+	_0C      = 0;
+	mSoundID = -1;
+	setUsedHeapID(-1);
 }

@@ -55,7 +55,7 @@ ConductorList::~ConductorList()
 {
 	for (u8 i = 0; i < mCaveCount; i++) {
 		// works, but theres something weird going on here
-		delete[] (&mCaveInfos->mFileNames)[i * 2];
+		delete[](&mCaveInfos->mFileNames)[i * 2];
 	}
 
 	delete[] mCaveInfos;

@@ -7,9 +7,9 @@ namespace JAInter {
 namespace HeapMgr {
 void init(u8, u32, u8, u32);
 HeapBlock* getAutoHeapPointer();
-void checkOnMemory(u32, u8*);
+void* checkOnMemory(u32, u8*);
 void releaseAutoHeapPointer(u8);
-void checkUsefulAutoHeapPosition();
+u8 checkUsefulAutoHeapPosition();
 void* getFreeAutoHeapPointer(u8, u32);
 u32 checkUsefulStayHeapPosition();
 void* getFreeStayHeapPointer(u32, u32);
@@ -30,6 +30,9 @@ extern HeapBlock* sAutoHeap;
 extern HeapBlock* sStayHeap;
 extern u32 sAutoHeapCount;
 extern u32 sStayHeapCount;
+
+static inline HeapBlock* getAutoHeap(int i) { return &sAutoHeap[i]; }
+static inline HeapBlock* getStayHeap(int i) { return &sStayHeap[i]; }
 
 } // namespace HeapMgr
 } // namespace JAInter

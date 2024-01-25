@@ -77,8 +77,20 @@ void JASBasicWaveBank::setWaveTableSize(u32 tableSize)
  * @note Address: N/A
  * @note Size: 0xA0
  */
-void JASBasicWaveBank::incWaveTable(const JASBasicWaveBank::TWaveGroup*)
+void JASBasicWaveBank::incWaveTable(const JASBasicWaveBank::TWaveGroup* wave)
 {
+	JASMutexLock lock(&mMutex);
+	for (int i = 0; i < wave->mInfoCount; i++) {
+		u32 id              = wave->getWaveID(i);
+		TWaveInfo* currInfo = &wave->mInfo[i];
+		TWaveInfo** table   = mWaveTable;
+		currInfo->mPrev     = nullptr;
+		currInfo->mNext     = table[id];
+		if (table[id] != nullptr) {
+			table[id]->mPrev = currInfo;
+		}
+		table[id] = currInfo;
+	}
 	// UNUSED FUNCTION
 }
 
@@ -95,9 +107,30 @@ void JASBasicWaveBank::incWaveTable(const JASBasicWaveBank::TWaveGroup*)
  * @note Address: N/A
  * @note Size: 0xE8
  */
-void JASBasicWaveBank::decWaveTable(const JASBasicWaveBank::TWaveGroup*)
+void JASBasicWaveBank::decWaveTable(const JASBasicWaveBank::TWaveGroup* wave)
 {
-	// UNUSED FUNCTION
+	JASMutexLock lock(&mMutex);
+	for (int i = 0; i < wave->mInfoCount; i++) {
+		u32 id              = wave->getWaveID(i);
+		TWaveInfo* info     = mWaveTable[id];
+		TWaveInfo* currInfo = &wave->mInfo[i];
+		for (info; info; info = info->mNext) {
+			if (info != currInfo) {
+				continue;
+			}
+
+			if (!info->mPrev) {
+				mWaveTable[id] = info->mNext;
+			} else {
+				info->mPrev->mNext = info->mNext;
+			}
+
+			if (info->mNext) {
+				info->mNext->mPrev = info->mPrev;
+			}
+			break;
+		}
+	}
 }
 
 /**
@@ -177,19 +210,7 @@ void JASBasicWaveBank::TWaveGroup::setWaveInfo(int infoIndex, u32 waveID, const 
  */
 void JASBasicWaveBank::TWaveGroup::onLoadDone()
 {
-	JASBasicWaveBank* bank = mBank;
-	JASMutexLock lock(&bank->mMutex);
-	for (int i = 0; i < mInfoCount; i++) {
-		u32 id              = getWaveID(i);
-		TWaveInfo* currInfo = &mInfo[i];
-		TWaveInfo** table   = bank->mWaveTable;
-		currInfo->mPrev     = nullptr;
-		currInfo->mNext     = table[id];
-		if (table[id] != nullptr) {
-			table[id]->mPrev = currInfo;
-		}
-		table[id] = currInfo;
-	}
+	mBank->incWaveTable(this);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -244,108 +265,7 @@ lbl_8009A668:
  * @note Address: 0x8009A690
  * @note Size: 0xE8
  */
-void JASBasicWaveBank::TWaveGroup::onEraseDone()
-{
-	JASBasicWaveBank* bank = mBank;
-	JASMutexLock lock(&bank->mMutex);
-	for (int i = 0; i < mInfoCount; i++) {
-		u32 id              = getWaveID(i);
-		TWaveInfo* info     = bank->mWaveTable[id];
-		TWaveInfo* currInfo = &mInfo[i];
-		for (info; info; info = info->mNext) {
-			if (info != currInfo) {
-				continue;
-			}
-
-			if (!info->mPrev) {
-				bank->mWaveTable[id] = info->mNext;
-			} else {
-				info->mPrev->mNext = info->mNext;
-			}
-
-			if (info->mNext) {
-				info->mNext->mPrev = info->mPrev;
-			}
-			break;
-		}
-	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lwz      r30, 0x5c(r3)
-	addi     r3, r30, 4
-	stw      r3, 8(r1)
-	bl       OSLockMutex
-	li       r31, 0
-	mr       r29, r31
-	b        lbl_8009A744
-
-lbl_8009A6CC:
-	mr       r3, r28
-	mr       r4, r31
-	bl       getWaveID__Q216JASBasicWaveBank10TWaveGroupCFi
-	lwz      r4, 0x1c(r30)
-	slwi     r3, r3, 2
-	lwz      r0, 0x60(r28)
-	lwzx     r5, r4, r3
-	add      r0, r0, r29
-	b        lbl_8009A734
-
-lbl_8009A6F0:
-	cmplw    r5, r0
-	bne      lbl_8009A730
-	lwz      r6, 0x38(r5)
-	cmplwi   r6, 0
-	bne      lbl_8009A710
-	lwz      r0, 0x34(r5)
-	stwx     r0, r4, r3
-	b        lbl_8009A718
-
-lbl_8009A710:
-	lwz      r0, 0x34(r5)
-	stw      r0, 0x34(r6)
-
-lbl_8009A718:
-	lwz      r3, 0x34(r5)
-	cmplwi   r3, 0
-	beq      lbl_8009A73C
-	lwz      r0, 0x38(r5)
-	stw      r0, 0x38(r3)
-	b        lbl_8009A73C
-
-lbl_8009A730:
-	lwz      r5, 0x34(r5)
-
-lbl_8009A734:
-	cmplwi   r5, 0
-	bne      lbl_8009A6F0
-
-lbl_8009A73C:
-	addi     r29, r29, 0x3c
-	addi     r31, r31, 1
-
-lbl_8009A744:
-	lwz      r0, 0x64(r28)
-	cmplw    r31, r0
-	blt      lbl_8009A6CC
-	lwz      r3, 8(r1)
-	bl       OSUnlockMutex
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+void JASBasicWaveBank::TWaveGroup::onEraseDone() { mBank->decWaveTable(this); }
 
 /**
  * @note Address: 0x8009A778

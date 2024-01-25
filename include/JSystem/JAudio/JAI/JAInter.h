@@ -187,11 +187,26 @@ struct DummyVec {
 struct HeapBlock {
 	HeapBlock();
 
-	u8 _00;    // _00
-	void* _04; // _04
-	int _08;   // _08
-	u32 _0C;   // _0C
-	int _10;   // _10
+	u8 getStatus() { return mStatus; }
+	void setStatus(u8 status) { mStatus = status; }
+	void* getPointer() { return mPointer; }
+	void setPointer(void* pointer) { mPointer = pointer; }
+
+	u32 getSoundID() { return mSoundID; }
+	void setSoundID(u32 id) { mSoundID = id; }
+
+	u32 getUsedHeapID() { return mUsedHeapID; }
+	void setUsedHeapID(u32 id) { mUsedHeapID = id; }
+
+	// need better names
+	u32 get0C() { return _0C; }
+	void set0C(u32 c) { _0C = c; }
+
+	u8 mStatus;      // _00
+	void* mPointer;  // _04
+	u32 mSoundID;    // _08
+	u32 _0C;         // _0C
+	u32 mUsedHeapID; // _10
 };
 
 struct MuteBit {

@@ -75,140 +75,19 @@ void JAIAnimeSound::initActorAnimSound(JAIAnimeSoundData* sndData, u32 flag, f32
 	}
 
 	for (u8 i = 0; i < mHandleCount; i++) {
+		JAISound* sound               = mSounds[i];
 		JAIAnimeFrameSoundData* entry = mBasEntries[i];
-		if (!mSounds[i]) {
+		if (!sound) {
 			_40[i]         = 0;
 			mBasEntries[i] = nullptr;
 		} else if (entry && entry->_10 & 4) {
 			handleStop(i, 0);
-		} else if (!(mSounds[i]->mSoundID & 0xc00) && _40[i]) {
+		} else if (!(sound->mSoundID & 0xc00) && _40[i]) {
 			handleStop(i, 0);
 		} else {
 			_40[i] = 2;
 		}
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stfd      f31, 0x20(r1)
-	  psq_st    f31,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r30, r3
-	  fmr       f31, f2
-	  stw       r4, 0x78(r3)
-	  mr        r29, r5
-	  lwz       r0, 0x78(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xA0
-	  li        r0, 0
-	  stw       r0, 0x68(r30)
-	  stw       r29, 0x5C(r30)
-	  lwz       r4, 0x78(r30)
-	  lhz       r31, 0x0(r4)
-	  bl        .loc_0x194
-	  fmr       f1, f31
-	  stw       r3, 0x60(r30)
-	  mr        r3, r30
-	  bl        0x174
-	  cmplwi    r29, 0x1
-	  stw       r3, 0x64(r30)
-	  bne-      .loc_0x88
-	  li        r0, 0
-	  lfs       f0, -0x7488(r2)
-	  stw       r0, 0x68(r30)
-	  stfs      f0, 0x70(r30)
-	  stw       r0, 0x6C(r30)
-	  b         .loc_0xA0
-
-	.loc_0x88:
-	  subi      r0, r31, 0x1
-	  lfs       f0, -0x7484(r2)
-	  stw       r0, 0x68(r30)
-	  li        r0, -0x1
-	  stfs      f0, 0x70(r30)
-	  stw       r0, 0x6C(r30)
-
-	.loc_0xA0:
-	  li        r31, 0
-	  b         .loc_0x160
-
-	.loc_0xA8:
-	  lwz       r4, 0x1C(r30)
-	  rlwinm    r5,r31,2,22,29
-	  lwz       r3, 0x44(r30)
-	  rlwinm    r6,r31,0,24,31
-	  lwzx      r4, r4, r5
-	  lwzx      r3, r3, r5
-	  cmplwi    r4, 0
-	  bne-      .loc_0xE0
-	  lwz       r3, 0x40(r30)
-	  li        r0, 0
-	  stbx      r0, r3, r6
-	  lwz       r3, 0x44(r30)
-	  stwx      r0, r3, r5
-	  b         .loc_0x15C
-
-	.loc_0xE0:
-	  cmplwi    r3, 0
-	  beq-      .loc_0x114
-	  lwz       r0, 0x10(r3)
-	  rlwinm.   r0,r0,0,29,29
-	  beq-      .loc_0x114
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0
-	  lwz       r12, 0x34(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x15C
-
-	.loc_0x114:
-	  lwz       r0, 0x20(r4)
-	  rlwinm.   r0,r0,0,20,21
-	  bne-      .loc_0x150
-	  lwz       r3, 0x40(r30)
-	  lbzx      r0, r3, r6
-	  cmplwi    r0, 0
-	  beq-      .loc_0x150
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0
-	  lwz       r12, 0x34(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x15C
-
-	.loc_0x150:
-	  lwz       r3, 0x40(r30)
-	  li        r0, 0x2
-	  stbx      r0, r3, r6
-
-	.loc_0x15C:
-	  addi      r31, r31, 0x1
-
-	.loc_0x160:
-	  lbz       r0, 0x19(r30)
-	  rlwinm    r3,r31,0,24,31
-	  cmplw     r3, r0
-	  blt+      .loc_0xA8
-	  psq_l     f31,0x28(r1),0,0
-	  lwz       r0, 0x34(r1)
-	  lfd       f31, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-
-	.loc_0x194:
-	*/
 }
 
 /**
@@ -388,39 +267,39 @@ void JAIAnimeSound::setAnimSoundActor(JAInter::Actor* actor, f32 time, f32 time2
 			if (mCounter < 256) {
 				mCounter++;
 			}
+		}
 
-			// this loop here is probably an unused function from above
-			for (u8 i = 0; i < mHandleCount; i++) {
-				JAISound** se = &mSounds[i];
-				if (_40[i] == 1) {
-					JAIAnimeFrameSoundData* entry = mBasEntries[i];
-					if (!(entry->mSoundID & 0xc00)) {
-						if (time2 != 0.0f && entry->_10 & 0x20) {
-							if (entry->mStartTime == entry->_08
-							    || (entry->mStartTime > entry->_08 && entry->mStartTime < time && entry->_08 >= time)
-							    || (entry->mStartTime < entry->_08 && !(entry->mStartTime < time) && entry->_08 > time)) {
-								startAnimSound(entry->mSoundID, &mSounds[i], actor, players);
-							} else {
-								handleStop(i, 0);
-							}
-						}
-					} else if (!*se) {
-						_40[i]         = 0;
-						mBasEntries[i] = nullptr;
-					}
-
-					if (*se) {
-						setSpeedModifySound(*se, entry, time);
-						if (entry->_10 & 4 && entry->_08 >= time) {
+		// this loop here is probably an unused function from above
+		for (u8 i = 0; i < mHandleCount; i++) {
+			JAISound** se = &mSounds[i];
+			if (_40[i] == 1) {
+				JAIAnimeFrameSoundData* entry = mBasEntries[i];
+				if (!(entry->mSoundID & 0xc00)) {
+					if (time2 != 0.0f && entry->_10 & 0x20) {
+						if (entry->mStartTime == entry->_08
+						    || (entry->mStartTime > entry->_08 && entry->mStartTime < time && entry->_08 >= time)
+						    || (entry->mStartTime < entry->_08 && !(entry->mStartTime < time) && entry->_08 > time)) {
+							startAnimSound(entry->mSoundID, &mSounds[i], actor, players);
+						} else {
 							handleStop(i, 0);
 						}
 					}
+				} else if (!*se) {
+					_40[i]         = 0;
+					mBasEntries[i] = nullptr;
+				}
+
+				if (*se) {
+					setSpeedModifySound(*se, entry, time);
+					if (entry->_10 & 4 && entry->_08 >= time) {
+						handleStop(i, 0);
+					}
 				}
 			}
+		}
 
-			while (mAnimID < entries && (mSoundData->mSndEntries[mAnimID].mTime) >= time) {
-				playActorAnimSound(actor, time, players);
-			}
+		while (mAnimID < entries && (mSoundData->mSndEntries[mAnimID].mTime) >= time) {
+			playActorAnimSound(actor, time, players);
 		}
 	} else {
 		if (mTimer > time) {
@@ -894,7 +773,7 @@ void JAIAnimeSound::playActorAnimSound(JAInter::Actor* actor, f32 pitch, u8 a)
 			mBasEntries[i] = entry;
 			_40[i]         = 1;
 			(*se)->setVolume(entry->mPanning / 127.0f, 0, 5);
-			(*se)->setPitch(entry->_15 * 0.03125f * (pitch - 1.0f) + entry->mPitch, 0, 5);
+			(*se)->setPitch((entry->_15 * (pitch - 1.0f)) / 32 + entry->mPitch, 0, 5);
 			(*se)->setPan(entry->mVelocity / 127.0f, 0, 5);
 		}
 	}
@@ -1107,7 +986,8 @@ void JAIAnimeSound::setSpeedModifySound(JAISound* sound, JAIAnimeFrameSoundData*
 {
 	f32 pitch = data->mPitch;
 	if (data->_15) {
-		pitch += data->_15 * 0.03125f * (speed - 1.0f);
+		f32 val = speed - 1.0f;
+		pitch += ((f32)data->_15 * val) / 32;
 	}
 	sound->setPitch(pitch, 0, 5);
 
