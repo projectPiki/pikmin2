@@ -219,6 +219,7 @@ struct FSMItem : public BaseItem {
 	int getStateID();
 
 	inline void setCurrState(StateType* state) { mCurrentState = state; }
+	inline StateType* getCurrState() { return mCurrentState; }
 
 	// _000      = VTBL
 	// _000-_1D8 = BaseItem

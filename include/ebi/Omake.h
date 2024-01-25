@@ -111,6 +111,9 @@ struct TMgr {
 		mOmakeGame.setController(control);
 	}
 
+	inline void setCurrState(StateType* state) { mCurrentState = state; }
+	inline StateType* getCurrState() { return mCurrentState; }
+
 	Controller* mController;              // _000
 	u8 _004[4];                           // _004
 	ebi::Screen::TOmake mOmake;           // _008

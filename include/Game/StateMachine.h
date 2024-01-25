@@ -47,7 +47,7 @@ struct StateMachine {
 	virtual void start(T* obj, int stateID, StateArg* settings) // _0C
 	{
 		// obj->setCurrState(nullptr); // should be this but this breaks ebiFileSelectMgr for some goddamn reason
-		obj->mCurrentState = nullptr; // this can't be right because of itemHole.cpp smh
+		obj->setCurrState(nullptr); // this can't be right because of itemHole.cpp smh
 		transit(obj, stateID, settings);
 	}
 	virtual void exec(T* obj); // _10
@@ -56,6 +56,16 @@ struct StateMachine {
 	virtual void transit(T* obj, int stateID, StateArg* settings); // _14
 
 	int getCurrID(T*);
+	inline int getIndexFromID(int stateID) const { return mIdToIndexArray[stateID]; }
+	inline int getIDFromIndex(int index) const { return mIndexToIDArray[index]; }
+	inline FSMState<T>* getState(int index) { return mStates[index]; }
+
+	inline void initState(T* obj, int index, StateArg* settings)
+	{
+		T::StateType* state = static_cast<T::StateType*>(getState(index));
+		obj->setCurrState(state);
+		state->init(obj, settings);
+	}
 
 	// _00	= VTBL
 	FSMState<T>** mStates; // _04
@@ -82,8 +92,8 @@ void StateMachine<T>::create(int limit)
 template <typename T>
 void StateMachine<T>::transit(T* obj, int stateID, StateArg* settings)
 {
-	int index           = mIdToIndexArray[stateID];
-	T::StateType* state = obj->mCurrentState;
+	int index          = getIndexFromID(stateID);
+	FSMState<T>* state = obj->getCurrState();
 	if (state) {
 		state->cleanup(obj);
 		mCurrentID = state->mId;
@@ -91,9 +101,7 @@ void StateMachine<T>::transit(T* obj, int stateID, StateArg* settings)
 
 	ASSERT_HANG(index < mLimit);
 
-	state              = static_cast<T::StateType*>(mStates[index]);
-	obj->mCurrentState = state;
-	state->init(obj, settings);
+	initState(obj, index, settings);
 }
 template <typename T>
 void StateMachine<T>::registerState(FSMState<T>* state)

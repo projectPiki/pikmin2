@@ -53,7 +53,7 @@ KANDO_FILES:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/itemMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiBreakGate.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameStat.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/itemHole.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/itemHole.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemHoney.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameCaveInfo.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/creatureLOD.o\

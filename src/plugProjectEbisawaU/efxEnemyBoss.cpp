@@ -771,7 +771,7 @@ bool THdamaHit2W::create(efx::Arg* arg)
 		Vector3f vecDir(0.0f, 1.0f, 0.0f);
 		Vector3f vecAng(x, y, z);
 		mtx.setTransformationMtx(vecDir, vecAng,
-		                Vector3f::zero); // not quite right for this one, needs something else to happen to vecAng first I think?
+		                         Vector3f::zero); // not quite right for this one, needs something else to happen to vecAng first I think?
 
 		for (int i = 0; i < 3; i++) {
 			mEmitters[i]->setGlobalRTMatrix(mtx.mMatrix.mtxView);

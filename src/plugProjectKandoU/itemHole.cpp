@@ -40,7 +40,7 @@ Mgr* mgr;
  * @note Address: 0x801D1738
  * @note Size: 0x134
  */
-void ItemHole::FSM::init(Game::CFSMItem*)
+void FSM::init(Game::CFSMItem*)
 {
 	create(HOLE_StateCount);
 	registerState(new NormalState());
@@ -52,7 +52,7 @@ void ItemHole::FSM::init(Game::CFSMItem*)
  * @note Address: 0x801D186C
  * @note Size: 0x3C
  */
-void ItemHole::NormalState::init(Game::CFSMItem* item, Game::StateArg* arg)
+void NormalState::init(Game::CFSMItem* item, Game::StateArg* arg)
 {
 	static_cast<Item*>(item)->mBuryDepth = 0.0f;
 	item->setAlive(true);
@@ -62,19 +62,19 @@ void ItemHole::NormalState::init(Game::CFSMItem* item, Game::StateArg* arg)
  * @note Address: 0x801D18A8
  * @note Size: 0x4
  */
-void ItemHole::NormalState::exec(Game::CFSMItem*) { }
+void NormalState::exec(Game::CFSMItem*) { }
 
 /**
  * @note Address: 0x801D18AC
  * @note Size: 0x4
  */
-void ItemHole::NormalState::cleanup(Game::CFSMItem*) { }
+void NormalState::cleanup(Game::CFSMItem*) { }
 
 /**
  * @note Address: 0x801D18B0
  * @note Size: 0x5C
  */
-void ItemHole::AppearState::init(Game::CFSMItem* item, Game::StateArg* arg)
+void AppearState::init(Game::CFSMItem* item, Game::StateArg* arg)
 {
 	item->setAlive(true);
 	static_cast<Item*>(item)->mBuryDepth = 25.0f;
@@ -85,7 +85,7 @@ void ItemHole::AppearState::init(Game::CFSMItem* item, Game::StateArg* arg)
  * @note Address: 0x801D190C
  * @note Size: 0x118
  */
-void ItemHole::AppearState::exec(Game::CFSMItem* item)
+void AppearState::exec(Game::CFSMItem* item)
 {
 	_10 += sys->mDeltaTime;
 	f32 buriedFrac = 1.0f - (_10 * 0.8333333f);
@@ -103,13 +103,13 @@ void ItemHole::AppearState::exec(Game::CFSMItem* item)
  * @note Address: 0x801D1A54
  * @note Size: 0x4
  */
-void ItemHole::AppearState::cleanup(Game::CFSMItem*) { }
+void AppearState::cleanup(Game::CFSMItem*) { }
 
 /**
  * @note Address: 0x801D1A58
  * @note Size: 0x3C
  */
-void ItemHole::CloseState::init(Game::CFSMItem* item, Game::StateArg* arg)
+void CloseState::init(Game::CFSMItem* item, Game::StateArg* arg)
 {
 	static_cast<Item*>(item)->mBuryDepth = 25.0f;
 	item->setAlive(false);
@@ -120,19 +120,19 @@ void ItemHole::CloseState::init(Game::CFSMItem* item, Game::StateArg* arg)
  * @note Size: 0x14
  * exec__Q34Game8ItemHole10CloseStateFPQ24Game8CFSMItem
  */
-void ItemHole::CloseState::exec(Game::CFSMItem* item) { item->mLod.resetFlag(AILOD_IsVisible | AILOD_IsVisVP0 | AILOD_IsVisVP1); }
+void CloseState::exec(Game::CFSMItem* item) { item->mLod.resetFlag(AILOD_IsVisible | AILOD_IsVisVP0 | AILOD_IsVisVP1); }
 
 /**
  * @note Address: 0x801D1AA8
  * @note Size: 0x4
  */
-void ItemHole::CloseState::cleanup(Game::CFSMItem*) { }
+void CloseState::cleanup(Game::CFSMItem*) { }
 
 /**
  * @note Address: 0x801D1AAC
  * @note Size: 0x25C
  */
-void ItemHole::Item::movieUserCommand(u32 command, MoviePlayer* player)
+void Item::movieUserCommand(u32 command, MoviePlayer* player)
 {
 	switch (command) {
 	case 100:
@@ -171,7 +171,7 @@ void ItemHole::Item::movieUserCommand(u32 command, MoviePlayer* player)
  * @note Address: 0x801D1D08
  * @note Size: 0x108
  */
-bool ItemHole::Item::interactGotKey(Game::InteractGotKey& interaction)
+bool Item::interactGotKey(Game::InteractGotKey& interaction)
 {
 	if (getStateID() == Hole_Close && gameSystem->isFlag(GAMESYS_IsGameWorldActive)) {
 		MoviePlayArg arg("g2F_appear_hole", nullptr, nullptr, 0);
@@ -187,10 +187,19 @@ bool ItemHole::Item::interactGotKey(Game::InteractGotKey& interaction)
 }
 
 /**
+ * @note Address: N/A
+ * @note Size: 0x68
+ */
+Item::Item(int objTypeID)
+    : CFSMItem(objTypeID)
+{
+}
+
+/**
  * @note Address: 0x801D1E18
  * @note Size: 0xC0
  */
-void ItemHole::Item::onInit(Game::CreatureInitArg* arg)
+void Item::onInit(Game::CreatureInitArg* arg)
 {
 	mNodeItemMgr->setup(this);
 	setAlive(true);
@@ -207,13 +216,13 @@ void ItemHole::Item::onInit(Game::CreatureInitArg* arg)
  * @note Address: 0x801D1F50
  * @note Size: 0x50
  */
-void ItemHole::Item::changeMaterial() { mModel->jointVisible(false, mModel->getJoint("flag")->mJointIndex); }
+void Item::changeMaterial() { mModel->jointVisible(false, mModel->getJoint("flag")->mJointIndex); }
 
 /**
  * @note Address: 0x801D1FA0
  * @note Size: 0x1DC
  */
-void ItemHole::Item::onSetPosition()
+void Item::onSetPosition()
 {
 	if (mapMgr) {
 		mPosition.y = mapMgr->getMinY(mPosition);
@@ -254,7 +263,7 @@ void ItemHole::Item::onSetPosition()
  * @note Size: 0x314
  * initDependency__Q34Game8ItemHole4ItemFv
  */
-void ItemHole::Item::initDependency()
+void Item::initDependency()
 {
 	bool result;
 	Iterator<BaseItem> iter(ItemBarrel::mgr);
@@ -284,7 +293,7 @@ void ItemHole::Item::initDependency()
  * @note Address: 0x801D2490
  * @note Size: 0x68
  */
-void ItemHole::Item::makeTrMatrix()
+void Item::makeTrMatrix()
 {
 	Vector3f rot(0.0f, mFaceDir, 0.0f);
 	Vector3f translation = mPosition;
@@ -296,13 +305,13 @@ void ItemHole::Item::makeTrMatrix()
  * @note Address: 0x801D24F8
  * @note Size: 0x30
  */
-bool ItemHole::Item::canRide() { return static_cast<State*>(getCurrState())->canRide(); }
+bool Item::canRide() { return static_cast<State*>(getCurrState())->canRide(); }
 
 /**
  * @note Address: 0x801D2530
  * @note Size: 0x14
  */
-void ItemHole::Item::do_setLODParm(Game::AILODParm& parm)
+void Item::do_setLODParm(Game::AILODParm& parm)
 {
 	parm.mFar   = 0.075f;
 	parm.mClose = 0.0425f;
@@ -312,13 +321,13 @@ void ItemHole::Item::do_setLODParm(Game::AILODParm& parm)
  * @note Address: 0x801D2544
  * @note Size: 0x8
  */
-bool ItemHole::Item::sound_culling() { return false; }
+bool Item::sound_culling() { return false; }
 
 /**
  * @note Address: 0x801D254C
  * @note Size: 0xE4
  */
-void ItemHole::Item::doAI()
+void Item::doAI()
 {
 	mEfxWarpZone->setRateLOD(mLod.isFlag(AILOD_IsMid | AILOD_IsFar), true);
 	CFSMItem::doAI();
@@ -340,7 +349,7 @@ void ItemHole::Item::doAI()
  * @note Address: 0x801D2630
  * @note Size: 0xBC
  */
-void ItemHole::Item::doDirectDraw(Graphics& gfx)
+void Item::doDirectDraw(Graphics& gfx)
 {
 	Matrixf v1;
 	gfx.initPrimDraw(nullptr);
@@ -362,13 +371,13 @@ void ItemHole::Item::doDirectDraw(Graphics& gfx)
  * @note Address: 0x801D26EC
  * @note Size: 0x58
  */
-CItemFSM* ItemHole::Item::createFSM() { return new FSM(); }
+CItemFSM* Item::createFSM() { return new FSM(); }
 
 /**
  * @note Address: 0x801D2744
  * @note Size: 0x7C
  */
-ItemHole::Mgr::Mgr()
+Mgr::Mgr()
     : TNodeItemMgr()
 {
 	mItemName = "Hole";
@@ -380,7 +389,7 @@ ItemHole::Mgr::Mgr()
  * @note Address: 0x801D27C0
  * @note Size: 0x100
  */
-void ItemHole::Mgr::onLoadResources()
+void Mgr::onLoadResources()
 {
 	loadArchive("arc.szs");
 	loadBmd("dungeon_hole.bmd", 0, 0x20000);
@@ -401,7 +410,7 @@ void ItemHole::Mgr::onLoadResources()
  * @note Address: 0x801D28C0
  * @note Size: 0xBC
  */
-void ItemHole::Mgr::setup(Game::BaseItem* item)
+void Mgr::setup(Game::BaseItem* item)
 {
 	item->mModel = new SysShape::Model(getModelData(0), 0x20000, 2);
 	item->mModel->mJ3dModel->calc();
@@ -414,7 +423,7 @@ void ItemHole::Mgr::setup(Game::BaseItem* item)
  * @note Address: 0x801D297C
  * @note Size: 0x54
  */
-BaseItem* ItemHole::Mgr::generatorBirth(Vector3f& position, Vector3f& p2, Game::GenItemParm* parm)
+BaseItem* Mgr::generatorBirth(Vector3f& position, Vector3f& p2, Game::GenItemParm* parm)
 {
 	BaseItem* item = birth();
 	item->init(nullptr);

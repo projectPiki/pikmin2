@@ -537,6 +537,7 @@ struct TMgr {
 	int getStateID();
 
 	inline void setCurrState(StateType* state) { mCurrentState = state; }
+	inline StateType* getCurrState() { return mCurrentState; }
 
 	TMgr();
 	~TMgr();

@@ -364,6 +364,7 @@ struct TMgr {
 	int getStateID();
 
 	inline void setCurrState(StateType* state) { mCurrentState = state; }
+	inline StateType* getCurrState() { return mCurrentState; }
 
 	Screen::FileSelect::TMainScreen mMainScreen; // _00
 	u32 mCounter;                                // _BF8

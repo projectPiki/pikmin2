@@ -94,6 +94,7 @@ struct SingleGameSection : public BaseGameSection {
 	int calcOtakaraLevel(f32&);
 
 	inline void setCurrState(StateType* state) { mCurrentState = state; }
+	inline StateType* getCurrState() { return mCurrentState; }
 
 	f32 mTimer;                                           // _174
 	bool mTimerEnabled;                                   // _178

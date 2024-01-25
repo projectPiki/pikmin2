@@ -377,13 +377,14 @@ TMgr::TMgr()
 	mInError = false;
 }
 
+#pragma push
 #pragma dont_inline on
 /**
  * @note Address: 0x803E1ED8
  * @note Size: 0x84
  */
 TMgr::~TMgr() { msInstance = nullptr; }
-#pragma dont_inline reset
+#pragma pop
 
 /**
  * @note Address: 0x803E1F5C

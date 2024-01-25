@@ -68,6 +68,9 @@ struct DrawInfo : public CNode {
 	void disappear(EnemyBase*);
 	void dead(EnemyBase*);
 
+	inline void setCurrState(StateType* state) { mCurrentState = state; }
+	inline StateType* getCurrState() { return mCurrentState; }
+
 	static EnemyBase* sOwnerEnemy;
 
 	StateMachine mFsm;       // _18

@@ -173,6 +173,9 @@ struct TMgr {
 	void forceQuit();
 	void showInfo();
 
+	inline void setCurrState(StateType* state) { mCurrentState = state; }
+	inline StateType* getCurrState() { return mCurrentState; }
+
 	Screen::TOption mOptionScreen; // _000
 	ebi::Save::TMgr* mSaveMgr;     // _F18
 	Controller* mController;       // _F1C

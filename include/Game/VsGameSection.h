@@ -89,6 +89,7 @@ struct VsGameSection : public BaseGameSection {
 	void useCard();
 
 	inline void setCurrState(StateType* state) { mCurrentState = state; }
+	inline StateType* getCurrState() { return mCurrentState; }
 
 	Pellet* createCardPellet();
 

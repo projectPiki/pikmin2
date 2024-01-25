@@ -247,6 +247,9 @@ struct Piki : public FakePiki {
 
 	inline f32 getAnimSpeed() const { return mAnimSpeed; }
 
+	inline void setCurrState(StateType* state) { mCurrentState = state; }
+	inline StateType* getCurrState() { return mCurrentState; }
+
 	static Color4 pikiColors[PikiColorCount + 1];
 	static Color4 pikiColorsCursor[PikiColorCount + 1];
 	static u8 sGraspSituationOptimise;

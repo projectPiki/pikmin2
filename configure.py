@@ -942,7 +942,7 @@ LIBS = [
             ["plugProjectKandoU/itemMgr", True],
             ["plugProjectKandoU/aiBreakGate", False],
             ["plugProjectKandoU/gameStat", True],
-            ["plugProjectKandoU/itemHole", False],
+            ["plugProjectKandoU/itemHole", True],
             ["plugProjectKandoU/itemHoney", False],
             ["plugProjectKandoU/gameCaveInfo", False],
             ["plugProjectKandoU/creatureLOD", False],

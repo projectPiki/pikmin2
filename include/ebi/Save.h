@@ -241,6 +241,9 @@ struct TMgr : public JKRDisposer {
 		mMemCardErrorMgr.mScreen.mController = pad;
 	}
 
+	inline void setCurrState(StateType* state) { mCurrentState = state; }
+	inline StateType* getCurrState() { return mCurrentState; }
+
 	static TMgr* msInstance;
 
 	// _00     = VTBL

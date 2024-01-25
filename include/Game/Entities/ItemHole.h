@@ -44,16 +44,13 @@ struct InitArg : public CreatureInitArg {
  * @size{0x1F8}
  */
 struct Item : public CFSMItem {
-	inline Item(int objTypeID)
-	    : CFSMItem(objTypeID)
-	{
-	}
+	Item(int objTypeID);
 
 	// vtable 1
-	virtual void onInit(CreatureInitArg* settings);                     // _30
-	virtual void doDirectDraw(Graphics& gfx);                           // _50
-	virtual f32 getFaceDir() { return mFaceDir; }                       // _64 (weak)
-	virtual bool sound_culling();                                       // _104
+	virtual void doDirectDraw(Graphics& gfx);       // _50
+	virtual void onInit(CreatureInitArg* settings); // _30, needs to be below doDirectDraw to put itemHole vtable in correct spot
+	virtual f32 getFaceDir() { return mFaceDir; }   // _64 (weak)
+	virtual bool sound_culling();                   // _104
 	virtual void movieUserCommand(u32 command, MoviePlayer* curPlayer); // _130
 	virtual char* getCreatureName() { return "Hole"; }                  // _1A8 (weak)
 
@@ -176,30 +173,6 @@ struct CloseState : State {
 
 extern Mgr* mgr;
 } // namespace ItemHole
-
-template <>
-void StateMachine<CFSMItem>::start(CFSMItem* obj, int stateID, StateArg* stateArg)
-{
-	obj->setCurrState(nullptr);
-	transit(obj, stateID, stateArg);
-}
-
-// template <>
-// void StateMachine<CFSMItem>::transit(CFSMItem* obj, int stateID, StateArg* stateArg)
-// {
-// 	int index                  = mIdToIndexArray[stateID];
-// 	CFSMItem::StateType* state = obj->getCurrState();
-// 	if (state) {
-// 		state->cleanup(obj);
-// 		mCurrentID = state->mId;
-// 	}
-
-// 	ASSERT_HANG(index < mLimit);
-
-// 	state = static_cast<CFSMItem::StateType*>(mStates[index]);
-// 	obj->setCurrState(state);
-// 	state->init(obj, stateArg);
-// }
 } // namespace Game
 
 #endif

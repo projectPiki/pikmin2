@@ -168,6 +168,7 @@ struct TMgr : public JKRDisposer {
 	int getStateID();
 
 	inline void setCurrState(StateType* state) { mCurrentState = state; }
+	inline StateType* getCurrState() { return mCurrentState; }
 
 	static void onDvdErrorOccured();
 	static void onDvdErrorRecovered();
@@ -192,5 +193,13 @@ struct TMgr : public JKRDisposer {
 };
 } // namespace FileSelect
 } // namespace ebi
+
+// this is only here because of some dtor inlining bullshit I can't fix - HP
+template <>
+void Game::StateMachine<ebi::FileSelect::TMgr>::start(ebi::FileSelect::TMgr* obj, int stateID, StateArg* stateArg)
+{
+	obj->mCurrentState = nullptr;
+	transit(obj, stateID, stateArg);
+}
 
 #endif
