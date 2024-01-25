@@ -419,6 +419,9 @@ void Item::updateBoundSphere()
  */
 void Item::doSimulation(f32) { }
 
+// this is here to fix the weak function ordering. - HP
+static void fakeFunc(Item* item) { item->FSMItem::doAI(); }
+
 /**
  * @note Address: 0x801ED268
  * @note Size: 0x30

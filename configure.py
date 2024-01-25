@@ -955,7 +955,7 @@ LIBS = [
             ["plugProjectKandoU/registItem", True],
             ["plugProjectKandoU/gamePlayData", False],
             ["plugProjectKandoU/itemCave", False],
-            ["plugProjectKandoU/itemBigFountain", False],
+            ["plugProjectKandoU/itemBigFountain", True],
             ["plugProjectKandoU/itemBridge", False],
             ["plugProjectKandoU/pikiContainer", True],
             ["plugProjectKandoU/gameGeneratorCache", False],
