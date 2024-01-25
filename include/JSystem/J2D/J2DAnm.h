@@ -23,41 +23,87 @@ struct J3DTransformInfo;
 struct J3DTextureSRTInfo;
 struct Vec;
 
+/**
+ * @brief Enumeration of 2D animation kinds.
+ */
 enum J2DAnmKind {
-	J2DANM_Transform      = 0,
-	J2DANM_Color          = 1,
-	J2DANM_TexturePattern = 2,
-	J2DANM_Unk3           = 3,
-	J2DANM_TextureSRT     = 4,
-	J2DANM_TevReg         = 5,
-	J2DANM_VisibilityFull = 6,
-	J2DANM_VtxColor       = 7,
+	J2DANM_Transform      = 0, /**< Transform animation */
+	J2DANM_Color          = 1, /**< Color animation */
+	J2DANM_TexturePattern = 2, /**< Texture pattern animation */
+	J2DANM_Unk3           = 3, /**< Unknown animation type */
+	J2DANM_TextureSRT     = 4, /**< Texture SRT animation */
+	J2DANM_TevReg         = 5, /**< TEV register animation */
+	J2DANM_VisibilityFull = 6, /**< Full visibility animation */
+	J2DANM_VtxColor       = 7  /**< Vertex color animation */
 };
 
+/**
+ * @brief Base structure for all J2D animations.
+ */
 struct J2DAnmBase {
+	/**
+	 * @brief Default constructor.
+	 */
 	J2DAnmBase()
 	{
 		mCurrentFrame = 0.0f;
 		mFrameLength  = 0;
 	}
 
-	virtual ~J2DAnmBase() { }                           // _08 (weak)
-	virtual void searchUpdateMaterialID(J2DScreen*) { } // _0C (weak)
+	/**
+	 * @brief Virtual destructor.
+	 */
+	virtual ~J2DAnmBase() { }
 
+	/**
+	 * @brief Searches and updates the material ID of the animation.
+	 * @param[in] screen The J2DScreen object.
+	 */
+	virtual void searchUpdateMaterialID(J2DScreen* screen) { }
+
+	/**
+	 * @brief Gets the maximum frame of the animation.
+	 * @return The maximum frame of the animation.
+	 */
 	inline s16 getFrameMax() const { return mFrameLength; }
+
+	/**
+	 * @brief Sets the current frame of the animation.
+	 * @param[in] frame The frame to set.
+	 */
 	inline void setFrame(f32 frame) { mCurrentFrame = frame; }
+
+	/**
+	 * @brief Gets the current frame of the animation.
+	 * @return The current frame of the animation.
+	 */
 	inline f32 getFrame() const { return mCurrentFrame; }
+
+	/**
+	 * @brief Gets the kind of the animation.
+	 * @return The kind of the animation.
+	 */
 	inline J2DAnmKind getKind() const { return mKind; }
 
-	// VTBL _00
-	u8 _04;            // _04
+	// _00 = VTBL
+	u8 mAttribute;     // _04
 	u8 _05;            // _05
 	s16 mFrameLength;  // _06
 	f32 mCurrentFrame; // _08
 	J2DAnmKind mKind;  // _0C
 };
 
+/**
+ * @brief Structure representing an animated color in J2DAnm.
+ *
+ * This structure inherits from J2DAnmBase and provides functionality for animating colors.
+ */
 struct J2DAnmColor : public J2DAnmBase {
+	/**
+	 * @brief Default constructor for J2DAnmColor.
+	 *
+	 * Initializes the member variables to their default values.
+	 */
 	J2DAnmColor()
 	{
 		_16                = 0;
@@ -69,11 +115,39 @@ struct J2DAnmColor : public J2DAnmBase {
 		mKind              = J2DANM_Color;
 	}
 
-	virtual ~J2DAnmColor() { }                       // _08 (weak)
-	virtual void searchUpdateMaterialID(J2DScreen*); // _0C
-	virtual void getColor(u16, GXColor*) const { }   // _10 (weak)
+	/**
+	 * @brief Virtual destructor for J2DAnmColor.
+	 */
+	virtual ~J2DAnmColor() { } // _08 (weak)
 
+	/**
+	 * @brief Searches for the update material ID in J2DScreen.
+	 *
+	 * @param screen The J2DScreen object to search in.
+	 */
+	virtual void searchUpdateMaterialID(J2DScreen* screen); // _0C
+
+	/**
+	 * @brief Gets the color for the specified frame.
+	 *
+	 * @param frame The frame number.
+	 * @param color Pointer to the GXColor object to store the color.
+	 */
+	virtual void getColor(u16 frame, GXColor* color) const { } // _10 (weak)
+
+	/**
+	 * @brief Gets the number of update materials.
+	 *
+	 * @return The number of update materials.
+	 */
 	inline u16 getUpdateMaterialNum() const { return mUpdateMaterialNum; }
+
+	/**
+	 * @brief Gets the update material ID at the specified index.
+	 *
+	 * @param i The index of the update material.
+	 * @return The update material ID.
+	 */
 	inline u16 getUpdateMaterialID(u16 i) const { return mUpdateMaterialID[i]; }
 
 	// _00     = VTBL
@@ -87,8 +161,18 @@ struct J2DAnmColor : public J2DAnmBase {
 	JUTNameTab mNameTab;    // _20
 };
 
-// Size: 0x44
+/**
+ * @brief Structure representing a full color animation for J2DAnm.
+ *
+ * This structure extends J2DAnmColor and adds additional arrays for red, green, blue, and alpha values.
+ * It also includes a pointer to a J3DAnmColorFullTable for color table animation.
+ */
 struct J2DAnmColorFull : public J2DAnmColor {
+	/**
+	 * @brief Default constructor for J2DAnmColorFull.
+	 *
+	 * Initializes all member variables to nullptr.
+	 */
 	J2DAnmColorFull()
 	{
 		mRedVals   = nullptr;
@@ -98,8 +182,18 @@ struct J2DAnmColorFull : public J2DAnmColor {
 		mTables    = nullptr;
 	}
 
-	virtual ~J2DAnmColorFull() { }              // _08 (weak)
-	virtual void getColor(u16, GXColor*) const; // _10
+	/**
+	 * @brief Virtual destructor for J2DAnmColorFull.
+	 */
+	virtual ~J2DAnmColorFull() { }
+
+	/**
+	 * @brief Get the color at the specified index.
+	 *
+	 * @param index The index of the color.
+	 * @param color Pointer to a GXColor struct to store the color values.
+	 */
+	virtual void getColor(u16 index, GXColor* color) const; // _10
 
 	// _00     = VTBL
 	// _00-_30 = J2DAnmColor
@@ -110,8 +204,18 @@ struct J2DAnmColorFull : public J2DAnmColor {
 	J3DAnmColorFullTable* mTables; // _40
 };
 
-// Size: 0x44
+/**
+ * @brief Structure representing a color key in a J2D animation.
+ *
+ * This structure extends the J2DAnmColor structure and adds additional members for storing color values.
+ * It is used to define color animation keyframes in a J2D animation.
+ */
 struct J2DAnmColorKey : public J2DAnmColor {
+	/**
+	 * @brief Default constructor for J2DAnmColorKey.
+	 *
+	 * Initializes all members to nullptr.
+	 */
 	J2DAnmColorKey()
 	{
 		mRedVals   = nullptr;
@@ -121,8 +225,18 @@ struct J2DAnmColorKey : public J2DAnmColor {
 		mTables    = nullptr;
 	}
 
-	virtual ~J2DAnmColorKey() { }               // _08 (weak)
-	virtual void getColor(u16, GXColor*) const; // _10
+	/**
+	 * @brief Virtual destructor for J2DAnmColorKey.
+	 */
+	virtual ~J2DAnmColorKey() { } // _08 (weak)
+
+	/**
+	 * @brief Get the color value at the specified index.
+	 *
+	 * @param index The index of the color value to retrieve.
+	 * @param color Pointer to a GXColor structure where the color value will be stored.
+	 */
+	virtual void getColor(u16 index, GXColor* color) const; // _10
 
 	// _00     = VTBL
 	// _00-_30 = J2DAnmColor
@@ -133,8 +247,23 @@ struct J2DAnmColorKey : public J2DAnmColor {
 	J3DAnmColorKeyTable* mTables; // _40
 };
 
-// Size: 0x74
+/**
+ * @brief Structure representing a keyframe for TEV register animation in J2DAnm.
+ *
+ * This struct inherits from J2DAnmBase and contains various properties related to TEV register animation.
+ * It provides methods to retrieve TEV color and constant register values.
+ *
+ * The struct also includes member variables for storing update material information, such as the number of update materials,
+ * update material IDs, and key tables for color and constant registers.
+ *
+ * @note This struct is part of the J2DAnm namespace.
+ */
 struct J2DAnmTevRegKey : public J2DAnmBase {
+	/**
+	 * @brief Default constructor.
+	 *
+	 * Initializes the member variables to their default values.
+	 */
 	J2DAnmTevRegKey()
 	{
 		mKRegUpdateMaterialNum = 0;
@@ -160,19 +289,76 @@ struct J2DAnmTevRegKey : public J2DAnmBase {
 		mKind                  = J2DANM_TevReg;
 	}
 
-	virtual ~J2DAnmTevRegKey() { }                   // _08 (weak)
-	virtual void searchUpdateMaterialID(J2DScreen*); // _0C
+	/**
+	 * @brief Virtual destructor.
+	 */
+	virtual ~J2DAnmTevRegKey() { } // _08 (weak)
 
-	void getTevColorReg(u16, GXColorS10*) const;
-	void getTevKonstReg(u16, GXColor*) const;
+	/**
+	 * @brief Searches and updates the material IDs for the given J2DScreen.
+	 *
+	 * @param screen Pointer to the J2DScreen object.
+	 */
+	virtual void searchUpdateMaterialID(J2DScreen* screen); // _0C
 
+	/**
+	 * @brief Retrieves the TEV color register values for the specified index.
+	 *
+	 * @param index Index of the TEV color register.
+	 * @param color Pointer to the GXColorS10 object to store the color values.
+	 */
+	void getTevColorReg(u16 index, GXColorS10* color) const;
+
+	/**
+	 * @brief Retrieves the TEV constant register values for the specified index.
+	 *
+	 * @param index Index of the TEV constant register.
+	 * @param color Pointer to the GXColor object to store the color values.
+	 */
+	void getTevKonstReg(u16 index, GXColor* color) const;
+
+	/**
+	 * @brief Gets the number of update materials for the color registers.
+	 *
+	 * @return The number of update materials for the color registers.
+	 */
 	inline u16 getCRegUpdateMaterialNum() const { return mCRegUpdateMaterialNum; }
+
+	/**
+	 * @brief Gets the material ID for the color register at the specified index.
+	 *
+	 * @param i Index of the color register.
+	 * @return The material ID for the color register at the specified index.
+	 */
 	inline u16 getCRegUpdateMaterialID(u16 i) const { return mCRegUpdateMaterialID[i]; }
 
+	/**
+	 * @brief Gets the number of update materials for the constant registers.
+	 *
+	 * @return The number of update materials for the constant registers.
+	 */
 	inline u16 getKRegUpdateMaterialNum() const { return mKRegUpdateMaterialNum; }
+
+	/**
+	 * @brief Gets the material ID for the constant register at the specified index.
+	 *
+	 * @param i Index of the constant register.
+	 * @return The material ID for the constant register at the specified index.
+	 */
 	inline u16 getKRegUpdateMaterialID(u16 i) const { return mKRegUpdateMaterialID[i]; }
 
+	/**
+	 * @brief Gets the key table for the color registers.
+	 *
+	 * @return Pointer to the J3DAnmCRegKeyTable object.
+	 */
 	inline J3DAnmCRegKeyTable* getAnmCRegKeyTable() const { return mCRegKeyTable; }
+
+	/**
+	 * @brief Gets the key table for the constant registers.
+	 *
+	 * @return Pointer to the J3DAnmKRegKeyTable object.
+	 */
 	inline J3DAnmKRegKeyTable* getAnmKRegKeyTable() const { return mKRegKeyTable; }
 
 	// _00     = VTBL

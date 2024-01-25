@@ -15,8 +15,8 @@ struct J3DAnmKRegKeyTable;
  */
 struct J3DAnmTevRegKey : public J3DAnmBase {
 	inline J3DAnmTevRegKey()
-	    : _24()
-	    , _38()
+	    : mCRegNameTable()
+	    , mKRegNameTable()
 	{
 		mKRegUpdateMaterialNum = 0;
 		mCRegUpdateMaterialNum = 0;
@@ -30,14 +30,14 @@ struct J3DAnmTevRegKey : public J3DAnmBase {
 		_18                    = 0;
 		mKRegUpdateMaterialID  = nullptr;
 		mCRegUpdateMaterialID  = nullptr;
-		_5C                    = nullptr;
-		_58                    = nullptr;
-		_54                    = nullptr;
-		_50                    = nullptr;
-		_6C                    = nullptr;
-		_68                    = nullptr;
-		_64                    = nullptr;
-		_60                    = nullptr;
+		mCAlphaVals                    = nullptr;
+		mCBlueVals                    = nullptr;
+		mCGreenVals                    = nullptr;
+		mCRedVals                    = nullptr;
+		mKAlphaVals                    = nullptr;
+		mKBlueVals                    = nullptr;
+		mKGreenVals                    = nullptr;
+		mKRedVals                    = nullptr;
 	}
 
 	virtual ~J3DAnmTevRegKey() { }     // _08 (weak)
@@ -58,34 +58,34 @@ struct J3DAnmTevRegKey : public J3DAnmBase {
 
 	// _00     = VTBL
 	// _00-_0C = J3DAnmBase
-	u16 mCRegUpdateMaterialNum; // _0C
-	u16 mKRegUpdateMaterialNum; // _0E
-	u16 _10;                    // _10
-	u16 _12;                    // _12
-	u16 _14;                    // _14
-	u16 _16;                    // _16
-	u16 _18;                    // _18
-	u16 _1A;                    // _1A
-	u16 _1C;                    // _1C
-	u16 _1E;                    // _1E
-	u16* mCRegUpdateMaterialID; // _20
-	JUTNameTab _24;             // _24
-	u16* mKRegUpdateMaterialID; // _34
-	JUTNameTab _38;             // _38
-	J3DAnmCRegKeyTable* _48;    // _48
-	J3DAnmKRegKeyTable* _4C;    // _4C
-	s16* _50;                   // _50
-	s16* _54;                   // _54
-	s16* _58;                   // _58
-	s16* _5C;                   // _5C
-	s16* _60;                   // _60
-	s16* _64;                   // _64
-	s16* _68;                   // _68
-	s16* _6C;                   // _6C
+	u16 mCRegUpdateMaterialNum;        // _0C
+	u16 mKRegUpdateMaterialNum;        // _0E
+	u16 _10;                           // _10
+	u16 _12;                           // _12
+	u16 _14;                           // _14
+	u16 _16;                           // _16
+	u16 _18;                           // _18
+	u16 _1A;                           // _1A
+	u16 _1C;                           // _1C
+	u16 _1E;                           // _1E
+	u16* mCRegUpdateMaterialID;        // _20
+	JUTNameTab mCRegNameTable;         // _24
+	u16* mKRegUpdateMaterialID;        // _34
+	JUTNameTab mKRegNameTable;         // _38
+	J3DAnmCRegKeyTable* mCRegKeyTable; // _48
+	J3DAnmKRegKeyTable* mKRegKeyTable; // _4C
+	s16* mCRedVals;                          // _50
+	s16* mCGreenVals;                          // _54
+	s16* mCBlueVals;                          // _58
+	s16* mCAlphaVals;                          // _5C
+	s16* mKRedVals;                          // _60
+	s16* mKGreenVals;                          // _64
+	s16* mKBlueVals;                          // _68
+	s16* mKAlphaVals;                          // _6C
 };
 
 struct J3DAnmTevRegKeyData : J3DFileBlockBase {
-	u8 _08;                          // _08
+	u8 mAttribute;                   // _08
 	u8 _09;                          // _09
 	s16 mFrameMax;                   // _0A
 	u16 mCRegUpdateMaterialNum;      // _0C

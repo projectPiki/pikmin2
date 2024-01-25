@@ -46,8 +46,8 @@ struct J3DAnmClusterFull : public J3DAnmCluster {
 };
 
 struct J3DAnmClusterFullData : J3DAnmFullData {
-	void* _10; // _10
-	void* _14; // _14
+	void* mTablesOffset; // _10
+	void* mWeightsOffset; // _14
 };
 
 struct J3DAnmClusterKeyTable : public J3DAnmKeyTableBase {
@@ -75,11 +75,11 @@ struct J3DAnmClusterKey : public J3DAnmCluster {
 };
 
 struct J3DAnmClusterKeyData : public J3DFileBlockBase {
-	u8 _08;    // _08
-	s16 _0A;   // _0A
+	u8 mAttribute;    // _08
+	s16 mFrameLength;   // _0A
 	u8 _0C[4]; // _0C - unknown/filler
-	void* _10; // _10
-	void* _14; // _14
+	void* mTableOffset; // _10
+	void* mWeightsOffset; // _14
 };
 
 #endif

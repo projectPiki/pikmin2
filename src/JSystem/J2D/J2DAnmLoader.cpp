@@ -185,9 +185,9 @@ void J2DAnmKeyLoader_v15::readAnmTransform(const J3DAnmTransformKeyData* data)
  */
 void J2DAnmKeyLoader_v15::setAnmTransform(J2DAnmTransformKey* anm, const J3DAnmTransformKeyData* data)
 {
-	anm->_22              = data->_0C;
-	anm->mFrameLength     = data->mFrameMax;
-	anm->_04              = data->_08;
+	anm->_22              = data->mAnimTableNum1;
+	anm->mFrameLength     = data->mMaxFrame;
+	anm->mAttribute       = data->mAttribute;
 	anm->_24              = data->_09;
 	anm->mCurrentFrame    = 0;
 	anm->mInfoTable       = JSUConvertOffsetToPtr<J3DAnmTransformKeyTable>(data, (void*)data->mTableOffset);
@@ -211,20 +211,20 @@ void J2DAnmKeyLoader_v15::readAnmTextureSRT(const J3DAnmTextureSRTKeyData* data)
  */
 void J2DAnmKeyLoader_v15::setAnmTextureSRT(J2DAnmTextureSRTKey* anm, const J3DAnmTextureSRTKeyData* data)
 {
-	anm->mUpdateMaterialNum = data->_0C;
-	anm->mFrameLength       = data->mFrameMax;
-	anm->_04                = data->_08;
+	anm->mUpdateMaterialNum = data->mAnimTableNum1;
+	anm->mFrameLength       = data->mMaxFrame;
+	anm->mAttribute         = data->mAttribute;
 	anm->_10                = data->_09;
 	anm->mCurrentFrame      = 0;
-	anm->mUpdateMaterialNum = data->_0C;
-	anm->_1C                = data->_0E;
+	anm->mUpdateMaterialNum = data->mAnimTableNum1;
+	anm->_1C                = data->mAnimTableNum2;
 	anm->_1E                = data->_10;
 	anm->_20                = data->_12;
 	anm->mInfoTable         = JSUConvertOffsetToPtr<J3DAnmTransformKeyTable>(data, (void*)data->mTableOffset);
 	anm->mUpdateMaterialID  = JSUConvertOffsetToPtr<u16>(data, (void*)data->mUpdateMatIDOffset);
 	anm->mNameTab.setResource(JSUConvertOffsetToPtr<ResNTAB>(data, (void*)data->mNameTab1Offset));
 	anm->mUpdateTexMtxID  = JSUConvertOffsetToPtr<u8>(data, (void*)data->mUpdateTexMtxIDOffset);
-	anm->_48              = JSUConvertOffsetToPtr<Vec>(data, (void*)data->unkOffset);
+	anm->_48              = JSUConvertOffsetToPtr<Vec>(data, (void*)data->_24);
 	anm->mScaleVals       = JSUConvertOffsetToPtr<f32>(data, (void*)data->mScaleValOffset);
 	anm->mRotationVals    = JSUConvertOffsetToPtr<s16>(data, (void*)data->mRotValOffset);
 	anm->mTranslationVals = JSUConvertOffsetToPtr<f32>(data, (void*)data->mTransValOffset);
@@ -237,7 +237,7 @@ void J2DAnmKeyLoader_v15::setAnmTextureSRT(J2DAnmTextureSRTKey* anm, const J3DAn
 	anm->_4C = data->_36;
 	anm->_4E = data->_38;
 	anm->_50 = data->_3A;
-	anm->_64 = JSUConvertOffsetToPtr<J3DAnmTransformKeyTable>(data, (void*)data->mInfoTable2Offset);
+	anm->_64 = JSUConvertOffsetToPtr<J3DAnmTransformKeyTable>(data, (void*)data->mTransformKeyTableOffset);
 	anm->_6C = JSUConvertOffsetToPtr<u16>(data, (void*)data->_40);
 	anm->_68 = JSUConvertOffsetToPtr<u8>(data, (void*)data->_48);
 	anm->_80 = JSUConvertOffsetToPtr<Vec>(data, (void*)data->_4C);
@@ -270,8 +270,8 @@ void J2DAnmKeyLoader_v15::readAnmColor(const J3DAnmColorKeyData* data) { setAnmC
  */
 void J2DAnmKeyLoader_v15::setAnmColor(J2DAnmColorKey* anm, const J3DAnmColorKeyData* data)
 {
-	anm->mFrameLength       = data->mFrameMax;
-	anm->_04                = data->_08;
+	anm->mFrameLength       = data->mFrameLength;
+	anm->mAttribute         = data->mAttribute;
 	anm->mCurrentFrame      = 0;
 	anm->mUpdateMaterialNum = data->mUpdateMaterialNum;
 	anm->_10                = data->_10;
@@ -303,7 +303,7 @@ void J2DAnmKeyLoader_v15::readAnmVtxColor(const J3DAnmVtxColorKeyData* data)
 void J2DAnmKeyLoader_v15::setAnmVtxColor(J2DAnmVtxColorKey* anm, const J3DAnmVtxColorKeyData* data)
 {
 	anm->mFrameLength          = data->mFrameMax;
-	anm->_04                   = data->_08;
+	anm->mAttribute            = data->mAttribute;
 	anm->mCurrentFrame         = 0;
 	anm->mAnmTableNum[0]       = data->mAnmTableNum[0];
 	anm->mAnmTableNum[1]       = data->mAnmTableNum[1];
@@ -311,8 +311,8 @@ void J2DAnmKeyLoader_v15::setAnmVtxColor(J2DAnmVtxColorKey* anm, const J3DAnmVtx
 	anm->mInfoTables[1]        = JSUConvertOffsetToPtr<J3DAnmColorKeyTable>(data, (void*)data->mTableOffsets[1]);
 	anm->mVtxColorIndexData[0] = JSUConvertOffsetToPtr<J3DAnmVtxColorIndexData>(data, (void*)data->mVtxColoIndexDataOffset[0]);
 	anm->mVtxColorIndexData[1] = JSUConvertOffsetToPtr<J3DAnmVtxColorIndexData>(data, (void*)data->mVtxColoIndexDataOffset[1]);
-	anm->mVtxColorIndexPtr[0]  = JSUConvertOffsetToPtr<u16>(data, (void*)data->mVtxColoIndexPointerOffset[0]);
-	anm->mVtxColorIndexPtr[1]  = JSUConvertOffsetToPtr<u16>(data, (void*)data->mVtxColoIndexPointerOffset[1]);
+	anm->mVtxColorIndexPtr[0]  = JSUConvertOffsetToPtr<u16>(data, (void*)data->mVtxColorIndexPointerOffset[0]);
+	anm->mVtxColorIndexPtr[1]  = JSUConvertOffsetToPtr<u16>(data, (void*)data->mVtxColorIndexPointerOffset[1]);
 	anm->mRedVals              = JSUConvertOffsetToPtr<s16>(data, (void*)data->mRValOffset);
 	anm->mGreenVals            = JSUConvertOffsetToPtr<s16>(data, (void*)data->mGValOffset);
 	anm->mBlueVals             = JSUConvertOffsetToPtr<s16>(data, (void*)data->mBValOffset);
@@ -418,9 +418,9 @@ void J2DAnmFullLoader_v15::readAnmTransform(const J3DAnmTransformFullData* data)
  */
 void J2DAnmFullLoader_v15::setAnmTransform(J2DAnmTransformFull* anm, const J3DAnmTransformFullData* data)
 {
-	anm->_22              = data->_0C;
-	anm->mFrameLength     = data->mFrameMax;
-	anm->_04              = data->_08;
+	anm->_22              = data->mAnimTableNum1;
+	anm->mFrameLength     = data->mMaxFrame;
+	anm->mAttribute       = data->mAttribute;
 	anm->mCurrentFrame    = 0;
 	anm->mTable           = JSUConvertOffsetToPtr<J3DAnmTransformFullTable>(data, (void*)data->mTableOffset);
 	anm->mScaleVals       = JSUConvertOffsetToPtr<f32>(data, (void*)data->mScaleValOffset);
@@ -443,7 +443,7 @@ void J2DAnmFullLoader_v15::readAnmColor(const J3DAnmColorFullData* data) { setAn
 void J2DAnmFullLoader_v15::setAnmColor(J2DAnmColorFull* anm, const J3DAnmColorFullData* data)
 {
 	anm->mFrameLength       = data->mFrameMax;
-	anm->_04                = data->_08;
+	anm->mAttribute         = data->_08;
 	anm->mCurrentFrame      = 0;
 	anm->mUpdateMaterialNum = data->mUpdateMaterialNum;
 	anm->mTables            = JSUConvertOffsetToPtr<J3DAnmColorFullTable>(data, (void*)data->mTableOffset);
@@ -470,11 +470,11 @@ void J2DAnmFullLoader_v15::readAnmTexPattern(const J3DAnmTexPatternFullData* dat
  */
 void J2DAnmFullLoader_v15::setAnmTexPattern(J2DAnmTexPattern* anm, const J3DAnmTexPatternFullData* data)
 {
-	anm->mFrameLength       = data->mFrameMax;
-	anm->_04                = data->_08;
+	anm->mFrameLength       = data->mMaxFrame;
+	anm->mAttribute         = data->mAttribute;
 	anm->mCurrentFrame      = 0;
-	anm->mUpdateMaterialNum = data->_0C;
-	anm->_18                = data->_0E;
+	anm->mUpdateMaterialNum = data->mAnimTableNum1;
+	anm->_18                = data->mAnimTableNum2;
 	anm->mAnmTable          = JSUConvertOffsetToPtr<J3DAnmTexPatternFullTable>(data, (void*)data->mTableOffset);
 	anm->mValues            = JSUConvertOffsetToPtr<u16>(data, (void*)data->mValuesOffset);
 	anm->mUpdateMaterialID  = JSUConvertOffsetToPtr<u16>(data, (void*)data->mUpdateMaterialIDOffset);
@@ -494,7 +494,7 @@ void J2DAnmKeyLoader_v15::readAnmTevReg(const J3DAnmTevRegKeyData* data) { setAn
 void J2DAnmKeyLoader_v15::setAnmTevReg(J2DAnmTevRegKey* anm, const J3DAnmTevRegKeyData* data)
 {
 	anm->mFrameLength           = data->mFrameMax;
-	anm->_04                    = data->_08;
+	anm->mAttribute             = data->mAttribute;
 	anm->mCurrentFrame          = 0;
 	anm->mCRegUpdateMaterialNum = data->mCRegUpdateMaterialNum;
 	anm->mCRegKeyTable          = JSUConvertOffsetToPtr<J3DAnmCRegKeyTable>(data, (void*)data->mCRegTableOffset);
@@ -537,11 +537,11 @@ void J2DAnmFullLoader_v15::readAnmVisibility(const J3DAnmVisibilityFullData* dat
  */
 void J2DAnmFullLoader_v15::setAnmVisibility(J2DAnmVisibilityFull* anm, const J3DAnmVisibilityFullData* data)
 {
-	anm->mFrameLength  = data->mFrameMax;
-	anm->_04           = data->_08;
+	anm->mFrameLength  = data->mMaxFrame;
+	anm->mAttribute    = data->mAttribute;
 	anm->mCurrentFrame = 0;
-	anm->_10           = data->_0C;
-	anm->_12           = data->_0E;
+	anm->_10           = data->mAnimTableNum1;
+	anm->_12           = data->mAnimTableNum2;
 	anm->mTable        = JSUConvertOffsetToPtr<J3DAnmVisibilityFullTable>(data, (void*)data->mTableOffset);
 	anm->mValues       = JSUConvertOffsetToPtr<u8>(data, (void*)data->mValuesOffset);
 }
@@ -563,11 +563,11 @@ void J2DAnmFullLoader_v15::readAnmVtxColor(const J3DAnmVtxColorFullData* data)
  */
 void J2DAnmFullLoader_v15::setAnmVtxColor(J2DAnmVtxColorFull* anm, const J3DAnmVtxColorFullData* data)
 {
-	anm->mFrameLength          = data->mFrameMax;
-	anm->_04                   = data->_08;
+	anm->mFrameLength          = data->mMaxFrame;
+	anm->mAttribute            = data->mAttribute;
 	anm->mCurrentFrame         = 0;
-	anm->mAnmTableNum[0]       = data->_0C;
-	anm->mAnmTableNum[1]       = data->_0E;
+	anm->mAnmTableNum[0]       = data->mAnimTableNum1;
+	anm->mAnmTableNum[1]       = data->mAnimTableNum2;
 	anm->mInfoTables[0]        = JSUConvertOffsetToPtr<J3DAnmColorFullTable>(data, (void*)data->mTableOffsets[0]);
 	anm->mInfoTables[1]        = JSUConvertOffsetToPtr<J3DAnmColorFullTable>(data, (void*)data->mTableOffsets[1]);
 	anm->mVtxColorIndexData[0] = JSUConvertOffsetToPtr<J3DAnmVtxColorIndexData>(data, (void*)data->mVtxColorIndexDataOffsets[0]);

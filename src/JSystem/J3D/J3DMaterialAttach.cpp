@@ -63,7 +63,7 @@ J3DTexNoAnm::J3DTexNoAnm()
  */
 J3DErrType J3DMaterialTable::allocTexMtxAnimator(J3DAnmTextureSRTKey* p1, J3DTexMtxAnm** p2)
 {
-	u16 elementCount = p1->mUpdateMaterialNum / 3;
+	u16 elementCount = p1->mAnimTableNum1 / 3;
 	*p2              = new J3DTexMtxAnm[elementCount];
 	// J3DTexMtxAnm* v1 = new J3DTexMtxAnm[elementCount];
 	// *p2 = v1;
@@ -633,7 +633,7 @@ bool J3DMaterialTable::removeTevRegAnimator(J3DAnmTevRegKey* anm)
 		u16 matID = anm->getCRegUpdateMaterialID(i);
 		if (matID != 0xffff) {
 			J3DMaterialAnm* matanm = mMaterials[matID]->getMaterialAnm();
-			u8 id                  = anm->_48[i]._18[0];
+			u8 id                  = anm->mCRegKeyTable[i]._18[0];
 
 			if (!matanm) {
 				found = true;
@@ -648,7 +648,7 @@ bool J3DMaterialTable::removeTevRegAnimator(J3DAnmTevRegKey* anm)
 		if (matID != 0xffff) {
 			J3DMaterialAnm* matanm = mMaterials[matID]->getMaterialAnm();
 
-			u8 id = anm->_4C[i]._18[0];
+			u8 id = anm->mKRegKeyTable[i]._18[0];
 			if (!matanm) {
 				found = true;
 				continue;

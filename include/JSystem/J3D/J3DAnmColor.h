@@ -114,10 +114,10 @@ struct J3DAnmColorFullData : J3DFileBlockBase {
  */
 struct J3DAnmColorKey : public J3DAnmColor {
 	inline J3DAnmColorKey()
-	    : _2C(nullptr)
-	    , _30(nullptr)
-	    , _34(nullptr)
-	    , _38(nullptr)
+	    : mRedValue(nullptr)
+	    , mGreenValue(nullptr)
+	    , mBlueValue(nullptr)
+	    , mAlphaValue(nullptr)
 	    , mTable(nullptr)
 	{
 	}
@@ -126,17 +126,17 @@ struct J3DAnmColorKey : public J3DAnmColor {
 	virtual J3DAnmKind getKind() const { return J3DAnmKind_ColorKey; } // _0C (weak)
 	virtual void getColor(u16, GXColor*) const;                        // _10
 
-	s16* _2C;                    // _2C
-	s16* _30;                    // _30
-	s16* _34;                    // _34
-	s16* _38;                    // _38
+	s16* mRedValue;              // _2C
+	s16* mGreenValue;            // _30
+	s16* mBlueValue;             // _34
+	s16* mAlphaValue;            // _38
 	J3DAnmColorKeyTable* mTable; // _3C
 };
 
 struct J3DAnmColorKeyData : J3DFileBlockBase {
-	u8 _08;                      // _08
+	u8 mAttribute;               // _08
 	u8 _09[3];                   // _09
-	s16 mFrameMax;               // _0C
+	s16 mFrameLength;            // _0C
 	u16 mUpdateMaterialNum;      // _0E
 	u16 _10;                     // _10
 	u16 _12;                     // _12

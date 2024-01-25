@@ -18,7 +18,7 @@ struct J3DAnmTransform : public J3DAnmBase {
 	    , _18(0)
 	    , _1A(0)
 	    , _1C(0)
-	    , _1E(0)
+	    , mUpdateMaterialNum(0)
 	{
 	}
 
@@ -37,7 +37,7 @@ struct J3DAnmTransform : public J3DAnmBase {
 	u16 _18;               // _18
 	u16 _1A;               // _1A
 	u16 _1C;               // _1C
-	u16 _1E;               // _1E
+	u16 mUpdateMaterialNum;               // _1E
 };
 
 /**

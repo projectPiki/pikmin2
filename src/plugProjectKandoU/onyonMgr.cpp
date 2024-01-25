@@ -1338,7 +1338,7 @@ void Onyon::changeMaterial()
 		if (animid == 4) {
 			f32 timer = mAnimator.mTimer;
 			if (mAnimator.mAnimInfo) {
-				anmtime = (f32)mAnimator.mAnimInfo->mAnm->mMaxFrame;
+				anmtime = (f32)mAnimator.mAnimInfo->mAnm->mFrameLength;
 			} else {
 				anmtime = 0.0f;
 			}

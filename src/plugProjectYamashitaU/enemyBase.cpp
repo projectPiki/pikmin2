@@ -3121,7 +3121,7 @@ void EnemyBase::startMotion()
  * @note Address: 0x80107220
  * @note Size: 0x58
  */
-f32 EnemyBase::getMotionFrameMax() { return mAnimator->getAnimator().mAnimInfo->mAnm->mMaxFrame; }
+f32 EnemyBase::getMotionFrameMax() { return mAnimator->getAnimator().mAnimInfo->mAnm->mFrameLength; }
 
 /**
  * @note Address: 0x80107278

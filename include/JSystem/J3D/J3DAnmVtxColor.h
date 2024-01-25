@@ -95,14 +95,14 @@ struct J3DAnmVtxColorKey : public J3DAnmVtxColor {
 };
 
 struct J3DAnmVtxColorKeyData : J3DFileBlockBase {
-	u8 _08;                            // _08
+	u8 mAttribute;                            // _08
 	u8 _09;                            // _09
 	s16 mFrameMax;                     // _0A
 	u16 mAnmTableNum[2];               // _0C
 	u8 _10[0x18 - 0x10];               // _10
 	s32 mTableOffsets[2];              // _18
 	s32 mVtxColoIndexDataOffset[2];    // _20
-	s32 mVtxColoIndexPointerOffset[2]; // _28
+	s32 mVtxColorIndexPointerOffset[2]; // _28
 	s32 mRValOffset;                   // _30
 	s32 mGValOffset;                   // _34
 	s32 mBValOffset;                   // _38

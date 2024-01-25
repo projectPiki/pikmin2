@@ -1656,7 +1656,7 @@ void J3DAnmTevRegKey::searchUpdateMaterialID(J3DModelData* data)
 	u16 i;
 	for (i = 0; i < mCRegUpdateMaterialNum; i++) {
 		JUTNameTab* nameTable = data->mMaterialTable.mMaterialNames;
-		int index             = nameTable->getIndex(_24.getName(i));
+		int index             = nameTable->getIndex(mCRegNameTable.getName(i));
 		if (index != -1) {
 			mCRegUpdateMaterialID[i] = index;
 		} else {
@@ -1665,7 +1665,7 @@ void J3DAnmTevRegKey::searchUpdateMaterialID(J3DModelData* data)
 	}
 	for (i = 0; i < mKRegUpdateMaterialNum; i++) {
 		JUTNameTab* nameTable = data->mMaterialTable.mMaterialNames;
-		int index             = nameTable->getIndex(_38.getName(i));
+		int index             = nameTable->getIndex(mKRegNameTable.getName(i));
 		if (index != -1) {
 			mKRegUpdateMaterialID[i] = index;
 		} else {

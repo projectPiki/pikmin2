@@ -115,11 +115,11 @@ void TMapBase::setArchive(JKRArchive* arc)
 
 	mModel = new J3DModel(mMainModelData, 0x20000, 1);
 
-	mFrameCtrlWait.init(mAnimWait->mMaxFrame);
+	mFrameCtrlWait.init(mAnimWait->mFrameLength);
 	mFrameCtrlWait.mAttribute = 2;
 	mFrameCtrlWait.mRate      = sys->mDeltaTime * 60.0f * 0.5f;
 
-	mFrameCtrlWind.init(mAnimWind->mMaxFrame);
+	mFrameCtrlWind.init(mAnimWind->mFrameLength);
 	mFrameCtrlWind.mAttribute = 2;
 	mFrameCtrlWind.mRate      = sys->mDeltaTime * 60.0f * 0.5f;
 }
@@ -213,7 +213,7 @@ void TBGEnemyBase::setArchive(JKRArchive* arc)
  */
 void TBGEnemyBase::start()
 {
-	mFrameCtrl.init(mAnim->mMaxFrame);
+	mFrameCtrl.init(mAnim->mFrameLength);
 	mFrameCtrl.mAttribute = 0;
 	mFrameCtrl.mRate      = sys->mDeltaTime * 60.0f * 0.5f;
 }
@@ -276,11 +276,11 @@ void TBlackPlane::setArchive(JKRArchive* arc)
  */
 void TBlackPlane::start()
 {
-	mFrameCtrl.init(mAnim->mMaxFrame - 2);
+	mFrameCtrl.init(mAnim->mFrameLength - 2);
 	mFrameCtrl.mAttribute = 0;
 	mFrameCtrl.mRate      = sys->mDeltaTime * 60.0f * 0.5f;
 
-	mFrameCtrlColor.init(mAnimColor->mMaxFrame - 2);
+	mFrameCtrlColor.init(mAnimColor->mFrameLength - 2);
 	mFrameCtrlColor.mAttribute = 0;
 	mFrameCtrlColor.mRate      = sys->mDeltaTime * 60.0f * 0.5f;
 }
