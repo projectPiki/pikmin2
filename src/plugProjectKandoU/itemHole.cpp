@@ -346,66 +346,16 @@ void ItemHole::Item::doDirectDraw(Graphics& gfx)
 	gfx.initPrimDraw(nullptr);
 	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, v1.mMatrix.mtxView);
 
-	// WHAT.
-	Vector2f translation(v1.mMatrix.structView.tx, v1.mMatrix.structView.ty);
+	Vector3f translation = v1.getTranslation();
 	translation.y += 10.0f;
-	v1.setTranslationXY(translation);
+	v1.setTranslation(translation);
 
 	GXSetLineWidth(40, GX_TO_ZERO);
 	gfx.drawAxis(50.0f, &v1);
 	gfx.initPrimDraw(nullptr);
 	Vector3f infoPos(mPosition.x, mPosition.y + 40.0f, mPosition.z);
-	// infoPos.y += 40.0f;
+
 	drawLODInfo(gfx, infoPos);
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	mr       r31, r4
-	li       r4, 0
-	stw      r30, 0x48(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       initPrimDraw__8GraphicsFP7Matrixf
-	addi     r3, r30, 0x138
-	addi     r4, r1, 0x14
-	bl       PSMTXCopy
-	lfs      f1, 0x30(r1)
-	li       r3, 0x28
-	lfs      f0, lbl_8051966C@sda21(r2)
-	li       r4, 0
-	fadds    f1, f1, f0
-	lfs      f0, 0x20(r1)
-	stfs     f0, 0x20(r1)
-	stfs     f1, 0x30(r1)
-	bl       GXSetLineWidth
-	lfs      f1, lbl_80519658@sda21(r2)
-	mr       r3, r31
-	addi     r4, r1, 0x14
-	bl       drawAxis__8GraphicsFfP7Matrixf
-	mr       r3, r31
-	li       r4, 0
-	bl       initPrimDraw__8GraphicsFP7Matrixf
-	lfs      f2, lbl_80519660@sda21(r2)
-	mr       r3, r30
-	lfs      f1, 0x1a0(r30)
-	mr       r4, r31
-	lfs      f3, 0x1a4(r30)
-	addi     r5, r1, 8
-	lfs      f0, 0x19c(r30)
-	fadds    f1, f2, f1
-	stfs     f0, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f3, 0x10(r1)
-	bl       "drawLODInfo__Q24Game8CreatureFR8GraphicsR10Vector3<f>"
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /**
