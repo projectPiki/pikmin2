@@ -131,6 +131,18 @@ struct Obj : public EnemyBase {
 
 	inline Parms* getParms() { return C_PARMS; }
 
+	inline void xfbUpdate(J3DModel* j3dModel, J3DModelData* modelData)
+	{
+		J3DTexture* wraithMain = modelData->getTexture();
+		JUTTexture* xfbTex     = gameSystem->getXfbTexture();
+		ResTIMG* img           = wraithMain->mRes;
+
+		*img = *xfbTex->mTexInfo;
+
+		wraithMain->setImageOffset((int)img, 0);
+		wraithMain->setPaletteOffset((int)img, 0);
+	}
+
 	inline bool isOnTyres()
 	{ // unsure of name
 		if (!mTyre || mEscapePhase == 2) {

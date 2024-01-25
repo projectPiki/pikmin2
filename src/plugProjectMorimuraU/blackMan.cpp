@@ -964,9 +964,9 @@ void BlackMan::Obj::doAnimationCullingOff()
 	mEfxRun->setGlobalPrmColor(efxColor);
 	mEfxDead->setGlobalPrmColor(efxColor);
 
-	mChestJointPosition = mModel->mJoints[mChestJointIndex].getWorldMatrix()->getPosition();
-	mHandPositions[0]   = mModel->mJoints[mLeftHandJointIndex].getWorldMatrix()->getPosition();
-	mHandPositions[1]   = mModel->mJoints[mRightHandJointIndex].getWorldMatrix()->getPosition();
+	mChestJointPosition = mModel->mJoints[mChestJointIndex].getWorldMatrix()->getTranslation();
+	mHandPositions[0]   = mModel->mJoints[mLeftHandJointIndex].getWorldMatrix()->getTranslation();
+	mHandPositions[1]   = mModel->mJoints[mRightHandJointIndex].getWorldMatrix()->getTranslation();
 
 	if (mTyre) {
 		if (getStateID() != WRAITH_Fall && C_PARMS->_A14) {
@@ -1075,7 +1075,7 @@ void BlackMan::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam& param)
 	if (isOnTyres()) {
 		Matrixf* waistJoint = (Matrixf*)mModel->mJ3dModel->mMtxBuffer->mWorldMatrices[mWaistJointIndex];
 
-		Vector3f lifeGaugePosition = waistJoint->getPosition();
+		Vector3f lifeGaugePosition = waistJoint->getTranslation();
 		lifeGaugePosition.y        = mPosition.y + C_GENERALPARMS.mLifeMeterHeight.mValue;
 
 		param.mPosition = lifeGaugePosition;
@@ -1245,18 +1245,17 @@ void BlackMan::Obj::changeMaterial()
 	mMatLoopAnimator->animate(30.0f);
 
 	J3DTexMtxInfo* texInfo = &modelData->mMaterialTable.mMaterials[0]->mTexGenBlock->getTexMtx(0)->getTexMtxInfo();
-	copyMtx44(texInfo->mEffectMtx, copyMatrix);
+
+	for (int x = 0; x < 3; x++) {
+		for (int y = 0; y < 4; y++) {
+			texInfo->mEffectMtx[x][y] = copyMatrix[x][y];
+		}
+	}
+
 	texInfo->mEffectMtx[3][0] = texInfo->mEffectMtx[3][1] = texInfo->mEffectMtx[3][2] = 0.0f;
 	texInfo->mEffectMtx[3][3]                                                         = 1.0f;
 
-	J3DTexture* wraithMain = modelData->getTexture();
-	JUTTexture* xfbTex     = gameSystem->getXfbTexture();
-	ResTIMG* img           = wraithMain->mRes;
-
-	*img = *xfbTex->mTexInfo;
-
-	wraithMain->setImageOffset((int)img, 0);
-	wraithMain->setPaletteOffset((int)img, 0);
+	xfbUpdate(j3dModel, modelData);
 
 	for (u16 i = 0; i < modelData->mMaterialTable.mMaterialNum; i++) {
 		j3dSys.mMatPacket = &j3dModel->mMatPackets[i];
