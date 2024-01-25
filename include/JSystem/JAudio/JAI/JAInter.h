@@ -19,7 +19,7 @@ enum JAISoundTrackActiveFlags {
 	SOUNDACTIVE_Unk0                 = 0,
 	SOUNDACTIVE_Unk1                 = 1 << 0,  // 0x1
 	SOUNDACTIVE_DoFadeout            = 1 << 1,  // 0x2
-	SOUNDACTIVE_Unk3                 = 1 << 2,  // 0x4
+	SOUNDACTIVE_TempoProportion      = 1 << 2,  // 0x4
 	SOUNDACTIVE_Unk4                 = 1 << 3,  // 0x8
 	SOUNDACTIVE_Unk5                 = 1 << 4,  // 0x10
 	SOUNDACTIVE_Unk6                 = 1 << 5,  // 0x20
@@ -319,8 +319,8 @@ struct SeqParameter : public MoveParaSet {
 	u32 mVolumeFlags;                   // _284
 	u32 mPanFlags;                      // _288
 	u32 mPitchFlags;                    // _28C
-	u32 _290;                           // _290
-	u32 _294;                           // _294
+	u32 mFxmixFlags;                    // _290
+	u32 mDolbyFlags;                    // _294
 	u32 _298;                           // _298
 	u32 _29C;                           // _29C
 	u32 _2A0;                           // _2A0

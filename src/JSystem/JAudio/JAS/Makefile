@@ -3,7 +3,7 @@ JAUDIO_JAS_FILES:=\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASBankMgr.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASBasicBank.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASBasicInst.o\
-	$(BUILD_DIR)/asm/JSystem/JAudio/JAS/JASBasicWaveBank.o\
+	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASBasicWaveBank.o\
 	$(BUILD_DIR)/asm/JSystem/JAudio/JAS/JASBNKParser.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASDrumSet.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASInstEffect.o\

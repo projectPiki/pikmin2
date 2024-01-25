@@ -308,7 +308,7 @@ LIBS = [
             ["JSystem/JAudio/JAS/JASBankMgr", True],
             ["JSystem/JAudio/JAS/JASBasicBank", True],
             ["JSystem/JAudio/JAS/JASBasicInst", True],
-            ["JSystem/JAudio/JAS/JASBasicWaveBank", False],
+            ["JSystem/JAudio/JAS/JASBasicWaveBank", True],
             ["JSystem/JAudio/JAS/JASBNKParser", False],
             ["JSystem/JAudio/JAS/JASDrumSet", True],
             ["JSystem/JAudio/JAS/JASInstEffect", True],

@@ -3208,8 +3208,8 @@ void JAInter::SeqParameter::init()
 	mVolumeFlags    = 0;
 	mPanFlags       = 0;
 	mPitchFlags     = 0;
-	_290            = 0;
-	_294            = 0;
+	mFxmixFlags     = 0;
+	mDolbyFlags     = 0;
 	_298            = 0;
 	_29C            = 0;
 	_2A0            = 0;

@@ -763,20 +763,6 @@ void JAIBasic::changeSoundScene(u32)
 }
 
 /**
- * @note Address: 0x800ACA54
- * @note Size: 0x20
- * stop__9JAIStreamFUl
- */
-void JAIStream::stop(u32 fadeTime) { JAInter::StreamMgr::releaseStreamBuffer(this, fadeTime); }
-
-/**
- * @note Address: 0x800ACA74
- * @note Size: 0x20
- * stop__11JAISequenceFUl
- */
-void JAISequence::stop(u32 fadeTime) { JAInter::SequenceMgr::releaseSeqBuffer(this, fadeTime); }
-
-/**
  * @note Address: 0x800ACA94
  * @note Size: 0x10
  */

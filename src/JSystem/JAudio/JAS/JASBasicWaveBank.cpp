@@ -81,27 +81,16 @@ void JASBasicWaveBank::incWaveTable(const JASBasicWaveBank::TWaveGroup* wave)
 {
 	JASMutexLock lock(&mMutex);
 	for (int i = 0; i < wave->mInfoCount; i++) {
-		u32 id              = wave->getWaveID(i);
+		TWaveInfo** table   = &mWaveTable[wave->getWaveID(i)];
 		TWaveInfo* currInfo = &wave->mInfo[i];
-		TWaveInfo** table   = mWaveTable;
 		currInfo->mPrev     = nullptr;
-		currInfo->mNext     = table[id];
-		if (table[id] != nullptr) {
-			table[id]->mPrev = currInfo;
+		currInfo->mNext     = (*table);
+		if ((*table) != nullptr) {
+			(*table)->mPrev = currInfo;
 		}
-		table[id] = currInfo;
+		(*table) = currInfo;
 	}
-	// UNUSED FUNCTION
 }
-
-/**
- * @note Address: N/A
- * @note Size: 0x54
- */
-// JASMutexLock::~JASMutexLock()
-// {
-// 	// UNUSED FUNCTION
-// }
 
 /**
  * @note Address: N/A

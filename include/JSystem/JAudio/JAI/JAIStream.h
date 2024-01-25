@@ -9,10 +9,8 @@
 struct JAIStream : public JAISound {
 	JAIStream();
 
-	virtual void setPortData(u8, u16);                       // _08 (weak)
-	virtual u16 getPortData(u8);                             // _0C (weak)
-	virtual void stop(u32);                                  // _14 (weak)
-	virtual void setVolume(f32 value, u32 moveTime, u8 type) // _1C (weak)
+	virtual void stop(u32 fadeTime) { JAInter::StreamMgr::releaseStreamBuffer(this, fadeTime); } // _14 (weak)
+	virtual void setVolume(f32 value, u32 moveTime, u8 type)                                     // _1C (weak)
 	{
 		int result = mStreamParameter.mVolumes[type].set(value, moveTime);
 		if (result == JAInter::MOVEPARA_SetTarget) {
@@ -22,26 +20,94 @@ struct JAIStream : public JAISound {
 			mStreamParameter.mUpdateData->mActiveTrackFlag |= JAInter::SOUNDACTIVE_Volume;
 		}
 	}
-	virtual f32 getVolume(u8 type);                                                                          // _20 (weak)
-	virtual void setPan(f32 value, u32 moveTime, u8 type);                                                   // _24 (weak)
-	virtual f32 getPan(u8 type);                                                                             // _28 (weak)
-	virtual void setPitch(f32 value, u32 moveTime, u8 type);                                                 // _2C (weak)
-	virtual f32 getPitch(u8 type);                                                                           // _30 (weak)
-	virtual void setFxmix(f32 value, u32 moveTime, u8 type);                                                 // _34 (weak)
-	virtual f32 getFxmix(u8 type);                                                                           // _38 (weak)
-	virtual void setDolby(f32 value, u32 moveTime, u8 type);                                                 // _3C (weak)
-	virtual f32 getDolby(u8 type);                                                                           // _40 (weak)
+	virtual f32 getVolume(u8 type) // _20 (weak)
+	{
+		if (mState == SOUNDSTATE_Playing || mState == SOUNDSTATE_Fadeout) {
+			return mStreamParameter.mVolumes[type].mCurrentValue;
+		}
+		return -1.0f;
+	}
+	virtual void setPan(f32 value, u32 moveTime, u8 type) // _24 (weak)
+	{
+		int result = mStreamParameter.mPans[type].set(value, moveTime);
+		if (result == JAInter::MOVEPARA_SetTarget) {
+			mStreamParameter.mPanFlags |= 1 << type;
+		}
+		if (mStreamParameter.mUpdateData && result != JAInter::MOVEPARA_AlreadySet) {
+			mStreamParameter.mUpdateData->mActiveTrackFlag |= JAInter::SOUNDACTIVE_Pan;
+		}
+	}
+	virtual f32 getPan(u8 type) // _28 (weak)
+	{
+		if (mState == SOUNDSTATE_Playing || mState == SOUNDSTATE_Fadeout) {
+			return mStreamParameter.mPans[type].mCurrentValue;
+		}
+		return -1.0f;
+	}
+	virtual void setPitch(f32 value, u32 moveTime, u8 type) // _2C (weak)
+	{
+		int result = mStreamParameter.mPitches[type].set(value, moveTime);
+		if (result == JAInter::MOVEPARA_SetTarget) {
+			mStreamParameter.mPitchFlags |= 1 << type;
+		}
+		if (mStreamParameter.mUpdateData && result != JAInter::MOVEPARA_AlreadySet) {
+			mStreamParameter.mUpdateData->mActiveTrackFlag |= JAInter::SOUNDACTIVE_Pitch;
+		}
+	}
+	virtual f32 getPitch(u8 type) // _30 (weak)
+	{
+		if (mState == SOUNDSTATE_Playing || mState == SOUNDSTATE_Fadeout) {
+			return mStreamParameter.mPitches[type].mCurrentValue;
+		}
+		return -1.0f;
+	}
+	virtual void setFxmix(f32 value, u32 moveTime, u8 type) // _34 (weak)
+	{
+		int result = mStreamParameter.mFxmixes[type].set(value, moveTime);
+		if (result == JAInter::MOVEPARA_SetTarget) {
+			mStreamParameter.mFxmixFlags |= 1 << type;
+		}
+		if (mStreamParameter.mUpdateData && result != JAInter::MOVEPARA_AlreadySet) {
+			mStreamParameter.mUpdateData->mActiveTrackFlag |= JAInter::SOUNDACTIVE_Fxmix;
+		}
+	}
+	virtual f32 getFxmix(u8 type) // _38 (weak)
+	{
+		if (mState == SOUNDSTATE_Playing || mState == SOUNDSTATE_Fadeout) {
+			return mStreamParameter.mFxmixes[type].mCurrentValue;
+		}
+		return -1.0f;
+	}
+	virtual void setDolby(f32 value, u32 moveTime, u8 type) // _3C (weak)
+	{
+		int result = mStreamParameter.mDolbys[type].set(value, moveTime);
+		if (result == JAInter::MOVEPARA_SetTarget) {
+			mStreamParameter.mDolbyFlags |= 1 << type;
+		}
+		if (mStreamParameter.mUpdateData && result != JAInter::MOVEPARA_AlreadySet) {
+			mStreamParameter.mUpdateData->mActiveTrackFlag |= JAInter::SOUNDACTIVE_Dolby;
+		}
+	}
+	virtual f32 getDolby(u8 type) // _40 (weak)
+	{
+		if (mState == SOUNDSTATE_Playing || mState == SOUNDSTATE_Fadeout) {
+			return mStreamParameter.mDolbys[type].mCurrentValue;
+		}
+		return -1.0f;
+	}
 	virtual void setVolumeU7(u8 value, u32 moveTime, u8 type) { setVolume(value / 127.0f, moveTime, type); } // _4C (weak)
-	virtual u8 getVolumeU7(u8 type);                                                                         // _50 (weak)
-	virtual void setPanU7(u8 value, u32 moveTime, u8 type);                                                  // _54 (weak)
-	virtual u8 getPanU7(u8 type);                                                                            // _58 (weak)
-	virtual void setFxmixU7(u8 value, u32 moveTime, u8 type);                                                // _5C (weak)
-	virtual u8 getFxmixU7(u8 type);                                                                          // _60 (weak)
-	virtual void setDolbyU7(u8 value, u32 moveTime, u8 type);                                                // _64 (weak)
-	virtual u8 getDolbyU7(u8 type);                                                                          // _68 (weak)
+	virtual u8 getVolumeU7(u8 type) { return getVolume(type) * 127.0f; }                                     // _50 (weak)
+	virtual void setPanU7(u8 value, u32 moveTime, u8 type) { setPan(value / 127.0f, moveTime, type); }       // _54 (weak)
+	virtual u8 getPanU7(u8 type) { return getPan(type) * 127.0f; }                                           // _58 (weak)
+	virtual void setFxmixU7(u8 value, u32 moveTime, u8 type) { setFxmix(value / 127.0f, moveTime, type); }   // _5C (weak)
+	virtual u8 getFxmixU7(u8 type) { return getFxmix(type) * 127.0f; }                                       // _60 (weak)
+	virtual void setDolbyU7(u8 value, u32 moveTime, u8 type) { setDolby(value / 127.0f, moveTime, type); }   // _64 (weak)
+	virtual u8 getDolbyU7(u8 type) { return getDolby(type) * 127.0f; }                                       // _68 (weak)
 	virtual u32 getFadeCounter();                                                                            // _A4
 	virtual void setPrepareFlag(u8 flag) { setStreamPrepareFlag(flag); }                                     // _A8 (weak)
 	virtual void checkReady() { checkStreamReady(); }                                                        // _AC (weak)
+	virtual void setPortData(u8, u16) { }                                                                    // _08 (weak)
+	virtual u16 getPortData(u8) { return 0xFFFF; }                                                           // _0C (weak)
 
 	void setStreamPrepareFlag(u8 flag);
 	bool checkStreamReady();
