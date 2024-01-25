@@ -823,8 +823,8 @@ void CreatureAnime::setAnime(JAIAnimeSoundData* data, u32 a1, f32 a2, f32 a3)
  */
 void CreatureAnime::playActorAnimSound(JAInter::Actor* actor, f32 pitchmod, u8 a2)
 {
-	JUT_ASSERTLINE(549, mSoundData->mEntries < _68, "JAIAnimeSound::playActorAnimSound  dataCounter‚ªˆÙí‚Å‚·B\n");
-	JAIAnimeSoundData* data = &mSoundData[_68];
+	JUT_ASSERTLINE(549, mSoundData->mEntryNum < mAnimID, "JAIAnimeSound::playActorAnimSound  dataCounter‚ªˆÙí‚Å‚·B\n");
+	JAIAnimeSoundData* data = &mSoundData[mAnimID];
 	u8 max                  = mHandleCount;
 	for (u8 i = 0; i < max; i++) {
 		u8* handle = _40;
@@ -837,7 +837,7 @@ void CreatureAnime::playActorAnimSound(JAInter::Actor* actor, f32 pitchmod, u8 a
 				continue;
 			}
 			if (!(data->_08 & 0xc00)) {
-				_68 += _5C;
+				mAnimID += _5C;
 				return;
 			} else {
 				break;
@@ -869,13 +869,13 @@ void CreatureAnime::playActorAnimSound(JAInter::Actor* actor, f32 pitchmod, u8 a
 			}
 			startAnimSound(data->_08, sound, actor, a2);
 			if (*sound) {
-				_44[a2] = data;
-				_40[a2] = true;
-				(*sound)->setVolume((f32)data->_04[1] / 127.0f, 0, SOUNDPARAM_Unk5);
-				(*sound)->setPitch((f32)data->_10[5] * (1.0f - pitchmod), 0, SOUNDPARAM_Unk5);
+				mBasEntries[a2] = (JAIAnimeFrameSoundData*)data;
+				_40[a2]         = true;
+				(*sound)->setVolume((f32)data->_08 / 127.0f, 0, SOUNDPARAM_Unk5);
+				(*sound)->setPitch((f32)data->_18 * (1.0f - pitchmod), 0, SOUNDPARAM_Unk5);
 			}
 			//}
-			_68 += _5C;
+			mAnimID += _5C;
 			return;
 		}
 	}

@@ -10,22 +10,33 @@ struct JAIBasic;
  * @fabricated
  * @size{0x20}
  */
-struct JAIAnimeSoundData_0xC {
-	f32 _00;      // _00
+struct JAIAnimeSoundDataEntry {
+	f32 mTime;    // _00 something dumb going on with all of this
 	u8 _04[0x1C]; // _04 - unknown
 };
 
+// represenation of contents of .bas file, maybe
 struct JAIAnimeSoundData {
-	u16 mEntries; // _00
-	u32 : 0;
-	u8 _04[4];                  // _04 - unknown
-	u32 _08;                    // _08
-	JAIAnimeSoundData_0xC* _0C; // _0C
-	u8 _10[8];                  // _10 - unknown
-	u8 _18;                     // _18
+	u16 mEntryNum;                       // _00
+	u32 _04;                             // _04 - unknown
+	u32 _08;                             // _08
+	JAIAnimeSoundDataEntry* mSndEntries; // _0C
+	u8 _10[8];                           // _10 - unknown
+	u8 _18;                              // _18
 };
 
-struct JAIAnimeFrameSoundData;
+struct JAIAnimeFrameSoundData {
+	u32 mSoundID;   // _00 none of the values here make senese
+	f32 mStartTime; // _04 Im pretty sure its just an entry
+	f32 _08;        // _08 from a .bas file, the first few
+	f32 mPitch;     // _0C members line up, but the later stuff
+	u32 _10;        // _10 doesnt
+	u8 mPanning;    // _14
+	s8 _15;         // _15
+	u8 _16;         // _16
+	u8 mVelocity;   // _17
+	s8 _18;         // _18
+};
 
 struct JAIAnimeSound : public JAInter::Object {
 	JAIAnimeSound(Vec*, JKRHeap*, u8);
@@ -38,7 +49,7 @@ struct JAIAnimeSound : public JAInter::Object {
 
 	void initActorAnimSound(JAIAnimeSoundData*, u32, f32, f32);
 	int checkLoopStartCount(f32);
-	void checkLoopEndCount(f32);
+	int checkLoopEndCount(f32);
 	void setAnimSoundActor(JAInter::Actor*, f32, f32, u8);
 
 	// Unused/inlined:
@@ -53,20 +64,21 @@ struct JAIAnimeSound : public JAInter::Object {
 	void setAnimSoundVec(JAIBasic*, Vec*, f32, f32, u32, u8);
 
 	// _00 VTBL
-	u8* _40;                       // _40
-	void** _44;                    // _44
-	u32 _48;                       // _48
-	u32 _4C;                       // _4C
-	u32 _50;                       // _50
-	u32 _54;                       // _54
-	u8 _58;                        // _58
-	u32 _5C;                       // _5C
-	u8 _60[8];                     // _60
-	u32 _68;                       // _68
-	int _6C;                       // _6C
-	f32 _70;                       // _70
-	f32 _74;                       // _74
-	JAIAnimeSoundData* mSoundData; // _78
+	u8* _40;                              // _40
+	JAIAnimeFrameSoundData** mBasEntries; // _44
+	u32 _48;                              // _48
+	u32 _4C;                              // _4C
+	u32 _50;                              // _50
+	u32 _54;                              // _54
+	u8 _58;                               // _58
+	u32 _5C;                              // _5C
+	u32 mLoopStartID;                     // _60
+	u32 mLoopEndID;                       // _64
+	u32 mAnimID;                          // _68
+	u32 mCounter;                         // _6C
+	f32 mTimer;                           // _70
+	f32 _74;                              // _74
+	JAIAnimeSoundData* mSoundData;        // _78
 };
 
 #endif

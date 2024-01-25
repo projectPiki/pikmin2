@@ -6,20 +6,20 @@
 
 /**
  * @brief A generic iterator struct for iterating over a container.
- * 
+ *
  * @tparam T The type of elements in the container.
  */
 template <typename T>
 struct Iterator {
 	/**
 	 * @brief Constructs an Iterator object.
-	 * 
+	 *
 	 * @param container Pointer to the container to iterate over.
 	 * @param startIndex Optional parameter specifying the starting index of the iteration.
 	 * @param condition Optional condition to filter the elements during iteration.
 	 */
 	inline Iterator<T>(Container<T>* container, void* startIndex = 0, Condition<T>* condition = nullptr)
-		: mCondition(condition)
+	    : mCondition(condition)
 	{
 		mIndex     = startIndex;
 		mContainer = container;
@@ -67,7 +67,7 @@ struct Iterator {
 
 	/**
 	 * @brief Checks if the iterator has reached the end of the container.
-	 * 
+	 *
 	 * @return true if the iterator has reached the end, false otherwise.
 	 */
 	virtual bool isDone() // _10
@@ -77,7 +77,7 @@ struct Iterator {
 
 	/**
 	 * @brief Dereferences the iterator and returns a pointer to the current element.
-	 * 
+	 *
 	 * @return Pointer to the current element.
 	 */
 	virtual T* operator*() // _14
@@ -87,7 +87,7 @@ struct Iterator {
 
 	/**
 	 * @brief Pre-increments the iterator to the next element in the container.
-	 * 
+	 *
 	 * @return Reference to the incremented iterator.
 	 */
 	inline Iterator<T>& operator++()
@@ -98,7 +98,7 @@ struct Iterator {
 
 	/**
 	 * @brief Checks if the current element satisfies the condition.
-	 * 
+	 *
 	 * @return true if the current element satisfies the condition, false otherwise.
 	 */
 	inline bool satisfy() { return mCondition->satisfy(mContainer->get(mIndex)); }
