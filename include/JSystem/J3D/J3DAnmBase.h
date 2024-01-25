@@ -66,10 +66,10 @@ struct J3DAnmBase {
  * @fabricated
  */
 struct J3DAnmFullData : public J3DFileBlockBase {
-	u8 mAttribute; // _08
-	u8 _09;        // _09
-	s16 mMaxFrame; // _0A
-	u16 mAnimTableNum1;       // _0C
+	u8 mAttribute;      // _08
+	u8 _09;             // _09
+	s16 mMaxFrame;      // _0A
+	u16 mAnimTableNum1; // _0C
 	u16 mAnimTableNum2;
 };
 

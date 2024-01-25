@@ -31,13 +31,13 @@ struct J3DAnmTransform : public J3DAnmBase {
 
 	// _00     = VTBL
 	// _00-_0C = J3DAnmBase
-	f32* mScaleVals;       // _0C
-	s16* mRotationVals;    // _10
-	f32* mTranslationVals; // _14
-	u16 _18;               // _18
-	u16 _1A;               // _1A
-	u16 _1C;               // _1C
-	u16 mUpdateMaterialNum;               // _1E
+	f32* mScaleVals;        // _0C
+	s16* mRotationVals;     // _10
+	f32* mTranslationVals;  // _14
+	u16 _18;                // _18
+	u16 _1A;                // _1A
+	u16 _1C;                // _1C
+	u16 mUpdateMaterialNum; // _1E
 };
 
 /**

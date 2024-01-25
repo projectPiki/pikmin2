@@ -182,7 +182,7 @@ struct JASTrack : JSUList<JASChannel> {
 	void updateTrack(u32);
 	void updateTempo();
 	void updateSeq(u32, bool);
-	void seqTimeToDspTime(s32, u8);
+	s32 seqTimeToDspTime(s32, u8);
 	void setParam(int, f32, int);
 	bool setSeqData(u8*, s32);
 	bool startSeq();
@@ -239,6 +239,8 @@ struct JASTrack : JSUList<JASChannel> {
 	int getFreeMemCount();
 	int getChannelCount() const;
 	int getReleaseChannelCount() const;
+
+	inline JASSeqCtrl* getCtrl() { return &mSeqCtrl; }
 
 	// JSUPtrList _00;        // _00
 	JASSeqCtrl mSeqCtrl;               // _0C

@@ -1928,7 +1928,7 @@ lbl_800A0CFC:
  * @note Address: 0x800A0D20
  * @note Size: 0xD8
  */
-void JASTrack::seqTimeToDspTime(s32, u8)
+s32 JASTrack::seqTimeToDspTime(s32, u8)
 {
 	/*
 	stwu     r1, -0x30(r1)

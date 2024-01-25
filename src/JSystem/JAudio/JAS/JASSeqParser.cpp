@@ -798,6 +798,76 @@ int JASSeqParser::cmdCheckWave(JASTrack* track, u32* args)
  */
 int JASSeqParser::cmdPrintf(JASTrack* track, u32* args)
 {
+	char buf[128];
+	u8 byteArray[4];
+	int registers[4];
+	u32 count = 0;
+
+	for (u32 i = 0; i < 128; i++) {
+		buf[i] = *track->mSeqCtrl.mCurrentFilePtr++;
+		if (!buf[i]) {
+			break;
+		}
+		if (buf[i] == '\\') {
+			buf[i] = *track->mSeqCtrl.mCurrentFilePtr++;
+			if (!buf[i]) {
+				break;
+			}
+
+			if (buf[i] != 'n') {
+				continue;
+			} else {
+				buf[i] = 13;
+				continue;
+			}
+		}
+
+		if (buf[i] != '%') {
+			continue;
+		}
+
+		buf[++i] = *track->mSeqCtrl.mCurrentFilePtr++;
+		if (!buf[i]) {
+			break;
+		}
+
+		switch (buf[i]) {
+		case 'd':
+			byteArray[count] = 0;
+			break;
+		case 'x':
+			byteArray[count] = 1;
+			break;
+		case 's':
+			byteArray[count] = 2;
+			break;
+		case 'r':
+			byteArray[count] = 3;
+			buf[i]           = 'd';
+			break;
+		case 'R':
+			byteArray[count] = 4;
+			buf[i]           = 'x';
+			break;
+		case 't':
+			byteArray[count] = 5;
+			buf[i]           = 'x';
+			break;
+		}
+		count++;
+	}
+
+	for (u32 i = 0; i < count; i++) {
+		registers[i] = *track->mSeqCtrl.mCurrentFilePtr++;
+		if (byteArray[i] == 2) {
+			registers[i] = (int)&track->mSeqCtrl.mRawFilePtr[registers[i]];
+		} else if (byteArray[i] == 5) {
+			registers[i] = track->_348;
+		} else if (byteArray[i] >= 3) {
+			registers[i] = track->exchangeRegisterValue(registers[i]);
+		}
+	}
+
 	return 0;
 	/*
 	stwu     r1, -0xc0(r1)
@@ -996,9 +1066,51 @@ void JASSeqParser::RegCmd_Process(JASTrack*, int, int)
  * @note Address: 0x8009DB6C
  * @note Size: 0x18C
  */
-int JASSeqParser::cmdSetParam(JASTrack* track, u8)
+int JASSeqParser::cmdSetParam(JASTrack* track, u8 p2)
 {
+	JASSeqCtrl* ctrl = track->getCtrl();
+	u8 flag          = *track->mSeqCtrl.mCurrentFilePtr++;
+
+	s16 data;
+	switch (p2 & 0xC) {
+	case 0:
+		data = track->readReg16(*ctrl->mCurrentFilePtr++);
+		break;
+	case 4:
+		data = *ctrl->mCurrentFilePtr++;
+		break;
+	case 8:
+		u8 byte = *ctrl->mCurrentFilePtr++;
+		if (byte & 0x80) {
+			data = byte << 8;
+		} else {
+			data = byte << 8 | byte << 1;
+		}
+		break;
+	case 12:
+		data = ctrl->read16();
+		break;
+	}
+
+	int val = 0;
+	switch (p2 & 0x3) {
+	case 0:
+		val = -1;
+		break;
+	case 1:
+		val = track->readReg16(*ctrl->mCurrentFilePtr++) & 0xFFFF;
+		break;
+	case 2:
+		val = *ctrl->mCurrentFilePtr++;
+		break;
+	case 3:
+		val = ctrl->read16() & 0xFFFF;
+		break;
+	}
+
+	track->setParam(flag, (int)data / 32767.0f, val);
 	return 0;
+	// return 0;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1153,8 +1265,106 @@ int JASSeqParser::cmdNoteOff(JASTrack*, u8)
  * @note Address: 0x8009DCF8
  * @note Size: 0x3D4
  */
-int JASSeqParser::cmdNoteOn(JASTrack* track, u8)
+int JASSeqParser::cmdNoteOn(JASTrack* track, u8 p2)
 {
+	s32 flag = *track->mSeqCtrl.mCurrentFilePtr++;
+	if (flag & 0x80) {
+		p2 = track->exchangeRegisterValue(p2);
+	}
+
+	p2 += track->getTranspose();
+
+	int val28 = (flag >> 5) & 0x3;
+	u8 val27;
+	if ((flag >> 5) & 0x2) {
+		val27 = p2;
+		p2    = track->_E5;
+	}
+
+	u8 val26 = *track->mSeqCtrl.mCurrentFilePtr++;
+	if (val26 & 0x80) {
+		val26 = track->exchangeRegisterValue(val26 & 0x7F);
+	}
+	u8 val25;
+	u8 val24  = flag & 0x7;
+	int val23 = 0;
+	if (!val24) {
+		val25 = *track->mSeqCtrl.mCurrentFilePtr++;
+		if (val25 & 0x80) {
+			val25 = track->exchangeRegisterValue(val25 & 0x7F);
+		}
+		int count = (flag >> 3) & 0x3;
+		flag      = 0;
+		for (int i = 0; i < count; i++) {
+			flag <<= 8;
+			flag |= *track->mSeqCtrl.mCurrentFilePtr++;
+		}
+
+		if ((u32)count == 1 && flag & 0x80) {
+			flag = track->exchangeRegisterValue(flag & 0x7F);
+		}
+	} else {
+		if ((flag >> 3) & 0x3) {
+			val24 = track->exchangeRegisterValue(val24 - 1);
+		}
+		if (val28 & 1) {
+			val23 = track->exchangeRegisterValue(*track->mSeqCtrl.mCurrentFilePtr++);
+			val28 = (val28 ^ 1) & 0xFF;
+		}
+
+		flag  = -1;
+		val25 = 100;
+	}
+
+	track->_E4 = val28;
+	s32 time   = flag;
+	if (track->_E6) {
+		if (track->_E4 & 1) {
+			time = -1;
+		}
+		if (time != -1) {
+			time = track->seqTimeToDspTime(time, val25);
+		}
+
+		if (!track->mIsPaused || !(track->mPauseStatus & 0x10)) {
+			track->gateOn(val24, p2, val26, time);
+		}
+	} else {
+		if (flag != -1) {
+			time = track->seqTimeToDspTime(flag, val25);
+		}
+		if (track->_E4 & 1) {
+			time = -1;
+		}
+
+		if (!track->mIsPaused || !(track->mPauseStatus & 0x10)) {
+			track->noteOn(val24, p2, val26, time, val23);
+		}
+	}
+
+	track->_E0 = flag;
+	track->_E6 = track->_E4 & 1;
+	if (track->_E4 & 0x2) {
+		s32 val = time;
+		if (time == -1) {
+			val = track->seqTimeToDspTime(flag, val25);
+		}
+
+		if (track->mChannels[0]) {
+			track->mChannels[0]->setKeySweepTarget(val27, val);
+		}
+
+		p2 = val27;
+	}
+
+	track->_E5 = p2;
+	if (flag == 0xFFFFFFFF) {
+		return 0;
+	}
+
+	track->mSeqCtrl.mWaitTimer = ((u32)flag) ? flag : -1;
+
+	return 1;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1460,79 +1670,95 @@ lbl_8009E0B8:
  * @note Address: 0x8009E0CC
  * @note Size: 0xB4
  */
-bool JASSeqParser::conditionCheck(JASTrack*, u8)
+bool JASSeqParser::conditionCheck(JASTrack* track, u8 p2)
 {
-	/*
-	clrlwi   r0, r5, 0x1c
-	lhz      r4, 0x26e(r4)
-	cmpwi    r0, 3
-	beq      lbl_8009E12C
-	bge      lbl_8009E0F8
-	cmpwi    r0, 1
-	beq      lbl_8009E110
-	bge      lbl_8009E11C
-	cmpwi    r0, 0
-	bge      lbl_8009E108
-	b        lbl_8009E178
+	u16 val = track->mRegisterParam._00[3];
+	switch (p2 & 0xF) {
+	case 0:
+		return true;
+	case 1:
+		return val == 0;
+	case 2:
+		return val != 0;
+	case 3:
+		return val == 1;
+	case 4:
+		return val >= 0x8000;
+	case 5:
+		return val < 0x8000;
+	}
 
-lbl_8009E0F8:
-	cmpwi    r0, 5
-	beq      lbl_8009E160
-	bge      lbl_8009E178
-	b        lbl_8009E13C
-
-lbl_8009E108:
-	li       r3, 1
-	blr
-
-lbl_8009E110:
-	cntlzw   r0, r4
-	srwi     r3, r0, 5
-	blr
-
-lbl_8009E11C:
-	neg      r0, r4
-	or       r0, r0, r4
-	srwi     r3, r0, 0x1f
-	blr
-
-lbl_8009E12C:
-	subfic   r0, r4, 1
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	blr
-
-lbl_8009E13C:
-	lis      r3, 0x00008000@ha
-	addi     r0, r3, 0x00008000@l
-	clrlwi   r3, r0, 0x10
-	subf     r0, r3, r4
-	orc      r3, r4, r3
-	srwi     r0, r0, 1
-	subf     r0, r0, r3
-	srwi     r3, r0, 0x1f
-	blr
-
-lbl_8009E160:
-	lis      r3, 0x00008000@ha
-	addi     r0, r3, 0x00008000@l
-	clrlwi   r0, r0, 0x10
-	subf     r0, r0, r4
-	srwi     r3, r0, 0x1f
-	blr
-
-lbl_8009E178:
-	li       r3, 0
-	blr
-	*/
+	return false;
 }
 
 /**
  * @note Address: 0x8009E180
  * @note Size: 0x6D4
  */
-int JASSeqParser::parseSeq(JASTrack*)
+int JASSeqParser::parseSeq(JASTrack* track)
 {
+	while (true) {
+		u32 val23 = 0;
+		s32 flag  = *track->mSeqCtrl.mCurrentFilePtr++; // r26
+		if (!(flag & 0x80)) {
+			val23 = cmdNoteOn(track, flag);
+		} else if (((flag & 0xF0) == 128) && !(flag & 0x3)) {
+			int val = 0;
+			for (int i = 0; i < (128 - flag); i++) {
+				val <<= 8;
+				val |= *track->mSeqCtrl.mCurrentFilePtr++;
+			}
+			track->mSeqCtrl.mWaitTimer = val;
+			val23                      = val != 0;
+		} else if (((flag & 0xF0) == 128) || flag == (u32)0xF9) {
+			if (flag == (u32)0xF9) {
+				val23 = *track->mSeqCtrl.mCurrentFilePtr++;
+				flag  = (track->exchangeRegisterValue(val23 & 0x7) & 0xFF) + 128;
+				if (val23 & 0x80) {
+					flag = (flag | 8) & 0xFF;
+				}
+			}
+
+			int val5 = 0;
+			if (flag & 0x10) {
+				val5 = *track->mSeqCtrl.mCurrentFilePtr++;
+				if (val5 > 100) {
+					val5 = (val5 - 98) * 20;
+				}
+			}
+			track->noteOff(flag & 0x7, val5);
+			val23 = 0;
+		} else {
+			switch (flag & 0xF0) {
+			case 0x90:
+				val23 = cmdSetParam(track, flag & 0xF);
+				break;
+			case 0xA0:
+				track->writeRegParam(flag & 0xF);
+				break;
+			case 0xB0:
+				// something involving Arglist
+				break;
+			default:
+				// something involving Arglist
+				break;
+			}
+		}
+
+		if (val23 == 0) {
+			continue;
+		}
+
+		if (val23 == 1) {
+			break;
+		}
+
+		if (val23 == 3) {
+			return -1;
+		}
+	}
+
+	return 0;
 	/*
 	stwu     r1, -0xa0(r1)
 	mflr     r0
