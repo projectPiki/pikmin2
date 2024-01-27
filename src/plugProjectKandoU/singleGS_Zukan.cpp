@@ -4029,8 +4029,8 @@ void ZukanState::dvdloadA()
 	info.mCam1Position[0] = mCamera->getSoundPositionPtr();
 	info.mCam2Position[0] = mCamera->getSoundPositionPtr();
 	info.mCameraMtx[0]    = mCamera->getSoundMatrixPtr();
-	info.mBounds.mMin     = -1000.0f;
-	info.mBounds.mMax     = 1000.0f;
+	info.mBounds.mMin.set(-1000.0f, -1000.0f, -1000.0f);
+	info.mBounds.mMax.set(1000.0f, 1000.0f, 1000.0f);
 	info.setStageFlag(PSGame::SceneInfo::SCENEFLAG_Unk0, PSGame::SceneInfo::SFBS_1);
 	info.mSceneType = PSGame::SceneInfo::PIKLOPEDIA;
 
