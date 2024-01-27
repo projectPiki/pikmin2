@@ -111,9 +111,7 @@ void TForever::setGlobalScale(f32 scale)
 		return;
 	}
 
-	emitter->mGlobalScl.set(scale, scale, scale);
-	emitter->mGlobalPScl.x = scale;
-	emitter->mGlobalPScl.y = scale;
+	emitter->setScale(scale);
 }
 
 /**
