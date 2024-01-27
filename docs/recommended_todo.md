@@ -42,7 +42,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DModelLoaderCalcSize.cpp">J3D/J3DModelLoaderCalcSize.cpp</a> | 21199 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAIAnimation.cpp">JAudio//JAI/JAIAnimation.cpp</a> | 21573 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DWindow.cpp">J2D/J2DWindow.cpp</a> | 22771 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DJoint.cpp">J3D/J3DJoint.cpp</a> | 23493 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DMaterial.cpp">J2D/J2DMaterial.cpp</a> | 23586 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKernel/JKRHeap.cpp">JKernel/JKRHeap.cpp</a> | 23801 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DMtxBuffer.cpp">J3D/J3DMtxBuffer.cpp</a> | 23904 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JParticle/JPADynamicsBlock.cpp">JParticle/JPADynamicsBlock.cpp</a> | 24324 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DMtxBuffer.cpp">J3D/J3DMtxBuffer.cpp</a> | 23904 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JParticle/JPADynamicsBlock.cpp">JParticle/JPADynamicsBlock.cpp</a> | 24323 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DTextBoxEx.cpp">J2D/J2DTextBoxEx.cpp</a> | 24399 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DGD.cpp">J3D/J3DGD.cpp</a> | 26174 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DModel.cpp">J3D/J3DModel.cpp</a> | 28915 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DMaterial.cpp">J3D/J3DMaterial.cpp</a> | 29170 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DMaterialAttach.cpp">J3D/J3DMaterialAttach.cpp</a> | 29963 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DScreen.cpp">J2D/J2DScreen.cpp</a> | 30643 |
@@ -77,7 +77,7 @@
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSBnkMgr.cpp">PSBnkMgr.cpp</a> | 8931 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSSe.cpp">PSSe.cpp</a> | 22093 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSSeq.cpp">PSSeq.cpp</a> | 54421 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSAutoBgm.cpp">PSAutoBgm.cpp</a> | 66682 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSGame.cpp">PSGame.cpp</a> | 74116 |  |  |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSGame.cpp">PSGame.cpp</a> | 74112 |  |  |
 
 ### <section id="plugProjectKandoU">plugProjectKandoU</section>
 | File | Size (bytes) | File | Size (bytes) |

@@ -9,17 +9,19 @@ template <typename T>
 struct SingletonBase {
 	inline SingletonBase(T* inst) { sInstance = inst; }
 
-	// inline SingletonBase()
+	inline SingletonBase() { sInstance = static_cast<T*>(this); } // needed for ConductorList
+
 	static inline T* newInstance()
 	{
 		P2ASSERTLINE(118, !SingletonBase<T>::sInstance);
 		if (!SingletonBase<T>::sInstance) {
-			SingletonBase<T>::sInstance = new T; //(JKRGetCurrentHeap(), 0xfffffffc) is used in at least one of these
+			SingletonBase<T>::sInstance = new T;
 		}
 		P2ASSERTLINE(121, SingletonBase<T>::sInstance);
 		return SingletonBase<T>::sInstance;
 	}
 
+	// used for ConductorList
 	static inline T* newHeapInstance()
 	{
 		P2ASSERTLINE(126, !SingletonBase<T>::sInstance);
@@ -29,8 +31,6 @@ struct SingletonBase {
 		P2ASSERTLINE(129, SingletonBase<T>::sInstance);
 		return SingletonBase<T>::sInstance;
 	}
-
-	// SingletonBase(T* obj) { sInstance = obj; }
 
 	virtual ~SingletonBase() { sInstance = nullptr; }; // _00
 
@@ -44,12 +44,6 @@ struct SingletonBase {
 
 	static T* sInstance;
 };
-
-// static inline PSM::ObjCalcBase* getObjCalcBaseInstance()
-// {
-// 	P2ASSERTLINE(137, SingletonBase<PSM::ObjCalcBase>::sInstance);
-// 	return SingletonBase<PSM::ObjCalcBase>::sInstance;
-// }
 } // namespace PSSystem
 
 #endif

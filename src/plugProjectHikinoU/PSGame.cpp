@@ -41,7 +41,7 @@ u8 CaveFloorInfo::getCaveNoFromID()
  * @note Size: 0x70
  */
 ConductorList::ConductorList()
-    : SingletonBase(this)
+    : SingletonBase()
 {
 	mCaveInfos = nullptr;
 	mCaveCount = 255;
@@ -55,7 +55,7 @@ ConductorList::~ConductorList()
 {
 	for (u8 i = 0; i < mCaveCount; i++) {
 		// works, but theres something weird going on here
-		delete[](&mCaveInfos->mFileNames)[i * 2];
+		delete[] (&mCaveInfos->mFileNames)[i * 2];
 	}
 
 	delete[] mCaveInfos;
@@ -813,7 +813,7 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 		switch (info.mSceneType) {
 		case SceneInfo::CHALLENGE_MODE:
 			const char* path = "/user/Totaka/ChallengeBgmList.txt";
-			PSSystem::SingletonBase<ConductorList>::newHeapInstance(); // needs to generate constructor differently, some thunk shit
+			PSSystem::SingletonBase<ConductorList>::newHeapInstance();
 
 			ConductorList* list = PSSystem::SingletonBase<ConductorList>::getInstance();
 			bool loaded         = list->load(path, JKRDvdRipper::ALLOC_DIR_BOTTOM);
