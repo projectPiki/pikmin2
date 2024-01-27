@@ -113,9 +113,9 @@ struct CaveFloorInfo : public SceneInfo {
 
 	// _00     = VTBL
 	// _00-_38 = SceneInfo
-	uint mAlphaType; // _38 (use enum FloorAlphaType)
-	uint mBetaType;  // _3C (use enum FloorBetaType)
-	u8 mFloorNum;    // _40
+	int mAlphaType; // _38 (use enum FloorAlphaType)
+	int mBetaType;  // _3C (use enum FloorBetaType)
+	u8 mFloorNum;   // _40
 	union {
 		u32 fullView;
 		u8 byteView[4];

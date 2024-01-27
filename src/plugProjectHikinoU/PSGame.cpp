@@ -813,16 +813,16 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 		switch (info.mSceneType) {
 		case SceneInfo::CHALLENGE_MODE:
 			const char* path = "/user/Totaka/ChallengeBgmList.txt";
-			PSSystem::SingletonBase<ConductorList>::newHeapInstance();
+			PSSystem::SingletonBase<ConductorList>::newHeapInstance(); // needs to generate constructor differently, some thunk shit
 
 			ConductorList* list = PSSystem::SingletonBase<ConductorList>::getInstance();
 			bool loaded         = list->load(path, JKRDvdRipper::ALLOC_DIR_BOTTOM);
 			P2ASSERTLINE(1417, loaded);
 			char* name = list->getInfo(cinfo.mChallengeModeStageNum, cinfo.mFloorNum);
+			// getInfo might be returning some sort of wacky struct, with all the stack stuff
 			u8 wScene2;
 			char* bmsName;
 			list->getSeqAndWaveFromConductor(name, &wScene2, &bmsName);
-
 			*wScene = wScene2;
 			bgm     = newAutoBgm(name, bmsName, sound, (JADUtility::AccessMode)mode, info, nullptr);
 			delete PSSystem::SingletonBase<ConductorList>::sInstance;
@@ -2046,6 +2046,7 @@ u16 seqCpuSync(JASTrack* track, u16 command)
 		return Game::playData->mStoryFlags & Game::STORY_DebtPaid;
 	case 0:
 		u16 ret = 0;
+		u8 com  = command;
 		for (int i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
 			if (JAInter::SequenceMgr::getPlayTrackInfo(i)->mSequence) {
 				JAISequence* seq = JAInter::SequenceMgr::getPlayTrackInfo(i)->mSequence;
@@ -2057,11 +2058,11 @@ u16 seqCpuSync(JASTrack* track, u16 command)
 					temp = track->mParentTrack;
 				}
 				if (ref == temp) {
-					u16 route                   = JAInter::routeToTrack(track->_348);
+					u32 route                   = JAInter::routeToTrack(track->_348);
 					PSSystem::SeqBase* childSeq = PSMGetSceneMgrCheck()->findSeq(track);
 					P2ASSERTLINE(1923, childSeq);
-					JAInter::SystemInterface::outerInit(JAInter::SequenceMgr::getPlayTrackInfo(i), temp, route, childSeq->mSoundInfo.mFlag,
-					                                    0);
+					JAInter::SystemInterface::outerInit(JAInter::SequenceMgr::getPlayTrackInfo(i), temp, route,
+					                                    childSeq->mSoundInfo.mFlag >> 8, com);
 					JAInter::SequenceMgr::getPlayTrackInfo(i)->_04 |= 1 << route;
 					ret = 0;
 					i   = JAIGlobalParameter::getParamSeqPlayTrackMax(); // stupid way to break but ok

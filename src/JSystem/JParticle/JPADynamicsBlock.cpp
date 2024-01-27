@@ -137,7 +137,7 @@ void JPAVolumeLine(JPAEmitterWorkData* workData)
 	workData->mVelAxis.x = 0.0f;
 	workData->mVelAxis.y = 0.0f;
 	workData->mVelAxis.z = workData->mVolumePos.z;
-	
+
 	/*
 	stwu     r1, -0x20(r1)
 	lwz      r6, 0(r3)
