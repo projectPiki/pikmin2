@@ -52,8 +52,8 @@ void basePlaneTypeX(f32 (*)[4], f32, f32);
 struct JPABaseParticle {
 	void init_p(JPAEmitterWorkData*);
 	void init_c(JPAEmitterWorkData*, JPABaseParticle*);
-	void calc_p(JPAEmitterWorkData*);
-	void calc_c(JPAEmitterWorkData*);
+	bool calc_p(JPAEmitterWorkData*);
+	bool calc_c(JPAEmitterWorkData*);
 	bool canCreateChild(JPAEmitterWorkData*);
 	f32 getCalcCurrentPositionX(const JPABaseEmitter*) const;
 	f32 getCalcCurrentPositionY(const JPABaseEmitter*) const;

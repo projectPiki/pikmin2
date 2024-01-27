@@ -96,16 +96,18 @@ struct JPADynamicsBlock {
 struct JPAFieldBlock {
 	/** @fabricated */
 	struct Data {
-		u8 _00[4];    // _00
-		u32 _04;      // _04
-		u32 _08;      // _08
-		u8 _0C[0x1C]; // _0C
-		f32 _28;      // _28
-		f32 _2C;      // _2C
-		f32 _30;      // _30
-		f32 _34;      // _34
-		f32 _38;      // _38
-		f32 _3C;      // _3C
+		u8 _00[4];             // _00
+		u32 _04;               // _04
+		u32 _08;               // _08
+		JGeometry::TVec3f _0C; // _0C
+		JGeometry::TVec3f _18;
+		f32 mAmplitude;
+		f32 _28; // _28
+		f32 _2C; // _2C
+		f32 _30; // _30
+		f32 _34; // _34
+		f32 _38; // _38
+		f32 _3C; // _3C
 	};
 
 	JPAFieldBlock(const u8*, JKRHeap*);
@@ -115,13 +117,13 @@ struct JPAFieldBlock {
 	// unused/inlined:
 	void init_jpa(const u8*, JKRHeap*);
 
-	const u8* mData;       // _00
-	JPAFieldBase* mField;  // _04
-	f32 _08;               // _08
-	f32 _0C;               // _0C
-	JGeometry::TVec3f _10; // _10
-	JGeometry::TVec3f _1C; // _1C
-	f32 _28;               // _28
+	const Data* mData;           // _00
+	JPAFieldBase* mField;        // _04
+	f32 _08;                     // _08
+	f32 _0C;                     // _0C
+	JGeometry::TVec3f mOffset;   // _10
+	JGeometry::TVec3f mVelocity; // _1C
+	f32 mSpeed;                  // _28
 };
 
 struct JPAKeyBlockData {

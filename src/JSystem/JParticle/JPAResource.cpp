@@ -1,173 +1,31 @@
 #include "JSystem/JParticle/JPAResource.h"
-#include "Dolphin/mtx.h"
 #include "JSystem/JParticle/JPAEmitter.h"
 #include "JSystem/JParticle/JPAMath.h"
 #include "JSystem/JParticle/JPAShape.h"
-#include "types.h"
+#include "JSystem/JParticle/JPAField.h"
+#include "CNode.h"
+#include "Matrixf.h"
 
-/*
-    Generated from dpostproc
+// this might be a group of smaller arrays
+u8 jpa_pos[]
+    = { 00,   00,   00,   0x32, 00,   00,   0x32, 0xCE, 00,   00,   0xCE, 00,   0xE7, 00,   00,   0x19, 00,   00,   0x19, 0xCE, 00,   0xE7,
+	    0xCE, 00,   0xCE, 00,   00,   00,   00,   00,   00,   0xCE, 00,   0xCE, 0xCE, 00,   00,   0x19, 00,   0x32, 0x19, 00,   0x32, 0xE7,
+	    00,   00,   0xE7, 00,   0xE7, 0x19, 00,   0x19, 0x19, 00,   0x19, 0xE7, 00,   0xE7, 0xE7, 00,   0xCE, 0x19, 00,   00,   0x19, 00,
+	    00,   0xE7, 00,   0xCE, 0xE7, 00,   00,   0x32, 00,   0x32, 0x32, 00,   0x32, 00,   00,   00,   00,   00,   0xE7, 0x32, 00,   0x19,
+	    0x32, 00,   0x19, 00,   00,   0xE7, 00,   00,   0xCE, 0x32, 00,   00,   0x32, 00,   00,   00,   00,   0xCE, 00,   00,   00,   00,
+	    00,   0x32, 00,   00,   0x32, 00,   0x32, 00,   00,   0x32, 0xE7, 00,   00,   0x19, 00,   00,   0x19, 00,   0x32, 0xE7, 00,   0x32,
+	    0xCE, 00,   00,   00,   00,   00,   00,   00,   0x32, 0xCE, 00,   0x32, 00,   00,   0xE7, 0x32, 00,   0xE7, 0x32, 00,   0x19, 00,
+	    00,   0x19, 0xE7, 00,   0xE7, 0x19, 00,   0xE7, 0x19, 00,   0x19, 0xE7, 00,   0x19, 0xCE, 00,   0xE7, 00,   00,   0xE7, 00,   00,
+	    0x19, 0xCE, 00,   0x19, 00,   00,   0xCE, 0x32, 00,   0xCE, 0x32, 00,   00,   00,   00,   00,   0xE7, 00,   0xCE, 0x19, 00,   0xCE,
+	    0x19, 00,   00,   0xE7, 00,   00,   0xCE, 00,   0xCE, 00,   00,   0xCE, 00,   00,   00,   0xCE, 00,   00,   00,   00,   00,   00,
+	    00,   0x32, 00,   0xCE, 0x32, 00,   0xCE, 00,   00,   00,   0xE7, 00,   00,   0x19, 00,   0xCE, 0x19, 00,   0xCE, 0xE7, 00,   00,
+	    0xCE, 00,   00,   00,   00,   0xCE, 00,   00,   0xCE, 0xCE, 00,   0x19, 00,   00,   0x19, 0x32, 00,   0xE7, 0x32, 00,   0xE7, 00,
+	    00,   0x19, 0xE7, 00,   0x19, 0x19, 00,   0xE7, 0x19, 00,   0xE7, 0xE7, 00,   0x19, 0xCE, 00,   0x19, 00,   00,   0xE7, 00,   00,
+	    0xE7, 0xCE, 00,   0x32, 00,   00,   0x32, 0x32, 00,   00,   0x32, 00,   00,   00,   00,   0x32, 0xE7, 00,   0x32, 0x19, 00,   00,
+	    0x19, 00,   00,   0xE7, 00,   0x32, 0xCE, 00,   0x32, 00,   00,   00,   00,   00,   00,   0xCE, 00,   00,   00,   00,   00,   00,
+	    00,   00,   00,   00,   00,   00,   00,   00,   00,   00,   00,   00,   00,   00,   00,   00,   00,   00,   00,   00,   00,   00 };
 
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global jpa_pos
-    jpa_pos:
-        .4byte 0x00000032
-        .4byte 0x000032CE
-        .4byte 0x0000CE00
-        .4byte 0xE7000019
-        .4byte 0x000019CE
-        .4byte 0x00E7CE00
-        .4byte 0xCE000000
-        .4byte 0x000000CE
-        .4byte 0x00CECE00
-        .4byte 0x00190032
-        .4byte 0x190032E7
-        .4byte 0x0000E700
-        .4byte 0xE7190019
-        .4byte 0x190019E7
-        .4byte 0x00E7E700
-        .4byte 0xCE190000
-        .4byte 0x190000E7
-        .4byte 0x00CEE700
-        .4byte 0x00320032
-        .4byte 0x32003200
-        .4byte 0x00000000
-        .4byte 0xE7320019
-        .4byte 0x32001900
-        .4byte 0x00E70000
-        .4byte 0xCE320000
-        .4byte 0x32000000
-        .4byte 0x00CE0000
-        .4byte 0x00000032
-        .4byte 0x00003200
-        .4byte 0x32000032
-        .4byte 0xE7000019
-        .4byte 0x00001900
-        .4byte 0x32E70032
-        .4byte 0xCE000000
-        .4byte 0x00000000
-        .4byte 0x32CE0032
-        .4byte 0x0000E732
-        .4byte 0x00E73200
-        .4byte 0x19000019
-        .4byte 0xE700E719
-        .4byte 0x00E71900
-        .4byte 0x19E70019
-        .4byte 0xCE00E700
-        .4byte 0x00E70000
-        .4byte 0x19CE0019
-        .4byte 0x0000CE32
-        .4byte 0x00CE3200
-        .4byte 0x00000000
-        .4byte 0xE700CE19
-        .4byte 0x00CE1900
-        .4byte 0x00E70000
-        .4byte 0xCE00CE00
-        .4byte 0x00CE0000
-        .4byte 0x00CE0000
-        .4byte 0x00000000
-        .4byte 0x003200CE
-        .4byte 0x3200CE00
-        .4byte 0x0000E700
-        .4byte 0x001900CE
-        .4byte 0x1900CEE7
-        .4byte 0x0000CE00
-        .4byte 0x000000CE
-        .4byte 0x0000CECE
-        .4byte 0x00190000
-        .4byte 0x193200E7
-        .4byte 0x3200E700
-        .4byte 0x0019E700
-        .4byte 0x191900E7
-        .4byte 0x1900E7E7
-        .4byte 0x0019CE00
-        .4byte 0x190000E7
-        .4byte 0x0000E7CE
-        .4byte 0x00320000
-        .4byte 0x32320000
-        .4byte 0x32000000
-        .4byte 0x0032E700
-        .4byte 0x32190000
-        .4byte 0x190000E7
-        .4byte 0x0032CE00
-        .4byte 0x32000000
-        .4byte 0x000000CE
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global jpa_crd
-    jpa_crd:
-        .4byte 0x00000100
-        .4byte 0x01010001
-        .4byte 0x00000200
-        .4byte 0x02010001
-        .4byte 0x00000100
-        .4byte 0x01020002
-        .4byte 0x00000200
-        .4byte 0x02020002
-    .global lbl_804A3500
-    lbl_804A3500:
-        .4byte lbl_80096AC0
-        .4byte lbl_80096AD4
-        .4byte lbl_80096A08
-        .4byte lbl_80096A68
-        .4byte lbl_80096A68
-        .4byte lbl_80096AE4
-        .4byte lbl_80096AE4
-        .4byte lbl_80096AAC
-        .4byte lbl_80096AAC
-        .4byte lbl_80096A98
-        .4byte lbl_80096A38
-    .global lbl_804A352C
-    lbl_804A352C:
-        .4byte lbl_80096764
-        .4byte lbl_80096778
-        .4byte lbl_800966AC
-        .4byte lbl_8009670C
-        .4byte lbl_8009670C
-        .4byte lbl_80096788
-        .4byte lbl_80096788
-        .4byte lbl_80096750
-        .4byte lbl_80096750
-        .4byte lbl_8009673C
-        .4byte lbl_800966DC
-    .global lbl_804A3558
-    lbl_804A3558:
-        .4byte lbl_80097DD0
-        .4byte lbl_80097DDC
-        .4byte lbl_80097E50
-        .4byte lbl_80097DF4
-        .4byte lbl_80097E00
-        .4byte lbl_80097E50
-        .4byte lbl_80097E18
-        .4byte lbl_80097E24
-        .4byte lbl_80097E30
-        .4byte lbl_80097E3C
-        .4byte lbl_80097E48
-        .4byte 0x00000000
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516C58
-    lbl_80516C58:
-        .4byte 0x3F828F5C
-    .global lbl_80516C5C
-    lbl_80516C5C:
-        .4byte 0x3ECCCCCD
-    .global lbl_80516C60
-    lbl_80516C60:
-        .float 1.0
-    .global lbl_80516C64
-    lbl_80516C64:
-        .4byte 0x00000000
-    .global lbl_80516C68
-    lbl_80516C68:
-        .4byte 0x43300000
-        .4byte 0x00000000
-*/
+u8 jpa_crd[] = { 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 2, 0, 2, 1, 0, 1, 0, 0, 1, 0, 1, 2, 0, 2, 0, 0, 2, 0, 2, 2, 0, 2 };
 
 /**
  * @note Address: 0x800955EC
@@ -207,7 +65,7 @@ JPAResource::JPAResource()
  * @note Address: 0x8009565C
  * @note Size: 0x1540
  */
-void JPAResource::init(JKRHeap*)
+void JPAResource::init(JKRHeap* heap)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -1929,8 +1787,93 @@ lbl_80096B88:
  * @note Address: 0x80096B9C
  * @note Size: 0x55C
  */
-bool JPAResource::calc(JPAEmitterWorkData*, JPABaseEmitter*)
+bool JPAResource::calc(JPAEmitterWorkData* data, JPABaseEmitter* emitter)
 {
+	data->mEmitter      = emitter;
+	data->mResource     = this;
+	data->mCreateNumber = 0;
+
+	if (emitter->processTillStartFrame()) {
+		return false;
+	}
+
+	if (emitter->processTermination()) {
+		return false;
+	}
+
+	if (emitter->mFlags & 2) {
+		JPAEmitterCallBack* cback = emitter->mEmitterCallback;
+		if (cback) {
+			return false;
+		}
+		cback->execute(emitter);
+
+		if (emitter->mFlags & 0x100) {
+			return true;
+		}
+		emitter->mEmitterCallback->executeAfter(emitter);
+		if (emitter->mFlags & 0x100) {
+			return true;
+		}
+		return false;
+	}
+
+	calcKey(data);
+
+	for (int i = mFieldBlockNum - 1; 0 <= i; i--) {
+		JPAFieldBlock* field = mFieldBlocks[i];
+		field->mOffset       = field->mData->_0C;
+		field->mVelocity     = field->mData->_18;
+		field->mSpeed        = field->mData->mAmplitude;
+	}
+
+	if (emitter->mEmitterCallback) {
+		emitter->mEmitterCallback->execute(emitter);
+		if (emitter->mFlags & 0x100) {
+			return true;
+		}
+	}
+
+	calcWorkData_c(data);
+
+	for (int i = mCalcEmitterFuncListNum - 1; 0 <= i; i--) {
+		mCalcEmitterFuncList[i](data);
+	}
+
+	for (int i = mFieldBlockNum - 1; 0 <= i; i--) {
+		mFieldBlocks[i]->mField->prepare(data, mFieldBlocks[i]);
+	}
+
+	if (!(emitter->mFlags & 8)) {
+		mDynamicsBlock->create(data);
+	}
+
+	if (emitter->mEmitterCallback) {
+		emitter->mEmitterCallback->executeAfter(emitter);
+		if (emitter->mFlags & 0x100) {
+			return true;
+		}
+	}
+
+	FOREACH_NODE(JPANode<JPABaseParticle>, data->mEmitter->mAlivePtclBase.getLast(), node)
+	{
+		if (node->getObject()->calc_p(data)) {
+			// something like this
+			emitter->mAlivePtclBase.push_back(node);
+			emitter->mAlivePtclBase.pop_front();
+		}
+	}
+
+	FOREACH_NODE(JPANode<JPABaseParticle>, data->mEmitter->mAlivePtclChld.getLast(), node)
+	{
+		if (node->getObject()->calc_c(data)) {
+			emitter->mAlivePtclChld.push_back(node);
+			emitter->mAlivePtclChld.pop_front();
+		}
+	}
+
+	emitter->mTick++;
+	return false;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2373,8 +2316,70 @@ void JPAResource::draw(JPAEmitterWorkData* work, JPABaseEmitter* emtr)
  * @note Address: 0x800971E8
  * @note Size: 0x334
  */
-void JPAResource::drawP(JPAEmitterWorkData*)
+void JPAResource::drawP(JPAEmitterWorkData* data)
 {
+
+	data->mEmitter->mFlags &= ~0x80;
+	data->mGlobalPtclScl.x = data->mEmitter->mGlobalPScl.x * mBaseShape->mData->mBaseSizeX;
+	data->mGlobalPtclScl.y = data->mEmitter->mGlobalPScl.y * mBaseShape->mData->mBaseSizeY;
+	u32 flag               = mBaseShape->mData->mFlags & 0xf;
+	if (flag == 0) {
+		data->mGlobalPtclScl.x *= 1.02f;
+	} else if (flag == 1) {
+		data->mGlobalPtclScl.x *= 1.02f;
+		data->mGlobalPtclScl.y *= 0.4f;
+	}
+
+	if (mExtraShape && mExtraShape->mData->mFlags & 1) {
+		data->mPivot.x = (mExtraShape->mData->mFlags >> 0xc & 3) - 1.0f;
+		data->mPivot.y = (mExtraShape->mData->mFlags >> 0xe & 3) - 1.0f;
+	} else {
+		data->mPivot.y = 0.0f;
+		data->mPivot.x = 0.0f;
+	}
+	bool test      = true;
+	data->mDirType = mBaseShape->mData->mFlags >> 4 & 7;
+	data->mRotType = mBaseShape->mData->mFlags >> 7 & 7;
+
+	flag = mBaseShape->mData->mFlags & 15;
+	if (flag != 4 && flag != 8) {
+		test = false;
+	}
+	data->mDLType     = test;
+	data->mPlaneType  = ((u32)data->mDLType) ? 2 : mBaseShape->mData->mFlags >> 10 & 1;
+	data->mPrjType    = ((u32)data->mDLType) ? 0 : (u32)data->mDLType >> 0x18 & 1 + 1;
+	data->mpAlivePtcl = data->mEmitter->mAlivePtclChld.getFirst();
+	setPTev();
+
+	for (int i = mDrawEmitterFuncListNum - 1; 0 <= i; i--) {
+		mDrawEmitterFuncList[i](data);
+	}
+
+	if (mBaseShape->mData->mFlags & 0x200000) {
+		FOREACH_NODE(JPANode<JPABaseParticle>, data->mEmitter->mAlivePtclBase.getLast(), node)
+		{
+			data->mpCurNode = node;
+			if (mDrawParticleFuncList) {
+				for (int i = mDrawParticleFuncListNum - 1; 0 <= i; i--) {
+					mDrawParticleFuncList[i](data, node->getObject());
+				}
+			}
+		}
+	} else {
+		FOREACH_NODE(JPANode<JPABaseParticle>, data->mEmitter->mAlivePtclBase.getFirst(), node)
+		{
+			data->mpCurNode = node;
+			if (mDrawParticleFuncList) {
+				for (int i = mDrawParticleFuncListNum - 1; 0 <= i; i--) {
+					mDrawParticleFuncList[i](data, node->getObject());
+				}
+			}
+		}
+	}
+	GXSetMisc(GX_MT_XF_FLUSH, 0);
+	if (data->mEmitter->mEmitterCallback) {
+		data->mEmitter->mEmitterCallback->drawAfter(data->mEmitter);
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -2636,242 +2641,70 @@ lbl_80097508:
  * @note Address: 0x8009751C
  * @note Size: 0x2F0
  */
-void JPAResource::drawC(JPAEmitterWorkData*)
+void JPAResource::drawC(JPAEmitterWorkData* data)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r30, r3
-	mr       r31, r4
-	lwz      r3, 0(r4)
-	lwz      r0, 0xf4(r3)
-	ori      r0, r0, 0x80
-	stw      r0, 0xf4(r3)
-	lwz      r3, 0x24(r30)
-	lwz      r4, 0(r3)
-	lwz      r0, 8(r4)
-	rlwinm.  r0, r0, 0, 0xf, 0xf
-	beq      lbl_80097594
-	lwz      r3, 0x1c(r30)
-	lwz      r4, 0(r31)
-	lwz      r3, 0(r3)
-	lfs      f1, 0xb0(r4)
-	lfs      f0, 0x10(r3)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x144(r31)
-	lwz      r3, 0x1c(r30)
-	lwz      r4, 0(r31)
-	lwz      r3, 0(r3)
-	lfs      f1, 0xb4(r4)
-	lfs      f0, 0x14(r3)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x148(r31)
-	b        lbl_800975C4
+	data->mEmitter->mFlags |= 0x80;
+	if (mChildShape->mData->mFlags & 0x10000) {
+		data->mGlobalPtclScl.x = data->mEmitter->mGlobalPScl.x * mBaseShape->mData->mBaseSizeX;
+		data->mGlobalPtclScl.y = data->mEmitter->mGlobalPScl.y * mBaseShape->mData->mBaseSizeY;
+	} else {
+		data->mGlobalPtclScl.x = data->mEmitter->mGlobalPScl.x * mChildShape->mData->mScaleX;
+		data->mGlobalPtclScl.y = data->mEmitter->mGlobalPScl.y * mChildShape->mData->mScaleY;
+	}
 
-lbl_80097594:
-	lwz      r3, 0(r31)
-	lfs      f0, 0x20(r4)
-	lfs      f1, 0xb0(r3)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x144(r31)
-	lwz      r3, 0x24(r30)
-	lwz      r4, 0(r31)
-	lwz      r3, 0(r3)
-	lfs      f1, 0xb4(r4)
-	lfs      f0, 0x24(r3)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x148(r31)
+	u32 flag = mChildShape->mData->mFlags & 0xf;
+	if (flag == 0) {
+		data->mGlobalPtclScl.x *= 1.02f;
+	} else if (flag == 1) {
+		data->mGlobalPtclScl.x *= 1.02f;
+		data->mGlobalPtclScl.y *= 0.4f;
+	}
 
-lbl_800975C4:
-	lwz      r3, 0x24(r30)
-	lwz      r3, 0(r3)
-	lwz      r0, 8(r3)
-	clrlwi.  r0, r0, 0x1c
-	bne      lbl_800975EC
-	lfs      f1, 0x144(r31)
-	lfs      f0, lbl_80516C58@sda21(r2)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x144(r31)
-	b        lbl_80097614
+	bool test      = true;
+	data->mPivot.y = 0.0f;
+	data->mPivot.x = 0.0f;
+	data->mDirType = mChildShape->mData->mFlags >> 4 & 7;
+	data->mRotType = mChildShape->mData->mFlags >> 7 & 7;
 
-lbl_800975EC:
-	cmplwi   r0, 1
-	bne      lbl_80097614
-	lfs      f2, 0x144(r31)
-	lfs      f1, lbl_80516C58@sda21(r2)
-	lfs      f0, lbl_80516C5C@sda21(r2)
-	fmuls    f1, f2, f1
-	stfs     f1, 0x144(r31)
-	lfs      f1, 0x148(r31)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x148(r31)
+	flag = mChildShape->mData->mFlags & 15;
+	if (flag != 4 && flag != 8) {
+		test = false;
+	}
+	data->mDLType     = test;
+	data->mPlaneType  = ((u32)data->mDLType) ? 2 : mChildShape->mData->mFlags >> 10 & 1;
+	data->mPrjType    = 0;
+	data->mpAlivePtcl = data->mEmitter->mAlivePtclChld.getFirst();
+	setCTev(data);
 
-lbl_80097614:
-	lfs      f0, lbl_80516C64@sda21(r2)
-	li       r4, 1
-	stfs     f0, 0x150(r31)
-	stfs     f0, 0x14c(r31)
-	lwz      r3, 0x24(r30)
-	lwz      r3, 0(r3)
-	lwz      r0, 8(r3)
-	rlwinm   r0, r0, 0x1c, 0x1d, 0x1f
-	stw      r0, 0x200(r31)
-	lwz      r3, 0x24(r30)
-	lwz      r3, 0(r3)
-	lwz      r0, 8(r3)
-	rlwinm   r0, r0, 0x19, 0x1d, 0x1f
-	stw      r0, 0x204(r31)
-	lwz      r3, 0x24(r30)
-	lwz      r3, 0(r3)
-	lwz      r0, 8(r3)
-	clrlwi   r0, r0, 0x1c
-	cmplwi   r0, 4
-	beq      lbl_80097670
-	cmplwi   r0, 8
-	beq      lbl_80097670
-	li       r4, 0
+	for (int i = mDrawEmitterChildFuncListNum - 1; 0 <= i; i--) {
+		mDrawEmitterChildFuncList[i](data);
+	}
 
-lbl_80097670:
-	clrlwi   r0, r4, 0x18
-	stw      r0, 0x20c(r31)
-	lwz      r0, 0x20c(r31)
-	cmplwi   r0, 0
-	beq      lbl_8009768C
-	li       r0, 2
-	b        lbl_8009769C
-
-lbl_8009768C:
-	lwz      r3, 0x24(r30)
-	lwz      r3, 0(r3)
-	lwz      r0, 8(r3)
-	rlwinm   r0, r0, 0x16, 0x1f, 0x1f
-
-lbl_8009769C:
-	stw      r0, 0x208(r31)
-	li       r0, 0
-	mr       r3, r30
-	mr       r4, r31
-	stw      r0, 0x210(r31)
-	lwz      r5, 0(r31)
-	addi     r0, r5, 0xd4
-	stw      r0, 0x1e4(r31)
-	bl       setCTev__11JPAResourceFP18JPAEmitterWorkData
-	lbz      r3, 0x43(r30)
-	addi     r28, r3, -1
-	slwi     r29, r28, 2
-	b        lbl_800976EC
-
-lbl_800976D0:
-	lwz      r4, 8(r30)
-	mr       r3, r31
-	lwzx     r12, r4, r29
-	mtctr    r12
-	bctrl
-	addi     r29, r29, -4
-	addi     r28, r28, -1
-
-lbl_800976EC:
-	cmpwi    r28, 0
-	bge      lbl_800976D0
-	lwz      r3, 0x1c(r30)
-	lwz      r3, 0(r3)
-	lwz      r0, 8(r3)
-	rlwinm.  r0, r0, 0, 0xa, 0xa
-	beq      lbl_8009776C
-	lwz      r3, 0(r31)
-	lwz      r28, 0xd8(r3)
-	b        lbl_80097760
-
-lbl_80097714:
-	stw      r28, 0x1e8(r31)
-	lwz      r0, 0x18(r30)
-	cmplwi   r0, 0
-	beq      lbl_8009775C
-	lbz      r3, 0x47(r30)
-	addi     r27, r3, -1
-	slwi     r29, r27, 2
-	b        lbl_80097754
-
-lbl_80097734:
-	lwz      r5, 0x18(r30)
-	mr       r3, r31
-	addi     r4, r28, 8
-	lwzx     r12, r5, r29
-	mtctr    r12
-	bctrl
-	addi     r29, r29, -4
-	addi     r27, r27, -1
-
-lbl_80097754:
-	cmpwi    r27, 0
-	bge      lbl_80097734
-
-lbl_8009775C:
-	lwz      r28, 0(r28)
-
-lbl_80097760:
-	cmplwi   r28, 0
-	bne      lbl_80097714
-	b        lbl_800977CC
-
-lbl_8009776C:
-	lwz      r3, 0(r31)
-	lwz      r27, 0xd4(r3)
-	b        lbl_800977C4
-
-lbl_80097778:
-	stw      r27, 0x1e8(r31)
-	lwz      r0, 0x18(r30)
-	cmplwi   r0, 0
-	beq      lbl_800977C0
-	lbz      r3, 0x47(r30)
-	addi     r28, r3, -1
-	slwi     r29, r28, 2
-	b        lbl_800977B8
-
-lbl_80097798:
-	lwz      r5, 0x18(r30)
-	mr       r3, r31
-	addi     r4, r27, 8
-	lwzx     r12, r5, r29
-	mtctr    r12
-	bctrl
-	addi     r29, r29, -4
-	addi     r28, r28, -1
-
-lbl_800977B8:
-	cmpwi    r28, 0
-	bge      lbl_80097798
-
-lbl_800977C0:
-	lwz      r27, 4(r27)
-
-lbl_800977C4:
-	cmplwi   r27, 0
-	bne      lbl_80097778
-
-lbl_800977CC:
-	li       r3, 1
-	li       r4, 0
-	bl       GXSetMisc
-	lwz      r4, 0(r31)
-	lwz      r3, 0xec(r4)
-	cmplwi   r3, 0
-	beq      lbl_800977F8
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-
-lbl_800977F8:
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (mBaseShape->mData->mFlags & 0x200000) {
+		FOREACH_NODE(JPANode<JPABaseParticle>, data->mEmitter->mAlivePtclChld.getLast(), node)
+		{
+			data->mpCurNode = node;
+			if (mDrawParticleChildFuncList) {
+				for (int i = mDrawParticleChildFuncListNum - 1; 0 <= i; i--) {
+					mDrawParticleChildFuncList[i](data, node->getObject());
+				}
+			}
+		}
+	} else {
+		FOREACH_NODE(JPANode<JPABaseParticle>, data->mEmitter->mAlivePtclChld.getFirst(), node)
+		{
+			data->mpCurNode = node;
+			if (mDrawParticleChildFuncList) {
+				for (int i = mDrawParticleChildFuncListNum - 1; 0 <= i; i--) {
+					mDrawParticleChildFuncList[i](data, node->getObject());
+				}
+			}
+		}
+	}
+	GXSetMisc(GX_MT_XF_FLUSH, 0);
+	if (data->mEmitter->mEmitterCallback) {
+		data->mEmitter->mEmitterCallback->drawAfter(data->mEmitter);
+	}
 }
 
 /**
@@ -2880,6 +2713,67 @@ lbl_800977F8:
  */
 void JPAResource::setPTev()
 {
+	u8 nStages         = 1;
+	u8 flag            = 1;
+	GXTexCoordID coord = GX_TEXCOORD1;
+	u8 nIndStages      = 1;
+	u8 nTexGens        = 0;
+
+	u32 childflag = mChildShape->mData->mFlags & 0xf;
+	if (childflag != 3 && childflag != 7) {
+		flag = 0;
+	}
+
+	int offs;
+	if (mExtraShape) {
+		u32 shpflag = mExtraShape->mData->mFlags & 0xf;
+		offs        = ((shpflag >> 0xc & 3) + (shpflag >> 0xe & 3) * 3) * 0xc;
+	} else {
+		offs = 0x30;
+	} // some nonsense here
+	GXSetArray(GX_VA_POS, &jpa_pos[offs + flag], 3);
+	GXSetArray(GX_VA_TEX0, &jpa_crd[offs], 2);
+
+	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
+
+	if (mExTexShape) {
+		if (mExTexShape->mData->mFlags & 0x1) {
+			nIndStages = 1;
+		}
+
+		if (nIndStages) {
+			GXSetIndTexOrder(GX_IND_TEX_STAGE_0, GX_TEXCOORD1, GX_TEXMAP2);
+			GXSetIndTexCoordScale(GX_IND_TEX_STAGE_0, GX_ITS_1, GX_ITS_1);
+			const JPAExTexShapeData* data = mExTexShape->mData;
+			GXSetIndTexMtx(GX_ITM_0, data->mIndTexMtx, data->mExpScale);
+			GXSetTevIndirect(GX_TEVSTAGE0, GX_IND_TEX_STAGE_0, GX_ITF_8, GX_ITB_STU, GX_ITM_0, GX_ITW_OFF, GX_ITW_OFF, GX_FALSE, GX_FALSE,
+			                 GX_ITBA_OFF);
+			coord      = GX_TEXCOORD2;
+			nIndStages = 1;
+			nTexGens   = 2;
+		}
+
+		if ((mExTexShape->mData->mFlags & 0x100) != 0) {
+			GXSetTevOrder(GX_TEVSTAGE1, coord, GX_TEXMAP3, GX_COLOR_NULL);
+			GXSetTevColorIn(GX_TEVSTAGE1, GX_CC_ZERO, GX_CC_TEXC, GX_CC_CPREV, GX_CC_ZERO);
+			GXSetTevAlphaIn(GX_TEVSTAGE1, GX_CA_ZERO, GX_CA_TEXA, GX_CA_APREV, GX_CA_ZERO);
+			GXSetTevColorOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+			GXSetTevAlphaOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+			nStages = 2;
+			nTexGens += 1;
+		}
+	}
+	GXSetNumTevStages(nStages);
+	GXSetNumIndStages(nIndStages);
+
+	if (mBaseShape->mData->mFlags & 0x800000) {
+		GXSetMisc(GX_MT_XF_FLUSH, 8);
+		GXSetClipMode(GX_CLIP_ENABLE);
+	} else {
+		GXSetClipMode(GX_CLIP_DISABLE);
+	}
+	GXSetNumTexGens(nTexGens);
+
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -3060,8 +2954,33 @@ lbl_80097A68:
  * @note Address: 0x80097A84
  * @note Size: 0x164
  */
-void JPAResource::setCTev(JPAEmitterWorkData*)
+void JPAResource::setCTev(JPAEmitterWorkData* data)
 {
+	u32 flag = mChildShape->mData->mFlags & 0xf;
+	bool set = true;
+	if (flag != 3 && flag != 7) {
+		set = false;
+	}
+	// some nonsense here
+	GXSetArray(GX_VA_POS, &jpa_pos[flag >> 10 & 1 & (set != false)], 3);
+
+	GXSetArray(GX_VA_TEX0, jpa_crd, 2);
+	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP0, GX_COLOR_NULL);
+	GXSetTexCoordGen2(GX_TEXCOORD_NULL, GX_TG_MTX3X4, GX_TG_TEX0, 0x3c, GX_FALSE, 0x7d);
+	GXSetTevDirect(GX_TEVSTAGE0);
+	GXSetNumTevStages(1);
+	GXSetNumIndStages(0);
+
+	if (mChildShape->mData->mFlags & 0x100000) {
+		GXSetMisc(GX_MT_XF_FLUSH, 8);
+		GXSetClipMode(GX_CLIP_ENABLE);
+	} else {
+		GXSetClipMode(GX_CLIP_DISABLE);
+	}
+	GXSetNumTexGens(1);
+
+	data->mResourceMgr->mTextures[data->mResource->mTextureIDList[mChildShape->mData->mTexIdx]]->load(GX_TEXMAP1);
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3194,43 +3113,11 @@ void JPAResource::calc_c(JPAEmitterWorkData* workData, JPABaseParticle* particle
  * @note Address: 0x80097CD0
  * @note Size: 0x74
  */
-void JPAResource::calcField(JPAEmitterWorkData*, JPABaseParticle*)
+void JPAResource::calcField(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r27, r3
-	mr       r28, r4
-	mr       r29, r5
-	lbz      r3, 0x3e(r3)
-	addi     r30, r3, -1
-	slwi     r31, r30, 2
-	b        lbl_80097D28
-
-lbl_80097CFC:
-	lwz      r3, 0x30(r27)
-	mr       r4, r28
-	mr       r6, r29
-	lwzx     r5, r3, r31
-	lwz      r3, 4(r5)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r31, r31, -4
-	addi     r30, r30, -1
-
-lbl_80097D28:
-	cmpwi    r30, 0
-	bge      lbl_80097CFC
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (int i = mFieldBlockNum - 1; 0 <= i; i--) {
+		mFieldBlocks[i]->mField->calc(workData, mFieldBlocks[i], particle);
+	}
 }
 
 /**
@@ -3280,135 +3167,36 @@ void JPAResource::calcKey(JPAEmitterWorkData* data)
  */
 void JPAResource::calcWorkData_c(JPAEmitterWorkData* data)
 {
-	data->mVolumeSize = data->mEmitter->mVolumeSize;
-	data->mVolumeMinRad = data->mEmitter->mVolumeMinRad;
-	data->mVolumeSweep = data->mEmitter->mVolumeSweep;
-	data->mVolumeX = 0;
+	data->mVolumeSize     = data->mEmitter->mVolumeSize;
+	data->mVolumeMinRad   = data->mEmitter->mVolumeMinRad;
+	data->mVolumeSweep    = data->mEmitter->mVolumeSweep;
+	data->mVolumeX        = 0;
 	data->mVolumeAngleNum = 0;
 	data->mVolumeAngleMax = 1;
-	data->mDivNumber = mDynamicsBlock->mData->mDivNumber;
-	
-	/*
-	stwu     r1, -0xb0(r1)
-	mflr     r0
-	lfd      f1, lbl_80516C68@sda21(r2)
-	stw      r0, 0xb4(r1)
-	lis      r0, 0x4330
-	stw      r31, 0xac(r1)
-	mr       r31, r4
-	lwz      r5, 0(r4)
-	li       r4, 0
-	stw      r0, 0x98(r1)
-	li       r0, 1
-	lhz      r5, 0x54(r5)
-	stw      r5, 0x9c(r1)
-	lfd      f0, 0x98(r1)
-	fsubs    f0, f0, f1
-	stfs     f0, 0x34(r31)
-	lwz      r5, 0(r31)
-	lfs      f0, 0x30(r5)
-	stfs     f0, 0x38(r31)
-	lwz      r5, 0(r31)
-	lfs      f0, 0x2c(r5)
-	stfs     f0, 0x3c(r31)
-	stw      r4, 0x1f4(r31)
-	stw      r4, 0x1ec(r31)
-	stw      r0, 0x1f0(r31)
-	lwz      r4, 0x2c(r3)
-	addi     r3, r1, 0x68
-	lwz      r4, 0(r4)
-	lhz      r0, 0x76(r4)
-	slwi     r4, r0, 1
-	addi     r0, r4, 1
-	stw      r0, 0x1f8(r31)
-	lwz      r4, 0(r31)
-	lfs      f1, 0(r4)
-	lfs      f2, 4(r4)
-	lfs      f3, 8(r4)
-	bl       PSMTXScale
-	lwz      r5, 0(r31)
-	addi     r6, r1, 0x38
-	lha      r4, 0x4c(r5)
-	lha      r3, 0x4e(r5)
-	lha      r0, 0x50(r5)
-	mulli    r5, r4, 0xb6
-	mulli    r4, r3, 0xb6
-	extsh    r3, r5
-	mulli    r0, r0, 0xb6
-	extsh    r4, r4
-	extsh    r5, r0
-	bl       JPAGetXYZRotateMtx__FsssPA4_f
-	lwz      r4, 0(r31)
-	addi     r3, r1, 8
-	lfs      f1, 0x98(r4)
-	lfs      f2, 0x9c(r4)
-	lfs      f3, 0xa0(r4)
-	bl       PSMTXScale
-	lwz      r3, 0(r31)
-	addi     r4, r1, 8
-	mr       r5, r4
-	addi     r3, r3, 0x68
-	bl       PSMTXConcat
-	lwz      r5, 0(r31)
-	addi     r4, r31, 0x78
-	lfs      f0, 0xa4(r5)
-	addi     r3, r5, 0x68
-	stfs     f0, 0x14(r1)
-	lfs      f0, 0xa8(r5)
-	stfs     f0, 0x24(r1)
-	lfs      f0, 0xac(r5)
-	stfs     f0, 0x34(r1)
-	bl       PSMTXCopy
-	addi     r3, r31, 0x78
-	addi     r4, r1, 0x38
-	addi     r5, r31, 0xa8
-	bl       PSMTXConcat
-	addi     r3, r31, 0xa8
-	addi     r4, r1, 0x68
-	addi     r5, r31, 0xd8
-	bl       PSMTXConcat
-	lwz      r3, 0(r31)
-	addi     r4, r31, 0x48
-	lfs      f0, 0xc(r3)
-	stfs     f0, 0x108(r31)
-	lfs      f0, 0x10(r3)
-	stfs     f0, 0x10c(r31)
-	lfs      f0, 0x14(r3)
-	stfs     f0, 0x110(r31)
-	lwz      r3, 0(r31)
-	lfs      f1, 0x98(r3)
-	lfs      f0, 0(r3)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x114(r31)
-	lfs      f1, 0x9c(r3)
-	lfs      f0, 4(r3)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x118(r31)
-	lfs      f1, 0xa0(r3)
-	lfs      f0, 8(r3)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x11c(r31)
-	lwz      r3, 0(r31)
-	addi     r3, r3, 0x18
-	bl       "JPAGetDirMtx__FRCQ29JGeometry8TVec3<f>PA4_f"
-	lwz      r4, 0(r31)
-	addi     r3, r1, 8
-	addi     r5, r31, 0x138
-	lfs      f0, 0x98(r4)
-	stfs     f0, 0x12c(r31)
-	lfs      f0, 0x9c(r4)
-	stfs     f0, 0x130(r31)
-	lfs      f0, 0xa0(r4)
-	stfs     f0, 0x134(r31)
-	lwz      r4, 0(r31)
-	addi     r4, r4, 0xc
-	bl       PSMTXMultVec
-	lwz      r0, 0xb4(r1)
-	lwz      r31, 0xac(r1)
-	mtlr     r0
-	addi     r1, r1, 0xb0
-	blr
-	*/
+	data->mDivNumber      = mDynamicsBlock->mData->mDivNumber * 2 + 1;
+
+	Mtx mtx, mtx2;
+	Matrixf mtx3;
+	PSMTXScale(mtx, data->mEmitter->mLocalScl.x, data->mEmitter->mLocalScl.y, data->mEmitter->mLocalScl.z);
+	JPAGetXYZRotateMtx(data->mEmitter->mLocalRot.x * 182, data->mEmitter->mLocalRot.y * 182, data->mEmitter->mLocalRot.z * 182, mtx2);
+	PSMTXScale(mtx3.mMatrix.mtxView, data->mEmitter->mGlobalScl.x, data->mEmitter->mGlobalScl.y, data->mEmitter->mGlobalScl.z);
+	PSMTXConcat(data->mEmitter->mGlobalRot, mtx3.mMatrix.mtxView, mtx3.mMatrix.mtxView);
+	mtx3.mMatrix.structView.tx = data->mEmitter->mGlobalTrs.x;
+	mtx3.mMatrix.structView.ty = data->mEmitter->mGlobalTrs.y;
+	mtx3.mMatrix.structView.tz = data->mEmitter->mGlobalTrs.z;
+	PSMTXCopy(data->mEmitter->mGlobalRot, data->mRotationMtx);
+	PSMTXConcat(data->mRotationMtx, mtx2, data->mGlobalRot);
+	PSMTXConcat(data->mGlobalRot, mtx, data->mGlobalSR);
+	data->mEmitterPos = data->mEmitter->mLocalTrs;
+
+	JPABaseEmitter* emit = data->mEmitter;
+	data->mGlobalScl.x   = emit->mGlobalScl.x * emit->mLocalScl.x;
+	data->mGlobalScl.y   = emit->mGlobalScl.y * emit->mLocalScl.y;
+	data->mGlobalScl.z   = emit->mGlobalScl.z * emit->mLocalScl.z;
+
+	JPAGetDirMtx(data->mEmitter->mLocalDir, data->mDirectionMtx);
+	data->mPublicScale = data->mEmitter->mGlobalScl;
+	PSMTXMultVec(mtx3.mMatrix.mtxView, (Vec*)&data->mEmitter->mLocalTrs, (Vec*)&data->mGlobalPos);
 }
 
 /**

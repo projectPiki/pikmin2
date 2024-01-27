@@ -1215,7 +1215,7 @@ lbl_80094FD4:
  * @note Address: 0x80094FDC
  * @note Size: 0x2A8
  */
-void JPABaseParticle::calc_p(JPAEmitterWorkData*)
+bool JPABaseParticle::calc_p(JPAEmitterWorkData*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1419,7 +1419,7 @@ void JPAParticleCallBack::execute(JPABaseEmitter*, JPABaseParticle*) { }
  * @note Address: 0x80095288
  * @note Size: 0x278
  */
-void JPABaseParticle::calc_c(JPAEmitterWorkData*)
+bool JPABaseParticle::calc_c(JPAEmitterWorkData*)
 {
 	/*
 	stwu     r1, -0x20(r1)

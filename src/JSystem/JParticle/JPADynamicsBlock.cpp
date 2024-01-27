@@ -50,10 +50,11 @@
 void JPAVolumePoint(JPAEmitterWorkData* workData)
 {
 	workData->mVolumePos.set(0.0f, 0.0f, 0.0f);
-	workData->mVelOmni
-	    = JGeometry::TVec3f(workData->mEmitter->mRandom.nextFloat_0_1() - 0.5f, workData->mEmitter->mRandom.nextFloat_0_1() - 0.5f,
-	                        workData->mEmitter->mRandom.nextFloat_0_1() - 0.5f);
-	workData->mVelAxis = JGeometry::TVec3f(workData->mVelOmni.x, 0.0f, workData->mVelOmni.z);
+	workData->mVelOmni.x = workData->mEmitter->mRandom.nextFloat_0_1() - 0.5f;
+	workData->mVelOmni.y = workData->mEmitter->mRandom.nextFloat_0_1() - 0.5f;
+	workData->mVelOmni.z = workData->mEmitter->mRandom.nextFloat_0_1() - 0.5f;
+
+	workData->mVelAxis = workData->mVelOmni;
 	/*
 	stwu     r1, -0x20(r1)
 	lis      r4, 0x0019660D@ha
@@ -120,14 +121,23 @@ void JPAVolumePoint(JPAEmitterWorkData* workData)
 void JPAVolumeLine(JPAEmitterWorkData* workData)
 {
 	if (workData->mEmitter->mResource->mDynamicsBlock->castData()->mFlags & 2) {
-		workData->mVolumePos = JGeometry::TVec3f(
-		    0.0f, 0.0f, workData->mVolumeSize * ((f32)workData->mVolumeEmitIdx / ((f32)workData->mCreateNumber - 1.0f) - 0.5f));
+		workData->mVolumePos.x = 0.0f;
+		workData->mVolumePos.y = 0.0f;
+		workData->mVolumePos.z = workData->mVolumeSize * ((f32)workData->mVolumeEmitIdx / ((f32)workData->mCreateNumber - 1.0f) - 0.5f);
 		workData->mVolumeEmitIdx++;
 	} else {
-		workData->mVolumePos = JGeometry::TVec3f(0.0f, 0.0f, workData->mVolumeSize * (workData->mEmitter->mRandom.nextFloat_0_1() - 0.5f));
+		workData->mVolumePos.x = 0.0f;
+		workData->mVolumePos.y = 0.0f;
+		workData->mVolumePos.z = workData->mVolumeSize * (workData->mEmitter->mRandom.nextFloat_0_1() - 0.5f);
 	}
-	workData->mVelOmni = JGeometry::TVec3f(0.0f, 0.0f, workData->mVolumePos.z * workData->mGlobalScl.z);
-	workData->mVelAxis = JGeometry::TVec3f(0.0f, 0.0f, workData->mVolumePos.z);
+	workData->mVelOmni.x = 0.0f;
+	workData->mVelOmni.y = 0.0f;
+	workData->mVelOmni.z = workData->mVolumePos.z * workData->mGlobalScl.z;
+
+	workData->mVelAxis.x = 0.0f;
+	workData->mVelAxis.y = 0.0f;
+	workData->mVelAxis.z = workData->mVolumePos.z;
+	
 	/*
 	stwu     r1, -0x20(r1)
 	lwz      r6, 0(r3)
