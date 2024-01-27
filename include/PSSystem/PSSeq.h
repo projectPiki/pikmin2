@@ -1,5 +1,5 @@
-#ifndef _PSSYSTEM_PSBGM_H
-#define _PSSYSTEM_PSBGM_H
+#ifndef _PSSYSTEM_PSSEQ_H
+#define _PSSYSTEM_PSSEQ_H
 
 #include "types.h"
 #include "PSSystem/Seq.h"
