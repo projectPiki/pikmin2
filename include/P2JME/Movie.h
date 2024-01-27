@@ -6,6 +6,7 @@
 #include "Vector3.h"
 #include "System.h"
 #include "Dolphin/rand.h"
+#include "Game/gamePlayData.h"
 
 namespace P2JME {
 namespace Movie {
@@ -79,7 +80,9 @@ struct PodIconScreen : P2DScreen::Mgr_tuning {
 		mMomentum = Vector3f(1.0f, randFloat(), 0.0f);
 		mMomentum.normalise();
 		mPosition = Vector3f(0.0f);
-		show();
+		Game::playData->mStoryFlags & Game::STORY_DebtPaid ? 
+			setXY(mInitialPos.x - 250.0f, mInitialPos.y - 25.0f) 
+			: setXY(mInitialPos.x - 250.0f, mInitialPos.y - 10.0f);
 		mState = 0;
 	}
 
