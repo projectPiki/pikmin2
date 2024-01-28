@@ -14,7 +14,7 @@ struct BankRandPrm {
 			sInstance = new BankRandPrm;
 	}
 
-	JASInstRand mInst;
+	JASInstRand mInst; // _00
 
 	static BankRandPrm* sInstance;
 };

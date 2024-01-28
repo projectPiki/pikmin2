@@ -14,36 +14,8 @@ namespace PSSystem {
  * @note Size: 0x60
  */
 SeqDataList::SeqDataList()
-    : SingletonBase<SeqDataList>(this)
+    : SingletonBase<SeqDataList>()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q28PSSystem12TextDataBaseFv
-	lis      r3, "__vt__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>"@ha
-	addic.   r4, r31, 0x1c
-	addi     r0, r3,
-"__vt__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>"@l stw      r0,
-0x1c(r31) beq      lbl_80330D50 addi     r4, r4, -28
-
-lbl_80330D50:
-	lis      r3, __vt__Q28PSSystem11SeqDataList@ha
-	stw      r4,
-"sInstance__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>"@sda21(r13)
-	addi     r4, r3, __vt__Q28PSSystem11SeqDataList@l
-	mr       r3, r31
-	stw      r4, 0(r31)
-	addi     r0, r4, 0x10
-	stw      r0, 0x1c(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -59,15 +31,18 @@ SeqDataList::~SeqDataList() { }
 int SeqDataList::getSeqVolume(char const* bmsname)
 {
 	char buf[32];
+	u8 volume[4];
 	P2ASSERTLINE(36, mFile);
 	RamStream stream(mFile, -1);
 	stream.resetPosition(true, 1);
 	stream.readString(buf, 32);
 
 	while (strcmp(buf, "endoffile")) {
-		vu8 volume = stream.readByte();
+		for (int i = 0; i < 1; i++) {
+			volume[i] = stream.readByte();
+		}
 		if (!strcmp(buf, bmsname)) {
-			return volume;
+			return *volume;
 		}
 		stream.readString(buf, 32);
 	}
@@ -161,36 +136,8 @@ lbl_80330EF4:
  * @note Size: 0x60
  */
 StreamDataList::StreamDataList()
-    : SingletonBase(this)
+    : SingletonBase()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q28PSSystem12TextDataBaseFv
-	lis      r3,
-"__vt__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>"@ha addic.   r4,
-r31, 0x1c addi     r0, r3,
-"__vt__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>"@l stw      r0,
-0x1c(r31) beq      lbl_80330F40 addi     r4, r4, -28
-
-lbl_80330F40:
-	lis      r3, __vt__Q28PSSystem14StreamDataList@ha
-	stw      r4,
-"sInstance__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>"@sda21(r13)
-	addi     r4, r3, __vt__Q28PSSystem14StreamDataList@l
-	mr       r3, r31
-	stw      r4, 0(r31)
-	addi     r0, r4, 0x10
-	stw      r0, 0x1c(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -206,18 +153,21 @@ StreamDataList::~StreamDataList() { }
 int StreamDataList::getStreamVolume(u32 id)
 {
 	u32 searchID = id & 0xfff;
+	u8 volume[1];
+	int streamID[1];
 	char buf[32];
-	vu8 volume;
-	volatile int streamID;
 	P2ASSERTLINE(76, mFile);
 	RamStream stream(mFile, -1);
 	stream.resetPosition(true, 1);
 	stream.readString(buf, 32);
 	while (strcmp(buf, "endoffile")) {
-		streamID = stream.readInt();
-		volume   = stream.readByte();
-		if (streamID == searchID) {
-			return volume;
+		for (int i = 0; i < 1; i++) {
+			streamID[i] = stream.readInt();
+			volume[i]   = (u8)stream.readByte();
+		}
+		int vol = *volume;
+		if (*streamID == searchID) {
+			return vol;
 		}
 		stream.readString(buf, 32);
 	}
@@ -572,19 +522,13 @@ void SeqHeap::loadSeqAsync(TaskChecker* task)
 {
 	mTask = task;
 	P2ASSERTLINE(247, !mOwner);
-	OSMutex* mutex = &mTask->mMutex;
-	if (mutex) {
-		OSLockMutex(mutex);
-		mutex->count++;
-		OSUnlockMutex(mutex);
-	}
+	PSAdvanceTask(mTask); // something needs to happen here to make mTask go into r28 not r30
 
-	int* file = (int*)mOwnerSeq->getFileEntry();
-	int size  = file[3];
-	file      = (int*)mOwnerSeq->getFileEntry();
-	int offs  = file[0];
-	int res   = JASResArcLoader::loadResourceAsync(JAInter::SequenceMgr::getArchivePointer(), offs, mFileData, size, nullptr,
-                                                 0); // loadedcallback
+	int size     = ((int*)(mOwnerSeq->getFileEntry()))[3];
+	u8* fileData = mFileData;
+	int offs     = ((u16*)(mOwnerSeq->getFileEntry()))[0];
+	int res
+	    = JASResArcLoader::loadResourceAsync(JAInter::SequenceMgr::getArchivePointer(), offs, fileData, size, &loadedCallback, (u32)this);
 	JUT_ASSERTLINE(266, res == 1, "SeqBase::loadSeqAsync() fault loading sequence");
 
 	/*
@@ -654,64 +598,14 @@ lbl_803314FC:
  * @note Address: 0x80331510
  * @note Size: 0x98
  */
-void SeqHeap::loadedCallback(u32 arg1, u32)
+void SeqHeap::loadedCallback(u32 arg1, u32 arg2)
 {
-	SeqHeap* heap = (SeqHeap*)arg1;
-	heap->mOwner  = this;
+	SeqHeap* heap = (SeqHeap*)arg2;
+	heap->mOwner  = (SeqHeap*)arg1;
 	heap->mOwnerSeq->seqLoadAfter();
-	P2ASSERTLINE(294, this);
+	P2ASSERTLINE(294, arg1);
 
-	OSMutex* mutex = &heap->mTask->mMutex;
-	if (mutex) {
-		OSLockMutex(mutex);
-		mutex->count--;
-		OSUnlockMutex(mutex);
-	}
-
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	stw      r30, 4(r4)
-	lwz      r3, 0x10(r4)
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r30, 0
-	bne      lbl_80331568
-	lis      r3, lbl_8048F848@ha
-	lis      r5, lbl_8048F854@ha
-	addi     r3, r3, lbl_8048F848@l
-	li       r4, 0x126
-	addi     r5, r5, lbl_8048F854@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80331568:
-	lwz      r31, 0x14(r31)
-	cmplwi   r31, 0
-	beq      lbl_80331590
-	mr       r3, r31
-	bl       OSLockMutex
-	lbz      r4, 0x18(r31)
-	mr       r3, r31
-	addi     r0, r4, -1
-	stb      r0, 0x18(r31)
-	bl       OSUnlockMutex
-
-lbl_80331590:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSRewindTask(heap->mTask);
 }
 
 /**

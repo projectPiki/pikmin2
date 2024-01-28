@@ -71,7 +71,7 @@ struct SeqHeap {
 	virtual void loadSeqAsync(TaskChecker*); // _0C
 
 	static JAInter::SequenceMgr::CustomHeapInfo requestCallback(u32, u16, JAISequence*);
-	void loadedCallback(u32, u32);
+	static void loadedCallback(u32, u32);
 
 	SeqHeap* mOwner;    // _04
 	uint mSize;         // _08

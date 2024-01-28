@@ -9,7 +9,7 @@ template <typename T>
 struct SingletonBase {
 	inline SingletonBase(T* inst) { sInstance = inst; }
 
-	inline SingletonBase() { sInstance = static_cast<T*>(this); } // needed for ConductorList
+	inline SingletonBase() { sInstance = static_cast<T*>(this); } // needed for things with multiple inheritances
 
 	static inline T* newInstance()
 	{

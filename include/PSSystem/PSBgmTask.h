@@ -18,7 +18,10 @@ struct FlagWaitTask : public TaskBase {
 	{
 	}
 
-	virtual int task(JASTrack&); // _08
+	virtual int task(JASTrack& track) // _08
+	{
+		return _1C;
+	}
 
 	// _00     = VTBL
 	// _00-_1C = TaskBase
@@ -62,7 +65,11 @@ struct MuteTask : public TaskBase {
 };
 
 struct PitchResetTask : public TaskBase {
-	virtual int task(JASTrack&); // _08
+	virtual int task(JASTrack& track) // _08
+	{
+		track.setParam(1, 0.0f, -1);
+		return -1;
+	}
 
 	// _00     = VTBL
 	// _00-_1C = TaskBase
@@ -107,9 +114,9 @@ struct ModParamWithTableTask : public TaskBase {
 
 struct TriangleTableModTask : public ModParamWithTableTask {
 
-	virtual f32 getTgtWithTable(u8);           // _0C
-	virtual u8 getTableIdxNum();               // _10
-	virtual int tableTask(JASTrack&, f32) = 0; // _14
+	virtual f32 getTgtWithTable(u8 idx) { return _1C * sTable[idx]; } // _0C
+	virtual u8 getTableIdxNum() { return 40; }                        // _10
+	virtual int tableTask(JASTrack&, f32) = 0;                        // _14
 
 	static const f32 sTable[40];
 
@@ -155,8 +162,14 @@ struct BankRandTask : public ModParamWithFade {
 		P2ASSERTLINE(351, BankRandPrm::sInstance);
 	}
 
-	virtual f32 getPreParam(JASTrack&);    // _0C (weak)
-	virtual void timeTask(JASTrack&, f32); // _10 (weak)
+	virtual void timeTask(JASTrack& track, f32 p2) // _10 (weak)
+	{
+		BankRandPrm::sInstance->mInst.mCeiling = p2;
+	}
+	virtual f32 getPreParam(JASTrack& track) // _0C (weak)
+	{
+		return BankRandPrm::sInstance->mInst.mCeiling;
+	}
 
 	// _00     = VTBL
 	// _00-_30 = ModParamWithFade
@@ -313,10 +326,37 @@ struct TaskEntryMgr : public MutexList<TaskEntry> {
 };
 
 struct TaskChecker {
+	inline void advanceTask()
+	{
+		OSLockMutex(&mMutex);
+		_18++;
+		OSUnlockMutex(&mMutex);
+	}
+
+	inline void rewindTask()
+	{
+		OSLockMutex(&mMutex);
+		_18--;
+		OSUnlockMutex(&mMutex);
+	}
+
 	OSMutex mMutex; // _00
 	u8 _18;         // _18
 };
-
 } // namespace PSSystem
+
+inline void PSAdvanceTask(PSSystem::TaskChecker* task)
+{
+	if (task) {
+		task->advanceTask();
+	}
+}
+
+inline void PSRewindTask(PSSystem::TaskChecker* task)
+{
+	if (task) {
+		task->rewindTask();
+	}
+}
 
 #endif
