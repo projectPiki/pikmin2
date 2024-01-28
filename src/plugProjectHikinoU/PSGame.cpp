@@ -804,10 +804,10 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 	PSSystem::BgmSeq* bgm       = nullptr;
 
 	JAInter::SoundInfo sound = { 0x00001f00, 0x7F, 0xFF, 0, 0x3F800000, 0x32000000 };
-	sound.mPriority          = 1;
+	sound._05                = 1;
 
 	CaveFloorInfo& cinfo = static_cast<CaveFloorInfo&>(info);
-	P2ASSERTLINE(1393, sound.mPriority < 5);
+	P2ASSERTLINE(1393, sound._05 < 5);
 
 	if (info.isCaveFloor()) {
 		switch (info.mSceneType) {
@@ -887,7 +887,8 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 			u8 wScene2;
 			char* bmsName;
 			list->getSeqAndWaveFromConductor(name, &wScene2, &bmsName);
-			bgm = newAutoBgm(name, bmsName, sound, (JADUtility::AccessMode)mode, info, nullptr);
+			*wScene = wScene2;
+			bgm     = newAutoBgm(name, bmsName, sound, (JADUtility::AccessMode)mode, info, nullptr);
 			delete PSSystem::SingletonBase<ConductorList>::sInstance;
 			PSSystem::SingletonBase<ConductorList>::sInstance = nullptr;
 		}
