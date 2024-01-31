@@ -77,7 +77,7 @@
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSBnkMgr.cpp">PSBnkMgr.cpp</a> | 8931 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSSe.cpp">PSSe.cpp</a> | 22093 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSSeq.cpp">PSSeq.cpp</a> | 51843 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSAutoBgm.cpp">PSAutoBgm.cpp</a> | 66682 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSGame.cpp">PSGame.cpp</a> | 74071 |  |  |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSGame.cpp">PSGame.cpp</a> | 74070 |  |  |
 
 ### <section id="plugProjectKandoU">plugProjectKandoU</section>
 | File | Size (bytes) | File | Size (bytes) |
@@ -105,7 +105,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/itemPlant.cpp">itemPlant.cpp</a> | 73150 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/baseGameSection.cpp">baseGameSection.cpp</a> | 91018 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiPrimitives.cpp">aiPrimitives.cpp</a> | 116997 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/pelletMgr.cpp">pelletMgr.cpp</a> | 142649 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/pikiState.cpp">pikiState.cpp</a> | 153107 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/navi.cpp">navi.cpp</a> | 153116 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/singleGS_Zukan.cpp">singleGS_Zukan.cpp</a> | 161177 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameMapParts.cpp">gameMapParts.cpp</a> | 168055 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/singleGS_Zukan.cpp">singleGS_Zukan.cpp</a> | 161306 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameMapParts.cpp">gameMapParts.cpp</a> | 168055 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/naviState.cpp">naviState.cpp</a> | 180513 |  |  |
 
 ### <section id="plugProjectKonoU">plugProjectKonoU</section>

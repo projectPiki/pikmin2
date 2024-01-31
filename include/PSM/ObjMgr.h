@@ -14,7 +14,8 @@ struct ObjMgr : public JSUPtrList,
                 public PSSystem::SingletonBase<ObjMgr>,
                 public JKRDisposer { // causes build errors from PSSystem::SingletonBase<ObjMgr>
 	ObjMgr()
-	    : PSSystem::SingletonBase<ObjMgr>(this)
+	    : PSSystem::SingletonBase<ObjMgr>()
+	    , mScenes(nullptr)
 	{
 	}
 	// vtable 1 (SingletonBase)

@@ -351,11 +351,11 @@ void Camera::doUpdate()
 
 	Vector3f yAxis(0.0f, 1.0f, 0.0f);
 	Vector3f crossVec  = cross(sep, yAxis);
-	Vector3f crossVec2 = cross(crossVec, vec2);
+	Vector3f crossVec2 = cross(crossVec, yAxis);
 
-	_1AC.x = crossVec2.x + (mGoalPosition.x + mObjectOffset.x); // yikes at whatever's actually going on here
-	_1AC.y = crossVec2.y + (mGoalPosition.y + mObjectOffset.y);
-	_1AC.z = crossVec2.z + (mGoalPosition.z + mObjectOffset.z);
+	_1AC.x = crossVec2.x * vec2.z + ((yAxis.x * vec2.y) + ((crossVec.x * vec2.x) + (mGoalPosition.x + mObjectOffset.x)));
+	_1AC.y = crossVec2.y * vec2.z + ((yAxis.y * vec2.y) + ((crossVec.y * vec2.x) + (mGoalPosition.y + mObjectOffset.y)));
+	_1AC.z = crossVec2.z * vec2.z + ((yAxis.z * vec2.y) + ((crossVec.z * vec2.x) + (mGoalPosition.z + mObjectOffset.z)));
 
 	updateCameraShake();
 	updateFocus();
