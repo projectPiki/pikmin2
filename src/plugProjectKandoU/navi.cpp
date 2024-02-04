@@ -3164,141 +3164,35 @@ void Navi::makeVelocity()
  */
 void Navi::reviseController(Vector3f& input)
 {
-	f32 mag = input.qLength();
-	f32 dir = roundAng(pikmin2_atan2f(input.x, input.z));
+	// get input magnitude and angle
+	f32 stickMag = input.qLength();
+	f32 theta    = roundAng(pikmin2_atan2f(input.x, input.z));
 
-	f32 mod  = naviMgr->mNaviParms->mNaviParms.mShakePreventionAngle() * DEG2RAD * PI;
-	f32 mod2 = mod * int((mod * 0.5f + dir) / mod);
-	mod      = -((int)(mod2 / 0.7853981f) * 0.7853981f - mod2);
-	dir      = pikmin2_sinf(0.7853981f - mod);
-	mod      = pikmin2_sinf(mod);
-	mod += dir;
-	dir = pikmin2_sinf(0.7853981f);
+	// bin angle in amounts set by navi parameter
+	f32 binWidth    = TORADIANS(naviMgr->mNaviParms->mNaviParms.mShakePreventionAngle());
+	f32 binnedAngle = binWidth * int((binWidth * 0.5f + theta) / binWidth);
 
-	mag = mag * (1.0f / (dir / mod));
-	if (mag >= naviMgr->mNaviParms->mNaviParms.mClampStick()) {
-		mag = 1.0f;
+	// calculate amount to boost stick magnitude by
+	f32 boostFactor = -((int)(binnedAngle / QUARTER_PI) * QUARTER_PI - binnedAngle);
+	theta           = pikmin2_sinf(QUARTER_PI - boostFactor);
+	boostFactor     = pikmin2_sinf(boostFactor);
+	boostFactor += theta;
+
+	// boost stick magnitude
+	stickMag *= (1.0f / (pikmin2_sinf(QUARTER_PI) / boostFactor)); // same as * boostFactor * sqrt(2)
+
+	// make 'close enough' good enough (mClampStick = 0.85 in vanilla)
+	if (stickMag >= naviMgr->mNaviParms->mNaviParms.mClampStick()) {
+		stickMag = 1.0f;
 	}
-	if (mag < naviMgr->mNaviParms->mNaviParms.mNeutralStickThreshold()) {
-		mag = 0.0f;
-	}
-	dir   = pikmin2_cosf(mod2);
-	f32 z = mag * dir;
-	dir   = pikmin2_sinf(mod2);
 
-	input.x = mag * dir;
-	input.y = 0.0f;
-	input.z = z;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x70(r1)
-	  mflr      r0
-	  stw       r0, 0x74(r1)
-	  stfd      f31, 0x60(r1)
-	  psq_st    f31,0x68(r1),0,0
-	  stfd      f30, 0x50(r1)
-	  psq_st    f30,0x58(r1),0,0
-	  stfd      f29, 0x40(r1)
-	  psq_st    f29,0x48(r1),0,0
-	  stfd      f28, 0x30(r1)
-	  psq_st    f28,0x38(r1),0,0
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r4
-	  lfs       f1, 0x0(r4)
-	  lfs       f0, 0x4(r4)
-	  fmuls     f1, f1, f1
-	  lfs       f2, 0x8(r4)
-	  fmuls     f0, f0, f0
-	  fmuls     f2, f2, f2
-	  fadds     f0, f1, f0
-	  fadds     f1, f2, f0
-	  bl        0x2CD7BC
-	  fmr       f31, f1
-	  lfs       f1, 0x0(r31)
-	  lfs       f2, 0x8(r31)
-	  bl        0x2CD784
-	  bl        0x2CDB74
-	  lwz       r3, -0x6D20(r13)
-	  lis       r0, 0x4330
-	  lfs       f3, -0x5F9C(r2)
-	  lwz       r3, 0xC8(r3)
-	  lfs       f5, -0x5FA0(r2)
-	  lfs       f2, 0x840(r3)
-	  lfs       f0, -0x6018(r2)
-	  fmuls     f4, f3, f2
-	  stw       r0, 0x10(r1)
-	  lfd       f3, -0x5F90(r2)
-	  lfs       f2, -0x5F98(r2)
-	  fmuls     f4, f5, f4
-	  stw       r0, 0x20(r1)
-	  fmadds    f0, f0, f4, f1
-	  fdivs     f0, f0, f4
-	  fctiwz    f0, f0
-	  stfd      f0, 0x8(r1)
-	  lwz       r0, 0xC(r1)
-	  xoris     r0, r0, 0x8000
-	  stw       r0, 0x14(r1)
-	  lfd       f0, 0x10(r1)
-	  fsubs     f0, f0, f3
-	  fmuls     f29, f4, f0
-	  fdivs     f0, f29, f2
-	  fctiwz    f0, f0
-	  stfd      f0, 0x18(r1)
-	  lwz       r0, 0x1C(r1)
-	  xoris     r0, r0, 0x8000
-	  stw       r0, 0x24(r1)
-	  lfd       f0, 0x20(r1)
-	  fsubs     f0, f0, f3
-	  fnmsubs   f28, f2, f0, f29
-	  fsubs     f1, f2, f28
-	  bl        0x2CD64C
-	  fmr       f30, f1
-	  fmr       f1, f28
-	  bl        0x2CD640
-	  fadds     f30, f1, f30
-	  lfs       f1, -0x5F98(r2)
-	  bl        0x2CD634
-	  fdivs     f1, f1, f30
-	  lfs       f2, -0x6008(r2)
-	  lwz       r3, -0x6D20(r13)
-	  lwz       r3, 0xC8(r3)
-	  lfs       f0, 0x930(r3)
-	  fdivs     f1, f2, f1
-	  fmuls     f31, f31, f1
-	  fcmpo     cr0, f31, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x138
-	  fmr       f31, f2
-	.loc_0x138:
-	  lfs       f0, 0x8E0(r3)
-	  fcmpo     cr0, f31, f0
-	  bge-      .loc_0x148
-	  lfs       f31, -0x600C(r2)
-	.loc_0x148:
-	  fmr       f1, f29
-	  bl        0x2CD658
-	  fmuls     f30, f31, f1
-	  fmr       f1, f29
-	  bl        0x2CD5E4
-	  fmuls     f1, f31, f1
-	  lfs       f0, -0x600C(r2)
-	  stfs      f1, 0x0(r31)
-	  stfs      f0, 0x4(r31)
-	  stfs      f30, 0x8(r31)
-	  psq_l     f31,0x68(r1),0,0
-	  lfd       f31, 0x60(r1)
-	  psq_l     f30,0x58(r1),0,0
-	  lfd       f30, 0x50(r1)
-	  psq_l     f29,0x48(r1),0,0
-	  lfd       f29, 0x40(r1)
-	  psq_l     f28,0x38(r1),0,0
-	  lfd       f28, 0x30(r1)
-	  lwz       r0, 0x74(r1)
-	  lwz       r31, 0x2C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x70
-	  blr
-	*/
+	// enforce dead zone
+	if (stickMag < naviMgr->mNaviParms->mNaviParms.mNeutralStickThreshold()) {
+		stickMag = 0.0f;
+	}
+
+	// recalculate input vector based on adjusted angle and magnitude
+	input = getDirectionP2(binnedAngle, stickMag);
 }
 
 /**

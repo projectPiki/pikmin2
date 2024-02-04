@@ -143,6 +143,12 @@ inline Vector3f getDirection(f32 angle, f32 rad)
 	return vec;
 }
 
+inline Vector3f getDirectionP2(f32 angle, f32 rad)
+{
+	Vector3f vec = Vector3f(rad * pikmin2_sinf(angle), 0.0f, rad * pikmin2_cosf(angle));
+	return vec;
+}
+
 inline Vector3f getPerpDirection(f32 angle) { return Vector3f(cosf(angle), 0.0f, -sinf(angle)); }
 
 inline Vector3f getDirectionMori(f32 angle)

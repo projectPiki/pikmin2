@@ -76,69 +76,69 @@ struct NaviParms : public FakePikiParms {
 		}
 
 		// _27C-_288	= Parameters
-		Parm<f32> mActionRadius;              // _288
-		Parm<f32> mAutopluckDistance;         // _2B0
-		Parm<f32> mPluckDistanceOutsideOnyon; // _2D8
-		Parm<f32> mPikiCallMaxRadius;         // _300, max whistle radius (pre-upgrade)
-		Parm<f32> mPikiCallMinRadius;         // _328, initial whistle radius
-		Parm<f32> mMaxCallTime;               // _350
-		Parm<f32> mCircleDisappearTime;       // _378
-		Parm<f32> mMoveSpeed;                 // _3A0
-		Parm<f32> mRunSpeed;                  // _3C8
-		Parm<f32> mDisplayScale;              // _3F0
-		Parm<f32> mStick0;                    // _418
-		Parm<f32> mStick01;                   // _440
-		Parm<f32> mStick1;                    // _468
-		Parm<f32> mStick2;                    // _490
-		Parm<f32> mSlidingAngle;              // _4B8
-		Parm<f32> mTimeLimitForThrowing;      // _4E0
-		Parm<f32> mThrowDistanceMax;          // _508
-		Parm<f32> mThrowDistanceMin;          // _530
-		Parm<f32> mThrowHeightMax;            // _558
-		Parm<f32> mThrowHeightMin;            // _580
-		Parm<f32> mThrowHeightYellow;         // _5A8
-		Parm<f32> mThrowBlackHeight;          // _5D0
-		Parm<f32> mThrowWhiteHeight;          // _5F8
-		Parm<f32> mLandingTime;               // _620
-		Parm<f32> mGrabPikiRange;             // _648
-		Parm<int> mLoopCountToPluck;          // _670
-		Parm<f32> mPikiWaitRange;             // _698
-		Parm<f32> mPikiChangeFormationRange;  // _6C0
-		Parm<f32> mHitSize;                   // _6E8
-		Parm<f32> mGroundSize;                // _710
-		Parm<f32> mInverseWeight;             // _738
-		Parm<f32> mAimRotationSpeed;          // _760
-		Parm<f32> mTotalCrushTime;            // _788
-		Parm<f32> mFlatTime;                  // _7B0
-		Parm<f32> mPressStartTime;            // _7D8
-		Parm<f32> mPressStartStickAmount;     // _800
-		Parm<f32> mShakePreventionAngle;      // _828
-		Parm<f32> mShakePreventionMagnitude;  // _850
-		Parm<f32> mCursorLookTime;            // _878
-		Parm<f32> mPikiLoseNumbnessTime;      // _8A0
-		Parm<f32> mNeutralStickThreshold;     // _8C8
-		Parm<f32> mCursorMovementStick;       // _8F0
-		Parm<f32> mClampStick;                // _918
-		Parm<f32> mMinCursorMovementRadius;   // _940
-		Parm<f32> mMaxCursorMoveRadius;       // _968
-		Parm<f32> mCursorMovementSpeed;       // _990
-		Parm<f32> mMaxHealth;                 // _9B8
-		Parm<f32> mAttackPower;               // _9E0
-		Parm<f32> mAttackRange;               // _A08
-		Parm<int> mCursorCount;               // _A30
-		Parm<int> mMushroomFlickCount;        // _A58
-		Parm<int> mBuryKeyCount;              // _A80
-		Parm<int> mBuryExitCount;             // _AA8
-		Parm<int> mCloseCameraZoomOut;        // _AD0
-		Parm<int> mFormationLvl0;             // _AF8
-		Parm<int> mFormationLvl1;             // _B20
-		Parm<int> mFormationMaxLvl2;          // _B48
-		Parm<int> mFormationMaxLvl3;          // _B70
-		Parm<f32> mRushBootSpeed;             // _B98
-		Parm<f32> mWideWhistleRadius;         // _BC0, max whistle radius (with upgrade)
-		Parm<f32> mShieldDamageReductionRate; // _BE8
-		Parm<int> mSeesawWeight;              // _C10
-		Parm<f32> mElectricGateDamage;        // _C38
+		Parm<f32> mActionRadius;              // _288, p000
+		Parm<f32> mAutopluckDistance;         // _2B0, p060
+		Parm<f32> mPluckDistanceOutsideOnyon; // _2D8, p062
+		Parm<f32> mPikiCallMaxRadius;         // _300, p001, max whistle radius (pre-upgrade)
+		Parm<f32> mPikiCallMinRadius;         // _328, p053, initial whistle radius
+		Parm<f32> mMaxCallTime;               // _350, p002
+		Parm<f32> mCircleDisappearTime;       // _378, p003
+		Parm<f32> mMoveSpeed;                 // _3A0, p004
+		Parm<f32> mRunSpeed;                  // _3C8, p056
+		Parm<f32> mDisplayScale;              // _3F0, p038
+		Parm<f32> mStick0;                    // _418, p005
+		Parm<f32> mStick01;                   // _440, p020
+		Parm<f32> mStick1;                    // _468, p006
+		Parm<f32> mStick2;                    // _490, p007
+		Parm<f32> mSlidingAngle;              // _4B8, p008
+		Parm<f32> mTimeLimitForThrowing;      // _4E0, p009
+		Parm<f32> mThrowDistanceMax;          // _508, p010
+		Parm<f32> mThrowDistanceMin;          // _530, p011
+		Parm<f32> mThrowHeightMax;            // _558, p024
+		Parm<f32> mThrowHeightMin;            // _580, p025
+		Parm<f32> mThrowHeightYellow;         // _5A8, p054
+		Parm<f32> mThrowBlackHeight;          // _5D0, q000
+		Parm<f32> mThrowWhiteHeight;          // _5F8, q001
+		Parm<f32> mLandingTime;               // _620, p026
+		Parm<f32> mGrabPikiRange;             // _648, p037
+		Parm<int> mLoopCountToPluck;          // _670, p042
+		Parm<f32> mPikiWaitRange;             // _698, p039
+		Parm<f32> mPikiChangeFormationRange;  // _6C0, p040
+		Parm<f32> mHitSize;                   // _6E8, p021
+		Parm<f32> mGroundSize;                // _710, p041
+		Parm<f32> mInverseWeight;             // _738, p022
+		Parm<f32> mAimRotationSpeed;          // _760, p023
+		Parm<f32> mTotalCrushTime;            // _788, p031
+		Parm<f32> mFlatTime;                  // _7B0, p032
+		Parm<f32> mPressStartTime;            // _7D8, p033
+		Parm<f32> mPressStartStickAmount;     // _800, p034
+		Parm<f32> mShakePreventionAngle;      // _828, p035
+		Parm<f32> mShakePreventionMagnitude;  // _850, p036
+		Parm<f32> mCursorLookTime;            // _878, p048, yes these are both p048
+		Parm<f32> mPikiLoseNumbnessTime;      // _8A0, p049
+		Parm<f32> mNeutralStickThreshold;     // _8C8, p043
+		Parm<f32> mCursorMovementStick;       // _8F0, p044
+		Parm<f32> mClampStick;                // _918, p048, yes these are both p048
+		Parm<f32> mMinCursorMovementRadius;   // _940, p045
+		Parm<f32> mMaxCursorMoveRadius;       // _968, p046
+		Parm<f32> mCursorMovementSpeed;       // _990, p047
+		Parm<f32> mMaxHealth;                 // _9B8, p050
+		Parm<f32> mAttackPower;               // _9E0, p051
+		Parm<f32> mAttackRange;               // _A08, p052
+		Parm<int> mCursorCount;               // _A30, p055
+		Parm<int> mMushroomFlickCount;        // _A58, p057
+		Parm<int> mBuryKeyCount;              // _A80, p058
+		Parm<int> mBuryExitCount;             // _AA8, p059
+		Parm<int> mCloseCameraZoomOut;        // _AD0, p061
+		Parm<int> mFormationLvl0;             // _AF8, q002
+		Parm<int> mFormationLvl1;             // _B20, q003
+		Parm<int> mFormationMaxLvl2;          // _B48, q004
+		Parm<int> mFormationMaxLvl3;          // _B70, q005
+		Parm<f32> mRushBootSpeed;             // _B98, q006
+		Parm<f32> mWideWhistleRadius;         // _BC0, q007, max whistle radius (with upgrade)
+		Parm<f32> mShieldDamageReductionRate; // _BE8, q008
+		Parm<int> mSeesawWeight;              // _C10, q009
+		Parm<f32> mElectricGateDamage;        // _C38, q010
 		                                      // _C60 = IParameters ptr
 	};
 
@@ -150,12 +150,12 @@ struct NaviParms : public FakePikiParms {
 		mCreatureProps.mProps.mAccel.mValue         = 0.1f;
 	}
 
-	virtual void read(Stream& stream)
+	virtual void read(Stream& stream) // _08 (weak)
 	{
 		CreatureParms::read(stream);
 		mFakePikiParms.read(stream);
 		mNaviParms.read(stream);
-	} // _08 (weak)
+	}
 
 	// _00-_D8  = CreatureParms
 	// _D8 		  = VTBL
