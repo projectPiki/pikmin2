@@ -59,7 +59,7 @@ struct TVsSelectOnyon {
 	f32 _00;                   // _00
 	J2DPicture* mNaviPane;     // _04
 	J2DPicture* mOnyonPane;    // _08
-	Vector2f mCurrentPosition; // _0C TODO: guessing these names for the most part
+	Vector2f mCurrentPosition; // _0C
 	Vector2f mGoalPosition;    // _14
 	Vector2f mVelocity;        // _1C
 	Vector2f mAngleDef;        // _24

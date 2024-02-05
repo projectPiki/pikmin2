@@ -260,9 +260,6 @@ s32 CARDGetSerialNo(s32 channel, u64* serialNo);
 
 // NB: steal more functions from prime as required.
 
-// Unused/inlined in P2.
-// TODO: fill these in for documentation.
-
 ////////////////////////////////////////////
 
 ////////// PRIVATE CARD FUNCTIONS //////////

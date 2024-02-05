@@ -8,12 +8,14 @@
 struct Color4 {
 	// TODO: Remove inline def when linking singleGS_ZukanParms.cpp!
 	// Is the above TODO still relevant? -EpochFlame
-	inline Color4() {};
+	inline Color4() { }
 	inline Color4(u8 red, u8 green, u8 blue, u8 alpha)
 	    : r(red)
 	    , g(green)
 	    , b(blue)
-	    , a(alpha) {};
+	    , a(alpha)
+	{
+	}
 	inline Color4(u32 col) { *(u32*)this = col; }
 
 	inline GXColor toGXColor()

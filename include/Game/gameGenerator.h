@@ -102,7 +102,6 @@ struct GeneratorMgr : public CNode {
 	void update();
 	void updateCursorPos(Vector3f&);
 	void updateUseList();
-	// TODO: Data members
 
 	GeneratorMgr* mNextMgr;   // _18
 	GeneratorMgr* mChildMgr;  // _1C

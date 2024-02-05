@@ -28,8 +28,7 @@ struct BaseItem;
 struct WayPoint;
 struct ItemMgr;
 
-struct _BaseItemMgrParent2 {
-};
+struct _BaseItemMgrParent2 { };
 
 struct BaseItemMgr : public GenericObjectMgr, virtual public _BaseItemMgrParent2 {
 	BaseItemMgr(int);
@@ -119,6 +118,7 @@ struct NodeItemMgr : public BaseItemMgr, public Container<T> {
 	NodeObjectMgr<T> mNodeObjectMgr; // _4C
 };
 
+#define TO_ITEMMGR(x) reinterpret_cast<ItemMgr*>(&x)
 struct ItemMgr : public NodeObjectMgr<GenericObjectMgr> {
 	ItemMgr();
 

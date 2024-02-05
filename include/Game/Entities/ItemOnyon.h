@@ -181,30 +181,31 @@ struct Onyon : public BaseItem {
 };
 
 namespace ItemOnyon {
+
 // TODO: cull reinterpret_cast
 struct Mgr : public BaseItemMgr, public Container<Onyon> {
 	Mgr();
 
-	virtual u32 generatorGetID() { return 'onyn'; }                                                                        // _58 (weak)
-	virtual u32 generatorLocalVersion() { return '0001'; }                                                                 // _68 (weak)
-	virtual void doAnimation() { reinterpret_cast<ItemMgr*>(&mNodeObjectMgr)->doAnimation(); }                             // _08 (weak)
-	virtual void doEntry() { reinterpret_cast<ItemMgr*>(&mNodeObjectMgr)->doEntry(); }                                     // _0C (weak)
-	virtual void doSetView(int viewportNumber) { reinterpret_cast<ItemMgr*>(&mNodeObjectMgr)->doSetView(viewportNumber); } // _10 (weak)
-	virtual void doViewCalc() { reinterpret_cast<ItemMgr*>(&mNodeObjectMgr)->doViewCalc(); }                               // _14 (weak)
-	virtual void doSimulation(f32 constraint) { reinterpret_cast<ItemMgr*>(&mNodeObjectMgr)->doSimulation(constraint); }   // _18 (weak)
-	virtual void doDirectDraw(Graphics& gfx) { reinterpret_cast<ItemMgr*>(&mNodeObjectMgr)->doDirectDraw(gfx); }           // _1C (weak)
-	virtual ~Mgr();                                                                                                        // _A0
-	virtual void initDependency();                                                                                         // _38
-	virtual void setupSoundViewerAndBas();                                                                                 // _44
-	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*);                                                  // _5C
-	virtual void generatorWrite(Stream&, GenItemParm*);                                                                    // _60
-	virtual void generatorRead(Stream&, GenItemParm*, u32);                                                                // _64
-	virtual J3DModelData* generatorGetShape(GenItemParm*);                                                                 // _6C
-	virtual GenItemParm* generatorNewItemParm();                                                                           // _70
-	virtual Onyon* get(void* index) { return static_cast<Onyon*>(mNodeObjectMgr.get(index)); }                             // _A4 (weak)
-	virtual void* getNext(void* index) { return mNodeObjectMgr.getNext(index); }                                           // _A8 (weak)
-	virtual void* getStart() { return mNodeObjectMgr.getStart(); }                                                         // _AC (weak)
-	virtual void* getEnd() { return mNodeObjectMgr.getEnd(); }                                                             // _B0 (weak)
+	virtual u32 generatorGetID() { return 'onyn'; }                                                       // _58 (weak)
+	virtual u32 generatorLocalVersion() { return '0001'; }                                                // _68 (weak)
+	virtual void doAnimation() { TO_ITEMMGR(mNodeObjectMgr)->doAnimation(); }                             // _08 (weak)
+	virtual void doEntry() { TO_ITEMMGR(mNodeObjectMgr)->doEntry(); }                                     // _0C (weak)
+	virtual void doSetView(int viewportNumber) { TO_ITEMMGR(mNodeObjectMgr)->doSetView(viewportNumber); } // _10 (weak)
+	virtual void doViewCalc() { TO_ITEMMGR(mNodeObjectMgr)->doViewCalc(); }                               // _14 (weak)
+	virtual void doSimulation(f32 constraint) { TO_ITEMMGR(mNodeObjectMgr)->doSimulation(constraint); }   // _18 (weak)
+	virtual void doDirectDraw(Graphics& gfx) { TO_ITEMMGR(mNodeObjectMgr)->doDirectDraw(gfx); }           // _1C (weak)
+	virtual ~Mgr();                                                                                       // _A0
+	virtual void initDependency();                                                                        // _38
+	virtual void setupSoundViewerAndBas();                                                                // _44
+	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*);                                 // _5C
+	virtual void generatorWrite(Stream&, GenItemParm*);                                                   // _60
+	virtual void generatorRead(Stream&, GenItemParm*, u32);                                               // _64
+	virtual J3DModelData* generatorGetShape(GenItemParm*);                                                // _6C
+	virtual GenItemParm* generatorNewItemParm();                                                          // _70
+	virtual Onyon* get(void* index) { return static_cast<Onyon*>(mNodeObjectMgr.get(index)); }            // _A4 (weak)
+	virtual void* getNext(void* index) { return mNodeObjectMgr.getNext(index); }                          // _A8 (weak)
+	virtual void* getStart() { return mNodeObjectMgr.getStart(); }                                        // _AC (weak)
+	virtual void* getEnd() { return mNodeObjectMgr.getEnd(); }                                            // _B0 (weak)
 
 	Onyon* birth(int, int);
 	Onyon* getOnyon(int);

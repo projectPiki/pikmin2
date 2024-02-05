@@ -14,7 +14,9 @@ struct Matrixf;
 template <typename T>
 struct Vector3 {
 	T x, y, z;
-	inline Vector3() {};
+
+	inline Vector3() { }
+
 	/**
 	 * @fabricated
 	 */
@@ -24,12 +26,14 @@ struct Vector3 {
 	    , z(value)
 	{
 	}
+
 	inline Vector3(T x, T y, T z)
 	{
 		this->x = x;
 		this->y = y;
 		this->z = z;
 	}
+
 	inline Vector3(JGeometry::TVec3<T> vec) { __memcpy(this, &vec, sizeof(Vector3)); }
 
 	inline Vector3(Vec& vec)
