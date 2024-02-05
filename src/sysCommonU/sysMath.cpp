@@ -489,39 +489,9 @@ Quat::Quat(RPY& rpy)
  * @note Address: 0x80412400
  * @note Size: 0xFC
  */
-Quat operator*(Quat& q1, Quat& q2)
-{
-	// this needs to be weak.
-
-	Quat tmp;
-	Quat* tmpPtr = &tmp;
-
-	f32 x1 = (q1.y * q2.z);
-	f32 x2 = (q1.z * q2.y) - x1;
-	f32 x3 = q1.w * q2.x;
-	f32 x4 = q1.x * q2.w + x3 + x2;
-
-	f32 y1 = (q1.z * q2.x);
-	f32 y2 = (q1.x * q2.z) - y1;
-	f32 y3 = q1.w * q2.y;
-	f32 y4 = q1.y * q2.w + y3 + y2;
-
-	f32 z1 = q1.x * q2.y;
-	f32 z2 = q1.y * q2.x - z1;
-	f32 z3 = q1.w * q2.z;
-	f32 z4 = q1.z * q2.w + z3 + z2;
-
-	f32 w1 = q1.w * q2.w;
-	f32 w2 = q1.x * q2.x - w1;
-	f32 w3 = q1.y * q2.y;
-	f32 w4 = q1.z * q2.z + w3 + w2;
-
-	tmp.w = w4;
-	tmp.x = x4;
-	tmp.y = y4;
-	tmp.z = z4;
-	Quat out(tmp);
-	return out;
+// Quat operator*(Quat& q1, Quat& q2)
+// {
+// 	// this needs to be weak.
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x50(r1)
@@ -588,7 +558,7 @@ Quat operator*(Quat& q1, Quat& q2)
 	  addi      r1, r1, 0x50
 	  blr
 	*/
-}
+// }
 
 /**
  * @note Address: 0x804124FC
@@ -1382,13 +1352,13 @@ int BoundBox::transform(Matrixf& mtx)
 
 	// now we need to work out new bounds for the box?
 	// initially set max and min to... well, max and min possible
-	mMin.x = 32768.0f;
-	mMin.y = 32768.0f;
-	mMin.z = 32768.0f;
+	mMin.x = SHORT_FLOAT_MAX;
+	mMin.y = SHORT_FLOAT_MAX;
+	mMin.z = SHORT_FLOAT_MAX;
 
-	mMax.x = -32768.0f;
-	mMax.y = -32768.0f;
-	mMax.z = -32768.0f;
+	mMax.x = -SHORT_FLOAT_MAX;
+	mMax.y = -SHORT_FLOAT_MAX;
+	mMax.z = -SHORT_FLOAT_MAX;
 
 	// loop over stuff in pairs?
 	// I don't get why this is in pairs tbqh but so be it

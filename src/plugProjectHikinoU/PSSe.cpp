@@ -92,9 +92,9 @@ void SeMgr::stopMessageVoice()
  */
 Rappa::Rappa()
 {
-	mId    = -1;
-	mWait  = 0;
-	mTblNo = 0;
+	mId         = -1;
+	mDelay      = 0;
+	mTableIndex = 0;
 }
 
 /**
@@ -202,7 +202,7 @@ JAISound* Rappa::playRappa(bool flag, f32 x, f32 y, JAInter::Object* obj)
 			val *= -1.0f;
 			f32 comp      = (val < 0.0f) ? 0.0f : (val > 1.0f) ? 1.0f : val;
 			int extraWait = comp * cRatio;
-			mWait         = extraWait + cBaseWaitTime;
+			mDelay        = extraWait + cBaseWaitTime;
 		}
 	}
 	return sound;
@@ -332,15 +332,15 @@ lbl_8033F798:
  */
 u16 Rappa::syncCpu_WaitChk(JASTrack* track)
 {
-	track->readPortAppDirect(0xb, &mTblNo);
-	return mWait;
+	track->readPortAppDirect(0xb, &mTableIndex);
+	return mDelay;
 }
 
 /**
  * @note Address: 0x8033F800
  * @note Size: 0x8
  */
-u16 Rappa::syncCpu_TblNo(JASTrack* track) { return mTblNo; }
+u16 Rappa::syncCpu_TblNo(JASTrack* track) { return mTableIndex; }
 
 /**
  * @note Address: 0x8033F808

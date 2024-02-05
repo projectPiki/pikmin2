@@ -92,7 +92,7 @@ VsGameSection::VsGameSection(JKRHeap* heap, bool gameMode)
 	mVsFifo                = nullptr;
 
 	if (gGameConfig.mParms.mVsFifo.mData > 0) {
-		size_t size = gGameConfig.mParms.mVsFifo.mData * KILOBYTE_BYTECOUNT;
+		size_t size = gGameConfig.mParms.mVsFifo.mData * 1024;
 		mVsFifo     = new VSFifo(size);
 		mVsFifo->becomeCurrent();
 		GXSetGPFifo(mVsFifo->mFifo);

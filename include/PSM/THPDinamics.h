@@ -37,7 +37,7 @@ struct THPDinamicsProc {
 
 	void complessor(f32);
 
-	inline f32 doAudioDinamics(u16 vol, int val) { return 32768.0f * dinamics((vol * val >> 15) / 32768.0f); }
+	inline f32 doAudioDinamics(u16 vol, int val) { return SHORT_FLOAT_MAX * dinamics((vol * val >> 15) / SHORT_FLOAT_MAX); }
 
 	THPDemoDinamics* mDemoInfo; // _00
 };

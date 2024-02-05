@@ -1035,7 +1035,7 @@ void System::loadResourceSecond()
 int System::run()
 {
 	mGameFlow->run();
-	return EXIT_SUCCESS;
+	return 0;
 }
 
 /**

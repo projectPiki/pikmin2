@@ -419,8 +419,8 @@ void AABBWaterBox::globalise(Game::AABBWaterBox* other, Matrixf& globalMatrix)
 	cornerPoints[1] = Vector3f(mBounds.mMin.x, mBounds.mMin.y, mBounds.mMax.z);
 	cornerPoints[3] = Vector3f(mBounds.mMax.x, mBounds.mMin.y, mBounds.mMin.z);
 
-	mBounds.mMin = Vector3f(32768.0f);
-	mBounds.mMax = Vector3f(-32768.0f);
+	mBounds.mMin = Vector3f(SHORT_FLOAT_MAX);
+	mBounds.mMax = Vector3f(-SHORT_FLOAT_MAX);
 
 	// Transform each corner point with the global matrix and include it back into the bounding box
 	for (int i = 0; i < 4; i++) {

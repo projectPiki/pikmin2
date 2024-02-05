@@ -380,8 +380,8 @@ void Model::initJoints()
  */
 Joint::Joint()
 {
-	mMin = 32768.0f;
-	mMax = -32768.0f;
+	mMin = SHORT_FLOAT_MAX;
+	mMax = -SHORT_FLOAT_MAX;
 }
 
 /**

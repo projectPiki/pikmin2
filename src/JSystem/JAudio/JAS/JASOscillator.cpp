@@ -219,14 +219,14 @@ f32 JASOscillator::calc(const s16* p1)
 		_1D = val;
 
 		if ((s16)val2 == 0) {
-			_0C = val3 / 32768.0f;
+			_0C = val3 / SHORT_FLOAT_MAX;
 			_18++;
 			continue;
 		}
 
 		_04 = (f32)val2 * ((JASDriver::getDacRate() / 80.0f) / 600.0f);
 		_14 = _04;
-		_0C = val3 / 32768.0f;
+		_0C = val3 / SHORT_FLOAT_MAX;
 
 		if (_1D == 0) {
 			_10 = (_0C - _08) / _04;

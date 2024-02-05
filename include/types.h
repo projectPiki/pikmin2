@@ -41,62 +41,33 @@ typedef u32 unknown;
 typedef u16 wchar_t;
 #endif
 
+#define SHORT_FLOAT_MAX (32768.0f)
+#define SHORT_FLOAT_MIN (-32768.0f)
+
 // Basic defines to allow newer-like C++ code to be written
-#define TRUE  1
-#define FALSE 0
-#define NULL  ((void*)0)
+#define TRUE    1
+#define FALSE   0
+#define NULL    ((void*)0)
 #define nullptr 0
 
-// Sets specific flag to 1
-#define SET_FLAG(x, val) (x |= (val))
-
-// Resets specific flag from (val) back to 0
-#define RESET_FLAG(x, val) (x &= ~(val))
-
-// Return 1 if flag is set, 0 if flag is not set
-#define IS_FLAG(x, val) (x & val)
-
-// Array size define
-#define ARRAY_SIZE(o) (sizeof((o)) / sizeof(*(o)))
-
-// Align X to the previous N bytes (N must be power of two)
-#define ALIGN_PREV(X, N) ((X) & ~((N)-1))
-
-// Align X to the next N bytes (N must be power of two)
-#define ALIGN_NEXT(X, N) ALIGN_PREV(((X) + (N)-1), N)
-
-// True if X is aligned to N bytes, else false
-#define IS_ALIGNED(X, N) ((X & ((N)-1)) == 0)
-
-// True if X is not aligned to N bytes, else false
+#define SET_FLAG(x, val)     (x |= (val))
+#define RESET_FLAG(x, val)   (x &= ~(val))
+#define IS_FLAG(x, val)      (x & val)
+#define ARRAY_SIZE(o)        (sizeof((o)) / sizeof(*(o)))
+#define ALIGN_PREV(X, N)     ((X) & ~((N)-1))
+#define ALIGN_NEXT(X, N)     ALIGN_PREV(((X) + (N)-1), N)
+#define IS_ALIGNED(X, N)     ((X & ((N)-1)) == 0)
 #define IS_NOT_ALIGNED(X, N) (((X) & ((N)-1)) != 0)
-
-// Align object to num bytes (num should be power of two)
 #define ATTRIBUTE_ALIGN(num) __attribute__((aligned(num)))
-
-// Checks if a flag is set in a bitfield
-#define IS_FLAG_SET(flags, bitsFromLSB) (((flags) >> (bitsFromLSB)&1))
-
-// For functions that return 0 on a success and -1 on failure
-#define EXIT_SUCCESS 0
-#define EXIT_FAILURE -1
 
 #define ASSERT_HANG(cond) \
 	if (!(cond)) {        \
 		while (true) { }  \
 	}
 
-// Get the maximum of two values
-#define MAX(a, b) (((a) > (b)) ? (a) : (b))
-
-// Get the minimum of two values
-#define MIN(a, b) (((a) < (b)) ? (a) : (b))
-
-// Rounds a float to a u8
+#define MAX(a, b)          (((a) > (b)) ? (a) : (b))
+#define MIN(a, b)          (((a) < (b)) ? (a) : (b))
 #define ROUND_F32_TO_U8(a) a >= 0.0f ? a + 0.5f : a - 0.5f
-
-// Number of bytes in a kilobyte
-#define KILOBYTE_BYTECOUNT 1024
 
 #ifdef __MWERKS__
 #define WEAKFUNC        __declspec(weak)

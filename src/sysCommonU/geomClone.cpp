@@ -36,8 +36,8 @@ void VertexTable::cloneFrom(Matrixf& transformationMtx, VertexTable* vtxTable)
 		mObjects[i] = Vector3f(transformed);
 	}
 
-	mBoundBox.mMin = 32768.0f;
-	mBoundBox.mMax = -32768.0f;
+	mBoundBox.mMin = SHORT_FLOAT_MAX;
+	mBoundBox.mMax = -SHORT_FLOAT_MAX;
 	includeVertices();
 }
 

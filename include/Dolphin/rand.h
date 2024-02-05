@@ -8,7 +8,7 @@
 extern "C" {
 #endif // ifdef __cplusplus
 
-#define RAND_MAX         (32768.0f)
+#define RAND_MAX         (SHORT_FLOAT_MAX)
 #define RAND_EBISAWA_MAX (32767.0f)
 
 inline f32 randEbisawaFloat() { return (f32)rand() / RAND_EBISAWA_MAX; }

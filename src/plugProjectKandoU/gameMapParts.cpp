@@ -917,8 +917,8 @@ RoomMapMgr::RoomMapMgr(Cave::CaveInfo* info)
 
 	mMapUnitMgr = new MapUnitMgr;
 
-	mBoundbox.mMin = Vector3f(32768.0f);
-	mBoundbox.mMax = Vector3f(-32768.0f);
+	mBoundbox.mMin = Vector3f(SHORT_FLOAT_MAX);
+	mBoundbox.mMax = Vector3f(-SHORT_FLOAT_MAX);
 
 	mCaveInfo                  = info;
 	mFloorInfo                 = nullptr;

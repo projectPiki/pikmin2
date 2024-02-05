@@ -90,12 +90,12 @@ struct Stream {
 
 	inline int getStreamDistance(int startPos) const { return mPosition - startPos; }
 
-	int mEndian;                      // _04
-	int mPosition;                    // _08
-	int mMode;                        // _0C
-	int mBufferPos;                   // _10
-	char mBuffer[KILOBYTE_BYTECOUNT]; // _14
-	int mTabCount;                    // _414
+	int mEndian;         // _04
+	int mPosition;       // _08
+	int mMode;           // _0C
+	int mBufferPos;      // _10
+	char mBuffer[0x400]; // _14
+	int mTabCount;       // _414
 };
 
 struct RamStream : Stream {

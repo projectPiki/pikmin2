@@ -720,22 +720,22 @@ int JASSeqParser::cmdVibPitch(JASTrack* track, u32* args)
  */
 int JASSeqParser::cmdIIRSet(JASTrack* track, u32* args)
 {
-	track->mTimedParam.mMoveParams[12]._04 = (s16)args[0] / 32768.0f;
+	track->mTimedParam.mMoveParams[12]._04 = (s16)args[0] / SHORT_FLOAT_MAX;
 	track->mTimedParam.mMoveParams[12]._00 = track->mTimedParam.mMoveParams[12]._04;
 	track->mTimedParam.mMoveParams[12]._0C = 0.0f;
 	track->mTimedParam.mMoveParams[12]._08 = 1.0f;
 
-	track->mTimedParam.mMoveParams[13]._04 = (s16)args[1] / 32768.0f;
+	track->mTimedParam.mMoveParams[13]._04 = (s16)args[1] / SHORT_FLOAT_MAX;
 	track->mTimedParam.mMoveParams[13]._00 = track->mTimedParam.mMoveParams[13]._04;
 	track->mTimedParam.mMoveParams[13]._0C = 0.0f;
 	track->mTimedParam.mMoveParams[13]._08 = 1.0f;
 
-	track->mTimedParam.mMoveParams[14]._04 = (s16)args[2] / 32768.0f;
+	track->mTimedParam.mMoveParams[14]._04 = (s16)args[2] / SHORT_FLOAT_MAX;
 	track->mTimedParam.mMoveParams[14]._00 = track->mTimedParam.mMoveParams[14]._04;
 	track->mTimedParam.mMoveParams[14]._0C = 0.0f;
 	track->mTimedParam.mMoveParams[14]._08 = 1.0f;
 
-	track->mTimedParam.mMoveParams[15]._04 = (s16)args[3] / 32768.0f;
+	track->mTimedParam.mMoveParams[15]._04 = (s16)args[3] / SHORT_FLOAT_MAX;
 	track->mTimedParam.mMoveParams[15]._00 = track->mTimedParam.mMoveParams[15]._04;
 	track->mTimedParam.mMoveParams[15]._0C = 0.0f;
 	track->mTimedParam.mMoveParams[15]._08 = 1.0f;

@@ -13,17 +13,29 @@ struct Rappa : public JKRDisposer {
 
 	virtual ~Rappa(); // _08
 
-	void init(u16);
-	void setId(u32);
+	/**
+	 * Initializes the Rappa object with the given ID.
+	 *
+	 * @param id The ID of the Rappa object.
+	 */
+	void init(u16 id);
+
+	/**
+	 * @brief Sets the ID of the object.
+	 *
+	 * @param id The ID to set.
+	 */
+	void setId(u32 id);
+
 	JAISound* playRappa(bool, f32, f32, JAInter::Object*);
 	u16 syncCpu_WaitChk(JASTrack*);
 	u16 syncCpu_TblNo(JASTrack*);
 
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
-	u32 mId;    // _18
-	u16 mWait;  // _1C
-	u16 mTblNo; // _1E
+	u32 mId;         // _18
+	u16 mDelay;      // _1C
+	u16 mTableIndex; // _1E
 
 	static inline Rappa* getRappa(u8 id)
 	{

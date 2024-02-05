@@ -4102,8 +4102,8 @@ void VertexTable::transform(Matrixf& mat)
 		*vertex          = mat.mtxMult(*vertex);
 	}
 
-	mBoundBox.mMin = Vector3f(32768.0f);
-	mBoundBox.mMax = Vector3f(-32768.0f);
+	mBoundBox.mMin = Vector3f(SHORT_FLOAT_MAX);
+	mBoundBox.mMax = Vector3f(-SHORT_FLOAT_MAX);
 
 	includeVertices();
 }
