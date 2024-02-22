@@ -30,6 +30,9 @@
 #include "utilityU.h"
 #include "PowerPC_EABI_Support/MSL_C/MSL_Common/arith.h"
 
+//BROCOLI AMONGUS
+#include "Brocoli/NaviPowers.h"
+
 static const u32 fillerbytes[3] = { 0, 0, 0 };
 int numSearch;
 
@@ -80,6 +83,8 @@ Navi::Navi()
 
 	mFsm = new NaviFSM;
 	mFsm->init(this);
+
+	//naviPowers = new NaviPowers();
 
 	mCPlateMgr = new CPlate(100);
 	mMass      = 1.0f;
@@ -338,7 +343,7 @@ bool Navi::procActionButton()
 				NaviNukuAdjustStateArg nukuAdjustArg2;
 				setupNukuAdjustArg(otherTargetSprout, nukuAdjustArg2);
 				nukuAdjustArg2._18 = 1;
-				otherNavi->mFsm->transit(this, NSID_NukuAdjust, &nukuAdjustArg2);
+				otherNavi->mFsm->transit(otherNavi, NSID_NukuAdjust, &nukuAdjustArg2);
 			}
 		}
 
@@ -2034,12 +2039,12 @@ void Navi::movieUserCommand(u32 command, MoviePlayer* player)
 		break;
 	}
 
-	case 105: {
+	case 107: {
 		shadowMgr->addShadow(this);
 		break;
 	}
 
-	case 106: {
+	case 105: {
 		efx::TNaviEffect* fx = mEffectsObj;
 
 		if (!fx->isFlag(efx::NAVIFX_IsSaved)) {
@@ -2059,7 +2064,7 @@ void Navi::movieUserCommand(u32 command, MoviePlayer* player)
 		break;
 	}
 
-	case 107: {
+	case 106: {
 		// mEffectsObj->setMovieEffect(); using the inline fixes this part, but breaks everything else
 		efx::TNaviEffect* fx = mEffectsObj;
 		if (fx->isFlag(efx::NAVIFX_IsSaved)) {
@@ -2804,6 +2809,8 @@ void Navi::control()
  */
 void Navi::makeVelocity()
 {
+
+
 	if (mController1
 	    && ((mController1->getButtonDown() & Controller::PRESS_A) || (mController1->getButtonDown() & Controller::PRESS_B)
 	        || (mController1->getButtonDown() & Controller::PRESS_X) || (mController1->getButtonDown() & Controller::PRESS_Y)
@@ -2817,36 +2824,45 @@ void Navi::makeVelocity()
 		mSceneAnimationTimer += sys->mDeltaTime;
 	}
 
-	Vector3f inputPos;
-	inputPos.x = 0.0f;
-	inputPos.z = inputPos.x;
+	f32 ax = 0.0f;
+	f32 az = ax;
 	if (mController1) {
-		inputPos.x = mController1->getMainStickX();
-		inputPos.z = -mController1->getMainStickY();
+		ax = -mController1->getMainStickX();
+		az = mController1->getMainStickY();
 	}
-	inputPos.y = 0.0f;
+	Vector3f inputPos(ax, 0.0f, az);
 	reviseController(inputPos);
+
 	f32 x = inputPos.x;
 	f32 z = inputPos.z;
+
 
 	Vector3f side = mCamera->getSideVector();
 	Vector3f up   = mCamera->getUpVector();
 	Vector3f view = mCamera->getViewVector();
-	view.y        = 0.0f;
-	view.qNormalise();
-	if (view.y < up.y) {
-		up.z = view.z;
-		up.x = view.x;
-	}
-	up.qNormalise();
+	side.y        = 0.0f;
 
-	Vector3f result(side * x + up * z);
+	side.qNormalise();
+
+	if (up.y > view.y) {
+		view.x = view.x;
+		view.z = view.z;
+	} else {
+	    view.x = up.x;
+		view.z = up.z;
+	}
+	Vector3f obama(view.x, 0.0f, view.z);
+	obama.qNormalise();
+
+	Vector3f result(side * x + obama * z);
 
 	f32 speed;
 	if (playData->mOlimarData->hasItem(OlimarData::ODII_RepugnantAppendage)) {
 		speed = naviMgr->mNaviParms->mNaviParms.mRushBootSpeed();
 	} else {
 		speed = naviMgr->mNaviParms->mNaviParms.mMoveSpeed();
+		//speed *= naviPowers->speedAdjust();
+		//speed *= 1.5f;
 	}
 	f32 dist = result.qLength();
 	if (dist > naviMgr->mNaviParms->mNaviParms.mNeutralStickThreshold()) {
@@ -2862,7 +2878,7 @@ void Navi::makeVelocity()
 		if (mSceneAnimationTimer >= parms->mNaviParms.mCursorLookTime()) {
 			check = true;
 		}
-		if ((check || (check || dist > parms->mNaviParms.mNeutralStickThreshold())) && (dist <= parms->mNaviParms.mCursorMovementStick())) {
+		if ((check || (!check && dist > parms->mNaviParms.mNeutralStickThreshold())) && (dist <= parms->mNaviParms.mCursorMovementStick())) {
 			mVelocity = 0.0f;
 			f32 rad   = pikmin2_atan2f(mWhistle->mNaviOffsetVec.x, mWhistle->mNaviOffsetVec.z);
 			rad       = roundAng(rad);
@@ -3202,7 +3218,8 @@ void Navi::reviseController(Vector3f& input)
 void Navi::callPikis()
 {
 	numSearch = 0;
-	Sys::Sphere bounds(mWhistle->mPosition, mWhistle->mRadius);
+	Vector3f mPos(mWhistle->mPosition);
+	Sys::Sphere bounds(mPos, mWhistle->mRadius);
 	CellIteratorArg arg(bounds);
 	CellIterator iterator(arg);
 	f32 time       = 0.0f;
@@ -4132,6 +4149,8 @@ void Navi::demowaitAllPikis()
 	}
 }
 
+
+
 /**
  * @note Address: 0x8014548C
  * @note Size: 0x954
@@ -4151,18 +4170,16 @@ bool Navi::releasePikis()
 	InteractKaisan act(this);
 	loozy->stimulate(act);
 
-	int pikis = 0;
-	Iterator<Creature> iterator(mCPlateMgr);
+	s32 pikis = 0;
 	Piki* buffer[100];
-	Piki** list = buffer;
+	Iterator<Creature> iterator(mCPlateMgr);
 	CI_LOOP(iterator)
 	{
 		Piki* piki = static_cast<Piki*>(*iterator);
 		piki->getStateID();
-		if (!piki->mCurrentState || (piki->mCurrentState->releasable() && piki->isAlive())) {
-			piki        = static_cast<Piki*>(*iterator);
-			list[pikis] = piki;
-			pikis++;
+		if ((!piki->mCurrentState || piki->mCurrentState->releasable()) && piki->isAlive()) {
+			piki            = static_cast<Piki*>(*iterator);
+			buffer[pikis++] = piki;
 		}
 	}
 
@@ -4174,74 +4191,71 @@ bool Navi::releasePikis()
 		return dismissnavi;
 	}
 
-	struct DissmissData {
-		DissmissData()
-		{
-			position = 0.0f;
-			number   = 0;
-		}
-		Vector3f position;
-		int number;
-	};
-	DissmissData info[8];
 
+	int number[8];
+	Vector3f position[8];
+	for (int i = 0; i != 8; i++) {
+		position[i] = 0;
+		number[i] = 0;
+	}
 	for (int cColor = 0; cColor < 8; cColor++) {
 		for (int i = 0; i < pikis; i++) {
 			if (cColor != Yellow) {
 				if (cColor == buffer[i]->getKind()) {
-					info[cColor].number++;
-					info[cColor].position += buffer[i]->getPosition();
-
+					number[cColor]++;
+					position[cColor] += buffer[i]->getPosition();
 				} // WHY WHAT WHY / WHY IS YELLOW SPECIAL
 			} else if (buffer[i]->getKind() == Yellow) {
-				info[Yellow].number++;
-				info[Yellow].position += buffer[i]->getPosition();
+				number[Yellow]++;
+				position[Yellow] += buffer[i]->getPosition();
 			}
 		}
 	}
+
 	f32 distList[8];
 	for (int cColor = 0; cColor < 8; cColor++) {
-		if (info[cColor].number > 0) {
-			f32 num  = info[cColor].number;
-			f32 mean = 1.0f / num;
-			info[cColor].position *= mean;
+		if (number[cColor] > 0) {
+			f32 num  = number[cColor];
+			f32 mean = 1.0f / number[cColor];
+			position[cColor] *= mean;
 			distList[cColor] = pikmin2_sqrtf(num) * 6.25f;
 		}
 	}
 
+
 	loozy = naviMgr->getAt(GET_OTHER_NAVI(this));
 	for (int i = 0; i < 4; i++) {
 		for (int cColor = 0; cColor < 8; cColor++) {
-			if (info[cColor].number > 0) {
+			if (number[cColor]> 0) {
 				Vector3f naviPos = getPosition();
-				Vector3f diff    = info[cColor].position - naviPos;
+				Vector3f diff    = position[cColor] - naviPos;
 				f32 dist         = diff.qNormalise();
 				dist             = dist - distList[cColor] - 25.0f;
 				if (dist < 20.0f) {
 					dist = 20.0f - dist;
-					info[cColor].position += diff * dist;
+					position[cColor] += diff * dist;
 				}
 				if (loozy->isAlive()) {
 					Vector3f naviPos = loozy->getPosition();
-					Vector3f diff    = info[cColor].position - naviPos;
+					Vector3f diff    = position[cColor] - naviPos;
 					f32 dist         = diff.qNormalise();
 					dist             = dist - distList[cColor] - 25.0f;
 					if (dist < 20.0f) {
 						dist = 20.0f - dist;
-						info[cColor].position += diff * dist;
+						position[cColor] += diff * dist;
 					}
 				}
 			}
 
 			for (int j = cColor + 1; j < 8; j++) {
-				if (info[cColor].number > 0 && info[j].number > 0) {
-					Vector3f diff = info[cColor].position - info[j].position;
+				if (number[cColor] > 0 && number[j] > 0) {
+					Vector3f diff = position[cColor] - position[j];
 					f32 dist      = diff.qNormalise();
-					dist          = dist - distList[cColor] - 25.0f;
+					dist          = dist - distList[cColor] - distList[j];
 					if (dist < 20.0f) {
 						dist = 20.0f - dist;
-						info[cColor].position += diff * dist;
-						info[j].position -= diff * dist;
+						position[cColor] += diff * dist;
+						position[j] -= diff * dist;
 					}
 				}
 			}
@@ -4250,7 +4264,7 @@ bool Navi::releasePikis()
 
 	for (int i = 0; i < pikis; i++) {
 		Piki* piki = buffer[i];
-		PikiAI::ActFreeArg arg(distList[piki->getKind()], info[piki->getKind()].position, true);
+		PikiAI::ActFreeArg arg(distList[piki->getKind()], position[piki->getKind()], true);
 		buffer[i]->mSoundObj->startFreePikiSound(PSSE_PK_VC_BREAKUP, 0x5a, 0);
 		buffer[i]->mBrain->start(1, &arg);
 	}
@@ -4902,6 +4916,8 @@ bool Navi::releasePikis()
  * @note Address: 0x80145DE8
  * @note Size: 0x920
  */
+
+
 void Navi::makeCStick(bool disable)
 {
 	Vector3f stickPos;
@@ -4909,45 +4925,57 @@ void Navi::makeCStick(bool disable)
 	stickPos.z = stickPos.x;
 
 	if (mController1 && moviePlayer->mDemoState == 0) {
-		stickPos.x = mController1->getSubStickX();
-		stickPos.z = -mController1->getSubStickY();
+		stickPos.x = -mController1->getSubStickX();
+		stickPos.z = mController1->getSubStickY();
 	}
 
 	Vector3f side = mCamera->getSideVector();
 	Vector3f up   = mCamera->getUpVector();
 	Vector3f view = mCamera->getViewVector();
-	view.y        = 0.0f;
-	view.qNormalise();
+	side.y        = 0.0f;
+	side.qNormalise();
 
-	//
-	if (view.y < up.y) {
-		up.z = view.z;
-		up.x = view.x;
+	if (up.y > view.y) {
+		view.x = view.x;
+		view.z = view.z;
+	} else {
+		view.x = up.x;
+		view.z = up.z;
 	}
 
-	up.qNormalise();
-	up = (side * stickPos.x) + (up * stickPos.z);
+
+	Vector3f obummer(view.x, 0.0f, view.z);
+	obummer.qNormalise();
+
+
+
+	up = (side * stickPos.x) + (obummer * stickPos.z);
 	if (disable) {
 		up = 0.0f;
 	}
+
 	mCStickPosition = 0.0f;
 	f32 dist        = up.sqrMagnitude();
 	mCommandOn2     = false;
-	if (pikmin2_sqrtf(dist) >= 0.05f) {
+	if (pikmin2_sqrtf(dist) > 0.05f) {
 		mCommandOn2     = true;
-		mCStickPosition = up;
+		mSceneAnimationTimer = 0.0f;
+		mCStickPosition      = up;
 		f32 scale       = pikmin2_atan2f(up.x, up.z);
 		f32 ang2        = mCPlateMgr->mAngle;
 		f32 cosA        = pikmin2_cosf(scale);
 		f32 sinA        = pikmin2_sinf(scale);
 		f32 cosB        = pikmin2_cosf(ang2);
 		f32 sinB        = pikmin2_sinf(ang2);
-		f32 cosC        = pikmin2_sinf(2.0943952f);
+		f32 cosC        = pikmin2_cosf(2.0943952f);
+
 		f32 zero        = 0.0f;
-		if (cosC < (cosA * cosB + zero) + (sinA * sinB + zero)) {
-			scale = angDist(scale, ang2) * 0.4f + ang2;
+		if ((sinA * sinB + zero) + (cosA * cosB) > cosC) {
+			zero = angDist(scale, ang2) * 0.4f + ang2;
+		} else {
+			zero = scale;
 		}
-		scale        = roundAng(scale);
+		scale        = roundAng(zero);
 		mCStickAngle = scale;
 		f32 calc     = (pikmin2_sqrtf(dist) - 0.05f) / 0.95f;
 		if (calc >= 0.9f) {
@@ -4968,21 +4996,23 @@ void Navi::makeCStick(bool disable)
 			angle = 1.0f;
 		}
 
-		mCPlateMgr->setPos(pos, angle, mSimVelocity, scale);
+		mCPlateMgr->setPos(pos, scale, mSimVelocity, angle);
 		_2FC        = 0;
 		mCommandOn1 = false;
 
 	} else {
 
 		_258 = 0;
-		if (_2FC) {
+		if (!_2FC) {
 			mCommandOn1 = true;
 		}
 		f32 dir = mFaceDir + PI;
-		if ((_2FC || mVelocity.qLength() <= 50.0f) && getStateID() == NSID_ThrowWait) {
-			f32 angle    = mCStickAngle;
+		if ((!_2FC && mVelocity.qLength() < 50.0f) && getStateID() != NSID_ThrowWait) {
+			f32 angle  = mCStickAngle;
 			Vector3f pos = getPosition();
-			mCPlateMgr->setPos(pos, angle, mVelocity, 1.0f);
+
+			//this angle + dir thing is really stupid I don't know how to make dir compile in here
+			mCPlateMgr->setPos(pos, angle, mSimVelocity, 1.0f);
 		} else {
 			_2FC = true;
 		}
@@ -4992,11 +5022,9 @@ void Navi::makeCStick(bool disable)
 		Iterator<Creature> iterator(mCPlateMgr);
 		CI_LOOP(iterator)
 		{
-			Piki* piki = static_cast<Piki*>(*iterator);
-			piki->getStateID();
-			Vector3f pikiPos = piki->getPosition();
-			Vector3f naviPos = getPosition();
-			Vector3f diff    = naviPos - pikiPos;
+			Creature* piki = *iterator;
+			static_cast<Piki*>(piki)->getStateID();
+			Vector3f diff = piki->getPosition() - getPosition();
 			f32 dist         = diff.qLength();
 			if (dist < minDist) {
 				minDist = dist;
@@ -5032,18 +5060,18 @@ void Navi::makeCStick(bool disable)
 			Vector3f pos  = getPosition();
 			Vector3f diff = mCPlateMgr->_A4 - pos;
 			diff.qNormalise();
-			f32 dir       = pikmin2_atan2f(diff.x, diff.z);
+			dir       = pikmin2_atan2f(diff.x, diff.z);
 			Vector3f pos2 = getPosition();
 			mCPlateMgr->setPosGray(pos2, dir, mSimVelocity, 1.0f);
 		} else if (mCStickState == 2) {
 			mCommandOn1 = false;
 			if (_2FD) {
 				Vector3f pos = getPosition();
-				mCPlateMgr->rearrangeSlot(pos, dist, mSimVelocity);
+				mCPlateMgr->rearrangeSlot(pos, dir, mSimVelocity);
 				_2FD = 0;
 			}
 			Vector3f pos = getPosition();
-			mCPlateMgr->setPos(pos, dist, mSimVelocity, 1.0f);
+			mCPlateMgr->setPos(pos, dir, mSimVelocity, 1.0f);
 		}
 	}
 
@@ -5907,8 +5935,8 @@ u32 Navi::ogGetNextThrowPiki()
 	return (!nextPiki) ? 0 : ((3 * nextPiki->mPikiKind) + 1) + nextPiki->mHappaKind;
 }
 
-extern f32 pikmin2_cosf(f32 theta);
-extern f32 pikmin2_sinf(f32 theta);
+//extern f32 pikmin2_cosf(f32 theta);
+//extern f32 pikmin2_sinf(f32 theta);
 
 inline f32 pikmin2_normalise(Vector3f& vec)
 {
