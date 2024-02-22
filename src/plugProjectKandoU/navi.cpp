@@ -30,9 +30,6 @@
 #include "utilityU.h"
 #include "PowerPC_EABI_Support/MSL_C/MSL_Common/arith.h"
 
-//BROCOLI AMONGUS
-#include "Brocoli/NaviPowers.h"
-
 static const u32 fillerbytes[3] = { 0, 0, 0 };
 int numSearch;
 
@@ -83,8 +80,6 @@ Navi::Navi()
 
 	mFsm = new NaviFSM;
 	mFsm->init(this);
-
-	//naviPowers = new NaviPowers();
 
 	mCPlateMgr = new CPlate(100);
 	mMass      = 1.0f;
@@ -2810,7 +2805,6 @@ void Navi::control()
 void Navi::makeVelocity()
 {
 
-
 	if (mController1
 	    && ((mController1->getButtonDown() & Controller::PRESS_A) || (mController1->getButtonDown() & Controller::PRESS_B)
 	        || (mController1->getButtonDown() & Controller::PRESS_X) || (mController1->getButtonDown() & Controller::PRESS_Y)
@@ -2836,7 +2830,6 @@ void Navi::makeVelocity()
 	f32 x = inputPos.x;
 	f32 z = inputPos.z;
 
-
 	Vector3f side = mCamera->getSideVector();
 	Vector3f up   = mCamera->getUpVector();
 	Vector3f view = mCamera->getViewVector();
@@ -2848,21 +2841,21 @@ void Navi::makeVelocity()
 		view.x = view.x;
 		view.z = view.z;
 	} else {
-	    view.x = up.x;
+		view.x = up.x;
 		view.z = up.z;
 	}
-	Vector3f obama(view.x, 0.0f, view.z);
-	obama.qNormalise();
+	Vector3f view2D(view.x, 0.0f, view.z);
+	view2D.qNormalise();
 
-	Vector3f result(side * x + obama * z);
+	Vector3f result(side * x + view2D * z);
 
 	f32 speed;
 	if (playData->mOlimarData->hasItem(OlimarData::ODII_RepugnantAppendage)) {
 		speed = naviMgr->mNaviParms->mNaviParms.mRushBootSpeed();
 	} else {
 		speed = naviMgr->mNaviParms->mNaviParms.mMoveSpeed();
-		//speed *= naviPowers->speedAdjust();
-		//speed *= 1.5f;
+		// speed *= naviPowers->speedAdjust();
+		// speed *= 1.5f;
 	}
 	f32 dist = result.qLength();
 	if (dist > naviMgr->mNaviParms->mNaviParms.mNeutralStickThreshold()) {
@@ -2878,7 +2871,8 @@ void Navi::makeVelocity()
 		if (mSceneAnimationTimer >= parms->mNaviParms.mCursorLookTime()) {
 			check = true;
 		}
-		if ((check || (!check && dist > parms->mNaviParms.mNeutralStickThreshold())) && (dist <= parms->mNaviParms.mCursorMovementStick())) {
+		if ((check || (!check && dist > parms->mNaviParms.mNeutralStickThreshold()))
+		    && (dist <= parms->mNaviParms.mCursorMovementStick())) {
 			mVelocity = 0.0f;
 			f32 rad   = pikmin2_atan2f(mWhistle->mNaviOffsetVec.x, mWhistle->mNaviOffsetVec.z);
 			rad       = roundAng(rad);
@@ -4149,8 +4143,6 @@ void Navi::demowaitAllPikis()
 	}
 }
 
-
-
 /**
  * @note Address: 0x8014548C
  * @note Size: 0x954
@@ -4191,12 +4183,11 @@ bool Navi::releasePikis()
 		return dismissnavi;
 	}
 
-
 	int number[8];
 	Vector3f position[8];
 	for (int i = 0; i != 8; i++) {
 		position[i] = 0;
-		number[i] = 0;
+		number[i]   = 0;
 	}
 	for (int cColor = 0; cColor < 8; cColor++) {
 		for (int i = 0; i < pikis; i++) {
@@ -4222,11 +4213,10 @@ bool Navi::releasePikis()
 		}
 	}
 
-
 	loozy = naviMgr->getAt(GET_OTHER_NAVI(this));
 	for (int i = 0; i < 4; i++) {
 		for (int cColor = 0; cColor < 8; cColor++) {
-			if (number[cColor]> 0) {
+			if (number[cColor] > 0) {
 				Vector3f naviPos = getPosition();
 				Vector3f diff    = position[cColor] - naviPos;
 				f32 dist         = diff.qNormalise();
@@ -4917,7 +4907,6 @@ bool Navi::releasePikis()
  * @note Size: 0x920
  */
 
-
 void Navi::makeCStick(bool disable)
 {
 	Vector3f stickPos;
@@ -4943,11 +4932,8 @@ void Navi::makeCStick(bool disable)
 		view.z = up.z;
 	}
 
-
 	Vector3f obummer(view.x, 0.0f, view.z);
 	obummer.qNormalise();
-
-
 
 	up = (side * stickPos.x) + (obummer * stickPos.z);
 	if (disable) {
@@ -4958,18 +4944,18 @@ void Navi::makeCStick(bool disable)
 	f32 dist        = up.sqrMagnitude();
 	mCommandOn2     = false;
 	if (pikmin2_sqrtf(dist) > 0.05f) {
-		mCommandOn2     = true;
+		mCommandOn2          = true;
 		mSceneAnimationTimer = 0.0f;
 		mCStickPosition      = up;
-		f32 scale       = pikmin2_atan2f(up.x, up.z);
-		f32 ang2        = mCPlateMgr->mAngle;
-		f32 cosA        = pikmin2_cosf(scale);
-		f32 sinA        = pikmin2_sinf(scale);
-		f32 cosB        = pikmin2_cosf(ang2);
-		f32 sinB        = pikmin2_sinf(ang2);
-		f32 cosC        = pikmin2_cosf(2.0943952f);
+		f32 scale            = pikmin2_atan2f(up.x, up.z);
+		f32 ang2             = mCPlateMgr->mAngle;
+		f32 cosA             = pikmin2_cosf(scale);
+		f32 sinA             = pikmin2_sinf(scale);
+		f32 cosB             = pikmin2_cosf(ang2);
+		f32 sinB             = pikmin2_sinf(ang2);
+		f32 cosC             = pikmin2_cosf(2.0943952f);
 
-		f32 zero        = 0.0f;
+		f32 zero = 0.0f;
 		if ((sinA * sinB + zero) + (cosA * cosB) > cosC) {
 			zero = angDist(scale, ang2) * 0.4f + ang2;
 		} else {
@@ -5008,10 +4994,10 @@ void Navi::makeCStick(bool disable)
 		}
 		f32 dir = mFaceDir + PI;
 		if ((!_2FC && mVelocity.qLength() < 50.0f) && getStateID() != NSID_ThrowWait) {
-			f32 angle  = mCStickAngle;
+			f32 angle    = mCStickAngle;
 			Vector3f pos = getPosition();
 
-			//this angle + dir thing is really stupid I don't know how to make dir compile in here
+			// this angle + dir thing is really stupid I don't know how to make dir compile in here
 			mCPlateMgr->setPos(pos, angle, mSimVelocity, 1.0f);
 		} else {
 			_2FC = true;
@@ -5025,7 +5011,7 @@ void Navi::makeCStick(bool disable)
 			Creature* piki = *iterator;
 			static_cast<Piki*>(piki)->getStateID();
 			Vector3f diff = piki->getPosition() - getPosition();
-			f32 dist         = diff.qLength();
+			f32 dist      = diff.qLength();
 			if (dist < minDist) {
 				minDist = dist;
 			}
@@ -5060,7 +5046,7 @@ void Navi::makeCStick(bool disable)
 			Vector3f pos  = getPosition();
 			Vector3f diff = mCPlateMgr->_A4 - pos;
 			diff.qNormalise();
-			dir       = pikmin2_atan2f(diff.x, diff.z);
+			dir           = pikmin2_atan2f(diff.x, diff.z);
 			Vector3f pos2 = getPosition();
 			mCPlateMgr->setPosGray(pos2, dir, mSimVelocity, 1.0f);
 		} else if (mCStickState == 2) {
@@ -5935,8 +5921,8 @@ u32 Navi::ogGetNextThrowPiki()
 	return (!nextPiki) ? 0 : ((3 * nextPiki->mPikiKind) + 1) + nextPiki->mHappaKind;
 }
 
-//extern f32 pikmin2_cosf(f32 theta);
-//extern f32 pikmin2_sinf(f32 theta);
+// extern f32 pikmin2_cosf(f32 theta);
+// extern f32 pikmin2_sinf(f32 theta);
 
 inline f32 pikmin2_normalise(Vector3f& vec)
 {

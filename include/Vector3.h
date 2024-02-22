@@ -281,7 +281,7 @@ struct Vector3 {
 			this->z *= len;
 			return length;
 		}
-		return 0;
+		return 0.0f;
 	}
 
 	f32 length() const;
