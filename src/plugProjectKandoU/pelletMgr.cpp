@@ -5531,14 +5531,14 @@ Pellet* PelletMgr::birth(PelletInitArg* arg)
 		if (strcmp("yes", config->mParams.mUnique.mData) == 0) {
 			int unk = arg->mPelletIndex;
 			if (arg->mPelletType == PelletList::OTAKARA) {
-				u8* result = playData->mZukanStat->mOtakara(unk);
-				if (*result & 2) {
+				u8 result = playData->mZukanStat->mOtakara(unk);
+				if (result & 2) {
 					mgr->mConfigList->getPelletConfig(arg->mTextIdentifier);
 					return nullptr;
 				}
 			} else if (arg->mPelletType == PelletList::ITEM) {
-				u8* result = playData->mZukanStat->mItem(unk);
-				if (*result & 2) {
+				u8 result = playData->mZukanStat->mItem(unk);
+				if (result & 2) {
 					mgr->mConfigList->getPelletConfig(arg->mTextIdentifier);
 					return nullptr;
 				}
@@ -5585,14 +5585,14 @@ bool PelletMgr::setUse(PelletInitArg* arg)
 		if (strcmp("yes", config->mParams.mUnique.mData) == 0) {
 			int unk = arg->mPelletIndex;
 			if (arg->mPelletType == PelletList::OTAKARA) {
-				u8* result = playData->mZukanStat->mOtakara(unk);
-				if (*result & 2) {
+				u8 result = playData->mZukanStat->mOtakara(unk);
+				if (result & 2) {
 					mgr->mConfigList->getPelletConfig(arg->mTextIdentifier);
 					return false;
 				}
 			} else if (arg->mPelletType == PelletList::ITEM) {
-				u8* result = playData->mZukanStat->mItem(unk);
-				if (*result & 2) {
+				u8 result = playData->mZukanStat->mItem(unk);
+				if (result & 2) {
 					mgr->mConfigList->getPelletConfig(arg->mTextIdentifier);
 					return false;
 				}
@@ -5640,13 +5640,13 @@ bool PelletMgr::OtakaraItemCode::isNull()
 	if (strcmp("yes", config->mParams.mUnique.mData) == 0) {
 		u8 code = mValue;
 		if ((u8)(mValue >> 8) == 3) {
-			u8* result = playData->mZukanStat->mOtakara(code);
-			if (*result & 2) {
+			u8 result = playData->mZukanStat->mOtakara(code);
+			if (result & 2) {
 				return true;
 			}
 		} else {
-			u8* result = playData->mZukanStat->mItem(code);
-			if (*result & 2) {
+			u8 result = playData->mZukanStat->mItem(code);
+			if (result & 2) {
 				return true;
 			}
 		}

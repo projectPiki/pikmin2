@@ -210,26 +210,26 @@ void ObjectParticleActor::parseUserData_(u32 p1, void const* rawData)
 	JStudio::stb::data::TParse_TParagraph_data paragraph(rawData);
 	JStudio::stb::data::TParse_TParagraph_data::TData data;
 	paragraph.getData(&data);
-	if (data.status == 0) {
+	if (data.mStatus == 0) {
 		return;
 	}
-	if (data.fileCount == 0 || data.status != 0x60) {
+	if (data.mFileCount == 0 || data.mStatus != 0x60) {
 		return;
 	}
 	mModelJointIndex = -1;
 	for (int i = 0; i < data._08; i++) {
-		OSReport("string:%u,%s\n", i, data.fileCount);
+		OSReport("string:%u,%s\n", i, data.mFileCount);
 		if (i == 0) {
-			if (strcmp(data.fileCount, "kill") == 0) {
+			if (strcmp((char*)data.mFileCount, "kill") == 0) {
 				mEfxFlag |= 2;
 			} else {
-				mGameObject = mMoviePlayer->mObjectSystem->findCreature(data.fileCount);
+				mGameObject = mMoviePlayer->mObjectSystem->findCreature((char*)data.mFileCount);
 			}
 		} else if (i == 1) {
-			if (strcmp(data.fileCount, "@ground") == 0) {
+			if (strcmp((char*)data.mFileCount, "@ground") == 0) {
 				mModelJointIndex = -2;
 			} else if (mGameObject != nullptr && mGameObject->mModel != nullptr) {
-				SysShape::Joint* joint = mGameObject->mModel->getJoint(data.fileCount);
+				SysShape::Joint* joint = mGameObject->mModel->getJoint((char*)data.mFileCount);
 				if (joint != nullptr) {
 					mModelJointIndex = joint->mJointIndex;
 				} else {
@@ -237,7 +237,7 @@ void ObjectParticleActor::parseUserData_(u32 p1, void const* rawData)
 				}
 			}
 		}
-		data.fileCount = strchr(data.fileCount, 0) + 1;
+		data.mFileCount = strchr((char*)data.mFileCount, 0) + 1;
 	}
 	/*
 	stwu     r1, -0x30(r1)

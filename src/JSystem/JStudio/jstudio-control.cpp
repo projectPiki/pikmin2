@@ -73,7 +73,7 @@ TControl::TControl()
     , _74(0)
     , _75(0)
 {
-	Vec vec = JGeometry::TVec3f(0.0f, 0.0f, 0.0f);
+	Vec vec = { 0.0f, 0.0f, 0.0f };
 	transformOnSet_setOrigin(vec, 0.0f);
 	transformOnGet_setOrigin(vec, 0.0f);
 	/*

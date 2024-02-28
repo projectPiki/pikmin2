@@ -456,7 +456,7 @@ Mgr::Mgr()
 	for (int i = 0; i < 4; i++) {
 		J3DModelData* modelData = getModelData(i);
 		modelData->newSharedDisplayList(0x40000);
-		modelData->simpleCalcMaterial(0, j3dDefaultMtx);
+		modelData->simpleCalcMaterial(0, *(Mtx*)&j3dDefaultMtx);
 		modelData->makeSharedDL();
 	}
 }

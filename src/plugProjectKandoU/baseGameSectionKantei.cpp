@@ -466,7 +466,7 @@ lbl_8023BEBC:
  * @note Address: 0x8023BEF4
  * @note Size: 0x164
  */
-bool BaseGameSection::ZoomCamera::doUpdate()
+void BaseGameSection::ZoomCamera::doUpdate()
 {
 	bool check1 = false; // r4
 	bool check2 = false; // r5

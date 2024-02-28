@@ -265,10 +265,10 @@ void JStudio_JParticle::TAdaptor_particle::TJPACallback_::execute(JPABaseEmitter
 			outVec[1].z = srts[1].z;
 			pos         = outVec;
 		}
-		emitter->mGlobalTrs = pos[0];
+		emitter->mGlobalTrs = ((JGeometry::TVec3f*)pos)[0];
 
 		JPAGetXYZRotateMtx(65536.0 * (pos[1].x / 360.0), 65536.0 * (pos[1].y / 360.0), 65536.0 * (pos[1].z / 360.0), emitter->mGlobalRot);
-		JGeometry::TVec3f scaleVec(pos[2]);
+		JGeometry::TVec3f scaleVec(((JGeometry::TVec3f*)pos)[2]);
 		emitter->setScale(scaleVec);
 	} else {
 		Mtx mtx;

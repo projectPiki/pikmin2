@@ -75,7 +75,7 @@ struct J3DMtxCalcAnimation : public J3DMtxCalcAnmBase {
 	}
 
 	virtual ~J3DMtxCalcAnimation() {};                                              // _08
-	virtual void setAnmTransform(J3DAnmTransform* p1) { mAnim = p1; }               // _0C
+	virtual void setAnmTransform(J3DAnmTransform* p1) { mBaseAnim = p1; }           // _0C
 	virtual void init(const Vec& p1, const f32 (&p2)[3][4]) { Init::init(p1, p2); } // _24
 	virtual void calc()                                                             // _28
 	{

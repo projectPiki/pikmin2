@@ -60,7 +60,7 @@ void TOneEmitter::executeAfter(JPABaseEmitter* emitter)
 			for (int i = 0; i < createCount; i++) {
 				JPABaseParticle* particle = emitter->createParticle();
 				if (particle) {
-					particle->mOffsetPosition = JGeometry::TVec3f(v1.x, v1.y, v1.z);
+					particle->mOffsetPosition.set(v1.x, v1.y, v1.z);
 				}
 			}
 		}
@@ -166,7 +166,7 @@ void TOneEmitterChasePos::executeAfter(JPABaseEmitter* emitter)
 			for (int i = 0; i < createCount; i++) {
 				JPABaseParticle* particle = emitter->createParticle();
 				if (particle) {
-					particle->mOffsetPosition = JGeometry::TVec3f(v1->x, v1->y, v1->z);
+					particle->mOffsetPosition.set(v1->x, v1->y, v1->z);
 				}
 			}
 		}
@@ -238,7 +238,7 @@ void TOneEmitterSimple::executeAfter(JPABaseEmitter* emitter)
 			for (int i = 0; i < createCount; i++) {
 				JPABaseParticle* particle = emitter->createParticle();
 				if (particle) {
-					particle->mOffsetPosition = JGeometry::TVec3f(v1.x, v1.y, v1.z);
+					particle->mOffsetPosition.set(v1.x, v1.y, v1.z);
 				}
 			}
 		}

@@ -702,10 +702,10 @@ J3DJoint::J3DJoint()
 	mMtxCalc                      = nullptr;
 	mMaterial                     = nullptr;
 
-	Vec init  = { 0.0f, 0.0f, 0.0f };
-	mMin      = init;
-	Vec init2 = { 0.0f, 0.0f, 0.0f };
-	mMax      = init2;
+	JGeometry::TVec3f init  = { 0.0f, 0.0f, 0.0f };
+	mMin                    = init;
+	JGeometry::TVec3f init2 = { 0.0f, 0.0f, 0.0f };
+	mMax                    = init2;
 }
 
 /**

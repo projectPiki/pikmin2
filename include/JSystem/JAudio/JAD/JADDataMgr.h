@@ -125,8 +125,8 @@ struct PrmDataMgrNode : public DataMgrNode {
 	virtual bool initInstance(void* buffer, s32 bufferLength)
 	{
 		if (initInstance()) {
-			JSUMemoryInputStream input;
-			input.setBuffer(buffer, bufferLength);
+			JSUMemoryInputStream input(buffer, bufferLength);
+			// input.setBuffer(buffer, bufferLength);
 			mPrmSetRc->load(input);
 			return true;
 		}

@@ -2453,12 +2453,12 @@ Mgr::Mgr()
 	_30C                   = 0.0f;
 	J3DModelData* polyData = getModelData(0);
 	polyData->newSharedDisplayList(0x40000);
-	polyData->simpleCalcMaterial(0, j3dDefaultMtx);
+	polyData->simpleCalcMaterial(0, *(Mtx*)&j3dDefaultMtx);
 	polyData->makeSharedDL();
 
 	J3DModelData* billData = getModelData(1);
 	billData->newSharedDisplayList(0x40000);
-	billData->simpleCalcMaterial(0, j3dDefaultMtx);
+	billData->simpleCalcMaterial(0, *(Mtx*)&j3dDefaultMtx);
 	billData->makeSharedDL();
 
 	_88 = 72.0f;

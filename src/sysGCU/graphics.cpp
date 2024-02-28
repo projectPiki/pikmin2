@@ -1927,11 +1927,11 @@ void Graphics::drawTile(Sys::Sphere&, Sys::Sphere&, JUTTexture*)
  * @note Address: 0x80426CB8
  * @note Size: 0x70C
  */
-void Graphics::drawCone(Vector3f& start, Vector3f& end, f32 angle, int limit)
+void Graphics::drawCone(Vector3f& start, Vector3f& end, f32 inAngle, int limit)
 {
-	f32 angle    = TORADIANS(angle); // f7
-	Vector3f sep = end - start;      // f2, f0, f1
-	f32 dist     = sep.length();     // f31
+	f32 angle    = TORADIANS(inAngle); // f7
+	Vector3f sep = end - start;        // f2, f0, f1
+	f32 dist     = sep.length();       // f31
 
 	f32 sinTheta = sinf(angle);
 	f32 cosTheta = cosf(angle);

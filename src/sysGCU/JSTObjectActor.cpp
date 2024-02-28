@@ -523,10 +523,10 @@ void ObjectActor::parseUserData_(u32 p1, void const* p2)
 	JStudio::stb::data::TParse_TParagraph_data v1(p2);
 	JStudio::stb::data::TParse_TParagraph_data::TData v2;
 	v1.getData(&v2);
-	if (v2.status == 0) {
+	if (v2.mStatus == 0) {
 		return;
 	}
-	if (v2.fileCount == 0 || v2.status != 0x22 || v2._10 == nullptr) {
+	if (v2.mFileCount == 0 || v2.mStatus != 0x22 || v2._10 == nullptr) {
 		return;
 	}
 
