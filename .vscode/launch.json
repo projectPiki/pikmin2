@@ -8,7 +8,7 @@
       "name": "F5 Anything: Custom Command",
       "type": "f5anything",
       "request": "launch",
-      "command": "make -j"
+      "command": "ninja"
     }
   ]
 }
