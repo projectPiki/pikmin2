@@ -133,7 +133,7 @@ struct AppearState : State {
 
 	// _00     = VTBL
 	// _00-_10 = State
-	f32 _10; // _10
+	f32 mAppearTimer; // _10
 };
 
 /**

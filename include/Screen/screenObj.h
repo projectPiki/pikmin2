@@ -110,7 +110,7 @@ struct EndSceneArg : public SceneArgBase {
 	virtual int getClassSize() { return sizeof(EndSceneArg); } // _0C (weak)
 
 	// _00 = VTBL
-	u8 _04; // _04
+	bool mAllowFadeOut; // _04
 };
 
 struct SceneBase {

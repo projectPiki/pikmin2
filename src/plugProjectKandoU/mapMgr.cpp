@@ -70,10 +70,10 @@ void TDispTriangleArray::store(Sys::Triangle& triangle, Sys::VertexTable& vertex
  * @note Address: 0x801623E0
  * @note Size: 0x44
  */
-void TDispTriangleArray::store(Matrixf& mtx, Sys::Triangle& triangle, Sys::VertexTable& vertexTable, int p4)
+void TDispTriangleArray::store(Matrixf& mtx, Sys::Triangle& triangle, Sys::VertexTable& vertexTable, int index)
 {
 	if (mUsedCount < mTotalCount) {
-		mItems[mUsedCount++].store(mtx, triangle, vertexTable, p4);
+		mItems[mUsedCount++].store(mtx, triangle, vertexTable, index);
 	}
 }
 
@@ -90,7 +90,7 @@ void TDispTriangleArray::draw(Graphics&)
  * @note Address: 0x80162424
  * @note Size: 0xC0
  */
-void TDispTriangle::store(Sys::Triangle& triangle, Sys::VertexTable& vertexTable, int p3)
+void TDispTriangle::store(Sys::Triangle& triangle, Sys::VertexTable& vertexTable, int index)
 {
 	mSysTriangle = &triangle;
 	mVertices[0] = vertexTable.mObjects[triangle.mVertices.x];
@@ -98,7 +98,7 @@ void TDispTriangle::store(Sys::Triangle& triangle, Sys::VertexTable& vertexTable
 	mVertices[2] = vertexTable.mObjects[triangle.mVertices.z];
 	mFlags.clear();
 	mFlags.typeView |= 1;
-	_2C = p3;
+	mIndex = index;
 	PSMTXIdentity(mMatrix.mMatrix.mtxView);
 }
 
@@ -106,7 +106,7 @@ void TDispTriangle::store(Sys::Triangle& triangle, Sys::VertexTable& vertexTable
  * @note Address: 0x801624E4
  * @note Size: 0x100
  */
-void TDispTriangle::store(Matrixf& mtx, Sys::Triangle& tri, Sys::VertexTable& vertTable, int p4)
+void TDispTriangle::store(Matrixf& mtx, Sys::Triangle& tri, Sys::VertexTable& vertTable, int index)
 {
 	mSysTriangle = &tri;
 	mVertices[0] = mtx.mtxMult(vertTable.mObjects[tri.mVertices.x]);
@@ -114,7 +114,7 @@ void TDispTriangle::store(Matrixf& mtx, Sys::Triangle& tri, Sys::VertexTable& ve
 	mVertices[2] = mtx.mtxMult(vertTable.mObjects[tri.mVertices.z]);
 	mFlags.clear();
 	mFlags.typeView |= 1;
-	_2C = p4;
+	mIndex = index;
 	PSMTXCopy(mtx.mMatrix.mtxView, mMatrix.mMatrix.mtxView);
 }
 
@@ -175,10 +175,10 @@ Matrixf* MapMgr::getDemoMatrix() { return (mCourseInfo) ? &mCourseInfo->mDemoMat
  * @note Address: 0x80162740
  * @note Size: 0x704
  */
-f32 MapMgr::getBestAngle(Vector3f& vec, f32 p2, f32 p3)
+f32 MapMgr::getBestAngle(Vector3f& position, f32 p2, f32 divisor)
 {
-	P2ASSERTLINE(488, p3 > 0.0f);
-	Vector3f pos = vec;
+	P2ASSERTLINE(488, divisor > 0.0f);
+	Vector3f pos = position;
 	pos.y        = 15.0f + getMinY(pos);
 	f32 angles[16];
 	for (int i = 0; i < 16; i++) {
@@ -186,8 +186,8 @@ f32 MapMgr::getBestAngle(Vector3f& vec, f32 p2, f32 p3)
 	}
 
 	for (int i = 0; i < 16; i++) {
-		f32 val      = (PI / 8) * (f32)i;
-		f32 tanTheta = p2 * (f32)tan(p3);
+		f32 angle    = (PI / 8) * (f32)i;
+		f32 tanTheta = p2 * (f32)tan(divisor);
 
 		BeamCollisionArg beamArg(10.0f, 0, 0);
 		beamArg.mPosition = pos;
@@ -675,8 +675,8 @@ lbl_80162DC0:
  */
 void MapMgr::checkBeamCollision(BeamCollisionArg& arg)
 {
-	arg._20 = 0;
-	arg._24 = 9.9999998E+10f;
+	arg.mHitSuccess = 0;
+	arg._24         = 9.9999998E+10f;
 
 	Vector3f sep = arg._0C - arg.mPosition;
 	f32 dist     = sep.normalise();
@@ -702,7 +702,7 @@ void MapMgr::checkBeamCollision(BeamCollisionArg& arg)
 		}
 
 		if (moveInfo.mWallTriangle || moveInfo.mBounceTriangle || moveInfo._4C) {
-			arg._20 = 1;
+			arg.mHitSuccess = 1;
 			break;
 		}
 

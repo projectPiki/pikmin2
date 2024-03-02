@@ -1497,9 +1497,9 @@ void BootSection::updateNintendoLogo()
 			mChangeStateID  = 9;
 			JUTFader* fader = mDisplay->mFader;
 			if (fader->mStatus == JUTFader::Status_In) {
-				f32 test = 0.5f / sys->mDeltaTime;
-				test     = (test >= 0.0f) ? test + 0.5f : test - 0.5f;
-				fader->startFadeOut((int)test);
+				f32 fadeSpeed = 0.5f / sys->mDeltaTime;
+				fadeSpeed     = (fadeSpeed >= 0.0f) ? fadeSpeed + 0.5f : fadeSpeed - 0.5f;
+				fader->startFadeOut((int)fadeSpeed);
 			}
 			if (mDisplay->mFader->mStatus == JUTFader::Status_Out) {
 				setMode(mChangeStateID);
@@ -1509,9 +1509,9 @@ void BootSection::updateNintendoLogo()
 			setMode(mChangeStateID);
 			mFadeTimer                 = 0.0f;
 			ebi::TScreenProgre* screen = mProgressiveScreen;
-			f32 test                   = 0.5f / sys->mDeltaTime;
-			test                       = (test >= 0.0f) ? test + 0.5f : test - 0.5f;
-			screen->startScreen(0, (int)test);
+			f32 fadeSpeed              = 0.5f / sys->mDeltaTime;
+			fadeSpeed                  = (fadeSpeed >= 0.0f) ? fadeSpeed + 0.5f : fadeSpeed - 0.5f;
+			screen->startScreen(0, (int)fadeSpeed);
 			mProgressiveScreen->mSelect = 1;
 		}
 	}
@@ -1529,28 +1529,34 @@ void BootSection::updateProgressive()
 {
 	if (mFadeTimer < 10.0f) {
 		mFadeTimer += sys->mDeltaTime;
+
 		if (mFadeTimer >= 10.0f) {
 			mProgressiveScreen->setDecide();
 		}
+
 		if (mProgressiveScreen->mSelected) {
-			f32 test = 0.5f / sys->mDeltaTime;
-			test     = (test >= 0.0f) ? test + 0.5f : test - 0.5f;
-			mProgressiveScreen->fadeout((int)test);
+			f32 fadeSpeed = 0.5f / sys->mDeltaTime;
+			fadeSpeed     = (fadeSpeed >= 0.0f) ? fadeSpeed + 0.5f : fadeSpeed - 0.5f;
+			mProgressiveScreen->fadeout((int)fadeSpeed);
 			mFadeTimer = 10.0f;
 		}
 	}
+
 	if (mProgressiveScreen->isFinish()) {
 		if (mProgressiveScreen->mSelect) {
-			setMode(8);
-			f32 test = 0.5f / sys->mDeltaTime;
-			test     = (test >= 0.0f) ? test + 0.5f : test - 0.5f;
-			mProgressiveScreen->startScreen(2, (int)test);
+			setMode(SID_DOLBY_LOGO_1);
+
+			f32 fadeSpeed = 0.5f / sys->mDeltaTime;
+			fadeSpeed     = (fadeSpeed >= 0.0f) ? fadeSpeed + 0.5f : fadeSpeed - 0.5f;
+			mProgressiveScreen->startScreen(2, (int)fadeSpeed);
 		} else {
-			setMode(7);
-			f32 test = 0.5f / sys->mDeltaTime;
-			test     = (test >= 0.0f) ? test + 0.5f : test - 0.5f;
-			mProgressiveScreen->startScreen(1, (int)test);
+			setMode(SID_SET_PROGRESSIVE);
+
+			f32 fadeSpeed = 0.5f / sys->mDeltaTime;
+			fadeSpeed     = (fadeSpeed >= 0.0f) ? fadeSpeed + 0.5f : fadeSpeed - 0.5f;
+			mProgressiveScreen->startScreen(1, (int)fadeSpeed);
 		}
+
 		mFadeTimer = 0.0f;
 	}
 }

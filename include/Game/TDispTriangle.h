@@ -18,7 +18,7 @@ struct TDispTriangle {
 	Sys::Triangle* mSysTriangle; // _00
 	Vector3f mVertices[3];       // _04
 	BitFlag<u16> mFlags;         // _28
-	int _2C;                     // _2C
+	int mIndex;                  // _2C
 	Matrixf mMatrix;             // _30
 };
 

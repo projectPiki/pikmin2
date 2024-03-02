@@ -58,7 +58,7 @@ bool ObjBase::end(EndSceneArg const* arg)
 	case 2:
 		if (doEnd(arg)) {
 			doUpdateFinish();
-			if (arg && arg->_04) {
+			if (arg && arg->mAllowFadeOut) {
 				doUpdateFadeoutFinish();
 				mObjState = ObjState_Inactive;
 			} else {
@@ -73,7 +73,7 @@ bool ObjBase::end(EndSceneArg const* arg)
 	case ObjState_Fadein:
 		break;
 	case ObjState_Fadeout:
-		if (arg && arg->_04) {
+		if (arg && arg->mAllowFadeOut) {
 			doUpdateFadeoutFinish();
 			mObjState = ObjState_Inactive;
 		}

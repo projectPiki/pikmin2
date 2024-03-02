@@ -78,7 +78,7 @@ void AppearState::init(Game::CFSMItem* item, Game::StateArg* arg)
 {
 	item->setAlive(true);
 	static_cast<Item*>(item)->mBuryDepth = 25.0f;
-	_10                                  = 0.0f;
+	mAppearTimer                         = 0.0f;
 }
 
 /**
@@ -87,8 +87,8 @@ void AppearState::init(Game::CFSMItem* item, Game::StateArg* arg)
  */
 void AppearState::exec(Game::CFSMItem* item)
 {
-	_10 += sys->mDeltaTime;
-	f32 buriedFrac = 1.0f - (_10 * 0.8333333f);
+	mAppearTimer += sys->mDeltaTime;
+	f32 buriedFrac = 1.0f - (mAppearTimer * 0.8333333f);
 	if (buriedFrac <= 0.0f) {
 		buriedFrac = 0.0f;
 		efx::Arg arg;

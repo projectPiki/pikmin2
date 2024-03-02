@@ -631,7 +631,7 @@ void Game2DMgr::close_Floor()
 {
 	if (mScreenMgr->getSceneType() == SCENE_FLOOR) {
 		EndSceneArg arg;
-		arg._04 = 1;
+		arg.mAllowFadeOut = 1;
 		mScreenMgr->endScene(&arg);
 	}
 }
@@ -707,7 +707,7 @@ void Game2DMgr::close_CourseName()
 {
 	if (mScreenMgr->getSceneType() == SCENE_COURSE_NAME) {
 		EndSceneArg arg;
-		arg._04 = 1;
+		arg.mAllowFadeOut = 1;
 		mScreenMgr->endScene(&arg);
 	}
 }

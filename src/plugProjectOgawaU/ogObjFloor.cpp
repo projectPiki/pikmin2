@@ -693,7 +693,7 @@ void ObjFloor::drawBG(Graphics& gfx)
 	J2DPerspGraph* graf = &gfx.mPerspGraph;
 	if (mDoEnd) {
 		mBackgroundAlpha += sys->mDeltaTime;
-		f32 temp = 1.0f - mBackgroundAlpha / msVal._00;
+		f32 temp = 1.0f - mBackgroundAlpha / msVal.mMaxAlpha;
 		if (temp > 0.0f) {
 			mColor.a = temp * 255.0f;
 		} else {

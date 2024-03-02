@@ -36,14 +36,14 @@ struct MapMgr : virtual public GenericObjectMgr {
 		{
 			mBeamRadius = beamRadius;
 			_1C         = p2;
-			_20         = p3;
+			mHitSuccess = p3;
 		}
 
 		Vector3f mPosition; // _00
 		Vector3f _0C;       // _0C
 		f32 mBeamRadius;    // _18
 		int _1C;            // _1C
-		u8 _20;             // _20
+		bool mHitSuccess;   // _20
 		f32 _24;            // _24
 	};
 
