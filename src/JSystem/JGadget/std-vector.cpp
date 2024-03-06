@@ -1,8 +1,10 @@
 #include "JSystem/JGadget/allocator.h"
 #include "JSystem/JGadget/vector.h"
 #include "types.h"
+#include "PowerPC_EABI_Support/MSL_C++/MSL_Common/Include/algorithm.h"
+#include "PowerPC_EABI_Support/MSL_C++/MSL_Common/Include/msl_memory.h"
 
-typedef JGadget::TVector<void*, JGadget::TAllocator> TVPVBase;
+typedef JGadget::TVector<void*, JGadget::TAllocator<void*> > TVPVBase;
 
 namespace JGadget {
 /**
@@ -19,10 +21,22 @@ u32 vector::extend_default(u32 p1, u32 p2, u32 p3) { return p2 * 2; }
 TVector_pointer_void::TVector_pointer_void(const TVoidAllocator& allocator)
 {
 	_00     = allocator._00;
-	_04     = nullptr;
-	mBegin  = _04;
-	mEnd    = nullptr;
+	mBegin  = nullptr;
+	mEnd    = mBegin;
+	mCapacity = 0;
 	mExtend = vector::extend_default;
+}
+
+template<>
+size_t TVPVBase::GetSize_extend_(size_t count)
+{
+	u32 iVar2 = size();
+	u32 uVar3 = capacity();
+	u32 uVar4 = mExtend(uVar3, iVar2, count);
+	if (uVar4 < iVar2 + count) {
+		uVar4 = iVar2 + count;
+	}
+	return uVar4;
 }
 
 /**
@@ -59,49 +73,37 @@ TVPVBase::~TVector()
  * @note Size: 0x78
  */
 template <>
-void TVPVBase::insert(void**, u32, void* const&)
+inline void TVPVBase::DestroyElement_(void** start, void** end)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r6
-	  stw       r30, 0x18(r1)
-	  mr.       r30, r5
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  beq-      .loc_0x5C
-	  bl        .loc_0x78
-	  lwz       r0, 0x8(r29)
-	  cmplw     r3, r0
-	  beq-      .loc_0x5C
-	  lwz       r0, 0x0(r31)
-	  mtctr     r30
-	  cmplwi    r30, 0
-	  beq-      .loc_0x5C
+	for (; start != end; start++) {
+		// This is from TP, but I guess we didn't do anything
+		// field_0x0.destroy(start);
+	}
+}
 
-	.loc_0x48:
-	  cmplwi    r3, 0
-	  beq-      .loc_0x54
-	  stw       r0, 0x0(r3)
+template <>
+inline void TVPVBase::DestroyElement_all_() {
+	DestroyElement_(mBegin, mEnd);
+}
 
-	.loc_0x54:
-	  addi      r3, r3, 0x4
-	  bdnz+     .loc_0x48
+template <>
+void TVPVBase::insert(void** values, u32 count, void* const& defaultValue)
+{
+	if (!count) {
+		return;
+	}
 
-	.loc_0x5C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	void** v = Insert_raw(values, count);
 
-	.loc_0x78:
-	*/
+	if (v != this->mEnd)
+	{
+		for (int i = 0; i != count; i++) {
+			if (v) {
+				*v = defaultValue;
+			}
+			v++;
+		}
+	}
 }
 
 /**
@@ -109,8 +111,46 @@ void TVPVBase::insert(void**, u32, void* const&)
  * @note Size: 0x470
  */
 template <>
-void TVPVBase::Insert_raw(void**, u32)
+void** TVPVBase::Insert_raw(void** pos, u32 count)
 {
+	if (count == 0) {
+		return pos;
+	}
+	void** ppvVar5;
+	if (mCapacity < count + size()) {
+		size_t uVar4  = GetSize_extend_(count);
+		ppvVar5 = new void*[uVar4];
+		if (ppvVar5 == NULL) {
+			pos = mEnd;
+		} else {
+			// TDestructed_deallocate_ aTStack_30(&field_0x0, ppvVar5);
+			void** ppvVar6 = std::uninitialized_copy(mBegin, pos, ppvVar5);
+			std::uninitialized_copy(pos, mEnd, ppvVar6 + count);
+			DestroyElement_all_();
+			// aTStack_30.set(pBegin_);
+			size_t uVar2 = (size_t)mEnd - (size_t)mBegin;
+			mEnd     = ppvVar5 + count + (uVar2 / 4);
+			mBegin   = ppvVar5;
+			mCapacity = uVar4;
+			pos       = ppvVar6;
+		}
+	} else {
+		void** ppvVar5 = pos + count;
+		if (ppvVar5 < end()) {
+			void** ppvVar6 = end() - count;
+			std::uninitialized_copy(ppvVar6, end(), end());
+			std::copy_backward(pos, ppvVar6, end());
+			DestroyElement_(pos, ppvVar5);
+			mEnd += count;
+		} else {
+			std::copy(pos, mEnd, ppvVar5);
+			DestroyElement_(pos, mEnd);
+			mEnd += count;
+		}
+	}
+	delete ppvVar5;
+
+	return pos;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)
@@ -488,105 +528,24 @@ void TVPVBase::Insert_raw(void**, u32)
  */
 TVector_pointer_void::~TVector_pointer_void()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80027C74
-	beq      lbl_80027C64
-	lwz      r5, 8(r30)
-	lwz      r4, 4(r30)
-	addi     r3, r5, 3
-	cmplw    r5, r5
-	subf     r3, r5, r3
-	srwi     r3, r3, 2
-	bge      lbl_80027C40
-	rlwinm.  r0, r3, 0x1d, 3, 0x1f
-	mtctr    r0
-	beq      lbl_80027C28
+	if (this)
+	{
+		// copy from mEnd to mEnd and output to beginning? what??
+		void** v     = std::copy(mEnd, mEnd, mBegin);
 
-lbl_80027BD4:
-	lwz      r0, 0(r5)
-	stw      r0, 0(r4)
-	lwz      r0, 4(r5)
-	stw      r0, 4(r4)
-	lwz      r0, 8(r5)
-	stw      r0, 8(r4)
-	lwz      r0, 0xc(r5)
-	stw      r0, 0xc(r4)
-	lwz      r0, 0x10(r5)
-	stw      r0, 0x10(r4)
-	lwz      r0, 0x14(r5)
-	stw      r0, 0x14(r4)
-	lwz      r0, 0x18(r5)
-	stw      r0, 0x18(r4)
-	lwz      r0, 0x1c(r5)
-	addi     r5, r5, 0x20
-	stw      r0, 0x1c(r4)
-	addi     r4, r4, 0x20
-	bdnz     lbl_80027BD4
-	andi.    r3, r3, 7
-	beq      lbl_80027C40
-
-lbl_80027C28:
-	mtctr    r3
-
-lbl_80027C2C:
-	lwz      r0, 0(r5)
-	addi     r5, r5, 4
-	stw      r0, 0(r4)
-	addi     r4, r4, 4
-	bdnz     lbl_80027C2C
-
-lbl_80027C40:
-	lwz      r0, 8(r30)
-	mr       r3, r4
-	b        lbl_80027C50
-
-lbl_80027C4C:
-	addi     r3, r3, 4
-
-lbl_80027C50:
-	cmplw    r3, r0
-	bne      lbl_80027C4C
-	stw      r4, 8(r30)
-	lwz      r3, 4(r30)
-	bl       __dl__FPv
-
-lbl_80027C64:
-	extsh.   r0, r31
-	ble      lbl_80027C74
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80027C74:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+		DestroyElement_(v, mEnd);
+		mEnd = v;
+		delete mBegin;
+	}
 }
 
 /**
  * @note Address: 0x80027C90
  * @note Size: 0x20
  */
-void TVector_pointer_void::insert(void**, void* const&)
+void TVector_pointer_void::insert(void** p1, void* const& p2)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl "insert__Q27JGadget38TVector<Pv,Q27JGadget14TAllocator<Pv>>FPPvRCPv" lwz
-	r0, 0x14(r1) mtlr     r0 addi     r1, r1, 0x10 blr
-	*/
+	TVector::insert(p1, p2);
 }
 
 /**
@@ -594,8 +553,11 @@ void TVector_pointer_void::insert(void**, void* const&)
  * @note Size: 0x58
  */
 template <>
-void TVPVBase::insert(void**, void* const&)
+void **TVPVBase::insert(void**p1, void* const&p2)
 {
+	u32 c = p1 - mBegin;
+	insert(p1, 1, p2);
+	return mBegin + c;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -645,69 +607,78 @@ void TVPVBase::insert(void**, void* const&)
  * @note Address: 0x80027D08
  * @note Size: 0xB8
  */
-void TVector_pointer_void::erase(void**, void**)
+
+void **TVector_pointer_void::erase(void** start, void** end)
 {
-	/*
-	lwz      r7, 8(r3)
-	addi     r6, r7, 3
-	cmplw    r5, r7
-	subf     r6, r5, r6
-	mr       r7, r4
-	srwi     r6, r6, 2
-	bge      lbl_80027D9C
-	rlwinm.  r0, r6, 0x1d, 3, 0x1f
-	mtctr    r0
-	beq      lbl_80027D84
-
-lbl_80027D30:
-	lwz      r0, 0(r5)
-	stw      r0, 0(r7)
-	lwz      r0, 4(r5)
-	stw      r0, 4(r7)
-	lwz      r0, 8(r5)
-	stw      r0, 8(r7)
-	lwz      r0, 0xc(r5)
-	stw      r0, 0xc(r7)
-	lwz      r0, 0x10(r5)
-	stw      r0, 0x10(r7)
-	lwz      r0, 0x14(r5)
-	stw      r0, 0x14(r7)
-	lwz      r0, 0x18(r5)
-	stw      r0, 0x18(r7)
-	lwz      r0, 0x1c(r5)
-	addi     r5, r5, 0x20
-	stw      r0, 0x1c(r7)
-	addi     r7, r7, 0x20
-	bdnz     lbl_80027D30
-	andi.    r6, r6, 7
-	beq      lbl_80027D9C
-
-lbl_80027D84:
-	mtctr    r6
-
-lbl_80027D88:
-	lwz      r0, 0(r5)
-	addi     r5, r5, 4
-	stw      r0, 0(r7)
-	addi     r7, r7, 4
-	bdnz     lbl_80027D88
-
-lbl_80027D9C:
-	lwz      r0, 8(r3)
-	mr       r5, r7
-	b        lbl_80027DAC
-
-lbl_80027DA8:
-	addi     r5, r5, 4
-
-lbl_80027DAC:
-	cmplw    r5, r0
-	bne      lbl_80027DA8
-	stw      r7, 8(r3)
-	mr       r3, r4
-	blr
-	*/
+	void** vectorEnd = mEnd;
+	void** ppvVar3   = std::copy(end, vectorEnd, start);
+	DestroyElement_(ppvVar3, mEnd);
+	mEnd = ppvVar3;
+	return start;
 }
+// void TVector_pointer_void::erase(void**, void**)
+// {
+// 	/*
+// 	lwz      r7, 8(r3)
+// 	addi     r6, r7, 3
+// 	cmplw    r5, r7
+// 	subf     r6, r5, r6
+// 	mr       r7, r4
+// 	srwi     r6, r6, 2
+// 	bge      lbl_80027D9C
+// 	rlwinm.  r0, r6, 0x1d, 3, 0x1f
+// 	mtctr    r0
+// 	beq      lbl_80027D84
+
+// lbl_80027D30:
+// 	lwz      r0, 0(r5)
+// 	stw      r0, 0(r7)
+// 	lwz      r0, 4(r5)
+// 	stw      r0, 4(r7)
+// 	lwz      r0, 8(r5)
+// 	stw      r0, 8(r7)
+// 	lwz      r0, 0xc(r5)
+// 	stw      r0, 0xc(r7)
+// 	lwz      r0, 0x10(r5)
+// 	stw      r0, 0x10(r7)
+// 	lwz      r0, 0x14(r5)
+// 	stw      r0, 0x14(r7)
+// 	lwz      r0, 0x18(r5)
+// 	stw      r0, 0x18(r7)
+// 	lwz      r0, 0x1c(r5)
+// 	addi     r5, r5, 0x20
+// 	stw      r0, 0x1c(r7)
+// 	addi     r7, r7, 0x20
+// 	bdnz     lbl_80027D30
+// 	andi.    r6, r6, 7
+// 	beq      lbl_80027D9C
+
+// lbl_80027D84:
+// 	mtctr    r6
+
+// lbl_80027D88:
+// 	lwz      r0, 0(r5)
+// 	addi     r5, r5, 4
+// 	stw      r0, 0(r7)
+// 	addi     r7, r7, 4
+// 	bdnz     lbl_80027D88
+
+// lbl_80027D9C:
+// 	lwz      r0, 8(r3)
+// 	mr       r5, r7
+// 	b        lbl_80027DAC
+
+// lbl_80027DA8:
+// 	addi     r5, r5, 4
+
+// lbl_80027DAC:
+// 	cmplw    r5, r0
+// 	bne      lbl_80027DA8
+// 	stw      r7, 8(r3)
+// 	mr       r3, r4
+// 	blr
+// 	*/
+// }
 
 // /**
 //  * @note Address: N/A

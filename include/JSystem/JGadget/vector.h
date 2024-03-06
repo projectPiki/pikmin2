@@ -12,7 +12,7 @@ typedef u32 (*ExtendFunc)(u32, u32, u32);
 
 } // namespace vector
 
-template <typename T, template <class> class Allocator>
+template <typename T, class Allocator>
 struct TVector {
 	// struct Destructed_deallocate_ {
 	// 	~Destructed_deallocate_(); // unused/inlined
@@ -32,31 +32,44 @@ struct TVector {
 	~TVector();
 
 	void insert(T*, u32, const T&);
-	void Insert_raw(T*, u32);
-	void insert(T*, const T&);
+	void** Insert_raw(T*, u32);
+	void** insert(T*, const T&);
 	void assign(u32, const T&);
 	void resize(u32, const T&);
 	void Resize_raw(u32);
 	void operator=(const TVector<T, Allocator>& rhs);
 
-	void** begin() { return mBegin; }
-	void** end() { return mEnd; }
+	size_t GetSize_extend_(size_t count);
+	T* begin() { return mBegin; }
+	T* end() { return mEnd; }
+	size_t capacity() { return mCapacity; }
+	size_t size()
+	{
+		if (!begin()) 
+		{
+			return 0;
+		}
+		return mEnd - mBegin;
+	}
+	
+	void DestroyElement_(T* start, T* end);
+	void DestroyElement_all_();
 
 	u8 _00;                     // _00
-	void** _04;                 // _04
-	void** mBegin;              // _08
-	void** mEnd;                // _0C
+	T* mBegin;              // _04
+	T* mEnd;                // _08
+	size_t mCapacity;              // _0C
 	vector::ExtendFunc mExtend; // _14
 };
 
-struct TVector_pointer_void : TVector<void*, TAllocator> {
+struct TVector_pointer_void : TVector<void*, TAllocator<void*> > {
 	TVector_pointer_void(const JGadget::TAllocator<void*>& allocator);
 	// 	TVector_pointer_void(u32, void* const&, const JGadget::TAllocator<void*>& allocator); // unused/inlined
 
 	~TVector_pointer_void();
 
 	void insert(void**, void* const&);
-	void erase(void**, void**);
+	void **erase(void**, void**);
 
 	void clear() { erase(begin(), end()); }
 	void push_back(const void*& ref) { insert(end(), (void* const&)ref); }
