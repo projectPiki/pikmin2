@@ -41,14 +41,18 @@ struct TVector {
 
 	size_t GetSize_extend_(size_t count);
 	T* begin() { return mBegin; }
+	T* const begin() const { return mBegin; }
 	T* end() { return mEnd; }
+	T* const end() const { return mEnd; }
+
 	size_t capacity() { return mCapacity; }
-	size_t size()
+
+	inline size_t size() const
 	{
-		if (!begin()) {
+		if (begin() == nullptr) {
 			return 0;
 		}
-		return mEnd - mBegin;
+		return ((int)mEnd - (int)mBegin) / 4;
 	}
 
 	void DestroyElement_(T* start, T* end);
@@ -62,7 +66,7 @@ struct TVector {
 };
 
 // clang-format off
-struct TVector_pointer_void : TVector<void*, TAllocator<void*> > {
+struct TVector_pointer_void : public TVector<void*, TAllocator<void*> > {
 	TVector_pointer_void(const JGadget::TAllocator<void*>& allocator);
 	// 	TVector_pointer_void(u32, void* const&, const JGadget::TAllocator<void*>& allocator); // unused/inlined
 
@@ -83,17 +87,29 @@ struct TVector_pointer_void : TVector<void*, TAllocator<void*> > {
 	// void operator=(const TVector_pointer_void& rhs);
 	// void Insert_raw(void**, u32);
 	// void Resize_raw(u32);
+
+	// _00-_18 = TVector
 };
 // clang-format on
 
 template <typename T>
-struct TVector_pointer : TVector_pointer_void {
-	~TVector_pointer();
+struct TVector_pointer : public TVector_pointer_void {
+	TVector_pointer(const TAllocator<void*>& allocator)
+	    : TVector_pointer_void(allocator)
+	{
+	}
 
-	void begin();
-	void end();
+	~TVector_pointer() { }
 
-	void push_back(const T& ref) { TVector_pointer_void::push_back((const void*&)ref); }
+	const T* begin() const { return (const T*)TVector_pointer_void::begin(); }
+	T* begin() { return (T*)TVector_pointer_void::begin(); }
+
+	const T* end() const { return (const T*)TVector_pointer_void::end(); }
+	T* end() { return (T*)TVector_pointer_void::end(); }
+
+	void push_back(const T& ref) { static_cast<TVector_pointer_void*>(this)->push_back((const void*&)ref); }
+
+	// _00-_18 = TVector_pointer_void
 };
 
 } // namespace JGadget

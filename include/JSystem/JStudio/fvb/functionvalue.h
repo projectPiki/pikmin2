@@ -21,9 +21,9 @@ class TFunctionValueAttribute_range;
 class TFunctionValueAttribute_interpolate;
 
 struct TFunctionValue {
-	enum TEProgress { PROG_INIT };
-	enum TEAdjust { ADJ_INIT };
-	enum TEOutside { OUT_INIT };
+	enum TEProgress { PROG_Init };
+	enum TEAdjust { ADJ_Init };
+	enum TEOutside { OUT_Init };
 	enum TEInterpolate {};
 
 	TFunctionValue();

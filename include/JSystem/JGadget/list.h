@@ -48,8 +48,8 @@ struct TList_pointer_void : public TList<void*, TVoidAllocator> {
 	void* mPrev;     // _0C
 };
 
-template <typename Iterator, typename Value>
-void findUpperBound_binary_current(Iterator, Iterator, Iterator, const Value&);
+// template <typename Iterator, typename Value>
+// void findUpperBound_binary_current(Iterator, Iterator, Iterator, const Value&);
 
 template <typename Iterator, typename Value, typename Predicate>
 void findUpperBound_binary_current(Iterator, Iterator, Iterator, const Value&, Predicate);
