@@ -45,23 +45,23 @@ struct TVector {
 	size_t capacity() { return mCapacity; }
 	size_t size()
 	{
-		if (!begin()) 
-		{
+		if (!begin()) {
 			return 0;
 		}
 		return mEnd - mBegin;
 	}
-	
+
 	void DestroyElement_(T* start, T* end);
 	void DestroyElement_all_();
 
 	u8 _00;                     // _00
-	T* mBegin;              // _04
-	T* mEnd;                // _08
-	size_t mCapacity;              // _0C
+	T* mBegin;                  // _04
+	T* mEnd;                    // _08
+	size_t mCapacity;           // _0C
 	vector::ExtendFunc mExtend; // _14
 };
 
+// clang-format off
 struct TVector_pointer_void : TVector<void*, TAllocator<void*> > {
 	TVector_pointer_void(const JGadget::TAllocator<void*>& allocator);
 	// 	TVector_pointer_void(u32, void* const&, const JGadget::TAllocator<void*>& allocator); // unused/inlined
@@ -69,7 +69,7 @@ struct TVector_pointer_void : TVector<void*, TAllocator<void*> > {
 	~TVector_pointer_void();
 
 	void insert(void**, void* const&);
-	void **erase(void**, void**);
+	void** erase(void**, void**);
 
 	void clear() { erase(begin(), end()); }
 	void push_back(const void*& ref) { insert(end(), (void* const&)ref); }
@@ -84,6 +84,7 @@ struct TVector_pointer_void : TVector<void*, TAllocator<void*> > {
 	// void Insert_raw(void**, u32);
 	// void Resize_raw(u32);
 };
+// clang-format on
 
 template <typename T>
 struct TVector_pointer : TVector_pointer_void {

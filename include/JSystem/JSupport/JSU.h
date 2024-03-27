@@ -4,18 +4,13 @@
 #include "types.h"
 
 // TODO: This is probably used all over the place...
-inline u8 JSULoByte(u16 p1) { return p1; } // unused/inlined
-// inline u8* JSULoByte(u16* p1) { return (u8*)p1; } // unused/inlined
-/** @fabricated */
-// inline u8 JSUHiByte(u16 p1) { return (p1 / 256); }
-inline u8 JSUHiByte(u16 p1)
+inline u8 JSULoByte(u16 data) { return data & 0xFF; }
+
+inline u8 JSUHiByte(u16 data)
 {
-	p1 >>= 8;
-	return p1;
+	data >>= 8;
+	return data;
 }
-// inline u8 JSUHiByte(u16 p1) { return JSULoByte((u8)(p1 / 256)); }
-// inline u8 JSUHiByte(u16 p1) { return ((u8*)&p1)[0]; }
-// inline u8* JSUHiByte(u16* p1) { return &((u8*)p1)[0]; }
 
 template <typename T>
 T* JSUConvertOffsetToPtr(const void* base, const void* offset)

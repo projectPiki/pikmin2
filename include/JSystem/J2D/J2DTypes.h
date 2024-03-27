@@ -183,7 +183,7 @@ extern J2DColorChanInfo j2dDefaultColorChanInfo;
  */
 struct J2DColorChan {
 	J2DColorChan() { mData = j2dDefaultColorChanInfo._01; }
-
+	J2DColorChan(const J2DColorChanInfo& info) { mData = J2DCalcColorChanID(info._01); }
 	void setColorChanInfo(const J2DColorChanInfo& info) { mData = J2DCalcColorChanID(info._01); }
 	u16 getMatSrc() const { return mData & 1; }
 
@@ -272,8 +272,59 @@ struct J2DTevSwapModeInfo {
 	u8 _03;     // _03
 };
 
+struct J2DTevSwapModeTableInfo {
+	u8 _00; // _00
+	u8 _01; // _01
+	u8 _02; // _02
+	u8 _03; // _03
+};
+
+inline u8 J2DCalcTevSwapTable(u8 param_0, u8 param_1, u8 param_2, u8 param_3)
+{
+	return (param_0 << 6) + (param_1 << 4) + (param_2 << 2) + param_3;
+}
+
+extern J2DTevSwapModeInfo j2dDefaultTevSwapMode;
+extern const J2DTevSwapModeTableInfo j2dDefaultTevSwapModeTable;
+extern u8 j2dDefaultTevSwapTable;
+
+struct J2DTevSwapModeTable {
+	J2DTevSwapModeTable() { _00 = j2dDefaultTevSwapTable; }
+
+	J2DTevSwapModeTable(const J2DTevSwapModeTableInfo& info) { _00 = J2DCalcTevSwapTable(info._00, info._01, info._02, info._03); }
+
+	void setTevSwapModeTableInfo(const J2DTevSwapModeTableInfo& info) { _00 = J2DCalcTevSwapTable(info._00, info._01, info._02, info._03); }
+
+	u8 getR() { return _00 >> 6 & 3; }
+	u8 getG() { return _00 >> 4 & 3; }
+	u8 getB() { return _00 >> 2 & 3; }
+	u8 getA() { return _00 & 3; }
+
+	u8 _00; // _00
+};
+
 struct J2DTevStage {
-	J2DTevStage(J2DTevStageInfo const&);
+	J2DTevStage(J2DTevStageInfo const& info)
+	{
+		setTevStageInfo(info);
+		setTevSwapModeInfo(j2dDefaultTevSwapMode);
+		// TODO: this is here to force this to not inline - it's probably (actually) an inline depth issue.
+		// clang-format off
+		(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
+		(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
+		(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
+		(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
+		(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
+		(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
+		(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
+		(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
+		(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
+		(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
+		(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; 
+		(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0;
+		// clang-format on
+	}
+
 	J2DTevStage();
 
 	void setTevStageInfo(J2DTevStageInfo const&);
@@ -400,36 +451,6 @@ struct J2DTevStage {
 	u8 _07; // _07
 };
 
-struct J2DTevSwapModeTableInfo {
-	u8 _00; // _00
-	u8 _01; // _01
-	u8 _02; // _02
-	u8 _03; // _03
-};
-
-inline u8 J2DCalcTevSwapTable(u8 param_0, u8 param_1, u8 param_2, u8 param_3)
-{
-	return (param_0 << 6) + (param_1 << 4) + (param_2 << 2) + param_3;
-}
-
-extern const J2DTevSwapModeTableInfo j2dDefaultTevSwapModeTable;
-extern u8 j2dDefaultTevSwapTable;
-
-struct J2DTevSwapModeTable {
-	J2DTevSwapModeTable() { _00 = j2dDefaultTevSwapTable; }
-
-	J2DTevSwapModeTable(const J2DTevSwapModeTableInfo& info) { _00 = J2DCalcTevSwapTable(info._00, info._01, info._02, info._03); }
-
-	void setTevSwapModeTableInfo(const J2DTevSwapModeTableInfo& info) { _00 = J2DCalcTevSwapTable(info._00, info._01, info._02, info._03); }
-
-	u8 getR() { return _00 >> 6 & 3; }
-	u8 getG() { return _00 >> 4 & 3; }
-	u8 getB() { return _00 >> 2 & 3; }
-	u8 getA() { return _00 & 3; }
-
-	u8 _00; // _00
-};
-
 struct J2DIndTevStageInfo {
 	u8 mIndStage;  // _00
 	u8 mIndFormat; // _01
@@ -517,15 +538,10 @@ struct J2DTextureSRTInfo {
 
 extern J2DTevStageInfo j2dDefaultTevStageInfo;
 extern const u32 j2dDefaultColInfo;
-// j2dDefaultTevOrderInfoNull declared earlier in file.
 extern J2DGXColorS10 j2dDefaultTevColor;
 extern JUtility::TColor j2dDefaultTevKColor;
-extern J2DTevSwapModeInfo j2dDefaultTevSwapMode;
-// extern u8 j2dDefaultTevSwapModeTable[4];
-// j2dDefaultBlendInfo declared earlier in file.
+
 extern const u8 j2dDefaultDither;
-// j2dDefaultColorChanInfo declared earlier in file.
-// j2dDefaultAlphaCmp declared earlier in file.
 
 enum J2DTextBoxHBinding {
 	J2DHBIND_Center = 0,

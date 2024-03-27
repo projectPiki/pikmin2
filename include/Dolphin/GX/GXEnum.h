@@ -319,6 +319,8 @@ typedef enum _GXCullMode {
 	GX_CULL_FRONT = 1,
 	GX_CULL_BACK  = 2,
 	GX_CULL_ALL   = 3,
+
+	GX_CULL_INVALID = 0xFF,
 } GXCullMode;
 
 // Clipping modes.

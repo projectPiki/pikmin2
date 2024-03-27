@@ -8,7 +8,7 @@
 // these all need to be const and at the end of the file to go in sdata2 instead of sdata
 const u32 j2dDefaultColInfo                        = 0xFFFFFFFF;
 const J2DTevOrderInfo j2dDefaultTevOrderInfoNull   = { 0xFF, 0xFF, 0xFF, 0 };
-const J2DIndTexOrderNull j2dDefaultIndTexOrderNull = { 0xFF, 0xFF };
+const J2DIndTexOrderInfo j2dDefaultIndTexOrderNull = { 0xFF, 0xFF };
 
 /**
  * @note Address: 0x8005921C
@@ -321,4 +321,7 @@ void J2DIndTexCoordScale::load(u8 stage) { GXSetIndTexCoordScale((GXIndTexStageI
  * @note Address: 0x80059678
  * @note Size: 0x30
  */
-void J2DIndTexOrder::load(u8 stage) { GXSetIndTexOrder((GXIndTexStageID)stage, (GXTexCoordID)mOrder.mCoord, (GXTexMapID)mOrder.mMap); }
+void J2DIndTexOrder::load(u8 stage)
+{
+	GXSetIndTexOrder((GXIndTexStageID)stage, (GXTexCoordID)mOrder.mTexCoordID, (GXTexMapID)mOrder.mTexMapID);
+}

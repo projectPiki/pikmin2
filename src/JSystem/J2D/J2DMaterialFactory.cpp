@@ -1,138 +1,239 @@
 #include "JSystem/J2D/J2DMaterialFactory.h"
+#include "JSystem/JSupport/JSU.h"
+#include "JSystem/JUtility/JUTResource.h"
+#include "JSystem/J2D/J2DPane.h"
 
 /**
  * @note Address: 0x800532E8
  * @note Size: 0x1C4
  */
-J2DMaterialFactory::J2DMaterialFactory(const J2DMaterialBlock&)
+J2DMaterialFactory::J2DMaterialFactory(const J2DMaterialBlock& header)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lhz      r0, 8(r4)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lwz      r4, 0xc(r4)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	sth      r0, 0(r30)
-	bl       "JSUConvertOffsetToPtr<19J2DMaterialInitData>__FPCvPCv"
-	stw      r3, 4(r30)
-	mr       r3, r31
-	lwz      r4, 0x10(r31)
-	bl       "JSUConvertOffsetToPtr<Us>__FPCvPCv"
-	lwz      r4, 0x18(r31)
-	stw      r3, 8(r30)
-	cmplwi   r4, 0
-	beq      lbl_80053358
-	lwz      r0, 0x14(r31)
-	subf     r0, r0, r4
-	cmplwi   r0, 4
-	ble      lbl_80053358
-	mr       r3, r31
-	bl       "JSUConvertOffsetToPtr<14J2DIndInitData>__FPCvPCv"
-	stw      r3, 0xc(r30)
-	b        lbl_80053360
+	_00               = header._08;
+	mMaterialInitData = JSUConvertOffsetToPtr<J2DMaterialInitData>(&header, (void*)header.mMatInitDataOffset);
+	mMatIndexTable    = JSUConvertOffsetToPtr<u16>(&header, (void*)header.mMatIndexTableOffset);
 
-lbl_80053358:
-	li       r0, 0
-	stw      r0, 0xc(r30)
+	if (header.mIndInitDataOffset && header.mIndInitDataOffset - header._14 > 4) {
+		mIndInitData = JSUConvertOffsetToPtr<J2DIndInitData>(&header, (void*)header.mIndInitDataOffset);
+	} else {
+		mIndInitData = nullptr;
+	}
 
-lbl_80053360:
-	lwz      r4, 0x1c(r31)
-	mr       r3, r31
-	bl       "JSUConvertOffsetToPtr<11_GXCullMode>__FPCvPCv"
-	stw      r3, 0x30(r30)
-	mr       r3, r31
-	lwz      r4, 0x20(r31)
-	bl       "JSUConvertOffsetToPtr<8_GXColor>__FPCvPCv"
-	stw      r3, 0x10(r30)
-	mr       r3, r31
-	lwz      r4, 0x24(r31)
-	bl       "JSUConvertOffsetToPtr<Uc>__FPCvPCv"
-	stw      r3, 0x14(r30)
-	mr       r3, r31
-	lwz      r4, 0x28(r31)
-	bl       "JSUConvertOffsetToPtr<16J2DColorChanInfo>__FPCvPCv"
-	stw      r3, 0x18(r30)
-	mr       r3, r31
-	lwz      r4, 0x2c(r31)
-	bl       "JSUConvertOffsetToPtr<Uc>__FPCvPCv"
-	stw      r3, 0x1c(r30)
-	mr       r3, r31
-	lwz      r4, 0x30(r31)
-	bl       "JSUConvertOffsetToPtr<15J2DTexCoordInfo>__FPCvPCv"
-	stw      r3, 0x20(r30)
-	mr       r3, r31
-	lwz      r4, 0x34(r31)
-	bl       "JSUConvertOffsetToPtr<13J2DTexMtxInfo>__FPCvPCv"
-	stw      r3, 0x24(r30)
-	mr       r3, r31
-	lwz      r4, 0x38(r31)
-	bl       "JSUConvertOffsetToPtr<Us>__FPCvPCv"
-	stw      r3, 0x28(r30)
-	mr       r3, r31
-	lwz      r4, 0x3c(r31)
-	bl       "JSUConvertOffsetToPtr<Us>__FPCvPCv"
-	stw      r3, 0x2c(r30)
-	mr       r3, r31
-	lwz      r4, 0x40(r31)
-	bl       "JSUConvertOffsetToPtr<15J2DTevOrderInfo>__FPCvPCv"
-	stw      r3, 0x34(r30)
-	mr       r3, r31
-	lwz      r4, 0x44(r31)
-	bl       "JSUConvertOffsetToPtr<11_GXColorS10>__FPCvPCv"
-	stw      r3, 0x38(r30)
-	mr       r3, r31
-	lwz      r4, 0x48(r31)
-	bl       "JSUConvertOffsetToPtr<8_GXColor>__FPCvPCv"
-	stw      r3, 0x3c(r30)
-	mr       r3, r31
-	lwz      r4, 0x4c(r31)
-	bl       "JSUConvertOffsetToPtr<Uc>__FPCvPCv"
-	stw      r3, 0x40(r30)
-	mr       r3, r31
-	lwz      r4, 0x50(r31)
-	bl       "JSUConvertOffsetToPtr<15J2DTevStageInfo>__FPCvPCv"
-	stw      r3, 0x44(r30)
-	mr       r3, r31
-	lwz      r4, 0x54(r31)
-	bl       "JSUConvertOffsetToPtr<18J2DTevSwapModeInfo>__FPCvPCv"
-	stw      r3, 0x48(r30)
-	mr       r3, r31
-	lwz      r4, 0x58(r31)
-	bl       "JSUConvertOffsetToPtr<23J2DTevSwapModeTableInfo>__FPCvPCv"
-	stw      r3, 0x4c(r30)
-	mr       r3, r31
-	lwz      r4, 0x5c(r31)
-	bl       "JSUConvertOffsetToPtr<16J2DAlphaCompInfo>__FPCvPCv"
-	stw      r3, 0x50(r30)
-	mr       r3, r31
-	lwz      r4, 0x60(r31)
-	bl       "JSUConvertOffsetToPtr<12J2DBlendInfo>__FPCvPCv"
-	stw      r3, 0x54(r30)
-	mr       r3, r31
-	lwz      r4, 0x64(r31)
-	bl       "JSUConvertOffsetToPtr<Uc>__FPCvPCv"
-	stw      r3, 0x58(r30)
-	mr       r3, r30
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mCullMode      = JSUConvertOffsetToPtr<GXCullMode>(&header, (void*)header.mCullModeOffset);
+	mMatColor      = JSUConvertOffsetToPtr<GXColor>(&header, (void*)header.mMatColorOffset);
+	mColorChanNum  = JSUConvertOffsetToPtr<u8>(&header, (void*)header.mColorChanNumOffset);
+	mColorChanInfo = JSUConvertOffsetToPtr<J2DColorChanInfo>(&header, (void*)header.mColorChanInfoOffset);
+	mTexGenNum     = JSUConvertOffsetToPtr<u8>(&header, (void*)header.mTexGenNumOffset);
+
+	mTexCoordInfo = JSUConvertOffsetToPtr<J2DTexCoordInfo>(&header, (void*)header.mTexCoordInfoOffset);
+	mTexMtxInfo   = JSUConvertOffsetToPtr<J2DTexMtxInfo>(&header, (void*)header.mTexMtxInfoOffset);
+	mTexNo        = JSUConvertOffsetToPtr<u16>(&header, (void*)header.mTexNoOffset);
+	mFontNo       = JSUConvertOffsetToPtr<u16>(&header, (void*)header.mFontNoOffset);
+
+	mTevOrderInfo     = JSUConvertOffsetToPtr<J2DTevOrderInfo>(&header, (void*)header.mTevOrderInfoOffset);
+	mTevColor         = JSUConvertOffsetToPtr<GXColorS10>(&header, (void*)header.mTevColorOffset);
+	mTevKColor        = JSUConvertOffsetToPtr<GXColor>(&header, (void*)header.mTevKColorOffset);
+	mTevStageNum      = JSUConvertOffsetToPtr<u8>(&header, (void*)header.mTevStageNumOffset);
+	mTevStageInfo     = JSUConvertOffsetToPtr<J2DTevStageInfo>(&header, (void*)header.mTevStageInfoOffset);
+	mTevSwapInfo      = JSUConvertOffsetToPtr<J2DTevSwapModeInfo>(&header, (void*)header.mTevSwapInfoOffset);
+	mTevSwapTableInfo = JSUConvertOffsetToPtr<J2DTevSwapModeTableInfo>(&header, (void*)header.mTevSwapTableInfoOffset);
+
+	mAlphaCompInfo = JSUConvertOffsetToPtr<J2DAlphaCompInfo>(&header, (void*)header.mAlphaCompInfoOffset);
+	mBlendInfo     = JSUConvertOffsetToPtr<J2DBlendInfo>(&header, (void*)header.mBlendInfoOffset);
+	mDither        = JSUConvertOffsetToPtr<u8>(&header, (void*)header.mDitherOffset);
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0xE0
+ */
+u32 J2DMaterialFactory::countStages(int idx) const
+{
+	J2DMaterialInitData* initData = &mMaterialInitData[mMatIndexTable[idx]];
+	u32 manualCount               = 0;
+	u32 storedCount               = 0;
+	if (initData->mTevStageIdx != 0xFF) {
+		storedCount = mTevStageNum[initData->mTevStageIdx];
+	}
+
+	for (int i = 0; i < 8; i++) {
+		if (initData->mTexNoIdx[i] != 0xFFFF) {
+			manualCount++;
+		}
+	}
+
+	if ((storedCount != manualCount && manualCount != 0)) {
+		if (storedCount > manualCount) {
+			return storedCount;
+		}
+		return manualCount;
+	}
+
+	return storedCount;
 }
 
 /**
  * @note Address: 0x800534AC
  * @note Size: 0x9C8
  */
-void J2DMaterialFactory::create(J2DMaterial*, int, u32, J2DResReference*, J2DResReference*, JKRArchive*) const
+J2DMaterial* J2DMaterialFactory::create(J2DMaterial* material, int idx, u32 flags, J2DResReference* texRef, J2DResReference* fontRef,
+                                        JKRArchive* arc) const
 {
+	u32 stages     = countStages(idx);
+	u32 stageTemp  = ((flags & 0x1F0000) >> 16);
+	u32 stageCount = stages > stageTemp ? stages : stageTemp;
+	u32 texCount   = stageCount <= 8 ? stageCount : 8;
+
+	int indRequired         = ((flags & 0x1000000) != 0);
+	int indBlockNum         = (flags & 0x1F0000) ? indRequired : 0;
+	bool doCreateWithHeap   = (flags & 0x1F0000);
+	u16 tevBlockNum         = stageCount;
+	material->mTevBlock     = J2DMaterial::createTevBlock(tevBlockNum, doCreateWithHeap);
+	material->mIndBlock     = J2DMaterial::createIndBlock(indBlockNum, doCreateWithHeap);
+	material->mIndex        = idx;
+	material->mMaterialMode = getMaterialMode(idx);
+	material->getColorBlock()->setColorChanNum(newColorChanNum(idx));
+	material->getColorBlock()->setCullMode(newCullMode(idx));
+	material->getTexGenBlock()->setTexGenNum(newTexGenNum(idx));
+	material->getPEBlock()->setAlphaComp(newAlphaComp(idx));
+	material->getPEBlock()->setBlend(newBlend(idx));
+	material->getPEBlock()->setDither(newDither(idx));
+	material->getTevBlock()->setTevStageNum(newTevStageNum(idx));
+	material->mMaterialAlphaCalc = getMaterialAlphaCalc(idx);
+
+	// set up textures
+	JUTResReference resRef;
+	for (u8 i = 0; i < texCount; i++) {
+		u16 texNo  = newTexNo(idx, i);
+		s8* texPtr = texRef->getResReference(texNo);
+		void* timg = nullptr;
+
+		if (texPtr) {
+			// try getting timg from resource reference
+			timg = resRef.getResource(texPtr, 'TIMG', arc);
+
+			// if nothing there, try from archive
+			if (!timg && arc) {
+				timg = resRef.getResource(texPtr, 'TIMG', nullptr);
+			}
+
+			// if still nothing there, try from screen data manager
+			if (!timg && J2DScreen::getDataManage()) {
+				char texName[256];
+				strcpy(texName, texRef->getName(texNo));
+				timg = J2DScreen::getDataManage()->get(texName);
+			}
+		}
+
+		material->getTevBlock()->insertTexture(i, (ResTIMG*)timg);
+		material->getTevBlock()->setTexNo(i, texNo);
+	}
+
+	// set up font
+	u16 fontNo = newFontNo(idx);
+	material->getTevBlock()->setFontNo(fontNo);
+
+	s8* fontPtr = fontRef->getResReference(material->getTevBlock()->getFontNo());
+	void* font  = nullptr;
+	if (fontPtr) {
+		// try getting font from resource reference
+		font = resRef.getResource(fontPtr, 'FONT', arc);
+
+		// if nothing there, try from archive
+		if (!font && arc) {
+			font = resRef.getResource(fontPtr, 'FONT', nullptr);
+		}
+
+		// if still nothing there, try from screen data manager
+		if (!font && J2DScreen::getDataManage()) {
+			char* fontNamePtr = fontRef->getName(material->getTevBlock()->getFontNo());
+			char fontName[256];
+			strcpy(fontName, fontNamePtr);
+			font = J2DScreen::getDataManage()->get(fontName);
+		}
+	}
+
+	material->getTevBlock()->setFont((ResFONT*)font);
+
+	// set tev orders
+	for (u8 i = 0; i < stageCount; i++) {
+		material->getTevBlock()->setTevOrder(i, newTevOrder(idx, i));
+	}
+
+	// set tev stages
+	for (u8 i = 0; i < stageCount; i++) {
+		J2DMaterialInitData* initData = &mMaterialInitData[mMatIndexTable[idx]];
+		material->getTevBlock()->setTevStage(i, newTevStage(idx, i));
+		if (initData->mTevSwapInfoIdx[i] != 0xFFFF) {
+			material->getTevBlock()->getTevStage(i)->setTexSel(mTevSwapInfo[initData->mTevSwapInfoIdx[i]].mTexSel);
+			material->getTevBlock()->getTevStage(i)->setRasSel(mTevSwapInfo[initData->mTevSwapInfoIdx[i]].mRasSel);
+		}
+	}
+
+	// set tev K colors
+	for (u8 i = 0; i < 4; i++) {
+		material->getTevBlock()->setTevKColor(i, newTevKColor(idx, i));
+	}
+
+	// set tev colors
+	for (u8 i = 0; i < 4; i++) {
+		J2DTevBlock* block = material->getTevBlock();
+		block->setTevColor(i, newTevColor(idx, i));
+	}
+
+	// set swap mode table
+	for (u8 i = 0; i < 4; i++) {
+		material->getTevBlock()->setTevSwapModeTable(i, newTevSwapModeTable(idx, i));
+	}
+
+	// set material colors
+	for (u8 i = 0; i < 2; i++) {
+		material->getColorBlock()->setMatColor(i, newMatColor(idx, i));
+	}
+
+	// set color channels
+	for (u8 i = 0; i < 4; i++) {
+		material->getColorBlock()->setColorChan(i, newColorChan(idx, i));
+	}
+
+	// set tex coordinates
+	for (u8 i = 0; i < 8; i++) {
+		material->getTexGenBlock()->setTexCoord(i, newTexCoord(idx, i));
+	}
+
+	// set tex matrices
+	for (u8 i = 0; i < 8; i++) {
+		material->getTexGenBlock()->setTexMtx(i, newTexMtx(idx, i));
+	}
+
+	// set tev K sels
+	J2DMaterialInitData* initData2 = &mMaterialInitData[mMatIndexTable[idx]];
+	for (u8 i = 0; i < stageCount; i++) {
+		material->getTevBlock()->setTevKColorSel(i, initData2->mTevKColorSel[i]);
+	}
+	for (u8 i = 0; i < stageCount; i++) {
+		material->getTevBlock()->setTevKAlphaSel(i, initData2->mTevKAlphaSel[i]);
+	}
+
+	// set indirect texture info
+	if (mIndInitData || indBlockNum != 0) {
+		u8 indTexStageNum = newIndTexStageNum(idx);
+		material->mIndBlock->setIndTexStageNum(indTexStageNum);
+		for (u8 i = 0; i < indTexStageNum; i++) {
+			material->getIndBlock()->setIndTexMtx(i, newIndTexMtx(idx, i));
+		}
+		for (u8 i = 0; i < indTexStageNum; i++) {
+			material->getIndBlock()->setIndTexOrder(i, newIndTexOrder(idx, i));
+		}
+		for (u8 i = 0; i < indTexStageNum; i++) {
+			material->getIndBlock()->setIndTexCoordScale(i, newIndTexCoordScale(idx, i));
+		}
+		for (u8 i = 0; i < stageCount; i++) {
+			material->getTevBlock()->setIndTevStage(i, newIndTevStage(idx, i));
+		}
+	}
+
+	return material;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x3D0(r1)
@@ -874,394 +975,149 @@ void J2DMaterialFactory::create(J2DMaterial*, int, u32, J2DResReference*, J2DRes
  * @note Address: 0x80053E74
  * @note Size: 0x9C
  */
-JUtility::TColor J2DMaterialFactory::newMatColor(int id1, int id2) const
+JUtility::TColor J2DMaterialFactory::newMatColor(int idx, int colorIdx) const
 {
-	GXColor color              = { 0xff, 0xff, 0xff, 0xff };
-	JUtility::TColor local_20  = GXColor(color);
-	J2DMaterialInitData* iVar2 = &mMaterialInitData[_08[id1]];
-	if (iVar2->_08[id2] != 0xffff) {
-		return _10[iVar2->_08[id2]];
+	GXColor white             = { 255, 255, 255, 255 };
+	JUtility::TColor jutWhite = GXColor(white);
+
+	J2DMaterialInitData* initData = &mMaterialInitData[mMatIndexTable[idx]];
+	if (initData->mMatColorIdx[colorIdx] != 0xFFFF) {
+		return mMatColor[initData->mMatColorIdx[colorIdx]];
 	}
-	return local_20;
-	/*
-	stwu     r1, -0x20(r1)
-	slwi     r0, r6, 1
-	lwz      r7, 8(r4)
-	slwi     r5, r5, 1
-	lwz      r8, lbl_805168D8@sda21(r2)
-	lhzx     r5, r7, r5
-	stw      r8, 0xc(r1)
-	mulli    r5, r5, 0xe8
-	lwz      r6, 4(r4)
-	lbz      r9, 0xc(r1)
-	lbz      r8, 0xd(r1)
-	addi     r5, r5, 8
-	lbz      r7, 0xe(r1)
-	add      r0, r5, r0
-	lbz      r5, 0xf(r1)
-	lhzx     r0, r6, r0
-	stb      r9, 0x10(r1)
-	cmplwi   r0, 0xffff
-	stb      r8, 0x11(r1)
-	stb      r7, 0x12(r1)
-	stb      r5, 0x13(r1)
-	beq      lbl_80053F00
-	lwz      r4, 0x10(r4)
-	rlwinm   r0, r0, 2, 0xe, 0x1d
-	lwzx     r0, r4, r0
-	stw      r0, 8(r1)
-	lbz      r4, 8(r1)
-	lbz      r0, 9(r1)
-	stb      r4, 0(r3)
-	lbz      r4, 0xa(r1)
-	stb      r0, 1(r3)
-	lbz      r0, 0xb(r1)
-	stb      r4, 2(r3)
-	stb      r0, 3(r3)
-	b        lbl_80053F08
-
-lbl_80053F00:
-	lwz      r0, 0x10(r1)
-	stw      r0, 0(r3)
-
-lbl_80053F08:
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return jutWhite;
 }
 
 /**
  * @note Address: 0x80053F10
  * @note Size: 0x38
  */
-void J2DMaterialFactory::newColorChanNum(int) const
+u8 J2DMaterialFactory::newColorChanNum(int idx) const
 {
-	/*
-	lwz      r5, 8(r3)
-	slwi     r0, r4, 1
-	lwz      r6, 4(r3)
-	lhzx     r0, r5, r0
-	mulli    r4, r0, 0xe8
-	addi     r0, r4, 2
-	lbzx     r0, r6, r0
-	cmplwi   r0, 0xff
-	beq      lbl_80053F40
-	lwz      r3, 0x14(r3)
-	lbzx     r3, r3, r0
-	blr
-
-lbl_80053F40:
-	li       r3, 0
-	blr
-	*/
+	J2DMaterialInitData* initData = &mMaterialInitData[mMatIndexTable[idx]];
+	if (initData->mColorChanIdx != 0xFF) {
+		return mColorChanNum[initData->mColorChanIdx];
+	}
+	return 0;
 }
 
 /**
  * @note Address: 0x80053F48
  * @note Size: 0x54
  */
-void J2DMaterialFactory::newColorChan(int, int) const
+J2DColorChan J2DMaterialFactory::newColorChan(int idx, int chan) const
 {
-	/*
-	lwz      r7, 8(r4)
-	slwi     r5, r5, 1
-	slwi     r0, r6, 1
-	lwz      r6, 4(r4)
-	lhzx     r5, r7, r5
-	mulli    r5, r5, 0xe8
-	addi     r5, r5, 0xc
-	add      r0, r5, r0
-	lhzx     r0, r6, r0
-	cmplwi   r0, 0xffff
-	beq      lbl_80053F8C
-	rlwinm   r5, r0, 2, 0xe, 0x1d
-	lwz      r4, 0x18(r4)
-	addi     r0, r5, 1
-	lbzx     r0, r4, r0
-	sth      r0, 0(r3)
-	blr
-
-lbl_80053F8C:
-	addi     r4, r2, j2dDefaultColorChanInfo@sda21
-	lbz      r0, 1(r4)
-	sth      r0, 0(r3)
-	blr
-	*/
+	J2DMaterialInitData* initData = &mMaterialInitData[mMatIndexTable[idx]];
+	if (initData->mColorChanInfoIdx[chan] != 0xFFFF) {
+		return J2DColorChan(mColorChanInfo[initData->mColorChanInfoIdx[chan] * 2]);
+	}
+	return J2DColorChan();
 }
 
 /**
  * @note Address: 0x80053F9C
  * @note Size: 0x38
  */
-void J2DMaterialFactory::newTexGenNum(int) const
+u32 J2DMaterialFactory::newTexGenNum(int idx) const
 {
-	/*
-	lwz      r5, 8(r3)
-	slwi     r0, r4, 1
-	lwz      r6, 4(r3)
-	lhzx     r0, r5, r0
-	mulli    r4, r0, 0xe8
-	addi     r0, r4, 3
-	lbzx     r0, r6, r0
-	cmplwi   r0, 0xff
-	beq      lbl_80053FCC
-	lwz      r3, 0x1c(r3)
-	lbzx     r3, r3, r0
-	blr
-
-lbl_80053FCC:
-	li       r3, 0
-	blr
-	*/
+	J2DMaterialInitData* initData = &mMaterialInitData[mMatIndexTable[idx]];
+	if (initData->mTexGenIdx != 0xFF) {
+		return mTexGenNum[initData->mTexGenIdx];
+	}
+	return 0;
 }
 
 /**
  * @note Address: 0x80053FD4
  * @note Size: 0x74
  */
-void J2DMaterialFactory::newTexCoord(int, int) const
+J2DTexCoord J2DMaterialFactory::newTexCoord(int idx, int texCoord) const
 {
-	/*
-	lwz      r7, 8(r4)
-	slwi     r5, r5, 1
-	slwi     r0, r6, 1
-	lwz      r6, 4(r4)
-	lhzx     r5, r7, r5
-	mulli    r5, r5, 0xe8
-	addi     r5, r5, 0x14
-	add      r0, r5, r0
-	lhzx     r0, r6, r0
-	cmplwi   r0, 0xffff
-	beq      lbl_80054028
-	lwz      r4, 0x20(r4)
-	rlwinm   r0, r0, 2, 0xe, 0x1d
-	add      r4, r4, r0
-	lbz      r0, 0(r4)
-	stb      r0, 0(r3)
-	lbz      r0, 1(r4)
-	stb      r0, 1(r3)
-	lbz      r0, 2(r4)
-	stb      r0, 2(r3)
-	blr
-
-lbl_80054028:
-	lis      r4, j2dDefaultTexCoordInfo@ha
-	lbzu     r0, j2dDefaultTexCoordInfo@l(r4)
-	stb      r0, 0(r3)
-	lbz      r0, 1(r4)
-	stb      r0, 1(r3)
-	lbz      r0, 2(r4)
-	stb      r0, 2(r3)
-	blr
-	*/
+	J2DMaterialInitData* initData = &mMaterialInitData[mMatIndexTable[idx]];
+	if (initData->mTexCoordIdx[texCoord] != 0xFFFF) {
+		return J2DTexCoord(mTexCoordInfo[initData->mTexCoordIdx[texCoord]]);
+	}
+	return J2DTexCoord();
 }
 
 /**
  * @note Address: 0x80054048
  * @note Size: 0xEC
  */
-void J2DMaterialFactory::newTexMtx(int, int) const
+J2DTexMtx* J2DMaterialFactory::newTexMtx(int idx, int texMtx) const
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	slwi     r0, r5, 1
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	li       r29, 0
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	slwi     r3, r4, 1
-	lwz      r4, 8(r28)
-	lwz      r31, 4(r28)
-	lhzx     r3, r4, r3
-	mulli    r3, r3, 0xe8
-	addi     r3, r3, 0x24
-	add      r30, r3, r0
-	lhzx     r0, r31, r30
-	cmplwi   r0, 0xffff
-	beq      lbl_80054110
-	li       r3, 0x54
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_80054108
-	lhzx     r0, r31, r30
-	lwz      r4, 0x24(r28)
-	mulli    r0, r0, 0x24
-	add      r4, r4, r0
-	lfs      f0, 4(r4)
-	stfs     f0, 4(r3)
-	lfs      f0, 8(r4)
-	stfs     f0, 8(r3)
-	lfs      f0, 0xc(r4)
-	stfs     f0, 0xc(r3)
-	lbz      r0, 0(r4)
-	stb      r0, 0(r3)
-	lbz      r0, 1(r4)
-	stb      r0, 1(r3)
-	lfs      f0, 0x10(r4)
-	stfs     f0, 0x10(r3)
-	lfs      f0, 0x14(r4)
-	stfs     f0, 0x14(r3)
-	lfs      f0, 0x18(r4)
-	stfs     f0, 0x18(r3)
-	lfs      f0, 0x1c(r4)
-	stfs     f0, 0x1c(r3)
-	lfs      f0, 0x20(r4)
-	stfs     f0, 0x20(r3)
-
-lbl_80054108:
-	mr       r29, r3
-	bl       calc__9J2DTexMtxFv
-
-lbl_80054110:
-	lwz      r0, 0x24(r1)
-	mr       r3, r29
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	J2DTexMtx* mtx                = nullptr;
+	J2DMaterialInitData* initData = &mMaterialInitData[mMatIndexTable[idx]];
+	if (initData->mTexMtxIdx[texMtx] != 0xFFFF) {
+		mtx = new J2DTexMtx(mTexMtxInfo[initData->mTexMtxIdx[texMtx]]);
+		mtx->calc();
+	}
+	return mtx;
 }
 
 /**
  * @note Address: 0x80054134
  * @note Size: 0x40
  */
-void J2DMaterialFactory::newCullMode(int) const
+u8 J2DMaterialFactory::newCullMode(int idx) const
 {
-	/*
-	lwz      r5, 8(r3)
-	slwi     r0, r4, 1
-	lwz      r6, 4(r3)
-	lhzx     r0, r5, r0
-	mulli    r4, r0, 0xe8
-	addi     r0, r4, 1
-	lbzx     r0, r6, r0
-	cmplwi   r0, 0xff
-	beq      lbl_8005416C
-	lwz      r3, 0x30(r3)
-	rlwinm   r0, r0, 2, 0x16, 0x1d
-	lwzx     r0, r3, r0
-	clrlwi   r3, r0, 0x18
-	blr
-
-lbl_8005416C:
-	li       r3, 0xff
-	blr
-	*/
+	J2DMaterialInitData* initData = &mMaterialInitData[mMatIndexTable[idx]];
+	if (initData->mCullModeIdx != 0xFF) {
+		return mCullMode[initData->mCullModeIdx];
+	}
+	return GX_CULL_INVALID;
 }
 
 /**
  * @note Address: 0x80054174
  * @note Size: 0x48
  */
-void J2DMaterialFactory::newTexNo(int, int) const
+u16 J2DMaterialFactory::newTexNo(int idx, int p2) const
 {
-	/*
-	lwz      r6, 8(r3)
-	slwi     r4, r4, 1
-	slwi     r0, r5, 1
-	lwz      r5, 4(r3)
-	lhzx     r4, r6, r4
-	mulli    r4, r4, 0xe8
-	addi     r4, r4, 0x38
-	add      r0, r4, r0
-	lhzx     r0, r5, r0
-	cmplwi   r0, 0xffff
-	beq      lbl_800541B0
-	lwz      r3, 0x28(r3)
-	rlwinm   r0, r0, 1, 0xf, 0x1e
-	lhzx     r3, r3, r0
-	blr
-
-lbl_800541B0:
-	lis      r3, 0x0000FFFF@ha
-	addi     r3, r3, 0x0000FFFF@l
-	blr
-	*/
+	J2DMaterialInitData* initData = &mMaterialInitData[mMatIndexTable[idx]];
+	if (initData->mTexNoIdx[p2] != 0xFFFF) {
+		return mTexNo[initData->mTexNoIdx[p2]];
+	}
+	return 0x1FFFF;
 }
 
 /**
  * @note Address: 0x800541BC
  * @note Size: 0x40
  */
-void J2DMaterialFactory::newFontNo(int) const
+u16 J2DMaterialFactory::newFontNo(int idx) const
 {
-	/*
-	lwz      r5, 8(r3)
-	slwi     r0, r4, 1
-	lwz      r6, 4(r3)
-	lhzx     r0, r5, r0
-	mulli    r4, r0, 0xe8
-	addi     r0, r4, 0x48
-	lhzx     r0, r6, r0
-	cmplwi   r0, 0xffff
-	beq      lbl_800541F0
-	lwz      r3, 0x2c(r3)
-	rlwinm   r0, r0, 1, 0xf, 0x1e
-	lhzx     r3, r3, r0
-	blr
-
-lbl_800541F0:
-	lis      r3, 0x0000FFFF@ha
-	addi     r3, r3, 0x0000FFFF@l
-	blr
-	*/
+	J2DMaterialInitData* initData = &mMaterialInitData[mMatIndexTable[idx]];
+	if (initData->mFontNoIdx != 0xFFFF) {
+		return mFontNo[initData->mFontNoIdx];
+	}
+	return 0xFFFF;
 }
 
 /**
  * @note Address: 0x800541FC
  * @note Size: 0x74
  */
-void J2DMaterialFactory::newTevOrder(int, int) const
+J2DTevOrder J2DMaterialFactory::newTevOrder(int idx, int p2) const
 {
-	/*
-	lwz      r7, 8(r4)
-	slwi     r5, r5, 1
-	slwi     r0, r6, 1
-	lwz      r6, 4(r4)
-	lhzx     r5, r7, r5
-	mulli    r5, r5, 0xe8
-	addi     r5, r5, 0x72
-	add      r0, r5, r0
-	lhzx     r0, r6, r0
-	cmplwi   r0, 0xffff
-	beq      lbl_80054250
-	lwz      r4, 0x34(r4)
-	rlwinm   r0, r0, 2, 0xe, 0x1d
-	add      r4, r4, r0
-	lbz      r0, 0(r4)
-	stb      r0, 0(r3)
-	lbz      r0, 1(r4)
-	stb      r0, 1(r3)
-	lbz      r0, 2(r4)
-	stb      r0, 2(r3)
-	blr
-
-lbl_80054250:
-	lbz      r0, j2dDefaultTevOrderInfoNull@sda21(r2)
-	addi     r4, r2, j2dDefaultTevOrderInfoNull@sda21
-	stb      r0, 0(r3)
-	lbz      r0, 1(r4)
-	stb      r0, 1(r3)
-	lbz      r0, 2(r4)
-	stb      r0, 2(r3)
-	blr
-	*/
+	J2DMaterialInitData* initData = &mMaterialInitData[mMatIndexTable[idx]];
+	if (initData->mTevOrderInfoIdx[p2] != 0xFFFF) {
+		return J2DTevOrder(mTevOrderInfo[initData->mTevOrderInfoIdx[p2]]);
+	}
+	return J2DTevOrder();
 }
 
 /**
  * @note Address: 0x80054270
  * @note Size: 0x98
  */
-void J2DMaterialFactory::newTevColor(int, int) const
+J2DGXColorS10 J2DMaterialFactory::newTevColor(int idx, int p2) const
 {
+	J2DGXColorS10 color           = J2DGXColorS10(GXColorS10());
+	J2DMaterialInitData* initData = &mMaterialInitData[mMatIndexTable[idx]];
+	if (initData->mTevColorIdx[p2] != 0xFFFF) {
+		return mTevColor[initData->mTevColorIdx[p2]];
+	}
+	return color;
 	/*
 	stwu     r1, -0x10(r1)
 	slwi     r0, r6, 1
@@ -1279,7 +1135,7 @@ void J2DMaterialFactory::newTevColor(int, int) const
 	lha      r7, 0xa(r1)
 	lhzx     r0, r6, r0
 	lha      r5, 0xc(r1)
-	cmplwi   r0, 0xffff
+	cmplwi   r0, 0xFFFF
 	lha      r6, 0xe(r1)
 	beq      lbl_800542EC
 	lwz      r4, 0x38(r4)
@@ -1312,87 +1168,41 @@ lbl_80054300:
  * @note Address: 0x80054308
  * @note Size: 0x9C
  */
-void J2DMaterialFactory::newTevKColor(int, int) const
+JUtility::TColor J2DMaterialFactory::newTevKColor(int idx, int p2) const
 {
-	/*
-	stwu     r1, -0x20(r1)
-	slwi     r0, r6, 1
-	lwz      r7, 8(r4)
-	slwi     r5, r5, 1
-	lwz      r8, lbl_805168DC@sda21(r2)
-	lhzx     r5, r7, r5
-	stw      r8, 0xc(r1)
-	mulli    r5, r5, 0xe8
-	lwz      r6, 4(r4)
-	lbz      r9, 0xc(r1)
-	lbz      r8, 0xd(r1)
-	addi     r5, r5, 0x4a
-	lbz      r7, 0xe(r1)
-	add      r0, r5, r0
-	lbz      r5, 0xf(r1)
-	lhzx     r0, r6, r0
-	stb      r9, 0x10(r1)
-	cmplwi   r0, 0xffff
-	stb      r8, 0x11(r1)
-	stb      r7, 0x12(r1)
-	stb      r5, 0x13(r1)
-	beq      lbl_80054394
-	lwz      r4, 0x3c(r4)
-	rlwinm   r0, r0, 2, 0xe, 0x1d
-	lwzx     r0, r4, r0
-	stw      r0, 8(r1)
-	lbz      r4, 8(r1)
-	lbz      r0, 9(r1)
-	stb      r4, 0(r3)
-	lbz      r4, 0xa(r1)
-	stb      r0, 1(r3)
-	lbz      r0, 0xb(r1)
-	stb      r4, 2(r3)
-	stb      r0, 3(r3)
-	b        lbl_8005439C
-
-lbl_80054394:
-	lwz      r0, 0x10(r1)
-	stw      r0, 0(r3)
-
-lbl_8005439C:
-	addi     r1, r1, 0x20
-	blr
-	*/
+	GXColor white                 = { 0xFF, 0xFF, 0xFF, 0xFF };
+	JUtility::TColor jutWhite     = GXColor(white);
+	J2DMaterialInitData* initData = &mMaterialInitData[mMatIndexTable[idx]];
+	if (initData->mTevKColorIdx[p2] != 0xFFFF) {
+		return mTevKColor[initData->mTevKColorIdx[p2]];
+	}
+	return jutWhite;
 }
 
 /**
  * @note Address: 0x800543A4
  * @note Size: 0x38
  */
-void J2DMaterialFactory::newTevStageNum(int) const
+u8 J2DMaterialFactory::newTevStageNum(int idx) const
 {
-	/*
-	lwz      r5, 8(r3)
-	slwi     r0, r4, 1
-	lwz      r6, 4(r3)
-	lhzx     r0, r5, r0
-	mulli    r4, r0, 0xe8
-	addi     r0, r4, 4
-	lbzx     r0, r6, r0
-	cmplwi   r0, 0xff
-	beq      lbl_800543D4
-	lwz      r3, 0x40(r3)
-	lbzx     r3, r3, r0
-	blr
-
-lbl_800543D4:
-	li       r3, 0xff
-	blr
-	*/
+	J2DMaterialInitData* initData = &mMaterialInitData[mMatIndexTable[idx]];
+	if (initData->mTevStageIdx != 0xFF) {
+		return mTevStageNum[initData->mTevStageIdx];
+	}
+	return 0xFF;
 }
 
 /**
  * @note Address: 0x800543DC
  * @note Size: 0x60
  */
-void J2DMaterialFactory::newTevStage(int, int) const
+J2DTevStage J2DMaterialFactory::newTevStage(int idx, int p2) const
 {
+	J2DMaterialInitData* initData = &mMaterialInitData[mMatIndexTable[idx]];
+	if (initData->mTevStageInfoIdx[p2] != 0xFFFF) {
+		return J2DTevStage(mTevStageInfo[initData->mTevStageInfoIdx[p2]]); // this needs fixing
+	}
+	return J2DTevStage();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1406,7 +1216,7 @@ void J2DMaterialFactory::newTevStage(int, int) const
 	addi     r5, r5, 0x9a
 	add      r0, r5, r0
 	lhzx     r0, r6, r0
-	cmplwi   r0, 0xffff
+	cmplwi   r0, 0xFFFF
 	beq      lbl_80054428
 	mulli    r0, r0, 0x14
 	lwz      r4, 0x44(r4)
@@ -1426,45 +1236,16 @@ lbl_8005442C:
 }
 
 /**
- * @note Address: 0x8005443C
- * @note Size: 0x60
- */
-J2DTevStage::J2DTevStage(const J2DTevStageInfo&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       setTevStageInfo__11J2DTevStageFRC15J2DTevStageInfo
-	addi     r3, r2, j2dDefaultTevSwapMode@sda21
-	lbz      r4, 7(r31)
-	lbz      r0, 1(r3)
-	mr       r3, r31
-	rlwinm   r4, r4, 0, 0x1e, 0x1b
-	slwi     r0, r0, 2
-	or       r0, r4, r0
-	stb      r0, 7(r31)
-	lbz      r4, 7(r31)
-	lbz      r0, j2dDefaultTevSwapMode@sda21(r2)
-	rlwinm   r4, r4, 0, 0, 0x1d
-	or       r0, r4, r0
-	stb      r0, 7(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/**
  * @note Address: 0x8005449C
  * @note Size: 0x9C
  */
-void J2DMaterialFactory::newTevSwapModeTable(int, int) const
+J2DTevSwapModeTable J2DMaterialFactory::newTevSwapModeTable(int idx, int p2) const
 {
+	J2DMaterialInitData* initData = &mMaterialInitData[mMatIndexTable[idx]];
+	if (initData->mTevSwapModeTableInfoIdx[p2] != 0xFFFF) {
+		return J2DTevSwapModeTable(mTevSwapTableInfo[initData->mTevSwapModeTableInfoIdx[p2]]);
+	}
+	return J2DTevSwapModeTable(j2dDefaultTevSwapModeTable);
 	/*
 	lwz      r7, 8(r4)
 	slwi     r5, r5, 1
@@ -1475,7 +1256,7 @@ void J2DMaterialFactory::newTevSwapModeTable(int, int) const
 	addi     r5, r5, 0xda
 	add      r0, r5, r0
 	lhzx     r0, r6, r0
-	cmplwi   r0, 0xffff
+	cmplwi   r0, 0xFFFF
 	beq      lbl_80054504
 	lwz      r4, 0x4c(r4)
 	rlwinm   r0, r0, 2, 0xe, 0x1d
@@ -1514,72 +1295,38 @@ lbl_80054504:
  * @note Address: 0x80054538
  * @note Size: 0x30
  */
-void J2DMaterialFactory::newIndTexStageNum(int) const
+u8 J2DMaterialFactory::newIndTexStageNum(int idx) const
 {
-	/*
-	lwz      r3, 0xc(r3)
-	cmplwi   r3, 0
-	beq      lbl_80054560
-	mulli    r4, r4, 0x128
-	lbzx     r0, r3, r4
-	cmplwi   r0, 1
-	bne      lbl_80054560
-	add      r3, r3, r4
-	lbz      r3, 1(r3)
-	blr
-
-lbl_80054560:
-	li       r3, 0
-	blr
-	*/
+	if (mIndInitData && mIndInitData[idx]._00 == 1) {
+		return mIndInitData[idx].mIndTexStageNum;
+	}
+	return 0;
 }
 
 /**
  * @note Address: 0x80054568
  * @note Size: 0x68
  */
-void J2DMaterialFactory::newIndTexOrder(int, int) const
+J2DIndTexOrder J2DMaterialFactory::newIndTexOrder(int idx, int p2) const
 {
-	/*
-	stwu     r1, -0x10(r1)
-	lwz      r8, 0xc(r4)
-	addi     r4, r2, j2dDefaultIndTexOrderNull@sda21
-	lbz      r7, j2dDefaultIndTexOrderNull@sda21(r2)
-	lbz      r0, 1(r4)
-	cmplwi   r8, 0
-	stb      r7, 8(r1)
-	stb      r0, 9(r1)
-	beq      lbl_800545C0
-	mulli    r0, r5, 0x128
-	add      r5, r8, r0
-	lbz      r0, 0(r5)
-	cmplwi   r0, 1
-	bne      lbl_800545C0
-	slwi     r4, r6, 1
-	addi     r4, r4, 4
-	add      r4, r5, r4
-	lbz      r0, 0(r4)
-	stb      r0, 0(r3)
-	lbz      r0, 1(r4)
-	stb      r0, 1(r3)
-	b        lbl_800545C8
-
-lbl_800545C0:
-	lhz      r0, 8(r1)
-	sth      r0, 0(r3)
-
-lbl_800545C8:
-	addi     r1, r1, 0x10
-	blr
-	*/
+	J2DIndTexOrder texOrder;
+	if (mIndInitData && mIndInitData[idx]._00 == 1) {
+		return J2DIndTexOrder(mIndInitData[idx].mIndTexOrderInfo[p2]);
+	}
+	return texOrder;
 }
 
 /**
  * @note Address: 0x800545D0
  * @note Size: 0xEC
  */
-void J2DMaterialFactory::newIndTexMtx(int, int) const
+J2DIndTexMtx J2DMaterialFactory::newIndTexMtx(int idx, int p2) const
 {
+	J2DIndTexMtx mtx;
+	if (mIndInitData && mIndInitData[idx]._00 == 1) {
+		return J2DIndTexMtx(mIndInitData[idx].mIndTexMtxInfo[p2]);
+	}
+	return mtx;
 	/*
 	stwu     r1, -0x30(r1)
 	lis      r7, j2dDefaultIndTexMtxInfo@ha
@@ -1651,8 +1398,13 @@ lbl_800546B4:
  * @note Address: 0x800546BC
  * @note Size: 0x14C
  */
-void J2DMaterialFactory::newIndTevStage(int, int) const
+J2DIndTevStage J2DMaterialFactory::newIndTevStage(int idx, int p2) const
 {
+	J2DIndTevStage tevStage;
+	if (mIndInitData && mIndInitData[idx]._00 == 1) {
+		return J2DIndTevStage(mIndInitData[idx].mIndTevStageInfo[p2]);
+	}
+	return tevStage;
 	/*
 	stwu     r1, -0x30(r1)
 	lis      r7, j2dDefaultIndTevStageInfo@ha
@@ -1748,48 +1500,26 @@ lbl_800547FC:
  * @note Address: 0x80054808
  * @note Size: 0x68
  */
-void J2DMaterialFactory::newIndTexCoordScale(int, int) const
+J2DIndTexCoordScale J2DMaterialFactory::newIndTexCoordScale(int idx, int p2) const
 {
-	/*
-	stwu     r1, -0x10(r1)
-	lwz      r8, 0xc(r4)
-	addi     r4, r2, j2dDefaultIndTexCoordScaleInfo@sda21
-	lbz      r7, j2dDefaultIndTexCoordScaleInfo@sda21(r2)
-	lbz      r0, 1(r4)
-	cmplwi   r8, 0
-	stb      r7, 8(r1)
-	stb      r0, 9(r1)
-	beq      lbl_80054860
-	mulli    r0, r5, 0x128
-	add      r5, r8, r0
-	lbz      r0, 0(r5)
-	cmplwi   r0, 1
-	bne      lbl_80054860
-	slwi     r4, r6, 1
-	addi     r4, r4, 0x60
-	add      r4, r5, r4
-	lbz      r0, 0(r4)
-	stb      r0, 0(r3)
-	lbz      r0, 1(r4)
-	stb      r0, 1(r3)
-	b        lbl_80054868
-
-lbl_80054860:
-	lhz      r0, 8(r1)
-	sth      r0, 0(r3)
-
-lbl_80054868:
-	addi     r1, r1, 0x10
-	blr
-	*/
+	J2DIndTexCoordScale coordScale;
+	if (mIndInitData && mIndInitData[idx]._00 == 1) {
+		return J2DIndTexCoordScale(mIndInitData[idx].mIndTexCoordScaleInfo[p2]);
+	}
+	return coordScale;
 }
 
 /**
  * @note Address: 0x80054870
  * @note Size: 0x7C
  */
-void J2DMaterialFactory::newAlphaComp(int) const
+J2DAlphaComp J2DMaterialFactory::newAlphaComp(int idx) const
 {
+	J2DMaterialInitData* initData = &mMaterialInitData[mMatIndexTable[idx]];
+	if (initData->mAlphaCompInfoIdx != 0xFFFF) {
+		return J2DAlphaComp(mAlphaCompInfo[initData->mAlphaCompInfoIdx]);
+	}
+	return J2DAlphaComp();
 	/*
 	lwz      r6, 8(r4)
 	slwi     r0, r5, 1
@@ -1798,7 +1528,7 @@ void J2DMaterialFactory::newAlphaComp(int) const
 	mulli    r5, r0, 0xe8
 	addi     r0, r5, 0xe2
 	lhzx     r0, r7, r0
-	cmplwi   r0, 0xffff
+	cmplwi   r0, 0xFFFF
 	beq      lbl_800548D4
 	lwz      r4, 0x50(r4)
 	rlwinm   r0, r0, 3, 0xd, 0x1c
@@ -1831,67 +1561,24 @@ lbl_800548D4:
  * @note Address: 0x800548EC
  * @note Size: 0x7C
  */
-void J2DMaterialFactory::newBlend(int) const
+J2DBlend J2DMaterialFactory::newBlend(int idx) const
 {
-	/*
-	lwz      r6, 8(r4)
-	slwi     r0, r5, 1
-	lwz      r7, 4(r4)
-	lhzx     r0, r6, r0
-	mulli    r5, r0, 0xe8
-	addi     r0, r5, 0xe4
-	lhzx     r0, r7, r0
-	cmplwi   r0, 0xffff
-	beq      lbl_80054940
-	lwz      r4, 0x54(r4)
-	rlwinm   r0, r0, 2, 0xe, 0x1d
-	add      r4, r4, r0
-	lbz      r0, 0(r4)
-	stb      r0, 0(r3)
-	lbz      r0, 1(r4)
-	stb      r0, 1(r3)
-	lbz      r0, 2(r4)
-	stb      r0, 2(r3)
-	lbz      r0, 3(r4)
-	stb      r0, 3(r3)
-	blr
-
-lbl_80054940:
-	lbz      r0, j2dDefaultBlendInfo@sda21(r2)
-	addi     r4, r2, j2dDefaultBlendInfo@sda21
-	stb      r0, 0(r3)
-	lbz      r0, 1(r4)
-	stb      r0, 1(r3)
-	lbz      r0, 2(r4)
-	stb      r0, 2(r3)
-	lbz      r0, 3(r4)
-	stb      r0, 3(r3)
-	blr
-	*/
+	J2DMaterialInitData* initData = &mMaterialInitData[mMatIndexTable[idx]];
+	if (initData->mBlendInfoIdx != 0xFFFF) {
+		return J2DBlend(mBlendInfo[initData->mBlendInfoIdx]);
+	}
+	return J2DBlend();
 }
 
 /**
  * @note Address: 0x80054968
  * @note Size: 0x38
  */
-void J2DMaterialFactory::newDither(int) const
+u8 J2DMaterialFactory::newDither(int idx) const
 {
-	/*
-	lwz      r5, 8(r3)
-	slwi     r0, r4, 1
-	lwz      r6, 4(r3)
-	lhzx     r0, r5, r0
-	mulli    r4, r0, 0xe8
-	addi     r0, r4, 5
-	lbzx     r0, r6, r0
-	cmplwi   r0, 0xff
-	beq      lbl_80054998
-	lwz      r3, 0x58(r3)
-	lbzx     r3, r3, r0
-	blr
-
-lbl_80054998:
-	li       r3, 0
-	blr
-	*/
+	J2DMaterialInitData* initData = &mMaterialInitData[mMatIndexTable[idx]];
+	if (initData->mDitherIdx != 0xFF) {
+		return mDither[initData->mDitherIdx];
+	}
+	return 0;
 }

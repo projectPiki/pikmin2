@@ -28,6 +28,8 @@ extern const J2DIndTexCoordScaleInfo j2dDefaultIndTexCoordScaleInfo;
 struct J2DIndTexCoordScale {
 	J2DIndTexCoordScale() { mScaleInfo = j2dDefaultIndTexCoordScaleInfo; }
 
+	J2DIndTexCoordScale(const J2DIndTexCoordScaleInfo& info) { mScaleInfo = info; }
+
 	~J2DIndTexCoordScale() { }
 
 	void load(u8);
@@ -59,6 +61,8 @@ extern const J2DIndTexMtxInfo j2dDefaultIndTexMtxInfo;
 struct J2DIndTexMtx {
 	J2DIndTexMtx() { mMtxInfo = j2dDefaultIndTexMtxInfo; }
 
+	J2DIndTexMtx(const J2DIndTexMtxInfo& info) { mMtxInfo = info; }
+
 	~J2DIndTexMtx() { }
 
 	void load(u8);
@@ -66,29 +70,33 @@ struct J2DIndTexMtx {
 	J2DIndTexMtxInfo mMtxInfo; // _00
 };
 
-// fabricated based on global variable name
-struct J2DIndTexOrderNull {
-	J2DIndTexOrderNull& operator=(const J2DIndTexOrderNull& other)
+struct J2DIndTexOrderInfo {
+
+	J2DIndTexOrderInfo& operator=(const J2DIndTexOrderInfo& other)
 	{
-		mCoord = other.mCoord;
-		mMap   = other.mMap;
+		mTexCoordID = other.mTexCoordID;
+		mTexMapID   = other.mTexMapID;
 		return *this;
 	}
 
-	u8 mCoord; // _00
-	u8 mMap;   // _01
+	GXTexCoordID getTexCoordID() const { return (GXTexCoordID)mTexCoordID; }
+	GXTexMapID getTexMapID() const { return (GXTexMapID)mTexMapID; }
+
+	u8 mTexCoordID; // _00
+	u8 mTexMapID;   // _01
 };
 
-extern const J2DIndTexOrderNull j2dDefaultIndTexOrderNull;
+extern const J2DIndTexOrderInfo j2dDefaultIndTexOrderNull;
 
 /**
  * @size{0x2}
  */
 struct J2DIndTexOrder {
 	J2DIndTexOrder() { mOrder = j2dDefaultIndTexOrderNull; }
+	J2DIndTexOrder(const J2DIndTexOrderInfo& info) { mOrder = info; }
 	void load(u8);
 
-	J2DIndTexOrderNull mOrder; // _00
+	J2DIndTexOrderInfo mOrder; // _00
 };
 
 struct J2DIndBlock {

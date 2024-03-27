@@ -4,7 +4,9 @@
 #include "PowerPC_EABI_Support/MSL_C++/MSL_Common/Include/algorithm.h"
 #include "PowerPC_EABI_Support/MSL_C++/MSL_Common/Include/msl_memory.h"
 
+// clang-format off
 typedef JGadget::TVector<void*, JGadget::TAllocator<void*> > TVPVBase;
+// clang-format on
 
 namespace JGadget {
 /**
@@ -20,14 +22,14 @@ u32 vector::extend_default(u32 p1, u32 p2, u32 p3) { return p2 * 2; }
  */
 TVector_pointer_void::TVector_pointer_void(const TVoidAllocator& allocator)
 {
-	_00     = allocator._00;
-	mBegin  = nullptr;
-	mEnd    = mBegin;
+	_00       = allocator._00;
+	mBegin    = nullptr;
+	mEnd      = mBegin;
 	mCapacity = 0;
-	mExtend = vector::extend_default;
+	mExtend   = vector::extend_default;
 }
 
-template<>
+template <>
 size_t TVPVBase::GetSize_extend_(size_t count)
 {
 	u32 iVar2 = size();
@@ -82,7 +84,8 @@ inline void TVPVBase::DestroyElement_(void** start, void** end)
 }
 
 template <>
-inline void TVPVBase::DestroyElement_all_() {
+inline void TVPVBase::DestroyElement_all_()
+{
 	DestroyElement_(mBegin, mEnd);
 }
 
@@ -95,8 +98,7 @@ void TVPVBase::insert(void** values, u32 count, void* const& defaultValue)
 
 	void** v = Insert_raw(values, count);
 
-	if (v != this->mEnd)
-	{
+	if (v != this->mEnd) {
 		for (int i = 0; i != count; i++) {
 			if (v) {
 				*v = defaultValue;
@@ -118,8 +120,8 @@ void** TVPVBase::Insert_raw(void** pos, u32 count)
 	}
 	void** ppvVar5;
 	if (mCapacity < count + size()) {
-		size_t uVar4  = GetSize_extend_(count);
-		ppvVar5 = new void*[uVar4];
+		size_t uVar4 = GetSize_extend_(count);
+		ppvVar5      = new void*[uVar4];
 		if (ppvVar5 == NULL) {
 			pos = mEnd;
 		} else {
@@ -129,10 +131,10 @@ void** TVPVBase::Insert_raw(void** pos, u32 count)
 			DestroyElement_all_();
 			// aTStack_30.set(pBegin_);
 			size_t uVar2 = (size_t)mEnd - (size_t)mBegin;
-			mEnd     = ppvVar5 + count + (uVar2 / 4);
-			mBegin   = ppvVar5;
-			mCapacity = uVar4;
-			pos       = ppvVar6;
+			mEnd         = ppvVar5 + count + (uVar2 / 4);
+			mBegin       = ppvVar5;
+			mCapacity    = uVar4;
+			pos          = ppvVar6;
 		}
 	} else {
 		void** ppvVar5 = pos + count;
@@ -528,10 +530,9 @@ void** TVPVBase::Insert_raw(void** pos, u32 count)
  */
 TVector_pointer_void::~TVector_pointer_void()
 {
-	if (this)
-	{
+	if (this) {
 		// copy from mEnd to mEnd and output to beginning? what??
-		void** v     = std::copy(mEnd, mEnd, mBegin);
+		void** v = std::copy(mEnd, mEnd, mBegin);
 
 		DestroyElement_(v, mEnd);
 		mEnd = v;
@@ -543,17 +544,14 @@ TVector_pointer_void::~TVector_pointer_void()
  * @note Address: 0x80027C90
  * @note Size: 0x20
  */
-void TVector_pointer_void::insert(void** p1, void* const& p2)
-{
-	TVector::insert(p1, p2);
-}
+void TVector_pointer_void::insert(void** p1, void* const& p2) { TVector::insert(p1, p2); }
 
 /**
  * @note Address: 0x80027CB0
  * @note Size: 0x58
  */
 template <>
-void **TVPVBase::insert(void**p1, void* const&p2)
+void** TVPVBase::insert(void** p1, void* const& p2)
 {
 	u32 c = p1 - mBegin;
 	insert(p1, 1, p2);
@@ -608,7 +606,7 @@ void **TVPVBase::insert(void**p1, void* const&p2)
  * @note Size: 0xB8
  */
 
-void **TVector_pointer_void::erase(void** start, void** end)
+void** TVector_pointer_void::erase(void** start, void** end)
 {
 	void** vectorEnd = mEnd;
 	void** ppvVar3   = std::copy(end, vectorEnd, start);

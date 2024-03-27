@@ -91,7 +91,7 @@ struct J2DMaterial {
 
 	// _00 = VTBL
 	J2DPane* mPane;                 // _04
-	int _08;                        // _08
+	int mMaterialMode;              // _08
 	u16 mIndex;                     // _0C
 	u8 mIsVisible;                  // _0E
 	u8 mMaterialAlphaCalc;          // _0F

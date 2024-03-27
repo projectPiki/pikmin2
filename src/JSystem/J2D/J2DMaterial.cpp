@@ -21,13 +21,13 @@ J2DMaterial::J2DMaterial()
     , mTexGenBlock()
     , mPeBlock()
 {
-	mPane      = nullptr;
-	mIndex     = -1;
-	mTevBlock  = nullptr;
-	mIndBlock  = nullptr;
-	mAnmPtr    = nullptr;
-	_08        = 1;
-	mIsVisible = 1;
+	mPane         = nullptr;
+	mIndex        = -1;
+	mTevBlock     = nullptr;
+	mIndBlock     = nullptr;
+	mAnmPtr       = nullptr;
+	mMaterialMode = 1;
+	mIsVisible    = 1;
 }
 
 /**
@@ -41,7 +41,7 @@ J2DMaterial::J2DMaterial(u32 flag)
 	mTevBlock          = createTevBlock((flag >> 16) & 0x1F, true);
 	mIndBlock          = createIndBlock((flag >> 24) & 0x1, true);
 	mAnmPtr            = nullptr;
-	_08                = 1;
+	mMaterialMode      = 1;
 	mIsVisible         = 1;
 	mMaterialAlphaCalc = 1;
 }
