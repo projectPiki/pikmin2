@@ -6,6 +6,8 @@
 namespace JStudio {
 namespace data {
 
+extern const char ga8cSignature[8];
+
 enum TEOperationData {
 	TEOD_Unknown_00 = 0,
 	TEOD_Unknown_01,

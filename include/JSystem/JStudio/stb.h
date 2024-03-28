@@ -8,6 +8,8 @@
 #include "JSystem/JGadget/linklist.h"
 
 namespace JStudio {
+struct TObject;
+
 namespace stb {
 struct TControl;
 struct TObject;
@@ -32,9 +34,9 @@ struct TParse : public JGadget::binary::TParse_header_block {
 struct TFactory {
 	TFactory() { }
 
-	virtual ~TFactory();                                        // _08
-	virtual TObject* create(const data::TParse_TBlock_object&); // _0C
-	virtual void destroy(TObject*);                             // _10
+	virtual ~TFactory();                                                 // _08
+	virtual JStudio::TObject* create(const data::TParse_TBlock_object&); // _0C
+	virtual void destroy(TObject*);                                      // _10
 
 	// _00 = VTBL
 };
@@ -143,11 +145,12 @@ struct TControl {
 	void resetStatus() { setStatus(0); }
 	bool isSuspended() const { return mSuspend > 0; }
 	TFactory* getFactory() const { return mFactory; }
+	void setFactory(TFactory* factory) { mFactory = factory; }
 	TObject_control& referObject_control() { return mObject_control; }
 	int getSuspend() const { return mSuspend; }
 	void setSuspend(s32 suspend) { mObject_control.setSuspend(suspend); }
 
-	// VTBL _00
+	// _00 = VTBL
 	int _04;                                           // _04
 	int _08;                                           // _08
 	TFactory* mFactory;                                // _0C

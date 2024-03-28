@@ -32,7 +32,7 @@ LIBS = [
             ["JSystem/JStudio/fvb", False],
             ["JSystem/JStudio/fvb-data", True],
             ["JSystem/JStudio/fvb-data-parse", True],
-            ["JSystem/JStudio/jstudio-control", False],
+            ["JSystem/JStudio/jstudio-control", True],
             ["JSystem/JStudio/jstudio-data", True],
             ["JSystem/JStudio/jstudio-object", False],
             ["JSystem/JStudio/object-id", True],

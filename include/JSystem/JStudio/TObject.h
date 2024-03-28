@@ -16,7 +16,7 @@ struct TParse_TBlock_object;
 } // namespace data
 } // namespace stb
 
-struct TObject : stb::TObject {
+struct TObject : public stb::TObject {
 	TObject(data::TE32Block, void const*, u32, TAdaptor*);                                    // unused/inlined
 	TObject(const JStudio::stb::data::TParse_TBlock_object& data, JStudio::TAdaptor* adaptor) // unused/inlined
 	    : stb::TObject(data)

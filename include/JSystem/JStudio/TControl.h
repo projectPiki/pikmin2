@@ -5,10 +5,11 @@
 #include "Dolphin/vec.h"
 #include "JSystem/JStudio/stb.h"
 #include "JSystem/JStudio/fvb/fvb.h"
+#include "JSystem/JStudio/TFactory.h"
 #include "types.h"
 
 namespace JStudio {
-struct TControl : stb::TControl {
+struct TControl : public stb::TControl {
 	struct TTransform_translation_rotation_scaling {
 		/** @fabricated */
 		Vec& getTranslation() { return mVecs[0]; }
@@ -48,20 +49,30 @@ struct TControl : stb::TControl {
 
 	inline void create(JStudio::stb::TFactory* factory, JStudio::fvb::TFactory* fvb)
 	{
-		mFactory     = factory;
-		_60.pFactory = fvb;
+		mFactory             = factory;
+		mFvbControl.mFactory = fvb;
 	}
 
-	f64 _58;           // _58
-	fvb::TControl _60; // _60 - JStudio::fvb::TControl?
-	u8 _74;            // _74
-	u8 _75;            // _75
-	Vec _78;           // _78
-	Vec _84;           // _84
-	f32 _90;           // _90
-	f32 _94;           // _94
-	Mtx _98;           // _98
-	Mtx _C8;           // _C8
+	void setFactory(JStudio::TFactory* factory)
+	{
+		stb::TFactory* stb_factory = factory;
+		fvb::TFactory* fvb_factory = factory == nullptr ? nullptr : &factory->mFvbFactory;
+		stb::TControl::setFactory(stb_factory);
+		mFvbControl.setFactory(fvb_factory);
+	}
+
+	// _00     = VTBL
+	// _00-_58 = stb::TControl
+	f64 mSecondsPerFrame;       // _58
+	fvb::TControl mFvbControl;  // _60 - JStudio::fvb::TControl?
+	bool mTransformOnSet;       // _74
+	bool mTransformOnGet;       // _75
+	Vec mTransformOnSet_Origin; // _78
+	Vec mTransformOnGet_Origin; // _84
+	f32 mTransformOnSet_RotY;   // _90
+	f32 mTransformOnGet_RotY;   // _94
+	Mtx mTransformOnSet_Mtx;    // _98
+	Mtx mTransformOnGet_Mtx;    // _C8
 };
 } // namespace JStudio
 

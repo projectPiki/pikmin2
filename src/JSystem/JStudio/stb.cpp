@@ -1,5 +1,6 @@
 #include "JSystem/JStudio/stb.h"
 #include "JSystem/JStudio/object.h"
+#include "JSystem/JStudio/TObject.h"
 #include "JSystem/JStudio/stb-data-parse.h"
 #include "JSystem/JGadget/linklist.h"
 #include "stl/algorithm.h"
@@ -417,6 +418,16 @@ TObject* TControl::getObject(void const* id, u32 length)
 	JGadget::TLinkList<TObject, -12>::iterator start = mObjectContainer.begin();
 	JGadget::TLinkList<TObject, -12>::iterator end   = mObjectContainer.end();
 	JGadget::TLinkList<TObject, -12>::iterator bob   = std::find_if(start, end, object::TPRObject_ID_equal(id, length));
+
+	// this needs to not inline later - probably an inline depth thing with iterators but Not Today :')
+	// clang-format off
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0;
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0;
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0;
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0;
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0;
+	// clang-format on
+
 	return (bob != end) ? &*bob : nullptr;
 }
 
@@ -548,7 +559,7 @@ TFactory::~TFactory() { }
  * @note Address: 0x80010C50
  * @note Size: 0x8
  */
-TObject* TFactory::create(data::TParse_TBlock_object const&) { return nullptr; }
+JStudio::TObject* TFactory::create(data::TParse_TBlock_object const&) { return nullptr; }
 
 /**
  * @note Address: 0x80010C58

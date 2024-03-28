@@ -2,6 +2,7 @@
 #define _JSTUDIO_FVB_H
 
 #include "JSystem/JStudio/object.h"
+#include "JSystem/JGadget/binary.h"
 #include "types.h"
 #include "JSystem/JGadget/linklist.h"
 #include "JSystem/JStudio/fvb/fvb-data.h"
@@ -20,18 +21,20 @@ void getCompositeData_add_(const void*);
 void getCompositeData_subtract_(const void*);
 void getCompositeData_multiply_(const void*);
 
-struct TParse {
+struct TParse : public JGadget::binary::TParse_header_block {
 	TParse(TControl*);
 
 	virtual ~TParse();                                      // _08
 	virtual bool parseHeader_next(const void**, u32*, u32); // _0C
 	virtual bool parseBlock_next(const void**, u32*, u32);  // _10
 
-	TControl* getControl() const { return pControl_; }
-	TControl* pControl_;
+	TControl* getControl() const { return mControl; }
+
+	// _00 = VTBL
+	TControl* mControl; // _04
 };
 
-struct TObject : object::TObject_ID {
+struct TObject : public object::TObject_ID {
 	TObject(const data::TParse_TBlock& block);
 	TObject(const void* id, u32 id_size, TFunctionValue* value);
 
@@ -41,8 +44,8 @@ struct TObject : object::TObject_ID {
 	void prepare(const data::TParse_TBlock& block, TControl* control);
 
 	// VTBL _08
-	JGadget::TLinkListNode mNode; //_0C
-	TFunctionValue_constant* pfv; //_14
+	JGadget::TLinkListNode mNode;         //_0C
+	TFunctionValue_constant* mFVConstant; //_14
 };
 
 struct TFactory {
@@ -120,10 +123,12 @@ struct TControl {
 	void destroyObject_all();
 
 	/** @fabricated */
-	TFactory* getFactory() const { return pFactory; }
+	TFactory* getFactory() const { return mFactory; }
+	void setFactory(TFactory* factory) { mFactory = factory; }
 
-	TFactory* pFactory;
-	JGadget::TNodeLinkList ocObject_;
+	// _00 = VTBL
+	TFactory* mFactory;           // _04
+	JGadget::TNodeLinkList mList; // _08
 };
 
 } // namespace fvb

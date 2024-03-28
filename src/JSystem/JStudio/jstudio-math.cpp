@@ -1,5 +1,6 @@
 #include "JSystem/JStudio/math.h"
 #include "types.h"
+#include "math.h"
 
 /*
     Generated from dpostproc
@@ -43,8 +44,32 @@ namespace JStudio {
  * @note Address: N/A
  * @note Size: 0x158
  */
-void math::getRotation_xyz(MtxP, f32, f32, f32)
+void math::getRotation_xyz(MtxP mtx, f32 x, f32 y, f32 z)
 {
+	f32 cosx     = cos(x * 0.017453292f);
+	f32 sinx     = sin(x * 0.017453292f);
+	f32 cosy     = cos(y * 0.017453292f);
+	f32 siny     = sin(y * 0.017453292f);
+	f32 cosz     = cos(z * 0.017453292f);
+	f32 sinz     = sin(z * 0.017453292f);
+	f32 cosxcosz = cosx * cosz;
+	f32 cosxsinz = cosx * sinz;
+	f32 sinxcosz = sinx * cosz;
+	f32 sinxsinz = sinx * sinz;
+
+	mtx[0][0] = cosy * cosz;
+	mtx[1][0] = cosy * sinz;
+	mtx[2][0] = -siny;
+	mtx[2][1] = sinx * cosy;
+	mtx[2][2] = cosx * cosy;
+	mtx[0][1] = ((sinxcosz * siny) - cosxsinz);
+	mtx[0][2] = (sinxsinz + (cosxcosz * siny));
+	mtx[1][1] = (cosxcosz + (sinxsinz * siny));
+	mtx[1][2] = (((cosxsinz)*siny) - sinxcosz);
+	mtx[0][3] = 0.0f;
+	mtx[1][3] = 0.0f;
+	mtx[2][3] = 0.0f;
+
 	// UNUSED FUNCTION
 }
 
@@ -52,8 +77,13 @@ void math::getRotation_xyz(MtxP, f32, f32, f32)
  * @note Address: 0x80010FC4
  * @note Size: 0x1B0
  */
-void math::getTransformation_SRxyzT(MtxP, Vec const&, Vec const&, Vec const&)
+void math::getTransformation_SRxyzT(MtxP mtx, const Vec& scale, const Vec& rotation, const Vec& translation)
 {
+	Mtx scaleMtx;
+	PSMTXScale(scaleMtx, scale.x, scale.y, scale.z);
+	Mtx tempMtx;
+	rotate_xyz(scaleMtx, tempMtx, rotation);
+	PSMTXTransApply(tempMtx, mtx, translation.x, translation.y, translation.z);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x110(r1)
