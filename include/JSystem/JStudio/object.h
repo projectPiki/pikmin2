@@ -17,9 +17,10 @@ struct TIDData {
 
 	~TIDData() { } // unused/inlined
 
-	static bool isEqual(TIDData const&, TIDData const&);
 	inline const void* getID() const { return mIDString; }
 	inline u32 getIDSize() const { return mLength; }
+
+	static bool isEqual(TIDData const&, TIDData const&);
 
 	const void* mIDString; // _00
 	u32 mLength;           // _04, in bytes
@@ -31,21 +32,20 @@ struct TObject_ID : public TIDData {
 	{
 	}
 
-	// inline virtual ~TObject_ID() {}; // _08
 	~TObject_ID() { } // unused/inlined
 
 	// _00-_08 = TIData
 };
 
-struct TPRObject_ID_equal : TIDData {
-	/** @fabricated */
+struct TPRObject_ID_equal : public TIDData {
 	TPRObject_ID_equal(const void* id, u32 length)
 	    : TIDData(id, length)
 	{
 	}
 
-	/** @fabricated */
 	bool operator()(TIDData const& other) const { return isEqual(other, *this); }
+
+	// _00-_08 = TIDData
 };
 
 } // namespace object

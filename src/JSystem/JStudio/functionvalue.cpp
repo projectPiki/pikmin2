@@ -430,304 +430,98 @@ f64 TFunctionValue_composite::composite_index(const JGadget::TVector_pointer<JSt
  * @note Address: 0x80008ED8
  * @note Size: 0x68
  */
-f64 TFunctionValue_composite::composite_parameter(const JGadget::TVector_pointer<JStudio::TFunctionValue*>& p1,
-                                                  const JStudio::TFunctionValue_composite::TData& data, f64 p3)
+f64 TFunctionValue_composite::composite_parameter(const JGadget::TVector_pointer<JStudio::TFunctionValue*>& p1, const TData& data, f64 p3)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfd       f0, 0x0(r4)
-	  stw       r0, 0x14(r1)
-	  lwz       r4, 0x8(r3)
-	  fsub      f1, f1, f0
-	  lwz       r0, 0x4(r3)
-	  stw       r4, 0xC(r1)
-	  stw       r0, 0x8(r1)
-	  b         .loc_0x48
-
-	.loc_0x28:
-	  lwz       r4, 0x8(r1)
-	  lwz       r3, 0x0(r4)
-	  addi      r0, r4, 0x4
-	  stw       r0, 0x8(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x48:
-	  lwz       r3, 0x8(r1)
-	  lwz       r0, 0xC(r1)
-	  cmplw     r3, r0
-	  bne+      .loc_0x28
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	f64 value = p3 - data.getAsDouble();
+	JGadget::TContainerEnumerator_const_TVector<TFunctionValue*> container(p1);
+	while (container) {
+		TFunctionValue* const* fvPtr = *container;
+		TFunctionValue* funcVal      = *fvPtr;
+		value                        = funcVal->getValue(value);
+	}
+	return value;
 }
 
 /**
  * @note Address: 0x80008F40
  * @note Size: 0x84
  */
-f64 TFunctionValue_composite::composite_add(const JGadget::TVector_pointer<JStudio::TFunctionValue*>&,
-                                            const JStudio::TFunctionValue_composite::TData&, f64)
+f64 TFunctionValue_composite::composite_add(const JGadget::TVector_pointer<JStudio::TFunctionValue*>& p1, const TData& data, f64 p3)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lwz       r5, 0x8(r3)
-	  stw       r0, 0x24(r1)
-	  lwz       r0, 0x4(r3)
-	  stfd      f31, 0x18(r1)
-	  lfd       f31, 0x0(r4)
-	  stfd      f30, 0x10(r1)
-	  fmr       f30, f1
-	  stw       r5, 0xC(r1)
-	  stw       r0, 0x8(r1)
-	  b         .loc_0x58
-
-	.loc_0x30:
-	  lwz       r4, 0x8(r1)
-	  fmr       f1, f30
-	  lwz       r3, 0x0(r4)
-	  addi      r0, r4, 0x4
-	  stw       r0, 0x8(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  fadd      f31, f31, f1
-
-	.loc_0x58:
-	  lwz       r3, 0x8(r1)
-	  lwz       r0, 0xC(r1)
-	  cmplw     r3, r0
-	  bne+      .loc_0x30
-	  lwz       r0, 0x24(r1)
-	  fmr       f1, f31
-	  lfd       f31, 0x18(r1)
-	  lfd       f30, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	f64 value = data.getAsDouble();
+	JGadget::TContainerEnumerator_const_TVector<TFunctionValue*> container(p1);
+	while (container) {
+		TFunctionValue* const* fvPtr = *container;
+		TFunctionValue* funcVal      = *fvPtr;
+		value += funcVal->getValue(p3);
+	}
+	return value;
 }
 
 /**
  * @note Address: 0x80008FC4
  * @note Size: 0xE8
  */
-f64 TFunctionValue_composite::composite_subtract(const JGadget::TVector_pointer<JStudio::TFunctionValue*>&,
-                                                 const JStudio::TFunctionValue_composite::TData&, f64)
+f64 TFunctionValue_composite::composite_subtract(const JGadget::TVector_pointer<JStudio::TFunctionValue*>& p1, const TData& data, f64 p3)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lwz       r5, 0x4(r3)
-	  stw       r0, 0x34(r1)
-	  cmplwi    r5, 0
-	  stfd      f31, 0x28(r1)
-	  stfd      f30, 0x20(r1)
-	  fmr       f30, f1
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  bne-      .loc_0x34
-	  li        r0, 0
-	  b         .loc_0x44
+	u32 size = p1.size();
+	if (size == 0) {
+		return 0.0;
+	}
 
-	.loc_0x34:
-	  lwz       r0, 0x8(r3)
-	  sub       r0, r0, r5
-	  srawi     r0, r0, 0x2
-	  addze     r0, r0
+	JGadget::TContainerEnumerator_const_TVector<TFunctionValue*> container(p1);
+	TFunctionValue* const* start = *container;
+	TFunctionValue* front        = *start;
+	f64 value                    = front->getValue(p3);
+	while (container) {
+		TFunctionValue* const* fvPtr = *container;
+		TFunctionValue* funcVal      = *fvPtr;
+		value -= funcVal->getValue(p3);
+	}
 
-	.loc_0x44:
-	  cmplwi    r0, 0
-	  bne-      .loc_0x54
-	  lfd       f1, -0x7FC0(r2)
-	  b         .loc_0xCC
-
-	.loc_0x54:
-	  lwz       r4, 0x8(r3)
-	  fmr       f1, f30
-	  lwz       r3, 0x0(r5)
-	  addi      r0, r5, 0x4
-	  stw       r5, 0x8(r1)
-	  lwz       r12, 0x0(r3)
-	  stw       r4, 0xC(r1)
-	  lwz       r12, 0x1C(r12)
-	  stw       r0, 0x8(r1)
-	  mtctr     r12
-	  bctrl
-	  fmr       f31, f1
-	  b         .loc_0xB0
-
-	.loc_0x88:
-	  lwz       r4, 0x8(r1)
-	  fmr       f1, f30
-	  lwz       r3, 0x0(r4)
-	  addi      r0, r4, 0x4
-	  stw       r0, 0x8(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  fsub      f31, f31, f1
-
-	.loc_0xB0:
-	  lwz       r3, 0x8(r1)
-	  lwz       r0, 0xC(r1)
-	  cmplw     r3, r0
-	  bne+      .loc_0x88
-	  lfd       f0, 0x0(r31)
-	  fsub      f31, f31, f0
-	  fmr       f1, f31
-
-	.loc_0xCC:
-	  lwz       r0, 0x34(r1)
-	  lfd       f31, 0x28(r1)
-	  lfd       f30, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
+	value -= data.getAsDouble();
+	return value;
 }
 
 /**
  * @note Address: 0x800090AC
  * @note Size: 0x84
  */
-f64 TFunctionValue_composite::composite_multiply(const JGadget::TVector_pointer<JStudio::TFunctionValue*>&,
-                                                 const JStudio::TFunctionValue_composite::TData&, f64)
+f64 TFunctionValue_composite::composite_multiply(const JGadget::TVector_pointer<JStudio::TFunctionValue*>& p1, const TData& data, f64 p3)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lwz       r5, 0x8(r3)
-	  stw       r0, 0x24(r1)
-	  lwz       r0, 0x4(r3)
-	  stfd      f31, 0x18(r1)
-	  lfd       f31, 0x0(r4)
-	  stfd      f30, 0x10(r1)
-	  fmr       f30, f1
-	  stw       r5, 0xC(r1)
-	  stw       r0, 0x8(r1)
-	  b         .loc_0x58
-
-	.loc_0x30:
-	  lwz       r4, 0x8(r1)
-	  fmr       f1, f30
-	  lwz       r3, 0x0(r4)
-	  addi      r0, r4, 0x4
-	  stw       r0, 0x8(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  fmul      f31, f31, f1
-
-	.loc_0x58:
-	  lwz       r3, 0x8(r1)
-	  lwz       r0, 0xC(r1)
-	  cmplw     r3, r0
-	  bne+      .loc_0x30
-	  lwz       r0, 0x24(r1)
-	  fmr       f1, f31
-	  lfd       f31, 0x18(r1)
-	  lfd       f30, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	f64 value = data.getAsDouble();
+	JGadget::TContainerEnumerator_const_TVector<TFunctionValue*> container(p1);
+	while (container) {
+		TFunctionValue* const* fvPtr = *container;
+		TFunctionValue* funcVal      = *fvPtr;
+		value *= funcVal->getValue(p3);
+	}
+	return value;
 }
 
 /**
  * @note Address: 0x80009130
  * @note Size: 0xE8
  */
-f64 TFunctionValue_composite::composite_divide(const JGadget::TVector_pointer<JStudio::TFunctionValue*>&,
-                                               const JStudio::TFunctionValue_composite::TData&, f64)
+f64 TFunctionValue_composite::composite_divide(const JGadget::TVector_pointer<JStudio::TFunctionValue*>& p1, const TData& data, f64 p3)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lwz       r5, 0x4(r3)
-	  stw       r0, 0x34(r1)
-	  cmplwi    r5, 0
-	  stfd      f31, 0x28(r1)
-	  stfd      f30, 0x20(r1)
-	  fmr       f30, f1
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  bne-      .loc_0x34
-	  li        r0, 0
-	  b         .loc_0x44
+	u32 size = p1.size();
+	if (size == 0) {
+		return 0.0;
+	}
 
-	.loc_0x34:
-	  lwz       r0, 0x8(r3)
-	  sub       r0, r0, r5
-	  srawi     r0, r0, 0x2
-	  addze     r0, r0
+	JGadget::TContainerEnumerator_const_TVector<TFunctionValue*> container(p1);
+	TFunctionValue* const* start = *container;
+	TFunctionValue* front        = *start;
+	f64 value                    = front->getValue(p3);
+	while (container) {
+		TFunctionValue* const* fvPtr = *container;
+		TFunctionValue* funcVal      = *fvPtr;
+		value /= funcVal->getValue(p3);
+	}
 
-	.loc_0x44:
-	  cmplwi    r0, 0
-	  bne-      .loc_0x54
-	  lfd       f1, -0x7FC0(r2)
-	  b         .loc_0xCC
-
-	.loc_0x54:
-	  lwz       r4, 0x8(r3)
-	  fmr       f1, f30
-	  lwz       r3, 0x0(r5)
-	  addi      r0, r5, 0x4
-	  stw       r5, 0x8(r1)
-	  lwz       r12, 0x0(r3)
-	  stw       r4, 0xC(r1)
-	  lwz       r12, 0x1C(r12)
-	  stw       r0, 0x8(r1)
-	  mtctr     r12
-	  bctrl
-	  fmr       f31, f1
-	  b         .loc_0xB0
-
-	.loc_0x88:
-	  lwz       r4, 0x8(r1)
-	  fmr       f1, f30
-	  lwz       r3, 0x0(r4)
-	  addi      r0, r4, 0x4
-	  stw       r0, 0x8(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  fdiv      f31, f31, f1
-
-	.loc_0xB0:
-	  lwz       r3, 0x8(r1)
-	  lwz       r0, 0xC(r1)
-	  cmplw     r3, r0
-	  bne+      .loc_0x88
-	  lfd       f0, 0x0(r31)
-	  fdiv      f31, f31, f0
-	  fmr       f1, f31
-
-	.loc_0xCC:
-	  lwz       r0, 0x34(r1)
-	  lfd       f31, 0x28(r1)
-	  lfd       f30, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
+	value /= data.getAsDouble();
+	return value;
 }
 
 /**
@@ -1391,7 +1185,6 @@ void TFunctionValue_list_parameter::prepare()
 f64 TFunctionValue_list_parameter::getValue(f64 p1)
 {
 	p1 = range_getParameter(p1, data_getValue_front(), data_getValue_back());
-	// JUT_ASSERT(1395, pfData_!=0)
 
 	mData3 = JGadget::findUpperBound_binary_current(mData1, mData2, mData3, p1);
 	if (mData3 == mData1) {

@@ -1,6 +1,6 @@
 #include "types.h"
 #include "JSystem/JGadget/binary.h"
-#include "JSystem/JStudio/fvb/fvb-data.h"
+#include "JSystem/JStudio/fvb-data-parse.h"
 
 namespace JStudio {
 namespace fvb {
@@ -11,14 +11,14 @@ namespace data {
  */
 void TParse_TParagraph::getData(TParse_TParagraph::TData* data) const
 {
-	u16* parse = (u16*)JGadget::binary::parseVariableUInt_16_32_following(fvbData, (u32*)data, (u32*)&data->param, 0);
-	u32 t      = (u32)data->type;
+	u16* parse = (u16*)JGadget::binary::parseVariableUInt_16_32_following(mRaw, (u32*)data, (u32*)&data->mType, 0);
+	u32 t      = (u32)data->mSize;
 	if (!t) {
-		data->content = nullptr;
-		data->next    = parse;
+		data->mContent = nullptr;
+		data->mNext    = parse;
 	} else {
-		data->content = parse;
-		data->next    = parse + ((t + 3) >> 1 & ~1);
+		data->mContent = parse;
+		data->mNext    = parse + ((t + 3) >> 1 & ~1);
 	}
 }
 

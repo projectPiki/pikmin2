@@ -1,135 +1,18 @@
-#include "JSystem/JStudio/fvb/fvb.h"
-#include "JSystem/JStudio/fvb/functionvalue.h"
+#include "JSystem/JStudio/fvb.h"
+#include "JSystem/JStudio/functionvalue.h"
 #include "JSystem/JStudio/object.h"
+#include "stl/mem.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global "saCompositeOperation___Q37JStudio3fvb17@unnamed@fvb_cpp@"
-    "saCompositeOperation___Q37JStudio3fvb17@unnamed@fvb_cpp@":
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte
-   "composite_raw__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
-        .4byte "getCompositeData_raw___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
-        .4byte
-   "composite_index__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
-        .4byte "getCompositeData_index___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
-        .4byte
-   "composite_parameter__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
-        .4byte
-   "getCompositeData_parameter___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv" .4byte
-   "composite_add__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
-        .4byte "getCompositeData_add___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
-        .4byte
-   "composite_subtract__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
-        .4byte
-   "getCompositeData_subtract___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv" .4byte
-   "composite_multiply__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
-        .4byte
-   "getCompositeData_multiply___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv" .4byte
-   "composite_divide__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
-        .4byte "getCompositeData_divide___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_8049E548
-    lbl_8049E548:
-        .4byte lbl_8000BD3C
-        .4byte lbl_8000BBE4
-        .4byte lbl_8000BD30
-        .4byte lbl_8000BD30
-        .4byte lbl_8000BD30
-        .4byte lbl_8000BD30
-        .4byte lbl_8000BD30
-        .4byte lbl_8000BD30
-        .4byte lbl_8000BD30
-        .4byte lbl_8000BD30
-        .4byte lbl_8000BD30
-        .4byte lbl_8000BD30
-        .4byte lbl_8000BD30
-        .4byte lbl_8000BD30
-        .4byte lbl_8000BD30
-        .4byte lbl_8000BD30
-        .4byte lbl_8000BC04
-        .4byte lbl_8000BC6C
-        .4byte lbl_8000BCC0
-        .4byte lbl_8000BCDC
-        .4byte lbl_8000BCF0
-        .4byte lbl_8000BD04
-        .4byte lbl_8000BD20
-    .global __vt__Q37JStudio3fvb6TParse
-    __vt__Q37JStudio3fvb6TParse:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q37JStudio3fvb6TParseFv
-        .4byte parseHeader_next__Q37JStudio3fvb6TParseFPPCvPUlUl
-        .4byte parseBlock_next__Q37JStudio3fvb6TParseFPPCvPUlUl
-    .global __vt__Q37JStudio3fvb8TFactory
-    __vt__Q37JStudio3fvb8TFactory:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q37JStudio3fvb8TFactoryFv
-        .4byte
-   create__Q37JStudio3fvb8TFactoryFRCQ47JStudio3fvb4data13TParse_TBlock .4byte
-   destroy__Q37JStudio3fvb8TFactoryFPQ37JStudio3fvb7TObject .global
-   __vt__Q37JStudio3fvb8TControl
-    __vt__Q37JStudio3fvb8TControl:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q37JStudio3fvb8TControlFv
-    .global __vt__Q37JStudio3fvb15TObject_hermite
-    __vt__Q37JStudio3fvb15TObject_hermite:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q37JStudio3fvb15TObject_hermiteFv
-        .4byte
-   prepare_data___Q37JStudio3fvb15TObject_hermiteFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
-    .global __vt__Q37JStudio3fvb22TObject_list_parameter
-    __vt__Q37JStudio3fvb22TObject_list_parameter:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q37JStudio3fvb22TObject_list_parameterFv
-        .4byte
-   prepare_data___Q37JStudio3fvb22TObject_list_parameterFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
-    .global __vt__Q37JStudio3fvb12TObject_list
-    __vt__Q37JStudio3fvb12TObject_list:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q37JStudio3fvb12TObject_listFv
-        .4byte
-   prepare_data___Q37JStudio3fvb12TObject_listFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
-    .global __vt__Q37JStudio3fvb18TObject_transition
-    __vt__Q37JStudio3fvb18TObject_transition:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q37JStudio3fvb18TObject_transitionFv
-        .4byte
-   prepare_data___Q37JStudio3fvb18TObject_transitionFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
-    .global __vt__Q37JStudio3fvb16TObject_constant
-    __vt__Q37JStudio3fvb16TObject_constant:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q37JStudio3fvb16TObject_constantFv
-        .4byte
-   prepare_data___Q37JStudio3fvb16TObject_constantFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
-    .global __vt__Q37JStudio3fvb17TObject_composite
-    __vt__Q37JStudio3fvb17TObject_composite:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q37JStudio3fvb17TObject_compositeFv
-        .4byte
-   prepare_data___Q37JStudio3fvb17TObject_compositeFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
-    .global __vt__Q37JStudio3fvb7TObject
-    __vt__Q37JStudio3fvb7TObject:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-*/
+typedef const void* (*CompositeOperation)(JStudio::TFunctionValue_composite::TData);
 
 namespace JStudio {
 namespace fvb {
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x48
+ */
+TObject::~TObject() { }
 
 /**
  * @note Address: 0x8000BB48
@@ -137,81 +20,126 @@ namespace fvb {
  */
 void TObject::prepare(const JStudio::fvb::data::TParse_TBlock& block, JStudio::fvb::TControl* control)
 {
-	TFunctionValueAttribute_range* attr;
-	JStudio::TFunctionValueAttributeSet set = pfv->getAttributeSet();
-	const void* file                        = block.file;
-	int a                                   = *(int*)file;
-	int m                                   = ((int)file + (*(u16*)((int)file + 6) + 3 & 0xfffffffc) + 8);
-	while (true) {
-		data::TParse_TParagraph paragraph = *(data::TParse_TParagraph*)m;
-		data::TParse_TParagraph::TData data;
-		paragraph.getData(&data);
-		const void* m = data.next;
-		switch (*data.param) {
-		case 0:
-			pfv->prepare();
-			return;
-		case 1:
-			prepare_data_(data, control);
-			m = data.next;
-			break;
-		case 0x10:
-			// this is supposed to check something but i have no clue what its
-			// doing
-			if (true) {
-				int* content = (int*)data.content;
-				for (int i = *(int*)data.content; i != 0; i--) {
-					m            = data.next;
-					int j        = content[1];
-					TObject* obj = control->getObject(content + 2, j);
-					if (obj) {
-						// JGadget::TVector_pointer_void::insert();
-					}
-					content = (int*)((j + 3 & 0xfffffffc) + (int)(content + 1));
-				}
-			}
-			break;
-		case 0x11:
-			// this is supposed to check something but i have no clue what its
-			// doing
-			if (true) {
-				int* j = (int*)data.content;
-				for (int i = *(int*)data.content; i != 0; i--) {
-					j++;
-					m            = data.next;
-					TObject* obj = control->getObject_index(*j);
-					if (obj) {
-						TFunctionValue* value = obj->pfv;
-						// JGadget::TVector_pointer_void::insert();
-					}
-				}
-			}
-		case 0x12:
-			if (attr) {
-				f32* fdata = (f32*)data.content;
 
-				attr->range_set(*fdata, fdata[1]);
-				m = data.next;
+	TFunctionValueAttributeSet set = mBaseFV->getAttributeSet();
+	const void* pNext              = block.getNext();
+	const void* pData              = block.getContent();
+
+	while (pData < pNext) {
+		data::TParse_TParagraph para(pData);
+		data::TParse_TParagraph::TData dat;
+		para.getData(&dat);
+		u32 u32Type          = dat.mType;
+		u32 u32Size          = dat.mSize;
+		const void* pContent = dat.mContent;
+		switch (u32Type) {
+		case 0:
+			// mFVConstant->prepare();
+			// return;
+		case 1:
+			prepare_data_(dat, control);
+			break;
+		case 0x10: {
+
+			TFunctionValueAttribute_refer* pfvaRefer = set.refer_get();
+			if (pfvaRefer) {
+				JGadget::TVector_pointer<TFunctionValue*>& rCnt = pfvaRefer->refer_referContainer();
+				data::TParse_TParagraph::TData** pBegin         = (data::TParse_TParagraph::TData**)rCnt.mBegin;
+				// todo: these definitely use a different struct
+				for (data::TParse_TParagraph::TData* i = *pBegin; i != nullptr; i = *pBegin) {
+					TObject* pObject = control->getObject(pContent, i->mType);
+					if (pObject == nullptr) {
+
+					} else {
+						TFunctionValue* const& rfv = pObject->referFunctionValue();
+						rCnt.push_back(rfv);
+					}
+					*pBegin += align_roundUp(i->mType, 4);
+				}
 			}
-		case 0x13:
-			if (attr) {
-				attr->mProgress = *(s8*)data.content;
+		} break;
+		case 0x11: {
+
+			TFunctionValueAttribute_refer* pfvaRefer = set.refer_get();
+
+			if (pfvaRefer == nullptr) {
+
+			} else {
+				JGadget::TVector_pointer<TFunctionValue*>& rCnt = pfvaRefer->refer_referContainer();
+				data::TParse_TParagraph::TData** pBegin         = (data::TParse_TParagraph::TData**)rCnt.mBegin;
+				for (data::TParse_TParagraph::TData* i = *pBegin; i != nullptr; i = *pBegin) {
+					TObject* pObject = control->getObject_index(u32Size);
+					if (pObject == nullptr) {
+
+					} else {
+						TFunctionValue* const& rfv = pObject->referFunctionValue();
+						rCnt.push_back(rfv);
+					}
+					*pBegin += align_roundUp(i->mType, 4);
+				}
 			}
-		case 0x14:
-			if (attr) {
-				attr->mAdjust = *(s8*)data.content;
+		} break;
+		case 0x12: {
+
+			TFunctionValueAttribute_range* pfvaRange = set.range_get();
+
+			if (pfvaRange == nullptr) {
+
+			} else {
+				f64* arr = (f64*)pContent;
+				pfvaRange->range_set(arr[0], arr[1]);
 			}
-		case 0x15:
-			if (attr) {
-				// attr->mBegin = (TFunctionValue::TEOutside)(data.content[0]);
-				// attr->mEnd   = (TFunctionValue::TEOutside)(data.content[1]);
+		} break;
+		case 0x13: {
+
+			TFunctionValueAttribute_range* pfvaRange = set.range_get();
+
+			if (pfvaRange == nullptr) {
+
+			} else {
+				TFunctionValue::TEProgress prog = *(TFunctionValue::TEProgress*)pContent;
+				pfvaRange->range_setProgress(prog);
 			}
-		case 0x16:
-			if (attr) {
-				// idk = *data.content;
+		} break;
+		case 0x14: {
+
+			TFunctionValueAttribute_range* pfvaRange = set.range_get();
+
+			if (pfvaRange == nullptr) {
+
+			} else {
+				TFunctionValue::TEAdjust adjust = *(TFunctionValue::TEAdjust*)pContent;
+				pfvaRange->range_setAdjust(adjust);
 			}
+		} break;
+		case 0x15: {
+
+			TFunctionValueAttribute_range* pfvaRange = set.range_get();
+
+			if (pfvaRange == nullptr) {
+
+			} else {
+				TFunctionValue::TEOutside* out = (TFunctionValue::TEOutside*)pContent;
+				pfvaRange->range_setOutside(out[0], out[1]);
+			}
+		} break;
+		case 0x16: {
+
+			TFunctionValueAttribute_interpolate* pfvaInterpolate = set.interpolate_get();
+
+			if (pfvaInterpolate == nullptr) {
+
+			} else {
+				TFunctionValue::TEInterpolate interp = *(TFunctionValue::TEInterpolate*)pContent;
+				pfvaInterpolate->interpolate_set(interp);
+			}
+		} break;
+		default:
+			break;
 		}
 	}
+
+	mBaseFV->prepare();
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x60(r1)
@@ -370,97 +298,76 @@ void TObject::prepare(const JStudio::fvb::data::TParse_TBlock& block, JStudio::f
 	*/
 }
 
+namespace {
+
 /**
  * @note Address: 0x8000BD64
  * @note Size: 0xC
  */
-void getCompositeData_raw_(const void*)
-{
-
-	/*
-lwz      r0, 0(r4)
-stw      r0, 0(r3)
-blr
-	*/
-}
+TFunctionValue_composite::TData getCompositeData_raw_(const void* data) { return TFunctionValue_composite::TData(*(const void**)data); }
 
 /**
  * @note Address: 0x8000BD70
  * @note Size: 0xC
  */
-void getCompositeData_index_(const void*)
-{
-	/*
-lwz      r0, 0(r4)
-stw      r0, 0(r3)
-blr
-	*/
-}
+TFunctionValue_composite::TData getCompositeData_index_(const void* data) { return TFunctionValue_composite::TData(*(u32*)data); }
 
 /**
  * @note Address: 0x8000BD7C
  * @note Size: 0xC
  */
-void getCompositeData_parameter_(const void*)
-{
-	/*
-	.loc_0x0:
-	  lfs       f0, 0x0(r4)
-	  stfd      f0, 0x0(r3)
-	  blr
-	*/
-}
+TFunctionValue_composite::TData getCompositeData_parameter_(const void* data) { return TFunctionValue_composite::TData(*(f32*)data); }
 
 /**
  * @note Address: 0x8000BD88
  * @note Size: 0xC
  */
-void getCompositeData_add_(const void*)
-{
-	/*
-lfs      f0, 0(r4)
-stfd     f0, 0(r3)
-blr
-	*/
-}
+TFunctionValue_composite::TData getCompositeData_add_(const void* data) { return TFunctionValue_composite::TData(*(f32*)data); }
 
 /**
  * @note Address: 0x8000BD94
  * @note Size: 0xC
  */
-void getCompositeData_subtract_(const void*)
-{
-	/*
-lfs      f0, 0(r4)
-stfd     f0, 0(r3)
-blr
-	*/
-}
+TFunctionValue_composite::TData getCompositeData_subtract_(const void* data) { return TFunctionValue_composite::TData(*(f32*)data); }
 
 /**
  * @note Address: 0x8000BDA0
  * @note Size: 0xC
  */
-void getCompositeData_multiply_(const void*)
-{
-	/*
-lfs      f0, 0(r4)
-stfd     f0, 0(r3)
-blr
-	*/
-}
+TFunctionValue_composite::TData getCompositeData_multiply_(const void* data) { return TFunctionValue_composite::TData(*(f32*)data); }
 
 /**
  * @note Address: 0x8000BDAC
  * @note Size: 0xC
  */
-void getCompositeData_divide_(const void*)
+TFunctionValue_composite::TData getCompositeData_divide_(const void* data) { return TFunctionValue_composite::TData(*(f32*)data); }
+
+static const CompositeOperation saCompositeOperation_[data::COMPOSITE_ENUM_SIZE] = {
+	{ nullptr, nullptr },                                                             // COMPOSITE_NONE
+	{ &TFunctionValue_composite::composite_raw, &getCompositeData_raw_ },             // COMPOSITE_RAW
+	{ &TFunctionValue_composite::composite_index, &getCompositeData_index_ },         // COMPOSITE_IDX
+	{ &TFunctionValue_composite::composite_parameter, &getCompositeData_parameter_ }, // COMPOSITE_PARAM
+	{ &TFunctionValue_composite::composite_add, &getCompositeData_add_ },             // COMPOSITE_ADD
+	{ &TFunctionValue_composite::composite_subtract, &getCompositeData_subtract_ },   // COMPOSITE_SUB
+	{ &TFunctionValue_composite::composite_multiply, &getCompositeData_multiply_ },   // COMPOSITE_MUL
+	{ &TFunctionValue_composite::composite_divide, &getCompositeData_divide_ },       // COMPOSITE_DIV
+};
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x14
+ */
+const CompositeOperation* getCompositeOperation_(data::TEComposite type) { return &saCompositeOperation_[type]; }
+
+} // namespace
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x80
+ */
+TObject_composite::TObject_composite(const data::TParse_TBlock& block)
+    : TObject(block, &mSpecFV)
 {
-	/*
-lfs      f0, 0(r4)
-stfd     f0, 0(r3)
-blr
-	*/
 }
 
 /**
@@ -468,8 +375,12 @@ blr
  * @note Size: 0x6C
  */
 
-void TObject_composite::prepare_data_(const JStudio::fvb::data::TParse_TParagraph::TData&, JStudio::fvb::TControl*)
+void TObject_composite::prepare_data_(const data::TParse_TParagraph::TData& data, TControl* control)
 {
+	const TFunctionValue_composite* content = static_cast<const TFunctionValue_composite*>(data.mContent);
+	const CompositeOperation* ops           = getCompositeOperation_(*(JStudio::fvb::data::TEComposite*)content);
+
+	mSpecFV.data_set(ops->mSetFunc, ops->mGetFunc(&content->_00));
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -503,102 +414,101 @@ void TObject_composite::prepare_data_(const JStudio::fvb::data::TParse_TParagrap
 }
 
 /**
+ * @note Address: N/A
+ * @note Size: 0x80
+ */
+TObject_constant::TObject_constant(const data::TParse_TBlock& block)
+    : TObject(block, &mSpecFV)
+{
+}
+
+/**
  * @note Address: 0x8000BE24
  * @note Size: 0x10
  */
-void TObject_constant::prepare_data_(const JStudio::fvb::data::TParse_TParagraph::TData&, JStudio::fvb::TControl*)
+void TObject_constant::prepare_data_(const data::TParse_TParagraph::TData& data, TControl* control)
 {
-	/*
-	.loc_0x0:
-	  lwz       r4, 0x8(r4)
-	  lfs       f0, 0x0(r4)
-	  stfd      f0, 0x20(r3)
-	  blr
-	*/
+	const f32* content = static_cast<const f32*>(data.mContent);
+	mSpecFV.data_set(content[0]);
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x80
+ */
+TObject_transition::TObject_transition(const data::TParse_TBlock& block)
+    : TObject(block, &mSpecFV)
+{
 }
 
 /**
  * @note Address: 0x8000BE34
  * @note Size: 0x18
  */
-void TObject_transition::prepare_data_(const JStudio::fvb::data::TParse_TParagraph::TData&, JStudio::fvb::TControl*)
+void TObject_transition::prepare_data_(const data::TParse_TParagraph::TData& data, TControl* control)
 {
-	/*
-	.loc_0x0:
-	  lwz       r4, 0x8(r4)
-	  lfs       f1, 0x4(r4)
-	  lfs       f0, 0x0(r4)
-	  stfd      f0, 0x60(r3)
-	  stfd      f1, 0x68(r3)
-	  blr
-	*/
+	const f32* content = static_cast<const f32*>(data.mContent);
+	mSpecFV.data_set(content[0], content[1]);
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x80
+ */
+TObject_list::TObject_list(const data::TParse_TBlock& block)
+    : TObject(block, &mSpecFV)
+{
 }
 
 /**
  * @note Address: 0x8000BE4C
  * @note Size: 0x20
  */
-void TObject_list::prepare_data_(const JStudio::fvb::data::TParse_TParagraph::TData&, JStudio::fvb::TControl*)
+void TObject_list::prepare_data_(const data::TParse_TParagraph::TData& data, TControl* control)
 {
-	/*
-	.loc_0x0:
-	  lwz       r4, 0x8(r4)
-	  lfs       f0, 0x0(r4)
-	  addi      r0, r4, 0x8
-	  stfd      f0, 0x68(r3)
-	  lwz       r4, 0x4(r4)
-	  stw       r0, 0x5C(r3)
-	  stw       r4, 0x60(r3)
-	  blr
-	*/
+	const TData* content = static_cast<const TData*>(data.mContent);
+	mSpecFV.data_setInterval(content->_00);
+	mSpecFV.data_set(content->_08, content->_04);
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x80
+ */
+TObject_list_parameter::TObject_list_parameter(const data::TParse_TBlock& block)
+    : TObject(block, &mSpecFV)
+{
 }
 
 /**
  * @note Address: 0x8000BE6C
  * @note Size: 0x30
  */
-void TObject_list_parameter::prepare_data_(const JStudio::fvb::data::TParse_TParagraph::TData&, JStudio::fvb::TControl*)
+void TObject_list_parameter::prepare_data_(const data::TParse_TParagraph::TData& data, TControl* control)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lwz       r4, 0x8(r4)
-	  addi      r3, r3, 0x18
-	  stw       r0, 0x14(r1)
-	  lwz       r5, 0x0(r4)
-	  addi      r4, r4, 0x4
-	  bl        -0x1EA0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	const TData* content = static_cast<const TData*>(data.mContent);
+
+	mSpecFV.data_set(content->_04, content->_00);
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x80
+ */
+TObject_hermite::TObject_hermite(const data::TParse_TBlock& block)
+    : TObject(block, &mSpecFV)
+{
 }
 
 /**
  * @note Address: 0x8000BE9C
  * @note Size: 0x38
  */
-void TObject_hermite::prepare_data_(const JStudio::fvb::data::TParse_TParagraph::TData&, JStudio::fvb::TControl*)
+void TObject_hermite::prepare_data_(const data::TParse_TParagraph::TData& data, TControl* control)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lwz       r4, 0x8(r4)
-	  addi      r3, r3, 0x18
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x0(r4)
-	  addi      r4, r4, 0x4
-	  rlwinm    r5,r0,0,4,31
-	  rlwinm    r6,r0,4,28,31
-	  bl        -0x11A0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	const TData* content = static_cast<const TData*>(data.mContent);
+
+	mSpecFV.data_set(content->_04, content->_00 & 0xFFFFFFF, content->_00 >> 0x1C);
 }
 
 /**
@@ -606,173 +516,52 @@ void TObject_hermite::prepare_data_(const JStudio::fvb::data::TParse_TParagraph:
  * @note Size: 0x30
  */
 TControl::TControl()
+    : mFactory(nullptr)
 {
-	/*
-lis      r4, __vt__Q37JStudio3fvb8TControl@ha
-addi     r0, r4, __vt__Q37JStudio3fvb8TControl@l
-stw      r0, 0(r3)
-li       r4, 0
-addi     r0, r3, 0xc
-stw      r4, 4(r3)
-stw      r4, 0xc(r3)
-stw      r4, 0x10(r3)
-stw      r4, 8(r3)
-stw      r0, 0xc(r3)
-stw      r0, 0x10(r3)
-blr
-	*/
 }
 
 /**
  * @note Address: 0x8000BF04
  * @note Size: 0x6C
  */
-TControl::~TControl()
+TControl::~TControl() { }
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x50
+ */
+void TControl::appendObject(TObject* object)
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_8000BF54
-lis      r3, __vt__Q37JStudio3fvb8TControl@ha
-addic.   r0, r30, 8
-addi     r0, r3, __vt__Q37JStudio3fvb8TControl@l
-stw      r0, 0(r30)
-beq      lbl_8000BF44
-addi     r3, r30, 8
-li       r4, 0
-bl       __dt__Q27JGadget13TNodeLinkListFv
-
-lbl_8000BF44:
-extsh.   r0, r31
-ble      lbl_8000BF54
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_8000BF54:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	// UNUSED/INLINED
 }
 
 /**
  * @note Address: 0x8000BF70
  * @note Size: 0x94
  */
-TObject* TControl::getObject(void const*, u32)
+TObject* TControl::getObject(const void* id, u32 length)
 {
-	/*
-stwu     r1, -0x50(r1)
-mflr     r0
-stw      r0, 0x54(r1)
-addi     r0, r3, 0xc
-addi     r6, r1, 0x40
-lwz      r7, 0xc(r3)
-addi     r3, r1, 0x30
-stw      r0, 0x14(r1)
-stw      r4, 0x40(r1)
-addi     r4, r1, 0x2c
-stw      r5, 0x44(r1)
-addi     r5, r1, 0x28
-stw      r7, 0x1c(r1)
-stw      r7, 0x18(r1)
-stw      r7, 0x3c(r1)
-stw      r0, 0x10(r1)
-stw      r0, 0x38(r1)
-stw      r0, 0x28(r1)
-stw      r7, 0x2c(r1)
-bl
-"find_if<Q37JGadget37TLinkList<Q37JStudio3fvb7TObject,-12>8iterator,Q37JStudio6object18TPRObject_ID_equal>__3stdFQ37JGadget37TLinkList<Q37JStudio3fvb7TObject,-12>8iteratorQ37JGadget37TLinkList<Q37JStudio3fvb7TObject,-12>8iteratorQ37JStudio6object18TPRObject_ID_equal"
-lwz      r6, 0x30(r1)
-lwz      r5, 0x38(r1)
-stw      r6, 0x34(r1)
-addi     r0, r6, -12
-subf     r4, r5, r6
-subf     r3, r6, r5
-or       r3, r4, r3
-stw      r5, 0x24(r1)
-srawi    r3, r3, 0x1f
-stw      r6, 0x20(r1)
-and      r3, r0, r3
-stw      r5, 0xc(r1)
-stw      r6, 8(r1)
-lwz      r0, 0x54(r1)
-mtlr     r0
-addi     r1, r1, 0x50
-blr
-	*/
-}
+	JGadget::TLinkList<TObject, -12>::iterator start  = mObjectContainer.begin();
+	JGadget::TLinkList<TObject, -12>::iterator end    = mObjectContainer.end();
+	JGadget::TLinkList<TObject, -12>::iterator target = std::find_if(start, end, object::TPRObject_ID_equal(id, length));
 
-/**
- * @note Address: 0x8000C004
- * @note Size: 0x9C
- */
-void find_if(JGadget::TNodeLinkList::iterator, JGadget::TNodeLinkList::iterator, JStudio::object::TPRObject_ID_equal)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r6
-	  stw       r30, 0x28(r1)
-	  mr        r30, r5
-	  stw       r29, 0x24(r1)
-	  mr        r29, r4
-	  stw       r28, 0x20(r1)
-	  mr        r28, r3
-	  b         .loc_0x3C
+	// this needs to not inline later - probably an inline depth thing with iterators but Not Today :')
+	// clang-format off
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0;
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0;
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0;
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0;
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0;
+	// clang-format on
 
-	.loc_0x30:
-	  lwz       r3, 0x0(r29)
-	  lwz       r0, 0x0(r3)
-	  stw       r0, 0x0(r29)
-
-	.loc_0x3C:
-	  lwz       r3, 0x0(r30)
-	  lwz       r0, 0x0(r29)
-	  stw       r3, 0x14(r1)
-	  cmplw     r0, r3
-	  stw       r0, 0x10(r1)
-	  stw       r3, 0xC(r1)
-	  stw       r0, 0x8(r1)
-	  beq-      .loc_0x74
-	  lwz       r3, 0x0(r29)
-	  mr        r4, r31
-	  subi      r3, r3, 0xC
-	  bl        0x411C
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x30
-
-	.loc_0x74:
-	  lwz       r0, 0x0(r29)
-	  stw       r0, 0x0(r28)
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  lwz       r29, 0x24(r1)
-	  lwz       r28, 0x20(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
+	return (target != end) ? &*target : nullptr;
 }
 
 /**
  * @note Address: 0x8000C0A0
  * @note Size: 0x7C
  */
-TObject* TControl::getObject_index(u32)
+TObject* TControl::getObject_index(u32 idx)
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -825,422 +614,127 @@ blr
  * @note Address: 0x8000C11C
  * @note Size: 0x48
  */
-TFactory::~TFactory()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-or.      r31, r3, r3
-beq      lbl_8000C14C
-lis      r5, __vt__Q37JStudio3fvb8TFactory@ha
-extsh.   r0, r4
-addi     r0, r5, __vt__Q37JStudio3fvb8TFactory@l
-stw      r0, 0(r31)
-ble      lbl_8000C14C
-bl       __dl__FPv
-
-lbl_8000C14C:
-lwz      r0, 0x14(r1)
-mr       r3, r31
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
+TFactory::~TFactory() { }
 
 /**
  * @note Address: 0x8000C164
  * @note Size: 0x308
  */
-TObject* TFactory::create(const JStudio::fvb::data::TParse_TBlock&)
+TObject* TFactory::create(const data::TParse_TBlock& block)
 {
+	switch (block.getType()) {
+	case TFunctionValue::TYPE_Composite:
+		return new TObject_composite(block);
 
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-lwz      r3, 0(r4)
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-lhz      r0, 4(r3)
-cmpwi    r0, 4
-beq      lbl_8000C304
-bge      lbl_8000C1A4
-cmpwi    r0, 2
-beq      lbl_8000C224
-bge      lbl_8000C294
-cmpwi    r0, 1
-bge      lbl_8000C1B4
-b        lbl_8000C454
+	case TFunctionValue::TYPE_Constant:
+		return new TObject_constant(block);
 
-lbl_8000C1A4:
-cmpwi    r0, 6
-beq      lbl_8000C3E4
-bge      lbl_8000C454
-b        lbl_8000C374
+	case TFunctionValue::TYPE_Transition:
+		return new TObject_transition(block);
 
-lbl_8000C1B4:
-li       r3, 0x40
-bl       __nw__FUl
-or.      r7, r3, r3
-beq      lbl_8000C21C
-lwz      r3, 0(r31)
-mr       r31, r7
-li       r0, 0
-lhz      r6, 6(r3)
-cmplwi   r6, 0
-beq      lbl_8000C1E0
-addi     r0, r3, 8
+	case TFunctionValue::TYPE_List:
+		return new TObject_list(block);
 
-lbl_8000C1E0:
-stw      r0, 0(r7)
-lis      r4, __vt__Q37JStudio3fvb17TObject_composite@ha
-lis      r5, __vt__Q37JStudio3fvb7TObject@ha
-addi     r3, r31, 0x18
-stw      r6, 4(r7)
-addi     r6, r5, __vt__Q37JStudio3fvb7TObject@l
-li       r5, 0
-addi     r0, r4, __vt__Q37JStudio3fvb17TObject_composite@l
-stw      r6, 8(r7)
-stw      r5, 0xc(r7)
-stw      r5, 0x10(r7)
-stw      r3, 0x14(r7)
-stw      r0, 8(r31)
-bl       __ct__Q27JStudio24TFunctionValue_compositeFv
-mr       r7, r31
+	case TFunctionValue::TYPE_List_Parameter:
+		return new TObject_list_parameter(block);
 
-lbl_8000C21C:
-mr       r3, r7
-b        lbl_8000C458
-
-lbl_8000C224:
-li       r3, 0x28
-bl       __nw__FUl
-or.      r7, r3, r3
-beq      lbl_8000C28C
-lwz      r3, 0(r31)
-mr       r31, r7
-li       r0, 0
-lhz      r6, 6(r3)
-cmplwi   r6, 0
-beq      lbl_8000C250
-addi     r0, r3, 8
-
-lbl_8000C250:
-stw      r0, 0(r7)
-lis      r4, __vt__Q37JStudio3fvb16TObject_constant@ha
-lis      r5, __vt__Q37JStudio3fvb7TObject@ha
-addi     r3, r31, 0x18
-stw      r6, 4(r7)
-addi     r6, r5, __vt__Q37JStudio3fvb7TObject@l
-li       r5, 0
-addi     r0, r4, __vt__Q37JStudio3fvb16TObject_constant@l
-stw      r6, 8(r7)
-stw      r5, 0xc(r7)
-stw      r5, 0x10(r7)
-stw      r3, 0x14(r7)
-stw      r0, 8(r31)
-bl       __ct__Q27JStudio23TFunctionValue_constantFv
-mr       r7, r31
-
-lbl_8000C28C:
-mr       r3, r7
-b        lbl_8000C458
-
-lbl_8000C294:
-li       r3, 0x70
-bl       __nw__FUl
-or.      r7, r3, r3
-beq      lbl_8000C2FC
-lwz      r3, 0(r31)
-mr       r31, r7
-li       r0, 0
-lhz      r6, 6(r3)
-cmplwi   r6, 0
-beq      lbl_8000C2C0
-addi     r0, r3, 8
-
-lbl_8000C2C0:
-stw      r0, 0(r7)
-lis      r4, __vt__Q37JStudio3fvb18TObject_transition@ha
-lis      r5, __vt__Q37JStudio3fvb7TObject@ha
-addi     r3, r31, 0x18
-stw      r6, 4(r7)
-addi     r6, r5, __vt__Q37JStudio3fvb7TObject@l
-li       r5, 0
-addi     r0, r4, __vt__Q37JStudio3fvb18TObject_transition@l
-stw      r6, 8(r7)
-stw      r5, 0xc(r7)
-stw      r5, 0x10(r7)
-stw      r3, 0x14(r7)
-stw      r0, 8(r31)
-bl       __ct__Q27JStudio25TFunctionValue_transitionFv
-mr       r7, r31
-
-lbl_8000C2FC:
-mr       r3, r7
-b        lbl_8000C458
-
-lbl_8000C304:
-li       r3, 0x78
-bl       __nw__FUl
-or.      r7, r3, r3
-beq      lbl_8000C36C
-lwz      r3, 0(r31)
-mr       r31, r7
-li       r0, 0
-lhz      r6, 6(r3)
-cmplwi   r6, 0
-beq      lbl_8000C330
-addi     r0, r3, 8
-
-lbl_8000C330:
-stw      r0, 0(r7)
-lis      r4, __vt__Q37JStudio3fvb12TObject_list@ha
-lis      r5, __vt__Q37JStudio3fvb7TObject@ha
-addi     r3, r31, 0x18
-stw      r6, 4(r7)
-addi     r6, r5, __vt__Q37JStudio3fvb7TObject@l
-li       r5, 0
-addi     r0, r4, __vt__Q37JStudio3fvb12TObject_list@l
-stw      r6, 8(r7)
-stw      r5, 0xc(r7)
-stw      r5, 0x10(r7)
-stw      r3, 0x14(r7)
-stw      r0, 8(r31)
-bl       __ct__Q27JStudio19TFunctionValue_listFv
-mr       r7, r31
-
-lbl_8000C36C:
-mr       r3, r7
-b        lbl_8000C458
-
-lbl_8000C374:
-li       r3, 0x78
-bl       __nw__FUl
-or.      r7, r3, r3
-beq      lbl_8000C3DC
-lwz      r3, 0(r31)
-mr       r31, r7
-li       r0, 0
-lhz      r6, 6(r3)
-cmplwi   r6, 0
-beq      lbl_8000C3A0
-addi     r0, r3, 8
-
-lbl_8000C3A0:
-stw      r0, 0(r7)
-lis      r4, __vt__Q37JStudio3fvb22TObject_list_parameter@ha
-lis      r5, __vt__Q37JStudio3fvb7TObject@ha
-addi     r3, r31, 0x18
-stw      r6, 4(r7)
-addi     r6, r5, __vt__Q37JStudio3fvb7TObject@l
-li       r5, 0
-addi     r0, r4, __vt__Q37JStudio3fvb22TObject_list_parameter@l
-stw      r6, 8(r7)
-stw      r5, 0xc(r7)
-stw      r5, 0x10(r7)
-stw      r3, 0x14(r7)
-stw      r0, 8(r31)
-bl       __ct__Q27JStudio29TFunctionValue_list_parameterFv
-mr       r7, r31
-
-lbl_8000C3DC:
-mr       r3, r7
-b        lbl_8000C458
-
-lbl_8000C3E4:
-li       r3, 0x80
-bl       __nw__FUl
-or.      r7, r3, r3
-beq      lbl_8000C44C
-lwz      r3, 0(r31)
-mr       r31, r7
-li       r0, 0
-lhz      r6, 6(r3)
-cmplwi   r6, 0
-beq      lbl_8000C410
-addi     r0, r3, 8
-
-lbl_8000C410:
-stw      r0, 0(r7)
-lis      r4, __vt__Q37JStudio3fvb15TObject_hermite@ha
-lis      r5, __vt__Q37JStudio3fvb7TObject@ha
-addi     r3, r31, 0x18
-stw      r6, 4(r7)
-addi     r6, r5, __vt__Q37JStudio3fvb7TObject@l
-li       r5, 0
-addi     r0, r4, __vt__Q37JStudio3fvb15TObject_hermite@l
-stw      r6, 8(r7)
-stw      r5, 0xc(r7)
-stw      r5, 0x10(r7)
-stw      r3, 0x14(r7)
-stw      r0, 8(r31)
-bl       __ct__Q27JStudio22TFunctionValue_hermiteFv
-mr       r7, r31
-
-lbl_8000C44C:
-mr       r3, r7
-b        lbl_8000C458
-
-lbl_8000C454:
-li       r3, 0
-
-lbl_8000C458:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	case TFunctionValue::TYPE_Hermite:
+		return new TObject_hermite(block);
+	default:
+		return nullptr;
+	}
 }
 
 /**
  * @note Address: 0x8000C46C
  * @note Size: 0x3C
  */
-void TFactory::destroy(JStudio::fvb::TObject*)
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-cmplwi   r4, 0
-stw      r0, 0x14(r1)
-beq      lbl_8000C498
-mr       r3, r4
-li       r4, 1
-lwz      r12, 8(r3)
-lwz      r12, 8(r12)
-mtctr    r12
-bctrl
-
-lbl_8000C498:
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
+void TFactory::destroy(TObject* obj) { delete obj; }
 
 /**
  * @note Address: 0x8000C4A8
  * @note Size: 0x20
  */
-TParse::TParse(JStudio::fvb::TControl*)
+TParse::TParse(TControl* control)
+    : mControl(control)
 {
-	/*
-lis      r6, __vt__Q37JGadget6binary19TParse_header_block@ha
-lis      r5, __vt__Q37JStudio3fvb6TParse@ha
-addi     r6, r6, __vt__Q37JGadget6binary19TParse_header_block@l
-stw      r6, 0(r3)
-addi     r0, r5, __vt__Q37JStudio3fvb6TParse@l
-stw      r0, 0(r3)
-stw      r4, 4(r3)
-blr
-	*/
 }
 
 /**
  * @note Address: 0x8000C4C8
  * @note Size: 0x60
  */
-TParse::~TParse()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_8000C50C
-lis      r5, __vt__Q37JStudio3fvb6TParse@ha
-li       r4, 0
-addi     r0, r5, __vt__Q37JStudio3fvb6TParse@l
-stw      r0, 0(r30)
-bl       __dt__Q37JGadget6binary19TParse_header_blockFv
-extsh.   r0, r31
-ble      lbl_8000C50C
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_8000C50C:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
+TParse::~TParse() { }
 
 /**
  * @note Address: 0x8000C528
  * @note Size: 0x98
  */
-bool TParse::parseHeader_next(const void**, u32*, u32)
+bool TParse::parseHeader_next(const void** dataPtr, u32* blockNumber, u32 flag)
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-lwz      r31, 0(r4)
-addi     r0, r31, 0x10
-mr       r3, r31
-stw      r0, 0(r4)
-addi     r4, r2, ga4cSignature__Q37JStudio3fvb4data@sda21
-lwz      r0, 0xc(r31)
-stw      r0, 0(r5)
-li       r5, 4
-bl       memcmp
-cmpwi    r3, 0
-beq      lbl_8000C56C
-li       r3, 0
-b        lbl_8000C5AC
+	const void* data = *dataPtr;
 
-lbl_8000C56C:
-lhz      r0, 4(r31)
-cmplwi   r0, 0xfeff
-beq      lbl_8000C580
-li       r3, 0
-b        lbl_8000C5AC
+	const data::TParse_THeader header(data);
+	*dataPtr     = header.getContent();
+	*blockNumber = header.getBlockNumber();
 
-lbl_8000C580:
-lhz      r4, 6(r31)
-cmplwi   r4, 2
-bge      lbl_8000C594
-li       r3, 0
-b        lbl_8000C5AC
+	if (memcmp(header.getSignature(), &data::ga4cSignature, 4) != 0) {
+		return false;
+	}
 
-lbl_8000C594:
-subfic   r0, r4, 0x100
-li       r3, 0x100
-orc      r3, r3, r4
-srwi     r0, r0, 1
-subf     r0, r0, r3
-srwi     r3, r0, 0x1f
+	if (header.getByteOrder() != 0xFEFF) {
+		return false;
+	}
 
-lbl_8000C5AC:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	u32 version = header.getVersion();
+	if (version < 2) {
+		return false;
+
+	} else if (version > 0x100) {
+		return false;
+	}
+
+	return true;
 }
 
 /**
  * @note Address: 0x8000C5C0
  * @note Size: 0x118
  */
-bool TParse::parseBlock_next(const void**, u32*, u32)
+bool TParse::parseBlock_next(const void** dataPtr, u32* size, u32 flag)
 {
+	const void* data = *dataPtr;
+	JStudio::fvb::data::TParse_TBlock block(data);
+	*dataPtr = block.getNext();
+	*size    = block.getSize();
+
+	TControl* control = getControl();
+
+	if (flag & 0x10 && control->getObject(block.getID(), block.getIDSize())) {
+		return true;
+	}
+
+	if (flag & 0x20) {
+		return true;
+	}
+
+	TFactory* factory = control->getFactory();
+	if (!factory) {
+		return false;
+	}
+
+	TObject* object = factory->create(block);
+	if (!object) {
+		if (flag & 0x40) {
+			return true;
+		}
+
+		return false;
+	}
+
+	object->prepare(block, control);
+	control->appendObject(object);
+	return true;
 	/*
 stwu     r1, -0x40(r1)
 mflr     r0
@@ -1329,319 +823,5 @@ blr
 	*/
 }
 
-/**
- * @note Address: 0x8000C6D8
- * @note Size: 0x8C
- */
-TObject_hermite::~TObject_hermite()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_8000C748
-lis      r3, __vt__Q37JStudio3fvb15TObject_hermite@ha
-addic.   r0, r30, 0x18
-addi     r0, r3, __vt__Q37JStudio3fvb15TObject_hermite@l
-stw      r0, 8(r30)
-beq      lbl_8000C724
-lis      r4, __vt__Q27JStudio22TFunctionValue_hermite@ha
-addi     r3, r30, 0x18
-addi     r0, r4, __vt__Q27JStudio22TFunctionValue_hermite@l
-li       r4, 0
-stw      r0, 0x18(r30)
-bl       __dt__Q27JStudio14TFunctionValueFv
-
-lbl_8000C724:
-cmplwi   r30, 0
-beq      lbl_8000C738
-lis      r3, __vt__Q37JStudio3fvb7TObject@ha
-addi     r0, r3, __vt__Q37JStudio3fvb7TObject@l
-stw      r0, 8(r30)
-
-lbl_8000C738:
-extsh.   r0, r31
-ble      lbl_8000C748
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_8000C748:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/**
- * @note Address: 0x8000C764
- * @note Size: 0x8C
- */
-TObject_list_parameter::~TObject_list_parameter()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_8000C7D4
-lis      r3, __vt__Q37JStudio3fvb22TObject_list_parameter@ha
-addic.   r0, r30, 0x18
-addi     r0, r3, __vt__Q37JStudio3fvb22TObject_list_parameter@l
-stw      r0, 8(r30)
-beq      lbl_8000C7B0
-lis      r4, __vt__Q27JStudio29TFunctionValue_list_parameter@ha
-addi     r3, r30, 0x18
-addi     r0, r4, __vt__Q27JStudio29TFunctionValue_list_parameter@l
-li       r4, 0
-stw      r0, 0x18(r30)
-bl       __dt__Q27JStudio14TFunctionValueFv
-
-lbl_8000C7B0:
-cmplwi   r30, 0
-beq      lbl_8000C7C4
-lis      r3, __vt__Q37JStudio3fvb7TObject@ha
-addi     r0, r3, __vt__Q37JStudio3fvb7TObject@l
-stw      r0, 8(r30)
-
-lbl_8000C7C4:
-extsh.   r0, r31
-ble      lbl_8000C7D4
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_8000C7D4:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/**
- * @note Address: 0x8000C7F0
- * @note Size: 0x8C
- */
-TObject_list::~TObject_list()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_8000C860
-lis      r3, __vt__Q37JStudio3fvb12TObject_list@ha
-addic.   r0, r30, 0x18
-addi     r0, r3, __vt__Q37JStudio3fvb12TObject_list@l
-stw      r0, 8(r30)
-beq      lbl_8000C83C
-lis      r4, __vt__Q27JStudio19TFunctionValue_list@ha
-addi     r3, r30, 0x18
-addi     r0, r4, __vt__Q27JStudio19TFunctionValue_list@l
-li       r4, 0
-stw      r0, 0x18(r30)
-bl       __dt__Q27JStudio14TFunctionValueFv
-
-lbl_8000C83C:
-cmplwi   r30, 0
-beq      lbl_8000C850
-lis      r3, __vt__Q37JStudio3fvb7TObject@ha
-addi     r0, r3, __vt__Q37JStudio3fvb7TObject@l
-stw      r0, 8(r30)
-
-lbl_8000C850:
-extsh.   r0, r31
-ble      lbl_8000C860
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_8000C860:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/**
- * @note Address: 0x8000C87C
- * @note Size: 0x8C
- */
-TObject_transition::~TObject_transition()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_8000C8EC
-lis      r3, __vt__Q37JStudio3fvb18TObject_transition@ha
-addic.   r0, r30, 0x18
-addi     r0, r3, __vt__Q37JStudio3fvb18TObject_transition@l
-stw      r0, 8(r30)
-beq      lbl_8000C8C8
-lis      r4, __vt__Q27JStudio25TFunctionValue_transition@ha
-addi     r3, r30, 0x18
-addi     r0, r4, __vt__Q27JStudio25TFunctionValue_transition@l
-li       r4, 0
-stw      r0, 0x18(r30)
-bl       __dt__Q27JStudio14TFunctionValueFv
-
-lbl_8000C8C8:
-cmplwi   r30, 0
-beq      lbl_8000C8DC
-lis      r3, __vt__Q37JStudio3fvb7TObject@ha
-addi     r0, r3, __vt__Q37JStudio3fvb7TObject@l
-stw      r0, 8(r30)
-
-lbl_8000C8DC:
-extsh.   r0, r31
-ble      lbl_8000C8EC
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_8000C8EC:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/**
- * @note Address: 0x8000C908
- * @note Size: 0x8C
- */
-TObject_constant::~TObject_constant()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_8000C978
-lis      r3, __vt__Q37JStudio3fvb16TObject_constant@ha
-addic.   r0, r30, 0x18
-addi     r0, r3, __vt__Q37JStudio3fvb16TObject_constant@l
-stw      r0, 8(r30)
-beq      lbl_8000C954
-lis      r4, __vt__Q27JStudio23TFunctionValue_constant@ha
-addi     r3, r30, 0x18
-addi     r0, r4, __vt__Q27JStudio23TFunctionValue_constant@l
-li       r4, 0
-stw      r0, 0x18(r30)
-bl       __dt__Q27JStudio14TFunctionValueFv
-
-lbl_8000C954:
-cmplwi   r30, 0
-beq      lbl_8000C968
-lis      r3, __vt__Q37JStudio3fvb7TObject@ha
-addi     r0, r3, __vt__Q37JStudio3fvb7TObject@l
-stw      r0, 8(r30)
-
-lbl_8000C968:
-extsh.   r0, r31
-ble      lbl_8000C978
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_8000C978:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/**
- * @note Address: 0x8000C994
- * @note Size: 0xA8
- */
-TObject_composite::~TObject_composite()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_8000CA20
-lis      r3, __vt__Q37JStudio3fvb17TObject_composite@ha
-addic.   r0, r30, 0x18
-addi     r0, r3, __vt__Q37JStudio3fvb17TObject_composite@l
-stw      r0, 8(r30)
-beq      lbl_8000C9FC
-lis      r3, __vt__Q27JStudio24TFunctionValue_composite@ha
-addic.   r0, r30, 0x1c
-addi     r0, r3, __vt__Q27JStudio24TFunctionValue_composite@l
-stw      r0, 0x18(r30)
-beq      lbl_8000C9F0
-addic.   r0, r30, 0x1c
-beq      lbl_8000C9F0
-addi     r3, r30, 0x1c
-li       r4, 0
-bl       __dt__Q27JGadget20TVector_pointer_voidFv
-
-lbl_8000C9F0:
-addi     r3, r30, 0x18
-li       r4, 0
-bl       __dt__Q27JStudio14TFunctionValueFv
-
-lbl_8000C9FC:
-cmplwi   r30, 0
-beq      lbl_8000CA10
-lis      r3, __vt__Q37JStudio3fvb7TObject@ha
-addi     r0, r3, __vt__Q37JStudio3fvb7TObject@l
-stw      r0, 8(r30)
-
-lbl_8000CA10:
-extsh.   r0, r31
-ble      lbl_8000CA20
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_8000CA20:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
 } // namespace fvb
 } // namespace JStudio

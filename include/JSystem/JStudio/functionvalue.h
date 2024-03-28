@@ -17,7 +17,7 @@ struct TFunctionValueAttributeSet_const;
 typedef f64 (*ExtrapolateParameter)(f64 value, f64 max);
 
 namespace functionvalue {
-
+// this is just for interpolation and extrapolation functions
 // EXTRAPOLATION
 inline f64 extrapolateParameter_raw(f64 value, f64 max) { return value; }
 
@@ -111,7 +111,7 @@ struct TFunctionValue {
 
 	static ExtrapolateParameter toFunction(TFunctionValue::TEOutside outside) { return toFunction_outside(outside); }
 
-	// unused/inlined:
+	// unused/inlined (also probably static):
 	void toString_type(int);
 	void toValue_type(const char*);
 	void toString_progress(int);
@@ -122,6 +122,8 @@ struct TFunctionValue {
 	void toValue_outside(const char*);
 	void toString_interpolate(int);
 	void toValue_interpolate(const char*);
+
+	// _00 = VTBL
 };
 
 struct TFunctionValueAttributeSet_const {
@@ -183,7 +185,7 @@ struct TFunctionValueAttribute_refer : public JGadget::TVector_pointer<TFunction
 };
 
 struct TFunctionValueAttribute_range {
-	TFunctionValueAttribute_range(); // unused/inlined
+	TFunctionValueAttribute_range();
 
 	void range_set(f64, f64);
 

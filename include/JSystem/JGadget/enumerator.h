@@ -77,6 +77,17 @@ struct TContainerEnumerator_const : public TEnumerator2<TLinkList<T, I>::const_i
 
 	// _00-_08 = TEnumerator2
 };
+
+// this is just for some things in JStudio/functionvalue.cpp
+template <typename T>
+struct TContainerEnumerator_const_TVector : public TEnumerator<const T*> {
+	inline TContainerEnumerator_const_TVector(JGadget::TVector_pointer<T> const& vector)
+	    : JGadget::TEnumerator<const T*>(vector.begin(), vector.end())
+	{
+	}
+
+	// _00-_08 = TEnumerator
+};
 } // namespace JGadget
 
 #endif

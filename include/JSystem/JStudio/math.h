@@ -1,9 +1,9 @@
 #ifndef JSTUDIO_MATH_H
 #define JSTUDIO_MATH_H
 
+#include "types.h"
 #include "Dolphin/mtx.h"
 #include "stl/math.h"
-#include "types.h"
 
 namespace JStudio {
 namespace math {

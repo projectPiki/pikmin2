@@ -3,7 +3,7 @@
 
 #include "JSystem/JStudio/stb.h"
 #include "JSystem/JStudio/TControl.h"
-#include "JSystem/JStudio/fvb/fvb.h"
+#include "JSystem/JStudio/fvb.h"
 
 namespace JStudio {
 struct TParse : public stb::TParse {

@@ -54,7 +54,6 @@
         "gxdata.h": "c",
         "gxtypes.h": "c",
         "gxtexture.h": "c",
-        "math.h": "c",
         "arith.h": "c"
     }
 }

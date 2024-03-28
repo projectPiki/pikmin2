@@ -4,7 +4,7 @@
 #include "Dolphin/mtx.h"
 #include "Dolphin/vec.h"
 #include "JSystem/JStudio/stb.h"
-#include "JSystem/JStudio/fvb/fvb.h"
+#include "JSystem/JStudio/fvb.h"
 #include "JSystem/JStudio/TFactory.h"
 #include "types.h"
 

@@ -4,7 +4,7 @@
 #include "JSystem/JStudio/TCreateObject.h"
 #include "JSystem/JStudio/stb.h"
 #include "JSystem/JGadget/linklist.h"
-#include "JSystem/JStudio/fvb/fvb.h"
+#include "JSystem/JStudio/fvb.h"
 
 namespace JStudio {
 struct TObject;
