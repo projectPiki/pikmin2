@@ -18,6 +18,23 @@ namespace VsGame {
 
 static const int unusedVsCardArray[] = { 0, 0, 0 };
 static const char unusedVsCardName[] = "vsCardMgr";
+
+namespace {
+// this is just straight up never used lol
+static const CardData cardData[12] = {
+	{ "pikmin_5.bti", 1 },   { "pikmin_10.bti", 1 }, { "all_flower.bti", 1 },   { "pikmin_xlu.bti", 1 },
+	{ "dope_black.bti", 1 }, { "dope_red.bti", 1 },  { "reset_bedama.bti", 1 }, { "teki_hanachirashi", 1 },
+	{ "teki_sarai.bti", 1 }, { "teki_rock.bti", 1 }, { "teki_tank.bti", 1 },    { 0, 0 },
+};
+
+static const char* tex_names[] = {
+	"pikmin_5.bti",   "pikmin_10.bti", "all_flower.bti",
+	"pikmin_xlu.bti", // ghost powerup
+	"dope_black.bti", "dope_red.bti",  "reset_bedama.bti",     "teki_hanachirashi.bti",
+	"teki_sarai.bti", "teki_rock.bti", "teki_bombotakara.bti", "teki_tank.bti",
+};
+} // namespace
+
 /**
  * @note Address: N/A
  * @note Size: 0x40
@@ -54,7 +71,7 @@ int VsGame::CardSelector::selectCard()
 	for (int i = 0; i < CARD_ID_COUNT; i++) {
 		fullCumulative += (f32)mValues[i] / arraySum;
 		if (mValues[i] == 0) {
-			mCumulative[i] = -100.0f;
+			mCumulative[i] = -99.9f;
 		} else {
 			mCumulative[i] = fullCumulative;
 		}
@@ -81,7 +98,7 @@ VsGame::CardMgr::CardMgr(Game::VsGameSection* section, Game::VsGame::TekiMgr* te
 	mSlotMachines[1].mPlayerIndex = 1;
 	mSlotMachines[0].mCardMgr     = this;
 	mSlotMachines[1].mCardMgr     = this;
-	_104                          = 40.0f;
+	mRollSoundMinSpeed            = 40.0f;
 
 	initDraw();
 
@@ -96,20 +113,6 @@ VsGame::CardMgr::CardMgr(Game::VsGameSection* section, Game::VsGame::TekiMgr* te
 }
 
 /**
- * @note Address: 0x80235654
- * @note Size: 0x58
- */
-VsGame::CardMgr::SlotMachine::SlotMachine()
-{
-	mCardMgr = nullptr;
-	clear();
-	mCherryStock  = 0;
-	mPrevSelected = UNRESOLVED;
-	_68           = 0.0f;
-	_6C           = 0.0f;
-}
-
-/**
  * @note Address: N/A
  * @note Size: 0x20
  */
@@ -117,15 +120,6 @@ void VsGame::CardMgr::clear()
 {
 	mSlotMachines[0].clear();
 	mSlotMachines[1].clear();
-}
-
-namespace {
-const char* tex_names[] = {
-	"pikmin_5.bti",   "pikmin_10.bti", "all_flower.bti",
-	"pikmin_xlu.bti", // ghost powerup
-	"dope_black.bti", "dope_red.bti",  "reset_bedama.bti",      "teki_hanachirashi",    "teki_sarai.bti",
-	"teki_rock.bti",  "teki_tank.bti", "teki_hanachirashi.bti", "teki_bombotakara.bti",
-};
 }
 
 void VsGame::CardMgr::loadResource()
@@ -188,15 +182,16 @@ Vector3f VsGame::CardMgr::getSlotOrigin(int playerIdx)
  * @note Address: N/A
  * @note Size: 0x78
  */
-inline Vector2f VsGame::CardMgr::getLampPos(int user, int cherries)
+Vector2f VsGame::CardMgr::getLampPos(int user, int cherries)
 {
 	Vector2f lampOrigin;
-	if (user == 0)
+	if (user == 0) {
 		lampOrigin = Vector2f(515.0f, 115.0f);
-	else
+	} else {
 		lampOrigin = Vector2f(515.0f, 315.0f);
+	}
 
-	lampOrigin -= Vector2f(22.4f, 80.0f);
+	lampOrigin -= Vector2f(80.0f, 22.4f);
 	f32 lampWidth = 8.0f;
 	lampOrigin.x += cherries * lampWidth * 2.0f;
 	return lampOrigin;
@@ -224,7 +219,7 @@ void VsGame::CardMgr::draw(Graphics& gfx)
  * @note Address: N/A
  * @note Size: 0x78
  */
-Vector2f VsGame::CardMgr::getPlayerCard(int user) { return (user == 0) ? Vector2f(515.0f, 115.0f) : Vector2f(515.0f, 315.0f); }
+Vector3f VsGame::CardMgr::getPlayerCard(int user) { }
 
 /**
  * @note Address: 0x80235A50
@@ -362,7 +357,7 @@ bool VsGame::CardMgr::usePlayerCard(int user, Game::VsGame::TekiMgr* tekiMgr)
 
 			f32 faceDir = onyon->getFaceDir();
 
-			f32 radius = randFloat() * 150.0f + 50.0f;
+			f32 radius = 50.0f + randFloat() * 100.0f;
 			f32 angle  = randFloat() * TAU;
 			f32 height = 0.0f;
 
@@ -376,7 +371,7 @@ bool VsGame::CardMgr::usePlayerCard(int user, Game::VsGame::TekiMgr* tekiMgr)
 	case TEKI_ROCK:
 	case TEKI_BOMBOTAKRA: {
 
-		f32 radiusVariance = 90.0f;
+		f32 radiusVariance = 1.0f;
 		f32 enemyHeight    = 0.0f;
 		int num;
 		if (slotID == TEKI_ROCK) {
@@ -384,7 +379,7 @@ bool VsGame::CardMgr::usePlayerCard(int user, Game::VsGame::TekiMgr* tekiMgr)
 		} else {
 			num            = 1;
 			radiusVariance = 0.0f;
-			enemyHeight    = 1.0f;
+			enemyHeight    = 90.0f;
 		}
 
 		int tekiID = slotID - 7;
@@ -419,7 +414,7 @@ bool VsGame::CardMgr::usePlayerCard(int user, Game::VsGame::TekiMgr* tekiMgr)
 
 			f32 faceDir = onyon->getFaceDir();
 
-			f32 radius = randFloat() * 150.0f + 50.0f;
+			f32 radius = randFloat() * 100.0f + 50.0f;
 			f32 angle  = randFloat() * TAU;
 			f32 height = 0.0f;
 
@@ -576,7 +571,7 @@ void VsGame::CardMgr::SlotMachine::start()
 		resetBedamaProb = 0.8f;
 	}
 
-	if (scoreCount0 - scoreCount1 >= 0.4f) {
+	if (scoreCount0 - scoreCount1 >= 4.0f) {
 		resetBedamaProb *= 0.7f;
 	}
 
@@ -624,23 +619,9 @@ void VsGame::CardMgr::SlotMachine::startStop()
  * @note Address: N/A
  * @note Size: 0xB4
  */
-bool VsGame::CardMgr::SlotMachine::equalTo(int)
+bool VsGame::CardMgr::SlotMachine::equalTo(int slot)
 {
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x4C
- */
-
-inline int CardMgr::SlotMachine::getNextCard(int card) { return (CARD_ID_COUNT + card + 1) % CARD_ID_COUNT; }
-
-inline int CardMgr::SlotMachine::getPrevCard(int card) { return (CARD_ID_COUNT + card - 1) % CARD_ID_COUNT; }
-
-bool CardMgr::SlotMachine::goodPlace()
-{
-	int nextCardBottom = getNextCard(mSelectedSlot);
+	int nextCardBottom = getNextCard(slot);
 
 	f32 distanceToBottom = FABS(nextCardBottom - mSpinProgress);
 
@@ -654,8 +635,13 @@ bool CardMgr::SlotMachine::goodPlace()
 	}
 
 	return (distance < 0.07f && distance >= 0.0f);
-	return true;
 }
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x4C
+ */
+bool CardMgr::SlotMachine::goodPlace() { }
 
 /**
  * @note Address: 0x80237060
@@ -675,15 +661,15 @@ void VsGame::CardMgr::SlotMachine::update()
 		break;
 	case SPIN_START:
 		if (mCherryStock >= 1) { // start spin
-			mSpinAccel = -TAU;
+			mSpinAccel = -TAU * 2.0f;
 		} else {
 			mSpinAccel = -TAU;
 		}
 		if (gGameConfig.mParms.mVsY.mData == 1) {
 			mSpinAccel *= 3.0f;
 		}
-		if (mSpinSpeed < -TAU) {
-			mSpinSpeed = -TAU;
+		if (mSpinSpeed < -TAU * 2.0f) {
+			mSpinSpeed = -TAU * 2.0f;
 			mSpinState = SPIN_WAIT_MAX_SPEED;
 			if (gGameConfig.mParms.mVsY.mData == 0) {
 				mSpinTimer = randFloat() * 0.4f + 0.7f;
@@ -691,12 +677,12 @@ void VsGame::CardMgr::SlotMachine::update()
 					mSpinTimer = 0.0f;
 				}
 			} else if (mSpinTimer > 0.0f) {
-				mSpinTimer = randFloat() * 0.4f + 0.7f;
+				mSpinTimer = randFloat() * 0.4f + 2.7f;
 			}
 		}
 		break;
 	case SPIN_WAIT_MAX_SPEED: // await spining max speed
-		mSpinSpeed = -TAU;
+		mSpinSpeed = -TAU * 2.0f;
 		mSpinAccel = 0.0f;
 		mSpinTimer -= deltaTime;
 		if (mSpinTimer <= 0.0f) {
@@ -734,7 +720,7 @@ void VsGame::CardMgr::SlotMachine::update()
 			mSpinTimer    = 0.8f;
 			startZoomIn();
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
-		} else if (goodPlace()) { // can jump to this card
+		} else if (equalTo(mSelectedSlot)) { // can jump to this card
 			_6C        = 0.0f;
 			_68        = 0.0f;
 			mSpinSpeed = 0.0f;
@@ -755,7 +741,7 @@ void VsGame::CardMgr::SlotMachine::update()
 		}
 		break;
 	case SPIN_WAIT_CARD_STOP:
-		if (goodPlace()) {
+		if (equalTo(mSelectedSlot)) {
 			mSpinSpeed = 0.0f;
 			mSpinAccel = 0.0f;
 			mSpinState = SPIN_END;
@@ -771,7 +757,7 @@ void VsGame::CardMgr::SlotMachine::update()
 		}
 		break;
 	case SPIN_WAIT_CARD_ROLL:
-		if (goodPlace()) {
+		if (equalTo(mSelectedSlot)) {
 			mSpinSpeed = 0.0f;
 			mSpinAccel = 0.0f;
 			mSpinState = SPIN_END;
@@ -800,15 +786,15 @@ void VsGame::CardMgr::SlotMachine::update()
 		mSpinAngle += TAU;
 	}
 	mSpinSpeed += mSpinAccel * deltaTime;
-	int previousValue = mSelectedSlot;
-	mPrevCardIndex    = mSelectedSlot;
-	f32 loopValue     = TAU / CARD_ID_COUNT;
-	mSpinProgress     = roundAng(mSpinAngle + loopValue) / loopValue;
-	mCurrCardIndex    = (int)mSpinProgress;
+	int prevIndex  = mCurrCardIndex;
+	mPrevCardIndex = mCurrCardIndex;
+	f32 loopValue  = TAU / CARD_ID_COUNT;
+	mSpinProgress  = roundAng(mSpinAngle + loopValue) / loopValue;
+	mCurrCardIndex = (int)mSpinProgress;
 	if (mSpinState != 10 && mSpinState != 0) {
-		if (mSpinSpeed > mCardMgr->_104) {
+		if (mSpinSpeed > mCardMgr->mRollSoundMinSpeed) {
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_2PSLOT_ROLL, 0);
-		} else if (previousValue != mCurrCardIndex) {
+		} else if (prevIndex != mCurrCardIndex) {
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
 		}
 	}
@@ -868,7 +854,11 @@ void VsGame::CardMgr::SlotMachine::updateAppear()
  * @note Address: N/A
  * @note Size: 0x78
  */
-JUTTexture* VsGame::CardMgr::getTexture(eCardType card) { return mSlotTextures[card]; }
+JUTTexture* VsGame::CardMgr::getTexture(eCardType card)
+{
+	P2ASSERTLINE(999, card < mSlotNum); // line number made up, needs assert for correct rodata
+	return mSlotTextures[card];
+}
 
 /**
  * @note Address: 0x80237968
@@ -883,13 +873,13 @@ void VsGame::CardMgr::initDraw()
 	mVertices   = new Vector3f[mPointCount];
 	mNormals    = new Vector3f[mPointCount];
 	f32 phi     = TAU / countA;
-	f32 s       = sinf(phi / 2.0f);
+	f32 s       = sinf(phi * 0.5f);
 	f32 x, y, z;
 
 	x = 20.0f;
 
 	for (int i = 0; i < countA * countB / 2; i++) {
-		f32 theta = i * TAU / countA / countB;
+		f32 theta = i * TAU / countA / (countB / 2);
 
 		z = x / s * cosf(theta);
 		y = x / s * sinf(theta);
@@ -1159,8 +1149,8 @@ void VsGame::CardMgr::SlotMachine::updateZoomIn()
 
 		_44 = sinf(_3C * TAU) * 5.0f + 30.0f;
 		_48 = sinf(_3C * TAU * 2.0f) * 5.0f + 30.0f;
-		_40 = cosf(_3C * TAU) * 10.0f * DEG2RAD * PI;
 	}
+	_40 = cosf(_3C * TAU) * 10.0f * DEG2RAD * PI;
 }
 
 /**
@@ -1180,9 +1170,3 @@ void VsGame::CardMgr::SlotMachine::updateZoomUse()
 }
 } // namespace VsGame
 } // namespace Game
-
-/**
- * @note Address: 0x80238E6C
- * @note Size: 0x8
- */
-void efx2d::TBase::setGroup(u8 a1) { _05 = a1; }

@@ -103,13 +103,43 @@ struct CardSelector {
 	int getTotalWeight();
 	int selectCard();
 
-	int mValues[CARD_ID_COUNT];
-	f32 mCumulative[CARD_ID_COUNT];
+	int mValues[CARD_ID_COUNT];     // _00
+	f32 mCumulative[CARD_ID_COUNT]; // _30
+};
+
+// this is just a guess, it's for cardData in vsCardMgr.cpp that doesn't get used... at all
+struct CardData {
+	const char* mName; // _00
+	int mCount;        // _04
 };
 
 struct CardMgr {
 	struct SlotMachine {
-		SlotMachine();
+		enum EAppearStates { APPEAR_LEAVE = 0, APPEAR_AWAIT = 1, APPEAR_ENTER = 2, APPEAR_RESET = 3 };
+
+		enum ESpinStates {
+			SPIN_UNSTARTED      = 0,
+			SPIN_WAIT_START     = 1,
+			SPIN_START          = 2,
+			SPIN_WAIT_MAX_SPEED = 3,
+			SPIN_DECELERATE     = 4,
+			SPIN_DECELERATE_END = 5,
+			SPIN_DOWN_TO_CARD   = 6,
+			SPIN_WAIT_CARD_STOP = 7,
+			SPIN_UP_TO_CARD     = 8,
+			SPIN_WAIT_CARD_ROLL = 9,
+			SPIN_END            = 10
+		};
+
+		SlotMachine()
+		{
+			mCardMgr = nullptr;
+			clear();
+			mCherryStock  = 0;
+			mPrevSelected = UNRESOLVED;
+			_68           = 0.0f;
+			_6C           = 0.0f;
+		}
 
 		void clear();
 		void start();
@@ -124,8 +154,8 @@ struct CardMgr {
 		bool equalTo(int);
 		bool goodPlace();
 
-		int getNextCard(int);
-		int getPrevCard(int);
+		inline int getNextCard(int card) { return (CARD_ID_COUNT + card + 1) % CARD_ID_COUNT; }
+		inline int getPrevCard(int card) { return (CARD_ID_COUNT + card - 1) % CARD_ID_COUNT; }
 
 		f32 mSpinAngle;     // _00
 		int mCurrCardIndex; // _04
@@ -156,22 +186,6 @@ struct CardMgr {
 		int mPrevSelected;  // _64
 		f32 _68;            // _68
 		f32 _6C;            // _6C
-
-		enum ESpinStates {
-			SPIN_UNSTARTED      = 0,
-			SPIN_WAIT_START     = 1,
-			SPIN_START          = 2,
-			SPIN_WAIT_MAX_SPEED = 3,
-			SPIN_DECELERATE     = 4,
-			SPIN_DECELERATE_END = 5,
-			SPIN_DOWN_TO_CARD   = 6,
-			SPIN_WAIT_CARD_STOP = 7,
-			SPIN_UP_TO_CARD     = 8,
-			SPIN_WAIT_CARD_ROLL = 9,
-			SPIN_END            = 10
-		};
-
-		enum EAppearStates { APPEAR_LEAVE = 0, APPEAR_AWAIT = 1, APPEAR_ENTER = 2, APPEAR_RESET = 3 };
 	};
 
 	CardMgr(VsGameSection*, TekiMgr*);
@@ -188,7 +202,7 @@ struct CardMgr {
 
 	Vector3f getSlotOrigin(int);
 	Vector2f getLampPos(int, int);
-	Vector2f getPlayerCard(int);
+	Vector3f getPlayerCard(int);
 	void clearPlayerCard();
 
 	JUTTexture* getTexture(eCardType);
@@ -205,7 +219,7 @@ struct CardMgr {
 	int mPointCount;               // _F8
 	Vector3f* mVertices;           // _FC, array of 0x100 vectors?
 	Vector3f* mNormals;            // _100, array of 0x100 vectors?
-	f32 _104;                      // _104
+	f32 mRollSoundMinSpeed;        // _104
 	LightObj* mLightObj;           // _108
 	VsGameSection* mSection;       // _10C
 	TekiMgr* mTekiMgr;             // _110
@@ -242,7 +256,7 @@ struct StageList : public CNode {
 
 	// _00 		= VTBL
 	// _00-_18	= CNode
-	StageData mStageData;
+	StageData mStageData; // _18
 };
 
 /////////////////////////////////////////////////////////////////

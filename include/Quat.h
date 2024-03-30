@@ -170,26 +170,26 @@ struct Quat {
 	f32 w, x, y, z;
 };
 
-Quat operator*(Quat& q1, Quat& q2)
-{
-	//   v5 = a2[3];
-	//   v6 = *a3;
-	//   v7 = ((a2[1] * a3[2]) - (a2[2] * a3[1]));
-	//   v8 = (a3[3] * *a2);
-	//   v9 = (((a2[3] * a3[1]) - (a2[1] * a3[3])) + (a3[2] * *a2));
-	//   v10 = (a2[2] * *a3);
-	//   v13 = (((a2[2] * a3[3]) - (a2[3] * a3[2])) + (a3[1] * *a2)) + (a2[1] * *a3);
-	//   *result = (*a2 * *a3) - ((a2[3] * a3[3]) + ((a2[1] * a3[1]) + (a2[2] * a3[2])));
-	//   result[1] = v13;
-	//   result[2] = v9 + v10;
-	//   result[3] = (v7 + v8) + (v5 * v6);
+// Quat operator*(Quat& q1, Quat& q2)
+// {
+// 	//   v5 = a2[3];
+// 	//   v6 = *a3;
+// 	//   v7 = ((a2[1] * a3[2]) - (a2[2] * a3[1]));
+// 	//   v8 = (a3[3] * *a2);
+// 	//   v9 = (((a2[3] * a3[1]) - (a2[1] * a3[3])) + (a3[2] * *a2));
+// 	//   v10 = (a2[2] * *a3);
+// 	//   v13 = (((a2[2] * a3[3]) - (a2[3] * a3[2])) + (a3[1] * *a2)) + (a2[1] * *a3);
+// 	//   *result = (*a2 * *a3) - ((a2[3] * a3[3]) + ((a2[1] * a3[1]) + (a2[2] * a3[2])));
+// 	//   result[1] = v13;
+// 	//   result[2] = v9 + v10;
+// 	//   result[3] = (v7 + v8) + (v5 * v6);
 
-	Quat result;
-	result.w = (q1.w * q2.w) - ((q1.x * q2.x) + (q1.y * q2.y) + (q1.z * q2.z));
-	result.x = (((q1.y * q2.z) - (q1.z * q2.y)) + (q2.x * q1.w)) + (q1.x * q2.w);
-	result.y = (((q1.z * q2.x) - (q1.x * q2.z)) + (q2.y * q1.w)) + (q1.y * q2.w);
-	result.z = (((q1.x * q2.y) - (q1.y * q2.x)) + (q2.z * q1.w)) + (q1.z * q2.w);
-	return result;
-}
+// 	Quat result;
+// 	result.w = (q1.w * q2.w) - ((q1.x * q2.x) + (q1.y * q2.y) + (q1.z * q2.z));
+// 	result.x = (((q1.y * q2.z) - (q1.z * q2.y)) + (q2.x * q1.w)) + (q1.x * q2.w);
+// 	result.y = (((q1.z * q2.x) - (q1.x * q2.z)) + (q2.y * q1.w)) + (q1.y * q2.w);
+// 	result.z = (((q1.x * q2.y) - (q1.y * q2.x)) + (q2.z * q1.w)) + (q1.z * q2.w);
+// 	return result;
+// }
 
 #endif

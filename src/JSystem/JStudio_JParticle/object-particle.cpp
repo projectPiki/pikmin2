@@ -255,13 +255,13 @@ void JStudio_JParticle::TAdaptor_particle::TJPACallback_::execute(JPABaseEmitter
 	Vec* pos; // r29
 
 	if (!mAdaptor->_1A4) {
-		if (!ctrl->_74) {
+		if (!ctrl->mTransformOnSet) {
 			pos = srts;
 		} else {
 			Vec outVec[3];
-			PSMTXMultVec(ctrl->_98, &srts[2], &outVec[0]);
+			PSMTXMultVec(ctrl->mTransformOnSet_Mtx, &srts[2], &outVec[0]);
 			outVec[1].x = srts[1].x;
-			outVec[1].y = ctrl->_90 + srts[1].y;
+			outVec[1].y = ctrl->mTransformOnSet_RotY + srts[1].y;
 			outVec[1].z = srts[1].z;
 			pos         = outVec;
 		}

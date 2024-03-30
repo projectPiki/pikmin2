@@ -424,7 +424,7 @@ void MoviePlayer::loadResource()
 
 	mStudioControl = new JStudio::TControl;
 	mStudioControl->create(mStudioFactory, (!mStudioFactory) ? nullptr : (&mStudioFactory->mFvbFactory));
-	mStudioControl->_58 = 0.03333333507180214;
+	mStudioControl->mSecondsPerFrame = 0.03333333507180214;
 
 	sys->heapStatusStart("movieResource", nullptr);
 
@@ -1096,8 +1096,8 @@ void MoviePlayer::setTransform(Vector3f& pos, f32 angle)
 	mTransform                 = pos;
 	mTransformAngle            = angle * DEG2RAD * PI;
 	JStudio::TControl* control = mStudioControl;
-	control->_75               = 1;
-	control->_74               = 1;
+	control->mTransformOnGet   = true;
+	control->mTransformOnSet   = true;
 	control                    = mStudioControl;
 
 	control->transformOnGet_setOrigin(*(Vec*)&pos, angle);

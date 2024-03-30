@@ -488,12 +488,12 @@ void TAdaptor_actor::setJSG_SRT_(const JStudio::TControl* control)
 	adaptor_getVariableValue_Vec(&transform.getScaling(), sauVariableValue_3_SCALING_XYZ);
 	JStudio::TControl::TTransform_translation_rotation_scaling* pTransform;
 	if (_140 == 0) {
-		if (control->_74 == 0) {
+		if (control->mTransformOnSet == 0) {
 			pTransform = &transform;
 		} else {
-			PSMTXMultVec(*const_cast<Mtx*>(&control->_98), transform.getAll(), multipliedTransform.getAll());
+			PSMTXMultVec(*const_cast<Mtx*>(&control->mTransformOnSet_Mtx), transform.getAll(), multipliedTransform.getAll());
 			pTransform                          = &multipliedTransform;
-			multipliedTransform.getRotation().y = transform.getRotation().y + control->_90;
+			multipliedTransform.getRotation().y = transform.getRotation().y + control->mTransformOnSet_RotY;
 			multipliedTransform.getRotation().x = transform.getRotation().x;
 			multipliedTransform.getRotation().z = transform.getRotation().z;
 		}

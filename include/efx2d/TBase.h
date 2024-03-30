@@ -12,19 +12,22 @@ struct TBaseIF {
 	virtual void kill()       = 0; // _0C
 	virtual void fade()       = 0; // _10
 	virtual void setGroup(u8) = 0; // _14
+
+	// _00 = VTBL
 };
 
 struct TBase : public TBaseIF {
 	inline TBase()
 	    : _04(0)
-	    , _05(0)
+	    , mGroup(0)
 	{
 	}
 
-	virtual void setGroup(u8); // _14 (weak)
+	virtual void setGroup(u8 group) { mGroup = group; } // _14 (weak)
 
-	u8 _04;
-	u8 _05;
+	// _00 = VTBL
+	u8 _04;    // _04
+	u8 mGroup; // _05
 };
 } // namespace efx2d
 
