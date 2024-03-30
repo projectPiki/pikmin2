@@ -202,9 +202,9 @@ struct CardMgr {
 	JUTTexture* mLampOffTexture;   // _10
 	JUTTexture* mHighlightTexture; // _14
 	SlotMachine mSlotMachines[2];  // _18
-	int _F8;                       // _F8
-	Vector3f* _FC;                 // _FC, array of 0x100 vectors?
-	Vector3f* _100;                // _100, array of 0x100 vectors?
+	int mPointCount;               // _F8
+	Vector3f* mVertices;           // _FC, array of 0x100 vectors?
+	Vector3f* mNormals;            // _100, array of 0x100 vectors?
 	f32 _104;                      // _104
 	LightObj* mLightObj;           // _108
 	VsGameSection* mSection;       // _10C

@@ -459,16 +459,20 @@ bool VsGame::CardMgr::usePlayerCard(int user, Game::VsGame::TekiMgr* tekiMgr)
  */
 void VsGame::CardMgr::gotPlayerCard(int user)
 {
+
 	if (mSlotMachines[user].mSpinState == 0) {
 		mSlotMachines[user].start();
 		mSlotMachines[user]._18 = 0;
-	} else if (mSlotMachines[user].mCherryStock < 4) {
-		Vector2f panePos = getLampPos(user, mSlotMachines[user].mCherryStock);
+		return;
+	}
+
+	if (mSlotMachines[user].mCherryStock < 4) {
+		Vector2f lampPos = getLampPos(user, mSlotMachines[user].mCherryStock);
 
 		JUtility::TColor color1(0xff, 0x96, 0x64, 0xff);
 		JUtility::TColor color2(0xff, 0x46, 0x46, 0xff);
 
-		efx2d::ArgScaleColorColor spraysetArg(panePos, 0.4f, color1, color2);
+		efx2d::ArgScaleColorColor spraysetArg(lampPos, 0.4f, color1, color2);
 		efx2d::T2DSprayset_forVS vsSpraySet;
 
 		vsSpraySet.create(&spraysetArg);
@@ -873,28 +877,28 @@ JUTTexture* VsGame::CardMgr::getTexture(eCardType card) { return mSlotTextures[c
 
 void VsGame::CardMgr::initDraw()
 {
-	int countA = 12;
-	int countB = 32;
-	_F8        = countA * countB * 2;
-	_FC        = new Vector3f[_F8];
-	_100       = new Vector3f[_F8];
-	f32 phi    = TAU / countA;
-	f32 s      = sinf(phi / 2.0f);
+	int countA  = CARD_ID_COUNT;
+	int countB  = 64;
+	mPointCount = countA * countB;
+	mVertices   = new Vector3f[mPointCount];
+	mNormals    = new Vector3f[mPointCount];
+	f32 phi     = TAU / countA;
+	f32 s       = sinf(phi / 2.0f);
 	f32 x, y, z;
 
 	x = 20.0f;
 
-	for (int i = 0; i < countA * countB; i++) {
+	for (int i = 0; i < countA * countB / 2; i++) {
 		f32 theta = i * TAU / countA / countB;
 
 		z = x / s * cosf(theta);
 		y = x / s * sinf(theta);
 
-		_FC[2 * i]  = Vector3f(-x, y, z);
-		_100[2 * i] = Vector3f(0.0f, sinf(theta), cosf(theta));
+		mVertices[2 * i] = Vector3f(-x, y, z);
+		mNormals[2 * i]  = Vector3f(0.0f, sinf(theta), cosf(theta));
 
-		_FC[2 * i + 1]  = Vector3f(x, y, z);
-		_100[2 * i + 1] = Vector3f(0.0f, sinf(theta), cosf(theta));
+		mVertices[2 * i + 1] = Vector3f(x, y, z);
+		mNormals[2 * i + 1]  = Vector3f(0.0f, sinf(theta), cosf(theta));
 	}
 }
 
@@ -902,19 +906,13 @@ void VsGame::CardMgr::initDraw()
  * @note Address: N/A
  * @note Size: 0x20
  */
-void VsGame::CardMgr::vert(int)
-{
-	// UNUSED FUNCTION
-}
+void VsGame::CardMgr::vert(int id) { GXPosition3f32(mVertices[id].x, mVertices[id].y, mVertices[id].z); }
 
 /**
  * @note Address: N/A
  * @note Size: 0x20
  */
-void VsGame::CardMgr::norm(int)
-{
-	// UNUSED FUNCTION
-}
+void VsGame::CardMgr::norm(int id) { GXPosition3f32(mNormals[id].x, mNormals[id].y, mNormals[id].z); }
 
 /**
  * @note Address: 0x80237CBC
@@ -946,8 +944,11 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 	GXSetNumChans(1);
 	GXSetChanCtrl(GX_COLOR0, 1, GX_SRC_REG, GX_SRC_REG, GX_LIGHT0, GX_DF_CLAMP, GX_AF_SPOT);
 	GXSetChanCtrl(GX_ALPHA0, 0, GX_SRC_REG, GX_SRC_REG, GX_LIGHT0, GX_DF_NONE, GX_AF_NONE);
-	GXSetChanAmbColor(GX_COLOR0A0, (JUtility::TColor)0x14141480);
-	GXSetChanMatColor(GX_COLOR0A0, (JUtility::TColor)0xffffffca);
+
+	// I didn't even know you could do this lmao
+	GXSetChanAmbColor(GX_COLOR0A0, (GXColor) { 0x14, 0x14, 0x14, 0x80 });
+	GXSetChanMatColor(GX_COLOR0A0, (GXColor) { 0xff, 0xff, 0xff, 0xca });
+
 	mLightObj->update();
 	mLightObj->set(*matrix);
 	GXClearVtxDesc();
@@ -966,41 +967,34 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEXCOORD0, 0x3c, 0, 0x7d);
 	GXSetCullMode(GX_CULL_BACK);
 
-	int cardNum        = CARD_ID_COUNT;
-	int vectorsPerCard = 0x300 / CARD_ID_COUNT;
+	int cardNum = CARD_ID_COUNT;
 
-	for (int i = 0; i < cardNum; i++) {
+	// r21 - this
+
+	// r29 - i ?
+
+	for (int i = 0; i < CARD_ID_COUNT; i++) {
 		mSlotTextures[i]->load(GX_TEXMAP0);
-		for (int j = 0; j < vectorsPerCard / 4; j++) {
+		int vectorsPerCard = 0x100 / CARD_ID_COUNT;
+		for (int j = 0; j < 0x40; j += 0x4) {
+
 			GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 0x4);
-			f32 id       = i * vectorsPerCard;
-			Vector3f vec = _FC[4 * i];
-			GXPosition3f32(vec.x, vec.y, vec.z);
-			vec = _100[4 * i];
-			GXPosition3f32(vec.x, vec.y, vec.z);
 
-			GXTexCoord2f32(0.0f, id);
+			vert(mPointCount / i - j * mPointCount);
+			norm(mPointCount / i - j * mPointCount);
+			GXTexCoord2f32(0.0f, 0.0f);
 
-			vec = _FC[4 * i + 1];
-			GXPosition3f32(vec.x, vec.y, vec.z);
-			vec = _100[4 * i + 1];
-			GXPosition3f32(vec.x, vec.y, vec.z);
+			vert(mPointCount / i - j * mPointCount);
+			norm(mPointCount / i - j * mPointCount);
+			GXTexCoord2f32(0.0f, 0.0f);
 
-			GXTexCoord2f32(1.0f, id);
+			vert(mPointCount / i - j * mPointCount);
+			norm(mPointCount / i - j * mPointCount);
+			GXTexCoord2f32(0.0f, 0.0f);
 
-			vec = _FC[4 * i + 2];
-			GXPosition3f32(vec.x, vec.y, vec.z);
-			vec = _100[4 * i + 2];
-			GXPosition3f32(vec.x, vec.y, vec.z);
-
-			GXTexCoord2f32(0.0f, id);
-
-			vec = _FC[4 * i + 3];
-			GXPosition3f32(vec.x, vec.y, vec.z);
-			vec = _100[4 * i + 3];
-			GXPosition3f32(vec.x, vec.y, vec.z);
-
-			GXTexCoord2f32(1.0f, id);
+			vert(mPointCount / i - j * mPointCount);
+			norm(mPointCount / i - j * mPointCount);
+			GXTexCoord2f32(0.0f, 0.0f);
 		}
 	}
 
@@ -1050,6 +1044,7 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 		GXSetTevColorOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
 		GXSetTevAlphaIn(GX_TEVSTAGE1, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_APREV);
 		GXSetTevAlphaOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+
 		GXSetTevColor(GX_TEVREG1, (JUtility::TColor)0x00000000);
 
 		if (machine._68 > 1.0f) {
