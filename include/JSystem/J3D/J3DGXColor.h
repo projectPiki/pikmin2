@@ -50,6 +50,12 @@ struct J3DGXColor : public GXColor {
 		a = other.a;
 	}
 
+	J3DGXColor& operator=(const GXColor& color)
+	{
+		*(GXColor*)this = color;
+		return *this;
+	}
+
 	/** @fabricated */
 	const u8* asBytes() const { return (u8*)this; }
 };
@@ -96,6 +102,12 @@ struct J3DGXColorS10 : public GXColorS10 {
 		g                      = otherBytes->g;
 		b                      = otherBytes->b;
 		a                      = otherBytes->a;
+	}
+
+	J3DGXColorS10& operator=(const GXColorS10& color)
+	{
+		*(GXColorS10*)this = color;
+		return *this;
 	}
 };
 

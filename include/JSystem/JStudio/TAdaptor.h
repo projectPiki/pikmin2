@@ -25,8 +25,8 @@ struct TAdaptor {
 	typedef void (*StaticCapsSetVariableValueFunction)(TAdaptor*, TObject*, u32, const void*, u32);
 
 	inline TAdaptor(TVariableValue* values, int count)
-	    : _04(values)
-	    , _08(count)
+	    : mVariableValues(values)
+	    , mCount(count)
 	{
 	}
 
@@ -59,8 +59,8 @@ struct TAdaptor {
 	void adaptor_updateVariableValue(JStudio::TObject*, u32);
 
 	// VTBL _00
-	TVariableValue* _04; // _04
-	int _08;             // _08 - length of array pointed to by _04
+	TVariableValue* mVariableValues; // _04
+	int mCount;                      // _08
 };
 
 struct TAdaptor_actor : public TAdaptor {
@@ -217,18 +217,8 @@ struct TAdaptor_sound : public TAdaptor {
 	    : TAdaptor(var, a1)
 	{
 	}
-	// ~TAdaptor_sound();
 
 	virtual ~TAdaptor_sound() = 0; // _08
-	// virtual void _20()        = 0; // _20
-	// virtual void _24()        = 0; // _24
-	// virtual void _28()        = 0; // _28
-	// virtual void _2C()        = 0; // _2C
-	// virtual void _30()        = 0; // _30
-	// virtual void _34()        = 0; // _34
-	// virtual void _38()        = 0; // _38
-	// virtual void _3C()        = 0; // _3C
-	// virtual void _40()        = 0; // _40
 
 	static const u32 sauVariableValue_3_POSITION_XYZ[3];
 };

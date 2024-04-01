@@ -31,7 +31,7 @@ TAdaptor_light::~TAdaptor_light() { adaptor_do_end(nullptr); }
 void TAdaptor_light::adaptor_do_prepare(const JStudio::TObject* obj)
 {
 	for (const TVVOutput_direction_* output = saoVVOutput_direction; output->mValueIndex != -1; output++) {
-		_04[output->mValueIndex].setOutput(output);
+		mVariableValues[output->mValueIndex].setOutput(output);
 	}
 }
 

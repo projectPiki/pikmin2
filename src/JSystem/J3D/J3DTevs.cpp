@@ -275,8 +275,9 @@ const J3DTevStageInfo j3dDefaultTevStageInfo
     = { GX_PASSCLR, GX_CC_RASC, GX_CC_ZERO, GX_CC_ZERO,  GX_CC_CPREV, GX_TEV_ADD, GX_TB_ZERO,    GX_CS_SCALE_1, true,      GX_TEVPREV,
 	    GX_CA_RASA, GX_CA_ZERO, GX_CA_ZERO, GX_CA_APREV, GX_TEV_ADD,  GX_TB_ZERO, GX_CS_SCALE_1, true,          GX_TEVPREV };
 
-const J3DIndTevStageInfo j3dDefaultIndTevStageInfo[12]
-    = { { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 } };
+const J3DIndTevStageInfo j3dDefaultIndTevStageInfo = {
+	{ 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 },
+};
 
 const J3DFogInfo j3dDefaultFogInfo = { 0, 0, 0x140, 0.0f, 0.0f, 0.1f, 10000.0f, 0xFF, 0xFF, 0xFF, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
 
@@ -284,7 +285,7 @@ const J3DFogInfo j3dDefaultFogInfo = { 0, 0, 0x140, 0.0f, 0.0f, 0.1f, 10000.0f, 
 // const J3DNBTScaleInfo j3dDefaultNBTScaleInfo = { 0, {1.0f, 1.0f, 1.0f} };
 
 const GXColor j3dDefaultColInfo                  = { 0xFFFFFFFF };
-const u32 j3dDefaultAmbInfo                      = 0x32323232;
+const GXColor j3dDefaultAmbInfo                  = { 0x32323232 };
 const u8 j3dDefaultColorChanNum                  = 1;
 const J3DTevOrderInfo j3dDefaultTevOrderInfoNull = { GX_TEXCOORD_NULL, GX_TEXMAP_NULL, 0xFF };
 // const J3DIndTexOrder j3dDefaultIndTexOrderNull   = J3DIndTexOrder(GX_TEXCOORD_NULL, GX_TEXMAP_NULL);
@@ -1352,7 +1353,7 @@ void loadTexNo(u32 id, const u16& data)
  * @note Address: 0x80065540
  * @note Size: 0x24
  */
-void patchTexNo_PtrToIdx(u32 p1, const u16& p2) { J3DGDSetTexImgPtrRaw((_GXTexMapID)p1, p2); }
+void patchTexNo_PtrToIdx(u32 texID, const u16& idx) { J3DGDSetTexImgPtrRaw((GXTexMapID)texID, idx); }
 
 /**
  * @note Address: 0x80065564
@@ -1360,7 +1361,7 @@ void patchTexNo_PtrToIdx(u32 p1, const u16& p2) { J3DGDSetTexImgPtrRaw((_GXTexMa
  */
 void loadNBTScale(J3DNBTScale& scale)
 {
-	if (scale.mbHasScale == 1) {
+	if (scale.mHasScale == 1) {
 		// j3dSys._118 = &scale._04;
 	}
 	/*

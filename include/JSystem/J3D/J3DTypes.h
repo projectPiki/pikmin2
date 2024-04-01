@@ -4,6 +4,7 @@
 #include "Dolphin/gx.h"
 #include "Dolphin/vec.h"
 #include "JSystem/J3D/J3DGXColor.h"
+#include "JSystem/J3D/J3DGD.h"
 #include "JSystem/JGeometry.h"
 #include "JSystem/JMath.h"
 #include "types.h"
@@ -73,6 +74,8 @@ enum JBlockType {
 };
 
 enum J3DErrType { JET_Success = 0, JET_NoMatAnm, JET_LockedModelData, JET_NullBinRes, JET_OutOfMemory, JET_InvalidArg, JET_InvalidData };
+
+extern u8 j3dTevSwapTableTable[1024];
 
 struct J3DAlphaCompInfo {
 	u8 _00[0x8]; // _00
@@ -156,42 +159,144 @@ struct J3DZMode {
 	u16 _00; // _00
 };
 
-struct J3DColorChan {
-	J3DColorChan();
+struct J3DColorChanInfo {
+	u8 mEnable;    // _00
+	u8 mMatSrc;    // _01
+	u8 mLightMask; // _02
+	u8 mDiffuseFn; // _03
+	u8 mAttnFn;    // _04
+	u8 mAmbSrc;    // _05
+	u8 _06;        // _06
+	u8 _07;        // _07
+};
 
-	u16 channelInfo;
+extern const J3DColorChanInfo j3dDefaultColorChanInfo;
+
+inline u16 calcColorChanID(u16 enable, u8 matSrc, u8 lightMask, u8 diffuseFn, u8 attnFn, u8 ambSrc)
+{
+	u32 reg = 0;
+	reg     = reg & ~0x0002 | enable << 1;
+	reg     = reg & ~0x0001 | matSrc;
+	reg     = reg & ~0x0040 | ambSrc << 6;
+	reg     = reg & ~0x0004 | bool(lightMask & 0x01) << 2;
+	reg     = reg & ~0x0008 | bool(lightMask & 0x02) << 3;
+	reg     = reg & ~0x0010 | bool(lightMask & 0x04) << 4;
+	reg     = reg & ~0x0020 | bool(lightMask & 0x08) << 5;
+	reg     = reg & ~0x0800 | bool(lightMask & 0x10) << 11;
+	reg     = reg & ~0x1000 | bool(lightMask & 0x20) << 12;
+	reg     = reg & ~0x2000 | bool(lightMask & 0x40) << 13;
+	reg     = reg & ~0x4000 | bool(lightMask & 0x80) << 14;
+	reg     = reg & ~0x0180 | (attnFn == GX_AF_SPEC ? 0 : diffuseFn) << 7;
+	reg     = reg & ~0x0200 | (attnFn != GX_AF_NONE) << 9;
+	reg     = reg & ~0x0400 | (attnFn != GX_AF_SPEC) << 10;
+	return reg;
+}
+
+inline u32 setChanCtrlMacro(u8 enable, GXColorSrc ambSrc, GXColorSrc matSrc, u32 lightMask, GXDiffuseFn diffuseFn, GXAttnFn attnFn)
+{
+	u32 ret = matSrc << 0; // Putting this as a separate statement fixes codegen, but regalloc is still wrong
+	return ret | enable << 1 | (lightMask & 0x0F) << 2 | ambSrc << 6 | ((attnFn == GX_AF_SPEC) ? GX_DF_NONE : diffuseFn) << 7
+	     | (attnFn != GX_AF_NONE) << 9 | (attnFn != GX_AF_SPEC) << 10 | (lightMask >> 4 & 0x0F) << 11;
+}
+
+struct J3DColorChan {
+	J3DColorChan() { setColorChanInfo(j3dDefaultColorChanInfo); }
+
+	J3DColorChan(const J3DColorChanInfo& info)
+	{
+		mChanCtrl = calcColorChanID(info.mEnable, info.mMatSrc, info.mLightMask, info.mDiffuseFn, info.mAttnFn,
+		                            info.mAmbSrc == 0xFF ? 0 : info.mAmbSrc);
+	}
+
+	J3DColorChan(u16 id)
+	    : mChanCtrl(id)
+	{
+	}
+
+	void setColorChanInfo(const J3DColorChanInfo& info)
+	{
+		// Bug: It compares info.mAmbSrc (an 8 bit integer) with 0xFFFF instead of 0xFF.
+		// This inline is only called by the default constructor J3DColorChan().
+		// The J3DColorChan(const J3DColorChanInfo&) constructor does not call this inline, and instead duplicates the
+		// same logic but without the bug.
+		// See J3DMaterialFactory::newColorChan - both the bugged and correct behavior are present there, as it calls
+		// both constructors.
+		mChanCtrl = calcColorChanID(info.mEnable, info.mMatSrc, info.mLightMask, info.mDiffuseFn, info.mAttnFn,
+		                            info.mAmbSrc == 0xFFFF ? 0 : info.mAmbSrc);
+	}
+
+	GXAttnFn getAttnFn()
+	{
+		u8 attnFnTbl[] = { GX_AF_NONE, GX_AF_SPEC, GX_AF_NONE, GX_AF_SPOT };
+		return GXAttnFn(attnFnTbl[mChanCtrl >> 9 & 0x03]);
+	}
+	GXDiffuseFn getDiffuseFn() { return GXDiffuseFn(mChanCtrl >> 7 & 3); }
+	u8 getLightMask() { return ((mChanCtrl >> 2 & 0x0f) | (mChanCtrl >> 11 & 0x0f) << 4); }
+	void setLightMask(u8 mask)
+	{
+		mChanCtrl = (mChanCtrl & ~0x003c) | ((mask & 0x0F) << 2);
+		mChanCtrl = (mChanCtrl & ~0x7800) | ((mask & 0xF0) << 7);
+	}
+	GXColorSrc getMatSrc() { return GXColorSrc(mChanCtrl >> 0 & 0x01); }
+	GXColorSrc getAmbSrc() { return GXColorSrc(mChanCtrl >> 6 & 0x01); }
+	u8 getEnable() { return !!(mChanCtrl & 0x02); }
+	void load()
+	{
+		// something in here is not quite right still
+		J3DGDWrite_u32(setChanCtrlMacro(getEnable(), getAmbSrc(), getMatSrc(), getLightMask(), getDiffuseFn(), getAttnFn()));
+	}
+
+	u16 mChanCtrl; // _00
 };
 
 // IDK what the structure of this is meant to be
 struct J3DIndTevStageInfo {
-	u8 _00 : 2;
+	u8 mIndStage;  // _00
+	u8 mIndFormat; // _01
+	u8 mBiasSel;   // _02
+	u8 mMtxSel;    // _03
+	u8 mWrapS;     // _04
+	u8 mWrapT;     // _05
+	u8 mPrev;      // _06
+	u8 mLod;       // _07
+	u8 mAlphaSel;  // _08
 };
 
-extern const J3DIndTevStageInfo j3dDefaultIndTevStageInfo[12];
+extern const J3DIndTevStageInfo j3dDefaultIndTevStageInfo;
 
 struct J3DIndTevStage {
-	J3DIndTevStage();
+	J3DIndTevStage()
+	{
+		mInfo = 0;
+		setIndTevStageInfo(j3dDefaultIndTevStageInfo);
+	}
 
-	u32 _00 : 10;
-	// u32 _01 : 1;
-	// u32 _02 : 1;
-	// u32 _03 : 1;
-	// u32 _04 : 1;
-	// u32 _05 : 1;
-	// u32 _06 : 1;
-	// u32 _07 : 1;
-	// u32 _08 : 1;
-	// u32 _09 : 1;
-	// u32 _0A : 1;
-	u32 _0B : 1;
-	u32 _0C : 1;
-	u32 _0D : 3;
-	u32 _10 : 3;
-	u32 _13 : 4;
-	u32 _17 : 2;
-	u32 _19 : 3;
-	u32 _1C : 2;
-	u32 _1E : 2;
+	void setIndStage(u8 stage) { mInfo = mInfo & ~0x03 | stage; }
+	void setIndFormat(u8 format) { mInfo = mInfo & ~0x0C | format << 2; }
+	void setBiasSel(u8 sel) { mInfo = mInfo & ~0x70 | sel << 4; }
+	void setAlphaSel(u8 sel) { mInfo = mInfo & ~0x0180 | sel << 7; }
+	void setMtxSel(u8 sel) { mInfo = mInfo & ~0x1E00 | sel << 9; }
+	void setWrapS(u8 wrap) { mInfo = mInfo & ~0xE000 | wrap << 13; }
+	void setWrapT(u8 wrap) { mInfo = mInfo & ~0x070000 | wrap << 16; }
+	void setLod(u8 lod) { mInfo = mInfo & ~0x080000 | lod << 19; }
+	void setPrev(u8 prev) { mInfo = mInfo & ~0x100000 | prev << 20; }
+
+	void setIndTevStageInfo(const J3DIndTevStageInfo& info)
+	{
+		setIndStage(info.mIndStage);
+		setIndFormat(info.mIndFormat);
+		setBiasSel(info.mBiasSel);
+		setMtxSel(info.mMtxSel);
+		setWrapS(info.mWrapS);
+		setWrapT(info.mWrapT);
+		setPrev(info.mPrev);
+		setLod(info.mLod);
+		setAlphaSel(info.mAlphaSel);
+	}
+
+	void load(u32 p1) { J3DGDWriteBPCmd(mInfo | (p1 + 16) << 24); }
+
+	u32 mInfo; // _00, bitflag
 };
 
 struct J3DLightObj {
@@ -209,14 +314,13 @@ struct J3DLightObj {
 };
 
 struct J3DTevOrderInfo {
-	// inline GXTexCoordID getTexCoordID() const { return (GXTexCoordID)mData[0]; }
-	// inline GXTexMapID getTexMapID() const { return (GXTexMapID)mData[1]; }
-	// inline u8 getChannelID() const { return mData[2]; }
-	// u8 mData[4]; // _00 size should be 4 for newTevOrder to work
-
-	// inline GXTexCoordID getTexCoordID() const { return (GXTexCoordID)mTexCoordID; }
-	// inline GXTexMapID getTexMapID() const { return (GXTexMapID)mTexMapID; }
-	// inline u8 getChannelID() const { return mChannelID; }
+	inline J3DTevOrderInfo& operator=(const J3DTevOrderInfo& other)
+	{
+		mTexCoordID = other.mTexCoordID;
+		mTexMapID   = other.mTexMapID;
+		mChannelID  = other.mChannelID;
+		return *this;
+	}
 
 	u8 mTexCoordID; // _00
 	u8 mTexMapID;   // _01
@@ -226,73 +330,18 @@ struct J3DTevOrderInfo {
 
 extern const J3DTevOrderInfo j3dDefaultTevOrderInfoNull;
 
-struct J3DTevOrder {
-	J3DTevOrder()
-	// : mData(j3dDefaultTevOrderInfoNull.mData)
-	// : mTexCoordID(j3dDefaultTevOrderInfoNull.mTexCoordID)
-	// , mTexMapID(j3dDefaultTevOrderInfoNull.mTexMapID)
-	// , mChannelID(j3dDefaultTevOrderInfoNull.mChannelID)
-	{
-		// for (int i = 0; i < 3; i++) {
-		// 	mData[i] = j3dDefaultTevOrderInfoNull.mData[i];
-		// }
-		const J3DTevOrderInfo& info = j3dDefaultTevOrderInfoNull;
-		mTexCoordID                 = info.mTexCoordID;
-		mTexMapID                   = info.mTexMapID;
-		mChannelID                  = info.mChannelID;
-		// mTexCoordID                = info.mTexCoordID;
-		// mTexMapID                  = info.mTexMapID;
-		// mChannelID                 = info.mChannelID;
-		// setTexCoordID(info.getTexCoordID());
-		// setTexMapID(info.getTexMapID());
-		// setChannelID(info.getChannelID());
-
-		// *this = static_cast<const J3DTevOrder>(j3dDefaultTevOrderInfoNull);
-		// setTexCoordID(j3dDefaultTevOrderInfoNull.getTexCoordID());
-		// setTexMapID(j3dDefaultTevOrderInfoNull.getTexMapID());
-		// setChannelID(j3dDefaultTevOrderInfoNull.getChannelID());
-	}
+struct J3DTevOrder : public J3DTevOrderInfo {
+	J3DTevOrder() { *(J3DTevOrderInfo*)this = j3dDefaultTevOrderInfoNull; }
 
 	/** @fabricated */
-	inline J3DTevOrder(const J3DTevOrderInfo& info)
-	    // : mTexCoordID(info.mTexCoordID)
-	    // , mTexMapID(info.mTexMapID)
-	    // , mChannelID(info.mChannelID)
-	    : mTexCoordID(info.mTexCoordID)
-	    , mTexMapID(info.mTexMapID)
-	    , mChannelID(info.mChannelID)
-	{
-		// for (int i = 0; i < 3; i++) {
-		// 	mData[i] = info.mData[i];
-		// }
-	}
-
-	/** @fabricated */
-	inline J3DTevOrder& operator=(const J3DTevOrder& other)
-	{
-		mTexCoordID = other.mTexCoordID;
-		mTexMapID   = other.mTexMapID;
-		mChannelID  = other.mChannelID;
-		// for (int i = 0; i < 3; i++) {
-		// 	mData[i] = other.mData[i];
-		// }
-		return *this;
-	}
+	inline J3DTevOrder(const J3DTevOrderInfo& info) { *(J3DTevOrderInfo*)this = info; }
 
 	inline void setTexCoordID(GXTexCoordID id) { mTexCoordID = id; }
 	inline void setTexMapID(GXTexMapID id) { mTexMapID = id; }
 	inline void setChannelID(u8 id) { mChannelID = id; }
 
-	u8 mTexCoordID; // _00
-	u8 mTexMapID;   // _01
-	u8 mChannelID;  // _02
-	u8 _03;
-
-	// inline void setTexCoordID(GXTexCoordID id) { mData[0] = id; }
-	// inline void setTexMapID(GXTexMapID id) { mData[1] = id; }
-	// inline void setChannelID(u8 id) { mData[2] = id; }
-
-	// u8 mData[3]; // _00
+	J3DTevOrderInfo& getTevOrderInfo() { return *this; }
+	u8 getTexMap() { return mTexMapID; }
 };
 
 // TODO: Determine if this needs packing pragmas to make it exactly 1 bytes
@@ -301,6 +350,11 @@ struct J3DTevOrder {
  */
 struct J3DTevSwapModeTable {
 	J3DTevSwapModeTable();
+
+	u8 getR() { return j3dTevSwapTableTable[mTevSwapID * 4]; }
+	u8 getG() { return j3dTevSwapTableTable[mTevSwapID * 4 + 1]; }
+	u8 getB() { return j3dTevSwapTableTable[mTevSwapID * 4 + 2]; }
+	u8 getA() { return j3dTevSwapTableTable[mTevSwapID * 4 + 3]; }
 
 	u8 mTevSwapID; // _00
 };
@@ -323,6 +377,12 @@ struct J3DTevStage {
 
 	void setTevStageInfo(const J3DTevStageInfo&);
 
+	void load(u32) const
+	{
+		J3DGDWriteBPCmd(*(u32*)&_00);
+		J3DGDWriteBPCmd(*(u32*)&_04);
+	}
+
 	u8 _00; // _00
 	u8 _01; // _01
 	u8 _02; // _02
@@ -343,24 +403,34 @@ struct J3DDefaultTexCoordInfo {
 extern const J3DDefaultTexCoordInfo j3dDefaultTexCoordInfo[8];
 
 struct J3DTexCoordInfo {
+
+	// void operator=(J3DTexCoordInfo const& other) { *(u32*)this = *(u32*)&other; }
+
+	u8 getTexGenType() { return mTexGenType; }
+	u8 getTexGenSrc() { return mTexGenSrc; }
+	u32 getTexGenMtx() { return mTexGenMtx & 0xFF; }
+	void setTexGenMtx(u8 mtx) { mTexGenMtx = mtx; }
+
 	u8 mTexGenType; // _00
 	u8 mTexGenSrc;  // _01
 	u8 mTexGenMtx;  // _02
-	void operator=(J3DTexCoordInfo const& other) { *(u32*)this = *(u32*)&other; }
 };
 
 struct J3DTexCoord : public J3DTexCoordInfo {
 
 	J3DTexCoord();
-	void setTexCoordInfo(J3DTexCoordInfo* param_1) { *(J3DTexCoordInfo*)this = *param_1; }
+	void setTexCoordInfo(J3DTexCoordInfo* info) { *(J3DTexCoordInfo*)this = *info; }
+
+	void operator=(const J3DTexCoord& other) { *(J3DTexCoordInfo*)this = *(J3DTexCoordInfo*)&other; }
 
 	u8 getTexGenType() { return mTexGenType; }
 	u8 getTexGenSrc() { return mTexGenSrc; }
-	u8 getTexGenMtx() { return mTexGenMtx & 0xff; }
-	u16 getTexMtxReg() { return mTexMtxReg & 0xff; }
+	u8 getTexGenMtx() { return mTexGenMtx & 0xFF; }
+	u16 getTexMtxReg() { return mTexMtxReg & 0xFF; }
 
 	void resetTexMtxReg() { mTexMtxReg = mTexGenMtx; }
 
+	// _00-_04 = J3DTexCoordInfo
 	u16 mTexMtxReg; // _04
 };
 
@@ -390,58 +460,56 @@ struct J3DTransformInfo {
 extern const J3DTransformInfo j3dDefaultTransformInfo;
 
 struct J3DNBTScaleInfo {
-	u8 _00;  // _00
-	Vec _04; // _04
+	inline void operator=(const J3DNBTScaleInfo& other)
+	{
+		mHasScale = other.mHasScale;
+		mScale    = other.mScale;
+	}
 
-	// f32 _08; // _08
-	// f32 _0C; // _0C
+	u8 mHasScale; // _00
+	Vec mScale;   // _04
 };
 
 extern const J3DNBTScaleInfo j3dDefaultNBTScaleInfo;
 
-struct J3DNBTScale {
-	inline J3DNBTScale()
-	    : mbHasScale(j3dDefaultNBTScaleInfo._00)
-	    , mScale(j3dDefaultNBTScaleInfo._04)
-	{
-		// _04.x = j3dDefaultNBTScaleInfo._04;
-		// _04.y = j3dDefaultNBTScaleInfo._08;
-		// _04.z = j3dDefaultNBTScaleInfo._0C;
-	}
+struct J3DNBTScale : public J3DNBTScaleInfo {
+	J3DNBTScale() { *(J3DNBTScaleInfo*)this = j3dDefaultNBTScaleInfo; }
 
-	/** @fabricated */
-	inline J3DNBTScale(const J3DNBTScaleInfo& info)
-	    : mbHasScale(info._00)
-	    , mScale(info._04)
-	{
-		// _04.x = info._04;
-		// _04.y = info._08;
-		// _04.z = info._0C;
-	}
+	J3DNBTScale(const J3DNBTScaleInfo& info) { *(J3DNBTScaleInfo*)this = info; }
 
 	Vec* getScale() { return &mScale; }
-
-	u8 mbHasScale; // _00
-	Vec mScale;
 };
 
 struct J3DTexCoordScaleInfo {
-	u16 _00;
-	u16 _02;
-	u16 _04;
-	u16 _06;
+	u16 _00; // _00
+	u16 _02; // _02
+	u16 _04; // _04
+	u16 _06; // _06
 };
+
+void patchTexNo_PtrToIdx(u32 texID, const u16& idx);
 
 void loadNBTScale(J3DNBTScale&);
 
 void loadTexCoordGens(u32, J3DTexCoord*);
+
+inline void loadTexCoordScale(GXTexCoordID coord, const J3DTexCoordScaleInfo& info)
+{
+	J3DGDSetTexCoordScale2(coord, info._00, info._04 == 1, 0, info._02, info._06 == 1, 0);
+}
+
+inline void loadTevColor(u32 reg, const J3DGXColorS10& color) { J3DGDSetTevColorS10(GXTevRegID(reg + 1), (GXColorS10)color); }
+
+inline void loadTevKColor(u32 reg, const J3DGXColor& color) { J3DGDSetTevKColor(GXTevKColorID(reg), (GXColor)color); }
+
+inline void loadZCompLoc(u8 compLoc) { J3DGDSetZCompLoc(compLoc); }
 
 enum J3DTexDiffFlag { TexDiff_0 = 0, TexDiff_1 };
 
 enum J3DDeformAttachFlag { DeformAttach_0 = 0, DeformAttach_1 = 1 };
 
 extern const GXColor j3dDefaultColInfo;
-extern const u32 j3dDefaultAmbInfo;
+extern const GXColor j3dDefaultAmbInfo;
 extern const u8 j3dDefaultColorChanNum;
 // extern const J3DGXColor j3dDefaultTevColor;
 // extern const J3DGXColorS10 j3dDefaultTevKColor;

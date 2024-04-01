@@ -30,7 +30,7 @@ void J3DGDLoadTlut(void*, u32, GXTlutSize);
 void J3DGDLoadTexMtxImm(Mtx, u32, GXTexMtxType);
 void J3DGDLoadPostTexMtxImm(Mtx, u32);
 
-void J3DGDSetIndTexMtx(GXIndTexMtxID, Mtx33, char);
+void J3DGDSetIndTexMtx(GXIndTexMtxID, Mtx33, s8);
 void J3DFifoLoadTexCached(GXTexMapID, u32, GXTexCacheSize, u32, GXTexCacheSize);
 void J3DFifoLoadPosMtxImm(Mtx, u32);
 void J3DFifoLoadNrmMtxImm(Mtx, u32);

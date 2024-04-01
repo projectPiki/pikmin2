@@ -4,6 +4,7 @@
 #include "Dolphin/gx.h"
 #include "JSystem/J3D/J3DGXColor.h"
 #include "JSystem/J3D/J3DTypes.h"
+#include "JSystem/J3D/J3DGD.h"
 #include "types.h"
 
 struct J3DColorBlock {
@@ -44,13 +45,7 @@ struct J3DColorBlock {
 };
 
 struct J3DColorBlockLightOff : public J3DColorBlock {
-	inline J3DColorBlockLightOff()
-	    : J3DColorBlock()
-	    , mMaterialColors()
-	    , mColorChannels()
-	{
-		initialize();
-	}
+	J3DColorBlockLightOff() { initialize(); }
 
 	virtual void load();                                    // _08
 	virtual void reset(J3DColorBlock*);                     // _0C
@@ -179,5 +174,19 @@ struct J3DColorBlockNull : public J3DColorBlock {
 
 	// _00 = VTBL
 };
+
+inline void loadMatColors(const J3DGXColor* color)
+{
+	J3DGDWriteXFCmdHdr(GX_XF_REG_MATERIAL0, 2);
+	J3DGDWrite_u32(*(u32*)color);
+	J3DGDWrite_u32(*(u32*)(color + 1));
+}
+
+inline void loadAmbColors(const J3DGXColor* color)
+{
+	J3DGDWriteXFCmdHdr(GX_XF_REG_AMBIENT0, 2);
+	J3DGDWrite_u32(*(u32*)color);
+	J3DGDWrite_u32(*(u32*)(color + 1));
+}
 
 #endif

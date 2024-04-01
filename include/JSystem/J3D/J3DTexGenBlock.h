@@ -107,10 +107,10 @@ struct J3DTexGenBlockPatched : public J3DTexGenBlock {
 	void initialize();
 
 	// VTBL _00
-	u32 mTexgenCnt;             // _04
+	u32 mTexGenCnt;             // _04
 	J3DTexCoord mTexCoords[8];  // _08
 	J3DTexMtx* mTexMatrices[8]; // _38
-	u32 mDlistOffs;             // _58
+	u32 mTexMtxOffset;          // _58
 };
 
 struct J3DTexGenBlockBasic : public J3DTexGenBlockPatched {

@@ -128,7 +128,6 @@ struct J3DTevBlock1 : public J3DTevBlock {
 	u16 mTexIndices[1];           // _08
 	J3DTevOrder mOrders[1];       // _0A
 	J3DTevStage mStages[1];       // _0E
-	u8 _16[2];                    // _16
 	J3DIndTevStage mIndStages[1]; // _18
 };
 

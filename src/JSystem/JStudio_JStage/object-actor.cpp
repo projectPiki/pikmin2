@@ -197,10 +197,10 @@ TAdaptor_actor::~TAdaptor_actor() { adaptor_do_end(nullptr); }
 void TAdaptor_actor::adaptor_do_prepare(const JStudio::TObject*)
 {
 	for (const TVVOutputObject* output = saoVVOutput_; output->mValueIndex != -1; output++) {
-		_04[output->mValueIndex].setOutput(output);
+		mVariableValues[output->mValueIndex].setOutput(output);
 	}
 	for (const TVVOutput_ANIMATION_FRAME_* output = saoVVOutput_ANIMATION_FRAME_; output->mValueIndex != -1; output++) {
-		_04[output->mValueIndex].setOutput(output);
+		mVariableValues[output->mValueIndex].setOutput(output);
 	}
 	/*
 	lis      r4, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@ha
@@ -266,10 +266,10 @@ void TAdaptor_actor::adaptor_do_begin(const JStudio::TObject* object)
 	mObject->setFlagOn(1);
 	getJSG_SRT_((const JStudio::TControl*)object->mControl);
 	for (const TVVOutputObject* output = saoVVOutput_; output->mValueIndex != -1; output++) {
-		_04[output->mValueIndex].set(JStudio::TVariableValue::update_immediate_, 0, (mObject->*(output->mGetter))());
+		mVariableValues[output->mValueIndex].setValueImmediate((mObject->*(output->mGetter))());
 	}
 	for (const TVVOutput_ANIMATION_FRAME_* output = saoVVOutput_ANIMATION_FRAME_; output->mValueIndex != -1; output++) {
-		_04[output->mValueIndex].set(JStudio::TVariableValue::update_immediate_, 0, (mObject->*(output->mGetter))());
+		mVariableValues[output->mValueIndex].setValueImmediate((mObject->*(output->mGetter))());
 	}
 }
 

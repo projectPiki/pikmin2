@@ -5,23 +5,42 @@
 #include "JSystem/J3D/J3DTypes.h"
 #include "types.h"
 
-struct J3DIndTexCoordScale {
+struct J3DIndTexCoordScaleInfo {
+	void operator=(const J3DIndTexCoordScaleInfo& other)
+	{
+		mScaleS = other.mScaleS;
+		mScaleT = other.mScaleT;
+	}
+
+	u8 mScaleS; // _00
+	u8 mScaleT; // _01
+	u8 _02;     // _02, padding?
+	u8 _03;     // _03, padding?
+};
+
+struct J3DIndTexCoordScale : public J3DIndTexCoordScaleInfo {
 	J3DIndTexCoordScale();
 	~J3DIndTexCoordScale() { }
 
-	u8 _00;    // _00
-	u8 _01;    // _01
-	u8 _02[2]; // _02
+	u8 getScaleS() { return mScaleS; }
+	u8 getScaleT() { return mScaleT; }
+
+	// _00-_04 = J3DIndTexCoordScaleInfo
 };
 
 struct J3DIndTexMtxInfo {
-	f32 _00;
-	f32 _04;
-	f32 _08;
-	f32 _0C;
-	f32 _10;
-	f32 _14;
-	u8 _18;
+	void operator=(const J3DIndTexMtxInfo& other)
+	{
+		for (int i = 0; i < 2; i++) {
+			for (int j = 0; j < 3; j++) {
+				mOffsetMtx[i][j] = other.mOffsetMtx[i][j];
+			}
+		}
+		mScaleExp = other.mScaleExp;
+	}
+
+	Mtx23 mOffsetMtx; // _00
+	s8 mScaleExp;     // _18
 };
 
 extern const J3DIndTexMtxInfo j3dDefaultIndTexMtxInfo;
@@ -29,91 +48,52 @@ extern const J3DIndTexMtxInfo j3dDefaultIndTexMtxInfo;
 /**
  * @size{0x1C}
  */
-struct J3DIndTexMtx {
-	J3DIndTexMtx()
-	    : _00(j3dDefaultIndTexMtxInfo._00)
-	    , _04(j3dDefaultIndTexMtxInfo._04)
-	    , _08(j3dDefaultIndTexMtxInfo._08)
-	    , _0C(j3dDefaultIndTexMtxInfo._0C)
-	    , _10(j3dDefaultIndTexMtxInfo._10)
-	    , _14(j3dDefaultIndTexMtxInfo._14)
-	    , _18(j3dDefaultIndTexMtxInfo._18)
-	{
-	}
-
-	/** @fabricated */
-	J3DIndTexMtx(const J3DIndTexMtxInfo& info)
-	    : _00(info._00)
-	    , _04(info._04)
-	    , _08(info._08)
-	    , _0C(info._0C)
-	    , _10(info._10)
-	    , _14(info._14)
-	    , _18(info._18)
-	{
-	}
+struct J3DIndTexMtx : public J3DIndTexMtxInfo {
+	J3DIndTexMtx() { *(J3DIndTexMtxInfo*)this = j3dDefaultIndTexMtxInfo; }
+	J3DIndTexMtx(const J3DIndTexMtxInfo& info) { *(J3DIndTexMtxInfo*)this = info; }
 
 	~J3DIndTexMtx() { }
 
-	f32 _00;
-	f32 _04;
-	f32 _08;
-	f32 _0C;
-	f32 _10;
-	f32 _14;
-	u8 _18;
+	void load(u32 id) { J3DGDSetIndTexMtx(GXIndTexMtxID(id + GX_ITM_0), getOffsetMtx(), getScaleExp()); }
+
+	Mtx3P getOffsetMtx() { return mOffsetMtx; }
+
+	s8 getScaleExp() { return mScaleExp; }
+
+	void setScaleExp(s8 scaleExp) { mScaleExp = scaleExp; }
+
+	// _00-_1C = J3DIndTexMtxInfo
 };
 
 /** @fabricated */
 struct J3DIndTexOrderInfo {
+	void operator=(const J3DIndTexOrderInfo& other)
+	{
+		mTexCoordID = other.mTexCoordID;
+		mTexMapID   = other.mTexMapID;
+	}
+
 	u8 mTexCoordID; // _00
 	u8 mTexMapID;   // _01
-	u8 _02;         // _02
-	u8 _03;         // _03
+	u8 _02;         // _02, padding?
+	u8 _03;         // _03, padding?
 };
 
 extern const J3DIndTexOrderInfo j3dDefaultIndTexOrderNull;
-// extern const struct J3DIndTexOrder j3dDefaultIndTexOrderNull;
 
 /**
  * @size{0x4}
  */
-struct J3DIndTexOrder {
-	J3DIndTexOrder()
-	    : mTexCoordID(j3dDefaultIndTexOrderNull.mTexCoordID)
-	    , mTexMapID(j3dDefaultIndTexOrderNull.mTexMapID)
-	{
-	}
+struct J3DIndTexOrder : public J3DIndTexOrderInfo {
+	J3DIndTexOrder() { *(J3DIndTexOrderInfo*)this = j3dDefaultIndTexOrderNull; }
+	J3DIndTexOrder(const J3DIndTexOrderInfo& info) { *(J3DIndTexOrderInfo*)this = info; }
 
-	/** @fabricated */
-	inline J3DIndTexOrder(const J3DIndTexOrderInfo& info)
-	    : mTexCoordID(info.mTexCoordID)
-	    , mTexMapID(info.mTexMapID)
-	    , _02(info._02)
-	    , _03(info._03)
-	{
-	}
+	u8 getCoord() const { return mTexCoordID; }
+	u8 getMap() const { return mTexMapID; }
+	void setCoord(u8 coord) { mTexCoordID = coord; }
+	void setMap(u8 map) { mTexMapID = map; }
 
-	// /** @fabricated */
-	// inline J3DIndTexOrder(_GXTexCoordID coordID, GXTexMapID mapID)
-	//     : mTexCoordID(coordID)
-	//     , mTexMapID(mapID)
-	// {
-	// }
-
-	// /** @fabricated */
-	// inline J3DIndTexOrder(u8 coordID, u8 mapID, u8 p3, u8 p4)
-	//     : mTexCoordID(coordID)
-	//     , mTexMapID(mapID)
-	//     , _02(p3)
-	//     , _03(p4)
-	// {
-	// }
-
-	u8 mTexCoordID; // _00
-	u8 mTexMapID;   // _01
-	u8 _02;         // _02
-	u8 _03;         // _03
+	// _00-_04 = J3DIndTexOrderInfo
 };
 
 struct J3DIndBlock {

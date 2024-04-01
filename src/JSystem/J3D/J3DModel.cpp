@@ -1117,7 +1117,7 @@ void J3DModel::calcBumpMtx()
 
 		for (u16 i = 0; i < materialNum; i++) {
 			J3DMaterial* material = getModelData()->getMaterialNodePointer(i);
-			if (material->getNBTScale()->mbHasScale == 1) {
+			if (material->getNBTScale()->mHasScale == 1) {
 				material->getShape()->calcNBTScale(*material->getNBTScale()->getScale(), getNrmMtxPtr(), getBumpMtxPtr(bumpMtxIdx));
 				DCStoreRange(getBumpMtxPtr(bumpMtxIdx), getModelData()->getDrawMtxNum() * 0x24);
 				bumpMtxIdx++;

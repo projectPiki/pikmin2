@@ -11,10 +11,10 @@ GDOverflowCallback overflowcb = (GDOverflowCallback)NULL;
  */
 void GDInitGDLObj(GDCurrentDL* GDL_Obj, u8* start, s32 len)
 {
-	GDL_Obj->begin            = start;
-	GDL_Obj->pDisplayListData = start;
-	GDL_Obj->end              = start + len;
-	GDL_Obj->length           = len;
+	GDL_Obj->begin  = start;
+	GDL_Obj->data   = start;
+	GDL_Obj->end    = start + len;
+	GDL_Obj->length = len;
 }
 
 /**
@@ -29,7 +29,7 @@ void GDFlushCurrToMem() { DCFlushRange(__GDCurrentDL->begin, __GDCurrentDL->leng
  */
 void GDPadCurr32()
 {
-	u32 i = ((u32)__GDCurrentDL->pDisplayListData & 31);
+	u32 i = ((u32)__GDCurrentDL->data & 31);
 	if (i) {
 		for (i; i < 32; i++) {
 			__GDWrite(0);

@@ -13,17 +13,6 @@
 #include "JSystem/J3D/J3DTypes.h"
 #include "types.h"
 
-struct J3DColorChanInfo {
-	bool mlightingEnabled; // _00
-	u8 mMaterialColorSrc;  // _01
-	u8 mAmbientColorSrc;   // _02
-	u8 mLitmask;           // _03
-	u8 mDiffuseFn;         // _04
-	u8 mAttnFn;            // _05
-	u8 _06;                // _06 - unknown/padding
-	u8 _07;                // _07 - unknown/padding
-};
-
 struct J3DDisplayListInit {
 	u32 _00; // _00
 	u32 _04; // _04

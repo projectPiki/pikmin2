@@ -61,6 +61,30 @@ struct TControl : public stb::TControl {
 		mFvbControl.setFactory(fvb_factory);
 	}
 
+	fvb::TObject* fvb_getObject(const void* id, u32 length) { return mFvbControl.getObject(id, length); }
+
+	fvb::TObject* fvb_getObject_index(u32 index) { return mFvbControl.getObject_index(index); }
+
+	TFunctionValue* getFunctionValue(const void* id, u32 length)
+	{
+		fvb::TObject* obj = fvb_getObject(id, length);
+		if (obj == nullptr) {
+			return nullptr;
+		}
+		return obj->referFunctionValue();
+	}
+
+	TFunctionValue* getFunctionValue_index(u32 index)
+	{
+		fvb::TObject* obj = fvb_getObject_index(index);
+		if (obj == nullptr) {
+			return nullptr;
+		}
+		return obj->referFunctionValue();
+	}
+
+	f64 getSecondsPerFrame() const { return mSecondsPerFrame; }
+
 	// _00     = VTBL
 	// _00-_58 = stb::TControl
 	f64 mSecondsPerFrame;       // _58
