@@ -1,5 +1,6 @@
 #include "ebi/Save.h"
 #include "Controller.h"
+#include "ebi/Utility.h"
 
 static const char name[] = "ebiSaveMgr";
 

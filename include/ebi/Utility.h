@@ -3,8 +3,19 @@
 
 #include "Controller.h"
 #include "JSystem/JUtility/TColor.h"
+#include "Game/MemoryCard/Mgr.h"
+#include "System.h"
 
 namespace ebi {
+
+inline static bool isSaveError()
+{
+	if (sys->mCardMgr->isSaveInvalid() && sys->mCardMgr->isCardReady()) {
+		return true;
+	}
+	return false;
+}
+
 struct EUTPadInterface_countNum {
 	EUTPadInterface_countNum()
 	{

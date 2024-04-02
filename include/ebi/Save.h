@@ -143,14 +143,6 @@ struct FSMState_NowSave : public FSMState {
 	virtual void do_init(TMgr*, Game::StateArg*); // _20
 	virtual void do_exec(TMgr*);                  // _24
 
-	inline bool isSaveError()
-	{
-		if (sys->mCardMgr->isSaveInvalid() && sys->mCardMgr->isCardReady()) {
-			return true;
-		}
-		return false;
-	}
-
 	// _00     = VTBL
 	// _00-_10 = FSMState
 	int mState;

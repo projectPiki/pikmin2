@@ -81,6 +81,7 @@ void FSMState_SelectYesNo::do_exec(TMgr* mgr)
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
 		}
 	}
+
 	u32 input = mgr->mController->getButtonDown();
 	if (input & Controller::PRESS_A) {
 		mIsSelected = true;
@@ -440,7 +441,7 @@ void FSMState_CardTask::init(TMgr* mgr, Game::StateArg* arg)
  */
 void FSMState_CardTask::exec(TMgr* mgr)
 {
-	if (sys->mCardMgr->isSaveInvalid() && sys->mCardMgr->isCardReady()) {
+	if (isSaveError()) {
 		mCardStat = Game::MemoryCard::Mgr::MCS_Ready;
 		mStatus   = CardTaskState_finish;
 		mgr->mMainScreen.closeMSG();
@@ -493,222 +494,6 @@ void FSMState_CardTask::exec(TMgr* mgr)
 		}
 		break;
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r29, 0x14(r1)
-	li       r29, 0
-	lwz      r5, sys@sda21(r13)
-	lwz      r3, 0x5c(r5)
-	lwz      r0, 0xa8(r3)
-	cmpwi    r0, 0
-	bne      lbl_803DEFA8
-	bl       checkStatus__13MemoryCardMgrFv
-	cmplwi   r3, 0xb
-	beq      lbl_803DEFA8
-	li       r29, 1
-
-lbl_803DEFA8:
-	clrlwi.  r0, r29, 0x18
-	beq      lbl_803DEFCC
-	lwz      r3, sys@sda21(r13)
-	lwz      r3, 0x5c(r3)
-	bl       getCardStatus__Q34Game10MemoryCard3MgrFv
-	cmpwi    r3, 0
-	bne      lbl_803DEFCC
-	li       r0, 1
-	b        lbl_803DEFD0
-
-lbl_803DEFCC:
-	li       r0, 0
-
-lbl_803DEFD0:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_803DEFF0
-	li       r3, 0
-	li       r0, 3
-	stw      r3, 0x10(r30)
-	mr       r3, r31
-	stw      r0, 0x14(r30)
-	bl       closeMSG__Q43ebi6Screen10FileSelect11TMainScreenFv
-
-lbl_803DEFF0:
-	lwz      r0, 0x14(r30)
-	cmpwi    r0, 2
-	beq      lbl_803DF0EC
-	bge      lbl_803DF010
-	cmpwi    r0, 0
-	beq      lbl_803DF01C
-	bge      lbl_803DF094
-	b        lbl_803DF204
-
-lbl_803DF010:
-	cmpwi    r0, 4
-	bge      lbl_803DF204
-	b        lbl_803DF124
-
-lbl_803DF01C:
-	lwz      r3, sys@sda21(r13)
-	li       r29, 0
-	lwz      r3, 0x5c(r3)
-	lwz      r0, 0xa8(r3)
-	cmpwi    r0, 0
-	bne      lbl_803DF044
-	bl       checkStatus__13MemoryCardMgrFv
-	cmplwi   r3, 0xb
-	beq      lbl_803DF044
-	li       r29, 1
-
-lbl_803DF044:
-	clrlwi.  r0, r29, 0x18
-	beq      lbl_803DF204
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_803DF088
-	lis      r3, lbl_80496FE4@ha
-	lis      r5, lbl_80497000@ha
-	addi     r3, r3, lbl_80496FE4@l
-	li       r4, 0x131
-	addi     r5, r5, lbl_80497000@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803DF088:
-	li       r0, 1
-	stw      r0, 0x14(r30)
-	b        lbl_803DF204
-
-lbl_803DF094:
-	lwz      r3, sys@sda21(r13)
-	li       r31, 0
-	lwz      r3, 0x5c(r3)
-	lwz      r0, 0xa8(r3)
-	cmpwi    r0, 0
-	bne      lbl_803DF0BC
-	bl       checkStatus__13MemoryCardMgrFv
-	cmplwi   r3, 0xb
-	beq      lbl_803DF0BC
-	li       r31, 1
-
-lbl_803DF0BC:
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_803DF204
-	lwz      r3, sys@sda21(r13)
-	lwz      r3, 0x5c(r3)
-	bl       getCardStatus__Q34Game10MemoryCard3MgrFv
-	stw      r3, 0x10(r30)
-	lwz      r3, sys@sda21(r13)
-	lwz      r3, 0x5c(r3)
-	bl       getCardStatus__Q34Game10MemoryCard3MgrFv
-	li       r0, 2
-	stw      r0, 0x14(r30)
-	b        lbl_803DF204
-
-lbl_803DF0EC:
-	lwz      r0, 0xbf8(r31)
-	cmplwi   r0, 0
-	bne      lbl_803DF204
-	mr       r3, r31
-	bl       closeMSG__Q43ebi6Screen10FileSelect11TMainScreenFv
-	li       r0, 3
-	mr       r3, r30
-	stw      r0, 0x14(r30)
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803DF204
-
-lbl_803DF124:
-	mr       r3, r31
-	bl       isFinishCloseMSG__Q43ebi6Screen10FileSelect11TMainScreenFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803DF204
-	lwz      r0, 0x10(r30)
-	cmpwi    r0, 2
-	beq      lbl_803DF150
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	li       r4, 0x180d
-	li       r5, 0
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-
-lbl_803DF150:
-	lwz      r0, 0x10(r30)
-	cmpwi    r0, 2
-	beq      lbl_803DF178
-	bge      lbl_803DF16C
-	cmpwi    r0, 0
-	beq      lbl_803DF1C0
-	b        lbl_803DF1E4
-
-lbl_803DF16C:
-	cmpwi    r0, 0xd
-	beq      lbl_803DF19C
-	b        lbl_803DF1E4
-
-lbl_803DF178:
-	li       r0, 1
-	mr       r3, r30
-	stb      r0, 0xc3c(r31)
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803DF204
-
-lbl_803DF19C:
-	li       r0, 1
-	mr       r3, r30
-	stb      r0, 0xc3c(r31)
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803DF204
-
-lbl_803DF1C0:
-	li       r0, 0
-	mr       r3, r30
-	stb      r0, 0xc3c(r31)
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803DF204
-
-lbl_803DF1E4:
-	li       r0, 1
-	mr       r3, r30
-	stb      r0, 0xc3c(r31)
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803DF204:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -1326,33 +1111,25 @@ void TMgr::setController(Controller* control)
 void TMgr::perseInfo(Game::MemoryCard::PlayerFileInfo& info)
 {
 	for (int i = 0; i < 3; i++) {
-		Game::MemoryCard::Player* player          = info.getPlayer(i);
-		bool broken                               = info.isBrokenFile(i);
-		u32 time                                  = player->mPlayTime;
-		u32 floor                                 = player->mCaveFloor;
-		u32 cave                                  = player->mCaveID;
-		u32 treasure                              = player->mTreasures;
-		u32 poko                                  = player->mPokos;
-		u32 white                                 = player->mWhitePikis;
-		u32 purple                                = player->mPurplePikis;
-		u32 yellow                                = player->mYellowPikis;
-		u32 red                                   = player->mRedPikis;
-		u32 blue                                  = player->mBluePikis;
-		u32 day                                   = player->mDay;
-		mMainScreen.mFileData[i].mIsNewFile       = info.isNewFile(i);
-		mMainScreen.mFileData[i].mCurrentDay      = day;
-		mMainScreen.mFileData[i].mBluePikis       = blue;
-		mMainScreen.mFileData[i].mRedPikis        = red;
-		mMainScreen.mFileData[i].mYellowPikis     = yellow;
-		mMainScreen.mFileData[i].mPurplePikis     = purple;
-		mMainScreen.mFileData[i].mWhitePikis      = white;
-		mMainScreen.mFileData[i].mPokos           = player->mPokos;
-		mMainScreen.mFileData[i].mTreasure        = treasure;
-		mMainScreen.mFileData[i].mCaveID          = cave;
-		mMainScreen.mFileData[i].mCaveFloor       = floor;
-		mMainScreen.mFileData[i].mPlayTimeHours   = time / 60;
-		mMainScreen.mFileData[i].mPlayTimeMinutes = time % 60;
-		mMainScreen.mFileData[i].mIsBrokenFile    = broken;
+		Game::MemoryCard::Player* player = info.getPlayer(i);
+		bool broken                      = info.isBrokenFile(i);
+
+		u32 floor, cave, treasure, poko, white, purple, yellow, red, blue, day, minutes, hours;
+		floor    = player->mCaveFloor;
+		cave     = player->mCaveID;
+		treasure = player->mTreasures;
+		poko     = player->mPokos;
+		white    = player->mWhitePikis;
+		purple   = player->mPurplePikis;
+		yellow   = player->mYellowPikis;
+		red      = player->mRedPikis;
+		blue     = player->mBluePikis;
+		day      = player->mDay;
+		minutes  = player->mPlayTime % 60;
+		hours    = player->mPlayTime / 60;
+
+		mMainScreen.getFileData(i)->setData(info.isNewFile(i), day, blue, red, yellow, purple, white, poko, treasure, cave, floor, hours,
+		                                    minutes, broken);
 
 		char buffer[16];
 		EUTDebug_Tag32ToName(player->mCaveID, buffer);
@@ -1498,72 +1275,10 @@ void TMgr::goEnd_(enumEnd id)
 void TMgr::checkAndTransitNoCard_()
 {
 	if (mInSeq) {
-		if (sys->mCardMgr->isSaveInvalid() && sys->mCardMgr->isCardReady()) {
+		if (isSaveError()) {
 			goEnd_(END_StartNoCard);
 		}
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lbz      r0, 0xc3c(r3)
-	cmplwi   r0, 0
-	beq      lbl_803E0430
-	lwz      r3, sys@sda21(r13)
-	li       r31, 0
-	lwz      r3, 0x5c(r3)
-	lwz      r0, 0xa8(r3)
-	cmpwi    r0, 0
-	bne      lbl_803E03C4
-	bl       checkStatus__13MemoryCardMgrFv
-	cmplwi   r3, 0xb
-	beq      lbl_803E03C4
-	li       r31, 1
-
-lbl_803E03C4:
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_803E03E8
-	lwz      r3, sys@sda21(r13)
-	lwz      r3, 0x5c(r3)
-	bl       getCardStatus__Q34Game10MemoryCard3MgrFv
-	cmpwi    r3, 0
-	bne      lbl_803E03E8
-	li       r0, 1
-	b        lbl_803E03EC
-
-lbl_803E03E8:
-	li       r0, 0
-
-lbl_803E03EC:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_803E0430
-	li       r0, 1
-	addi     r3, r30, 0xc40
-	stw      r0, 0xc38(r30)
-	mr       r4, r30
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0xc40(r30)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803E0430:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**

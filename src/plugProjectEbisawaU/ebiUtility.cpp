@@ -1,5 +1,4 @@
 #include "ebi/Utility.h"
-#include "System.h"
 
 namespace ebi {
 

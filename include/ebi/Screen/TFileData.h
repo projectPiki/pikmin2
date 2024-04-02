@@ -26,6 +26,25 @@ struct TFileData {
 		mIsBrokenFile    = false;
 	}
 
+	inline void setData(bool isNew, u32 day, u32 blue, u32 red, u32 yellow, u32 purple, u32 white, u32 poko, u32 treasure, u32 cave,
+	                    u32 floor, u32 hours, u32 minutes, bool broken)
+	{
+		mIsNewFile       = isNew;
+		mCurrentDay      = day;
+		mBluePikis       = blue;
+		mRedPikis        = red;
+		mYellowPikis     = yellow;
+		mPurplePikis     = purple;
+		mWhitePikis      = white;
+		mPokos           = poko;
+		mTreasure        = treasure;
+		mCaveID          = cave;
+		mCaveFloor       = floor;
+		mPlayTimeHours   = hours;
+		mPlayTimeMinutes = minutes;
+		mIsBrokenFile    = broken;
+	}
+
 	bool mIsBrokenFile;   // _00
 	bool mIsNewFile;      // _01
 	u32 mCurrentDay;      // _04
