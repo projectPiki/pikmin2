@@ -177,7 +177,7 @@ struct JASDSPChannel {
 
 	s32 _00;
 	s16 _04;
-	u32 _08;
+	u32 _08; // some kind of bitflag?
 	u32 _0C;
 	Callback _10;
 	void* _14;

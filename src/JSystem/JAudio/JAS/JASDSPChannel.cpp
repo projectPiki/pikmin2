@@ -32,7 +32,7 @@ void JASDSPChannel::free()
  * @note Address: 0x800A4B84
  * @note Size: 0x10
  */
-void JASDSPChannel::start() { _08 |= 1; }
+void JASDSPChannel::start() { SET_FLAG(_08, 1); }
 
 /**
  * @note Address: 0x800A4B94
@@ -43,12 +43,12 @@ void JASDSPChannel::drop()
 	if (_10) {
 		_10(3, 0, _14);
 	}
-	_10 = nullptr;
-	_14 = 0;
+	free();
 	_04 = -1;
-	_08 &= ~1;
+	RESET_FLAG(_08, 1);
 	if (_00 == 0) {
-		_08 |= 2;
+		SET_FLAG(_08, 2);
+		;
 		_00 = 2;
 	}
 }
@@ -75,17 +75,7 @@ JASDSPChannel* JASDSPChannel::alloc(u8 index, s32 (*cb)(u32, JASDsp::TChannel*, 
 	if (!channel) {
 		return nullptr;
 	}
-	if (channel->_10) {
-		channel->_10(3, 0, channel->_14);
-	}
-	channel->_10 = nullptr;
-	channel->_14 = nullptr;
-	channel->_04 = -1;
-	channel->_08 &= ~1;
-	if (channel->_00 == 0) {
-		channel->_08 |= 2;
-		channel->_00 = 2;
-	}
+	channel->drop();
 	channel->_04 = index;
 	channel->_0C = 0;
 	channel->_10 = cb;
@@ -104,17 +94,7 @@ JASDSPChannel* JASDSPChannel::allocForce(u8 index, s32 (*cb)(u32, JASDsp::TChann
 		return nullptr;
 	}
 	channel->_00 = 1;
-	if (channel->_10) {
-		channel->_10(3, 0, channel->_14);
-	}
-	channel->_10 = nullptr;
-	channel->_14 = nullptr;
-	channel->_04 = -1;
-	channel->_08 &= ~1;
-	if (channel->_00 == 0) {
-		channel->_08 |= 2;
-		channel->_00 = 2;
-	}
+	channel->drop();
 	channel->_04 = index;
 	channel->_0C = 0;
 	channel->_10 = cb;
@@ -245,7 +225,7 @@ JASDSPChannel* JASDSPChannel::getLowestActiveChannel()
 void JASDSPChannel::updateProc()
 {
 	if (_18->isFinish()) {
-		_08 &= ~0x3;
+		RESET_FLAG(_08, 3);
 		if (_00 == 0) {
 			int v1;
 			if (_10 != nullptr) {
@@ -262,8 +242,8 @@ void JASDSPChannel::updateProc()
 		_18->flush();
 		return;
 	}
-	if ((_08 & 2) != 0) {
-		_08 &= ~0x3;
+	if (IS_FLAG(_08, 2)) {
+		RESET_FLAG(_08, 3);
 		_18->forceStop();
 		_18->flush();
 		return;
@@ -271,8 +251,8 @@ void JASDSPChannel::updateProc()
 	if (_00 == 2) {
 		return;
 	}
-	if ((_08 & 1) != 0 && (_00 == 1)) {
-		_08 &= ~2;
+	if (IS_FLAG(_08, 1) != 0 && (_00 == 1)) {
+		RESET_FLAG(_08, 2);
 		_00 = 0;
 		_18->init();
 		if (_10 != nullptr) {
@@ -481,17 +461,7 @@ bool JASDSPChannel::killActiveChannel()
 	if (channel == nullptr) {
 		return false;
 	}
-	if (channel->_10 != nullptr) {
-		channel->_10(3, nullptr, channel->_14);
-	}
-	channel->_10 = nullptr;
-	channel->_14 = nullptr;
-	channel->_04 = -1;
-	channel->_08 &= ~1;
-	if (channel->_00 == 0) {
-		channel->_08 |= 2;
-		channel->_00 = 2;
-	}
+	channel->drop();
 	return true;
 	/*
 	stwu     r1, -0x10(r1)
