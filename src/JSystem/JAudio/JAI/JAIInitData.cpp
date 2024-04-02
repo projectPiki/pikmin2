@@ -139,7 +139,7 @@ void JAInter::InitData::checkInitDataOnMemory()
 			break;
 		case 8: {
 			u8* tmp = transInitDataFile((u8*)aafPointer + aafPointer[r30], (aafPointer[r30 + 1] & 0xFFF0) + 16); // aaaaaaaaaaaaa
-			JAIBasic::getInterface()->_18 = (u32)tmp;
+			JAIBasic::getInterface()->_18 = tmp;
 			r30 += 3;
 			break;
 		}

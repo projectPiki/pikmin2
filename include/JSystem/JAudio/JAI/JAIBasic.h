@@ -108,7 +108,7 @@ struct JAIBasic {
 	} _0E;    // _0E
 	u32 _10;  // _10
 	u32 _14;  // _14
-	u32 _18;  // _18
+	u8* _18;  // _18
 	u8** _1C; // _1C
 
 	static JAIBasic* msBasic;
