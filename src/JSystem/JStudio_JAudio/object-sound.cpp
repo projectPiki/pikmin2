@@ -1,5 +1,6 @@
 #include "JSystem/JStudio_JAudio.h"
 #include "JSystem/JAudio/JAI/JAIBasic.h"
+#include "nans.h"
 #include "types.h"
 
 /*
@@ -700,41 +701,31 @@ void JStudio_JAudio::TAdaptor_sound::adaptor_do_PARENT_NODE(JStudio::data::TEOpe
 /**
  * @note Address: 0x80015610
  * @note Size: 0x20
+ * Please make this less insane. -EpochFlame
  */
-void JStudio_JAudio::TAdaptor_sound::adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData, const void*, u32)
+void JStudio_JAudio::TAdaptor_sound::adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData data, const void* ptr, u32 idk)
 {
-	/*
-	.loc_0x0:
-	  cmpwi     r4, 0x2
-	  bnelr-
-	  lwz       r4, 0x0(r5)
-	  neg       r0, r4
-	  or        r0, r0, r4
-	  rlwinm    r0,r0,1,31,31
-	  stb       r0, 0x104(r3)
-	  blr
-	*/
+	if (data == JStudio::data::TEOD_Unknown_02) {
+		const u32* ass = reinterpret_cast<const u32*>(ptr);
+		_104           = !!*ass;
+	}
 }
 
 /**
  * @note Address: 0x80015630
  * @note Size: 0x28
+ * Please make this less insane. -EpochFlame
+ * Also, r0/r4 regswap.
  */
-void JStudio_JAudio::TAdaptor_sound::adaptor_do_LOCATED(JStudio::data::TEOperationData, const void*, u32)
+void JStudio_JAudio::TAdaptor_sound::adaptor_do_LOCATED(JStudio::data::TEOperationData data, const void* ptr, u32 idk)
 {
-	/*
-	.loc_0x0:
-	  cmpwi     r4, 0x2
-	  bnelr-
-	  lwz       r4, 0x0(r5)
-	  li        r0, 0
-	  stw       r0, 0xE8(r3)
-	  cmplwi    r4, 0
-	  beqlr-
-	  addi      r0, r3, 0xEC
-	  stw       r0, 0xE8(r3)
-	  blr
-	*/
+	if (data == JStudio::data::TEOD_Unknown_02) {
+		_E8            = nullptr;
+		const u32* ass = reinterpret_cast<const u32*>(ptr);
+		if (*ass) {
+			_E8 = &_EC;
+		}
+	}
 }
 
 /**
@@ -864,42 +855,6 @@ void JStudio_JAudio::TAdaptor_sound::endSound_fadeOut_(u32)
 lbl_800157AC:
 	lwz      r0, 0x14(r1)
 	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/**
- * @note Address: 0x800157C0
- * @note Size: 0x60
- */
-JStudio_JAudio::TAdaptor_sound::TVVOSetValue_::~TVVOSetValue_()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80015804
-	lis      r5, __vt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_@l
-	stw      r0, 0(r30)
-	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
-	extsh.   r0, r31
-	ble      lbl_80015804
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80015804:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
 	mtlr     r0
 	addi     r1, r1, 0x10
 	blr

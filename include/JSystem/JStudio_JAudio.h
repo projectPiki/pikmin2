@@ -17,7 +17,7 @@ typedef JStudio::TObject* (*JStudioAudioCreateFunc)(const JStudio::stb::data::TP
 struct TAdaptor_sound : public JStudio::TAdaptor_sound {
 	struct TVVOSetValue_ : public JStudio::TVariableValue::TOutput {
 		virtual void operator()(f32, JStudio::TAdaptor*) const; // _08
-		virtual ~TVVOSetValue_();                               // _0C (weak)
+		virtual ~TVVOSetValue_() { }                            // _0C (weak)
 
 		// _00 = VTBL
 		int _04; // _04
