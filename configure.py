@@ -234,7 +234,7 @@ LIBS = [
             ["JSystem/J3D/J3DJoint", False],
             ["JSystem/J3D/J3DMaterialFactory", False],
             ["JSystem/J3D/J3DBinaryFormat", True],
-            ["JSystem/J3D/J3DModelLoader", False],
+            ["JSystem/J3D/J3DModelLoader", True],
             ["JSystem/J3D/J3DJointFactory", True],
             ["JSystem/J3D/J3DShapeFactory", True],
             ["JSystem/J3D/J3DAnmLoader", True],

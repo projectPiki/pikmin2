@@ -157,6 +157,7 @@ struct J3DModelData {
 	GXColor* getVtxColorArray(u8 idx) const { return mVertexData.getVtxColorArray(idx); }
 	u32 getVertexNum() const { return mVertexData.getVtxNum(); }
 	u32 getVertexColorNum() const { return mVertexData.getColNum(); }
+	const J3DModelHierarchy* getHierarchy() const { return mJointTree.getHierarchy(); }
 
 	u8 getDrawMtxFlag(u16 idx) const { return mJointTree.getDrawMtxFlag(idx); }
 	u16 getDrawMtxIndex(u16 idx) const { return mJointTree.getDrawMtxIndex(idx); }

@@ -130,6 +130,7 @@ struct J3DMaterialFactory {
 	void modifyPatchedCurrentMtx(J3DMaterial*, int) const;
 
 	/** @fabricated */
+	u16 getMaterialID(int idx) const { return mMatRemapTable[idx]; }
 	inline J3DMaterialInitData& getMaterialInitData(s32 index) const { return mInitData[mMatRemapTable[index]]; }
 	u8 getMaterialMode(int idx) const { return getMaterialInitData(idx).mPixelEngineMode; }
 
@@ -211,6 +212,7 @@ struct J3DMaterialInitData_v21 {
 
 struct J3DMaterialFactory_v21 {
 	J3DMaterialFactory_v21(const J3DMaterialBlock_v21&);
+
 	u16 countUniqueMaterials();
 	J3DMaterial* create(J3DMaterial*, int, u32) const;
 	J3DGXColor newMatColor(int, int) const;
@@ -237,7 +239,7 @@ struct J3DMaterialFactory_v21 {
 	J3DNBTScale newNBTScale(int) const;
 
 	/** @fabricated */
-	// inline s32 getMaterialInitDataIndex(s32 initDataIndexIndex) const { return _08[initDataIndexIndex]; }
+	u16 getMaterialID(int idx) const { return mMatRemapTable[idx]; }
 	inline J3DMaterialInitData_v21& getMaterialInitData(s32 index) const { return mInitData[mMatRemapTable[index]]; }
 
 	u16 mMaterialNum;                               // _00
@@ -267,13 +269,6 @@ struct J3DMaterialFactory_v21 {
 	u8* mZCompareInfo;                              // _60
 	u8* mDitherInfo;                                // _64
 	J3DNBTScaleInfo* mNBTScaleInfo;                 // _68
-	void* _6C;                                      // _6C
-	void* _70;                                      // _70
-	void* _74;                                      // _74
-	void* _78;                                      // _78
-	void* _7C;                                      // _7C
-	void* _80;                                      // _80
-	void* _84;                                      // _84
 };
 
 #endif

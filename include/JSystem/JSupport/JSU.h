@@ -12,15 +12,7 @@ inline u8 JSUHiByte(u16 data)
 	return data;
 }
 
-template <typename T>
-T* JSUConvertOffsetToPtr(const void* base, const void* offset)
-{
-	if (offset == 0) {
-		return nullptr;
-	}
-	return (T*)((s32)(base) + (s32)(offset));
-}
-
+// these two templates need to be in this order for weak function ordering lol
 template <typename T>
 T* JSUConvertOffsetToPtr(const void* base, u32 offset)
 {
@@ -28,6 +20,15 @@ T* JSUConvertOffsetToPtr(const void* base, u32 offset)
 		return nullptr;
 	}
 	return (T*)((s32)base + offset);
+}
+
+template <typename T>
+T* JSUConvertOffsetToPtr(const void* base, const void* offset)
+{
+	if (offset == 0) {
+		return nullptr;
+	}
+	return (T*)((s32)(base) + (s32)(offset));
 }
 
 #endif

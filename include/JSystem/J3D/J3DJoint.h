@@ -47,6 +47,9 @@ struct J3DJoint {
 	J3DMtxCalc* getCurrentMtxCalc() { return mCurrentMtxCalc; };
 	J3DJoint* getChild() { return mChild; }
 
+	void setMtxType(u8 type) { mKind = (mKind & ~0xF0) | (type << 4); }
+	void resetMtxType() { mKind &= 0x0F; }
+
 	static J3DMtxCalc* mCurrentMtxCalc;
 
 	u32 mCallBackUserData;           // _00

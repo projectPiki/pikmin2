@@ -47,6 +47,7 @@ struct J3DJointTree {
 	J3DMtxCalc* getBasicMtxCalc() const { return mTransformCalc; }
 	Mtx& getInvJointMtx(s32 idx) const { return mInvJointMtx[idx]; }
 	u32 getModelDataType() const { return mModelDataType; }
+	const J3DModelHierarchy* getHierarchy() const { return mHierarchy; }
 
 	// VTBL _00
 	J3DModelHierarchy* mHierarchy; // _04
