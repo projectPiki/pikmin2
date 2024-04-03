@@ -244,7 +244,7 @@ LIBS = [
             ["JSystem/J3D/J3DModelData", True],
             ["JSystem/J3D/J3DMaterialAttach", False],
             ["JSystem/J3D/J3DMaterialFactory_v21", False],
-            ["JSystem/J3D/J3DShapeMtx", False],
+            ["JSystem/J3D/J3DShapeMtx", True],
             ["JSystem/J3D/J3DModelLoaderCalcSize", False],
             ["JSystem/J3D/J3DJointTree", False],
             ["JSystem/J3D/J3DSkinDeform", True],

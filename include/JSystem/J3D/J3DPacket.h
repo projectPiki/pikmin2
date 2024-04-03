@@ -46,14 +46,16 @@ struct J3DTexMtxObj {
 	J3DTexMtxObj(u16 i)
 	{
 		mTexMtx    = new Mtx[i];
-		_04        = new Mtx44[i];
+		mEffectMtx = new Mtx44[i];
 		mTexGenNum = i;
 	}
 	Mtx& getMtx(u16 idx) { return mTexMtx[idx]; }
+	Mtx44& getEffectMtx(u16 idx) { return mEffectMtx[idx]; }
+	u16 getNumTexMtx() { return mTexGenNum; }
 
-	Mtx* mTexMtx;   // _00, array of Mtxs
-	Mtx44* _04;     // _04
-	u16 mTexGenNum; // _08
+	Mtx* mTexMtx;      // _00, array of Mtxs
+	Mtx44* mEffectMtx; // _04
+	u16 mTexGenNum;    // _08
 };
 
 // TODO: Could this use TLinkList?

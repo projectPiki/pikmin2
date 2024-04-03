@@ -42,4 +42,30 @@ inline void J3DPSMtx33Copy(const register Mtx33 src, register Mtx33 dst)
 #endif // clang-format on
 }
 
+inline void J3DPSMtx33CopyFrom34(register MtxP src, register Mtx3P dst)
+{
+	register f32 x_y1;
+	register f32 z1;
+	register f32 x_y2;
+	register f32 z2;
+	register f32 x_y3;
+	register f32 z3;
+#ifdef __MWERKS__ // clang-format off
+    asm {
+        psq_l x_y1, 0(src), 0, 0
+        lfs z1, 8(src)
+        psq_l x_y2, 16(src), 0, 0
+        lfs z2, 0x18(src)
+        psq_l x_y3, 32(src), 0, 0
+        lfs z3, 0x28(src)
+        psq_st x_y1, 0(dst), 0, 0
+        stfs z1, 8(dst)
+        psq_st x_y2, 12(dst), 0, 0
+        stfs z2, 0x14(dst)
+        psq_st x_y3, 24(dst), 0, 0
+        stfs z3, 0x20(dst)
+    }
+#endif // clang-format on
+}
+
 #endif

@@ -21,6 +21,12 @@ static size_t SizeOfLoadColorChans = 21;
 static size_t SizeOfJ3DColorBlockLightOffLoad  = SizeOfLoadMatColors + SizeOfLoadColorChans;
 static size_t SizeOfJ3DColorBlockAmbientOnLoad = SizeOfLoadMatColors + SizeOfLoadAmbColors + SizeOfLoadColorChans;
 
+// this has to get defined here to stop an sdata2 fragment going EVERYWHERE IN THE PROJECT smh
+inline GXAttnFn J3DColorChan::getAttnFn()
+{
+	u8 attnFnTbl[] = { GX_AF_NONE, GX_AF_SPEC, GX_AF_NONE, GX_AF_SPOT };
+	return GXAttnFn(attnFnTbl[mChanCtrl >> 9 & 0x03]);
+}
 /**
  * @note Address: 0x800771C0
  * @note Size: 0x48

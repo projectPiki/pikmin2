@@ -58,7 +58,7 @@ struct J3DCurrentMtx : public J3DCurrentMtxInfo {
 		J3DFifoWriteCPCmd(0x30, getMtxIdxRegA()); // CP_MATINDEX_A
 		J3DFifoWriteCPCmd(0x40, getMtxIdxRegB()); // CP_MATINDEX_B
 		J3DFifoWriteXFCmd(0x1018, 2);
-		GXWGFifo.u32 = getMtxIdxRegA();
+		GXWGFifo.s32 = getMtxIdxRegA();
 		GXWGFifo.u32 = getMtxIdxRegB();
 	}
 

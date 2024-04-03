@@ -41,10 +41,10 @@ void J3DShape::initialize()
  * @note Address: 0x800608C0
  * @note Size: 0x78
  */
-void J3DShape::calcNBTScale(const Vec& p1, Mtx33 p2[3], Mtx33 p3[3])
+void J3DShape::calcNBTScale(const Vec& scale, Mtx33* srcArray, Mtx33* dstArray)
 {
 	for (u16 i = 0; i < getMtxGroupNum(); i++) {
-		getShapeMtx(i)->calcNBTScale(p1, p2[0], p3[0]);
+		getShapeMtx(i)->calcNBTScale(scale, srcArray, dstArray);
 	}
 }
 

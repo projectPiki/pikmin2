@@ -158,6 +158,10 @@ struct J3DModelData {
 	u32 getVertexNum() const { return mVertexData.getVtxNum(); }
 	u32 getVertexColorNum() const { return mVertexData.getColNum(); }
 
+	u8 getDrawMtxFlag(u16 idx) const { return mJointTree.getDrawMtxFlag(idx); }
+	u16 getDrawMtxIndex(u16 idx) const { return mJointTree.getDrawMtxIndex(idx); }
+	u16* getWEvlpImportantMtxIndex() const { return mJointTree.getWEvlpImportantMtxIndex(); }
+
 	bool checkFlag(u32 flag) const { return (mModelLoaderFlags & flag) ? true : false; }
 	u32 getFlag() const { return mModelLoaderFlags; }
 	u16 checkBumpFlag() const { return mBumpFlag; }
@@ -241,6 +245,7 @@ struct J3DModel {
 	u32 getUserArea() const { return mUserArea; }
 	void setAnmMtx(int i, Mtx m) { mMtxBuffer->setAnmMtx(i, m); }
 	MtxP getAnmMtx(int p1) { return mMtxBuffer->getAnmMtx(p1); }
+	J3DMtxBuffer* getMtxBuffer() const { return mMtxBuffer; }
 
 	// void setBaseScale(const Vec& scale) { mModelScale = scale; }
 	Vec* getBaseScale() { return &mModelScale; }

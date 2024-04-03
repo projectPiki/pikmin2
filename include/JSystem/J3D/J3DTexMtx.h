@@ -89,6 +89,13 @@ namespace J3DDifferedTexMtx {
 void loadExecute(const Mtx);
 extern J3DTexGenBlock* sTexGenBlock;
 extern J3DTexMtxObj* sTexMtxObj;
+
+inline void load(Mtx m)
+{
+	if (sTexGenBlock != nullptr) {
+		loadExecute(m);
+	}
+}
 } // namespace J3DDifferedTexMtx
 
 #endif

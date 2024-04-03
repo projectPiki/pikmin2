@@ -271,11 +271,7 @@ struct J3DColorChan {
 		                            info.mAmbSrc == 0xFFFF ? 0 : info.mAmbSrc);
 	}
 
-	GXAttnFn getAttnFn()
-	{
-		u8 attnFnTbl[] = { GX_AF_NONE, GX_AF_SPEC, GX_AF_NONE, GX_AF_SPOT };
-		return GXAttnFn(attnFnTbl[mChanCtrl >> 9 & 0x03]);
-	}
+	GXAttnFn getAttnFn();
 	GXDiffuseFn getDiffuseFn() { return GXDiffuseFn(mChanCtrl >> 7 & 3); }
 	u8 getLightMask() { return ((mChanCtrl >> 2 & 0x0f) | (mChanCtrl >> 11 & 0x0f) << 4); }
 	void setLightMask(u8 mask)

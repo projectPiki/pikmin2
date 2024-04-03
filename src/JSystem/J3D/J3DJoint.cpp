@@ -1,128 +1,13 @@
 #include "JSystem/J3D/J3DJoint.h"
 #include "Dolphin/mtx.h"
-#include "JSystem/J3D/J3DAnmTransform.h"
-#include "JSystem/J3D/J3DMtxBuffer.h"
 #include "JSystem/J3D/J3DMtxCalc.h"
-#include "JSystem/J3D/J3DSys.h"
 #include "JSystem/J3D/J3DTransform.h"
 #include "JSystem/J3D/J3DModel.h"
-#include "JSystem/JGeometry.h"
-#include "JSystem/JMath.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_804789B0
-    lbl_804789B0:
-        .float 1.0
-        .float 1.0
-        .float 1.0
-    .global lbl_804789BC
-    lbl_804789BC:
-        .float 1.0
-        .float 1.0
-        .float 1.0
-    .global lbl_804789C8
-    lbl_804789C8:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_804789D4
-    lbl_804789D4:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global
-   "__vt__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>"
-    "__vt__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "__dt__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv"
-        .4byte
-   "setAnmTransform__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>FP15J3DAnmTransform"
-        .4byte getAnmTransform__17J3DMtxCalcAnmBaseFv
-        .4byte setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform
-        .4byte getAnmTransform__10J3DMtxCalcFUc
-        .4byte setWeight__10J3DMtxCalcFUcf
-        .4byte getWeight__10J3DMtxCalcCFUc
-        .4byte
-   "init__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>FRC3VecRA3_A4_Cf"
-        .4byte
-   "calc__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv"
-    .global
-   "__vt__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>"
-    "__vt__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "__dt__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>Fv"
-        .4byte
-   "setAnmTransform__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>FP15J3DAnmTransform"
-        .4byte getAnmTransform__17J3DMtxCalcAnmBaseFv
-        .4byte setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform
-        .4byte getAnmTransform__10J3DMtxCalcFUc
-        .4byte setWeight__10J3DMtxCalcFUcf
-        .4byte getWeight__10J3DMtxCalcCFUc
-        .4byte
-   "init__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>FRC3VecRA3_A4_Cf"
-        .4byte
-   "calc__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>Fv"
-    .global
-   "__vt__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>"
-    "__vt__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "__dt__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>Fv"
-        .4byte
-   "setAnmTransform__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>FP15J3DAnmTransform"
-        .4byte getAnmTransform__17J3DMtxCalcAnmBaseFv
-        .4byte setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform
-        .4byte getAnmTransform__10J3DMtxCalcFUc
-        .4byte setWeight__10J3DMtxCalcFUcf
-        .4byte getWeight__10J3DMtxCalcCFUc
-        .4byte
-   "init__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>FRC3VecRA3_A4_Cf"
-        .4byte
-   "calc__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>Fv"
-    .global __vt__17J3DMtxCalcAnmBase
-    __vt__17J3DMtxCalcAnmBase:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__17J3DMtxCalcAnmBaseFv
-        .4byte setAnmTransform__17J3DMtxCalcAnmBaseFP15J3DAnmTransform
-        .4byte getAnmTransform__17J3DMtxCalcAnmBaseFv
-        .4byte setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform
-        .4byte getAnmTransform__10J3DMtxCalcFUc
-        .4byte setWeight__10J3DMtxCalcFUcf
-        .4byte getWeight__10J3DMtxCalcCFUc
-        .4byte 0
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global mMtxBuffer__10J3DMtxCalc
-    mMtxBuffer__10J3DMtxCalc:
-        .skip 0x4
-    .global mJoint__10J3DMtxCalc
-    mJoint__10J3DMtxCalc:
-        .skip 0x4
-    .global mCurrentMtxCalc__8J3DJoint
-    mCurrentMtxCalc__8J3DJoint:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516A78
-    lbl_80516A78:
-        .float 1.0
-    .global lbl_80516A7C
-    lbl_80516A7C:
-        .4byte 0x00000000
-*/
+J3DMtxBuffer* J3DMtxCalc::mMtxBuffer;
+J3DJoint* J3DMtxCalc::mJoint;
+J3DMtxCalc* J3DJoint::mCurrentMtxCalc;
 
 /**
  * @note Address: 0x8006B200
@@ -133,7 +18,7 @@ void J3DMtxCalcJ3DSysInitBasic::init(const Vec& scale, const Mtx& mtx)
 {
 	J3DSys::mCurrentS = scale;
 	J3DSys::mParentS  = (Vec) { 1.0f, 1.0f, 1.0f };
-	JMAMTXApplyScale(mtx, J3DSys::mCurrentMtx, J3DSys::mCurrentS.x, J3DSys::mCurrentS.y, J3DSys::mCurrentS.z);
+	JMAMTXApplyScale(mtx, J3DSys::mCurrentMtx, scale.x, scale.y, scale.z);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -183,9 +68,9 @@ void J3DMtxCalcJ3DSysInitBasic::init(const Vec& scale, const Mtx& mtx)
  */
 void J3DMtxCalcJ3DSysInitMaya::init(const Vec& scale, const Mtx& mtx)
 {
-	J3DSys::mParentS  = (Vec) { 1.0f, 1.0f, 1.0f };
 	J3DSys::mCurrentS = scale;
-	JMAMTXApplyScale(mtx, J3DSys::mCurrentMtx, J3DSys::mCurrentS.x, J3DSys::mCurrentS.y, J3DSys::mCurrentS.z);
+	J3DSys::mParentS  = (Vec) { 1.0f, 1.0f, 1.0f };
+	JMAMTXApplyScale(mtx, J3DSys::mCurrentMtx, scale.x, scale.y, scale.z);
 
 	/*
 	stwu     r1, -0x20(r1)
@@ -238,8 +123,6 @@ inline s32 checkScaleOne(const Vec& vec)
 	}
 }
 
-J3DJoint* J3DMtxCalc::mJoint;
-
 /**
  * @note Address: 0x8006B330
  * @note Size: 0x118
@@ -266,86 +149,6 @@ void J3DMtxCalcCalcTransformBasic::calcTransform(const J3DTransformInfo& transIn
 
 	PSMTXConcat(J3DSys::mCurrentMtx, anmMtx, J3DSys::mCurrentMtx);
 	PSMTXCopy(J3DSys::mCurrentMtx, anmMtx);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, mCurrentS__6J3DSys@ha
-	lfs      f0, 0(r3)
-	stw      r0, 0x24(r1)
-	lfs      f2, 4(r3)
-	stmw     r27, 0xc(r1)
-	addi     r31, r4, mCurrentS__6J3DSys@l
-	mr       r27, r3
-	lwz      r5, mJoint__10J3DMtxCalc@sda21(r13)
-	lfs      f1, 0(r31)
-	lhz      r28, 0x14(r5)
-	fmuls    f4, f1, f0
-	lfs      f3, 4(r31)
-	lwz      r29, mMtxBuffer__10J3DMtxCalc@sda21(r13)
-	mulli    r0, r28, 0x30
-	lfs      f1, 8(r31)
-	fmuls    f2, f3, f2
-	lwz      r4, 0xc(r29)
-	lfs      f0, 8(r3)
-	add      r30, r4, r0
-	stfs     f4, 0(r31)
-	fmuls    f0, f1, f0
-	mr       r4, r30
-	stfs     f2, 4(r31)
-	stfs     f0, 8(r31)
-	bl       J3DGetTranslateRotateMtx__FRC16J3DTransformInfoPA4_f
-	lis      r3, mCurrentS__6J3DSys@ha
-	lfs      f1, lbl_80516A78@sda21(r2)
-	lfs      f0, mCurrentS__6J3DSys@l(r3)
-	fcmpu    cr0, f1, f0
-	bne      lbl_8006B3D0
-	lfs      f0, 4(r31)
-	fcmpu    cr0, f1, f0
-	bne      lbl_8006B3D0
-	lfs      f0, 8(r31)
-	fcmpu    cr0, f1, f0
-	bne      lbl_8006B3D0
-	li       r0, 1
-	b        lbl_8006B3D4
-
-lbl_8006B3D0:
-	li       r0, 0
-
-lbl_8006B3D4:
-	cmpwi    r0, 0
-	bne      lbl_8006B404
-	lwz      r4, 4(r29)
-	li       r0, 0
-	lfs      f1, 0(r27)
-	mr       r3, r30
-	stbx     r0, r4, r28
-	mr       r4, r30
-	lfs      f2, 4(r27)
-	lfs      f3, 8(r27)
-	bl       JMAMTXApplyScale__FPA4_CfPA4_ffff
-	b        lbl_8006B410
-
-lbl_8006B404:
-	lwz      r3, 4(r29)
-	li       r0, 1
-	stbx     r0, r3, r28
-
-lbl_8006B410:
-	lis      r3, mCurrentMtx__6J3DSys@ha
-	mr       r4, r30
-	addi     r3, r3, mCurrentMtx__6J3DSys@l
-	mr       r5, r3
-	bl       PSMTXConcat
-	lis      r3, mCurrentMtx__6J3DSys@ha
-	mr       r4, r30
-	addi     r3, r3, mCurrentMtx__6J3DSys@l
-	bl       PSMTXCopy
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -527,108 +330,6 @@ void J3DMtxCalcCalcTransformMaya::calcTransform(const J3DTransformInfo& transInf
 	J3DSys::mParentS.x = transInfo.mScale.x;
 	J3DSys::mParentS.y = transInfo.mScale.y;
 	J3DSys::mParentS.z = transInfo.mScale.z;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r31, r3
-	lwz      r29, mJoint__10J3DMtxCalc@sda21(r13)
-	lwz      r28, mMtxBuffer__10J3DMtxCalc@sda21(r13)
-	lhz      r27, 0x14(r29)
-	lwz      r4, 0xc(r28)
-	mulli    r0, r27, 0x30
-	add      r30, r4, r0
-	mr       r4, r30
-	bl       J3DGetTranslateRotateMtx__FRC16J3DTransformInfoPA4_f
-	lfs      f1, lbl_80516A78@sda21(r2)
-	lfs      f0, 0(r31)
-	fcmpu    cr0, f1, f0
-	bne      lbl_8006B61C
-	lfs      f0, 4(r31)
-	fcmpu    cr0, f1, f0
-	bne      lbl_8006B61C
-	lfs      f0, 8(r31)
-	fcmpu    cr0, f1, f0
-	bne      lbl_8006B61C
-	lwz      r3, 4(r28)
-	li       r0, 1
-	stbx     r0, r3, r27
-	b        lbl_8006B640
-
-lbl_8006B61C:
-	lwz      r4, 4(r28)
-	li       r0, 0
-	lfs      f1, 0(r31)
-	mr       r3, r30
-	stbx     r0, r4, r27
-	mr       r4, r30
-	lfs      f2, 4(r31)
-	lfs      f3, 8(r31)
-	bl       JMAMTXApplyScale__FPA4_CfPA4_ffff
-
-lbl_8006B640:
-	lbz      r0, 0x17(r29)
-	cmplwi   r0, 1
-	bne      lbl_8006B6D4
-	lis      r3, mParentS__6J3DSys@ha
-	lfsu     f1, mParentS__6J3DSys@l(r3)
-	lfs      f0, 0(r30)
-	fres     f3, f1
-	lfs      f2, 4(r3)
-	lfs      f1, 8(r3)
-	fmuls    f0, f0, f3
-	fres     f2, f2
-	stfs     f0, 0(r30)
-	lfs      f0, 4(r30)
-	fmuls    f0, f0, f3
-	fres     f1, f1
-	stfs     f0, 4(r30)
-	lfs      f0, 8(r30)
-	fmuls    f0, f0, f3
-	stfs     f0, 8(r30)
-	lfs      f0, 0x10(r30)
-	fmuls    f0, f0, f2
-	stfs     f0, 0x10(r30)
-	lfs      f0, 0x14(r30)
-	fmuls    f0, f0, f2
-	stfs     f0, 0x14(r30)
-	lfs      f0, 0x18(r30)
-	fmuls    f0, f0, f2
-	stfs     f0, 0x18(r30)
-	lfs      f0, 0x20(r30)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x20(r30)
-	lfs      f0, 0x24(r30)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x24(r30)
-	lfs      f0, 0x28(r30)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x28(r30)
-
-lbl_8006B6D4:
-	lis      r3, mCurrentMtx__6J3DSys@ha
-	mr       r4, r30
-	addi     r3, r3, mCurrentMtx__6J3DSys@l
-	mr       r5, r3
-	bl       PSMTXConcat
-	lis      r3, mCurrentMtx__6J3DSys@ha
-	mr       r4, r30
-	addi     r3, r3, mCurrentMtx__6J3DSys@l
-	bl       PSMTXCopy
-	lfs      f2, 0(r31)
-	lis      r3, mParentS__6J3DSys@ha
-	lfs      f1, 4(r31)
-	stfsu    f2, mParentS__6J3DSys@l(r3)
-	lfs      f0, 8(r31)
-	stfs     f1, 4(r3)
-	stfs     f0, 8(r3)
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -743,8 +444,6 @@ void J3DJoint::entryIn()
 		}
 	}
 }
-
-J3DMtxCalc* J3DJoint::mCurrentMtxCalc;
 
 /**
  * @note Address: 0x8006BB54

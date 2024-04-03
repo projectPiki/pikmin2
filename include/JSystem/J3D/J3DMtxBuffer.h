@@ -26,7 +26,7 @@ struct J3DMtxBuffer {
 	MtxP getAnmMtx(int idx) const { return mWorldMatrices[idx]; }
 	void setAnmMtx(int i, Mtx m) { PSMTXCopy(m, (MtxP)mWorldMatrices[i]); }
 	MtxP getWeightAnmMtx(int idx) const { return mWeightEnvelopeMatrices[idx]; }
-
+	MtxP getWorldMtx(int idx) { return mWorldMatrices[idx]; }
 	inline Matrixf* getWorldMatrix(int i) { return (Matrixf*)mWorldMatrices[i]; }
 
 	void setScaleFlag(int idx, u8 flag) { mScaleFlags[idx] = flag; }

@@ -41,7 +41,7 @@ struct J3DJointTree {
 	u16 getJointNum() const { return mJointCnt; }
 	u16 getDrawMtxNum() const { return mMtxData.mCount; }
 	u8 getDrawMtxFlag(u16 idx) const { return mMtxData.mDrawMtxFlag[idx]; }
-	u8 getDrawMtxIndex(u16 idx) const { return mMtxData.mDrawMtxIdx[idx]; }
+	u16 getDrawMtxIndex(u16 idx) const { return mMtxData.mDrawMtxIdx[idx]; }
 	JUTNameTab* getJointName() const { return mNametab; }
 	J3DJoint* getRootNode() { return mRootNode; }
 	J3DMtxCalc* getBasicMtxCalc() const { return mTransformCalc; }

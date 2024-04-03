@@ -24,7 +24,7 @@ J3D_FILES:=\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DModelData.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DMaterialAttach.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DMaterialFactory_v21.o\
-	$(BUILD_DIR)/asm/JSystem/J3D/J3DShapeMtx.o\
+	$(BUILD_DIR)/src/JSystem/J3D/J3DShapeMtx.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DModelLoaderCalcSize.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DJointTree.o\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DSkinDeform.o\
