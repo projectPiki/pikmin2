@@ -18,8 +18,12 @@ struct J3DIndTexCoordScaleInfo {
 	u8 _03;     // _03, padding?
 };
 
+extern const J3DIndTexCoordScaleInfo j3dDefaultIndTexCoordScaleInfo;
+
 struct J3DIndTexCoordScale : public J3DIndTexCoordScaleInfo {
-	J3DIndTexCoordScale();
+	J3DIndTexCoordScale() { *(J3DIndTexCoordScaleInfo*)this = j3dDefaultIndTexCoordScaleInfo; }
+	explicit J3DIndTexCoordScale(const J3DIndTexCoordScaleInfo& info) { *(J3DIndTexCoordScaleInfo*)this = info; }
+
 	~J3DIndTexCoordScale() { }
 
 	u8 getScaleS() { return mScaleS; }

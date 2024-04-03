@@ -37,7 +37,7 @@ struct J3DFog : public J3DFogInfo {
 
 	inline J3DFog(J3DFogInfo& info) { }
 
-	inline J3DFog() { j3dDefaultFogInfo; }
+	inline J3DFog() { *(J3DFogInfo*)this = j3dDefaultFogInfo; }
 
 	J3DFogInfo* getFogInfo() { return (J3DFogInfo*)this; }
 
@@ -55,40 +55,42 @@ struct J3DFog : public J3DFogInfo {
  * @size{0x4}
  */
 struct J3DPEBlock {
-	virtual void reset(J3DPEBlock*) { }                // _08 (weak)
-	virtual void load() = 0;                           // _0C
-	virtual void patch() { }                           // _10 (weak)
-	virtual void diff(u32) { }                         // _14 (weak)
-	virtual void diffFog() { }                         // _18 (weak)
-	virtual void diffBlend() { }                       // _1C (weak)
-	virtual u32 countDLSize() { return 0; }            // _20 (weak)
-	virtual JBlockType getType() = 0;                  // _24
-	virtual void setFog(J3DFog) { }                    // _28 (weak)
-	virtual void setFog(J3DFog*) { }                   // _2C (weak)
-	virtual J3DFog* getFog();                          // _30 (weak)
-	virtual void setAlphaComp(const J3DAlphaComp*) { } // _34 (weak)
-	virtual void setAlphaComp(const J3DAlphaComp&) { } // _38 (weak)
-	virtual J3DAlphaComp* getAlphaComp() { }           // _3C (weak)
-	virtual void setBlend(const J3DBlend*) { }         // _40 (weak)
-	virtual void setBlend(const J3DBlend&) { }         // _44 (weak)
-	virtual J3DBlend* getBlend() { }                   // _48 (weak)
-	virtual void setZMode(const J3DZMode*) { }         // _4C (weak)
-	virtual void setZMode(J3DZMode) { }                // _50 (weak)
-	virtual J3DZMode* getZMode() { }                   // _54 (weak)
-	virtual void setZCompLoc(const u8*) { }            // _58 (weak)
-	virtual void setZCompLoc(u8) { }                   // _5C (weak)
-	virtual u8 getZCompLoc() const { }                 // _60 (weak)
-	virtual void setDither(const u8*) { }              // _64 (weak)
-	virtual void setDither(u8) { }                     // _68 (weak)
-	virtual u8 getDither() const { }                   // _6C (weak)
-	virtual u32 getFogOffset() const { }               // _70 (weak)
-	virtual void setFogOffset(u32) { }                 // _74 (weak)
-	virtual ~J3DPEBlock() { }                          // _78 (weak)
+	virtual void reset(J3DPEBlock*) { }                      // _08 (weak)
+	virtual void load() = 0;                                 // _0C
+	virtual void patch() { }                                 // _10 (weak)
+	virtual void diff(u32) { }                               // _14 (weak)
+	virtual void diffFog() { }                               // _18 (weak)
+	virtual void diffBlend() { }                             // _1C (weak)
+	virtual u32 countDLSize() { return 0; }                  // _20 (weak)
+	virtual JBlockType getType() = 0;                        // _24
+	virtual void setFog(J3DFog) { }                          // _28 (weak)
+	virtual void setFog(J3DFog*) { }                         // _2C (weak)
+	virtual J3DFog* getFog() { return nullptr; }             // _30 (weak)
+	virtual void setAlphaComp(const J3DAlphaComp*) { }       // _34 (weak)
+	virtual void setAlphaComp(const J3DAlphaComp&) { }       // _38 (weak)
+	virtual J3DAlphaComp* getAlphaComp() { return nullptr; } // _3C (weak)
+	virtual void setBlend(const J3DBlend*) { }               // _40 (weak)
+	virtual void setBlend(const J3DBlend&) { }               // _44 (weak)
+	virtual J3DBlend* getBlend() { return nullptr; }         // _48 (weak)
+	virtual void setZMode(const J3DZMode*) { }               // _4C (weak)
+	virtual void setZMode(J3DZMode) { }                      // _50 (weak)
+	virtual J3DZMode* getZMode() { return nullptr; }         // _54 (weak)
+	virtual void setZCompLoc(const u8*) { }                  // _58 (weak)
+	virtual void setZCompLoc(u8) { }                         // _5C (weak)
+	virtual u8 getZCompLoc() const { return nullptr; }       // _60 (weak)
+	virtual void setDither(const u8*) { }                    // _64 (weak)
+	virtual void setDither(u8) { }                           // _68 (weak)
+	virtual u8 getDither() const { return 0; }               // _6C (weak)
+	virtual u32 getFogOffset() const { return 0; }           // _70 (weak)
+	virtual void setFogOffset(u32) { }                       // _74 (weak)
+	virtual ~J3DPEBlock() { }                                // _78 (weak)
 
 	// _00 = VTBL
 };
 
 struct J3DPEBlockFogOff : public J3DPEBlock {
+	J3DPEBlockFogOff() { initialize(); }
+
 	virtual void reset(J3DPEBlock*); // _08
 	virtual void load();             // _0C
 	virtual void diff(u32 flag)      // _14 (weak)
@@ -128,6 +130,8 @@ struct J3DPEBlockFogOff : public J3DPEBlock {
 };
 
 struct J3DPEBlockFull : public J3DPEBlock {
+	J3DPEBlockFull() { initialize(); }
+
 	virtual void reset(J3DPEBlock*);                                                      // _08
 	virtual void load();                                                                  // _0C
 	virtual void patch();                                                                 // _10

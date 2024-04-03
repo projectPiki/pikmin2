@@ -131,6 +131,7 @@ struct J3DMaterial {
 
 	// unused?
 	void makeDisplayList_private(J3DDisplayListObj* obj);
+	void copy(J3DMaterial* other);
 
 	// VTBL _00
 	J3DMaterial* mNext;              // _04

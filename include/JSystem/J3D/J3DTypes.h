@@ -395,11 +395,13 @@ struct J3DTevSwapModeTableInfo {
 
 extern const J3DTevSwapModeInfo j3dDefaultTevSwapMode;
 
+extern const u8 j3dDefaultTevSwapTableID;
+
 /**
  * @size{0x1}
  */
 struct J3DTevSwapModeTable {
-	J3DTevSwapModeTable();
+	J3DTevSwapModeTable() { mTevSwapID = j3dDefaultTevSwapTableID; }
 
 	u8 getR() { return j3dTevSwapTableTable[mTevSwapID * 4]; }
 	u8 getG() { return j3dTevSwapTableTable[mTevSwapID * 4 + 1]; }
@@ -440,7 +442,7 @@ struct J3DTevStage {
 		setTevSwapModeInfo(j3dDefaultTevSwapMode);
 	}
 
-	explicit J3DTevStage(const J3DTevStageInfo& info)
+	J3DTevStage(const J3DTevStageInfo& info)
 	{
 		setTevStageInfo(info);
 		setTevSwapModeInfo(j3dDefaultTevSwapMode);
@@ -457,7 +459,58 @@ struct J3DTevStage {
 		return *this;
 	}
 
-	void setTevStageInfo(const J3DTevStageInfo&);
+	void setTevColorOp(u8 param_1, u8 param_2, u8 param_3, u8 param_4, u8 param_5)
+	{
+		mTevColorOp = mTevColorOp & ~(0x01 << 2) | param_1 << 2;
+		if (param_1 <= 1) {
+			mTevColorOp = mTevColorOp & ~(0x03 << 4) | param_3 << 4;
+			mTevColorOp = mTevColorOp & ~0x03 | param_2;
+		} else {
+			mTevColorOp = mTevColorOp & ~(0x03 << 4) | (param_1 >> 1 & 3) << 4;
+			mTevColorOp = mTevColorOp & ~0x03 | 3;
+		}
+		mTevColorOp = mTevColorOp & ~(0x01 << 3) | param_4 << 3;
+		mTevColorOp = mTevColorOp & ~(0x03 << 6) | param_5 << 6;
+	}
+	void setTevColorAB(u8 a, u8 b) { mTevColorAB = a << 4 | b; }
+	void setTevColorCD(u8 c, u8 d) { mTevColorCD = c << 4 | d; }
+	void setAlphaA(u8 a) { mTevAlphaAB = mTevAlphaAB & ~(0x07 << 5) | a << 5; }
+	void setAlphaB(u8 b) { mTevAlphaAB = mTevAlphaAB & ~(0x07 << 2) | b << 2; }
+	void setAlphaC(u8 c)
+	{
+		mTevAlphaAB      = mTevAlphaAB & ~0x03 | c >> 1;
+		mTevSwapModeInfo = mTevSwapModeInfo & ~(0x01 << 7) | c << 7;
+	}
+	void setAlphaD(u8 d) { mTevSwapModeInfo = mTevSwapModeInfo & ~(0x07 << 4) | d << 4; }
+	void setAlphaABCD(u8 a, u8 b, u8 c, u8 d)
+	{
+		setAlphaA(a);
+		setAlphaB(b);
+		setAlphaC(c);
+		setAlphaD(d);
+	}
+	void setTevAlphaOp(u8 param_1, u8 param_2, u8 param_3, u8 param_4, u8 param_5)
+	{
+		mTevAlphaOp = mTevAlphaOp & ~(0x01 << 2) | param_1 << 2;
+		if (param_1 <= 1) {
+			mTevAlphaOp = mTevAlphaOp & ~0x03 | param_2;
+			mTevAlphaOp = mTevAlphaOp & ~(0x03 << 4) | param_3 << 4;
+		} else {
+			mTevAlphaOp = mTevAlphaOp & ~(0x03 << 4) | (param_1 >> 1 & 3) << 4;
+			mTevAlphaOp = mTevAlphaOp & ~0x03 | 3;
+		}
+		mTevAlphaOp = mTevAlphaOp & ~(0x01 << 3) | param_4 << 3;
+		mTevAlphaOp = mTevAlphaOp & ~(0x03 << 6) | param_5 << 6;
+	}
+
+	void setTevStageInfo(const J3DTevStageInfo& info)
+	{
+		setTevColorOp(info.mColorOp, info.mColorBias, info.mColorScale, info.mColorClamp, info.mColorRegID);
+		setTevColorAB(info.mColorInA, info.mColorInB);
+		setTevColorCD(info.mColorInC, info.mColorInD);
+		setAlphaABCD(info.mAlphaInA, info.mAlphaInB, info.mAlphaInC, info.mAlphaInD);
+		setTevAlphaOp(info.mAlphaOp, info.mAlphaBias, info.mAlphaScale, info.mAlphaClamp, info.mAlphaRegID);
+	}
 
 	void setTexSel(u32 newTexSel) { mTevSwapModeInfo = mTevSwapModeInfo & ~0x0C | newTexSel << 2; }
 	void setRasSel(u32 newRasSel) { mTevSwapModeInfo = mTevSwapModeInfo & ~0x03 | newRasSel; }
@@ -484,12 +537,12 @@ struct J3DTevStage {
 };
 
 struct J3DTexCoordInfo {
-	// void operator=(J3DTexCoordInfo const& other)
-	// {
-	// 	mTexGenType = other.mTexGenType;
-	// 	mTexGenSrc = other.mTexGenSrc;
-	// 	mTexGenMtx = other.mTexGenMtx;
-	// }
+	void operator=(J3DTexCoordInfo const& other)
+	{
+		mTexGenType = other.mTexGenType;
+		mTexGenSrc  = other.mTexGenSrc;
+		mTexGenMtx  = other.mTexGenMtx;
+	}
 
 	u8 getTexGenType() { return mTexGenType; }
 	u8 getTexGenSrc() { return mTexGenSrc; }
@@ -505,7 +558,11 @@ struct J3DTexCoordInfo {
 extern const J3DTexCoordInfo j3dDefaultTexCoordInfo[8];
 
 struct J3DTexCoord : public J3DTexCoordInfo {
-	J3DTexCoord() { *(J3DTexCoordInfo*)this = j3dDefaultTexCoordInfo[0]; }
+	J3DTexCoord()
+	{
+		*(J3DTexCoordInfo*)this = j3dDefaultTexCoordInfo[0];
+		resetTexMtxReg();
+	}
 	J3DTexCoord(const J3DTexCoordInfo& info) { *(J3DTexCoordInfo*)this = info; }
 
 	void setTexCoordInfo(J3DTexCoordInfo* info) { *(J3DTexCoordInfo*)this = *info; }
@@ -609,7 +666,5 @@ extern const u8 j3dDefaultColorChanNum;
 // extern const J3DGXColorS10 j3dDefaultTevKColor;
 extern const GXColorS10 j3dDefaultTevColor;
 extern const GXColor j3dDefaultTevKColor;
-
-extern const u8 j3dDefaultTevSwapTableID;
 
 #endif

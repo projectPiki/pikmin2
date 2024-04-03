@@ -18,10 +18,10 @@
  * @note Address: 0x800614E0
  * @note Size: 0x200
  */
-J3DColorBlock* J3DMaterial::createColorBlock(u32 type)
+J3DColorBlock* J3DMaterial::createColorBlock(u32 createFlag)
 {
 	J3DColorBlock* result = nullptr;
-	switch (type) {
+	switch (createFlag) {
 	case 0:
 		result = new J3DColorBlockLightOff;
 		break;
@@ -39,10 +39,10 @@ J3DColorBlock* J3DMaterial::createColorBlock(u32 type)
  * @note Address: 0x8006183C
  * @note Size: 0x164
  */
-J3DTexGenBlock* J3DMaterial::createTexGenBlock(u32 flags)
+J3DTexGenBlock* J3DMaterial::createTexGenBlock(u32 createFlag)
 {
 	J3DTexGenBlock* result = nullptr;
-	switch (flags) {
+	switch (createFlag) {
 	case J3DMLF_28:
 		return new J3DTexGenBlock4();
 	case 0:
@@ -71,148 +71,6 @@ J3DTevBlock* J3DMaterial::createTevBlock(int stageCount)
 }
 
 /**
- * @note Address: 0x80061DE0
- * @note Size: 0xC
- */
-J3DTevSwapModeTable::J3DTevSwapModeTable() { mTevSwapID = j3dDefaultTevSwapTableID; }
-
-/**
- * @note Address: 0x80061F3C
- * @note Size: 0x1D8
- */
-void J3DTevStage::setTevStageInfo(const J3DTevStageInfo&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	lbz      r6, 5(r4)
-	stw      r31, 0xc(r1)
-	rlwinm   r0, r6, 2, 0x16, 0x1d
-	cmplwi   r6, 1
-	lbz      r5, 1(r3)
-	lbz      r9, 9(r4)
-	rlwinm   r5, r5, 0, 0x1e, 0x1c
-	lbz      r8, 8(r4)
-	or       r0, r5, r0
-	lbz      r7, 6(r4)
-	stb      r0, 1(r3)
-	lbz      r0, 7(r4)
-	bgt      lbl_80061F9C
-	lbz      r5, 1(r3)
-	rlwinm   r0, r0, 4, 0x14, 0x1b
-	rlwinm   r5, r5, 0, 0x1c, 0x19
-	or       r0, r5, r0
-	stb      r0, 1(r3)
-	lbz      r0, 1(r3)
-	rlwinm   r0, r0, 0, 0, 0x1d
-	or       r0, r0, r7
-	stb      r0, 1(r3)
-	b        lbl_80061FB8
-
-lbl_80061F9C:
-	lbz      r0, 1(r3)
-	rlwimi   r0, r6, 3, 0x1a, 0x1b
-	stb      r0, 1(r3)
-	lbz      r0, 1(r3)
-	rlwinm   r0, r0, 0, 0, 0x1d
-	ori      r0, r0, 3
-	stb      r0, 1(r3)
-
-lbl_80061FB8:
-	lbz      r0, 1(r3)
-	rlwinm   r5, r8, 3, 0x15, 0x1c
-	rlwinm   r10, r9, 6, 0x12, 0x19
-	lbz      r12, 0xc(r4)
-	rlwinm   r6, r0, 0, 0x1d, 0x1b
-	lbz      r0, 0xe(r4)
-	or       r5, r6, r5
-	lbz      r6, 1(r4)
-	stb      r5, 1(r3)
-	rlwinm   r9, r12, 7, 0x11, 0x18
-	lbz      r5, 3(r4)
-	slwi     r8, r6, 4
-	lbz      r11, 1(r3)
-	cmplwi   r0, 1
-	lbz      r7, 2(r4)
-	slwi     r6, r5, 4
-	rlwimi   r10, r11, 0, 0x1a, 0x1f
-	lbz      r5, 4(r4)
-	stb      r10, 1(r3)
-	or       r7, r8, r7
-	or       r6, r6, r5
-	lbz      r5, 0xa(r4)
-	stb      r7, 2(r3)
-	rlwinm   r10, r12, 0x1f, 0x19, 0x1f
-	lbz      r7, 0xb(r4)
-	slwi     r5, r5, 5
-	stb      r6, 3(r3)
-	rlwinm   r11, r7, 2, 0x16, 0x1d
-	lbz      r8, 0xd(r4)
-	lbz      r6, 6(r3)
-	rlwinm   r7, r0, 2, 0x16, 0x1d
-	lbz      r31, 0x10(r4)
-	rlwinm   r8, r8, 4, 0x14, 0x1b
-	rlwimi   r5, r6, 0, 0x1b, 0x1f
-	lbz      r6, 0x12(r4)
-	stb      r5, 6(r3)
-	lbz      r5, 0x11(r4)
-	lbz      r12, 6(r3)
-	rlwinm   r12, r12, 0, 0x1e, 0x1a
-	or       r11, r12, r11
-	lbz      r12, 0xf(r4)
-	stb      r11, 6(r3)
-	lbz      r4, 6(r3)
-	rlwinm   r4, r4, 0, 0, 0x1d
-	or       r4, r4, r10
-	stb      r4, 6(r3)
-	lbz      r4, 7(r3)
-	rlwimi   r9, r4, 0, 0x19, 0x1f
-	stb      r9, 7(r3)
-	lbz      r4, 7(r3)
-	rlwinm   r4, r4, 0, 0x1c, 0x18
-	or       r4, r4, r8
-	stb      r4, 7(r3)
-	lbz      r4, 5(r3)
-	rlwinm   r4, r4, 0, 0x1e, 0x1c
-	or       r4, r4, r7
-	stb      r4, 5(r3)
-	bgt      lbl_800620C8
-	lbz      r4, 5(r3)
-	rlwinm   r0, r31, 4, 0x14, 0x1b
-	rlwinm   r4, r4, 0, 0, 0x1d
-	or       r4, r4, r12
-	stb      r4, 5(r3)
-	lbz      r4, 5(r3)
-	rlwinm   r4, r4, 0, 0x1c, 0x19
-	or       r0, r4, r0
-	stb      r0, 5(r3)
-	b        lbl_800620E4
-
-lbl_800620C8:
-	lbz      r4, 5(r3)
-	rlwimi   r4, r0, 3, 0x1a, 0x1b
-	stb      r4, 5(r3)
-	lbz      r0, 5(r3)
-	rlwinm   r0, r0, 0, 0, 0x1d
-	ori      r0, r0, 3
-	stb      r0, 5(r3)
-
-lbl_800620E4:
-	lbz      r7, 5(r3)
-	rlwinm   r4, r5, 3, 0x15, 0x1c
-	rlwinm   r0, r6, 6, 0x12, 0x19
-	rlwinm   r5, r7, 0, 0x1d, 0x1b
-	or       r4, r5, r4
-	stb      r4, 5(r3)
-	lbz      r4, 5(r3)
-	rlwimi   r0, r4, 0, 0x1a, 0x1f
-	stb      r0, 5(r3)
-	lwz      r31, 0xc(r1)
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/**
  * @note Address: 0x8006217C
  * @note Size: 0xE8
  */
@@ -225,42 +83,25 @@ J3DIndBlock* J3DMaterial::createIndBlock(int stageCount)
 }
 
 /**
- * @note Address: 0x800622A0
- * @note Size: 0x18
- * __ct__19J3DIndTexCoordScaleFv
- */
-J3DIndTexCoordScale::J3DIndTexCoordScale()
-{
-	/*
-	lbz      r0, j3dDefaultIndTexCoordScaleInfo@sda21(r2)
-	addi     r4, r2, j3dDefaultIndTexCoordScaleInfo@sda21
-	stb      r0, 0(r3)
-	lbz      r0, 1(r4)
-	stb      r0, 1(r3)
-	blr
-	*/
-}
-
-/**
  * @note Address: 0x80062394
  * @note Size: 0x27C
  */
-J3DPEBlock* J3DMaterial::createPEBlock(u32 a1, u32 a2)
+J3DPEBlock* J3DMaterial::createPEBlock(u32 createFlag, u32 materialFlag)
 {
 	J3DPEBlock* rv = nullptr;
-	if (a1 == 0) {
-		if (a2 & 1) {
+	if (createFlag == 0) {
+		if (materialFlag & 1) {
 			return new J3DPEBlockOpa();
-		} else if (a2 & 2) {
+		} else if (materialFlag & 2) {
 			return new J3DPEBlockTexEdge();
-		} else if (a2 & 4) {
+		} else if (materialFlag & 4) {
 			return new J3DPEBlockXlu();
 		}
 	}
 
-	if (a1 == 0x10000000) {
+	if (createFlag == 0x10000000) {
 		rv = new J3DPEBlockFull();
-	} else if (a1 == 0x20000000) {
+	} else if (createFlag == 0x20000000) {
 		rv = new J3DPEBlockFogOff();
 	}
 	return rv;
@@ -444,20 +285,13 @@ lbl_800625FC:
 }
 
 /**
- * @note Address: 0x80062610
- * @note Size: 0x48
- * __dt__10J3DPEBlockFv
- */
-// J3DPEBlock::~J3DPEBlock() { }
-
-/**
  * @note Address: 0x80062658
  * @note Size: 0x50
  */
-u32 J3DMaterial::calcSizeColorBlock(u32 flags)
+u32 J3DMaterial::calcSizeColorBlock(u32 createFlag)
 {
 	u32 size = 0;
-	switch (flags) {
+	switch (createFlag) {
 	case 0x0:
 		size = sizeof(J3DColorBlockLightOff);
 		break;
@@ -475,9 +309,9 @@ u32 J3DMaterial::calcSizeColorBlock(u32 flags)
  * @note Address: 0x800626A8
  * @note Size: 0x2C
  */
-u32 J3DMaterial::calcSizeTexGenBlock(u32 flags)
+u32 J3DMaterial::calcSizeTexGenBlock(u32 createFlag)
 {
-	switch (flags) {
+	switch (createFlag) {
 	case J3DMLF_28:
 		return sizeof(J3DTexGenBlock4);
 	case 0:
@@ -502,33 +336,6 @@ u32 J3DMaterial::calcSizeTevBlock(int count)
 	} else if (count <= 16) {
 		result = sizeof(J3DTevBlock16);
 	}
-	// switch (count) {
-	// 	case 0:
-	// 	case 1:
-	// 		result = sizeof(J3DTevBlock1);
-	// 		break;
-	// 	case 2:
-	// 		result = sizeof(J3DTevBlock2);
-	// 		break;
-	// 	case 3:
-	// 	case 4:
-	// 		result = sizeof(J3DTevBlock4);
-	// 		break;
-	// 	case 5:
-	// 	case 6:
-	// 	case 7:
-	// 	case 8:
-	// 	case 9:
-	// 	case 10:
-	// 	case 11:
-	// 	case 12:
-	// 	case 13:
-	// 	case 14:
-	// 	case 15:
-	// 	case 16:
-	// 		result = sizeof(J3DTevBlock16);
-	// 		break;
-	// }
 	return result;
 }
 
@@ -548,22 +355,21 @@ u32 J3DMaterial::calcSizeIndBlock(int count)
 /**
  * @note Address: 0x80062730
  * @note Size: 0x68
- * TODO: Sizeofs with the correct types
  */
-u32 J3DMaterial::calcSizePEBlock(u32 flags, u32 p2)
+u32 J3DMaterial::calcSizePEBlock(u32 createFlag, u32 materialFlag)
 {
 	u32 size = 0;
-	if (flags == 0) {
-		if ((p2 & 1) != 0) {
-			size = 4;
-		} else if ((p2 & 2) != 0) {
-			size = 4;
-		} else if ((p2 & 4) != 0) {
-			size = 4;
+	if (createFlag == 0) {
+		if (materialFlag & 1) {
+			size = sizeof(J3DPEBlockOpa);
+		} else if (materialFlag & 2) {
+			size = sizeof(J3DPEBlockTexEdge);
+		} else if (materialFlag & 4) {
+			size = sizeof(J3DPEBlockXlu);
 		}
-	} else if (flags == 0x10000000) {
+	} else if (createFlag == 0x10000000) {
 		size = sizeof(J3DPEBlockFull);
-	} else if (flags == 0x20000000) {
+	} else if (createFlag == 0x20000000) {
 		size = sizeof(J3DPEBlockFogOff);
 	}
 	return size;
@@ -600,12 +406,15 @@ void J3DMaterial::initialize()
  */
 u32 J3DMaterial::countDLSize()
 {
-	return ALIGN_NEXT(+mColorBlock->countDLSize() + mTexGenBlock->countDLSize() + mTevBlock->countDLSize() + mIndBlock->countDLSize()
+	return ALIGN_NEXT(mColorBlock->countDLSize() + mTexGenBlock->countDLSize() + mTevBlock->countDLSize() + mIndBlock->countDLSize()
 	                      + mPEBlock->countDLSize(),
 	                  0x20);
 }
 
-// Unused?
+/**
+ * @note Address: N/A
+ * @note Size: 0x2D4
+ */
 void J3DMaterial::makeDisplayList_private(J3DDisplayListObj* obj)
 {
 	obj->beginDL();
@@ -931,6 +740,19 @@ lbl_80063584:
 }
 
 /**
+ * @note Address: N/A
+ * @note Size: 0xAC
+ */
+void J3DMaterial::copy(J3DMaterial* other)
+{
+	mColorBlock->reset(other->mColorBlock);
+	mTexGenBlock->reset(other->mTexGenBlock);
+	mTevBlock->reset(other->mTevBlock);
+	mIndBlock->reset(other->mIndBlock);
+	mPEBlock->reset(other->mPEBlock);
+}
+
+/**
  * @note Address: 0x800635B4
  * @note Size: 0xE4
  * reset__11J3DMaterialFv
@@ -942,7 +764,7 @@ void J3DMaterial::reset()
 		mMaterialMode = mOrigMaterial->mMaterialMode;
 		mInvalid      = mOrigMaterial->mInvalid;
 		mMaterialAnm  = nullptr;
-		// copy(mOrigMaterial);
+		copy(mOrigMaterial);
 	}
 }
 
