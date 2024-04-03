@@ -2863,47 +2863,9 @@ u8 J3DMaterialFactory::newTevStageNum(int p1) const
 J3DTevStage J3DMaterialFactory::newTevStage(int p1, int p2) const
 {
 	if (getMaterialInitData(p1).mTevStageInfoIndex[p2] != 0xFFFF) {
-		return mTevStageInfo[getMaterialInitData(p1).mTevStageInfoIndex[p2]];
+		// return mTevStageInfo[getMaterialInitData(p1).mTevStageInfoIndex[p2]];
 	}
 	return J3DTevStage();
-}
-
-/**
- * @note Address: 0x8006EB2C
- * @note Size: 0x60
- * __ct__11J3DTevStageFRC15J3DTevStageInfo
- */
-J3DTevStage::J3DTevStage(const J3DTevStageInfo& info)
-{
-	setTevStageInfo(info);
-	_07 = _07 & ~3 | j3dDefaultTevSwapMode.mTexSel << 2;
-	_07 = _07 & ~3 | j3dDefaultTevSwapMode.mRasSel;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       setTevStageInfo__11J3DTevStageFRC15J3DTevStageInfo
-	addi     r3, r2, j3dDefaultTevSwapMode@sda21
-	lbz      r4, 7(r31)
-	lbz      r0, 1(r3)
-	mr       r3, r31
-	rlwinm   r4, r4, 0, 0x1e, 0x1b
-	slwi     r0, r0, 2
-	or       r0, r4, r0
-	stb      r0, 7(r31)
-	lbz      r4, 7(r31)
-	lbz      r0, j3dDefaultTevSwapMode@sda21(r2)
-	rlwinm   r4, r4, 0, 0, 0x1d
-	or       r0, r4, r0
-	stb      r0, 7(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**

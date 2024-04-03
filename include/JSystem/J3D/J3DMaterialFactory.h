@@ -41,38 +41,6 @@ struct J3DPatchingInfo {
 	u8 _0C[4]; // _0C
 };
 
-struct J3DTevStageInfo {
-	u8 mTevStageMode; // _00
-	u8 mColorInA;     // _01
-	u8 mColorInB;     // _02
-	u8 mColorInC;     // _03
-	u8 mColorInD;     // _04
-	u8 mColorOp;      // _05
-	u8 mColorBias;    // _06
-	u8 mColorScale;   // _07
-	bool mColorClamp; // _08
-	u8 mColorRegID;   // _09
-	u8 mAlphaInA;     // _0A
-	u8 mAlphaInB;     // _0B
-	u8 mAlphaInC;     // _0C
-	u8 mAlphaInD;     // _0D
-	u8 mAlphaOp;      // _0E
-	u8 mAlphaBias;    // _0F
-	u8 mAlphaScale;   // _10
-	bool mAlphaClamp; // _11
-	u8 mAlphaRegID;   // _12
-	u8 _13;           // _13 - unknown
-};
-
-extern const J3DTevSwapModeInfo j3dDefaultTevSwapMode;
-
-struct J3DTevSwapModeTableInfo {
-	u8 mR; // _00
-	u8 mG; // _01
-	u8 mB; // _02
-	u8 mA; // _03
-};
-
 struct J3DTexCoord2Info {
 };
 

@@ -8,6 +8,21 @@
 #include "JSystem/J3D/J3DTypes.h"
 #include "types.h"
 
+enum J3DTEXMTX {
+	J3DTEXMTX_None,               // 0
+	J3DTEXMTX_EnvmapBasic,        // 1
+	J3DTEXMTX_ProjmapBasic,       // 2
+	J3DTEXMTX_ViewProjmapBasic,   // 3
+	J3DTEXMTX_Unknown4,           // 4
+	J3DTEXMTX_Unknown5,           // 5
+	J3DTEXMTX_EnvmapOld,          // 6
+	J3DTEXMTX_Envmap,             // 7
+	J3DTEXMTX_Projmap,            // 8
+	J3DTEXMTX_ViewProjmap,        // 9
+	J3DTEXMTX_EnvmapOldEffectMtx, // 10
+	J3DTEXMTX_EnvmapEffectMtx,    // 11
+};
+
 struct J3DTexMtxInfo {
 
 	void operator=(J3DTexMtxInfo const& other)
@@ -51,9 +66,9 @@ extern const J3DTexMtxInfo j3dDefaultTexMtxInfo;
 struct J3DTexMtx {
 	J3DTexMtx() { mTexMtxInfo = j3dDefaultTexMtxInfo; }
 
-	void calc(const f32 (*)[4]);
-	void calcTexMtx(const f32 (*)[4]);
-	void calcPostTexMtx(const f32 (*)[4]);
+	void calc(const Mtx);
+	void calcTexMtx(const Mtx);
+	void calcPostTexMtx(const Mtx);
 
 	void load(u32) const;
 	void loadTexMtx(u32) const;
@@ -61,6 +76,7 @@ struct J3DTexMtx {
 
 	J3DTexMtxInfo& getTexMtxInfo() { return mTexMtxInfo; }
 	Mtx& getMtx() { return mMtx; }
+	void setMtx(const Mtx mtx) { PSMTXCopy(mtx, mMtx); }
 	// void setEffectMtx(Mtx effectMtx) { mTexMtxInfo.setEffectMtx(effectMtx); }
 
 	J3DTexMtxInfo mTexMtxInfo; // _00
@@ -68,7 +84,7 @@ struct J3DTexMtx {
 };
 
 namespace J3DDifferedTexMtx {
-void loadExecute(const f32 (*)[4]);
+void loadExecute(const Mtx);
 extern J3DTexGenBlock* sTexGenBlock;
 extern J3DTexMtxObj* sTexMtxObj;
 } // namespace J3DDifferedTexMtx

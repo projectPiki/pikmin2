@@ -36,7 +36,7 @@ struct J3DIndTexMtxInfo {
 				mOffsetMtx[i][j] = other.mOffsetMtx[i][j];
 			}
 		}
-		mScaleExp = other.mScaleExp;
+		mScaleExp = *(s8*)&other.mScaleExp; // don't even ask.
 	}
 
 	Mtx23 mOffsetMtx; // _00
@@ -114,34 +114,36 @@ struct J3DIndBlock {
 	virtual void setIndTexCoordScale(u32, J3DIndTexCoordScale) { }            // _40 (weak)
 	virtual J3DIndTexCoordScale* getIndTexCoordScale(u32) { return nullptr; } // _44 (weak)
 	virtual ~J3DIndBlock() { }                                                // _48 (weak)
+
+	// _00 = VTBL
 };
 
 struct J3DIndBlockFull : public J3DIndBlock {
 	inline J3DIndBlockFull() { initialize(); }
 
-	virtual void reset(J3DIndBlock*);                                  // _08
-	virtual void diff(u32);                                            // _0C
-	virtual void load();                                               // _10
-	virtual u32 countDLSize();                                         // _14
-	virtual JBlockType getType();                                      // _18 (weak)
-	virtual void setIndTexStageNum(u8);                                // _1C (weak)
-	virtual u8 getIndTexStageNum() const;                              // _20 (weak)
-	virtual void setIndTexOrder(u32, J3DIndTexOrder);                  // _24 (weak)
-	virtual void setIndTexOrder(u32, const J3DIndTexOrder*);           // _28 (weak)
-	virtual J3DIndTexOrder* getIndTexOrder(u32);                       // _2C (weak)
-	virtual void setIndTexMtx(u32, const J3DIndTexMtx*);               // _30 (weak)
-	virtual void setIndTexMtx(u32, J3DIndTexMtx);                      // _34 (weak)
-	virtual J3DIndTexMtx* getIndTexMtx(u32);                           // _38 (weak)
-	virtual void setIndTexCoordScale(u32, const J3DIndTexCoordScale*); // _3C (weak)
-	virtual void setIndTexCoordScale(u32, J3DIndTexCoordScale);        // _40 (weak)
-	virtual J3DIndTexCoordScale* getIndTexCoordScale(u32);             // _44 (weak)
-	virtual ~J3DIndBlockFull();                                        // _48 (weak)
+	virtual void reset(J3DIndBlock*);                                                                               // _08
+	virtual void diff(u32);                                                                                         // _0C
+	virtual void load();                                                                                            // _10
+	virtual u32 countDLSize();                                                                                      // _14
+	virtual JBlockType getType() { return JBT_IndFull; }                                                            // _18 (weak)
+	virtual void setIndTexStageNum(u8 stageNum) { mIndTexStageNum = stageNum; }                                     // _1C (weak)
+	virtual u8 getIndTexStageNum() const { return mIndTexStageNum; }                                                // _20 (weak)
+	virtual void setIndTexOrder(u32 index, J3DIndTexOrder order) { mOrders[index] = order; }                        // _24 (weak)
+	virtual void setIndTexOrder(u32 index, const J3DIndTexOrder* order) { mOrders[index] = *order; }                // _28 (weak)
+	virtual J3DIndTexOrder* getIndTexOrder(u32 index) { return &mOrders[index]; }                                   // _2C (weak)
+	virtual void setIndTexMtx(u32 index, const J3DIndTexMtx* mtx) { mTexMtxs[index] = *mtx; }                       // _30 (weak)
+	virtual void setIndTexMtx(u32 index, J3DIndTexMtx mtx) { mTexMtxs[index] = mtx; }                               // _34 (weak)
+	virtual J3DIndTexMtx* getIndTexMtx(u32 index) { return &mTexMtxs[index]; }                                      // _38 (weak)
+	virtual void setIndTexCoordScale(u32 index, const J3DIndTexCoordScale* scale) { mCoordScales[index] = *scale; } // _3C (weak)
+	virtual void setIndTexCoordScale(u32 index, J3DIndTexCoordScale scale) { mCoordScales[index] = scale; }         // _40 (weak)
+	virtual J3DIndTexCoordScale* getIndTexCoordScale(u32 index) { return &mCoordScales[index]; }                    // _44 (weak)
+	virtual ~J3DIndBlockFull() { }                                                                                  // _48 (weak)
 
 	void initialize();
 
-	u8 mIndTexStageNum;        // _04
-	J3DIndTexOrder mOrders[4]; // _05
-	u32 : 0;
+	// _00 = VTBL
+	u8 mIndTexStageNum;                  // _04
+	J3DIndTexOrder mOrders[4];           // _05
 	J3DIndTexMtx mTexMtxs[3];            // _18
 	J3DIndTexCoordScale mCoordScales[4]; // _6C
 };

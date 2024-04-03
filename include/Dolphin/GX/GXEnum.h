@@ -534,6 +534,8 @@ typedef enum _GXTexMtx {
 	GX_TEXMTX9 = 30 + 9 * 3, // 57, Mtx9
 
 	GX_IDENTITY = 60, // 60, Identity mtx
+
+	GX_TEXMTX_NULL = 0, // 0, no matrix selected
 } GXTexMtx;
 
 // Texture matrix type.

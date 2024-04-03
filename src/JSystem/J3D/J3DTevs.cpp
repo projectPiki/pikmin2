@@ -260,7 +260,7 @@
         .4byte 0x00170000
 */
 
-const J3DDefaultTexCoordInfo j3dDefaultTexCoordInfo[8]
+const J3DTexCoordInfo j3dDefaultTexCoordInfo[8]
     = { { 1, 4, 60 }, { 1, 5, 60 }, { 1, 6, 60 }, { 1, 7, 60 }, { 1, 8, 60 }, { 1, 9, 60 }, { 1, 10, 60 }, { 1, 11, 60 } };
 const J3DTexMtxInfo j3dDefaultTexMtxInfo
     = { 1,
@@ -279,7 +279,19 @@ const J3DIndTevStageInfo j3dDefaultIndTevStageInfo = {
 	{ 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 },
 };
 
-const J3DFogInfo j3dDefaultFogInfo = { 0, 0, 0x140, 0.0f, 0.0f, 0.1f, 10000.0f, 0xFF, 0xFF, 0xFF, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
+const J3DFogInfo j3dDefaultFogInfo = { 0,
+	                                   0,
+	                                   0x140,
+	                                   0.0f,
+	                                   0.0f,
+	                                   0.1f,
+	                                   10000.0f,
+	                                   0xFF,
+	                                   0xFF,
+	                                   0xFF,
+	                                   {
+	                                       0,
+	                                   } };
 
 // const J3DNBTScaleInfo j3dDefaultNBTScaleInfo = { 0, JGeometry::TVec3f(1.0f, 1.0f, 1.0f) };
 // const J3DNBTScaleInfo j3dDefaultNBTScaleInfo = { 0, {1.0f, 1.0f, 1.0f} };

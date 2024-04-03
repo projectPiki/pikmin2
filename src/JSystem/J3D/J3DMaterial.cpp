@@ -77,43 +77,6 @@ J3DTevBlock* J3DMaterial::createTevBlock(int stageCount)
 J3DTevSwapModeTable::J3DTevSwapModeTable() { mTevSwapID = j3dDefaultTevSwapTableID; }
 
 /**
- * @note Address: 0x80061ED4
- * @note Size: 0x68
- * __ct__11J3DTevStageFv
- */
-J3DTevStage::J3DTevStage()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, j3dDefaultTevStageInfo@ha
-	stw      r0, 0x14(r1)
-	addi     r4, r4, j3dDefaultTevStageInfo@l
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       setTevStageInfo__11J3DTevStageFRC15J3DTevStageInfo
-	addi     r3, r2, j3dDefaultTevSwapMode@sda21
-	lbz      r4, 7(r31)
-	lbz      r0, 1(r3)
-	mr       r3, r31
-	rlwinm   r4, r4, 0, 0x1e, 0x1b
-	slwi     r0, r0, 2
-	or       r0, r4, r0
-	stb      r0, 7(r31)
-	lbz      r4, 7(r31)
-	lbz      r0, j3dDefaultTevSwapMode@sda21(r2)
-	rlwinm   r4, r4, 0, 0, 0x1d
-	or       r0, r4, r0
-	stb      r0, 7(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/**
  * @note Address: 0x80061F3C
  * @note Size: 0x1D8
  */

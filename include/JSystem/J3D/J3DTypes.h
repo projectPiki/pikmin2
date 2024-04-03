@@ -78,85 +78,122 @@ enum J3DErrType { JET_Success = 0, JET_NoMatAnm, JET_LockedModelData, JET_NullBi
 extern u8 j3dTevSwapTableTable[1024];
 
 struct J3DAlphaCompInfo {
-	u8 _00[0x8]; // _00
+	u8 mComp0; // _00
+	u8 mRef0;  // _01
+	u8 mOp;    // _02
+	u8 mComp1; // _03
+	u8 mRef1;  // _04
+	u8 _05;    // _05
+	u8 _06;    // _06
+	u8 _07;    // _07
 };
 
+inline u16 calcAlphaCmpID(u32 comp0, u32 op, u32 comp1) { return (comp0 << 5) + ((op & 0xFF) << 3) + (comp1 & 0xFF); }
+
+extern const u16 j3dDefaultAlphaCmpID;
+extern u8 j3dAlphaCmpTable[768];
+
 struct J3DAlphaComp {
-	inline J3DAlphaComp(J3DAlphaCompInfo& info)
+	J3DAlphaComp()
 	{
-		_00 = (info._00[0] * 0x20) + (info._00[2] * 8) + (info._00[3]);
-		_02 = info._00[1];
-		_03 = info._00[4];
+		mAlphaCmpID = j3dDefaultAlphaCmpID;
+		mRef0       = 0;
+		mRef1       = 0;
 	}
 
-	inline J3DAlphaComp()
+	J3DAlphaComp(u16 id)
+	    : mAlphaCmpID(id)
+	    , mRef0(0)
+	    , mRef1(0)
 	{
-		_00 = -1;
-		_02 = 0;
-		_03 = 0;
 	}
 
-	u16 _00; // _00
-	u8 _02;  // _02
-	u8 _03;  // _03
+	J3DAlphaComp(const J3DAlphaCompInfo& info) { setAlphaCompInfo(info); }
+
+	void setAlphaCompInfo(const J3DAlphaCompInfo& info)
+	{
+		mAlphaCmpID = calcAlphaCmpID(info.mComp0, info.mOp, info.mComp1);
+		mRef0       = info.mRef0;
+		mRef1       = info.mRef1;
+	}
+
+	void load() { J3DGDSetAlphaCompare(getComp0(), getRef0(), getOp(), getComp1(), getRef1()); }
+
+	GXCompare getComp0() const { return GXCompare(j3dAlphaCmpTable[mAlphaCmpID * 3]); }
+	GXAlphaOp getOp() const { return GXAlphaOp(j3dAlphaCmpTable[mAlphaCmpID * 3 + 1]); }
+	GXCompare getComp1() const { return GXCompare(j3dAlphaCmpTable[mAlphaCmpID * 3 + 2]); }
+	u8 getRef0() const { return mRef0; }
+	u8 getRef1() const { return mRef1; }
+
+	u16 mAlphaCmpID; // _00
+	u8 mRef0;        // _02
+	u8 mRef1;        // _03
 };
 
 struct J3DBlendInfo {
-	u8 _00; // _00
-	u8 _01; // _01
-	u8 _02; // _02
-	u8 _03; // _03
+	u8 mBlendMode; // _00
+	u8 mSrcFactor; // _01
+	u8 mDstFactor; // _02
+	u8 mLogicOp;   // _03
 };
 
 extern const J3DBlendInfo j3dDefaultBlendInfo;
 
-struct J3DBlend {
-	/** @fabricated */
-	inline J3DBlend()
-	    : _00(j3dDefaultBlendInfo._00)
-	    , _01(j3dDefaultBlendInfo._01)
-	    , _02(j3dDefaultBlendInfo._02)
-	    , _03(j3dDefaultBlendInfo._03)
-	{
-	}
+struct J3DBlend : public J3DBlendInfo {
+	J3DBlend() { *(J3DBlendInfo*)this = j3dDefaultBlendInfo; }
+	J3DBlend(const J3DBlendInfo& info) { *(J3DBlendInfo*)this = info; }
 
-	/** @fabricated */
-	inline J3DBlend(const J3DBlendInfo& info)
-	    : _00(info._00)
-	    , _01(info._01)
-	    , _02(info._02)
-	    , _03(info._03)
-	{
-	}
+	GXBlendMode getBlendMode() const { return (GXBlendMode)mBlendMode; }
+	GXBlendFactor getSrcFactor() const { return (GXBlendFactor)mSrcFactor; }
+	GXBlendFactor getDstFactor() const { return (GXBlendFactor)mDstFactor; }
+	GXLogicOp getLogicOp() const { return (GXLogicOp)mLogicOp; }
 
-	u8 _00; // _00
-	u8 _01; // _01
-	u8 _02; // _02
-	u8 _03; // _03
+	void load(u8 ditherEnable) { J3DGDSetBlendMode(getBlendMode(), getSrcFactor(), getDstFactor(), getLogicOp(), ditherEnable); }
+
+	void setType(u8 i_type) { mBlendMode = i_type; }
+
+	void setSrcFactor(u8 i_src) { mSrcFactor = i_src; }
+
+	void setDstFactor(u8 i_dst) { mDstFactor = i_dst; }
 };
 
 struct J3DZModeInfo {
-	u8 _00; // _00
-	u8 _01; // _01
-	u8 _02; // _02
-	u8 _03; // _03 - unknown/padding
+	u8 mCompareEnable; // _00
+	u8 mFunc;          // _01
+	u8 mUpdateEnable;  // _02
+	u8 _03;            // _03, padding
 };
+
+inline u16 calcZModeID(u8 param_0, u8 param_1, u8 param_2) { return (param_1 * 2) + (param_0 * 0x10) + param_2; }
+
+extern u8 j3dZModeTable[96];
 
 extern const u16 j3dDefaultZModeID;
 
 struct J3DZMode {
-	/** @fabricated */
-	J3DZMode()
-	    : _00(j3dDefaultZModeID)
+	J3DZMode() { mZModeID = j3dDefaultZModeID; }
+	explicit J3DZMode(const J3DZModeInfo& info) { setZModeInfo(info); }
+
+	u8 getCompareEnable() const { return j3dZModeTable[mZModeID * 3 + 0]; }
+	u8 getFunc() const { return j3dZModeTable[mZModeID * 3 + 1]; }
+	u8 getUpdateEnable() const { return j3dZModeTable[mZModeID * 3 + 2]; }
+
+	void setZModeInfo(const J3DZModeInfo& info)
 	{
+		u8 compareEn = info.mCompareEnable;
+		mZModeID     = calcZModeID(compareEn, info.mFunc, info.mUpdateEnable);
 	}
 
-	/** @fabricated */
-	J3DZMode(const J3DZModeInfo& info)
-	    : _00(info._01 * 2 + info._00 * 0x10 + info._02)
+	void load() const { J3DGDSetZMode(getCompareEnable(), GXCompare(getFunc()), getUpdateEnable()); }
+
+	void setCompareEnable(u8 i_compare)
 	{
+		mZModeID = calcZModeID(i_compare, j3dZModeTable[mZModeID * 3 + 1], j3dZModeTable[mZModeID * 3 + 2]);
 	}
-	u16 _00; // _00
+
+	void setUpdateEnable(u8 i_enable) { mZModeID = calcZModeID(j3dZModeTable[mZModeID * 3], j3dZModeTable[mZModeID * 3 + 1], i_enable); }
+
+	u16 mZModeID; // _00
 };
 
 struct J3DColorChanInfo {
@@ -344,7 +381,20 @@ struct J3DTevOrder : public J3DTevOrderInfo {
 	u8 getTexMap() { return mTexMapID; }
 };
 
-// TODO: Determine if this needs packing pragmas to make it exactly 1 bytes
+struct J3DTevSwapModeInfo {
+	u8 mRasSel; // _00
+	u8 mTexSel; // _01
+};
+
+struct J3DTevSwapModeTableInfo {
+	u8 mR; // _00
+	u8 mG; // _01
+	u8 mB; // _02
+	u8 mA; // _03
+};
+
+extern const J3DTevSwapModeInfo j3dDefaultTevSwapMode;
+
 /**
  * @size{0x1}
  */
@@ -359,23 +409,63 @@ struct J3DTevSwapModeTable {
 	u8 mTevSwapID; // _00
 };
 
-struct J3DTevStage {
-	J3DTevStage();
-	J3DTevStage(const struct J3DTevStageInfo&);
+struct J3DTevStageInfo {
+	u8 mTevStageMode; // _00
+	u8 mColorInA;     // _01
+	u8 mColorInB;     // _02
+	u8 mColorInC;     // _03
+	u8 mColorInD;     // _04
+	u8 mColorOp;      // _05
+	u8 mColorBias;    // _06
+	u8 mColorScale;   // _07
+	bool mColorClamp; // _08
+	u8 mColorRegID;   // _09
+	u8 mAlphaInA;     // _0A
+	u8 mAlphaInB;     // _0B
+	u8 mAlphaInC;     // _0C
+	u8 mAlphaInD;     // _0D
+	u8 mAlphaOp;      // _0E
+	u8 mAlphaBias;    // _0F
+	u8 mAlphaScale;   // _10
+	bool mAlphaClamp; // _11
+	u8 mAlphaRegID;   // _12
+	u8 _13;           // _13 - unknown
+};
+extern const J3DTevStageInfo j3dDefaultTevStageInfo;
 
-	/** @fabricated */
+struct J3DTevStage {
+	J3DTevStage()
+	{
+		setTevStageInfo(j3dDefaultTevStageInfo);
+		setTevSwapModeInfo(j3dDefaultTevSwapMode);
+	}
+
+	explicit J3DTevStage(const J3DTevStageInfo& info)
+	{
+		setTevStageInfo(info);
+		setTevSwapModeInfo(j3dDefaultTevSwapMode);
+	}
+
 	inline J3DTevStage& operator=(const J3DTevStage& other)
 	{
-		_01 = other._01;
-		_02 = other._02;
-		_03 = other._03;
-		_05 = other._05;
-		_06 = other._06;
-		_07 = other._07;
+		mTevColorOp      = other.mTevColorOp;
+		mTevColorAB      = other.mTevColorAB;
+		mTevColorCD      = other.mTevColorCD;
+		mTevAlphaOp      = other.mTevAlphaOp;
+		mTevAlphaAB      = other.mTevAlphaAB;
+		mTevSwapModeInfo = other.mTevSwapModeInfo;
 		return *this;
 	}
 
 	void setTevStageInfo(const J3DTevStageInfo&);
+
+	void setTexSel(u32 newTexSel) { mTevSwapModeInfo = mTevSwapModeInfo & ~0x0C | newTexSel << 2; }
+	void setRasSel(u32 newRasSel) { mTevSwapModeInfo = mTevSwapModeInfo & ~0x03 | newRasSel; }
+	void setTevSwapModeInfo(const J3DTevSwapModeInfo& info)
+	{
+		setTexSel(info.mTexSel);
+		setRasSel(info.mRasSel);
+	}
 
 	void load(u32) const
 	{
@@ -383,28 +473,23 @@ struct J3DTevStage {
 		J3DGDWriteBPCmd(*(u32*)&_04);
 	}
 
-	u8 _00; // _00
-	u8 _01; // _01
-	u8 _02; // _02
-	u8 _03; // _03
-	u8 _04; // _04
-	u8 _05; // _05
-	u8 _06; // _06
-	u8 _07; // _07
+	u8 _00;              // _00
+	u8 mTevColorOp;      // _01
+	u8 mTevColorAB;      // _02
+	u8 mTevColorCD;      // _03
+	u8 _04;              // _04
+	u8 mTevAlphaOp;      // _05
+	u8 mTevAlphaAB;      // _06
+	u8 mTevSwapModeInfo; // _07
 };
-
-struct J3DDefaultTexCoordInfo {
-	u8 mTexGenType; // _00
-	u8 mTexGenSrc;  // _01
-	u8 mTexGenMtx;  // _02
-	u8 mPadding;    // _03
-};
-
-extern const J3DDefaultTexCoordInfo j3dDefaultTexCoordInfo[8];
 
 struct J3DTexCoordInfo {
-
-	// void operator=(J3DTexCoordInfo const& other) { *(u32*)this = *(u32*)&other; }
+	// void operator=(J3DTexCoordInfo const& other)
+	// {
+	// 	mTexGenType = other.mTexGenType;
+	// 	mTexGenSrc = other.mTexGenSrc;
+	// 	mTexGenMtx = other.mTexGenMtx;
+	// }
 
 	u8 getTexGenType() { return mTexGenType; }
 	u8 getTexGenSrc() { return mTexGenSrc; }
@@ -414,14 +499,23 @@ struct J3DTexCoordInfo {
 	u8 mTexGenType; // _00
 	u8 mTexGenSrc;  // _01
 	u8 mTexGenMtx;  // _02
+	u8 _03;         // _03, padding
 };
 
-struct J3DTexCoord : public J3DTexCoordInfo {
+extern const J3DTexCoordInfo j3dDefaultTexCoordInfo[8];
 
-	J3DTexCoord();
+struct J3DTexCoord : public J3DTexCoordInfo {
+	J3DTexCoord() { *(J3DTexCoordInfo*)this = j3dDefaultTexCoordInfo[0]; }
+	J3DTexCoord(const J3DTexCoordInfo& info) { *(J3DTexCoordInfo*)this = info; }
+
 	void setTexCoordInfo(J3DTexCoordInfo* info) { *(J3DTexCoordInfo*)this = *info; }
 
-	void operator=(const J3DTexCoord& other) { *(J3DTexCoordInfo*)this = *(J3DTexCoordInfo*)&other; }
+	void operator=(const J3DTexCoord& other)
+	{
+		mTexGenType = other.mTexGenType;
+		mTexGenSrc  = other.mTexGenSrc;
+		mTexGenMtx  = other.mTexGenMtx;
+	}
 
 	u8 getTexGenType() { return mTexGenType; }
 	u8 getTexGenSrc() { return mTexGenSrc; }
