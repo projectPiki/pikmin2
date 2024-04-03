@@ -102,4 +102,9 @@ struct J3DModelLoader_v26 : public J3DModelLoader {
 	virtual size_t calcSizeMaterialTable(const J3DMaterialBlock*, u32); // _40
 };
 
+inline u32 getMdlDataFlag_TevStageNum(u32 flag) { return (flag >> 16) & 0x1F; }
+inline u32 getMdlDataFlag_TexGenFlag(u32 flag) { return flag & 0x0C000000; }
+inline u32 getMdlDataFlag_PEFlag(u32 flag) { return flag & 0x30000000; }
+inline u32 getMdlDataFlag_ColorFlag(u32 flag) { return flag & 0xC0000000; }
+
 #endif

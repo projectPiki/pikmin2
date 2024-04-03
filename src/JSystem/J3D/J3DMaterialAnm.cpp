@@ -57,12 +57,13 @@ void J3DMaterialAnm::calc(J3DMaterial* material) const
 	}
 	for (u32 i = 0; i < 3; i++) {
 		if (mTevColAnmList[i].getAnmFlag()) {
-			mTevColAnmList[i].calc(material->getTevBlock()->getTevColor(i));
+			J3DGXColorS10* color = material->getTevBlock()->getTevColor(i);
+			mTevColAnmList[i].calc(color);
 		}
 	}
 	for (u32 i = 0; i < 4; i++) {
 		if (mTevKColAnmList[i].getAnmFlag()) {
-			mTevKColAnmList[i].calc(material->mTevBlock->getTevKColor(i));
+			mTevKColAnmList[i].calc((GXColor*)material->mTevBlock->getTevKColor(i));
 		}
 	}
 	for (u32 i = 0; i < 8; i++) {

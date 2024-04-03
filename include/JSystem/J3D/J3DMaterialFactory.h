@@ -14,18 +14,20 @@
 #include "types.h"
 
 struct J3DDisplayListInit {
-	u32 _00; // _00
-	u32 _04; // _04
+	u32 mOffset; // _00
+	u32 mSize;   // _04
 };
 
 struct J3DIndInitData {
-	u8 _00;             // _00
-	u8 mIndTexStageNum; // _01
-	u32 : 0;
-	J3DIndTexOrder mIndTexOrders[4];           // _04
-	J3DIndTexMtx mIndTexMatrices[3];           // _14
-	J3DIndTexCoordScale mIndTexCoordScales[1]; // _68 - unknown length
-	u8 _6C[0xCC];                              // _6C - tbd
+	bool mEnabled;                                    // _00
+	u8 mIndTexStageNum;                               // _01
+	u8 _02[2];                                        // _02, padding?
+	J3DIndTexOrderInfo mIndTexOrderInfo[3];           // _04
+	u8 _10[4];                                        // _10, padding?
+	J3DIndTexMtxInfo mIndTexMtxInfo[3];               // _14
+	J3DIndTexCoordScaleInfo mIndTexCoordScaleInfo[3]; // _68
+	u8 _74[4];                                        // _74, padding?
+	J3DIndTevStageInfo mIndTevStageInfo[16];          // _78
 };
 
 struct J3DLightInfo {
@@ -80,7 +82,11 @@ struct J3DMaterialInitData {
 };
 
 struct J3DMaterialFactory {
-	enum MaterialType { NORMAL = 0, LOCKED, PATCHED };
+	enum MaterialType {
+		NORMAL  = 0,
+		LOCKED  = 1,
+		PATCHED = 2,
+	};
 
 	J3DMaterialFactory(const J3DMaterialBlock& block);
 	J3DMaterialFactory(const J3DMaterialDLBlock& block);
@@ -116,34 +122,34 @@ struct J3DMaterialFactory {
 	u8 newTevStageNum(int) const;
 	J3DTevSwapModeTable newTevSwapModeTable(int, int) const;
 	J3DTexCoord newTexCoord(int, int) const;
-	u8 newTexGenNum(int) const;
-	J3DTexMtx newTexMtx(int, int) const;
+	u32 newTexGenNum(int) const;
+	J3DTexMtx* newTexMtx(int, int) const;
 	u16 newTexNo(int, int) const;
 	u8 newZCompLoc(int) const;
 	J3DZMode newZMode(int) const;
 	void modifyPatchedCurrentMtx(J3DMaterial*, int) const;
 
 	/** @fabricated */
-	// inline s32 getMaterialInitDataIndex(s32 initDataIndexIndex) const { return _08[initDataIndexIndex]; }
 	inline J3DMaterialInitData& getMaterialInitData(s32 index) const { return mInitData[mMatRemapTable[index]]; }
+	u8 getMaterialMode(int idx) const { return getMaterialInitData(idx).mPixelEngineMode; }
 
 	/** @fabricated */
 	inline J3DIndInitData& getIndInitData(s32 index) const { return mIndInitData[index]; }
 
 	// unused/inlined:
-	// inline J3DMaterialInitData& getMaterialInitData(u16 initDataIndexIndex) const { return _04[_08[initDataIndexIndex]]; }
-	// J3DMaterialInitData& getMaterialInitData(u16 initDataIndexIndex) const;
+	u32 countTexGens(int matID) const;
+	u32 countStages(int matID) const;
 
 	u16 mMaterialNum;                               // _00
 	J3DMaterialInitData* mInitData;                 // _04
 	u16* mMatRemapTable;                            // _08
 	J3DIndInitData* mIndInitData;                   // _0C
-	GXColor* mColorData;                            // _10
+	GXColor* mMaterialColors;                       // _10
 	u8* mNumColorChans;                             // _14
 	J3DColorChanInfo* mColorChanInfo;               // _18
 	GXColor* mAmbientColors;                        // _1C
 	J3DLightInfo* mLightInfo;                       // _20
-	u8* mNumTexCoords;                              // _24
+	u8* mTexGenNums;                                // _24
 	J3DTexCoordInfo* mTexCoordInfo;                 // _28
 	J3DTexCoord2Info* mTexCoord2Info;               // _2C
 	J3DTexMtxInfo* mTexMtxInfo;                     // _30
@@ -153,7 +159,7 @@ struct J3DMaterialFactory {
 	J3DTevOrderInfo* mTevOrderInfo;                 // _40
 	GXColorS10* mTevColors;                         // _44
 	GXColor* mTevKColors;                           // _48
-	u8* mNumTevStages;                              // _4C
+	u8* mTevStageNums;                              // _4C
 	J3DTevStageInfo* mTevStageInfo;                 // _50
 	J3DTevSwapModeInfo* mTevSwapModeInfo;           // _54
 	J3DTevSwapModeTableInfo* mTevSwapModeTableInfo; // _58
@@ -211,7 +217,7 @@ struct J3DMaterialFactory_v21 {
 	u8 newColorChanNum(int) const;
 	J3DColorChan newColorChan(int, int) const;
 	u8 newTexGenNum(int) const;
-	J3DTexMtx newTexMtx(int, int) const;
+	J3DTexMtx* newTexMtx(int, int) const;
 	u16 newTexNo(int, int) const;
 	u8 newZCompLoc(int) const;
 	J3DZMode newZMode(int) const;
@@ -240,7 +246,7 @@ struct J3DMaterialFactory_v21 {
 	GXColor* mColorData;                            // _0C
 	u8* mNumColorChans;                             // _10
 	J3DColorChanInfo* mColorChanInfo;               // _14
-	u8* mNumTexCoords;                              // _18
+	u8* mTexGenNums;                                // _18
 	J3DTexCoordInfo* mTexCoordInfo;                 // _1C
 	J3DTexCoord2Info* mTexCoord2Info;               // _20
 	J3DTexMtxInfo* mTexMtxInfo;                     // _24
@@ -250,7 +256,7 @@ struct J3DMaterialFactory_v21 {
 	J3DTevOrderInfo* mTevOrderInfo;                 // _34
 	GXColorS10* mTevColors;                         // _38
 	GXColor* mTevKColors;                           // _3C
-	u8* mNumTevStages;                              // _40
+	u8* mTevStageNums;                              // _40
 	J3DTevStageInfo* mTevStageInfo;                 // _44
 	J3DTevSwapModeInfo* mTevSwapModeInfo;           // _48
 	J3DTevSwapModeTableInfo* mTevSwapModeTableInfo; // _4C

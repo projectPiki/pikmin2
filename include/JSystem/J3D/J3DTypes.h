@@ -88,7 +88,7 @@ struct J3DAlphaCompInfo {
 	u8 _07;    // _07
 };
 
-inline u16 calcAlphaCmpID(u32 comp0, u32 op, u32 comp1) { return (comp0 << 5) + ((op & 0xFF) << 3) + (comp1 & 0xFF); }
+inline u16 calcAlphaCmpID(u32 comp0, u32 op, u32 comp1) { return (comp0 << 5) + (op << 3) + (comp1 & 0xFF); }
 
 extern const u16 j3dDefaultAlphaCmpID;
 extern u8 j3dAlphaCmpTable[768];
@@ -131,6 +131,15 @@ struct J3DAlphaComp {
 };
 
 struct J3DBlendInfo {
+	inline J3DBlendInfo& operator=(const J3DBlendInfo& other)
+	{
+		mBlendMode = other.mBlendMode;
+		mSrcFactor = other.mSrcFactor;
+		mDstFactor = other.mDstFactor;
+		mLogicOp   = other.mLogicOp;
+		return *this;
+	}
+
 	u8 mBlendMode; // _00
 	u8 mSrcFactor; // _01
 	u8 mDstFactor; // _02
@@ -164,7 +173,7 @@ struct J3DZModeInfo {
 	u8 _03;            // _03, padding
 };
 
-inline u16 calcZModeID(u8 param_0, u8 param_1, u8 param_2) { return (param_1 * 2) + (param_0 * 0x10) + param_2; }
+inline u16 calcZModeID(u32 param_0, u32 param_1, u32 param_2) { return (param_1 * 2) + (param_0 * 0x10) + param_2; }
 
 extern u8 j3dZModeTable[96];
 
@@ -180,8 +189,8 @@ struct J3DZMode {
 
 	void setZModeInfo(const J3DZModeInfo& info)
 	{
-		u8 compareEn = info.mCompareEnable;
-		mZModeID     = calcZModeID(compareEn, info.mFunc, info.mUpdateEnable);
+		u32 compareEn = info.mCompareEnable;
+		mZModeID      = calcZModeID(compareEn, info.mFunc, info.mUpdateEnable);
 	}
 
 	void load() const { J3DGDSetZMode(getCompareEnable(), GXCompare(getFunc()), getUpdateEnable()); }
@@ -297,6 +306,9 @@ struct J3DIndTevStageInfo {
 	u8 mPrev;      // _06
 	u8 mLod;       // _07
 	u8 mAlphaSel;  // _08
+	u8 _09;        // _09, padding?
+	u8 _0A;        // _0A, padding?
+	u8 _0B;        // _0B, padding?
 };
 
 extern const J3DIndTevStageInfo j3dDefaultIndTevStageInfo;
@@ -308,15 +320,21 @@ struct J3DIndTevStage {
 		setIndTevStageInfo(j3dDefaultIndTevStageInfo);
 	}
 
-	void setIndStage(u8 stage) { mInfo = mInfo & ~0x03 | stage; }
-	void setIndFormat(u8 format) { mInfo = mInfo & ~0x0C | format << 2; }
-	void setBiasSel(u8 sel) { mInfo = mInfo & ~0x70 | sel << 4; }
-	void setAlphaSel(u8 sel) { mInfo = mInfo & ~0x0180 | sel << 7; }
-	void setMtxSel(u8 sel) { mInfo = mInfo & ~0x1E00 | sel << 9; }
-	void setWrapS(u8 wrap) { mInfo = mInfo & ~0xE000 | wrap << 13; }
-	void setWrapT(u8 wrap) { mInfo = mInfo & ~0x070000 | wrap << 16; }
-	void setLod(u8 lod) { mInfo = mInfo & ~0x080000 | lod << 19; }
-	void setPrev(u8 prev) { mInfo = mInfo & ~0x100000 | prev << 20; }
+	J3DIndTevStage(const J3DIndTevStageInfo& info)
+	{
+		mInfo = 0;
+		setIndTevStageInfo(info);
+	}
+
+	void setIndStage(u32 stage) { mInfo = mInfo & ~0x03 | stage; }
+	void setIndFormat(u32 format) { mInfo = mInfo & ~0x0C | format << 2; }
+	void setBiasSel(u32 sel) { mInfo = mInfo & ~0x70 | sel << 4; }
+	void setAlphaSel(u32 sel) { mInfo = mInfo & ~0x0180 | sel << 7; }
+	void setMtxSel(u32 sel) { mInfo = mInfo & ~0x1E00 | sel << 9; }
+	void setWrapS(u32 wrap) { mInfo = mInfo & ~0xE000 | wrap << 13; }
+	void setWrapT(u32 wrap) { mInfo = mInfo & ~0x070000 | wrap << 16; }
+	void setLod(u32 lod) { mInfo = mInfo & ~0x080000 | lod << 19; }
+	void setPrev(u32 prev) { mInfo = mInfo & ~0x100000 | prev << 20; }
 
 	void setIndTevStageInfo(const J3DIndTevStageInfo& info)
 	{
@@ -394,7 +412,7 @@ struct J3DTevSwapModeTableInfo {
 };
 
 extern const J3DTevSwapModeInfo j3dDefaultTevSwapMode;
-
+extern const J3DTevSwapModeTableInfo j3dDefaultTevSwapModeTable;
 extern const u8 j3dDefaultTevSwapTableID;
 
 /**
@@ -402,6 +420,9 @@ extern const u8 j3dDefaultTevSwapTableID;
  */
 struct J3DTevSwapModeTable {
 	J3DTevSwapModeTable() { mTevSwapID = j3dDefaultTevSwapTableID; }
+	J3DTevSwapModeTable(const J3DTevSwapModeTableInfo& info) { mTevSwapID = calcTevSwapTableID(info.mR, info.mG, info.mB, info.mA); }
+
+	u8 calcTevSwapTableID(u32 r, u32 g, u32 b, u32 a) { return 0x40 * r + 0x10 * g + 4 * b + a; }
 
 	u8 getR() { return j3dTevSwapTableTable[mTevSwapID * 4]; }
 	u8 getG() { return j3dTevSwapTableTable[mTevSwapID * 4 + 1]; }
@@ -563,7 +584,11 @@ struct J3DTexCoord : public J3DTexCoordInfo {
 		*(J3DTexCoordInfo*)this = j3dDefaultTexCoordInfo[0];
 		resetTexMtxReg();
 	}
-	J3DTexCoord(const J3DTexCoordInfo& info) { *(J3DTexCoordInfo*)this = info; }
+	J3DTexCoord(const J3DTexCoordInfo& info)
+	{
+		*(J3DTexCoordInfo*)this = info;
+		resetTexMtxReg();
+	}
 
 	void setTexCoordInfo(J3DTexCoordInfo* info) { *(J3DTexCoordInfo*)this = *info; }
 

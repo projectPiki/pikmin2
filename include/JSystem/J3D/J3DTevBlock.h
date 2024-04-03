@@ -57,8 +57,8 @@ struct J3DTevBlock {
 	virtual J3DIndTevStage* getIndTevStage(u32 index) { return nullptr; }             // _C4 (weak)
 	virtual u32 getTexNoOffset() const { return 0; }                                  // _C8 (weak)
 	virtual u32 getTevRegOffset() const { return 0; }                                 // _CC (weak)
-	virtual void setTexNoOffset(u32 offset);                                          // _D0 (weak)
-	virtual void setTevRegOffset(u32 offset);                                         // _D4 (weak)
+	virtual void setTexNoOffset(u32 offset) { mTexNoOffset = offset; }                // _D0 (weak)
+	virtual void setTevRegOffset(u32 offset) { }                                      // _D4 (weak)
 	virtual ~J3DTevBlock() { }                                                        // _D8 (weak)
 
 	void indexToPtr_private(u32);
@@ -368,6 +368,8 @@ struct J3DTevBlockNull : public J3DTevBlock {
  * @size{0xD8}
  */
 struct J3DTevBlockPatched : public J3DTevBlock {
+	J3DTevBlockPatched() { initialize(); }
+
 	virtual void reset(J3DTevBlock*);                                                                   // _08
 	virtual void load() { }                                                                             // _0C (weak)
 	virtual void diffTexNo();                                                                           // _14

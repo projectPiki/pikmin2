@@ -44,6 +44,12 @@ struct J3DCurrentMtx : public J3DCurrentMtxInfo {
 		mMtxIdxRegB = 0x00F3CF3C;
 	}
 
+	void operator=(const J3DCurrentMtxInfo& info)
+	{
+		mMtxIdxRegA = info.mMtxIdxRegA;
+		mMtxIdxRegB = info.mMtxIdxRegB;
+	}
+
 	u32 getMtxIdxRegA() const { return mMtxIdxRegA; }
 	u32 getMtxIdxRegB() const { return mMtxIdxRegB; }
 
@@ -69,7 +75,7 @@ struct J3DCurrentMtx : public J3DCurrentMtxInfo {
  * @size{0x4C}
  */
 struct J3DMaterial {
-	inline J3DMaterial() { initialize(); }
+	J3DMaterial() { initialize(); }
 
 	~J3DMaterial() { }
 
@@ -186,6 +192,8 @@ struct J3DLockedMaterial : public J3DMaterial {
  * @size{0x4C}
  */
 struct J3DPatchedMaterial : public J3DMaterial {
+	J3DPatchedMaterial() { initialize(); }
+
 	virtual void makeDisplayList();       // _10
 	virtual void makeSharedDisplayList(); // _14
 	virtual void load();                  // _18

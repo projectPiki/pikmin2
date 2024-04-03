@@ -34,10 +34,12 @@ struct J3DFogInfo {
 extern const J3DFogInfo j3dDefaultFogInfo;
 
 struct J3DFog : public J3DFogInfo {
+	J3DFog(J3DFogInfo& info) { *(J3DFogInfo*)this = info; }
+	J3DFog() { *(J3DFogInfo*)this = j3dDefaultFogInfo; }
 
-	inline J3DFog(J3DFogInfo& info) { }
-
-	inline J3DFog() { *(J3DFogInfo*)this = j3dDefaultFogInfo; }
+	// something weird going on with the default/overridden copy ctor for this...
+	// see J3DMaterialFactory::createNormalMaterial, vs
+	// J3DMaterialFactory_v21::newFog
 
 	J3DFogInfo* getFogInfo() { return (J3DFogInfo*)this; }
 

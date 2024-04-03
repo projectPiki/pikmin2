@@ -66,6 +66,8 @@ extern const J3DTexMtxInfo j3dDefaultTexMtxInfo;
 struct J3DTexMtx {
 	J3DTexMtx() { mTexMtxInfo = j3dDefaultTexMtxInfo; }
 
+	J3DTexMtx(const J3DTexMtxInfo& info) { mTexMtxInfo = info; }
+
 	void calc(const Mtx);
 	void calcTexMtx(const Mtx);
 	void calcPostTexMtx(const Mtx);
