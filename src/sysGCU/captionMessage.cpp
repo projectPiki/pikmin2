@@ -46,12 +46,6 @@ BOOL TRenderingProcessor::doDrawCommon(f32 x, f32 y, Matrixf* mtx1, Matrixf* mtx
 	if (mtx2) {
 		PSMTXCopy(mtx.mMatrix.mtxView, mtx2->mMatrix.mtxView);
 
-		// one option, wrong:
-		// Vector3f translation = mtx2->getBasis(3);
-		// Vector3f offset(10.0f, 5.0f, 0.0f);
-		// mtx2->setBasis(3, translation.x + offset.x, translation.y + offset.y, translation.z);
-
-		// another option, also wrong:
 		Vector3f translation = mtx2->getColumn(3);
 		translation.x += 10.0f;
 		translation.y += 5.0f;
