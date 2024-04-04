@@ -6,37 +6,13 @@
 #include "JSystem/J3D/J3DTexGenBlock.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
+Mtx J3DMtxBuffer::sNoUseDrawMtx;
+Mtx33 J3DMtxBuffer::sNoUseNrmMtx;
 
-    .section .bss  # 0x804EFC20 - 0x8051467C
-    .global sNoUseDrawMtx__12J3DMtxBuffer
-    sNoUseDrawMtx__12J3DMtxBuffer:
-        .skip 0x54
-    .global sNoUseNrmMtx__12J3DMtxBuffer
-    sNoUseNrmMtx__12J3DMtxBuffer:
-        .skip 0x24
+Mtx* J3DMtxBuffer::sNoUseDrawMtxPtr  = &J3DMtxBuffer::sNoUseDrawMtx;
+Mtx33* J3DMtxBuffer::sNoUseNrmMtxPtr = &J3DMtxBuffer::sNoUseNrmMtx;
 
-    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-    .global sNoUseDrawMtxPtr__12J3DMtxBuffer
-    sNoUseDrawMtxPtr__12J3DMtxBuffer:
-        .4byte sNoUseDrawMtx__12J3DMtxBuffer
-    .global sNoUseNrmMtxPtr__12J3DMtxBuffer
-    sNoUseNrmMtxPtr__12J3DMtxBuffer:
-        .4byte sNoUseNrmMtx__12J3DMtxBuffer
-    .global J3DUnit01
-    J3DUnit01:
-        .4byte 0x00000000
-        .float 1.0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516AF8
-    lbl_80516AF8:
-        .float 1.0
-    .global lbl_80516AFC
-    lbl_80516AFC:
-        .4byte 0x00000000
-*/
+static f32 J3DUnit01[] = { 0.0f, 1.0f };
 
 /**
  * @note Address: 0x800888D8
@@ -68,11 +44,11 @@ int J3DMtxBuffer::create(J3DModelData* data, u32 modelType)
 	mModelType = modelType;
 	mJointTree = &data->mJointTree;
 	int result = createAnmMtx(data);
-	if (result != 0) {
+	if (result != JET_Success) {
 		return result;
 	}
 	result = createWeightEnvelopeMtx(data);
-	if (result != 0) {
+	if (result != JET_Success) {
 		return result;
 	}
 	if (data->mModelLoaderFlags >> 8 & 1) {
@@ -88,14 +64,14 @@ int J3DMtxBuffer::create(J3DModelData* data, u32 modelType)
 			break;
 		}
 	}
-	if (result != 0) {
+	if (result != JET_Success) {
 		return result;
 	}
 	if ((data->mModelLoaderFlags & 0x10) != 0) {
 		data->mBumpFlag = 0;
 	} else {
 		result = createBumpMtxArray(data, modelType);
-		if (result != 0) {
+		if (result != JET_Success) {
 			return result;
 		}
 	}
@@ -112,7 +88,7 @@ int J3DMtxBuffer::createAnmMtx(J3DModelData* data)
 		mScaleFlags    = new u8[data->mJointTree.mJointCnt];
 		mWorldMatrices = new Mtx[data->mJointTree.mJointCnt];
 	}
-	return 0;
+	return JET_Success;
 }
 
 /**
@@ -125,7 +101,7 @@ int J3DMtxBuffer::createWeightEnvelopeMtx(J3DModelData* data)
 		mEnvelopeScaleFlags     = new u8[data->mJointTree.mEnvelopeCnt];
 		mWeightEnvelopeMatrices = new Mtx[data->mJointTree.mEnvelopeCnt];
 	}
-	return 0;
+	return JET_Success;
 }
 
 /**
@@ -134,78 +110,38 @@ int J3DMtxBuffer::createWeightEnvelopeMtx(J3DModelData* data)
  */
 int J3DMtxBuffer::setNoUseDrawMtx()
 {
-	// const Mtx33* norm = sNoUseNrmMtxPtr;
-	// _14 = _18 = sNoUseDrawMtxPtr;
-	// _1C = _20 = norm;
-	// _28 = nullptr;
-	// _24 = 0;
-	// const Mtx44** draw = &sNoUseDrawMtxPtr;
-	// const Mtx33** nrm = &sNoUseNrmMtxPtr;
-	// _18 = *draw;
-	// _14 = *draw;
-	// _20 = *nrm;
-	// _1C = *nrm;
-	// _28 = nullptr;
-	// _24 = 0;
-	Mtx** draw  = &sNoUseDrawMtxPtr;
-	Mtx33** nrm = &sNoUseNrmMtxPtr;
-	for (int i = 1; i >= 0; i--) {
-		mDrawMatrices[i] = draw;
-	}
-	for (int i = 1; i >= 0; i--) {
-		mNormMatrices[i] = nrm;
-	}
-	for (int i = 1; i >= 0; i--) {
-		// _14[i] = sNoUseDrawMtxPtr;
-		// _1C[i] = sNoUseNrmMtxPtr;
-		mBumpMatrices[i] = nullptr;
-	}
-	// const Mtx44* draw = sNoUseDrawMtxPtr;
-	// const Mtx33* nrm = sNoUseNrmMtxPtr;
-	// _18 = draw;
-	// _14 = draw;
-	// _20 = nrm;
-	// _1C = nrm;
-	// _28 = nullptr;
-	// _24 = 0;
-	return 0;
-	/*
-	addi     r5, r13, sNoUseDrawMtxPtr__12J3DMtxBuffer@sda21
-	addi     r4, r13, sNoUseNrmMtxPtr__12J3DMtxBuffer@sda21
-	stw      r5, 0x18(r3)
-	li       r0, 0
-	stw      r5, 0x14(r3)
-	stw      r4, 0x20(r3)
-	stw      r4, 0x1c(r3)
-	stw      r0, 0x28(r3)
-	stw      r0, 0x24(r3)
-	li       r3, 0
-	blr
-	*/
+	mDrawMatrices[1] = &sNoUseDrawMtxPtr;
+	mDrawMatrices[0] = &sNoUseDrawMtxPtr;
+	mNormMatrices[1] = &sNoUseNrmMtxPtr;
+	mNormMatrices[0] = &sNoUseNrmMtxPtr;
+	mBumpMatrices[1] = nullptr;
+	mBumpMatrices[0] = nullptr;
+	return JET_Success;
 }
 
 /**
  * @note Address: 0x80088B18
  * @note Size: 0xE0
  */
-int J3DMtxBuffer::createDoubleDrawMtx(J3DModelData* data, u32 p2)
+int J3DMtxBuffer::createDoubleDrawMtx(J3DModelData* data, u32 num)
 {
-	if (p2) {
+	if (num != 0) {
 		for (int i = 0; i < 2; i++) {
-			mDrawMatrices[i] = new Mtx*[p2];
-			mNormMatrices[i] = new Mtx33*[p2];
+			mDrawMatrices[i] = new Mtx*[num];
+			mNormMatrices[i] = new Mtx33*[num];
 			mBumpMatrices[i] = nullptr;
 		}
 	}
+
 	for (int i = 0; i < 2; i++) {
-		for (int j = 0; j < p2; j++) {
+		for (int j = 0; j < num; j++) {
 			if (data->mJointTree.mMtxData.mCount) {
 				mDrawMatrices[i][j] = new (0x20) Mtx[data->mJointTree.mMtxData.mCount];
 				mNormMatrices[i][j] = new (0x20) Mtx33[data->mJointTree.mMtxData.mCount];
 			}
 		}
 	}
-	return 0;
+	return JET_Success;
 }
 
 /**
@@ -259,7 +195,7 @@ int J3DMtxBuffer::createBumpMtxArray(J3DModelData* data, u32 p2)
 			data->mBumpFlag = 1;
 		}
 	}
-	return 0;
+	return JET_Success;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0

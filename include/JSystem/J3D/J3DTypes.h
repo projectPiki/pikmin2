@@ -606,6 +606,8 @@ struct J3DTexCoord : public J3DTexCoordInfo {
 	u16 mTexMtxReg; // _04
 };
 
+extern u8 j3dTexCoordTable[7623];
+
 struct J3DTextureSRTInfo {
 	f32 mScaleX;       // _00
 	f32 mScaleY;       // _04

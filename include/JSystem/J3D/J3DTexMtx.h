@@ -57,6 +57,7 @@ struct J3DTexMtxInfo {
 
 	u8 mProjection;         // _00
 	u8 mInfo;               // _01
+	u16 _02;                // _02
 	Vec mCenter;            // _04
 	J3DTextureSRTInfo mSRT; // _10
 	Mtx44 mEffectMtx;       // _24
@@ -73,8 +74,16 @@ struct J3DTexMtx {
 	void calcPostTexMtx(const Mtx);
 
 	void load(u32) const;
-	void loadTexMtx(u32) const;
-	void loadPostTexMtx(u32) const;
+	void loadTexMtx(u32 p1) const
+	{
+		__GDCheckOverflowed(0x35);
+		J3DGDLoadTexMtxImm(const_cast<f32(*)[4]>(mMtx), p1 * 3 + 30, (_GXTexMtxType)mTexMtxInfo.mProjection);
+	}
+	void loadPostTexMtx(u32 p1) const
+	{
+		__GDCheckOverflowed(0x35);
+		J3DGDLoadPostTexMtxImm(const_cast<f32(*)[4]>(mMtx), p1 * 3 + 0x40);
+	}
 
 	J3DTexMtxInfo& getTexMtxInfo() { return mTexMtxInfo; }
 	Mtx& getMtx() { return mMtx; }

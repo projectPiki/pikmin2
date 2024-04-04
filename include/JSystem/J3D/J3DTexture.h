@@ -26,7 +26,7 @@ struct J3DTexture {
 	virtual ~J3DTexture() { } // _08 (weak)
 
 	u16 getNum() const { return mNum; }
-	ResTIMG* getResTIMG(u16 entry) const { return &mRes[entry]; }
+	ResTIMG* getResTIMG(u32 entry) const { return &mRes[entry]; }
 
 	// fabricated:
 	inline void setImageOffset(u32 offs, u32 id) { mRes[id].mImageDataOffset = (int)((offs + mRes[id].mImageDataOffset) - (u32)&mRes[id]); }
