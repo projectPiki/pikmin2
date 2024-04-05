@@ -594,7 +594,7 @@ size_t J3DModelLoader_v26::calcSizeMaterial(const J3DMaterialBlock* block, u32 f
 	int padding = 0;
 	J3DMaterialFactory factory(*block);
 	u32 count       = block->mNumMaterials;
-	u32 uniqueCount = factory.countUniqueMaterials();
+	u16 uniqueCount = factory.countUniqueMaterials();
 	if (block->mStringTableOffset != nullptr) {
 		padding = 0x10;
 	}
