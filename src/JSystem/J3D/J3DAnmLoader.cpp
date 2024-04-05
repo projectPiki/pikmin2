@@ -480,38 +480,38 @@ void J3DAnmKeyLoader_v15::readAnmTextureSRT(const J3DAnmTextureSRTKeyData* data)
  */
 void J3DAnmKeyLoader_v15::setAnmTextureSRT(J3DAnmTextureSRTKey* animation, const J3DAnmTextureSRTKeyData* data)
 {
-	animation->mAnimTableNum1 = data->mAnimTableNum1;
-	animation->mFrameLength   = data->mMaxFrame;
-	animation->mAttribute     = data->mAttribute;
-	animation->_0C            = data->_09;
-	animation->mCurrentFrame  = 0.0f;
-	animation->mAnimTableNum1 = data->mAnimTableNum1; // again???
-	animation->mAnimTableNum2 = data->mAnimTableNum2;
-	animation->_18            = data->_10;
-	animation->_1A            = data->_12;
+	animation->mTrackNum     = data->mAnimTableNum1;
+	animation->mFrameLength  = data->mMaxFrame;
+	animation->mAttribute    = data->mAttribute;
+	animation->_0C           = data->_09;
+	animation->mCurrentFrame = 0.0f;
+	animation->mTrackNum     = data->mAnimTableNum1; // again???
+	animation->mScaleNum     = data->mAnimTableNum2;
+	animation->mRotNum       = data->_10;
+	animation->mTransNum     = data->_12;
 
 	animation->mTable1           = JSUConvertOffsetToPtr<J3DAnmTransformKeyTable>(data, (void*)data->mTableOffset);
 	animation->mUpdateMaterialID = JSUConvertOffsetToPtr<u16>(data, (void*)data->mUpdateMatIDOffset);
-	animation->mNameTab1.setResource(JSUConvertOffsetToPtr<ResNTAB>(data, (void*)data->mNameTab1Offset));
+	animation->mUpdateMaterialName.setResource(JSUConvertOffsetToPtr<ResNTAB>(data, (void*)data->mNameTab1Offset));
 	animation->mUpdateTexMtxID   = JSUConvertOffsetToPtr<u8>(data, (void*)data->mUpdateTexMtxIDOffset);
-	animation->_40               = JSUConvertOffsetToPtr<Vec>(data, (void*)data->_24);
+	animation->mSRTCenter        = JSUConvertOffsetToPtr<Vec>(data, (void*)data->_24);
 	animation->mScale1Vals       = JSUConvertOffsetToPtr<f32>(data, (void*)data->mScaleValOffset);
 	animation->mRotation1Vals    = JSUConvertOffsetToPtr<s16>(data, (void*)data->mRotValOffset);
 	animation->mTranslation1Vals = JSUConvertOffsetToPtr<f32>(data, (void*)data->mTransValOffset);
 	if (data->mNameTab2Offset != nullptr) {
-		animation->mNameTab2.setResource(JSUConvertOffsetToPtr<ResNTAB>(data, (void*)data->mNameTab2Offset));
+		animation->mPostUpdateMaterialName.setResource(JSUConvertOffsetToPtr<ResNTAB>(data, (void*)data->mNameTab2Offset));
 	}
-	animation->_4A                = data->_34;
-	animation->_44                = data->_36;
-	animation->_46                = data->_38;
-	animation->_48                = data->_3A;
-	animation->mTransformKeyTable = JSUConvertOffsetToPtr<J3DAnmTransformKeyTable>(data, (void*)data->mTransformKeyTableOffset);
-	animation->_60                = JSUConvertOffsetToPtr<u16>(data, (void*)data->_40);
-	animation->_5C                = JSUConvertOffsetToPtr<u8>(data, (void*)data->_48);
-	animation->_74                = JSUConvertOffsetToPtr<Vec>(data, (void*)data->_4C);
-	animation->_4C                = JSUConvertOffsetToPtr<f32>(data, (void*)data->_50);
-	animation->_50                = JSUConvertOffsetToPtr<s16>(data, (void*)data->_54);
-	animation->_54                = JSUConvertOffsetToPtr<f32>(data, (void*)data->_58);
+	animation->mPostTrackNum         = data->_34;
+	animation->_44                   = data->_36;
+	animation->_46                   = data->_38;
+	animation->_48                   = data->_3A;
+	animation->mTransformKeyTable    = JSUConvertOffsetToPtr<J3DAnmTransformKeyTable>(data, (void*)data->mTransformKeyTableOffset);
+	animation->mPostUpdateMaterialID = JSUConvertOffsetToPtr<u16>(data, (void*)data->_40);
+	animation->mPostUpdateTexMtxID   = JSUConvertOffsetToPtr<u8>(data, (void*)data->_48);
+	animation->mPostSRTCenter        = JSUConvertOffsetToPtr<Vec>(data, (void*)data->_4C);
+	animation->_4C                   = JSUConvertOffsetToPtr<f32>(data, (void*)data->_50);
+	animation->_50                   = JSUConvertOffsetToPtr<s16>(data, (void*)data->_54);
+	animation->_54                   = JSUConvertOffsetToPtr<f32>(data, (void*)data->_58);
 	switch (data->_5C) {
 	case 0:
 	case 1:

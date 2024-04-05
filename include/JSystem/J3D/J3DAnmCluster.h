@@ -13,7 +13,7 @@ struct J3DAnmCluster : public J3DAnmBase {
 
 	virtual ~J3DAnmCluster() { }                                      // _08 (weak)
 	virtual J3DAnmKind getKind() const { return J3DAnmKind_Cluster; } // _0C (weak)
-	virtual f32 getWeight(u16) const;                                 // _10 (weak)
+	virtual f32 getWeight(u16) const { return 1.0f; }                 // _10 (weak)
 
 	// _00     = VTBL
 	// _00-_0C = J3DAnmBase

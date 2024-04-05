@@ -228,7 +228,7 @@ LIBS = [
             ["JSystem/J3D/J3DTevs", False],
             ["JSystem/J3D/J3DDrawBuffer", True],
             ["JSystem/J3D/J3DModel", False],
-            ["JSystem/J3D/J3DAnimation", False],
+            ["JSystem/J3D/J3DAnimation", True],
             ["JSystem/J3D/J3DMaterialAnm", False],
             ["JSystem/J3D/J3DCluster", False],
             ["JSystem/J3D/J3DJoint", False],

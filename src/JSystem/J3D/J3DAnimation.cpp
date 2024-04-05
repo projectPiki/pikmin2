@@ -469,283 +469,84 @@ void J3DAnmVtxColorFull::getColor(u8 col, u16 idx, GXColor* outColor) const
  */
 void J3DAnmVtxColorKey::getColor(u8 col, u16 idx, GXColor* outColor) const
 {
-	int index                  = idx;
+	f32 frame;
+	u16 index                  = idx * 3;
 	J3DAnmColorKeyTable* table = &getAnmTable(col)[idx];
-	if (getFrame() < 0.0f) {
-		outColor->r = mRedVals[table->mColorInfo[J3DAnmColorKeyTable::RED].mOffset];
-		outColor->g = mGreenVals[table->mColorInfo[J3DAnmColorKeyTable::GREEN].mOffset];
-		outColor->b = mBlueVals[table->mColorInfo[J3DAnmColorKeyTable::BLUE].mOffset];
-		outColor->a = mAlphaVals[table->mColorInfo[J3DAnmColorKeyTable::ALPHA].mOffset];
-		return;
+	switch (table->mColorInfo[J3DAnmColorFullTable::RED].mMaxFrame) {
+	case 0:
+		outColor->r = 0;
+		break;
+	case 1:
+		outColor->r = mRedVals[table->mColorInfo[J3DAnmColorFullTable::RED].mOffset];
+		break;
+	default:
+		frame = J3DGetKeyFrameInterpolation<s16>(mCurrentFrame, &table->mColorInfo[J3DAnmColorFullTable::RED],
+		                                         &mRedVals[table->mColorInfo[J3DAnmColorFullTable::RED].mOffset]);
+		if (frame <= 0.0f) {
+			outColor->r = 0;
+		} else if (frame <= 255.0f) {
+			OSf32tou8(&frame, &outColor->r);
+		} else {
+			outColor->r = 255;
+		}
 	}
 
-	// int maxFrame = getFrame() + 0.5f;
-	// int redMax = table->mData[J3DAnmColorFullTable::RED][J3DAnmColorFullTable::MaxFrame];
-	// if (maxFrame >= redMax) {
-	// 	outColor->r = mRedVals[table->mData[J3DAnmColorFullTable::RED][J3DAnmColorFullTable::Offset] - 1 + redMax];
-	// } else {
-	// 	outColor->r = mRedVals[table->mData[J3DAnmColorFullTable::RED][J3DAnmColorFullTable::Offset] + maxFrame];
-	// }
+	switch (table->mColorInfo[J3DAnmColorFullTable::GREEN].mMaxFrame) {
+	case 0:
+		outColor->g = 0;
+		break;
+	case 1:
+		outColor->g = mGreenVals[table->mColorInfo[J3DAnmColorFullTable::GREEN].mOffset];
+		break;
+	default:
+		frame = J3DGetKeyFrameInterpolation<s16>(mCurrentFrame, &table->mColorInfo[J3DAnmColorFullTable::GREEN],
+		                                         &mGreenVals[table->mColorInfo[J3DAnmColorFullTable::GREEN].mOffset]);
+		if (frame <= 0.0f) {
+			outColor->g = 0;
+		} else if (frame <= 255.0f) {
+			OSf32tou8(&frame, &outColor->g);
+		} else {
+			outColor->g = 255;
+		}
+	}
 
-	// int greenMax = table->mData[J3DAnmColorFullTable::GREEN][J3DAnmColorFullTable::MaxFrame];
-	// if (maxFrame >= greenMax) {
-	// 	outColor->g = mGreenVals[table->mData[J3DAnmColorFullTable::GREEN][J3DAnmColorFullTable::Offset] - 1 + greenMax];
-	// } else {
-	// 	outColor->g = mGreenVals[table->mData[J3DAnmColorFullTable::GREEN][J3DAnmColorFullTable::Offset] + maxFrame];
-	// }
+	switch (table->mColorInfo[J3DAnmColorFullTable::BLUE].mMaxFrame) {
+	case 0:
+		outColor->b = 0;
+		break;
+	case 1:
+		outColor->b = mBlueVals[table->mColorInfo[J3DAnmColorFullTable::BLUE].mOffset];
+		break;
+	default:
+		frame = J3DGetKeyFrameInterpolation<s16>(mCurrentFrame, &table->mColorInfo[J3DAnmColorFullTable::BLUE],
+		                                         &mBlueVals[table->mColorInfo[J3DAnmColorFullTable::BLUE].mOffset]);
+		if (frame <= 0.0f) {
+			outColor->b = 0;
+		} else if (frame <= 255.0f) {
+			OSf32tou8(&frame, &outColor->b);
+		} else {
+			outColor->b = 255;
+		}
+	}
 
-	// int blueMax = table->mData[J3DAnmColorFullTable::BLUE][J3DAnmColorFullTable::MaxFrame];
-	// if (maxFrame >= blueMax) {
-	// 	outColor->b = mBlueVals[table->mData[J3DAnmColorFullTable::BLUE][J3DAnmColorFullTable::Offset] - 1 + blueMax];
-	// } else {
-	// 	outColor->b = mBlueVals[table->mData[J3DAnmColorFullTable::BLUE][J3DAnmColorFullTable::Offset] + maxFrame];
-	// }
-
-	// int alphaMax = table->mData[J3DAnmColorFullTable::ALPHA][J3DAnmColorFullTable::MaxFrame];
-	// if (maxFrame >= alphaMax) {
-	// 	outColor->a = mAlphaVals[table->mData[J3DAnmColorFullTable::ALPHA][J3DAnmColorFullTable::Offset] - 1 + alphaMax];
-	// } else {
-	// 	outColor->a = mAlphaVals[table->mData[J3DAnmColorFullTable::ALPHA][J3DAnmColorFullTable::Offset] + maxFrame];
-	// }
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	stw      r29, 0x24(r1)
-	clrlwi   r0, r5, 0x10
-	mr       r29, r3
-	rlwinm   r3, r4, 2, 0x16, 0x1d
-	mr       r30, r6
-	add      r3, r29, r3
-	mulli    r0, r0, 0x18
-	lwz      r3, 0x18(r3)
-	add      r31, r3, r0
-	lhz      r0, 0(r31)
-	cmpwi    r0, 1
-	beq      lbl_800687FC
-	bge      lbl_80068814
-	cmpwi    r0, 0
-	bge      lbl_800687F0
-	b        lbl_80068814
-
-lbl_800687F0:
-	li       r0, 0
-	stb      r0, 0(r30)
-	b        lbl_80068878
-
-lbl_800687FC:
-	lhz      r0, 2(r31)
-	lwz      r3, 0x20(r29)
-	slwi     r0, r0, 1
-	lhax     r0, r3, r0
-	stb      r0, 0(r30)
-	b        lbl_80068878
-
-lbl_80068814:
-	lhz      r0, 2(r31)
-	mr       r3, r31
-	lwz      r4, 0x20(r29)
-	slwi     r0, r0, 1
-	lfs      f1, 8(r29)
-	add      r4, r4, r0
-	bl       "J3DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
-	fmr      f31, f1
-	lfs      f0, lbl_80516A1C@sda21(r2)
-	fcmpo    cr0, f31, f0
-	cror     2, 0, 2
-	bne      lbl_80068850
-	li       r0, 0
-	stb      r0, 0(r30)
-	b        lbl_80068878
-
-lbl_80068850:
-	lfs      f0, lbl_80516A34@sda21(r2)
-	fcmpo    cr0, f31, f0
-	cror     2, 0, 2
-	bne      lbl_80068870
-	psq_st   f31, 20(r1), 1, qr2
-	lbz      r0, 0x14(r1)
-	stb      r0, 0(r30)
-	b        lbl_80068878
-
-lbl_80068870:
-	li       r0, 0xff
-	stb      r0, 0(r30)
-
-lbl_80068878:
-	lhz      r0, 6(r31)
-	cmpwi    r0, 1
-	beq      lbl_800688A0
-	bge      lbl_800688B8
-	cmpwi    r0, 0
-	bge      lbl_80068894
-	b        lbl_800688B8
-
-lbl_80068894:
-	li       r0, 0
-	stb      r0, 1(r30)
-	b        lbl_8006891C
-
-lbl_800688A0:
-	lhz      r0, 8(r31)
-	lwz      r3, 0x24(r29)
-	slwi     r0, r0, 1
-	lhax     r0, r3, r0
-	stb      r0, 1(r30)
-	b        lbl_8006891C
-
-lbl_800688B8:
-	lhz      r0, 8(r31)
-	addi     r3, r31, 6
-	lwz      r4, 0x24(r29)
-	slwi     r0, r0, 1
-	lfs      f1, 8(r29)
-	add      r4, r4, r0
-	bl       "J3DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
-	fmr      f31, f1
-	lfs      f0, lbl_80516A1C@sda21(r2)
-	fcmpo    cr0, f31, f0
-	cror     2, 0, 2
-	bne      lbl_800688F4
-	li       r0, 0
-	stb      r0, 1(r30)
-	b        lbl_8006891C
-
-lbl_800688F4:
-	lfs      f0, lbl_80516A34@sda21(r2)
-	fcmpo    cr0, f31, f0
-	cror     2, 0, 2
-	bne      lbl_80068914
-	psq_st   f31, 16(r1), 1, qr2
-	lbz      r0, 0x10(r1)
-	stb      r0, 1(r30)
-	b        lbl_8006891C
-
-lbl_80068914:
-	li       r0, 0xff
-	stb      r0, 1(r30)
-
-lbl_8006891C:
-	lhz      r0, 0xc(r31)
-	cmpwi    r0, 1
-	beq      lbl_80068944
-	bge      lbl_8006895C
-	cmpwi    r0, 0
-	bge      lbl_80068938
-	b        lbl_8006895C
-
-lbl_80068938:
-	li       r0, 0
-	stb      r0, 2(r30)
-	b        lbl_800689C0
-
-lbl_80068944:
-	lhz      r0, 0xe(r31)
-	lwz      r3, 0x28(r29)
-	slwi     r0, r0, 1
-	lhax     r0, r3, r0
-	stb      r0, 2(r30)
-	b        lbl_800689C0
-
-lbl_8006895C:
-	lhz      r0, 0xe(r31)
-	addi     r3, r31, 0xc
-	lwz      r4, 0x28(r29)
-	slwi     r0, r0, 1
-	lfs      f1, 8(r29)
-	add      r4, r4, r0
-	bl       "J3DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
-	fmr      f31, f1
-	lfs      f0, lbl_80516A1C@sda21(r2)
-	fcmpo    cr0, f31, f0
-	cror     2, 0, 2
-	bne      lbl_80068998
-	li       r0, 0
-	stb      r0, 2(r30)
-	b        lbl_800689C0
-
-lbl_80068998:
-	lfs      f0, lbl_80516A34@sda21(r2)
-	fcmpo    cr0, f31, f0
-	cror     2, 0, 2
-	bne      lbl_800689B8
-	psq_st   f31, 12(r1), 1, qr2
-	lbz      r0, 0xc(r1)
-	stb      r0, 2(r30)
-	b        lbl_800689C0
-
-lbl_800689B8:
-	li       r0, 0xff
-	stb      r0, 2(r30)
-
-lbl_800689C0:
-	lhz      r0, 0x12(r31)
-	cmpwi    r0, 1
-	beq      lbl_800689E8
-	bge      lbl_80068A00
-	cmpwi    r0, 0
-	bge      lbl_800689DC
-	b        lbl_80068A00
-
-lbl_800689DC:
-	li       r0, 0
-	stb      r0, 3(r30)
-	b        lbl_80068A64
-
-lbl_800689E8:
-	lhz      r0, 0x14(r31)
-	lwz      r3, 0x2c(r29)
-	slwi     r0, r0, 1
-	lhax     r0, r3, r0
-	stb      r0, 3(r30)
-	b        lbl_80068A64
-
-lbl_80068A00:
-	lhz      r0, 0x14(r31)
-	addi     r3, r31, 0x12
-	lwz      r4, 0x2c(r29)
-	slwi     r0, r0, 1
-	lfs      f1, 8(r29)
-	add      r4, r4, r0
-	bl       "J3DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
-	fmr      f31, f1
-	lfs      f0, lbl_80516A1C@sda21(r2)
-	fcmpo    cr0, f31, f0
-	cror     2, 0, 2
-	bne      lbl_80068A3C
-	li       r0, 0
-	stb      r0, 3(r30)
-	b        lbl_80068A64
-
-lbl_80068A3C:
-	lfs      f0, lbl_80516A34@sda21(r2)
-	fcmpo    cr0, f31, f0
-	cror     2, 0, 2
-	bne      lbl_80068A5C
-	psq_st   f31, 8(r1), 1, qr2
-	lbz      r0, 8(r1)
-	stb      r0, 3(r30)
-	b        lbl_80068A64
-
-lbl_80068A5C:
-	li       r0, 0xff
-	stb      r0, 3(r30)
-
-lbl_80068A64:
-	psq_l    f31, 56(r1), 0, qr0
-	lwz      r0, 0x44(r1)
-	lfd      f31, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	switch (table->mColorInfo[J3DAnmColorFullTable::ALPHA].mMaxFrame) {
+	case 0:
+		outColor->a = 0;
+		break;
+	case 1:
+		outColor->a = mAlphaVals[table->mColorInfo[J3DAnmColorFullTable::ALPHA].mOffset];
+		break;
+	default:
+		frame = J3DGetKeyFrameInterpolation<s16>(mCurrentFrame, &table->mColorInfo[J3DAnmColorFullTable::ALPHA],
+		                                         &mAlphaVals[table->mColorInfo[J3DAnmColorFullTable::ALPHA].mOffset]);
+		if (frame <= 0.0f) {
+			outColor->a = 0;
+		} else if (frame <= 255.0f) {
+			OSf32tou8(&frame, &outColor->a);
+		} else {
+			outColor->a = 255;
+		}
+	}
 }
 
 /**
@@ -814,237 +615,85 @@ void J3DAnmColorFull::getColor(u16 tableIndex, GXColor* color) const
  * @note Address: 0x80068CA0
  * @note Size: 0x2CC
  */
-void J3DAnmColorKey::getColor(u16, _GXColor*) const
+void J3DAnmColorKey::getColor(u16 tableIndex, GXColor* outColor) const
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	stw      r29, 0x24(r1)
-	clrlwi   r0, r4, 0x10
-	mr       r29, r3
-	mulli    r0, r0, 0x18
-	lwz      r3, 0x3c(r3)
-	mr       r30, r5
-	add      r31, r3, r0
-	lhz      r0, 0(r31)
-	cmpwi    r0, 1
-	beq      lbl_80068D00
-	bge      lbl_80068D18
-	cmpwi    r0, 0
-	bge      lbl_80068CF4
-	b        lbl_80068D18
+	f32 frame;
+	J3DAnmColorKeyTable* table = mTable + tableIndex;
+	switch (table->mColorInfo[J3DAnmColorFullTable::RED].mMaxFrame) {
+	case 0:
+		outColor->r = 0;
+		break;
+	case 1:
+		outColor->r = mRedValue[table->mColorInfo[J3DAnmColorFullTable::RED].mOffset];
+		break;
+	default:
+		frame = J3DGetKeyFrameInterpolation<s16>(mCurrentFrame, &table->mColorInfo[J3DAnmColorFullTable::RED],
+		                                         &mRedValue[table->mColorInfo[J3DAnmColorFullTable::RED].mOffset]);
+		if (frame < 0.0f) {
+			outColor->r = 0;
+		} else if (frame > 255.0f) {
+			outColor->r = 255;
+		} else {
+			OSf32tou8(&frame, &outColor->r);
+		}
+	}
 
-lbl_80068CF4:
-	li       r0, 0
-	stb      r0, 0(r30)
-	b        lbl_80068D74
+	switch (table->mColorInfo[J3DAnmColorFullTable::GREEN].mMaxFrame) {
+	case 0:
+		outColor->g = 0;
+		break;
+	case 1:
+		outColor->g = mGreenValue[table->mColorInfo[J3DAnmColorFullTable::GREEN].mOffset];
+		break;
+	default:
+		frame = J3DGetKeyFrameInterpolation<s16>(mCurrentFrame, &table->mColorInfo[J3DAnmColorFullTable::GREEN],
+		                                         &mGreenValue[table->mColorInfo[J3DAnmColorFullTable::GREEN].mOffset]);
+		if (frame < 0.0f) {
+			outColor->g = 0;
+		} else if (frame > 255.0f) {
+			outColor->g = 255;
+		} else {
+			OSf32tou8(&frame, &outColor->g);
+		}
+	}
 
-lbl_80068D00:
-	lhz      r0, 2(r31)
-	lwz      r3, 0x2c(r29)
-	slwi     r0, r0, 1
-	lhax     r0, r3, r0
-	stb      r0, 0(r30)
-	b        lbl_80068D74
+	switch (table->mColorInfo[J3DAnmColorFullTable::BLUE].mMaxFrame) {
+	case 0:
+		outColor->b = 0;
+		break;
+	case 1:
+		outColor->b = mBlueValue[table->mColorInfo[J3DAnmColorFullTable::BLUE].mOffset];
+		break;
+	default:
+		frame = J3DGetKeyFrameInterpolation<s16>(mCurrentFrame, &table->mColorInfo[J3DAnmColorFullTable::BLUE],
+		                                         &mBlueValue[table->mColorInfo[J3DAnmColorFullTable::BLUE].mOffset]);
+		if (frame < 0.0f) {
+			outColor->b = 0;
+		} else if (frame > 255.0f) {
+			outColor->b = 255;
+		} else {
+			OSf32tou8(&frame, &outColor->b);
+		}
+	}
 
-lbl_80068D18:
-	lhz      r0, 2(r31)
-	mr       r3, r31
-	lwz      r4, 0x2c(r29)
-	slwi     r0, r0, 1
-	lfs      f1, 8(r29)
-	add      r4, r4, r0
-	bl       "J3DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
-	fmr      f31, f1
-	lfs      f0, lbl_80516A1C@sda21(r2)
-	fcmpo    cr0, f31, f0
-	bge      lbl_80068D50
-	li       r0, 0
-	stb      r0, 0(r30)
-	b        lbl_80068D74
-
-lbl_80068D50:
-	lfs      f0, lbl_80516A34@sda21(r2)
-	fcmpo    cr0, f31, f0
-	ble      lbl_80068D68
-	li       r0, 0xff
-	stb      r0, 0(r30)
-	b        lbl_80068D74
-
-lbl_80068D68:
-	psq_st   f31, 20(r1), 1, qr2
-	lbz      r0, 0x14(r1)
-	stb      r0, 0(r30)
-
-lbl_80068D74:
-	lhz      r0, 6(r31)
-	cmpwi    r0, 1
-	beq      lbl_80068D9C
-	bge      lbl_80068DB4
-	cmpwi    r0, 0
-	bge      lbl_80068D90
-	b        lbl_80068DB4
-
-lbl_80068D90:
-	li       r0, 0
-	stb      r0, 1(r30)
-	b        lbl_80068E10
-
-lbl_80068D9C:
-	lhz      r0, 8(r31)
-	lwz      r3, 0x30(r29)
-	slwi     r0, r0, 1
-	lhax     r0, r3, r0
-	stb      r0, 1(r30)
-	b        lbl_80068E10
-
-lbl_80068DB4:
-	lhz      r0, 8(r31)
-	addi     r3, r31, 6
-	lwz      r4, 0x30(r29)
-	slwi     r0, r0, 1
-	lfs      f1, 8(r29)
-	add      r4, r4, r0
-	bl       "J3DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
-	fmr      f31, f1
-	lfs      f0, lbl_80516A1C@sda21(r2)
-	fcmpo    cr0, f31, f0
-	bge      lbl_80068DEC
-	li       r0, 0
-	stb      r0, 1(r30)
-	b        lbl_80068E10
-
-lbl_80068DEC:
-	lfs      f0, lbl_80516A34@sda21(r2)
-	fcmpo    cr0, f31, f0
-	ble      lbl_80068E04
-	li       r0, 0xff
-	stb      r0, 1(r30)
-	b        lbl_80068E10
-
-lbl_80068E04:
-	psq_st   f31, 16(r1), 1, qr2
-	lbz      r0, 0x10(r1)
-	stb      r0, 1(r30)
-
-lbl_80068E10:
-	lhz      r0, 0xc(r31)
-	cmpwi    r0, 1
-	beq      lbl_80068E38
-	bge      lbl_80068E50
-	cmpwi    r0, 0
-	bge      lbl_80068E2C
-	b        lbl_80068E50
-
-lbl_80068E2C:
-	li       r0, 0
-	stb      r0, 2(r30)
-	b        lbl_80068EAC
-
-lbl_80068E38:
-	lhz      r0, 0xe(r31)
-	lwz      r3, 0x34(r29)
-	slwi     r0, r0, 1
-	lhax     r0, r3, r0
-	stb      r0, 2(r30)
-	b        lbl_80068EAC
-
-lbl_80068E50:
-	lhz      r0, 0xe(r31)
-	addi     r3, r31, 0xc
-	lwz      r4, 0x34(r29)
-	slwi     r0, r0, 1
-	lfs      f1, 8(r29)
-	add      r4, r4, r0
-	bl       "J3DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
-	fmr      f31, f1
-	lfs      f0, lbl_80516A1C@sda21(r2)
-	fcmpo    cr0, f31, f0
-	bge      lbl_80068E88
-	li       r0, 0
-	stb      r0, 2(r30)
-	b        lbl_80068EAC
-
-lbl_80068E88:
-	lfs      f0, lbl_80516A34@sda21(r2)
-	fcmpo    cr0, f31, f0
-	ble      lbl_80068EA0
-	li       r0, 0xff
-	stb      r0, 2(r30)
-	b        lbl_80068EAC
-
-lbl_80068EA0:
-	psq_st   f31, 12(r1), 1, qr2
-	lbz      r0, 0xc(r1)
-	stb      r0, 2(r30)
-
-lbl_80068EAC:
-	lhz      r0, 0x12(r31)
-	cmpwi    r0, 1
-	beq      lbl_80068ED4
-	bge      lbl_80068EEC
-	cmpwi    r0, 0
-	bge      lbl_80068EC8
-	b        lbl_80068EEC
-
-lbl_80068EC8:
-	li       r0, 0
-	stb      r0, 3(r30)
-	b        lbl_80068F48
-
-lbl_80068ED4:
-	lhz      r0, 0x14(r31)
-	lwz      r3, 0x38(r29)
-	slwi     r0, r0, 1
-	lhax     r0, r3, r0
-	stb      r0, 3(r30)
-	b        lbl_80068F48
-
-lbl_80068EEC:
-	lhz      r0, 0x14(r31)
-	addi     r3, r31, 0x12
-	lwz      r4, 0x38(r29)
-	slwi     r0, r0, 1
-	lfs      f1, 8(r29)
-	add      r4, r4, r0
-	bl       "J3DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
-	fmr      f31, f1
-	lfs      f0, lbl_80516A1C@sda21(r2)
-	fcmpo    cr0, f31, f0
-	bge      lbl_80068F24
-	li       r0, 0
-	stb      r0, 3(r30)
-	b        lbl_80068F48
-
-lbl_80068F24:
-	lfs      f0, lbl_80516A34@sda21(r2)
-	fcmpo    cr0, f31, f0
-	ble      lbl_80068F3C
-	li       r0, 0xff
-	stb      r0, 3(r30)
-	b        lbl_80068F48
-
-lbl_80068F3C:
-	psq_st   f31, 8(r1), 1, qr2
-	lbz      r0, 8(r1)
-	stb      r0, 3(r30)
-
-lbl_80068F48:
-	psq_l    f31, 56(r1), 0, qr0
-	lwz      r0, 0x44(r1)
-	lfd      f31, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	switch (table->mColorInfo[J3DAnmColorFullTable::ALPHA].mMaxFrame) {
+	case 0:
+		outColor->a = 0;
+		break;
+	case 1:
+		outColor->a = mAlphaValue[table->mColorInfo[J3DAnmColorFullTable::ALPHA].mOffset];
+		break;
+	default:
+		frame = J3DGetKeyFrameInterpolation<s16>(mCurrentFrame, &table->mColorInfo[J3DAnmColorFullTable::ALPHA],
+		                                         &mAlphaValue[table->mColorInfo[J3DAnmColorFullTable::ALPHA].mOffset]);
+		if (frame < 0.0f) {
+			outColor->a = 0;
+		} else if (frame > 255.0f) {
+			outColor->a = 255;
+		} else {
+			OSf32tou8(&frame, &outColor->a);
+		}
+	}
 }
 
 /**
@@ -1073,577 +722,200 @@ void J3DAnmTexPattern::getTexNo(u16 idx, u16* texNo) const
  * @note Address: 0x80069020
  * @note Size: 0x124
  */
-void J3DAnmTextureSRTKey::searchUpdateMaterialID(J3DModelData*)
+void J3DAnmTextureSRTKey::searchUpdateMaterialID(J3DMaterialTable* table)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, 0x55555556@ha
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r30, r3
-	mr       r31, r4
-	li       r28, 0
-	addi     r29, r5, 0x55555556@l
-	b        lbl_80069094
-
-lbl_80069048:
-	lwz      r27, 0x64(r31)
-	mr       r4, r28
-	addi     r3, r30, 0x30
-	bl       getName__10JUTNameTabCFUs
-	mr       r4, r3
-	mr       r3, r27
-	bl       getIndex__10JUTNameTabCFPCc
-	cmpwi    r3, -1
-	beq      lbl_8006907C
-	lwz      r4, 0x2c(r30)
-	rlwinm   r0, r28, 1, 0xf, 0x1e
-	sthx     r3, r4, r0
-	b        lbl_80069090
-
-lbl_8006907C:
-	lis      r4, 0x0000FFFF@ha
-	lwz      r3, 0x2c(r30)
-	addi     r4, r4, 0x0000FFFF@l
-	rlwinm   r0, r28, 1, 0xf, 0x1e
-	sthx     r4, r3, r0
-
-lbl_80069090:
-	addi     r28, r28, 1
-
-lbl_80069094:
-	lhz      r0, 0x14(r30)
-	clrlwi   r4, r28, 0x10
-	mulhw    r3, r29, r0
-	srwi     r0, r3, 0x1f
-	add      r0, r3, r0
-	clrlwi   r0, r0, 0x10
-	cmplw    r4, r0
-	blt      lbl_80069048
-	lis      r3, 0x55555556@ha
-	li       r28, 0
-	addi     r29, r3, 0x55555556@l
-	b        lbl_80069110
-
-lbl_800690C4:
-	lwz      r27, 0x64(r31)
-	mr       r4, r28
-	addi     r3, r30, 0x64
-	bl       getName__10JUTNameTabCFUs
-	mr       r4, r3
-	mr       r3, r27
-	bl       getIndex__10JUTNameTabCFPCc
-	cmpwi    r3, -1
-	beq      lbl_800690F8
-	lwz      r4, 0x60(r30)
-	rlwinm   r0, r28, 1, 0xf, 0x1e
-	sthx     r3, r4, r0
-	b        lbl_8006910C
-
-lbl_800690F8:
-	lis      r4, 0x0000FFFF@ha
-	lwz      r3, 0x60(r30)
-	addi     r4, r4, 0x0000FFFF@l
-	rlwinm   r0, r28, 1, 0xf, 0x1e
-	sthx     r4, r3, r0
-
-lbl_8006910C:
-	addi     r28, r28, 1
-
-lbl_80069110:
-	lhz      r0, 0x4a(r30)
-	clrlwi   r4, r28, 0x10
-	mulhw    r3, r29, r0
-	srwi     r0, r3, 0x1f
-	add      r0, r3, r0
-	clrlwi   r0, r0, 0x10
-	cmplw    r4, r0
-	blt      lbl_800690C4
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (u16 i = 0; i < getUpdateMaterialNum(); i++) {
+		s32 materialID = table->getMaterialName()->getIndex(getUpdateMaterialName()->getName(i));
+		if (materialID != -1) {
+			mUpdateMaterialID[i] = materialID;
+		} else {
+			mUpdateMaterialID[i] = 0xFFFF;
+		}
+	}
+	for (u16 i = 0; i < getPostUpdateMaterialNum(); i++) {
+		s32 materialID = table->getMaterialName()->getIndex(getPostUpdateMaterialName()->getName(i));
+		if (materialID != -1) {
+			mPostUpdateMaterialID[i] = materialID;
+		} else {
+			mPostUpdateMaterialID[i] = 0xFFFF;
+		}
+	}
 }
+
+/**
+ * @note Address: 0x80069020
+ * @note Size: 0x124
+ */
+void J3DAnmTextureSRTKey::searchUpdateMaterialID(J3DModelData* modelData) { searchUpdateMaterialID(&modelData->getMaterialTable()); }
 
 /**
  * @note Address: 0x80069144
  * @note Size: 0x2CC
  */
-void J3DAnmTevRegKey::getTevColorReg(u16 p1, _GXColorS10* color) const
+void J3DAnmTevRegKey::getTevColorReg(u16 tableIndex, _GXColorS10* outColor) const
 {
-	// _48[p1].mTables[0].getColorField(mCurrentFrame, &color->r, _50);
-	// _48[p1].mTables[1].getColorField(mCurrentFrame, &color->g, _54);
-	// _48[p1].mTables[2].getColorField(mCurrentFrame, &color->b, _58);
-	// _48[p1].mTables[3].getColorField(mCurrentFrame, &color->a, _5C);
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	stw      r29, 0x24(r1)
-	clrlwi   r0, r4, 0x10
-	mr       r29, r3
-	mulli    r0, r0, 0x1c
-	lwz      r3, 0x48(r3)
-	mr       r30, r5
-	add      r31, r3, r0
-	lhz      r0, 0(r31)
-	cmpwi    r0, 1
-	beq      lbl_800691A4
-	bge      lbl_800691BC
-	cmpwi    r0, 0
-	bge      lbl_80069198
-	b        lbl_800691BC
+	f32 frame;
+	J3DAnmCRegKeyTable* table = mCRegKeyTable + tableIndex;
+	switch (table->mTables[J3DAnmColorFullTable::RED].mMaxFrame) {
+	case 0:
+		outColor->r = 0;
+		break;
+	case 1:
+		outColor->r = mCRedVals[table->mTables[J3DAnmColorFullTable::RED].mOffset];
+		break;
+	default:
+		frame = J3DGetKeyFrameInterpolation<s16>(mCurrentFrame, &table->mTables[J3DAnmColorFullTable::RED],
+		                                         &mCRedVals[table->mTables[J3DAnmColorFullTable::RED].mOffset]);
+		if (frame < -1024.0f) {
+			outColor->r = -1024;
+		} else if (frame > 1023.0f) {
+			outColor->r = 1023;
+		} else {
+			OSf32tos16(&frame, &outColor->r);
+		}
+	}
 
-lbl_80069198:
-	li       r0, 0
-	sth      r0, 0(r30)
-	b        lbl_80069218
+	switch (table->mTables[J3DAnmColorFullTable::GREEN].mMaxFrame) {
+	case 0:
+		outColor->g = 0;
+		break;
+	case 1:
+		outColor->g = mCGreenVals[table->mTables[J3DAnmColorFullTable::GREEN].mOffset];
+		break;
+	default:
+		frame = J3DGetKeyFrameInterpolation<s16>(mCurrentFrame, &table->mTables[J3DAnmColorFullTable::GREEN],
+		                                         &mCGreenVals[table->mTables[J3DAnmColorFullTable::GREEN].mOffset]);
+		if (frame < -1024.0f) {
+			outColor->g = -1024;
+		} else if (frame > 1023.0f) {
+			outColor->g = 1023;
+		} else {
+			OSf32tos16(&frame, &outColor->g);
+		}
+	}
 
-lbl_800691A4:
-	lhz      r0, 2(r31)
-	lwz      r3, 0x50(r29)
-	slwi     r0, r0, 1
-	lhax     r0, r3, r0
-	sth      r0, 0(r30)
-	b        lbl_80069218
+	switch (table->mTables[J3DAnmColorFullTable::BLUE].mMaxFrame) {
+	case 0:
+		outColor->b = 0;
+		break;
+	case 1:
+		outColor->b = mCBlueVals[table->mTables[J3DAnmColorFullTable::BLUE].mOffset];
+		break;
+	default:
+		frame = J3DGetKeyFrameInterpolation<s16>(mCurrentFrame, &table->mTables[J3DAnmColorFullTable::BLUE],
+		                                         &mCBlueVals[table->mTables[J3DAnmColorFullTable::BLUE].mOffset]);
+		if (frame < -1024.0f) {
+			outColor->b = -1024;
+		} else if (frame > 1023.0f) {
+			outColor->b = 1023;
+		} else {
+			OSf32tos16(&frame, &outColor->b);
+		}
+	}
 
-lbl_800691BC:
-	lhz      r0, 2(r31)
-	mr       r3, r31
-	lwz      r4, 0x50(r29)
-	slwi     r0, r0, 1
-	lfs      f1, 8(r29)
-	add      r4, r4, r0
-	bl       "J3DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
-	fmr      f31, f1
-	lfs      f0, lbl_80516A40@sda21(r2)
-	fcmpo    cr0, f31, f0
-	bge      lbl_800691F4
-	li       r0, -1024
-	sth      r0, 0(r30)
-	b        lbl_80069218
-
-lbl_800691F4:
-	lfs      f0, lbl_80516A44@sda21(r2)
-	fcmpo    cr0, f31, f0
-	ble      lbl_8006920C
-	li       r0, 0x3ff
-	sth      r0, 0(r30)
-	b        lbl_80069218
-
-lbl_8006920C:
-	psq_st   f31, 20(r1), 1, qr5
-	lha      r0, 0x14(r1)
-	sth      r0, 0(r30)
-
-lbl_80069218:
-	lhz      r0, 6(r31)
-	cmpwi    r0, 1
-	beq      lbl_80069240
-	bge      lbl_80069258
-	cmpwi    r0, 0
-	bge      lbl_80069234
-	b        lbl_80069258
-
-lbl_80069234:
-	li       r0, 0
-	sth      r0, 2(r30)
-	b        lbl_800692B4
-
-lbl_80069240:
-	lhz      r0, 8(r31)
-	lwz      r3, 0x54(r29)
-	slwi     r0, r0, 1
-	lhax     r0, r3, r0
-	sth      r0, 2(r30)
-	b        lbl_800692B4
-
-lbl_80069258:
-	lhz      r0, 8(r31)
-	addi     r3, r31, 6
-	lwz      r4, 0x54(r29)
-	slwi     r0, r0, 1
-	lfs      f1, 8(r29)
-	add      r4, r4, r0
-	bl       "J3DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
-	fmr      f31, f1
-	lfs      f0, lbl_80516A40@sda21(r2)
-	fcmpo    cr0, f31, f0
-	bge      lbl_80069290
-	li       r0, -1024
-	sth      r0, 2(r30)
-	b        lbl_800692B4
-
-lbl_80069290:
-	lfs      f0, lbl_80516A44@sda21(r2)
-	fcmpo    cr0, f31, f0
-	ble      lbl_800692A8
-	li       r0, 0x3ff
-	sth      r0, 2(r30)
-	b        lbl_800692B4
-
-lbl_800692A8:
-	psq_st   f31, 16(r1), 1, qr5
-	lha      r0, 0x10(r1)
-	sth      r0, 2(r30)
-
-lbl_800692B4:
-	lhz      r0, 0xc(r31)
-	cmpwi    r0, 1
-	beq      lbl_800692DC
-	bge      lbl_800692F4
-	cmpwi    r0, 0
-	bge      lbl_800692D0
-	b        lbl_800692F4
-
-lbl_800692D0:
-	li       r0, 0
-	sth      r0, 4(r30)
-	b        lbl_80069350
-
-lbl_800692DC:
-	lhz      r0, 0xe(r31)
-	lwz      r3, 0x58(r29)
-	slwi     r0, r0, 1
-	lhax     r0, r3, r0
-	sth      r0, 4(r30)
-	b        lbl_80069350
-
-lbl_800692F4:
-	lhz      r0, 0xe(r31)
-	addi     r3, r31, 0xc
-	lwz      r4, 0x58(r29)
-	slwi     r0, r0, 1
-	lfs      f1, 8(r29)
-	add      r4, r4, r0
-	bl       "J3DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
-	fmr      f31, f1
-	lfs      f0, lbl_80516A40@sda21(r2)
-	fcmpo    cr0, f31, f0
-	bge      lbl_8006932C
-	li       r0, -1024
-	sth      r0, 4(r30)
-	b        lbl_80069350
-
-lbl_8006932C:
-	lfs      f0, lbl_80516A44@sda21(r2)
-	fcmpo    cr0, f31, f0
-	ble      lbl_80069344
-	li       r0, 0x3ff
-	sth      r0, 4(r30)
-	b        lbl_80069350
-
-lbl_80069344:
-	psq_st   f31, 12(r1), 1, qr5
-	lha      r0, 0xc(r1)
-	sth      r0, 4(r30)
-
-lbl_80069350:
-	lhz      r0, 0x12(r31)
-	cmpwi    r0, 1
-	beq      lbl_80069378
-	bge      lbl_80069390
-	cmpwi    r0, 0
-	bge      lbl_8006936C
-	b        lbl_80069390
-
-lbl_8006936C:
-	li       r0, 0
-	sth      r0, 6(r30)
-	b        lbl_800693EC
-
-lbl_80069378:
-	lhz      r0, 0x14(r31)
-	lwz      r3, 0x5c(r29)
-	slwi     r0, r0, 1
-	lhax     r0, r3, r0
-	sth      r0, 6(r30)
-	b        lbl_800693EC
-
-lbl_80069390:
-	lhz      r0, 0x14(r31)
-	addi     r3, r31, 0x12
-	lwz      r4, 0x5c(r29)
-	slwi     r0, r0, 1
-	lfs      f1, 8(r29)
-	add      r4, r4, r0
-	bl       "J3DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
-	fmr      f31, f1
-	lfs      f0, lbl_80516A40@sda21(r2)
-	fcmpo    cr0, f31, f0
-	bge      lbl_800693C8
-	li       r0, -1024
-	sth      r0, 6(r30)
-	b        lbl_800693EC
-
-lbl_800693C8:
-	lfs      f0, lbl_80516A44@sda21(r2)
-	fcmpo    cr0, f31, f0
-	ble      lbl_800693E0
-	li       r0, 0x3ff
-	sth      r0, 6(r30)
-	b        lbl_800693EC
-
-lbl_800693E0:
-	psq_st   f31, 8(r1), 1, qr5
-	lha      r0, 8(r1)
-	sth      r0, 6(r30)
-
-lbl_800693EC:
-	psq_l    f31, 56(r1), 0, qr0
-	lwz      r0, 0x44(r1)
-	lfd      f31, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	switch (table->mTables[J3DAnmColorFullTable::ALPHA].mMaxFrame) {
+	case 0:
+		outColor->a = 0;
+		break;
+	case 1:
+		outColor->a = mCAlphaVals[table->mTables[J3DAnmColorFullTable::ALPHA].mOffset];
+		break;
+	default:
+		frame = J3DGetKeyFrameInterpolation<s16>(mCurrentFrame, &table->mTables[J3DAnmColorFullTable::ALPHA],
+		                                         &mCAlphaVals[table->mTables[J3DAnmColorFullTable::ALPHA].mOffset]);
+		if (frame < -1024.0f) {
+			outColor->a = -1024;
+		} else if (frame > 1023.0f) {
+			outColor->a = 1023;
+		} else {
+			OSf32tos16(&frame, &outColor->a);
+		}
+	}
 }
 
 /**
  * @note Address: 0x80069410
  * @note Size: 0x2CC
  */
-void J3DAnmTevRegKey::getTevKonstReg(u16, _GXColor*) const
+void J3DAnmTevRegKey::getTevKonstReg(u16 tableIndex, GXColor* outColor) const
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	stw      r29, 0x24(r1)
-	clrlwi   r0, r4, 0x10
-	mr       r29, r3
-	mulli    r0, r0, 0x1c
-	lwz      r3, 0x4c(r3)
-	mr       r30, r5
-	add      r31, r3, r0
-	lhz      r0, 0(r31)
-	cmpwi    r0, 1
-	beq      lbl_80069470
-	bge      lbl_80069488
-	cmpwi    r0, 0
-	bge      lbl_80069464
-	b        lbl_80069488
+	f32 frame;
+	J3DAnmKRegKeyTable* table = mKRegKeyTable + tableIndex;
+	switch (table->mTables[J3DAnmColorFullTable::RED].mMaxFrame) {
+	case 0:
+		outColor->r = 0;
+		break;
+	case 1:
+		outColor->r = mKRedVals[table->mTables[J3DAnmColorFullTable::RED].mOffset];
+		break;
+	default:
+		frame = J3DGetKeyFrameInterpolation<s16>(mCurrentFrame, &table->mTables[J3DAnmColorFullTable::RED],
+		                                         &mKRedVals[table->mTables[J3DAnmColorFullTable::RED].mOffset]);
+		if (frame < 0.0f) {
+			outColor->r = 0;
+		} else if (frame > 255.0f) {
+			outColor->r = 255;
+		} else {
+			OSf32tou8(&frame, &outColor->r);
+		}
+	}
 
-lbl_80069464:
-	li       r0, 0
-	stb      r0, 0(r30)
-	b        lbl_800694E4
+	switch (table->mTables[J3DAnmColorFullTable::GREEN].mMaxFrame) {
+	case 0:
+		outColor->g = 0;
+		break;
+	case 1:
+		outColor->g = mKGreenVals[table->mTables[J3DAnmColorFullTable::GREEN].mOffset];
+		break;
+	default:
+		frame = J3DGetKeyFrameInterpolation<s16>(mCurrentFrame, &table->mTables[J3DAnmColorFullTable::GREEN],
+		                                         &mKGreenVals[table->mTables[J3DAnmColorFullTable::GREEN].mOffset]);
+		if (frame < 0.0f) {
+			outColor->g = 0;
+		} else if (frame > 255.0f) {
+			outColor->g = 255;
+		} else {
+			OSf32tou8(&frame, &outColor->g);
+		}
+	}
 
-lbl_80069470:
-	lhz      r0, 2(r31)
-	lwz      r3, 0x60(r29)
-	slwi     r0, r0, 1
-	lhax     r0, r3, r0
-	stb      r0, 0(r30)
-	b        lbl_800694E4
+	switch (table->mTables[J3DAnmColorFullTable::BLUE].mMaxFrame) {
+	case 0:
+		outColor->b = 0;
+		break;
+	case 1:
+		outColor->b = mKBlueVals[table->mTables[J3DAnmColorFullTable::BLUE].mOffset];
+		break;
+	default:
+		frame = J3DGetKeyFrameInterpolation<s16>(mCurrentFrame, &table->mTables[J3DAnmColorFullTable::BLUE],
+		                                         &mKBlueVals[table->mTables[J3DAnmColorFullTable::BLUE].mOffset]);
+		if (frame < 0.0f) {
+			outColor->b = 0;
+		} else if (frame > 255.0f) {
+			outColor->b = 255;
+		} else {
+			OSf32tou8(&frame, &outColor->b);
+		}
+	}
 
-lbl_80069488:
-	lhz      r0, 2(r31)
-	mr       r3, r31
-	lwz      r4, 0x60(r29)
-	slwi     r0, r0, 1
-	lfs      f1, 8(r29)
-	add      r4, r4, r0
-	bl       "J3DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
-	fmr      f31, f1
-	lfs      f0, lbl_80516A1C@sda21(r2)
-	fcmpo    cr0, f31, f0
-	bge      lbl_800694C0
-	li       r0, 0
-	stb      r0, 0(r30)
-	b        lbl_800694E4
-
-lbl_800694C0:
-	lfs      f0, lbl_80516A34@sda21(r2)
-	fcmpo    cr0, f31, f0
-	ble      lbl_800694D8
-	li       r0, 0xff
-	stb      r0, 0(r30)
-	b        lbl_800694E4
-
-lbl_800694D8:
-	psq_st   f31, 20(r1), 1, qr2
-	lbz      r0, 0x14(r1)
-	stb      r0, 0(r30)
-
-lbl_800694E4:
-	lhz      r0, 6(r31)
-	cmpwi    r0, 1
-	beq      lbl_8006950C
-	bge      lbl_80069524
-	cmpwi    r0, 0
-	bge      lbl_80069500
-	b        lbl_80069524
-
-lbl_80069500:
-	li       r0, 0
-	stb      r0, 1(r30)
-	b        lbl_80069580
-
-lbl_8006950C:
-	lhz      r0, 8(r31)
-	lwz      r3, 0x64(r29)
-	slwi     r0, r0, 1
-	lhax     r0, r3, r0
-	stb      r0, 1(r30)
-	b        lbl_80069580
-
-lbl_80069524:
-	lhz      r0, 8(r31)
-	addi     r3, r31, 6
-	lwz      r4, 0x64(r29)
-	slwi     r0, r0, 1
-	lfs      f1, 8(r29)
-	add      r4, r4, r0
-	bl       "J3DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
-	fmr      f31, f1
-	lfs      f0, lbl_80516A1C@sda21(r2)
-	fcmpo    cr0, f31, f0
-	bge      lbl_8006955C
-	li       r0, 0
-	stb      r0, 1(r30)
-	b        lbl_80069580
-
-lbl_8006955C:
-	lfs      f0, lbl_80516A34@sda21(r2)
-	fcmpo    cr0, f31, f0
-	ble      lbl_80069574
-	li       r0, 0xff
-	stb      r0, 1(r30)
-	b        lbl_80069580
-
-lbl_80069574:
-	psq_st   f31, 16(r1), 1, qr2
-	lbz      r0, 0x10(r1)
-	stb      r0, 1(r30)
-
-lbl_80069580:
-	lhz      r0, 0xc(r31)
-	cmpwi    r0, 1
-	beq      lbl_800695A8
-	bge      lbl_800695C0
-	cmpwi    r0, 0
-	bge      lbl_8006959C
-	b        lbl_800695C0
-
-lbl_8006959C:
-	li       r0, 0
-	stb      r0, 2(r30)
-	b        lbl_8006961C
-
-lbl_800695A8:
-	lhz      r0, 0xe(r31)
-	lwz      r3, 0x68(r29)
-	slwi     r0, r0, 1
-	lhax     r0, r3, r0
-	stb      r0, 2(r30)
-	b        lbl_8006961C
-
-lbl_800695C0:
-	lhz      r0, 0xe(r31)
-	addi     r3, r31, 0xc
-	lwz      r4, 0x68(r29)
-	slwi     r0, r0, 1
-	lfs      f1, 8(r29)
-	add      r4, r4, r0
-	bl       "J3DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
-	fmr      f31, f1
-	lfs      f0, lbl_80516A1C@sda21(r2)
-	fcmpo    cr0, f31, f0
-	bge      lbl_800695F8
-	li       r0, 0
-	stb      r0, 2(r30)
-	b        lbl_8006961C
-
-lbl_800695F8:
-	lfs      f0, lbl_80516A34@sda21(r2)
-	fcmpo    cr0, f31, f0
-	ble      lbl_80069610
-	li       r0, 0xff
-	stb      r0, 2(r30)
-	b        lbl_8006961C
-
-lbl_80069610:
-	psq_st   f31, 12(r1), 1, qr2
-	lbz      r0, 0xc(r1)
-	stb      r0, 2(r30)
-
-lbl_8006961C:
-	lhz      r0, 0x12(r31)
-	cmpwi    r0, 1
-	beq      lbl_80069644
-	bge      lbl_8006965C
-	cmpwi    r0, 0
-	bge      lbl_80069638
-	b        lbl_8006965C
-
-lbl_80069638:
-	li       r0, 0
-	stb      r0, 3(r30)
-	b        lbl_800696B8
-
-lbl_80069644:
-	lhz      r0, 0x14(r31)
-	lwz      r3, 0x6c(r29)
-	slwi     r0, r0, 1
-	lhax     r0, r3, r0
-	stb      r0, 3(r30)
-	b        lbl_800696B8
-
-lbl_8006965C:
-	lhz      r0, 0x14(r31)
-	addi     r3, r31, 0x12
-	lwz      r4, 0x6c(r29)
-	slwi     r0, r0, 1
-	lfs      f1, 8(r29)
-	add      r4, r4, r0
-	bl       "J3DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
-	fmr      f31, f1
-	lfs      f0, lbl_80516A1C@sda21(r2)
-	fcmpo    cr0, f31, f0
-	bge      lbl_80069694
-	li       r0, 0
-	stb      r0, 3(r30)
-	b        lbl_800696B8
-
-lbl_80069694:
-	lfs      f0, lbl_80516A34@sda21(r2)
-	fcmpo    cr0, f31, f0
-	ble      lbl_800696AC
-	li       r0, 0xff
-	stb      r0, 3(r30)
-	b        lbl_800696B8
-
-lbl_800696AC:
-	psq_st   f31, 8(r1), 1, qr2
-	lbz      r0, 8(r1)
-	stb      r0, 3(r30)
-
-lbl_800696B8:
-	psq_l    f31, 56(r1), 0, qr0
-	lwz      r0, 0x44(r1)
-	lfd      f31, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	switch (table->mTables[J3DAnmColorFullTable::ALPHA].mMaxFrame) {
+	case 0:
+		outColor->a = 0;
+		break;
+	case 1:
+		outColor->a = mKAlphaVals[table->mTables[J3DAnmColorFullTable::ALPHA].mOffset];
+		break;
+	default:
+		frame = J3DGetKeyFrameInterpolation<s16>(mCurrentFrame, &table->mTables[J3DAnmColorFullTable::ALPHA],
+		                                         &mKAlphaVals[table->mTables[J3DAnmColorFullTable::ALPHA].mOffset]);
+		if (frame < 0.0f) {
+			outColor->a = 0;
+		} else if (frame > 255.0f) {
+			outColor->a = 255;
+		} else {
+			OSf32tou8(&frame, &outColor->a);
+		}
+	}
 }
 
 /**
@@ -1673,180 +945,6 @@ void J3DAnmTevRegKey::searchUpdateMaterialID(J3DModelData* data)
 		}
 	}
 }
-
-/**
- * @note Address: 0x800697E8
- * @note Size: 0x84
- * __dt__14J3DAnmColorKeyFv
- */
-// J3DAnmColorKey::~J3DAnmColorKey() { }
-
-/**
- * @note Address: 0x8006986C
- * @note Size: 0x8
- */
-// J3DAnmKind J3DAnmColorKey::getKind() const { return J3DAnmKind_ColorKey; }
-
-/**
- * @note Address: 0x80069874
- * @note Size: 0x48
- * __dt__10J3DAnmBaseFv
- */
-// J3DAnmBase::~J3DAnmBase() { }
-
-/**
- * @note Address: 0x800698BC
- * @note Size: 0x74
- * __dt__11J3DAnmColorFv
- */
-// J3DAnmColor::~J3DAnmColor() { }
-
-/**
- * @note Address: 0x80069930
- * @note Size: 0x8
- */
-// J3DAnmKind J3DAnmColor::getKind() const { return J3DAnmKind_Color; }
-
-/**
- * @note Address: 0x80069938
- * @note Size: 0x4
- */
-// void J3DAnmColor::getColor(u16, _GXColor*) const { }
-
-/**
- * @note Address: 0x8006993C
- * @note Size: 0x84
- * __dt__15J3DAnmColorFullFv
- */
-// J3DAnmColorFull::~J3DAnmColorFull() { }
-
-/**
- * @note Address: 0x800699C0
- * @note Size: 0x8
- */
-// J3DAnmKind J3DAnmColorFull::getKind() const { return J3DAnmKind_ColorFull; }
-
-/**
- * @note Address: 0x800699C8
- * @note Size: 0x6C
- * __dt__17J3DAnmVtxColorKeyFv
- */
-// J3DAnmVtxColorKey::~J3DAnmVtxColorKey() { }
-
-/**
- * @note Address: 0x80069A34
- * @note Size: 0x8
- */
-// J3DAnmKind J3DAnmVtxColorKey::getKind() const { return J3DAnmKind_VtxColorKey; }
-
-/**
- * @note Address: 0x80069A3C
- * @note Size: 0x5C
- * __dt__14J3DAnmVtxColorFv
- */
-// J3DAnmVtxColor::~J3DAnmVtxColor() { }
-
-/**
- * @note Address: 0x80069A98
- * @note Size: 0x8
- */
-// J3DAnmKind J3DAnmVtxColor::getKind() const { return J3DAnmKind_VtxColor; }
-
-/**
- * @note Address: 0x80069AA0
- * @note Size: 0x4
- */
-// void J3DAnmVtxColor::getColor(u8, u16, _GXColor*) const { }
-
-/**
- * @note Address: 0x80069AA4
- * @note Size: 0x6C
- * __dt__18J3DAnmVtxColorFullFv
- */
-// J3DAnmVtxColorFull::~J3DAnmVtxColorFull() { }
-
-/**
- * @note Address: 0x80069B10
- * @note Size: 0x8
- */
-// J3DAnmKind J3DAnmVtxColorFull::getKind() const { return J3DAnmKind_VtxColorFull; }
-
-/**
- * @note Address: 0x80069B18
- * @note Size: 0x6C
- * __dt__16J3DAnmClusterKeyFv
- */
-// J3DAnmClusterKey::~J3DAnmClusterKey() { }
-
-/**
- * @note Address: 0x80069B84
- * @note Size: 0x8
- */
-// J3DAnmKind J3DAnmClusterKey::getKind() const { return J3DAnmKind_ClusterKey; }
-
-/**
- * @note Address: 0x80069B8C
- * @note Size: 0x5C
- * __dt__13J3DAnmClusterFv
- */
-// J3DAnmCluster::~J3DAnmCluster() { }
-
-/**
- * @note Address: 0x80069BE8
- * @note Size: 0x8
- */
-// J3DAnmKind J3DAnmCluster::getKind() const { return J3DAnmKind_Cluster; }
-
-/**
- * @note Address: 0x80069BF0
- * @note Size: 0x8
- */
-f32 J3DAnmCluster::getWeight(u16) const
-{
-	/*
-	lfs      f1, lbl_80516A18@sda21(r2)
-	blr
-	*/
-}
-
-/**
- * @note Address: 0x80069BF8
- * @note Size: 0x6C
- * __dt__17J3DAnmClusterFullFv
- */
-// J3DAnmClusterFull::~J3DAnmClusterFull() { }
-
-/**
- * @note Address: 0x80069C64
- * @note Size: 0x8
- */
-// J3DAnmKind J3DAnmClusterFull::getKind() const { return J3DAnmKind_ClusterFull; }
-
-/**
- * @note Address: 0x80069C6C
- * @note Size: 0x6C
- * __dt__19J3DAnmTransformFullFv
- */
-// J3DAnmTransformFull::~J3DAnmTransformFull() { }
-
-/**
- * @note Address: 0x80069CD8
- * @note Size: 0x8
- */
-// J3DAnmKind J3DAnmTransformFull::getKind() const { return J3DAnmKind_TransformFull; }
-
-/**
- * @note Address: 0x80069CE0
- * @note Size: 0x5C
- * __dt__15J3DAnmTransformFv
- */
-// J3DAnmTransform::~J3DAnmTransform() { }
-
-/**
- * @note Address: 0x80069D3C
- * @note Size: 0x8
- */
-// J3DAnmKind J3DAnmTransform::getKind() const { return J3DAnmKind_Transform; }
 
 template <typename T>
 f32 J3DGetKeyFrameInterpolation(f32 frame, J3DAnmKeyTableBase* table, T* values)
