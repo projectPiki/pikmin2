@@ -2,7 +2,7 @@
 #define _OG_NEWSCREEN_TITLEMSG_H
 
 #include "og/Screen/ScaleMgr.h"
-#include "JSystem/J2D/J2DPane.h"
+#include "JSystem/J2D/J2DPicture.h"
 #include "P2JME/Analyzer.h"
 #include "Vector2.h"
 

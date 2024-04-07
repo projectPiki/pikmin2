@@ -1,7 +1,7 @@
 #ifndef _P2DSCREEN_H
 #define _P2DSCREEN_H
 
-#include "JSystem/J2D/J2DPane.h"
+#include "JSystem/J2D/J2DPicture.h"
 #include "types.h"
 #include "CNode.h"
 #include "Vector2.h"

@@ -6,9 +6,8 @@
 #include "PSSystem/PSGame.h"
 #include "SoundID.h"
 #include "JSystem/JFramework/JFWDisplay.h"
-#include "JSystem/J2D/J2DPane.h"
+#include "JSystem/J2D/J2DPicture.h"
 #include "JSystem/JUtility/JUTProcBar.h"
-#include "JSystem/JUtility/JUTTexture.h"
 
 static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 

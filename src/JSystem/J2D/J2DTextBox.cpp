@@ -1,7 +1,7 @@
 #include "Dolphin/gx.h"
 #include "Dolphin/mtx.h"
 #include "JSystem/J2D/J2DMaterial.h"
-#include "JSystem/J2D/J2DPane.h"
+#include "JSystem/J2D/J2DTextBox.h"
 #include "JSystem/J2D/J2DPrint.h"
 #include "JSystem/J2D/J2DTevBlock.h"
 #include "JSystem/J2D/J2DTypes.h"

@@ -52,10 +52,10 @@ void JKRFileLoader::unmount()
  */
 void* JKRFileLoader::getGlbResource(const char* path)
 {
-	const char* components[2];
-	components[0]         = path;
-	JKRFileLoader* loader = findVolume(components);
-	return (loader == nullptr) ? nullptr : loader->getResource(components[0]);
+	const char* volumeName[1];
+	*volumeName           = path;
+	JKRFileLoader* loader = findVolume(volumeName);
+	return (loader == nullptr) ? nullptr : loader->getResource(*volumeName);
 }
 
 /**
@@ -63,14 +63,14 @@ void* JKRFileLoader::getGlbResource(const char* path)
  * @note Size: 0x98
  * getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
  */
-void* JKRFileLoader::getGlbResource(const char* name, JKRFileLoader* loader)
+void* JKRFileLoader::getGlbResource(const char* fileName, JKRFileLoader* loader)
 {
 	void* resource = nullptr;
 	if (loader) {
-		resource = loader->getResource(0, name);
+		resource = loader->getResource(0, fileName);
 	} else {
 		for (JSULink<JKRFileLoader>* link = sVolumeList.getFirst(); link != nullptr; link = link->getNext()) {
-			resource = link->getObject()->getResource(0, name);
+			resource = link->getObject()->getResource(0, fileName);
 			if (resource) {
 				break;
 			}

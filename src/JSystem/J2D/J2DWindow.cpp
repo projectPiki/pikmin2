@@ -1,7 +1,7 @@
 #include "Dolphin/gx.h"
 #include "Dolphin/mtx.h"
 #include "JSystem/J2D/J2DMaterial.h"
-#include "JSystem/J2D/J2DPane.h"
+#include "JSystem/J2D/J2DWindow.h"
 #include "JSystem/JGeometry.h"
 #include "JSystem/JUtility/JUTTexture.h"
 #include "JSystem/JUtility/TColor.h"

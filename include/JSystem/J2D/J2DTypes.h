@@ -12,11 +12,17 @@
 struct JUTTexture;
 
 enum J2DBinding {
-	J2DBIND_Unk15 = 15,
+	J2DBIND_Bottom = 1,
+	J2DBIND_Top    = 2,
+	J2DBIND_Right  = 4,
+	J2DBIND_Left   = 8,
+	J2DBIND_Unk15  = 15,
 };
 
 enum J2DMirror {
 	J2DMIRROR_Unk0 = 0,
+	J2DMIRROR_Y    = 1,
+	J2DMIRROR_X    = 2,
 };
 
 extern u16 j2dDefaultAlphaCmp;

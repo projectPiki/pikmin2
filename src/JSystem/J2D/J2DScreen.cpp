@@ -1,7 +1,10 @@
 #include "JSystem/J2D/J2DAnm.h"
 #include "JSystem/J2D/J2DManage.h"
 #include "JSystem/J2D/J2DMaterial.h"
-#include "JSystem/J2D/J2DPane.h"
+#include "JSystem/J2D/J2DScreen.h"
+#include "JSystem/J2D/J2DWindow.h"
+#include "JSystem/J2D/J2DPicture.h"
+#include "JSystem/J2D/J2DTextBox.h"
 #include "JSystem/J3D/J3DFileBlock.h"
 #include "JSystem/J3D/J3DTypes.h"
 #include "JSystem/JGeometry.h"
@@ -1234,11 +1237,11 @@ bool J2DScreen::isUsed(const ResFONT* resource) { return J2DPane::isUsed(resourc
  * @note Address: 0x80040ADC
  * @note Size: 0x50
  */
-void* J2DScreen::getNameResource(const char* name)
+void* J2DScreen::getNameResource(const char* fileName)
 {
-	void* resource = JKRFileLoader::getGlbResource(name, nullptr);
+	void* resource = JKRFileLoader::getGlbResource(fileName, nullptr);
 	if (resource == nullptr && mDataManage != nullptr) {
-		resource = mDataManage->get(name);
+		resource = mDataManage->get(fileName);
 	}
 	return resource;
 }

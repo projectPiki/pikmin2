@@ -63,7 +63,7 @@ J3DTexNoAnm::J3DTexNoAnm()
  */
 J3DErrType J3DMaterialTable::allocTexMtxAnimator(J3DAnmTextureSRTKey* p1, J3DTexMtxAnm** p2)
 {
-	u16 elementCount = p1->mAnimTableNum1 / 3;
+	u16 elementCount = p1->mTrackNum / 3;
 	*p2              = new J3DTexMtxAnm[elementCount];
 	// J3DTexMtxAnm* v1 = new J3DTexMtxAnm[elementCount];
 	// *p2 = v1;
@@ -917,7 +917,7 @@ J3DErrType J3DMaterialTable::entryTexMtxAnimator(J3DAnmTextureSRTKey* anm)
 				}
 				J3DTexMtx* mtx = mat->mTexGenBlock->getTexMtx(texmtxid);
 				mtx->mTexMtxInfo.mInfo |= anm->mTexMtxCalcType << 7;
-				mtx->mTexMtxInfo.mCenter = anm->_40[texmtxid];
+				mtx->mTexMtxInfo.mCenter = anm->mSRTCenter[texmtxid];
 
 				J3DTexMtxAnm newanm(anm, i, 1);
 

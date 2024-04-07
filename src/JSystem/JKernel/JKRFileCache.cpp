@@ -174,10 +174,10 @@ void* JKRFileCache::getResource(u32 type, const char* fileName)
 {
 	char directoryPath[256];
 	size_t len = strlen(mRootPath);
-	char* v1   = directoryPath + len;
+	char* path = directoryPath + len;
 	strcpy(directoryPath, mRootPath);
 	if (findFile(directoryPath, fileName)) {
-		return getResource(v1);
+		return getResource(path);
 	}
 	return nullptr;
 }

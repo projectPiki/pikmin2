@@ -2,7 +2,7 @@
 #define _EBI_E2DFULLFONTCOLOR_H
 
 #include "JSystem/JUtility/TColor.h"
-#include "JSystem/J2D/J2DPane.h"
+#include "JSystem/J2D/J2DTextBox.h"
 
 namespace ebi {
 // @size{0x10}

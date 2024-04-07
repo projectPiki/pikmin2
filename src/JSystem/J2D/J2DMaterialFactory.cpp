@@ -1,7 +1,7 @@
 #include "JSystem/J2D/J2DMaterialFactory.h"
 #include "JSystem/JSupport/JSU.h"
 #include "JSystem/JUtility/JUTResource.h"
-#include "JSystem/J2D/J2DPane.h"
+#include "JSystem/J2D/J2DScreen.h"
 
 /**
  * @note Address: 0x800532E8

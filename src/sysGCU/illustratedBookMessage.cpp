@@ -1,5 +1,5 @@
 #include "P2JME/IllustratedBook.h"
-#include "JSystem/J2D/J2DPane.h"
+#include "JSystem/J2D/J2DTextBox.h"
 #include "System.h"
 
 namespace P2JME {

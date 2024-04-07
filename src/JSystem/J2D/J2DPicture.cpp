@@ -1,7 +1,6 @@
 #include "Dolphin/gx.h"
-#include "JSystem/J2D/J2DPane.h"
+#include "JSystem/J2D/J2DPicture.h"
 #include "JSystem/JGeometry.h"
-#include "JSystem/JUtility/JUTTexture.h"
 
 /**
  * @note Address: 0x80039ADC
@@ -52,29 +51,43 @@ J2DPicture::J2DPicture(J2DPane* parent, JSURandomInputStream* input, J2DMaterial
 	input->read(&trailer, sizeof(J2DPictureBlockTrailer));
 	u16 v1 = trailer._04;
 	for (int i = 0; i < 4; i++) {
-		mTexCoords[i] = trailer._10[i];
-		mCornerColors[i].set(trailer._20[i]);
+		mTexCoords[i] = trailer.mTexCoords[i];
+		mCornerColors[i].set(trailer.mCornerColor[i]); // just need to fix this
 	}
 	input->seek(headerPosition + header.mBlockLength, SEEK_SET);
 
-	J2DMaterial* material = (v1 != 0xFFFF) ? &materials[v1] : nullptr;
-	mAlpha                = 0xFF;
+	J2DMaterial* material = nullptr;
+	if (v1 != 0xFFFF) {
+		material = &materials[v1];
+	}
+
+	mAlpha = 0xFF;
 	if (material != nullptr) {
 		mAlpha = material->mColorBlock.mColors[0].a;
 	}
-	mBlack        = 0x0;
-	mWhite        = 0xFFFFFFFF;
+	mBlack        = TCOLOR_BLACK_U32;
+	mWhite        = TCOLOR_WHITE_U32;
 	mTextureCount = 0;
 	if (material != nullptr && material->mTevBlock != nullptr) {
 		u8 texGenNum   = material->mTexGenBlock.mTexGenNum;
 		u8 tevStageNum = material->mTevBlock->getTevStageNum();
 		if ((texGenNum == 1 && tevStageNum != 1) || (texGenNum != 1 && tevStageNum != texGenNum + 1)) {
-			J2DGXColorS10 black(*material->mTevBlock->getTevColor(0));
-			J2DGXColorS10 white(*material->mTevBlock->getTevColor(1));
-			mBlack.set((GXColor)black);
-			mWhite.setU64(white);
-			// mBlack = black;
-			// mWhite = white;
+			J2DGXColorS10* blackJ2D = material->getTevBlock()->getTevColor(0);
+			GXColorS10 black;
+			black.r = blackJ2D->r;
+			black.g = blackJ2D->g;
+			black.b = blackJ2D->b;
+			black.a = blackJ2D->a;
+
+			J2DGXColorS10* whiteJ2D = material->getTevBlock()->getTevColor(1);
+			GXColorS10 white;
+			white.r = whiteJ2D->r;
+			white.g = whiteJ2D->g;
+			white.b = whiteJ2D->b;
+			white.a = whiteJ2D->a;
+
+			mBlack = JUtility::TColor(((u8)black.r << 0x18) | ((u8)black.g << 0x10) | ((u8)black.b << 8) | (u8)black.a);
+			mWhite = JUtility::TColor(((u8)white.r << 0x18) | ((u8)white.g << 0x10) | ((u8)white.b << 8) | (u8)white.a);
 		}
 		mTextureCount = (texGenNum <= 4) ? texGenNum : 4;
 	}
@@ -528,51 +541,23 @@ J2DPicture::J2DPicture(const ResTIMG* img)
 }
 
 /**
- * @note Address: 0x8003A360
- * @note Size: 0x30
- * append__10J2DPictureFPC7ResTIMGf
- */
-bool J2DPicture::append(const ResTIMG* resource, f32 p2) { return insert(resource, mTextureCount, p2); }
-
-/**
- * @note Address: 0x8003A390
- * @note Size: 0x34
- * insert__10J2DPictureFPC7ResTIMGUcf
- */
-bool J2DPicture::insert(const ResTIMG* resource, u8 textureCount, f32 p3) { return insert(resource, nullptr, textureCount, p3); }
-
-/**
  * @note Address: 0x8003A3C4
  * @note Size: 0xE8
  * __ct__10J2DPictureFPCc
  */
-J2DPicture::J2DPicture(const char* p1)
+J2DPicture::J2DPicture(const char* fileName)
 {
 	for (int i = 0; i < 4; i++) {
 		mTextures[i] = 0;
 	}
 	mUsedTextureFlags = 0;
 	mTextureCount     = 0;
-	if (p1) {
-		append(p1, 1.0f);
+	if (fileName) {
+		append(fileName, 1.0f);
 	}
 	mPalette = nullptr;
 	initinfo();
 }
-
-/**
- * @note Address: 0x8003A4AC
- * @note Size: 0x30
- * append__10J2DPictureFPCcf
- */
-bool J2DPicture::append(const char* p1, f32 p2) { return insert(p1, mTextureCount, p2); }
-
-/**
- * @note Address: 0x8003A4DC
- * @note Size: 0x34
- * insert__10J2DPictureFPCcUcf
- */
-bool J2DPicture::insert(const char* p1, u8 p2, f32 p3) { return insert(p1, nullptr, p2, p3); }
 
 /**
  * @note Address: 0x8003A510
@@ -592,13 +577,6 @@ J2DPicture::J2DPicture(JUTTexture* texture)
 	mPalette = nullptr;
 	initinfo();
 }
-
-/**
- * @note Address: 0x8003A5F8
- * @note Size: 0x30
- * append__10J2DPictureFP10JUTTexturef
- */
-bool J2DPicture::append(JUTTexture* texture, f32 p2) { return insert(texture, mTextureCount, p2); }
 
 /**
  * @note Address: 0x8003A628
@@ -621,8 +599,6 @@ J2DPicture::J2DPicture(u64 id, const JGeometry::TBox2f& bounds)
 /**
  * @note Address: 0x8003A7B0
  * @note Size: 0x3F4
- * TODO: Among other issues, the ctors for JUTPalette and JUTTexture seem incompatible with this function. But we also know what the default
- * ctor of JUTTexture is. Strange.
  */
 void J2DPicture::private_readStream(J2DPane* parent, JSURandomInputStream* input, JKRArchive* archive)
 {
@@ -632,49 +608,43 @@ void J2DPicture::private_readStream(J2DPane* parent, JSURandomInputStream* input
 	mBloBlockType = header.mBloBlockType;
 	makePaneStream(parent, input);
 
+	ResTIMG* img;
+	ResTLUT* lut;
 	u32 v1 = 0;
 	u8 v2  = input->readByte();
 
-	ResTIMG* img  = (ResTIMG*)getPointer(input, 'TIMG', archive);
-	ResTLUT* lut  = (ResTLUT*)getPointer(input, 'TLUT', archive);
-	J2DBinding v3 = (J2DBinding)input->readByte();
-	s8 countdown  = v2 - 3;
-	if (v2 != 3) {
-		v1        = input->readByte();
-		countdown = v2 - 4;
+	img = (ResTIMG*)getPointer(input, 'TIMG', archive);
+	lut = (ResTLUT*)getPointer(input, 'TLUT', archive);
+
+	u8 v3 = input->readByte();
+	v2 -= 3;
+	if (v2 != 0) {
+		v1 = input->readByte();
+		v2--;
 	}
 
-	if (countdown != 0) {
+	if (v2 != 0) {
 		input->readByte();
-		countdown--;
+		v2--;
 	}
 
 	mBlack = TCOLOR_BLACK_U32;
 	mWhite = TCOLOR_WHITE_U32;
 
-	if (countdown != 0) {
-		GXColor black;
-		input->read(&black, sizeof(GXColor));
-		mBlack = black;
-		countdown--;
+	if (v2 != 0) {
+		mBlack = input->readU32();
+		v2--;
 	}
 
-	if (countdown != 0) {
-		GXColor white;
-		input->read(&white, sizeof(GXColor));
-		mWhite = white;
-		countdown--;
+	if (v2 != 0) {
+		mWhite = input->readU32();
+		v2--;
 	}
 
-	for (int i = 0; i < 4; i++) {
-		JUtility::TColor color(0xFFFFFFFF);
-		mCornerColors[i] = color;
-	}
-	for (int i = 0; countdown != 0 && i < 4; i++) {
-		JUtility::TColor color;
-		input->read(&color, sizeof(JUtility::TColor));
-		countdown--;
-		mCornerColors[i] = color;
+	setCornerColor(0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF);
+	for (int i = 0; v2 != 0 && i < 4; i++) {
+		mCornerColors[i] = input->readU32();
+		v2--;
 	}
 
 	input->seek(headerPosition + header.mBlockLength, SEEK_SET);
@@ -684,296 +654,20 @@ void J2DPicture::private_readStream(J2DPane* parent, JSURandomInputStream* input
 	}
 	mTextureCount     = 0;
 	mUsedTextureFlags = 1;
+
 	if (img) {
 		mTextures[0] = new JUTTexture(img);
 		mTextureCount++;
 	}
 	if (lut) {
-		mPalette = new JUTPalette(0, lut);
+		mPalette = new JUTPalette(GX_TLUT0, lut);
 		mTextures[0]->attachPalette(mPalette);
 	}
 
-	setTexCoord(mTextures[0], (J2DBinding)v3, (J2DMirror)(v1 & 3), (bool)((v1 >> 2) & 1));
+	bool check = (v1 >> 2) & 1;
+	setTexCoord(mTextures[0], (J2DBinding)(u8)v3, (J2DMirror)(v1 & 3), check);
 
 	setBlendRatio(1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x80(r1)
-	  mflr      r0
-	  stw       r0, 0x84(r1)
-	  stmw      r22, 0x58(r1)
-	  mr        r23, r5
-	  mr        r22, r3
-	  mr        r25, r4
-	  mr        r3, r23
-	  mr        r24, r6
-	  lwz       r12, 0x0(r23)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r31, r3
-	  mr        r3, r23
-	  addi      r4, r1, 0x4C
-	  li        r5, 0x8
-	  bl        -0x14420
-	  lwz       r0, 0x4C(r1)
-	  mr        r3, r22
-	  mr        r4, r25
-	  mr        r5, r23
-	  stw       r0, 0x8(r22)
-	  bl        -0x3724
-	  mr        r3, r23
-	  addi      r4, r1, 0xB
-	  li        r26, 0
-	  li        r5, 0x1
-	  bl        -0x1444C
-	  lis       r5, 0x5449
-	  lbz       r25, 0xB(r1)
-	  mr        r3, r22
-	  mr        r4, r23
-	  mr        r6, r24
-	  addi      r5, r5, 0x4D47
-	  bl        -0x147C
-	  lis       r5, 0x544C
-	  mr        r28, r3
-	  mr        r3, r22
-	  mr        r4, r23
-	  mr        r6, r24
-	  addi      r5, r5, 0x5554
-	  bl        -0x1498
-	  mr        r0, r3
-	  mr        r3, r23
-	  mr        r27, r0
-	  addi      r4, r1, 0xA
-	  li        r5, 0x1
-	  bl        -0x1449C
-	  subi      r25, r25, 0x3
-	  lbz       r30, 0xA(r1)
-	  rlwinm.   r0,r25,0,24,31
-	  beq-      .loc_0xEC
-	  mr        r3, r23
-	  addi      r4, r1, 0x9
-	  li        r5, 0x1
-	  bl        -0x144BC
-	  lbz       r26, 0x9(r1)
-	  subi      r25, r25, 0x1
-
-	.loc_0xEC:
-	  rlwinm.   r0,r25,0,24,31
-	  beq-      .loc_0x108
-	  mr        r3, r23
-	  addi      r4, r1, 0x8
-	  li        r5, 0x1
-	  bl        -0x144DC
-	  subi      r25, r25, 0x1
-
-	.loc_0x108:
-	  li        r0, 0
-	  li        r3, -0x1
-	  stw       r0, 0x48(r1)
-	  rlwinm.   r0,r25,0,24,31
-	  lbz       r4, 0x48(r1)
-	  stw       r3, 0x44(r1)
-	  lbz       r0, 0x49(r1)
-	  stb       r4, 0x14C(r22)
-	  lbz       r3, 0x4A(r1)
-	  stb       r0, 0x14D(r22)
-	  lbz       r0, 0x4B(r1)
-	  stb       r3, 0x14E(r22)
-	  lbz       r3, 0x44(r1)
-	  stb       r0, 0x14F(r22)
-	  lbz       r0, 0x45(r1)
-	  stb       r3, 0x148(r22)
-	  lbz       r3, 0x46(r1)
-	  stb       r0, 0x149(r22)
-	  lbz       r0, 0x47(r1)
-	  stb       r3, 0x14A(r22)
-	  stb       r0, 0x14B(r22)
-	  beq-      .loc_0x19C
-	  mr        r3, r23
-	  addi      r4, r1, 0x14
-	  li        r5, 0x4
-	  bl        -0x14548
-	  lwz       r0, 0x14(r1)
-	  subi      r25, r25, 0x1
-	  stw       r0, 0x40(r1)
-	  lbz       r3, 0x40(r1)
-	  lbz       r0, 0x41(r1)
-	  stb       r3, 0x14C(r22)
-	  lbz       r3, 0x42(r1)
-	  stb       r0, 0x14D(r22)
-	  lbz       r0, 0x43(r1)
-	  stb       r3, 0x14E(r22)
-	  stb       r0, 0x14F(r22)
-
-	.loc_0x19C:
-	  rlwinm.   r0,r25,0,24,31
-	  beq-      .loc_0x1E0
-	  mr        r3, r23
-	  addi      r4, r1, 0x10
-	  li        r5, 0x4
-	  bl        -0x1458C
-	  lwz       r0, 0x10(r1)
-	  subi      r25, r25, 0x1
-	  stw       r0, 0x3C(r1)
-	  lbz       r3, 0x3C(r1)
-	  lbz       r0, 0x3D(r1)
-	  stb       r3, 0x148(r22)
-	  lbz       r3, 0x3E(r1)
-	  stb       r0, 0x149(r22)
-	  lbz       r0, 0x3F(r1)
-	  stb       r3, 0x14A(r22)
-	  stb       r0, 0x14B(r22)
-
-	.loc_0x1E0:
-	  li        r5, -0x1
-	  mr        r29, r22
-	  stw       r5, 0x38(r1)
-	  li        r24, 0
-	  lbz       r3, 0x38(r1)
-	  stw       r5, 0x30(r1)
-	  lbz       r0, 0x39(r1)
-	  stb       r3, 0x150(r22)
-	  lbz       r3, 0x3A(r1)
-	  stb       r0, 0x151(r22)
-	  lbz       r0, 0x3B(r1)
-	  stb       r3, 0x152(r22)
-	  lbz       r3, 0x30(r1)
-	  stb       r0, 0x153(r22)
-	  lbz       r0, 0x31(r1)
-	  stb       r3, 0x154(r22)
-	  lbz       r3, 0x32(r1)
-	  stb       r0, 0x155(r22)
-	  lbz       r0, 0x33(r1)
-	  stw       r5, 0x28(r1)
-	  stb       r3, 0x156(r22)
-	  lbz       r3, 0x28(r1)
-	  stb       r0, 0x157(r22)
-	  lbz       r0, 0x29(r1)
-	  stb       r3, 0x158(r22)
-	  lbz       r4, 0x2A(r1)
-	  stw       r5, 0x20(r1)
-	  lbz       r3, 0x2B(r1)
-	  stb       r0, 0x159(r22)
-	  lbz       r0, 0x20(r1)
-	  stb       r4, 0x15A(r22)
-	  lbz       r4, 0x21(r1)
-	  stb       r3, 0x15B(r22)
-	  lbz       r3, 0x22(r1)
-	  stb       r0, 0x15C(r22)
-	  lbz       r0, 0x23(r1)
-	  stb       r4, 0x15D(r22)
-	  stb       r3, 0x15E(r22)
-	  stw       r5, 0x1C(r1)
-	  stw       r5, 0x24(r1)
-	  stw       r5, 0x2C(r1)
-	  stw       r5, 0x34(r1)
-	  stb       r0, 0x15F(r22)
-	  b         .loc_0x2D4
-
-	.loc_0x290:
-	  mr        r3, r23
-	  addi      r4, r1, 0xC
-	  li        r5, 0x4
-	  bl        -0x14678
-	  lwz       r0, 0xC(r1)
-	  subi      r25, r25, 0x1
-	  addi      r24, r24, 0x1
-	  stw       r0, 0x18(r1)
-	  lbz       r3, 0x18(r1)
-	  lbz       r0, 0x19(r1)
-	  stb       r3, 0x150(r29)
-	  lbz       r3, 0x1A(r1)
-	  stb       r0, 0x151(r29)
-	  lbz       r0, 0x1B(r1)
-	  stb       r3, 0x152(r29)
-	  stb       r0, 0x153(r29)
-	  addi      r29, r29, 0x4
-
-	.loc_0x2D4:
-	  rlwinm.   r0,r25,0,24,31
-	  beq-      .loc_0x2E4
-	  cmpwi     r24, 0x4
-	  blt+      .loc_0x290
-
-	.loc_0x2E4:
-	  lwz       r0, 0x50(r1)
-	  mr        r3, r23
-	  li        r5, 0
-	  add       r4, r31, r0
-	  bl        -0x1439C
-	  li        r3, 0
-	  cmplwi    r28, 0
-	  stw       r3, 0x100(r22)
-	  li        r0, 0x1
-	  stw       r3, 0x104(r22)
-	  stw       r3, 0x108(r22)
-	  stw       r3, 0x10C(r22)
-	  stb       r3, 0x110(r22)
-	  stb       r0, 0x111(r22)
-	  beq-      .loc_0x360
-	  li        r3, 0x40
-	  bl        -0x16C30
-	  mr.       r23, r3
-	  beq-      .loc_0x350
-	  li        r0, 0
-	  mr        r4, r28
-	  stw       r0, 0x28(r23)
-	  li        r5, 0
-	  bl        -0x7A6C
-	  lbz       r0, 0x3B(r23)
-	  rlwinm    r0,r0,0,30,30
-	  stb       r0, 0x3B(r23)
-
-	.loc_0x350:
-	  stw       r23, 0x100(r22)
-	  lbz       r3, 0x110(r22)
-	  addi      r0, r3, 0x1
-	  stb       r0, 0x110(r22)
-
-	.loc_0x360:
-	  cmplwi    r27, 0
-	  beq-      .loc_0x394
-	  li        r3, 0x18
-	  bl        -0x16C78
-	  mr.       r23, r3
-	  beq-      .loc_0x384
-	  mr        r5, r27
-	  li        r4, 0
-	  bl        -0xBC6C
-
-	.loc_0x384:
-	  stw       r23, 0x144(r22)
-	  lwz       r3, 0x100(r22)
-	  lwz       r4, 0x144(r22)
-	  bl        -0x77A4
-
-	.loc_0x394:
-	  lwz       r4, 0x100(r22)
-	  rlwinm    r7,r26,30,31,31
-	  mr        r3, r22
-	  mr        r5, r30
-	  rlwinm    r6,r26,0,30,31
-	  bl        0x2310
-	  mr        r3, r22
-	  lfs       f1, -0x7B70(r2)
-	  lwz       r12, 0x0(r22)
-	  fmr       f2, f1
-	  lwz       r12, 0x104(r12)
-	  fmr       f3, f1
-	  fmr       f4, f1
-	  fmr       f5, f1
-	  fmr       f6, f1
-	  fmr       f7, f1
-	  fmr       f8, f1
-	  mtctr     r12
-	  bctrl
-	  lmw       r22, 0x58(r1)
-	  lwz       r0, 0x84(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x80
-	  blr
-	*/
 }
 
 /**
@@ -1031,10 +725,9 @@ void J2DPicture::initinfo()
 	setTexCoord(nullptr, J2DBIND_Unk15, J2DMIRROR_Unk0, false);
 	setBlendRatio(1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f);
 
-	mBlack.setRGBA(JUtility::TColor(0));
-	mWhite.setRGBA(JUtility::TColor(-1));
-	JUtility::TColor colors;
-	setCornerColor(colors);
+	mBlack = TCOLOR_BLACK_U32;
+	mWhite = TCOLOR_WHITE_U32;
+	setCornerColor(0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF);
 }
 
 /**
@@ -1077,276 +770,75 @@ bool J2DPicture::prepareTexture(u8 num)
  * @note Address: 0x8003B05C
  * @note Size: 0x32C
  */
-bool J2DPicture::insert(const ResTIMG* timg, JUTPalette* palette, u8 id, f32)
+bool J2DPicture::insert(const ResTIMG* timg, JUTPalette* palette, u8 id, f32 blendRatio)
 {
-	if (!timg || mTextureCount >= 4 || id >= 4 || mTextureCount > id) {
+	if (!timg || mTextureCount >= 4 || id >= 4 || id > mTextureCount) {
 		return false;
 	}
 
 	u8 thing = 0;
 	if (timg->mPaletteFormat && !palette) {
-		thing = getUsableTlut(id);
+		thing = getUsableTlut(mTextureCount);
 	}
 
+	JUTTexture* texture;
 	if (!mTextures[mTextureCount]) {
-		JUTTexture* tex = new JUTTexture(timg, 0);
+		texture = new JUTTexture(timg, thing);
 		if (palette) {
-			tex->storeTIMG(timg, palette);
+			texture->storeTIMG(timg, palette);
 		}
 		for (u8 i = 3; i > id; i--) {
-			mTextures[i] = mTextures[i - 1];
-			_124[i]      = _124[i - 1];
-			_134[i]      = _134[i - 1];
+			mTextures[i]        = mTextures[i - 1];
+			mBlendColorRatio[i] = mBlendColorRatio[i - 1];
+			mBlendAlphaRatio[i] = mBlendAlphaRatio[i - 1];
 		}
+
+		mUsedTextureFlags = (mUsedTextureFlags & ((1 << id) - 1)) | ((mUsedTextureFlags & ~((1 << id) - 1)) * 2);
+		mUsedTextureFlags |= (1 << id);
 	} else {
+		texture = mTextures[mTextureCount];
+		if (palette == nullptr) {
+			mTextures[mTextureCount]->storeTIMG(timg, thing);
+		} else {
+			mTextures[mTextureCount]->storeTIMG(timg, palette);
+		}
+
+		u8 tempFlags[4];
+		for (u8 i = 0; i < 4; i++) {
+			tempFlags[i] = (mUsedTextureFlags & (1 << i)) != 0;
+		}
+
+		for (u8 i = mTextureCount; i > id; i--) {
+			mTextures[i]        = mTextures[i - 1];
+			tempFlags[i]        = tempFlags[i - 1];
+			mBlendColorRatio[i] = mBlendColorRatio[i - 1];
+			mBlendAlphaRatio[i] = mBlendAlphaRatio[i - 1];
+		}
+
+		mUsedTextureFlags = 0;
+
+		for (u8 i = 0; i < 4; i++) {
+			if (tempFlags[i] != 0) {
+				mUsedTextureFlags |= (1 << i);
+			}
+		}
+
+		mUsedTextureFlags |= (1 << id);
 	}
 
-	setTexCoord(nullptr, J2DBIND_Unk15, J2DMIRROR_Unk0, false);
+	mTextures[id]        = texture;
+	mBlendColorRatio[id] = blendRatio;
+	mBlendAlphaRatio[id] = blendRatio;
+
+	if (mTextureCount == 0 && mTextures[0] != nullptr) {
+		place(JGeometry::TBox2f(0.0f, 0.0f, mTextures[0]->getSizeX(), mTextures[0]->getSizeY()));
+		setTexCoord(nullptr, J2DBIND_Unk15, J2DMIRROR_Unk0, false);
+	}
+
 	mTextureCount++;
 	setBlendKonstColor();
 	setBlendKonstAlpha();
 	return true;
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stfd     f31, 0x50(r1)
-	psq_st   f31, 88(r1), 0, qr0
-	stmw     r26, 0x38(r1)
-	or.      r28, r4, r4
-	fmr      f31, f1
-	mr       r27, r3
-	mr       r29, r5
-	mr       r30, r6
-	beq      lbl_8003B0AC
-	lbz      r4, 0x110(r27)
-	cmplwi   r4, 4
-	bge      lbl_8003B0AC
-	clrlwi   r0, r30, 0x18
-	cmplwi   r0, 4
-	bge      lbl_8003B0AC
-	cmplw    r0, r4
-	ble      lbl_8003B0B4
-
-lbl_8003B0AC:
-	li       r3, 0
-	b        lbl_8003B36C
-
-lbl_8003B0B4:
-	lbz      r0, 8(r28)
-	li       r26, 0
-	cmplwi   r0, 0
-	beq      lbl_8003B0E0
-	cmplwi   r29, 0
-	bne      lbl_8003B0E0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x148(r12)
-	mtctr    r12
-	bctrl
-	mr       r26, r3
-
-lbl_8003B0E0:
-	lbz      r0, 0x110(r27)
-	slwi     r0, r0, 2
-	add      r3, r27, r0
-	lwz      r3, 0x100(r3)
-	cmplwi   r3, 0
-	bne      lbl_8003B1B0
-	li       r3, 0x40
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_8003B128
-	li       r0, 0
-	mr       r4, r28
-	stw      r0, 0x28(r31)
-	mr       r5, r26
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGUc
-	lbz      r0, 0x3b(r31)
-	rlwinm   r0, r0, 0, 0x1e, 0x1e
-	stb      r0, 0x3b(r31)
-
-lbl_8003B128:
-	cmplwi   r29, 0
-	beq      lbl_8003B140
-	mr       r3, r31
-	mr       r4, r28
-	mr       r5, r29
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette
-
-lbl_8003B140:
-	clrlwi   r3, r30, 0x18
-	li       r5, 3
-	b        lbl_8003B170
-
-lbl_8003B14C:
-	rlwinm   r0, r5, 2, 0x16, 0x1d
-	addi     r5, r5, -1
-	add      r4, r27, r0
-	lwz      r0, 0xfc(r4)
-	stw      r0, 0x100(r4)
-	lfs      f0, 0x120(r4)
-	stfs     f0, 0x124(r4)
-	lfs      f0, 0x130(r4)
-	stfs     f0, 0x134(r4)
-
-lbl_8003B170:
-	clrlwi   r0, r5, 0x18
-	cmplw    r0, r3
-	bgt      lbl_8003B14C
-	li       r0, 1
-	lbz      r4, 0x111(r27)
-	slw      r5, r0, r3
-	addi     r3, r5, -1
-	andc     r0, r4, r3
-	and      r3, r4, r3
-	slwi     r0, r0, 1
-	or       r0, r3, r0
-	stb      r0, 0x111(r27)
-	lbz      r0, 0x111(r27)
-	or       r0, r0, r5
-	stb      r0, 0x111(r27)
-	b        lbl_8003B2AC
-
-lbl_8003B1B0:
-	cmplwi   r29, 0
-	mr       r31, r3
-	bne      lbl_8003B1CC
-	mr       r4, r28
-	mr       r5, r26
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGUc
-	b        lbl_8003B1D8
-
-lbl_8003B1CC:
-	mr       r4, r28
-	mr       r5, r29
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette
-
-lbl_8003B1D8:
-	lbz      r3, 0x111(r27)
-	addi     r4, r1, 8
-	lbz      r8, 0x110(r27)
-	clrlwi   r0, r30, 0x18
-	clrlwi   r7, r3, 0x1f
-	rlwinm   r6, r3, 0x1f, 0x1f, 0x1f
-	rlwinm   r5, r3, 0x1e, 0x1f, 0x1f
-	rlwinm   r3, r3, 0x1d, 0x1f, 0x1f
-	stb      r7, 8(r1)
-	stb      r6, 9(r1)
-	stb      r5, 0xa(r1)
-	stb      r3, 0xb(r1)
-	b        lbl_8003B240
-
-lbl_8003B20C:
-	rlwinm   r3, r8, 2, 0x16, 0x1d
-	clrlwi   r6, r8, 0x18
-	add      r7, r27, r3
-	addi     r8, r8, -1
-	lwz      r5, 0xfc(r7)
-	addi     r3, r6, -1
-	lbzx     r3, r4, r3
-	stw      r5, 0x100(r7)
-	lfs      f0, 0x120(r7)
-	stbx     r3, r4, r6
-	stfs     f0, 0x124(r7)
-	lfs      f0, 0x130(r7)
-	stfs     f0, 0x134(r7)
-
-lbl_8003B240:
-	clrlwi   r3, r8, 0x18
-	cmplw    r3, r0
-	bgt      lbl_8003B20C
-	li       r0, 0
-	addi     r5, r1, 8
-	stb      r0, 0x111(r27)
-	li       r7, 0
-	li       r3, 1
-	b        lbl_8003B288
-
-lbl_8003B264:
-	clrlwi   r6, r7, 0x18
-	lbzx     r0, r5, r6
-	cmplwi   r0, 0
-	beq      lbl_8003B284
-	lbz      r4, 0x111(r27)
-	slw      r0, r3, r6
-	or       r0, r4, r0
-	stb      r0, 0x111(r27)
-
-lbl_8003B284:
-	addi     r7, r7, 1
-
-lbl_8003B288:
-	clrlwi   r0, r7, 0x18
-	cmplwi   r0, 4
-	blt      lbl_8003B264
-	clrlwi   r0, r30, 0x18
-	li       r3, 1
-	lbz      r4, 0x111(r27)
-	slw      r0, r3, r0
-	or       r0, r4, r0
-	stb      r0, 0x111(r27)
-
-lbl_8003B2AC:
-	rlwinm   r0, r30, 2, 0x16, 0x1d
-	add      r3, r27, r0
-	stw      r31, 0x100(r3)
-	stfs     f31, 0x124(r3)
-	stfs     f31, 0x134(r3)
-	lbz      r0, 0x110(r27)
-	cmplwi   r0, 0
-	bne      lbl_8003B34C
-	lwz      r3, 0x100(r27)
-	cmplwi   r3, 0
-	beq      lbl_8003B34C
-	lwz      r6, 0x20(r3)
-	lis      r5, 0x4330
-	stw      r5, 0x20(r1)
-	mr       r3, r27
-	lhz      r0, 4(r6)
-	addi     r4, r1, 0xc
-	lhz      r6, 2(r6)
-	xoris    r0, r0, 0x8000
-	lfs      f3, lbl_80516800@sda21(r2)
-	xoris    r6, r6, 0x8000
-	stw      r0, 0x2c(r1)
-	lfd      f2, lbl_80516808@sda21(r2)
-	stw      r6, 0x24(r1)
-	stw      r5, 0x28(r1)
-	lfd      f1, 0x20(r1)
-	lfd      f0, 0x28(r1)
-	fsubs    f1, f1, f2
-	stfs     f3, 0xc(r1)
-	fsubs    f0, f0, f2
-	stfs     f3, 0x10(r1)
-	stfs     f1, 0x14(r1)
-	stfs     f0, 0x18(r1)
-	bl       "place__7J2DPaneFRCQ29JGeometry8TBox2<f>"
-	mr       r3, r27
-	li       r4, 0
-	li       r5, 0xf
-	li       r6, 0
-	li       r7, 0
-	bl       setTexCoord__10J2DPictureFPC10JUTTexture10J2DBinding9J2DMirrorb
-
-lbl_8003B34C:
-	lbz      r4, 0x110(r27)
-	mr       r3, r27
-	addi     r0, r4, 1
-	stb      r0, 0x110(r27)
-	bl       setBlendKonstColor__10J2DPictureFv
-	mr       r3, r27
-	bl       setBlendKonstAlpha__10J2DPictureFv
-	li       r3, 1
-
-lbl_8003B36C:
-	psq_l    f31, 88(r1), 0, qr0
-	lfd      f31, 0x50(r1)
-	lmw      r26, 0x38(r1)
-	lwz      r0, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
 }
 
 /**
@@ -1354,279 +846,75 @@ lbl_8003B36C:
  * @note Size: 0x78
  * insert__10J2DPictureFPCcP10JUTPaletteUcf
  */
-bool J2DPicture::insert(const char* p1, JUTPalette* palette, u8 p3, f32 p4)
+bool J2DPicture::insert(const char* fileName, JUTPalette* palette, u8 id, f32 blendRatio)
 {
-	return insert((ResTIMG*)J2DScreen::getNameResource(p1), palette, p3, p4);
+	return insert((ResTIMG*)J2DScreen::getNameResource(fileName), palette, id, blendRatio);
 }
 
 /**
  * @note Address: 0x8003B400
  * @note Size: 0x1D8
  */
-bool J2DPicture::insert(JUTTexture* tex, u8 id, f32)
+bool J2DPicture::insert(JUTTexture* texture, u8 id, f32 blendRatio)
 {
-	if (!tex || mTextureCount >= 4 || id >= 4 || mTextureCount > id) {
+	if (!texture || mTextureCount >= 4 || id >= 4 || id > mTextureCount) {
 		return false;
 	}
 
-	for (u8 i = 3; i > id; i--) {
-		mTextures[i] = mTextures[i - 1];
-		_124[i]      = _124[i - 1];
-		_134[i]      = _134[i - 1];
+	if (mTextures[3] != nullptr && mUsedTextureFlags & 8) {
+		delete mTextures[3];
+		mUsedTextureFlags &= 0x7;
 	}
 
-	setTexCoord(nullptr, J2DBIND_Unk15, J2DMIRROR_Unk0, false);
+	for (u8 i = 3; i > id; i--) {
+		mTextures[i]        = mTextures[i - 1];
+		mBlendColorRatio[i] = mBlendColorRatio[i - 1];
+		mBlendAlphaRatio[i] = mBlendAlphaRatio[i - 1];
+	}
+
+	mUsedTextureFlags = (mUsedTextureFlags & ((1 << id) - 1)) | ((mUsedTextureFlags & ~((1 << id) - 1)) * 2);
+	mTextures[id]     = texture;
+	mUsedTextureFlags &= ~(1 << id);
+
+	mBlendColorRatio[id] = blendRatio;
+	mBlendAlphaRatio[id] = blendRatio;
+
+	if (mTextureCount == 0 && &mTextures[0] != nullptr) {
+		place(JGeometry::TBox2<f32>(0.0f, 0.0f, mTextures[0]->getSizeX(), mTextures[0]->getSizeY()));
+		setTexCoord(nullptr, J2DBIND_Unk15, J2DMIRROR_Unk0, false);
+	}
+
 	mTextureCount++;
 	setBlendKonstColor();
 	setBlendKonstAlpha();
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	stw      r29, 0x34(r1)
-	or.      r31, r4, r4
-	fmr      f31, f1
-	mr       r30, r3
-	mr       r29, r5
-	beq      lbl_8003B454
-	lbz      r3, 0x110(r30)
-	cmplwi   r3, 4
-	bge      lbl_8003B454
-	clrlwi   r0, r29, 0x18
-	cmplwi   r0, 4
-	bge      lbl_8003B454
-	cmplw    r0, r3
-	ble      lbl_8003B45C
-
-lbl_8003B454:
-	li       r3, 0
-	b        lbl_8003B5B4
-
-lbl_8003B45C:
-	lwz      r3, 0x10c(r30)
-	cmplwi   r3, 0
-	beq      lbl_8003B488
-	lbz      r0, 0x111(r30)
-	rlwinm.  r0, r0, 0, 0x1c, 0x1c
-	beq      lbl_8003B488
-	li       r4, 1
-	bl       __dt__10JUTTextureFv
-	lbz      r0, 0x111(r30)
-	clrlwi   r0, r0, 0x1d
-	stb      r0, 0x111(r30)
-
-lbl_8003B488:
-	clrlwi   r3, r29, 0x18
-	li       r5, 3
-	b        lbl_8003B4B8
-
-lbl_8003B494:
-	rlwinm   r0, r5, 2, 0x16, 0x1d
-	addi     r5, r5, -1
-	add      r4, r30, r0
-	lwz      r0, 0xfc(r4)
-	stw      r0, 0x100(r4)
-	lfs      f0, 0x120(r4)
-	stfs     f0, 0x124(r4)
-	lfs      f0, 0x130(r4)
-	stfs     f0, 0x134(r4)
-
-lbl_8003B4B8:
-	clrlwi   r0, r5, 0x18
-	cmplw    r0, r3
-	bgt      lbl_8003B494
-	li       r0, 1
-	lbz      r5, 0x111(r30)
-	slw      r6, r0, r3
-	rlwinm   r7, r29, 2, 0x16, 0x1d
-	addi     r4, r6, -1
-	andc     r0, r5, r4
-	add      r3, r30, r7
-	and      r4, r5, r4
-	slwi     r0, r0, 1
-	or       r0, r4, r0
-	stb      r0, 0x111(r30)
-	stw      r31, 0x100(r3)
-	lbz      r0, 0x111(r30)
-	andc     r0, r0, r6
-	stb      r0, 0x111(r30)
-	stfs     f31, 0x124(r3)
-	stfs     f31, 0x134(r3)
-	lbz      r0, 0x110(r30)
-	cmplwi   r0, 0
-	bne      lbl_8003B594
-	addic.   r0, r30, 0x100
-	beq      lbl_8003B594
-	lwz      r4, 0x100(r30)
-	lis      r0, 0x4330
-	stw      r0, 0x18(r1)
-	mr       r3, r30
-	lwz      r5, 0x20(r4)
-	addi     r4, r1, 8
-	stw      r0, 0x20(r1)
-	lhz      r0, 4(r5)
-	lhz      r5, 2(r5)
-	xoris    r0, r0, 0x8000
-	lfs      f3, lbl_80516800@sda21(r2)
-	xoris    r5, r5, 0x8000
-	stw      r0, 0x24(r1)
-	lfd      f2, lbl_80516808@sda21(r2)
-	stw      r5, 0x1c(r1)
-	lfd      f0, 0x20(r1)
-	lfd      f1, 0x18(r1)
-	fsubs    f0, f0, f2
-	stfs     f3, 8(r1)
-	fsubs    f1, f1, f2
-	stfs     f3, 0xc(r1)
-	stfs     f1, 0x10(r1)
-	stfs     f0, 0x14(r1)
-	bl       "place__7J2DPaneFRCQ29JGeometry8TBox2<f>"
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0xf
-	li       r6, 0
-	li       r7, 0
-	bl       setTexCoord__10J2DPictureFPC10JUTTexture10J2DBinding9J2DMirrorb
-
-lbl_8003B594:
-	lbz      r4, 0x110(r30)
-	mr       r3, r30
-	addi     r0, r4, 1
-	stb      r0, 0x110(r30)
-	bl       setBlendKonstColor__10J2DPictureFv
-	mr       r3, r30
-	bl       setBlendKonstAlpha__10J2DPictureFv
-	li       r3, 1
-
-lbl_8003B5B4:
-	psq_l    f31, 72(r1), 0, qr0
-	lwz      r0, 0x54(r1)
-	lfd      f31, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r29, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	return true;
 }
 
 /**
  * @note Address: 0x8003B5D8
  * @note Size: 0x130
  */
-int J2DPicture::remove(u8 textureIndex)
+int J2DPicture::remove(u8 id)
 {
-	if (textureIndex >= mTextureCount || mTextureCount == 1) {
+	if (mTextureCount <= id || mTextureCount == 1) {
 		return false;
 	}
-	if ((mUsedTextureFlags & 1 << textureIndex) != 0) {
-		delete mTextures[textureIndex];
+	if ((mUsedTextureFlags & 1 << id) != 0) {
+		delete mTextures[id];
 	}
-	for (u8 i = textureIndex; mTextureCount - 1 > i; i++) {
-		mTextures[i] = mTextures[i + 1];
-		_124[i]      = _124[i + 1];
-		_134[i]      = _134[i + 1];
+	for (u8 i = id; mTextureCount - 1 > i; i++) {
+		mTextures[i]        = mTextures[i + 1];
+		mBlendColorRatio[i] = mBlendColorRatio[i + 1];
+		mBlendAlphaRatio[i] = mBlendAlphaRatio[i + 1];
 	}
 	mTextures[mTextureCount - 1] = nullptr;
-	mUsedTextureFlags            = (mUsedTextureFlags & ~(1 << textureIndex)) >> 1;
+
+	mUsedTextureFlags = (mUsedTextureFlags & ((1 << id) - 1)) | ((mUsedTextureFlags & ~((1 << (id + 1)) - 1)) >> 1);
+
+	mTextureCount--;
 	setBlendKonstColor();
 	setBlendKonstAlpha();
 	return true;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r29, 0x14(r1)
-	clrlwi   r29, r4, 0x18
-	stw      r28, 0x10(r1)
-	mr       r28, r4
-	lbz      r0, 0x110(r3)
-	cmplw    r0, r29
-	ble      lbl_8003B614
-	cmplwi   r0, 1
-	bne      lbl_8003B61C
-
-lbl_8003B614:
-	li       r3, 0
-	b        lbl_8003B6E8
-
-lbl_8003B61C:
-	li       r0, 1
-	lbz      r3, 0x111(r30)
-	slw      r31, r0, r29
-	and.     r0, r3, r31
-	beq      lbl_8003B644
-	rlwinm   r0, r28, 2, 0x16, 0x1d
-	li       r4, 1
-	add      r3, r30, r0
-	lwz      r3, 0x100(r3)
-	bl       __dt__10JUTTextureFv
-
-lbl_8003B644:
-	mr       r6, r28
-	b        lbl_8003B678
-
-lbl_8003B64C:
-	slwi     r3, r3, 2
-	rlwinm   r0, r6, 2, 0x16, 0x1d
-	add      r4, r30, r3
-	addi     r6, r6, 1
-	lwz      r3, 0x104(r4)
-	add      r5, r30, r0
-	stw      r3, 0x100(r5)
-	lfs      f0, 0x128(r4)
-	stfs     f0, 0x124(r5)
-	lfs      f0, 0x138(r4)
-	stfs     f0, 0x134(r5)
-
-lbl_8003B678:
-	lbz      r4, 0x110(r30)
-	clrlwi   r3, r6, 0x18
-	addi     r0, r4, -1
-	cmpw     r3, r0
-	blt      lbl_8003B64C
-	slwi     r0, r4, 2
-	li       r4, 0
-	add      r3, r30, r0
-	stw      r4, 0xfc(r3)
-	addi     r0, r29, 1
-	li       r3, 1
-	addi     r4, r31, -1
-	slw      r3, r3, r0
-	lbz      r5, 0x111(r30)
-	addi     r0, r3, -1
-	andc     r0, r5, r0
-	and      r4, r5, r4
-	srawi    r0, r0, 1
-	mr       r3, r30
-	or       r0, r4, r0
-	stb      r0, 0x111(r30)
-	lbz      r4, 0x110(r30)
-	addi     r0, r4, -1
-	stb      r0, 0x110(r30)
-	bl       setBlendKonstColor__10J2DPictureFv
-	mr       r3, r30
-	bl       setBlendKonstAlpha__10J2DPictureFv
-	li       r3, 1
-
-lbl_8003B6E8:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -1649,20 +937,20 @@ int J2DPicture::remove(JUTTexture* texture)
  * @note Address: 0x8003B768
  * @note Size: 0xE8
  */
-ResTIMG* J2DPicture::changeTexture(const ResTIMG* img, u8 textureIndex)
+ResTIMG* J2DPicture::changeTexture(const ResTIMG* img, u8 id)
 {
-	if (textureIndex > mTextureCount || 4 <= textureIndex || img == nullptr) {
+	if (id > mTextureCount || 4 <= id || img == nullptr) {
 		return nullptr;
 	}
 	ResTIMG* result;
-	if (textureIndex < mTextureCount) {
-		JUTTexture* texture = getTexture(textureIndex);
+	if (id < mTextureCount) {
+		JUTTexture* texture = getTexture(id);
 		result              = texture->mTexInfo;
 		u8 v1               = 0;
 		if (img->mPaletteFormat != 0) {
-			v1 = getUsableTlut(textureIndex);
+			v1 = getUsableTlut(id);
 		}
-		getTexture(textureIndex)->storeTIMG(img, v1);
+		getTexture(id)->storeTIMG(img, v1);
 		return result;
 	}
 	append(img, 1.0f);
@@ -1670,38 +958,35 @@ ResTIMG* J2DPicture::changeTexture(const ResTIMG* img, u8 textureIndex)
 }
 
 /**
- * @note Address: 0x8003B850
- * @note Size: 0x24
- */
-JUTTexture* J2DPicture::getTexture(u8 index) const { return (index < 4) ? mTextures[index] : nullptr; }
-
-/**
  * @note Address: 0x8003B874
  * @note Size: 0x58
  * changeTexture__10J2DPictureFPCcUc
  */
-ResTIMG* J2DPicture::changeTexture(const char* name, u8 index) { return changeTexture((ResTIMG*)J2DScreen::getNameResource(name), index); }
+ResTIMG* J2DPicture::changeTexture(const char* fileName, u8 id)
+{
+	return changeTexture((ResTIMG*)J2DScreen::getNameResource(fileName), id);
+}
 
 /**
  * @note Address: 0x8003B8CC
  * @note Size: 0x108
  */
-ResTIMG* J2DPicture::changeTexture(const ResTIMG* timg, u8 textureIndex, JUTPalette* palette)
+ResTIMG* J2DPicture::changeTexture(const ResTIMG* timg, u8 id, JUTPalette* palette)
 {
-	if (textureIndex > mTextureCount || 4 <= textureIndex || timg == nullptr) {
+	if (id > mTextureCount || 4 <= id || timg == nullptr) {
 		return nullptr;
 	}
 
 	ResTIMG* img = nullptr;
-	if (textureIndex < mTextureCount) {
-		JUTTexture* tex = getTexture(textureIndex);
+	if (id < mTextureCount) {
+		JUTTexture* tex = getTexture(id);
 		GXTlut tlut     = GX_TLUT0;
 		img             = tex->mTexInfo;
 		if (timg->mPaletteFormat != 0) {
-			u8 id = getUsableTlut(textureIndex);
-			tlut  = getTlutID(timg, id);
+			u8 tlutID = getUsableTlut(id);
+			tlut      = getTlutID(timg, tlutID);
 		}
-		getTexture(textureIndex)->storeTIMG(timg, palette, tlut);
+		getTexture(id)->storeTIMG(timg, palette, tlut);
 		return img;
 	} else {
 		append(timg, palette, 1.0f);
@@ -1710,31 +995,24 @@ ResTIMG* J2DPicture::changeTexture(const ResTIMG* timg, u8 textureIndex, JUTPale
 }
 
 /**
- * @note Address: 0x8003B9D4
- * @note Size: 0x30
- * append__10J2DPictureFPC7ResTIMGP10JUTPalettef
- */
-bool J2DPicture::append(const ResTIMG* img, JUTPalette* palette, f32 p3) { return insert(img, palette, mTextureCount, p3); }
-
-/**
  * @note Address: 0x8003BA04
  * @note Size: 0x68
  * changeTexture__10J2DPictureFPCcUcP10JUTPalette
  */
-ResTIMG* J2DPicture::changeTexture(const char* name, u8 index, JUTPalette* palette)
+ResTIMG* J2DPicture::changeTexture(const char* fileName, u8 id, JUTPalette* palette)
 {
-	return changeTexture((ResTIMG*)J2DScreen::getNameResource(name), index, palette);
+	return changeTexture((ResTIMG*)J2DScreen::getNameResource(fileName), id, palette);
 }
 
 /**
  * @note Address: 0x8003BA6C
  * @note Size: 0x68
  */
-void J2DPicture::drawSelf(f32 p1, f32 p2)
+void J2DPicture::drawSelf(f32 x, f32 y)
 {
-	Mtx mtx;
-	PSMTXIdentity(mtx);
-	drawSelf(p1, p2, &mtx);
+	Mtx texMtx;
+	PSMTXIdentity(texMtx);
+	drawSelf(x, y, &texMtx);
 }
 
 /**
@@ -1742,10 +1020,10 @@ void J2DPicture::drawSelf(f32 p1, f32 p2)
  * @note Size: 0x6C
  * drawSelf__10J2DPictureFffPA3_A4_f
  */
-void J2DPicture::drawSelf(f32 p1, f32 p2, f32 (*mtx)[3][4])
+void J2DPicture::drawSelf(f32 x, f32 y, Mtx* texMtx)
 {
 	if (mTextures[0] != nullptr && mTextureCount != 0) {
-		drawFullSet(mGlobalBounds.i.x + p1, mGlobalBounds.i.y + p2, mBounds.getWidth(), mBounds.getHeight(), mtx);
+		drawFullSet(mGlobalBounds.i.x + x, mGlobalBounds.i.y + y, mBounds.getWidth(), mBounds.getHeight(), texMtx);
 	}
 }
 
@@ -1753,11 +1031,11 @@ void J2DPicture::drawSelf(f32 p1, f32 p2, f32 (*mtx)[3][4])
  * @note Address: 0x8003BB40
  * @note Size: 0x74
  */
-void J2DPicture::drawFullSet(f32 p1, f32 p2, f32 width, f32 height, f32 (*mtx)[3][4])
+void J2DPicture::drawFullSet(f32 x, f32 y, f32 width, f32 height, Mtx* texMtx)
 {
 	if (mTextures[0] != nullptr && mTextureCount != 0) {
 		drawTexCoord(mBounds.i.x, mBounds.i.y, width, height, mTexCoords[0].x, mTexCoords[0].y, mTexCoords[1].x, mTexCoords[1].y,
-		             mTexCoords[2].x, mTexCoords[2].y, mTexCoords[3].x, mTexCoords[3].y, mtx);
+		             mTexCoords[2].x, mTexCoords[2].y, mTexCoords[3].x, mTexCoords[3].y, texMtx);
 	}
 }
 
@@ -1765,269 +1043,65 @@ void J2DPicture::drawFullSet(f32 p1, f32 p2, f32 width, f32 height, f32 (*mtx)[3
  * @note Address: 0x8003BBB4
  * @note Size: 0x2F4
  */
-void J2DPicture::draw(f32 x, f32 y, f32 x2, f32 y2, bool a1, bool a2, bool a3)
+void J2DPicture::draw(f32 x, f32 y, f32 width, f32 height, bool a1, bool a2, bool a3)
 {
-	if (!mIsVisible || mTextureCount == 0 || !mTextures[0]) {
-		return;
+	if (isVisible() && mTextureCount != 0 && mTextures[0]) {
+
+		for (u8 i = 0; i < mTextureCount; i++) {
+			load(i);
+		}
+		GXSetNumTexGens(mTextureCount);
+		mColorAlpha = mAlpha;
+		JUtility::TColor cornerColors[4];
+		getNewColor(cornerColors);
+		setTevMode();
+		makeMatrix(x, y, 0.0f, 0.0f);
+		GXLoadPosMtxImm(mPositionMtx, 0);
+		GXSetCurrentMtx(0);
+		GXClearVtxDesc();
+		GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+		GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
+		GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+
+		JGeometry::TVec2<s16> coords[4];
+		setTexCoord(coords, (mTextures[0]), J2DBIND_Unk15, J2DMirror(a1 << 1 | a2), a3);
+		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_S16, 8);
+		GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+
+		f32 zero = 0.0f;
+
+		// bottom left
+		GXPosition3f32(zero, zero, zero);
+		GXColor1u32(cornerColors[0]);
+		GXPosition2u16(coords[0].x, coords[0].y);
+
+		// bottom right
+		GXPosition3f32(width, zero, zero);
+		GXColor1u32(cornerColors[1]);
+		GXPosition2u16(coords[1].x, coords[1].y);
+
+		// top right
+		GXPosition3f32(width, height, zero);
+		GXColor1u32(cornerColors[3]);
+		GXPosition2u16(coords[3].x, coords[3].y);
+
+		// top left
+		GXPosition3f32(zero, height, zero);
+		GXColor1u32(cornerColors[2]);
+		GXPosition2u16(coords[2].x, coords[2].y);
+
+		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_U16, 0xf);
+		GXSetNumTexGens(0);
+		GXSetNumTevStages(1);
+		GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
+		GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+		Mtx mtx;
+		PSMTXIdentity(mtx);
+		GXLoadPosMtxImm(mtx, 0);
+		GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, 0, GX_DF_NONE, GX_AF_NONE);
+		GXSetVtxDesc(GX_VA_TEX0, GX_NONE);
 	}
-
-	for (u8 i = 0; i < mTextureCount; i++) {
-		load(i);
-	}
-	GXSetNumTexGens(mTextureCount);
-	mColorAlpha = mAlpha;
-	JUtility::TColor color;
-	getNewColor(&color);
-	setTevMode();
-	makeMatrix(x, y, 0.0f, 0.0f);
-	GXLoadPosMtxImm(mPositionMtx, 0);
-	GXSetCurrentMtx(0);
-	GXClearVtxDesc();
-	GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
-	GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
-	GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
-	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
-
-	JGeometry::TVec2<s16> coords[4];
-	setTexCoord(coords, (mTextures[0]), J2DBIND_Unk15, J2DMirror(a1 << 1 | a2), a3);
-	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_S16, 8);
-	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-
-	f32 zero = 0.0f;
-	GXPosition3f32(zero, zero, zero);
-	GX_WRITE_U32((u32)color);
-	GXPosition2u16(coords[0].x, coords[0].y);
-
-	GXPosition3f32(x2, zero, zero);
-	GX_WRITE_U32((u32)color);
-	GXPosition2u16(coords[1].x, coords[1].y);
-
-	GXPosition3f32(x2, y2, zero);
-	GX_WRITE_U32((u32)color);
-	GXPosition2u16(coords[2].x, coords[2].y);
-
-	GXPosition3f32(zero, y2, zero);
-	GX_WRITE_U32((u32)color);
-	GXPosition2u16(coords[3].x, coords[3].y);
-
-	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_U16, 0xf);
-	GXSetNumTexGens(0);
-	GXSetNumTevStages(1);
-	GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
-	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
-	Mtx mtx;
-	PSMTXIdentity(mtx);
-	GXLoadPosMtxImm(mtx, 0);
-	GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, 0, GX_DF_NONE, GX_AF_NONE);
-	GXSetVtxDesc(GX_VA_TEX0, GX_NONE);
-
-	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
-	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_U16, 0xf);
-	GXSetNumTexGens(0);
-	GXSetNumTevStages(1);
-	GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
-	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR1);
-	GXSetChanCtrl(GX_COLOR1, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, 0, GX_DF_NONE, GX_AF_SPEC);
-	GXSetVtxDesc(GX_VA_TEX0, GX_NONE);
-
-	/*
-	stwu     r1, -0xb0(r1)
-	mflr     r0
-	stw      r0, 0xb4(r1)
-	stfd     f31, 0xa0(r1)
-	psq_st   f31, 168(r1), 0, qr0
-	stfd     f30, 0x90(r1)
-	psq_st   f30, 152(r1), 0, qr0
-	stfd     f29, 0x80(r1)
-	psq_st   f29, 136(r1), 0, qr0
-	stfd     f28, 0x70(r1)
-	psq_st   f28, 120(r1), 0, qr0
-	stmw     r27, 0x5c(r1)
-	mr       r27, r3
-	fmr      f28, f1
-	lbz      r0, 0xb0(r3)
-	fmr      f29, f2
-	fmr      f30, f3
-	mr       r28, r4
-	fmr      f31, f4
-	cmplwi   r0, 0
-	mr       r29, r5
-	mr       r30, r6
-	beq      lbl_8003BE74
-	lbz      r0, 0x110(r27)
-	cmplwi   r0, 0
-	beq      lbl_8003BE74
-	lwz      r0, 0x100(r27)
-	cmplwi   r0, 0
-	beq      lbl_8003BE74
-	li       r31, 0
-	b        lbl_8003BC4C
-
-lbl_8003BC30:
-	mr       r3, r27
-	mr       r4, r31
-	lwz      r12, 0(r27)
-	lwz      r12, 0x100(r12)
-	mtctr    r12
-	bctrl
-	addi     r31, r31, 1
-
-lbl_8003BC4C:
-	lbz      r3, 0x110(r27)
-	clrlwi   r0, r31, 0x18
-	cmplw    r0, r3
-	blt      lbl_8003BC30
-	bl       GXSetNumTexGens
-	lbz      r5, 0xb2(r27)
-	li       r0, -1
-	mr       r3, r27
-	addi     r4, r1, 0x18
-	stb      r5, 0xb3(r27)
-	stw      r0, 0x18(r1)
-	stw      r0, 0x1c(r1)
-	stw      r0, 0x20(r1)
-	stw      r0, 0x24(r1)
-	bl       getNewColor__10J2DPictureFPQ28JUtility6TColor
-	mr       r3, r27
-	bl       setTevMode__10J2DPictureFv
-	mr       r3, r27
-	lfs      f3, lbl_80516800@sda21(r2)
-	lwz      r12, 0(r27)
-	fmr      f1, f28
-	fmr      f2, f29
-	lwz      r12, 0x48(r12)
-	fmr      f4, f3
-	mtctr    r12
-	bctrl
-	addi     r3, r27, 0x50
-	li       r4, 0
-	bl       GXLoadPosMtxImm
-	li       r3, 0
-	bl       GXSetCurrentMtx
-	bl       GXClearVtxDesc
-	li       r3, 9
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0xb
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0xd
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0
-	li       r4, 9
-	li       r5, 1
-	li       r6, 4
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	rlwinm   r6, r28, 1, 0x17, 0x1e
-	clrlwi   r0, r29, 0x18
-	or       r7, r6, r0
-	lwz      r5, 0x100(r27)
-	mr       r3, r27
-	mr       r8, r30
-	addi     r4, r1, 8
-	li       r6, 0xf
-	bl
-"setTexCoord__10J2DPictureFPQ29JGeometry8TVec2<s>PC10JUTTexture10J2DBinding9J2DMirrorb"
-	li       r3, 0
-	li       r4, 0xd
-	li       r5, 1
-	li       r6, 3
-	li       r7, 8
-	bl       GXSetVtxAttrFmt
-	li       r3, 0x80
-	li       r4, 0
-	li       r5, 4
-	bl       GXBegin
-	lfs      f0, lbl_80516800@sda21(r2)
-	lis      r8, 0xCC008000@ha
-	li       r3, 0
-	li       r4, 0xd
-	stfs     f0, 0xCC008000@l(r8)
-	li       r5, 1
-	li       r6, 2
-	li       r7, 0xf
-	stfs     f0, -0x8000(r8)
-	stfs     f0, -0x8000(r8)
-	lwz      r0, 0x18(r1)
-	stw      r0, -0x8000(r8)
-	lha      r0, 8(r1)
-	sth      r0, -0x8000(r8)
-	lha      r0, 0xa(r1)
-	sth      r0, -0x8000(r8)
-	stfs     f30, -0x8000(r8)
-	stfs     f0, -0x8000(r8)
-	stfs     f0, -0x8000(r8)
-	lwz      r0, 0x1c(r1)
-	stw      r0, -0x8000(r8)
-	lha      r0, 0xc(r1)
-	sth      r0, -0x8000(r8)
-	lha      r0, 0xe(r1)
-	sth      r0, -0x8000(r8)
-	stfs     f30, -0x8000(r8)
-	stfs     f31, -0x8000(r8)
-	stfs     f0, -0x8000(r8)
-	lwz      r0, 0x24(r1)
-	stw      r0, -0x8000(r8)
-	lha      r0, 0x14(r1)
-	sth      r0, -0x8000(r8)
-	lha      r0, 0x16(r1)
-	sth      r0, -0x8000(r8)
-	stfs     f0, -0x8000(r8)
-	stfs     f31, -0x8000(r8)
-	stfs     f0, -0x8000(r8)
-	lwz      r0, 0x20(r1)
-	stw      r0, -0x8000(r8)
-	lha      r0, 0x10(r1)
-	sth      r0, -0x8000(r8)
-	lha      r0, 0x12(r1)
-	sth      r0, -0x8000(r8)
-	bl       GXSetVtxAttrFmt
-	li       r3, 0
-	bl       GXSetNumTexGens
-	li       r3, 1
-	bl       GXSetNumTevStages
-	li       r3, 0
-	li       r4, 4
-	bl       GXSetTevOp
-	li       r3, 0
-	li       r4, 0xff
-	li       r5, 0xff
-	li       r6, 4
-	bl       GXSetTevOrder
-	addi     r3, r1, 0x28
-	bl       PSMTXIdentity
-	addi     r3, r1, 0x28
-	li       r4, 0
-	bl       GXLoadPosMtxImm
-	li       r3, 4
-	li       r4, 0
-	li       r5, 0
-	li       r6, 1
-	li       r7, 0
-	li       r8, 0
-	li       r9, 2
-	bl       GXSetChanCtrl
-	li       r3, 0xd
-	li       r4, 0
-	bl       GXSetVtxDesc
-
-lbl_8003BE74:
-	psq_l    f31, 168(r1), 0, qr0
-	lfd      f31, 0xa0(r1)
-	psq_l    f30, 152(r1), 0, qr0
-	lfd      f30, 0x90(r1)
-	psq_l    f29, 136(r1), 0, qr0
-	lfd      f29, 0x80(r1)
-	psq_l    f28, 120(r1), 0, qr0
-	lfd      f28, 0x70(r1)
-	lmw      r27, 0x5c(r1)
-	lwz      r0, 0xb4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xb0
-	blr
-	*/
 }
 
 /**
@@ -2038,470 +1112,131 @@ lbl_8003BE74:
 void J2DPicture::load(u8 p1) { load((GXTexMapID)p1, p1); }
 
 /**
- * @note Address: 0x8003BEDC
- * @note Size: 0x4C
- * load__10J2DPictureF11_GXTexMapIDUc
- */
-void J2DPicture::load(_GXTexMapID texMapID, u8 textureIndex)
-{
-	if (textureIndex < mTextureCount && textureIndex < 4 && mTextures[textureIndex] != nullptr) {
-		mTextures[textureIndex]->load(texMapID);
-	}
-}
-
-/**
  * @note Address: 0x8003BF28
  * @note Size: 0x3FC
  */
-void J2DPicture::drawOut(const JGeometry::TBox2f&, const JGeometry::TBox2f&)
+void J2DPicture::drawOut(const JGeometry::TBox2f& posBox, const JGeometry::TBox2f& texRect)
 {
-	if (!mIsVisible || mTextureCount == 0 || !mTextures[0]) {
-		return;
+	if (isVisible() && mTextureCount != 0 && mTextures[0]) {
+
+		for (u8 i = 0; i < mTextureCount; i++) {
+			load(i);
+		}
+		GXSetNumTexGens(mTextureCount);
+
+		f32 s0 = (posBox.i.x - texRect.i.x) / texRect.getWidth();
+		f32 s1 = (posBox.f.x - texRect.f.x) / texRect.getWidth() + 1.0f;
+
+		f32 t0 = (posBox.i.y - texRect.i.y) / texRect.getHeight();
+		f32 t1 = (posBox.f.y - texRect.f.y) / texRect.getHeight() + 1.0f;
+
+		mColorAlpha = mAlpha;
+		JUtility::TColor cornerColors[4];
+		getNewColor(cornerColors);
+		setTevMode();
+
+		GXClearVtxDesc();
+		GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+		GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
+		GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_F32, 0);
+		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+
+		f32 zero = 0.0f;
+		GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+
+		// bottom left
+		GXPosition3f32((s16)posBox.i.x, (s16)posBox.i.y, zero);
+		GXColor1u32(cornerColors[0]);
+		GXTexCoord2f32(s0, t0);
+
+		// bottom right
+		GXPosition3f32((s16)posBox.f.x, (s16)posBox.i.y, zero);
+		GXColor1u32(cornerColors[1]);
+		GXTexCoord2f32(s1, t0);
+
+		// top right
+		GXPosition3f32((s16)posBox.f.x, (s16)posBox.f.y, zero);
+		GXColor1u32(cornerColors[3]);
+		GXTexCoord2f32(s1, t1);
+
+		// top left
+		GXPosition3f32((s16)posBox.i.x, (s16)posBox.f.y, zero);
+		GXColor1u32(cornerColors[2]);
+		GXTexCoord2f32(s0, t1);
+		GXEnd();
+
+		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
+		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_U16, 15);
+		GXSetNumTexGens(0);
+		GXSetNumTevStages(1);
+		GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
+		GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+		GXSetChanCtrl(GX_COLOR0A0, GX_DISABLE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
+		GXSetVtxDesc(GX_VA_TEX0, GX_NONE);
 	}
-
-	for (u8 i = 0; i < mTextureCount; i++) {
-		load(i);
-	}
-	GXSetNumTexGens(mTextureCount);
-
-	JUtility::TColor color;
-	getNewColor(&color);
-	setTevMode();
-	GXLoadPosMtxImm(mPositionMtx, 0);
-	GXSetCurrentMtx(0);
-	GXClearVtxDesc();
-	GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
-	GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
-	GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
-	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_F32, 0);
-	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
-
-	/*
-	.loc_0x0:
-	  stwu      r1, -0xF0(r1)
-	  mflr      r0
-	  stw       r0, 0xF4(r1)
-	  stfd      f31, 0xE0(r1)
-	  psq_st    f31,0xE8(r1),0,0
-	  stfd      f30, 0xD0(r1)
-	  psq_st    f30,0xD8(r1),0,0
-	  stfd      f29, 0xC0(r1)
-	  psq_st    f29,0xC8(r1),0,0
-	  stfd      f28, 0xB0(r1)
-	  psq_st    f28,0xB8(r1),0,0
-	  stw       r31, 0xAC(r1)
-	  stw       r30, 0xA8(r1)
-	  stw       r29, 0xA4(r1)
-	  stw       r28, 0xA0(r1)
-	  mr        r28, r3
-	  mr        r29, r4
-	  lbz       r0, 0xB0(r3)
-	  mr        r30, r5
-	  cmplwi    r0, 0
-	  beq-      .loc_0x3BC
-	  lbz       r0, 0x110(r28)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x3BC
-	  lwz       r0, 0x100(r28)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x3BC
-	  li        r31, 0
-	  b         .loc_0x90
-
-	.loc_0x74:
-	  mr        r3, r28
-	  mr        r4, r31
-	  lwz       r12, 0x0(r28)
-	  lwz       r12, 0x100(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r31, r31, 0x1
-
-	.loc_0x90:
-	  lbz       r3, 0x110(r28)
-	  rlwinm    r0,r31,0,24,31
-	  cmplw     r0, r3
-	  blt+      .loc_0x74
-	  bl        0xA8FD4
-	  lfs       f3, 0x0(r30)
-	  li        r0, -0x1
-	  lfs       f2, 0x8(r30)
-	  mr        r3, r28
-	  lfs       f0, 0x8(r29)
-	  addi      r4, r1, 0x8
-	  lfs       f1, 0x0(r29)
-	  fsubs     f5, f2, f3
-	  fsubs     f2, f0, f2
-	  lfs       f6, 0x4(r30)
-	  lfs       f8, 0xC(r30)
-	  fsubs     f4, f1, f3
-	  lfs       f0, 0xC(r29)
-	  lfs       f1, 0x4(r29)
-	  fsubs     f7, f8, f6
-	  lbz       r5, 0xB2(r28)
-	  fsubs     f0, f0, f8
-	  lfs       f3, -0x7B70(r2)
-	  fdivs     f2, f2, f5
-	  stb       r5, 0xB3(r28)
-	  stw       r0, 0x8(r1)
-	  stw       r0, 0xC(r1)
-	  stw       r0, 0x10(r1)
-	  stw       r0, 0x14(r1)
-	  fsubs     f1, f1, f6
-	  fdivs     f0, f0, f7
-	  fdivs     f31, f4, f5
-	  fdivs     f29, f1, f7
-	  fadds     f30, f3, f2
-	  fadds     f28, f3, f0
-	  bl        0xCBC
-	  mr        r3, r28
-	  bl        0x514
-	  bl        0xA8680
-	  li        r3, 0x9
-	  li        r4, 0x1
-	  bl        0xA8228
-	  li        r3, 0xB
-	  li        r4, 0x1
-	  bl        0xA821C
-	  li        r3, 0xD
-	  li        r4, 0x1
-	  bl        0xA8210
-	  li        r3, 0
-	  li        r4, 0xD
-	  li        r5, 0x1
-	  li        r6, 0x4
-	  li        r7, 0
-	  bl        0xA867C
-	  li        r3, 0
-	  li        r4, 0x9
-	  li        r5, 0x1
-	  li        r6, 0x4
-	  li        r7, 0
-	  bl        0xA8664
-	  li        r3, 0x80
-	  li        r4, 0
-	  li        r5, 0x4
-	  bl        0xA98D4
-	  lfs       f0, 0x0(r29)
-	  lis       r0, 0x4330
-	  lfs       f2, 0x4(r29)
-	  lis       r8, 0xCC01
-	  fctiwz    f4, f0
-	  lfs       f1, 0x8(r29)
-	  fctiwz    f7, f2
-	  lfs       f0, 0xC(r29)
-	  fctiwz    f1, f1
-	  stw       r0, 0x30(r1)
-	  stfd      f4, 0x28(r1)
-	  fctiwz    f2, f0
-	  lfd       f6, -0x7B58(r2)
-	  stfd      f7, 0x18(r1)
-	  lwz       r3, 0x2C(r1)
-	  lwz       r4, 0x1C(r1)
-	  extsh     r3, r3
-	  stfd      f1, 0x48(r1)
-	  xoris     r3, r3, 0x8000
-	  extsh     r4, r4
-	  stw       r3, 0x34(r1)
-	  xoris     r4, r4, 0x8000
-	  lwz       r3, 0x4C(r1)
-	  lfd       f0, 0x30(r1)
-	  stw       r4, 0x24(r1)
-	  extsh     r3, r3
-	  fsubs     f0, f0, f6
-	  xoris     r3, r3, 0x8000
-	  stw       r0, 0x20(r1)
-	  lfs       f3, -0x7B60(r2)
-	  lfd       f5, 0x20(r1)
-	  stfd      f7, 0x38(r1)
-	  fsubs     f5, f5, f6
-	  stfs      f0, -0x8000(r8)
-	  lwz       r4, 0x3C(r1)
-	  stfs      f5, -0x8000(r8)
-	  extsh     r4, r4
-	  stfs      f3, -0x8000(r8)
-	  xoris     r5, r4, 0x8000
-	  lwz       r4, 0x8(r1)
-	  stw       r3, 0x54(r1)
-	  stw       r0, 0x50(r1)
-	  stw       r4, -0x8000(r8)
-	  lfd       f0, 0x50(r1)
-	  stfs      f31, -0x8000(r8)
-	  fsubs     f0, f0, f6
-	  stfs      f29, -0x8000(r8)
-	  stfd      f1, 0x68(r1)
-	  stfd      f2, 0x58(r1)
-	  lwz       r3, 0x6C(r1)
-	  lwz       r4, 0x5C(r1)
-	  extsh     r3, r3
-	  stw       r5, 0x44(r1)
-	  xoris     r3, r3, 0x8000
-	  extsh     r4, r4
-	  stw       r0, 0x40(r1)
-	  xoris     r4, r4, 0x8000
-	  lfd       f1, 0x40(r1)
-	  stfs      f0, -0x8000(r8)
-	  fsubs     f0, f1, f6
-	  stw       r3, 0x74(r1)
-	  stfs      f0, -0x8000(r8)
-	  stfs      f3, -0x8000(r8)
-	  lwz       r3, 0xC(r1)
-	  stw       r0, 0x70(r1)
-	  stw       r3, -0x8000(r8)
-	  lfd       f0, 0x70(r1)
-	  stfs      f30, -0x8000(r8)
-	  fsubs     f0, f0, f6
-	  stfs      f29, -0x8000(r8)
-	  stw       r4, 0x64(r1)
-	  stw       r0, 0x60(r1)
-	  lfd       f1, 0x60(r1)
-	  stfs      f0, -0x8000(r8)
-	  fsubs     f0, f1, f6
-	  stfd      f4, 0x88(r1)
-	  li        r3, 0
-	  li        r4, 0x9
-	  li        r5, 0x1
-	  stfs      f0, -0x8000(r8)
-	  li        r6, 0x3
-	  lwz       r9, 0x8C(r1)
-	  li        r7, 0
-	  stfd      f2, 0x78(r1)
-	  extsh     r9, r9
-	  stfs      f3, -0x8000(r8)
-	  xoris     r9, r9, 0x8000
-	  lwz       r10, 0x7C(r1)
-	  lwz       r11, 0x14(r1)
-	  extsh     r10, r10
-	  stw       r9, 0x94(r1)
-	  xoris     r9, r10, 0x8000
-	  stw       r0, 0x90(r1)
-	  stw       r11, -0x8000(r8)
-	  lfd       f0, 0x90(r1)
-	  stfs      f30, -0x8000(r8)
-	  fsubs     f0, f0, f6
-	  stfs      f28, -0x8000(r8)
-	  stw       r9, 0x84(r1)
-	  stw       r0, 0x80(r1)
-	  lfd       f1, 0x80(r1)
-	  stfs      f0, -0x8000(r8)
-	  fsubs     f0, f1, f6
-	  stfs      f0, -0x8000(r8)
-	  stfs      f3, -0x8000(r8)
-	  lwz       r0, 0x10(r1)
-	  stw       r0, -0x8000(r8)
-	  stfs      f31, -0x8000(r8)
-	  stfs      f28, -0x8000(r8)
-	  bl        0xA849C
-	  li        r3, 0
-	  li        r4, 0xD
-	  li        r5, 0x1
-	  li        r6, 0x2
-	  li        r7, 0xF
-	  bl        0xA8484
-	  li        r3, 0
-	  bl        0xA8D10
-	  li        r3, 0x1
-	  bl        0xAC924
-	  li        r3, 0
-	  li        r4, 0x4
-	  bl        0xAC1DC
-	  li        r3, 0
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0x4
-	  bl        0xAC768
-	  li        r3, 0x4
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0x1
-	  li        r7, 0
-	  li        r8, 0
-	  li        r9, 0x2
-	  bl        0xAABCC
-	  li        r3, 0xD
-	  li        r4, 0
-	  bl        0xA7FA4
-
-	.loc_0x3BC:
-	  psq_l     f31,0xE8(r1),0,0
-	  lfd       f31, 0xE0(r1)
-	  psq_l     f30,0xD8(r1),0,0
-	  lfd       f30, 0xD0(r1)
-	  psq_l     f29,0xC8(r1),0,0
-	  lfd       f29, 0xC0(r1)
-	  psq_l     f28,0xB8(r1),0,0
-	  lfd       f28, 0xB0(r1)
-	  lwz       r31, 0xAC(r1)
-	  lwz       r30, 0xA8(r1)
-	  lwz       r29, 0xA4(r1)
-	  lwz       r0, 0xF4(r1)
-	  lwz       r28, 0xA0(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xF0
-	  blr
-	*/
 }
 
 /**
  * @note Address: 0x8003C324
  * @note Size: 0x23C
  */
-void J2DPicture::drawTexCoord(f32, f32, f32, f32, s16, s16, s16, s16, s16, s16, s16, s16, Mtx*)
+void J2DPicture::drawTexCoord(f32 x, f32 y, f32 width, f32 height, s16 btmLeftS, s16 btmLeftT, s16 btmRightS, s16 btmRightT, s16 topLeftS,
+                              s16 topLeftT, s16 topRightS, s16 topRightT, Mtx* texMtx)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0xC0(r1)
-	  mflr      r0
-	  stw       r0, 0xC4(r1)
-	  stfd      f31, 0xB0(r1)
-	  psq_st    f31,0xB8(r1),0,0
-	  stfd      f30, 0xA0(r1)
-	  psq_st    f30,0xA8(r1),0,0
-	  stfd      f29, 0x90(r1)
-	  psq_st    f29,0x98(r1),0,0
-	  stfd      f28, 0x80(r1)
-	  psq_st    f28,0x88(r1),0,0
-	  stmw      r21, 0x54(r1)
-	  mr        r21, r3
-	  fmr       f28, f1
-	  lbz       r0, 0x110(r3)
-	  fmr       f29, f2
-	  fmr       f31, f3
-	  lha       r29, 0xCA(r1)
-	  fmr       f30, f4
-	  cmplwi    r0, 0
-	  lwz       r30, 0xCC(r1)
-	  mr        r22, r4
-	  mr        r23, r5
-	  mr        r24, r6
-	  mr        r25, r7
-	  mr        r26, r8
-	  mr        r27, r9
-	  mr        r28, r10
-	  beq-      .loc_0x208
-	  li        r31, 0
-	  b         .loc_0x98
+	if (mTextureCount != 0) {
+		for (u8 i = 0; i < mTextureCount; i++) {
+			load(i);
+		}
 
-	.loc_0x7C:
-	  mr        r3, r21
-	  mr        r4, r31
-	  lwz       r12, 0x0(r21)
-	  lwz       r12, 0x100(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r31, r31, 0x1
+		f32 maxX = x + width;
+		f32 maxY = y + height;
 
-	.loc_0x98:
-	  lbz       r3, 0x110(r21)
-	  rlwinm    r0,r31,0,24,31
-	  cmplw     r0, r3
-	  blt+      .loc_0x7C
-	  fadds     f31, f28, f31
-	  fadds     f30, f29, f30
-	  bl        0xA8BC8
-	  li        r0, -0x1
-	  mr        r3, r21
-	  stw       r0, 0x8(r1)
-	  addi      r4, r1, 0x8
-	  stw       r0, 0xC(r1)
-	  stw       r0, 0x10(r1)
-	  stw       r0, 0x14(r1)
-	  bl        0x90C
-	  mr        r3, r21
-	  bl        .loc_0x23C
-	  mr        r3, r30
-	  addi      r4, r21, 0x80
-	  addi      r5, r1, 0x18
-	  bl        0xADEF4
-	  addi      r3, r1, 0x18
-	  li        r4, 0
-	  bl        0xAD160
-	  bl        0xA82B4
-	  li        r3, 0x9
-	  li        r4, 0x1
-	  bl        0xA7E5C
-	  li        r3, 0xB
-	  li        r4, 0x1
-	  bl        0xA7E50
-	  li        r3, 0xD
-	  li        r4, 0x1
-	  bl        0xA7E44
-	  li        r3, 0
-	  li        r4, 0x9
-	  li        r5, 0x1
-	  li        r6, 0x4
-	  li        r7, 0
-	  bl        0xA82B0
-	  li        r3, 0
-	  li        r4, 0xD
-	  li        r5, 0x1
-	  li        r6, 0x3
-	  li        r7, 0x8
-	  bl        0xA8298
-	  li        r3, 0x80
-	  li        r4, 0
-	  li        r5, 0x4
-	  bl        0xA9508
-	  lis       r8, 0xCC01
-	  lfs       f0, -0x7B60(r2)
-	  stfs      f28, -0x8000(r8)
-	  li        r3, 0
-	  li        r4, 0xD
-	  li        r5, 0x1
-	  stfs      f29, -0x8000(r8)
-	  li        r6, 0x2
-	  li        r7, 0xF
-	  stfs      f0, -0x8000(r8)
-	  lwz       r0, 0x8(r1)
-	  stw       r0, -0x8000(r8)
-	  sth       r22, -0x8000(r8)
-	  sth       r23, -0x8000(r8)
-	  stfs      f31, -0x8000(r8)
-	  stfs      f29, -0x8000(r8)
-	  stfs      f0, -0x8000(r8)
-	  lwz       r0, 0xC(r1)
-	  stw       r0, -0x8000(r8)
-	  sth       r24, -0x8000(r8)
-	  sth       r25, -0x8000(r8)
-	  stfs      f31, -0x8000(r8)
-	  stfs      f30, -0x8000(r8)
-	  stfs      f0, -0x8000(r8)
-	  lwz       r0, 0x14(r1)
-	  stw       r0, -0x8000(r8)
-	  sth       r28, -0x8000(r8)
-	  sth       r29, -0x8000(r8)
-	  stfs      f28, -0x8000(r8)
-	  stfs      f30, -0x8000(r8)
-	  stfs      f0, -0x8000(r8)
-	  lwz       r0, 0x10(r1)
-	  stw       r0, -0x8000(r8)
-	  sth       r26, -0x8000(r8)
-	  sth       r27, -0x8000(r8)
-	  bl        0xA81F8
-	  li        r3, 0
-	  li        r4, 0x9
-	  li        r5, 0x1
-	  li        r6, 0x3
-	  li        r7, 0
-	  bl        0xA81E0
+		GXSetNumTexGens(mTextureCount);
 
-	.loc_0x208:
-	  psq_l     f31,0xB8(r1),0,0
-	  lfd       f31, 0xB0(r1)
-	  psq_l     f30,0xA8(r1),0,0
-	  lfd       f30, 0xA0(r1)
-	  psq_l     f29,0x98(r1),0,0
-	  lfd       f29, 0x90(r1)
-	  psq_l     f28,0x88(r1),0,0
-	  lfd       f28, 0x80(r1)
-	  lmw       r21, 0x54(r1)
-	  lwz       r0, 0xC4(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xC0
-	  blr
+		JUtility::TColor cornerColors[4];
 
-	.loc_0x23C:
-	*/
+		Mtx outputMtx;
+
+		getNewColor(cornerColors);
+		setTevMode();
+		PSMTXConcat(*texMtx, mGlobalMtx, outputMtx);
+
+		GXLoadPosMtxImm(outputMtx, 0);
+		GXClearVtxDesc();
+		GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+		GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
+		GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_F32, 0);
+		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGBA4, 8);
+		GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+
+		f32 zero = 0.0f;
+		// bottom left
+		GXPosition3f32(x, y, zero);
+		GXColor1u32(cornerColors[0]);
+		GXTexCoord2s16(btmLeftS, btmLeftT);
+
+		// bottom right
+		GXPosition3f32(maxX, y, zero);
+		GXColor1u32(cornerColors[1]);
+		GXTexCoord2s16(btmRightS, btmRightT);
+
+		// top right
+		GXPosition3f32(maxX, maxY, zero);
+		GXColor1u32(cornerColors[3]);
+		GXTexCoord2s16(topRightS, topRightT);
+
+		// top left
+		GXPosition3f32(x, maxY, zero);
+		GXColor1u32(cornerColors[2]);
+		GXTexCoord2s16(topLeftS, topLeftT);
+
+		GXEnd();
+
+		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGBX8, 0xf);
+		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGBA4, 0);
+	}
 }
 
 /**
@@ -2510,338 +1245,79 @@ void J2DPicture::drawTexCoord(f32, f32, f32, f32, s16, s16, s16, s16, s16, s16, 
  */
 void J2DPicture::setTevMode()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	stw      r29, 0x24(r1)
-	stw      r28, 0x20(r1)
-	li       r28, 0
-	b        lbl_8003C5A0
+	u8 i;
+	for (i = 0; i < mTextureCount; i++) {
+		GXSetTevOrder(GXTevStageID(i), GXTexCoordID(i), GXTexMapID(i), GX_COLOR_NULL);
+	}
 
-lbl_8003C588:
-	clrlwi   r3, r28, 0x18
-	li       r6, 0xff
-	mr       r4, r3
-	mr       r5, r3
-	bl       GXSetTevOrder
-	addi     r28, r28, 1
+	GXSetTevColor(GX_TEVREG2, JUtility::TColor(0xFFFFFFFF));
+	GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_TEXC, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO);
 
-lbl_8003C5A0:
-	lbz      r0, 0x110(r30)
-	clrlwi   r3, r28, 0x18
-	cmplw    r3, r0
-	blt      lbl_8003C588
-	li       r0, -1
-	addi     r4, r1, 0x1c
-	stw      r0, 0x18(r1)
-	li       r3, 3
-	stw      r0, 0x1c(r1)
-	bl       GXSetTevColor
-	li       r3, 0
-	li       r4, 8
-	li       r5, 0xf
-	li       r6, 0xf
-	li       r7, 0xf
-	bl       GXSetTevColorIn
-	lwz      r3, 0x100(r30)
-	cmplwi   r3, 0
-	bne      lbl_8003C608
-	li       r3, 0
-	li       r4, 3
-	li       r5, 7
-	li       r6, 7
-	li       r7, 7
-	bl       GXSetTevAlphaIn
-	b        lbl_8003C64C
+	if (mTextures[0] == nullptr) {
+		GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_A2, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO);
+	} else if (mTextures[0]->getTransparency()) {
+		GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_TEXA, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO);
+	} else {
+		GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_A2, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO);
+	}
 
-lbl_8003C608:
-	lwz      r3, 0x20(r3)
-	lbz      r0, 1(r3)
-	cmpwi    r0, 0
-	beq      lbl_8003C634
-	li       r3, 0
-	li       r4, 4
-	li       r5, 7
-	li       r6, 7
-	li       r7, 7
-	bl       GXSetTevAlphaIn
-	b        lbl_8003C64C
+	GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+	GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+	GXSetTevKColor(GX_KCOLOR0, mBlendColor);
+	GXSetTevKColor(GX_KCOLOR2, mBlendAlpha);
 
-lbl_8003C634:
-	li       r3, 0
-	li       r4, 3
-	li       r5, 7
-	li       r6, 7
-	li       r7, 7
-	bl       GXSetTevAlphaIn
+	for (i = 1; i < mTextureCount; i++) {
+		GXSetTevKColorSel(GXTevStageID(i), GXTevKColorSel(0x20 - i * 4));
+		GXSetTevKAlphaSel(GXTevStageID(i), GXTevKAlphaSel(0x22 - i * 4));
+		GXSetTevColorIn(GXTevStageID(i), GX_CC_CPREV, GX_CC_TEXC, GX_CC_KONST, GX_CC_ZERO);
 
-lbl_8003C64C:
-	li       r3, 0
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 1
-	li       r8, 0
-	bl       GXSetTevColorOp
-	li       r3, 0
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 1
-	li       r8, 0
-	bl       GXSetTevAlphaOp
-	lwz      r0, 0x160(r30)
-	addi     r4, r1, 0x14
-	li       r3, 0
-	stw      r0, 0x14(r1)
-	bl       GXSetTevKColor
-	lwz      r0, 0x164(r30)
-	addi     r4, r1, 0x10
-	li       r3, 2
-	stw      r0, 0x10(r1)
-	bl       GXSetTevKColor
-	li       r31, 1
-	b        lbl_8003C79C
+		if (mTextures[i] == nullptr) {
+			GXSetTevAlphaIn(GXTevStageID(i), GX_CA_APREV, GX_CA_A2, GX_CA_KONST, GX_CA_ZERO);
+		} else if (mTextures[i]->getTransparency()) {
+			GXSetTevAlphaIn(GXTevStageID(i), GX_CA_APREV, GX_CA_TEXA, GX_CA_KONST, GX_CA_ZERO);
+		} else {
+			GXSetTevAlphaIn(GXTevStageID(i), GX_CA_APREV, GX_CA_A2, GX_CA_KONST, GX_CA_ZERO);
+		}
 
-lbl_8003C6B4:
-	clrlwi   r29, r31, 0x18
-	rlwinm   r28, r31, 2, 0x16, 0x1d
-	mr       r3, r29
-	subfic   r4, r28, 0x20
-	bl       GXSetTevKColorSel
-	mr       r3, r29
-	subfic   r4, r28, 0x22
-	bl       GXSetTevKAlphaSel
-	mr       r3, r29
-	li       r4, 0
-	li       r5, 8
-	li       r6, 0xe
-	li       r7, 0xf
-	bl       GXSetTevColorIn
-	mr       r3, r28
-	addi     r0, r3, 0x100
-	lwzx     r3, r30, r0
-	cmplwi   r3, 0
-	bne      lbl_8003C71C
-	mr       r3, r29
-	li       r4, 0
-	li       r5, 3
-	li       r6, 6
-	li       r7, 7
-	bl       GXSetTevAlphaIn
-	b        lbl_8003C760
+		GXSetTevColorOp(GXTevStageID(i), GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+		GXSetTevAlphaOp(GXTevStageID(i), GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+	}
 
-lbl_8003C71C:
-	lwz      r3, 0x20(r3)
-	lbz      r0, 1(r3)
-	cmpwi    r0, 0
-	beq      lbl_8003C748
-	mr       r3, r29
-	li       r4, 0
-	li       r5, 4
-	li       r6, 6
-	li       r7, 7
-	bl       GXSetTevAlphaIn
-	b        lbl_8003C760
+	if (mBlack != 0 || mWhite != 0xFFFFFFFF) {
+		GXSetTevOrder(GXTevStageID(i), GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+		GXSetTevColor(GX_TEVREG0, mBlack);
+		GXSetTevColor(GX_TEVREG1, mWhite);
+		GXSetTevColorIn(GXTevStageID(i), GX_CC_C0, GX_CC_C2, GX_CC_CPREV, GX_CC_ZERO);
+		GXSetTevAlphaIn(GXTevStageID(i), GX_CA_A0, GX_CA_A1, GX_CA_APREV, GX_CA_ZERO);
+		GXSetTevColorOp(GXTevStageID(i), GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+		GXSetTevAlphaOp(GXTevStageID(i), GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+		i++;
+	}
 
-lbl_8003C748:
-	mr       r3, r29
-	li       r4, 0
-	li       r5, 3
-	li       r6, 6
-	li       r7, 7
-	bl       GXSetTevAlphaIn
+	if (mColorAlpha != 0xFF || mCornerColors[0] != 0xFFFFFFFF || mCornerColors[1] != 0xFFFFFFFF || mCornerColors[2] != 0xFFFFFFFF
+	    || mCornerColors[3] != 0xFFFFFFFF) {
+		GXSetTevOrder(GXTevStageID(i), GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+		GXSetTevColorIn(GXTevStageID(i), GX_CC_ZERO, GX_CC_CPREV, GX_CC_RASC, GX_CC_ZERO);
+		GXSetTevAlphaIn(GXTevStageID(i), GX_CA_ZERO, GX_CA_APREV, GX_CA_RASA, GX_CA_ZERO);
+		GXSetTevColorOp(GXTevStageID(i), GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+		GXSetTevAlphaOp(GXTevStageID(i), GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+		i++;
+	}
 
-lbl_8003C760:
-	mr       r3, r29
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 1
-	li       r8, 0
-	bl       GXSetTevColorOp
-	mr       r3, r29
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 1
-	li       r8, 0
-	bl       GXSetTevAlphaOp
-	addi     r31, r31, 1
+	GXSetNumTevStages(i);
+	GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET);
 
-lbl_8003C79C:
-	lbz      r0, 0x110(r30)
-	clrlwi   r3, r31, 0x18
-	cmplw    r3, r0
-	blt      lbl_8003C6B4
-	lwz      r0, 0x14c(r30)
-	cmplwi   r0, 0
-	bne      lbl_8003C7C8
-	lwz      r3, 0x148(r30)
-	addis    r0, r3, 1
-	cmplwi   r0, 0xffff
-	beq      lbl_8003C874
+	for (i = 0; i < mTextureCount; i++) {
+		GXSetTexCoordGen2(GXTexCoordID(i), GX_TG_MTX3X4, GX_TG_TEX0, GX_IDENTITY, GX_FALSE, GX_PTIDENTITY);
+	}
 
-lbl_8003C7C8:
-	clrlwi   r28, r31, 0x18
-	li       r4, 0xff
-	mr       r3, r28
-	li       r5, 0xff
-	li       r6, 0xff
-	bl       GXSetTevOrder
-	lwz      r0, 0x14c(r30)
-	addi     r4, r1, 0xc
-	li       r3, 1
-	stw      r0, 0xc(r1)
-	bl       GXSetTevColor
-	lwz      r0, 0x148(r30)
-	addi     r4, r1, 8
-	li       r3, 2
-	stw      r0, 8(r1)
-	bl       GXSetTevColor
-	mr       r3, r28
-	li       r4, 2
-	li       r5, 4
-	li       r6, 0
-	li       r7, 0xf
-	bl       GXSetTevColorIn
-	mr       r3, r28
-	li       r4, 1
-	li       r5, 2
-	li       r6, 0
-	li       r7, 7
-	bl       GXSetTevAlphaIn
-	mr       r3, r28
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 1
-	li       r8, 0
-	bl       GXSetTevColorOp
-	mr       r3, r28
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 1
-	li       r8, 0
-	bl       GXSetTevAlphaOp
-	addi     r31, r31, 1
+	GXSetNumChans(1);
+	GXSetChanCtrl(GX_COLOR0A0, GX_DISABLE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
+	GXSetNumIndStages(0);
 
-lbl_8003C874:
-	lbz      r0, 0xb3(r30)
-	cmplwi   r0, 0xff
-	bne      lbl_8003C8C0
-	lwz      r3, 0x150(r30)
-	addis    r0, r3, 1
-	cmplwi   r0, 0xffff
-	bne      lbl_8003C8C0
-	lwz      r3, 0x154(r30)
-	addis    r0, r3, 1
-	cmplwi   r0, 0xffff
-	bne      lbl_8003C8C0
-	lwz      r3, 0x158(r30)
-	addis    r0, r3, 1
-	cmplwi   r0, 0xffff
-	bne      lbl_8003C8C0
-	lwz      r3, 0x15c(r30)
-	addis    r0, r3, 1
-	cmplwi   r0, 0xffff
-	beq      lbl_8003C944
-
-lbl_8003C8C0:
-	clrlwi   r28, r31, 0x18
-	li       r4, 0xff
-	mr       r3, r28
-	li       r5, 0xff
-	li       r6, 4
-	bl       GXSetTevOrder
-	mr       r3, r28
-	li       r4, 0xf
-	li       r5, 0
-	li       r6, 0xa
-	li       r7, 0xf
-	bl       GXSetTevColorIn
-	mr       r3, r28
-	li       r4, 7
-	li       r5, 0
-	li       r6, 5
-	li       r7, 7
-	bl       GXSetTevAlphaIn
-	mr       r3, r28
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 1
-	li       r8, 0
-	bl       GXSetTevColorOp
-	mr       r3, r28
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 1
-	li       r8, 0
-	bl       GXSetTevAlphaOp
-	addi     r31, r31, 1
-
-lbl_8003C944:
-	mr       r3, r31
-	bl       GXSetNumTevStages
-	li       r3, 1
-	li       r4, 4
-	li       r5, 5
-	li       r6, 0xf
-	bl       GXSetBlendMode
-	li       r28, 0
-	b        lbl_8003C988
-
-lbl_8003C968:
-	clrlwi   r3, r28, 0x18
-	li       r4, 1
-	li       r5, 4
-	li       r6, 0x3c
-	li       r7, 0
-	li       r8, 0x7d
-	bl       GXSetTexCoordGen2
-	addi     r28, r28, 1
-
-lbl_8003C988:
-	lbz      r0, 0x110(r30)
-	clrlwi   r3, r28, 0x18
-	cmplw    r3, r0
-	blt      lbl_8003C968
-	li       r3, 1
-	bl       GXSetNumChans
-	li       r3, 4
-	li       r4, 0
-	li       r5, 0
-	li       r6, 1
-	li       r7, 0
-	li       r8, 0
-	li       r9, 2
-	bl       GXSetChanCtrl
-	li       r3, 0
-	bl       GXSetNumIndStages
-	li       r28, 0
-
-lbl_8003C9CC:
-	mr       r3, r28
-	bl       GXSetTevDirect
-	addi     r28, r28, 1
-	cmpwi    r28, 0x10
-	blt      lbl_8003C9CC
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	lwz      r28, 0x20(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	for (int i = GX_TEVSTAGE0; i < GX_MAXTEVSTAGE; i++) {
+		GXSetTevDirect((GXTevStageID)i);
+	}
 }
 
 /**
@@ -2850,10 +1326,10 @@ lbl_8003C9CC:
  */
 void J2DPicture::setBlendColorRatio(f32 p1, f32 p2, f32 p3, f32 p4, f32 p5, f32 p6, f32 p7, f32 p8)
 {
-	_124[0] = p1;
-	_124[1] = p2;
-	_124[2] = p3;
-	_124[3] = p4;
+	mBlendColorRatio[0] = p1;
+	mBlendColorRatio[1] = p2;
+	mBlendColorRatio[2] = p3;
+	mBlendColorRatio[3] = p4;
 	setBlendKonstColor();
 }
 
@@ -2863,10 +1339,10 @@ void J2DPicture::setBlendColorRatio(f32 p1, f32 p2, f32 p3, f32 p4, f32 p5, f32 
  */
 void J2DPicture::setBlendAlphaRatio(f32 p1, f32 p2, f32 p3, f32 p4, f32 p5, f32 p6, f32 p7, f32 p8)
 {
-	_134[0] = p1;
-	_134[1] = p2;
-	_134[2] = p3;
-	_134[3] = p4;
+	mBlendAlphaRatio[0] = p1;
+	mBlendAlphaRatio[1] = p2;
+	mBlendAlphaRatio[2] = p3;
+	mBlendAlphaRatio[3] = p4;
 	setBlendKonstAlpha();
 }
 
@@ -2876,110 +1352,19 @@ void J2DPicture::setBlendAlphaRatio(f32 p1, f32 p2, f32 p3, f32 p4, f32 p5, f32 
  */
 void J2DPicture::setBlendKonstColor()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	li       r7, 0
-	lfs      f3, lbl_80516800@sda21(r2)
-	li       r8, 1
-	lbz      r6, 0x110(r3)
-	b        lbl_8003CB78
+	int color = 0;
 
-lbl_8003CA78:
-	clrlwi   r0, r8, 0x18
-	lfs      f7, lbl_80516800@sda21(r2)
-	cmplwi   r0, 0
-	li       r5, 0
-	ble      lbl_8003CB24
-	cmplwi   r0, 8
-	addi     r0, r8, -8
-	ble      lbl_8003CAFC
-	clrlwi   r0, r0, 0x18
-	b        lbl_8003CAF0
-
-lbl_8003CAA0:
-	rlwinm   r4, r5, 2, 0x16, 0x1d
-	addi     r5, r5, 8
-	addi     r4, r4, 0x124
-	add      r4, r3, r4
-	lfs      f1, 0(r4)
-	lfs      f0, 4(r4)
-	fadds    f7, f7, f1
-	lfs      f6, 8(r4)
-	lfs      f5, 0xc(r4)
-	lfs      f4, 0x10(r4)
-	fadds    f7, f7, f0
-	lfs      f2, 0x14(r4)
-	lfs      f1, 0x18(r4)
-	lfs      f0, 0x1c(r4)
-	fadds    f7, f7, f6
-	fadds    f7, f7, f5
-	fadds    f7, f7, f4
-	fadds    f7, f7, f2
-	fadds    f7, f7, f1
-	fadds    f7, f7, f0
-
-lbl_8003CAF0:
-	clrlwi   r4, r5, 0x18
-	cmplw    r4, r0
-	blt      lbl_8003CAA0
-
-lbl_8003CAFC:
-	clrlwi   r0, r8, 0x18
-	b        lbl_8003CB18
-
-lbl_8003CB04:
-	rlwinm   r4, r5, 2, 0x16, 0x1d
-	addi     r5, r5, 1
-	addi     r4, r4, 0x124
-	lfsx     f0, r3, r4
-	fadds    f7, f7, f0
-
-lbl_8003CB18:
-	clrlwi   r4, r5, 0x18
-	cmplw    r4, r0
-	blt      lbl_8003CB04
-
-lbl_8003CB24:
-	rlwinm   r4, r8, 2, 0x16, 0x1d
-	clrlwi   r5, r8, 0x18
-	addi     r0, r4, 0x124
-	lfsx     f0, r3, r0
-	fadds    f0, f7, f0
-	fcmpu    cr0, f3, f0
-	beq      lbl_8003CB74
-	fdivs    f0, f7, f0
-	lfs      f1, lbl_805167F0@sda21(r2)
-	addi     r0, r5, -1
-	lfs      f2, lbl_80516810@sda21(r2)
-	slwi     r0, r0, 3
-	fsubs    f0, f1, f0
-	fmuls    f0, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r4, 0x14(r1)
-	clrlwi   r4, r4, 0x18
-	slw      r0, r4, r0
-	or       r7, r7, r0
-
-lbl_8003CB74:
-	addi     r8, r8, 1
-
-lbl_8003CB78:
-	clrlwi   r0, r8, 0x18
-	cmplw    r0, r6
-	blt      lbl_8003CA78
-	stw      r7, 8(r1)
-	lbz      r4, 8(r1)
-	lbz      r0, 9(r1)
-	stb      r4, 0x160(r3)
-	lbz      r4, 0xa(r1)
-	stb      r0, 0x161(r3)
-	lbz      r0, 0xb(r1)
-	stb      r4, 0x162(r3)
-	stb      r0, 0x163(r3)
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (u8 i = 1; i < mTextureCount; i++) {
+		f32 prevRatios = 0.0f;
+		for (u8 j = 0; j < i; j++) {
+			prevRatios += mBlendColorRatio[j];
+		}
+		f32 currRatios = prevRatios + mBlendColorRatio[i];
+		if (currRatios != 0.0f) {
+			color |= (u8)(255.0f * (1.0f - prevRatios / currRatios)) << (i - 1) * 8;
+		}
+	}
+	mBlendColor = color;
 }
 
 /**
@@ -2988,110 +1373,19 @@ lbl_8003CB78:
  */
 void J2DPicture::setBlendKonstAlpha()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	li       r7, 0
-	lfs      f3, lbl_80516800@sda21(r2)
-	li       r8, 1
-	lbz      r6, 0x110(r3)
-	b        lbl_8003CCC8
+	int alpha = 0;
 
-lbl_8003CBC8:
-	clrlwi   r0, r8, 0x18
-	lfs      f7, lbl_80516800@sda21(r2)
-	cmplwi   r0, 0
-	li       r5, 0
-	ble      lbl_8003CC74
-	cmplwi   r0, 8
-	addi     r0, r8, -8
-	ble      lbl_8003CC4C
-	clrlwi   r0, r0, 0x18
-	b        lbl_8003CC40
-
-lbl_8003CBF0:
-	rlwinm   r4, r5, 2, 0x16, 0x1d
-	addi     r5, r5, 8
-	addi     r4, r4, 0x134
-	add      r4, r3, r4
-	lfs      f1, 0(r4)
-	lfs      f0, 4(r4)
-	fadds    f7, f7, f1
-	lfs      f6, 8(r4)
-	lfs      f5, 0xc(r4)
-	lfs      f4, 0x10(r4)
-	fadds    f7, f7, f0
-	lfs      f2, 0x14(r4)
-	lfs      f1, 0x18(r4)
-	lfs      f0, 0x1c(r4)
-	fadds    f7, f7, f6
-	fadds    f7, f7, f5
-	fadds    f7, f7, f4
-	fadds    f7, f7, f2
-	fadds    f7, f7, f1
-	fadds    f7, f7, f0
-
-lbl_8003CC40:
-	clrlwi   r4, r5, 0x18
-	cmplw    r4, r0
-	blt      lbl_8003CBF0
-
-lbl_8003CC4C:
-	clrlwi   r0, r8, 0x18
-	b        lbl_8003CC68
-
-lbl_8003CC54:
-	rlwinm   r4, r5, 2, 0x16, 0x1d
-	addi     r5, r5, 1
-	addi     r4, r4, 0x134
-	lfsx     f0, r3, r4
-	fadds    f7, f7, f0
-
-lbl_8003CC68:
-	clrlwi   r4, r5, 0x18
-	cmplw    r4, r0
-	blt      lbl_8003CC54
-
-lbl_8003CC74:
-	rlwinm   r4, r8, 2, 0x16, 0x1d
-	clrlwi   r5, r8, 0x18
-	addi     r0, r4, 0x134
-	lfsx     f0, r3, r0
-	fadds    f0, f7, f0
-	fcmpu    cr0, f3, f0
-	beq      lbl_8003CCC4
-	fdivs    f0, f7, f0
-	lfs      f1, lbl_805167F0@sda21(r2)
-	addi     r0, r5, -1
-	lfs      f2, lbl_80516810@sda21(r2)
-	slwi     r0, r0, 3
-	fsubs    f0, f1, f0
-	fmuls    f0, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r4, 0x14(r1)
-	clrlwi   r4, r4, 0x18
-	slw      r0, r4, r0
-	or       r7, r7, r0
-
-lbl_8003CCC4:
-	addi     r8, r8, 1
-
-lbl_8003CCC8:
-	clrlwi   r0, r8, 0x18
-	cmplw    r0, r6
-	blt      lbl_8003CBC8
-	stw      r7, 8(r1)
-	lbz      r4, 8(r1)
-	lbz      r0, 9(r1)
-	stb      r4, 0x164(r3)
-	lbz      r4, 0xa(r1)
-	stb      r0, 0x165(r3)
-	lbz      r0, 0xb(r1)
-	stb      r4, 0x166(r3)
-	stb      r0, 0x167(r3)
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (u8 i = 1; i < mTextureCount; i++) {
+		f32 prevRatios = 0.0f;
+		for (u8 j = 0; j < i; j++) {
+			prevRatios += mBlendAlphaRatio[j];
+		}
+		f32 currRatios = prevRatios + mBlendAlphaRatio[i];
+		if (currRatios != 0.0f) {
+			alpha |= (u8)(255.0f * (1.0f - prevRatios / currRatios)) << (i - 1) * 8;
+		}
+	}
+	mBlendAlpha = alpha;
 }
 
 /**
@@ -3103,11 +1397,11 @@ void J2DPicture::getNewColor(JUtility::TColor* newColor)
 	for (int i = 0; i < 4; i++) {
 		newColor[i] = mCornerColors[i];
 	}
-	if (mColorAlpha != 0xFF) {
-		newColor[0].a = newColor[0].a * mColorAlpha / 0xFF;
-		newColor[1].a = newColor[1].a * mColorAlpha / 0xFF;
-		newColor[2].a = newColor[2].a * mColorAlpha / 0xFF;
-		newColor[3].a = newColor[3].a * mColorAlpha / 0xFF;
+	if (mColorAlpha != 255) {
+		newColor[0].a = newColor[0].a * mColorAlpha / 255;
+		newColor[1].a = newColor[1].a * mColorAlpha / 255;
+		newColor[2].a = newColor[2].a * mColorAlpha / 255;
+		newColor[3].a = newColor[3].a * mColorAlpha / 255;
 	}
 }
 
@@ -3128,17 +1422,130 @@ void J2DPicture::setTexCoord(const JGeometry::TVec2<s16>* coords)
  * @note Size: 0x3C
  * setTexCoord__10J2DPictureFPC10JUTTexture10J2DBinding9J2DMirrorb
  */
-void J2DPicture::setTexCoord(const JUTTexture* texture, J2DBinding binding, J2DMirror mirror, bool p4)
+void J2DPicture::setTexCoord(const JUTTexture* texture, J2DBinding binding, J2DMirror mirror, bool doRotate90)
 {
-	setTexCoord(mTexCoords, texture, binding, mirror, p4);
+	setTexCoord(mTexCoords, texture, binding, mirror, doRotate90);
 }
 
 /**
  * @note Address: 0x8003CEA4
  * @note Size: 0x318
  */
-void J2DPicture::setTexCoord(JGeometry::TVec2<s16>*, const JUTTexture*, J2DBinding, J2DMirror, bool)
+void J2DPicture::setTexCoord(JGeometry::TVec2s* texCoords, const JUTTexture* texture, J2DBinding binding, J2DMirror mirror, bool doRotate90)
 {
+	bool bindLeft;
+	bool bindRight;
+	bool bindTop;
+	bool bindBottom;
+
+	if (!doRotate90) {
+		if (mirror & J2DMIRROR_X)
+			bindLeft = binding & J2DBIND_Right;
+		else
+			bindLeft = binding & J2DBIND_Left;
+
+		if (mirror & J2DMIRROR_X)
+			bindRight = binding & J2DBIND_Left;
+		else
+			bindRight = binding & J2DBIND_Right;
+
+		if (mirror & J2DMIRROR_Y)
+			bindTop = binding & J2DBIND_Bottom;
+		else
+			bindTop = binding & J2DBIND_Top;
+
+		if (mirror & J2DMIRROR_Y)
+			bindBottom = binding & J2DBIND_Top;
+		else
+			bindBottom = binding & J2DBIND_Bottom;
+	} else {
+		if (mirror & J2DMIRROR_X)
+			bindLeft = binding & J2DBIND_Bottom;
+		else
+			bindLeft = binding & J2DBIND_Top;
+
+		if (mirror & J2DMIRROR_X)
+			bindRight = binding & J2DBIND_Top;
+		else
+			bindRight = binding & J2DBIND_Bottom;
+
+		if (mirror & J2DMIRROR_Y)
+			bindTop = binding & J2DBIND_Left;
+		else
+			bindTop = binding & J2DBIND_Right;
+
+		if (mirror & J2DMIRROR_Y)
+			bindBottom = binding & J2DBIND_Right;
+		else
+			bindBottom = binding & J2DBIND_Left;
+	}
+
+	f32 rectWidth;
+	f32 rectHeight;
+
+	rectWidth  = !doRotate90 ? getWidth() : getHeight();
+	rectHeight = !doRotate90 ? getHeight() : getWidth();
+
+	f32 texWidth;
+	f32 texHeight;
+	if (texture == nullptr) {
+		texWidth  = rectWidth;
+		texHeight = rectHeight;
+	} else {
+		texWidth  = texture->getSizeX();
+		texHeight = texture->getSizeY();
+	}
+
+	f32 s0, t0, s1, t1;
+	if (bindLeft) {
+		s0 = 0.0f;
+		s1 = bindRight ? 1.0f : (rectWidth / texWidth);
+	} else if (bindRight) {
+		s0 = 1.0f - (rectWidth / texWidth);
+		s1 = 1.0f;
+	} else {
+		s0 = 0.5f - (rectWidth / texWidth) / 2.0f;
+		s1 = 0.5f + (rectWidth / texWidth) / 2.0f;
+	}
+
+	if (bindTop) {
+		t0 = 0.0f;
+		t1 = bindBottom ? 1.0f : (rectHeight / texHeight);
+	} else if (bindBottom) {
+		t0 = 1.0f - (rectHeight / texHeight);
+		t1 = 1.0f;
+	} else {
+		t0 = 0.5f - (rectHeight / texHeight) / 2.0f;
+		t1 = 0.5f + (rectHeight / texHeight) / 2.0f;
+	}
+
+	if (mirror & J2DMIRROR_X) {
+		f32 tmp = s0;
+		s0      = s1;
+		s1      = tmp;
+	}
+	if (mirror & J2DMIRROR_Y) {
+		f32 tmp = t0;
+		t0      = t1;
+		t1      = tmp;
+	}
+
+	s16 temp_r27 = J2DCast_F32_to_S16(s0, 8);
+	s16 temp_r28 = J2DCast_F32_to_S16(s1, 8);
+	s16 temp_r30 = J2DCast_F32_to_S16(t0, 8);
+	s16 temp_r31 = J2DCast_F32_to_S16(t1, 8);
+
+	if (!doRotate90) {
+		texCoords[0].set(temp_r27, temp_r30);
+		texCoords[1].set(temp_r28, temp_r30);
+		texCoords[2].set(temp_r27, temp_r31);
+		texCoords[3].set(temp_r28, temp_r31);
+	} else {
+		texCoords[0].set(temp_r27, temp_r31);
+		texCoords[1].set(temp_r27, temp_r30);
+		texCoords[2].set(temp_r28, temp_r31);
+		texCoords[3].set(temp_r28, temp_r30);
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x60(r1)
@@ -3428,321 +1835,45 @@ bool J2DPicture::isUsed(const ResTIMG* resource)
  * @note Address: 0x8003D220
  * @note Size: 0xD0
  */
-u8 J2DPicture::getUsableTlut(u8)
+u8 J2DPicture::getUsableTlut(u8 id)
 {
-	/*
-	lbz      r6, 0x110(r3)
-	clrlwi   r5, r4, 0x18
-	li       r8, 0
-	li       r9, 0
-	b        lbl_8003D2A4
+	u8 usedTexFlags = 0;
 
-lbl_8003D234:
-	clrlwi   r0, r9, 0x18
-	cmplw    r0, r5
-	beq      lbl_8003D2A0
-	rlwinm   r4, r9, 2, 0x16, 0x1d
-	addi     r0, r4, 0x100
-	lwzx     r7, r3, r0
-	cmplwi   r7, 0
-	beq      lbl_8003D2A0
-	lwz      r4, 0x20(r7)
-	cmplwi   r4, 0
-	beq      lbl_8003D2A0
-	lbz      r0, 8(r4)
-	cmplwi   r0, 0
-	beq      lbl_8003D2A0
-	lbz      r4, 0x3a(r7)
-	li       r0, 0
-	cmpwi    r4, 0x10
-	blt      lbl_8003D280
-	li       r0, 0x10
+	for (u8 i = 0; i < mTextureCount; i++) {
+		if (i != id && mTextures[i] != nullptr) {
+			const ResTIMG* img = mTextures[i]->getTexInfo();
 
-lbl_8003D280:
-	subf     r0, r0, r4
-	clrlwi   r4, r0, 0x18
-	cmplwi   r4, 4
-	bge      lbl_8003D2A0
-	li       r0, 1
-	slw      r0, r0, r4
-	or       r0, r8, r0
-	clrlwi   r8, r0, 0x18
+			if (img != nullptr && img->mPaletteFormat != 0) {
+				int name   = mTextures[i]->getTlutName();
+				int tlutID = name >= GX_MAX_TLUT ? GX_MAX_TLUT : GX_TLUT0;
 
-lbl_8003D2A0:
-	addi     r9, r9, 1
+				u8 diffID = name - tlutID;
+				if (diffID < 4) {
+					usedTexFlags |= (1 << diffID);
+				}
+			}
+		}
+	}
 
-lbl_8003D2A4:
-	clrlwi   r0, r9, 0x18
-	cmplw    r0, r6
-	blt      lbl_8003D234
-	clrlwi   r5, r8, 0x18
-	li       r3, 0
-	li       r6, 0
-	li       r4, 1
-	b        lbl_8003D2E0
+	u8 usableID = 0;
+	for (u8 i = 0; i < 4; i++) {
+		if (!(usedTexFlags & (1 << i))) {
+			usableID = i;
+			break;
+		}
+	}
 
-lbl_8003D2C4:
-	clrlwi   r0, r6, 0x18
-	slw      r0, r4, r0
-	and.     r0, r5, r0
-	bne      lbl_8003D2DC
-	mr       r3, r6
-	blr
-
-lbl_8003D2DC:
-	addi     r6, r6, 1
-
-lbl_8003D2E0:
-	clrlwi   r0, r6, 0x18
-	cmplwi   r0, 4
-	blt      lbl_8003D2C4
-	blr
-	*/
+	return usableID;
 }
 
 /**
  * @note Address: 0x8003D2F0
  * @note Size: 0x34
  */
-GXTlut J2DPicture::getTlutID(const ResTIMG* img, u8 index)
+GXTlut J2DPicture::getTlutID(const ResTIMG* img, u8 id)
 {
-	if (0x100 < img->mPaletteEntryCount) {
-		return (GXTlut)(index & 3 + GX_BIGTLUT0);
+	if (img->mPaletteEntryCount > 256) {
+		return GXTlut((id % 4) + GX_BIGTLUT0);
 	}
-	return (GXTlut)index;
-	/*
-	lhz      r0, 0xa(r4)
-	cmplwi   r0, 0x100
-	ble      lbl_8003D31C
-	clrlwi   r3, r5, 0x18
-	slwi     r0, r5, 0x1e
-	srwi     r3, r3, 0x1f
-	subf     r0, r3, r0
-	rotlwi   r0, r0, 2
-	add      r3, r0, r3
-	addi     r3, r3, 0x10
-	blr
-
-lbl_8003D31C:
-	clrlwi   r3, r5, 0x18
-	blr
-	*/
+	return GXTlut(id);
 }
-
-/**
- * @note Address: 0x8003D324
- * @note Size: 0x8
- */
-// u32 J2DPicture::getTypeID() const { return 0x12; }
-
-/**
- * @note Address: 0x8003D32C
- * @note Size: 0x30
- * append__10J2DPictureFPCcP10JUTPalettef
- */
-bool J2DPicture::append(const char* p1, JUTPalette* palette, f32 p3) { return insert(p1, palette, mTextureCount, p3); }
-
-/**
- * @note Address: 0x8003D35C
- * @note Size: 0x30
- * prepend__10J2DPictureFP10JUTTexturef
- */
-bool J2DPicture::prepend(JUTTexture* texture, f32 p2) { return insert(texture, 0, p2); }
-
-/**
- * @note Address: 0x8003D38C
- * @note Size: 0x30
- * prepend__10J2DPictureFPCcP10JUTPalettef
- */
-bool J2DPicture::prepend(const char* p1, JUTPalette* palette, f32 p3) { return insert(p1, palette, 0, p3); }
-
-/**
- * @note Address: 0x8003D3BC
- * @note Size: 0x30
- * prepend__10J2DPictureFPCcf
- */
-bool J2DPicture::prepend(const char* p1, f32 p2) { return insert(p1, 0, p2); }
-
-/**
- * @note Address: 0x8003D3EC
- * @note Size: 0x30
- * prepend__10J2DPictureFPC7ResTIMGP10JUTPalettef
- */
-bool J2DPicture::prepend(const ResTIMG* img, JUTPalette* palette, f32 p3) { return insert(img, palette, 0, p3); }
-
-/**
- * @note Address: 0x8003D41C
- * @note Size: 0x30
- * prepend__10J2DPictureFPC7ResTIMGf
- */
-bool J2DPicture::prepend(const ResTIMG* img, f32 p2) { return insert(img, 0, p2); }
-
-/**
- * @note Address: 0x8003D44C
- * @note Size: 0x38
- * remove__10J2DPictureFv
- */
-int J2DPicture::remove() { return remove(mTextureCount - 1); }
-
-/**
- * @note Address: 0x8003D484
- * @note Size: 0x98
- * draw__10J2DPictureFffUcbbb
- */
-void J2DPicture::draw(f32 p1, f32 p2, u8 textureIndex, bool p4, bool p5, bool p6)
-{
-	if (textureIndex < mTextureCount && mTextures[textureIndex] != nullptr) {
-		// ResTIMG* img = mTextures[textureIndex]->_20;
-		// int height   = img->mSizeY;
-		// int width    = img->mSizeX;
-		draw(p1, p2, mTextures[textureIndex]->getSizeX(), mTextures[textureIndex]->getSizeY(), p4, p5, p6);
-	}
-}
-
-/**
- * @note Address: 0x8003D51C
- * @note Size: 0x40
- * draw__10J2DPictureFffbbb
- */
-void J2DPicture::draw(f32 p1, f32 p2, bool p3, bool p4, bool p5) { draw(p1, p2, 0, p3, p4, p5); }
-
-/**
- * @note Address: 0x8003D55C
- * @note Size: 0x64
- * drawOut__10J2DPictureFffffffff
- */
-void J2DPicture::drawOut(f32 p1, f32 p2, f32 p3, f32 p4, f32 p5, f32 p6, f32 p7, f32 p8)
-{
-	drawOut(JGeometry::TBox2f(p1, p2, p1 + p3, p2 + p4), JGeometry::TBox2f(p5, p6, p5 + p7, p6 + p8));
-}
-
-/**
- * @note Address: 0x8003D5C0
- * @note Size: 0xAC
- * drawOut__10J2DPictureFffffff
- * TODO: Check if this is correct. The mangled name of it is a substring of another one, and thus isn't checkable by vanilla genasm.sh
- */
-void J2DPicture::drawOut(f32 p1, f32 p2, f32 p3, f32 p4, f32 p5, f32 p6)
-{
-	if (mTextures[0] == nullptr) {
-		return;
-	}
-	drawOut(JGeometry::TBox2f(p1, p2, p1 + p3, p2 + p4),
-	        JGeometry::TBox2f(p5, p6, p5 + mTextures[0]->getSizeX(), p6 + mTextures[0]->getSizeY()));
-
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	lwz      r4, 0x100(r3)
-	cmplwi   r4, 0
-	beq      lbl_8003D65C
-	lwz      r4, 0x20(r4)
-	lis      r6, 0x4330
-	stw      r6, 0x28(r1)
-	fadds    f3, f1, f3
-	lhz      r0, 4(r4)
-	fadds    f0, f2, f4
-	lhz      r5, 2(r4)
-	addi     r4, r1, 0x18
-	xoris    r0, r0, 0x8000
-	xoris    r7, r5, 0x8000
-	stw      r0, 0x34(r1)
-	lfd      f8, lbl_80516808@sda21(r2)
-	addi     r5, r1, 8
-	stw      r7, 0x2c(r1)
-	stw      r6, 0x30(r1)
-	lfd      f7, 0x28(r1)
-	lfd      f4, 0x30(r1)
-	fsubs    f7, f7, f8
-	stfs     f5, 8(r1)
-	fsubs    f4, f4, f8
-	stfs     f6, 0xc(r1)
-	fadds    f5, f5, f7
-	fadds    f4, f6, f4
-	stfs     f1, 0x18(r1)
-	stfs     f5, 0x10(r1)
-	stfs     f4, 0x14(r1)
-	stfs     f2, 0x1c(r1)
-	stfs     f3, 0x20(r1)
-	stfs     f0, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xf8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8003D65C:
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
-}
-
-/**
- * @note Address: 0x8003D66C
- * @note Size: 0x8
- */
-// u8 J2DPicture::getTextureCount() const { return mTextureCount; }
-
-/**
- * @note Address: 0x8003D674
- * @note Size: 0x28
- */
-// bool J2DPicture::setBlack(JUtility::TColor black)
-// {
-// 	mBlack = black;
-// 	return true;
-// }
-
-/**
- * @note Address: 0x8003D69C
- * @note Size: 0x28
- */
-// bool J2DPicture::setWhite(JUtility::TColor white)
-// {
-// 	mWhite = white;
-// 	return true;
-// }
-
-/**
- * @note Address: 0x8003D6C4
- * @note Size: 0x48
- */
-// bool J2DPicture::setBlackWhite(JUtility::TColor black, JUtility::TColor white)
-// {
-// 	mBlack = black;
-// 	mWhite = white;
-// 	return true;
-// }
-
-/**
- * @note Address: 0x8003D70C
- * @note Size: 0xC
- */
-// JUtility::TColor J2DPicture::getBlack() const { return mBlack; }
-
-/**
- * @note Address: 0x8003D718
- * @note Size: 0xC
- */
-// JUtility::TColor J2DPicture::getWhite() const { return mWhite; }
-
-/**
- * @note Address: 0x8003D724
- * @note Size: 0x8
- */
-// J2DMaterial* J2DPicture::getMaterial() const { return nullptr; }
-
-/**
- * @note Address: 0x8003D72C
- * @note Size: 0x20
- * isUsed__10J2DPictureFPC7ResFONT
- */
-// bool J2DPicture::isUsed(const ResFONT* resource) { return J2DPane::isUsed(resource); }
-
-/**
- * @note Address: 0x8003D74C
- * @note Size: 0x4
- */
-// void J2DPicture::rewriteAlpha() { }

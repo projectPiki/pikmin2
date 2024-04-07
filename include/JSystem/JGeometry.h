@@ -360,6 +360,8 @@ typedef TVec3<f32> TVec3f;
 typedef TBox2<f32> TBox2f;
 typedef TBox3<f32> TBox3f;
 
+typedef TVec2<s16> TVec2s;
+
 } // namespace JGeometry
 
 #endif

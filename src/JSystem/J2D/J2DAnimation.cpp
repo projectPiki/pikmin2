@@ -1,5 +1,5 @@
 #include "JSystem/J2D/J2DAnm.h"
-#include "JSystem/J2D/J2DPane.h"
+#include "JSystem/J2D/J2DScreen.h"
 #include "JSystem/J3D/J3DAnmTransform.h"
 #include "JSystem/J3D/J3DAnmVisibilityFull.h"
 #include "JSystem/JUtility/JUTResource.h"

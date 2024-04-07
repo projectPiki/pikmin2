@@ -3,7 +3,7 @@
 #include "JSystem/J2D/J2DAnm.h"
 #include "JSystem/J2D/J2DColorBlock.h"
 #include "JSystem/J2D/J2DMaterial.h"
-#include "JSystem/J2D/J2DPane.h"
+#include "JSystem/J2D/J2DWindow.h"
 #include "JSystem/J2D/J2DTevBlock.h"
 #include "JSystem/J2D/J2DTypes.h"
 #include "JSystem/JGeometry.h"

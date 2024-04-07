@@ -2,7 +2,7 @@
 #define _OG_SCREEN_CALLBACKNODES_H
 
 #include "types.h"
-#include "JSystem/J2D/J2DPane.h"
+#include "JSystem/J2D/J2DTextBox.h"
 #include "og/Screen/ScaleMgr.h"
 #include "og/Screen/AngleMgr.h"
 #include "P2DScreen.h"

@@ -3,7 +3,7 @@
 
 #include "Screen/screenObj.h"
 #include "Screen/Enums.h"
-#include "JSystem/J2D/J2DPane.h"
+#include "JSystem/J2D/J2DTextBox.h"
 #include "P2DScreen.h"
 
 #define MAX_CAVEDISP_NAME 5

@@ -21,7 +21,7 @@ struct JKRFileCache : public JKRFileLoader {
 	virtual ~JKRFileCache();                                                                       // _08
 	virtual bool becomeCurrent(const char* path);                                                  // _10
 	virtual void* getResource(const char* path);                                                   // _14
-	virtual void* getResource(u32 type, const char* name);                                         // _18
+	virtual void* getResource(u32 type, const char* fileName);                                     // _18
 	virtual size_t readResource(void* resourceBuffer, u32 bufferSize, const char* path);           // _1C
 	virtual size_t readResource(void* resourceBuffer, u32 bufferSize, u32 type, const char* name); // _20
 	virtual void removeResourceAll();                                                              // _24

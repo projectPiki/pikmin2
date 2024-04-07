@@ -21,8 +21,8 @@ struct J2DDataLink {
 };
 
 struct J2DDataManage {
-	void* get(const char*);
-	void* get(JSUInputStream*);
+	void* get(const char* fileName);
+	void* get(JSUInputStream* input);
 
 	J2DDataLink* mHead; // _00
 };

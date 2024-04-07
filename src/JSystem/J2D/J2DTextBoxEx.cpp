@@ -1,4 +1,4 @@
-#include "JSystem/J2D/J2DPane.h"
+#include "JSystem/J2D/J2DTextBox.h"
 #include "JSystem/J2D/J2DPrint.h"
 
 /**

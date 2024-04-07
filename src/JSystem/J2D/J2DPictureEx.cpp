@@ -2,14 +2,11 @@
 #include "Dolphin/mtx.h"
 #include "JSystem/J2D/J2DAnm.h"
 #include "JSystem/J2D/J2DMaterial.h"
-#include "JSystem/J2D/J2DPane.h"
+#include "JSystem/J2D/J2DPicture.h"
 #include "JSystem/J2D/J2DTypes.h"
 #include "JSystem/J3D/J3DAnmVtxColor.h"
 #include "JSystem/JGeometry.h"
 #include "JSystem/JUtility/JUTPalette.h"
-#include "JSystem/JUtility/JUTTexture.h"
-#include "JSystem/JUtility/TColor.h"
-#include "JSystem/ResTIMG.h"
 #include "types.h"
 
 /*
@@ -3277,14 +3274,14 @@ lbl_80057CD4:
 void J2DPictureEx::setBlendColorRatio(f32 p1, f32 p2, f32 p3, f32 p4, f32 p5, f32 p6, f32 p7, f32 p8)
 {
 	if (mMaterial != nullptr) {
-		_124[0] = p1;
-		_124[1] = p2;
-		_124[2] = p3;
-		_124[3] = p4;
-		_178    = p5;
-		_17C    = p6;
-		_180    = p7;
-		_188    = p8;
+		mBlendColorRatio[0] = p1;
+		mBlendColorRatio[1] = p2;
+		mBlendColorRatio[2] = p3;
+		mBlendColorRatio[3] = p4;
+		_178                = p5;
+		_17C                = p6;
+		_180                = p7;
+		_188                = p8;
 		setTevKColor(mMaterial->mTexGenBlock.mTexGenNum);
 	}
 	/*

@@ -14,20 +14,20 @@ struct JKRFileLoader : public JKRDisposer {
 	virtual void unmount();                                                                            // _0C
 	virtual bool becomeCurrent(const char* path)                                                  = 0; // _10
 	virtual void* getResource(const char* path)                                                   = 0; // _14
-	virtual void* getResource(u32 type, const char* name)                                         = 0; // _18
+	virtual void* getResource(u32 type, const char* fileName)                                     = 0; // _18
 	virtual size_t readResource(void* resourceBuffer, u32 bufferSize, const char* path)           = 0; // _1C
 	virtual size_t readResource(void* resourceBuffer, u32 bufferSize, u32 type, const char* name) = 0; // _20
 	virtual void removeResourceAll()                                                              = 0; // _24
-	virtual bool removeResource(void*)                                                            = 0; // _28
-	virtual bool detachResource(void*)                                                            = 0; // _2C
-	virtual s32 getResSize(const void*) const                                                     = 0; // _30
-	virtual u32 countFile(const char*) const                                                      = 0; // _34
-	virtual JKRFileFinder* getFirstFile(const char*) const                                        = 0; // _38
+	virtual bool removeResource(void* resource)                                                   = 0; // _28
+	virtual bool detachResource(void* resource)                                                   = 0; // _2C
+	virtual s32 getResSize(const void* resource) const                                            = 0; // _30
+	virtual u32 countFile(const char* path) const                                                 = 0; // _34
+	virtual JKRFileFinder* getFirstFile(const char* path) const                                   = 0; // _38
 
-	static void* getGlbResource(char const*);
-	static void* getGlbResource(char const*, JKRFileLoader*);
-	static JKRFileLoader* findVolume(char const**);
-	static const char* fetchVolumeName(char*, s32, char const*);
+	static void* getGlbResource(const char* path);
+	static void* getGlbResource(const char* fileName, JKRFileLoader* loader);
+	static JKRFileLoader* findVolume(const char** volumeName);
+	static const char* fetchVolumeName(char* nameBuffer, s32 bufferLen, const char* path);
 
 	bool isMounted() const { return mIsMounted; }
 	u32 getVolumeType() const { return mMagicWord; }
