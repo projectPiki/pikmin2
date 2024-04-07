@@ -135,34 +135,35 @@ struct J2DTextBoxEx : public J2DTextBox {
 
 	J2DTextBoxEx(J2DPane* parent, JSURandomInputStream* input, u32 flags, J2DMaterial* materials);
 
-	virtual ~J2DTextBoxEx();                                                        // _08
-	virtual void setCullBack(bool shouldCullBack);                                  // _1C (weak)
-	virtual void setCullBack(GXCullMode cullMode);                                  // _20
-	virtual void setAlpha(u8 alpha);                                                // _24
-	virtual void drawSelf(f32, f32, Mtx*);                                          // _38
-	virtual bool isUsed(const ResTIMG* resource);                                   // _4C (weak)
-	virtual bool isUsed(const ResFONT* resource);                                   // _50
-	virtual void rewriteAlpha();                                                    // _58
-	virtual void setAnimation(J2DAnmBase* animation);                               // _5C (weak)
-	virtual void setAnimation(J2DAnmTransform* animation);                          // _60 (weak)
-	virtual void setAnimation(J2DAnmColor* animation);                              // _64
-	virtual void setAnimation(J2DAnmTexPattern* animation);                         // _68
-	virtual void setAnimation(J2DAnmTextureSRTKey* animation);                      // _6C
-	virtual void setAnimation(J2DAnmTevRegKey* animation);                          // _70
-	virtual void setAnimation(J2DAnmVisibilityFull* animation);                     // _74
-	virtual void setAnimation(J2DAnmVtxColor* animation);                           // _78 (weak)
-	virtual const J2DAnmTransform* animationPane(const J2DAnmTransform* animation); // _90
-	virtual void draw(f32, f32);                                                    // _94
-	virtual void draw(f32, f32, f32, J2DTextBoxHBinding);                           // _98
-	virtual void setFont(JUTFont* font);                                            // _9C
-	virtual JUTResFont* getFont() const;                                            // _A0
-	virtual bool setBlack(JUtility::TColor black);                                  // _A4
-	virtual bool setWhite(JUtility::TColor white);                                  // _A8
-	virtual bool setBlackWhite(JUtility::TColor black, JUtility::TColor white);     // _AC
-	virtual JUtility::TColor getBlack() const;                                      // _B0
-	virtual JUtility::TColor getWhite() const;                                      // _B4
-	virtual J2DMaterial* getMaterial() const;                                       // _B8 (weak)
+	virtual ~J2DTextBoxEx();                                                                                       // _08
+	virtual void setCullBack(bool shouldCullBack) { setCullBack((shouldCullBack) ? GX_CULL_BACK : GX_CULL_NONE); } // _1C (weak)
+	virtual void setCullBack(GXCullMode cullMode);                                                                 // _20
+	virtual void setAlpha(u8 alpha);                                                                               // _24
+	virtual void drawSelf(f32, f32, Mtx*);                                                                         // _38
+	virtual bool isUsed(const ResTIMG* resource) { return J2DPane::isUsed(resource); }                             // _4C (weak)
+	virtual bool isUsed(const ResFONT* resource);                                                                  // _50
+	virtual void rewriteAlpha();                                                                                   // _58
+	virtual void setAnimation(J2DAnmBase* animation) { J2DPane::setAnimation(animation); }                         // _5C (weak)
+	virtual void setAnimation(J2DAnmTransform* animation) { J2DPane::setAnimation(animation); }                    // _60 (weak)
+	virtual void setAnimation(J2DAnmColor* animation);                                                             // _64
+	virtual void setAnimation(J2DAnmTexPattern* animation);                                                        // _68
+	virtual void setAnimation(J2DAnmTextureSRTKey* animation);                                                     // _6C
+	virtual void setAnimation(J2DAnmTevRegKey* animation);                                                         // _70
+	virtual void setAnimation(J2DAnmVisibilityFull* animation);                                                    // _74
+	virtual void setAnimation(J2DAnmVtxColor* animation) { }                                                       // _78 (weak)
+	virtual const J2DAnmTransform* animationPane(const J2DAnmTransform* animation);                                // _90
+	virtual void draw(f32, f32);                                                                                   // _94
+	virtual void draw(f32, f32, f32, J2DTextBoxHBinding);                                                          // _98
+	virtual void setFont(JUTFont* font);                                                                           // _9C
+	virtual JUTResFont* getFont() const;                                                                           // _A0
+	virtual bool setBlack(JUtility::TColor black);                                                                 // _A4
+	virtual bool setWhite(JUtility::TColor white);                                                                 // _A8
+	virtual bool setBlackWhite(JUtility::TColor black, JUtility::TColor white);                                    // _AC
+	virtual JUtility::TColor getBlack() const;                                                                     // _B0
+	virtual JUtility::TColor getWhite() const;                                                                     // _B4
+	virtual J2DMaterial* getMaterial() const { return mMaterial; }                                                 // _B8 (weak)
 
+	void setTevOrder(bool);
 	void setTevStage(bool);
 	void setStage(J2DTevStage*, stage_enum);
 	bool getBlackWhite(JUtility::TColor*, JUtility::TColor*) const;
@@ -172,7 +173,7 @@ struct J2DTextBoxEx : public J2DTextBox {
 	// _000-_138 = J2DTextBox
 	J2DMaterial* mMaterial;               // _138
 	u16 mAnimVisibilityIndex;             // _13C
-	u16 _13E;                             // _13E
+	u16 mMaterialID;                      // _13E
 	u8 _140;                              // _140
 	J2DAnmVisibilityFull* mAnmVisibility; // _144
 };

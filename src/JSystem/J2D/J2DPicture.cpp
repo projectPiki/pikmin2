@@ -49,7 +49,7 @@ J2DPicture::J2DPicture(J2DPane* parent, JSURandomInputStream* input, J2DMaterial
 
 	J2DPictureBlockTrailer trailer;
 	input->read(&trailer, sizeof(J2DPictureBlockTrailer));
-	u16 v1 = trailer._04;
+	u16 v1 = trailer.mMaterialID;
 	for (int i = 0; i < 4; i++) {
 		mTexCoords[i] = trailer.mTexCoords[i];
 		mCornerColors[i].set(trailer.mCornerColor[i]); // just need to fix this

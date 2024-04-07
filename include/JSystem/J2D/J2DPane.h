@@ -115,9 +115,9 @@ struct J2DPaneExBlock : J2DScrnBlockHeader {
 struct J2DPictureBlockTrailer {
 	u8 _00[2];                           // _00
 	u16 mMaterialNum;                    // _02
-	u16 _04;                             // _04
+	u16 mMaterialID;                     // _04
 	u8 _06[2];                           // _06 - padding?
-	s16 _08[2][2];                       // _08
+	u16 _08[4];                          // _08
 	JGeometry::TVec2<s16> mTexCoords[4]; // _10
 	GXColor mCornerColor[4];             // _20
 };

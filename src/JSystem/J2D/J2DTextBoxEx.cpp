@@ -25,12 +25,12 @@ J2DTextBoxEx::J2DTextBoxEx(J2DPane* parent, JSURandomInputStream* input, u32 fla
 
 	input->read(&info, sizeof(J2DTextBoxBlock));
 	mAnimVisibilityIndex = info.mAnimPaneIndex;
-	_13E                 = info.mMaterialNum;
+	mMaterialID          = info.mMaterialNum;
 	mMaterial            = nullptr;
 
-	if (_13E != 0xFFFF) {
-		mMaterial             = &materials[_13E];
-		materials[_13E].mPane = this;
+	if (mMaterialID != 0xFFFF) {
+		mMaterial                    = &materials[mMaterialID];
+		materials[mMaterialID].mPane = this;
 		rewriteAlpha();
 
 		if (mMaterial) {
@@ -286,6 +286,32 @@ JUTResFont* J2DTextBoxEx::getFont() const
 }
 
 /**
+ * @note Address: N/A
+ * @note Size: 0xE4
+ */
+void J2DTextBoxEx::setTevOrder(bool doBeyondStage0)
+{
+	u16 tevInfo[2];
+	if (!doBeyondStage0) {
+		tevInfo[0] = 4;
+		tevInfo[1] = 0xffff;
+	} else {
+		tevInfo[0] = 0xff;
+		tevInfo[1] = 0xff04;
+	}
+	for (u8 i = 0; i < 2; i++) {
+		if ((u8)mMaterial->getTevBlock()->getMaxStage() > i) {
+			J2DTevOrderInfo info;
+			info.mTexCoord       = (tevInfo[i]) >> 8;
+			info.mTexMap         = (tevInfo[i]) >> 8;
+			info.mColor          = tevInfo[i] & 0xff;
+			J2DTevOrder tevOrder = info;
+			mMaterial->getTevBlock()->setTevOrder(i, tevOrder);
+		}
+	}
+}
+
+/**
  * @note Address: 0x8005A2C4
  * @note Size: 0xA4
  */
@@ -306,6 +332,36 @@ void J2DTextBoxEx::setTevStage(bool doBeyondStage0)
  */
 void J2DTextBoxEx::setStage(J2DTevStage* stage, J2DTextBoxEx::stage_enum stageNum)
 {
+	const u8 tevColors[3][4] = {
+		{ 0x0F, 0x08, 0x0A, 0x0F },
+		{ 0x02, 0x04, 0x08, 0x0F },
+		{ 0x0F, 0x0A, 0x00, 0x0F },
+	};
+	const u8 tevAlpha[3][4] = {
+		{ 0x07, 0x04, 0x05, 0x07 },
+		{ 0x01, 0x02, 0x04, 0x07 },
+		{ 0x07, 0x05, 0x00, 0x07 },
+	};
+
+	const u8 tevColorOps[3][5] = {
+		{ 0x00, 0x00, 0x00, 0x01, 0x00 },
+		{ 0x00, 0x00, 0x00, 0x01, 0x00 },
+		{ 0x00, 0x00, 0x00, 0x01, 0x00 },
+	};
+
+	const u8 tevAlphaOps[3][5] = {
+		{ 0x00, 0x00, 0x00, 0x01, 0x00 },
+		{ 0x00, 0x00, 0x00, 0x01, 0x00 },
+		{ 0x00, 0x00, 0x00, 0x01, 0x00 },
+	};
+
+	stage->setTevColorAB(tevColors[stageNum][0], tevColors[stageNum][1]);
+	stage->setTevColorCD(tevColors[stageNum][2], tevColors[stageNum][3]);
+	stage->setTevColorOp(tevColorOps[stageNum][0], tevColorOps[stageNum][1], tevColorOps[stageNum][2], tevColorOps[stageNum][3],
+	                     tevColorOps[stageNum][4]);
+	stage->setAlphaABCD(tevAlpha[stageNum][0], tevAlpha[stageNum][1], tevAlpha[stageNum][2], tevAlpha[stageNum][3]);
+	stage->setTevAlphaOp(tevAlphaOps[stageNum][0], tevAlphaOps[stageNum][1], tevAlphaOps[stageNum][2], tevAlphaOps[stageNum][3],
+	                     tevAlphaOps[stageNum][4]);
 	/*
 	stwu     r1, -0x80(r1)
 	lis      r3, lbl_804786C8@ha
@@ -528,330 +584,68 @@ bool J2DTextBoxEx::setWhite(JUtility::TColor white)
  */
 bool J2DTextBoxEx::setBlackWhite(JUtility::TColor black, JUtility::TColor white)
 {
-	if (!mMaterial) {
+	if (mMaterial == nullptr) {
 		return false;
 	}
-	if (!mMaterial->mTevBlock) {
+
+	if (mMaterial->getTevBlock() == nullptr) {
 		return false;
 	}
+
 	if (!isSetBlackWhite(black, white)) {
 		return false;
 	}
 
-	bool set = false;
-	if (*(int*)&black && *(int*)&white) {
-		set = true;
+	bool isNotDefault = false;
+	if (black != 0 || white != -1) {
+		isNotDefault = true;
 	}
-	mMaterial->mTevBlock->setTevStageNum(1 - set);
-	setTevStage(set);
-	if (set) {
-		J2DGXColorS10 color(black);
-		mMaterial->mTevBlock->setTevColor(0, color);
-		J2DGXColorS10 color2(white);
-		mMaterial->mTevBlock->setTevColor(1, color2);
+
+	mMaterial->getTevBlock()->setTevStageNum(isNotDefault ? 2 : 1);
+	setTevOrder(isNotDefault);
+	setTevStage(isNotDefault);
+
+	if (isNotDefault) {
+		J2DGXColorS10 color;
+		color.r = black.r;
+		color.g = black.g;
+		color.b = black.b;
+		color.a = black.a;
+		mMaterial->getTevBlock()->setTevColor(0, color);
+
+		color.r = white.r;
+		color.g = white.g;
+		color.b = white.b;
+		color.a = white.a;
+		mMaterial->getTevBlock()->setTevColor(1, color);
 	}
+
 	return true;
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stmw     r27, 0x3c(r1)
-	mr       r29, r4
-	mr       r28, r3
-	mr       r30, r5
-	lwz      r4, 0x138(r3)
-	cmplwi   r4, 0
-	bne      lbl_8005A758
-	li       r3, 0
-	b        lbl_8005A938
-
-lbl_8005A758:
-	lwz      r0, 0x70(r4)
-	cmplwi   r0, 0
-	bne      lbl_8005A76C
-	li       r3, 0
-	b        lbl_8005A938
-
-lbl_8005A76C:
-	lwz      r6, 0(r30)
-	addi     r4, r1, 0x18
-	lwz      r0, 0(r29)
-	addi     r5, r1, 0x14
-	stw      r6, 0x14(r1)
-	stw      r0, 0x18(r1)
-	bl isSetBlackWhite__12J2DTextBoxExCFQ28JUtility6TColorQ28JUtility6TColor
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8005A798
-	li       r3, 0
-	b        lbl_8005A938
-
-lbl_8005A798:
-	lwz      r0, 0(r29)
-	li       r31, 0
-	cmplwi   r0, 0
-	bne      lbl_8005A7B8
-	lwz      r3, 0(r30)
-	addis    r0, r3, 1
-	cmplwi   r0, 0xffff
-	beq      lbl_8005A7BC
-
-lbl_8005A7B8:
-	li       r31, 1
-
-lbl_8005A7BC:
-	lwz      r3, 0x138(r28)
-	clrlwi   r4, r31, 0x18
-	neg      r0, r4
-	lwz      r3, 0x70(r3)
-	or       r0, r0, r4
-	srwi     r4, r0, 0x1f
-	lwz      r12, 0(r3)
-	addi     r0, r4, 1
-	clrlwi   r4, r0, 0x18
-	lwz      r12, 0x54(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r31, 0x18
-	bne      lbl_8005A80C
-	lis      r3, 0x0000FFFF@ha
-	li       r4, 4
-	addi     r0, r3, 0x0000FFFF@l
-	sth      r4, 8(r1)
-	sth      r0, 0xa(r1)
-	b        lbl_8005A820
-
-lbl_8005A80C:
-	lis      r3, 0x0000FF04@ha
-	li       r4, 0xff
-	addi     r0, r3, 0x0000FF04@l
-	sth      r4, 8(r1)
-	sth      r0, 0xa(r1)
-
-lbl_8005A820:
-	li       r27, 0
-	b        lbl_8005A894
-
-lbl_8005A828:
-	lwz      r3, 0x138(r28)
-	lwz      r3, 0x70(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	clrlwi   r4, r27, 0x18
-	cmplw    r0, r4
-	ble      lbl_8005A890
-	rlwinm   r0, r27, 1, 0x17, 0x1e
-	addi     r3, r1, 8
-	lhzx     r3, r3, r0
-	addi     r5, r1, 0x10
-	srawi    r0, r3, 8
-	stb      r3, 0xe(r1)
-	stb      r0, 0xc(r1)
-	stb      r0, 0xd(r1)
-	lwz      r0, 0xc(r1)
-	stw      r0, 0x10(r1)
-	lwz      r3, 0x138(r28)
-	lwz      r3, 0x70(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8005A890:
-	addi     r27, r27, 1
-
-lbl_8005A894:
-	clrlwi   r0, r27, 0x18
-	cmplwi   r0, 2
-	blt      lbl_8005A828
-	mr       r3, r28
-	mr       r4, r31
-	bl       setTevStage__12J2DTextBoxExFb
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_8005A934
-	lbz      r3, 1(r29)
-	addi     r5, r1, 0x24
-	lbz      r6, 2(r29)
-	li       r4, 0
-	lbz      r7, 3(r29)
-	lbz      r0, 0(r29)
-	sth      r3, 0x26(r1)
-	sth      r0, 0x24(r1)
-	sth      r6, 0x28(r1)
-	sth      r7, 0x2a(r1)
-	lwz      r3, 0x138(r28)
-	lwz      r3, 0x70(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-	lbz      r3, 1(r30)
-	addi     r5, r1, 0x1c
-	lbz      r6, 2(r30)
-	li       r4, 1
-	lbz      r7, 3(r30)
-	lbz      r0, 0(r30)
-	sth      r3, 0x1e(r1)
-	sth      r0, 0x1c(r1)
-	sth      r6, 0x20(r1)
-	sth      r7, 0x22(r1)
-	lwz      r3, 0x138(r28)
-	lwz      r3, 0x70(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8005A934:
-	li       r3, 1
-
-lbl_8005A938:
-	lmw      r27, 0x3c(r1)
-	lwz      r0, 0x54(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /**
  * @note Address: 0x8005A94C
  * @note Size: 0x194
  */
-bool J2DTextBoxEx::getBlackWhite(JUtility::TColor* black, JUtility::TColor* white) const
+bool J2DTextBoxEx::getBlackWhite(JUtility::TColor* outBlack, JUtility::TColor* outWhite) const
 {
-	if (!mMaterial) {
+	if (mMaterial == nullptr) {
 		return false;
 	}
-	if (!mMaterial->mTevBlock) {
+	if (mMaterial->mTevBlock == nullptr) {
 		return false;
 	}
-
-	u8 num = mMaterial->mTevBlock->getTevStageNum();
-	black->set(0, 0, 0, 0);
-	white->set(255, 255, 255, 255);
-	if (num) {
-		JUtility::TColor color1, color2;
-		color1 = *mMaterial->mTevBlock->getTevColor(0);
-		color2 = *mMaterial->mTevBlock->getTevColor(1);
-
-		black->setRGBA(color1);
-		white->setRGBA(color2);
+	bool tevStageNum = mMaterial->getTevBlock()->getTevStageNum() != 1;
+	*outBlack        = TCOLOR_BLACK_U32;
+	*outWhite        = TCOLOR_WHITE_U32;
+	if (tevStageNum > 0) {
+		J2DGXColorS10 tevBlack, tevWhite;
+		tevBlack  = *mMaterial->getTevBlock()->getTevColor(0);
+		tevWhite  = *mMaterial->getTevBlock()->getTevColor(1);
+		*outBlack = JUtility::TColor(((u8)tevBlack.r << 0x18) | ((u8)tevBlack.g << 0x10) | ((u8)tevBlack.b << 8) | (u8)tevBlack.a);
+		*outWhite = JUtility::TColor(((u8)tevWhite.r << 0x18) | ((u8)tevWhite.g << 0x10) | ((u8)tevWhite.b << 8) | (u8)tevWhite.a);
 	}
 	return true;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r26, 0x18(r1)
-	mr       r29, r3
-	lwz      r3, 0x138(r3)
-	mr       r30, r4
-	mr       r31, r5
-	cmplwi   r3, 0
-	bne      lbl_8005A97C
-	li       r3, 0
-	b        lbl_8005AACC
-
-lbl_8005A97C:
-	lwz      r3, 0x70(r3)
-	cmplwi   r3, 0
-	bne      lbl_8005A990
-	li       r3, 0
-	b        lbl_8005AACC
-
-lbl_8005A990:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x58(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	clrlwi   r3, r3, 0x18
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	subfic   r5, r3, 1
-	addi     r4, r3, -1
-	lbz      r3, 0x14(r1)
-	or       r4, r5, r4
-	stw      r0, 0x10(r1)
-	rlwinm.  r4, r4, 1, 0x1f, 0x1f
-	lbz      r0, 0x15(r1)
-	stb      r3, 0(r30)
-	lbz      r3, 0x16(r1)
-	stb      r0, 1(r30)
-	lbz      r0, 0x17(r1)
-	stb      r3, 2(r30)
-	lbz      r3, 0x10(r1)
-	stb      r0, 3(r30)
-	lbz      r0, 0x11(r1)
-	stb      r3, 0(r31)
-	lbz      r3, 0x12(r1)
-	stb      r0, 1(r31)
-	lbz      r0, 0x13(r1)
-	stb      r3, 2(r31)
-	stb      r0, 3(r31)
-	beq      lbl_8005AAC8
-	lwz      r3, 0x138(r29)
-	li       r4, 0
-	lwz      r3, 0x70(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	lwz      r5, 0x138(r29)
-	li       r4, 1
-	lha      r29, 0(r3)
-	lha      r28, 2(r3)
-	lha      r27, 4(r3)
-	lha      r26, 6(r3)
-	lwz      r3, 0x70(r5)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	rlwinm   r4, r28, 0x10, 8, 0xf
-	lha      r0, 2(r3)
-	rlwimi   r4, r29, 0x18, 0, 7
-	lha      r5, 0(r3)
-	rlwimi   r4, r27, 8, 0x10, 0x17
-	rlwinm   r0, r0, 0x10, 8, 0xf
-	rlwimi   r4, r26, 0, 0x18, 0x1f
-	lha      r6, 4(r3)
-	stw      r4, 0xc(r1)
-	rlwimi   r0, r5, 0x18, 0, 7
-	lha      r7, 6(r3)
-	rlwimi   r0, r6, 8, 0x10, 0x17
-	lbz      r3, 0xc(r1)
-	lbz      r5, 0xd(r1)
-	rlwimi   r0, r7, 0, 0x18, 0x1f
-	stb      r3, 0(r30)
-	lbz      r4, 0xe(r1)
-	stb      r5, 1(r30)
-	lbz      r3, 0xf(r1)
-	stw      r0, 8(r1)
-	stb      r4, 2(r30)
-	lbz      r0, 8(r1)
-	stb      r3, 3(r30)
-	lbz      r4, 9(r1)
-	stb      r0, 0(r31)
-	lbz      r3, 0xa(r1)
-	stb      r4, 1(r31)
-	lbz      r0, 0xb(r1)
-	stb      r3, 2(r31)
-	stb      r0, 3(r31)
-
-lbl_8005AAC8:
-	li       r3, 1
-
-lbl_8005AACC:
-	lmw      r26, 0x18(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -860,7 +654,7 @@ lbl_8005AACC:
  */
 bool J2DTextBoxEx::isSetBlackWhite(JUtility::TColor black, JUtility::TColor white) const
 {
-	if (*(u32*)&black == 0 && *(u32*)&white == -1) {
+	if (black == 0 && white == 0xFFFFFFFF) {
 		return true;
 	}
 
@@ -878,40 +672,10 @@ bool J2DTextBoxEx::isSetBlackWhite(JUtility::TColor black, JUtility::TColor whit
 JUtility::TColor J2DTextBoxEx::getBlack() const
 {
 	JUtility::TColor black, white;
-	if (getBlackWhite(&black, &white)) {
-		return black;
+	if (!getBlackWhite(&black, &white)) {
+		return TCOLOR_BLACK_U32;
 	}
-	return JUtility::TColor(0);
-
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  li        r0, -0x1
-	  addi      r5, r1, 0x8
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  mr        r3, r4
-	  addi      r4, r1, 0xC
-	  stw       r0, 0xC(r1)
-	  stw       r0, 0x8(r1)
-	  bl        -0x254
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x44
-	  li        r0, 0
-	  stw       r0, 0x0(r31)
-	  b         .loc_0x4C
-	.loc_0x44:
-	  lwz       r0, 0xC(r1)
-	  stw       r0, 0x0(r31)
-	.loc_0x4C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	return black;
 }
 
 /**
@@ -921,39 +685,10 @@ JUtility::TColor J2DTextBoxEx::getBlack() const
 JUtility::TColor J2DTextBoxEx::getWhite() const
 {
 	JUtility::TColor black, white;
-	if (getBlackWhite(&black, &white)) {
-		return white;
+	if (!getBlackWhite(&black, &white)) {
+		return TCOLOR_WHITE_U32;
 	}
-	return JUtility::TColor(255);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  li        r0, -0x1
-	  addi      r5, r1, 0x8
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  mr        r3, r4
-	  addi      r4, r1, 0xC
-	  stw       r0, 0xC(r1)
-	  stw       r0, 0x8(r1)
-	  bl        -0x2B4
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x44
-	  li        r0, -0x1
-	  stw       r0, 0x0(r31)
-	  b         .loc_0x4C
-	.loc_0x44:
-	  lwz       r0, 0x8(r1)
-	  stw       r0, 0x0(r31)
-	.loc_0x4C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	return white;
 }
 
 /**
@@ -1066,7 +801,7 @@ void J2DTextBoxEx::setAnimation(J2DAnmVisibilityFull* anim) { mAnmVisibility = a
  */
 const J2DAnmTransform* J2DTextBoxEx::animationPane(const J2DAnmTransform* anm)
 {
-	if (mAnmVisibility && mAnimVisibilityIndex != 0xffff) {
+	if (mAnmVisibility && mAnimVisibilityIndex != 0xFFFF) {
 		u8 data[16];
 		mAnmVisibility->getVisibility(mAnimVisibilityIndex, data);
 		if (data[0]) {
@@ -1077,46 +812,3 @@ const J2DAnmTransform* J2DTextBoxEx::animationPane(const J2DAnmTransform* anm)
 	}
 	J2DPane::animationPane(anm);
 }
-
-/**
- * @note Address: 0x8005AE64
- * @note Size: 0x8
- */
-J2DMaterial* J2DTextBoxEx::getMaterial() const { return mMaterial; }
-
-/**
- * @note Address: 0x8005AE6C
- * @note Size: 0x3C
- */
-void J2DTextBoxEx::setCullBack(bool shouldCullBack)
-{
-	GXCullMode mode = GX_CULL_NONE;
-	if (shouldCullBack) {
-		mode = GX_CULL_BACK;
-	}
-	setCullBack(mode);
-}
-
-/**
- * @note Address: 0x8005AEA8
- * @note Size: 0x20
- */
-bool J2DTextBoxEx::isUsed(const ResTIMG* timg) { return J2DPane::isUsed(timg); }
-
-/**
- * @note Address: 0x8005AEC8
- * @note Size: 0x4
- */
-void J2DTextBoxEx::setAnimation(J2DAnmVtxColor* anm) { }
-
-/**
- * @note Address: 0x8005AECC
- * @note Size: 0x20
- */
-void J2DTextBoxEx::setAnimation(J2DAnmTransform* anm) { J2DPane::setAnimation(anm); }
-
-/**
- * @note Address: 0x8005AEEC
- * @note Size: 0x20
- */
-void J2DTextBoxEx::setAnimation(J2DAnmBase* anm) { J2DPane::setAnimation(anm); }
