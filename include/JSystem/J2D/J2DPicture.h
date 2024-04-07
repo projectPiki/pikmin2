@@ -306,8 +306,8 @@ struct J2DPictureEx : public J2DPicture {
 	inline void setAnmVtxColorHelper(J2DAnmVtxColor* animation, u16 p2, u8 p3)
 	{
 		for (u16 b = 0; b < p2; b++) {
-			for (u16 c = 0; c < animation->mVtxColorIndexData[b]->_00; c++) {
-				if (_170[p3] == *animation->mVtxColorIndexPtr[animation->mVtxColorIndexData[b]->_04 + c]) {
+			for (u16 c = 0; c < animation->mVtxColorIndexData[b]->mNum; c++) {
+				if (_170[p3] == *animation->mVtxColorIndexPtr[(u32)animation->mVtxColorIndexData[b]->mData + c]) {
 					mAnmVtxColor = animation;
 					_1A4 |= 1 << p3;
 					return;

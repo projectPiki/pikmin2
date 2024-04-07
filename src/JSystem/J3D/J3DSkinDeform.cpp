@@ -44,8 +44,8 @@ void J3DVtxColorCalc::calc(J3DVertexBuffer* buffer)
 			u32 color;
 			mAnmVtxColor->getColor(0, i, (GXColor*)&color);
 			J3DAnmVtxColorIndexData* idxData = mAnmVtxColor->getAnmVtxColorIndexData(0, i);
-			for (u32 j = 0; j < (u16)idxData->_00; j++) {
-				((u32*)var2)[reinterpret_cast<u16*>(idxData->_04)[j]] = color; // _04 may be u16*
+			for (u32 j = 0; j < (u16)idxData->mNum; j++) {
+				((u32*)var2)[reinterpret_cast<u16*>(idxData->mData)[j]] = color; // _04 may be u16*
 			}
 		}
 		DCStoreRange(var2, buffer->getVertexData()->getColNum() * 4);

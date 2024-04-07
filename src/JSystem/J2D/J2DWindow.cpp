@@ -223,12 +223,12 @@ void J2DWindow::private_readStream(J2DPane* parent, JSURandomInputStream* input,
 void J2DWindow::initinfo2()
 {
 	if (_100 && _104 && _108 && _10C) {
-		_140 = _100->getSizeX() + _104->getSizeX();
-		_142 = _100->getSizeY() + _108->getSizeY();
+		mMinWidth  = _100->getSizeX() + _104->getSizeX();
+		mMinHeight = _100->getSizeY() + _108->getSizeY();
 
 	} else {
-		_140 = 1;
-		_142 = 1;
+		mMinWidth  = 1;
+		mMinHeight = 1;
 		return;
 	}
 
@@ -386,7 +386,7 @@ void J2DWindow::draw_private(const JGeometry::TBox2f& box0, const JGeometry::TBo
  */
 void J2DWindow::draw(const JGeometry::TBox2f& box0, const JGeometry::TBox2f& box1)
 {
-	if (box0.getWidth() >= _140 && box0.getHeight() >= _142 && isVisible()) {
+	if (box0.getWidth() >= mMinWidth && box0.getHeight() >= mMinHeight && isVisible()) {
 		makeMatrix(box0.i.x, box0.i.y, 0.0f, 0.0f);
 		GXLoadPosMtxImm(mPositionMtx, GX_PNMTX0);
 		GXSetCurrentMtx(0);
@@ -450,7 +450,7 @@ void J2DWindow::drawSelf(f32 offsetX, f32 offsetY, Mtx* mtx)
 {
 	JGeometry::TBox2f box(mBounds);
 	box.addPos(JGeometry::TVec2<f32>(offsetX, offsetY));
-	if (box.getWidth() >= _140 && box.getHeight() >= _142) {
+	if (box.getWidth() >= mMinWidth && box.getHeight() >= mMinHeight) {
 		Mtx posMtx;
 		PSMTXConcat(*mtx, mGlobalMtx, posMtx);
 		GXLoadPosMtxImm(posMtx, 0);

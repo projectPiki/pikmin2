@@ -11,158 +11,64 @@
 #include "JSystem/JUtility/TColor.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_804784E0
-    lbl_804784E0:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x0F080A0F
-        .4byte 0x0F080A0F
-        .4byte 0x0F0A000F
-        .4byte 0x0204080F
-        .4byte 0x0204080F
-        .4byte 0x0F0F0F0A
-        .4byte 0x07040507
-        .4byte 0x05070707
-        .4byte 0x07050007
-        .4byte 0x01020407
-        .4byte 0x07070702
-        .4byte 0x07070705
-        .4byte 0x00000001
-        .4byte 0x00000000
-        .4byte 0x01000000
-        .4byte 0x00010000
-        .4byte 0x00000100
-        .4byte 0x00000001
-        .4byte 0x00000000
-        .4byte 0x01000000
-    .global lbl_804785C0
-    lbl_804785C0:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__11J2DWindowEx
-    __vt__11J2DWindowEx:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__11J2DWindowExFv
-        .4byte getTypeID__9J2DWindowCFv
-        .4byte move__7J2DPaneFff
-        .4byte add__7J2DPaneFff
-        .4byte resize__9J2DWindowFff
-        .4byte setCullBack__11J2DWindowExFb
-        .4byte setCullBack__11J2DWindowExF11_GXCullMode
-        .4byte setAlpha__11J2DWindowExFUc
-        .4byte setConnectParent__7J2DPaneFb
-        .4byte calcMtx__7J2DPaneFv
-        .4byte update__7J2DPaneFv
-        .4byte drawSelf__9J2DWindowFff
-        .4byte drawSelf__11J2DWindowExFffPA3_A4_f
-        .4byte search__7J2DPaneFUx
-        .4byte searchUserInfo__7J2DPaneFUx
-        .4byte makeMatrix__7J2DPaneFff
-        .4byte makeMatrix__7J2DPaneFffff
-        .4byte isUsed__11J2DWindowExFPC7ResTIMG
-        .4byte isUsed__11J2DWindowExFPC7ResFONT
-        .4byte clearAnmTransform__7J2DPaneFv
-        .4byte rewriteAlpha__11J2DWindowExFv
-        .4byte setAnimation__11J2DWindowExFP10J2DAnmBase
-        .4byte setAnimation__11J2DWindowExFP15J2DAnmTransform
-        .4byte setAnimation__11J2DWindowExFP11J2DAnmColor
-        .4byte setAnimation__11J2DWindowExFP16J2DAnmTexPattern
-        .4byte setAnimation__11J2DWindowExFP19J2DAnmTextureSRTKey
-        .4byte setAnimation__11J2DWindowExFP15J2DAnmTevRegKey
-        .4byte setAnimation__11J2DWindowExFP20J2DAnmVisibilityFull
-        .4byte setAnimation__11J2DWindowExFP14J2DAnmVtxColor
-        .4byte animationTransform__7J2DPaneFPC15J2DAnmTransform
-        .4byte setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull
-        .4byte setAnimationVF__7J2DPaneFP20J2DAnmVisibilityFull
-        .4byte setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor
-        .4byte setAnimationVC__7J2DPaneFP14J2DAnmVtxColor
-        .4byte animationPane__11J2DWindowExFPC15J2DAnmTransform
-        .4byte "draw__11J2DWindowExFRCQ29JGeometry8TBox2<f>"
-        .4byte
-   "draw__11J2DWindowExFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>" .4byte
-   draw__11J2DWindowExFffff .4byte setBlack__11J2DWindowExFQ28JUtility6TColor
-        .4byte setWhite__11J2DWindowExFQ28JUtility6TColor
-        .4byte setBlackWhite__11J2DWindowExFQ28JUtility6TColorQ28JUtility6TColor
-        .4byte getBlack__11J2DWindowExCFv
-        .4byte getWhite__11J2DWindowExCFv
-        .4byte getFrameTexture__11J2DWindowExCFUcUc
-        .4byte getContentsTexture__11J2DWindowExCFUc
-        .4byte getMaterial__11J2DWindowExCFRQ29J2DWindow9TMaterial
-        .4byte getFrameMaterial__11J2DWindowExCFUc
-        .4byte getContentsMaterial__11J2DWindowExCFv
-        .4byte "drawContents__11J2DWindowExFRCQ29JGeometry8TBox2<f>"
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_805168A0
-    lbl_805168A0:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_805168A8
-    lbl_805168A8:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_805168B0
-    lbl_805168B0:
-        .4byte 0x00000000
-    .global lbl_805168B4
-    lbl_805168B4:
-        .float 1.0
-    .global lbl_805168B8
-    lbl_805168B8:
-        .float 0.5
-        .4byte 0x00000000
-*/
-
 /**
  * @note Address: 0x80044E34
  * @note Size: 0x2E8
  */
 J2DWindowEx::J2DWindowEx(J2DPane* parent, JSURandomInputStream* input, u32 flags, J2DMaterial* materials)
 {
+	mAnmVisibility = nullptr;
+	mAnmVtxColor   = nullptr;
+	int position   = input->getPosition();
+	int uStack_88[2];
+	input->read(uStack_88, 8);
+	mBloBlockType = uStack_88[0];
+	int iVar2     = input->getPosition();
+	int auStack_90[2];
+	input->peek(auStack_90, 8);
+	makePaneExStream(parent, input);
+	input->seek(iVar2 + auStack_90[1], SEEK_SET);
+	J2DWindowData auStack_70;
+	input->read(&auStack_70, sizeof(J2DWindowData));
+
+	JUtility::TColor* colors[4] = { nullptr };
+	colors[0]                   = &mContentsColorA;
+	colors[1]                   = &mContentsColorB;
+	colors[2]                   = &mContentsColorC;
+	colors[3]                   = &mContentsColorD;
+
+	for (int i = 0; i < 4; i++) {
+		_15C[i]            = auStack_70.mContentIds[i];
+		mFrameMaterials[i] = nullptr;
+		if (_15C[i] != 0xffff) {
+			mFrameMaterials[i]           = materials + _15C[i];
+			(materials + _15C[i])->mPane = this;
+		}
+		_168[i]      = auStack_70._28[i];
+		*(colors[i]) = JUtility::TColor(auStack_70.mContentColors[i]);
+	}
+
+	_144 = auStack_70._18;
+	_114.set(auStack_70.mMinX, auStack_70.mMinY, auStack_70.mMinX + auStack_70.mOffsetX, auStack_70.mMinY + auStack_70.mOffsetY);
+	_166              = auStack_70._22;
+	mMaterialID       = auStack_70._24;
+	mContentsMaterial = nullptr;
+
+	if (mMaterialID != 0xffff) {
+		mContentsMaterial            = &materials[mMaterialID];
+		materials[mMaterialID].mPane = this;
+	}
+
+	input->seek(position + uStack_88[1], SEEK_SET);
+	rewriteAlpha();
+	_100             = nullptr;
+	_104             = nullptr;
+	_108             = nullptr;
+	_10C             = nullptr;
+	mPalette         = nullptr;
+	mContentsTexture = nullptr;
+	mMaterialFlags   = 0;
+	setMinSize();
 	/*
 	.loc_0x0:
 	  stwu      r1, -0xB0(r1)
@@ -361,40 +267,21 @@ J2DWindowEx::J2DWindowEx(J2DPane* parent, JSURandomInputStream* input, u32 flags
 }
 
 /**
- * @note Address: 0x8004511C
- * @note Size: 0x8
+ * @note Address: N/A
+ * @note Size: 0x600
  */
-// J2DTevStage* J2DTevBlock::getTevStage(u32 index) { return nullptr; }
-
-/**
- * @note Address: 0x80045124
- * @note Size: 0x4
- */
-// void J2DTevBlock::setTevOrder(u32 index, J2DTevOrder order) { }
-
-/**
- * @note Address: 0x80045128
- * @note Size: 0x8
- */
-// bool J2DTevBlock::insertTexture(u32 index, const ResTIMG* img) { return false; }
-
-/**
- * @note Address: 0x80045130
- * @note Size: 0x4
- */
-// void J2DTevBlock::setTevKAlphaSel(u32 index, u8 sel) { }
-
-/**
- * @note Address: 0x80045134
- * @note Size: 0x4
- */
-// void J2DTevBlock::setTevKColorSel(u32 index, u8 sel) { }
-
-/**
- * @note Address: 0x80045138
- * @note Size: 0x4
- */
-// void J2DTevBlock::setTevStageNum(u8) { }
+void J2DWindowEx::initialize(u32, const ResTIMG**, const JGeometry::TBox2f* box)
+{
+	// this is just here to spawn weak functions.
+	mFrameMaterials[0]->getTevBlock()->setTevStageNum(0);
+	mFrameMaterials[0]->getTevBlock()->setTevKColorSel(0, 0);
+	mFrameMaterials[0]->getTevBlock()->setTevKAlphaSel(0, 0);
+	mFrameMaterials[0]->getTevBlock()->insertTexture(0, (const ResTIMG*)nullptr);
+	J2DTevOrder order;
+	mFrameMaterials[0]->getTevBlock()->setTevOrder(0, order);
+	mFrameMaterials[0]->getTevBlock()->getTevStage(0);
+	_114.i.x = 0.0f; // something has to use 0.0f around here
+}
 
 /**
  * @note Address: 0x8004513C
@@ -402,15 +289,14 @@ J2DWindowEx::J2DWindowEx(J2DPane* parent, JSURandomInputStream* input, u32 flags
  */
 void J2DWindowEx::setMinSize()
 {
-	_140 = 1;
-	_142 = 1;
-	if (mFrameMaterials[0] != nullptr && mFrameMaterials[1] != nullptr && mFrameMaterials[2] != nullptr && mFrameMaterials[3] != nullptr
-	    && mFrameMaterials[0]->mTevBlock != nullptr && mFrameMaterials[1]->mTevBlock != nullptr && mFrameMaterials[2]->mTevBlock != nullptr
-	    && mFrameMaterials[3]->mTevBlock != nullptr && mFrameMaterials[0]->mTevBlock->getTexture(0) != nullptr
-	    && mFrameMaterials[1]->mTevBlock->getTexture(0) != nullptr && mFrameMaterials[2]->mTevBlock->getTexture(0) != nullptr
-	    && mFrameMaterials[3]->mTevBlock->getTexture(0) != nullptr) {
-		_140 = mFrameMaterials[0]->mTevBlock->getTexture(0)->getSizeX() + mFrameMaterials[1]->mTevBlock->getTexture(0)->getSizeX();
-		_142 = mFrameMaterials[0]->mTevBlock->getTexture(0)->getSizeY() + mFrameMaterials[2]->mTevBlock->getTexture(0)->getSizeY();
+	mMinWidth  = 1;
+	mMinHeight = 1;
+	if (mFrameMaterials[0] && mFrameMaterials[1] && mFrameMaterials[2] && mFrameMaterials[3] && mFrameMaterials[0]->mTevBlock
+	    && mFrameMaterials[1]->mTevBlock && mFrameMaterials[2]->mTevBlock && mFrameMaterials[3]->mTevBlock
+	    && mFrameMaterials[0]->mTevBlock->getTexture(0) && mFrameMaterials[1]->mTevBlock->getTexture(0)
+	    && mFrameMaterials[2]->mTevBlock->getTexture(0) && mFrameMaterials[3]->mTevBlock->getTexture(0)) {
+		mMinWidth  = mFrameMaterials[0]->mTevBlock->getTexture(0)->getSizeX() + mFrameMaterials[1]->mTevBlock->getTexture(0)->getSizeX();
+		mMinHeight = mFrameMaterials[0]->mTevBlock->getTexture(0)->getSizeY() + mFrameMaterials[2]->mTevBlock->getTexture(0)->getSizeY();
 	}
 }
 
@@ -420,92 +306,27 @@ void J2DWindowEx::setMinSize()
  */
 J2DWindowEx::~J2DWindowEx()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	or.      r28, r3, r3
-	beq      lbl_800453D4
-	lis      r3, __vt__11J2DWindowEx@ha
-	li       r30, 0
-	addi     r0, r3, __vt__11J2DWindowEx@l
-	li       r31, 1
-	stw      r0, 0(r28)
-	b        lbl_80045380
+	for (u8 i = 0; i < 4; i++) {
+		if (mMaterialFlags & (1 << i)) {
+			delete mFrameMaterials[i];
+		}
+	}
 
-lbl_80045340:
-	clrlwi   r0, r30, 0x18
-	lbz      r3, 0x170(r28)
-	slw      r0, r31, r0
-	and.     r0, r3, r0
-	beq      lbl_8004537C
-	rlwinm   r3, r30, 2, 0x16, 0x1d
-	addi     r0, r3, 0x148
-	lwzx     r3, r28, r0
-	cmplwi   r3, 0
-	beq      lbl_8004537C
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8004537C:
-	addi     r30, r30, 1
-
-lbl_80045380:
-	clrlwi   r0, r30, 0x18
-	cmplwi   r0, 4
-	blt      lbl_80045340
-	lbz      r0, 0x170(r28)
-	rlwinm.  r0, r0, 0, 0x1b, 0x1b
-	beq      lbl_800453B8
-	lwz      r3, 0x160(r28)
-	cmplwi   r3, 0
-	beq      lbl_800453B8
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_800453B8:
-	mr       r3, r28
-	li       r4, 0
-	bl       __dt__9J2DWindowFv
-	extsh.   r0, r29
-	ble      lbl_800453D4
-	mr       r3, r28
-	bl       __dl__FPv
-
-lbl_800453D4:
-	lwz      r0, 0x24(r1)
-	mr       r3, r28
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (mMaterialFlags & 0x10) {
+		delete mContentsMaterial;
+	}
 }
 
 /**
  * @note Address: 0x800453F8
  * @note Size: 0xA0
  */
-void J2DWindowEx::drawSelf(f32 p1, f32 p2, f32 (*p3)[3][4])
+void J2DWindowEx::drawSelf(f32 x, f32 y, Mtx* texMtx)
 {
 	JGeometry::TBox2f box = mBounds;
-	box.addPos(p1, p2);
+	box.addPos(x, y);
 	Mtx v1;
-	PSMTXConcat(*p3, mGlobalMtx, v1);
+	PSMTXConcat(*texMtx, mGlobalMtx, v1);
 	GXLoadPosMtxImm(v1, 0);
 	draw_private(box, _114);
 	clip(_114);
@@ -515,768 +336,310 @@ void J2DWindowEx::drawSelf(f32 p1, f32 p2, f32 (*p3)[3][4])
  * @note Address: 0x80045498
  * @note Size: 0x6F0
  */
-void J2DWindowEx::draw_private(const JGeometry::TBox2<f32>&, const JGeometry::TBox2<f32>&)
+void J2DWindowEx::draw_private(const JGeometry::TBox2<f32>& p1, const JGeometry::TBox2<f32>& p2)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x140(r1)
-	  mflr      r0
-	  stw       r0, 0x144(r1)
-	  stfd      f31, 0x130(r1)
-	  psq_st    f31,0x138(r1),0,0
-	  stfd      f30, 0x120(r1)
-	  psq_st    f30,0x128(r1),0,0
-	  stfd      f29, 0x110(r1)
-	  psq_st    f29,0x118(r1),0,0
-	  stfd      f28, 0x100(r1)
-	  psq_st    f28,0x108(r1),0,0
-	  stfd      f27, 0xF0(r1)
-	  psq_st    f27,0xF8(r1),0,0
-	  stfd      f26, 0xE0(r1)
-	  psq_st    f26,0xE8(r1),0,0
-	  stfd      f25, 0xD0(r1)
-	  psq_st    f25,0xD8(r1),0,0
-	  stmw      r25, 0xB4(r1)
-	  mr        r31, r3
-	  mr        r30, r4
-	  lha       r0, 0x140(r3)
-	  lis       r3, 0x4330
-	  stw       r3, 0x28(r1)
-	  mr        r25, r5
-	  xoris     r0, r0, 0x8000
-	  lfs       f2, 0x8(r4)
-	  stw       r0, 0x2C(r1)
-	  lfs       f1, 0x0(r4)
-	  lfd       f3, -0x7AC0(r2)
-	  lfd       f0, 0x28(r1)
-	  fsubs     f1, f2, f1
-	  fsubs     f0, f0, f3
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x6A4
-	  lha       r0, 0x142(r31)
-	  stw       r3, 0x28(r1)
-	  xoris     r0, r0, 0x8000
-	  lfs       f2, 0xC(r30)
-	  stw       r0, 0x2C(r1)
-	  lfs       f1, 0x4(r30)
-	  lfd       f0, 0x28(r1)
-	  fsubs     f1, f2, f1
-	  fsubs     f0, f0, f3
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x6A4
-	  mr        r29, r31
-	  addi      r28, r1, 0x18
-	  li        r27, 0
-	  li        r26, 0
+	if (p1.getWidth() >= mMinWidth && p1.getHeight() >= mMinHeight) {
+		JUTTexture* textures[4];
+		bool anyFrameMaterialNull = false;
+		for (int i = 0; i < 4; i++) {
+			if (mFrameMaterials[i] == nullptr) {
+				return;
+			}
+			J2DTevBlock* block = mFrameMaterials[i]->getTevBlock();
+			if (block == nullptr) {
+				return;
+			}
 
-	.loc_0xCC:
-	  lwz       r3, 0x148(r29)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x6A4
-	  lwz       r3, 0x70(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x6A4
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0
-	  lwz       r12, 0xA0(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x0(r28)
-	  lwz       r0, 0x0(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x10C
-	  li        r27, 0x1
+			textures[i] = block->getTexture(0);
+			if (textures[i] == nullptr) {
+				anyFrameMaterialNull = true;
+			}
+		}
 
-	.loc_0x10C:
-	  addi      r26, r26, 0x1
-	  addi      r28, r28, 0x4
-	  cmpwi     r26, 0x4
-	  addi      r29, r29, 0x4
-	  blt+      .loc_0xCC
-	  lfs       f2, 0x0(r25)
-	  mr        r3, r31
-	  lfs       f6, 0x4(r25)
-	  addi      r4, r1, 0x8
-	  lfs       f5, 0x8(r25)
-	  lfs       f1, 0x0(r30)
-	  lfs       f4, 0xC(r25)
-	  lfs       f0, 0x4(r30)
-	  fadds     f3, f2, f1
-	  stfs      f2, 0x8(r1)
-	  fadds     f1, f5, f1
-	  fadds     f2, f6, f0
-	  stfs      f6, 0xC(r1)
-	  fadds     f0, f4, f0
-	  stfs      f5, 0x10(r1)
-	  stfs      f4, 0x14(r1)
-	  stfs      f3, 0x8(r1)
-	  stfs      f2, 0xC(r1)
-	  stfs      f1, 0x10(r1)
-	  stfs      f0, 0x14(r1)
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xC8(r12)
-	  mtctr     r12
-	  bctrl
-	  bl        0x9F0B8
-	  li        r3, 0x9
-	  li        r4, 0x1
-	  bl        0x9EC60
-	  li        r3, 0xB
-	  li        r4, 0x1
-	  bl        0x9EC54
-	  li        r3, 0xD
-	  li        r4, 0x1
-	  bl        0x9EC48
-	  rlwinm.   r0,r27,0,24,31
-	  bne-      .loc_0x670
-	  lwz       r5, 0x24(r1)
-	  lis       r12, 0x4330
-	  lwz       r4, 0x18(r1)
-	  lis       r3, 0x1
-	  lwz       r5, 0x20(r5)
-	  subi      r7, r3, 0x8000
-	  lwz       r6, 0x20(r4)
-	  mr        r3, r31
-	  lhz       r4, 0x2(r5)
-	  li        r9, 0x1
-	  lhz       r0, 0x4(r5)
-	  xoris     r4, r4, 0x8000
-	  lhz       r10, 0x2(r6)
-	  stw       r4, 0x2C(r1)
-	  xoris     r8, r0, 0x8000
-	  xoris     r11, r10, 0x8000
-	  lhz       r5, 0x4(r6)
-	  stw       r12, 0x28(r1)
-	  lfd       f5, -0x7AC0(r2)
-	  xoris     r10, r5, 0x8000
-	  lfd       f0, 0x28(r1)
-	  stw       r8, 0x34(r1)
-	  fsubs     f3, f0, f5
-	  lfs       f6, 0x8(r30)
-	  stw       r12, 0x30(r1)
-	  lfs       f4, 0xC(r30)
-	  lfd       f0, 0x30(r1)
-	  fsubs     f29, f6, f3
-	  stw       r11, 0x3C(r1)
-	  fsubs     f3, f0, f5
-	  lfs       f31, 0x0(r30)
-	  stw       r12, 0x38(r1)
-	  lbz       r0, 0x144(r31)
-	  fmr       f1, f31
-	  lfs       f30, 0x4(r30)
-	  lfd       f0, 0x38(r1)
-	  fsubs     f28, f4, f3
-	  rlwinm    r4,r0,25,31,31
-	  rlwinm    r0,r0,26,31,31
-	  fsubs     f3, f0, f5
-	  neg       r4, r4
-	  neg       r0, r0
-	  andc      r4, r7, r4
-	  stw       r10, 0x44(r1)
-	  andc      r5, r7, r0
-	  stw       r12, 0x40(r1)
-	  sub       r6, r7, r4
-	  sub       r0, r7, r5
-	  fadds     f27, f31, f3
-	  lfd       f0, 0x40(r1)
-	  fmr       f2, f30
-	  stw       r11, 0x4C(r1)
-	  rlwinm    r6,r6,0,16,31
-	  fsubs     f3, f0, f5
-	  stw       r12, 0x48(r1)
-	  rlwinm    r7,r0,0,16,31
-	  lwz       r8, 0x148(r31)
-	  lfd       f0, 0x48(r1)
-	  fadds     f26, f30, f3
-	  stw       r10, 0x54(r1)
-	  fsubs     f3, f0, f5
-	  stw       r12, 0x50(r1)
-	  lfd       f0, 0x50(r1)
-	  fsubs     f4, f0, f5
-	  bl        0x86C
-	  lwz       r4, 0x24(r1)
-	  lis       r10, 0x4330
-	  lwz       r3, 0x18(r1)
-	  lis       r5, 0x1
-	  lwz       r4, 0x20(r4)
-	  subi      r9, r5, 0x8000
-	  lwz       r3, 0x20(r3)
-	  fmr       f1, f29
-	  lhz       r4, 0x2(r4)
-	  fmr       f2, f30
-	  lhz       r0, 0x4(r3)
-	  mr        r3, r31
-	  xoris     r4, r4, 0x8000
-	  stw       r4, 0x5C(r1)
-	  xoris     r7, r0, 0x8000
-	  lbz       r11, 0x144(r31)
-	  stw       r10, 0x58(r1)
-	  lfd       f4, -0x7AC0(r2)
-	  rlwinm    r5,r11,27,31,31
-	  lfd       f0, 0x58(r1)
-	  rlwinm    r0,r11,28,31,31
-	  neg       r4, r5
-	  stw       r7, 0x64(r1)
-	  neg       r0, r0
-	  lwz       r8, 0x14C(r31)
-	  lwz       r6, 0x148(r31)
-	  andc      r5, r9, r0
-	  stw       r10, 0x60(r1)
-	  fsubs     f3, f0, f4
-	  andc      r4, r9, r4
-	  sub       r11, r6, r8
-	  sub       r0, r8, r6
-	  lfd       f0, 0x60(r1)
-	  sub       r6, r9, r4
-	  or        r11, r11, r0
-	  sub       r0, r9, r5
-	  fsubs     f4, f0, f4
-	  rlwinm    r9,r11,1,31,31
-	  rlwinm    r6,r6,0,16,31
-	  rlwinm    r7,r0,0,16,31
-	  bl        0x7C8
-	  lwz       r3, 0x18(r1)
-	  lis       r0, 0x4330
-	  lbz       r6, 0x144(r31)
-	  fsubs     f25, f29, f27
-	  lwz       r3, 0x20(r3)
-	  lis       r5, 0x1
-	  stw       r0, 0x68(r1)
-	  rlwinm    r4,r6,28,31,31
-	  lhz       r3, 0x4(r3)
-	  rlwinm    r7,r6,27,31,31
-	  lfd       f4, -0x7AC0(r2)
-	  xoris     r0, r3, 0x8000
-	  subi      r6, r5, 0x8000
-	  stw       r0, 0x6C(r1)
-	  neg       r3, r4
-	  andc      r5, r6, r3
-	  neg       r0, r7
-	  lfd       f0, 0x68(r1)
-	  and       r4, r6, r0
-	  xori      r0, r5, 0x8000
-	  fmr       f1, f27
-	  fmr       f2, f30
-	  lwz       r8, 0x14C(r31)
-	  fmr       f3, f25
-	  mr        r3, r31
-	  fsubs     f4, f0, f4
-	  mr        r6, r4
-	  rlwinm    r7,r0,0,16,31
-	  li        r9, 0
-	  bl        0x750
-	  lwz       r3, 0x24(r1)
-	  lis       r7, 0x4330
-	  lbz       r0, 0x144(r31)
-	  lis       r4, 0x1
-	  lwz       r9, 0x20(r3)
-	  subi      r10, r4, 0x8000
-	  rlwinm    r3,r0,31,31,31
-	  rlwinm    r5,r0,0,31,31
-	  lhz       r0, 0x2(r9)
-	  neg       r4, r3
-	  lhz       r6, 0x4(r9)
-	  neg       r5, r5
-	  xoris     r0, r0, 0x8000
-	  stw       r7, 0x70(r1)
-	  xoris     r3, r6, 0x8000
-	  lfd       f4, -0x7AC0(r2)
-	  stw       r0, 0x74(r1)
-	  andc      r4, r10, r4
-	  lwz       r8, 0x154(r31)
-	  andc      r5, r10, r5
-	  lwz       r9, 0x14C(r31)
-	  fmr       f1, f29
-	  lfd       f0, 0x70(r1)
-	  fmr       f2, f28
-	  stw       r3, 0x7C(r1)
-	  sub       r6, r9, r8
-	  sub       r0, r8, r9
-	  or        r0, r6, r0
-	  sub       r6, r10, r4
-	  rlwinm    r9,r0,1,31,31
-	  stw       r7, 0x78(r1)
-	  fsubs     f3, f0, f4
-	  sub       r0, r10, r5
-	  lfd       f0, 0x78(r1)
-	  mr        r3, r31
-	  rlwinm    r6,r6,0,16,31
-	  rlwinm    r7,r0,0,16,31
-	  fsubs     f4, f0, f4
-	  bl        0x6B4
-	  lwz       r3, 0x24(r1)
-	  lis       r0, 0x4330
-	  lbz       r5, 0x144(r31)
-	  lis       r4, 0x1
-	  lwz       r3, 0x20(r3)
-	  subi      r6, r4, 0x8000
-	  rlwinm    r4,r5,0,31,31
-	  stw       r0, 0x80(r1)
-	  lhz       r3, 0x4(r3)
-	  rlwinm    r7,r5,31,31,31
-	  neg       r4, r4
-	  lfd       f4, -0x7AC0(r2)
-	  xoris     r3, r3, 0x8000
-	  fmr       f1, f27
-	  stw       r3, 0x84(r1)
-	  andc      r5, r6, r4
-	  neg       r4, r7
-	  fmr       f2, f28
-	  lfd       f0, 0x80(r1)
-	  and       r4, r6, r4
-	  xori      r0, r5, 0x8000
-	  fmr       f3, f25
-	  lwz       r8, 0x154(r31)
-	  fsubs     f4, f0, f4
-	  mr        r3, r31
-	  mr        r6, r4
-	  rlwinm    r7,r0,0,16,31
-	  li        r9, 0
-	  bl        0x640
-	  lwz       r3, 0x24(r1)
-	  lis       r0, 0x4330
-	  lbz       r5, 0x144(r31)
-	  fsubs     f25, f28, f26
-	  lwz       r3, 0x20(r3)
-	  lis       r4, 0x1
-	  rlwinm    r6,r5,31,31,31
-	  stw       r0, 0x88(r1)
-	  lhz       r3, 0x2(r3)
-	  lfd       f3, -0x7AC0(r2)
-	  rlwinm    r5,r5,0,31,31
-	  xoris     r0, r3, 0x8000
-	  neg       r6, r6
-	  stw       r0, 0x8C(r1)
-	  subi      r3, r4, 0x8000
-	  neg       r0, r5
-	  fmr       f1, f29
-	  lfd       f0, 0x88(r1)
-	  and       r5, r3, r0
-	  andc      r4, r3, r6
-	  fmr       f2, f26
-	  fmr       f4, f25
-	  xori      r0, r4, 0x8000
-	  fsubs     f3, f0, f3
-	  lwz       r8, 0x154(r31)
-	  mr        r3, r31
-	  mr        r7, r5
-	  rlwinm    r6,r0,0,16,31
-	  li        r9, 0
-	  bl        0x5C8
-	  lwz       r4, 0x18(r1)
-	  lis       r10, 0x4330
-	  lwz       r3, 0x24(r1)
-	  lis       r5, 0x1
-	  lwz       r4, 0x20(r4)
-	  subi      r9, r5, 0x8000
-	  lwz       r3, 0x20(r3)
-	  fmr       f1, f31
-	  lhz       r4, 0x2(r4)
-	  fmr       f2, f28
-	  lhz       r0, 0x4(r3)
-	  mr        r3, r31
-	  xoris     r4, r4, 0x8000
-	  stw       r4, 0x94(r1)
-	  xoris     r7, r0, 0x8000
-	  lbz       r11, 0x144(r31)
-	  stw       r10, 0x90(r1)
-	  lfd       f4, -0x7AC0(r2)
-	  rlwinm    r5,r11,29,31,31
-	  lfd       f0, 0x90(r1)
-	  rlwinm    r0,r11,30,31,31
-	  neg       r4, r5
-	  stw       r7, 0x9C(r1)
-	  neg       r0, r0
-	  lwz       r8, 0x150(r31)
-	  lwz       r6, 0x154(r31)
-	  andc      r5, r9, r0
-	  stw       r10, 0x98(r1)
-	  fsubs     f3, f0, f4
-	  andc      r4, r9, r4
-	  sub       r11, r6, r8
-	  sub       r0, r8, r6
-	  lfd       f0, 0x98(r1)
-	  sub       r6, r9, r4
-	  or        r11, r11, r0
-	  sub       r0, r9, r5
-	  fsubs     f4, f0, f4
-	  rlwinm    r9,r11,1,31,31
-	  rlwinm    r6,r6,0,16,31
-	  rlwinm    r7,r0,0,16,31
-	  bl        0x524
-	  lwz       r3, 0x18(r1)
-	  lis       r0, 0x4330
-	  lis       r4, 0x1
-	  lbz       r5, 0x144(r31)
-	  lwz       r3, 0x20(r3)
-	  subi      r6, r4, 0x8000
-	  rlwinm    r4,r5,29,31,31
-	  rlwinm    r5,r5,30,31,31
-	  lhz       r3, 0x2(r3)
-	  neg       r4, r4
-	  neg       r5, r5
-	  stw       r0, 0xA0(r1)
-	  xoris     r3, r3, 0x8000
-	  andc      r4, r6, r4
-	  stw       r3, 0xA4(r1)
-	  and       r5, r6, r5
-	  xori      r0, r4, 0x8000
-	  lfd       f3, -0x7AC0(r2)
-	  lfd       f0, 0xA0(r1)
-	  fmr       f1, f31
-	  fmr       f2, f26
-	  lwz       r8, 0x150(r31)
-	  fmr       f4, f25
-	  mr        r3, r31
-	  fsubs     f3, f0, f3
-	  mr        r7, r5
-	  rlwinm    r6,r0,0,16,31
-	  li        r9, 0
-	  bl        0x4B0
+		JGeometry::TBox2<f32> aTStack_b8(p2);
+		aTStack_b8.addPos(p1.i);
+		drawContents(aTStack_b8);
+		GXClearVtxDesc();
+		GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+		GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
+		GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
 
-	.loc_0x670:
-	  li        r3, 0
-	  li        r4, 0x4
-	  bl        0xA296C
-	  li        r3, 0
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0x4
-	  bl        0xA2EF8
-	  li        r3, 0
-	  bl        0x9F470
-	  li        r3, 0xD
-	  li        r4, 0
-	  bl        0x9E74C
+		if (!anyFrameMaterialNull) {
+			f32 dVar16 = p1.i.x;
+			f32 dVar15 = p1.i.y;
+			f32 dVar18 = p1.f.x - textures[3]->getSizeX();
+			f32 dVar17 = p1.f.y - textures[3]->getSizeY();
+			f32 dVar14 = dVar16 + textures[0]->getSizeX();
+			f32 dVar12 = dVar15 + textures[0]->getSizeY();
+			u16 local_c4;
+			if (_144 & 0x80) {
+				local_c4 = 0;
+			} else {
+				local_c4 = 0x8000;
+			}
+			u16 local_c6;
+			if (_144 & 0x40) {
+				local_c6 = 0;
+			} else {
+				local_c6 = 0x8000;
+			}
 
-	.loc_0x6A4:
-	  psq_l     f31,0x138(r1),0,0
-	  lfd       f31, 0x130(r1)
-	  psq_l     f30,0x128(r1),0,0
-	  lfd       f30, 0x120(r1)
-	  psq_l     f29,0x118(r1),0,0
-	  lfd       f29, 0x110(r1)
-	  psq_l     f28,0x108(r1),0,0
-	  lfd       f28, 0x100(r1)
-	  psq_l     f27,0xF8(r1),0,0
-	  lfd       f27, 0xF0(r1)
-	  psq_l     f26,0xE8(r1),0,0
-	  lfd       f26, 0xE0(r1)
-	  psq_l     f25,0xD8(r1),0,0
-	  lfd       f25, 0xD0(r1)
-	  lmw       r25, 0xB4(r1)
-	  lwz       r0, 0x144(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x140
-	  blr
-	*/
+			drawFrameTexture(dVar16, dVar15, textures[0]->getSizeX(), textures[0]->getSizeY(), local_c4, local_c6, 0x8000 - local_c4,
+			                 0x8000 - local_c6, mFrameMaterials[0], true);
+			bool r9 = mFrameMaterials[1] != mFrameMaterials[0];
+			u16 local_c8;
+			if (_144 & 0x20) {
+				local_c8 = 0;
+			} else {
+				local_c8 = 0x8000;
+			}
+			u16 local_ca;
+			if (_144 & 0x10) {
+				local_ca = 0;
+			} else {
+				local_ca = 0x8000;
+			}
+			drawFrameTexture(dVar18, dVar15, textures[3]->getSizeX(), textures[0]->getSizeY(), local_c8, local_ca, 0x8000 - local_c8,
+			                 0x8000 - local_ca, mFrameMaterials[1], r9);
+
+			u16 local_cc;
+			if (_144 & 0x20) {
+				local_cc = 0x8000;
+			} else {
+				local_cc = 0;
+			}
+
+			u16 local_ce;
+			if (_144 & 0x10) {
+				local_ce = 0;
+			} else {
+				local_ce = 0x8000;
+			}
+			drawFrameTexture(dVar14, dVar15, dVar18 - dVar14, textures[0]->getSizeY(), local_cc, local_ce, local_cc, local_ce ^ 0x8000,
+			                 mFrameMaterials[1], false);
+
+			r9 = mFrameMaterials[3] != mFrameMaterials[1];
+			u16 local_d0;
+			if (_144 & 2) {
+				local_d0 = 0;
+			} else {
+				local_d0 = 0x8000;
+			}
+			u16 local_d2;
+			if (_144 & 1) {
+				local_d2 = 0;
+			} else {
+				local_d2 = 0x8000;
+			}
+
+			drawFrameTexture(dVar18, dVar17, textures[3]->getSizeX(), textures[3]->getSizeY(), local_d0, local_d2, 0x8000 - local_d0,
+			                 0x8000 - local_d2, mFrameMaterials[3], r9);
+
+			u16 local_d4;
+			if (_144 & 2) {
+				local_d4 = 0x8000;
+			} else {
+				local_d4 = 0;
+			}
+
+			u16 local_d6;
+			if (_144 & 1) {
+				local_d6 = 0;
+			} else {
+				local_d6 = 0x8000;
+			}
+			drawFrameTexture(dVar14, dVar17, dVar18 - dVar14, textures[3]->getSizeY(), local_d4, local_d6, local_d4, local_d6 ^ 0x8000,
+			                 mFrameMaterials[3], false);
+
+			u16 local_d8;
+			if (_144 & 2) {
+				local_d8 = 0;
+			} else {
+				local_d8 = 0x8000;
+			}
+
+			u16 local_da;
+			if (_144 & 1) {
+				local_da = 0x8000;
+			} else {
+				local_da = 0;
+			}
+			drawFrameTexture(dVar18, dVar12, textures[3]->getSizeX(), dVar17 - dVar12, local_d8, local_da, local_d8 ^ 0x8000, local_da,
+			                 mFrameMaterials[3], false);
+
+			r9 = mFrameMaterials[2] != mFrameMaterials[3];
+			u16 local_dc;
+			if (_144 & 8) {
+				local_dc = 0;
+			} else {
+				local_dc = 0x8000;
+			}
+
+			u16 local_de;
+			if (_144 & 4) {
+				local_de = 0;
+			} else {
+				local_de = 0x8000;
+			}
+			drawFrameTexture(dVar16, dVar17, textures[0]->getSizeX(), textures[3]->getSizeY(), local_dc, local_de, 0x8000 - local_dc,
+			                 0x8000 - local_de, mFrameMaterials[2], r9);
+
+			u16 local_e0;
+			if (_144 & 8) {
+				local_e0 = 0;
+			} else {
+				local_e0 = 0x8000;
+			}
+
+			u16 local_e2;
+			if (_144 & 4) {
+				local_e2 = 0x8000;
+			} else {
+				local_e2 = 0;
+			}
+			drawFrameTexture(dVar16, dVar12, textures[0]->getSizeX(), dVar17 - dVar12, local_e0, local_e2, local_e0 ^ 0x8000, local_e2,
+			                 mFrameMaterials[2], false);
+		}
+
+		GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
+		GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+		GXSetNumTexGens(0);
+		GXSetVtxDesc(GX_VA_TEX0, GX_NONE);
+	}
 }
 
 /**
  * @note Address: 0x80045B88
  * @note Size: 0x42C
  */
-void J2DWindowEx::drawContents(const JGeometry::TBox2<f32>&)
+void J2DWindowEx::drawContents(const JGeometry::TBox2<f32>& p1)
 {
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stfd     f31, 0x70(r1)
-	psq_st   f31, 120(r1), 0, qr0
-	stfd     f30, 0x60(r1)
-	psq_st   f30, 104(r1), 0, qr0
-	stfd     f29, 0x50(r1)
-	psq_st   f29, 88(r1), 0, qr0
-	stfd     f28, 0x40(r1)
-	psq_st   f28, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	stw      r29, 0x34(r1)
-	mr       r30, r4
-	mr       r29, r3
-	lfs      f1, 8(r4)
-	li       r0, 0
-	lfs      f0, 0(r4)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_80045BF8
-	lfs      f1, 0xc(r30)
-	lfs      f0, 4(r30)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_80045BF8
-	li       r0, 1
+	if (!p1.isValid() || mContentsMaterial == NULL) {
+		return;
+	}
+	if (!mContentsMaterial->isVisible()) {
+		return;
+	}
+	mContentsMaterial->setGX();
+	GXClearVtxDesc();
+	GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+	GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
+	JUtility::TColor TStack_b4(mContentsColorA);
+	JUtility::TColor TStack_bc(mContentsColorC);
+	JUtility::TColor TStack_b8(mContentsColorB);
+	JUtility::TColor TStack_c0(mContentsColorD);
+	if (mContentsMaterial->getColorBlock()->getColorChan(1)->getMatSrc() == 1) {
+		if (mContentsMaterial->getMaterialAlphaCalc() == 1) {
+			TStack_b4.a = (TStack_b4.a * mColorAlpha) / 0xff;
+			TStack_bc.a = (TStack_bc.a * mColorAlpha) / 0xff;
+			TStack_b8.a = (TStack_b8.a * mColorAlpha) / 0xff;
+			TStack_c0.a = (TStack_c0.a * mColorAlpha) / 0xff;
+		}
+	} else if (mIsInfluencedAlpha) {
+		GXSetChanMatColor(GX_ALPHA0, JUtility::TColor(mColorAlpha));
+	}
+	bool bVar5 = false;
+	f32 in_f31;
+	f32 in_f30;
+	f32 in_f29;
+	f32 in_f28;
+	if (mContentsMaterial->getTevBlock() != NULL) {
+		if (mContentsMaterial->getTevBlock()->getTexture(0)) {
+			bVar5 = true;
+			GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+			f32 dVar15 = mContentsMaterial->getTevBlock()->getTexture(0)->getSizeX();
+			f32 dVar14 = mContentsMaterial->getTevBlock()->getTexture(0)->getSizeY();
 
-lbl_80045BF8:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_80045F78
-	lwz      r3, 0x160(r29)
-	cmplwi   r3, 0
-	bne      lbl_80045C10
-	b        lbl_80045F78
+			f32 dVar12 = p1.getWidth();
+			f32 dVar13 = p1.getHeight();
+			in_f31     = -(dVar12 / dVar15 - 1.0f) / 2;
+			in_f30     = -((dVar13 / dVar14) - 1.0f) / 2;
+			in_f29     = in_f31 + (dVar12 / dVar15);
+			in_f28     = in_f30 + (dVar13 / dVar14);
+		}
+	}
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_F32, 0);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_F32, 0);
+	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
 
-lbl_80045C10:
-	lbz      r0, 0xe(r3)
-	cmplwi   r0, 0
-	beq      lbl_80045F78
-	bl       setGX__11J2DMaterialFv
-	bl       GXClearVtxDesc
-	li       r3, 9
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0xb
-	li       r4, 1
-	bl       GXSetVtxDesc
-	lwz      r7, 0x160(r29)
-	lwz      r6, 0x128(r29)
-	lhz      r0, 0x1c(r7)
-	lwz      r5, 0x130(r29)
-	clrlwi   r0, r0, 0x1f
-	lwz      r4, 0x12c(r29)
-	lwz      r3, 0x134(r29)
-	cmplwi   r0, 1
-	stw      r6, 0x1c(r1)
-	stw      r5, 0x18(r1)
-	stw      r4, 0x14(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_80045D0C
-	lbz      r0, 0xf(r7)
-	cmpwi    r0, 1
-	bne      lbl_80045D30
-	lbz      r0, 0x1f(r1)
-	lis      r3, 0x80808081@ha
-	lbz      r7, 0xb3(r29)
-	addi     r9, r3, 0x80808081@l
-	lbz      r4, 0x1b(r1)
-	mullw    r5, r0, r7
-	lbz      r0, 0x13(r1)
-	lbz      r3, 0x17(r1)
-	mullw    r6, r4, r7
-	mullw    r4, r3, r7
-	mullw    r0, r0, r7
-	mulhw    r7, r9, r5
-	mulhw    r3, r9, r6
-	add      r5, r7, r5
-	srawi    r7, r5, 7
-	mulhw    r5, r9, r4
-	srwi     r8, r7, 0x1f
-	add      r3, r3, r6
-	add      r7, r7, r8
-	srawi    r6, r3, 7
-	stb      r7, 0x1f(r1)
-	add      r4, r5, r4
-	srwi     r5, r6, 0x1f
-	mulhw    r3, r9, r0
-	add      r6, r6, r5
-	srawi    r4, r4, 7
-	stb      r6, 0x1b(r1)
-	srwi     r5, r4, 0x1f
-	add      r0, r3, r0
-	srawi    r0, r0, 7
-	add      r4, r4, r5
-	srwi     r3, r0, 0x1f
-	stb      r4, 0x17(r1)
-	add      r0, r0, r3
-	stb      r0, 0x13(r1)
-	b        lbl_80045D30
-
-lbl_80045D0C:
-	lbz      r0, 0xb4(r29)
-	cmplwi   r0, 0
-	beq      lbl_80045D30
-	lbz      r0, 0xb3(r29)
-	addi     r4, r1, 0xc
-	li       r3, 2
-	stw      r0, 8(r1)
-	stw      r0, 0xc(r1)
-	bl       GXSetChanMatColor
-
-lbl_80045D30:
-	lwz      r3, 0x160(r29)
-	li       r31, 0
-	lwz      r3, 0x70(r3)
-	cmplwi   r3, 0
-	beq      lbl_80045E38
-	lwz      r12, 0(r3)
-	li       r4, 0
-	lwz      r12, 0xa0(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0
-	beq      lbl_80045E38
-	li       r31, 1
-	li       r3, 0xd
-	li       r4, 1
-	bl       GXSetVtxDesc
-	lwz      r3, 0x160(r29)
-	li       r4, 0
-	lwz      r3, 0x70(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa0(r12)
-	mtctr    r12
-	bctrl
-	lwz      r5, 0x20(r3)
-	lis      r0, 0x4330
-	lwz      r3, 0x160(r29)
-	li       r4, 0
-	lhz      r5, 2(r5)
-	lwz      r3, 0x70(r3)
-	xoris    r5, r5, 0x8000
-	stw      r0, 0x20(r1)
-	lwz      r12, 0(r3)
-	stw      r5, 0x24(r1)
-	lfd      f1, lbl_805168A0@sda21(r2)
-	lfd      f0, 0x20(r1)
-	lwz      r12, 0xa0(r12)
-	fsubs    f28, f0, f1
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x20(r3)
-	lis      r0, 0x4330
-	stw      r0, 0x28(r1)
-	lhz      r0, 4(r3)
-	lfs      f1, 8(r30)
-	xoris    r0, r0, 0x8000
-	lfs      f0, 0(r30)
-	stw      r0, 0x2c(r1)
-	fsubs    f4, f1, f0
-	lfs      f3, 0xc(r30)
-	lfs      f2, 4(r30)
-	lfd      f1, lbl_805168A0@sda21(r2)
-	lfd      f0, 0x28(r1)
-	fsubs    f2, f3, f2
-	fdivs    f5, f4, f28
-	lfs      f4, lbl_805168B4@sda21(r2)
-	lfs      f3, lbl_805168B8@sda21(r2)
-	fsubs    f0, f0, f1
-	fsubs    f1, f5, f4
-	fdivs    f2, f2, f0
-	fsubs    f0, f2, f4
-	fneg     f1, f1
-	fneg     f0, f0
-	fmuls    f31, f1, f3
-	fmuls    f29, f0, f3
-	fadds    f28, f31, f5
-	fadds    f30, f29, f2
-
-lbl_80045E38:
-	li       r3, 0
-	li       r4, 9
-	li       r5, 1
-	li       r6, 4
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 0
-	li       r4, 0xd
-	li       r5, 1
-	li       r6, 4
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 0x80
-	li       r4, 0
-	li       r5, 4
-	bl       GXBegin
-	lfs      f0, 0(r30)
-	lis      r3, 0xCC008000@ha
-	clrlwi.  r0, r31, 0x18
-	lfs      f1, 4(r30)
-	stfs     f0, 0xCC008000@l(r3)
-	lfs      f0, lbl_805168B0@sda21(r2)
-	stfs     f1, -0x8000(r3)
-	lwz      r0, 0x1c(r1)
-	stfs     f0, -0x8000(r3)
-	stw      r0, -0x8000(r3)
-	beq      lbl_80045EAC
-	stfs     f31, -0x8000(r3)
-	stfs     f29, -0x8000(r3)
-
-lbl_80045EAC:
-	lfs      f0, 8(r30)
-	lis      r3, 0xCC008000@ha
-	clrlwi.  r0, r31, 0x18
-	lfs      f1, 4(r30)
-	stfs     f0, 0xCC008000@l(r3)
-	lfs      f0, lbl_805168B0@sda21(r2)
-	stfs     f1, -0x8000(r3)
-	lwz      r0, 0x14(r1)
-	stfs     f0, -0x8000(r3)
-	stw      r0, -0x8000(r3)
-	beq      lbl_80045EE0
-	stfs     f28, -0x8000(r3)
-	stfs     f29, -0x8000(r3)
-
-lbl_80045EE0:
-	lfs      f0, 8(r30)
-	lis      r3, 0xCC008000@ha
-	clrlwi.  r0, r31, 0x18
-	lfs      f1, 0xc(r30)
-	stfs     f0, 0xCC008000@l(r3)
-	lfs      f0, lbl_805168B0@sda21(r2)
-	stfs     f1, -0x8000(r3)
-	lwz      r0, 0x10(r1)
-	stfs     f0, -0x8000(r3)
-	stw      r0, -0x8000(r3)
-	beq      lbl_80045F14
-	stfs     f28, -0x8000(r3)
-	stfs     f30, -0x8000(r3)
-
-lbl_80045F14:
-	lfs      f0, 0(r30)
-	lis      r3, 0xCC008000@ha
-	clrlwi.  r0, r31, 0x18
-	lfs      f1, 0xc(r30)
-	stfs     f0, 0xCC008000@l(r3)
-	lfs      f0, lbl_805168B0@sda21(r2)
-	stfs     f1, -0x8000(r3)
-	lwz      r0, 0x18(r1)
-	stfs     f0, -0x8000(r3)
-	stw      r0, -0x8000(r3)
-	beq      lbl_80045F48
-	stfs     f31, -0x8000(r3)
-	stfs     f30, -0x8000(r3)
-
-lbl_80045F48:
-	li       r3, 0
-	li       r4, 0xd
-	li       r5, 1
-	li       r6, 2
-	li       r7, 0xf
-	bl       GXSetVtxAttrFmt
-	li       r3, 0
-	li       r4, 9
-	li       r5, 1
-	li       r6, 3
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-
-lbl_80045F78:
-	psq_l    f31, 120(r1), 0, qr0
-	lfd      f31, 0x70(r1)
-	psq_l    f30, 104(r1), 0, qr0
-	lfd      f30, 0x60(r1)
-	psq_l    f29, 88(r1), 0, qr0
-	lfd      f29, 0x50(r1)
-	psq_l    f28, 72(r1), 0, qr0
-	lfd      f28, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r0, 0x84(r1)
-	lwz      r29, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
+	f32 zero = 0.0f;
+	GXPosition3f32(p1.i.x, p1.i.y, zero);
+	GXColor1u32(TStack_b4);
+	if (bVar5) {
+		GXTexCoord2f32(in_f31, in_f30);
+	}
+	GXPosition3f32(p1.f.x, p1.i.y, zero);
+	GXColor1u32(TStack_b8);
+	if (bVar5) {
+		GXTexCoord2f32(in_f29, in_f30);
+	}
+	GXPosition3f32(p1.f.x, p1.f.y, zero);
+	GXColor1u32(TStack_c0);
+	if (bVar5) {
+		GXTexCoord2f32(in_f29, in_f28);
+	}
+	GXPosition3f32(p1.i.x, p1.f.y, zero);
+	GXColor1u32(TStack_bc);
+	if (bVar5) {
+		GXTexCoord2f32(in_f31, in_f28);
+	}
+	GXEnd();
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGBX8, 0xf);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGBA4, 0);
 }
 
 /**
  * @note Address: 0x80045FB4
  * @note Size: 0x264
  */
-void J2DWindowEx::drawFrameTexture(f32, f32, f32, f32, u16, u16, u16, u16, J2DMaterial*, bool)
+void J2DWindowEx::drawFrameTexture(f32 x, f32 y, f32 width, f32 height, u16 p5, u16 p6, u16 p7, u16 p8, J2DMaterial* material, bool p10)
 {
+	if (material != nullptr && material->isVisible()) {
+		f32 dVar15 = x + width;
+		f32 dVar14 = y + height;
+		if (p10) {
+			material->setGX();
+		}
+		JUtility::TColor aTStack_84(0xffffffff);
+		J2DPane* parentPane = getParentPane();
+		if (material->getColorBlock()->getColorChan(1)->getMatSrc() == 1) {
+			if (material->getMaterialAlphaCalc() == 1) {
+				u8 uVar11 = 0xff;
+				if (material->getColorBlock()->getMatColor(0) != 0) {
+					uVar11 = material->getColorBlock()->getMatColor(0)->a;
+				}
+				if (parentPane != nullptr && mIsInfluencedAlpha != 0) {
+					uVar11 = ((uVar11 * parentPane->mColorAlpha) / 0xff);
+				}
+				aTStack_84 = JUtility::TColor((u32)uVar11 | 0xffffff00);
+			}
+		} else if (parentPane != nullptr && mIsInfluencedAlpha != 0 && p10) {
+			int matColorAlpha = material->getColorBlock()->getMatColor(0)->a;
+			int colorAlpha    = parentPane->mColorAlpha;
+			GXSetChanMatColor(GX_ALPHA0, JUtility::TColor((matColorAlpha * colorAlpha / 0xff) & 0xff));
+		}
+		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_F32, 0);
+		GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+
+		f32 zero = 0.0f;
+		GXPosition3f32(x, y, zero);
+		GXColor1u32(aTStack_84);
+		GXTexCoord2u16(p7, p8);
+
+		GXPosition3f32(dVar15, y, zero);
+		GXColor1u32(aTStack_84);
+		GXTexCoord2u16(p5, p8);
+
+		GXPosition3f32(dVar15, dVar14, zero);
+		GXColor1u32(aTStack_84);
+		GXTexCoord2u16(p5, p6);
+
+		GXPosition3f32(x, dVar14, zero);
+		GXColor1u32(aTStack_84);
+		GXTexCoord2u16(p7, p6);
+		GXEnd();
+		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGBA4, 0);
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x80(r1)
@@ -1451,121 +814,30 @@ void J2DWindowEx::drawFrameTexture(f32, f32, f32, f32, u16, u16, u16, u16, J2DMa
  * @note Address: 0x80046218
  * @note Size: 0x194
  */
-void J2DWindowEx::draw(const JGeometry::TBox2<f32>&)
+void J2DWindowEx::draw(const JGeometry::TBox2f& p1)
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stmw     r26, 0x48(r1)
-	mr       r30, r3
-	mr       r31, r4
-	addi     r28, r1, 0x18
-	mr       r29, r30
-	li       r27, 0
-	li       r26, 0
-
-lbl_80046240:
-	lwz      r3, 0x148(r29)
-	cmplwi   r3, 0
-	beq      lbl_80046398
-	lwz      r3, 0x70(r3)
-	cmplwi   r3, 0
-	beq      lbl_80046398
-	lwz      r12, 0(r3)
-	li       r4, 0
-	lwz      r12, 0xa0(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0(r28)
-	lwz      r0, 0(r28)
-	cmplwi   r0, 0
-	bne      lbl_80046280
-	li       r27, 1
-
-lbl_80046280:
-	addi     r26, r26, 1
-	addi     r28, r28, 4
-	cmpwi    r26, 4
-	addi     r29, r29, 4
-	blt      lbl_80046240
-	clrlwi.  r0, r27, 0x18
-	bne      lbl_80046350
-	lwz      r4, 0x20(r1)
-	lis      r5, 0x4330
-	lwz      r3, 0x1c(r1)
-	lwz      r6, 0x20(r4)
-	lwz      r4, 0x20(r3)
-	lwz      r3, 0x18(r1)
-	lhz      r6, 4(r6)
-	lwz      r7, 0x20(r3)
-	lhz      r0, 2(r4)
-	xoris    r6, r6, 0x8000
-	lhz      r3, 4(r7)
-	xoris    r4, r0, 0x8000
-	lhz      r0, 2(r7)
-	xoris    r3, r3, 0x8000
-	stw      r6, 0x2c(r1)
-	xoris    r0, r0, 0x8000
-	lfs      f1, 0xc(r31)
-	stw      r5, 0x28(r1)
-	lfs      f0, 4(r31)
-	stw      r4, 0x34(r1)
-	lfd      f5, lbl_805168A0@sda21(r2)
-	fsubs    f6, f1, f0
-	stw      r5, 0x30(r1)
-	lfd      f1, 0x28(r1)
-	lfd      f0, 0x30(r1)
-	fsubs    f4, f1, f5
-	lfs      f3, 8(r31)
-	lfs      f2, 0(r31)
-	fsubs    f1, f0, f5
-	stw      r3, 0x3c(r1)
-	fsubs    f2, f3, f2
-	stw      r5, 0x38(r1)
-	fsubs    f3, f6, f4
-	lfd      f0, 0x38(r1)
-	fsubs    f2, f2, f1
-	stw      r0, 0x44(r1)
-	fsubs    f1, f0, f5
-	stw      r5, 0x40(r1)
-	lfd      f0, 0x40(r1)
-	stfs     f1, 0xc(r1)
-	fsubs    f0, f0, f5
-	stfs     f2, 0x10(r1)
-	stfs     f0, 8(r1)
-	stfs     f3, 0x14(r1)
-	b        lbl_8004637C
-
-lbl_80046350:
-	lfs      f3, 0xc(r31)
-	lfs      f1, 4(r31)
-	lfs      f2, 8(r31)
-	lfs      f0, lbl_805168B0@sda21(r2)
-	fsubs    f3, f3, f1
-	lfs      f1, 0(r31)
-	stfs     f0, 8(r1)
-	fsubs    f1, f2, f1
-	stfs     f0, 0xc(r1)
-	stfs     f1, 0x10(r1)
-	stfs     f3, 0x14(r1)
-
-lbl_8004637C:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	addi     r5, r1, 8
-	lwz      r12, 0x98(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80046398:
-	lmw      r26, 0x48(r1)
-	lwz      r0, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+	bool isMissingTexture = false;
+	JUTTexture* local_68[4];
+	for (int i = 0; i < 4; i++) {
+		if (mFrameMaterials[i] == nullptr) {
+			return;
+		}
+		if (mFrameMaterials[i]->getTevBlock() == nullptr) {
+			return;
+		}
+		local_68[i] = mFrameMaterials[i]->getTevBlock()->getTexture(0);
+		if (local_68[i] == nullptr) {
+			isMissingTexture = true;
+		}
+	}
+	JGeometry::TBox2<f32> aTStack_78;
+	if (!isMissingTexture) {
+		aTStack_78.set(local_68[0]->getSizeX(), local_68[0]->getSizeY(), p1.getWidth() - local_68[1]->getSizeX(),
+		               p1.getHeight() - local_68[2]->getSizeY());
+	} else {
+		aTStack_78.set(0.0f, 0.0f, p1.getWidth(), p1.getHeight());
+	}
+	draw(p1, aTStack_78);
 }
 
 /**
@@ -1577,7 +849,7 @@ void J2DWindowEx::draw(const JGeometry::TBox2<f32>& p1, const JGeometry::TBox2<f
 {
 	rewriteAlpha();
 	mColorAlpha = mAlpha;
-	makeMatrix(p2.i.x, p2.i.y, 0.0f, 0.0f);
+	makeMatrix(p1.i.x, p1.i.y, 0.0f, 0.0f);
 	GXLoadPosMtxImm(mPositionMtx, 0);
 	GXSetCurrentMtx(0);
 	draw_private(JGeometry::TBox2f(0.0f, 0.0f, p1.f.x - p1.i.x, p1.f.y - p1.i.y), p2);
@@ -1591,190 +863,84 @@ void J2DWindowEx::draw(const JGeometry::TBox2<f32>& p1, const JGeometry::TBox2<f
 	Mtx v1;
 	PSMTXIdentity(v1);
 	GXLoadPosMtxImm(v1, 0);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stw       r31, 0x5C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x58(r1)
-	  mr        r30, r4
-	  stw       r29, 0x54(r1)
-	  mr        r29, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x58(r12)
-	  mtctr     r12
-	  bctrl
-	  lbz       r0, 0xB2(r29)
-	  mr        r3, r29
-	  lfs       f3, -0x7AB0(r2)
-	  stb       r0, 0xB3(r29)
-	  fmr       f4, f3
-	  lfs       f1, 0x0(r30)
-	  lwz       r12, 0x0(r29)
-	  lfs       f2, 0x4(r30)
-	  lwz       r12, 0x48(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r3, r29, 0x50
-	  li        r4, 0
-	  bl        0xA3164
-	  li        r3, 0
-	  bl        0xA31FC
-	  lfs       f3, 0xC(r30)
-	  mr        r3, r29
-	  lfs       f1, 0x4(r30)
-	  mr        r5, r31
-	  lfs       f2, 0x8(r30)
-	  addi      r4, r1, 0x8
-	  lfs       f0, -0x7AB0(r2)
-	  fsubs     f3, f3, f1
-	  lfs       f1, 0x0(r30)
-	  stfs      f0, 0x8(r1)
-	  fsubs     f1, f2, f1
-	  stfs      f0, 0xC(r1)
-	  stfs      f1, 0x10(r1)
-	  stfs      f3, 0x14(r1)
-	  bl        -0xFC0
-	  li        r31, 0
+}
 
-	.loc_0xB4:
-	  mr        r3, r31
-	  li        r4, 0
-	  li        r5, 0x1
-	  li        r6, 0x2
-	  li        r7, 0x3
-	  bl        0xA2458
-	  addi      r31, r31, 0x1
-	  cmpwi     r31, 0x4
-	  blt+      .loc_0xB4
-	  li        r3, 0
-	  bl        0xA1ECC
-	  li        r31, 0
-
-	.loc_0xE4:
-	  mr        r3, r31
-	  bl        0xA1EE4
-	  addi      r31, r31, 0x1
-	  cmpwi     r31, 0x10
-	  blt+      .loc_0xE4
-	  addi      r3, r1, 0x18
-	  bl        0xA3DF8
-	  addi      r3, r1, 0x18
-	  li        r4, 0
-	  bl        0xA30C4
-	  lwz       r0, 0x64(r1)
-	  lwz       r31, 0x5C(r1)
-	  lwz       r30, 0x58(r1)
-	  lwz       r29, 0x54(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
-	*/
+void J2DWindowEx::setTevOrder(bool p1)
+{
+	u16 local_28[2];
+	if (!p1) {
+		local_28[0] = 4;
+		local_28[1] = 0xffff;
+	} else {
+		local_28[0] = 0xff;
+		local_28[1] = 0xff04;
+	}
+	for (u8 i = 0; i < 2; i++) {
+		s32 uVar1 = local_28[i];
+		J2DTevOrderInfo info;
+		info.mTexCoord = uVar1 >> 8;
+		info.mTexMap   = uVar1 >> 8;
+		info.mColor    = uVar1;
+		J2DTevOrder local_30(info);
+		for (int j = 0; j < 4; j++) {
+			if (mFrameMaterials[j]->getTevBlock()->getMaxStage() > i) {
+				mFrameMaterials[j]->getTevBlock()->setTevOrder(i, local_30);
+			}
+		}
+	}
 }
 
 /**
  * @note Address: 0x800464D4
  * @note Size: 0x124
  */
-void J2DWindowEx::setTevStage(bool)
+void J2DWindowEx::setTevStage(bool p1)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r31, r3
-	clrlwi   r30, r4, 0x18
-	li       r28, 0
-	mr       r29, r31
-
-lbl_800464F4:
-	lwz      r3, 0x148(r29)
-	li       r4, 0
-	lwz      r3, 0x70(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x60(r12)
-	mtctr    r12
-	bctrl
-	lwz      r5, 0x148(r29)
-	mr       r27, r3
-	li       r4, 0
-	lwz      r3, 0x70(r5)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa0(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0
-	li       r4, 0
-	beq      lbl_80046564
-	lwz      r3, 0x20(r3)
-	lbz      r0, 0(r3)
-	cmpwi    r0, 0
-	beq      lbl_80046554
-	cmpwi    r0, 1
-	bne      lbl_80046564
-
-lbl_80046554:
-	lbz      r0, 1(r3)
-	cmpwi    r0, 0
-	bne      lbl_80046564
-	li       r4, 1
-
-lbl_80046564:
-	cmplwi   r30, 0
-	bne      lbl_8004658C
-	clrlwi   r5, r4, 0x18
-	mr       r3, r31
-	neg      r0, r5
-	mr       r4, r27
-	or       r0, r0, r5
-	srwi     r5, r0, 0x1f
-	bl       setStage__11J2DWindowExFP11J2DTevStageQ211J2DWindowEx10stage_enum
-	b        lbl_800465D4
-
-lbl_8004658C:
-	clrlwi.  r0, r4, 0x18
-	mr       r3, r31
-	mr       r4, r27
-	li       r5, 3
-	beq      lbl_800465A4
-	li       r5, 4
-
-lbl_800465A4:
-	bl       setStage__11J2DWindowExFP11J2DTevStageQ211J2DWindowEx10stage_enum
-	lwz      r3, 0x148(r29)
-	li       r4, 1
-	lwz      r3, 0x70(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x60(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	mr       r3, r31
-	li       r5, 2
-	bl       setStage__11J2DWindowExFP11J2DTevStageQ211J2DWindowEx10stage_enum
-
-lbl_800465D4:
-	addi     r28, r28, 1
-	addi     r29, r29, 4
-	cmpwi    r28, 4
-	blt      lbl_800464F4
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (int i = 0; i < 4; i++) {
+		J2DTevStage* pJVar3 = mFrameMaterials[i]->getTevBlock()->getTevStage(0);
+		JUTTexture* this_00 = mFrameMaterials[i]->getTevBlock()->getTexture(0);
+		bool bVar1          = false;
+		if (this_00 != NULL && ((s32)this_00->getFormat() == 0 || (s32)this_00->getFormat() == 1) && this_00->getTransparency() == 0) {
+			bVar1 = true;
+		}
+		if (!p1) {
+			setStage(pJVar3, bVar1 ? STAGE_Unk1 : STAGE_Unk0);
+		} else {
+			stage_enum sVar5;
+			if (bVar1) {
+				sVar5 = STAGE_Unk4;
+			} else {
+				sVar5 = STAGE_Unk3;
+			}
+			setStage(pJVar3, sVar5);
+			setStage(mFrameMaterials[i]->getTevBlock()->getTevStage(1), STAGE_Unk2);
+		}
+	}
 }
 
 /**
  * @note Address: 0x800465F8
  * @note Size: 0x2BC
  */
-void J2DWindowEx::setStage(J2DTevStage*, J2DWindowEx::stage_enum)
+void J2DWindowEx::setStage(J2DTevStage* stage, J2DWindowEx::stage_enum stageNum)
 {
+	s8 local_30[6][4] = {
+		{ 0x0f, 0x08, 0x0a, 0x0f }, { 0x0f, 0x08, 0x0a, 0x0f }, { 0x0f, 0x0a, 0x00, 0x0f },
+		{ 0x02, 0x04, 0x08, 0x0f }, { 0x02, 0x04, 0x08, 0x0f }, { 0x0f, 0x0f, 0x0f, 0x0a },
+	};
+	s8 local_48[6][4] = {
+		{ 0x07, 0x04, 0x05, 0x07 }, { 0x05, 0x07, 0x07, 0x07 }, { 0x07, 0x05, 0x00, 0x07 },
+		{ 0x01, 0x02, 0x04, 0x07 }, { 0x07, 0x07, 0x07, 0x02 }, { 0x07, 0x07, 0x07, 0x05 },
+	};
+	s8 local_68[6][5] = {
+		{ 1, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0 }, { 0, 1, 0, 0, 1 }, { 0, 0, 1, 0, 0 }, { 1, 0, 0, 0, 0 }, { 0, 0, 0, 0, 1 },
+	};
+
+	stage->setTevColorAB(local_30[stageNum][0], local_30[stageNum][1]);
+	stage->setTevColorCD(local_30[stageNum][2], local_30[stageNum][3]);
+	stage->setTevColorOp(local_68[stageNum][0], local_68[stageNum][1], local_68[stageNum][2], local_68[stageNum][3], local_68[stageNum][4]);
+	stage->setAlphaABCD(local_48[stageNum][0], local_48[stageNum][1], local_48[stageNum][2], local_48[stageNum][3]);
+	stage->setTevAlphaOp(local_68[stageNum][0], local_68[stageNum][1], local_68[stageNum][2], local_68[stageNum][3], local_68[stageNum][4]);
 	/*
 	stwu     r1, -0xa0(r1)
 	lis      r3, lbl_804784E0@ha
@@ -1968,46 +1134,13 @@ lbl_80046884:
  */
 bool J2DWindowEx::setBlack(JUtility::TColor black)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	li       r0, -1
-	addi     r5, r1, 0x10
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	addi     r4, r1, 0x14
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r0, 0x14(r1)
-	stw      r0, 0x10(r1)
-	bl getBlackWhite__11J2DWindowExCFPQ28JUtility6TColorPQ28JUtility6TColor
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_800468F8
-	li       r3, 0
-	b        lbl_80046924
+	JUtility::TColor oldBlack, oldWhite;
 
-lbl_800468F8:
-	lwz      r5, 0x10(r1)
-	mr       r3, r30
-	lwz      r0, 0(r31)
-	addi     r4, r1, 0xc
-	stw      r5, 8(r1)
-	addi     r5, r1, 8
-	stw      r0, 0xc(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
+	if (!getBlackWhite(&oldBlack, &oldWhite)) {
+		return false;
+	}
 
-lbl_80046924:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return setBlackWhite(black, oldWhite);
 }
 
 /**
@@ -2016,46 +1149,13 @@ lbl_80046924:
  */
 bool J2DWindowEx::setWhite(JUtility::TColor white)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	li       r0, -1
-	addi     r5, r1, 0x10
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	addi     r4, r1, 0x14
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r0, 0x14(r1)
-	stw      r0, 0x10(r1)
-	bl getBlackWhite__11J2DWindowExCFPQ28JUtility6TColorPQ28JUtility6TColor
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80046980
-	li       r3, 0
-	b        lbl_800469AC
+	JUtility::TColor oldBlack, oldWhite;
 
-lbl_80046980:
-	lwz      r5, 0(r31)
-	mr       r3, r30
-	lwz      r0, 0x14(r1)
-	addi     r4, r1, 0xc
-	stw      r5, 8(r1)
-	addi     r5, r1, 8
-	stw      r0, 0xc(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
+	if (!getBlackWhite(&oldBlack, &oldWhite)) {
+		return false;
+	}
 
-lbl_800469AC:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return setBlackWhite(oldBlack, white);
 }
 
 /**
@@ -2064,6 +1164,48 @@ lbl_800469AC:
  */
 bool J2DWindowEx::setBlackWhite(JUtility::TColor black, JUtility::TColor white)
 {
+	for (int i = 0; i < 4; i++) {
+		if (mFrameMaterials[i] == nullptr) {
+			return false;
+		}
+
+		if (mFrameMaterials[i]->getTevBlock() == nullptr) {
+			return false;
+		}
+	}
+
+	if (!isSetBlackWhite(black, white)) {
+		return false;
+	}
+
+	bool bVar1 = false;
+	if ((u32)black != 0 || (u32)white != 0xffffffff) {
+		bVar1 = true;
+	}
+	u8 uVar3 = bVar1 ? 2 : 1;
+	for (int i = 0; i < 4; i++) {
+		mFrameMaterials[i]->getTevBlock()->setTevStageNum(uVar3);
+	}
+	setTevOrder(bVar1);
+	setTevStage(bVar1);
+	if (bVar1) {
+		J2DGXColorS10 color0;
+		J2DGXColorS10 color1;
+		color0.r = black.r;
+		color0.g = black.g;
+		color0.b = black.b;
+		color0.a = black.a;
+		color1.r = white.r;
+		color1.g = white.g;
+		color1.b = white.b;
+		color1.a = white.a;
+
+		for (int i = 0; i < 4; i++) {
+			mFrameMaterials[i]->getTevBlock()->setTevColor(0, color0);
+			mFrameMaterials[i]->getTevBlock()->setTevColor(1, color1);
+		}
+	}
+	return true;
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -2298,184 +1440,56 @@ lbl_80046C9C:
 }
 
 /**
- * @note Address: 0x80046CB0
- * @note Size: 0x4
- */
-// void J2DTevBlock::setTevColor(u32 index, J2DGXColorS10 color) { }
-
-/**
  * @note Address: 0x80046CB4
  * @note Size: 0x194
  */
-void J2DWindowEx::getBlackWhite(JUtility::TColor*, JUtility::TColor*) const
+bool J2DWindowEx::getBlackWhite(JUtility::TColor* outBlack, JUtility::TColor* outWhite) const
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r26, 0x18(r1)
-	mr       r29, r3
-	lwz      r3, 0x148(r3)
-	mr       r30, r4
-	mr       r31, r5
-	cmplwi   r3, 0
-	bne      lbl_80046CE4
-	li       r3, 0
-	b        lbl_80046E34
+	if (mFrameMaterials[0] == nullptr) {
+		return false;
+	}
 
-lbl_80046CE4:
-	lwz      r3, 0x70(r3)
-	cmplwi   r3, 0
-	bne      lbl_80046CF8
-	li       r3, 0
-	b        lbl_80046E34
+	if (mFrameMaterials[0]->getTevBlock() == nullptr) {
+		return false;
+	}
 
-lbl_80046CF8:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x58(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	clrlwi   r3, r3, 0x18
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	subfic   r5, r3, 1
-	addi     r4, r3, -1
-	lbz      r3, 0x14(r1)
-	or       r4, r5, r4
-	stw      r0, 0x10(r1)
-	rlwinm.  r4, r4, 1, 0x1f, 0x1f
-	lbz      r0, 0x15(r1)
-	stb      r3, 0(r30)
-	lbz      r3, 0x16(r1)
-	stb      r0, 1(r30)
-	lbz      r0, 0x17(r1)
-	stb      r3, 2(r30)
-	lbz      r3, 0x10(r1)
-	stb      r0, 3(r30)
-	lbz      r0, 0x11(r1)
-	stb      r3, 0(r31)
-	lbz      r3, 0x12(r1)
-	stb      r0, 1(r31)
-	lbz      r0, 0x13(r1)
-	stb      r3, 2(r31)
-	stb      r0, 3(r31)
-	beq      lbl_80046E30
-	lwz      r3, 0x148(r29)
-	li       r4, 0
-	lwz      r3, 0x70(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	lwz      r5, 0x148(r29)
-	li       r4, 1
-	lha      r29, 0(r3)
-	lha      r28, 2(r3)
-	lha      r27, 4(r3)
-	lha      r26, 6(r3)
-	lwz      r3, 0x70(r5)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	rlwinm   r4, r28, 0x10, 8, 0xf
-	lha      r0, 2(r3)
-	rlwimi   r4, r29, 0x18, 0, 7
-	lha      r5, 0(r3)
-	rlwimi   r4, r27, 8, 0x10, 0x17
-	rlwinm   r0, r0, 0x10, 8, 0xf
-	rlwimi   r4, r26, 0, 0x18, 0x1f
-	lha      r6, 4(r3)
-	stw      r4, 0xc(r1)
-	rlwimi   r0, r5, 0x18, 0, 7
-	lha      r7, 6(r3)
-	rlwimi   r0, r6, 8, 0x10, 0x17
-	lbz      r3, 0xc(r1)
-	lbz      r5, 0xd(r1)
-	rlwimi   r0, r7, 0, 0x18, 0x1f
-	stb      r3, 0(r30)
-	lbz      r4, 0xe(r1)
-	stb      r5, 1(r30)
-	lbz      r3, 0xf(r1)
-	stw      r0, 8(r1)
-	stb      r4, 2(r30)
-	lbz      r0, 8(r1)
-	stb      r3, 3(r30)
-	lbz      r4, 9(r1)
-	stb      r0, 0(r31)
-	lbz      r3, 0xa(r1)
-	stb      r4, 1(r31)
-	lbz      r0, 0xb(r1)
-	stb      r3, 2(r31)
-	stb      r0, 3(r31)
-
-lbl_80046E30:
-	li       r3, 1
-
-lbl_80046E34:
-	lmw      r26, 0x18(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	bool cVar6 = mFrameMaterials[0]->getTevBlock()->getTevStageNum() != 1;
+	*outBlack  = JUtility::TColor(0);
+	*outWhite  = JUtility::TColor(0xffffffff);
+	if (cVar6) {
+		J2DGXColorS10* color0p = mFrameMaterials[0]->getTevBlock()->getTevColor(0);
+		GXColorS10 color0;
+		color0.r               = color0p->r;
+		color0.g               = color0p->g;
+		color0.b               = color0p->b;
+		color0.a               = color0p->a;
+		J2DGXColorS10* color1p = mFrameMaterials[0]->getTevBlock()->getTevColor(1);
+		GXColorS10 color1;
+		color1.r  = color1p->r;
+		color1.g  = color1p->g;
+		color1.b  = color1p->b;
+		color1.a  = color1p->a;
+		*outBlack = JUtility::TColor((((u8)color0.r) << 0x18) | (((u8)color0.g) << 0x10) | (((u8)color0.b) << 0x8) | (((u8)color0.a)));
+		*outWhite = JUtility::TColor((((u8)color1.r) << 0x18) | (((u8)color1.g) << 0x10) | (((u8)color1.b) << 0x8) | (((u8)color1.a)));
+	}
+	return true;
 }
 
 /**
  * @note Address: 0x80046E48
  * @note Size: 0x98
  */
-void J2DWindowEx::isSetBlackWhite(JUtility::TColor, JUtility::TColor) const
+bool J2DWindowEx::isSetBlackWhite(JUtility::TColor black, JUtility::TColor white) const
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0(r4)
-	stw      r31, 0xc(r1)
-	cmplwi   r0, 0
-	stw      r30, 8(r1)
-	bne      lbl_80046E80
-	lwz      r4, 0(r5)
-	addis    r0, r4, 1
-	cmplwi   r0, 0xffff
-	bne      lbl_80046E80
-	li       r3, 1
-	b        lbl_80046EC8
-
-lbl_80046E80:
-	li       r30, 0
-	mr       r31, r3
-
-lbl_80046E88:
-	lwz      r3, 0x148(r31)
-	lwz      r3, 0x70(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 1
-	bne      lbl_80046EB4
-	li       r3, 0
-	b        lbl_80046EC8
-
-lbl_80046EB4:
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 4
-	blt      lbl_80046E88
-	li       r3, 1
-
-lbl_80046EC8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (black == 0 && white == 0xffffffff) {
+		return true;
+	}
+	for (int i = 0; i < 4; i++) {
+		if ((u8)mFrameMaterials[i]->getTevBlock()->getMaxStage() == 1) {
+			return false;
+		}
+	}
+	return true;
 }
 
 /**
@@ -2484,36 +1498,12 @@ lbl_80046EC8:
  */
 JUtility::TColor J2DWindowEx::getBlack() const
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	li       r0, -1
-	addi     r5, r1, 8
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	mr       r3, r4
-	addi     r4, r1, 0xc
-	stw      r0, 0xc(r1)
-	stw      r0, 8(r1)
-	bl getBlackWhite__11J2DWindowExCFPQ28JUtility6TColorPQ28JUtility6TColor
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80046F24
-	li       r0, 0
-	stw      r0, 0(r31)
-	b        lbl_80046F2C
+	JUtility::TColor black, white;
+	if (!getBlackWhite(&black, &white)) {
+		return TCOLOR_BLACK_U32;
+	}
 
-lbl_80046F24:
-	lwz      r0, 0xc(r1)
-	stw      r0, 0(r31)
-
-lbl_80046F2C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return black;
 }
 
 /**
@@ -2522,36 +1512,12 @@ lbl_80046F2C:
  */
 JUtility::TColor J2DWindowEx::getWhite() const
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	li       r0, -1
-	addi     r5, r1, 8
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	mr       r3, r4
-	addi     r4, r1, 0xc
-	stw      r0, 0xc(r1)
-	stw      r0, 8(r1)
-	bl getBlackWhite__11J2DWindowExCFPQ28JUtility6TColorPQ28JUtility6TColor
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80046F84
-	li       r0, -1
-	stw      r0, 0(r31)
-	b        lbl_80046F8C
+	JUtility::TColor black, white;
+	if (!getBlackWhite(&black, &white)) {
+		return TCOLOR_WHITE_U32;
+	}
 
-lbl_80046F84:
-	lwz      r0, 8(r1)
-	stw      r0, 0(r31)
-
-lbl_80046F8C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return white;
 }
 
 /**
@@ -2563,27 +1529,10 @@ void J2DWindowEx::setAlpha(u8 alpha)
 	mAlpha = alpha;
 	J2DColorBlock* block;
 	for (int i = 0; i < 4; i++) {
-		// J2DMaterial* material = _148[i];
-		// if (material && (block = &material->mColorBlock)) {
-		// 	block->mColors[0].a = alpha;
-		// }
-
 		if (mFrameMaterials[i] && (block = &mFrameMaterials[i]->mColorBlock)) {
 			block->mColors[0].a = alpha;
 		}
 	}
-	// if (_148[0] && (block = &_148[0]->mColorBlock)) {
-	// 	block->mColors[0].a = alpha;
-	// }
-	// if (_148[1] && (block = &_148[1]->mColorBlock)) {
-	// 	block->mColors[0].a = alpha;
-	// }
-	// if (_150 && (block = &_150->mColorBlock)) {
-	// 	block->mColors[0].a = alpha;
-	// }
-	// if (_154 && (block = &_154->mColorBlock)) {
-	// 	block->mColors[0].a = alpha;
-	// }
 	if (mContentsMaterial && (block = &mContentsMaterial->mColorBlock)) {
 		block->mColors[0].a = alpha;
 	}
@@ -2602,18 +1551,6 @@ void J2DWindowEx::setCullBack(_GXCullMode cullMode)
 			mFrameMaterials[i]->mColorBlock.mCullMode = cullMode;
 		}
 	}
-	// if (_148[0]) {
-	// 	_148[0]->mColorBlock.mCullMode = cullMode;
-	// }
-	// if (_148[1]) {
-	// 	_148[1]->mColorBlock.mCullMode = cullMode;
-	// }
-	// if (_150) {
-	// 	_150->mColorBlock.mCullMode = cullMode;
-	// }
-	// if (_154) {
-	// 	_154->mColorBlock.mCullMode = cullMode;
-	// }
 	if (mContentsMaterial != nullptr) {
 		mContentsMaterial->mColorBlock.mCullMode = cullMode;
 	}
@@ -2645,12 +1582,6 @@ JUTTexture* J2DWindowEx::getFrameTexture(u8 frameMaterialIndex, u8 textureIndex)
 }
 
 /**
- * @note Address: 0x8004711C
- * @note Size: 0x24
- */
-// J2DMaterial* J2DWindowEx::getFrameMaterial(u8 index) const { return (index >= 4) ? nullptr : _148[index]; }
-
-/**
  * @note Address: 0x80047140
  * @note Size: 0x68
  */
@@ -2662,12 +1593,6 @@ JUTTexture* J2DWindowEx::getContentsTexture(u8 textureIndex) const
 	}
 	return nullptr;
 }
-
-/**
- * @note Address: 0x800471A8
- * @note Size: 0x8
- */
-// J2DMaterial* J2DWindowEx::getContentsMaterial() const { return mContentsMaterial; }
 
 /**
  * @note Address: 0x800471B0
@@ -2792,82 +1717,32 @@ void J2DWindowEx::setAnimation(J2DAnmVisibilityFull* animation) { mAnmVisibility
  */
 void J2DWindowEx::setAnimation(J2DAnmVtxColor* animation)
 {
-	/*
-	stw      r4, 0x178(r3)
-	li       r0, 0
-	cmplwi   r4, 0
-	stb      r0, 0x17c(r3)
-	beq      lbl_80047634
-	lhz      r7, 0x10(r4)
-	li       r9, 0
-	b        lbl_80047628
+	mAnmVtxColor = animation;
+	_17C         = 0;
+	if (animation != nullptr) {
+		u32 uVar3 = animation->getAnmTableNum(0);
+		for (u8 i = 0; i < 4; i++) {
+			if (_168[i] != 0xffff) {
+				for (u16 j = 0; j < uVar3; j++) {
+					J3DAnmVtxColorIndexData* puVar1 = animation->getAnmVtxColorIndexData(0, j);
+					u16* indexPointer               = animation->getVtxColorIndexPointer(0);
+					u16* indexPointer2              = indexPointer + (u32)puVar1->mData;
+					for (u16 k = 0; k < puVar1->mNum; k++) {
+						if (indexPointer2[k] == _168[i]) {
+							mAnmVtxColor = animation;
+							_17C |= 1 << i;
+							goto nexti;
+						}
+					}
+				}
+			}
+		nexti:;
+		}
+	}
 
-lbl_8004758C:
-	rlwinm   r5, r9, 1, 0x17, 0x1e
-	addi     r8, r5, 0x168
-	lhzx     r0, r3, r8
-	cmplwi   r0, 0xffff
-	beq      lbl_80047624
-	li       r10, 0
-	b        lbl_80047618
-
-lbl_800475A8:
-	lwz      r6, 0x14(r4)
-	rlwinm   r0, r10, 3, 0xd, 0x1c
-	lwz      r5, 0x1c(r4)
-	li       r12, 0
-	add      r6, r6, r0
-	lwz      r0, 4(r6)
-	lhz      r6, 0(r6)
-	slwi     r0, r0, 1
-	add      r11, r5, r0
-	b        lbl_80047608
-
-lbl_800475D0:
-	rlwinm   r0, r12, 1, 0xf, 0x1e
-	lhzx     r5, r3, r8
-	lhzx     r0, r11, r0
-	cmplw    r5, r0
-	bne      lbl_80047604
-	stw      r4, 0x178(r3)
-	clrlwi   r0, r9, 0x18
-	li       r5, 1
-	lbz      r6, 0x17c(r3)
-	slw      r0, r5, r0
-	or       r0, r6, r0
-	stb      r0, 0x17c(r3)
-	b        lbl_80047624
-
-lbl_80047604:
-	addi     r12, r12, 1
-
-lbl_80047608:
-	clrlwi   r0, r12, 0x10
-	cmplw    r0, r6
-	blt      lbl_800475D0
-	addi     r10, r10, 1
-
-lbl_80047618:
-	clrlwi   r0, r10, 0x10
-	cmplw    r0, r7
-	blt      lbl_800475A8
-
-lbl_80047624:
-	addi     r9, r9, 1
-
-lbl_80047628:
-	clrlwi   r0, r9, 0x18
-	cmplwi   r0, 4
-	blt      lbl_8004758C
-
-lbl_80047634:
-	lbz      r0, 0x17c(r3)
-	cmplwi   r0, 0
-	bnelr
-	li       r0, 0
-	stw      r0, 0x178(r3)
-	blr
-	*/
+	if (_17C == 0) {
+		mAnmVtxColor = nullptr;
+	}
 }
 
 /**
@@ -2876,156 +1751,41 @@ lbl_80047634:
  */
 const J2DAnmTransform* J2DWindowEx::animationPane(const J2DAnmTransform* animation)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	stw      r29, 0x24(r1)
-	mr       r29, r4
-	stw      r28, 0x20(r1)
-	mr       r28, r3
-	lwz      r3, 0x174(r3)
-	cmplwi   r3, 0
-	beq      lbl_800476B0
-	lhz      r4, 0x166(r28)
-	cmplwi   r4, 0xffff
-	beq      lbl_800476B0
-	addi     r5, r1, 8
-	bl       getVisibility__20J2DAnmVisibilityFullCFUsPUc
-	lbz      r0, 8(r1)
-	cmplwi   r0, 0
-	beq      lbl_800476A8
-	li       r0, 1
-	stb      r0, 0xb0(r28)
-	b        lbl_800476B0
+	if (mAnmVisibility != 0 && _166 != 0xffff) {
+		u8 visibility;
+		mAnmVisibility->getVisibility(_166, &visibility);
+		if (visibility) {
+			J2DPane::show();
+		} else {
+			J2DPane::hide();
+		}
+	}
 
-lbl_800476A8:
-	li       r0, 0
-	stb      r0, 0xb0(r28)
-
-lbl_800476B0:
-	lis      r3, lbl_804785C0@ha
-	lwz      r10, 0x178(r28)
-	addi     r6, r3, lbl_804785C0@l
-	addi     r5, r28, 0x128
-	lwz      r9, 0(r6)
-	cmplwi   r10, 0
-	lwz      r8, 4(r6)
-	addi     r4, r28, 0x12c
-	lwz      r7, 8(r6)
-	addi     r3, r28, 0x130
-	lwz      r6, 0xc(r6)
-	addi     r0, r28, 0x134
-	stw      r9, 0xc(r1)
-	stw      r8, 0x10(r1)
-	stw      r7, 0x14(r1)
-	stw      r6, 0x18(r1)
-	stw      r5, 0xc(r1)
-	stw      r4, 0x10(r1)
-	stw      r3, 0x14(r1)
-	stw      r0, 0x18(r1)
-	beq      lbl_800477CC
-	lhz      r31, 0x10(r10)
-	li       r30, 0
-	b        lbl_800477C0
-
-lbl_80047710:
-	clrlwi   r7, r30, 0x18
-	li       r0, 1
-	lbz      r3, 0x17c(r28)
-	slw      r0, r0, r7
-	and.     r0, r3, r0
-	beq      lbl_800477BC
-	rlwinm   r3, r30, 1, 0x17, 0x1e
-	li       r5, 0
-	addi     r8, r3, 0x168
-	b        lbl_800477B0
-
-lbl_80047738:
-	lwz      r3, 0x178(r28)
-	rlwinm   r0, r5, 3, 0xd, 0x1c
-	li       r10, 0
-	lwz      r6, 0x14(r3)
-	lwz      r4, 0x1c(r3)
-	add      r6, r6, r0
-	lwz      r0, 4(r6)
-	lhz      r6, 0(r6)
-	slwi     r0, r0, 1
-	add      r9, r4, r0
-	b        lbl_800477A0
-
-lbl_80047764:
-	rlwinm   r0, r10, 1, 0xf, 0x1e
-	lhzx     r4, r28, r8
-	lhzx     r0, r9, r0
-	cmplw    r4, r0
-	bne      lbl_8004779C
-	lwz      r12, 0(r3)
-	slwi     r0, r7, 2
-	addi     r4, r1, 0xc
-	lwz      r12, 0x10(r12)
-	lwzx     r6, r4, r0
-	li       r4, 0
-	mtctr    r12
-	bctrl
-	b        lbl_800477BC
-
-lbl_8004779C:
-	addi     r10, r10, 1
-
-lbl_800477A0:
-	clrlwi   r0, r10, 0x10
-	cmplw    r0, r6
-	blt      lbl_80047764
-	addi     r5, r5, 1
-
-lbl_800477B0:
-	clrlwi   r0, r5, 0x10
-	cmplw    r0, r31
-	blt      lbl_80047738
-
-lbl_800477BC:
-	addi     r30, r30, 1
-
-lbl_800477C0:
-	clrlwi   r0, r30, 0x18
-	cmplwi   r0, 4
-	blt      lbl_80047710
-
-lbl_800477CC:
-	mr       r3, r28
-	mr       r4, r29
-	bl       animationPane__7J2DPaneFPC15J2DAnmTransform
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	lwz      r28, 0x20(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
-}
-
-/**
- * @note Address: 0x800477F8
- * @note Size: 0x4
- */
-// void J2DAnmVtxColor::getColor(u8, u16, _GXColor*) const { }
-
-/**
- * @note Address: 0x800477FC
- * @note Size: 0x2C
- */
-void J2DWindowEx::getMaterial(J2DWindow::TMaterial& material) const
-{
-	material._00 = mFrameMaterials[0];
-	material._04 = mFrameMaterials[1];
-	material._08 = mFrameMaterials[2];
-	material._0C = mFrameMaterials[3];
-	material._10 = mContentsMaterial;
+	JUtility::TColor* local_38[4] = { nullptr };
+	local_38[0]                   = &mContentsColorA;
+	local_38[1]                   = &mContentsColorB;
+	local_38[2]                   = &mContentsColorC;
+	local_38[3]                   = &mContentsColorD;
+	if (mAnmVtxColor != NULL) {
+		u32 uVar3 = mAnmVtxColor->getAnmTableNum(0);
+		for (u8 i = 0; i < 4; i++) {
+			if ((_17C & (1 << i))) {
+				for (u16 j = 0; j < uVar3; j++) {
+					J3DAnmVtxColorIndexData* puVar1 = mAnmVtxColor->getAnmVtxColorIndexData(0, j);
+					u16* indexPointer               = mAnmVtxColor->getVtxColorIndexPointer(0);
+					u16* indexPointer2              = indexPointer + (u32)puVar1->mData;
+					for (u16 k = 0; k < puVar1->mNum; k++) {
+						if (indexPointer2[k] == _168[i]) {
+							mAnmVtxColor->getColor(0, j, local_38[i]);
+							goto nexti;
+						}
+					}
+				}
+			}
+		nexti:;
+		}
+	}
+	return J2DPane::animationPane(animation);
 }
 
 /**
@@ -3035,6 +1795,7 @@ void J2DWindowEx::getMaterial(J2DWindow::TMaterial& material) const
  */
 void J2DWindowEx::draw(f32 p1, f32 p2, f32 p3, f32 p4)
 {
+	draw(JGeometry::TBox2<f32>(JGeometry::TVec2<f32>(p1, p2), JGeometry::TVec2<f32>(p1 + p3, p2 + p4)));
 	// JGeometry::TBox2f box;
 	// box.f.x = p3 + p1;
 	// box.f.y = p4 + p2;
@@ -3077,38 +1838,3 @@ void J2DWindowEx::draw(f32 p1, f32 p2, f32 p3, f32 p4)
 	blr
 	*/
 }
-
-/**
- * @note Address: 0x80047880
- * @note Size: 0x3C
- * setCullBack__11J2DWindowExFb
- */
-void J2DWindowEx::setCullBack(bool shouldCullBack)
-{
-	GXCullMode cullMode = GX_CULL_NONE;
-	if (shouldCullBack) {
-		cullMode = GX_CULL_BACK;
-	}
-	setCullBack(cullMode);
-}
-
-/**
- * @note Address: 0x800478BC
- * @note Size: 0x20
- * isUsed__11J2DWindowExFPC7ResFONT
- */
-// bool J2DWindowEx::isUsed(const ResFONT* resource) { return J2DPane::isUsed(resource); }
-
-/**
- * @note Address: 0x800478DC
- * @note Size: 0x20
- * setAnimation__11J2DWindowExFP15J2DAnmTransform
- */
-// void J2DWindowEx::setAnimation(J2DAnmTransform* animation) { J2DPane::setAnimation(animation); }
-
-/**
- * @note Address: 0x800478FC
- * @note Size: 0x20
- * setAnimation__11J2DWindowExFP10J2DAnmBase
- */
-// void J2DWindowEx::setAnimation(J2DAnmBase* animation) { J2DPane::setAnimation(animation); }

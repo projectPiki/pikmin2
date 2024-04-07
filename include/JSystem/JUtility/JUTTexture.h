@@ -73,6 +73,7 @@ struct JUTTexture : public GXTexObj {
 	u8 getTlutName() const { return mTlut; }
 
 	int getTransparency() { return mTexInfo->mTransparency; }
+	u8 getFormat() const { return mTexInfo->mTextureFormat; }
 
 	void setTlutName(u8 tlut) { mTlut = tlut; }
 

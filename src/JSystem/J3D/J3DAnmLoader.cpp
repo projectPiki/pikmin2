@@ -354,10 +354,10 @@ void J3DAnmFullLoader_v15::setAnmVtxColor(J3DAnmVtxColorFull* animation, const J
 	u16* v2                             = JSUConvertOffsetToPtr<u16>(data, (void*)data->mVtxColorIndexPointerOffsets[1]);
 
 	for (int i = 0; i < animation->mAnmTableNum[0]; i++) {
-		animation->mAnmVtxColorIndexData[0][i]._04 = (s32)(v1 + animation->mAnmVtxColorIndexData[0][i]._04);
+		animation->mAnmVtxColorIndexData[0][i].mData = (void*)(v1 + (u32)animation->mAnmVtxColorIndexData[0][i].mData);
 	}
 	for (int i = 0; i < animation->mAnmTableNum[1]; i++) {
-		animation->mAnmVtxColorIndexData[1][i]._04 = (s32)(v2 + animation->mAnmVtxColorIndexData[1][i]._04);
+		animation->mAnmVtxColorIndexData[1][i].mData = (void*)(v2 + (u32)animation->mAnmVtxColorIndexData[1][i].mData);
 	}
 
 	animation->mRedVals   = JSUConvertOffsetToPtr<u8>(data, (void*)data->mRValuesOffset);
@@ -647,11 +647,11 @@ void J3DAnmKeyLoader_v15::setAnmVtxColor(J3DAnmVtxColorKey* animation, const J3D
 	u16* vtxColors1 = JSUConvertOffsetToPtr<u16>(data, (void*)data->mVtxColorIndexPointerOffset[1]);
 
 	for (int i = 0; i < animation->mAnmTableNum[0]; i++) {
-		animation->mAnmVtxColorIndexData[0][i]._04 = (s32)(vtxColors0 + animation->mAnmVtxColorIndexData[0][i]._04);
+		animation->mAnmVtxColorIndexData[0][i].mData = (void*)(vtxColors0 + (u32)animation->mAnmVtxColorIndexData[0][i].mData);
 	}
 
 	for (int i = 0; i < animation->mAnmTableNum[1]; i++) {
-		animation->mAnmVtxColorIndexData[1][i]._04 = (s32)(vtxColors1 + animation->mAnmVtxColorIndexData[1][i]._04);
+		animation->mAnmVtxColorIndexData[1][i].mData = (void*)(vtxColors1 + (u32)animation->mAnmVtxColorIndexData[1][i].mData);
 	}
 
 	animation->mRedVals   = JSUConvertOffsetToPtr<s16>(data, (void*)data->mRValOffset);
