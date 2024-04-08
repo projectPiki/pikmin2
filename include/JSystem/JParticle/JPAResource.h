@@ -42,7 +42,7 @@ struct JPAResource {
 	JPAExTexShape* getEts() const { return mExTexShape; }
 	JPADynamicsBlock* getDyn() const { return mDynamicsBlock; }
 
-	u16 getTexIdx(u8 idx) const { return mTextureIDList[idx]; }
+	u16 getTexIdx(u32 idx) const { return mTextureIDList[idx]; }
 	u16 getUsrIdx() const { return mUsrIdx; }
 
 	JPAFunctionA** mCalcEmitterFuncList;       // _00

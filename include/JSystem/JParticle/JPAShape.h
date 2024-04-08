@@ -11,14 +11,16 @@ struct JPABaseParticle;
 // not sure where this belongs
 static inline u32 COLOR_MULTI(u32 a, u32 b) { return ((a * (b + 1)) * 0x10000) >> 24; }
 
+struct JPAClrAnmKeyData {
+};
+
 /**
  * @fabricated
  */
 struct JPABaseShapeData {
-	// Represenation of contents of .jpc file
-	u8 mMagic[4]; // _00
-	u32 mSize;    // _04
-
+	// Representation of contents of .jpc file
+	u8 mMagic[4];         // _00
+	u32 mSize;            // _04
 	u32 mFlags;           // _08
 	s16 mClrPrmAnmOffset; // _0C
 	s16 mClrEnvAnmOffset; // _0E
@@ -50,17 +52,6 @@ struct JPABaseShape {
 	JPABaseShape(const u8*, JKRHeap*);
 
 	void setGX(JPAEmitterWorkData*) const;
-
-	// Unused/inlined:
-	void init_jpa(const u8*, JKRHeap*);
-
-	static GXBlendMode st_bm[3];
-	static GXBlendFactor st_bf[10];
-	static GXLogicOp st_lo[16];
-	static GXCompare st_c[8];
-	static GXAlphaOp st_ao[4];
-	static GXTevColorArg st_ca[6][4];
-	static GXTevAlphaArg st_aa[2][4];
 
 	GXBlendMode getBlendMode() const { return st_bm[mData->mBlendModeCfg & 0x03]; }
 	GXBlendFactor getBlendSrc() const { return st_bf[(mData->mBlendModeCfg >> 2) & 0x0F]; }
@@ -129,6 +120,17 @@ struct JPABaseShape {
 	f32 getIncRot() const { return ((f32*)mTexCrdMtxAnmTbl)[9]; }
 	f32 getInitRot() const { return ((f32*)mTexCrdMtxAnmTbl)[4]; }
 	u8 getTexAnmKeyNum() const { return mData->mTexAnmNum; }
+
+	// Unused/inlined:
+	void init_jpa(const u8*, JKRHeap*);
+
+	static GXBlendMode st_bm[3];
+	static GXBlendFactor st_bf[10];
+	static GXLogicOp st_lo[16];
+	static GXCompare st_c[8];
+	static GXAlphaOp st_ao[4];
+	static GXTevColorArg st_ca[6][4];
+	static GXTevAlphaArg st_aa[2][4];
 
 	const JPABaseShapeData* mData; // _00
 	const void* mTexCrdMtxAnmTbl;  // _04

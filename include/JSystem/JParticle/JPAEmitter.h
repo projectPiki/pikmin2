@@ -38,17 +38,6 @@ enum JPAEmitterFlags {
 	JPAEMIT_Unk9     = 0x100,
 };
 
-void noLoadPrj(const JPAEmitterWorkData* workData, const Mtx mtx);
-void loadPrj(const JPAEmitterWorkData* workData, const Mtx p2);
-void loadPrjAnm(const JPAEmitterWorkData* workData, const Mtx p2);
-void rotTypeX(f32, f32, Mtx&);
-void rotTypeY(f32, f32, Mtx&);
-void rotTypeZ(f32, f32, Mtx&);
-void rotTypeXYZ(f32, f32, Mtx&);
-void basePlaneTypeXY(f32 (*)[4], f32, f32);
-void basePlaneTypeXZ(f32 (*)[4], f32, f32);
-void basePlaneTypeX(f32 (*)[4], f32, f32);
-
 struct JPABaseParticle {
 	void init_p(JPAEmitterWorkData*);
 	void init_c(JPAEmitterWorkData*, JPABaseParticle*);
@@ -98,7 +87,7 @@ struct JPABaseParticle {
 	s16 mAge;                          // _80
 	u16 mLifeTime;                     // _82
 	f32 mTime;                         // _84
-	s16 mRotateAngle;                  // _88
+	u16 mRotateAngle;                  // _88
 	s16 mRotateSpeed;                  // _8A
 	GXColor mPrmClr;                   // _8C
 	GXColor mEnvClr;                   // _90
@@ -305,6 +294,7 @@ struct JPABaseEmitter {
 	}
 	void setVolumeSize(u16 size) { mVolumeSize = size; }
 	void setLifeTime(s16 lifetime) { mLifeTime = lifetime; }
+	u32 getAge() const { return mTick; }
 
 	JGeometry::TVec3f mLocalScl;             // _00
 	JGeometry::TVec3f mLocalTrs;             // _0C

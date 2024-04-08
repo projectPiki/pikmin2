@@ -170,6 +170,13 @@ struct TVec3 {
 	// 	z = vec.z;
 	// }
 
+	void sub(const TVec3<f32>& b)
+	{
+		x -= b.x;
+		y -= b.y;
+		z -= b.z;
+	}
+
 	void zero() { x = y = z = 0.0f; }
 
 	f32 squared() const { return x * x + y * y + z * z; }
@@ -209,7 +216,11 @@ struct TVec3 {
 		z = other.z * norm;
 	}
 
+	void cross(const TVec3<f32>& a, const TVec3<f32>& b) { set(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x); }
+
 	bool isAbove(const TVec3<T>& other) const { return (x >= other.x) && (y >= other.y) && (z >= other.z); }
+
+	bool isZero() const { return squared() <= 32.0f * FLT_EPSILON; }
 
 	T x;
 	T y;

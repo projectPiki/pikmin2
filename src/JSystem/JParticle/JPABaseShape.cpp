@@ -5,6 +5,23 @@
 #include "JSystem/JParticle/JPAShape.h"
 #include "JSystem/JUtility/TColor.h"
 
+// forward declared local functions
+static void noLoadPrj(const JPAEmitterWorkData* workData, const Mtx mtx);
+static void loadPrj(const JPAEmitterWorkData* workData, const Mtx p2);
+static void loadPrjAnm(const JPAEmitterWorkData* workData, const Mtx p2);
+static void dirTypeVel(const JPAEmitterWorkData*, const JPABaseParticle*, JGeometry::TVec3f*);
+static void dirTypePos(const JPAEmitterWorkData*, const JPABaseParticle*, JGeometry::TVec3f*);
+static void dirTypePosInv(const JPAEmitterWorkData*, const JPABaseParticle*, JGeometry::TVec3f*);
+static void dirTypeEmtrDir(const JPAEmitterWorkData*, const JPABaseParticle*, JGeometry::TVec3f*);
+static void dirTypePrevPtcl(const JPAEmitterWorkData*, const JPABaseParticle*, JGeometry::TVec3f*);
+static void rotTypeX(f32, f32, Mtx&);
+static void rotTypeY(f32, f32, Mtx&);
+static void rotTypeZ(f32, f32, Mtx&);
+static void rotTypeXYZ(f32, f32, Mtx&);
+static void basePlaneTypeXY(Mtx, f32, f32);
+static void basePlaneTypeXZ(Mtx, f32, f32);
+static void basePlaneTypeX(Mtx, f32, f32);
+
 static u8 jpa_dl[32] = {
 	0x80, 0x00, 0x04, 0x00, 0x00, 0x01, 0x01, 0x02, 0x02, 0x03, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00,
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -20,6 +37,11 @@ static projectionFunc p_prj[3] = {
 	noLoadPrj,
 	loadPrj,
 	loadPrjAnm,
+};
+
+typedef void (*dirTypeFunc)(const JPAEmitterWorkData*, const JPABaseParticle*, JGeometry::TVec3f*);
+static dirTypeFunc p_direction[5] = {
+	dirTypeVel, dirTypePos, dirTypePosInv, dirTypeEmtrDir, dirTypePrevPtcl,
 };
 
 typedef void (*rotTypeFunc)(f32, f32, Mtx&);
@@ -39,192 +61,32 @@ static u8* p_dl[2] = {
 	jpa_dl_x,
 };
 
-typedef u32 JPAClrAnmKeyData; /** TODO: Remove and replace this. */
+GXBlendMode JPABaseShape::st_bm[3] = { GX_BM_NONE, GX_BM_BLEND, GX_BM_LOGIC };
 
-/*
-    Generated from dpostproc
+GXBlendFactor JPABaseShape::st_bf[10] = { GX_BL_ZERO,      GX_BL_ONE,      GX_BL_SRCCOL,      GX_BL_INVSRCCOL, GX_BL_DSTCOL,
+	                                      GX_BL_INVDSTCOL, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_BL_DSTALPHA,  GX_BL_INVDSTALPHA };
 
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global jpa_dl
-    jpa_dl:
-        .4byte 0x80000400
-        .4byte 0x00010102
-        .4byte 0x02030300
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global jpa_dl_x
-    jpa_dl_x:
-        .4byte 0x80000800
-        .4byte 0x00010102
-        .4byte 0x02030348
-        .4byte 0x0049014A
-        .4byte 0x024B0300
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global p_prj
-    p_prj:
-        .4byte noLoadPrj__FPC18JPAEmitterWorkDataPA4_Cf
-        .4byte loadPrj__FPC18JPAEmitterWorkDataPA4_Cf
-        .4byte loadPrjAnm__FPC18JPAEmitterWorkDataPA4_Cf
-    .global p_direction
-    p_direction:
-        .4byte
-   "dirTypeVel__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>"
-        .4byte
-   "dirTypePos__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>"
-        .4byte
-   "dirTypePosInv__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>"
-        .4byte
-   "dirTypeEmtrDir__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>"
-        .4byte
-   "dirTypePrevPtcl__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>"
-    .global p_rot
-    p_rot:
-        .4byte rotTypeY__FffRA3_A4_f
-        .4byte rotTypeX__FffRA3_A4_f
-        .4byte rotTypeZ__FffRA3_A4_f
-        .4byte rotTypeXYZ__FffRA3_A4_f
-        .4byte rotTypeY__FffRA3_A4_f
-    .global p_plane
-    p_plane:
-        .4byte basePlaneTypeXY__FPA4_fff
-        .4byte basePlaneTypeXZ__FPA4_fff
-        .4byte basePlaneTypeX__FPA4_fff
-    .global st_bm__12JPABaseShape
-    st_bm__12JPABaseShape:
-        .4byte 0x00000000
-        .4byte 0x00000001
-        .4byte 0x00000002
-    .global st_bf__12JPABaseShape
-    st_bf__12JPABaseShape:
-        .4byte 0x00000000
-        .4byte 0x00000001
-        .4byte 0x00000002
-        .4byte 0x00000003
-        .4byte 0x00000002
-        .4byte 0x00000003
-        .4byte 0x00000004
-        .4byte 0x00000005
-        .4byte 0x00000006
-        .4byte 0x00000007
-    .global st_lo__12JPABaseShape
-    st_lo__12JPABaseShape:
-        .4byte 0x00000000
-        .4byte 0x0000000F
-        .4byte 0x00000003
-        .4byte 0x0000000C
-        .4byte 0x00000005
-        .4byte 0x0000000A
-        .4byte 0x00000001
-        .4byte 0x0000000E
-        .4byte 0x00000007
-        .4byte 0x00000008
-        .4byte 0x00000006
-        .4byte 0x00000009
-        .4byte 0x00000002
-        .4byte 0x00000004
-        .4byte 0x0000000B
-        .4byte 0x0000000D
-    .global st_c__12JPABaseShape
-    st_c__12JPABaseShape:
-        .4byte 0x00000000
-        .4byte 0x00000001
-        .4byte 0x00000003
-        .4byte 0x00000002
-        .4byte 0x00000005
-        .4byte 0x00000006
-        .4byte 0x00000004
-        .4byte 0x00000007
-    .global st_ao__12JPABaseShape
-    st_ao__12JPABaseShape:
-        .4byte 0x00000000
-        .4byte 0x00000001
-        .4byte 0x00000002
-        .4byte 0x00000003
-    .global st_ca__12JPABaseShape
-    st_ca__12JPABaseShape:
-        .4byte 0x0000000F
-        .4byte 0x00000008
-        .4byte 0x0000000C
-        .4byte 0x0000000F
-        .4byte 0x0000000F
-        .4byte 0x00000002
-        .4byte 0x00000008
-        .4byte 0x0000000F
-        .4byte 0x00000002
-        .4byte 0x0000000C
-        .4byte 0x00000008
-        .4byte 0x0000000F
-        .4byte 0x00000004
-        .4byte 0x00000002
-        .4byte 0x00000008
-        .4byte 0x0000000F
-        .4byte 0x0000000F
-        .4byte 0x00000008
-        .4byte 0x00000002
-        .4byte 0x00000004
-        .4byte 0x0000000F
-        .4byte 0x0000000F
-        .4byte 0x0000000F
-        .4byte 0x00000002
-    .global st_aa__12JPABaseShape
-    st_aa__12JPABaseShape:
-        .4byte 0x00000007
-        .4byte 0x00000004
-        .4byte 0x00000001
-        .4byte 0x00000007
-        .4byte 0x00000007
-        .4byte 0x00000007
-        .4byte 0x00000007
-        .4byte 0x00000001
-        .4byte 0x00000000
+GXLogicOp JPABaseShape::st_lo[16]
+    = { GX_LO_CLEAR, GX_LO_SET, GX_LO_COPY, GX_LO_INVCOPY, GX_LO_NOOP,   GX_LO_INV,    GX_LO_AND,   GX_LO_NAND,
+	    GX_LO_OR,    GX_LO_NOR, GX_LO_XOR,  GX_LO_EQUIV,   GX_LO_REVAND, GX_LO_INVAND, GX_LO_REVOR, GX_LO_INVOR };
 
-    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-    .global p_dl
-    p_dl:
-        .4byte jpa_dl
-        .4byte jpa_dl_x
+GXCompare JPABaseShape::st_c[8] = { GX_NEVER, GX_LESS, GX_LEQUAL, GX_EQUAL, GX_NEQUAL, GX_GEQUAL, GX_GREATER, GX_ALWAYS };
 
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516B38
-    lbl_80516B38:
-        .4byte 0x41C80000
-        .4byte 0x00000000
-    .global lbl_80516B40
-    lbl_80516B40:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_80516B48
-    lbl_80516B48:
-        .float 0.5
-    .global lbl_80516B4C
-    lbl_80516B4C:
-        .float 1.0
-    .global lbl_80516B50
-    lbl_80516B50:
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_80516B58
-    lbl_80516B58:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_80516B60
-    lbl_80516B60:
-        .4byte 0x3EAAAA9F
-    .global lbl_80516B64
-    lbl_80516B64:
-        .4byte 0x3F13CD36
-    .global lbl_80516B68
-    lbl_80516B68:
-        .4byte 0x42000000
-    .global lbl_80516B6C
-    lbl_80516B6C:
-        .4byte 0x40400000
-*/
+GXAlphaOp JPABaseShape::st_ao[4] = { GX_AOP_AND, GX_AOP_OR, GX_AOP_XOR, GX_AOP_XNOR };
+
+GXTevColorArg JPABaseShape::st_ca[6][4] = {
+	{ GX_CC_ZERO, GX_CC_TEXC, GX_CC_ONE, GX_CC_ZERO }, //
+	{ GX_CC_ZERO, GX_CC_C0, GX_CC_TEXC, GX_CC_ZERO },  //
+	{ GX_CC_C0, GX_CC_ONE, GX_CC_TEXC, GX_CC_ZERO },   //
+	{ GX_CC_C2, GX_CC_C0, GX_CC_TEXC, GX_CC_ZERO },    //
+	{ GX_CC_ZERO, GX_CC_TEXC, GX_CC_C0, GX_CC_C2 },    //
+	{ GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO, GX_CC_C0 },  //
+};
+
+GXTevAlphaArg JPABaseShape::st_aa[2][4] = {
+	{ GX_CA_ZERO, GX_CA_TEXA, GX_CA_A0, GX_CA_ZERO }, //
+	{ GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_A0 }, //
+};
 
 /**
  * @note Address: 0x8008B114
@@ -244,26 +106,8 @@ void JPASetLineWidth(JPAEmitterWorkData* workData) { GXSetLineWidth(workData->mG
  */
 void JPASetPointSize(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
-	GXSetPointSize(u8(25.0f * workData->mGlobalPtclScl.x * particle->mParticleScaleX), GX_TO_ONE);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_80516B38@sda21(r2)
-	stw      r0, 0x14(r1)
-	lfs      f0, 0x144(r3)
-	lfs      f2, 0x60(r4)
-	li       r4, 5
-	fmuls    f0, f1, f0
-	fmuls    f0, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r3, 0xc(r1)
-	bl       GXSetPointSize
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	f32 factor = 25.0f;
+	GXSetPointSize(u8(factor * workData->mGlobalPtclScl.x * particle->mParticleScaleX), GX_TO_ONE);
 }
 
 /**
@@ -273,26 +117,8 @@ void JPASetPointSize(JPAEmitterWorkData* workData, JPABaseParticle* particle)
  */
 void JPASetLineWidth(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
-	GXSetLineWidth(u8(25.0f * workData->mGlobalPtclScl.x * particle->mParticleScaleX), GX_TO_ONE);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_80516B38@sda21(r2)
-	stw      r0, 0x14(r1)
-	lfs      f0, 0x144(r3)
-	lfs      f2, 0x60(r4)
-	li       r4, 5
-	fmuls    f0, f1, f0
-	fmuls    f0, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r3, 0xc(r1)
-	bl       GXSetLineWidth
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	f32 factor = 25.0f;
+	GXSetLineWidth(u8(factor * workData->mGlobalPtclScl.x * particle->mParticleScaleX), GX_TO_ONE);
 }
 
 /**
@@ -440,27 +266,12 @@ void JPACalcClrIdxNormal(JPAEmitterWorkData* work)
 {
 	JPABaseShape* bsp = work->mResource->getBsp();
 	s16 keyFrame;
-	if (work->mEmitter->mTick < bsp->getClrAnmMaxFrm()) {
+	if (work->mEmitter->mTick < bsp->mData->mClrAnmFrmMax) {
 		keyFrame = work->mEmitter->mTick;
 	} else {
-		keyFrame = bsp->getClrAnmMaxFrm();
+		keyFrame = bsp->mData->mClrAnmFrmMax;
 	}
 	work->mClrKeyFrame = keyFrame;
-	/*
-	lwz      r4, 4(r3)
-	lwz      r5, 0(r3)
-	lwz      r4, 0x1c(r4)
-	lwz      r0, 0x100(r5)
-	lwz      r4, 0(r4)
-	lha      r4, 0x24(r4)
-	cmplw    r0, r4
-	bge      lbl_8008B8AC
-	extsh    r4, r0
-
-lbl_8008B8AC:
-	sth      r4, 0x214(r3)
-	blr
-	*/
 }
 
 /**
@@ -469,30 +280,14 @@ lbl_8008B8AC:
  */
 void JPACalcClrIdxNormal(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
-	JPABaseShape* shape = work->mResource->getBsp();
-	s16 age             = ptcl->mAge;
-	s16 maxFrm          = shape->getClrAnmMaxFrm();
+	JPABaseShape* bsp = work->mResource->getBsp();
 	s16 keyFrame;
-	if (age < maxFrm) {
-		keyFrame = age;
+	if (ptcl->mAge < bsp->mData->mClrAnmFrmMax) {
+		keyFrame = ptcl->mAge;
 	} else {
-		keyFrame = maxFrm;
+		keyFrame = bsp->mData->mClrAnmFrmMax;
 	}
 	work->mClrKeyFrame = keyFrame;
-	/*
-	lwz      r5, 4(r3)
-	lha      r0, 0x80(r4)
-	lwz      r4, 0x1c(r5)
-	lwz      r4, 0(r4)
-	lha      r4, 0x24(r4)
-	cmpw     r0, r4
-	bge      lbl_8008B8D4
-	mr       r4, r0
-
-lbl_8008B8D4:
-	sth      r4, 0x214(r3)
-	blr
-	*/
 }
 
 /**
@@ -524,30 +319,12 @@ void JPACalcClrIdxRepeat(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 void JPACalcClrIdxReverse(JPAEmitterWorkData* work)
 {
 	JPABaseShape* shape = work->mResource->getBsp();
-	int maxFrm          = shape->getClrAnmMaxFrm();
+	u32 maxFrm          = shape->getClrAnmMaxFrm();
 	u32 tick            = work->mEmitter->mTick;
 	u32 uVar1           = tick / maxFrm;
 	tick                = tick % maxFrm;
 	uVar1 &= 1;
 	work->mClrKeyFrame = tick + (uVar1) * (maxFrm - tick * 2);
-	/*
-	lwz      r5, 4(r3)
-	lwz      r4, 0(r3)
-	lwz      r5, 0x1c(r5)
-	lwz      r6, 0x100(r4)
-	lwz      r4, 0(r5)
-	lha      r5, 0x24(r4)
-	divwu    r4, r6, r5
-	mullw    r0, r4, r5
-	clrlwi   r4, r4, 0x1f
-	subf     r6, r0, r6
-	slwi     r0, r6, 1
-	subf     r0, r0, r5
-	mullw    r0, r4, r0
-	add      r0, r6, r0
-	sth      r0, 0x214(r3)
-	blr
-	*/
 }
 
 /**
@@ -557,31 +334,10 @@ void JPACalcClrIdxReverse(JPAEmitterWorkData* work)
 void JPACalcClrIdxReverse(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
 	JPABaseShape* shape = work->mResource->getBsp();
-	s32 tick            = ptcl->mAge + shape->getClrLoopOfst(ptcl->mAnmRandom);
-	s32 maxFrm          = shape->getClrAnmMaxFrm();
-	s32 rem             = tick % maxFrm;
+	int tick            = ptcl->getAge() + shape->getClrLoopOfst(ptcl->mAnmRandom);
+	int maxFrm          = shape->mData->mClrAnmFrmMax;
+	int rem             = tick % maxFrm;
 	work->mClrKeyFrame  = rem + ((tick / maxFrm) & 1) * (maxFrm - rem * 2);
-	/*
-	lwz      r5, 4(r3)
-	lbz      r6, 0x95(r4)
-	lwz      r5, 0x1c(r5)
-	lha      r0, 0x80(r4)
-	lwz      r5, 0(r5)
-	lbz      r4, 0x2f(r5)
-	lha      r7, 0x24(r5)
-	and      r4, r6, r4
-	add      r5, r0, r4
-	divw     r4, r5, r7
-	mullw    r0, r4, r7
-	clrlwi   r4, r4, 0x1f
-	subf     r5, r0, r5
-	slwi     r0, r5, 1
-	subf     r0, r0, r7
-	mullw    r0, r4, r0
-	add      r0, r5, r0
-	sth      r0, 0x214(r3)
-	blr
-	*/
 }
 
 /**
@@ -692,8 +448,34 @@ void JPAGenTexCrdMtxPrj(JPAEmitterWorkData*)
  * @note Address: 0x8008BC78
  * @note Size: 0x198
  */
-void JPAGenCalcTexCrdMtxAnm(JPAEmitterWorkData*)
+void JPAGenCalcTexCrdMtxAnm(JPAEmitterWorkData* work)
 {
+	JPABaseShape* shape = work->mResource->getBsp();
+	f32 dVar16          = work->mEmitter->mTick;
+	f32 dVar15          = 0.5f * (1.0f + shape->getTilingS());
+	f32 dVar14          = 0.5f * (1.0f + shape->getTilingT());
+	f32 dVar11          = (dVar16 * shape->getIncTransX()) + shape->getInitTransX();
+	f32 dVar10          = (dVar16 * shape->getIncTransY()) + shape->getInitTransY();
+	f32 dVar13          = (dVar16 * shape->getIncScaleX()) + shape->getInitScaleX();
+	f32 dVar12          = (dVar16 * shape->getIncScaleY()) + shape->getInitScaleY();
+	s32 local_c0        = (dVar16 * shape->getIncRot()) + shape->getInitRot();
+	f32 dVar8           = JMASSin(local_c0);
+	f32 dVar9           = JMASCos(local_c0);
+	Mtx local_108;
+	local_108[0][0] = dVar13 * dVar9;
+	local_108[0][1] = -dVar13 * dVar8;
+	local_108[0][2] = 0.0f;
+	local_108[0][3] = (dVar15 + (dVar13 * ((dVar8 * (dVar14 + dVar10)) - (dVar9 * (dVar15 + dVar11)))));
+	local_108[1][0] = dVar12 * dVar8;
+	local_108[1][1] = dVar12 * dVar9;
+	local_108[1][2] = 0.0f;
+	local_108[1][3] = (dVar14 + (-dVar12 * ((dVar8 * (dVar15 + dVar11)) + (dVar9 * (dVar14 + dVar10)))));
+	local_108[2][0] = 0.0f;
+	local_108[2][1] = 0.0f;
+	local_108[2][2] = 1.0f;
+	local_108[2][3] = 0.0f;
+	GXLoadTexMtxImm(local_108, GX_TEXMTX0, GX_MTX2x4);
+	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEX0, GX_TEXMTX0, false, GX_PTIDENTITY);
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -804,8 +586,33 @@ void JPAGenCalcTexCrdMtxAnm(JPAEmitterWorkData*)
  * @note Address: 0x8008BE10
  * @note Size: 0x170
  */
-void JPALoadCalcTexCrdMtxAnm(JPAEmitterWorkData* workData, JPABaseParticle* particle)
+void JPALoadCalcTexCrdMtxAnm(JPAEmitterWorkData* work, JPABaseParticle* particle)
 {
+	JPABaseShape* shape = work->mResource->getBsp();
+	f32 dVar16          = particle->mAge;
+	f32 dVar15          = 0.5f * (1.0f + shape->getTilingS());
+	f32 dVar14          = 0.5f * (1.0f + shape->getTilingT());
+	f32 dVar11          = (dVar16 * shape->getIncTransX()) + shape->getInitTransX();
+	f32 dVar10          = (dVar16 * shape->getIncTransY()) + shape->getInitTransY();
+	f32 dVar13          = (dVar16 * shape->getIncScaleX()) + shape->getInitScaleX();
+	f32 dVar12          = (dVar16 * shape->getIncScaleY()) + shape->getInitScaleY();
+	s32 local_c0        = (dVar16 * shape->getIncRot()) + shape->getInitRot();
+	f32 dVar8           = JMASSin(local_c0);
+	f32 dVar9           = JMASCos(local_c0);
+	Mtx local_108;
+	local_108[0][0] = dVar13 * dVar9;
+	local_108[0][1] = -dVar13 * dVar8;
+	local_108[0][2] = 0.0f;
+	local_108[0][3] = (dVar15 + (dVar13 * ((dVar8 * (dVar14 + dVar10)) - (dVar9 * (dVar15 + dVar11)))));
+	local_108[1][0] = dVar12 * dVar8;
+	local_108[1][1] = dVar12 * dVar9;
+	local_108[1][2] = 0.0f;
+	local_108[1][3] = (dVar14 + (-dVar12 * ((dVar8 * (dVar15 + dVar11)) + (dVar9 * (dVar14 + dVar10)))));
+	local_108[2][0] = 0.0f;
+	local_108[2][1] = 0.0f;
+	local_108[2][2] = 1.0f;
+	local_108[2][3] = 0.0f;
+	GXLoadTexMtxImm(local_108, 0x1e, GX_MTX2x4);
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -909,29 +716,6 @@ void JPALoadCalcTexCrdMtxAnm(JPAEmitterWorkData* workData, JPABaseParticle* part
 void JPALoadTex(JPAEmitterWorkData* work)
 {
 	work->mResourceMgr->load(work->mResource->getTexIdx(work->mResource->getBsp()->getTexIdx()), GX_TEXMAP0);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	lwz      r5, 4(r3)
-	lwz      r6, 8(r3)
-	lwz      r3, 0x1c(r5)
-	lwz      r5, 0x38(r5)
-	lwz      r3, 0(r3)
-	lwz      r6, 8(r6)
-	lbz      r0, 0x20(r3)
-	slwi     r0, r0, 1
-	lhzx     r0, r5, r0
-	slwi     r0, r0, 2
-	lwzx     r3, r6, r0
-	addi     r3, r3, 4
-	bl       load__10JUTTextureF11_GXTexMapID
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -959,8 +743,8 @@ void JPALoadTexAnm(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
  */
 void JPACalcTexIdxNormal(JPAEmitterWorkData* work)
 {
-	JPABaseShape* shape = work->mResource->getBsp();
-	u8 tick             = shape->getTexAnmKeyNum() - 1 < work->mEmitter->mTick ? shape->getTexAnmKeyNum() - 1 : work->mEmitter->mTick;
+	JPABaseShape* shape = work->mResource->mBaseShape;
+	u32 tick            = shape->getTexAnmKeyNum() - 1 < work->mEmitter->mTick ? shape->getTexAnmKeyNum() - 1 : work->mEmitter->mTick;
 	work->mEmitter->mTexAnmIdx = shape->getTexIdx(tick);
 }
 
@@ -970,27 +754,9 @@ void JPACalcTexIdxNormal(JPAEmitterWorkData* work)
  */
 void JPACalcTexIdxNormal(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
-	JPABaseShape* shape = work->mResource->getBsp();
-	u8 tick             = shape->getTexAnmKeyNum() - 1 < ptcl->mAge ? shape->getTexAnmKeyNum() - 1 : ptcl->mAge;
+	JPABaseShape* shape = work->mResource->mBaseShape;
+	u8 tick             = shape->getTexAnmKeyNum() - 1 < ptcl->getAge() ? shape->getTexAnmKeyNum() - 1 : ptcl->getAge();
 	ptcl->mTexAnmIdx    = shape->getTexIdx(tick);
-	/*
-	lwz      r3, 4(r3)
-	lha      r5, 0x80(r4)
-	lwz      r6, 0x1c(r3)
-	lwz      r3, 0(r6)
-	lbz      r3, 0x1f(r3)
-	addi     r0, r3, -1
-	cmpw     r0, r5
-	bge      lbl_8008C0D0
-	mr       r5, r0
-
-lbl_8008C0D0:
-	lwz      r3, 8(r6)
-	clrlwi   r0, r5, 0x18
-	lbzx     r0, r3, r0
-	stb      r0, 0x94(r4)
-	blr
-	*/
 }
 
 /**
@@ -1009,27 +775,8 @@ void JPACalcTexIdxRepeat(JPAEmitterWorkData* work)
  */
 void JPACalcTexIdxRepeat(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
-	JPABaseShape* shape = work->mResource->getBsp();
+	JPABaseShape* shape = work->mResource->mBaseShape;
 	ptcl->mTexAnmIdx    = shape->getTexIdx(((int)shape->getTexLoopOfst(ptcl->mAnmRandom) + ptcl->mAge) % shape->getTexAnmKeyNum());
-	/*
-	lwz      r3, 4(r3)
-	lbz      r7, 0x95(r4)
-	lwz      r5, 0x1c(r3)
-	lha      r0, 0x80(r4)
-	lwz      r3, 0(r5)
-	lwz      r6, 8(r5)
-	lbz      r5, 0x30(r3)
-	lbz      r3, 0x1f(r3)
-	and      r5, r7, r5
-	add      r5, r0, r5
-	divw     r0, r5, r3
-	mullw    r0, r0, r3
-	subf     r0, r0, r5
-	clrlwi   r0, r0, 0x18
-	lbzx     r0, r6, r0
-	stb      r0, 0x94(r4)
-	blr
-	*/
 }
 
 /**
@@ -1052,37 +799,12 @@ void JPACalcTexIdxReverse(JPAEmitterWorkData* work)
  */
 void JPACalcTexIdxReverse(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
-	JPABaseShape* shape = work->mResource->getBsp();
+	JPABaseShape* shape = work->mResource->mBaseShape;
 	s32 tick            = shape->getTexLoopOfst(ptcl->mAnmRandom) + ptcl->mAge;
 	int keyNum          = (int)shape->getTexAnmKeyNum() - 1;
 	int div             = tick / keyNum;
 	int rem             = tick % keyNum;
 	ptcl->mTexAnmIdx    = shape->getTexIdx(rem + (div & 1) * (keyNum - rem * 2));
-	/*
-	lwz      r3, 4(r3)
-	lbz      r7, 0x95(r4)
-	lwz      r5, 0x1c(r3)
-	lha      r0, 0x80(r4)
-	lwz      r3, 0(r5)
-	lwz      r5, 8(r5)
-	lbz      r6, 0x30(r3)
-	lbz      r3, 0x1f(r3)
-	and      r6, r7, r6
-	add      r6, r0, r6
-	addi     r7, r3, -1
-	divw     r3, r6, r7
-	mullw    r0, r3, r7
-	clrlwi   r3, r3, 0x1f
-	subf     r6, r0, r6
-	slwi     r0, r6, 1
-	subf     r0, r0, r7
-	mullw    r0, r3, r0
-	add      r0, r6, r0
-	clrlwi   r0, r0, 0x18
-	lbzx     r0, r5, r0
-	stb      r0, 0x94(r4)
-	blr
-	*/
 }
 
 /**
@@ -1097,42 +819,10 @@ void JPACalcTexIdxMerge(JPAEmitterWorkData* workData) { workData->mEmitter->mTex
  */
 void JPACalcTexIdxMerge(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
-	JPABaseShape* shape = work->mResource->getBsp();
-	s32 maxFrm          = shape->getTexAnmKeyNum();
-	s32 tick            = (s32)(maxFrm * ptcl->mTime) + shape->getTexLoopOfst(ptcl->mAnmRandom);
+	JPABaseShape* shape = work->mResource->mBaseShape;
+	int maxFrm          = shape->mData->mTexAnmNum;
+	int tick            = (int)(maxFrm * ptcl->mTime) + shape->getTexLoopOfst(ptcl->mAnmRandom);
 	ptcl->mTexAnmIdx    = shape->getTexIdx(tick % maxFrm);
-	/*
-	stwu     r1, -0x20(r1)
-	lis      r0, 0x4330
-	lfd      f2, lbl_80516B40@sda21(r2)
-	lwz      r3, 4(r3)
-	stw      r0, 8(r1)
-	lwz      r7, 0x1c(r3)
-	lfs      f0, 0x84(r4)
-	lwz      r6, 0(r7)
-	lbz      r3, 0x95(r4)
-	lbz      r8, 0x1f(r6)
-	lbz      r0, 0x30(r6)
-	xoris    r5, r8, 0x8000
-	stw      r5, 0xc(r1)
-	and      r0, r3, r0
-	lwz      r5, 8(r7)
-	lfd      f1, 8(r1)
-	fsubs    f1, f1, f2
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r3, 0x14(r1)
-	add      r3, r3, r0
-	divw     r0, r3, r8
-	mullw    r0, r0, r8
-	subf     r0, r0, r3
-	clrlwi   r0, r0, 0x18
-	lbzx     r0, r5, r0
-	stb      r0, 0x94(r4)
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -1147,25 +837,8 @@ void JPACalcTexIdxRandom(JPAEmitterWorkData* work) { work->mEmitter->mTexAnmIdx 
  */
 void JPACalcTexIdxRandom(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
-	JPABaseShape* shape = work->mResource->getBsp();
+	JPABaseShape* shape = work->mResource->mBaseShape;
 	ptcl->mTexAnmIdx    = shape->getTexIdx(((int)shape->getTexLoopOfst(ptcl->mAnmRandom)) % shape->getTexAnmKeyNum());
-	/*
-	lwz      r3, 4(r3)
-	lbz      r6, 0x95(r4)
-	lwz      r5, 0x1c(r3)
-	lwz      r3, 0(r5)
-	lwz      r5, 8(r5)
-	lbz      r0, 0x30(r3)
-	lbz      r3, 0x1f(r3)
-	and      r6, r6, r0
-	divw     r0, r6, r3
-	mullw    r0, r0, r3
-	subf     r0, r0, r6
-	clrlwi   r0, r0, 0x18
-	lbzx     r0, r5, r0
-	stb      r0, 0x94(r4)
-	blr
-	*/
 }
 
 /**
@@ -1196,8 +869,35 @@ void loadPrj(const JPAEmitterWorkData* workData, const Mtx p2)
  * @note Address: 0x8008C35C
  * @note Size: 0x1AC
  */
-void loadPrjAnm(const JPAEmitterWorkData* workData, const Mtx p2)
+void loadPrjAnm(const JPAEmitterWorkData* work, const Mtx p2)
 {
+	JPABaseShape* shape = work->mResource->getBsp();
+	f32 dVar16          = work->mEmitter->getAge();
+	f32 dVar15          = 0.5f * (1.0f + shape->getTilingS());
+	f32 dVar14          = 0.5f * (1.0f + shape->getTilingT());
+	f32 dVar11          = (dVar16 * shape->getIncTransX()) + shape->getInitTransX();
+	f32 dVar10          = (dVar16 * shape->getIncTransY()) + shape->getInitTransY();
+	f32 dVar13          = (dVar16 * shape->getIncScaleX()) + shape->getInitScaleX();
+	f32 dVar12          = (dVar16 * shape->getIncScaleY()) + shape->getInitScaleY();
+	s32 local_c0        = (dVar16 * shape->getIncRot()) + shape->getInitRot();
+	f32 dVar8           = JMASSin(local_c0);
+	f32 dVar9           = JMASCos(local_c0);
+	Mtx local_108;
+	local_108[0][0] = dVar13 * dVar9;
+	local_108[0][1] = -dVar13 * dVar8;
+	local_108[0][2] = (dVar15 + (dVar13 * ((dVar8 * (dVar14 + dVar10)) - (dVar9 * (dVar15 + dVar11)))));
+	local_108[0][3] = 0.0f;
+	local_108[1][0] = dVar12 * dVar8;
+	local_108[1][1] = dVar12 * dVar9;
+	local_108[1][2] = (dVar14 + (-dVar12 * ((dVar8 * (dVar15 + dVar11)) + (dVar9 * (dVar14 + dVar10)))));
+	local_108[1][3] = 0.0f;
+	local_108[2][0] = 0.0f;
+	local_108[2][1] = 0.0f;
+	local_108[2][2] = 1.0f;
+	local_108[2][3] = 0.0f;
+	PSMTXConcat(local_108, work->mPrjMtx, local_108);
+	PSMTXConcat(local_108, p2, local_108);
+	GXLoadTexMtxImm(local_108, 0x1e, GX_MTX3x4);
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -1313,335 +1013,126 @@ void loadPrjAnm(const JPAEmitterWorkData* workData, const Mtx p2)
  * @note Address: 0x8008C508
  * @note Size: 0xE8
  */
-void JPADrawBillboard(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
+void JPADrawBillboard(JPAEmitterWorkData* work, JPABaseParticle* particle)
 {
-	if (ptcl->checkStatus(8) == 0) {
+	if (particle->checkStatus(8) == 0) {
 		JGeometry::TVec3f local_48;
-		PSMTXMultVec(work->mPosCamMtx, (Vec*)&ptcl->mPosition, (Vec*)&local_48);
-		Mtx local_38;
-		local_38[0][0] = work->mGlobalPtclScl.x * ptcl->mParticleScaleX;
-		local_38[0][3] = local_48.x;
-		local_38[1][1] = work->mGlobalPtclScl.y * ptcl->mParticleScaleY;
-		local_38[1][3] = local_48.y;
-		local_38[2][2] = 1.0f;
-		local_38[2][3] = local_48.z;
-		local_38[2][1] = 0.0f;
-		local_38[2][0] = 0.0f;
-		local_38[1][2] = 0.0f;
-		local_38[1][0] = 0.0f;
-		local_38[0][2] = 0.0f;
-		local_38[0][1] = 0.0f;
-		GXLoadPosMtxImm(local_38, 0);
-		// p_prj[work->mPrjType](work, local_38);
-		// GXCallDisplayList(jpa_dl, sizeof(jpa_dl));
+		PSMTXMultVec(work->mPosCamMtx, (Vec*)&particle->mPosition, (Vec*)&local_48);
+		Mtx mtx;
+		mtx[0][0] = work->mGlobalPtclScl.x * particle->mParticleScaleX;
+		mtx[0][3] = local_48.x;
+		mtx[1][1] = work->mGlobalPtclScl.y * particle->mParticleScaleY;
+		mtx[1][3] = local_48.y;
+		mtx[2][2] = 1.0f;
+		mtx[2][3] = local_48.z;
+		mtx[2][1] = 0.0f;
+		mtx[2][0] = 0.0f;
+		mtx[1][2] = 0.0f;
+		mtx[1][0] = 0.0f;
+		mtx[0][2] = 0.0f;
+		mtx[0][1] = 0.0f;
+		GXLoadPosMtxImm(mtx, 0);
+		p_prj[work->mPrjType](work, mtx);
+		GXCallDisplayList(jpa_dl, sizeof(jpa_dl));
 	}
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	mr       r31, r4
-	stw      r30, 0x48(r1)
-	mr       r30, r3
-	lwz      r0, 0x7c(r4)
-	rlwinm.  r0, r0, 0, 0x1c, 0x1c
-	bne      lbl_8008C5D8
-	addi     r3, r30, 0x184
-	addi     r5, r1, 8
-	bl       PSMTXMultVec
-	lfs      f2, 0x144(r30)
-	addi     r3, r1, 0x14
-	lfs      f1, 0x60(r31)
-	li       r4, 0
-	lfs      f0, 8(r1)
-	fmuls    f1, f2, f1
-	lfs      f3, 0xc(r1)
-	stfs     f0, 0x20(r1)
-	lfs      f2, lbl_80516B4C@sda21(r2)
-	stfs     f1, 0x14(r1)
-	lfs      f1, 0x10(r1)
-	lfs      f5, 0x148(r30)
-	lfs      f4, 0x64(r31)
-	lfs      f0, lbl_80516B50@sda21(r2)
-	fmuls    f4, f5, f4
-	stfs     f3, 0x30(r1)
-	stfs     f2, 0x3c(r1)
-	stfs     f4, 0x28(r1)
-	stfs     f1, 0x40(r1)
-	stfs     f0, 0x38(r1)
-	stfs     f0, 0x34(r1)
-	stfs     f0, 0x2c(r1)
-	stfs     f0, 0x24(r1)
-	stfs     f0, 0x1c(r1)
-	stfs     f0, 0x18(r1)
-	bl       GXLoadPosMtxImm
-	lwz      r0, 0x210(r30)
-	lis      r3, p_prj@ha
-	addi     r5, r3, p_prj@l
-	mr       r3, r30
-	slwi     r0, r0, 2
-	addi     r4, r1, 0x14
-	lwzx     r12, r5, r0
-	mtctr    r12
-	bctrl
-	lis      r3, jpa_dl@ha
-	li       r4, 0x20
-	addi     r3, r3, jpa_dl@l
-	bl       GXCallDisplayList
-
-lbl_8008C5D8:
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /**
  * @note Address: 0x8008C5F0
  * @note Size: 0x118
  */
-void JPADrawRotBillboard(JPAEmitterWorkData* workData, JPABaseParticle* particle)
+void JPADrawRotBillboard(JPAEmitterWorkData* work, JPABaseParticle* particle)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	mr       r31, r4
-	stw      r30, 0x48(r1)
-	mr       r30, r3
-	lwz      r0, 0x7c(r4)
-	rlwinm.  r0, r0, 0, 0x1c, 0x1c
-	bne      lbl_8008C6F0
-	addi     r3, r30, 0x184
-	addi     r5, r1, 8
-	bl       PSMTXMultVec
-	lhz      r0, 0x88(r31)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	lfs      f1, 0x144(r30)
-	rlwinm   r0, r0, 0x1e, 0x12, 0x1c
-	lfs      f0, 0x60(r31)
-	lfsx     f4, r3, r0
-	add      r3, r3, r0
-	lfs      f3, 0x148(r30)
-	fmuls    f6, f1, f0
-	lfs      f2, 0x64(r31)
-	fneg     f1, f4
-	lfs      f0, lbl_80516B50@sda21(r2)
-	li       r4, 0
-	fmuls    f3, f3, f2
-	lfs      f2, 4(r3)
-	fmuls    f5, f4, f6
-	stfs     f0, 0x38(r1)
-	addi     r3, r1, 0x14
-	fmuls    f8, f2, f6
-	fmuls    f7, f1, f3
-	lfs      f6, 8(r1)
-	fmuls    f4, f2, f3
-	lfs      f3, 0xc(r1)
-	lfs      f2, lbl_80516B4C@sda21(r2)
-	lfs      f1, 0x10(r1)
-	stfs     f8, 0x14(r1)
-	stfs     f7, 0x18(r1)
-	stfs     f6, 0x20(r1)
-	stfs     f5, 0x24(r1)
-	stfs     f4, 0x28(r1)
-	stfs     f3, 0x30(r1)
-	stfs     f2, 0x3c(r1)
-	stfs     f1, 0x40(r1)
-	stfs     f0, 0x34(r1)
-	stfs     f0, 0x2c(r1)
-	stfs     f0, 0x1c(r1)
-	bl       GXLoadPosMtxImm
-	lwz      r0, 0x210(r30)
-	lis      r3, p_prj@ha
-	addi     r5, r3, p_prj@l
-	mr       r3, r30
-	slwi     r0, r0, 2
-	addi     r4, r1, 0x14
-	lwzx     r12, r5, r0
-	mtctr    r12
-	bctrl
-	lis      r3, jpa_dl@ha
-	li       r4, 0x20
-	addi     r3, r3, jpa_dl@l
-	bl       GXCallDisplayList
+	if (particle->checkStatus(8) == 0) {
+		JGeometry::TVec3f local_48;
+		PSMTXMultVec(work->mPosCamMtx, (Vec*)&particle->mPosition, (Vec*)&local_48);
+		f32 sinRot    = JMASSin(particle->mRotateAngle);
+		f32 cosRot    = JMASCos(particle->mRotateAngle);
+		f32 particleX = work->mGlobalPtclScl.x * particle->mParticleScaleX;
+		f32 particleY = work->mGlobalPtclScl.y * particle->mParticleScaleY;
 
-lbl_8008C6F0:
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+		Mtx mtx;
+		mtx[0][0] = cosRot * particleX;
+		mtx[0][1] = -sinRot * particleY;
+		mtx[0][3] = local_48.x;
+		mtx[1][0] = sinRot * particleX;
+		mtx[1][1] = cosRot * particleY;
+		mtx[1][3] = local_48.y;
+		mtx[2][2] = 1.0f;
+		mtx[2][3] = local_48.z;
+		mtx[2][1] = 0.0f;
+		mtx[2][0] = 0.0f;
+		mtx[1][2] = 0.0f;
+		mtx[0][2] = 0.0f;
+		GXLoadPosMtxImm(mtx, 0);
+		p_prj[work->mPrjType](work, mtx);
+		GXCallDisplayList(jpa_dl, sizeof(jpa_dl));
+	}
 }
 
 /**
  * @note Address: 0x8008C708
  * @note Size: 0xFC
  */
-void JPADrawYBillboard(JPAEmitterWorkData* workData, JPABaseParticle* particle)
+void JPADrawYBillboard(JPAEmitterWorkData* work, JPABaseParticle* particle)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	mr       r31, r4
-	stw      r30, 0x48(r1)
-	mr       r30, r3
-	lwz      r0, 0x7c(r4)
-	rlwinm.  r0, r0, 0, 0x1c, 0x1c
-	bne      lbl_8008C7EC
-	addi     r3, r30, 0x184
-	addi     r5, r1, 8
-	bl       PSMTXMultVec
-	lfs      f1, 0x144(r30)
-	addi     r3, r1, 0x14
-	lfs      f0, 0x60(r31)
-	li       r4, 0
-	lfs      f3, 0x148(r30)
-	lfs      f2, 0x64(r31)
-	fmuls    f1, f1, f0
-	lfs      f0, 8(r1)
-	fmuls    f4, f3, f2
-	lfs      f2, 0xc(r1)
-	stfs     f1, 0x14(r1)
-	lfs      f1, 0x10(r1)
-	stfs     f0, 0x20(r1)
-	lfs      f0, lbl_80516B50@sda21(r2)
-	lfs      f3, 0x168(r30)
-	fmuls    f3, f3, f4
-	stfs     f3, 0x28(r1)
-	lfs      f3, 0x16c(r30)
-	stfs     f3, 0x2c(r1)
-	stfs     f2, 0x30(r1)
-	lfs      f2, 0x178(r30)
-	fmuls    f2, f2, f4
-	stfs     f2, 0x38(r1)
-	lfs      f2, 0x17c(r30)
-	stfs     f2, 0x3c(r1)
-	stfs     f1, 0x40(r1)
-	stfs     f0, 0x34(r1)
-	stfs     f0, 0x24(r1)
-	stfs     f0, 0x1c(r1)
-	stfs     f0, 0x18(r1)
-	bl       GXLoadPosMtxImm
-	lwz      r0, 0x210(r30)
-	lis      r3, p_prj@ha
-	addi     r5, r3, p_prj@l
-	mr       r3, r30
-	slwi     r0, r0, 2
-	addi     r4, r1, 0x14
-	lwzx     r12, r5, r0
-	mtctr    r12
-	bctrl
-	lis      r3, jpa_dl@ha
-	li       r4, 0x20
-	addi     r3, r3, jpa_dl@l
-	bl       GXCallDisplayList
-
-lbl_8008C7EC:
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	if (particle->checkStatus(8) == 0) {
+		JGeometry::TVec3f local_48;
+		PSMTXMultVec(work->mPosCamMtx, (Vec*)&particle->mPosition, (Vec*)&local_48);
+		Mtx mtx;
+		f32 particleY = work->mGlobalPtclScl.y * particle->mParticleScaleY;
+		mtx[0][0]     = work->mGlobalPtclScl.x * particle->mParticleScaleX;
+		mtx[0][3]     = local_48.x;
+		mtx[1][1]     = work->mYBBCamMtx[1][1] * particleY;
+		mtx[1][2]     = work->mYBBCamMtx[1][2];
+		mtx[1][3]     = local_48.y;
+		mtx[2][1]     = work->mYBBCamMtx[2][1] * particleY;
+		mtx[2][2]     = work->mYBBCamMtx[2][2];
+		mtx[2][3]     = local_48.z;
+		mtx[2][0]     = 0.0f;
+		mtx[1][0]     = 0.0f;
+		mtx[0][2]     = 0.0f;
+		mtx[0][1]     = 0.0f;
+		GXLoadPosMtxImm(mtx, 0);
+		p_prj[work->mPrjType](work, mtx);
+		GXCallDisplayList(jpa_dl, sizeof(jpa_dl));
+	}
 }
 
 /**
  * @note Address: 0x8008C804
  * @note Size: 0x130
  */
-void JPADrawRotYBillboard(JPAEmitterWorkData* workData, JPABaseParticle* particle)
+void JPADrawRotYBillboard(JPAEmitterWorkData* work, JPABaseParticle* particle)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	mr       r31, r4
-	stw      r30, 0x48(r1)
-	mr       r30, r3
-	lwz      r0, 0x7c(r4)
-	rlwinm.  r0, r0, 0, 0x1c, 0x1c
-	bne      lbl_8008C91C
-	addi     r3, r30, 0x184
-	addi     r5, r1, 8
-	bl       PSMTXMultVec
-	lhz      r0, 0x88(r31)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f3, 0x144(r30)
-	addi     r4, r3, sincosTable___5JMath@l
-	lfs      f2, 0x60(r31)
-	rlwinm   r0, r0, 0x1e, 0x12, 0x1c
-	add      r3, r4, r0
-	lfs      f1, 0x148(r30)
-	fmuls    f6, f3, f2
-	lfsx     f2, r4, r0
-	lfs      f5, 4(r3)
-	addi     r3, r1, 0x14
-	lfs      f0, 0x64(r31)
-	li       r4, 0
-	fmuls    f8, f1, f0
-	lfs      f13, 0x178(r30)
-	fmuls    f10, f2, f6
-	lfs      f12, 0x168(r30)
-	fmuls    f9, f5, f6
-	lfs      f1, lbl_80516B50@sda21(r2)
-	fmuls    f11, f5, f8
-	stfs     f1, 0x1c(r1)
-	fneg     f2, f2
-	lfs      f7, 8(r1)
-	fneg     f4, f13
-	lfs      f3, 0xc(r1)
-	fmuls    f8, f2, f8
-	lfs      f0, 0x10(r1)
-	fmuls    f6, f10, f12
-	stfs     f9, 0x14(r1)
-	fmuls    f5, f11, f12
-	fmuls    f2, f10, f13
-	fmuls    f1, f11, f13
-	stfs     f8, 0x18(r1)
-	stfs     f7, 0x20(r1)
-	stfs     f6, 0x24(r1)
-	stfs     f5, 0x28(r1)
-	stfs     f4, 0x2c(r1)
-	stfs     f3, 0x30(r1)
-	stfs     f2, 0x34(r1)
-	stfs     f1, 0x38(r1)
-	stfs     f12, 0x3c(r1)
-	stfs     f0, 0x40(r1)
-	bl       GXLoadPosMtxImm
-	lwz      r0, 0x210(r30)
-	lis      r3, p_prj@ha
-	addi     r5, r3, p_prj@l
-	mr       r3, r30
-	slwi     r0, r0, 2
-	addi     r4, r1, 0x14
-	lwzx     r12, r5, r0
-	mtctr    r12
-	bctrl
-	lis      r3, jpa_dl@ha
-	li       r4, 0x20
-	addi     r3, r3, jpa_dl@l
-	bl       GXCallDisplayList
-
-lbl_8008C91C:
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	if (particle->checkStatus(8) == 0) {
+		JGeometry::TVec3f local_48;
+		PSMTXMultVec(work->mPosCamMtx, (Vec*)&particle->mPosition, (Vec*)&local_48);
+		f32 sinRot = JMASSin(particle->mRotateAngle);
+		f32 cosRot = JMASCos(particle->mRotateAngle);
+		Mtx mtx;
+		f32 particleX = work->mGlobalPtclScl.x * particle->mParticleScaleX;
+		f32 particleY = work->mGlobalPtclScl.y * particle->mParticleScaleY;
+		f32 local_98  = (f32)(sinRot * particleX);
+		f32 local_94  = (f32)(cosRot * particleY);
+		f32 local_90  = work->mYBBCamMtx[1][1];
+		f32 fVar1     = work->mYBBCamMtx[2][1];
+		mtx[0][0]     = (f32)(cosRot * particleX);
+		mtx[0][1]     = (f32)(-sinRot * particleY);
+		mtx[0][2]     = 0.0f;
+		mtx[0][3]     = local_48.x;
+		mtx[1][0]     = local_98 * local_90;
+		mtx[1][1]     = local_94 * local_90;
+		mtx[1][2]     = -fVar1;
+		mtx[1][3]     = local_48.y;
+		mtx[2][0]     = local_98 * fVar1;
+		mtx[2][1]     = local_94 * fVar1;
+		mtx[2][2]     = local_90;
+		mtx[2][3]     = local_48.z;
+		GXLoadPosMtxImm(mtx, 0);
+		p_prj[work->mPrjType](work, mtx);
+		GXCallDisplayList(jpa_dl, sizeof(jpa_dl));
+	}
 }
 
 /**
@@ -1659,7 +1150,7 @@ void dirTypeVel(const JPAEmitterWorkData* workData, const JPABaseParticle* parti
  */
 void dirTypePos(const JPAEmitterWorkData* workData, const JPABaseParticle* particle, JGeometry::TVec3<f32>* direction)
 {
-	*direction = particle->mPosition;
+	*direction = particle->mLocalPosition;
 }
 
 /**
@@ -1689,184 +1180,103 @@ void dirTypeEmtrDir(const JPAEmitterWorkData* workData, const JPABaseParticle* p
  */
 void dirTypePrevPtcl(const JPAEmitterWorkData* work, const JPABaseParticle* ptcl, JGeometry::TVec3f* direction)
 {
-	JGeometry::TVec3<f32> vec;
+	JGeometry::TVec3f vec;
 	ptcl->getGlobalPosition(vec);
-	JPANode<JPABaseParticle>* end  = work->mpAlivePtcl->getNext(); // getEnd?
 	JPANode<JPABaseParticle>* prev = work->mpCurNode->getPrev();
 
-	if (end != prev) {
+	if (prev != nullptr) {
 		JPABaseParticle* particle = work->mpCurNode->getPrev()->getObject();
 		particle->getGlobalPosition(*direction);
 	} else {
 		work->mEmitter->calcEmitterGlobalPosition(direction);
 	}
-	// direction->sub(vec);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stfd      f31, 0x30(r1)
-	  psq_st    f31,0x38(r1),0,0
-	  stfd      f30, 0x20(r1)
-	  psq_st    f30,0x28(r1),0,0
-	  stfd      f29, 0x10(r1)
-	  psq_st    f29,0x18(r1),0,0
-	  stw       r31, 0xC(r1)
-	  lwz       r6, 0x1E8(r3)
-	  mr        r31, r5
-	  lfs       f31, 0x0(r4)
-	  lwz       r5, 0x0(r6)
-	  lfs       f30, 0x4(r4)
-	  cmplwi    r5, 0
-	  lfs       f29, 0x8(r4)
-	  beq-      .loc_0x64
-	  lfs       f0, 0x8(r5)
-	  stfs      f0, 0x0(r31)
-	  lfs       f0, 0xC(r5)
-	  stfs      f0, 0x4(r31)
-	  lfs       f0, 0x10(r5)
-	  stfs      f0, 0x8(r31)
-	  b         .loc_0x70
-
-	.loc_0x64:
-	  lwz       r3, 0x0(r3)
-	  mr        r4, r31
-	  bl        0x3A74
-
-	.loc_0x70:
-	  lfs       f0, 0x0(r31)
-	  fsubs     f0, f0, f31
-	  stfs      f0, 0x0(r31)
-	  lfs       f0, 0x4(r31)
-	  fsubs     f0, f0, f30
-	  stfs      f0, 0x4(r31)
-	  lfs       f0, 0x8(r31)
-	  fsubs     f0, f0, f29
-	  stfs      f0, 0x8(r31)
-	  psq_l     f31,0x38(r1),0,0
-	  lfd       f31, 0x30(r1)
-	  psq_l     f30,0x28(r1),0,0
-	  lfd       f30, 0x20(r1)
-	  psq_l     f29,0x18(r1),0,0
-	  lfd       f29, 0x10(r1)
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-	*/
+	direction->sub(vec);
 }
 
 /**
  * @note Address: 0x8008CA88
  * @note Size: 0x40
  */
-void rotTypeY(f32, f32, Mtx&)
+void rotTypeY(f32 p1, f32 p2, Mtx& mtx)
 {
-	/*
-	stfs     f2, 0(r3)
-	fneg     f3, f1
-	lfs      f4, lbl_80516B50@sda21(r2)
-	lfs      f0, lbl_80516B4C@sda21(r2)
-	stfs     f4, 4(r3)
-	stfs     f3, 8(r3)
-	stfs     f4, 0xc(r3)
-	stfs     f4, 0x10(r3)
-	stfs     f0, 0x14(r3)
-	stfs     f4, 0x18(r3)
-	stfs     f4, 0x1c(r3)
-	stfs     f1, 0x20(r3)
-	stfs     f4, 0x24(r3)
-	stfs     f2, 0x28(r3)
-	stfs     f4, 0x2c(r3)
-	blr
-	*/
+	mtx[0][0] = p2;
+	mtx[0][1] = 0.0f;
+	mtx[0][2] = -p1;
+	mtx[0][3] = 0.0f;
+	mtx[1][0] = 0.0f;
+	mtx[1][1] = 1.0f;
+	mtx[1][2] = 0.0f;
+	mtx[1][3] = 0.0f;
+	mtx[2][0] = p1;
+	mtx[2][1] = 0.0f;
+	mtx[2][2] = p2;
+	mtx[2][3] = 0.0f;
 }
 
 /**
  * @note Address: 0x8008CAC8
  * @note Size: 0x40
  */
-void rotTypeX(f32, f32, Mtx&)
+void rotTypeX(f32 p1, f32 p2, Mtx& mtx)
 {
-	/*
-	lfs      f4, lbl_80516B4C@sda21(r2)
-	fneg     f0, f1
-	lfs      f3, lbl_80516B50@sda21(r2)
-	stfs     f4, 0(r3)
-	stfs     f3, 4(r3)
-	stfs     f3, 8(r3)
-	stfs     f3, 0xc(r3)
-	stfs     f3, 0x10(r3)
-	stfs     f2, 0x14(r3)
-	stfs     f0, 0x18(r3)
-	stfs     f3, 0x1c(r3)
-	stfs     f3, 0x20(r3)
-	stfs     f1, 0x24(r3)
-	stfs     f2, 0x28(r3)
-	stfs     f3, 0x2c(r3)
-	blr
-	*/
+	mtx[0][0] = 1.0f;
+	mtx[0][1] = 0.0f;
+	mtx[0][2] = 0.0f;
+	mtx[0][3] = 0.0f;
+	mtx[1][0] = 0.0f;
+	mtx[1][1] = p2;
+	mtx[1][2] = -p1;
+	mtx[1][3] = 0.0f;
+	mtx[2][0] = 0.0f;
+	mtx[2][1] = p1;
+	mtx[2][2] = p2;
+	mtx[2][3] = 0.0f;
 }
 
 /**
  * @note Address: 0x8008CB08
  * @note Size: 0x40
  */
-void rotTypeZ(f32, f32, Mtx&)
+void rotTypeZ(f32 p1, f32 p2, Mtx& mtx)
 {
-	/*
-	fneg     f4, f1
-	stfs     f2, 0(r3)
-	lfs      f3, lbl_80516B50@sda21(r2)
-	lfs      f0, lbl_80516B4C@sda21(r2)
-	stfs     f4, 4(r3)
-	stfs     f3, 8(r3)
-	stfs     f3, 0xc(r3)
-	stfs     f1, 0x10(r3)
-	stfs     f2, 0x14(r3)
-	stfs     f3, 0x18(r3)
-	stfs     f3, 0x1c(r3)
-	stfs     f3, 0x20(r3)
-	stfs     f3, 0x24(r3)
-	stfs     f0, 0x28(r3)
-	stfs     f3, 0x2c(r3)
-	blr
-	*/
+	mtx[0][0] = p2;
+	mtx[0][1] = -p1;
+	mtx[0][2] = 0.0f;
+	mtx[0][3] = 0.0f;
+	mtx[1][0] = p1;
+	mtx[1][1] = p2;
+	mtx[1][2] = 0.0f;
+	mtx[1][3] = 0.0f;
+	mtx[2][0] = 0.0f;
+	mtx[2][1] = 0.0f;
+	mtx[2][2] = 1.0f;
+	mtx[2][3] = 0.0f;
 }
 
 /**
  * @note Address: 0x8008CB48
  * @note Size: 0x5C
  */
-void rotTypeXYZ(f32, f32, Mtx&)
+void rotTypeXYZ(f32 p1, f32 p2, Mtx& mtx)
 {
-	/*
-	lfs      f3, lbl_80516B4C@sda21(r2)
-	lfs      f0, lbl_80516B64@sda21(r2)
-	fsubs    f3, f3, f2
-	lfs      f4, lbl_80516B60@sda21(r2)
-	fmuls    f1, f0, f1
-	lfs      f0, lbl_80516B50@sda21(r2)
-	fmuls    f3, f4, f3
-	fadds    f4, f3, f1
-	fsubs    f1, f3, f1
-	fadds    f3, f3, f2
-	stfs     f3, 0(r3)
-	stfs     f1, 4(r3)
-	stfs     f4, 8(r3)
-	stfs     f0, 0xc(r3)
-	stfs     f4, 0x10(r3)
-	stfs     f3, 0x14(r3)
-	stfs     f1, 0x18(r3)
-	stfs     f0, 0x1c(r3)
-	stfs     f1, 0x20(r3)
-	stfs     f4, 0x24(r3)
-	stfs     f3, 0x28(r3)
-	stfs     f0, 0x2c(r3)
-	blr
-	*/
+	f32 diag = 0.33333299f * (1.0f - p2);
+	f32 off1;
+	f32 off2;
+	off2 = diag + 0.57735f * p1;
+	off1 = diag - 0.57735f * p1;
+	diag += p2;
+	mtx[0][0] = diag;
+	mtx[0][1] = off1;
+	mtx[0][2] = off2;
+	mtx[0][3] = 0.0f;
+	mtx[1][0] = off2;
+	mtx[1][1] = diag;
+	mtx[1][2] = off1;
+	mtx[1][3] = 0.0f;
+	mtx[2][0] = off1;
+	mtx[2][1] = off2;
+	mtx[2][2] = diag;
+	mtx[2][3] = 0.0f;
 }
 
 /**
@@ -1918,675 +1328,127 @@ void basePlaneTypeX(Mtx mtx, f32 xz, f32 y)
  * @note Address: 0x8008CCAC
  * @note Size: 0x350
  */
-void JPADrawDirection(JPAEmitterWorkData* workData, JPABaseParticle* particle)
+void JPADrawDirection(JPAEmitterWorkData* work, JPABaseParticle* particle)
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	lis      r5, jpa_dl@ha
-	stw      r0, 0x64(r1)
-	stw      r31, 0x5c(r1)
-	mr       r31, r3
-	stw      r30, 0x58(r1)
-	addi     r30, r5, jpa_dl@l
-	stw      r29, 0x54(r1)
-	mr       r29, r4
-	lwz      r0, 0x7c(r4)
-	rlwinm.  r0, r0, 0, 0x1c, 0x1c
-	bne      lbl_8008CFE0
-	lwz      r0, 0x200(r31)
-	addi     r6, r30, 0x4c
-	addi     r5, r1, 8
-	slwi     r0, r0, 2
-	lwzx     r12, r6, r0
-	mtctr    r12
-	bctrl
-	lfs      f1, 8(r1)
-	lis      r3, __float_epsilon@ha
-	lfs      f0, 0xc(r1)
-	fmuls    f3, f1, f1
-	lfs      f4, 0x10(r1)
-	fmuls    f2, f0, f0
-	lfs      f1, lbl_80516B68@sda21(r2)
-	lfs      f0, __float_epsilon@l(r3)
-	fmuls    f4, f4, f4
-	fadds    f2, f3, f2
-	fmuls    f0, f1, f0
-	fadds    f4, f4, f2
-	fcmpo    cr0, f4, f0
-	cror     2, 0, 2
-	beq      lbl_8008CFE0
-	fcmpo    cr0, f4, f0
-	cror     2, 0, 2
-	beq      lbl_8008CD9C
-	lfs      f0, lbl_80516B50@sda21(r2)
-	fcmpo    cr0, f4, f0
-	cror     2, 0, 2
-	bne      lbl_8008CD58
-	b        lbl_8008CD78
-
-lbl_8008CD58:
-	frsqrte  f3, f4
-	lfs      f2, lbl_80516B48@sda21(r2)
-	lfs      f0, lbl_80516B6C@sda21(r2)
-	frsp     f3, f3
-	fmuls    f1, f3, f3
-	fmuls    f2, f2, f3
-	fnmsubs  f0, f4, f1, f0
-	fmuls    f4, f2, f0
-
-lbl_8008CD78:
-	lfs      f2, 8(r1)
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x10(r1)
-	fmuls    f2, f2, f4
-	fmuls    f1, f1, f4
-	fmuls    f0, f0, f4
-	stfs     f2, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f0, 0x10(r1)
-
-lbl_8008CD9C:
-	lfs      f6, 0x54(r29)
-	lis      r3, __float_epsilon@ha
-	lfs      f5, 0x10(r1)
-	lfs      f7, 0xc(r1)
-	lfs      f2, 0x5c(r29)
-	fmuls    f1, f6, f5
-	lfs      f4, 8(r1)
-	fmuls    f0, f2, f7
-	lfs      f8, 0x58(r29)
-	fmsubs   f3, f2, f4, f1
-	lfs      f2, lbl_80516B68@sda21(r2)
-	fmuls    f4, f8, f4
-	lfs      f1, __float_epsilon@l(r3)
-	fmsubs   f0, f8, f5, f0
-	fmuls    f5, f3, f3
-	fmuls    f2, f2, f1
-	fmsubs   f4, f6, f7, f4
-	fmadds   f1, f0, f0, f5
-	fmadds   f7, f4, f4, f1
-	fcmpo    cr0, f7, f2
-	cror     2, 0, 2
-	beq      lbl_8008CFE0
-	fcmpo    cr0, f7, f2
-	cror     2, 0, 2
-	beq      lbl_8008CE40
-	lfs      f1, lbl_80516B50@sda21(r2)
-	fcmpo    cr0, f7, f1
-	cror     2, 0, 2
-	bne      lbl_8008CE14
-	b        lbl_8008CE34
-
-lbl_8008CE14:
-	frsqrte  f6, f7
-	lfs      f5, lbl_80516B48@sda21(r2)
-	lfs      f1, lbl_80516B6C@sda21(r2)
-	frsp     f6, f6
-	fmuls    f2, f6, f6
-	fmuls    f5, f5, f6
-	fnmsubs  f1, f7, f2, f1
-	fmuls    f7, f5, f1
-
-lbl_8008CE34:
-	fmuls    f0, f0, f7
-	fmuls    f3, f3, f7
-	fmuls    f4, f4, f7
-
-lbl_8008CE40:
-	lfs      f8, 0x10(r1)
-	lis      r3, __float_epsilon@ha
-	lfs      f7, 8(r1)
-	fmuls    f1, f8, f3
-	lfs      f9, 0xc(r1)
-	fmuls    f5, f7, f4
-	lfs      f2, lbl_80516B68@sda21(r2)
-	fmuls    f6, f9, f0
-	fmsubs   f1, f9, f4, f1
-	fmsubs   f5, f8, f0, f5
-	fmsubs   f6, f7, f3, f6
-	stfs     f1, 0x54(r29)
-	stfs     f5, 0x58(r29)
-	stfs     f6, 0x5c(r29)
-	lfs      f5, 0x54(r29)
-	lfs      f1, 0x58(r29)
-	fmuls    f6, f5, f5
-	lfs      f7, 0x5c(r29)
-	fmuls    f5, f1, f1
-	lfs      f1, __float_epsilon@l(r3)
-	fmuls    f7, f7, f7
-	fmuls    f1, f2, f1
-	fadds    f2, f6, f5
-	fadds    f7, f7, f2
-	fcmpo    cr0, f7, f1
-	cror     2, 0, 2
-	beq      lbl_8008CF04
-	lfs      f1, lbl_80516B50@sda21(r2)
-	fcmpo    cr0, f7, f1
-	cror     2, 0, 2
-	bne      lbl_8008CEC0
-	b        lbl_8008CEE0
-
-lbl_8008CEC0:
-	frsqrte  f6, f7
-	lfs      f5, lbl_80516B48@sda21(r2)
-	lfs      f1, lbl_80516B6C@sda21(r2)
-	frsp     f6, f6
-	fmuls    f2, f6, f6
-	fmuls    f5, f5, f6
-	fnmsubs  f1, f7, f2, f1
-	fmuls    f7, f5, f1
-
-lbl_8008CEE0:
-	lfs      f1, 0x54(r29)
-	fmuls    f1, f1, f7
-	stfs     f1, 0x54(r29)
-	lfs      f1, 0x58(r29)
-	fmuls    f1, f1, f7
-	stfs     f1, 0x58(r29)
-	lfs      f1, 0x5c(r29)
-	fmuls    f1, f1, f7
-	stfs     f1, 0x5c(r29)
-
-lbl_8008CF04:
-	lfs      f5, 0x144(r31)
-	addi     r4, r30, 0x74
-	lfs      f1, 0x60(r29)
-	addi     r3, r1, 0x14
-	lfs      f7, 0x148(r31)
-	lfs      f2, 0x64(r29)
-	fmuls    f1, f5, f1
-	lfs      f6, 0x54(r29)
-	lfs      f5, 8(r1)
-	fmuls    f2, f7, f2
-	stfs     f6, 0x14(r1)
-	lfs      f6, 0xc(r1)
-	stfs     f5, 0x18(r1)
-	lfs      f5, 0x10(r1)
-	stfs     f0, 0x1c(r1)
-	lfs      f0, 0(r29)
-	stfs     f0, 0x20(r1)
-	lfs      f0, 0x58(r29)
-	stfs     f0, 0x24(r1)
-	stfs     f6, 0x28(r1)
-	stfs     f3, 0x2c(r1)
-	lfs      f0, 4(r29)
-	stfs     f0, 0x30(r1)
-	lfs      f0, 0x5c(r29)
-	stfs     f0, 0x34(r1)
-	stfs     f5, 0x38(r1)
-	stfs     f4, 0x3c(r1)
-	lfs      f0, 8(r29)
-	stfs     f0, 0x40(r1)
-	lwz      r0, 0x208(r31)
-	slwi     r0, r0, 2
-	lwzx     r12, r4, r0
-	mtctr    r12
-	bctrl
-	addi     r4, r1, 0x14
-	addi     r3, r31, 0x184
-	mr       r5, r4
-	bl       PSMTXConcat
-	addi     r3, r1, 0x14
-	li       r4, 0
-	bl       GXLoadPosMtxImm
-	lwz      r0, 0x210(r31)
-	addi     r5, r30, 0x40
-	mr       r3, r31
-	addi     r4, r1, 0x14
-	slwi     r0, r0, 2
-	lwzx     r12, r5, r0
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x20c(r31)
-	addi     r3, r13, p_dl@sda21
-	li       r4, 0x20
-	slwi     r0, r0, 2
-	lwzx     r3, r3, r0
-	bl       GXCallDisplayList
-
-lbl_8008CFE0:
-	lwz      r0, 0x64(r1)
-	lwz      r31, 0x5c(r1)
-	lwz      r30, 0x58(r1)
-	lwz      r29, 0x54(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+	if (particle->checkStatus(8) == 0) {
+		JGeometry::TVec3f local_6c;
+		JGeometry::TVec3f local_78;
+		p_direction[work->mDirType](work, particle, &local_6c);
+		if (!local_6c.isZero()) {
+			local_6c.normalize();
+			local_78.cross(particle->mBaseAxis, local_6c);
+			if (!local_78.isZero()) {
+				local_78.normalize();
+				particle->mBaseAxis.cross(local_6c, local_78);
+				particle->mBaseAxis.normalize();
+				Mtx local_60;
+				f32 fVar1      = work->mGlobalPtclScl.x * particle->mParticleScaleX;
+				f32 fVar2      = work->mGlobalPtclScl.y * particle->mParticleScaleY;
+				local_60[0][0] = particle->mBaseAxis.x;
+				local_60[0][1] = local_6c.x;
+				local_60[0][2] = local_78.x;
+				local_60[0][3] = particle->mPosition.x;
+				local_60[1][0] = particle->mBaseAxis.y;
+				local_60[1][1] = local_6c.y;
+				local_60[1][2] = local_78.y;
+				local_60[1][3] = particle->mPosition.y;
+				local_60[2][0] = particle->mBaseAxis.z;
+				local_60[2][1] = local_6c.z;
+				local_60[2][2] = local_78.z;
+				local_60[2][3] = particle->mPosition.z;
+				p_plane[work->mPlaneType](local_60, fVar1, fVar2);
+				PSMTXConcat(work->mPosCamMtx, local_60, local_60);
+				GXLoadPosMtxImm(local_60, 0);
+				p_prj[work->mPrjType](work, local_60);
+				GXCallDisplayList(p_dl[work->mDLType], sizeof(jpa_dl));
+			}
+		}
+	}
 }
 
 /**
  * @note Address: 0x8008CFFC
  * @note Size: 0x3FC
  */
-void JPADrawRotDirection(JPAEmitterWorkData* workData, JPABaseParticle* particle)
+void JPADrawRotDirection(JPAEmitterWorkData* work, JPABaseParticle* particle)
 {
-	/*
-	stwu     r1, -0xe0(r1)
-	mflr     r0
-	stw      r0, 0xe4(r1)
-	stfd     f31, 0xd0(r1)
-	psq_st   f31, 216(r1), 0, qr0
-	stfd     f30, 0xc0(r1)
-	psq_st   f30, 200(r1), 0, qr0
-	stfd     f29, 0xb0(r1)
-	psq_st   f29, 184(r1), 0, qr0
-	stfd     f28, 0xa0(r1)
-	psq_st   f28, 168(r1), 0, qr0
-	stfd     f27, 0x90(r1)
-	psq_st   f27, 152(r1), 0, qr0
-	stw      r31, 0x8c(r1)
-	stw      r30, 0x88(r1)
-	stw      r29, 0x84(r1)
-	lwz      r0, 0x7c(r4)
-	lis      r5, jpa_dl@ha
-	mr       r30, r4
-	mr       r29, r3
-	rlwinm.  r0, r0, 0, 0x1c, 0x1c
-	addi     r31, r5, jpa_dl@l
-	bne      lbl_8008D3B4
-	lhz      r7, 0x88(r30)
-	lis      r6, sincosTable___5JMath@ha
-	lwz      r0, 0x200(r29)
-	addi     r5, r31, 0x4c
-	extsh    r8, r7
-	addi     r7, r6, sincosTable___5JMath@l
-	rlwinm   r8, r8, 0x1e, 0x12, 0x1c
-	slwi     r0, r0, 2
-	lwzx     r12, r5, r0
-	add      r6, r7, r8
-	addi     r5, r1, 8
-	lfsx     f31, r7, r8
-	lfs      f30, 4(r6)
-	mtctr    r12
-	bctrl
-	lfs      f1, 8(r1)
-	lis      r3, __float_epsilon@ha
-	lfs      f0, 0xc(r1)
-	fmuls    f3, f1, f1
-	lfs      f4, 0x10(r1)
-	fmuls    f2, f0, f0
-	lfs      f1, lbl_80516B68@sda21(r2)
-	lfs      f0, __float_epsilon@l(r3)
-	fmuls    f4, f4, f4
-	fadds    f2, f3, f2
-	fmuls    f0, f1, f0
-	fadds    f4, f4, f2
-	fcmpo    cr0, f4, f0
-	cror     2, 0, 2
-	beq      lbl_8008D3B4
-	fcmpo    cr0, f4, f0
-	cror     2, 0, 2
-	beq      lbl_8008D134
-	lfs      f0, lbl_80516B50@sda21(r2)
-	fcmpo    cr0, f4, f0
-	cror     2, 0, 2
-	bne      lbl_8008D0F0
-	b        lbl_8008D110
-
-lbl_8008D0F0:
-	frsqrte  f3, f4
-	lfs      f2, lbl_80516B48@sda21(r2)
-	lfs      f0, lbl_80516B6C@sda21(r2)
-	frsp     f3, f3
-	fmuls    f1, f3, f3
-	fmuls    f2, f2, f3
-	fnmsubs  f0, f4, f1, f0
-	fmuls    f4, f2, f0
-
-lbl_8008D110:
-	lfs      f2, 8(r1)
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x10(r1)
-	fmuls    f2, f2, f4
-	fmuls    f1, f1, f4
-	fmuls    f0, f0, f4
-	stfs     f2, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f0, 0x10(r1)
-
-lbl_8008D134:
-	lfs      f4, 0x54(r30)
-	lis      r3, __float_epsilon@ha
-	lfs      f6, 0x10(r1)
-	lfs      f5, 0xc(r1)
-	lfs      f1, 0x5c(r30)
-	fmuls    f0, f4, f6
-	lfs      f3, 8(r1)
-	fmuls    f2, f1, f5
-	lfs      f7, 0x58(r30)
-	fmsubs   f28, f1, f3, f0
-	lfs      f1, lbl_80516B68@sda21(r2)
-	fmuls    f3, f7, f3
-	lfs      f0, __float_epsilon@l(r3)
-	fmsubs   f29, f7, f6, f2
-	fmuls    f2, f28, f28
-	fmuls    f1, f1, f0
-	fmsubs   f27, f4, f5, f3
-	fmadds   f0, f29, f29, f2
-	fmadds   f4, f27, f27, f0
-	fcmpo    cr0, f4, f1
-	cror     2, 0, 2
-	beq      lbl_8008D3B4
-	fcmpo    cr0, f4, f1
-	cror     2, 0, 2
-	beq      lbl_8008D1D8
-	lfs      f0, lbl_80516B50@sda21(r2)
-	fcmpo    cr0, f4, f0
-	cror     2, 0, 2
-	bne      lbl_8008D1AC
-	b        lbl_8008D1CC
-
-lbl_8008D1AC:
-	frsqrte  f3, f4
-	lfs      f2, lbl_80516B48@sda21(r2)
-	lfs      f0, lbl_80516B6C@sda21(r2)
-	frsp     f3, f3
-	fmuls    f1, f3, f3
-	fmuls    f2, f2, f3
-	fnmsubs  f0, f4, f1, f0
-	fmuls    f4, f2, f0
-
-lbl_8008D1CC:
-	fmuls    f29, f29, f4
-	fmuls    f28, f28, f4
-	fmuls    f27, f27, f4
-
-lbl_8008D1D8:
-	lfs      f5, 0x10(r1)
-	lis      r3, __float_epsilon@ha
-	lfs      f4, 8(r1)
-	fmuls    f0, f5, f28
-	lfs      f6, 0xc(r1)
-	fmuls    f2, f4, f27
-	lfs      f1, lbl_80516B68@sda21(r2)
-	fmuls    f3, f6, f29
-	fmsubs   f0, f6, f27, f0
-	fmsubs   f2, f5, f29, f2
-	fmsubs   f3, f4, f28, f3
-	stfs     f0, 0x54(r30)
-	stfs     f2, 0x58(r30)
-	stfs     f3, 0x5c(r30)
-	lfs      f2, 0x54(r30)
-	lfs      f0, 0x58(r30)
-	fmuls    f3, f2, f2
-	lfs      f4, 0x5c(r30)
-	fmuls    f2, f0, f0
-	lfs      f0, __float_epsilon@l(r3)
-	fmuls    f4, f4, f4
-	fmuls    f0, f1, f0
-	fadds    f1, f3, f2
-	fadds    f4, f4, f1
-	fcmpo    cr0, f4, f0
-	cror     2, 0, 2
-	beq      lbl_8008D29C
-	lfs      f0, lbl_80516B50@sda21(r2)
-	fcmpo    cr0, f4, f0
-	cror     2, 0, 2
-	bne      lbl_8008D258
-	b        lbl_8008D278
-
-lbl_8008D258:
-	frsqrte  f3, f4
-	lfs      f2, lbl_80516B48@sda21(r2)
-	lfs      f0, lbl_80516B6C@sda21(r2)
-	frsp     f3, f3
-	fmuls    f1, f3, f3
-	fmuls    f2, f2, f3
-	fnmsubs  f0, f4, f1, f0
-	fmuls    f4, f2, f0
-
-lbl_8008D278:
-	lfs      f0, 0x54(r30)
-	fmuls    f0, f0, f4
-	stfs     f0, 0x54(r30)
-	lfs      f0, 0x58(r30)
-	fmuls    f0, f0, f4
-	stfs     f0, 0x58(r30)
-	lfs      f0, 0x5c(r30)
-	fmuls    f0, f0, f4
-	stfs     f0, 0x5c(r30)
-
-lbl_8008D29C:
-	lwz      r0, 0x204(r29)
-	addi     r3, r31, 0x60
-	lfs      f5, 0x144(r29)
-	fmr      f1, f31
-	slwi     r0, r0, 2
-	lfs      f4, 0x60(r30)
-	lfs      f3, 0x148(r29)
-	fmr      f2, f30
-	lfs      f0, 0x64(r30)
-	lwzx     r12, r3, r0
-	fmuls    f30, f5, f4
-	fmuls    f31, f3, f0
-	addi     r3, r1, 0x44
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x208(r29)
-	addi     r4, r31, 0x74
-	fmr      f1, f30
-	addi     r3, r1, 0x44
-	slwi     r0, r0, 2
-	fmr      f2, f31
-	lwzx     r12, r4, r0
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x54(r30)
-	addi     r4, r1, 0x44
-	lfs      f0, 8(r1)
-	mr       r5, r4
-	stfs     f1, 0x14(r1)
-	addi     r3, r1, 0x14
-	lfs      f1, 0xc(r1)
-	stfs     f0, 0x18(r1)
-	lfs      f0, 0x10(r1)
-	stfs     f29, 0x1c(r1)
-	lfs      f2, 0(r30)
-	stfs     f2, 0x20(r1)
-	lfs      f2, 0x58(r30)
-	stfs     f2, 0x24(r1)
-	stfs     f1, 0x28(r1)
-	stfs     f28, 0x2c(r1)
-	lfs      f1, 4(r30)
-	stfs     f1, 0x30(r1)
-	lfs      f1, 0x5c(r30)
-	stfs     f1, 0x34(r1)
-	stfs     f0, 0x38(r1)
-	stfs     f27, 0x3c(r1)
-	lfs      f0, 8(r30)
-	stfs     f0, 0x40(r1)
-	bl       PSMTXConcat
-	addi     r3, r29, 0x184
-	addi     r4, r1, 0x44
-	addi     r5, r1, 0x14
-	bl       PSMTXConcat
-	addi     r3, r1, 0x14
-	li       r4, 0
-	bl       GXLoadPosMtxImm
-	lwz      r0, 0x210(r29)
-	addi     r5, r31, 0x40
-	mr       r3, r29
-	addi     r4, r1, 0x14
-	slwi     r0, r0, 2
-	lwzx     r12, r5, r0
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x20c(r29)
-	addi     r3, r13, p_dl@sda21
-	li       r4, 0x20
-	slwi     r0, r0, 2
-	lwzx     r3, r3, r0
-	bl       GXCallDisplayList
-
-lbl_8008D3B4:
-	psq_l    f31, 216(r1), 0, qr0
-	lfd      f31, 0xd0(r1)
-	psq_l    f30, 200(r1), 0, qr0
-	lfd      f30, 0xc0(r1)
-	psq_l    f29, 184(r1), 0, qr0
-	lfd      f29, 0xb0(r1)
-	psq_l    f28, 168(r1), 0, qr0
-	lfd      f28, 0xa0(r1)
-	psq_l    f27, 152(r1), 0, qr0
-	lfd      f27, 0x90(r1)
-	lwz      r31, 0x8c(r1)
-	lwz      r30, 0x88(r1)
-	lwz      r0, 0xe4(r1)
-	lwz      r29, 0x84(r1)
-	mtlr     r0
-	addi     r1, r1, 0xe0
-	blr
-	*/
+	if (particle->checkStatus(8) == 0) {
+		f32 sinRot = JMASSin(particle->mRotateAngle);
+		f32 cosRot = JMASCos(particle->mRotateAngle);
+		JGeometry::TVec3<f32> local_6c;
+		JGeometry::TVec3<f32> local_78;
+		p_direction[work->mDirType](work, particle, &local_6c);
+		if (!local_6c.isZero()) {
+			local_6c.normalize();
+			local_78.cross(particle->mBaseAxis, local_6c);
+			if (!local_78.isZero()) {
+				local_78.normalize();
+				particle->mBaseAxis.cross(local_6c, local_78);
+				particle->mBaseAxis.normalize();
+				f32 particleX = work->mGlobalPtclScl.x * particle->mParticleScaleX;
+				f32 particleY = work->mGlobalPtclScl.y * particle->mParticleScaleY;
+				Mtx auStack_80;
+				Mtx local_60;
+				p_rot[work->mRotType](sinRot, cosRot, auStack_80);
+				p_plane[work->mPlaneType](auStack_80, particleX, particleY);
+				local_60[0][0] = particle->mBaseAxis.x;
+				local_60[0][1] = local_6c.x;
+				local_60[0][2] = local_78.x;
+				local_60[0][3] = particle->mPosition.x;
+				local_60[1][0] = particle->mBaseAxis.y;
+				local_60[1][1] = local_6c.y;
+				local_60[1][2] = local_78.y;
+				local_60[1][3] = particle->mPosition.y;
+				local_60[2][0] = particle->mBaseAxis.z;
+				local_60[2][1] = local_6c.z;
+				local_60[2][2] = local_78.z;
+				local_60[2][3] = particle->mPosition.z;
+				PSMTXConcat(local_60, auStack_80, auStack_80);
+				PSMTXConcat(work->mPosCamMtx, auStack_80, local_60);
+				GXLoadPosMtxImm(local_60, 0);
+				p_prj[work->mPrjType](work, local_60);
+				GXCallDisplayList(p_dl[work->mDLType], sizeof(jpa_dl));
+			}
+		}
+	}
 }
 
 /**
  * @note Address: 0x8008D3F8
  * @note Size: 0x208
  */
-void JPADrawDBillboard(JPAEmitterWorkData* workData, JPABaseParticle* particle)
+void JPADrawDBillboard(JPAEmitterWorkData* work, JPABaseParticle* particle)
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	lis      r5, jpa_dl@ha
-	stw      r0, 0x64(r1)
-	stw      r31, 0x5c(r1)
-	addi     r31, r5, jpa_dl@l
-	stw      r30, 0x58(r1)
-	mr       r30, r4
-	stw      r29, 0x54(r1)
-	mr       r29, r3
-	lwz      r0, 0x7c(r4)
-	rlwinm.  r0, r0, 0, 0x1c, 0x1c
-	bne      lbl_8008D5E4
-	lwz      r0, 0x200(r29)
-	addi     r6, r31, 0x4c
-	addi     r5, r1, 0x14
-	slwi     r0, r0, 2
-	lwzx     r12, r6, r0
-	mtctr    r12
-	bctrl
-	lfs      f4, 0x1ac(r29)
-	lis      r3, __float_epsilon@ha
-	lfs      f7, 0x14(r1)
-	lfs      f5, 0x1a8(r29)
-	lfs      f1, 0x1c(r1)
-	fmuls    f0, f7, f4
-	lfs      f3, 0x1a4(r29)
-	fmuls    f2, f1, f5
-	lfs      f8, 0x18(r1)
-	fmsubs   f6, f1, f3, f0
-	lfs      f1, lbl_80516B68@sda21(r2)
-	fmuls    f3, f8, f3
-	lfs      f0, __float_epsilon@l(r3)
-	fmsubs   f4, f8, f4, f2
-	stfs     f6, 0x18(r1)
-	fmsubs   f5, f7, f5, f3
-	fmuls    f2, f6, f6
-	fmuls    f6, f1, f0
-	stfs     f4, 0x14(r1)
-	fmuls    f3, f4, f4
-	fmuls    f1, f5, f5
-	stfs     f5, 0x1c(r1)
-	fadds    f0, f3, f2
-	fadds    f4, f1, f0
-	fcmpo    cr0, f4, f6
-	cror     2, 0, 2
-	beq      lbl_8008D5E4
-	fcmpo    cr0, f4, f6
-	cror     2, 0, 2
-	beq      lbl_8008D518
-	lfs      f0, lbl_80516B50@sda21(r2)
-	fcmpo    cr0, f4, f0
-	cror     2, 0, 2
-	bne      lbl_8008D4D4
-	b        lbl_8008D4F4
-
-lbl_8008D4D4:
-	frsqrte  f3, f4
-	lfs      f2, lbl_80516B48@sda21(r2)
-	lfs      f0, lbl_80516B6C@sda21(r2)
-	frsp     f3, f3
-	fmuls    f1, f3, f3
-	fmuls    f2, f2, f3
-	fnmsubs  f0, f4, f1, f0
-	fmuls    f4, f2, f0
-
-lbl_8008D4F4:
-	lfs      f2, 0x14(r1)
-	lfs      f1, 0x18(r1)
-	lfs      f0, 0x1c(r1)
-	fmuls    f2, f2, f4
-	fmuls    f1, f1, f4
-	fmuls    f0, f0, f4
-	stfs     f2, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-
-lbl_8008D518:
-	addi     r4, r1, 0x14
-	addi     r3, r29, 0x184
-	mr       r5, r4
-	bl       PSMTXMultVecSR
-	mr       r4, r30
-	addi     r3, r29, 0x184
-	addi     r5, r1, 8
-	bl       PSMTXMultVec
-	lfs      f5, 0x18(r1)
-	addi     r3, r1, 0x20
-	lfs      f4, 0x144(r29)
-	li       r4, 0
-	lfs      f0, 0x60(r30)
-	fneg     f1, f5
-	lfs      f3, 0x148(r29)
-	lfs      f2, 0x64(r30)
-	fmuls    f7, f4, f0
-	lfs      f4, 0x14(r1)
-	lfs      f0, lbl_80516B50@sda21(r2)
-	fmuls    f2, f3, f2
-	fmuls    f8, f4, f7
-	lfs      f6, 8(r1)
-	fmuls    f5, f5, f7
-	lfs      f3, 0xc(r1)
-	fmuls    f7, f1, f2
-	fmuls    f4, f4, f2
-	lfs      f2, lbl_80516B4C@sda21(r2)
-	lfs      f1, 0x10(r1)
-	stfs     f8, 0x20(r1)
-	stfs     f7, 0x24(r1)
-	stfs     f6, 0x2c(r1)
-	stfs     f5, 0x30(r1)
-	stfs     f4, 0x34(r1)
-	stfs     f3, 0x3c(r1)
-	stfs     f2, 0x48(r1)
-	stfs     f1, 0x4c(r1)
-	stfs     f0, 0x44(r1)
-	stfs     f0, 0x40(r1)
-	stfs     f0, 0x28(r1)
-	bl       GXLoadPosMtxImm
-	lwz      r0, 0x210(r29)
-	addi     r5, r31, 0x40
-	mr       r3, r29
-	addi     r4, r1, 0x20
-	slwi     r0, r0, 2
-	lwzx     r12, r5, r0
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0
-	li       r4, 0x20
-	bl       GXCallDisplayList
-
-lbl_8008D5E4:
-	lwz      r0, 0x64(r1)
-	lwz      r31, 0x5c(r1)
-	lwz      r30, 0x58(r1)
-	lwz      r29, 0x54(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+	if (particle->checkStatus(8) == 0) {
+		JGeometry::TVec3<f32> local_70;
+		p_direction[work->mDirType](work, particle, &local_70);
+		JGeometry::TVec3<f32> aTStack_7c;
+		aTStack_7c.set(work->mPosCamMtx[2][0], work->mPosCamMtx[2][1], work->mPosCamMtx[2][2]);
+		local_70.cross(local_70, aTStack_7c);
+		if (!local_70.isZero()) {
+			local_70.normalize();
+			PSMTXMultVecSR(work->mPosCamMtx, (Vec*)&local_70, (Vec*)&local_70);
+			JGeometry::TVec3<f32> local_88;
+			PSMTXMultVec(work->mPosCamMtx, (Vec*)&particle->mPosition, (Vec*)&local_88);
+			f32 particleX = work->mGlobalPtclScl.x * particle->mParticleScaleX;
+			f32 particleY = work->mGlobalPtclScl.y * particle->mParticleScaleY;
+			Mtx local_60;
+			local_60[0][0] = local_70.x * particleX;
+			local_60[0][1] = -local_70.y * particleY;
+			local_60[0][3] = local_88.x;
+			local_60[1][0] = local_70.y * particleX;
+			local_60[1][1] = local_70.x * particleY;
+			local_60[1][3] = local_88.y;
+			local_60[2][2] = 1.0f;
+			local_60[2][3] = local_88.z;
+			local_60[2][1] = 0.0f;
+			local_60[2][0] = 0.0f;
+			local_60[0][2] = 0.0f;
+			GXLoadPosMtxImm(local_60, 0);
+			p_prj[work->mPrjType](work, local_60);
+			GXCallDisplayList(jpa_dl, sizeof(jpa_dl));
+		}
+	}
 }
 
 /**
@@ -2611,94 +1473,6 @@ void JPADrawRotation(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 		p_prj[work->mPrjType](work, mtx);
 		GXCallDisplayList(p_dl[work->mDLType], sizeof(jpa_dl));
 	}
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	stfd     f30, 0x50(r1)
-	psq_st   f30, 88(r1), 0, qr0
-	stw      r31, 0x4c(r1)
-	stw      r30, 0x48(r1)
-	stw      r29, 0x44(r1)
-	mr       r31, r4
-	lis      r4, jpa_dl@ha
-	lwz      r0, 0x7c(r31)
-	mr       r30, r3
-	addi     r29, r4, jpa_dl@l
-	rlwinm.  r0, r0, 0, 0x1c, 0x1c
-	bne      lbl_8008D724
-	lwz      r0, 0x204(r30)
-	lis      r3, sincosTable___5JMath@ha
-	lhz      r5, 0x88(r31)
-	addi     r4, r3, sincosTable___5JMath@l
-	addi     r3, r29, 0x60
-	slwi     r0, r0, 2
-	rlwinm   r5, r5, 0x1e, 0x12, 0x1c
-	lwzx     r12, r3, r0
-	lfsx     f1, r4, r5
-	add      r4, r4, r5
-	lfs      f4, 0x144(r30)
-	addi     r3, r1, 8
-	lfs      f3, 0x60(r31)
-	lfs      f2, 0x148(r30)
-	lfs      f0, 0x64(r31)
-	fmuls    f31, f4, f3
-	fmuls    f30, f2, f0
-	lfs      f2, 4(r4)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x208(r30)
-	addi     r4, r29, 0x74
-	fmr      f1, f31
-	addi     r3, r1, 8
-	slwi     r0, r0, 2
-	fmr      f2, f30
-	lwzx     r12, r4, r0
-	mtctr    r12
-	bctrl
-	lfs      f0, 0(r31)
-	addi     r4, r1, 8
-	mr       r5, r4
-	addi     r3, r30, 0x184
-	stfs     f0, 0x14(r1)
-	lfs      f0, 4(r31)
-	stfs     f0, 0x24(r1)
-	lfs      f0, 8(r31)
-	stfs     f0, 0x34(r1)
-	bl       PSMTXConcat
-	addi     r3, r1, 8
-	li       r4, 0
-	bl       GXLoadPosMtxImm
-	lwz      r0, 0x210(r30)
-	addi     r5, r29, 0x40
-	mr       r3, r30
-	addi     r4, r1, 8
-	slwi     r0, r0, 2
-	lwzx     r12, r5, r0
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x20c(r30)
-	addi     r3, r13, p_dl@sda21
-	li       r4, 0x20
-	slwi     r0, r0, 2
-	lwzx     r3, r3, r0
-	bl       GXCallDisplayList
-
-lbl_8008D724:
-	psq_l    f31, 104(r1), 0, qr0
-	lfd      f31, 0x60(r1)
-	psq_l    f30, 88(r1), 0, qr0
-	lfd      f30, 0x50(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	lwz      r0, 0x74(r1)
-	lwz      r29, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
 }
 
 /**
@@ -2707,25 +1481,48 @@ lbl_8008D724:
  */
 void JPADrawPoint(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
-	if (!!(ptcl->mFlags & 1))
-		return;
+	if (ptcl->checkStatus(8) == 0) {
+		GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+		GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+		f32 zero = 0.0f;
+		GXBegin(GX_POINTS, GX_VTXFMT1, 1);
+		GXPosition3f32(ptcl->mPosition.x, ptcl->mPosition.y, ptcl->mPosition.z);
+		GXTexCoord2f32(zero, zero);
 
-	GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
-	GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
-	GXBegin(GX_POINTS, GX_VTXFMT1, 1);
-	GXPosition3f32(ptcl->mPosition.x, ptcl->mPosition.y, ptcl->mPosition.z);
-	GXTexCoord2f32(0.0f, 0.0f);
-
-	GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
-	GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
+		GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
+		GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
+	}
 }
 
 /**
  * @note Address: 0x8008D7EC
  * @note Size: 0x1B8
  */
-void JPADrawLine(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
+void JPADrawLine(JPAEmitterWorkData* work, JPABaseParticle* particle)
 {
+	if (particle->checkStatus(8) == 0) {
+		JGeometry::TVec3f local_1c;
+		local_1c.x = particle->mPosition.x;
+		// JGeometry::setTVec3f(&particle->mPosition.x, &local_1c.x);
+		JGeometry::TVec3f local_28;
+		particle->getVelVec(local_28);
+		if (!local_28.isZero()) {
+			// local_28.setLength(work->mGlobalPtclScl.y * (25.0f * particle->mParticleScaleY));
+			// local_28.sub(local_1c, local_28);
+			GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+			GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+			GXBegin(GX_LINES, GX_VTXFMT1, 2);
+			f32 zero = 0.0f;
+			f32 one  = 1.0f;
+			GXPosition3f32(local_1c.x, local_1c.y, local_1c.z);
+			GXTexCoord2f32(zero, zero);
+			GXPosition3f32(local_28.x, local_28.y, local_28.z);
+			GXTexCoord2f32(zero, one);
+			GXEnd();
+			GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
+			GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
+		}
+	}
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -2852,25 +1649,13 @@ void JPADrawLine(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
  * @note Address: 0x8008D9A4
  * @note Size: 0x8
  */
-void getNext(JPANode<JPABaseParticle>*)
-{
-	/*
-	lwz      r3, 4(r3)
-	blr
-	*/
-}
+static JPANode<JPABaseParticle>* getNext(JPANode<JPABaseParticle>* node) { return node->getNext(); }
 
 /**
  * @note Address: 0x8008D9AC
  * @note Size: 0x8
  */
-void getPrev(JPANode<JPABaseParticle>*)
-{
-	/*
-	lwz      r3, 0(r3)
-	blr
-	*/
-}
+static JPANode<JPABaseParticle>* getPrev(JPANode<JPABaseParticle>* node) { return node->getPrev(); }
 
 /**
  * @note Address: 0x8008D9B4
@@ -3987,7 +2772,7 @@ void JPAParticleCallBack::draw(JPABaseEmitter*, JPABaseParticle* particle) { }
  * @note Address: 0x8008E96C
  * @note Size: 0x284
  */
-void makeColorTable(_GXColor**, const JPAClrAnmKeyData*, u8, s16, JKRHeap*)
+void makeColorTable(GXColor**, const JPAClrAnmKeyData*, u8, s16, JKRHeap*)
 {
 	/*
 	.loc_0x0:
