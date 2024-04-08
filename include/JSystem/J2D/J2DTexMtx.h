@@ -16,6 +16,7 @@ struct J2DTexMtxInfo {
 
 	u8 mTexMtxType;                    // _00
 	u8 mTexMtxDCC;                     // _01
+	u16 _02;                           // _02, padding
 	Vec mCenter;                       // _04
 	J2DTextureSRTInfo mTextureSRTInfo; // _10
 };

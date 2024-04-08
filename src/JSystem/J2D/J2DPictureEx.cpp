@@ -476,7 +476,7 @@ void J2DPictureEx::drawTexCoord(f32 p1, f32 p2, f32 p3, f32 p4, s16 p5, s16 p6, 
 	GXLoadPosMtxImm(v1, 0);
 	JUtility::TColor colors[4] = { mCornerColors[0], mCornerColors[1], mCornerColors[2], mCornerColors[3] };
 	if (mMaterial) {
-		if ((mMaterial->mColorBlock.mChannels[1].mData & 1) == 1) {
+		if ((mMaterial->mColorBlock.mChannels[1].mColorChan & 1) == 1) {
 			if (mMaterial->mMaterialAlphaCalc == 1) {
 				for (int i = 0; i < 4; i++) {
 					colors[i].a *= mColorAlpha / 0xFF;

@@ -25,7 +25,7 @@ enum J2DMirror {
 	J2DMIRROR_X    = 2,
 };
 
-extern u16 j2dDefaultAlphaCmp;
+extern const u16 j2dDefaultAlphaCmp;
 
 struct J2DAlphaCompInfo {
 	u8 _00;   // _00
@@ -130,7 +130,7 @@ struct J2DGrafBlend {
 };
 
 struct J2DBlendInfo {
-	J2DBlendInfo() { }
+	// J2DBlendInfo() { }
 
 	void operator=(J2DBlendInfo const& other)
 	{
@@ -140,13 +140,13 @@ struct J2DBlendInfo {
 		mOp         = other.mOp;
 	}
 
-	J2DBlendInfo(u8 type, u8 src, u8 dst, u8 op)
-	{
-		mType       = type;
-		mSrcFactor  = src;
-		mDestFactor = dst;
-		mOp         = op;
-	}
+	// J2DBlendInfo(u8 type, u8 src, u8 dst, u8 op)
+	// {
+	// 	mType       = type;
+	// 	mSrcFactor  = src;
+	// 	mDestFactor = dst;
+	// 	mOp         = op;
+	// }
 
 	u8 mType;       // _00
 	u8 mSrcFactor;  // _01
@@ -154,46 +154,55 @@ struct J2DBlendInfo {
 	u8 mOp;         // _03
 };
 
-extern J2DBlendInfo j2dDefaultBlendInfo;
+extern const J2DBlendInfo j2dDefaultBlendInfo;
 
-struct J2DBlend {
-	J2DBlend() { mBlendInfo = j2dDefaultBlendInfo; }
-	J2DBlend(const J2DBlendInfo& info) { mBlendInfo = info; }
-	void setBlendInfo(const J2DBlendInfo& info) { mBlendInfo = info; }
-	u8 getType() { return mBlendInfo.mType; }
-	u8 getSrcFactor() { return mBlendInfo.mSrcFactor; }
-	u8 getDstFactor() { return mBlendInfo.mDestFactor; }
-	u8 getOp() { return mBlendInfo.mOp; }
+struct J2DBlend : public J2DBlendInfo {
+	J2DBlend() { *(J2DBlendInfo*)this = j2dDefaultBlendInfo; }
+	J2DBlend(const J2DBlendInfo& info) { *(J2DBlendInfo*)this = info; }
+	J2DBlend(u8 type, u8 src, u8 dst, u8 op)
+	{
+		mType       = type;
+		mSrcFactor  = src;
+		mDestFactor = dst;
+		mOp         = op;
+	}
+	void setBlendInfo(const J2DBlendInfo& info) { *(J2DBlendInfo*)this = info; }
+	u8 getType() { return mType; }
+	u8 getSrcFactor() { return mSrcFactor; }
+	u8 getDstFactor() { return mDestFactor; }
+	u8 getOp() { return mOp; }
 
 	inline void set(J2DBlend blend)
 	{
-		mBlendInfo.mType       = blend.mBlendInfo.mType;
-		mBlendInfo.mSrcFactor  = blend.mBlendInfo.mSrcFactor;
-		mBlendInfo.mDestFactor = blend.mBlendInfo.mDestFactor;
-		mBlendInfo.mOp         = blend.mBlendInfo.mOp;
+		mType       = blend.mType;
+		mSrcFactor  = blend.mSrcFactor;
+		mDestFactor = blend.mDestFactor;
+		mOp         = blend.mOp;
 	}
 
-	J2DBlendInfo mBlendInfo; // _00
+	// _00 = J2DBlendInfo
 };
 
 struct J2DColorChanInfo {
 	u8 _00; // _00
 	u8 _01; // _01
+	u8 _02; // _02, padding?
+	u8 _03; // _03, padding?
 };
 
 inline u8 J2DCalcColorChanID(u8 param_1) { return param_1; }
-extern J2DColorChanInfo j2dDefaultColorChanInfo;
+extern const J2DColorChanInfo j2dDefaultColorChanInfo;
 
 /**
  * @size{0x2}
  */
 struct J2DColorChan {
-	J2DColorChan() { mData = j2dDefaultColorChanInfo._01; }
-	J2DColorChan(const J2DColorChanInfo& info) { mData = J2DCalcColorChanID(info._01); }
-	void setColorChanInfo(const J2DColorChanInfo& info) { mData = J2DCalcColorChanID(info._01); }
-	u16 getMatSrc() const { return mData & 1; }
+	J2DColorChan() { setColorChanInfo(j2dDefaultColorChanInfo); }
+	J2DColorChan(const J2DColorChanInfo& info) { mColorChan = J2DCalcColorChanID(info._01); }
+	void setColorChanInfo(const J2DColorChanInfo& info) { mColorChan = J2DCalcColorChanID(info._01); }
+	u16 getMatSrc() const { return mColorChan & 1; }
 
-	u16 mData; // _00, should this be J2DColorChanInfo?
+	u16 mColorChan; // _00
 };
 
 struct J2DTevOrderInfo {
@@ -274,15 +283,15 @@ struct J2DTevStageInfo {
 struct J2DTevSwapModeInfo {
 	u8 mRasSel; // _00
 	u8 mTexSel; // _01
-	u8 _02;     // _02
-	u8 _03;     // _03
+	            // u8 _02;     // _02
+	            // u8 _03;     // _03
 };
 
 struct J2DTevSwapModeTableInfo {
-	u8 _00; // _00
-	u8 _01; // _01
-	u8 _02; // _02
-	u8 _03; // _03
+	u8 mR; // _00
+	u8 mG; // _01
+	u8 mB; // _02
+	u8 mA; // _03
 };
 
 inline u8 J2DCalcTevSwapTable(u8 param_0, u8 param_1, u8 param_2, u8 param_3)
@@ -290,16 +299,16 @@ inline u8 J2DCalcTevSwapTable(u8 param_0, u8 param_1, u8 param_2, u8 param_3)
 	return (param_0 << 6) + (param_1 << 4) + (param_2 << 2) + param_3;
 }
 
-extern J2DTevSwapModeInfo j2dDefaultTevSwapMode;
+extern const J2DTevSwapModeInfo j2dDefaultTevSwapMode;
 extern const J2DTevSwapModeTableInfo j2dDefaultTevSwapModeTable;
-extern u8 j2dDefaultTevSwapTable;
+extern const u8 j2dDefaultTevSwapTable;
 
 struct J2DTevSwapModeTable {
 	J2DTevSwapModeTable() { _00 = j2dDefaultTevSwapTable; }
 
-	J2DTevSwapModeTable(const J2DTevSwapModeTableInfo& info) { _00 = J2DCalcTevSwapTable(info._00, info._01, info._02, info._03); }
+	J2DTevSwapModeTable(const J2DTevSwapModeTableInfo& info) { _00 = J2DCalcTevSwapTable(info.mR, info.mG, info.mB, info.mA); }
 
-	void setTevSwapModeTableInfo(const J2DTevSwapModeTableInfo& info) { _00 = J2DCalcTevSwapTable(info._00, info._01, info._02, info._03); }
+	void setTevSwapModeTableInfo(const J2DTevSwapModeTableInfo& info) { _00 = J2DCalcTevSwapTable(info.mR, info.mG, info.mB, info.mA); }
 
 	u8 getR() { return _00 >> 6 & 3; }
 	u8 getG() { return _00 >> 4 & 3; }
@@ -347,9 +356,9 @@ struct J2DTevStage {
 		setRasSel(swapInfo.mRasSel);
 	}
 
-	void setTexSel(u8 param_0) { _07 = (_07 & ~0x0c) | (param_0 * 4); }
+	void setTexSel(u32 param_0) { _07 = (_07 & ~0x0c) | (param_0 * 4); }
 
-	void setRasSel(u8 param_0) { _07 = (_07 & ~0x03) | param_0; }
+	void setRasSel(u32 param_0) { _07 = (_07 & ~0x03) | param_0; }
 
 	void setColorABCD(u8 a, u8 b, u8 c, u8 d)
 	{
@@ -518,7 +527,7 @@ struct J2DTexCoordInfo {
 	}
 };
 
-extern J2DTexCoordInfo j2dDefaultTexCoordInfo[8];
+extern const J2DTexCoordInfo j2dDefaultTexCoordInfo[8];
 
 struct J2DTexCoord {
 	J2DTexCoord() { mTexCoordInfo = j2dDefaultTexCoordInfo[0]; }
@@ -542,10 +551,10 @@ struct J2DTextureSRTInfo {
 	f32 _10; // _10
 };
 
-extern J2DTevStageInfo j2dDefaultTevStageInfo;
-extern const u32 j2dDefaultColInfo;
-extern J2DGXColorS10 j2dDefaultTevColor;
-extern JUtility::TColor j2dDefaultTevKColor;
+extern const J2DTevStageInfo j2dDefaultTevStageInfo;
+extern const GXColor j2dDefaultColInfo;
+extern const GXColorS10 j2dDefaultTevColor;
+extern const GXColor j2dDefaultTevKColor;
 
 extern const u8 j2dDefaultDither;
 

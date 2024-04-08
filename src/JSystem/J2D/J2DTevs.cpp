@@ -5,10 +5,83 @@
 #include "fdlibm.h"
 #include "types.h"
 
-// these all need to be const and at the end of the file to go in sdata2 instead of sdata
-const u32 j2dDefaultColInfo                        = 0xFFFFFFFF;
-const J2DTevOrderInfo j2dDefaultTevOrderInfoNull   = { 0xFF, 0xFF, 0xFF, 0 };
-const J2DIndTexOrderInfo j2dDefaultIndTexOrderNull = { 0xFF, 0xFF };
+const J2DTexCoordInfo j2dDefaultTexCoordInfo[8] = {
+	{
+	    GX_TG_MTX3X4,
+	    GX_TG_TEX0,
+	    GX_IDENTITY,
+	}, // Tex 0
+	{
+	    GX_TG_MTX3X4,
+	    GX_TG_TEX1,
+	    GX_IDENTITY,
+	}, // Tex 1
+	{
+	    GX_TG_MTX3X4,
+	    GX_TG_TEX2,
+	    GX_IDENTITY,
+	}, // Tex 2
+	{
+	    GX_TG_MTX3X4,
+	    GX_TG_TEX3,
+	    GX_IDENTITY,
+	}, // Tex 3
+	{
+	    GX_TG_MTX3X4,
+	    GX_TG_TEX4,
+	    GX_IDENTITY,
+	}, // Tex 4
+	{
+	    GX_TG_MTX3X4,
+	    GX_TG_TEX5,
+	    GX_IDENTITY,
+	}, // Tex 5
+	{
+	    GX_TG_MTX3X4,
+	    GX_TG_TEX6,
+	    GX_IDENTITY,
+	}, // Tex 6
+	{
+	    GX_TG_MTX3X4,
+	    GX_TG_TEX7,
+	    GX_IDENTITY,
+	}, // Tex 7
+};
+
+const J2DTexMtxInfo j2dDefaultTexMtxInfo = {
+	GX_TG_MTX3X4,            // Tex gen type
+	J2DTexMtxInfo::DCC_Maya, // Tex gen DCC
+	0xFFFF,                  // padding
+	{ 0.5f, 0.5f, 0.0f },    // Center
+	{
+	    1.0f,
+	    1.0f,
+	    0.0f,
+	    0.0f,
+	    0.0f,
+	}, // SRT info
+};
+
+const J2DIndTexMtxInfo j2dDefaultIndTexMtxInfo = {
+	{
+	    0.5f,
+	    0.0f,
+	    0.0f, // 2x3 mtx
+	    0.0f,
+	    0.5f,
+	    0.0f,
+	},
+	1, // scale exp
+};
+
+const J2DTevStageInfo j2dDefaultTevStageInfo = {
+	4, 10, 15, 15, 0, 0, 0, 0, 1, 0, // Color
+	5, 7,  7,  0,  0, 0, 0, 1, 0,    // Alpha
+};
+
+const J2DIndTevStageInfo j2dDefaultIndTevStageInfo = {
+	0, 0, 0, 0, 0, 0, 0, 0, 0,
+};
 
 /**
  * @note Address: 0x8005921C
@@ -39,118 +112,17 @@ void J2DTexMtx::getTextureMtx(const J2DTextureSRTInfo& info, Vec p2, Mtx mtx)
 	mtx[0][0] = info._00 * cosf_kludge(theta);
 	mtx[0][1] = -info._00 * sinf_kludge(theta);
 	mtx[0][2] = 0.0f;
-	mtx[0][3] = info._0C + p2.x + p2.x * (-info._00 * cosf_kludge(theta)) + (info._00 * sinf_kludge(theta)) * p2.y;
+	mtx[0][3] = -info._00 * cosf_kludge(theta) * p2.x + p2.y * (info._00 * sinf_kludge(theta)) + p2.x + info._0C;
+
 	mtx[1][0] = info._04 * sinf_kludge(theta);
 	mtx[1][1] = info._04 * cosf_kludge(theta);
 	mtx[1][2] = 0.0f;
-	mtx[1][3] = info._10 + p2.y + p2.x * (-info._04 * sinf_kludge(theta)) - p2.y * (info._04 * cosf_kludge(theta));
+	mtx[1][3] = -info._04 * sinf_kludge(theta) * p2.x - p2.y * (info._04 * cosf_kludge(theta)) + p2.y + info._10;
+
 	mtx[2][0] = 0.0f;
 	mtx[2][1] = 0.0f;
 	mtx[2][2] = 1.0f;
 	mtx[2][3] = 0.0f;
-
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stfd     f30, 0x20(r1)
-	psq_st   f30, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	lfs      f2, lbl_805168F8@sda21(r2)
-	lfs      f1, 8(r4)
-	mr       r30, r5
-	lfs      f0, lbl_805168FC@sda21(r2)
-	mr       r31, r6
-	fmuls    f1, f2, f1
-	fdivs    f31, f1, f0
-	fmr      f1, f31
-	bl       cos
-	frsp     f2, f1
-	lfs      f0, 0(r29)
-	fmr      f1, f31
-	fmuls    f0, f0, f2
-	stfs     f0, 0(r31)
-	bl       sin
-	lfs      f2, 0(r29)
-	frsp     f3, f1
-	lfs      f0, lbl_80516900@sda21(r2)
-	fmr      f1, f31
-	fneg     f2, f2
-	fmuls    f2, f2, f3
-	stfs     f2, 4(r31)
-	stfs     f0, 8(r31)
-	bl       sin
-	frsp     f30, f1
-	fmr      f1, f31
-	bl       cos
-	lfs      f0, 0(r29)
-	frsp     f5, f1
-	lfs      f2, 4(r30)
-	fmr      f1, f31
-	fneg     f3, f0
-	lfs      f6, 0(r30)
-	fmuls    f0, f0, f30
-	lfs      f4, 0xc(r29)
-	fmuls    f3, f3, f5
-	fmuls    f0, f2, f0
-	fmadds   f0, f6, f3, f0
-	fadds    f0, f6, f0
-	fadds    f0, f4, f0
-	stfs     f0, 0xc(r31)
-	bl       sin
-	frsp     f2, f1
-	lfs      f0, 4(r29)
-	fmr      f1, f31
-	fmuls    f0, f0, f2
-	stfs     f0, 0x10(r31)
-	bl       cos
-	frsp     f3, f1
-	lfs      f2, 4(r29)
-	lfs      f0, lbl_80516900@sda21(r2)
-	fmr      f1, f31
-	fmuls    f2, f2, f3
-	stfs     f2, 0x14(r31)
-	stfs     f0, 0x18(r31)
-	bl       cos
-	frsp     f30, f1
-	fmr      f1, f31
-	bl       sin
-	lfs      f0, 4(r29)
-	frsp     f3, f1
-	lfs      f6, 4(r30)
-	fneg     f2, f0
-	lfs      f4, 0(r30)
-	fmuls    f0, f0, f30
-	lfs      f5, 0x10(r29)
-	lfs      f1, lbl_80516900@sda21(r2)
-	fmuls    f3, f2, f3
-	fmuls    f2, f6, f0
-	lfs      f0, lbl_80516904@sda21(r2)
-	fmsubs   f2, f4, f3, f2
-	fadds    f2, f6, f2
-	fadds    f2, f5, f2
-	stfs     f2, 0x1c(r31)
-	stfs     f1, 0x20(r31)
-	stfs     f1, 0x24(r31)
-	stfs     f0, 0x28(r31)
-	stfs     f1, 0x2c(r31)
-	psq_l    f31, 56(r1), 0, qr0
-	lfd      f31, 0x30(r1)
-	psq_l    f30, 40(r1), 0, qr0
-	lfd      f30, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r0, 0x44(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /**
@@ -163,113 +135,17 @@ void J2DTexMtx::getTextureMtxMaya(const J2DTextureSRTInfo& info, Mtx mtx)
 	mtx[0][0] = info._00 * cosf_kludge(theta);
 	mtx[0][1] = info._04 * sinf_kludge(theta);
 	mtx[0][2] = 0.0f;
-	mtx[0][3] = info._0C + (-info._00 * cosf_kludge(theta)) + (info._00 * sinf_kludge(theta));
+	mtx[0][3] = (info._0C - 0.5f) * cosf_kludge(theta) - (info._10 - 0.5f + info._04) * sinf_kludge(theta) + 0.5f;
+
 	mtx[1][0] = -info._00 * sinf_kludge(theta);
 	mtx[1][1] = info._04 * cosf_kludge(theta);
 	mtx[1][2] = 0.0f;
-	mtx[1][3] = info._10 + (-info._04 * sinf_kludge(theta)) - (info._04 * cosf_kludge(theta));
+	mtx[1][3] = -(info._0C - 0.5f) * sinf_kludge(theta) - (info._10 - 0.5f + info._04) * cosf_kludge(theta) + 0.5f;
+
 	mtx[2][0] = 0.0f;
 	mtx[2][1] = 0.0f;
 	mtx[2][2] = 1.0f;
 	mtx[2][3] = 0.0f;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stfd     f30, 0x10(r1)
-	psq_st   f30, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r4
-	lfs      f2, lbl_805168F8@sda21(r2)
-	lfs      f1, 8(r4)
-	mr       r31, r5
-	lfs      f0, lbl_805168FC@sda21(r2)
-	fmuls    f1, f2, f1
-	fdivs    f31, f1, f0
-	fmr      f1, f31
-	bl       cos
-	frsp     f2, f1
-	lfs      f0, 0(r30)
-	fmr      f1, f31
-	fmuls    f0, f0, f2
-	stfs     f0, 0(r31)
-	bl       sin
-	frsp     f3, f1
-	lfs      f2, 4(r30)
-	lfs      f0, lbl_80516900@sda21(r2)
-	fmr      f1, f31
-	fmuls    f2, f2, f3
-	stfs     f2, 4(r31)
-	stfs     f0, 8(r31)
-	bl       sin
-	frsp     f30, f1
-	fmr      f1, f31
-	bl       cos
-	lfs      f4, lbl_80516908@sda21(r2)
-	frsp     f5, f1
-	lfs      f0, 0x10(r30)
-	fmr      f1, f31
-	lfs      f3, 0xc(r30)
-	fsubs    f2, f0, f4
-	lfs      f0, 4(r30)
-	fsubs    f3, f3, f4
-	fadds    f0, f2, f0
-	fmuls    f0, f0, f30
-	fmsubs   f0, f3, f5, f0
-	fadds    f0, f4, f0
-	stfs     f0, 0xc(r31)
-	bl       sin
-	lfs      f0, 0(r30)
-	frsp     f2, f1
-	fmr      f1, f31
-	fneg     f0, f0
-	fmuls    f0, f0, f2
-	stfs     f0, 0x10(r31)
-	bl       cos
-	frsp     f3, f1
-	lfs      f2, 4(r30)
-	lfs      f0, lbl_80516900@sda21(r2)
-	fmr      f1, f31
-	fmuls    f2, f2, f3
-	stfs     f2, 0x14(r31)
-	stfs     f0, 0x18(r31)
-	bl       cos
-	frsp     f30, f1
-	fmr      f1, f31
-	bl       sin
-	lfs      f5, lbl_80516908@sda21(r2)
-	frsp     f6, f1
-	lfs      f0, 0x10(r30)
-	lfs      f1, 0xc(r30)
-	fsubs    f3, f0, f5
-	lfs      f2, 4(r30)
-	fsubs    f4, f1, f5
-	lfs      f1, lbl_80516900@sda21(r2)
-	lfs      f0, lbl_80516904@sda21(r2)
-	fadds    f2, f3, f2
-	fneg     f3, f4
-	fmuls    f2, f2, f30
-	fmsubs   f2, f3, f6, f2
-	fadds    f2, f5, f2
-	stfs     f2, 0x1c(r31)
-	stfs     f1, 0x20(r31)
-	stfs     f1, 0x24(r31)
-	stfs     f0, 0x28(r31)
-	stfs     f1, 0x2c(r31)
-	psq_l    f31, 40(r1), 0, qr0
-	lfd      f31, 0x20(r1)
-	psq_l    f30, 24(r1), 0, qr0
-	lfd      f30, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x34(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -321,7 +197,21 @@ void J2DIndTexCoordScale::load(u8 stage) { GXSetIndTexCoordScale((GXIndTexStageI
  * @note Address: 0x80059678
  * @note Size: 0x30
  */
-void J2DIndTexOrder::load(u8 stage)
-{
-	GXSetIndTexOrder((GXIndTexStageID)stage, (GXTexCoordID)mOrder.mTexCoordID, (GXTexMapID)mOrder.mTexMapID);
-}
+void J2DIndTexOrder::load(u8 stage) { GXSetIndTexOrder((GXIndTexStageID)stage, mOrder.getTexCoordID(), mOrder.getTexMapID()); }
+
+const GXColor j2dDefaultColInfo                              = { 0xFF, 0xFF, 0xFF, 0xFF };
+const J2DTevOrderInfo j2dDefaultTevOrderInfoNull             = { 0xFF, 0xFF, 0xFF, 0 };
+const J2DIndTexOrderInfo j2dDefaultIndTexOrderNull           = { 0xFF, 0xFF };
+const GXColorS10 j2dDefaultTevColor                          = { 0xFF, 0xFF, 0xFF, 0xFF };
+const J2DIndTexCoordScaleInfo j2dDefaultIndTexCoordScaleInfo = {
+	0,
+	0,
+};
+const GXColor j2dDefaultTevKColor                        = { 0xFF, 0xFF, 0xFF, 0xFF };
+const J2DTevSwapModeInfo j2dDefaultTevSwapMode           = { 0, 0 };
+const J2DTevSwapModeTableInfo j2dDefaultTevSwapModeTable = { 0, 1, 2, 3 };
+const J2DBlendInfo j2dDefaultBlendInfo                   = { 1, 4, 5, 5 };
+const u8 j2dDefaultDither                                = 0;
+const J2DColorChanInfo j2dDefaultColorChanInfo           = { 0, 3, 0, 0 };
+const u8 j2dDefaultTevSwapTable                          = 0x1B;
+const u16 j2dDefaultAlphaCmp                             = 0xE7;

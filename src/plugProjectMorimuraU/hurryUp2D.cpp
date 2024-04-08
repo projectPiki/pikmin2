@@ -590,19 +590,19 @@ void THurryUp2D::init()
 
 	if (mDoDraw) {
 		mWhitePane->show();
-		J2DBlendInfo info1(1, 6, 7, 0);
-		J2DBlend blend(info1);
-		static_cast<J2DPictureEx*>(mPaneSunW)->getMaterial()->mPeBlock.setBlend(blend);
+		J2DBlend info1(1, 6, 7, 0);
+		// J2DBlend blend(info1);
+		static_cast<J2DPictureEx*>(mPaneSunW)->getMaterial()->mPeBlock.setBlend(info1);
 
-		J2DBlendInfo info2(1, 1, 0, 0);
-		J2DBlend blend2(info2);
-		mWhitePane->getMaterial()->mPeBlock.setBlend(blend2);
+		J2DBlend info2(1, 1, 0, 0);
+		// J2DBlend blend2(info2);
+		mWhitePane->getMaterial()->mPeBlock.setBlend(info2);
 		mWhitePane->mAlpha = 0;
 	} else {
-		J2DBlendInfo info(1, 4, 5, 0);
-		J2DBlend blend(info);
+		J2DBlend info(1, 4, 5, 0);
+		// J2DBlend blend(info);
 		J2DPictureEx* pane = static_cast<J2DPictureEx*>(mScreen->search('sunw'));
-		pane->getMaterial()->mPeBlock.setBlend(blend);
+		pane->getMaterial()->mPeBlock.setBlend(info);
 		mWhitePane->hide();
 	}
 

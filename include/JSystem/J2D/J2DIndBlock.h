@@ -144,7 +144,7 @@ struct J2DIndBlockFull : public J2DIndBlock {
 	virtual u8 getIndTexStageNum() const { return mTexStageNum; }                                              // _18 (weak)
 	virtual void setIndTexOrder(u32 index, J2DIndTexOrder order) { mTexOrders[index] = order; }                // _1C (weak)
 	virtual J2DIndTexOrder* getIndTexOrder(u32 index) { return mTexOrders + index; }                           // _20 (weak)
-	virtual void setIndTexMtx(u32 index, J2DIndTexMtx texMtx) { mTexMtxes[index] = texMtx; }                   // _24 (weak)
+	virtual void setIndTexMtx(u32 index, J2DIndTexMtx texMtx) { mTexMtxes[index].mMtxInfo = texMtx.mMtxInfo; } // _24 (weak)
 	virtual J2DIndTexMtx* getIndTexMtx(u32 index) { return mTexMtxes + index; }                                // _28 (weak)
 	virtual void setIndTexCoordScale(u32 index, J2DIndTexCoordScale scale) { mTexCoordScales[index] = scale; } // _2C (weak)
 	virtual J2DIndTexCoordScale* getIndTexCoordScale(u32 index) { return mTexCoordScales + index; }            // _30 (weak)

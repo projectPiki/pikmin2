@@ -3561,7 +3561,7 @@ void ObjDayEndResultTitl::doCreate(JKRArchive* arc)
 	mScreenMain->setAnimation(mMainAnimSRT);
 	setInfAlpha(mScreenMain);
 
-	J2DBlendInfo info(1, 7, 6, 0);
+	J2DBlend info(1, 7, 6, 0);
 	u64 tags[4] = { 'nuki_tex', 'efect_00', 'efect_01', 0 };
 	mScreenMain->setBlendInfo(info, tags);
 }

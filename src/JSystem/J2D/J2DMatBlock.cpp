@@ -21,7 +21,7 @@
 void J2DColorBlock::initialize()
 {
 	for (int i = 0; i < 2; i++) {
-		mColors[i] = JUtility::TColor(j2dDefaultColInfo);
+		mColors[i] = j2dDefaultColInfo;
 	}
 	mChannelCount = 2;
 	for (int i = 0; i < 4; i++) {
@@ -220,24 +220,43 @@ J2DTevBlock1::~J2DTevBlock1()
  */
 void J2DTevBlock1::initialize()
 {
-	mTexIndices[0] = -1;
-	mFontNo        = -1;
-	mOrders[0].setTevOrderInfo(j2dDefaultTevOrderInfoNull);
-	for (int i = 0; i < 4; i++) {
-		mColors[i] = j2dDefaultTevColor;
+	for (int i = 0; i < 1; i++) {
+		mTexIndices[i] = -1;
 	}
-	mStages[0].setStageNo(0);
+	mFontNo = -1;
+	for (int i = 0; i < 1; i++) {
+		mOrders[i].setTevOrderInfo(j2dDefaultTevOrderInfoNull);
+	}
+
+	J2DGXColorS10 color(j2dDefaultTevColor);
+	for (int i = 0; i < 4; i++) {
+		mColors[i] = color;
+	}
+	for (int i = 0; i < 1; i++) {
+		mStages[i].setStageNo(0);
+	}
 	for (int i = 0; i < 4; i++) {
 		mKColors[i] = j2dDefaultTevKColor;
 	}
-	mKColorSels[0] = -1;
-	mKAlphaSels[0] = -1;
-	for (int i = 0; i < 4; i++) {
-		mSwapModeTables[i].setTevSwapModeTableInfo(j2dDefaultTevSwapModeTable);
+
+	for (int i = 0; i < 1; i++) {
+		mKColorSels[i] = 255;
 	}
-	mIndStages[0].setIndTevStageInfo(j2dDefaultIndTevStageInfo);
-	mPalettes[0] = nullptr;
-	mFont        = nullptr;
+	for (int i = 0; i < 1; i++) {
+		mKAlphaSels[i] = 255;
+	}
+
+	for (int i = 0; i < 4; i++) {
+		mSwapModeTables[i] = j2dDefaultTevSwapModeTable;
+	}
+
+	for (int i = 0; i < 1; i++) {
+		mIndStages[i].setIndTevStageInfo(j2dDefaultIndTevStageInfo);
+	}
+	for (int i = 0; i < 1; i++) {
+		mPalettes[i] = nullptr;
+	}
+	mFont = nullptr;
 	/*
 	stwu     r1, -0x30(r1)
 	addi     r6, r2, j2dDefaultTevColor@sda21
@@ -750,6 +769,42 @@ J2DTevBlock2::~J2DTevBlock2()
  */
 void J2DTevBlock2::initialize()
 {
+	for (int i = 0; i < 2; i++) {
+		mTexIndices[i] = -1;
+	}
+	mFontNo = -1;
+	for (int i = 0; i < 2; i++) {
+		mOrders[i].setTevOrderInfo(j2dDefaultTevOrderInfoNull);
+	}
+	for (int i = 0; i < 4; i++) {
+		mColors[i] = j2dDefaultTevColor;
+	}
+	mStageNum = 1;
+	for (int i = 0; i < 2; i++) {
+		mStages[i].setStageNo(i);
+	}
+	for (int i = 0; i < 4; i++) {
+		mKColors[i] = j2dDefaultTevKColor;
+	}
+
+	for (int i = 0; i < 2; i++) {
+		mKColorSels[i] = 255;
+	}
+	for (int i = 0; i < 2; i++) {
+		mKAlphaSels[i] = 255;
+	}
+
+	for (int i = 0; i < 4; i++) {
+		mSwapModeTables[i] = j2dDefaultTevSwapModeTable;
+	}
+
+	for (int i = 0; i < 2; i++) {
+		mIndStages[i].setIndTevStageInfo(j2dDefaultIndTevStageInfo);
+	}
+	for (int i = 0; i < 2; i++) {
+		mPalettes[i] = nullptr;
+	}
+	mFont = nullptr;
 	/*
 	stwu     r1, -0x40(r1)
 	addi     r7, r2, j2dDefaultTevColor@sda21
@@ -1154,7 +1209,7 @@ bool J2DTevBlock2::setTexture(u32 id, const ResTIMG* timg)
 					var_r0 = 16;
 				}
 
-				if (tlutname - var_r0 == 0) {
+				if (!(u8)(tlutname - var_r0)) {
 					tlutid = 1;
 				}
 			}
@@ -1622,7 +1677,7 @@ void J2DTevBlock4::initialize()
 		mKAlphaSels[i] = -1;
 	}
 	for (int i = 0; i < 4; i++) {
-		mSwapModeTables[i].setTevSwapModeTableInfo(j2dDefaultTevSwapModeTable);
+		mSwapModeTables[i] = j2dDefaultTevSwapModeTable;
 	}
 	for (int i = 0; i < 4; i++) {
 		mIndStages[i].setIndTevStageInfo(j2dDefaultIndTevStageInfo);
@@ -1904,7 +1959,7 @@ bool J2DTevBlock4::prepareTexture(u8 count)
  * @note Address: 0x8004CA68
  * @note Size: 0x3AC
  */
-bool J2DTevBlock4::insertTexture(u32 id, const ResTIMG* timg, JUTPalette* tlut)
+bool J2DTevBlock4::insertTexture(u32 id, const ResTIMG* timg, JUTPalette* palette)
 {
 	if (id >= 4 || !timg) {
 		return false;
@@ -1922,7 +1977,7 @@ bool J2DTevBlock4::insertTexture(u32 id, const ResTIMG* timg, JUTPalette* tlut)
 		return false;
 	}
 	u8 local_43 = 0;
-	if (timg->mPaletteFormat && !tlut) {
+	if (timg->mPaletteFormat && !palette) {
 		u8 local_44 = 0;
 		for (int i = 0; i < 3; i++) {
 			if (!mTextures[i]) {
@@ -1954,8 +2009,8 @@ bool J2DTevBlock4::insertTexture(u32 id, const ResTIMG* timg, JUTPalette* tlut)
 		if (!texture) {
 			return false;
 		}
-		if (tlut) {
-			texture->storeTIMG(timg, tlut);
+		if (palette) {
+			texture->storeTIMG(timg, palette);
 		}
 		for (u8 i = 3; i > id; i--) {
 			mTextures[i]   = mTextures[i - 1];
@@ -1967,10 +2022,10 @@ bool J2DTevBlock4::insertTexture(u32 id, const ResTIMG* timg, JUTPalette* tlut)
 		mUndeleteFlag |= 1 << id;
 	} else {
 		JUTTexture* texture = mTextures[idx];
-		if (!tlut) {
+		if (!palette) {
 			texture->storeTIMG(timg, local_43);
 		} else {
-			texture->storeTIMG(timg, tlut);
+			texture->storeTIMG(timg, palette);
 		}
 		u8 local_38[4];
 		for (u8 i = 0; i < 4; i++) {
@@ -2343,8 +2398,85 @@ bool J2DTevBlock4::insertTexture(u32 id, JUTTexture* tex)
  * @note Size: 0x2E4
  * setTexture__12J2DTevBlock4FUlPC7ResTIMG
  */
-bool J2DTevBlock4::setTexture(u32 index, const ResTIMG* img)
+bool J2DTevBlock4::setTexture(u32 id, const ResTIMG* timg)
 {
+	if (id >= 4) {
+		return false;
+	}
+
+	u8 tlutid = 0;
+	if (timg && timg->mPaletteFormat) {
+		u8 local_44 = 0;
+		for (int i = 0; i < 4; i++) {
+			if (i == id) {
+				continue;
+			}
+			if (!mTextures[i]) {
+				continue;
+			}
+			const ResTIMG* texInfo = mTextures[i]->getTexInfo();
+			if (!texInfo) {
+				continue;
+			}
+			if (!texInfo->mPaletteFormat) {
+				continue;
+			}
+			int tlutName = mTextures[i]->getTlutName();
+			int local_3c = 0;
+			if (tlutName >= 16) {
+				local_3c = 16;
+			}
+			u8 bVar1 = tlutName - local_3c;
+			if (bVar1 < 8) {
+				local_44 |= 1 << bVar1;
+			}
+		}
+		for (u8 i = 0; i < 4; i++) {
+			if ((local_44 & 1 << i) == 0) {
+				tlutid = i;
+				break;
+			}
+		}
+	}
+
+	if (mTextures[id] == nullptr) {
+		if (timg) {
+			mTextures[id] = new JUTTexture(timg, tlutid);
+
+			if (mTextures[id] == nullptr) {
+				return false;
+			}
+
+			mUndeleteFlag |= (1 << id);
+		} else {
+			mUndeleteFlag &= ~(1 << id);
+		}
+	} else if (mUndeleteFlag & (1 << id)) {
+		if (timg != nullptr) {
+			mTextures[id]->storeTIMG(timg, tlutid);
+		} else {
+			delete mTextures[id];
+			mTextures[id] = nullptr;
+			mUndeleteFlag &= ~(1 << id);
+		}
+	} else {
+		mTextures[id] = nullptr;
+
+		if (timg != nullptr) {
+			mTextures[id] = new JUTTexture(timg, 0);
+
+			if (mTextures[id] == nullptr) {
+				return false;
+			}
+
+			mUndeleteFlag |= (1 << id);
+		}
+	}
+
+	delete mPalettes[id];
+	mPalettes[id]   = nullptr;
+	mTexIndices[id] = -1;
+	return true;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -2807,6 +2939,37 @@ J2DTevBlock8::~J2DTevBlock8()
  */
 void J2DTevBlock8::initialize()
 {
+	for (int i = 0; i < 8; i++) {
+		mTexIndices[i] = -1;
+	}
+	mFontNo = -1;
+	for (int i = 0; i < 8; i++) {
+		mOrders[i].setTevOrderInfo(j2dDefaultTevOrderInfoNull);
+	}
+	for (int i = 0; i < 4; i++) {
+		mColors[i] = j2dDefaultTevColor;
+	}
+	mStageNum = 1;
+	for (int i = 0; i < 8; i++) {
+		mStages[i].setStageNo(i);
+	}
+	for (int i = 0; i < 4; i++) {
+		mKColors[i] = j2dDefaultTevKColor;
+	}
+	for (int i = 0; i < 8; i++) {
+		mKColorSels[i] = -1;
+		mKAlphaSels[i] = -1;
+	}
+	for (int i = 0; i < 4; i++) {
+		mSwapModeTables[i] = j2dDefaultTevSwapModeTable;
+	}
+	for (int i = 0; i < 8; i++) {
+		mIndStages[i].setIndTevStageInfo(j2dDefaultIndTevStageInfo);
+	}
+	for (int i = 0; i < 8; i++) {
+		mPalettes[i] = nullptr;
+	}
+	mFont = nullptr;
 	/*
 	stwu     r1, -0x50(r1)
 	addi     r8, r2, j2dDefaultTevColor@sda21
@@ -3137,8 +3300,96 @@ bool J2DTevBlock8::prepareTexture(u8 count)
  * @note Address: 0x8004E284
  * @note Size: 0x3C8
  */
-bool J2DTevBlock8::insertTexture(u32, const ResTIMG*, JUTPalette*)
+bool J2DTevBlock8::insertTexture(u32 id, const ResTIMG* timg, JUTPalette* palette)
 {
+	if (id >= 8 || !timg) {
+		return false;
+	}
+	u8 idx;
+	for (idx = 0; idx < 8; idx++) {
+		if (!mTextures[idx] || !mTextures[idx]->getTexInfo()) {
+			break;
+		}
+	}
+	if (idx < id) {
+		return false;
+	}
+	if (idx == 8) {
+		return false;
+	}
+	u8 local_43 = 0;
+	if (timg->mPaletteFormat && !palette) {
+		u8 local_44 = 0;
+		for (int i = 0; i < 7; i++) {
+			if (!mTextures[i]) {
+				continue;
+			}
+			const ResTIMG* texInfo = mTextures[i]->getTexInfo();
+			if (!texInfo) {
+				continue;
+			}
+			if (!texInfo->mPaletteFormat) {
+				continue;
+			}
+			u8 tlutName  = mTextures[i]->getTlutName();
+			int local_3c = tlutName >= 0x10 ? 0x10 : 0;
+			u8 bVar1     = tlutName - local_3c;
+			if (bVar1 < 8) {
+				local_44 |= 1 << bVar1;
+			}
+		}
+		for (u8 i = 0; i < 8; i++) {
+			if ((local_44 & 1 << i) == 0) {
+				local_43 = i;
+				break;
+			}
+		}
+	}
+	if (!mTextures[idx]) {
+		JUTTexture* texture = new JUTTexture(timg, local_43);
+		if (!texture) {
+			return false;
+		}
+		if (palette) {
+			texture->storeTIMG(timg, palette);
+		}
+		for (u8 i = 7; i > id; i--) {
+			mTextures[i]   = mTextures[i - 1];
+			mPalettes[i]   = mPalettes[i - 1];
+			mTexIndices[i] = mTexIndices[i - 1];
+		}
+		mTextures[id] = texture;
+		shiftDeleteFlag(id, true);
+		mUndeleteFlag |= 1 << id;
+	} else {
+		JUTTexture* texture = mTextures[idx];
+		if (!palette) {
+			texture->storeTIMG(timg, local_43);
+		} else {
+			texture->storeTIMG(timg, palette);
+		}
+		u8 local_38[4];
+		for (u8 i = 0; i < 8; i++) {
+			local_38[i] = -(mUndeleteFlag & 1 << i) >> 0x1f;
+		}
+		for (; idx > id; idx--) {
+			mTextures[idx]   = mTextures[idx - 1];
+			mPalettes[idx]   = mPalettes[idx - 1];
+			mTexIndices[idx] = mTexIndices[idx - 1];
+			local_38[idx]    = local_38[idx - 1];
+		}
+		mTextures[id] = texture;
+		mUndeleteFlag &= 0x80;
+		for (u8 i = 0; i < 8; i++) {
+			if (local_38[i]) {
+				mUndeleteFlag |= 1 << i;
+			}
+		}
+		mUndeleteFlag |= 1 << id;
+	}
+	mPalettes[id]   = nullptr;
+	mTexIndices[id] = -1;
+	return true;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -3495,8 +3746,85 @@ bool J2DTevBlock8::insertTexture(u32 id, JUTTexture* tex)
  * @note Size: 0x2E4
  * setTexture__12J2DTevBlock8FUlPC7ResTIMG
  */
-bool J2DTevBlock8::setTexture(u32 index, const ResTIMG* img)
+bool J2DTevBlock8::setTexture(u32 id, const ResTIMG* timg)
 {
+	if (id >= 8) {
+		return false;
+	}
+
+	u8 tlutid = 0;
+	if (timg && timg->mPaletteFormat) {
+		u8 local_44 = 0;
+		for (int i = 0; i < 8; i++) {
+			if (i == id) {
+				continue;
+			}
+			if (!mTextures[i]) {
+				continue;
+			}
+			const ResTIMG* texInfo = mTextures[i]->getTexInfo();
+			if (!texInfo) {
+				continue;
+			}
+			if (!texInfo->mPaletteFormat) {
+				continue;
+			}
+			int tlutName = mTextures[i]->getTlutName();
+			int local_3c = 0;
+			if (tlutName >= 16) {
+				local_3c = 16;
+			}
+			u8 bVar1 = tlutName - local_3c;
+			if (bVar1 < 8) {
+				local_44 |= 1 << bVar1;
+			}
+		}
+		for (u8 i = 0; i < 4; i++) {
+			if ((local_44 & 1 << i) == 0) {
+				tlutid = i;
+				break;
+			}
+		}
+	}
+
+	if (mTextures[id] == nullptr) {
+		if (timg) {
+			mTextures[id] = new JUTTexture(timg, tlutid);
+
+			if (mTextures[id] == nullptr) {
+				return false;
+			}
+
+			mUndeleteFlag |= (1 << id);
+		} else {
+			mUndeleteFlag &= ~(1 << id);
+		}
+	} else if (mUndeleteFlag & (1 << id)) {
+		if (timg != nullptr) {
+			mTextures[id]->storeTIMG(timg, tlutid);
+		} else {
+			delete mTextures[id];
+			mTextures[id] = nullptr;
+			mUndeleteFlag &= ~(1 << id);
+		}
+	} else {
+		mTextures[id] = nullptr;
+
+		if (timg != nullptr) {
+			mTextures[id] = new JUTTexture(timg, 0);
+
+			if (mTextures[id] == nullptr) {
+				return false;
+			}
+
+			mUndeleteFlag |= (1 << id);
+		}
+	}
+
+	delete mPalettes[id];
+	mPalettes[id]   = nullptr;
+	mTexIndices[id] = -1;
+	return true;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -3956,6 +4284,37 @@ J2DTevBlock16::~J2DTevBlock16()
  */
 void J2DTevBlock16::initialize()
 {
+	for (int i = 0; i < 8; i++) {
+		mTexIndices[i] = -1;
+	}
+	mFontNo = -1;
+	for (int i = 0; i < 16; i++) {
+		mOrders[i].setTevOrderInfo(j2dDefaultTevOrderInfoNull);
+	}
+	for (int i = 0; i < 4; i++) {
+		mColors[i] = j2dDefaultTevColor;
+	}
+	mStageNum = 1;
+	for (int i = 0; i < 16; i++) {
+		mStages[i].setStageNo(i);
+	}
+	for (int i = 0; i < 4; i++) {
+		mKColors[i] = j2dDefaultTevKColor;
+	}
+	for (int i = 0; i < 16; i++) {
+		mKColorSels[i] = -1;
+		mKAlphaSels[i] = -1;
+	}
+	for (int i = 0; i < 4; i++) {
+		mSwapModeTables[i] = j2dDefaultTevSwapModeTable;
+	}
+	for (int i = 0; i < 16; i++) {
+		mIndStages[i].setIndTevStageInfo(j2dDefaultIndTevStageInfo);
+	}
+	for (int i = 0; i < 8; i++) {
+		mPalettes[i] = nullptr;
+	}
+	mFont = nullptr;
 	/*
 	stwu     r1, -0x30(r1)
 	lis      r4, 0x0000FFFF@ha
@@ -4334,8 +4693,96 @@ bool J2DTevBlock16::prepareTexture(u8 count)
  * @note Address: 0x8004FB44
  * @note Size: 0x3C8
  */
-bool J2DTevBlock16::insertTexture(u32, const ResTIMG*, JUTPalette*)
+bool J2DTevBlock16::insertTexture(u32 id, const ResTIMG* timg, JUTPalette* palette)
 {
+	if (id >= 8 || !timg) {
+		return false;
+	}
+	u8 idx;
+	for (idx = 0; idx < 8; idx++) {
+		if (!mTextures[idx] || !mTextures[idx]->getTexInfo()) {
+			break;
+		}
+	}
+	if (idx < id) {
+		return false;
+	}
+	if (idx == 8) {
+		return false;
+	}
+	u8 local_43 = 0;
+	if (timg->mPaletteFormat && !palette) {
+		u8 local_44 = 0;
+		for (int i = 0; i < 7; i++) {
+			if (!mTextures[i]) {
+				continue;
+			}
+			const ResTIMG* texInfo = mTextures[i]->getTexInfo();
+			if (!texInfo) {
+				continue;
+			}
+			if (!texInfo->mPaletteFormat) {
+				continue;
+			}
+			u8 tlutName  = mTextures[i]->getTlutName();
+			int local_3c = tlutName >= 0x10 ? 0x10 : 0;
+			u8 bVar1     = tlutName - local_3c;
+			if (bVar1 < 8) {
+				local_44 |= 1 << bVar1;
+			}
+		}
+		for (u8 i = 0; i < 8; i++) {
+			if ((local_44 & 1 << i) == 0) {
+				local_43 = i;
+				break;
+			}
+		}
+	}
+	if (!mTextures[idx]) {
+		JUTTexture* texture = new JUTTexture(timg, local_43);
+		if (!texture) {
+			return false;
+		}
+		if (palette) {
+			texture->storeTIMG(timg, palette);
+		}
+		for (u8 i = 7; i > id; i--) {
+			mTextures[i]   = mTextures[i - 1];
+			mPalettes[i]   = mPalettes[i - 1];
+			mTexIndices[i] = mTexIndices[i - 1];
+		}
+		mTextures[id] = texture;
+		shiftDeleteFlag(id, true);
+		mUndeleteFlag |= 1 << id;
+	} else {
+		JUTTexture* texture = mTextures[idx];
+		if (!palette) {
+			texture->storeTIMG(timg, local_43);
+		} else {
+			texture->storeTIMG(timg, palette);
+		}
+		u8 local_38[4];
+		for (u8 i = 0; i < 8; i++) {
+			local_38[i] = -(mUndeleteFlag & 1 << i) >> 0x1f;
+		}
+		for (; idx > id; idx--) {
+			mTextures[idx]   = mTextures[idx - 1];
+			mPalettes[idx]   = mPalettes[idx - 1];
+			mTexIndices[idx] = mTexIndices[idx - 1];
+			local_38[idx]    = local_38[idx - 1];
+		}
+		mTextures[id] = texture;
+		mUndeleteFlag &= 0x80;
+		for (u8 i = 0; i < 8; i++) {
+			if (local_38[i]) {
+				mUndeleteFlag |= 1 << i;
+			}
+		}
+		mUndeleteFlag |= 1 << id;
+	}
+	mPalettes[id]   = nullptr;
+	mTexIndices[id] = -1;
+	return true;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -4692,8 +5139,85 @@ bool J2DTevBlock16::insertTexture(u32 id, JUTTexture* tex)
  * @note Size: 0x2E4
  * setTexture__13J2DTevBlock16FUlPC7ResTIMG
  */
-bool J2DTevBlock16::setTexture(u32 index, const ResTIMG* img)
+bool J2DTevBlock16::setTexture(u32 id, const ResTIMG* timg)
 {
+	if (id >= 8) {
+		return false;
+	}
+
+	u8 tlutid = 0;
+	if (timg && timg->mPaletteFormat) {
+		u8 local_44 = 0;
+		for (int i = 0; i < 8; i++) {
+			if (i == id) {
+				continue;
+			}
+			if (!mTextures[i]) {
+				continue;
+			}
+			const ResTIMG* texInfo = mTextures[i]->getTexInfo();
+			if (!texInfo) {
+				continue;
+			}
+			if (!texInfo->mPaletteFormat) {
+				continue;
+			}
+			int tlutName = mTextures[i]->getTlutName();
+			int local_3c = 0;
+			if (tlutName >= 16) {
+				local_3c = 16;
+			}
+			u8 bVar1 = tlutName - local_3c;
+			if (bVar1 < 8) {
+				local_44 |= 1 << bVar1;
+			}
+		}
+		for (u8 i = 0; i < 4; i++) {
+			if ((local_44 & 1 << i) == 0) {
+				tlutid = i;
+				break;
+			}
+		}
+	}
+
+	if (mTextures[id] == nullptr) {
+		if (timg) {
+			mTextures[id] = new JUTTexture(timg, tlutid);
+
+			if (mTextures[id] == nullptr) {
+				return false;
+			}
+
+			mUndeleteFlag |= (1 << id);
+		} else {
+			mUndeleteFlag &= ~(1 << id);
+		}
+	} else if (mUndeleteFlag & (1 << id)) {
+		if (timg != nullptr) {
+			mTextures[id]->storeTIMG(timg, tlutid);
+		} else {
+			delete mTextures[id];
+			mTextures[id] = nullptr;
+			mUndeleteFlag &= ~(1 << id);
+		}
+	} else {
+		mTextures[id] = nullptr;
+
+		if (timg != nullptr) {
+			mTextures[id] = new JUTTexture(timg, 0);
+
+			if (mTextures[id] == nullptr) {
+				return false;
+			}
+
+			mUndeleteFlag |= (1 << id);
+		}
+	}
+
+	delete mPalettes[id];
+	mPalettes[id]   = nullptr;
+	mTexIndices[id] = -1;
+	return true;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -5064,14 +5588,14 @@ void J2DTevBlock16::setGX()
 	for (int i = 0; i < 8; i++) {
 		loadTexture(GXTexMapID(i), i);
 	}
-	for (int i = 0; i < mTevStageNum; i++) {
+	for (int i = 0; i < mStageNum; i++) {
 		GXSetTevOrder(GXTevStageID(i), mOrders[i].getTexCoord(), mOrders[i].getTexMap(), mOrders[i].getColor());
 	}
 	for (int i = 0; i < 4; i++) {
 		GXSetTevColorS10(i != 3 ? GXTevRegID(i + 1) : GX_TEVPREV, mColors[i]);
 	}
-	GXSetNumTevStages(mTevStageNum);
-	for (int i = 0; i < mTevStageNum; i++) {
+	GXSetNumTevStages(mStageNum);
+	for (int i = 0; i < mStageNum; i++) {
 		GXSetTevColorIn(GXTevStageID(i), GXTevColorArg(mStages[i].getColorA()), GXTevColorArg(mStages[i].getColorB()),
 		                GXTevColorArg(mStages[i].getColorC()), GXTevColorArg(mStages[i].getColorD()));
 		GXSetTevAlphaIn(GXTevStageID(i), GXTevAlphaArg(mStages[i].getAlphaA()), GXTevAlphaArg(mStages[i].getAlphaB()),
@@ -5086,14 +5610,14 @@ void J2DTevBlock16::setGX()
 	for (int i = 0; i < 4; i++) {
 		GXSetTevKColor(GXTevKColorID(i), mKColors[i]);
 	}
-	for (int i = 0; i < mTevStageNum; i++) {
+	for (int i = 0; i < mStageNum; i++) {
 		GXSetTevSwapMode(GXTevStageID(i), GXTevSwapSel(mStages[i].getRasSel()), GXTevSwapSel(mStages[i].getTexSel()));
 	}
 	for (int i = 0; i < 4; i++) {
 		GXSetTevSwapModeTable(GXTevSwapSel(i), GXTevColorChan(mSwapModeTables[i].getR()), GXTevColorChan(mSwapModeTables[i].getG()),
 		                      GXTevColorChan(mSwapModeTables[i].getB()), GXTevColorChan(mSwapModeTables[i].getA()));
 	}
-	for (u8 i = 0; i < mTevStageNum; i++) {
+	for (u8 i = 0; i < mStageNum; i++) {
 		mIndStages[i].load(i);
 	}
 }
