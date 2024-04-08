@@ -455,6 +455,12 @@ bool Navi::demoCheck()
 		}
 	}
 
+	FORCE_DONT_INLINE;
+	FORCE_DONT_INLINE;
+	FORCE_DONT_INLINE;
+	FORCE_DONT_INLINE;
+	FORCE_DONT_INLINE;
+
 	return false;
 
 	/*
