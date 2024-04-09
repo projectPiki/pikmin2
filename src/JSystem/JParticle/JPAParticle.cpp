@@ -7,81 +7,11 @@
 #include "JSystem/JParticle/JPAShape.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__19JPAParticleCallBack
-    __vt__19JPAParticleCallBack:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte
-   execute__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle .4byte
-   draw__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516C30
-    lbl_80516C30:
-        .float 1.0
-    .global lbl_80516C34
-    lbl_80516C34:
-        .4byte 0x00000000
-    .global lbl_80516C38
-    lbl_80516C38:
-        .4byte 0x42000000
-    .global lbl_80516C3C
-    lbl_80516C3C:
-        .float 0.5
-    .global lbl_80516C40
-    lbl_80516C40:
-        .4byte 0x40400000
-    .global lbl_80516C44
-    lbl_80516C44:
-        .4byte 0x47000000
-    .global lbl_80516C48
-    lbl_80516C48:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_80516C50
-    lbl_80516C50:
-        .4byte 0x43300000
-        .4byte 0x00000000
-*/
-
 /**
  * @note Address: 0x80094028
  * @note Size: 0x48
  */
-JPAParticleCallBack::~JPAParticleCallBack()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80094058
-	lis      r5, __vt__19JPAParticleCallBack@ha
-	extsh.   r0, r4
-	addi     r0, r5, __vt__19JPAParticleCallBack@l
-	stw      r0, 0(r31)
-	ble      lbl_80094058
-	bl       __dl__FPv
-
-lbl_80094058:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JPAParticleCallBack::~JPAParticleCallBack() { }
 
 /**
  * @note Address: 0x80094070
@@ -1603,42 +1533,14 @@ lbl_800954E8:
  */
 bool JPABaseParticle::canCreateChild(JPAEmitterWorkData* workData)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	lis      r0, 0x4330
-	lfd      f2, lbl_80516C48@sda21(r2)
-	li       r6, 0
-	lha      r5, 0x82(r3)
-	lwz      r4, 4(r4)
-	addi     r5, r5, -1
-	stw      r0, 8(r1)
-	xoris    r0, r5, 0x8000
-	lwz      r4, 0x24(r4)
-	stw      r0, 0xc(r1)
-	lwz      r4, 0(r4)
-	lfd      f1, 8(r1)
-	lfs      f0, 0x3c(r4)
-	fsubs    f1, f1, f2
-	lha      r0, 0x80(r3)
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r3, 0x14(r1)
-	subf.    r5, r3, r0
-	blt      lbl_80095574
-	lbz      r3, 0x44(r4)
-	addi     r3, r3, 1
-	divw     r0, r5, r3
-	mullw    r0, r0, r3
-	subf.    r0, r0, r5
-	bne      lbl_80095574
-	li       r6, 1
+	bool canCreate = false;
 
-lbl_80095574:
-	mr       r3, r6
-	addi     r1, r1, 0x20
-	blr
-	*/
+	int timeLeft = mAge - (int)((mLifeTime - 1) * workData->mResource->mChildShape->mData->mTiming);
+	if (timeLeft >= 0 && timeLeft % (workData->mResource->mChildShape->mData->mStep + 1) == 0) {
+		canCreate = true;
+	}
+
+	return canCreate;
 }
 
 /**
@@ -1647,18 +1549,7 @@ lbl_80095574:
  */
 f32 JPABaseParticle::getCalcCurrentPositionX(const JPABaseEmitter* emitter) const
 {
-	return emitter->mManager->mWorkData->mPublicScale.x * (mPosition.x + mVelocity.x + mOffsetPosition.x);
-	/*
-	lwz      r4, 0xe4(r4)
-	lfs      f1, 0xc(r3)
-	lfs      f0, 0x24(r3)
-	lwz      r4, 0x20(r4)
-	fadds    f1, f1, f0
-	lfs      f0, 0x18(r3)
-	lfs      f2, 0x12c(r4)
-	fmadds   f1, f2, f1, f0
-	blr
-	*/
+	return emitter->mManager->mWorkData->mPublicScale.x * (mLocalPosition.x + mVelocity.x) + mOffsetPosition.x;
 }
 
 /**
@@ -1667,17 +1558,7 @@ f32 JPABaseParticle::getCalcCurrentPositionX(const JPABaseEmitter* emitter) cons
  */
 f32 JPABaseParticle::getCalcCurrentPositionY(const JPABaseEmitter* emitter) const
 {
-	/*
-	lwz      r4, 0xe4(r4)
-	lfs      f1, 0x10(r3)
-	lfs      f0, 0x28(r3)
-	lwz      r4, 0x20(r4)
-	fadds    f1, f1, f0
-	lfs      f0, 0x1c(r3)
-	lfs      f2, 0x130(r4)
-	fmadds   f1, f2, f1, f0
-	blr
-	*/
+	return emitter->mManager->mWorkData->mPublicScale.y * (mLocalPosition.y + mVelocity.y) + mOffsetPosition.y;
 }
 
 /**
@@ -1686,17 +1567,7 @@ f32 JPABaseParticle::getCalcCurrentPositionY(const JPABaseEmitter* emitter) cons
  */
 f32 JPABaseParticle::getCalcCurrentPositionZ(const JPABaseEmitter* emitter) const
 {
-	/*
-	lwz      r4, 0xe4(r4)
-	lfs      f1, 0x14(r3)
-	lfs      f0, 0x2c(r3)
-	lwz      r4, 0x20(r4)
-	fadds    f1, f1, f0
-	lfs      f0, 0x20(r3)
-	lfs      f2, 0x134(r4)
-	fmadds   f1, f2, f1, f0
-	blr
-	*/
+	return emitter->mManager->mWorkData->mPublicScale.z * (mLocalPosition.z + mVelocity.z) + mOffsetPosition.z;
 }
 
 /**

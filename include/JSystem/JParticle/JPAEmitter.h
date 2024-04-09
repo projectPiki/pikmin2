@@ -85,7 +85,7 @@ struct JPABaseParticle {
 	u32 _78;                           // _78
 	uint mFlags;                       // _7C
 	s16 mAge;                          // _80
-	u16 mLifeTime;                     // _82
+	s16 mLifeTime;                     // _82
 	f32 mTime;                         // _84
 	u16 mRotateAngle;                  // _88
 	s16 mRotateSpeed;                  // _8A

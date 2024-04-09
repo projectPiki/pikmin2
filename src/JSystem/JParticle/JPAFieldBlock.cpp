@@ -7,138 +7,6 @@
 #include "JSystem/JParticle/JPAField.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804A3268
-    lbl_804A3268:
-        .4byte lbl_800934C8
-        .4byte lbl_800934FC
-        .4byte lbl_80093530
-        .4byte lbl_80093564
-        .4byte lbl_80093598
-        .4byte lbl_800935CC
-        .4byte lbl_80093600
-        .4byte lbl_80093634
-        .4byte lbl_80093668
-    .global __vt__12JPAFieldBase
-    __vt__12JPAFieldBase:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__12JPAFieldBaseFv
-        .4byte prepare__12JPAFieldBaseFP18JPAEmitterWorkDataP13JPAFieldBlock
-        .4byte 0
-    .global __vt__12JPAFieldSpin
-    __vt__12JPAFieldSpin:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__12JPAFieldSpinFv
-        .4byte prepare__12JPAFieldSpinFP18JPAEmitterWorkDataP13JPAFieldBlock
-        .4byte
-   calc__12JPAFieldSpinFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
-    .global __vt__12JPAFieldDrag
-    __vt__12JPAFieldDrag:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__12JPAFieldDragFv
-        .4byte prepare__12JPAFieldBaseFP18JPAEmitterWorkDataP13JPAFieldBlock
-        .4byte
-   calc__12JPAFieldDragFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
-    .global __vt__14JPAFieldRandom
-    __vt__14JPAFieldRandom:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__14JPAFieldRandomFv
-        .4byte prepare__12JPAFieldBaseFP18JPAEmitterWorkDataP13JPAFieldBlock
-        .4byte
-   calc__14JPAFieldRandomFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
-    .global __vt__18JPAFieldConvection
-    __vt__18JPAFieldConvection:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__18JPAFieldConvectionFv
-        .4byte
-   prepare__18JPAFieldConvectionFP18JPAEmitterWorkDataP13JPAFieldBlock .4byte
-   calc__18JPAFieldConvectionFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
-    .global __vt__14JPAFieldVortex
-    __vt__14JPAFieldVortex:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__14JPAFieldVortexFv
-        .4byte prepare__14JPAFieldVortexFP18JPAEmitterWorkDataP13JPAFieldBlock
-        .4byte
-   calc__14JPAFieldVortexFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
-    .global __vt__14JPAFieldNewton
-    __vt__14JPAFieldNewton:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__14JPAFieldNewtonFv
-        .4byte prepare__14JPAFieldNewtonFP18JPAEmitterWorkDataP13JPAFieldBlock
-        .4byte
-   calc__14JPAFieldNewtonFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
-    .global __vt__14JPAFieldMagnet
-    __vt__14JPAFieldMagnet:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__14JPAFieldMagnetFv
-        .4byte prepare__14JPAFieldMagnetFP18JPAEmitterWorkDataP13JPAFieldBlock
-        .4byte
-   calc__14JPAFieldMagnetFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
-    .global __vt__11JPAFieldAir
-    __vt__11JPAFieldAir:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__11JPAFieldAirFv
-        .4byte prepare__11JPAFieldAirFP18JPAEmitterWorkDataP13JPAFieldBlock
-        .4byte
-   calc__11JPAFieldAirFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
-    .global __vt__15JPAFieldGravity
-    __vt__15JPAFieldGravity:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__15JPAFieldGravityFv
-        .4byte prepare__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlock
-        .4byte
-   calc__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516BF8
-    lbl_80516BF8:
-        .float 1.0
-    .global lbl_80516BFC
-    lbl_80516BFC:
-        .4byte 0x00000000
-    .global lbl_80516C00
-    lbl_80516C00:
-        .4byte 0x42000000
-    .global lbl_80516C04
-    lbl_80516C04:
-        .float 0.5
-    .global lbl_80516C08
-    lbl_80516C08:
-        .4byte 0x40400000
-    .global lbl_80516C0C
-    lbl_80516C0C:
-        .4byte 0x41200000
-*/
-
-void doTheThing(Vec& vec)
-{
-	f32 v1 = SQUARE(vec.x) + SQUARE(vec.y) + SQUARE(vec.z);
-	if (v1 <= __float_epsilon[0] * 32.0f) {
-		return;
-	}
-	if (v1 > 0.0f) {
-		f32 v2 = 1.0f / __frsqrte(v1);
-		v1     = v2 * 0.5f * -(v1 * v2 * v2 - 3.0f);
-	}
-	vec.x *= v1;
-	vec.y *= v1;
-	vec.z *= v1;
-}
-
 typedef f32 RawVec[3];
 
 void getContiguousVecFromMtx(const Mtx& mtx, RawVec& output, int p3)
@@ -196,17 +64,11 @@ void JPAFieldBase::calcFadeAffect(JPAFieldBlock*, f32) const
  */
 void JPAFieldGravity::prepare(JPAEmitterWorkData* workData, JPAFieldBlock* block)
 {
-	if ((*(u32*)(block->mData + 8) >> 0x10 & 2) != 0) {
-		f32 multiplier = block->mSpeed;
-		_04.x          = block->mVelocity.x * multiplier;
-		_04.y          = block->mVelocity.y * multiplier;
-		_04.z          = block->mVelocity.z * multiplier;
+	if (((block->mData->_08) >> 0x10 & 2) != 0) {
+		_04.scale(block->mVelocity, block->mSpeed);
 	} else {
 		PSMTXMultVecSR(workData->mRotationMtx, (Vec*)&block->mVelocity, (Vec*)&_04);
-		f32 multiplier = block->mSpeed;
-		_04.x *= multiplier;
-		_04.y *= multiplier;
-		_04.z *= multiplier;
+		_04.scale(block->mSpeed);
 	}
 }
 
@@ -871,7 +733,7 @@ void JPAFieldNewton::prepare(JPAEmitterWorkData* data, JPAFieldBlock* block)
 	_10.y = block->mOffset.y - data->mEmitterPos.y;
 	_10.z = block->mOffset.z - data->mEmitterPos.z;
 	PSMTXMultVecSR(data->mRotationMtx, (Vec*)&_10, (Vec*)&_10);
-	_1C = SQUARE(*(f32*)(block->mData + 0x2C));
+	_1C = SQUARE(block->mData->_2C);
 }
 
 /**
@@ -2185,11 +2047,11 @@ lbl_80092FC8:
  */
 void JPAFieldSpin::prepare(JPAEmitterWorkData* data, JPAFieldBlock* block)
 {
-	Vec v1;
-	PSMTXMultVecSR(data->mGlobalRot, (Vec*)&block->mVelocity, &v1);
-	doTheThing(v1);
+	JGeometry::TVec3f v1;
+	PSMTXMultVecSR(data->mGlobalRot, (Vec*)&block->mVelocity, (Vec*)&v1);
+	v1.normalize();
 	Mtx v2;
-	PSMTXRotAxisRad(v2, &v1, block->mSpeed);
+	PSMTXRotAxisRad(v2, (Vec*)&v1, block->mSpeed);
 
 	RawVec v3;
 	getDisjointedVecFromMtx(v2, v3, 0);
@@ -2766,28 +2628,6 @@ lbl_800936A4:
  */
 JPAFieldBase::~JPAFieldBase()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_800936E8
-	lis      r5, __vt__12JPAFieldBase@ha
-	extsh.   r0, r4
-	addi     r0, r5, __vt__12JPAFieldBase@l
-	stw      r0, 0(r31)
-	ble      lbl_800936E8
-	bl       __dl__FPv
-
-lbl_800936E8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -2802,35 +2642,6 @@ void JPAFieldBase::prepare(JPAEmitterWorkData* data, JPAFieldBlock* block) { }
  */
 JPAFieldSpin::~JPAFieldSpin()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80093748
-	lis      r3, __vt__12JPAFieldSpin@ha
-	addi     r0, r3, __vt__12JPAFieldSpin@l
-	stw      r0, 0(r31)
-	beq      lbl_80093738
-	lis      r3, __vt__12JPAFieldBase@ha
-	addi     r0, r3, __vt__12JPAFieldBase@l
-	stw      r0, 0(r31)
-
-lbl_80093738:
-	extsh.   r0, r4
-	ble      lbl_80093748
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_80093748:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -2839,35 +2650,6 @@ lbl_80093748:
  */
 JPAFieldDrag::~JPAFieldDrag()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_800937A4
-	lis      r3, __vt__12JPAFieldDrag@ha
-	addi     r0, r3, __vt__12JPAFieldDrag@l
-	stw      r0, 0(r31)
-	beq      lbl_80093794
-	lis      r3, __vt__12JPAFieldBase@ha
-	addi     r0, r3, __vt__12JPAFieldBase@l
-	stw      r0, 0(r31)
-
-lbl_80093794:
-	extsh.   r0, r4
-	ble      lbl_800937A4
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_800937A4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -2876,35 +2658,6 @@ lbl_800937A4:
  */
 JPAFieldRandom::~JPAFieldRandom()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80093800
-	lis      r3, __vt__14JPAFieldRandom@ha
-	addi     r0, r3, __vt__14JPAFieldRandom@l
-	stw      r0, 0(r31)
-	beq      lbl_800937F0
-	lis      r3, __vt__12JPAFieldBase@ha
-	addi     r0, r3, __vt__12JPAFieldBase@l
-	stw      r0, 0(r31)
-
-lbl_800937F0:
-	extsh.   r0, r4
-	ble      lbl_80093800
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_80093800:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -2913,35 +2666,6 @@ lbl_80093800:
  */
 JPAFieldConvection::~JPAFieldConvection()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_8009385C
-	lis      r3, __vt__18JPAFieldConvection@ha
-	addi     r0, r3, __vt__18JPAFieldConvection@l
-	stw      r0, 0(r31)
-	beq      lbl_8009384C
-	lis      r3, __vt__12JPAFieldBase@ha
-	addi     r0, r3, __vt__12JPAFieldBase@l
-	stw      r0, 0(r31)
-
-lbl_8009384C:
-	extsh.   r0, r4
-	ble      lbl_8009385C
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_8009385C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -2950,35 +2674,6 @@ lbl_8009385C:
  */
 JPAFieldVortex::~JPAFieldVortex()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_800938B8
-	lis      r3, __vt__14JPAFieldVortex@ha
-	addi     r0, r3, __vt__14JPAFieldVortex@l
-	stw      r0, 0(r31)
-	beq      lbl_800938A8
-	lis      r3, __vt__12JPAFieldBase@ha
-	addi     r0, r3, __vt__12JPAFieldBase@l
-	stw      r0, 0(r31)
-
-lbl_800938A8:
-	extsh.   r0, r4
-	ble      lbl_800938B8
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_800938B8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -2987,35 +2682,6 @@ lbl_800938B8:
  */
 JPAFieldNewton::~JPAFieldNewton()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80093914
-	lis      r3, __vt__14JPAFieldNewton@ha
-	addi     r0, r3, __vt__14JPAFieldNewton@l
-	stw      r0, 0(r31)
-	beq      lbl_80093904
-	lis      r3, __vt__12JPAFieldBase@ha
-	addi     r0, r3, __vt__12JPAFieldBase@l
-	stw      r0, 0(r31)
-
-lbl_80093904:
-	extsh.   r0, r4
-	ble      lbl_80093914
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_80093914:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -3024,107 +2690,16 @@ lbl_80093914:
  */
 JPAFieldMagnet::~JPAFieldMagnet()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80093970
-	lis      r3, __vt__14JPAFieldMagnet@ha
-	addi     r0, r3, __vt__14JPAFieldMagnet@l
-	stw      r0, 0(r31)
-	beq      lbl_80093960
-	lis      r3, __vt__12JPAFieldBase@ha
-	addi     r0, r3, __vt__12JPAFieldBase@l
-	stw      r0, 0(r31)
-
-lbl_80093960:
-	extsh.   r0, r4
-	ble      lbl_80093970
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_80093970:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
  * @note Address: 0x80093988
  * @note Size: 0x5C
  */
-JPAFieldAir::~JPAFieldAir()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_800939CC
-	lis      r3, __vt__11JPAFieldAir@ha
-	addi     r0, r3, __vt__11JPAFieldAir@l
-	stw      r0, 0(r31)
-	beq      lbl_800939BC
-	lis      r3, __vt__12JPAFieldBase@ha
-	addi     r0, r3, __vt__12JPAFieldBase@l
-	stw      r0, 0(r31)
-
-lbl_800939BC:
-	extsh.   r0, r4
-	ble      lbl_800939CC
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_800939CC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JPAFieldAir::~JPAFieldAir() { }
 
 /**
  * @note Address: 0x800939E4
  * @note Size: 0x5C
  */
-JPAFieldGravity::~JPAFieldGravity()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80093A28
-	lis      r3, __vt__15JPAFieldGravity@ha
-	addi     r0, r3, __vt__15JPAFieldGravity@l
-	stw      r0, 0(r31)
-	beq      lbl_80093A18
-	lis      r3, __vt__12JPAFieldBase@ha
-	addi     r0, r3, __vt__12JPAFieldBase@l
-	stw      r0, 0(r31)
-
-lbl_80093A18:
-	extsh.   r0, r4
-	ble      lbl_80093A28
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_80093A28:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JPAFieldGravity::~JPAFieldGravity() { }

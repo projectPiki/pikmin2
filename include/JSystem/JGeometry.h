@@ -177,6 +177,19 @@ struct TVec3 {
 		z -= b.z;
 	}
 
+	void scale(const f32 scale) {
+		x *= scale;
+		y *= scale;
+		z *= scale;
+	}
+
+	void scale(const TVec3<f32>& a, const f32 scale)
+	{
+		x = a.x * scale;
+		y = a.y * scale;
+		z = a.z * scale;
+	}
+
 	void zero() { x = y = z = 0.0f; }
 
 	f32 squared() const { return x * x + y * y + z * z; }
