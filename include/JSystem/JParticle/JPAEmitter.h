@@ -233,6 +233,13 @@ struct JPABaseEmitter {
 		mGlobalPrmClr.b = b;
 	}
 
+	inline void setEnvColorRGB(u8 r, u8 g, u8 b)
+	{
+		mGlobalEnvClr.r = r;
+		mGlobalEnvClr.g = g;
+		mGlobalEnvClr.b = b;
+	}
+
 	inline void setColorRGB(JUtility::TColor& color)
 	{
 		mGlobalEnvClr.r = color.r;
@@ -256,7 +263,7 @@ struct JPABaseEmitter {
 
 	inline void setPrmColor(JUtility::TColor& color)
 	{
-		mGlobalPrmClr.setRGB(color);
+		setPrmColorRGB(color.r, color.g, color.b);
 		mGlobalPrmClr.a = color.a;
 	}
 
@@ -323,8 +330,8 @@ struct JPABaseEmitter {
 	JGeometry::TVec3f mGlobalScl;            // _98
 	JGeometry::TVec3f mGlobalTrs;            // _A4
 	JGeometry::TVec2f mGlobalPScl;           // _B0
-	JUtility::TColor mGlobalPrmClr;          // _B8, NEEDS TO BE GXCOLOR
-	JUtility::TColor mGlobalEnvClr;          // _BC, NEEDS TO BE GXCOLOR
+	GXColor mGlobalPrmClr;                   // _B8, NEEDS TO BE GXCOLOR
+	GXColor mGlobalEnvClr;                   // _BC, NEEDS TO BE GXCOLOR
 	s32 : 0;                                 // reset alignment to _C0
 	s32 mpUserWork;                          // _C0
 	JPARandom mRandom;                       // _C4

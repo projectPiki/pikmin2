@@ -123,8 +123,7 @@ void TForever::setGlobalEnvColor(JUtility::TColor& color)
 	if (!mEmitter) {
 		return;
 	}
-
-	mEmitter->mGlobalEnvClr.setRGB(color);
+	mEmitter->setEnvColorRGB(color.r, color.g, color.b);
 }
 
 /**

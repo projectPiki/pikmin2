@@ -183,10 +183,10 @@ struct TVec3 {
 
 	void normalize()
 	{
-		f32 sq = squared();
-		if (sq <= FLT_EPSILON * 32.0f) {
+		if (squared() <= FLT_EPSILON * 32.0f) {
 			return;
 		}
+		f32 sq = squared();
 		f32 norm;
 		if (sq <= 0.0f) {
 			norm = sq;

@@ -3,7 +3,7 @@ JPARTICLE_FILES:=\
 	$(BUILD_DIR)/src/JSystem/JParticle/JPAChildShape.o\
 	$(BUILD_DIR)/asm/JSystem/JParticle/JPADynamicsBlock.o\
 	$(BUILD_DIR)/src/JSystem/JParticle/JPAEmitter.o\
-	$(BUILD_DIR)/asm/JSystem/JParticle/JPAEmitterManager.o\
+	$(BUILD_DIR)/src/JSystem/JParticle/JPAEmitterManager.o\
 	$(BUILD_DIR)/src/JSystem/JParticle/JPAExTexShape.o\
 	$(BUILD_DIR)/src/JSystem/JParticle/JPAExtraShape.o\
 	$(BUILD_DIR)/asm/JSystem/JParticle/JPAFieldBlock.o\

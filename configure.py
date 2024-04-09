@@ -273,7 +273,7 @@ LIBS = [
             ["JSystem/JParticle/JPAChildShape", True],
             ["JSystem/JParticle/JPADynamicsBlock", False],
             ["JSystem/JParticle/JPAEmitter", True],
-            ["JSystem/JParticle/JPAEmitterManager", False],
+            ["JSystem/JParticle/JPAEmitterManager", True],
             ["JSystem/JParticle/JPAExTexShape", True],
             ["JSystem/JParticle/JPAExtraShape", True],
             ["JSystem/JParticle/JPAFieldBlock", False],
