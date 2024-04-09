@@ -4,6 +4,14 @@
 #include "types.h"
 
 struct JASOscillator {
+	enum Target {
+		TARGET_Volume = 0,
+		TARGET_Pitch  = 1,
+		TARGET_Pan    = 2,
+		TARGET_FxMix  = 3,
+		TARGET_Dolby  = 4,
+	};
+
 	struct Data {
 		u32 mTarget;         // _00
 		f32 mRate;           // _04
@@ -21,6 +29,10 @@ struct JASOscillator {
 	f32 getValue() const;
 	bool release();
 	f32 calc(const s16*);
+
+	bool isValid() const { return mData != nullptr; }
+	bool isStop() const { return _1C == 0; }
+	u32 getTarget() { return mData->mTarget; }
 
 	// unused/inlined
 	void forceStop();

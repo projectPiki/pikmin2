@@ -20,8 +20,8 @@ bool JASDrumSet::getParam(int percIndex, int p2, JASInstParam* instParam) const
 	instParam->mIsPercussion = true;
 	instParam->mVolume       = perc->mPitch;
 	instParam->mPitch        = perc->mVolume;
-	instParam->mPanning      = perc->mPanning;
-	instParam->_26           = perc->mRelease;
+	instParam->mPan          = perc->mPanning;
+	instParam->mRelease      = perc->mRelease;
 
 	static JASOscillator::Data osc;
 	osc.mTarget  = 0;
@@ -40,20 +40,20 @@ bool JASDrumSet::getParam(int percIndex, int p2, JASInstParam* instParam) const
 		if (effect) {
 			f32 y = effect->getY(percIndex, p2);
 			switch (effect->mTarget) {
-			case 0:
+			case JASINST_Volume:
 				instParam->mVolume *= y;
 				break;
-			case 1:
+			case JASINST_Pitch:
 				instParam->mPitch *= y;
 				break;
-			case 2:
-				instParam->mPanning += y - 0.5; // double, not float
+			case JASINST_Pan:
+				instParam->mPan += y - 0.5; // double, not float
 				break;
-			case 3:
-				instParam->_1C += y;
+			case JASINST_FxMix:
+				instParam->mFxMix += y;
 				break;
-			case 4:
-				instParam->_20 += y;
+			case JASINST_Dolby:
+				instParam->mDolby += y;
 				break;
 			}
 		}

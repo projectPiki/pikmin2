@@ -24,111 +24,28 @@ JASTaskThread::JASTaskThread(int threadPriority, int msgCount, u32 stackSize)
  */
 JASTaskThread::~JASTaskThread()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r27, 0x1c(r1)
-	or.      r30, r3, r3
-	mr       r31, r4
-	beq      lbl_800A89B0
-	lis      r3, __vt__13JASTaskThread@ha
-	addi     r0, r3, __vt__13JASTaskThread@l
-	stw      r0, 0(r30)
-
-lbl_800A88C8:
-	addi     r3, r30, 0x30
-	addi     r4, r1, 0xc
-	li       r5, 0
-	bl       OSReceiveMessage
-	addic.   r0, r1, 0x10
-	beq      lbl_800A88E4
-	stw      r3, 0x10(r1)
-
-lbl_800A88E4:
-	lwz      r0, 0x10(r1)
-	lwz      r28, 0xc(r1)
-	cmpwi    r0, 0
-	beq      lbl_800A8994
-	bl       getCommandHeap__9JASKernelFv
-	mr       r29, r3
-	addi     r3, r29, 4
-	stw      r3, 8(r1)
-	bl       OSLockMutex
-	lwz      r3, 0(r29)
-	li       r27, 0
-	b        lbl_800A8980
-
-lbl_800A8914:
-	addi     r0, r3, 0xc
-	li       r4, 0
-	cmplw    r0, r28
-	bgt      lbl_800A8934
-	addi     r0, r3, 0x40c
-	cmplw    r28, r0
-	bge      lbl_800A8934
-	li       r4, 1
-
-lbl_800A8934:
-	clrlwi.  r0, r4, 0x18
-	beq      lbl_800A8978
-	lwz      r4, 8(r3)
-	addi     r0, r4, -1
-	stw      r0, 8(r3)
-	lwz      r0, 0(r29)
-	cmplw    r3, r0
-	beq      lbl_800A896C
-	lwz      r0, 8(r3)
-	cmplwi   r0, 0
-	bne      lbl_800A896C
-	lwz      r28, 0(r3)
-	bl       __dl__FPv
-	stw      r28, 0(r27)
-
-lbl_800A896C:
-	lwz      r3, 8(r1)
-	bl       OSUnlockMutex
-	b        lbl_800A88C8
-
-lbl_800A8978:
-	mr       r27, r3
-	lwz      r3, 0(r3)
-
-lbl_800A8980:
-	cmplwi   r3, 0
-	bne      lbl_800A8914
-	lwz      r3, 8(r1)
-	bl       OSUnlockMutex
-	b        lbl_800A88C8
-
-lbl_800A8994:
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__9JKRThreadFv
-	extsh.   r0, r31
-	ble      lbl_800A89B0
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_800A89B0:
-	mr       r3, r30
-	lmw      r27, 0x1c(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	OSMessage msg;
+	BOOL received;
+	while (true) {
+		msg = waitMessage(&received);
+		if (!received) {
+			return;
+		}
+		JASCmdHeap* heap = JASKernel::getCommandHeap();
+		heap->free(msg);
+	}
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0x198
  */
-JASCmdHeap::Header* JASTaskThread::allocCallStack(void (*cmd)(void*), const void* msg, u32 msgLength)
+JASCmdHeap::Header* JASTaskThread::allocCallStack(RunFunction cmd, const void* msg, u32 msgLength)
 {
 	// UNUSED FUNCTION
 	// TODO: Wrong.
-	JASCmdHeap::Header* header = JASKernel::getCommandHeap()->alloc(msgLength);
+	size_t fullLength          = msgLength + 8;
+	JASCmdHeap::Header* header = JASKernel::getCommandHeap()->alloc(fullLength);
 	if (header == nullptr) {
 		return nullptr;
 	}
@@ -142,8 +59,19 @@ JASCmdHeap::Header* JASTaskThread::allocCallStack(void (*cmd)(void*), const void
  * @note Address: N/A
  * @note Size: 0x184
  */
-void* JASTaskThread::allocCallStack(void (*)(void*), void*)
+void* JASTaskThread::allocCallStack(RunFunction cmd, void* data)
 {
+	JASCmdHeap* heap;
+	JASThreadCallStack* callStack;
+	heap      = JASKernel::getCommandHeap();
+	callStack = (JASThreadCallStack*)heap->alloc(0xc);
+	if (callStack == nullptr) {
+		return nullptr;
+	}
+	callStack->_04         = 0;
+	callStack->mVoidBuffer = data;
+	callStack->mRunFunc    = cmd;
+	return callStack;
 	// UNUSED FUNCTION
 }
 
@@ -151,9 +79,9 @@ void* JASTaskThread::allocCallStack(void (*)(void*), void*)
  * @note Address: 0x800A89C8
  * @note Size: 0x260
  */
-int JASTaskThread::sendCmdMsg(void (*cmd)(void*), const void* msg, u32 msgLength)
+int JASTaskThread::sendCmdMsg(RunFunction cmd, const void* msg, u32 msgLength)
 {
-	JASCmdHeap::Header* header = allocCallStack(cmd, msg, msgLength);
+	void* header = allocCallStack(cmd, msg, msgLength);
 	if (header == nullptr) {
 		return FALSE;
 	}
@@ -360,8 +288,20 @@ lbl_800A8C14:
  * @note Address: 0x800A8C28
  * @note Size: 0x234
  */
-int JASTaskThread::sendCmdMsg(void (*)(void*), void*)
+int JASTaskThread::sendCmdMsg(RunFunction func, void* p2)
 {
+	void* pvVar1;
+
+	pvVar1 = allocCallStack(func, p2);
+	if (pvVar1 == NULL) {
+		return 0;
+	}
+	int iVar2 = sendMessage(pvVar1);
+	if (iVar2 == 0) {
+		JASCmdHeap* heap = JASKernel::getCommandHeap();
+		heap->free(pvVar1);
+	}
+	return iVar2;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -549,6 +489,20 @@ lbl_800A8E48:
  */
 void* JASTaskThread::run()
 {
+	OSInitFastCast();
+	do {
+		JASThreadCallStack* callStack = (JASThreadCallStack*)waitMessageBlock();
+		if (_84) {
+			OSSleepThread(&_7C);
+		}
+		if (callStack->_04) {
+			callStack->mRunFunc(callStack->mByteBuffer);
+		} else {
+			callStack->mRunFunc(callStack->mVoidBuffer);
+		}
+		JASCmdHeap* heap = JASKernel::getCommandHeap();
+		heap->free(callStack);
+	} while (true);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

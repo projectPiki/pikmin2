@@ -17,6 +17,12 @@ enum JASMixMode {
 	MixMode_InterLeave = 3,
 };
 
+enum JASOutputMode {
+	JASOUTPUT_Mono     = 0,
+	JASOUTPUT_Stereo   = 1,
+	JASOUTPUT_Surround = 2,
+};
+
 namespace JASDriver {
 typedef s32 (*DriverCallback)(void*);
 typedef void (*DspDacCallback)(s16*, u32);

@@ -538,21 +538,21 @@ void JAIGlobalParameter::setParamStreamParameterLines(u8 value)
  * @note Address: 0x800ADA08
  * @note Size: 0x68
  */
-void JAIGlobalParameter::setParamSoundOutputMode(u32 value)
+void JAIGlobalParameter::setParamSoundOutputMode(u32 outputMode)
 {
-	u32 mode = 1;
-	switch (value) {
-	case 0:
-		mode = 0;
+	u32 mode = JASOUTPUT_Stereo;
+	switch (outputMode) {
+	case JASOUTPUT_Mono:
+		mode = JASOUTPUT_Mono;
 		break;
-	case 1:
-		mode = 1;
+	case JASOUTPUT_Stereo:
+		mode = JASOUTPUT_Stereo;
 		break;
-	case 2:
-		mode = 2;
+	case JASOUTPUT_Surround:
+		mode = JASOUTPUT_Surround;
 		break;
 	}
-	JAIBasic::msBasic->mParamSoundOutputMode = value;
+	JAIBasic::msBasic->mParamSoundOutputMode = outputMode;
 	JASDriver::setOutputMode(mode);
 }
 

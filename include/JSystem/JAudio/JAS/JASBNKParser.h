@@ -15,8 +15,8 @@ struct THeader {
 
 struct TInst {
 	u8 mMagic[8];          // _00
-	f32 mPitch;            // _08
-	f32 mVolume;           // _0C
+	f32 mVolume;           // _08
+	f32 mPitch;            // _0C
 	u32 mOscOffsets[2];    // _10
 	u32 mRandOffsets[2];   // _18
 	u32 mSenseOffsets[2];  // _20

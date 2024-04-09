@@ -157,9 +157,9 @@ JASChannel* noteOn(int bankIndex, int instIndex, u8 p3, u8 p4, u16 p5, void (*p6
 		return nullptr;
 	}
 	channel->setPanPower(1.0f, 1.0f, 1.0f);
-	channel->_BC            = p5;
+	channel->mPriority      = p5;
 	channel->mWaveInfo      = waveInfo;
-	channel->_EC            = wavePtr;
+	channel->mWaveData      = wavePtr;
 	channel->mWaveFormat    = instParam.mWaveFormat;
 	channel->mActivePitch   = instParam.mPitch * (waveInfo->mSampleRate / JASDriver::getDacRate());
 	channel->mModifiedPitch = channel->mActivePitch;
@@ -170,13 +170,13 @@ JASChannel* noteOn(int bankIndex, int instIndex, u8 p3, u8 p4, u16 p5, void (*p6
 	channel->_FC     = p4 / 127.0f;
 	channel->_FC *= channel->_FC;
 	channel->_FC *= channel->mVolume;
-	channel->_CC = instParam.mPanning;
-	channel->_D4 = instParam._1C;
-	channel->_DC = instParam._20;
+	channel->mPanSound   = instParam.mPan;
+	channel->mFxMixSound = instParam.mFxMix;
+	channel->mDolbySound = instParam.mDolby;
 	for (int i = 0; i < instParam.mOscCount; i++) {
 		channel->setOscInit(i, instParam.mOscData[i]);
 	}
-	channel->directReleaseOsc(instParam._26);
+	channel->directReleaseOsc(instParam.mRelease);
 	if (!channel->play()) {
 		return nullptr;
 	}
@@ -196,7 +196,7 @@ JASChannel* noteOn(int bankIndex, int instIndex, u8 p3, u8 p4, u16 p5, void (*p6
  * @note Address: 0x800994E0
  * @note Size: 0x174
  */
-static JASChannel* noteOnOsc(int p1, u8 p2, u8 p3, u16 p4, void (*p5)(u32, JASChannel*, JASDsp::TChannel*, void*), void* p6)
+static JASChannel* noteOnOsc(int wavePtr, u8 p2, u8 p3, u16 p4, void (*p5)(u32, JASChannel*, JASDsp::TChannel*, void*), void* p6)
 {
 	JASChannel* channel
 	    = new (JASPoolAllocObject<JASChannel, JASCreationPolicy::NewFromRootHeap, JASThreadingModel::SingleThreaded>::alloc())
@@ -205,8 +205,8 @@ static JASChannel* noteOnOsc(int p1, u8 p2, u8 p3, u16 p4, void (*p5)(u32, JASCh
 		return nullptr;
 	}
 	channel->setPanPower(1.0f, 1.0f, 1.0f);
-	channel->_BC            = p4;
-	channel->_EC            = (void*)p1;
+	channel->mPriority      = p4;
+	channel->mWaveData      = (void*)wavePtr;
 	channel->mWaveFormat    = 2;
 	channel->mActivePitch   = 16736.015f / JASDriver::getDacRate();
 	channel->mModifiedPitch = channel->mActivePitch;

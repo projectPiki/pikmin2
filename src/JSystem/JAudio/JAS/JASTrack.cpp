@@ -125,17 +125,17 @@ void JASTrack::init()
 	mNoteMask    = 0;
 	_35B         = 0;
 
-	_35C                = 0;
-	_35F                = 0;
-	mChannelUpdater._4A = 0xD;
+	_35C                         = 0;
+	_35F                         = 0;
+	mChannelUpdater.mPanCalcType = JASChannel::CALC_AddAll;
 
-	_35D                = 0;
-	_360                = 0;
-	mChannelUpdater._4B = 0xD;
+	_35D                           = 0;
+	_360                           = 0;
+	mChannelUpdater.mFxMixCalcType = JASChannel::CALC_AddAll;
 
-	_35E                = 0;
-	_361                = 0;
-	mChannelUpdater._4C = 0xD;
+	_35E                           = 0;
+	_361                           = 0;
+	mChannelUpdater.mDolbyCalcType = JASChannel::CALC_AddAll;
 
 	mIsPaused   = false;
 	mIsMuted    = 0;
@@ -682,7 +682,7 @@ void JASTrack::initTimed()
  * @note Address: 0x8009F7A4
  * @note Size: 0x10
  */
-void JASTrack::connectBus(int p1, int p2) { mChannelUpdater._36[p1] = p2; }
+void JASTrack::connectBus(int mixConfigIdx, int value) { mChannelUpdater.mMixConfigs[mixConfigIdx] = value; }
 
 /**
  * @note Address: 0x8009F7B4
@@ -704,7 +704,7 @@ int JASTrack::noteOn(u8 channelIndex, s32 p2, s32 p3, s32 p4, u32 p5)
 	if (channel == nullptr) {
 		return -1;
 	}
-	channel->_2C = p4;
+	channel->mUpdateTimer = p4;
 	append(channel);
 	mChannels[channelIndex] = channel;
 	channel->_C8            = p5;
@@ -820,7 +820,7 @@ int JASTrack::gateOn(u8 p1, s32 p2, s32 p3, s32 p4)
 		return -1;
 	}
 	JASBankMgr::gateOn(channel, p2, p3);
-	channel->_2C = p4;
+	channel->mUpdateTimer = p4;
 	return 0;
 }
 
@@ -833,7 +833,7 @@ BOOL JASTrack::checkNoteStop(s32 p1)
 	if (mChannels[p1] == nullptr) {
 		return true;
 	}
-	return mChannels[p1]->_18 == 0;
+	return mChannels[p1]->mStatus == JASChannel::STATUS_INACTIVE;
 }
 
 /**

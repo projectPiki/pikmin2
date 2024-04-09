@@ -4,11 +4,23 @@
 #include "JSystem/JAudio/JAS/JASKernel.h"
 #include "types.h"
 #include "JSystem/JKernel/JKRThread.h"
+#include "JSystem/JAudio/JAS/JASGenericMemPool.h"
 
 /**
  * @size = 0x88
  */
 struct JASTaskThread : public JKRThread {
+	typedef void (*RunFunction)(void*);
+
+	struct JASThreadCallStack {
+		RunFunction mRunFunc; // _00
+		u32 _04;              // _04
+		union {
+			u8* mByteBuffer[0x400];
+			void* mVoidBuffer;
+		}; // _08, buffer
+	};
+
 	JASTaskThread(int, int, u32);
 
 	virtual ~JASTaskThread(); // _08

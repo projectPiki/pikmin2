@@ -8,8 +8,8 @@
  * @note Size: 0x44
  */
 JASBasicInst::JASBasicInst()
-    : mPitch(1.0f)
-    , mVolume(1.0f)
+    : mVolume(1.0f)
+    , mPitch(1.0f)
     , mEffects(nullptr)
     , mEffectCount(0)
     , mOscData(nullptr)
@@ -50,28 +50,28 @@ bool JASBasicInst::getParam(int p1, int p2, JASInstParam* param) const
 	param->mIsPercussion = false;
 	param->mOscData      = mOscData;
 	param->mOscCount     = mOscCount;
-	param->mVolume       = mPitch;  // these pitch and volumes seem to be swapped
-	param->mPitch        = mVolume; // might be an error in xayrs tools
+	param->mVolume       = mVolume; // pitch and volume were swapped initially
+	param->mPitch        = mPitch;  // NB: might be an error in xayrs tools
 	for (int i = 0; i < mEffectCount; i++) {
 		JASInstEffect* effect = mEffects[i];
 		if (effect != nullptr) {
 			// This pattern exists in JASDrumSet as well...
 			f32 y = effect->getY(p1, p2);
 			switch (effect->mTarget) {
-			case 0:
+			case JASINST_Volume:
 				param->mVolume *= y;
 				break;
-			case 1:
+			case JASINST_Pitch:
 				param->mPitch *= y;
 				break;
-			case 2:
-				param->mPanning += y - 0.5; // double is intentional
+			case JASINST_Pan:
+				param->mPan += y - 0.5; // double is intentional
 				break;
-			case 3:
-				param->_1C += y;
+			case JASINST_FxMix:
+				param->mFxMix += y;
 				break;
-			case 4:
-				param->_20 += y;
+			case JASINST_Dolby:
+				param->mDolby += y;
 				break;
 			}
 		}

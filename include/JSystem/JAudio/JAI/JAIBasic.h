@@ -98,7 +98,7 @@ struct JAIBasic {
 	JAInter::Camera* mCameras; // _04
 	JKRHeap* mHeap;            // _08
 	u8 _0C;                    // _0C
-	u8 mParamSoundOutputMode;  // _0D
+	u8 mParamSoundOutputMode;  // _0D, see JASOutputMode enum
 	struct Flags {
 		bool _0 : 1;
 		bool _1 : 1;

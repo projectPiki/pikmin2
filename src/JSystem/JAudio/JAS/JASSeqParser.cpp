@@ -651,19 +651,22 @@ int JASSeqParser::cmdPanSwSet(JASTrack* track, u32* args)
 	u8 stuff[]  = { 0, 0, 0, 1, 1, 2, 2 };
 	u8 stuff2[] = { 0, 1, 2, 0, 2, 0, 2 };
 
-	track->_35C                = stuff[args[0] >> 5];
-	track->_35F                = stuff2[args[0] >> 5];
-	track->mChannelUpdater._4A = args[0] & 0x1f;
+	// pan?
+	track->_35C                         = stuff[args[0] >> 5];
+	track->_35F                         = stuff2[args[0] >> 5];
+	track->mChannelUpdater.mPanCalcType = args[0] & 0x1f;
 	track->_34C |= 0x1c;
 
-	track->_35D                = stuff[args[1] >> 5];
-	track->_360                = stuff2[args[1] >> 5];
-	track->mChannelUpdater._4B = args[1] & 0x1f;
+	// fxmix?
+	track->_35D                           = stuff[args[1] >> 5];
+	track->_360                           = stuff2[args[1] >> 5];
+	track->mChannelUpdater.mFxMixCalcType = args[1] & 0x1f;
 	track->_34C |= 0x1c;
 
-	track->_35E                = stuff[args[2] >> 5];
-	track->_361                = stuff2[args[2] >> 5];
-	track->mChannelUpdater._4C = args[2] & 0x1f;
+	// dolby?
+	track->_35E                           = stuff[args[2] >> 5];
+	track->_361                           = stuff2[args[2] >> 5];
+	track->mChannelUpdater.mDolbyCalcType = args[2] & 0x1f;
 	track->_34C |= 0x1c;
 	return 0;
 }

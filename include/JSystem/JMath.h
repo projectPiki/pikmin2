@@ -256,6 +256,9 @@ inline f32 JMASinShort(s16 v) { return JMath::sincosTable_.sinShort(v); }
 inline f32 JMASCos(s16 v) { return JMASCosShort(v); }
 inline f32 JMASSin(s16 v) { return JMASinShort(v); }
 
+inline f32 JMACos(f32 v) { return JMath::sincosTable_.cos(v); }
+inline f32 JMASin(f32 v) { return JMath::sincosTable_.sin(v); }
+
 inline f32 JMAFastSqrt(register f32 x)
 {
 	register f32 recip;

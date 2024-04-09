@@ -27,8 +27,8 @@ JASBasicBank* JASBNKParser::createBasicBank(void* stream)
 		TInst* instRaw = JSUConvertOffsetToPtr<TInst>(header, header->mInstOffsets[i]); // problem with mInstOffsets again
 		if (instRaw != nullptr) {
 			JASBasicInst* inst = new (heap, 0) JASBasicInst;
-			inst->mPitch       = instRaw->mPitch;
 			inst->mVolume      = instRaw->mVolume;
+			inst->mPitch       = instRaw->mPitch;
 
 			/// Populate inst oscillators:
 			inst->setOscCount(2);

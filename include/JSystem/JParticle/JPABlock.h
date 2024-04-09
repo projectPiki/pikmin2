@@ -118,14 +118,14 @@ struct JPAFieldBlock {
 		u32 _04;               // _04
 		u32 _08;               // _08
 		JGeometry::TVec3f _0C; // _0C
-		JGeometry::TVec3f _18;
-		f32 mAmplitude;
-		f32 _28; // _28
-		f32 _2C; // _2C
-		f32 _30; // _30
-		f32 _34; // _34
-		f32 _38; // _38
-		f32 _3C; // _3C
+		JGeometry::TVec3f _18; // _18
+		f32 mAmplitude;        // _24
+		f32 _28;               // _28
+		f32 _2C;               // _2C
+		f32 _30;               // _30
+		f32 _34;               // _34
+		f32 _38;               // _38
+		f32 _3C;               // _3C
 	};
 
 	JPAFieldBlock(const u8*, JKRHeap*);

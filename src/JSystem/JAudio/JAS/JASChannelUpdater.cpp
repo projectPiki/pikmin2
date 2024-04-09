@@ -12,81 +12,81 @@ JASChannelUpdater::JASChannelUpdater() { init(); }
  */
 void JASChannelUpdater::init()
 {
-	_00    = 1.0f;
-	_04    = 1.0f;
-	_08    = 0.5f;
-	_0C    = 0.0f;
-	_10    = 0.0f;
-	_14    = 0;
-	_16[0] = 0;
-	_16[1] = 0;
-	_16[2] = 0;
-	_16[3] = 0;
-	_16[4] = 0;
-	_16[5] = 0;
-	_16[6] = 0;
-	_14    = 0x7FFF;
-	_34    = 0;
-	_24    = 0;
-	_26[0] = 0;
-	_26[1] = 0;
-	_26[2] = 0;
-	_42[0] = 0;
-	_42[1] = 0;
-	_42[2] = 0;
-	_42[3] = 0;
-	_42[4] = 0;
-	_42[5] = 0;
-	_48    = 0;
-	_24    = 0x7FFF;
-	_49    = 0;
-	_36[0] = 0x150;
-	_36[1] = 0x210;
-	_36[2] = 0x352;
-	_36[3] = 0x412;
-	_36[4] = 0;
-	_36[5] = 0;
-	_4A    = 0xD;
-	_4B    = 0xD;
-	_4C    = 0xD;
+	_00              = 1.0f;
+	_04              = 1.0f;
+	mPan             = 0.5f;
+	mFxMix           = 0.0f;
+	mDolby           = 0.0f;
+	mFIR8FilterParam = 0;
+	_16[0]           = 0;
+	_16[1]           = 0;
+	_16[2]           = 0;
+	_16[3]           = 0;
+	_16[4]           = 0;
+	_16[5]           = 0;
+	_16[6]           = 0;
+	mFIR8FilterParam = 0x7FFF;
+	_34              = 0;
+	mIIRFilterParam  = 0;
+	_26[0]           = 0;
+	_26[1]           = 0;
+	_26[2]           = 0;
+	mDelaySamples[0] = 0;
+	mDelaySamples[1] = 0;
+	mDelaySamples[2] = 0;
+	mDelaySamples[3] = 0;
+	mDelaySamples[4] = 0;
+	mDelaySamples[5] = 0;
+	mDelayMax        = 0;
+	mIIRFilterParam  = 0x7FFF;
+	mFilterMode      = 0;
+	mMixConfigs[0]   = 0x150;
+	mMixConfigs[1]   = 0x210;
+	mMixConfigs[2]   = 0x352;
+	mMixConfigs[3]   = 0x412;
+	mMixConfigs[4]   = 0;
+	mMixConfigs[5]   = 0;
+	mPanCalcType     = JASChannel::CALC_AddAll;
+	mFxMixCalcType   = JASChannel::CALC_AddAll;
+	mDolbyCalcType   = JASChannel::CALC_AddAll;
 }
 
 /**
  * @note Address: 0x800A85F4
  * @note Size: 0x164
  */
-void JASChannelUpdater::initialUpdateChannel(JASChannel* p1, JASDsp::TChannel* p2)
+void JASChannelUpdater::initialUpdateChannel(JASChannel* chan, JASDsp::TChannel* dspChan)
 {
 	for (int i = 0; i < 6; i++) {
-		p1->setMixConfig(i, _36[i]);
+		chan->setMixConfig(i, mMixConfigs[i]);
 	}
-	if (p1->_B0[0] == 0xFFFF) {
-		p2->initAutoMixer();
+	if (chan->mMixConfigs[0].mWhole == 0xFFFF) {
+		dspChan->initAutoMixer();
 	} else {
-		p2->setMixerInitDelayMax(_48);
+		dspChan->setMixerInitDelayMax(mDelayMax);
 		for (u8 i = 0; i < 6; i++) {
-			p2->setMixerInitDelaySamples(i, _42[i]);
+			dspChan->setMixerInitDelaySamples(i, mDelaySamples[i]);
 		}
 	}
-	p1->_108 = _4A;
-	p1->_109 = _4B;
-	p1->_10A = _4C;
-	p1->_100 = _00;
-	p1->_104 = _04;
-	p1->_D0  = _08;
-	p1->_D8  = _0C;
-	p1->_E0  = _10;
+	chan->mPanCalcType   = mPanCalcType;
+	chan->mFxMixCalcType = mFxMixCalcType;
+	chan->mDolbyCalcType = mDolbyCalcType;
+	chan->_100           = _00;
+	chan->_104           = _04;
+	chan->mPanChannel    = mPan;
+	chan->mFxMixChannel  = mFxMix;
+	chan->mDolbyChannel  = mDolby;
 	for (u8 i = 0; i < 6; i++) {
-		p2->setMixerDelaySamples(i, _42[i]);
+		dspChan->setMixerDelaySamples(i, mDelaySamples[i]);
 	}
-	if (_49 & 0x20) {
-		p2->setIIRFilterParam(&_24);
+	if (mFilterMode & 0x20) {
+		dspChan->setIIRFilterParam(&mIIRFilterParam);
 	}
-	if (_49 & 0x1F) {
-		p2->setFIR8FilterParam(&_14);
+	if (mFilterMode & 0x1F) {
+		dspChan->setFIR8FilterParam(&mFIR8FilterParam);
 	}
-	p2->setFilterMode(_49);
-	p2->setDistFilter(_34);
+	dspChan->setFilterMode(mFilterMode);
+	dspChan->setDistFilter(_34);
 }
 
 /**
@@ -94,24 +94,24 @@ void JASChannelUpdater::initialUpdateChannel(JASChannel* p1, JASDsp::TChannel* p
  * @note Size: 0xE8
  * updateChannel__17JASChannelUpdaterFP10JASChannelPQ26JASDsp8TChannel
  */
-void JASChannelUpdater::updateChannel(JASChannel* p1, JASDsp::TChannel* p2)
+void JASChannelUpdater::updateChannel(JASChannel* chan, JASDsp::TChannel* dspChan)
 {
-	if (p1->_18 != 2) {
-		p1->_100 = _00;
-		p1->_104 = _04;
-		p1->_D0  = _08;
-		p1->_D8  = _0C;
-		p1->_E0  = _10;
+	if (chan->mStatus != JASChannel::STATUS_RELEASE) {
+		chan->_100          = _00;
+		chan->_104          = _04;
+		chan->mPanChannel   = mPan;
+		chan->mFxMixChannel = mFxMix;
+		chan->mDolbyChannel = mDolby;
 		for (u8 i = 0; i < 6; i++) {
-			p2->setMixerDelaySamples(i, _42[i]);
+			dspChan->setMixerDelaySamples(i, mDelaySamples[i]);
 		}
-		if (_49 & 0x20) {
-			p2->setIIRFilterParam(&_24);
+		if (mFilterMode & 0x20) {
+			dspChan->setIIRFilterParam(&mIIRFilterParam);
 		}
-		if (_49 & 0x1F) {
-			p2->setFIR8FilterParam(&_14);
+		if (mFilterMode & 0x1F) {
+			dspChan->setFIR8FilterParam(&mFIR8FilterParam);
 		}
-		p2->setFilterMode(_49);
-		p2->setDistFilter(_34);
+		dspChan->setFilterMode(mFilterMode);
+		dspChan->setDistFilter(_34);
 	}
 }

@@ -4,6 +4,14 @@
 #include "types.h"
 #include "JSystem/JAudio/JAS/JASOscillator.h"
 
+enum JASInstTarget {
+	JASINST_Volume = 0,
+	JASINST_Pitch  = 1,
+	JASINST_Pan    = 2,
+	JASINST_FxMix  = 3,
+	JASINST_Dolby  = 4,
+};
+
 struct JASInstEffect {
 	JASInstEffect()
 	    : mTarget(0)
@@ -73,11 +81,11 @@ struct JASInstParam {
 	    , mOscCount(0)
 	    , mVolume(1.0f)
 	    , mPitch(1.0f)
-	    , mPanning(0.5f)
-	    , _1C(0.0f)
-	    , _20(0.0f)
+	    , mPan(0.5f)
+	    , mFxMix(0.0f)
+	    , mDolby(0.0f)
 	    , mIsPercussion(false)
-	    , _26(0)
+	    , mRelease(0)
 	{
 	}
 
@@ -87,12 +95,12 @@ struct JASInstParam {
 	u32 mOscCount;                  // _0C
 	f32 mVolume;                    // _10
 	f32 mPitch;                     // _14
-	f32 mPanning;                   // _18
-	f32 _1C;                        // _1C
-	f32 _20;                        // _20
+	f32 mPan;                       // _18
+	f32 mFxMix;                     // _1C
+	f32 mDolby;                     // _20
 	bool mIsPercussion;             // _24
 	u8 _25;                         // _25
-	u16 _26;                        // _26
+	u16 mRelease;                   // _26
 };
 
 /**
@@ -158,8 +166,8 @@ struct JASBasicInst : public JASInst {
 	TKeymap* getKeyRegion(int) const;
 
 	// _00 = VTABLE
-	f32 mPitch;                     // _04
-	f32 mVolume;                    // _08
+	f32 mVolume;                    // _04
+	f32 mPitch;                     // _08
 	JASInstEffect** mEffects;       // _0C
 	u32 mEffectCount;               // _10
 	JASOscillator::Data** mOscData; // _14

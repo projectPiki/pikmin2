@@ -64,17 +64,18 @@ struct JASCmdHeap {
 		{
 		}
 
-		inline bool contains(Header* msg)
+		inline bool contains(void* msg)
 		{
+			bool res = false;
 			if ((u32)mBuffer <= (u32)msg && (u32)msg < (u32)(this + 1)) {
-				return true;
+				res = true;
 			}
-			return false;
+			return res;
 		}
 
 		Block* mNext;       // _00
 		size_t mUsedLength; // _04
-		int mMsgCount;      // _08
+		u32 mMsgCount;      // _08
 		u8 mBuffer[0x400];  // _0C
 	};
 
@@ -104,7 +105,6 @@ struct JASCmdHeap {
 
 	inline Header* alloc(size_t msgLength)
 	{
-		msgLength += sizeof(Header);
 		JASMutexLock lock(&mMutex);
 		Block* previousHead = mHead;
 		if (0x400 - previousHead->mUsedLength < msgLength) {
@@ -117,13 +117,15 @@ struct JASCmdHeap {
 				return nullptr;
 			}
 		}
-		int startOffset = mHead->mUsedLength;
-		mHead->mUsedLength += msgLength;
-		mHead->mMsgCount++;
-		return (Header*)(mHead->mBuffer + startOffset);
+
+		Block* head     = mHead;
+		int startOffset = head->mUsedLength;
+		head->mUsedLength += msgLength;
+		head->mMsgCount++;
+		return (Header*)(head->mBuffer + startOffset);
 	}
 
-	inline void free(Header* block)
+	inline void free(void* block)
 	{
 		JASMutexLock lock(&mMutex);
 		Block* current = mHead;
@@ -132,7 +134,8 @@ struct JASCmdHeap {
 			if (current->contains(block)) {
 				current->mMsgCount--;
 				if (current != mHead && current->mMsgCount == 0) {
-					Block* next = current->mNext;
+					Block* next; // regswap here
+					next = current->mNext;
 					delete current;
 					prev->mNext = next;
 				}
