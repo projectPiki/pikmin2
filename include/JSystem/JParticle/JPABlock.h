@@ -10,6 +10,24 @@ struct JPAFieldBase;
 
 typedef void JPAVolumeFunc(JPAEmitterWorkData*);
 
+enum JPADynFlags {
+	JPADYN_FixedDensity   = 0x1,
+	JPADYN_FixedInterval  = 0x2,
+	JPADYN_InheritScale   = 0x4,
+	JPADYN_FollowEmtr     = 0x8,
+	JPADYN_FollowEmtrChld = 0x10,
+};
+
+enum JPAVolType {
+	JPAVOL_Cube     = 0,
+	JPAVOL_Sphere   = 1,
+	JPAVOL_Cylinder = 2,
+	JPAVOL_Torus    = 3,
+	JPAVOL_Point    = 4,
+	JPAVOL_Circle   = 5,
+	JPAVOL_Line     = 6,
+};
+
 struct JPADynamicsBlockData {
 	// Representation of the contents in a .jpc file
 	u8 mMagic[4]; // _00

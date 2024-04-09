@@ -36,7 +36,7 @@ void JPABaseEmitter::init(JPAEmitterManager* manager, JPAResource* resource)
 	mSpread              = mResource->getDyn()->getInitVelDirSp();
 	mRndmDirSpeed        = mResource->getDyn()->getInitVelRndm();
 	mAirResist           = mResource->getDyn()->getAirRes();
-	mRandom.setSeed(mManager->mWorkData->mRndm.next());
+	mRandom.setSeed(mManager->mWorkData->mRndm.getRandU32());
 	PSMTXIdentity(mGlobalRot);
 	mGlobalScl.set(1.0f, 1.0f, 1.0f);
 	mGlobalTrs.zero();

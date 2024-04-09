@@ -27,13 +27,13 @@ struct TOneEmitter : public TBase, public JPAEmitterCallBack {
 	virtual void startDemoDrawOff()             // _34 (weak)
 	{
 		if (mEmitter) {
-			mEmitter->setFlag(JPAEMIT_IsDemoOn);
+			mEmitter->setFlag(JPAEMIT_StopDraw);
 		}
 	}
 	virtual void endDemoDrawOn() // _38 (weak)
 	{
 		if (mEmitter) {
-			mEmitter->resetFlag(JPAEMIT_IsDemoOn);
+			mEmitter->resetFlag(JPAEMIT_StopDraw);
 		}
 	}
 	virtual ~TOneEmitter() { } // _3C (weak)

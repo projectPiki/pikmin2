@@ -218,6 +218,14 @@ struct TVec3 {
 
 	void cross(const TVec3<f32>& a, const TVec3<f32>& b) { set(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x); }
 
+	// idk why they didn't use set for this one but go figure.
+	void mul(const TVec3<f32>& a, const TVec3<f32>& b)
+	{
+		x = a.x * b.x;
+		y = a.y * b.y;
+		z = a.z * b.z;
+	}
+
 	bool isAbove(const TVec3<T>& other) const { return (x >= other.x) && (y >= other.y) && (z >= other.z); }
 
 	bool isZero() const { return squared() <= 32.0f * FLT_EPSILON; }

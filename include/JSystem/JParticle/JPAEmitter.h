@@ -27,15 +27,15 @@ struct JPADrawInfo {
 };
 
 enum JPAEmitterFlags {
-	JPAEMIT_Unk1     = 0x1,
-	JPAEMIT_Unk2     = 0x2,
-	JPAEMIT_IsDemoOn = 0x4,
-	JPAEMIT_Unk4     = 0x8,
-	JPAEMIT_Unk5     = 0x10,
-	JPAEMIT_Unk6     = 0x20,
-	JPAEMIT_Unk7     = 0x40,
-	JPAEMIT_Unk8     = 0x80,
-	JPAEMIT_Unk9     = 0x100,
+	JPAEMIT_StopEmit            = 0x1,
+	JPAEMIT_StopCalc            = 0x2,
+	JPAEMIT_StopDraw            = 0x4,
+	JPAEMIT_EnableDeleteEmitter = 0x8,
+	JPAEMIT_FirstEmit           = 0x10,
+	JPAEMIT_RateStepEmit        = 0x20,
+	JPAEMIT_Immortal            = 0x40,
+	JPAEMIT_Unk8                = 0x80,
+	JPAEMIT_Unk9                = 0x100,
 };
 
 struct JPABaseParticle {
@@ -267,7 +267,7 @@ struct JPABaseEmitter {
 		mGlobalTrs.z = z;
 	}
 
-	bool checkFlag(u32 flag) { return !!(mResource->getDyn()->getFlag() & flag); }
+	bool checkDynFlag(u32 flag) { return !!(mResource->getDyn()->getFlag() & flag); }
 	u8 getResourceManagerID() const { return mResMgrID; }
 	u8 getGroupID() const { return mGroupID; }
 	u8 getDrawTimes() const { return mDrawTimes; }
@@ -296,6 +296,11 @@ struct JPABaseEmitter {
 	void setLifeTime(s16 lifetime) { mLifeTime = lifetime; }
 	u32 getAge() const { return mTick; }
 
+	f32 getRandF32() { return mRandom.getRandF32(); }
+	f32 getRandZP() { return mRandom.getRandZP(); }
+	f32 getRandZH() { return mRandom.getRandZH(); }
+	s16 getRandS16() { return mRandom.getRandS16(); }
+
 	JGeometry::TVec3f mLocalScl;             // _00
 	JGeometry::TVec3f mLocalTrs;             // _0C
 	JGeometry::TVec3f mLocalDir;             // _18
@@ -322,7 +327,7 @@ struct JPABaseEmitter {
 	JUtility::TColor mGlobalEnvClr;          // _BC, NEEDS TO BE GXCOLOR
 	s32 : 0;                                 // reset alignment to _C0
 	s32 mpUserWork;                          // _C0
-	JMath::TRandom_fast_ mRandom;            // _C4
+	JPARandom mRandom;                       // _C4
 	JPAList<JPABaseParticle> mAlivePtclBase; // _C8
 	JPAList<JPABaseParticle> mAlivePtclChld; // _D4
 	JPAList<JPABaseParticle>* mPtclPool;     // _E0
@@ -364,7 +369,7 @@ struct JPAEmitterWorkData {
 	JPABaseEmitter* mEmitter;              // _00
 	JPAResource* mResource;                // _04
 	JPAResourceManager* mResourceMgr;      // _08
-	JMath::TRandom_fast_ mRndm;            // _0C
+	JPARandom mRndm;                       // _0C
 	JGeometry::TVec3f mVolumePos;          // _10
 	JGeometry::TVec3f mVelOmni;            // _1C
 	JGeometry::TVec3f mVelAxis;            // _28
@@ -372,7 +377,7 @@ struct JPAEmitterWorkData {
 	f32 mVolumeMinRad;                     // _38
 	f32 mVolumeSweep;                      // _3C
 	int mCreateNumber;                     // _40
-	u32 mVolumeEmitIdx;                    // _44
+	int mVolumeEmitIdx;                    // _44
 	Mtx mDirectionMtx;                     // _48
 	Mtx mRotationMtx;                      // _78
 	Mtx mGlobalRot;                        // _A8

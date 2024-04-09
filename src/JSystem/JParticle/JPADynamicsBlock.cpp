@@ -3,115 +3,15 @@
 #include "JSystem/JParticle/JPAEmitter.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804A3248
-    lbl_804A3248:
-        .4byte lbl_8008FA2C
-        .4byte lbl_8008FA3C
-        .4byte lbl_8008FA4C
-        .4byte lbl_8008FA5C
-        .4byte lbl_8008FA6C
-        .4byte lbl_8008FA7C
-        .4byte lbl_8008FA8C
-        .4byte 0x00000000
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516B78
-    lbl_80516B78:
-        .4byte 0x00000000
-    .global lbl_80516B7C
-    lbl_80516B7C:
-        .float 1.0
-    .global lbl_80516B80
-    lbl_80516B80:
-        .float 0.5
-        .4byte 0x00000000
-    .global lbl_80516B88
-    lbl_80516B88:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_80516B90
-    lbl_80516B90:
-        .4byte 0x47000000
-        .4byte 0x00000000
-    .global lbl_80516B98
-    lbl_80516B98:
-        .4byte 0x43300000
-        .4byte 0x00000000
-*/
-
 /**
  * @note Address: 0x8008EFD0
  * @note Size: 0xDC
  */
 void JPAVolumePoint(JPAEmitterWorkData* workData)
 {
-	workData->mVolumePos.set(0.0f, 0.0f, 0.0f);
-	workData->mVelOmni.x = workData->mEmitter->mRandom.nextFloat_0_1() - 0.5f;
-	workData->mVelOmni.y = workData->mEmitter->mRandom.nextFloat_0_1() - 0.5f;
-	workData->mVelOmni.z = workData->mEmitter->mRandom.nextFloat_0_1() - 0.5f;
-
-	workData->mVelAxis = workData->mVelOmni;
-	/*
-	stwu     r1, -0x20(r1)
-	lis      r4, 0x0019660D@ha
-	lfs      f3, lbl_80516B78@sda21(r2)
-	addi     r5, r4, 0x0019660D@l
-	lfs      f2, lbl_80516B7C@sda21(r2)
-	stfs     f3, 0x18(r3)
-	lfs      f1, lbl_80516B80@sda21(r2)
-	stfs     f3, 0x14(r3)
-	stfs     f3, 0x10(r3)
-	lwz      r6, 0(r3)
-	lwz      r0, 0xc4(r6)
-	mullw    r4, r0, r5
-	addis    r4, r4, 0x3c6f
-	addi     r0, r4, -3233
-	stw      r0, 0xc4(r6)
-	srwi     r0, r0, 9
-	oris     r0, r0, 0x3f80
-	lwz      r6, 0(r3)
-	stw      r0, 0x10(r1)
-	lwz      r0, 0xc4(r6)
-	lfs      f0, 0x10(r1)
-	mullw    r4, r0, r5
-	fsubs    f0, f0, f2
-	fsubs    f4, f0, f1
-	addis    r4, r4, 0x3c6f
-	addi     r0, r4, -3233
-	stw      r0, 0xc4(r6)
-	srwi     r0, r0, 9
-	oris     r0, r0, 0x3f80
-	lwz      r6, 0(r3)
-	stw      r0, 0xc(r1)
-	lwz      r0, 0xc4(r6)
-	lfs      f0, 0xc(r1)
-	mullw    r4, r0, r5
-	fsubs    f0, f0, f2
-	fsubs    f5, f0, f1
-	addis    r4, r4, 0x3c6f
-	addi     r4, r4, -3233
-	srwi     r0, r4, 9
-	stw      r4, 0xc4(r6)
-	oris     r0, r0, 0x3f80
-	stw      r0, 8(r1)
-	lfs      f0, 8(r1)
-	fsubs    f0, f0, f2
-	fsubs    f0, f0, f1
-	stfs     f0, 0x1c(r3)
-	stfs     f5, 0x20(r3)
-	stfs     f4, 0x24(r3)
-	lfs      f1, 0x24(r3)
-	lfs      f0, 0x1c(r3)
-	stfs     f0, 0x28(r3)
-	stfs     f3, 0x2c(r3)
-	stfs     f1, 0x30(r3)
-	addi     r1, r1, 0x20
-	blr
-	*/
+	workData->mVolumePos.zero();
+	workData->mVelOmni.set(workData->mEmitter->getRandZH(), workData->mEmitter->getRandZH(), workData->mEmitter->getRandZH());
+	workData->mVelAxis.set(workData->mVelOmni.x, 0.0f, workData->mVelOmni.z);
 }
 
 /**
@@ -120,313 +20,67 @@ void JPAVolumePoint(JPAEmitterWorkData* workData)
  */
 void JPAVolumeLine(JPAEmitterWorkData* workData)
 {
-	if (workData->mEmitter->mResource->mDynamicsBlock->castData()->mFlags & 2) {
-		workData->mVolumePos.x = 0.0f;
-		workData->mVolumePos.y = 0.0f;
-		workData->mVolumePos.z = workData->mVolumeSize * ((f32)workData->mVolumeEmitIdx / ((f32)workData->mCreateNumber - 1.0f) - 0.5f);
+	if (workData->mEmitter->checkDynFlag(JPADYN_FixedInterval)) {
+		workData->mVolumePos.set(0.0f, 0.0f,
+		                         workData->mVolumeSize * ((workData->mVolumeEmitIdx / (workData->mCreateNumber - 1.0f) - 0.5f)));
 		workData->mVolumeEmitIdx++;
 	} else {
-		workData->mVolumePos.x = 0.0f;
-		workData->mVolumePos.y = 0.0f;
-		workData->mVolumePos.z = workData->mVolumeSize * (workData->mEmitter->mRandom.nextFloat_0_1() - 0.5f);
+		workData->mVolumePos.set(0.0f, 0.0f, workData->mVolumeSize * workData->mEmitter->getRandZH());
 	}
-	workData->mVelOmni.x = 0.0f;
-	workData->mVelOmni.y = 0.0f;
-	workData->mVelOmni.z = workData->mVolumePos.z * workData->mGlobalScl.z;
 
-	workData->mVelAxis.x = 0.0f;
-	workData->mVelAxis.y = 0.0f;
-	workData->mVelAxis.z = workData->mVolumePos.z;
-
-	/*
-	stwu     r1, -0x20(r1)
-	lwz      r6, 0(r3)
-	lwz      r4, 0xe8(r6)
-	lwz      r4, 0x2c(r4)
-	lwz      r4, 0(r4)
-	lwz      r0, 8(r4)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_8008F140
-	lwz      r0, 0x40(r3)
-	lis      r4, 0x4330
-	lwz      r5, 0x44(r3)
-	xoris    r0, r0, 0x8000
-	stw      r4, 0x18(r1)
-	xoris    r5, r5, 0x8000
-	lfd      f4, lbl_80516B88@sda21(r2)
-	stw      r0, 0x1c(r1)
-	lfs      f0, lbl_80516B7C@sda21(r2)
-	lfd      f1, 0x18(r1)
-	stw      r5, 0x14(r1)
-	fsubs    f2, f1, f4
-	lfs      f1, lbl_80516B80@sda21(r2)
-	stw      r4, 0x10(r1)
-	lfs      f5, 0x34(r3)
-	lfd      f3, 0x10(r1)
-	fsubs    f2, f2, f0
-	lfs      f0, lbl_80516B78@sda21(r2)
-	fsubs    f3, f3, f4
-	stfs     f0, 0x10(r3)
-	fdivs    f2, f3, f2
-	stfs     f0, 0x14(r3)
-	fsubs    f0, f2, f1
-	fmuls    f0, f5, f0
-	stfs     f0, 0x18(r3)
-	lwz      r4, 0x44(r3)
-	addi     r0, r4, 1
-	stw      r0, 0x44(r3)
-	b        lbl_8008F194
-
-lbl_8008F140:
-	lis      r4, 0x0019660D@ha
-	lwz      r5, 0xc4(r6)
-	addi     r0, r4, 0x0019660D@l
-	lfs      f2, lbl_80516B7C@sda21(r2)
-	mullw    r4, r5, r0
-	lfs      f1, lbl_80516B80@sda21(r2)
-	lfs      f0, lbl_80516B78@sda21(r2)
-	addis    r4, r4, 0x3c6f
-	addi     r4, r4, -3233
-	srwi     r0, r4, 9
-	stw      r4, 0xc4(r6)
-	oris     r0, r0, 0x3f80
-	stw      r0, 8(r1)
-	lfs      f4, 0x34(r3)
-	lfs      f3, 8(r1)
-	stfs     f0, 0x10(r3)
-	fsubs    f2, f3, f2
-	stfs     f0, 0x14(r3)
-	fsubs    f0, f2, f1
-	fmuls    f0, f4, f0
-	stfs     f0, 0x18(r3)
-
-lbl_8008F194:
-	lfs      f2, 0x18(r3)
-	lfs      f1, 0x11c(r3)
-	lfs      f0, lbl_80516B78@sda21(r2)
-	fmuls    f1, f2, f1
-	stfs     f0, 0x1c(r3)
-	stfs     f0, 0x20(r3)
-	stfs     f1, 0x24(r3)
-	lfs      f1, 0x18(r3)
-	stfs     f0, 0x28(r3)
-	stfs     f0, 0x2c(r3)
-	stfs     f1, 0x30(r3)
-	addi     r1, r1, 0x20
-	blr
-	*/
+	workData->mVelOmni.set(0.0f, 0.0f, workData->mVolumePos.z * workData->mGlobalScl.z);
+	workData->mVelAxis.set(0.0f, 0.0f, workData->mVolumePos.z);
 }
 
 /**
  * @note Address: 0x8008F1C8
  * @note Size: 0x1B4
  */
-void JPAVolumeCircle(JPAEmitterWorkData*)
+void JPAVolumeCircle(JPAEmitterWorkData* workData)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	lwz      r6, 0(r3)
-	lwz      r4, 0xe8(r6)
-	lwz      r4, 0x2c(r4)
-	lwz      r4, 0(r4)
-	lwz      r0, 8(r4)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_8008F238
-	lwz      r6, 0x44(r3)
-	lis      r0, 0x4330
-	lwz      r4, 0x40(r3)
-	slwi     r5, r6, 0x10
-	stw      r0, 0x10(r1)
-	divw     r4, r5, r4
-	lfd      f2, lbl_80516B88@sda21(r2)
-	lfs      f0, 0x3c(r3)
-	addi     r0, r6, 1
-	stw      r0, 0x44(r3)
-	extsh    r0, r4
-	xoris    r0, r0, 0x8000
-	stw      r0, 0x14(r1)
-	lfd      f1, 0x10(r1)
-	fsubs    f1, f1, f2
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r6, 0x1c(r1)
-	b        lbl_8008F28C
+	s16 thetai;
+	f32 theta;
+	f32 distance;
+	f32 sizeXZ;
+	f32 temp;
+	if (workData->mEmitter->checkDynFlag(JPADYN_FixedInterval)) {
+		theta  = (s16)((workData->mVolumeEmitIdx << 16) / workData->mCreateNumber);
+		thetai = theta * workData->mVolumeSweep;
+		workData->mVolumeEmitIdx++;
+	} else {
+		theta  = workData->mVolumeSweep * workData->mEmitter->getRandS16();
+		thetai = theta;
+	}
 
-lbl_8008F238:
-	lis      r4, 0x0019660D@ha
-	lwz      r5, 0xc4(r6)
-	addi     r4, r4, 0x0019660D@l
-	lis      r0, 0x4330
-	mullw    r4, r5, r4
-	stw      r0, 0x18(r1)
-	lfd      f1, lbl_80516B88@sda21(r2)
-	addis    r4, r4, 0x3c6f
-	addi     r4, r4, -3233
-	srwi     r0, r4, 0x10
-	stw      r4, 0xc4(r6)
-	extsh    r0, r0
-	xoris    r0, r0, 0x8000
-	lfs      f2, 0x3c(r3)
-	stw      r0, 0x1c(r1)
-	lfd      f0, 0x18(r1)
-	fsubs    f0, f0, f1
-	fmuls    f0, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r6, 0x14(r1)
+	distance = workData->mEmitter->getRandF32();
+	if (workData->mEmitter->checkDynFlag(JPADYN_FixedDensity)) {
+		distance = 1.0f - (distance * distance);
+	}
 
-lbl_8008F28C:
-	lwz      r5, 0(r3)
-	lis      r4, 0x0019660D@ha
-	addi     r0, r4, 0x0019660D@l
-	lfs      f0, lbl_80516B7C@sda21(r2)
-	lwz      r4, 0xc4(r5)
-	mullw    r4, r4, r0
-	addis    r4, r4, 0x3c6f
-	addi     r0, r4, -3233
-	stw      r0, 0xc4(r5)
-	srwi     r0, r0, 9
-	oris     r0, r0, 0x3f80
-	lwz      r4, 0(r3)
-	stw      r0, 8(r1)
-	lwz      r4, 0xe8(r4)
-	lfs      f1, 8(r1)
-	lwz      r4, 0x2c(r4)
-	fsubs    f1, f1, f0
-	lwz      r4, 0(r4)
-	lwz      r0, 8(r4)
-	fmr      f5, f1
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8008F2E8
-	fnmsubs  f5, f1, f1, f0
-
-lbl_8008F2E8:
-	lfs      f3, 0x38(r3)
-	lis      r4, sincosTable___5JMath@ha
-	lfs      f0, lbl_80516B7C@sda21(r2)
-	addi     r5, r4, sincosTable___5JMath@l
-	rlwinm   r0, r6, 0x1e, 0x12, 0x1c
-	lfs      f4, 0x34(r3)
-	fsubs    f2, f0, f3
-	add      r4, r5, r0
-	lfsx     f0, r5, r0
-	lfs      f1, 4(r4)
-	fmadds   f3, f5, f2, f3
-	lfs      f2, lbl_80516B78@sda21(r2)
-	fmuls    f3, f4, f3
-	fmuls    f0, f3, f0
-	fmuls    f1, f3, f1
-	stfs     f0, 0x10(r3)
-	stfs     f2, 0x14(r3)
-	stfs     f1, 0x18(r3)
-	lfs      f1, 0x10(r3)
-	lfs      f0, 0x114(r3)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x1c(r3)
-	lfs      f1, 0x14(r3)
-	lfs      f0, 0x118(r3)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x20(r3)
-	lfs      f1, 0x18(r3)
-	lfs      f0, 0x11c(r3)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x24(r3)
-	lfs      f1, 0x18(r3)
-	lfs      f0, 0x10(r3)
-	stfs     f0, 0x28(r3)
-	stfs     f2, 0x2c(r3)
-	stfs     f1, 0x30(r3)
-	addi     r1, r1, 0x20
-	blr
-	*/
+	sizeXZ = workData->mVolumeSize * (workData->mVolumeMinRad + distance * (1.0f - workData->mVolumeMinRad));
+	workData->mVolumePos.set(sizeXZ * JMASSin(thetai), 0.0f, sizeXZ * JMASCos(thetai));
+	workData->mVelOmni.mul(workData->mVolumePos, workData->mGlobalScl);
+	workData->mVelAxis.set(workData->mVolumePos.x, 0.0f, workData->mVolumePos.z);
 }
 
 /**
  * @note Address: 0x8008F37C
  * @note Size: 0x118
  */
-void JPAVolumeCube(JPAEmitterWorkData*)
+void JPAVolumeCube(JPAEmitterWorkData* workData)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	lis      r4, 0x0019660D@ha
-	addi     r5, r4, 0x0019660D@l
-	lfs      f4, lbl_80516B7C@sda21(r2)
-	lwz      r6, 0(r3)
-	lfs      f3, lbl_80516B80@sda21(r2)
-	lwz      r0, 0xc4(r6)
-	lfs      f0, lbl_80516B78@sda21(r2)
-	mullw    r4, r0, r5
-	addis    r4, r4, 0x3c6f
-	addi     r0, r4, -3233
-	stw      r0, 0xc4(r6)
-	srwi     r0, r0, 9
-	oris     r0, r0, 0x3f80
-	lwz      r6, 0(r3)
-	stw      r0, 0x10(r1)
-	lwz      r0, 0xc4(r6)
-	lfs      f1, 0x10(r1)
-	mullw    r4, r0, r5
-	lfs      f2, 0x34(r3)
-	fsubs    f1, f1, f4
-	fsubs    f1, f1, f3
-	addis    r4, r4, 0x3c6f
-	addi     r0, r4, -3233
-	stw      r0, 0xc4(r6)
-	srwi     r0, r0, 9
-	oris     r0, r0, 0x3f80
-	fmuls    f6, f2, f1
-	lwz      r6, 0(r3)
-	stw      r0, 0xc(r1)
-	lwz      r0, 0xc4(r6)
-	lfs      f1, 0xc(r1)
-	mullw    r4, r0, r5
-	lfs      f2, 0x34(r3)
-	fsubs    f1, f1, f4
-	fsubs    f1, f1, f3
-	addis    r4, r4, 0x3c6f
-	addi     r4, r4, -3233
-	srwi     r0, r4, 9
-	fmuls    f5, f2, f1
-	oris     r0, r0, 0x3f80
-	stw      r4, 0xc4(r6)
-	stw      r0, 8(r1)
-	lfs      f2, 0x34(r3)
-	lfs      f1, 8(r1)
-	fsubs    f1, f1, f4
-	fsubs    f1, f1, f3
-	fmuls    f1, f2, f1
-	stfs     f1, 0x10(r3)
-	stfs     f5, 0x14(r3)
-	stfs     f6, 0x18(r3)
-	lfs      f2, 0x10(r3)
-	lfs      f1, 0x114(r3)
-	fmuls    f1, f2, f1
-	stfs     f1, 0x1c(r3)
-	lfs      f2, 0x14(r3)
-	lfs      f1, 0x118(r3)
-	fmuls    f1, f2, f1
-	stfs     f1, 0x20(r3)
-	lfs      f2, 0x18(r3)
-	lfs      f1, 0x11c(r3)
-	fmuls    f1, f2, f1
-	stfs     f1, 0x24(r3)
-	lfs      f2, 0x18(r3)
-	lfs      f1, 0x10(r3)
-	stfs     f1, 0x28(r3)
-	stfs     f0, 0x2c(r3)
-	stfs     f2, 0x30(r3)
-	addi     r1, r1, 0x20
-	blr
-	*/
+	workData->mVolumePos.set(workData->mEmitter->getRandZH() * workData->mVolumeSize,
+	                         workData->mEmitter->getRandZH() * workData->mVolumeSize,
+	                         workData->mEmitter->getRandZH() * workData->mVolumeSize);
+	workData->mVelOmni.mul(workData->mVolumePos, workData->mGlobalScl);
+	workData->mVelAxis.set(workData->mVolumePos.x, 0.0f, workData->mVolumePos.z);
 }
 
 /**
  * @note Address: 0x8008F494
  * @note Size: 0x28C
  */
-void JPAVolumeSphere(JPAEmitterWorkData*)
+void JPAVolumeSphere(JPAEmitterWorkData* workData)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -615,7 +269,7 @@ lbl_8008F674:
  * @note Address: 0x8008F720
  * @note Size: 0x184
  */
-void JPAVolumeCylinder(JPAEmitterWorkData*)
+void JPAVolumeCylinder(JPAEmitterWorkData* workData)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -724,7 +378,7 @@ lbl_8008F7D0:
  * @note Address: 0x8008F8A4
  * @note Size: 0x128
  */
-void JPAVolumeTorus(JPAEmitterWorkData*)
+void JPAVolumeTorus(JPAEmitterWorkData* workData)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -808,23 +462,10 @@ void JPAVolumeTorus(JPAEmitterWorkData*)
  * @note Address: 0x8008F9CC
  * @note Size: 0x34
  */
-JPADynamicsBlock::JPADynamicsBlock(const u8*)
+JPADynamicsBlock::JPADynamicsBlock(const u8* data)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0(r3)
-	bl       init__16JPADynamicsBlockFv
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mData = (const JPADynamicsBlockData*)data;
+	init();
 }
 
 /**
@@ -842,224 +483,84 @@ void JPADynamicsBlock::init_jpa(const u8*, JKRHeap*)
  */
 void JPADynamicsBlock::init()
 {
-	/*
-	lwz      r4, 0(r3)
-	lwz      r0, 8(r4)
-	rlwinm   r0, r0, 0x18, 0x1d, 0x1f
-	cmplwi   r0, 6
-	bgtlr
-	lis      r4, lbl_804A3248@ha
-	slwi     r0, r0, 2
-	addi     r4, r4, lbl_804A3248@l
-	lwzx     r0, r4, r0
-	mtctr    r0
-	bctr
-	.global  lbl_8008FA2C
-
-lbl_8008FA2C:
-	lis      r4, JPAVolumeCube__FP18JPAEmitterWorkData@ha
-	addi     r0, r4, JPAVolumeCube__FP18JPAEmitterWorkData@l
-	stw      r0, 4(r3)
-	blr
-	.global  lbl_8008FA3C
-
-lbl_8008FA3C:
-	lis      r4, JPAVolumeSphere__FP18JPAEmitterWorkData@ha
-	addi     r0, r4, JPAVolumeSphere__FP18JPAEmitterWorkData@l
-	stw      r0, 4(r3)
-	blr
-	.global  lbl_8008FA4C
-
-lbl_8008FA4C:
-	lis      r4, JPAVolumeCylinder__FP18JPAEmitterWorkData@ha
-	addi     r0, r4, JPAVolumeCylinder__FP18JPAEmitterWorkData@l
-	stw      r0, 4(r3)
-	blr
-	.global  lbl_8008FA5C
-
-lbl_8008FA5C:
-	lis      r4, JPAVolumeTorus__FP18JPAEmitterWorkData@ha
-	addi     r0, r4, JPAVolumeTorus__FP18JPAEmitterWorkData@l
-	stw      r0, 4(r3)
-	blr
-	.global  lbl_8008FA6C
-
-lbl_8008FA6C:
-	lis      r4, JPAVolumePoint__FP18JPAEmitterWorkData@ha
-	addi     r0, r4, JPAVolumePoint__FP18JPAEmitterWorkData@l
-	stw      r0, 4(r3)
-	blr
-	.global  lbl_8008FA7C
-
-lbl_8008FA7C:
-	lis      r4, JPAVolumeCircle__FP18JPAEmitterWorkData@ha
-	addi     r0, r4, JPAVolumeCircle__FP18JPAEmitterWorkData@l
-	stw      r0, 4(r3)
-	blr
-	.global  lbl_8008FA8C
-
-lbl_8008FA8C:
-	lis      r4, JPAVolumeLine__FP18JPAEmitterWorkData@ha
-	addi     r0, r4, JPAVolumeLine__FP18JPAEmitterWorkData@l
-	stw      r0, 4(r3)
-	blr
-	*/
+	switch (getVolumeType()) {
+	case JPAVOL_Cube:
+		mVolumeFunction = &JPAVolumeCube;
+		break;
+	case JPAVOL_Sphere:
+		mVolumeFunction = &JPAVolumeSphere;
+		break;
+	case JPAVOL_Cylinder:
+		mVolumeFunction = &JPAVolumeCylinder;
+		break;
+	case JPAVOL_Torus:
+		mVolumeFunction = &JPAVolumeTorus;
+		break;
+	case JPAVOL_Point:
+		mVolumeFunction = &JPAVolumePoint;
+		break;
+	case JPAVOL_Circle:
+		mVolumeFunction = &JPAVolumeCircle;
+		break;
+	case JPAVOL_Line:
+		mVolumeFunction = &JPAVolumeLine;
+		break;
+	}
 }
 
 /**
  * @note Address: 0x8008FA9C
  * @note Size: 0x200
  */
-void JPADynamicsBlock::create(JPAEmitterWorkData*)
+void JPADynamicsBlock::create(JPAEmitterWorkData* work)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	stw      r30, 0x28(r1)
-	lwz      r6, 0(r4)
-	lwz      r0, 0xf4(r6)
-	rlwinm.  r0, r0, 0, 0x1a, 0x1a
-	beq      lbl_8008FC14
-	lwz      r4, 0xe8(r6)
-	lwz      r4, 0x2c(r4)
-	lwz      r4, 0(r4)
-	lwz      r0, 8(r4)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_8008FB18
-	lwz      r3, 0(r3)
-	lwz      r0, 8(r3)
-	rlwinm   r0, r0, 0x18, 0x1d, 0x1f
-	cmplwi   r0, 1
-	bne      lbl_8008FB04
-	lhz      r3, 0x76(r3)
-	slwi     r0, r3, 2
-	mullw    r3, r3, r0
-	addi     r3, r3, 2
-	b        lbl_8008FB08
+	if (work->mEmitter->isFlag(JPAEMIT_RateStepEmit)) {
+		s32 emitCount;
+		s32 createCount;
 
-lbl_8008FB04:
-	lhz      r3, 0x76(r3)
+		// Probably an inlined function.
+		if (work->mEmitter->checkDynFlag(JPADYN_FixedInterval)) {
+			s32 count;
+			if (getVolumeType() == JPAVOL_Sphere) {
+				count = 4 * getDivNumber() * getDivNumber() + 2;
+			} else {
+				count = getDivNumber();
+			}
+			emitCount = count;
 
-lbl_8008FB08:
-	li       r0, 0
-	mr       r4, r3
-	stw      r0, 0x44(r31)
-	b        lbl_8008FBD8
+			work->mVolumeEmitIdx = 0;
+		} else {
+			f32 newPtclCount           = work->mEmitter->mRate * (getRateRndm() * work->mEmitter->getRandZP() + 1.0f);
+			f32 newEmitCount           = work->mEmitter->mEmitCount + newPtclCount;
+			work->mEmitter->mEmitCount = newEmitCount;
+			emitCount                  = (s32)newEmitCount;
+			work->mEmitter->mEmitCount -= emitCount;
 
-lbl_8008FB18:
-	lis      r4, 0x0019660D@ha
-	lwz      r5, 0xc4(r6)
-	addi     r4, r4, 0x0019660D@l
-	lis      r0, 0x4330
-	mullw    r4, r5, r4
-	stw      r0, 0x18(r1)
-	lfs      f5, lbl_80516B7C@sda21(r2)
-	lfd      f1, lbl_80516B88@sda21(r2)
-	addis    r4, r4, 0x3c6f
-	addi     r4, r4, -3233
-	srwi     r0, r4, 9
-	stw      r4, 0xc4(r6)
-	oris     r0, r0, 0x3f80
-	stw      r0, 8(r1)
-	lwz      r3, 0(r3)
-	lfs      f0, 8(r1)
-	lwz      r4, 0(r31)
-	fsubs    f2, f0, f5
-	lfs      f3, 0x50(r3)
-	lfs      f4, 0x28(r4)
-	lfs      f0, 0xf8(r4)
-	fadds    f2, f2, f2
-	fsubs    f2, f2, f5
-	fmadds   f2, f3, f2, f5
-	fmuls    f3, f4, f2
-	fadds    f2, f0, f3
-	fctiwz   f0, f2
-	stfs     f2, 0xf8(r4)
-	lwz      r3, 0(r31)
-	stfd     f0, 0x10(r1)
-	lfs      f2, 0xf8(r3)
-	lwz      r4, 0x14(r1)
-	xoris    r0, r4, 0x8000
-	stw      r0, 0x1c(r1)
-	lfd      f0, 0x18(r1)
-	fsubs    f0, f0, f1
-	fsubs    f0, f2, f0
-	stfs     f0, 0xf8(r3)
-	lwz      r3, 0(r31)
-	lwz      r0, 0xf4(r3)
-	rlwinm.  r0, r0, 0, 0x1b, 0x1b
-	beq      lbl_8008FBD8
-	lfs      f0, lbl_80516B78@sda21(r2)
-	fcmpo    cr0, f0, f3
-	bge      lbl_8008FBD8
-	fcmpo    cr0, f3, f5
-	bge      lbl_8008FBD8
-	li       r4, 1
+			if (work->mEmitter->isFlag(JPAEMIT_FirstEmit) && 0.0f < newPtclCount && newPtclCount < 1.0f)
+				emitCount = 1;
+		}
 
-lbl_8008FBD8:
-	stw      r4, 0x40(r31)
-	lwz      r3, 0(r31)
-	lwz      r0, 0xf4(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8008FBF0
-	li       r4, 0
+		work->mCreateNumber = emitCount;
+		if (work->mEmitter->isFlag(JPAEMIT_StopEmit)) {
+			emitCount = 0;
+		}
 
-lbl_8008FBF0:
-	mr       r30, r4
-	b        lbl_8008FC0C
+		// Probably an inlined function.
+		createCount = emitCount;
+		while (createCount > 0) {
+			JPABaseParticle* ptcl = work->mEmitter->createParticle();
+			if (ptcl == NULL)
+				break;
+			createCount--;
+		}
+	}
 
-lbl_8008FBF8:
-	lwz      r3, 0(r31)
-	bl       createParticle__14JPABaseEmitterFv
-	cmplwi   r3, 0
-	beq      lbl_8008FC14
-	addi     r30, r30, -1
+	if (++work->mEmitter->mRateStepTimer >= (work->mEmitter->mRateStep + 1)) {
+		work->mEmitter->mRateStepTimer -= (work->mEmitter->mRateStep + 1);
+		work->mEmitter->setFlag(JPAEMIT_RateStepEmit);
+	} else {
+		work->mEmitter->resetFlag(JPAEMIT_RateStepEmit);
+	}
 
-lbl_8008FC0C:
-	cmpwi    r30, 0
-	bgt      lbl_8008FBF8
-
-lbl_8008FC14:
-	lwz      r5, 0(r31)
-	lha      r3, 0x106(r5)
-	addi     r0, r3, 1
-	sth      r0, 0x106(r5)
-	extsh    r4, r0
-	lbz      r3, 0x56(r5)
-	addi     r0, r3, 1
-	cmpw     r4, r0
-	blt      lbl_8008FC64
-	lwz      r4, 0(r31)
-	lbz      r3, 0x56(r4)
-	lha      r0, 0x106(r4)
-	addi     r3, r3, 1
-	subf     r0, r3, r0
-	sth      r0, 0x106(r4)
-	lwz      r3, 0(r31)
-	lwz      r0, 0xf4(r3)
-	ori      r0, r0, 0x20
-	stw      r0, 0xf4(r3)
-	b        lbl_8008FC74
-
-lbl_8008FC64:
-	lwz      r3, 0(r31)
-	lwz      r0, 0xf4(r3)
-	rlwinm   r0, r0, 0, 0x1b, 0x19
-	stw      r0, 0xf4(r3)
-
-lbl_8008FC74:
-	lwz      r3, 0(r31)
-	lwz      r0, 0xf4(r3)
-	rlwinm   r0, r0, 0, 0x1c, 0x1a
-	stw      r0, 0xf4(r3)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	work->mEmitter->resetFlag(JPAEMIT_FirstEmit);
 }

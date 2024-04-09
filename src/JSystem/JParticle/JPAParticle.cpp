@@ -96,8 +96,8 @@ void JPABaseParticle::init_p(JPAEmitterWorkData* workData)
 	JPADynamicsBlock* dynamicsBlock = resource->mDynamicsBlock;
 
 	mAge       = 0xFFFF;
-	u32 random = emitter->mRandom.next();
-	mLifeTime  = (f32)emitter->mLifeTime * -(dynamicsBlock->mData->mLifeTimeRndm * emitter->mRandom.nextFloat_0_1() - 1.0f);
+	u32 random = emitter->mRandom.getRandU32();
+	mLifeTime  = (f32)emitter->mLifeTime * -(dynamicsBlock->mData->mLifeTimeRndm * emitter->mRandom.getRandF32() - 1.0f);
 	mTime      = 0.0f;
 	mFlags     = 0;
 	PSMTXMultVecSR(workData->mGlobalSR, (Vec*)&workData->mVolumePos, (Vec*)&mPosition);

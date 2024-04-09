@@ -219,7 +219,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT_ENABLE(JStudio::dat
 void JStudio_JParticle::TAdaptor_particle::TJPACallback_::execute(JPABaseEmitter* emitter)
 {
 	bool check = false;
-	if (emitter->isFlag(JPAEMIT_Unk4) && (emitter->mAlivePtclBase.getNum() + emitter->mAlivePtclChld.getNum()) == 0) {
+	if (emitter->isFlag(JPAEMIT_EnableDeleteEmitter) && (emitter->mAlivePtclBase.getNum() + emitter->mAlivePtclChld.getNum()) == 0) {
 		check = true;
 	}
 
@@ -275,7 +275,7 @@ void JStudio_JParticle::TAdaptor_particle::TJPACallback_::execute(JPABaseEmitter
 		if (!JStudio_JStage::transform_toGlobalFromLocal(mtx, *(JStudio::TControl::TTransform_position*)(&srts[0]), mAdaptor->_19C,
 		                                                 mAdaptor->_1A0)) {
 			if (emitter) {
-				emitter->setFlag(JPAEMIT_IsDemoOn);
+				emitter->setFlag(JPAEMIT_StopDraw);
 			}
 			return;
 		}
@@ -560,7 +560,7 @@ void JStudio_JParticle::TAdaptor_particle::beginParticle_fadeIn_(u32 p1)
 	                                                  nullptr); // instruction order swap
 
 	if (mEmitter) {
-		mEmitter->setFlag(JPAEMIT_Unk7);
+		mEmitter->setFlag(JPAEMIT_Immortal);
 		_18C = 1;
 
 		if (!p1) {
