@@ -177,7 +177,8 @@ struct TVec3 {
 		z -= b.z;
 	}
 
-	void scale(const f32 scale) {
+	void scale(const f32 scale)
+	{
 		x *= scale;
 		y *= scale;
 		z *= scale;

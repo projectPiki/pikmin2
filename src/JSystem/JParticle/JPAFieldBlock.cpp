@@ -2626,9 +2626,7 @@ lbl_800936A4:
  * @note Address: 0x800936B8
  * @note Size: 0x48
  */
-JPAFieldBase::~JPAFieldBase()
-{
-}
+JPAFieldBase::~JPAFieldBase() { }
 
 /**
  * @note Address: 0x80093700
@@ -2640,57 +2638,43 @@ void JPAFieldBase::prepare(JPAEmitterWorkData* data, JPAFieldBlock* block) { }
  * @note Address: 0x80093704
  * @note Size: 0x5C
  */
-JPAFieldSpin::~JPAFieldSpin()
-{
-}
+JPAFieldSpin::~JPAFieldSpin() { }
 
 /**
  * @note Address: 0x80093760
  * @note Size: 0x5C
  */
-JPAFieldDrag::~JPAFieldDrag()
-{
-}
+JPAFieldDrag::~JPAFieldDrag() { }
 
 /**
  * @note Address: 0x800937BC
  * @note Size: 0x5C
  */
-JPAFieldRandom::~JPAFieldRandom()
-{
-}
+JPAFieldRandom::~JPAFieldRandom() { }
 
 /**
  * @note Address: 0x80093818
  * @note Size: 0x5C
  */
-JPAFieldConvection::~JPAFieldConvection()
-{
-}
+JPAFieldConvection::~JPAFieldConvection() { }
 
 /**
  * @note Address: 0x80093874
  * @note Size: 0x5C
  */
-JPAFieldVortex::~JPAFieldVortex()
-{
-}
+JPAFieldVortex::~JPAFieldVortex() { }
 
 /**
  * @note Address: 0x800938D0
  * @note Size: 0x5C
  */
-JPAFieldNewton::~JPAFieldNewton()
-{
-}
+JPAFieldNewton::~JPAFieldNewton() { }
 
 /**
  * @note Address: 0x8009392C
  * @note Size: 0x5C
  */
-JPAFieldMagnet::~JPAFieldMagnet()
-{
-}
+JPAFieldMagnet::~JPAFieldMagnet() { }
 
 /**
  * @note Address: 0x80093988
