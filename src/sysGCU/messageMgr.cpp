@@ -60,11 +60,15 @@ Mgr::Mgr(JKRExpHeap* heap)
 
 	sys->heapStatusStart("MessageMgr", nullptr);
 
-	mMaxTextures    = new int[1];
-	mImageLists     = new JUTTexture**[1];
-	mMaxTextures[0] = 0;
-	mImageLists[0]  = new JUTTexture*;
-	mImageLists[0]  = nullptr;
+	mMaxTextures = new int[1];
+	mImageLists  = new JUTTexture**[1];
+
+	// dumb.
+	for (int i = 0; i < 1; i++) {
+		mMaxTextures[i] = 0;
+		mImageLists[i]  = new JUTTexture*;
+		mImageLists[i]  = nullptr;
+	}
 
 	sys->heapStatusStart("font res", nullptr);
 	setupFont("pikmin2main.bfn", heap);
@@ -125,8 +129,10 @@ void Mgr::setupTex()
 	JKRArchive* imgarc = JKRMountArchive("/user/Yamashita/arc/gameTex.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	createImage(ImageGroup::ID0, 11);
 
+	ResTIMG* timg;
 	for (int i = 0; i < mMaxTextures[0]; i++) {
-		ResTIMG* timg = JKRGetArchiveImageResource(imgarc, cBtnTexName[i]);
+		// dont even ask.
+		timg = (ResTIMG*)JKRGetArchiveImageResource(imgarc, cBtnTexName[i]);
 		P2ASSERTLINE(344, timg);
 		setImage(ImageGroup::ID0, i, new JUTTexture(timg));
 	}
@@ -156,10 +162,10 @@ void Mgr::setupFont(char const* path, JKRExpHeap* heap)
 
 		P2ASSERTLINE(378, mFont->mIsValid);
 		static_cast<JUTCacheFont*>(mFont)->mPagingType = JUTCacheFont::CFPAGETYPE_Unk1;
-		static_cast<JUTCacheFont*>(mFont)->loadCache_string(
-		    "\tあいうえおかきくけこさしすせそたちすてとなにぬねのはひすへほまみむめもやゆよわん\tアイウエオカキクケコサシスセソタチツテトナ"
-		    "ニヌネノハヒフヘホマミ ムメモヤユヨワン",
-		    true);
+		static_cast<JUTCacheFont*>(mFont)->loadCache_string("\tあいうえおかきくけこさしすせそたちすてとなにぬねのはひすへほまみむめもやゆよ"
+		                                                    "わん\tアイウエオカキクケコサシスセソ\タチツテトナ"
+		                                                    "ニヌネノハヒフヘホマミムメモヤユヨワン\t",
+		                                                    true); // this is just all the characters in the japanese font sheet lol
 		delete file;
 		fontarc->unmount();
 	} else {
@@ -230,7 +236,7 @@ void Mgr::setupMessageResource(JKRArchive* arc, char const* path)
 	sys->heapStatusStart("メッセージのパース", nullptr); // "Message Parsing"
 	JMessage::TParse parse(mResContainer);
 	P2ASSERTLINE(484, parse.parse(file, 0));
-	sys->heapStatusEnd("メッセージのパース");
+	sys->heapStatusEnd("メッセージのパース"); // "Message Parsing"
 }
 
 /**
@@ -246,7 +252,7 @@ bool Mgr::setupColor(JKRArchive* arc, char const* path)
 	JMessage::TParse_color parse(mResContainer);
 	bool success = parse.parse(file, 0x20);
 	P2ASSERTLINE(510, success);
-	sys->heapStatusEnd("メッセージカラーのパース");
+	sys->heapStatusEnd("メッセージカラーのパース"); // "Message Parsing"
 	return success;
 }
 

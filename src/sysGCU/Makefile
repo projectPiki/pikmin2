@@ -34,7 +34,7 @@ GC_FILES:=\
 	$(BUILD_DIR)/src/sysGCU/moviePlayerPauseAndDraw.o\
 	$(BUILD_DIR)/src/sysGCU/JSTObjectSpecialActor.o\
 	$(BUILD_DIR)/src/sysGCU/messageSequence.o\
-	$(BUILD_DIR)/asm/sysGCU/messageMgr.o\
+	$(BUILD_DIR)/src/sysGCU/messageMgr.o\
 	$(BUILD_DIR)/src/sysGCU/messageObj.o\
 	$(BUILD_DIR)/asm/sysGCU/messageRendering.o\
 	$(BUILD_DIR)/src/sysGCU/message.o\

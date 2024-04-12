@@ -813,14 +813,14 @@ bool JASTrack::noteOff(u8 channelIndex, u16 p2)
  * @note Address: 0x8009FA64
  * @note Size: 0x64
  */
-int JASTrack::gateOn(u8 p1, s32 p2, s32 p3, s32 p4)
+int JASTrack::gateOn(u8 chanIdx, s32 p2, s32 p3, s32 updateTimer)
 {
-	JASChannel* channel = mChannels[p1];
+	JASChannel* channel = mChannels[chanIdx];
 	if (channel == nullptr) {
 		return -1;
 	}
 	JASBankMgr::gateOn(channel, p2, p3);
-	channel->mUpdateTimer = p4;
+	channel->mUpdateTimer = updateTimer;
 	return 0;
 }
 
@@ -828,12 +828,12 @@ int JASTrack::gateOn(u8 p1, s32 p2, s32 p3, s32 p4)
  * @note Address: 0x8009FAC8
  * @note Size: 0x2C
  */
-BOOL JASTrack::checkNoteStop(s32 p1)
+BOOL JASTrack::checkNoteStop(s32 chanIdx)
 {
-	if (mChannels[p1] == nullptr) {
+	if (mChannels[chanIdx] == nullptr) {
 		return true;
 	}
-	return mChannels[p1]->mStatus == JASChannel::STATUS_INACTIVE;
+	return mChannels[chanIdx]->mStatus == JASChannel::STATUS_INACTIVE;
 }
 
 /**
@@ -2678,7 +2678,7 @@ lbl_800A1768:
  * @note Address: 0x800A1778
  * @note Size: 0x94
  */
-u32 JASTrack::readReg32(u8)
+u32 JASTrack::readReg32(u8 reg)
 {
 	/*
 	stwu     r1, -0x10(r1)
