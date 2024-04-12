@@ -282,8 +282,12 @@ lbl_80006600:
  * @note Address: 0x8000661C
  * @note Size: 0x84
  */
-void JMessage::TResourceContainer::TCResource::Get_groupID(u16)
+u16 JMessage::TResourceContainer::TCResource::Get_groupID(u16 id)
 {
+	while (id != ((TResource*)mLinkListNode.getNext())->mINF1->getMessageNumber()) {
+		return ((TResource*)mLinkListNode.getNext())->mINF1->getMessageNumber();
+	}
+	return 0;
 	/*
 	stwu     r1, -0x40(r1)
 	lwzu     r0, 4(r3)
@@ -333,174 +337,41 @@ lbl_80006698:
  * @note Address: 0x800066A0
  * @note Size: 0x4C
  */
-JMessage::TResource* JMessage::TResourceContainer::TCResource::Do_create()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r3, 0x1c
-	stw      r0, 0x14(r1)
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_800066DC
-	li       r0, 0
-	stw      r0, 0(r3)
-	stw      r0, 4(r3)
-	stw      r0, 8(r3)
-	stw      r0, 0xc(r3)
-	stw      r0, 0x10(r3)
-	stw      r0, 0x14(r3)
-	stw      r0, 0x18(r3)
-
-lbl_800066DC:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JMessage::TResource* JMessage::TResourceContainer::TCResource::Do_create() { return new JMessage::TResource; }
 
 /**
  * @note Address: 0x800066EC
  * @note Size: 0x24
  */
-void JMessage::TResourceContainer::TCResource::Do_destroy(JMessage::TResource*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       __dl__FPv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JMessage::TResourceContainer::TCResource::Do_destroy(JMessage::TResource* res) { delete res; }
 
 /**
  * @note Address: 0x80006710
  * @note Size: 0x48
  */
 JMessage::TResourceContainer::TResourceContainer()
+    : _00(0)
+    , isLeadByte(nullptr)
+    , _18(0)
+    , _1C(0)
 {
-	/*
-	li       r7, 0
-	lis      r5,
-	"__vt__Q27JGadget42TLinkList_factory<Q28JMessage9TResource,0>"@ha stb r7,
-	0(r3) lis      r4, __vt__Q38JMessage18TResourceContainer10TCResource@ha addi
-	r6, r3, 0xc addi     r5, r5,
-	"__vt__Q27JGadget42TLinkList_factory<Q28JMessage9TResource,0>"@l stw r7,
-	4(r3) addi     r0, r4, __vt__Q38JMessage18TResourceContainer10TCResource@l
-	stw      r7, 0xc(r3)
-	stw      r7, 0x10(r3)
-	stw      r7, 8(r3)
-	stw      r6, 0xc(r3)
-	stw      r6, 0x10(r3)
-	stw      r5, 0x14(r3)
-	stw      r0, 0x14(r3)
-	stw      r7, 0x18(r3)
-	stw      r7, 0x1c(r3)
-	blr
-	*/
-}
-
-/**
- * @note Address: 0x80006758
- * @note Size: 0x8
- */
-bool JUTFont::isLeadByte_1Byte(int) { return 0x0; }
-
-/**
- * @note Address: 0x80006760
- * @note Size: 0x8
- */
-bool JUTFont::isLeadByte_2Byte(int) { return 0x1; }
-
-/**
- * @note Address: 0x80006768
- * @note Size: 0x30
- */
-bool JUTFont::isLeadByte_ShiftJIS(int)
-{
-	/*
-	cmpwi    r3, 0x81
-	li       r0, 0
-	blt      lbl_8000677C
-	cmpwi    r3, 0x9f
-	ble      lbl_8000678C
-
-lbl_8000677C:
-	cmpwi    r3, 0xe0
-	blt      lbl_80006790
-	cmpwi    r3, 0xfc
-	bgt      lbl_80006790
-
-lbl_8000678C:
-	li       r0, 1
-
-lbl_80006790:
-	mr       r3, r0
-	blr
-	*/
 }
 
 /**
  * @note Address: 0x80006798
  * @note Size: 0x28
  */
-JMessage::TParse::TParse(JMessage::TResourceContainer*)
+JMessage::TParse::TParse(JMessage::TResourceContainer* res)
 {
-	/*
-	lis      r6, __vt__Q37JGadget6binary19TParse_header_block@ha
-	lis      r5, __vt__Q28JMessage6TParse@ha
-	addi     r6, r6, __vt__Q37JGadget6binary19TParse_header_block@l
-	li       r0, 0
-	stw      r6, 0(r3)
-	addi     r5, r5, __vt__Q28JMessage6TParse@l
-	stw      r5, 0(r3)
-	stw      r4, 4(r3)
-	stw      r0, 8(r3)
-	blr
-	*/
+	mRes = res;
+	_08  = 0;
 }
 
 /**
  * @note Address: 0x800067C0
  * @note Size: 0x60
  */
-JMessage::TParse::~TParse()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80006804
-	lis      r5, __vt__Q28JMessage6TParse@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q28JMessage6TParse@l
-	stw      r0, 0(r30)
-	bl       __dt__Q37JGadget6binary19TParse_header_blockFv
-	extsh.   r0, r31
-	ble      lbl_80006804
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80006804:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JMessage::TParse::~TParse() { }
 
 /**
  * @note Address: 0x80006820
@@ -766,55 +637,13 @@ bool JMessage::TParse::parseBlock_next(const void**, u32*, u32)
  * @note Address: 0x80006B28
  * @note Size: 0x20
  */
-JMessage::TParse_color::TParse_color(JMessage::TResourceContainer*)
-{
-	/*
-	lis      r6, __vt__Q37JGadget6binary19TParse_header_block@ha
-	lis      r5, __vt__Q28JMessage12TParse_color@ha
-	addi     r6, r6, __vt__Q37JGadget6binary19TParse_header_block@l
-	stw      r6, 0(r3)
-	addi     r0, r5, __vt__Q28JMessage12TParse_color@l
-	stw      r0, 0(r3)
-	stw      r4, 4(r3)
-	blr
-	*/
-}
+JMessage::TParse_color::TParse_color(JMessage::TResourceContainer* res) { mRes = res; }
 
 /**
  * @note Address: 0x80006B48
  * @note Size: 0x60
  */
-JMessage::TParse_color::~TParse_color()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80006B8C
-	lis      r5, __vt__Q28JMessage12TParse_color@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q28JMessage12TParse_color@l
-	stw      r0, 0(r30)
-	bl       __dt__Q37JGadget6binary19TParse_header_blockFv
-	extsh.   r0, r31
-	ble      lbl_80006B8C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80006B8C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JMessage::TParse_color::~TParse_color() { }
 
 /**
  * @note Address: 0x80006BA8

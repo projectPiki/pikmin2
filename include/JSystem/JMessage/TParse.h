@@ -20,6 +20,8 @@ struct TParse : public JGadget::binary::TParse_header_block {
 	virtual bool parseBlock_next(const void**, u32*, u32);  // _10
 
 	// _00 = VTBL
+	TResourceContainer* mRes; // _04
+	const void* _08;          // _08
 };
 
 struct TParse_color : public JGadget::binary::TParse_header_block {
@@ -30,6 +32,7 @@ struct TParse_color : public JGadget::binary::TParse_header_block {
 	virtual bool parseBlock_next(const void**, u32*, u32);  // _10
 
 	// _00 = VTBL
+	TResourceContainer* mRes; // _04
 };
 } // namespace JMessage
 

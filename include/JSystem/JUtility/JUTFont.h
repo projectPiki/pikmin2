@@ -130,9 +130,9 @@ struct JUTFont {
 	bool isFixed() const { return mIsFixed; }
 	int getFixedWidth() const { return mFixedWidth; }
 
-	static bool isLeadByte_1Byte(int);
-	static bool isLeadByte_2Byte(int);
-	static bool isLeadByte_ShiftJIS(int);
+	static bool isLeadByte_1Byte(int) { return false; }
+	static bool isLeadByte_2Byte(int) { return true; }
+	static bool isLeadByte_ShiftJIS(int c) { return (c > 0x80 && c < 0xa0) || (c > 0xdf && c < 0xfd); }
 
 	// _00 = VTBL
 	bool mIsValid;            // _04

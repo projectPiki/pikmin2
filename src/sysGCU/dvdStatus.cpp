@@ -112,7 +112,7 @@ void DvdStatus::draw()
 		           JUtility::TColor(0, 0, 0x80, 0xFF));
 		J2DPrint print(nullptr, 0.0f);
 
-		if (gP2JMEMgr && gP2JMEMgr->_28) {
+		if (gP2JMEMgr && gP2JMEMgr->mIsLoaded) {
 			print.setFont((JUTFont*)gP2JMEMgr->mFont);
 		} else if (sys->mRomFont) {
 			print.setFont((JUTFont*)sys->mRomFont);

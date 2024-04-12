@@ -7,7 +7,9 @@
 #include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JMessage/TParse.h"
 
-static const char idk[] = "\0\0\0\0\0\0\0\0\0";
+static const u32 padding[3] = { 0, 0, 0 };
+
+P2JME::Mgr* gP2JMEMgr;
 
 namespace P2JME {
 
@@ -26,19 +28,13 @@ static const char* cBtnTexName[] = { "a_btn.bti", "b_btn.bti", "c_btn.bti",  "x_
  * @note Address: N/A
  * @note Size: 0x1C
  */
-void getCurrentFontResName()
-{
-	// UNUSED FUNCTION
-}
+const char* getCurrentFontResName() { return sFontResName[sys->mRegion]; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x1C
  */
-void getCurrentMesResName()
-{
-	// UNUSED FUNCTION
-}
+const char* getCurrentMesResName() { return sMesResName[sys->mRegion]; }
 
 /**
  * @note Address: 0x80437EAC
@@ -54,7 +50,7 @@ Mgr::Mgr(JKRExpHeap* heap)
     : mRubyFont(nullptr)
     , mImageLists(nullptr)
     , mMaxTextures(nullptr)
-    , _28(0)
+    , mIsLoaded(false)
     , _2C(0)
     , mResContainer(nullptr)
     , mMsgRef(nullptr)
@@ -64,9 +60,9 @@ Mgr::Mgr(JKRExpHeap* heap)
 
 	sys->heapStatusStart("MessageMgr", nullptr);
 
-	mMaxTextures    = new int;
-	mImageLists     = new JUTTexture**;
-	mMaxTextures[0] = nullptr;
+	mMaxTextures    = new int[1];
+	mImageLists     = new JUTTexture**[1];
+	mMaxTextures[0] = 0;
 	mImageLists[0]  = new JUTTexture*;
 	mImageLists[0]  = nullptr;
 
@@ -84,7 +80,7 @@ Mgr::Mgr(JKRExpHeap* heap)
 	_2C            = 0;
 	setupMessage();
 	heap2->becomeCurrentHeap();
-	_28 = 1;
+	mIsLoaded = true;
 }
 
 /**
@@ -99,7 +95,8 @@ Mgr::~Mgr() { gP2JMEMgr = nullptr; }
  */
 void Mgr::reloadMessageResource()
 {
-	// UNUSED FUNCTION
+	// This is most likely used in the PAL region after changing languages
+	// Entirely removed for US though
 }
 
 /**
@@ -108,7 +105,7 @@ void Mgr::reloadMessageResource()
  */
 void Mgr::setupMessage()
 {
-	JKRArchive* msgarc = JKRMountArchive(sMesResName[sys->mRegion], JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	JKRArchive* msgarc = JKRMountArchive(getCurrentMesResName(), JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	P2ASSERTLINE(304, msgarc);
 
 	mResContainer      = new JMessage::TResourceContainer;
@@ -129,7 +126,7 @@ void Mgr::setupTex()
 	createImage(ImageGroup::ID0, 11);
 
 	for (int i = 0; i < mMaxTextures[0]; i++) {
-		ResTIMG* timg = static_cast<ResTIMG*>(imgarc->getResource(cBtnTexName[i]));
+		ResTIMG* timg = JKRGetArchiveImageResource(imgarc, cBtnTexName[i]);
 		P2ASSERTLINE(344, timg);
 		setImage(ImageGroup::ID0, i, new JUTTexture(timg));
 	}
@@ -145,7 +142,7 @@ void Mgr::setupFont(char const* path, JKRExpHeap* heap)
 	if (sys->mRegion == System::LANG_Japanese) {
 		JKRAram::sAramObject->mAramHeap->getFreeSize();
 
-		JKRArchive* fontarc = JKRMountArchive(sFontResName[sys->mRegion], JKRArchive::EMM_Mem, heap, JKRArchive::EMD_Tail);
+		JKRArchive* fontarc = JKRMountArchive(getCurrentFontResName(), JKRArchive::EMM_Mem, heap, JKRArchive::EMD_Tail);
 		P2ASSERTLINE(368, fontarc);
 		sys->heapStatusStart("cacheFont", nullptr);
 
@@ -166,7 +163,7 @@ void Mgr::setupFont(char const* path, JKRExpHeap* heap)
 		delete file;
 		fontarc->unmount();
 	} else {
-		JKRArchive* fontarc = JKRMountArchive(sFontResName[sys->mRegion], JKRArchive::EMM_Mem, JKRGetCurrentHeap(), JKRArchive::EMD_Head);
+		JKRArchive* fontarc = JKRMountArchive(getCurrentFontResName(), JKRArchive::EMM_Mem, JKRGetCurrentHeap(), JKRArchive::EMD_Head);
 		P2ASSERTLINE(407, fontarc);
 
 		sys->heapStatusStart("resFont", nullptr);
@@ -232,7 +229,7 @@ void Mgr::setupMessageResource(JKRArchive* arc, char const* path)
 
 	sys->heapStatusStart("メッセージのパース", nullptr); // "Message Parsing"
 	JMessage::TParse parse(mResContainer);
-	P2ASSERTLINE(484, parse.parse_next(&file, 0));
+	P2ASSERTLINE(484, parse.parse(file, 0));
 	sys->heapStatusEnd("メッセージのパース");
 }
 
@@ -240,15 +237,17 @@ void Mgr::setupMessageResource(JKRArchive* arc, char const* path)
  * @note Address: 0x8043892C
  * @note Size: 0xE0
  */
-void Mgr::setupColor(JKRArchive* arc, char const* path)
+bool Mgr::setupColor(JKRArchive* arc, char const* path)
 {
 	const void* file = arc->getResource(path);
 	P2ASSERTLINE(501, file);
 
 	sys->heapStatusStart("メッセージカラーのパース", nullptr); // "Message Parsing"
 	JMessage::TParse_color parse(mResContainer);
-	P2ASSERTLINE(510, parse.parse_next(&file, 0x20));
+	bool success = parse.parse(file, 0x20);
+	P2ASSERTLINE(510, success);
 	sys->heapStatusEnd("メッセージカラーのパース");
+	return success;
 }
 
 } // namespace P2JME

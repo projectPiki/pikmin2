@@ -199,6 +199,8 @@ inline JKRArchive* JKRMountArchive(void* inBuf, JKRHeap* heap, JKRArchive::EMoun
 	return JKRArchive::mount(inBuf, heap, mountDirection);
 }
 
+inline ResTIMG* JKRGetArchiveImageResource(JKRArchive* arc, char const* name) { return (ResTIMG*)(arc->getResource(name)); }
+
 enum JKRMemBreakFlag { MBF_0 = 0, MBF_1 = 1 };
 
 struct JKRMemArchive : public JKRArchive {

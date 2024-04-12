@@ -17,6 +17,14 @@ struct STR1Block;
 struct MID1Block;
 
 struct TResource : public JGadget::TLinkListNode {
+	TResource()
+	{
+		mHeader = nullptr;
+		mINF1   = nullptr;
+		mDAT1   = nullptr;
+		mSTR1   = nullptr;
+		mMID1   = nullptr;
+	}
 
 	s16 toMessageIndex_messageID(u32, u32, bool*) const;
 
@@ -51,7 +59,7 @@ struct TResourceContainer {
 		virtual TResource* Do_create();      // _0C
 		virtual void Do_destroy(TResource*); // _10
 
-		void Get_groupID(u16);
+		u16 Get_groupID(u16);
 
 		// _00-_08 	= TNodeLinkList
 		//		_00 	= mCount
@@ -63,10 +71,11 @@ struct TResourceContainer {
 
 	TResourceContainer();
 
-	u32 _00;                 // _00 - encoding?
+	u8 _00;                  // _00 - encoding?
 	bool (*isLeadByte)(int); // _04 - function pointer for isLeadByte(int)
 	TCResource _08;          // _08
-	TCResource _18;          // _18
+	u32 _18;                 // _18
+	u32 _1C;                 // _1C
 };
 
 } // namespace JMessage

@@ -30,7 +30,7 @@ struct Mgr : public JKRDisposer {
 	void setImage(ImageGroup::EID, int, JUTTexture*);
 	JUTTexture* getImage(ImageGroup::EID, int);
 	void setupMessageResource(JKRArchive*, const char*);
-	void setupColor(JKRArchive*, const char*);
+	bool setupColor(JKRArchive*, const char*);
 	void reloadMessageResource();
 
 	// _00 VTBL
@@ -38,7 +38,7 @@ struct Mgr : public JKRDisposer {
 	JUTFont* mRubyFont;                          // _1C
 	JUTTexture*** mImageLists;                   // _20 (list of these arrays, but only index 0 matters)
 	int* mMaxTextures;                           // _24 (list of these values, but only index 0 matters)
-	u8 _28;                                      // _28
+	u8 mIsLoaded;                                // _28
 	u32 _2C;                                     // _2C
 	JMessage::TResourceContainer* mResContainer; // _30
 	JMessage::TReference* mMsgRef;               // _34
@@ -46,8 +46,8 @@ struct Mgr : public JKRDisposer {
 
 void convertU64ToMessageID(u64, u32*, u32*);
 void convertCharToMessageID(char*, u32*, u32*);
-void getCurrentFontResName();
-void getCurrentMesResName();
+const char* getCurrentFontResName();
+const char* getCurrentMesResName();
 } // namespace P2JME
 
 extern P2JME::Mgr* gP2JMEMgr;
