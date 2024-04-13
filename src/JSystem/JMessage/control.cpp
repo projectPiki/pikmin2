@@ -1,4 +1,4 @@
-#include "JSystem/JMessage/JMessage.h"
+#include "JSystem/JMessage/data.h"
 #include "types.h"
 #include "JSystem/JMessage/TProcessor.h"
 #include "JSystem/JMessage/TResource.h"

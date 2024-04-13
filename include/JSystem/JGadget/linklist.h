@@ -126,6 +126,7 @@ struct TNodeLinkList {
 	const_iterator end() const { return &mLinkListNode; }
 
 	u32 size() { return mCount; }
+	bool empty() { return size() == 0; }
 
 	bool Iterator_isEnd_(const_iterator it) const { return it.mNode == &mLinkListNode; }
 
@@ -299,6 +300,14 @@ struct TLinkList_factory : public TLinkList<T, Offset> {
 	virtual ~TLinkList_factory() = 0; // _08
 	virtual T* Do_create()       = 0; // _0C
 	virtual void Do_destroy(T*)  = 0; // _10
+
+	void Clear_destroy()
+	{
+		while (!empty()) {
+			T* item = &front();
+			Do_destroy(item);
+		}
+	}
 
 	// _00-_08	= TNodeLinkList
 	// _0C		= VTABLE

@@ -1,126 +1,44 @@
-#include "JSystem/JMessage/JMessage.h"
+#include "JSystem/JMessage/data.h"
 #include "JSystem/JMessage/TControl.h"
 #include "JSystem/JMessage/TReference.h"
 #include "JSystem/JMessage/TProcessor.h"
+#include "JSystem/JGadget/enumerator.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q28JMessage19TRenderingProcessor
-    __vt__Q28JMessage19TRenderingProcessor:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q28JMessage19TRenderingProcessorFv
-        .4byte do_reset__Q28JMessage10TProcessorFv
-        .4byte do_character__Q28JMessage10TProcessorFi
-        .4byte do_tag__Q28JMessage10TProcessorFUlPCvUl
-        .4byte do_systemTagCode__Q28JMessage10TProcessorFUsPCvUl
-        .4byte do_select_begin__Q28JMessage10TProcessorFUl
-        .4byte do_select_end__Q28JMessage10TProcessorFv
-        .4byte do_select_separate__Q28JMessage10TProcessorFv
-        .4byte do_reset___Q28JMessage19TRenderingProcessorFPCc
-        .4byte do_setBegin_isReady___Q28JMessage10TProcessorCFv
-        .4byte do_begin___Q28JMessage19TRenderingProcessorFPCvPCc
-        .4byte do_end___Q28JMessage19TRenderingProcessorFv
-        .4byte do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl
-        .4byte do_systemTagCode___Q28JMessage19TRenderingProcessorFUsPCvUl
-        .4byte do_begin__Q28JMessage19TRenderingProcessorFPCvPCc
-        .4byte do_end__Q28JMessage19TRenderingProcessorFv
-    .global __vt__Q28JMessage18TSequenceProcessor
-    __vt__Q28JMessage18TSequenceProcessor:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q28JMessage18TSequenceProcessorFv
-        .4byte do_reset__Q28JMessage10TProcessorFv
-        .4byte do_character__Q28JMessage10TProcessorFi
-        .4byte do_tag__Q28JMessage10TProcessorFUlPCvUl
-        .4byte do_systemTagCode__Q28JMessage10TProcessorFUsPCvUl
-        .4byte do_select_begin__Q28JMessage10TProcessorFUl
-        .4byte do_select_end__Q28JMessage10TProcessorFv
-        .4byte do_select_separate__Q28JMessage10TProcessorFv
-        .4byte do_reset___Q28JMessage18TSequenceProcessorFPCc
-        .4byte do_setBegin_isReady___Q28JMessage18TSequenceProcessorCFv
-        .4byte do_begin___Q28JMessage18TSequenceProcessorFPCvPCc
-        .4byte do_end___Q28JMessage18TSequenceProcessorFv
-        .4byte do_tag___Q28JMessage18TSequenceProcessorFUlPCvUl
-        .4byte do_systemTagCode___Q28JMessage18TSequenceProcessorFUsPCvUl
-        .4byte do_begin__Q28JMessage18TSequenceProcessorFPCvPCc
-        .4byte do_end__Q28JMessage18TSequenceProcessorFv
-        .4byte do_isReady__Q28JMessage18TSequenceProcessorFv
-        .4byte do_jump_isReady__Q28JMessage18TSequenceProcessorFv
-        .4byte do_jump__Q28JMessage18TSequenceProcessorFPCvPCc
-        .4byte do_branch_query__Q28JMessage18TSequenceProcessorFUs
-        .4byte do_branch_queryResult__Q28JMessage18TSequenceProcessorFv
-        .4byte do_branch__Q28JMessage18TSequenceProcessorFPCvPCc
-    .global __vt__Q28JMessage10TProcessor
-    __vt__Q28JMessage10TProcessor:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q28JMessage10TProcessorFv
-        .4byte do_reset__Q28JMessage10TProcessorFv
-        .4byte do_character__Q28JMessage10TProcessorFi
-        .4byte do_tag__Q28JMessage10TProcessorFUlPCvUl
-        .4byte do_systemTagCode__Q28JMessage10TProcessorFUsPCvUl
-        .4byte do_select_begin__Q28JMessage10TProcessorFUl
-        .4byte do_select_end__Q28JMessage10TProcessorFv
-        .4byte do_select_separate__Q28JMessage10TProcessorFv
-        .4byte 0
-        .4byte do_setBegin_isReady___Q28JMessage10TProcessorCFv
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-    .global __vt__Q28JMessage10TReference
-    __vt__Q28JMessage10TReference:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q28JMessage10TReferenceFv
-        .4byte do_word__Q28JMessage10TReferenceCFUl
-*/
+namespace JMessage {
 
 /**
  * @note Address: 0x80006D0C
  * @note Size: 0x48
  */
-JMessage::TReference::~TReference() { }
+TReference::~TReference() { }
 
 /**
  * @note Address: 0x80006D54
  * @note Size: 0x8
  */
-char* JMessage::TReference::do_word(u32) const { return 0x0; }
+char* TReference::do_word(u32) const { return nullptr; }
 
 /**
  * @note Address: 0x80006D5C
  * @note Size: 0x48
  */
-JMessage::TProcessor::~TProcessor() { }
+TProcessor::~TProcessor() { }
 
 /**
  * @note Address: 0x80006DA4
  * @note Size: 0xBC
  * setBegin_messageCode__Q28JMessage10TProcessorFUsUs
  */
-void JMessage::TProcessor::setBegin_messageCode(u16 p1, u16 p2)
+void TProcessor::setBegin_messageCode(u16 groupID, u16 messageIndex)
 {
-	TResource* resource = getResource_groupID(p1);
-	u32 datOffset;
-	if (resource == nullptr) {
-		datOffset = 0;
-	} else {
-		INF1Block* info = resource->mINF1;
-		if (p2 < info->_08) {
-			datOffset = *(u32*)info->_10[p2 * info->_0A];
-		} else {
-			datOffset = 0;
-		}
-	}
-	if (datOffset != 0) {
-		char* dat = (char*)mResourceCache->mDAT1->_00 + datOffset;
-		reset_(dat);
-		do_begin_(&datOffset, dat);
+	const TResource* resource = getResource_groupID(groupID);
+	void* entry               = (resource == nullptr) ? nullptr : resource->getMessageEntry_messageIndex(messageIndex);
+
+	if (entry) {
+		char* text = mResourceCache->getMessageText_messageEntry(entry);
+		reset_(text);
+		do_begin_((const void*)entry, text);
 	}
 	/*
 	stwu     r1, -0x20(r1)
@@ -185,7 +103,7 @@ lbl_80006E44:
  * @note Address: 0x80006E60
  * @note Size: 0x44
  */
-void JMessage::TProcessor::setBegin_messageID(u32 p1, u32 p2, bool* p3)
+void TProcessor::setBegin_messageID(u32 p1, u32 p2, bool* p3)
 {
 	u32 code = toMessageCode_messageID(p1, p2, p3);
 	if (code != 0xFFFFFFFF) {
@@ -198,9 +116,9 @@ void JMessage::TProcessor::setBegin_messageID(u32 p1, u32 p2, bool* p3)
  * @note Size: 0xC0
  * setBegin_messageCode__Q28JMessage10TProcessorFUl
  */
-void JMessage::TProcessor::setBegin_messageCode(u32 p1)
+void TProcessor::setBegin_messageCode(u32 code)
 {
-	setBegin_messageCode(p1 >> 0x10, p1 & 0xFFFF);
+	setBegin_messageCode(code >> 0x10, code & 0xFFFF);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -266,12 +184,12 @@ lbl_80006F48:
  * @note Size: 0x38
  * pushCurrent__Q28JMessage10TProcessorFPCc
  */
-void JMessage::TProcessor::pushCurrent(const char* p1)
+void TProcessor::pushCurrent(const char* newCurrent)
 {
-	if (p1 && mStack.mSize < 4) {
-		mStack.mStack[mStack.mSize + 1] = mCurrent;
+	if (newCurrent && mStack.mSize < 4) {
+		mStack.mStack[mStack.mSize] = mCurrent;
 		mStack.mSize++;
-		mCurrent = p1;
+		mCurrent = newCurrent;
 	}
 }
 
@@ -280,7 +198,7 @@ void JMessage::TProcessor::pushCurrent(const char* p1)
  * @note Size: 0x24
  * popCurrent__Q28JMessage10TProcessorFv
  */
-const char* JMessage::TProcessor::popCurrent()
+const char* TProcessor::popCurrent()
 {
 	// UNUSED FUNCTION
 }
@@ -289,161 +207,49 @@ const char* JMessage::TProcessor::popCurrent()
  * @note Address: 0x80006F64
  * @note Size: 0x80
  */
-JMessage::TResource* JMessage::TProcessor::getResource_groupID(u16) const
+const TResource* TProcessor::getResource_groupID(u16 groupID) const
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r7, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 8(r3)
-	cmplwi   r3, 0
-	beq      lbl_80006FA0
-	lwz      r5, 0xc(r3)
-	clrlwi   r6, r4, 0x10
-	lhz      r0, 0xc(r5)
-	cmplw    r6, r0
-	bne      lbl_80006FA0
-	li       r7, 1
+	if (isResourceCache_groupID(groupID)) {
+		return mResourceCache;
+	}
 
-lbl_80006FA0:
-	clrlwi.  r0, r7, 0x18
-	beq      lbl_80006FAC
-	b        lbl_80006FD0
-
-lbl_80006FAC:
-	lwz      r3, 4(r31)
-	lwz      r3, 4(r3)
-	cmplwi   r3, 0
-	bne      lbl_80006FC4
-	li       r3, 0
-	b        lbl_80006FCC
-
-lbl_80006FC4:
-	addi     r3, r3, 8
-	bl       Get_groupID__Q38JMessage18TResourceContainer10TCResourceFUs
-
-lbl_80006FCC:
-	stw      r3, 8(r31)
-
-lbl_80006FD0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	// Is there another way to do this?
+	((TProcessor*)this)->mResourceCache = getResource_groupID_uncached(groupID);
+	return mResourceCache;
 }
 
 /**
  * @note Address: 0x80006FE4
  * @note Size: 0x150
  */
-u32 JMessage::TProcessor::toMessageCode_messageID(u32, u32, bool*) const
+u32 TProcessor::toMessageCode_messageID(u32 p1, u32 p2, bool* p3) const
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x70(r1)
-	  mflr      r0
-	  stw       r0, 0x74(r1)
-	  stmw      r26, 0x58(r1)
-	  mr        r31, r3
-	  lwz       r29, 0x8(r3)
-	  mr        r26, r4
-	  mr        r27, r5
-	  mr        r28, r6
-	  cmplwi    r29, 0
-	  beq-      .loc_0x58
-	  mr        r3, r29
-	  bl        -0xC50
-	  mr        r4, r3
-	  rlwinm    r0,r3,0,16,31
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0x58
-	  lwz       r3, 0xC(r29)
-	  lhz       r0, 0xC(r3)
-	  rlwinm    r3,r0,16,0,15
-	  rlwimi    r3,r4,0,16,31
-	  b         .loc_0x13C
+	const TResource* resource = mResourceCache;
+	u16 index;
+	if (resource) {
+		index = resource->toMessageIndex_messageID(p1, p2, p3);
+		if (index != 0xFFFF) {
+			return index | (resource->getGroupID() << 16);
+		}
+	}
+	TResourceContainer* container = getResourceContainer();
+	if (container == nullptr) {
+		return -1;
+	}
 
-	.loc_0x58:
-	  lwz       r3, 0x4(r31)
-	  cmplwi    r3, 0
-	  bne-      .loc_0x6C
-	  li        r3, 0
-	  b         .loc_0x70
-
-	.loc_0x6C:
-	  lwz       r3, 0x4(r3)
-
-	.loc_0x70:
-	  cmplwi    r3, 0
-	  bne-      .loc_0x80
-	  li        r3, -0x1
-	  b         .loc_0x13C
-
-	.loc_0x80:
-	  lwzu      r0, 0xC(r3)
-	  stw       r3, 0x24(r1)
-	  stw       r3, 0x20(r1)
-	  stw       r3, 0x3C(r1)
-	  stw       r3, 0x38(r1)
-	  stw       r3, 0x1C(r1)
-	  stw       r3, 0x4C(r1)
-	  stw       r3, 0x48(r1)
-	  stw       r0, 0x18(r1)
-	  stw       r0, 0x14(r1)
-	  stw       r0, 0x34(r1)
-	  stw       r0, 0x30(r1)
-	  stw       r0, 0x10(r1)
-	  stw       r0, 0x44(r1)
-	  stw       r0, 0x40(r1)
-	  stw       r0, 0x50(r1)
-	  stw       r3, 0x54(r1)
-	  b         .loc_0x118
-
-	.loc_0xC8:
-	  lwz       r30, 0x50(r1)
-	  lwz       r0, 0x0(r30)
-	  cmplw     r30, r29
-	  stw       r0, 0x50(r1)
-	  beq-      .loc_0x118
-	  mr        r3, r30
-	  mr        r4, r26
-	  mr        r5, r27
-	  mr        r6, r28
-	  bl        -0xD0C
-	  mr        r4, r3
-	  rlwinm    r0,r3,0,16,31
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0x118
-	  lwz       r3, 0xC(r30)
-	  stw       r30, 0x8(r31)
-	  lhz       r0, 0xC(r3)
-	  rlwinm    r3,r0,16,0,15
-	  rlwimi    r3,r4,0,16,31
-	  b         .loc_0x13C
-
-	.loc_0x118:
-	  lwz       r3, 0x54(r1)
-	  lwz       r0, 0x50(r1)
-	  stw       r3, 0x2C(r1)
-	  cmplw     r0, r3
-	  stw       r0, 0x28(r1)
-	  stw       r3, 0xC(r1)
-	  stw       r0, 0x8(r1)
-	  bne+      .loc_0xC8
-	  li        r3, -0x1
-
-	.loc_0x13C:
-	  lmw       r26, 0x58(r1)
-	  lwz       r0, 0x74(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x70
-	  blr
-	*/
+	JGadget::TContainerEnumerator_const<TResource, 0> enumerator(container->getResourceContainer());
+	const TResource* newRes;
+	while (enumerator) {
+		newRes = (const TResource*)&(*enumerator);
+		if (newRes != resource) {
+			index = newRes->toMessageIndex_messageID(p1, p2, p3);
+			if (index != 0xFFFF) {
+				((TProcessor*)this)->mResourceCache = newRes;
+				return index | (newRes->getGroupID() << 0x10);
+			}
+		}
+	}
+	return -1;
 }
 
 /**
@@ -451,8 +257,17 @@ u32 JMessage::TProcessor::toMessageCode_messageID(u32, u32, bool*) const
  * @note Size: 0xB4
  * on_select_begin__Q28JMessage10TProcessorFPFPQ28JMessage10TProcessor_PCcPCvPCcUl
  */
-unknown JMessage::TProcessor::on_select_begin(OnSelectBeginCallBack* p1, const char* p2, const void* p3, const char* p4, u32 p5)
+unknown TProcessor::on_select_begin(ProcessOnSelectCallBack selectCallback, const char* offset, const void* base, const char* p4, u32 code)
 {
+	if (mStack.mSize < 4) {
+		mProcess.reset_select();
+		mProcess.mData.mSelectCallback = selectCallback;
+		mProcess.mData.mBase           = (char*)base;
+		mProcess.mData.mOffset         = offset;
+		mProcess.mData.mRest           = code;
+		pushCurrent(process_onSelect_(this));
+		do_select_begin(code);
+	}
 	// UNUSED FUNCTION
 }
 
@@ -461,7 +276,7 @@ unknown JMessage::TProcessor::on_select_begin(OnSelectBeginCallBack* p1, const c
  * @note Size: 0x58
  * on_select_end__Q28JMessage10TProcessorFv
  */
-unknown JMessage::TProcessor::on_select_end()
+unknown TProcessor::on_select_end()
 {
 	// UNUSED FUNCTION
 }
@@ -471,7 +286,7 @@ unknown JMessage::TProcessor::on_select_end()
  * @note Size: 0x9C
  * on_select_separate__Q28JMessage10TProcessorFv
  */
-unknown JMessage::TProcessor::on_select_separate()
+unknown TProcessor::on_select_separate()
 {
 	// UNUSED FUNCTION
 }
@@ -480,50 +295,50 @@ unknown JMessage::TProcessor::on_select_separate()
  * @note Address: 0x80007134
  * @note Size: 0x4
  */
-void JMessage::TProcessor::do_reset() { }
+void TProcessor::do_reset() { }
 
 /**
  * @note Address: 0x80007138
  * @note Size: 0x4
  */
-void JMessage::TProcessor::do_character(int) { }
+void TProcessor::do_character(int) { }
 
 /**
  * @note Address: 0x8000713C
  * @note Size: 0x8
  */
-bool JMessage::TProcessor::do_tag(u32, const void*, u32) { return false; }
+bool TProcessor::do_tag(u32, const void*, u32) { return false; }
 
 /**
  * @note Address: 0x80007144
  * @note Size: 0x8
  */
-bool JMessage::TProcessor::do_systemTagCode(u16, const void*, u32) { return false; }
+bool TProcessor::do_systemTagCode(u16, const void*, u32) { return false; }
 
 /**
  * @note Address: 0x8000714C
  * @note Size: 0x4
  */
-void JMessage::TProcessor::do_select_begin(u32) { }
+void TProcessor::do_select_begin(u32) { }
 
 /**
  * @note Address: 0x80007150
  * @note Size: 0x4
  */
-void JMessage::TProcessor::do_select_end() { }
+void TProcessor::do_select_end() { }
 
 /**
  * @note Address: 0x80007154
  * @note Size: 0x4
  */
-void JMessage::TProcessor::do_select_separate() { }
+void TProcessor::do_select_separate() { }
 
 /**
  * @note Address: 0x80007158
  * @note Size: 0x64
  * reset___Q28JMessage10TProcessorFPCc
  */
-void JMessage::TProcessor::reset_(const char* p1)
+void TProcessor::reset_(const char* p1)
 {
 	mCurrent              = p1;
 	mStack.mSize          = 0;
@@ -537,59 +352,53 @@ void JMessage::TProcessor::reset_(const char* p1)
  * @note Size: 0xB0
  * on_tag___Q28JMessage10TProcessorFv
  */
-unknown JMessage::TProcessor::on_tag_()
+void TProcessor::on_tag_()
 {
-	// UNUSED FUNCTION
+	// this is very funky and wrong
+	u8* psz = (u8*)getCurrent();
+	u8 size = mCurrent[0];
+
+	mCurrent = size + (char*)psz + -1;
+
+	u32 tag = (psz[1] << 0x8) | psz[2];
+	tag <<= 8;
+	tag |= psz[3];
+
+	on_tag(tag, &psz[4], size - 5);
 }
 
 /**
  * @note Address: 0x800071BC
  * @note Size: 0x8
  */
-bool JMessage::TProcessor::do_setBegin_isReady_() const { return true; }
+bool TProcessor::do_setBegin_isReady_() const { return true; }
 
 /**
  * @note Address: 0x800071C4
  * @note Size: 0x260
  * do_tag___Q28JMessage10TProcessorFUlPCvUl
  */
-bool JMessage::TProcessor::do_tag_(u32 p1, const void* p2, u32 p3)
+bool TProcessor::do_tag_(u32 tag, const void* data, u32 size)
 {
-	u8 v1  = p1 >> 0x10 & 0xFF;
-	u16 v2 = p1 & 0xFFFF;
-	switch (v1) {
-	case 0xFD:
-		pushCurrent(on_message_limited(v2));
-		break;
-	case 0xF6:
-		if (mStack.mSize < 4) {
-			mProcess.mEndCallback          = &process_onCharacterEnd_select_;
-			mProcess.mData.mSelectCallback = &process_onSelect_limited_;
-			mProcess.mData.mBase           = (char*)p2 + p3;
-			mProcess.mData.mOffset         = (char*)p2;
-			mProcess.mData.mRest           = v2;
-			pushCurrent(process_onSelect_limited_(this));
-			do_select_begin(v2);
-		}
-		break;
-	case 0xF5:
-		if (mStack.mSize < 4) {
-			mProcess.mEndCallback          = &process_onCharacterEnd_select_;
-			mProcess.mData.mSelectCallback = &process_onSelect_;
-			mProcess.mData.mBase           = (char*)p2 + p3;
-			mProcess.mData.mOffset         = (char*)p2;
-			mProcess.mData.mRest           = v2;
-			pushCurrent(process_onSelect_(this));
-			do_select_begin(v2);
-		}
-		break;
+	u32 group = data::getTagGroup(tag);
+	u16 code  = data::getTagCode(tag);
+	switch (group) {
 	case 0xFF:
-		if (do_systemTagCode(v2, p2, p3) == false) {
-			do_systemTagCode_(v2, p2, p3);
+		if (do_systemTagCode(code, data, size) == false) {
+			do_systemTagCode_(code, data, size);
 		}
 		break;
 	case 0xFE:
-		pushCurrent(mReference->do_word(v2));
+		pushCurrent(mReference->do_word(code));
+		break;
+	case 0xFD:
+		pushCurrent(on_message_limited(code));
+		break;
+	case 0xF6:
+		on_select_begin(&process_onSelect_limited_, (char*)data, (char*)data + size, nullptr, code);
+		break;
+	case 0xF5:
+		on_select_begin(&process_onSelect_, (char*)data, (char*)data + size, nullptr, code);
 		break;
 	default:
 		break;
@@ -778,44 +587,14 @@ lbl_80007404:
  * @note Address: 0x80007424
  * @note Size: 0x50
  */
-char* JMessage::TProcessor::on_message_limited(u16) const
-{
-	/*
-	lwz      r3, 8(r3)
-	clrlwi   r5, r4, 0x10
-	lwz      r4, 0xc(r3)
-	lhz      r0, 8(r4)
-	cmplw    r5, r0
-	bge      lbl_80007450
-	lhz      r0, 0xa(r4)
-	mullw    r0, r5, r0
-	add      r4, r4, r0
-	addi     r4, r4, 0x10
-	b        lbl_80007454
-
-lbl_80007450:
-	li       r4, 0
-
-lbl_80007454:
-	cmplwi   r4, 0
-	bne      lbl_80007464
-	li       r3, 0
-	blr
-
-lbl_80007464:
-	lwz      r3, 0x10(r3)
-	lwz      r0, 0(r4)
-	add      r3, r3, r0
-	blr
-	*/
-}
+const char* TProcessor::on_message_limited(u16 messageIndex) const { return mResourceCache->getMessageText_messageIndex(messageIndex); }
 
 /**
  * @note Address: 0x80007474
  * @note Size: 0xD0
  * do_systemTagCode___Q28JMessage10TProcessorFUsPCvUl
  */
-void JMessage::TProcessor::do_systemTagCode_(u16 p1, const void* p2, u32 p3)
+void TProcessor::do_systemTagCode_(u16 p1, const void* p2, u32 p3)
 {
 	switch (p1) {
 	case 4:
@@ -824,76 +603,7 @@ void JMessage::TProcessor::do_systemTagCode_(u16 p1, const void* p2, u32 p3)
 	case 5:
 		pushCurrent(on_message(*(u32*)p2));
 		break;
-	case 0:
-	case 1:
-	case 2:
-	case 3:
-	default:
-		break;
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  rlwinm    r0,r4,0,16,31
-	  cmpwi     r0, 0x5
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  beq-      .loc_0x80
-	  bge-      .loc_0xBC
-	  cmpwi     r0, 0x4
-	  bge-      .loc_0x30
-	  b         .loc_0xBC
-
-	.loc_0x30:
-	  lwz       r3, 0x4(r31)
-	  lwz       r4, 0x0(r5)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r3, 0
-	  beq-      .loc_0xBC
-	  lwz       r0, 0x10(r31)
-	  cmplwi    r0, 0x4
-	  bge-      .loc_0xBC
-	  rlwinm    r0,r0,2,0,29
-	  lwz       r5, 0xC(r31)
-	  add       r4, r31, r0
-	  stw       r5, 0x14(r4)
-	  lwz       r4, 0x10(r31)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x10(r31)
-	  stw       r3, 0xC(r31)
-	  b         .loc_0xBC
-
-	.loc_0x80:
-	  lwz       r4, 0x0(r5)
-	  bl        .loc_0xD0
-	  cmplwi    r3, 0
-	  beq-      .loc_0xBC
-	  lwz       r0, 0x10(r31)
-	  cmplwi    r0, 0x4
-	  bge-      .loc_0xBC
-	  rlwinm    r0,r0,2,0,29
-	  lwz       r5, 0xC(r31)
-	  add       r4, r31, r0
-	  stw       r5, 0x14(r4)
-	  lwz       r4, 0x10(r31)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x10(r31)
-	  stw       r3, 0xC(r31)
-
-	.loc_0xBC:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0xD0:
-	*/
 }
 
 /**
@@ -901,95 +611,22 @@ void JMessage::TProcessor::do_systemTagCode_(u16 p1, const void* p2, u32 p3)
  * @note Size: 0x20
  * on_message__Q28JMessage10TProcessorCFUl
  */
-char* JMessage::TProcessor::on_message(u32 p1) const { return getMessageText_messageCode(p1); }
+char* TProcessor::on_message(u32 code) const { return getMessageText_messageCode(code); }
 
 /**
  * @note Address: 0x80007564
  * @note Size: 0xEC
  */
-char* JMessage::TProcessor::getMessageText_messageCode(u32) const
+char* TProcessor::getMessageText_messageCode(u32 tag) const
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r6, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 8(r3)
-	stw      r30, 8(r1)
-	mr       r30, r4
-	cmplwi   r3, 0
-	beq      lbl_800075A8
-	lwz      r4, 0xc(r3)
-	srwi     r5, r30, 0x10
-	lhz      r0, 0xc(r4)
-	cmplw    r5, r0
-	bne      lbl_800075A8
-	li       r6, 1
+	const TResource* resource = getResource_groupID(tag >> 16);
+	void* entry               = (resource == nullptr) ? nullptr : resource->getMessageEntry_messageIndex(data::getTagCode(tag));
 
-lbl_800075A8:
-	clrlwi.  r0, r6, 0x18
-	beq      lbl_800075B4
-	b        lbl_800075DC
+	if (!entry) {
+		return nullptr;
+	}
 
-lbl_800075B4:
-	lwz      r3, 4(r31)
-	lwz      r3, 4(r3)
-	cmplwi   r3, 0
-	bne      lbl_800075CC
-	li       r3, 0
-	b        lbl_800075D8
-
-lbl_800075CC:
-	srwi     r4, r30, 0x10
-	addi     r3, r3, 8
-	bl       Get_groupID__Q38JMessage18TResourceContainer10TCResourceFUs
-
-lbl_800075D8:
-	stw      r3, 8(r31)
-
-lbl_800075DC:
-	cmplwi   r3, 0
-	bne      lbl_800075EC
-	li       r4, 0
-	b        lbl_80007618
-
-lbl_800075EC:
-	lwz      r4, 0xc(r3)
-	clrlwi   r3, r30, 0x10
-	lhz      r0, 8(r4)
-	cmplw    r3, r0
-	bge      lbl_80007614
-	lhz      r0, 0xa(r4)
-	mullw    r0, r3, r0
-	add      r4, r4, r0
-	addi     r4, r4, 0x10
-	b        lbl_80007618
-
-lbl_80007614:
-	li       r4, 0
-
-lbl_80007618:
-	cmplwi   r4, 0
-	bne      lbl_80007628
-	li       r3, 0
-	b        lbl_80007638
-
-lbl_80007628:
-	lwz      r3, 8(r31)
-	lwz      r0, 0(r4)
-	lwz      r3, 0x10(r3)
-	add      r3, r3, r0
-
-lbl_80007638:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return mResourceCache->getMessageText_messageEntry(entry);
 }
 
 /**
@@ -997,20 +634,41 @@ lbl_80007638:
  * @note Size: 0x154
  * process_character___Q28JMessage10TProcessorFv
  */
-unknown JMessage::TProcessor::process_character_()
+bool TProcessor::process_character_()
 {
-	// UNUSED FUNCTION
+	u32 character = mCurrent[0];
+
+	switch (character) {
+	case 0:
+		if (!mProcess.mEndCallback(this)) {
+			return false;
+		}
+		break;
+	case 26:
+		on_tag_(); // this is wrong
+		break;
+	default:
+		if (mReference->mResource->isLeadByte(character)) {
+			mCurrent++;
+			character <<= 8;
+			character |= ((u8*)mCurrent)[0];
+		}
+		mCurrent++;
+		on_character(character);
+	}
+
+	return true;
 }
 
 /**
  * @note Address: 0x80007650
  * @note Size: 0x60
  */
-bool JMessage::TProcessor::process_onCharacterEnd_normal_(JMessage::TProcessor* processor)
+bool TProcessor::process_onCharacterEnd_normal_(TProcessor* processor)
 {
 	u32 offset = processor->mStack.mSize;
 	if (offset != 0) {
-		processor->mCurrent = (const char*)processor->mStack.mStack[0];
+		processor->mCurrent = processor->mStack.getTop();
 		processor->mStack.mSize--;
 		return true;
 	} else {
@@ -1023,23 +681,23 @@ bool JMessage::TProcessor::process_onCharacterEnd_normal_(JMessage::TProcessor* 
  * @note Address: 0x800076B0
  * @note Size: 0xFC
  */
-bool JMessage::TProcessor::process_onCharacterEnd_select_(JMessage::TProcessor* processor)
+bool TProcessor::process_onCharacterEnd_select_(TProcessor* processor)
 {
 	processor->mProcess.mData.mRest--;
 	if (processor->mProcess.mData.mRest != 0) {
-		processor->mCurrent = processor->mStack.mStack[processor->mStack.mSize];
+		processor->mCurrent = processor->mStack.getTop();
 		processor->mStack.mSize--;
-		bool processedResult = processor->mProcess.mEndCallback(processor);
+		const char* processedResult = processor->mProcess.mData.mSelectCallback(processor);
 		if (processedResult != nullptr && processor->mStack.mSize < 4) {
-			processor->mStack.mStack[processor->mStack.mSize + 1] = processor->mCurrent;
+			processor->mStack.mStack[processor->mStack.mSize] = processor->mCurrent;
 			processor->mStack.mSize++;
-			processor->mCurrent = (char*)processedResult;
+			processor->mCurrent = processedResult;
 		}
 		processor->do_select_separate();
 		return true;
 	} else {
 		processor->mProcess.mEndCallback = &process_onCharacterEnd_normal_;
-		processor->mCurrent              = processor->mStack.mStack[processor->mStack.mSize];
+		processor->mCurrent              = processor->mStack.getTop();
 		processor->mStack.mSize--;
 		processor->do_select_end();
 		return true;
@@ -1050,10 +708,11 @@ bool JMessage::TProcessor::process_onCharacterEnd_select_(JMessage::TProcessor* 
  * @note Address: 0x800077AC
  * @note Size: 0x1C
  */
-const char* JMessage::TProcessor::process_onSelect_limited_(JMessage::TProcessor* processor)
+const char* TProcessor::process_onSelect_limited_(TProcessor* processor)
 {
-	u16 next = *(u16*)processor->mProcess.mData.mRest;
-	processor->mProcess.mData.mRest++;
+
+	u32 next                          = *(u16*)processor->mProcess.mData.mOffset;
+	processor->mProcess.mData.mOffset = (void*)((u8*)processor->mProcess.mData.mOffset + 2);
 	return processor->mProcess.mData.mBase + next;
 	/*
 	lwz      r5, 0x30(r3)
@@ -1071,10 +730,10 @@ const char* JMessage::TProcessor::process_onSelect_limited_(JMessage::TProcessor
  * @note Size: 0x1C
  * process_onSelect___Q28JMessage10TProcessorFPQ28JMessage10TProcessor
  */
-const char* JMessage::TProcessor::process_onSelect_(JMessage::TProcessor* processor)
+const char* TProcessor::process_onSelect_(TProcessor* processor)
 {
-	u16 next = *(u16*)processor->mProcess.mData.mRest;
-	processor->mProcess.mData.mRest++;
+	u32 next                          = *(u32*)processor->mProcess.mData.mOffset;
+	processor->mProcess.mData.mOffset = (void*)((u8*)processor->mProcess.mData.mOffset + 4);
 	return processor->mProcess.mData.mBase + next;
 	/*
 	lwz      r5, 0x30(r3)
@@ -1092,7 +751,7 @@ const char* JMessage::TProcessor::process_onSelect_(JMessage::TProcessor* proces
  * @note Size: 0x34
  * toString_status__Q28JMessage18TSequenceProcessorFi
  */
-const char* JMessage::TSequenceProcessor::toString_status(int)
+const char* TSequenceProcessor::toString_status(int)
 {
 	// UNUSED FUNCTION
 }
@@ -1102,7 +761,7 @@ const char* JMessage::TSequenceProcessor::toString_status(int)
  * @note Size: 0x30
  * toValue_status__Q28JMessage18TSequenceProcessorFPCc
  */
-int JMessage::TSequenceProcessor::toValue_status(const char*)
+int TSequenceProcessor::toValue_status(const char*)
 {
 	// UNUSED FUNCTION
 }
@@ -1111,73 +770,74 @@ int JMessage::TSequenceProcessor::toValue_status(const char*)
  * @note Address: 0x800077E4
  * @note Size: 0x44
  */
-JMessage::TSequenceProcessor::TSequenceProcessor(const JMessage::TReference*, JMessage::TControl*)
+TSequenceProcessor::TSequenceProcessor(const TReference* ref, TControl* control)
+    : TProcessor(ref)
+    , mControl(control)
+    , mStatus(STATUS_Ready)
 {
-	/*
-	.loc_0x0:
-	  lis       r8, 0x804A
-	  lis       r7, 0x8000
-	  subi      r0, r8, 0x1BF8
-	  lis       r6, 0x804A
-	  stw       r0, 0x0(r3)
-	  li        r8, 0
-	  addi      r7, r7, 0x7650
-	  subi      r0, r6, 0x1C58
-	  stw       r4, 0x4(r3)
-	  stw       r8, 0x8(r3)
-	  stw       r8, 0xC(r3)
-	  stw       r8, 0x10(r3)
-	  stw       r7, 0x24(r3)
-	  stw       r0, 0x0(r3)
-	  stw       r5, 0x38(r3)
-	  stw       r8, 0x3C(r3)
-	  blr
-	*/
 }
 
 /**
  * @note Address: 0x80007828
  * @note Size: 0x5C
  */
-JMessage::TSequenceProcessor::~TSequenceProcessor()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_8000786C
-	lis      r3, __vt__Q28JMessage18TSequenceProcessor@ha
-	addi     r0, r3, __vt__Q28JMessage18TSequenceProcessor@l
-	stw      r0, 0(r31)
-	beq      lbl_8000785C
-	lis      r3, __vt__Q28JMessage10TProcessor@ha
-	addi     r0, r3, __vt__Q28JMessage10TProcessor@l
-	stw      r0, 0(r31)
-
-lbl_8000785C:
-	extsh.   r0, r4
-	ble      lbl_8000786C
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_8000786C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+TSequenceProcessor::~TSequenceProcessor() { }
 
 /**
  * @note Address: 0x80007884
  * @note Size: 0x278
  */
-char* JMessage::TSequenceProcessor::process(const char*)
+const char* TSequenceProcessor::process(const char* p1)
 {
+	do {
+		switch (mStatus) {
+		case STATUS_Normal:
+			break;
+		case STATUS_Jump:
+			if (!on_jump_isReady()) {
+				return mCurrent;
+			}
+
+			mStatus          = STATUS_Normal;
+			const void* data = mProc.mJumpProc.mJumpFunc(this);
+			if (data != nullptr) {
+				on_jump(data, mControl->getMessageText_begin());
+			}
+			break;
+		case STATUS_Branch:
+			u32 tmp = on_branch_queryResult();
+			if (tmp > 0xFFFF) {
+				switch (tmp) {
+				case -1:
+					return mCurrent;
+				case -2:
+					mStatus = STATUS_Normal;
+					break;
+				}
+			} else {
+				mStatus = STATUS_Normal;
+
+				if (tmp < mProc.mBranchProc.mTarget) {
+					const void* data = mProc.mBranchProc.mBranchFunc(this, tmp);
+					if (data != nullptr) {
+						on_branch(data, mControl->getMessageText_begin());
+					}
+				}
+			}
+			break;
+		}
+
+		if (mCurrent == p1) {
+			on_end();
+			return nullptr;
+		}
+
+		if (!on_isReady()) {
+			return mCurrent;
+		}
+	} while (process_character_()); // inlines here need fixing
+
+	return nullptr;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1380,30 +1040,14 @@ lbl_80007AE8:
  * @note Address: 0x80007AFC
  * @note Size: 0x2C
  */
-bool JMessage::TSequenceProcessor::on_isReady()
-{
-	return do_isReady();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x48(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool TSequenceProcessor::on_isReady() { return do_isReady(); }
 
 /**
  * @note Address: N/A
  * @note Size: 0x14
  * on_jump_register__Q28JMessage18TSequenceProcessorFPFPCQ28JMessage18TSequenceProcessor_PCvUl
  */
-unknown JMessage::TSequenceProcessor::on_jump_register(OnJumpRegisterCallBack*, const void*, u32)
+unknown TSequenceProcessor::on_jump_register(OnJumpRegisterCallBack*, const void*, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -1412,30 +1056,14 @@ unknown JMessage::TSequenceProcessor::on_jump_register(OnJumpRegisterCallBack*, 
  * @note Address: 0x80007B28
  * @note Size: 0x2C
  */
-void JMessage::TSequenceProcessor::on_jump_isReady()
-{
-	do_jump_isReady();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x4c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool TSequenceProcessor::on_jump_isReady() { return do_jump_isReady(); }
 
 /**
  * @note Address: 0x80007B54
  * @note Size: 0x9C
  * on_jump__Q28JMessage18TSequenceProcessorFPCvPCc
  */
-void JMessage::TSequenceProcessor::on_jump(const void* p1, const char* p2)
+void TSequenceProcessor::on_jump(const void* p1, const char* p2)
 {
 	mCurrent              = p2;
 	mStack.mSize          = 0;
@@ -1450,7 +1078,7 @@ void JMessage::TSequenceProcessor::on_jump(const void* p1, const char* p2)
  * @note Size: 0x10
  * on_branch_register__Q28JMessage18TSequenceProcessorFPFPCQ28JMessage18TSequenceProcessorUl_PCvPCvUl
  */
-unknown JMessage::TSequenceProcessor::on_branch_register(OnBranchRegisterCallBack*, const void*, const void*, u32)
+unknown TSequenceProcessor::on_branch_register(OnBranchRegisterCallBack*, const void*, const void*, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -1460,7 +1088,7 @@ unknown JMessage::TSequenceProcessor::on_branch_register(OnBranchRegisterCallBac
  * @note Size: 0x34
  * on_branch_query__Q28JMessage18TSequenceProcessorFUs
  */
-unknown JMessage::TSequenceProcessor::on_branch_query(u16)
+unknown TSequenceProcessor::on_branch_query(u16)
 {
 	// UNUSED FUNCTION
 }
@@ -1469,14 +1097,14 @@ unknown JMessage::TSequenceProcessor::on_branch_query(u16)
  * @note Address: 0x80007BF0
  * @note Size: 0x2C
  */
-void JMessage::TSequenceProcessor::on_branch_queryResult() { do_branch_queryResult(); }
+int TSequenceProcessor::on_branch_queryResult() { return do_branch_queryResult(); }
 
 /**
  * @note Address: 0x80007C1C
  * @note Size: 0x9C
  * on_branch__Q28JMessage18TSequenceProcessorFPCvPCc
  */
-void JMessage::TSequenceProcessor::on_branch(const void* p1, const char* p2)
+void TSequenceProcessor::on_branch(const void* p1, const char* p2)
 {
 	mCurrent              = p2;
 	mStack.mSize          = 0;
@@ -1490,65 +1118,60 @@ void JMessage::TSequenceProcessor::on_branch(const void* p1, const char* p2)
  * @note Address: 0x80007CB8
  * @note Size: 0x4
  */
-void JMessage::TSequenceProcessor::do_begin(const void*, const char*) { }
+void TSequenceProcessor::do_begin(const void*, const char*) { }
 
 /**
  * @note Address: 0x80007CBC
  * @note Size: 0x4
  */
-void JMessage::TSequenceProcessor::do_end() { }
+void TSequenceProcessor::do_end() { }
 
 /**
  * @note Address: 0x80007CC0
  * @note Size: 0x8
  */
-bool JMessage::TSequenceProcessor::do_isReady() { return true; }
+bool TSequenceProcessor::do_isReady() { return true; }
 
 /**
  * @note Address: 0x80007CC8
  * @note Size: 0x8
  */
-bool JMessage::TSequenceProcessor::do_jump_isReady() { return true; }
+bool TSequenceProcessor::do_jump_isReady() { return true; }
 
 /**
  * @note Address: 0x80007CD0
  * @note Size: 0x4
  */
-void JMessage::TSequenceProcessor::do_jump(const void*, const char*) { }
+void TSequenceProcessor::do_jump(const void*, const char*) { }
 
 /**
  * @note Address: 0x80007CD4
  * @note Size: 0x4
  */
-void JMessage::TSequenceProcessor::do_branch_query(u16) { }
+void TSequenceProcessor::do_branch_query(u16) { }
 
 /**
  * @note Address: 0x80007CD8
  * @note Size: 0x8
  */
-int JMessage::TSequenceProcessor::do_branch_queryResult() { return -0x2; }
+int TSequenceProcessor::do_branch_queryResult() { return -0x2; }
 
 /**
  * @note Address: 0x80007CE0
  * @note Size: 0x4
  */
-void JMessage::TSequenceProcessor::do_branch(const void*, const char*) { }
+void TSequenceProcessor::do_branch(const void*, const char*) { }
 
 /**
  * @note Address: 0x80007CE4
  * @note Size: 0x1C
  */
-void JMessage::TSequenceProcessor::do_reset_(const char*)
+void TSequenceProcessor::do_reset_(const char* p1)
 {
-	/*
-	li       r0, 0
-	cmplwi   r4, 0
-	stw      r0, 0x3c(r3)
-	beqlr
-	li       r0, 2
-	stw      r0, 0x3c(r3)
-	blr
-	*/
+	mStatus = STATUS_Ready;
+	if (p1) {
+		mStatus = STATUS_Normal;
+	}
 }
 
 /**
@@ -1556,23 +1179,23 @@ void JMessage::TSequenceProcessor::do_reset_(const char*)
  * @note Size: 0x10
  * do_setBegin_isReady___Q28JMessage18TSequenceProcessorCFv
  */
-bool JMessage::TSequenceProcessor::do_setBegin_isReady_() const { return _3C == 0; }
+bool TSequenceProcessor::do_setBegin_isReady_() const { return mStatus == STATUS_Ready; }
 
 /**
  * @note Address: 0x80007D10
  * @note Size: 0x2C
  * do_begin___Q28JMessage18TSequenceProcessorFPCvPCc
  */
-void JMessage::TSequenceProcessor::do_begin_(const void* p1, const char* p2) { do_begin(p1, p2); }
+void TSequenceProcessor::do_begin_(const void* p1, const char* p2) { do_begin(p1, p2); }
 
 /**
  * @note Address: 0x80007D3C
  * @note Size: 0x34
  * do_end___Q28JMessage18TSequenceProcessorFv
  */
-void JMessage::TSequenceProcessor::do_end_()
+void TSequenceProcessor::do_end_()
 {
-	_3C = 1;
+	mStatus = STATUS_End;
 	do_end();
 }
 
@@ -1580,109 +1203,48 @@ void JMessage::TSequenceProcessor::do_end_()
  * @note Address: 0x80007D70
  * @note Size: 0x140
  */
-bool JMessage::TSequenceProcessor::do_tag_(u32, const void*, u32)
+bool TSequenceProcessor::do_tag_(u32 tag, const void* data, u32 size)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  rlwinm    r7,r4,0,16,31
-	  stw       r0, 0x14(r1)
-	  rlwinm    r0,r4,16,24,31
-	  cmpwi     r0, 0xFA
-	  beq-      .loc_0x7C
-	  bge-      .loc_0x38
-	  cmpwi     r0, 0xF8
-	  beq-      .loc_0xB4
-	  bge-      .loc_0x94
-	  cmpwi     r0, 0xF7
-	  bge-      .loc_0xF0
-	  b         .loc_0x12C
-
-	.loc_0x38:
-	  cmpwi     r0, 0xFC
-	  beq-      .loc_0x48
-	  bge-      .loc_0x12C
-	  b         .loc_0x64
-
-	.loc_0x48:
-	  li        r0, 0x3
-	  lis       r4, 0x8000
-	  stw       r0, 0x3C(r3)
-	  addi      r0, r4, 0x7F14
-	  stw       r0, 0x40(r3)
-	  stw       r7, 0x44(r3)
-	  b         .loc_0x130
-
-	.loc_0x64:
-	  lis       r4, 0x8000
-	  addi      r0, r4, 0x7FE4
-	  stw       r0, 0x40(r3)
-	  stw       r5, 0x44(r3)
-	  stw       r7, 0x48(r3)
-	  b         .loc_0x130
-
-	.loc_0x7C:
-	  lis       r4, 0x8001
-	  subi      r0, r4, 0x7FAC
-	  stw       r0, 0x40(r3)
-	  stw       r5, 0x44(r3)
-	  stw       r7, 0x48(r3)
-	  b         .loc_0x130
-
-	.loc_0x94:
-	  li        r0, 0x4
-	  mr        r4, r7
-	  stw       r0, 0x3C(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x54(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x130
-
-	.loc_0xB4:
-	  lis       r4, 0x8000
-	  addi      r6, r5, 0x2
-	  addi      r0, r4, 0x7FE4
-	  lhz       r5, 0x0(r5)
-	  stw       r0, 0x40(r3)
-	  li        r0, 0x4
-	  mr        r4, r7
-	  stw       r6, 0x44(r3)
-	  stw       r5, 0x48(r3)
-	  stw       r0, 0x3C(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x54(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x130
-
-	.loc_0xF0:
-	  lis       r4, 0x8001
-	  addi      r6, r5, 0x2
-	  subi      r0, r4, 0x7FAC
-	  lhz       r5, 0x0(r5)
-	  stw       r0, 0x40(r3)
-	  li        r0, 0x4
-	  mr        r4, r7
-	  stw       r6, 0x44(r3)
-	  stw       r5, 0x48(r3)
-	  stw       r0, 0x3C(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x54(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x130
-
-	.loc_0x12C:
-	  bl        -0xCD8
-
-	.loc_0x130:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	u32 group = data::getTagGroup(tag);
+	u16 code  = data::getTagCode(tag);
+	switch (group) {
+	case 0xFC:
+		mStatus                   = STATUS_Jump;
+		mProc.mJumpProc.mJumpFunc = &process_onJump_limited_;
+		mProc.mJumpProc.mTarget   = code;
+		break;
+	case 0xFB:
+		mProc.mBranchProc.mBranchFunc = &process_onBranch_limited_;
+		mProc.mBranchProc.mTargetAddr = data;
+		mProc.mBranchProc.mTarget     = code;
+		break;
+	case 0xFA:
+		mProc.mBranchProc.mBranchFunc = &process_onBranch_;
+		mProc.mBranchProc.mTargetAddr = data;
+		mProc.mBranchProc.mTarget     = code;
+		break;
+	case 0xF9:
+		mStatus = STATUS_Branch;
+		do_branch_query(code);
+		break;
+	case 0xF8:
+		mProc.mBranchProc.mBranchFunc = &process_onBranch_limited_;
+		mProc.mBranchProc.mTargetAddr = (const void*)((u32)data + 2);
+		mProc.mBranchProc.mTarget     = *(u16*)(data);
+		mStatus                       = STATUS_Branch;
+		do_branch_query(code);
+		break;
+	case 0xF7:
+		mProc.mBranchProc.mBranchFunc = &process_onBranch_;
+		mProc.mBranchProc.mTargetAddr = (const void*)((u32)data + 2);
+		mProc.mBranchProc.mTarget     = *(u16*)(data);
+		mStatus                       = STATUS_Branch;
+		do_branch_query(code);
+		break;
+	default:
+		TProcessor::do_tag_(tag, data, size);
+		break;
+	}
 }
 
 /**
@@ -1690,13 +1252,13 @@ bool JMessage::TSequenceProcessor::do_tag_(u32, const void*, u32)
  * @note Size: 0x64
  * do_systemTagCode___Q28JMessage18TSequenceProcessorFUsPCvUl
  */
-void JMessage::TSequenceProcessor::do_systemTagCode_(u16 p1, const void* p2, u32 p3)
+void TSequenceProcessor::do_systemTagCode_(u16 p1, const void* p2, u32 p3)
 {
 	switch (p1) {
 	case 6:
-		_3C = 3;
-		_40 = &process_onJump_;
-		_44 = *(u32*)p2;
+		mStatus                   = STATUS_Jump;
+		mProc.mJumpProc.mJumpFunc = &process_onJump_;
+		mProc.mJumpProc.mTarget   = *(u32*)p2;
 		break;
 	case 0:
 	case 1:
@@ -1750,7 +1312,7 @@ void JMessage::TSequenceProcessor::do_systemTagCode_(u16 p1, const void* p2, u32
  * @note Size: 0x18
  * process_setMessageIndex_reserved___Q28JMessage18TSequenceProcessorFUs
  */
-unknown JMessage::TSequenceProcessor::process_setMessageIndex_reserved_(u16)
+unknown TSequenceProcessor::process_setMessageIndex_reserved_(u16)
 {
 	// UNUSED FUNCTION
 }
@@ -1760,7 +1322,7 @@ unknown JMessage::TSequenceProcessor::process_setMessageIndex_reserved_(u16)
  * @note Size: 0x64
  * process_setMessageCode___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUsUs
  */
-unknown JMessage::TSequenceProcessor::process_setMessageCode_(const TSequenceProcessor*, u16, u16)
+unknown TSequenceProcessor::process_setMessageCode_(const TSequenceProcessor*, u16, u16)
 {
 	// UNUSED FUNCTION
 }
@@ -1769,44 +1331,17 @@ unknown JMessage::TSequenceProcessor::process_setMessageCode_(const TSequencePro
  * @note Address: 0x80007F14
  * @note Size: 0x6C
  */
-void JMessage::TSequenceProcessor::process_onJump_limited_(const JMessage::TSequenceProcessor*)
+void* TSequenceProcessor::process_onJump_limited_(const TSequenceProcessor* processor)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lwz       r4, 0x8(r3)
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x44(r3)
-	  stw       r31, 0xC(r1)
-	  rlwinm    r6,r0,0,16,31
-	  lwz       r4, 0xC(r4)
-	  cmplwi    r6, 0xFF00
-	  lhz       r5, 0xC(r4)
-	  blt-      .loc_0x34
-	  li        r3, 0
-	  b         .loc_0x58
+	u16 groupID = processor->mResourceCache->getGroupID();
 
-	.loc_0x34:
-	  lwz       r31, 0x38(r3)
-	  mr        r4, r3
-	  mr        r3, r31
-	  bl        0x900
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x54
-	  li        r3, 0
-	  b         .loc_0x58
+	u16 v1 = processor->mProc.mJumpProc.mTarget & 0xFFFF;
+	if (v1 >= 0xFF00) {
+		return nullptr;
+	}
 
-	.loc_0x54:
-	  lwz       r3, 0x14(r31)
-
-	.loc_0x58:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	TControl* control = processor->mControl;
+	return (!control->setMessageCode_inSequence_(processor, groupID, v1)) ? nullptr : control->mEntry;
 }
 
 /**
@@ -1814,208 +1349,80 @@ void JMessage::TSequenceProcessor::process_onJump_limited_(const JMessage::TSequ
  * @note Size: 0x64
  * process_onJump___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessor
  */
-void* JMessage::TSequenceProcessor::process_onJump_(const JMessage::TSequenceProcessor* processor)
+void* TSequenceProcessor::process_onJump_(const TSequenceProcessor* processor)
 {
-	u16 v1 = processor->_44 & 0xFFFF;
+	u16 v1 = processor->mProc.mJumpProc.mTarget & 0xFFFF;
 	if (v1 >= 0xFF00) {
 		return nullptr;
 	}
-	return processor->_38->setMessageCode_inSequence_(processor, processor->_44 >> 0x10, v1) ? processor->_38->mEntry : nullptr;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x44(r3)
-	  stw       r31, 0xC(r1)
-	  rlwinm    r6,r0,0,16,31
-	  cmplwi    r6, 0xFF00
-	  blt-      .loc_0x28
-	  li        r3, 0
-	  b         .loc_0x50
 
-	.loc_0x28:
-	  lwz       r31, 0x38(r3)
-	  mr        r4, r3
-	  rlwinm    r5,r0,16,16,31
-	  mr        r3, r31
-	  bl        0x89C
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x4C
-	  li        r3, 0
-	  b         .loc_0x50
-
-	.loc_0x4C:
-	  lwz       r3, 0x14(r31)
-
-	.loc_0x50:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	TControl* control = processor->mControl;
+	return (!control->setMessageCode_inSequence_(processor, processor->mProc.mJumpProc.mTarget >> 0x10, v1)) ? nullptr : control->mEntry;
 }
 
 /**
  * @note Address: 0x80007FE4
  * @note Size: 0x70
  */
-void JMessage::TSequenceProcessor::process_onBranch_limited_(const JMessage::TSequenceProcessor*, u32)
+void* TSequenceProcessor::process_onBranch_limited_(const TSequenceProcessor* processor, u32 p2)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lwz       r5, 0x44(r3)
-	  stw       r0, 0x14(r1)
-	  rlwinm    r0,r4,1,0,30
-	  lwz       r4, 0x8(r3)
-	  stw       r31, 0xC(r1)
-	  lhzx      r6, r5, r0
-	  lwz       r4, 0xC(r4)
-	  cmplwi    r6, 0xFF00
-	  lhz       r5, 0xC(r4)
-	  blt-      .loc_0x38
-	  li        r3, 0
-	  b         .loc_0x5C
+	u16 v1      = ((u16*)processor->mProc.mBranchProc.mTargetAddr)[p2];
+	u16 groupID = processor->mResourceCache->getGroupID();
 
-	.loc_0x38:
-	  lwz       r31, 0x38(r3)
-	  mr        r4, r3
-	  mr        r3, r31
-	  bl        0x82C
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x58
-	  li        r3, 0
-	  b         .loc_0x5C
+	if (v1 >= 0xFF00) {
+		return nullptr;
+	}
 
-	.loc_0x58:
-	  lwz       r3, 0x14(r31)
-
-	.loc_0x5C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	TControl* control = processor->mControl;
+	return (!control->setMessageCode_inSequence_(processor, groupID, v1)) ? nullptr : control->mEntry;
 }
 
 /**
  * @note Address: 0x80008054
  * @note Size: 0x6C
  */
-void JMessage::TSequenceProcessor::process_onBranch_(const JMessage::TSequenceProcessor*, u32)
+void* TSequenceProcessor::process_onBranch_(const TSequenceProcessor* processor, u32 p2)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  rlwinm    r0,r4,2,0,29
-	  lwz       r4, 0x44(r3)
-	  stw       r31, 0xC(r1)
-	  lwzx      r0, r4, r0
-	  rlwinm    r6,r0,0,16,31
-	  cmplwi    r6, 0xFF00
-	  blt-      .loc_0x30
-	  li        r3, 0
-	  b         .loc_0x58
+	u16 v1 = ((u32*)processor->mProc.mJumpProc.mTarget)[p2];
 
-	.loc_0x30:
-	  lwz       r31, 0x38(r3)
-	  mr        r4, r3
-	  rlwinm    r5,r0,16,16,31
-	  mr        r3, r31
-	  bl        0x7C0
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x54
-	  li        r3, 0
-	  b         .loc_0x58
+	if (v1 >= 0xFF00) {
+		return nullptr;
+	}
 
-	.loc_0x54:
-	  lwz       r3, 0x14(r31)
-
-	.loc_0x58:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	TControl* control = processor->mControl;
+	return (!control->setMessageCode_inSequence_(processor, ((u32*)processor->mProc.mJumpProc.mTarget)[p2] >> 0x10, v1)) ? nullptr
+	                                                                                                                     : control->mEntry;
 }
 
 /**
  * @note Address: 0x800080C0
  * @note Size: 0x3C
  */
-JMessage::TRenderingProcessor::TRenderingProcessor(const JMessage::TReference*)
+TRenderingProcessor::TRenderingProcessor(const TReference* ref)
+    : TProcessor(ref)
 {
-	/*
-	lis      r7, __vt__Q28JMessage10TProcessor@ha
-	lis      r6,
-	process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha
-	addi     r0, r7, __vt__Q28JMessage10TProcessor@l
-	lis      r5, __vt__Q28JMessage19TRenderingProcessor@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6,
-	process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l
-	addi     r0, r5, __vt__Q28JMessage19TRenderingProcessor@l
-	stw      r4, 4(r3)
-	stw      r7, 8(r3)
-	stw      r7, 0xc(r3)
-	stw      r7, 0x10(r3)
-	stw      r6, 0x24(r3)
-	stw      r0, 0(r3)
-	blr
-	*/
 }
 
 /**
  * @note Address: 0x800080FC
  * @note Size: 0x5C
  */
-JMessage::TRenderingProcessor::~TRenderingProcessor()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80008140
-	lis      r3, __vt__Q28JMessage19TRenderingProcessor@ha
-	addi     r0, r3, __vt__Q28JMessage19TRenderingProcessor@l
-	stw      r0, 0(r31)
-	beq      lbl_80008130
-	lis      r3, __vt__Q28JMessage10TProcessor@ha
-	addi     r0, r3, __vt__Q28JMessage10TProcessor@l
-	stw      r0, 0(r31)
-
-lbl_80008130:
-	extsh.   r0, r4
-	ble      lbl_80008140
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_80008140:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+TRenderingProcessor::~TRenderingProcessor() { }
 
 /**
  * @note Address: 0x80008158
  * @note Size: 0x174
  */
-void JMessage::TRenderingProcessor::process(const char*)
+int TRenderingProcessor::process(const char* p1)
 {
+	do {
+		if (mCurrent == p1) {
+			on_end();
+			return 0;
+		}
+	} while (process_character_()); // this needs fixing
+
+	return 0;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2135,94 +1542,66 @@ lbl_800082B8:
  * @note Address: 0x800082CC
  * @note Size: 0x4
  */
-void JMessage::TRenderingProcessor::do_begin(const void*, const char*) { }
+void TRenderingProcessor::do_begin(const void*, const char*) { }
 
 /**
  * @note Address: 0x800082D0
  * @note Size: 0x4
  */
-void JMessage::TRenderingProcessor::do_end() { }
+void TRenderingProcessor::do_end() { }
 
 /**
  * @note Address: 0x800082D4
  * @note Size: 0x4
  */
-void JMessage::TRenderingProcessor::do_reset_(const char*) { }
+void TRenderingProcessor::do_reset_(const char*) { }
 
 /**
  * @note Address: 0x800082D8
  * @note Size: 0x2C
  * do_begin___Q28JMessage19TRenderingProcessorFPCvPCc
  */
-void JMessage::TRenderingProcessor::do_begin_(const void* p1, const char* p2) { do_begin(p1, p2); }
+void TRenderingProcessor::do_begin_(const void* p1, const char* p2) { do_begin(p1, p2); }
 
 /**
  * @note Address: 0x80008304
  * @note Size: 0x2C
  * do_end___Q28JMessage19TRenderingProcessorFv
  */
-void JMessage::TRenderingProcessor::do_end_() { do_end(); }
+void TRenderingProcessor::do_end_() { do_end(); }
 
 /**
  * @note Address: 0x80008330
  * @note Size: 0x34
  * do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl
  */
-bool JMessage::TRenderingProcessor::do_tag_(u32 p1, const void* p2, u32 p3)
+bool TRenderingProcessor::do_tag_(u32 p1, const void* p2, u32 p3)
 {
-	u8 v1 = p1 >> 0x10 & 0xFF;
-	if ((0xFC < v1) || (v1 < 0xF7)) {
+	int v1 = p1 >> 0x10 & 0xFF;
+	if ((v1 >= 0xFD) || (v1 < 0xF7)) {
 		TProcessor::do_tag_(p1, p2, p3);
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  rlwinm    r0,r4,16,24,31
-	  cmpwi     r0, 0xFD
-	  bge-      .loc_0x20
-	  cmpwi     r0, 0xF7
-	  bge-      .loc_0x24
-
-	.loc_0x20:
-	  bl        -0x118C
-
-	.loc_0x24:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /**
  * @note Address: 0x80008364
  * @note Size: 0x40
  */
-void JMessage::TRenderingProcessor::do_systemTagCode_(u16, const void*, u32)
+void TRenderingProcessor::do_systemTagCode_(u16 p1, const void* p2, u32 p3)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  rlwinm    r0,r4,0,16,31
-	  cmpwi     r0, 0x6
-	  beq-      .loc_0x30
-	  bge-      .loc_0x2C
-	  cmpwi     r0, 0x4
-	  bge-      .loc_0x2C
-	  cmpwi     r0, 0
-	  bge-      .loc_0x30
-
-	.loc_0x2C:
-	  bl        -0xF1C
-
-	.loc_0x30:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	switch (p1) {
+	case 0:
+	case 1:
+	case 2:
+	case 3:
+	case 6:
+		break;
+	case 4:
+	case 5:
+	default:
+		TProcessor::do_systemTagCode_(p1, p2, p3);
+		break;
+	}
 }
+
+} // namespace JMessage

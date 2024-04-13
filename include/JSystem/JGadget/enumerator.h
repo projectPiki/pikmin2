@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "JSystem/JGadget/linklist.h"
+#include "JSystem/JGadget/vector.h"
 
 namespace JGadget {
 template <typename Element>

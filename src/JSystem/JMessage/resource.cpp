@@ -56,7 +56,7 @@
  * @note Address: 0x800063C4
  * @note Size: 0x1E4
  */
-s16 JMessage::TResource::toMessageIndex_messageID(u32, u32, bool*) const
+u16 JMessage::TResource::toMessageIndex_messageID(u32, u32, bool*) const
 {
 	/*
 	.loc_0x0:
@@ -282,11 +282,11 @@ lbl_80006600:
  * @note Address: 0x8000661C
  * @note Size: 0x84
  */
-u16 JMessage::TResourceContainer::TCResource::Get_groupID(u16 id)
+JMessage::TResource* JMessage::TResourceContainer::TCResource::Get_groupID(u16 id)
 {
-	while (id != ((TResource*)mLinkListNode.getNext())->mINF1->getMessageNumber()) {
-		return ((TResource*)mLinkListNode.getNext())->mINF1->getMessageNumber();
-	}
+	// while (id != ((TResource*)mLinkListNode.getNext())->mInfo.getMessageNumber()) {
+	// 	return ((TResource*)mLinkListNode.getNext())->mInfo.getMessageNumber();
+	// }
 	return 0;
 	/*
 	stwu     r1, -0x40(r1)
@@ -350,10 +350,8 @@ void JMessage::TResourceContainer::TCResource::Do_destroy(JMessage::TResource* r
  * @note Size: 0x48
  */
 JMessage::TResourceContainer::TResourceContainer()
-    : _00(0)
+    : mEncoding(0)
     , isLeadByte(nullptr)
-    , _18(0)
-    , _1C(0)
 {
 }
 

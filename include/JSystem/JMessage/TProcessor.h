@@ -64,6 +64,13 @@ struct TProcessor {
 		TProcessData mData;                  // _04
 	};
 
+	TProcessor(const TReference* reference)
+	    : mReference(reference)
+	    , mResourceCache(nullptr)
+	    , mCurrent(nullptr)
+	{
+	}
+
 	virtual ~TProcessor();                                     // _08
 	virtual void do_reset();                                   // _0C
 	virtual void do_character(int);                            // _10
@@ -79,12 +86,12 @@ struct TProcessor {
 	virtual bool do_tag_(u32, const void*, u32)           = 0; // _38
 	virtual void do_systemTagCode_(u16, const void*, u32) = 0; // _3C
 
-	void setBegin_messageCode(u16, u16);
+	void setBegin_messageCode(u16 groupID, u16 messageIndex);
 	void setBegin_messageID(u32, u32, bool*);
 	void setBegin_messageCode(u32); // weak
-	TResource* getResource_groupID(u16) const;
+	const TResource* getResource_groupID(u16) const;
 	u32 toMessageCode_messageID(u32, u32, bool*) const;
-	char* on_message_limited(u16) const;         // weak
+	const char* on_message_limited(u16) const;   // weak
 	char* on_message(u32) const;                 // weak
 	char* getMessageText_messageCode(u32) const; // weak
 	static bool process_onCharacterEnd_normal_(TProcessor*);
@@ -112,18 +119,46 @@ struct TProcessor {
 		return res->getMessageEntry_messageIndex(messageIndex);
 	}
 
+	const TResource* getResource_groupID_uncached(u16 groupID) const { return mReference->getResource_groupID(groupID); }
+
+	bool isResourceCache_groupID(u16 groupID) const { return mResourceCache != nullptr && groupID == mResourceCache->getGroupID(); }
+
 	const TResource* getResourceCache() const { return mResourceCache; }
 	const char* getCurrent() const { return mCurrent; }
 	const TReference* getReference() const { return mReference; }
 
+	TResourceContainer* getResourceContainer() const
+	{
+		if (mReference == nullptr) {
+			return nullptr;
+		}
+
+		return mReference->getResourceContainer();
+	}
+
+	void setResourceCache(TResource* cache) { mResourceCache = cache; }
+	void resetResourceCache() { setResourceCache(nullptr); }
+
+	int on_parseCharacter(int string) const { return mReference->on_parseCharacter(string); }
+	void on_character(int character) { do_character(character); }
+
+	void on_end() { do_end_(); }
+
+	void on_tag(u32 p1, const void* p2, u32 p3)
+	{
+		if (!do_tag(p1, p2, p3)) {
+			do_tag_(p1, p2, p3);
+		}
+	}
+
 	// Unused/inlined:
 	void pushCurrent(const char*);
 	const char* popCurrent();
-	unknown on_select_begin(OnSelectBeginCallBack* p1, const char* p2, const void* p3, const char* p4, u32 p5);
+	unknown on_select_begin(ProcessOnSelectCallBack p1, const char* p2, const void* p3, const char* p4, u32 p5);
 	unknown on_select_end();
 	unknown on_select_separate();
-	unknown on_tag_();
-	unknown process_character_();
+	void on_tag_();
+	bool process_character_();
 
 	// _00 = VTBL
 	const TReference* mReference;    // _04
@@ -134,9 +169,34 @@ struct TProcessor {
 };
 
 struct TSequenceProcessor : public TProcessor {
-	typedef void OnJumpRegisterCallBack(TSequenceProcessor*);
-	typedef void OnBranchRegisterCallBack(TSequenceProcessor*, u32);
-	typedef void* ProcessOnJumpCallBack(const TSequenceProcessor*);
+	typedef void* (*OnJumpRegisterCallBack)(const TSequenceProcessor*);
+	typedef void* (*OnBranchRegisterCallBack)(const TSequenceProcessor*, u32);
+
+	enum SeqStatus {
+		STATUS_Ready,
+		STATUS_End,
+		STATUS_Normal,
+		STATUS_Jump,
+		STATUS_Branch,
+	};
+
+	struct TProcess_ {
+		TProcess_() { reset(); }
+
+		void reset() { }
+
+		union {
+			struct {
+				OnBranchRegisterCallBack mBranchFunc; // _00
+				const void* mTargetAddr;              // _04
+				u32 mTarget;                          // _08
+			} mBranchProc;
+			struct {
+				OnJumpRegisterCallBack mJumpFunc; // _00
+				u32 mTarget;                      // _04
+			} mJumpProc;
+		};
+	};
 
 	TSequenceProcessor(const TReference*, TControl*);
 
@@ -156,16 +216,16 @@ struct TSequenceProcessor : public TProcessor {
 	virtual int do_branch_queryResult();                   // _58
 	virtual void do_branch(const void*, const char*);      // _5C
 
-	char* process(const char*);
+	const char* process(const char*);
 	bool on_isReady();
-	void on_jump_isReady();
+	bool on_jump_isReady();
 	void on_jump(const void*, const char*);
-	void on_branch_queryResult();
+	int on_branch_queryResult();
 	void on_branch(const void*, const char*);
-	void process_onJump_limited_(const TSequenceProcessor*);
+	static void* process_onJump_limited_(const TSequenceProcessor*);
 	static void* process_onJump_(const TSequenceProcessor*);
-	void process_onBranch_limited_(const TSequenceProcessor*, u32);
-	void process_onBranch_(const TSequenceProcessor*, u32);
+	static void* process_onBranch_limited_(const TSequenceProcessor*, u32);
+	static void* process_onBranch_(const TSequenceProcessor*, u32);
 
 	// Unused/inlined:
 	const char* toString_status(int);
@@ -178,11 +238,12 @@ struct TSequenceProcessor : public TProcessor {
 
 	// _00     = VTBL
 	// _00-_38 = TProcessor
-	TControl* _38;              // _38
-	int _3C;                    // _3C
-	ProcessOnJumpCallBack* _40; // _40 - processorCallBack(void*, ulong) pointer?
-	u32 _44;                    // _44
-	u32 _48;                    // _48
+	TControl* mControl; // _38
+	int mStatus;        // _3C
+	TProcess_ mProc;    // _40
+	                    // ProcessOnJumpCallBack* _40; // _40 - processorCallBack(void*, ulong) pointer?
+	                    // u32 _44;                    // _44
+	                    // u32 _48;                    // _48
 };
 
 struct TRenderingProcessor : public TProcessor {
@@ -197,7 +258,7 @@ struct TRenderingProcessor : public TProcessor {
 	virtual void do_begin(const void*, const char*);       // _40
 	virtual void do_end();                                 // _44
 
-	void process(const char*);
+	int process(const char*);
 
 	// _00     = VTBL
 	// _00-_38 = TProcessor
