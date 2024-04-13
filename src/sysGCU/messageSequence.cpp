@@ -1,89 +1,9 @@
-#include "types.h"
 #include "P2JME/TSequenceProcessor.h"
 #include "P2JME/P2JME.h"
 #include "P2Macros.h"
 #include "SoundID.h"
 #include "System.h"
 #include "PSSystem/PSSystemIF.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8049A8B0
-    lbl_8049A8B0:
-        .4byte 0x6D657373
-        .4byte 0x61676553
-        .4byte 0x65717565
-        .4byte 0x6E63652E
-        .4byte 0x63707000
-    .global lbl_8049A8C4
-    lbl_8049A8C4:
-        .asciz "P2Assert"
-        .skip 3
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q25P2JME18TSequenceProcessor
-    __vt__Q25P2JME18TSequenceProcessor:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q25P2JME18TSequenceProcessorFv
-        .4byte do_reset__Q28JMessage10TProcessorFv
-        .4byte do_character__Q25P2JME18TSequenceProcessorFi
-        .4byte do_tag__Q25P2JME18TSequenceProcessorFUlPCvUl
-        .4byte do_systemTagCode__Q25P2JME18TSequenceProcessorFUsPCvUl
-        .4byte do_select_begin__Q28JMessage10TProcessorFUl
-        .4byte do_select_end__Q28JMessage10TProcessorFv
-        .4byte do_select_separate__Q28JMessage10TProcessorFv
-        .4byte do_reset___Q28JMessage18TSequenceProcessorFPCc
-        .4byte do_setBegin_isReady___Q28JMessage18TSequenceProcessorCFv
-        .4byte do_begin___Q28JMessage18TSequenceProcessorFPCvPCc
-        .4byte do_end___Q28JMessage18TSequenceProcessorFv
-        .4byte do_tag___Q28JMessage18TSequenceProcessorFUlPCvUl
-        .4byte do_systemTagCode___Q28JMessage18TSequenceProcessorFUsPCvUl
-        .4byte do_begin__Q25P2JME18TSequenceProcessorFPCvPCc
-        .4byte do_end__Q25P2JME18TSequenceProcessorFv
-        .4byte do_isReady__Q25P2JME18TSequenceProcessorFv
-        .4byte do_jump_isReady__Q25P2JME18TSequenceProcessorFv
-        .4byte do_jump__Q25P2JME18TSequenceProcessorFPCvPCc
-        .4byte do_branch_query__Q25P2JME18TSequenceProcessorFUs
-        .4byte do_branch_queryResult__Q25P2JME18TSequenceProcessorFv
-        .4byte do_branch__Q25P2JME18TSequenceProcessorFPCvPCc
-        .4byte doResetAbtnWaitSE__Q25P2JME18TSequenceProcessorFv
-        .4byte doCharacterSEStart__Q25P2JME18TSequenceProcessorFv
-        .4byte doCharacterSE__Q25P2JME18TSequenceProcessorFi
-        .4byte doCharacterSEEnd__Q25P2JME18TSequenceProcessorFv
-        .4byte doFastForwardSE__Q25P2JME18TSequenceProcessorFv
-        .4byte reset__Q25P2JME18TSequenceProcessorFv
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80520868
-    lbl_80520868:
-        .4byte 0x00000000
-    .global lbl_8052086C
-    lbl_8052086C:
-        .4byte 0x3DE147AE
-    .global lbl_80520870
-    lbl_80520870:
-        .float 1.0
-    .global lbl_80520874
-    lbl_80520874:
-        .4byte 0x41200000
-    .global lbl_80520878
-    lbl_80520878:
-        .4byte 0x40200000
-    .global lbl_8052087C
-    lbl_8052087C:
-        .4byte 0x42C80000
-    .global lbl_80520880
-    lbl_80520880:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_80520888
-    lbl_80520888:
-        .float 0.5
-        .4byte 0x00000000
-*/
 
 namespace P2JME {
 

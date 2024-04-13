@@ -6,6 +6,7 @@
 #include "JSystem/JMessage/TReference.h"
 #include "JSystem/JUtility/TColor.h"
 #include "JSystem/JGeometry.h"
+#include "BitFlag.h"
 
 struct JUTFont;
 struct JUTTexture;
@@ -17,17 +18,17 @@ namespace P2JME {
 struct TRenderingProcessorBase : public JMessage::TRenderingProcessor {
 	TRenderingProcessorBase(const JMessage::TReference* ref);
 
-	virtual ~TRenderingProcessorBase() { }           // _08 (weak)
-	virtual void do_character(int) { }               // _10 (weak)
-	virtual bool do_tag(u32, const void*, u32);      // _14
-	virtual bool tagColor(const void*, u32);         // _48 (weak)
-	virtual bool tagSize(const void*, u32);          // _4C (weak)
-	virtual bool tagRuby(const void*, u32);          // _50 (weak)
-	virtual bool tagFont(const void*, u32);          // _54 (weak)
-	virtual bool tagImage(u16, const void*, u32);    // _58 (weak)
-	virtual bool tagColorEX(u16, const void*, u32);  // _5C (weak)
-	virtual bool tagControl(u16, const void*, u32);  // _60 (weak)
-	virtual bool tagPosition(u16, const void*, u32); // _64 (weak)
+	virtual ~TRenderingProcessorBase() { }                           // _08 (weak)
+	virtual void do_character(int) { }                               // _10 (weak)
+	virtual bool do_tag(u32, const void*, u32);                      // _14
+	virtual bool tagColor(const void*, u32) { return true; }         // _48 (weak)
+	virtual bool tagSize(const void*, u32) { return true; }          // _4C (weak)
+	virtual bool tagRuby(const void*, u32) { return true; }          // _50 (weak)
+	virtual bool tagFont(const void*, u32) { return true; }          // _54 (weak)
+	virtual bool tagImage(u16, const void*, u32) { return true; }    // _58 (weak)
+	virtual bool tagColorEX(u16, const void*, u32) { return true; }  // _5C (weak)
+	virtual bool tagControl(u16, const void*, u32) { return true; }  // _60 (weak)
+	virtual bool tagPosition(u16, const void*, u32) { return true; } // _64 (weak)
 
 	// _00     = VTBL
 	// _00-_38 = JMessage::TRenderingProcessor
@@ -35,6 +36,10 @@ struct TRenderingProcessorBase : public JMessage::TRenderingProcessor {
 
 struct TRenderingProcessor : public TRenderingProcessorBase {
 	TRenderingProcessor(JMessage::TReference const* ref);
+
+	enum Flags {
+		TProcFlag_PageFinished = 0x10000000,
+	};
 
 	virtual ~TRenderingProcessor() { }                         // _08 (weak)
 	virtual void do_character(int);                            // _10
@@ -81,14 +86,15 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 	// these are used for Caption::onInit
 	inline void initFlagsA()
 	{
-		mFlags &= 0xffffff8f;
-		mFlags |= 0x20;
+		mFlags.typeView &= 0xffffff8f;
+		mFlags.typeView |= 0x20;
 	}
 
 	inline void initFlagsB()
 	{
-		mFlags &= 0xfffff8ff;
-		mFlags |= 0x200;
+		// not cooperating with set/unset
+		mFlags.typeView &= 0xfffff8ff;
+		mFlags.typeView |= 0x200;
 	}
 
 	// unused/inlined:
@@ -96,6 +102,7 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 	{
 		mLocate.setX(x);
 		mLocate.setY(y);
+		sizeof(TRenderingProcessor);
 	}
 
 	void setDrawLocateX();
@@ -109,62 +116,69 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 
 	// _00     = VTBL
 	// _00-_38 = JMessage::TRenderingProcessor
-	f32 _38;                        // _38
-	f32 _3C;                        // _3C
-	int _40;                        // _40
-	Matrixf* mMtx1;                 // _44
-	Matrixf* mMtx2;                 // _48
-	JUTFont* mMainFont;             // _4C
-	JUTFont* mRubyFont;             // _50
-	f32 _54;                        // _54
-	f32 _58;                        // _58
-	int _5C;                        // _5C
-	u32 _60;                        // _60
-	JUtility::TColor mColorData[5]; // _64
-	f32 _78;                        // _78
-	JGeometry::TBox2f mMesgBounds;  // _7C
-	u32 mFlags;                     // _8C
-	JGeometry::TBox2f mLocate;      // _90
+	f32 mTextBoxWidth;             // _38
+	f32 mTextBoxHeight;            // _3C
+	int _40;                       // _40
+	Matrixf* mMtx1;                // _44
+	Matrixf* mMtx2;                // _48
+	JUTFont* mMainFont;            // _4C
+	JUTFont* mRubyFont;            // _50
+	f32 _54;                       // _54
+	f32 _58;                       // _58
+	u32 _5C;                       // _5C
+	u32 _60;                       // _60
+	JUtility::TColor mColorData1;  // _64
+	JUtility::TColor mColorData2;  // _68
+	JUtility::TColor mColorData3;  // _6C
+	JUtility::TColor mColorData4;  // _70
+	JUtility::TColor mColorData5;  // _74
+	f32 _78;                       // _78
+	JGeometry::TBox2f mMesgBounds; // _7C
+	BitFlag<u32> mFlags;           // _8C
+	JGeometry::TBox2f mLocate;     // _90
 	// union {
 	// 	u32 u32View;
 	// 	u8 u8View[4];
 	// } _A0;                // _A0
-	u32 _A0;              // _A0
-	u8 mCurrLine;         // _A4
-	u8 _A5;               // _A5
-	u8 mPageInfoNum;      // _A6
-	u8 _A7;               // _A7
-	f32* mLineWidths;     // _A8
-	u8* mOnePageLines;    // _AC
-	u8* mPageInfoCounts;  // _B0
-	f32 _B4;              // _B4
-	s32 _B8;              // _B8
-	f32 _BC;              // _BC
-	f32 _C0;              // _C0
-	f32 _C4;              // _C4
-	f32 _C8;              // _C8
-	JUtility::TColor _CC; // _CC
-	JUtility::TColor _D0; // _D0
-	JUtility::TColor _D4; // _D4
-	JUtility::TColor _D8; // _D8
-	u8 mMatrixType;       // _DC
-	f32 _E0;              // _E0
-	f32 _E4;              // _E4
-	f32 mFontWidth;       // _E8
-	f32 mFontHeight;      // _EC
-	u8 _F0;               // _F0
-	u8 _F1;               // _F1
-	u8 _F2;               // _F2
-	u32 _F4;              // _F4
-	u8 _F8;               // _F8
-	u32 _FC;              // _FC
-	u8* mRubyBuffer;      // _100
-	f32 _104;             // _104
-	f32 _108;             // _108
-	u32 _10C;             // _10C
+	u32 _A0;                 // _A0
+	u8 mCurrLine;            // _A4
+	u8 _A5;                  // _A5
+	u8 mPageInfoNum;         // _A6
+	u8 _A7;                  // _A7
+	f32* mLineWidths;        // _A8
+	u8* mOnePageLines;       // _AC
+	u8* mPageInfoCounts;     // _B0
+	f32 _B4;                 // _B4
+	s32 _B8;                 // _B8
+	f32 _BC;                 // _BC
+	f32 _C0;                 // _C0
+	f32 _C4;                 // _C4
+	f32 mLineHeight;         // _C8
+	JUtility::TColor _CC;    // _CC
+	JUtility::TColor _D0;    // _D0
+	JUtility::TColor _D4;    // _D4
+	JUtility::TColor _D8;    // _D8
+	u8 mMatrixType;          // _DC
+	f32 mFontWidthAdjusted;  // _E0
+	f32 mFontHeightAdjusted; // _E4
+	f32 mFontWidth;          // _E8
+	f32 mFontHeight;         // _EC
+	u8 _F0;                  // _F0
+	u8 _F1;                  // _F1
+	u8 _F2;                  // _F2
+	u32 _F4;                 // _F4
+	u8 _F8;                  // _F8
+	u32 _FC;                 // _FC
+	char* mRubyBuffer;       // _100
+	f32 _104;                // _104
+	f32 _108;                // _108
+	f32 _10C;                // _10C
 
 	static u32 cPageInfoBufferNum;
 };
+
+static char sRubyDataBuffer[32];
+
 } // namespace P2JME
 
 #endif

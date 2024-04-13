@@ -47,7 +47,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DGD.cpp">J3D/J3DGD.cpp</a> | 26174 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DModel.cpp">J3D/J3DModel.cpp</a> | 28914 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DMaterialAttach.cpp">J3D/J3DMaterialAttach.cpp</a> | 29965 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DScreen.cpp">J2D/J2DScreen.cpp</a> | 30767 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAIBasic.cpp">JAudio//JAI/JAIBasic.cpp</a> | 30888 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DMaterialFactory_v21.cpp">J3D/J3DMaterialFactory_v21.cpp</a> | 35148 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio_JStage/object-actor.cpp">JStudio_JStage/object-actor.cpp</a> | 35187 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JMessage/processor.cpp">JMessage/processor.cpp</a> | 35941 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio_JStage/object-actor.cpp">JStudio_JStage/object-actor.cpp</a> | 35187 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JMessage/processor.cpp">JMessage/processor.cpp</a> | 35619 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JParticle/JPAParticle.cpp">JParticle/JPAParticle.cpp</a> | 36971 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DMaterialFactory.cpp">J2D/J2DMaterialFactory.cpp</a> | 39437 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAS/JASAramStream.cpp">JAudio//JAS/JASAramStream.cpp</a> | 40005 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DPicture.cpp">J2D/J2DPicture.cpp</a> | 46511 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DWindowEx.cpp">J2D/J2DWindowEx.cpp</a> | 47092 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAS/JASSeqParser.cpp">JAudio//JAS/JASSeqParser.cpp</a> | 48330 |
@@ -202,7 +202,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/system.cpp">system.cpp</a> | 38660 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/movieMessage.cpp">movieMessage.cpp</a> | 48193 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/memoryCard.cpp">memoryCard.cpp</a> | 48550 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/screenMgr.cpp">screenMgr.cpp</a> | 50710 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/pikmin2MemoryCardMgr.cpp">pikmin2MemoryCardMgr.cpp</a> | 50817 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/graphics.cpp">graphics.cpp</a> | 76095 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/messageRendering.cpp">messageRendering.cpp</a> | 108929 |  |  |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/messageRendering.cpp">messageRendering.cpp</a> | 98881 |  |  |
 
 ### <section id="utilityU">utilityU</section>
 | File | Size (bytes) | File | Size (bytes) |

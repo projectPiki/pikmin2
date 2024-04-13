@@ -115,7 +115,7 @@ void TControl::scroll(f32 rate)
 bool TControl::update(Controller* control1, Controller* control2)
 {
 	P2JME::TControl::update();
-	mMaxScroll = mTextRenderProc->_3C - mTextRenderProc->_C0 * (f32)(mTextRenderProc->mCurrLine + 1);
+	mMaxScroll = mTextRenderProc->mTextBoxHeight - mTextRenderProc->_C0 * (f32)(mTextRenderProc->mCurrLine + 1);
 
 	f32 calc   = mTextRenderProc->_C0;
 	f32 scroll = (int)(mMaxScroll / calc);

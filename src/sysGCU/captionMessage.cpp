@@ -91,8 +91,8 @@ bool TControl::onInit()
 	initRenderingProcessor(0x100);
 	_50 = 3.0f;
 	setLocate(0, 0);
-	mTextRenderProc->_38 = sys->getRenderModeObj()->fbWidth;
-	mTextRenderProc->_3C = 200.0f;
+	mTextRenderProc->mTextBoxWidth  = sys->getRenderModeObj()->fbWidth;
+	mTextRenderProc->mTextBoxHeight = 200.0f;
 	mTextRenderProc->initFlagsA();
 	mTextRenderProc->initFlagsB();
 	mState = 0;
