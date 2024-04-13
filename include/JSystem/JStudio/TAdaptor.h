@@ -220,6 +220,8 @@ struct TAdaptor_sound : public TAdaptor {
 
 	virtual ~TAdaptor_sound() = 0; // _08
 
+	JStudio::TVariableValue mVariableList[10]; // _0C
+
 	static const u32 sauVariableValue_3_POSITION_XYZ[3];
 };
 } // namespace JStudio
