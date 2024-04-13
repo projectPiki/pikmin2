@@ -10,20 +10,27 @@
 
 struct JAIBasic;
 struct JAISound;
+
+typedef void (JAISound::*TVVOSoundSetFunc)(f32, u32); // e.g. JAISound::setDirectVolume, JAISound::setDirectPitch
+
 namespace JStudio_JAudio {
 typedef JStudio::TObject* (*JStudioAudioCreateFunc)(const JStudio::stb::data::TParse_TBlock_object&, JAIBasic*, const JStage::TSystem*);
-// void createObject_SOUND_JAI(const JStudio::stb::data::TParse_TBlock_object&, JAIBasic*, JStage::TSystem*);
 
 struct TAdaptor_sound : public JStudio::TAdaptor_sound {
+
 	struct TVVOSetValue_ : public JStudio::TVariableValue::TOutput {
+		TVVOSetValue_(u32 idx, TVVOSoundSetFunc func)
+		{
+			mValueIndex = idx;
+			mSetFunc    = func;
+		}
+
 		virtual void operator()(f32, JStudio::TAdaptor*) const; // _08
 		virtual ~TVVOSetValue_() { }                            // _0C (weak)
 
 		// _00 = VTBL
-		int mValueIndex; // _04
-		u32 _08;         // _08, unknown
-		int _0C;         // _0C
-		int _10;         // _10
+		int mValueIndex;           // _04
+		TVVOSoundSetFunc mSetFunc; // _08
 	};
 
 	TAdaptor_sound(JAIBasic*, const JStage::TSystem*);
@@ -45,6 +52,8 @@ struct TAdaptor_sound : public JStudio::TAdaptor_sound {
 	void beginSound_fadeIn_(u32);
 	void endSound_fadeOut_(u32);
 
+	static const TVVOSetValue_ saoVVOSetValue_[6];
+
 	// _00     = VTBL
 	// _00-_0C = JStudio::TAdaptor
 	JAIBasic* mSoundMgr;            // _D4
@@ -58,8 +67,6 @@ struct TAdaptor_sound : public JStudio::TAdaptor_sound {
 	JStage::TObject* mObject;       // _FC
 	u32 _100;                       // _100
 	bool _104;                      // _104
-
-	static const TVVOSetValue_ saoVVOSetValue_[2];
 };
 
 struct TCreateObject : public JStudio::TCreateObject {

@@ -136,6 +136,19 @@ struct Actor {
 		}
 	}
 
+	inline Actor(void* vec1, u32 unk)
+	{
+		mObj  = vec1;
+		mVec2 = (Vec*)vec1;
+		mVec3 = (Vec*)vec1;
+		mUnk  = unk;
+		if (mVec2 == nullptr || (u32)vec1 == 0xFFFFFFFF) {
+			mFlag.boolView[0] = true;
+		} else {
+			mFlag.boolView[0] = false;
+		}
+	}
+
 	void* mObj; // _00
 	Vec* mVec2; // _04
 	Vec* mVec3; // _08

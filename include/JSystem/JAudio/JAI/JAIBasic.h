@@ -25,9 +25,6 @@ struct JAIBasic {
 	virtual void setSeExtParameter(JAISound*); // _20
 	virtual void setRegisterTrackCallback();   // _24
 
-	template <typename T>
-	void prepareSoundVecT(u32, T**, Vec*, u32, u32, u8);
-
 	// void startSoundVecT<JAISound>(u32, JAISound**, Vec*, u32, u32, u8);
 	// void startSoundActorT<JAISound>(u32, JAISound**, JAInter::Actor*, u32, u8);
 	void initDriver(JKRSolidHeap*, u32, u8);
@@ -69,6 +66,9 @@ struct JAIBasic {
 
 	template <typename T>
 	void startSoundActorReturnHandleT(T**, u32, JAInter::Actor*, u32, u8);
+
+	template <typename T>
+	void prepareSoundVecT(u32, T**, Vec*, u32, u32, u8);
 
 	// unused/inlined:
 	void bootDSP();
@@ -128,7 +128,7 @@ struct JAIBasic {
 template <typename T>
 void JAIBasic::startSoundVecT(u32 id, T** handlePtr, Vec* p3, u32 p4, u32 p5, u8 p6)
 {
-	JAInter::Actor actor(p3, p3, p3, p5);
+	JAInter::Actor actor(p3, p5);
 	startSoundActorT(id, handlePtr, &actor, p4, p6);
 }
 
@@ -168,6 +168,15 @@ void JAIBasic::startSoundActorReturnHandleT(T** handlePtr, u32 p2, JAInter::Acto
 	*handlePtr = *tempHandle;
 	if (*tempHandle) {
 		(*tempHandle)->release();
+	}
+}
+
+template <typename T>
+void JAIBasic::prepareSoundVecT(u32 p1, T** handlePtr, Vec* p3, u32 p4, u32 p5, u8 p6)
+{
+	JAIBasic::startSoundVecT(p1, handlePtr, p3, p4, p5, p6);
+	if (*handlePtr) {
+		(*handlePtr)->setPrepareFlag(1);
 	}
 }
 

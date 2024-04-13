@@ -213,8 +213,9 @@ struct TAdaptor_particle : public TAdaptor {
 };
 
 struct TAdaptor_sound : public TAdaptor {
-	TAdaptor_sound(TVariableValue* var, u32 a1)
-	    : TAdaptor(var, a1)
+	TAdaptor_sound()
+	    : TAdaptor(mVariableList, ARRAY_SIZE(mVariableList))
+	    , mVariableList()
 	{
 	}
 

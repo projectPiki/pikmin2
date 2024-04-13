@@ -2,15 +2,16 @@
 #include "JSystem/JAudio/JAI/JAIBasic.h"
 #include "JSystem/JAudio/JAI/JAISound.h"
 #include "JSystem/JStudio_JStage.h"
-#include "nans.h"
+#include "stl/math.h"
+
+namespace JStudio_JAudio {
 
 /**
  * @note Address: 0x80014FD8
  * @note Size: 0xC8
  */
-JStudio_JAudio::TAdaptor_sound::TAdaptor_sound(JAIBasic* mgr, const JStage::TSystem* system)
-    : JStudio::TAdaptor_sound(mVariableList, 10)
-    , mSoundMgr(mgr)
+TAdaptor_sound::TAdaptor_sound(JAIBasic* mgr, const JStage::TSystem* system)
+    : mSoundMgr(mgr)
     , mSound(nullptr)
     , mFlags(-1)
     , mState(0)
@@ -27,7 +28,7 @@ JStudio_JAudio::TAdaptor_sound::TAdaptor_sound(JAIBasic* mgr, const JStage::TSys
  * @note Address: 0x800150A0
  * @note Size: 0x84
  */
-JStudio_JAudio::TAdaptor_sound::~TAdaptor_sound()
+TAdaptor_sound::~TAdaptor_sound()
 {
 	if (mSound)
 		mSound->stop(0);
@@ -37,7 +38,7 @@ JStudio_JAudio::TAdaptor_sound::~TAdaptor_sound()
  * @note Address: 0x80015124
  * @note Size: 0xCC
  */
-void JStudio_JAudio::TAdaptor_sound::adaptor_do_prepare(const JStudio::TObject* p1)
+void TAdaptor_sound::adaptor_do_prepare(const JStudio::TObject* p1)
 {
 	static TSetVariableValue_immediate aoData[4] = { TSetVariableValue_immediate(0, 0.0f), TSetVariableValue_immediate(1, 0.0f),
 		                                             TSetVariableValue_immediate(2, 0.0f), TSetVariableValue_immediate(-1, NAN) };
@@ -52,7 +53,7 @@ void JStudio_JAudio::TAdaptor_sound::adaptor_do_prepare(const JStudio::TObject* 
  * @note Address: 0x800151F0
  * @note Size: 0x58
  */
-void JStudio_JAudio::TAdaptor_sound::adaptor_do_end(const JStudio::TObject* object)
+void TAdaptor_sound::adaptor_do_end(const JStudio::TObject* object)
 {
 	if (!(mFlags & 0xc0000c00) && mState == 3 && mSound) {
 		mSound->getFadeCounter();
@@ -63,30 +64,43 @@ void JStudio_JAudio::TAdaptor_sound::adaptor_do_end(const JStudio::TObject* obje
  * @note Address: 0x80015248
  * @note Size: 0x14C
  */
-void JStudio_JAudio::TAdaptor_sound::adaptor_do_update(const JStudio::TObject* object, u32)
+void TAdaptor_sound::adaptor_do_update(const JStudio::TObject* object, u32)
 {
-	JStudio::TControl* control = (JStudio::TControl*)object->mControl;
+	JStudio::TControl* control = (JStudio::TControl*)object->getControl();
 	JStudio::TControl::TTransform_position pos;
 	Vec* result;
+	Vec temp;
 	adaptor_getVariableValue_Vec(&pos.mPosition, sauVariableValue_3_POSITION_XYZ);
 	if (!_104) {
+		Vec* tempPtr;
 		if (!control->mTransformOnSet) {
-			result = &pos.mPosition;
+			tempPtr = &pos.mPosition;
 
 		} else {
-			Vec temp;
 			PSMTXMultVec(control->mTransformOnSet_Mtx, &pos.mPosition, &temp);
-			result = &temp;
+			tempPtr = &temp;
 		}
+		result = tempPtr;
 	} else {
-		f32 test[4];
-		bool stop = JStudio_JStage::transform_toGlobalFromLocal(&test, pos, mObject, _100);
-		if (stop) {
+		Mtx test;
+
+		bool stop;
+		bool check = JStudio_JStage::transform_toGlobalFromLocal(test, pos, mObject, _100);
+		result     = &pos.mPosition;
+		if (!check) {
+			stop = false;
+		} else {
+			temp.x = test[0][3];
+			temp.y = test[1][3];
+			temp.z = test[2][3];
+			stop   = true;
+		}
+		if (!stop) {
 			return;
 		}
-		result = &pos.mPosition;
+		result = &temp;
 	}
-	*mPosition = *result;
+	_EC = *result;
 
 	if (!(mFlags & 0xc0000c00)) {
 		if (mState == 3 && !mSound) {
@@ -97,115 +111,13 @@ void JStudio_JAudio::TAdaptor_sound::adaptor_do_update(const JStudio::TObject* o
 			mFadeFlag = 0;
 		}
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  lis       r5, 0x8047
-	  stw       r0, 0x64(r1)
-	  addi      r5, r5, 0x3454
-	  stw       r31, 0x5C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x58(r1)
-	  lwz       r30, 0x14(r4)
-	  addi      r4, r1, 0x14
-	  bl        -0x7F44
-	  lbz       r0, 0x104(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x68
-	  lbz       r0, 0x74(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x4C
-	  addi      r0, r1, 0x14
-	  b         .loc_0x60
-
-	.loc_0x4C:
-	  addi      r3, r30, 0x98
-	  addi      r4, r1, 0x14
-	  addi      r5, r1, 0x8
-	  bl        0xD5938
-	  addi      r0, r1, 0x8
-
-	.loc_0x60:
-	  mr        r4, r0
-	  b         .loc_0xB4
-
-	.loc_0x68:
-	  lwz       r5, 0xFC(r31)
-	  addi      r3, r1, 0x20
-	  lwz       r6, 0x100(r31)
-	  addi      r4, r1, 0x14
-	  bl        -0x345C
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x8C
-	  li        r0, 0
-	  b         .loc_0xA8
-
-	.loc_0x8C:
-	  lfs       f2, 0x2C(r1)
-	  li        r0, 0x1
-	  lfs       f1, 0x3C(r1)
-	  lfs       f0, 0x4C(r1)
-	  stfs      f2, 0x8(r1)
-	  stfs      f1, 0xC(r1)
-	  stfs      f0, 0x10(r1)
-
-	.loc_0xA8:
-	  rlwinm.   r0,r0,0,24,31
-	  beq-      .loc_0x134
-	  addi      r4, r1, 0x8
-
-	.loc_0xB4:
-	  lfs       f0, 0x0(r4)
-	  lis       r3, 0xC000
-	  addi      r0, r3, 0xC00
-	  stfs      f0, 0xEC(r31)
-	  lfs       f0, 0x4(r4)
-	  stfs      f0, 0xF0(r31)
-	  lfs       f0, 0x8(r4)
-	  stfs      f0, 0xF4(r31)
-	  lwz       r3, 0xDC(r31)
-	  and.      r0, r3, r0
-	  bne-      .loc_0x134
-	  lwz       r0, 0xE0(r31)
-	  cmpwi     r0, 0x3
-	  bne-      .loc_0x100
-	  lwz       r0, 0xD8(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x100
-	  li        r0, 0
-	  stw       r0, 0xE0(r31)
-
-	.loc_0x100:
-	  lwz       r0, 0xE0(r31)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x134
-	  lwz       r3, 0xD4(r31)
-	  addi      r5, r31, 0xD8
-	  lwz       r4, 0xDC(r31)
-	  li        r8, 0
-	  lwz       r6, 0xE8(r31)
-	  li        r9, 0x4
-	  lwz       r7, 0xE4(r31)
-	  bl        0x4FC
-	  li        r0, 0
-	  stw       r0, 0xE4(r31)
-
-	.loc_0x134:
-	  lwz       r0, 0x64(r1)
-	  lwz       r31, 0x5C(r1)
-	  lwz       r30, 0x58(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
-	*/
 }
 
 /**
  * @note Address: 0x80015394
  * @note Size: 0xA4
  */
-void JStudio_JAudio::TAdaptor_sound::adaptor_do_SOUND(JStudio::data::TEOperationData op, const void* data, u32 flag)
+void TAdaptor_sound::adaptor_do_SOUND(JStudio::data::TEOperationData op, const void* data, u32 flag)
 {
 	switch (op) {
 	case JStudio::data::TEOD_Unknown_19:
@@ -227,7 +139,7 @@ void JStudio_JAudio::TAdaptor_sound::adaptor_do_SOUND(JStudio::data::TEOperation
  * @note Address: 0x80015438
  * @note Size: 0x30
  */
-void JStudio_JAudio::TAdaptor_sound::adaptor_do_BEGIN(JStudio::data::TEOperationData op, const void* data, u32 flag)
+void TAdaptor_sound::adaptor_do_BEGIN(JStudio::data::TEOperationData op, const void* data, u32 flag)
 {
 	switch (op) {
 	case JStudio::data::TEOD_Unknown_01:
@@ -240,7 +152,7 @@ void JStudio_JAudio::TAdaptor_sound::adaptor_do_BEGIN(JStudio::data::TEOperation
  * @note Address: 0x80015468
  * @note Size: 0x48
  */
-void JStudio_JAudio::TAdaptor_sound::adaptor_do_BEGIN_FADE_IN(JStudio::data::TEOperationData op, const void* data, u32 flag)
+void TAdaptor_sound::adaptor_do_BEGIN_FADE_IN(JStudio::data::TEOperationData op, const void* data, u32 flag)
 {
 	switch (op) {
 	case JStudio::data::TEOD_Unknown_02:
@@ -253,7 +165,7 @@ void JStudio_JAudio::TAdaptor_sound::adaptor_do_BEGIN_FADE_IN(JStudio::data::TEO
  * @note Address: 0x800154B0
  * @note Size: 0x30
  */
-void JStudio_JAudio::TAdaptor_sound::adaptor_do_END(JStudio::data::TEOperationData op, const void* data, u32 flag)
+void TAdaptor_sound::adaptor_do_END(JStudio::data::TEOperationData op, const void* data, u32 flag)
 {
 	switch (op) {
 	case JStudio::data::TEOD_Unknown_01:
@@ -266,7 +178,7 @@ void JStudio_JAudio::TAdaptor_sound::adaptor_do_END(JStudio::data::TEOperationDa
  * @note Address: 0x800154E0
  * @note Size: 0x48
  */
-void JStudio_JAudio::TAdaptor_sound::adaptor_do_END_FADE_OUT(JStudio::data::TEOperationData op, const void* data, u32 flag)
+void TAdaptor_sound::adaptor_do_END_FADE_OUT(JStudio::data::TEOperationData op, const void* data, u32 flag)
 {
 	switch (op) {
 	case JStudio::data::TEOD_Unknown_02:
@@ -279,7 +191,7 @@ void JStudio_JAudio::TAdaptor_sound::adaptor_do_END_FADE_OUT(JStudio::data::TEOp
  * @note Address: 0x80015528
  * @note Size: 0x68
  */
-void JStudio_JAudio::TAdaptor_sound::adaptor_do_PARENT(JStudio::data::TEOperationData op, const void* data, u32 flag)
+void TAdaptor_sound::adaptor_do_PARENT(JStudio::data::TEOperationData op, const void* data, u32 flag)
 {
 	switch (op) {
 	case JStudio::data::TEOD_Unknown_18:
@@ -297,7 +209,7 @@ void JStudio_JAudio::TAdaptor_sound::adaptor_do_PARENT(JStudio::data::TEOperatio
  * @note Address: 0x80015590
  * @note Size: 0x80
  */
-void JStudio_JAudio::TAdaptor_sound::adaptor_do_PARENT_NODE(JStudio::data::TEOperationData op, const void* data, u32 flag)
+void TAdaptor_sound::adaptor_do_PARENT_NODE(JStudio::data::TEOperationData op, const void* data, u32 flag)
 {
 	switch (op) {
 	case JStudio::data::TEOD_Unknown_18:
@@ -319,7 +231,7 @@ void JStudio_JAudio::TAdaptor_sound::adaptor_do_PARENT_NODE(JStudio::data::TEOpe
  * @note Address: 0x80015610
  * @note Size: 0x20
  */
-void JStudio_JAudio::TAdaptor_sound::adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData op, const void* data, u32 flag)
+void TAdaptor_sound::adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData op, const void* data, u32 flag)
 {
 	switch (op) {
 	case JStudio::data::TEOD_Unknown_02:
@@ -334,7 +246,7 @@ void JStudio_JAudio::TAdaptor_sound::adaptor_do_PARENT_ENABLE(JStudio::data::TEO
  * Please make this less insane. -EpochFlame
  * Also, r0/r4 regswap.
  */
-void JStudio_JAudio::TAdaptor_sound::adaptor_do_LOCATED(JStudio::data::TEOperationData op, const void* data, u32 flag)
+void TAdaptor_sound::adaptor_do_LOCATED(JStudio::data::TEOperationData op, const void* data, u32 flag)
 {
 	switch (op) {
 	case JStudio::data::TEOD_Unknown_02:
@@ -351,158 +263,61 @@ void JStudio_JAudio::TAdaptor_sound::adaptor_do_LOCATED(JStudio::data::TEOperati
  * @note Address: 0x80015658
  * @note Size: 0x40
  */
-void JStudio_JAudio::TAdaptor_sound::TVVOSetValue_::operator()(f32 value, JStudio::TAdaptor* adaptor) const
+void TAdaptor_sound::TVVOSetValue_::operator()(f32 value, JStudio::TAdaptor* adaptor) const
 {
-	if (((JStudio_JAudio::TAdaptor_sound*)adaptor)->mSound) {
-		((JStudio_JAudio::TAdaptor_sound*)adaptor)->mSound->getDolby(0); // something here
+	JAISound* sound = ((JStudio_JAudio::TAdaptor_sound*)adaptor)->mSound;
+	if (sound) {
+		(sound->*(this->mSetFunc))(value, 0);
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0xD8(r4)
-	  mr        r4, r3
-	  cmplwi    r0, 0
-	  beq-      .loc_0x30
-	  mr        r3, r0
-	  addi      r12, r4, 0x8
-	  li        r4, 0
-	  bl        0xAC4A4
-	  nop
-
-	.loc_0x30:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /**
  * @note Address: 0x80015698
  * @note Size: 0xD8
  */
-void JStudio_JAudio::TAdaptor_sound::beginSound_fadeIn_(u32 flag)
+void TAdaptor_sound::beginSound_fadeIn_(u32 flag)
 {
 	mFadeFlag = flag;
 	if (mFlags & 0xc0000000) {
 		if (mSound) {
-			mSound->start(0);
+			mSound->start(flag);
 			mState = 2;
 		}
-	} else {
-		if (mSound) {
-			mSound->stop(0);
-			mState = 0;
-		}
+		return;
 	}
 
-	if ((mFlags & 0xc0000c00)) {
+	if (mSound) {
+		mSound->stop(0);
+		mState = 0;
+	}
+
+	if (mFlags & 0xc0000c00) {
 		mSoundMgr->startSoundVecT(mFlags, &mSound, mPosition, flag, 0, 4);
-		if (mSound) {
-			mState = 2;
+		if (!mSound) {
+			return;
 		}
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	stw      r31, 0xe4(r3)
-	lwz      r0, 0xdc(r3)
-	rlwinm.  r0, r0, 0, 0, 1
-	beq      lbl_800156EC
-	lwz      r3, 0xd8(r30)
-	cmplwi   r3, 0
-	beq      lbl_80015758
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 2
-	stw      r0, 0xe0(r30)
-	b        lbl_80015758
 
-lbl_800156EC:
-	lwz      r3, 0xd8(r30)
-	cmplwi   r3, 0
-	beq      lbl_80015714
-	lwz      r12, 0x10(r3)
-	li       r4, 0
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, 0xe0(r30)
-
-lbl_80015714:
-	lis      r3, 0xC0000C00@ha
-	lwz      r4, 0xdc(r30)
-	addi     r0, r3, 0xC0000C00@l
-	and.     r0, r4, r0
-	beq      lbl_80015750
-	lwz      r3, 0xd4(r30)
-	mr       r7, r31
-	lwz      r6, 0xe8(r30)
-	addi     r5, r30, 0xd8
-	li       r8, 0
-	li       r9, 4
-	bl       "startSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc"
-	lwz      r0, 0xd8(r30)
-	cmplwi   r0, 0
-	beq      lbl_80015758
-
-lbl_80015750:
-	li       r0, 2
-	stw      r0, 0xe0(r30)
-
-lbl_80015758:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mState = 2;
 }
 
 /**
  * @note Address: 0x80015770
  * @note Size: 0x50
  */
-void JStudio_JAudio::TAdaptor_sound::endSound_fadeOut_(u32 flag)
+void TAdaptor_sound::endSound_fadeOut_(u32 flag)
 {
 	mFadeFlag = flag;
 	if (mSound) {
-		mSound->stop(0);
+		mSound->stop(flag);
 		mState = 3;
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0xe4(r3)
-	lwz      r3, 0xd8(r3)
-	cmplwi   r3, 0
-	beq      lbl_800157AC
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 3
-	stw      r0, 0xe0(r31)
-
-lbl_800157AC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
+
+const TAdaptor_sound::TVVOSetValue_ TAdaptor_sound::saoVVOSetValue_[6] = {
+	TAdaptor_sound::TVVOSetValue_(5, JAISound::setDemoVolume), TAdaptor_sound::TVVOSetValue_(6, JAISound::setDemoPan),
+	TAdaptor_sound::TVVOSetValue_(7, JAISound::setDemoPitch),  TAdaptor_sound::TVVOSetValue_(8, JAISound::setTempoProportion),
+	TAdaptor_sound::TVVOSetValue_(9, JAISound::setDemoFxmix),  TAdaptor_sound::TVVOSetValue_(-1, nullptr),
+};
+
+} // namespace JStudio_JAudio
