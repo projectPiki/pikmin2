@@ -72,7 +72,7 @@ LIBS = [
         "mw_version": "2.6",
         "host": True,
         "objects": [
-            ["JSystem/JStudio_JAudio/object-sound", False],
+            ["JSystem/JStudio_JAudio/object-sound", True],
             ["JSystem/JStudio_JAudio/control", True],
         ],
     },

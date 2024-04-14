@@ -1,5 +1,5 @@
 JSTUDIO_JAUDIO_FILES:=\
-	$(BUILD_DIR)/asm/JSystem/JStudio_JAudio/object-sound.o\
+	$(BUILD_DIR)/src/JSystem/JStudio_JAudio/object-sound.o\
 	$(BUILD_DIR)/src/JSystem/JStudio_JAudio/control.o\
 
 DEPENDS += $(JSTUDIO_JAUDIO_FILES:.o=.d)

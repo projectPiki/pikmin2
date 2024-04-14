@@ -219,7 +219,19 @@ struct TAdaptor_sound : public TAdaptor {
 	{
 	}
 
-	virtual ~TAdaptor_sound() = 0; // _08
+	virtual ~TAdaptor_sound()                                                               = 0; // _08
+	virtual void adaptor_do_prepare(const JStudio::TObject*)                                = 0; // _0C
+	virtual void adaptor_do_end(const JStudio::TObject*)                                    = 0; // _14
+	virtual void adaptor_do_update(const JStudio::TObject*, u32)                            = 0; // _18
+	virtual void adaptor_do_SOUND(JStudio::data::TEOperationData, const void*, u32)         = 0; // _20
+	virtual void adaptor_do_BEGIN(JStudio::data::TEOperationData, const void*, u32)         = 0; // _24
+	virtual void adaptor_do_BEGIN_FADE_IN(JStudio::data::TEOperationData, const void*, u32) = 0; // _28
+	virtual void adaptor_do_END(JStudio::data::TEOperationData, const void*, u32)           = 0; // _2C
+	virtual void adaptor_do_END_FADE_OUT(JStudio::data::TEOperationData, const void*, u32)  = 0; // _30
+	virtual void adaptor_do_PARENT(JStudio::data::TEOperationData, const void*, u32)        = 0; // _34
+	virtual void adaptor_do_PARENT_NODE(JStudio::data::TEOperationData, const void*, u32)   = 0; // _38
+	virtual void adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData, const void*, u32) = 0; // _3C
+	virtual void adaptor_do_LOCATED(JStudio::data::TEOperationData, const void*, u32)       = 0; // _40
 
 	JStudio::TVariableValue mVariableList[10]; // _0C
 

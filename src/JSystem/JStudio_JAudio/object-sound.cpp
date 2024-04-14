@@ -243,8 +243,6 @@ void TAdaptor_sound::adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData op,
 /**
  * @note Address: 0x80015630
  * @note Size: 0x28
- * Please make this less insane. -EpochFlame
- * Also, r0/r4 regswap.
  */
 void TAdaptor_sound::adaptor_do_LOCATED(JStudio::data::TEOperationData op, const void* data, u32 flag)
 {
