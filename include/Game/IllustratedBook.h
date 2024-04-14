@@ -165,6 +165,20 @@ struct ColorSetting : public CNode {
 
 	void update();
 
+	JUtility::TColor getColor54() // name better when _54 has a better name
+	{
+		JUtility::TColor outColor;
+		outColor.set(_54.r, _54.g, _54.b, _54.a);
+		return outColor;
+	}
+
+	JUtility::TColor getColor58() // name better when _58 has a better name
+	{
+		JUtility::TColor outColor;
+		outColor.set(_58.r, _58.g, _58.b, _58.a);
+		return outColor;
+	}
+
 	// _00     = VTBL
 	// _00-_18 = CNode
 	Color4 _18[5][2]; // _18

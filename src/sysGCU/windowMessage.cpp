@@ -412,7 +412,7 @@ BOOL TRenderingProcessor::doDrawCommon(f32 a1, f32 a2, Matrixf* mtx1, Matrixf* m
 
 	f32 speed = mSpeed;
 	if (-speed > a2) {
-		f32 speed2 = _3C;
+		f32 speed2 = mTextBoxHeight;
 		f32 calc   = 0.0f;
 		f32 calc2;
 		if (speed + speed2 < a2) {
@@ -959,8 +959,8 @@ f32 TRenderingProcessor::doDrawLetter(f32, f32, f32 x, f32 y, int a1, bool flag)
 		mMainFont->setGradColor(color, color);
 		mMainFont->drawChar_scale(0.0f, 0.0f, x, y, a1, flag);
 		GXLoadPosMtxImm(mtx1.mMatrix.mtxView, 0);
-		mColorData[0].a = ret;
-		mColorData[1].a = ret;
+		mColorData1.a = ret;
+		mColorData2.a = ret;
 		JUtility::TColor color3;
 		mMainFont->setGradColor(color, color3);
 		wid = mMainFont->drawChar_scale(0.0f, 0.0f, x, y, a1, flag);
@@ -1213,29 +1213,29 @@ void TRenderingProcessor::doDrawImage(JUTTexture* tex, f32, f32, f32 x, f32 y)
 	Matrixf mtx2;
 	u8 ret = doDrawCommon(x, y, &mtx1, &mtx2);
 	if (ret) {
-		mColorData[3].a = (mColorData[3].a * ret) / 255;
-		mColorData[4].a = (mColorData[4].a * ret) / 255;
-		JUtility::TColor color(mColorData[3]);
-		JUtility::TColor color2(mColorData[4]);
+		mColorData4.a = (mColorData4.a * ret) / 255;
+		mColorData5.a = (mColorData5.a * ret) / 255;
+		JUtility::TColor color(mColorData4);
+		JUtility::TColor color2(mColorData5);
 
 		setImageGX();
 		GXLoadPosMtxImm(mtx2.mMatrix.mtxView, 0);
 
-		mColorData[3].r = 0;
-		mColorData[3].g = 0;
-		mColorData[3].b = 0;
-		mColorData[3].a >>= 1;
+		mColorData4.r = 0;
+		mColorData4.g = 0;
+		mColorData4.b = 0;
+		mColorData4.a >>= 1;
 
-		mColorData[4].r = 0;
-		mColorData[4].g = 0;
-		mColorData[4].b = 0;
-		mColorData[4].a = 0;
+		mColorData5.r = 0;
+		mColorData5.g = 0;
+		mColorData5.b = 0;
+		mColorData5.a = 0;
 
 		P2JME::TRenderingProcessor::drawImage(tex, 0.0f, 0.0f, x, y);
 		GXLoadPosMtxImm(mtx1.mMatrix.mtxView, 0);
 
-		mColorData[3] = color;
-		mColorData[4] = color2;
+		mColorData4 = color;
+		mColorData5 = color2;
 		P2JME::TRenderingProcessor::drawImage(tex, 0.0f, 0.0f, x, y);
 	}
 	/*
@@ -1434,7 +1434,7 @@ bool TControl::update(Controller* control1, Controller* control2)
 			if (!(flag & 1)) {
 				proc->mFlags.set(1);
 				mTimer1 = mTextRenderProc->_58;
-				mTimer2 = mTimer1 - mTextRenderProc->_3C;
+				mTimer2 = mTimer1 - mTextRenderProc->mTextBoxHeight;
 				mTimer  = 0.0f;
 			} else {
 				f32 calc  = 1.0f;

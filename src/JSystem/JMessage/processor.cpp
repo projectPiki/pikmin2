@@ -36,7 +36,7 @@ void TProcessor::setBegin_messageCode(u16 groupID, u16 messageIndex)
 	void* entry               = (resource == nullptr) ? nullptr : resource->getMessageEntry_messageIndex(messageIndex);
 
 	if (entry) {
-		char* text = mResourceCache->getMessageText_messageEntry(entry);
+		const char* text = mResourceCache->getMessageText_messageEntry(entry);
 		reset_(text);
 		do_begin_((const void*)entry, text);
 	}
@@ -611,13 +611,13 @@ void TProcessor::do_systemTagCode_(u16 p1, const void* p2, u32 p3)
  * @note Size: 0x20
  * on_message__Q28JMessage10TProcessorCFUl
  */
-char* TProcessor::on_message(u32 code) const { return getMessageText_messageCode(code); }
+const char* TProcessor::on_message(u32 code) const { return getMessageText_messageCode(code); }
 
 /**
  * @note Address: 0x80007564
  * @note Size: 0xEC
  */
-char* TProcessor::getMessageText_messageCode(u32 tag) const
+const char* TProcessor::getMessageText_messageCode(u32 tag) const
 {
 	const TResource* resource = getResource_groupID(tag >> 16);
 	void* entry               = (resource == nullptr) ? nullptr : resource->getMessageEntry_messageIndex(data::getTagCode(tag));

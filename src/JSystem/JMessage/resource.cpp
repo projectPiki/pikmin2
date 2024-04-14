@@ -2,6 +2,7 @@
 #include "JSystem/JUtility/JUTFont.h"
 #include "JSystem/JMessage/TResource.h"
 #include "JSystem/JMessage/TParse.h"
+#include "JSystem/JGadget/enumerator.h"
 
 /*
     Generated from dpostproc
@@ -282,12 +283,19 @@ lbl_80006600:
  * @note Address: 0x8000661C
  * @note Size: 0x84
  */
-JMessage::TResource* JMessage::TResourceContainer::TCResource::Get_groupID(u16 id)
+JMessage::TResource* JMessage::TResourceContainer::TCResource::Get_groupID(u16 groupID)
 {
+	JGadget::TContainerEnumerator_const<TResource, 0> enumerator(this);
+	while (enumerator) {
+		const TResource* res = &(*enumerator);
+		if (res->mInfo.getGroupID() == groupID)
+			return (TResource*)res;
+	}
+	return nullptr;
 	// while (id != ((TResource*)mLinkListNode.getNext())->mInfo.getMessageNumber()) {
 	// 	return ((TResource*)mLinkListNode.getNext())->mInfo.getMessageNumber();
 	// }
-	return 0;
+	// return 0;
 	/*
 	stwu     r1, -0x40(r1)
 	lwzu     r0, 4(r3)
@@ -355,14 +363,21 @@ JMessage::TResourceContainer::TResourceContainer()
 {
 }
 
+JMessage::TResourceContainer::IsLeadByteFunc JMessage::TResourceContainer::sapfnIsLeadByte_[4] = {
+	nullptr,
+	JUTFont::isLeadByte_1Byte,
+	JUTFont::isLeadByte_2Byte,
+	JUTFont::isLeadByte_ShiftJIS,
+};
+
 /**
  * @note Address: 0x80006798
  * @note Size: 0x28
  */
-JMessage::TParse::TParse(JMessage::TResourceContainer* res)
+JMessage::TParse::TParse(JMessage::TResourceContainer* container)
 {
-	mRes = res;
-	_08  = 0;
+	mResourceContainer = container;
+	mResource          = nullptr;
 }
 
 /**
@@ -375,8 +390,38 @@ JMessage::TParse::~TParse() { }
  * @note Address: 0x80006820
  * @note Size: 0x18C
  */
-bool JMessage::TParse::parseHeader_next(const void**, u32*, u32)
+bool JMessage::TParse::parseHeader_next(const void** dataPtr, u32* outSize, u32 flag)
 {
+	const void* pData = *dataPtr;
+	data::TParse_THeader header(pData);
+	*dataPtr = header.getContent();
+	*outSize = header.getBlockNumber();
+
+	if (memcmp(header.getSignature(), &data::ga4cSignature, sizeof(data::ga4cSignature)) != 0)
+		return false;
+
+	if (header.getType() != 'bmg1')
+		return false;
+
+	u8 encoding = header.getEncoding();
+	if (encoding != 0) {
+		if (!mResourceContainer->isEncodingSettable(encoding)) {
+			return false;
+		}
+		mResourceContainer->setEncoding(encoding); // not quite right
+	}
+
+	if (flag & 0x10)
+		return true;
+
+	TResourceContainer::TCResource* container = &mResourceContainer->mContainer;
+	mResource                                 = container->Do_create();
+	if (mResource == nullptr)
+		return flag & 0x20 ? true : false;
+
+	container->Push_back(mResource);
+	mResource->setData_header(header.getRaw());
+	return true;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x40(r1)
@@ -507,8 +552,41 @@ bool JMessage::TParse::parseHeader_next(const void**, u32*, u32)
  * @note Address: 0x800069AC
  * @note Size: 0x17C
  */
-bool JMessage::TParse::parseBlock_next(const void**, u32*, u32)
+bool JMessage::TParse::parseBlock_next(const void** dataPtr, u32* outSize, u32 flag)
 {
+	data::TParse_THeader* header = (data::TParse_THeader*)dataPtr;
+	*(u32*)dataPtr += (u32)(((u32*)header)[1]);
+	*outSize = header->getType();
+
+	TResourceContainer::TCResource& container = mResourceContainer->mContainer;
+	switch (header->getType()) {
+	case 'INF1':
+		mResource->setData_block_info(header);
+		mResource = nullptr;
+		break;
+	case 'DAT1':
+		mResource->setData_block_messageData((char*)&header[1]);
+		TResource* res = mResourceContainer->getResource_groupID(mResource->mInfo.getGroupID());
+		if (res != mResource && !!(flag & 0x80)) {
+			container.Erase_destroy(res);
+		}
+		mResource = nullptr;
+		break;
+	case 'STR1':
+		mResource->setData_block_stringAttribute((char*)&header[1]);
+		mResource = nullptr;
+		break;
+	case 'MID1':
+		mResource->setData_block_messageID(header);
+		mResource = nullptr;
+		break;
+	default:
+		if (!(flag & 0x40))
+			return false;
+		break;
+	}
+
+	return true;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)
@@ -635,7 +713,7 @@ bool JMessage::TParse::parseBlock_next(const void**, u32*, u32)
  * @note Address: 0x80006B28
  * @note Size: 0x20
  */
-JMessage::TParse_color::TParse_color(JMessage::TResourceContainer* res) { mRes = res; }
+JMessage::TParse_color::TParse_color(JMessage::TResourceContainer* container) { mResourceContainer = container; }
 
 /**
  * @note Address: 0x80006B48

@@ -309,6 +309,12 @@ struct TLinkList_factory : public TLinkList<T, Offset> {
 		}
 	}
 
+	void Erase_destroy(T* elem)
+	{
+		Erase(elem);
+		Do_destroy(elem);
+	}
+
 	// _00-_08	= TNodeLinkList
 	// _0C		= VTABLE
 };

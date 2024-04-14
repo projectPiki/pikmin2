@@ -2675,8 +2675,8 @@ void ZukanState::draw(SingleGameSection* game, Graphics& gfx)
 		mCamera->update();
 		gfx.setupJ2DOrthoGraphDefault();
 		gfx.mOrthoGraph.setPort();
-		J2DFillBox(0.0f, 0.0f, getWindowWidth(), getWindowHeight(), mParms->mColorSetting._54, mParms->mColorSetting._54,
-		           mParms->mColorSetting._58, mParms->mColorSetting._58);
+		J2DFillBox(0.0f, 0.0f, getWindowWidth(), getWindowHeight(), mParms->mColorSetting.getColor54(), mParms->mColorSetting.getColor54(),
+		           mParms->mColorSetting.getColor58(), mParms->mColorSetting.getColor58());
 		game->BaseGameSection::draw3D(gfx);
 		drawLightEffect(game, gfx);
 		mTexture2->capture(0, 0, (GXTexFmt)mTexture2->mTexInfo->mTextureFormat, false, 0);

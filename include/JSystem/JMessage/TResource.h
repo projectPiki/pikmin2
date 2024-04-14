@@ -15,8 +15,8 @@ struct TResource : public JGadget::TLinkListNode {
 	    : mHeader(nullptr)
 	    , mInfo(nullptr)
 	    , mMessages(nullptr)
-	    , _14(0)
-	    , _18(nullptr)
+	    , mStringAttribute(nullptr)
+	    , mMessageID(nullptr)
 	{
 	}
 
@@ -38,7 +38,7 @@ struct TResource : public JGadget::TLinkListNode {
 		return mInfo.getContent() + (messageIndex * getMessageEntrySize());
 	}
 
-	char* getMessageText_messageEntry(const void* entry) const { return mMessages + *(int*)entry; }
+	const char* getMessageText_messageEntry(const void* entry) const { return mMessages + *(int*)entry; }
 
 	const char* getMessageText_messageIndex(u32 messageIndex) const
 	{
@@ -50,14 +50,18 @@ struct TResource : public JGadget::TLinkListNode {
 		return getMessageText_messageEntry(entry);
 	}
 
-	void setData_header(const void* pData) { mHeader.setRaw(pData); }
+	void setData_header(const void* p) { mHeader.setRaw(p); }
+	void setData_block_info(const void* p) { mInfo.setRaw(p); }
+	void setData_block_messageData(const void* p) { mMessages = (const char*)p; }
+	void setData_block_stringAttribute(const void* p) { mStringAttribute = (const char*)p; }
+	void setData_block_messageID(const void* p) { mMessageID = (data::TParse_TBlock_messageID*)p; }
 
 	// _00 = JGadget::TLinkListNode
-	data::TParse_THeader mHeader;      // _08 - generic file type header info
-	data::TParse_TBlock_info mInfo;    // _0C
-	char* mMessages;                   // _10
-	int _14;                           // _14
-	data::TParse_TBlock_messageID _18; // _18
+	data::TParse_THeader mHeader;             // _08 - generic file type header info
+	data::TParse_TBlock_info mInfo;           // _0C
+	const char* mMessages;                    // _10
+	const char* mStringAttribute;             // _14
+	data::TParse_TBlock_messageID mMessageID; // _18
 };
 
 struct TResource_color {
@@ -69,7 +73,7 @@ struct TResource_color {
 
 	void reset()
 	{
-		mHeader.setRaw(NULL);
+		mHeader.setRaw(nullptr);
 		mBlock.setRaw(nullptr);
 	}
 
@@ -89,6 +93,8 @@ struct TResourceContainer {
 		// _0C 		= VTABLE
 	};
 
+	typedef bool (*IsLeadByteFunc)(int);
+
 	TResourceContainer();
 
 	int parseCharacter(int string) const { return isLeadByte(string); }
@@ -105,10 +111,28 @@ struct TResourceContainer {
 		destroyResource_color();
 	}
 
-	u8 mEncoding;            // _00 - encoding?
-	bool (*isLeadByte)(int); // _04 - function pointer for isLeadByte(int)
-	TCResource mContainer;   // _08
-	TResource_color mColor;  // _18
+	void setEncoding(u8 encoding)
+	{
+		if (encoding == 0) {
+			mEncoding  = encoding;
+			isLeadByte = nullptr;
+		} else {
+			mEncoding               = encoding;
+			IsLeadByteFunc defFunc  = nullptr;
+			IsLeadByteFunc* funcPtr = &TResourceContainer::sapfnIsLeadByte_[encoding];
+			if (encoding >= 4) {
+				funcPtr = &defFunc;
+			}
+			isLeadByte = *funcPtr;
+		}
+	}
+
+	static IsLeadByteFunc sapfnIsLeadByte_[4];
+
+	u8 mEncoding;              // _00
+	IsLeadByteFunc isLeadByte; // _04 - function pointer for isLeadByte, based on encoding
+	TCResource mContainer;     // _08
+	TResource_color mColor;    // _18
 };
 
 } // namespace JMessage

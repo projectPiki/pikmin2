@@ -4523,7 +4523,7 @@ void TCallbackScrollMsg::reset()
 		proc->setTextBoxInfo(mPane);
 		f32 space              = TZukanBase::mLineSpace;
 		proc->_C0              = space;
-		proc->_C8              = space;
+		proc->mLineHeight      = space;
 		proc->mSpeed           = TZukanBase::mWarpRadius;
 		mControl->_6C          = TZukanBase::mScrollValueCoe;
 		mControl->mScrollSpeed = TZukanBase::mScrollSpeedCoe;

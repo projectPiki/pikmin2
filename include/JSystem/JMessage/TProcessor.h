@@ -91,9 +91,9 @@ struct TProcessor {
 	void setBegin_messageCode(u32); // weak
 	const TResource* getResource_groupID(u16) const;
 	u32 toMessageCode_messageID(u32, u32, bool*) const;
-	const char* on_message_limited(u16) const;   // weak
-	char* on_message(u32) const;                 // weak
-	char* getMessageText_messageCode(u32) const; // weak
+	const char* on_message_limited(u16) const;         // weak
+	const char* on_message(u32) const;                 // weak
+	const char* getMessageText_messageCode(u32) const; // weak
 	static bool process_onCharacterEnd_normal_(TProcessor*);
 	static bool process_onCharacterEnd_select_(TProcessor*);
 	static const char* process_onSelect_limited_(TProcessor*);

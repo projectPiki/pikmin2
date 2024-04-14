@@ -132,7 +132,7 @@ struct JUTFont {
 
 	static bool isLeadByte_1Byte(int) { return false; }
 	static bool isLeadByte_2Byte(int) { return true; }
-	static bool isLeadByte_ShiftJIS(int c) { return (c > 0x80 && c < 0xa0) || (c > 0xdf && c < 0xfd); }
+	static bool isLeadByte_ShiftJIS(int c) { return (c >= 0x81 && c <= 0x9F) || (c >= 0xE0 && c <= 0xFC); }
 
 	// _00 = VTBL
 	bool mIsValid;            // _04
