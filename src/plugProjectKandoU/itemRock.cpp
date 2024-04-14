@@ -578,135 +578,18 @@ void Item::createRock(int visibleSizeCount)
 	mGrowTimes    = new f32[visibleSizeCount + 1];
 	mWorkRadii    = new f32[visibleSizeCount]; // don't need one for hidden
 
-	for (int i = 0; i < visibleSizeCount + 1; i++) {
-		for (int j = 0; j < 4; j++) {
-			mHealthLimits[j] = ((Parm<f32>*)(&mgr->mParms->mRockParms.mHealthMax) + j)->mValue;
-		}
-
-		for (int j = 0; j < 4; j++) {
-			mGrowTimes[j] = 60.0f * ((Parm<f32>*)(&mgr->mParms->mRockParms.mGrowTimeMax) + j)->mValue;
-		}
-		// mHealthLimits[1] = mgr->mParms->mRockParms.mP001.mValue;
-		// mHealthLimits[2] = mgr->mParms->mRockParms.mP002.mValue;
-		// mHealthLimits[3] = mgr->mParms->mRockParms.mP003.mValue;
-		// mGrowTimes[0] = 60.0f * mgr->mParms->mRockParms.mP004.mValue;
-		// mGrowTimes[1] = 60.0f * mgr->mParms->mRockParms.mP005.mValue;
-		// mGrowTimes[2] = 60.0f * mgr->mParms->mRockParms.mP006.mValue;
-		// mGrowTimes[3] = 60.0f * mgr->mParms->mRockParms.mP007.mValue;
-		mMaxHealth = mHealthLimits[SIZE_Max];
-		mHealth    = mMaxHealth;
+	for (int j = 0; j < 4; j++) {
+		mHealthLimits[j] = ((Parm<f32>*)(&mgr->mParms->mRockParms.mHealthMax) + j)->mValue;
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lfs      f0, lbl_805198C8@sda21(r2)
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	addi     r0, r31, 1
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r29, 0x14(r1)
-	slwi     r29, r0, 2
-	stw      r31, 0x220(r3)
-	li       r3, 0
-	stw      r3, 0x21c(r30)
-	mr       r3, r29
-	stfs     f0, 0x218(r30)
-	bl       __nwa__FUl
-	stw      r3, 0x208(r30)
-	mr       r3, r29
-	bl       __nwa__FUl
-	stw      r3, 0x20c(r30)
-	slwi     r3, r31, 2
-	bl       __nwa__FUl
-	stw      r3, 0x210(r30)
-	addic.   r0, r31, 1
-	lfs      f1, lbl_805198F4@sda21(r2)
-	li       r3, 0
-	lwz      r5, mgr__Q24Game8ItemRock@sda21(r13)
-	lwz      r4, 0x208(r30)
-	lwz      r5, 0x88(r5)
-	lfs      f0, 0x100(r5)
-	stfs     f0, 0(r4)
-	lwz      r5, mgr__Q24Game8ItemRock@sda21(r13)
-	lwz      r4, 0x208(r30)
-	lwz      r5, 0x88(r5)
-	lfs      f0, 0x128(r5)
-	stfs     f0, 4(r4)
-	lwz      r5, mgr__Q24Game8ItemRock@sda21(r13)
-	lwz      r4, 0x208(r30)
-	lwz      r5, 0x88(r5)
-	lfs      f0, 0x150(r5)
-	stfs     f0, 8(r4)
-	lwz      r5, mgr__Q24Game8ItemRock@sda21(r13)
-	lwz      r4, 0x208(r30)
-	lwz      r5, 0x88(r5)
-	lfs      f0, 0x178(r5)
-	stfs     f0, 0xc(r4)
-	lwz      r5, mgr__Q24Game8ItemRock@sda21(r13)
-	lwz      r4, 0x20c(r30)
-	lwz      r5, 0x88(r5)
-	lfs      f0, 0x1a0(r5)
-	fmuls    f0, f1, f0
-	stfs     f0, 0(r4)
-	lwz      r5, mgr__Q24Game8ItemRock@sda21(r13)
-	lwz      r4, 0x20c(r30)
-	lwz      r5, 0x88(r5)
-	lfs      f0, 0x1c8(r5)
-	fmuls    f0, f1, f0
-	stfs     f0, 4(r4)
-	lwz      r5, mgr__Q24Game8ItemRock@sda21(r13)
-	lwz      r4, 0x20c(r30)
-	lwz      r5, 0x88(r5)
-	lfs      f0, 0x1f0(r5)
-	fmuls    f0, f1, f0
-	stfs     f0, 8(r4)
-	lwz      r5, mgr__Q24Game8ItemRock@sda21(r13)
-	lwz      r4, 0x20c(r30)
-	lwz      r5, 0x88(r5)
-	lfs      f0, 0x218(r5)
-	fmuls    f0, f1, f0
-	stfs     f0, 0xc(r4)
-	lwz      r4, 0x208(r30)
-	lfs      f0, 0(r4)
-	stfs     f0, 0x204(r30)
-	lfs      f0, 0x204(r30)
-	stfs     f0, 0x200(r30)
-	ble      lbl_801E2764
-	addi     r0, r31, 1
-	addi     r4, r31, -7
-	cmpwi    r0, 8
-	ble      lbl_801E274C
-	addi     r0, r4, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r4, 0
-	ble      lbl_801E274C
 
-lbl_801E2744:
-	addi     r3, r3, 8
-	bdnz     lbl_801E2744
+	for (int j = 0; j < 4; j++) {
+		mGrowTimes[j] = 60.0f * ((Parm<f32>*)(&mgr->mParms->mRockParms.mGrowTimeMax) + j)->mValue;
+	}
 
-lbl_801E274C:
-	addi     r4, r31, 1
-	subf     r0, r3, r4
-	mtctr    r0
-	cmpw     r3, r4
-	bge      lbl_801E2764
+	mMaxHealth = mHealthLimits[SIZE_Max];
+	mHealth    = mMaxHealth;
 
-lbl_801E2760:
-	bdnz     lbl_801E2760
-
-lbl_801E2764:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (int i = 0; i < visibleSizeCount + 1; i++) { }
 }
 
 /**
@@ -747,7 +630,7 @@ Mgr::Mgr()
 	mObjectPathComponent = "user/Kando/objects/ojamarock";
 	mParms               = new RockParms();
 	void* resource       = JKRDvdRipper::loadToMainRAM("user/Abe/item/rockParms.txt", nullptr, Switch_0, 0, nullptr,
-                                                 JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+	                                                   JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 	if (resource) {
 		RamStream stream(resource, -1);
 		stream.resetPosition(true, true);

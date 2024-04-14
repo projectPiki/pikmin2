@@ -949,7 +949,7 @@ LIBS = [
             ["plugProjectKandoU/interactNavi", True],
             ["plugProjectKandoU/itemPikihead", False],
             ["plugProjectKandoU/itemPlant", False],
-            ["plugProjectKandoU/itemRock", False],
+            ["plugProjectKandoU/itemRock", True],
             ["plugProjectKandoU/aiBreakRock", True],
             ["plugProjectKandoU/aiCrop", True],
             ["plugProjectKandoU/registItem", True],
