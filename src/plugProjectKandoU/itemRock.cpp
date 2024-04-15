@@ -630,7 +630,7 @@ Mgr::Mgr()
 	mObjectPathComponent = "user/Kando/objects/ojamarock";
 	mParms               = new RockParms();
 	void* resource       = JKRDvdRipper::loadToMainRAM("user/Abe/item/rockParms.txt", nullptr, Switch_0, 0, nullptr,
-	                                                   JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+                                                 JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 	if (resource) {
 		RamStream stream(resource, -1);
 		stream.resetPosition(true, true);
