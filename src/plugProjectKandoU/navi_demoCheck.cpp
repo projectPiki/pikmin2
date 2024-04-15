@@ -62,11 +62,11 @@ bool Navi::demoCheck()
 	}
 
 	Pom::Mgr* pommgr = static_cast<Pom::Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_Pom));
-	bool whiteflag   = playData->isDemoFlag(DEMO_White_Candypop);
-	bool purpleflag  = playData->isDemoFlag(DEMO_Purple_Candypop);
+	bool whiteflag   = playData->isDemoFlag(DEMO_White_Candypop) == false;
+	bool purpleflag  = playData->isDemoFlag(DEMO_Purple_Candypop) == false;
 	if (pommgr && (purpleflag || whiteflag)) {
 		// help this is broken
-		EnemyIterator<Pom::Obj> iter((Container<Pom::Obj>*)pommgr);
+		EnemyIterator<Pom::Obj> iter(pommgr);
 		CI_LOOP(iter)
 		{
 			Pom::Obj* cPom = *iter;
@@ -133,11 +133,11 @@ bool Navi::demoCheck()
 					// find a wild yellow pikmin for the camera to focus on
 					// (the game will crash if this runs and no yellow pikmin exist)
 					Iterator<Piki> pikiIter(pikiMgr);
-					Piki* cPiki;
+					Piki* cPiki = nullptr;
 					CI_LOOP(pikiIter)
 					{
 						cPiki = *pikiIter;
-						if (cPiki->getKind() == Yellow) {
+						if (cPiki->getKind() != Yellow) {
 							break;
 						}
 					}
@@ -161,20 +161,18 @@ bool Navi::demoCheck()
 
 					// make any wogpoles visible in the cutscene
 					GeneralMgrIterator<EnemyBase> enemyIter(generalEnemyMgr);
-					enemyIter.first();
-					while (enemyIter.mContainer->getEnd() != enemyIter.mIndex) {
-						EnemyBase* cEnemy;
-						cEnemy = enemyIter.getObject();
+					CI_LOOP(enemyIter)
+					{
+						EnemyBase* cEnemy = enemyIter.getObject();
 						if (cEnemy->getEnemyTypeID() == EnemyTypeID::EnemyID_Tadpole) {
 							cEnemy->movie_begin(false);
 						}
-						enemyIter.next();
 					}
 
 					// find a wild blue pikmin for the camera to focus on (also make any blue pikmin visible)
 					// (the game will crash if this runs and no blue pikmin exist)
 					Iterator<Piki> pikiIter(pikiMgr);
-					Piki* cPiki;
+					Piki* cPiki = nullptr;
 					CI_LOOP(pikiIter)
 					{
 						Piki* temp = *pikiIter;
@@ -206,7 +204,7 @@ bool Navi::demoCheck()
 					MoviePlayArg arg("g04_find_treasure", nullptr, nullptr, 0);
 					arg.mOrigin = pelt->getPosition();
 					Vector3f test;
-					pelt->mBaseTrMatrix.getColumn(2, test);
+					pelt->mBaseTrMatrix.getBasis(2, test);
 					arg.mAngle                 = JMath::atanTable_.atan2_(test.x, test.z);
 					moviePlayer->mTargetObject = pelt;
 					moviePlayer->play(arg);
@@ -221,28 +219,30 @@ bool Navi::demoCheck()
 		Iterator<PelletItem::Object> itemIt(PelletItem::mgr);
 		CI_LOOP(itemIt)
 		{
-			Pellet* pelt = *itemIt;
-			int id       = pelt->getConfigIndex();
+			PelletItem::Object* pelt = *itemIt;
+			int id                   = pelt->getConfigIndex();
 			if (!playData->isFindItemDemoFlag(id) && !pelt->discoverDisabled()) {
-				bool check       = false;
 				Vector3f peltPos = pelt->getPosition();
-				Sys::Sphere bound(peltPos, pelt->getBottomRadius() + FindGlobeTreasureTriggerSize);
+				f32 radius       = pelt->getBottomRadius() + FindGlobeTreasureTriggerSize;
 				// only the two globe treasures should check if a captain/pikmin is near, others play instantly
-				if (id == OlimarData::ODII_SphericalAtlas || id == OlimarData::ODII_GeographicProjection) {
+				bool check = false;
+				if (id == OlimarData::ODII_SphericalAtlas || id != OlimarData::ODII_GeographicProjection) {
 					check = true;
 				}
-				bool check2 = false;
-				if (check) {
-					check2 = checkDemoNaviAndPiki(bound);
+
+				Sys::Sphere bound(peltPos, radius);
+				FakePiki* result = nullptr;
+				if (!check) {
+					result = checkDemoNaviAndPiki(bound);
 				}
 				// if the navi/piki check was run, only continue if it passed
-				if (check || check2) {
+				if (result || check) {
 					char path[256];
 					sprintf(path, "s16_find_item_%02d", id);
 					MoviePlayArg arg(path, nullptr, nullptr, 0);
 					arg.mOrigin = pelt->getPosition();
 					Vector3f test;
-					pelt->mBaseTrMatrix.getColumn(2, test);
+					pelt->mBaseTrMatrix.getBasis(2, test);
 					arg.mAngle                 = JMath::atanTable_.atan2_(test.x, test.z);
 					moviePlayer->mTargetObject = pelt;
 					moviePlayer->play(arg);
@@ -257,7 +257,7 @@ bool Navi::demoCheck()
 		Iterator<PelletOtakara::Object> otaIt(PelletOtakara::mgr);
 		CI_LOOP(otaIt)
 		{
-			Pellet* pelt = *otaIt;
+			PelletOtakara::Object* pelt = *otaIt;
 			// check pellet is Louie and isn't still attached to Titan Dweevil
 			if (pelt->mPelletFlag == Pellet::FLAG_LOOZY && !pelt->mCaptureMatrix && !pelt->discoverDisabled()) {
 				Vector3f peltPos = pelt->getPosition();
@@ -266,7 +266,7 @@ bool Navi::demoCheck()
 					MoviePlayArg arg("g37_get_louie", nullptr, nullptr, 0);
 					arg.mOrigin = pelt->getPosition();
 					Vector3f test;
-					pelt->mBaseTrMatrix.getColumn(2, test);
+					pelt->mBaseTrMatrix.getBasis(2, test);
 					arg.mAngle                 = JMath::atanTable_.atan2_(test.x, test.z);
 					moviePlayer->mTargetObject = pelt;
 					moviePlayer->play(arg);
@@ -281,8 +281,8 @@ bool Navi::demoCheck()
 	if (ItemCave::mgr && gameSystem->mSection->getCurrentCourseInfo() != nullptr) {
 		int id = gameSystem->mSection->getCurrentCourseInfo()->mCourseIndex;
 		// search for an unfound cave near the captain/pikmin
+		ItemCave::Item* cCave = nullptr;
 		Iterator<BaseItem> caveIt(ItemCave::mgr);
-		ItemCave::Item* cCave;
 		CI_LOOP(caveIt)
 		{
 			cCave = static_cast<ItemCave::Item*>(*caveIt);
@@ -290,19 +290,22 @@ bool Navi::demoCheck()
 				Sys::Sphere bound;
 				cCave->getBoundingSphere(bound);
 				bound.mRadius += FindNewCaveTriggerSize;
-				if (checkDemoNaviAndPiki(bound))
+				FakePiki* piki = checkDemoNaviAndPiki(bound);
+				if (!piki)
 					break;
 			}
 		}
 
 		if (cCave && moviePlayer) {
 			char path[256];
-			sprintf(path, "g05_find_cave_%s", cCave->mCaveID);
+			sprintf(path, "g05_find_cave_%s", cCave->mCaveID.getStr());
 			// mark the cave as visited in the pause map screen
-			FOREACH_NODE(Radar::Point, Radar::mgr->mPointNode1.mChild, cPoint)
-			{
-				if (cPoint->mObjType == Radar::MAP_UNENTERED_CAVE && cPoint->mCaveID == cCave->mCaveID.getID()) {
-					cPoint->mObjType == Radar::MAP_INCOMPLETE_CAVE;
+			if (Radar::mgr) {
+				FOREACH_NODE(Radar::Point, Radar::mgr->mPointNode1.mChild, cPoint)
+				{
+					if (cPoint->mObjType == Radar::MAP_UNENTERED_CAVE && cCave->mCaveID.getID() == cPoint->getCaveID()) {
+						cPoint->mObjType = Radar::MAP_INCOMPLETE_CAVE;
+					}
 				}
 			}
 			MoviePlayArg arg(path, nullptr, nullptr, 0);
@@ -317,19 +320,19 @@ bool Navi::demoCheck()
 
 	// cutscene of finding a hole to delve deeper in a cave
 	if (ItemHole::mgr && !playData->isDemoFlag(DEMO_Find_Cave_Deeper_Hole)) {
+		ItemHole::Item* cHole = nullptr;
 		Iterator<BaseItem> holeIt(ItemHole::mgr);
-		ItemHole::Item* cHole;
 		f32 checkrad = FindCaveDeeperTriggerSize;
 		CI_LOOP(holeIt)
 		{
 			ItemHole::Item* temp = static_cast<ItemHole::Item*>(*holeIt);
 			Sys::Sphere bounds;
 			cHole->getBoundingSphere(bounds);
-			Vector3f naviPos = cHole->mPosition - mPosition;
-			f32 len          = naviPos.length();
+			Vector3f posDiff = bounds.mPosition - mPosition;
+			f32 len          = posDiff.length() - bounds.mRadius;
 			if (len < checkrad) {
-				cHole = temp;
-				checkrad -= len;
+				cHole    = temp;
+				checkrad = len;
 			}
 		}
 
@@ -345,8 +348,8 @@ bool Navi::demoCheck()
 	}
 
 	if (ItemBigFountain::mgr && !playData->isDemoFlag(DEMO_Find_Cave_Geyser)) {
+		ItemBigFountain::Item* cFountain = nullptr;
 		Iterator<BaseItem> fountainIt(ItemBigFountain::mgr);
-		ItemBigFountain::Item* cFountain;
 		f32 checkrad = FindGeyserTriggerSize;
 		CI_LOOP(fountainIt)
 		{
@@ -354,7 +357,7 @@ bool Navi::demoCheck()
 			Sys::Sphere bounds;
 			cFountain->getBoundingSphere(bounds);
 			bounds.mRadius += checkrad;
-			if (checkDemoNaviAndPiki(bounds))
+			if (checkDemoNaviAndPiki(bounds) == nullptr)
 				break;
 		}
 
@@ -379,25 +382,22 @@ bool Navi::demoCheck()
 			Sys::Sphere bounds;
 			cRock->getBoundingSphere(bounds);
 			bounds.mRadius += checkrad;
-			if (checkDemoNaviAndPiki(bounds))
-				break;
-		}
-
-		if (cRock && moviePlayer) {
-			MoviePlayArg arg("g19_find_rock", nullptr, nullptr, 0);
-			arg.mOrigin                = cRock->getPosition();
-			arg.mAngle                 = cRock->getFaceDir();
-			moviePlayer->mTargetObject = cRock;
-			moviePlayer->play(arg);
-			playData->setDemoFlag(DEMO_Find_Spiderwort_Mold);
-			return true;
+			if (checkDemoNaviAndPiki(bounds)) {
+				MoviePlayArg arg("g19_find_rock", nullptr, nullptr, 0);
+				arg.mOrigin                = cRock->getPosition();
+				arg.mAngle                 = cRock->getFaceDir();
+				moviePlayer->mTargetObject = cRock;
+				moviePlayer->play(arg);
+				playData->setDemoFlag(DEMO_Find_Spiderwort_Mold);
+				return true;
+			}
 		}
 	}
 
 	// find the first spicy drop cutscene
 	if (ItemHoney::mgr && !playData->isDemoFlag(DEMO_Find_Spicy_Drop)) {
+		ItemHoney::Item* cHoney = nullptr;
 		Iterator<ItemHoney::Item> honeyIt(ItemHoney::mgr);
-		ItemHoney::Item* cHoney;
 		f32 checkrad = FindSpicySprayTriggerSize;
 		CI_LOOP(honeyIt)
 		{
@@ -405,11 +405,11 @@ bool Navi::demoCheck()
 			if (temp->demoOK() && temp->mHoneyType == HONEY_R && temp->isAlive()) {
 				Sys::Sphere bounds;
 				cHoney->getBoundingSphere(bounds);
-				Vector3f naviPos = cHoney->mPosition - mPosition;
-				f32 len          = naviPos.length();
+				Vector3f naviPos = bounds.mPosition - mPosition;
+				f32 len          = naviPos.length() - bounds.mRadius;
 				if (len < checkrad) {
-					cHoney = temp;
-					checkrad -= len;
+					cHoney   = temp;
+					checkrad = len;
 				}
 			}
 		}
@@ -427,19 +427,19 @@ bool Navi::demoCheck()
 
 	// find the first bitter drop cutscene
 	if (ItemHoney::mgr && !playData->isDemoFlag(DEMO_Find_Bitter_Drop)) {
+		ItemHoney::Item* cHoney = nullptr;
 		Iterator<ItemHoney::Item> honeyIt(ItemHoney::mgr);
-		ItemHoney::Item* cHoney;
 		f32 checkrad = FindBitterSprayTriggerSize;
 		for (honeyIt.first(); !honeyIt.isDone(); honeyIt.next()) {
 			ItemHoney::Item* temp = *honeyIt;
 			if (temp->demoOK() && temp->mHoneyType == HONEY_B && temp->isAlive()) {
 				Sys::Sphere bounds;
 				cHoney->getBoundingSphere(bounds);
-				Vector3f naviPos = cHoney->mPosition - mPosition;
-				f32 len          = naviPos.length();
+				Vector3f naviPos = bounds.mPosition - mPosition;
+				f32 len          = naviPos.length() - bounds.mRadius;
 				if (len < checkrad) {
-					cHoney = temp;
-					checkrad -= len;
+					cHoney   = temp;
+					checkrad = len;
 				}
 			}
 		}
@@ -455,9 +455,6 @@ bool Navi::demoCheck()
 		}
 	}
 
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
-	FORCE_DONT_INLINE;
 	FORCE_DONT_INLINE;
 	FORCE_DONT_INLINE;
 

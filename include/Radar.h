@@ -51,6 +51,8 @@ struct Radar {
 		static void entry(Game::TPositionObject*, Radar::cRadarType, u32); // unused? or inline
 		inline void clear();
 
+		inline u32 getCaveID() { return mCaveID; }
+
 		// _00     = VTBL
 		// _00-_18 = CNode
 		cRadarType mObjType;            // _18

@@ -8,7 +8,7 @@
 namespace Game {
 template <typename T>
 struct EnemyIterator {
-	inline EnemyIterator<T>(Container<T>* container, void* startIndex = 0, Condition<T>* condition = nullptr)
+	inline EnemyIterator<T>(GenericContainer* container, void* startIndex = 0, Condition<T>* condition = nullptr)
 	    : mCondition(condition)
 	{
 		mIndex     = startIndex;
@@ -63,9 +63,9 @@ struct EnemyIterator {
 	inline bool satisfy() { return mCondition->satisfy(mContainer->get(mIndex)); }
 
 	// VTBL _00
-	void* mIndex;             // _04;
-	Container<T>* mContainer; // _08
-	Condition<T>* mCondition; // _0C
+	void* mIndex;                 // _04;
+	GenericContainer* mContainer; // _08
+	Condition<T>* mCondition;     // _0C
 };
 } // namespace Game
 #endif

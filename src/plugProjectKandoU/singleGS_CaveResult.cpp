@@ -388,9 +388,13 @@ void CaveResultState::createResultNodes()
 	mIsCaveComplete = 0;
 	sys->startChangeCurrentHeap(mResultTexHeap);
 	PelletCropMemory* cropMem = playData->mCaveCropMemory->createClone();
+	PelletCarcass::Mgr* carcassMgr;
+	PelletItem::Mgr* itemMgr;
+	PelletOtakara::Mgr* otaMgr;
+
 	if (mSection->mDoTrackCarcass) {
-		PelletCarcass::Mgr* carcassMgr = PelletCarcass::mgr;
-		KindCounter& counter           = playData->mCaveCropMemory->mCarcass;
+		carcassMgr           = PelletCarcass::mgr;
+		KindCounter& counter = playData->mCaveCropMemory->mCarcass;
 		for (int i = 0; i < counter.getNumKinds(); i++) {
 			if (counter(i) && carcassMgr->getPelletConfig(i)) {
 				counter(i) = 0;
@@ -401,24 +405,23 @@ void CaveResultState::createResultNodes()
 	playData->mMainCropMemory->addTo(playData->mCaveCropMemory);
 	playData->mCaveCropMemory->clear();
 
-	PelletItem::Mgr* itemMgr = PelletItem::mgr;
-	KindCounter& counter     = cropMem->mItem;
+	itemMgr              = PelletItem::mgr;
+	KindCounter& counter = cropMem->mItem;
 	for (int i = 0; i < counter.getNumKinds(); i++) {
 		if (counter(i) || mSection->mItemCounter(i)) {
-			int money;
 			mIsCaveComplete      = true;
 			PelletConfig* config = itemMgr->getPelletConfig(i);
 			int id               = PelletList::Mgr::getOffsetFromDictionaryNo(config->mParams.mDictionary.mData - 1);
 			u64 tag              = Result::TNode::convertByMorimun(id);
 			Result::TNode* node  = new Result::TNode;
-			money                = config->mParams.mMoney.mData;
+			int money            = config->getPokoValue();
 			node->setTNode(tag, mResultTextures->getItemTexture(i), counter(i), money * counter(i), money, mSection->mItemCounter(i));
 			mResultNodes.add(node);
 		}
 	}
 
-	PelletOtakara::Mgr* otaMgr = PelletOtakara::mgr;
-	KindCounter& counter2      = cropMem->mOtakara;
+	otaMgr                = PelletOtakara::mgr;
+	KindCounter& counter2 = cropMem->mOtakara;
 	for (int i = 0; i < counter2.getNumKinds(); i++) {
 		if (counter2(i) || mSection->mOtakaraCounter(i)) {
 			mIsCaveComplete      = true;
@@ -426,25 +429,22 @@ void CaveResultState::createResultNodes()
 			int id               = PelletList::Mgr::getOffsetFromDictionaryNo(config->mParams.mDictionary.mData - 1);
 			u64 tag              = Result::TNode::convertByMorimun(id);
 			Result::TNode* node  = new Result::TNode;
-			int money            = config->mParams.mMoney.mData;
+			int money            = config->getPokoValue();
 			node->setTNode(tag, mResultTextures->getOtakaraTexture(i), counter2(i), money * counter2(i), money,
 			               mSection->mOtakaraCounter(i));
 			mResultNodes.add(node);
 		}
 	}
 
-	PelletCarcass::Mgr* carcassMgr = PelletCarcass::mgr;
-	int money;
+	carcassMgr            = PelletCarcass::mgr;
 	KindCounter& counter3 = cropMem->mCarcass;
 	int value             = 0;
 	int num               = 0;
-	for (int i = 0; i < counter3.mNumKinds; i++) {
+	for (int i = 0; i < counter3.getNumKinds(); i++) {
 		if (counter3(i)) {
 			PelletConfig* config = carcassMgr->getPelletConfig(i);
 			num += counter3(i);
-			money          = config->mParams.mMoney.mData;
-			int counterVal = counter3(i);
-			value += counterVal * money;
+			value += counter3(i) * config->getPokoValue();
 		}
 	}
 	if (num > 0) {

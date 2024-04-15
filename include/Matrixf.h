@@ -220,6 +220,16 @@ struct Matrixf {
 		out.z = mMatrix.mtxView[2][index];
 	}
 
+	// for navi_demoCheck.cpp
+	inline void getBasis(int index, Vector3f& out)
+	{
+		out.x = mMatrix.mtxView[0][index];
+		out.y = mMatrix.mtxView[1][index];
+		out.z = mMatrix.mtxView[2][index];
+
+		FORCE_DONT_INLINE;
+	}
+
 	/**
 	 * @brief Retrieves the column vector at the specified index.
 	 *
