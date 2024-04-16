@@ -64,6 +64,8 @@ struct BaseGameSection : public BaseHIOSection {
 		void init(f32, f32, Vector3f&, Controller*);
 		void makeLookAt();
 
+		inline f32 getAngleX() const { return mAngleX; }
+
 		// _00		= VTBL
 		// _00-_198	= LookAtCamera
 		f32 mAngleX;             // _198, angleX?

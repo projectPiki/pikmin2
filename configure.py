@@ -1017,7 +1017,7 @@ LIBS = [
             ["plugProjectKandoU/baseGameSectionDraw", True],
             ["plugProjectKandoU/singleGS_Load", True],
             ["plugProjectKandoU/singleGS_DayEnd", True],
-            ["plugProjectKandoU/baseGameSectionKantei", False],
+            ["plugProjectKandoU/baseGameSectionKantei", True],
             ["plugProjectKandoU/sweepPrune", True],
             ["plugProjectKandoU/texCaster", False],
             ["plugProjectKandoU/vsCoinOtakaraName", True],

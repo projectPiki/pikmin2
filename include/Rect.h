@@ -11,7 +11,7 @@ struct Rect {
 
 	inline Rect() { }
 
-	inline Rect(Vector2<T> a, Vector2<T> b)
+	inline Rect(Vector2<T>& a, Vector2<T>& b)
 	{
 		p1 = a;
 		p2 = b;
