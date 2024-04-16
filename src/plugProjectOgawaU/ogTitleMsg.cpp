@@ -31,7 +31,7 @@ TitleMessageAnalyzer::TitleMessageAnalyzer(const JMessage::TReference* ref)
 void TitleMessageAnalyzer::set2ByteString(char* data, int value)
 {
 	data[0] = (value & 0xff00) >> 8;
-	data[1] = value;
+	data[1] = (u8)value;
 	data[2] = 0;
 }
 
@@ -46,7 +46,7 @@ void TitleMessageAnalyzer::do_character(int data)
 	bool valid    = false;
 	if (data == 0) {
 		mCharBuffer[mCurrCharIndex] = 0;
-	} else if ((u16)data != 0) {
+	} else if ((data & 0xFF00) != 0) {
 		set2ByteString(cChar, data);
 		valid = true;
 	} else if (c >= 'A' && c <= 'Z') {
@@ -56,7 +56,7 @@ void TitleMessageAnalyzer::do_character(int data)
 		set2ByteString(cChar, data + 0x8220);
 		valid = true;
 	} else if (c >= 0xbf && c <= 0xff) {
-		set2ByteString(cChar, (u16)(data)-0x1bf);
+		set2ByteString(cChar, data + 0xFE41);
 		valid = true;
 	} else if (c == ' ') {
 		set2ByteString(cChar, 0x8140);
@@ -68,7 +68,7 @@ void TitleMessageAnalyzer::do_character(int data)
 		set2ByteString(cChar, 0x8148);
 		valid = true;
 	} else if (u8(c - '&') <= 1 || (u32)c == '-') {
-		set2ByteString(cChar, (u16)data - 0x100);
+		set2ByteString(cChar, c + 0xFF00);
 		valid = true;
 	}
 
@@ -440,10 +440,10 @@ void TitleMsgDrop::update()
 					mDropFlags[i] = true;
 					mTimers[i]    = 1.0f;
 
-					Vector3f pos1 = pane->getGlbVtx(0);
-					Vector3f pos2 = pane->getGlbVtx(3);
-					Vector2f sum((pos1.x + pos2.x) / 2, (pos1.y + pos2.y) / 2 + mYOffset);
-					efx2d::Arg arg(sum);
+					JGeometry::TVec3f pos1 = pane->getGlbVtx(0);
+					JGeometry::TVec3f pos2 = pane->getGlbVtx(3);
+					Vector2f argVec((pos1.x + pos2.x) / 2, (pos1.y + pos2.y) / 2 + mYOffset);
+					efx2d::Arg arg(argVec);
 					mEffects[i]->setGroup(2);
 					mEffects[i]->create(&arg);
 
@@ -543,12 +543,12 @@ void TitleMsgWave::update()
 		if (!mDropFlags[i]) {
 			mTimers[i] += sys->mDeltaTime;
 			if (mTimers[i] > 0.1f) {
-				mDropFlags[i] = true;
-				J2DPane* pane = mPanes1[i];
-				Vector3f pos1 = pane->getGlbVtx(0);
-				Vector3f pos2 = pane->getGlbVtx(3);
-				Vector2f sum((pos1.x + pos2.x) / 2, (pos1.y + pos2.y) / 2 + mYOffset);
-				efx2d::Arg arg(sum);
+				mDropFlags[i]          = true;
+				J2DPane* pane          = mPanes1[i];
+				JGeometry::TVec3f pos1 = pane->getGlbVtx(0);
+				JGeometry::TVec3f pos2 = pane->getGlbVtx(3);
+				Vector2f argVec((pos1.x + pos2.x) / 2, (pos1.y + pos2.y) / 2 + mYOffset);
+				efx2d::Arg arg(argVec);
 
 				mEffects[i]->setGroup(2);
 				mEffects[i]->create(&arg);
@@ -623,7 +623,7 @@ void TitleMsgClash::update()
 {
 	mScaleMod -= 0.5f;
 	mCurrScale += mScaleMod;
-	if (1.0f < mCurrScale) {
+	if (mCurrScale < 1.0f) {
 		mCurrScale = 1.0f;
 		mScaleMod  = -mScaleMod * 0.4f;
 	}
@@ -634,12 +634,12 @@ void TitleMsgClash::update()
 		if (!mDropFlags[i]) {
 			mTimers[i] += sys->mDeltaTime;
 			if (mTimers[i] > 1.0f) {
-				mDropFlags[i] = true;
-				J2DPane* pane = mPanes1[i];
-				Vector3f pos1 = pane->getGlbVtx(0);
-				Vector3f pos2 = pane->getGlbVtx(3);
-				Vector2f sum((pos1.x + pos2.x) / 2, (pos1.y + pos2.y) / 2 + mYOffset);
-				efx2d::Arg arg(sum);
+				mDropFlags[i]          = true;
+				J2DPane* pane          = mPanes1[i];
+				JGeometry::TVec3f pos1 = pane->getGlbVtx(0);
+				JGeometry::TVec3f pos2 = pane->getGlbVtx(3);
+				Vector2f argVec((pos1.x + pos2.x) / 2, (pos1.y + pos2.y) / 2 + mYOffset);
+				efx2d::Arg arg(argVec);
 				mEffects[i]->setGroup(2);
 				mEffects[i]->create(&arg);
 				mEffects[i]->setGlobalAlpha(130);
