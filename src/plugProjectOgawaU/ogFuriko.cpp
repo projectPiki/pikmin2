@@ -86,20 +86,20 @@ void CallBack_Furiko::setParam(f32 p1, f32 p2, f32 p3)
 void CallBack_Furiko::update()
 {
 	// Updates @ 30FPS
-	f32 time = sys->mDeltaTime / 0.033333f;
+	f32 time = sys->mDeltaTime / 0.03333333333f;
 
 	if (mPane && mCanUpdate) {
-		Vector2f diff = mCurrPosition - mGoalPosition;
-
-		f32 dist = _lenVec2D(diff);
+		f32 dist = mCurrPosition.distance(mGoalPosition);
 		if (dist > 0.0f) {
-			f32 offs = dist - mOffset;
+			f32 offs   = dist - mOffset;
+			f32 xScale = (mCurrPosition.x - mGoalPosition.x) / dist;
+			f32 yScale = (mCurrPosition.y - mGoalPosition.y) / dist;
 
-			f32 weightX       = -(mChangeModifier.x * mGrowth - offs * (diff.x / dist) * time);
-			mChangeModifier.x = time * weightX + mChangeModifier.x;
+			f32 weightX = -(mChangeModifier.x * mGrowth - offs * (xScale)*time);
+			mChangeModifier.x += time * weightX;
 
-			f32 weightY       = -(mChangeModifier.y * mGrowth - offs * (diff.y / dist) * time);
-			mChangeModifier.y = time * (mParam2 + weightY) + mChangeModifier.y;
+			f32 weightY = -(mChangeModifier.y * mGrowth - offs * (yScale)*time);
+			mChangeModifier.y += time * (mParam2 + weightY);
 
 			mGoalPosition.x += mChangeModifier.x * time;
 			mGoalPosition.y += mChangeModifier.y * time;
@@ -111,106 +111,6 @@ void CallBack_Furiko::update()
 		}
 		mCanUpdate = false;
 	}
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-lfs      f0, lbl_8051DEB8@sda21(r2)
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r4, sys@sda21(r13)
-lwz      r0, 0x1c(r3)
-lfs      f1, 0x54(r4)
-cmplwi   r0, 0
-fdivs    f0, f1, f0
-beq      lbl_8032A0BC
-lbz      r0, 0x20(r31)
-cmplwi   r0, 0
-beq      lbl_8032A0BC
-lfs      f2, 0x28(r31)
-lfs      f1, 0x3c(r31)
-lfs      f3, 0x24(r31)
-fsubs    f6, f2, f1
-lfs      f2, 0x38(r31)
-lfs      f1, lbl_8051DEA8@sda21(r2)
-fsubs    f3, f3, f2
-fmuls    f2, f6, f6
-fmadds   f5, f3, f3, f2
-fcmpo    cr0, f5, f1
-ble      lbl_80329FE0
-ble      lbl_80329FE4
-frsqrte  f1, f5
-fmuls    f5, f1, f5
-b        lbl_80329FE4
-
-lbl_80329FE0:
-fmr      f5, f1
-
-lbl_80329FE4:
-lfs      f1, lbl_8051DEA8@sda21(r2)
-fcmpo    cr0, f5, f1
-ble      lbl_8032A0B4
-fdivs    f2, f3, f5
-lfs      f1, 0x2c(r31)
-lis      r3, atanTable___5JMath@ha
-lfs      f4, 0x40(r31)
-lfs      f3, 0x34(r31)
-addi     r3, r3, atanTable___5JMath@l
-fsubs    f7, f5, f1
-fdivs    f1, f6, f5
-fmuls    f2, f7, f2
-fmuls    f1, f7, f1
-fmuls    f2, f0, f2
-fmuls    f1, f0, f1
-fnmsubs  f2, f4, f3, f2
-fmadds   f2, f0, f2, f4
-stfs     f2, 0x40(r31)
-lfs      f3, 0x44(r31)
-lfs      f2, 0x34(r31)
-lfs      f4, 0x30(r31)
-fnmsubs  f1, f3, f2, f1
-fadds    f1, f4, f1
-fmadds   f1, f0, f1, f3
-stfs     f1, 0x44(r31)
-lfs      f2, 0x40(r31)
-lfs      f1, 0x38(r31)
-fmadds   f1, f2, f0, f1
-stfs     f1, 0x38(r31)
-lfs      f2, 0x44(r31)
-lfs      f1, 0x3c(r31)
-fmadds   f0, f2, f0, f1
-stfs     f0, 0x3c(r31)
-lfs      f1, 0x24(r31)
-lfs      f0, 0x38(r31)
-lfs      f2, 0x28(r31)
-fsubs    f0, f1, f0
-lfs      f1, 0x3c(r31)
-fsubs    f1, f2, f1
-fneg     f2, f0
-bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-lfs      f2, lbl_8051DEC0@sda21(r2)
-lfs      f0, lbl_8051DEBC@sda21(r2)
-fmadds   f0, f2, f1, f0
-stfs     f0, 0x48(r31)
-lwz      r3, 0x1c(r31)
-lfs      f0, 0x48(r31)
-stfs     f0, 0xc0(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x2c(r12)
-mtctr    r12
-bctrl
-
-lbl_8032A0B4:
-li       r0, 0
-stb      r0, 0x20(r31)
-
-lbl_8032A0BC:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
 }
 
 /**

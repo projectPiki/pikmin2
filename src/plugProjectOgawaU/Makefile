@@ -63,7 +63,7 @@ OGAWA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogScaleMgr.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjSMenuPauseVs.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuPauseVs.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogFuriko.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogFuriko.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCounterSlot.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjWorldMapInfoWindow0.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneWorldMapInfoWindow0.o\

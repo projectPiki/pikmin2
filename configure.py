@@ -1338,7 +1338,7 @@ LIBS = [
             ["plugProjectOgawaU/ogScaleMgr", True],
             ["plugProjectOgawaU/ogObjSMenuPauseVs", True],
             ["plugProjectOgawaU/ogSceneSMenuPauseVs", True],
-            ["plugProjectOgawaU/ogFuriko", False],
+            ["plugProjectOgawaU/ogFuriko", True],
             ["plugProjectOgawaU/ogCounterSlot", False],
             ["plugProjectOgawaU/ogObjWorldMapInfoWindow0", True],
             ["plugProjectOgawaU/ogSceneWorldMapInfoWindow0", True],
