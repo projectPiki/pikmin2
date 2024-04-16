@@ -1518,11 +1518,11 @@ blr
  */
 void ObjFinalResult::updateCommon()
 {
-	Vector3f pos1 = mScreen->search('Nmask')->getGlbVtx(0);
-	Vector3f pos2 = mScreen->search('Nmask')->getGlbVtx(3);
-	f32 y         = pos1.y;
-	_140          = y + 0.5f;
-	_144          = pos2.y - y;
+	JGeometry::TVec3f pos1 = mScreen->search('Nmask')->getGlbVtx(0);
+	JGeometry::TVec3f pos2 = mScreen->search('Nmask')->getGlbVtx(3);
+	f32 y                  = pos1.y;
+	_140                   = y + 0.5f;
+	_144                   = pos2.y - y;
 
 	mAnmTrans5->mCurrentFrame = mAnimTimers[2];
 	mAnimTimers[2] += 1.0f;

@@ -622,10 +622,10 @@ void MenuMgr::initSelNum(u16 sel)
  */
 void MenuMgr::calcCenter(J2DPane* pane, Vector2f* pos)
 {
-	Vector3f pos1 = pane->getGlbVtx(0);
-	Vector3f pos2 = pane->getGlbVtx(3);
-	pos->x        = (pos1.x + pos2.x) / 2;
-	pos->y        = (pos1.y + pos2.y) / 2;
+	JGeometry::TVec3f pos1 = pane->getGlbVtx(0);
+	JGeometry::TVec3f pos2 = pane->getGlbVtx(3);
+	pos->x                 = (pos1.x + pos2.x) / 2;
+	pos->y                 = (pos1.y + pos2.y) / 2;
 }
 
 /**

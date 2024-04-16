@@ -3210,10 +3210,10 @@ void ObjSMenuMap::drawMap(Graphics& gfx)
 	rect.p2.y = 480.0f;
 	Color4 color(200, 10, 200, 155);
 	drawRectZ(gfx, rect, color, 0.999);
-	Vector3f vec1 = mPane_map->getGlbVtx(0);
-	Vector3f vec2 = mPane_map->getGlbVtx(1);
-	Vector3f vec3 = mPane_map->getGlbVtx(2);
-	Vector3f vec4 = mPane_map->getGlbVtx(3);
+	JGeometry::TVec3f vec1 = mPane_map->getGlbVtx(0);
+	JGeometry::TVec3f vec2 = mPane_map->getGlbVtx(1);
+	JGeometry::TVec3f vec3 = mPane_map->getGlbVtx(2);
+	JGeometry::TVec3f vec4 = mPane_map->getGlbVtx(3);
 	Color4 color2(100, 0, 0, 155);
 	drawVecZ(gfx, *(Vec*)&vec1, *(Vec*)&vec2, *(Vec*)&vec3, *(Vec*)&vec4, color2, -0.999);
 	GXSetColorUpdate(GX_TRUE);

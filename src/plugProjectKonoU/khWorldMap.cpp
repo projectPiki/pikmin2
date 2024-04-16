@@ -5064,18 +5064,18 @@ void WorldMap::rocketUpdate(J2DPane* pane)
 	f32 scale2 = msVal._1C[mOpenCourses] * mRocketScale;
 	shipPane->updateScale(scale2);
 
-	f32 x              = mRocketPosition.x - mRocketPosition2.x;
-	f32 y              = mRocketPosition.y - mRocketPosition2.y;
-	J2DPane* shipPane2 = mScreenRocket->search('Procket');
-	Vector3f pos1      = shipPane2->getGlbVtx(0);
-	Vector3f pos2      = shipPane2->getGlbVtx(1);
-	Vector3f pos3      = shipPane2->getGlbVtx(2);
-	Vector3f pos4      = shipPane2->getGlbVtx(3);
-	f32 inv            = 1.0f - msVal._1C[0];
-	_D0.x              = x + (pos1.x + pos2.x) * 0.5f * inv + (pos3.x + pos4.x) * 0.5f * msVal._1C[0];
-	_D0.y              = y + (pos1.x + pos2.x) * 0.5f * inv + (pos3.x + pos4.x) * 0.5f * msVal._1C[0];
-	_D8.x              = -mRocketAngle.x;
-	_D8.y              = -mRocketAngle.y;
+	f32 x                  = mRocketPosition.x - mRocketPosition2.x;
+	f32 y                  = mRocketPosition.y - mRocketPosition2.y;
+	J2DPane* shipPane2     = mScreenRocket->search('Procket');
+	JGeometry::TVec3f pos1 = shipPane2->getGlbVtx(0);
+	JGeometry::TVec3f pos2 = shipPane2->getGlbVtx(1);
+	JGeometry::TVec3f pos3 = shipPane2->getGlbVtx(2);
+	JGeometry::TVec3f pos4 = shipPane2->getGlbVtx(3);
+	f32 inv                = 1.0f - msVal._1C[0];
+	_D0.x                  = x + (pos1.x + pos2.x) * 0.5f * inv + (pos3.x + pos4.x) * 0.5f * msVal._1C[0];
+	_D0.y                  = y + (pos1.x + pos2.x) * 0.5f * inv + (pos3.x + pos4.x) * 0.5f * msVal._1C[0];
+	_D8.x                  = -mRocketAngle.x;
+	_D8.y                  = -mRocketAngle.y;
 
 	efx2d::WorldMap::ArgDirScale arg(_D0, _D8, scale);
 	efx2d::WorldMap::T2DRocketA efx;
@@ -6837,10 +6837,10 @@ void WorldMap::effectFirstTime()
 			ID32 caveID(id->getID());
 			if (Game::playData->isCaveFirstTime(mCurrentCourseIndex, caveID)
 			    != Game::playData->isCaveFirstTime_Old(mCurrentCourseIndex, caveID)) {
-				Vector3f pos1 = mScreenInfo->search(getSerialTagName('Pcave_00', i))->getGlbVtx(0);
-				Vector3f pos2 = mScreenInfo->search(getSerialTagName('Pcave_00', i))->getGlbVtx(3);
+				JGeometry::TVec3f pos1 = mScreenInfo->search(getSerialTagName('Pcave_00', i))->getGlbVtx(0);
+				JGeometry::TVec3f pos2 = mScreenInfo->search(getSerialTagName('Pcave_00', i))->getGlbVtx(3);
 				for (int j = 0; j < 5; j++) {
-					Vector2f pos((pos1.y + pos2.y) * 0.5f, 0.25f * (pos1.z * 4 - j) * (pos2.z * 4 - j));
+					Vector2f pos((pos1.y + pos2.y) / 2, (pos1.z - j) * (pos2.z - j) / 4);
 					efx2d::Arg arg(pos);
 					efx2d::T2DChangesmoke efx;
 					efx.create(&arg);

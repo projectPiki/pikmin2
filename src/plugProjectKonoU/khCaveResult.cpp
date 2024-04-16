@@ -1661,11 +1661,11 @@ void ObjCaveResult::statusEffect()
  */
 void ObjCaveResult::updateAnimation()
 {
-	Vector3f vec1 = (mScreenMain->search('Nmask')->getGlbVtx(0));
-	Vector3f vec2 = (mScreenMain->search('Nmask')->getGlbVtx(3));
-	f32 yoffs     = vec1.y;
-	mScissorMin   = vec1.y + 0.5f;
-	mScissorMax   = vec2.y - yoffs;
+	JGeometry::TVec3f vec1 = (mScreenMain->search('Nmask')->getGlbVtx(0));
+	JGeometry::TVec3f vec2 = (mScreenMain->search('Nmask')->getGlbVtx(3));
+	f32 yoffs              = vec1.y;
+	mScissorMin            = vec1.y + 0.5f;
+	mScissorMax            = vec2.y - yoffs;
 
 	mMainAnim->mCurrentFrame      = mAnimTimers[0];
 	mMainAnimColor->mCurrentFrame = mAnimTimers[2];
