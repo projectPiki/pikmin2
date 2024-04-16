@@ -149,11 +149,11 @@ void FileState::startGame(SingleGameSection* game)
 		game->mCurrentCourseInfo = playData->getCurrentCourse();
 		P2ASSERTLINE(469, game->mCurrentCourseInfo);
 
-		u16 flag = 1;
+		u16 loadtype = MapEnter_CaveGeyser;
 		if (playData->mDeadNaviID & 1 && playData->mDeadNaviID & 2) {
-			flag = 2;
+			loadtype = MapEnter_CaveNavisDown;
 		}
-		LoadArg arg(flag, false, true, false);
+		LoadArg arg(loadtype, false, true, false);
 		transit(game, SGS_Load, &arg);
 		break;
 	}
@@ -170,13 +170,14 @@ void FileState::startGame(SingleGameSection* game)
 		game->mCaveID            = id;
 		strcpy(game->mCaveFilename, info->getCaveinfoFilename_FromID(id));
 		game->loadMainMapSituation();
-		LoadArg arg(0, 1, 1, 0);
+		// MapEnter type isnt used when loading into caves
+		LoadArg arg(MapEnter_NewDay, true, true, false);
 		transit(game, SGS_Load, &arg);
 		break;
 	}
 
 	case STORYSAVE_DebtPaid: {
-		EndingArg arg(1);
+		EndingArg arg(EndingState::Ending_SkipMovie);
 		transit(game, SGS_Ending, &arg);
 		break;
 	}

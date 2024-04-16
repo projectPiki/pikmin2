@@ -24,7 +24,7 @@ namespace SingleGame {
  * @note Address: 0x80239E84
  * @note Size: 0xB4
  */
-void LoadState::init(SingleGameSection* gs, StateArg* arg)
+void LoadState::init(SingleGameSection* game, StateArg* arg)
 {
 	moviePlayer->reset();
 	Screen::gGame2DMgr->mScreenMgr->reset();
@@ -35,21 +35,21 @@ void LoadState::init(SingleGameSection* gs, StateArg* arg)
 
 	P2ASSERTLINE(33, arg != nullptr);
 
-	LoadArg* a = static_cast<LoadArg*>(arg);
-	_24        = a->_04;
-	_29        = a->_01;
-	_27        = a->mInCave;
-	_28        = a->_02;
+	LoadArg* a     = static_cast<LoadArg*>(arg);
+	mGameLoadType  = a->mGameLoadType;
+	mDontClearHeap = a->mDontClearHeap;
+	mIsCaveLoad    = a->mInCave;
+	mIsCaveDeeper  = a->mIsCaveDeeper;
 
-	_26 = false;
-	_14 = false;
+	mIsInitialized = false;
+	mHasDrawn      = false;
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0x160
  */
-void LoadState::initNext(SingleGameSection* gs)
+void LoadState::initNext(SingleGameSection* game)
 {
 	// UNUSED FUNCTION
 }
@@ -58,53 +58,53 @@ void LoadState::initNext(SingleGameSection* gs)
  * @note Address: 0x80239F38
  * @note Size: 0x238
  */
-void LoadState::exec(SingleGameSection* gs)
+void LoadState::exec(SingleGameSection* game)
 {
-	if (!_26) {
-		_26 = true;
-		if (!_29) {
-			gs->clearHeap();
+	if (!mIsInitialized) {
+		mIsInitialized = true;
+		if (!mDontClearHeap) {
+			game->clearHeap();
 		}
 
-		if (_27 || _28) {
-			if (_28) {
-				gs->mCurrentFloor++;
+		if (mIsCaveLoad || mIsCaveDeeper) {
+			if (mIsCaveDeeper) {
+				game->mCurrentFloor++;
 			}
-			gs->mInCave = true;
+			game->mInCave = true;
 			og::Screen::DispMemberFloor dispFloor;
 
-			dispFloor.mSublevel = gs->mCurrentFloor + 1;
-			dispFloor.mCaveID   = gs->mCaveIndex;
+			dispFloor.mSublevel = game->mCurrentFloor + 1;
+			dispFloor.mCaveID   = game->mCaveIndex;
 			Screen::gGame2DMgr->open_Floor(dispFloor);
 			gameSystem->mIsInCave = true;
 
 		} else {
-			int courseIdx = gs->mCurrentCourseInfo->mCourseIndex;
+			int courseIdx = game->mCurrentCourseInfo->mCourseIndex;
 			og::Screen::DispMemberCourseName dispCourseName;
 			dispCourseName.mCourseIndex = courseIdx;
 
 			Screen::gGame2DMgr->open_CourseName(dispCourseName);
-			gs->mInCave           = false;
+			game->mInCave         = false;
 			gameSystem->mIsInCave = false;
 		}
 
 		GameStat::clear();
-		_10 = 0;
-		_15 = false;
-		_14 = false;
+		_10           = 0;
+		mHasLoadBegun = false;
+		mHasDrawn     = false;
 
 	} else {
-		if (_14 && !_15) {
-			sys->dvdLoadUseCallBack(&gs->mDvdThread, gs->mLoadGameCallback);
-			_15 = true;
+		if (mHasDrawn && !mHasLoadBegun) {
+			sys->dvdLoadUseCallBack(&game->mDvdThread, game->mLoadGameCallback);
+			mHasLoadBegun = true;
 		}
-		if (gs->mDvdThread.mMode == 2) {
-			gs->postSetupFloatMemory();
-			if (gs->mInCave) {
-				transit(gs, 4, nullptr);
+		if (game->mDvdThread.mMode == 2) {
+			game->postSetupFloatMemory();
+			if (game->mInCave) {
+				transit(game, SGS_Cave, nullptr);
 			} else {
-				GameArg arg(true, _24);
-				transit(gs, SGS_Game, &arg);
+				GameArg arg(true, mGameLoadType);
+				transit(game, SGS_Game, &arg);
 			}
 		}
 		if (particle2dMgr) {
@@ -118,10 +118,10 @@ void LoadState::exec(SingleGameSection* gs)
  * @note Address: 0x8023A170
  * @note Size: 0x90
  */
-void LoadState::draw(SingleGameSection* gs, Graphics& gfx)
+void LoadState::draw(SingleGameSection* game, Graphics& gfx)
 {
-	if (_26) {
-		_14 = true;
+	if (mIsInitialized) {
+		mHasDrawn = true;
 		gfx.mPerspGraph.setPort();
 		particle2dMgr->draw(1, 0);
 		Screen::gGame2DMgr->draw(gfx);

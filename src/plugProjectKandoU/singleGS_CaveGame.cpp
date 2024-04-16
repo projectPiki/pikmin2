@@ -57,7 +57,7 @@ void CaveState::init(SingleGameSection* game, StateArg* arg)
 	// but good lord this is weird
 	int naviID     = playData->mCaveSaveData.mActiveNaviID;
 	u8* deadNaviID = &playData->mDeadNaviID;
-	if ((1 << naviID * 8) & deadNaviID[naviID]) {
+	if (((1 << naviID * 8) & deadNaviID[naviID]) != false) {
 		naviID = 1 - naviID;
 	}
 
@@ -313,7 +313,7 @@ lbl_80217A44:
 void CaveState::gameStart(SingleGameSection* game)
 {
 	gameSystem->setFlag(GAMESYS_IsPlaying);
-	PSMGetSceneMgr()->mScenes->mChild->startMainSeq();
+	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->doStartMainSeq();
 	if (Radar::mgr && !Radar::Mgr::getNumOtakaraItems()) {
 		PSM::Scene_Cave* scene = static_cast<PSM::Scene_Cave*>(PSMGetChildScene());
 		PSSystem::checkGameScene(scene);
@@ -341,7 +341,8 @@ void CaveState::exec(SingleGameSection* game)
 		particle2dMgr->update();
 		Screen::gGame2DMgr->update();
 		if ((u8)Screen::gGame2DMgr->check_Save()) {
-			LoadArg arg(1, false, false, game->mInCave);
+			// MapEnter type isnt used when loading into caves
+			LoadArg arg(MapEnter_CaveGeyser, false, false, game->mInCave);
 			transit(game, SGS_Load, &arg);
 			return;
 		}
@@ -567,95 +568,100 @@ void CaveState::onNextFloor(SingleGameSection* game, ItemHole::Item* hole)
  */
 void CaveState::onMovieCommand(SingleGameSection* game, int command)
 {
-	if (command != 0 && mLosePellets) {
-		return;
-	}
-
-	if (moviePlayer->isPlaying("s03_orimadown") && !naviMgr->mDeadNavis) {
-		return;
-	}
-
-	if (moviePlayer->isPlaying("s03_orimadown")) {
-		Iterator<Piki> it(pikiMgr);
-		CI_LOOP(it)
-		{
-			Piki* piki = *it;
-			if (piki->isAlive()) {
-				piki->mBrain->start(PikiAI::ACT_Free, nullptr);
-				piki->movie_begin(false);
-				PanicStateArg arg;
-				arg.mPanicType = 3;
-				piki->mFsm->transit(piki, PIKISTATE_Panic, &arg);
-			}
+	switch (command) {
+	case 0:
+		if (mLosePellets) {
+			return;
 		}
-	}
 
-	game->clearCaveOtakaraEarningsAndDrops();
-	int lost     = 0;
-	mLosePellets = true;
-
-	PelletCropMemory* mem = playData->mCaveCropMemory;
-
-	KindCounter& counter = mem->mOtakara;
-	for (int i = 0; i < counter.mNumKinds; i++) {
-		if ((counter(i))) {
-			lost += counter(i);
+		if (moviePlayer->isPlaying("s03_orimadown") && !naviMgr->mDeadNavis) {
+			return;
 		}
-	}
-	KindCounter& counter2 = mem->mItem;
-	for (int i = 0; i < counter2.mNumKinds; i++) {
-		if ((counter2(i))) {
-			lost += counter2(i);
-		}
-	}
 
-	f32 zero = 0.0f;
-	f32 calc = randFloat() * zero + 1.0f;
-	if (calc < 0.0f) {
-		if (calc > 1.0f) {
-			calc = 1.0f;
-		}
-	}
-
-	game->mDoTrackCarcass = true;
-	calc                  = (f32)lost * calc;
-	if (calc > 0.0f) {
-		BasePelletMgr* pelmgr = PelletOtakara::mgr;
-		KindCounter& counter  = mem->mOtakara;
-		for (int i = 0; i < counter.mNumKinds; i++) {
-			int j = 0;
-			for (int k = 0; k < counter(i); k++) {
-				pelmgr->getPelletConfig(i);
-				if (randFloat() <= calc / (f32)lost) {
-					pelmgr->getPelletConfig(i);
-					playData->losePellet(pelmgr, i);
-					(game->mOtakaraCounter(i)) += 1;
-					j++;
-					calc -= 1.0f;
+		if (moviePlayer->isPlaying("s03_orimadown")) {
+			Iterator<Piki> it(pikiMgr);
+			CI_LOOP(it)
+			{
+				Piki* piki = *it;
+				if (piki->isAlive()) {
+					piki->mBrain->start(PikiAI::ACT_Free, nullptr);
+					piki->movie_begin(false);
+					PanicStateArg arg;
+					arg.mPanicType = 3;
+					piki->mFsm->transit(piki, PIKISTATE_Panic, &arg);
 				}
-				lost--;
 			}
-			// u8* flag = counter(i);
-			counter(i) -= j;
 		}
 
-		pelmgr                = PelletItem::mgr;
-		KindCounter& counter3 = mem->mItem;
-		for (int i = 0; i < counter3.mNumKinds; i++) {
-			int j = 0;
-			for (int k = 0; k < counter3(i); k++) {
-				pelmgr->getPelletConfig(i);
-				if (randFloat() <= calc / (f32)lost) {
-					pelmgr->getPelletConfig(i);
-					(game->mItemCounter(i)) += 1;
-					playData->losePellet(pelmgr, i);
-					j++;
-					calc -= 1.0f;
-				}
-				lost--;
+		game->clearCaveOtakaraEarningsAndDrops();
+		int lost     = 0;
+		mLosePellets = true;
+
+		PelletCropMemory* mem = playData->mCaveCropMemory;
+
+		KindCounter& counter = mem->mOtakara;
+		for (int i = 0; i < counter.getNumKinds(); i++) {
+			if (counter(i)) {
+				lost += counter(i);
 			}
-			(counter3(i)) -= j;
 		}
+		KindCounter& counter2 = mem->mItem;
+		for (int i = 0; i < counter2.getNumKinds(); i++) {
+			if (counter2(i)) {
+				lost += counter2(i);
+			}
+		}
+
+		f32 zero = 0.0f;
+		f32 calc = randFloat() * zero + 1.0f;
+		if (calc < 0.0f) {
+			if (calc > 1.0f) {
+				calc = 1.0f;
+			}
+		}
+
+		game->mDoTrackCarcass = true;
+		calc                  = (f32)lost * calc;
+		BasePelletMgr* pelmgr;
+
+		if (calc > 0.0f) {
+			pelmgr               = PelletOtakara::mgr;
+			KindCounter& counter = mem->mOtakara;
+			for (int i = 0; i < counter.getNumKinds(); i++) {
+				int j = 0;
+				for (int k = 0; k < counter(i); k++) {
+					pelmgr->getPelletConfig(i);
+					if (randFloat() <= calc / (f32)lost) {
+						pelmgr->getPelletConfig(i);
+						playData->losePellet(pelmgr, i);
+						(game->mOtakaraCounter(i)) += 1;
+						j++;
+						calc -= 1.0f;
+					}
+					lost--;
+				}
+				counter(i) -= j;
+			}
+
+			pelmgr                = PelletItem::mgr;
+			KindCounter& counter3 = mem->mItem;
+			for (int i = 0; i < counter3.getNumKinds(); i++) {
+				int j = 0;
+				for (int k = 0; k < counter3(i); k++) {
+					pelmgr->getPelletConfig(i);
+					if (randFloat() <= calc / (f32)lost) {
+						pelmgr->getPelletConfig(i);
+						(game->mItemCounter(i)) += 1;
+						playData->losePellet(pelmgr, i);
+						j++;
+						calc -= 1.0f;
+					}
+					lost--;
+				}
+				(counter3(i)) -= j;
+			}
+		}
+		break;
 	}
 
 	/*
@@ -1158,15 +1164,16 @@ void CaveState::onMovieStart(SingleGameSection* game, MovieConfig* config, u32, 
 		playData->mCaveSaveData.mActiveNaviID = id;
 
 		if (!navi) {
-			for (int i = 0; i < 25; i++) { }
-		} else {
-			for (int i = 0; i < 2; i++) {
-				Navi* navi = naviMgr->getAt(i);
-				if (navi->isAlive() && navi->isStickTo()) {
-					navi->endStick();
-				}
+			for (int i = 25; i > 0; i--) { }
+		}
+
+		for (int i = 0; i < 2; i++) {
+			Navi* navi = naviMgr->getAt(i);
+			if (navi->isAlive() && navi->isStickTo()) {
+				navi->endStick();
 			}
 		}
+
 		Vector3f holepos = game->mHole->getPosition();
 		game->prepareHoleIn(holepos, true);
 		game->saveCaveMore();
@@ -1177,350 +1184,6 @@ void CaveState::onMovieStart(SingleGameSection* game, MovieConfig* config, u32, 
 		Vector3f geyserpos = game->mFountain->getPosition();
 		game->prepareFountainOn(geyserpos);
 	}
-
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  lis       r3, 0x8048
-	  stw       r0, 0x64(r1)
-	  stmw      r27, 0x4C(r1)
-	  mr        r29, r5
-	  addi      r31, r3, 0x2430
-	  mr        r28, r4
-	  mr        r30, r7
-	  mr        r3, r29
-	  addi      r4, r31, 0x1C
-	  bl        0x218CC4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x40
-	  mr        r3, r28
-	  bl        -0xC76E4
-
-	.loc_0x40:
-	  lwz       r3, -0x6560(r13)
-	  bl        0x1E4B54
-	  mr        r3, r29
-	  addi      r4, r31, 0x88
-	  bl        0x218CA0
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x68
-	  lwz       r3, -0x6560(r13)
-	  li        r4, 0x4
-	  bl        0x1E4D0C
-
-	.loc_0x68:
-	  mr        r3, r29
-	  addi      r4, r31, 0xA4
-	  bl        0x218C80
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x294
-	  lwz       r3, -0x6560(r13)
-	  lwz       r3, 0x18(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0
-	  lwz       r3, -0x6D0C(r13)
-	  lis       r4, 0x804B
-	  stw       r0, 0x44(r1)
-	  subi      r4, r4, 0x4364
-	  cmplwi    r0, 0
-	  stw       r4, 0x38(r1)
-	  stw       r0, 0x3C(r1)
-	  stw       r3, 0x40(r1)
-	  bne-      .loc_0xD4
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x3C(r1)
-	  b         .loc_0x274
-
-	.loc_0xD4:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x3C(r1)
-	  b         .loc_0x140
-
-	.loc_0xEC:
-	  lwz       r3, 0x40(r1)
-	  lwz       r4, 0x3C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x44(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x274
-	  lwz       r3, 0x40(r1)
-	  lwz       r4, 0x3C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x3C(r1)
-
-	.loc_0x140:
-	  lwz       r12, 0x38(r1)
-	  addi      r3, r1, 0x38
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0xEC
-	  b         .loc_0x274
-
-	.loc_0x160:
-	  lwz       r3, 0x40(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  mr        r27, r3
-	  lwz       r12, 0xA8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x1B8
-	  mr        r3, r27
-	  bl        -0x797FC
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1B8
-	  lbz       r0, 0x2B8(r27)
-	  cmpwi     r0, 0x5
-	  bne-      .loc_0x1B8
-	  mr        r3, r27
-	  li        r4, 0
-	  bl        -0xDD340
-
-	.loc_0x1B8:
-	  lwz       r0, 0x44(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1E4
-	  lwz       r3, 0x40(r1)
-	  lwz       r4, 0x3C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x3C(r1)
-	  b         .loc_0x274
-
-	.loc_0x1E4:
-	  lwz       r3, 0x40(r1)
-	  lwz       r4, 0x3C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x3C(r1)
-	  b         .loc_0x258
-
-	.loc_0x204:
-	  lwz       r3, 0x40(r1)
-	  lwz       r4, 0x3C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x44(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x274
-	  lwz       r3, 0x40(r1)
-	  lwz       r4, 0x3C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x3C(r1)
-
-	.loc_0x258:
-	  lwz       r12, 0x38(r1)
-	  addi      r3, r1, 0x38
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x204
-
-	.loc_0x274:
-	  lwz       r3, 0x40(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x3C(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0x160
-
-	.loc_0x294:
-	  mr        r3, r29
-	  addi      r4, r31, 0x10C
-	  bl        0x218A54
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x2F8
-	  cmplwi    r30, 0
-	  bne-      .loc_0x2C4
-	  mr        r3, r28
-	  li        r27, 0x1
-	  li        r4, 0
-	  bl        -0xCB580
-	  b         .loc_0x2EC
-
-	.loc_0x2C4:
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0x2
-	  lbz       r0, 0x2F(r3)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0x2DC
-	  li        r4, 0x3
-
-	.loc_0x2DC:
-	  mr        r27, r4
-	  mr        r3, r28
-	  li        r4, 0x1
-	  bl        -0xCB5AC
-
-	.loc_0x2EC:
-	  lwz       r3, -0x6560(r13)
-	  mr        r4, r27
-	  bl        0x1E4A7C
-
-	.loc_0x2F8:
-	  mr        r3, r29
-	  addi      r4, r31, 0x12C
-	  bl        0x2189F0
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x41C
-	  lwz       r4, -0x6C18(r13)
-	  mr        r3, r28
-	  lbz       r0, 0x3C(r4)
-	  rlwinm    r0,r0,0,27,25
-	  stb       r0, 0x3C(r4)
-	  lwz       r12, 0x0(r28)
-	  lwz       r12, 0x58(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, -0x6B70(r13)
-	  addi      r4, r4, 0x1
-	  bl        -0x31A4C
-	  lwz       r3, -0x6D20(r13)
-	  bl        -0xBE300
-	  cmplwi    r3, 0
-	  beq-      .loc_0x358
-	  lhz       r0, 0x2DC(r3)
-	  b         .loc_0x35C
-
-	.loc_0x358:
-	  li        r0, 0
-
-	.loc_0x35C:
-	  lwz       r4, -0x6B70(r13)
-	  cmplwi    r3, 0
-	  stb       r0, 0x78(r4)
-	  bne-      .loc_0x378
-	  li        r0, 0x19
-	  mtctr     r0
-
-	.loc_0x374:
-	  bdnz-     .loc_0x374
-
-	.loc_0x378:
-	  li        r27, 0
-
-	.loc_0x37C:
-	  lwz       r3, -0x6D20(r13)
-	  mr        r4, r27
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  mr        r30, r3
-	  lwz       r12, 0xA8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x3C8
-	  mr        r3, r30
-	  bl        -0x79A1C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x3C8
-	  mr        r3, r30
-	  bl        -0x79B7C
-
-	.loc_0x3C8:
-	  addi      r27, r27, 0x1
-	  cmpwi     r27, 0x2
-	  blt+      .loc_0x37C
-	  lwz       r4, 0x188(r28)
-	  addi      r3, r1, 0x14
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x14(r1)
-	  mr        r3, r28
-	  lfs       f1, 0x18(r1)
-	  addi      r4, r1, 0x2C
-	  lfs       f0, 0x1C(r1)
-	  li        r5, 0x1
-	  stfs      f2, 0x2C(r1)
-	  stfs      f1, 0x30(r1)
-	  stfs      f0, 0x34(r1)
-	  bl        -0xCAEBC
-	  mr        r3, r28
-	  bl        -0xC4A88
-
-	.loc_0x41C:
-	  mr        r3, r29
-	  addi      r4, r31, 0x11C
-	  bl        0x2188CC
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x47C
-	  lwz       r4, -0x6C18(r13)
-	  addi      r3, r1, 0x8
-	  lbz       r0, 0x3C(r4)
-	  rlwinm    r0,r0,0,27,25
-	  stb       r0, 0x3C(r4)
-	  lwz       r4, 0x18C(r28)
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  mr        r3, r28
-	  lfs       f1, 0xC(r1)
-	  addi      r4, r1, 0x20
-	  lfs       f0, 0x10(r1)
-	  stfs      f2, 0x20(r1)
-	  stfs      f1, 0x24(r1)
-	  stfs      f0, 0x28(r1)
-	  bl        -0xCA898
-
-	.loc_0x47C:
-	  lmw       r27, 0x4C(r1)
-	  lwz       r0, 0x64(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
-	*/
 }
 
 /**
@@ -1534,7 +1197,7 @@ void CaveState::onMovieDone(Game::SingleGameSection* game, Game::MovieConfig* co
 		moviePlayer->clearSuspendedDemo();
 		pikiMgr->caveSaveAllPikmins(true, true);
 		CaveResultArg arg;
-		arg._00 = 1;
+		arg.mGameState = MapEnter_CaveGeyser;
 		transit(game, SGS_CaveResult, &arg);
 		return;
 	} else if (config->is("s09_holein")) {
@@ -1614,15 +1277,14 @@ void CaveState::onMovieDone(Game::SingleGameSection* game, Game::MovieConfig* co
 		} else {
 			// probably make this 100 a constant define
 			Piki* pikilist[100];
-			Iterator<Piki> it(pikiMgr);
 			int pikis = 0;
+			Iterator<Piki> it(pikiMgr);
 			CI_LOOP(it)
 			{
 				Piki* piki = *it;
-				if (piki->isAlive() && piki->getKind() != Bulbmin) {
-					pikilist[pikis] = piki;
+				if (piki->isAlive() && piki->getKind() < Bulbmin) {
+					pikilist[pikis++] = piki;
 				}
-				pikis++;
 			}
 
 			for (int i = 0; i < pikis; i++) {
@@ -1635,7 +1297,7 @@ void CaveState::onMovieDone(Game::SingleGameSection* game, Game::MovieConfig* co
 			}
 			gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 			CaveResultArg statearg;
-			statearg._00 = 2;
+			statearg.mGameState = MapEnter_CaveNavisDown;
 			transit(game, SGS_CaveResult, &statearg);
 		}
 		return;
@@ -1643,7 +1305,7 @@ void CaveState::onMovieDone(Game::SingleGameSection* game, Game::MovieConfig* co
 		gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 		Screen::gGame2DMgr->close_GameOver();
 		CaveResultArg statearg;
-		statearg._00 = 3;
+		statearg.mGameState = MapEnter_CaveExtinction;
 		transit(game, SGS_CaveResult, &statearg);
 	} else if (config->is("s12_cv_giveup")) {
 		moviePlayer->clearSuspendedDemo();
@@ -1661,7 +1323,7 @@ void CaveState::onMovieDone(Game::SingleGameSection* game, Game::MovieConfig* co
 		}
 		pikiMgr->caveSaveAllPikmins(true, true);
 		CaveResultArg statearg;
-		statearg._00 = 4;
+		statearg.mGameState = MapEnter_CaveGiveUp;
 		transit(game, SGS_CaveResult, &statearg);
 	}
 	/*

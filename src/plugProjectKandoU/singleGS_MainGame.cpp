@@ -89,12 +89,12 @@ void GameState::init(SingleGameSection* game, StateArg* arg)
 	moviePlayer->getActiveGameCamera();
 
 	switch (startType) {
-	case Start_EndDay: {
+	case MapEnter_CaveNavisDown: {
 		DayEndArg dayEndArg(DayEndState::DETYPE_CaptainsDown);
 		transit(game, SGS_DayEnd, &dayEndArg);
 		return;
 	} break;
-	case Start_NewGame: {
+	case MapEnter_NewGame: {
 		char* courseName = const_cast<char*>(game->mCurrentCourseInfo->mName);
 		MoviePlayArg moviePlayArg("x01_gamestart", courseName, game->mMovieFinishCallback, 0);
 		playData->setDemoFlag(DEMO_Day_One_Start);
@@ -111,7 +111,7 @@ void GameState::init(SingleGameSection* game, StateArg* arg)
 		game->mWeatherEfx->fade();
 	} break;
 
-	case Start_NormalLand: {
+	case MapEnter_NewDay: {
 		int flagID = game->mCurrentCourseInfo->mCourseIndex + DEMO_Day_One_Start;
 		if (!playData->isDemoFlag(flagID)) {
 			playData->setDemoFlag(flagID);
@@ -133,9 +133,9 @@ void GameState::init(SingleGameSection* game, StateArg* arg)
 		}
 		gameSystem->mTimeMgr->setStartTime();
 	} break;
-	case Start_Unk3:
-	case Start_Unk4:
-	case Start_ReturnCave: {
+	case MapEnter_CaveExtinction:
+	case MapEnter_CaveGiveUp:
+	case MapEnter_CaveGeyser: {
 		char* courseName = const_cast<char*>(game->mCurrentCourseInfo->mName);
 		MoviePlayArg moviePlayArg("s0E_return_cave", courseName, game->mMovieFinishCallback, 0);
 		moviePlayArg.mDelegateStart = game->mMovieStartCallback;
@@ -160,7 +160,7 @@ void GameState::init(SingleGameSection* game, StateArg* arg)
 
 	sys->heapStatusDump(true);
 	gameSystem->mTimeMgr->mFlags.unset(TIMEFLAG_Stopped);
-	if (startType != Start_Unk3) {
+	if (startType != MapEnter_CaveExtinction) {
 		// Check if any pikmin types are extinct, if they are, the post-extinction cutscene is needed
 		bool noPikisLeft = false;
 		for (int i = 0; i <= 2; i++) {
@@ -412,6 +412,7 @@ void GameState::exec(SingleGameSection* game)
 		particle2dMgr->update();
 		Screen::gGame2DMgr->update();
 		if ((u8)Screen::gGame2DMgr->check_Save()) {
+			// MapEnter type isnt used when loading into caves, someone put 100 here for the funny
 			LoadArg arg(100, true, false, false);
 			transit(game, SGS_Load, &arg);
 		}
@@ -441,9 +442,9 @@ void GameState::exec(SingleGameSection* game)
 	// Check if anything needs to be done following a % of debt cutscene
 	int repaystate = updateRepayDemo();
 	switch (repaystate) {
-	case 1:
+	case RDS_Started:
 		return;
-	case 3: { // end the day, go to ending
+	case RDS_GoToPayDebt: { // end the day, go to ending (debt repayed)
 		pikiMgr->forceEnterPikmins(false);
 		game->saveToGeneratorCache(game->mCurrentCourseInfo);
 		game->advanceDayCount();
@@ -452,23 +453,24 @@ void GameState::exec(SingleGameSection* game)
 		transit(game, SGS_Ending, &arg);
 		return;
 	}
-	case 4: { // end the day, go to ending
+	case RDS_GameComplete: { // end the day, go to ending (all treasures)
 		pikiMgr->forceEnterPikmins(false);
 		game->saveToGeneratorCache(game->mCurrentCourseInfo);
 		game->advanceDayCount();
 		gameSystem->setPause(false, "repay-done", 3);
-		EndingArg arg(2);
+		EndingArg arg(EndingState::Ending_IsComplete);
 		transit(game, SGS_Ending, &arg);
 		return;
 	}
 
-	case 2: {
+	case RDS_DemoPlaying: {
 		PSPause_StartMenuOff();
 		gameSystem->setPause(false, "repay-done", 3);
 		return;
 	}
 	}
 
+	// Don't continue if in cave/geyser menus
 	if (game->mOpenMenuFlags && !game->updateCaveMenus()) {
 		return;
 	}
@@ -942,17 +944,17 @@ GameState::RepayDemoState GameState::updateRepayDemo()
 			gameSystem->setMoviePause(false, "check-repay");
 			mCheckRepay = false;
 			if (playData->isCompletePelletTrigger()) {
-				return RDS_4;
+				return RDS_GameComplete;
 			}
 			playData->experienceRepayLevelFirstClear();
 			if (playData->getRepayLevel() >= 9) {
-				return RDS_3;
+				return RDS_GoToPayDebt;
 			}
-			return RDS_2;
+			return RDS_DemoPlaying;
 		}
-		return RDS_1;
+		return RDS_Started;
 	}
-	return RDS_0;
+	return RDS_Inactive;
 }
 
 /**

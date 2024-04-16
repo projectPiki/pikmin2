@@ -53,7 +53,7 @@ void CaveResultState::init(SingleGameSection* section, StateArg* arg)
 	mSection = section;
 
 	P2ASSERTLINE(284, arg);
-	mGameState = static_cast<CaveResultArg*>(arg)->_00;
+	mGameState = static_cast<CaveResultArg*>(arg)->mGameState;
 
 	mResultTextures = nullptr;
 	section->refreshHIO();

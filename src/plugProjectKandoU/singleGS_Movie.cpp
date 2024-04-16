@@ -1,4 +1,3 @@
-#include "types.h"
 #include "Game/SingleGame.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "nans.h"
@@ -62,9 +61,9 @@ namespace SingleGame {
 MovieState::MovieState()
     : State(SGS_Movie)
 {
-	_14 = new Controller(JUTGamePad::PORT_0);
-	_1C = nullptr;
-	_18 = nullptr;
+	mController = new Controller(JUTGamePad::PORT_0);
+	mMovieHeap  = nullptr;
+	mBackupHeap = nullptr;
 }
 
 /**
@@ -73,21 +72,24 @@ MovieState::MovieState()
  */
 void MovieState::init(SingleGameSection* gs, StateArg* arg)
 {
-	_1C = nullptr;
-	_18 = nullptr;
-	_18 = JKRHeap::sCurrentHeap;
-	_18->getFreeSize();
-	_1C = JKRExpHeap::create(_18->getFreeSize(), _18, true);
-	_1C->becomeCurrentHeap();
-	_1C->getFreeSize();
-	_20 = new THPPlayer;
-	_20->init(nullptr);
-	_24 = false;
-	_20->load(THPPlayer::OPENING_GameStart);
+	mMovieHeap = nullptr;
 
+	mBackupHeap = nullptr;
+	mBackupHeap = JKRGetCurrentHeap();
+	mBackupHeap->getFreeSize();
+
+	mMovieHeap = JKRExpHeap::create(mBackupHeap->getFreeSize(), mBackupHeap, true);
+	mMovieHeap->becomeCurrentHeap();
+	mMovieHeap->getFreeSize();
+	mMoviePlayer = new THPPlayer;
+	mMoviePlayer->init(nullptr);
+	mIsMovieLoaded = false;
+	mMoviePlayer->load(THPPlayer::OPENING_GameStart);
+
+	// even though its already set to open the GameStart thp, sure
 	P2ASSERTLINE(223, arg);
-	_10 = static_cast<MovieArg*>(arg)->mMovieIndex;
-	switch (_10) {
+	mMovieID = static_cast<MovieArg*>(arg)->mMovieIndex;
+	switch (mMovieID) {
 	case THPPlayer::OPENING_GameStart:
 		dummyPlayer.initMsgs(opening_strings);
 		break;
@@ -103,8 +105,6 @@ void MovieState::init(SingleGameSection* gs, StateArg* arg)
 	case THPPlayer::STAFF_ROLL:
 		dummyPlayer.initMsgs(mezase_strings);
 		break;
-	default:
-		break;
 	}
 }
 
@@ -114,25 +114,21 @@ void MovieState::init(SingleGameSection* gs, StateArg* arg)
  */
 void MovieState::exec(SingleGameSection* gs)
 {
-	if (_1C) {
-		_20->update();
-		switch (_24) {
+	if (mMovieHeap) {
+		mMoviePlayer->update();
+		switch (mIsMovieLoaded) {
 		case false:
-			if (_20->isFinishLoading()) {
-				_24 = true;
-				_20->play();
+			if (mMoviePlayer->isFinishLoading()) {
+				mIsMovieLoaded = true;
+				mMoviePlayer->play();
 			}
 			break;
 		case true:
-			if ((_14->mButton.mButtonDown & PAD_BUTTON_START) || _20->isFinishPlaying()) { // skip the movie with start
+			if ((mController->getButtonDown() & PAD_BUTTON_START) || mMoviePlayer->isFinishPlaying()) { // skip the movie with start
 				gs->mDisplayWiper = gs->mWipeInFader;
 				gs->mWipeInFader->start(4.0f);
 				gs->mCurrentCourseInfo = stageList->getCourseInfo(0);
-				LoadArg arg;
-				arg.mInCave = false;
-				arg._01     = true;
-				arg._02     = false;
-				arg._04     = 5;
+				LoadArg arg(MapEnter_NewGame, false, true, false);
 				transit(gs, SGS_Load, &arg);
 			}
 			break;
@@ -146,8 +142,8 @@ void MovieState::exec(SingleGameSection* gs)
  */
 void MovieState::draw(SingleGameSection* gs, Graphics& gfx)
 {
-	if (_1C) {
-		_20->draw(gfx);
+	if (mMovieHeap) {
+		mMoviePlayer->draw(gfx);
 	}
 }
 
@@ -157,10 +153,10 @@ void MovieState::draw(SingleGameSection* gs, Graphics& gfx)
  */
 void MovieState::cleanup(SingleGameSection* gs)
 {
-	_1C->freeAll();
-	_1C->destroy();
-	_1C = nullptr;
-	_18->becomeCurrentHeap();
+	mMovieHeap->freeAll();
+	mMovieHeap->destroy();
+	mMovieHeap = nullptr;
+	mBackupHeap->becomeCurrentHeap();
 }
 
 } // namespace SingleGame

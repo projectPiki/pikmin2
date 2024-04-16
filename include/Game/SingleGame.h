@@ -48,6 +48,16 @@ enum StateID {
 	SGS_StateCount,
 };
 
+// Used by a few game states for knowing what to do upon loading into a map
+enum MapEnterStatus {
+	MapEnter_NewDay         = 0, // start of new day
+	MapEnter_CaveGeyser     = 1, // left cave via geyser
+	MapEnter_CaveNavisDown  = 2, // left via both captains down
+	MapEnter_CaveExtinction = 3, // left via pikmin extinction
+	MapEnter_CaveGiveUp     = 4, // left via giving up
+	MapEnter_NewGame        = 5, // start of new game file (crash landing)
+};
+
 struct FSM : public StateMachine<SingleGameSection> {
 	virtual void init(SingleGameSection*);                    // _08
 	virtual void transit(SingleGameSection*, int, StateArg*); // _14
@@ -111,7 +121,7 @@ struct CaveDayEndState : public State {
 };
 
 struct CaveResultArg : public StateArg {
-	u16 _00; // _00 make enum eventually, 1 = geyser, 2 = navis down, 3 = extinction, 4 = giveup
+	u16 mGameState; // _00 make enum eventually, 1 = geyser, 2 = navis down, 3 = extinction, 4 = giveup
 };
 
 /**
@@ -234,7 +244,8 @@ struct DayEndState : public State {
 
 struct EndingArg : public StateArg {
 	EndingArg(int state) { mState = state; }
-	u8 mState;
+
+	u8 mState; // _00
 };
 
 /**
@@ -335,9 +346,13 @@ struct GameState : public State {
 	/**
 	 * @fabricated
 	 */
-	enum RepayDemoState { RDS_0 = 0, RDS_1, RDS_2, RDS_3, RDS_4 };
-
-	enum startType { Start_NormalLand = 0, Start_ReturnCave = 1, Start_EndDay = 2, Start_Unk3 = 3, Start_Unk4 = 4, Start_NewGame = 5 };
+	enum RepayDemoState {
+		RDS_Inactive     = 0,
+		RDS_Started      = 1,
+		RDS_DemoPlaying  = 2,
+		RDS_GoToPayDebt  = 3,
+		RDS_GameComplete = 4,
+	};
 
 	inline GameState()
 	    : State(SGS_Game)
@@ -379,18 +394,18 @@ struct GameState : public State {
 struct LoadArg : public StateArg {
 	inline LoadArg() { }
 
-	inline LoadArg(u16 a, bool b, bool c, bool d)
-	    : _04(a)
-	    , mInCave(b)
-	    , _01(c)
-	    , _02(d)
+	inline LoadArg(u16 enterType, bool inCave, bool noClearHeap, bool isCaveDeeper)
+	    : mGameLoadType(enterType)
+	    , mInCave(inCave)
+	    , mDontClearHeap(noClearHeap)
+	    , mIsCaveDeeper(isCaveDeeper)
 	{
 	}
 
-	bool mInCave; // _00
-	bool _01;     // _01
-	bool _02;     // _02
-	u16 _04;      // _04
+	bool mInCave;        // _00, are we loading a cave or above ground
+	bool mDontClearHeap; // _01, does the existing map data need to be cleared
+	bool mIsCaveDeeper;  // _02, does the sublevel count need to go up
+	u16 mGameLoadType;   // _04, see MapEnterStatus enum
 };
 
 /**
@@ -413,16 +428,16 @@ struct LoadState : public State {
 
 	// _00     = VTBL
 	// _00-_10 = State
-	u32 _10;     // _10, unknown
-	bool _14;    // _14
-	bool _15;    // _15
-	u8 _16[0x2]; // _16, probably padding
-	u8 _18[0xC]; // _18, unknown
-	u16 _24;     // _24
-	bool _26;    // _26
-	bool _27;    // _27
-	bool _28;    // _28
-	bool _29;    // _29
+	u32 _10;             // _10, unknown
+	bool mHasDrawn;      // _14
+	bool mHasLoadBegun;  // _15
+	u8 _16[0x2];         // _16, probably padding
+	u8 _18[0xC];         // _18, unknown
+	u16 mGameLoadType;   // _24, see MapEnterType enum
+	bool mIsInitialized; // _26
+	bool mIsCaveLoad;    // _27
+	bool mIsCaveDeeper;  // _28, does the sublevel count need to increase
+	bool mDontClearHeap; // _29
 };
 
 /**
@@ -490,12 +505,12 @@ struct MovieState : public State {
 
 	// _00     = VTBL
 	// _00-_10 = State
-	THPPlayer::EMovieIndex _10; // _10
-	Controller* _14;            // _14
-	JKRHeap* _18;               // _18
-	JKRHeap* _1C;               // _1C
-	THPPlayer* _20;             // _20
-	bool _24;                   // _24
+	THPPlayer::EMovieIndex mMovieID; // _10, doesnt actually change what loads
+	Controller* mController;         // _14
+	JKRHeap* mBackupHeap;            // _18
+	JKRHeap* mMovieHeap;             // _1C
+	THPPlayer* mMoviePlayer;         // _20
+	bool mIsMovieLoaded;             // _24
 };
 
 /**
