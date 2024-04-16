@@ -617,8 +617,8 @@ struct ActEnter : public Action, virtual SysShape::MotionListener {
 	f32 mHorizSuckDist;    // _48, distance left to travel before entering ship, XZ
 	u8 mInsideOnyon;       // _4C
 	Vector3f mSuckPos;     // _50, current suck position
-	f32 mBaseScale;        // _54
-	                       // _58 = MotionListener
+	f32 mBaseScale;        // _5C
+	                       // _60 = MotionListener
 };
 
 struct ActExit : public Action {
