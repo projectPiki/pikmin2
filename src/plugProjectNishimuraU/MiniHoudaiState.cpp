@@ -58,8 +58,8 @@ void StateDead::exec(EnemyBase* enemy)
 			mini->getJAIObject()->startSound(PSSE_EN_MINIHOU_BOMB, 0);
 
 			Vector3f pos = mini->getPosition();
-			cameraMgr->startVibration(28, pos, 2);
-			rumbleMgr->startRumble(11, pos, 2);
+			cameraMgr->startVibration(VIBTYPE_Boom, pos, CAMNAVI_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed11, pos, RUMBLEID_Both);
 
 		} else if (mini->mCurAnim->mType == KEYEVENT_3) {
 			mini->createDownEffect(0.75f);

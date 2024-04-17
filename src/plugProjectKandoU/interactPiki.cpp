@@ -100,7 +100,7 @@ bool InteractFue::actPiki(Game::Piki* piki)
 				piki->mFsm->transit(piki, PIKISTATE_Holein, &holeInArg);
 				return false;
 			}
-		} else if (!(moviePlayer->mDemoState || (u32)pikiKind - 1 > Red && pikiKind != Blue)) {
+		} else if (!(moviePlayer->mDemoState != DEMOSTATE_Inactive || (u32)pikiKind - 1 > Red && pikiKind != Blue)) {
 			piki->setZikatu(false);
 			GameStat::zikatuPikis.dec(piki->getKind());
 			if (!playData->isDemoFlag(DEMO_Meet_Red_Pikmin) && (piki->getKind() == Red)) {
@@ -186,12 +186,12 @@ bool InteractFue::actPiki(Game::Piki* piki)
 	}
 	if (!currState->dead() && callable) {
 		if (actionID != PikiAI::ACT_Formation || (actionID == PikiAI::ACT_Formation && currState->mId == PIKISTATE_Emotion)
-		    || (_08 && piki->mNavi != mCreature && actionID == 0)) {
-			Navi* vsNavi = (Navi*)mCreature;
+		    || (mDoCombineParties && piki->mNavi != mCreature && actionID == PikiAI::ACT_Formation)) {
+			Navi* whistlingNavi = (Navi*)mCreature;
 			if (gameSystem->isVersusMode()) {
 				int pikiColor = piki->getKind();
-				if ((pikiColor == Red && vsNavi->mNaviIndex == NAVIID_Louie)
-				    || (pikiColor == Blue && vsNavi->mNaviIndex == NAVIID_Olimar)) {
+				if ((pikiColor == Red && whistlingNavi->mNaviIndex == NAVIID_Louie)
+				    || (pikiColor == Blue && whistlingNavi->mNaviIndex == NAVIID_Olimar)) {
 					return false;
 				}
 			}

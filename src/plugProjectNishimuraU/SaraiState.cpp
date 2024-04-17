@@ -104,7 +104,7 @@ void StateFall::exec(EnemyBase* enemy)
 	if (sarai->mCurAnim->mIsPlaying) {
 		if (sarai->mCurAnim->mType == KEYEVENT_2) {
 			sarai->createDownEffect();
-			rumbleMgr->startRumble(11, pos, 2);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed11, pos, RUMBLEID_Both);
 		} else if (sarai->mCurAnim->mType == KEYEVENT_END) {
 			if (sarai->mHealth <= 0.0f) {
 				transit(sarai, SARAI_Dead, nullptr);

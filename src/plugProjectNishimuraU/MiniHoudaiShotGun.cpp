@@ -127,8 +127,8 @@ bool MiniHoudaiShotGunNode::update()
 		PSStartSoundVec(PSSE_PK_SE_BOMB, (Vec*)&mPosition);
 
 		if (_18) {
-			cameraMgr->startVibration(15, effectPos, 2);
-			rumbleMgr->startRumble(14, effectPos, 2);
+			cameraMgr->startVibration(VIBTYPE_MidFastShort, effectPos, CAMNAVI_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed14, effectPos, RUMBLEID_Both);
 		}
 
 		result = true;

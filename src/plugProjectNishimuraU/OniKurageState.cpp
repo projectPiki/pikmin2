@@ -84,8 +84,8 @@ void StateDead::exec(EnemyBase* enemy)
 			kurage->getJAIObject()->startSound(PSSE_EN_ONIKURAGE_HARETSU, 0);
 
 			Vector3f position = kurage->getPosition();
-			cameraMgr->startVibration(6, position, 2);
-			rumbleMgr->startRumble(10, position, 2);
+			cameraMgr->startVibration(VIBTYPE_LightFastShort, position, CAMNAVI_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed10, position, RUMBLEID_Both);
 
 		} else if ((u32)kurage->mCurAnim->mType == KEYEVENT_END) {
 			kurage->kill(nullptr);
@@ -513,8 +513,8 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->createDownEffect();
 
 	Vector3f position = kurage->getPosition();
-	cameraMgr->startVibration(6, position, 2);
-	rumbleMgr->startRumble(9, position, 2);
+	cameraMgr->startVibration(VIBTYPE_LightFastShort, position, CAMNAVI_Both);
+	rumbleMgr->startRumble(RUMBLETYPE_Fixed9, position, RUMBLEID_Both);
 }
 
 /**
@@ -663,7 +663,7 @@ void StateFlyFlick::exec(EnemyBase* enemy)
 			                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
 			kurage->mFlickTimer = 0.0f;
 			Vector3f position   = kurage->getPosition();
-			rumbleMgr->startRumble(12, position, 2);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed12, position, RUMBLEID_Both);
 
 		} else if ((u32)kurage->mCurAnim->mType == KEYEVENT_END) {
 			int nextFlyingState = kurage->getFlyingNextState();
@@ -719,7 +719,7 @@ void StateGroundFlick::exec(EnemyBase* enemy)
 	if (kurage->mCurAnim->mIsPlaying) {
 		if ((u32)kurage->mCurAnim->mType == KEYEVENT_2) {
 			Vector3f position = kurage->getPosition();
-			rumbleMgr->startRumble(12, position, 2);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed12, position, RUMBLEID_Both);
 
 		} else if ((u32)kurage->mCurAnim->mType == KEYEVENT_3) {
 			Parms* parms1 = CG_PARMS(kurage);

@@ -101,8 +101,8 @@ void GameSystem::startFrame()
 	cellMgr->initFrame();
 	collisionUpdateMgr->update();
 
-	if (!paused() && !mIsFrozen && !isFlag(GAMESYS_DisablePause) && !paused_soft() && (!moviePlayer || moviePlayer->mDemoState == 0)
-	    && (int)gameSystem->mTimeMgr->mDayCount != 0) {
+	if (!paused() && !mIsFrozen && !isFlag(GAMESYS_DisablePause) && !paused_soft()
+	    && (!moviePlayer || moviePlayer->mDemoState == DEMOSTATE_Inactive) && (int)gameSystem->mTimeMgr->mDayCount != 0) {
 		mTimeMgr->update();
 	}
 }

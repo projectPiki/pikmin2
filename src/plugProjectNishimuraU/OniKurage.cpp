@@ -1292,8 +1292,8 @@ void Obj::updateCollPartOffset()
 						mSuckedNavis[i]->mSoundObj->startSound(PSSE_EN_ONIKURAGE_GET_ORIMA, 0);
 					}
 					Vector3f pos = getPosition();
-					cameraMgr->startVibration(2, pos, 2);
-					rumbleMgr->startRumble(10, pos, 2);
+					cameraMgr->startVibration(VIBTYPE_LightSlowLong, pos, CAMNAVI_Both);
+					rumbleMgr->startRumble(RUMBLETYPE_Fixed10, pos, RUMBLEID_Both);
 				}
 			}
 		}
@@ -1815,8 +1815,8 @@ void Obj::escapeCheckNavi()
 			} else {
 				createFlickNaviEffect();
 				Vector3f pos = getPosition();
-				cameraMgr->startVibration(0, pos, 2);
-				rumbleMgr->startRumble(10, pos, 2);
+				cameraMgr->startVibration(VIBTYPE_LightSlowShort, pos, CAMNAVI_Both);
+				rumbleMgr->startRumble(RUMBLETYPE_Fixed10, pos, RUMBLEID_Both);
 				mSuckedNavis[i]->mSoundObj->startSound(PSSE_EN_ONIKURAGE_VOMIT, 0);
 			}
 			mSuckedNavis[i] = nullptr;

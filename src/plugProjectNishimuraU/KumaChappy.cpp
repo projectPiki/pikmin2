@@ -461,7 +461,7 @@ void Obj::startEnemyRumble()
 	Vector3f vec(mtx->mMatrix.structView.tx, mtx->mMatrix.structView.ty, mtx->mMatrix.structView.tz);
 	vec.y = mPosition.y;
 
-	rumbleMgr->startRumble(11, vec, 2);
+	rumbleMgr->startRumble(RUMBLETYPE_Fixed11, vec, RUMBLEID_Both);
 	createBounceEffect(vec, 0.75f);
 }
 

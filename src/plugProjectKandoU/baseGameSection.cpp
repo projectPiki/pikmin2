@@ -375,9 +375,9 @@ void BaseGameSection::doDraw(Graphics& gfx)
 	captureRadarmap(gfx);
 	if (gameSystem->paused()) {
 		if (cameraMgr) {
-			cameraMgr->controllerLock(2);
+			cameraMgr->controllerLock(CAMNAVI_Both);
 			cameraMgr->update();
-			cameraMgr->controllerUnLock(2);
+			cameraMgr->controllerUnLock(CAMNAVI_Both);
 		}
 
 	} else if (cameraMgr) {
@@ -567,10 +567,10 @@ void BaseGameSection::initViewports(Graphics& gfx)
 	shadowMgr->setViewport(gfx.getViewport(0), 0);
 	shadowMgr->setViewport(gfx.getViewport(1), 1);
 
-	cameraMgr->setViewport(gfx.getViewport(0), 0);
-	cameraMgr->setViewport(gfx.getViewport(1), 1);
+	cameraMgr->setViewport(gfx.getViewport(0), CAMNAVI_Olimar);
+	cameraMgr->setViewport(gfx.getViewport(1), CAMNAVI_Louie);
 
-	cameraMgr->init(0);
+	cameraMgr->init(CAMNAVI_Olimar);
 	mTreasureZoomCamera         = new ZoomCamera;
 	mTreasureGetViewport        = new Viewport;
 	mTreasureGetViewport->mVpId = 2;
@@ -919,7 +919,7 @@ void BaseGameSection::initGenerators()
 			return;
 		}
 		if (!gameSystem->isMultiplayerMode() && !olimarAlive) {
-			InteractFue callNavi(olimar, 0, 1);
+			InteractFue callNavi(olimar, false, true); // don't combine parties, is new to party
 			louie->stimulate(callNavi);
 		}
 		break;
@@ -990,12 +990,12 @@ void BaseGameSection::saveToGeneratorCache(CourseInfo* courseinfo)
 
 void BaseGameSection::pmTogglePlayer()
 {
-	if (mPrevNaviIdx == 0) {
-		setPlayerMode(1);
+	if (mPrevNaviIdx == NAVIID_Olimar) {
+		setPlayerMode(NAVIID_Louie);
 		moviePlayer->mViewport     = sys->mGfx->getViewport(1);
 		moviePlayer->mActingCamera = mLouieCamera;
-	} else if (mPrevNaviIdx == 1) {
-		setPlayerMode(0);
+	} else if (mPrevNaviIdx == NAVIID_Louie) {
+		setPlayerMode(NAVIID_Olimar);
 		moviePlayer->mViewport     = sys->mGfx->getViewport(0);
 		moviePlayer->mActingCamera = mOlimarCamera;
 	}
@@ -1032,7 +1032,7 @@ void BaseGameSection::setPlayerMode(int mode)
 		Matrixf* viewMtx = mLouieCamera->getViewMatrix(false);
 		PSMTXCopy((PSQuaternion*)viewMtx, (PSQuaternion*)&mOlimarCamera->mCurViewMatrix);
 		mOlimarCamera->update();
-		cameraMgr->changePlayerMode(0, cameraMgrCallback);
+		cameraMgr->changePlayerMode(NAVIID_Olimar, cameraMgrCallback);
 		if (mPlayerMode == 1) {
 			Graphics* gfx = sys->mGfx;
 			gfx->getViewport(0)->setCamera(mOlimarCamera);
@@ -1063,18 +1063,18 @@ void BaseGameSection::setPlayerMode(int mode)
 		PSMTXCopy((PSQuaternion*)viewMtx, (PSQuaternion*)&mLouieCamera->mCurViewMatrix);
 
 		mLouieCamera->update();
-		cameraMgr->changePlayerMode(1, cameraMgrCallback);
+		cameraMgr->changePlayerMode(NAVIID_Louie, cameraMgrCallback);
 
 		Viewport* louieViewport     = sys->mGfx->getViewport(1);
 		sys->mGfx->mCurrentViewport = louieViewport;
 		mLightMgr->updatePosition(sys->mGfx->mCurrentViewport);
 		break;
 	}
-	case NAVIID_President: {
+	case NAVIID_Multiplayer: {
 		mSecondViewportHeight = 0.5f;
 		mSplit                = 0.0f;
 		mSplitter->split2(0.5f);
-		cameraMgr->changePlayerMode(2, cameraMgrCallback);
+		cameraMgr->changePlayerMode(NAVIID_Multiplayer, cameraMgrCallback);
 		break;
 	}
 	}
@@ -1105,10 +1105,10 @@ void BaseGameSection::onCameraBlendFinished(CameraArg* arg)
  * @note Address: 0x8014DD20
  * @note Size: 0x68
  */
-void BaseGameSection::setFixNearFar(bool b, f32 near, f32 far)
+void BaseGameSection::setFixNearFar(bool isFixed, f32 near, f32 far)
 {
-	mOlimarCamera->setFixNearFar(b, near, far);
-	mLouieCamera->setFixNearFar(b, near, far);
+	mOlimarCamera->setFixNearFar(isFixed, near, far);
+	mLouieCamera->setFixNearFar(isFixed, near, far);
 }
 
 /**
@@ -1119,62 +1119,62 @@ void BaseGameSection::setCamController()
 {
 	Navi* navis[2];
 
-	navis[0] = naviMgr->getAt(NAVIID_Olimar);
-	navis[1] = naviMgr->getAt(NAVIID_Louie);
+	navis[NAVIID_Olimar] = naviMgr->getAt(NAVIID_Olimar);
+	navis[NAVIID_Louie]  = naviMgr->getAt(NAVIID_Louie);
 
 	switch (mPrevNaviIdx) {
-	case 0: {
-		PlayCamera* olimarCam        = mOlimarCamera;
-		navis[0]->mCamera            = olimarCam;
-		navis[0]->mCamera2           = olimarCam;
-		Controller* olimarController = mControllerP1;
-		navis[0]->mController1       = olimarController;
-		navis[0]->mController2       = olimarController;
-		navis[1]->disableController();
-		moviePlayer->mTargetNavi   = navis[0];
+	case NAVIID_Olimar: {
+		PlayCamera* olimarCam              = mOlimarCamera;
+		navis[NAVIID_Olimar]->mCamera      = olimarCam;
+		navis[NAVIID_Olimar]->mCamera2     = olimarCam;
+		Controller* olimarController       = mControllerP1;
+		navis[NAVIID_Olimar]->mController1 = olimarController;
+		navis[NAVIID_Olimar]->mController2 = olimarController;
+		navis[NAVIID_Louie]->disableController();
+		moviePlayer->mTargetNavi   = navis[NAVIID_Olimar];
 		moviePlayer->mViewport     = sys->mGfx->getViewport(0);
 		moviePlayer->mActingCamera = mOlimarCamera;
 		if (!gameSystem->isMultiplayerMode()) {
-			PSSetCurCameraNo(0);
+			PSSetCurCameraNo(NAVIID_Olimar);
 			PSPlayerChangeToOrimer();
 		}
 		break;
 	}
-	case 1: {
-		navis[0]->disableController();
-		PlayCamera* louieCam        = mLouieCamera;
-		navis[1]->mCamera           = louieCam;
-		navis[1]->mCamera2          = louieCam;
-		Controller* louieController = mControllerP1;
-		navis[1]->mController1      = louieController;
-		navis[1]->mController2      = louieController;
-		moviePlayer->mTargetNavi    = navis[1];
-		moviePlayer->mViewport      = sys->mGfx->getViewport(1);
-		moviePlayer->mActingCamera  = mLouieCamera;
+	case NAVIID_Louie: {
+		navis[NAVIID_Olimar]->disableController();
+		PlayCamera* louieCam              = mLouieCamera;
+		navis[NAVIID_Louie]->mCamera      = louieCam;
+		navis[NAVIID_Louie]->mCamera2     = louieCam;
+		Controller* louieController       = mControllerP1;
+		navis[NAVIID_Louie]->mController1 = louieController;
+		navis[NAVIID_Louie]->mController2 = louieController;
+		moviePlayer->mTargetNavi          = navis[NAVIID_Louie];
+		moviePlayer->mViewport            = sys->mGfx->getViewport(1);
+		moviePlayer->mActingCamera        = mLouieCamera;
 		if (!gameSystem->isMultiplayerMode()) {
-			PSSetCurCameraNo(1);
+			PSSetCurCameraNo(NAVIID_Louie);
 			PSPlayerChangeToLugie();
 		}
 		break;
 	}
-	case 2: {
-		PlayCamera* olimarCam        = mOlimarCamera;
-		navis[0]->mCamera            = olimarCam;
-		navis[0]->mCamera2           = olimarCam;
-		Controller* olimarController = mControllerP1;
-		navis[0]->mController1       = olimarController;
-		navis[0]->mController2       = olimarController;
-		PlayCamera* louieCam         = mLouieCamera;
-		navis[1]->mCamera            = louieCam;
-		navis[1]->mCamera2           = louieCam;
-		Controller* louieController  = mControllerP2;
-		navis[1]->mController1       = louieController;
-		navis[1]->mController2       = louieController;
+	case NAVIID_Multiplayer: {
+		PlayCamera* olimarCam              = mOlimarCamera;
+		navis[NAVIID_Olimar]->mCamera      = olimarCam;
+		navis[NAVIID_Olimar]->mCamera2     = olimarCam;
+		Controller* olimarController       = mControllerP1;
+		navis[NAVIID_Olimar]->mController1 = olimarController;
+		navis[NAVIID_Olimar]->mController2 = olimarController;
+		PlayCamera* louieCam               = mLouieCamera;
+		navis[NAVIID_Louie]->mCamera       = louieCam;
+		navis[NAVIID_Louie]->mCamera2      = louieCam;
+		Controller* louieController        = mControllerP2;
+		navis[NAVIID_Louie]->mController1  = louieController;
+		navis[NAVIID_Louie]->mController2  = louieController;
 
-		moviePlayer->mTargetNavi   = navis[0];
+		moviePlayer->mTargetNavi   = navis[NAVIID_Olimar];
 		moviePlayer->mActingCamera = mOlimarCamera;
 		if (gameSystem->isStoryMode()) {
-			PSSetCurCameraNo(0);
+			PSSetCurCameraNo(NAVIID_Olimar);
 		}
 		break;
 	}
@@ -1209,13 +1209,13 @@ void BaseGameSection::setDefaultPSSceneInfo(PSGame::SceneInfo& sceneInfo)
 	P2ASSERTLINE(3197, mOlimarCamera);
 	P2ASSERTLINE(3198, mLouieCamera);
 
-	sceneInfo.mCameras         = 2;
-	sceneInfo.mCam1Position[0] = mOlimarCamera->getSoundPositionPtr();
-	sceneInfo.mCam2Position[0] = mOlimarCamera->getSoundPositionPtr();
-	sceneInfo.mCameraMtx[0]    = mOlimarCamera->getSoundMatrixPtr();
-	sceneInfo.mCam1Position[1] = mLouieCamera->getSoundPositionPtr();
-	sceneInfo.mCam2Position[1] = mLouieCamera->getSoundPositionPtr();
-	sceneInfo.mCameraMtx[1]    = mLouieCamera->getSoundMatrixPtr();
+	sceneInfo.mCameras                     = 2;
+	sceneInfo.mCam1Position[NAVIID_Olimar] = mOlimarCamera->getSoundPositionPtr();
+	sceneInfo.mCam2Position[NAVIID_Olimar] = mOlimarCamera->getSoundPositionPtr();
+	sceneInfo.mCameraMtx[NAVIID_Olimar]    = mOlimarCamera->getSoundMatrixPtr();
+	sceneInfo.mCam1Position[NAVIID_Louie]  = mLouieCamera->getSoundPositionPtr();
+	sceneInfo.mCam2Position[NAVIID_Louie]  = mLouieCamera->getSoundPositionPtr();
+	sceneInfo.mCameraMtx[NAVIID_Louie]     = mLouieCamera->getSoundMatrixPtr();
 	BoundBox box;
 
 	mapMgr->getBoundBox(box);
@@ -1376,7 +1376,7 @@ void BaseGameSection::drawParticle(Graphics& gfx, int viewport)
 
 		port->setProjection();
 		port->setViewport();
-		if (!gameSystem->isMultiplayerMode() && mPrevNaviIdx != 2) {
+		if (!gameSystem->isMultiplayerMode() && mPrevNaviIdx != NAVIID_Multiplayer) {
 			mLightMgr->mFogMgr->off(gfx);
 			particleMgr->draw(port, 0);
 			mLightMgr->mFogMgr->set(gfx);
@@ -1683,13 +1683,14 @@ void BaseGameSection::initBlendCamera()
  */
 void BaseGameSection::updateBlendCamera()
 {
-	if (mPrevNaviIdx == 0) {
+	if (mPrevNaviIdx == NAVIID_Olimar) {
 		mBlendFactor -= sys->mDeltaTime / 0.2f;
 		if (mBlendFactor < 0.0f) {
 			mBlendFactor         = 0.0f;
 			mIsBlendCameraActive = false;
 			mSplitter->split2(1.0f);
 		}
+
 	} else {
 		mBlendFactor += sys->mDeltaTime / 0.2f;
 		if (mBlendFactor > 1.0f) {
@@ -1783,23 +1784,23 @@ void BaseGameSection::endSplit()
  */
 void BaseGameSection::updateSplitter()
 {
-	if (mSplit == 0.0f && moviePlayer->mDemoState == 0 && gameSystem->isFlag(GAMESYS_IsGameWorldActive)) {
+	if (mSplit == 0.0f && moviePlayer->mDemoState == DEMOSTATE_Inactive && gameSystem->isFlag(GAMESYS_IsGameWorldActive)) {
 		return;
 	}
 
 	mSecondViewportHeight += mSplit * sys->mDeltaTime;
 	int id = mPrevNaviIdx;
-	if (id == 2 && mSecondViewportHeight <= 0.5f) {
+	if (id == NAVIID_Multiplayer && mSecondViewportHeight <= 0.5f) {
 		mSecondViewportHeight = 0.5f;
 		mSplit                = 0.0f;
 		mSetSplit             = true;
 		setCamController();
-	} else if (id == 0 && mSecondViewportHeight >= 1.0f) {
+	} else if (id == NAVIID_Olimar && mSecondViewportHeight >= 1.0f) {
 		mSecondViewportHeight = 1.0f;
 		mSplit                = 0.0f;
 		mSetSplit             = false;
 		setCamController();
-	} else if (id == 1 && mSecondViewportHeight <= 0.0f) {
+	} else if (id == NAVIID_Louie && mSecondViewportHeight <= 0.0f) {
 		mSecondViewportHeight = 0.0f;
 		mSplit                = 0.0f;
 		setCamController();
@@ -2512,13 +2513,13 @@ void BaseGameSection::setupFloatMemory()
 	initGenerators();
 
 	itemMgr->initDependency();
-	cameraMgr->init(0);
+	cameraMgr->init(CAMNAVI_Olimar);
 
 	f32 angle = _aiConstants->mCameraAngle.mData * DEG2RAD * PI;
 	angle     = roundAng(angle + mapMgr->getMapRotation());
 	mapMgr->getMapRotation();
-	cameraMgr->setCameraAngle(angle, 2);
-	cameraMgr->controllerUnLock(2);
+	cameraMgr->setCameraAngle(angle, CAMNAVI_Both);
+	cameraMgr->controllerUnLock(CAMNAVI_Both);
 	sys->heapStatusEnd("setupFloatMemory");
 
 	pikiMgr->setupSoundViewerAndBas();

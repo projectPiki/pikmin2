@@ -29,8 +29,8 @@ struct DataNavi {
 	f32 mNaviLifeRatio; // _00
 	u32 mFollowPikis;   // _04
 	u32 mNextThrowPiki; // _08
-	u32 mDope1Count;    // _0C
-	u32 mDope0Count;    // _10
+	u32 mDope1Count;    // _0C, bitter sprays
+	u32 mDope0Count;    // _10, spicy sprays
 	u8 mActiveNaviID;   // _14
 };
 

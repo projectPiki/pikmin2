@@ -978,8 +978,8 @@ f32 ActorDirector_Scaled::getNearestDistance()
 	bool is1P   = PSSystem::SingletonBase<PSM::ObjCalcBase>::getInstance()->is1PGame();
 	f32 minDist = 100000.0f;
 	if (!is1P) {
-		Game::Navi* olimar = Game::naviMgr->getAt(NAVIID_Captain1);
-		Game::Navi* louie  = Game::naviMgr->getAt(NAVIID_Captain2);
+		Game::Navi* olimar = Game::naviMgr->getAt(NAVIID_Olimar);
+		Game::Navi* louie  = Game::naviMgr->getAt(NAVIID_Louie);
 		P2ASSERTBOOLLINE(394, olimar && louie);
 
 		Vector3f oPos = olimar->getPosition();

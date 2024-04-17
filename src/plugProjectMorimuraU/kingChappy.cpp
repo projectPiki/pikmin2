@@ -2609,8 +2609,8 @@ void Obj::footMtxCalc(Mtx mtx, Vector3f* pos, f32* p1)
 	*p1 *= 0.7f;
 	if (*p1 < 0.1f) {
 		if (*p1 != 0.0f) {
-			cameraMgr->startVibration(6, *pos, 2);
-			rumbleMgr->startRumble(11, *pos, RUMBLEID_Both);
+			cameraMgr->startVibration(VIBTYPE_LightFastShort, *pos, CAMNAVI_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed11, *pos, RUMBLEID_Both);
 		}
 
 		*p1 = 0.0f;

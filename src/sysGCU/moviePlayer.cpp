@@ -51,7 +51,7 @@ MoviePlayer::MoviePlayer()
 	mNaviID        = 0;
 	mCameraName    = nullptr;
 	mStreamID      = 0;
-	mDemoState     = 0;
+	mDemoState     = DEMOSTATE_Inactive;
 	mObjectSystem  = nullptr;
 	mDemoPSM       = nullptr;
 	mTextControl   = nullptr;
@@ -162,7 +162,7 @@ u8 MoviePlayer::play(MovieConfig* config, MoviePlayArg& arg, bool flag)
 		}
 		mAltNavi   = mTargetNavi;
 		mAltCamera = mActingCamera;
-		cameraMgr->controllerLock(2);
+		cameraMgr->controllerLock(CAMNAVI_Both);
 		config->dump();
 		mCurrentConfig = config;
 		mNaviID        = arg.mNaviID;
@@ -198,7 +198,7 @@ u8 MoviePlayer::play(MovieConfig* config, MoviePlayArg& arg, bool flag)
 
 		resetFlag(MVP_IsFinished);
 		setFlag(MVP_IsActive);
-		resetFlag(MVP_Unk32);
+		resetFlag(MVP_DoSkip);
 		mDelegate1  = arg.mDelegateEnd;
 		mDelegate2  = arg.mDelegateStart;
 		mCameraName = arg.mPelletName;
@@ -214,10 +214,10 @@ u8 MoviePlayer::play(MovieConfig* config, MoviePlayArg& arg, bool flag)
 				gameSystem->startFadeout(0.5f);
 				mFadeTimer = 0.5f;
 			}
-			mDemoState = 1;
+			mDemoState = DEMOSTATE_Fadeout;
 		} else {
 			sys->dvdLoadUseCallBack(&mThreadCommand, mDelegate3);
-			mDemoState = 2;
+			mDemoState = DEMOSTATE_Loading;
 			mFadeTimer = 0.0f;
 		}
 		return MOVIEPLAY_SUCCESS;
@@ -501,9 +501,10 @@ bool MoviePlayer::parse(bool flag)
 bool MoviePlayer::update(Controller* input1, Controller* input2)
 {
 	switch (mDemoState) {
-	case 0:
+	case DEMOSTATE_Inactive:
 		return false;
-	case 1:
+
+	case DEMOSTATE_Fadeout:
 		if (mFadeTimer > 0.0f) {
 			mFadeTimer -= sys->mDeltaTime;
 			if (mFadeTimer <= 0.0f) {
@@ -511,11 +512,12 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 			}
 		} else {
 			sys->dvdLoadUseCallBack(&mThreadCommand, mDelegate3);
-			mDemoState = 2;
+			mDemoState = DEMOSTATE_Loading;
 			gameSystem->startFadeblack();
 		}
 		return true;
-	case 2:
+
+	case DEMOSTATE_Loading:
 		if (mFadeTimer > 0.0f) {
 			mFadeTimer -= sys->mDeltaTime;
 		}
@@ -535,27 +537,31 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 			}
 			start(nullptr);
 			setPauseAndDraw(mCurrentConfig);
-			mDemoState = 5;
+			mDemoState = DEMOSTATE_Playing;
 			u16 flag   = mCurrentConfig->mDrawType;
 			if (flag & 4 || flag & 2) {
 				gameSystem->startFadein(0.5f);
 			} else {
 				gameSystem->startFadewhite();
 			}
-			mDemoState = 3;
+			mDemoState = DEMOSTATE_LoadComplete;
 			return true;
 		}
 		return true;
-	case 3:
-		mDemoState = 4;
+
+	case DEMOSTATE_LoadComplete:
+		mDemoState = DEMOSTATE_Starting;
 		break;
-	case 4:
-		mDemoState = 5;
+
+	case DEMOSTATE_Starting:
+		mDemoState = DEMOSTATE_Playing;
 		break;
-	case 5:
+
+	case DEMOSTATE_Playing:
 		gameSystem->paused();
 		break;
-	case 6:
+
+	case DEMOSTATE_Finishing:
 		if (mObjectSystem) {
 			mObjectSystem->entry();
 		}
@@ -614,19 +620,19 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 				}
 				return false;
 			}
-			if (mDemoState == 2 || mDemoState == 1) {
+			if (mDemoState == DEMOSTATE_Loading || mDemoState == DEMOSTATE_Fadeout) {
 				PSMCancelToPauseOffMainBgm();
 			}
 		} else if (mFadeTimer <= 0.0f) {
-			mDemoState = 0;
+			mDemoState = DEMOSTATE_Inactive;
 		}
 		return true;
 	}
 
 	if (isFlag(MVP_IsActive)) {
 
-		if ((input1->getButton() & 0xf70) || (input2 && (input2->getButton() & 0xf70))) {
-			mFlags.typeView |= 0x80000000;
+		if ((input1->getButton() & Controller::PRESS_ABXYLRZ) || (input2 && (input2->getButton() & Controller::PRESS_ABXYLRZ))) {
+			setFlag(MVP_DoSkip);
 		}
 
 		if ((int)mStudioControl->mSuspend <= 0) {
@@ -648,8 +654,8 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 			}
 		}
 		if (!mStudioControl->forward(1)) {
-			if (mDemoState != 6) {
-				mDemoState = 6;
+			if (mDemoState != DEMOSTATE_Finishing) {
+				mDemoState = DEMOSTATE_Finishing;
 				mFadeTimer = 2.0f;
 				mCanFinish = false;
 				gameSystem->setPause(true, nullptr, 3);
@@ -665,8 +671,9 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 				mTextControl->update(input1, input2);
 			}
 		}
-		if (mDemoState == 5 && mFlags.isSet(0x80000000) && !mStudioControl->mSuspend) {
-			if ((input1->getButtonDown() & 0xf70) || (input2 && (input2->getButton() & 0xf70)) && mCurrentConfig->isSkippable()) {
+		if (mDemoState == DEMOSTATE_Playing && mFlags.isSet(MVP_DoSkip) && !mStudioControl->mSuspend) {
+			if ((input1->getButtonDown() & Controller::PRESS_ABXYLRZ)
+			    || (input2 && (input2->getButton() & Controller::PRESS_ABXYLRZ)) && mCurrentConfig->isSkippable()) {
 				skip();
 			} else if ((input1->getButtonDown() & Controller::PRESS_START)
 			           || (input2 && (input2->getButtonDown() & Controller::PRESS_START)) && !mCurrentConfig->isNeverSkippable()) {
@@ -716,7 +723,7 @@ bool MoviePlayer::stop()
 	if (isFlag(MVP_IsActive)) {
 		clearPauseAndDraw();
 		resetFlag(MVP_IsActive);
-		resetFlag(MVP_Unk32);
+		resetFlag(MVP_DoSkip);
 		if (mObjectSystem) {
 			mObjectSystem->stop();
 			mObjectSystem->destroyObjectAll();
@@ -1156,7 +1163,7 @@ void MoviePlayer::drawLoading(Graphics& gfx)
 void MoviePlayer::skip()
 {
 	setFlag(MVP_IsFinished);
-	mDemoState = 6;
+	mDemoState = DEMOSTATE_Finishing;
 	mFadeTimer = 2.0f;
 	mCanFinish = false;
 	gameSystem->startFadeout(1.0f);

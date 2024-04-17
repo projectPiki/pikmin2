@@ -129,8 +129,8 @@ void Obj::flickAttackBomb()
 	efx.create(nullptr);
 
 	Vector3f pos = mPosition;
-	cameraMgr->startVibration(28, pos, 2);
-	rumbleMgr->startRumble(11, pos, 2);
+	cameraMgr->startVibration(VIBTYPE_Boom, pos, CAMNAVI_Both);
+	rumbleMgr->startRumble(RUMBLETYPE_Fixed11, pos, RUMBLEID_Both);
 }
 
 /**
@@ -185,8 +185,8 @@ void Obj::createSmokeEffect()
 	if (id == ChappyBase::CHAPPYANIM_WaitAct2) {
 		pos -= Vector3f(sinf(mFaceDir) * 60.0f, 0.0f, cosf(mFaceDir) * 60.0f);
 
-		cameraMgr->startVibration(3, pos, 2);
-		rumbleMgr->startRumble(11, pos, 2);
+		cameraMgr->startVibration(VIBTYPE_LightMidShort, pos, CAMNAVI_Both);
+		rumbleMgr->startRumble(RUMBLETYPE_Fixed11, pos, RUMBLEID_Both);
 
 	} else if (id == ChappyBase::CHAPPYANIM_Sleep) {
 		setAtari(true);
@@ -198,7 +198,7 @@ void Obj::createSmokeEffect()
 		parms = static_cast<ChappyBase::Parms*>(mParms);
 		EnemyFunc::flickNearbyNavi(this, parms->mGeneral.mPrivateRadius.mValue, parms->mGeneral.mShakeKnockback.mValue,
 		                           parms->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
-		rumbleMgr->startRumble(10, pos, 2);
+		rumbleMgr->startRumble(RUMBLETYPE_Fixed10, pos, RUMBLEID_Both);
 
 	} else {
 		return;

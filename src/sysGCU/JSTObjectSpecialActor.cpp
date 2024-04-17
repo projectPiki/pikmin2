@@ -62,11 +62,11 @@ void ObjectSpecialActor::update()
 		} else if (mCommands[i] <= 200) {
 			switch (mCommands[i]) {
 			case 101:
-				cameraMgr->startDemoCamera(2, 0);
+				cameraMgr->startDemoCamera(CAMNAVI_Both, CAMDEMO_NearLow);
 				break;
 
 			case 102:
-				cameraMgr->finishDemoCamera(2);
+				cameraMgr->finishDemoCamera(CAMNAVI_Both);
 				break;
 			}
 

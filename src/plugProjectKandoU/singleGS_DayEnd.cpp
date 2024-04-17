@@ -128,7 +128,7 @@ void DayEndState::exec(SingleGameSection* game)
 				int id     = 0;
 				if (navi) {
 					id = navi->mNaviIndex;
-					if (id == NAVIID_Captain2 && playData->isStoryFlag(STORY_DebtPaid)) {
+					if (id == NAVIID_Louie && playData->isStoryFlag(STORY_DebtPaid)) {
 						id++;
 					}
 				}
@@ -306,7 +306,7 @@ void DayEndState::draw(SingleGameSection* game, Graphics& gfx) { game->BaseGameS
 void DayEndState::cleanup(SingleGameSection* game)
 {
 	playData->setPikminCounts_Today();
-	GameStat::getMapPikmins(-1);
+	GameStat::getMapPikmins(AllPikminCalcs);
 	int alivePikis = GameStat::alivePikis;
 	int mePikis    = GameStat::mePikis;
 	gameSystem->setPause(false, "dayend;cln", 3);

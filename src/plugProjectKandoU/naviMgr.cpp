@@ -130,7 +130,7 @@ Navi* NaviMgr::birth()
 		navi->mSoundObj->init(navi->mNaviIndex);
 
 		// Use president sounds for navi ID 1
-		if (playData->isStoryFlag(STORY_DebtPaid) && navi->mNaviIndex == NAVIID_Captain2) {
+		if (playData->isStoryFlag(STORY_DebtPaid) && navi->mNaviIndex == NAVIID_Louie) {
 			navi->mSoundObj->setShacho();
 		}
 	}
@@ -149,8 +149,8 @@ Navi* NaviMgr::birth()
  */
 Navi* NaviMgr::getActiveNavi()
 {
-	Navi* navi1 = getAt(NAVIID_Captain1);
-	Navi* navi2 = getAt(NAVIID_Captain2);
+	Navi* navi1 = getAt(NAVIID_Olimar);
+	Navi* navi2 = getAt(NAVIID_Louie);
 	if (!navi1 && !navi2) {
 		return nullptr;
 	}
@@ -337,8 +337,8 @@ Navi* NaviMgr::getAliveOrima(int type)
 
 	// both captains alive
 	if (mDeadNavis == 0) {
-		Navi* olimar = getAt(NAVIID_Captain1);
-		Navi* louie  = getAt(NAVIID_Captain2); // or president
+		Navi* olimar = getAt(NAVIID_Olimar);
+		Navi* louie  = getAt(NAVIID_Louie); // or president
 		Navi* activeNavi;
 		Navi* inactiveNavi;
 
@@ -417,9 +417,9 @@ void NaviMgr::doEntry()
 
 		if (vs) {
 			Navi* navi = &mArray[i];
-			if ((int)navi->mNaviIndex == NAVIID_Captain2 && pikiMgr->mFlags[0] & 1) {
+			if ((int)navi->mNaviIndex == NAVIID_Louie && pikiMgr->mFlags[0] & 1) {
 				navi->mLod.resetFlag(AILOD_IsVisVP0);
-			} else if ((int)navi->mNaviIndex == NAVIID_Captain1 && pikiMgr->mFlags[0] & 2) {
+			} else if ((int)navi->mNaviIndex == NAVIID_Olimar && pikiMgr->mFlags[0] & 2) {
 				navi->mLod.resetFlag(AILOD_IsVisVP1);
 			}
 		}

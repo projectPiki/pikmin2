@@ -302,7 +302,7 @@ bool SingleGameSection::doUpdate()
 		mFsm->exec(this);
 
 		if (!gameSystem->mIsFrozen && !gameSystem->paused()) {
-			if (mTimerEnabled && !moviePlayer->mDemoState && gameSystem->isFlag(GAMESYS_IsGameWorldActive)) {
+			if (mTimerEnabled && moviePlayer->mDemoState == DEMOSTATE_Inactive && gameSystem->isFlag(GAMESYS_IsGameWorldActive)) {
 				mTimer -= sys->mDeltaTime;
 
 				if (mTimer < 0.0f) {
@@ -696,7 +696,7 @@ void SingleGameSection::openCaveInMenu(ItemCave::Item* cave, int naviID)
 		disp.mCaveOtakaraNum = cave->getCaveOtakaraNum();
 		disp.mCaveOtakaraMax = cave->getCaveOtakaraMax();
 		disp.mPayedDebt      = playData->mStoryFlags & STORY_DebtPaid;
-		disp.mPikisField     = GameStat::getMapPikmins(-1) - GameStat::getZikatuPikmins(-1);
+		disp.mPikisField     = GameStat::getMapPikmins(AllPikminCalcs) - GameStat::getZikatuPikmins(AllPikminCalcs);
 
 		int pikis = 0;
 		Iterator<Piki> iterator(pikiMgr);
@@ -740,7 +740,7 @@ void SingleGameSection::openCaveMoreMenu(ItemHole::Item* hole, Controller* input
 		int pikis    = GameStat::mePikis;
 		if (pikis > 0) {
 			disp.mPikiInDanger = true;
-			if (pikis == GameStat::getMapPikmins(-1)) {
+			if (pikis == GameStat::getMapPikmins(AllPikminCalcs)) {
 				disp.mCantProceed = true;
 			} else {
 				disp.mCantProceed = false;
@@ -778,7 +778,7 @@ void SingleGameSection::openKanketuMenu(ItemBigFountain::Item* geyser, Controlle
 		int pikis = GameStat::mePikis;
 		if (pikis > 0) {
 			disp.mPikiInDanger = true;
-			if (pikis == GameStat::getMapPikmins(-1)) {
+			if (pikis == GameStat::getMapPikmins(AllPikminCalcs)) {
 				disp.mCantProceed = true;
 			} else {
 				disp.mCantProceed = false;
@@ -1043,12 +1043,12 @@ void SingleGameSection::setDispMemberSMenu(og::Screen::DispMemberSMenuAll& disp)
  * @note Address: N/A
  * @note Size: 0xE0
  */
-void SingleGameSection::setDispMemberNavi(og::Screen::DataNavi& data, int id)
+void SingleGameSection::setDispMemberNavi(og::Screen::DataNavi& data, int naviID)
 {
-	data.mFollowPikis   = GameStat::formationPikis.mCounter[id];
-	data.mDope1Count    = playData->getDopeCount(1);
-	data.mDope0Count    = playData->getDopeCount(0);
-	Navi* navi          = naviMgr->getAt(id);
+	data.mFollowPikis   = GameStat::formationPikis.mCounter[naviID];
+	data.mDope1Count    = playData->getDopeCount(SPRAY_TYPE_BITTER);
+	data.mDope0Count    = playData->getDopeCount(SPRAY_TYPE_SPICY);
+	Navi* navi          = naviMgr->getAt(naviID);
 	data.mNaviLifeRatio = navi->getLifeRatio();
 	data.mNextThrowPiki = navi->ogGetNextThrowPiki();
 }
@@ -1112,8 +1112,8 @@ void SingleGameSection::updateMainMapScreen()
 	disp.mHasRadar           = playData->mOlimarData[0].hasItem(OlimarData::ODII_PrototypeDetector);
 	disp.mIsNotDay1          = gameSystem->mTimeMgr->mDayCount;
 
-	disp.mDataGame.mMapPikminCount   = GameStat::getMapPikmins(-1) - GameStat::getZikatuPikmins(-1);
-	disp.mDataGame.mTotalPikminCount = GameStat::getAllPikmins(-1) - GameStat::getZikatuPikmins(-1);
+	disp.mDataGame.mMapPikminCount   = GameStat::getMapPikmins(AllPikminCalcs) - GameStat::getZikatuPikmins(AllPikminCalcs);
+	disp.mDataGame.mTotalPikminCount = GameStat::getAllPikmins(AllPikminCalcs) - GameStat::getZikatuPikmins(AllPikminCalcs);
 	disp.mDataGame.mDayNum           = gameSystem->mTimeMgr->mDayCount + 1;
 	disp.mDataGame.mSunGaugeRatio    = gameSystem->mTimeMgr->getSunGaugeRatio();
 	disp.mDataGame.mPokoCount        = playData->mPokoCount;
@@ -1133,14 +1133,16 @@ void SingleGameSection::updateMainMapScreen()
 		disp.mUnlockedBitter = false;
 	}
 
-	if (Screen::gGame2DMgr->is_GameGround() && !moviePlayer->mDemoState && bitter && !playData->isDemoFlag(DEMO_BITTER_ENABLED)) {
+	if (Screen::gGame2DMgr->is_GameGround() && moviePlayer->mDemoState == DEMOSTATE_Inactive && bitter
+	    && !playData->isDemoFlag(DEMO_BITTER_ENABLED)) {
 		playData->setDemoFlag(DEMO_BITTER_ENABLED);
 		disp.mHasBitter = true;
 	} else {
 		disp.mHasBitter = false;
 	}
 
-	if (Screen::gGame2DMgr->is_GameGround() && !moviePlayer->mDemoState && spicy && !playData->isDemoFlag(DEMO_SPICY_ENABLED)) {
+	if (Screen::gGame2DMgr->is_GameGround() && moviePlayer->mDemoState == DEMOSTATE_Inactive && spicy
+	    && !playData->isDemoFlag(DEMO_SPICY_ENABLED)) {
 		playData->setDemoFlag(DEMO_SPICY_ENABLED);
 		disp.mHasSpicy = true;
 	} else {
@@ -1152,28 +1154,28 @@ void SingleGameSection::updateMainMapScreen()
 	}
 
 	Navi* navi = naviMgr->getActiveNavi();
-	int id     = 2;
+	int id     = NAVIID_Multiplayer;
 	if (navi) {
 		id = navi->mNaviIndex;
 	}
 
-	setDispMemberNavi(disp.mOlimarData, 0);
+	setDispMemberNavi(disp.mOlimarData, NAVIID_Olimar);
 
-	if (id == 0) {
-		disp.mOlimarData.mActiveNaviID = 1;
-		disp.mLouieData.mActiveNaviID  = 0;
-	} else if (id == 1) {
-		disp.mOlimarData.mActiveNaviID = 0;
-		disp.mLouieData.mActiveNaviID  = 1;
-	} else if (mPrevNaviIdx == 0) {
-		disp.mOlimarData.mActiveNaviID = 0;
-		disp.mLouieData.mActiveNaviID  = 1;
+	if (id == NAVIID_Olimar) {
+		disp.mOlimarData.mActiveNaviID = TRUE;
+		disp.mLouieData.mActiveNaviID  = FALSE;
+	} else if (id == NAVIID_Louie) {
+		disp.mOlimarData.mActiveNaviID = FALSE;
+		disp.mLouieData.mActiveNaviID  = TRUE;
+	} else if (mPrevNaviIdx == NAVIID_Olimar) {
+		disp.mOlimarData.mActiveNaviID = FALSE;
+		disp.mLouieData.mActiveNaviID  = TRUE;
 	} else {
-		disp.mOlimarData.mActiveNaviID = 1;
-		disp.mLouieData.mActiveNaviID  = 0;
+		disp.mOlimarData.mActiveNaviID = TRUE;
+		disp.mLouieData.mActiveNaviID  = FALSE;
 	}
 
-	setDispMemberNavi(disp.mLouieData, 1);
+	setDispMemberNavi(disp.mLouieData, NAVIID_Louie);
 
 	Screen::gGame2DMgr->setDispMember(&disp);
 }
@@ -1214,7 +1216,7 @@ void SingleGameSection::updateCaveScreen()
 	disp.mRadarEnabled      = mTreasureRadarActive;
 	disp.mAllTreasureGotten = flag;
 
-	if (Screen::gGame2DMgr->is_GameCave() && moviePlayer->mDemoState == 0) {
+	if (Screen::gGame2DMgr->is_GameCave() && moviePlayer->mDemoState == DEMOSTATE_Inactive) {
 		disp.mAppearRadar = false;
 		if (!playData->isDemoFlag(DEMO_RADAR_ENABLED) && playData->mOlimarData[0].hasItem(OlimarData::ODII_PrototypeDetector)) {
 			playData->setDemoFlag(DEMO_RADAR_ENABLED);
@@ -1232,8 +1234,8 @@ void SingleGameSection::updateCaveScreen()
 	disp.mIsBitterUnlocked           = playData->isDemoFlag(DEMO_First_Bitter_Spray_Made);
 	disp.mIsSpicyUnlocked            = playData->isDemoFlag(DEMO_First_Spicy_Spray_Made);
 	disp.mIsFinalFloor               = (static_cast<RoomMapMgr*>(mapMgr)->mCaveInfo->getFloorMax() == disp.mDataGame.mFloorNum);
-	disp.mDataGame.mMapPikminCount   = GameStat::getMapPikmins(-1);
-	disp.mDataGame.mTotalPikminCount = GameStat::getAllPikmins(-1);
+	disp.mDataGame.mMapPikminCount   = GameStat::getMapPikmins(AllPikminCalcs);
+	disp.mDataGame.mTotalPikminCount = GameStat::getAllPikmins(AllPikminCalcs);
 	disp.mDataGame.mDayNum           = gameSystem->mTimeMgr->mDayCount + 1;
 	disp.mDataGame.mSunGaugeRatio    = gameSystem->mTimeMgr->getSunGaugeRatio();
 
@@ -1244,28 +1246,28 @@ void SingleGameSection::updateCaveScreen()
 	}
 
 	Navi* navi = naviMgr->getActiveNavi();
-	int id     = 2;
+	int id     = NAVIID_Multiplayer;
 	if (navi) {
 		id = navi->mNaviIndex;
 	}
 
-	setDispMemberNavi(disp.mOlimarData, 0);
+	setDispMemberNavi(disp.mOlimarData, NAVIID_Olimar);
 
-	if (id == 0) {
-		disp.mOlimarData.mActiveNaviID = 1;
-		disp.mLouieData.mActiveNaviID  = 0;
-	} else if (id == 1) {
-		disp.mOlimarData.mActiveNaviID = 0;
-		disp.mLouieData.mActiveNaviID  = 1;
-	} else if (mPrevNaviIdx == 0) {
-		disp.mOlimarData.mActiveNaviID = 0;
-		disp.mLouieData.mActiveNaviID  = 1;
+	if (id == NAVIID_Olimar) {
+		disp.mOlimarData.mActiveNaviID = TRUE;
+		disp.mLouieData.mActiveNaviID  = FALSE;
+	} else if (id == NAVIID_Louie) {
+		disp.mOlimarData.mActiveNaviID = FALSE;
+		disp.mLouieData.mActiveNaviID  = TRUE;
+	} else if (mPrevNaviIdx == NAVIID_Olimar) {
+		disp.mOlimarData.mActiveNaviID = FALSE;
+		disp.mLouieData.mActiveNaviID  = TRUE;
 	} else {
-		disp.mOlimarData.mActiveNaviID = 1;
-		disp.mLouieData.mActiveNaviID  = 0;
+		disp.mOlimarData.mActiveNaviID = TRUE;
+		disp.mLouieData.mActiveNaviID  = FALSE;
 	}
 
-	setDispMemberNavi(disp.mLouieData, 1);
+	setDispMemberNavi(disp.mLouieData, NAVIID_Louie);
 
 	Screen::gGame2DMgr->setDispMember(&disp);
 }

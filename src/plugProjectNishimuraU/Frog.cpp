@@ -388,8 +388,8 @@ void Obj::pressOnGround()
 		createDropEffect(fxPos, getDownSmokeScale());
 	}
 
-	cameraMgr->startVibration(6, fxPos, 2);
-	rumbleMgr->startRumble(14, fxPos, 2);
+	cameraMgr->startVibration(VIBTYPE_LightFastShort, fxPos, CAMNAVI_Both);
+	rumbleMgr->startRumble(RUMBLETYPE_Fixed14, fxPos, RUMBLEID_Both);
 
 	if (mWaterBox) {
 		getJAIObject()->startSound(PSSE_EN_FROG_WATERLAND, 0);
@@ -437,8 +437,8 @@ void Obj::createDownEffect(f32 scale)
 		createDropEffect(fxPos, scale);
 	}
 
-	cameraMgr->startVibration(0, mPosition, 2);
-	rumbleMgr->startRumble(11, mPosition, 2);
+	cameraMgr->startVibration(VIBTYPE_LightSlowShort, mPosition, CAMNAVI_Both);
+	rumbleMgr->startRumble(RUMBLETYPE_Fixed11, mPosition, RUMBLEID_Both);
 }
 
 /**

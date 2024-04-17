@@ -73,8 +73,8 @@ void StateDead::exec(EnemyBase* enemy)
 
 		} else if (sarai->mCurAnim->mType == KEYEVENT_7) {
 			Vector3f pos = sarai->getPosition();
-			cameraMgr->startVibration(0, pos, 2);
-			rumbleMgr->startRumble(11, pos, RUMBLEID_Both);
+			cameraMgr->startVibration(VIBTYPE_LightSlowShort, pos, CAMNAVI_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed11, pos, RUMBLEID_Both);
 			sarai->createDownEffect(0.9f);
 
 		} else if (sarai->mCurAnim->mType == KEYEVENT_END) {
@@ -104,7 +104,7 @@ void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 	sarai->startMotion(BOMBSARAIANIM_Struggle, nullptr);
 
 	Vector3f pos = sarai->getPosition();
-	rumbleMgr->startRumble(8, pos, RUMBLEID_Both);
+	rumbleMgr->startRumble(RUMBLETYPE_Fixed8, pos, RUMBLEID_Both);
 }
 
 /**
@@ -129,7 +129,7 @@ void StateDamage::exec(EnemyBase* enemy)
 			sarai->createDownEffect(0.8f);
 
 			Vector3f pos = sarai->getPosition();
-			rumbleMgr->startRumble(8, pos, RUMBLEID_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed8, pos, RUMBLEID_Both);
 
 		} else if (sarai->mCurAnim->mType == KEYEVENT_END) {
 			if (sarai->mHealth <= 0.0f) {
@@ -1207,8 +1207,8 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 	sarai->startMotion(BOMBSARAIANIM_Fall, nullptr);
 
 	Vector3f pos = sarai->getPosition();
-	cameraMgr->startVibration(0, pos, 2);
-	rumbleMgr->startRumble(11, pos, RUMBLEID_Both);
+	cameraMgr->startVibration(VIBTYPE_LightSlowShort, pos, CAMNAVI_Both);
+	rumbleMgr->startRumble(RUMBLETYPE_Fixed11, pos, RUMBLEID_Both);
 }
 
 /**
@@ -1250,7 +1250,7 @@ void StateFall::exec(EnemyBase* enemy)
 
 		} else if (sarai->mCurAnim->mType == KEYEVENT_8) {
 			Vector3f pos = sarai->getPosition();
-			rumbleMgr->startRumble(11, pos, RUMBLEID_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed11, pos, RUMBLEID_Both);
 			sarai->createDownEffect(0.9f);
 
 		} else if (sarai->mCurAnim->mType == KEYEVENT_END) {

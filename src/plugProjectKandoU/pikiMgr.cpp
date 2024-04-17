@@ -662,7 +662,7 @@ void PikiMgr::doAnimation()
 		}
 	}
 
-	if (mDopedPikis > 0 && gameSystem && gameSystem->isFlag(GAMESYS_IsGameWorldActive) && moviePlayer->mDemoState == 0) {
+	if (mDopedPikis > 0 && gameSystem && gameSystem->isFlag(GAMESYS_IsGameWorldActive) && moviePlayer->mDemoState == DEMOSTATE_Inactive) {
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_PK_UNDER_DOPING, 0);
 	}
 	sys->mTimers->_stop("doaPIKI");

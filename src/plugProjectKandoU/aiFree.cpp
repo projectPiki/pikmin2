@@ -170,8 +170,8 @@ void ActFree::collisionCallback(Game::Piki* p, Game::CollEvent& event)
 	}
 
 	// Assuming the Navi touched us, rumble and call to squad (eventually)
-	Game::rumbleMgr->startRumble(2, navi->mNaviIndex);
-	Game::InteractFue fue(event.mCollidingCreature, 0, 1);
+	Game::rumbleMgr->startRumble(Game::RUMBLETYPE_Nudge, navi->mNaviIndex);
+	Game::InteractFue fue(event.mCollidingCreature, false, true); // don't combine parties, is new to party
 	p->stimulate(fue);
 }
 

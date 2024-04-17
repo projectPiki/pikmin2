@@ -32,7 +32,7 @@ u8 Piki::sGraspSituationOptimise = 1;
  */
 int Piki::graspSituation_Fast(Game::Creature** outTarget)
 {
-	if (moviePlayer && moviePlayer->mDemoState != 0) {
+	if (moviePlayer && moviePlayer->mDemoState != DEMOSTATE_Inactive) {
 		*outTarget = nullptr;
 		if (!isZikatu() || playData->isDemoFlag(DEMO_Reunite_Captains)) {
 			return PikiAI::ACT_NULL;
@@ -282,7 +282,7 @@ int Piki::graspSituation_Fast(Game::Creature** outTarget)
  */
 int Piki::graspSituation(Game::Creature** outTarget)
 {
-	if (moviePlayer && moviePlayer->mDemoState != 0) {
+	if (moviePlayer && moviePlayer->mDemoState != DEMOSTATE_Inactive) {
 		*outTarget = nullptr;
 		return PikiAI::ACT_NULL;
 	}

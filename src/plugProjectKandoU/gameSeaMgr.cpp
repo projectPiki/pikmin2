@@ -193,7 +193,7 @@ void AABBWaterBox::doEntry()
 
 	if (gameSystem->isStoryMode()) {
 		BaseGameSection* section = gameSystem->getSection();
-		if (section->mPrevNaviIdx == NAVIID_President) {
+		if (section->mPrevNaviIdx == NAVIID_Multiplayer) {
 			if (gameSystem) {
 				gameSystem->setDrawBuffer(4);
 				Mtx copyMatrix;

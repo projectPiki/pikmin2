@@ -272,7 +272,7 @@ void Piki::update()
 			int stateID  = getStateID();
 			int pikiType = getKind();
 			if (stateID != PIKISTATE_WaterHanged && stateID != PIKISTATE_Drown && !mCurrentState->dead() && pikiType != Blue
-			    && pikiType != Bulbmin && moviePlayer->mDemoState == 0 && mSimVelocity.y <= 0.1f) {
+			    && pikiType != Bulbmin && moviePlayer->mDemoState == DEMOSTATE_Inactive && mSimVelocity.y <= 0.1f) {
 				mFsm->transit(this, PIKISTATE_Drown, nullptr);
 				mEffectsObj->mHeight = mWaterBox->getSeaHeightPtr();
 			}
@@ -477,7 +477,7 @@ void Piki::inWaterCallback(WaterBox* wbox)
 	int pikiType = getKind();
 	if (stateID != PIKISTATE_WaterHanged && stateID != PIKISTATE_Drown && !mCurrentState->dead() && pikiType != Blue
 	    && pikiType != Bulbmin) {
-		if (moviePlayer->mDemoState == 0 && mSimVelocity.y <= 0.1f) {
+		if (moviePlayer->mDemoState == DEMOSTATE_Inactive && mSimVelocity.y <= 0.1f) {
 			mFsm->transit(this, PIKISTATE_Drown, nullptr);
 		} else {
 			return;

@@ -13,12 +13,12 @@ namespace Game {
  */
 PlayCamera::PlayCamera(Navi* target)
 {
-	mTargetObj         = target;
-	mChangePlayerState = 0;
-	mCameraZoomLevel   = 1;
-	mCameraSelAngle    = 0;
-	mCanInput          = true;
-	_249               = false;
+	mTargetObj            = target;
+	mChangePlayerState    = CAMCHANGE_None;
+	mCameraZoomLevel      = CAMZOOM_Mid;
+	mCameraSelAngle       = CAMANGLE_Behind;
+	mCanInput             = true;
+	mIsCollisionCamActive = false;
 
 	mGoalTargetDistance = 100.0f;
 	mCurrTargetDistance = 100.0f;
@@ -42,14 +42,14 @@ PlayCamera::PlayCamera(Navi* target)
 	mHoldRTimer      = 0.0f;
 
 	for (int i = 0; i < 3; i++) {
-		mVibrateEnabled[i]     = false;
-		mVibrateAzimuthParm[i] = 0.0f;
-		mVibrateScaleParm[i]   = 0.0f;
-		mVibrateTimeParm[i]    = 0.0f;
-		mVibrateTimer[i]       = 0.0f;
-		mVibrateAngle[i]       = 0.0f;
-		mVibrateRollAngle[i]   = 0.0f;
-		mVibrateSpeedParm[i]   = 0.0f;
+		mVibrateEnabled[i]   = false;
+		mVibrateStrength[i]  = 0.0f;
+		mVibrateScale[i]     = 0.0f;
+		mVibrateDuration[i]  = 0.0f;
+		mVibrateTimer[i]     = 0.0f;
+		mVibrateAngle[i]     = 0.0f;
+		mVibrateRollAngle[i] = 0.0f;
+		mVibrateSpeed[i]     = 0.0f;
 	}
 
 	mCameraParms    = nullptr;
@@ -79,9 +79,9 @@ void PlayCamera::init()
 	P2ASSERTLINE(121, mCameraParms);
 	P2ASSERTLINE(122, mVibrationParms);
 	mCanInput          = true;
-	mChangePlayerState = 0;
-	mCameraZoomLevel   = 1; // (default to medium zoom)
-	mCameraSelAngle    = 0;
+	mChangePlayerState = CAMCHANGE_None;
+	mCameraZoomLevel   = CAMZOOM_Mid; // (default to medium zoom)
+	mCameraSelAngle    = CAMANGLE_Behind;
 	setTargetParms();
 	changeTargetAtPosition();
 	mCurrTargetDistance = mGoalTargetDistance;
@@ -147,12 +147,12 @@ void PlayCamera::setCameraData(CameraData& data)
  * @note Address: 0x8023F790
  * @note Size: 0x80
  */
-void PlayCamera::changePlayerMode(bool updateDir)
+void PlayCamera::changePlayerMode(bool doCenterCameraBehind)
 {
-	mChangePlayerState = 1;
+	mChangePlayerState = CAMCHANGE_IsChanging;
 	setTargetParms();
 	changeTargetAtPosition();
-	if (updateDir) {
+	if (doCenterCameraBehind) {
 		setTargetThetaToWhistle();
 	} else {
 		mCameraAngleTarget = mCameraAngleCurrent;
@@ -168,7 +168,7 @@ void PlayCamera::changePlayerMode(bool updateDir)
  */
 bool PlayCamera::isSpecialCamera()
 {
-	if (mTargetObj->mController1 && mCanInput && !mChangePlayerState && mHoldRTimer >= 1.0f) {
+	if (mTargetObj->mController1 && mCanInput && (mChangePlayerState == CAMCHANGE_None) && mHoldRTimer >= 1.0f) {
 		return true;
 	}
 	return false;
@@ -180,26 +180,26 @@ bool PlayCamera::isSpecialCamera()
  */
 void PlayCamera::doUpdate()
 {
-	u32 state = updateCameraMode();
-	if (state & 0x10) {
+	u32 flags = updateCameraMode();
+	if (flags & CAMFLAGS_StartZoomCam) {
 		startZoomCamera();
 	}
-	if (state & 0x40) {
+	if (flags & CAMFLAGS_EndZoomCam) {
 		finishDemoCamera();
 	}
-	if (state & 3) {
-		startGameCamera(state);
+	if (flags & (CAMFLAGS_ChangeZoomLevel | CAMFLAGS_ChangeSelAngle)) {
+		startGameCamera(flags);
 	}
-	if (state & 4) {
+	if (flags & CAMFLAGS_CenterBehind) {
 		setFollowTime();
 	}
-	if (state & 8) {
+	if (flags & CAMFLAGS_SmoothFollow) {
 		setSmoothThetaSpeed();
 	}
 	changeTargetTheta();
 	changeTargetAtPosition();
-	setCollisionCameraTargetPhi(state);
-	updateParms(state);
+	setCollisionCameraTargetPhi(flags);
+	updateParms(flags);
 	for (int i = 0; i < 3; i++) {
 		if (mVibrateEnabled[i]) {
 			updateVibration(i);
@@ -257,57 +257,67 @@ bool PlayCamera::isVibration()
  * @note Address: 0x8023FAE4
  * @note Size: 0x208
  */
-void PlayCamera::startVibration(int type, f32 strength)
+void PlayCamera::startVibration(int type, f32 scale)
 {
-	if (type == 0x1d) {
-		mVibrateEnabled[0]     = true;
-		mVibrateTimer[0]       = 0.0f;
-		mVibrateScaleParm[0]   = strength;
-		mVibrateAzimuthParm[0] = mVibrationParms->mAzimuthShortVib;
-		mVibrateSpeedParm[0]   = mVibrationParms->mAzimuthShortSpeed;
-		mVibrateTimeParm[0]    = mVibrationParms->mAzimuthShortTime;
+	if (type == VIBTYPE_NaviDamage) {
+		mVibrateEnabled[0]  = true;
+		mVibrateTimer[0]    = 0.0f;
+		mVibrateScale[0]    = scale;
+		mVibrateStrength[0] = mVibrationParms->mAzimuthShortVib;
+		mVibrateSpeed[0]    = mVibrationParms->mAzimuthShortSpeed;
+		mVibrateDuration[0] = mVibrationParms->mAzimuthShortTime;
 		otherVibFinished(0);
-	} else if (type == 0x1c) {
-		mVibrateEnabled[2]     = true;
-		mVibrateTimer[2]       = 0.0f;
-		mVibrateScaleParm[2]   = strength;
-		mVibrateAzimuthParm[2] = mVibrationParms->mZoomShortVib;
-		mVibrateSpeedParm[2]   = mVibrationParms->mZoomShortSpeed;
-		mVibrateTimeParm[2]    = mVibrationParms->mZoomShortTime;
+		return;
+	}
+
+	if (type == VIBTYPE_Boom) {
+		mVibrateEnabled[2]  = true;
+		mVibrateTimer[2]    = 0.0f;
+		mVibrateScale[2]    = scale;
+		mVibrateStrength[2] = mVibrationParms->mZoomShortVib;
+		mVibrateSpeed[2]    = mVibrationParms->mZoomShortSpeed;
+		mVibrateDuration[2] = mVibrationParms->mZoomShortTime;
 		otherVibFinished(2);
+		return;
+	}
+
+	mVibrateEnabled[1] = true;
+	mVibrateTimer[1]   = 0.0f;
+	mVibrateScale[1]   = scale;
+	otherVibFinished(1);
+	if (type == VIBTYPE_Crash) {
+		mVibrateStrength[1] = mVibrationParms->mElevationHardVib2;
+		mVibrateSpeed[1]    = mVibrationParms->mElevationHardSpeed;
+		mVibrateDuration[1] = mVibrationParms->mElevationHardTime;
+		return;
+	}
+
+	// strength
+	if (type <= VIBTYPE_LIGHT) {
+		mVibrateStrength[1] = mVibrationParms->mElevationLightVib;
+	} else if (type <= VIBTYPE_MID) {
+		mVibrateStrength[1] = mVibrationParms->mElevationMiddleVib;
+	} else { // VIBTYPE_HARD
+		mVibrateStrength[1] = mVibrationParms->mElevationHardVib;
+	}
+
+	// speed
+	int speedType = (type / 3) % 3;
+	if (speedType == 0) { // slow
+		mVibrateSpeed[1] = mVibrationParms->mElevationSlowSpeed;
+	} else if (speedType == 1) { // middle
+		mVibrateSpeed[1] = mVibrationParms->mElevationMiddleSpeed;
+	} else { // fast
+		mVibrateSpeed[1] = mVibrationParms->mElevationFastSpeed;
+	}
+
+	// duration
+	if (type % 3 == 0) {
+		mVibrateDuration[1] = mVibrationParms->mElevationShortTime;
+	} else if (type % 3 == 1) {
+		mVibrateDuration[1] = mVibrationParms->mElevationMiddleTime;
 	} else {
-		mVibrateEnabled[1]   = true;
-		mVibrateTimer[1]     = 0.0f;
-		mVibrateScaleParm[1] = strength;
-		otherVibFinished(1);
-		if (type == 0x1b) {
-			mVibrateAzimuthParm[1] = mVibrationParms->mElevationHardVib2;
-			mVibrateSpeedParm[1]   = mVibrationParms->mElevationHardSpeed;
-			mVibrateTimeParm[1]    = mVibrationParms->mElevationHardTime;
-		} else {
-			if (type <= 8) {
-				mVibrateAzimuthParm[1] = mVibrationParms->mElevationLightVib;
-			} else if (type <= 17) {
-				mVibrateAzimuthParm[1] = mVibrationParms->mElevationMiddleVib;
-			} else {
-				mVibrateAzimuthParm[1] = mVibrationParms->mElevationHardVib;
-			}
-			int flag = (type / 3) % 3;
-			if (flag == 0) {
-				mVibrateSpeedParm[1] = mVibrationParms->mElevationSlowSpeed;
-			} else if (flag == 1) {
-				mVibrateSpeedParm[1] = mVibrationParms->mElevationMiddleSpeed;
-			} else {
-				mVibrateSpeedParm[1] = mVibrationParms->mElevationFastSpeed;
-			}
-			if (type % 3 == 0) {
-				mVibrateTimeParm[1] = mVibrationParms->mElevationShortTime;
-			} else if (type % 3 == 1) {
-				mVibrateTimeParm[1] = mVibrationParms->mElevationMiddleTime;
-			} else {
-				mVibrateTimeParm[1] = mVibrationParms->mElevationLongTime;
-			}
-		}
+		mVibrateDuration[1] = mVibrationParms->mElevationLongTime;
 	}
 }
 
@@ -318,7 +328,7 @@ void PlayCamera::startVibration(int type, f32 strength)
 void PlayCamera::startDemoCamera(int type)
 {
 	switch (type) {
-	case 1:
+	case CAMDEMO_Test:
 		mGoalTargetDistance = mCameraParms->mZoomDist;
 		mGoalVerticalAngle  = mCameraParms->mZoomAngle.mValue * DEG2RAD;
 		mGoalFOV            = mCameraParms->mZoomFOV;
@@ -354,44 +364,44 @@ void PlayCamera::finishDemoCamera() { setTargetParms(); }
 u32 PlayCamera::updateCameraMode()
 {
 	Controller* pad = mTargetObj->mController1;
-	u32 ret         = 0;
+	u32 flags       = 0;
 	if (pad && mCanInput) {
-		if (!mChangePlayerState) {
+		if (mChangePlayerState == CAMCHANGE_None) {
 			if (pad->getButton() & Controller::PRESS_R) {
 				if (mHoldRTimer < 1.0f) {
 					mHoldRTimer += sys->mDeltaTime;
 					if (mHoldRTimer >= 1.0f) {
-						ret |= 0x30;
+						flags |= (CAMFLAGS_StartZoomCam | CAMFLAGS_InZoomCam);
 					}
 				} else {
-					ret |= 0x20;
+					flags |= CAMFLAGS_InZoomCam;
 				}
 			} else {
 				if (mHoldRTimer >= 1.0f) {
-					ret |= 0x40;
+					flags |= CAMFLAGS_EndZoomCam;
 				}
 				mHoldRTimer = 0.0f;
 			}
 
-			if (!(ret & 0x20)) {
+			if (!(flags & CAMFLAGS_InZoomCam)) {
 				if (pad->getButtonDown() & Controller::PRESS_R) {
-					ret |= 1;
+					flags |= CAMFLAGS_ChangeZoomLevel;
 				}
 				if (pad->getButtonDown() & Controller::PRESS_Z) {
-					ret |= 2;
+					flags |= CAMFLAGS_ChangeSelAngle;
 				}
 			}
 
 			if (pad->getButtonDown() & Controller::PRESS_L) {
-				ret |= 4;
+				flags |= CAMFLAGS_CenterBehind;
 			} else {
 				if (pad->mButton.mAnalogL > 0.1f) {
-					ret |= 8;
+					flags |= CAMFLAGS_SmoothFollow;
 				}
 			}
 		}
 	}
-	return ret;
+	return flags;
 }
 
 /**
@@ -417,15 +427,15 @@ void PlayCamera::startZoomCamera()
  */
 void PlayCamera::startGameCamera(int flag)
 {
-	if (flag & 1) {
+	if (flag & CAMFLAGS_ChangeZoomLevel) {
 		mCameraZoomLevel++;
-		if (mCameraZoomLevel > 2) {
-			mCameraZoomLevel = 0;
+		if (mCameraZoomLevel > CAMZOOM_Far) { // only 3 zoom levels and they cycle
+			mCameraZoomLevel = CAMZOOM_Near;
 		}
 	}
-	if (flag & 2) {
-		mCameraSelAngle = mCameraSelAngle ^ 1;
-		_249            = 0;
+	if (flag & CAMFLAGS_ChangeSelAngle) {
+		mCameraSelAngle       = mCameraSelAngle ^ 1;
+		mIsCollisionCamActive = false;
 	}
 	PSSystem::spSysIF->playSystemSe(PSSE_SY_CAMERAVIEW_CHANGE, 0);
 	setTargetParms();
@@ -439,9 +449,9 @@ void PlayCamera::setTargetParms()
 {
 	mHoldRTimer = 0.0f;
 	switch (mCameraSelAngle) {
-	case 0: {
+	case CAMANGLE_Behind: {
 		switch (mCameraZoomLevel) {
-		case 0: // low zoom low angle
+		case CAMZOOM_Near: // low zoom low angle
 			mGoalTargetDistance = mCameraParms->mNearLowDist;
 			mGoalVerticalAngle  = mCameraParms->mNearLowAngle.mValue * DEG2RAD;
 			mGoalFOV            = mCameraParms->mNearLowFOV;
@@ -451,7 +461,7 @@ void PlayCamera::setTargetParms()
 			mDetachedWeight     = mCameraParms->mNearLowWeight;
 			mDetachedParm       = mCameraParms->mNearLowDetached;
 			break;
-		case 1: // medium zoom low angle
+		case CAMZOOM_Mid: // medium zoom low angle
 			mGoalTargetDistance = mCameraParms->mMidLowDist;
 			mGoalVerticalAngle  = mCameraParms->mMidLowAngle.mValue * DEG2RAD;
 			mGoalFOV            = mCameraParms->mMidLowFOV;
@@ -461,7 +471,7 @@ void PlayCamera::setTargetParms()
 			mDetachedWeight     = mCameraParms->mMidLowWeight;
 			mDetachedParm       = mCameraParms->mMidLowDetached;
 			break;
-		case 2: // far zoom low angle
+		case CAMZOOM_Far: // far zoom low angle
 			mGoalTargetDistance = mCameraParms->mFarLowDist;
 			mGoalVerticalAngle  = mCameraParms->mFarLowAngle.mValue * DEG2RAD;
 			mGoalFOV            = mCameraParms->mFarLowFOV;
@@ -474,9 +484,9 @@ void PlayCamera::setTargetParms()
 		}
 		break;
 	}
-	case 1: {
+	case CAMANGLE_Overhead: {
 		switch (mCameraZoomLevel) {
-		case 0: // low zoom high angle
+		case CAMZOOM_Near: // low zoom high angle
 			mGoalTargetDistance = mCameraParms->mNearHighDist;
 			mGoalVerticalAngle  = mCameraParms->mNearHighAngle.mValue * DEG2RAD;
 			mGoalFOV            = mCameraParms->mNearHighFOV;
@@ -486,7 +496,7 @@ void PlayCamera::setTargetParms()
 			mDetachedWeight     = mCameraParms->mNearHighWeight;
 			mDetachedParm       = mCameraParms->mNearHighDetached;
 			break;
-		case 1: // medium zoom high angle
+		case CAMZOOM_Mid: // medium zoom high angle
 			mGoalTargetDistance = mCameraParms->mMidHighDist;
 			mGoalVerticalAngle  = mCameraParms->mMidHighAngle.mValue * DEG2RAD;
 			mGoalFOV            = mCameraParms->mMidHighFOV;
@@ -496,7 +506,7 @@ void PlayCamera::setTargetParms()
 			mDetachedWeight     = mCameraParms->mMidHighWeight;
 			mDetachedParm       = mCameraParms->mMidHighDetached;
 			break;
-		case 2: // far zoom high angle
+		case CAMZOOM_Far: // far zoom high angle
 			mGoalTargetDistance = mCameraParms->mFarHighDist;
 			mGoalVerticalAngle  = mCameraParms->mFarHighAngle.mValue * DEG2RAD;
 			mGoalFOV            = mCameraParms->mFarHighFOV;
@@ -520,7 +530,7 @@ void PlayCamera::setTargetThetaToWhistle()
 {
 	Vector3f pos         = mTargetObj->getPosition();
 	NaviWhistle* whistle = mTargetObj->mWhistle;
-	mCameraAngleTarget   = JMath::atanTable_.atan2_(pos.x - whistle->mPosition.x, pos.z - whistle->mPosition.z);
+	mCameraAngleTarget   = JMAAtan2Radian(pos.x - whistle->mPosition.x, pos.z - whistle->mPosition.z);
 }
 
 /**
@@ -607,7 +617,7 @@ void PlayCamera::updateParms(int flag)
 	mViewAngle          = (mViewAngle * invrate) + (mGoalFOV * rate);
 	mProjectionNear     = (mProjectionNear * invrate) + (mNearZPlane * rate);
 	mProjectionFar      = (mProjectionFar * invrate) + (mFarZPlane * rate);
-	if (flag & 0x20) {
+	if (flag & CAMFLAGS_InZoomCam) {
 		rate    = 0.175f;
 		invrate = 0.825f;
 	}
@@ -727,29 +737,27 @@ lbl_8024096C:
  */
 void PlayCamera::updateVibration(int id)
 {
-	f32* vibrateTimer = &mVibrateTimer[id];
-	f32 newSpeed      = mVibrateSpeedParm[id] * sys->mDeltaTime;
-	f32 test2         = 1.0f;
+	f32* vibrateTimer  = &mVibrateTimer[id];
+	f32 newSpeed       = mVibrateSpeed[id] * sys->mDeltaTime;
+	f32 packetStrength = 1.0f;
 	mVibrateAngle[id] += newSpeed;
 	mVibrateTimer[id] += sys->mDeltaTime;
 	if (mVibrateAngle[id] > TAU) {
 		mVibrateAngle[id] -= TAU;
 	}
 
-	// f32 test  = mVibrateTimer[id];
-
-	if (mVibrateTimer[id] > mVibrateTimeParm[id]) {
-		test2 -= (mVibrateTimer[id] - mVibrateTimeParm[id]) / 0.5f;
-		if (test2 < 0.0f) {
+	if (mVibrateTimer[id] > mVibrateDuration[id]) {
+		packetStrength -= (mVibrateTimer[id] - mVibrateDuration[id]) / 0.5f;
+		if (packetStrength < 0.0f) {
 			mVibrateEnabled[id] = false;
 			mVibrateAngle[id]   = 0.0f;
 			mVibrateTimer[id]   = 0.0f;
-			test2               = 0.0f;
+			packetStrength      = 0.0f;
 		}
 	}
 
 	f32 angle             = mVibrateAngle[id];
-	mVibrateRollAngle[id] = (test2 * mVibrateScaleParm[id]) * mVibrateAzimuthParm[id] * sinf(angle);
+	mVibrateRollAngle[id] = (packetStrength * mVibrateScale[id]) * mVibrateStrength[id] * sinf(angle);
 }
 
 /**
@@ -771,7 +779,7 @@ void PlayCamera::otherVibFinished(int id)
  */
 bool PlayCamera::isModCameraFinished()
 {
-	if (mChangePlayerState == 1) {
+	if (mChangePlayerState == CAMCHANGE_IsChanging) {
 		f32 anglein  = mCameraAngleTarget;
 		f32 angleout = mCameraAngleCurrent;
 		if (anglein >= angleout) {
@@ -786,7 +794,7 @@ bool PlayCamera::isModCameraFinished()
 		if (absVal(anglediff) < 0.1f && absVal(mGoalTargetDistance - mCurrTargetDistance) < 10.0f
 		    && absVal(mGoalVerticalAngle - mCurrVerticalAngle) < 0.1f && absVal(mGoalFOV - mViewAngle) < 1.0f) {
 			if (mGoalPosition.distance(mLookAtPosition) < 50.0f) {
-				mChangePlayerState = 0;
+				mChangePlayerState = CAMCHANGE_None;
 				return true;
 			}
 		}
@@ -800,25 +808,26 @@ bool PlayCamera::isModCameraFinished()
  */
 void PlayCamera::setCollisionCameraTargetPhi(int flag)
 {
-	if (flag & 0x20) {
+	if (flag & CAMFLAGS_InZoomCam) {
 		mGoalVerticalAngle = getCollisionCameraTargetPhi(mCameraParms->mZoomAngle(), mCameraParms->mZoomDist());
 		return;
 	}
 
-	if (mCameraSelAngle) {
+	// collision camera only active in behind cam
+	if (mCameraSelAngle != CAMANGLE_Behind) {
 		return;
 	}
 
-	if (_249) {
+	if (mIsCollisionCamActive) {
 		f32 phi;
 		switch (mCameraZoomLevel) {
-		case 0:
+		case CAMZOOM_Near:
 			phi = getCollisionCameraTargetPhi(mCameraParms->mNearLowAngle(), mCameraParms->mCollRadius());
 			break;
-		case 1:
+		case CAMZOOM_Mid:
 			phi = getCollisionCameraTargetPhi(mCameraParms->mMidLowAngle(), mCameraParms->mCollRadius());
 			break;
-		case 2:
+		case CAMZOOM_Far:
 			phi = getCollisionCameraTargetPhi(mCameraParms->mFarLowAngle(), mCameraParms->mCollRadius());
 			break;
 		default:
@@ -840,8 +849,9 @@ void PlayCamera::setCollisionCameraTargetPhi(int flag)
 		return;
 	}
 
+	// if we're in behind cam and our vertical angle has settled, activate collision cam
 	if (absVal(mCurrVerticalAngle - mGoalVerticalAngle) < 0.1f) {
-		_249 = 1;
+		mIsCollisionCamActive = true;
 	}
 	/*
 	stwu     r1, -0x10(r1)

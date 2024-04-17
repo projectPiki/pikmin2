@@ -429,13 +429,13 @@ void GameState::exec(SingleGameSection* game)
 	game->updateMainMapScreen();
 
 	// Check starting the "you appear lost" cutscene timer
-	if (GameStat::getMapPikmins(-1) >= 15 && moviePlayer->mDemoState == 0 && !playData->isDemoFlag(DEMO_You_Appear_Lost)
-	    && playData->hasBootContainer(Red)) {
+	if (GameStat::getMapPikmins(AllPikminCalcs) >= 15 && moviePlayer->mDemoState == DEMOSTATE_Inactive
+	    && !playData->isDemoFlag(DEMO_You_Appear_Lost) && playData->hasBootContainer(Red)) {
 		playData->setDemoFlag(DEMO_You_Appear_Lost);
 		game->enableTimer(180.0f, DEMOTIMER_YouAppearLost);
 	}
 
-	if (moviePlayer->mDemoState == 0 && needRepayDemo()) {
+	if (moviePlayer->mDemoState == DEMOSTATE_Inactive && needRepayDemo()) {
 		startRepayDemo();
 	}
 
@@ -508,7 +508,7 @@ void GameState::exec(SingleGameSection* game)
 		break;
 	default:
 		// Check open pause menu
-		if (!gameSystem->isFlag(GAMESYS_DisablePause) && moviePlayer->mDemoState == 0 && !gameSystem->paused()
+		if (!gameSystem->isFlag(GAMESYS_DisablePause) && moviePlayer->mDemoState == DEMOSTATE_Inactive && !gameSystem->paused()
 		    && game->mControllerP1->getButtonDown() & Controller::PRESS_START) {
 			og::Screen::DispMemberSMenuAll disp;
 			game->setDispMemberSMenu(disp);
@@ -529,8 +529,8 @@ void GameState::exec(SingleGameSection* game)
 	}
 
 	// Check need pikmin extinction to occur
-	if (!mIsPostExtinct && moviePlayer->mDemoState == 0) {
-		if (GameStat::getAllPikmins(-1) - GameStat::getZikatuPikmins(-1) == 0 && playData->hasBootContainer(Red)) {
+	if (!mIsPostExtinct && moviePlayer->mDemoState == DEMOSTATE_Inactive) {
+		if (GameStat::getAllPikmins(AllPikminCalcs) - GameStat::getZikatuPikmins(AllPikminCalcs) == 0 && playData->hasBootContainer(Red)) {
 			gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 			MoviePlayArg moviePlayArg("s05_pikminzero", nullptr, game->mMovieFinishCallback, 0);
 			Navi* navi = naviMgr->getActiveNavi();
@@ -549,7 +549,7 @@ void GameState::exec(SingleGameSection* game)
 	}
 
 	PSM::PikminNumberDirector* director = PSMGetPikminNumD();
-	int pikis                           = GameStat::getMapPikmins_exclude_Me(-1);
+	int pikis                           = GameStat::getMapPikmins_exclude_Me(AllPikminCalcs);
 	if (pikis < 10 && DeathMgr::mSoundDeathCount > 0) {
 		if (director) {
 			director->directOn();

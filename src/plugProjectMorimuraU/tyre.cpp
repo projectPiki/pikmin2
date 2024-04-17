@@ -591,8 +591,8 @@ void Obj::collisionStOff()
  */
 void Obj::flick()
 {
-	cameraMgr->startVibration(15, mPosition, 2);
-	rumbleMgr->startRumble(13, mPosition, RUMBLEID_Both);
+	cameraMgr->startVibration(VIBTYPE_MidFastShort, mPosition, CAMNAVI_Both);
+	rumbleMgr->startRumble(RUMBLETYPE_Fixed13, mPosition, RUMBLEID_Both);
 
 	Iterator<Piki> iterPiki(pikiMgr);
 	CI_LOOP(iterPiki)

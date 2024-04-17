@@ -97,13 +97,13 @@ void StateWalk::exec(EnemyBase* enemy)
 		case KEYEVENT_3:
 			Vector3f position = wraith->getPosition();
 			if (wraith->getCurrAnimIndex() == WRAITHANIM_Walk) {
-				cameraMgr->startVibration(3, position, 2);
-				rumbleMgr->startRumble(8, position, RUMBLEID_Both);
+				cameraMgr->startVibration(VIBTYPE_LightMidShort, position, CAMNAVI_Both);
+				rumbleMgr->startRumble(RUMBLETYPE_Fixed8, position, RUMBLEID_Both);
 			}
 
 			if (wraith->getCurrAnimIndex() == WRAITHANIM_Run) {
-				cameraMgr->startVibration(6, position, 2);
-				rumbleMgr->startRumble(8, position, RUMBLEID_Both);
+				cameraMgr->startVibration(VIBTYPE_LightFastShort, position, CAMNAVI_Both);
+				rumbleMgr->startRumble(RUMBLETYPE_Fixed8, position, RUMBLEID_Both);
 			}
 			break;
 		}
@@ -158,15 +158,15 @@ void StateDead::exec(EnemyBase* enemy)
 		case KEYEVENT_2:
 		case KEYEVENT_3:
 		case KEYEVENT_4:
-			cameraMgr->startVibration(12, position, 2);
-			rumbleMgr->startRumble(14, position, RUMBLEID_Both);
+			cameraMgr->startVibration(VIBTYPE_MidMidShort, position, CAMNAVI_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed14, position, RUMBLEID_Both);
 			break;
 		case KEYEVENT_5:
 			wraith->deadEffect();
 			break;
 		case KEYEVENT_END:
-			cameraMgr->startVibration(17, position, 2);
-			rumbleMgr->startRumble(15, position, RUMBLEID_Both);
+			cameraMgr->startVibration(VIBTYPE_MidFastLong, position, CAMNAVI_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed15, position, RUMBLEID_Both);
 			wraith->kill(nullptr);
 			break;
 		}
@@ -227,8 +227,8 @@ void StateFreeze::exec(EnemyBase* enemy)
 	if (wraith->mCurAnim->mIsPlaying) {
 		if ((u32)wraith->mCurAnim->mType == KEYEVENT_2) {
 			Vector3f position = wraith->getPosition();
-			cameraMgr->startVibration(12, position, 2);
-			rumbleMgr->startRumble(14, position, RUMBLEID_Both);
+			cameraMgr->startVibration(VIBTYPE_MidMidShort, position, CAMNAVI_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed14, position, RUMBLEID_Both);
 
 			f32 faceDir = wraith->getFaceDir();
 			position.x += 32.0f * sinf(faceDir) - 4.0f * cosf(faceDir);
@@ -312,8 +312,8 @@ void StateBend::exec(EnemyBase* enemy)
 		if ((u32)wraith->mCurAnim->mType == KEYEVENT_2) {
 			wraith->bendEffect();
 			Vector3f position = wraith->getPosition();
-			cameraMgr->startVibration(12, position, 2);
-			rumbleMgr->startRumble(14, position, RUMBLEID_Both);
+			cameraMgr->startVibration(VIBTYPE_MidMidShort, position, CAMNAVI_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed14, position, RUMBLEID_Both);
 
 		} else if ((u32)wraith->mCurAnim->mType == KEYEVENT_END) {
 			wraith->collisionStOff();
@@ -388,8 +388,8 @@ void StateEscape::exec(EnemyBase* enemy)
 		case KEYEVENT_3:
 		case KEYEVENT_4:
 			position = wraith->getPosition();
-			cameraMgr->startVibration(17, position, 2);
-			rumbleMgr->startRumble(16, position, RUMBLEID_Both);
+			cameraMgr->startVibration(VIBTYPE_MidFastLong, position, CAMNAVI_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed16, position, RUMBLEID_Both);
 
 			f32 faceDir = wraith->getFaceDir();
 			position.x += -22.0f * sinf(faceDir) - 30.0f * cosf(faceDir);
@@ -399,8 +399,8 @@ void StateEscape::exec(EnemyBase* enemy)
 
 		case KEYEVENT_5:
 			position = wraith->getPosition();
-			cameraMgr->startVibration(17, position, 2);
-			rumbleMgr->startRumble(16, position, RUMBLEID_Both);
+			cameraMgr->startVibration(VIBTYPE_MidFastLong, position, CAMNAVI_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed16, position, RUMBLEID_Both);
 			break;
 
 		case KEYEVENT_END:
@@ -441,8 +441,8 @@ void StateFall::exec(EnemyBase* enemy)
 		if ((u32)enemy->mCurAnim->mType == KEYEVENT_2) {
 			OBJ(enemy)->appearFanfare();
 			Vector3f position = enemy->getPosition();
-			cameraMgr->startVibration(17, position, 2);
-			rumbleMgr->startRumble(14, position, RUMBLEID_Both);
+			cameraMgr->startVibration(VIBTYPE_MidFastLong, position, CAMNAVI_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed14, position, RUMBLEID_Both);
 
 		} else if ((u32)enemy->mCurAnim->mType == KEYEVENT_END) {
 			if (OBJ(enemy)->isFallEnd()) {

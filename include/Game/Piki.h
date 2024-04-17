@@ -39,11 +39,12 @@ struct PikiState;
 struct PikiParms;
 
 typedef enum EPikiKind {
-	FirstPikmin = 0,
-	Blue        = 0,
-	Red         = 1,
-	Yellow      = 2,
-	LastOnyon   = 2,
+	AllPikminCalcs = -1, // used for gameStat calcs
+	FirstPikmin    = 0,
+	Blue           = 0,
+	Red            = 1,
+	Yellow         = 2,
+	LastOnyon      = 2,
 	OnyonCount,
 	Purple              = 3,
 	White               = 4,

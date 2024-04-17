@@ -382,7 +382,7 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 		Vector3f position = item->getPosition();
 		efx::Arg arg(position);
 		podFX.create(&arg);
-		if (moviePlayer && moviePlayer->mDemoState == 0) {
+		if (moviePlayer && moviePlayer->mDemoState == DEMOSTATE_Inactive) {
 			Vector3f pos = item->getPosition();
 			int money    = pellet->mConfig->mParams.mMoney.mData;
 
@@ -403,7 +403,7 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 		efx::TUfoPodGepu ufoFX(jnt->getWorldMatrix());
 		ufoFX.create(nullptr);
 
-		if (moviePlayer && moviePlayer->mDemoState == 0) {
+		if (moviePlayer && moviePlayer->mDemoState == DEMOSTATE_Inactive) {
 			Vector3f pos = item->getPosition();
 
 			const f32 theta = item->getFaceDir();
@@ -1290,7 +1290,7 @@ void Onyon::makeTrMatrix()
 	Vector3f angle(0.0f, mFaceDir, 0.0f);
 	mBaseTrMatrix.makeTR(mPosition, angle);
 	updateCollTree();
-	if (gameSystem->paused() || moviePlayer->mDemoState != 0) {
+	if (gameSystem->paused() || moviePlayer->mDemoState != DEMOSTATE_Inactive) {
 		return;
 	}
 

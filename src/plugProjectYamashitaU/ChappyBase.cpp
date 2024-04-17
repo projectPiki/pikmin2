@@ -344,7 +344,7 @@ void Obj::flickAttackBomb()
 		downSmokeEffect.create(&argLand);
 	}
 
-	rumbleMgr->startRumble(11, effectPos, 2);
+	rumbleMgr->startRumble(RUMBLETYPE_Fixed11, effectPos, RUMBLEID_Both);
 }
 
 /**

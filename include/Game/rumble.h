@@ -13,6 +13,29 @@ struct Controller;
 namespace Game {
 struct Navi;
 
+enum RumbleType {
+	// 0-7 are pre-programmed, variable intensity + duration
+	RUMBLETYPE_PluckPiki        = 0, // 11 points, 1 big peak, 2 small peaks, duration 0.46s
+	RUMBLETYPE_NaviDamage       = 1, // 19 points, 2 big peaks, 3 small peaks, duration 0.92s
+	RUMBLETYPE_Nudge            = 2, // 7 points, gradual drop, duration 0.3s; also used for grabbing pikis
+	RUMBLETYPE_Whistle          = 3, // 12 points, low continuous rumble, duration 1.5s; also for bulblax roar lol
+	RUMBLETYPE_Unused4          = 4, // 4 points, 1 big peak, duration 0.2s; unused
+	RUMBLETYPE_BigTreasureStart = 5, // 16 points, 5 dropping peaks, duration 2.6s
+	RUMBLETYPE_HoudaiStart      = 6, // 16 points, 2 big broad peaks, duration 7.6s
+	RUMBLETYPE_HoudaiDeath      = 7, // 24 points, long low rumble with 1 big peak halfway, duration 7.03s
+
+	// 8-16 are calculated on the fly, set intensity
+	RUMBLETYPE_Fixed8  = 8,  // no data, manual parm calc
+	RUMBLETYPE_Fixed9  = 9,  // no data, manual parm calc
+	RUMBLETYPE_Fixed10 = 10, // no data, manual parm calc
+	RUMBLETYPE_Fixed11 = 11, // no data, manual parm calc
+	RUMBLETYPE_Fixed12 = 12, // no data, manual parm calc
+	RUMBLETYPE_Fixed13 = 13, // no data, manual parm calc
+	RUMBLETYPE_Fixed14 = 14, // no data, manual parm calc
+	RUMBLETYPE_Fixed15 = 15, // no data, manual parm calc
+	RUMBLETYPE_Fixed16 = 16, // no data, manual parm calc
+};
+
 enum RumbleID {
 	RUMBLEID_Navi0 = 0,
 	RUMBLEID_Navi1 = 1,

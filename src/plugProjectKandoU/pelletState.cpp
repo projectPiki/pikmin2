@@ -82,7 +82,7 @@ void PelletGoalWaitState::init(Pellet* pelt, StateArg* arg)
  */
 void PelletGoalWaitState::exec(Pellet* pelt)
 {
-	if (moviePlayer && moviePlayer->mDemoState == 0) {
+	if (moviePlayer && moviePlayer->mDemoState == DEMOSTATE_Inactive) {
 		PelletGoalStateArg arg(mObj);
 		transit(pelt, PELSTATE_Goal, &arg);
 	}
@@ -471,7 +471,7 @@ void PelletGoalState::exec(Pellet* pelt)
 		pelt->mAnimSpeed = sys->mDeltaTime * 60.0f;
 	}
 
-	if (mInDemo && !mDidSuikomi && moviePlayer && moviePlayer->mDemoState == 5) {
+	if (mInDemo && !mDidSuikomi && moviePlayer && moviePlayer->mDemoState == DEMOSTATE_Playing) {
 		if (((int)mOnyon->mObjectTypeID == OBJTYPE_Onyon || (int)mOnyon->mObjectTypeID == OBJTYPE_Ufo)) { // maybe getOnyon inline?
 			static_cast<Onyon*>(mOnyon)->efxSuikomi();
 			mDidSuikomi = true;

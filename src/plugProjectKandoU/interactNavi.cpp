@@ -248,11 +248,11 @@ bool InteractFue::actNavi(Game::Navi* navi)
 	}
 
 	if (navi->getStateID() != NSID_Follow) {
-		NaviFollowArg followArg(_09);
+		NaviFollowArg followArg(mIsNewToParty);
 		navi->transit(NSID_Follow, &followArg);
 
 		Navi* otherNavi = naviMgr->getAt(1 - navi->mNaviIndex);
-		InteractFue fue(otherNavi, true, true);
+		InteractFue fue(otherNavi, true, true); // DO combine parties, is new to party
 
 		Iterator<Creature> cellIt((Container<Creature>*)navi->mCPlateMgr);
 

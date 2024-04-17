@@ -762,8 +762,8 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	OBJ(enemy)->createEffect(Obj::KingEfx_Dead);
 
 	Vector3f pos = enemy->getPosition();
-	cameraMgr->startVibration(12, pos, 2);
-	rumbleMgr->startRumble(13, pos, RUMBLEID_Both);
+	cameraMgr->startVibration(VIBTYPE_MidMidShort, pos, CAMNAVI_Both);
+	rumbleMgr->startRumble(RUMBLETYPE_Fixed13, pos, RUMBLEID_Both);
 
 	enemy->disableEvent(0, EB_Cullable);
 }
@@ -783,8 +783,8 @@ void StateDead::exec(EnemyBase* enemy)
 		case KEYEVENT_2:
 			OBJ(enemy)->createBounceEffect();
 			Vector3f pos = enemy->getPosition();
-			cameraMgr->startVibration(3, pos, 2);
-			rumbleMgr->startRumble(11, pos, RUMBLEID_Both);
+			cameraMgr->startVibration(VIBTYPE_LightMidShort, pos, CAMNAVI_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed11, pos, RUMBLEID_Both);
 			break;
 
 		case KEYEVENT_END:
@@ -847,8 +847,8 @@ void StateFlick::exec(EnemyBase* enemy)
 				sand.create(&argScale);
 			}
 
-			cameraMgr->startVibration(3, pos, 2);
-			rumbleMgr->startRumble(11, pos, RUMBLEID_Both);
+			cameraMgr->startVibration(VIBTYPE_LightMidShort, pos, CAMNAVI_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed11, pos, RUMBLEID_Both);
 
 			PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(enemy->mSoundObj);
 			PSM::checkBoss(soundObj);
@@ -1604,8 +1604,8 @@ void StateWarCry::exec(EnemyBase* enemy)
 			OBJ(enemy)->requestTransit(KINGCHAPPY_Appear);
 			OBJ(enemy)->requestTransit(KINGCHAPPY_WarCry);
 			Vector3f rumblePos = enemy->getPosition();
-			cameraMgr->startVibration(26, rumblePos, 2);
-			rumbleMgr->startRumble(3, rumblePos, RUMBLEID_Both);
+			cameraMgr->startVibration(VIBTYPE_HardFastLong, rumblePos, CAMNAVI_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Whistle, rumblePos, RUMBLEID_Both);
 			break;
 
 		case KEYEVENT_4:
@@ -1878,8 +1878,8 @@ void StateHide::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->hardConstraintOn();
 
 	Vector3f pos = enemy->getPosition();
-	cameraMgr->startVibration(6, pos, 2);
-	rumbleMgr->startRumble(13, pos, RUMBLEID_Both);
+	cameraMgr->startVibration(VIBTYPE_LightFastShort, pos, CAMNAVI_Both);
+	rumbleMgr->startRumble(RUMBLETYPE_Fixed13, pos, RUMBLEID_Both);
 }
 
 /**
@@ -2045,8 +2045,8 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 
 	OBJ(enemy)->createEffect(Obj::KingEfx_Drool);
 	enemy->createEfxHamon();
-	cameraMgr->startVibration(15, pos, 2);
-	rumbleMgr->startRumble(12, pos, RUMBLEID_Both);
+	cameraMgr->startVibration(VIBTYPE_MidFastShort, pos, CAMNAVI_Both);
+	rumbleMgr->startRumble(RUMBLETYPE_Fixed12, pos, RUMBLEID_Both);
 
 	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(enemy->mSoundObj);
 	PSM::checkBoss(soundObj);
@@ -2084,8 +2084,8 @@ void StateAppear::exec(EnemyBase* enemy)
 		case KEYEVENT_4:
 			OBJ(enemy)->createBounceEffect();
 			Vector3f pos = enemy->getPosition();
-			cameraMgr->startVibration(6, pos, 2);
-			rumbleMgr->startRumble(11, pos, RUMBLEID_Both);
+			cameraMgr->startVibration(VIBTYPE_LightFastShort, pos, CAMNAVI_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed11, pos, RUMBLEID_Both);
 			break;
 
 		case KEYEVENT_END:

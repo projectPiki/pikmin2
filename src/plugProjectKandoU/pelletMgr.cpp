@@ -906,7 +906,7 @@ void Pellet::onInit(CreatureInitArg* initArg)
 	}
 
 	if (static_cast<PelletInitArg*>(initArg)->mAdjustWeightForSquad) {
-		mMinCarriers = GameStat::getMapPikmins(-1);
+		mMinCarriers = GameStat::getMapPikmins(AllPikminCalcs);
 		int minPikis = mConfig->mParams.mMin.mData;
 		if (mMinCarriers > minPikis) {
 			mMinCarriers = minPikis;

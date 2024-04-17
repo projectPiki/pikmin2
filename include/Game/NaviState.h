@@ -377,13 +377,12 @@ struct NaviFlickState : public NaviState {
 };
 
 struct NaviFollowArg : public StateArg {
-	inline NaviFollowArg(bool p1)
-	    : _00(p1)
+	inline NaviFollowArg(bool isNewToParty)
+	    : mIsNewToParty(isNewToParty)
 	{
 	}
 
-	bool _00; // _00
-	bool _01; // _01
+	bool mIsNewToParty; // _00, true if whistled/bumped into, false if just swapped control from or coming out of plucking state
 };
 
 struct NaviFollowState : public NaviState {

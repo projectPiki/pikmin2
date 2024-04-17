@@ -288,10 +288,10 @@ struct InteractFlyCollision : public Interaction {
 
 // Whistle
 struct InteractFue : public Interaction {
-	inline InteractFue(Creature* parent, u8 a, u8 b)
+	inline InteractFue(Creature* parent, bool doCombineParties, bool isNewToParty)
 	    : Interaction(parent)
-	    , _08(a)
-	    , _09(b)
+	    , mDoCombineParties(doCombineParties)
+	    , mIsNewToParty(isNewToParty)
 	{
 	}
 
@@ -301,8 +301,8 @@ struct InteractFue : public Interaction {
 
 	// _00 = VTBL
 	// _04 = Creature*
-	bool _08; // _08
-	bool _09; // _09
+	bool mDoCombineParties; // _08, always false unless whistling another captain that has pikmin
+	bool mIsNewToParty;     // _09, always true unless we're swapping between captains in a two-captain party
 };
 
 struct InteractFueFuki : public Interaction {

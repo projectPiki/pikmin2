@@ -87,10 +87,9 @@ struct Camera : public CullFrustum {
 	f32 getFar();
 	Vector3f getLookAtPosition();
 	f32 getNear();
-	void setFixNearFar(bool, f32, f32);
+	void setFixNearFar(bool isFixed, f32 nearZ, f32 farZ);
 	void setProjection();
 	void update();
-	// void updatePlanes();
 	void updateSoundCamera(f32);
 
 	inline bool isRunning() { return (mJstObject && mJstObject->isRunning()); }

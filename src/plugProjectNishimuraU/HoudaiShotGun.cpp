@@ -143,7 +143,7 @@ bool HoudaiShotGunNode::update()
 			PSStartSoundVec(PSSE_EN_HOUDAI_IMPACT, (Vec*)&mPosition);
 		}
 
-		rumbleMgr->startRumble(11, effectPos, 2);
+		rumbleMgr->startRumble(RUMBLETYPE_Fixed11, effectPos, RUMBLEID_Both);
 
 	} else {
 		Vector3f houdaiPos = mOwner->getPosition();

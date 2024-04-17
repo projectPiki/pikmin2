@@ -98,8 +98,8 @@ void StateDead::exec(EnemyBase* enemy)
 			titan->finishDeadBubbleLegEffect(2);
 			titan->finishDeadBubbleMouthEffect();
 			Vector3f position = titan->getPosition();
-			cameraMgr->startVibration(21, position, 2);
-			rumbleMgr->startRumble(12, position, RUMBLEID_Both);
+			cameraMgr->startVibration(VIBTYPE_HardMidShort, position, CAMNAVI_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed12, position, RUMBLEID_Both);
 
 		} else if ((u32)titan->mCurAnim->mType == KEYEVENT_11) {
 			titan->createDeadBombLegEffect(3);
@@ -244,8 +244,8 @@ void StateLand::exec(EnemyBase* enemy)
 
 		} else if ((u32)titan->mCurAnim->mType == KEYEVENT_9) {
 			Vector3f position = titan->getPosition();
-			cameraMgr->startVibration(2, position, 2);
-			rumbleMgr->startRumble(5, position, RUMBLEID_Both);
+			cameraMgr->startVibration(VIBTYPE_LightSlowLong, position, CAMNAVI_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_BigTreasureStart, position, RUMBLEID_Both);
 			Parms* parms = CG_PARMS(titan);
 			EnemyFunc::flickStickPikmin(titan, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 			                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);

@@ -43,11 +43,12 @@ namespace Game {
  */
 bool Navi::demoCheck()
 {
+	// no cutscenes outside story mode + no cutscenes while changing player?
 	if (!gameSystem->isStoryMode() || cameraMgr->isChangePlayer()) {
 		return false;
 	}
 
-	if (moviePlayer && moviePlayer->mDemoState != 0) {
+	if (moviePlayer && moviePlayer->mDemoState != DEMOSTATE_Inactive) {
 		return false;
 	}
 

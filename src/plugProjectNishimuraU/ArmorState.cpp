@@ -53,7 +53,7 @@ void StateDead::exec(EnemyBase* enemy)
 		u32 animType = armor->mCurAnim->mType;
 		if (animType == KEYEVENT_2) {
 			Vector3f armorPos = armor->getPosition();
-			rumbleMgr->startRumble(9, armorPos, RUMBLEID_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed9, armorPos, RUMBLEID_Both);
 		} else if (animType == KEYEVENT_END) {
 			armor->kill(nullptr);
 		}
@@ -125,7 +125,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	armor->createAppearEffect();
 
 	Vector3f pos = armor->getPosition();
-	rumbleMgr->startRumble(10, pos, RUMBLEID_Both);
+	rumbleMgr->startRumble(RUMBLETYPE_Fixed10, pos, RUMBLEID_Both);
 }
 
 /**
@@ -139,7 +139,7 @@ void StateAppear::exec(EnemyBase* enemy)
 		u32 animType = armor->mCurAnim->mType;
 		if (animType == KEYEVENT_2) {
 			Vector3f armorPos = armor->getPosition();
-			rumbleMgr->startRumble(9, armorPos, RUMBLEID_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed9, armorPos, RUMBLEID_Both);
 		} else if (animType == KEYEVENT_END) {
 			if (armor->mHealth <= 0.0f) {
 				transit(armor, ARMOR_Dead, nullptr);
@@ -181,7 +181,7 @@ void StateDive::exec(EnemyBase* enemy)
 		u32 animType = armor->mCurAnim->mType;
 		if (animType == KEYEVENT_2) {
 			Vector3f armorPos = armor->getPosition();
-			rumbleMgr->startRumble(10, armorPos, RUMBLEID_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed10, armorPos, RUMBLEID_Both);
 		} else if (animType == KEYEVENT_END) {
 			transit(armor, ARMOR_Stay, nullptr);
 		}
@@ -935,7 +935,7 @@ void StateAttack2::exec(EnemyBase* enemy)
 			EnemyFunc::attackNavi(armor, attackRadius, attackAngle, attackDamage, nullptr, nullptr);
 
 			Vector3f armorPos = armor->getPosition();
-			rumbleMgr->startRumble(9, armorPos, RUMBLEID_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed9, armorPos, RUMBLEID_Both);
 
 		} else if (armor->mCurAnim->mType == KEYEVENT_END) {
 			if (armor->mHealth <= 0.0f) {

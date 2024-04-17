@@ -5,6 +5,7 @@
 #include "Game/Entities/ItemHole.h"
 #include "Game/Entities/PelletItem.h"
 #include "Game/MapMgr.h"
+#include "Game/AIConstants.h"
 #include "Game/gameStat.h"
 #include "Game/Data.h"
 #include "Game/mapParts.h"
@@ -257,7 +258,7 @@ void GameState::exec(VsGameSection* section)
 
 	} else {
 		PSM::PikminNumberDirector* pikiDirector = PSMGetPikminNumD();
-		if (GameStat::getMapPikmins_exclude_Me(-1) < 10 && DeathMgr::mSoundDeathCount > 0) {
+		if (GameStat::getMapPikmins_exclude_Me(AllPikminCalcs) < 10 && DeathMgr::mSoundDeathCount > 0) {
 			if (pikiDirector) {
 				pikiDirector->directOn();
 			}
@@ -283,7 +284,8 @@ void GameState::exec(VsGameSection* section)
 
 		if (!gameSystem->paused() && section->mTimeLimit > 0.0f && isFlag(VSGS_Unk3) && !section->mMenuFlags
 		    && gameSystem->isFlag(GAMESYS_IsGameWorldActive) && !gameSystem->paused_soft()
-		    && !moviePlayer->mDemoState) { // check game is in a state where timer should go down (not paused/menu/CS/etc)
+		    && moviePlayer->mDemoState
+		           == DEMOSTATE_Inactive) { // check game is in a state where timer should go down (not paused/menu/CS/etc)
 
 			section->mTimeLimit -= sys->mDeltaTime * 0.5f;
 			if (section->mTimeLimit <= 0.0f && !(isFlag(VSGS_Unk4))) {
@@ -441,7 +443,7 @@ void GameState::checkSMenu(VsGameSection* section)
 			transit(section, VGS_Title, &titleArg);
 			return;
 		}
-		if (moviePlayer->mDemoState == 0 && !isFlag(VSGS_Unk2)) {
+		if (moviePlayer->mDemoState == DEMOSTATE_Inactive && !isFlag(VSGS_Unk2)) {
 			gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 			MoviePlayArg movieArgs("s12_cv_giveup", 0x0, section->mMovieFinishCallback, 0);
 			movieArgs.mDelegateStart = section->mMovieStartCallback;
@@ -463,7 +465,7 @@ void GameState::checkSMenu(VsGameSection* section)
 		return;
 	}
 
-	if (moviePlayer->mDemoState == 0 && !gameSystem->paused_soft()) {
+	if (moviePlayer->mDemoState == DEMOSTATE_Inactive && !gameSystem->paused_soft()) {
 		if (section->mControllerP1->isButtonDown(JUTGamePad::PRESS_START)) {
 			og::Screen::DispMemberSMenuAll sMenu;
 			int versus = 2;
@@ -501,7 +503,7 @@ void GameState::checkSMenu(VsGameSection* section)
  */
 void GameState::pre2dDraw(Graphics& gfx, VsGameSection* section)
 {
-	if (gameSystem->isVersusMode() && !mFlags.typeView && !moviePlayer->mDemoState) {
+	if (gameSystem->isVersusMode() && !mFlags.typeView && moviePlayer->mDemoState == DEMOSTATE_Inactive) {
 		section->mCardMgr->draw(gfx);
 	}
 }
@@ -930,41 +932,41 @@ void GameState::update_GameChallenge(VsGameSection* section)
 		Navi* olimar                    = naviMgr->getAt(NAVIID_Olimar);
 		disp.mOlimarData.mFollowPikis   = GameStat::formationPikis.mCounter[NAVIID_Olimar];
 		disp.mOlimarData.mNextThrowPiki = olimar->ogGetNextThrowPiki();
-		disp.mOlimarData.mDope1Count    = playData->getDopeCount(1);
-		disp.mOlimarData.mDope0Count    = playData->getDopeCount(0);
+		disp.mOlimarData.mDope1Count    = playData->getDopeCount(SPRAY_TYPE_BITTER);
+		disp.mOlimarData.mDope0Count    = playData->getDopeCount(SPRAY_TYPE_SPICY);
 		disp.mOlimarData.mNaviLifeRatio = olimar->getLifeRatio();
 
 		Navi* louie                    = naviMgr->getAt(NAVIID_Louie);
 		disp.mLouieData.mFollowPikis   = GameStat::formationPikis.mCounter[NAVIID_Louie];
 		disp.mLouieData.mNextThrowPiki = louie->ogGetNextThrowPiki();
-		disp.mLouieData.mDope1Count    = playData->getDopeCount(1);
-		disp.mLouieData.mDope0Count    = playData->getDopeCount(0);
+		disp.mLouieData.mDope1Count    = playData->getDopeCount(SPRAY_TYPE_BITTER);
+		disp.mLouieData.mDope0Count    = playData->getDopeCount(SPRAY_TYPE_SPICY);
 		disp.mLouieData.mNaviLifeRatio = louie->getLifeRatio();
 
 		Navi* activeNavi = naviMgr->getActiveNavi();
-		int check        = 2;
+		int id           = NAVIID_Multiplayer;
 		if (activeNavi) {
-			check = activeNavi->mNaviIndex;
+			id = activeNavi->mNaviIndex;
 		}
 
-		if (check == 0) {
-			disp.mOlimarData.mActiveNaviID = 1;
-			disp.mLouieData.mActiveNaviID  = 0;
+		if (id == NAVIID_Olimar) {
+			disp.mOlimarData.mActiveNaviID = TRUE;
+			disp.mLouieData.mActiveNaviID  = FALSE;
 
-		} else if (check == 1) {
-			disp.mOlimarData.mActiveNaviID = 0;
-			disp.mLouieData.mActiveNaviID  = 1;
+		} else if (id == NAVIID_Louie) {
+			disp.mOlimarData.mActiveNaviID = FALSE;
+			disp.mLouieData.mActiveNaviID  = TRUE;
 
-		} else if (section->mPrevNaviIdx == 0) {
-			disp.mOlimarData.mActiveNaviID = 0;
-			disp.mLouieData.mActiveNaviID  = 1;
+		} else if (section->mPrevNaviIdx == NAVIID_Olimar) {
+			disp.mOlimarData.mActiveNaviID = FALSE;
+			disp.mLouieData.mActiveNaviID  = TRUE;
 
 		} else {
-			disp.mOlimarData.mActiveNaviID = 1;
-			disp.mLouieData.mActiveNaviID  = 0;
+			disp.mOlimarData.mActiveNaviID = TRUE;
+			disp.mLouieData.mActiveNaviID  = FALSE;
 		}
 
-		disp.mDataGame.mMapPikminCount = GameStat::getMapPikmins(-1);
+		disp.mDataGame.mMapPikminCount = GameStat::getMapPikmins(AllPikminCalcs);
 		Screen::gGame2DMgr->setDispMember(&disp);
 		return;
 	}
@@ -981,19 +983,19 @@ void GameState::update_GameChallenge(VsGameSection* section)
 		Navi* olimar                    = naviMgr->getAt(NAVIID_Olimar);
 		disp.mOlimarData.mFollowPikis   = GameStat::formationPikis.mCounter[NAVIID_Olimar];
 		disp.mOlimarData.mNextThrowPiki = olimar->ogGetNextThrowPiki();
-		disp.mOlimarData.mDope1Count    = olimar->getDopeCount(1);
-		disp.mOlimarData.mDope0Count    = olimar->getDopeCount(0);
+		disp.mOlimarData.mDope1Count    = olimar->getDopeCount(SPRAY_TYPE_BITTER);
+		disp.mOlimarData.mDope0Count    = olimar->getDopeCount(SPRAY_TYPE_SPICY);
 		disp.mOlimarData.mNaviLifeRatio = olimar->getLifeRatio();
 
 		Navi* louie                    = naviMgr->getAt(NAVIID_Louie);
 		disp.mLouieData.mFollowPikis   = GameStat::formationPikis.mCounter[NAVIID_Louie];
 		disp.mLouieData.mNextThrowPiki = louie->ogGetNextThrowPiki();
-		disp.mLouieData.mDope1Count    = louie->getDopeCount(1);
-		disp.mLouieData.mDope0Count    = louie->getDopeCount(0);
+		disp.mLouieData.mDope1Count    = louie->getDopeCount(SPRAY_TYPE_BITTER);
+		disp.mLouieData.mDope0Count    = louie->getDopeCount(SPRAY_TYPE_SPICY);
 		disp.mLouieData.mNaviLifeRatio = louie->getLifeRatio();
 
-		disp.mRedPikminCount  = GameStat::getMapPikmins(1);
-		disp.mBluePikminCount = GameStat::getMapPikmins(0);
+		disp.mRedPikminCount  = GameStat::getMapPikmins(Red);
+		disp.mBluePikminCount = GameStat::getMapPikmins(Blue);
 
 		disp.mFlags[2] = section->mGhostIconTimers[0] > 0.0f;
 		disp.mFlags[3] = section->mGhostIconTimers[1] > 0.0f;
@@ -1035,20 +1037,20 @@ void GameState::update_GameChallenge(VsGameSection* section)
 	disp.mTimeLimit        = section->mTimeLimit;
 	disp.mDeadPiki         = section->mDeadPikiCount;
 
-	Navi* olimar                    = naviMgr->getAt(0);
+	Navi* olimar                    = naviMgr->getAt(NAVIID_Olimar);
 	disp.mOlimarData.mFollowPikis   = GameStat::formationPikis.mCounter[0];
 	disp.mOlimarData.mNextThrowPiki = olimar->ogGetNextThrowPiki();
-	disp.mOlimarData.mDope1Count    = playData->getDopeCount(1);
-	disp.mOlimarData.mDope0Count    = playData->getDopeCount(0);
+	disp.mOlimarData.mDope1Count    = playData->getDopeCount(SPRAY_TYPE_BITTER);
+	disp.mOlimarData.mDope0Count    = playData->getDopeCount(SPRAY_TYPE_SPICY);
 	disp.mOlimarData.mNaviLifeRatio = olimar->getLifeRatio();
 
-	Navi* louie                    = naviMgr->getAt(1);
+	Navi* louie                    = naviMgr->getAt(NAVIID_Louie);
 	disp.mLouieData.mFollowPikis   = GameStat::formationPikis.mCounter[1];
 	disp.mLouieData.mNextThrowPiki = louie->ogGetNextThrowPiki();
-	disp.mLouieData.mDope1Count    = playData->getDopeCount(1);
-	disp.mLouieData.mDope0Count    = playData->getDopeCount(0);
+	disp.mLouieData.mDope1Count    = playData->getDopeCount(SPRAY_TYPE_BITTER);
+	disp.mLouieData.mDope0Count    = playData->getDopeCount(SPRAY_TYPE_SPICY);
 	disp.mLouieData.mNaviLifeRatio = louie->getLifeRatio();
-	disp.mDataGame.mMapPikminCount = GameStat::getMapPikmins(-1);
+	disp.mDataGame.mMapPikminCount = GameStat::getMapPikmins(AllPikminCalcs);
 	Screen::gGame2DMgr->setDispMember(&disp);
 }
 

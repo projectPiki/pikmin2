@@ -2575,7 +2575,7 @@ ItemHole::Item* Navi::checkHole()
 	if (!ItemHole::mgr) {
 		return nullptr;
 	}
-	if (moviePlayer->mDemoState != 0) {
+	if (moviePlayer->mDemoState != DEMOSTATE_Inactive) {
 		return nullptr;
 	}
 	if (getStateID() != NSID_Walk) {
@@ -2606,7 +2606,7 @@ ItemCave::Item* Navi::checkCave()
 	if (!ItemCave::mgr) {
 		return nullptr;
 	}
-	if (moviePlayer->mDemoState != 0) {
+	if (moviePlayer->mDemoState != DEMOSTATE_Inactive) {
 		return nullptr;
 	}
 	if (getStateID() != NSID_Walk) {
@@ -2636,7 +2636,7 @@ ItemBigFountain::Item* Navi::checkBigFountain()
 	if (!ItemBigFountain::mgr) {
 		return nullptr;
 	}
-	if (moviePlayer->mDemoState != 0) {
+	if (moviePlayer->mDemoState != DEMOSTATE_Inactive) {
 		return nullptr;
 	}
 	if (getStateID() != NSID_Walk) {
@@ -2667,7 +2667,7 @@ Onyon* Navi::checkOnyon()
 	if (!gameSystem->isStoryMode()) {
 		return nullptr;
 	}
-	if (moviePlayer->mDemoState != 0) {
+	if (moviePlayer->mDemoState != DEMOSTATE_Inactive) {
 		return nullptr;
 	}
 	if (!ItemOnyon::mgr) {
@@ -3231,7 +3231,7 @@ void Navi::callPikis()
 
 		last = piki;
 		if (piki && piki != this) {
-			InteractFue act(this, false, true);
+			InteractFue act(this, false, true); // don't combine parties, is new to party
 			piki->stimulate(act);
 		}
 	}
@@ -3377,7 +3377,7 @@ void Navi::callPikis()
  */
 bool Navi::invincible()
 {
-	if (moviePlayer && moviePlayer->mDemoState != 0) {
+	if (moviePlayer && moviePlayer->mDemoState != DEMOSTATE_Inactive) {
 		return true;
 	}
 	if (mInvincibleTimer) {
@@ -3416,8 +3416,8 @@ void Navi::startDamage(f32 damage)
 		mFsm->transit(this, NSID_Damaged, &arg);
 		mHealth -= damage;
 		mSoundObj->startSound(PSSE_PL_ORIMA_DAMAGE, 0);
-		cameraMgr->startVibration(29, mNaviIndex);
-		rumbleMgr->startRumble(1, mNaviIndex);
+		cameraMgr->startVibration(VIBTYPE_NaviDamage, mNaviIndex);
+		rumbleMgr->startRumble(RUMBLETYPE_NaviDamage, mNaviIndex);
 		mEffectsObj->createOrimadamage_(mEffectsObj->mHeadMtx->mMatrix.mtxView);
 		PSM::DamageDirector* director = PSMGetDamageD();
 		if (director) {
@@ -3583,7 +3583,7 @@ void Navi::startDamage(f32 damage)
  */
 void Navi::addDamage(f32 damage, bool flag)
 {
-	if ((moviePlayer && moviePlayer->mDemoState != 0) || !gameSystem->isFlag(GAMESYS_IsGameWorldActive)) {
+	if ((moviePlayer && moviePlayer->mDemoState != DEMOSTATE_Inactive) || !gameSystem->isFlag(GAMESYS_IsGameWorldActive)) {
 		return;
 	}
 
@@ -3595,8 +3595,8 @@ void Navi::addDamage(f32 damage, bool flag)
 		mHealth -= damage;
 		if (flag) {
 			mSoundObj->startSound(PSSE_PL_ORIMA_DAMAGE, 0);
-			cameraMgr->startVibration(29, mNaviIndex);
-			rumbleMgr->startRumble(1, mNaviIndex);
+			cameraMgr->startVibration(VIBTYPE_NaviDamage, mNaviIndex);
+			rumbleMgr->startRumble(RUMBLETYPE_NaviDamage, mNaviIndex);
 			mEffectsObj->createOrimadamage_(mEffectsObj->mHeadMtx->mMatrix.mtxView);
 			PSM::DamageDirector* director = PSMGetDamageD();
 			if (director) {
@@ -4913,7 +4913,7 @@ void Navi::makeCStick(bool disable)
 	stickPos.x = 0.0f;
 	stickPos.z = stickPos.x;
 
-	if (mController1 && moviePlayer->mDemoState == 0) {
+	if (mController1 && moviePlayer->mDemoState == DEMOSTATE_Inactive) {
 		stickPos.x = -mController1->getSubStickX();
 		stickPos.z = mController1->getSubStickY();
 	}

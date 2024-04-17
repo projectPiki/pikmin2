@@ -49,8 +49,8 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	snagret->createDeadStartEffect();
 
 	Vector3f position = snagret->getPosition();
-	cameraMgr->startVibration(0, position, 2);
-	rumbleMgr->startRumble(13, position, 2);
+	cameraMgr->startVibration(VIBTYPE_LightSlowShort, position, CAMNAVI_Both);
+	rumbleMgr->startRumble(RUMBLETYPE_Fixed13, position, RUMBLEID_Both);
 }
 
 /**
@@ -69,19 +69,19 @@ void StateDead::exec(EnemyBase* enemy)
 		} else if ((u32)snagret->mCurAnim->mType == KEYEVENT_3) {
 			snagret->createWalkSmokeEffect(0.9f);
 			Vector3f position = snagret->getPosition();
-			cameraMgr->startVibration(3, position, 2);
-			rumbleMgr->startRumble(11, position, 2);
+			cameraMgr->startVibration(VIBTYPE_LightMidShort, position, CAMNAVI_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed11, position, RUMBLEID_Both);
 
 		} else if ((u32)snagret->mCurAnim->mType == KEYEVENT_4) {
 			snagret->createWalkSmokeEffect(0.75f);
 			Vector3f position = snagret->getPosition();
-			cameraMgr->startVibration(3, position, 2);
-			rumbleMgr->startRumble(11, position, 2);
+			cameraMgr->startVibration(VIBTYPE_LightMidShort, position, CAMNAVI_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed11, position, RUMBLEID_Both);
 
 		} else if ((u32)snagret->mCurAnim->mType == KEYEVENT_5) {
 			Vector3f position = snagret->getPosition();
-			cameraMgr->startVibration(8, position, 2);
-			rumbleMgr->startRumble(13, position, 2);
+			cameraMgr->startVibration(VIBTYPE_LightFastLong, position, CAMNAVI_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed13, position, RUMBLEID_Both);
 
 		} else if ((u32)snagret->mCurAnim->mType == KEYEVENT_END) {
 			snagret->kill(nullptr);
@@ -238,8 +238,8 @@ void StateAppear1::init(EnemyBase* enemy, StateArg* stateArg)
 	snagret->createAppearEffect(0);
 
 	Vector3f position = snagret->getPosition();
-	cameraMgr->startVibration(6, position, 2);
-	rumbleMgr->startRumble(15, position, 2);
+	cameraMgr->startVibration(VIBTYPE_LightFastShort, position, CAMNAVI_Both);
+	rumbleMgr->startRumble(RUMBLETYPE_Fixed15, position, RUMBLEID_Both);
 }
 
 /**
@@ -259,15 +259,15 @@ void StateAppear1::exec(EnemyBase* enemy)
 			snagret->startBossAttackBGM();
 
 			Vector3f position = snagret->getPosition();
-			cameraMgr->startVibration(6, position, 2);
-			rumbleMgr->startRumble(14, position, 2);
+			cameraMgr->startVibration(VIBTYPE_LightFastShort, position, CAMNAVI_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed14, position, RUMBLEID_Both);
 
 		} else if ((u32)snagret->mCurAnim->mType == KEYEVENT_4) {
 			snagret->disableEvent(0, EB_NoInterrupt);
 
 			Vector3f position = snagret->getPosition();
-			cameraMgr->startVibration(6, position, 2);
-			rumbleMgr->startRumble(14, position, 2);
+			cameraMgr->startVibration(VIBTYPE_LightFastShort, position, CAMNAVI_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed14, position, RUMBLEID_Both);
 
 		} else if ((u32)snagret->mCurAnim->mType == KEYEVENT_END) {
 			snagret->setAttackPosition();
@@ -293,8 +293,8 @@ void StateAppear1::exec(EnemyBase* enemy)
 		}
 
 		Vector3f position = snagret->getPosition();
-		cameraMgr->startVibration(3, position, 2);
-		rumbleMgr->startRumble(8, position, 2);
+		cameraMgr->startVibration(VIBTYPE_LightMidShort, position, CAMNAVI_Both);
+		rumbleMgr->startRumble(RUMBLETYPE_Fixed8, position, RUMBLEID_Both);
 	}
 }
 
@@ -330,8 +330,8 @@ void StateAppear2::init(EnemyBase* enemy, StateArg* stateArg)
 	snagret->createAppearEffect(1);
 
 	Vector3f position = snagret->getPosition();
-	cameraMgr->startVibration(8, position, 2);
-	rumbleMgr->startRumble(12, position, 2);
+	cameraMgr->startVibration(VIBTYPE_LightFastLong, position, CAMNAVI_Both);
+	rumbleMgr->startRumble(RUMBLETYPE_Fixed12, position, RUMBLEID_Both);
 }
 
 /**
@@ -353,22 +353,22 @@ void StateAppear2::exec(EnemyBase* enemy)
 			snagret->createAppearEffect(2);
 
 			Vector3f position = snagret->getPosition();
-			cameraMgr->startVibration(3, position, 2);
-			rumbleMgr->startRumble(11, position, 2);
+			cameraMgr->startVibration(VIBTYPE_LightMidShort, position, CAMNAVI_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed11, position, RUMBLEID_Both);
 
 		} else if ((u32)snagret->mCurAnim->mType == KEYEVENT_5) {
 			snagret->enableEvent(0, EB_NoInterrupt);
 
 			Vector3f position = snagret->getPosition();
-			cameraMgr->startVibration(3, position, 2);
-			rumbleMgr->startRumble(11, position, 2);
+			cameraMgr->startVibration(VIBTYPE_LightMidShort, position, CAMNAVI_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed11, position, RUMBLEID_Both);
 
 		} else if ((u32)snagret->mCurAnim->mType == KEYEVENT_6) {
 			snagret->disableEvent(0, EB_NoInterrupt);
 
 			Vector3f position = snagret->getPosition();
-			cameraMgr->startVibration(6, position, 2);
-			rumbleMgr->startRumble(14, position, 2);
+			cameraMgr->startVibration(VIBTYPE_LightFastShort, position, CAMNAVI_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed14, position, RUMBLEID_Both);
 
 		} else if ((u32)snagret->mCurAnim->mType == KEYEVENT_END) {
 			snagret->setAttackPosition();
@@ -456,8 +456,8 @@ void StateDisappear::exec(EnemyBase* enemy)
 			efx::THebiAphd_dive diveFx;
 			diveFx.create(&fxArg);
 
-			cameraMgr->startVibration(6, position, 2);
-			rumbleMgr->startRumble(15, position, 2);
+			cameraMgr->startVibration(VIBTYPE_LightFastShort, position, CAMNAVI_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed15, position, RUMBLEID_Both);
 
 		} else if ((u32)snagret->mCurAnim->mType == KEYEVENT_5) {
 			snagret->mIsUnderground = true;
@@ -608,8 +608,8 @@ void StateWalk::exec(EnemyBase* enemy)
 			snagret->createWalkSmokeEffect(0.75f);
 
 			Vector3f position = snagret->getPosition();
-			cameraMgr->startVibration(6, position, 2);
-			rumbleMgr->startRumble(14, position, 2);
+			cameraMgr->startVibration(VIBTYPE_LightFastShort, position, CAMNAVI_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed14, position, RUMBLEID_Both);
 
 		} else if ((u32)snagret->mCurAnim->mType == KEYEVENT_END) {
 			if (snagret->mNextState == SNAKEWHOLE_Attack && snagret->getStickHeadPikmin() != 0) {

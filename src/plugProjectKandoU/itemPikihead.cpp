@@ -242,7 +242,7 @@ void WaitState::init(Item* item, StateArg* arg)
  */
 void WaitState::exec(Item* item)
 {
-	if (!moviePlayer || moviePlayer->mDemoState == MoviePlayer::MOVIEPLAY_SUCCESS) {
+	if (!moviePlayer || moviePlayer->mDemoState == DEMOSTATE_Inactive) {
 		mTimer -= sys->mDeltaTime;
 	}
 
@@ -651,9 +651,9 @@ void Item::doAI()
 	if (_1E4 > 0.0f) {
 		_1E4 -= sys->mDeltaTime;
 		if (_1E4 <= 0.0f) {
-			PikiMgr::mBirthMode = 1;
+			PikiMgr::mBirthMode = PikiMgr::PSM_Force;
 			Piki* piki          = pikiMgr->birth();
-			PikiMgr::mBirthMode = 0;
+			PikiMgr::mBirthMode = PikiMgr::PSM_Normal;
 			if (piki) {
 				piki->init(nullptr);
 				piki->changeShape(mColor);
@@ -871,9 +871,9 @@ bool Item::interactFue(InteractFue& whistle)
 			}
 		}
 
-		PikiMgr::mBirthMode = 1;
+		PikiMgr::mBirthMode = PikiMgr::PSM_Force;
 		Piki* piki          = pikiMgr->birth();
-		PikiMgr::mBirthMode = 0;
+		PikiMgr::mBirthMode = PikiMgr::PSM_Normal;
 
 		if (piki) {
 			P2ASSERTLINE(701, whistle.mCreature->isNavi());
@@ -1110,14 +1110,16 @@ void Mgr::onCreateModel(SysShape::Model* model)
 Item* Mgr::birth()
 {
 	switch (PikiMgr::mBirthMode) {
-	case 0:
+	case PikiMgr::PSM_Normal: // don't make a sprout if we're at or over 100 pikmin on the field
 		if (pikiMgr->mActiveCount + mMonoObjectMgr.mActiveCount >= 100) {
 			return nullptr;
 		}
 		break;
-	case 1:
+
+	case PikiMgr::PSM_Force: // just make the damn sprout
 		break;
-	case 2:
+
+	case PikiMgr::PSM_Replace:                      // we should not be entering a cave floor and immediately making a sprout lol
 		JUT_PANICLINE(834, "‚±‚ê‚Í‚ ‚è‚¦‚È‚¢‚æ\n"); // 'this is impossible' lol
 		break;
 	}

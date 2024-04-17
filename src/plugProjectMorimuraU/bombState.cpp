@@ -134,8 +134,8 @@ void StateBomb::exec(EnemyBase* enemy)
 				OBJ(enemy)->bombEffInWater();
 			}
 
-			cameraMgr->startVibration(12, effectPos, 2);
-			rumbleMgr->startRumble(15, effectPos, RUMBLEID_Both);
+			cameraMgr->startVibration(VIBTYPE_MidMidShort, effectPos, CAMNAVI_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed15, effectPos, RUMBLEID_Both);
 
 			Vector3f position = enemy->getPosition();
 			Parms* parms      = CG_PARMS(enemy);

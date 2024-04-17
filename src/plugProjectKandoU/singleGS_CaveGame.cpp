@@ -69,7 +69,7 @@ void CaveState::init(SingleGameSection* game, StateArg* arg)
 	Navi* olimar = naviMgr->getAt(NAVIID_Olimar);
 	Navi* louie  = naviMgr->getAt(NAVIID_Louie);
 	if (olimar->isAlive() && louie->isAlive()) {
-		InteractFue act(olimar, false, true);
+		InteractFue act(olimar, false, true); // don't combine parties, is new to party
 		louie->stimulate(act);
 	}
 
@@ -163,14 +163,14 @@ void CaveState::exec(SingleGameSection* game)
 
 	// check pikmin extinction cutscene
 	if (!(moviePlayer->isFlag(MVP_IsActive))) {
-		if (GameStat::getMapPikmins(-1) == 0) {
+		if (GameStat::getMapPikmins(AllPikminCalcs) == 0) {
 			gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 			MoviePlayArg moviearg("s05_pikminzero", nullptr, game->mMovieFinishCallback, 0);
 			Navi* navi = naviMgr->getActiveNavi();
 			if (!navi) {
-				int id = 1;
-				if (gameSystem->mSection->mPrevNaviIdx == 0) {
-					id = 0;
+				int id = NAVIID_Louie;
+				if (gameSystem->mSection->mPrevNaviIdx == NAVIID_Olimar) {
+					id = NAVIID_Olimar;
 				}
 				navi = naviMgr->getAt(id);
 			}
@@ -186,7 +186,7 @@ void CaveState::exec(SingleGameSection* game)
 		check_SMenu(game);
 		// check muting parts of music when lots of pikmin die (does this actually happen in caves?)
 		PSM::PikminNumberDirector* psm = PSMGetPikminNumD();
-		if (GameStat::getMapPikmins_exclude_Me(-1) < 10 && deathMgr->mSoundDeathCount > 0) {
+		if (GameStat::getMapPikmins_exclude_Me(AllPikminCalcs) < 10 && deathMgr->mSoundDeathCount > 0) {
 			if (psm) {
 				psm->directOn();
 			}
@@ -234,7 +234,7 @@ void CaveState::check_SMenu(SingleGameSection* game)
 	case 4:
 		gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 		gameSystem->setMoviePause(false, "sm-giveup");
-		if (moviePlayer->mDemoState != 0)
+		if (moviePlayer->mDemoState != DEMOSTATE_Inactive)
 			return;
 		MoviePlayArg arg("s12_cv_giveup", nullptr, game->mMovieFinishCallback, 0);
 		arg.mDelegateStart = game->mMovieStartCallback;
@@ -263,7 +263,7 @@ void CaveState::check_SMenu(SingleGameSection* game)
 		return;
 	case -1:
 		// Conditions to open pause menu
-		if (!(gameSystem->isFlag(GAMESYS_DisablePause)) && moviePlayer->mDemoState == 0 && !gameSystem->paused()
+		if (!(gameSystem->isFlag(GAMESYS_DisablePause)) && moviePlayer->mDemoState == DEMOSTATE_Inactive && !gameSystem->paused()
 		    && game->mControllerP1->mButton.mButtonDown & Controller::PRESS_START) {
 			og::Screen::DispMemberSMenuAll disp;
 			game->setDispMemberSMenu(disp);

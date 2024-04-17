@@ -11,11 +11,106 @@
 struct Viewport;
 
 namespace Game {
-struct CameraArg;
 struct Navi;
 
+enum DemoCameraType {
+	CAMDEMO_NearLow = 0,
+	CAMDEMO_Test    = 1, // never used but has code
+};
+
+enum CamNaviID {
+	CAMNAVI_Olimar = 0,
+	CAMNAVI_Louie  = 1,
+	CAMNAVI_Both   = 2,
+};
+
+enum CamSelAngle {
+	CAMANGLE_Behind   = 0, // low angle (behind navi)
+	CAMANGLE_Overhead = 1, // high angle (overhead)
+};
+
+enum CamZoomLevel {
+	CAMZOOM_Near = 0, // fully zoomed in
+	CAMZOOM_Mid  = 1, // middle zoom
+	CAMZOOM_Far  = 2, // fully zoomed out
+};
+
+enum CameraFlags {
+	CAMFLAGS_ChangeZoomLevel = 0x1,  // i.e. R has been pressed
+	CAMFLAGS_ChangeSelAngle  = 0x2,  // i.e. Z has been pressed
+	CAMFLAGS_CenterBehind    = 0x4,  // i.e. L has been pressed
+	CAMFLAGS_SmoothFollow    = 0x8,  // i.e. L is being held
+	CAMFLAGS_StartZoomCam    = 0x10, // start zoom cam (held R/starting demo)
+	CAMFLAGS_InZoomCam       = 0x20, // continue zoom cam (holding R/in demo)
+	CAMFLAGS_EndZoomCam      = 0x40, // end zoom cam (stopped holding R/ended demo)
+};
+
+enum CamChangePlayer {
+	CAMCHANGE_None       = 0,
+	CAMCHANGE_IsChanging = 1,
+};
+
+// StrengthSpeedDuration
+enum VibrationType {
+	//////// Strength LIGHT ////////
+	// Speed SLOW
+	VIBTYPE_LightSlowShort = 0, // duration short (light, slow)
+	VIBTYPE_LightSlowMid   = 1, // duration mid   (light, slow)
+	VIBTYPE_LightSlowLong  = 2, // duration long  (light, slow)
+
+	// Speed MID
+	VIBTYPE_LightMidShort = 3, // duration short (light, mid)
+	VIBTYPE_LightMidMid   = 4, // duration mid   (light, mid)
+	VIBTYPE_LightMidLong  = 5, // duration long  (light, mid)
+
+	// Speed FAST
+	VIBTYPE_LightFastShort = 6,                     // duration short (light, fast)
+	VIBTYPE_LightFastMid   = 7,                     // duration mid   (light, fast)
+	VIBTYPE_LightFastLong  = 8,                     // duration long  (light, fast)
+	VIBTYPE_LIGHT          = VIBTYPE_LightFastLong, // cutoff for light vibration
+
+	//////// Strength MID ////////
+	// Speed SLOW
+	VIBTYPE_MidSlowShort = 9,  // duration short (mid, slow)
+	VIBTYPE_MidSlowMid   = 10, // duration mid   (mid, slow)
+	VIBTYPE_MidSlowLong  = 11, // duration long  (mid, slow)
+
+	// Speed MID
+	VIBTYPE_MidMidShort = 12, // duration short (mid, mid)
+	VIBTYPE_MidMidMid   = 13, // duration mid   (mid, mid)
+	VIBTYPE_MidMidLong  = 14, // duration long  (mid, mid)
+
+	// Speed FAST
+	VIBTYPE_MidFastShort = 15,                  // duration short (mid, fast)
+	VIBTYPE_MidFastMid   = 16,                  // duration mid   (mid, fast)
+	VIBTYPE_MidFastLong  = 17,                  // duration long  (mid, fast)
+	VIBTYPE_MID          = VIBTYPE_MidFastLong, // cutoff for light vibration
+
+	//////// Strength HARD ////////
+	// Speed SLOW
+	VIBTYPE_HardSlowShort = 18, // duration short (hard, slow)
+	VIBTYPE_HardSlowMid   = 19, // duration mid   (hard, slow)
+	VIBTYPE_HardSlowLong  = 20, // duration long  (hard, slow)
+
+	// Speed MID
+	VIBTYPE_HardMidShort = 21, // duration short (hard, mid)
+	VIBTYPE_HardMidMid   = 22, // duration mid   (hard, mid)
+	VIBTYPE_HardMidLong  = 23, // duration long  (hard, mid)
+
+	// Speed FAST
+	VIBTYPE_HardFastShort = 24,                   // duration short (hard, fast)
+	VIBTYPE_HardFastMid   = 25,                   // duration mid   (hard, fast)
+	VIBTYPE_HardFastLong  = 26,                   // duration long  (hard, fast)
+	VIBTYPE_HARD          = VIBTYPE_HardFastLong, // cutoff for light vibration
+
+	// special set vibration parameters
+	VIBTYPE_Crash      = 27, // 'crash' effects (rocks hitting the ground, crawbster falling/crashing, empress crashing)
+	VIBTYPE_Boom       = 28, // for mum flicks and groink deaths?
+	VIBTYPE_NaviDamage = 29, // just for navis taking damage
+};
+
 struct CameraArg {
-	u32 state;
+	u32 mState; // _00
 };
 
 struct CameraData {
@@ -247,7 +342,7 @@ struct PlayCamera : public LookAtCamera {
 	void setCameraAngle(f32 angle);
 	void getCameraData(CameraData& data);
 	void setCameraData(CameraData& data);
-	void changePlayerMode(bool updateDir);
+	void changePlayerMode(bool doCenterCameraBehind);
 	void noUpdate();
 	bool isVibration();
 	void startVibration(int type, f32 strength);
@@ -262,12 +357,12 @@ struct PlayCamera : public LookAtCamera {
 	void setSmoothThetaSpeed();
 	void changeTargetTheta();
 	void changeTargetAtPosition();
-	void updateParms(int flag);
+	void updateParms(int flags);
 	void updateVibration(int id);
 	void otherVibFinished(int id);
 	bool isModCameraFinished();
-	void setCollisionCameraTargetPhi(int);
-	f32 getCollisionCameraTargetPhi(f32, f32);
+	void setCollisionCameraTargetPhi(int flags);
+	f32 getCollisionCameraTargetPhi(f32 angle, f32 dist);
 
 	// _00 		= VTBL
 	// _00-_198	= LookAtCamera
@@ -292,15 +387,15 @@ struct PlayCamera : public LookAtCamera {
 	f32 mHoldRTimer;                 // _1E0
 	Vector3f mGoalPosition;          // _1E4
 	bool mVibrateEnabled[3];         // _1F0
-	f32 mVibrateSpeedParm[3];        // _1F4, vibration azimuth short speed?
+	f32 mVibrateSpeed[3];            // _1F4
 	f32 mVibrateRollAngle[3];        // _200
 	f32 mVibrateAngle[3];            // _20C
 	f32 mVibrateTimer[3];            // _218
-	f32 mVibrateTimeParm[3];         // _224, vibration azimuth short time?
-	f32 mVibrateScaleParm[3];        // _230
-	f32 mVibrateAzimuthParm[3];      // _23C, vibration azimuth short vib?
-	u8 mCanInput;                    // _248
-	u8 _249;                         // _249
+	f32 mVibrateDuration[3];         // _224
+	f32 mVibrateScale[3];            // _230
+	f32 mVibrateStrength[3];         // _23C
+	bool mCanInput;                  // _248
+	bool mIsCollisionCamActive;      // _249
 	CameraParms* mCameraParms;       // _24C
 	VibrationParms* mVibrationParms; // _250
 };
@@ -311,8 +406,7 @@ struct PlayCamera : public LookAtCamera {
 struct CameraMgr : public CNode {
 	CameraMgr();
 
-	virtual ~CameraMgr() {}; // _08
-	// virtual void _10() = 0;       // _10
+	virtual ~CameraMgr() { } // _08
 
 	void loadResource();
 	void setViewport(Viewport* vp, int id);
@@ -325,11 +419,11 @@ struct CameraMgr : public CNode {
 	void controllerUnLock(int camID);
 	void startDemoCamera(int camID, int type);
 	void finishDemoCamera(int camID);
-	void changePlayerMode(int state, IDelegate1<CameraArg*>* delegate);
+	void changePlayerMode(int naviID, IDelegate1<CameraArg*>* delegate);
 	bool isChangePlayer();
 	void setZukanCamera(LookAtCamera* cam);
 	bool isCameraUpdateOn();
-	bool isStartAndEnd(int* data, int type);
+	bool isStartAndEnd(int* data, int camID);
 	bool isVibrationStart(int type, int camID);
 	void readCameraParms(char* path);
 	void readParameter(Stream& stream);

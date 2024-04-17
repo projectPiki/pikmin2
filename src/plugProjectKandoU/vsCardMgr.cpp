@@ -527,8 +527,8 @@ void VsGame::CardMgr::SlotMachine::start()
 	f32 scoreCount0 = mCardMgr->mSection->mYellowScore[mPlayerIndex];
 	f32 scoreCount1 = mCardMgr->mSection->mYellowScore[1 - mPlayerIndex];
 
-	pikminCounts[0] = GameStat::getMapPikmins(1);
-	pikminCounts[1] = GameStat::getMapPikmins(0);
+	pikminCounts[NAVIID_Olimar] = GameStat::getMapPikmins(Red);
+	pikminCounts[NAVIID_Louie]  = GameStat::getMapPikmins(Blue);
 
 	if (pikminCounts[mPlayerIndex] < 4) {
 		selector.mValues[PIKMIN_5]  = 200;

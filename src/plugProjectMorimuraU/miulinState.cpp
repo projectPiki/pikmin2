@@ -326,13 +326,13 @@ void StateAttacking::exec(EnemyBase* enemy)
 			enemy->mFlickTimer = 0.0f;
 			effectPos          = Vector3f(-20.0f, 0.0f, 31.0f);
 			OBJ(enemy)->attackEffect(effectPos);
-			rumbleMgr->startRumble(12, pos, RUMBLEID_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed12, pos, RUMBLEID_Both);
 			break;
 
 		case KEYEVENT_3:
 			effectPos = Vector3f(11.0f, 0.0f, 56.0f);
 			OBJ(enemy)->attackEffect(effectPos);
-			rumbleMgr->startRumble(12, pos, RUMBLEID_Both);
+			rumbleMgr->startRumble(RUMBLETYPE_Fixed12, pos, RUMBLEID_Both);
 			break;
 
 		case KEYEVENT_END:

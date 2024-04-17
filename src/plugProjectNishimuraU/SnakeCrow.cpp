@@ -1727,8 +1727,8 @@ void Obj::createDownHeadEffect(f32 scale)
 	fxPos.y -= 15.0f;
 	createBounceEffect(fxPos, scale);
 
-	cameraMgr->startVibration(3, fxPos, 2);
-	rumbleMgr->startRumble(8, fxPos, 2);
+	cameraMgr->startVibration(VIBTYPE_LightMidShort, fxPos, CAMNAVI_Both);
+	rumbleMgr->startRumble(RUMBLETYPE_Fixed8, fxPos, RUMBLEID_Both);
 }
 
 /**

@@ -56,10 +56,20 @@ namespace P2JST {
 struct ObjectSystem;
 }
 
+enum MovieDemoState {
+	DEMOSTATE_Inactive     = 0,
+	DEMOSTATE_Fadeout      = 1,
+	DEMOSTATE_Loading      = 2,
+	DEMOSTATE_LoadComplete = 3,
+	DEMOSTATE_Starting     = 4,
+	DEMOSTATE_Playing      = 5,
+	DEMOSTATE_Finishing    = 6, // skipped or completed and fading back into gameplay
+};
+
 enum MoviePlayerFlags {
 	MVP_IsActive   = 0x1,
 	MVP_IsFinished = 0x2,
-	MVP_Unk32      = 0x80000000,
+	MVP_DoSkip     = 0x80000000,
 };
 
 enum MoviePlayerDrawFlags {
@@ -256,11 +266,14 @@ struct MoviePlayer : public JKRDisposer {
 	inline void setFlag(u32 flag) { mFlags.typeView |= flag; }
 	inline void resetFlag(u32 flag) { mFlags.typeView &= ~flag; }
 	inline bool isFlag(u32 flag) const { return mFlags.typeView & flag; }
-	inline bool isDrawLoad() { return mDemoState == 2 || mDemoState == 3 || mDemoState == 4; }
+	inline bool isDrawLoad()
+	{
+		return mDemoState == DEMOSTATE_Loading || mDemoState == DEMOSTATE_LoadComplete || mDemoState == DEMOSTATE_Starting;
+	}
 
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
-	int mDemoState;                                                // _18
+	int mDemoState;                                                // _18, see MovieDemoState enum
 	DvdThreadCommand mThreadCommand;                               // _1C
 	u8 mIsPaused;                                                  // _88
 	Vector3f mCameraPosition;                                      // _8C

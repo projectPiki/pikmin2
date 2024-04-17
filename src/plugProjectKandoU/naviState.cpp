@@ -404,7 +404,7 @@ void NaviWalkState::exec(Navi* navi)
 			return;
 		}
 
-		if (moviePlayer->mDemoState == 0) {
+		if (moviePlayer->mDemoState == DEMOSTATE_Inactive) {
 			if (navi->mStickCount) {
 				transit(navi, NSID_Stuck, nullptr);
 				return;
@@ -468,26 +468,26 @@ void NaviWalkState::exec(Navi* navi)
 				mDismissTimer = 0;
 			}
 
-			if (!gameSystem->paused_soft() && moviePlayer->mDemoState == 0 && !gameSystem->isMultiplayerMode()
+			if (!gameSystem->paused_soft() && moviePlayer->mDemoState == DEMOSTATE_Inactive && !gameSystem->isMultiplayerMode()
 			    && navi->mController1->isButtonDown(JUTGamePad::PRESS_Y) && playData->isDemoFlag(DEMO_Unlock_Captain_Switch)) {
 
-				Navi* currNavi = naviMgr->getAt(GET_OTHER_NAVI(navi));
-				int currID     = currNavi->getStateID();
+				Navi* otherNavi = naviMgr->getAt(GET_OTHER_NAVI(navi));
+				int otherNaviID = otherNavi->getStateID();
 
-				if (currNavi->isAlive() && currID != NSID_Nuku && currID != NSID_NukuAdjust && currID != NSID_Punch) {
+				if (otherNavi->isAlive() && otherNaviID != NSID_Nuku && otherNaviID != NSID_NukuAdjust && otherNaviID != NSID_Punch) {
 					gameSystem->mSection->pmTogglePlayer();
 
-					playChangeVoice(currNavi);
+					playChangeVoice(otherNavi);
 
-					if (currNavi->getStateID() == NSID_Follow) {
-						InteractFue whistle(currNavi, 0, 0);
+					if (otherNavi->getStateID() == NSID_Follow) {
+						InteractFue whistle(otherNavi, false, false); // don't combine parties, is NOT new to party
 						navi->stimulate(whistle);
 					}
 
-					currNavi->getStateID(); // commented out code probably.
+					otherNavi->getStateID(); // commented out code probably.
 
-					if (currNavi->mCurrentState->needYChangeMotion()) {
-						currNavi->mFsm->transit(currNavi, NSID_Change, nullptr);
+					if (otherNavi->mCurrentState->needYChangeMotion()) {
+						otherNavi->mFsm->transit(otherNavi, NSID_Change, nullptr);
 					}
 				}
 			}
@@ -508,7 +508,7 @@ void NaviWalkState::cleanup(Navi* navi) { }
 void NaviWalkState::collisionCallback(Navi* navi, CollEvent& event)
 {
 	Creature* collider = event.mCollidingCreature;
-	if (moviePlayer->mDemoState == 0 && collider->mObjectTypeID == OBJTYPE_Honey) {
+	if (moviePlayer->mDemoState == DEMOSTATE_Inactive && collider->mObjectTypeID == OBJTYPE_Honey) {
 		ItemHoney::Item* drop = static_cast<ItemHoney::Item*>(collider);
 		if (drop->mHoneyType != HONEY_Y && drop->absorbable()) {
 			NaviAbsorbArg absorbArg(drop);
@@ -516,8 +516,8 @@ void NaviWalkState::collisionCallback(Navi* navi, CollEvent& event)
 		}
 	}
 
-	if (moviePlayer->mDemoState == 0 && gameSystem->isVersusMode() && collider->isTeki() && !collider->mCaptureMatrix && collider->isAlive()
-	    && static_cast<EnemyBase*>(collider)->getEnemyTypeID() == EnemyTypeID::EnemyID_Bomb && navi->mController1) {
+	if (moviePlayer->mDemoState == DEMOSTATE_Inactive && gameSystem->isVersusMode() && collider->isTeki() && !collider->mCaptureMatrix
+	    && collider->isAlive() && static_cast<EnemyBase*>(collider)->getEnemyTypeID() == EnemyTypeID::EnemyID_Bomb && navi->mController1) {
 
 		f32 x = -navi->mController1->getMainStickX(); // idk why this is negative lol.
 		f32 y = navi->mController1->getMainStickY();
@@ -857,8 +857,8 @@ void NaviWalkState::initAI_animation(Navi* navi)
 	}
 
 	int naviIdx = navi->mNaviIndex;
-	if (naviIdx == NAVIID_Captain2 && gameSystem->isStoryMode() && playData->isStoryFlag(STORY_DebtPaid)) {
-		naviIdx++;
+	if (naviIdx == NAVIID_Louie && gameSystem->isStoryMode() && playData->isStoryFlag(STORY_DebtPaid)) {
+		naviIdx++; // president!
 	}
 
 	switch (animIdx) {
@@ -1260,7 +1260,7 @@ void NaviChangeState::cleanup(Navi* navi) { }
 void NaviFollowState::init(Navi* navi, StateArg* stateArg)
 {
 	NaviFollowArg* followArg = static_cast<NaviFollowArg*>(stateArg);
-	if (followArg && followArg->_00) {
+	if (followArg && followArg->mIsNewToParty) {
 		navi->startMotion(IPikiAnims::KIZUKU, IPikiAnims::KIZUKU, navi, nullptr);
 		_14 = 0;
 		if (navi->mNaviIndex == NAVIID_Olimar) {
@@ -1336,7 +1336,7 @@ void NaviFollowState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& event)
  */
 void NaviFollowState::exec(Navi* navi)
 {
-	if (moviePlayer && moviePlayer->mDemoState != 0) {
+	if (moviePlayer && moviePlayer->mDemoState != DEMOSTATE_Inactive) {
 		return;
 	}
 	if (navi->mController1) {
@@ -2830,9 +2830,9 @@ void NaviNukuState::init(Navi* navi, StateArg* stateArg)
  */
 void NaviNukuState::exec(Navi* navi)
 {
-	if (moviePlayer && moviePlayer->mDemoState != 0) {
+	if (moviePlayer && moviePlayer->mDemoState != DEMOSTATE_Inactive) {
 		if (mIsFollower) {
-			NaviFollowArg followArg(false);
+			NaviFollowArg followArg(false); // not new to party
 			transit(navi, NSID_Follow, &followArg);
 			return;
 		}
@@ -2843,7 +2843,7 @@ void NaviNukuState::exec(Navi* navi)
 	navi->mVelocity    = 0.0f;
 	if (!navi->assertMotion(mAnimID)) {
 		if (mIsFollower != 0) {
-			NaviFollowArg followArg(false);
+			NaviFollowArg followArg(false); // not new to party
 			transit(navi, NSID_Follow, &followArg);
 		} else {
 			transit(navi, NSID_Walk, nullptr);
@@ -2890,7 +2890,7 @@ void NaviNukuState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 			if (mIsFollower || !navi->procActionButton()) {
 				mIsActive = false;
 				if (mIsFollower) {
-					NaviFollowArg arg(0);
+					NaviFollowArg arg(false); // not new to party
 					transit(navi, NSID_Follow, &arg);
 				} else {
 					transit(navi, NSID_Walk, nullptr);
@@ -2899,7 +2899,7 @@ void NaviNukuState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 			}
 		} else {
 			if (mIsFollower) {
-				NaviFollowArg arg(0);
+				NaviFollowArg arg(false); // not new to party
 				transit(navi, NSID_Follow, &arg);
 			} else {
 				transit(navi, NSID_Walk, nullptr);
@@ -3135,7 +3135,7 @@ void NaviNukuAdjustState::collisionCallback(Navi* navi, CollEvent& collEvent)
  */
 void NaviNukuAdjustState::exec(Navi* navi)
 {
-	if (moviePlayer && moviePlayer->mDemoState != 0) {
+	if (moviePlayer && moviePlayer->mDemoState != DEMOSTATE_Inactive) {
 		if (_48) {
 			transit(navi, NSID_Follow, nullptr);
 		} else {
@@ -3176,9 +3176,9 @@ void NaviNukuAdjustState::exec(Navi* navi)
 	f32 angle      = angDist(newFaceDir, navi->mFaceDir);
 	if (absF(angle) < (PI / 10) && dist < 2.0f && absY < 10.0f) {
 		navi->mFaceDir      = newFaceDir;
-		PikiMgr::mBirthMode = 1;
+		PikiMgr::mBirthMode = PikiMgr::PSM_Force;
 		Piki* piki          = pikiMgr->birth();
-		PikiMgr::mBirthMode = 0;
+		PikiMgr::mBirthMode = PikiMgr::PSM_Normal;
 		if (!piki) {
 			if (_48) {
 				transit(navi, NSID_Follow, nullptr);
@@ -4525,7 +4525,7 @@ void NaviFallMeckState::bounceCallback(Navi* navi, Sys::Triangle*)
 			navi->addDamage(0.0f, true);
 			transit(navi, NSID_KokeDamage, &arg);
 		} else {
-			rumbleMgr->startRumble(2, navi->mNaviIndex);
+			rumbleMgr->startRumble(RUMBLETYPE_Nudge, navi->mNaviIndex);
 			transit(navi, NSID_Walk, nullptr);
 		}
 	}
@@ -4634,7 +4634,7 @@ void NaviKokeDamageState::init(Navi* navi, StateArg* stateArg)
 	}
 
 	navi->startMotion(IPikiAnims::JKOKE, IPikiAnims::JKOKE, navi, nullptr);
-	rumbleMgr->startRumble(1, navi->mNaviIndex);
+	rumbleMgr->startRumble(RUMBLETYPE_NaviDamage, navi->mNaviIndex);
 	mState = 0;
 }
 
@@ -4644,7 +4644,7 @@ void NaviKokeDamageState::init(Navi* navi, StateArg* stateArg)
  */
 void NaviKokeDamageState::exec(Navi* navi)
 {
-	if (moviePlayer && moviePlayer->mDemoState != 0) {
+	if (moviePlayer && moviePlayer->mDemoState != DEMOSTATE_Inactive) {
 		transit(navi, NSID_Walk, nullptr);
 	} else if (gameSystem && !gameSystem->isFlag(GAMESYS_IsGameWorldActive)) {
 		transit(navi, NSID_Walk, nullptr);
@@ -4829,8 +4829,8 @@ void NaviContainerState::init(Navi* navi, StateArg* stateArg)
 		disp.mContena1.mNewInPartyNum    = GameStat::formationPikis.getCount(navi->mNaviIndex, White);
 		disp.mContena1.mMaxPikiField     = 100;
 		disp.mContena1.mInParty2         = GameStat::formationPikis.getTotal(navi->mNaviIndex);
-		disp.mContena1.mOnMapMinusWild   = GameStat::getMapPikmins(-1) - GameStat::getZikatuPikmins(-1);
-		disp.mContena1.mMaxPikiMinusWild = 100 - GameStat::getZikatuPikmins(-1);
+		disp.mContena1.mOnMapMinusWild   = GameStat::getMapPikmins(AllPikminCalcs) - GameStat::getZikatuPikmins(AllPikminCalcs);
+		disp.mContena1.mMaxPikiMinusWild = 100 - GameStat::getZikatuPikmins(AllPikminCalcs);
 
 		disp.mContena2.mOnyonID = Purple;
 		max                     = playData->mPikiContainer.getColorSum(Purple) - mOnyon->mPurplesToWithdraw;
@@ -4842,8 +4842,8 @@ void NaviContainerState::init(Navi* navi, StateArg* stateArg)
 		disp.mContena2.mNewInPartyNum    = GameStat::formationPikis.getCount(navi->mNaviIndex, Purple);
 		disp.mContena2.mMaxPikiField     = 100;
 		disp.mContena2.mInParty2         = GameStat::formationPikis.getTotal(navi->mNaviIndex);
-		disp.mContena2.mOnMapMinusWild   = GameStat::getMapPikmins(-1) - GameStat::getZikatuPikmins(-1);
-		disp.mContena2.mMaxPikiMinusWild = 100 - GameStat::getZikatuPikmins(-1);
+		disp.mContena2.mOnMapMinusWild   = GameStat::getMapPikmins(AllPikminCalcs) - GameStat::getZikatuPikmins(AllPikminCalcs);
+		disp.mContena2.mMaxPikiMinusWild = 100 - GameStat::getZikatuPikmins(AllPikminCalcs);
 
 		disp.mHasWhite    = playData->hasContainer(White);
 		disp.mHasPurple   = playData->hasContainer(Purple);
@@ -4862,8 +4862,8 @@ void NaviContainerState::init(Navi* navi, StateArg* stateArg)
 		disp.mNewInPartyNum    = GameStat::formationPikis.getCount(navi->mNaviIndex, type);
 		disp.mMaxPikiField     = 100;
 		disp.mInParty2         = GameStat::formationPikis.getTotal(navi->mNaviIndex);
-		disp.mOnMapMinusWild   = GameStat::getMapPikmins(-1) - GameStat::getZikatuPikmins(-1);
-		disp.mMaxPikiMinusWild = 100 - GameStat::getZikatuPikmins(-1);
+		disp.mOnMapMinusWild   = GameStat::getMapPikmins(AllPikminCalcs) - GameStat::getZikatuPikmins(AllPikminCalcs);
+		disp.mMaxPikiMinusWild = 100 - GameStat::getZikatuPikmins(AllPikminCalcs);
 
 		mIsScreenOpen = Screen::gGame2DMgr->open_Contena(disp);
 	}
@@ -5017,7 +5017,7 @@ void NaviAbsorbState::init(Navi* navi, StateArg* stateArg)
 	Vector3f dropPosition = mDrop->getPosition();
 	navi->turnTo(dropPosition);
 	cameraMgr->controllerLock(navi->mNaviIndex);
-	cameraMgr->startDemoCamera(navi->mNaviIndex, 0);
+	cameraMgr->startDemoCamera(navi->mNaviIndex, CAMDEMO_NearLow);
 }
 
 /**
@@ -5192,7 +5192,7 @@ void NaviGatherState::init(Navi* navi, StateArg* stateArg)
 	navi->enableMotionBlend();
 	navi->mWhistle->start();
 	if (!_10) {
-		rumbleMgr->startRumble(3, navi->mNaviIndex);
+		rumbleMgr->startRumble(RUMBLETYPE_Whistle, navi->mNaviIndex);
 	}
 	efx::TNaviEffect* effect = navi->mEffectsObj;
 	f32 rad                  = navi->mWhistle->mRadius;
@@ -5321,7 +5321,7 @@ void NaviThrowWaitState::init(Navi* navi, StateArg* stateArg)
 	_20 = false;
 	_1C = 0;
 	if (mHeldPiki) {
-		rumbleMgr->startRumble(2, mNavi->mNaviIndex);
+		rumbleMgr->startRumble(RUMBLETYPE_Nudge, mNavi->mNaviIndex);
 		mHeldPiki->mFsm->transit(mHeldPiki, PIKISTATE_Hanged, 0);
 		_20 = true;
 	}
@@ -5769,7 +5769,7 @@ void NaviThrowWaitState::lockHangPiki(Navi* navi)
  */
 void NaviThrowWaitState::exec(Navi* navi)
 {
-	if (moviePlayer && moviePlayer->mDemoState != 0) {
+	if (moviePlayer && moviePlayer->mDemoState != DEMOSTATE_Inactive) {
 		transit(navi, NSID_Walk, nullptr);
 		return;
 	}
@@ -5805,7 +5805,7 @@ void NaviThrowWaitState::exec(Navi* navi)
 		navi->enableMotionBlend();
 		mHeldPiki = mNextPiki;
 		mNextPiki = nullptr;
-		rumbleMgr->startRumble(2, mNavi->mNaviIndex);
+		rumbleMgr->startRumble(RUMBLETYPE_Nudge, mNavi->mNaviIndex);
 		mHeldPiki->mFsm->transit(mHeldPiki, PIKISTATE_Hanged, 0);
 		_20 = true;
 	} else {
@@ -6830,7 +6830,7 @@ void NaviPelletState::exec(Navi* navi)
 		return;
 	}
 
-	if (navi->mController1 && moviePlayer->mDemoState == 0) {
+	if (navi->mController1 && moviePlayer->mDemoState == DEMOSTATE_Inactive) {
 		if (!gameSystem->paused_soft() && !gameSystem->isMultiplayerMode() && navi->mController1
 		    && navi->mController1->isButtonDown(JUTGamePad::PRESS_Y) && playData->isDemoFlag(DEMO_Unlock_Captain_Switch)) {
 

@@ -1319,7 +1319,7 @@ void PikiNukareState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
 {
 	switch (keyEvent.mType) {
 	case KEYEVENT_2:
-		rumbleMgr->startRumble(0, (int)mNavi->mNaviIndex);
+		rumbleMgr->startRumble(RUMBLETYPE_PluckPiki, (int)mNavi->mNaviIndex);
 
 		Vector3f position = piki->getPosition();
 		piki->setFPFlag(FPFLAGS_Unk5);
@@ -2859,8 +2859,8 @@ void PikiHipDropState::collisionCallback(Piki* piki, CollEvent& collEvent)
 	if (!collEvent.mCollidingCreature->isPiki()) {
 		Vector3f position = piki->getPosition();
 		efx::createSimpleBlackDrop(position);
-		rumbleMgr->startRumble(11, position, RUMBLEID_Both);
-		cameraMgr->startVibration(6, position, 2);
+		rumbleMgr->startRumble(RUMBLETYPE_Fixed11, position, RUMBLEID_Both);
+		cameraMgr->startVibration(VIBTYPE_LightFastShort, position, CAMNAVI_Both);
 
 		if (!collEvent.mCollidingCreature->isTeki()) {
 			piki->startSound(PSSE_PK_SE_DOSUN, false);
@@ -3113,8 +3113,8 @@ void PikiHipDropState::dosin(Piki* piki)
 {
 	Vector3f position = piki->getPosition();
 	efx::createSimpleBlackDrop(position);
-	rumbleMgr->startRumble(11, position, RUMBLEID_Both);
-	cameraMgr->startVibration(6, position, 2);
+	rumbleMgr->startRumble(RUMBLETYPE_Fixed11, position, RUMBLEID_Both);
+	cameraMgr->startVibration(VIBTYPE_LightFastShort, position, CAMNAVI_Both);
 	piki->startSound(PSSE_PK_SE_DOSUN, false);
 	_14 = 2;
 	_10 = 0.3f;
@@ -3199,9 +3199,9 @@ bool PikiFallMeckState::becomePikihead(Piki* piki)
 	if (GameStat::mePikis >= 99) {
 		return false;
 	} else {
-		PikiMgr::mBirthMode        = 1;
+		PikiMgr::mBirthMode        = PikiMgr::PSM_Force;
 		ItemPikihead::Item* sprout = static_cast<ItemPikihead::Item*>(ItemPikihead::mgr->birth());
-		PikiMgr::mBirthMode        = 0;
+		PikiMgr::mBirthMode        = PikiMgr::PSM_Normal;
 
 		Vector3f pikiPos = piki->getPosition();
 		pikiPos.y        = mapMgr->getMinY(pikiPos);

@@ -26,12 +26,10 @@
 struct Controller;
 
 enum NaviIndex {
-	NAVIID_Olimar    = 0,
-	NAVIID_Louie     = 1,
-	NAVIID_President = 2,
-
-	NAVIID_Captain1 = NAVIID_Olimar, // 0, always olimar
-	NAVIID_Captain2 = NAVIID_Louie,  // 1, louie or president
+	NAVIID_Olimar      = 0,
+	NAVIID_Louie       = 1, // or president
+	NAVIID_Multiplayer = 2,
+	NAVIID_Both        = 2,
 };
 
 enum AliveOrimaType {

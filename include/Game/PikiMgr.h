@@ -23,9 +23,9 @@ struct PikiContainer;
 
 struct PikiMgr : public MonoObjectMgr<Piki> {
 	enum PikiSpawnMode {
-		PSM_Normal,
-		PSM_Force,
-		PSM_Replace,
+		PSM_Normal,  // checks if we've hit 100 cap by active pikis or sprouts before spawning (wild pikis, out of onyons, etc)
+		PSM_Force,   // does no checks, just spawns (plucking sprouts)
+		PSM_Replace, // checks if we can spawn normally; if not, removes 'extra' wild bulbmin (when entering the next cave floor)
 	};
 
 	PikiMgr();

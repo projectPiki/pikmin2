@@ -241,8 +241,8 @@ bool VsGameSection::doUpdate()
 	mFsm->exec(this);
 
 	if (gameSystem->isVersusMode()) {
-		int redPikmins  = GameStat::getMapPikmins(1) - (mOlimarHandicap - 3);
-		int bluePikmins = GameStat::getMapPikmins(0) - (mLouieHandicap - 3);
+		int redPikmins  = GameStat::getMapPikmins(Red) - (mOlimarHandicap - 3);
+		int bluePikmins = GameStat::getMapPikmins(Blue) - (mLouieHandicap - 3);
 		if (redPikmins < 0) {
 			redPikmins = 1;
 		}
@@ -491,7 +491,7 @@ void VsGameSection::openCaveMoreMenu(ItemHole::Item* hole, Controller* controlle
 	int mePikis  = GameStat::mePikis;
 	if (mePikis > 0) {
 		cave.mPikiInDanger = true;
-		int map_pikis      = GameStat::getMapPikmins(-1);
+		int map_pikis      = GameStat::getMapPikmins(AllPikminCalcs);
 		if (mePikis == map_pikis) {
 			cave.mCantProceed = true;
 		} else {
@@ -527,7 +527,7 @@ void VsGameSection::openKanketuMenu(ItemBigFountain::Item* fountain, Controller*
 	int mePikis = GameStat::mePikis;
 	if (mePikis > 0) {
 		cave.mPikiInDanger = true;
-		int map_pikis      = GameStat::getMapPikmins(-1);
+		int map_pikis      = GameStat::getMapPikmins(AllPikminCalcs);
 		if (mePikis == map_pikis) {
 			cave.mCantProceed = true;
 		} else {
