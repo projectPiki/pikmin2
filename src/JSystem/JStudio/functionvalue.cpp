@@ -640,13 +640,13 @@ f64 TFunctionValue_transition::getValue(f64 p1)
 			return _50;
 		}
 		switch (interpolate_get()) {
+		default:
 		case 0:
 			goto ADJ_UNK3_label;
 		case 1:
 		case 3:
 			return _48 + ((dVar3 - range_getBegin()) * data_getDifference()) / range_getDifference();
 		case 2:
-			break;
 			return functionvalue::interpolateValue_hermite(dVar3, range_getBegin(), _48, 0.0, range_getEnd(), _50, 0.0);
 		}
 	}
