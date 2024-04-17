@@ -568,7 +568,7 @@ void PlayData::construct()
  * @note Size: 0x854
  */
 PlayData::PlayData()
-    : mDeadNaviID()
+    : mDeadNaviIDs()
     , mStoryFlags()
 {
 	mDebtProgressFlags[0] = 0;
@@ -641,7 +641,7 @@ void PlayData::reset()
 {
 	mNaviLifeMax[1]       = 0.0f;
 	mNaviLifeMax[0]       = 0.0f;
-	mDeadNaviID           = 0;
+	mDeadNaviIDs.reset();
 	u64 osTime            = OSGetTime();
 	mOsTime               = osTime;
 	_18                   = false;

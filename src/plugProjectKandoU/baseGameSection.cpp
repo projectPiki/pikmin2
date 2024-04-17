@@ -873,7 +873,7 @@ void BaseGameSection::initGenerators()
 		olimar->setPosition(vec_0x1c24, false);
 		olimar->setVelocity(vec_0x1c30);
 
-		if (playData->mDeadNaviID & 1) {
+		if (playData->mDeadNaviIDs.isOlimarDead()) {
 
 			olimar->setDeadLaydown();
 			olimarAlive = true;
@@ -911,10 +911,10 @@ void BaseGameSection::initGenerators()
 		louie->mFaceDir = roundAng(mapRotation);
 		louie->setPosition(vec_0x1c24, false);
 		louie->setVelocity(vec_0x1c30);
-		if (!(playData->mDeadNaviID & 1)) {
+		if (!(playData->mDeadNaviIDs.isOlimarDead())) {
 			louie->mHealth = playData->mNaviLifeMax[1];
 		}
-		if (playData->mDeadNaviID & 2) {
+		if (playData->mDeadNaviIDs.isLouieDead()) {
 			louie->setDeadLaydown();
 			return;
 		}

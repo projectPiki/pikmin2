@@ -162,7 +162,7 @@ void PlayData::write(Stream& output)
 
 	output.textBeginGroup("* オリマー死亡フラグ *"); // 'olimar death flag'
 	output.textWriteTab(output.mTabCount);
-	output.writeBytes(&mDeadNaviID, 1);
+	mDeadNaviIDs.write(output);
 	output.textWriteText("\r\n");
 	output.textWriteTab(output.mTabCount);
 	output.writeFloat(mNaviLifeMax[0]);
@@ -769,7 +769,7 @@ void PlayData::read(Stream& input)
 
 	BirthMgr::read(input);
 	DeathMgr::read(input);
-	mDeadNaviID = input.readByte();
+	mDeadNaviIDs.read(input);
 
 	if (versionID >= 'j006') {
 		mNaviLifeMax[0] = input.readFloat();

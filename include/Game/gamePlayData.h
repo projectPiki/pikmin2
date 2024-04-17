@@ -466,13 +466,62 @@ struct PlayData : public CNode {
 
 	inline void addPokos(int pokos) { mPokoCount += pokos; }
 
+	// fabricated
+	struct DeadNaviFlags
+	{
+		inline void reset() {
+			mNaviFlags[0] = 0;
+		}
+		
+		inline DeadNaviFlags() {
+			mNaviFlags[0] = 0;
+		}
+
+		inline void read(Stream& strm) {
+			mNaviFlags[0] = strm.readByte();
+		}
+
+		inline void write(Stream& strm) {
+			strm.writeBytes(mNaviFlags, 1);
+		}
+
+		inline bool isOlimarDead() {
+			return mNaviFlags[0] & 1;
+		}
+
+		inline bool isLouieDead() {
+			return mNaviFlags[0] & 2;
+		}
+
+		inline bool isNaviDead(int naviID) {
+			return (mNaviFlags[0] >> (naviID)) & 1;
+		}
+
+		inline bool isNaviDead_fakematch(int naviId) {
+			int shiftedID = naviId >> 3;
+			return 1 << (naviId - ((shiftedID) << 3)) & mNaviFlags[-(naviId >> 3)];
+		}
+		
+		inline bool isNaviDead2(int naviId) {
+			return 1 << (naviId % 8) & mNaviFlags[naviId >> 3];
+		}
+
+		inline void setNaviDead(int naviID) {
+			if (naviID < 8) {
+				mNaviFlags[0] |= (1 << naviID);
+			}
+		}
+
+		u8 mNaviFlags[2];
+	};
+	
+
 	// _00     = VTBL
 	// _00-_18 = CNode
 	bool _18;                               // _18
 	u8 mLoadType;                           // _19, see SaveFlags enum
 	void* mBeforeSaveDelegate;              // _1C
-	u8 mDeadNaviID;                         // _20
-	u8 mDeadNaviID2;                        // _21
+	DeadNaviFlags mDeadNaviIDs;             // _20
 	f32 mNaviLifeMax[2];                    // _24
 	u8 mHasContainerFlags;                  // _2C
 	u8 mHasBootContainerFlags;              // _2D

@@ -53,7 +53,7 @@ void EndingState::init(SingleGameSection* game, StateArg* arg)
 		BirthMgr::account_today();
 		DeathMgr::account_today();
 	}
-	playData->mDeadNaviID = 0;
+	playData->mDeadNaviIDs.reset();
 	naviMgr->clearDeadCount();
 }
 

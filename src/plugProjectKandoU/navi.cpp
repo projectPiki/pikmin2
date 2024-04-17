@@ -2441,9 +2441,7 @@ bool Navi::isWalking() { return mVelocity.qLength() > 10.0f; }
 void Navi::setDeadLaydown()
 {
 	int id = mNaviIndex;
-	if (id < 8) {
-		(&playData->mDeadNaviID)[mNaviIndex] = mNaviIndex > 0; // erm
-	}
+	playData->mDeadNaviIDs.setNaviDead(id);
 
 	Vector3f offset;
 	if (mNaviIndex == NAVIID_Olimar) { // olimar

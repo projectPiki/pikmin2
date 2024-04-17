@@ -42,7 +42,7 @@ void FileState::init(SingleGameSection* section, StateArg* arg)
 	section->refreshHIO();
 	Screen::gGame2DMgr->mScreenMgr->reset();
 	sys->setFrameRate(1);
-	playData->mDeadNaviID = 0;
+	playData->mDeadNaviIDs.reset();
 }
 
 /**
@@ -150,7 +150,7 @@ void FileState::startGame(SingleGameSection* game)
 		P2ASSERTLINE(469, game->mCurrentCourseInfo);
 
 		u16 loadtype = MapEnter_CaveGeyser;
-		if (playData->mDeadNaviID & 1 && playData->mDeadNaviID & 2) {
+		if (playData->mDeadNaviIDs.isOlimarDead() && playData->mDeadNaviIDs.isLouieDead()) {
 			loadtype = MapEnter_CaveNavisDown;
 		}
 		LoadArg arg(loadtype, false, true, false);

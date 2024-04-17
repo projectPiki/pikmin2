@@ -55,11 +55,11 @@ void GameState::init(SingleGameSection* game, StateArg* arg)
 	playData->setCurrentCourse(courseID);
 
 	// Refill each captain life if they arent dead
-	if (!(playData->mDeadNaviID & 1)) {
+	if (!playData->mDeadNaviIDs.isNaviDead(NAVIID_Olimar)) {
 		playData->mNaviLifeMax[NAVIID_Olimar] = naviMgr->mNaviParms->mNaviParms.mMaxHealth;
 		naviMgr->getAt(NAVIID_Olimar)->setLifeMax();
 	}
-	if (!(playData->mDeadNaviID >> 1 & 1)) {
+	if (!playData->mDeadNaviIDs.isNaviDead(NAVIID_Louie)) {
 		playData->mNaviLifeMax[NAVIID_Louie] = naviMgr->mNaviParms->mNaviParms.mMaxHealth;
 		naviMgr->getAt(NAVIID_Louie)->setLifeMax();
 	}
@@ -75,7 +75,7 @@ void GameState::init(SingleGameSection* game, StateArg* arg)
 	game->mCurrentFloor                                                        = 0;
 	game->_194                                                                 = false;
 
-	if ((playData->mDeadNaviID & 1) == 0) {
+	if (!playData->mDeadNaviIDs.isOlimarDead()) {
 		game->setPlayerMode(0);
 	} else {
 		game->setPlayerMode(1);
@@ -495,7 +495,7 @@ void GameState::exec(SingleGameSection* game)
 		return;
 	case 3:
 		P2ASSERTLINE(1304, Screen::gGame2DMgr->mScreenMgr->reset() == 1);
-		playData->mDeadNaviID = 0;
+		playData->mDeadNaviIDs.reset();
 		naviMgr->clearDeadCount();
 		gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 		gameSystem->setMoviePause(false, "sm-zenk");
