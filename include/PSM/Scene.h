@@ -389,4 +389,10 @@ inline void PSMStartMainSeq()
 	mgr->mScenes->mChild->startMainSeq();
 }
 
+inline void PSMDoFirstLoad()
+{
+	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+	mgr->doFirstLoad();
+}
+
 #endif

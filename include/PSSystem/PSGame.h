@@ -21,13 +21,28 @@ inline SceneMgr* getSceneMgr()
 
 inline void checkSceneMgr(SceneMgr* mgr) { P2ASSERTLINE(476, mgr); }
 
-inline SeqBase* getSeqData(SceneMgr* mgr, int id)
+inline Scene* getChildScene(SceneMgr* mgr)
 {
 	Scene* scene = mgr->mScenes->mChild;
 	P2ASSERTLINE(485, scene);
+	return scene;
+}
+
+inline SeqBase* getSeqFromScene(Scene* scene, u32 id)
+{
 	SeqBase* seq = scene->mSeqMgr.getSeq(id);
 	P2ASSERTLINE(487, seq);
 	return seq;
+}
+
+inline SeqBase* getSeqData(SceneMgr* mgr, int id)
+{
+	return getSeqFromScene(getChildScene(mgr), id);
+	// Scene* scene = mgr->mScenes->mChild;
+	// P2ASSERTLINE(485, scene);
+	// SeqBase* seq = scene->mSeqMgr.getSeq(id);
+	// P2ASSERTLINE(487, seq);
+	// return seq;
 }
 
 inline SeqBase* getSeqDataCheck(SceneMgr* mgr, int id)
@@ -44,13 +59,6 @@ inline PSGame::SeMgr* getSeMgrInstance()
 {
 	P2ASSERTLINE(567, SingletonBase<PSGame::SeMgr>::sInstance);
 	return static_cast<PSGame::SeMgr*>(SingletonBase<PSGame::SeMgr>::sInstance);
-}
-
-inline SeqBase* getSeqFromScene(Scene* scene, u32 id)
-{
-	SeqBase* seq = scene->mSeqMgr.getSeq(id);
-	P2ASSERTLINE(487, seq);
-	return seq;
 }
 
 inline PSGame::SoundTable::SePerspInfo* getSoundCategoryInfo(PSGame::SoundTable::CategoryMgr* mgr, u8 id)

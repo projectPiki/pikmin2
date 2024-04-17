@@ -118,6 +118,8 @@ struct System : public OSMutex {
 	~System();
 
 	static _GXRenderModeObj* getRenderModeObj();
+	static int getRenderModeWidth() { return getRenderModeObj()->fbWidth; }
+	static int getRenderModeHeight() { return getRenderModeObj()->efbHeight; }
 	static int assert_fragmentation(char*);
 	static void loadSoundResource();
 	static void initialize();

@@ -54,10 +54,11 @@ void CaveState::init(SingleGameSection* game, StateArg* arg)
 	game->setFixNearFar(true, 1.0f, 12800.0f);
 
 	// I assume this is meant to check if the 'active' navi is dead and if so, swap to the other navi
-	// but good lord this is weird
+	// THIS CANNOT BE WHAT THE DEVS WROTE
 	int naviID     = playData->mCaveSaveData.mActiveNaviID;
 	u8* deadNaviID = &playData->mDeadNaviID;
-	if (((1 << naviID * 8) & deadNaviID[naviID]) != false) {
+	int shiftedID  = naviID >> 3;
+	if (1 << (naviID - (shiftedID << 3)) & *(deadNaviID - shiftedID)) {
 		naviID = 1 - naviID;
 	}
 
@@ -98,212 +99,6 @@ void CaveState::init(SingleGameSection* game, StateArg* arg)
 	} else {
 		game->mNeedTreasureCalc = false;
 	}
-
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	li       r0, 0
-	stw      r31, 0x6c(r1)
-	mr       r31, r4
-	stw      r30, 0x68(r1)
-	mr       r30, r3
-	stw      r29, 0x64(r1)
-	stw      r28, 0x60(r1)
-	stw      r0, mSoundDeathCount__Q24Game8DeathMgr@sda21(r13)
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	bl       reset__Q24Game11MoviePlayerFv
-	li       r0, 0
-	mr       r3, r31
-	stb      r0, 0x10(r30)
-	stb      r0, 0x18(r30)
-	bl       setupCaveGames__Q24Game17SingleGameSectionFv
-	li       r0, 0
-	li       r4, 1
-	stb      r0, 0x194(r31)
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusDump__6SystemFb
-	lwz      r4, gameSystem__4Game@sda21(r13)
-	li       r0, 1
-	lfs      f1, lbl_8051A000@sda21(r2)
-	mr       r3, r31
-	lwz      r6, 0x40(r4)
-	li       r4, 1
-	lfs      f2, lbl_8051A004@sda21(r2)
-	lwz      r5, 0x240(r6)
-	ori      r5, r5, 1
-	stw      r5, 0x240(r6)
-	lwz      r6, gameSystem__4Game@sda21(r13)
-	lbz      r5, 0x3c(r6)
-	ori      r5, r5, 0x20
-	stb      r5, 0x3c(r6)
-	lwz      r5, gGame2DMgr__6Screen@sda21(r13)
-	lwz      r5, 0x18(r5)
-	stb      r0, 0x91(r5)
-	lwz      r5, gameSystem__4Game@sda21(r13)
-	stb      r0, 0x48(r5)
-	bl       setFixNearFar__Q24Game15BaseGameSectionFbff
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r6, 1
-	lbz      r4, 0x78(r3)
-	addi     r0, r3, 0x20
-	srawi    r3, r4, 3
-	slwi     r5, r3, 3
-	subf     r3, r3, r0
-	subf     r5, r5, r4
-	lbz      r0, 0(r3)
-	slw      r3, r6, r5
-	and.     r0, r3, r0
-	beq      lbl_80217840
-	subfic   r4, r4, 1
-
-lbl_80217840:
-	mr       r3, r31
-	bl       setPlayerMode__Q24Game15BaseGameSectionFi
-	mr       r3, r31
-	bl       setCamController__Q24Game15BaseGameSectionFv
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	mr       r0, r3
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	mr       r29, r0
-	li       r4, 1
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	mr       r0, r3
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	mr       r28, r0
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8021790C
-	mr       r3, r28
-	lwz      r12, 0(r28)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8021790C
-	lis      r4, __vt__Q24Game11Interaction@ha
-	lis      r3, __vt__Q24Game11InteractFue@ha
-	addi     r0, r4, __vt__Q24Game11Interaction@l
-	li       r5, 0
-	stw      r0, 0x18(r1)
-	addi     r6, r3, __vt__Q24Game11InteractFue@l
-	li       r0, 1
-	mr       r3, r28
-	stw      r29, 0x1c(r1)
-	addi     r4, r1, 0x18
-	stw      r6, 0x18(r1)
-	stb      r5, 0x20(r1)
-	stb      r0, 0x21(r1)
-	lwz      r12, 0(r28)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8021790C:
-	lwz      r6, 0xc8(r31)
-	lis      r3, lbl_8048244C@ha
-	li       r0, 0
-	lfs      f0, lbl_8051A008@sda21(r2)
-	addi     r4, r3, lbl_8048244C@l
-	stw      r0, 0x28(r1)
-	addi     r29, r1, 0x3c
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	stw      r4, 0x24(r1)
-	mr       r4, r29
-	li       r5, 0
-	stw      r6, 0x30(r1)
-	stfs     f0, 0x3c(r1)
-	stfs     f0, 0x40(r1)
-	stfs     f0, 0x44(r1)
-	stfs     f0, 0x48(r1)
-	stw      r0, 0x4c(r1)
-	stw      r0, 0x34(r1)
-	stw      r0, 0x2c(r1)
-	stw      r0, 0x50(r1)
-	stw      r0, 0x38(r1)
-	stw      r0, 0x54(r1)
-	lwz      r0, 0xcc(r31)
-	stw      r0, 0x34(r1)
-	lwz      r12, 4(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, mgr__Q24Game9ItemOnyon@sda21(r13)
-	lwz      r3, 0xac(r3)
-	cmplwi   r3, 0
-	beq      lbl_802179A0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0x48(r1)
-
-lbl_802179A0:
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	mr       r4, r29
-	lwz      r12, 4(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	mr       r4, r29
-	lwz      r12, 4(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0x40(r1)
-	addi     r4, r1, 0x24
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	bl       play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	bl       startCount_Floor__Q26Screen9Game2DMgrFv
-	mr       r3, r31
-	bl       clearCaveMenus__Q24Game17SingleGameSectionFv
-	li       r7, 0
-	lis      r3, "zero__10Vector3<f>"@ha
-	stb      r7, 0x11(r30)
-	addi     r4, r3, "zero__10Vector3<f>"@l
-	lfs      f1, lbl_8051A00C@sda21(r2)
-	addi     r5, r1, 0xc
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	addi     r6, r1, 8
-	lbz      r0, 0x3c(r3)
-	rlwinm   r0, r0, 0, 0x1f, 0x1d
-	stb      r0, 0x3c(r3)
-	stb      r7, 0x23d(r31)
-	lwz      r3, mgr__5Radar@sda21(r13)
-	bl       "calcNearestTreasure__Q25Radar3MgrFR10Vector3<f>fR10Vector3<f>Rf"
-	cmpwi    r3, 0
-	bne      lbl_80217A3C
-	li       r0, 1
-	stb      r0, 0x23e(r31)
-	b        lbl_80217A44
-
-lbl_80217A3C:
-	li       r0, 0
-	stb      r0, 0x23e(r31)
-
-lbl_80217A44:
-	lwz      r0, 0x74(r1)
-	lwz      r31, 0x6c(r1)
-	lwz      r30, 0x68(r1)
-	lwz      r29, 0x64(r1)
-	lwz      r28, 0x60(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
 }
 
 /**
@@ -615,9 +410,9 @@ void CaveState::onMovieCommand(SingleGameSection* game, int command)
 		f32 zero = 0.0f;
 		f32 calc = randFloat() * zero + 1.0f;
 		if (calc < 0.0f) {
-			if (calc > 1.0f) {
-				calc = 1.0f;
-			}
+			calc = 0.0f;
+		} else if (calc > 1.0f) {
+			calc = 1.0f;
 		}
 
 		game->mDoTrackCarcass = true;

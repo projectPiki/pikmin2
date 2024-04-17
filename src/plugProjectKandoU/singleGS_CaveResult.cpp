@@ -88,10 +88,10 @@ void CaveResultState::loadResource()
 	mResultTextures = new ResultTexMgr::Mgr;
 	mResultTextures->create(arg);
 
-	JUTTexture* texture = new JUTTexture(sys->getRenderModeObj()->fbWidth, sys->getRenderModeObj()->efbHeight, GX_TF_RGB565);
+	JUTTexture* texture = new JUTTexture(sys->getRenderModeWidth(), sys->getRenderModeHeight(), GX_TF_RGB565);
 	texture->mMinFilter = 0;
 	texture->mMagFilter = 0;
-	mSection->_168      = texture;
+	mSection->_168      = (JUTTexture*)texture;
 
 	createResultNodes();
 
@@ -99,8 +99,8 @@ void CaveResultState::loadResource()
 	sceneInfo.mSceneType = PSGame::SceneInfo::CAVE_RESULTS;
 	sceneInfo.mCameras   = 0;
 	PSMSetSceneInfo(sceneInfo);
-	PSMGetSceneMgr()->mScenes->getChildScene()->scene1stLoadSync();
-	PSMGetSceneMgrCheck()->getChildScene()->startMainSeq();
+	PSSystem::getSceneMgr()->doFirstLoad();
+	PSMGetChildScene()->startMainSeq();
 
 	/*
 	stwu     r1, -0x60(r1)
