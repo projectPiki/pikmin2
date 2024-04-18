@@ -19,6 +19,7 @@ namespace P2JST {
  */
 ObjectSystem::ObjectSystem(char const* name, MoviePlayer* player)
     : ObjectBase(name, player)
+    , mListPointerVoid(JGadget::TVoidAllocator())
 {
 	/*
 	stwu     r1, -0x20(r1)

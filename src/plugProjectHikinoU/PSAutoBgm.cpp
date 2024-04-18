@@ -2551,16 +2551,12 @@ void AutoBgm::loadConductor(PSSystem::TaskChecker* task)
 	mHeap = (JKRHeap*)JKRHeap::alloc(size, -0x20, nullptr);
 	P2ASSERTLINE(1207, mHeap);
 	if (task) {
-		OSLockMutex(&task->mMutex);
-		task->_18++;
-		OSUnlockMutex(&task->mMutex);
+		task->advanceTask();
 	}
 
 	// JASResArcLoader::loadResourceAsync(arc, file, mHeap, size, loadedCallback, task);
 	if (task) {
-		OSLockMutex(&task->mMutex);
-		task->_18--;
-		OSUnlockMutex(&task->mMutex);
+		task->rewindTask();
 	}
 	/*
 	stwu     r1, -0x20(r1)
@@ -2688,11 +2684,9 @@ void AutoBgm::loadedCallback(u32 p1, u32 p2)
 	bgm->mConductorMgr.initInstanceExt(bgm->mHeap, (s32)getObjectPtr());
 	JKRFree(mHeap);
 	mHeap                          = nullptr;
-	PSSystem::TaskChecker* checker = bgm->_334;
+	PSSystem::TaskChecker* checker = bgm->mTaskChecker;
 	if (checker) {
-		OSLockMutex(&checker->mMutex);
-		checker->_18--;
-		OSUnlockMutex(&checker->mMutex);
+		checker->rewindTask();
 	}
 	/*
 	stwu     r1, -0x10(r1)

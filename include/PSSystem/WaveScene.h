@@ -9,8 +9,9 @@ namespace PSSystem {
 
 struct WaveScene : public JKRDisposer {
 	enum AreaArg {
-		AREA_0,
-		AREA_1,
+		AREA_0     = 0,
+		AREA_1     = 1,
+		AREA_Count = 2,
 	};
 
 	enum WaveSceneID {
@@ -68,6 +69,12 @@ struct WaveScene : public JKRDisposer {
 	struct WaveArea {
 		WaveArea();
 
+		enum WaveType {
+			WaveType_Null     = 0,
+			WaveType_Loading  = 1,
+			WaveType_Standard = 2,
+		};
+
 		virtual ~WaveArea() { deleteWave(); } // _08 (weak)
 
 		bool loadWave(u16 bankIdx, u16 arcIdx, TaskChecker* checker);
@@ -78,8 +85,8 @@ struct WaveScene : public JKRDisposer {
 		TaskChecker* mChecker; // _04
 		u16 mBankIdx;          // _08
 		u16 mArcIdx;           // _0A
-		u8 _0C;                // _0C
-		int _10;               // _10
+		u8 mIsLoadTail;        // _0C
+		int mWaveType;         // _10
 	};
 
 	// virtual ~WaveScene() { } // _08 (weak)
@@ -88,7 +95,7 @@ struct WaveScene : public JKRDisposer {
 
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
-	WaveArea _18[2]; // _18
+	WaveArea mAreas[2]; // _18
 };
 
 // temp - used in WaveArea::loadWave, need to determine what this actually is

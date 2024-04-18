@@ -4,6 +4,7 @@
 #include "JSystem/JAudio/JALCalc.h"
 #include "PSSystem/PSSystemIF.h"
 #include "trig.h"
+#include "CNode.h"
 
 namespace PSGame {
 f32 Rappa::cRatio                  = 15.0f;
@@ -742,6 +743,26 @@ lbl_80340310:
 void Builder_EvnSe_Perspective::build(f32 p1, PSSystem::EnvSeMgr* mgr)
 {
 	P2ASSERTLINE(596, mgr);
+	f32 sizeX = mBox.mMax.x - mBox.mMin.x;
+	f32 sizeZ = mBox.mMax.z - mBox.mMin.z;
+
+	if (!_18) {
+		f32* temp = &sizeX;
+		int* val  = &_1C;
+		while (true) {
+			*val = *temp / 1000.0f;
+			if (val == &_20) {
+				temp = &sizeZ;
+				val  = &_20;
+				break;
+			}
+		}
+	} else {
+		P2ASSERTBOOLLINE(639, _1C > 0 && _20 > 0);
+	}
+
+	for (int i = 0; i < _1C; i++) { }
+
 	/*
 	stwu     r1, -0xc0(r1)
 	mflr     r0
@@ -965,6 +986,12 @@ EnvSe_Perspective* Builder_EvnSe_Perspective::newSeObj(u32 soundID, f32 volume, 
  */
 Builder_EvnSe_Perspective::~Builder_EvnSe_Perspective()
 {
+	FOREACH_NODE(JSULink<EnvSe_Perspective>, mList.getFirst(), se)
+	{
+		mList.remove(se);
+		if (se)
+			delete se;
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

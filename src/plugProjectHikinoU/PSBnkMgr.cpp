@@ -17,7 +17,7 @@ BankMgr* BankMgr::sBankMgr;
 BankMgr* BankMgr::createInstance()
 {
 	P2ASSERTLINE(14, !sBankMgr);
-	BankMgr* bankMgr = new BankMgr();
+	BankMgr* bankMgr = new BankMgr;
 	sBankMgr         = bankMgr;
 	return bankMgr;
 }
@@ -28,12 +28,12 @@ BankMgr* BankMgr::createInstance()
  */
 BankMgr::BankMgr()
 {
-	_1A       = 0;
-	mBankData = nullptr;
-	_20       = 0;
-	mWsData   = nullptr;
-	_18       = 0;
-	_19       = 0;
+	mInstBankNum      = 0;
+	mBankData         = nullptr;
+	mWaveBankNum      = 0;
+	mWsData           = nullptr;
+	mIsPreInitialized = false;
+	mIsInitialized    = false;
 }
 
 /**
@@ -43,6 +43,33 @@ BankMgr::BankMgr()
 void BankMgr::setBankData(u32* data)
 {
 	// need to match using setBankDataS
+	BankMgr* mgr = sBankMgr;
+	u32* aafPtr  = (u32*)JAInter::InitData::aafPointer;
+	P2ASSERTLINE(56, aafPtr);
+	P2ASSERTLINE(57, !mBankData);
+
+	u32 dataStart = data[0];
+	int count     = 0;
+	u32* aafData  = &aafPtr[dataStart];
+	while (aafPtr[dataStart + count]) {
+		count += 3;
+	}
+	count       = (count / 3) * 12;
+	u32* wsdata = new (JASDram, 0x20) u32[count + 1];
+	if (wsdata) {
+		for (u32 i = 0; i < count; i++) {
+			((u8*)wsdata)[i] = ((u8*)aafData)[i];
+		}
+	}
+	mgr->mBankData = (u32**)wsdata;
+
+	u8 banks = 0;
+	for (; *aafData; aafData += 3) {
+		dataStart += 3;
+		mgr->mBankData[banks * 3] = &aafPtr[*mgr->mBankData[banks * 3]];
+	}
+	mgr->mInstBankNum = banks;
+	*data             = dataStart + 1;
 }
 
 /**
@@ -51,6 +78,7 @@ void BankMgr::setBankData(u32* data)
  */
 void BankMgr::setWsData(u32* data)
 {
+	BankMgr* mgr = sBankMgr;
 	// need to match using setWsDataS
 	u32* aafPtr = (u32*)JAInter::InitData::aafPointer;
 	P2ASSERTLINE(89, aafPtr);
@@ -58,10 +86,26 @@ void BankMgr::setWsData(u32* data)
 
 	u32 dataStart = data[0];
 	int count     = 0;
-	u32 start     = aafPtr[dataStart];
+	u32* aafData  = &aafPtr[dataStart];
 	while (aafPtr[dataStart + count]) {
 		count += 3;
 	}
+	count       = (count / 3) * 12;
+	u32* wsdata = new (JASDram, 0x20) u32[count + 1];
+	if (wsdata) {
+		for (u32 i = 0; i < count; i++) {
+			((u8*)wsdata)[i] = ((u8*)aafData)[i];
+		}
+	}
+	mgr->mWsData = (u32**)wsdata;
+
+	u8 banks = 0;
+	for (; *aafData; aafData += 3) {
+		dataStart += 3;
+		mgr->mWsData[banks * 3] = &aafPtr[*mgr->mWsData[banks * 3]];
+	}
+	mgr->mWaveBankNum = banks;
+	*data             = dataStart + 1;
 }
 
 /**
@@ -70,8 +114,9 @@ void BankMgr::setWsData(u32* data)
  */
 void BankMgr::preInit()
 {
-	P2ASSERTLINE(119, !_18);
-	_18 = 1;
+	P2ASSERTLINE(119, !mIsPreInitialized);
+	mIsPreInitialized = true;
+
 	JAInter::InitData::setBnkInitCallback(&setBankDataS);
 	JAInter::InitData::setWsInitCallback(&setWsDataS);
 	JAInter::BankWave::setInitCallback(&initS);
@@ -85,21 +130,21 @@ void BankMgr::preInit()
  */
 void BankMgr::init()
 {
-	P2ASSERTLINE(132, !_19);
-	_19        = 1;
-	bool check = false;
+	P2ASSERTLINE(132, !mIsInitialized);
+	mIsInitialized = true;
 
-	if (_20 && _1A) {
+	bool check = false;
+	if (mWaveBankNum && mInstBankNum) {
 		check = true;
 	}
 
 	P2ASSERTLINE(134, check);
 	JASWaveArcLoader::setCurrentDir("/AudioRes/Banks");
-	JASWaveBankMgr::init(_20);
+	JASWaveBankMgr::init(mWaveBankNum);
 	JASWaveArcLoader::init(nullptr);
 
 	if (mWsData) {
-		for (u8 i = 0; i < _20; i++) {
+		for (u8 i = 0; i < mWaveBankNum; i++) {
 			u32* ptr = mWsData[i * 3];
 			if (ptr) {
 				JASWaveBankMgr::registWaveBankWS(i, ptr);
@@ -109,7 +154,7 @@ void BankMgr::init()
 
 	JASBankMgr::init(256);
 	if (mBankData) {
-		for (u8 i = 0; i < _1A; i++) {
+		for (u8 i = 0; i < mInstBankNum; i++) {
 			u32* ptr = mBankData[i * 3];
 			if (ptr) {
 				JASBankMgr::registBankBNK(i, ptr);
@@ -248,10 +293,10 @@ lbl_8033D9E8:
  * @note Address: 0x8033DA00
  * @note Size: 0x78
  */
-void WaveScene::load(u16 p1, u16 p2, AreaArg areaArg, TaskChecker* taskChecker)
+void WaveScene::load(u16 bankIdx, u16 arcIdx, AreaArg areaArg, TaskChecker* taskChecker)
 {
-	P2ASSERTLINE(197, areaArg < 2);
-	_18[areaArg].loadWave(p1, p2, taskChecker);
+	P2ASSERTLINE(197, areaArg < AREA_Count);
+	mAreas[areaArg].loadWave(bankIdx, arcIdx, taskChecker);
 }
 
 /**
@@ -260,11 +305,11 @@ void WaveScene::load(u16 p1, u16 p2, AreaArg areaArg, TaskChecker* taskChecker)
  */
 WaveScene::WaveArea::WaveArea()
 {
-	mChecker = nullptr;
-	mBankIdx = 0;
-	mArcIdx  = 0;
-	_0C      = 0;
-	_10      = 0;
+	mChecker    = nullptr;
+	mBankIdx    = 0;
+	mArcIdx     = 0;
+	mIsLoadTail = false;
+	mWaveType   = WaveType_Null;
 }
 
 /**
@@ -275,28 +320,20 @@ bool WaveScene::WaveArea::loadWave(u16 bankIdx, u16 arcIdx, TaskChecker* checker
 {
 	deleteWave();
 	if (checker) {
-		OSLockMutex(&checker->mMutex);
-		checker->_18++;
-		OSUnlockMutex(&checker->mMutex);
+		checker->advanceTask();
 	}
-	_10 = 1;
-	bool isWave;
-	if (_0C) {
-		isWave = JASWaveBankMgr::loadWaveTail(bankIdx, arcIdx, nullptr);
-	} else {
-		isWave = JASWaveBankMgr::loadWave(bankIdx, arcIdx, nullptr);
-	}
+	mWaveType = WaveType_Loading;
+	bool isWave
+	    = (mIsLoadTail) ? JASWaveBankMgr::loadWaveTail(bankIdx, arcIdx, nullptr) : JASWaveBankMgr::loadWave(bankIdx, arcIdx, nullptr);
 
 	if (isWave == true) {
 		WaveAreaLoader* loader = new (JKRGetSystemHeap(), -4) WaveAreaLoader(bankIdx, arcIdx, this);
 		mChecker               = checker;
 		JASDvd::checkPassDvdT((u32)loader, nullptr, &waveLoadCallback);
 	} else {
-		_10 = 0;
+		mWaveType = WaveType_Null;
 		if (checker) {
-			OSLockMutex(&checker->mMutex);
-			checker->_18--;
-			OSUnlockMutex(&checker->mMutex);
+			checker->rewindTask();
 		}
 	}
 
@@ -395,12 +432,12 @@ bool WaveScene::WaveArea::loadWave(u16 bankIdx, u16 arcIdx, TaskChecker* checker
  */
 void WaveScene::WaveArea::deleteWave()
 {
-	switch (_10) {
-	case 0:
+	switch (mWaveType) {
+	case WaveType_Null:
 		return;
-	case 1:
+	case WaveType_Loading:
 		return;
-	case 2:
+	case WaveType_Standard:
 		P2ASSERTLINE(255, JASWaveBankMgr::eraseWave(mBankIdx, mArcIdx));
 		break;
 	default:
@@ -408,7 +445,7 @@ void WaveScene::WaveArea::deleteWave()
 		break;
 	}
 
-	_10 = 0;
+	mWaveType = WaveType_Null;
 }
 
 /**
@@ -422,13 +459,11 @@ void WaveScene::WaveArea::waveLoadCallback(u32 areaLoader)
 	WaveArea* wave         = loader->mWaveArea;
 	wave->mBankIdx         = loader->mBankIdx;
 	wave->mArcIdx          = loader->mArcIdx;
-	wave->_10              = 2;
+	wave->mWaveType        = WaveType_Standard;
 
 	checker = wave->mChecker;
 	if (checker) {
-		OSLockMutex(&checker->mMutex);
-		checker->_18--;
-		OSUnlockMutex(&checker->mMutex);
+		checker->rewindTask();
 	}
 
 	delete loader;

@@ -152,10 +152,10 @@ void Scene::scene1stLoadSync()
 {
 	volatile TaskChecker task;
 	OSInitMutex((OSMutex*)&task.mMutex);
-	task._18 = 0;
+	task.mTaskIndex = 0;
 	scene1st((TaskChecker*)&task);
 
-	while (task._18) { }
+	while (task.mTaskIndex) { }
 }
 
 /**

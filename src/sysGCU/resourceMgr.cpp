@@ -380,34 +380,36 @@ void Mgr::drawDump(Graphics&, int, int) { }
  */
 Node* Mgr::createNewNode(char const* path)
 {
-	u8 id = mHeap->getCurrentGroupId();
+	u8 id     = mHeap->getCurrentGroupId();
+	int nodes = 0;
 
-	u32 useList[64]; // is this meant to be char array?
+	u8 useList[256];
+	// something dumb here
+	u32* test = (u32*)useList;
 	for (int i = 0; i < 64; i++) {
-		useList[i] = 0;
+		test[i] = 0;
 	}
 
-	int i = 0;
 	FOREACH_NODE(Node, mNodes.mChild, node)
 	{
 		if (useList[node->mHeapGroupID] == 0) {
 			useList[node->mHeapGroupID] = 1;
 		} else {
-			JUT_PANICLINE(623, "P2Assert");
+			P2ASSERTLINE(623, false);
 		}
-		i++;
+		nodes++;
 	}
-	P2ASSERTLINE(629, i < 255);
+	P2ASSERTLINE(629, nodes < 255);
 
-	while (useList[id] == 1) {
+	while (useList[id]) {
 		id--;
-		if (id == 0) {
+		if (id < 1) {
 			id = 255;
 		}
 	}
 	mHeap->changeGroupID(id);
 
-	Node* node         = new Node(path);
+	Node* node         = new (mHeap, 0) Node(path);
 	node->mHeapGroupID = id;
 	node->mHeap        = mHeap;
 	mNodes.add(node);

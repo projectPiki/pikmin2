@@ -28,13 +28,13 @@ struct BankMgr : public JKRDisposer {
 	static void firstLoadS() { }
 	static void secondLoadS() { }
 
-	u8 _18;          // _18
-	u8 _19;          // _19
-	u8 _1A;          // _1A
-	u8 _1B;          // _1B
-	u32** mBankData; // _1C, array of u32* ptrs, in groups of 3
-	u8 _20;          // _20 - "bank count"?
-	u32** mWsData;   // _24, array of u32* ptrs, in groups of 3
+	u8 mIsPreInitialized; // _18
+	u8 mIsInitialized;    // _19
+	u8 mInstBankNum;      // _1A, number of instrument banks
+	u8 _1B;               // _1B
+	u32** mBankData;      // _1C, array of u32* ptrs, in groups of 3
+	u8 mWaveBankNum;      // _20, number of wave banks
+	u32** mWsData;        // _24, array of u32* ptrs, in groups of 3
 
 	static BankMgr* sBankMgr;
 };

@@ -59,11 +59,11 @@ struct AutoBgm : public PSSystem::DirectedBgm {
 	// _00-_10  = JSULink<SeqBase>
 	// _10      = VTABLE
 	// _14-_B8  = DirectedBgm
-	ConductorMgr mConductorMgr;  // _B8
-	char* mConductorFilePath;    // _330 (.cnd)
-	PSSystem::TaskChecker* _334; // _334
-	JKRHeap* mHeap;              // _338
-	MeloArrMgr mMeloArr;         // _33C
+	ConductorMgr mConductorMgr;          // _B8
+	char* mConductorFilePath;            // _330 (.cnd)
+	PSSystem::TaskChecker* mTaskChecker; // _334
+	JKRHeap* mHeap;                      // _338
+	MeloArrMgr mMeloArr;                 // _33C
 };
 
 /**

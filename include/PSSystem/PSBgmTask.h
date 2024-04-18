@@ -329,19 +329,19 @@ struct TaskChecker {
 	inline void advanceTask()
 	{
 		OSLockMutex(&mMutex);
-		_18++;
+		mTaskIndex++;
 		OSUnlockMutex(&mMutex);
 	}
 
 	inline void rewindTask()
 	{
 		OSLockMutex(&mMutex);
-		_18--;
+		mTaskIndex--;
 		OSUnlockMutex(&mMutex);
 	}
 
 	OSMutex mMutex; // _00
-	u8 _18;         // _18
+	u8 mTaskIndex;  // _18
 };
 } // namespace PSSystem
 

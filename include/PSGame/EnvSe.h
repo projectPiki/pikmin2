@@ -166,8 +166,8 @@ struct Builder_EvnSe_Perspective : public JKRDisposer {
 	void build(f32 volume, PSSystem::EnvSeMgr* envSeMgr);
 
 	u8 _18;                           // _18
-	u32 _1C;                          // _1C, unknown
-	u32 _20;                          // _20, unknown
+	int _1C;                          // _1C, unknown
+	int _20;                          // _20, unknown
 	JGeometry::TBox3f mBox;           // _24
 	f32 _3C;                          // _3C
 	JSUList<EnvSe_Perspective> mList; // _40
