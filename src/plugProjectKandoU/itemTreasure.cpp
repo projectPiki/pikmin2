@@ -272,7 +272,7 @@ bool Item::getVectorField(Sys::Sphere& bounds, Vector3f& pos)
  */
 f32 Item::getWorkDistance(Sys::Sphere& bounds)
 {
-	f32 dist = _distanceBetween(mPosition, bounds.mPosition);
+	f32 dist = Vector3f::distance(mPosition, bounds.mPosition);
 	return dist - getWorkRadius();
 }
 

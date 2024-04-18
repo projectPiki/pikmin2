@@ -961,7 +961,7 @@ f32 AStarPathfinder::estimate(s16 wpID1, s16 wpID2)
 
 	Vector3f pos1 = wp1->getPosition();
 	Vector3f pos2 = wp2->getPosition();
-	return _distanceBetween(pos1, pos2);
+	return Vector3f::distance(pos1, pos2);
 }
 
 /**

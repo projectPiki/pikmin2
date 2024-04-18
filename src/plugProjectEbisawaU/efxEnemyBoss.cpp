@@ -208,7 +208,7 @@ bool TOootaBombLeg::create(Arg* arg)
 	if (TSimple1::create(arg)) {
 		Matrixf mtx;
 		makeMtxZAxisAlongPosPos(mtx.mMatrix.mtxView, pos1, pos2);
-		f32 dist = _distanceBetween(pos2, pos1);
+		f32 dist = Vector3f::distance(pos2, pos1);
 		dist /= 100.0f;
 		mEmitters[0]->setGlobalRTMatrix(mtx.mMatrix.mtxView);
 		mEmitters[0]->mLocalScl.y *= dist;
@@ -922,7 +922,7 @@ bool THdamaDeadHahen1::create(efx::Arg* arg)
 	if (TSimple1::create(arg)) {
 		Matrixf mtx;
 		makeMtxZAxisAlongPosPos(mtx.mMatrix.mtxView, pos1, pos2);
-		f32 dist = _distanceBetween(pos2, pos1);
+		f32 dist = Vector3f::distance(pos2, pos1);
 		dist /= 100.0f;
 		mEmitters[0]->setGlobalRTMatrix(mtx.mMatrix.mtxView);
 		mEmitters[0]->mLocalScl.y *= dist;
@@ -1054,7 +1054,7 @@ bool THdamaDeadHahen2::create(efx::Arg* arg)
 	if (TSimple2::create(arg)) {
 		Matrixf mtx;
 		makeMtxZAxisAlongPosPos(mtx.mMatrix.mtxView, pos1, pos2);
-		f32 dist = _distanceBetween(pos2, pos1);
+		f32 dist = Vector3f::distance(pos2, pos1);
 		dist /= 100.0f;
 		for (int i = 0; i < 2; i++) {
 			mEmitters[i]->setGlobalRTMatrix(mtx.mMatrix.mtxView);

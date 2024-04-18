@@ -13,8 +13,8 @@ namespace efx {
 	struct TSyncGroup##N : TBase {       \
 		/* VTABLE */                     \
 		virtual bool create(Arg* arg);   \
-		virtual void forceKill();        \
 		virtual void fade();             \
+		virtual void forceKill();        \
 		virtual void startDemoDrawOff(); \
 		virtual void endDemoDrawOn();    \
 		/* VTABLE END */                 \
@@ -34,42 +34,6 @@ DEF_SYNC_GROUP(3);
 DEF_SYNC_GROUP(4);
 DEF_SYNC_GROUP(5);
 DEF_SYNC_GROUP(6);
-
-/*
-virtual bool create(Arg* arg)
-{
-    for (u32 i = 0; i < N; i++) {
-        if (!mItems[i].create(arg)) {
-            return false;
-        }
-    }
-    return true;
-}
-virtual void forceKill()
-{
-    for (u32 i = 0; i < N; i++) {
-        mItems[i].forceKill();
-    }
-}
-virtual void fade()
-{
-    for (u32 i = 0; i < N; i++) {
-        mItems[i].fade();
-    }
-}
-virtual void startDemoDrawOff()
-{
-    for (u32 i = 0; i < N; i++) {
-        mItems[i].startDemoDrawOff();
-    }
-}
-virtual void endDemoDrawOn()
-{
-    for (u32 i = 0; i < N; i++) {
-        mItems[i].endDemoDrawOn();
-    }
-}
-*/
 
 } // namespace efx
 

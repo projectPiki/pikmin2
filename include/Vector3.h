@@ -240,6 +240,10 @@ struct Vector3 {
 		this->normalise();
 	}
 
+	static inline f32 distance(Vector3& a, Vector3& b) { return (a - b).length(); }
+
+	inline void sub(Vector3& a, Vector3& b) { set(a.x - b.x, a.y - b.y, a.z - b.z); }
+
 	/**
 	 * Sets the flat direction from one vector to another.
 	 * The resulting vector will have a zero y-component.
@@ -436,12 +440,6 @@ inline f32 _lengthXZ(Vector3f& vec)
 {
 	Vector3f a = vec;
 	return _sqrtf(a.x * a.x + a.z * a.z);
-}
-
-inline f32 _distanceBetween(Vector3f& me, Vector3f& them)
-{
-	Vector3f sep = me - them;
-	return _length(sep);
 }
 
 inline f32 _normalise2(Vector3f& diff)
