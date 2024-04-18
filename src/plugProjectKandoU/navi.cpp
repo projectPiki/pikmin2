@@ -285,10 +285,11 @@ bool Navi::procActionButton()
 	// find (closest) pluckable sprout within range
 	CI_LOOP(iter)
 	{
-		ItemPikihead::Item* sprout = *iter;
+		BaseItem* item             = *iter;
+		ItemPikihead::Item* sprout = (ItemPikihead::Item*)item;
 		Vector3f sproutPos         = sprout->getPosition();
 		Vector3f naviPos           = getPosition();
-		f32 heightDiff             = FABS(sproutPos.y - naviPos.y);
+		f32 heightDiff             = absF(sproutPos.y - naviPos.y);
 		f32 sqrXZ                  = sqrDistanceXZ(sproutPos, naviPos);
 
 		// sprout has to be pluckable, closer than current/within range, not at massive height difference
@@ -2806,13 +2807,12 @@ void Navi::makeVelocity()
 {
 
 	if (mController1
-	    && ((mController1->getButtonDown() & Controller::PRESS_A) || (mController1->getButtonDown() & Controller::PRESS_B)
-	        || (mController1->getButtonDown() & Controller::PRESS_X) || (mController1->getButtonDown() & Controller::PRESS_Y)
-	        || (mController1->getButtonDown() & Controller::PRESS_Z) || (mController1->getButtonDown() & Controller::PRESS_L)
-	        || (mController1->getButtonDown() & Controller::PRESS_R) || (mController1->getButtonDown() & Controller::PRESS_DPAD_UP)
-	        || (mController1->getButtonDown() & Controller::PRESS_DPAD_DOWN)
-	        || (mController1->getButtonDown() & Controller::PRESS_DPAD_LEFT)
-	        || (mController1->getButtonDown() & Controller::PRESS_DPAD_RIGHT))) {
+	    && ((mController1->getButton() & Controller::PRESS_A) || (mController1->getButton() & Controller::PRESS_B)
+	        || (mController1->getButton() & Controller::PRESS_X) || (mController1->getButton() & Controller::PRESS_Y)
+	        || (mController1->getButton() & Controller::PRESS_Z) || (mController1->getButton() & Controller::PRESS_L)
+	        || (mController1->getButton() & Controller::PRESS_R) || (mController1->getButton() & Controller::PRESS_DPAD_UP)
+	        || (mController1->getButton() & Controller::PRESS_DPAD_DOWN) || (mController1->getButton() & Controller::PRESS_DPAD_LEFT)
+	        || (mController1->getButton() & Controller::PRESS_DPAD_RIGHT))) {
 		mSceneAnimationTimer = 0.0f;
 	} else {
 		mSceneAnimationTimer += sys->mDeltaTime;
@@ -2866,12 +2866,12 @@ void Navi::makeVelocity()
 	mVelocity = result * speed * mod;
 
 	if (mController1) {
-		NaviParms* parms = naviMgr->mNaviParms;
-		bool check       = false;
+		NaviParms* parms  = naviMgr->mNaviParms;
+		bool turnToCursor = false;
 		if (mSceneAnimationTimer >= parms->mNaviParms.mCursorLookTime()) {
-			check = true;
+			turnToCursor = true;
 		}
-		if ((check || (!check && dist > parms->mNaviParms.mNeutralStickThreshold()))
+		if ((turnToCursor || (!turnToCursor && dist > parms->mNaviParms.mNeutralStickThreshold()))
 		    && (dist <= parms->mNaviParms.mCursorMovementStick())) {
 			mVelocity = 0.0f;
 			f32 rad   = pikmin2_atan2f(mWhistle->mNaviOffsetVec.x, mWhistle->mNaviOffsetVec.z);

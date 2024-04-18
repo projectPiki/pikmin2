@@ -1,7 +1,6 @@
 #include "JSystem/JStudio/fvb.h"
 #include "JSystem/JStudio/functionvalue.h"
 #include "JSystem/JStudio/object.h"
-#include "P2Macros.h"
 #include "stl/mem.h"
 
 typedef const void* (*CompositeOperation)(JStudio::TFunctionValue_composite::TData);
@@ -548,7 +547,14 @@ TObject* TControl::getObject(const void* id, u32 length)
 
 	// this needs to not inline later - probably an inline depth thing with iterators but Not Today :')
 	// clang-format off
-	FORCE_DONT_INLINE
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0;
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0;
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0;
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0;
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0;
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0;
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0;
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0;
 	// clang-format on
 
 	return (target != end) ? &*target : nullptr;

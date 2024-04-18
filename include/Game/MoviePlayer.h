@@ -236,8 +236,8 @@ struct MoviePlayer : public JKRDisposer {
 	void loadResource();
 	bool parse(bool);
 
-	u8 play(MoviePlayArg&);
-	u8 play(MovieConfig*, MoviePlayArg&, bool);
+	int play(MoviePlayArg&);
+	int play(MovieConfig*, MoviePlayArg&, bool);
 	void reset();
 	void resetFrame();
 	void setCamera(Camera*);
@@ -260,7 +260,7 @@ struct MoviePlayer : public JKRDisposer {
 	void getSuspendedContext();
 	void do_stop();
 	void suspend(s32);
-	void isLoadingBlack();
+	bool isLoadingBlack();
 	void draw2d();
 
 	inline void setFlag(u32 flag) { mFlags.typeView |= flag; }

@@ -130,7 +130,7 @@ void MoviePlayer::clearMovieHeap()
  * @note Address: 0x8042C9D0
  * @note Size: 0x60
  */
-u8 MoviePlayer::play(MoviePlayArg& arg)
+int MoviePlayer::play(MoviePlayArg& arg)
 {
 	MovieConfig* config = findConfig(arg.mMovieName, arg.mCourseName);
 	if (config) {
@@ -144,7 +144,7 @@ u8 MoviePlayer::play(MoviePlayArg& arg)
  * @note Address: 0x8042CA30
  * @note Size: 0x33C
  */
-u8 MoviePlayer::play(MovieConfig* config, MoviePlayArg& arg, bool flag)
+int MoviePlayer::play(MovieConfig* config, MoviePlayArg& arg, bool flag)
 {
 	if (isFlag(MVP_IsActive)) {
 		// if a movie is already playing, put the new cutscene in the queue instead
@@ -573,10 +573,10 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 				resetFrame();
 				bool end = false;
 				while (end == false) {
-					end = mStudioControl->forward(1) == false;
+					end = !(mStudioControl->forward(1) != false); // dont even ask
 					mObjectSystem->update();
 					if (mTextControl) {
-						mTextControl->update(input1, input2);
+						((P2JME::TControl*)mTextControl)->update(input1, input2);
 					}
 					unsuspend(1, false);
 				}
@@ -602,12 +602,12 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 					context->del();
 					mStoreContextInactive.add(context);
 					mActiveContextNum--;
-					if (context) {
-						mTargetNavi   = context->mNavi;
-						mActingCamera = context->mCamera;
-						mTargetObject = context->mTargetObject;
-					}
-					u8 flag = play(context->mConfig, context->mArg, true);
+				}
+				if (context) {
+					mTargetNavi   = context->mNavi;
+					mActingCamera = context->mCamera;
+					mTargetObject = context->mTargetObject;
+					int flag      = play(context->mConfig, context->mArg, true);
 					switch (flag) {
 					case MOVIEPLAY_SUCCESS:
 						return true;
@@ -623,8 +623,7 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 					JUT_PANICLINE(772, " キューになにもないぞーー(T^T)\n"); // "there's nothing in the queue (T^T)"
 				}
 				return false;
-			}
-			if (mDemoState == DEMOSTATE_Loading || mDemoState == DEMOSTATE_Fadeout) {
+			} else if (mDemoState == DEMOSTATE_Loading || mDemoState == DEMOSTATE_Fadeout) {
 				PSMCancelToPauseOffMainBgm();
 			}
 		} else if (mFadeTimer <= 0.0f) {
@@ -677,11 +676,13 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 			}
 		}
 		if (mDemoState == DEMOSTATE_Playing && mFlags.isSet(MVP_DoSkip) && !mStudioControl->mSuspend) {
-			if ((input1->getButtonDown() & Controller::PRESS_ABXYLRZ)
-			    || (input2 && (input2->getButton() & Controller::PRESS_ABXYLRZ)) && mCurrentConfig->isSkippable()) {
+			if (((input1->getButtonDown() & Controller::PRESS_ABXYLRZ) || (input2 && (input2->getButton() & Controller::PRESS_ABXYLRZ)))
+			    && mCurrentConfig->isSkippable()) {
 				skip();
-			} else if ((input1->getButtonDown() & Controller::PRESS_START)
-			           || (input2 && (input2->getButtonDown() & Controller::PRESS_START)) && !mCurrentConfig->isNeverSkippable()) {
+
+			} else if (((input1->getButtonDown() & Controller::PRESS_START)
+			            || (input2 && (input2->getButtonDown() & Controller::PRESS_START)))
+			           && !mCurrentConfig->isNeverSkippable()) {
 				skip();
 			}
 		}
@@ -753,7 +754,7 @@ bool MoviePlayer::stop()
 	mTargetObject = nullptr;
 	mAltNavi      = nullptr;
 	mAltCamera    = nullptr;
-	return isFlag(MVP_IsActive);
+	return !isFlag(MVP_IsActive);
 }
 
 /**
@@ -771,13 +772,15 @@ void MoviePlayer::do_stop()
  */
 void MoviePlayer::setCamera(Camera* cam)
 {
-	P2JST::ObjectCamera* objcam = static_cast<P2JST::ObjectCamera*>(mObjectSystem->findObject("MyCamera", JStage::TEO_Camera));
+	P2JST::ObjectCamera* objcam = (P2JST::ObjectCamera*)mObjectSystem->findObject("MyCamera", JStage::TEO_Camera);
 	if (!objcam) {
-		objcam = static_cast<P2JST::ObjectCamera*>(mObjectSystem->findObject("camera", JStage::TEO_Camera));
+		objcam = (P2JST::ObjectCamera*)mObjectSystem->findObject("camera", JStage::TEO_Camera);
 	}
 
 	if (!objcam) {
-		PSM::DemoArg arg(mCameraName, mStreamID, (mCurrentConfig) ? mCurrentConfig->mParam.mFolderName.mName : nullptr);
+		PSM::DemoArg arg((mCurrentConfig) ? mCurrentConfig->mParam.mFolderName.mData : nullptr);
+		arg.mCameraName = mCameraName;
+		arg.mBgmID      = mStreamID;
 
 		if (getActiveGameCamera()) {
 			mDemoPSM->init((Vec*)getActiveGameCamera()->getSoundPositionPtr(), (Vec*)getActiveGameCamera()->getSoundPositionPtr(),
@@ -786,267 +789,27 @@ void MoviePlayer::setCamera(Camera* cam)
 			mDemoPSM->init(nullptr, nullptr, nullptr, arg);
 		}
 		mDemoPSM->onDemoTop();
-	} else {
-		P2ASSERTLINE(1453, objcam);
-		objcam->setCamera(getActiveGameCamera());
-
-		PSM::DemoArg arg(mCameraName, mStreamID, (mCurrentConfig) ? mCurrentConfig->mParam.mFolderName.mName : nullptr);
-
-		mDemoPSM->init((Vec*)cam->getSoundPositionPtr(), (Vec*)cam->getSoundPositionPtr(), cam->getSoundMatrixPtr()->mMatrix.mtxView, arg);
-
-		cam->getViewMatrix(false);
-		cam->getViewMatrix(false)->print("viewmat");
-		cam->getSoundPositionPtr();
-		cam->getSoundPositionPtr();
-		cam->getSoundPositionPtr();
-		mDemoPSM->onDemoTop();
+		return;
 	}
 
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	li       r5, 3
-	stw      r0, 0x64(r1)
-	stmw     r27, 0x4c(r1)
-	mr       r31, r3
-	lis      r3, lbl_80499F10@ha
-	mr       r27, r4
-	addi     r29, r3, lbl_80499F10@l
-	addi     r4, r29, 0x1d4
-	lwz      r3, 0x1cc(r31)
-	bl       findObject__Q34Game5P2JST12ObjectSystemCFPCcQ26JStage8TEObject
-	or.      r28, r3, r3
-	bne      lbl_8042E0B0
-	lwz      r3, 0x1cc(r31)
-	addi     r4, r2, lbl_80520658@sda21
-	li       r5, 3
-	bl       findObject__Q34Game5P2JST12ObjectSystemCFPCcQ26JStage8TEObject
-	mr       r28, r3
+	P2ASSERTLINE(1453, objcam);
+	if (getActiveGameCamera()) {
+		cam = mActingCamera;
+	}
+	objcam->setCamera(cam);
 
-lbl_8042E0B0:
-	cmplwi   r28, 0
-	bne      lbl_8042E20C
-	lwz      r3, 0xb0(r31)
-	cmplwi   r3, 0
-	beq      lbl_8042E0CC
-	lwz      r4, 0xa0(r3)
-	b        lbl_8042E0D0
+	PSM::DemoArg arg((mCurrentConfig) ? mCurrentConfig->mParam.mFolderName.mData : nullptr);
+	arg.mCameraName = mCameraName;
+	arg.mBgmID      = mStreamID;
 
-lbl_8042E0CC:
-	li       r4, 0
+	mDemoPSM->init((Vec*)cam->getSoundPositionPtr(), (Vec*)cam->getSoundPositionPtr(), cam->getSoundMatrixPtr()->mMatrix.mtxView, arg);
 
-lbl_8042E0D0:
-	lwz      r5, 0x1a0(r31)
-	li       r3, 0
-	lwz      r0, 0xc4(r31)
-	stw      r3, 0x38(r1)
-	cmplwi   r5, 0
-	lwz      r3, 0xc0(r31)
-	stw      r4, 0x3c(r1)
-	stw      r3, 0x38(r1)
-	stw      r0, 0x40(r1)
-	beq      lbl_8042E0FC
-	b        lbl_8042E100
-
-lbl_8042E0FC:
-	lwz      r5, 0x190(r31)
-
-lbl_8042E100:
-	cmplwi   r5, 0
-	beq      lbl_8042E1C4
-	lwz      r4, 0x38(r1)
-	lwz      r3, 0x3c(r1)
-	lwz      r0, 0x40(r1)
-	stw      r4, 0x20(r1)
-	stw      r3, 0x24(r1)
-	stw      r0, 0x28(r1)
-	lwz      r3, 0x1a0(r31)
-	cmplwi   r3, 0
-	beq      lbl_8042E134
-	mr       r28, r3
-	b        lbl_8042E138
-
-lbl_8042E134:
-	lwz      r28, 0x190(r31)
-
-lbl_8042E138:
-	cmplwi   r3, 0
-	beq      lbl_8042E148
-	mr       r29, r3
-	b        lbl_8042E14C
-
-lbl_8042E148:
-	lwz      r29, 0x190(r31)
-
-lbl_8042E14C:
-	cmplwi   r3, 0
-	beq      lbl_8042E158
-	b        lbl_8042E15C
-
-lbl_8042E158:
-	lwz      r3, 0x190(r31)
-
-lbl_8042E15C:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x6c(r12)
-	mtctr    r12
-	bctrl
-	mr       r30, r3
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	mr       r29, r3
-	mr       r3, r28
-	lwz      r12, 0(r28)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0xac(r31)
-	mr       r5, r29
-	mr       r6, r30
-	lwz      r12, 0(r3)
-	addi     r7, r1, 0x20
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8042E200
-
-lbl_8042E1C4:
-	lwz      r6, 0x38(r1)
-	addi     r7, r1, 0x14
-	lwz      r3, 0x3c(r1)
-	li       r4, 0
-	lwz      r0, 0x40(r1)
-	li       r5, 0
-	stw      r6, 0x14(r1)
-	li       r6, 0
-	stw      r3, 0x18(r1)
-	stw      r0, 0x1c(r1)
-	lwz      r3, 0xac(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8042E200:
-	lwz      r3, 0xac(r31)
-	bl       onDemoTop__Q23PSM4DemoFv
-	b        lbl_8042E374
-
-lbl_8042E20C:
-	bne      lbl_8042E224
-	addi     r3, r29, 0x18
-	addi     r5, r29, 0x28
-	li       r4, 0x5ad
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8042E224:
-	lwz      r0, 0x1a0(r31)
-	cmplwi   r0, 0
-	beq      lbl_8042E234
-	b        lbl_8042E238
-
-lbl_8042E234:
-	lwz      r0, 0x190(r31)
-
-lbl_8042E238:
-	cmplwi   r0, 0
-	beq      lbl_8042E244
-	lwz      r27, 0x190(r31)
-
-lbl_8042E244:
-	mr       r3, r28
-	mr       r4, r27
-	bl       setCamera__Q34Game5P2JST12ObjectCameraFP6Camera
-	lwz      r3, 0xb0(r31)
-	cmplwi   r3, 0
-	beq      lbl_8042E264
-	lwz      r6, 0xa0(r3)
-	b        lbl_8042E268
-
-lbl_8042E264:
-	li       r6, 0
-
-lbl_8042E268:
-	lwz      r0, 0xc4(r31)
-	li       r5, 0
-	lwz      r4, 0xc0(r31)
-	mr       r3, r27
-	stw      r5, 0x2c(r1)
-	stw      r4, 8(r1)
-	stw      r6, 0xc(r1)
-	stw      r0, 0x10(r1)
-	lwz      r12, 0(r27)
-	stw      r6, 0x30(r1)
-	lwz      r12, 0x6c(r12)
-	stw      r4, 0x2c(r1)
-	stw      r0, 0x34(r1)
-	mtctr    r12
-	bctrl
-	mr       r29, r3
-	mr       r3, r27
-	lwz      r12, 0(r27)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	mr       r30, r3
-	mr       r3, r27
-	lwz      r12, 0(r27)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0xac(r31)
-	mr       r5, r30
-	mr       r6, r29
-	lwz      r12, 0(r3)
-	addi     r7, r1, 8
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r27
-	li       r4, 0
-	lwz      r12, 0(r27)
-	lwz      r12, 0x48(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r27
-	li       r4, 0
-	lwz      r12, 0(r27)
-	lwz      r12, 0x48(r12)
-	mtctr    r12
-	bctrl
-	addi     r4, r2, lbl_80520660@sda21
-	bl       print__7MatrixfFPc
-	mr       r3, r27
-	lwz      r12, 0(r27)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r27
-	lwz      r12, 0(r27)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r27
-	lwz      r12, 0(r27)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xac(r31)
-	bl       onDemoTop__Q23PSM4DemoFv
-
-lbl_8042E374:
-	lmw      r27, 0x4c(r1)
-	lwz      r0, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+	cam->getViewMatrix(false);
+	cam->getViewMatrix(false)->print("viewmat");
+	cam->getSoundPositionPtr();
+	cam->getSoundPositionPtr();
+	cam->getSoundPositionPtr();
+	mDemoPSM->onDemoTop();
 }
 
 /**
@@ -1128,9 +891,12 @@ bool MoviePlayer::isPlaying(char* name)
  * @note Address: N/A
  * @note Size: 0x20
  */
-void MoviePlayer::isLoadingBlack()
+bool MoviePlayer::isLoadingBlack()
 {
-	// UNUSED FUNCTION
+	if (mCurrentConfig) {
+		return (mCurrentConfig->mDrawType >> 2) & 1;
+	}
+	return false;
 }
 
 /**
@@ -1145,8 +911,7 @@ void MoviePlayer::drawLoading(Graphics& gfx)
 
 		J2DOrthoGraph& graf = gfx.mOrthoGraph;
 		graf.setColor(c);
-		u8 doBox = (mCurrentConfig) ? (mCurrentConfig->mDrawType >> 2) & 1 : false;
-		if (doBox) {
+		if (isLoadingBlack()) {
 			u32 y    = System::getRenderModeObj()->efbHeight;
 			u32 x    = System::getRenderModeObj()->fbWidth;
 			f32 zero = 0.0f;

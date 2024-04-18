@@ -540,7 +540,7 @@ lbl_80430F14:
  * @note Address: 0x80430F3C
  * @note Size: 0xFC
  */
-ObjectBase* ObjectSystem::findObject(char const*, JStage::TEObject) const
+JStage::TObject* ObjectSystem::findObject(char const*, JStage::TEObject) const
 {
 	/*
 	stwu     r1, -0x60(r1)

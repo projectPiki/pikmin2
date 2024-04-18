@@ -28,10 +28,10 @@ struct DemoInitiator {
 };
 
 struct DemoArg {
-	DemoArg(char* camName, u32 id, char* name)
-	    : mCameraName(camName)
+	DemoArg(char* name)
+	    : mCameraName(nullptr)
 	    , mName(name)
-	    , mBgmID(id)
+	// , mBgmID(id)
 	{
 	}
 
