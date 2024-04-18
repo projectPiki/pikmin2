@@ -181,14 +181,14 @@ u8 MoviePlayer::play(MovieConfig* config, MoviePlayArg& arg, bool flag)
 			test = (posFlag & 4) || (posFlag & 8);
 			if (test) {
 				mCameraPosition = arg.mOrigin;
-				mCameraAngle    = arg.mAngle * 57.295776f;
+				mCameraAngle    = arg.mAngle * RAD2DEG;
 				if (mCurrentConfig->mPositionFlag & 8) {
 					JUT_ASSERTLINE(609, mapMgr, "The Bikkuri\n");
-					mCameraAngle = 57.295776f * mapMgr->getBestAngle(mCameraPosition, 250.0f, 0.43633235f);
+					mCameraAngle = RAD2DEG * mapMgr->getBestAngle(mCameraPosition, 250.0f, 0.43633235f);
 				}
 			} else if (posFlag & 16) {
 				mCameraPosition = arg.mOrigin;
-				mCameraAngle    = arg.mAngle * 57.295776f;
+				mCameraAngle    = arg.mAngle * RAD2DEG;
 				mOffset         = arg.mSoundPosition;
 			} else {
 				mCameraPosition = posConfig->mOrigin;
@@ -423,7 +423,7 @@ void MoviePlayer::loadResource()
 	mStudioFactory->appendCreateObject(mPikminCreateObjectAudio);
 
 	mStudioControl = new JStudio::TControl;
-	mStudioControl->create(mStudioFactory, (!mStudioFactory) ? nullptr : (&mStudioFactory->mFvbFactory));
+	mStudioControl->setFactory(mStudioFactory);
 	mStudioControl->mSecondsPerFrame = 0.03333333507180214;
 
 	sys->heapStatusStart("movieResource", nullptr);
@@ -501,6 +501,8 @@ bool MoviePlayer::parse(bool flag)
 bool MoviePlayer::update(Controller* input1, Controller* input2)
 {
 	switch (mDemoState) {
+	case 7: // entirely unused state?
+		break;
 	case DEMOSTATE_Inactive:
 		return false;
 
@@ -539,7 +541,7 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 			setPauseAndDraw(mCurrentConfig);
 			mDemoState = DEMOSTATE_Playing;
 			u16 flag   = mCurrentConfig->mDrawType;
-			if (flag & 4 || flag & 2) {
+			if (!(flag & 4) && flag & 2) {
 				gameSystem->startFadein(0.5f);
 			} else {
 				gameSystem->startFadewhite();
@@ -569,9 +571,9 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 		if (mFadeTimer < 1.1f && !mCanFinish) {
 			if (isFlag(MVP_IsFinished)) {
 				resetFrame();
-				bool end = 0;
+				bool end = false;
 				while (end == false) {
-					end = bool(mStudioControl->forward(1) == false);
+					end = mStudioControl->forward(1) == false;
 					mObjectSystem->update();
 					if (mTextControl) {
 						mTextControl->update(input1, input2);
@@ -600,10 +602,12 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 					context->del();
 					mStoreContextInactive.add(context);
 					mActiveContextNum--;
-					mTargetNavi   = context->mNavi;
-					mActingCamera = context->mCamera;
-					mTargetObject = context->mTargetObject;
-					u8 flag       = play(context->mConfig, context->mArg, true);
+					if (context) {
+						mTargetNavi   = context->mNavi;
+						mActingCamera = context->mCamera;
+						mTargetObject = context->mTargetObject;
+					}
+					u8 flag = play(context->mConfig, context->mArg, true);
 					switch (flag) {
 					case MOVIEPLAY_SUCCESS:
 						return true;
@@ -631,7 +635,8 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 
 	if (isFlag(MVP_IsActive)) {
 
-		if ((input1->getButton() & Controller::PRESS_ABXYLRZ) || (input2 && (input2->getButton() & Controller::PRESS_ABXYLRZ))) {
+		if (!(input1->getButton() & Controller::PRESS_ABXYLRZ)
+		    && (!input2 || (input2 && !(input2->getButton() & Controller::PRESS_ABXYLRZ)))) {
 			setFlag(MVP_DoSkip);
 		}
 
@@ -772,10 +777,8 @@ void MoviePlayer::setCamera(Camera* cam)
 	}
 
 	if (!objcam) {
-		PSM::DemoArg arg;
-		arg.mName       = (mCurrentConfig) ? mCurrentConfig->mParam.mFolderName.mName : nullptr;
-		arg.mCameraName = mCameraName;
-		arg.mBgmID      = mStreamID;
+		PSM::DemoArg arg(mCameraName, mStreamID, (mCurrentConfig) ? mCurrentConfig->mParam.mFolderName.mName : nullptr);
+
 		if (getActiveGameCamera()) {
 			mDemoPSM->init((Vec*)getActiveGameCamera()->getSoundPositionPtr(), (Vec*)getActiveGameCamera()->getSoundPositionPtr(),
 			               getActiveGameCamera()->getSoundMatrixPtr()->mMatrix.mtxView, arg);
@@ -787,12 +790,9 @@ void MoviePlayer::setCamera(Camera* cam)
 		P2ASSERTLINE(1453, objcam);
 		objcam->setCamera(getActiveGameCamera());
 
-		PSM::DemoArg arg;
-		arg.mName       = (mCurrentConfig) ? mCurrentConfig->mParam.mFolderName.mName : nullptr;
-		arg.mCameraName = mCameraName;
-		arg.mBgmID      = mStreamID;
-		Matrixf* mtx    = cam->getSoundMatrixPtr();
-		mDemoPSM->init((Vec*)cam->getSoundPositionPtr(), (Vec*)cam->getSoundPositionPtr(), mtx->mMatrix.mtxView, arg);
+		PSM::DemoArg arg(mCameraName, mStreamID, (mCurrentConfig) ? mCurrentConfig->mParam.mFolderName.mName : nullptr);
+
+		mDemoPSM->init((Vec*)cam->getSoundPositionPtr(), (Vec*)cam->getSoundPositionPtr(), cam->getSoundMatrixPtr()->mMatrix.mtxView, arg);
 
 		cam->getViewMatrix(false);
 		cam->getViewMatrix(false)->print("viewmat");
@@ -1145,7 +1145,7 @@ void MoviePlayer::drawLoading(Graphics& gfx)
 
 		J2DOrthoGraph& graf = gfx.mOrthoGraph;
 		graf.setColor(c);
-		u8 doBox = (mCurrentConfig) ? (mCurrentConfig->mDrawType >> 1) & 1 : false;
+		u8 doBox = (mCurrentConfig) ? (mCurrentConfig->mDrawType >> 2) & 1 : false;
 		if (doBox) {
 			u32 y    = System::getRenderModeObj()->efbHeight;
 			u32 x    = System::getRenderModeObj()->fbWidth;
@@ -1169,10 +1169,7 @@ void MoviePlayer::skip()
 	gameSystem->startFadeout(1.0f);
 	mDemoPSM->onDemoFadeoutStart(30);
 	gameSystem->setPause(true, "moviePl:skip", 0);
-
-	// oh, thats nasty
-	while (mStudioControl->mObjectContainer.Iterator_isEnd_(
-	    *(JGadget::TNodeLinkList::const_iterator*)&mStudioControl->mObjectContainer.begin())) { }
+	mStudioControl->stopAllObjects();
 
 	/*
 	stwu     r1, -0x40(r1)

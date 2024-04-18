@@ -150,6 +150,19 @@ struct TControl {
 	int getSuspend() const { return mSuspend; }
 	void setSuspend(s32 suspend) { mObject_control.setSuspend(suspend); }
 
+	// could use a better name, used in moviePlayer::skip
+	void stopAllObjects()
+	{
+		JGadget::TLinkList<TObject, -12>::iterator it = mObjectContainer.begin();
+		while (it != mObjectContainer.begin()) {
+			TObject* obj = it.operator->();
+			if (((char*)obj->mIDString)[0] == '#') {
+				delete obj;
+			}
+			it++;
+		}
+	}
+
 	// _00 = VTBL
 	int _04;                                           // _04
 	int _08;                                           // _08
