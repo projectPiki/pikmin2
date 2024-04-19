@@ -1226,11 +1226,15 @@ void ObjCaveResult::statusForceScroll()
 			mScrollSelIndex++;
 		}
 	}
+
 	int i = 0;
-	JGeometry::TVec2f pos(_FC, _100);
+	JGeometry::TVec2f pos;
+	pos.x = _FC;
+	pos.y = _100;
 	FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode)
 	{
-		if (i == mScrollSelIndex + 2 && ((cNode->mItemMgr->mFlags & LOSTITEM_Unk1) != 1)) {
+		LostItemMgr* mgr = cNode->mItemMgr;
+		if (i == mScrollSelIndex + 2 && (mgr->mFlags & LOSTITEM_Unk1) != 1) {
 			cNode->mItemMgr->init(pos, i % 2); // is i odd
 		}
 		i++;
@@ -1744,12 +1748,12 @@ LostItemMgr::LostItemMgr(int count)
  * @note Address: 0x803FB240
  * @note Size: 0x3EC
  */
-void LostItemMgr::init(const JGeometry::TVec2f& pos, bool flag)
+void LostItemMgr::init(const JGeometry::TVec2f& pos, bool isOdd)
 {
 	if (mMaxPanes) {
 		f32 x = pos.x;
 		f32 y = pos.y;
-		if (flag) {
+		if (isOdd) {
 			x += 60.0f;
 		}
 
@@ -1774,7 +1778,7 @@ void LostItemMgr::init(const JGeometry::TVec2f& pos, bool flag)
 		f32 xoffs[5] = { kh::Screen::ObjCaveResult::msVal._24, kh::Screen::ObjCaveResult::msVal._28, kh::Screen::ObjCaveResult::msVal._2C,
 			             kh::Screen::ObjCaveResult::msVal._30, kh::Screen::ObjCaveResult::msVal._34 };
 
-		if (flag) {
+		if (isOdd) {
 			xoffs[0] += 60.0f;
 		}
 		f32 efxY = pos.y - 10.0f;
