@@ -1218,7 +1218,7 @@ void ObjCaveResult::statusForceScroll()
 					mOtakaraCount++;
 				}
 				if (node->mPokoValue > 0 || !node->mLostNum) {
-					mCavePokos += node->mPokoValue;
+					mCavePokos += node->mTotalPokos;
 				}
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_COIN_COUNT, 0);
 			}
@@ -1231,7 +1231,7 @@ void ObjCaveResult::statusForceScroll()
 	FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode)
 	{
 		if (i == mScrollSelIndex + 2 && ((cNode->mItemMgr->mFlags & LOSTITEM_Unk1) != 1)) {
-			cNode->mItemMgr->init(pos, i >> 7);
+			cNode->mItemMgr->init(pos, i % 2); // is i odd
 		}
 		i++;
 	}

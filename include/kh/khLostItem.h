@@ -40,7 +40,7 @@ struct LostItemMgr {
 
 	LostItem* mItemList; // _00
 	int mMaxPanes;       // _04
-	u32 mFlags;          // _08
+	s32 mFlags;          // _08
 };
 
 } // namespace Screen
