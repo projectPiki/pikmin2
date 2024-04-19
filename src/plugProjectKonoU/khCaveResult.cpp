@@ -443,7 +443,7 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 		if (calc < -mScrollUpDown || mScissorMax < calc) {
 			paneList[isOdd]->add(0.0f, offs);
 		} else {
-			if (((int)cNode->mItemMgr->mFlags & LOSTITEM_Unk2) == 2) {
+			if ((cNode->mItemMgr->mFlags & LOSTITEM_Unk2) == 2) {
 				if (cNode->mPokoValue < 0) {
 					next = 0;
 				} else {
@@ -1196,7 +1196,7 @@ void ObjCaveResult::statusForceScroll()
 			mScrollMoveTimer = 1;
 			FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode)
 			{
-				if ((int)(cNode->mItemMgr->mFlags & LOSTITEM_Unk2) != 2 && cNode->mLostNum) {
+				if ((cNode->mItemMgr->mFlags & LOSTITEM_Unk2) != 2 && cNode->mLostNum) {
 					mStatus           = CAVERES_Lost;
 					check             = true;
 					mChangeStateDelay = 0;
@@ -1530,7 +1530,7 @@ void ObjCaveResult::statusLost()
 		pos.y = _100;
 		FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode)
 		{
-			if (cNode->mLostNum != 0 && ((int)(cNode->mItemMgr->mFlags & LOSTITEM_Unk2) != 2)) {
+			if (cNode->mLostNum != 0 && ((cNode->mItemMgr->mFlags & LOSTITEM_Unk2) != 2)) {
 				pos.y = mScrollUpDown * (i - 3 - mScrollSelIndexMax) + pos.y;
 				cNode->mItemMgr->init(pos, i % 2);
 				mChangeStateDelay = mScrollTargetDist;
