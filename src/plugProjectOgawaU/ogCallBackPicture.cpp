@@ -75,9 +75,9 @@ CallBack_Picture* setCallBack_Picture(JKRArchive* arc, char* name, u64 tag1, P2D
 	mgr->set(name, 0x40000, arc);
 	CallBack_Picture* pic = new CallBack_Picture(mgr, tag1);
 
-	J2DPane* pane    = TagSearch(screen, tag2);
-	pane->mIsVisible = false;
-	pic->mTextBox    = pane;
+	J2DPane* pane = TagSearch(screen, tag2);
+	pane->hide();
+	pic->mTextBox = pane;
 
 	screen->addCallBack(tag2, pic);
 

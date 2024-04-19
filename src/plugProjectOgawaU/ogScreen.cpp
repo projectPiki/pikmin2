@@ -63,7 +63,7 @@ PictureTreeColorCaptureInfo* capturePictureTreeColor(J2DPane* picture, int count
 		captureInfo = new PictureTreeColorCaptureInfo(count, wkPtr);
 	}
 
-	if ((u16)picture->getTypeID() == 0x12) {
+	if ((u16)picture->getTypeID() == PANETYPE_Picture) {
 		JUtility::TColor white = static_cast<J2DPicture*>(picture)->getWhite();
 		JUtility::TColor black = static_cast<J2DPicture*>(picture)->getBlack();
 		if (wkMax > 0) {

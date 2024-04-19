@@ -102,10 +102,7 @@ void TotalPokoScreen::setCallBack(JKRArchive* archive, f32 x, f32 y, f32 scaleX,
 	mCurrPos.y         = mStandardPos.y;
 
 	mPane->move(mCurrPos.x, mCurrPos.y);
-	J2DPane* pane  = mPane;
-	pane->mScale.x = scaleX;
-	pane->mScale.y = scaleY;
-	pane->calcMtx();
+	mPane->updateScale(scaleX, scaleY);
 }
 
 /**

@@ -106,7 +106,7 @@ bool checkVisibleGlb(J2DPane* pane)
  */
 void setCallBackMessageSub(P2DScreen::Mgr* mgr, J2DPane* pane)
 {
-	if ((u16)pane->getTypeID() == 0x13) {
+	if ((u16)pane->getTypeID() == PANETYPE_TextBox) {
 		if (pane->getUserInfo()) {
 			u64 tag = pane->getTagName();
 			mgr->addCallBack(tag, new CallBack_Message);

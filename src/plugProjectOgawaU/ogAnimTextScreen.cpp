@@ -19,7 +19,7 @@ AnimText_Screen* setAnimTextScreen(JKRArchive* arc, P2DScreen::Mgr* parentScreen
 
 	J2DTextBoxEx* pane = static_cast<J2DTextBoxEx*>(og::Screen::TagSearch(parentScreen, tag));
 	pane->setString("");
-	pane->mIsVisible = false;
+	pane->hide();
 
 	AnimText_Screen* anm = new AnimText_Screen(scrn, 'joint');
 	anm->mTextBox        = pane;
@@ -167,7 +167,7 @@ void AnimText_Screen::update()
 				}
 
 				f32 t = (1.0f + sinf((mBlinkTimer * TAU) / mBlinkFactor)) / 2;
-				_64 += (t - _64) / 3.0f;
+				mBlinkBlendRatio += (t - mBlinkBlendRatio) / 3.0f;
 
 			} else if (mBlinkLevel < 1.0f) {
 				mBlinkLevel += 0.05f;
@@ -179,7 +179,7 @@ void AnimText_Screen::update()
 			JUtility::TColor blendedWhite;
 			if (mBlinkFactor > 0.0f) {
 				JUtility::TColor interColor;
-				og::Screen::blendColor(mColor2, mColor3, _64, &interColor);
+				og::Screen::blendColor(mColor2, mColor3, mBlinkBlendRatio, &interColor);
 				og::Screen::blendColor(interColor, mColor4, mBlinkLevel, &blendedWhite);
 				mColor12 = blendedWhite;
 
@@ -264,10 +264,10 @@ void AnimText_Screen::blink(f32 factor, f32 timer)
 	if (factor > 0.0f) {
 		mIsBlinking = true;
 	}
-	mBlinkFactor = factor;
-	mBlinkTimer  = timer;
-	f32 calc     = sinf((mBlinkTimer * TAU) / mBlinkFactor);
-	_64          = (calc + 1.0f) / 2;
+	mBlinkFactor     = factor;
+	mBlinkTimer      = timer;
+	f32 calc         = sinf((mBlinkTimer * TAU) / mBlinkFactor);
+	mBlinkBlendRatio = (calc + 1.0f) / 2;
 }
 } // namespace Screen
 } // namespace og

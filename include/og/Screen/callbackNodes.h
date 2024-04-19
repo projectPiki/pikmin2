@@ -210,9 +210,9 @@ struct CallBack_DrawAfter : public P2DScreen::CallBackNode {
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
-	J2DPictureEx* _1C; // _1C
-	J2DPictureEx* _20; // _20
-	bool mIsVisible;   // _24
+	J2DPictureEx* mOrigPane;   // _1C
+	J2DPictureEx* mCopiedPane; // _20
+	bool mIsVisible;           // _24
 };
 
 // Size: 0x4C
@@ -264,39 +264,39 @@ struct CallBack_LifeGauge : public P2DScreen::CallBackNode {
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
-	DataNavi* mData;              // _1C
-	f32 mNaviLifeRatio;           // _20
-	f32 mWidthOrRadiusMaybe;      // _24
-	f32 mOffsetX;                 // _28
-	f32 mOffsetY;                 // _2C
-	f32 _30;                      // _30
-	f32 _34;                      // _34
-	f32 _38;                      // _38
-	f32 mNa_i_d4;                 // _3C
-	f32 mNa_i_d8;                 // _40
-	f32 mLi_i_d4;                 // _44
-	f32 mLi_i_d8;                 // _48
-	LifeGauge* mLifeGauge;        // _4C
-	u8 mIsActiveNavi;             // _50
-	u8 mIsActiveNaviOld;          // _51
-	f32 mLowLifeSoundTimer;       // _54
-	f32 _58;                      // _58
-	P2DScreen::Mgr* _5C;          // _5C
-	J2DPane* mPin1;               // _60
-	J2DPicture* mPin2;            // _64
-	J2DPane* mNa_i;               // _68
-	J2DPane* mLi_i;               // _6C
-	J2DPicture* _70;              // _70
-	J2DPicture* _74;              // _74
-	J2DPicture* _78;              // _78
-	J2DPicture* _7C;              // _7C
-	J2DPicture* _80;              // _80
-	J2DPicture* _84;              // _84
-	AngleMgr* mAngleMgr;          // _88
-	ScaleMgr* mScaleMgr;          // _8C
-	LifeGaugeType mLifeGaugeType; // _90
-	u8 mCanNaviChange;            // _94
-	f32 mMoveTimer;               // _98
+	DataNavi* mData;                  // _1C
+	f32 mNaviLifeRatio;               // _20
+	f32 mWidthOrRadiusMaybe;          // _24
+	f32 mOffsetX;                     // _28
+	f32 mOffsetY;                     // _2C
+	f32 _30;                          // _30
+	f32 _34;                          // _34
+	f32 _38;                          // _38
+	f32 mNa_i_d4;                     // _3C
+	f32 mNa_i_d8;                     // _40
+	f32 mLi_i_d4;                     // _44
+	f32 mLi_i_d8;                     // _48
+	LifeGauge* mLifeGauge;            // _4C
+	u8 mIsActiveNavi;                 // _50
+	u8 mIsActiveNaviOld;              // _51
+	f32 mLowLifeSoundTimer;           // _54
+	f32 _58;                          // _58
+	P2DScreen::Mgr* mScreenOwner;     // _5C
+	J2DPane* mPin1;                   // _60
+	J2DPicture* mPin2;                // _64
+	J2DPane* mNa_i;                   // _68
+	J2DPane* mLi_i;                   // _6C
+	J2DPicture* mPaneOlimarIcon;      // _70
+	J2DPicture* mPaneLouieIcon;       // _74
+	J2DPicture* mPanePresidentIcon;   // _78
+	J2DPicture* mPaneOlimarBorder;    // _7C
+	J2DPicture* mPaneLouieBorder;     // _80
+	J2DPicture* mPanePresidentBorder; // _84
+	AngleMgr* mAngleMgr;              // _88
+	ScaleMgr* mScaleMgr;              // _8C
+	LifeGaugeType mLifeGaugeType;     // _90
+	u8 mCanNaviChange;                // _94
+	f32 mMoveTimer;                   // _98
 
 	static struct StaticValues {
 		inline StaticValues()
@@ -448,7 +448,7 @@ struct AnimText_Screen : public CallBack_Screen {
 	f32 mBlinkTimer;           // _58
 	f32 mBlinkFactor;          // _5C
 	f32 mBlinkLevel;           // _60
-	f32 _64;                   // _64
+	f32 mBlinkBlendRatio;      // _64
 	bool mIsBlinking;          // _68
 	f32 _6C;                   // _6C
 	JUtility::TColor mColor0;  // _70

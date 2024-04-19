@@ -351,8 +351,8 @@ TScaleUpCounter* setScaleUpCounter(P2DScreen::Mgr* screen, u64 inTag, u32* data,
 			break;
 		}
 
-		tagSub3          = tag;
-		pane->mIsVisible = false;
+		tagSub3 = tag;
+		pane->hide();
 	}
 
 	TScaleUpCounter* counter = new TScaleUpCounter(const_cast<char**>(og::Screen::SujiTex32), flag, offs, arc);
@@ -368,10 +368,8 @@ TScaleUpCounter* setScaleUpCounter(P2DScreen::Mgr* screen, u64 inTag, u32* data,
  */
 TScaleUpCounter* setScaleUpCounter2(P2DScreen::Mgr* screen, u64 inTag, u64 searchTag, u32* data, u16 flag, JKRArchive* arc)
 {
-	J2DPane* pane    = screen->search(inTag);
-	pane->mIsVisible = false;
-	pane             = screen->search(searchTag);
-	pane->mIsVisible = false;
+	screen->search(inTag)->hide();
+	screen->search(searchTag)->hide();
 
 	TScaleUpCounter* counter = new TScaleUpCounter(const_cast<char**>(og::Screen::SujiTex32), flag, 2, arc);
 	counter->init(screen, inTag, searchTag, searchTag, data, true);

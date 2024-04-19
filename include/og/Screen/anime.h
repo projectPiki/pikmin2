@@ -25,24 +25,24 @@ struct AnimBaseBase {
 	bool updateSub();
 
 	// _00 = VTBL
-	int mType;           // _04 1 =AnimScreen, 2 = AnimPane
-	bool _08;            // _08
-	f32 _0C;             // _0C
-	u8 _10;              // _10
-	u8 mAlpha;           // _11
-	bool mDoSetAlpha;    // _12
-	J2DAnmBase* mAnm;    // _14
-	f32 mCurrentFrame;   // _18
-	f32 mLastFrame;      // _1C
-	f32 mSpeed;          // _20
-	f32 _24;             // _24
-	f32 _28;             // _28
-	f32 _2C;             // _2C
-	f32 mArea;           // _30
-	f32 _34;             // _34
-	bool mIsRepeating;   // _38
-	bool _39;            // _39
-	char* mResourcePath; // _3C
+	int mType;            // _04 1 =AnimScreen, 2 = AnimPane
+	bool mIsInStartDelay; // _08
+	f32 mTimer;           // _0C
+	u8 mDoDelayUpdate;    // _10
+	u8 mAlpha;            // _11
+	bool mDoSetAlpha;     // _12
+	J2DAnmBase* mAnm;     // _14
+	f32 mCurrentFrame;    // _18
+	f32 mLastFrame;       // _1C
+	f32 mSpeed;           // _20
+	f32 mSpeedSub;        // _24
+	f32 mDeltaTime;       // _28
+	f32 _2C;              // _2C
+	f32 mArea;            // _30
+	f32 _34;              // _34
+	bool mIsRepeating;    // _38
+	bool _39;             // _39
+	char* mResourcePath;  // _3C
 };
 
 struct AnimScreen : public AnimBaseBase {
@@ -106,10 +106,10 @@ struct AnimGroup {
 	AnimBaseBase** mAnimPanes; // _00
 	int mPaneCount;            // _04
 	int mPaneLimit;            // _08
-	u8 _0C;                    // _0C
+	u8 mNeedRestart;           // _0C
 	f32 _10;                   // _10
-	f32 _14;                   // _14
-	f32 _18;                   // _18
+	f32 mMinFrame;             // _14
+	f32 mMaxFrame;             // _18
 };
 
 struct AnimList {

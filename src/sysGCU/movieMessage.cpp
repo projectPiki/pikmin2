@@ -1482,12 +1482,12 @@ TControl::EModeFlag TControl::setMode(EModeFlag mode)
 		break;
 	case MODEFLAG_Finish:
 		PSSystem::spSysIF->playSystemSe(PSSE_MP_SHIP_PERIOD_01, 0);
-		WindowPane* windowPane        = mMessageWindow->mWindowPane;
-		windowPane->mPane->mIsVisible = true;
-		windowPane->mState            = 3;
-		windowPane->mTimer            = 0.0f;
-		windowPane->mMaxTime          = 0.5f;
-		PodIconScreen* podIconScreen  = mPodIcon;
+		WindowPane* windowPane = mMessageWindow->mWindowPane;
+		windowPane->mPane->show();
+		windowPane->mState           = 3;
+		windowPane->mTimer           = 0.0f;
+		windowPane->mMaxTime         = 0.5f;
+		PodIconScreen* podIconScreen = mPodIcon;
 		if ((rand() * 2.0)) {
 			_GXRenderModeObj* renderObj = System::getRenderModeObj();
 			u16 efbHeight               = renderObj->efbHeight;

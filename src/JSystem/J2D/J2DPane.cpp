@@ -13,9 +13,9 @@ J2DPane::J2DPane()
 {
 	mTransform    = nullptr;
 	mBloBlockType = 'PAN1';
-	mIsVisible    = true;
-	mTag          = 0;
-	mMessageID    = 0;
+	show();
+	mTag       = 0;
+	mMessageID = 0;
 	mBounds.set(0.0f, 0.0f, 0.0f, 0.0f);
 
 	initiate();

@@ -24,28 +24,28 @@ CallBack_LifeGauge::CallBack_LifeGauge()
 	mOffsetY            = 0.0f;
 	mLowLifeSoundTimer  = 0.0f;
 	_58                 = 1.0f;
-	_5C                 = nullptr;
+	mScreenOwner        = nullptr;
 	mPin1               = nullptr;
 	mPin2               = nullptr;
 	mNa_i               = nullptr;
 	mLi_i               = nullptr;
 
-	mLifeGauge       = new LifeGauge;
-	_34              = 0.0f;
-	_38              = 0.0f;
-	mNa_i_d4         = 0.0f;
-	mNa_i_d8         = 0.0f;
-	mLi_i_d4         = 0.0f;
-	mLi_i_d8         = 0.0f;
-	_30              = 0.0f;
-	mIsActiveNavi    = 1;
-	mIsActiveNaviOld = mIsActiveNavi;
-	_70              = nullptr;
-	_74              = nullptr;
-	_78              = nullptr;
-	_7C              = nullptr;
-	_80              = nullptr;
-	_84              = nullptr;
+	mLifeGauge           = new LifeGauge;
+	_34                  = 0.0f;
+	_38                  = 0.0f;
+	mNa_i_d4             = 0.0f;
+	mNa_i_d8             = 0.0f;
+	mLi_i_d4             = 0.0f;
+	mLi_i_d8             = 0.0f;
+	_30                  = 0.0f;
+	mIsActiveNavi        = 1;
+	mIsActiveNaviOld     = mIsActiveNavi;
+	mPaneOlimarIcon      = nullptr;
+	mPaneLouieIcon       = nullptr;
+	mPanePresidentIcon   = nullptr;
+	mPaneOlimarBorder    = nullptr;
+	mPaneLouieBorder     = nullptr;
+	mPanePresidentBorder = nullptr;
 
 	mAngleMgr = new AngleMgr;
 	mScaleMgr = new ScaleMgr;
@@ -65,7 +65,7 @@ void CallBack_LifeGauge::init(P2DScreen::Mgr* mgr, DataNavi* data, LifeGaugeType
 		mNaviLifeRatio = data->mNaviLifeRatio;
 		mLifeGauge->init(128);
 		mLifeGauge->mSegmentCount = 128.0f * mNaviLifeRatio;
-		_5C                       = mgr;
+		mScreenOwner              = mgr;
 
 		mPin1 = TagSearch(mgr, 'pin1');
 		mPin2 = static_cast<J2DPicture*>(TagSearch(mgr, 'pin2'));
@@ -80,16 +80,16 @@ void CallBack_LifeGauge::init(P2DScreen::Mgr* mgr, DataNavi* data, LifeGaugeType
 
 		mPin1->hide();
 		mPin2->hide();
-		_70 = static_cast<J2DPicture*>(mgr->search('navi_i'));
-		_74 = static_cast<J2DPicture*>(mgr->search('navi2_i'));
-		_78 = static_cast<J2DPicture*>(mgr->search('navi3_i'));
-		_7C = static_cast<J2DPicture*>(mgr->search('navi'));
-		_80 = static_cast<J2DPicture*>(mgr->search('navi2'));
-		_84 = static_cast<J2DPicture*>(mgr->search('navi3'));
+		mPaneOlimarIcon      = static_cast<J2DPicture*>(mgr->search('navi_i'));
+		mPaneLouieIcon       = static_cast<J2DPicture*>(mgr->search('navi2_i'));
+		mPanePresidentIcon   = static_cast<J2DPicture*>(mgr->search('navi3_i'));
+		mPaneOlimarBorder    = static_cast<J2DPicture*>(mgr->search('navi'));
+		mPaneLouieBorder     = static_cast<J2DPicture*>(mgr->search('navi2'));
+		mPanePresidentBorder = static_cast<J2DPicture*>(mgr->search('navi3'));
 
-		if (_80 && _84) {
-			_80->hide();
-			_84->hide();
+		if (mPaneLouieBorder && mPanePresidentBorder) {
+			mPaneLouieBorder->hide();
+			mPanePresidentBorder->hide();
 			setType(lifeGaugeType);
 		}
 
@@ -119,30 +119,26 @@ void CallBack_LifeGauge::setType(LifeGaugeType lifeGaugeType)
 	mLifeGaugeType = lifeGaugeType;
 
 	switch (lifeGaugeType) {
-	case 1:
-		JUTTexture* texture1 = _74->getTexture(0);
-		_70->changeTexture(texture1->mTexInfo, 0);
+	case LIFEGAUGE_LOUIE:
+		JUTTexture* texture1 = mPaneLouieIcon->getTexture(0);
+		mPaneOlimarIcon->changeTexture(texture1->mTexInfo, 0);
 
-		_7C->setWhite(_80->getWhite());
-		_7C->setBlack(_80->getBlack());
+		mPaneOlimarBorder->setWhite(mPaneLouieBorder->getWhite());
+		mPaneOlimarBorder->setBlack(mPaneLouieBorder->getBlack());
 
-		_80->getCornerColor(color);
-
-		_7C->setCornerColor(color);
-
+		mPaneLouieBorder->getCornerColor(color);
+		mPaneOlimarBorder->setCornerColor(color);
 		break;
 
-	case 2:
-		JUTTexture* texture2 = _78->getTexture(0);
-		_70->changeTexture(texture2->mTexInfo, 0);
+	case LIFEGAUGE_PRESIDENT:
+		JUTTexture* texture2 = mPanePresidentIcon->getTexture(0);
+		mPaneOlimarIcon->changeTexture(texture2->mTexInfo, 0);
 
-		_7C->setWhite(_84->getWhite());
-		_7C->setBlack(_84->getBlack());
+		mPaneOlimarBorder->setWhite(mPanePresidentBorder->getWhite());
+		mPaneOlimarBorder->setBlack(mPanePresidentBorder->getBlack());
 
-		_84->getCornerColor(color);
-
-		_7C->setCornerColor(color);
-
+		mPanePresidentBorder->getCornerColor(color);
+		mPaneOlimarBorder->setCornerColor(color);
 		break;
 	}
 }

@@ -13,10 +13,11 @@ namespace Screen {
  */
 CallBack_DrawAfter::CallBack_DrawAfter(P2DScreen::Mgr* mgr, u64 tag)
 {
-	_1C             = static_cast<J2DPictureEx*>(TagSearch(mgr, tag));
-	_20             = CopyPicture(_1C, 'ogDAcopy');
-	_1C->mIsVisible = false;
-	mIsVisible      = true;
+	// make a copy of the original pane, hide the original, the copy will be drawn after everything else
+	mOrigPane   = static_cast<J2DPictureEx*>(TagSearch(mgr, tag));
+	mCopiedPane = CopyPicture(mOrigPane, 'ogDAcopy');
+	mOrigPane->hide();
+	mIsVisible = true;
 }
 
 /**
@@ -32,12 +33,12 @@ void CallBack_DrawAfter::update() { }
 void CallBack_DrawAfter::draw(Graphics& gfx, J2DGrafContext& context)
 {
 	if (mIsVisible) {
-		JGeometry::TVec3f globalVtx0 = _1C->getGlbVtx(0);
-		JGeometry::TVec3f globalVtx3 = _1C->getGlbVtx(3);
+		JGeometry::TVec3f minPos = mOrigPane->getGlbVtx(0);
+		JGeometry::TVec3f maxPos = mOrigPane->getGlbVtx(3);
 
 		gfx.mOrthoGraph.setPort();
 
-		_20->draw(globalVtx0.x, globalVtx0.y, globalVtx3.x - globalVtx0.x, globalVtx3.y - globalVtx0.y, false, false, false);
+		mCopiedPane->draw(minPos.x, minPos.y, maxPos.x - minPos.x, maxPos.y - minPos.y, false, false, false);
 
 		context.setPort();
 	}

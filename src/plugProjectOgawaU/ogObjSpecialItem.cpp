@@ -54,7 +54,7 @@ void ObjSpecialItem::doCreate(JKRArchive* arc)
 
 	J2DPane* pane = mScreen->search('item');
 	if (pane) {
-		pane->mIsVisible = false;
+		pane->hide();
 	}
 
 	mPaneSetP  = mScreen->search('Notsetp');

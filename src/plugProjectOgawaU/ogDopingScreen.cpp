@@ -100,31 +100,32 @@ void DopingScreen::setParam(DataNavi& data)
 void DopingScreen::update()
 {
 	P2DScreen::Mgr::update();
-	mPaneCenterDpad->mIsVisible = false;
+
+	// dpad is hidden by default
+	mPaneCenterDpad->hide();
+
+	// If spicy unlocked, show spicy and dpad, otherwise hide it
 	if (mIsSpicySprayEnabled) {
-		mPaneSpicySpray->mIsVisible  = true;
-		mPaneCenterDpad->mIsVisible  = true;
-		mPaneBottleSpicy->mIsVisible = true;
+		mPaneSpicySpray->show();
+		mPaneCenterDpad->show();
+		mPaneBottleSpicy->show();
 	} else {
-		mPaneSpicySpray->mIsVisible  = false;
-		mPaneBottleSpicy->mIsVisible = false;
+		mPaneSpicySpray->hide();
+		mPaneBottleSpicy->hide();
 	}
 
+	// If bitter unlocked, show spicy and dpad, otherwise hide it
 	if (mIsBitterSprayEnabled) {
-		mPaneBitterSpray->mIsVisible  = true;
-		mPaneCenterDpad->mIsVisible   = true;
-		mPaneBottleBitter->mIsVisible = true;
+		mPaneBitterSpray->show();
+		mPaneCenterDpad->show();
+		mPaneBottleBitter->show();
 	} else {
-		mPaneBitterSpray->mIsVisible  = false;
-		mPaneBottleBitter->mIsVisible = false;
+		mPaneBitterSpray->hide();
+		mPaneBottleBitter->hide();
 	}
 	mDopingCheck->update();
 
-	f32 yoffs       = mRootPosition.y + mOffset.y;
-	J2DPane* pane   = mPaneAll;
-	pane->mOffset.x = mRootPosition.x + mOffset.x;
-	pane->mOffset.y = yoffs;
-	pane->calcMtx();
+	mPaneAll->setOffset(mRootPosition.x, mOffset.x, mRootPosition.y, mOffset.y);
 
 	// when spray 0 is first goten
 	if (mHasGotSpicySpray && mSpicySprayGet < 1.0f) {

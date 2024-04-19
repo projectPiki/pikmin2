@@ -92,11 +92,11 @@ void ObjCave::doCreate(JKRArchive* arc)
 	mPaneFinalf = og::Screen::TagSearch(mPikiCounter, 'Nfinalf');
 
 	if (mDisp->mIsFinalFloor) {
-		mPaneChika->mIsVisible  = false;
-		mPaneFinalf->mIsVisible = true;
+		mPaneChika->hide();
+		mPaneFinalf->show();
 	} else {
-		mPaneChika->mIsVisible  = true;
-		mPaneFinalf->mIsVisible = false;
+		mPaneChika->show();
+		mPaneFinalf->hide();
 	}
 
 	mPokos = mDisp->mDataGame.mPokoCount;
