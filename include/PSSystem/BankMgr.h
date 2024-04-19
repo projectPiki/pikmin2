@@ -4,6 +4,14 @@
 #include "types.h"
 #include "JSystem/JKernel/JKRDisposer.h"
 
+struct PSBankData {
+	u8 mData[3]; // _00
+};
+
+struct PSWsData {
+	u8 mData[2]; // _00
+};
+
 namespace PSSystem {
 struct BankMgr : public JKRDisposer {
 	BankMgr();

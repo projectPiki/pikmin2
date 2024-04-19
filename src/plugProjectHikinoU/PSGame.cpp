@@ -1,6 +1,7 @@
 #include "PSGame/BASARC.h"
 #include "PSSystem/PSSystemIF.h"
 #include "PSAutoBgm/PSAutoBgm.h"
+#include "PSAutoBgm/Cycle.h"
 #include "PSGame/CameraMgr.h"
 #include "PSGame/EnvSe.h"
 #include "PSGame/PikScene.h"

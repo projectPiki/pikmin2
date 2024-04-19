@@ -3,11 +3,13 @@
 
 #include "types.h"
 #include "JSystem/JAudio/JAD/JADUtility.h"
-#include "PSAutoBgm/Cycle.h"
 #include "JSystem/JAudio/JAD/JADStr.h"
 #include "JSystem/JAudio/JAS/JASTrack.h"
+#include "PSSystem/BankMgr.h"
 
 namespace PSAutoBgm {
+struct CycleBase;
+
 /**
  * @size = 2C4
  */
@@ -17,7 +19,7 @@ struct Module : public JADUtility::PrmSetBase {
 	virtual ~Module();               // _08
 	virtual void afterGetFromFree(); // _20
 
-	static void removeCallback(u8, void*);
+	static void removeCallback(u8 idx, void* module);
 	u32 seqCpuSync_AutoBgm_Module(JASTrack*, u16, u32, JASTrack*);
 	void setTableAddress(JASTrack*);
 	u16 cycleLoop(JASTrack*);
@@ -36,11 +38,11 @@ struct Module : public JADUtility::PrmSetBase {
 	JADUtility::PrmSlider<u8> _214;      // _214
 	JADUtility::PrmSlider<u8> _244;      // _244
 	JADUtility::PrmRadioButton<u8> _274; // _274
-	s16 _2A4;                            // _2A4
-	uint _2A8;                           // _2A8
-	u8 _2AC;                             // _2AC - unknown
-	uint _2B0;                           // _2B0
-	u8 _2B4;                             // _2B4
+	u16 _2A4;                            // _2A4
+	PSBankData* mBankData;               // _2A8, array with
+	u8 mBankDataNum;                     // _2AC
+	PSWsData* mWsData;                   // _2B0, array of some size
+	u8 mWsDataNum;                       // _2B4
 	u16 _2B6;                            // _2B6
 	CycleBase* _2B8[2];                  // _2B8 - 0 = OnCycle, 1 = OffCycle
 	u8 _2C0;                             // _2C0 - cycle index?
@@ -57,7 +59,7 @@ struct Track : public JADUtility::PrmSetRc<PSAutoBgm::Module> {
 	virtual ~Track();                // _08
 	virtual void afterGetFromFree(); // _20
 
-	static void removeCallback(u8, void*);
+	static void removeCallback(u8 idx, void* track);
 	u32 seqCpuSync_AutoBgm_Track(JASTrack*, u16, u32, JASTrack*);
 	void incCurModule();
 

@@ -22,20 +22,23 @@ struct Conductor : public JADUtility::PrmSetRc<PSAutoBgm::Track> {
 	virtual ~Conductor();                         // _08
 	virtual void* getEraseLink() { return &_98; } // _1C (weak)
 
-	void removeCallback(u8, void*);
-	u16 seqCpuSync_AutoBgm(JASTrack*, u16, u32, JASTrack*);
+	static void removeCallback(u8 idx, void* conductor);
+	u32 seqCpuSync_AutoBgm(JASTrack*, u16, u32, JASTrack*);
 	void createTables(JASTrack*);
+
+	// unused/inlined:
+	void onBeatProc();
 
 	// _00      = VTABLE
 	// _04-_98  = PrmSetRc
 	JSULink<Conductor> _98;             // _98
-	u32 _A8;                            // _A8
-	u32 _AC;                            // _AC
+	PSBankData* mBankData;              // _A8
+	PSBankData* mWsData;                // _AC
 	u32 _B0;                            // _B0 - unknown
-	u32 _B4;                            // _B4
+	AutoBgm* _B4;                       // _B4
 	JADUtility::PrmSlider<u8> _B8;      // _B8
 	JADUtility::PrmRadioButton<u8> _E8; // _E8
-	u8 _118[0x4];                       // _118 - unknown
+	u8 _118;                            // _118
 };
 
 /**

@@ -125,6 +125,8 @@ struct PrmBase : public JKRDisposer {
 		}
 	} // _10 (weak)
 
+	inline JSULink<PrmBase>* getLink() { return &mLink; }
+
 	// _00      = VTBL
 	// _00-_18  = JKRDisposer
 	u8 _18;                 // _18
@@ -138,6 +140,12 @@ template <typename T>
 struct Prm : public PrmBase {
 	Prm()
 	    : PrmBase()
+	{
+	}
+
+	Prm(T value)
+	    : PrmBase()
+	    , mValue(value)
 	{
 	}
 
@@ -157,20 +165,6 @@ struct Prm : public PrmBase {
 	// _04-_2C  = PrmBase
 	T mValue; // _2C
 };
-
-// template <>
-// inline void Prm<char*>::save(JSUMemoryOutputStream& output)
-// {
-// 	output.write(mValue);
-// 	PrmBase::save(output);
-// }
-
-// template <>
-// inline void Prm<char*>::load(JSUMemoryInputStream& input)
-// {
-// 	input.read(mValue);
-// 	PrmBase::load(input);
-// }
 
 /**
  * @size = 0x98
@@ -220,7 +214,7 @@ template <typename T>
 PrmSetRc<T>::PrmSetRc()
     : PrmSetBase(true)
     , _64(nullptr)
-    , _68()
+    , _68(0)
 {
 }
 

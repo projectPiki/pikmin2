@@ -21,7 +21,19 @@ ConductorArcMgr* ConductorArcMgr::sInstance;
  */
 Conductor::Conductor(AutoBgm* autoBgm, int p2)
     : _98(this)
+    , mBankData(nullptr)
+    , mWsData(nullptr)
+    , _B0(0)
+    , _B4(autoBgm)
+    , _118(100)
 {
+	mList.append(_E8.getLink());
+	mList.append(_B8.getLink());
+	mList.append(_68.getLink());
+	_19                   = 17;
+	_118                  = _B8.mValue;
+	mTree.mRemoveCallback = &removeCallback;
+	mTree._34             = this;
 }
 
 /**
@@ -31,35 +43,26 @@ Conductor::Conductor(AutoBgm* autoBgm, int p2)
 Conductor::~Conductor() { }
 
 /**
+ * @note Address: N/A
+ * @note Size: 0x74
+ */
+void Conductor::onBeatProc() { _B4->mRootTrack->onBeatTop(); }
+
+/**
  * @note Address: 0x803392B4
  * @note Size: 0x34
  */
-void Conductor::removeCallback(u8 p1, void* p2)
+void Conductor::removeCallback(u8 idx, void* conductor)
 {
-	// Conductor* conductor = static_cast<Conductor*>(p2);
-	// conductor->_B4
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0xb4(r4)
-	li       r4, 0
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Conductor* cdtr = static_cast<Conductor*>(conductor);
+	cdtr->_B4->stopSeq(0);
 }
 
 /**
  * @note Address: 0x803392E8
  * @note Size: 0x11C
  */
-u16 Conductor::seqCpuSync_AutoBgm(JASTrack* track1, u16 cmd, u32 p3, JASTrack* track2)
+u32 Conductor::seqCpuSync_AutoBgm(JASTrack* track1, u16 cmd, u32 p3, JASTrack* track2)
 {
 	switch (cmd) {
 	case 0x300:
@@ -89,13 +92,13 @@ void Conductor::createTables(JASTrack* track)
 	u16 v2;
 	track->readPortAppDirect(2, &v1);
 	track->readPortAppDirect(3, &v2);
-	_A8 = (u32)((v2 | (v1 << 16)) + track->mSeqCtrl.mRawFilePtr);
+	mBankData = (PSBankData*)((v2 | (v1 << 16)) + track->mSeqCtrl.mRawFilePtr);
 
 	track->readPortAppDirect(4, &v1);
 	track->readPortAppDirect(5, &v2);
-	_AC = (u32)((v2 | (v1 << 16)) + track->mSeqCtrl.mRawFilePtr);
-	P2ASSERTLINE(230, _A8 != 0);
-	P2ASSERTLINE(231, _AC != 0);
+	mWsData = (PSBankData*)((v2 | (v1 << 16)) + track->mSeqCtrl.mRawFilePtr);
+	P2ASSERTLINE(230, mBankData);
+	P2ASSERTLINE(231, mWsData);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -181,186 +184,15 @@ Track::Track()
     , _19C(0)
 {
 	_18 = 3;
-	mList.append(&_68.mLink);
-	mList.append(&_A0.mLink);
-	mList.append(&_D0.mLink);
-	mList.append(&_100.mLink);
-	mList.append(&_13C.mLink);
-	mList.append(&_16C.mLink);
+	mList.append(_68.getLink());
+	mList.append(_A0.getLink());
+	mList.append(_D0.getLink());
+	mList.append(_100.getLink());
+	mList.append(_13C.getLink());
+	mList.append(_16C.getLink());
 	_19                   = 3;
 	mTree.mRemoveCallback = removeCallback;
 	mTree._34             = this;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	bl       "__ct__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>Fv"
-	lis      r3, __vt__Q29PSAutoBgm5Track@ha
-	li       r4, 0xff
-	addi     r0, r3, __vt__Q29PSAutoBgm5Track@l
-	addi     r29, r31, 0xa0
-	stw      r0, 0(r31)
-	li       r0, 0
-	mr       r3, r29
-	stb      r4, 0x98(r31)
-	stb      r4, 0x99(r31)
-	stw      r0, 0x9c(r31)
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q210JADUtility7PrmBase@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q210JADUtility7PrmBase@l
-	mr       r4, r29
-	stw      r3, 0(r29)
-	addi     r3, r29, 0x1c
-	stb      r0, 0x18(r29)
-	bl       __ct__10JSUPtrLinkFPv
-	lis      r3, "__vt__Q210JADUtility6Prm<s>"@ha
-	addi     r30, r31, 0xd0
-	addi     r0, r3, "__vt__Q210JADUtility6Prm<s>"@l
-	lis      r3, "__vt__Q210JADUtility9PrmHio<s>"@ha
-	stw      r0, 0(r29)
-	addi     r0, r3, "__vt__Q210JADUtility9PrmHio<s>"@l
-	lis      r3, "__vt__Q210JADUtility12PrmSlider<s>"@ha
-	stw      r0, 0(r29)
-	addi     r0, r3, "__vt__Q210JADUtility12PrmSlider<s>"@l
-	stw      r0, 0(r29)
-	mr       r3, r30
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q210JADUtility7PrmBase@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q210JADUtility7PrmBase@l
-	mr       r4, r30
-	stw      r3, 0(r30)
-	addi     r3, r30, 0x1c
-	stb      r0, 0x18(r30)
-	bl       __ct__10JSUPtrLinkFPv
-	lis      r3, "__vt__Q210JADUtility7Prm<Uc>"@ha
-	addi     r29, r31, 0x100
-	addi     r0, r3, "__vt__Q210JADUtility7Prm<Uc>"@l
-	lis      r3, "__vt__Q210JADUtility10PrmHio<Uc>"@ha
-	stw      r0, 0(r30)
-	addi     r0, r3, "__vt__Q210JADUtility10PrmHio<Uc>"@l
-	mr       r28, r29
-	lis      r3, "__vt__Q210JADUtility18PrmRadioButton<Uc>"@ha
-	stw      r0, 0(r30)
-	addi     r0, r3, "__vt__Q210JADUtility18PrmRadioButton<Uc>"@l
-	stw      r0, 0(r30)
-	mr       r3, r29
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q210JADUtility7PrmBase@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q210JADUtility7PrmBase@l
-	mr       r4, r28
-	stw      r3, 0(r28)
-	addi     r3, r28, 0x1c
-	stb      r0, 0x18(r28)
-	bl       __ct__10JSUPtrLinkFPv
-	lis      r4, "__vt__Q210JADUtility7Prm<Pc>"@ha
-	lis      r3, "__vt__Q210JADUtility10PrmHio<Pc>"@ha
-	addi     r0, r4, "__vt__Q210JADUtility7Prm<Pc>"@l
-	lis      r4, __vt__Q210JADUtility6StrPrm@ha
-	stw      r0, 0(r29)
-	addi     r0, r3, "__vt__Q210JADUtility10PrmHio<Pc>"@l
-	lis      r3, __vt__Q210JADUtility10StrEditBox@ha
-	addi     r6, r4, __vt__Q210JADUtility6StrPrm@l
-	stw      r0, 0(r29)
-	li       r5, 8
-	li       r4, 0
-	addi     r0, r3, __vt__Q210JADUtility10StrEditBox@l
-	stw      r6, 0(r29)
-	li       r3, 8
-	stw      r5, 0x30(r29)
-	stw      r4, 0x34(r29)
-	stw      r4, 0x38(r29)
-	stw      r0, 0(r29)
-	bl       __nwa__FUl
-	stw      r3, 0x2c(r29)
-	addi     r4, r2, lbl_8051E160@sda21
-	lwz      r3, 0x2c(r29)
-	bl       strcpy
-	addi     r28, r31, 0x13c
-	mr       r3, r28
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q210JADUtility7PrmBase@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q210JADUtility7PrmBase@l
-	mr       r4, r28
-	stw      r3, 0(r28)
-	addi     r3, r28, 0x1c
-	stb      r0, 0x18(r28)
-	bl       __ct__10JSUPtrLinkFPv
-	lis      r3, "__vt__Q210JADUtility7Prm<Uc>"@ha
-	addi     r29, r31, 0x16c
-	addi     r0, r3, "__vt__Q210JADUtility7Prm<Uc>"@l
-	lis      r3, "__vt__Q210JADUtility10PrmHio<Uc>"@ha
-	stw      r0, 0(r28)
-	addi     r0, r3, "__vt__Q210JADUtility10PrmHio<Uc>"@l
-	lis      r3, "__vt__Q210JADUtility13PrmSlider<Uc>"@ha
-	stw      r0, 0(r28)
-	addi     r0, r3, "__vt__Q210JADUtility13PrmSlider<Uc>"@l
-	stw      r0, 0(r28)
-	mr       r3, r29
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q210JADUtility7PrmBase@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q210JADUtility7PrmBase@l
-	mr       r4, r29
-	stw      r3, 0(r29)
-	addi     r3, r29, 0x1c
-	stb      r0, 0x18(r29)
-	bl       __ct__10JSUPtrLinkFPv
-	lis      r3, "__vt__Q210JADUtility7Prm<Uc>"@ha
-	lis      r4, "__vt__Q210JADUtility10PrmHio<Uc>"@ha
-	addi     r0, r3, "__vt__Q210JADUtility7Prm<Uc>"@l
-	li       r5, 0
-	stw      r0, 0(r29)
-	addi     r0, r4, "__vt__Q210JADUtility10PrmHio<Uc>"@l
-	lis      r3, "__vt__Q210JADUtility13PrmSlider<Uc>"@ha
-	addi     r4, r31, 0x84
-	stw      r0, 0(r29)
-	addi     r3, r3, "__vt__Q210JADUtility13PrmSlider<Uc>"@l
-	li       r0, 3
-	stw      r3, 0(r29)
-	addi     r3, r31, 0x1c
-	stw      r5, 0x19c(r31)
-	stb      r0, 0x18(r31)
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	addi     r4, r31, 0xbc
-	addi     r3, r31, 0x1c
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	addi     r4, r31, 0xec
-	addi     r3, r31, 0x1c
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	addi     r4, r31, 0x11c
-	addi     r3, r31, 0x1c
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	addi     r4, r31, 0x158
-	addi     r3, r31, 0x1c
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	addi     r4, r31, 0x188
-	addi     r3, r31, 0x1c
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	li       r0, 3
-	lis      r3, removeCallback__Q29PSAutoBgm5TrackFUcPv@ha
-	stb      r0, 0x19(r31)
-	addi     r0, r3, removeCallback__Q29PSAutoBgm5TrackFUcPv@l
-	mr       r3, r31
-	stw      r0, 0x5c(r31)
-	stw      r31, 0x60(r31)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -385,25 +217,10 @@ Track::~Track() { }
  * @note Address: 0x80339BB4
  * @note Size: 0x3C
  */
-void Track::removeCallback(u8, void*)
+void Track::removeCallback(u8 idx, void* track)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x3c(r4)
-	li       r4, 0
-	lwz      r3, 0xc(r3)
-	lwz      r3, 0xb4(r3)
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Track* trk = static_cast<Track*>(track);
+	Conductor::removeCallback(idx, trk->mTree.getParent()->getObjectPtr());
 }
 
 /**
@@ -430,10 +247,16 @@ u32 Track::seqCpuSync_AutoBgm_Track(JASTrack* track1, u16 cmd, u32 p2, JASTrack*
 			getChild(i)->_2C1 = 0;
 		}
 
+		// this isn't quite right but it's Close-ish
+		u32 x;
 		if (_19C) {
-			// some magic
+			u8 val = _19C->_D0.mValue;
+			x      = (60 & (~(val - 1 | 1 - val) >> 1));
+		} else {
+			u8 val = _D0.mValue;
+			x      = (60 & (~(val - 1 | 1 - val) >> 1));
 		}
-		break;
+		return (u16)(x + ((_A0.mValue & 0xFFFF) * 0x78));
 	case 0x800:
 		incCurModule();
 		if (getChild(_99)) {
@@ -613,9 +436,9 @@ void Module::afterGetFromFree()
 	_1E4.mValue = 0;
 	_214.mValue = 96;
 	_244.mValue = 64;
-	_2A8        = 0;
-	_2B0        = 0;
-	_2B4        = 0;
+	mBankData   = nullptr;
+	mWsData     = nullptr;
+	mWsDataNum  = 0;
 	_2A4        = 0;
 	_2C1        = 0;
 	_274.mValue = 0;
@@ -641,380 +464,33 @@ Module::Module()
     , _244()
     , _274()
     , _2A4(0)
-    , _2A8(0)
-    , _2AC(0)
-    , _2B0(0)
-    , _2B4(0)
+    , mBankData(nullptr)
+    , mBankDataNum(0)
+    , mWsData(0)
+    , mWsDataNum(nullptr)
     , _2C0(0)
     , _2C1(0)
     , _2C2(-1)
 {
 	_2B8[0] = new (ConductorMgr::sHeap, 0) OnCycle(this);
 	_2B8[1] = new (ConductorMgr::sHeap, 0) OffCycle(this);
-	mList.append(&_64.mLink);
-	mList.append(&_94.mLink);
-	mList.append(&_C4.mLink);
-	mList.append(&_F4.mLink);
-	mList.append(&_124.mLink);
-	mList.append(&_154.mLink);
-	mList.append(&_184.mLink);
-	mList.append(&_1B4.mLink);
-	mList.append(&_2B8[0]->mSlider.mLink);
-	mList.append(&_2B8[1]->mSlider.mLink);
-	mList.append(&_1E4.mLink);
-	mList.append(&_214.mLink);
-	mList.append(&_244.mLink);
-	mList.append(&_274.mLink);
+	mList.append(_64.getLink());
+	mList.append(_94.getLink());
+	mList.append(_C4.getLink());
+	mList.append(_F4.getLink());
+	mList.append(_124.getLink());
+	mList.append(_154.getLink());
+	mList.append(_184.getLink());
+	mList.append(_1B4.getLink());
+	mList.append(_2B8[0]->mSlider.getLink());
+	mList.append(_2B8[1]->mSlider.getLink());
+	mList.append(_1E4.getLink());
+	mList.append(_214.getLink());
+	mList.append(_244.getLink());
+	mList.append(_274.getLink());
 	_19                   = 21;
 	mTree.mRemoveCallback = removeCallback;
 	mTree._34             = this;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	li       r4, 1
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	bl       __ct__Q210JADUtility10PrmSetBaseFb
-	lis      r3, __vt__Q29PSAutoBgm6Module@ha
-	addi     r29, r31, 0x64
-	addi     r0, r3, __vt__Q29PSAutoBgm6Module@l
-	stw      r0, 0(r31)
-	mr       r3, r29
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q210JADUtility7PrmBase@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q210JADUtility7PrmBase@l
-	mr       r4, r29
-	stw      r3, 0(r29)
-	addi     r3, r29, 0x1c
-	stb      r0, 0x18(r29)
-	bl       __ct__10JSUPtrLinkFPv
-	lis      r3, "__vt__Q210JADUtility6Prm<s>"@ha
-	addi     r30, r31, 0x94
-	addi     r0, r3, "__vt__Q210JADUtility6Prm<s>"@l
-	lis      r3, "__vt__Q210JADUtility9PrmHio<s>"@ha
-	stw      r0, 0(r29)
-	addi     r0, r3, "__vt__Q210JADUtility9PrmHio<s>"@l
-	lis      r3, "__vt__Q210JADUtility12PrmSlider<s>"@ha
-	stw      r0, 0(r29)
-	addi     r0, r3, "__vt__Q210JADUtility12PrmSlider<s>"@l
-	stw      r0, 0(r29)
-	mr       r3, r30
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q210JADUtility7PrmBase@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q210JADUtility7PrmBase@l
-	mr       r4, r30
-	stw      r3, 0(r30)
-	addi     r3, r30, 0x1c
-	stb      r0, 0x18(r30)
-	bl       __ct__10JSUPtrLinkFPv
-	lis      r3, "__vt__Q210JADUtility6Prm<s>"@ha
-	addi     r29, r31, 0xc4
-	addi     r0, r3, "__vt__Q210JADUtility6Prm<s>"@l
-	lis      r3, "__vt__Q210JADUtility9PrmHio<s>"@ha
-	stw      r0, 0(r30)
-	addi     r0, r3, "__vt__Q210JADUtility9PrmHio<s>"@l
-	lis      r3, "__vt__Q210JADUtility12PrmSlider<s>"@ha
-	stw      r0, 0(r30)
-	addi     r0, r3, "__vt__Q210JADUtility12PrmSlider<s>"@l
-	stw      r0, 0(r30)
-	mr       r3, r29
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q210JADUtility7PrmBase@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q210JADUtility7PrmBase@l
-	mr       r4, r29
-	stw      r3, 0(r29)
-	addi     r3, r29, 0x1c
-	stb      r0, 0x18(r29)
-	bl       __ct__10JSUPtrLinkFPv
-	lis      r3, "__vt__Q210JADUtility7Prm<Uc>"@ha
-	addi     r30, r31, 0xf4
-	addi     r0, r3, "__vt__Q210JADUtility7Prm<Uc>"@l
-	lis      r3, "__vt__Q210JADUtility10PrmHio<Uc>"@ha
-	stw      r0, 0(r29)
-	addi     r0, r3, "__vt__Q210JADUtility10PrmHio<Uc>"@l
-	lis      r3, "__vt__Q210JADUtility13PrmSlider<Uc>"@ha
-	stw      r0, 0(r29)
-	addi     r0, r3, "__vt__Q210JADUtility13PrmSlider<Uc>"@l
-	stw      r0, 0(r29)
-	mr       r3, r30
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q210JADUtility7PrmBase@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q210JADUtility7PrmBase@l
-	mr       r4, r30
-	stw      r3, 0(r30)
-	addi     r3, r30, 0x1c
-	stb      r0, 0x18(r30)
-	bl       __ct__10JSUPtrLinkFPv
-	lis      r3, "__vt__Q210JADUtility7Prm<Uc>"@ha
-	addi     r29, r31, 0x124
-	addi     r0, r3, "__vt__Q210JADUtility7Prm<Uc>"@l
-	lis      r3, "__vt__Q210JADUtility10PrmHio<Uc>"@ha
-	stw      r0, 0(r30)
-	addi     r0, r3, "__vt__Q210JADUtility10PrmHio<Uc>"@l
-	lis      r3, "__vt__Q210JADUtility18PrmRadioButton<Uc>"@ha
-	stw      r0, 0(r30)
-	addi     r0, r3, "__vt__Q210JADUtility18PrmRadioButton<Uc>"@l
-	stw      r0, 0(r30)
-	mr       r3, r29
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q210JADUtility7PrmBase@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q210JADUtility7PrmBase@l
-	mr       r4, r29
-	stw      r3, 0(r29)
-	addi     r3, r29, 0x1c
-	stb      r0, 0x18(r29)
-	bl       __ct__10JSUPtrLinkFPv
-	lis      r3, "__vt__Q210JADUtility7Prm<Uc>"@ha
-	addi     r30, r31, 0x154
-	addi     r0, r3, "__vt__Q210JADUtility7Prm<Uc>"@l
-	lis      r3, "__vt__Q210JADUtility10PrmHio<Uc>"@ha
-	stw      r0, 0(r29)
-	addi     r0, r3, "__vt__Q210JADUtility10PrmHio<Uc>"@l
-	lis      r3, "__vt__Q210JADUtility13PrmSlider<Uc>"@ha
-	stw      r0, 0(r29)
-	addi     r0, r3, "__vt__Q210JADUtility13PrmSlider<Uc>"@l
-	stw      r0, 0(r29)
-	mr       r3, r30
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q210JADUtility7PrmBase@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q210JADUtility7PrmBase@l
-	mr       r4, r30
-	stw      r3, 0(r30)
-	addi     r3, r30, 0x1c
-	stb      r0, 0x18(r30)
-	bl       __ct__10JSUPtrLinkFPv
-	lis      r3, "__vt__Q210JADUtility7Prm<Uc>"@ha
-	addi     r29, r31, 0x184
-	addi     r0, r3, "__vt__Q210JADUtility7Prm<Uc>"@l
-	lis      r3, "__vt__Q210JADUtility10PrmHio<Uc>"@ha
-	stw      r0, 0(r30)
-	addi     r0, r3, "__vt__Q210JADUtility10PrmHio<Uc>"@l
-	lis      r3, "__vt__Q210JADUtility13PrmSlider<Uc>"@ha
-	stw      r0, 0(r30)
-	addi     r0, r3, "__vt__Q210JADUtility13PrmSlider<Uc>"@l
-	stw      r0, 0(r30)
-	mr       r3, r29
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q210JADUtility7PrmBase@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q210JADUtility7PrmBase@l
-	mr       r4, r29
-	stw      r3, 0(r29)
-	addi     r3, r29, 0x1c
-	stb      r0, 0x18(r29)
-	bl       __ct__10JSUPtrLinkFPv
-	lis      r3, "__vt__Q210JADUtility6Prm<s>"@ha
-	addi     r30, r31, 0x1b4
-	addi     r0, r3, "__vt__Q210JADUtility6Prm<s>"@l
-	lis      r3, "__vt__Q210JADUtility9PrmHio<s>"@ha
-	stw      r0, 0(r29)
-	addi     r0, r3, "__vt__Q210JADUtility9PrmHio<s>"@l
-	lis      r3, "__vt__Q210JADUtility12PrmSlider<s>"@ha
-	stw      r0, 0(r29)
-	addi     r0, r3, "__vt__Q210JADUtility12PrmSlider<s>"@l
-	stw      r0, 0(r29)
-	mr       r3, r30
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q210JADUtility7PrmBase@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q210JADUtility7PrmBase@l
-	mr       r4, r30
-	stw      r3, 0(r30)
-	addi     r3, r30, 0x1c
-	stb      r0, 0x18(r30)
-	bl       __ct__10JSUPtrLinkFPv
-	lis      r3, "__vt__Q210JADUtility6Prm<s>"@ha
-	addi     r29, r31, 0x1e4
-	addi     r0, r3, "__vt__Q210JADUtility6Prm<s>"@l
-	lis      r3, "__vt__Q210JADUtility9PrmHio<s>"@ha
-	stw      r0, 0(r30)
-	addi     r0, r3, "__vt__Q210JADUtility9PrmHio<s>"@l
-	lis      r3, "__vt__Q210JADUtility12PrmSlider<s>"@ha
-	stw      r0, 0(r30)
-	addi     r0, r3, "__vt__Q210JADUtility12PrmSlider<s>"@l
-	stw      r0, 0(r30)
-	mr       r3, r29
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q210JADUtility7PrmBase@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q210JADUtility7PrmBase@l
-	mr       r4, r29
-	stw      r3, 0(r29)
-	addi     r3, r29, 0x1c
-	stb      r0, 0x18(r29)
-	bl       __ct__10JSUPtrLinkFPv
-	lis      r3, "__vt__Q210JADUtility6Prm<s>"@ha
-	addi     r30, r31, 0x214
-	addi     r0, r3, "__vt__Q210JADUtility6Prm<s>"@l
-	lis      r3, "__vt__Q210JADUtility9PrmHio<s>"@ha
-	stw      r0, 0(r29)
-	addi     r0, r3, "__vt__Q210JADUtility9PrmHio<s>"@l
-	lis      r3, "__vt__Q210JADUtility12PrmSlider<s>"@ha
-	stw      r0, 0(r29)
-	addi     r0, r3, "__vt__Q210JADUtility12PrmSlider<s>"@l
-	stw      r0, 0(r29)
-	mr       r3, r30
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q210JADUtility7PrmBase@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q210JADUtility7PrmBase@l
-	mr       r4, r30
-	stw      r3, 0(r30)
-	addi     r3, r30, 0x1c
-	stb      r0, 0x18(r30)
-	bl       __ct__10JSUPtrLinkFPv
-	lis      r3, "__vt__Q210JADUtility7Prm<Uc>"@ha
-	addi     r29, r31, 0x244
-	addi     r0, r3, "__vt__Q210JADUtility7Prm<Uc>"@l
-	lis      r3, "__vt__Q210JADUtility10PrmHio<Uc>"@ha
-	stw      r0, 0(r30)
-	addi     r0, r3, "__vt__Q210JADUtility10PrmHio<Uc>"@l
-	lis      r3, "__vt__Q210JADUtility13PrmSlider<Uc>"@ha
-	stw      r0, 0(r30)
-	addi     r0, r3, "__vt__Q210JADUtility13PrmSlider<Uc>"@l
-	stw      r0, 0(r30)
-	mr       r3, r29
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q210JADUtility7PrmBase@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q210JADUtility7PrmBase@l
-	mr       r4, r29
-	stw      r3, 0(r29)
-	addi     r3, r29, 0x1c
-	stb      r0, 0x18(r29)
-	bl       __ct__10JSUPtrLinkFPv
-	lis      r3, "__vt__Q210JADUtility7Prm<Uc>"@ha
-	addi     r30, r31, 0x274
-	addi     r0, r3, "__vt__Q210JADUtility7Prm<Uc>"@l
-	lis      r3, "__vt__Q210JADUtility10PrmHio<Uc>"@ha
-	stw      r0, 0(r29)
-	addi     r0, r3, "__vt__Q210JADUtility10PrmHio<Uc>"@l
-	lis      r3, "__vt__Q210JADUtility13PrmSlider<Uc>"@ha
-	stw      r0, 0(r29)
-	addi     r0, r3, "__vt__Q210JADUtility13PrmSlider<Uc>"@l
-	stw      r0, 0(r29)
-	mr       r3, r30
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q210JADUtility7PrmBase@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q210JADUtility7PrmBase@l
-	mr       r4, r30
-	stw      r3, 0(r30)
-	addi     r3, r30, 0x1c
-	stb      r0, 0x18(r30)
-	bl       __ct__10JSUPtrLinkFPv
-	lis      r4, "__vt__Q210JADUtility7Prm<Uc>"@ha
-	lis      r3, "__vt__Q210JADUtility10PrmHio<Uc>"@ha
-	addi     r0, r4, "__vt__Q210JADUtility7Prm<Uc>"@l
-	lis      r4, "__vt__Q210JADUtility18PrmRadioButton<Uc>"@ha
-	stw      r0, 0(r30)
-	addi     r0, r3, "__vt__Q210JADUtility10PrmHio<Uc>"@l
-	lis      r3, 0x0000FFFF@ha
-	addi     r5, r4, "__vt__Q210JADUtility18PrmRadioButton<Uc>"@l
-	stw      r0, 0(r30)
-	li       r4, 0
-	addi     r0, r3, 0x0000FFFF@l
-	li       r3, 0x68
-	stw      r5, 0(r30)
-	li       r5, 0
-	sth      r4, 0x2a4(r31)
-	stw      r4, 0x2a8(r31)
-	stb      r4, 0x2ac(r31)
-	stw      r4, 0x2b0(r31)
-	stb      r4, 0x2b4(r31)
-	stb      r4, 0x2c0(r31)
-	stb      r4, 0x2c1(r31)
-	sth      r0, 0x2c2(r31)
-	lwz      r4, sHeap__Q29PSAutoBgm12ConductorMgr@sda21(r13)
-	bl       __nw__FUlP7JKRHeapi
-	or.      r0, r3, r3
-	beq      lbl_8033A29C
-	mr       r4, r31
-	bl       __ct__Q29PSAutoBgm7OnCycleFPQ29PSAutoBgm6Module
-	mr       r0, r3
-
-lbl_8033A29C:
-	stw      r0, 0x2b8(r31)
-	li       r3, 0x40
-	li       r5, 0
-	lwz      r4, sHeap__Q29PSAutoBgm12ConductorMgr@sda21(r13)
-	bl       __nw__FUlP7JKRHeapi
-	or.      r0, r3, r3
-	beq      lbl_8033A2C4
-	mr       r4, r31
-	bl       __ct__Q29PSAutoBgm8OffCycleFPQ29PSAutoBgm6Module
-	mr       r0, r3
-
-lbl_8033A2C4:
-	stw      r0, 0x2bc(r31)
-	addi     r4, r31, 0x80
-	addi     r3, r31, 0x1c
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	addi     r4, r31, 0xb0
-	addi     r3, r31, 0x1c
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	addi     r4, r31, 0xe0
-	addi     r3, r31, 0x1c
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	addi     r4, r31, 0x110
-	addi     r3, r31, 0x1c
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	addi     r4, r31, 0x140
-	addi     r3, r31, 0x1c
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	addi     r4, r31, 0x170
-	addi     r3, r31, 0x1c
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	addi     r4, r31, 0x1a0
-	addi     r3, r31, 0x1c
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	addi     r4, r31, 0x1d0
-	addi     r3, r31, 0x1c
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, 0x2b8(r31)
-	addi     r3, r31, 0x1c
-	addi     r4, r4, 0x28
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, 0x2bc(r31)
-	addi     r3, r31, 0x1c
-	addi     r4, r4, 0x28
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	addi     r4, r31, 0x200
-	addi     r3, r31, 0x1c
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	addi     r4, r31, 0x230
-	addi     r3, r31, 0x1c
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	addi     r4, r31, 0x260
-	addi     r3, r31, 0x1c
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	addi     r4, r31, 0x290
-	addi     r3, r31, 0x1c
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	li       r0, 0x15
-	lis      r3, removeCallback__Q29PSAutoBgm6ModuleFUcPv@ha
-	stb      r0, 0x19(r31)
-	addi     r0, r3, removeCallback__Q29PSAutoBgm6ModuleFUcPv@l
-	mr       r3, r31
-	stw      r0, 0x5c(r31)
-	stw      r31, 0x60(r31)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -1023,7 +499,6 @@ lbl_8033A2C4:
  */
 Module::~Module()
 {
-
 	delete _2B8[0];
 	delete _2B8[1];
 }
@@ -1032,27 +507,10 @@ Module::~Module()
  * @note Address: 0x8033AADC
  * @note Size: 0x44
  */
-void Module::removeCallback(u8, void*)
+void Module::removeCallback(u8 idx, void* module)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x3c(r4)
-	li       r4, 0
-	lwz      r3, 0xc(r3)
-	lwz      r3, 0x3c(r3)
-	lwz      r3, 0xc(r3)
-	lwz      r3, 0xb4(r3)
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Module* mod = static_cast<Module*>(module);
+	Track::removeCallback(idx, mod->mTree.getParent()->getObjectPtr());
 }
 
 /**
@@ -1089,15 +547,17 @@ u32 Module::seqCpuSync_AutoBgm_Module(JASTrack* track1, u16 cmd, u32 p3, JASTrac
 			_2C1 = 1;
 		}
 
-		JADUtility::PrmSetRc<Module>* prm = static_cast<JADUtility::PrmSetRc<Module>*>(mTree.getParent()->getObjectPtr());
-		if (prm) {
-			// some magic
+		Track* track = static_cast<Track*>(mTree.getParent()->getObjectPtr());
+		// this isn't quite right but it's Close-ish
+		u32 x;
+		if (track->_19C) {
+			u8 val = track->_19C->getChild(0)->_274.mValue;
+			x      = (60 & (~(val - 1 | 1 - val) >> 1));
 		} else {
-			// some magic
+			u8 val = _274.mValue;
+			x      = (0x3C & (~(val - 1 | 1 - val) >> 1));
 		}
-
-		// some magic
-		return 0;
+		return (u16)(x + (_64.mValue * 0x78));
 	}
 
 	return 0;
@@ -1270,8 +730,54 @@ u32 Module::seqCpuSync_AutoBgm_Module(JASTrack* track1, u16 cmd, u32 p3, JASTrac
  * @note Address: 0x8033AD38
  * @note Size: 0x1BC
  */
-void Module::setTableAddress(JASTrack*)
+void Module::setTableAddress(JASTrack* track)
 {
+	Track* bnkTrk      = (Track*)mTree.getParent()->getObjectPtr();
+	Conductor* bnkCdtr = (Conductor*)bnkTrk->mTree.getParent()->getObjectPtr();
+
+	u16 bnkVal      = _184.mValue;
+	PSBankData& bnk = bnkCdtr->mBankData[bnkVal];
+	mBankData       = (PSBankData*)(bnk.mData[2] | (bnk.mData[1] << 16 | bnk.mData[0] << 8));
+	mBankData       = (PSBankData*)(track->getCtrl()->mRawFilePtr + (u32)mBankData);
+
+	Track* wsTrk      = (Track*)mTree.getParent()->getObjectPtr();
+	Conductor* wsCdtr = (Conductor*)wsTrk->mTree.getParent()->getObjectPtr();
+
+	u16 wsVal      = _1B4.mValue;
+	PSBankData* ws = (PSBankData*)&wsCdtr->mWsData[wsVal];
+	mWsData        = (PSWsData*)(ws->mData[2] | (ws->mData[1] << 16 | ws->mData[0] << 8));
+	mWsData        = (PSWsData*)(track->getCtrl()->mRawFilePtr + (u32)mWsData);
+
+	u8 count = 0;
+	u8* ptr  = (u8*)mBankData;
+	u8 a     = ptr[0];
+	u8 b     = ptr[1];
+	u8 c     = ptr[2];
+
+	while (a != 0xFF || b != 0xFF || c != 0xFF) {
+		count++;
+		P2ASSERTLINE(726, (int)count < 255);
+		u8* nextArray = (ptr + count * 3);
+		a             = nextArray[0];
+		b             = nextArray[1];
+		c             = nextArray[2];
+	}
+
+	mBankDataNum = count;
+
+	u8 nextCount = 0;
+	u8* nextPtr  = (u8*)mWsData;
+	u8 x         = nextPtr[0];
+	u8 y         = nextPtr[1];
+	while (x != 0xFF || y != 0xFF) {
+		nextCount++;
+		P2ASSERTLINE(748, (int)nextCount < 255);
+		u8* nextArray = (nextPtr + nextCount * 2);
+		x             = nextArray[0];
+		y             = nextArray[1];
+	}
+
+	mWsDataNum = nextCount;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1403,113 +909,39 @@ lbl_8033AEC4:
  * @note Address: 0x8033AEF4
  * @note Size: 0x154
  */
-u16 Module::cycleLoop(JASTrack*)
+u16 Module::cycleLoop(JASTrack* track)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	lwz      r3, 0x3c(r3)
-	lwz      r3, 0xc(r3)
-	lbz      r4, 0x99(r3)
-	bl       "getChild__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>FUc"
-	cmplw    r3, r31
-	beq      lbl_8033AF40
-	lis      r3, lbl_8048FE60@ha
-	lis      r5, lbl_8048FE70@ha
-	addi     r3, r3, lbl_8048FE60@l
-	li       r4, 0x30b
-	addi     r5, r5, lbl_8048FE70@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	Track* trk          = (Track*)mTree.getParent()->getObjectPtr();
+	Module* childModule = trk->getChild(trk->_99);
+	P2ASSERTLINE(779, childModule == this);
+	u8 childNum = ((Track*)mTree.getParent()->getObjectPtr())->_99;
+	if (childNum < ((Track*)mTree.getParent()->getObjectPtr())->getChildNum() - 1 && _2A4 >= _94.mValue) {
+		return 1;
+	}
 
-lbl_8033AF40:
-	lwz      r3, 0x3c(r31)
-	lwz      r3, 0xc(r3)
-	lbz      r30, 0x99(r3)
-	bl       "getChildNum__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>Fv"
-	clrlwi   r3, r3, 0x18
-	addi     r0, r3, -1
-	cmpw     r30, r0
-	bge      lbl_8033AF78
-	lhz      r3, 0x2a4(r31)
-	lha      r0, 0xc0(r31)
-	cmpw     r3, r0
-	blt      lbl_8033AF78
-	li       r3, 1
-	b        lbl_8033B030
+	CycleBase* cycle = _2B8[_2C0];
+	if (cycle->mSlider.mValue == 0) {
+		if (++_2C0 >= 2) {
+			_2C0 = 0;
+		}
+		return 2;
+	}
 
-lbl_8033AF78:
-	lbz      r4, 0x2c0(r31)
-	slwi     r0, r4, 2
-	add      r3, r31, r0
-	lwz      r6, 0x2b8(r3)
-	lbz      r5, 0x38(r6)
-	cmplwi   r5, 0
-	bne      lbl_8033AFB8
-	addi     r3, r4, 1
-	clrlwi   r0, r3, 0x18
-	stb      r3, 0x2c0(r31)
-	cmplwi   r0, 2
-	blt      lbl_8033AFB0
-	li       r0, 0
-	stb      r0, 0x2c0(r31)
+	if (++cycle->_08 > cycle->mSlider.mValue) {
+		cycle->_08 = 0;
+	}
 
-lbl_8033AFB0:
-	li       r3, 2
-	b        lbl_8033B030
+	if (cycle->_08 == 0) {
+		if (++_2C0 >= 2) {
+			_2C0 = 0;
+		}
+		return 2;
+	}
 
-lbl_8033AFB8:
-	lbz      r3, 8(r6)
-	addi     r3, r3, 1
-	clrlwi   r0, r3, 0x18
-	stb      r3, 8(r6)
-	cmplw    r0, r5
-	ble      lbl_8033AFD8
-	li       r0, 0
-	stb      r0, 8(r6)
-
-lbl_8033AFD8:
-	lbz      r0, 8(r6)
-	cmplwi   r0, 0
-	bne      lbl_8033B00C
-	lbz      r3, 0x2c0(r31)
-	addi     r3, r3, 1
-	clrlwi   r0, r3, 0x18
-	stb      r3, 0x2c0(r31)
-	cmplwi   r0, 2
-	blt      lbl_8033B004
-	li       r0, 0
-	stb      r0, 0x2c0(r31)
-
-lbl_8033B004:
-	li       r3, 2
-	b        lbl_8033B030
-
-lbl_8033B00C:
-	clrlwi   r0, r0, 0x18
-	cmplwi   r0, 1
-	bne      lbl_8033B02C
-	lwz      r0, 0x2b8(r31)
-	cmplw    r6, r0
-	bne      lbl_8033B02C
-	li       r3, 3
-	b        lbl_8033B030
-
-lbl_8033B02C:
-	li       r3, 0
-
-lbl_8033B030:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if ((u8)(s8)cycle->_08 == 1 && cycle == _2B8[0]) {
+		return 3;
+	}
+	return 0;
 }
 
 /**
@@ -1528,6 +960,41 @@ u16 CycleBase::cycleTop(JASTrack* track)
  */
 u16 CycleBase::play(JASTrack* track)
 {
+	if ((int)mModule->_F4.mValue == 1) {
+		if (_3C == mModule->mWsDataNum) {
+			return 4;
+		}
+		u16 x;
+		Track* childTrk = ((Track*)mModule->mTree.getParent()->getObjectPtr())->_19C;
+		if (childTrk == nullptr) {
+			PSWsData& ws = mModule->mWsData[_3C++];
+			u16 wsPtr    = (ws.mData[0] | ws.mData[1] << 8);
+			x            = avoidCheck() | wsPtr;
+		} else {
+			_3C++;
+			x = childTrk->getChild(childTrk->_99)->_2B6;
+		}
+
+		mModule->_2B6 = x;
+		track->writePortAppDirect(8, x);
+		return 3;
+	}
+
+	u16 x;
+	Track* childTrk = ((Track*)mModule->mTree.getParent()->getObjectPtr())->_19C;
+	if (childTrk == nullptr) {
+		f32 num      = mModule->mWsDataNum;
+		u32 idx      = num * PSSystem::oRandom.nextFloat_0_1();
+		PSWsData* ws = mModule->mWsData;
+		u16 wsPtr    = (ws[(u16)idx].mData[0] | ws[(u16)idx].mData[1] << 8);
+		x            = avoidCheck() | wsPtr;
+	} else {
+		x = childTrk->getChild(childTrk->_99)->_2B6;
+	}
+
+	track->writePortAppDirect(8, x);
+	mModule->_2B6 = x;
+	return 1;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1663,7 +1130,7 @@ lbl_8033B1F8:
  */
 u16 CycleBase::checkCloser(JASTrack*)
 {
-	if (mModule->_F4.mValue == 1 && _3C != mModule->_2B4) {
+	if ((int)mModule->_F4.mValue == 1 && _3C != mModule->mWsDataNum) {
 		return 0;
 	}
 	if (_08 == mSlider.mValue && getCycleType() == 0) {
@@ -1676,8 +1143,9 @@ u16 CycleBase::checkCloser(JASTrack*)
  * @note Address: 0x8033B28C
  * @note Size: 0x184
  */
-OnCycle::OnCycle(Module*)
-    : CycleBase()
+OnCycle::OnCycle(Module* module)
+    : CycleBase(module)
+    , _40(2)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1790,8 +1258,19 @@ lbl_8033B3CC:
  * @note Address: 0x8033B468
  * @note Size: 0x360
  */
-u16 OnCycle::play(JASTrack*)
+u16 OnCycle::play(JASTrack* track)
 {
+	if ((int)mModule->_F4.mValue == 1) {
+		u16 playRes = CycleBase::play(track);
+		if (playRes == 4) {
+			return 4;
+		}
+		setTip(track);
+		return 2;
+	}
+	setTip(track);
+	CycleBase::play(track);
+	return 0;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -2048,8 +1527,68 @@ lbl_8033B7AC:
  * @note Address: 0x8033B7C8
  * @note Size: 0x274
  */
-void OnCycle::setTip(JASTrack*)
+void OnCycle::setTip(JASTrack* track)
 {
+	Track* trk = ((Track*)mModule->mTree.getParent()->getObjectPtr())->_19C;
+	u16 x;
+	if (!trk) {
+		u8 num = mModule->mBankDataNum;
+		if (num > 1) {
+			x        = (u32)(num * PSSystem::oRandom.nextFloat_0_1());
+			u16 hist = historiesAreSameAll();
+			if (hist != 0xFFFF && hist == x) {
+				x = (u32)((u32)(num - 1) * PSSystem::oRandom.nextFloat_0_1());
+				if (x >= hist) {
+					x++;
+				}
+			}
+			PrmLink<u16>* link = (PrmLink<u16>*)_40.getFirst();
+			if (link) {
+				_40.JSUPtrList::remove(link);
+			}
+
+			if (!link) {
+				link = (PrmLink<u16>*)_40._10.getFirst();
+				if (link) {
+					_40._10.JSUPtrList::remove(link);
+				}
+			}
+			P2ASSERTLINE(341, link);
+
+			*link->getObject() = x;
+
+			PrmLink<u16>* newLink = nullptr;
+			if (_40._10.getNumLinks() >= _40._10.mValue) {
+				newLink = (PrmLink<u16>*)_40._10.getFirst();
+				if (newLink) {
+					_40._10.JSUPtrList::remove(newLink);
+				}
+			}
+
+			_40._10.JSUPtrList::append(link);
+
+			if (newLink) {
+				if (_40.getNumLinks() >= _40.mValue) {
+					PrmLink<u16>* anotherLink = (PrmLink<u16>*)_40.getFirst();
+					if (anotherLink) {
+						_40.JSUPtrList::remove(anotherLink);
+					}
+					_40.JSUPtrList::append(newLink);
+				}
+			}
+
+		} else {
+			x = 0;
+		}
+	} else {
+		x = trk->getChild(trk->_99)->_2C2;
+	}
+
+	mModule->_2C2   = x;
+	PSBankData& bnk = mModule->mBankData[x];
+	u32 addr        = (u32)(bnk.mData[2] | (bnk.mData[1] << 16 | bnk.mData[0] << 8));
+	track->writePortAppDirect(4, addr >> 16);
+	track->writePortAppDirect(7, addr);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -2233,41 +1772,23 @@ lbl_8033B9D4:
  * @note Address: 0x8033BA3C
  * @note Size: 0x5C
  */
-void OnCycle::historiesAreSameAll()
+u16 OnCycle::historiesAreSameAll()
 {
-	/*
-	lwz      r4, 0x58(r3)
-	lhz      r0, 0x60(r3)
-	cmplw    r4, r0
-	bge      lbl_8033BA58
-	lis      r3, 0x0000FFFF@ha
-	addi     r3, r3, 0x0000FFFF@l
-	blr
+	if (_40._10.getNumLinks() < _40._20) {
+		return 0xFFFF;
+	}
 
-lbl_8033BA58:
-	lwz      r4, 0x50(r3)
-	lwz      r3, 0(r4)
-	lwz      r5, 0xc(r4)
-	lhz      r3, 0(r3)
-	b        lbl_8033BA8C
+	PrmLink<u16>* first = (PrmLink<u16>*)(_40._10.getFirst());
+	u16 initVal         = *first->getObject();
+	PrmLink<u16>* link  = (PrmLink<u16>*)first->getNext();
 
-lbl_8033BA6C:
-	lwz      r4, 0(r5)
-	lhz      r0, 0(r4)
-	cmplw    r3, r0
-	beq      lbl_8033BA88
-	lis      r3, 0x0000FFFF@ha
-	addi     r3, r3, 0x0000FFFF@l
-	blr
-
-lbl_8033BA88:
-	lwz      r5, 0xc(r5)
-
-lbl_8033BA8C:
-	cmplwi   r5, 0
-	bne      lbl_8033BA6C
-	blr
-	*/
+	while (link) {
+		if (initVal != *link->getObject()) {
+			return 0xFFFF;
+		}
+		link = (PrmLink<u16>*)link->getNext();
+	}
+	return initVal;
 }
 
 /**
@@ -2276,6 +1797,19 @@ lbl_8033BA8C:
  */
 u32 OnCycle::avoidCheck()
 {
+	u8 val              = _08;
+	Track* track        = (Track*)mModule->mTree.getParent()->getObjectPtr();
+	MeloArrMgr& meloMgr = ((Conductor*)track->mTree.getParent()->getObjectPtr())->_B4->mMeloArr;
+
+	P2ASSERTLINE(484, track->mIndex < 16);
+
+	MeloArrArg arg;
+	arg._00 = track->mIndex;
+	arg._01 = val;
+	if (meloMgr.isToAvoid(arg) == true) {
+		return 0x8000;
+	}
+	return 0;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2338,9 +1872,8 @@ lbl_8033BB38:
  * @note Size: 0xB0
  */
 OffCycle::OffCycle(Module* module)
+    : CycleBase(module)
 {
-	mModule = module;
-	_3C     = 0;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

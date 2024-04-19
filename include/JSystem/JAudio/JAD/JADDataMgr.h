@@ -131,15 +131,23 @@ struct PrmDataMgrNode : public DataMgrNode {
 			return true;
 		}
 		return false;
-	}                               // _1C (weak)
-	virtual bool initInstance() { } // _20 (weak)
+	}                           // _1C (weak)
+	virtual bool initInstance() // _20 (weak)
+	{
+		if (!mPrmSetRc) {
+			mPrmSetRc = new (getObjHeap(), 0) A(_254, 0);
+			return true;
+		}
+
+		return false;
+	}
 
 	// _00      = DataMgrBase*
 	// _04      = VTBL
 	// _08-_250 = DataMgrNode
-	JADUtility::PrmSetRc<PSAutoBgm::Track>* mPrmSetRc; // _250
-	B* _254;                                           // _254, unknown
-	                                                   // _258-_278 = DataMgrBase (virtual)
+	A* mPrmSetRc; // _250
+	B* _254;      // _254, unknown
+	              // _258-_278 = DataMgrBase (virtual)
 };
 
 struct DataLoadMgrVirNode {
