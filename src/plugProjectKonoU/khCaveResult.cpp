@@ -1196,13 +1196,13 @@ void ObjCaveResult::statusForceScroll()
 			mScrollMoveTimer = 1;
 			FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode)
 			{
-				if ((cNode->mItemMgr->mFlags & LOSTITEM_Unk2 != 2) && cNode->mLostNum) {
+				if ((int)(cNode->mItemMgr->mFlags & LOSTITEM_Unk2) != 2 && cNode->mLostNum) {
 					mStatus           = CAVERES_Lost;
 					check             = true;
 					mChangeStateDelay = 0;
 				}
 			}
-			if (check) {
+			if (!check) {
 				mStatus           = CAVERES_AllMoney;
 				mChangeStateDelay = msVal._3B;
 			}
@@ -1231,7 +1231,7 @@ void ObjCaveResult::statusForceScroll()
 	FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode)
 	{
 		if (i == mScrollSelIndex + 2 && ((cNode->mItemMgr->mFlags & LOSTITEM_Unk1) != 1)) {
-			cNode->mItemMgr->init(pos, i & 7);
+			cNode->mItemMgr->init(pos, i >> 7);
 		}
 		i++;
 	}
@@ -1527,7 +1527,7 @@ void ObjCaveResult::statusLost()
 		FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode)
 		{
 			if (cNode->mLostNum != 0 && ((int)(cNode->mItemMgr->mFlags & LOSTITEM_Unk2) != 2)) {
-				pos.y = mScrollUpDown * (i - 3 - mScrollSelIndexMax) + _100;
+				pos.y = mScrollUpDown * (i - 3 - mScrollSelIndexMax) + pos.y;
 				cNode->mItemMgr->init(pos, i % 2);
 				mChangeStateDelay = mScrollTargetDist;
 				return;
@@ -1539,87 +1539,6 @@ void ObjCaveResult::statusLost()
 	} else {
 		mChangeStateDelay--;
 	}
-
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-mr       r31, r3
-lwz      r3, 0xf4(r3)
-cmpwi    r3, 0
-bne      lbl_803FA8F8
-lfs      f0, 0xfc(r31)
-li       r6, 0
-stfs     f0, 8(r1)
-lfs      f0, 0x100(r31)
-stfs     f0, 0xc(r1)
-lwz      r3, 0x3c(r31)
-lwz      r4, 0x24(r3)
-b        lbl_803FA8D4
-
-lbl_803FA844:
-lwz      r0, 0x34(r4)
-cmpwi    r0, 0
-beq      lbl_803FA8CC
-lwz      r3, 0x48(r4)
-lwz      r0, 8(r3)
-rlwinm   r0, r0, 0, 0x1e, 0x1e
-cmpwi    r0, 2
-beq      lbl_803FA8CC
-lwz      r5, 0xdc(r31)
-addi     r4, r6, -3
-lis      r0, 0x4330
-lfd      f2, lbl_8051FFB0@sda21(r2)
-subf     r4, r5, r4
-stw      r0, 0x10(r1)
-xoris    r0, r4, 0x8000
-lfs      f3, 0xd4(r31)
-stw      r0, 0x14(r1)
-srwi     r4, r6, 0x1f
-clrlwi   r0, r6, 0x1f
-lfs      f0, 0xc(r1)
-lfd      f1, 0x10(r1)
-xor      r0, r0, r4
-subf     r4, r4, r0
-fsubs    f1, f1, f2
-neg      r0, r4
-or       r0, r0, r4
-addi     r4, r1, 8
-srwi     r5, r0, 0x1f
-fmadds   f0, f3, f1, f0
-stfs     f0, 0xc(r1)
-bl       "init__Q32kh6Screen11LostItemMgrFRCQ29JGeometry8TVec2<f>b"
-lwz      r0, 0xe0(r31)
-stw      r0, 0xf4(r31)
-b        lbl_803FA900
-
-lbl_803FA8CC:
-lwz      r4, 0x18(r4)
-addi     r6, r6, 1
-
-lbl_803FA8D4:
-cmplwi   r4, 0
-bne      lbl_803FA844
-li       r0, 8
-lis      r3, msVal__Q32kh6Screen13ObjCaveResult@ha
-stw      r0, 0xf0(r31)
-addi     r3, r3, msVal__Q32kh6Screen13ObjCaveResult@l
-lbz      r0, 0x3b(r3)
-stw      r0, 0xf4(r31)
-b        lbl_803FA900
-
-lbl_803FA8F8:
-addi     r0, r3, -1
-stw      r0, 0xf4(r31)
-
-lbl_803FA900:
-lwz      r0, 0x24(r1)
-lwz      r31, 0x1c(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
 }
 
 /**
@@ -1705,13 +1624,11 @@ void ObjCaveResult::updateAnimation()
 		if (mAnimTimers[1] >= 30.0f && !isFlag(CAVERESFLAG_MakeEfx)) {
 			u16 y = System::getRenderModeObj()->efbHeight;
 			u16 x = System::getRenderModeObj()->fbWidth;
-			Vector2f pos(x * 0.5f, y * 0.5f);
-			efx2d::Arg arg2(pos);
+			efx2d::Arg arg2(Vector2f(x * 0.5f, y * 0.5f));
 			mEfxComp->create(&arg2);
 
-			Vector2f pos2(getPaneCenterX(mScreenComplete->search('NALL')) + msVal._04,
-			              getPaneCenterY(mScreenComplete->search('NALL')) + msVal._08);
-			efx2d::Arg arg(pos2);
+			efx2d::Arg arg(Vector2f(getPaneCenterX(mScreenComplete->search('NALL')) + msVal._04,
+			                        getPaneCenterY(mScreenComplete->search('NALL')) + msVal._08));
 			efx2d::T2DCavecomp efx;
 			efx.create(&arg);
 
@@ -1724,371 +1641,6 @@ void ObjCaveResult::updateAnimation()
 		}
 	}
 	FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode) { cNode->mItemMgr->update(); }
-	/*
-stwu     r1, -0xb0(r1)
-mflr     r0
-stw      r0, 0xb4(r1)
-stfd     f31, 0xa0(r1)
-psq_st   f31, 168(r1), 0, qr0
-stw      r31, 0x9c(r1)
-stw      r30, 0x98(r1)
-mr       r31, r3
-lis      r4, 0x6D61736B@ha
-lwz      r3, 0x40(r3)
-addi     r6, r4, 0x6D61736B@l
-li       r5, 0x4e
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-mr       r4, r3
-addi     r3, r1, 0x34
-li       r5, 0
-bl       getGlbVtx__7J2DPaneCFUc
-lwz      r3, 0x40(r31)
-lis      r4, 0x6D61736B@ha
-lwz      r7, 0x34(r1)
-addi     r6, r4, 0x6D61736B@l
-lwz      r12, 0(r3)
-li       r5, 0x4e
-lwz      r4, 0x38(r1)
-lwz      r0, 0x3c(r1)
-lwz      r12, 0x3c(r12)
-stw      r7, 0x64(r1)
-stw      r4, 0x68(r1)
-stw      r0, 0x6c(r1)
-mtctr    r12
-bctrl
-mr       r4, r3
-addi     r3, r1, 0x28
-li       r5, 3
-bl       getGlbVtx__7J2DPaneCFUc
-lfs      f0, lbl_8051FFD0@sda21(r2)
-lfs      f31, 0x68(r1)
-lwz      r4, 0x28(r1)
-lwz      r3, 0x2c(r1)
-fadds    f1, f0, f31
-lwz      r0, 0x30(r1)
-stw      r4, 0x58(r1)
-stw      r3, 0x5c(r1)
-stw      r0, 0x60(r1)
-bl       __cvt_fp2unsigned
-lfs      f0, 0x5c(r1)
-stw      r3, 0xe8(r31)
-fsubs    f1, f0, f31
-bl       __cvt_fp2unsigned
-stw      r3, 0xec(r31)
-lfs      f0, 0x64(r31)
-lwz      r3, 0x4c(r31)
-stfs     f0, 8(r3)
-lfs      f0, 0x6c(r31)
-lwz      r3, 0x54(r31)
-stfs     f0, 8(r3)
-lfs      f0, 0x74(r31)
-lwz      r3, 0x5c(r31)
-stfs     f0, 8(r3)
-lfs      f0, 0x78(r31)
-lwz      r3, 0x60(r31)
-stfs     f0, 8(r3)
-lwz      r3, 0x40(r31)
-bl       animation__9J2DScreenFv
-lbz      r0, 0x104(r31)
-rlwinm.  r0, r0, 0, 0x1d, 0x1d
-bne      lbl_803FAD30
-lfs      f1, 0x64(r31)
-lis      r0, 0x4330
-lfs      f0, lbl_8051FFB8@sda21(r2)
-stw      r0, 0x88(r1)
-fadds    f0, f1, f0
-lfd      f1, lbl_8051FFB0@sda21(r2)
-stfs     f0, 0x64(r31)
-lwz      r3, 0x4c(r31)
-lfs      f2, 0x64(r31)
-lha      r0, 6(r3)
-xoris    r0, r0, 0x8000
-stw      r0, 0x8c(r1)
-lfd      f0, 0x88(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_803FAC4C
-lfs      f0, lbl_8051FFA8@sda21(r2)
-stfs     f0, 0x64(r31)
-
-lbl_803FAC4C:
-lfs      f1, 0x6c(r31)
-lis      r0, 0x4330
-lfs      f0, lbl_8051FFB8@sda21(r2)
-stw      r0, 0x88(r1)
-fadds    f0, f1, f0
-lfd      f1, lbl_8051FFB0@sda21(r2)
-stfs     f0, 0x6c(r31)
-lwz      r3, 0x54(r31)
-lfs      f2, 0x6c(r31)
-lha      r0, 6(r3)
-xoris    r0, r0, 0x8000
-stw      r0, 0x8c(r1)
-lfd      f0, 0x88(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_803FAC98
-lfs      f0, lbl_8051FFA8@sda21(r2)
-stfs     f0, 0x6c(r31)
-
-lbl_803FAC98:
-lfs      f1, 0x74(r31)
-lis      r0, 0x4330
-lfs      f0, lbl_8051FFB8@sda21(r2)
-stw      r0, 0x88(r1)
-fadds    f0, f1, f0
-lfd      f1, lbl_8051FFB0@sda21(r2)
-stfs     f0, 0x74(r31)
-lwz      r3, 0x5c(r31)
-lfs      f2, 0x74(r31)
-lha      r0, 6(r3)
-xoris    r0, r0, 0x8000
-stw      r0, 0x8c(r1)
-lfd      f0, 0x88(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_803FACE4
-lfs      f0, lbl_8051FFA8@sda21(r2)
-stfs     f0, 0x74(r31)
-
-lbl_803FACE4:
-lfs      f1, 0x78(r31)
-lis      r0, 0x4330
-lfs      f0, lbl_8051FFB8@sda21(r2)
-stw      r0, 0x88(r1)
-fadds    f0, f1, f0
-lfd      f1, lbl_8051FFB0@sda21(r2)
-stfs     f0, 0x78(r31)
-lwz      r3, 0x60(r31)
-lfs      f2, 0x78(r31)
-lha      r0, 6(r3)
-xoris    r0, r0, 0x8000
-stw      r0, 0x8c(r1)
-lfd      f0, 0x88(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_803FAD30
-lfs      f0, lbl_8051FFA8@sda21(r2)
-stfs     f0, 0x78(r31)
-
-lbl_803FAD30:
-lwz      r3, 0x40(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x84(r31)
-bl       calc__Q32og6Screen8ScaleMgrFv
-lwz      r3, 0x40(r31)
-lis      r5, 0x636F6D70@ha
-lis      r4, 0x50616E61@ha
-fmr      f31, f1
-lwz      r12, 0(r3)
-addi     r6, r5, 0x636F6D70@l
-addi     r5, r4, 0x50616E61@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-stfs     f31, 0xcc(r3)
-stfs     f31, 0xd0(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x2c(r12)
-mtctr    r12
-bctrl
-lbz      r0, 0x104(r31)
-rlwinm.  r0, r0, 0, 0x1b, 0x1b
-beq      lbl_803FB00C
-lfs      f0, 0x68(r31)
-lwz      r3, 0x50(r31)
-stfs     f0, 8(r3)
-lfs      f0, 0x70(r31)
-lwz      r3, 0x58(r31)
-stfs     f0, 8(r3)
-lwz      r3, 0x48(r31)
-bl       animation__9J2DScreenFv
-lfs      f1, 0x68(r31)
-lfs      f0, lbl_8051FFD4@sda21(r2)
-fcmpo    cr0, f1, f0
-cror     2, 1, 2
-bne      lbl_803FAF70
-lbz      r0, 0x104(r31)
-rlwinm.  r0, r0, 0, 0x1a, 0x1a
-bne      lbl_803FAF70
-bl       getRenderModeObj__6SystemFv
-lhz      r30, 6(r3)
-bl       getRenderModeObj__6SystemFv
-lhz      r4, 4(r3)
-lis      r5, 0x4330
-lis      r3, __vt__Q25efx2d3Arg@ha
-stw      r5, 0x88(r1)
-addi     r0, r3, __vt__Q25efx2d3Arg@l
-lfd      f2, lbl_8051FFC0@sda21(r2)
-stw      r4, 0x8c(r1)
-addi     r4, r1, 0x4c
-lfs      f3, lbl_8051FFD0@sda21(r2)
-lfd      f0, 0x88(r1)
-stw      r30, 0x94(r1)
-fsubs    f1, f0, f2
-stw      r5, 0x90(r1)
-lfd      f0, 0x90(r1)
-fmuls    f1, f3, f1
-stw      r0, 0x54(r1)
-fsubs    f0, f0, f2
-stfs     f1, 0x18(r1)
-fmuls    f0, f3, f0
-lwz      r0, 0x18(r1)
-stw      r0, 0x20(r1)
-stfs     f0, 0x1c(r1)
-lfs      f0, 0x20(r1)
-lwz      r0, 0x1c(r1)
-stfs     f0, 0x4c(r1)
-stw      r0, 0x24(r1)
-lfs      f0, 0x24(r1)
-stfs     f0, 0x50(r1)
-lwz      r3, 0x7c(r31)
-lwz      r12, 0(r3)
-lwz      r12, 8(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x48(r31)
-lis      r4, 0x4E414C4C@ha
-addi     r6, r4, 0x4E414C4C@l
-li       r5, 0
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-bl       getPaneCenterY__Q22kh6ScreenFP7J2DPane
-lwz      r3, 0x48(r31)
-lis      r4, msVal__Q32kh6Screen13ObjCaveResult@ha
-addi     r5, r4, msVal__Q32kh6Screen13ObjCaveResult@l
-lis      r4, 0x4E414C4C@ha
-lwz      r12, 0(r3)
-addi     r6, r4, 0x4E414C4C@l
-lfs      f0, 8(r5)
-li       r5, 0
-lwz      r12, 0x3c(r12)
-fadds    f31, f0, f1
-mtctr    r12
-bctrl
-bl       getPaneCenterX__Q22kh6ScreenFP7J2DPane
-lis      r3, msVal__Q32kh6Screen13ObjCaveResult@ha
-li       r8, 0
-addi     r3, r3, msVal__Q32kh6Screen13ObjCaveResult@l
-stfs     f31, 0xc(r1)
-lfs      f0, 4(r3)
-lis      r3, __vt__Q25efx2d7TBaseIF@ha
-addi     r0, r3, __vt__Q25efx2d7TBaseIF@l
-lwz      r3, 0xc(r1)
-fadds    f0, f0, f1
-lis      r5, __vt__Q25efx2d5TBase@ha
-stw      r3, 0x14(r1)
-lis      r4, __vt__Q25efx2d8TSimple2@ha
-lis      r6, __vt__Q25efx2d3Arg@ha
-lis      r3, __vt__Q25efx2d11T2DCavecomp@ha
-stfs     f0, 8(r1)
-addi     r10, r6, __vt__Q25efx2d3Arg@l
-lfs      f0, 0x14(r1)
-li       r6, 0xa
-lwz      r11, 8(r1)
-addi     r9, r5, __vt__Q25efx2d5TBase@l
-stw      r0, 0x70(r1)
-li       r5, 0xb
-addi     r7, r4, __vt__Q25efx2d8TSimple2@l
-addi     r0, r3, __vt__Q25efx2d11T2DCavecomp@l
-stw      r11, 0x10(r1)
-addi     r3, r1, 0x70
-addi     r4, r1, 0x40
-stw      r9, 0x70(r1)
-lfs      f1, 0x10(r1)
-stw      r7, 0x70(r1)
-stw      r10, 0x48(r1)
-stfs     f1, 0x40(r1)
-stfs     f0, 0x44(r1)
-stb      r8, 0x74(r1)
-stb      r8, 0x75(r1)
-sth      r6, 0x78(r1)
-sth      r5, 0x7a(r1)
-stw      r8, 0x7c(r1)
-stw      r8, 0x80(r1)
-stw      r0, 0x70(r1)
-bl       create__Q25efx2d8TSimple2FPQ25efx2d3Arg
-lbz      r0, 0x104(r31)
-ori      r0, r0, 0x20
-stb      r0, 0x104(r31)
-
-lbl_803FAF70:
-lis      r3, msVal__Q32kh6Screen13ObjCaveResult@ha
-lfs      f1, 0x68(r31)
-lfsu     f0, msVal__Q32kh6Screen13ObjCaveResult@l(r3)
-lis      r0, 0x4330
-stw      r0, 0x90(r1)
-fadds    f0, f1, f0
-lfd      f3, lbl_8051FFB0@sda21(r2)
-lfs      f2, lbl_8051FFB8@sda21(r2)
-stfs     f0, 0x68(r31)
-lfs      f1, 0x70(r31)
-lfs      f0, 0(r3)
-fadds    f0, f1, f0
-stfs     f0, 0x70(r31)
-lwz      r3, 0x50(r31)
-lfs      f1, 0x68(r31)
-lha      r3, 6(r3)
-xoris    r3, r3, 0x8000
-stw      r3, 0x94(r1)
-lfd      f0, 0x90(r1)
-fsubs    f0, f0, f3
-fsubs    f0, f0, f2
-fcmpo    cr0, f1, f0
-cror     2, 1, 2
-beq      lbl_803FB000
-lwz      r3, 0x58(r31)
-stw      r0, 0x90(r1)
-lha      r0, 6(r3)
-lfs      f1, 0x70(r31)
-xoris    r0, r0, 0x8000
-stw      r0, 0x94(r1)
-lfd      f0, 0x90(r1)
-fsubs    f0, f0, f3
-fsubs    f0, f0, f2
-fcmpo    cr0, f1, f0
-cror     2, 1, 2
-bne      lbl_803FB00C
-
-lbl_803FB000:
-lbz      r0, 0x104(r31)
-rlwinm   r0, r0, 0, 0x1c, 0x1a
-stb      r0, 0x104(r31)
-
-lbl_803FB00C:
-lwz      r3, 0x3c(r31)
-lwz      r30, 0x24(r3)
-b        lbl_803FB024
-
-lbl_803FB018:
-lwz      r3, 0x48(r30)
-bl       update__Q32kh6Screen11LostItemMgrFv
-lwz      r30, 0x18(r30)
-
-lbl_803FB024:
-cmplwi   r30, 0
-bne      lbl_803FB018
-psq_l    f31, 168(r1), 0, qr0
-lwz      r0, 0xb4(r1)
-lfd      f31, 0xa0(r1)
-lwz      r31, 0x9c(r1)
-lwz      r30, 0x98(r1)
-mtlr     r0
-addi     r1, r1, 0xb0
-blr
-	*/
 }
 
 /**
@@ -2202,20 +1754,23 @@ void LostItemMgr::init(const JGeometry::TVec2f& pos, bool flag)
 		}
 
 		for (int i = 0; i < mMaxPanes; i++) {
-			f32 x1 = randFloat();
-			f32 x2 = randFloat();
-			f32 y1 = randFloat();
-			f32 y2 = randFloat();
+			f32 x1   = randFloat();
+			f32 x2   = randFloat();
+			f32 y1   = randFloat();
+			f32 y2   = randFloat();
+			f32 test = randFloat();
 
 			LostItem* item   = &mItemList[i];
 			item->mRect.p1.x = x;
 			item->mRect.p1.y = y;
-			item->mRect.p2.x = 40.0f * randFloat() - 20.0f;
+			item->mRect.p2.x = 40.0f * test - 20.0f;
 			item->mRect.p2.y = 32.0f * y2 - 30.0f;
-			item->_10        = (4.0f * y1 + 2.0f);
-			item->_1A        = (10000.0f * x2 - 5000.0f);
-			item->mCounter   = (10.0f * x1 - 8.0f);
+
+			item->_10      = (4.0f * y1 + 2.0f);
+			item->_1A      = (10000.0f * x2 - 5000.0f);
+			item->mCounter = (10.0f * x1 + 8.0f);
 		}
+
 		f32 xoffs[5] = { kh::Screen::ObjCaveResult::msVal._24, kh::Screen::ObjCaveResult::msVal._28, kh::Screen::ObjCaveResult::msVal._2C,
 			             kh::Screen::ObjCaveResult::msVal._30, kh::Screen::ObjCaveResult::msVal._34 };
 
@@ -2226,277 +1781,13 @@ void LostItemMgr::init(const JGeometry::TVec2f& pos, bool flag)
 		f32 efxX = pos.x;
 		for (int i = 0; i < 5; i++) {
 			efx2d::T2DChangesmoke efx;
-			efx2d::Arg arg(efxX + xoffs[i], efxY);
+			Vector2f pos(efxX + xoffs[i], efxY);
+			efx2d::Arg arg(pos);
 			efx.create(&arg);
 		}
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_PIKI_DECREMENT, 0);
 		setFlag(0x1 + 0x2);
 	}
-	/*
-stwu     r1, -0x1c0(r1)
-mflr     r0
-stw      r0, 0x1c4(r1)
-stfd     f31, 0x1b0(r1)
-psq_st   f31, 440(r1), 0, qr0
-stfd     f30, 0x1a0(r1)
-psq_st   f30, 424(r1), 0, qr0
-stfd     f29, 0x190(r1)
-psq_st   f29, 408(r1), 0, qr0
-stfd     f28, 0x180(r1)
-psq_st   f28, 392(r1), 0, qr0
-stfd     f27, 0x170(r1)
-psq_st   f27, 376(r1), 0, qr0
-stfd     f26, 0x160(r1)
-psq_st   f26, 360(r1), 0, qr0
-stfd     f25, 0x150(r1)
-psq_st   f25, 344(r1), 0, qr0
-stfd     f24, 0x140(r1)
-psq_st   f24, 328(r1), 0, qr0
-stfd     f23, 0x130(r1)
-psq_st   f23, 312(r1), 0, qr0
-stfd     f22, 0x120(r1)
-psq_st   f22, 296(r1), 0, qr0
-stfd     f21, 0x110(r1)
-psq_st   f21, 280(r1), 0, qr0
-stfd     f20, 0x100(r1)
-psq_st   f20, 264(r1), 0, qr0
-stfd     f19, 0xf0(r1)
-psq_st   f19, 248(r1), 0, qr0
-stfd     f18, 0xe0(r1)
-psq_st   f18, 232(r1), 0, qr0
-stfd     f17, 0xd0(r1)
-psq_st   f17, 216(r1), 0, qr0
-stfd     f16, 0xc0(r1)
-psq_st   f16, 200(r1), 0, qr0
-stfd     f15, 0xb0(r1)
-psq_st   f15, 184(r1), 0, qr0
-stfd     f14, 0xa0(r1)
-psq_st   f14, 168(r1), 0, qr0
-stmw     r24, 0x80(r1)
-mr       r29, r3
-mr       r30, r4
-lwz      r0, 4(r3)
-mr       r31, r5
-cmpwi    r0, 0
-beq      lbl_803FB588
-clrlwi.  r0, r31, 0x18
-lfs      f15, 0(r30)
-lfs      f14, 4(r30)
-beq      lbl_803FB310
-lfs      f0, lbl_8051FFDC@sda21(r2)
-fadds    f15, f15, f0
-
-lbl_803FB310:
-lfd      f20, lbl_8051FFB0@sda21(r2)
-li       r25, 0
-lfs      f21, lbl_8051FFE0@sda21(r2)
-li       r27, 0
-lfs      f22, lbl_8051FFE4@sda21(r2)
-lis      r26, 0x4330
-lfs      f23, lbl_8051FFE8@sda21(r2)
-lfs      f24, lbl_8051FFEC@sda21(r2)
-lfs      f25, lbl_8051FFD4@sda21(r2)
-lfs      f26, lbl_8051FFF0@sda21(r2)
-lfs      f27, lbl_8051FFBC@sda21(r2)
-lfs      f28, lbl_8051FFF4@sda21(r2)
-lfs      f29, lbl_8051FFF8@sda21(r2)
-lfs      f30, lbl_80520000@sda21(r2)
-lfs      f31, lbl_8051FFFC@sda21(r2)
-b        lbl_803FB434
-
-lbl_803FB350:
-bl       rand
-xoris    r0, r3, 0x8000
-stw      r26, 0x48(r1)
-stw      r0, 0x4c(r1)
-lfd      f0, 0x48(r1)
-fsubs    f0, f0, f20
-fdivs    f19, f0, f21
-bl       rand
-xoris    r0, r3, 0x8000
-stw      r26, 0x50(r1)
-stw      r0, 0x54(r1)
-lfd      f0, 0x50(r1)
-fsubs    f0, f0, f20
-fdivs    f18, f0, f21
-bl       rand
-xoris    r0, r3, 0x8000
-stw      r26, 0x58(r1)
-stw      r0, 0x5c(r1)
-lfd      f0, 0x58(r1)
-fsubs    f0, f0, f20
-fdivs    f17, f0, f21
-bl       rand
-xoris    r0, r3, 0x8000
-stw      r26, 0x60(r1)
-stw      r0, 0x64(r1)
-lfd      f0, 0x60(r1)
-fsubs    f0, f0, f20
-fdivs    f16, f0, f21
-bl       rand
-xoris    r3, r3, 0x8000
-fmsubs   f1, f28, f18, f29
-stw      r3, 0x6c(r1)
-fmadds   f0, f30, f19, f31
-lwz      r0, 0(r29)
-fmsubs   f3, f24, f16, f25
-stw      r26, 0x68(r1)
-add      r4, r0, r27
-fctiwz   f1, f1
-lfd      f4, 0x68(r1)
-fctiwz   f0, f0
-stfs     f15, 0(r4)
-fmadds   f2, f26, f17, f27
-fsubs    f4, f4, f20
-stfd     f1, 0x70(r1)
-addi     r27, r27, 0x20
-addi     r25, r25, 1
-fdivs    f1, f4, f21
-stfd     f0, 0x78(r1)
-lwz      r3, 0x74(r1)
-stfs     f14, 4(r4)
-lwz      r0, 0x7c(r1)
-fmsubs   f0, f22, f1, f23
-stfs     f0, 8(r4)
-stfs     f3, 0xc(r4)
-stfs     f2, 0x10(r4)
-sth      r3, 0x1a(r4)
-stb      r0, 0x1d(r4)
-
-lbl_803FB434:
-lwz      r0, 4(r29)
-cmpw     r25, r0
-blt      lbl_803FB350
-lis      r4, lbl_80498480@ha
-lis      r3, msVal__Q32kh6Screen13ObjCaveResult@ha
-addi     r8, r4, lbl_80498480@l
-clrlwi.  r0, r31, 0x18
-lwz      r7, 0(r8)
-addi     r3, r3, msVal__Q32kh6Screen13ObjCaveResult@l
-lwz      r6, 4(r8)
-lwz      r5, 8(r8)
-lwz      r4, 0xc(r8)
-lwz      r0, 0x10(r8)
-stw      r7, 0x34(r1)
-lfs      f4, 0x24(r3)
-stw      r6, 0x38(r1)
-lfs      f3, 0x28(r3)
-stw      r5, 0x3c(r1)
-lfs      f2, 0x2c(r3)
-stw      r4, 0x40(r1)
-lfs      f1, 0x30(r3)
-stw      r0, 0x44(r1)
-lfs      f0, 0x34(r3)
-stfs     f4, 0x34(r1)
-stfs     f3, 0x38(r1)
-stfs     f2, 0x3c(r1)
-stfs     f1, 0x40(r1)
-stfs     f0, 0x44(r1)
-beq      lbl_803FB4B4
-lfs      f0, lbl_8051FFDC@sda21(r2)
-fadds    f0, f4, f0
-stfs     f0, 0x34(r1)
-
-lbl_803FB4B4:
-lfs      f1, 4(r30)
-lis      r7, __vt__Q25efx2d7TBaseIF@ha
-lfs      f0, lbl_80520000@sda21(r2)
-lis      r6, __vt__Q25efx2d5TBase@ha
-lis      r5, __vt__Q25efx2d8TSimple1@ha
-lis      r4, __vt__Q25efx2d14T2DChangesmoke@ha
-lis      r3, __vt__Q25efx2d3Arg@ha
-fsubs    f14, f1, f0
-lfs      f15, 0(r30)
-addi     r25, r1, 0x34
-addi     r26, r7, __vt__Q25efx2d7TBaseIF@l
-addi     r27, r6, __vt__Q25efx2d5TBase@l
-addi     r28, r5, __vt__Q25efx2d8TSimple1@l
-addi     r31, r4, __vt__Q25efx2d14T2DChangesmoke@l
-addi     r30, r3, __vt__Q25efx2d3Arg@l
-li       r24, 0
-
-lbl_803FB4F4:
-lfs      f0, 0(r25)
-li       r7, 0
-stfs     f14, 0x14(r1)
-li       r6, 7
-fadds    f0, f15, f0
-addi     r3, r1, 0x24
-stw      r26, 0x24(r1)
-addi     r4, r1, 0x18
-lwz      r0, 0x14(r1)
-stfs     f0, 0x10(r1)
-lwz      r5, 0x10(r1)
-stw      r27, 0x24(r1)
-stw      r5, 8(r1)
-stw      r0, 0xc(r1)
-lfs      f1, 8(r1)
-stw      r28, 0x24(r1)
-lfs      f0, 0xc(r1)
-stb      r7, 0x28(r1)
-stb      r7, 0x29(r1)
-sth      r6, 0x2c(r1)
-stw      r7, 0x30(r1)
-stw      r31, 0x24(r1)
-stw      r30, 0x20(r1)
-stfs     f1, 0x18(r1)
-stfs     f0, 0x1c(r1)
-bl       create__Q25efx2d8TSimple1FPQ25efx2d3Arg
-addi     r24, r24, 1
-addi     r25, r25, 4
-cmpwi    r24, 5
-blt      lbl_803FB4F4
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x182a
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lwz      r0, 8(r29)
-ori      r0, r0, 3
-stw      r0, 8(r29)
-
-lbl_803FB588:
-psq_l    f31, 440(r1), 0, qr0
-lfd      f31, 0x1b0(r1)
-psq_l    f30, 424(r1), 0, qr0
-lfd      f30, 0x1a0(r1)
-psq_l    f29, 408(r1), 0, qr0
-lfd      f29, 0x190(r1)
-psq_l    f28, 392(r1), 0, qr0
-lfd      f28, 0x180(r1)
-psq_l    f27, 376(r1), 0, qr0
-lfd      f27, 0x170(r1)
-psq_l    f26, 360(r1), 0, qr0
-lfd      f26, 0x160(r1)
-psq_l    f25, 344(r1), 0, qr0
-lfd      f25, 0x150(r1)
-psq_l    f24, 328(r1), 0, qr0
-lfd      f24, 0x140(r1)
-psq_l    f23, 312(r1), 0, qr0
-lfd      f23, 0x130(r1)
-psq_l    f22, 296(r1), 0, qr0
-lfd      f22, 0x120(r1)
-psq_l    f21, 280(r1), 0, qr0
-lfd      f21, 0x110(r1)
-psq_l    f20, 264(r1), 0, qr0
-lfd      f20, 0x100(r1)
-psq_l    f19, 248(r1), 0, qr0
-lfd      f19, 0xf0(r1)
-psq_l    f18, 232(r1), 0, qr0
-lfd      f18, 0xe0(r1)
-psq_l    f17, 216(r1), 0, qr0
-lfd      f17, 0xd0(r1)
-psq_l    f16, 200(r1), 0, qr0
-lfd      f16, 0xc0(r1)
-psq_l    f15, 184(r1), 0, qr0
-lfd      f15, 0xb0(r1)
-psq_l    f14, 168(r1), 0, qr0
-lfd      f14, 0xa0(r1)
-lmw      r24, 0x80(r1)
-lwz      r0, 0x1c4(r1)
-mtlr     r0
-addi     r1, r1, 0x1c0
-blr
-	*/
 }
 
 /**
