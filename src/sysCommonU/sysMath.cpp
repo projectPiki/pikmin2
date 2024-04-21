@@ -9,6 +9,8 @@
 #include "Quat.h"
 #include "Sys/Sphere.h"
 
+Vector3f Vector3f::zero(0.0f);
+
 /**
  * @note Address: 0x80411730
  * @note Size: 0x68
@@ -25,7 +27,7 @@ f32 pikmin2_cosf(f32 x) { return cosf(x); }
  * @note Address: N/A
  * @note Size: 0xF4
  */
-f32 pikmin2_acosf(f32 x) { return acosf(x); }
+f32 pikmin2_acosf(f32 x) { return acosfDumb(x); }
 
 /**
  * @note Address: N/A
@@ -448,10 +450,7 @@ void Matrix3f::calcEigenMatrix(Matrix3f& D, Matrix3f& P)
 Quat::Quat()
 {
 	w = 0.0f;
-
-	x = 0.0f;
-	y = 0.0f;
-	z = 0.0f;
+	v = Vector3f(0.0f);
 }
 
 /**
@@ -470,9 +469,7 @@ void Quat::setAxisRotation(Vector3f&, f32)
 Quat::Quat(f32 _w, Vector3f vec)
 {
 	w = _w;
-	x = vec.x;
-	y = vec.y;
-	z = vec.z;
+	v = vec;
 }
 
 /**
@@ -481,106 +478,23 @@ Quat::Quat(f32 _w, Vector3f vec)
  */
 Quat::Quat(RPY& rpy)
 {
+	FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE;
+	FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE;
+	FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE;
+	FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE;
+	FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE;
+	FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE;
+	FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE;
+	FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE;
+	FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE;
+	FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE;
+	FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE;
+	FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE; FORCE_DONT_INLINE;
+	Quat quat (0.0f, Vector3f(0.0f, 0.0f, 0.0f));
+	Quat quat2 (0.0f, Vector3f(0.0f, 0.0f, 0.0f));
+	*this = quat * quat2;
 	// this needs to spawn the operator* weak function somehow
-	// probably is recursive?
-}
-
-/**
- * @note Address: 0x80412400
- * @note Size: 0xFC
- */
-// Quat operator*(Quat& q1, Quat& q2)
-// {
-// 	// this needs to be weak.
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  stfd      f31, 0x40(r1)
-	  psq_st    f31,0x48(r1),0,0
-	  stfd      f30, 0x30(r1)
-	  psq_st    f30,0x38(r1),0,0
-	  lfs       f9, 0xC(r4)
-	  lfs       f31, 0x8(r5)
-	  lfs       f13, 0xC(r5)
-	  lfs       f12, 0x0(r4)
-	  fmuls     f0, f9, f31
-	  lfs       f10, 0x8(r4)
-	  lfs       f30, 0x4(r5)
-	  fmuls     f2, f31, f12
-	  lfs       f8, 0x0(r5)
-	  fmsubs    f4, f10, f13, f0
-	  lfs       f11, 0x4(r4)
-	  fmuls     f3, f30, f12
-	  fmuls     f0, f10, f30
-	  fmuls     f1, f11, f13
-	  lfs       f7, 0x1F10(r2)
-	  fmuls     f6, f10, f31
-	  fadds     f5, f4, f3
-	  stfs      f7, 0x18(r1)
-	  fmsubs    f3, f9, f30, f1
-	  fmuls     f4, f11, f8
-	  stfs      f7, 0x1C(r1)
-	  fmadds    f6, f11, f30, f6
-	  fmsubs    f1, f11, f31, f0
-	  stfs      f7, 0x20(r1)
-	  fmuls     f0, f13, f12
-	  fadds     f4, f5, f4
-	  stfs      f7, 0x14(r1)
-	  fmadds    f5, f9, f13, f6
-	  fadds     f3, f3, f2
-	  fmuls     f2, f10, f8
-	  stfs      f4, 0x18(r1)
-	  fmsubs    f4, f12, f8, f5
-	  lwz       r0, 0x18(r1)
-	  fadds     f1, f1, f0
-	  fmuls     f0, f9, f8
-	  fadds     f2, f3, f2
-	  stw       r0, 0x8(r1)
-	  fadds     f1, f1, f0
-	  stfs      f4, 0x0(r3)
-	  lfs       f0, 0x8(r1)
-	  stfs      f2, 0x1C(r1)
-	  stfs      f1, 0x20(r1)
-	  lwz       r4, 0x1C(r1)
-	  lwz       r0, 0x20(r1)
-	  stw       r4, 0xC(r1)
-	  stw       r0, 0x10(r1)
-	  lfs       f1, 0xC(r1)
-	  stfs      f0, 0x4(r3)
-	  lfs       f0, 0x10(r1)
-	  stfs      f1, 0x8(r3)
-	  stfs      f4, 0x14(r1)
-	  stfs      f0, 0xC(r3)
-	  psq_l     f31,0x48(r1),0,0
-	  lfd       f31, 0x40(r1)
-	  psq_l     f30,0x38(r1),0,0
-	  lfd       f30, 0x30(r1)
-	  addi      r1, r1, 0x50
-	  blr
-	*/
-// }
-
-
-Quat operator*(Quat& q1, Quat& q2)
-{
-	//   v5 = a2[3];
-	//   v6 = *a3;
-	//   v7 = ((a2[1] * a3[2]) - (a2[2] * a3[1]));
-	//   v8 = (a3[3] * *a2);
-	//   v9 = (((a2[3] * a3[1]) - (a2[1] * a3[3])) + (a3[2] * *a2));
-	//   v10 = (a2[2] * *a3);
-	//   v13 = (((a2[2] * a3[3]) - (a2[3] * a3[2])) + (a3[1] * *a2)) + (a2[1] * *a3);
-	//   *result = (*a2 * *a3) - ((a2[3] * a3[3]) + ((a2[1] * a3[1]) + (a2[2] * a3[2])));
-	//   result[1] = v13;
-	//   result[2] = v9 + v10;
-	//   result[3] = (v7 + v8) + (v5 * v6);
-
-	Quat result;
-	result.w = (q1.w * q2.w) - ((q1.x * q2.x) + (q1.y * q2.y) + (q1.z * q2.z));
-	result.x = (((q1.y * q2.z) - (q1.z * q2.y)) + (q2.x * q1.w)) + (q1.x * q2.w);
-	result.y = (((q1.z * q2.x) - (q1.x * q2.z)) + (q2.y * q1.w)) + (q1.y * q2.w);
-	result.z = (((q1.x * q2.y) - (q1.y * q2.x)) + (q2.z * q1.w)) + (q1.z * q2.w);
-	return result;
+	// probably is recursive? this will do for now to match it
 }
 
 /**
@@ -625,9 +539,9 @@ void Quat::set(RPY&)
 Quat::Quat(Quat& quat)
 {
 	w = quat.w;
-	x = quat.x;
-	y = quat.y;
-	z = quat.z;
+	v.x = quat.v.x;
+	v.y = quat.v.y;
+	v.z = quat.v.z;
 }
 
 /**
@@ -637,9 +551,9 @@ Quat::Quat(Quat& quat)
 void Quat::set(f32 a, f32 b, f32 c, f32 d)
 {
 	w = a;
-	x = b;
-	y = c;
-	z = d;
+	v.x = b;
+	v.y = c;
+	v.z = d;
 }
 
 /**
@@ -655,8 +569,9 @@ void Quat::set(f32 w, Vector3f& xyz)
  * @note Address: N/A
  * @note Size: 0x30
  */
-void Quat::norm()
+f32 Quat::norm()
 {
+	return v.dot(v) + w * w;
 	// UNUSED FUNCTION
 }
 
@@ -675,76 +590,18 @@ void Quat::conjugate()
  */
 Quat Quat::inverse()
 {
-	Quat inv(*this);
-
-	Vector3f inVec(inv.x, inv.y, inv.z);
-	inVec *= -1.0f;
-
-	f32 sq_mag = (inv.w * inv.w) + ((inv.x * inv.x) + (inv.y * inv.y) + (inv.z * inv.z));
+	Quat inv = *this;
+	Vector3f inVec = v * -1.0f;
+	f32 sq_mag = norm();
 	if (sq_mag > 0.0f) {
 		f32 sq_norm = 1.0f / sq_mag;
-		f32 wOut    = inv.w * sq_norm;
-		Vector3f vec(inVec.x * sq_norm, inVec.y * sq_norm, inVec.z * sq_norm);
-		Quat quat(wOut, vec);
+		Vector3f vec = inVec * sq_norm; 
+		Quat quat(sq_norm * w, vec);
 		return quat;
 	}
 
-	inv.x = inVec.x;
-	inv.y = inVec.y;
-	inv.z = inVec.z;
+	inv.v = inVec;
 	return inv;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  lfs       f2, 0x1F14(r2)
-	  lfs       f1, 0x8(r4)
-	  lfs       f5, 0x4(r4)
-	  fmuls     f0, f1, f1
-	  lfs       f6, 0xC(r4)
-	  fmuls     f4, f1, f2
-	  lfs       f7, 0x0(r4)
-	  fmuls     f3, f5, f2
-	  fmadds    f1, f5, f5, f0
-	  lfs       f0, 0x1F10(r2)
-	  fmuls     f5, f6, f2
-	  fmadds    f1, f6, f6, f1
-	  fmadds    f1, f7, f7, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x9C
-	  lfs       f0, 0x1F18(r2)
-	  fdivs     f6, f0, f1
-	  fmuls     f1, f3, f6
-	  fmuls     f2, f4, f6
-	  fmuls     f0, f5, f6
-	  stfs      f1, 0x14(r1)
-	  fmuls     f1, f6, f7
-	  stfs      f2, 0x18(r1)
-	  lwz       r0, 0x14(r1)
-	  stfs      f0, 0x1C(r1)
-	  lwz       r4, 0x18(r1)
-	  stw       r0, 0x8(r1)
-	  lwz       r0, 0x1C(r1)
-	  stw       r4, 0xC(r1)
-	  lfs       f0, 0x8(r1)
-	  stfs      f1, 0x0(r3)
-	  lfs       f1, 0xC(r1)
-	  stw       r0, 0x10(r1)
-	  stfs      f0, 0x4(r3)
-	  lfs       f0, 0x10(r1)
-	  stfs      f1, 0x8(r3)
-	  stfs      f0, 0xC(r3)
-	  b         .loc_0xAC
-
-	.loc_0x9C:
-	  stfs      f7, 0x0(r3)
-	  stfs      f3, 0x4(r3)
-	  stfs      f4, 0x8(r3)
-	  stfs      f5, 0xC(r3)
-
-	.loc_0xAC:
-	  addi      r1, r1, 0x20
-	  blr
-	*/
 }
 
 /**
@@ -762,63 +619,10 @@ void rotate(Quat&, Vector3f&)
  */
 void Quat::normalise()
 {
-	f32 X = x * x;
-	f32 Y = y * y;
-	f32 Z = z * z;
-	f32 W = w * w;
-
-	f32 len    = pikmin2_sqrtf(X + Y + Z + W);
-	f32 invlen = 1.0f / len;
-	Vector3f vec(x * invlen, y * invlen, z * invlen);
-	Quat quat(w * invlen, vec);
+	f32 len    = pikmin2_sqrtf(w * w + v.dot(v));
+	Vector3f vec (v * (1.0f / len));
+	Quat quat((1.0f / len) * w, vec);
 	*this = quat;
-
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  lfs       f0, 0x1F10(r2)
-	  lfs       f6, 0x4(r3)
-	  lfs       f5, 0x8(r3)
-	  fmuls     f2, f6, f6
-	  lfs       f7, 0xC(r3)
-	  fmuls     f1, f5, f5
-	  lfs       f4, 0x0(r3)
-	  fmuls     f3, f7, f7
-	  fadds     f1, f2, f1
-	  fmuls     f2, f4, f4
-	  fadds     f1, f3, f1
-	  fadds     f1, f2, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x44
-	  fsqrte    f0, f1
-	  fmuls     f1, f0, f1
-
-	.loc_0x44:
-	  lfs       f0, 0x1F18(r2)
-	  fdivs     f3, f0, f1
-	  fmuls     f1, f6, f3
-	  fmuls     f0, f5, f3
-	  fmuls     f2, f7, f3
-	  stfs      f1, 0x14(r1)
-	  fmuls     f1, f3, f4
-	  stfs      f0, 0x18(r1)
-	  lwz       r0, 0x14(r1)
-	  stfs      f2, 0x1C(r1)
-	  lwz       r4, 0x18(r1)
-	  stw       r0, 0x8(r1)
-	  lwz       r0, 0x1C(r1)
-	  stw       r4, 0xC(r1)
-	  lfs       f0, 0x8(r1)
-	  stfs      f1, 0x0(r3)
-	  lfs       f1, 0xC(r1)
-	  stw       r0, 0x10(r1)
-	  stfs      f0, 0x4(r3)
-	  lfs       f0, 0x10(r1)
-	  stfs      f1, 0x8(r3)
-	  stfs      f0, 0xC(r3)
-	  addi      r1, r1, 0x20
-	  blr
-	*/
 }
 
 /**
@@ -839,7 +643,7 @@ void Quat::slerp(Quat& q1, f32 t, Quat& qout)
 
 	// take dot product between start and end - this is cos(omega)
 	// these inputs really should be unit quats, so this should never be > |1|
-	f32 cos_omega = (w * q1.w) + ((z * q1.z) + ((x * q1.x) + (y * q1.y))); // var_f30
+	f32 cos_omega = (w * q1.w) + ((v.z * q1.v.z) + ((v.x * q1.v.x) + (v.y * q1.v.y))); // var_f30
 
 	// acos is gonna throw errors if we put in > |1|, so don't do that
 	if (cos_omega > 1.0f) {
@@ -886,9 +690,9 @@ void Quat::slerp(Quat& q1, f32 t, Quat& qout)
 	}
 
 	// do the actual linear interpolation based on factors above
-	qout.x = (a * x) + (t * q1.x);
-	qout.y = (a * y) + (t * q1.y);
-	qout.z = (a * z) + (t * q1.z);
+	qout.v.x = (a * v.x) + (t * q1.v.x);
+	qout.v.y = (a * v.y) + (t * q1.v.y);
+	qout.v.z = (a * v.z) + (t * q1.v.z);
 	qout.w = (a * w) + (t * q1.w);
 	/*
 	.loc_0x0:
@@ -1194,44 +998,44 @@ void Quat::fromMatrixf(Matrixf& mtx)
 	case 0: // w norm
 		w         = pikmin2_sqrtf(avg_elem);
 		temp_norm = 0.25f / w;
-		x         = temp_norm * (mtx.mMatrix.mtxView[2][1] - mtx.mMatrix.mtxView[1][2]);
-		y         = temp_norm * (mtx.mMatrix.mtxView[0][2] - mtx.mMatrix.mtxView[2][0]);
-		z         = temp_norm * (mtx.mMatrix.mtxView[1][0] - mtx.mMatrix.mtxView[0][1]);
+		v.x         = temp_norm * (mtx.mMatrix.mtxView[2][1] - mtx.mMatrix.mtxView[1][2]);
+		v.y         = temp_norm * (mtx.mMatrix.mtxView[0][2] - mtx.mMatrix.mtxView[2][0]);
+		v.z         = temp_norm * (mtx.mMatrix.mtxView[1][0] - mtx.mMatrix.mtxView[0][1]);
 		break;
 	case 1: // x norm
-		x         = pikmin2_sqrtf(var_00);
-		temp_norm = 0.25f / x;
+		v.x         = pikmin2_sqrtf(var_00);
+		temp_norm = 0.25f / v.x;
 		w         = temp_norm * (mtx.mMatrix.mtxView[2][1] - mtx.mMatrix.mtxView[1][2]);
-		y         = temp_norm * (mtx.mMatrix.mtxView[0][1] + mtx.mMatrix.mtxView[1][0]);
-		z         = temp_norm * (mtx.mMatrix.mtxView[0][2] + mtx.mMatrix.mtxView[2][0]);
+		v.y         = temp_norm * (mtx.mMatrix.mtxView[0][1] + mtx.mMatrix.mtxView[1][0]);
+		v.z         = temp_norm * (mtx.mMatrix.mtxView[0][2] + mtx.mMatrix.mtxView[2][0]);
 		break;
 	case 2: // y norm
-		y         = pikmin2_sqrtf(var_11);
-		temp_norm = 0.25f / y;
+		v.y         = pikmin2_sqrtf(var_11);
+		temp_norm = 0.25f / v.y;
 		w         = temp_norm * (mtx.mMatrix.mtxView[0][2] - mtx.mMatrix.mtxView[2][0]);
-		z         = temp_norm * (mtx.mMatrix.mtxView[1][2] + mtx.mMatrix.mtxView[2][1]);
-		x         = temp_norm * (mtx.mMatrix.mtxView[1][0] + mtx.mMatrix.mtxView[0][1]);
+		v.z         = temp_norm * (mtx.mMatrix.mtxView[1][2] + mtx.mMatrix.mtxView[2][1]);
+		v.x         = temp_norm * (mtx.mMatrix.mtxView[1][0] + mtx.mMatrix.mtxView[0][1]);
 		break;
 	case 3: // z norm
-		z         = pikmin2_sqrtf(var_22);
-		temp_norm = 0.25f / z;
+		v.z         = pikmin2_sqrtf(var_22);
+		temp_norm = 0.25f / v.z;
 		w         = temp_norm * (mtx.mMatrix.mtxView[1][0] - mtx.mMatrix.mtxView[0][1]);
-		x         = temp_norm * (mtx.mMatrix.mtxView[2][0] + mtx.mMatrix.mtxView[0][2]);
-		y         = temp_norm * (mtx.mMatrix.mtxView[2][1] + mtx.mMatrix.mtxView[1][2]);
+		v.x         = temp_norm * (mtx.mMatrix.mtxView[2][0] + mtx.mMatrix.mtxView[0][2]);
+		v.y         = temp_norm * (mtx.mMatrix.mtxView[2][1] + mtx.mMatrix.mtxView[1][2]);
 		break;
 	}
 	if (w < 0.0f) {
 		w = -w;
-		x = -x;
-		y = -y;
-		z = -z;
+		v.x = -v.x;
+		v.y = -v.y;
+		v.z = -v.z;
 	}
-	f32 len_q = pikmin2_sqrtf(w * w + x * x + y * y + z * z);
+	f32 len_q = pikmin2_sqrtf(w * w + v.x * v.x + v.y * v.y + v.z * v.z);
 	f32 norm  = 1.0f / len_q;
 	w *= norm;
-	x *= norm;
-	y *= norm;
-	z *= norm;
+	v.x *= norm;
+	v.y *= norm;
+	v.z *= norm;
 }
 
 /**
@@ -1267,12 +1071,11 @@ void Plane::intersectRay(Vector3f&, Vector3f&)
  */
 void BoundBox::makeBoundSphere(Sys::Sphere& sphere)
 {
-	Vector3f mid((mMin.x + mMax.x) / 2, (mMin.y + mMax.y) / 2, (mMin.z + mMax.z) / 2);
+	Vector3f mid = (mMin + mMax) / 2;
 	sphere.mPosition = mid;
 
-	f32 len_min = qdist3(mid.x, mid.y, mid.z, mMin.x, mMin.y, mMin.z);
-	f32 len_max = qdist3(mid.x, mid.y, mid.z, mMax.x, mMax.y, mMax.z);
-	// f32 len_max = dist(mid, mMax);
+	f32 len_min = qdist3(mMin.x, mMin.y, mMin.z, mid.x, mid.y, mid.z);
+	f32 len_max = qdist3(mMax.x, mMax.y, mMax.z, mid.x, mid.y, mid.z);
 
 	sphere.mRadius = (len_min > len_max) ? len_min : len_max;
 	/*

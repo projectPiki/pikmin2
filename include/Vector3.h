@@ -226,6 +226,15 @@ struct Vector3 {
 
 	inline T dot(const Vector3& other) { return this->x * other.x + this->y * other.y + this->z * other.z; }
 
+	inline Vector3 cross(const Vector3& other)
+	{
+		Vector3 outVec;
+		outVec.x = y * other.z - z * other.y;
+		outVec.y = z * other.x - x * other.z;
+		outVec.z = x * other.y - y * other.x;
+		return outVec;
+	}
+
 	inline void setZero() { this->x = this->y = this->z = 0; }
 
 	/**

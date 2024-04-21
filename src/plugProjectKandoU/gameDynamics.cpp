@@ -1,5 +1,6 @@
 #include "DynamicsParms.h"
 #include "Game/Rigid.h"
+#include "trig.h"
 
 DynamicsParms* DynamicsParms::mInstance;
 
@@ -111,32 +112,19 @@ void Game::Rigid::computeForces(int configIdx)
  */
 static f32 getYDegree(Quat& quat, Vector3f& vec)
 {
-	Quat q1(0.0f, Vector3f(0.0f, 1.0f, 0.0f)); // 0x9c
-	Quat q2;                                   // 0x8c
-	Quat q3;                                   // 0x7c
-	q3 = quat.inverse();                       // 0x60
+	Vector3f yAxis(0.0f, 1.0f, 0.0f);
+	Quat q1(0.0f, yAxis);
+	Quat q2;
+	Quat q3;
+	q3 = quat.inverse();
 
-	Quat q4; // 0x24
-	q4.w = quat.w * q1.w - (quat.x * q1.x + q1.y * quat.y + quat.z * q1.z);
-	q4.x = quat.y * q1.z - quat.z * q1.y + q1.x * quat.w + quat.x * q1.w;
-	q4.y = quat.z * q1.x - quat.x * q1.z + q1.y * quat.w + quat.y * q1.w;
-	q4.z = quat.x * q1.y - quat.y * q1.x + q1.z * quat.w + quat.z * q1.w;
+	// how does one of these match and not the other.
+	q2 = quat * q1;
+	q2 = q2 * q3;
 
-	q2 = Quat(q4.w, Vector3f(q4.x, q4.y, q4.z));
+	vec = q2.v;
 
-	Quat q5; // 0x8
-	q5.w = q2.w * q3.w - (q2.x * q3.x + q3.y * q2.y + q2.z * q3.z);
-	q5.x = q2.y * q3.z - q2.z * q3.y + q3.x * q2.w + q2.x * q3.w;
-	q5.y = q2.z * q3.x - q2.x * q3.z + q3.y * q2.w + q2.y * q3.w;
-	q5.z = q2.x * q3.y - q2.y * q3.x + q3.z * q2.w + q2.z * q3.w;
-
-	q2 = Quat(q5.w, Vector3f(q5.x, q5.y, q5.z));
-
-	vec.x = q2.x;
-	vec.y = q2.y;
-	vec.z = q2.z;
-
-	return q2.y;
+	return q2.v.y;
 
 	/*
 	stwu     r1, -0xc0(r1)
@@ -316,16 +304,46 @@ void Game::Rigid::integrate(f32 timeStep, int configIdx)
 	PSMTXConcat(matQ.mMatrix.mtxView, _144.mMatrix.mtxView, matC.mMatrix.mtxView);
 	PSMTXConcat(matC.mMatrix.mtxView, matT.mMatrix.mtxView, thisConfig->_58.mMatrix.mtxView);
 
-	thisConfig->mPosition += thisConfig->mVelocity * timeStep;
-	thisConfig->_30 += thisConfig->_3C * timeStep;
-	thisConfig->mVelocity += thisConfig->_18 * (timeStep * mTimeStep);
+	thisConfig->mPosition = thisConfig->mPosition + thisConfig->mVelocity * timeStep;
+	thisConfig->_30       = thisConfig->_30 + thisConfig->_3C * timeStep;
+	thisConfig->mVelocity = thisConfig->mVelocity + thisConfig->_18 * (timeStep * mTimeStep);
 
 	thisConfig->_24 = thisConfig->_58.mtxMult(thisConfig->_30);
 
 	Quat q1;                        // 0x160
 	Quat q2(0.0f, thisConfig->_24); // 0x150
 
-	// quat math
+	q1 = thisConfig->_48 * q2;
+
+	if (mFlags.typeView & 1) {
+		Quat q3; // 0x140
+		q3 = Quat((0.5f * timeStep) * q1.w, q1.v * (0.5f * timeStep));
+		Quat q4; // 0x130
+		q4 = Quat(q3 + thisConfig->_48);
+		Vector3f vec1; // 0x124
+		f32 yDeg48 = getYDegree(thisConfig->_48, vec1);
+		Vector3f vec2; // 0x118
+		f32 yDeg4 = getYDegree(q4, vec2);
+		f32 f29   = JMASSin(8192);
+		if (yDeg48 < JMASSin(10912)) {
+			if (yDeg4 < yDeg48) {
+				Vector3f yAxis(0.0f, 1.0f, 0.0);
+				thisConfig->_30 = thisConfig->_30 + vec1.cross(yAxis) * 1000.0f;
+				thisConfig->_24 = thisConfig->_58.mtxMult(thisConfig->_30);
+				if (!(yDeg4 < f29)) {
+					thisConfig->_48 = q4;
+				}
+			} else {
+				thisConfig->_48 = q4;
+			}
+		} else {
+			thisConfig->_48 = Quat(thisConfig->_48 + q3);
+		}
+	} else {
+		Quat q5; // 0x108
+		q5              = Quat((0.5f * timeStep) * q1.w, q1.v * (0.5f * timeStep));
+		thisConfig->_48 = Quat(thisConfig->_48 + q5);
+	}
 
 	thisConfig->_48.normalise();
 	_04.makeTQ(thisConfig->mPosition, thisConfig->_48);
@@ -766,10 +784,33 @@ bool Game::Rigid::resolveCollision(int index, Vector3f& p2, Vector3f& p3, f32 p4
 	}
 	RigidConfig& config = mConfigs[index];
 	Vector3f v1         = p2 - config.mPosition;
-	Vector3f v2         = (config.mVelocity + cross(v1, config._24));
+	Vector3f v2         = (config.mVelocity + v1.cross(config._24));
 	v2.negate();
-	v2     = v2 * p3;
-	f32 v3 = v2.x + v2.y + v2.z;
+	f32 dotProd = v2.dot(p3);
+	if (dotProd < -0.0f) {
+		return false;
+	}
+	if (absF(dotProd) <= -0.0f) {
+		p4      = 1.0f;
+		dotProd = -0.0f;
+	}
+	f32 timeStep = mTimeStep;
+	f32 f28      = -(1.0f + p4) * dotProd;
+
+	Vector3f vec = v1;
+	vec          = vec.cross(p3);
+	vec          = config._58.mtxMult(vec);
+	vec          = vec.cross(p3);
+
+	timeStep += p3.dot(vec);
+	Vector3f vec2 = p3;
+	vec2 *= -(f28 / timeStep);
+	config.mVelocity = config.mVelocity + vec2 * mTimeStep;
+	vec              = v1;
+	vec              = vec.cross(vec2);
+	config._30       = config._30 + vec;
+	config._24       = config._58.mtxMult(config._30);
+	return true;
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0

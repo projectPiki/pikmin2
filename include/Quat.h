@@ -78,7 +78,7 @@ struct Quat {
 	 * @brief Normalizes the quaternion.
 	 * @note Inlined, and is currently a stub.
 	 */
-	void norm();
+	f32 norm();
 
 	/**
 	 * @brief Computes the conjugate of the quaternion.
@@ -131,65 +131,34 @@ struct Quat {
 	 * @param other The scalar to multiply by.
 	 * @return The resulting quaternion.
 	 */
-	inline Quat operator*(f32 other)
+	inline Quat operator*(f32 scale)
 	{
 		Quat result;
-		result.w = other * w;
-		result.x = other * x;
-		result.y = other * y;
-		result.z = other * z;
+		result.w   = scale * w;
+		result.v.x = scale * v.x;
+		result.v.y = scale * v.y;
+		result.v.z = scale * v.z;
 		return result;
 	}
 
-	/**
-	 * @brief Assignment operator.
-	 * @param other The quaternion to assign from.
-	 * @return The assigned quaternion.
-	 */
-	inline Quat& operator=(const Quat& other)
+	inline Quat& operator+(const Quat& other)
 	{
-		w = other.w;
-		x = other.x;
-		y = other.y;
-		z = other.z;
-		return *this;
+		Quat result;
+		result.w = w + other.w;
+		result.v = v + other.v;
+		return result;
 	}
 
-	/**
-	 * @brief Assignment operator.
-	 * @param other The quaternion to assign from.
-	 */
-	inline void operator=(Quat& other)
-	{
-		w = other.w;
-		x = other.x;
-		y = other.y;
-		z = other.z;
-	}
-
-	f32 w, x, y, z;
+	f32 w;      // _00
+	Vector3f v; // _04
 };
 
-// Quat operator*(Quat& q1, Quat& q2)
-// {
-// 	//   v5 = a2[3];
-// 	//   v6 = *a3;
-// 	//   v7 = ((a2[1] * a3[2]) - (a2[2] * a3[1]));
-// 	//   v8 = (a3[3] * *a2);
-// 	//   v9 = (((a2[3] * a3[1]) - (a2[1] * a3[3])) + (a3[2] * *a2));
-// 	//   v10 = (a2[2] * *a3);
-// 	//   v13 = (((a2[2] * a3[3]) - (a2[3] * a3[2])) + (a3[1] * *a2)) + (a2[1] * *a3);
-// 	//   *result = (*a2 * *a3) - ((a2[3] * a3[3]) + ((a2[1] * a3[1]) + (a2[2] * a3[2])));
-// 	//   result[1] = v13;
-// 	//   result[2] = v9 + v10;
-// 	//   result[3] = (v7 + v8) + (v5 * v6);
-
-// 	Quat result;
-// 	result.w = (q1.w * q2.w) - ((q1.x * q2.x) + (q1.y * q2.y) + (q1.z * q2.z));
-// 	result.x = (((q1.y * q2.z) - (q1.z * q2.y)) + (q2.x * q1.w)) + (q1.x * q2.w);
-// 	result.y = (((q1.z * q2.x) - (q1.x * q2.z)) + (q2.y * q1.w)) + (q1.y * q2.w);
-// 	result.z = (((q1.x * q2.y) - (q1.y * q2.x)) + (q2.z * q1.w)) + (q1.z * q2.w);
-// 	return result;
-// }
+inline Quat operator*(Quat& q1, Quat& q2)
+{
+	Quat result;
+	result.w = q1.w * q2.w - q1.v.dot(q2.v);
+	result.v = q1.v.cross(q2.v) + q2.v * q1.w + q1.v * q2.w;
+	return Quat(result.w, result.v);
+}
 
 #endif

@@ -46,6 +46,24 @@ inline f32 cosfc(const f32 x)
 	return JMath::sincosTable_.mTable[(GetTableIdxPos(angle) & 0x7ffU)].second;
 }
 
+inline f32 acosfDumb(f32 x)
+{
+	// not right but it's a start
+	if (x <= -1.0f) {
+		return 0.0f;
+	}
+	if (x >= 1.0f) {
+		return PI;
+	}
+	if (x < 0.0f) {
+		f32 dumb = HALF_PI;
+		f32 acos = JMath::asinAcosTable_.mTable[(u32)(-x * 1023.5f)];
+		return acos + dumb;
+	} else {
+		return HALF_PI - JMath::asinAcosTable_.mTable[(u32)(x * 1023.5f)];
+	}
+}
+
 inline f32 acosf(f32 x)
 {
 	if (x >= 1.0f) {

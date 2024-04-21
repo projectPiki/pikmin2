@@ -965,9 +965,9 @@ void Matrixf::makeSQT(Vector3f&, Quat&, Vector3f&)
 void Matrixf::makeTQ(Vector3f& t, Quat& q)
 {
 	f32 w = q.w;
-	f32 x = q.x;
-	f32 y = q.y;
-	f32 z = q.z;
+	f32 x = q.v.x;
+	f32 y = q.v.y;
+	f32 z = q.v.z;
 
 	f32 ww = w * 2.0f * w;
 	f32 yy = y * 2.0f * y;
@@ -1054,9 +1054,9 @@ void Matrixf::makeTQ(Vector3f& t, Quat& q)
 void Matrixf::makeQ(Quat& q)
 {
 	f32 w = q.w;
-	f32 x = q.x;
-	f32 y = q.y;
-	f32 z = q.z;
+	f32 x = q.v.x;
+	f32 y = q.v.y;
+	f32 z = q.v.z;
 
 	f32 ww = w * 2.0f * w;
 	f32 yy = y * 2.0f * y;
