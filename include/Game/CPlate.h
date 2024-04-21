@@ -84,9 +84,7 @@ struct CPlate : public Container<Creature> {
 	Vector3f _D8;                   // _D8
 	Vector3f mVelocity;             // _E4
 	f32 mAngle;                     // _F0
-	f32 _F4;                        // _F4
-	f32 _F8;                        // _F8
-	f32 _FC;                        // _FC
+	Vector3f _F4;                   // _F4
 	u8 _100;                        // _100
 	int _104[PikiGrowthStageCount]; // _104, indexed by happakind?
 	u8 _110;                        // _110
