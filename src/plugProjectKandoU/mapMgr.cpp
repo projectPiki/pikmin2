@@ -11,10 +11,11 @@
 #include "Game/seaMgr.h"
 #include "nans.h"
 
-namespace Game {
+static const int padding[] = { 0, 0, 0 };
 
-static const char className[] = "mapMgr";
-static const int padding[]    = { 0, 0, 0 };
+static void _Print(char* format, ...) { OSReport("mapMgr"); }
+
+namespace Game {
 
 MapMgr* mapMgr;
 bool MapMgr::traceMoveDebug;
@@ -180,7 +181,8 @@ f32 MapMgr::getBestAngle(Vector3f& position, f32 p2, f32 divisor)
 	P2ASSERTLINE(488, divisor > 0.0f);
 	Vector3f pos = position;
 	pos.y        = 15.0f + getMinY(pos);
-	f32 angles[16];
+
+	f32 angles[16]; // 0x7C
 	for (int i = 0; i < 16; i++) {
 		angles[i] = 0.0f;
 	}
@@ -189,12 +191,39 @@ f32 MapMgr::getBestAngle(Vector3f& position, f32 p2, f32 divisor)
 		f32 angle    = (PI / 8) * (f32)i;
 		f32 tanTheta = p2 * (f32)tan(divisor);
 
+		Vector3f offset  = Vector3f(p2 * sinf(angle), tanTheta, p2 * cosf(angle));
+		Vector3f beamPos = pos;
+		offset           = offset + beamPos;
 		BeamCollisionArg beamArg(10.0f, 0, 0);
-		beamArg.mPosition = pos;
+		beamArg._1C       = i;
+		beamArg.mPosition = beamPos;
+
+		beamArg._0C         = offset;
+		beamArg.mBeamRadius = 10.0f;
 		checkBeamCollision(beamArg);
 		angles[i] = beamArg._24;
 	}
-	return angles[0] * 0.39269909f;
+
+	f32 tempAngles[16]; // 0x14
+	for (int i = 0; i < 16; i++) {
+		tempAngles[i] = 0.0f;
+		tempAngles[i] = (angles[(i + 15) % 16] + angles[(i) % 16] + angles[(i + 1) % 16]) / 3.0f;
+	}
+
+	for (int i = 0; i < 16; i++) {
+		angles[i] = tempAngles[i];
+	}
+
+	f32 bestAngle    = 128000.0f;
+	int bestAngleNum = 0;
+	for (int i = 0; i < 16; i++) {
+		if (bestAngle > angles[i]) {
+			bestAngle    = angles[i];
+			bestAngleNum = i;
+		}
+	}
+
+	return (f32)bestAngleNum * 0.3926991f;
 	/*
 	stwu     r1, -0x180(r1)
 	mflr     r0
@@ -720,7 +749,7 @@ void MapMgr::checkBeamCollision(BeamCollisionArg& arg)
  */
 void ShapeMapMgr::load(LoadArg& arg)
 {
-	sys->heapStatusStart("loadArg", nullptr);
+	sys->heapStatusStart("mapMgr", nullptr);
 
 	sys->heapStatusStart("map arc", nullptr);
 
@@ -1830,4 +1859,9 @@ void ShapeMapMgr::getBoundBox(BoundBox& bounds)
 	mMapCollision.mDivider->getBoundBox(calc);
 	bounds = calc;
 }
+
+static const char unusedString1[] = "loop av. %.1f";
+static const char unusedString2[] = "%d %d %d<%d>";
+static const char unusedString3[] = "tris av. %.1f";
+
 } // namespace Game
