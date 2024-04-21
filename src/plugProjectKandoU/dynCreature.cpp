@@ -1,5 +1,7 @@
 #include "Game/DynCreature.h"
 #include "Game/DynParticle.h"
+#include "Game/MapMgr.h"
+#include "Game/PlatInstance.h"
 #include "DynamicsParms.h"
 #include "Iterator.h"
 #include "types.h"
@@ -38,7 +40,7 @@ DynParticle* DynParticle::getAt(int idx)
 		if (!particle) {
 			JUT_PANICLINE(134, "p is null n is %d\n", idx);
 		}
-		particle = static_cast<DynParticle*>(particle->mNext);
+		particle = particle->mNext;
 	}
 
 	return particle;
@@ -112,7 +114,7 @@ void DynCreature::releaseParticles()
 	if (particle) {
 		while (particle) {
 			dynParticleMgr->kill(particle);
-			DynParticle* nextParticle = static_cast<DynParticle*>(particle->mNext);
+			DynParticle* nextParticle = particle->mNext;
 			particle->mNext           = nullptr;
 			particle                  = nextParticle;
 		}
@@ -126,10 +128,8 @@ void DynCreature::releaseParticles()
  */
 void DynCreature::updateParticlePositions()
 {
-	DynParticle* particle = mDynParticle;
-	while (particle) {
+	for (DynParticle* particle = mDynParticle; particle; particle = particle->mNext) {
 		particle->_0C = mBaseTrMatrix.mtxMult(particle->_00);
-		particle      = static_cast<DynParticle*>(particle->mNext);
 	}
 }
 
@@ -137,8 +137,83 @@ void DynCreature::updateParticlePositions()
  * @note Address: 0x801A82E4
  * @note Size: 0x4F4
  */
-void DynCreature::computeForces(f32)
+void DynCreature::computeForces(f32 friction)
 {
+	if (DynamicsParms::mInstance->mNewFriction()) {
+		for (DynParticle* particle = mDynParticle; particle; particle = particle->mNext) {
+			if (!particle->_2C) {
+				continue;
+			}
+			Vector3f sep      = particle->_0C - _300;
+			Vector3f crossVec = mRigid.mConfigs[0]._24.cross(sep) + mRigid.mConfigs[0].mVelocity;
+
+			f32 dotProd  = crossVec.dot(particle->_20); // f13
+			f32 dotProd2 = mRigid.mConfigs[0]._18.dot(particle->_20);
+
+			Vector3f sep2 = crossVec - particle->_20 * dotProd;
+			sep2.normalise();
+
+			mRigid.mConfigs[0]._18 += particle->_20 * dotProd2;
+
+			// f32 dotProd3 = sep2.dot(crossVec);
+			if (absF(sep2.dot(crossVec)) < DynamicsParms::mInstance->mStatic()) {
+				sep2.normalise();
+				mRigid.mConfigs[0]._18 -= sep2 * DynamicsParms::mInstance->mStaParm();
+			} else {
+				Vector3f sep3 = crossVec - particle->_20 * crossVec.dot(particle->_20);
+				sep3.normalise();
+				mRigid.mConfigs[0]._18 += sep3 * -DynamicsParms::mInstance->mFixedFrictionValue();
+			}
+		}
+		return;
+	}
+
+	int validCount = 0;
+	int count      = 0;
+	for (DynParticle* particle = mDynParticle; particle; particle = particle->mNext, count++) {
+		if (particle->_2C) {
+			validCount++;
+		}
+	}
+
+	if (validCount == 0) {
+		return;
+	}
+
+	if (!DynamicsParms::mInstance->mFriction()) {
+		return;
+	}
+
+	f32 prop = (f32)validCount / (f32)count;
+
+	if (DynamicsParms::mInstance->mFixedFriction()) {
+		friction = DynamicsParms::mInstance->mFixedFrictionValue();
+	}
+
+	f32 coeff = -friction * prop; // f3
+
+	for (DynParticle* particle = mDynParticle; particle; particle = particle->mNext) {
+		if (!particle->_2C) {
+			continue;
+		}
+		Vector3f sep      = particle->_0C - _300;
+		Vector3f crossVec = mRigid.mConfigs[0]._24.cross(sep) + mRigid.mConfigs[0].mVelocity;
+		Vector3f vec      = particle->_20 * crossVec.dot(particle->_20);
+		vec               = crossVec - vec;
+		if (DynamicsParms::mInstance->mFrictionTangentVelocity()) {
+			vec.normalise();
+		}
+
+		Vector3f coeffVec      = vec * coeff;
+		Vector3f vec2          = mRigid.mConfigs[0]._18 + coeffVec;
+		mRigid.mConfigs[0]._18 = vec2;
+
+		if (!DynamicsParms::mInstance->mNoRotationEffect()) {
+			Vector3f vec3          = mRigid.mConfigs[0]._3C;
+			mRigid.mConfigs[0]._3C = vec3 + sep.cross(coeffVec);
+		}
+	}
+
 	/*
 	stwu     r1, -0x20(r1)
 	lwz      r6, mInstance__13DynamicsParms@sda21(r13)
@@ -535,18 +610,21 @@ void DynCreature::tracemoveCallback(Vector3f& vec1, Vector3f& vec2)
  * @note Address: N/A
  * @note Size: 0x28
  */
-void range_check(f32)
+bool range_check(f32 val)
 {
-	// UNUSED FUNCTION
+	if (val < -128000.0f || val > 128000.0f) {
+		return false;
+	}
+	return true;
 }
 
 /**
  * @note Address: N/A
  * @note Size: 0xBC
  */
-void range_check(Vector3f&)
+bool range_check(Vector3f& vec)
 {
-	// UNUSED FUNCTION
+	return !((u8)range_check(vec.x) == false || (u8)range_check(vec.y) == false || (u8)range_check(vec.z) == false);
 }
 
 namespace Game {
@@ -584,6 +662,46 @@ int DynCreature::getParticleNum()
  */
 void DynCreature::simulate(f32 rate)
 {
+	_310 = _311;
+	_311 = 0;
+
+	Delegate2<DynCreature, Vector3f&, Vector3f&> delegate(this, &DynCreature::tracemoveCallback);
+
+	_300 = mBaseTrMatrix.mtxMult(_2F4);
+	mRigid.integrate(rate, 0);
+
+	Vector3f velocity;
+	Sys::Sphere moveSphere;
+	for (DynParticle* particle = mDynParticle; particle; particle = particle->mNext) {
+		particle->_0C = mBaseTrMatrix.mtxMult(particle->_00);
+
+		velocity     = mRigid.mConfigs[0]._24;
+		Vector3f sep = particle->_0C - _300;
+		velocity.cross(velocity, sep);
+		velocity = velocity + mRigid.mConfigs[0].mVelocity;
+
+		f32 radius   = particle->_18;
+		f32 extraRad = rate * velocity.length();
+		if (extraRad > 50.0f) {
+			extraRad = 50.0f;
+		}
+		radius += extraRad;
+
+		JUT_ASSERTLINE(497, range_check(particle->_00) && range_check(particle->_0C), "simulate error\n");
+
+		moveSphere.mPosition = particle->_0C;
+		moveSphere.mRadius   = radius;
+		_30C                 = particle;
+		_30C->_2C            = 0;
+
+		MoveInfo info(&moveSphere, &velocity, 1.0f, &delegate);
+		info.mUseIntersectionAlgo = true;
+		mapMgr->traceMove(info, rate);
+		info.mUseIntersectionAlgo = false;
+		if (platMgr) {
+			platMgr->traceMove(info, rate);
+		}
+	}
 	/*
 	stwu     r1, -0x190(r1)
 	mflr     r0
@@ -994,7 +1112,6 @@ void DynCreature::applyImpulse(Vector3f&, Vector3f& vel) { mRigid.mConfigs[0].mV
  */
 void DynCreature::simulateCylinder(Sys::Cylinder&, f32)
 {
-	JUT_PANICLINE(1000, "simulate error\n");
 	// UNUSED FUNCTION
 }
 

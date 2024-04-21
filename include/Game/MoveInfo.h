@@ -40,6 +40,28 @@ struct MoveInfo {
 		mIntersectType       = IT_Triangle;
 	}
 
+	inline MoveInfo(Sys::Sphere* sphere, Vector3f* velocity, f32 radius, Delegate2<DynCreature, Vector3f&, Vector3f&>* delegate)
+	    : mMoveSphere(sphere)
+	    , mVelocity(velocity)
+	    , mTraceRadius(radius)
+	{
+		_0C                  = 0.0f;
+		mIntersectCallback   = delegate;
+		mBounceTriangle      = nullptr;
+		_74                  = 0;
+		mUseIntersectionAlgo = 0;
+		_18                  = 0;
+		mWallTriangle        = nullptr;
+		mInfoOrigin          = nullptr;
+		mMapCode.mContents   = 0;
+		mTriangleArray       = nullptr;
+		mWallThreshold       = JMath::sincosTable_.mTable[256].first; // pi/2
+		mBounceThreshold     = 0.6f;
+		mRoomIndex           = -1;
+		_4C                  = nullptr;
+		mIntersectType       = IT_Triangle;
+	}
+
 	enum IntersectType { IT_Triangle = 0, IT_Cylinder = 1 };
 
 	Sys::Sphere* mMoveSphere;                                         // _00
