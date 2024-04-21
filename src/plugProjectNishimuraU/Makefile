@@ -105,7 +105,7 @@ NISHIMURA_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/QueenState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/QueenAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/QueenMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/Queen.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/Queen.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BabyState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/BabyAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/BabyMgr.o\

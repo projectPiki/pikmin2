@@ -1137,7 +1137,7 @@ LIBS = [
             ["plugProjectNishimuraU/QueenState", False],
             ["plugProjectNishimuraU/QueenAnimator", True],
             ["plugProjectNishimuraU/QueenMgr", True],
-            ["plugProjectNishimuraU/Queen", False],
+            ["plugProjectNishimuraU/Queen", True],
             ["plugProjectNishimuraU/BabyState", False],
             ["plugProjectNishimuraU/BabyAnimator", True],
             ["plugProjectNishimuraU/BabyMgr", True],
