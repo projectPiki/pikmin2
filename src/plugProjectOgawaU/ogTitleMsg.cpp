@@ -455,11 +455,13 @@ void TitleMsgClash::init()
  */
 void TitleMsgClash::update()
 {
+	mScaleMod = mScaleMod; // this or mCurrScale = mCurrScale fixes mr ordering
 	mScaleMod -= 0.5f;
 	mCurrScale += mScaleMod;
 	if (mCurrScale < 1.0f) {
 		mCurrScale = 1.0f;
 		mScaleMod  = -mScaleMod * 0.4f;
+		mCurrScale = 1.0f; // screams externally (this line is evil. remove it while viewing in objdiff)
 	}
 	ogSound->setVsTitle();
 
