@@ -23,8 +23,8 @@ MapUnits::MapUnits(JUTTexture* texture)
 	mSizeX   = -1;
 	mSizeY   = -1;
 	if (mTexture) {
-		mSizeX = ((u32)mTexture->mTexInfo->mSizeX) >> 3;
-		mSizeY = ((u32)mTexture->mTexInfo->mSizeY) >> 3;
+		mSizeX = ((u32)mTexture->mTexInfo->mSizeX) / 8;
+		mSizeY = ((u32)mTexture->mTexInfo->mSizeY) / 8;
 	}
 
 	mDoorNode   = new DoorNode();
@@ -187,8 +187,8 @@ void UnitInfo::create()
 	// sets up unit sizes + directions based on details in mMapUnits + current rotation
 
 	// load all door nodes from mMapUnits into mDoorNode
-	DoorNode* mapDoorNode = (DoorNode*)mMapUnits->mDoorNode->mChild;
-	for (mapDoorNode; mapDoorNode; mapDoorNode = (DoorNode*)mapDoorNode->mNext) {
+	DoorNode* mapDoorNode = static_cast<DoorNode*>(mMapUnits->mDoorNode->mChild);
+	for (mapDoorNode; mapDoorNode; mapDoorNode = static_cast<DoorNode*>(mapDoorNode->mNext)) {
 		DoorNode* newDoorNode         = new DoorNode();
 		newDoorNode->mDoor.mDirection = mapDoorNode->mDoor.mDirection;
 		newDoorNode->mDoor.mOffset    = mapDoorNode->mDoor.mOffset;
@@ -212,8 +212,8 @@ void UnitInfo::create()
 	int Y = mMapUnits->mSizeY - 1;
 
 	// set all door offsets based on their directions
-	DoorNode* unitDoorNode = (DoorNode*)mDoorNode->mChild;
-	for (unitDoorNode; unitDoorNode; unitDoorNode = (DoorNode*)unitDoorNode->mNext) {
+	DoorNode* unitDoorNode = static_cast<DoorNode*>(mDoorNode->mChild);
+	for (unitDoorNode; unitDoorNode; unitDoorNode = static_cast<DoorNode*>(unitDoorNode->mNext)) {
 
 		int doorDir      = unitDoorNode->mDoor.mDirection; // default direction
 		int newDirection = (doorDir + mUnitRotation) % 4;  // rotate with unit
@@ -283,7 +283,7 @@ int UnitInfo::getUnitRotation() { return mUnitRotation; }
  * @note Address: 0x80242B9C
  * @note Size: 0x24
  */
-DoorNode* UnitInfo::getDoorNode(int doorNum) { return (DoorNode*)mDoorNode->getChildAt(doorNum); }
+DoorNode* UnitInfo::getDoorNode(int doorNum) { return static_cast<DoorNode*>(mDoorNode->getChildAt(doorNum)); }
 
 /**
  * @note Address: 0x80242BC0
