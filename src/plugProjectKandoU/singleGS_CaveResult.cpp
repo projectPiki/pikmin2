@@ -91,7 +91,7 @@ void CaveResultState::loadResource()
 	JUTTexture* texture = new JUTTexture(sys->getRenderModeWidth(), sys->getRenderModeHeight(), GX_TF_RGB565);
 	texture->mMinFilter = 0;
 	texture->mMagFilter = 0;
-	mSection->_168      = (JUTTexture*)texture;
+	mSection->_168      = (JUTTexture*)texture; // is there any reason to cast to self's type? doesn't affect matching
 
 	createResultNodes();
 
@@ -100,7 +100,7 @@ void CaveResultState::loadResource()
 	sceneInfo.mCameras   = 0;
 	PSMSetSceneInfo(sceneInfo);
 	PSSystem::getSceneMgr()->doFirstLoad();
-	PSMGetChildScene()->startMainSeq();
+	PSMGetChildScene()->startMainSeq(); // the PSMGetChildScene's getChildScene inline affects register allocation
 
 	/*
 	stwu     r1, -0x60(r1)

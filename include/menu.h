@@ -69,7 +69,7 @@ struct Menu {
 		 */
 		void checkEvents(Menu* menu, int param);
 
-		int _00;           // _00
+		Menu* mMenu;       // _00
 		bool mIsActive;    // _04
 		char* mName;       // _08
 		int mSectionFlags; // _0C
@@ -123,7 +123,7 @@ struct Menu {
 	JUTGamePad* mControl;   // _00
 	JUTFont* mFont;         // _04
 	bool mFlag;             // _08
-	int _0C;                // _0C
+	int _0C;                // _0C, possibly Menu*
 	Menu* mSelf;            // _10
 	Menu* _14;              // _14
 	JSUPtrList mItemList;   // _18

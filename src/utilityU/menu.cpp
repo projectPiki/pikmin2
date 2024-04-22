@@ -461,11 +461,11 @@ Menu::KeyEvent::KeyEvent(cTypeFlag type, u32 a1, IDelegate1<Menu&>* delegate)
 Menu::MenuItem::MenuItem(cTypeFlag type, int a1, char* name)
     : mLink(this)
 {
-	mIsActive     = 1;
+	mIsActive     = true;
 	mName         = name;
 	mSectionFlags = a1;
 	mType         = type;
-	_00           = 0;
+	mMenu         = nullptr;
 }
 
 /**
@@ -497,165 +497,241 @@ Menu::MenuItem* Menu::MenuItem::getPrev()
 /**
  * @note Address: 0x804568F8
  * @note Size: 0x200
+ * this function is a clusterfuck. -EpochFlame
  */
-void Menu::MenuItem::checkEvents(Menu*, int)
+void Menu::MenuItem::checkEvents(Menu* menu, int param)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r26, 8(r1)
-	mr       r26, r3
-	mr       r27, r4
-	mr       r28, r5
-	li       r30, 0
-	lwz      r31, 0x14(r3)
-	b        lbl_80456AD8
+	s32 temp_r0;
+	bool var_r30;
+	bool var_r29;
+	u32 temp_r5;
+	JSUPtrLink* temp_r4;
 
-lbl_80456920:
-	lwz      r4, 0(r31)
-	li       r29, 0
-	lwz      r5, 0(r4)
-	and.     r0, r28, r5
-	beq      lbl_80456AD4
-	cmplwi   r5, 0x20
-	bgt      lbl_80456ACC
-	lis      r3, lbl_804EDCC8@ha
-	slwi     r0, r5, 2
-	addi     r3, r3, lbl_804EDCC8@l
-	lwzx     r0, r3, r0
-	mtctr    r0
-	bctr
-
-lbl_80456954:
-	lwz      r3, 8(r4)
-	mr       r4, r27
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80456ACC
-
-lbl_80456970:
-	lwz      r3, 8(r4)
-	mr       r4, r27
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80456ACC
-
-lbl_8045698C:
-	lwz      r3, 0(r27)
-	lwz      r0, 4(r4)
-	lwz      r3, 0x18(r3)
-	and.     r0, r3, r0
-	beq      lbl_80456ACC
-	lwz      r3, 8(r4)
-	mr       r4, r27
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80456ACC
-
-lbl_804569BC:
-
-lbl_804569BC:
-	lwz      r3, 0(r27)
-	lwz      r0, 4(r4)
-	lwz      r3, 0x1c(r3)
-	and.     r0, r3, r0
-	beq      lbl_80456ACC
-	lwz      r3, 8(r4)
-	mr       r4, r27
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	li       r30, 1
-	li       r29, 1
-	b        lbl_80456ACC
-
-lbl_804569F4:
-	lwz      r3, 0(r27)
-	lwz      r0, 4(r4)
-	lwz      r3, 0x1c(r3)
-	and.     r0, r3, r0
-	beq      lbl_80456ACC
-	lwz      r3, 0x24(r27)
-	lwz      r0, 0x10(r3)
-	cmpwi    r0, 2
-	bne      lbl_80456AAC
-	mr       r3, r26
-	mr       r4, r27
-	li       r5, 2
-	bl       checkEvents__Q24Menu8MenuItemFP4Menui
-	lwz      r0, 0xc(r27)
-	cmplwi   r0, 0
-	bne      lbl_80456A38
-	stw      r0, 0x10(r27)
-
-lbl_80456A38:
-	lfs      f1, lbl_80520BF4@sda21(r2)
-	li       r3, 3
-	lfs      f0, lbl_80520BF0@sda21(r2)
-	li       r0, 1
-	stfs     f1, 0x38(r27)
-	stw      r3, 0x34(r27)
-	stw      r27, 0x10(r27)
-	lwz      r3, 0x24(r27)
-	lwz      r3, 0(r3)
-	stw      r3, 0x14(r27)
-	lwz      r3, 0x14(r27)
-	stfs     f0, 0x38(r3)
-	stw      r0, 0x34(r3)
-	lwz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	bne      lbl_80456A8C
-	lwz      r4, 0x18(r3)
-	cmplwi   r4, 0
-	bne      lbl_80456A8C
-	lwz      r0, 0(r4)
-	stw      r0, 0x24(r3)
-
-lbl_80456A8C:
-	li       r0, 1
-	li       r30, 0
-	stb      r0, 0x58(r27)
-	li       r29, 1
-	lwz      r3, 0x24(r27)
-	lwz      r3, 0(r3)
-	stb      r0, 0x58(r3)
-	b        lbl_80456ACC
-
-lbl_80456AAC:
-	lwz      r3, 8(r4)
-	mr       r4, r27
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	li       r30, 1
-	li       r29, 1
-
-lbl_80456ACC:
-	clrlwi.  r0, r29, 0x18
-	bne      lbl_80456AE0
-
-lbl_80456AD4:
-	lwz      r31, 0xc(r31)
-
-lbl_80456AD8:
-	cmplwi   r31, 0
-	bne      lbl_80456920
-
-lbl_80456AE0:
-	mr       r3, r30
-	lmw      r26, 8(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	var_r30 = false;
+	while (true) {
+		temp_r4 = mList.mHead;
+		var_r29 = false;
+		temp_r5 = (u32)temp_r4->mValue;
+		if (param & temp_r5) {
+			switch (temp_r5) {
+			case 1:
+				// temp_r3 = temp_r4->mPrev;
+				//(*temp_r3)->unk8(temp_r3, menu);
+				break;
+			case 2:
+				// temp_r3_2 = temp_r4->mPrev;
+				//(*temp_r3_2)->unk8(temp_r3_2, menu); // probably some virtual thing
+				break;
+			case 4:
+				if (menu->mControl->isButton((u32)temp_r4->mList)) { // surely this isn't what to check against
+					                                                 // temp_r3_3 = temp_r4->mPrev;
+					                                                 //(*temp_r3_3)->unk8(temp_r3_3, menu); // probably some virtual thing
+				}
+				break;
+			case 8:
+			case 32:
+				if (menu->mControl->isButtonDown((u32)temp_r4->mList)) { // surely this isn't what to check against
+					// temp_r3_4 = temp_r4->unk8;
+					//(*temp_r3_4)->unk8(temp_r3_4, menu); // probably some virtual thing
+					var_r30 = true;
+					var_r29 = true;
+				}
+				break;
+			case 16:
+				if (menu->mControl->isButtonDown((u32)temp_r4->mList)) { // surely this isn't what to check against
+					if (menu->mCurrentItem->mType == 2) {
+						checkEvents(menu, 2);
+						if ((u32)menu->_0C == 0U) {
+							menu->mSelf = nullptr;
+						}
+						menu->mTimer      = 7.0f;
+						menu->mState      = 3;
+						menu->mSelf       = menu;
+						menu->_14         = menu->mCurrentItem->mMenu;
+						menu->_14->mTimer = 1.0f;
+						menu->_14->mState = 1;
+						if ((MenuItem*)menu->_14->mCurrentItem == nullptr) {
+							if (menu->_14->mItemList.mHead == nullptr) {
+								menu->_14->mCurrentItem = (MenuItem*)menu->_14->mItemList.mHead->mValue;
+							}
+						}
+						var_r30                                   = 0;
+						menu->mIsInitialised                      = true;
+						var_r29                                   = true;
+						menu->mCurrentItem->mMenu->mIsInitialised = true;
+					} else {
+						// temp_r3_6 = temp_r4->unk8;
+						//(*temp_r3_6)->unk8(temp_r3_6, menu); // probably some virtual thing
+						var_r30 = 1;
+						var_r29 = 1;
+					}
+				}
+				break;
+			}
+			if (var_r29) {
+				break;
+			}
+		} else {
+			break;
+		}
+	}
+	return; // return var_r30
+	        /*
+	        stwu     r1, -0x20(r1)
+	        mflr     r0
+	        stw      r0, 0x24(r1)
+	        stmw     r26, 8(r1)
+	        mr       r26, r3
+	        mr       r27, r4
+	        mr       r28, r5
+	        li       r30, 0
+	        lwz      r31, 0x14(r3)
+	        b        lbl_80456AD8
+	    
+	    lbl_80456920:
+	        lwz      r4, 0(r31)
+	        li       r29, 0
+	        lwz      r5, 0(r4)
+	        and.     r0, r28, r5
+	        beq      lbl_80456AD4
+	        cmplwi   r5, 0x20
+	        bgt      lbl_80456ACC
+	        lis      r3, lbl_804EDCC8@ha
+	        slwi     r0, r5, 2
+	        addi     r3, r3, lbl_804EDCC8@l
+	        lwzx     r0, r3, r0
+	        mtctr    r0
+	        bctr
+	    
+	    lbl_80456954:
+	        lwz      r3, 8(r4)
+	        mr       r4, r27
+	        lwz      r12, 0(r3)
+	        lwz      r12, 8(r12)
+	        mtctr    r12
+	        bctrl
+	        b        lbl_80456ACC
+	    
+	    lbl_80456970:
+	        lwz      r3, 8(r4)
+	        mr       r4, r27
+	        lwz      r12, 0(r3)
+	        lwz      r12, 8(r12)
+	        mtctr    r12
+	        bctrl
+	        b        lbl_80456ACC
+	    
+	    lbl_8045698C:
+	        lwz      r3, 0(r27)
+	        lwz      r0, 4(r4)
+	        lwz      r3, 0x18(r3)
+	        and.     r0, r3, r0
+	        beq      lbl_80456ACC
+	        lwz      r3, 8(r4)
+	        mr       r4, r27
+	        lwz      r12, 0(r3)
+	        lwz      r12, 8(r12)
+	        mtctr    r12
+	        bctrl
+	        b        lbl_80456ACC
+	    
+	    lbl_804569BC:
+	    
+	    lbl_804569BC:
+	        lwz      r3, 0(r27)
+	        lwz      r0, 4(r4)
+	        lwz      r3, 0x1c(r3)
+	        and.     r0, r3, r0
+	        beq      lbl_80456ACC
+	        lwz      r3, 8(r4)
+	        mr       r4, r27
+	        lwz      r12, 0(r3)
+	        lwz      r12, 8(r12)
+	        mtctr    r12
+	        bctrl
+	        li       r30, 1
+	        li       r29, 1
+	        b        lbl_80456ACC
+	    
+	    lbl_804569F4:
+	        lwz      r3, 0(r27)
+	        lwz      r0, 4(r4)
+	        lwz      r3, 0x1c(r3)
+	        and.     r0, r3, r0
+	        beq      lbl_80456ACC
+	        lwz      r3, 0x24(r27)
+	        lwz      r0, 0x10(r3)
+	        cmpwi    r0, 2
+	        bne      lbl_80456AAC
+	        mr       r3, r26
+	        mr       r4, r27
+	        li       r5, 2
+	        bl       checkEvents__Q24Menu8MenuItemFP4Menui
+	        lwz      r0, 0xc(r27)
+	        cmplwi   r0, 0
+	        bne      lbl_80456A38
+	        stw      r0, 0x10(r27)
+	    
+	    lbl_80456A38:
+	        lfs      f1, lbl_80520BF4@sda21(r2)
+	        li       r3, 3
+	        lfs      f0, lbl_80520BF0@sda21(r2)
+	        li       r0, 1
+	        stfs     f1, 0x38(r27)
+	        stw      r3, 0x34(r27)
+	        stw      r27, 0x10(r27)
+	        lwz      r3, 0x24(r27)
+	        lwz      r3, 0(r3)
+	        stw      r3, 0x14(r27)
+	        lwz      r3, 0x14(r27)
+	        stfs     f0, 0x38(r3)
+	        stw      r0, 0x34(r3)
+	        lwz      r0, 0x24(r3)
+	        cmplwi   r0, 0
+	        bne      lbl_80456A8C
+	        lwz      r4, 0x18(r3)
+	        cmplwi   r4, 0
+	        bne      lbl_80456A8C
+	        lwz      r0, 0(r4)
+	        stw      r0, 0x24(r3)
+	    
+	    lbl_80456A8C:
+	        li       r0, 1
+	        li       r30, 0
+	        stb      r0, 0x58(r27)
+	        li       r29, 1
+	        lwz      r3, 0x24(r27)
+	        lwz      r3, 0(r3)
+	        stb      r0, 0x58(r3)
+	        b        lbl_80456ACC
+	    
+	    lbl_80456AAC:
+	        lwz      r3, 8(r4)
+	        mr       r4, r27
+	        lwz      r12, 0(r3)
+	        lwz      r12, 8(r12)
+	        mtctr    r12
+	        bctrl
+	        li       r30, 1
+	        li       r29, 1
+	    
+	    lbl_80456ACC:
+	        clrlwi.  r0, r29, 0x18
+	        bne      lbl_80456AE0
+	    
+	    lbl_80456AD4:
+	        lwz      r31, 0xc(r31)
+	    
+	    lbl_80456AD8:
+	        cmplwi   r31, 0
+	        bne      lbl_80456920
+	    
+	    lbl_80456AE0:
+	        mr       r3, r30
+	        lmw      r26, 8(r1)
+	        lwz      r0, 0x24(r1)
+	        mtlr     r0
+	        addi     r1, r1, 0x20
+	        blr
+	        */
 }
