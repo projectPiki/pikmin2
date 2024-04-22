@@ -126,14 +126,7 @@ void CallBack_CounterSlot::startSlot(f32 calc)
 		mUpdateInterval = calc;
 		mIsPuyoAnim     = true;
 
-		if ((int)mCounterLimit < 0) {
-			JUT_PANICLINE(169, "slot_up overflow ! (k=%d)\n", 0);
-		} else if ((int)mCounterLimit != 0) {
-			mCounters[0]->mScaleMgr->up(mPuyoParm1, mPuyoParm2, mPuyoParm3, 0.0f);
-			if ((u32)_C8 != 0) {
-				ogSound->setSE(_C8);
-			}
-		}
+		slot_up(0);
 	}
 }
 
@@ -160,7 +153,7 @@ void CallBack_CounterSlot::setValue(bool flag1, bool flag2)
 		if (mIsBlind) {
 			mCounters[i]->setSuji(mImgResources, 10);
 		} else if (_89) {
-			mCounters[i]->setSuji(mImgResources, (u16)(randFloat() * 9.0f));
+			mCounters[i]->setSuji(mImgResources, (u16)randInt(9));
 		} else {
 			mCounters[i]->setSuji(mImgResources, sujiVal);
 		}
