@@ -79,73 +79,81 @@ void MapUnits::setBaseGenPtr(BaseGen* baseGen) { mBaseGen = baseGen; }
  * @note Address: N/A
  * @note Size: 0x8
  */
-// void Cave::MapUnits::setUnitTexture(JUTTexture*)
-// {
-// // UNUSED FUNCTION
-// }
+void MapUnits::setUnitTexture(JUTTexture* texture)
+{
+	// UNUSED FUNCTION
+	mTexture = texture;
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-// char* Cave::MapUnits::getUnitName()
-// {
-// // UNUSED FUNCTION
-// }
+char* MapUnits::getUnitName()
+{
+	// UNUSED FUNCTION
+	return mName;
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-// int Cave::MapUnits::getUnitIndex()
-// {
-// // UNUSED FUNCTION
-// }
+int MapUnits::getUnitIndex()
+{
+	// UNUSED FUNCTION
+	return mIndex;
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-// int Cave::MapUnits::getUnitKind()
-// {
-// // UNUSED FUNCTION
-// }
+int MapUnits::getUnitKind()
+{
+	// UNUSED FUNCTION
+	return mKind;
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-// int Cave::MapUnits::getUnitSizeX()
-// {
-// // UNUSED FUNCTION
-// }
+int MapUnits::getUnitSizeX()
+{
+	// UNUSED FUNCTION
+	return mSizeX;
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-// int Cave::MapUnits::getUnitSizeY()
-// {
-// // UNUSED FUNCTION
-// }
+int MapUnits::getUnitSizeY()
+{
+	// UNUSED FUNCTION
+	return mSizeY;
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-// BaseGen* Cave::MapUnits::getBaseGen()
-// {
-// // UNUSED FUNCTION
-// }
+BaseGen* MapUnits::getBaseGen()
+{
+	// UNUSED FUNCTION
+	return mBaseGen;
+}
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-// JUTTexture* Cave::MapUnits::getUnitTexture()
-// {
-// // UNUSED FUNCTION
-// }
+JUTTexture* MapUnits::getUnitTexture()
+{
+	// UNUSED FUNCTION
+	return mTexture;
+}
 
 /**
  * @note Address: 0x80242938
@@ -200,16 +208,16 @@ void UnitInfo::create()
 
 	// if unit is facing up or down, use X and Y as normal
 	if ((mUnitRotation == CD_Up) || (mUnitRotation == CD_Down)) {
-		mUnitSizeX = mMapUnits->mSizeX;
-		mUnitSizeY = mMapUnits->mSizeY;
+		mUnitSizeX = mMapUnits->getUnitSizeX();
+		mUnitSizeY = mMapUnits->getUnitSizeY();
 	} else { // if unit is facing left or right, swap X and Y
-		mUnitSizeX = mMapUnits->mSizeY;
-		mUnitSizeY = mMapUnits->mSizeX;
+		mUnitSizeX = mMapUnits->getUnitSizeY();
+		mUnitSizeY = mMapUnits->getUnitSizeX();
 	}
 
 	// set defaults for door offsets
-	int X = mMapUnits->mSizeX - 1;
-	int Y = mMapUnits->mSizeY - 1;
+	int X = mMapUnits->getUnitSizeX() - 1;
+	int Y = mMapUnits->getUnitSizeY() - 1;
 
 	// set all door offsets based on their directions
 	DoorNode* unitDoorNode = static_cast<DoorNode*>(mDoorNode->mChild);
@@ -250,10 +258,11 @@ char* UnitInfo::getUnitName() { return mMapUnits->mName; }
  * @note Address: N/A
  * @note Size: 0xC
  */
-// int Cave::UnitInfo::getUnitIndex()
-// {
-// // UNUSED FUNCTION
-// }
+int UnitInfo::getUnitIndex()
+{
+	// UNUSED FUNCTION
+	return mMapUnits->mIndex;
+}
 
 /**
  * @note Address: 0x80242B78

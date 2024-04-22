@@ -70,6 +70,7 @@ struct UnitInfo {
 	void setUnitRotation(int direction); // Use CD_ / CardinalDirection enum
 	void create();
 	char* getUnitName();
+	int getUnitIndex();
 	int getUnitKind();
 	int getUnitSizeX();
 	int getUnitSizeY();
