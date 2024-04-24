@@ -3196,6 +3196,7 @@ void ObjSMenuMap::drawMap(Graphics& gfx)
 		scrn->draw(gfx, *graf);
 	}
 	graf->setPort();
+	&gfx = sys->mGfx; // wow, &gfx can be a modifiable lvalue?
 	j3dSys.drawInit();
 	gfx.initPrimDraw(nullptr);
 
