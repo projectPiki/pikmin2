@@ -216,7 +216,7 @@ void CallBack_CounterSlot::setValue(bool flag1, bool flag2)
 		J2DPicture* cPane = mCounters[i]->mPicture;
 		if (cPane) {
 			f32 boxVal = (f32)i * (-mPane12DistX * temp);
-			JGeometry::TBox2f cBox(boxVal + mPaneBounds.x, mPaneBounds.y, boxVal + (mPaneBounds.x + mPaneSize.x),
+			JGeometry::TBox2f cBox(mPaneBounds.x + boxVal, mPaneBounds.y, boxVal + (mPaneBounds.x + mPaneSize.x),
 			                       mPaneBounds.y + mPaneSize.y);
 			cPane->place(cBox);
 
