@@ -61,10 +61,10 @@ J2DPictureEx* CopyPictureToPane(J2DPictureEx* pic, J2DPane* pane, f32 x, f32 y, 
 	JGeometry::TVec2f offset(pic->mBounds.getHeight(), pic->mBounds.getWidth());
 
 	JGeometry::TVec2f origin;
-	origin.y = y - (offset.x / 2.0f);
 	origin.x = x - (offset.y / 2.0f);
+	origin.y = y - (offset.x / 2.0f);
 
-	JGeometry::TBox2f box(origin.x, origin.y, offset);
+	JGeometry::TBox2f box(origin.x, origin.y, origin.x + offset.y, origin.y + offset.x);
 	J2DPicture::TCornerColor cols;
 	pic->getCornerColor(cols);
 
