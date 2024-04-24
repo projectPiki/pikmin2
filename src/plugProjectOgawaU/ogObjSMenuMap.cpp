@@ -3230,7 +3230,8 @@ void ObjSMenuMap::drawMap(Graphics& gfx)
 void ObjSMenuMap::drawRectZ(Graphics& gfx, Rectf& rect, Color4& color, f32 z)
 {
 	GXSetZMode(GX_TRUE, GX_ALWAYS, GX_TRUE);
-	Mtx mtx, mtx2;
+	Mtx44 mtx;
+	Mtx mtx2;
 	C_MTXOrtho(mtx, 0.0f, 480.0f, 0.0f, 640.0f, -1.0f, 1.0f);
 	GXSetProjection(mtx, GX_ORTHOGRAPHIC);
 	PSMTXIdentity(mtx2);
@@ -3256,130 +3257,6 @@ void ObjSMenuMap::drawRectZ(Graphics& gfx, Rectf& rect, Color4& color, f32 z)
 	GXColor4u8(color.r, color.g, color.b, color.a);
 
 	GXSetZMode(GX_TRUE, GX_LESS, GX_TRUE);
-
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x90(r1)
-	  mflr      r0
-	  stw       r0, 0x94(r1)
-	  stfd      f31, 0x80(r1)
-	  psq_st    f31,0x88(r1),0,0
-	  stw       r31, 0x7C(r1)
-	  stw       r30, 0x78(r1)
-	  fmr       f31, f1
-	  mr        r30, r5
-	  mr        r31, r6
-	  li        r3, 0x1
-	  li        r4, 0x7
-	  li        r5, 0x1
-	  bl        -0x2293C8
-	  lfs       f1, -0xC20(r2)
-	  addi      r3, r1, 0x38
-	  lfs       f2, -0xB78(r2)
-	  fmr       f3, f1
-	  lfs       f4, -0xB7C(r2)
-	  lfs       f5, -0xBC4(r2)
-	  lfs       f6, -0xC1C(r2)
-	  bl        -0x227794
-	  addi      r3, r1, 0x38
-	  li        r4, 0x1
-	  bl        -0x229130
-	  addi      r3, r1, 0x8
-	  bl        -0x2282E0
-	  addi      r3, r1, 0x8
-	  li        r4, 0
-	  bl        -0x229014
-	  li        r3, 0
-	  bl        -0x22C9EC
-	  bl        -0x22DEC8
-	  li        r3, 0x9
-	  li        r4, 0x1
-	  bl        -0x22E320
-	  li        r3, 0xB
-	  li        r4, 0x1
-	  bl        -0x22E32C
-	  li        r3, 0
-	  li        r4, 0x9
-	  li        r5, 0x1
-	  li        r6, 0x4
-	  li        r7, 0
-	  bl        -0x22DEC0
-	  li        r3, 0
-	  li        r4, 0xB
-	  li        r5, 0x1
-	  li        r6, 0x5
-	  li        r7, 0
-	  bl        -0x22DED8
-	  li        r3, 0x80
-	  li        r4, 0
-	  li        r5, 0x4
-	  bl        -0x22CC68
-	  lfs       f1, 0x4(r30)
-	  lis       r9, 0xCC01
-	  lfs       f0, 0x0(r30)
-	  li        r3, 0x1
-	  li        r4, 0x1
-	  li        r5, 0x1
-	  stfs      f0, -0x8000(r9)
-	  stfs      f1, -0x8000(r9)
-	  stfs      f31, -0x8000(r9)
-	  lbz       r8, 0x3(r31)
-	  lbz       r7, 0x2(r31)
-	  lbz       r6, 0x1(r31)
-	  lbz       r0, 0x0(r31)
-	  stb       r0, -0x8000(r9)
-	  stb       r6, -0x8000(r9)
-	  stb       r7, -0x8000(r9)
-	  stb       r8, -0x8000(r9)
-	  lfs       f1, 0xC(r30)
-	  lfs       f0, 0x0(r30)
-	  stfs      f0, -0x8000(r9)
-	  stfs      f1, -0x8000(r9)
-	  stfs      f31, -0x8000(r9)
-	  lbz       r8, 0x3(r31)
-	  lbz       r7, 0x2(r31)
-	  lbz       r6, 0x1(r31)
-	  lbz       r0, 0x0(r31)
-	  stb       r0, -0x8000(r9)
-	  stb       r6, -0x8000(r9)
-	  stb       r7, -0x8000(r9)
-	  stb       r8, -0x8000(r9)
-	  lfs       f1, 0xC(r30)
-	  lfs       f0, 0x8(r30)
-	  stfs      f0, -0x8000(r9)
-	  stfs      f1, -0x8000(r9)
-	  stfs      f31, -0x8000(r9)
-	  lbz       r8, 0x3(r31)
-	  lbz       r7, 0x2(r31)
-	  lbz       r6, 0x1(r31)
-	  lbz       r0, 0x0(r31)
-	  stb       r0, -0x8000(r9)
-	  stb       r6, -0x8000(r9)
-	  stb       r7, -0x8000(r9)
-	  stb       r8, -0x8000(r9)
-	  lfs       f1, 0x4(r30)
-	  lfs       f0, 0x8(r30)
-	  stfs      f0, -0x8000(r9)
-	  stfs      f1, -0x8000(r9)
-	  stfs      f31, -0x8000(r9)
-	  lbz       r8, 0x3(r31)
-	  lbz       r7, 0x2(r31)
-	  lbz       r6, 0x1(r31)
-	  lbz       r0, 0x0(r31)
-	  stb       r0, -0x8000(r9)
-	  stb       r6, -0x8000(r9)
-	  stb       r7, -0x8000(r9)
-	  stb       r8, -0x8000(r9)
-	  bl        -0x229550
-	  psq_l     f31,0x88(r1),0,0
-	  lwz       r0, 0x94(r1)
-	  lfd       f31, 0x80(r1)
-	  lwz       r31, 0x7C(r1)
-	  lwz       r30, 0x78(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x90
-	  blr
-	*/
 }
 
 /**
@@ -3391,7 +3268,8 @@ void ObjSMenuMap::drawVecZ(Graphics& gfx, Vec& vec1, Vec& vec2, Vec& vec3, Vec& 
 	u16 wid = System::getRenderModeObj()->fbWidth;
 	u16 hei = System::getRenderModeObj()->efbHeight;
 	GXSetZMode(GX_TRUE, GX_ALWAYS, GX_TRUE);
-	Mtx temp, temp2;
+	Mtx44 temp;
+	Mtx temp2;
 	C_MTXOrtho(temp, 0.0f, (f32)wid, 0.0f, (f32)hei, -1.0f, 1.0f);
 	GXSetProjection(temp, GX_ORTHOGRAPHIC);
 	PSMTXIdentity(temp2);
