@@ -153,31 +153,43 @@ void TitleMsg::setFontPane(J2DPictureEx* pic, int id)
  */
 void TitleMsg::setCentering(EnumCentering center)
 {
-	f32 temp   = 1.0f;
 	mCentering = center;
-
-	f32 cx   = mCurrXpos;
-	f32 size = mRootPane->mBounds.f.x - mRootPane->mBounds.i.x;
-	if (cx > size) {
-		temp = size / cx;
+	f32 size;
+	f32 cx     = mCurrXpos;
+	f32 width  = mRootPane->getWidth();
+	f32 scaleX = 1.0f;
+	if (cx > width) {
+		scaleX = width / cx;
 	}
-	f32 scaleX = temp;
 
 	switch (mCentering) {
 	case ECM_0:
 		size = 0.0f;
 		break;
 	case ECM_1:
-		size = -(mCurrXpos * scaleX - size);
+		size = -(mCurrXpos * scaleX - width);
 		break;
 	case ECM_2:
-		size = -(mCurrXpos * scaleX - size) / 2;
+		size = -(mCurrXpos * scaleX - width) / 2;
 		break;
 	default:
 		size = 0.0f;
 	}
 
-	// this part seems to be different in demo 1?
+#if VERNUM == USADEMO1
+	f32 currX = 0.0f; // f25
+	for (int i = 0; i < mStringLength; i++) {
+		J2DPane* pane = mPanes1[i];
+		f32 paneWidth = pane->getWidth();
+		f32 diff      = 0.5f * (paneWidth * (1.0f - scaleX));
+		currX -= diff;
+		pane->move(currX + size, 0.0f);
+
+		mPanes1[i]->updateScale(scaleX, 1.0f);
+		currX += (paneWidth - diff);
+	}
+	mXScale = scaleX;
+#elif VERNUM == USAFINAL
 	f32 scaleY = 1.0f;
 	f32 currX  = 0.0f;
 	for (int i = 0; i < mStringLength; i++) {
@@ -188,6 +200,7 @@ void TitleMsg::setCentering(EnumCentering center)
 		currX += mPanes1[i]->mBounds.getWidth();
 	}
 	mXScale = scaleX;
+#endif
 }
 
 /**
