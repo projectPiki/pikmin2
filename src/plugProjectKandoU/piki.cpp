@@ -487,7 +487,7 @@ void Piki::inWaterCallback(WaterBox* wbox)
 	mEffectsObj->mHeight = wbox->getSeaHeightPtr();
 	if (isAlive()) {
 		efx::TPkEffect* effectObj = mEffectsObj;
-		effectObj->doWaterEntry();
+		effectObj->doWaterEntry(); // regswap in this inline
 		mSoundObj->startFreePikiSetSound(PSSE_PK_SE_WATER_IN, PSGame::SeMgr::SETSE_PikiLanding, 90, 0);
 	}
 

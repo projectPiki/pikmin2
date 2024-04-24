@@ -196,7 +196,7 @@ bool Cylinder::intersect(Triangle const& triangle, f32& p2)
 {
 	for (int i = 0; i < 3; i++) {
 		if (culled(triangle.mEdgePlanes[i])) {
-			return 0;
+			return false;
 		}
 	}
 

@@ -1012,10 +1012,8 @@ void TOmake::doInitWaitState()
 bool TOmake::doUpdateStateOpen()
 {
 	mScreenMain->update();
-	if (mState) {
-		if (mCounter) {
-			mCounter--;
-		}
+	if (mState && mCounter) {
+		mCounter--;
 	}
 
 	if (mAnims1.isFinish() && !mCounter) {
@@ -1464,12 +1462,12 @@ blr
 bool TOmake::doUpdateStateClose()
 {
 	mScreenMain->update();
-	if (mState != 0 && mCounter) {
+	if (mState && mCounter) {
 		mCounter--;
-		if (mCounter == 0)
-			return true;
 	}
-	return false;
+
+	return !mCounter ? true : false; // write this in such a way to generate a branch instruction.
+
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
