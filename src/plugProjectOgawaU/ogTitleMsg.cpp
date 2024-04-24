@@ -459,9 +459,9 @@ void TitleMsgClash::update()
 	mScaleMod -= 0.5f;
 	mCurrScale += mScaleMod;
 	if (mCurrScale < 1.0f) {
+		mScaleMod  = mScaleMod; // teehee.
 		mCurrScale = 1.0f;
 		mScaleMod  = -mScaleMod * 0.4f;
-		mCurrScale = 1.0f; // screams externally (this line is evil. remove it while viewing in objdiff)
 	}
 	ogSound->setVsTitle();
 
@@ -482,149 +482,6 @@ void TitleMsgClash::update()
 			}
 		}
 	}
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stfd     f31, 0x70(r1)
-	psq_st   f31, 120(r1), 0, qr0
-	stw      r31, 0x6c(r1)
-	stw      r30, 0x68(r1)
-	stw      r29, 0x64(r1)
-	stw      r28, 0x60(r1)
-	lfs      f0, lbl_8051E014@sda21(r2)
-	mr       r29, r3
-	lfs      f1, 0x7e4(r3)
-	lfs      f2, lbl_8051E00C@sda21(r2)
-	fsubs    f0, f1, f0
-	stfs     f0, 0x7e4(r3)
-	lfs      f1, 0x7e8(r3)
-	lfs      f0, 0x7e4(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x7e8(r3)
-	lfs      f0, 0x7e8(r3)
-	fcmpo    cr0, f0, f2
-	bge      lbl_8032FFAC
-	stfs     f2, 0x7e8(r29)
-	lfs      f1, lbl_8051E06C@sda21(r2)
-	lfs      f0, 0x7e4(r29)
-	fneg     f0, f0
-	fmuls    f0, f1, f0
-	stfs     f0, 0x7e4(r29)
-
-lbl_8032FFAC:
-	lwz      r3, ogSound__2og@sda21(r13)
-	bl       setVsTitle__Q22og5SoundFv
-	lfs      f31, lbl_8051E00C@sda21(r2)
-	mr       r31, r29
-	li       r30, 0
-	b        lbl_8033011C
-
-lbl_8032FFC4:
-	lfs      f1, 0x7e8(r29)
-	lfs      f0, 0x7e0(r29)
-	lwz      r3, 0x140(r31)
-	fmuls    f0, f1, f0
-	stfs     f0, 0xcc(r3)
-	stfs     f31, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	addi     r4, r30, 0x55c
-	lbzx     r0, r29, r4
-	cmplwi   r0, 0
-	bne      lbl_80330114
-	lwz      r3, sys@sda21(r13)
-	lfs      f2, 0x5dc(r31)
-	lfs      f1, 0x54(r3)
-	lfs      f0, lbl_8051E00C@sda21(r2)
-	fadds    f1, f2, f1
-	stfs     f1, 0x5dc(r31)
-	lfs      f1, 0x5dc(r31)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80330114
-	li       r0, 1
-	addi     r3, r1, 0x24
-	stbx     r0, r29, r4
-	li       r5, 0
-	lwz      r28, 0x140(r31)
-	mr       r4, r28
-	bl       getGlbVtx__7J2DPaneCFUc
-	lwz      r5, 0x24(r1)
-	mr       r4, r28
-	lwz      r6, 0x28(r1)
-	addi     r3, r1, 0x18
-	lwz      r0, 0x2c(r1)
-	stw      r5, 0x48(r1)
-	li       r5, 3
-	stw      r6, 0x4c(r1)
-	stw      r0, 0x50(r1)
-	bl       getGlbVtx__7J2DPaneCFUc
-	lwz      r4, 0x18(r1)
-	lis      r3, __vt__Q25efx2d3Arg@ha
-	lwz      r5, 0x1c(r1)
-	addi     r0, r3, __vt__Q25efx2d3Arg@l
-	stw      r4, 0x3c(r1)
-	li       r4, 2
-	lfs      f0, 0x7dc(r29)
-	stw      r5, 0x40(r1)
-	lfs      f4, 0x48(r1)
-	lfs      f3, 0x3c(r1)
-	lfs      f2, 0x4c(r1)
-	lfs      f1, 0x40(r1)
-	fadds    f4, f4, f3
-	lfs      f3, lbl_8051E014@sda21(r2)
-	fadds    f1, f2, f1
-	lwz      r3, 0x20(r1)
-	fmuls    f2, f4, f3
-	stw      r0, 0x38(r1)
-	fmadds   f0, f1, f3, f0
-	stw      r3, 0x44(r1)
-	stfs     f2, 0x10(r1)
-	stfs     f0, 0x14(r1)
-	lwz      r3, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	stw      r3, 8(r1)
-	stw      r0, 0xc(r1)
-	lfs      f1, 8(r1)
-	lfs      f0, 0xc(r1)
-	stfs     f1, 0x30(r1)
-	stfs     f0, 0x34(r1)
-	lwz      r3, 0x7ec(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x7ec(r31)
-	addi     r4, r1, 0x30
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x7ec(r31)
-	li       r4, 0x82
-	bl       setGlobalAlpha__Q25efx2d9TForeverNFUc
-
-lbl_80330114:
-	addi     r31, r31, 4
-	addi     r30, r30, 1
-
-lbl_8033011C:
-	lwz      r0, 0x540(r29)
-	cmplw    r30, r0
-	blt      lbl_8032FFC4
-	psq_l    f31, 120(r1), 0, qr0
-	lwz      r0, 0x84(r1)
-	lfd      f31, 0x70(r1)
-	lwz      r31, 0x6c(r1)
-	lwz      r30, 0x68(r1)
-	lwz      r29, 0x64(r1)
-	lwz      r28, 0x60(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
 }
 
 /**

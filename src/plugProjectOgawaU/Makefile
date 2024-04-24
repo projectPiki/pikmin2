@@ -75,7 +75,7 @@ OGAWA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogCallBackPicture.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogDrawAfter.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogOtakaraSensor.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogTitleMsg.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogTitleMsg.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogAngleMgr.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuCont.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjSMenuCont.o\

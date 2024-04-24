@@ -1350,7 +1350,7 @@ LIBS = [
             ["plugProjectOgawaU/ogCallBackPicture", True],
             ["plugProjectOgawaU/ogDrawAfter", True],
             ["plugProjectOgawaU/ogOtakaraSensor", True],
-            ["plugProjectOgawaU/ogTitleMsg", False],
+            ["plugProjectOgawaU/ogTitleMsg", True],
             ["plugProjectOgawaU/ogAngleMgr", True],
             ["plugProjectOgawaU/ogSceneSMenuCont", True],
             ["plugProjectOgawaU/ogObjSMenuCont", True],
