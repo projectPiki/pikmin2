@@ -905,21 +905,21 @@ void BlendCamera::setBlendFactor(f32 factor)
  */
 void BlendCamera::doUpdate()
 {
+	Quat indexQuat;
+	Quat nextIndexQuat;
+	Quat slerpQuat;
+
 	int blend          = mBlendFactor;
 	int blendIndex     = blend;
 	int nextBlendIndex = blendIndex + 1;
 
 	// Blend can't be higher than camera count
-	if (mCameraCount - 1 <= blend) {
+	if (mCameraCount - 1 >= blend) {
 		blend          = blendIndex - 1;
 		nextBlendIndex = blend;
 	}
 
-	f32 blendFactorNextIndex = ((f32)blendIndex);
-
-	Quat indexQuat;
-	Quat nextIndexQuat;
-	Quat slerpQuat;
+	f32 blendFactorNextIndex = (f32)blendIndex;
 
 	Matrixf* viewMatrix = mCameras[blendIndex]->getViewMatrix(false);
 	indexQuat.fromMatrixf(*viewMatrix);
