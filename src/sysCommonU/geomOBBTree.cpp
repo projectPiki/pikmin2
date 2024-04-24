@@ -1003,11 +1003,11 @@ void OBB::determineDivPlane(Sys::VertexTable& vertTable, Sys::TriangleTable& tri
 		int numAbove    = 0;
 		int numBelow    = 0;
 
-		Vector3f* currAxis = &mAxes[i];
-		currPlane.a        = currAxis->x;
-		currPlane.b        = currAxis->y;
-		currPlane.c        = currAxis->z;
-		currPlane.d        = dot(*currAxis, mPosition);
+		Vector3f* currAxis  = &mAxes[i];
+		currPlane.mNormal.x = currAxis->x;
+		currPlane.mNormal.y = currAxis->y;
+		currPlane.mNormal.z = currAxis->z;
+		currPlane.mOffset   = dot(*currAxis, mPosition);
 
 		// loop through all triangles
 		for (int j = 0; j < mTriIndexList.mCount; j++) {
@@ -1038,10 +1038,8 @@ void OBB::determineDivPlane(Sys::VertexTable& vertTable, Sys::TriangleTable& tri
 
 	Vector3f correctAxis = mAxes[axisID];
 	// divPlane has normal = axis with min cuts, and goes through center/position of box
-	mDivPlane.a = correctAxis.x;
-	mDivPlane.b = correctAxis.y;
-	mDivPlane.c = correctAxis.z;
-	mDivPlane.d = dot(correctAxis, mPosition);
+	mDivPlane.mNormal = correctAxis;
+	mDivPlane.mOffset = dot(correctAxis, mPosition);
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -1591,12 +1589,13 @@ void OBB::getCurrTri(Game::CurrTriInfo& info)
 	}
 
 	f32 dist;
-	if (mDivPlane.b == 0.0f) {
+	if (mDivPlane.mNormal.y == 0.0f) {
 		dist = mDivPlane.calcDist(info.mPosition);
 	} else {
 		Vector3f vec = info.mPosition;
-		vec.y        = (mDivPlane.d - (mDivPlane.a * info.mPosition.x) - (mDivPlane.c * info.mPosition.z)) / mDivPlane.b;
-		dist         = mDivPlane.calcDist(vec);
+		vec.y        = (mDivPlane.mOffset - (mDivPlane.mNormal.x * info.mPosition.x) - (mDivPlane.mNormal.z * info.mPosition.z))
+		      / mDivPlane.mNormal.y;
+		dist = mDivPlane.calcDist(vec);
 	}
 
 	if (dist > 0.01f) {
@@ -1631,9 +1630,7 @@ void OBB::getCurrTriTriList(Game::CurrTriInfo& info)
 				info.mMaxY = position.y;
 
 				if (info.mUpdateOnNewMaxY) {
-					info.mNormalVec.x = currTri->mTrianglePlane.a;
-					info.mNormalVec.y = currTri->mTrianglePlane.b;
-					info.mNormalVec.z = currTri->mTrianglePlane.c;
+					info.mNormalVec   = currTri->mTrianglePlane.mNormal;
 					info.mTriangle    = currTri;
 					info.mGetFullInfo = true;
 				}
@@ -1644,9 +1641,7 @@ void OBB::getCurrTriTriList(Game::CurrTriInfo& info)
 				info.mMinY = position.y;
 
 				if (!info.mUpdateOnNewMaxY) {
-					info.mNormalVec.x = currTri->mTrianglePlane.a;
-					info.mNormalVec.y = currTri->mTrianglePlane.b;
-					info.mNormalVec.z = currTri->mTrianglePlane.c;
+					info.mNormalVec   = currTri->mTrianglePlane.mNormal;
 					info.mTriangle    = currTri;
 					info.mGetFullInfo = true;
 				}
@@ -2546,7 +2541,7 @@ bool OBB::findRayIntersectionTriList(Sys::RayIntersectInfo& rayInfo, Matrixf& tr
 			if (sqSep < rayInfo.mDistance) {
 				rayInfo.mDistance          = sqSep;
 				rayInfo.mIntersectPosition = transformMtx.mtxMult(intersectVec);
-				rayInfo.mNormalY           = currTri->mTrianglePlane.b;
+				rayInfo.mNormalY           = currTri->mTrianglePlane.mNormal.y;
 			}
 		}
 	}
@@ -2762,13 +2757,13 @@ f32 OBB::getMinY(Vector3f& pos, Sys::TriangleTable& triTable, f32 inputMin)
 		return getMinYTriList(pos, triTable);
 	}
 
-	if (0.0f == mDivPlane.b) {
+	if (0.0f == mDivPlane.mNormal.y) {
 		divDist = mDivPlane.calcDist(pos);
 	} else {
 		Vector3f planeVec = pos;
-		planeVec.y        = -(mDivPlane.a * planeVec.x - mDivPlane.d);
-		planeVec.y        = -(mDivPlane.c * planeVec.z - planeVec.y);
-		planeVec.y        = planeVec.y / mDivPlane.b;
+		planeVec.y        = -(mDivPlane.mNormal.x * planeVec.x - mDivPlane.mOffset);
+		planeVec.y        = -(mDivPlane.mNormal.z * planeVec.z - planeVec.y);
+		planeVec.y        = planeVec.y / mDivPlane.mNormal.y;
 		divDist           = mDivPlane.calcDist(planeVec);
 	}
 

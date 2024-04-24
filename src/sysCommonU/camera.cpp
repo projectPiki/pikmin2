@@ -160,53 +160,45 @@ void CullFrustum::updatePlanes()
 
 	PSMTXRotAxisRad(outMat.mMatrix.mtxView, (Vec*)&row1, (PI - viewAngle));
 	PSMTXMultVec(outMat.mMatrix.mtxView, (Vec*)&row2, &outVec);
-	planeVec.x    = outVec.x;
-	planeVec.y    = outVec.y;
-	planeVec.z    = outVec.z;
-	mObjects[0].a = planeVec.x;
-	mObjects[0].b = planeVec.y;
-	mObjects[0].c = planeVec.z;
-	dist          = dot(planeVec, posVec);
-	mObjects[0].d = dist;
+	planeVec.x          = outVec.x;
+	planeVec.y          = outVec.y;
+	planeVec.z          = outVec.z;
+	mObjects[0].mNormal = planeVec;
+	dist                = dot(planeVec, posVec);
+	mObjects[0].mOffset = dist;
 
 	Vec outVec1;
 	Vector3f planeVec1;
 
 	PSMTXRotAxisRad(outMat.mMatrix.mtxView, (Vec*)&row1, viewAngle);
 	PSMTXMultVec(outMat.mMatrix.mtxView, (Vec*)&row2, &outVec1);
-	planeVec1.x   = outVec1.x;
-	planeVec1.y   = outVec1.y;
-	planeVec1.z   = outVec1.z;
-	mObjects[1].a = planeVec1.x;
-	mObjects[1].b = planeVec1.y;
-	mObjects[1].c = planeVec1.z;
-	mObjects[1].d = dot(planeVec1, posVec);
+	planeVec1.x         = outVec1.x;
+	planeVec1.y         = outVec1.y;
+	planeVec1.z         = outVec1.z;
+	mObjects[1].mNormal = planeVec1;
+	mObjects[1].mOffset = dot(planeVec1, posVec);
 
 	Vec outVec2;
 	Vector3f planeVec2;
 
 	PSMTXRotAxisRad(outMat.mMatrix.mtxView, (Vec*)&row1, -fovAngle);
 	PSMTXMultVec(outMat.mMatrix.mtxView, (Vec*)&row2, &outVec2);
-	planeVec2.x   = outVec2.x;
-	planeVec2.y   = outVec2.y;
-	planeVec2.z   = outVec2.z;
-	mObjects[2].a = planeVec2.x;
-	mObjects[2].b = planeVec2.y;
-	mObjects[2].c = planeVec2.z;
-	mObjects[2].d = dot(planeVec2, posVec);
+	planeVec2.x         = outVec2.x;
+	planeVec2.y         = outVec2.y;
+	planeVec2.z         = outVec2.z;
+	mObjects[2].mNormal = planeVec2;
+	mObjects[2].mOffset = dot(planeVec2, posVec);
 
 	Vec outVec3;
 	Vector3f planeVec3;
 
 	PSMTXRotAxisRad(outMat.mMatrix.mtxView, (Vec*)&row1, (PI + fovAngle));
 	PSMTXMultVec(outMat.mMatrix.mtxView, (Vec*)&row2, &outVec3);
-	planeVec3.x   = outVec3.x;
-	planeVec3.y   = outVec3.y;
-	planeVec3.z   = outVec3.z;
-	mObjects[3].a = planeVec3.x;
-	mObjects[3].b = planeVec3.y;
-	mObjects[3].c = planeVec3.z;
-	mObjects[3].d = dot(planeVec3, posVec);
+	planeVec3.x         = outVec3.x;
+	planeVec3.y         = outVec3.y;
+	planeVec3.z         = outVec3.z;
+	mObjects[3].mNormal = planeVec3;
+	mObjects[3].mOffset = dot(planeVec3, posVec);
 	/*
 	stwu     r1, -0xf0(r1)
 	mflr     r0
@@ -472,19 +464,15 @@ void Camera::updatePlanes()
 
 	Vector3f pos = getPosition();
 
-	mObjects[4].a = -zVec.x;
-	mObjects[4].b = -zVec.y;
-	mObjects[4].c = -zVec.z;
-	Vector3f farPlaneVec(mObjects[4].a, mObjects[4].b, mObjects[4].c);
-	Vector3f farVec = zVec * mProjectionFar + pos;
-	mObjects[4].d   = dot(farPlaneVec, farVec);
+	mObjects[4].mNormal = Vector3f(-zVec.x, -zVec.y, -zVec.z);
+	Vector3f farPlaneVec(mObjects[4].mNormal.x, mObjects[4].mNormal.y, mObjects[4].mNormal.z);
+	Vector3f farVec     = zVec * mProjectionFar + pos;
+	mObjects[4].mOffset = dot(farPlaneVec, farVec);
 
-	mObjects[5].a = -zVec.x;
-	mObjects[5].b = -zVec.y;
-	mObjects[5].c = -zVec.z;
-	Vector3f nearPlaneVec(mObjects[5].a, mObjects[5].b, mObjects[5].c);
-	Vector3f nearVec = zVec * mProjectionNear + pos;
-	mObjects[5].d    = dot(nearPlaneVec, farVec);
+	mObjects[5].mNormal = Vector3f(-zVec.x, -zVec.y, -zVec.z);
+	Vector3f nearPlaneVec(mObjects[5].mNormal.x, mObjects[5].mNormal.y, mObjects[5].mNormal.z);
+	Vector3f nearVec    = zVec * mProjectionNear + pos;
+	mObjects[5].mOffset = dot(nearPlaneVec, farVec);
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0

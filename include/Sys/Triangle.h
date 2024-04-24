@@ -59,7 +59,7 @@ struct Triangle {
 
 	static bool debug;
 
-	Vector3i mVertices;   // _00, _04, _08 	- addresses of each vertex in vertex table
+	int mVertices[3];     // _00, _04, _08 	- addresses of each vertex in vertex table
 	Plane mTrianglePlane; // _0C				- ax + by + cz + d form of plane triangle lies in
 	Plane mEdgePlanes[3]; // _1C, _2C, _3C 	- plane through each side of triangle (?)
 	Sphere mSphere;       // _4C				- bounding sphere of triangle

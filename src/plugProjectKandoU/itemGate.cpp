@@ -447,31 +447,31 @@ void ItemGate::initPlanes()
 
 	Vector3f pos = getPosition();
 
-	Vector3f plane0vec = pos + (_270 * 20.0f);
-	mPlanes[0].a       = _270.x;
-	mPlanes[0].b       = _270.y;
-	mPlanes[0].c       = _270.z;
-	mPlanes[0].d       = _270.dot(plane0vec);
+	Vector3f plane0vec   = pos + (_270 * 20.0f);
+	mPlanes[0].mNormal.x = _270.x;
+	mPlanes[0].mNormal.y = _270.y;
+	mPlanes[0].mNormal.z = _270.z;
+	mPlanes[0].mOffset   = _270.dot(plane0vec);
 
-	Vector3f vec2      = (-_270.x, -_270.y, _270.z);
-	Vector3f plane1vec = pos + (vec2 * 20.0f);
-	mPlanes[1].a       = vec2.x;
-	mPlanes[1].b       = vec2.y;
-	mPlanes[1].c       = vec2.z;
-	mPlanes[1].d       = vec2.dot(plane1vec);
+	Vector3f vec2        = (-_270.x, -_270.y, _270.z);
+	Vector3f plane1vec   = pos + (vec2 * 20.0f);
+	mPlanes[1].mNormal.x = vec2.x;
+	mPlanes[1].mNormal.y = vec2.y;
+	mPlanes[1].mNormal.z = vec2.z;
+	mPlanes[1].mOffset   = vec2.dot(plane1vec);
 
-	Vector3f plane2vec = pos + (_264 * 76.5f);
-	mPlanes[2].a       = _264.x;
-	mPlanes[2].b       = _264.y;
-	mPlanes[2].c       = _264.z;
-	mPlanes[2].d       = _264.dot(plane2vec);
+	Vector3f plane2vec   = pos + (_264 * 76.5f);
+	mPlanes[2].mNormal.x = _264.x;
+	mPlanes[2].mNormal.y = _264.y;
+	mPlanes[2].mNormal.z = _264.z;
+	mPlanes[2].mOffset   = _264.dot(plane2vec);
 
-	Vector3f vec3      = (-_264.x, -_264.y, _264.z);
-	Vector3f plane3vec = pos + (vec3 * 76.5f);
-	mPlanes[3].a       = vec3.x;
-	mPlanes[3].b       = vec3.y;
-	mPlanes[3].c       = vec3.z;
-	mPlanes[3].d       = vec3.dot(plane3vec);
+	Vector3f vec3        = (-_264.x, -_264.y, _264.z);
+	Vector3f plane3vec   = pos + (vec3 * 76.5f);
+	mPlanes[3].mNormal.x = vec3.x;
+	mPlanes[3].mNormal.y = vec3.y;
+	mPlanes[3].mNormal.z = vec3.z;
+	mPlanes[3].mOffset   = vec3.dot(plane3vec);
 	/*
 	stwu     r1, -0xb0(r1)
 	mflr     r0

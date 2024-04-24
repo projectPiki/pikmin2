@@ -94,9 +94,9 @@ void TDispTriangleArray::draw(Graphics&)
 void TDispTriangle::store(Sys::Triangle& triangle, Sys::VertexTable& vertexTable, int index)
 {
 	mSysTriangle = &triangle;
-	mVertices[0] = vertexTable.mObjects[triangle.mVertices.x];
-	mVertices[1] = vertexTable.mObjects[triangle.mVertices.y];
-	mVertices[2] = vertexTable.mObjects[triangle.mVertices.z];
+	mVertices[0] = vertexTable.mObjects[triangle.mVertices[0]];
+	mVertices[1] = vertexTable.mObjects[triangle.mVertices[1]];
+	mVertices[2] = vertexTable.mObjects[triangle.mVertices[2]];
 	mFlags.clear();
 	mFlags.typeView |= 1;
 	mIndex = index;
@@ -110,9 +110,9 @@ void TDispTriangle::store(Sys::Triangle& triangle, Sys::VertexTable& vertexTable
 void TDispTriangle::store(Matrixf& mtx, Sys::Triangle& tri, Sys::VertexTable& vertTable, int index)
 {
 	mSysTriangle = &tri;
-	mVertices[0] = mtx.mtxMult(vertTable.mObjects[tri.mVertices.x]);
-	mVertices[1] = mtx.mtxMult(vertTable.mObjects[tri.mVertices.y]);
-	mVertices[2] = mtx.mtxMult(vertTable.mObjects[tri.mVertices.z]);
+	mVertices[0] = mtx.mtxMult(vertTable.mObjects[tri.mVertices[0]]);
+	mVertices[1] = mtx.mtxMult(vertTable.mObjects[tri.mVertices[1]]);
+	mVertices[2] = mtx.mtxMult(vertTable.mObjects[tri.mVertices[2]]);
 	mFlags.clear();
 	mFlags.typeView |= 1;
 	mIndex = index;
@@ -1678,7 +1678,7 @@ bool ShapeMapMgr::findRayIntersection(Sys::RayIntersectInfo& info)
 				f32 sqrDist = interVec.sqrDistance(startPos);
 				if (sqrDist < minDist) {
 					outPos        = interVec;
-					info.mNormalY = tri->mTrianglePlane.b;
+					info.mNormalY = tri->mTrianglePlane.mNormal.y;
 					minDist       = sqrDist;
 				}
 			}

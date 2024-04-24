@@ -48,9 +48,7 @@ bool Triangle::intersect(Sys::VertexTable& vtxTable, Sys::Triangle::SphereSweep&
 
 		bool isIntersect = intersect(edge_intersect, sweep.mSphere.mRadius, *intersectPoint, sweep.mDistanceFromRadius);
 		if (isIntersect) {
-			sweep.mNormal.x = mTrianglePlane.a;
-			sweep.mNormal.y = mTrianglePlane.b;
-			sweep.mNormal.z = mTrianglePlane.c;
+			sweep.mNormal = mTrianglePlane.mNormal;
 		}
 		return isIntersect;
 	}
@@ -61,9 +59,7 @@ bool Triangle::intersect(Sys::VertexTable& vtxTable, Sys::Triangle::SphereSweep&
 	}
 
 	if ((edgeDists[0] <= 0.0f) && (edgeDists[1] <= 0.0f) && (edgeDists[2] <= 0.0f)) {
-		sweep.mNormal.x           = mTrianglePlane.a;
-		sweep.mNormal.y           = mTrianglePlane.b;
-		sweep.mNormal.z           = mTrianglePlane.c;
+		sweep.mNormal             = mTrianglePlane.mNormal;
 		sweep.mDistanceFromRadius = sweep.mSphere.mRadius - distSweep;
 
 		Vector3f new_norm        = sweep.mNormal * sweep.mSphere.mRadius;
@@ -75,8 +71,8 @@ bool Triangle::intersect(Sys::VertexTable& vtxTable, Sys::Triangle::SphereSweep&
 	Edge edge_in;
 	f32 t; // sp8
 
-	int vertA         = mVertices.x;
-	int vertB         = mVertices.y;
+	int vertA         = mVertices[0];
+	int vertB         = mVertices[1];
 	edge_in.mStartPos = vtxTable.mObjects[vertA]; // sp28, 2C, 30
 	edge_in.mEndPos   = vtxTable.mObjects[vertB]; // sp34, 38, 3C
 	                                              // = vert_A;
@@ -88,8 +84,8 @@ bool Triangle::intersect(Sys::VertexTable& vtxTable, Sys::Triangle::SphereSweep&
 		return true;
 	}
 
-	vertA             = mVertices.y;
-	vertB             = mVertices.z;
+	vertA             = mVertices[1];
+	vertB             = mVertices[2];
 	edge_in.mStartPos = vtxTable.mObjects[vertA]; // sp28, 2C, 30
 	edge_in.mEndPos   = vtxTable.mObjects[vertB]; // sp34, 38, 3C
 
@@ -99,8 +95,8 @@ bool Triangle::intersect(Sys::VertexTable& vtxTable, Sys::Triangle::SphereSweep&
 		return true;
 	}
 
-	vertA             = mVertices.z;
-	vertB             = mVertices.x;
+	vertA             = mVertices[2];
+	vertB             = mVertices[0];
 	edge_in.mStartPos = vtxTable.mObjects[vertA]; // sp28, 2C, 30
 	edge_in.mEndPos   = vtxTable.mObjects[vertB]; // sp34, 38, 3C
 

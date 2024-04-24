@@ -71,22 +71,23 @@ struct OBB : public CNode {
 		axisVec->y = mAxes[i].y;
 		axisVec->z = mAxes[i].z;
 
-		Vector3f scaledVec = *axisVec * max;
-		mSidePlanes[i].a   = axisVec->x;
-		mSidePlanes[i].b   = axisVec->y;
-		mSidePlanes[i].c   = axisVec->z;
-		mSidePlanes[i].d   = mSidePlanes[i].a * (mPosition.x + scaledVec.x) + mSidePlanes[i].b * (mPosition.y + scaledVec.y)
-		                 + mSidePlanes[i].c * (mPosition.z + scaledVec.z);
+		Vector3f scaledVec       = *axisVec * max;
+		mSidePlanes[i].mNormal.x = axisVec->x;
+		mSidePlanes[i].mNormal.y = axisVec->y;
+		mSidePlanes[i].mNormal.z = axisVec->z;
+		mSidePlanes[i].mOffset   = mSidePlanes[i].mNormal.x * (mPosition.x + scaledVec.x)
+		                       + mSidePlanes[i].mNormal.y * (mPosition.y + scaledVec.y)
+		                       + mSidePlanes[i].mNormal.z * (mPosition.z + scaledVec.z);
 	}
 
 	inline void setMinPlane(int i)
 	{
-		mSidePlanes[i + 3].a = -mAxes[i].x;
-		mSidePlanes[i + 3].b = -mAxes[i].y;
-		mSidePlanes[i + 3].c = -mAxes[i].z;
-		mSidePlanes[i + 3].d = mSidePlanes[i + 3].a * (mPosition.x + (-mAxes[i].x * mMinXYZ[i]))
-		                     + mSidePlanes[i + 3].b * (mPosition.y + (-mAxes[i].y * mMinXYZ[i]))
-		                     + mSidePlanes[i + 3].c * (mPosition.z + (-mAxes[i].z * mMinXYZ[i]));
+		mSidePlanes[i + 3].mNormal.x = -mAxes[i].x;
+		mSidePlanes[i + 3].mNormal.y = -mAxes[i].y;
+		mSidePlanes[i + 3].mNormal.z = -mAxes[i].z;
+		mSidePlanes[i + 3].mOffset   = mSidePlanes[i + 3].mNormal.x * (mPosition.x + (-mAxes[i].x * mMinXYZ[i]))
+		                           + mSidePlanes[i + 3].mNormal.y * (mPosition.y + (-mAxes[i].y * mMinXYZ[i]))
+		                           + mSidePlanes[i + 3].mNormal.z * (mPosition.z + (-mAxes[i].z * mMinXYZ[i]));
 	}
 
 	Plane mSidePlanes[6];       // _18

@@ -18,9 +18,9 @@ struct TriangleTable : public ArrayContainer<Triangle> {
 	virtual ~TriangleTable() { }                                 // _08 (weak)
 	virtual void writeObject(Stream& output, Triangle& triangle) // _2C (weak)
 	{
-		output.writeInt(triangle.mVertices.x);
-		output.writeInt(triangle.mVertices.y);
-		output.writeInt(triangle.mVertices.z);
+		output.writeInt(triangle.mVertices[0]);
+		output.writeInt(triangle.mVertices[1]);
+		output.writeInt(triangle.mVertices[2]);
 
 		triangle.mTrianglePlane.write(output);
 		triangle.mEdgePlanes[0].write(output);
@@ -29,9 +29,9 @@ struct TriangleTable : public ArrayContainer<Triangle> {
 	}
 	virtual void readObject(Stream& input, Triangle& triangle) // _30 (weak)
 	{
-		triangle.mVertices.x = input.readInt();
-		triangle.mVertices.y = input.readInt();
-		triangle.mVertices.z = input.readInt();
+		triangle.mVertices[0] = input.readInt();
+		triangle.mVertices[1] = input.readInt();
+		triangle.mVertices[2] = input.readInt();
 		triangle.mTrianglePlane.read(input);
 		triangle.mEdgePlanes[0].read(input);
 		triangle.mEdgePlanes[1].read(input);
@@ -46,8 +46,10 @@ struct TriangleTable : public ArrayContainer<Triangle> {
 		Triangle* currTriangle = &mObjects[i];
 		Triangle* refTriangle  = &triTable->mObjects[i];
 
-		currTriangle->mVertices = refTriangle->mVertices;
-		currTriangle->mCode     = refTriangle->mCode;
+		currTriangle->mVertices[0] = refTriangle->mVertices[0];
+		currTriangle->mVertices[1] = refTriangle->mVertices[1];
+		currTriangle->mVertices[2] = refTriangle->mVertices[2];
+		currTriangle->mCode        = refTriangle->mCode;
 		currTriangle->makePlanes(*vtxTable);
 		currTriangle->createSphere(*vtxTable);
 	}
@@ -72,7 +74,13 @@ struct VertexTable : public ArrayContainer<Vector3f> {
 	virtual void writeObject(Stream&, Vector3f&);                                    // _2C
 	virtual void readObject(Stream& input, Vector3f& vertex) { vertex.read(input); } // _30 (weak)
 	virtual void write(Stream&);                                                     // _34
-	virtual void addOne(Vector3f&);                                                  // _40 (weak)
+	virtual void addOne(Vector3f& vert)                                              // _40 (weak)
+	{
+		if (mCount < mLimit) {
+			mObjects[mCount++] = vert;
+		}
+		mBoundBox.include(vert);
+	}
 
 	void transform(Matrixf&);
 	void cloneFrom(Matrixf&, VertexTable*);

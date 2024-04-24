@@ -195,10 +195,8 @@ void Vector3f::write(Stream& stream)
  */
 void Plane::write(Stream& stream)
 {
-	stream.writeFloat(a);
-	stream.writeFloat(b);
-	stream.writeFloat(c);
-	stream.writeFloat(d);
+	mNormal.write(stream);
+	stream.writeFloat(mOffset);
 }
 
 /**
@@ -207,10 +205,8 @@ void Plane::write(Stream& stream)
  */
 void Plane::read(Stream& stream)
 {
-	a = stream.readFloat();
-	b = stream.readFloat();
-	c = stream.readFloat();
-	d = stream.readFloat();
+	mNormal.read(stream);
+	mOffset = stream.readFloat();
 }
 
 /**

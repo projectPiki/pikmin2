@@ -67,7 +67,7 @@ bool Cylinder::culled(Plane const& inputPlane)
 	Vector3f lowerVec = mCenter - scaledAxis;
 	Vector3f upperVec = mCenter + scaledAxis;
 
-	Vector3f planeVec(inputPlane.a, inputPlane.b, inputPlane.c);
+	Vector3f planeVec(inputPlane.mNormal);
 	f32 dotPlane     = dot(mAxis, planeVec);
 	f32 scaledRadius = mRadius * pikmin2_sqrtf(-((dotPlane * dotPlane) - 1.0f));
 
@@ -202,7 +202,7 @@ bool Cylinder::intersect(Triangle const& triangle, f32& p2)
 
 	Vector3f scaledAxis = mAxis * (0.5f * mLength);
 
-	Vector3f planeVec(triangle.mTrianglePlane.a, triangle.mTrianglePlane.b, triangle.mTrianglePlane.c);
+	Vector3f planeVec(triangle.mTrianglePlane.mNormal);
 	f32 dotPlane = dot(mAxis, planeVec);
 
 	Vector3f lowerVec = mCenter - scaledAxis;

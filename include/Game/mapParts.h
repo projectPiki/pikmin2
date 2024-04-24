@@ -275,7 +275,7 @@ struct RoomMapMgr : public MapMgr {
 	virtual void doSetView(int viewportNumber);                                           // _58
 	virtual void doViewCalc();                                                            // _5C
 	virtual Sys::TriIndexList* traceMove_new(MoveInfo&, f32);                             // _60
-	virtual void traceMove_original(MoveInfo&, f32);                                      // _64
+	virtual Sys::TriIndexList* traceMove_original(MoveInfo&, f32);                        // _64
 
 	MapRoom* getMapRoom(s16 roomIdx);
 	void createRandomMap(int floorNum, Cave::EditMapUnit* editInfo);

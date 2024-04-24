@@ -653,16 +653,16 @@ void Triangle::createSphere(VertexTable& vertTable)
 	f32 new_radius = 0.0f;
 
 	// get vertices of triangle
-	Vector3f vert_3 = vertTable.mObjects[mVertices.z];
-	Vector3f vert_2 = vertTable.mObjects[mVertices.y];
-	Vector3f vert_1 = vertTable.mObjects[mVertices.x];
+	Vector3f vert_3 = vertTable.mObjects[mVertices[2]];
+	Vector3f vert_2 = vertTable.mObjects[mVertices[1]];
+	Vector3f vert_1 = vertTable.mObjects[mVertices[0]];
 
 	// get center of triangle
 	Vector3f center = (vert_1 + vert_2 + vert_3) * (f32)0x3EAAAAAB; // 0x3EAAAAAB = 1/3
 
 	// make sure radius includes all vertices
 	for (int i = 0; i < 3; i++) {
-		int* vertPtr     = &mVertices.x;
+		int* vertPtr     = mVertices;
 		Vector3f currVtx = (vertTable.mObjects[vertPtr[i]]);
 
 		f32 vtxDist = lenVec(currVtx - center);
@@ -740,9 +740,9 @@ f32 Sys::Triangle::calcDist(Plane& plane, Sys::VertexTable& vertTable)
 	// but if triangle is completely 'below' plane, returns furthest point instead
 
 	// get triangle vertices from VertexTable vertTable
-	Vector3f vert_1 = vertTable.mObjects[mVertices.x];
-	Vector3f vert_2 = vertTable.mObjects[mVertices.y];
-	Vector3f vert_3 = vertTable.mObjects[mVertices.z];
+	Vector3f vert_1 = vertTable.mObjects[mVertices[0]];
+	Vector3f vert_2 = vertTable.mObjects[mVertices[1]];
+	Vector3f vert_3 = vertTable.mObjects[mVertices[2]];
 
 	// calculate distance from plane to each vertex (can be negative)
 	f32 vertDist_1 = planeDist(vert_1, plane);
@@ -806,7 +806,7 @@ bool Triangle::intersect(Edge& edge, f32 cutoff, Vector3f& intersectionPoint)
 	Vector3f edgeVec(edge.mEndPos.x - edge.mStartPos.x, edge.mEndPos.y - edge.mStartPos.y, edge.mEndPos.z - edge.mStartPos.z);
 	f32 edgeLen = lenVec(edgeVec);
 
-	Vector3f triPlaneNormal(mTrianglePlane.a, mTrianglePlane.b, mTrianglePlane.c);
+	Vector3f triPlaneNormal(mTrianglePlane.mNormal);
 
 	f32 scalarProj = dot(triPlaneNormal, edgeVec);
 
@@ -825,13 +825,13 @@ bool Triangle::intersect(Edge& edge, f32 cutoff, Vector3f& intersectionPoint)
 			// check each edge plane of triangle
 			for (int i = 0; i < 3; i++) {
 				// project normal onto edge
-				Vector3f edgePlaneNormal(mEdgePlanes[i].a, mEdgePlanes[i].b, mEdgePlanes[i].c);
+				Vector3f edgePlaneNormal(mEdgePlanes[i].mNormal);
 				f32 edgePlaneProj = dot(edgePlaneNormal, edgeVec);
 
 				// check that projection isn't vanishingly small
 				if (FABS(edgePlaneProj) > 0.01f) {
 					// check we have an intersection point
-					f32 edgePlaneRatio = (mEdgePlanes[i].d - dot(edgePlaneNormal, edge.mStartPos)) / edgePlaneProj;
+					f32 edgePlaneRatio = (mEdgePlanes[i].mOffset - dot(edgePlaneNormal, edge.mStartPos)) / edgePlaneProj;
 					if ((edgePlaneRatio > -ratio) && (edgePlaneRatio < (1 + ratio))) {
 						// get intersection point
 						Vector3f projVec  = edgeVec * edgePlaneRatio;
@@ -853,7 +853,7 @@ bool Triangle::intersect(Edge& edge, f32 cutoff, Vector3f& intersectionPoint)
 
 	// edge not (close to) perpendicular, can just check triangle plane itself
 	// check if we have an intersection point
-	f32 triPlaneRatio = (mTrianglePlane.d - dot(triPlaneNormal, edge.mStartPos)) / scalarProj;
+	f32 triPlaneRatio = (mTrianglePlane.mOffset - dot(triPlaneNormal, edge.mStartPos)) / scalarProj;
 	if ((triPlaneRatio < -ratio) || (triPlaneRatio > (1 + ratio))) {
 		// we don't
 		return false;
@@ -887,7 +887,7 @@ bool Sys::Triangle::intersect(Sys::Edge& edge, f32 cutoff, Vector3f& intersectio
 	Vector3f edgeVec(edge.mEndPos.x - edge.mStartPos.x, edge.mEndPos.y - edge.mStartPos.y, edge.mEndPos.z - edge.mStartPos.z);
 	f32 edgeLen = lenVec(edgeVec);
 
-	Vector3f triPlaneNormal(mTrianglePlane.a, mTrianglePlane.b, mTrianglePlane.c);
+	Vector3f triPlaneNormal(mTrianglePlane.mNormal);
 
 	f32 scalarProj = dot(triPlaneNormal, edgeVec);
 
@@ -906,13 +906,13 @@ bool Sys::Triangle::intersect(Sys::Edge& edge, f32 cutoff, Vector3f& intersectio
 			// check each edge plane of triangle
 			for (int i = 0; i < 3; i++) {
 				// project normal onto edge
-				Vector3f edgePlaneNormal(mEdgePlanes[i].a, mEdgePlanes[i].b, mEdgePlanes[i].c);
+				Vector3f edgePlaneNormal(mEdgePlanes[i].mNormal);
 				f32 edgePlaneProj = dot(edgePlaneNormal, edgeVec);
 
 				// check that projection isn't vanishingly small
 				if (FABS(edgePlaneProj) > 0.01f) {
 					// check we have an intersection point
-					f32 edgePlaneRatio = (mEdgePlanes[i].d - dot(edgePlaneNormal, edge.mStartPos)) / edgePlaneProj;
+					f32 edgePlaneRatio = (mEdgePlanes[i].mOffset - dot(edgePlaneNormal, edge.mStartPos)) / edgePlaneProj;
 					if ((edgePlaneRatio > -ratio) && (edgePlaneRatio < (1 + ratio))) {
 						// get intersection point
 						Vector3f projVec  = edgeVec * edgePlaneRatio;
@@ -936,7 +936,7 @@ bool Sys::Triangle::intersect(Sys::Edge& edge, f32 cutoff, Vector3f& intersectio
 
 	// edge not (close to) perpendicular, can just check triangle plane itself
 	// check if we have an intersection point
-	f32 triPlaneRatio = (mTrianglePlane.d - dot(triPlaneNormal, edge.mStartPos)) / scalarProj;
+	f32 triPlaneRatio = (mTrianglePlane.mOffset - dot(triPlaneNormal, edge.mStartPos)) / scalarProj;
 	if ((triPlaneRatio < -ratio) || (triPlaneRatio > (1 + ratio))) {
 		// we don't
 		return false;
@@ -988,8 +988,8 @@ bool Triangle::intersect(Sys::VertexTable& vertTable, Sys::Sphere& ball)
 
 	// check for intersection with each edge in turn
 	// REGSWAP START
-	int vert_1     = mVertices.x;
-	int vert_2     = mVertices.y;
+	int vert_1     = mVertices[0];
+	int vert_2     = mVertices[1];
 	edge.mStartPos = *vertTable.getVertex(vert_1);
 	edge.mEndPos   = *vertTable.getVertex(vert_2);
 
@@ -997,8 +997,8 @@ bool Triangle::intersect(Sys::VertexTable& vertTable, Sys::Sphere& ball)
 		return true;
 	}
 
-	vert_1         = mVertices.y;
-	vert_2         = mVertices.z;
+	vert_1         = mVertices[1];
+	vert_2         = mVertices[2];
 	edge.mStartPos = *vertTable.getVertex(vert_1);
 	edge.mEndPos   = *vertTable.getVertex(vert_2);
 
@@ -1006,8 +1006,8 @@ bool Triangle::intersect(Sys::VertexTable& vertTable, Sys::Sphere& ball)
 		return true;
 	}
 
-	vert_1         = mVertices.z;
-	vert_2         = mVertices.x;
+	vert_1         = mVertices[2];
+	vert_2         = mVertices[0];
 	edge.mStartPos = *vertTable.getVertex(vert_1);
 	edge.mEndPos   = *vertTable.getVertex(vert_2);
 
@@ -1242,20 +1242,23 @@ bool Triangle::intersect(Sys::VertexTable& vertTable, Sys::Sphere& ball, Vector3
 
 	// this is wrong/suspicious
 	// but should get all the distances?? from sphere to triangle? maybe?
-	f32 triPlaneDist = (mTrianglePlane.a * ball.mPosition.x + mTrianglePlane.b * ball.mPosition.y + mTrianglePlane.c * ball.mPosition.z)
-	                 - mTrianglePlane.d;
-	Vector3f triPlaneNormal(mTrianglePlane.a, mTrianglePlane.b, mTrianglePlane.c);
+	f32 triPlaneDist = (mTrianglePlane.mNormal.x * ball.mPosition.x + mTrianglePlane.mNormal.y * ball.mPosition.y
+	                    + mTrianglePlane.mNormal.z * ball.mPosition.z)
+	                 - mTrianglePlane.mOffset;
+	Vector3f triPlaneNormal(mTrianglePlane.mNormal);
 	Vector3f sepVec = ball.mPosition - triPlaneNormal * triPlaneDist;
 
 	for (int i = 0; i < 3; i++) {
-		f32 edgePlaneDist = (sepVec.x * mEdgePlanes[i].a + sepVec.y * mEdgePlanes[i].b + sepVec.z * mEdgePlanes[i].c) - mEdgePlanes[i].d;
-		ballDists[i]      = edgePlaneDist;
+		f32 edgePlaneDist
+		    = (sepVec.x * mEdgePlanes[i].mNormal.x + sepVec.y * mEdgePlanes[i].mNormal.y + sepVec.z * mEdgePlanes[i].mNormal.z)
+		    - mEdgePlanes[i].mOffset;
+		ballDists[i] = edgePlaneDist;
 	}
 	// end wrong/suspicious
 
 	// check for intersection with each edge in turn
-	int vert_1     = mVertices.x;
-	int vert_2     = mVertices.y;
+	int vert_1     = mVertices[0];
+	int vert_2     = mVertices[1];
 	edge.mStartPos = *vertTable.getVertex(vert_1);
 	edge.mEndPos   = *vertTable.getVertex(vert_2);
 
@@ -1263,8 +1266,8 @@ bool Triangle::intersect(Sys::VertexTable& vertTable, Sys::Sphere& ball, Vector3
 		return true;
 	}
 
-	vert_1         = mVertices.y;
-	vert_2         = mVertices.z;
+	vert_1         = mVertices[1];
+	vert_2         = mVertices[2];
 	edge.mStartPos = *vertTable.getVertex(vert_1);
 	edge.mEndPos   = *vertTable.getVertex(vert_2);
 
@@ -1272,8 +1275,8 @@ bool Triangle::intersect(Sys::VertexTable& vertTable, Sys::Sphere& ball, Vector3
 		return true;
 	}
 
-	vert_1         = mVertices.z;
-	vert_2         = mVertices.x;
+	vert_1         = mVertices[2];
+	vert_2         = mVertices[0];
 	edge.mStartPos = *vertTable.getVertex(vert_1);
 	edge.mEndPos   = *vertTable.getVertex(vert_2);
 
@@ -1289,7 +1292,7 @@ bool Triangle::intersect(Sys::VertexTable& vertTable, Sys::Sphere& ball, Vector3
 	}
 
 	// get normal to plane scaled by ball radius??
-	triPlaneNormal   = Vector3f(mTrianglePlane.a, mTrianglePlane.b, mTrianglePlane.c);
+	triPlaneNormal   = Vector3f(mTrianglePlane.mNormal);
 	Vector3f radNorm = triPlaneNormal * ball.mRadius;
 
 	// calc outputs
@@ -1539,8 +1542,8 @@ bool Triangle::intersectHard(Sys::VertexTable& vertTable, Sys::Sphere& ball, Vec
 	// check for intersection with each edge in turn
 	// REGSWAP START
 	// A-B
-	int vert_1     = mVertices.x;
-	int vert_2     = mVertices.y;
+	int vert_1     = mVertices[0];
+	int vert_2     = mVertices[1];
 	edge.mStartPos = *vertTable.getVertex(vert_1);
 	edge.mEndPos   = *vertTable.getVertex(vert_2);
 
@@ -1549,8 +1552,8 @@ bool Triangle::intersectHard(Sys::VertexTable& vertTable, Sys::Sphere& ball, Vec
 	}
 
 	// B-C
-	vert_1         = mVertices.y;
-	vert_2         = mVertices.z;
+	vert_1         = mVertices[1];
+	vert_2         = mVertices[2];
 	edge.mStartPos = *vertTable.getVertex(vert_1);
 	edge.mEndPos   = *vertTable.getVertex(vert_2);
 
@@ -1559,8 +1562,8 @@ bool Triangle::intersectHard(Sys::VertexTable& vertTable, Sys::Sphere& ball, Vec
 	}
 
 	// C-A
-	vert_1         = mVertices.z;
-	vert_2         = mVertices.x;
+	vert_1         = mVertices[2];
+	vert_2         = mVertices[0];
 	edge.mStartPos = *vertTable.getVertex(vert_1);
 	edge.mEndPos   = *vertTable.getVertex(vert_2);
 
@@ -1577,7 +1580,7 @@ bool Triangle::intersectHard(Sys::VertexTable& vertTable, Sys::Sphere& ball, Vec
 	}
 
 	// get normal to plane scaled by ball radius??
-	Vector3f triPlaneNormal(mTrianglePlane.a, mTrianglePlane.b, mTrianglePlane.c);
+	Vector3f triPlaneNormal(mTrianglePlane.mNormal);
 	Vector3f radNorm = triPlaneNormal * ball.mRadius;
 
 	// calc outputs
@@ -1819,12 +1822,13 @@ bool Triangle::insideXZ(Vector3f& point)
 
 	// make sure plane of triangle is "pointing up"; if not, false
 	// only want to deal with correctly oriented triangles?
-	if (mTrianglePlane.b <= 0.0f) {
+	if (mTrianglePlane.mNormal.y <= 0.0f) {
 		return false;
 	}
 
 	// adjust y such that 'point' lies on the same plane as triangle
-	point.y = (mTrianglePlane.d - ((mTrianglePlane.a * point.x) + (mTrianglePlane.c * point.z))) / mTrianglePlane.b;
+	point.y = (mTrianglePlane.mOffset - ((mTrianglePlane.mNormal.x * point.x) + (mTrianglePlane.mNormal.z * point.z)))
+	        / mTrianglePlane.mNormal.y;
 
 	// check if point is 'inside' triangle (negative side of each tangent plane), or on an edge
 	for (int i = 0; i < 3; ++i) {
@@ -1848,9 +1852,9 @@ void Triangle::makePlanes(Sys::VertexTable& vertTable)
 	Vector3f edgeNormal;
 	Vector3f* edgeNormalPtr = &edgeNormal;
 
-	Vector3f vert_A = *vertTable.getVertex(mVertices.x);
-	Vector3f vert_B = *vertTable.getVertex(mVertices.y);
-	Vector3f vert_C = *vertTable.getVertex(mVertices.z);
+	Vector3f vert_A = *vertTable.getVertex(mVertices[0]);
+	Vector3f vert_B = *vertTable.getVertex(mVertices[1]);
+	Vector3f vert_C = *vertTable.getVertex(mVertices[2]);
 
 	Vector3f BA = vert_B - vert_A;
 	Vector3f CA = vert_C - vert_A;
@@ -1867,11 +1871,10 @@ void Triangle::makePlanes(Sys::VertexTable& vertTable)
 	}
 
 	// define trianglePlane using unit normal and point A
-	Vector3f triPlaneVec = triNormal;
-	mTrianglePlane.a     = triPlaneVec.x;
-	mTrianglePlane.b     = triPlaneVec.y;
-	mTrianglePlane.c     = triPlaneVec.z;
-	mTrianglePlane.d     = mTrianglePlane.a * vert_A.x + mTrianglePlane.b * vert_A.y + mTrianglePlane.c * vert_A.z;
+	Vector3f triPlaneVec   = triNormal;
+	mTrianglePlane.mNormal = triPlaneVec;
+	mTrianglePlane.mOffset
+	    = mTrianglePlane.mNormal.x * vert_A.x + mTrianglePlane.mNormal.y * vert_A.y + mTrianglePlane.mNormal.z * vert_A.z;
 
 	// EDGE PLANES
 	// AB
@@ -1886,10 +1889,9 @@ void Triangle::makePlanes(Sys::VertexTable& vertTable)
 		edgeNormal.z *= norm_edgeNormal0;
 	}
 	// define AB edge plane using unit normal and point A
-	mEdgePlanes[0].a = edgeNormal.x;
-	mEdgePlanes[0].b = edgeNormal.y;
-	mEdgePlanes[0].c = edgeNormal.z;
-	mEdgePlanes[0].d = mEdgePlanes[0].a * vert_A.x + mEdgePlanes[0].b * vert_A.y + mEdgePlanes[0].c * vert_A.z;
+	mEdgePlanes[0].mNormal = edgeNormal;
+	mEdgePlanes[0].mOffset
+	    = mEdgePlanes[0].mNormal.x * vert_A.x + mEdgePlanes[0].mNormal.y * vert_A.y + mEdgePlanes[0].mNormal.z * vert_A.z;
 
 	// BC
 	// get unit normal to BC edge plane
@@ -1904,10 +1906,9 @@ void Triangle::makePlanes(Sys::VertexTable& vertTable)
 	}
 
 	// define BC edge plane using unit normal and point B
-	mEdgePlanes[1].a = edgeNormal.x;
-	mEdgePlanes[1].b = edgeNormal.y;
-	mEdgePlanes[1].c = edgeNormal.z;
-	mEdgePlanes[1].d = mEdgePlanes[1].a * vert_B.x + mEdgePlanes[1].b * vert_B.y + mEdgePlanes[1].c * vert_B.z;
+	mEdgePlanes[1].mNormal = edgeNormal;
+	mEdgePlanes[1].mOffset
+	    = mEdgePlanes[1].mNormal.x * vert_B.x + mEdgePlanes[1].mNormal.y * vert_B.y + mEdgePlanes[1].mNormal.z * vert_B.z;
 
 	// CA
 	// get unit normal to CA edge plane
@@ -1921,10 +1922,9 @@ void Triangle::makePlanes(Sys::VertexTable& vertTable)
 	}
 
 	// define CA edge plane using unit normal and point C
-	mEdgePlanes[2].a = edgeNormal.x;
-	mEdgePlanes[2].b = edgeNormal.y;
-	mEdgePlanes[2].c = edgeNormal.z;
-	mEdgePlanes[2].d = mEdgePlanes[2].a * vert_C.x + mEdgePlanes[2].b * vert_C.y + mEdgePlanes[2].c * vert_C.z;
+	mEdgePlanes[2].mNormal = edgeNormal;
+	mEdgePlanes[2].mOffset
+	    = mEdgePlanes[2].mNormal.x * vert_C.x + mEdgePlanes[2].mNormal.y * vert_C.y + mEdgePlanes[2].mNormal.z * vert_C.z;
 	/*
 	stwu     r1, -0x140(r1)
 	mflr     r0
@@ -2250,7 +2250,7 @@ lbl_8041806C:
 bool RayIntersectInfo::condition(Sys::Triangle& triangle)
 {
 	if (mCheckHorizontal) {
-		if ((triangle.mTrianglePlane.b < 0.5f) && (triangle.mTrianglePlane.b > -0.1f)) {
+		if ((triangle.mTrianglePlane.mNormal.y < 0.5f) && (triangle.mTrianglePlane.mNormal.y > -0.1f)) {
 			return true;
 		}
 
@@ -2290,9 +2290,9 @@ void GridDivider::createTriangles(Sys::CreateTriangleArg& triArg)
 			bool currTriTest  = false;
 
 			testTri         = mTriangleTable->getTriangle(triList->mObjects[triCtr]);
-			Vector3f vert_A = *mVertexTable->getVertex(testTri->mVertices.x);
-			Vector3f vert_B = *mVertexTable->getVertex(testTri->mVertices.y);
-			Vector3f vert_C = *mVertexTable->getVertex(testTri->mVertices.z);
+			Vector3f vert_A = *mVertexTable->getVertex(testTri->mVertices[0]);
+			Vector3f vert_B = *mVertexTable->getVertex(testTri->mVertices[1]);
+			Vector3f vert_C = *mVertexTable->getVertex(testTri->mVertices[2]);
 
 			int var_ctr = numTri;
 			if (numTri > 0) {
@@ -2305,14 +2305,14 @@ void GridDivider::createTriangles(Sys::CreateTriangleArg& triArg)
 				} while (var_ctr != 0);
 			}
 			if ((currTriTest == 0) && (numTri < 128)) {
-				f32 triNorm_y = testTri->mTrianglePlane.b; // temp_f11
+				f32 triNorm_y = testTri->mTrianglePlane.mNormal.y; // temp_f11
 				if (triNorm_y > triArg._14) {
 					f32 scaleFactor = triArg._10;
 					numTri += 1;
 					*triPtr1 = *testTri;
 					triPtr1 += 4;
-					Vector3f testVec(testTri->mTrianglePlane.a * scaleFactor, triNorm_y * scaleFactor,
-					                 testTri->mTrianglePlane.c * scaleFactor);
+					Vector3f testVec(testTri->mTrianglePlane.mNormal.x * scaleFactor, triNorm_y * scaleFactor,
+					                 testTri->mTrianglePlane.mNormal.z * scaleFactor);
 					vertexArray[3 * triCtr + 0] = vert_A + testVec;
 					vertexArray[3 * triCtr + 1] = vert_B + testVec;
 					vertexArray[3 * triCtr + 2] = vert_C + testVec;
@@ -2649,22 +2649,27 @@ f32 GridDivider::getMinY(Vector3f& inputPoint)
 
 	for (int triCtr = 0; triCtr < triList->getNum(); triCtr++) {
 		testTri       = mTriangleTable->getTriangle(triList->mObjects[triCtr]);
-		f32 triNorm_y = testTri->mTrianglePlane.b;
+		f32 triNorm_y = testTri->mTrianglePlane.mNormal.y;
 		bool insideTriTest;
 
 		if (triNorm_y <= 0.0f) {
 			insideTriTest = false;
 		} else {
 			insideTriTest = false;
-			y_val = (testTri->mTrianglePlane.d - ((testTri->mTrianglePlane.a * x_in) + (testTri->mTrianglePlane.c * z_in))) / triNorm_y;
-			if (!(((x_in * testTri->mEdgePlanes[0].a + y_val * testTri->mEdgePlanes[0].b + z_in * testTri->mEdgePlanes[0].c)
-			       - testTri->mEdgePlanes[0].d)
+			y_val         = (testTri->mTrianglePlane.mOffset
+                     - ((testTri->mTrianglePlane.mNormal.x * x_in) + (testTri->mTrianglePlane.mNormal.z * z_in)))
+			      / triNorm_y;
+			if (!(((x_in * testTri->mEdgePlanes[0].mNormal.x + y_val * testTri->mEdgePlanes[0].mNormal.y
+			        + z_in * testTri->mEdgePlanes[0].mNormal.z)
+			       - testTri->mEdgePlanes[0].mOffset)
 			      > 0.0f)
-			    && !(((x_in * testTri->mEdgePlanes[1].a + y_val * testTri->mEdgePlanes[1].b + z_in * testTri->mEdgePlanes[1].c)
-			          - testTri->mEdgePlanes[1].d)
+			    && !(((x_in * testTri->mEdgePlanes[1].mNormal.x + y_val * testTri->mEdgePlanes[1].mNormal.y
+			           + z_in * testTri->mEdgePlanes[1].mNormal.z)
+			          - testTri->mEdgePlanes[1].mOffset)
 			         > 0.0f)
-			    && !(((x_in * testTri->mEdgePlanes[2].a + y_val * testTri->mEdgePlanes[2].b + z_in * testTri->mEdgePlanes[2].c)
-			          - testTri->mEdgePlanes[2].d)
+			    && !(((x_in * testTri->mEdgePlanes[2].mNormal.x + y_val * testTri->mEdgePlanes[2].mNormal.y
+			           + z_in * testTri->mEdgePlanes[2].mNormal.z)
+			          - testTri->mEdgePlanes[2].mOffset)
 			         > 0.0f)) {
 				insideTriTest = true;
 			}
@@ -2859,28 +2864,24 @@ void GridDivider::getCurrTri(Game::CurrTriInfo& inputInfo)
 
 		for (int triCtr = 0; triCtr < triList->getNum(); triCtr++) {
 			testTri       = mTriangleTable->getTriangle(triList->mObjects[triCtr]);
-			f32 triNorm_y = testTri->mTrianglePlane.b;
+			f32 triNorm_y = testTri->mTrianglePlane.mNormal.y;
 			Vector3f tempPoint(x_in, y_val, z_in);
 			if (testTri->insideXZ(tempPoint)) {
 				if (min_y > y_val) {
 					min_y = y_val;
 					if (inputInfo.mUpdateOnNewMaxY != 0) {
-						yTest                  = true;
-						inputInfo.mNormalVec.x = testTri->mTrianglePlane.a;
-						inputInfo.mNormalVec.y = testTri->mTrianglePlane.b;
-						inputInfo.mNormalVec.z = testTri->mTrianglePlane.c;
-						inputInfo.mTriangle    = testTri;
+						yTest                = true;
+						inputInfo.mNormalVec = testTri->mTrianglePlane.mNormal;
+						inputInfo.mTriangle  = testTri;
 					}
 				}
 
 				if (y_val > max_y) {
 					max_y = y_val;
 					if (inputInfo.mUpdateOnNewMaxY == 0) {
-						yTest                  = true;
-						inputInfo.mNormalVec.x = testTri->mTrianglePlane.a;
-						inputInfo.mNormalVec.y = testTri->mTrianglePlane.b;
-						inputInfo.mNormalVec.z = testTri->mTrianglePlane.c;
-						inputInfo.mTriangle    = testTri;
+						yTest                = true;
+						inputInfo.mNormalVec = testTri->mTrianglePlane.mNormal;
+						inputInfo.mTriangle  = testTri;
 					}
 				}
 			}
@@ -3790,9 +3791,9 @@ void TriIndexList::getMinMax(VertexTable& vertTable, TriangleTable& triTable, Ve
 	for (int i = 0; i < mCount; i++) {
 		Triangle* currTri = &triTable.mObjects[mObjects[i]];
 		Vector3f vertices[3];
-		vertices[0] = vertTable.mObjects[currTri->mVertices.x];
-		vertices[1] = vertTable.mObjects[currTri->mVertices.y];
-		vertices[2] = vertTable.mObjects[currTri->mVertices.z];
+		vertices[0] = vertTable.mObjects[currTri->mVertices[0]];
+		vertices[1] = vertTable.mObjects[currTri->mVertices[1]];
+		vertices[2] = vertTable.mObjects[currTri->mVertices[2]];
 
 		for (int j = 0; j < 3; j++) {
 			f32 testVal = dot(vec1, vertices[j] - vec2);
@@ -3832,9 +3833,9 @@ void TriIndexList::makeCovarianceMatrix(Sys::VertexTable& vertTable, Sys::Triang
 	for (int i = count; i > 0; i--, vec_ctr++) {
 		Triangle* currTri = triTable.getTriangle(mObjects[vec_ctr]);
 		Vector3f* verts   = vertTable.mObjects;
-		Vector3f* vert_A  = vertTable.getVertex(currTri->mVertices.x);
-		Vector3f* vert_B  = vertTable.getVertex(currTri->mVertices.y);
-		Vector3f* vert_C  = vertTable.getVertex(currTri->mVertices.z);
+		Vector3f* vert_A  = vertTable.getVertex(currTri->mVertices[0]);
+		Vector3f* vert_B  = vertTable.getVertex(currTri->mVertices[1]);
+		Vector3f* vert_C  = vertTable.getVertex(currTri->mVertices[2]);
 		vec               = vec + ((*vert_A + *vert_B) + *vert_C);
 	}
 	vec = vec * norm_const;
@@ -3866,9 +3867,9 @@ void TriIndexList::makeCovarianceMatrix(Sys::VertexTable& vertTable, Sys::Triang
 				row              = row_ptr[i];
 				currTri          = &triTable.mObjects[currTriAddr];
 				Vector3f* verts  = vertTable.mObjects;
-				Vector3f* vert_B = &verts[currTri->mVertices.x];
-				Vector3f* vert_A = &verts[currTri->mVertices.y];
-				Vector3f* vert_C = &verts[currTri->mVertices.z];
+				Vector3f* vert_B = &verts[currTri->mVertices[0]];
+				Vector3f* vert_A = &verts[currTri->mVertices[1]];
+				Vector3f* vert_C = &verts[currTri->mVertices[2]];
 
 				vec_14.x = vert_A->x;
 				vec_14.y = vert_A->y;

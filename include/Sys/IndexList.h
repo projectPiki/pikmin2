@@ -15,6 +15,8 @@ struct IndexList : public ArrayContainer<int> {
 	{
 		p1 = stream.readInt();
 	}
+
+	inline int getIndex(int idx) { return mObjects[idx]; }
 };
 } // namespace Sys
 

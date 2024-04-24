@@ -1521,7 +1521,7 @@ void FakePiki::move(f32 rate)
 		wallCallback(info.mReflectPosition);
 	}
 
-	if (mBounceTriangle && mBounceTriangle->mTrianglePlane.b > 0.6f) {
+	if (mBounceTriangle && mBounceTriangle->mTrianglePlane.mNormal.y > 0.6f) {
 		mFakePikiBounceTriangle = mBounceTriangle;
 	}
 

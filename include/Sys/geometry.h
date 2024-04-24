@@ -47,6 +47,9 @@ inline f32 normalise(Vector3f* a)
 }
 
 // useful for planes, could be a plane method
-inline f32 planeDist(Vector3f& vec, Plane& plane) { return (vec.x * plane.a + vec.y * plane.b + vec.z * plane.c) - plane.d; }
+inline f32 planeDist(Vector3f& vec, Plane& plane)
+{
+	return (vec.x * plane.mNormal.x + vec.y * plane.mNormal.y + vec.z * plane.mNormal.z) - plane.mOffset;
+}
 
 #endif

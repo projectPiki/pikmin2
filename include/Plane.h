@@ -5,32 +5,23 @@
 
 struct Plane {
 	Plane()
-	    : a(0.0f)
-	    , b(1.0f)
-	    , c(0.0f)
-	    , d(0.0f)
+	    : mNormal(0.0f, 1.0f, 0.0f)
+	    , mOffset(0.0f)
 	{
 	}
 
 	void read(Stream&);
 	void write(Stream&);
-	f32 calcDist(const Vector3f& vec) const { return (vec.x * a + vec.y * b + vec.z * c - d); }
+	f32 calcDist(const Vector3f& vec) const { return (vec.x * mNormal.x + vec.y * mNormal.y + vec.z * mNormal.z - mOffset); }
 
-	inline void setVec(Plane& plane)
-	{
-		a = plane.a;
-		b = plane.b;
-		c = plane.c;
-	}
+	inline void setVec(Plane& plane) { mNormal = plane.mNormal; }
 
-	inline void setDist(Plane& plane) { d = plane.d; }
+	inline void setDist(Plane& plane) { mOffset = plane.mOffset; }
 	void calcProjection(Vector3f&);
 	void intersectRay(Vector3f&, Vector3f&);
 
-	f32 a;
-	f32 b;
-	f32 c;
-	f32 d;
+	Vector3f mNormal; // _00
+	f32 mOffset;      // _0C
 };
 
 #endif
