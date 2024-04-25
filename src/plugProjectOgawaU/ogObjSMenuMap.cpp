@@ -3196,9 +3196,10 @@ void ObjSMenuMap::drawMap(Graphics& gfx)
 		scrn->draw(gfx, *graf);
 	}
 	graf->setPort();
-	&gfx = sys->mGfx; // wow, &gfx can be a modifiable lvalue?
+
+	Graphics* sysGfx = sys->mGfx;
 	j3dSys.drawInit();
-	gfx.initPrimDraw(nullptr);
+	sysGfx->initPrimDraw(nullptr);
 
 	GXSetColorUpdate(GX_FALSE);
 	GXSetAlphaUpdate(GX_FALSE);
@@ -3210,13 +3211,13 @@ void ObjSMenuMap::drawMap(Graphics& gfx)
 	rect.p2.x = 640.0f;
 	rect.p2.y = 480.0f;
 	Color4 color(200, 10, 200, 155);
-	drawRectZ(gfx, rect, color, 0.999);
+	drawRectZ(*sysGfx, rect, color, 0.999);
 	JGeometry::TVec3f vec1 = mPane_map->getGlbVtx(0);
 	JGeometry::TVec3f vec2 = mPane_map->getGlbVtx(1);
 	JGeometry::TVec3f vec3 = mPane_map->getGlbVtx(2);
 	JGeometry::TVec3f vec4 = mPane_map->getGlbVtx(3);
 	Color4 color2(100, 0, 0, 155);
-	drawVecZ(gfx, *(Vec*)&vec1, *(Vec*)&vec2, *(Vec*)&vec3, *(Vec*)&vec4, color2, -0.999);
+	drawVecZ(*sysGfx, *(Vec*)&vec1, *(Vec*)&vec2, *(Vec*)&vec3, *(Vec*)&vec4, color2, -0.999);
 	GXSetColorUpdate(GX_TRUE);
 	PSMTXCopy(mPane_map->mGlobalMtx, mRootPane->mPositionMtx);
 	graf->setPort();
