@@ -365,7 +365,7 @@ MapRoom::MapRoom()
 {
 	mModel = nullptr;
 	mUnit  = nullptr;
-	PSMTXIdentity(_0D8.mMatrix.mtxView);
+	PSMTXIdentity(mRoomSpaceMtx.mMatrix.mtxView);
 	mIndex     = -1;
 	mLink      = nullptr;
 	mWpIndices = nullptr;
@@ -2576,7 +2576,7 @@ s16 RoomMapMgr::findRoomIndex(Sys::Sphere& sphere)
 	{
 		MapRoom* room = static_cast<MapRoom*>(*iter);
 		Vector3f pos  = sphere.mPosition;
-		pos           = room->_108.mtxMult(pos);
+		pos           = room->mInvRoomSpaceMtx.mtxMult(pos);
 
 		Vector2f min(room->mUnit->mBoundingBox.mMin.x, room->mUnit->mBoundingBox.mMin.z);
 		min.x -= sphere.mRadius;
@@ -2614,7 +2614,7 @@ void RoomMapMgr::createGlobalCollision()
 		CI_LOOP(iter)
 		{
 			MapRoom* room    = *iter;
-			room->mCollision = room->mUnit->mCollision.clone(room->_0D8);
+			room->mCollision = room->mUnit->mCollision.clone(room->mRoomSpaceMtx);
 		}
 		P2DEBUG("After: %d", JKRGetCurrentHeap()->getTotalFreeSize());
 		return;
@@ -2654,7 +2654,7 @@ void RoomMapMgr::createGlobalCollision()
 	CI_LOOP(iterCreate)
 	{
 		MapRoom* room            = *iterCreate;
-		Matrixf& mtx             = room->_0D8;
+		Matrixf& mtx             = room->mRoomSpaceMtx;
 		Sys::VertexTable* verts  = room->mUnit->mCollision.mDivider->mVertexTable;   // r26
 		Sys::TriangleTable* tris = room->mUnit->mCollision.mDivider->mTriangleTable; // r19
 		for (int i = 0; i < verts->getNum(); i++) {
@@ -3727,7 +3727,7 @@ Sys::TriIndexList* RoomMapMgr::traceMove_original(MoveInfo& info, f32 step)
 			continue;
 		}
 		MapUnit* unit         = room->mUnit;
-		moveSphere->mPosition = room->_108.mtxMult(moveSphere->mPosition);
+		moveSphere->mPosition = room->mInvRoomSpaceMtx.mtxMult(moveSphere->mPosition);
 
 		Sys::TriIndexList* triList = unit->mCollision.mDivider->findTriLists(*moveSphere); // r18
 
@@ -3738,10 +3738,10 @@ Sys::TriIndexList* RoomMapMgr::traceMove_original(MoveInfo& info, f32 step)
 
 				if ((info.mUseIntersectionAlgo) ? tri->intersectHard(*vertTable, *moveSphere, info.mBaseSpherePos)
 				                                : tri->intersect(*vertTable, *moveSphere, info.mBaseSpherePos)) {
-					info.mBaseSpherePos = room->_0D8.mtxMult(info.mBaseSpherePos);
+					info.mBaseSpherePos = room->mRoomSpaceMtx.mtxMult(info.mBaseSpherePos);
 
 					Vector3f triNorm = tri->mTrianglePlane.mNormal;
-					triNorm          = room->_108.multTranspose(triNorm);
+					triNorm          = room->mInvRoomSpaceMtx.multTranspose(triNorm);
 					if (info.mIntersectCallback) {
 						info.mIntersectCallback->invoke(info.mBaseSpherePos, triNorm);
 					}
@@ -3761,7 +3761,7 @@ Sys::TriIndexList* RoomMapMgr::traceMove_original(MoveInfo& info, f32 step)
 			}
 		}
 
-		moveSphere->mPosition = room->_0D8.mtxMult(moveSphere->mPosition);
+		moveSphere->mPosition = room->mRoomSpaceMtx.mtxMult(moveSphere->mPosition);
 	}
 
 	if (count == 0) {
@@ -4353,8 +4353,8 @@ bool RoomMapMgr::findRayIntersection(Sys::RayIntersectInfo& info)
 		}
 
 		MapUnit* unit     = room->mUnit;
-		Vector3f newStart = room->_108.mtxMult(startPos);
-		Vector3f newEnd   = room->_108.mtxMult(endPos);
+		Vector3f newStart = room->mInvRoomSpaceMtx.mtxMult(startPos);
+		Vector3f newEnd   = room->mInvRoomSpaceMtx.mtxMult(endPos);
 		Sys::Edge newRay;
 		newRay.mStartPos = newStart;
 		newRay.mEndPos   = newEnd;
@@ -4374,7 +4374,7 @@ bool RoomMapMgr::findRayIntersection(Sys::RayIntersectInfo& info)
 						Vector3f sep = triInterVec - newStart;
 						f32 dist     = sep.magnitude();
 						if (dist < minDist) {
-							intersectPos  = room->_0D8.mtxMult(triInterVec);
+							intersectPos  = room->mRoomSpaceMtx.mtxMult(triInterVec);
 							minDist       = dist;
 							info.mNormalY = tri->mTrianglePlane.mNormal.y;
 						}
@@ -4421,7 +4421,7 @@ void RoomMapMgr::createTriangles(Sys::CreateTriangleArg& createArg)
 		}
 		MapUnit* unit = room->mUnit;
 		Sys::Sphere boundSphere;
-		boundSphere.mPosition      = room->_108.mtxMult(createArg.mBoundingSphere.mPosition);
+		boundSphere.mPosition      = room->mInvRoomSpaceMtx.mtxMult(createArg.mBoundingSphere.mPosition);
 		boundSphere.mRadius        = rad;
 		Sys::TriIndexList* triList = unit->mCollision.mDivider->findTriLists(boundSphere);
 
@@ -4435,7 +4435,7 @@ void RoomMapMgr::createTriangles(Sys::CreateTriangleArg& createArg)
 				Vector3f vertices[3];
 				for (int j = 0; j < 3; j++) {
 					vertices[j] = *vertTable->getVertex(tri->mVertices[j]);
-					vertices[j] = room->_0D8.mtxMult(vertices[j]);
+					vertices[j] = room->mRoomSpaceMtx.mtxMult(vertices[j]);
 				}
 			}
 		}
@@ -5371,13 +5371,13 @@ void RoomMapMgr::makeOneRoom(f32 centreX, f32 centreY, f32 direction, char* unit
 	MapUnit* unit = mMapUnitMgr->findMapUnit(unitName); // r22
 
 	room->mUnit = unit;
-	PSMTXCopy(mtx1.mMatrix.mtxView, room->_0D8.mMatrix.mtxView);
-	PSMTXInverse(mtx1.mMatrix.mtxView, room->_108.mMatrix.mtxView);
+	PSMTXCopy(mtx1.mMatrix.mtxView, room->mRoomSpaceMtx.mMatrix.mtxView);
+	PSMTXInverse(mtx1.mMatrix.mtxView, room->mInvRoomSpaceMtx.mMatrix.mtxView);
 	room->mModel = new SysShape::Model(unit->mModelData, 0x20000, 2);
 	room->mModel->mJ3dModel->newDifferedTexMtx(TexDiff_0);
 	room->mModel->mJ3dModel->newDifferedDisplayList(0x200);
 
-	PSMTXCopy(room->_0D8.mMatrix.mtxView, room->mModel->mJ3dModel->mPosMtx);
+	PSMTXCopy(room->mRoomSpaceMtx.mMatrix.mtxView, room->mModel->mJ3dModel->mPosMtx);
 	room->mModel->mJ3dModel->calc();
 	room->mModel->mJ3dModel->calcMaterial();
 	room->mModel->mJ3dModel->makeDL();

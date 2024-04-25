@@ -229,8 +229,8 @@ struct MapRoom : public CellObject {
 	Sys::MatLoopAnimator* mAnimators;      // _0CC
 	int mDoorNum;                          // _0D0
 	RoomDoorInfo* mDoorInfos;              // _0D4
-	Matrixf _0D8;                          // _0D8
-	Matrixf _108;                          // _108
+	Matrixf mRoomSpaceMtx;                 // _0D8
+	Matrixf mInvRoomSpaceMtx;              // _108
 	MapUnit* mUnit;                        // _138
 	SysShape::Model* mModel;               // _13C
 	Sys::Sphere mBoundingSphere;           // _140
