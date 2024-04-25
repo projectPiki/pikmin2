@@ -128,7 +128,7 @@ f32 SeSound::setDistanceVolumeCommon(f32, u8 flag)
 	} else {
 		dist2 = calcVolume(dist, flag, test);
 	}
-	dist2 = dist2 - _4A0;
+	dist2 -= _4A0;
 	if (!_1A || mCreatureObj) {
 		PSM::SceneBase* scene = static_cast<PSM::SceneBase*>(PSMGetSceneMgrCheck()->getEndScene());
 		P2ASSERTLINE(261, scene);

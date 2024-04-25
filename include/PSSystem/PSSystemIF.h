@@ -222,17 +222,16 @@ inline PSSystem::SysIF* PSGetSystemIFA()
 
 inline u32 isValidSeType(u32 soundID)
 {
-	u32 ass  = soundID >> 30;
-	u32 ass2 = (soundID >> 12) & 0xF;
+	u32 ass = (soundID >> 12) & 0xF;
 	// problem here
-	if (ass == 0) {
-		return ass2;
+	if ((soundID >> 30) == 0) {
+		return ass;
 	}
 
-	if (ass == 2) {
+	if ((soundID >> 30) == 2) {
 		P2ASSERTLINE(31, false);
 	} else {
-		P2ASSERTLINE(35, ass != 3);
+		P2ASSERTLINE(35, (soundID >> 30) != 3);
 	}
 
 	P2ASSERTLINE(37, false);
