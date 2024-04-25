@@ -3713,7 +3713,12 @@ Sys::TriIndexList* RoomMapMgr::traceMove_original(MoveInfo& info, f32 step)
 	Vector3f* velocity      = info.mVelocity;
 	Sys::Sphere* moveSphere = info.mMoveSphere; // r19
 	Vector3f startPos       = moveSphere->mPosition;
-	moveSphere->mPosition   = moveSphere->mPosition + *info.mVelocity * step;
+	moveSphere->mPosition   = moveSphere->mPosition + *velocity * step;
+
+	Vector3f vecArray[8];       // 0x88, 0xFC, r22/r24/r27
+	Sys::Triangle* triArray[8]; // 0x68, 0xF8, r14/r25/r28
+	f32 floatArray[8];          // 0x48, 0x100, r21/r23/r26
+
 	CI_LOOP(iterRoom)
 	{
 		MapRoom* room = *iterRoom; // r31
@@ -3742,7 +3747,13 @@ Sys::TriIndexList* RoomMapMgr::traceMove_original(MoveInfo& info, f32 step)
 					}
 
 					if (count < 8) {
-						JUT_ASSERTLINE(2856, count < 8, "siboudesu !\n");
+						JUT_ASSERTLINE(2856, count < 8, "siboudesu !\n"); // 'it's dead!' lol
+						triArray[count] = tri;
+						vecArray[count] = triNorm;
+						floatArray[count]
+						    = moveSphere->mRadius - (moveSphere->mPosition.dot(tri->mTrianglePlane.mNormal) - tri->mTrianglePlane.mOffset);
+						info._74          = true;
+						info.mUpDirection = triNorm;
 						count++;
 					}
 				}
@@ -3757,14 +3768,37 @@ Sys::TriIndexList* RoomMapMgr::traceMove_original(MoveInfo& info, f32 step)
 		return nullptr;
 	}
 
-	int count2 = 0;
+	int count2      = 0;
+	f32 floatSum    = 0.0f;
+	Vector3f sumVec = Vector3f(0.0f);
 	for (int i = 0; i < count; i++) {
+		if (floatArray[i] < 0.0f) {
+			continue;
+		}
 		count2++;
+		floatSum += floatArray[i];
+		Vector3f currVec = vecArray[i];
+		sumVec += currVec;
+		if (currVec.y > 0.6f) {
+			info.mBounceTriangle = triArray[i];
+			info.mPosition       = currVec;
+		}
 	}
 
 	if (count2 == 0) {
 		return nullptr;
 	}
+
+	f32 norm             = 1.0f / (f32)count2;
+	Vector3f weightedVec = sumVec * norm;
+	weightedVec.normalise();
+
+	floatSum /= (f32)count2;
+
+	f32 dotProd           = weightedVec.dot(*velocity);
+	f32 maxRad            = 1.0f + info.mTraceRadius;
+	*velocity             = *velocity - weightedVec * (maxRad * dotProd);
+	moveSphere->mPosition = moveSphere->mPosition + (weightedVec * floatSum);
 	/*
 	stwu     r1, -0x150(r1)
 	mflr     r0
@@ -4301,364 +4335,57 @@ bool RoomMapMgr::findRayIntersection(Sys::RayIntersectInfo& info)
 {
 	Iterator<MapRoom> iterRoom(&mRoomMgr);
 	Vector3f intersectPos;
-	bool result = false;
+	Vector3f startPos = info.mIntersectEdge.mStartPos;
+	Vector3f endPos   = info.mIntersectEdge.mEndPos;
+	Vector3f midPos   = Vector3f((startPos.x + endPos.x) / 2, 0.0f, (startPos.z + endPos.z) / 2);
+
+	f32 rayLen  = info.mIntersectEdge.mStartPos.distance(info.mIntersectEdge.mEndPos);
+	bool result = false; // r31
+	f32 minDist = 12800000.0f;
+
 	CI_LOOP(iterRoom)
 	{
-		MapRoom* room = *iterRoom; // r29
+		MapRoom* room = *iterRoom;
+		Vector3f sep2 = midPos - room->mBoundingSphere.mPosition;
+		f32 radius    = room->mBoundingSphere.mRadius + rayLen;
+		if (sep2.x * sep2.x + sep2.z * sep2.z > SQUARE(radius)) {
+			continue;
+		}
+
+		MapUnit* unit     = room->mUnit;
+		Vector3f newStart = room->_108.mtxMult(startPos);
+		Vector3f newEnd   = room->_108.mtxMult(endPos);
+		Sys::Edge newRay;
+		newRay.mStartPos = newStart;
+		newRay.mEndPos   = newEnd;
+		Vector3f newMid  = Vector3f((newStart.x + newEnd.x) / 2, (newStart.y + newEnd.y) / 2, (newStart.z + newEnd.z) / 2);
+		Sys::Sphere boundSphere;
+		boundSphere.mPosition      = newMid;
+		boundSphere.mRadius        = rayLen;
+		Sys::TriIndexList* triList = unit->mCollision.mDivider->findTriLists(boundSphere);
+
+		for (triList; triList; triList = static_cast<Sys::TriIndexList*>(triList->mNext)) {
+			for (int i = 0; i < triList->getNum(); i++) {
+				Sys::Triangle* tri = unit->mCollision.mDivider->mTriangleTable->getTriangle(triList->getIndex(i));
+				if (info.condition(*tri)) {
+					Vector3f triInterVec;
+					if (tri->intersect(newRay, info.mRadius, triInterVec)) {
+						result       = true;
+						Vector3f sep = triInterVec - newStart;
+						f32 dist     = sep.magnitude();
+						if (dist < minDist) {
+							intersectPos  = room->_0D8.mtxMult(triInterVec);
+							minDist       = dist;
+							info.mNormalY = tri->mTrianglePlane.mNormal.y;
+						}
+					}
+				}
+			}
+		}
 	}
 
 	info.mIntersectPosition = intersectPos;
 	return result;
-	/*
-	stwu     r1, -0x160(r1)
-	mflr     r0
-	stw      r0, 0x164(r1)
-	stfd     f31, 0x150(r1)
-	psq_st   f31, 344(r1), 0, qr0
-	stfd     f30, 0x140(r1)
-	psq_st   f30, 328(r1), 0, qr0
-	stfd     f29, 0x130(r1)
-	psq_st   f29, 312(r1), 0, qr0
-	stfd     f28, 0x120(r1)
-	psq_st   f28, 296(r1), 0, qr0
-	stfd     f27, 0x110(r1)
-	psq_st   f27, 280(r1), 0, qr0
-	stfd     f26, 0x100(r1)
-	psq_st   f26, 264(r1), 0, qr0
-	stfd     f25, 0xf0(r1)
-	psq_st   f25, 248(r1), 0, qr0
-	stfd     f24, 0xe0(r1)
-	psq_st   f24, 232(r1), 0, qr0
-	stfd     f23, 0xd0(r1)
-	psq_st   f23, 216(r1), 0, qr0
-	stfd     f22, 0xc0(r1)
-	psq_st   f22, 200(r1), 0, qr0
-	stfd     f21, 0xb0(r1)
-	psq_st   f21, 184(r1), 0, qr0
-	stmw     r24, 0x90(r1)
-	lis      r6, "__vt__25Iterator<Q24Game7MapRoom>"@ha
-	li       r5, 0
-	addi     r6, r6, "__vt__25Iterator<Q24Game7MapRoom>"@l
-	addi     r0, r3, 0xac
-	stw      r6, 0x60(r1)
-	mr       r30, r4
-	lfs      f4, lbl_8051945C@sda21(r2)
-	stw      r5, 0x6c(r1)
-	lfs      f0, lbl_80519440@sda21(r2)
-	stw      r5, 0x64(r1)
-	stw      r0, 0x68(r1)
-	lfs      f2, 0(r4)
-	stfs     f2, 0x54(r1)
-	lfs      f1, 4(r4)
-	stfs     f1, 0x58(r1)
-	lfs      f3, 8(r4)
-	stfs     f3, 0x5c(r1)
-	lfs      f1, 0xc(r4)
-	stfs     f1, 0x48(r1)
-	fadds    f1, f2, f1
-	lfs      f2, 0x10(r4)
-	fmuls    f30, f1, f4
-	stfs     f2, 0x4c(r1)
-	lfs      f1, 0x14(r4)
-	stfs     f1, 0x50(r1)
-	fadds    f3, f3, f1
-	lfs      f2, 4(r4)
-	lfs      f1, 0x10(r4)
-	fmuls    f29, f3, f4
-	lfs      f4, 0(r4)
-	fsubs    f5, f2, f1
-	lfs      f3, 0xc(r4)
-	lfs      f2, 8(r4)
-	lfs      f1, 0x14(r4)
-	fsubs    f3, f4, f3
-	fmuls    f4, f5, f5
-	fsubs    f2, f2, f1
-	fmadds   f1, f3, f3, f4
-	fmuls    f2, f2, f2
-	fadds    f31, f2, f1
-	fcmpo    cr0, f31, f0
-	ble      lbl_801BB8E8
-	ble      lbl_801BB8EC
-	frsqrte  f0, f31
-	fmuls    f31, f0, f31
-	b        lbl_801BB8EC
-
-lbl_801BB8E8:
-	fmr      f31, f0
-
-lbl_801BB8EC:
-	lwz      r0, 0x6c(r1)
-	li       r31, 0
-	lfs      f22, lbl_80519484@sda21(r2)
-	cmplwi   r0, 0
-	bne      lbl_801BB91C
-	lwz      r3, 0x68(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x64(r1)
-	b        lbl_801BBC1C
-
-lbl_801BB91C:
-	lwz      r3, 0x68(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x64(r1)
-	b        lbl_801BB98C
-
-lbl_801BB938:
-	lwz      r3, 0x68(r1)
-	lwz      r4, 0x64(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x6c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801BBC1C
-	lwz      r3, 0x68(r1)
-	lwz      r4, 0x64(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x64(r1)
-
-lbl_801BB98C:
-	lwz      r12, 0x60(r1)
-	addi     r3, r1, 0x60
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801BB938
-	b        lbl_801BBC1C
-
-lbl_801BB9AC:
-	lwz      r3, 0x68(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r29, r3
-	lfs      f0, 0x148(r3)
-	lfs      f1, 0x140(r3)
-	fsubs    f3, f29, f0
-	lfs      f0, 0x14c(r3)
-	fsubs    f2, f30, f1
-	fadds    f0, f0, f31
-	fmuls    f1, f3, f3
-	fmuls    f0, f0, f0
-	fmadds   f1, f2, f2, f1
-	fcmpo    cr0, f1, f0
-	bgt      lbl_801BBB60
-	lwz      r26, 0x138(r29)
-	addi     r3, r29, 0x108
-	addi     r4, r1, 0x54
-	addi     r5, r1, 0x20
-	bl       PSMTXMultVec
-	lfs      f28, 0x20(r1)
-	addi     r3, r29, 0x108
-	lfs      f27, 0x24(r1)
-	addi     r4, r1, 0x48
-	lfs      f26, 0x28(r1)
-	addi     r5, r1, 0x14
-	bl       PSMTXMultVec
-	lfs      f5, 0x18(r1)
-	addi     r4, r1, 0x38
-	lfs      f6, 0x1c(r1)
-	lfs      f4, 0x14(r1)
-	fadds    f1, f27, f5
-	lfs      f2, lbl_8051945C@sda21(r2)
-	fadds    f0, f26, f6
-	fadds    f3, f28, f4
-	stfs     f28, 0x70(r1)
-	fmuls    f1, f1, f2
-	fmuls    f0, f0, f2
-	stfs     f27, 0x74(r1)
-	fmuls    f2, f3, f2
-	stfs     f26, 0x78(r1)
-	stfs     f4, 0x7c(r1)
-	stfs     f5, 0x80(r1)
-	stfs     f6, 0x84(r1)
-	stfs     f2, 0x38(r1)
-	stfs     f1, 0x3c(r1)
-	stfs     f0, 0x40(r1)
-	stfs     f31, 0x44(r1)
-	lwz      r3, 0x28(r26)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	mr       r25, r3
-	b        lbl_801BBB58
-
-lbl_801BBA90:
-	li       r24, 0
-	li       r27, 0
-	b        lbl_801BBB48
-
-lbl_801BBA9C:
-	lwz      r4, 0x24(r25)
-	mr       r3, r30
-	lwz      r5, 0x28(r26)
-	lwzx     r0, r4, r27
-	lwz      r4, 0x1c(r5)
-	mulli    r0, r0, 0x60
-	lwz      r4, 0x24(r4)
-	add      r28, r4, r0
-	mr       r4, r28
-	bl       condition__Q23Sys16RayIntersectInfoFRQ23Sys8Triangle
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801BBB40
-	lfs      f1, 0x18(r30)
-	mr       r3, r28
-	addi     r4, r1, 0x70
-	addi     r5, r1, 0x2c
-	bl       "intersect__Q23Sys8TriangleFRQ23Sys4EdgefR10Vector3<f>"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801BBB40
-	lfs      f1, 0x30(r1)
-	li       r31, 1
-	lfs      f0, 0x2c(r1)
-	fsubs    f3, f1, f27
-	lfs      f1, 0x34(r1)
-	fsubs    f2, f0, f28
-	fsubs    f1, f1, f26
-	fmuls    f0, f3, f3
-	fmadds   f0, f2, f2, f0
-	fmadds   f21, f1, f1, f0
-	fcmpo    cr0, f21, f22
-	bge      lbl_801BBB40
-	addi     r3, r29, 0xd8
-	addi     r4, r1, 0x2c
-	addi     r5, r1, 8
-	bl       PSMTXMultVec
-	lfs      f25, 8(r1)
-	fmr      f22, f21
-	lfs      f24, 0xc(r1)
-	lfs      f23, 0x10(r1)
-	lfs      f0, 0x10(r28)
-	stfs     f0, 0x48(r30)
-
-lbl_801BBB40:
-	addi     r27, r27, 4
-	addi     r24, r24, 1
-
-lbl_801BBB48:
-	lwz      r0, 0x1c(r25)
-	cmpw     r24, r0
-	blt      lbl_801BBA9C
-	lwz      r25, 4(r25)
-
-lbl_801BBB58:
-	cmplwi   r25, 0
-	bne      lbl_801BBA90
-
-lbl_801BBB60:
-	lwz      r0, 0x6c(r1)
-	cmplwi   r0, 0
-	bne      lbl_801BBB8C
-	lwz      r3, 0x68(r1)
-	lwz      r4, 0x64(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x64(r1)
-	b        lbl_801BBC1C
-
-lbl_801BBB8C:
-	lwz      r3, 0x68(r1)
-	lwz      r4, 0x64(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x64(r1)
-	b        lbl_801BBC00
-
-lbl_801BBBAC:
-	lwz      r3, 0x68(r1)
-	lwz      r4, 0x64(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x6c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801BBC1C
-	lwz      r3, 0x68(r1)
-	lwz      r4, 0x64(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x64(r1)
-
-lbl_801BBC00:
-	lwz      r12, 0x60(r1)
-	addi     r3, r1, 0x60
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801BBBAC
-
-lbl_801BBC1C:
-	lwz      r3, 0x68(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x64(r1)
-	cmplw    r4, r3
-	bne      lbl_801BB9AC
-	stfs     f25, 0x34(r30)
-	mr       r3, r31
-	stfs     f24, 0x38(r30)
-	stfs     f23, 0x3c(r30)
-	psq_l    f31, 344(r1), 0, qr0
-	lfd      f31, 0x150(r1)
-	psq_l    f30, 328(r1), 0, qr0
-	lfd      f30, 0x140(r1)
-	psq_l    f29, 312(r1), 0, qr0
-	lfd      f29, 0x130(r1)
-	psq_l    f28, 296(r1), 0, qr0
-	lfd      f28, 0x120(r1)
-	psq_l    f27, 280(r1), 0, qr0
-	lfd      f27, 0x110(r1)
-	psq_l    f26, 264(r1), 0, qr0
-	lfd      f26, 0x100(r1)
-	psq_l    f25, 248(r1), 0, qr0
-	lfd      f25, 0xf0(r1)
-	psq_l    f24, 232(r1), 0, qr0
-	lfd      f24, 0xe0(r1)
-	psq_l    f23, 216(r1), 0, qr0
-	lfd      f23, 0xd0(r1)
-	psq_l    f22, 200(r1), 0, qr0
-	lfd      f22, 0xc0(r1)
-	psq_l    f21, 184(r1), 0, qr0
-	lfd      f21, 0xb0(r1)
-	lmw      r24, 0x90(r1)
-	lwz      r0, 0x164(r1)
-	mtlr     r0
-	addi     r1, r1, 0x160
-	blr
-	*/
 }
 
 /**
@@ -4678,11 +4405,45 @@ f32 RoomMapMgr::getMinY(Vector3f& pos)
  * @note Address: 0x801BBD44
  * @note Size: 0x770
  */
-void RoomMapMgr::createTriangles(Sys::CreateTriangleArg&)
+void RoomMapMgr::createTriangles(Sys::CreateTriangleArg& createArg)
 {
+	f32 rad = createArg.mBoundingSphere.mRadius;
 	Vector3f vecs[768];
 	Iterator<MapRoom> iter(&mRoomMgr);
-	CI_LOOP(iter) { }
+	int count = 0;
+	CI_LOOP(iter)
+	{
+		MapRoom* room = *iter;
+		Vector3f sep2 = room->_190.mPosition - createArg.mBoundingSphere.mPosition;
+		f32 radius    = room->_190.mRadius + rad;
+		if (sep2.x * sep2.x + sep2.z * sep2.z > SQUARE(radius)) {
+			continue;
+		}
+		MapUnit* unit = room->mUnit;
+		Sys::Sphere boundSphere;
+		boundSphere.mPosition      = room->_108.mtxMult(createArg.mBoundingSphere.mPosition);
+		boundSphere.mRadius        = rad;
+		Sys::TriIndexList* triList = unit->mCollision.mDivider->findTriLists(boundSphere);
+
+		for (triList; triList; triList = static_cast<Sys::TriIndexList*>(triList->mNext)) {
+			for (int i = 0; i < triList->getNum(); i++) {
+				Sys::Triangle* tri          = unit->mCollision.mDivider->mTriangleTable->getTriangle(triList->getIndex(i));
+				Sys::VertexTable* vertTable = unit->mCollision.mDivider->mVertexTable;
+				if (!tri->intersect(*vertTable, boundSphere)) {
+					continue;
+				}
+				Vector3f vertices[3];
+				for (int j = 0; j < 3; j++) {
+					vertices[j] = *vertTable->getVertex(tri->mVertices[j]);
+					vertices[j] = room->_0D8.mtxMult(vertices[j]);
+				}
+			}
+		}
+	}
+
+	Vector3f vecs2[256];
+
+	createArg.mCount = count;
 	/*
 	stwu     r1, -0x2cd0(r1)
 	mflr     r0
