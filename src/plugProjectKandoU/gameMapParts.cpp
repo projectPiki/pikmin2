@@ -616,7 +616,7 @@ void MapRoom::doAnimation()
 		bool isVisible = false;
 		for (int i = 0; i < gfx->mActiveViewports; i++) {
 			Viewport* vp = gfx->getViewport(i);
-			if (vp->viewable() && vp->mCamera->isCylinderVisible(_160)) {
+			if (vp->viewable() && vp->mCamera->isCylinderVisible(mRoomVisibilityCylinder)) {
 				isVisible = true;
 				break;
 			}
@@ -640,7 +640,7 @@ void MapRoom::doEntry()
 		bool isVisible = false;
 		for (int i = 0; i < gfx->mActiveViewports; i++) {
 			Viewport* vp = gfx->getViewport(i);
-			if (vp->viewable() && vp->mCamera->isCylinderVisible(_160)) {
+			if (vp->viewable() && vp->mCamera->isCylinderVisible(mRoomVisibilityCylinder)) {
 				isVisible = true;
 				break;
 			}
@@ -654,7 +654,7 @@ void MapRoom::doEntry()
 
 		for (int i = 0; i < gfx->mActiveViewports; i++) {
 			Viewport* vp = gfx->getViewport(i);
-			if (vp->viewable() && vp->mCamera->isVisible(_150)) {
+			if (vp->viewable() && vp->mCamera->isVisible(mRoomVisibilitySphere)) {
 				isVisible = true;
 				break;
 			}
@@ -864,13 +864,13 @@ void MapRoom::doSetView(int viewportNumber)
 		if (vp->viewable()) {
 			LookAtCamera* cam = vp->mCamera;
 			if (RoomMapMgr::mUseCylinderViewCulling) {
-				if (cam->isCylinderVisible(_160)) {
+				if (cam->isCylinderVisible(mRoomVisibilityCylinder)) {
 					isVisible = true;
 				}
 				break;
 			}
 
-			if (cam->isVisible(_150)) {
+			if (cam->isVisible(mRoomVisibilitySphere)) {
 				isVisible = true;
 			}
 		}
@@ -4328,6 +4328,11 @@ lbl_801BB7B4:
 }
 
 /**
+ * Finds the intersection of a ray with the map rooms.
+ *
+ * @param info The ray intersection information.
+ * @return True if an intersection is found, false otherwise.
+ *
  * @note Address: 0x801BB7C8
  * @note Size: 0x4F0
  */
@@ -4345,36 +4350,47 @@ bool RoomMapMgr::findRayIntersection(Sys::RayIntersectInfo& info)
 
 	CI_LOOP(iterRoom)
 	{
-		MapRoom* room = *iterRoom;
-		Vector3f sep2 = midPos - room->mBoundingSphere.mPosition;
-		f32 radius    = room->mBoundingSphere.mRadius + rayLen;
-		if (sep2.x * sep2.x + sep2.z * sep2.z > SQUARE(radius)) {
+		MapRoom* room               = *iterRoom;
+		Vector3f distanceFromCenter = midPos - room->mBoundingSphere.mPosition;
+		f32 radius                  = room->mBoundingSphere.mRadius + rayLen;
+
+		// Check if the ray is outside the room's bounding sphere
+		if (distanceFromCenter.x * distanceFromCenter.x + distanceFromCenter.z * distanceFromCenter.z > SQUARE(radius)) {
 			continue;
 		}
 
-		MapUnit* unit     = room->mUnit;
-		Vector3f newStart = room->mInvRoomSpaceMtx.mtxMult(startPos);
-		Vector3f newEnd   = room->mInvRoomSpaceMtx.mtxMult(endPos);
+		MapUnit* unit = room->mUnit;
+
+		// Convert it to room space
+		Vector3f transformedStartPos = room->mInvRoomSpaceMtx.mtxMult(startPos);
+		Vector3f transformedEndPos   = room->mInvRoomSpaceMtx.mtxMult(endPos);
+
+		// Create a new ray
 		Sys::Edge newRay;
-		newRay.mStartPos = newStart;
-		newRay.mEndPos   = newEnd;
-		Vector3f newMid  = Vector3f((newStart.x + newEnd.x) / 2, (newStart.y + newEnd.y) / 2, (newStart.z + newEnd.z) / 2);
+		newRay.mStartPos = transformedStartPos;
+		newRay.mEndPos   = transformedEndPos;
+
+		Vector3f transformedMidPos
+		    = Vector3f((transformedStartPos.x + transformedEndPos.x) / 2, (transformedStartPos.y + transformedEndPos.y) / 2,
+		               (transformedStartPos.z + transformedEndPos.z) / 2);
+
 		Sys::Sphere boundSphere;
-		boundSphere.mPosition      = newMid;
-		boundSphere.mRadius        = rayLen;
+		boundSphere.mPosition = transformedMidPos;
+		boundSphere.mRadius   = rayLen;
+
 		Sys::TriIndexList* triList = unit->mCollision.mDivider->findTriLists(boundSphere);
 
 		for (triList; triList; triList = static_cast<Sys::TriIndexList*>(triList->mNext)) {
 			for (int i = 0; i < triList->getNum(); i++) {
 				Sys::Triangle* tri = unit->mCollision.mDivider->mTriangleTable->getTriangle(triList->getIndex(i));
 				if (info.condition(*tri)) {
-					Vector3f triInterVec;
-					if (tri->intersect(newRay, info.mRadius, triInterVec)) {
-						result       = true;
-						Vector3f sep = triInterVec - newStart;
-						f32 dist     = sep.magnitude();
+					Vector3f intersectionPoint;
+					if (tri->intersect(newRay, info.mRadius, intersectionPoint)) {
+						result                   = true;
+						Vector3f directionVector = intersectionPoint - transformedStartPos;
+						f32 dist                 = directionVector.magnitude();
 						if (dist < minDist) {
-							intersectPos  = room->mRoomSpaceMtx.mtxMult(triInterVec);
+							intersectPos  = room->mRoomSpaceMtx.mtxMult(intersectionPoint);
 							minDist       = dist;
 							info.mNormalY = tri->mTrianglePlane.mNormal.y;
 						}
@@ -5419,14 +5435,14 @@ void RoomMapMgr::makeOneRoom(f32 centreX, f32 centreY, f32 direction, char* unit
 		val += 30.0f;
 	}
 
-	room->_150.mPosition = modelCenter + translation;
-	room->_150.mRadius   = val;
+	room->mRoomVisibilitySphere.mPosition = modelCenter + translation;
+	room->mRoomVisibilitySphere.mRadius   = val;
 
 	Vector3f startCyl = Vector3f(room->mBoundingSphere.mPosition);
 	Vector3f endCyl   = Vector3f(room->mBoundingSphere.mPosition);
 	endCyl.y -= 100.0f;
 
-	room->_160.set(startCyl, endCyl, room->mBoundingSphere.mRadius);
+	room->mRoomVisibilityCylinder.set(startCyl, endCyl, room->mBoundingSphere.mRadius);
 
 	mSeaMgr->addSeaMgr(&unit->mSeaMgr, mtx1);
 	MapUnitInterface* mui = getMUI(unit); // r27

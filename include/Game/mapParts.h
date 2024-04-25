@@ -234,8 +234,8 @@ struct MapRoom : public CellObject {
 	MapUnit* mUnit;                        // _138
 	SysShape::Model* mModel;               // _13C
 	Sys::Sphere mBoundingSphere;           // _140
-	Sys::Sphere _150;                      // _150
-	Sys::Cylinder _160;                    // _160
+	Sys::Sphere mRoomVisibilitySphere;     // _150, rendering bounding sphere
+	Sys::Cylinder mRoomVisibilityCylinder; // _160, rendering  bounding cylinder
 	RoomLink* mLink;                       // _180
 	s16 mIndex;                            // _184
 	s16 mUnitKind;                         // _186
