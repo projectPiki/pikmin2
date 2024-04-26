@@ -4424,7 +4424,9 @@ f32 RoomMapMgr::getMinY(Vector3f& pos)
 void RoomMapMgr::createTriangles(Sys::CreateTriangleArg& createArg)
 {
 	f32 rad = createArg.mBoundingSphere.mRadius;
-	Vector3f vecs[768];
+	Vector3f vecs[768];           // 0x864
+	Sys::Triangle* triArray[256]; // 0x464
+	MapRoom* roomArray[256];      // 0x64
 	Iterator<MapRoom> iter(&mRoomMgr);
 	int count = 0;
 	CI_LOOP(iter)
@@ -4448,16 +4450,49 @@ void RoomMapMgr::createTriangles(Sys::CreateTriangleArg& createArg)
 				if (!tri->intersect(*vertTable, boundSphere)) {
 					continue;
 				}
-				Vector3f vertices[3];
+				Vector3f vertices[3]; // 0x40
 				for (int j = 0; j < 3; j++) {
 					vertices[j] = *vertTable->getVertex(tri->mVertices[j]);
 					vertices[j] = room->mRoomSpaceMtx.mtxMult(vertices[j]);
+				}
+
+				bool isAlreadySet = false;
+				for (int j = 0; j < count; j++) {
+					if (tri == triArray[j] && room == roomArray[j]) {
+						isAlreadySet = true;
+					}
+				}
+
+				if (isAlreadySet) {
+					continue;
+				}
+
+				if (count >= 256) {
+					break;
+				}
+
+				Vector3f transRoomVec = room->mRoomSpaceMtx.multTranspose(tri->mTrianglePlane.mNormal);
+				if (transRoomVec.y > createArg._14) {
+					Vector3f addVec  = transRoomVec * createArg._10;
+					triArray[count]  = tri;
+					roomArray[count] = room;
+					for (int k = 0; k < 3; k++) {
+						vertices[k] += addVec;
+						vecs[3 * count + k] = addVec;
+					}
+					count++;
 				}
 			}
 		}
 	}
 
-	Vector3f vecs2[256];
+	if (count > 0) {
+		createArg.mVertices = new Vector3f[count * 3];
+
+		for (int i = 0; i < count * 3; i++) {
+			createArg.mVertices[i] = vecs[i];
+		}
+	}
 
 	createArg.mCount = count;
 	/*
@@ -4996,7 +5031,46 @@ void RoomMapMgr::getCurrTri(CurrTriInfo& info)
 {
 	info.mMaxY = 328000.0f;
 	Iterator<MapRoom> iterRoom(&mRoomMgr);
-	CI_LOOP(iterRoom) { MapRoom* room = *iterRoom; }
+	CI_LOOP(iterRoom)
+	{
+		MapRoom* room = *iterRoom;
+		f32 rad       = room->_190.mRadius;
+		Vector3f sep  = room->_190.mPosition - info.mPosition;
+		if (sep.x * sep.x + sep.z * sep.z > rad * rad) {
+			continue;
+		}
+		MapUnit* unit = room->mUnit;
+		Vector3f pos  = room->mInvRoomSpaceMtx.mtxMult(info.mPosition);
+		Sys::Sphere boundSphere(pos, 0.0f);
+		Sys::TriIndexList* triList = unit->mCollision.mDivider->findTriLists(boundSphere);
+		for (triList; triList; triList = static_cast<Sys::TriIndexList*>(triList->mNext)) {
+			for (int i = 0; i < triList->getNum(); i++) {
+				Sys::Triangle* tri = unit->mCollision.mDivider->mTriangleTable->getTriangle(triList->getIndex(i));
+				if (!tri->insideXZ(pos)) {
+					continue;
+				}
+
+				f32 height = pos.y;
+				if (info.mMaxY > height) {
+					info.mMaxY = height;
+					if (info.mUpdateOnNewMaxY) {
+						info.mTriangle  = tri;
+						info.mNormalVec = tri->mTrianglePlane.mNormal;
+						info.mNormalVec = room->mInvRoomSpaceMtx.multTranspose(info.mNormalVec);
+					}
+				}
+
+				if (info.mMinY < height) {
+					info.mMinY = height;
+					if (!info.mUpdateOnNewMaxY) {
+						info.mTriangle  = tri;
+						info.mNormalVec = tri->mTrianglePlane.mNormal;
+						info.mNormalVec = room->mInvRoomSpaceMtx.multTranspose(info.mNormalVec);
+					}
+				}
+			}
+		}
+	}
 
 	if (mFloorInfo->hasHiddenCollision() && info.mMinY < 0.0f) {
 		info.mMinY     = 0.0f;
@@ -5009,322 +5083,6 @@ void RoomMapMgr::getCurrTri(CurrTriInfo& info)
 		info.mMaxY = 0.0f;
 		info.mMinY = 0.0f;
 	}
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	lfs      f0, lbl_80519488@sda21(r2)
-	stw      r0, 0x64(r1)
-	li       r0, 0
-	cmplwi   r0, 0
-	stmw     r24, 0x40(r1)
-	mr       r25, r3
-	lis      r3, "__vt__25Iterator<Q24Game7MapRoom>"@ha
-	mr       r26, r4
-	stfs     f0, 0x18(r4)
-	addi     r4, r3, "__vt__25Iterator<Q24Game7MapRoom>"@l
-	addi     r3, r25, 0xac
-	stw      r4, 0x30(r1)
-	stw      r0, 0x3c(r1)
-	stw      r0, 0x34(r1)
-	stw      r3, 0x38(r1)
-	bne      lbl_801BC514
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
-	b        lbl_801BC894
-
-lbl_801BC514:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
-	b        lbl_801BC580
-
-lbl_801BC52C:
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x3c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801BC894
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
-
-lbl_801BC580:
-	lwz      r12, 0x30(r1)
-	addi     r3, r1, 0x30
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801BC52C
-	b        lbl_801BC894
-
-lbl_801BC5A0:
-	lwz      r3, 0x38(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r31, r3
-	lfs      f0, 8(r26)
-	lfs      f1, 0x198(r3)
-	lfs      f4, 0x19c(r3)
-	fsubs    f3, f1, f0
-	lfs      f2, 0x190(r3)
-	lfs      f1, 0(r26)
-	fmuls    f0, f4, f4
-	fsubs    f2, f2, f1
-	fmuls    f1, f3, f3
-	fmadds   f1, f2, f2, f1
-	fcmpo    cr0, f1, f0
-	bgt      lbl_801BC7D8
-	lwz      r29, 0x138(r31)
-	mr       r4, r26
-	addi     r3, r31, 0x108
-	addi     r5, r1, 8
-	bl       PSMTXMultVec
-	lfs      f3, 8(r1)
-	addi     r4, r1, 0x14
-	lfs      f2, 0xc(r1)
-	lfs      f1, 0x10(r1)
-	lfs      f0, lbl_80519440@sda21(r2)
-	stfs     f3, 0x24(r1)
-	stfs     f2, 0x28(r1)
-	stfs     f1, 0x2c(r1)
-	stfs     f3, 0x14(r1)
-	stfs     f2, 0x18(r1)
-	stfs     f1, 0x1c(r1)
-	stfs     f0, 0x20(r1)
-	lwz      r3, 0x28(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	mr       r28, r3
-	b        lbl_801BC7D0
-
-lbl_801BC648:
-	li       r27, 0
-	li       r30, 0
-	b        lbl_801BC7C0
-
-lbl_801BC654:
-	lwz      r3, 0x24(r28)
-	addi     r4, r1, 0x24
-	lwz      r5, 0x28(r29)
-	lwzx     r0, r3, r30
-	lwz      r3, 0x1c(r5)
-	mulli    r0, r0, 0x60
-	lwz      r3, 0x24(r3)
-	add      r24, r3, r0
-	mr       r3, r24
-	bl       "insideXZ__Q23Sys8TriangleFR10Vector3<f>"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801BC7B8
-	lfs      f10, 0x28(r1)
-	lfs      f0, 0x18(r26)
-	fcmpo    cr0, f0, f10
-	ble      lbl_801BC720
-	stfs     f10, 0x18(r26)
-	lbz      r0, 0xc(r26)
-	cmplwi   r0, 0
-	beq      lbl_801BC720
-	stw      r24, 0x14(r26)
-	lfs      f0, 0xc(r24)
-	stfs     f0, 0x20(r26)
-	lfs      f0, 0x10(r24)
-	stfs     f0, 0x24(r26)
-	lfs      f0, 0x14(r24)
-	stfs     f0, 0x28(r26)
-	lfs      f7, 0x24(r26)
-	lfs      f1, 0x118(r31)
-	lfs      f0, 0x11c(r31)
-	fmuls    f1, f7, f1
-	lfs      f8, 0x20(r26)
-	lfs      f4, 0x108(r31)
-	fmuls    f2, f7, f0
-	lfs      f0, 0x120(r31)
-	lfs      f3, 0x10c(r31)
-	fmadds   f5, f8, f4, f1
-	lfs      f9, 0x28(r26)
-	lfs      f6, 0x128(r31)
-	fmuls    f0, f7, f0
-	lfs      f1, 0x110(r31)
-	fmadds   f3, f8, f3, f2
-	lfs      f4, 0x12c(r31)
-	fmadds   f5, f9, f6, f5
-	lfs      f2, 0x130(r31)
-	fmadds   f0, f8, f1, f0
-	fmadds   f1, f9, f4, f3
-	stfs     f5, 0x20(r26)
-	fmadds   f0, f9, f2, f0
-	stfs     f1, 0x24(r26)
-	stfs     f0, 0x28(r26)
-
-lbl_801BC720:
-	lfs      f0, 0x1c(r26)
-	fcmpo    cr0, f0, f10
-	bge      lbl_801BC7B8
-	stfs     f10, 0x1c(r26)
-	lbz      r0, 0xc(r26)
-	cmplwi   r0, 0
-	bne      lbl_801BC7B8
-	stw      r24, 0x14(r26)
-	lfs      f0, 0xc(r24)
-	stfs     f0, 0x20(r26)
-	lfs      f0, 0x10(r24)
-	stfs     f0, 0x24(r26)
-	lfs      f0, 0x14(r24)
-	stfs     f0, 0x28(r26)
-	lfs      f7, 0x24(r26)
-	lfs      f1, 0x118(r31)
-	lfs      f0, 0x11c(r31)
-	fmuls    f1, f7, f1
-	lfs      f8, 0x20(r26)
-	lfs      f4, 0x108(r31)
-	fmuls    f2, f7, f0
-	lfs      f0, 0x120(r31)
-	lfs      f3, 0x10c(r31)
-	fmadds   f5, f8, f4, f1
-	lfs      f9, 0x28(r26)
-	lfs      f6, 0x128(r31)
-	fmuls    f0, f7, f0
-	lfs      f1, 0x110(r31)
-	fmadds   f3, f8, f3, f2
-	lfs      f4, 0x12c(r31)
-	fmadds   f5, f9, f6, f5
-	lfs      f2, 0x130(r31)
-	fmadds   f0, f8, f1, f0
-	fmadds   f1, f9, f4, f3
-	stfs     f5, 0x20(r26)
-	fmadds   f0, f9, f2, f0
-	stfs     f1, 0x24(r26)
-	stfs     f0, 0x28(r26)
-
-lbl_801BC7B8:
-	addi     r30, r30, 4
-	addi     r27, r27, 1
-
-lbl_801BC7C0:
-	lwz      r0, 0x1c(r28)
-	cmpw     r27, r0
-	blt      lbl_801BC654
-	lwz      r28, 4(r28)
-
-lbl_801BC7D0:
-	cmplwi   r28, 0
-	bne      lbl_801BC648
-
-lbl_801BC7D8:
-	lwz      r0, 0x3c(r1)
-	cmplwi   r0, 0
-	bne      lbl_801BC804
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
-	b        lbl_801BC894
-
-lbl_801BC804:
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
-	b        lbl_801BC878
-
-lbl_801BC824:
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x3c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801BC894
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
-
-lbl_801BC878:
-	lwz      r12, 0x30(r1)
-	addi     r3, r1, 0x30
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801BC824
-
-lbl_801BC894:
-	lwz      r3, 0x38(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x34(r1)
-	cmplw    r4, r3
-	bne      lbl_801BC5A0
-	lwz      r3, 0x2c(r25)
-	bl       hasHiddenCollision__Q34Game4Cave9FloorInfoFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801BC8E8
-	lfs      f1, 0x1c(r26)
-	lfs      f0, lbl_80519440@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_801BC8E8
-	stfs     f0, 0x1c(r26)
-	addi     r0, r25, 0x40
-	stfs     f0, 0x18(r26)
-	stw      r0, 0x14(r26)
-	b        lbl_801BC900
-
-lbl_801BC8E8:
-	lwz      r0, 0x14(r26)
-	cmplwi   r0, 0
-	bne      lbl_801BC900
-	lfs      f0, lbl_80519440@sda21(r2)
-	stfs     f0, 0x18(r26)
-	stfs     f0, 0x1c(r26)
-
-lbl_801BC900:
-	lmw      r24, 0x40(r1)
-	lwz      r0, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
 }
 
 /**
