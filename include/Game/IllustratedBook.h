@@ -54,54 +54,54 @@ struct Camera : public LookAtCamera {
 
 	// _00      = VTBL
 	// _00-_198 = LookAtCamera
-	Controller* mController;    // _198
-	Creature* mTargetObject;    // _19C
-	Vector3f _1A0;              // _1A0
-	Vector3f _1AC;              // _1AC
-	Vector3f _1B8;              // _1B8
-	f32 mHorizontalAngle;       // _1C4
-	f32 mObjectRadius;          // _1C8
-	f32 mCurrentHeight;         // _1CC
-	f32 mMinHeight;             // _1D0
-	f32 mMaxHeight;             // _1D4
-	Vector3f mGoalPosition;     // _1D8
-	Vector3f mObjectOffset;     // _1E4
-	Vector3f _1F0;              // _1F0
-	Vector3f mPositionList[10]; // _1FC
-	int mCurrentPositionIndex;  // _274
-	f32 _278;                   // _278
-	f32 _27C;                   // _27C
-	f32 _280;                   // _280
-	f32 _284;                   // _284
-	f32 mCurrViewAngle;         // _288
-	f32 mMinViewAngle;          // _28C
-	f32 mMaxViewAngle;          // _290
-	f32 mFocusLevel;            // _294
-	f32 _298;                   // _298
-	f32 _29C;                   // _29C
-	Vector3f _2A0;              // _2A0
-	Vector3f _2AC;              // _2AC
-	Vector3f _2B8;              // _2B8
-	Vector3f _2C4;              // _2C4
-	Vector3f mVibrationForce;   // _2D0
-	f32 _2DC;                   // _2DC
-	f32 _2E0;                   // _2E0
-	f32 _2E4;                   // _2E4
-	f32 _2E8;                   // _2E8
-	f32 _2EC;                   // _2EC
-	f32 _2F0;                   // _2F0
-	f32 _2F4;                   // _2F4
-	f32 _2F8;                   // _2F8
-	f32 _2FC;                   // _2FC
-	f32 _300;                   // _300
-	f32 mFovChangeSpeed;        // _304
-	f32 _308;                   // _308
-	f32 _30C;                   // _30C
-	f32 _310;                   // _310
-	f32 _314;                   // _314
-	f32 _318;                   // _318
-	f32 _31C;                   // _31C
-	f32 _320;                   // _320
+	Controller* mController;          // _198
+	Creature* mTargetObject;          // _19C
+	Vector3f mBasePhysicalPosition;   // _1A0 - current true position of camera, not accounting for random movement
+	Vector3f mTrueCurrentPhysicalPos; // _1AC - true position, including the random swaying
+	Vector3f mCameraLastMoveDest;     // _1B8 - set to position of target when initially loading an enemy/pellet, still gets used after
+	f32 mHorizontalAngle;             // _1C4
+	f32 mObjectRadius;                // _1C8
+	f32 mCurrentHeight;               // _1CC
+	f32 mMinHeight;                   // _1D0
+	f32 mMaxHeight;                   // _1D4
+	Vector3f mGoalPosition;           // _1D8
+	Vector3f mObjectOffset;           // _1E4
+	Vector3f mMovementVelocity;       // _1F0 - used to control speed of camera movement
+	Vector3f mPositionList[10];       // _1FC
+	int mCurrentPositionIndex;        // _274
+	f32 mHorizontalInputDampened;     // _278 - moves toward value below, with a curve to the rate of change
+	f32 mCurrentHorizontalInput;      // _27C - ranges from -100 to 100 based directly on analog input
+	f32 mVerticalInputDampened;       // _280
+	f32 mCurrentVerticalInput;        // _284
+	f32 mCurrViewAngle;               // _288
+	f32 mMinViewAngle;                // _28C
+	f32 mMaxViewAngle;                // _290
+	f32 mFocusLevel;                  // _294
+	f32 mCurrentBlurLevel;            // _298
+	f32 mDefaultMaxFocus;             // _29C
+	Vector3f mCurrentShakeMagnitude;  // _2A0
+	Vector3f mShakeTargetPosition;    // _2AC
+	Vector3f mShakeUpdateVelocity;    // _2B8
+	Vector3f mCameraShakeOffsetPos;   // _2C4
+	Vector3f mVibrationForce;         // _2D0
+	f32 mCameraShakeFrequency;        // _2DC - how often should random small camera shakes happen
+	f32 mCameraShakeBaseMagnitude;    // _2E0 - how strong should random small camera shakes be
+	f32 mPassiveShakeBlurLevel;       // _2E4 - how much to blur the camera when doing random shakes
+	f32 mStrongShakeChance;           // _2E8 - chance for a random camera shake to be boosted
+	f32 mStrongShakePower;            // _2EC - how much stronger should a random super-shake be
+	f32 mShakeAccelRate;              // _2F0 - how fast shakes generally move
+	f32 mShakeDecelRate;              // _2F4 - how fast shakes lose their momentum
+	f32 mCStickMoveModifierX;         // _2F8 - how fast the camera should turn with cstick, horizontal
+	f32 mCStickMoveModifierY;         // _2FC - how fast the camera should turn with cstick, vertical
+	f32 mCStickMoveAccelRate;         // _300 - how fast the cstick rotation accels/decels
+	f32 mFovChangeSpeed;              // _304 - how fast the FOV changes with the dpad
+	f32 mFovChangeAccel;              // _308 - how fast FOV change accels/decels
+	f32 mAnalogMoveSpeed;             // _30C - how fast to move to follow analog stick input
+	f32 mAnalogMoveAccel;             // _310 - how fast moving the view accels/decels
+	f32 mVibrationForceMultiplier;    // _314
+	f32 mVibrationModX;               // _318
+	f32 mVibrationModY;               // _31C
+	f32 mVibrationModZ;               // _320
 };
 
 struct EnemyTexMgr : public IconTexture::Mgr {

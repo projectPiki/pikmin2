@@ -101,9 +101,9 @@ void EnemyTexMgr::create()
 Camera::Camera(Controller* input)
     : mController(input)
     , mTargetObject(nullptr)
-    , _1A0(Vector3f::zero)
-    , _1AC(Vector3f::zero)
-    , _1B8(Vector3f::zero)
+    , mBasePhysicalPosition(Vector3f::zero)
+    , mTrueCurrentPhysicalPos(Vector3f::zero)
+    , mCameraLastMoveDest(Vector3f::zero)
     , mHorizontalAngle(0.0f)
     , mObjectRadius(350.0f)
     , mCurrentHeight(500.0f)
@@ -111,44 +111,44 @@ Camera::Camera(Controller* input)
     , mMaxHeight(700.0f)
     , mGoalPosition(Vector3f::zero)
     , mObjectOffset(Vector3f::zero)
-    , _1F0(Vector3f::zero)
+    , mMovementVelocity(Vector3f::zero)
     , mCurrentPositionIndex(0)
-    , _278(0.0f)
-    , _27C(0.0f)
-    , _280(0.0f)
-    , _284(0.0f)
+    , mHorizontalInputDampened(0.0f)
+    , mCurrentHorizontalInput(0.0f)
+    , mVerticalInputDampened(0.0f)
+    , mCurrentVerticalInput(0.0f)
     , mCurrViewAngle(45.0f)
     , mMinViewAngle(0.1f)
     , mMaxViewAngle(90.0f)
     , mFocusLevel(0.0f)
-    , _298(0.0f)
-    , _29C(0.8f)
-    , _2A0(Vector3f::zero)
-    , _2AC(Vector3f::zero)
-    , _2B8(Vector3f::zero)
-    , _2C4(Vector3f::zero)
+    , mCurrentBlurLevel(0.0f)
+    , mDefaultMaxFocus(0.8f)
+    , mCurrentShakeMagnitude(Vector3f::zero)
+    , mShakeTargetPosition(Vector3f::zero)
+    , mShakeUpdateVelocity(Vector3f::zero)
+    , mCameraShakeOffsetPos(Vector3f::zero)
     , mVibrationForce(1.0f, 0.0f, 0.0f)
 {
 	setName("}ŠÓƒJƒƒ‰"); // 'illustrated book camera'
 	move(Vector3f::zero);
-	_2DC            = 0.5f;
-	_2E0            = 0.5f;
-	_2E4            = 0.05f;
-	_2E8            = 0.008f;
-	_2EC            = 7.0f;
-	_2F0            = 0.12f;
-	_2F4            = 0.95f;
-	_2F8            = 0.1f;
-	_2FC            = 15.0f;
-	_300            = 0.3f;
-	mFovChangeSpeed = 0.8f;
-	_308            = 0.35f;
-	_30C            = 0.15f;
-	_310            = 0.15f;
-	_314            = 0.63f;
-	_318            = 0.5f;
-	_31C            = 0.77f;
-	_320            = 0.5f;
+	mCameraShakeFrequency     = 0.5f;
+	mCameraShakeBaseMagnitude = 0.5f;
+	mPassiveShakeBlurLevel    = 0.05f;
+	mStrongShakeChance        = 0.008f;
+	mStrongShakePower         = 7.0f;
+	mShakeAccelRate           = 0.12f;
+	mShakeDecelRate           = 0.95f;
+	mCStickMoveModifierX      = 0.1f;
+	mCStickMoveModifierY      = 15.0f;
+	mCStickMoveAccelRate      = 0.3f;
+	mFovChangeSpeed           = 0.8f;
+	mFovChangeAccel           = 0.35f;
+	mAnalogMoveSpeed          = 0.15f;
+	mAnalogMoveAccel          = 0.15f;
+	mVibrationForceMultiplier = 0.63f;
+	mVibrationModX            = 0.5f;
+	mVibrationModY            = 0.77f;
+	mVibrationModZ            = 0.5f;
 }
 
 /**
@@ -185,11 +185,11 @@ void Camera::debugDraw(Graphics& gfx)
  */
 void Camera::move(const Vector3f& pos)
 {
-	mTargetObject   = nullptr;
-	mGoalPosition   = pos;
-	_1B8            = mGoalPosition;
-	_1AC            = _1B8;
-	mLookAtPosition = _1AC;
+	mTargetObject           = nullptr;
+	mGoalPosition           = pos;
+	mCameraLastMoveDest     = mGoalPosition;
+	mTrueCurrentPhysicalPos = mCameraLastMoveDest;
+	mLookAtPosition         = mTrueCurrentPhysicalPos;
 	resetControl();
 }
 
@@ -203,10 +203,10 @@ void Camera::setTarget(Creature* obj)
 		mTargetObject = obj;
 		Sys::Sphere bound;
 		mTargetObject->getBoundingSphere(bound);
-		mGoalPosition   = bound.mPosition;
-		_1B8            = mGoalPosition;
-		_1AC            = _1B8;
-		mLookAtPosition = _1AC;
+		mGoalPosition           = bound.mPosition;
+		mCameraLastMoveDest     = mGoalPosition;
+		mTrueCurrentPhysicalPos = mCameraLastMoveDest;
+		mLookAtPosition         = mTrueCurrentPhysicalPos;
 		resetControl();
 	} else {
 		move(Vector3f::zero);
@@ -219,23 +219,25 @@ void Camera::setTarget(Creature* obj)
  */
 void Camera::resetControl()
 {
-	_1F0 = Vector3f::zero;
+	mMovementVelocity = Vector3f::zero;
 	for (int i = 0; i < 10; i++) {
 		mPositionList[i] = mLookAtPosition;
 	}
-	mCurrentPositionIndex = 0;
-	_27C                  = 0.0f;
-	_278                  = 0.0f;
-	_284                  = 0.0f;
-	_280                  = 0.0f;
+	mCurrentPositionIndex    = 0;
+	mCurrentHorizontalInput  = 0.0f;
+	mHorizontalInputDampened = 0.0f;
+	mCurrentVerticalInput    = 0.0f;
+	mVerticalInputDampened   = 0.0f;
 
-	_1A0 = Vector3f(_1B8.x + mObjectRadius * sinf(mHorizontalAngle), _1B8.y, _1B8.z + mObjectRadius * cosf(mHorizontalAngle));
+	mBasePhysicalPosition = Vector3f(mCameraLastMoveDest.x + mObjectRadius * sinf(mHorizontalAngle), mCameraLastMoveDest.y,
+	                                 mCameraLastMoveDest.z + mObjectRadius * cosf(mHorizontalAngle));
+
 	if (mapMgr) {
-		_1A0.y = mapMgr->getMinY(_1A0) + mCurrentHeight;
+		mBasePhysicalPosition.y = mapMgr->getMinY(mBasePhysicalPosition) + mCurrentHeight;
 	}
-	mPosition       = _1A0 + _2C4;
-	mVibrationForce = 0.0f;
-	_2C4            = 0.0f;
+	mPosition             = mBasePhysicalPosition + mCameraShakeOffsetPos;
+	mVibrationForce       = 0.0f;
+	mCameraShakeOffsetPos = 0.0f;
 }
 
 /**
@@ -264,10 +266,10 @@ void Camera::doUpdate()
 			targetSphere.mPosition.y = minY;
 		}
 	} else {
-		targetSphere.mPosition = _1B8;
+		targetSphere.mPosition = mCameraLastMoveDest;
 	}
 
-	mGoalPosition += _1F0;
+	mGoalPosition += mMovementVelocity;
 	mPositionList[mCurrentPositionIndex] = targetSphere.mPosition;
 
 	if (++mCurrentPositionIndex >= 10) {
@@ -280,8 +282,8 @@ void Camera::doUpdate()
 
 	cameraPos *= 0.1f;
 
-	_1F0 += (cameraPos - mGoalPosition) * 0.1f;
-	_1F0 *= 0.6f;
+	mMovementVelocity += (cameraPos - mGoalPosition) * 0.1f;
+	mMovementVelocity *= 0.6f;
 
 	if (!Screen::gGame2DMgr->isAppearConfirmWindow()) {
 		int fovInc = ((mController->getButton() / 4) & JUTGamePad::PRESS_DPAD_LEFT)
@@ -290,7 +292,7 @@ void Camera::doUpdate()
 
 		f32 angleRatio = (mViewAngle - mMinViewAngle) / (mMaxViewAngle - mMinViewAngle);
 
-		mCurrentHeight += _2FC * mController->getSubStickY();
+		mCurrentHeight += mCStickMoveModifierY * mController->getSubStickY();
 		if (mCurrentHeight < mMinHeight) {
 			mCurrentHeight = mMinHeight;
 		}
@@ -298,7 +300,7 @@ void Camera::doUpdate()
 			mCurrentHeight = mMaxHeight;
 		}
 
-		mHorizontalAngle += _2F8 * mController->getSubStickX();
+		mHorizontalAngle += mCStickMoveModifierX * mController->getSubStickX();
 		if (mHorizontalAngle > TAU) {
 			mHorizontalAngle -= TAU;
 		}
@@ -308,25 +310,26 @@ void Camera::doUpdate()
 		}
 
 		if (Screen::gGame2DMgr->isZukanEnlargedWindow()) {
-			_27C = 100.0f * mController->getMainStickX();
-			_284 = 100.0f * mController->getMainStickY();
+			mCurrentHorizontalInput = 100.0f * mController->getMainStickX();
+			mCurrentVerticalInput   = 100.0f * mController->getMainStickY();
 		} else {
-			_27C = 0.0f;
-			_284 = 0.0f;
+			mCurrentHorizontalInput = 0.0f;
+			mCurrentVerticalInput   = 0.0f;
 		}
 
-		f32 factor = (angleRatio * (_30C - _310) + _310);
-		_278 += factor * (_27C - _278);
-		_280 += factor * (_284 - _280);
+		f32 factor = (angleRatio * (mAnalogMoveSpeed - mAnalogMoveAccel) + mAnalogMoveAccel);
+		mHorizontalInputDampened += factor * (mCurrentHorizontalInput - mHorizontalInputDampened);
+		mVerticalInputDampened += factor * (mCurrentVerticalInput - mVerticalInputDampened);
 
-		Vector3f pos = Vector3f(mObjectRadius * sinf(mHorizontalAngle) + _1B8.x, _1B8.y, mObjectRadius * cosf(mHorizontalAngle) + _1B8.z);
+		Vector3f pos = Vector3f(mObjectRadius * sinf(mHorizontalAngle) + mCameraLastMoveDest.x, mCameraLastMoveDest.y,
+		                        mObjectRadius * cosf(mHorizontalAngle) + mCameraLastMoveDest.z);
 		pos.y        = mCurrentHeight + mapMgr->getMinY(pos);
 
-		Vector3f sep = pos - _1A0;
-		sep *= _300;
-		_1A0 += sep;
+		Vector3f sep = pos - mBasePhysicalPosition;
+		sep *= mCStickMoveAccelRate;
+		mBasePhysicalPosition += sep;
 
-		Sys::Sphere moveSphere(_1A0, 10.0f);
+		Sys::Sphere moveSphere(mBasePhysicalPosition, 10.0f);
 		MoveInfo info(&moveSphere, &Vector3f::zero, 0.0f);
 
 		mapMgr->traceMove(info, sys->mDeltaTime);
@@ -336,7 +339,7 @@ void Camera::doUpdate()
 			moveSphere.mPosition.y = newMinY;
 		}
 
-		_1A0 = moveSphere.mPosition;
+		mBasePhysicalPosition = moveSphere.mPosition;
 	}
 
 	Vector3f sep = mGoalPosition - mPosition;
@@ -347,39 +350,40 @@ void Camera::doUpdate()
 		sep = Vector3f(0.0f, -1.0f, 0.0f);
 	}
 
-	Vector3f vec2(_2A0.x + _278, _2A0.y + _280, _2A0.z);
+	Vector3f vec2(mCurrentShakeMagnitude.x + mHorizontalInputDampened, mCurrentShakeMagnitude.y + mVerticalInputDampened,
+	              mCurrentShakeMagnitude.z);
 
 	Vector3f yAxis(0.0f, 1.0f, 0.0f);
 	Vector3f crossVec  = cross(sep, yAxis);
 	Vector3f crossVec2 = cross(crossVec, yAxis);
 
-	_1AC.x = crossVec2.x * vec2.z + ((yAxis.x * vec2.y) + ((crossVec.x * vec2.x) + (mGoalPosition.x + mObjectOffset.x)));
-	_1AC.y = crossVec2.y * vec2.z + ((yAxis.y * vec2.y) + ((crossVec.y * vec2.x) + (mGoalPosition.y + mObjectOffset.y)));
-	_1AC.z = crossVec2.z * vec2.z + ((yAxis.z * vec2.y) + ((crossVec.z * vec2.x) + (mGoalPosition.z + mObjectOffset.z)));
+	mTrueCurrentPhysicalPos.x = crossVec2.x * vec2.z + ((yAxis.x * vec2.y) + ((crossVec.x * vec2.x) + (mGoalPosition.x + mObjectOffset.x)));
+	mTrueCurrentPhysicalPos.y = crossVec2.y * vec2.z + ((yAxis.y * vec2.y) + ((crossVec.y * vec2.x) + (mGoalPosition.y + mObjectOffset.y)));
+	mTrueCurrentPhysicalPos.z = crossVec2.z * vec2.z + ((yAxis.z * vec2.y) + ((crossVec.z * vec2.x) + (mGoalPosition.z + mObjectOffset.z)));
 
 	updateCameraShake();
 	updateFocus();
 
 	Vector3f vec = Vector3f::zero;
 
-	mVibrationForce.x *= 0.75f * _314;
-	mVibrationForce.y *= _314;
-	mVibrationForce.z *= 0.75f * _314;
+	mVibrationForce.x *= 0.75f * mVibrationForceMultiplier;
+	mVibrationForce.y *= mVibrationForceMultiplier;
+	mVibrationForce.z *= 0.75f * mVibrationForceMultiplier;
 
-	_2C4 += mVibrationForce;
+	mCameraShakeOffsetPos += mVibrationForce;
 
-	Vector3f newSep = _2C4 - vec;
-	mVibrationForce.x -= _318 * newSep.x;
-	mVibrationForce.y -= _31C * newSep.y;
-	mVibrationForce.z -= _320 * newSep.z;
+	Vector3f newSep = mCameraShakeOffsetPos - vec;
+	mVibrationForce.x -= mVibrationModX * newSep.x;
+	mVibrationForce.y -= mVibrationModY * newSep.y;
+	mVibrationForce.z -= mVibrationModZ * newSep.z;
 
 	mFocusLevel += 0.05f * mVibrationForce.length();
 
-	mPosition = _1A0 + _2C4;
+	mPosition = mBasePhysicalPosition + mCameraShakeOffsetPos;
 
-	Vector3f lookOffset = _2C4;
+	Vector3f lookOffset = mCameraShakeOffsetPos;
 	lookOffset *= 10.0f;
-	mLookAtPosition = _1AC + lookOffset;
+	mLookAtPosition = mTrueCurrentPhysicalPos + lookOffset;
 	/*
 	stwu     r1, -0x120(r1)
 	mflr     r0
@@ -1007,24 +1011,24 @@ lbl_802220FC:
  */
 void Camera::updateCameraShake()
 {
-	if (randFloat() < _2DC) {
-		f32 val = _2E0;
-		mFocusLevel += _2E4 * randFloat();
+	if (randFloat() < mCameraShakeFrequency) {
+		f32 strength = mCameraShakeBaseMagnitude;
+		mFocusLevel += mPassiveShakeBlurLevel * randFloat();
 
-		if (randFloat() < _2E8) {
-			val += _2EC;
+		if (randFloat() < mStrongShakeChance) {
+			strength += mStrongShakePower;
 		}
 
-		_2AC.x = val * (randFloat() - 0.5f);
-		_2AC.y = val * (randFloat() - 0.5f);
+		mShakeTargetPosition.x = strength * (randFloat() - 0.5f);
+		mShakeTargetPosition.y = strength * (randFloat() - 0.5f);
 	}
 
-	Vector3f sep = _2AC - _2A0;
-	sep *= _2F0;
-	_2B8 += sep;
-	_2B8 *= _2F4;
+	Vector3f sep = mShakeTargetPosition - mCurrentShakeMagnitude;
+	sep *= mShakeAccelRate;
+	mShakeUpdateVelocity += sep;
+	mShakeUpdateVelocity *= mShakeDecelRate;
 
-	_2A0 += _2B8;
+	mCurrentShakeMagnitude += mShakeUpdateVelocity;
 }
 
 /**
@@ -1034,21 +1038,21 @@ void Camera::updateCameraShake()
 void Camera::updateFocus()
 {
 	f32 fov = absF(mCurrViewAngle - mViewAngle);
-	f32 y   = absF(_27C - _278);
-	f32 x   = absF(_284 - _280);
+	f32 y   = absF(mCurrentHorizontalInput - mHorizontalInputDampened);
+	f32 x   = absF(mCurrentVerticalInput - mVerticalInputDampened);
 	if (fov > 1.0f || x > 30.0f || y > 30.0f) {
 		mFocusLevel += 0.05f;
 	}
 
-	_298 += (0.2f - mFocusLevel) * 0.02f;
-	if (_298 > 0.5f) {
-		_298 = 0.5f;
+	mCurrentBlurLevel += (0.2f - mFocusLevel) * 0.02f;
+	if (mCurrentBlurLevel > 0.5f) {
+		mCurrentBlurLevel = 0.5f;
 	}
-	if (_298 < -0.5f) {
-		_298 = -0.5f;
+	if (mCurrentBlurLevel < -0.5f) {
+		mCurrentBlurLevel = -0.5f;
 	}
-	_298 *= _29C;
-	mFocusLevel += _298;
+	mCurrentBlurLevel *= mDefaultMaxFocus;
+	mFocusLevel += mCurrentBlurLevel;
 	if (mFocusLevel > 1.0f) {
 		mFocusLevel = 1.0f;
 	}
@@ -1149,7 +1153,7 @@ void Camera::addFovy(f32 fov)
 	if (mCurrViewAngle > mMaxViewAngle) {
 		mCurrViewAngle = mMaxViewAngle;
 	}
-	mViewAngle += _308 * (mCurrViewAngle - mViewAngle);
+	mViewAngle += mFovChangeAccel * (mCurrViewAngle - mViewAngle);
 }
 
 } // namespace IllustratedBook

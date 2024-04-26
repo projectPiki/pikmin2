@@ -104,16 +104,16 @@ struct Camera : public CullFrustum {
 	Matrixf mCurViewMatrix;                // _034
 	f32 mNear;                             // _064 - distance to 'near' plane
 	f32 mFar;                              // _068 - distance to 'far' plane
-	bool mIsFixed;                         // _06C
+	bool mIsFixed;                         // _06C - determines which near/far values should be used
 	f32 mProjectionNear;                   // _070 - projected distance to 'near' plane when not in fixed camera
 	f32 mProjectionFar;                    // _074 - projected distance to 'far' plane when not in fixed camera
 	Vector3f mSoundPosition;               // _078
 	Matrixf mSoundMatrix;                  // _084
 	Mtx44 mProjectionMtx;                  // _0B4
-	Mtx44 _F4;                             // _0F4
-	f32 _134;                              // _134
-	f32 _138;                              // _138
-	f32 _13C;                              // _13C
+	Mtx44 mBackupMtx;                      // _0F4
+	f32 mFieldOfViewRatio;                 // _134, from 0.0 when FOV is 0, to 1.0 when FOV is 180
+	f32 mFieldOfViewTangent;               // _138, tangent from cos/sin of mFieldOfViewRatio
+	f32 mCameraSizeModifier;               // _13C, used for detecting when things are far away? Stays very close to -0.5
 	Game::P2JST::ObjectCamera* mJstObject; // _140
 };
 

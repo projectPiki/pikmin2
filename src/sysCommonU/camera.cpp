@@ -392,13 +392,13 @@ void CullFrustum::updatePlanes()
 Camera::Camera()
     : CullFrustum(0)
 {
-	mJstObject      = 0;
-	mProjectionNear = 1.0f;
-	mProjectionFar  = 128000.0f;
-	_134            = 1.0f;
-	_138            = 1.0f;
-	_13C            = 1.0f;
-	mSoundPosition  = 0;
+	mJstObject          = 0;
+	mProjectionNear     = 1.0f;
+	mProjectionFar      = 128000.0f;
+	mFieldOfViewRatio   = 1.0f;
+	mFieldOfViewTangent = 1.0f;
+	mCameraSizeModifier = 1.0f;
+	mSoundPosition      = 0;
 	PSMTXIdentity(mCurViewMatrix.mMatrix.mtxView);
 	mIsFixed = false;
 	mFar     = 0.0f;
@@ -434,9 +434,9 @@ void Camera::copyFrom(Camera* camera)
 	mProjectionNear = camera->mProjectionNear;
 	mProjectionFar  = camera->mProjectionFar;
 
-	_134 = camera->_134;
-	_138 = camera->_138;
-	_13C = camera->_13C;
+	mFieldOfViewRatio   = camera->mFieldOfViewRatio;
+	mFieldOfViewTangent = camera->mFieldOfViewTangent;
+	mCameraSizeModifier = camera->mCameraSizeModifier;
 
 	mJstObject = camera->mJstObject;
 
@@ -688,7 +688,7 @@ void Camera::setProjection()
  */
 void Camera::update()
 {
-	PSMTX44Copy(mProjectionMtx, _F4);
+	PSMTX44Copy(mProjectionMtx, mBackupMtx);
 	Matrixf* viewMatrix = getViewMatrix(0);
 	PSMTXCopy(viewMatrix->mMatrix.mtxView, mCurViewMatrix.mMatrix.mtxView);
 	// temp_r3 = this->unk140;
@@ -763,13 +763,13 @@ f32 Camera::calcProperDistance(f32 f1, f32 f2)
  */
 void Camera::updateScreenConstants()
 {
-	_134    = ((mViewAngle * 0.5f) / 180.0f) * PI;
-	f32 cos = cosf(_134);
-	f32 sin = sinf(_134);
+	mFieldOfViewRatio = ((mViewAngle * 0.5f) / 180.0f) * PI;
+	f32 cos           = cosf(mFieldOfViewRatio);
+	f32 sin           = sinf(mFieldOfViewRatio);
 
-	_138 = cos / sin;
+	mFieldOfViewTangent = cos / sin;
 
-	_13C = -(mProjectionFar - mProjectionNear) / (mProjectionFar * 2.0f * mProjectionNear);
+	mCameraSizeModifier = -(mProjectionFar - mProjectionNear) / (mProjectionFar * 2.0f * mProjectionNear);
 }
 
 /**
@@ -783,9 +783,9 @@ f32 Camera::calcScreenSize(Sys::Sphere& ball)
 	Vector3f netPos = ball.mPosition - camPos;
 	f32 dotprod
 	    = netPos.x * -matrix->mMatrix.structView.xz + netPos.y * -matrix->mMatrix.structView.yz + netPos.z * -matrix->mMatrix.structView.zz;
-	f32 scaledRad = _138 * ball.mRadius;
+	f32 scaledRad = mFieldOfViewTangent * ball.mRadius;
 
-	f32 product = _13C * scaledRad / dotprod;
+	f32 product = mCameraSizeModifier * scaledRad / dotprod;
 
 	return absF(product);
 }
@@ -815,7 +815,7 @@ void Camera::updateSoundCamera(f32 angle)
 	viewVec1.z = -(*mViewMatrix)(2, 2);
 
 	f32 distance = targetPos.distance(pos);
-	f32 ratio    = (cotan * distance) / _138;
+	f32 ratio    = (cotan * distance) / mFieldOfViewTangent;
 
 	mSoundPosition.x = -(viewVec1.x * ratio - targetPos.x);
 	mSoundPosition.y = -(viewVec1.y * ratio - targetPos.y);

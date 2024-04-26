@@ -234,7 +234,7 @@ void PlayCamera::updateMatrix()
  */
 void PlayCamera::noUpdate()
 {
-	PSMTX44Copy(mProjectionMtx, _F4);
+	PSMTX44Copy(mProjectionMtx, mBackupMtx);
 	PSMTXCopy(getViewMatrix(0)->mMatrix.mtxView, mCurViewMatrix.mMatrix.mtxView);
 	updateScreenConstants();
 	updatePlanes();
