@@ -182,7 +182,7 @@ KumaChappy::Obj* KumaKochappy::Obj::setNearestParent()
 		f32 searchAngle = C_GENERALPARMS.mSearchAngle.mValue;
 		f32 dist        = SQUARE(searchRad);
 
-		EnemyIterator<KumaChappy::Obj> iter((Container<KumaChappy::Obj>*)(GenericContainer*)(mgr), nullptr, nullptr);
+		EnemyIterator<KumaChappy::Obj> iter(mgr, nullptr, nullptr);
 		CI_LOOP(iter)
 		{
 			EnemyBase* currEnemy      = *iter;

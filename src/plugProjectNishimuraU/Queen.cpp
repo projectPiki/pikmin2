@@ -430,7 +430,7 @@ int Obj::getBabyChappyCount()
 	int count          = 0;
 	Baby::Mgr* babyMgr = static_cast<Baby::Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_Baby));
 	if (babyMgr) {
-		EnemyIterator<Baby::Obj> iter((Container<Baby::Obj>*)(GenericContainer*)babyMgr);
+		EnemyIterator<Baby::Obj> iter(babyMgr);
 		CI_LOOP(iter)
 		{
 			Baby::Obj* baby = *iter;

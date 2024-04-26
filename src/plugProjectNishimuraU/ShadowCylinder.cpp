@@ -79,8 +79,6 @@ void CylinderList::createCylinder(int cylinderType, f32 radius)
 	case 2:
 		vertexIndex = 120;
 		break;
-	default:
-		break;
 	}
 
 	f32 angleStep = TAU / mTriangleCount;
@@ -652,7 +650,7 @@ void CylinderBase::setupFilterGX()
  */
 void CylinderBase::setOrthoProjection()
 {
-	Mtx mtx;
+	Mtx44 mtx;
 	C_MTXOrtho(mtx, mScreenBounds.p1.y, mScreenBounds.p2.y, mScreenBounds.p1.x, mScreenBounds.p2.x, 0.0f, 2.0f);
 	GXSetProjection(mtx, GX_ORTHOGRAPHIC);
 }
@@ -1042,129 +1040,6 @@ void ShadowCylinder2::drawFinish()
 	copyShadowTexture();
 	setupTextureFilterGX();
 	drawTextureFilter();
-	/*
-	stwu     r1, -0xe0(r1)
-	mflr     r0
-	stw      r0, 0xe4(r1)
-	stfd     f31, 0xd0(r1)
-	psq_st   f31, 216(r1), 0, qr0
-	stfd     f30, 0xc0(r1)
-	psq_st   f30, 200(r1), 0, qr0
-	stw      r31, 0xbc(r1)
-	stw      r30, 0xb8(r1)
-	stw      r29, 0xb4(r1)
-	stw      r28, 0xb0(r1)
-	mr       r31, r3
-	lis      r3, lbl_80483F58@ha
-	lfs      f1, 0x14(r31)
-	addi     r30, r3, lbl_80483F58@l
-	lfs      f2, 0x1c(r31)
-	addi     r3, r1, 0x64
-	lfs      f3, 0x10(r31)
-	lfs      f4, 0x18(r31)
-	lfs      f5, lbl_8051A620@sda21(r2)
-	lfs      f6, lbl_8051A650@sda21(r2)
-	bl       C_MTXOrtho
-	addi     r3, r1, 0x64
-	li       r4, 1
-	bl       GXSetProjection
-	lwz      r29, 0x40(r30)
-	addi     r3, r1, 0x34
-	lwz      r28, 0x44(r30)
-	addi     r4, r1, 0x28
-	lwz      r12, 0x48(r30)
-	addi     r5, r1, 0x10
-	lwz      r11, 0x4c(r30)
-	addi     r6, r1, 0x1c
-	lwz      r10, 0x50(r30)
-	lwz      r9, 0x54(r30)
-	lwz      r8, 0x58(r30)
-	lwz      r7, 0x5c(r30)
-	lwz      r0, 0x60(r30)
-	stw      r29, 0x10(r1)
-	stw      r28, 0x14(r1)
-	stw      r12, 0x18(r1)
-	stw      r11, 0x1c(r1)
-	stw      r10, 0x20(r1)
-	stw      r9, 0x24(r1)
-	stw      r8, 0x28(r1)
-	stw      r7, 0x2c(r1)
-	stw      r0, 0x30(r1)
-	bl       C_MTXLookAt
-	addi     r3, r1, 0x34
-	li       r4, 0
-	bl       GXLoadPosMtxImm
-	lfs      f31, 0x14(r31)
-	lfs      f0, 0x1c(r31)
-	lfs      f30, 0x10(r31)
-	fsubs    f1, f0, f31
-	bl       __cvt_fp2unsigned
-	lfs      f0, 0x18(r31)
-	mr       r28, r3
-	fsubs    f1, f0, f30
-	bl       __cvt_fp2unsigned
-	fmr      f1, f31
-	mr       r29, r3
-	bl       __cvt_fp2unsigned
-	fmr      f1, f30
-	mr       r30, r3
-	bl       __cvt_fp2unsigned
-	mr       r4, r30
-	mr       r5, r29
-	mr       r6, r28
-	bl       GXSetScissor
-	lfs      f2, 0x14(r31)
-	lfs      f0, 0x1c(r31)
-	lfs      f1, 0x10(r31)
-	lfs      f3, 0x18(r31)
-	fsubs    f4, f0, f2
-	lfs      f5, lbl_8051A620@sda21(r2)
-	fsubs    f3, f3, f1
-	lfs      f6, lbl_8051A640@sda21(r2)
-	bl       GXSetViewport
-	li       r3, 1
-	bl       GXSetColorUpdate
-	li       r3, 1
-	bl       GXSetAlphaUpdate
-	lwz      r8, 8(r31)
-	addi     r4, r1, 0xc
-	li       r3, 4
-	lbz      r7, 0(r8)
-	lbz      r6, 1(r8)
-	lbz      r5, 2(r8)
-	lbz      r0, 3(r8)
-	stb      r7, 8(r1)
-	stb      r6, 9(r1)
-	stb      r5, 0xa(r1)
-	stb      r0, 0xb(r1)
-	lwz      r0, 8(r1)
-	stw      r0, 0xc(r1)
-	bl       GXSetChanMatColor
-	li       r3, 2
-	bl       GXSetCullMode
-	li       r3, 0
-	li       r4, 0
-	li       r5, 0
-	bl       GXSetZMode
-	mr       r3, r31
-	bl       copyShadowTexture__Q24Game15ShadowCylinder2Fv
-	mr       r3, r31
-	bl       setupTextureFilterGX__Q24Game15ShadowCylinder2Fv
-	mr       r3, r31
-	bl       drawTextureFilter__Q24Game15ShadowCylinder2Fv
-	psq_l    f31, 216(r1), 0, qr0
-	lfd      f31, 0xd0(r1)
-	psq_l    f30, 200(r1), 0, qr0
-	lfd      f30, 0xc0(r1)
-	lwz      r31, 0xbc(r1)
-	lwz      r30, 0xb8(r1)
-	lwz      r29, 0xb4(r1)
-	lwz      r0, 0xe4(r1)
-	lwz      r28, 0xb0(r1)
-	mtlr     r0
-	addi     r1, r1, 0xe0
-	blr
-	*/
 }
 
 /**
@@ -1534,125 +1409,6 @@ void ShadowCylinder3::drawFinish()
 	GXSetCullMode(GX_CULL_BACK);
 	GXSetZMode(GX_FALSE, GX_NEVER, GX_FALSE);
 	drawScreenFilter();
-	/*
-	stwu     r1, -0xe0(r1)
-	mflr     r0
-	stw      r0, 0xe4(r1)
-	stfd     f31, 0xd0(r1)
-	psq_st   f31, 216(r1), 0, qr0
-	stfd     f30, 0xc0(r1)
-	psq_st   f30, 200(r1), 0, qr0
-	stw      r31, 0xbc(r1)
-	stw      r30, 0xb8(r1)
-	stw      r29, 0xb4(r1)
-	stw      r28, 0xb0(r1)
-	mr       r31, r3
-	lis      r3, lbl_80483F58@ha
-	lfs      f1, 0x14(r31)
-	addi     r30, r3, lbl_80483F58@l
-	lfs      f2, 0x1c(r31)
-	addi     r3, r1, 0x64
-	lfs      f3, 0x10(r31)
-	lfs      f4, 0x18(r31)
-	lfs      f5, lbl_8051A620@sda21(r2)
-	lfs      f6, lbl_8051A650@sda21(r2)
-	bl       C_MTXOrtho
-	addi     r3, r1, 0x64
-	li       r4, 1
-	bl       GXSetProjection
-	lwz      r29, 0x40(r30)
-	addi     r3, r1, 0x34
-	lwz      r28, 0x44(r30)
-	addi     r4, r1, 0x28
-	lwz      r12, 0x48(r30)
-	addi     r5, r1, 0x10
-	lwz      r11, 0x4c(r30)
-	addi     r6, r1, 0x1c
-	lwz      r10, 0x50(r30)
-	lwz      r9, 0x54(r30)
-	lwz      r8, 0x58(r30)
-	lwz      r7, 0x5c(r30)
-	lwz      r0, 0x60(r30)
-	stw      r29, 0x10(r1)
-	stw      r28, 0x14(r1)
-	stw      r12, 0x18(r1)
-	stw      r11, 0x1c(r1)
-	stw      r10, 0x20(r1)
-	stw      r9, 0x24(r1)
-	stw      r8, 0x28(r1)
-	stw      r7, 0x2c(r1)
-	stw      r0, 0x30(r1)
-	bl       C_MTXLookAt
-	addi     r3, r1, 0x34
-	li       r4, 0
-	bl       GXLoadPosMtxImm
-	lfs      f31, 0x14(r31)
-	lfs      f0, 0x1c(r31)
-	lfs      f30, 0x10(r31)
-	fsubs    f1, f0, f31
-	bl       __cvt_fp2unsigned
-	lfs      f0, 0x18(r31)
-	mr       r28, r3
-	fsubs    f1, f0, f30
-	bl       __cvt_fp2unsigned
-	fmr      f1, f31
-	mr       r29, r3
-	bl       __cvt_fp2unsigned
-	fmr      f1, f30
-	mr       r30, r3
-	bl       __cvt_fp2unsigned
-	mr       r4, r30
-	mr       r5, r29
-	mr       r6, r28
-	bl       GXSetScissor
-	lfs      f2, 0x14(r31)
-	lfs      f0, 0x1c(r31)
-	lfs      f1, 0x10(r31)
-	lfs      f3, 0x18(r31)
-	fsubs    f4, f0, f2
-	lfs      f5, lbl_8051A620@sda21(r2)
-	fsubs    f3, f3, f1
-	lfs      f6, lbl_8051A640@sda21(r2)
-	bl       GXSetViewport
-	li       r3, 1
-	bl       GXSetColorUpdate
-	li       r3, 1
-	bl       GXSetAlphaUpdate
-	lwz      r8, 8(r31)
-	addi     r4, r1, 0xc
-	li       r3, 4
-	lbz      r7, 0(r8)
-	lbz      r6, 1(r8)
-	lbz      r5, 2(r8)
-	lbz      r0, 3(r8)
-	stb      r7, 8(r1)
-	stb      r6, 9(r1)
-	stb      r5, 0xa(r1)
-	stb      r0, 0xb(r1)
-	lwz      r0, 8(r1)
-	stw      r0, 0xc(r1)
-	bl       GXSetChanMatColor
-	li       r3, 2
-	bl       GXSetCullMode
-	li       r3, 0
-	li       r4, 0
-	li       r5, 0
-	bl       GXSetZMode
-	mr       r3, r31
-	bl       drawScreenFilter__Q24Game15ShadowCylinder3Fv
-	psq_l    f31, 216(r1), 0, qr0
-	lfd      f31, 0xd0(r1)
-	psq_l    f30, 200(r1), 0, qr0
-	lfd      f30, 0xc0(r1)
-	lwz      r31, 0xbc(r1)
-	lwz      r30, 0xb8(r1)
-	lwz      r29, 0xb4(r1)
-	lwz      r0, 0xe4(r1)
-	lwz      r28, 0xb0(r1)
-	mtlr     r0
-	addi     r1, r1, 0xe0
-	blr
-	*/
 }
 
 /**
