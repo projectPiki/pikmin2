@@ -57,7 +57,7 @@ void StateDead::exec(EnemyBase* enemy)
 			damagumo->throwupItem();
 			damagumo->createItemAndEnemy();
 		} else if ((u32)damagumo->mCurAnim->mType == KEYEVENT_3) {
-			damagumo->_2DC = 1;
+			damagumo->mDoPlayDeadMatAnim = true;
 		} else if ((u32)damagumo->mCurAnim->mType == KEYEVENT_END) {
 			damagumo->kill(nullptr);
 		}

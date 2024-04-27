@@ -34,12 +34,12 @@ void Obj::onInit(CreatureInitArg* initArg)
 	disableEvent(0, EB_LeaveCarcass);
 	enableEvent(0, EB_Untargetable);
 	disableEvent(0, EB_DeathEffectEnabled);
-	mNextState  = KURAGE_NULL;
-	mStateTimer = 0.0f;
-	mFallTimer  = 0.0f;
-	_2C8        = 3.5f;
-	mSuckedPiki = 0;
-	mIsSucking  = false;
+	mNextState      = KURAGE_NULL;
+	mStateTimer     = 0.0f;
+	mFallTimer      = 0.0f;
+	mMovePitchTimer = 3.5f;
+	mSuckedPiki     = 0;
+	mIsSucking      = false;
 
 	setupEffect();
 	startEyeHireBodyEffect();
@@ -241,13 +241,13 @@ void Obj::setRandTarget()
  */
 f32 Obj::getMovePitchOffset()
 {
-	_2C8 += sys->mDeltaTime * PI;
+	mMovePitchTimer += sys->mDeltaTime * PI;
 
-	if (_2C8 > TAU) {
-		_2C8 -= TAU;
+	if (mMovePitchTimer > TAU) {
+		mMovePitchTimer -= TAU;
 	}
 
-	return 50.0f * sinf(_2C8);
+	return 50.0f * sinf(mMovePitchTimer);
 }
 
 /**
@@ -519,12 +519,12 @@ bool Obj::suckPikmin(f32 offset)
  */
 void Obj::createEffect()
 {
-	mEfxEyeL    = new efx::TNewkurageEye();
-	mEfxEyeR    = new efx::TNewkurageEye();
-	mEfxHire    = new efx::TNewkurageHire();
+	mEfxEyeL    = new efx::TNewkurageEye;
+	mEfxEyeR    = new efx::TNewkurageEye;
+	mEfxHire    = new efx::TNewkurageHire;
 	mEfxKira    = new efx::TNewkurageKira(&mPosition);
-	mEfxSui     = new efx::TNewkurageSui();
-	mEfxDeadrun = new efx::TNewkurageDeadrun();
+	mEfxSui     = new efx::TNewkurageSui;
+	mEfxDeadrun = new efx::TNewkurageDeadrun;
 }
 
 /**

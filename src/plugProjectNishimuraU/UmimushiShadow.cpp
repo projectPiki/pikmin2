@@ -173,7 +173,7 @@ void UmimushiSphereShadowNode::makeShadowSRT(JointShadowParm& parm, Matrixf* mat
 	}
 
 	Vector3f pos = vec;
-	pos.y += parm._24;
+	pos.y += parm.mPositionMultiplier;
 
 	Vector3f yVec(0.0f, (vec.y - parm.mPosition.y) + 25.0f, 0.0f);
 
@@ -284,17 +284,17 @@ void UmimushiShadowMgr::update()
 
 	vec1 = mWeakMatrix1->getColumn(3);
 
-	parm._18          = -12.5f;
-	parm._1C          = 0.0f;
-	parm.mShadowScale = 1.5f;
-	parm._24          = 0.0f;
+	parm._18                 = -12.5f;
+	parm._1C                 = 0.0f;
+	parm.mShadowScale        = 1.5f;
+	parm.mPositionMultiplier = 0.0f;
 
 	mTubeShadow->makeShadowSRT(parm, mWeakMatrix2, vec1, vec2);
 
-	parm._18          = 0.0f;
-	parm._1C          = 0.0f;
-	parm.mShadowScale = 15.0f;
-	parm._24          = -12.5f;
+	parm._18                 = 0.0f;
+	parm._1C                 = 0.0f;
+	parm.mShadowScale        = 15.0f;
+	parm.mPositionMultiplier = -12.5f;
 
 	mSphereShadow->makeShadowSRT(parm, mWeakMatrix2, vec2, mObj->isAlive());
 

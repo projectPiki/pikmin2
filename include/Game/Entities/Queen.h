@@ -114,7 +114,7 @@ struct Obj : public EnemyBase {
 	bool mIsAttackLoopBGM;                  // _2C5, is the attack loop BGM playing
 	f32 mWaitTimer;                         // _2C8
 	f32 mBirthTimer;                        // _2CC
-	f32 _2D0;                               // _2D0, related to hit counter?
+	f32 mPrevHitNum;                        // _2D0, related to how many times a pikmin attacked it
 	StateID mNextState;                     // _2D4
 	QueenShadowMgr* mShadowMgr;             // _2D8
 	Sys::MatLoopAnimator* mMatLoopAnimator; // _2DC

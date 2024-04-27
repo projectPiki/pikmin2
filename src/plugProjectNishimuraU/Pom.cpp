@@ -61,7 +61,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mSwingTimer      = 0.0f;
 	mQueenColorTimer = 0.0f;
 
-	mFsm->start(this, 0, nullptr);
+	mFsm->start(this, POM_Wait, nullptr);
 }
 
 /**

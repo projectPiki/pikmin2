@@ -27,7 +27,7 @@ struct IPikiAnims {
 		DEAD       = 5,
 		DEAD2      = 6,
 		DEAD3      = 7,
-		ESA        = 8, // feed
+		ESA        = 8, // eaten
 		FALL       = 9,
 		FUE        = 10, // whistle
 		FURIMUKU   = 11, // look over shoulder
@@ -82,7 +82,7 @@ struct IPikiAnims {
 		KOROBU2    = 60, // falldown2
 		GASDEAD    = 61,
 		GDEAD      = 62,
-		SUWARERU   = 63,
+		SUWARERU   = 63, // stabbed
 		PUNCH      = 64,
 		PUNCH2     = 65,
 		PUNCH3     = 66,

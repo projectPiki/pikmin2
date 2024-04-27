@@ -76,61 +76,61 @@ void Obj::doAnimationStick()
 		sep.normalise();
 		sep *= C_PROPERPARMS.mRotationCorrection.mValue;
 
-		_2E4 += sep;
+		mClimbRotation += sep;
 
-		crossVec = cross(_2E4, _2D8);
-		_2D8     = cross(crossVec, _2E4);
+		crossVec        = cross(mClimbRotation, mClimbDirection);
+		mClimbDirection = cross(crossVec, mClimbRotation);
 	} else {
-		Vector3f sep = mClimbAxis - _2D8;
+		Vector3f sep = mClimbAxis - mClimbDirection;
 		sep *= C_PROPERPARMS.mRotationCorrection.mValue;
 
-		_2D8 += sep;
+		mClimbDirection += sep;
 
-		crossVec = cross(_2D8, _2E4);
-		_2E4     = cross(crossVec, _2D8);
+		crossVec       = cross(mClimbDirection, mClimbRotation);
+		mClimbRotation = cross(crossVec, mClimbDirection);
 	}
 
-	_2D8.normalise();
+	mClimbDirection.normalise();
 	crossVec.normalise();
-	_2E4.normalise();
+	mClimbRotation.normalise();
 
 	mBaseTrMatrix.setColumn(0, crossVec);
-	mBaseTrMatrix.setColumn(1, _2E4);
-	mBaseTrMatrix.setColumn(2, _2D8);
+	mBaseTrMatrix.setColumn(1, mClimbRotation);
+	mBaseTrMatrix.setColumn(2, mClimbDirection);
 
-	if (_2C1) {
+	if (mStickDiffEnabled) {
 		Vector3f pos = mPosition;
-		if (_2C2) {
+		if (mIsStickDiffRunning) {
 			bool check = false;
 
-			f32 xDiff = pos.x - _300;
-			f32 zDiff = pos.z - _304;
+			f32 xDiff = pos.x - mClimbingXPos;
+			f32 zDiff = pos.z - mClimbingZPos;
 
 			f32 absX = absVal(xDiff);
 			f32 absZ = absVal(zDiff);
 
 			if (absX > C_PROPERPARMS.mTranslationCorrection()) {
 				check = true;
-				pos.x = (xDiff / absX) * C_PROPERPARMS.mTranslationCorrection() + _300;
+				pos.x = (xDiff / absX) * C_PROPERPARMS.mTranslationCorrection() + mClimbingXPos;
 			}
 
 			if (absZ > C_PROPERPARMS.mTranslationCorrection()) {
 				check = true;
-				pos.z = (zDiff / absZ) * C_PROPERPARMS.mTranslationCorrection() + _304;
+				pos.z = (zDiff / absZ) * C_PROPERPARMS.mTranslationCorrection() + mClimbingZPos;
 			}
-			_2C1 = check;
+			mStickDiffEnabled = check;
 
-			_300 = pos.x;
-			_304 = pos.z;
+			mClimbingXPos = pos.x;
+			mClimbingZPos = pos.z;
 		}
 
-		_2C2 = true;
+		mIsStickDiffRunning = true;
 		mBaseTrMatrix.newTranslation(pos);
 	} else {
 		mBaseTrMatrix.newTranslation(mPosition);
 	}
 
-	mFaceDir    = JMAAtan2Radian(_2D8.x, _2D8.z);
+	mFaceDir    = JMAAtan2Radian(mClimbDirection.x, mClimbDirection.z);
 	mRotation.y = mFaceDir;
 	/*
 	stwu     r1, -0x40(r1)
@@ -681,20 +681,20 @@ void Obj::resetZukanStateTimer()
  */
 void Obj::resetStickDiff()
 {
-	_2C2 = false;
-	_2C1 = false;
+	mIsStickDiffRunning = false;
+	mStickDiffEnabled   = false;
 }
 
 /**
  * @note Address: 0x802BCD90
  * @note Size: 0x1C
  */
-void Obj::setStickDiff(f32 p1, f32 p2)
+void Obj::setStickDiff(f32 x, f32 z)
 {
-	_2C1 = true;
-	_2C2 = false;
-	_300 = p1;
-	_304 = p2;
+	mStickDiffEnabled   = true;
+	mIsStickDiffRunning = false;
+	mClimbingXPos       = x;
+	mClimbingZPos       = z;
 }
 
 /**
@@ -744,8 +744,8 @@ void Obj::startClimbPlant(CollPart* part)
 	part->getTube(tube);
 	tube.getAxisVector(mClimbAxis);
 
-	f32 len = tube.mStartPos.distance(tube.mEndPos);
-	_2FC    = 1.0f / len;
+	f32 len              = tube.mStartPos.distance(tube.mEndPos);
+	mClimbStartMoveRatio = 1.0f / len;
 }
 
 /**
@@ -768,7 +768,7 @@ void Obj::moveStickSphere()
 	Creature* sticker = mSticker;
 	CollPart* part    = mStuckCollPart;
 	endStick();
-	Vector3f vel = _2D8;
+	Vector3f vel = mClimbDirection;
 	vel *= C_PROPERPARMS.mSeedCirculationSpeed();
 	mTargetVelocity = vel;
 

@@ -91,14 +91,14 @@ struct Obj : public EnemyBase {
 	FSM* mFsm;                          // _2BC
 	SysShape::Joint* mJoint;            // _2C0
 	WalkSmokeEffect::Mgr mWalkSmokeMgr; // _2C4
-	Vector3f _2CC;                      // _2CC
-	Vector3f _2D8;                      // _2D8
-	f32 _2E4;                           // _2E4
-	f32 _2E8;                           // _2E8
+	Vector3f mAttackStartPos;           // _2CC
+	Vector3f mAttackDirection;          // _2D8
+	f32 mAttackTimer;                   // _2E4
+	f32 mAttackMaxGrowth;               // _2E8
 	f32 mCautionTimer;                  // _2EC
-	f32 _2F0;                           // _2F0
-	f32 _2F4;                           // _2F4
-	Vector3f _2F8;                      // _2F8
+	f32 mWalkTimer;                     // _2F0
+	f32 mTurnGoalDir;                   // _2F4
+	Vector3f mGoalPosition;             // _2F8
 	bool mIsBlowing;                    // _304, is blowing fire/water
 	                                    // _308 = PelletView
 };

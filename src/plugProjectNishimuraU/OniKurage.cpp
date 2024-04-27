@@ -44,12 +44,12 @@ void Obj::onInit(CreatureInitArg* initArg)
 	disableEvent(0, EB_LeaveCarcass);
 	enableEvent(0, EB_Untargetable);
 	disableEvent(0, EB_DeathEffectEnabled);
-	mNextState  = ONIKURAGE_NULL;
-	mStateTimer = 0.0f;
-	mFallTimer  = 0.0f;
-	_2C8        = 3.5f;
-	mSuckedPiki = 0;
-	mIsSucking  = false;
+	mNextState      = ONIKURAGE_NULL;
+	mStateTimer     = 0.0f;
+	mFallTimer      = 0.0f;
+	mMovePitchTimer = 3.5f;
+	mSuckedPiki     = 0;
+	mIsSucking      = false;
 
 	mSuckedNavis[1] = nullptr;
 	mSuckedNavis[0] = nullptr;
@@ -287,13 +287,13 @@ void Obj::setRandTarget()
  */
 f32 Obj::getMovePitchOffset()
 {
-	_2C8 += sys->mDeltaTime * PI;
+	mMovePitchTimer += sys->mDeltaTime * PI;
 
-	if (_2C8 > TAU) {
-		_2C8 -= TAU;
+	if (mMovePitchTimer > TAU) {
+		mMovePitchTimer -= TAU;
 	}
 
-	return 20.0f * sinf(_2C8);
+	return 20.0f * sinf(mMovePitchTimer);
 }
 
 /**

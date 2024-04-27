@@ -36,7 +36,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 
 	enableEvent(0, EB_Untargetable);
 
-	_2C0 = 0.0f;
+	mGeneralTimer = 0.0f;
 	resetAttackableTimer(12800.0f);
 
 	mFsm->start(this, SARAI_Move, nullptr);

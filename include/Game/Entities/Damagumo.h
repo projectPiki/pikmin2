@@ -123,7 +123,7 @@ struct Obj : public EnemyBase {
 	int mNextState;                            // _2C8
 	Vector3f mTargetPosition;                  // _2CC
 	f32 mShadowScale;                          // _2D8
-	u8 _2DC;                                   // _2DC
+	u8 mDoPlayDeadMatAnim;                     // _2DC
 	bool mIsSmoking;                           // _2DD
 	IKSystemMgr* mIkSystemMgr;                 // _2E0
 	IKSystemParms* mIkSystemParms;             // _2E4

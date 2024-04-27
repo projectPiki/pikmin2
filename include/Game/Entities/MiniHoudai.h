@@ -118,7 +118,7 @@ struct Obj : public EnemyBase {
 	FSM* mFsm;                           // _2BC
 	WalkSmokeEffect::Mgr mWalkSmokeMgr;  // _2C0
 	f32 mHealthGaugeTimer;               // _2C8
-	f32 _2CC;                            // _2CC
+	f32 mAttackWaitTimer;                // _2CC
 	f32 mUpdateTimer;                    // _2D0
 	StateID mNextState;                  // _2D4
 	Vector3f mTargetPosition;            // _2D8
@@ -126,7 +126,7 @@ struct Obj : public EnemyBase {
 	WayPoint* mNearestWaypoint;          // _2F0
 	WayPoint* mOldNearestWaypoint;       // _2F4
 	MiniHoudaiShotGunMgr* mShotgunMgr;   // _2F8
-	u8 _2FC[0x4];                        // _2FC, unknown
+	u8 _2FC[0x4];                        // _2FC, entirely unused?
 	efx::TChibiCharge* mEfxCharge;       // _300
 	efx::TChibiDeadLight* mEfxDeadLight; // _304
 };

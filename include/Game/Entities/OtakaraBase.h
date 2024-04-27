@@ -112,19 +112,19 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* mFsm;              // _2BC
-	StateID mNextState;     // _2C0
-	f32 _2C4;               // _2C4, timer?
-	f32 _2C8;               // _2C8
-	f32 mEscapeSfxTimer;    // _2CC
-	u8 _2D0;                // _2D0
-	Vector3f mMovePosition; // _2D4
-	Creature* mTreasure;    // _2E0
-	f32 mTreasureHealth;    // _2E4
-	f32 _2E8;               // _2E8, timer?
-	f32 mBodyHeightOffset;  // _2EC
-	f32 mCellRadius;        // _2F0
-	                        // _2F4 = PelletView
+	FSM* mFsm;                 // _2BC
+	StateID mNextState;        // _2C0
+	f32 mAttackWaitTimer;      // _2C4
+	f32 mAttackActiveTimer;    // _2C8
+	f32 mEscapeSfxTimer;       // _2CC
+	u8 mIsAttackCharging;      // _2D0
+	Vector3f mMovePosition;    // _2D4
+	Creature* mTreasure;       // _2E0
+	f32 mTreasureHealth;       // _2E4
+	f32 mItemSearchDelayTimer; // _2E8
+	f32 mBodyHeightOffset;     // _2EC
+	f32 mCellRadius;           // _2F0
+	                           // _2F4 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {

@@ -230,7 +230,7 @@ void Obj::attackPikmin()
 					f32 dist = slotPos.distance(pikiPos);
 					if (dist < slot->mRadius) {
 						InteractSwallow swallow(this, 1.0f, slot);
-						swallow._10 = 1;
+						swallow.mIsStabbed = TRUE;
 						if (piki->stimulate(swallow)) {
 							efx::Arg fxArg(pikiPos);
 							efx::TYoroiAttackhit attackFX;

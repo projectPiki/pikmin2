@@ -23,7 +23,7 @@ struct Obj;
 typedef enum EVersusHibaType { VHT_Neutral = 0, VHT_Red = 1, VHT_Blue = 2 } EVersusHibaType;
 
 struct InitialParam : public EnemyInitialParamBase {
-	f32 _00; // _00
+	f32 mSeperation; // _00
 };
 
 struct TeamList : public CNode {

@@ -82,7 +82,7 @@ void StateDead::cleanup(EnemyBase* enemy) { }
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* mar             = OBJ(enemy);
-	mar->_2C0            = 0.0f;
+	mar->mGeneralTimer   = 0.0f;
 	mar->mTargetVelocity = Vector3f(0.0f);
 	mar->mTargetCreature = nullptr;
 	mar->enableEvent(0, EB_Untargetable);
@@ -107,7 +107,7 @@ void StateWait::exec(EnemyBase* enemy)
 		mar->mTargetCreature = target;
 		transit(mar, MAR_Chase, nullptr);
 
-	} else if (mar->_2C0 > CG_PROPERPARMS(mar).mAirWaitTime.mValue) {
+	} else if (mar->mGeneralTimer > CG_PROPERPARMS(mar).mAirWaitTime.mValue) {
 		transit(mar, MAR_Move, nullptr);
 	}
 
@@ -118,7 +118,7 @@ void StateWait::exec(EnemyBase* enemy)
 		return;
 	}
 
-	mar->_2C0 += sys->mDeltaTime;
+	mar->mGeneralTimer += sys->mDeltaTime;
 
 	if (mar->mCurAnim->mIsPlaying && mar->mCurAnim->mType == KEYEVENT_END) {
 		transit(mar, MAR_Wait, nullptr);
@@ -139,7 +139,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* mar = OBJ(enemy);
 	mar->setRandTarget();
-	mar->_2C0            = 0.0f;
+	mar->mGeneralTimer   = 0.0f;
 	mar->mTargetCreature = nullptr;
 	mar->enableEvent(0, EB_Untargetable);
 }
@@ -162,7 +162,7 @@ void StateMove::exec(EnemyBase* enemy)
 	if (target) {
 		mar->mTargetCreature = target;
 		transit(mar, MAR_Chase, nullptr);
-	} else if (sqrDist < 10000.0f || mar->_2C0 > 7.5f) {
+	} else if (sqrDist < 10000.0f || mar->mGeneralTimer > 7.5f) {
 		mar->mTargetVelocity = Vector3f(0.0f);
 		mar->finishMotion();
 	} else {
@@ -170,7 +170,7 @@ void StateMove::exec(EnemyBase* enemy)
 		                        CG_GENERALPARMS(mar).mMaxTurnAngle.mValue);
 	}
 
-	mar->_2C0 += sys->mDeltaTime;
+	mar->mGeneralTimer += sys->mDeltaTime;
 
 	StateID nextState = mar->getFlyingNextState();
 
@@ -845,8 +845,8 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	mar->mTargetVelocity = Vector3f(0.0f);
 	mar->setEmotionExcitement();
 	mar->startMotion(MARANIM_Attack, nullptr);
-	mar->_308 = 0;
-	mar->_304 = 0.0f;
+	mar->mIsWindAttackActive = false;
+	mar->mWindScaleTimer     = 0.0f;
 	mar->createSuckEffect();
 }
 
@@ -858,7 +858,7 @@ void StateAttack::exec(EnemyBase* enemy)
 {
 	Obj* mar = OBJ(enemy);
 	mar->setHeightVelocity();
-	if (mar->_308) {
+	if (mar->mIsWindAttackActive) {
 		mar->windTarget();
 	}
 
@@ -869,7 +869,7 @@ void StateAttack::exec(EnemyBase* enemy)
 
 	if (mar->mCurAnim->mIsPlaying) {
 		if (mar->mCurAnim->mType == KEYEVENT_2) {
-			mar->_308 = 1;
+			mar->mIsWindAttackActive = true;
 			mar->startWindEffect();
 		} else if (mar->mCurAnim->mType == KEYEVENT_END) {
 			transit(mar, MAR_Wait, nullptr);
@@ -886,8 +886,8 @@ void StateAttack::cleanup(EnemyBase* enemy)
 	Obj* mar = OBJ(enemy);
 	mar->enableEvent(0, EB_Cullable);
 	mar->setEmotionCaution();
-	mar->_308 = 0;
-	mar->_304 = 0.0f;
+	mar->mIsWindAttackActive = false;
+	mar->mWindScaleTimer     = 0.0f;
 	mar->finishWindEffect();
 }
 
@@ -898,7 +898,7 @@ void StateAttack::cleanup(EnemyBase* enemy)
 void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* mar             = OBJ(enemy);
-	mar->_2C0            = 0.0f;
+	mar->mGeneralTimer   = 0.0f;
 	mar->mTargetCreature = nullptr;
 	mar->enableEvent(0, EB_Untargetable);
 	mar->mTargetVelocity = Vector3f(0.0f);
@@ -929,11 +929,11 @@ void StateFall::exec(EnemyBase* enemy)
 		mar->addShadowOffset();
 	}
 
-	if (mar->_2C0 > 0.75f) {
+	if (mar->mGeneralTimer > 0.75f) {
 		mar->disableEvent(0, EB_Untargetable);
 	}
 
-	mar->_2C0 += sys->mDeltaTime;
+	mar->mGeneralTimer += sys->mDeltaTime;
 
 	if (mar->mHealth <= 0.0f) {
 		transit(mar, MAR_Dead, nullptr);
@@ -963,7 +963,7 @@ void StateFall::cleanup(EnemyBase* enemy)
 void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* mar             = OBJ(enemy);
-	mar->_2C0            = 0.0f;
+	mar->mGeneralTimer   = 0.0f;
 	mar->mTargetCreature = nullptr;
 	mar->disableEvent(0, EB_Untargetable);
 	mar->mTargetVelocity = Vector3f(0.0f);
@@ -1001,7 +1001,7 @@ void StateLand::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 void StateGround::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* mar             = OBJ(enemy);
-	mar->_2C0            = 0.0f;
+	mar->mGeneralTimer   = 0.0f;
 	mar->mTargetCreature = nullptr;
 	mar->disableEvent(0, EB_Untargetable);
 	mar->mTargetVelocity = Vector3f(0.0f);
@@ -1016,11 +1016,11 @@ void StateGround::init(EnemyBase* enemy, StateArg* stateArg)
 void StateGround::exec(EnemyBase* enemy)
 {
 	Obj* mar = OBJ(enemy);
-	if (mar->mStuckPikminCount == 0 || mar->_2C0 > CG_PROPERPARMS(mar).mGroundWaitTime.mValue) {
+	if (mar->mStuckPikminCount == 0 || mar->mGeneralTimer > CG_PROPERPARMS(mar).mGroundWaitTime.mValue) {
 		mar->finishMotion();
 	}
 
-	mar->_2C0 += sys->mDeltaTime;
+	mar->mGeneralTimer += sys->mDeltaTime;
 
 	if (mar->mHealth <= 0.0f) {
 		transit(mar, MAR_Dead, nullptr);

@@ -75,10 +75,10 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mStateDuration = 0.0f;
 	mNextState     = DAMAGUMO_NULL;
 
-	mTargetPosition = mHomePosition;
-	mShadowScale    = 0.0f;
-	_2DC            = 0;
-	mIsSmoking      = false;
+	mTargetPosition    = mHomePosition;
+	mShadowScale       = 0.0f;
+	mDoPlayDeadMatAnim = false;
+	mIsSmoking         = false;
 
 	setupIKSystem();
 	setupShadowSystem();
@@ -500,7 +500,7 @@ void Obj::startMaterialAnimation()
  */
 void Obj::updateMaterialAnimation()
 {
-	if (_2DC) {
+	if (mDoPlayDeadMatAnim) {
 		f32 maxFrame;
 		f32 currFrame = mMatLoopAnimator[1].mCurrFrame;
 		if (mMatLoopAnimator[1].mAnimation) {

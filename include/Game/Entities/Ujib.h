@@ -86,14 +86,14 @@ struct Obj : public EnemyBase {
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* mFsm;                 // _2BC
-	u8 _2C0;                   // _2C0
+	u8 mCanSearchBridge;       // _2C0
 	bool mIsUnderground;       // _2C1
 	u16 mAppearCheck;          // _2C2
 	StateID mNextState;        // _2C4
 	MouthSlots mMouthSlots;    // _2C8
 	ItemBridge::Item* mBridge; // _2D0
-	f32 _2CC;                  // _2D4
-	f32 _2D0;                  // _2D8
+	f32 mBridgeGoalRandOffsX;  // _2D4
+	f32 mBridgeTargetMaxWidth; // _2D8
 	                           // _2DC = PelletView
 };
 

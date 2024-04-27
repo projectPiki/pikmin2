@@ -59,7 +59,7 @@ struct Obj : public EnemyBase {
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* mFsm;              // _2BC
-	f32 _2C0;               // _2C0
+	f32 mGeneralTimer;      // _2C0
 	MouthSlots mMouthSlots; // _2C4
 	Vector3f mTargetPos;    // _2CC
 	                        // _2D8 = PelletView

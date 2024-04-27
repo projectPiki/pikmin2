@@ -68,15 +68,15 @@ void StateDead::cleanup(EnemyBase*) { }
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* ota             = OBJ(enemy);
-	ota->mNextState      = OTA_Null;
-	ota->_2C4            = 0.0f;
-	ota->mEscapeSfxTimer = 0.0f;
-	ota->mTargetVelocity = Vector3f(0.0f);
+	Obj* ota              = OBJ(enemy);
+	ota->mNextState       = OTA_Null;
+	ota->mAttackWaitTimer = 0.0f;
+	ota->mEscapeSfxTimer  = 0.0f;
+	ota->mTargetVelocity  = Vector3f(0.0f);
 
 	ota->setEmotionExcitement();
 	ota->startMotion(OTAKARAANIM_Attack, nullptr);
-	ota->_2D0 = 1;
+	ota->mIsAttackCharging = 1;
 	ota->startChargeEffect();
 }
 
@@ -87,12 +87,12 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 void StateFlick::exec(EnemyBase* enemy)
 {
 	Obj* ota = OBJ(enemy);
-	if (ota->_2C4 > CG_PROPERPARMS(ota).mNormalAttack.mValue) {
+	if (ota->mAttackWaitTimer > CG_PROPERPARMS(ota).mNormalAttack.mValue) {
 		ota->finishMotion();
 	}
-	ota->_2C4 += sys->mDeltaTime;
+	ota->mAttackWaitTimer += sys->mDeltaTime;
 
-	if (ota->_2D0) {
+	if (ota->mIsAttackCharging) {
 		ota->getJAIObject()->startSound(PSSE_EN_OTAKARA_CHARGE, 0);
 	}
 
@@ -105,8 +105,8 @@ void StateFlick::exec(EnemyBase* enemy)
 			ota->mFlickTimer = 0.0f;
 
 		} else if ((u32)event->mType == 3) {
-			ota->_2C8 = 0.0f;
-			ota->_2D0 = 0;
+			ota->mAttackActiveTimer = 0.0f;
+			ota->mIsAttackCharging  = 0;
 			ota->finishChargeEffect();
 			ota->createDisChargeEffect();
 
@@ -584,14 +584,14 @@ void StateItemTurn::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
  */
 void StateItemFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* ota             = OBJ(enemy);
-	ota->mNextState      = OTA_Null;
-	ota->_2C4            = 0.0f;
-	ota->mEscapeSfxTimer = 0.0f;
-	ota->mTargetVelocity = Vector3f(0.0f);
+	Obj* ota              = OBJ(enemy);
+	ota->mNextState       = OTA_Null;
+	ota->mAttackWaitTimer = 0.0f;
+	ota->mEscapeSfxTimer  = 0.0f;
+	ota->mTargetVelocity  = Vector3f(0.0f);
 	ota->setEmotionExcitement();
 	ota->startMotion(OTAKARAANIM_ItemAttack, nullptr);
-	ota->_2D0 = 1;
+	ota->mIsAttackCharging = 1;
 	ota->startChargeEffect();
 }
 
@@ -602,10 +602,10 @@ void StateItemFlick::init(EnemyBase* enemy, StateArg* stateArg)
 void StateItemFlick::exec(EnemyBase* enemy)
 {
 	Obj* ota = OBJ(enemy);
-	if (ota->_2C4 > CG_PROPERPARMS(ota).mOtakaraAttack.mValue) {
+	if (ota->mAttackWaitTimer > CG_PROPERPARMS(ota).mOtakaraAttack.mValue) {
 		ota->finishMotion();
 	}
-	ota->_2C4 += sys->mDeltaTime;
+	ota->mAttackWaitTimer += sys->mDeltaTime;
 
 	EnemyAnimKeyEvent* event = ota->mCurAnim;
 	if (event->mIsPlaying) {
@@ -616,8 +616,8 @@ void StateItemFlick::exec(EnemyBase* enemy)
 			ota->mFlickTimer = 0.0f;
 
 		} else if ((u32)event->mType == 3) {
-			ota->_2C8 = 0.0f;
-			ota->_2D0 = 0;
+			ota->mAttackActiveTimer = 0.0f;
+			ota->mIsAttackCharging  = 0;
 			ota->finishChargeEffect();
 			ota->createDisChargeEffect();
 
@@ -709,8 +709,8 @@ void StateItemDrop::exec(EnemyBase* enemy)
  */
 void StateItemDrop::cleanup(EnemyBase* enemy)
 {
-	Obj* ota  = OBJ(enemy);
-	ota->_2E8 = 0.0f;
+	Obj* ota                   = OBJ(enemy);
+	ota->mItemSearchDelayTimer = 0.0f;
 	ota->setEmotionCaution();
 }
 
@@ -720,10 +720,10 @@ void StateItemDrop::cleanup(EnemyBase* enemy)
  */
 void StateBombWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* ota             = OBJ(enemy);
-	ota->mNextState      = OTA_Null;
-	ota->_2E8            = 0.0f;
-	ota->mTargetVelocity = Vector3f(0.0f);
+	Obj* ota                   = OBJ(enemy);
+	ota->mNextState            = OTA_Null;
+	ota->mItemSearchDelayTimer = 0.0f;
+	ota->mTargetVelocity       = Vector3f(0.0f);
 	ota->startMotion(OTAKARAANIM_ItemWait, nullptr);
 }
 

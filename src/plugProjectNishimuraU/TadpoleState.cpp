@@ -280,9 +280,9 @@ void StateLeap::init(EnemyBase* enemy, StateArg* stateArg)
 	tadpole->mStateTimer = 0.0f;
 	tadpole->setRandTarget(true);
 	if (randWeightFloat(1.0f) < 0.5f) {
-		tadpole->_2C0 = true;
+		tadpole->mLeapDirection = true;
 	} else {
-		tadpole->_2C0 = false;
+		tadpole->mLeapDirection = false;
 	}
 
 	tadpole->mNextState = TADPOLE_NULL;
@@ -313,7 +313,7 @@ void StateLeap::exec(EnemyBase* enemy)
 		}
 
 		f32 angle = 0.0f;
-		if (tadpole->_2C0) {
+		if (tadpole->mLeapDirection) {
 			angle += 0.15f;
 		} else {
 			angle -= 0.15f;
@@ -363,9 +363,9 @@ void StateLeap::exec(EnemyBase* enemy)
 			tadpole->disableEvent(0, EB_NoInterrupt);
 			tadpole->createLeapEffect();
 			if (randWeightFloat(1.0f) < 0.5f) {
-				tadpole->_2C0 = true;
+				tadpole->mLeapDirection = true;
 			} else {
-				tadpole->_2C0 = false;
+				tadpole->mLeapDirection = false;
 			}
 
 		} else if (tadpole->mCurAnim->mType == KEYEVENT_END) {

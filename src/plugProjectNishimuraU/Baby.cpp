@@ -267,7 +267,7 @@ void Obj::createHoney()
 	if (randWeightFloat(1.0f) < parms->mProperParms.mNectarChance.mValue) {
 		ItemHoney::InitArg arg(false, false);
 
-		ItemHoney::Item* item = static_cast<ItemHoney::Item*>(ItemHoney::mgr->birth());
+		ItemHoney::Item* item = ItemHoney::mgr->birth();
 		if (item) {
 			item->init(&arg);
 			item->setPosition(mPosition, false);

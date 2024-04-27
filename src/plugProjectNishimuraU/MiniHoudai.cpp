@@ -41,7 +41,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	}
 
 	mHealthGaugeTimer = 128.0f;
-	_2CC              = 0.0f;
+	mAttackWaitTimer  = 0.0f;
 	mUpdateTimer      = 0.0f;
 	mNextState        = MINIHOUDAI_NULL;
 	resetWayPoint();

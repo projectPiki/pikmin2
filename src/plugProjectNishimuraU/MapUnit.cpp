@@ -79,81 +79,49 @@ void MapUnits::setBaseGenPtr(BaseGen* baseGen) { mBaseGen = baseGen; }
  * @note Address: N/A
  * @note Size: 0x8
  */
-void MapUnits::setUnitTexture(JUTTexture* texture)
-{
-	// UNUSED FUNCTION
-	mTexture = texture;
-}
+void MapUnits::setUnitTexture(JUTTexture* texture) { mTexture = texture; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-char* MapUnits::getUnitName()
-{
-	// UNUSED FUNCTION
-	return mName;
-}
+char* MapUnits::getUnitName() { return mName; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-int MapUnits::getUnitIndex()
-{
-	// UNUSED FUNCTION
-	return mIndex;
-}
+int MapUnits::getUnitIndex() { return mIndex; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-int MapUnits::getUnitKind()
-{
-	// UNUSED FUNCTION
-	return mKind;
-}
+int MapUnits::getUnitKind() { return mKind; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-int MapUnits::getUnitSizeX()
-{
-	// UNUSED FUNCTION
-	return mSizeX;
-}
+int MapUnits::getUnitSizeX() { return mSizeX; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-int MapUnits::getUnitSizeY()
-{
-	// UNUSED FUNCTION
-	return mSizeY;
-}
+int MapUnits::getUnitSizeY() { return mSizeY; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-BaseGen* MapUnits::getBaseGen()
-{
-	// UNUSED FUNCTION
-	return mBaseGen;
-}
+BaseGen* MapUnits::getBaseGen() { return mBaseGen; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-JUTTexture* MapUnits::getUnitTexture()
-{
-	// UNUSED FUNCTION
-	return mTexture;
-}
+JUTTexture* MapUnits::getUnitTexture() { return mTexture; }
 
 /**
  * @note Address: 0x80242938

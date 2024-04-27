@@ -31,9 +31,9 @@ void TubeShadowTransNode::makeShadowSRT(JointShadowParm& parm, Vector3f& origina
 	scale.normalise();
 
 	Vector3f w;
-	w.x = (transformedPos.x + originalPos.x) * 0.5f + parm.mRotation.x * parm._24;
-	w.y = (transformedPos.y + originalPos.y) * 0.5f + parm.mRotation.y * parm._24;
-	w.z = (transformedPos.z + originalPos.z) * 0.5f + parm.mRotation.z * parm._24;
+	w.x = (transformedPos.x + originalPos.x) * 0.5f + parm.mRotation.x * parm.mPositionMultiplier;
+	w.y = (transformedPos.y + originalPos.y) * 0.5f + parm.mRotation.y * parm.mPositionMultiplier;
+	w.z = (transformedPos.z + originalPos.z) * 0.5f + parm.mRotation.z * parm.mPositionMultiplier;
 
 	Vector3f y = parm.mRotation;
 	y *= (100.0f + (w.y - parm.mPosition.y));
@@ -239,9 +239,9 @@ void TubeShadowSetNode::makeShadowSRT(JointShadowParm& parm, Vector3f& pos1, Vec
 	newZ.normalise();
 
 	Vector3f newPos;
-	newPos.x = (pos2.x + pos1.x) * 0.5f + parm.mRotation.x * parm._24;
-	newPos.y = (pos2.y + pos1.y) * 0.5f + parm.mRotation.y * parm._24;
-	newPos.z = (pos2.z + pos1.z) * 0.5f + parm.mRotation.z * parm._24;
+	newPos.x = (pos2.x + pos1.x) * 0.5f + parm.mRotation.x * parm.mPositionMultiplier;
+	newPos.y = (pos2.y + pos1.y) * 0.5f + parm.mRotation.y * parm.mPositionMultiplier;
+	newPos.z = (pos2.z + pos1.z) * 0.5f + parm.mRotation.z * parm.mPositionMultiplier;
 
 	Vector3f newY = parm.mRotation;
 	newY *= (100.0f + (newPos.y - parm.mPosition.y));
@@ -436,9 +436,9 @@ void TubeShadowPosNode::makeShadowSRT(JointShadowParm& parm, Vector3f& pos1, Vec
 	newZ.normalise();
 
 	Vector3f newPos;
-	newPos.x = (pos2.x + pos1.x) * 0.5f + parm.mRotation.x * parm._24;
-	newPos.y = (pos2.y + pos1.y) * 0.5f + parm.mRotation.y * parm._24;
-	newPos.z = (pos2.z + pos1.z) * 0.5f + parm.mRotation.z * parm._24;
+	newPos.x = (pos2.x + pos1.x) * 0.5f + parm.mRotation.x * parm.mPositionMultiplier;
+	newPos.y = (pos2.y + pos1.y) * 0.5f + parm.mRotation.y * parm.mPositionMultiplier;
+	newPos.z = (pos2.z + pos1.z) * 0.5f + parm.mRotation.z * parm.mPositionMultiplier;
 
 	Vector3f newY = parm.mRotation;
 	newY *= (100.0f + (newPos.y - parm.mPosition.y));
@@ -578,9 +578,9 @@ void SphereShadowNode::makeShadowSRT(JointShadowParm& parm, Vector3f& pos)
 	newZ.normalise();
 
 	Vector3f newPos;
-	newPos.x = parm.mRotation.x * parm._24 + pos.x;
-	newPos.y = parm.mRotation.y * parm._24 + pos.y;
-	newPos.z = parm.mRotation.z * parm._24 + pos.z;
+	newPos.x = parm.mRotation.x * parm.mPositionMultiplier + pos.x;
+	newPos.y = parm.mRotation.y * parm.mPositionMultiplier + pos.y;
+	newPos.z = parm.mRotation.z * parm.mPositionMultiplier + pos.z;
 
 	Vector3f newY = parm.mRotation;
 	newY *= (100.0f + (pos.y - parm.mPosition.y));

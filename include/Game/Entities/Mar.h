@@ -100,17 +100,17 @@ struct Obj : public EnemyBase {
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* mFsm;                           // _2BC
-	f32 _2C0;                            // _2C0
+	f32 mGeneralTimer;                   // _2C0 - used for several states
 	f32 mFallTimer;                      // _2C4
 	f32 mShadowOffset;                   // _2C8
 	f32 mShadowRadius;                   // _2CC
 	Vector3f mTargetPosition;            // _2D0
 	Matrixf* mEfxMatrix;                 // _2DC
-	Vector3f _2E0;                       // _2E0
-	Vector3f _2EC;                       // _2EC
+	Vector3f mAttackStartPos;            // _2E0 - position of mouth where attack starts
+	Vector3f mAttackDirection;           // _2EC
 	Vector3f mAttackPosition;            // _2F8
-	f32 _304;                            // _304
-	u8 _308;                             // _308, unknown
+	f32 mWindScaleTimer;                 // _304 - used to make wind attack grow over time
+	u8 mIsWindAttackActive;              // _308
 	f32 mPitchRatio;                     // _30C
 	efx::TFusenDead* mEfxDead;           // _310
 	efx::TFusenAirhit* mEfxAirhit;       // _314

@@ -16,19 +16,19 @@ struct JointGroundCallBack {
 };
 
 struct JointShadowParm {
-	Vector3f mPosition; // _00
-	Vector3f mRotation; // _0C
-	f32 _18;            // _18
-	f32 _1C;            // _1C
-	f32 mShadowScale;   // _20
-	f32 _24;            // _24
+	Vector3f mPosition;      // _00
+	Vector3f mRotation;      // _0C
+	f32 _18;                 // _18
+	f32 _1C;                 // _1C
+	f32 mShadowScale;        // _20
+	f32 mPositionMultiplier; // _24, used to make higher up joints more sensitive?
 
 	inline void setBoth(f32 x, f32 y)
 	{
-		mShadowScale = 0.0f;
-		_24          = -17.5f;
-		_18          = x;
-		_1C          = y;
+		mShadowScale        = 0.0f;
+		mPositionMultiplier = -17.5f;
+		_18                 = x;
+		_1C                 = y;
 	}
 };
 

@@ -15,25 +15,25 @@ BigTreasureShadowMgr::BigTreasureShadowMgr(Obj* obj)
 	mRootNode = new JointShadowRootNode(obj);
 
 	// body/head shadow nodes?
-	_88 = new SphereShadowNode;
-	_8C = new SphereShadowNode;
-	mRootNode->add(_88);
-	mRootNode->add(_8C);
+	mHeadShadow1 = new SphereShadowNode;
+	mHeadShadow2 = new SphereShadowNode;
+	mRootNode->add(mHeadShadow1);
+	mRootNode->add(mHeadShadow2);
 
 	// set up leg shadow nodes
 	for (int i = 0; i < 4; i++) {
-		_90[i] = new TubeShadowSetNode;
-		_A0[i] = new TubeShadowSetNode;
-		_B0[i] = new TubeShadowSetNode;
-		_C0[i] = new TubeShadowSetNode;
-		_D0[i] = new SphereShadowNode;
-		_E0[i] = new SphereShadowNode;
-		_F0[i] = new SphereShadowNode;
+		mLeg1Shadows[i] = new TubeShadowSetNode;
+		mLeg2Shadows[i] = new TubeShadowSetNode;
+		mLeg3Shadows[i] = new TubeShadowSetNode;
+		mLeg4Shadows[i] = new TubeShadowSetNode;
+		_D0[i]          = new SphereShadowNode;
+		_E0[i]          = new SphereShadowNode;
+		_F0[i]          = new SphereShadowNode;
 
-		mRootNode->add(_90[i]);
-		mRootNode->add(_A0[i]);
-		mRootNode->add(_B0[i]);
-		mRootNode->add(_C0[i]);
+		mRootNode->add(mLeg1Shadows[i]);
+		mRootNode->add(mLeg2Shadows[i]);
+		mRootNode->add(mLeg3Shadows[i]);
+		mRootNode->add(mLeg4Shadows[i]);
 		mRootNode->add(_D0[i]);
 		mRootNode->add(_E0[i]);
 		mRootNode->add(_F0[i]);
@@ -80,27 +80,27 @@ BigTreasureShadowMgr::BigTreasureShadowMgr(Obj* obj)
  */
 void BigTreasure::BigTreasureShadowMgr::init()
 {
-	SysShape::Model* model = mObj->mModel;
-	mBodyMatrix            = model->getJoint("kosi")->getWorldMatrix();
-	_90[0]->mJoint         = model->getJoint("rhand1jnt");
-	_A0[0]->mJoint         = model->getJoint("rhand2jnt");
-	_B0[0]->mJoint         = model->getJoint("rhand2jnt");
-	_C0[0]->mJoint         = model->getJoint("rhand3jnt");
+	SysShape::Model* model  = mObj->mModel;
+	mBodyMatrix             = model->getJoint("kosi")->getWorldMatrix();
+	mLeg1Shadows[0]->mJoint = model->getJoint("rhand1jnt");
+	mLeg2Shadows[0]->mJoint = model->getJoint("rhand2jnt");
+	mLeg3Shadows[0]->mJoint = model->getJoint("rhand2jnt");
+	mLeg4Shadows[0]->mJoint = model->getJoint("rhand3jnt");
 
-	_90[1]->mJoint = model->getJoint("lhand1jnt");
-	_A0[1]->mJoint = model->getJoint("lhand2jnt");
-	_B0[1]->mJoint = model->getJoint("lhand2jnt");
-	_C0[1]->mJoint = model->getJoint("lhand3jnt");
+	mLeg1Shadows[1]->mJoint = model->getJoint("lhand1jnt");
+	mLeg2Shadows[1]->mJoint = model->getJoint("lhand2jnt");
+	mLeg3Shadows[1]->mJoint = model->getJoint("lhand2jnt");
+	mLeg4Shadows[1]->mJoint = model->getJoint("lhand3jnt");
 
-	_90[2]->mJoint = model->getJoint("rfoot1jnt");
-	_A0[2]->mJoint = model->getJoint("rfoot2jnt");
-	_B0[2]->mJoint = model->getJoint("rfoot2jnt");
-	_C0[2]->mJoint = model->getJoint("rfoot3jnt");
+	mLeg1Shadows[2]->mJoint = model->getJoint("rfoot1jnt");
+	mLeg2Shadows[2]->mJoint = model->getJoint("rfoot2jnt");
+	mLeg3Shadows[2]->mJoint = model->getJoint("rfoot2jnt");
+	mLeg4Shadows[2]->mJoint = model->getJoint("rfoot3jnt");
 
-	_90[3]->mJoint = model->getJoint("lfoot1jnt");
-	_A0[3]->mJoint = model->getJoint("lfoot2jnt");
-	_B0[3]->mJoint = model->getJoint("lfoot2jnt");
-	_C0[3]->mJoint = model->getJoint("lfoot3jnt");
+	mLeg1Shadows[3]->mJoint = model->getJoint("lfoot1jnt");
+	mLeg2Shadows[3]->mJoint = model->getJoint("lfoot2jnt");
+	mLeg3Shadows[3]->mJoint = model->getJoint("lfoot2jnt");
+	mLeg4Shadows[3]->mJoint = model->getJoint("lfoot3jnt");
 
 	mElecMatrix  = model->getJoint("otakara_elec")->getWorldMatrix();
 	mFireMatrix  = model->getJoint("otakara_fire")->getWorldMatrix();
@@ -159,10 +159,10 @@ void BigTreasureShadowMgr::update()
 	Vector3f pos1 = getDirection(theta);
 	Vector3f pos2 = pos1;
 
-	parm._18          = 0.0f;
-	parm._1C          = 0.0f;
-	parm.mShadowScale = 20.0f * mObj->mShadowScale;
-	parm._24          = -75.0f;
+	parm._18                 = 0.0f;
+	parm._1C                 = 0.0f;
+	parm.mShadowScale        = 20.0f * mObj->mShadowScale;
+	parm.mPositionMultiplier = -75.0f;
 
 	pos1 *= 20.0f;
 	pos2 *= -10.0f;
@@ -170,43 +170,43 @@ void BigTreasureShadowMgr::update()
 	pos1 += *mKosiPosition;
 	pos2 += *mKosiPosition;
 
-	_88->makeShadowSRT(parm, pos1);
+	mHeadShadow1->makeShadowSRT(parm, pos1);
 
 	parm.mShadowScale = 27.0f * mObj->mShadowScale;
 
-	_8C->makeShadowSRT(parm, pos2);
+	mHeadShadow2->makeShadowSRT(parm, pos2);
 
 	Vector3f shadowVecs[4];
 
 	for (int i = 0; i < 4; i++) {
-		parm._18          = 92.5f;
-		parm._1C          = -62.5f;
-		parm.mShadowScale = p1;
-		parm._24          = -10.0f;
-		_90[i]->makeShadowSRT(parm, *mKosiPosition, shadowVecs[0]);
+		parm._18                 = 92.5f;
+		parm._1C                 = -62.5f;
+		parm.mShadowScale        = p1;
+		parm.mPositionMultiplier = -10.0f;
+		mLeg1Shadows[i]->makeShadowSRT(parm, *mKosiPosition, shadowVecs[0]);
 
-		parm._18          = 0.0f;
-		parm._1C          = 0.0f;
-		parm.mShadowScale = p1;
-		parm._24          = -10.0f;
-		_A0[i]->makeShadowSRT(parm, shadowVecs[0], shadowVecs[1]);
+		parm._18                 = 0.0f;
+		parm._1C                 = 0.0f;
+		parm.mShadowScale        = p1;
+		parm.mPositionMultiplier = -10.0f;
+		mLeg2Shadows[i]->makeShadowSRT(parm, shadowVecs[0], shadowVecs[1]);
 
-		parm._18          = 95.0f;
-		parm._1C          = -20.0f;
-		parm.mShadowScale = p1;
-		parm._24          = -10.0f;
-		_B0[i]->makeShadowSRT(parm, shadowVecs[1], shadowVecs[2]);
+		parm._18                 = 95.0f;
+		parm._1C                 = -20.0f;
+		parm.mShadowScale        = p1;
+		parm.mPositionMultiplier = -10.0f;
+		mLeg3Shadows[i]->makeShadowSRT(parm, shadowVecs[1], shadowVecs[2]);
 
-		parm._18          = 0.0f;
-		parm._1C          = 0.0f;
-		parm.mShadowScale = p1;
-		parm._24          = -10.0f;
-		_C0[i]->makeShadowSRT(parm, shadowVecs[2], shadowVecs[3]);
+		parm._18                 = 0.0f;
+		parm._1C                 = 0.0f;
+		parm.mShadowScale        = p1;
+		parm.mPositionMultiplier = -10.0f;
+		mLeg4Shadows[i]->makeShadowSRT(parm, shadowVecs[2], shadowVecs[3]);
 
-		parm._18          = 0.0f;
-		parm._1C          = 0.0f;
-		parm.mShadowScale = p2;
-		parm._24          = -10.0f;
+		parm._18                 = 0.0f;
+		parm._1C                 = 0.0f;
+		parm.mShadowScale        = p2;
+		parm.mPositionMultiplier = -10.0f;
 		_D0[i]->makeShadowSRT(parm, shadowVecs[0]);
 		_E0[i]->makeShadowSRT(parm, shadowVecs[1]);
 		_F0[i]->makeShadowSRT(parm, shadowVecs[2]);
@@ -231,10 +231,10 @@ void BigTreasureShadowMgr::update()
  */
 void BigTreasureShadowMgr::updateTreasureShadow(JointShadowParm& parm)
 {
-	parm.mShadowScale = 30.0f * mObj->mShadowScale;
-	parm._18          = 0.0f;
-	parm._1C          = 0.0f;
-	parm._24          = -35.0f;
+	parm.mShadowScale        = 30.0f * mObj->mShadowScale;
+	parm._18                 = 0.0f;
+	parm._1C                 = 0.0f;
+	parm.mPositionMultiplier = -35.0f;
 	for (int i = 0; i < BIGATTACK_Count; i++) {
 		if (mObj->isCapturedTreasure(i)) {
 			if (!mTreasureShadowNodes[i]->mParent) {
@@ -256,9 +256,9 @@ void BigTreasureShadowMgr::updateTreasureShadow(JointShadowParm& parm)
  */
 void BigTreasureShadowMgr::updateHandShadow(JointShadowParm& parm)
 {
-	parm._18 = 0.0f;
-	parm._1C = 0.0f;
-	parm._24 = -10.0f;
+	parm._18                 = 0.0f;
+	parm._1C                 = 0.0f;
+	parm.mPositionMultiplier = -10.0f;
 
 	for (int i = 0; i < 2; i++) {
 		parm.mShadowScale = 4.0f * mObj->mShadowScale;
@@ -523,9 +523,9 @@ lbl_802DB384:
  */
 void BigTreasureShadowMgr::updateAntennaShadow(JointShadowParm& parm)
 {
-	parm._18 = 0.0f;
-	parm._1C = 0.0f;
-	parm._24 = -10.0f;
+	parm._18                 = 0.0f;
+	parm._1C                 = 0.0f;
+	parm.mPositionMultiplier = -10.0f;
 
 	for (int i = 0; i < 2; i++) {
 		parm.mShadowScale = 5.0f * mObj->mShadowScale;

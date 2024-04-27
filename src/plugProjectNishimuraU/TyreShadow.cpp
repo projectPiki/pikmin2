@@ -23,7 +23,7 @@ void TyreTubeShadowNode::makeShadowSRT(JointShadowParm& shadowParm, Matrixf* mat
 	matVecs[2].x = matVecs[2].x * shadowParm._1C;
 	matVecs[2].y = matVecs[2].y * shadowParm._1C;
 	matVecs[2].z = matVecs[2].z * shadowParm._1C;
-	matVecs[3].y += shadowParm._24;
+	matVecs[3].y += shadowParm.mPositionMultiplier;
 	matVecs[1].x = 0.0f;
 	matVecs[1].z = 0.0f;
 	f32 minY     = mapMgr->getMinY(matVecs[3]);

@@ -97,67 +97,67 @@ void HoudaiShadowMgr::update()
 
 	f32 shadowScale = 5.0f;
 
-	shadowParm._18          = 0.0f;
-	shadowParm._1C          = 0.0f;
-	shadowParm.mShadowScale = 30.0f;
-	shadowParm._24          = -50.0f;
+	shadowParm._18                 = 0.0f;
+	shadowParm._1C                 = 0.0f;
+	shadowParm.mShadowScale        = 30.0f;
+	shadowParm.mPositionMultiplier = -50.0f;
 
 	mBodySphereShadow->makeShadowSRT(shadowParm, translation);
 
 	Vector3f jointVectors[4];
 	for (int i = 0; i < 4; i++) {
-		shadowParm._18          = 0.0f;
-		shadowParm._1C          = 0.0f;
-		shadowParm.mShadowScale = 2.5f;
-		shadowParm._24          = -10.0f;
+		shadowParm._18                 = 0.0f;
+		shadowParm._1C                 = 0.0f;
+		shadowParm.mShadowScale        = 2.5f;
+		shadowParm.mPositionMultiplier = -10.0f;
 		mLegTubeShadow1[i]->makeShadowSRT(shadowParm, translation, jointVectors[0]);
 
-		shadowParm._18          = 12.5f;
-		shadowParm._1C          = -45.0f;
-		shadowParm.mShadowScale = 2.5f;
-		shadowParm._24          = -10.0f;
+		shadowParm._18                 = 12.5f;
+		shadowParm._1C                 = -45.0f;
+		shadowParm.mShadowScale        = 2.5f;
+		shadowParm.mPositionMultiplier = -10.0f;
 		mLegTubeShadow2[i]->makeShadowSRT(shadowParm, jointVectors[0], jointVectors[1]);
 
-		shadowParm._18          = -5.0f;
-		shadowParm._1C          = -5.0f;
-		shadowParm.mShadowScale = 2.5f;
-		shadowParm._24          = -10.0f;
+		shadowParm._18                 = -5.0f;
+		shadowParm._1C                 = -5.0f;
+		shadowParm.mShadowScale        = 2.5f;
+		shadowParm.mPositionMultiplier = -10.0f;
 		mLegTubeShadow3[i]->makeShadowSRT(shadowParm, jointVectors[1], jointVectors[2]);
 
-		shadowParm._18          = 0.0f;
-		shadowParm._1C          = 0.0f;
-		shadowParm.mShadowScale = 2.5f;
-		shadowParm._24          = -10.0f;
+		shadowParm._18                 = 0.0f;
+		shadowParm._1C                 = 0.0f;
+		shadowParm.mShadowScale        = 2.5f;
+		shadowParm.mPositionMultiplier = -10.0f;
 		mLegTubeShadow4[i]->makeShadowSRT(shadowParm, jointVectors[2], jointVectors[3]);
 
 		if (i == 0) { // metal leg
-			shadowParm._18          = 0.0f;
-			shadowParm._1C          = 0.0f;
-			shadowParm.mShadowScale = 6.0f;
-			shadowParm._24          = -5.0f;
+			shadowParm._18                 = 0.0f;
+			shadowParm._1C                 = 0.0f;
+			shadowParm.mShadowScale        = 6.0f;
+			shadowParm.mPositionMultiplier = -5.0f;
 			mLegSphereShadow1[i]->makeShadowSRT(shadowParm, jointVectors[0]);
 
-			shadowParm._24 = -5.0f;
+			shadowParm.mPositionMultiplier = -5.0f;
 			mLegSphereShadow2[i]->makeShadowSRT(shadowParm, jointVectors[1]);
 
-			shadowParm._24 = -5.0f;
+			shadowParm.mPositionMultiplier = -5.0f;
 			mLegSphereShadow3[i]->makeShadowSRT(shadowParm, jointVectors[2]);
 
-			shadowParm.mShadowScale = 10.0f;
-			shadowParm._24          = 5.0f;
+			shadowParm.mShadowScale        = 10.0f;
+			shadowParm.mPositionMultiplier = 5.0f;
 			mMetalLegSphereShadow->makeShadowSRT(shadowParm, jointVectors[3]);
 
 		} else { // bare leg
-			shadowParm._18          = 0.0f;
-			shadowParm._1C          = 0.0f;
-			shadowParm.mShadowScale = 1.5f;
-			shadowParm._24          = -5.0f;
+			shadowParm._18                 = 0.0f;
+			shadowParm._1C                 = 0.0f;
+			shadowParm.mShadowScale        = 1.5f;
+			shadowParm.mPositionMultiplier = -5.0f;
 			mLegSphereShadow1[i]->makeShadowSRT(shadowParm, jointVectors[0]);
 
-			shadowParm._24 = -5.0f;
+			shadowParm.mPositionMultiplier = -5.0f;
 			mLegSphereShadow2[i]->makeShadowSRT(shadowParm, jointVectors[1]);
 
-			shadowParm._24 = -5.0f;
+			shadowParm.mPositionMultiplier = -5.0f;
 			mLegSphereShadow3[i]->makeShadowSRT(shadowParm, jointVectors[2]);
 		}
 

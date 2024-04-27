@@ -56,7 +56,7 @@ struct Obj : public EnemyBase {
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* mFsm;                // _2BC
-	bool _2C0;                // _2C0, unknown
+	bool mLeapDirection;      // _2C0, unknown
 	f32 mStateTimer;          // _2C4, timer?
 	StateID mNextState;       // _2C8
 	Vector3f mTargetPosition; // _2CC

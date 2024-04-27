@@ -84,9 +84,9 @@ void StatePress::cleanup(EnemyBase* enemy) { }
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* kuma        = OBJ(enemy);
-	kuma->_2C8       = 0.0f;
-	kuma->mNextState = KUMAKOCHAPPY_NULL;
+	Obj* kuma          = OBJ(enemy);
+	kuma->mUnusedValue = 0.0f;
+	kuma->mNextState   = KUMAKOCHAPPY_NULL;
 	kuma->enableEvent(0, EB_Constrained);
 	kuma->mTargetVelocity = Vector3f(0.0f);
 	kuma->startMotion(KUMAKOCHAPPYANIM_Wait, nullptr);

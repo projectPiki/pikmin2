@@ -103,7 +103,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->mStateTimer = 0.0f;
 	kurage->enableEvent(0, EB_Untargetable);
 	kurage->mTargetVelocity = Vector3f(0.0f);
-	kurage->_2C8            = 3.5f;
+	kurage->mMovePitchTimer = 3.5f;
 	kurage->startMotion(KURAGEANIM_Move, nullptr);
 }
 
@@ -164,7 +164,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->setRandTarget();
 	kurage->enableEvent(0, EB_Untargetable);
 	kurage->mTargetVelocity = Vector3f(0.0f);
-	kurage->_2C8            = 3.5f;
+	kurage->mMovePitchTimer = 3.5f;
 	kurage->startMotion(KURAGEANIM_Move, nullptr);
 }
 
@@ -237,7 +237,7 @@ void StateChase::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->mNextState = KURAGE_NULL;
 	kurage->setEmotionExcitement();
 	kurage->mTargetVelocity = Vector3f(0.0f);
-	kurage->_2C8            = 3.5f;
+	kurage->mMovePitchTimer = 3.5f;
 	kurage->startMotion(KURAGEANIM_Move, nullptr);
 }
 

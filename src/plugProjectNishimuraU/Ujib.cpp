@@ -194,10 +194,10 @@ bool Obj::isAppearCheck()
  */
 void Obj::resetBridgeSearch()
 {
-	_2C0    = 1;
-	mBridge = nullptr;
-	_2CC    = 0.0f;
-	_2D0    = 0.0f;
+	mCanSearchBridge      = 1;
+	mBridge               = nullptr;
+	mBridgeGoalRandOffsX  = 0.0f;
+	mBridgeTargetMaxWidth = 0.0f;
 }
 
 /**
@@ -206,8 +206,8 @@ void Obj::resetBridgeSearch()
  */
 void Obj::setBridgeSearch()
 {
-	if (_2C0) {
-		_2C0 = 0;
+	if (mCanSearchBridge) {
+		mCanSearchBridge = 0;
 		setNearestBridge();
 		setCullingCheck();
 	}
@@ -219,9 +219,9 @@ void Obj::setBridgeSearch()
  */
 void Obj::setNearestBridge()
 {
-	mBridge = nullptr;
-	_2CC    = 0.0f;
-	_2D0    = 0.0f;
+	mBridge               = nullptr;
+	mBridgeGoalRandOffsX  = 0.0f;
+	mBridgeTargetMaxWidth = 0.0f;
 
 	if (ItemBridge::mgr) {
 		f32 radius = C_GENERALPARMS.mTerritoryRadius.mValue;
@@ -240,8 +240,8 @@ void Obj::setNearestBridge()
 	}
 
 	if (mBridge) {
-		f32 width = mBridge->getStageWidth() - 20.0f;
-		_2CC      = -(0.5f * width - randWeightFloat(width));
+		f32 width            = mBridge->getStageWidth() - 20.0f;
+		mBridgeGoalRandOffsX = -(0.5f * width - randWeightFloat(width));
 	}
 }
 
@@ -272,9 +272,9 @@ int Obj::checkBreakOrMove()
 		f32 width     = 20.0f + halfWidth;
 
 		if (dotX < 0.0f) {
-			_2D0 = width;
+			mBridgeTargetMaxWidth = width;
 		} else {
-			_2D0 = -width;
+			mBridgeTargetMaxWidth = -width;
 		}
 
 		if (absVal(dotX) > halfWidth) {
@@ -316,7 +316,7 @@ bool Obj::moveBridgeSide()
 	Vector3f xVec     = mBridge->getBridgeXVec();
 	Vector3f zVec     = mBridge->getBridgeZVec();
 
-	xVec *= _2D0;
+	xVec *= mBridgeTargetMaxWidth;
 	zVec *= -20.0f;
 
 	startPos += xVec;
@@ -539,7 +539,7 @@ bool Obj::moveBridgeCentre()
 	Vector3f startPos = mBridge->getStartPos();
 	Vector3f xVec     = mBridge->getBridgeXVec();
 
-	xVec *= 0.7f * _2CC;
+	xVec *= 0.7f * mBridgeGoalRandOffsX;
 
 	startPos += xVec;
 
@@ -753,7 +753,7 @@ bool Obj::moveBridgeTop()
 	Vector3f stagePos = mBridge->getStagePos(stageID);
 	Vector3f xVec     = mBridge->getBridgeXVec();
 
-	xVec *= _2CC;
+	xVec *= mBridgeGoalRandOffsX;
 
 	stagePos += xVec;
 

@@ -853,7 +853,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	hanachirashi->setEmotionExcitement();
 	hanachirashi->startMotion(HANACHIANIM_Attack, nullptr);
 	hanachirashi->mNextState           = HANACHIRASHI_NULL;
-	hanachirashi->_310                 = 0;
+	hanachirashi->mIsWindAttackActive  = false;
 	hanachirashi->mCurrentAttackRadius = 0.0f;
 	hanachirashi->createSuckEffect();
 }
@@ -866,7 +866,7 @@ void StateAttack::exec(EnemyBase* enemy)
 {
 	Obj* hanachirashi = OBJ(enemy);
 	hanachirashi->setHeightVelocity();
-	if (hanachirashi->_310) {
+	if (hanachirashi->mIsWindAttackActive) {
 		if (hanachirashi->windTarget()) {
 			hanachirashi->mNextState = HANACHIRASHI_Laugh;
 		}
@@ -879,7 +879,7 @@ void StateAttack::exec(EnemyBase* enemy)
 
 	if (hanachirashi->mCurAnim->mIsPlaying) {
 		if (hanachirashi->mCurAnim->mType == KEYEVENT_2) {
-			hanachirashi->_310 = 1;
+			hanachirashi->mIsWindAttackActive = true;
 			hanachirashi->startWindEffect();
 		} else if (hanachirashi->mCurAnim->mType == KEYEVENT_END) {
 			if (hanachirashi->mNextState >= 0) {
@@ -900,7 +900,7 @@ void StateAttack::cleanup(EnemyBase* enemy)
 	Obj* hanachirashi = OBJ(enemy);
 	hanachirashi->enableEvent(0, EB_Cullable);
 	hanachirashi->setEmotionCaution();
-	hanachirashi->_310                 = 0;
+	hanachirashi->mIsWindAttackActive  = false;
 	hanachirashi->mCurrentAttackRadius = 0.0f;
 	hanachirashi->finishWindEffect();
 }

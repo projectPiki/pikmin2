@@ -791,7 +791,7 @@ void Obj::startRollingWaterEffect()
 	mEfxWaterRun->create(nullptr);
 
 	efx::TRockWRun* waterFX = mEfxWaterRun;
-	if (mEfxWaterRun->_54) {
+	if (mEfxWaterRun->mIsActive) {
 		f32 heightDiff = waterFX->mSeaHeight - mPosition.y;
 		if (8.0f <= heightDiff && heightDiff < 45.0f) {
 			efx::TRockWRun* waterFX = mEfxWaterRun;
@@ -815,7 +815,7 @@ void Obj::finishRollingWaterEffect() { mEfxWaterRun->fade(); }
  */
 void Obj::updateWaterEffectPosition()
 {
-	if (mWaterBox && mEfxWaterRun->_54) {
+	if (mWaterBox && mEfxWaterRun->mIsActive) {
 		f32 heightDiff = mEfxWaterRun->mSeaHeight - mPosition.y;
 		if (8.0f <= heightDiff && heightDiff < 45.0f) {
 			efx::TRockWRun* waterFX = mEfxWaterRun;

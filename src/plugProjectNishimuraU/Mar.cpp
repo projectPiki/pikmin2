@@ -39,19 +39,19 @@ void Obj::onInit(CreatureInitArg* settings)
 	disableEvent(0, EB_LeaveCarcass);
 	enableEvent(0, EB_Untargetable);
 
-	_2C0       = 0.0f;
-	mFallTimer = 0.0f;
+	mGeneralTimer = 0.0f;
+	mFallTimer    = 0.0f;
 
 	resetShadowOffset();
 	resetShadowRadius();
 
-	mPitchRatio = 0.0f;
-	_308        = 0;
+	mPitchRatio         = 0.0f;
+	mIsWindAttackActive = false;
 
 	mEfxMatrix = mModel->getJoint("hana3")->getWorldMatrix();
 	setupEffect();
 
-	_304 = 0.0f;
+	mWindScaleTimer = 0.0f;
 
 	mFsm->start(this, MAR_Wait, nullptr);
 
@@ -937,11 +937,11 @@ lbl_80280B38:
 void Obj::updateEmit()
 {
 	if (mEfxMatrix) {
-		mEfxMatrix->getTranslation(_2E0);
+		mEfxMatrix->getTranslation(mAttackStartPos);
 	}
 
-	_2EC = Vector3f(sinf(getFaceDir()), -0.85f, cosf(getFaceDir()));
-	_2EC.normalise();
+	mAttackDirection = Vector3f(sinf(getFaceDir()), -0.85f, cosf(getFaceDir()));
+	mAttackDirection.normalise();
 }
 
 /**
@@ -950,8 +950,8 @@ void Obj::updateEmit()
  */
 Vector3f Obj::getAttackPosition()
 {
-	Vector3f vec2 = _2E0;
-	Vector3f vec1 = _2EC;
+	Vector3f vec2 = mAttackStartPos;
+	Vector3f vec1 = mAttackDirection;
 
 	vec1 *= C_GENERALPARMS.mAttackRadius.mValue;
 
@@ -987,16 +987,16 @@ Vector3f Obj::getAttackPosition()
  */
 void Obj::windTarget()
 {
-	if (_304 < 1.0f) {
-		_304 += 3.0f * sys->mDeltaTime;
-		if (_304 > 1.0f) {
-			_304 = 1.0f;
+	if (mWindScaleTimer < 1.0f) {
+		mWindScaleTimer += 3.0f * sys->mDeltaTime;
+		if (mWindScaleTimer > 1.0f) {
+			mWindScaleTimer = 1.0f;
 		}
 	}
 
-	f32 radius    = _304 * C_GENERALPARMS.mAttackRadius.mValue;
-	Vector3f vec1 = _2E0;                                                             // f16
-	Vector3f vec2 = _2EC;                                                             // f29
+	f32 radius    = mWindScaleTimer * C_GENERALPARMS.mAttackRadius.mValue;
+	Vector3f vec1 = mAttackStartPos;                                                  // f16
+	Vector3f vec2 = mAttackDirection;                                                 // f29
 	f32 slope     = (f32)tan(PI * (DEG2RAD * C_GENERALPARMS.mAttackHitAngle.mValue)); // f20
 
 	// this is probably a new vector

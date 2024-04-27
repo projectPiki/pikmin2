@@ -43,9 +43,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 	resetShadowOffset();
 	resetShadowRadius();
 
-	mPitchRatio = 0.0f;
-	_310        = 0;
-	mEfxMatrix  = mModel->getJoint("hana3")->getWorldMatrix();
+	mPitchRatio         = 0.0f;
+	mIsWindAttackActive = false;
+	mEfxMatrix          = mModel->getJoint("hana3")->getWorldMatrix();
 	setupEffect();
 
 	mCurrentAttackRadius = 0.0f;

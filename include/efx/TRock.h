@@ -52,31 +52,31 @@ struct TRockWRunChasePos : public TChasePos3 {
 struct TRockWRun : public TBase {
 	inline TRockWRun()
 	    : mChasePos(&mPosition)
-	    , _54(false)
+	    , mIsActive(false)
 	{
 	}
 
 	virtual bool create(Arg*) // _08 (weak)
 	{
-		_54 = true;
+		mIsActive = true;
 		return true;
 	}
 	virtual void forceKill() // _0C (weak)
 	{
 		mChasePos.forceKill();
-		_54 = false;
+		mIsActive = false;
 	}
 	virtual void fade() // _10 (weak)
 	{
 		mChasePos.fade();
-		_54 = false;
+		mIsActive = false;
 	}
 
 	// _00 VTBL
 	TRockWRunChasePos mChasePos; // _04
 	f32 mSeaHeight;              // _44, might be part of TRockWRunChasePos
 	Vector3f mPosition;          // _48
-	bool _54;                    // _54
+	bool mIsActive;              // _54
 };
 
 } // namespace efx

@@ -548,12 +548,12 @@ struct BigTreasureShadowMgr {
 	Vector3f* mKosiPosition;                                 // _40
 	Vector3f* mJointPositions[4][4];                         // _44
 	JointShadowRootNode* mRootNode;                          // _84
-	SphereShadowNode* _88;                                   // _88
-	SphereShadowNode* _8C;                                   // _8C
-	TubeShadowSetNode* _90[4];                               // _90, leg, *jnt1
-	TubeShadowSetNode* _A0[4];                               // _A0, leg, *jnt2
-	TubeShadowSetNode* _B0[4];                               // _B0, leg, *jnt2
-	TubeShadowSetNode* _C0[4];                               // _C0, leg, *jnt3
+	SphereShadowNode* mHeadShadow1;                          // _88
+	SphereShadowNode* mHeadShadow2;                          // _8C
+	TubeShadowSetNode* mLeg1Shadows[4];                      // _90, leg, *jnt1
+	TubeShadowSetNode* mLeg2Shadows[4];                      // _A0, leg, *jnt2
+	TubeShadowSetNode* mLeg3Shadows[4];                      // _B0, leg, *jnt2
+	TubeShadowSetNode* mLeg4Shadows[4];                      // _C0, leg, *jnt3
 	SphereShadowNode* _D0[4];                                // _D0, leg?
 	SphereShadowNode* _E0[4];                                // _E0, leg?
 	SphereShadowNode* _F0[4];                                // _F0, leg?

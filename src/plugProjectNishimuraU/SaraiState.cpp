@@ -67,7 +67,7 @@ void StateDead::cleanup(EnemyBase* enemy) { }
 void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* sarai             = OBJ(enemy);
-	sarai->_2C0            = 0.0f;
+	sarai->mGeneralTimer   = 0.0f;
 	sarai->mTargetVelocity = Vector3f(0.0f);
 	sarai->disableEvent(0, EB_Untargetable);
 	sarai->setEmotionExcitement();
@@ -86,7 +86,7 @@ void StateFall::exec(EnemyBase* enemy)
 
 	f32 minY = mapMgr->getMinY(pos);
 
-	if (pos.y - minY < 10.0f || sarai->_2C0 > 1.0f) {
+	if (pos.y - minY < 10.0f || sarai->mGeneralTimer > 1.0f) {
 		sarai->finishMotion();
 	}
 
@@ -99,7 +99,7 @@ void StateFall::exec(EnemyBase* enemy)
 		sarai->mRotation.y = sarai->mFaceDir;
 	}
 
-	sarai->_2C0 += sys->mDeltaTime;
+	sarai->mGeneralTimer += sys->mDeltaTime;
 
 	if (sarai->mCurAnim->mIsPlaying) {
 		if (sarai->mCurAnim->mType == KEYEVENT_2) {
@@ -128,7 +128,7 @@ void StateFall::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* sarai             = OBJ(enemy);
-	sarai->_2C0            = 0.0f;
+	sarai->mGeneralTimer   = 0.0f;
 	sarai->mTargetVelocity = Vector3f(0.0f);
 	sarai->disableEvent(0, EB_Untargetable);
 	sarai->setEmotionExcitement();
@@ -143,11 +143,11 @@ void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 void StateDamage::exec(EnemyBase* enemy)
 {
 	Obj* sarai = OBJ(enemy);
-	if (sarai->mHealth <= 0.0f || sarai->_2C0 > CG_PROPERPARMS(sarai).mStrugglingTime.mValue || sarai->getStickPikminNum() == 0) {
+	if (sarai->mHealth <= 0.0f || sarai->mGeneralTimer > CG_PROPERPARMS(sarai).mStrugglingTime.mValue || sarai->getStickPikminNum() == 0) {
 		sarai->finishMotion();
 	}
 
-	sarai->_2C0 += sys->mDeltaTime;
+	sarai->mGeneralTimer += sys->mDeltaTime;
 
 	if (sarai->mCurAnim->mIsPlaying && sarai->mCurAnim->mType == KEYEVENT_END) {
 		if (sarai->mHealth <= 0.0f) {
@@ -270,7 +270,7 @@ void StateFlick::cleanup(EnemyBase* enemy)
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* sarai             = OBJ(enemy);
-	sarai->_2C0            = 0.0f;
+	sarai->mGeneralTimer   = 0.0f;
 	sarai->mTargetVelocity = Vector3f(0.0f);
 	sarai->mTargetCreature = nullptr;
 	sarai->enableEvent(0, EB_Untargetable);
@@ -292,11 +292,11 @@ void StateWait::exec(EnemyBase* enemy)
 	f32 val    = sarai->setHeightVelocity();
 
 	FakePiki* target = sarai->getAttackableTarget();
-	if (target || sarai->_2C0 > CG_PROPERPARMS(sarai).mWaitTime.mValue) {
+	if (target || sarai->mGeneralTimer > CG_PROPERPARMS(sarai).mWaitTime.mValue) {
 		sarai->finishMotion();
 	}
 
-	if (val > CG_PROPERPARMS(sarai).mStateTransitionHeight.mValue || sarai->_2C0 > 3.0f) {
+	if (val > CG_PROPERPARMS(sarai).mStateTransitionHeight.mValue || sarai->mGeneralTimer > 3.0f) {
 		int nextState = sarai->getNextStateOnHeight();
 		if (nextState >= 0) {
 			transit(sarai, nextState, nullptr);
@@ -304,7 +304,7 @@ void StateWait::exec(EnemyBase* enemy)
 		}
 	}
 
-	sarai->_2C0 += sys->mDeltaTime;
+	sarai->mGeneralTimer += sys->mDeltaTime;
 
 	if (sarai->mCurAnim->mIsPlaying && sarai->mCurAnim->mType == KEYEVENT_END) {
 		if (target) {
@@ -329,8 +329,8 @@ void StateWait::cleanup(EnemyBase* enemy) { }
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* sarai  = OBJ(enemy);
-	sarai->_2C0 = 0.0f;
+	Obj* sarai           = OBJ(enemy);
+	sarai->mGeneralTimer = 0.0f;
 	sarai->setRandTarget();
 	sarai->mTargetCreature = nullptr;
 	sarai->enableEvent(0, EB_Untargetable);
@@ -351,7 +351,7 @@ void StateMove::exec(EnemyBase* enemy)
 
 	FakePiki* target = sarai->getAttackableTarget();
 
-	if (target || sarai->_2C0 > 10.0f || sqrDistanceXZ(pos, targetPos) < 625.0f) {
+	if (target || sarai->mGeneralTimer > 10.0f || sqrDistanceXZ(pos, targetPos) < 625.0f) {
 		sarai->mTargetVelocity = Vector3f(0.0f);
 		sarai->finishMotion();
 	} else {
@@ -359,7 +359,7 @@ void StateMove::exec(EnemyBase* enemy)
 		                        CG_GENERALPARMS(sarai).mTurnSpeed.mValue, CG_GENERALPARMS(sarai).mMaxTurnAngle.mValue);
 	}
 
-	if (height > CG_PROPERPARMS(sarai).mStateTransitionHeight.mValue || sarai->_2C0 > 3.0f) {
+	if (height > CG_PROPERPARMS(sarai).mStateTransitionHeight.mValue || sarai->mGeneralTimer > 3.0f) {
 		int nextState = sarai->getNextStateOnHeight();
 		if (nextState >= 0) {
 			transit(sarai, nextState, nullptr);
@@ -367,7 +367,7 @@ void StateMove::exec(EnemyBase* enemy)
 		}
 	}
 
-	sarai->_2C0 += sys->mDeltaTime;
+	sarai->mGeneralTimer += sys->mDeltaTime;
 
 	if (sarai->mCurAnim->mIsPlaying && sarai->mCurAnim->mType == KEYEVENT_END) {
 		if (target) {
@@ -392,8 +392,8 @@ void StateMove::cleanup(EnemyBase* enemy) { }
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* sarai  = OBJ(enemy);
-	sarai->_2C0 = 0.0f;
+	Obj* sarai           = OBJ(enemy);
+	sarai->mGeneralTimer = 0.0f;
 	sarai->disableEvent(0, EB_Cullable);
 	sarai->mTargetVelocity = Vector3f(0.0f);
 	sarai->enableEvent(0, EB_NoInterrupt);
@@ -417,10 +417,10 @@ void StateAttack::exec(EnemyBase* enemy)
 			sarai->changeFaceDir2(target);
 		} else if (frame <= 30.0f) {
 			if (sarai->mBounceTriangle) {
-				sarai->_2C0 = 30.0f;
+				sarai->mGeneralTimer = 30.0f;
 			}
 
-			if (sarai->_2C0 < 30.0f) {
+			if (sarai->mGeneralTimer < 30.0f) {
 				f32 targetHeight = target->getPosition().y + 17.5f; // f28
 				f32 saraiHeight  = sarai->getPosition().y;          // f29
 
@@ -1044,8 +1044,8 @@ void StateFail::cleanup(EnemyBase* enemy)
  */
 void StateCatchFly::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* sarai  = OBJ(enemy);
-	sarai->_2C0 = 0.0f;
+	Obj* sarai           = OBJ(enemy);
+	sarai->mGeneralTimer = 0.0f;
 	sarai->setRandTarget();
 	sarai->mTargetCreature = nullptr;
 	sarai->enableEvent(0, EB_Untargetable);
@@ -1065,7 +1065,7 @@ void StateCatchFly::exec(EnemyBase* enemy)
 	Vector3f pos       = sarai->getPosition();
 	Vector3f targetPos = Vector3f(sarai->mTargetPos);
 
-	if (sarai->_2C0 > 10.0f || sqrDistanceXZ(pos, targetPos) < 625.0f) {
+	if (sarai->mGeneralTimer > 10.0f || sqrDistanceXZ(pos, targetPos) < 625.0f) {
 		sarai->mTargetVelocity = Vector3f(0.0f);
 		sarai->finishMotion();
 	} else {
@@ -1078,7 +1078,7 @@ void StateCatchFly::exec(EnemyBase* enemy)
 		return;
 	}
 
-	if (height > CG_PROPERPARMS(sarai).mStateTransitionHeight.mValue || sarai->_2C0 > 3.0f) {
+	if (height > CG_PROPERPARMS(sarai).mStateTransitionHeight.mValue || sarai->mGeneralTimer > 3.0f) {
 		int nextState = sarai->getNextStateOnHeight();
 		if (nextState >= 0) {
 			transit(sarai, nextState, nullptr);
@@ -1086,7 +1086,7 @@ void StateCatchFly::exec(EnemyBase* enemy)
 		}
 	}
 
-	sarai->_2C0 += sys->mDeltaTime;
+	sarai->mGeneralTimer += sys->mDeltaTime;
 
 	if (sarai->mCurAnim->mIsPlaying && sarai->mCurAnim->mType == KEYEVENT_END) {
 		transit(sarai, SARAI_FallMeck, nullptr);

@@ -30,9 +30,9 @@ void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
-	mStateTimer = 0.0f;
-	mNextState  = TADPOLE_NULL;
-	_2C0        = 1;
+	mStateTimer    = 0.0f;
+	mNextState     = TADPOLE_NULL;
+	mLeapDirection = 1;
 	mFsm->start(this, TADPOLE_Wait, nullptr);
 }
 

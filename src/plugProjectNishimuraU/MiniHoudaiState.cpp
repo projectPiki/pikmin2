@@ -261,7 +261,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* mini               = OBJ(enemy);
 	mini->mNextState        = MINIHOUDAI_NULL;
-	mini->_2CC              = 0.0f;
+	mini->mAttackWaitTimer  = 0.0f;
 	mini->mHealthGaugeTimer = 0.0f;
 	mini->mTargetVelocity   = Vector3f(0.0f);
 	mini->setEmotionExcitement();
@@ -277,12 +277,12 @@ void StateAttack::exec(EnemyBase* enemy)
 	Obj* mini = OBJ(enemy);
 	if (mini->isStopMotion()) {
 		if (mini->isFinishShotGun()) {
-			if (mini->isShotGunLockOn() && mini->_2CC > 0.0f) {
-				mini->_2CC = 0.0f;
+			if (mini->isShotGunLockOn() && mini->mAttackWaitTimer > 0.0f) {
+				mini->mAttackWaitTimer = 0.0f;
 				mini->startMotion();
 			}
-		} else if (mini->isShotGunLockOn() && mini->_2CC > 0.0f) {
-			mini->_2CC = 0.0f;
+		} else if (mini->isShotGunLockOn() && mini->mAttackWaitTimer > 0.0f) {
+			mini->mAttackWaitTimer = 0.0f;
 			mini->startMotion();
 		}
 	}
@@ -291,7 +291,7 @@ void StateAttack::exec(EnemyBase* enemy)
 		mini->setShotGunTargetPosition();
 	}
 
-	mini->_2CC += sys->mDeltaTime;
+	mini->mAttackWaitTimer += sys->mDeltaTime;
 
 	if (mini->mHealth <= 0.0f) {
 		if (mini->isStopMotion()) {
@@ -308,7 +308,7 @@ void StateAttack::exec(EnemyBase* enemy)
 
 	if (mini->mCurAnim->mIsPlaying) {
 		if (mini->mCurAnim->mType == KEYEVENT_2) {
-			mini->_2CC = 0.0f;
+			mini->mAttackWaitTimer = 0.0f;
 			mini->stopMotion();
 			mini->startShotGunRotation();
 			mini->startChargeEffect();
@@ -322,7 +322,7 @@ void StateAttack::exec(EnemyBase* enemy)
 			}
 
 		} else if (mini->mCurAnim->mType == KEYEVENT_5) {
-			mini->_2CC = 0.0f;
+			mini->mAttackWaitTimer = 0.0f;
 			mini->stopMotion();
 			mini->finishShotGunRotation();
 

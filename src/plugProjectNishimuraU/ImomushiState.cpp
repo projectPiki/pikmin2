@@ -442,8 +442,8 @@ void StateClimb::init(EnemyBase* enemy, StateArg* stateArg)
 	f32 cos           = cosf(faceDir);
 	f32 sin           = sinf(faceDir);
 
-	imomushi->_2D8 = Vector3f(sin, 0.01f, cos);
-	imomushi->_2E4 = Vector3f(-sin, 0.0f, -cos);
+	imomushi->mClimbDirection = Vector3f(sin, 0.01f, cos);
+	imomushi->mClimbRotation  = Vector3f(-sin, 0.0f, -cos);
 }
 
 /**
@@ -466,7 +466,7 @@ void StateClimb::exec(EnemyBase* enemy)
 	if (!imomushi->isFinishMotion()) {
 		imomushi->moveStickTube();
 
-		f32 val  = imomushi->_2FC;
+		f32 val  = imomushi->mClimbStartMoveRatio;
 		f32 yval = imomushi->mClimbingPosition.y;
 		if (yval > 1.0f - val) {
 			CollPart* childPart = static_cast<CollPart*>(imomushi->mStuckCollPart->mChild);

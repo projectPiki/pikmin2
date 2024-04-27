@@ -27,14 +27,14 @@ void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
-	mCautionTimer = 128.0f;
-	mJoint        = mModel->getJoint("hoppe");
-	_2F0          = 0.0f;
-	mCautionTimer = 0.0f;
-	mIsBlowing    = false;
-	_2E4          = 0.0f;
-	_2E8          = 1.0f;
-	_2F4          = 0.0f;
+	mCautionTimer    = 128.0f;
+	mJoint           = mModel->getJoint("hoppe");
+	mWalkTimer       = 0.0f;
+	mCautionTimer    = 0.0f;
+	mIsBlowing       = false;
+	mAttackTimer     = 0.0f;
+	mAttackMaxGrowth = 1.0f;
+	mTurnGoalDir     = 0.0f;
 
 	setupEffect();
 
@@ -111,7 +111,7 @@ void Obj::doStartStoneState()
 {
 	EnemyBase::doStartStoneState();
 	if (mIsBlowing) {
-		_2E4 = 0.0f;
+		mAttackTimer = 0.0f;
 		finishEffect();
 	}
 }
@@ -136,7 +136,7 @@ void Obj::doStartEarthquakeFitState()
 {
 	EnemyBase::doStartEarthquakeFitState();
 	if (mIsBlowing) {
-		_2E4 = 0.0f;
+		mAttackTimer = 0.0f;
 		finishEffect();
 	}
 }
@@ -246,7 +246,7 @@ void Obj::getCommonEffectPos(Vector3f& pos)
  */
 bool Obj::isAttackable(bool check)
 {
-	Vector3f targetPos = Vector3f(_2CC);
+	Vector3f targetPos = Vector3f(mAttackStartPos);
 	const f32 theta    = getFaceDir();
 
 	Vector3f dir = Vector3f(sinf(theta), 0.0f, cosf(theta));
@@ -305,13 +305,13 @@ bool Obj::isAttackable(bool check)
  */
 f32 Obj::emitCollideRatio(Vector3f& dir, Vector3f& pos, f32 range)
 {
-	range *= _2E4;
-	if (0.0f == _2E4) {
-		_2E4 = 0.001f;
-		_2E8 = 1.0f;
+	range *= mAttackTimer;
+	if (0.0f == mAttackTimer) {
+		mAttackTimer     = 0.001f;
+		mAttackMaxGrowth = 1.0f;
 	}
 
-	if (_2E4 < _2E8) {
+	if (mAttackTimer < mAttackMaxGrowth) {
 		Vector3f ballPos = dir;
 		ballPos *= range;
 		ballPos += pos;
@@ -328,20 +328,20 @@ f32 Obj::emitCollideRatio(Vector3f& dir, Vector3f& pos, f32 range)
 		mapMgr->traceMove(moveInfo, sys->mDeltaTime);
 
 		if (moveInfo.mBounceTriangle || moveInfo.mWallTriangle) {
-			_2E8 = _2E4;
+			mAttackMaxGrowth = mAttackTimer;
 		} else {
-			_2E4 += 2.0f * sys->mDeltaTime;
-			if (_2E4 > _2E8) {
-				_2E4 = _2E8;
+			mAttackTimer += 2.0f * sys->mDeltaTime;
+			if (mAttackTimer > mAttackMaxGrowth) {
+				mAttackTimer = mAttackMaxGrowth;
 			}
 		}
 
-		if (_2E8 < 1.0f) {
+		if (mAttackMaxGrowth < 1.0f) {
 			stopEffectRadius(5.0f + range);
 		}
 	}
 
-	if (_2E8 < 1.0f) {
+	if (mAttackMaxGrowth < 1.0f) {
 		return 2.5f + range;
 	}
 
@@ -356,16 +356,16 @@ void Obj::updateEmit()
 {
 	Matrixf* mat = mJoint->getWorldMatrix();
 	if (mat) {
-		mat->getTranslation(_2CC);
-		mat->getColumn(0, _2D8);
+		mat->getTranslation(mAttackStartPos);
+		mat->getColumn(0, mAttackDirection);
 
-		_2D8.normalise();
+		mAttackDirection.normalise();
 
-		Vector3f vec = _2D8;
+		Vector3f vec = mAttackDirection;
 		vec *= 10.0f;
 		vec.y -= 10.0f;
 
-		_2CC += vec;
+		mAttackStartPos += vec;
 	}
 }
 

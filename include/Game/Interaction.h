@@ -522,7 +522,7 @@ struct InteractHipdrop : public InteractAttack {
 struct InteractSwallow : public InteractAttack {
 	inline InteractSwallow(Creature* parent, f32 damage, CollPart* collpart)
 	    : InteractAttack(parent, damage, collpart)
-	    , _10(0)
+	    , mIsStabbed(FALSE)
 	{
 	}
 
@@ -531,7 +531,7 @@ struct InteractSwallow : public InteractAttack {
 
 	// _00     = VTBL
 	// _00-_10 = InteractAttack
-	int _10; // _10
+	int mIsStabbed; // _10, used for burrownit, plays extra stab sound/anim
 };
 
 struct InteractSarai : public InteractSwallow {

@@ -104,7 +104,7 @@ struct Obj : public EnemyBase {
 	FSM* mFsm;                        // _2BC
 	StateID mNextState;               // _2C0
 	f32 mStateTimer;                  // _2C4
-	f32 _2C8;                         // _2C8
+	f32 mMovePitchTimer;              // _2C8
 	f32 mFallTimer;                   // _2CC
 	Vector3f mTargetPosition;         // _2D0
 	bool mIsSucking;                  // _2DC

@@ -48,7 +48,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mWaitTimer      = 0.0f;
 	mIsRoomForLarva = false;
 	mBirthTimer     = 0.0f;
-	_2D0            = 0.0f;
+	mPrevHitNum     = 0.0f;
 	resetJointShadow();
 	mShadowMgr->init();
 	setupEffect();
@@ -477,7 +477,7 @@ bool Obj::isCreateBaby()
  * @note Address: 0x8028AC58
  * @note Size: 0x18
  */
-bool Obj::isHitCounterUp() { return mFlickTimer > _2D0; }
+bool Obj::isHitCounterUp() { return mFlickTimer > mPrevHitNum; }
 
 /**
  * @note Address: 0x8028AC70

@@ -651,9 +651,9 @@ bool InteractSwallow::actPiki(Game::Piki* piki)
 	if (!piki->mCurrentState->dead()) {
 		piki->startStickMouth(mCreature, mCollPart);
 
-		int anim = 0x8;
-		if (_10 == 1) {
-			anim = 0x3f;
+		int anim = IPikiAnims::ESA;
+		if (mIsStabbed == TRUE) {
+			anim = IPikiAnims::SUWARERU;
 			piki->startSound(PSSE_PK_SE_STABBED, false);
 		}
 

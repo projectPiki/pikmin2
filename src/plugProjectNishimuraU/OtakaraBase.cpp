@@ -32,12 +32,12 @@ void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
 
-	mNextState = OTA_Null;
-	_2C4       = 0.0f;
+	mNextState       = OTA_Null;
+	mAttackWaitTimer = 0.0f;
 	resetTreasure();
-	_2D0            = 0;
-	_2C8            = 12800.0f;
-	mEscapeSfxTimer = 0.0f;
+	mIsAttackCharging  = 0;
+	mAttackActiveTimer = 12800.0f;
+	mEscapeSfxTimer    = 0.0f;
 	setupEffect();
 
 	if (getEnemyTypeID() == EnemyTypeID::EnemyID_BombOtakara) {
@@ -52,7 +52,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 		return;
 	}
 
-	_2E8 = 12800.0f;
+	mItemSearchDelayTimer = 12800.0f;
 	mFsm->start(this, 2, nullptr);
 }
 
@@ -80,8 +80,8 @@ void Obj::doUpdate() { mFsm->exec(this); }
 void Obj::doUpdateCommon()
 {
 	EnemyBase::doUpdateCommon();
-	if (_2C8 < 1.0f) {
-		_2C8 += sys->mDeltaTime;
+	if (mAttackActiveTimer < 1.0f) {
+		mAttackActiveTimer += sys->mDeltaTime;
 		startDisChargeSE();
 		attackTarget();
 	}
@@ -243,7 +243,7 @@ void Obj::doStartStoneState()
 void Obj::doFinishStoneState()
 {
 	EnemyBase::doFinishStoneState();
-	if (_2D0 != 0) {
+	if (mIsAttackCharging != 0) {
 		startChargeEffect();
 	}
 }
@@ -266,7 +266,7 @@ void Obj::doStartEarthquakeState(f32 p1)
 void Obj::doFinishEarthquakeState()
 {
 	EnemyBase::doFinishEarthquakeState();
-	if (_2D0 != 0) {
+	if (mIsAttackCharging != 0) {
 		startChargeEffect();
 	}
 }
@@ -289,7 +289,7 @@ void Obj::doStartEarthquakeFitState()
 void Obj::doFinishEarthquakeFitState()
 {
 	EnemyBase::doFinishEarthquakeFitState();
-	if (_2D0 != 0) {
+	if (mIsAttackCharging != 0) {
 		startChargeEffect();
 	}
 }
@@ -342,10 +342,10 @@ void Obj::doEndMovie() { effectDrawOn(); }
 bool OtakaraBase::Obj::isMovePositionSet(bool ignoringTreasures)
 {
 	Creature* target = nullptr;
-	if (!ignoringTreasures && (_2E8 > C_PROPERPARMS.mTreasureCatch.mValue)) {
+	if (!ignoringTreasures && (mItemSearchDelayTimer > C_PROPERPARMS.mTreasureCatch.mValue)) {
 		target = getNearestTreasure();
 	} else {
-		_2E8 += sys->mDeltaTime;
+		mItemSearchDelayTimer += sys->mDeltaTime;
 	}
 
 	if (target) {
@@ -679,8 +679,8 @@ bool Obj::isTransitChaseState()
  */
 bool Obj::stimulateBomb()
 {
-	_2E8 += sys->mDeltaTime;
-	if ((_2E8 > 1.5f) && (mTargetCreature != nullptr) && (mTargetCreature->isAlive())) {
+	mItemSearchDelayTimer += sys->mDeltaTime;
+	if ((mItemSearchDelayTimer > 1.5f) && (mTargetCreature != nullptr) && (mTargetCreature->isAlive())) {
 		disableEvent(0, EB_Cullable);
 		static_cast<Bomb::Obj*>(mTargetCreature)->forceBomb();
 	}

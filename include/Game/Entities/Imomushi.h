@@ -95,17 +95,17 @@ struct Obj : public EnemyBase {
 	// _00-_2BC	= EnemyBase
 	FSM* mFsm;                     // _2BC
 	bool mIsUnderground;           // _2C0
-	bool _2C1;                     // _2C1
-	bool _2C2;                     // _2C2
+	bool mStickDiffEnabled;        // _2C1
+	bool mIsStickDiffRunning;      // _2C2 - set to false when StickDiff first starts, true after running once
 	StateID mNextState;            // _2C4
 	f32 mStateTimer;               // _2C8
 	Vector3f mClimbAxis;           // _2CC, axis vector of tube currently climbing
-	Vector3f _2D8;                 // _2D8
-	Vector3f _2E4;                 // _2E4
+	Vector3f mClimbDirection;      // _2D8, which way the enemy faces
+	Vector3f mClimbRotation;       // _2E4
 	Vector3f mZukanTargetPosition; // _2F0
-	f32 _2FC;                      // _2FC
-	f32 _300;                      // _300
-	f32 _304;                      // _304
+	f32 mClimbStartMoveRatio;      // _2FC
+	f32 mClimbingXPos;             // _300
+	f32 mClimbingZPos;             // _304
 	efx::TImoEat* mEfxEat;         // _308
 	efx::TImoSmoke* mEfxSmoke;     // _30C
 	                               // _310 = PelletView
