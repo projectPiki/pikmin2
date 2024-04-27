@@ -252,7 +252,7 @@ struct PlayData : public CNode {
 	enum CourseFlags {
 		PDCF_Unset    = 0x0,
 		PDCF_Open     = 0x1,
-		PDCF_Unknown2 = 0x2,
+		PDCF_JustOpen = 0x2,
 		PDCF_Visited  = 0x4,
 	};
 	/**
@@ -466,6 +466,8 @@ struct PlayData : public CNode {
 
 	inline void addPokos(int pokos) { mPokoCount += pokos; }
 
+	inline u8& getDebtProgressFlags(int flagID) { return ((u8*)(&mDebtProgressFlags))[flagID]; }
+
 	// _00     = VTBL
 	// _00-_18 = CNode
 	bool _18;                               // _18
@@ -502,11 +504,12 @@ struct PlayData : public CNode {
 	LimitGen* mLimitGen; // _E4
 
 	// Current Poko count.
-	u32 mPokoCount; // _E8
+	int mPokoCount; // _E8
 
 	int mCavePokoCount; // _EC
 
-	u8 mDebtProgressFlags[2]; // _F0, represent which %of debt messages have been seen
+	BitFlag<u8> mDebtProgressFlags;       // _F0, represent which %of debt messages have been seen
+	BitFlag<u8> mBackupDebtProgressFlags; // _F1
 
 	// ptr to array of previous day's collected overworld treasure counts, per
 	// course.
