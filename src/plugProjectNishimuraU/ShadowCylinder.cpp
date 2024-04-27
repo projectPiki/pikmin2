@@ -517,7 +517,7 @@ void CylinderBase::setCameraParms(Camera* camera, int id)
 {
 	mCamPosition[id]   = camera->getPosition();
 	mCamLookAt[id]     = camera->getViewVector();
-	mCameraSizeMod[id] = camera->_138;
+	mCameraSizeMod[id] = camera->mFieldOfViewTangent;
 }
 
 /**

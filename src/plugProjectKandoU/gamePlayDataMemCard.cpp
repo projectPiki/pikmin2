@@ -48,7 +48,7 @@ void PlayData::write(Stream& output)
 	output.textEndGroup();
 
 	output.textBeginGroup("* ï‘çœìxÉtÉâÉO *"); // 'repayment flag'
-	u8* flags = mDebtProgressFlags;
+	u8* flags = &mDebtProgressFlags.typeView;
 	for (u32 i = 0; i < 2; i++) {
 		output.writeByte(flags[i]);
 	}
@@ -720,7 +720,7 @@ void PlayData::read(Stream& input)
 	}
 
 	if (versionID >= 'j001') {
-		u8* debtFlags = mDebtProgressFlags;
+		u8* debtFlags = &mDebtProgressFlags.typeView;
 		for (u32 i = 0; i < 2; i++) {
 			debtFlags[i] = input.readByte();
 		}
