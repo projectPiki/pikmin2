@@ -141,10 +141,10 @@ SeqTrackChild::SeqTrackChild(const PSSystem::SeqTrackRoot&)
  */
 void SeqTrackChild::muteOffAndFadeIn(f32 arg1, u32 arg2, PSSystem::DirectorBase* base)
 {
-	mTaskEntryMgr.removeEntry(&_2C);
-	mTaskEntryMgr.removeEntry(&_12C);
-	_2C.makeEntry(arg1, arg2);
-	mTaskEntryMgr.appendEntry(&_2C, base);
+	mTaskEntryMgr.removeEntry(&mMuteVolumeTask);
+	mTaskEntryMgr.removeEntry(&mMuteOnTask);
+	mMuteVolumeTask.makeEntry(arg1, arg2);
+	mTaskEntryMgr.appendEntry(&mMuteVolumeTask, base);
 }
 
 /**
@@ -153,10 +153,10 @@ void SeqTrackChild::muteOffAndFadeIn(f32 arg1, u32 arg2, PSSystem::DirectorBase*
  */
 void SeqTrackChild::fadeoutAndMute(u32 arg, PSSystem::DirectorBase* base)
 {
-	mTaskEntryMgr.removeEntry(&_2C);
-	mTaskEntryMgr.removeEntry(&_12C);
-	_12C.makeEntry(arg);
-	mTaskEntryMgr.appendEntry(&_12C, base);
+	mTaskEntryMgr.removeEntry(&mMuteVolumeTask);
+	mTaskEntryMgr.removeEntry(&mMuteOnTask);
+	mMuteOnTask.makeEntry(arg);
+	mTaskEntryMgr.appendEntry(&mMuteOnTask, base);
 }
 
 /**
@@ -176,9 +176,9 @@ void SeqTrackChild::fade(f32 arg1, u32 arg2, PSSystem::DirectorBase* base)
  */
 void SeqTrackChild::setIdMask(u8 mask, PSSystem::DirectorBase* base)
 {
-	mTaskEntryMgr.removeEntry(&_224);
-	_224.makeEntry(mask);
-	mTaskEntryMgr.appendEntry(&_224, base);
+	mTaskEntryMgr.removeEntry(&mIdMaskTask);
+	mIdMaskTask.makeEntry(mask);
+	mTaskEntryMgr.appendEntry(&mIdMaskTask, base);
 }
 
 /**

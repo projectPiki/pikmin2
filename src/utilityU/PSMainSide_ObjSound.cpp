@@ -3997,10 +3997,10 @@ Cluster::Cluster(Game::Creature* gameObj, PSSystem::ClusterSe::Factory& factory)
  * @note Address: 0x8046318C
  * @note Size: 0x60
  */
-void Cluster::startClusterSound(u8 id)
+void Cluster::startClusterSound(u8 count)
 {
 	exec();
-	mClusterSeMgr->play(id, this);
+	mClusterSeMgr->play(count, this);
 }
 
 } // namespace PSM

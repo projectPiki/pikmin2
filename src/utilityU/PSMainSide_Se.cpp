@@ -28,25 +28,25 @@ PSSystem::ClusterSe::PartInitArg ClusterFactory::partInit(u8 unknownID)
 	case 0: {
 		switch (unknownID) {
 		case 0:
-			arg._00      = 0x19;
-			arg._02      = 0x19;
-			arg._03      = 0x16;
-			arg._01      = 0x10;
-			arg.mSoundID = PSSE_EN_BUTTERFLY_L;
+			arg.mMaxEnemyCount           = 0x19;
+			arg.mVolumeDecreaseThreshold = 0x19;
+			arg.mVolumeIncreaseThreshold = 0x16;
+			arg.mMinEnemyCount           = 0x10;
+			arg.mSoundID                 = PSSE_EN_BUTTERFLY_L;
 			break;
 		case 1:
-			arg._00      = 0x16;
-			arg._02      = 0x10;
-			arg._03      = 0x0e;
-			arg._01      = 0x08;
-			arg.mSoundID = PSSE_EN_BUTTERFLY_M;
+			arg.mMaxEnemyCount           = 0x16;
+			arg.mVolumeDecreaseThreshold = 0x10;
+			arg.mVolumeIncreaseThreshold = 0x0e;
+			arg.mMinEnemyCount           = 0x08;
+			arg.mSoundID                 = PSSE_EN_BUTTERFLY_M;
 			break;
 		case 2:
-			arg._00      = 0x0e;
-			arg._02      = 0x08;
-			arg._03      = 0x05;
-			arg._01      = 0x00;
-			arg.mSoundID = PSSE_EN_BUTTERFLY_S;
+			arg.mMaxEnemyCount           = 0x0e;
+			arg.mVolumeDecreaseThreshold = 0x08;
+			arg.mVolumeIncreaseThreshold = 0x05;
+			arg.mMinEnemyCount           = 0x00;
+			arg.mSoundID                 = PSSE_EN_BUTTERFLY_S;
 			break;
 		default:
 			P2ASSERTLINE(62, false);
@@ -56,21 +56,21 @@ PSSystem::ClusterSe::PartInitArg ClusterFactory::partInit(u8 unknownID)
 	case 1: {
 		switch (unknownID) {
 		case 0:
-			arg._00 = 0x64;
-			arg._03 = 0x46;
-			arg._01 = 0x3c;
+			arg.mMaxEnemyCount           = 0x64;
+			arg.mVolumeIncreaseThreshold = 0x46;
+			arg.mMinEnemyCount           = 0x3c;
 			break;
 		case 1:
-			arg._00 = 0x46;
-			arg._02 = 0x3c;
-			arg._03 = 0x28;
-			arg._01 = 0x1e;
+			arg.mMaxEnemyCount           = 0x46;
+			arg.mVolumeDecreaseThreshold = 0x3c;
+			arg.mVolumeIncreaseThreshold = 0x28;
+			arg.mMinEnemyCount           = 0x1e;
 			break;
 		case 2:
-			arg._00 = 0x28;
-			arg._02 = 0x1e;
-			arg._03 = 0x0a;
-			arg._01 = 0x00;
+			arg.mMaxEnemyCount           = 0x28;
+			arg.mVolumeDecreaseThreshold = 0x1e;
+			arg.mVolumeIncreaseThreshold = 0x0a;
+			arg.mMinEnemyCount           = 0x00;
 			break;
 		default:
 			P2ASSERTLINE(95, false);

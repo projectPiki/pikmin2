@@ -80,7 +80,7 @@ struct MeloArr_RandomAvoid : public MeloArrBase {
 	MeloArr_RandomAvoid(char* name)
 	    : MeloArrBase(name)
 	{
-		_1C = 0.6f;
+		mChance = 0.6f;
 	}
 	// JADHioNode vtable:
 	// virtual void ~MeloArr_RandomAvoid() = 0; // _08
@@ -91,7 +91,7 @@ struct MeloArr_RandomAvoid : public MeloArrBase {
 	virtual bool avoidChk(MeloArrArg&); // _24
 	virtual ~MeloArr_RandomAvoid() { }  // _28 (weak)
 
-	f32 _1C; // _1C
+	f32 mChance; // _1C
 };
 
 } // namespace PSAutoBgm

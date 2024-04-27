@@ -60,19 +60,18 @@ struct SeqTrackRoot : public SeqTrackBase {
 
 	// _00      = VTABLE
 	// _04-_2C  = SeqBase
-	u16 mStandardTempo;             // _2C, for olimar
-	u16 mActiveTempo;               // _2E, actual active tempo
-	u16 mSwingTempoMin;             // _30, min tempo for louie swing
-	u16 mSwingTempoMax;             // _32, max tempo for louie swing
-	f32 mSwingMagnitude;            // _34, how significant the swing is (?)
-	int mSwingState;                // _38, 0 = olimar, 1 = louie
-	BeatMgr mBeatMgr;               // _3C
-	u8 _3D;                         // _3D - possibly padding or part of BeatMgr
-	u16 _3E;                        // _3E
-	TaskEntry_Tempo mTempoTask;     // _40, for low health
-	TaskEntry_OuterParam _100;      // _100
-	TaskEntry_PitMod mPitchModTask; // _16C, for taking damage
-	TaskEntry_BankRandTask _20C;    // _20C
+	u16 mStandardTempo;                   // _2C, for olimar
+	u16 mActiveTempo;                     // _2E, actual active tempo
+	u16 mSwingTempoMin;                   // _30, min tempo for louie swing
+	u16 mSwingTempoMax;                   // _32, max tempo for louie swing
+	f32 mSwingMagnitude;                  // _34, how significant the swing is (?)
+	int mSwingState;                      // _38, 0 = olimar, 1 = louie
+	BeatMgr mBeatMgr;                     // _3C
+	u16 _3E;                              // _3E
+	TaskEntry_Tempo mTempoTask;           // _40, for low health
+	TaskEntry_OuterParam _100;            // _100
+	TaskEntry_PitMod mPitchModTask;       // _16C, for taking damage
+	TaskEntry_BankRandTask mBankRandTask; // _20C
 };
 
 struct SeqTrackRoot_JumpBgm : public SeqTrackRoot {
@@ -97,10 +96,10 @@ struct SeqTrackChild : public SeqTrackBase {
 
 	// _00      = VTABLE
 	// _04-_2C  = SeqBase
-	TaskEntry_MuteVolume _2C;    // _2C
-	TaskEntry_MuteOnVolume _12C; // _12C
-	TaskEntry_OuterParam _1B8;   // _1B8
-	TaskEntry_IdMask _224;       // _224
+	TaskEntry_MuteVolume mMuteVolumeTask; // _2C
+	TaskEntry_MuteOnVolume mMuteOnTask;   // _12C
+	TaskEntry_OuterParam _1B8;            // _1B8
+	TaskEntry_IdMask mIdMaskTask;         // _224
 };
 
 } // namespace PSSystem

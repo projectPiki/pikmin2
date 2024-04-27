@@ -137,10 +137,12 @@ void Scene::stopAllSound(u32 time) { mSeqMgr.stopAllSound(time); }
 void Scene::scene1st(TaskChecker* task)
 {
 	WaveLoader* wave = mWaveLoader;
+
 	if (wave) {
-		(wave)->loadWave(task, WaveScene::AREA_0);
-		(wave)->loadWave(task, WaveScene::AREA_1);
+		wave->loadWave(task, WaveScene::AREA_0);
+		wave->loadWave(task, WaveScene::AREA_1);
 	}
+
 	mSeqMgr.scene1st(task);
 }
 
