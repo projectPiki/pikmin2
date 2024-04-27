@@ -301,12 +301,12 @@ void ObjSMenuBase::updateYaji()
 			angle = 0.0f;
 			init  = true;
 		}
-		angle += msBaseVal._10;
+		angle += msBaseVal.mLRArrowMoveSpeed;
 
 		if (angle > TAU) {
 			angle -= TAU;
 		}
-		newxpos = msBaseVal._0C * sinf(angle);
+		newxpos = msBaseVal.mLRArrowMoveDistance * sinf(angle);
 
 		f32 temp = angle - HALF_PI;
 		if (temp > 0.0f && temp < PI) {
@@ -341,7 +341,7 @@ void ObjSMenuBase::updateYaji()
 	if (msBaseVal.mUpdateYaji) {
 		newAlphaVal = (f32)mAlpha * newalpha;
 	} else {
-		mArrowBlink->setSpeed(msBaseVal._10);
+		mArrowBlink->setSpeed(msBaseVal.mLRArrowMoveSpeed);
 		newalpha    = mArrowBlink->calc();
 		newAlphaVal = (f32)mAlpha * newalpha;
 	}
@@ -370,25 +370,25 @@ bool ObjSMenuBase::updateFadeIn()
 	switch (mState) {
 	case MENUSTATE_OpenL:
 		mFadeLevel += sys->mDeltaTime;
-		if (mFadeLevel > msBaseVal._08) {
+		if (mFadeLevel > msBaseVal.mFadeInOutTime) {
 			ret = true;
 		} else if (pad->mButton.mButtonDown & mButtonStates[1]) {
 			mCancelToState = MENUCLOSE_R;
 			mExiting       = true;
 		}
-		f32 calc2 = (1.0f - og::Screen::calcSmooth0to1(mFadeLevel, msBaseVal._08));
+		f32 calc2 = (1.0f - og::Screen::calcSmooth0to1(mFadeLevel, msBaseVal.mFadeInOutTime));
 		mMovePos  = 800.0f * calc2;
 		break;
 
 	case MENUSTATE_OpenR:
 		mFadeLevel += sys->mDeltaTime;
-		if (mFadeLevel > msBaseVal._08) {
+		if (mFadeLevel > msBaseVal.mFadeInOutTime) {
 			ret = true;
 		} else if (pad->mButton.mButtonDown & mButtonStates[0]) {
 			mCancelToState = MENUCLOSE_L;
 			mExiting       = true;
 		}
-		f32 calc = (1.0f - og::Screen::calcSmooth0to1(mFadeLevel, msBaseVal._08));
+		f32 calc = (1.0f - og::Screen::calcSmooth0to1(mFadeLevel, msBaseVal.mFadeInOutTime));
 		mMovePos = -800.0f * calc;
 		break;
 
@@ -444,18 +444,18 @@ bool ObjSMenuBase::updateFadeOut()
 	switch (mState) {
 	case MENUSTATE_CloseL:
 		mFadeLevel += sys->mDeltaTime;
-		if (mFadeLevel > msBaseVal._08) {
+		if (mFadeLevel > msBaseVal.mFadeInOutTime) {
 			ret = true;
 		}
-		f32 calc = og::Screen::calcSmooth0to1(mFadeLevel, msBaseVal._08);
+		f32 calc = og::Screen::calcSmooth0to1(mFadeLevel, msBaseVal.mFadeInOutTime);
 		mMovePos = -800.0f * calc;
 		break;
 	case MENUSTATE_CloseR:
 		mFadeLevel += sys->mDeltaTime;
-		if (mFadeLevel > msBaseVal._08) {
+		if (mFadeLevel > msBaseVal.mFadeInOutTime) {
 			ret = true;
 		}
-		f32 calc2 = og::Screen::calcSmooth0to1(mFadeLevel, msBaseVal._08);
+		f32 calc2 = og::Screen::calcSmooth0to1(mFadeLevel, msBaseVal.mFadeInOutTime);
 		mMovePos  = 800.0f * calc2;
 		break;
 	case MENUSTATE_Default:

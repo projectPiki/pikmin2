@@ -298,10 +298,10 @@ void OtakaraSensor::calcGrayColor()
 		case 4:
 			col1.set(255, 0, 200, 255);
 			f32 timeFactor = sys->mDeltaTime * TAU;
-			mNoiseTimer += newScreen::ObjCave::msVal._44 * timeFactor;
+			mNoiseTimer += newScreen::ObjCave::msVal.mTreasureRadarNoiseModifierHigh * timeFactor;
 			if (mNoiseTimer > TAU)
 				mNoiseTimer -= TAU;
-			mNoiseLevel  = (sinf(mNoiseTimer) + 1.0f) * newScreen::ObjCave::msVal._48 / 2;
+			mNoiseLevel  = (sinf(mNoiseTimer) + 1.0f) * newScreen::ObjCave::msVal.mTreasureRadarNoiseModifierLow / 2;
 			mCanIncNoise = true;
 			break;
 

@@ -1066,11 +1066,11 @@ TChallengeResult::TChallengeResult()
 		mClearTexture[i] = nullptr;
 	}
 
-	_120       = 0.0f;
-	_124       = 0.0f;
-	mMoveTimer = 0.0f;
-	_1D4       = 0.0f;
-	_1D8       = 0.0f;
+	mPokoCountOffsetX = 0.0f;
+	mPokoCountOffsetY = 0.0f;
+	mMoveTimer        = 0.0f;
+	_1D4              = 0.0f;
+	_1D8              = 0.0f;
 
 	mVecUnit[0]._00.x = 225.0f;
 	mVecUnit[0]._00.y = 250.0f;
@@ -1468,7 +1468,7 @@ bool TChallengeResult::doUpdate()
 		mResultCounters[i]->update();
 	}
 
-	mCounter2->getMotherPane()->setOffset(_120 + mMoveTimer, _124);
+	mCounter2->getMotherPane()->setOffset(mPokoCountOffsetX + mMoveTimer, mPokoCountOffsetY);
 	if (mMoveTimer > 0.0f) {
 		mMoveTimer += 20.0f * mDemoSpeedUpRate;
 	}

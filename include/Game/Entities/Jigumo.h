@@ -381,8 +381,8 @@ struct StateAttack : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	u8 _10; // _10
-	u8 _11; // _11
+	u8 mIsAttackActive; // _10
+	u8 mDoTurnToTarget; // _11
 };
 
 struct StateCarry : public State {
@@ -444,7 +444,7 @@ struct StateMiss : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	u8 _10; // _10
+	u8 mUnused; // _10
 };
 
 struct StateReturn : public State {
@@ -467,8 +467,8 @@ struct StateSAttack : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	u8 _10; // _10
-	u8 _11; // _11
+	u8 mDidCatchTarget; // _10
+	u8 mIsAttackActive; // _11
 };
 
 struct StateSearch : public State {

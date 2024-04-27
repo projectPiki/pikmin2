@@ -818,7 +818,7 @@ int Game2DMgr::check_CaveInMenu()
 	og::Screen::DispMemberAnaDemo* disp = static_cast<og::Screen::DispMemberAnaDemo*>(mScreenMgr->getDispMember());
 	if (disp) {
 		if (disp->isID(OWNER_OGA, MEMBER_ANA_DEMO)) {
-			if (disp->_1F) {
+			if (disp->mExitStatus) {
 				ret = 0;
 			} else {
 				int ret2 = 2;
@@ -887,7 +887,7 @@ int Game2DMgr::check_KanketuMenu()
 	og::Screen::DispMemberAnaDemo* disp = static_cast<og::Screen::DispMemberAnaDemo*>(mScreenMgr->getDispMember());
 	if (disp) {
 		if (disp->isID(OWNER_OGA, MEMBER_KANKETU_MENU)) {
-			if (disp->_1F) {
+			if (disp->mExitStatus) {
 				ret = 0;
 			} else {
 				int ret2 = 2;
@@ -936,7 +936,7 @@ int Game2DMgr::check_CaveMoreMenu()
 	og::Screen::DispMemberAnaDemo* disp = static_cast<og::Screen::DispMemberAnaDemo*>(mScreenMgr->getDispMember());
 	if (disp) {
 		if (disp->isID(OWNER_OGA, MEMBER_CAVE_MORE)) {
-			if (disp->_1F) {
+			if (disp->mExitStatus) {
 				ret = 0;
 			} else {
 				int ret2 = 2;
@@ -1356,8 +1356,8 @@ bool Game2DMgr::open_UfoMenu(og::Screen::DispMemberUfoGroup& disp)
 	if (checkDayEnd(0.08f))
 		return false;
 	if (disp.mHasWhite && disp.mHasPurple) {
-		disp.mContena1._2C = 1;
-		disp.mContena2._2C = 1;
+		disp.mContena1.mExitSoundType = 1;
+		disp.mContena2.mExitSoundType = 1;
 		SetSceneArg arg(SCENE_UFO_MENU, &disp);
 		if (mScreenMgr->setScene(arg) && mScreenMgr->startScene(nullptr)) {
 			PSPause_StartMenuOn();
@@ -1366,16 +1366,16 @@ bool Game2DMgr::open_UfoMenu(og::Screen::DispMemberUfoGroup& disp)
 		}
 	} else {
 		if (disp.mHasWhite) {
-			disp.mContena1._2C         = 0;
-			disp.mUfoMenu.mContenaType = 1;
+			disp.mContena1.mExitSoundType = 0;
+			disp.mUfoMenu.mContenaType    = 1;
 			SetSceneArg arg(SCENE_CONTENA_WHITE, &disp);
 			if (mScreenMgr->setScene(arg) && mScreenMgr->startScene(nullptr)) {
 				PSPause_StartMenuOn();
 				return true;
 			}
 		} else if (disp.mHasPurple) {
-			disp.mContena2._2C         = 0;
-			disp.mUfoMenu.mContenaType = 2;
+			disp.mContena2.mExitSoundType = 0;
+			disp.mUfoMenu.mContenaType    = 2;
 			SetSceneArg arg(SCENE_CONTENA_PURPLE, &disp);
 			if (mScreenMgr->setScene(arg) && mScreenMgr->startScene(nullptr)) {
 				PSPause_StartMenuOn();
@@ -1412,7 +1412,7 @@ int Game2DMgr::check_UfoMenu()
 			break;
 		}
 		case 3: {
-			if (disp->mContena1._2C) {
+			if (disp->mContena1.mExitSoundType) {
 				ret = 0;
 			} else {
 				ret = 1;
@@ -1434,7 +1434,7 @@ int Game2DMgr::check_UfoMenu()
 			break;
 		}
 		case 3: {
-			if (disp->mContena2._2C) {
+			if (disp->mContena2.mExitSoundType) {
 				ret = 0;
 			} else {
 				ret = 1;

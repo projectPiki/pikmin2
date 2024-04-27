@@ -25,7 +25,7 @@ TOffsetMsgSet::TOffsetMsgSet(u64* taglist, u64 newtag, int size)
 	mSize    = size;
 
 	mTagList = new u64[size];
-	_04      = new int[size];
+	mIdList  = new int[size];
 	for (int i = 0; i < mSize; i++) {
 		u64 temp     = taglist[i];
 		u64* currTag = &mTagList[i];
@@ -44,7 +44,7 @@ TOffsetMsgSet::TOffsetMsgSet(u64* taglist, u64 newtag, int size, u64* taglist2, 
 	mMsgID   = newtag;
 	mSize    = size;
 	mTagList = taglist2;
-	_04      = alloc;
+	mIdList  = alloc;
 
 	for (int i = 0; i < mSize; i++) {
 		u64 temp     = taglist[i];
@@ -61,7 +61,7 @@ TOffsetMsgSet::TOffsetMsgSet(u64* taglist, u64 newtag, int size, u64* taglist2, 
 u64 TOffsetMsgSet::getMsgID(int index)
 {
 	for (int i = 0; i < mSize; i++) {
-		_04[i] = 0;
+		mIdList[i] = 0;
 	}
 
 	int counter = 1;
@@ -76,11 +76,11 @@ u64 TOffsetMsgSet::getMsgID(int index)
 		calcOffset(offset, i - 1);
 	}
 
-	_04[0]     = offset;
+	mIdList[0] = offset;
 	u64 retTag = mMsgID;
 
 	for (int i = 0; i < mSize; i++) {
-		int curr = _04[i];
+		int curr = mIdList[i];
 		if (curr) {
 			u64* currTag = &mTagList[i];
 

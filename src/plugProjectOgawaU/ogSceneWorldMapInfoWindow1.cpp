@@ -20,7 +20,7 @@ void WorldMapInfoWindow1::doCreateObj(JKRArchive* archive)
 
 	Screen::DispMemberWorldMapInfoWin1* disp = static_cast<Screen::DispMemberWorldMapInfoWin1*>(mDispMember);
 	if (disp->isID(OWNER_OGA, MEMBER_WORLD_MAP_INFO_WINDOW_1)) {
-		setColorBG(0, 0, 0, disp->_0C);
+		setColorBG(0, 0, 0, disp->mBgAlpha);
 	}
 }
 

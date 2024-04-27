@@ -194,7 +194,7 @@ struct Obj : public EnemyBase {
 	J3DMaterial* _37C;                      // _37C
 	Color4 mActiveColor;                    // _380
 	Color4 mTargetColor;                    // _384
-	Color4 _388;                            // _388
+	Color4 mUnusedColor;                    // _388
 	Color4 mFadeColor;                      // _38C
 	efx::TKageMove* mEfxMove;               // _390
 	efx::TKageRun* mEfxRun;                 // _394
@@ -202,9 +202,9 @@ struct Obj : public EnemyBase {
 	efx::TKageDead1* mEfxDead;              // _39C
 	efx::TKageFlick* mEfxFrontFlick;        // _3A0
 	efx::TKageFlick* mEfxBackFlick;         // _3A4
-	u8 _3A8;                                // _3A8, unknown
-	u8 _3A9;                                // _3A9
-	u8 _3AA;                                // _3AA
+	u8 mHasStartedChaseBgm;                 // _3A8
+	u8 mIsFallStart;                        // _3A9
+	u8 mNeedAppearBgm;                      // _3AA
 	u8 mIsMoviePlaying;                     // _3AB
 	                                        // _3AC = PelletView
 };
@@ -281,31 +281,31 @@ struct Parms : public EnemyParmsBase {
 
 	Parms()
 	{
-		_A10               = 1;
-		_A11               = 0;
-		_A12               = 1;
-		_A14               = 1;
-		_A15               = 0;
-		_A16               = 1;
-		mUseDrawBuffer8    = 1;
-		_A18               = 1;
-		_A1A               = -1;
-		_A1C               = 50.0f;
-		_A20               = 20.0f;
-		_A24               = 1.0f;
-		_A28               = 5.0f;
-		mBodyRotationSpeed = 1.0f;
-		_A30               = 0.9f;
-		_A34               = 0.6f;
-		_A38               = 0.2f;
-		mFadeRate          = 0.08f;
-		_A40               = 20.0f;
-		_A44               = -10.0f;
-		_A48               = 10.0f;
-		_A4C               = 1.25f;
-		_A50               = 1100.0f;
-		mFallRadius        = 300.0f;
-		_A58               = 1.0f;
+		mStartPhase          = 1;
+		mArmFollowType       = 0;
+		mDoStunOnEarthquake  = true;
+		mUseGlobalMtxCalc    = true;
+		mWaypointCalcType    = 0;
+		_A16                 = 1;
+		mUseDrawBuffer8      = 1;
+		mUseTyreForJointCalc = 1;
+		mForcedStepPhase     = -1;
+		mWaypointGoalRadius  = 50.0f;
+		_A20                 = 20.0f;
+		mBaseScale           = 1.0f;
+		mBodyMoveRate        = 5.0f;
+		mBodyRotationSpeed   = 1.0f;
+		mWristScale          = 0.9f;
+		mArmScale            = 0.6f;
+		mShoulderScale       = 0.2f;
+		mFadeRate            = 0.08f;
+		mArmRotationA        = 20.0f;
+		mArmRotationB        = -10.0f;
+		mFallMinDistance     = 10.0f;
+		mFallStartDelay      = 1.25f;
+		mInitialSpawnHeight  = 1100.0f;
+		mFallRadius          = 300.0f;
+		mFallDelay2          = 1.0f;
 	}
 
 	virtual void read(Stream& stream) // _08 (weak)
@@ -317,32 +317,32 @@ struct Parms : public EnemyParmsBase {
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms mProperParms; // _7F8
-	u8 _A10;                  // _A10, unknown
-	u8 _A11;                  // _A11, unknown
-	u8 _A12;                  // _A12, unknown
-	u8 _A13;                  // _A13, unknown
-	u8 _A14;                  // _A14, unknown
-	u8 _A15;                  // _A15, unknown
-	u8 _A16;                  // _A16, unknown
-	bool mUseDrawBuffer8;     // _A17, unknown
-	u8 _A18;                  // _A18, unknown
-	s16 _A1A;                 // _A1A, unknown
-	f32 _A1C;                 // _A1C
+	u8 mStartPhase;           // _A10
+	u8 mArmFollowType;        // _A11
+	u8 mDoStunOnEarthquake;   // _A12
+	u8 _A13;                  // _A13
+	u8 mUseGlobalMtxCalc;     // _A14
+	u8 mWaypointCalcType;     // _A15
+	u8 _A16;                  // _A16
+	bool mUseDrawBuffer8;     // _A17
+	u8 mUseTyreForJointCalc;  // _A18
+	s16 mForcedStepPhase;     // _A1A
+	f32 mWaypointGoalRadius;  // _A1C
 	f32 _A20;                 // _A20
-	f32 _A24;                 // _A24
-	f32 _A28;                 // _A28
+	f32 mBaseScale;           // _A24
+	f32 mBodyMoveRate;        // _A28
 	f32 mBodyRotationSpeed;   // _A2C
-	f32 _A30;                 // _A30
-	f32 _A34;                 // _A34
-	f32 _A38;                 // _A38
+	f32 mWristScale;          // _A30
+	f32 mArmScale;            // _A34
+	f32 mShoulderScale;       // _A38
 	f32 mFadeRate;            // _A3C
-	f32 _A40;                 // _A40
-	f32 _A44;                 // _A44
-	f32 _A48;                 // _A48
-	f32 _A4C;                 // _A4C
-	f32 _A50;                 // _A50
+	f32 mArmRotationA;        // _A40
+	f32 mArmRotationB;        // _A44
+	f32 mFallMinDistance;     // _A48
+	f32 mFallStartDelay;      // _A4C
+	f32 mInitialSpawnHeight;  // _A50
 	f32 mFallRadius;          // _A54
-	f32 _A58;                 // _A58
+	f32 mFallDelay2;          // _A58
 };
 
 enum AnimID {

@@ -86,7 +86,7 @@ void StateWalk::exec(EnemyBase* enemy)
 		return;
 	}
 
-	if (wraith->isReachToGoal(wraith->getParms()->_A1C)) {
+	if (wraith->isReachToGoal(wraith->getParms()->mWaypointGoalRadius)) {
 		wraith->findNextRoutePoint();
 		return;
 	}
@@ -456,11 +456,11 @@ void StateFall::exec(EnemyBase* enemy)
 	f32 initY         = position.y;
 	position.y += 20.0f;
 
-	f32 minY     = mapMgr->getMinY(position);
-	f32 someParm = OBJ(enemy)->getParms()->_A48;
-	someParm += minY;
+	f32 minY    = mapMgr->getMinY(position);
+	f32 minDist = OBJ(enemy)->getParms()->mFallMinDistance;
+	minDist += minY;
 
-	if (initY < someParm) {
+	if (initY < minDist) {
 		enemy->finishMotion();
 	}
 }

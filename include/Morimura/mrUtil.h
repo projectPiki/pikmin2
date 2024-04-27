@@ -22,15 +22,15 @@ struct TOffsetMsgSet {
 
 	inline void calcOffset(int& offset, int i)
 	{
-		int calc  = pow(10.0f, i);
-		int calc2 = offset / calc;
-		_04[i]    = offset / calc;
+		int calc   = pow(10.0f, i);
+		int calc2  = offset / calc;
+		mIdList[i] = offset / calc;
 		calc2 *= calc;
 		offset -= calc2;
 	}
 
 	u64* mTagList; // _00
-	int* _04;      // _04
+	int* mIdList;  // _04
 	u64 mMsgID;    // _08
 	int mSize;     // _10
 };

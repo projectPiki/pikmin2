@@ -181,9 +181,9 @@ struct Obj : public EnemyBase {
 	Vector3f mGoalPosition;             // _2BC
 	StateID mNextState;                 // _2C8
 	SysShape::Joint* mKoshiJoint;       // _2CC
-	int _2D0;                           // _2D0
-	Vector3f _2D4;                      // _2D4
-	int _2E0;                           // _2E0
+	int mNoSearchCounter;               // _2D0
+	Vector3f mLastPositionCheck;        // _2D4
+	int mLastPositionCheckTimer;        // _2E0
 	bool mIsSearching;                  // _2E4
 	f32 mAlertTimer;                    // _2E8
 	WalkSmokeEffect::Mgr mWalkSmokeMgr; // _2EC

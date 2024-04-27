@@ -12,9 +12,9 @@ struct ScaleMgr;
 struct TotalPokoScreen : public P2DScreen::Mgr_tuning {
 	TotalPokoScreen();
 
-	virtual ~TotalPokoScreen() { }                             // _08 (weak)
-	virtual void update();                                     // _30
-	virtual void setCallBack(JKRArchive*, f32, f32, f32, f32); // _A0
+	virtual ~TotalPokoScreen() { }                                                   // _08 (weak)
+	virtual void update();                                                           // _30
+	virtual void setCallBack(JKRArchive* arc, f32 x, f32 y, f32 xScale, f32 yScale); // _A0
 
 	void showTotalPoko();
 	void setTotalPoko(u32);
@@ -29,7 +29,7 @@ struct TotalPokoScreen : public P2DScreen::Mgr_tuning {
 	bool mIsOpen;                           // _154
 	CallBack_CounterRV* mCallBackCounterRV; // _158
 	J2DPane* mPane;                         // _15C
-	f32 _160;                               // _160, unused?
+	f32 mUnusedVal;                         // _160
 	Vector2f mStandardPos;                  // _164
 	Vector2f mCurrPos;                      // _16C
 	f32 mTimer;                             // _174

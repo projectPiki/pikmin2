@@ -78,34 +78,33 @@ struct ObjUfoMenu : public ::Screen::ObjBase {
 	J2DPane* mPaneN01;                 // _80
 	f32 mFadeTimer;                    // _84
 	u8 mDoDraw;                        // _88
-	u8 _89[0x3];                       // _89, probably padding
-	u32 _8C;                           // _8C, unknown
+	u32 _8C;                           // _8C, unused
 
 	static struct StaticValues {
 		inline StaticValues()
 		{
-			_00 = 0.5f;
-			_04 = 1.5f;
-			_08 = 0.35f;
-			_0C = 0.0f;
-			_10 = 0.0f;
-			_14 = 0.7f;
-			_18 = 0.0f;
-			_1C = 0.0f;
-			_20 = 0.7f;
-			_24 = 1.4f;
+			_00                = 0.5f;
+			_04                = 1.5f;
+			mFadeInOutTime     = 0.35f;
+			mPiki1XPos         = 0.0f;
+			mPiki1YPos         = 0.0f;
+			mPiki1Scale        = 0.7f;
+			mPiki2XPos         = 0.0f;
+			mPiki2YPos         = 0.0f;
+			mPiki2Scale        = 0.7f;
+			mSelectedIconScale = 1.4f;
 		}
 
-		f32 _00; // _00
-		f32 _04; // _04
-		f32 _08; // _08
-		f32 _0C; // _0C
-		f32 _10; // _10
-		f32 _14; // _14
-		f32 _18; // _18
-		f32 _1C; // _1C
-		f32 _20; // _20
-		f32 _24; // _24
+		f32 _00;                // _00
+		f32 _04;                // _04
+		f32 mFadeInOutTime;     // _08
+		f32 mPiki1XPos;         // _0C
+		f32 mPiki1YPos;         // _10
+		f32 mPiki1Scale;        // _14
+		f32 mPiki2XPos;         // _18
+		f32 mPiki2YPos;         // _1C
+		f32 mPiki2Scale;        // _20
+		f32 mSelectedIconScale; // _24
 	} msVal;
 };
 } // namespace newScreen

@@ -165,27 +165,27 @@ struct ColorSetting : public CNode {
 
 	void update();
 
-	JUtility::TColor getColor54() // name better when _54 has a better name
+	JUtility::TColor getActiveColorA()
 	{
 		JUtility::TColor outColor;
-		outColor.set(_54.r, _54.g, _54.b, _54.a);
+		outColor.set(mActiveColorA.r, mActiveColorA.g, mActiveColorA.b, mActiveColorA.a);
 		return outColor;
 	}
 
-	JUtility::TColor getColor58() // name better when _58 has a better name
+	JUtility::TColor getActiveColorB()
 	{
 		JUtility::TColor outColor;
-		outColor.set(_58.r, _58.g, _58.b, _58.a);
+		outColor.set(mActiveColorB.r, mActiveColorB.g, mActiveColorB.b, mActiveColorB.a);
 		return outColor;
 	}
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	Color4 _18[5][2]; // _18
-	Color4 _40[5];    // _40
-	GXColor _54;      // _54
-	GXColor _58;      // _58
-	Color4 _5C;       // _5C
+	Color4 mColorListA[5][2]; // _18
+	Color4 mColorListB[5];    // _40
+	GXColor mActiveColorA;    // _54
+	GXColor mActiveColorB;    // _58
+	Color4 mActiveColorC;     // _5C
 };
 
 struct DebugParms : public CNode {

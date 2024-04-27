@@ -19,8 +19,8 @@ CallBack_Message::CallBack_Message()
 	mMessageIDAsULL    = 0;
 	mMessageIDAs2UL[0] = 0;
 	mMessageIDAs2UL[1] = 0;
-	_30                = 0.0f;
-	_34                = 0.0f;
+	mWidth             = 0.0f;
+	mHeight            = 0.0f;
 	mMaxY              = 1.0f;
 	mMaxX              = 1.0f;
 	mMinY              = 1.0f;
@@ -66,11 +66,11 @@ void CallBack_Message::draw(Graphics& gfx, J2DGrafContext& graf)
 			y2 = y1;
 		}
 
-		_30                              = x2;
-		_34                              = y2;
+		mWidth                           = x2;
+		mHeight                          = y2;
 		P2JME::TRenderingProcessor* proc = mMessage->mProcessor;
-		proc->_54                        = -_30;
-		proc->_58                        = -_34;
+		proc->_54                        = -mWidth;
+		proc->_58                        = -mHeight;
 		proc->setTextBoxInfo(mPane);
 
 		mMessage->mProcessor->mMesgBounds.set(mMinX, mMinY, mMaxX, mMaxY);

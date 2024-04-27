@@ -43,8 +43,8 @@ void ObjSMenuCont::doCreate(JKRArchive* arc)
 	mScreenCont->set("s_menu_controller.blo", 0x1040000, arc);
 
 	mAnimGroup = new og::Screen::AnimGroup(2);
-	og::Screen::registAnimGroupScreen(mAnimGroup, arc, mScreenCont, "s_menu_controller.btk", msBaseVal._00);
-	og::Screen::registAnimGroupScreen(mAnimGroup, arc, mScreenCont, "s_menu_controller_02.btk", msBaseVal._00);
+	og::Screen::registAnimGroupScreen(mAnimGroup, arc, mScreenCont, "s_menu_controller.btk", msBaseVal.mAnimSpeed);
+	og::Screen::registAnimGroupScreen(mAnimGroup, arc, mScreenCont, "s_menu_controller_02.btk", msBaseVal.mAnimSpeed);
 
 	doCreateAfter(arc, mScreenCont);
 }

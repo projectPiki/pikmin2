@@ -25,10 +25,10 @@ AnimBaseBase::AnimBaseBase()
 	mSpeed          = 1.0f;
 	mSpeedSub       = 1.0f;
 	mIsRepeating    = true;
-	_39             = false;
-	_2C             = 0.0f;
+	mUnusedFlag     = false;
+	mMinFrame       = 0.0f;
 	mArea           = 1.0f;
-	_34             = mArea - _2C;
+	mLength         = mArea - mMinFrame;
 	mDeltaTime      = sys->mDeltaTime / SINGLE_FRAME_LENGTH;
 	mAnm            = nullptr;
 	mResourcePath   = nullptr;
@@ -45,9 +45,9 @@ AnimBaseBase::AnimBaseBase()
  */
 void AnimBaseBase::setArea(f32 frame, f32 area)
 {
-	_2C            = frame;
+	mMinFrame      = frame;
 	mArea          = area;
-	_34            = area - frame;
+	mLength        = area - frame;
 	mCurrentFrame  = frame;
 	mDoDelayUpdate = 1;
 }
@@ -67,9 +67,9 @@ void AnimBaseBase::init(JKRArchive* archive, char* resourcePath)
 	mAnm = J2DAnmLoaderDataBase::load(resource);
 
 	mLastFrame      = mAnm->mFrameLength - 1;
-	_2C             = 0.0f;
+	mMinFrame       = 0.0f;
 	mArea           = mLastFrame;
-	_34             = mArea - _2C;
+	mLength         = mArea - mMinFrame;
 	mIsInStartDelay = false;
 	mTimer          = 0.0f;
 	mDoDelayUpdate  = 1;
@@ -104,7 +104,7 @@ bool AnimBaseBase::updateSub()
 {
 	bool result = true;
 
-	_39 = false;
+	mUnusedFlag = false;
 	if (mDoDelayUpdate != 0) {
 		mDoDelayUpdate = 0;
 	} else {
@@ -112,28 +112,28 @@ bool AnimBaseBase::updateSub()
 		if (mCurrentFrame > mArea) {
 			if (mIsRepeating) {
 				f32 temp = mCurrentFrame - mArea;
-				if (temp >= _34) {
+				if (temp >= mLength) {
 					temp = 0.0f;
 				}
 
-				mCurrentFrame = _2C + temp;
-				_39           = true;
+				mCurrentFrame = mMinFrame + temp;
+				mUnusedFlag   = true;
 			} else {
 				mCurrentFrame = mArea;
 				moveAnim();
 				result = false;
 			}
-		} else if (mCurrentFrame < _2C) {
+		} else if (mCurrentFrame < mMinFrame) {
 			if (mIsRepeating) {
-				f32 temp = _2C - mCurrentFrame;
-				if (temp >= _34) {
+				f32 temp = mMinFrame - mCurrentFrame;
+				if (temp >= mLength) {
 					temp = 0.0f;
 				}
 
 				mCurrentFrame = mArea - temp;
-				_39           = true;
+				mUnusedFlag   = true;
 			} else {
-				mCurrentFrame = _2C;
+				mCurrentFrame = mMinFrame;
 				moveAnim();
 				result = false;
 			}
@@ -442,9 +442,9 @@ void AnimGroup::setAllArea()
 		AnimBaseBase* pane = mAnimPanes[i];
 
 		if (pane) {
-			pane->_2C   = 0.0f;
-			pane->mArea = pane->mLastFrame;
-			pane->_34   = pane->mArea - pane->_2C;
+			pane->mMinFrame = 0.0f;
+			pane->mArea     = pane->mLastFrame;
+			pane->mLength   = pane->mArea - pane->mMinFrame;
 		}
 	}
 }

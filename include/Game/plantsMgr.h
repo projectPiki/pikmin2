@@ -72,8 +72,8 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	u8 _2BC;                 // _2BC, unknown
-	u8 _2BD;                 // _2BD, unknown
+	u8 mIsAnimActive;        // _2BC
+	u8 mHasBeenTouched;      // _2BD
 	bool mSpawnsSpectralids; // _2BE, spawns spectralids on touch
 	                         // _2BF = PelletView
 };

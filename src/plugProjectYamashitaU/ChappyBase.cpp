@@ -62,7 +62,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mLodParm.mIsCylinder = false;
 
 	SleepArg sleepArg;
-	sleepArg._00 = true;
+	sleepArg.mDoSkipSleepStart = true;
 
 	setupEffect();
 	mFsm->start(this, CHAPPY_Sleep, &sleepArg);

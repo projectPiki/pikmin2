@@ -44,10 +44,10 @@ void Obj::onInit(CreatureInitArg* initArg)
 	EnemyBase::onInit(initArg);
 	mKoshiJoint = mModel->getJoint("jnt_koshi");
 	P2ASSERTLINE(74, mKoshiJoint);
-	_2D0         = 0;
-	_2D4         = mHomePosition;
-	_2E0         = 0;
-	mIsSearching = false;
+	mNoSearchCounter        = 0;
+	mLastPositionCheck      = mHomePosition;
+	mLastPositionCheckTimer = 0;
+	mIsSearching            = false;
 	mFsm->start(this, MIULIN_Wait, nullptr);
 }
 
@@ -107,9 +107,9 @@ void Obj::getShadowParam(ShadowParam& param)
  */
 void Obj::doSimulation(f32 simSpeed)
 {
-	_2D0--;
-	if (_2D0 < 0) {
-		_2D0 = 0;
+	mNoSearchCounter--;
+	if (mNoSearchCounter < 0) {
+		mNoSearchCounter = 0;
 	}
 
 	EnemyBase::doSimulation(simSpeed);
@@ -121,9 +121,9 @@ void Obj::doSimulation(f32 simSpeed)
  */
 void Obj::wallCallback(MoveInfo const& moveInfo)
 {
-	_2D0            = 120;
-	mTargetCreature = nullptr;
-	mGoalPosition   = mHomePosition;
+	mNoSearchCounter = 120;
+	mTargetCreature  = nullptr;
+	mGoalPosition    = mHomePosition;
 }
 
 /**
@@ -952,7 +952,7 @@ bool Obj::isOutOfTerritory() { return sqrDistanceXZ(mHomePosition, mPosition) > 
  */
 bool Obj::isProhibitedSearch()
 {
-	if (_2D0 > 0) {
+	if (mNoSearchCounter > 0) {
 		return true;
 	}
 
@@ -1029,17 +1029,17 @@ void Obj::walkFunc()
 
 	setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed * dashAnimScale);
 
-	_2E0++;
-
-	if (_2E0 > 120) {
-		if (sqrDistanceXZ(mPosition, _2D4) < 900.0f) {
-			_2D0            = 120;
-			mTargetCreature = nullptr;
-			mGoalPosition   = mHomePosition;
+	// check that the mamuta is covering enough distance every 120 frames, if not, make it forget what it was doing
+	mLastPositionCheckTimer++;
+	if (mLastPositionCheckTimer > 120) {
+		if (sqrDistanceXZ(mPosition, mLastPositionCheck) < 900.0f) {
+			mNoSearchCounter = 120;
+			mTargetCreature  = nullptr;
+			mGoalPosition    = mHomePosition;
 		}
 
-		_2D4 = mPosition;
-		_2E0 = 0;
+		mLastPositionCheck      = mPosition;
+		mLastPositionCheckTimer = 0;
 	}
 	/*
 	stwu     r1, -0x90(r1)

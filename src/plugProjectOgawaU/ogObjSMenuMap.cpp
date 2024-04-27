@@ -1783,9 +1783,9 @@ void ObjSMenuMap::doCreate(JKRArchive* arc)
 	mMapCounter = new og::Screen::MapCounter(&mDisp->mDataMap);
 	mMapCounter->set("s_menu_map_l.blo", 0x1040000, arc);
 	mAnimGroup = new og::Screen::AnimGroup(3);
-	og::Screen::registAnimGroupScreen(mAnimGroup, arc, mMapCounter, "s_menu_map_l.btk", msBaseVal._00);
-	og::Screen::registAnimGroupScreen(mAnimGroup, arc, mMapCounter, "s_menu_map_l_02.btk", msBaseVal._00);
-	og::Screen::registAnimGroupScreen(mAnimGroup, arc, mMapCounter, "s_menu_map_l_03.btk", msBaseVal._00);
+	og::Screen::registAnimGroupScreen(mAnimGroup, arc, mMapCounter, "s_menu_map_l.btk", msBaseVal.mAnimSpeed);
+	og::Screen::registAnimGroupScreen(mAnimGroup, arc, mMapCounter, "s_menu_map_l_02.btk", msBaseVal.mAnimSpeed);
+	og::Screen::registAnimGroupScreen(mAnimGroup, arc, mMapCounter, "s_menu_map_l_03.btk", msBaseVal.mAnimSpeed);
 	mMapCounter->setCallBack(arc);
 	mPane_map = static_cast<J2DPictureEx*>(og::Screen::TagSearch(mMapCounter, 'map_cent'));
 
@@ -2625,7 +2625,7 @@ void ObjSMenuMap::updateMap()
 	u8 louieArrowAlpha  = ((angleCos + 1.0f) * 0.5f * 0.6f + 0.4f) * 255.0f;
 
 	if (mCurrentZoom < defaultZoom) {
-		alpha = (u8)(1.0f - (defaultZoom - mCurrentZoom) / (defaultZoom - msVal._00)) * 255.0f;
+		alpha = (u8)(1.0f - (defaultZoom - mCurrentZoom) / (defaultZoom - msVal.mMinZoom)) * 255.0f;
 	}
 	mZoomCaveTextAlpha = alpha;
 	for (int i = 0; i < mCaveLabelCount; i++) {
@@ -3135,13 +3135,13 @@ bool ObjSMenuMap::doUpdate()
 
 	if (isUp) {
 		mCurrentZoom += mCurrentZoom * 0.03f;
-		if (mCurrentZoom > msVal.mAnimSpeed)
-			mCurrentZoom = msVal.mAnimSpeed;
+		if (mCurrentZoom > msVal.mMaxZoom)
+			mCurrentZoom = msVal.mMaxZoom;
 		ogSound->setZoomIn();
 	} else if (isDown) {
 		mCurrentZoom -= mCurrentZoom * 0.03f;
-		if (mCurrentZoom < msVal._00)
-			mCurrentZoom = msVal._00;
+		if (mCurrentZoom < msVal.mMinZoom)
+			mCurrentZoom = msVal.mMinZoom;
 		ogSound->setZoomOut();
 	}
 	commonUpdate();

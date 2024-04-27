@@ -61,49 +61,49 @@ void ObjChallenge2P::doCreate(JKRArchive* arc)
 	counter = og::Screen::setCallBack_CounterRV(mPokoScreen, 'Ptime1', &mTimeLeftInt, 6, 1, 1, arc);
 	counter->setCenteringMode(og::Screen::CallBack_CounterRV::ECM_Unknown1);
 
-	J2DPane* pane = mPokoScreen->search('Nmenu01');
-	msVal.mMenu01 = pane;
-	msVal._48     = pane->mOffset.x;
-	msVal._4C     = pane->mOffset.y;
-	msVal._50     = pane->mScale.x;
-	msVal._54     = pane->mScale.y;
-	msVal._58     = 0.0f;
-	msVal._5C     = 0.0f;
-	msVal._60     = 1.0f;
-	msVal._64     = 1.0f;
+	J2DPane* pane         = mPokoScreen->search('Nmenu01');
+	msVal.mMenu01         = pane;
+	msVal.mTimerXPos      = pane->mOffset.x;
+	msVal.mTimerYPos      = pane->mOffset.y;
+	msVal.mTimerXScale    = pane->mScale.x;
+	msVal.mTimerYScale    = pane->mScale.y;
+	msVal.mTimerXOffset   = 0.0f;
+	msVal.mTimerYOffset   = 0.0f;
+	msVal.mTimerXScaleMod = 1.0f;
+	msVal.mTimerYScaleMod = 1.0f;
 	if (pane) {
-		pane->setOffset(msVal._48, 0.0f, msVal._4C, 0.0f);
-		msVal.mMenu01->updateScale(msVal._50 * msVal._60, msVal._54 * msVal._64);
+		pane->setOffset(msVal.mTimerXPos, 0.0f, msVal.mTimerYPos, 0.0f);
+		msVal.mMenu01->updateScale(msVal.mTimerXScale * msVal.mTimerXScaleMod, msVal.mTimerYScale * msVal.mTimerYScaleMod);
 	}
 
-	J2DPane* pane2 = mPokoScreen->search('Nmenu00');
-	msVal.mMenu00  = pane2;
-	msVal._24      = pane2->mOffset.x;
-	msVal._28      = pane2->mOffset.y;
-	msVal._2C      = pane2->mScale.x;
-	msVal._30      = pane2->mScale.y;
-	msVal._34      = 0.0f;
-	msVal._38      = 0.0f;
-	msVal._3C      = 1.0f;
-	msVal._40      = 1.0f;
+	J2DPane* pane2       = mPokoScreen->search('Nmenu00');
+	msVal.mMenu00        = pane2;
+	msVal.mPokoXPos      = pane2->mOffset.x;
+	msVal.mPokoYPos      = pane2->mOffset.y;
+	msVal.mPokoXScale    = pane2->mScale.x;
+	msVal.mPokoYScale    = pane2->mScale.y;
+	msVal.mPokoXOffset   = 0.0f;
+	msVal.mPokoYOffset   = 0.0f;
+	msVal.mPokoXScaleMod = 1.0f;
+	msVal.mPokoYScaleMod = 1.0f;
 	if (pane2) {
-		pane2->setOffset(msVal._24, 0.0f, msVal._28, 0.0f);
-		msVal.mMenu00->updateScale(msVal._2C * msVal._3C, msVal._30 * msVal._40);
+		pane2->setOffset(msVal.mPokoXPos, 0.0f, msVal.mPokoYPos, 0.0f);
+		msVal.mMenu00->updateScale(msVal.mPokoXScale * msVal.mPokoXScaleMod, msVal.mPokoYScale * msVal.mPokoYScaleMod);
 	}
 
-	J2DPane* pane3 = mPokoScreen->search('Nmenu02');
-	msVal.mMenu02  = pane3;
-	msVal._6C      = pane3->mOffset.x;
-	msVal._70      = pane3->mOffset.y;
-	msVal._74      = pane3->mScale.x;
-	msVal._78      = pane3->mScale.y;
-	msVal._7C      = 0.0f;
-	msVal._80      = 0.0f;
-	msVal._84      = 1.0f;
-	msVal._88      = 1.0f;
+	J2DPane* pane3        = mPokoScreen->search('Nmenu02');
+	msVal.mMenu02         = pane3;
+	msVal.mPikisXPos      = pane3->mOffset.x;
+	msVal.mPikisYPos      = pane3->mOffset.y;
+	msVal.mPikisXScale    = pane3->mScale.x;
+	msVal.mPikisYScale    = pane3->mScale.y;
+	msVal.mPikisXOffset   = 0.0f;
+	msVal.mPikisYOffset   = 0.0f;
+	msVal.mPikisXScaleMod = 1.0f;
+	msVal.mPikisYScaleMod = 1.0f;
 	if (pane3) {
-		pane3->setOffset(msVal._6C, 0.0f, msVal._70, 0.0f);
-		msVal.mMenu02->updateScale(msVal._74 * msVal._84, msVal._78 * msVal._88);
+		pane3->setOffset(msVal.mPikisXPos, 0.0f, msVal.mPikisYPos, 0.0f);
+		msVal.mMenu02->updateScale(msVal.mPikisXScale * msVal.mPikisXScaleMod, msVal.mPikisYScale * msVal.mPikisYScaleMod);
 	}
 
 	setSubLevel(mDisp->mDataGame.mFloorNum);
@@ -246,11 +246,11 @@ bool ObjChallenge2P::doUpdateFadein()
 	bool check = false;
 	mFadeLevel += sys->mDeltaTime;
 
-	if (mFadeLevel > msVal._00) {
-		mFadeLevel = msVal._00;
+	if (mFadeLevel > msVal.mFadeinTime) {
+		mFadeLevel = msVal.mFadeinTime;
 		check      = true;
 	}
-	mScale = mFadeLevel / msVal._00;
+	mScale = mFadeLevel / msVal.mFadeinTime;
 	commonUpdate();
 	return check;
 }
@@ -263,11 +263,11 @@ bool ObjChallenge2P::doUpdateFadeout()
 {
 	bool check = false;
 	mFadeLevel += sys->mDeltaTime;
-	if (mFadeLevel > msVal._04) {
-		mFadeLevel = msVal._04;
+	if (mFadeLevel > msVal.mFadeoutTime) {
+		mFadeLevel = msVal.mFadeoutTime;
 		check      = true;
 	}
-	mScale = 1.0f - mFadeLevel / msVal._04;
+	mScale = 1.0f - mFadeLevel / msVal.mFadeoutTime;
 	commonUpdate();
 	return check;
 }

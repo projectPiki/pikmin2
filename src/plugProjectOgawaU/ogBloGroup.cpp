@@ -11,15 +11,15 @@ namespace Screen {
  */
 BloGroup::BloGroup(u16 count)
 {
-	mScreens = new P2DScreen::Mgr_tuning*[count];
-	_04      = new u32[count];
+	mScreens      = new P2DScreen::Mgr_tuning*[count];
+	mUnusedIdList = new u32[count];
 
 	mScreenNumMax     = count;
 	mScreenNumCurrent = 0;
 
 	for (int i = 0; i < mScreenNumMax; i++) {
-		mScreens[i] = nullptr;
-		_04[i]      = 0;
+		mScreens[i]      = nullptr;
+		mUnusedIdList[i] = 0;
 	}
 }
 
@@ -42,7 +42,7 @@ u32 BloGroup::addBlo(char* screenName, P2DScreen::Mgr_tuning* screen, u32 flag, 
 	} else {
 		mScreens[mScreenNumCurrent] = screen;
 		screen->set(screenName, flag, arc);
-		_04[mScreenNumCurrent] = 0;
+		mUnusedIdList[mScreenNumCurrent] = 0;
 		og::Screen::setAlphaScreen(screen);
 		mScreenNumCurrent++;
 	}

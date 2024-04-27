@@ -83,46 +83,46 @@ struct ObjCave : public ::Screen::ObjBase {
 	static struct StaticValues {
 		inline StaticValues()
 		{
-			_00 = 0.3f;
-			_04 = 0.1f;
-			_08 = -50.0f;
-			_0C = 0.0f;
-			_10 = 1.0f;
-			_14 = 1.0f;
-			_18 = 0.0f;
-			_1C = 2.0f;
-			_20 = 0.9f;
-			_24 = 0.0f;
-			_28 = -30.0f;
-			_2C = 0.2f;
-			_30 = 0.25f;
-			_34 = 0.0f;
-			_38 = -15.0f;
-			_3C = 0.0f;
-			_40 = -32.0f;
-			_44 = 5.0f;
-			_48 = 0.4f;
+			mFadeinTime                     = 0.3f;
+			mFadeoutTime                    = 0.1f;
+			mTotalPokoXPos                  = -50.0f;
+			mTotalPokoYPos                  = 0.0f;
+			mTotalPokoXScale                = 1.0f;
+			mTotalPokoYScale                = 1.0f;
+			mTreasureRadarXPos              = 0.0f;
+			mTreasureRadarYPos              = 2.0f;
+			mTreasureRadarScale             = 0.9f;
+			mDopingScreenXPos               = 0.0f;
+			mDopingScreenYPos               = -30.0f;
+			mTreasureRadarVecX              = 0.2f;
+			mTreasureRadarVecY              = 0.25f;
+			mTreasureRadarCompEfxXPos       = 0.0f;
+			mTreasureRadarCompEfxYPos       = -15.0f;
+			mTreasureRadarAppearEfxXPos     = 0.0f;
+			mTreasureRadarAppearEfxYPos     = -32.0f;
+			mTreasureRadarNoiseModifierHigh = 5.0f;
+			mTreasureRadarNoiseModifierLow  = 0.4f;
 		}
 
-		f32 _00; // _00
-		f32 _04; // _04
-		f32 _08; // _08
-		f32 _0C; // _0C
-		f32 _10; // _10
-		f32 _14; // _14
-		f32 _18; // _18
-		f32 _1C; // _1C
-		f32 _20; // _20
-		f32 _24; // _24
-		f32 _28; // _28
-		f32 _2C; // _2C
-		f32 _30; // _30
-		f32 _34; // _34
-		f32 _38; // _38
-		f32 _3C; // _3C
-		f32 _40; // _40
-		f32 _44; // _44
-		f32 _48; // _48
+		f32 mFadeinTime;                     // _00
+		f32 mFadeoutTime;                    // _04
+		f32 mTotalPokoXPos;                  // _08
+		f32 mTotalPokoYPos;                  // _0C
+		f32 mTotalPokoXScale;                // _10
+		f32 mTotalPokoYScale;                // _14
+		f32 mTreasureRadarXPos;              // _18
+		f32 mTreasureRadarYPos;              // _1C
+		f32 mTreasureRadarScale;             // _20
+		f32 mDopingScreenXPos;               // _24
+		f32 mDopingScreenYPos;               // _28
+		f32 mTreasureRadarVecX;              // _2C
+		f32 mTreasureRadarVecY;              // _30
+		f32 mTreasureRadarCompEfxXPos;       // _34
+		f32 mTreasureRadarCompEfxYPos;       // _38
+		f32 mTreasureRadarAppearEfxXPos;     // _3C
+		f32 mTreasureRadarAppearEfxYPos;     // _40
+		f32 mTreasureRadarNoiseModifierHigh; // _44
+		f32 mTreasureRadarNoiseModifierLow;  // _48
 	} msVal;
 };
 } // namespace newScreen

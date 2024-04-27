@@ -52,14 +52,14 @@ struct DispMemberBase {
 struct DispMemberAnaDemo : public DispMemberBase {
 	inline DispMemberAnaDemo()
 	{
-		_20             = 0;
+		mUnusedValue    = 0;
 		mCaveOtakaraNum = 24;
 		mCaveOtakaraMax = 69;
-		_1F             = 1;
+		mExitStatus     = 1;
 		mPikis          = 1;
 		mPikisField     = 1;
 		mCaveID         = 't_01';
-		_1C             = 0;
+		mNoOpenMenu     = 0;
 		mPayedDebt      = 0;
 	}
 
@@ -74,11 +74,11 @@ struct DispMemberAnaDemo : public DispMemberBase {
 	u32 mPikis;          // _10
 	u32 mPikisField;     // _14
 	u32 mCaveID;         // _18
-	u8 _1C;              // _1C
+	u8 mNoOpenMenu;      // _1C
 	u8 mPayedDebt;       // _1D
 	u8 mSelected;        // _1E
-	u8 _1F;              // _1F
-	u32 _20;             // _20
+	u8 mExitStatus;      // _1F
+	u32 mUnusedValue;    // _20
 };
 
 // size 0x10
@@ -162,7 +162,7 @@ struct DispMemberCaveMore : public DispMemberAnaDemo {
 	{
 		mPikiInDanger   = 0;
 		mCantProceed    = 0;
-		_20             = 0;
+		mUnusedValue    = 0;
 		mCaveOtakaraNum = 4;
 		mCaveOtakaraMax = 4;
 		mPikis          = 10;
@@ -249,7 +249,7 @@ struct DispMemberContena : public DispMemberBase {
 		mMaxPikiMinusWild = 200;
 		mOnyonID          = -1;
 		mInTransfer       = 0;
-		_2C               = 0;
+		mExitSoundType    = 0;
 		mState            = 0;
 		mResult           = 0;
 	}
@@ -269,7 +269,7 @@ struct DispMemberContena : public DispMemberBase {
 	u32 mOnMapMinusWild;   // _20
 	int mMaxPikiMinusWild; // _24
 	u32 mInTransfer;       // _28
-	bool _2C;              // _2C
+	bool mExitSoundType;   // _2C
 	int mState;            // _30
 	s16 mResult;           // _34
 };
@@ -392,7 +392,7 @@ struct DispMemberKanketuMenu : public DispMemberAnaDemo {
 		mPikiInDanger   = 0;
 		mCantProceed    = 0;
 		mIsChallenge    = 0;
-		_20             = 0;
+		mUnusedValue    = 0;
 		mCaveOtakaraNum = 4;
 		mCaveOtakaraMax = 4;
 		mPikis          = 10;
@@ -756,7 +756,7 @@ struct DispMemberWorldMapInfoWin0 : public DispMemberBase {
 	    : mResult(0)
 	    , mMsgIDYes('4710_00')
 	    , mMsgIDNo('4711_00')
-	    , _20(180)
+	    , mBgAlpha(180)
 	    , mStartSelection(0)
 	{
 		// mResult         = 0;
@@ -776,7 +776,7 @@ struct DispMemberWorldMapInfoWin0 : public DispMemberBase {
 	u8 _0C[0x4];        // _0C, unknown
 	u64 mMsgIDYes;      // _10
 	u64 mMsgIDNo;       // _18
-	u8 _20;             // _20
+	u8 mBgAlpha;        // _20
 	u8 mStartSelection; // _21
 	u8 _22[0x2];        // _22, possibly padding
 	u8 _24[0x4];        // _24, unknown
@@ -786,8 +786,8 @@ struct DispMemberWorldMapInfoWin0 : public DispMemberBase {
 struct DispMemberWorldMapInfoWin1 : public DispMemberBase {
 	inline DispMemberWorldMapInfoWin1()
 	{
-		mResult = 0;
-		_0C     = 180;
+		mResult  = 0;
+		mBgAlpha = 180;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberWorldMapInfoWin1); } // _08 (weak)
@@ -797,7 +797,7 @@ struct DispMemberWorldMapInfoWin1 : public DispMemberBase {
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
 	int mResult; // _08, state or result
-	u8 _0C;      // _0C
+	u8 mBgAlpha; // _0C
 };
 
 } // namespace Screen

@@ -37,11 +37,11 @@ struct AnimBaseBase {
 	f32 mSpeed;           // _20
 	f32 mSpeedSub;        // _24
 	f32 mDeltaTime;       // _28
-	f32 _2C;              // _2C
+	f32 mMinFrame;        // _2C
 	f32 mArea;            // _30
-	f32 _34;              // _34
+	f32 mLength;          // _34
 	bool mIsRepeating;    // _38
-	bool _39;             // _39
+	bool mUnusedFlag;     // _39
 	char* mResourcePath;  // _3C
 };
 

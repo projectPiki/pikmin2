@@ -110,13 +110,14 @@ void Obj::setParameters()
 	EnemyBase::setParameters();
 	if (isEvent(0, EB_HardConstrained)) {
 		mPosition.y = mapMgr->getMinY(mPosition);
-		mPosition.y += C_PARMS->_A50;
+		mPosition.y += C_PARMS->mInitialSpawnHeight;
 		if (mTyre) {
 			mTyre->onSetPosition(mPosition);
 		}
 	}
 
-	f32 scale      = C_PARMS->_A24;
+	// apparently there was gonna be a big/small wraith
+	f32 scale      = C_PARMS->mBaseScale;
 	mScaleModifier = scale;
 	mScale         = Vector3f(scale);
 	mCollTree->mPart->setScale(scale);
@@ -146,7 +147,7 @@ void Obj::onInit(CreatureInitArg* arg)
 	disableEvent(0, EB_Cullable);
 	disableEvent(0, EB_LeaveCarcass);
 	disableEvent(0, EB_DeathEffectEnabled);
-	mEscapePhase = C_PARMS->_A10;
+	mEscapePhase = C_PARMS->mStartPhase;
 
 	if (gameSystem->mSection && gameSystem->mSection->getCaveID() == 'y_01' && gameSystem && !gameSystem->isZukanMode()) {
 		mFSM->start(this, WRAITH_Walk, nullptr);
@@ -222,7 +223,7 @@ void Obj::onInit(CreatureInitArg* arg)
 	mWaistJointIndex = mModel->getJointIndex("waist");
 
 	if (mTyre) {
-		mPosition.y += C_PARMS->_A50;
+		mPosition.y += C_PARMS->mInitialSpawnHeight;
 		mTyre->onSetPosition(mPosition);
 	}
 
@@ -243,7 +244,7 @@ void Obj::onInit(CreatureInitArg* arg)
 	}
 
 	mTargetColor = Color4(0xb5, 0xc0, 0xae, 0xff); // Transparent Color
-	_388         = Color4(0xff, 0x20, 0x16, 0xff);
+	mUnusedColor = Color4(0xff, 0x20, 0x16, 0xff);
 	mFadeColor   = Color4(0x30, 0x3f, 0x57, 0x00);
 	mActiveColor = mTargetColor;
 
@@ -283,20 +284,20 @@ Obj::Obj()
     , mPathFindingHandle(0)
     , mFoundPath(0)
 {
-	mMatLoopAnimator = nullptr;
-	mPath            = nullptr;
-	mFSM             = nullptr;
-	mTyre            = nullptr;
-	mFadeTimer       = 1.0f;
-	_37C             = nullptr;
-	mEfxMove         = nullptr;
-	mEfxRun          = nullptr;
-	mEfxTyreup       = nullptr;
-	mEfxDead         = nullptr;
-	_3A8             = 0;
-	_3A9             = 0;
-	_3AA             = 0;
-	mIsMoviePlaying  = 0;
+	mMatLoopAnimator    = nullptr;
+	mPath               = nullptr;
+	mFSM                = nullptr;
+	mTyre               = nullptr;
+	mFadeTimer          = 1.0f;
+	_37C                = nullptr;
+	mEfxMove            = nullptr;
+	mEfxRun             = nullptr;
+	mEfxTyreup          = nullptr;
+	mEfxDead            = nullptr;
+	mHasStartedChaseBgm = false;
+	mIsFallStart        = 0;
+	mNeedAppearBgm      = 0;
+	mIsMoviePlaying     = 0;
 
 	mAnimator        = new ProperAnimator;
 	mMatLoopAnimator = new Sys::MatLoopAnimator;
@@ -342,21 +343,21 @@ void BlackMan::Obj::doUpdate()
 
 	mWraithFallTimer -= sys->mDeltaTime;
 	if (isEvent(0, EB_HardConstrained) && getStateID() == WRAITH_Fall) {
-		f32 fallTimer = -C_PARMS->_A4C;
+		f32 fallTimer = -C_PARMS->mFallStartDelay;
 		if (!mTyre || mWraithFallTimer < fallTimer) {
 			hardConstraintOff();
 			mModel->showPackets();
 			mSoundObj->startSound(PSSE_EN_TIRE_FALL, 0);
 		} else {
-			f32 someTimer = C_PARMS->_A58;
-			if (!_3A9 && mWraithFallTimer < someTimer) {
+			f32 someTimer = C_PARMS->mFallDelay2;
+			if (!mIsFallStart && mWraithFallTimer < someTimer) {
 				if (gameSystem && gameSystem->isZukanMode()) {
-					_3A9                   = true;
+					mIsFallStart           = true;
 					mTyre->mIsShadowActive = true;
 				}
 
 				Navi* activeNavi = naviMgr->getActiveNavi();
-				if (!_3A9 && activeNavi && activeNavi->isAlive()) {
+				if (!mIsFallStart && activeNavi && activeNavi->isAlive()) {
 
 					// regswaps here
 					Vector3f pos     = Vector3f(mPosition.x, 0.0f, mPosition.z);
@@ -366,18 +367,18 @@ void BlackMan::Obj::doUpdate()
 					if (isFinalFloor()) {
 						f32 fallRadius = C_PARMS->mFallRadius;
 						if (sqrDist < SQUARE(fallRadius)) {
-							_3A9 = true;
+							mIsFallStart = true;
 						}
 					} else if (sqrDist > 10000.0f) {
-						_3A9 = true;
+						mIsFallStart = true;
 					}
 
-					if (_3A9) {
+					if (mIsFallStart) {
 						mTyre->mIsShadowActive = true;
 					}
 				}
 
-				if (!_3A9) {
+				if (!mIsFallStart) {
 					mWraithFallTimer = someTimer;
 				}
 			}
@@ -405,7 +406,7 @@ void BlackMan::Obj::doUpdate()
 					mTyre->movie_begin(false);
 					playData->setDemoFlag(DEMO_Waterwraith_Appears);
 					mIsMoviePlaying = true;
-					_3AA            = true;
+					mNeedAppearBgm  = true;
 				}
 			}
 			if (!mIsMoviePlaying) {
@@ -415,7 +416,7 @@ void BlackMan::Obj::doUpdate()
 			mTyre->mModel->showPackets();
 		}
 	}
-	if (_3A9 && mWraithFallTimer < -1.0f && mTyre) {
+	if (mIsFallStart && mWraithFallTimer < -1.0f && mTyre) {
 		mTyre->scaleUpShadow();
 	}
 
@@ -969,7 +970,7 @@ void BlackMan::Obj::doAnimationCullingOff()
 	mHandPositions[1]   = mModel->mJoints[mRightHandJointIndex].getWorldMatrix()->getTranslation();
 
 	if (mTyre) {
-		if (getStateID() != WRAITH_Fall && C_PARMS->_A14) {
+		if (getStateID() != WRAITH_Fall && C_PARMS->mUseGlobalMtxCalc) {
 			curB = this;
 		}
 		mTyre->mIsUnderground = isUnderground();
@@ -1189,7 +1190,7 @@ bool BlackMan::Obj::earthquakeCallBack(Game::Creature* creature, f32 bounceFacto
 		return EnemyBase::earthquakeCallBack(creature, bounceFactor);
 	}
 
-	if (C_PARMS->_A12 && (getStateID() == WRAITH_Walk || getStateID() == WRAITH_Tired)) {
+	if (C_PARMS->mDoStunOnEarthquake && (getStateID() == WRAITH_Walk || getStateID() == WRAITH_Tired)) {
 		mFreezeTimer = 0;
 		mEscapeTimer = 0;
 		mFSM->transit(this, WRAITH_Freeze, nullptr);
@@ -1533,8 +1534,8 @@ void BlackMan::Obj::walkFunc()
 	rotationSpeed = C_GENERALPARMS.mMaxTurnAngle();
 	turnSpeed     = C_GENERALPARMS.mTurnSpeed();
 
-	if (C_PARMS->_A1A >= 0) {
-		mStepPhase = C_PARMS->_A1A;
+	if (C_PARMS->mForcedStepPhase >= 0) {
+		mStepPhase = C_PARMS->mForcedStepPhase;
 	} else {
 		mStepTimer++;
 	}
@@ -1633,8 +1634,8 @@ void BlackMan::Obj::walkFunc()
 			}
 		}
 	}
-	if (mTyre && C_PARMS->_A10 != mEscapePhase) {
-		mEscapePhase = C_PARMS->_A10;
+	if (mTyre && C_PARMS->mStartPhase != mEscapePhase) {
+		mEscapePhase = C_PARMS->mStartPhase;
 		if (mEscapePhase == 4) {
 			mCurrentVelocity = Vector3f(0.0f);
 			mTargetVelocity  = Vector3f(0.0f);
@@ -2450,7 +2451,7 @@ void BlackMan::Obj::findNextRoutePoint()
 				Iterator<Piki> iter(pikiMgr);
 				s16 idx = indices[i];
 				if (mPreviousWaypointIndex == idx) {
-					if (mIsSameWaypoint || !C_PARMS->_A15) {
+					if (mIsSameWaypoint || !C_PARMS->mWaypointCalcType) {
 						continue;
 					}
 
@@ -4011,8 +4012,8 @@ void BlackMan::Obj::jointMtxCalc(int jointIdx)
 	Matrixf* wristMat = mModel->getJoint(wristJoints[jointIdx])->getWorldMatrix(); // r30
 	Matrixf* armMat   = mModel->getJoint(armJoints[jointIdx])->getWorldMatrix();   // r31
 
-	f32 scale1 = C_PARMS->_A30;
-	f32 scale2 = C_PARMS->_A34;
+	f32 scale1 = C_PARMS->mWristScale;
+	f32 scale2 = C_PARMS->mArmScale;
 
 	Vector3f vec1 = diff * scale1; // f28, f27, f26
 	if (jointIdx < 2) {
@@ -4022,10 +4023,10 @@ void BlackMan::Obj::jointMtxCalc(int jointIdx)
 	Vector3f vec2 = diff * scale2;   // f25, f24, f23
 	Vector3f vec3(0.0f, 0.0f, 0.0f); // f22, f21, f20
 
-	if (jointIdx < 2 && C_PARMS->_A18) {
-		f32 sinVal1 = C_PARMS->_A40 * absF(sinf(mTyre->mCurrentRotation2)); // f23
-		f32 sinVal2 = C_PARMS->_A44 * absF(sinf(mTyre->mCurrentRotation2)); // f24
-		getStateID();                                                       // unused
+	if (jointIdx < 2 && C_PARMS->mUseTyreForJointCalc) {
+		f32 sinVal1 = C_PARMS->mArmRotationA * absF(sinf(mTyre->mCurrentRotation2)); // f23
+		f32 sinVal2 = C_PARMS->mArmRotationB * absF(sinf(mTyre->mCurrentRotation2)); // f24
+		getStateID();                                                                // unused
 
 		if (mTyre->mCurrentRotation2 < 0.0f) {
 			if (jointIdx == 0) {
@@ -4039,7 +4040,7 @@ void BlackMan::Obj::jointMtxCalc(int jointIdx)
 			vec3.z = -tyreMat->mMatrix.structView.xz * sinVal1;
 		}
 
-		if (!C_PARMS->_A11) {
+		if (!C_PARMS->mArmFollowType) {
 			vec2.x = vec3.x;
 			vec2.z = vec3.z;
 		} else {
@@ -4059,10 +4060,10 @@ void BlackMan::Obj::jointMtxCalc(int jointIdx)
 
 	Matrixf* shoulderMat = mModel->getJoint(shoulderJoints[jointIdx])->getWorldMatrix();
 
-	Vector3f vec4 = diff * C_PARMS->_A38;
+	Vector3f vec4 = diff * C_PARMS->mShoulderScale;
 
 	if (jointIdx < 2) {
-		vec2 *= C_PARMS->_A38;
+		vec2 *= C_PARMS->mShoulderScale;
 		vec4 = vec2;
 	}
 
@@ -4467,7 +4468,7 @@ lbl_803AA39C:
  */
 void BlackMan::Obj::bodyMtxCalc()
 {
-	if (!C_PARMS->_A18) {
+	if (!C_PARMS->mUseTyreForJointCalc) {
 		return;
 	}
 
@@ -4486,8 +4487,8 @@ void BlackMan::Obj::bodyMtxCalc()
 	pos.normalise();
 
 	f32 sinVal = absF(sinf(mTyre->mCurrentRotation2));
-	chestMtx->mMatrix.structView.tx += sinVal * (C_PARMS->_A28 * pos.x);
-	chestMtx->mMatrix.structView.tz += sinVal * (C_PARMS->_A28 * pos.z);
+	chestMtx->mMatrix.structView.tx += sinVal * (C_PARMS->mBodyMoveRate * pos.x);
+	chestMtx->mMatrix.structView.tz += sinVal * (C_PARMS->mBodyMoveRate * pos.z);
 
 	PSMTXCopy(chestMtx->mMatrix.mtxView, J3DSys::mCurrentMtx);
 
@@ -4752,16 +4753,16 @@ void BlackMan::Obj::moveRestart()
 	mTyre->_2D0 = 0;
 
 	if (gameSystem && gameSystem->isZukanMode()) {
-		_3A8 = 0;
-
-	} else if (!isFinalFloor() && !_3A8 && !mIsMoviePlaying && gameSystem->mSection && gameSystem->mSection->getCaveID() == 'y_04') {
+		mHasStartedChaseBgm = false;
+	} else if (!isFinalFloor() && !mHasStartedChaseBgm && !mIsMoviePlaying && gameSystem->mSection
+	           && gameSystem->mSection->getCaveID() == 'y_04') {
 		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 		PSSystem::checkSceneMgr(mgr);
 		mgr->checkScene();
 		PSSystem::SeqBase* seqBase = PSSystem::getSeqData(mgr, 1);
 		P2ASSERTLINE(2221, seqBase);
 		seqBase->startSeq();
-		_3A8 = 1;
+		mHasStartedChaseBgm = true;
 	}
 
 	EnemyFunc::flickStickPikmin(mTyre, C_GENERALPARMS.mShakeChance(), C_GENERALPARMS.mShakeKnockback(), C_GENERALPARMS.mShakeDamage(),
@@ -5026,11 +5027,11 @@ void BlackMan::Obj::appearFanfare()
 		return;
 	}
 
-	if (!_3AA) {
+	if (!mNeedAppearBgm) {
 		return;
 	}
 
-	_3AA = 0;
+	mNeedAppearBgm = false;
 
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 	PSSystem::checkSceneMgr(mgr);

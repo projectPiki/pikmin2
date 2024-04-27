@@ -299,8 +299,8 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->disableEvent(0, EB_Cullable);
 	OBJ(enemy)->mNextState                            = JIGUMO_Miss;
 	OBJ(enemy)->mIsReversing                          = false;
-	_10                                               = 0;
-	_11                                               = 1;
+	mIsAttackActive                                   = 0;
+	mDoTurnToTarget                                   = 1;
 	enemy->mCollTree->getCollPart('body')->mSpecialID = 'st__';
 	enemy->mCollTree->getCollPart('head')->mSpecialID = '_t__';
 	OBJ(enemy)->mIsOutsideHouse                       = true;
@@ -313,7 +313,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
-	if (_11) {
+	if (mDoTurnToTarget) {
 		FakePiki* target
 		    = OBJ(enemy)->getNearestPikiOrNavi(CG_GENERALPARMS(enemy).mSearchAngle.mValue, CG_GENERALPARMS(enemy).mSearchDistance.mValue);
 		if (target) {
@@ -324,11 +324,11 @@ void StateAttack::exec(EnemyBase* enemy)
 
 	if (enemy->mCurAnim->mIsPlaying) {
 		if (enemy->mCurAnim->mType == KEYEVENT_2) {
-			_10 = 1;
+			mIsAttackActive = 1;
 			enemy->hardConstraintOff();
 			enemy->setAtari(true);
 			enemy->setAlive(true);
-			_11 = 0;
+			mDoTurnToTarget = 0;
 			OBJ(enemy)->effectStart();
 			if (enemy->mWaterBox) {
 				enemy->mSoundObj->startSound(PSSE_JIGUMO_ATTACK_WATER, 0);
@@ -337,7 +337,7 @@ void StateAttack::exec(EnemyBase* enemy)
 			}
 
 		} else if (enemy->mCurAnim->mType == KEYEVENT_END) {
-			_10                             = 0;
+			mIsAttackActive                 = 0;
 			enemy->mCurrentVelocity         = Vector3f(0.0f);
 			enemy->mTargetVelocity          = Vector3f(0.0f);
 			OBJ(enemy)->mNextFaceDir        = roundAng(PI + enemy->mFaceDir);
@@ -347,7 +347,7 @@ void StateAttack::exec(EnemyBase* enemy)
 		}
 	}
 
-	if (_10) {
+	if (mIsAttackActive) {
 		EnemyFunc::attackNavi(enemy, CG_GENERALPARMS(enemy).mAttackRadius.mValue, CG_GENERALPARMS(enemy).mAttackHitAngle.mValue,
 		                      CG_GENERALPARMS(enemy).mAttackDamage.mValue, nullptr, nullptr);
 		OBJ(enemy)->walkFunc();
@@ -356,7 +356,7 @@ void StateAttack::exec(EnemyBase* enemy)
 		if (EnemyFunc::eatPikmin(enemy, &heightCheck) > 0) {
 			OBJ(enemy)->mNextState   = JIGUMO_Carry;
 			OBJ(enemy)->mIsReversing = true;
-			_10                      = 0;
+			mIsAttackActive          = 0;
 			OBJ(enemy)->effectStop();
 			enemy->mTargetVelocity = Vector3f(0.0f);
 		}
@@ -364,7 +364,7 @@ void StateAttack::exec(EnemyBase* enemy)
 		Vector3f pos     = OBJ(enemy)->getPosition();
 		Vector3f goalPos = OBJ(enemy)->getGoalPos();
 		if (pos.sqrDistance(goalPos) < 100.0f) {
-			_10 = 0;
+			mIsAttackActive = 0;
 			OBJ(enemy)->effectStop();
 			enemy->mTargetVelocity = Vector3f(0.0f);
 		}
@@ -401,7 +401,7 @@ void StateMiss::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	OBJ(enemy)->mNextFaceDir = enemy->mFaceDir;
 	enemy->startMotion(JIGUMOANIM_Miss, nullptr);
-	_10 = 0;
+	mUnused = 0;
 }
 
 /**
@@ -780,8 +780,8 @@ StateSAttack::StateSAttack(int stateID)
 void StateSAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->startMotion(JIGUMOANIM_SAttack, nullptr);
-	_10 = 0;
-	_11 = 0;
+	mDidCatchTarget = 0;
+	mIsAttackActive = 0;
 	enemy->setEmotionExcitement();
 }
 
@@ -792,14 +792,14 @@ void StateSAttack::init(EnemyBase* enemy, StateArg* stateArg)
 void StateSAttack::exec(EnemyBase* enemy)
 {
 	if (enemy->getMotionFrame() == CG_PARMS(enemy)->_924) {
-		_11 = 1;
+		mIsAttackActive = 1;
 		enemy->setAtari(true);
 		enemy->setAlive(true);
 	}
 
-	if (_11) {
+	if (mIsAttackActive) {
 		if (EnemyFunc::eatPikmin(enemy, nullptr)) {
-			_10 = 1;
+			mDidCatchTarget = 1;
 		}
 
 		EnemyFunc::attackNavi(enemy, 50.0f * enemy->mScaleModifier, CG_GENERALPARMS(enemy).mAttackHitAngle.mValue,
@@ -817,10 +817,10 @@ void StateSAttack::exec(EnemyBase* enemy)
 			break;
 
 		case KEYEVENT_3:
-			_11 = 0;
+			mIsAttackActive = 0;
 			enemy->setAtari(false);
 			enemy->setAlive(false);
-			if (!_10) {
+			if (!mDidCatchTarget) {
 				transit(enemy, JIGUMO_SMiss, nullptr);
 			}
 			break;

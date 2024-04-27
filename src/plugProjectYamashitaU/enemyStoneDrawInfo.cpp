@@ -52,7 +52,7 @@ void FSMState::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx) { PSMTXIdentity(mtx-
 void FSMStateExpansion::init(DrawInfo* drawInfo, StateArg* stateArg)
 {
 	drawInfo->mDrawTimeLimit = 0.1f;
-	_10                      = 0;
+	mHasMadeEfx              = false;
 }
 
 /**
@@ -63,8 +63,8 @@ void FSMStateExpansion::exec(DrawInfo* drawInfo)
 {
 	drawInfo->mDrawTimer += sys->mDeltaTime;
 
-	if (!_10 && drawInfo->mDrawTimer > 0.0f) {
-		_10 = 1;
+	if (!mHasMadeEfx && drawInfo->mDrawTimer > 0.0f) {
+		mHasMadeEfx = true;
 		Vector3f pos;
 		f32 scale;
 		if (drawInfo->getPosAndScale(&pos, &scale)) {

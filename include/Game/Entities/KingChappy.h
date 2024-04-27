@@ -103,12 +103,12 @@ struct Parms : public EnemyParmsBase {
 
 	Parms()
 	{
-		mDoForceHide       = false;
-		_BC9               = 0;
-		mDoUseFootCallback = true;
-		_BCB               = 1;
-		mDoForceBig        = false;
-		_BD0               = 3.0f;
+		mDoForceHide             = false;
+		mDontSearchTarget        = 0;
+		mDoUseFootCallback       = true;
+		mCanAttackBombs          = 1;
+		mDoForceBig              = false;
+		mFootCalcHeightThreshold = 3.0f;
 	}
 
 	virtual void read(Stream& stream) // _08 (weak)
@@ -119,13 +119,13 @@ struct Parms : public EnemyParmsBase {
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms mProperParms; // _7F8
-	bool mDoForceHide;        // _BC8
-	u8 _BC9;                  // _BC9
-	bool mDoUseFootCallback;  // _BCA
-	u8 _BCB;                  // _BCB
-	bool mDoForceBig;         // _BCC
-	f32 _BD0;                 // _BD0
+	ProperParms mProperParms;     // _7F8
+	bool mDoForceHide;            // _BC8
+	u8 mDontSearchTarget;         // _BC9
+	bool mDoUseFootCallback;      // _BCA
+	u8 mCanAttackBombs;           // _BCB
+	bool mDoForceBig;             // _BCC
+	f32 mFootCalcHeightThreshold; // _BD0
 };
 
 struct Obj : public EnemyBase {

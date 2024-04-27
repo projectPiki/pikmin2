@@ -158,7 +158,7 @@ void ObjKantei::doCreate(JKRArchive* arc)
 	mPokoCounterCurr = og::Screen::setCallBack_CounterSlot(mScreenOkWindow, 'PSota1', &mDisp->mPelletValue, 4, true, true, arc);
 	mPokoCounterCurr->hide();
 	mPokoCounterCurr->setPuyoParam(msVal.mPokoPuyo1, msVal.mPokoPuyo2, msVal.mPokoPuyo3);
-	mPokoCounterCurr->_C8 = PSSE_SY_COIN_COUNT;
+	mPokoCounterCurr->mChangeSoundID = PSSE_SY_COIN_COUNT;
 
 	mScreenBG = new P2DScreen::Mgr_tuning;
 	mScreenBG->set("ok_bg_normal.blo", 0x1040000, arc);
@@ -392,9 +392,6 @@ bool ObjKantei::doUpdate()
 		if (!mTControl->mIsActive) {
 			finishKantei();
 		}
-
-	default:
-		break;
 	}
 
 	commonUpdate();

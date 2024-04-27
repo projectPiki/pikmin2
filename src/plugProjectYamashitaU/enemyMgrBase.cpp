@@ -96,7 +96,7 @@ void EnemyMgrBase::doAnimation()
 {
 	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if (enemy->isEvent(0, EB_Alive) && (!(generalEnemyMgr->_1C & 1) || enemy->isMovieActor())) {
+		if (enemy->isEvent(0, EB_Alive) && (!(generalEnemyMgr->mDrawFlag & 1) || enemy->isMovieActor())) {
 			sys->mTimers->_start("e-upd", true);
 			enemy->update();
 			sys->mTimers->_stop("e-upd");
@@ -116,7 +116,7 @@ void EnemyMgrBase::doEntry()
 {
 	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if (enemy->isEvent(0, EB_Alive) && (!(generalEnemyMgr->_1C & 1) || enemy->isMovieActor())) {
+		if (enemy->isEvent(0, EB_Alive) && (!(generalEnemyMgr->mDrawFlag & 1) || enemy->isMovieActor())) {
 			enemy->doEntry();
 		}
 	}
@@ -161,7 +161,7 @@ void EnemyMgrBase::doSimulation(f32 arg)
 
 		if (enemy->mPellet) {
 			enemy->doSimulationCarcass(arg);
-		} else if (enemy->isEvent(0, EB_Alive) && (!(generalEnemyMgr->_1C & 1) || enemy->isMovieActor())) {
+		} else if (enemy->isEvent(0, EB_Alive) && (!(generalEnemyMgr->mDrawFlag & 1) || enemy->isMovieActor())) {
 			enemy->doSimulation(arg);
 		}
 	}
@@ -175,7 +175,7 @@ void EnemyMgrBase::doDirectDraw(Graphics& graphics)
 {
 	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if (enemy->isEvent(0, EB_Alive) && (!(generalEnemyMgr->_1C & 1) || enemy->isMovieActor())) {
+		if (enemy->isEvent(0, EB_Alive) && (!(generalEnemyMgr->mDrawFlag & 1) || enemy->isMovieActor())) {
 			enemy->doDirectDraw(graphics);
 		}
 	}

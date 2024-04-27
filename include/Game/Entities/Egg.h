@@ -121,8 +121,8 @@ struct Parms : public EnemyParmsBase {
 
 	Parms()
 	{
-		_8D0 = 0;
-		_8D1 = 1;
+		mForcedDropType  = 0;
+		mDoCheckHasSpray = 1;
 	}
 
 	virtual void read(Stream& stream) // _08 (weak)
@@ -134,8 +134,8 @@ struct Parms : public EnemyParmsBase {
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms mProperParms; // _7F8
-	u8 _8D0;                  // _8D0
-	u8 _8D1;                  // _8D1
+	u8 mForcedDropType;       // _8D0
+	u8 mDoCheckHasSpray;      // _8D1
 };
 
 enum AnimID {

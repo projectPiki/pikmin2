@@ -84,9 +84,9 @@ void ObjUfoMenu::doCreate(JKRArchive* arc)
 	setSelectPikmin(mSelectIndex);
 	mMenu = new og::Screen::MenuMgr;
 	mMenu->init(mUfoScreen, 2, 'N00', 'h_00', 's_00', 'il00', 'ir00');
-	mMenu->mDoScale = true;
-	mMenu->_74      = msVal._24;
-	mLightAnims     = new og::Screen::AnimGroup(3);
+	mMenu->mDoScale            = true;
+	mMenu->mSelectedExtraScale = msVal.mSelectedIconScale;
+	mLightAnims                = new og::Screen::AnimGroup(3);
 	og::Screen::registAnimGroupPane(mLightAnims, arc, mUfoScreen, 'Plight00', "ufo.bck", 0.5f);
 	og::Screen::registAnimGroupPane(mLightAnims, arc, mUfoScreen, 'Plight01', "ufo.bck", 0.5f);
 	og::Screen::registAnimGroupScreen(mLightAnims, arc, mUfoScreen, "ufo.bpk", 0.5f);
@@ -102,12 +102,12 @@ void ObjUfoMenu::commonUpdate()
 {
 	mLightAnims->update();
 	mPikiAnims->update();
-	mPaneN00->move(msVal._0C, msVal._10);
+	mPaneN00->move(msVal.mPiki1XPos, msVal.mPiki1YPos);
 	J2DPane* pane = mPaneN00;
-	pane->updateScale(msVal._14);
-	mPaneN01->move(msVal._18, msVal._1C);
+	pane->updateScale(msVal.mPiki1Scale);
+	mPaneN01->move(msVal.mPiki2XPos, msVal.mPiki2YPos);
 	pane = mPaneN01;
-	pane->updateScale(msVal._20);
+	pane->updateScale(msVal.mPiki2Scale);
 	mDoDraw = true;
 	mUfoScreen->setXY(mScreenMovePos, 0.0f);
 	mUfoScreen->update();
@@ -288,11 +288,11 @@ bool ObjUfoMenu::doUpdateFadein()
 	bool check = false;
 	commonUpdate();
 	mFadeTimer += sys->mDeltaTime;
-	if (mFadeTimer >= msVal._08) {
+	if (mFadeTimer >= msVal.mFadeInOutTime) {
 		check = true;
 	}
 
-	mScreenMovePos = (1.0f - og::Screen::calcSmooth0to1(mFadeTimer, msVal._08)) * 800.0f;
+	mScreenMovePos = (1.0f - og::Screen::calcSmooth0to1(mFadeTimer, msVal.mFadeInOutTime)) * 800.0f;
 	return check;
 }
 
@@ -305,10 +305,10 @@ bool ObjUfoMenu::doUpdateFadeout()
 	bool check = false;
 	commonUpdate();
 	mFadeTimer += sys->mDeltaTime;
-	if (mFadeTimer > msVal._08) {
+	if (mFadeTimer > msVal.mFadeInOutTime) {
 		check = true;
 	}
-	mScreenMovePos = (og::Screen::calcSmooth0to1(mFadeTimer, msVal._08)) * -800.0f;
+	mScreenMovePos = (og::Screen::calcSmooth0to1(mFadeTimer, msVal.mFadeInOutTime)) * -800.0f;
 	return check;
 }
 

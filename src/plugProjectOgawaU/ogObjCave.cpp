@@ -87,7 +87,7 @@ void ObjCave::doCreate(JKRArchive* arc)
 	}
 
 	mPikiCounter->setCallBack(arc);
-	mTotalPoko->setCallBack(arc, msVal._08, msVal._0C, msVal._10, msVal._14);
+	mTotalPoko->setCallBack(arc, msVal.mTotalPokoXPos, msVal.mTotalPokoYPos, msVal.mTotalPokoXScale, msVal.mTotalPokoYScale);
 	mPaneChika  = og::Screen::TagSearch(mPikiCounter, 'Pchika');
 	mPaneFinalf = og::Screen::TagSearch(mPikiCounter, 'Nfinalf');
 
@@ -111,7 +111,7 @@ void ObjCave::doCreate(JKRArchive* arc)
 	mOtakara->init(mSensorScreen->search('Nhari'), mSensorScreen->search('Nsensor'), mDisp->mRadarState);
 	mDoSensorEff = true;
 
-	mOtakara->setSensorVec1(msVal._2C, msVal._30);
+	mOtakara->setSensorVec1(msVal.mTreasureRadarVecX, msVal.mTreasureRadarVecY);
 	mDoping->setDopingEnable(mDisp->mIsBitterUnlocked, mDisp->mIsSpicyUnlocked);
 }
 
@@ -197,17 +197,17 @@ void ObjCave::commonUpdate()
 	if (mDisp->mDrawSensor) {
 		mOtakara->show();
 		mOtakara->update();
-		mOtakara->adjPos(msVal._18, msVal._1C);
-		mOtakara->adjScale(msVal._20);
-		mOtakara->setSensorVec2(msVal._34, msVal._38);
-		mOtakara->setSensorVec3(msVal._3C, msVal._40);
+		mOtakara->adjPos(msVal.mTreasureRadarXPos, msVal.mTreasureRadarYPos);
+		mOtakara->adjScale(msVal.mTreasureRadarScale);
+		mOtakara->setCompleteEfxOffset(msVal.mTreasureRadarCompEfxXPos, msVal.mTreasureRadarCompEfxYPos);
+		mOtakara->setAppearEfxOffset(msVal.mTreasureRadarAppearEfxXPos, msVal.mTreasureRadarAppearEfxYPos);
 
 	} else {
 		mOtakara->hide();
 	}
 
 	mDoping->setDopingEnable(mDisp->mIsBitterUnlocked, mDisp->mIsSpicyUnlocked);
-	mDoping->adjPos(msVal._24, msVal._28);
+	mDoping->adjPos(msVal.mDopingScreenXPos, msVal.mDopingScreenYPos);
 }
 
 /**
@@ -264,12 +264,12 @@ bool ObjCave::doUpdateFadein()
 {
 	bool check = false;
 	mFadeLevel += sys->mDeltaTime;
-	if (mFadeLevel > msVal._00) {
-		mFadeLevel = msVal._00;
+	if (mFadeLevel > msVal.mFadeinTime) {
+		mFadeLevel = msVal.mFadeinTime;
 		check      = true;
 	}
 
-	mScale = mFadeLevel / msVal._00;
+	mScale = mFadeLevel / msVal.mFadeinTime;
 	commonUpdate();
 	return check;
 }
@@ -294,12 +294,12 @@ bool ObjCave::doUpdateFadeout()
 {
 	bool check = false;
 	mFadeLevel += sys->mDeltaTime;
-	if (mFadeLevel > msVal._04) {
-		mFadeLevel = msVal._04;
+	if (mFadeLevel > msVal.mFadeoutTime) {
+		mFadeLevel = msVal.mFadeoutTime;
 		check      = true;
 	}
 
-	mScale = 1.0f - mFadeLevel / msVal._04;
+	mScale = 1.0f - mFadeLevel / msVal.mFadeoutTime;
 	commonUpdate();
 	return check;
 }

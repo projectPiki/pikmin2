@@ -113,10 +113,10 @@ void ObjSMenuPauseDoukutu::doCreate(JKRArchive* arc)
 	}
 
 	mAnims = new og::Screen::AnimGroup(4);
-	og::Screen::registAnimGroupScreen(mAnims, arc, mScreenPause, "s_menu_pause_doukutu_l.btk", msBaseVal._00);
-	og::Screen::registAnimGroupScreen(mAnims, arc, mScreenPause, "s_menu_pause_doukutu_l_02.btk", msBaseVal._00);
-	og::Screen::registAnimGroupScreen(mAnims, arc, mScreenPause, "s_menu_pause_doukutu_l_03.btk", msBaseVal._00);
-	og::Screen::registAnimGroupScreen(mAnims, arc, mScreenPause, "s_menu_pause_doukutu_l_04.btk", msBaseVal._00);
+	og::Screen::registAnimGroupScreen(mAnims, arc, mScreenPause, "s_menu_pause_doukutu_l.btk", msBaseVal.mAnimSpeed);
+	og::Screen::registAnimGroupScreen(mAnims, arc, mScreenPause, "s_menu_pause_doukutu_l_02.btk", msBaseVal.mAnimSpeed);
+	og::Screen::registAnimGroupScreen(mAnims, arc, mScreenPause, "s_menu_pause_doukutu_l_03.btk", msBaseVal.mAnimSpeed);
+	og::Screen::registAnimGroupScreen(mAnims, arc, mScreenPause, "s_menu_pause_doukutu_l_04.btk", msBaseVal.mAnimSpeed);
 	doCreateAfter(arc, mScreenPause);
 }
 
@@ -127,7 +127,7 @@ void ObjSMenuPauseDoukutu::doCreate(JKRArchive* arc)
 void ObjSMenuPauseDoukutu::commonUpdate()
 {
 	commonUpdateBase();
-	setSMenuScale(msVal._00, msVal._04);
+	setSMenuScale(msVal.mMenuScaleX, msVal.mMenuScaleY);
 	mPokos = mDisp->mPreCavePokos + mDisp->mCavePokos;
 	mAnims->update();
 	mScreenPause->setXY(mMovePos, 0.0f);
@@ -564,7 +564,7 @@ void ObjSMenuPauseDoukutu::set_Menu_YesNo()
 	set_Blink_YesNo();
 	mGiveupOpened    = false;
 	mMenuGiveupTimer = 0.0f;
-	mWarningTimer    = msVal._08;
+	mWarningTimer    = msVal.mPikiWarningTime;
 }
 
 ObjSMenuPauseDoukutu::StaticValues ObjSMenuPauseDoukutu::msVal;

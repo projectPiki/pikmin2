@@ -160,20 +160,20 @@ struct Obj : public EnemyBase {
 	s16 mWpIndex3;                                      // _2EA
 	u32 mPathID;                                        // _2EC
 	bool mIsPathfinding;                                // _2F0
-	u8 _2F1;                                            // _2F1
+	u8 mCanReactToPress;                                // _2F1
 	WalkSmokeEffect::Mgr mWalkSmokeMgr;                 // _2F4
 	efx::TPanHide* mEfxHide;                            // _2FC
 	efx::TPanSmoke* mEfxSmoke;                          // _300
-	int _304;                                           // _304
+	int mFindNextRouteCounter;                          // _304
 	Vector3f mPrevCheckPosition;                        // _308
 	int mMoveToWpTimer;                                 // _314
 	int mMoveSpeedTimer;                                // _318
-	u8 _31C;                                            // _31C
+	u8 mIsCarryStuck;                                   // _31C
 	Vector3f mPelletCarryVelocity;                      // _320
 	f32 mCarrySizeDiff;                                 // _32C
 	f32 mShadowSize;                                    // _330
 	f32 mCarryingYPosition;                             // _334
-	f32 _338;                                           // _338
+	f32 mUnusedVal;                                     // _338
 	f32 mBounceEffectSize;                              // _33C
 	f32 mAppearEffectSize;                              // _340
 	StateID mNextState;                                 // _344

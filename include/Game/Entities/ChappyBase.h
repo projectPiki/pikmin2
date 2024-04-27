@@ -266,7 +266,7 @@ struct StateGoHome : public StateCautionBase {
 };
 
 struct SleepArg : public StateArg {
-	bool _00; // _00
+	bool mDoSkipSleepStart; // _00
 };
 
 struct StateSleep : public State {

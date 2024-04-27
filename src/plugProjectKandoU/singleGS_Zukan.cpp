@@ -2679,8 +2679,9 @@ void ZukanState::draw(SingleGameSection* game, Graphics& gfx)
 		mCamera->update();
 		gfx.setupJ2DOrthoGraphDefault();
 		gfx.mOrthoGraph.setPort();
-		J2DFillBox(0.0f, 0.0f, getWindowWidth(), getWindowHeight(), mParms->mColorSetting.getColor54(), mParms->mColorSetting.getColor54(),
-		           mParms->mColorSetting.getColor58(), mParms->mColorSetting.getColor58());
+		J2DFillBox(0.0f, 0.0f, getWindowWidth(), getWindowHeight(), mParms->mColorSetting.getActiveColorA(),
+		           mParms->mColorSetting.getActiveColorA(), mParms->mColorSetting.getActiveColorB(),
+		           mParms->mColorSetting.getActiveColorB());
 		game->BaseGameSection::draw3D(gfx);
 		drawLightEffect(game, gfx);
 		mTexture2->capture(0, 0, (GXTexFmt)mTexture2->mTexInfo->mTextureFormat, false, 0);
@@ -3292,11 +3293,11 @@ void ZukanState::drawLightEffect(SingleGameSection* game, Graphics& gfx)
 		sep.y += JMath::sincosTable_.mTable[113].first;
 		sep.y /= JMath::sincosTable_.mTable[56].first;
 		sep.y += 0.1f;
-		color = mParms->mColorSetting._5C;
+		color = mParms->mColorSetting.mActiveColorC;
 	} else {
 		sep.y += JMath::sincosTable_.mTable[85].first;
 		sep.y /= JMath::sincosTable_.mTable[56].first;
-		color = mParms->mColorSetting._5C;
+		color = mParms->mColorSetting.mActiveColorC;
 	}
 
 	if (sep.y < 0.0f) {

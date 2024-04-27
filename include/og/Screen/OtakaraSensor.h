@@ -32,22 +32,22 @@ struct OtakaraSensor {
 
 	inline void setSensorVec1(f32 x, f32 y) { _4C = Vector2f(x, y); }
 
-	inline void setSensorVec2(f32 x, f32 y) { mCompleteEfxOffset = Vector2f(x, y); }
+	inline void setCompleteEfxOffset(f32 x, f32 y) { mCompleteEfxOffset = Vector2f(x, y); }
 
-	inline void setSensorVec3(f32 x, f32 y) { mAppearEfxOffset = Vector2f(x, y); }
+	inline void setAppearEfxOffset(f32 x, f32 y) { mAppearEfxOffset = Vector2f(x, y); }
 
-	f32 mCurrReactionLevel; // _00
-	f32 mAngle;             // _04
-	J2DPane* mPane1;        // _08
-	J2DPane* mPane2;        // _0C
-	f32 mCurrAngle;         // _10
-	f32 mReactTimer;        // _14
-	Vector2f mPanePos;      // _18
-	f32 mScale;             // _20
-	ScaleMgr* mScaleMgr;    // _24
-	f32 mAngleOffsetMod;    // _28
-	bool mDoAngleOffset;    // _2C
-	bool mEfxActive;
+	f32 mCurrReactionLevel;                  // _00
+	f32 mAngle;                              // _04
+	J2DPane* mPane1;                         // _08
+	J2DPane* mPane2;                         // _0C
+	f32 mCurrAngle;                          // _10
+	f32 mReactTimer;                         // _14
+	Vector2f mPanePos;                       // _18
+	f32 mScale;                              // _20
+	ScaleMgr* mScaleMgr;                     // _24
+	f32 mAngleOffsetMod;                     // _28
+	bool mDoAngleOffset;                     // _2C
+	bool mEfxActive;                         // _2D
 	AngleMgr* mAngleMgr;                     // _30
 	f32 mTimer;                              // _34
 	f32 mAngleOffs;                          // _38

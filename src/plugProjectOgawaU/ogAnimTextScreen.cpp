@@ -74,7 +74,7 @@ AnimText_Screen::AnimText_Screen(P2DScreen::Mgr* scrn, u64 tag)
 	mIsUpdateSuccess = false;
 	mMsgBodyPane     = nullptr;
 	mMsgBackPane     = nullptr;
-	_48              = false;
+	mNeedOpenText    = false;
 	mTag             = 0;
 	mMsgBodyPane     = static_cast<J2DTextBox*>(og::Screen::TagSearch(scrn, 'msg_body'));
 	mMsgBackPane     = static_cast<J2DTextBox*>(og::Screen::TagSearch(scrn, 'msg_back'));
@@ -82,7 +82,7 @@ AnimText_Screen::AnimText_Screen(P2DScreen::Mgr* scrn, u64 tag)
 	mBlinkFactor     = 0.0f;
 	mBlinkLevel      = 1.0f;
 	mIsBlinking      = false;
-	_6C              = 1.0f;
+	mMesgAlpha       = 1.0f;
 	og::newScreen::ObjSMenuPause::ObjHIOVal::getMenuColor(&mColor0, &mColor1, &mColor2, &mColor3, &mColor4, &mColor5, &mColor6, &mColor7,
 	                                                      &mColor8, &mColor9, &mColor13, &mColor14, &mColor15, &mColor16);
 	mColor10   = mMsgBackPane->getWhite();
@@ -101,7 +101,7 @@ void AnimText_Screen::update()
 	if (mAnmScreen) {
 		mIsUpdateSuccess = mAnmScreen->update();
 
-		if (_48) {
+		if (mNeedOpenText) {
 			if (mTag) {
 				if (!mIsUpdateSuccess) {
 					setText(mTag);
@@ -109,7 +109,7 @@ void AnimText_Screen::update()
 					open(0.0f);
 				}
 			} else if (!mIsUpdateSuccess) {
-				_48 = false;
+				mNeedOpenText = false;
 			}
 		}
 
@@ -193,7 +193,7 @@ void AnimText_Screen::update()
 			mMsgBodyPane->setWhite(bodyWhite);
 		}
 
-		u8 alpha = _6C * 255.0f;
+		u8 alpha = mMesgAlpha * 255.0f;
 
 		if (mColorType == 2) {
 			alpha = mColor0.a;

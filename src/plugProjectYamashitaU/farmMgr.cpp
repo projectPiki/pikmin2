@@ -22,12 +22,12 @@ FarmMgr::FarmMgr(u32 farmType)
     , mModelType(farmType)
     , mFarmsRootNode("î_çkÉ|ÉCÉìÉg")
     , mDirectorUpdator(nullptr)
-    , _3C(0)
-    , _3D(0)
+    , mUnused1(0)
+    , mUnused2(0)
 {
 	add(&mFarmsRootNode);
-	_3C = 0;
-	_3D = 0;
+	mUnused1 = 0;
+	mUnused2 = 0;
 }
 
 /**

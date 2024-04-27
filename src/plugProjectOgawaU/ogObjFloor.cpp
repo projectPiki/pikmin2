@@ -35,7 +35,7 @@ ObjFloor::ObjFloor(const char* name)
 	mScreenName   = nullptr;
 	mScreenFont   = nullptr;
 	mSublevelPane = nullptr;
-	mTimer        = msVal._0C;
+	mTimer        = msVal.mFinishWaitTime;
 	mDoFadeout    = false;
 	mColor.set(0, 0, 0, 255);
 	mDoEnd            = 0;
@@ -377,7 +377,7 @@ void ObjFloor::doCreate(JKRArchive* arc)
 			mRulesPaneList[i]->hide();
 		}
 		int ruleMsgIndex;
-		if (msVal.mShouldNotRandomizeRuleMsgMaybe) {
+		if (msVal.mDoUseSetRuleMsgIndex) {
 			ruleMsgIndex = msVal.mRuleMsgIndex;
 		} else {
 			ruleMsgIndex = randFloat() * 6.0f;
@@ -436,19 +436,19 @@ void ObjFloor::doCreate(JKRArchive* arc)
 	switch (caveType) {
 	case FLOOR_Challenge:
 		mTitle           = new TitleMsgDrop(mScreenFont, mScreenName->search('title'), mTextTag);
-		mTitle->mYOffset = msVal._50;
+		mTitle->mYOffset = msVal.mChallengeTitleYOffset;
 		break;
 
 	case FLOOR_Story:
 		TitleMsgWave* msg = new TitleMsgWave(mScreenFont, mScreenName->search('title'), mTextTag);
-		msg->setParam(msVal._40, msVal._44, msVal._48, msVal._4C);
-		msg->mYOffset = msVal._54;
+		msg->setParam(msVal.mScaleParm1, msVal.mScaleParm2, msVal.mScaleParm3, msVal.mScaleParm4);
+		msg->mYOffset = msVal.mStoryTitleYOffset;
 		mTitle        = msg;
 		break;
 
 	case FLOOR_Versus:
 		mTitle           = new TitleMsgClash(mScreenFont, mScreenName->search('title'), mTextTag);
-		mTitle->mYOffset = msVal._58;
+		mTitle->mYOffset = msVal.mVsTitleYOffset;
 		break;
 
 	default:
@@ -504,13 +504,13 @@ bool newScreen::ObjFloor::commonUpdate()
 	}
 
 	if (!vs) {
-		f32 subX = mSublevelXoffs + msVal._2C;
-		f32 subY = mSublevelYoffs + msVal._30;
+		f32 subX = mSublevelXoffs + msVal.mSublevelXOffset;
+		f32 subY = mSublevelYoffs + msVal.mSublevelYOffset;
 		if (disp->mSublevel < 10) {
-			subX += msVal._3C;
+			subX += msVal.mSublevel2DigitXOffset;
 		}
 		mSublevelPane->setOffset(subX, subY);
-		mSublevelPane->updateScale(msVal._34);
+		mSublevelPane->updateScale(msVal.mSublevelScale);
 	}
 
 	if (mScreenRules) {
@@ -536,11 +536,11 @@ bool newScreen::ObjFloor::commonUpdate()
 	pic->setBlack(msVal.mColors2[caveType]);
 
 	if (vs) {
-		mScreenName->setXY(msVal._20, msVal._24);
-		mScreenName->scaleScreen(msVal._28);
+		mScreenName->setXY(msVal.mVsNameXOffset, msVal.mVsNameYOffset);
+		mScreenName->scaleScreen(msVal.mVsNameScale);
 	} else {
-		mScreenName->setXY(msVal._10, msVal._14);
-		mScreenName->scaleScreen(msVal._18);
+		mScreenName->setXY(msVal.mStandardNameXOffset, msVal.mStandardNameYOffset);
+		mScreenName->scaleScreen(msVal.mStandardNameScale);
 	}
 	mScreenName->update();
 	mTitle->update();
@@ -593,7 +593,7 @@ void ObjFloor::doDraw(Graphics& gfx)
 	mScreenName->draw(gfx, *graf);
 	graf->setPort();
 
-	if (!isVS()) { // needs fixing
+	if (!isVS()) {
 		mSublevelPane->show();
 	} else {
 		mSublevelPane->hide();
@@ -655,11 +655,11 @@ bool newScreen::ObjFloor::doUpdateFadein()
 {
 	bool result = false;
 	mFadeLevel += sys->mDeltaTime;
-	if (mFadeLevel > msVal._04) {
-		mFadeLevel = msVal._04;
+	if (mFadeLevel > msVal.mFadeinTime) {
+		mFadeLevel = msVal.mFadeinTime;
 		result     = true;
 	}
-	mAlpha = mFadeLevel / msVal._04;
+	mAlpha = mFadeLevel / msVal.mFadeinTime;
 	commonUpdate();
 	return result;
 }
@@ -673,13 +673,13 @@ bool newScreen::ObjFloor::doUpdateFadeout()
 	bool check = false;
 	mFadeLevel += sys->mDeltaTime;
 
-	if (mFadeLevel > msVal._08) {
-		mFadeLevel = msVal._08;
+	if (mFadeLevel > msVal.mFadeoutTime) {
+		mFadeLevel = msVal.mFadeoutTime;
 		if (!mDoEnd) {
 			check = true;
 		}
 	}
-	mAlpha = 1.0f - mFadeLevel / msVal._08;
+	mAlpha = 1.0f - mFadeLevel / msVal.mFadeoutTime;
 	commonUpdate();
 	return check;
 }

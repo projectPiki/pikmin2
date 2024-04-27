@@ -41,12 +41,12 @@ CallBack_CounterRV::CallBack_CounterRV(char** characterTexturePaths, u16 ketaCou
 	mIsBlind          = false;
 	mIsHidden         = false;
 	mIsMother         = false;
-	_89               = 0;
+	mDoUseRandomValue = 0;
 	mZeroAlpha        = 0;
 	mCenteringMode    = ECM_Unknown0;
 	mScaleUpSoundID   = PSSE_UNSET;
 	mScaleDownSoundID = PSSE_UNSET;
-	_9C               = 1;
+	mIsInitialized    = 1;
 	mPaneOffsetX      = 0.0f;
 	mPaneOffsetY      = 0.0f;
 }
@@ -290,7 +290,7 @@ void CallBack_CounterRV::init(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u
 			mCounters[i] = new CounterKeta(static_cast<J2DPicture*>(newpane));
 		}
 	}
-	_9C = true;
+	mIsInitialized = true;
 	setValue(false, false);
 
 	/*
@@ -655,7 +655,7 @@ void CallBack_CounterRV::setKetaSub(int count, bool flag1, bool flag2)
 		temp     = u16((mInitialDisplayValue / temp) % 10);
 		if (mIsBlind) {
 			mCounters[i]->setSuji(mImgResources, 10);
-		} else if (_89) {
+		} else if (mDoUseRandomValue) {
 			mCounters[i]->setSuji(mImgResources, (u16)(randFloat() * 9.0f));
 		} else {
 			mCounters[i]->setSuji(mImgResources, temp);
@@ -1093,8 +1093,8 @@ void CallBack_CounterRV::update()
 {
 	bool isInc = 0;
 	bool isDec = 0;
-	if (_9C) {
-		_9C                  = false;
+	if (mIsInitialized) {
+		mIsInitialized       = false;
 		mInitialDisplayValue = *mCountPtr;
 		mCurrDisplayValue    = mInitialDisplayValue;
 	} else {

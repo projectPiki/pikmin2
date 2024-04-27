@@ -51,20 +51,20 @@ struct MenuMgr {
 	J2DPane** mPaneList4;          // _24 /* ptr to array of ptrs */
 	J2DPane** mPaneList5;          // _28 /* ptr to array of ptrs */
 	u8 mIsCursorActive;            // _2C
-	u8 _2D;                        // _2D
+	u8 mDoNeedMenuOnOff;           // _2D
 	bool mDoScale;                 // _2E
 	Vector2f mCursorPos1;          // _30
 	Vector2f mCursorPos2;          // _38
 	efx2d::T2DCursor* mEfxCursor1; // _40
 	efx2d::T2DCursor* mEfxCursor2; // _44
-	u8 _48;                        // _48
+	u8 mIsChangingSelect;          // _48
 	Vector2f mTransitionPosLeft;   // _48
 	Vector2f mTransitionPosRight;  // _54
 	Vector2f mSelPosLeft;          // _5C
 	Vector2f mSelPosRight;         // _64
-	f32 _6C;                       // _6C
+	f32 mSelectChangeTimer;        // _6C
 	u16 mPrevSelected;             // _70
-	f32 _74;                       // _74
+	f32 mSelectedExtraScale;       // _74
 };
 } // namespace Screen
 } // namespace og

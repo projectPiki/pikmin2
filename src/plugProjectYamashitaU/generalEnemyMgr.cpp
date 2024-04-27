@@ -392,7 +392,7 @@ void GeneralEnemyMgr::createEnemyMgr(u8 type, int enemyID, int limit)
  * @note Size: 0x1BC
  */
 GeneralEnemyMgr::GeneralEnemyMgr()
-    : _1C(0)
+    : mDrawFlag(0)
     , mEnemyNumInfo()
     , mHeap(nullptr)
 {
@@ -895,13 +895,13 @@ EnemyMgrBase* GeneralEnemyMgr::getEnemyMgr(int enemyID)
 void GeneralEnemyMgr::setMovieDraw(bool isEndMovie)
 {
 	if (!isEndMovie) {
-		_1C |= 0x1;
+		mDrawFlag |= 0x1;
 		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
 		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
 			childNode->startMovie();
 		}
 	} else {
-		_1C &= ~0x1;
+		mDrawFlag &= ~0x1;
 		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
 		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
 			childNode->endMovie();

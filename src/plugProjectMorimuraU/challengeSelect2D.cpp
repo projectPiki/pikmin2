@@ -1266,8 +1266,8 @@ void TChallengePlayModeScreen::create(char const* path, u32 flags)
 		mAnimScreen[i]->stop();
 	}
 
-	mAnimScreen[0]->_6C = 1.0f - mNoControllerTimer;
-	mAnimScreen[3]->_6C = mNoControllerTimer;
+	mAnimScreen[0]->mMesgAlpha = 1.0f - mNoControllerTimer;
+	mAnimScreen[3]->mMesgAlpha = mNoControllerTimer;
 
 	mPane3 = mScreenObj->search('P1orima');
 	P2ASSERTLINE(795, mPane3);
@@ -1426,10 +1426,10 @@ void TChallengePlayModeScreen::update()
 
 			if (TChallengeSelect::mConnect2p) {
 				mPaneList0[1]->setAlpha(255);
-				mAnimScreen[2]->_6C = 1.0f;
+				mAnimScreen[2]->mMesgAlpha = 1.0f;
 			} else {
 				mPaneList0[1]->setAlpha(128);
-				mAnimScreen[2]->_6C = 0.5f;
+				mAnimScreen[2]->mMesgAlpha = 0.5f;
 			}
 			mScreenObj->animation();
 			if (mDoShowNoController) {
@@ -1443,8 +1443,8 @@ void TChallengePlayModeScreen::update()
 					mNoControllerTimer = 0.0f;
 				}
 			}
-			mAnimScreen[0]->_6C = 1.0f - mNoControllerTimer;
-			mAnimScreen[3]->_6C = mNoControllerTimer;
+			mAnimScreen[0]->mMesgAlpha = 1.0f - mNoControllerTimer;
+			mAnimScreen[3]->mMesgAlpha = mNoControllerTimer;
 			if (mState >= 2) {
 				for (int i = 0; i < 2; i++) {
 					mPaneList0[i]->updateScale(mScaleMgr[i]->calc());

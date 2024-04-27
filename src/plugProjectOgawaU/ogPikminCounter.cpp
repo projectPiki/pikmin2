@@ -13,7 +13,7 @@ namespace Screen {
 PikminCounter::PikminCounter()
 {
 	mCatchPiki         = nullptr;
-	_180               = 0;
+	_180               = 0; // 3 unused values
 	_184               = 0;
 	_188               = 0;
 	mIsTotalPokoActive = false;

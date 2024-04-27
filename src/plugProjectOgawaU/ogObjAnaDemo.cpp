@@ -119,20 +119,20 @@ ObjAnaDemo::ObjAnaDemo(const char* name)
 	mState      = ANADEMOSTATE_Disabled;
 	mAnaTypeSub = ANADEMOSUB_Normal;
 
-	mCurrMenuSel  = 0;
-	mScreen       = nullptr;
-	mMenuMgr      = nullptr;
-	mAnimGroup    = nullptr;
-	_54           = nullptr;
-	mMenuSelTitle = nullptr;
-	mMenuSelYes   = nullptr;
-	mMenuSelNo    = nullptr;
-	_68           = 0.0f;
-	_6C           = 0;
-	mPaneError    = nullptr;
-	_88           = 0;
-	_8C           = 0.0f;
-	mCloseTimer   = 0.0f;
+	mCurrMenuSel       = 0;
+	mScreen            = nullptr;
+	mMenuMgr           = nullptr;
+	mAnimGroup         = nullptr;
+	mUnusedObj         = nullptr;
+	mMenuSelTitle      = nullptr;
+	mMenuSelYes        = nullptr;
+	mMenuSelNo         = nullptr;
+	mUnused0           = 0.0f;
+	mUnused1           = 0;
+	mPaneError         = nullptr;
+	mUnused2           = 0;
+	mSwingMovePosition = 0.0f;
+	mCloseTimer        = 0.0f;
 
 	mTimer3 = 0.0f;
 	mAlpha  = 255;
@@ -343,7 +343,7 @@ void ObjAnaDemo::doCreate(JKRArchive* arc)
 
 	og::Screen::AnimText_Screen* anim = mMenuSelTitle;
 	if (anim) {
-		if (mDisp->_1C) {
+		if (mDisp->mNoOpenMenu) {
 			anim->stop();
 			mMenuSelYes->stop();
 			mMenuSelNo->stop();
@@ -534,7 +534,7 @@ bool ObjAnaDemo::doUpdate()
 					mState  = ANADEMOSTATE_ErrorTimed;
 					mTimer4 = 0.5f;
 					if (mMenuSelTitle)
-						mMenuSelTitle->_6C = 0.5f;
+						mMenuSelTitle->mMesgAlpha = 0.5f;
 					ogSound->setError();
 					mPaneError->setAlpha(0);
 				} else {
@@ -543,7 +543,7 @@ bool ObjAnaDemo::doUpdate()
 						mCloseTimer = 0.0f;
 						ogSound->setDecide();
 					} else {
-						_68 = 0.5f;
+						mUnused0 = 0.5f;
 						ogSound->setDecide();
 						mState      = ANADEMOSTATE_Exit;
 						mCloseTimer = 0.0f;
@@ -610,11 +610,11 @@ bool ObjAnaDemo::doUpdate()
 
 	case ANADEMOSTATE_Exit:
 		mCloseTimer += sys->mDeltaTime;
-		_8C = og::Screen::calcSmooth0to1(mCloseTimer, msVal._00) * -800.0f;
-		if (mCloseTimer >= msVal._00) {
-			ret        = true;
-			mDisp->_1F = false;
-			mState     = ANADEMOSTATE_Disabled;
+		mSwingMovePosition = og::Screen::calcSmooth0to1(mCloseTimer, msVal.mMoveFinishRatio) * -800.0f;
+		if (mCloseTimer >= msVal.mMoveFinishRatio) {
+			ret                = true;
+			mDisp->mExitStatus = 0; // confirm menu
+			mState             = ANADEMOSTATE_Disabled;
 		}
 		break;
 	}
@@ -636,7 +636,7 @@ void ObjAnaDemo::commonUpdate()
 		mAnimGroup->update();
 	}
 
-	mScreen->setXY(_8C, 0.0f);
+	mScreen->setXY(mSwingMovePosition, 0.0f);
 	mScreen->update();
 }
 
@@ -664,8 +664,8 @@ void ObjAnaDemo::doDraw(Graphics& gfx)
  */
 bool ObjAnaDemo::doStart(::Screen::StartSceneArg const*)
 {
-	mCloseTimer = 0.0f;
-	_8C         = 800.0f;
+	mCloseTimer        = 0.0f;
+	mSwingMovePosition = 800.0f;
 	return true;
 }
 
@@ -713,9 +713,9 @@ bool ObjAnaDemo::doUpdateFadein()
 	commonUpdate();
 	mCloseTimer += sys->mDeltaTime;
 
-	_8C = 800.0f * (1.0f - og::Screen::calcSmooth0to1(mCloseTimer, msVal._00));
+	mSwingMovePosition = 800.0f * (1.0f - og::Screen::calcSmooth0to1(mCloseTimer, msVal.mMoveFinishRatio));
 
-	if (mCloseTimer >= msVal._00) {
+	if (mCloseTimer >= msVal.mMoveFinishRatio) {
 		ret = true;
 	}
 

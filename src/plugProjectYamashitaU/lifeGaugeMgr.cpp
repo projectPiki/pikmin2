@@ -417,7 +417,7 @@ void LifeGaugeMgr::activeLifeGauge(Game::Creature* obj, f32 x)
 	LifeGaugeList* list = search(obj);
 
 	if (list) {
-		f32 y = list->_45 * x;
+		f32 y = list->mSegmentCount2 * x;
 		if (x >= 0.0f) {
 			y = x + 0.5f;
 		} else {
@@ -525,7 +525,7 @@ void LifeGaugeMgr::inactiveLifeGauge(Game::Creature* obj)
 	if (list) {
 		list->mParam.mIsGaugeShown = false;
 		list->_3C                  = 0.0f;
-		list->_45                  = LIFEGAUGE_SEGMENTS;
+		list->mSegmentCount2       = LIFEGAUGE_SEGMENTS;
 		list->mSegmentCount        = LIFEGAUGE_SEGMENTS;
 		list->clearRelations();
 		list->mPrev  = &mListB;

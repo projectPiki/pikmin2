@@ -461,7 +461,7 @@ void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 
 	f32 damage = CG_PROPERPARMS(enemy).mPressDamage.mValue;
-	if (OBJ(enemy)->_2F1) {
+	if (OBJ(enemy)->mCanReactToPress) {
 		damage = CG_PROPERPARMS(enemy).mSuckDamage.mValue;
 		OBJ(enemy)->damageRumble();
 
@@ -640,14 +640,14 @@ void StateSucked::init(EnemyBase* enemy, StateArg* stateArg)
 		enemy->mTargetCreature = nullptr;
 	}
 
-	OBJ(enemy)->_2F1 = 1;
+	OBJ(enemy)->mCanReactToPress = 1;
 }
 
 /**
  * @note Address: 0x8034E5A4
  * @note Size: 0xC
  */
-void StateSucked::exec(EnemyBase* enemy) { OBJ(enemy)->_2F1 = 1; }
+void StateSucked::exec(EnemyBase* enemy) { OBJ(enemy)->mCanReactToPress = 1; }
 
 /**
  * @note Address: 0x8034E5B0

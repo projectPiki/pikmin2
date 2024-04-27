@@ -76,7 +76,7 @@ void StateWalk::exec(EnemyBase* enemy)
 			mNoTargetTimer++;
 		}
 
-		if (OBJ(enemy)->isOutOfTerritory(1.0f) || CG_PARMS(enemy)->_BC9
+		if (OBJ(enemy)->isOutOfTerritory(1.0f) || CG_PARMS(enemy)->mDontSearchTarget
 		    || mNoTargetTimer > CG_PROPERPARMS(enemy).mPeriodOfIncubation.mValue) {
 			OBJ(enemy)->mGoalPosition = enemy->mHomePosition;
 			mNoTargetTimer            = CG_PROPERPARMS(enemy).mPeriodOfIncubation.mValue;

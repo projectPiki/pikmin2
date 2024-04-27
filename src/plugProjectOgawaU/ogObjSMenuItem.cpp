@@ -97,8 +97,8 @@ void ObjSMenuItem::doCreate(JKRArchive* arc)
 	mPaneSpraySub0 = og::Screen::TagSearch(mScreenSprays, 'Nspray00');
 	mPaneSpraySub1 = og::Screen::TagSearch(mScreenSprays, 'Nspray01');
 
-	mPaneSpray0->move(msVal._08, msVal._0C);
-	mPaneSpray1->move(msVal._10, msVal._14);
+	mPaneSpray0->move(msVal.mSpray0XOffset, msVal.mSpray0YOffset);
+	mPaneSpray1->move(msVal.mSpray1XOffset, msVal.mSpray1YOffset);
 
 	if (!mDisp->mIsBitterUnlocked && !mDisp->mIsSpicyUnlocked) {
 		og::Screen::TagSearch(mScreenItems, 'Nwin0')->hide();
@@ -117,11 +117,11 @@ void ObjSMenuItem::doCreate(JKRArchive* arc)
 	}
 
 	mAnims1 = new og::Screen::AnimGroup(5);
-	og::Screen::registAnimGroupScreen(mAnims1, arc, mScreenItems, "s_menu_item_l.btk", msBaseVal._00);
-	og::Screen::registAnimGroupScreen(mAnims1, arc, mScreenItems, "s_menu_item_l_02.btk", msBaseVal._00);
-	og::Screen::registAnimGroupScreen(mAnims1, arc, mScreenItems, "s_menu_item_l_03.btk", msBaseVal._00);
-	og::Screen::registAnimGroupScreen(mAnims1, arc, mScreenItems, "s_menu_item_l_04.btk", msBaseVal._00);
-	og::Screen::registAnimGroupScreen(mAnims1, arc, mScreenItems, "s_menu_item_l_05.btk", msBaseVal._00);
+	og::Screen::registAnimGroupScreen(mAnims1, arc, mScreenItems, "s_menu_item_l.btk", msBaseVal.mAnimSpeed);
+	og::Screen::registAnimGroupScreen(mAnims1, arc, mScreenItems, "s_menu_item_l_02.btk", msBaseVal.mAnimSpeed);
+	og::Screen::registAnimGroupScreen(mAnims1, arc, mScreenItems, "s_menu_item_l_03.btk", msBaseVal.mAnimSpeed);
+	og::Screen::registAnimGroupScreen(mAnims1, arc, mScreenItems, "s_menu_item_l_04.btk", msBaseVal.mAnimSpeed);
+	og::Screen::registAnimGroupScreen(mAnims1, arc, mScreenItems, "s_menu_item_l_05.btk", msBaseVal.mAnimSpeed);
 
 	mAnims2 = new og::Screen::AnimGroup(1);
 	og::Screen::registAnimGroupScreen(mAnims2, arc, mScreenSprays, "s_menu_item_spray.btk", 1.0f);
@@ -148,8 +148,8 @@ void ObjSMenuItem::doCreate(JKRArchive* arc)
 		if (panelist[i]) {
 			int id = Game::Equip::EquipItemList[i];
 
-			pane1->setWhite(msVal._00);
-			pane1->setBlack(msVal._04);
+			pane1->setWhite(msVal.mItemColorWhite);
+			pane1->setBlack(msVal.mItemColorBlack);
 
 			if (mDisp->mExplorationKitInventory[id]) {
 				panelist[i]->show();
@@ -843,9 +843,9 @@ void ObjSMenuItem::doUpdateRAction()
 void ObjSMenuItem::commonUpdate()
 {
 	commonUpdateBase();
-	setSMenuScale(msVal._18, msVal._1C);
-	mPaneSpray0->move(msVal._08, msVal._0C);
-	mPaneSpray1->move(msVal._10, msVal._14);
+	setSMenuScale(msVal.mMenuScaleX, msVal.mMenuScaleY);
+	mPaneSpray0->move(msVal.mSpray0XOffset, msVal.mSpray0YOffset);
+	mPaneSpray1->move(msVal.mSpray1XOffset, msVal.mSpray1YOffset);
 	mAnims1->update();
 	mAnims2->update();
 	mScreenItems->setXY(mMovePos, 0.0f);

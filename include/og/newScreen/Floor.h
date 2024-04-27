@@ -104,26 +104,26 @@ struct ObjFloor : public ::Screen::ObjBase {
 		    : mColors1()
 		    , mColors2()
 		{
-			mMaxAlpha = 0.3f;
-			_04       = 1.0f;
-			_08       = 0.2f;
-			_0C       = 3.0f;
-			_10       = 0.0f;
-			_14       = -15.0f;
-			_18       = 1.0f;
-			_1C       = 30.0f;
-			_20       = 0.0f;
-			_24       = -50.0f;
-			_28       = 1.0f;
-			_2C       = -15.0f;
-			_30       = 0.0f;
-			_34       = 1.5f;
-			_38       = 0.0f;
-			_3C       = 15.0f;
-			_40       = 0.12f;
-			_44       = 7.0f;
-			_48       = 1.5f;
-			_4C       = 0.06f;
+			mMaxAlpha              = 0.3f;
+			mFadeinTime            = 1.0f;
+			mFadeoutTime           = 0.2f;
+			mFinishWaitTime        = 3.0f;
+			mStandardNameXOffset   = 0.0f;
+			mStandardNameYOffset   = -15.0f;
+			mStandardNameScale     = 1.0f;
+			mUnused1               = 30.0f;
+			mVsNameXOffset         = 0.0f;
+			mVsNameYOffset         = -50.0f;
+			mVsNameScale           = 1.0f;
+			mSublevelXOffset       = -15.0f;
+			mSublevelYOffset       = 0.0f;
+			mSublevelScale         = 1.5f;
+			mUnused2               = 0.0f;
+			mSublevel2DigitXOffset = 15.0f;
+			mScaleParm1            = 0.12f;
+			mScaleParm2            = 7.0f;
+			mScaleParm3            = 1.5f;
+			mScaleParm4            = 0.06f;
 			mColors1[0].set(255, 255, 200, 255);
 			mColors2[0].set(0, 0, 50, 0);
 
@@ -132,42 +132,42 @@ struct ObjFloor : public ::Screen::ObjBase {
 
 			mColors1[2].set(255, 255, 156, 255);
 			mColors2[2].set(255, 255, 0, 0);
-			_78                             = false;
-			_50                             = 10.0f;
-			_54                             = 0.00f;
-			_58                             = 3.00f;
-			mRuleMsgIndex                   = false;
-			mShouldNotRandomizeRuleMsgMaybe = false;
+			mUnused3               = false;
+			mChallengeTitleYOffset = 10.0f;
+			mStoryTitleYOffset     = 0.0f;
+			mVsTitleYOffset        = 3.0f;
+			mRuleMsgIndex          = 0;
+			mDoUseSetRuleMsgIndex  = false;
 		};
 
-		f32 mMaxAlpha;                        // _00
-		f32 _04;                              // _04
-		f32 _08;                              // _08
-		f32 _0C;                              // _0C
-		f32 _10;                              // _10
-		f32 _14;                              // _14
-		f32 _18;                              // _18
-		f32 _1C;                              // _1C
-		f32 _20;                              // _20
-		f32 _24;                              // _24
-		f32 _28;                              // _28
-		f32 _2C;                              // _2C
-		f32 _30;                              // _30
-		f32 _34;                              // _34
-		f32 _38;                              // _38
-		f32 _3C;                              // _3C
-		f32 _40;                              // _40
-		f32 _44;                              // _44
-		f32 _48;                              // _48
-		f32 _4C;                              // _4C
-		f32 _50;                              // _50
-		f32 _54;                              // _54
-		f32 _58;                              // _58
-		JUtility::TColor mColors1[3];         // _5C
-		JUtility::TColor mColors2[3];         // _68
-		int mRuleMsgIndex;                    // _74
-		u8 _78;                               // _78
-		bool mShouldNotRandomizeRuleMsgMaybe; // _79
+		f32 mMaxAlpha;                // _00
+		f32 mFadeinTime;              // _04
+		f32 mFadeoutTime;             // _08
+		f32 mFinishWaitTime;          // _0C
+		f32 mStandardNameXOffset;     // _10
+		f32 mStandardNameYOffset;     // _14
+		f32 mStandardNameScale;       // _18
+		f32 mUnused1;                 // _1C
+		f32 mVsNameXOffset;           // _20
+		f32 mVsNameYOffset;           // _24
+		f32 mVsNameScale;             // _28
+		f32 mSublevelXOffset;         // _2C
+		f32 mSublevelYOffset;         // _30
+		f32 mSublevelScale;           // _34
+		f32 mUnused2;                 // _38
+		f32 mSublevel2DigitXOffset;   // _3C
+		f32 mScaleParm1;              // _40
+		f32 mScaleParm2;              // _44
+		f32 mScaleParm3;              // _48
+		f32 mScaleParm4;              // _4C
+		f32 mChallengeTitleYOffset;   // _50
+		f32 mStoryTitleYOffset;       // _54
+		f32 mVsTitleYOffset;          // _58
+		JUtility::TColor mColors1[3]; // _5C
+		JUtility::TColor mColors2[3]; // _68
+		int mRuleMsgIndex;            // _74
+		u8 mUnused3;                  // _78
+		bool mDoUseSetRuleMsgIndex;   // _79
 	} msVal;
 };
 

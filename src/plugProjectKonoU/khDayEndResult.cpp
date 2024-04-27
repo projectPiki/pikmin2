@@ -1292,7 +1292,7 @@ bool ObjDayEndResultIncP::doUpdate()
 	if (mFlags & 0x20) {
 		for (int i = 0; i < mCounterNum; i++) {
 			og::Screen::CallBack_CounterSlot* slot = mPikiCountersList[i];
-			if (!slot->_A9 || slot->_A8) {
+			if (!slot->_A9 || slot->mSlotStarted) {
 				slot->startSlot(0.0f);
 			}
 		}
@@ -1306,7 +1306,7 @@ bool ObjDayEndResultIncP::doUpdate()
 	if (mFlags & 0x80) {
 		for (int i = 0; i < 14; i++) {
 			og::Screen::CallBack_CounterSlot* slot = mDeathCountersList[i];
-			if (!slot->_A9 || slot->_A8) {
+			if (!slot->_A9 || slot->mSlotStarted) {
 				slot->startSlot(0.0f);
 			}
 		}
@@ -1451,14 +1451,14 @@ void ObjDayEndResultIncP::statusSlot()
 			callIncPSE(i);
 		}
 
-		if (mPikiCountersList[i - 1]->_AA && !mPikiCountersList[i]->_A9) {
+		if (mPikiCountersList[i - 1]->mSlotFinished && !mPikiCountersList[i]->_A9) {
 			mPikiCountersList[i]->startSlot(msVal._10);
 			callIncPSE(i);
 			break;
 		}
 	}
 
-	if (mPikiCountersList[mCounterNum - 1]->_AA) {
+	if (mPikiCountersList[mCounterNum - 1]->mSlotFinished) {
 		if (!mSlotChangeDelay) {
 			effectCommon();
 			mNextBtnFadePane->fadein();
@@ -1482,14 +1482,14 @@ void ObjDayEndResultIncP::statusDecPSlot()
 			callDecPSE(i);
 		}
 
-		if (mDeathCountersList[i - 1]->_AA && !mDeathCountersList[i]->_A9) {
+		if (mDeathCountersList[i - 1]->mSlotFinished && !mDeathCountersList[i]->_A9) {
 			mDeathCountersList[i]->startSlot(msVal._10);
 			callDecPSE(i);
 			break;
 		}
 	}
 
-	if (mDeathCountersList[13]->_AA) {
+	if (mDeathCountersList[13]->mSlotFinished) {
 		if (!mSlotChangeDelay) {
 			mDeathCounterToday->show();
 			mDeathCounterTotal->show();

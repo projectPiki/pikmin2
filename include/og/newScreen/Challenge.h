@@ -96,8 +96,8 @@ struct ObjChallengeBase : public ::Screen::ObjBase {
 	static struct StaticValues {
 		inline StaticValues()
 		{
-			_00 = 0.3f;
-			_04 = 0.1f;
+			mFadeinTime  = 0.3f;
+			mFadeoutTime = 0.1f;
 			mTimerLowWhite.set(255, 0, 0, 255);
 			mTimerLowBlack.set(64, 0, 0, 0);
 			mTimerLimitLow = 10;
@@ -105,8 +105,8 @@ struct ObjChallengeBase : public ::Screen::ObjBase {
 			_18            = 10;
 		}
 
-		f32 _00;                         // _00
-		f32 _04;                         // _04
+		f32 mFadeinTime;                 // _00
+		f32 mFadeoutTime;                // _04
 		JUtility::TColor mTimerLowWhite; // _08
 		JUtility::TColor mTimerLowBlack; // _0C
 		u32 mTimerLimitLow;              // _10
@@ -146,64 +146,64 @@ struct ObjChallenge1P : public ObjChallengeBase {
 	static struct StaticValues {
 		inline StaticValues()
 		{
-			mMenu00 = nullptr;
-			_04     = 0.0f;
-			_08     = 0.0f;
-			_0C     = 1.0f;
-			_10     = 1.0f;
-			_14     = 0.0f;
-			_18     = 0.0f;
-			_1C     = 1.0f;
-			_20     = 1.0f;
+			mMenu00        = nullptr;
+			mPokoXPos      = 0.0f;
+			mPokoYPos      = 0.0f;
+			mPokoXScale    = 1.0f;
+			mPokoYScale    = 1.0f;
+			mPokoXOffset   = 0.0f;
+			mPokoYOffset   = 0.0f;
+			mPokoXScaleMod = 1.0f;
+			mPokoYScaleMod = 1.0f;
 
-			mMenu01 = nullptr;
-			_28     = 0.0f;
-			_2C     = 0.0f;
-			_30     = 1.0f;
-			_34     = 1.0f;
-			_38     = 0.0f;
-			_3C     = 0.0f;
-			_40     = 1.0f;
-			_44     = 1.0f;
+			mMenu01         = nullptr;
+			mTimerXPos      = 0.0f;
+			mTimerYPos      = 0.0f;
+			mTimerXScale    = 1.0f;
+			mTimerYScale    = 1.0f;
+			mTimerXOffset   = 0.0f;
+			mTimerYOffset   = 0.0f;
+			mTimerXScaleMod = 1.0f;
+			mTimerYScaleMod = 1.0f;
 
-			mMenu02 = nullptr;
-			_4C     = 0.0f;
-			_50     = 0.0f;
-			_54     = 1.0f;
-			_58     = 1.0f;
-			_5C     = 0.0f;
-			_60     = 0.0f;
-			_64     = 1.0f;
-			_68     = 1.0f;
+			mMenu02         = nullptr;
+			mPikisXPos      = 0.0f;
+			mPikisYPos      = 0.0f;
+			mPikisXScale    = 1.0f;
+			mPikisYScale    = 1.0f;
+			mPikisXOffset   = 0.0f;
+			mPikisYOffset   = 0.0f;
+			mPikisXScaleMod = 1.0f;
+			mPikisYScaleMod = 1.0f;
 		}
 
-		J2DPane* mMenu00; // _00
-		f32 _04;          // _04
-		f32 _08;          // _08
-		f32 _0C;          // _0C
-		f32 _10;          // _10
-		f32 _14;          // _14
-		f32 _18;          // _18
-		f32 _1C;          // _1C
-		f32 _20;          // _20
-		J2DPane* mMenu01; // _24
-		f32 _28;          // _28
-		f32 _2C;          // _2C
-		f32 _30;          // _30
-		f32 _34;          // _34
-		f32 _38;          // _38
-		f32 _3C;          // _3C
-		f32 _40;          // _40
-		f32 _44;          // _44
-		J2DPane* mMenu02; // _48
-		f32 _4C;          // _4C
-		f32 _50;          // _50
-		f32 _54;          // _54
-		f32 _58;          // _58
-		f32 _5C;          // _5C
-		f32 _60;          // _60
-		f32 _64;          // _64
-		f32 _68;          // _68
+		J2DPane* mMenu00;    // _00
+		f32 mPokoXPos;       // _04
+		f32 mPokoYPos;       // _08
+		f32 mPokoXScale;     // _0C
+		f32 mPokoYScale;     // _10
+		f32 mPokoXOffset;    // _14
+		f32 mPokoYOffset;    // _18
+		f32 mPokoXScaleMod;  // _1C
+		f32 mPokoYScaleMod;  // _20
+		J2DPane* mMenu01;    // _24
+		f32 mTimerXPos;      // _28
+		f32 mTimerYPos;      // _2C
+		f32 mTimerXScale;    // _30
+		f32 mTimerYScale;    // _34
+		f32 mTimerXOffset;   // _38
+		f32 mTimerYOffset;   // _3C
+		f32 mTimerXScaleMod; // _40
+		f32 mTimerYScaleMod; // _44
+		J2DPane* mMenu02;    // _48
+		f32 mPikisXPos;      // _4C
+		f32 mPikisYPos;      // _50
+		f32 mPikisXScale;    // _54
+		f32 mPikisYScale;    // _58
+		f32 mPikisXOffset;   // _5C
+		f32 mPikisYOffset;   // _60
+		f32 mPikisXScaleMod; // _64
+		f32 mPikisYScaleMod; // _68
 	} msVal;
 };
 
@@ -280,52 +280,52 @@ struct ObjChallenge2P : public ObjChallengeBase {
 	static struct StaticValues {
 		inline StaticValues()
 		{
-			mMenu00 = nullptr;
-			_24     = 0.0f;
-			_28     = 0.0f;
-			_2C     = 1.0f;
-			_30     = 1.0f;
-			_34     = 0.0f;
-			_38     = 0.0f;
-			_3C     = 1.0f;
-			_40     = 1.0f;
+			mMenu00        = nullptr;
+			mPokoXPos      = 0.0f;
+			mPokoYPos      = 0.0f;
+			mPokoXScale    = 1.0f;
+			mPokoYScale    = 1.0f;
+			mPokoXOffset   = 0.0f;
+			mPokoYOffset   = 0.0f;
+			mPokoXScaleMod = 1.0f;
+			mPokoYScaleMod = 1.0f;
 
-			mMenu01 = nullptr;
-			_48     = 0.0f;
-			_4C     = 0.0f;
-			_50     = 1.0f;
-			_54     = 1.0f;
-			_58     = 0.0f;
-			_5C     = 0.0f;
-			_60     = 1.0f;
-			_64     = 1.0f;
+			mMenu01         = nullptr;
+			mTimerXPos      = 0.0f;
+			mTimerYPos      = 0.0f;
+			mTimerXScale    = 1.0f;
+			mTimerYScale    = 1.0f;
+			mTimerXOffset   = 0.0f;
+			mTimerYOffset   = 0.0f;
+			mTimerXScaleMod = 1.0f;
+			mTimerYScaleMod = 1.0f;
 
-			mMenu02 = nullptr;
-			_6C     = 0.0f;
-			_70     = 0.0f;
-			_74     = 1.0f;
-			_78     = 1.0f;
-			_7C     = 0.0f;
-			_80     = 0.0f;
-			_84     = 1.0f;
-			_88     = 1.0f;
+			mMenu02         = nullptr;
+			mPikisXPos      = 0.0f;
+			mPikisYPos      = 0.0f;
+			mPikisXScale    = 1.0f;
+			mPikisYScale    = 1.0f;
+			mPikisXOffset   = 0.0f;
+			mPikisYOffset   = 0.0f;
+			mPikisXScaleMod = 1.0f;
+			mPikisYScaleMod = 1.0f;
 
-			_00   = 0.6f;
-			_04   = 0.2f;
-			_08   = 0;
-			_0C   = 223;
-			_10   = 640;
-			_14   = 3;
-			_18   = 640;
-			_1C   = 0;
-			_20.r = 0;
-			_20.g = 0;
-			_20.b = 0;
-			_20.a = 200;
+			mFadeinTime  = 0.6f;
+			mFadeoutTime = 0.2f;
+			_08          = 0;
+			_0C          = 223;
+			_10          = 640;
+			_14          = 3;
+			_18          = 640;
+			_1C          = 0;
+			_20.r        = 0;
+			_20.g        = 0;
+			_20.b        = 0;
+			_20.a        = 200;
 		}
 
-		f32 _00;
-		f32 _04;
+		f32 mFadeinTime;
+		f32 mFadeoutTime;
 		int _08;
 		int _0C;
 		int _10;
@@ -334,33 +334,33 @@ struct ObjChallenge2P : public ObjChallengeBase {
 		int _1C;
 		JUtility::TColor _20;
 
-		J2DPane* mMenu00; // _00
-		f32 _24;          // _04
-		f32 _28;          // _08
-		f32 _2C;          // _0C
-		f32 _30;          // _10
-		f32 _34;          // _14
-		f32 _38;          // _18
-		f32 _3C;          // _1C
-		f32 _40;          // _20
-		J2DPane* mMenu01; // _24
-		f32 _48;          // _2C
-		f32 _4C;          // _30
-		f32 _50;          // _34
-		f32 _54;          // _38
-		f32 _58;          // _58
-		f32 _5C;          // _5C
-		f32 _60;          // _60
-		f32 _64;          // _64
-		J2DPane* mMenu02; // _48
-		f32 _6C;          // _4C
-		f32 _70;          // _50
-		f32 _74;          // _54
-		f32 _78;          // _58
-		f32 _7C;          // _5C
-		f32 _80;          // _60
-		f32 _84;          // _64
-		f32 _88;          // _68
+		J2DPane* mMenu00;    // _00
+		f32 mPokoXPos;       // _04
+		f32 mPokoYPos;       // _08
+		f32 mPokoXScale;     // _0C
+		f32 mPokoYScale;     // _10
+		f32 mPokoXOffset;    // _14
+		f32 mPokoYOffset;    // _18
+		f32 mPokoXScaleMod;  // _1C
+		f32 mPokoYScaleMod;  // _20
+		J2DPane* mMenu01;    // _24
+		f32 mTimerXPos;      // _28
+		f32 mTimerYPos;      // _2C
+		f32 mTimerXScale;    // _30
+		f32 mTimerYScale;    // _34
+		f32 mTimerXOffset;   // _38
+		f32 mTimerYOffset;   // _3C
+		f32 mTimerXScaleMod; // _40
+		f32 mTimerYScaleMod; // _44
+		J2DPane* mMenu02;    // _48
+		f32 mPikisXPos;      // _4C
+		f32 mPikisYPos;      // _50
+		f32 mPikisXScale;    // _54
+		f32 mPikisYScale;    // _58
+		f32 mPikisXOffset;   // _5C
+		f32 mPikisYOffset;   // _60
+		f32 mPikisXScaleMod; // _64
+		f32 mPikisYScaleMod; // _68
 	} msVal;
 };
 

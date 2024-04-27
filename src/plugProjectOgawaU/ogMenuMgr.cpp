@@ -28,7 +28,7 @@ MenuMgr::MenuMgr()
 	mEfxCursor1           = nullptr;
 	mEfxCursor2           = nullptr;
 	mIsCursorActive       = false;
-	_2D                   = false;
+	mDoNeedMenuOnOff      = false;
 	mDoScale              = false;
 	mCursorState          = 0;
 	mCursorDelayTimer     = 0.0f;
@@ -36,7 +36,7 @@ MenuMgr::MenuMgr()
 	mCursorPos1.y         = 0.0f;
 	mCursorPos2.x         = 0.0f;
 	mCursorPos2.y         = 0.0f;
-	_48                   = false;
+	mIsChangingSelect     = false;
 	mTransitionPosLeft.x  = 0.0f;
 	mTransitionPosLeft.y  = 0.0f;
 	mTransitionPosRight.x = 0.0f;
@@ -45,7 +45,7 @@ MenuMgr::MenuMgr()
 	mSelPosLeft.y         = 0.0f;
 	mSelPosRight.x        = 0.0f;
 	mSelPosRight.y        = 0.0f;
-	_6C                   = 0.0f;
+	mSelectChangeTimer    = 0.0f;
 	mPrevSelected         = 0;
 	mEfxCursor1           = new efx2d::T2DCursor(&mCursorPos1);
 	mEfxCursor2           = new efx2d::T2DCursor(&mCursorPos2);
@@ -572,11 +572,11 @@ void MenuMgr::init(J2DScreen* screen, u16 options, u64 tag1, u64 tag2, u64 tag3,
 void MenuMgr::selectSub(u16 sel)
 {
 	if (sel < mElementCount) {
-		mPrevSelected = mCSelectId;
-		mCSelectId    = sel;
-		_48           = true;
-		_6C           = 0.0f;
-		if (_2D) {
+		mPrevSelected      = mCSelectId;
+		mCSelectId         = sel;
+		mIsChangingSelect  = true;
+		mSelectChangeTimer = 0.0f;
+		if (mDoNeedMenuOnOff) {
 			MenuOnOff();
 		}
 		mScaleMgrs[mCSelectId].up(0.2f, 50.0f, 0.5f, 0.0f);
@@ -592,11 +592,11 @@ void MenuMgr::selectSub(u16 sel)
 void MenuMgr::select(u16 sel)
 {
 	if (sel < mElementCount) {
-		mPrevSelected = mCSelectId;
-		mCSelectId    = sel;
-		_48           = true;
-		_6C           = 0.0f;
-		if (_2D) {
+		mPrevSelected      = mCSelectId;
+		mCSelectId         = sel;
+		mIsChangingSelect  = true;
+		mSelectChangeTimer = 0.0f;
+		if (mDoNeedMenuOnOff) {
 			MenuOnOff();
 		}
 		mScaleMgrs[mCSelectId].up(0.2f, 50.0f, 0.5f, 0.0f);
@@ -611,9 +611,9 @@ void MenuMgr::select(u16 sel)
  */
 void MenuMgr::initSelNum(u16 sel)
 {
-	mPrevSelected = sel;
-	mCSelectId    = sel;
-	_6C           = 0.0f;
+	mPrevSelected      = sel;
+	mCSelectId         = sel;
+	mSelectChangeTimer = 0.0f;
 }
 
 /**
@@ -671,14 +671,14 @@ void MenuMgr::update()
 		if (mPaneList5) {
 			calcCenter(mPaneList5[mCSelectId], &mSelPosRight);
 		}
-		if (_48) {
-			_6C += sys->mDeltaTime;
-			if (_6C > 0.2f) {
-				mCursorPos1 = mSelPosLeft;
-				mCursorPos2 = mSelPosRight;
-				_48         = false;
+		if (mIsChangingSelect) {
+			mSelectChangeTimer += sys->mDeltaTime;
+			if (mSelectChangeTimer > 0.2f) {
+				mCursorPos1       = mSelPosLeft;
+				mCursorPos2       = mSelPosRight;
+				mIsChangingSelect = false;
 			} else {
-				f32 scale = _6C / 0.2f;
+				f32 scale = mSelectChangeTimer / 0.2f;
 				if (mPaneList4) {
 					calcCenter(mPaneList4[mPrevSelected], &mTransitionPosLeft);
 					calcPoint(mSelPosLeft, mTransitionPosLeft, scale, &mCursorPos1);
@@ -1102,7 +1102,7 @@ void MenuMgr::draw(J2DGrafContext* graf)
 		if ((int)mDoScale) {
 			f32 scale = mScaleMgrs[i].calc();
 			if (mCSelectId == i) {
-				scale *= _74;
+				scale *= mSelectedExtraScale;
 			}
 			mPaneList1[i]->updateScale(scale);
 		}

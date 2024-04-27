@@ -219,7 +219,7 @@ struct FSMStateExpansion : public FSMState {
 	inline FSMStateExpansion()
 	    : FSMState(STONESTATE_Expansion)
 	{
-		_10 = 0;
+		mHasMadeEfx = false;
 	}
 
 	virtual void init(DrawInfo*, StateArg*);      // _08
@@ -229,7 +229,7 @@ struct FSMStateExpansion : public FSMState {
 
 	// _00     = VTBL
 	// _00-_10 = FSMState
-	u8 _10; // _10, unknown
+	bool mHasMadeEfx; // _10
 };
 
 struct FSMStateExpansionFull : public FSMState {

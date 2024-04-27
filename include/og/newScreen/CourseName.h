@@ -86,16 +86,16 @@ struct ObjCourseName : public ::Screen::ObjBase {
 	static struct StaticValues {
 		inline StaticValues()
 		{
-			_00 = 0.3f;
-			_04 = 1.0f;
-			_08 = 0.2f;
-			_0C = 3.0f;
+			mBgAlphaFadeTime = 0.3f;
+			mFadeinTime      = 1.0f;
+			mFadeoutTime     = 0.2f;
+			_0C              = 3.0f;
 		}
 
-		f32 _00; // _00
-		f32 _04; // _04
-		f32 _08; // _08
-		f32 _0C; // _0C
+		f32 mBgAlphaFadeTime; // _00
+		f32 mFadeinTime;      // _04
+		f32 mFadeoutTime;     // _08
+		f32 _0C;              // _0C
 	} msVal;
 };
 

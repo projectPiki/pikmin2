@@ -46,8 +46,8 @@ void Plants::Obj::onInit(CreatureInitArg* initArg)
 
 	enableEvent(0, EB_BitterImmune);
 	hardConstraintOn();
-	_2BC = 0;
-	_2BD = 0;
+	mIsAnimActive   = 0;
+	mHasBeenTouched = 0;
 	mBaseTrMatrix.makeSRT(mScale, mRotation, mPosition);
 
 	P2ASSERTLINE(83, mModel);
@@ -96,9 +96,9 @@ void Plants::Obj::update()
 void Plants::Obj::doAnimation()
 {
 	EnemyBase::doAnimation();
-	if (_2BC && mCurAnim->mIsPlaying && (u32)mCurAnim->mType == KEYEVENT_END) {
-		_2BC = 0;
-		_2BD = 0;
+	if (mIsAnimActive && mCurAnim->mIsPlaying && (u32)mCurAnim->mType == KEYEVENT_END) {
+		mIsAnimActive   = 0;
+		mHasBeenTouched = 0;
 		setZukanVisible(false);
 	}
 }
@@ -109,7 +109,7 @@ void Plants::Obj::doAnimation()
  */
 void Plants::Obj::doAnimationCullingOff()
 {
-	if (_2BC) {
+	if (mIsAnimActive) {
 		mCurAnim->mIsPlaying = false;
 		doAnimationUpdateAnimator();
 		if (mLod.isFlag(AILOD_IsVisible)) {
@@ -141,15 +141,15 @@ void Plants::Obj::collisionCallback(CollEvent& collEvent)
 				Vector3f velocity = creature->getVelocity();
 
 				if (FABS(velocity.x) > 1.0f || FABS(velocity.z) > 1.0f) {
-					if (creature->isNavi() && !_2BD) {
-						_2BD = 1;
+					if (creature->isNavi() && !mHasBeenTouched) {
+						mHasBeenTouched = 1;
 						touchedSE(static_cast<Navi*>(creature));
 					}
 
-					if (!_2BC) {
+					if (!mIsAnimActive) {
 						startMotion(PLANTANIM_Default, nullptr);
 						touched();
-						_2BC = 1;
+						mIsAnimActive = 1;
 					}
 				}
 			}
@@ -163,10 +163,10 @@ void Plants::Obj::collisionCallback(CollEvent& collEvent)
  */
 bool Plants::Obj::earthquakeCallBack(Creature* creature, f32 damage)
 {
-	if (!_2BC) {
+	if (!mIsAnimActive) {
 		startMotion(PLANTANIM_Default, nullptr);
 		touched();
-		_2BC = 1;
+		mIsAnimActive = 1;
 	}
 
 	return false;

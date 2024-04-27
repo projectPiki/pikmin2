@@ -100,7 +100,7 @@ StateSleep::StateSleep(int stateID)
 void StateSleep::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	SleepArg* arg = static_cast<SleepArg*>(stateArg);
-	if (arg && arg->_00) {
+	if (arg && arg->mDoSkipSleepStart) {
 		enemy->startMotion(CHAPPYANIM_Sleep, nullptr);
 		enemy->setMotionFrame(70.0f);
 	} else {

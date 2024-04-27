@@ -259,11 +259,11 @@ void Obj::genItem()
 		}
 	}
 
-	if (C_PARMS->_8D0 != 0) {
-		dropType = C_PARMS->_8D0 - 1;
+	if (C_PARMS->mForcedDropType != 0) {
+		dropType = C_PARMS->mForcedDropType - 1;
 	}
 
-	if (C_PARMS->_8D1 != 0) {
+	if (C_PARMS->mDoCheckHasSpray != 0) {
 		if (dropType == EGGDROP_Spicy) {
 			if (!playData->isDemoFlag(DEMO_First_Spicy_Spray_Made)) {
 				dropType = EGGDROP_SingleNectar;

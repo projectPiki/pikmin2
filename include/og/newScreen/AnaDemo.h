@@ -98,36 +98,36 @@ struct ObjAnaDemo : public ::Screen::ObjBase {
 	int mCurrMenuSel;                           // _48
 	P2DScreen::Mgr_tuning* mScreen;             // _4C
 	og::Screen::MenuMgr* mMenuMgr;              // _50
-	u32 _54;                                    // _54
+	u32 mUnusedObj;                             // _54
 	og::Screen::AnimText_Screen* mMenuSelTitle; // _58
 	og::Screen::AnimText_Screen* mMenuSelYes;   // _5C
 	og::Screen::AnimText_Screen* mMenuSelNo;    // _60
 	og::Screen::AnimGroup* mAnimGroup;          // _64
-	f32 _68;                                    // _68
-	u32 _6C;                                    // _6C
+	f32 mUnused0;                               // _68
+	u32 mUnused1;                               // _6C
 	J2DPane* mPaneError;                        // _70
 	f32 mTimer3;                                // _74
 	f32 mTimer4;                                // _78
 	u8 mAlpha;                                  // _7C
 	f32 mTimer1;                                // _80
 	f32 mTimer2;                                // _84
-	u32 _88;                                    // _88
-	f32 _8C;                                    // _8C
+	u32 mUnused2;                               // _88
+	f32 mSwingMovePosition;                     // _8C
 	f32 mCloseTimer;                            // _90
 
 	static struct StaticValues {
 		inline StaticValues()
 		{
-			_00 = 0.3f;
-			_04 = 47.0f;
-			_08 = 1.0f;
-			_0C = 0.3f;
+			mMoveFinishRatio = 0.3f;
+			_04              = 47.0f;
+			_08              = 1.0f;
+			_0C              = 0.3f;
 		}
 
-		f32 _00; // _00
-		f32 _04; // _04
-		f32 _08; // _08
-		f32 _0C; // _0C
+		f32 mMoveFinishRatio; // _00
+		f32 _04;              // _04
+		f32 _08;              // _08
+		f32 _0C;              // _0C
 	} msVal;
 };
 } // namespace newScreen

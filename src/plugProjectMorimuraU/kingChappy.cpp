@@ -337,7 +337,7 @@ void Obj::doAnimationCullingOff()
 
 			if (stuckCreature->isTeki()) {
 				if (mCanEatBombs && static_cast<EnemyBase*>(stuckCreature)->getEnemyTypeID() == EnemyTypeID::EnemyID_Bomb) {
-					static_cast<Bomb::Obj*>(stuckCreature)->_2BD = 1;
+					static_cast<Bomb::Obj*>(stuckCreature)->mDoSkipRender = 1;
 				}
 			} else {
 				PSVECCrossProduct((Vec*)&yBasis, (Vec*)&zBasis, (Vec*)&xBasis);
@@ -1118,7 +1118,7 @@ void Obj::searchTarget()
 		return;
 	}
 
-	if (C_PARMS->_BC9) {
+	if (C_PARMS->mDontSearchTarget) {
 		return;
 	}
 
@@ -1801,7 +1801,7 @@ void Obj::checkAttack(bool check)
 		}
 	}
 
-	if (!C_PARMS->_BCB || !mLod.isFlag(AILOD_IsVisible)) {
+	if (!C_PARMS->mCanAttackBombs || !mLod.isFlag(AILOD_IsVisible)) {
 		return;
 	}
 
@@ -2589,7 +2589,7 @@ void Obj::rightFootMtxCalc()
  */
 void Obj::footMtxCalc(Mtx mtx, Vector3f* pos, f32* p1)
 {
-	if (mtx[1][3] > mPosition.y + C_PARMS->_BD0) {
+	if (mtx[1][3] > mPosition.y + C_PARMS->mFootCalcHeightThreshold) {
 		*p1 += 0.25f;
 
 		f32 invP1 = 1.0f - *p1;

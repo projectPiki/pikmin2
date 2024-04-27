@@ -138,23 +138,23 @@ struct ObjVs : public ::Screen::ObjBase {
 			mRouletteP1YOffs = 30.0f;
 			mRouletteP2YOffs = 245.0f;
 			mRouletteScale   = 0.7f;
-			_2C              = 7.0f;
-			_30              = 3.5f;
+			mRouletteXSpeed  = 7.0f;
+			mRouletteYSpeed  = 3.5f;
 		}
 
 		f32 mFadeInRate;      // _00
 		f32 mFadeOutRate;     // _04
 		f32 mLifeGaugeXOffs;  // _08
 		f32 mLifeGaugeYOffs;  // _0C
-		f32 mMarbleBaseXOffs; //_10
-		f32 mMarbleP1YOffs;   //_14
-		f32 mMarbleP2YOffs;   //_18
-		f32 mRouletteXOffs;   //_1C
-		f32 mRouletteP1YOffs; //_20
-		f32 mRouletteP2YOffs; //_24
-		f32 mRouletteScale;   //_28
-		f32 _2C;
-		f32 _30;
+		f32 mMarbleBaseXOffs; // _10
+		f32 mMarbleP1YOffs;   // _14
+		f32 mMarbleP2YOffs;   // _18
+		f32 mRouletteXOffs;   // _1C
+		f32 mRouletteP1YOffs; // _20
+		f32 mRouletteP2YOffs; // _24
+		f32 mRouletteScale;   // _28
+		f32 mRouletteXSpeed;  // _2C
+		f32 mRouletteYSpeed;  // _30
 	} msVal;
 };
 } // namespace newScreen

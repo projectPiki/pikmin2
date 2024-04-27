@@ -86,19 +86,19 @@ void Obj::onInit(CreatureInitArg* args)
 	mNextWayPointPosition = mHomePosition;
 	mCarryDir             = mFaceDir;
 	setEmotionNone();
-	_304                 = 0;
-	mPrevCheckPosition   = mHomePosition;
-	mCarryingYPosition   = mPosition.y;
-	mMoveToWpTimer       = 0;
-	_2E4                 = 1;
-	mIsPathfinding       = false;
-	_2F1                 = 0;
-	mMoveSpeedTimer      = 0;
-	mWpIndex1            = 0;
-	mWpIndex3            = 0;
-	mWpIndex2            = 0;
-	mPelletCarryVelocity = 0.0f;
-	_31C                 = 0;
+	mFindNextRouteCounter = 0;
+	mPrevCheckPosition    = mHomePosition;
+	mCarryingYPosition    = mPosition.y;
+	mMoveToWpTimer        = 0;
+	_2E4                  = 1;
+	mIsPathfinding        = false;
+	mCanReactToPress      = 0;
+	mMoveSpeedTimer       = 0;
+	mWpIndex1             = 0;
+	mWpIndex3             = 0;
+	mWpIndex2             = 0;
+	mPelletCarryVelocity  = 0.0f;
+	mIsCarryStuck         = 0;
 
 	mBodyJoint = mModel->getJoint("body");
 	P2ASSERTLINE(137, mBodyJoint);
@@ -128,7 +128,7 @@ Obj::Obj()
     , mEfxSmoke(nullptr)
     , mCarrySizeDiff(20.0f)
     , mShadowSize(15.0f)
-    , _338(5.0f)
+    , mUnusedVal(5.0f)
     , mBounceEffectSize(0.6f)
     , mAppearEffectSize(1.0f)
     , mNest(nullptr)
@@ -481,7 +481,7 @@ bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* part)
 				mTargetVelocity.x  = 0.0f;
 				mTargetVelocity.y  = 0.0f;
 				mTargetVelocity.z  = 0.0f;
-				_2F1               = 0;
+				mCanReactToPress   = 0;
 				if (C_PARMS->mCanPressType) {
 					EnemyBase::finishMotion();
 					mNextState = PANMODOKI_Damage;
@@ -499,7 +499,7 @@ bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* part)
 				mTargetVelocity.x  = 0.0f;
 				mTargetVelocity.y  = 0.0f;
 				mTargetVelocity.z  = 0.0f;
-				_2F1               = 0;
+				mCanReactToPress   = 0;
 				if (C_PARMS->mCanPressType) {
 					EnemyBase::finishMotion();
 					mNextState = PANMODOKI_Damage;
@@ -590,9 +590,10 @@ void Obj::doSimulation(f32 simspeed)
 	if (isStickTo()) {
 		mAcceleration = Vector3f(0.0f);
 	}
-	_304 -= 1;
-	if (_304 < 0) {
-		_304 = 0;
+
+	mFindNextRouteCounter -= 1;
+	if (mFindNextRouteCounter < 0) {
+		mFindNextRouteCounter = 0;
 	}
 	EnemyBase::doSimulation(simspeed);
 	EnemyBase::getStateID();
@@ -757,8 +758,8 @@ WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
 void Obj::findNextRoutePoint(bool cond)
 {
 	RouteMgr* routeMgr = mapMgr->mRouteMgr;
-	_31C               = 0;
-	if (_304 > 0 && cond) {
+	mIsCarryStuck      = 0;
+	if (mFindNextRouteCounter > 0 && cond) {
 		if (mWpIndex3 == mWpIndex2 && mWpIndex2 == mWpIndex1) {
 			mNextWayPointPosition = mHomePosition;
 			return;
@@ -1120,7 +1121,7 @@ void Obj::walkFunc()
 		mMoveSpeedTimer = 0;
 	}
 
-	if (!_304) {
+	if (!mFindNextRouteCounter) {
 		mTargetCreature = static_cast<Creature*>(findNearestPellet());
 		if (mTargetCreature) {
 			mNextWayPointPosition = mTargetCreature->getPosition();
@@ -1152,14 +1153,14 @@ void Obj::walkFunc()
 		mCurrentVelocity.z += mPelletCarryVelocity.z;
 	}
 
-	if (!_304) {
+	if (!mFindNextRouteCounter) {
 		mMoveToWpTimer++;
 		if (mMoveToWpTimer > 0x3c) {
 			f32 posZCross = mPosition.z - mPrevCheckPosition.z;
 			f32 posXCross = mPosition.x - mPrevCheckPosition.x;
 			if (((posXCross * posXCross) + (posZCross * posZCross)) < 100.0f) {
-				_304            = 0x78;
-				mTargetCreature = nullptr;
+				mFindNextRouteCounter = 0x78;
+				mTargetCreature       = nullptr;
 				findNextRoutePoint(true);
 			}
 			mPrevCheckPosition = mPosition;
@@ -1509,18 +1510,18 @@ bool Obj::carryTarget(f32 param)
 		peltVel.z = targetVel.z;
 		// Vector3f resultVec(targetVel.x, peltVel.y + (0.0f - peltVel.y) * (sys->mFpsFactor / 0.15f) + 0.0f, targetVel.z);
 		if (CG_PARMS(this)->_99A && pelt) {
-			if (!_31C) {
+			if (!mIsCarryStuck) {
 				mMoveToWpTimer++;
 				if (mMoveToWpTimer > 0x5A) {
 					if (sqrDistanceXZ(mPosition, mPrevCheckPosition) < 100.0f) {
-						_31C = 1;
+						mIsCarryStuck = 1;
 					} else {
 						mMoveToWpTimer = 0;
 					}
 					mPrevCheckPosition = mPosition;
 				}
 			}
-			if (!_31C) {
+			if (!mIsCarryStuck) {
 				f32 collPos = mCollisionPosition.x;
 				f32 ten     = 10.0f;
 				if (collPos > 0.1f) {
@@ -1966,7 +1967,7 @@ Obj::Obj()
 {
 	mCarrySizeDiff    = 40.0f;
 	mShadowSize       = 30.0f;
-	_338              = 12.0f;
+	mUnusedVal        = 12.0f;
 	mBounceEffectSize = 0.9f;
 	mAppearEffectSize = 1.6f;
 }

@@ -141,10 +141,10 @@ void ObjSMenuPause::doCreate(JKRArchive* arc)
 	blink_TopMenu(mCurrSelPause);
 
 	mAnims = new og::Screen::AnimGroup(4);
-	og::Screen::registAnimGroupScreen(mAnims, arc, mScreenPause, "s_menu_pause_l.btk", msBaseVal._00);
-	og::Screen::registAnimGroupScreen(mAnims, arc, mScreenPause, "s_menu_pause_l_02.btk", msBaseVal._00);
-	og::Screen::registAnimGroupScreen(mAnims, arc, mScreenPause, "s_menu_pause_l_03.btk", msBaseVal._00);
-	og::Screen::registAnimGroupScreen(mAnims, arc, mScreenPause, "s_menu_pause_l_04.btk", msBaseVal._00);
+	og::Screen::registAnimGroupScreen(mAnims, arc, mScreenPause, "s_menu_pause_l.btk", msBaseVal.mAnimSpeed);
+	og::Screen::registAnimGroupScreen(mAnims, arc, mScreenPause, "s_menu_pause_l_02.btk", msBaseVal.mAnimSpeed);
+	og::Screen::registAnimGroupScreen(mAnims, arc, mScreenPause, "s_menu_pause_l_03.btk", msBaseVal.mAnimSpeed);
+	og::Screen::registAnimGroupScreen(mAnims, arc, mScreenPause, "s_menu_pause_l_04.btk", msBaseVal.mAnimSpeed);
 
 	og::Screen::setCallBack_CounterRV(mScreenPause, 'Pfin01', &mDisp->mPokoCount, 10, false, true, arc);
 	og::Screen::setCallBack_CounterRV(mScreenPause, 'Pcomp01', &mDisp->mPokoCount, 10, false, true, arc);

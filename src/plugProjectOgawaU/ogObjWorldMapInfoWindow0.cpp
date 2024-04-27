@@ -103,10 +103,10 @@ bool ObjWorldMapInfoWindow0::doUpdateFadein()
 	commonUpdate();
 	mFadeLevel += sys->mDeltaTime;
 	bool result = false;
-	if (mFadeLevel > msBaseVal._08) {
+	if (mFadeLevel > msBaseVal.mFadeInOutTime) {
 		result = true;
 	}
-	mMovePos = (1.0f - Screen::calcSmooth0to1(mFadeLevel, msBaseVal._08)) * 800.0f;
+	mMovePos = (1.0f - Screen::calcSmooth0to1(mFadeLevel, msBaseVal.mFadeInOutTime)) * 800.0f;
 	return result;
 }
 

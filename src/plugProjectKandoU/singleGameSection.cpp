@@ -692,7 +692,7 @@ void SingleGameSection::openCaveInMenu(ItemCave::Item* cave, int naviID)
 	if (!_194 && !(mOpenMenuFlags & 1)) {
 		mCaveIndex = id;
 		og::Screen::DispMemberAnaDemo disp;
-		disp._20             = 0;
+		disp.mUnusedValue    = 0;
 		disp.mCaveOtakaraNum = cave->getCaveOtakaraNum();
 		disp.mCaveOtakaraMax = cave->getCaveOtakaraMax();
 		disp.mPayedDebt      = playData->mStoryFlags & STORY_DebtPaid;

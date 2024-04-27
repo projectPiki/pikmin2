@@ -93,12 +93,12 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	u8 _2BC;                        // _2BC
-	u8 _2BD;                        // _2BD
-	int _2C0;                       // _2C0
-	int _2C4;                       // _2C4
-	u8 _2C8;                        // _2C8
-	u8 _2C9;                        // _2C9
+	u8 mHasEscapedCapture;          // _2BC
+	u8 mDoSkipRender;               // _2BD
+	int mAnimStartDelayTimer;       // _2C0
+	int mBitterHitCount;            // _2C4
+	u8 mHasMadeLightEfx;            // _2C8
+	u8 mDoReduceVelocity;           // _2C9
 	EnemyBase* mCarrier;            // _2CC, enemy carrying the bomb (dweevil, dirigibug)
 	FSM* mFsm;                      // _2D0
 	efx::TBombrockLight* mEfxLight; // _2D4
@@ -193,7 +193,7 @@ struct State : public EnemyFSMState {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	int _10; // _10, maybe counter? kills bomb if it reaches 200
+	int mExplodeDelayTimer; // _10
 };
 
 struct StateBomb : public State {

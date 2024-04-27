@@ -80,7 +80,7 @@ struct Plant : public CNode {
 	void doDebugDraw(Graphics&);
 
 	Creature* mCreature; // _18
-	int _1C;             // _1C
+	int mCurrentPower;   // _1C
 };
 
 struct FarmMgr : public GenericObjectMgr, public CNode {
@@ -110,8 +110,8 @@ struct FarmMgr : public GenericObjectMgr, public CNode {
 	u32 mModelType;                         // _1C
 	CNode mFarmsRootNode;                   // _20
 	PSM::DirectorUpdator* mDirectorUpdator; // _38
-	u8 _3C;                                 // _3C
-	u8 _3D;                                 // _3D
+	u8 mUnused1;                            // _3C
+	u8 mUnused2;                            // _3D
 };
 
 extern FarmMgr* farmMgr;

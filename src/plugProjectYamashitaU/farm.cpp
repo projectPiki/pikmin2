@@ -20,7 +20,7 @@ namespace Farm {
 Plant::Plant(Creature* creature)
     : CNode("")
     , mCreature(creature)
-    , _1C()
+    , mCurrentPower()
 {
 }
 
@@ -30,12 +30,12 @@ Plant::Plant(Creature* creature)
  */
 void Plant::sendInteraction()
 {
-	if (_1C > 0) {
-		InteractFarmHaero haero(mCreature, _1C);
+	if (mCurrentPower > 0) {
+		InteractFarmHaero haero(mCreature, mCurrentPower);
 		mCreature->stimulate(haero);
 
-	} else if (_1C < 0) {
-		InteractFarmKarero karero(mCreature, -_1C);
+	} else if (mCurrentPower < 0) {
+		InteractFarmKarero karero(mCreature, -mCurrentPower);
 		mCreature->stimulate(karero);
 	}
 }
@@ -240,7 +240,7 @@ void Farm::updateObjectRelation(bool doInteract)
 			}
 		}
 
-		plantNode->_1C = counter;
+		plantNode->mCurrentPower = counter;
 
 		if (doInteract) {
 			plantNode->sendInteraction();

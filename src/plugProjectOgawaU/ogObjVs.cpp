@@ -1931,8 +1931,11 @@ void ObjVs::checkObake()
 	mPaneObake2P->rotate(angle2 * cos * 20.0f);
 
 	cos = cosf(mObakeMovePos);
-	mPaneObake1P->setOffset(msVal.mRouletteXOffs + (sin * angle1) * msVal._2C, msVal.mRouletteP1YOffs + (cos * angle1) * msVal._30);
-	mPaneObake2P->setOffset(msVal.mRouletteXOffs + (sin * angle2) * msVal._2C, msVal.mRouletteP2YOffs + (cos * angle2) * msVal._30);
+
+	mPaneObake1P->setOffset(msVal.mRouletteXOffs + (sin * angle1) * msVal.mRouletteXSpeed,
+	                        msVal.mRouletteP1YOffs + (cos * angle1) * msVal.mRouletteYSpeed);
+	mPaneObake2P->setOffset(msVal.mRouletteXOffs + (sin * angle2) * msVal.mRouletteXSpeed,
+	                        msVal.mRouletteP2YOffs + (cos * angle2) * msVal.mRouletteYSpeed);
 
 	mPaneObake1P->updateScale(msVal.mRouletteScale);
 	mPaneObake2P->updateScale(msVal.mRouletteScale);

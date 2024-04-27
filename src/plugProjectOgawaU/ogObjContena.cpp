@@ -40,10 +40,10 @@ ObjContena::ObjContena(char const* name)
 	mOnMapCount     = 60;
 	mMaxPikiCount   = 200;
 	mOnyonID        = -1;
-	_D8             = 0;
-	_DC             = 0;
-	_E0             = 0;
-	_E4             = 0;
+	mInTransfer     = 0;
+	mExitSoundType  = 0;
+	mDispState      = 0;
+	mDispResult     = 0;
 	mName           = name;
 	mDisp           = nullptr;
 	mContena        = nullptr;
@@ -63,13 +63,13 @@ ObjContena::ObjContena(char const* name)
 	mScreenState        = 0;
 	mMoveTime           = 0.5f;
 	mTimer0             = mMoveTime;
-	mDispState          = 1;
+	mDispState2         = 1;
 	mFuriko             = nullptr;
 	mMenuMoveAngle      = 0.0f;
 	mYAnalog            = 0.0f;
 	mSpotX              = 0.0f;
 	mSpotY              = 0.0f;
-	_104                = 1.0f;
+	mSpotScale          = 1.0f;
 	mPaneSpot           = nullptr;
 	mTimer              = 0.0f;
 	mDoDraw             = false;
@@ -138,20 +138,21 @@ void ObjContena::doCreate(JKRArchive* arc)
 		JUT_PANICLINE(242, "ERR! in ObjContena CreateŽ¸”sI\n");
 	}
 	og::Screen::DispMemberContena* disp2 = mDisp;
-	mOnyonID                             = disp2->mOnyonID;
-	mInOnionCount                        = disp2->mInOnion;
-	mCurrField                           = disp2->mCurrInMap;
-	mInSquadCount                        = disp2->mNewInPartyNum;
-	mMaxPikiOnField                      = disp2->mMaxPikiField;
-	mInParty2                            = disp2->mInParty2;
-	mOnMapCount                          = disp2->mOnMapMinusWild;
-	mMaxPikiCount                        = disp2->mMaxPikiMinusWild;
-	_D8                                  = disp2->mInTransfer;
-	_DC                                  = disp2->_2C;
-	_E0                                  = disp2->mState;
-	_E4                                  = disp2->mResult;
-	mDisp->mState                        = 0;
-	mContena                             = new og::Screen::ContenaCounter(mDisp);
+
+	mOnyonID        = disp2->mOnyonID;
+	mInOnionCount   = disp2->mInOnion;
+	mCurrField      = disp2->mCurrInMap;
+	mInSquadCount   = disp2->mNewInPartyNum;
+	mMaxPikiOnField = disp2->mMaxPikiField;
+	mInParty2       = disp2->mInParty2;
+	mOnMapCount     = disp2->mOnMapMinusWild;
+	mMaxPikiCount   = disp2->mMaxPikiMinusWild;
+	mInTransfer     = disp2->mInTransfer;
+	mExitSoundType  = disp2->mExitSoundType;
+	mDispState      = disp2->mState;
+	mDispResult     = disp2->mResult;
+	mDisp->mState   = 0;
+	mContena        = new og::Screen::ContenaCounter(mDisp);
 
 	switch (mDisp->mOnyonID) {
 	case 0:
@@ -887,15 +888,15 @@ bool ObjContena::moveContena()
 			disp->mInParty2         = mInParty2;
 			disp->mOnMapMinusWild   = mOnMapCount;
 			disp->mMaxPikiMinusWild = mMaxPikiCount;
-			disp->mInTransfer       = _D8;
-			disp->_2C               = _DC;
-			disp->mInTransfer       = _E0;
-			disp->mResult           = _E4;
+			disp->mInTransfer       = mInTransfer;
+			disp->mExitSoundType    = mExitSoundType;
+			disp->mInTransfer       = mDispState;
+			disp->mResult           = mDispResult;
 			disp->mState            = 2;
-			mDispState              = 3;
+			mDispState2             = 3;
 			disp->mResult           = 0;
 			disp->mInTransfer       = 0;
-			if ((*onyontype == 3 || *onyontype) && disp->_2C) {
+			if ((*onyontype == 3 || *onyontype) && disp->mExitSoundType) {
 				ogSound->setCancel();
 			} else {
 				ogSound->setClose();
@@ -903,7 +904,7 @@ bool ObjContena::moveContena()
 			ret = true;
 		} else if (mController->mButton.mButtonDown & Controller::PRESS_A) {
 			disp->mState = 2;
-			mDispState   = 4;
+			mDispState2  = 4;
 			ogSound->setDecide();
 			ret = true;
 		}
@@ -1289,7 +1290,7 @@ void ObjContena::commonUpdate()
 	                     msVal._00 * JMath::sincosTable_.mTable[(int)(time *= 325.9493f) & 0x7ffU].first, mSpotY);
 
 	mPaneSpot->setAlpha(mScreenAngle * 255.0f * msVal._10);
-	mPaneSpot->updateScale(msVal._0C * ((1.0f - mScreenAngle) * 2.0f + 1.0f) * _104);
+	mPaneSpot->updateScale(msVal._0C * ((1.0f - mScreenAngle) * 2.0f + 1.0f) * mSpotScale);
 	mScreenSpot->update();
 	/*
 	stwu     r1, -0x60(r1)
@@ -1873,8 +1874,8 @@ bool ObjContena::doUpdateFadeout()
 		check                               = true;
 		::Screen::SceneBase* scene          = getOwner();
 		og::Screen::DispMemberContena* disp = mDisp;
-		disp->mState                        = mDispState;
-		if (disp->mState == 3 && disp->_2C) {
+		disp->mState                        = mDispState2;
+		if (disp->mState == 3 && disp->mExitSoundType) {
 			if (disp->mOnyonID == 4 || disp->mOnyonID == 3) {
 				::Screen::SetSceneArg arg(SCENE_UFO_MENU, getDispMember());
 				if (scene->setScene(arg) && !scene->startScene(nullptr)) {

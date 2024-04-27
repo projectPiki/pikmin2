@@ -124,12 +124,12 @@ struct CallBack_CounterRV : public P2DScreen::CallBackNode {
 	bool mIsBlind;                    // _86
 	bool mIsHidden;                   // _87
 	bool mIsMother;                   // _88
-	u8 _89;                           // _89
+	u8 mDoUseRandomValue;             // _89
 	EnumCenteringMode mCenteringMode; // _8C
 	u8 mZeroAlpha;                    // _90
 	SoundID mScaleUpSoundID;          // _94
 	SoundID mScaleDownSoundID;        // _98
-	u8 _9C;                           // _9C
+	u8 mIsInitialized;                // _9C
 	f32 mPaneOffsetY;                 // _A0
 	f32 mPaneOffsetX;                 // _A4
 
@@ -186,18 +186,18 @@ struct CallBack_CounterSlot : public CallBack_CounterRV {
 
 	// _00     = VTBL
 	// _00-_A8 = CallBack_CounterRV
-	u8 _A8;              // _A8
-	u8 _A9;              // _A9
-	u8 _AA;              // _AA
-	u8 _AB;              // _AB
-	u8 _AC;              // _AC
-	u32 _B0;             // _B0
-	f32 mTimer;          // _B4
-	f32 mUpdateInterval; // _B8
-	f32 mPuyoParm1;      // _BC
-	f32 mPuyoParm2;      // _C0
-	f32 mPuyoParm3;      // _C4
-	SoundID _C8;         // _C8
+	u8 mSlotStarted;        // _A8
+	u8 _A9;                 // _A9
+	u8 mSlotFinished;       // _AA
+	u8 _AB;                 // _AB
+	u8 _AC;                 // _AC
+	u32 mCurrentDigitID;    // _B0
+	f32 mTimer;             // _B4
+	f32 mUpdateInterval;    // _B8
+	f32 mPuyoParm1;         // _BC
+	f32 mPuyoParm2;         // _C0
+	f32 mPuyoParm3;         // _C4
+	SoundID mChangeSoundID; // _C8
 };
 
 // Size: 0x28
@@ -269,18 +269,16 @@ struct CallBack_LifeGauge : public P2DScreen::CallBackNode {
 	f32 mWidthOrRadiusMaybe;          // _24
 	f32 mOffsetX;                     // _28
 	f32 mOffsetY;                     // _2C
-	f32 _30;                          // _30
-	f32 _34;                          // _34
-	f32 _38;                          // _38
-	f32 mNa_i_d4;                     // _3C
-	f32 mNa_i_d8;                     // _40
-	f32 mLi_i_d4;                     // _44
-	f32 mLi_i_d8;                     // _48
+	f32 mCurrentAngle;                // _30
+	f32 mCurrentAngleSin;             // _34
+	f32 mCurrentAngleCos;             // _38
+	Vector2f mNaviIconOffset;         // _3C
+	Vector2f mLifeIconOffset;         // _44
 	LifeGauge* mLifeGauge;            // _4C
 	u8 mIsActiveNavi;                 // _50
 	u8 mIsActiveNaviOld;              // _51
 	f32 mLowLifeSoundTimer;           // _54
-	f32 _58;                          // _58
+	f32 mLowLifeSoundRateMod;         // _58
 	P2DScreen::Mgr* mScreenOwner;     // _5C
 	J2DPane* mPin1;                   // _60
 	J2DPicture* mPin2;                // _64
@@ -338,8 +336,8 @@ struct CallBack_Message : public P2DScreen::CallBackNode {
 	P2JME::SimpleMessage* mMessage; // _1C
 	u64 mMessageIDAsULL;            // _20
 	u32 mMessageIDAs2UL[2];         // _28
-	f32 _30;                        // _30
-	f32 _34;                        // _34
+	f32 mWidth;                     // _30
+	f32 mHeight;                    // _34
 	f32 mMinX;                      // _38, yes this is floats not a TBox2f or TVec2f
 	f32 mMinY;                      // _3C, yes i know it's dumb.
 	f32 mMaxX;                      // _40, unfortunately the CallBack_Message ctor is thrown up by a recursion
@@ -442,15 +440,15 @@ struct AnimText_Screen : public CallBack_Screen {
 	bool mIsUpdateSuccess;     // _3C
 	J2DTextBox* mMsgBodyPane;  // _40
 	J2DTextBox* mMsgBackPane;  // _44 // just a guess
-	bool _48;                  // _48
-	u32 _4C;                   // _4C
+	bool mNeedOpenText;        // _48, never enabled?
+	u32 mUnused1;              // _4C
 	u64 mTag;                  // _50
 	f32 mBlinkTimer;           // _58
 	f32 mBlinkFactor;          // _5C
 	f32 mBlinkLevel;           // _60
 	f32 mBlinkBlendRatio;      // _64
 	bool mIsBlinking;          // _68
-	f32 _6C;                   // _6C
+	f32 mMesgAlpha;            // _6C
 	JUtility::TColor mColor0;  // _70
 	JUtility::TColor mColor1;  // _74
 	JUtility::TColor mColor2;  // _78
@@ -468,7 +466,7 @@ struct AnimText_Screen : public CallBack_Screen {
 	JUtility::TColor mColor14; // _A8
 	JUtility::TColor mColor15; // _AC
 	JUtility::TColor mColor16; // _B0
-	u8 _B4[4];                 // _B4
+	u8 mUnused2[4];            // _B4
 };
 
 extern const char* SujiTex32[11];

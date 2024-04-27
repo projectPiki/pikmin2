@@ -23,19 +23,19 @@ ObjGround::ObjGround(char const* name)
     : mFadeLevel(0.0f)
     , mScale(0.0f)
 {
-	mName         = name;
-	mDisp         = nullptr;
-	mOtakara      = nullptr;
-	mBloGroup     = nullptr;
-	mSunMeter     = nullptr;
-	mDoping       = nullptr;
-	mLifeGauge1   = nullptr;
-	mLifeGauge2   = nullptr;
-	mPikiCounter  = nullptr;
-	mSensorScreen = nullptr;
-	_64           = false;
-	mPokos        = 0;
-	_6C           = 0.0f;
+	mName              = name;
+	mDisp              = nullptr;
+	mOtakara           = nullptr;
+	mBloGroup          = nullptr;
+	mSunMeter          = nullptr;
+	mDoping            = nullptr;
+	mLifeGauge1        = nullptr;
+	mLifeGauge2        = nullptr;
+	mPikiCounter       = nullptr;
+	mSensorScreen      = nullptr;
+	mIsTotalPokoActive = false;
+	mPokos             = 0;
+	mTotalPokoTimer    = 0.0f;
 }
 
 /**
@@ -86,8 +86,8 @@ void ObjGround::doCreate(JKRArchive* arc)
 		mLifeGauge2->setCallBack(&mDisp->mLouieData, og::Screen::CallBack_LifeGauge::LIFEGAUGE_LOUIE);
 	}
 	mPikiCounter->setCallBack(arc);
-	mPokos = mDisp->mDataGame.mPokoCount;
-	_6C    = 0.0f;
+	mPokos          = mDisp->mDataGame.mPokoCount;
+	mTotalPokoTimer = 0.0f;
 
 	mOtakara = new og::Screen::OtakaraSensor;
 	mOtakara->init(mSensorScreen->search('Nhari'), mSensorScreen->search('Nsensor'), mDisp->mRadarState);
@@ -136,8 +136,8 @@ void ObjGround::commonUpdate()
 		mOtakara->update();
 		mOtakara->adjPos(msVal.mSensorX, msVal.mSensorY);
 		mOtakara->adjScale(msVal.mSensorScale);
-		mOtakara->setSensorVec2(ObjCave::msVal._34, ObjCave::msVal._38);
-		mOtakara->setSensorVec3(ObjCave::msVal._3C, ObjCave::msVal._40);
+		mOtakara->setCompleteEfxOffset(ObjCave::msVal.mTreasureRadarCompEfxXPos, ObjCave::msVal.mTreasureRadarCompEfxYPos);
+		mOtakara->setAppearEfxOffset(ObjCave::msVal.mTreasureRadarAppearEfxXPos, ObjCave::msVal.mTreasureRadarAppearEfxYPos);
 
 	} else {
 		mOtakara->hide();
@@ -214,12 +214,12 @@ bool ObjGround::doUpdateFadein()
 {
 	bool check = false;
 	mFadeLevel += sys->mDeltaTime;
-	if (mFadeLevel > msVal._00) {
-		mFadeLevel = msVal._00;
+	if (mFadeLevel > msVal.mFadeinTime) {
+		mFadeLevel = msVal.mFadeinTime;
 		check      = true;
 	}
 
-	mScale = mFadeLevel / msVal._00;
+	mScale = mFadeLevel / msVal.mFadeinTime;
 	commonUpdate();
 	return check;
 }
@@ -244,12 +244,12 @@ bool ObjGround::doUpdateFadeout()
 {
 	bool check = false;
 	mFadeLevel += sys->mDeltaTime;
-	if (mFadeLevel > msVal._04) {
-		mFadeLevel = msVal._04;
+	if (mFadeLevel > msVal.mFadeoutTime) {
+		mFadeLevel = msVal.mFadeoutTime;
 		check      = true;
 	}
 
-	mScale = 1.0f - mFadeLevel / msVal._04;
+	mScale = 1.0f - mFadeLevel / msVal.mFadeoutTime;
 	commonUpdate();
 	return check;
 }

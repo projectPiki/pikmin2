@@ -17,27 +17,27 @@ namespace Screen {
  */
 CallBack_LifeGauge::CallBack_LifeGauge()
 {
-	mData               = nullptr;
-	mNaviLifeRatio      = 1.0f;
-	mWidthOrRadiusMaybe = 17.0f;
-	mOffsetX            = 0.0f;
-	mOffsetY            = 0.0f;
-	mLowLifeSoundTimer  = 0.0f;
-	_58                 = 1.0f;
-	mScreenOwner        = nullptr;
-	mPin1               = nullptr;
-	mPin2               = nullptr;
-	mNa_i               = nullptr;
-	mLi_i               = nullptr;
+	mData                = nullptr;
+	mNaviLifeRatio       = 1.0f;
+	mWidthOrRadiusMaybe  = 17.0f;
+	mOffsetX             = 0.0f;
+	mOffsetY             = 0.0f;
+	mLowLifeSoundTimer   = 0.0f;
+	mLowLifeSoundRateMod = 1.0f;
+	mScreenOwner         = nullptr;
+	mPin1                = nullptr;
+	mPin2                = nullptr;
+	mNa_i                = nullptr;
+	mLi_i                = nullptr;
 
 	mLifeGauge           = new LifeGauge;
-	_34                  = 0.0f;
-	_38                  = 0.0f;
-	mNa_i_d4             = 0.0f;
-	mNa_i_d8             = 0.0f;
-	mLi_i_d4             = 0.0f;
-	mLi_i_d8             = 0.0f;
-	_30                  = 0.0f;
+	mCurrentAngleSin     = 0.0f;
+	mCurrentAngleCos     = 0.0f;
+	mNaviIconOffset.x    = 0.0f;
+	mNaviIconOffset.y    = 0.0f;
+	mLifeIconOffset.x    = 0.0f;
+	mLifeIconOffset.y    = 0.0f;
+	mCurrentAngle        = 0.0f;
 	mIsActiveNavi        = 1;
 	mIsActiveNaviOld     = mIsActiveNavi;
 	mPaneOlimarIcon      = nullptr;
@@ -72,11 +72,11 @@ void CallBack_LifeGauge::init(P2DScreen::Mgr* mgr, DataNavi* data, LifeGaugeType
 		mNa_i = TagSearch(mgr, 'na_i');
 		mLi_i = TagSearch(mgr, 'li_i');
 
-		mNa_i_d4 = mNa_i->mOffset.x;
-		mNa_i_d8 = mNa_i->mOffset.y;
+		mNaviIconOffset.x = mNa_i->mOffset.x;
+		mNaviIconOffset.y = mNa_i->mOffset.y;
 
-		mLi_i_d4 = mLi_i->mOffset.x;
-		mLi_i_d8 = mLi_i->mOffset.y;
+		mLifeIconOffset.x = mLi_i->mOffset.x;
+		mLifeIconOffset.y = mLi_i->mOffset.y;
 
 		mPin1->hide();
 		mPin2->hide();
@@ -94,12 +94,12 @@ void CallBack_LifeGauge::init(P2DScreen::Mgr* mgr, DataNavi* data, LifeGaugeType
 		}
 
 		if (data->mActiveNaviID) {
-			_30              = 0.0f;
+			mCurrentAngle    = 0.0f;
 			mIsActiveNavi    = true;
 			mIsActiveNaviOld = mIsActiveNavi;
 			mAngleMgr->init(0.0f, msVal._08, msVal._0C);
 		} else {
-			_30              = PI;
+			mCurrentAngle    = PI;
 			mIsActiveNavi    = false;
 			mIsActiveNaviOld = mIsActiveNavi;
 			mAngleMgr->init(PI, msVal._08, msVal._0C);
@@ -171,12 +171,12 @@ void CallBack_LifeGauge::moveIcon()
 	u8 cNavi = mIsActiveNavi;
 	if (cNavi != mIsActiveNaviOld) {
 		if (cNavi) {
-			mAngleMgr->init(_30, msVal._08, msVal._0C);
+			mAngleMgr->init(mCurrentAngle, msVal._08, msVal._0C);
 			mAngleMgr->chase(0.0f, msVal._04);
 			mCanNaviChange = true;
 			mMoveTimer     = msVal._00;
 		} else {
-			mAngleMgr->init(_30, msVal._08, msVal._0C);
+			mAngleMgr->init(mCurrentAngle, msVal._08, msVal._0C);
 			mAngleMgr->chase(PI, msVal._04);
 		}
 	} else if (cNavi && mCanNaviChange) {
@@ -188,16 +188,17 @@ void CallBack_LifeGauge::moveIcon()
 		}
 	}
 
-	_30 = mAngleMgr->calc();
-	_34 = sinf(_30) * 50.0f;
-	_38 = cosf(_30) * 30.0f;
+	mCurrentAngle    = mAngleMgr->calc();
+	mCurrentAngleSin = sinf(mCurrentAngle) * 50.0f;
+	mCurrentAngleCos = cosf(mCurrentAngle) * 30.0f;
 
-	f32 scale = (cosf(_30) + 1.0f) / 2.0f;
+	f32 scale = (cosf(mCurrentAngle) + 1.0f) / 2.0f;
 	scale     = ((1.0f - scale) * 0.7f + scale);
 	scale     = scale * mScaleMgr->calc();
 
-	mNa_i->move(mNa_i_d4 - _34, mNa_i_d8 - 30.0f + _38);
-	mLi_i->move(scale * (mLi_i_d4 - mNa_i_d4) + (mNa_i_d4 - _34), (mLi_i_d8 - 30.0f) + _38);
+	mNa_i->move(mNaviIconOffset.x - mCurrentAngleSin, mNaviIconOffset.y - 30.0f + mCurrentAngleCos);
+	mLi_i->move(scale * (mLifeIconOffset.x - mNaviIconOffset.x) + (mNaviIconOffset.x - mCurrentAngleSin),
+	            (mLifeIconOffset.y - 30.0f) + mCurrentAngleCos);
 	mNa_i->updateScale(scale);
 	mLi_i->updateScale(scale);
 }
@@ -215,7 +216,7 @@ void CallBack_LifeGauge::update()
 		if (mNaviLifeRatio < 0.5f) {
 			mPin1->show();
 			mPin2->show();
-			mLowLifeSoundTimer += _58 * sys->mDeltaTime;
+			mLowLifeSoundTimer += mLowLifeSoundRateMod * sys->mDeltaTime;
 			if (mLowLifeSoundTimer >= 1.0f) {
 				mLowLifeSoundTimer = 0.0f;
 				if (mNaviLifeRatio > 0.0f && mIsActiveNavi) {
@@ -230,7 +231,7 @@ void CallBack_LifeGauge::update()
 			mPin1->updateScale(scale);
 			mPin1->setAlpha(-(timer * 255.0f - 255.0f));
 
-			f32 timerScale = -(_58 * 0.3f - mLowLifeSoundTimer);
+			f32 timerScale = -(mLowLifeSoundRateMod * 0.3f - mLowLifeSoundTimer);
 			if (timerScale < 0.0f)
 				timerScale += 1.0f;
 

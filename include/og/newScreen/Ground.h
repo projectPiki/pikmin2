@@ -84,15 +84,15 @@ struct ObjGround : public ::Screen::ObjBase {
 	P2DScreen::Mgr_tuning* mSensorScreen;    // _58
 	f32 mFadeLevel;                          // _5C
 	f32 mScale;                              // _60
-	u8 _64;                                  // _64
+	u8 mIsTotalPokoActive;                   // _64, unused for ground
 	u32 mPokos;                              // _68
-	f32 _6C;                                 // _6C
+	f32 mTotalPokoTimer;                     // _6C, unused for ground
 
 	static struct StaticValues {
 		inline StaticValues()
 		{
-			_00          = 0.3f;
-			_04          = 0.1f;
+			mFadeinTime  = 0.3f;
+			mFadeoutTime = 0.1f;
 			_08          = -50.0f;
 			_0C          = 0.0f;
 			mSensorX     = 10.0f;
@@ -103,8 +103,8 @@ struct ObjGround : public ::Screen::ObjBase {
 			mDopingY     = -30.0f;
 		}
 
-		f32 _00;          // _00
-		f32 _04;          // _04
+		f32 mFadeinTime;  // _00
+		f32 mFadeoutTime; // _04
 		f32 _08;          // _08
 		f32 _0C;          // _0C
 		f32 mSensorX;     // _10

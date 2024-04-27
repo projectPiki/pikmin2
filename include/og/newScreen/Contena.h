@@ -90,18 +90,18 @@ struct ObjContena : public ::Screen::ObjBase {
 	int mInParty2;                           // _CC
 	int mOnMapCount;                         // _D0
 	int mMaxPikiCount;                       // _D4
-	int _D8;                                 // _D8
-	bool _DC;                                // _DC
-	int _E0;                                 // _E0
-	u16 _E4;                                 // _E4
-	int mDispState;                          // _E8
+	int mInTransfer;                         // _D8
+	bool mExitSoundType;                     // _DC
+	int mDispState;                          // _E0
+	u16 mDispResult;                         // _E4
+	int mDispState2;                         // _E8
 	og::Screen::CallBack_Furiko* mFuriko;    // _EC
 	f32 mMenuMoveAngle;                      // _F0
 	f32 mYAnalog;                            // _F4
 	J2DPane* mPaneSpot;                      // _F8
 	f32 mSpotX;                              // _FC
 	f32 mSpotY;                              // _100
-	f32 _104;                                // _104
+	f32 mSpotScale;                          // _104
 	f32 mTimer;                              // _108
 	bool mDoDraw;                            // _10C
 	f32 mFadeLevel;                          // _110

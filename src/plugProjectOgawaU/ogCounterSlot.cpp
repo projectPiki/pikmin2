@@ -16,18 +16,18 @@ namespace Screen {
 CallBack_CounterSlot::CallBack_CounterSlot(char** p1, u16 p2, u16 p3, JKRArchive* archive)
     : CallBack_CounterRV(p1, p2, p3, archive)
 {
-	_A8             = 0;
+	mSlotStarted    = 0;
 	_A9             = 0;
-	_AA             = 0;
+	mSlotFinished   = 0;
 	_AB             = 0;
 	_AC             = 0;
-	_B0             = 0;
+	mCurrentDigitID = 0;
 	mTimer          = 0.0f;
 	mUpdateInterval = 0.1f;
 	mPuyoParm1      = 2.0f;
 	mPuyoParm2      = 35.0f;
 	mPuyoParm3      = 0.3f;
-	_C8             = PSSE_UNSET;
+	mChangeSoundID  = PSSE_UNSET;
 }
 
 /**
@@ -61,10 +61,10 @@ void CallBack_CounterSlot::update()
 		goal = mCounterLimit;
 	}
 
-	if (_A8 && !_AC) {
+	if (mSlotStarted && !_AC) {
 		for (int i = 0; i < goal; i++) {
 			J2DPane* pane = mCounters[i]->mPicture;
-			if (i <= (int)_B0 && _A9) {
+			if (i <= (int)mCurrentDigitID && _A9) {
 				pane->show();
 			} else {
 				pane->hide();
@@ -73,15 +73,15 @@ void CallBack_CounterSlot::update()
 		mTimer += sys->mDeltaTime;
 		if (mTimer >= mUpdateInterval) {
 			mTimer = 0.0f;
-			_B0++;
-			if ((int)_B0 >= (int)mCurrentCounters) {
-				if ((int)_B0 >= (int)mCounterLimit) {
-					_A8 = false;
-					_AB = true;
+			mCurrentDigitID++;
+			if ((int)mCurrentDigitID >= (int)mCurrentCounters) {
+				if ((int)mCurrentDigitID >= (int)mCounterLimit) {
+					mSlotStarted = false;
+					_AB          = true;
 				}
-				_AA = true;
+				mSlotFinished = true;
 			} else {
-				slot_up(_B0);
+				slot_up(mCurrentDigitID);
 			}
 		}
 		setValue(false, false);
@@ -105,8 +105,8 @@ void CallBack_CounterSlot::slot_up(int k)
 		JUT_PANICLINE(169, "slot_up overflow ! (k=%d)\n", k);
 	} else if (k != mCounterLimit) {
 		mCounters[k]->mScaleMgr->up(mPuyoParm1, mPuyoParm2, mPuyoParm3, 0.0f);
-		if ((u32)_C8 != 0) {
-			ogSound->setSE(_C8);
+		if ((u32)mChangeSoundID != 0) {
+			ogSound->setSE(mChangeSoundID);
 		}
 	}
 }
@@ -118,10 +118,10 @@ void CallBack_CounterSlot::slot_up(int k)
 void CallBack_CounterSlot::startSlot(f32 calc)
 {
 	if (!_AC) {
-		_A8             = true;
+		mSlotStarted    = true;
 		_A9             = true;
-		_AA             = false;
-		_B0             = 0;
+		mSlotFinished   = false;
+		mCurrentDigitID = 0;
 		mTimer          = 0.0f;
 		mUpdateInterval = calc;
 		mIsPuyoAnim     = true;
@@ -152,7 +152,7 @@ void CallBack_CounterSlot::setValue(bool flag1, bool flag2)
 		u16 sujiVal = (mInitialDisplayValue / power) % 10;
 		if (mIsBlind) {
 			mCounters[i]->setSuji(mImgResources, 10);
-		} else if (_89) {
+		} else if (mDoUseRandomValue) {
 			mCounters[i]->setSuji(mImgResources, (u16)randInt(9));
 		} else {
 			mCounters[i]->setSuji(mImgResources, sujiVal);

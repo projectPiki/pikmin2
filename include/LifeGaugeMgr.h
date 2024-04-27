@@ -35,16 +35,16 @@ struct LifeGaugeList : public JKRDisposer {
 	    : mParam()
 	{
 		_3C                  = 0.0f;
-		_45                  = 32;
+		mSegmentCount2       = 32;
 		mSegmentCount        = 32;
 		mGameObject          = obj;
 		mNext                = nullptr;
 		mPrev                = nullptr;
 		mParam.mIsGaugeShown = false;
 
-		_3C           = 0.0f;
-		_45           = 32;
-		mSegmentCount = 32;
+		_3C            = 0.0f;
+		mSegmentCount2 = 32;
+		mSegmentCount  = 32;
 	}
 	virtual ~LifeGaugeList() { clearRelations(); } // _08 (weak)
 
@@ -69,7 +69,7 @@ struct LifeGaugeList : public JKRDisposer {
 	f32 _3C;                     // _3C
 	u8 _40[4];                   // _40
 	u8 mSegmentCount;            // _44
-	u8 _45;                      // _45
+	u8 mSegmentCount2;           // _45 - not sure what the purpose is
 };
 
 /**

@@ -195,10 +195,10 @@ bool ObjFinalMsg::doUpdateFadein()
 	bool check = false;
 	commonUpdate();
 	mFadeLevel += sys->mDeltaTime;
-	if (mFadeLevel > ObjSMenuBase::msBaseVal._08) {
+	if (mFadeLevel > ObjSMenuBase::msBaseVal.mFadeInOutTime) {
 		check = true;
 	}
-	mMovePos = (1.0f - og::Screen::calcSmooth0to1(mFadeLevel, ObjSMenuBase::msBaseVal._08)) * 800.0f;
+	mMovePos = (1.0f - og::Screen::calcSmooth0to1(mFadeLevel, ObjSMenuBase::msBaseVal.mFadeInOutTime)) * 800.0f;
 	return check;
 }
 
@@ -231,10 +231,10 @@ bool ObjFinalMsg::doUpdateFadeout()
 	bool check = false;
 	commonUpdate();
 	mFadeLevel += sys->mDeltaTime;
-	if (mFadeLevel > ObjSMenuBase::msBaseVal._08) {
+	if (mFadeLevel > ObjSMenuBase::msBaseVal.mFadeInOutTime) {
 		check = true;
 	}
-	mMovePos = og::Screen::calcSmooth0to1(mFadeLevel, ObjSMenuBase::msBaseVal._08) * -800.0f;
+	mMovePos = og::Screen::calcSmooth0to1(mFadeLevel, ObjSMenuBase::msBaseVal.mFadeInOutTime) * -800.0f;
 	return check;
 }
 

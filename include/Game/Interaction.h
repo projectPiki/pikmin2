@@ -189,7 +189,7 @@ struct InteractFallMeck : public Interaction {
 struct InteractFarmHaero : public Interaction {
 	inline InteractFarmHaero(Creature* parent, int p1)
 	    : Interaction(parent)
-	    , _08(p1)
+	    , mPower(p1)
 	{
 	}
 
@@ -198,13 +198,13 @@ struct InteractFarmHaero : public Interaction {
 
 	// _00 = VTBL
 	// _04 = Creature*
-	int _08; // _08
+	int mPower; // _08
 };
 
 struct InteractFarmKarero : public Interaction {
-	inline InteractFarmKarero(Creature* parent, int p1)
+	inline InteractFarmKarero(Creature* parent, int power)
 	    : Interaction(parent)
-	    , _08(p1)
+	    , mPower(power)
 	{
 	}
 
@@ -213,7 +213,7 @@ struct InteractFarmKarero : public Interaction {
 
 	// _00 = VTBL
 	// _04 = Creature*
-	int _08; // _08
+	int mPower; // _08
 };
 
 struct InteractFire : public Interaction {

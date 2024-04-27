@@ -231,30 +231,30 @@ struct ObjSMenuBase : public ::Screen::ObjBase {
 	static struct StaticValues {
 		inline StaticValues()
 		{
-			_00            = 1.0f;
-			mAnimSpeed     = 1.0f;
-			_14            = 255;
-			_08            = 0.3f;
-			_0C            = 30.0f;
-			_10            = 0.1f;
-			_15            = 64;
-			_16            = 64;
-			_17            = 0;
-			mUseController = false;
-			mUpdateYaji    = 0;
+			mAnimSpeed           = 1.0f;
+			_04                  = 1.0f;
+			_14                  = 255;
+			mFadeInOutTime       = 0.3f;
+			mLRArrowMoveDistance = 30.0f;
+			mLRArrowMoveSpeed    = 0.1f;
+			_15                  = 64;
+			_16                  = 64;
+			_17                  = 0;
+			mUseController       = false;
+			mUpdateYaji          = 0;
 		}
 
-		f32 _00;             // _00
-		f32 mAnimSpeed;      // _04
-		f32 _08;             // _08
-		f32 _0C;             // _0C
-		f32 _10;             // _10
-		u8 _14;              // _14
-		u8 _15;              // _15
-		u8 _16;              // _16
-		u8 _17;              // _17
-		bool mUseController; // _18
-		bool mUpdateYaji;    // _19
+		f32 mAnimSpeed;           // _00
+		f32 _04;                  // _04
+		f32 mFadeInOutTime;       // _08
+		f32 mLRArrowMoveDistance; // _0C
+		f32 mLRArrowMoveSpeed;    // _10
+		u8 _14;                   // _14
+		u8 _15;                   // _15
+		u8 _16;                   // _16
+		u8 _17;                   // _17
+		bool mUseController;      // _18
+		bool mUpdateYaji;         // _19
 	} msBaseVal;
 };
 
@@ -338,30 +338,32 @@ struct ObjSMenuItem : public ObjSMenuBase {
 	static struct StaticValues {
 		inline StaticValues()
 		{
-			_00.r = 0;
-			_00.g = 110;
-			_00.b = 176;
-			_00.a = 255;
-			_04.r = 0;
-			_04.g = 0;
-			_04.b = 100;
-			_04.a = 255;
-			_08   = -27.0f;
-			_0C   = -27.0f;
-			_10   = -27.0f;
-			_14   = -27.0f;
-			_18   = 0.95f;
-			_1C   = 0.9f;
+			mItemColorWhite.r = 0;
+			mItemColorWhite.g = 110;
+			mItemColorWhite.b = 176;
+			mItemColorWhite.a = 255;
+
+			mItemColorBlack.r = 0;
+			mItemColorBlack.g = 0;
+			mItemColorBlack.b = 100;
+			mItemColorBlack.a = 255;
+
+			mSpray0XOffset = -27.0f;
+			mSpray0YOffset = -27.0f;
+			mSpray1XOffset = -27.0f;
+			mSpray1YOffset = -27.0f;
+			mMenuScaleX    = 0.95f;
+			mMenuScaleY    = 0.9f;
 		}
 
-		JUtility::TColor _00; // _00
-		JUtility::TColor _04; // _04
-		f32 _08;              // _08
-		f32 _0C;              // _0C
-		f32 _10;              // _10
-		f32 _14;              // _14
-		f32 _18;              // _18
-		f32 _1C;              // _1C
+		JUtility::TColor mItemColorWhite; // _00
+		JUtility::TColor mItemColorBlack; // _04
+		f32 mSpray0XOffset;               // _08
+		f32 mSpray0YOffset;               // _0C
+		f32 mSpray1XOffset;               // _10
+		f32 mSpray1YOffset;               // _14
+		f32 mMenuScaleX;                  // _18
+		f32 mMenuScaleY;                  // _1C
 	} msVal;
 };
 
@@ -446,8 +448,8 @@ struct ObjSMenuMap : public ObjSMenuBase {
 
 	static struct StaticValues {
 		inline StaticValues()
-		    : _00(0.5f)
-		    , mAnimSpeed(8.0f)
+		    : mMinZoom(0.5f)
+		    , mMaxZoom(8.0f)
 		    , _08(255)
 		    , _09(255)
 		    , _0A(255)
@@ -470,8 +472,8 @@ struct ObjSMenuMap : public ObjSMenuBase {
 		{
 		}
 
-		f32 _00;                                // _00
-		f32 mAnimSpeed;                         // _04
+		f32 mMinZoom;                           // _00
+		f32 mMaxZoom;                           // _04
 		u8 _08;                                 // _08
 		u8 _09;                                 // _09
 		u8 _0A;                                 // _0A
@@ -676,14 +678,14 @@ struct ObjSMenuPauseDoukutu : public ObjSMenuBase {
 	static struct StaticValues {
 		inline StaticValues()
 		{
-			_00 = 1.0f;
-			_04 = 0.91f;
-			_08 = 0.5f;
+			mMenuScaleX      = 1.0f;
+			mMenuScaleY      = 0.91f;
+			mPikiWarningTime = 0.5f;
 		}
 
-		f32 _00; // _00
-		f32 _04; // _04
-		f32 _08;
+		f32 mMenuScaleX; // _00
+		f32 mMenuScaleY; // _04
+		f32 mPikiWarningTime;
 	} msVal;
 };
 

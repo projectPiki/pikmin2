@@ -6,7 +6,7 @@
 namespace og {
 namespace Screen {
 struct ScaleMgr {
-	enum State { SCM_Unknown_0 = 0, SCM_Growing, SCM_Shrinking, SCM_OtherGrowingMaybe };
+	enum State { SCM_Inactive = 0, SCM_Growing, SCM_Shrinking, SCM_GrowWait };
 
 	ScaleMgr();
 
@@ -22,11 +22,11 @@ struct ScaleMgr {
 	State mState;           // _00
 	f32 mElapsedSeconds;    // _04
 	f32 mScale;             // _08
-	f32 _0C;                // _0C
+	f32 mScaleChangeLevel;  // _0C
 	f32 mPeriodModifier;    // _10 sin(elapsedSeconds*periodModifier).
 	                        // Larger = shorter periods.
 	f32 mDurationInSeconds; // _14
-	f32 _18;                // _18
+	f32 mWaitTimer;         // _18
 };
 } // namespace Screen
 } // namespace og

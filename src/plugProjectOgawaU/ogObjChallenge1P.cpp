@@ -75,49 +75,52 @@ void ObjChallenge1P::doCreate(JKRArchive* arc)
 	counter      = og::Screen::setCallBack_CounterRV(mPokoScreen, 'Ptime1', &mTimeLeftInt, 6, 1, 1, arc);
 	counter->setCenteringMode(og::Screen::CallBack_CounterRV::ECM_Unknown1);
 
-	J2DPane* pane = mPokoScreen->search('Nmenu01');
-	msVal.mMenu01 = pane;
-	msVal._28     = pane->mOffset.x;
-	msVal._2C     = pane->mOffset.y;
-	msVal._30     = pane->mScale.x;
-	msVal._34     = pane->mScale.y;
-	msVal._38     = 0.0f;
-	msVal._3C     = 0.0f;
-	msVal._40     = 1.0f;
-	msVal._44     = 1.0f;
+	// timer screen
+	J2DPane* pane         = mPokoScreen->search('Nmenu01');
+	msVal.mMenu01         = pane;
+	msVal.mTimerXPos      = pane->mOffset.x;
+	msVal.mTimerYPos      = pane->mOffset.y;
+	msVal.mTimerXScale    = pane->mScale.x;
+	msVal.mTimerYScale    = pane->mScale.y;
+	msVal.mTimerXOffset   = 0.0f;
+	msVal.mTimerYOffset   = 0.0f;
+	msVal.mTimerXScaleMod = 1.0f;
+	msVal.mTimerYScaleMod = 1.0f;
 	if (pane) {
-		pane->setOffset(msVal._28, 0.0f, msVal._2C, 0.0f);
-		msVal.mMenu01->updateScale(msVal._30 * msVal._40, msVal._34 * msVal._44);
+		pane->setOffset(msVal.mTimerXPos, 0.0f, msVal.mTimerYPos, 0.0f);
+		msVal.mMenu01->updateScale(msVal.mTimerXScale * msVal.mTimerXScaleMod, msVal.mTimerYScale * msVal.mTimerYScaleMod);
 	}
 
-	J2DPane* pane2 = mPokoScreen->search('Nmenu00');
-	msVal.mMenu00  = pane2;
-	msVal._04      = pane2->mOffset.x;
-	msVal._08      = pane2->mOffset.y;
-	msVal._0C      = pane2->mScale.x;
-	msVal._10      = pane2->mScale.y;
-	msVal._14      = -293.0f;
-	msVal._18      = -165.0f;
-	msVal._1C      = 1.0f;
-	msVal._20      = 1.0f;
+	// poko counter screen
+	J2DPane* pane2       = mPokoScreen->search('Nmenu00');
+	msVal.mMenu00        = pane2;
+	msVal.mPokoXPos      = pane2->mOffset.x;
+	msVal.mPokoYPos      = pane2->mOffset.y;
+	msVal.mPokoXScale    = pane2->mScale.x;
+	msVal.mPokoYScale    = pane2->mScale.y;
+	msVal.mPokoXOffset   = -293.0f;
+	msVal.mPokoYOffset   = -165.0f;
+	msVal.mPokoXScaleMod = 1.0f;
+	msVal.mPokoYScaleMod = 1.0f;
 	if (pane2) {
-		pane2->setOffset(msVal._04, -293.0f, msVal._08, -165.0f);
-		msVal.mMenu00->updateScale(msVal._0C * msVal._1C, msVal._10 * msVal._20);
+		pane2->setOffset(msVal.mPokoXPos, -293.0f, msVal.mPokoYPos, -165.0f);
+		msVal.mMenu00->updateScale(msVal.mPokoXScale * msVal.mPokoXScaleMod, msVal.mPokoYScale * msVal.mPokoYScaleMod);
 	}
 
-	J2DPane* pane3 = mPokoScreen->search('Nmenu02');
-	msVal.mMenu02  = pane3;
-	msVal._4C      = pane3->mOffset.x;
-	msVal._50      = pane3->mOffset.y;
-	msVal._54      = pane3->mScale.x;
-	msVal._58      = pane3->mScale.y;
-	msVal._5C      = -160.0f;
-	msVal._60      = -200.0f;
-	msVal._64      = 1.0f;
-	msVal._68      = 1.0f;
+	// piki death screen
+	J2DPane* pane3        = mPokoScreen->search('Nmenu02');
+	msVal.mMenu02         = pane3;
+	msVal.mPikisXPos      = pane3->mOffset.x;
+	msVal.mPikisYPos      = pane3->mOffset.y;
+	msVal.mPikisXScale    = pane3->mScale.x;
+	msVal.mPikisYScale    = pane3->mScale.y;
+	msVal.mPikisXOffset   = -160.0f;
+	msVal.mPikisYOffset   = -200.0f;
+	msVal.mPikisXScaleMod = 1.0f;
+	msVal.mPikisYScaleMod = 1.0f;
 	if (pane3) {
-		pane3->setOffset(msVal._4C, -160.0f, msVal._50, -200.0f);
-		msVal.mMenu02->updateScale(msVal._54 * msVal._64, msVal._58 * msVal._68);
+		pane3->setOffset(msVal.mPikisXPos, -160.0f, msVal.mPikisYPos, -200.0f);
+		msVal.mMenu02->updateScale(msVal.mPikisXScale * msVal.mPikisXScaleMod, msVal.mPikisYScale * msVal.mPikisYScaleMod);
 	}
 
 	setSubLevel(mDisp->mDataGame.mFloorNum);
@@ -185,11 +188,11 @@ bool ObjChallenge1P::doUpdateFadein()
 	bool check = false;
 	mFadeLevel += sys->mDeltaTime;
 
-	if (mFadeLevel > ObjChallengeBase::msBaseVal._00) {
-		mFadeLevel = ObjChallengeBase::msBaseVal._00;
+	if (mFadeLevel > ObjChallengeBase::msBaseVal.mFadeinTime) {
+		mFadeLevel = ObjChallengeBase::msBaseVal.mFadeinTime;
 		check      = true;
 	}
-	mScale = mFadeLevel / ObjChallengeBase::msBaseVal._00;
+	mScale = mFadeLevel / ObjChallengeBase::msBaseVal.mFadeinTime;
 	commonUpdate();
 	return check;
 }
@@ -214,11 +217,11 @@ bool ObjChallenge1P::doUpdateFadeout()
 {
 	bool check = false;
 	mFadeLevel += sys->mDeltaTime;
-	if (mFadeLevel > ObjChallengeBase::msBaseVal._04) {
-		mFadeLevel = ObjChallengeBase::msBaseVal._04;
+	if (mFadeLevel > ObjChallengeBase::msBaseVal.mFadeoutTime) {
+		mFadeLevel = ObjChallengeBase::msBaseVal.mFadeoutTime;
 		check      = true;
 	}
-	mScale = 1.0f - mFadeLevel / ObjChallengeBase::msBaseVal._04;
+	mScale = 1.0f - mFadeLevel / ObjChallengeBase::msBaseVal.mFadeoutTime;
 	commonUpdate();
 	return check;
 }
