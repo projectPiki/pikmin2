@@ -94,12 +94,12 @@ struct ObjWinLose : public ::Screen::ObjBase {
 struct ObjWinLoseReason : public ::Screen::ObjBase {
 	ObjWinLoseReason(int type)
 	{
-		mScreen = nullptr;
-		mAnim1  = nullptr;
-		mAnim2  = nullptr;
-		_48     = 0.0f;
-		_44     = 0.0f;
-		_4C     = type;
+		mScreen  = nullptr;
+		mAnim1   = nullptr;
+		mAnim2   = nullptr;
+		mUnused2 = 0.0f;
+		mUnused1 = 0.0f;
+		mType    = type;
 	}
 
 	virtual ~ObjWinLoseReason() { }     // _08 (weak)
@@ -113,9 +113,9 @@ struct ObjWinLoseReason : public ::Screen::ObjBase {
 	P2DScreen::Mgr_tuning* mScreen; // _38
 	J2DAnmBase* mAnim1;             // _3C
 	J2DAnmBase* mAnim2;             // _40
-	f32 _44;                        // _44
-	f32 _48;                        // _48
-	u32 _4C;                        // _4C
+	f32 mUnused1;                   // _44
+	f32 mUnused2;                   // _48
+	u32 mType;                      // _4C
 
 	static struct StaticValues {
 		inline StaticValues()
@@ -126,7 +126,7 @@ struct ObjWinLoseReason : public ::Screen::ObjBase {
 			mProgressFrame = 100;
 			mFinishFrame   = 125;
 			_14            = 100;
-			_18            = 2;
+			mTimeSpeed     = 2;
 		}
 
 		f32 mAnimSpeed; // _00
@@ -135,7 +135,7 @@ struct ObjWinLoseReason : public ::Screen::ObjBase {
 		int mProgressFrame;
 		int mFinishFrame;
 		int _14;
-		u8 _18;
+		u8 mTimeSpeed;
 	} msVal;
 };
 

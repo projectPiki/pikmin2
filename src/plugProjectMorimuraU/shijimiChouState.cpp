@@ -268,12 +268,12 @@ StateRest::StateRest(int stateID)
  */
 void StateRest::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	_1C        = true;
-	mRestTimer = 0;
-	_18        = 30.0f + 100.0f * randFloat();
-	_1D        = false;
-	_14        = 0;
-	_1E        = false;
+	mNeedFinishRest  = true;
+	mRestTimer       = 0;
+	mRestMaxTime     = 30.0f + 100.0f * randFloat();
+	mIsInRest        = false;
+	mRestWaitCounter = 0;
+	mIsLanded        = false;
 
 	if (gameSystem && gameSystem->isZukanMode()) {
 		enemy->disableEvent(0, EB_Cullable);
@@ -286,7 +286,7 @@ void StateRest::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateRest::exec(EnemyBase* enemy)
 {
-	if (!_1D) {
+	if (!mIsInRest) {
 		if (!enemy->isConstrained()) {
 			OBJ(enemy)->restFly();
 		}
@@ -294,37 +294,37 @@ void StateRest::exec(EnemyBase* enemy)
 
 	mRestTimer++;
 
-	if (_1D) {
-		_14 = 0;
-		if (_1E) {
+	if (mIsInRest) {
+		mRestWaitCounter = 0;
+		if (mIsLanded) {
 			enemy->stopMotion();
 		}
 
-		if (_1C) {
-			mRestTimer = 0;
-			_18        = 50.0f * randFloat() + 50.0f;
-			_1C        = false;
-			_1E        = false;
+		if (mNeedFinishRest) {
+			mRestTimer      = 0;
+			mRestMaxTime    = 50.0f * randFloat() + 50.0f;
+			mNeedFinishRest = false;
+			mIsLanded       = false;
 			enemy->finishMotion();
 
 		} else if (enemy->isFinishMotion() && enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
-			_1E = true;
+			mIsLanded = true;
 			enemy->setMotionFrame(0.0f);
 		}
 
 		OBJ(enemy)->resetRestPos();
 
-		if (mRestTimer >= _18) {
-			if (mRestTimer == _18) {
+		if (mRestTimer >= mRestMaxTime) {
+			if (mRestTimer == mRestMaxTime) {
 				enemy->startMotion(SHIJIMIANIM_Move, nullptr);
-				_1E = false;
+				mIsLanded = false;
 			}
 
 			if (OBJ(enemy)->checkRestOff()) {
 				enemy->hardConstraintOff();
 
-				_1C = true;
-				_1D = false;
+				mNeedFinishRest = true;
+				mIsInRest       = false;
 
 				enemy->startMotion();
 
@@ -337,22 +337,22 @@ void StateRest::exec(EnemyBase* enemy)
 
 				OBJ(enemy)->mGoalPosition = landPos;
 
-				mRestTimer = 0;
-				_18        = 600.0f + 400.0f * randFloat();
+				mRestTimer   = 0;
+				mRestMaxTime = 600.0f + 400.0f * randFloat();
 				enemy->startMotion(SHIJIMIANIM_Move, nullptr);
 			}
 		}
 
 	} else {
-		if (mRestTimer > _18) {
+		if (mRestTimer > mRestMaxTime) {
 			OBJ(enemy)->mGoalPosition = Vector3f(OBJ(enemy)->mSpawningEnemy->getPosition());
 		}
 
-		_14++;
+		mRestWaitCounter++;
 
-		if (_14 > 20 && OBJ(enemy)->checkRestOn()) {
-			_1D = true;
-			_1C = true;
+		if (mRestWaitCounter > 20 && OBJ(enemy)->checkRestOn()) {
+			mIsInRest       = true;
+			mNeedFinishRest = true;
 
 			enemy->mCurrentVelocity = Vector3f(0.0f);
 			enemy->mTargetVelocity  = Vector3f(0.0f);

@@ -4750,7 +4750,7 @@ void BlackMan::Obj::moveRestart()
 	}
 
 	mTyre->moveStart();
-	mTyre->_2D0 = 0;
+	mTyre->mDoUseFrontTyreHoldCalc = 0;
 
 	if (gameSystem && gameSystem->isZukanMode()) {
 		mHasStartedChaseBgm = false;
@@ -4848,7 +4848,7 @@ void BlackMan::Obj::recover()
 		resetAnimSpeed();
 	}
 
-	mTyre->_2D0 = 1;
+	mTyre->mDoUseFrontTyreHoldCalc = 1;
 
 	Matrixf* leftMtx  = mModel->mJ3dModel->mMtxBuffer->getWorldMatrix(mLeftHandJointIndex);  // r4
 	Matrixf* rightMtx = mModel->mJ3dModel->mMtxBuffer->getWorldMatrix(mRightHandJointIndex); // r5
@@ -4858,9 +4858,9 @@ void BlackMan::Obj::recover()
 	pos.y = leftMtx->mMatrix.structView.ty + rightMtx->mMatrix.structView.ty;
 	pos.z = leftMtx->mMatrix.structView.tz + rightMtx->mMatrix.structView.tz;
 
-	mTyre->_2D4 = Vector3f(pos.x * 0.5f, pos.y * 0.5f, pos.z * 0.5f);
+	mTyre->mFrontTyreHeldPosition = Vector3f(pos.x * 0.5f, pos.y * 0.5f, pos.z * 0.5f);
 
-	mLandPosition = mTyre->_2D4;
+	mLandPosition = mTyre->mFrontTyreHeldPosition;
 
 	mTyre->mCurrentRotation2 *= 0.8f;
 }

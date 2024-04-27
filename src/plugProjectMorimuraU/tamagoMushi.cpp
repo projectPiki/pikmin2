@@ -34,21 +34,24 @@ void Obj::onInit(CreatureInitArg* initArg)
 	disableEvent(0, EB_LeaveCarcass);
 	disableEvent(0, EB_DamageAnimEnabled);
 	disableEvent(0, EB_DeathEffectEnabled);
-	_2BC          = 0;
-	_2F0          = false;
-	mLeader       = nullptr;
-	_304          = 0;
-	mGoalPosition = mPosition;
-	_2C0          = (0.8f + 0.2f * randFloat()) * C_PROPERPARMS.mSurvivalTime.mValue;
+	mActiveCounter = 0;
+	mIsInBall      = false;
+	mLeader        = nullptr;
+	mBitterHitNum  = 0;
+	mGoalPosition  = mPosition;
+
+	// last between 80% to 100% of the defined time
+	mActiveMaxTime = (0.8f + 0.2f * randFloat()) * C_PROPERPARMS.mSurvivalTime.mValue;
+	// last 5 times longer in the piklopedia
 	if (gameSystem && gameSystem->isZukanMode()) {
-		_2C0 *= 5;
+		mActiveMaxTime *= 5;
 	}
 
-	mRandomTurnFactor   = 0.7f + 0.3f * randFloat();
-	mRandomSpeedFactor  = 0.7f + 0.3f * randFloat();
-	_2CC                = 0.3f + 0.7f * randFloat();
-	mMoveRotationOffset = 0.0f;
-	_300                = false;
+	mRandomTurnFactor     = 0.7f + 0.3f * randFloat();
+	mRandomSpeedFactor    = 0.7f + 0.3f * randFloat();
+	mRandomMoveOffsFactor = 0.3f + 0.7f * randFloat();
+	mMoveRotationOffset   = 0.0f;
+	mIsBallFallWait       = false;
 
 	Vector3f dir = Vector3f(sinf(mFaceDir), 0.0f, cosf(mFaceDir));
 	setGoalDirect(dir);
@@ -83,8 +86,8 @@ void Obj::doUpdate()
 		mFsm->exec(this);
 		int stateID = getStateID();
 		if (stateID == TAMAGOMUSHI_Walk || stateID == TAMAGOMUSHI_Turn) {
-			_2BC++;
-			if (_2BC > _2C0) {
+			mActiveCounter++;
+			if (mActiveCounter > mActiveMaxTime) {
 				mFsm->transit(this, TAMAGOMUSHI_Hide, nullptr);
 			}
 		}
@@ -116,7 +119,7 @@ void Obj::doAnimationCullingOff()
 
 	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 
-	if (C_PARMS->_923 && getCurrAnimIndex() == 2) {
+	if (C_PARMS->mDoUseModelFetch && getCurrAnimIndex() == 2) {
 		J3DModel* model = mModel->getJ3DModel();
 		C_MGR->fetch(model, getMotionFrame());
 
@@ -193,8 +196,9 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* part)
 {
 	int stateID = getStateID();
 	if (isEvent(0, EB_Bittered)) {
-		_304++;
-		if (_304 > 4) {
+		// hit the enemy 5 times while bittered to kill it, classic morimura
+		mBitterHitNum++;
+		if (mBitterHitNum > 4) {
 			genItem();
 			kill(nullptr);
 		}
@@ -208,7 +212,7 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* part)
 		if (creature && creature->isPiki()) {
 			int pikiStateID = static_cast<Piki*>(creature)->getStateID();
 			if (pikiStateID != PIKISTATE_Panic && pikiStateID != PIKISTATE_Flying) {
-				InteractAstonish astonish(this, C_PARMS->_944);
+				InteractAstonish astonish(this, C_PARMS->mPikiPanicMaxTime);
 				creature->stimulate(astonish);
 			}
 		}
@@ -232,7 +236,7 @@ void Obj::collisionCallback(CollEvent& event)
 		if (hitobj && (hitobj->isPiki()) && (id != TAMAGOMUSHI_Appear)) {
 			Piki* piki = static_cast<Piki*>(hitobj);
 			if ((piki->getStateID() != PIKISTATE_Panic) && (piki->getStateID() != PIKISTATE_Flying)) {
-				InteractAstonish act(this, C_PARMS->_944);
+				InteractAstonish act(this, C_PARMS->mPikiPanicMaxTime);
 				hitobj->stimulate(act);
 			}
 		}
@@ -245,20 +249,20 @@ void Obj::collisionCallback(CollEvent& event)
  */
 void Obj::bounceCallback(Sys::Triangle* tri)
 {
-	if (_300) {
+	if (mIsBallFallWait) {
 		f32 velY     = 0.7f + 0.3f * randFloat();
-		f32 speed    = C_PARMS->_938;
-		Vector3f vel = Vector3f(sinf(mFaceDir) * speed, C_PARMS->_934 * velY, cosf(mFaceDir) * speed);
+		f32 speed    = C_PARMS->mBaseXZVelocityOnBounce;
+		Vector3f vel = Vector3f(sinf(mFaceDir) * speed, C_PARMS->mBaseYVelocityOnBounce * velY, cosf(mFaceDir) * speed);
 		setVelocity(vel);
 		mTargetVelocity = vel;
 		mPosition.y += 10.0f;
-		_2F0        = false;
+		mIsInBall   = false;
 		mRotation.z = 0.0f;
 		mRotation.x = 0.0f;
 		appearPanic();
 	}
 
-	_300 = false;
+	mIsBallFallWait = false;
 }
 
 /**
@@ -337,7 +341,7 @@ void Obj::walkFunc()
 	f32 x, y, z;
 	f32 newDir;
 	f32 targetSpeed    = mRandomSpeedFactor * C_GENERALPARMS.mMoveSpeed();
-	f32 offsetFactor   = C_PARMS->_924 * _2CC;
+	f32 offsetFactor   = C_PARMS->mMoveOffsetLevel * mRandomMoveOffsFactor;
 	f32 dirChangeLimit = mRandomTurnFactor * C_GENERALPARMS.mMaxTurnAngle();
 
 	mMoveRotationOffset += C_PARMS->mRotationStep;
@@ -414,13 +418,13 @@ void Obj::setGoalRandom()
  */
 void Obj::setGoalDirect(Vector3f& pos)
 {
-	f32 val     = C_PARMS->_93C;
+	f32 radius  = C_PARMS->mNextGoalPosMaxRadius;
 	f32 randVal = 0.5f * randFloat() + 0.5f;
-	val *= randVal;
+	radius *= randVal;
 	mGoalPosition = mPosition;
 
-	mGoalPosition.x += val * pos.x;
-	mGoalPosition.z += val * pos.z;
+	mGoalPosition.x += radius * pos.x;
+	mGoalPosition.z += radius * pos.z;
 }
 
 /**
@@ -489,7 +493,7 @@ void Obj::setLeader(Obj* leader)
 {
 	if (mLeader != leader) {
 		mLeader = leader;
-		if (mLeader->_2F0) {
+		if (mLeader->mIsInBall) {
 			setTypeBall();
 		}
 		disableEvent(0, EB_Cullable);
@@ -503,8 +507,8 @@ void Obj::setLeader(Obj* leader)
 void Obj::setTypeBall()
 {
 	mFsm->start(this, TAMAGOMUSHI_Wait, nullptr);
-	_2F0 = true;
-	_300 = true;
+	mIsInBall       = true;
+	mIsBallFallWait = true;
 }
 
 /**
@@ -514,7 +518,7 @@ void Obj::setTypeBall()
 void Obj::appearPanic()
 {
 	if (!mLeader || mLeader == this) {
-		f32 rad = SQUARE(C_PARMS->_948);
+		f32 rad = SQUARE(C_PARMS->mPanicInduceRadius);
 		Iterator<Piki> iter(pikiMgr);
 		CI_LOOP(iter)
 		{
@@ -523,7 +527,7 @@ void Obj::appearPanic()
 				// probably should be an inline?
 				Vector2f sep = Vector2f(piki->getPosition().x, piki->getPosition().z) - Vector2f(mPosition.x, mPosition.z);
 				if (sep.sqrMagnitude() < rad) {
-					InteractAstonish astonish(this, C_PARMS->_944);
+					InteractAstonish astonish(this, C_PARMS->mPikiPanicMaxTime);
 					piki->stimulate(astonish);
 				}
 			}

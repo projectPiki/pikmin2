@@ -362,12 +362,12 @@ struct StateRest : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	int mRestTimer; // _10
-	int _14;        // _14
-	int _18;        // _18
-	bool _1C;       // _1C
-	bool _1D;       // _1D
-	bool _1E;       // _1E
+	int mRestTimer;       // _10
+	int mRestWaitCounter; // _14
+	int mRestMaxTime;     // _18
+	bool mNeedFinishRest; // _1C
+	bool mIsInRest;       // _1D
+	bool mIsLanded;       // _1E
 };
 
 struct StateWait : public State {

@@ -53,7 +53,7 @@ struct AutoBgm : public PSSystem::DirectedBgm {
 				num++;
 			}
 		}
-		mMeloArr._10 = num;
+		mMeloArr.mTrackMaskIds = num;
 	}
 
 	// _00-_10  = JSULink<SeqBase>

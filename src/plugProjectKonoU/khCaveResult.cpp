@@ -117,18 +117,18 @@ ObjCaveResult::ObjCaveResult()
 	mScrollUpDown      = 0.0f;
 	mScrollSelIndex    = -6;
 	mScrollSelIndexMax = 0;
-	mScrollTargetDist  = msVal._1C;
+	mScrollTargetDist  = msVal.mScrollTargetInitialDist;
 
-	mScrollMoveTimer  = 0;
-	mScissorMax       = 0;
-	mScissorMin       = 0;
-	mStatus           = 3;
-	mChangeStateDelay = 0;
-	_F8               = 0;
-	mFlag             = 0;
-	mAlpha            = 255;
-	_107              = 0;
-	_106              = 0;
+	mScrollMoveTimer       = 0;
+	mScissorMax            = 0;
+	mScissorMin            = 0;
+	mStatus                = 3;
+	mChangeStateDelay      = 0;
+	mUnusedValue           = 0;
+	mFlag                  = 0;
+	mAlpha                 = 255;
+	mScrollMoveDownCounter = 0;
+	mScrollMoveUpCounter   = 0;
 }
 
 /**
@@ -253,7 +253,7 @@ void ObjCaveResult::doCreate(JKRArchive* arc)
 
 	if (!disp->mDebtPayed && (disp->mCaveComp || disp->mMaxOtakara != disp->mCollectedOtakara)) {
 		mCounterTreasureMax->getMotherPane()->hide();
-		mCounterTreasureCollected->getMotherPane()->add(msVal._10, msVal._14);
+		mCounterTreasureCollected->getMotherPane()->add(msVal.mCollectedTreasureCounterOffsetX, msVal.mCollectedTreasureCounterOffsetY);
 		mScreenMain->search('PICT_008')->hide();
 		mScreenMain->search('Ptits14')->hide();
 		mScreenMain->search('Ptits15')->hide();
@@ -363,7 +363,7 @@ bool ObjCaveResult::doUpdate()
 
 			if (disp->mCaveComp) {
 				mStatus           = CAVERES_Effect;
-				mChangeStateDelay = msVal._3B;
+				mChangeStateDelay = msVal.mChangeStateInitialDelay;
 			} else {
 				mOtakaraCount = disp->mCollectedOtakara;
 				mStatus       = CAVERES_Normal;
@@ -383,7 +383,7 @@ bool ObjCaveResult::doUpdate()
 	}
 
 	if (!isFlag(CAVERESFLAG_SaveOpen) && (mStatus != CAVERES_Effect) && mAlpha != 0) {
-		mAlpha -= msVal._3A;
+		mAlpha -= msVal.mAlphaRateInEffect;
 	}
 
 	return false;
@@ -1046,8 +1046,8 @@ bool ObjCaveResult::doUpdateFadein()
 {
 	updateAnimation();
 
-	mAlpha -= msVal._38;
-	if (mAlpha < msVal._38) {
+	mAlpha -= msVal.mFadeInOutSpeed;
+	if (mAlpha < msVal.mFadeInOutSpeed) {
 		mAlpha = 0;
 		return true;
 	}
@@ -1061,8 +1061,8 @@ bool ObjCaveResult::doUpdateFadein()
  */
 void ObjCaveResult::doUpdateFadeinFinish()
 {
-	_FC  = 175.0f;
-	_100 = 224.5f;
+	mItemDropBaseXPos = 175.0f;
+	mItemDropBaseYPos = 224.5f;
 }
 
 /**
@@ -1072,8 +1072,8 @@ void ObjCaveResult::doUpdateFadeinFinish()
 bool ObjCaveResult::doUpdateFadeout()
 {
 	updateAnimation();
-	mAlpha += msVal._38;
-	if (mAlpha > (255 - msVal._38)) {
+	mAlpha += msVal.mFadeInOutSpeed;
+	if (mAlpha > (255 - msVal.mFadeInOutSpeed)) {
 		mAlpha = 255;
 		return true;
 	}
@@ -1117,14 +1117,14 @@ void ObjCaveResult::statusNormal()
 		// press up, begin scroll up state
 		if (getGamePad()->getButton() & (Controller::PRESS_UP) && mScrollSelIndex) {
 			mScrollSelIndex--;
-			if (_106 >= 1) {
-				mScrollTargetDist = msVal._20;
+			if (mScrollMoveUpCounter >= 1) {
+				mScrollTargetDist = msVal.mInputScrollInitialDist;
 			} else {
-				_106++;
+				mScrollMoveUpCounter++;
 			}
 
-			_107    = 0;
-			mStatus = CAVERES_ScrollUp;
+			mScrollMoveDownCounter = 0;
+			mStatus                = CAVERES_ScrollUp;
 			statusScrollUp();
 			return;
 		}
@@ -1132,20 +1132,20 @@ void ObjCaveResult::statusNormal()
 		// press down, begin scroll down state
 		if (getGamePad()->getButton() & (Controller::PRESS_DOWN) && mScrollSelIndex != mScrollSelIndexMax) {
 			mScrollSelIndex++;
-			if (_107 >= 1) {
-				mScrollTargetDist = msVal._20;
+			if (mScrollMoveDownCounter >= 1) {
+				mScrollTargetDist = msVal.mInputScrollInitialDist;
 			} else {
-				_107++;
+				mScrollMoveDownCounter++;
 			}
-			_106    = 0;
-			mStatus = CAVERES_ScrollDown;
+			mScrollMoveUpCounter = 0;
+			mStatus              = CAVERES_ScrollDown;
 			statusScrollDown();
 			return;
 		}
 
-		_107              = 0;
-		_106              = 0;
-		mScrollTargetDist = msVal._1C;
+		mScrollMoveDownCounter = 0;
+		mScrollMoveUpCounter   = 0;
+		mScrollTargetDist      = msVal.mScrollTargetInitialDist;
 	}
 }
 
@@ -1204,7 +1204,7 @@ void ObjCaveResult::statusForceScroll()
 			}
 			if (!check) {
 				mStatus           = CAVERES_AllMoney;
-				mChangeStateDelay = msVal._3B;
+				mChangeStateDelay = msVal.mChangeStateInitialDelay;
 			}
 		} else {
 			JUT_ASSERTLINE(829, getDispMember()->isID(OWNER_KH, MEMBER_CAVE_RESULT), "disp member err");
@@ -1230,8 +1230,8 @@ void ObjCaveResult::statusForceScroll()
 
 	int i = 0;
 	JGeometry::TVec2f pos;
-	pos.x = _FC;
-	pos.y = _100;
+	pos.x = mItemDropBaseXPos;
+	pos.y = mItemDropBaseYPos;
 	FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode)
 	{
 		LostItemMgr* mgr = cNode->mItemMgr;
@@ -1249,7 +1249,7 @@ void ObjCaveResult::statusForceScroll()
  */
 void ObjCaveResult::statusDrumRoll()
 {
-	mChangeStateDelay = msVal._3B;
+	mChangeStateDelay = msVal.mChangeStateInitialDelay;
 	mStatus           = CAVERES_AllMoney;
 }
 
@@ -1265,7 +1265,7 @@ void ObjCaveResult::statusAllMoney()
 		mTotalPokos          = disp->mTotalPokos;
 		mCounterTotalPokos->startPuyoUp(1.0f);
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_SUM_UP, 0);
-		mChangeStateDelay = msVal._3B;
+		mChangeStateDelay = msVal.mChangeStateInitialDelay;
 		mStatus           = CAVERES_DecP;
 	} else {
 		mChangeStateDelay--;
@@ -1286,7 +1286,7 @@ void ObjCaveResult::statusDecP()
 		pikminSE();
 		if (disp->mCaveComp) {
 			mStatus           = CAVERES_Effect;
-			mChangeStateDelay = msVal._3B;
+			mChangeStateDelay = msVal.mChangeStateInitialDelay;
 		} else {
 			mStatus = CAVERES_Normal;
 		}
@@ -1305,8 +1305,8 @@ void ObjCaveResult::statusLost()
 	if (!mChangeStateDelay) {
 		int i = 0;
 		JGeometry::TVec2f pos;
-		pos.x = _FC;
-		pos.y = _100;
+		pos.x = mItemDropBaseXPos;
+		pos.y = mItemDropBaseYPos;
 		FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode)
 		{
 			if (cNode->mLostNum != 0 && ((cNode->mItemMgr->mFlags & LOSTITEM_Unk2) != 2)) {
@@ -1318,7 +1318,7 @@ void ObjCaveResult::statusLost()
 			i++;
 		}
 		mStatus           = CAVERES_AllMoney;
-		mChangeStateDelay = msVal._3B;
+		mChangeStateDelay = msVal.mChangeStateInitialDelay;
 	} else {
 		mChangeStateDelay--;
 	}
@@ -1336,7 +1336,8 @@ void ObjCaveResult::statusEffect()
 			mScreenMain->search('Panacomp')->show();
 			mScaleMgr->up();
 			mCounterTreasureMax->getMotherPane()->show();
-			mCounterTreasureCollected->getMotherPane()->add(-msVal._10, -msVal._14);
+			mCounterTreasureCollected->getMotherPane()->add(-msVal.mCollectedTreasureCounterOffsetX,
+			                                                -msVal.mCollectedTreasureCounterOffsetY);
 			mScreenMain->search('PICT_008')->show();
 			mScreenMain->search('Ptits14')->show();
 			mScreenMain->search('Ptits15')->show();
@@ -1344,8 +1345,8 @@ void ObjCaveResult::statusEffect()
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_WMAP_CAVE_NAME, 0);
 		}
 
-		if (mAlpha < msVal._39) {
-			mAlpha += msVal._3A;
+		if (mAlpha < msVal.mMaxAlphaInEffect) {
+			mAlpha += msVal.mAlphaRateInEffect;
 		}
 
 	} else {
@@ -1410,15 +1411,15 @@ void ObjCaveResult::updateAnimation()
 			efx2d::Arg arg2(Vector2f(x * 0.5f, y * 0.5f));
 			mEfxComp->create(&arg2);
 
-			efx2d::Arg arg(Vector2f(getPaneCenterX(mScreenComplete->search('NALL')) + msVal._04,
-			                        getPaneCenterY(mScreenComplete->search('NALL')) + msVal._08));
+			efx2d::Arg arg(Vector2f(getPaneCenterX(mScreenComplete->search('NALL')) + msVal.mCompEfxOffsetX,
+			                        getPaneCenterY(mScreenComplete->search('NALL')) + msVal.mCompEfxOffsetY));
 			efx2d::T2DCavecomp efx;
 			efx.create(&arg);
 
 			setFlag(CAVERESFLAG_MakeEfx);
 		}
-		mAnimTimers[1] += msVal._00;
-		mAnimTimers[3] += msVal._00;
+		mAnimTimers[1] += msVal.mAnimSpeed;
+		mAnimTimers[3] += msVal.mAnimSpeed;
 		if (mAnimTimers[1] >= mCompleteAnim->getFrameMax() - 1.0f || mAnimTimers[3] >= mCompleteAnimColor->getFrameMax() - 1.0f) {
 			resetFlag(CAVERESFLAG_DrawComp);
 		}
@@ -1554,8 +1555,9 @@ void LostItemMgr::init(const JGeometry::TVec2f& pos, bool isOdd)
 			item->mCounter = (10.0f * x1 + 8.0f);
 		}
 
-		f32 xoffs[5] = { kh::Screen::ObjCaveResult::msVal._24, kh::Screen::ObjCaveResult::msVal._28, kh::Screen::ObjCaveResult::msVal._2C,
-			             kh::Screen::ObjCaveResult::msVal._30, kh::Screen::ObjCaveResult::msVal._34 };
+		f32 xoffs[5] = { kh::Screen::ObjCaveResult::msVal.mLostItemSmokeOffsetX1, kh::Screen::ObjCaveResult::msVal.mLostItemSmokeOffsetX2,
+			             kh::Screen::ObjCaveResult::msVal.mLostItemSmokeOffsetX3, kh::Screen::ObjCaveResult::msVal.mLostItemSmokeOffsetX4,
+			             kh::Screen::ObjCaveResult::msVal.mLostItemSmokeOffsetX5 };
 
 		if (isOdd) {
 			xoffs[0] += 60.0f;

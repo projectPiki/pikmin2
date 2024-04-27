@@ -46,9 +46,9 @@ struct InteractAbsorb : public Interaction {
 };
 
 struct InteractAstonish : public Interaction {
-	inline InteractAstonish(Creature* creature, f32 p1)
+	inline InteractAstonish(Creature* creature, f32 time)
 	    : Interaction(creature)
-	    , _08(p1)
+	    , mMaxTime(time)
 	{
 	}
 
@@ -56,7 +56,7 @@ struct InteractAstonish : public Interaction {
 
 	// _00 = VTBL
 	// _04 = Creature*
-	f32 _08; // _08
+	f32 mMaxTime; // _08, doesnt get used?
 };
 
 struct InteractBattle : public Interaction {

@@ -76,7 +76,7 @@ void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 		P2ASSERTLINE(149, screen);
 		screen->mGameOverScreen->setPosY(ObjWinLoseReason::msVal.mYOffsetP1);
 		screen->mType      = 1;
-		screen->mTimeSpeed = ObjWinLoseReason::msVal._18;
+		screen->mTimeSpeed = ObjWinLoseReason::msVal.mTimeSpeed;
 		break;
 	}
 	case 2: // piki extinct
@@ -87,7 +87,7 @@ void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 		P2ASSERTLINE(159, screen);
 		screen->mGameOverScreen->setPosY(ObjWinLoseReason::msVal.mYOffsetP1);
 		screen->mType      = 1;
-		screen->mTimeSpeed = ObjWinLoseReason::msVal._18;
+		screen->mTimeSpeed = ObjWinLoseReason::msVal.mTimeSpeed;
 		break;
 	}
 	case 3: {
@@ -111,7 +111,7 @@ void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 		P2ASSERTLINE(180, screen);
 		screen->mGameOverScreen->setPosY(ObjWinLoseReason::msVal.mYOffsetP2);
 		screen->mType      = 2;
-		screen->mTimeSpeed = ObjWinLoseReason::msVal._18;
+		screen->mTimeSpeed = ObjWinLoseReason::msVal.mTimeSpeed;
 		break;
 	}
 	case 2: // piki extinct
@@ -122,7 +122,7 @@ void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 		P2ASSERTLINE(190, screen);
 		screen->mGameOverScreen->setPosY(ObjWinLoseReason::msVal.mYOffsetP2);
 		screen->mType      = 2;
-		screen->mTimeSpeed = ObjWinLoseReason::msVal._18;
+		screen->mTimeSpeed = ObjWinLoseReason::msVal.mTimeSpeed;
 		break;
 	}
 	case 3: // default (marble?)
@@ -205,7 +205,7 @@ void SceneWinLoseReason::doUpdateActive()
 			if (mCounter == ObjWinLoseReason::msVal.mProgressFrame) {
 				Morimura::TGameOverBase* obj = static_cast<Morimura::TGameOverBase*>(mScreenObj[i]);
 				P2ASSERTLINE(272, obj);
-				obj->mTimeSpeed = -ObjWinLoseReason::msVal._18;
+				obj->mTimeSpeed = -ObjWinLoseReason::msVal.mTimeSpeed;
 			} else if (mCounter > ObjWinLoseReason::msVal.mFinishFrame) {
 				mDone[i] = true;
 			}

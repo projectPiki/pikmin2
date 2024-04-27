@@ -112,7 +112,7 @@ struct Mgr : public Screen::Mgr {
 		mInCave      = false;
 		mInDemo      = false;
 		mCourseIndex = 0;
-		_98          = 0;
+		mUnused      = 0;
 	}
 
 	virtual ~Mgr() { }                                                 // _08 (weak)
@@ -130,7 +130,7 @@ struct Mgr : public Screen::Mgr {
 	bool mInCave;              // _91
 	bool mInDemo;              // _92
 	u32 mCourseIndex;          // _94
-	u32 _98;                   // _98
+	u32 mUnused;               // _98
 	JUtility::TColor mBgColor; // _9C
 	JUtility::TColor mColor2;  // _A0
 	int mBgMode;               // _A4

@@ -220,23 +220,23 @@ struct TIndPane : public CNode {
 
 	inline void setAngleTimer(f32 time)
 	{
-		_44 = 0;
-		_3C = -6;
-		_38 = 0.0f;
-		_34 = 0.0f;
-		_40 = (time * 360.0f) / TAU;
+		mMtxUseType  = 0;
+		mTexMtxScale = -6;
+		mMtxYOffset  = 0.0f;
+		mMtxXOffset  = 0.0f;
+		mRotation    = (time * 360.0f) / TAU;
 	}
 
 	inline void setXY(f32 x, f32 y)
 	{
-		_34 = x;
-		_38 = y;
+		mMtxXOffset = x;
+		mMtxYOffset = y;
 	}
 
 	inline void setFlag(int flag)
 	{
-		_3C = 0;
-		_44 = flag;
+		mTexMtxScale = 0;
+		mMtxUseType  = flag;
 	}
 
 	// _00     = VTBL
@@ -246,11 +246,11 @@ struct TIndPane : public CNode {
 	JUTTexture* mTexture3; // _20
 	Vector2f mMinPos;      // _24
 	Vector2f mMaxPos;      // _2C
-	f32 _34;               // _34
-	f32 _38;               // _38
-	s16 _3C;               // _3C
-	f32 _40;               // _40
-	u8 _44;                // _44
+	f32 mMtxXOffset;       // _34
+	f32 mMtxYOffset;       // _38
+	s16 mTexMtxScale;      // _3C
+	f32 mRotation;         // _40
+	u8 mMtxUseType;        // _44
 };
 
 struct TChallengeScreen : public TScreenBase {

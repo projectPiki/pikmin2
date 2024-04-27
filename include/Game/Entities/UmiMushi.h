@@ -107,21 +107,21 @@ struct Parms : public EnemyParmsBase {
 
 	Parms()
 	{
-		_A10 = 1;
-		_A11 = 1;
-		_A12 = 1;
-		_A13 = 1;
-		_A14 = 1;
-		_A15 = 0;
-		_A16 = 1;
-		_A18 = -1;
-		_A1C = 10.0f;
-		_A20 = 0.05f;
-		_A24 = 1.0f;
-		_A28 = 10.0f;
-		_A2C = 0.3f;
-		_A30 = 1.0f;
-		_A34 = 1.4f;
+		mCanRotate              = 1;
+		mIsAIAlwaysActiveOnWait = 1;
+		mDoUseFindState         = 1;
+		mCanEatNavis            = 1;
+		mUnused1                = 1;
+		mDoUseParamEyeCalc      = 0;
+		mUnused2                = 1;
+		mUnused3                = -1;
+		mWalkAngleSpeed         = 10.0f;
+		mRotateAngleDelta       = 0.05f;
+		mUnused4                = 1.0f;
+		mEyeYOffset             = 10.0f;
+		mBlindTurnRateReduction = 0.3f;
+		mDefaultEyeScale        = 1.0f;
+		mTailScale              = 1.4f;
 	}
 
 	virtual void read(Stream& stream) // _08 (weak)
@@ -132,22 +132,22 @@ struct Parms : public EnemyParmsBase {
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms mProperParms; // _7F8
-	u8 _A10;                  // _A10, unknown
-	u8 _A11;                  // _A11, unknown
-	u8 _A12;                  // _A12, unknown
-	u8 _A13;                  // _A13, unknown
-	u8 _A14;                  // _A14, unknown
-	u8 _A15;                  // _A15, unknown
-	u8 _A16;                  // _A16, unknown
-	s16 _A18;                 // _A18, unknown
-	f32 _A1C;                 // _A1C
-	f32 _A20;                 // _A20
-	f32 _A24;                 // _A24
-	f32 _A28;                 // _A28
-	f32 _A2C;                 // _A2C
-	f32 _A30;                 // _A30
-	f32 _A34;                 // _A34
+	ProperParms mProperParms;    // _7F8
+	u8 mCanRotate;               // _A10
+	u8 mIsAIAlwaysActiveOnWait;  // _A11
+	u8 mDoUseFindState;          // _A12
+	u8 mCanEatNavis;             // _A13
+	u8 mUnused1;                 // _A14
+	u8 mDoUseParamEyeCalc;       // _A15
+	u8 mUnused2;                 // _A16
+	s16 mUnused3;                // _A18
+	f32 mWalkAngleSpeed;         // _A1C
+	f32 mRotateAngleDelta;       // _A20
+	f32 mUnused4;                // _A24
+	f32 mEyeYOffset;             // _A28
+	f32 mBlindTurnRateReduction; // _A2C
+	f32 mDefaultEyeScale;        // _A30
+	f32 mTailScale;              // _A34
 };
 
 struct Obj : public EnemyBase {
@@ -226,28 +226,28 @@ struct Obj : public EnemyBase {
 	MouthSlots mMouthSlots;                  // _2CC
 	SysShape::Joint* mHeadJoint;             // _2D4
 	Navi* mTargetNavi;                       // _2D8
-	bool _2DC;                               // _2DC, unknown
-	u8 _2DD;                                 // _2DD, unknown
-	int _2E0;                                // _2E0, unknown
-	Vector3f _2E4;                           // _2E4
-	int _2F0;                                // _2F0
-	int _2F4;                                // _2F0
-	f32 _2F8;                                // _2F8
-	f32 _2FC;                                // _2FC
-	int _300;                                // _300
-	Vector3f _304;                           // _304
-	J3DMaterial* _310;                       // _310, unknown
-	J3DGXColorS10 _314;                      // _314
-	J3DGXColorS10 _31C;                      // _31C
+	bool mNeedNaviTargetSound;               // _2DC
+	u8 mDoSkipEyeCalc;                       // _2DD
+	int mCantSearchTargetTimer;              // _2E0
+	Vector3f mLastCheckedPosition;           // _2E4
+	int mMoveCheckIntervalTimer;             // _2F0
+	int mReachGoalStopTimer;                 // _2F0
+	f32 mPrevFaceDir;                        // _2F8
+	f32 mWalkRotateAngle;                    // _2FC
+	int mChaseSoundTimer;                    // _300
+	Vector3f mTargetPosition;                // _304
+	J3DMaterial* mTailMaterial;              // _310
+	J3DGXColorS10 mActiveTailColor;          // _314
+	J3DGXColorS10 mPrevTailColor;            // _31C
 	J3DGXColorS10 mOlimarColor1;             // _324
 	J3DGXColorS10 mOlimarColor2;             // _32C
 	J3DGXColorS10 mLouieColor1;              // _334
 	J3DGXColorS10 mLouieColor2;              // _33C
 	J3DGXColorS10 mNormalColor1;             // _344
 	J3DGXColorS10 mNormalColor2;             // _34C
-	Sys::MatLoopAnimator* _354;              // _354
+	Sys::MatLoopAnimator* mMatAnim;          // _354
 	UmimushiShadowMgr* mShadowMgr;           // _358
-	f32 _35C;                                // _35C
+	f32 mEyeScale;                           // _35C
 	u16 mEyeJointIdx;                        // _360
 	u16 mWeakJointIdx;                       // _362
 	efx::TUmiHamon* mEfxHamon;               // _364
@@ -257,7 +257,7 @@ struct Obj : public EnemyBase {
 	efx::TUmiEyeBlue* mEfxEyeBlue[2];        // _378
 	efx::TUmiEat* mEfxEat;                   // _380
 	efx::TUmiDeadawa* mEfxBubble;            // _384
-	Matrixf* _388;                           // _388
+	Matrixf* mEatJointMtx;                   // _388
 	Vector3f mHamonPosition;                 // _38C
 	FSM* mFsm;                               // _398
 	EnemyTypeID::EEnemyTypeID mBloysterType; // _39C

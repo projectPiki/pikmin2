@@ -71,15 +71,15 @@ void TVsSelectIndPane::draw()
 
 	Mtx mtx;
 	Mtx23 indMtx;
-	if (_44) {
-		indMtx[0][0] = _34;
+	if (mMtxUseType) {
+		indMtx[0][0] = mMtxXOffset;
 		indMtx[0][1] = 0.0f;
 		indMtx[0][2] = 0.0f;
 		indMtx[1][0] = 0.0f;
-		indMtx[1][1] = _38;
+		indMtx[1][1] = mMtxYOffset;
 		indMtx[1][2] = 0.0f;
 	} else {
-		PSMTXRotRad(mtx, J2DROTATE_Z, _40 * 0.01745329f);
+		PSMTXRotRad(mtx, J2DROTATE_Z, mRotation * 0.01745329f);
 		indMtx[0][0] = mtx[0][0] * 0.5f;
 		indMtx[0][1] = mtx[0][1] * 0.5f;
 		indMtx[0][2] = 0.0f;
@@ -88,7 +88,7 @@ void TVsSelectIndPane::draw()
 		indMtx[1][2] = 0.0f;
 	}
 
-	GXSetIndTexMtx(GX_ITM_0, indMtx, _3C);
+	GXSetIndTexMtx(GX_ITM_0, indMtx, mTexMtxScale);
 	GXSetTevIndWarp(GX_TEVSTAGE0, GX_IND_TEX_STAGE_0, GX_TRUE, GX_FALSE, GX_ITM_0);
 	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
 	GXSetTevOp(GX_TEVSTAGE0, GX_REPLACE);

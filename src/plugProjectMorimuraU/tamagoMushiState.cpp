@@ -39,18 +39,19 @@ StateWalk::StateWalk(int stateID)
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	int p1;
-	int diff;
+	int min;
+	int max;
 	Obj* mitite = OBJ(enemy);
 	mitite->startMotion(TAMAGOANIM_Move, nullptr);
 	mitite->resetWalkParm();
 	Parms* parms = CG_PARMS(mitite);
-	p1           = parms->mProperParms.mMinimumWalkTime.mValue;
-	diff         = parms->mProperParms.mMaximumWalkTime.mValue - p1;
+	min          = parms->mProperParms.mMinimumWalkTime.mValue;
+	max          = parms->mProperParms.mMaximumWalkTime.mValue - min;
 
-	f32 r = (f32)diff * randFloat() + (f32)p1;
-	_14   = (int)r;
-	_10   = 0;
+	f32 time     = (f32)max * randFloat() + (f32)min;
+	mWalkMaxTime = (int)time;
+
+	mWalkTimer = 0;
 	mitite->setAtari(true);
 	mitite->setAlive(true);
 }
@@ -62,14 +63,14 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 void StateWalk::exec(EnemyBase* enemy)
 {
 	Obj* mitite = OBJ(enemy);
-	_10++;
+	mWalkTimer++;
 	if (mitite->mBounceTriangle) {
 		mitite->walkFunc();
 	} else {
 		mitite->ballMove();
 	}
 
-	if (mitite->isReachToGoal(10.0f) || _10 > _14) {
+	if (mitite->isReachToGoal(10.0f) || mWalkTimer > mWalkMaxTime) {
 		mitite->mTargetVelocity  = Vector3f(0.0f);
 		mitite->mCurrentVelocity = Vector3f(0.0f);
 		mitite->finishMotion();
@@ -134,8 +135,8 @@ StateAppear::StateAppear(int stateID)
  */
 void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	int p1;
-	int diff;
+	int min;
+	int max;
 
 	enemy->startMotion(TAMAGOANIM_Appear, nullptr);
 	enemy->stopMotion();
@@ -143,21 +144,21 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 
 	Obj* mitite  = OBJ(enemy);
 	Parms* parms = CG_PARMS(mitite);
-	p1           = parms->mProperParms.mMinimumAppearanceTime.mValue;
-	diff         = parms->mProperParms.mMaximumAppearanceTime.mValue - p1;
+	min          = parms->mProperParms.mMinimumAppearanceTime.mValue;
+	max          = parms->mProperParms.mMaximumAppearanceTime.mValue - min;
 
-	f32 r = (f32)diff * randFloat() + (f32)p1;
-	_18   = (int)r;
-	_14   = 0;
+	f32 time           = (f32)max * randFloat() + (f32)min;
+	mAppearWaitMaxTime = (int)time;
+	mAppearWaitTimer   = 0;
 
 	mitite->setAtari(false);
 	mitite->setAlive(false);
 
 	mitite->hardConstraintOn();
 
-	_10          = false;
-	_20          = true;
-	mAppearFrame = 15.0f * randFloat();
+	mHasMadeFellow       = false;
+	mNeedPlayAppearSound = true;
+	mAppearFrame         = 15.0f * randFloat();
 }
 
 /**
@@ -167,16 +168,16 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 void StateAppear::exec(EnemyBase* enemy)
 {
 	Obj* mitite = OBJ(enemy);
-	if (!_10 && mitite->isFound()) {
-		_10 = true;
+	if (!mHasMadeFellow && mitite->isFound()) {
+		mHasMadeFellow = true;
 		mitite->createFellow();
 	}
 
-	if (_10) {
-		_14++;
+	if (mHasMadeFellow) {
+		mAppearWaitTimer++;
 	}
 
-	if (!mitite->isEvent(0, EB_Bittered) && (_14 > _18)) {
+	if (!mitite->isEvent(0, EB_Bittered) && (mAppearWaitTimer > mAppearWaitMaxTime)) {
 		mitite->setEmotionExcitement();
 		if (mitite->isStopMotion()) {
 			mitite->createAppearEffect();
@@ -197,8 +198,8 @@ void StateAppear::exec(EnemyBase* enemy)
 		}
 	}
 
-	if (_20 && !mitite->isStopMotion() && mitite->getMotionFrame() >= mAppearFrame) {
-		_20 = false;
+	if (mNeedPlayAppearSound && !mitite->isStopMotion() && mitite->getMotionFrame() >= mAppearFrame) {
+		mNeedPlayAppearSound = false;
 		mitite->mSoundObj->startSound(PSSE_EN_TAMAGOMUSHI_APPEAR, 0);
 	}
 }
@@ -315,8 +316,8 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->disableEvent(0, EB_Cullable);
 	enemy->setAtari(false);
 
-	Obj* mitite  = OBJ(enemy);
-	mitite->_300 = 1;
+	Obj* mitite             = OBJ(enemy);
+	mitite->mIsBallFallWait = true;
 }
 
 /**
@@ -326,7 +327,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 void StateWait::exec(EnemyBase* enemy)
 {
 	Obj* mitite = OBJ(enemy);
-	if (mitite->_300 == 0) {
+	if (mitite->mIsBallFallWait == 0) {
 		mitite->setAlive(true);
 		mitite->setAtari(true);
 		transit(mitite, TAMAGOMUSHI_Walk, nullptr);

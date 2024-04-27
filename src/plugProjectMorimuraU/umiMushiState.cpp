@@ -70,7 +70,7 @@ void StateWait::exec(EnemyBase* enemy)
 		OBJ(enemy)->mNextState = UMIMUSHI_Dead;
 	}
 
-	if (CG_PARMS(OBJ(enemy))->_A11 || (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END)) {
+	if (CG_PARMS(OBJ(enemy))->mIsAIAlwaysActiveOnWait || (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END)) {
 		if (OBJ(enemy)->mNextState < 0) {
 			if (EnemyFunc::isStartFlick(enemy, false)) {
 				transit(enemy, UMIMUSHI_Flick, nullptr);
@@ -386,7 +386,7 @@ void StateTurn::exec(EnemyBase* enemy)
 		} else {
 			if (nextState != UMIMUSHI_Find && nextState != UMIMUSHI_Flick) {
 				OBJ(enemy)->turnFunc();
-				if (CG_PARMS(OBJ(enemy))->_A12 && OBJ(enemy)->isChangeNavi()) {
+				if (CG_PARMS(OBJ(enemy))->mDoUseFindState && OBJ(enemy)->isChangeNavi()) {
 					OBJ(enemy)->mNextState = UMIMUSHI_Find;
 				}
 			}
@@ -534,7 +534,7 @@ void StateAttack::exec(EnemyBase* enemy)
 			break;
 
 		case KEYEVENT_5:
-			if (CG_PARMS(enemy)->_A13) {
+			if (CG_PARMS(enemy)->mCanEatNavis) {
 				Iterator<Navi> iter(naviMgr);
 				CI_LOOP(iter)
 				{

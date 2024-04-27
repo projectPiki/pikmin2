@@ -21,8 +21,8 @@ bool MeloArr_RandomAvoid::avoidChk(MeloArrArg& meloArg)
  */
 inline void MeloArrArg::assertCheck() const
 {
-	P2ASSERTLINE(89, _00 < 0x10);
-	P2ASSERTLINE(90, _01 != 0xFF);
+	P2ASSERTLINE(89, mTrackIndex < 16);
+	P2ASSERTLINE(90, mCylceNum != 0xFF);
 }
 
 /**
@@ -37,7 +37,7 @@ bool MeloArrMgr::isToAvoid(MeloArrArg& meloArg)
 		return false;
 	}
 	bool check = false;
-	if ((_10 >> meloArg._00) & 1) {
+	if ((mTrackMaskIds >> meloArg.mTrackIndex) & 1) {
 		currLink = static_cast<MeloArrBase*>(mList.mHead);
 		for (currLink; currLink; currLink = static_cast<MeloArrBase*>(currLink->mNext)) {
 			MeloArrBase* randAvoid = static_cast<MeloArrBase*>(currLink->mValue);
@@ -45,7 +45,7 @@ bool MeloArrMgr::isToAvoid(MeloArrArg& meloArg)
 			if (check == false) {
 				randAvoid = static_cast<MeloArrBase*>(currLink->mValue);
 				bool interCheck;
-				if (randAvoid->_19 == true) {
+				if (randAvoid->mIsEnabled == true) {
 					interCheck = randAvoid->avoidChk(meloArg);
 				} else {
 					interCheck = false;

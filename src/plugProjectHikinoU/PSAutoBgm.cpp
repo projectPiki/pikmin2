@@ -533,8 +533,8 @@ u32 Module::seqCpuSync_AutoBgm_Module(JASTrack* track1, u16 cmd, u32 p3, JASTrac
 		_2A4               = 0;
 		_2C0               = 0;
 		_2C2               = -1;
-		_2B8[0]->_08       = 0;
-		_2B8[1]->_08       = 0;
+		_2B8[0]->mCycleNum = 0;
+		_2B8[1]->mCycleNum = 0;
 
 		bool check = false;
 		if (!_2B8[0]->mSlider.mValue && !_2B8[1]->mSlider.mValue) {
@@ -927,18 +927,18 @@ u16 Module::cycleLoop(JASTrack* track)
 		return 2;
 	}
 
-	if (++cycle->_08 > cycle->mSlider.mValue) {
-		cycle->_08 = 0;
+	if (++cycle->mCycleNum > cycle->mSlider.mValue) {
+		cycle->mCycleNum = 0;
 	}
 
-	if (cycle->_08 == 0) {
+	if (cycle->mCycleNum == 0) {
 		if (++_2C0 >= 2) {
 			_2C0 = 0;
 		}
 		return 2;
 	}
 
-	if ((u8)(s8)cycle->_08 == 1 && cycle == _2B8[0]) {
+	if ((u8)(s8)cycle->mCycleNum == 1 && cycle == _2B8[0]) {
 		return 3;
 	}
 	return 0;
@@ -1133,7 +1133,7 @@ u16 CycleBase::checkCloser(JASTrack*)
 	if ((int)mModule->_F4.mValue == 1 && _3C != mModule->mWsDataNum) {
 		return 0;
 	}
-	if (_08 == mSlider.mValue && getCycleType() == 0) {
+	if (mCycleNum == mSlider.mValue && getCycleType() == 0) {
 		return 1;
 	}
 	return 0;
@@ -1797,15 +1797,15 @@ u16 OnCycle::historiesAreSameAll()
  */
 u32 OnCycle::avoidCheck()
 {
-	u8 val              = _08;
+	u8 num              = mCycleNum;
 	Track* track        = (Track*)mModule->mTree.getParent()->getObjectPtr();
 	MeloArrMgr& meloMgr = ((Conductor*)track->mTree.getParent()->getObjectPtr())->_B4->mMeloArr;
 
 	P2ASSERTLINE(484, track->mIndex < 16);
 
 	MeloArrArg arg;
-	arg._00 = track->mIndex;
-	arg._01 = val;
+	arg.mTrackIndex = track->mIndex;
+	arg.mCylceNum   = num;
 	if (meloMgr.isToAvoid(arg) == true) {
 		return 0x8000;
 	}

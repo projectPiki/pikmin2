@@ -146,54 +146,54 @@ struct ObjCaveResult : public ::Screen::ObjBase {
 	u32 mScissorMax;                                           // _EC
 	int mStatus;                                               // _F0
 	int mChangeStateDelay;                                     // _F4
-	u32 _F8;                                                   // _F8, unknown
-	f32 _FC;                                                   // _FC
-	f32 _100;                                                  // _100
+	u32 mUnusedValue;                                          // _F8
+	f32 mItemDropBaseXPos;                                     // _FC
+	f32 mItemDropBaseYPos;                                     // _100
 	u8 mFlag;                                                  // _104
 	u8 mAlpha;                                                 // _105
-	u8 _106;                                                   // _106
-	u8 _107;                                                   // _107
+	u8 mScrollMoveUpCounter;                                   // _106
+	u8 mScrollMoveDownCounter;                                 // _107
 
 	static struct StaticValues {
 		inline StaticValues()
 		{
-			_00 = 0.7f;
-			_04 = 90.0f;
-			_08 = -30.0f;
-			_10 = 0.0f;
-			_14 = 10.0f;
-			_1C = 8;
-			_20 = 3;
-			_38 = 10;
-			_39 = 160;
-			_3A = 32;
-			_3B = 20;
+			mAnimSpeed                       = 0.7f;
+			mCompEfxOffsetX                  = 90.0f;
+			mCompEfxOffsetY                  = -30.0f;
+			mCollectedTreasureCounterOffsetX = 0.0f;
+			mCollectedTreasureCounterOffsetY = 10.0f;
+			mScrollTargetInitialDist         = 8;
+			mInputScrollInitialDist          = 3;
+			mFadeInOutSpeed                  = 10;
+			mMaxAlphaInEffect                = 160;
+			mAlphaRateInEffect               = 32;
+			mChangeStateInitialDelay         = 20;
 
-			_24 = -20.0f;
-			_28 = 140.0f;
-			_2C = 173.0f;
-			_30 = 206.0f;
-			_34 = 240.0f;
+			mLostItemSmokeOffsetX1 = -20.0f;
+			mLostItemSmokeOffsetX2 = 140.0f;
+			mLostItemSmokeOffsetX3 = 173.0f;
+			mLostItemSmokeOffsetX4 = 206.0f;
+			mLostItemSmokeOffsetX5 = 240.0f;
 		}
 
-		f32 _00;  // _00
-		f32 _04;  // _04
-		f32 _08;  // _08
-		f32 _0C;  // _0C
-		f32 _10;  // _10
-		f32 _14;  // _14
-		f32 _18;  // _18
-		uint _1C; // _1C
-		uint _20; // _20
-		f32 _24;  // _24
-		f32 _28;  // _28
-		f32 _2C;  // _2C
-		f32 _30;  // _30
-		f32 _34;  // _34
-		u8 _38;   // _38
-		u8 _39;   // _39
-		u8 _3A;   // _3A
-		u8 _3B;   // _3B
+		f32 mAnimSpeed;                       // _00
+		f32 mCompEfxOffsetX;                  // _04
+		f32 mCompEfxOffsetY;                  // _08
+		f32 mUnused1;                         // _0C
+		f32 mCollectedTreasureCounterOffsetX; // _10
+		f32 mCollectedTreasureCounterOffsetY; // _14
+		f32 mUnused2;                         // _18
+		uint mScrollTargetInitialDist;        // _1C
+		uint mInputScrollInitialDist;         // _20
+		f32 mLostItemSmokeOffsetX1;           // _24
+		f32 mLostItemSmokeOffsetX2;           // _28
+		f32 mLostItemSmokeOffsetX3;           // _2C
+		f32 mLostItemSmokeOffsetX4;           // _30
+		f32 mLostItemSmokeOffsetX5;           // _34
+		u8 mFadeInOutSpeed;                   // _38
+		u8 mMaxAlphaInEffect;                 // _39
+		u8 mAlphaRateInEffect;                // _3A
+		u8 mChangeStateInitialDelay;          // _3B
 	} msVal;
 };
 

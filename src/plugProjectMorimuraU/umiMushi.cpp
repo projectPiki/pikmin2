@@ -59,7 +59,7 @@ void Obj::setParameters()
 	if (mBloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
 		C_GENERALPARMS.mHeightOffsetFromFloor.mValue = 50.0f;
 	}
-	mCollTree->getCollPart('weak')->setScale(C_PARMS->_A34); // scale of weak point (tail bulb)
+	mCollTree->getCollPart('weak')->setScale(C_PARMS->mTailScale); // scale of weak point (tail bulb)
 }
 
 /**
@@ -94,17 +94,17 @@ void Obj::onInit(CreatureInitArg* initArg)
 	disableEvent(0, EB_DeathEffectEnabled);
 	mHeadJoint = mModel->getJoint("head_joint1");
 	P2ASSERTLINE(124, mHeadJoint);
-	mTargetNavi   = nullptr;
-	mGoalPosition = mHomePosition;
-	_2E0          = 0;
-	_2E4          = mHomePosition;
-	_2F0          = 0;
-	_2F4          = 0;
-	_2FC          = 0.0f;
-	mTargetNavi   = nullptr; // second null initialization of targetNavi
-	_2DC          = 0;
-	_300          = 0;
-	mNextState    = UMIMUSHI_NULL;
+	mTargetNavi             = nullptr;
+	mGoalPosition           = mHomePosition;
+	mCantSearchTargetTimer  = 0;
+	mLastCheckedPosition    = mHomePosition;
+	mMoveCheckIntervalTimer = 0;
+	mReachGoalStopTimer     = 0;
+	mWalkRotateAngle        = 0.0f;
+	mTargetNavi             = nullptr; // second null initialization of targetNavi
+	mNeedNaviTargetSound    = 0;
+	mChaseSoundTimer        = 0;
+	mNextState              = UMIMUSHI_NULL;
 
 	mNormalColor2.r = -25;
 	mNormalColor2.g = -100;
@@ -130,15 +130,15 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mNormalColor1.g = -25;
 	mNormalColor1.b = -75;
 
-	_31C = mNormalColor1;
-	_314 = mNormalColor1;
+	mPrevTailColor   = mNormalColor1;
+	mActiveTailColor = mNormalColor1;
 
 	curU = nullptr;
 
 	mFsm->start(this, UMIMUSHI_Walk, nullptr);
 
-	P2ASSERTLINE(157, _354);
-	_354->start(C_MGR->mTexAnimation);
+	P2ASSERTLINE(157, mMatAnim);
+	mMatAnim->start(C_MGR->mTexAnimation);
 
 	P2ASSERTLINE(160, mShadowMgr);
 	mShadowMgr->init();
@@ -146,10 +146,10 @@ void Obj::onInit(CreatureInitArg* initArg)
 	J3DModelData* modelData = mModel->mJ3dModel->mModelData;
 	P2ASSERTLINE(166, modelData);
 
-	u16 matIdx = modelData->mMaterialTable.mMaterialNames->getIndex("cc_mat1_v");
-	_310       = modelData->mMaterialTable.mMaterials[matIdx];
+	u16 matIdx    = modelData->mMaterialTable.mMaterialNames->getIndex("cc_mat1_v");
+	mTailMaterial = modelData->mMaterialTable.mMaterials[matIdx];
 
-	P2ASSERTLINE(171, _310);
+	P2ASSERTLINE(171, mTailMaterial);
 
 	if (mBloysterType == EnemyTypeID::EnemyID_UmiMushi) {
 		PSM::EnemyMidBoss* bossSoundObj = static_cast<PSM::EnemyMidBoss*>(mSoundObj);
@@ -161,7 +161,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 		f32 health = C_PROPERPARMS.mBlindHealth.mValue;
 		mHealth    = health;
 		mMaxHealth = health;
-		_35C       = 0.45f;
+		mEyeScale  = 0.45f;
 		P2ASSERTLINE(189, mModel);
 		J3DModelData* modelData                                 = mModel->mJ3dModel->mModelData;
 		mEyeJointIdx                                            = mModel->getJointIndex("eyes_joint1");
@@ -199,10 +199,10 @@ void Obj::onInit(CreatureInitArg* initArg)
 	P2ASSERTLINE(239, mEfxEat);
 	P2ASSERTLINE(240, mEfxBubble);
 
-	_388 = mModel->getJoint("bero_joint1")->getWorldMatrix();
+	mEatJointMtx = mModel->getJoint("bero_joint1")->getWorldMatrix();
 
-	mEfxEat->mMtx    = _388;
-	mEfxBubble->mMtx = _388;
+	mEfxEat->mMtx    = mEatJointMtx;
+	mEfxBubble->mMtx = mEatJointMtx;
 }
 
 /**
@@ -212,9 +212,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 Obj::Obj()
     : mHeadJoint(nullptr)
     , mTargetNavi(nullptr)
-    , _2DD(0)
-    , _310(nullptr)
-    , _354(nullptr)
+    , mDoSkipEyeCalc(false)
+    , mTailMaterial(nullptr)
+    , mMatAnim(nullptr)
     , mShadowMgr(nullptr)
 {
 	mEfxHamon      = nullptr;
@@ -226,13 +226,13 @@ Obj::Obj()
 	mEfxEyeBlue[1] = nullptr;
 	mEfxEat        = nullptr;
 	mEfxBubble     = nullptr;
-	_388           = nullptr;
+	mEatJointMtx   = nullptr;
 	mFsm           = nullptr;
 	mJointIndices  = nullptr;
 
 	mAnimator = new ProperAnimator;
 	setFSM(new FSM);
-	_354       = new Sys::MatLoopAnimator;
+	mMatAnim   = new Sys::MatLoopAnimator;
 	mShadowMgr = new UmimushiShadowMgr(this);
 
 	mEfxHamon = new efx::TUmiHamon(&mHamonPosition);
@@ -288,17 +288,17 @@ void Obj::doAnimationCullingOff()
 	}
 	EnemyBase::doAnimationCullingOff();
 	mShadowMgr->update();
-	if (mTargetNavi && _2DC) {
-		if (_300 == 0) {
+	if (mTargetNavi && mNeedNaviTargetSound) {
+		if (mChaseSoundTimer == 0) {
 			if (mTargetNavi->mNaviIndex == NAVIID_Olimar) {
 				mSoundObj->startSound(PSSE_EN_UMI_SEARCH_ORIMER, 0);
 			} else {
 				mSoundObj->startSound(PSSE_EN_UMI_SEARCH_LUGIE, 0);
 			}
 		}
-		_300++;
-		if (_300 >= 30) {
-			_300 = 0;
+		mChaseSoundTimer++;
+		if (mChaseSoundTimer >= 30) {
+			mChaseSoundTimer = 0;
 		}
 	}
 	if (mBloysterType == EnemyTypeID::EnemyID_UmiMushi) {
@@ -385,9 +385,9 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 void Obj::changeMaterial()
 {
 	J3DModel* model = mModel->mJ3dModel;
-	_310->mTevBlock->setTevColor(0, _314);
+	mTailMaterial->mTevBlock->setTevColor(0, mActiveTailColor);
 	model->calcMaterial();
-	_354->animate(30.0f);
+	mMatAnim->animate(30.0f);
 }
 
 /**
@@ -445,9 +445,9 @@ void Obj::getShadowParam(ShadowParam& parms)
  */
 void Obj::doSimulation(f32 speed)
 {
-	--_2E0;
-	if (_2E0 < 0) {
-		_2E0 = 0;
+	--mCantSearchTargetTimer;
+	if (mCantSearchTargetTimer < 0) {
+		mCantSearchTargetTimer = 0;
 	}
 	EnemyBase::doSimulation(speed);
 }
@@ -609,9 +609,9 @@ void Obj::doGetLifeGaugeParam(LifeGaugeParam& settings)
  */
 bool Obj::isReachToGoal(f32 radius)
 {
-	_2F4++;
-	if (_2F4 > 800) {
-		_2F4 = 0;
+	mReachGoalStopTimer++;
+	if (mReachGoalStopTimer > 800) {
+		mReachGoalStopTimer = 0;
 		return true;
 	}
 	return sqrDistanceXZ(mPosition, mGoalPosition) < SQUARE(radius); // how is this not matching >:O
@@ -625,23 +625,23 @@ void Obj::walkFunc()
 {
 	f32 faceDirRads;
 	f32 speed         = C_GENERALPARMS.mMoveSpeed.mValue;
-	f32 inA1C         = C_PARMS->_A1C;
+	f32 rate          = C_PARMS->mWalkAngleSpeed;
 	f32 rotationAccel = C_GENERALPARMS.mTurnSpeed.mValue;
 	f32 rotationSpeed = C_GENERALPARMS.mMaxTurnAngle.mValue;
 
-	_2FC += C_PARMS->_A20;
-	if (_2FC > 360.0f) {
-		_2FC -= 360.0f;
+	mWalkRotateAngle += C_PARMS->mRotateAngleDelta;
+	if (mWalkRotateAngle > 360.0f) {
+		mWalkRotateAngle -= 360.0f;
 	}
 
-	f32 rotationAngle = sin(_2FC);
-	f32 rotationDelta = inA1C * rotationAngle;
-	if (!C_PARMS->_A10) {
+	f32 rotationAngle = sin(mWalkRotateAngle);
+	f32 rotationDelta = rate * rotationAngle;
+	if (!C_PARMS->mCanRotate) {
 		rotationDelta = 0.0f;
 	}
 
 	faceDirRads = TORADIANS(rotationDelta);
-	mFaceDir    = _2F8;
+	mFaceDir    = mPrevFaceDir;
 	turnToTarget2(mGoalPosition, rotationAccel, rotationSpeed);
 
 	f32 deltaFaceDir = mFaceDir + faceDirRads;
@@ -650,21 +650,21 @@ void Obj::walkFunc()
 	f32 y = getTargetVelocity().y;
 	f32 z = cosf(deltaFaceDir);
 
-	_2F8              = mFaceDir;
+	mPrevFaceDir      = mFaceDir;
 	f32 faceDirOffset = roundAng(faceDirRads);
 	updateFaceDir(mFaceDir + faceDirOffset);
 	mTargetVelocity = Vector3f(x, y, speed * z); // sure
 
-	_2F0++;
-
-	if (_2F0 > 120) {
-		if (sqrDistanceXZ(mPosition, _2E4) < SQUARE(30.0f)) {
-			_2E0            = 120;
-			mTargetCreature = nullptr;
-			mGoalPosition   = mHomePosition;
+	// check bloyster has moved far enough in the past 120 frames, or else make it forget what it was doing (why does morimura do this)
+	mMoveCheckIntervalTimer++;
+	if (mMoveCheckIntervalTimer > 120) {
+		if (sqrDistanceXZ(mPosition, mLastCheckedPosition) < SQUARE(30.0f)) {
+			mCantSearchTargetTimer = 120;
+			mTargetCreature        = nullptr;
+			mGoalPosition          = mHomePosition;
 		}
-		_2E4 = mPosition;
-		_2F0 = 0;
+		mLastCheckedPosition    = mPosition;
+		mMoveCheckIntervalTimer = 0;
 	}
 	mSoundObj->startSound(PSSE_EN_UMI_ZURUZURU, 0);
 }
@@ -709,9 +709,9 @@ void Obj::changeColor()
 		} else if (mTargetNavi) {
 			if (frame < 10.0f) {
 				frame /= 10.0f;
-				_314.r = ((f32)mNormalColor1.r) * frame + ((f32)_31C.r) * (1.0f - frame);
-				_314.g = ((f32)mNormalColor1.g) * frame + ((f32)_31C.g) * (1.0f - frame);
-				_314.b = ((f32)mNormalColor1.b) * frame + ((f32)_31C.b) * (1.0f - frame);
+				mActiveTailColor.r = ((f32)mNormalColor1.r) * frame + ((f32)mPrevTailColor.r) * (1.0f - frame);
+				mActiveTailColor.g = ((f32)mNormalColor1.g) * frame + ((f32)mPrevTailColor.g) * (1.0f - frame);
+				mActiveTailColor.b = ((f32)mNormalColor1.b) * frame + ((f32)mPrevTailColor.b) * (1.0f - frame);
 			}
 
 			if (frame < 48.0f) {
@@ -730,15 +730,15 @@ void Obj::changeColor()
 		}
 
 		if (mTargetNavi->mNaviIndex == NAVIID_Olimar) { // red
-			_314.r = weight2 * ((f32)mOlimarColor2.r) + weight1 * ((f32)mOlimarColor1.r);
-			_314.g = weight2 * ((f32)mOlimarColor2.g) + weight1 * ((f32)mOlimarColor1.g);
-			_314.b = weight2 * ((f32)mOlimarColor2.b) + weight1 * ((f32)mOlimarColor1.b);
+			mActiveTailColor.r = weight2 * ((f32)mOlimarColor2.r) + weight1 * ((f32)mOlimarColor1.r);
+			mActiveTailColor.g = weight2 * ((f32)mOlimarColor2.g) + weight1 * ((f32)mOlimarColor1.g);
+			mActiveTailColor.b = weight2 * ((f32)mOlimarColor2.b) + weight1 * ((f32)mOlimarColor1.b);
 			return;
 		}
 		// blue
-		_314.r = weight2 * ((f32)mLouieColor2.r) + weight1 * ((f32)mLouieColor1.r);
-		_314.g = weight2 * ((f32)mLouieColor2.g) + weight1 * ((f32)mLouieColor1.g);
-		_314.b = weight2 * ((f32)mLouieColor2.b) + weight1 * ((f32)mLouieColor1.b);
+		mActiveTailColor.r = weight2 * ((f32)mLouieColor2.r) + weight1 * ((f32)mLouieColor1.r);
+		mActiveTailColor.g = weight2 * ((f32)mLouieColor2.g) + weight1 * ((f32)mLouieColor1.g);
+		mActiveTailColor.b = weight2 * ((f32)mLouieColor2.b) + weight1 * ((f32)mLouieColor1.b);
 		return;
 	}
 
@@ -753,21 +753,21 @@ void Obj::changeColor()
 
 	if (mTargetNavi) {
 		if (mTargetNavi->mNaviIndex == NAVIID_Olimar) {
-			_314.r = weight2 * ((f32)mNormalColor2.r) + weight1 * ((f32)mOlimarColor2.r);
-			_314.g = weight2 * ((f32)mNormalColor2.g) + weight1 * ((f32)mOlimarColor2.g);
-			_314.b = weight2 * ((f32)mNormalColor2.b) + weight1 * ((f32)mOlimarColor2.b);
+			mActiveTailColor.r = weight2 * ((f32)mNormalColor2.r) + weight1 * ((f32)mOlimarColor2.r);
+			mActiveTailColor.g = weight2 * ((f32)mNormalColor2.g) + weight1 * ((f32)mOlimarColor2.g);
+			mActiveTailColor.b = weight2 * ((f32)mNormalColor2.b) + weight1 * ((f32)mOlimarColor2.b);
 			return;
 		}
 
-		_314.r = weight2 * ((f32)mNormalColor2.r) + weight1 * ((f32)mLouieColor2.r);
-		_314.g = weight2 * ((f32)mNormalColor2.g) + weight1 * ((f32)mLouieColor2.g);
-		_314.b = weight2 * ((f32)mNormalColor2.b) + weight1 * ((f32)mLouieColor2.b);
+		mActiveTailColor.r = weight2 * ((f32)mNormalColor2.r) + weight1 * ((f32)mLouieColor2.r);
+		mActiveTailColor.g = weight2 * ((f32)mNormalColor2.g) + weight1 * ((f32)mLouieColor2.g);
+		mActiveTailColor.b = weight2 * ((f32)mNormalColor2.b) + weight1 * ((f32)mLouieColor2.b);
 		return;
 	}
 
-	_314.r = weight2 * ((f32)mNormalColor2.r) + weight1 * ((f32)mNormalColor1.r);
-	_314.g = weight2 * ((f32)mNormalColor2.g) + weight1 * ((f32)mNormalColor1.g);
-	_314.b = weight2 * ((f32)mNormalColor2.b) + weight1 * ((f32)mNormalColor1.b);
+	mActiveTailColor.r = weight2 * ((f32)mNormalColor2.r) + weight1 * ((f32)mNormalColor1.r);
+	mActiveTailColor.g = weight2 * ((f32)mNormalColor2.g) + weight1 * ((f32)mNormalColor1.g);
+	mActiveTailColor.b = weight2 * ((f32)mNormalColor2.b) + weight1 * ((f32)mNormalColor1.b);
 }
 
 /**
@@ -785,9 +785,9 @@ void Obj::resetColor()
 	f32 weight2 = absF(sinf((3.0f * PI / 2.0f) * frame));
 	f32 weight1 = 1.0f - weight2;
 
-	_314.r = weight2 * ((f32)mNormalColor1.r) + weight1 * ((f32)_31C.r);
-	_314.g = weight2 * ((f32)mNormalColor1.g) + weight1 * ((f32)_31C.g);
-	_314.b = weight2 * ((f32)mNormalColor1.b) + weight1 * ((f32)_31C.b);
+	mActiveTailColor.r = weight2 * ((f32)mNormalColor1.r) + weight1 * ((f32)mPrevTailColor.r);
+	mActiveTailColor.g = weight2 * ((f32)mNormalColor1.g) + weight1 * ((f32)mPrevTailColor.g);
+	mActiveTailColor.b = weight2 * ((f32)mNormalColor1.b) + weight1 * ((f32)mPrevTailColor.b);
 }
 
 /**
@@ -805,7 +805,7 @@ f32 Obj::turnFunc()
 	Vector3f targetPos = mGoalPosition;
 	f32 factor         = 1.0f;
 	if (mBloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
-		factor = C_PARMS->_A2C;
+		factor = C_PARMS->mBlindTurnRateReduction;
 	}
 
 	f32 maxAngle  = factor * C_PROPERPARMS.mRotateSpeedMax();
@@ -942,8 +942,8 @@ lbl_80385C10:
  */
 void Obj::resetWalkParm()
 {
-	_2F8 = mFaceDir;
-	_2FC = 0.0f;
+	mPrevFaceDir     = mFaceDir;
+	mWalkRotateAngle = 0.0f;
 }
 
 /**
@@ -974,11 +974,11 @@ bool Obj::isChangeNavi()
 			Vector3f naviPos(navi->getPosition().x, navi->getPosition().y, navi->getPosition().z);
 			if (mPosition.sqrDistance(naviPos) < dist) {
 				if (mTargetNavi != navi) {
-					_31C            = _314;
-					mTargetNavi     = navi;
-					mTargetCreature = mTargetNavi;
-					mGoalPosition   = mTargetNavi->getPosition();
-					_2DC            = false;
+					mPrevTailColor       = mActiveTailColor;
+					mTargetNavi          = navi;
+					mTargetCreature      = mTargetNavi;
+					mGoalPosition        = mTargetNavi->getPosition();
+					mNeedNaviTargetSound = false;
 					return true;
 				}
 				return false;
@@ -986,9 +986,9 @@ bool Obj::isChangeNavi()
 		}
 
 		if (mTargetNavi || mTargetNavi == navi) {
-			mTargetNavi = nullptr;
-			_31C        = _314;
-			_2DC        = false;
+			mTargetNavi          = nullptr;
+			mPrevTailColor       = mActiveTailColor;
+			mNeedNaviTargetSound = false;
 			return true;
 		}
 	}
@@ -1170,7 +1170,7 @@ lbl_80385EA0:
 bool Obj::isFindTarget()
 {
 	mTargetCreature = nullptr;
-	if (_2E0 > 0) {
+	if (mCantSearchTargetTimer > 0) {
 		return false;
 	}
 
@@ -1704,17 +1704,17 @@ bool Obj::outMove()
 
 		rad = 1.5f * rad; // f5
 
-		f32 moveSpeed = 0.5f * C_PROPERPARMS.mMoveSpeed(); // f28
-		_304          = mHomePosition + (dir * rad);
+		f32 moveSpeed   = 0.5f * C_PROPERPARMS.mMoveSpeed(); // f28
+		mTargetPosition = mHomePosition + (dir * rad);
 
-		f32 angle1 = roundAng(JMAAtan2Radian(_304.x - mPosition.x, _304.z - mPosition.z));
+		f32 angle1 = roundAng(JMAAtan2Radian(mTargetPosition.x - mPosition.x, mTargetPosition.z - mPosition.z));
 		f32 angle2 = roundAng(JMAAtan2Radian(naviPos.x - mPosition.x, naviPos.z - mPosition.z));
 
 		f32 angleDist = angDist(angle2, angle1);
 
 		if (absF(angleDist) < 1.0f) {
 			Vector3f pos = mPosition;
-			Vector3f vec = _304;
+			Vector3f vec = mTargetPosition;
 			if (sqrDistanceXZ(pos, vec) < 100.0f) {
 				mTargetVelocity = Vector3f(0.0f);
 				return true;
@@ -1728,7 +1728,7 @@ bool Obj::outMove()
 			f32 maxAngle  = 0.5f * C_PROPERPARMS.mRotateSpeedMax(); // f27
 			f32 turnSpeed = 0.5f * C_PROPERPARMS.mRotateSpeed();    // f28
 			f32 velY      = getTargetVelocity().y;
-			turnToTarget2(_304, turnSpeed, maxAngle);
+			turnToTarget2(mTargetPosition, turnSpeed, maxAngle);
 
 			mTargetVelocity = Vector3f(vel.x, velY, vel.z);
 		} else {
@@ -2073,7 +2073,7 @@ lbl_80386A70:
  */
 void Obj::setFindAnim()
 {
-	if (_314.r == mNormalColor1.r && _314.g == mNormalColor1.g && _314.b == mNormalColor1.b) {
+	if (mActiveTailColor.r == mNormalColor1.r && mActiveTailColor.g == mNormalColor1.g && mActiveTailColor.b == mNormalColor1.b) {
 		startMotion(UMIANIM_FSearch, nullptr);
 		return;
 	}
@@ -2104,7 +2104,7 @@ void Obj::fadeColorEffect()
 	mEfxEyeRed[1]->fade();
 	mEfxEyeBlue[0]->fade();
 	mEfxEyeBlue[1]->fade();
-	_2DC = false;
+	mNeedNaviTargetSound = false;
 }
 
 /**
@@ -2115,8 +2115,8 @@ void Obj::createColorEffect()
 {
 	if (mTargetNavi) {
 		efx::Arg fxArg(mPosition);
-		_300 = 0;
-		_2DC = true;
+		mChaseSoundTimer     = 0;
+		mNeedNaviTargetSound = true;
 		if (mTargetNavi->mNaviIndex == NAVIID_Olimar) {
 			mEfxWeakRed->create(&fxArg);
 			mEfxEyeRed[0]->create(&fxArg);
@@ -2135,7 +2135,7 @@ void Obj::createColorEffect()
  */
 void Obj::attackEffect()
 {
-	efx::TUmiAttack attackFX(_388);
+	efx::TUmiAttack attackFX(mEatJointMtx);
 	efx::ArgScale fxArg(mPosition, mScaleModifier);
 
 	attackFX.create(&fxArg);
@@ -2151,7 +2151,7 @@ void Obj::meltEffect()
 	efx::ArgScale fxArg(mHamonPosition, mScaleModifier);
 
 	meltFX.create(&fxArg);
-	_2DD = 1;
+	mDoSkipEyeCalc = true;
 }
 
 /**
@@ -2207,15 +2207,15 @@ void Obj::delShadow() { shadowMgr->delNormalShadow(this); }
  */
 void Obj::eyeScaleMtxCalc()
 {
-	if (_2DD) {
+	if (mDoSkipEyeCalc) {
 		return;
 	}
 
 	Matrixf* mtx = mModel->mJ3dModel->mMtxBuffer->getWorldMatrix(mEyeJointIdx);
-	if (C_PARMS->_A15) {
-		_35C = C_PARMS->_A30;
+	if (C_PARMS->mDoUseParamEyeCalc) {
+		mEyeScale = C_PARMS->mDefaultEyeScale;
 	} else {
-		_35C = 0.45f;
+		mEyeScale = 0.45f;
 	}
 	Vector3f xVec = mtx->getColumn(0);
 	xVec.normalise();
@@ -2224,7 +2224,7 @@ void Obj::eyeScaleMtxCalc()
 	Vector3f zVec = mtx->getColumn(2);
 	zVec.normalise();
 
-	f32 scale        = _35C;
+	f32 scale        = mEyeScale;
 	Vector3f newXVec = xVec * scale;
 	Vector3f newYVec = yVec * scale;
 	Vector3f newZVec = zVec * scale;
@@ -2239,12 +2239,12 @@ void Obj::eyeScaleMtxCalc()
 	Matrixf* mtx2 = mModel->mJ3dModel->mMtxBuffer->getWorldMatrix(mModel->getJointIndex("kuti_joint1"));
 
 	f32 val                    = y * scale + y2 * (1.0f - scale);
-	mtx->mMatrix.structView.ty = C_PARMS->_A28 * (1.0f - scale) + val;
+	mtx->mMatrix.structView.ty = C_PARMS->mEyeYOffset * (1.0f - scale) + val;
 	mtx->mMatrix.structView.ty = val - 5.0f * (1.0f - scale);
 
-	if (C_PARMS->_A15) {
+	if (C_PARMS->mDoUseParamEyeCalc) {
 		mtx->mMatrix.structView.tx = mtx2->mMatrix.structView.tx;
-		mtx->mMatrix.structView.ty = y2 + C_PARMS->_A28;
+		mtx->mMatrix.structView.ty = y2 + C_PARMS->mEyeYOffset;
 		mtx->mMatrix.structView.tz = mtx2->mMatrix.structView.tz;
 	}
 
@@ -2468,7 +2468,7 @@ void Obj::weakScaleMtxCalc()
 	Vector3f zVec = mtx->getColumn(2);
 	zVec.normalise();
 
-	f32 scale        = C_PARMS->_A34;
+	f32 scale        = C_PARMS->mTailScale;
 	Vector3f newXVec = xVec * scale;
 	Vector3f newYVec = yVec * scale;
 	Vector3f newZVec = zVec * scale;

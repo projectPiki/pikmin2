@@ -295,7 +295,7 @@ bool Mgr::reset()
 		mInCave      = false;
 		mInDemo      = false;
 		mCourseIndex = 0;
-		_98          = 0;
+		mUnused      = 0;
 		mBgColor.a   = 0;
 		mColor2.a    = 0;
 		mBgMode      = 0;

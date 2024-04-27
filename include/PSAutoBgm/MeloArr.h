@@ -11,15 +11,15 @@ namespace PSAutoBgm {
 // not sure of size of this, just based off PSAutoBgm_MeloArranger.cpp
 struct MeloArrArg {
 	MeloArrArg()
-	    : _00(0xFF)
-	    , _01(0xFF)
+	    : mTrackIndex(0xFF)
+	    , mCylceNum(0xFF)
 	{
 	}
 
 	void assertCheck() const;
 
-	u8 _00; // _00
-	u8 _01; // _01
+	u8 mTrackIndex; // _00
+	u8 mCylceNum;   // _01
 };
 
 // this has some funky inheritance going on I think?
@@ -28,8 +28,8 @@ struct MeloArrBase : public JSULink<MeloArrBase>, JADHioNode {
 	    : JSULink<MeloArrBase>(this)
 	    , JADHioNode(name)
 	{
-		_18 = 1;
-		_19 = 0;
+		_18        = 1;
+		mIsEnabled = false;
 	}
 	// JADHioNode vtable:
 	// virtual void ~MeloArrBase() = 0;     // _08
@@ -37,18 +37,18 @@ struct MeloArrBase : public JSULink<MeloArrBase>, JADHioNode {
 	// _10 is a thunk of ~MeloArrBase()
 
 	// MeloArrBase vtable:
-	virtual void directOn(Track*) { _19 = true; }   // _14 (weak)
-	virtual void directOff(Track*) { _19 = false; } // _18 (weak)
-	virtual void pre(MeloArrArg&) { }               // _1C (weak)
-	virtual void post(MeloArrArg&) { }              // _20 (weak)
-	virtual bool avoidChk(MeloArrArg&) = 0;         // _24
-	virtual ~MeloArrBase() { }                      // _28 (weak)
+	virtual void directOn(Track*) { mIsEnabled = true; }   // _14 (weak)
+	virtual void directOff(Track*) { mIsEnabled = false; } // _18 (weak)
+	virtual void pre(MeloArrArg&) { }                      // _1C (weak)
+	virtual void post(MeloArrArg&) { }                     // _20 (weak)
+	virtual bool avoidChk(MeloArrArg&) = 0;                // _24
+	virtual ~MeloArrBase() { }                             // _28 (weak)
 
 	// _00-_10  = JSUPtrLink
 	// _10 		= JADHioNode vtable
 	// _14      = MeloArrBase vtable
-	u8 _18;   // _18
-	bool _19; // _19
+	u8 _18;          // _18
+	bool mIsEnabled; // _19
 };
 
 /**
@@ -58,7 +58,7 @@ struct MeloArrMgr : public JADHioNode {
 	MeloArrMgr()
 	    : JADHioNode(nullptr)
 	    , mList()
-	    , _10(0)
+	    , mTrackMaskIds(0)
 	    , mIsActive(0)
 	{
 	}
@@ -69,7 +69,7 @@ struct MeloArrMgr : public JADHioNode {
 
 	// _00 = VTABLE
 	JSUList<MeloArrBase> mList; // _04
-	u16 _10;                    // _10
+	u16 mTrackMaskIds;          // _10
 	u8 mIsActive;               // _12
 };
 

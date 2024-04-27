@@ -99,11 +99,11 @@ void THiScoreIndPane::draw()
  */
 void THiScoreIndPane::setRadius(s16 p1, f32 radius)
 {
-	_44 = 0;
-	_3C = p1;
-	_38 = 0.0f;
-	_34 = 0.0f;
-	_40 = (radius * 360.0f) / TAU;
+	mMtxUseType  = 0;
+	mTexMtxScale = p1;
+	mMtxYOffset  = 0.0f;
+	mMtxXOffset  = 0.0f;
+	mRotation    = (radius * 360.0f) / TAU;
 }
 
 /**

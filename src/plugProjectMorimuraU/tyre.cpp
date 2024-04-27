@@ -99,7 +99,7 @@ void Obj::onInit(CreatureInitArg* arg)
  */
 Obj::Obj()
     : mOwner(nullptr)
-    , _2D0(0)
+    , mDoUseFrontTyreHoldCalc(0)
     , mIsUnderground(true)
     , mIsShadowActive(false)
 {
@@ -274,7 +274,7 @@ void Obj::collisionCallback(CollEvent& event)
 				Pellet* pelt = static_cast<Pellet*>(hitobj);
 				if (pelt->isPellet()) {
 					enableEvent(0, EB_Untargetable);
-					mAnimCounter      = C_PARMS->_833;
+					mAnimCounter      = C_PARMS->mOnPelletAirTime;
 					mFallingYPosition = (pelt->mConfig->mParams.mHeight.mData / mAnimCounter) * C_PARMS->mPelletHeightAdjustment;
 					mLandedOnPellet   = true;
 				}
@@ -408,8 +408,8 @@ void Obj::frontRollMtxCalc()
 {
 	Matrixf* worldMat    = mModel->mJoints[mTyreFrontJointIndex].getWorldMatrix();
 	Vector3f translation = Vector3f(0.0f);
-	if (_2D0) {
-		worldMat->newTranslation(_2D4);
+	if (mDoUseFrontTyreHoldCalc) {
+		worldMat->newTranslation(mFrontTyreHeldPosition);
 		PSMTXCopy(worldMat->mMatrix.mtxView, J3DSys::mCurrentMtx);
 	}
 

@@ -164,20 +164,20 @@ void TScreenBase::draw(Graphics& gfx, J2DPerspGraph* graf)
 TIndPane::TIndPane(char const* name, f32 x, f32 y)
     : CNode("indpane")
 {
-	mTexture1 = nullptr;
-	mTexture2 = nullptr;
-	mTexture3 = nullptr;
-	_34       = 0.0f;
-	_38       = 0.0f;
-	_3C       = 0;
-	_40       = 0.0f;
-	_44       = true;
-	mTexture1 = new JUTTexture(name);
+	mTexture1    = nullptr;
+	mTexture2    = nullptr;
+	mTexture3    = nullptr;
+	mMtxXOffset  = 0.0f;
+	mMtxYOffset  = 0.0f;
+	mTexMtxScale = 0;
+	mRotation    = 0.0f;
+	mMtxUseType  = true;
+	mTexture1    = new JUTTexture(name);
 
-	_38     = 0.02f;
-	_34     = 0.02f;
-	mMinPos = Vector2f(0.0f, 0.0f);
-	mMaxPos = Vector2f(x, y);
+	mMtxYOffset = 0.02f;
+	mMtxXOffset = 0.02f;
+	mMinPos     = Vector2f(0.0f, 0.0f);
+	mMaxPos     = Vector2f(x, y);
 }
 
 /**
@@ -218,16 +218,16 @@ void TIndPane::draw()
 	GXSetIndTexCoordScale(GX_IND_TEX_STAGE_0, GX_ITS_1, GX_ITS_1);
 	Mtx23 mtx;
 
-	if (_44) {
-		mtx[0][0] = _34;
+	if (mMtxUseType) {
+		mtx[0][0] = mMtxXOffset;
 		mtx[0][1] = 0.0f;
 		mtx[0][2] = 0.0f;
 		mtx[1][0] = 0.0f;
-		mtx[1][1] = _38;
+		mtx[1][1] = mMtxYOffset;
 		mtx[1][2] = 0.0f;
 	} else {
 		Matrixf temp;
-		PSMTXRotRad(temp.mMatrix.mtxView, 'z', MTXDegToRad(_40));
+		PSMTXRotRad(temp.mMatrix.mtxView, 'z', MTXDegToRad(mRotation));
 		mtx[0][0] = temp.mMatrix.structView.xx * 0.5f;
 		mtx[0][1] = temp.mMatrix.structView.yx * 0.5f;
 		mtx[0][2] = 0.0f;
@@ -236,7 +236,7 @@ void TIndPane::draw()
 		mtx[1][2] = 0.0f;
 	}
 
-	GXSetIndTexMtx(GX_ITM_0, mtx, _3C);
+	GXSetIndTexMtx(GX_ITM_0, mtx, mTexMtxScale);
 	GXSetTevIndWarp(GX_TEVSTAGE0, GX_IND_TEX_STAGE_0, 1, 0, GX_ITM_0);
 	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
 	GXSetTevOp(GX_TEVSTAGE0, GX_REPLACE);

@@ -49,18 +49,18 @@ struct Parms : public EnemyParmsBase {
 	{
 		mDisableWanderRotation        = 0;
 		mEnableSpeedAdjustment        = 0;
-		_922                          = 0;
-		_923                          = 0;
-		_924                          = 40.0f;
+		mIsNotAttackable              = 0;
+		mDoUseModelFetch              = 0;
+		mMoveOffsetLevel              = 40.0f;
 		mRotationStep                 = 0.3f;
 		mWalkSpeedAdjustmentTimeLimit = 10.0f;
 		mWalkSpeedReductionFactor     = 0.2f;
-		_934                          = 50.0f;
-		_938                          = 80.0f;
-		_93C                          = 80.0f;
+		mBaseYVelocityOnBounce        = 50.0f;
+		mBaseXZVelocityOnBounce       = 80.0f;
+		mNextGoalPosMaxRadius         = 80.0f;
 		_940                          = 0.0f;
-		_944                          = 30.0f;
-		_948                          = 150.0f;
+		mPikiPanicMaxTime             = 30.0f;
+		mPanicInduceRadius            = 150.0f;
 	}
 
 	virtual void read(Stream& stream) // _08 (weak)
@@ -74,18 +74,18 @@ struct Parms : public EnemyParmsBase {
 	ProperParms mProperParms;          // _7F8
 	u8 mDisableWanderRotation;         // _920
 	u8 mEnableSpeedAdjustment;         // _921
-	u8 _922;                           // _922
-	u8 _923;                           // _923
-	f32 _924;                          // _924
+	u8 mIsNotAttackable;               // _922
+	u8 mDoUseModelFetch;               // _923
+	f32 mMoveOffsetLevel;              // _924
 	f32 mRotationStep;                 // _928
 	f32 mWalkSpeedAdjustmentTimeLimit; // _92C
 	f32 mWalkSpeedReductionFactor;     // _930
-	f32 _934;                          // _934
-	f32 _938;                          // _938
-	f32 _93C;                          // _93C
+	f32 mBaseYVelocityOnBounce;        // _934
+	f32 mBaseXZVelocityOnBounce;       // _938
+	f32 mNextGoalPosMaxRadius;         // _93C
 	f32 _940;                          // _940
-	f32 _944;                          // _944
-	f32 _948;                          // _948
+	f32 mPikiPanicMaxTime;             // _944
+	f32 mPanicInduceRadius;            // _948
 };
 
 struct Obj : public EnemyBase {
@@ -117,7 +117,7 @@ struct Obj : public EnemyBase {
 		mCurrentLifecycleState = nullptr;
 	}
 	virtual void setInitialSetting(EnemyInitialParamBase* params) { }                               // _1C4 (weak)
-	virtual bool isLivingThing() { return !C_PARMS->_922; }                                         // _D4 (weak)
+	virtual bool isLivingThing() { return !C_PARMS->mIsNotAttackable; }                             // _D4 (weak)
 	virtual f32 getDownSmokeScale() { return 0.35f; }                                               // _2EC (weak)
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_TamagoMushi; } // _258 (weak)
 	//////////////// VTABLE END
@@ -140,23 +140,23 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	int _2BC;                          // _2BC
-	int _2C0;                          // _2C0
+	int mActiveCounter;                // _2BC
+	int mActiveMaxTime;                // _2C0
 	f32 mRandomTurnFactor;             // _2C4
 	f32 mRandomSpeedFactor;            // _2C8
-	f32 _2CC;                          // _2CC
+	f32 mRandomMoveOffsFactor;         // _2CC
 	f32 mMoveRotationTimer;            // _2D0
 	f32 mWalkSpeedAdjustmentTimer;     // _2D4
 	f32 mWalkSpeedAdjustmentTimeLimit; // _2D8
 	bool mWalkSpeedAdjustmentEnabled;  // _2DC
 	Vector3f mGoalPosition;            // _2E0
 	f32 mPreviousFaceDir;              // _2EC
-	bool _2F0;                         // _2F0
+	bool mIsInBall;                    // _2F0
 	Obj* mLeader;                      // _2F4
 	SysShape::Joint* mKoshiJoint;      // _2F8
 	f32 mMoveRotationOffset;           // _2FC
-	bool _300;                         // _300
-	int _304;                          // _304, unknown
+	bool mIsBallFallWait;              // _300
+	int mBitterHitNum;                 // _304
 	FSM* mFsm;                         // _308
 	                                   // _30C = PelletView
 };
@@ -264,11 +264,11 @@ struct StateAppear : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	bool _10;         // _10
-	int _14;          // _14
-	int _18;          // _18
-	f32 mAppearFrame; // _1C
-	bool _20;         // _20, unknown
+	bool mHasMadeFellow;       // _10
+	int mAppearWaitTimer;      // _14
+	int mAppearWaitMaxTime;    // _18
+	f32 mAppearFrame;          // _1C
+	bool mNeedPlayAppearSound; // _20
 };
 
 struct StateDead : public State {
@@ -319,8 +319,8 @@ struct StateWalk : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	int _10; // _10, unknown
-	int _14; // _14, unknown
+	int mWalkTimer;   // _10
+	int mWalkMaxTime; // _14
 };
 
 /////////////////////////////////////////////////////////////////
