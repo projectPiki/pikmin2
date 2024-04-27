@@ -32,6 +32,8 @@ struct TNode : public DNode {
 		}
 	}
 
+	inline u64 getTag() const { return mMesgTag; }
+
 	// _00     = VTBL
 	// _00-_2C = DNode
 	JUTTexture* mTexture;              // _2C

@@ -528,11 +528,11 @@ bool ObjDayEndResultItem::doStart(const ::Screen::StartSceneArg* sceneArg)
 	}
 
 	if (mFlags & 0x8) {
-		mFadeinMinFrame = getFadeinDownMinFrm();
-		mFadeinMaxFrame = getFadeinDownMaxFrm();
+		mFadeinMinFrame = ((ObjDayEndResultBase*)this)->getFadeinDownMinFrm();
+		mFadeinMaxFrame = ((ObjDayEndResultBase*)this)->getFadeinDownMaxFrm();
 	} else {
-		mFadeinMinFrame = getFadeinUpMinFrm();
-		mFadeinMaxFrame = getFadeinUpMaxFrm();
+		mFadeinMinFrame = ((ObjDayEndResultBase*)this)->getFadeinUpMinFrm();
+		mFadeinMaxFrame = ((ObjDayEndResultBase*)this)->getFadeinUpMaxFrm();
 	}
 
 	mMainAnimTimer1 = mFadeinMinFrame;
@@ -715,9 +715,9 @@ void ObjDayEndResultItem::doDraw(Graphics& gfx)
 	u32 i = 0;
 	FOREACH_NODE(Game::Result::TNode, dispResult->mItem.mResultNode->mChild, cNode)
 	{
+		f32 check = i * mItemRowHeight + mCurrentScrollYPos;
 		int pokos = cNode->mTotalPokos;
 		int isOdd = i % 2;
-		f32 check = i * mItemRowHeight + mCurrentScrollYPos;
 		if (check < -mItemRowHeight || mGXScissorBottomY < check) {
 			panes[isOdd]->add(0.0f, offs);
 		} else {
@@ -726,10 +726,11 @@ void ObjDayEndResultItem::doDraw(Graphics& gfx)
 			panes[isOdd]->add(0.0f, offs);
 
 			setTex(mScreenMain, icons[isOdd], cNode->mTexture->mTexInfo);
-			if (!cNode->mMesgTag) {
+			u64 tag = cNode->getTag();
+			if (tag == 0) {
 				mScreenMain->search(names[isOdd])->hide();
 			} else {
-				mScreenMain->search(names[isOdd])->setMsgID(cNode->mMesgTag + 1);
+				mScreenMain->search(names[isOdd])->setMsgID(tag + 1);
 			}
 			mTreasurePokoCount[isOdd] = pokos;
 			mTreasurePokoCounter[isOdd]->update();
@@ -757,467 +758,6 @@ void ObjDayEndResultItem::doDraw(Graphics& gfx)
 		panes[1]->hide();
 		mScreenMain->draw(gfx, gfx.mOrthoGraph);
 	}
-	/*
-stwu     r1, -0xa0(r1)
-mflr     r0
-stw      r0, 0xa4(r1)
-stfd     f31, 0x90(r1)
-psq_st   f31, 152(r1), 0, qr0
-stfd     f30, 0x80(r1)
-psq_st   f30, 136(r1), 0, qr0
-stmw     r20, 0x50(r1)
-mr       r31, r4
-mr       r30, r3
-addi     r3, r31, 0xbc
-lis      r4, lbl_80498830@ha
-lwz      r12, 0xbc(r31)
-addi     r26, r4, lbl_80498830@l
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-lis      r3, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-lfs      f2, mstTuningTransX__Q29P2DScreen10Mgr_tuning@sda21(r2)
-addi     r3, r3, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-lfs      f1, lbl_805200A8@sda21(r2)
-lfs      f3, 0x1c(r3)
-mr       r4, r31
-lfs      f0, mstTuningTransY__Q29P2DScreen10Mgr_tuning@sda21(r2)
-addi     r5, r31, 0xbc
-fadds    f2, f3, f2
-lwz      r3, 0x38(r30)
-fadds    f0, f1, f0
-stfs     f2, 0x140(r3)
-stfs     f0, 0x144(r3)
-lwz      r3, 0x38(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x9c(r12)
-mtctr    r12
-bctrl
-addi     r3, r31, 0xbc
-lwz      r12, 0xbc(r31)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-lis      r3, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-lfs      f2, mstTuningTransX__Q29P2DScreen10Mgr_tuning@sda21(r2)
-addi     r3, r3, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-lfs      f1, lbl_805200A8@sda21(r2)
-lfs      f3, 0x14(r3)
-mr       r4, r31
-lfs      f0, mstTuningTransY__Q29P2DScreen10Mgr_tuning@sda21(r2)
-addi     r5, r31, 0xbc
-fadds    f2, f3, f2
-lwz      r3, 0x70(r30)
-fadds    f0, f1, f0
-stfs     f2, 0x140(r3)
-stfs     f0, 0x144(r3)
-lwz      r3, 0x70(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x9c(r12)
-mtctr    r12
-bctrl
-lis      r3, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-lfs      f2, mstTuningTransX__Q29P2DScreen10Mgr_tuning@sda21(r2)
-addi     r3, r3, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-lfs      f1, lbl_805200A8@sda21(r2)
-lfs      f3, 0x18(r3)
-addi     r3, r31, 0xbc
-lfs      f0, mstTuningTransY__Q29P2DScreen10Mgr_tuning@sda21(r2)
-fadds    f2, f3, f2
-lwz      r4, 0x4c(r30)
-fadds    f0, f1, f0
-stfs     f2, 0x140(r4)
-stfs     f0, 0x144(r4)
-lwz      r12, 0xbc(r31)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-mr       r3, r30
-bl       getDispMember__Q26Screen7ObjBaseFv
-lis      r4, 0x52534C54@ha
-lis      r5, 0x0044455F@ha
-addi     r6, r4, 0x52534C54@l
-li       r4, 0x4b48
-addi     r5, r5, 0x0044455F@l
-bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-clrlwi.  r0, r3, 0x18
-bne      lbl_804045A0
-addi     r3, r26, 0
-addi     r5, r26, 0xd0
-li       r4, 0x2d0
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804045A0:
-mr       r3, r30
-bl       getDispMember__Q26Screen7ObjBaseFv
-mr       r29, r3
-lwz      r3, 0x4c(r30)
-lis      r4, 0x414C4C32@ha
-li       r5, 0x4e
-lwz      r12, 0(r3)
-addi     r6, r4, 0x414C4C32@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-mr       r27, r3
-lwz      r3, 0x4c(r30)
-lis      r4, 0x4E5F3364@ha
-li       r5, 0
-lwz      r12, 0(r3)
-addi     r6, r4, 0x4E5F3364@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-mr       r28, r3
-lwz      r3, 0x4c(r30)
-lwz      r7, lbl_80520EC8@sda21(r2)
-lis      r5, 0x74703030@ha
-lwz      r12, 0(r3)
-lis      r4, 0x004E7365@ha
-lwz      r0, lbl_80520ECC@sda21(r2)
-addi     r6, r5, 0x74703030@l
-lwz      r12, 0x3c(r12)
-addi     r5, r4, 0x004E7365@l
-stw      r7, 0x18(r1)
-stw      r0, 0x1c(r1)
-mtctr    r12
-bctrl
-stw      r3, 0x18(r1)
-lis      r5, 0x74703031@ha
-lwz      r3, 0x4c(r30)
-lis      r4, 0x004E7365@ha
-addi     r6, r5, 0x74703031@l
-lwz      r12, 0(r3)
-addi     r5, r4, 0x004E7365@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lfd      f3, 0xe0(r26)
-li       r7, 1
-lfd      f2, 0xe8(r26)
-li       r0, 0
-lfd      f1, 0xf0(r26)
-mr       r4, r31
-lfd      f0, 0xf8(r26)
-addi     r20, r1, 0x18
-stfd     f3, 0x30(r1)
-addi     r5, r31, 0xbc
-lwz      r6, 0x18(r1)
-stfd     f2, 0x38(r1)
-stfd     f1, 0x20(r1)
-stfd     f0, 0x28(r1)
-stb      r7, 0xb0(r27)
-stb      r0, 0xb0(r28)
-stb      r0, 0xb0(r6)
-stb      r0, 0xb0(r3)
-stw      r3, 0x1c(r1)
-lwz      r3, 0x4c(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x9c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-addi     r3, r1, 0x14
-stw      r0, 0x14(r1)
-addi     r4, r1, 0x10
-addi     r5, r1, 0xc
-addi     r6, r1, 8
-stw      r0, 0x10(r1)
-stw      r0, 0xc(r1)
-stw      r0, 8(r1)
-bl       GXGetScissor
-lwz      r3, 0x14(r1)
-lwz      r4, 0xec(r30)
-lwz      r5, 0xc(r1)
-lwz      r6, 0xf0(r30)
-bl       GXSetScissor
-li       r0, 0
-lfs      f1, lbl_805200C0@sda21(r2)
-stb      r0, 0xb0(r27)
-li       r21, 0
-stb      r0, 0xb0(r28)
-lfs      f0, 0xdc(r30)
-fmuls    f30, f1, f0
-
-lbl_80404708:
-lwz      r3, 0(r20)
-lfs      f0, 0xd4(r30)
-lwz      r12, 0(r3)
-fsubs    f2, f0, f30
-lfs      f1, lbl_805200A8@sda21(r2)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-addi     r21, r21, 1
-addi     r20, r20, 4
-cmpwi    r21, 2
-blt      lbl_80404708
-mr       r22, r30
-addi     r20, r1, 0x30
-addi     r21, r1, 0x20
-li       r23, 0
-
-lbl_80404748:
-lwz      r3, 0x4c(r30)
-lwz      r5, 0(r20)
-lwz      r12, 0(r3)
-lwz      r6, 4(r20)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 1
-stb      r0, 0xb0(r3)
-lwz      r3, 0x4c(r30)
-lwz      r5, 0(r21)
-lwz      r12, 0(r3)
-lwz      r6, 4(r21)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 1
-stb      r0, 0xb0(r3)
-lwz      r3, 0xac(r22)
-lwz      r12, 0(r3)
-lwz      r12, 0x20(r12)
-mtctr    r12
-bctrl
-addi     r23, r23, 1
-addi     r21, r21, 8
-cmpwi    r23, 2
-addi     r22, r22, 4
-addi     r20, r20, 8
-blt      lbl_80404748
-lwz      r3, 0x18(r29)
-li       r22, 0
-lfd      f31, lbl_805200C8@sda21(r2)
-lis      r29, 0x4330
-lwz      r21, 0x24(r3)
-b        lbl_80404978
-
-lbl_804047D4:
-stw      r22, 0x44(r1)
-clrlwi   r24, r22, 0x1f
-lfs      f3, 0xdc(r30)
-stw      r29, 0x40(r1)
-lfs      f1, 0xd4(r30)
-fneg     f0, f3
-lfd      f2, 0x40(r1)
-lwz      r20, 0x38(r21)
-fsubs    f2, f2, f31
-fmadds   f1, f2, f3, f1
-fcmpo    cr0, f1, f0
-blt      lbl_80404824
-lwz      r3, 0xf0(r30)
-lis      r0, 0x4330
-stw      r0, 0x40(r1)
-stw      r3, 0x44(r1)
-lfd      f0, 0x40(r1)
-fsubs    f0, f0, f31
-fcmpo    cr0, f0, f1
-bge      lbl_8040484C
-
-lbl_80404824:
-slwi     r0, r24, 2
-addi     r3, r1, 0x18
-lwzx     r3, r3, r0
-fmr      f2, f30
-lfs      f1, lbl_805200A8@sda21(r2)
-lwz      r12, 0(r3)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-b        lbl_80404970
-
-lbl_8040484C:
-cntlzw   r0, r24
-addi     r3, r1, 0x18
-rlwinm   r0, r0, 0x1d, 0x16, 0x1d
-slwi     r23, r24, 2
-lwzx     r4, r3, r0
-li       r5, 0
-lwzx     r3, r3, r23
-li       r0, 1
-stb      r5, 0xb0(r4)
-fmr      f2, f30
-lfs      f1, lbl_805200A8@sda21(r2)
-stb      r0, 0xb0(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-lwz      r4, 0x2c(r21)
-slwi     r24, r24, 3
-addi     r0, r1, 0x30
-lwz      r3, 0x4c(r30)
-add      r6, r0, r24
-lwz      r7, 0x20(r4)
-lwz      r5, 0(r6)
-lwz      r6, 4(r6)
-bl       setTex__Q22kh6ScreenFP9J2DScreenUxPC7ResTIMG
-lwz      r26, 0x40(r21)
-li       r3, 0
-lwz      r25, 0x44(r21)
-xor      r0, r26, r3
-xor      r3, r25, r3
-or.      r0, r3, r0
-bne      lbl_804048FC
-lwz      r3, 0x4c(r30)
-addi     r0, r1, 0x20
-add      r6, r0, r24
-lwz      r12, 0(r3)
-lwz      r5, 0(r6)
-lwz      r12, 0x3c(r12)
-lwz      r6, 4(r6)
-mtctr    r12
-bctrl
-li       r0, 0
-stb      r0, 0xb0(r3)
-b        lbl_80404938
-
-lbl_804048FC:
-lwz      r3, 0x4c(r30)
-addi     r0, r1, 0x20
-add      r6, r0, r24
-lwz      r12, 0(r3)
-lwz      r5, 0(r6)
-lwz      r12, 0x3c(r12)
-lwz      r6, 4(r6)
-mtctr    r12
-bctrl
-li       r0, 1
-li       r4, 0
-addc     r0, r25, r0
-stw      r0, 0x1c(r3)
-adde     r0, r26, r4
-stw      r0, 0x18(r3)
-
-lbl_80404938:
-add      r3, r30, r23
-stw      r20, 0xcc(r3)
-lwz      r3, 0xac(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x10(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r30)
-mr       r4, r31
-addi     r5, r31, 0xbc
-lwz      r12, 0(r3)
-lwz      r12, 0x9c(r12)
-mtctr    r12
-bctrl
-
-lbl_80404970:
-lwz      r21, 0x18(r21)
-addi     r22, r22, 1
-
-lbl_80404978:
-cmplwi   r21, 0
-bne      lbl_804047D4
-addi     r24, r1, 0x18
-addi     r21, r1, 0x30
-addi     r20, r1, 0x20
-b        lbl_80404A5C
-
-lbl_80404990:
-clrlwi   r25, r22, 0x1f
-rlwinm   r23, r22, 2, 0x1d, 0x1d
-cntlzw   r0, r25
-li       r5, 0
-rlwinm   r0, r0, 0x1d, 0x16, 0x1d
-lwzx     r3, r24, r23
-lwzx     r4, r24, r0
-li       r0, 1
-fmr      f2, f30
-lfs      f1, lbl_805200A8@sda21(r2)
-stb      r5, 0xb0(r4)
-stb      r0, 0xb0(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r30)
-slwi     r25, r25, 3
-add      r6, r21, r25
-lwz      r12, 0(r3)
-lwz      r5, 0(r6)
-lwz      r12, 0x3c(r12)
-lwz      r6, 4(r6)
-mtctr    r12
-bctrl
-li       r0, 0
-add      r6, r20, r25
-stb      r0, 0xb0(r3)
-lwz      r3, 0x4c(r30)
-lwz      r5, 0(r6)
-lwz      r12, 0(r3)
-lwz      r6, 4(r6)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r4, 0
-addi     r0, r23, 0xac
-stb      r4, 0xb0(r3)
-lwzx     r3, r30, r0
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r30)
-mr       r4, r31
-addi     r5, r31, 0xbc
-lwz      r12, 0(r3)
-lwz      r12, 0x9c(r12)
-mtctr    r12
-bctrl
-addi     r22, r22, 1
-
-lbl_80404A5C:
-cmplwi   r22, 6
-blt      lbl_80404990
-lwz      r3, 0x14(r1)
-lwz      r4, 0x10(r1)
-lwz      r5, 0xc(r1)
-lwz      r6, 8(r1)
-bl       GXSetScissor
-lwz      r0, 0x90(r30)
-clrlwi.  r0, r0, 0x1f
-beq      lbl_80404ADC
-lwz      r0, 0x98(r30)
-cmpwi    r0, 3
-beq      lbl_80404ADC
-cmpwi    r0, 4
-beq      lbl_80404ADC
-cmpwi    r0, 5
-beq      lbl_80404ADC
-li       r7, 0
-li       r0, 1
-stb      r7, 0xb0(r27)
-mr       r4, r31
-lwz      r6, 0x18(r1)
-addi     r5, r31, 0xbc
-stb      r0, 0xb0(r28)
-lwz      r3, 0x1c(r1)
-stb      r7, 0xb0(r6)
-stb      r7, 0xb0(r3)
-lwz      r3, 0x4c(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x9c(r12)
-mtctr    r12
-bctrl
-
-lbl_80404ADC:
-psq_l    f31, 152(r1), 0, qr0
-lfd      f31, 0x90(r1)
-psq_l    f30, 136(r1), 0, qr0
-lfd      f30, 0x80(r1)
-lmw      r20, 0x50(r1)
-lwz      r0, 0xa4(r1)
-mtlr     r0
-addi     r1, r1, 0xa0
-blr
-	*/
 }
 
 /**
@@ -2130,7 +1670,7 @@ void ObjDayEndResultMail::doCreate(JKRArchive* arc)
 		mMailIconAnms = new MailIconAnm[20];
 
 		for (int i = 0; i < 20; i++) {
-			s8 id = scene->mMailFlags[i];
+			s8 id = scene->mMailFlags.byteView[i];
 			if (id == -1)
 				break;
 			if (id == -2) {
@@ -2157,7 +1697,7 @@ void ObjDayEndResultMail::doCreate(JKRArchive* arc)
 		}
 		setTex(mScreenMain, 'Pset_p', mMailIconAnms[0].mTIMG[0]);
 	}
-	MailTableData* data = scene->mTableData[scene->mMailFlags[0]];
+	MailTableData* data = scene->mTableData[scene->mMailFlags.byteView[0]];
 	mScreenMain->search('Ttext')->setMsgID(data->mMessageID);
 	mFadePaneArrowL = khUtilFadePane::create(mScreenMain, 'Nyaji_l', 32);
 	mFadePaneArrowR = khUtilFadePane::create(mScreenMain, 'Nyaji_r', 32);
@@ -2949,7 +2489,7 @@ void ObjDayEndResultMail::statusNormal()
 	} else if (getGamePad()->getButton() & Controller::PRESS_L) {
 		if (mCurrentDay > 1 && (mMaxDay - (mCurrentDay - 1)) < 20) {
 			SceneDayEndResultMail* scene = static_cast<SceneDayEndResultMail*>(getOwner());
-			s8* flag                     = scene->mMailFlags;
+			s8* flag                     = scene->mMailFlags.byteView;
 			if (mMaxDay - (mCurrentDay - 1) != 19 || (flag[mMaxDay - (mCurrentDay - 1)]) != -2) {
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
 				mFadePaneArrowR->fadein();
@@ -2998,7 +2538,7 @@ void ObjDayEndResultMail::statusFadeoutToLeft()
 void ObjDayEndResultMail::statusFadeinFromLeft()
 {
 	mMainAnimTrans3->mCurrentFrame = mSideMoveTimer;
-	if (mSideMoveTimer > 344.0f) {
+	if (mSideMoveTimer > 399.0f) {
 		mSideMoveTimer -= 1.0f;
 	} else {
 		mStatus = MAILSTATUS_Normal;
@@ -3141,314 +2681,20 @@ void ObjDayEndResultMail::changeMail()
 	SceneDayEndResultMail* scene = static_cast<SceneDayEndResultMail*>(getOwner());
 	mCharacterIconTimer          = 0;
 	setTex(mScreenMain, 'Pset_p', mMailIconAnms[mMaxDay - mCurrentDay].mTIMG[0]);
-	u64 mesg = scene->mTableData[scene->mMailFlags[mMaxDay - mCurrentDay]]->mMessageID;
+	u64 mesg = scene->mTableData[scene->mMailFlags.byteView[mMaxDay - mCurrentDay]]->mMessageID;
 	mScreenMain->search('Ttext')->setMsgID(mesg);
 
 	if (mCurrentDay == mMaxDay) {
 		mMessage->setBounds(1.0f, 1.0f, 1.0f, 1.0f);
 		JUtility::TColor color(255, 255, 255, 255);
-		static_cast<J2DPicture*>(mScreenMain->search('Pset_p'))->setCornerColor(color);
-		static_cast<J2DPicture*>(mScreenMain->search('Picon_b'))->setCornerColor(color);
+		static_cast<J2DPicture*>(mScreenMain->search('Pset_p'))->setCornerColorRef(color);
+		static_cast<J2DPicture*>(mScreenMain->search('Picon_b'))->setCornerColorRef(color);
 	} else {
 		mMessage->setBounds(msVal._2C, msVal._30, msVal._34, msVal._38);
 		JUtility::TColor color(msVal._2C * 255.0f, msVal._30 * 255.0f, msVal._34 * 255.0f, msVal._38 * 255.0f);
-		static_cast<J2DPicture*>(mScreenMain->search('Pset_p'))->setCornerColor(color);
-		static_cast<J2DPicture*>(mScreenMain->search('Picon_b'))->setCornerColor(color);
+		static_cast<J2DPicture*>(mScreenMain->search('Pset_p'))->setCornerColorRef(color);
+		static_cast<J2DPicture*>(mScreenMain->search('Picon_b'))->setCornerColorRef(color);
 	}
-	/*
-stwu     r1, -0x80(r1)
-mflr     r0
-stw      r0, 0x84(r1)
-stw      r31, 0x7c(r1)
-mr       r31, r3
-stw      r30, 0x78(r1)
-stw      r29, 0x74(r1)
-lwz      r12, 0(r3)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-lis      r4, 0x65745F70@ha
-stw      r0, 0xc8(r31)
-mr       r30, r3
-addi     r6, r4, 0x65745F70@l
-li       r5, 0x5073
-lwz      r3, 0xbc(r31)
-lwz      r0, 0xb8(r31)
-lwz      r4, 0xc4(r31)
-subf     r0, r3, r0
-lwz      r3, 0x4c(r31)
-slwi     r0, r0, 3
-lwzx     r4, r4, r0
-lwz      r7, 0(r4)
-bl       setTex__Q22kh6ScreenFP9J2DScreenUxPC7ResTIMG
-lwz      r4, 0xbc(r31)
-lis      r3, 0x74657874@ha
-lwz      r0, 0xb8(r31)
-addi     r6, r3, 0x74657874@l
-lwz      r3, 0x4c(r31)
-li       r5, 0x54
-subf     r0, r4, r0
-lwz      r7, 0x220(r30)
-add      r4, r30, r0
-lwz      r12, 0(r3)
-lbz      r0, 0x228(r4)
-lwz      r12, 0x3c(r12)
-extsb    r0, r0
-slwi     r0, r0, 2
-lwzx     r4, r7, r0
-lwz      r30, 0(r4)
-lwz      r29, 4(r4)
-mtctr    r12
-bctrl
-stw      r29, 0x1c(r3)
-stw      r30, 0x18(r3)
-lwz      r3, 0xbc(r31)
-lwz      r0, 0xb8(r31)
-cmplw    r3, r0
-bne      lbl_804096F0
-lwz      r4, 0xd4(r31)
-li       r0, 0xff
-lfs      f0, lbl_805200B0@sda21(r2)
-lis      r3, 0x65745F70@ha
-stb      r0, 0x4c(r1)
-addi     r6, r3, 0x65745F70@l
-li       r5, 0x5073
-stfs     f0, 0x38(r4)
-stfs     f0, 0x3c(r4)
-stfs     f0, 0x40(r4)
-stfs     f0, 0x44(r4)
-lwz      r3, 0x4c(r31)
-stb      r0, 0x4d(r1)
-lwz      r12, 0(r3)
-stb      r0, 0x4e(r1)
-lwz      r12, 0x3c(r12)
-stb      r0, 0x4f(r1)
-mtctr    r12
-bctrl
-lwz      r8, 0x4c(r1)
-lis      r5, 0x6F6E5F62@ha
-lis      r4, 0x00506963@ha
-stw      r8, 0x38(r1)
-addi     r6, r5, 0x6F6E5F62@l
-addi     r5, r4, 0x00506963@l
-lbz      r4, 0x38(r1)
-stw      r8, 0x3c(r1)
-lbz      r0, 0x39(r1)
-stb      r4, 0x150(r3)
-lbz      r4, 0x3a(r1)
-stb      r0, 0x151(r3)
-lbz      r0, 0x3b(r1)
-stb      r4, 0x152(r3)
-lbz      r4, 0x3c(r1)
-stb      r0, 0x153(r3)
-lbz      r0, 0x3d(r1)
-stb      r4, 0x154(r3)
-lbz      r4, 0x3e(r1)
-stb      r0, 0x155(r3)
-lbz      r0, 0x3f(r1)
-stw      r8, 0x40(r1)
-stb      r4, 0x156(r3)
-lbz      r4, 0x40(r1)
-stb      r0, 0x157(r3)
-lbz      r0, 0x41(r1)
-stb      r4, 0x158(r3)
-lbz      r7, 0x42(r1)
-stw      r8, 0x44(r1)
-lbz      r4, 0x43(r1)
-stb      r0, 0x159(r3)
-lbz      r0, 0x44(r1)
-stb      r7, 0x15a(r3)
-lbz      r7, 0x45(r1)
-stb      r4, 0x15b(r3)
-lbz      r4, 0x46(r1)
-stb      r0, 0x15c(r3)
-lbz      r0, 0x47(r1)
-stb      r7, 0x15d(r3)
-stb      r4, 0x15e(r3)
-stb      r0, 0x15f(r3)
-lwz      r3, 0x4c(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r6, 0x4c(r1)
-stw      r6, 0x28(r1)
-lbz      r4, 0x28(r1)
-stw      r6, 0x2c(r1)
-lbz      r0, 0x29(r1)
-stb      r4, 0x150(r3)
-lbz      r4, 0x2a(r1)
-stb      r0, 0x151(r3)
-lbz      r0, 0x2b(r1)
-stb      r4, 0x152(r3)
-lbz      r4, 0x2c(r1)
-stb      r0, 0x153(r3)
-lbz      r0, 0x2d(r1)
-stb      r4, 0x154(r3)
-lbz      r4, 0x2e(r1)
-stb      r0, 0x155(r3)
-lbz      r0, 0x2f(r1)
-stw      r6, 0x30(r1)
-stb      r4, 0x156(r3)
-lbz      r4, 0x30(r1)
-stb      r0, 0x157(r3)
-lbz      r0, 0x31(r1)
-stb      r4, 0x158(r3)
-lbz      r5, 0x32(r1)
-stw      r6, 0x34(r1)
-lbz      r4, 0x33(r1)
-stb      r0, 0x159(r3)
-lbz      r0, 0x34(r1)
-stb      r5, 0x15a(r3)
-lbz      r5, 0x35(r1)
-stb      r4, 0x15b(r3)
-lbz      r4, 0x36(r1)
-stb      r0, 0x15c(r3)
-lbz      r0, 0x37(r1)
-stb      r5, 0x15d(r3)
-stb      r4, 0x15e(r3)
-stb      r0, 0x15f(r3)
-b        lbl_804098EC
-
-lbl_804096F0:
-lis      r4, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-lis      r3, 0x65745F70@ha
-addi     r4, r4, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-lwz      r7, 0xd4(r31)
-lfs      f3, 0x38(r4)
-addi     r6, r3, 0x65745F70@l
-lfs      f2, 0x34(r4)
-li       r5, 0x5073
-lfs      f1, 0x30(r4)
-lfs      f0, 0x2c(r4)
-lfs      f4, lbl_805200AC@sda21(r2)
-stfs     f0, 0x38(r7)
-stfs     f1, 0x3c(r7)
-stfs     f2, 0x40(r7)
-stfs     f3, 0x44(r7)
-lfs      f0, 0x2c(r4)
-lfs      f2, 0x30(r4)
-lfs      f1, 0x34(r4)
-fmuls    f3, f4, f0
-lfs      f0, 0x38(r4)
-fmuls    f2, f4, f2
-fmuls    f1, f4, f1
-lwz      r3, 0x4c(r31)
-fmuls    f0, f4, f0
-fctiwz   f3, f3
-lwz      r12, 0(r3)
-fctiwz   f2, f2
-fctiwz   f1, f1
-lwz      r12, 0x3c(r12)
-fctiwz   f0, f0
-stfd     f3, 0x50(r1)
-stfd     f2, 0x58(r1)
-lwz      r8, 0x54(r1)
-stfd     f1, 0x60(r1)
-lwz      r7, 0x5c(r1)
-stfd     f0, 0x68(r1)
-lwz      r4, 0x64(r1)
-lwz      r0, 0x6c(r1)
-stb      r8, 0x48(r1)
-stb      r7, 0x49(r1)
-stb      r4, 0x4a(r1)
-stb      r0, 0x4b(r1)
-mtctr    r12
-bctrl
-lwz      r8, 0x48(r1)
-lis      r5, 0x6F6E5F62@ha
-lis      r4, 0x00506963@ha
-stw      r8, 0x18(r1)
-addi     r6, r5, 0x6F6E5F62@l
-addi     r5, r4, 0x00506963@l
-lbz      r4, 0x18(r1)
-stw      r8, 0x1c(r1)
-lbz      r0, 0x19(r1)
-stb      r4, 0x150(r3)
-lbz      r4, 0x1a(r1)
-stb      r0, 0x151(r3)
-lbz      r0, 0x1b(r1)
-stb      r4, 0x152(r3)
-lbz      r4, 0x1c(r1)
-stb      r0, 0x153(r3)
-lbz      r0, 0x1d(r1)
-stb      r4, 0x154(r3)
-lbz      r4, 0x1e(r1)
-stb      r0, 0x155(r3)
-lbz      r0, 0x1f(r1)
-stw      r8, 0x20(r1)
-stb      r4, 0x156(r3)
-lbz      r4, 0x20(r1)
-stb      r0, 0x157(r3)
-lbz      r0, 0x21(r1)
-stb      r4, 0x158(r3)
-lbz      r7, 0x22(r1)
-stw      r8, 0x24(r1)
-lbz      r4, 0x23(r1)
-stb      r0, 0x159(r3)
-lbz      r0, 0x24(r1)
-stb      r7, 0x15a(r3)
-lbz      r7, 0x25(r1)
-stb      r4, 0x15b(r3)
-lbz      r4, 0x26(r1)
-stb      r0, 0x15c(r3)
-lbz      r0, 0x27(r1)
-stb      r7, 0x15d(r3)
-stb      r4, 0x15e(r3)
-stb      r0, 0x15f(r3)
-lwz      r3, 0x4c(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r6, 0x48(r1)
-stw      r6, 8(r1)
-lbz      r4, 8(r1)
-stw      r6, 0xc(r1)
-lbz      r0, 9(r1)
-stb      r4, 0x150(r3)
-lbz      r4, 0xa(r1)
-stb      r0, 0x151(r3)
-lbz      r0, 0xb(r1)
-stb      r4, 0x152(r3)
-lbz      r4, 0xc(r1)
-stb      r0, 0x153(r3)
-lbz      r0, 0xd(r1)
-stb      r4, 0x154(r3)
-lbz      r4, 0xe(r1)
-stb      r0, 0x155(r3)
-lbz      r0, 0xf(r1)
-stw      r6, 0x10(r1)
-stb      r4, 0x156(r3)
-lbz      r4, 0x10(r1)
-stb      r0, 0x157(r3)
-lbz      r0, 0x11(r1)
-stb      r4, 0x158(r3)
-lbz      r5, 0x12(r1)
-stw      r6, 0x14(r1)
-lbz      r4, 0x13(r1)
-stb      r0, 0x159(r3)
-lbz      r0, 0x14(r1)
-stb      r5, 0x15a(r3)
-lbz      r5, 0x15(r1)
-stb      r4, 0x15b(r3)
-lbz      r4, 0x16(r1)
-stb      r0, 0x15c(r3)
-lbz      r0, 0x17(r1)
-stb      r5, 0x15d(r3)
-stb      r4, 0x15e(r3)
-stb      r0, 0x15f(r3)
-
-lbl_804098EC:
-lwz      r0, 0x84(r1)
-lwz      r31, 0x7c(r1)
-lwz      r30, 0x78(r1)
-lwz      r29, 0x74(r1)
-mtlr     r0
-addi     r1, r1, 0x80
-blr
-	*/
 }
 
 /**
@@ -3527,7 +2773,7 @@ void ObjDayEndResultMail::setCallBackMessage(P2DScreen::Mgr* mgr) { setCallBackM
 bool ObjDayEndResultMail::skipped() const
 {
 	SceneDayEndResultMail* scene = static_cast<SceneDayEndResultMail*>(getOwner());
-	return scene->mMailFlags[mMaxDay - mCurrentDay] == -2;
+	return scene->mMailFlags.byteView[mMaxDay - mCurrentDay] == -2;
 }
 
 /**
@@ -3688,43 +2934,85 @@ SceneDayEndResultMail::SceneDayEndResultMail()
 void SceneDayEndResultMail::doUserCallBackFunc(Resource::MgrCommand* mgr)
 {
 	MailTableFile* file = nullptr;
-	LoadResource::Arg arg1("/user/Koono/mail_table.szs");
-	LoadResource::Node* node1 = gLoadResourceMgr->mountArchive(arg1);
-	if (node1) {
-		file = static_cast<MailTableFile*>(JKRFileLoader::getGlbResource("mail_table.bin", node1->mArchive));
+	LoadResource::Arg tableArg("/user/Koono/mail_table.szs");
+	LoadResource::Node* tableNode = gLoadResourceMgr->mountArchive(tableArg);
+	if (tableNode) {
+		file = static_cast<MailTableFile*>(JKRFileLoader::getGlbResource("mail_table.bin", tableNode->mArchive));
 	} else {
-		JUT_ASSERTLINE(2674, node1, "failed");
+		JUT_PANICLINE(2674, "failed");
 	}
 
-	s8 saveFlags[16] = { Game::playData->mMailSaveData.mHistory[0] };
-	int entries      = file->mEntries;
+	int offset              = 4;
+	MailSaveFlags saveFlags = Game::playData->mMailSaveData.mPastLogs;
+
+	u32 entries = file->mEntries;
+	mTableData  = new MailTableData*[entries];
 	for (int i = 0; i < entries; i++) {
-		MailTableData* data = new MailTableData;
-
-		mTableData[i] = data;
-	}
-
-	LoadResource::Arg arg2("/user/Koono/mail_icon.szs");
-	LoadResource::Node* node2 = gLoadResourceMgr->mountArchive(arg2);
-	if (node2) {
-		mIconArchive = static_cast<JKRMemArchive*>(node2->mArchive);
-	} else {
-		JUT_ASSERTLINE(2749, node2, "no exist");
+		mTableData[i]   = new MailTableData(&file->mData[offset], saveFlags, i);
+		int fileNameLen = 0;
+		for (u8* ptr = (u8*)mTableData[i]->mFileName; *ptr; ptr++, fileNameLen++) {
+			;
+		}
+		offset += (fileNameLen + 16) & ~0x3;
 	}
 
 	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
 		JUT_PANICLINE(2690, "disp member err");
 	}
-	// Im just throwing stuff in here for the sake of sdata2/rodata
-	JUT_PANICLINE(2690, "error");
-
-	for (int i = 0; i < entries; i++) {
-		if (randFloat() < 0.5f) {
-			break;
-		}
-	}
 
 	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
+	if (dispResult->mMail.mHeap && !dispResult->mMail.mBackupHeap) {
+		dispResult->mMail.mBackupHeap = makeSolidHeap(-1, dispResult->mMail.mHeap, false);
+		int mailID                    = -1;
+		for (int i = 0; i < entries; i++) {
+			if (dispResult->mMail.mMailCategory != mTableData[i]->mFlag[0]) {
+				continue;
+			}
+
+			if (!mTableData[i]->mSaveFlag || (s8)mTableData[i]->mFlag[1] < 0) {
+				mailID = i;
+				break;
+			}
+		}
+
+		JUT_ASSERTLINE(2710, mailID != -1, "error");
+
+		for (int i = 0; i < entries; i++) {
+			if (dispResult->mMail.mMailCategory != mTableData[i]->mFlag[0]) {
+				continue;
+			}
+			if (!mTableData[i]->mSaveFlag || (s8)mTableData[i]->mFlag[1] < 0) {
+				if ((s8)mTableData[i]->mFlag[1] > (s8)mTableData[mailID]->mFlag[1]
+				    || ((s8)mTableData[i]->mFlag[1] == (s8)mTableData[mailID]->mFlag[1] && randFloat() < 0.5f)) {
+					mailID = i;
+					break;
+				}
+			}
+		}
+
+		dispResult->mMail.mTodayMailID = mailID;
+
+		if (dispResult->mMail.mTodayMailID < 128) {
+			int byte = dispResult->mMail.mTodayMailID >> 3;
+			saveFlags.byteView[15 - byte] |= (1 << (dispResult->mMail.mTodayMailID - (byte << 3)));
+		}
+
+		Game::playData->mMailSaveData.mPastLogs = saveFlags;
+		Game::playData->mMailSaveData.set_history(dispResult->mMail.mTodayMailID);
+
+		mMailFlags = Game::playData->mMailSaveData.mHistory;
+
+		LoadResource::Arg iconArg("/user/Koono/mail_icon.szs");
+		iconArg.mHeap                = dispResult->mMail.mBackupHeap;
+		LoadResource::Node* iconNode = gLoadResourceMgr->mountArchive(iconArg);
+		if (iconNode) {
+			mIconArchive = static_cast<JKRMemArchive*>(iconNode->mArchive);
+		} else {
+			JUT_PANICLINE(2749, "no exist");
+		}
+	} else {
+		mMailFlags = Game::playData->mMailSaveData.mHistory;
+	}
 
 	og::newScreen::makeLanguageResName(mName, "result_mail.szs");
 	LoadResource::Arg arg(mName);
@@ -3732,7 +3020,7 @@ void SceneDayEndResultMail::doUserCallBackFunc(Resource::MgrCommand* mgr)
 	if (node) {
 		registObj(new ObjDayEndResultMail, node->mArchive);
 	} else {
-		JUT_ASSERTLINE(2764, node, "failed");
+		JUT_PANICLINE(2764, "failed");
 	}
 	/*
 stwu     r1, -0xd0(r1)

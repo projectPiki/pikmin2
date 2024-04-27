@@ -8,12 +8,12 @@ namespace Screen {
  */
 void MailSaveData::clear()
 {
-	for (int i = 0; i < 0x10; i++) {
-		mPastLogs[i] = 0;
+	for (int i = 0; i < 16; i++) {
+		mPastLogs.byteView[i] = 0;
 	}
 
-	for (int i = 0; i < 0x14; i++) {
-		mHistory[i] = -1;
+	for (int i = 0; i < 20; i++) {
+		mHistory.byteView[i] = -1;
 	}
 }
 
@@ -23,12 +23,12 @@ void MailSaveData::clear()
  */
 void MailSaveData::read(Stream& stream)
 {
-	for (u32 i = 0; i < 0x10; i++) {
-		mPastLogs[i] = stream.readByte();
+	for (u32 i = 0; i < 16; i++) {
+		mPastLogs.byteView[i] = stream.readByte();
 	}
 
-	for (s32 i = 0; i < 0x14; i++) {
-		mHistory[i] = stream.readByte();
+	for (s32 i = 0; i < 20; i++) {
+		mHistory.byteView[i] = stream.readByte();
 	}
 }
 
@@ -39,11 +39,11 @@ void MailSaveData::read(Stream& stream)
 void MailSaveData::write(Stream& stream)
 {
 	for (u32 i = 0; i < 0x10; i++) {
-		stream.writeByte(mPastLogs[i]);
+		stream.writeByte(mPastLogs.byteView[i]);
 	}
 
 	for (s32 i = 0; i < 0x14; i++) {
-		stream.writeByte(mHistory[i]);
+		stream.writeByte(mHistory.byteView[i]);
 	}
 }
 
@@ -54,9 +54,9 @@ void MailSaveData::write(Stream& stream)
 void MailSaveData::set_history(s8 history)
 {
 	for (int i = 19; i; i--) {
-		mPastLogs[i + 16] = mPastLogs[i + 15];
+		mPastLogs.byteView[i + 16] = mPastLogs.byteView[i + 15];
 	}
-	mHistory[0] = history;
+	mHistory.byteView[0] = history;
 }
 } // namespace Screen
 } // namespace kh

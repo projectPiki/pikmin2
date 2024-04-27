@@ -33,11 +33,21 @@ enum MailCategory {
 	AllTreasures   = 0x37,
 };
 
+union MailSaveFlags {
+	u32 typeView[4];
+	u8 byteView[16];
+};
+
+union MailHistoryFlags {
+	int typeView[4];
+	s8 byteView[20];
+};
+
 struct MailSaveData {
 	MailSaveData()
 	{
 		for (int i = 0; i < 16; i++) {
-			mPastLogs[i] = 0;
+			mPastLogs.byteView[i] = 0;
 		}
 	}
 
@@ -46,8 +56,8 @@ struct MailSaveData {
 	void write(Stream&);
 	void set_history(s8);
 
-	u8 mPastLogs[0x10]; // _00
-	s8 mHistory[0x14];  // _10
+	MailSaveFlags mPastLogs;   // _00
+	MailHistoryFlags mHistory; // _10
 };
 
 struct IncP {
@@ -642,18 +652,27 @@ struct SceneDayEndResultItem : public ::Screen::SceneBase {
 	// TODO: work out if this has extra members
 };
 
-struct MailTableFile {
-	int mEntries;
-	u64 mMesgID;
-	u8 mFlags[4];
-	char mFileName[32];
-};
-
 struct MailTableData {
+	MailTableData(MailTableData* data, MailSaveFlags& flags, int i)
+	{
+		mMessageID = data->mMessageID;
+		mFlag[0]   = data->mFlag[0];
+		mFlag[1]   = data->mFlag[1];
+		mFlag[2]   = data->mFlag[2];
+		mFileName  = data->mFileName;
+		int byte   = i >> 3;
+		mSaveFlag  = bool(flags.byteView[15 - byte] & (1 << (i - (byte << 3))));
+	}
+
 	u64 mMessageID;  // _00
 	u8 mFlag[3];     // _08
 	char* mFileName; // _0C
 	u8 mSaveFlag;    // _10
+};
+
+struct MailTableFile {
+	int mEntries;         // _00
+	MailTableData* mData; // _04, might be double pointer
 };
 
 struct SceneDayEndResultMail : public ::Screen::SceneBase {
@@ -670,7 +689,7 @@ struct SceneDayEndResultMail : public ::Screen::SceneBase {
 	// _00-_220 = Screen::SceneBase
 	MailTableData** mTableData;  // _220, unknown
 	JKRMemArchive* mIconArchive; // _224
-	s8 mMailFlags[20];           // _228, unknown
+	MailHistoryFlags mMailFlags; // _228, unknown
 };
 
 struct SceneDayEndResultTitl : public ::Screen::SceneBase {
