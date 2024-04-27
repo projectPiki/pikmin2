@@ -98,17 +98,49 @@ struct khUtilFadePaneWM;
 struct WorldMap : public Game::WorldMap::Base {
 
 	enum WorldMapState {
-		WMAP_NewMapOpened,
-		WMAP_RocketMoving,
-		WMAP_Idle,
-		WMAP_RocketMoving2,
-		WMAP_RocketMoving3,
-		WMAP_InputTarget,
-		WMAP_GoToZukan1,
-		WMAP_GoToZukan2,
-		WMAP_InSelection1,
-		WMAP_InSelection2
+		WMAP_NewMapOpened,       // 0
+		WMAP_RocketMoving,       // 1
+		WMAP_Idle,               // 2
+		WMAP_RocketMoving2,      // 3
+		WMAP_RocketMoving3,      // 4
+		WMAP_InputTarget,        // 5
+		WMAP_GoToZukanItem,      // 6
+		WMAP_GoToZukanEnemy,     // 7
+		WMAP_InSelReturnToTitle, // 8
+		WMAP_InSelLandHere,      // 9
+		WMAP_Unk10,              // 10
+		WMAP_Unk11,              // 11
+		WMAP_Unk12,              // 12
+		WMAP_Unk13,              // 13
+		WMAP_Unk14,              // 14
 	};
+
+	enum WorldMapFlags {
+		WMAPFLAG_Unk1              = 0x1,
+		WMAPFLAG_Unk2              = 0x2,
+		WMAPFLAG_IsFirstTimeEffect = 0x4,
+		WMAPFLAG_Unk4              = 0x8,
+		WMAPFLAG_Unk5              = 0x10,
+		WMAPFLAG_Unk6              = 0x20,
+		WMAPFLAG_Unk7              = 0x40,
+		WMAPFLAG_Unk8              = 0x80,
+	};
+
+	enum RocketRotation {
+		ROT_Unk0 = 0,
+		ROT_Unk1 = 1,
+		ROT_Unk2 = 2,
+	};
+
+	enum WorldMapCourseIndex {
+		COURSE_NULL      = -1, // Null/invalid course
+		COURSE_Tutorial  = 0,  // Valley of Repose
+		COURSE_Forest    = 1,  // Awakening Wood
+		COURSE_Yakushima = 2,  // Perplexing Pool
+		COURSE_Last      = 3,  // Wistful Wild
+		COURSE_COUNT,          // Total number of courses (4)
+	};
+
 	/**
 	 * @size{0x34}
 	 */
@@ -156,65 +188,68 @@ struct WorldMap : public Game::WorldMap::Base {
 	void rocketUpdate(J2DPane*);
 	f32 tag2num(u64);
 
+	void setFlag(u32 flag) { mFlags |= flag; }
+	void resetFlag(u32 flag) { mFlags &= ~flag; }
+	bool isFlag(u32 flag) const { return mFlags & flag; }
+
 	// _00     = VTBL
 	// _00-_18 = Game::WorldMap::Base
-	Game::WorldMap::InitArg mInitArg;                          // _18
-	P2DScreen::Mgr_tuning* mScreenKitagawa;                    // _30
-	J2DAnmTransform* mKitaAnim1;                               // _34
-	J2DAnmTransformKey* mKitaAnim2;                            // _38
-	J2DAnmColorKey* mKitaAnim3;                                // _3C
-	J2DAnmTextureSRTKey* mKitaAnim4;                           // _40
-	J2DAnmTextureSRTKey* mKitaAnim5;                           // _44
-	P2DScreen::Mgr* mScreenRocket;                             // _48
-	J2DAnmTransformKey* mRocketAnim1;                          // _4C
-	J2DAnmTexPattern* mRocketAnim2;                            // _50
-	P2DScreen::Mgr_tuning* mScreenInfo;                        // _54
-	J2DAnmTextureSRTKey* mInfoAnim1;                           // _58
-	J2DAnmTextureSRTKey* mInfoAnim2;                           // _5C
-	J2DAnmTextureSRTKey* mInfoAnim3;                           // _60
-	og::Screen::ScaleMgr* mScaleMgr;                           // _64
-	f32 mAnimTimers[10];                                       // _68
-	f32 mCameraZoomMinFrame;                                   // _90
-	f32 mCameraZoomX;                                          // _94
-	f32 _98;                                                   // _98
-	Vector2f mRocketPosition;                                  // _9C
-	Vector2f mRocketPosition2;                                 // _A4
-	Vector2f mRocketAngle;                                     // _AC
-	f32 mRocketAngleSin;                                       // _B4
-	f32 mRocketAngleCos;                                       // _B8
-	f32 mRocketScale;                                          // _BC
-	efx2d::WorldMap::T2DRocketGlow* mEfxRocketGlow;            // _C0
-	efx2d::WorldMap::T2DRocketB* mEfxRocketSparks;             // _C4
-	efx2d::WorldMap::T2DMapFlare* mEfxMapFlare;                // _C8
-	efx2d::WorldMap::T2DShstar1* mEfxShstar1;                  // _CC
-	Vector2f _D0;                                              // _D0
-	Vector2f _D8;                                              // _D8
-	Vector2f mLight01Center;                                   // _E0
-	Vector2f mStarCenter;                                      // _E8
-	OnyonDynamics* mOnyonArray;                                // _F0
-	int mOnyonCount;                                           // _F4
-	int mCurrentCourseIndex;                                   // _F8
-	int mRocketMoveCounter;                                    // _FC
-	og::Screen::CallBack_CounterRV* mPokoCounter;              // _100
-	og::Screen::CallBack_CounterRV* mGroundTreasureCounter;    // _104
-	og::Screen::CallBack_CounterRV* mGroundTreasureMaxCounter; // _108
-	og::Screen::CallBack_CounterRV* mCaveTreasureCounters[4];  // _10C
-	og::Screen::CallBack_CounterRV* mCaveTreasureCounters2[4]; // _11C
-	u32 mGroundTreasureCount;                                  // _12C
-	u32 mGroundTreasureMax;                                    // _130
-	u32 mCaveOtaNum[4];                                        // _134
-	u32 mCaveOtaMax[4];                                        // _144
-	khUtilFadePaneWM* mCaveFadePane;                           // _154
-	khUtilColorAnmWM* mColorAnims[5];                          // _158
-	khUtilColorAnm* mColorAnim2;                               // _16C
-	og::Screen::ArrowAlphaBlink* mArrowBlink;                  // _170
-	int mCurrentState;                                         // _174
-	int mRocketAngleMode;                                      // _178
-	u32 mFlags;                                                // _17C
-	u8 mInputState;                                            // _180
-	u8 mOpenCourses;                                           // _181
-	u8 mCourseJustOpenFlags;                                   // _182
-	u8 mZukanFadeout;                                          // _183
+	Game::WorldMap::InitArg mInitArg;                                 // _18
+	P2DScreen::Mgr_tuning* mScreenKitagawa;                           // _30
+	J2DAnmTransform* mKitaAnim1;                                      // _34
+	J2DAnmTransformKey* mKitaAnim2;                                   // _38
+	J2DAnmColorKey* mKitaAnim3;                                       // _3C
+	J2DAnmTextureSRTKey* mKitaAnim4;                                  // _40
+	J2DAnmTextureSRTKey* mKitaAnim5;                                  // _44
+	P2DScreen::Mgr* mScreenRocket;                                    // _48
+	J2DAnmTransformKey* mRocketAnim1;                                 // _4C
+	J2DAnmTexPattern* mRocketAnim2;                                   // _50
+	P2DScreen::Mgr_tuning* mScreenInfo;                               // _54
+	J2DAnmTextureSRTKey* mInfoAnim1;                                  // _58
+	J2DAnmTextureSRTKey* mInfoAnim2;                                  // _5C
+	J2DAnmTextureSRTKey* mInfoAnim3;                                  // _60
+	og::Screen::ScaleMgr* mScaleMgr;                                  // _64
+	f32 mAnimTimers[10];                                              // _68
+	f32 mCameraZoomMinFrame;                                          // _90
+	f32 mCameraZoomX;                                                 // _94
+	f32 _98;                                                          // _98
+	Vector2f mRocketPosition;                                         // _9C
+	Vector2f mRocketPosition2;                                        // _A4
+	JGeometry::TVec2f mRocketAngle;                                   // _AC
+	Vector2f _B4;                                                     // _B4
+	f32 mRocketScale;                                                 // _BC
+	efx2d::WorldMap::T2DRocketGlow* mEfxRocketGlow;                   // _C0
+	efx2d::WorldMap::T2DRocketB* mEfxRocketSparks;                    // _C4
+	efx2d::WorldMap::T2DMapFlare* mEfxMapFlare;                       // _C8
+	efx2d::WorldMap::T2DShstar1* mEfxShstar1;                         // _CC
+	Vector2f mEffectPos;                                              // _D0
+	Vector2f mEffectDir;                                              // _D8
+	Vector2f mLight01Center;                                          // _E0
+	Vector2f mStarCenter;                                             // _E8
+	OnyonDynamics* mOnyonArray;                                       // _F0
+	int mOnyonCount;                                                  // _F4
+	int mCurrentCourseIndex;                                          // _F8
+	int mRocketMoveCounter;                                           // _FC
+	og::Screen::CallBack_CounterRV* mPokoCounter;                     // _100
+	og::Screen::CallBack_CounterRV* mGroundTreasureCounterCollected;  // _104
+	og::Screen::CallBack_CounterRV* mGroundTreasureCounterMax;        // _108
+	og::Screen::CallBack_CounterRV* mCaveTreasureCounterCollected[4]; // _10C
+	og::Screen::CallBack_CounterRV* mCaveTreasureCounterMax[4];       // _11C
+	u32 mGroundTreasureCount;                                         // _12C
+	u32 mGroundTreasureMax;                                           // _130
+	u32 mCaveOtaNum[4];                                               // _134
+	u32 mCaveOtaMax[4];                                               // _144
+	khUtilFadePaneWM* mCaveFadePane;                                  // _154
+	khUtilColorAnmWM* mColorAnims[5];                                 // _158
+	khUtilColorAnm* mColorAnim2;                                      // _16C
+	og::Screen::ArrowAlphaBlink* mArrowBlink;                         // _170
+	WorldMapState mCurrentState;                                      // _174
+	RocketRotation mRocketAngleMode;                                  // _178
+	u32 mFlags;                                                       // _17C
+	u8 mLockoutCounter;                                               // _180
+	u8 mOpenCourses;                                                  // _181
+	u8 mCourseJustOpenFlags;                                          // _182
+	u8 mZukanFadeout;                                                 // _183
 
 	static struct StaticValues {
 		inline StaticValues()
@@ -249,34 +284,34 @@ struct WorldMap : public Game::WorldMap::Base {
 			_6C.set(255, 255, 64, 255);
 			_70.set(255, 128, 32, 255);
 			_74.set(255, 255, 128, 140);
-			_78 = 8;
-			_79 = 8;
+			mInputLockoutFrames = 8;
+			_79                 = 8;
 		}
 
-		f32 _00; // _00
-		f32 _04;
-		f32 _08;
-		f32 _0C;
-		f32 _10;
-		f32 _14;
-		f32 _18;
-		f32 _1C[3];
-		f32 _28[4];
-		f32 _38;
-		f32 _3C;
-		f32 _40;
-		f32 _44;
-		f32 _48;
-		f32 _4C;
-		JGeometry::TVec2f _50[2];
-		f32 _60;
-		f32 _64;
-		f32 _68;
-		JUtility::TColor _6C;
-		JUtility::TColor _70;
-		JUtility::TColor _74;
-		u8 _78;
-		u8 _79;
+		f32 _00;                  // _00
+		f32 _04;                  // _04
+		f32 _08;                  // _08
+		f32 _0C;                  // _0C
+		f32 _10;                  // _10
+		f32 _14;                  // _14
+		f32 _18;                  // _18
+		f32 _1C[3];               // _1C
+		f32 _28[4];               // _28
+		f32 _38;                  // _38
+		f32 _3C;                  // _3C
+		f32 _40;                  // _40
+		f32 _44;                  // _44
+		f32 _48;                  // _48
+		f32 _4C;                  // _4C
+		JGeometry::TVec2f _50[2]; // _50
+		f32 _60;                  // _60
+		f32 _64;                  // _64
+		f32 _68;                  // _68
+		JUtility::TColor _6C;     // _6C
+		JUtility::TColor _70;     // _70
+		JUtility::TColor _74;     // _74
+		u8 mInputLockoutFrames;   // _78
+		u8 _79;                   // _79
 	} msVal;
 };
 } // namespace Screen

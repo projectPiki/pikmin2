@@ -750,7 +750,7 @@ struct DispMemberVs : public DispMemberBase {
 	f32 mGhostIconTimerP2; // _70
 };
 
-// size 0x28
+// size 0x28, "Return to Title?" popup in world map
 struct DispMemberWorldMapInfoWin0 : public DispMemberBase {
 	inline DispMemberWorldMapInfoWin0()
 	    : mResult(0)
@@ -782,7 +782,7 @@ struct DispMemberWorldMapInfoWin0 : public DispMemberBase {
 	u8 _24[0x4];        // _24, unknown
 };
 
-// size 0x10
+// size 0x10, "Land in this area?" popup in world map
 struct DispMemberWorldMapInfoWin1 : public DispMemberBase {
 	inline DispMemberWorldMapInfoWin1()
 	{

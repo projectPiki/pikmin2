@@ -29,11 +29,11 @@ struct TChasePos : public TForever {
 };
 
 struct TChasePosDir : public TForever {
-	TChasePosDir(u16 id, Vector2f& pos, Vector2f& pos2)
+	TChasePosDir(u16 id, Vector2f& pos, Vector2f& dir)
 	    : TForever(id)
 	{
 		mChasePosition = &pos;
-		mDirection     = &pos2;
+		mDirection     = &dir;
 	}
 	// vtable 1
 	virtual bool create(Arg*); // _08

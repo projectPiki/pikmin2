@@ -103,8 +103,8 @@ struct T2DRocketA : public TSimple_ArgDirScale {
  * @size{0x28}
  */
 struct T2DRocketB : public TChasePosDir {
-	T2DRocketB(Vector2f& pos, Vector2f& pos2)
-	    : TChasePosDir(PID_WMap_RocketSparks, pos, pos2)
+	T2DRocketB(Vector2f& pos, Vector2f& dir)
+	    : TChasePosDir(PID_WMap_RocketSparks, pos, dir)
 	{
 		_04 = 1;
 	}

@@ -81,6 +81,70 @@ struct TVec2 {
 		return *this;
 	}
 
+	void scale(const f32 scale)
+	{
+		x *= scale;
+		y *= scale;
+	}
+
+	void scale(const TVec2<f32>& a, const f32 scale)
+	{
+		x = a.x * scale;
+		y = a.y * scale;
+	}
+
+	void zero() { x = y = 0.0f; }
+
+	f32 squared() const { return x * x + y * y; }
+
+	void normalize()
+	{
+		if (squared() <= FLT_EPSILON * 32.0f) {
+			return;
+		}
+		f32 sq = squared();
+		f32 norm;
+		if (sq <= 0.0f) {
+			norm = sq;
+		} else {
+			norm = fsqrt_step(sq);
+		}
+		x *= norm;
+		y *= norm;
+	}
+
+	void normalize(const TVec2<f32>& other)
+	{
+		f32 sq = other.squared();
+		if (sq <= FLT_EPSILON * 32.0f) {
+			zero();
+			return;
+		}
+		f32 norm;
+		if (sq <= 0.0f) {
+			norm = sq;
+		} else {
+			norm = fsqrt_step(sq);
+		}
+		x = other.x * norm;
+		y = other.y * norm;
+	}
+
+	f32 distance(const TVec2<f32>& other)
+	{
+		f32 X    = x - other.x;
+		f32 Y    = y - other.y;
+		f32 sq   = X * X + Y * Y;
+		f32 dist = 0.0f;
+		if (sq <= 0.0f) {
+			dist = sq;
+		} else {
+			dist = sq * fsqrt_step(sq);
+		}
+
+		return dist;
+	}
+
 	bool isAbove(const TVec2<T>& other) const { return (x >= other.x) && (y >= other.y) ? true : false; }
 
 	T x;
