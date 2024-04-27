@@ -464,7 +464,7 @@ int PikiAI::ActFormation::exec()
 		}
 
 		Vector3f naviPikiSep = mParent->getPosition() - mParent->mNavi->getPosition(); // f30, f29, f28
-		Vector3f plateSep    = mParent->mNavi->getPosition() - mCPlate->_A4;
+		Vector3f plateSep    = mParent->mNavi->getPosition() - mCPlate->mMaxPositionOffset;
 		plateSep.normalise();
 
 		if (dot(plateSep, naviPikiSep) > 0.0f) {
@@ -490,7 +490,7 @@ int PikiAI::ActFormation::exec()
 		mParent->setSpeed(1.0f, sep);
 
 		Vector3f naviPikiSep = mParent->getPosition() - mParent->mNavi->getPosition(); // f30, f29, f28
-		Vector3f plateSep    = mParent->mNavi->getPosition() - mCPlate->_A4;
+		Vector3f plateSep    = mParent->mNavi->getPosition() - mCPlate->mMaxPositionOffset;
 		plateSep.normalise();
 
 		if (dot(plateSep, naviPikiSep) > 0.0f) {

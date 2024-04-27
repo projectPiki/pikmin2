@@ -240,7 +240,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	// _000-_250 = FakePiki
 	// _250      = ptr to PelletView
 	CPlate* mCPlateMgr;                     // _254
-	u8 _258;                                // _258
+	u8 mPlateScaleTimer;                    // _258
 	u8 mStickCount;                         // _259
 	s32 mSprayCounts[2];                    // _25C proven signed by Navi::hasDope
 	u8 _264[4];                             // _264

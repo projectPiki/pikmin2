@@ -61,7 +61,7 @@ void GameSystem::init()
 	GameStat::clear();
 
 	mIsFrozen     = false;
-	_49           = 0;
+	mUnused       = 0;
 	mIsPaused     = 0;
 	mIsPausedSoft = false;
 

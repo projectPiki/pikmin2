@@ -88,7 +88,7 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	TimeMgr* mTimeMgr;         // _40
 	GameSystemMode mMode;      // _44
 	u8 mIsInCave;              // _48
-	u8 _49;                    // _49
+	u8 mUnused;                // _49
 	bool mIsFrozen;            // _4A
 	u8 mIsPaused;              // _4B, not a bool
 	bool mIsPausedSoft;        // _4C

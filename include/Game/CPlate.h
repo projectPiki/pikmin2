@@ -71,24 +71,24 @@ struct CPlate : public Container<Creature> {
 
 	// _00     = VTBL
 	// _00-_1C = Container
-	Parms mParms;                   // _1C
-	Vector3f _A4;                   // _A4
-	f32 mBaseRadius;                // _B0
-	f32 _B4;                        // _B4
-	f32 _B8;                        // _B8
-	int mActiveGroupSize;           // _BC
-	Slot* mSlots;                   // _C0
-	int mSlotLimit;                 // _C4
-	int mSlotCount;                 // _C8
-	Vector3f mPosition;             // _CC
-	Vector3f _D8;                   // _D8
-	Vector3f mVelocity;             // _E4
-	f32 mAngle;                     // _F0
-	Vector3f _F4;                   // _F4
-	u8 _100;                        // _100
-	int _104[PikiGrowthStageCount]; // _104, indexed by happakind?
-	u8 _110;                        // _110
-	u8 _111;                        // _111
+	Parms mParms;                                // _1C
+	Vector3f mMaxPositionOffset;                 // _A4
+	f32 mBaseRadius;                             // _B0
+	f32 _B4;                                     // _B4
+	f32 mMaxRadius;                              // _B8
+	int mActiveGroupSize;                        // _BC
+	Slot* mSlots;                                // _C0
+	int mSlotLimit;                              // _C4
+	int mSlotCount;                              // _C8
+	Vector3f mPosition;                          // _CC
+	Vector3f mBasePositionOffset;                // _D8
+	Vector3f mVelocity;                          // _E4
+	f32 mAngle;                                  // _F0
+	Vector3f mUnused;                            // _F4
+	u8 mShrinkTimer;                             // _100
+	int mHappaStageCounts[PikiGrowthStageCount]; // _104, indexed by happakind?
+	u8 _110;                                     // _110
+	u8 mIsPositionUnset;                         // _111
 };
 } // namespace Game
 

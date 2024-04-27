@@ -38,7 +38,7 @@ void* CPlate::getEnd() { return (void*)mSlotCount; }
  * @note Address: 0x80195054
  * @note Size: 0xC
  */
-void CPlate::shrink() { _100 = 10; }
+void CPlate::shrink() { mShrinkTimer = 10; }
 
 /**
  * @note Address: N/A
@@ -67,23 +67,23 @@ CPlate::CPlate(int slotLimit)
 	mActiveGroupSize = 0;
 	mSlotCount       = 0;
 	_110             = 0;
-	_111             = 1;
-	_F4              = Vector3f(0.0f);
-	for (int i = 0; i < ARRAY_SIZE(_104); i++) {
-		_104[i] = 0;
+	mIsPositionUnset = 1;
+	mUnused          = Vector3f(0.0f);
+	for (int i = 0; i < ARRAY_SIZE(mHappaStageCounts); i++) {
+		mHappaStageCounts[i] = 0;
 	}
-	mVelocity = Vector3f(0.0f);
-	_D8       = Vector3f(0.0f);
-	_100      = 0;
+	mVelocity           = Vector3f(0.0f);
+	mBasePositionOffset = Vector3f(0.0f);
+	mShrinkTimer        = 0;
 }
 
 /**
  * Sets the position, angle, velocity, and scale of the CPlate object.
  *
- * @param position The new position of the CPlate object.
- * @param angle The new angle of the CPlate object.
- * @param velocity The new velocity of the CPlate object.
- * @param scale The scale factor to be applied to the CPlate object.
+ * @param position The position vector of the CPlate object.
+ * @param angle The angle of rotation for the CPlate object.
+ * @param velocity The velocity vector of the CPlate object.
+ * @param scale The scale factor for the CPlate object.
  *
  * @note Address: 0x801952EC
  * @note Size: 0x210
@@ -93,48 +93,50 @@ void CPlate::setPos(Vector3f& position, f32 angle, Vector3f& velocity, f32 scale
 	f32 offset = mParms.mStartingOffset();
 	offset *= scale;
 
+	// Cap the offset if the velocity is too high
 	if (mVelocity.length2D() > 5.0f) {
 		offset = 0.0f;
 	}
 
-	f32 rad = mBaseRadius + offset;
+	f32 currentRadius = mBaseRadius + offset;
 
 	mAngle    = angle;
 	mPosition = position;
 
-	Vector3f dir = Vector3f(rad * sinf(angle), 0.0f, rad * cosf(angle));
-	_D8          = mPosition + dir;
-	mVelocity    = velocity;
+	Vector3f dir        = Vector3f(currentRadius * sinf(angle), 0.0f, currentRadius * cosf(angle));
+	mBasePositionOffset = mPosition + dir;
+	mVelocity           = velocity;
 
-	Vector3f secondDir = Vector3f(_B8 * sinf(angle), 0.0f, _B8 * cosf(angle));
-	_A4                = position + secondDir;
-	_111               = 0;
+	Vector3f secondDir = Vector3f(mMaxRadius * sinf(angle), 0.0f, mMaxRadius * cosf(angle));
+	mMaxPositionOffset = position + secondDir;
+
+	mIsPositionUnset = 0;
 }
 
 /**
  * @note Address: 0x801954FC
  * @note Size: 0x20C
  */
-void CPlate::setPosGray(Vector3f& position, f32 angle, Vector3f& velocity, f32 p4)
+void CPlate::setPosGray(Vector3f& position, f32 angle, Vector3f& velocity, f32 scale)
 {
 	f32 offset = mParms.mStartingOffset();
-	offset *= p4;
+	offset *= scale;
 
 	if (mVelocity.length2D() > 5.0f) {
 		offset = 0.0f;
 	}
 
-	f32 rad = mBaseRadius + offset;
+	f32 baseRadius = mBaseRadius + offset;
 
 	mPosition = position;
 
-	Vector3f dir = Vector3f(rad * sinf(angle), 0.0f, rad * cosf(angle));
-	_D8          = mPosition + dir;
-	mVelocity    = velocity;
+	Vector3f baseDirection = Vector3f(baseRadius * sinf(angle), 0.0f, baseRadius * cosf(angle));
+	mBasePositionOffset    = mPosition + baseDirection;
+	mVelocity              = velocity;
 
-	Vector3f secondDir = Vector3f(_B8 * sinf(angle), 0.0f, _B8 * cosf(angle));
-	_A4                = position + secondDir;
-	_111               = 0;
+	Vector3f maxDirection = Vector3f(mMaxRadius * sinf(angle), 0.0f, mMaxRadius * cosf(angle));
+	mMaxPositionOffset    = position + maxDirection;
+	mIsPositionUnset      = 0;
 }
 
 /**
@@ -159,7 +161,7 @@ int CPlate::getSlot(Creature* piki, SlotChangeListener* listener, bool p3)
 		}
 	}
 
-	_104[static_cast<Piki*>(piki)->mHappaKind]++;
+	mHappaStageCounts[static_cast<Piki*>(piki)->mHappaKind]++;
 	int slot               = mSlotCount;
 	mSlots[slot].mCreature = piki;
 	mSlots[slot].mListener = listener;
@@ -175,16 +177,16 @@ int CPlate::getSlot(Creature* piki, SlotChangeListener* listener, bool p3)
 void CPlate::changeFlower(Creature* creature)
 {
 	P2ASSERTLINE(312, creature->isPiki());
-	int happa     = static_cast<Piki*>(creature)->mHappaKind;
-	int prevHappa = (happa + (PikiGrowthStageCount - 1)) % PikiGrowthStageCount;
-	/* EpochFlame explains:
-	 * PikiGrowthStageCount is 3 in vanilla, so here's how this code works. Hopefully this scales as I thought.
-	 * Let's say happa is 2 (flower), so (happa + (PikiGrowthStageCount-1)) resolves to 2 + 3-1 = 4
-	 * 4 % PikiGrowthStageCount is 4 % 3. 4/3 has a remainder of 1, which is Bud, so the previous happa is Bud.
-	 * I think
-	 */
-	_104[happa]++;
-	_104[prevHappa]--;
+
+	// What's the current flower state?
+	int currentKind = static_cast<Piki*>(creature)->mHappaKind;
+
+	// What's the previous flower state?
+	int previousKind = (currentKind + (PikiGrowthStageCount - 1)) % PikiGrowthStageCount;
+
+	// Update it (Priority is given to the flower over the bud, and bud over the leaf)
+	mHappaStageCounts[currentKind]++;
+	mHappaStageCounts[previousKind]--;
 }
 
 /**
@@ -194,12 +196,15 @@ void CPlate::changeFlower(Creature* creature)
 void CPlate::releaseSlot(Creature* creature, int idx)
 {
 	Slot& slot = mSlots[idx];
-	JUT_ASSERTLINE(331, slot.mCreature == creature, " sorry ...\n");
-	_104[static_cast<Piki*>(creature)->mHappaKind]--;
+	JUT_ASSERTLINE(331, slot.mCreature == creature, " sorry ...\n"); // LOL
+
+	mHappaStageCounts[static_cast<Piki*>(creature)->mHappaKind]--;
 	slot.mCreature = nullptr;
+
 	mSlotCount--;
 	mActiveGroupSize--;
 	if (mSlotCount < 0) {
+		// Stripped debug code
 		creature->getTypeName();
 	}
 
@@ -242,12 +247,12 @@ void CPlate::swapSlot(int i, int j)
  */
 bool CPlate::validSlot(int index)
 {
-	if (0 > index || index >= mSlotCount) {
+	if (index < 0 || index >= mSlotCount) {
 		return false;
 	}
+
 	return true;
 }
-
 } // namespace Game
 
 /**
@@ -306,18 +311,15 @@ void CPlate::sortByColor(Creature* piki, int happaType)
 				continue;
 			}
 
+			// Remove the additional mr r6, r4 by making this an INLINE!!
 			int iPrio;
 			int jPrio;
 			if (happaType == -1) {
-				int iHappa = iPiki->getHappa();
-				int jHappa = jPiki->getHappa();
-				iPrio      = happa != iHappa;
-				jPrio      = happa != jHappa;
+				jPrio = happa != jPiki->getHappa();
+				iPrio = happa != iPiki->getHappa();
 			} else {
-				int iHappa = iPiki->getHappa();
-				int jHappa = jPiki->getHappa();
-				iPrio      = happaSlots[iHappa];
-				jPrio      = happaSlots[jHappa];
+				jPrio = happaSlots[jPiki->getHappa()];
+				iPrio = happaSlots[iPiki->getHappa()];
 			}
 
 			if (j > i && jPrio < iPrio) {
@@ -679,16 +681,18 @@ lbl_80195E34:
  * @note Address: 0x80195E54
  * @note Size: 0x1E0
  */
-void CPlate::rearrangeSlot(Vector3f& p1, f32 p2, Vector3f& p3)
+void CPlate::rearrangeSlot(Vector3f& target, f32 direction, Vector3f& velocity)
 {
 	for (int i = mSlotCount - 1; i >= 1; i--) {
 		for (int j = i; j >= 1; j--) {
-			Vector3f pikiPos     = mSlots[j].mCreature->getPosition();
-			Vector3f sep         = p1 - pikiPos;
-			f32 dist             = sep.length();
+			Vector3f currPikiPos      = mSlots[j].mCreature->getPosition();
+			Vector3f fromPikiToTarget = target - currPikiPos;
+			f32 distance              = fromPikiToTarget.length();
+
 			Vector3f prevPikiPos = mSlots[j - 1].mCreature->getPosition();
 
-			if (dist < p1.distance(prevPikiPos)) {
+			// If the Pikmin is closer than the previous, swap them
+			if (distance < target.distance(prevPikiPos)) {
 				swapSlot(j, j - 1);
 			}
 		}
@@ -702,35 +706,37 @@ void CPlate::rearrangeSlot(Vector3f& p1, f32 p2, Vector3f& p3)
 void CPlate::getSlotPosition(int idx, Vector3f& outPosition)
 {
 	JUT_ASSERTLINE(627, validSlot(idx), "invalid slot idx %d\n", idx);
-	outPosition = mSlots[idx]._0C + _D8;
+	outPosition = mSlots[idx]._0C + mBasePositionOffset;
 }
 
 /**
  * @note Address: 0x801960F8
  * @note Size: 0x1B8
  */
-void CPlate::refresh(int groupSize, f32 p2)
+void CPlate::refresh(int groupSize, f32 moveStrength)
 {
-	if (p2 > 1.0f) {
-		p2 = 1.0f;
-	} else if (p2 < 0.0f) {
-		p2 = 0.0f;
+	if (moveStrength > 1.0f) {
+		moveStrength = 1.0f;
+	} else if (moveStrength < 0.0f) {
+		moveStrength = 0.0f;
 	}
 
 	if (groupSize < mActiveGroupSize) {
 		mSlotCount -= (mActiveGroupSize - groupSize);
 	}
+
 	mActiveGroupSize = groupSize;
-	f32 maxSizeParm  = mParms.mMaxPositionSize();
-	f32 maxSize      = maxSizeParm * ((_100) ? 0.5f : 1.0f);
+
+	f32 maxSizeParm = mParms.mMaxPositionSize();
+	f32 maxSize     = maxSizeParm * (mShrinkTimer ? 0.5f : 1.0f);
 
 	f32 val = (f32)groupSize / PI;
 	val     = _sqrtf(val);
 
-	_B8      = (2.1f * maxSize) * val;
-	f32 val2 = 1.9f * maxSize;
+	mMaxRadius = (2.1f * maxSize) * val;
+	f32 val2   = 1.9f * maxSize;
 
-	f32 val3 = _B8;
+	f32 val3 = mMaxRadius;
 	if (val2 > val3) {
 		val = val2;
 	} else {
@@ -738,7 +744,7 @@ void CPlate::refresh(int groupSize, f32 p2)
 		val3 = val2;
 	}
 
-	_B4 = (p2 * -(val - val3)) + val;
+	_B4 = (moveStrength * -(val - val3)) + val;
 	if (_B4 == 0.0f) {
 		mBaseRadius = 10.0f;
 	} else {
@@ -751,7 +757,7 @@ void CPlate::refresh(int groupSize, f32 p2)
 		_B4         = (maxSize * ((4.0f * (f32)groupSize) * maxSize)) / (PI * mBaseRadius);
 	}
 
-	refreshSlot(p2);
+	refreshSlot(moveStrength);
 }
 
 /**
@@ -760,51 +766,57 @@ void CPlate::refresh(int groupSize, f32 p2)
  */
 void CPlate::refreshSlot(f32 p1)
 {
-	int count = 0;            // r31
-	f32 rad   = -mBaseRadius; // f26
-	Matrixf mtx;
-	Vector3f rot(0.0f, mAngle, 0.0f);
-	Vector3f scale(1.0f);
-	mtx.makeSR(scale, rot);
+	int slotCount = 0;            // r31
+	f32 radius    = -mBaseRadius; // f26
 
-	f32 maxPosParm = mParms.mMaxPositionSize();
-	f32 maxSize    = maxPosParm * ((_100) ? 0.5f : 1.0f); // f25
+	Matrixf rotationMtx;
+	Vector3f rotation(0.0f, mAngle, 0.0f);
+	Vector3f scale(1.0f);
+	rotationMtx.makeSR(scale, rotation);
+
+	f32 maxPositionSize = mParms.mMaxPositionSize();
+
+	// This is probably an INLINE!!!
+	f32 maxSize = maxPositionSize * (mShrinkTimer ? 0.5f : 1.0f); // f25
+
 	Vector3f vec(0.0f);
-	_F4 = mtx.mtxMult(vec);
+	mUnused = rotationMtx.mtxMult(vec);
 
 	int direction = 1;              // r30
 	int row       = 0;              // r26
 	f32 x         = 2.0f * maxSize; // f27
 
-	while (count < mActiveGroupSize) {
+	while (slotCount < mActiveGroupSize) {
 		f32 sqrBase  = mBaseRadius * mBaseRadius;
-		f32 sqrRad   = rad * rad;
+		f32 sqrRad   = radius * radius;
 		f32 rootDiff = _sqrtf(sqrBase - sqrRad);
-		int val      = (_B4 * rootDiff) / rad / x;
+		int val      = (_B4 * rootDiff) / radius / x;
 		if (val < 0) {
 			val = 0;
 		}
-		if (p1 < 0.1f && val == 0 && mActiveGroupSize - count > 1) {
+
+		if (p1 < 0.1f && val == 0 && mActiveGroupSize - slotCount > 1) {
 			val = 1;
 		}
 
 		f32 fVal = (f32)val * maxSize;
 		fVal *= 2.0f;
+
 		f32 step = ((f32)direction * maxSize); // f23
 		step *= 2.0f;
 
 		f32 fCounter = (f32)direction * fVal; // f22
 
 		for (int i = val * 2 + 1; i > 0; i--, fCounter -= step) {
-			if (count < mActiveGroupSize) {
-				mSlots[row]._00 = Vector3f(fCounter, 0.0f, rad);
-				mSlots[row]._0C = mtx.mtxMult(mSlots[row]._00);
+			if (slotCount < mActiveGroupSize) {
+				mSlots[row]._00 = Vector3f(fCounter, 0.0f, radius);
+				mSlots[row]._0C = rotationMtx.mtxMult(mSlots[row]._00);
 				row++;
-				count++;
+				slotCount++;
 			}
 		}
 
-		rad += x;
+		radius += x;
 		direction *= -1;
 	}
 	/*
@@ -1028,10 +1040,11 @@ lbl_8019652C:
  */
 void CPlate::update()
 {
-	if (_100 == 0) {
+	if (mShrinkTimer == 0) {
 		return;
 	}
-	_100--;
+
+	mShrinkTimer--;
 }
 
 /**

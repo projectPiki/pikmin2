@@ -101,8 +101,8 @@ Navi::Navi()
  */
 void Navi::onInit(Game::CreatureInitArg* arg)
 {
-	mStickCount = 0;
-	_258        = 0;
+	mStickCount      = 0;
+	mPlateScaleTimer = 0;
 	u16 uVar2;
 
 	clearKaisanDisable();
@@ -4918,80 +4918,97 @@ void Navi::makeCStick(bool disable)
 		stickPos.z = mController1->getSubStickY();
 	}
 
-	Vector3f side = mCamera->getSideVector();
-	Vector3f up   = mCamera->getUpVector();
-	Vector3f view = mCamera->getViewVector();
-	side.y        = 0.0f;
-	side.qNormalise();
+	Vector3f cameraSide        = mCamera->getSideVector();
+	Vector3f transformedMotion = mCamera->getUpVector();
+	Vector3f cameraView        = mCamera->getViewVector();
+	cameraSide.y               = 0.0f;
+	cameraSide.qNormalise();
 
-	if (up.y > view.y) {
-		view.x = view.x;
-		view.z = view.z;
+	if (transformedMotion.y > cameraView.y) {
+		cameraView.x = cameraView.x;
+		cameraView.z = cameraView.z;
 	} else {
-		view.x = up.x;
-		view.z = up.z;
+		cameraView.x = transformedMotion.x;
+		cameraView.z = transformedMotion.z;
 	}
 
-	Vector3f obummer(view.x, 0.0f, view.z);
-	obummer.qNormalise();
+	// Transform the C-Stick according to the direction of the camera
+	Vector3f normalisedView(cameraView.x, 0.0f, cameraView.z);
+	normalisedView.qNormalise();
 
-	up = (side * stickPos.x) + (obummer * stickPos.z);
+	transformedMotion = (cameraSide * stickPos.x) + (normalisedView * stickPos.z);
 	if (disable) {
-		up = 0.0f;
+		transformedMotion = 0.0f;
 	}
 
-	mCStickPosition = 0.0f;
-	f32 dist        = up.sqrMagnitude();
-	mCommandOn2     = false;
-	if (pikmin2_sqrtf(dist) > 0.05f) {
+	mCStickPosition  = 0.0f;
+	f32 moveStrength = transformedMotion.sqrMagnitude();
+	mCommandOn2      = false;
+
+	// If the C-Stick is being used
+	if (pikmin2_sqrtf(moveStrength) > 0.05f) {
 		mCommandOn2          = true;
 		mSceneAnimationTimer = 0.0f;
-		mCStickPosition      = up;
-		f32 scale            = pikmin2_atan2f(up.x, up.z);
-		f32 ang2             = mCPlateMgr->mAngle;
-		f32 cosA             = pikmin2_cosf(scale);
-		f32 sinA             = pikmin2_sinf(scale);
-		f32 cosB             = pikmin2_cosf(ang2);
-		f32 sinB             = pikmin2_sinf(ang2);
-		f32 cosC             = pikmin2_cosf(2.0943952f);
+		mCStickPosition      = transformedMotion;
 
-		f32 zero = 0.0f;
-		if ((sinA * sinB + zero) + (cosA * cosB) > cosC) {
-			zero = angDist(scale, ang2) * 0.4f + ang2;
-		} else {
-			zero = scale;
-		}
-		scale        = roundAng(zero);
-		mCStickAngle = scale;
-		f32 calc     = (pikmin2_sqrtf(dist) - 0.05f) / 0.95f;
-		if (calc >= 0.9f) {
-			calc = 1.0f;
-		} else {
-			calc = (calc / 0.9f) * 0.6f;
-		}
-		mCPlateMgr->refresh(mCPlateMgr->mSlotCount, calc);
-		if (_258 < 40) {
-			_258++;
-		}
-		Vector3f pos = getPosition();
+		// transformedMotion is the direction of the C-Stick,
+		// So calling atan2f gets the directional angle of the C-Stick
+		f32 stickAngle = pikmin2_atan2f(transformedMotion.x, transformedMotion.z);
+		f32 plateAngle = mCPlateMgr->mAngle;
 
-		f32 angle;
-		if (_258 >= 40) {
-			angle = 3.0f;
+		f32 stickAngleCos  = pikmin2_cosf(stickAngle);
+		f32 stickAngleSine = pikmin2_sinf(stickAngle);
+
+		f32 plateAngleCos  = pikmin2_cosf(plateAngle);
+		f32 plateSineAngle = pikmin2_sinf(plateAngle);
+
+		f32 angleLimit = pikmin2_cosf(120.0f * DEG2RAD);
+
+		f32 newAngle = 0.0f;
+
+		// If the angle of the C-Stick is greater than the angle limit
+		if ((stickAngleSine * plateSineAngle + newAngle) + (stickAngleCos * plateAngleCos) > angleLimit) {
+			// Interpolate from the Plate angle to the C-Stick angle
+			newAngle = angDist(stickAngle, plateAngle) * 0.4f + plateAngle;
 		} else {
-			angle = 1.0f;
+			newAngle = stickAngle;
 		}
 
-		mCPlateMgr->setPos(pos, scale, mSimVelocity, angle);
+		stickAngle   = roundAng(newAngle);
+		mCStickAngle = stickAngle;
+
+		// Normalise the moveStrength value
+		f32 normalizedMoveStrength = (pikmin2_sqrtf(moveStrength) - 0.05f) / 0.95f;
+		if (normalizedMoveStrength >= 0.9f) {
+			normalizedMoveStrength = 1.0f;
+		} else {
+			normalizedMoveStrength = (normalizedMoveStrength / 0.9f) * 0.6f;
+		}
+
+		mCPlateMgr->refresh(mCPlateMgr->mSlotCount, normalizedMoveStrength);
+		if (mPlateScaleTimer < 40) {
+			mPlateScaleTimer++;
+		}
+
+		Vector3f position = getPosition();
+		f32 scale;
+		if (mPlateScaleTimer >= 40) {
+			scale = 3.0f;
+		} else {
+			scale = 1.0f;
+		}
+
+		mCPlateMgr->setPos(position, stickAngle, mSimVelocity, scale);
 		_2FC        = 0;
 		mCommandOn1 = false;
 
 	} else {
+		mPlateScaleTimer = 0;
 
-		_258 = 0;
 		if (!_2FC) {
 			mCommandOn1 = true;
 		}
+
 		f32 dir = mFaceDir + PI;
 		if ((!_2FC && mVelocity.qLength() < 50.0f) && getStateID() != NSID_ThrowWait) {
 			f32 angle    = mCStickAngle;
@@ -5002,6 +5019,7 @@ void Navi::makeCStick(bool disable)
 		} else {
 			_2FC = true;
 		}
+
 		mCPlateMgr->refresh(mCPlateMgr->mSlotCount, 0.0f);
 
 		f32 minDist = 12800.0f;
@@ -5016,6 +5034,7 @@ void Navi::makeCStick(bool disable)
 				minDist = dist;
 			}
 		}
+
 		if (minDist < naviMgr->mNaviParms->mNaviParms.mPikiWaitRange()) {
 			if (mCStickState == 0) {
 				mCStickIncrement++;
@@ -5044,7 +5063,7 @@ void Navi::makeCStick(bool disable)
 		} else if (mCStickState == 1) {
 			_2FD          = 1;
 			Vector3f pos  = getPosition();
-			Vector3f diff = mCPlateMgr->_A4 - pos;
+			Vector3f diff = mCPlateMgr->mMaxPositionOffset - pos;
 			diff.qNormalise();
 			dir           = pikmin2_atan2f(diff.x, diff.z);
 			Vector3f pos2 = getPosition();
@@ -5061,7 +5080,7 @@ void Navi::makeCStick(bool disable)
 		}
 	}
 
-	mCStickTargetVector = up;
+	mCStickTargetVector = transformedMotion;
 
 	/*
 	.loc_0x0:
