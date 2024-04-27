@@ -14,14 +14,29 @@
 
 namespace kh {
 namespace Screen {
-struct TotalResultData {
+struct OneResultData {
+	OneResultData(int, int, int, int, int, const char*, JKRArchive*);
+
+	// unknown
 	P2DScreen::Mgr* mScreen; // _00
 	int mScore1;             // _04
-	int mScore2;
-	int mScore3;
-	int mScore4;
-	int mScore5; // _14
-	u8 _18;      // _18
+	int mScore2;             // _08
+	int mScore3;             // _0C
+	int mScore4;             // _10
+	int mScore5;             // _14
+	u8 _18;                  // _18
+};
+
+struct TotalResultData {
+	TotalResultData() { } // remove this when the below works
+
+	TotalResultData(const int*, const int*, Game::Highscore**);
+
+	// unused/inlined:
+	void init();
+	void draw(Graphics&, u32, u32);
+
+	OneResultData** mResults; // _00, array of 16 results
 };
 
 struct DispFinalResult : public og::Screen::DispMemberBase {
@@ -100,14 +115,14 @@ struct ObjFinalResult : public ::Screen::ObjBase {
 	int mCurrentPage;                                  // _130
 	int mScrollTargetPos;                              // _134
 	int mScrollMoveProgress;                           // _138
-	int mAutoScrollDelay;
-	u32 _140;
-	u32 _144;
-	int mState;           // _148
-	u8 mRandAnimCounter1; // _14C
-	u8 mRandAnimCounter2; // _14D
-	u8 mFlags;            // _14E
-	u8 mFadeAlpha;        // _14F
+	int mAutoScrollDelay;                              // _13C
+	u32 _140;                                          // _140
+	u32 _144;                                          // _144
+	int mState;                                        // _148
+	u8 mRandAnimCounter1;                              // _14C
+	u8 mRandAnimCounter2;                              // _14D
+	u8 mFlags;                                         // _14E
+	u8 mFadeAlpha;                                     // _14F
 
 	static struct StaticValues {
 		inline StaticValues()
@@ -127,17 +142,17 @@ struct ObjFinalResult : public ::Screen::ObjBase {
 			mColors[2].set(255, 48, 80, 0);
 		}
 
-		f32 mAnimSpeed; // _00
-		int _04;
-		int _08;
-		f32 _0C;
-		JUtility::TColor mColors[3];
-		u8 _1C;
-		u8 _1D;
-		u8 mFadeAlphaRate;
-		u8 _1F;
-		u8 _20;
-		u8 _21;
+		f32 mAnimSpeed;              // _00
+		int _04;                     // _04
+		int _08;                     // _08
+		f32 _0C;                     // _0C
+		JUtility::TColor mColors[3]; // _10
+		u8 _1C;                      // _1C
+		u8 _1D;                      // _1D
+		u8 mFadeAlphaRate;           // _1E
+		u8 _1F;                      // _1F
+		u8 _20;                      // _20
+		u8 _21;                      // _21
 	} msVal;
 };
 
