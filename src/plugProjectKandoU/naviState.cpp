@@ -2805,7 +2805,7 @@ int NaviPathMoveState::execMoveGoal(Navi* navi) { return 0; }
 void NaviNukuState::init(Navi* navi, StateArg* stateArg)
 {
 	if (stateArg != nullptr) {
-		mIsFollower = static_cast<NaviNukuArg*>(stateArg)->_00;
+		mIsFollower = static_cast<NaviNukuArg*>(stateArg)->mIsFollowing;
 	} else {
 		mIsFollower = 0;
 	}
@@ -2921,24 +2921,24 @@ void NaviNukuAdjustState::init(Navi* navi, StateArg* stateArg)
 
 	NaviNukuAdjustStateArg* arg = static_cast<NaviNukuAdjustStateArg*>(stateArg);
 
-	_30       = arg->_00;
-	_34       = arg->_04;
-	_40       = arg->_10;
-	mPikiHead = arg->mPikihead;
-	_48       = arg->_18;
-	_20       = 0;
+	mAngleToItem = arg->mAngleToItem;
+	_34          = arg->_04;
+	_40          = arg->_10;
+	mPikiHead    = arg->mPikihead;
+	mIsFollowing = arg->_18;
+	_20          = 0;
 
 	Vector3f diff = arg->mPikihead->getPosition() - navi->getPosition();
-	_10           = JMAAtan2Radian(diff.x, diff.z);
+	mAngleToPiki  = JMAAtan2Radian(diff.x, diff.z);
 	diff.normalise();
-	_14 = arg->mPikihead->getPosition() - (diff * 6.0f);
+	mTargetPosition = arg->mPikihead->getPosition() - (diff * 6.0f);
 
 	navi->startMotion(IPikiAnims::WALK, IPikiAnims::WALK, nullptr, nullptr);
 	navi->enableMotionBlend();
 	navi->setMoveRotation(false);
-	_4C         = 0;
-	navi->mMass = 0.0f;
-	_5C         = 0;
+	mIsMoving       = 0;
+	navi->mMass     = 0.0f;
+	mWallHitCounter = 0;
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -3099,7 +3099,7 @@ lbl_80182208:
  * @note Address: 0x801822E0
  * @note Size: 0x10
  */
-void NaviNukuAdjustState::wallCallback(Navi* navi, Vector3f&) { _5C++; }
+void NaviNukuAdjustState::wallCallback(Navi* navi, Vector3f&) { mWallHitCounter++; }
 
 /**
  * @note Address: 0x801822F0
@@ -3125,8 +3125,8 @@ void NaviNukuAdjustState::collisionCallback(Navi* navi, CollEvent& collEvent)
 		return;
 	}
 
-	_4C = true;
-	_50 = piki->getPosition();
+	mIsMoving             = true;
+	mCollidedPikiPosition = piki->getPosition();
 }
 
 /**
@@ -3136,7 +3136,7 @@ void NaviNukuAdjustState::collisionCallback(Navi* navi, CollEvent& collEvent)
 void NaviNukuAdjustState::exec(Navi* navi)
 {
 	if (moviePlayer && moviePlayer->mDemoState != DEMOSTATE_Inactive) {
-		if (_48) {
+		if (mIsFollowing) {
 			transit(navi, NSID_Follow, nullptr);
 		} else {
 			transit(navi, NSID_Walk, nullptr);
@@ -3145,42 +3145,45 @@ void NaviNukuAdjustState::exec(Navi* navi)
 	}
 
 	if (!mPikiHead->isAlive()) {
-		if (_48) {
+		if (mIsFollowing) {
 			transit(navi, NSID_Follow, nullptr);
 		} else {
 			transit(navi, NSID_Walk, nullptr);
 		}
 		return;
 	}
-	if (!_48) {
+
+	if (!mIsFollowing) {
 		navi->makeCStick(false);
 	}
+
 	if (navi->mController1 && navi->mController1->getButton() & Controller::PRESS_B) {
 		navi->mPluckingCounter = 0;
 		transit(navi, NSID_Walk, nullptr);
 		return;
 	}
 
-	_24 = navi->getPosition();
+	mNaviPosition = navi->getPosition();
 
-	Vector3f sep1 = mPikiHead->getPosition() - navi->getPosition();
-	sep1.length(); // unused
+	Vector3f pikiToNavi = mPikiHead->getPosition() - navi->getPosition();
+	pikiToNavi.length(); // unused
 
-	Vector3f sep = _14 - navi->getPosition(); // f26, f27, f28
-	f32 dist     = sep.length();              // f31
-	f32 absY     = absF(sep.y);
+	Vector3f targetToNavi    = mTargetPosition - navi->getPosition(); // f26, f27, f28
+	f32 targetToNaviDistance = targetToNavi.length();                 // f31
+	f32 absoluteDeltaY       = absF(targetToNavi.y);
 
-	f32 dist2 = sep.normalise(); // f30, why tho
+	f32 normalisedDistance = targetToNavi.normalise(); // f30, why tho
 
-	f32 newFaceDir = _10;
+	f32 newFaceDir = mAngleToPiki;
 	f32 angle      = angDist(newFaceDir, navi->mFaceDir);
-	if (absF(angle) < (PI / 10) && dist < 2.0f && absY < 10.0f) {
+	if (absF(angle) < (PI / 10) && targetToNaviDistance < 2.0f && absoluteDeltaY < 10.0f) {
 		navi->mFaceDir      = newFaceDir;
 		PikiMgr::mBirthMode = PikiMgr::PSM_Force;
 		Piki* piki          = pikiMgr->birth();
 		PikiMgr::mBirthMode = PikiMgr::PSM_Normal;
+
 		if (!piki) {
-			if (_48) {
+			if (mIsFollowing) {
 				transit(navi, NSID_Follow, nullptr);
 			} else {
 				transit(navi, NSID_Walk, nullptr);
@@ -3198,12 +3201,12 @@ void NaviNukuAdjustState::exec(Navi* navi)
 		mPikiHead = nullptr;
 
 		NukareStateArg nukareArg;
-		nukareArg._00   = navi->mPluckingCounter != 0;
-		nukareArg.mNavi = navi;
+		nukareArg.mIsPlucking = navi->mPluckingCounter != 0;
+		nukareArg.mNavi       = navi;
 		piki->mFsm->transit(piki, PIKISTATE_Nukare, &nukareArg);
 
 		NaviNukuArg nukuArg;
-		nukuArg._00 = _48;
+		nukuArg.mIsFollowing = mIsFollowing;
 
 		transit(navi, NSID_Nuku, &nukuArg);
 
@@ -3212,57 +3215,60 @@ void NaviNukuAdjustState::exec(Navi* navi)
 		navi->mFaceDir  = roundAng(navi->mFaceDir + angleOffset);
 
 		f32 speed = 100.0f;
-		if (speed * sys->mDeltaTime > dist2) {
+		if (speed * sys->mDeltaTime > normalisedDistance) {
 			speed = 0.5f / sys->mDeltaTime;
 		}
 
-		Vector3f vel       = sep * speed;
+		Vector3f vel       = targetToNavi * speed;
 		navi->mSimVelocity = vel;
 		navi->mVelocity    = Vector3f(0.0f);
 		navi->mVelocity    = vel;
 	}
 
-	if (_5C > 10) {
-		if (_48) {
+	if (mWallHitCounter > 10) {
+		if (mIsFollowing) {
 			transit(navi, NSID_Follow, nullptr);
 		} else {
 			transit(navi, NSID_Walk, nullptr);
 		}
+
 		return;
 	}
 
-	if (!_4C) {
+	if (!mIsMoving) {
 		return;
 	}
 
-	Vector3f simVel = navi->mSimVelocity; // f31, f30, f29
-	_4C--;
+	Vector3f currentVel = navi->mSimVelocity; // f31, f30, f29
+	mIsMoving--;
 	Vector3f naviPos = navi->getPosition();
 
-	Vector3f sep2 = _50 - naviPos;
-	f32 oldSpeed  = sep2.normalise();
-	if (!(oldSpeed > 0.0f)) {
+	Vector3f pikiToNavi    = mCollidedPikiPosition - naviPos;
+	f32 distancePikiToNavi = pikiToNavi.normalise();
+
+	// If the distance is 0, return
+	if (!(distancePikiToNavi > 0.0f)) {
 		return;
 	}
 
-	f32 dot2D = sep2.z * simVel.z - sep.x * simVel.x;
-	Vector3f newVel(sep2.x, 0.0f, -sep2.z);
+	f32 velocityDifference = pikiToNavi.z * currentVel.z - targetToNavi.x * currentVel.x;
+	Vector3f newVel(pikiToNavi.x, 0.0f, -pikiToNavi.z);
 
-	f32 simSpeed = simVel.length();
+	f32 simSpeed = currentVel.length();
 
 	newVel *= simSpeed;
-	if (!(dot2D < 0.0f)) {
+	if (!(velocityDifference < 0.0f)) {
 		newVel *= -1.0f;
 	}
 
-	Vector3f vel = simVel * 0.35f + newVel * 0.65f;
+	// Interpolate 35% current velocity and 65% new velocity
+	Vector3f blendedVel = currentVel * 0.35f + newVel * 0.65f;
 
-	f32 speed = vel.normalise();
-
+	f32 speed = blendedVel.normalise();
 	if (speed != 0.0f) {
-		Vector3f vel2      = vel * simSpeed;
-		navi->mSimVelocity = vel2;
-		navi->mVelocity    = vel2;
+		Vector3f finalVel  = blendedVel * simSpeed;
+		navi->mSimVelocity = finalVel;
+		navi->mVelocity    = finalVel;
 	}
 
 	/*
@@ -3818,7 +3824,7 @@ void NaviNukuAdjustState::exec(Navi* navi)
  */
 void NaviNukuAdjustState::cleanup(Navi* navi)
 {
-	_5C = 0;
+	mWallHitCounter = 0;
 	navi->setMoveRotation(true);
 	navi->mMass = 1.0f;
 }

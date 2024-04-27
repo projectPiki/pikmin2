@@ -489,7 +489,7 @@ struct NaviNukuAdjustStateArg : public StateArg {
 	{
 	}
 
-	f32 _00;                       // _00
+	f32 mAngleToItem;              // _00
 	Vector3f _04;                  // _04
 	int _10;                       // _10
 	ItemPikihead::Item* mPikihead; // _14
@@ -499,7 +499,7 @@ struct NaviNukuAdjustStateArg : public StateArg {
 struct NaviNukuAdjustState : public NaviState {
 	inline NaviNukuAdjustState()
 	    : NaviState(NSID_NukuAdjust)
-	    , _48(0)
+	    , mIsFollowing(0)
 	{
 	}
 
@@ -512,23 +512,23 @@ struct NaviNukuAdjustState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	f32 _10;
-	Vector3f _14;
+	f32 mAngleToPiki;
+	Vector3f mTargetPosition;
 	bool _20;
-	Vector3f _24;
-	f32 _30;
+	Vector3f mNaviPosition;
+	f32 mAngleToItem;
 	Vector3f _34;
 	int _40;
 	ItemPikihead::Item* mPikiHead;
-	u8 _48;       // _48
-	u8 _49[0x3];  // _49, unknown/buffer
-	u8 _4C;       // _4C
-	Vector3f _50; // _50
-	u8 _5C;       // _5C
+	u8 mIsFollowing;                // _48
+	u8 _49[0x3];                    // _49, unknown/buffer
+	u8 mIsMoving;                   // _4C
+	Vector3f mCollidedPikiPosition; // _50
+	u8 mWallHitCounter;             // _5C
 };
 
 struct NaviNukuArg : public StateArg {
-	u8 _00; // _00
+	u8 mIsFollowing; // _00
 };
 
 struct NaviNukuState : public NaviState {

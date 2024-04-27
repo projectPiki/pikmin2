@@ -1264,7 +1264,7 @@ void PikiNukareState::init(Piki* piki, StateArg* stateArg)
 
 	mNavi       = nukareArg->mNavi;
 	piki->mNavi = nukareArg->mNavi;
-	if (nukareArg->_00) {
+	if (nukareArg->mIsPlucking) {
 		mAnimIdx = IPikiAnims::NUKARE3;
 	} else {
 		mAnimIdx = IPikiAnims::NUKARERU;

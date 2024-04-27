@@ -2044,20 +2044,21 @@ void Cell::resolveCollision_2()
  */
 void Cell::resolveCollision_1()
 {
-	for (CellLeg* legA = mLeg; legA != nullptr; legA = legA->mNext) {
-		for (CellLeg* legB = legA->mNext; legB != nullptr; legB = legB->mNext) {
-			// TODO: What is going on with mPassID?
-			if ((legA->mObject != legB->mObject) && (legB->mObject->mPassID != (u32)legA->mObject)) {
-				legB->mObject->mPassID = (u32)legA->mObject;
-				legA->mObject->checkCollision(legB->mObject);
+	for (CellLeg* currentLeg = mLeg; currentLeg != nullptr; currentLeg = currentLeg->mNext) {
+		// Check for collisions between currentLeg and all other legs
+		for (CellLeg* otherLeg = currentLeg->mNext; otherLeg != nullptr; otherLeg = otherLeg->mNext) {
+			if ((currentLeg->mObject != otherLeg->mObject) && (otherLeg->mObject->mPassID != (u32)currentLeg->mObject)) {
+				otherLeg->mObject->mPassID = (u32)currentLeg->mObject;
+				currentLeg->mObject->checkCollision(otherLeg->mObject);
 			}
 		}
-		for (Cell* cell = mHeadCell; cell != nullptr; cell = cell->mHeadCell) {
-			for (CellLeg* legB = cell->mLeg; legB != nullptr; legB = legB->mNext) {
-				// TODO: What is going on with mPassID?
-				if ((legA->mObject != legB->mObject) && (legB->mObject->mPassID != (u32)legA->mObject)) {
-					legB->mObject->mPassID = (u32)legA->mObject;
-					legA->mObject->checkCollision(legB->mObject);
+
+		// Check for collisions between currentLeg and all legs in the head cell
+		for (Cell* headCell = mHeadCell; headCell != nullptr; headCell = headCell->mHeadCell) {
+			for (CellLeg* otherLeg = headCell->mLeg; otherLeg != nullptr; otherLeg = otherLeg->mNext) {
+				if ((currentLeg->mObject != otherLeg->mObject) && (otherLeg->mObject->mPassID != (u32)currentLeg->mObject)) {
+					otherLeg->mObject->mPassID = (u32)currentLeg->mObject;
+					currentLeg->mObject->checkCollision(otherLeg->mObject);
 				}
 			}
 		}

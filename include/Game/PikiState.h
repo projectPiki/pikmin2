@@ -688,8 +688,8 @@ struct PikiLookAtState : public PikiState, virtual SysShape::MotionListener {
 };
 
 struct NukareStateArg : public StateArg {
-	bool _00;    // _00
-	Navi* mNavi; // _04
+	bool mIsPlucking; // _00
+	Navi* mNavi;      // _04
 };
 
 struct PikiNukareState : public PikiState {

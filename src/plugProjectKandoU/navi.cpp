@@ -103,7 +103,6 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 {
 	mStickCount      = 0;
 	mPlateScaleTimer = 0;
-	u16 uVar2;
 
 	clearKaisanDisable();
 	clearThrowDisable();
@@ -111,8 +110,8 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 	mInvincibleTimer = 0;
 	mCStickAngle     = 0.0f;
 
-	mSprayCounts[1] = 0;
-	mSprayCounts[0] = 0;
+	mSprayCounts[SPRAY_TYPE_BITTER] = 0;
+	mSprayCounts[SPRAY_TYPE_SPICY]  = 0;
 
 	initFakePiki();
 	naviMgr->setupNavi(this);
@@ -159,14 +158,15 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 
 	mPluckingCounter = 0;
 	_269             = 0;
-	Vector3f navi_scale; // navi model scale
-	navi_scale = Vector3f(OLIMAR_SCALE);
 
-	if (mNaviIndex == NAVIID_Louie) { // case for Louie/President scale
-		navi_scale = Vector3f(LOUIE_SCALE);
+	Vector3f modelScale;
+	modelScale = Vector3f(OLIMAR_SCALE);
+	if (mNaviIndex == NAVIID_Louie) {
+		modelScale = Vector3f(LOUIE_SCALE);
 	}
 
-	mScale = navi_scale;
+	mScale = modelScale;
+
 	int id = mNaviIndex;
 	mCursorMatAnim->start(&naviMgr->mCursorAnims[id]);
 	mArrowMatAnim->start(&naviMgr->mMarkerAnims[id]);
@@ -179,7 +179,7 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 void Navi::onSetPosition(Vector3f& position)
 {
 	mPosition = position;
-	static_cast<FakePiki*>(this)->onSetPosition(); // dumb.
+	static_cast<FakePiki*>(this)->onSetPosition(); // Call base class version
 
 	if (mNaviIndex == NAVIID_Olimar) { // olimar
 		Radar::Mgr::entry(this, Radar::MAP_OLIMAR, 0);
@@ -233,9 +233,10 @@ void Navi::onKeyEvent(const SysShape::KeyEvent& event)
 Vector3f Navi::getPosition()
 {
 	if (moviePlayer && moviePlayer->isFlag(MVP_IsActive)) {
-		Matrixf* mat = mModel->mJoints->getWorldMatrix();
+		Matrixf* worldMtx = mModel->mJoints->getWorldMatrix();
+
 		Vector3f position;
-		mat->getTranslation(position);
+		worldMtx->getTranslation(position);
 		return position;
 
 	} else {
@@ -273,9 +274,9 @@ bool Navi::procActionButton()
 {
 	f32 minDist;
 	if (mPluckingCounter) {
-		minDist = naviMgr->mNaviParms->mNaviParms.mAutopluckDistance.mValue; // 'continuous extraction distance' - autoplucking range?
+		minDist = naviMgr->mNaviParms->mNaviParms.mAutopluckDistance.mValue;
 	} else {
-		minDist = naviMgr->mNaviParms->mNaviParms.mActionRadius.mValue; // 'action radius' - first pluck range
+		minDist = naviMgr->mNaviParms->mNaviParms.mActionRadius.mValue;
 	}
 
 	Iterator<ItemPikihead::Item> iter(ItemPikihead::mgr);
@@ -289,14 +290,14 @@ bool Navi::procActionButton()
 		ItemPikihead::Item* sprout = (ItemPikihead::Item*)item;
 		Vector3f sproutPos         = sprout->getPosition();
 		Vector3f naviPos           = getPosition();
-		f32 heightDiff             = absF(sproutPos.y - naviPos.y);
-		f32 sqrXZ                  = sqrDistanceXZ(sproutPos, naviPos);
+		f32 heightDistance         = absF(sproutPos.y - naviPos.y);
+		f32 horizontalDistance     = sqrDistanceXZ(sproutPos, naviPos);
 
 		// sprout has to be pluckable, closer than current/within range, not at massive height difference
 		// AND either we're not in VS mode OR sprout color matches captain color
-		if (sprout->canPullout() && sqrXZ < minDist && heightDiff < 25.0f
+		if (sprout->canPullout() && horizontalDistance < minDist && heightDistance < 25.0f
 		    && (!gameSystem->isVersusMode() || sprout->mColor == (1 - mNaviIndex))) {
-			minDist      = sqrXZ;
+			minDist      = horizontalDistance;
 			targetSprout = sprout;
 		}
 	}
@@ -817,7 +818,7 @@ lbl_80140C64:
 void Navi::setupNukuAdjustArg(ItemPikihead::Item* item, NaviNukuAdjustStateArg& arg)
 {
 	Vector3f direction = item->getPosition() - getPosition();
-	arg._00            = angDist(roundAng(pikmin2_atan2f(direction.x, direction.z)), mFaceDir) / 10.0f;
+	arg.mAngleToItem   = angDist(roundAng(pikmin2_atan2f(direction.x, direction.z)), mFaceDir) / 10.0f;
 
 	f32 length    = pikmin2_sqrtf(direction.sqrMagnitude());
 	f32 norm      = 1.0f / length;
