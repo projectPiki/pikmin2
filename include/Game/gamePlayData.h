@@ -466,7 +466,7 @@ struct PlayData : public CNode {
 
 	inline void addPokos(int pokos) { mPokoCount += pokos; }
 
-	inline u8& getDebtProgressFlags(bool isBackup) { return ((u8*)(&mDebtProgressFlags))[isBackup]; }
+	inline u8& getDebtProgressFlags(int flagID) { return ((u8*)(&mDebtProgressFlags))[flagID]; }
 
 	// _00     = VTBL
 	// _00-_18 = CNode
@@ -508,7 +508,7 @@ struct PlayData : public CNode {
 
 	int mCavePokoCount; // _EC
 
-	BitFlag<u8> mDebtProgressFlags; // _F0, represent which %of debt messages have been seen
+	BitFlag<u8> mDebtProgressFlags;       // _F0, represent which %of debt messages have been seen
 	BitFlag<u8> mBackupDebtProgressFlags; // _F1
 
 	// ptr to array of previous day's collected overworld treasure counts, per
