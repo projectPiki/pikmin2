@@ -45,7 +45,7 @@ void FSMState_OmakeScreen::do_init(TMgr* mgr, Game::StateArg*)
 
 		Screen::ArgOpenOmake arg(sys->getPlayCommonData()->mChallengeFlags.isSet(1), sys->getPlayCommonData()->mChallengeFlags.isSet(2),
 		                         sys->getPlayCommonData()->isPerfectChallenge());
-		arg._08 = -1;
+		arg.mUnusedVal = -1;
 
 		mgr->mOmake.openScreen(&arg);
 	} else if (mgr->mOmake.mState2 == 1) {
@@ -127,7 +127,7 @@ void FSMState_SelectGame::do_exec(TMgr* mgr)
 				mgr->mOmakeGame.openMsg(ebi::Screen::TOmakeGame::Transferring);
 				u32 duration = 3.0f / sys->mDeltaTime;
 				mTimer       = duration;
-				_18          = duration;
+				mTimerMax    = duration;
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
 				mStatus = Transferring;
 			} else {
@@ -135,7 +135,7 @@ void FSMState_SelectGame::do_exec(TMgr* mgr)
 				mgr->mOmakeGame.openMsg(ebi::Screen::TOmakeGame::TransferUnable);
 				u32 duration = 5.0f / sys->mDeltaTime;
 				mTimer       = duration;
-				_18          = duration;
+				mTimerMax    = duration;
 				mStatus      = Error;
 			}
 		}
@@ -151,24 +151,24 @@ void FSMState_SelectGame::do_exec(TMgr* mgr)
 				mgr->mOmakeGame.openMsg(ebi::Screen::TOmakeGame::TransferFinished);
 				u32 duration = 5.0f / sys->mDeltaTime;
 				mTimer       = duration;
-				_18          = duration;
+				mTimerMax    = duration;
 				mStatus      = Finish;
 				break;
 			case 1:
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
 				mgr->mOmakeGame.openMsg(ebi::Screen::TOmakeGame::TransferUnable);
-				duration = 5.0f / sys->mDeltaTime;
-				mTimer   = duration;
-				_18      = duration;
-				mStatus  = Error;
+				duration  = 5.0f / sys->mDeltaTime;
+				mTimer    = duration;
+				mTimerMax = duration;
+				mStatus   = Error;
 				break;
 			case 2:
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
 				mgr->mOmakeGame.openMsg(ebi::Screen::TOmakeGame::TransferFailed);
-				duration = 5.0f / sys->mDeltaTime;
-				mTimer   = duration;
-				_18      = duration;
-				mStatus  = Error;
+				duration  = 5.0f / sys->mDeltaTime;
+				mTimer    = duration;
+				mTimerMax = duration;
+				mStatus   = Error;
 				break;
 			}
 		}
@@ -183,8 +183,8 @@ void FSMState_SelectGame::do_exec(TMgr* mgr)
 		}
 		if (mTimer > 2 && mgr->mController->mButton.mButtonDown & Controller::PRESS_B) {
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0);
-			mTimer = 1;
-			_18    = 1;
+			mTimer    = 1;
+			mTimerMax = 1;
 		}
 		break;
 	case Finish:

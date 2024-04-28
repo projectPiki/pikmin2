@@ -23,9 +23,9 @@ namespace efx {
  */
 void TParticleCallBack_Yodare::init(JPABaseEmitter*, JPABaseParticle*)
 {
-	_00 = 0.0f;
-	_04 = "ArgType";
-	_08 = 1.0f;
+	_00   = 0.0f;
+	mName = "ArgType";
+	_08   = 1.0f;
 	// UNUSED FUNCTION
 }
 
@@ -1535,11 +1535,11 @@ void TPkEffect::killHamonB_() { mOeHamonB.kill(); }
  */
 void TPkEffectTane::init()
 {
-	mPikiColor = -1;
-	mPos       = nullptr;
-	_0C        = nullptr;
-	_08        = nullptr;
-	_10        = nullptr;
+	mPikiColor   = -1;
+	mEfxPos      = nullptr;
+	mHappaJntMtx = nullptr;
+	mObjPos      = nullptr;
+	mObjMatrix   = nullptr;
 }
 
 /**

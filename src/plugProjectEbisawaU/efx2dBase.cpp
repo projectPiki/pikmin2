@@ -15,7 +15,7 @@ bool TSimple1::create(Arg* arg)
 	P2ASSERTLINE(10, arg != nullptr);
 
 	Vector2f pos = *arg;
-	mEmitters[0] = particle2dMgr->create(mEffectIDs[0], pos, mGroup, _04);
+	mEmitters[0] = particle2dMgr->create(mEffectIDs[0], pos, mGroup, mResMgrId);
 
 	if (mEmitters[0] == nullptr) {
 		return false;
@@ -34,7 +34,7 @@ bool TSimple2::create(Arg* arg)
 
 	Vector2f pos = *arg;
 	for (int i = 0; i < 2; i++) {
-		mEmitters[i] = particle2dMgr->create(mEffectIDs[i], pos, mGroup, _04);
+		mEmitters[i] = particle2dMgr->create(mEffectIDs[i], pos, mGroup, mResMgrId);
 		if (mEmitters[i] == nullptr) {
 			return false;
 		}
@@ -52,7 +52,7 @@ bool TSimple3::create(Arg* arg)
 
 	Vector2f pos = *arg;
 	for (int i = 0; i < 3; i++) {
-		mEmitters[i] = particle2dMgr->create(mEffectIDs[i], pos, mGroup, _04);
+		mEmitters[i] = particle2dMgr->create(mEffectIDs[i], pos, mGroup, mResMgrId);
 		if (mEmitters[i] == nullptr) {
 			return false;
 		}
@@ -75,7 +75,7 @@ bool TForever::create(Arg* arg)
 		return false;
 	}
 
-	mEmitter = particle2dMgr->create(mEfxID, pos, mGroup, _04);
+	mEmitter = particle2dMgr->create(mEfxID, pos, mGroup, mResMgrId);
 	return mEmitter != nullptr;
 }
 
@@ -236,7 +236,7 @@ bool TChasePos::create(Arg* arg)
 		return false;
 	}
 
-	mEmitter = particle2dMgr->create(mEfxID, *mChasePosition, mGroup, _04);
+	mEmitter = particle2dMgr->create(mEfxID, *mChasePosition, mGroup, mResMgrId);
 
 	if (mEmitter) {
 		mEmitter->mEmitterCallback = this;
@@ -273,7 +273,7 @@ bool TChasePosDir::create(Arg* arg)
 		return false;
 	}
 
-	mEmitter = particle2dMgr->create(mEfxID, *mChasePosition, mGroup, _04);
+	mEmitter = particle2dMgr->create(mEfxID, *mChasePosition, mGroup, mResMgrId);
 
 	if (mEmitter) {
 		mEmitter->mEmitterCallback = this;

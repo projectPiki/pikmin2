@@ -2287,15 +2287,15 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 					                getPaneCenterY(mScreenKitagawa->search(getSerialTagName('Npoint0', i))));
 					efx2d::ArgScale efxArg(efxPos, msVal._28[mOpenCourses]);
 					efx2d::WorldMap::T2DNewmap efx;
-					efx._04    = 1;
-					efx.mGroup = 2;
+					efx.mResMgrId = 1;
+					efx.mGroup    = 2;
 					efx.create(&efxArg);
 					// if the newly unlocked level is wistful wild, make the meteor shower
 					if (i == COURSE_Last) {
 						efx2d::ArgScale efxArg2(mStarCenter, 1.0f);
 						efx2d::WorldMap::T2DShstar2 efx2;
-						efx2._04    = 1;
-						efx2.mGroup = 2;
+						efx2.mResMgrId = 1;
+						efx2.mGroup    = 2;
 						efx2.create(&efxArg2);
 					}
 					mScreenKitagawa->search(getSerialTagName('Npoint0', i))->show();
@@ -5131,8 +5131,8 @@ void WorldMap::rocketUpdate(J2DPane* pane)
 
 	efx2d::WorldMap::ArgDirScale arg(mEffectPos, mEffectDir, scale);
 	efx2d::WorldMap::T2DRocketA efx;
-	efx._04    = 1;
-	efx.mGroup = 3;
+	efx.mResMgrId = 1;
+	efx.mGroup    = 3;
 	efx.create(&arg);
 	mEfxRocketSparks->setGlobalParticleScale(scale);
 	mEfxRocketGlow->setGlobalParticleScale(scale);

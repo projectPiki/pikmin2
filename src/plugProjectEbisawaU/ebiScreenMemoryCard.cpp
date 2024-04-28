@@ -772,8 +772,8 @@ void TMemoryCard::startState(enumState state)
 		}
 		mCursor1.mCursor.create(nullptr);
 		mCursor2.mCursor.create(nullptr);
-		mInputDelay = 20;
-		_0C         = 20;
+		mInputDelay    = 20;
+		mInputDelayMax = 20;
 		mAnim2.play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);
 		mAnim3.play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);
 		mAnim4.play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);
@@ -789,8 +789,8 @@ void TMemoryCard::startState(enumState state)
 		mPaneMsg2->hide();
 		mPaneMsg3->show();
 		mPaneMsg3->setAlpha(255);
-		mInputDelay = 20;
-		_0C         = 20;
+		mInputDelay    = 20;
+		mInputDelayMax = 20;
 		mAnim2.play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);
 		mAnim3.play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);
 		mAnim4.play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);

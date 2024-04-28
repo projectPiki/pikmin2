@@ -39,11 +39,11 @@ TTitleMgr::TTitleMgr()
 	mCounterCommon    = count;
 	mCounterCommonMax = count;
 
-	count        = 0.0f / sys->mDeltaTime;
-	mCounter2    = count;
-	mCounter2Max = count;
-	_F70         = 0;
-	_F71         = 0;
+	count         = 0.0f / sys->mDeltaTime;
+	mCounter2     = count;
+	mCounter2Max  = count;
+	mIsWindActive = 0;
+	mCanInput     = 0;
 
 	count              = 0.0f / sys->mDeltaTime;
 	mCounterControl    = count;
@@ -489,11 +489,11 @@ void TTitleMgr::start()
 	mCameraMgr.mPosition = mBlackPlane.getCameraPos();
 	mCameraMgr.update();
 
-	u32 count    = 10.0f / sys->mDeltaTime;
-	mCounter2    = count;
-	mCounter2Max = count;
-	_F70         = 0;
-	_F71         = 0;
+	u32 count     = 10.0f / sys->mDeltaTime;
+	mCounter2     = count;
+	mCounter2Max  = count;
+	mIsWindActive = 0;
+	mCanInput     = 0;
 
 	count              = mTitleParms.mCanOpenMenuDelay.mValue / sys->mDeltaTime;
 	mCounterControl    = count;
@@ -596,7 +596,7 @@ bool TTitleMgr::boidToAssemble(s32 id)
 	mPikminMgr.setDestPos(mPikiPosList);
 
 	startState(BoidDisperse);
-	_F70 = 0;
+	mIsWindActive = 0;
 	return true;
 }
 
@@ -701,9 +701,9 @@ bool TTitleMgr::update()
 		}
 
 		if (isAssemble()) {
-			_F71 = true;
+			mCanInput = true;
 		}
-		if (_F71 && mController) {
+		if (mCanInput && mController) {
 			u32 press = mController->mButton.mButtonDown;
 			if (press & Controller::PRESS_L) {
 				boidToAssemble(0);
@@ -721,15 +721,15 @@ bool TTitleMgr::update()
 		}
 		if (!mCounter2) {
 			bool flag = false;
-			if (!_F70) {
+			if (!mIsWindActive) {
 				if (isAssemble()) {
 					mState            = StartWind;
 					u32 count         = mTitleParms.mWindMoveDuration.mValue / sys->mDeltaTime;
 					mCounterCommon    = count;
 					mCounterCommonMax = count;
 					mMapBase.startWind(mTitleParms.mPlantMoveDuration.mValue);
-					_F70 = true;
-					flag = true;
+					mIsWindActive = true;
+					flag          = true;
 				}
 			} else {
 				f32 test = randEbisawaFloat();
@@ -754,7 +754,7 @@ bool TTitleMgr::update()
 						u32 count         = mTitleParms.mBoidDurationSwirl.mValue / sys->mDeltaTime;
 						mCounterCommon    = count;
 						mCounterCommonMax = count;
-						_F70              = false;
+						mIsWindActive     = false;
 						flag              = true;
 					}
 				} else {

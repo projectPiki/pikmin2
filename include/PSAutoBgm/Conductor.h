@@ -19,8 +19,8 @@ struct AutoBgm;
 struct Conductor : public JADUtility::PrmSetRc<PSAutoBgm::Track> {
 	Conductor(AutoBgm*, int);
 
-	virtual ~Conductor();                         // _08
-	virtual void* getEraseLink() { return &_98; } // _1C (weak)
+	virtual ~Conductor();                                // _08
+	virtual void* getEraseLink() { return &mEraseLink; } // _1C (weak)
 
 	static void removeCallback(u8 idx, void* conductor);
 	u32 seqCpuSync_AutoBgm(JASTrack*, u16, u32, JASTrack*);
@@ -31,14 +31,14 @@ struct Conductor : public JADUtility::PrmSetRc<PSAutoBgm::Track> {
 
 	// _00      = VTABLE
 	// _04-_98  = PrmSetRc
-	JSULink<Conductor> _98;             // _98
-	PSBankData* mBankData;              // _A8
-	PSBankData* mWsData;                // _AC
-	u32 _B0;                            // _B0 - unknown
-	AutoBgm* _B4;                       // _B4
-	JADUtility::PrmSlider<u8> _B8;      // _B8
-	JADUtility::PrmRadioButton<u8> _E8; // _E8
-	u8 _118;                            // _118
+	JSULink<Conductor> mEraseLink;          // _98
+	PSBankData* mBankData;                  // _A8
+	PSBankData* mWsData;                    // _AC
+	u32 _B0;                                // _B0 - unknown
+	AutoBgm* mBgmSeq;                       // _B4
+	JADUtility::PrmSlider<u8> mTempoSlider; // _B8
+	JADUtility::PrmRadioButton<u8> _E8;     // _E8
+	u8 mTempo;                              // _118
 };
 
 /**

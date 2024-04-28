@@ -15,11 +15,11 @@ void E3DAnimRes::load(J3DModelData* modelData, JKRArchive* archive, char* resour
 	mAnimTransform = (J3DAnmTransform*)J3DAnmLoaderDataBase::load(resource);
 	mAnmCalcMtx    = J3DNewMtxCalcAnm((modelData->mJointTree).mFlags & 0xf, mAnimTransform);
 
-	_08 = 0.0f;
-	_0C = mAnimTransform->mFrameLength - 2.0f;
+	mStartFrame = 0.0f;
+	mStopFrame  = mAnimTransform->mFrameLength - 2.0f;
 
-	mLoopStart = _08;
-	mLoopEnd   = _0C;
+	mLoopStart = mStartFrame;
+	mLoopEnd   = mStopFrame;
 
 	mTimeScale = sys->mDeltaTime * 60.0f * 0.5f;
 	mMode      = 0;
@@ -44,7 +44,7 @@ void E3DAnimCtrl::init(s32 id, f32 timeStep)
 	P2ASSERTLINE(47, mAnimFolder);
 	mAnimRes       = mAnimFolder->getAnimRes(id);
 	mTimeStep      = timeStep;
-	mAnimStartTime = mAnimRes->_08;
+	mAnimStartTime = mAnimRes->mStartFrame;
 	mState         = 0;
 }
 

@@ -96,10 +96,10 @@ struct TOneEmitterSimple : public TBase, public JPAEmitterCallBack {
 	inline TOneEmitterSimple(u16 effectID) // something like this, may need reordering
 	    : mEmitter(nullptr)
 	    , mEffectID(effectID)
-	    , _14(0)
+	    , mCurrPosIndex(0)
 	{
-		_18 = 10;
-		_10 = new Vector3f[_18];
+		mPositionNum  = 10;
+		mPositionList = new Vector3f[mPositionNum];
 	}
 
 	// vtable 1 (TBase)
@@ -138,9 +138,9 @@ struct TOneEmitterSimple : public TBase, public JPAEmitterCallBack {
 	// _04-_08	= JPAEmitterCallBack
 	JPABaseEmitter* mEmitter; // _08
 	u16 mEffectID;            // _0C
-	Vector3f* _10;            // _10
-	int _14;                  // _14
-	int _18;                  // _18, vector count?
+	Vector3f* mPositionList;  // _10
+	int mCurrPosIndex;        // _14
+	int mPositionNum;         // _18
 };
 } // namespace efx
 

@@ -1037,7 +1037,7 @@ bool TOmake::doUpdateStateWait()
 	switch (mState2) {
 	case 0:
 		mInput.update();
-		if (mInput._0D) {
+		if (mInput.mSelectionChanged) {
 			int id = mInput.mLastIndex;
 			if (id >= mCurrSel) {
 				for (int i = 0; i < 7; i++) {

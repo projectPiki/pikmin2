@@ -64,7 +64,7 @@ struct DirectedBgm : public BgmSeq {
 
 	inline void assertValidTrack()
 	{
-		bool check = _B4 == 1 && mRootTrack;
+		bool check = mIsInitialized == 1 && mRootTrack;
 		P2ASSERTLINE(415, check);
 	}
 
@@ -80,7 +80,7 @@ struct DirectedBgm : public BgmSeq {
 	DirectorMgrBase* mDirectorMgr;   // _6C
 	SeqTrackRoot* mRootTrack;        // _70
 	SeqTrackChild* mChildTracks[16]; // _74
-	u8 _B4;                          // _B4 - unknown
+	u8 mIsInitialized;               // _B4
 };
 
 struct JumpBgmPort {

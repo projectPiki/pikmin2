@@ -18,8 +18,8 @@ struct E3DAnimRes {
 
 	J3DAnmTransform* mAnimTransform; // _00
 	J3DMtxCalcAnmBase* mAnmCalcMtx;  // _04
-	f32 _08;                         // _08
-	f32 _0C;                         // _0C
+	f32 mStartFrame;                 // _08
+	f32 mStopFrame;                  // _0C
 	f32 mLoopStart;                  // _10
 	f32 mLoopEnd;                    // _14
 	f32 mTimeScale;                  // _18

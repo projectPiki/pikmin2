@@ -11,10 +11,10 @@ namespace PSSystem {
  * @note Size: 0x54
  */
 TaskBase::TaskBase()
-    : _04(this)
-    , _14(0)
-    , _15(0)
-    , _18(nullptr)
+    : mLink(this)
+    , mEnabled(false)
+    , mHasNext(0)
+    , mWaitTaskLink(nullptr)
 {
 }
 
@@ -35,7 +35,7 @@ bool TaskEntry::stackTask(JASTrack& track)
 	while (taskLink) {
 		TaskBase* task = taskLink->getObject();
 		u32 i          = -16;
-		if (task->_18 && !task->_18->getList()) {
+		if (task->mWaitTaskLink && !task->mWaitTaskLink->getList()) {
 			i = -1;
 		}
 		if (i != -1) {
@@ -43,11 +43,11 @@ bool TaskEntry::stackTask(JASTrack& track)
 		}
 		if (i == -1) {
 			JSUPtrList::remove(taskLink);
-			task->_14 = 0;
-			task->_15 = 0;
-			task->_18 = nullptr;
+			task->mEnabled      = 0;
+			task->mHasNext      = 0;
+			task->mWaitTaskLink = nullptr;
 		}
-		taskLink = (task->_15 != 0) ? taskLink->getNext() : nullptr;
+		taskLink = (task->mHasNext != 0) ? taskLink->getNext() : nullptr;
 	}
 	OSUnlockMutex(&mMutex);
 
@@ -58,13 +58,13 @@ bool TaskEntry::stackTask(JASTrack& track)
  * @note Address: 0x8033E24C
  * @note Size: 0x24
  */
-void TaskEntry::append(PSSystem::TaskBase* task) { append_Lock(&task->_04); }
+void TaskEntry::append(PSSystem::TaskBase* task) { append_Lock(&task->mLink); }
 
 /**
  * @note Address: N/A
  * @note Size: 0x24
  */
-void TaskEntry::remove(PSSystem::TaskBase* task) { remove_Lock(&task->_04); }
+void TaskEntry::remove(PSSystem::TaskBase* task) { remove_Lock(&task->mLink); }
 
 /**
  * @note Address: 0x8033E270
@@ -107,7 +107,7 @@ void TaskEntryMgr::appendEntry(PSSystem::TaskEntry* entry, PSSystem::DirectorBas
 	if (director) {
 		entry->setDirector(director);
 	}
-	append_Lock(&entry->_28);
+	append_Lock(&entry->mTaskList);
 }
 
 /**
@@ -117,7 +117,7 @@ void TaskEntryMgr::appendEntry(PSSystem::TaskEntry* entry, PSSystem::DirectorBas
 void TaskEntryMgr::removeEntry(PSSystem::TaskEntry* entry)
 {
 	if (entry) {
-		remove_Lock(&entry->_28);
+		remove_Lock(&entry->mTaskList);
 		OSLockMutex(&entry->mMutex);
 		JSULink<TaskBase>* taskLink = entry->getFirst();
 		while (taskLink) {

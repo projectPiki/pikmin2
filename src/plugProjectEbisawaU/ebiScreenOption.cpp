@@ -108,16 +108,16 @@ void TOption::doSetArchive(JKRArchive* archive)
 		mPaneSfxVolume[i] = E2DScreen_searchAssert(mMainScreen, 'Psem00' + i);
 	}
 	mDeflickerScreen = E2DScreen_searchAssert(mMainScreen, 'NDEF');
-	_180[7]          = E2DScreen_searchAssert(mMainScreen, 'Tdefmg0');
-	_180[8]          = E2DScreen_searchAssert(mMainScreen, 'Tdefmg0s');
-	_180[0]          = E2DScreen_searchAssert(mMainScreen, 'Ngrpfri');
-	_180[1]          = E2DScreen_searchAssert(mMainScreen, 'Ngrpsin');
-	_180[2]          = E2DScreen_searchAssert(mMainScreen, 'Ngrpsou');
-	_180[3]          = E2DScreen_searchAssert(mMainScreen, 'Ngrpbgm');
-	_180[4]          = E2DScreen_searchAssert(mMainScreen, 'Ngrpse');
-	_180[5]          = E2DScreen_searchAssert(mMainScreen, 'Ngrpdef');
-	_180[6]          = E2DScreen_searchAssert(mMainScreen, 'Ngrpsav');
-	_180[9]          = E2DScreen_searchAssert(mMainScreen, 'Wselctw');
+	mOptionPanes[7]  = E2DScreen_searchAssert(mMainScreen, 'Tdefmg0');
+	mOptionPanes[8]  = E2DScreen_searchAssert(mMainScreen, 'Tdefmg0s');
+	mOptionPanes[0]  = E2DScreen_searchAssert(mMainScreen, 'Ngrpfri');
+	mOptionPanes[1]  = E2DScreen_searchAssert(mMainScreen, 'Ngrpsin');
+	mOptionPanes[2]  = E2DScreen_searchAssert(mMainScreen, 'Ngrpsou');
+	mOptionPanes[3]  = E2DScreen_searchAssert(mMainScreen, 'Ngrpbgm');
+	mOptionPanes[4]  = E2DScreen_searchAssert(mMainScreen, 'Ngrpse');
+	mOptionPanes[5]  = E2DScreen_searchAssert(mMainScreen, 'Ngrpdef');
+	mOptionPanes[6]  = E2DScreen_searchAssert(mMainScreen, 'Ngrpsav');
+	mOptionPanes[9]  = E2DScreen_searchAssert(mMainScreen, 'Wselctw');
 
 	mButtonPaneList[0] = E2DScreen_searchAssert(mMainScreen, 'Wsetfri');
 	mButtonPaneList[1] = E2DScreen_searchAssert(mMainScreen, 'Wsetsin');
@@ -194,7 +194,7 @@ void TOption::doOpenScreen(ArgOpen*)
 	mState             = 1;
 	mCurrMainSelection = 1;
 	mNextSelection     = 1;
-	_180[0]->hide();
+	mOptionPanes[0]->hide();
 	bounds = *mButtonPaneList[mCurrMainSelection]->getBounds();
 
 	count                     = (0.1f / sys->mDeltaTime);
@@ -204,7 +204,7 @@ void TOption::doOpenScreen(ArgOpen*)
 	mWindowCursor.mBounds1    = bounds;
 	mWindowCursor.mBounds2    = bounds;
 	mWindowCursor.mIsEnabled  = true;
-	mWindowCursor.mWindowPane = _180[mCurrMainSelection];
+	mWindowCursor.mWindowPane = mOptionPanes[mCurrMainSelection];
 	initScreen_();
 }
 
@@ -257,7 +257,7 @@ bool TOption::doUpdateStateWait()
 	mMainScreen->update();
 	if (mEnabled) {
 		mInputMainSel.update();
-		if (mInputMainSel._0D) {
+		if (mInputMainSel.mSelectionChanged) {
 			mNextSelection = mInputMainSel.mLastIndex;
 			if (mCurrMainSelection == 0) {
 				mCurrMainSelection = 1;
@@ -270,7 +270,7 @@ bool TOption::doUpdateStateWait()
 				mWindowCursor.mBounds2 = bounds;
 				mWindowCursor.mCounter = mWindowCursor.mCounterMax;
 				mWindowCursor.mScaleMgr.up(0.1f, 30.0f, 0.6f, 0.0f);
-				mWindowCursor.mWindowPane = _180[mCurrMainSelection];
+				mWindowCursor.mWindowPane = mOptionPanes[mCurrMainSelection];
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
 			}
 
@@ -312,7 +312,7 @@ bool TOption::doUpdateStateWait()
 
 		case 2: // Sound Mode
 			mInputStereo.update();
-			if (mInputStereo._0D) {
+			if (mInputStereo.mSelectionChanged) {
 				mExitStatus = OptionState_SelSoundMode;
 				switch (mOptionParamA.mSoundMode) {
 				case 0:
@@ -333,7 +333,7 @@ bool TOption::doUpdateStateWait()
 
 		case 3: // music volume
 			mInputBgmVol.update();
-			if (mInputBgmVol._0D) {
+			if (mInputBgmVol.mSelectionChanged) {
 				mExitStatus = OptionState_SelBgmVol;
 				int prev    = mOptionParamA.mBgmVolume;
 				if (prev != 0) {
@@ -349,7 +349,7 @@ bool TOption::doUpdateStateWait()
 
 		case 4: // sound volume
 			mInputSfxVol.update();
-			if (mInputSfxVol._0D) {
+			if (mInputSfxVol.mSelectionChanged) {
 				mExitStatus = OptionState_SelSfxVol;
 				int prev    = mOptionParamA.mSeVolume;
 				if (prev != 0) {
@@ -394,13 +394,13 @@ bool TOption::doUpdateStateWait()
 		mesg = '8336_00'; // When Off
 	}
 
-	_180[7]->setMsgID(mesg);
-	_180[8]->setMsgID(mesg);
+	mOptionPanes[7]->setMsgID(mesg);
+	mOptionPanes[8]->setMsgID(mesg);
 	if (mCurrMainSelection == 5) {
 
 		for (int i = 0; i < 7; i++) {
 			if (i != 5 && i != 6) {
-				_180[i]->hide();
+				mOptionPanes[i]->hide();
 			}
 		}
 		f32 calc;
@@ -415,7 +415,7 @@ bool TOption::doUpdateStateWait()
 
 		for (int i = 0; i < 7; i++) {
 			if (i != 5) {
-				_180[i]->show();
+				mOptionPanes[i]->show();
 			}
 		}
 		f32 calc;
@@ -439,7 +439,7 @@ bool TOption::doUpdateStateWait()
 	mPaneDeflickerNo->updateScale(mButtonPuruAnim[6].mScale);
 
 #if VERNUM == 1 // demo
-	_180[0]->hide();
+	mOptionPanes[0]->hide();
 #endif
 
 	return false;
@@ -563,7 +563,7 @@ void TOption::initScreen_()
 
 	for (int i = 0; i < 7; i++) {
 		if (i != 5) {
-			_180[i]->show();
+			mOptionPanes[i]->show();
 		}
 	}
 

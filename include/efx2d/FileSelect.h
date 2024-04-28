@@ -27,7 +27,7 @@ struct T2DFilecopyBase : public TForever {
 	inline T2DFilecopyBase(u16 effectID)
 	    : TForever(effectID)
 	{
-		_04 = 1;
+		mResMgrId = 1;
 	}
 
 	virtual bool create(Arg*);     // _08
@@ -41,7 +41,7 @@ struct T2DFilecopy : public T2DFilecopyBase {
 	inline T2DFilecopy()
 	    : T2DFilecopyBase(0)
 	{
-		_04 = 1;
+		mResMgrId = 1;
 	}
 
 	virtual ~T2DFilecopy() { } // _34 (weak)
@@ -54,7 +54,7 @@ struct T2DFilecopyM : public T2DFilecopyBase {
 	inline T2DFilecopyM()
 	    : T2DFilecopyBase(1)
 	{
-		_04 = 1;
+		mResMgrId = 1;
 	}
 
 	virtual ~T2DFilecopyM() { } // _34 (weak)
@@ -67,7 +67,7 @@ struct T2DFilecopied : public TSimple1 {
 	inline T2DFilecopied()
 	    : TSimple1(9)
 	{
-		_04 = 1;
+		mResMgrId = 1;
 	}
 
 	virtual bool create(Arg*); // _08
@@ -80,7 +80,7 @@ struct T2DFiledecide : public TSimple2 {
 	inline T2DFiledecide()
 	    : TSimple2(2, 3)
 	{
-		_04 = 1;
+		mResMgrId = 1;
 	}
 
 	// _00     = VTBL
@@ -91,7 +91,7 @@ struct T2DFiledelete : public TSimple1 {
 	inline T2DFiledelete()
 	    : TSimple1(4)
 	{
-		_04 = 1;
+		mResMgrId = 1;
 	}
 
 	virtual bool create(Arg*); // _08
@@ -104,7 +104,7 @@ struct T2DFiledeleteM : public TSimple1 {
 	inline T2DFiledeleteM()
 	    : TSimple1(5)
 	{
-		_04 = 1;
+		mResMgrId = 1;
 	}
 
 	virtual bool create(Arg*); // _08
@@ -117,7 +117,7 @@ struct T2DFiledeleting : public TForever {
 	inline T2DFiledeleting()
 	    : TForever(10)
 	{
-		_04 = 1;
+		mResMgrId = 1;
 	}
 
 	virtual ~T2DFiledeleting() { } // _34 (weak)
@@ -130,7 +130,7 @@ struct T2DFiledeletingM : public TForever {
 	inline T2DFiledeletingM()
 	    : TForever(11)
 	{
-		_04 = 1;
+		mResMgrId = 1;
 	}
 
 	virtual ~T2DFiledeletingM() { } // _34 (weak)
@@ -143,7 +143,7 @@ struct T2DFilesel : public TChasePos {
 	inline T2DFilesel(Vector2f* pos)
 	    : TChasePos(6, pos)
 	{
-		_04 = 1;
+		mResMgrId = 1;
 	}
 
 	virtual ~T2DFilesel() { } // _34 (weak)
@@ -156,7 +156,7 @@ struct T2DFileselM : public TChasePos {
 	inline T2DFileselM(Vector2f* pos)
 	    : TChasePos(7, pos)
 	{
-		_04 = 1;
+		mResMgrId = 1;
 	}
 
 	virtual ~T2DFileselM() { } // _34 (weak)

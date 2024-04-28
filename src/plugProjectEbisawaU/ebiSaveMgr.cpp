@@ -547,7 +547,7 @@ void FSMState_CardError::do_exec(TMgr* mgr)
 
 	switch (mgr->mMemCardErrorMgr.mEndStat) {
 	case CardError::TMgr::End_3:
-		if (mgr->_47A) {
+		if (mgr->mDoRetryOnError) {
 			transit(mgr, DoYouSave, nullptr);
 			mgr->mMemCardErrorMgr.forceQuitSeq();
 		} else {
@@ -651,7 +651,7 @@ TMgr::TMgr()
 	mIsStoryGameSave   = FALSE;
 	mSaveType          = 0;
 	mIsAutosaveOn      = false;
-	_47A               = true;
+	mDoRetryOnError    = true;
 	mDVDErrorSuspended = false;
 }
 

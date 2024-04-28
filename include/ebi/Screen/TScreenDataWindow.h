@@ -10,7 +10,7 @@ namespace FileSelect {
 struct TScreenDataWindow_data {
 	TScreenDataWindow_data()
 	    : mScreenObj(nullptr)
-	    , _0C(0)
+	    , mIsActive(0)
 	    , mPokos(0)
 	    , mTreasures(0)
 	    , mTreasureMax(0)
@@ -25,7 +25,7 @@ struct TScreenDataWindow_data {
 	P2DScreen::Mgr* mScreenObj;                // _00
 	og::Screen::CallBack_CounterRV* mCounterA; // _04
 	og::Screen::CallBack_CounterRV* mCounterB; // _08
-	u8 _0C;                                    // _0C
+	u8 mIsActive;                              // _0C
 	u32 mPokos;                                // _10
 	u32 mTreasures;                            // _14
 	u32 mTreasureMax;                          // _18
@@ -39,13 +39,13 @@ struct TScreenDataWindow_new {
 	TScreenDataWindow_new()
 	{
 		mScreenObj = nullptr;
-		_04        = 0;
+		mIsActive  = 0;
 	}
 	void setArchive(JKRArchive*);
 	void setData(s32, u64);
 
 	P2DScreen::Mgr* mScreenObj; // _00
-	bool _04;                   // _04
+	bool mIsActive;             // _04
 };
 } // namespace FileSelect
 } // namespace Screen

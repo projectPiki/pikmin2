@@ -450,7 +450,7 @@ void SysFactory::newSoundSystem()
 	backupheap->becomeCurrentHeap();
 	newheap->adjustSize();
 	OSLockMutex(&sysif->mChecker.mMutex);
-	sysif->mChecker._18 = true;
+	sysif->mChecker.mIsEnabled = true;
 	OSUnlockMutex(&sysif->mChecker.mMutex);
 	OSDisableInterrupts();
 	PSSystem::spSysIF = sysif;
@@ -738,7 +738,7 @@ PSSystem::BgmSeq* PikSceneMgr::initBossBgm(SceneInfo& info, u8* wScene)
 
 	seq->assertValidTrack();
 
-	seq->mRootTrack->_3E = 60;
+	seq->mRootTrack->mBeatInterval = 60;
 	P2ASSERTLINE(1267, sound.mVolume.c <= 0x7f);
 	return seq;
 }
@@ -909,14 +909,14 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 			*wScene = PSSystem::WaveScene::WSCENE3_Perplexing_Pool;
 			P2ASSERTLINE(1640, bgm);
 			static_cast<PSSystem::DirectedBgm*>(bgm)->assertValidTrack();
-			static_cast<PSSystem::DirectedBgm*>(bgm)->mRootTrack->_3E = 30;
+			static_cast<PSSystem::DirectedBgm*>(bgm)->mRootTrack->mBeatInterval = 30;
 			break;
 		case SceneInfo::COURSE_LAST:
 			bgm     = newMainBgm("last.bms", sound);
 			*wScene = PSSystem::WaveScene::WSCENE4_Wistful_Wild;
 			P2ASSERTLINE(1650, bgm);
 			static_cast<PSSystem::DirectedBgm*>(bgm)->assertValidTrack();
-			static_cast<PSSystem::DirectedBgm*>(bgm)->mRootTrack->_3E = 30;
+			static_cast<PSSystem::DirectedBgm*>(bgm)->mRootTrack->mBeatInterval = 30;
 			break;
 		case SceneInfo::TITLE_SCREEN:
 			bgm     = newStreamBgm(0xc0011000, sound);
@@ -2129,17 +2129,17 @@ u16 seqCpuSync(JASTrack* track, u16 command)
 		case 0xa00: {
 			PSAutoBgm::Module* module = (PSAutoBgm::Module*)PSSystem::getObject(track, 20);
 			P2ASSERTLINE(2036, module);
-			return module->_2B8[module->_2C0]->cycleTop(track);
+			return module->mCycles[module->mCycleIndex]->cycleTop(track);
 		}
 		case 0xc00: {
 			PSAutoBgm::Module* module = (PSAutoBgm::Module*)PSSystem::getObject(track, 20);
 			P2ASSERTLINE(2043, module);
-			return module->_2B8[module->_2C0]->play(track);
+			return module->mCycles[module->mCycleIndex]->play(track);
 		}
 		case 0xd00: {
 			PSAutoBgm::Module* module = (PSAutoBgm::Module*)PSSystem::getObject(track, 20);
 			P2ASSERTLINE(2049, module);
-			return module->_2B8[module->_2C0]->checkCloser(track);
+			return module->mCycles[module->mCycleIndex]->checkCloser(track);
 		}
 		case 0xb00: {
 			PSAutoBgm::Module* module = (PSAutoBgm::Module*)PSSystem::getObject(track, 20);

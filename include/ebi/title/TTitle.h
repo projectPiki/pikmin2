@@ -320,8 +320,8 @@ struct TTitleMgr : public CNode, JKRDisposer {
 	u32 mCounterCommonMax;        // _F64
 	u32 mCounter2;                // _F68
 	u32 mCounter2Max;             // _F6C
-	u8 _F70;                      // _F70
-	u8 _F71;                      // _F71
+	u8 mIsWindActive;             // _F70
+	u8 mCanInput;                 // _F71
 	u32 mCounterControl;          // _F74
 	u32 mCounterControlMax;       // _F78
 	u32 mCounterPressStart;       // _F7C

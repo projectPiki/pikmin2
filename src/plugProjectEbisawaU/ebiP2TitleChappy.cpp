@@ -119,10 +119,10 @@ void Chappy::TUnit::init(TMgr* mgr)
  */
 void Chappy::TUnit::startZigzagWalk(Vector2f& position, Vector2f& targetPosition)
 {
-	mPosition  = position;
-	mTargetPos = targetPosition;
-	mActionID  = CHAPPYACT_NULL;
-	_48        = 0;
+	mPosition       = position;
+	mTargetPos      = targetPosition;
+	mActionID       = CHAPPYACT_NULL;
+	mIsAiControlled = 0;
 	startAIState_(CHAPPYAI_EscapeScreen);
 }
 
@@ -406,7 +406,7 @@ void Chappy::TUnit::update()
 	}
 
 	enumAction actionID;
-	if (_48) {
+	if (mIsAiControlled) {
 		actionID = CHAPPYACT_0;
 	} else {
 		actionID = CHAPPYACT_0;
@@ -428,9 +428,9 @@ void Chappy::TUnit::update()
 		case CHAPPYACT_3:
 		case CHAPPYACT_4: {
 			mAnim.playStopEnd();
-			_48 = true;
+			mIsAiControlled = true;
 			if (mAnim.mState == 3) {
-				_48 = false;
+				mIsAiControlled = false;
 				if (mActionID != 0) {
 					startAction_(CHAPPYACT_0);
 				}
@@ -455,7 +455,7 @@ void Chappy::TUnit::update()
 	} break;
 	case CHAPPYACT_4: {
 		f32 constant = (stickY > 0.7f) ? stickY : 0.3f;
-		if (_48 != 0) {
+		if (mIsAiControlled != 0) {
 			constant = 0.3f;
 		}
 		f32 cParm = constant * mParms[0];
@@ -518,8 +518,8 @@ void Chappy::TUnit::update()
 
 		case 2:
 			mAnim.mAnimStartTime += mAnim.mTimeStep * mAnim.mAnimRes->mTimeScale;
-			if (mAnim.mAnimStartTime >= mAnim.mAnimRes->_0C) {
-				mAnim.mAnimStartTime = mAnim.mAnimRes->_0C;
+			if (mAnim.mAnimStartTime >= mAnim.mAnimRes->mStopFrame) {
+				mAnim.mAnimStartTime = mAnim.mAnimRes->mStopFrame;
 				mAnim.mState         = 3;
 			}
 			break;

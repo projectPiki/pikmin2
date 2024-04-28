@@ -209,7 +209,7 @@ void TOneEmitterChasePos::forceKill()
  */
 bool TOneEmitterSimple::create(Arg* arg)
 {
-	_14 = 0;
+	mCurrPosIndex = 0;
 	if (mEmitter) {
 		return false;
 	}
@@ -231,9 +231,9 @@ bool TOneEmitterSimple::create(Arg* arg)
 void TOneEmitterSimple::executeAfter(JPABaseEmitter* emitter)
 {
 	particleMgr->setGlobalColor(emitter);
-	P2ASSERTLINE(447, _14 <= _18);
-	for (int i = 0; i < _14; i++) {
-		Vector3f v1 = _10[i];
+	P2ASSERTLINE(447, mCurrPosIndex <= mPositionNum);
+	for (int i = 0; i < mCurrPosIndex; i++) {
+		Vector3f v1 = mPositionList[i];
 		if (particleMgr->cullByResFlg(v1, mEffectID) == false) {
 			int createCount = (int)emitter->mRate;
 			for (int i = 0; i < createCount; i++) {
@@ -244,8 +244,7 @@ void TOneEmitterSimple::executeAfter(JPABaseEmitter* emitter)
 			}
 		}
 	}
-
-	_14 = 0;
+	mCurrPosIndex = 0;
 }
 
 /**
@@ -696,7 +695,7 @@ void TChasePosPosLocalZScale::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 	makeMtxZAxisAlongPosPos(mtxZ, vec1, vec2);
 	f32 dist = Vector3f::distance(vec2, vec1);
 	emitter->setGlobalRTMatrix(mtxZ);
-	dist /= _18;
+	dist /= mZScale;
 	emitter->mLocalScl.set(emitter->mLocalScl.x, emitter->mLocalScl.y, dist);
 }
 
@@ -708,15 +707,15 @@ void TChasePosPosLocalZScale::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 void TChasePosPosLocalYScale::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 {
 	f32 newY;
-	P2ASSERTLINE(880, _10);
-	P2ASSERTLINE(881, _14);
+	P2ASSERTLINE(880, mPosListStart);
+	P2ASSERTLINE(881, mPosListEnd);
 	Mtx mtxZ;
-	Vector3f vec1 = *_10;
-	Vector3f vec2 = *_14;
+	Vector3f vec1 = *mPosListStart;
+	Vector3f vec2 = *mPosListEnd;
 	makeMtxZAxisAlongPosPos(mtxZ, vec1, vec2);
 	f32 dist = Vector3f::distance(vec2, vec1);
 	emitter->setGlobalRTMatrix(mtxZ);
-	dist /= _18;
+	dist /= mYScale;
 	emitter->mLocalScl.set(emitter->mLocalScl.x, dist, emitter->mLocalScl.z);
 }
 
@@ -1171,17 +1170,17 @@ void TChasePosYRot3::setYRot(f32* rotation)
  * @note Address: N/A
  * @note Size: 0xB4
  */
-TChasePosPosLocalYScale2::TChasePosPosLocalYScale2(Vector3f* p1, Vector3f* p2, f32 p3, u16 effectID1, u16 effectID2)
+TChasePosPosLocalYScale2::TChasePosPosLocalYScale2(Vector3f* p1, Vector3f* p2, f32 scale, u16 effectID1, u16 effectID2)
 {
 	// UNUSED FUNCTION
-	mItems[0]._10       = p1;
-	mItems[0]._14       = p2;
-	mItems[0]._18       = p3;
-	mItems[0].mEffectID = effectID1;
-	mItems[1]._10       = p1;
-	mItems[1]._14       = p2;
-	mItems[1]._18       = p3;
-	mItems[1].mEffectID = effectID2;
+	mItems[0].mPosListStart = p1;
+	mItems[0].mPosListEnd   = p2;
+	mItems[0].mYScale       = scale;
+	mItems[0].mEffectID     = effectID1;
+	mItems[1].mPosListStart = p1;
+	mItems[1].mPosListEnd   = p2;
+	mItems[1].mYScale       = scale;
+	mItems[1].mEffectID     = effectID2;
 }
 
 /**
@@ -1193,10 +1192,10 @@ TChasePosPosLocalYScale2::TChasePosPosLocalYScale2(Vector3f* p1, Vector3f* p2, f
 void TChasePosPosLocalYScale2::setPosptr(Vector3f* p1, Vector3f* p2)
 {
 	// UNUSED FUNCTION
-	mItems[0]._10 = p1;
-	mItems[0]._14 = p2;
-	mItems[1]._10 = p1;
-	mItems[1]._14 = p2;
+	mItems[0].mPosListStart = p1;
+	mItems[0].mPosListEnd   = p2;
+	mItems[1].mPosListStart = p1;
+	mItems[1].mPosListEnd   = p2;
 }
 
 /**
@@ -1204,20 +1203,20 @@ void TChasePosPosLocalYScale2::setPosptr(Vector3f* p1, Vector3f* p2)
  * @note Address: 0x803B0BCC
  * @note Size: 0xC8
  */
-TChasePosPosLocalYScale3::TChasePosPosLocalYScale3(Vector3f* p1, Vector3f* p2, f32 p3, u16 effectID1, u16 effectID2, u16 effectID3)
+TChasePosPosLocalYScale3::TChasePosPosLocalYScale3(Vector3f* p1, Vector3f* p2, f32 scale, u16 effectID1, u16 effectID2, u16 effectID3)
 {
-	mItems[0]._10       = p1;
-	mItems[0]._14       = p2;
-	mItems[0]._18       = p3;
-	mItems[0].mEffectID = effectID1;
-	mItems[1]._10       = p1;
-	mItems[1]._14       = p2;
-	mItems[1]._18       = p3;
-	mItems[1].mEffectID = effectID2;
-	mItems[2]._10       = p1;
-	mItems[2]._14       = p2;
-	mItems[2]._18       = p3;
-	mItems[2].mEffectID = effectID3;
+	mItems[0].mPosListStart = p1;
+	mItems[0].mPosListEnd   = p2;
+	mItems[0].mYScale       = scale;
+	mItems[0].mEffectID     = effectID1;
+	mItems[1].mPosListStart = p1;
+	mItems[1].mPosListEnd   = p2;
+	mItems[1].mYScale       = scale;
+	mItems[1].mEffectID     = effectID2;
+	mItems[2].mPosListStart = p1;
+	mItems[2].mPosListEnd   = p2;
+	mItems[2].mYScale       = scale;
+	mItems[2].mEffectID     = effectID3;
 }
 
 /**
@@ -1227,12 +1226,12 @@ TChasePosPosLocalYScale3::TChasePosPosLocalYScale3(Vector3f* p1, Vector3f* p2, f
  */
 void TChasePosPosLocalYScale3::setPosptr(Vector3f* p1, Vector3f* p2)
 {
-	mItems[0]._10 = p1;
-	mItems[0]._14 = p2;
-	mItems[1]._10 = p1;
-	mItems[1]._14 = p2;
-	mItems[2]._10 = p1;
-	mItems[2]._14 = p2;
+	mItems[0].mPosListStart = p1;
+	mItems[0].mPosListEnd   = p2;
+	mItems[1].mPosListStart = p1;
+	mItems[1].mPosListEnd   = p2;
+	mItems[2].mPosListStart = p1;
+	mItems[2].mPosListEnd   = p2;
 }
 
 /**
@@ -1241,16 +1240,16 @@ void TChasePosPosLocalYScale3::setPosptr(Vector3f* p1, Vector3f* p2)
  * @note Address: N/A
  * @note Size: 0xB4
  */
-TChasePosPosLocalZScale2::TChasePosPosLocalZScale2(Vector3f* p1, Vector3f* p2, f32 p3, u16 effectID1, u16 effectID2)
+TChasePosPosLocalZScale2::TChasePosPosLocalZScale2(Vector3f* p1, Vector3f* p2, f32 scale, u16 effectID1, u16 effectID2)
 {
 	// UNUSED FUNCTION
 	mItems[0].mPosPtrA  = p1;
 	mItems[0].mPosPtrB  = p2;
-	mItems[0]._18       = p3;
+	mItems[0].mZScale   = scale;
 	mItems[0].mEffectID = effectID1;
 	mItems[1].mPosPtrA  = p1;
 	mItems[1].mPosPtrB  = p2;
-	mItems[1]._18       = p3;
+	mItems[1].mZScale   = scale;
 	mItems[1].mEffectID = effectID2;
 }
 
@@ -1273,19 +1272,19 @@ void TChasePosPosLocalZScale2::setPosptr(Vector3f* p1, Vector3f* p2)
  * @note Address: 0x803B0D08
  * @note Size: 0xC8
  */
-TChasePosPosLocalZScale3::TChasePosPosLocalZScale3(Vector3f* p1, Vector3f* p2, f32 p3, u16 effectID1, u16 effectID2, u16 effectID3)
+TChasePosPosLocalZScale3::TChasePosPosLocalZScale3(Vector3f* p1, Vector3f* p2, f32 scale, u16 effectID1, u16 effectID2, u16 effectID3)
 {
 	mItems[0].mPosPtrA  = p1;
 	mItems[0].mPosPtrB  = p2;
-	mItems[0]._18       = p3;
+	mItems[0].mZScale   = scale;
 	mItems[0].mEffectID = effectID1;
 	mItems[1].mPosPtrA  = p1;
 	mItems[1].mPosPtrB  = p2;
-	mItems[1]._18       = p3;
+	mItems[1].mZScale   = scale;
 	mItems[1].mEffectID = effectID2;
 	mItems[2].mPosPtrA  = p1;
 	mItems[2].mPosPtrB  = p2;
-	mItems[2]._18       = p3;
+	mItems[2].mZScale   = scale;
 	mItems[2].mEffectID = effectID3;
 }
 

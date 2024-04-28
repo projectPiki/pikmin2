@@ -1996,16 +1996,16 @@ lbl_800A0DD4:
  * @note Address: 0x800A0DF8
  * @note Size: 0x84
  */
-void JASTrack::setParam(int paramIndex, f32 p2, int p3)
+void JASTrack::setParam(int paramIndex, f32 value, int p3)
 {
 	MoveParam_* moveParam = mTimedParam.mMoveParams + paramIndex;
-	moveParam->_04        = p2;
+	moveParam->mGoalValue = value;
 	if (p3 <= 1) {
-		moveParam->_00 = moveParam->_04;
+		moveParam->_00 = moveParam->mGoalValue;
 		moveParam->_0C = 0.0f;
 		moveParam->_08 = 1.0f;
 	} else {
-		moveParam->_0C = (moveParam->_04 - moveParam->_00) / p3;
+		moveParam->_0C = (moveParam->mGoalValue - moveParam->_00) / p3;
 		moveParam->_08 = p3;
 	}
 	/*

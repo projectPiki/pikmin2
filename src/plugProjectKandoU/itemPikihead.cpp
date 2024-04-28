@@ -388,11 +388,11 @@ void Item::onInit(CreatureInitArg* settings)
 		_1E4      = -1.0f;
 	}
 	mEfxTane->init();
-	mEfxTane->mPikiColor = mColor;
-	mEfxTane->_08        = &mPosition;
-	mEfxTane->mPos       = &mEfxPosition;
-	mEfxTane->_10        = &mBaseTrMatrix;
-	mEfxTane->_0C        = mModel->getJoint("happajnt3")->getWorldMatrix();
+	mEfxTane->mPikiColor   = mColor;
+	mEfxTane->mObjPos      = &mPosition;
+	mEfxTane->mEfxPos      = &mEfxPosition;
+	mEfxTane->mObjMatrix   = &mBaseTrMatrix;
+	mEfxTane->mHappaJntMtx = mModel->getJoint("happajnt3")->getWorldMatrix();
 	if (itemInitArg && itemInitArg->mIsAlreadyBuried) {
 		mFsm->start(this, PIKIHEAD_Hatuga, nullptr);
 	} else {

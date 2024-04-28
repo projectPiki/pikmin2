@@ -14,13 +14,13 @@ struct JumpBgmPort;
  */
 struct BeatMgr {
 	inline BeatMgr()
-	    : _00(0)
+	    : mFlags(0)
 	{
 	}
 
 	void proc();
 
-	u8 _00; // _00 - unknown, but size 0x1 (or 0x2?)
+	u8 mFlags; // _00 - unknown, but size 0x1 (or 0x2?)
 };
 
 /**
@@ -67,7 +67,7 @@ struct SeqTrackRoot : public SeqTrackBase {
 	f32 mSwingMagnitude;                  // _34, how significant the swing is (?)
 	int mSwingState;                      // _38, 0 = olimar, 1 = louie
 	BeatMgr mBeatMgr;                     // _3C
-	u16 _3E;                              // _3E
+	u16 mBeatInterval;                    // _3E
 	TaskEntry_Tempo mTempoTask;           // _40, for low health
 	TaskEntry_OuterParam _100;            // _100
 	TaskEntry_PitMod mPitchModTask;       // _16C, for taking damage
@@ -98,7 +98,7 @@ struct SeqTrackChild : public SeqTrackBase {
 	// _04-_2C  = SeqBase
 	TaskEntry_MuteVolume mMuteVolumeTask; // _2C
 	TaskEntry_MuteOnVolume mMuteOnTask;   // _12C
-	TaskEntry_OuterParam _1B8;            // _1B8
+	TaskEntry_OuterParam mFadeTask;       // _1B8
 	TaskEntry_IdMask mIdMaskTask;         // _224
 };
 

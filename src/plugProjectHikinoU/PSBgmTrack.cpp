@@ -9,10 +9,10 @@ namespace PSSystem {
  */
 void BeatMgr::proc()
 {
-	if (_00 & 0x40) {
-		_00 &= 1;
-	} else if (_00 & 0x80) {
-		_00 |= 0x40;
+	if (mFlags & 0x40) {
+		mFlags &= 1;
+	} else if (mFlags & 0x80) {
+		mFlags |= 0x40;
 	}
 }
 
@@ -46,7 +46,7 @@ TaskEntryMgr* SeqTrackBase::getTaskEntryList() { return &mTaskEntryMgr; }
 SeqTrackRoot::SeqTrackRoot()
     : mSwingMagnitude(2.0f)
     , mSwingState(0)
-    , _3E(0x3C)
+    , mBeatInterval(60)
     , _100(2)
 {
 }
@@ -61,7 +61,7 @@ void SeqTrackRoot::init(JASTrack* track)
 	mTaskEntryMgr.mTrack = track;
 	mStandardTempo       = track->mTempo;
 	mActiveTempo         = mStandardTempo;
-	mBeatMgr._00         = 0;
+	mBeatMgr.mFlags      = 0;
 	initSwingRatio();
 }
 
@@ -79,10 +79,10 @@ void SeqTrackRoot::initSwingRatio()
  * @note Address: 0x803427A4
  * @note Size: 0x88
  */
-void SeqTrackRoot::pitchModulation(f32 f1, f32 f2, u32 arg, PSSystem::DirectorBase* base)
+void SeqTrackRoot::pitchModulation(f32 pitch, f32 speed, u32 time, PSSystem::DirectorBase* base)
 {
 	mTaskEntryMgr.removeEntry(&mPitchModTask);
-	mPitchModTask.makeEntry(f1, f2, arg);
+	mPitchModTask.makeEntry(pitch, speed, time);
 	mTaskEntryMgr.appendEntry(&mPitchModTask, base);
 }
 
@@ -109,9 +109,9 @@ void SeqTrackRoot::onStopSeq() { mTaskEntryMgr.removeAllEntry(); }
  */
 u16 SeqTrackRoot::beatUpdate()
 {
-	mBeatMgr._00 = (mBeatMgr._00 & 1 ^ 1) & 0x00FF | 0x80;
+	mBeatMgr.mFlags = (mBeatMgr.mFlags & 1 ^ 1) & 0x00FF | 0x80;
 	if (mSwingState == 1) {
-		if (mBeatMgr._00 & 1) {
+		if (mBeatMgr.mFlags & 1) {
 			mActiveTempo = mSwingTempoMin;
 		} else {
 			mActiveTempo = mSwingTempoMax;
@@ -122,7 +122,7 @@ u16 SeqTrackRoot::beatUpdate()
 
 	mTaskEntryMgr.mTrack->setTempo(mActiveTempo);
 	onBeatTop();
-	return _3E;
+	return mBeatInterval;
 }
 
 /**
@@ -131,7 +131,7 @@ u16 SeqTrackRoot::beatUpdate()
  * __ct__Q28PSSystem13SeqTrackChildFRCQ28PSSystem12SeqTrackRoot
  */
 SeqTrackChild::SeqTrackChild(const PSSystem::SeqTrackRoot&)
-    : _1B8(1)
+    : mFadeTask(1)
 {
 }
 
@@ -139,11 +139,11 @@ SeqTrackChild::SeqTrackChild(const PSSystem::SeqTrackRoot&)
  * @note Address: 0x80342C50
  * @note Size: 0x84
  */
-void SeqTrackChild::muteOffAndFadeIn(f32 arg1, u32 arg2, PSSystem::DirectorBase* base)
+void SeqTrackChild::muteOffAndFadeIn(f32 value, u32 length, PSSystem::DirectorBase* base)
 {
 	mTaskEntryMgr.removeEntry(&mMuteVolumeTask);
 	mTaskEntryMgr.removeEntry(&mMuteOnTask);
-	mMuteVolumeTask.makeEntry(arg1, arg2);
+	mMuteVolumeTask.makeEntry(value, length);
 	mTaskEntryMgr.appendEntry(&mMuteVolumeTask, base);
 }
 
@@ -151,11 +151,11 @@ void SeqTrackChild::muteOffAndFadeIn(f32 arg1, u32 arg2, PSSystem::DirectorBase*
  * @note Address: 0x80342CD4
  * @note Size: 0x74
  */
-void SeqTrackChild::fadeoutAndMute(u32 arg, PSSystem::DirectorBase* base)
+void SeqTrackChild::fadeoutAndMute(u32 length, PSSystem::DirectorBase* base)
 {
 	mTaskEntryMgr.removeEntry(&mMuteVolumeTask);
 	mTaskEntryMgr.removeEntry(&mMuteOnTask);
-	mMuteOnTask.makeEntry(arg);
+	mMuteOnTask.makeEntry(length);
 	mTaskEntryMgr.appendEntry(&mMuteOnTask, base);
 }
 
@@ -163,11 +163,11 @@ void SeqTrackChild::fadeoutAndMute(u32 arg, PSSystem::DirectorBase* base)
  * @note Address: 0x80342D48
  * @note Size: 0x78
  */
-void SeqTrackChild::fade(f32 arg1, u32 arg2, PSSystem::DirectorBase* base)
+void SeqTrackChild::fade(f32 value, u32 length, PSSystem::DirectorBase* base)
 {
-	mTaskEntryMgr.removeEntry(&_1B8);
-	_1B8.makeEntry(arg1, arg2);
-	mTaskEntryMgr.appendEntry(&_1B8, base);
+	mTaskEntryMgr.removeEntry(&mFadeTask);
+	mFadeTask.makeEntry(value, length);
+	mTaskEntryMgr.appendEntry(&mFadeTask, base);
 }
 
 /**

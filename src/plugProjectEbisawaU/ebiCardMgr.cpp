@@ -66,9 +66,9 @@ void FSMState_Warning::do_init(TMgr* mgr, Game::StateArg*)
 	mIsClosed = false;
 	mCanClose = false;
 
-	u32 rate      = 0.0f / sys->mDeltaTime;
-	mgr->mCounter = rate;
-	mgr->_29C     = rate;
+	u32 rate         = 0.0f / sys->mDeltaTime;
+	mgr->mCounter    = rate;
+	mgr->mCounterMax = rate;
 
 	mDoCheckCard          = false;
 	mgr->mScreen.mCanExit = true;
@@ -134,9 +134,9 @@ void FSMState_CardRequest::do_init(TMgr* mgr, Game::StateArg*)
 	mgr->mScreen.mCanExit = false;
 	mState                = 0;
 
-	u32 rate      = 3.0f / sys->mDeltaTime;
-	mgr->mCounter = rate;
-	mgr->_29C     = rate;
+	u32 rate         = 3.0f / sys->mDeltaTime;
+	mgr->mCounter    = rate;
+	mgr->mCounterMax = rate;
 
 	do_open(mgr);
 }
@@ -400,7 +400,7 @@ void FSMState_NoCard::do_exec(TMgr* mgr)
  */
 TMgr::TMgr()
     : mCounter(0)
-    , _29C(0)
+    , mCounterMax(0)
 {
 	mStateMachine.init(this);
 	mStateMachine.start(this, CARDERROR_Standby, nullptr);
@@ -423,7 +423,7 @@ TMemoryCard::~TMemoryCard() { }
 TMemoryCard::TMemoryCard()
     : mState(0)
     , mInputDelay(0)
-    , _0C(0)
+    , mInputDelayMax(0)
     , mMsgAlpha(0)
     , mAlphaMod(0)
     , mCanExit(1)

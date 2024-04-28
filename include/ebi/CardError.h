@@ -544,8 +544,8 @@ struct TMgr {
 
 	Screen::TMemoryCard mScreen;   // _000
 	u32 mCounter;                  // _298
-	int _29C;                      // _29C
-	u32 mEndStat;                  // _2A0, unknown
+	u32 mCounterMax;               // _29C, isnt used for anything
+	u32 mEndStat;                  // _2A0
 	int mIsBroken;                 // _2A4
 	FSMStateMachine mStateMachine; // _2A8
 	FSMState* mCurrentState;       // _2C4

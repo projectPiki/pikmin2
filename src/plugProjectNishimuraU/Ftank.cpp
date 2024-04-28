@@ -129,9 +129,9 @@ void Obj::interactCreature(Creature* creature)
  */
 void Obj::stopEffectRadius(f32 radius)
 {
-	efx::TTankEffect* effect                       = mTankEffect;
-	effect->mEfxFire.mEfxABC.mParticleCallBack._04 = radius;
-	effect->mEfxFire.mEfxIND.mParticleCallBack._04 = radius;
+	efx::TTankEffect* effect                                = mTankEffect;
+	effect->mEfxFire.mEfxABC.mParticleCallBack.mMaxDistance = radius;
+	effect->mEfxFire.mEfxIND.mParticleCallBack.mMaxDistance = radius;
 }
 
 /**

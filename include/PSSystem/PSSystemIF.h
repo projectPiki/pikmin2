@@ -132,11 +132,11 @@ struct SysChecker {
 	inline SysChecker()
 	{
 		OSInitMutex(&mMutex);
-		_18 = 0;
+		mIsEnabled = 0;
 	}
 
 	OSMutex mMutex; // _00
-	int _18;        // _18
+	int mIsEnabled; // _18
 };
 
 // Size: 0x4C

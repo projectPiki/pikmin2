@@ -18,7 +18,7 @@ struct TBaseIF {
 
 struct TBase : public TBaseIF {
 	inline TBase()
-	    : _04(0)
+	    : mResMgrId(0)
 	    , mGroup(0)
 	{
 	}
@@ -26,8 +26,8 @@ struct TBase : public TBaseIF {
 	virtual void setGroup(u8 group) { mGroup = group; } // _14 (weak)
 
 	// _00 = VTBL
-	u8 _04;    // _04
-	u8 mGroup; // _05
+	u8 mResMgrId; // _04
+	u8 mGroup;    // _05
 };
 } // namespace efx2d
 

@@ -351,8 +351,8 @@ void TUnit::update()
 
 		case 2:
 			mAnim.mAnimStartTime += mAnim.mTimeStep * mAnim.mAnimRes->mTimeScale;
-			if (mAnim.mAnimStartTime >= mAnim.mAnimRes->_0C) {
-				mAnim.mAnimStartTime = mAnim.mAnimRes->_0C;
+			if (mAnim.mAnimStartTime >= mAnim.mAnimRes->mStopFrame) {
+				mAnim.mAnimStartTime = mAnim.mAnimRes->mStopFrame;
 				mAnim.mState         = 3;
 			}
 			break;

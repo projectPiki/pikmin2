@@ -57,7 +57,7 @@ ParticleMgr::ParticleMgr()
 	mEmitterManager          = nullptr;
 	mResourceManager         = nullptr;
 	mReferencedViewportCount = 0;
-	_A8                      = 200;
+	mUnusedVal               = 200;
 	mLightMgr                = nullptr;
 }
 

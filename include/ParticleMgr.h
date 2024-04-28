@@ -76,7 +76,7 @@ struct ParticleMgr : public CNode {
 	JPAResourceManager* mResourceManager;       // _9C
 	JKRHeap* mHeap;                             // _A0
 	JKRHeap* mModelEffectHeap;                  // _A4
-	int _A8;                                    // _A8
+	int mUnusedVal;                             // _A8
 
 	static bool disableCulling;
 	static f32 mClipRadiusS; // = 10.0f;

@@ -87,7 +87,7 @@ struct TMemoryCard {
 	int mState;                             // _00, unknown
 	Controller* mController;                // _04
 	u32 mInputDelay;                        // _08
-	u32 _0C;                                // _0C
+	u32 mInputDelayMax;                     // _0C, isnt used
 	u32 mMsgAlpha;                          // _10
 	int mAlphaMod;                          // _14
 	u8 mSelectionIdx;                       // _18

@@ -55,8 +55,8 @@ void FSMState::do_exec(TMgr*) { }
  */
 void FSMState_EmptyUpdate::do_init(TMgr* mgr, Game::StateArg* arg)
 {
-	mCounter = 2;
-	_14      = 2;
+	mCounter    = 2;
+	mCounterMax = 2;
 }
 
 /**
@@ -154,7 +154,7 @@ void FSMState_CardRequest::do_exec(TMgr* mgr)
 void FSMState_CardRequest::do_transitCardNoCard(TMgr* mgr)
 {
 	CardErrorStateArg arg;
-	arg._00 = CardError::TMgr::Start_NoCard;
+	arg.mOpenType = CardError::TMgr::Start_NoCard;
 	transit(mgr, FSSTATE_CardError, &arg);
 }
 
@@ -165,7 +165,7 @@ void FSMState_CardRequest::do_transitCardNoCard(TMgr* mgr)
 void FSMState_CardRequest::do_transitCardIOError(TMgr* mgr)
 {
 	CardErrorStateArg arg;
-	arg._00 = CardError::TMgr::Start_IOError;
+	arg.mOpenType = CardError::TMgr::Start_IOError;
 	transit(mgr, FSSTATE_CardError, &arg);
 }
 
@@ -176,7 +176,7 @@ void FSMState_CardRequest::do_transitCardIOError(TMgr* mgr)
 void FSMState_CardRequest::do_transitCardWrongDevice(TMgr* mgr)
 {
 	CardErrorStateArg arg;
-	arg._00 = CardError::TMgr::Start_WrongDevice;
+	arg.mOpenType = CardError::TMgr::Start_WrongDevice;
 	transit(mgr, FSSTATE_CardError, &arg);
 }
 
@@ -187,7 +187,7 @@ void FSMState_CardRequest::do_transitCardWrongDevice(TMgr* mgr)
 void FSMState_CardRequest::do_transitCardWrongSector(TMgr* mgr)
 {
 	CardErrorStateArg arg;
-	arg._00 = CardError::TMgr::Start_WrongSector;
+	arg.mOpenType = CardError::TMgr::Start_WrongSector;
 	transit(mgr, FSSTATE_CardError, &arg);
 }
 
@@ -198,7 +198,7 @@ void FSMState_CardRequest::do_transitCardWrongSector(TMgr* mgr)
 void FSMState_CardRequest::do_transitCardBroken(TMgr* mgr)
 {
 	CardErrorStateArg arg;
-	arg._00 = CardError::TMgr::Start_DataBrokenAndDoYouFormat;
+	arg.mOpenType = CardError::TMgr::Start_DataBrokenAndDoYouFormat;
 	transit(mgr, FSSTATE_CardError, &arg);
 }
 
@@ -209,7 +209,7 @@ void FSMState_CardRequest::do_transitCardBroken(TMgr* mgr)
 void FSMState_CardRequest::do_transitCardEncoding(TMgr* mgr)
 {
 	CardErrorStateArg arg;
-	arg._00 = CardError::TMgr::Start_DataBrokenAndDoYouFormat;
+	arg.mOpenType = CardError::TMgr::Start_DataBrokenAndDoYouFormat;
 	transit(mgr, FSSTATE_CardError, &arg);
 }
 
@@ -220,7 +220,7 @@ void FSMState_CardRequest::do_transitCardEncoding(TMgr* mgr)
 void FSMState_CardRequest::do_transitCardNoFileSpace(TMgr* mgr)
 {
 	CardErrorStateArg arg;
-	arg._00 = CardError::TMgr::Start_OverCapacity;
+	arg.mOpenType = CardError::TMgr::Start_OverCapacity;
 	transit(mgr, FSSTATE_CardError, &arg);
 }
 
@@ -231,7 +231,7 @@ void FSMState_CardRequest::do_transitCardNoFileSpace(TMgr* mgr)
 void FSMState_CardRequest::do_transitCardNoFileEntry(TMgr* mgr)
 {
 	CardErrorStateArg arg;
-	arg._00 = CardError::TMgr::Start_OverCapacity;
+	arg.mOpenType = CardError::TMgr::Start_OverCapacity;
 	transit(mgr, FSSTATE_CardError, &arg);
 }
 
@@ -242,7 +242,7 @@ void FSMState_CardRequest::do_transitCardNoFileEntry(TMgr* mgr)
 void FSMState_CardRequest::do_transitCardFileOpenError(TMgr* mgr)
 {
 	CardErrorStateArg arg;
-	arg._00 = CardError::TMgr::Start_DoYouCreateNewFile;
+	arg.mOpenType = CardError::TMgr::Start_DoYouCreateNewFile;
 	transit(mgr, FSSTATE_CardError, &arg);
 }
 
@@ -339,7 +339,7 @@ void FSMState_CardError::do_init(TMgr* mgr, Game::StateArg* arg)
 {
 	CardErrorStateArg* carg = static_cast<CardErrorStateArg*>(arg);
 	P2ASSERTLINE(319, arg);
-	mgr->mCardErrorMgr.startSeq((CardError::TMgr::enumStart)carg->_00);
+	mgr->mCardErrorMgr.startSeq((CardError::TMgr::enumStart)carg->mOpenType);
 }
 
 /**
@@ -370,7 +370,7 @@ void FSMState_CardError::do_exec(TMgr* mgr)
  */
 TMgr::TMgr()
     : mCounter(0)
-    , _F44(0)
+    , mCounterMax(0)
 {
 	mFsm.init(this);
 	mFsm.start(this, FSSTATE_Standby, 0);

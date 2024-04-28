@@ -121,7 +121,7 @@ struct TOption : public TScreenBase {
 	J2DPane* mPaneSfxVolume[10];               // _12C
 	J2DPane* mPaneBgmVolume[10];               // _154
 	J2DPane* mDeflickerScreen;                 // _17C
-	J2DPane* _180[10];                         // _180
+	J2DPane* mOptionPanes[10];                 // _180, this might be a smaller array
 	J2DPane* mButtonPaneList[7];               // _1A8
 	E2DFullFontColor mFontColorActiveSel;      // _1C4
 	E2DFullFontColor mFontColorInactiveSel;    // _1D4

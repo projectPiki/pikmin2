@@ -287,7 +287,7 @@ bool TTitleMenu::doUpdateStateWait()
 
 	mPad.update();
 	// change main menu selection
-	if (mPad._0D) {
+	if (mPad.mSelectionChanged) {
 		int id = mPad.mLastIndex;
 		// skip over challenge mode if its not unlocked
 		if (mState == 0 && mSelectID == 2) {

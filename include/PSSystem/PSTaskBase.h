@@ -18,17 +18,17 @@ struct TaskBase {
 	virtual int task(JASTrack&) = 0; // _08
 
 	// _00 = VTBL
-	JSULink<TaskBase> _04;  // _04
-	u8 _14;                 // _14 - unknown
-	u8 _15;                 // _15 - unknown
-	JSULink<TaskBase>* _18; // _18 - unknown
+	JSULink<TaskBase> mLink;          // _04
+	u8 mEnabled;                      // _14
+	u8 mHasNext;                      // _15
+	JSULink<TaskBase>* mWaitTaskLink; // _18
 };
 
 // size: 0x38
 struct TaskEntry : public MutexList<TaskBase> {
 	inline TaskEntry()
 	    : mDirector(nullptr)
-	    , _28(this)
+	    , mTaskList(this)
 	{
 	}
 
@@ -46,8 +46,8 @@ struct TaskEntry : public MutexList<TaskBase> {
 	}
 
 	// _00-_24 = MutexList
-	DirectorBase* mDirector; // _24
-	JSULink<TaskEntry> _28;  // _28
+	DirectorBase* mDirector;      // _24
+	JSULink<TaskEntry> mTaskList; // _28
 };
 } // namespace PSSystem
 

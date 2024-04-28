@@ -125,7 +125,7 @@ JAISe* SysIF::makeSe()
  */
 void SysIF::mainLoop()
 {
-	if (mChecker._18 == 1) {
+	if (mChecker.mIsEnabled == 1) {
 		getSceneMgr()->exec();
 		getSeMgrInstance()->execAllSe();
 		processFrameWork();

@@ -441,9 +441,9 @@ bool WorldMap::T2DRocketB::create(Arg* arg)
 {
 	if (TChasePosDir::create(arg)) {
 		JGeometry::TVec3f* vec = &mEmitter->mLocalScl;
-		_1C.x                  = vec->x;
-		_1C.y                  = vec->y;
-		_1C.z                  = vec->z;
+		mScale.x               = vec->x;
+		mScale.y               = vec->y;
+		mScale.z               = vec->z;
 		return true;
 	}
 	return false;
@@ -459,9 +459,9 @@ void WorldMap::T2DRocketB::setGlobalParticleScale(f32 scale)
 	if (!emit)
 		return;
 	Vector3f test;
-	test.x = _1C.x;
-	test.y = _1C.y;
-	test.z = _1C.z;
+	test.x = mScale.x;
+	test.y = mScale.y;
+	test.z = mScale.z;
 
 	emit->setGlobalScale(scale);
 	test = test * scale;

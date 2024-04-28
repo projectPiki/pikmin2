@@ -10,18 +10,18 @@ struct JAISound;
 
 namespace PSSystem {
 struct MoveParamSet {
-	inline MoveParamSet(f32 p1, u32 p2, int p3, u8 p4)
-	    : _00(p1)
-	    , _04(p2)
-	    , _08(p3)
-	    , _0C(p4)
+	inline MoveParamSet(f32 value, u32 time, int type, u8 index)
+	    : mValue(value)
+	    , mMoveTime(time)
+	    , mParamType(type)
+	    , mIndex(index)
 	{
 	}
 
-	f32 _00; // _00
-	u32 _04; // _04
-	int _08; // _08
-	u8 _0C;  // _0C
+	f32 mValue;     // _00
+	u32 mMoveTime;  // _04
+	int mParamType; // _08
+	u8 mIndex;      // _0C
 };
 
 struct EnvSeBase : public JSULink<EnvSeBase> {
@@ -43,7 +43,7 @@ struct EnvSeBase : public JSULink<EnvSeBase> {
 	MoveParamSet mMoveParam; // _14
 	SoundID mSoundID;        // _24
 	f32 mVolume;             // _28
-	f32 _2C;                 // _2C, also a volume?
+	f32 mVolume2;            // _2C, also a volume?
 	f32 _30;                 // _30, fx mix value?
 	JAISound* mSound;        // _34
 	u8 mPauseFlag;           // _38

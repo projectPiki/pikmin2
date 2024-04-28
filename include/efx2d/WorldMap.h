@@ -46,7 +46,7 @@ struct T2DMapFlare : public TChasePos {
 	T2DMapFlare(Vector2f* pos)
 	    : TChasePos(PID_WMap_LensFlare, pos)
 	{
-		_04 = 1;
+		mResMgrId = 1;
 	}
 
 	virtual ~T2DMapFlare() { } // _34 (weak)
@@ -75,7 +75,7 @@ struct T2DOnyonKira : public TChasePosDir {
 	T2DOnyonKira(Vector2f& pos, Vector2f& pos2)
 	    : TChasePosDir(0, pos, pos2)
 	{
-		_04 = 1;
+		mResMgrId = 1;
 	}
 	// vtable 1
 	virtual bool create(Arg*); // _08
@@ -106,7 +106,7 @@ struct T2DRocketB : public TChasePosDir {
 	T2DRocketB(Vector2f& pos, Vector2f& dir)
 	    : TChasePosDir(PID_WMap_RocketSparks, pos, dir)
 	{
-		_04 = 1;
+		mResMgrId = 1;
 	}
 	// vtable 1
 	virtual bool create(Arg*); // _08
@@ -117,7 +117,7 @@ struct T2DRocketB : public TChasePosDir {
 
 	// _00		= VTBL
 	// _00-_1C	= TChasePosDir
-	Vector3f _1C; // _1C
+	Vector3f mScale; // _1C
 };
 
 /**
@@ -127,7 +127,7 @@ struct T2DRocketGlow : public TChasePosDir {
 	T2DRocketGlow(Vector2f& pos, Vector2f& pos2)
 	    : TChasePosDir(PID_WMap_RocketGlow, pos, pos2)
 	{
-		_04 = 1;
+		mResMgrId = 1;
 	}
 	// vtable 2
 	virtual ~T2DRocketGlow() { } // _34 (weak)
@@ -145,7 +145,7 @@ struct T2DShstar1 : public TChasePos {
 	T2DShstar1(Vector2f* pos)
 	    : TChasePos(PID_WMap_ShootingStar1, pos)
 	{
-		_04 = 1;
+		mResMgrId = 1;
 	}
 
 	virtual ~T2DShstar1() { } // _34 (weak)

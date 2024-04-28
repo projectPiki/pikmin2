@@ -1712,8 +1712,8 @@ void TMainScreen::doOpenScreen(ArgOpen*)
 		mPaneSel[1][i]->setAlpha(255);
 	}
 
-	mNewScreen._04  = false;
-	mDataScreen._0C = false;
+	mNewScreen.mIsActive  = false;
+	mDataScreen.mIsActive = false;
 	initDataBalls_();
 	setIconColorAlpha_(30);
 	mFlags.clear();
@@ -1806,19 +1806,19 @@ bool TMainScreen::doUpdateStateWait()
 	Matrixf* mtx    = (Matrixf*)&mPaneDataWindow->mGlobalMtx;
 	TFileData* data = &mFileData[mCurrFileInfoId];
 	if (data->mIsBrokenFile || data->mIsNewFile) {
-		mNewScreen._04  = 1;
-		mDataScreen._0C = 0;
-		J2DPane* pane   = E2DScreen_searchAssert(mNewScreen.mScreenObj, 'Ndataw');
+		mNewScreen.mIsActive  = 1;
+		mDataScreen.mIsActive = 0;
+		J2DPane* pane         = E2DScreen_searchAssert(mNewScreen.mScreenObj, 'Ndataw');
 		PSMTXCopy(mtx->mMatrix.mtxView, pane->mPositionMtx);
-		if (mNewScreen._04) {
+		if (mNewScreen.mIsActive) {
 			mNewScreen.mScreenObj->update();
 		}
 	} else {
-		mDataScreen._0C = 1;
-		mNewScreen._04  = 0;
-		J2DPane* pane   = E2DScreen_searchAssert(mDataScreen.mScreenObj, 'Ndataw');
+		mDataScreen.mIsActive = 1;
+		mNewScreen.mIsActive  = 0;
+		J2DPane* pane         = E2DScreen_searchAssert(mDataScreen.mScreenObj, 'Ndataw');
 		PSMTXCopy(mtx->mMatrix.mtxView, pane->mPositionMtx);
-		if (mDataScreen._0C) {
+		if (mDataScreen.mIsActive) {
 			mDataScreen.mScreenObj->update();
 		}
 	}
@@ -1889,13 +1889,13 @@ void TMainScreen::doDraw()
 	graf->setPort();
 	mMainScreen->draw(*gfx, *graf);
 
-	if (mNewScreen._04) {
+	if (mNewScreen.mIsActive) {
 		graf = &sys->mGfx->mPerspGraph;
 		Graphics gfx;
 		mNewScreen.mScreenObj->draw(gfx, *graf);
 	}
 
-	if (mDataScreen._0C) {
+	if (mDataScreen.mIsActive) {
 		graf = &sys->mGfx->mPerspGraph;
 		Graphics gfx;
 		mDataScreen.mScreenObj->draw(gfx, *graf);

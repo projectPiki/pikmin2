@@ -192,10 +192,10 @@ void CardEReader::TMgr::init()
  */
 void CardEReader::TMgr::uploadToGBA(s32 data)
 {
-	_38      = 1;
-	mState   = 1;
-	mCounter = 0;
-	mGameID  = data;
+	mIsUploading = 1;
+	mState       = 1;
+	mCounter     = 0;
+	mGameID      = data;
 }
 
 /**
@@ -204,9 +204,9 @@ void CardEReader::TMgr::uploadToGBA(s32 data)
  */
 void CardEReader::TMgr::probeAGB()
 {
-	_38      = 0;
-	mState   = 1;
-	mCounter = 0;
+	mIsUploading = 0;
+	mState       = 1;
+	mCounter     = 0;
 }
 
 /**
@@ -232,7 +232,7 @@ void CardEReader::TMgr::update()
 		mGbaPort = stat;
 		mCounter++;
 		if (mGbaPort != -1) {
-			if (_38 == 0) {
+			if (mIsUploading == 0) {
 				goEnd_(Error_0);
 			} else {
 				mCounter = 0;

@@ -84,15 +84,15 @@ struct TAnimator {
 	void setAnmWave(J3DModel*, f32, f32, f32);
 	void setAnmWait(J3DModel*, f32);
 
-	J3DModelData* mModelDataRed;    // _00
-	J3DModelData* mModelDataYellow; // _04
-	J3DModelData* mModelDataBlue;   // _08
-	J3DModelData* mModelDataPurple; // _0C
-	J3DModelData* mModelDataWhite;  // _10
-	J3DAnmTransform* _14;           // _14
-	J3DAnmTransform* _18;           // _18
-	J3DMtxCalcAnmBase* _1C;         // _1C
-	J3DMtxCalc* _20;                // _20
+	J3DModelData* mModelDataRed;     // _00
+	J3DModelData* mModelDataYellow;  // _04
+	J3DModelData* mModelDataBlue;    // _08
+	J3DModelData* mModelDataPurple;  // _0C
+	J3DModelData* mModelDataWhite;   // _10
+	J3DAnmTransform* mWaitAnim;      // _14
+	J3DAnmTransform* mWaveAnim;      // _18
+	J3DMtxCalcAnmBase* mAnmCalcWait; // _1C
+	J3DMtxCalc* mAnmCalcWave;        // _20
 };
 
 struct TBoidParam : public Parameters {
@@ -130,19 +130,19 @@ struct TBoidParamMgr : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	u32 _18;               // _18
-	u32 _1C;               // _1C
-	TBoidParam mParams[5]; // _20
-	f32 _6B0;              // _6B0
-	f32 _6B4;              // _6B4
-	f32 _6B8;              // _6B8
-	f32 _6BC;              // _6BC
-	f32 _6C0;              // _6C0
-	f32 _6C4;              // _6C4
-	f32 _6C8;              // _6C8
-	f32 _6CC;              // _6CC
-	u32 mCounter;          // _6D0
-	u32 mCounter2;         // _6D4
+	u32 mCurrentState;       // _18
+	u32 mPrevState;          // _1C
+	TBoidParam mParams[5];   // _20
+	f32 mCurrWalkSpeed;      // _6B0
+	f32 mCurrMaxTurnSpeed;   // _6B4
+	f32 mCurrTurnMag;        // _6B8
+	f32 mCurrBoidCenter;     // _6BC
+	f32 mCurrBoidSpeedMatch; // _6C0
+	f32 mCurrBoidColl;       // _6C4
+	f32 mCurrGroupCenter;    // _6C8
+	f32 mCurrBoidNeighbor;   // _6CC
+	u32 mCounter;            // _6D0
+	u32 mCounter2;           // _6D4
 };
 
 // @size{0x98}
@@ -158,18 +158,18 @@ struct TUnit : public TObjBase {
 
 	TUnit()
 	{
-		mCounter       = 0;
-		mCounter2      = 0;
-		mDestPos       = Vector2f(0.0f, 0.0f);
-		mManager       = nullptr;
-		_60            = Vector2f(1.0f, 1.0f);
-		mEnemyObj      = nullptr;
-		_6C            = Vector2f(0.0f);
-		_74            = Vector2f(0.0f);
-		_7C            = Vector2f(0.0f);
-		mCurrentState  = STATE_Hidden;
-		mPreviousState = STATE_Hidden;
-		mIsDead        = false;
+		mCounter            = 0;
+		mCounter2           = 0;
+		mDestPos            = Vector2f(0.0f, 0.0f);
+		mManager            = nullptr;
+		mRandAnimSpeeds     = Vector2f(1.0f, 1.0f);
+		mEnemyObj           = nullptr;
+		mTargetPos          = Vector2f(0.0f);
+		mVelocity           = Vector2f(0.0f);
+		mGroupPosDifference = Vector2f(0.0f);
+		mCurrentState       = STATE_Hidden;
+		mPreviousState      = STATE_Hidden;
+		mIsDead             = false;
 	}
 
 	~TUnit() { }
@@ -190,21 +190,20 @@ struct TUnit : public TObjBase {
 
 	// _00     = VTBL
 	// _00-_2C = TObjBase
-	Vector2f mDestPos;           // _2C
-	TMgr* mManager;              // _34
-	J3DFrameCtrl mFrameControlA; // _38
-	J3DFrameCtrl mFrameControlB; // _4C
-	Vector2f _60;                // _60
-	TObjBase* mEnemyObj;         // _68
-	Vector2f _6C;                // _6C
-	Vector2f _74;                // _74
-	Vector2f _7C;                // _7C
-	enumState mCurrentState;     // _84
-	enumState mPreviousState;    // _88
-	u32 mCounter;                // _8C
-	u32 mCounter2;               // _90
-	bool mIsDead;                // _94
-	bool _96[2];                 // _96
+	Vector2f mDestPos;            // _2C
+	TMgr* mManager;               // _34
+	J3DFrameCtrl mFrameControlA;  // _38
+	J3DFrameCtrl mFrameControlB;  // _4C
+	Vector2f mRandAnimSpeeds;     // _60, probably not an actual Vector2 but idk
+	TObjBase* mEnemyObj;          // _68
+	Vector2f mTargetPos;          // _6C
+	Vector2f mVelocity;           // _74
+	Vector2f mGroupPosDifference; // _7C
+	enumState mCurrentState;      // _84
+	enumState mPreviousState;     // _88
+	u32 mCounter;                 // _8C
+	u32 mCounter2;                // _90
+	bool mIsDead;                 // _94
 };
 
 struct TMgr : public CNode {
@@ -236,7 +235,7 @@ struct TMgr : public CNode {
 	TParam mParams;              // _1C
 	TUnit* mUnits;               // _2AC
 	TBoidParamMgr mBoidParamMgr; // _2B0
-	Vector2f _988;               // _988
+	Vector2f mGroupAvgPosition;  // _988
 };
 } // namespace Pikmin
 } // namespace title

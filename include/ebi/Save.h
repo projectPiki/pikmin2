@@ -250,7 +250,7 @@ struct TMgr : public JKRDisposer {
 	int mCurrStateID;                                 // _474
 	u8 mSaveType;                                     // _478
 	bool mIsAutosaveOn;                               // _479
-	u8 _47A;                                          // _47A
+	u8 mDoRetryOnError;                               // _47A
 	bool mDVDErrorSuspended;                          // _47B
 	FSMStateMachine mStateMachine;                    // _47C
 	FSMState* mCurrentState;                          // _498

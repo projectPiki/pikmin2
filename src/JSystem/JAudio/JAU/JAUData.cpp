@@ -7,8 +7,8 @@
  */
 JADUtility::PrmSetBase::PrmSetBase(bool p1)
     : JKRDisposer()
-    , _18(0)
-    , _19(0)
+    , mPreDataByteSize(0)
+    , mPostDataByteSize(0)
     , _1A(p1)
     , mList()
     , mTree(this)
@@ -84,11 +84,11 @@ JADUtility::PrmSetBase::PrmSetBase(bool p1)
  */
 void JADUtility::PrmSetBase::load(JSUMemoryInputStream& input)
 {
-	input.skip(_18);
+	input.skip(mPreDataByteSize);
 	for (JSULink<PrmBase>* link = mList.getFirst(); link != nullptr; link = link->getNext()) {
 		link->getObject()->load(input);
 	}
-	input.skip(_19);
+	input.skip(mPostDataByteSize);
 }
 
 /**

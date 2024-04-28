@@ -125,8 +125,8 @@ struct TUnit : public TObjBase {
 		mCounter  = time;
 		mCounter2 = time;
 
-		mController = nullptr;
-		_48         = false;
+		mController     = nullptr;
+		mIsAiControlled = false;
 
 		mManager = nullptr;
 		mStateID = CHAPPYAI_Inactive;
@@ -155,7 +155,7 @@ struct TUnit : public TObjBase {
 	u32 mCounter;            // _3C
 	u32 mCounter2;           // _40
 	Controller* mController; // _44
-	bool _48;                // _48
+	bool mIsAiControlled;    // _48
 	TMgr* mManager;          // _4C
 	E3DAnimCtrl mAnim;       // _50
 	int mAttacks;            // _64

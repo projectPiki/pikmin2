@@ -200,10 +200,10 @@ struct TPkOneEmitterSimple : public TBase, public JPAEmitterCallBack {
 struct TPkEffectTane {
 	TPkEffectTane()
 	    : mPikiColor(-1)
-	    , mPos(nullptr)
-	    , _08(nullptr)
-	    , _0C(nullptr)
-	    , _10(nullptr)
+	    , mEfxPos(nullptr)
+	    , mObjPos(nullptr)
+	    , mHappaJntMtx(nullptr)
+	    , mObjMatrix(nullptr)
 	{
 	}
 
@@ -215,14 +215,14 @@ struct TPkEffectTane {
 	void createGlow1_(Vector3f*);
 	void killGlow1_();
 
-	int mPikiColor;      // _00
-	Vector3f* mPos;      // _04, unknown
-	Vector3f* _08;       // _08
-	Matrixf* _0C;        // _0C
-	Matrixf* _10;        // _10
-	TPkGlow1 mGlow;      // _14
-	ToeTanekira mOeKira; // _28
-	ToeKourin mOeKourin; // _44
+	int mPikiColor;        // _00
+	Vector3f* mEfxPos;     // _04
+	Vector3f* mObjPos;     // _08
+	Matrixf* mHappaJntMtx; // _0C
+	Matrixf* mObjMatrix;   // _10
+	TPkGlow1 mGlow;        // _14
+	ToeTanekira mOeKira;   // _28
+	ToeKourin mOeKourin;   // _44
 };
 
 struct TPkEffect {
@@ -473,9 +473,9 @@ struct TParticleCallBack_Yodare {
 	void init(JPABaseEmitter*, JPABaseParticle*);
 	void execute(JPABaseEmitter*, JPABaseParticle*);
 
-	f32 _00;   // _00, just to match efxPikmin sdata2 loading
-	char* _04; // _04, just to match efxPikmin sdata2 loading
-	f32 _08;   // _08, just to match efxPikmin sdata2 loading
+	f32 _00;     // _00, just to match efxPikmin sdata2 loading
+	char* mName; // _04, just to match efxPikmin sdata2 loading
+	f32 _08;     // _08, just to match efxPikmin sdata2 loading
 };
 
 struct TTestYodareGen {

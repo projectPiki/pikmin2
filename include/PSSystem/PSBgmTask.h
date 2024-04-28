@@ -49,25 +49,25 @@ struct IdMaskTask : public TaskBase {
 struct MuteTask : public TaskBase {
 	inline MuteTask()
 	    : TaskBase()
-	    , _1C(0)
+	    , mDoMuteTrack(0)
 	{
 	}
 
 	int task(JASTrack& track)
 	{
-		track.muteTrack(_1C);
+		track.muteTrack(mDoMuteTrack);
 		return -1;
 	}
 
 	// _00     = VTBL
 	// _00-_1C = TaskBase
-	u8 _1C; // _1C
+	u8 mDoMuteTrack; // _1C
 };
 
 struct PitchResetTask : public TaskBase {
 	virtual int task(JASTrack& track) // _08
 	{
-		track.setParam(1, 0.0f, -1);
+		track.setParam(JASTrack::JASParam_Pitch, 0.0f, -1);
 		return -1;
 	}
 
@@ -78,8 +78,8 @@ struct PitchResetTask : public TaskBase {
 struct SimpleWaitTask : public TaskBase {
 	inline SimpleWaitTask()
 	    : TaskBase()
-	    , _1C(0)
-	    , _20(0)
+	    , mWaitTimer(0)
+	    , mWaitMaxTime(0)
 	{
 	}
 
@@ -87,16 +87,16 @@ struct SimpleWaitTask : public TaskBase {
 
 	// _00     = VTBL
 	// _00-_1C = TaskBase
-	u32 _1C; // _1C
-	u32 _20; // _20
+	u32 mWaitTimer;   // _1C
+	u32 mWaitMaxTime; // _20
 };
 
 struct ModParamWithTableTask : public TaskBase {
 	inline ModParamWithTableTask()
 	    : TaskBase()
-	    , _1C(0.0f)
-	    , _20(0.0f)
-	    , _24(0.0f)
+	    , mTargetValue(0.0f)
+	    , mIdxIncRate(0.0f)
+	    , mCurrTableIdx(0.0f)
 	{
 	}
 
@@ -107,16 +107,16 @@ struct ModParamWithTableTask : public TaskBase {
 
 	// _00     = VTBL
 	// _00-_1C = TaskBase
-	f32 _1C; // _1C
-	f32 _20; // _20
-	f32 _24; // _24
+	f32 mTargetValue;  // _1C
+	f32 mIdxIncRate;   // _20
+	f32 mCurrTableIdx; // _24
 };
 
 struct TriangleTableModTask : public ModParamWithTableTask {
 
-	virtual f32 getTgtWithTable(u8 idx) { return _1C * sTable[idx]; } // _0C
-	virtual u8 getTableIdxNum() { return 40; }                        // _10
-	virtual int tableTask(JASTrack&, f32) = 0;                        // _14
+	virtual f32 getTgtWithTable(u8 idx) { return mTargetValue * sTable[idx]; } // _0C
+	virtual u8 getTableIdxNum() { return 40; }                                 // _10
+	virtual int tableTask(JASTrack&, f32) = 0;                                 // _14
 
 	static const f32 sTable[40];
 
@@ -134,11 +134,11 @@ struct PitchModTask : public TriangleTableModTask {
 struct ModParamWithFade : public TaskBase {
 	inline ModParamWithFade()
 	    : TaskBase()
-	    , _1C(0)
-	    , _20(0.0f)
+	    , mFadeDuration(0)
+	    , mTargetValue(0.0f)
 	    , _24(0.0f)
-	    , _28(0)
-	    , _2C(0.0f)
+	    , mCounter(0)
+	    , mCurrTime(0.0f)
 	{
 	}
 
@@ -148,11 +148,11 @@ struct ModParamWithFade : public TaskBase {
 
 	// _00     = VTBL
 	// _00-_1C = TaskBase
-	u32 _1C; // _1C
-	f32 _20; // _20
-	f32 _24; // _24
-	u32 _28; // _28
-	f32 _2C; // _2C
+	u32 mFadeDuration; // _1C
+	f32 mTargetValue;  // _20
+	f32 _24;           // _24
+	u32 mCounter;      // _28
+	f32 mCurrTime;     // _2C
 };
 
 struct BankRandTask : public ModParamWithFade {
@@ -176,9 +176,9 @@ struct BankRandTask : public ModParamWithFade {
 };
 
 struct OuterParamTask : public ModParamWithFade {
-	inline OuterParamTask(int p1)
+	inline OuterParamTask(int type)
 	    : ModParamWithFade()
-	    , _30(p1)
+	    , mTaskType(type)
 	{
 	}
 
@@ -187,7 +187,7 @@ struct OuterParamTask : public ModParamWithFade {
 
 	// _00     = VTBL
 	// _00-_30 = ModParamWithFade
-	int _30; // _30
+	int mTaskType; // _30
 };
 
 struct TaskEntry_BankRandTask : public TaskEntry {
@@ -220,7 +220,7 @@ struct TaskEntry_MuteOnVolume : public TaskEntry {
 	{
 	}
 
-	void makeEntry(u32);
+	void makeEntry(u32 length);
 
 	// _00-_38 = TaskEntry
 	OuterParamTask mOuterParamTask; // _38
@@ -238,7 +238,7 @@ struct TaskEntry_MuteVolume : public TaskEntry {
 	{
 	}
 
-	void makeEntry(f32, u32);
+	void makeEntry(f32 value, u32 length);
 
 	// _00-_38 = TaskEntry
 	MuteTask mMuteTask1;             // _38
@@ -255,7 +255,7 @@ struct TaskEntry_OuterParam : public TaskEntry {
 	{
 	}
 
-	void makeEntry(f32, u32);
+	void makeEntry(f32 value, u32 length);
 
 	// _00-_38 = TaskEntry
 	OuterParamTask mOuterParamTask; // _38

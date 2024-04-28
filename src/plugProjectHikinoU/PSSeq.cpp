@@ -632,7 +632,7 @@ SeqBase::SeqBase(char const* bmsFileName, JAInter::SoundInfo const& info)
     , mPlayRes(this)
     , mPauseOffRes(this)
     , mPauseMode(MODE4)
-    , _48(38)
+    , mPausedMinVolume(38)
     , mSeqSound(nullptr)
 {
 	OSInitMutex(&mMutex);
@@ -827,7 +827,7 @@ void SeqBase::pauseOn(PauseMode pause)
 		break;
 	case SeqBase::MODE2:
 		if (sound) {
-			f32 volume = _48 / 127.0f;
+			f32 volume = mPausedMinVolume / 127.0f;
 			volume     = (volume > 1.0f) ? 1.0f : volume;
 			sound->setVolume(volume, 15, 11);
 		} else {
@@ -1242,7 +1242,7 @@ DirectedBgm::DirectedBgm(char const* bmsFileName, JAInter::SoundInfo const& info
     : BgmSeq(bmsFileName, info)
     , mDirectorMgr(directorMgr)
     , mRootTrack(nullptr)
-    , _B4(0)
+    , mIsInitialized(0)
 {
 }
 
@@ -1252,7 +1252,7 @@ DirectedBgm::DirectedBgm(char const* bmsFileName, JAInter::SoundInfo const& info
  */
 void DirectedBgm::initRootTrack_onPlaying(JASTrack* track)
 {
-	P2ASSERTLINE(804, _B4 == 1);
+	P2ASSERTLINE(804, mIsInitialized == 1);
 	P2ASSERTLINE(805, mRootTrack);
 	PSSystem::setObject(track, mRootTrack, 18);
 	mRootTrack->init(track);
@@ -1267,7 +1267,7 @@ void DirectedBgm::initRootTrack_onPlaying(JASTrack* track)
  */
 void DirectedBgm::initChildTrack_onPlaying(JASTrack* track, u8 id)
 {
-	P2ASSERTLINE(816, _B4 == 1);
+	P2ASSERTLINE(816, mIsInitialized == 1);
 	P2ASSERTLINE(817, id < 16);
 	PSSystem::setObject(track, mChildTracks[id], 18);
 	mChildTracks[id]->init(track);
@@ -1360,7 +1360,8 @@ void DirectedBgm::init()
 	for (u8 i = 0; i < 16; i++) {
 		mChildTracks[i] = newSeqTrackChild(i, *mRootTrack);
 	}
-	_B4 = true;
+	mIsInitialized = true;
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1676,7 +1677,7 @@ JumpBgmPort::JumpBgmPort(JumpBgmSeq* owner)
  */
 void JumpBgmPort::onBeatTop(BeatMgr& mgr)
 {
-	if (!mgr._00) {
+	if (!mgr.mFlags) {
 		return;
 	}
 

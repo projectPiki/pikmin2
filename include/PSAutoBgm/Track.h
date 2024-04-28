@@ -26,28 +26,28 @@ struct Module : public JADUtility::PrmSetBase {
 
 	// _00      = VTABLE
 	// _04-_64  = PrmSetBase
-	JADUtility::PrmSlider<s16> _64;      // _64
-	JADUtility::PrmSlider<s16> _94;      // _94
-	JADUtility::PrmSlider<u8> _C4;       // _C4
-	JADUtility::PrmRadioButton<u8> _F4;  // _F4
-	JADUtility::PrmSlider<u8> _124;      // _124
-	JADUtility::PrmSlider<u8> _154;      // _154
-	JADUtility::PrmSlider<s16> _184;     // _184
-	JADUtility::PrmSlider<s16> _1B4;     // _1B4
-	JADUtility::PrmSlider<s16> _1E4;     // _1E4
-	JADUtility::PrmSlider<u8> _214;      // _214
-	JADUtility::PrmSlider<u8> _244;      // _244
-	JADUtility::PrmRadioButton<u8> _274; // _274
-	u16 _2A4;                            // _2A4
-	PSBankData* mBankData;               // _2A8, array with
-	u8 mBankDataNum;                     // _2AC
-	PSWsData* mWsData;                   // _2B0, array of some size
-	u8 mWsDataNum;                       // _2B4
-	u16 _2B6;                            // _2B6
-	CycleBase* _2B8[2];                  // _2B8 - 0 = OnCycle, 1 = OffCycle
-	u8 _2C0;                             // _2C0 - cycle index?
-	u8 _2C1;                             // _2C1
-	u16 _2C2;                            // _2C2
+	JADUtility::PrmSlider<s16> _64;         // _64
+	JADUtility::PrmSlider<s16> _94;         // _94
+	JADUtility::PrmSlider<u8> _C4;          // _C4
+	JADUtility::PrmRadioButton<u8> _F4;     // _F4
+	JADUtility::PrmSlider<u8> _124;         // _124
+	JADUtility::PrmSlider<u8> _154;         // _154
+	JADUtility::PrmSlider<s16> _184;        // _184
+	JADUtility::PrmSlider<s16> _1B4;        // _1B4
+	JADUtility::PrmSlider<s16> _1E4;        // _1E4
+	JADUtility::PrmSlider<u8> mVolumeParam; // _214
+	JADUtility::PrmSlider<u8> mPanParam;    // _244
+	JADUtility::PrmRadioButton<u8> _274;    // _274
+	u16 _2A4;                               // _2A4
+	PSBankData* mBankData;                  // _2A8, array with
+	u8 mBankDataNum;                        // _2AC
+	PSWsData* mWsData;                      // _2B0, array of some size
+	u8 mWsDataNum;                          // _2B4
+	u16 _2B6;                               // _2B6
+	CycleBase* mCycles[2];                  // _2B8 - 0 = OnCycle, 1 = OffCycle
+	u8 mCycleIndex;                         // _2C0 - cycle index?
+	u8 mIsTableAddrSet;                     // _2C1
+	u16 _2C2;                               // _2C2
 };
 
 /**
@@ -66,15 +66,14 @@ struct Track : public JADUtility::PrmSetRc<PSAutoBgm::Module> {
 	// _00      = VTABLE
 	// _04-_98  = PrmSetRc
 	u8 mIndex;                          // _98
-	u8 _99;                             // _99
-	u8 _9A[0x2];                        // _9A - possibly padding?
+	u8 mCurrModule;                     // _99
 	u32 _9C;                            // _9C - unknown
 	JADUtility::PrmSlider<s16> _A0;     // _A0
 	JADUtility::PrmRadioButton<u8> _D0; // _D0
-	JADUtility::StrEditBox _100;        // _100
+	JADUtility::StrEditBox mStrEdit;    // _100
 	JADUtility::PrmSlider<u8> _13C;     // _13C
 	JADUtility::PrmSlider<u8> _16C;     // _16C
-	Track* _19C;                        // _19C
+	Track* mUnisonTrack;                // _19C
 };
 
 } // namespace PSAutoBgm

@@ -94,26 +94,26 @@ struct TChasePosPosLocalYScale : public TSync {
 
 	inline TChasePosPosLocalYScale(u16 effectID)
 	    : TSync()
-	    , _10(nullptr)
-	    , _14(nullptr)
-	    , _18(0.0f)
+	    , mPosListStart(nullptr)
+	    , mPosListEnd(nullptr)
+	    , mYScale(0.0f)
 	{
 		mEffectID = effectID;
 	}
 
 	inline TChasePosPosLocalYScale(u16 effectID, f32 scale)
 	    : TSync()
-	    , _10(nullptr)
-	    , _14(nullptr)
-	    , _18(scale)
+	    , mPosListStart(nullptr)
+	    , mPosListEnd(nullptr)
+	    , mYScale(scale)
 	{
 		mEffectID = effectID;
 	}
 
 	inline void setPosPosPtr(Vector3f* pos1, Vector3f* pos2)
 	{
-		_10 = pos1;
-		_14 = pos2;
+		mPosListStart = pos1;
+		mPosListEnd   = pos2;
 	}
 
 	// vtable 1 (TBase)
@@ -124,9 +124,9 @@ struct TChasePosPosLocalYScale : public TSync {
 
 	// _00		= VTBL
 	// _00-_10	= TSync
-	Vector3f* _10; // _10
-	Vector3f* _14; // _14
-	f32 _18;       // _18
+	Vector3f* mPosListStart; // _10
+	Vector3f* mPosListEnd;   // _14
+	f32 mYScale;             // _18
 };
 
 struct TChasePosPosLocalYScale2 : public TSyncGroup2<TChasePosPosLocalYScale> {
@@ -153,7 +153,7 @@ struct TChasePosPosLocalZScale : public TSync {
 	inline TChasePosPosLocalZScale(u16 effectID) // probably
 	    : mPosPtrA(nullptr)
 	    , mPosPtrB(nullptr)
-	    , _18(0.0f)
+	    , mZScale(0.0f)
 	{
 		mEffectID = effectID;
 	}
@@ -161,7 +161,7 @@ struct TChasePosPosLocalZScale : public TSync {
 	inline TChasePosPosLocalZScale(u16 effectID, f32 scale) // probably
 	    : mPosPtrA(nullptr)
 	    , mPosPtrB(nullptr)
-	    , _18(scale)
+	    , mZScale(scale)
 	{
 		mEffectID = effectID;
 	}
@@ -181,7 +181,7 @@ struct TChasePosPosLocalZScale : public TSync {
 	// _00-_10	= TSync
 	Vector3f* mPosPtrA; // _10
 	Vector3f* mPosPtrB; // _14
-	f32 _18;            // _18
+	f32 mZScale;        // _18
 };
 
 struct TChasePosPosLocalZScale2 : public TSyncGroup2<TChasePosPosLocalZScale> {

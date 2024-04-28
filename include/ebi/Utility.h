@@ -19,8 +19,8 @@ inline static bool isSaveError()
 struct EUTPadInterface_countNum {
 	EUTPadInterface_countNum()
 	{
-		mCounter = 0;
-		_08      = 0;
+		mCounter    = 0;
+		mCounterMax = 0;
 	}
 
 	enum enumMode {
@@ -35,9 +35,9 @@ struct EUTPadInterface_countNum {
 
 	Controller* mController; // _00
 	u32 mCounter;            // _04
-	u32 _08;                 // _08
+	u32 mCounterMax;         // _08
 	bool mIsChanging;        // _0C
-	u8 _0D;                  // _0D
+	u8 mSelectionChanged;    // _0D
 	s32 mMinSel;             // _10
 	s32 mMaxSel;             // _14
 	s32* mSelIndex;          // _18 (pointer to selection value this manages)

@@ -796,16 +796,16 @@ void TParticleCallBack_TankFire::execute(JPABaseEmitter* emit, JPABaseParticle* 
 	f32 x = particle->getCalcCurrentPositionX(emit);
 	Vector3f tgt(x, y, z);
 
-	if (tgt.distance(emit->mGlobalTrs) > _04) {
+	if (tgt.distance(emit->mGlobalTrs) > mMaxDistance) {
 		particle->mFlags |= 2;
 
 		TTankFireHit* hit = mEfxHit;
-		if (hit && hit->_14 < hit->_18) {
-			Vector3f* pos = &hit->_10[hit->_14];
+		if (hit && hit->mCurrPosIndex < hit->mPositionNum) {
+			Vector3f* pos = &hit->mPositionList[hit->mCurrPosIndex];
 			pos->x        = x;
 			pos->y        = y;
 			pos->z        = z;
-			hit->_14++;
+			hit->mCurrPosIndex++;
 		}
 	}
 	/*
@@ -907,7 +907,7 @@ bool TTankFireABC::create(Arg* arg)
 {
 	mParticleCallBack.mEfxHit = &mEfxFireHit;
 	mParticleCallBack.mEfxHit->create(nullptr);
-	mParticleCallBack._04 = 1000.0f;
+	mParticleCallBack.mMaxDistance = 1000.0f;
 	if (TSyncGroup3<TChaseMtx>::create(arg)) {
 		for (int i = 0; i < 3; i++) {
 			mItems[i].mEmitter->mParticleCallback = &mParticleCallBack;
@@ -949,7 +949,7 @@ bool TTankWat::create(Arg* arg)
 {
 	mParticleCallBack.mEfxHit = (TTankFireHit*)&mEfxHit;
 	mParticleCallBack.mEfxHit->create(nullptr);
-	mParticleCallBack._04 = 1000.0f;
+	mParticleCallBack.mMaxDistance = 1000.0f;
 	if (TSyncGroup4<TChaseMtx>::create(arg)) {
 		for (int i = 0; i < 4; i++) {
 			mItems[i].mEmitter->mParticleCallback = &mParticleCallBack;

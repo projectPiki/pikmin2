@@ -33,7 +33,7 @@ struct ArgOpenOmake : public ArgOpen {
 	u8 mFlag1;
 	u8 mFlag2;
 	bool mFlag3;
-	int _08;
+	int mUnusedVal; // related to e-reader screen?
 };
 
 struct ArgOpenTitleMenu : public ArgOpen {

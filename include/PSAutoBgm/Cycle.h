@@ -59,7 +59,7 @@ struct CycleBase {
 	    : mModule(module)
 	    , mCycleNum(0)
 	    , mSlider()
-	    , _3C(0)
+	    , mWaveSceneIndex(0)
 	{
 	}
 
@@ -74,7 +74,7 @@ struct CycleBase {
 	Module* mModule;                   // _04
 	u8 mCycleNum;                      // _08
 	JADUtility::PrmSlider<u8> mSlider; // _0C
-	u8 _3C;                            // _3C
+	u8 mWaveSceneIndex;                // _3C
 };
 
 /**

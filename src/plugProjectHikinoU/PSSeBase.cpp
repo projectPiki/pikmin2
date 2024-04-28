@@ -17,7 +17,7 @@ EnvSeBase::EnvSeBase(u32 soundID, f32 volume)
     , mMoveParam(0.0f, 0, 2, 0)
     , mSoundID((SoundID)soundID)
     , mVolume(volume)
-    , _2C(0.0f)
+    , mVolume2(0.0f)
     , _30(0.3f)
     , mSound(nullptr)
     , mPauseFlag(1)
@@ -38,25 +38,26 @@ void EnvSeBase::requestMoveParam(MoveParamSet param) { mMoveParam = param; }
  */
 void EnvSeBase::doMoveParamRequest()
 {
-	if (mMoveParam._08 == 2) {
+	if (mMoveParam.mParamType == JASTrack::JASParam_Null) {
 		return;
 	}
-	switch (mMoveParam._08) {
-	case 0:
-		mSound->setVolume(mMoveParam._00, mMoveParam._04, mMoveParam._0C);
+
+	switch (mMoveParam.mParamType) {
+	case JASTrack::JASParam_Volume:
+		mSound->setVolume(mMoveParam.mValue, mMoveParam.mMoveTime, mMoveParam.mIndex);
 		break;
-	case 1:
-		mSound->setPitch(mMoveParam._00, mMoveParam._04, mMoveParam._0C);
+	case JASTrack::JASParam_Pitch:
+		mSound->setPitch(mMoveParam.mValue, mMoveParam.mMoveTime, mMoveParam.mIndex);
 		break;
 
 	default:
 		P2ASSERTLINE(62, false);
 	}
 
-	mMoveParam._00 = 0.0f;
-	mMoveParam._04 = 0;
-	mMoveParam._08 = 2;
-	mMoveParam._0C = 0;
+	mMoveParam.mValue     = 0.0f;
+	mMoveParam.mMoveTime  = 0;
+	mMoveParam.mParamType = JASTrack::JASParam_Null;
+	mMoveParam.mIndex     = 0;
 }
 
 /**
@@ -107,7 +108,7 @@ void EnvSeBase::exec()
 			setPanAndDolby(sound);
 			sound->setVolume(mVolume, 0, 0);
 			sound->setFxmix(0.4f, 0, 0);
-			sound->setVolume(_2C, 0, 5);
+			sound->setVolume(mVolume2, 0, 5);
 			sound->setFxmix(_30, 0, 0);
 
 			doMoveParamRequest();
@@ -198,11 +199,11 @@ void EnvSeMgr::reservePauseOff() { mReservator.mState = 31; }
  * @note Address: 0x80340DA0
  * @note Size: 0x70
  */
-void EnvSeMgr::setVolumeRequest(f32 p1, u32 p2, u8 p3)
+void EnvSeMgr::setVolumeRequest(f32 value, u32 time, u8 index)
 {
 	for (JSULink<EnvSeBase>* link = mEnvList.getFirst(); link; link = link->getNext()) {
 		if (link->getObject()) {
-			MoveParamSet param(p1, p2, 0, p3);
+			MoveParamSet param(value, time, JASTrack::JASParam_Volume, index);
 			link->getObject()->requestMoveParam(param);
 		}
 	}

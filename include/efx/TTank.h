@@ -11,7 +11,7 @@ struct TTankWat;
 
 struct TParticleCallBack_TankFire : public JPAParticleCallBack {
 	TParticleCallBack_TankFire()
-	    : _04(1000.0f)
+	    : mMaxDistance(1000.0f)
 	    , mEfxHit(nullptr)
 	{
 	}
@@ -21,7 +21,7 @@ struct TParticleCallBack_TankFire : public JPAParticleCallBack {
 	virtual void init(JPABaseEmitter*, JPABaseParticle*);    // _14
 
 	// _00      = VTBL
-	f32 _04;               // _04
+	f32 mMaxDistance;      // _04
 	TTankFireHit* mEfxHit; // _08
 };
 

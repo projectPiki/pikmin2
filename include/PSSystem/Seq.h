@@ -56,7 +56,7 @@ struct SeqBase : JSULink<SeqBase> {
 	SeqPlayReservator mPlayRes;         // _2C
 	SeqPauseOffReservator mPauseOffRes; // _38
 	PauseMode mPauseMode;               // _44 - enum maybe? 0x4 size
-	u8 _48;                             // _48 - unknown
+	u8 mPausedMinVolume;                // _48
 	SeqSound* mSeqSound;                // _4C
 	OSMutex mMutex;                     // _50
 };

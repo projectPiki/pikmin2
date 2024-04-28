@@ -20,20 +20,20 @@ ConductorArcMgr* ConductorArcMgr::sInstance;
  * @note Size: 0x15C
  */
 Conductor::Conductor(AutoBgm* autoBgm, int p2)
-    : _98(this)
+    : mEraseLink(this)
     , mBankData(nullptr)
     , mWsData(nullptr)
     , _B0(0)
-    , _B4(autoBgm)
-    , _118(100)
+    , mBgmSeq(autoBgm)
+    , mTempo(100)
 {
 	mList.append(_E8.getLink());
-	mList.append(_B8.getLink());
+	mList.append(mTempoSlider.getLink());
 	mList.append(_68.getLink());
-	_19                   = 17;
-	_118                  = _B8.mValue;
+	mPostDataByteSize     = 17;
+	mTempo                = mTempoSlider.mValue;
 	mTree.mRemoveCallback = &removeCallback;
-	mTree._34             = this;
+	mTree.mOwnerConductor = this;
 }
 
 /**
@@ -46,7 +46,7 @@ Conductor::~Conductor() { }
  * @note Address: N/A
  * @note Size: 0x74
  */
-void Conductor::onBeatProc() { _B4->mRootTrack->onBeatTop(); }
+void Conductor::onBeatProc() { mBgmSeq->mRootTrack->onBeatTop(); }
 
 /**
  * @note Address: 0x803392B4
@@ -55,7 +55,7 @@ void Conductor::onBeatProc() { _B4->mRootTrack->onBeatTop(); }
 void Conductor::removeCallback(u8 idx, void* conductor)
 {
 	Conductor* cdtr = static_cast<Conductor*>(conductor);
-	cdtr->_B4->stopSeq(0);
+	cdtr->mBgmSeq->stopSeq(0);
 }
 
 /**
@@ -66,7 +66,7 @@ u32 Conductor::seqCpuSync_AutoBgm(JASTrack* track1, u16 cmd, u32 p3, JASTrack* t
 {
 	switch (cmd) {
 	case 0x300:
-		track1->setTempo(_B8.mValue);
+		track1->setTempo(mTempoSlider.mValue);
 		createTables(track1);
 		_B0 = 0;
 		return getChildNum();
@@ -174,25 +174,25 @@ lbl_803394E0:
  */
 Track::Track()
     : mIndex(255)
-    , _99(255)
+    , mCurrModule(255)
     , _9C(0)
     , _A0()
     , _D0()
-    , _100()
+    , mStrEdit()
     , _13C()
     , _16C()
-    , _19C(0)
+    , mUnisonTrack(nullptr)
 {
-	_18 = 3;
+	mPreDataByteSize = 3;
 	mList.append(_68.getLink());
 	mList.append(_A0.getLink());
 	mList.append(_D0.getLink());
-	mList.append(_100.getLink());
+	mList.append(mStrEdit.getLink());
 	mList.append(_13C.getLink());
 	mList.append(_16C.getLink());
-	_19                   = 3;
+	mPostDataByteSize     = 3;
 	mTree.mRemoveCallback = removeCallback;
-	mTree._34             = this;
+	mTree.mOwnerConductor = this;
 }
 
 /**
@@ -201,10 +201,10 @@ Track::Track()
  */
 void Track::afterGetFromFree()
 {
-	_99        = 255;
-	_A0.mValue = 0;
-	_D0.mValue = 0;
-	strcpy(_100.mValue, "\0");
+	mCurrModule = 255;
+	_A0.mValue  = 0;
+	_D0.mValue  = 0;
+	strcpy(mStrEdit.mValue, "\0");
 }
 
 /**
@@ -231,26 +231,26 @@ u32 Track::seqCpuSync_AutoBgm_Track(JASTrack* track1, u16 cmd, u32 p2, JASTrack*
 {
 	switch (cmd) {
 	case 0x600:
-		_99 = 255;
+		mCurrModule = 255;
 		if (_13C.mValue != 16) {
 			//"Unison master track must be a lower numbered track than Unison track"
 			JUT_ASSERTLINE(416, _13C.mValue < mIndex,
 			               "ユニゾンマスタートラックはユニゾントラックより若い番号のトラックである必要があります");
-			_19C = static_cast<JADUtility::PrmSetRc<Track>*>(mTree.getParent()->getObjectPtr())->getChild(_13C.mValue);
-			P2ASSERTLINE(418, _19C);
+			mUnisonTrack = static_cast<JADUtility::PrmSetRc<Track>*>(mTree.getParent()->getObjectPtr())->getChild(_13C.mValue);
+			P2ASSERTLINE(418, mUnisonTrack);
 		} else {
-			_19C = nullptr;
+			mUnisonTrack = nullptr;
 		}
 
 		u8 max = getChildNum();
 		for (u8 i = 0; i < max; i++) {
-			getChild(i)->_2C1 = 0;
+			getChild(i)->mIsTableAddrSet = 0;
 		}
 
 		// this isn't quite right but it's Close-ish
 		u32 x;
-		if (_19C) {
-			u8 val = _19C->_D0.mValue;
+		if (mUnisonTrack) {
+			u8 val = mUnisonTrack->_D0.mValue;
 			x      = (60 & (~(val - 1 | 1 - val) >> 1));
 		} else {
 			u8 val = _D0.mValue;
@@ -259,8 +259,8 @@ u32 Track::seqCpuSync_AutoBgm_Track(JASTrack* track1, u16 cmd, u32 p2, JASTrack*
 		return (u16)(x + ((_A0.mValue & 0xFFFF) * 0x78));
 	case 0x800:
 		incCurModule();
-		if (getChild(_99)) {
-			return getChild(_99)->seqCpuSync_AutoBgm_Module(track1, cmd, p2, track2);
+		if (getChild(mCurrModule)) {
+			return getChild(mCurrModule)->seqCpuSync_AutoBgm_Module(track1, cmd, p2, track2);
 		}
 		return 0;
 	}
@@ -413,10 +413,10 @@ u32 Track::seqCpuSync_AutoBgm_Track(JASTrack* track1, u16 cmd, u32 p2, JASTrack*
  */
 void Track::incCurModule()
 {
-	if (_99 == 0xFF) {
-		_99 = 0;
-	} else if (_99 != (getChildNum() - 1)) {
-		_99++;
+	if (mCurrModule == 0xFF) {
+		mCurrModule = 0;
+	} else if (mCurrModule != (getChildNum() - 1)) {
+		mCurrModule++;
 	}
 }
 
@@ -426,23 +426,23 @@ void Track::incCurModule()
  */
 void Module::afterGetFromFree()
 {
-	_94.mValue  = 64;
-	_154.mValue = 0;
-	_184.mValue = 0;
-	_1B4.mValue = 0;
-	_C4.mValue  = 0;
-	_64.mValue  = 0;
-	_F4.mValue  = 0;
-	_1E4.mValue = 0;
-	_214.mValue = 96;
-	_244.mValue = 64;
-	mBankData   = nullptr;
-	mWsData     = nullptr;
-	mWsDataNum  = 0;
-	_2A4        = 0;
-	_2C1        = 0;
-	_274.mValue = 0;
-	_2C0        = 0;
+	_94.mValue          = 64;
+	_154.mValue         = 0;
+	_184.mValue         = 0;
+	_1B4.mValue         = 0;
+	_C4.mValue          = 0;
+	_64.mValue          = 0;
+	_F4.mValue          = 0;
+	_1E4.mValue         = 0;
+	mVolumeParam.mValue = 96;
+	mPanParam.mValue    = 64;
+	mBankData           = nullptr;
+	mWsData             = nullptr;
+	mWsDataNum          = 0;
+	_2A4                = 0;
+	mIsTableAddrSet     = 0;
+	_274.mValue         = 0;
+	mCycleIndex         = 0;
 }
 
 /**
@@ -451,29 +451,17 @@ void Module::afterGetFromFree()
  */
 Module::Module()
     : PrmSetBase(true)
-    , _64()
-    , _94()
-    , _C4()
-    , _F4()
-    , _124()
-    , _154()
-    , _184()
-    , _1B4()
-    , _1E4()
-    , _214()
-    , _244()
-    , _274()
     , _2A4(0)
     , mBankData(nullptr)
     , mBankDataNum(0)
     , mWsData(0)
     , mWsDataNum(nullptr)
-    , _2C0(0)
-    , _2C1(0)
+    , mCycleIndex(0)
+    , mIsTableAddrSet(false)
     , _2C2(-1)
 {
-	_2B8[0] = new (ConductorMgr::sHeap, 0) OnCycle(this);
-	_2B8[1] = new (ConductorMgr::sHeap, 0) OffCycle(this);
+	mCycles[0] = new (ConductorMgr::sHeap, 0) OnCycle(this);
+	mCycles[1] = new (ConductorMgr::sHeap, 0) OffCycle(this);
 	mList.append(_64.getLink());
 	mList.append(_94.getLink());
 	mList.append(_C4.getLink());
@@ -482,15 +470,15 @@ Module::Module()
 	mList.append(_154.getLink());
 	mList.append(_184.getLink());
 	mList.append(_1B4.getLink());
-	mList.append(_2B8[0]->mSlider.getLink());
-	mList.append(_2B8[1]->mSlider.getLink());
+	mList.append(mCycles[0]->mSlider.getLink());
+	mList.append(mCycles[1]->mSlider.getLink());
 	mList.append(_1E4.getLink());
-	mList.append(_214.getLink());
-	mList.append(_244.getLink());
+	mList.append(mVolumeParam.getLink());
+	mList.append(mPanParam.getLink());
 	mList.append(_274.getLink());
-	_19                   = 21;
+	mPostDataByteSize     = 21;
 	mTree.mRemoveCallback = removeCallback;
-	mTree._34             = this;
+	mTree.mOwnerConductor = this;
 }
 
 /**
@@ -499,8 +487,8 @@ Module::Module()
  */
 Module::~Module()
 {
-	delete _2B8[0];
-	delete _2B8[1];
+	delete mCycles[0];
+	delete mCycles[1];
 }
 
 /**
@@ -524,34 +512,34 @@ u32 Module::seqCpuSync_AutoBgm_Module(JASTrack* track1, u16 cmd, u32 p3, JASTrac
 		PSSystem::setObject(track1, this, 20);
 		track1->writePortAppDirect(3, _154.mValue | (_124.mValue << 8));
 
-		f32 val1 = (_214.mValue > 127) ? 127.0f : _214.mValue; // f2
-		f32 val2 = (_244.mValue > 127) ? 127.0f : _244.mValue; // f31
-		track1->setParam(0, val1 / 127.0f, -1);
-		track1->setParam(3, val2 / 127.0f, -1);
+		f32 vol = (mVolumeParam.mValue > 127) ? 127.0f : mVolumeParam.mValue; // f2
+		f32 pan = (mPanParam.mValue > 127) ? 127.0f : mPanParam.mValue;       // f31
+		track1->setParam(JASTrack::JASParam_Volume, vol / 127.0f, -1);
+		track1->setParam(JASTrack::JASParam_Pan, pan / 127.0f, -1);
 
-		track1->mTranspose = _1E4.mValue;
-		_2A4               = 0;
-		_2C0               = 0;
-		_2C2               = -1;
-		_2B8[0]->mCycleNum = 0;
-		_2B8[1]->mCycleNum = 0;
+		track1->mTranspose    = _1E4.mValue;
+		_2A4                  = 0;
+		mCycleIndex           = 0;
+		_2C2                  = -1;
+		mCycles[0]->mCycleNum = 0;
+		mCycles[1]->mCycleNum = 0;
 
 		bool check = false;
-		if (!_2B8[0]->mSlider.mValue && !_2B8[1]->mSlider.mValue) {
+		if (!mCycles[0]->mSlider.mValue && !mCycles[1]->mSlider.mValue) {
 			check = true;
 		}
 		P2ASSERTLINE(664, !check);
 
-		if (!_2C1) {
+		if (!mIsTableAddrSet) {
 			setTableAddress(track1);
-			_2C1 = 1;
+			mIsTableAddrSet = true;
 		}
 
 		Track* track = static_cast<Track*>(mTree.getParent()->getObjectPtr());
 		// this isn't quite right but it's Close-ish
 		u32 x;
-		if (track->_19C) {
-			u8 val = track->_19C->getChild(0)->_274.mValue;
+		if (track->mUnisonTrack) {
+			u8 val = track->mUnisonTrack->getChild(0)->_274.mValue;
 			x      = (60 & (~(val - 1 | 1 - val) >> 1));
 		} else {
 			u8 val = _274.mValue;
@@ -912,17 +900,17 @@ lbl_8033AEC4:
 u16 Module::cycleLoop(JASTrack* track)
 {
 	Track* trk          = (Track*)mTree.getParent()->getObjectPtr();
-	Module* childModule = trk->getChild(trk->_99);
+	Module* childModule = trk->getChild(trk->mCurrModule);
 	P2ASSERTLINE(779, childModule == this);
-	u8 childNum = ((Track*)mTree.getParent()->getObjectPtr())->_99;
+	u8 childNum = ((Track*)mTree.getParent()->getObjectPtr())->mCurrModule;
 	if (childNum < ((Track*)mTree.getParent()->getObjectPtr())->getChildNum() - 1 && _2A4 >= _94.mValue) {
 		return 1;
 	}
 
-	CycleBase* cycle = _2B8[_2C0];
+	CycleBase* cycle = mCycles[mCycleIndex];
 	if (cycle->mSlider.mValue == 0) {
-		if (++_2C0 >= 2) {
-			_2C0 = 0;
+		if (++mCycleIndex >= 2) {
+			mCycleIndex = 0;
 		}
 		return 2;
 	}
@@ -932,13 +920,13 @@ u16 Module::cycleLoop(JASTrack* track)
 	}
 
 	if (cycle->mCycleNum == 0) {
-		if (++_2C0 >= 2) {
-			_2C0 = 0;
+		if (++mCycleIndex >= 2) {
+			mCycleIndex = 0;
 		}
 		return 2;
 	}
 
-	if ((u8)(s8)cycle->mCycleNum == 1 && cycle == _2B8[0]) {
+	if ((u8)(s8)cycle->mCycleNum == 1 && cycle == mCycles[0]) {
 		return 3;
 	}
 	return 0;
@@ -950,7 +938,7 @@ u16 Module::cycleLoop(JASTrack* track)
  */
 u16 CycleBase::cycleTop(JASTrack* track)
 {
-	_3C = 0;
+	mWaveSceneIndex = 0;
 	return 0;
 }
 
@@ -961,18 +949,18 @@ u16 CycleBase::cycleTop(JASTrack* track)
 u16 CycleBase::play(JASTrack* track)
 {
 	if ((int)mModule->_F4.mValue == 1) {
-		if (_3C == mModule->mWsDataNum) {
+		if (mWaveSceneIndex == mModule->mWsDataNum) {
 			return 4;
 		}
 		u16 x;
-		Track* childTrk = ((Track*)mModule->mTree.getParent()->getObjectPtr())->_19C;
+		Track* childTrk = ((Track*)mModule->mTree.getParent()->getObjectPtr())->mUnisonTrack;
 		if (childTrk == nullptr) {
-			PSWsData& ws = mModule->mWsData[_3C++];
+			PSWsData& ws = mModule->mWsData[mWaveSceneIndex++];
 			u16 wsPtr    = (ws.mData[0] | ws.mData[1] << 8);
 			x            = avoidCheck() | wsPtr;
 		} else {
-			_3C++;
-			x = childTrk->getChild(childTrk->_99)->_2B6;
+			mWaveSceneIndex++;
+			x = childTrk->getChild(childTrk->mCurrModule)->_2B6;
 		}
 
 		mModule->_2B6 = x;
@@ -981,7 +969,7 @@ u16 CycleBase::play(JASTrack* track)
 	}
 
 	u16 x;
-	Track* childTrk = ((Track*)mModule->mTree.getParent()->getObjectPtr())->_19C;
+	Track* childTrk = ((Track*)mModule->mTree.getParent()->getObjectPtr())->mUnisonTrack;
 	if (childTrk == nullptr) {
 		f32 num      = mModule->mWsDataNum;
 		u32 idx      = num * PSSystem::oRandom.nextFloat_0_1();
@@ -989,7 +977,7 @@ u16 CycleBase::play(JASTrack* track)
 		u16 wsPtr    = (ws[(u16)idx].mData[0] | ws[(u16)idx].mData[1] << 8);
 		x            = avoidCheck() | wsPtr;
 	} else {
-		x = childTrk->getChild(childTrk->_99)->_2B6;
+		x = childTrk->getChild(childTrk->mCurrModule)->_2B6;
 	}
 
 	track->writePortAppDirect(8, x);
@@ -1130,7 +1118,7 @@ lbl_8033B1F8:
  */
 u16 CycleBase::checkCloser(JASTrack*)
 {
-	if ((int)mModule->_F4.mValue == 1 && _3C != mModule->mWsDataNum) {
+	if ((int)mModule->_F4.mValue == 1 && mWaveSceneIndex != mModule->mWsDataNum) {
 		return 0;
 	}
 	if (mCycleNum == mSlider.mValue && getCycleType() == 0) {
@@ -1529,7 +1517,7 @@ lbl_8033B7AC:
  */
 void OnCycle::setTip(JASTrack* track)
 {
-	Track* trk = ((Track*)mModule->mTree.getParent()->getObjectPtr())->_19C;
+	Track* trk = ((Track*)mModule->mTree.getParent()->getObjectPtr())->mUnisonTrack;
 	u16 x;
 	if (!trk) {
 		u8 num = mModule->mBankDataNum;
@@ -1581,7 +1569,7 @@ void OnCycle::setTip(JASTrack* track)
 			x = 0;
 		}
 	} else {
-		x = trk->getChild(trk->_99)->_2C2;
+		x = trk->getChild(trk->mCurrModule)->_2C2;
 	}
 
 	mModule->_2C2   = x;
@@ -1799,7 +1787,7 @@ u32 OnCycle::avoidCheck()
 {
 	u8 num              = mCycleNum;
 	Track* track        = (Track*)mModule->mTree.getParent()->getObjectPtr();
-	MeloArrMgr& meloMgr = ((Conductor*)track->mTree.getParent()->getObjectPtr())->_B4->mMeloArr;
+	MeloArrMgr& meloMgr = ((Conductor*)track->mTree.getParent()->getObjectPtr())->mBgmSeq->mMeloArr;
 
 	P2ASSERTLINE(484, track->mIndex < 16);
 
@@ -2284,7 +2272,7 @@ void AutoBgm::pauseOn(SeqBase::PauseMode pause)
 		break;
 	case SeqBase::MODE2:
 		if (sound) {
-			sound->setPauseMode(true, _48);
+			sound->setPauseMode(true, mPausedMinVolume);
 		} else {
 			noSound = true;
 		}

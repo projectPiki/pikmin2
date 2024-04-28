@@ -300,7 +300,7 @@ bool TOmakeGame::doUpdateStateWait()
 	mScreenObj->update();
 	if (mExitState) {
 		mPad.update();
-		if (mPad._0D) {
+		if (mPad.mSelectionChanged) {
 			int oldsel = mPad.mLastIndex;
 			JGeometry::TBox2f box;
 			box              = *mPaneSelectBox[mSelection]->getBounds();

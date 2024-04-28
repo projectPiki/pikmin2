@@ -26,7 +26,7 @@ struct NodeTree : public JSUTree<T> {
 	    , _28(0)
 	    , _2C(0)
 	    , mRemoveCallback(nullptr)
-	    , _34(nullptr)
+	    , mOwnerConductor(nullptr)
 	{
 	}
 
@@ -45,7 +45,7 @@ struct NodeTree : public JSUTree<T> {
 	u32 _28;                        // _28 - unknown
 	u32 _2C;                        // _2C - unknown
 	RemoveCallback mRemoveCallback; // _30 - function pointer for removeCallback()
-	void* _34;                      // _34 - unknown
+	void* mOwnerConductor;          // _34
 };
 
 // TODO: this
@@ -92,8 +92,8 @@ struct PrmSetBase : public JKRDisposer {
 
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
-	u8 _18;                 // _18
-	u8 _19;                 // _19
+	u8 mPreDataByteSize;    // _18, bytes to skip prior to start of data (in PrmSetBase::load())
+	u8 mPostDataByteSize;   // _19, bytes to skip after reading data
 	bool _1A;               // _1A
 	JSUList<PrmBase> mList; // _1C
 	u8 _28[0x4];            // _28 - unknown

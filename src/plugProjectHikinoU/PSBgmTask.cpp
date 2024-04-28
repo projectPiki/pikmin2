@@ -23,23 +23,23 @@ BankRandPrm* BankRandPrm::sInstance;
 int ModParamWithFade::task(JASTrack& track)
 {
 	int result;
-	if (_28 == 0) {
-		if (_1C != 0) {
+	if (mCounter == 0) {
+		if (mFadeDuration != 0) {
 			f32 preParam = getPreParam(track);
-			_24          = (_20 - preParam) / _1C;
-			_2C          = preParam + _24;
+			_24          = (mTargetValue - preParam) / mFadeDuration;
+			mCurrTime    = preParam + _24;
 		} else {
-			timeTask(track, _20);
+			timeTask(track, mTargetValue);
 			return -1;
 		}
 	}
-	if (_28 < _1C) {
-		_2C += _24;
-		timeTask(track, _2C);
+	if (mCounter < mFadeDuration) {
+		mCurrTime += _24;
+		timeTask(track, mCurrTime);
 		result = 0;
-		_28++;
+		mCounter++;
 	} else {
-		timeTask(track, _20);
+		timeTask(track, mTargetValue);
 		result = -1;
 	}
 	return result;
@@ -52,13 +52,13 @@ int ModParamWithFade::task(JASTrack& track)
  */
 int ModParamWithTableTask::task(JASTrack& track)
 {
-	_24 += _20;
-	u8 param = (u8)_24;
+	mCurrTableIdx += mIdxIncRate;
+	u8 param = (u8)mCurrTableIdx;
 	if (param >= getTableIdxNum()) {
-		_24 -= getTableIdxNum();
+		mCurrTableIdx -= getTableIdxNum();
 	}
 
-	return tableTask(track, getTgtWithTable(_24));
+	return tableTask(track, getTgtWithTable(mCurrTableIdx));
 }
 
 /**
@@ -67,7 +67,7 @@ int ModParamWithTableTask::task(JASTrack& track)
  */
 int PitchModTask::tableTask(JASTrack& track, f32 param)
 {
-	track.setParam(1, param, -1);
+	track.setParam(JASTrack::JASParam_Pitch, param, -1);
 	return -0x10;
 }
 
@@ -77,7 +77,7 @@ int PitchModTask::tableTask(JASTrack& track, f32 param)
  */
 f32 OuterParamTask::getPreParam(JASTrack& track)
 {
-	switch (_30) {
+	switch (mTaskType) {
 	case 0x1:
 		return track.mExtBuffer->_04;
 	case 0x2:
@@ -102,7 +102,7 @@ f32 OuterParamTask::getPreParam(JASTrack& track)
  */
 void OuterParamTask::timeTask(JASTrack& track, f32 param)
 {
-	if (_30 != 2) {
+	if (mTaskType != 2) {
 		if (param < 0.0f) {
 			param = 0.0f;
 		} else if (param > 1.0f) {
@@ -110,8 +110,8 @@ void OuterParamTask::timeTask(JASTrack& track, f32 param)
 		}
 	}
 
-	track.mExtBuffer->onSwitch(_30);
-	track.mExtBuffer->setParam(_30, param);
+	track.mExtBuffer->onSwitch(mTaskType);
+	track.mExtBuffer->setParam(mTaskType, param);
 }
 
 /**
@@ -120,10 +120,10 @@ void OuterParamTask::timeTask(JASTrack& track, f32 param)
  */
 int SimpleWaitTask::task(JASTrack& track)
 {
-	if (_1C >= _20) {
+	if (mWaitTimer >= mWaitMaxTime) {
 		return -1;
 	}
-	_1C++;
+	mWaitTimer++;
 	return -0x10;
 }
 
@@ -143,15 +143,15 @@ BankRandPrm::BankRandPrm()
  * @note Address: 0x8033EB04
  * @note Size: 0x80
  */
-void TaskEntry_OuterParam::makeEntry(f32 p1, u32 p2)
+void TaskEntry_OuterParam::makeEntry(f32 value, u32 length)
 {
 	OSDisableInterrupts();
-	mOuterParamTask._20 = p1;
-	mOuterParamTask._1C = p2;
-	mOuterParamTask._14 = 1;
-	mOuterParamTask._28 = 0;
-	mOuterParamTask._2C = 0.0f;
-	mOuterParamTask._24 = 0.0f;
+	mOuterParamTask.mTargetValue  = value;
+	mOuterParamTask.mFadeDuration = length;
+	mOuterParamTask.mEnabled      = true;
+	mOuterParamTask.mCounter      = 0;
+	mOuterParamTask.mCurrTime     = 0.0f;
+	mOuterParamTask._24           = 0.0f;
 	OSEnableInterrupts();
 
 	append((TaskBase*)&mOuterParamTask);
@@ -165,7 +165,7 @@ void TaskEntry_IdMask::makeEntry(u8 noteMask)
 {
 	OSDisableInterrupts();
 	mIdMaskTask.mNoteMask = noteMask;
-	mIdMaskTask._14       = 1;
+	mIdMaskTask.mEnabled  = true;
 	OSEnableInterrupts();
 
 	append((TaskBase*)&mIdMaskTask);
@@ -175,39 +175,39 @@ void TaskEntry_IdMask::makeEntry(u8 noteMask)
  * @note Address: 0x8033EBD8
  * @note Size: 0x110
  */
-void TaskEntry_PitMod::makeEntry(f32 p1, f32 p2, u32 p3)
+void TaskEntry_PitMod::makeEntry(f32 pitch, f32 speed, u32 waitTime)
 {
-	if (p3 != 0) {
+	if (waitTime != 0) {
 		OSDisableInterrupts();
-		mWaitTask._1C = 0;
-		mWaitTask._20 = p3;
-		mWaitTask._14 = 1;
+		mWaitTask.mWaitTimer   = 0;
+		mWaitTask.mWaitMaxTime = waitTime;
+		mWaitTask.mEnabled     = true;
 		OSEnableInterrupts();
 
-		mWaitTask._15 = 1;
+		mWaitTask.mHasNext = 1;
 		append(&mWaitTask);
 
 		OSDisableInterrupts();
-		mPitModTask._1C = p1;
-		mPitModTask._20 = p2;
-		mPitModTask._14 = 1;
-		mPitModTask._24 = 0.0f;
+		mPitModTask.mTargetValue  = pitch;
+		mPitModTask.mIdxIncRate   = speed;
+		mPitModTask.mEnabled      = true;
+		mPitModTask.mCurrTableIdx = 0.0f;
 		OSEnableInterrupts();
 
-		mPitModTask._18 = &mWaitTask._04;
+		mPitModTask.mWaitTaskLink = &mWaitTask.mLink;
 		append(&mPitModTask);
 	} else {
 		OSDisableInterrupts();
-		mPitModTask._1C = p1;
-		mPitModTask._20 = p2;
-		mPitModTask._14 = 1;
-		mPitModTask._24 = 0.0f;
+		mPitModTask.mTargetValue  = pitch;
+		mPitModTask.mIdxIncRate   = speed;
+		mPitModTask.mEnabled      = true;
+		mPitModTask.mCurrTableIdx = 0.0f;
 		OSEnableInterrupts();
 
 		append(&mPitModTask);
 	}
 	OSDisableInterrupts();
-	mPitResetTask._14 = 1;
+	mPitResetTask.mEnabled = true;
 	OSEnableInterrupts();
 	append(&mPitResetTask);
 }
@@ -216,23 +216,23 @@ void TaskEntry_PitMod::makeEntry(f32 p1, f32 p2, u32 p3)
  * @note Address: 0x8033ECE8
  * @note Size: 0xA4
  */
-void TaskEntry_MuteVolume::makeEntry(f32 p1, u32 p2)
+void TaskEntry_MuteVolume::makeEntry(f32 value, u32 length)
 {
 	f32 temp_f0;
 
 	OSDisableInterrupts();
-	mMuteTask1._1C = 0;
-	mMuteTask1._14 = 1;
+	mMuteTask1.mDoMuteTrack = false;
+	mMuteTask1.mEnabled     = true;
 	OSEnableInterrupts();
 
 	append(&mMuteTask1);
 	OSDisableInterrupts();
-	mOuterParamTask1._20 = p1;
-	mOuterParamTask1._1C = p2;
-	mOuterParamTask1._14 = 1;
-	mOuterParamTask1._28 = 0;
-	mOuterParamTask1._2C = 0.0f;
-	mOuterParamTask1._24 = 0.0f;
+	mOuterParamTask1.mTargetValue  = value;
+	mOuterParamTask1.mFadeDuration = length;
+	mOuterParamTask1.mEnabled      = true;
+	mOuterParamTask1.mCounter      = 0;
+	mOuterParamTask1.mCurrTime     = 0.0f;
+	mOuterParamTask1._24           = 0.0f;
 	OSEnableInterrupts();
 	append(&mOuterParamTask1);
 }
@@ -241,21 +241,21 @@ void TaskEntry_MuteVolume::makeEntry(f32 p1, u32 p2)
  * @note Address: 0x8033ED8C
  * @note Size: 0x8C
  */
-void TaskEntry_MuteOnVolume::makeEntry(u32 p1)
+void TaskEntry_MuteOnVolume::makeEntry(u32 length)
 {
 	OSDisableInterrupts();
-	mOuterParamTask._20 = 0.0f;
-	mOuterParamTask._1C = p1;
-	mOuterParamTask._14 = 1;
-	mOuterParamTask._28 = 0;
-	mOuterParamTask._2C = 0.0f;
-	mOuterParamTask._24 = 0.0f;
+	mOuterParamTask.mTargetValue  = 0.0f;
+	mOuterParamTask.mFadeDuration = length;
+	mOuterParamTask.mEnabled      = true;
+	mOuterParamTask.mCounter      = 0;
+	mOuterParamTask.mCurrTime     = 0.0f;
+	mOuterParamTask._24           = 0.0f;
 	OSEnableInterrupts();
 
 	append(&mOuterParamTask);
 	OSDisableInterrupts();
-	mMuteTask._1C = 1;
-	mMuteTask._14 = 1;
+	mMuteTask.mDoMuteTrack = true;
+	mMuteTask.mEnabled     = true;
 	OSEnableInterrupts();
 
 	append(&mMuteTask);
@@ -265,15 +265,15 @@ void TaskEntry_MuteOnVolume::makeEntry(u32 p1)
  * @note Address: 0x8033EE18
  * @note Size: 0x80
  */
-void TaskEntry_Tempo::makeEntry(f32 p1, u32 p2)
+void TaskEntry_Tempo::makeEntry(f32 value, u32 length)
 {
 	OSDisableInterrupts();
-	mOuterParamTask1._20 = p1;
-	mOuterParamTask1._1C = p2;
-	mOuterParamTask1._14 = 1;
-	mOuterParamTask1._28 = 0;
-	mOuterParamTask1._2C = 0.0f;
-	mOuterParamTask1._24 = 0.0f;
+	mOuterParamTask1.mTargetValue  = value;
+	mOuterParamTask1.mFadeDuration = length;
+	mOuterParamTask1.mEnabled      = true;
+	mOuterParamTask1.mCounter      = 0;
+	mOuterParamTask1.mCurrTime     = 0.0f;
+	mOuterParamTask1._24           = 0.0f;
 	OSEnableInterrupts();
 
 	append(&mOuterParamTask1);

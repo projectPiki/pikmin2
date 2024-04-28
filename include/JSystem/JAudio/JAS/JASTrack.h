@@ -104,16 +104,16 @@ struct JASTrack : JSUList<JASChannel> {
 	struct MoveParam_ {
 		MoveParam_()
 		    : _00(0.0f)
-		    , _04(0.0f)
+		    , mGoalValue(0.0f)
 		    , _08(0.0f)
 		    , _0C(0.0f)
 		{
 		}
 
-		f32 _00; // _00
-		f32 _04; // _04
-		f32 _08; // _08
-		f32 _0C; // _0C
+		f32 _00;        // _00
+		f32 mGoalValue; // _04
+		f32 _08;        // _08
+		f32 _0C;        // _0C
 	};
 
 	struct AInnerParam_ {
@@ -160,6 +160,13 @@ struct JASTrack : JSUList<JASChannel> {
 		MoveParam_ mMoveParams[0x12];
 	};
 
+	enum ParamType {
+		JASParam_Volume = 0,
+		JASParam_Pitch  = 1,
+		JASParam_Null   = 2,
+		JASParam_Pan    = 3,
+	};
+
 	JASTrack();
 
 	void init();
@@ -183,7 +190,7 @@ struct JASTrack : JSUList<JASChannel> {
 	void updateTempo();
 	void updateSeq(u32, bool);
 	s32 seqTimeToDspTime(s32, u8);
-	void setParam(int, f32, int);
+	void setParam(int type, f32 value, int);
 	bool setSeqData(u8*, s32);
 	bool startSeq();
 	bool stopSeq();
