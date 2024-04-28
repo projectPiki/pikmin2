@@ -1661,7 +1661,7 @@ bool ShapeMapMgr::findRayIntersection(Sys::RayIntersectInfo& info)
 	Vector3f endPos   = info.mIntersectEdge.mEndPos;
 	f32 edgeLen       = startPos.distance(endPos);
 
-	Vector3f midPoint = (startPos + endPos) * 0.5f;
+	Vector3f midPoint = (startPos + info.mIntersectEdge.mEndPos) / 2;
 	Sys::Sphere sphere;
 	sphere.mRadius             = edgeLen;
 	sphere.mPosition           = midPoint;
@@ -1676,7 +1676,7 @@ bool ShapeMapMgr::findRayIntersection(Sys::RayIntersectInfo& info)
 			if (info.condition(*tri) && tri->intersect(info.mIntersectEdge, info.mRadius, interVec)) {
 				check       = true;
 				f32 sqrDist = interVec.sqrDistance(startPos);
-				if (sqrDist < minDist) {
+				if (interVec.sqrDistance(startPos) < minDist) {
 					outPos        = interVec;
 					info.mNormalY = tri->mTrianglePlane.mNormal.y;
 					minDist       = sqrDist;
