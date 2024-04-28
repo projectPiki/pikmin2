@@ -118,7 +118,7 @@ void SeSound::initParameter(void* mainSoundPtr, JAInter::Actor* actor, u32 id, u
  */
 f32 SeSound::setDistanceVolumeCommon(f32, u8 flag)
 {
-	setFxmix(CreaturePrm::cSeFxMix, 0, 1);
+	setFxmix(CreaturePrm::cSeFxMix, 0, SOUNDPARAM_Dopplar);
 	f32 dist = mSoundObj->mDistance;
 	u8 test  = isValidSeType(mSoundID);
 
@@ -136,7 +136,7 @@ f32 SeSound::setDistanceVolumeCommon(f32, u8 flag)
 		JUT_ASSERTLINE(269, calc != 0.0f, "\nSE called at invalid timming\n(%08x)\n", mSoundID);
 		dist2 *= calc;
 		f32 fx = static_cast<PSM::Scene_Cave*>(PSMGetChildScene())->getSceneFx();
-		setFxmix(fx, 0, 2);
+		setFxmix(fx, 0, SOUNDPARAM_Demo);
 	}
 	return dist2 < 0.0f ? 0.0f : dist2 > 1.0f ? 1.0f : dist2;
 
@@ -390,10 +390,10 @@ f32 SeSound::calcVolumeSpecialized(f32 p1)
  * @note Address: 0x80471508
  * @note Size: 0x8C
  */
-f32 SeSound::calcVolume(f32 p1, u8 p2, u8 p3)
+f32 SeSound::calcVolume(f32 p1, u8 p2, u8 soundCat)
 {
 	PSGame::SoundTable::CategoryMgr* mgr = PSGame::SoundTable::CategoryMgr::sInstance;
-	PSSystem::getSoundCategoryInfo(mgr, p3)->getDistVol(p1, p2);
+	PSSystem::getSoundCategoryInfo(mgr, soundCat)->getDistVol(p1, p2);
 }
 
 /**

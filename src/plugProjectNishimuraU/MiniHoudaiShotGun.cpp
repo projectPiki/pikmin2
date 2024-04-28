@@ -112,8 +112,8 @@ bool MiniHoudaiShotGunNode::update()
 			PSM::SeSound* sound = PSStartSoundVec(PSSE_EV_ITEM_LAND_WATER1_L, (Vec*)&mPosition);
 
 			if (sound) {
-				sound->setPitch(1.3f, 0, 0);
-				sound->setVolume(0.7f, 0, 0);
+				sound->setPitch(1.3f, 0, SOUNDPARAM_Unk0);
+				sound->setVolume(0.7f, 0, SOUNDPARAM_Unk0);
 			}
 
 		} else {

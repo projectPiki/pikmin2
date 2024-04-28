@@ -2606,13 +2606,13 @@ lbl_800B2B5C:
  * @note Address: 0x800B2B90
  * @note Size: 0x2C
  */
-void JAISequence::setPitch(f32 p1, u32 p2, u8 p3) { setSeqInterPitch(p3, p1, p2); }
+void JAISequence::setPitch(f32 value, u32 moveTime, u8 type) { setSeqInterPitch(type, value, moveTime); }
 
 /**
  * @note Address: 0x800B2BBC
  * @note Size: 0x2C
  */
-void JAISequence::setPan(f32 p1, u32 p2, u8 p3) { setSeqInterPan(p3, p1, p2); }
+void JAISequence::setPan(f32 value, u32 moveTime, u8 type) { setSeqInterPan(type, value, moveTime); }
 
 /**
  * @note Address: 0x800B2BE8

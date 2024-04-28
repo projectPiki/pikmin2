@@ -120,7 +120,7 @@ void TChallengePiki::update()
 				JAISound* sound
 				    = PSSystem::SingletonBase<PSGame::SeMgr>::getInstance()->mSetSeList[5]->playSystemSe(PSSE_PK_VC_JUMP_INTO_HOLE, 0);
 				if (sound) {
-					sound->setPan(0.7f, 0, 0);
+					sound->setPan(0.7f, 0, SOUNDPARAM_Unk0);
 				}
 			}
 
@@ -177,7 +177,7 @@ void TChallengePiki::update()
 					JAISound* sound
 					    = PSSystem::SingletonBase<PSGame::SeMgr>::getInstance()->mSetSeList[5]->playSystemSe(PSSE_PK_SE_ONY_SEED_GROUND, 0);
 					if (sound) {
-						sound->setPan(0.3f, 0, 0);
+						sound->setPan(0.3f, 0, SOUNDPARAM_Unk0);
 					}
 					mPosInfo[i].mCurrentPos.y = -100.0f;
 					TChallengeSelect::mDivePikiNum++;

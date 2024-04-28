@@ -144,7 +144,7 @@ void SysIF::setConfigVol_Se(f32 volume)
 		if (seq) {
 			JAISound* se = *seq->getHandleP();
 			if (se) {
-				se->setVolume(volume, 3, 8);
+				se->setVolume(volume, 3, SOUNDPARAM_Unk8);
 			}
 		}
 	}
@@ -166,7 +166,7 @@ void SysIF::setConfigVol_Bgm(f32 volume)
 			{
 				JAISound* se = *(link)->getObject()->getHandleP();
 				if (se) {
-					se->setVolume(volume, 3, 8);
+					se->setVolume(volume, 3, SOUNDPARAM_Unk8);
 				}
 			}
 		}

@@ -1716,7 +1716,7 @@ void BlackMan::Obj::walkFunc()
 		} else {
 			JAISound* zuruzuru = mSoundObj->startSound(PSSE_EN_KAGE_ZURUZURU, 0);
 			if (zuruzuru) {
-				zuruzuru->setPitch(1.4f, 0, 0);
+				zuruzuru->setPitch(1.4f, 0, SOUNDPARAM_Unk0);
 			}
 			mTyre->mSoundObj->startSound(PSSE_EN_KAGE_ROLLER, 0);
 			mTyre->mSoundObj->startSound(PSSE_EN_KAGE_MELODYLOOP, 0);

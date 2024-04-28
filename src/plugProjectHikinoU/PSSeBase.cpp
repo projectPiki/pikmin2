@@ -44,10 +44,10 @@ void EnvSeBase::doMoveParamRequest()
 
 	switch (mMoveParam.mParamType) {
 	case JASTrack::JASParam_Volume:
-		mSound->setVolume(mMoveParam.mValue, mMoveParam.mMoveTime, mMoveParam.mIndex);
+		mSound->setVolume(mMoveParam.mValue, mMoveParam.mMoveTime, mMoveParam.mSoundType);
 		break;
 	case JASTrack::JASParam_Pitch:
-		mSound->setPitch(mMoveParam.mValue, mMoveParam.mMoveTime, mMoveParam.mIndex);
+		mSound->setPitch(mMoveParam.mValue, mMoveParam.mMoveTime, mMoveParam.mSoundType);
 		break;
 
 	default:
@@ -57,7 +57,7 @@ void EnvSeBase::doMoveParamRequest()
 	mMoveParam.mValue     = 0.0f;
 	mMoveParam.mMoveTime  = 0;
 	mMoveParam.mParamType = JASTrack::JASParam_Null;
-	mMoveParam.mIndex     = 0;
+	mMoveParam.mSoundType = SOUNDPARAM_Unk0;
 }
 
 /**
@@ -80,7 +80,7 @@ void EnvSeBase::exec()
 {
 	if (!mIsOn) {
 		if (mSound) {
-			mSound->setVolume(0.0f, 0, 5);
+			mSound->setVolume(0.0f, 0, SOUNDPARAM_Unk5);
 		}
 		return;
 	}
@@ -92,10 +92,10 @@ void EnvSeBase::exec()
 		JAISound* sound = play();
 		if (sound) {
 			setPanAndDolby(sound);
-			sound->setVolume(mVolume, 0, 0);
-			sound->setFxmix(0.4f, 0, 0);
-			sound->setVolume(1.0f, 20, 5);
-			sound->setFxmix(_30, 0, 0);
+			sound->setVolume(mVolume, 0, SOUNDPARAM_Unk0);
+			sound->setFxmix(0.4f, 0, SOUNDPARAM_Unk0);
+			sound->setVolume(1.0f, 20, SOUNDPARAM_Unk5);
+			sound->setFxmix(_30, 0, SOUNDPARAM_Unk0);
 
 			doMoveParamRequest();
 		}
@@ -106,10 +106,10 @@ void EnvSeBase::exec()
 		JAISound* sound = play();
 		if (sound) {
 			setPanAndDolby(sound);
-			sound->setVolume(mVolume, 0, 0);
-			sound->setFxmix(0.4f, 0, 0);
-			sound->setVolume(mVolume2, 0, 5);
-			sound->setFxmix(_30, 0, 0);
+			sound->setVolume(mVolume, 0, SOUNDPARAM_Unk0);
+			sound->setFxmix(0.4f, 0, SOUNDPARAM_Unk0);
+			sound->setVolume(mVolume2, 0, SOUNDPARAM_Unk5);
+			sound->setFxmix(_30, 0, SOUNDPARAM_Unk0);
 
 			doMoveParamRequest();
 		}
@@ -304,7 +304,7 @@ void ClusterSe::Part::play(u8 count, JAInter::Object* obj)
 	}
 
 	if (val != 1.0f) {
-		sound->setVolume(val, 0, 0);
+		sound->setVolume(val, 0, SOUNDPARAM_Unk0);
 	}
 }
 

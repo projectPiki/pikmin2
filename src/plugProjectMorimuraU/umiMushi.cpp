@@ -2168,7 +2168,7 @@ void Obj::flickEffect()
 
 		PSM::SeSound* sound = PSStartSoundVec(PSSE_EV_ITEM_LAND_WATER1_XL, (Vec*)&mHamonPosition);
 		if (sound) {
-			sound->setPitch(0.8f, 0, 0);
+			sound->setPitch(0.8f, 0, SOUNDPARAM_Unk0);
 		}
 	}
 }

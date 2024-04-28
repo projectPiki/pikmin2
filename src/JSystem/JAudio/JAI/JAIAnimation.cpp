@@ -772,9 +772,9 @@ void JAIAnimeSound::playActorAnimSound(JAInter::Actor* actor, f32 pitch, u8 a)
 		if (*se) {
 			mBasEntries[i] = entry;
 			_40[i]         = 1;
-			(*se)->setVolume(entry->mPanning / 127.0f, 0, 5);
-			(*se)->setPitch((entry->_15 * (pitch - 1.0f)) / 32 + entry->mPitch, 0, 5);
-			(*se)->setPan(entry->mVelocity / 127.0f, 0, 5);
+			(*se)->setVolume(entry->mPanning / 127.0f, 0, SOUNDPARAM_Unk5);
+			(*se)->setPitch((entry->_15 * (pitch - 1.0f)) / 32 + entry->mPitch, 0, SOUNDPARAM_Unk5);
+			(*se)->setPan(entry->mVelocity / 127.0f, 0, SOUNDPARAM_Unk5);
 		}
 	}
 
@@ -989,7 +989,7 @@ void JAIAnimeSound::setSpeedModifySound(JAISound* sound, JAIAnimeFrameSoundData*
 		f32 val = speed - 1.0f;
 		pitch += ((f32)data->_15 * val) / 32;
 	}
-	sound->setPitch(pitch, 0, 5);
+	sound->setPitch(pitch, 0, SOUNDPARAM_Unk5);
 
 	s16 pan = data->mPanning;
 	if (data->_18) {
@@ -1001,5 +1001,5 @@ void JAIAnimeSound::setSpeedModifySound(JAISound* sound, JAIAnimeFrameSoundData*
 			pan = 0;
 		}
 	}
-	sound->setVolumeU7(pan, 0, 5);
+	sound->setVolumeU7(pan, 0, SOUNDPARAM_Unk5);
 }

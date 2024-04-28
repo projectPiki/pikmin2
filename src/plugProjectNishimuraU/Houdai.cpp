@@ -859,7 +859,7 @@ void Obj::createOnGroundEffect(int footIdx, WaterBox* wbox)
 			waterWalk.create(&fxArg);
 			PSM::SeSound* sound = PSStartSoundVec(PSSE_EV_ITEM_LAND_WATER1_L, (Vec*)&mJointPositions[footIdx][3]);
 			if (sound) {
-				sound->setPitch(0.8f, 0, 0);
+				sound->setPitch(0.8f, 0, SOUNDPARAM_Unk0);
 			}
 
 		} else {
@@ -882,7 +882,7 @@ void Obj::createOnGroundEffect(int footIdx, WaterBox* wbox)
 
 			PSM::SeSound* sound = PSStartSoundVec(PSSE_EV_ITEM_LAND_WATER1_M, (Vec*)&mJointPositions[footIdx][3]);
 			if (sound) {
-				sound->setPitch(1.2f, 0, 0);
+				sound->setPitch(1.2f, 0, SOUNDPARAM_Unk0);
 			}
 
 		} else {

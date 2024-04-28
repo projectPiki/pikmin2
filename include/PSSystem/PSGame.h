@@ -61,10 +61,10 @@ inline PSGame::SeMgr* getSeMgrInstance()
 	return static_cast<PSGame::SeMgr*>(SingletonBase<PSGame::SeMgr>::sInstance);
 }
 
-inline PSGame::SoundTable::SePerspInfo* getSoundCategoryInfo(PSGame::SoundTable::CategoryMgr* mgr, u8 id)
+inline PSGame::SoundTable::SePerspInfo* getSoundCategoryInfo(PSGame::SoundTable::CategoryMgr* mgr, u8 soundCat)
 {
-	P2ASSERTLINE(93, mgr->mPerspInfo[id]);
-	return mgr->mPerspInfo[id];
+	P2ASSERTLINE(93, mgr->mPerspInfo[soundCat]);
+	return mgr->mPerspInfo[soundCat];
 }
 
 }; // namespace PSSystem

@@ -1044,13 +1044,13 @@ void JAIBasic::setSeExtParameter(JAISound* handle)
 	}
 	u8 format = JAInter::SoundTable::getInfoFormat(handle->mSoundID);
 	if ((format & 4) != 0) {
-		handle->setVolume(handle->mSoundInfo->mVolume.c / 127.0f, 0, 1);
+		handle->setVolume(handle->mSoundInfo->mVolume.c / 127.0f, 0, SOUNDPARAM_Dopplar);
 	}
 	if ((format & 8) != 0) {
-		handle->setFxmix(handle->mSoundInfo->mVolume.c / 127.0f, 0, 1);
+		handle->setFxmix(handle->mSoundInfo->mVolume.c / 127.0f, 0, SOUNDPARAM_Dopplar);
 	}
 	if ((format & 2) != 0) {
-		handle->setPitch(handle->mSoundInfo->mPitch, 0, 1);
+		handle->setPitch(handle->mSoundInfo->mPitch, 0, SOUNDPARAM_Dopplar);
 	}
 }
 

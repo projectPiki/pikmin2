@@ -10,18 +10,18 @@ struct JAISound;
 
 namespace PSSystem {
 struct MoveParamSet {
-	inline MoveParamSet(f32 value, u32 time, int type, u8 index)
+	inline MoveParamSet(f32 value, u32 time, int type, u8 soundType)
 	    : mValue(value)
 	    , mMoveTime(time)
 	    , mParamType(type)
-	    , mIndex(index)
+	    , mSoundType(soundType)
 	{
 	}
 
 	f32 mValue;     // _00
 	u32 mMoveTime;  // _04
-	int mParamType; // _08
-	u8 mIndex;      // _0C
+	int mParamType; // _08, see JASTrack::ParamType enum
+	u8 mSoundType;  // _0C, see JAISoundType enum
 };
 
 struct EnvSeBase : public JSULink<EnvSeBase> {

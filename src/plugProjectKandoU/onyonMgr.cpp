@@ -951,9 +951,9 @@ void Onyon::do_doAnimation()
 				if (scene) {
 					if (scene->_4C < 390) {
 						f32 calc = JALCalc::linearTransform(scene->_4C, 0.0f, 390.0f, 0.25f, 1.0f, true);
-						sound->setVolume(calc, 0, 0);
+						sound->setVolume(calc, 0, SOUNDPARAM_Unk0);
 					} else {
-						sound->setVolume(1.0f, 0, 0);
+						sound->setVolume(1.0f, 0, SOUNDPARAM_Unk0);
 					}
 				}
 			}

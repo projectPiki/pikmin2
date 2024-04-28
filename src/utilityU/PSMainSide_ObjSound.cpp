@@ -2593,11 +2593,11 @@ void Enemy_SpecialChappy::onPlayingSe(u32 soundID, JAISound* sound)
 
 	if (soundID >= PSSE_EN_CHAPPY_WALK && PSSE_EN_CHAPPY_EAT >= soundID && soundID != PSSE_EN_CHAPPY_DEAD
 	    && soundID != PSSE_EN_CHAPPY_BITE2) {
-		sound->setPitch(0.8f, 0, 0);
+		sound->setPitch(0.8f, 0, SOUNDPARAM_Unk0);
 	} else if (soundID == PSSE_EN_CHAPPY_DEAD) {
-		sound->setPitch(0.65f, 0, 0);
+		sound->setPitch(0.65f, 0, SOUNDPARAM_Unk0);
 	} else if (soundID == PSSE_EN_CHAPPY_BITE2) {
-		sound->setPitch(0.8f, 20, 0);
+		sound->setPitch(0.8f, 20, SOUNDPARAM_Unk0);
 	}
 }
 

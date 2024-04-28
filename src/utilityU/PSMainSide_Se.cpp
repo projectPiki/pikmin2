@@ -133,50 +133,50 @@ JAISe* WorldMapRocket::startRocketSE(f32 posX, f32 posY)
 		}
 
 		if (mState != PSMRocket_3) {
-			se->setPan(curPosX, 0, 0);
-			se->setDolby(curPosY, 0, 0);
+			se->setPan(curPosX, 0, SOUNDPARAM_Unk0);
+			se->setDolby(curPosY, 0, SOUNDPARAM_Unk0);
 		}
 
 		switch (mState) {
 		case PSMRocket_1:
-			se->setVolume(1.0f, 2, 0);
-			se->setPitch(2.0f, 2, 0);
-			if (se->getPitch(0) >= 2.0f) {
+			se->setVolume(1.0f, 2, SOUNDPARAM_Unk0);
+			se->setPitch(2.0f, 2, SOUNDPARAM_Unk0);
+			if (se->getPitch(SOUNDPARAM_Unk0) >= 2.0f) {
 				mState = PSMRocket_4;
 			}
 			break;
 		case PSMRocket_2:
-			se->setVolume(1.0f, 2, 0);
-			se->setPitch(2.0f, 2, 0);
-			if (se->getPitch(0) >= 2.0f) {
+			se->setVolume(1.0f, 2, SOUNDPARAM_Unk0);
+			se->setPitch(2.0f, 2, SOUNDPARAM_Unk0);
+			if (se->getPitch(SOUNDPARAM_Unk0) >= 2.0f) {
 				mState = PSMRocket_4;
 			}
 			break;
 		case PSMRocket_3:
-			se->setVolume(1.0f, 5, 0);
-			se->setPitch(2.0f, 5, 0);
-			if (se->getPitch(0) >= 3.0f) {
+			se->setVolume(1.0f, 5, SOUNDPARAM_Unk0);
+			se->setPitch(2.0f, 5, SOUNDPARAM_Unk0);
+			if (se->getPitch(SOUNDPARAM_Unk0) >= 3.0f) {
 				mState = PSMRocket_4;
 			}
 			break;
 		case PSMRocket_4:
-			se->setVolume(0.5f, 30, 0);
-			se->setPitch(1.0f, 30, 0);
+			se->setVolume(0.5f, 30, SOUNDPARAM_Unk0);
+			se->setPitch(1.0f, 30, SOUNDPARAM_Unk0);
 			break;
 		case PSMRocket_5:
-			se->setVolume(0.5f, 10, 0);
-			se->setPitch(1.0f, 10, 0);
+			se->setVolume(0.5f, 10, SOUNDPARAM_Unk0);
+			se->setPitch(1.0f, 10, SOUNDPARAM_Unk0);
 			break;
 		case PSMRocket_6:
 			if (!init) {
-				tmpVol = se->getVolume(0);
+				tmpVol = se->getVolume(SOUNDPARAM_Unk0);
 				init   = true;
 			}
-			se->setVolume(0.1f, 2, 0);
+			se->setVolume(0.1f, 2, SOUNDPARAM_Unk0);
 			break;
 		case PSMRocket_7:
-			se->setVolume(tmpVol, 5, 0);
-			if (se->getVolume(0) == tmpVol) {
+			se->setVolume(tmpVol, 5, SOUNDPARAM_Unk0);
+			if (se->getVolume(SOUNDPARAM_Unk0) == tmpVol) {
 				if (tmpVol < 0.5f) {
 					mState = PSMRocket_5;
 				} else {
@@ -185,8 +185,8 @@ JAISe* WorldMapRocket::startRocketSE(f32 posX, f32 posY)
 			}
 			break;
 		case PSMRocket_0:
-			se->setVolume(0.0f, 0, 0);
-			se->setPitch(0.0f, 0, 0);
+			se->setVolume(0.0f, 0, SOUNDPARAM_Unk0);
+			se->setPitch(0.0f, 0, SOUNDPARAM_Unk0);
 			break;
 		}
 	}
@@ -1006,8 +1006,8 @@ JAISound* PSStartEnemyGhostSE(Game::EnemyBase* enemy, f32)
 			pitch  = 2.3f;
 			break;
 		}
-		ghost->setVolume(volume, 0, 0);
-		ghost->setPitch(pitch, 0, 0);
+		ghost->setVolume(volume, 0, SOUNDPARAM_Unk0);
+		ghost->setPitch(pitch, 0, SOUNDPARAM_Unk0);
 	}
 	return ghost;
 }
@@ -1039,8 +1039,8 @@ JAISound* PSStartEnemyFatalHitSE(Game::EnemyBase* enemy, f32 p2)
 			pitch = 0.7f;
 		}
 
-		sound->setVolume(volume, 0, 0);
-		sound->setPitch(pitch, 0, 0);
+		sound->setVolume(volume, 0, SOUNDPARAM_Unk0);
+		sound->setPitch(pitch, 0, SOUNDPARAM_Unk0);
 	}
 	return sound;
 }
@@ -1059,17 +1059,17 @@ JAISound* PSStartEnemyDownSmokeSE(Game::EnemyBase* enemy, f32 scale)
 	if (scale < 0.3f) {
 		sound = enemy->getJAIObject()->startSound(PSSE_EV_ITEM_LAND_SOIL_S, 0);
 		if (sound) {
-			sound->setPitch(JALCalc::linearTransform(scale, 0.0f, 0.3f, 1.0f, 0.8f, false), 0, 0);
+			sound->setPitch(JALCalc::linearTransform(scale, 0.0f, 0.3f, 1.0f, 0.8f, false), 0, SOUNDPARAM_Unk0);
 		}
 	} else if (scale < 0.7f) {
 		sound = enemy->getJAIObject()->startSound(PSSE_EV_ITEM_LAND_SOIL_M, 0);
 		if (sound) {
-			sound->setPitch(JALCalc::linearTransform(scale, 0.3f, 0.7f, 1.5f, 0.6f, false), 0, 0);
+			sound->setPitch(JALCalc::linearTransform(scale, 0.3f, 0.7f, 1.5f, 0.6f, false), 0, SOUNDPARAM_Unk0);
 		}
 	} else {
 		sound = enemy->getJAIObject()->startSound(PSSE_EV_ITEM_LAND_SOIL_L, 0);
 		if (sound) {
-			sound->setPitch(JALCalc::linearTransform(scale, 0.7f, 2.0f, 1.5f, 0.8f, false), 0, 0);
+			sound->setPitch(JALCalc::linearTransform(scale, 0.7f, 2.0f, 1.5f, 0.8f, false), 0, SOUNDPARAM_Unk0);
 		}
 	}
 	return sound;
@@ -1090,19 +1090,19 @@ JAISound* PSStartEnemyDownWatSE(Game::EnemyBase* enemy, f32 p2)
 		PSGame::SeMgr* mgr      = PSSystem::getSeMgrInstance();
 		sound                   = mgr->mSetSeList[6]->startSound(soundObj, PSSE_EV_ITEM_LAND_WATER1_S, 0);
 		if (sound) {
-			sound->setPitch(JALCalc::linearTransform(p2, 0.0f, 0.3f, 1.0f, 0.8f, false), 0, 0);
+			sound->setPitch(JALCalc::linearTransform(p2, 0.0f, 0.3f, 1.0f, 0.8f, false), 0, SOUNDPARAM_Unk0);
 		}
 	} else if (p2 < 0.7f) {
 		JAIAnimeSound* soundObj = enemy->mSoundObj;
 		PSGame::SeMgr* mgr      = PSSystem::getSeMgrInstance();
 		sound                   = mgr->mSetSeList[6]->startSound(soundObj, PSSE_EV_ITEM_LAND_WATER1_M, 0);
 		if (sound) {
-			sound->setPitch(JALCalc::linearTransform(p2, 0.3f, 0.7f, 1.5f, 0.6f, false), 0, 0);
+			sound->setPitch(JALCalc::linearTransform(p2, 0.3f, 0.7f, 1.5f, 0.6f, false), 0, SOUNDPARAM_Unk0);
 		}
 	} else {
 		sound = enemy->getJAIObject()->startSound(PSSE_EV_ITEM_LAND_WATER1_L, 0);
 		if (sound) {
-			sound->setPitch(JALCalc::linearTransform(p2, 0.7f, 1.5f, 1.8f, 0.8f, false), 0, 0);
+			sound->setPitch(JALCalc::linearTransform(p2, 0.7f, 1.5f, 1.8f, 0.8f, false), 0, SOUNDPARAM_Unk0);
 		}
 	}
 	return sound;
@@ -1252,14 +1252,14 @@ JAISe* PSStartTreasureLaderSE(f32 rate)
 		sound->setPortData(12, calc2);
 		PSM::MiddleBossSeq* seq = PSMGetMiddleBossSeq();
 		if (seq && *seq->getHandleP()) {
-			f32 vol = (*seq->getHandleP())->getVolume(0);
+			f32 vol = (*seq->getHandleP())->getVolume(SOUNDPARAM_Unk0);
 			if (vol > 0.0f) {
 				calc *= JALCalc::linearTransform(vol, 0.0f, 1.0f, 1.0f, 0.2f, true);
 			}
 		}
-		sound->setVolume(calc, 0, 0);
+		sound->setVolume(calc, 0, SOUNDPARAM_Unk0);
 		if (rate > sTreasureLader_PitchDistance) {
-			sound->setPitch(sTreasureLader_Pitch, 0, 0);
+			sound->setPitch(sTreasureLader_Pitch, 0, SOUNDPARAM_Unk0);
 		}
 	}
 	return sound;
@@ -1459,12 +1459,12 @@ JAISe* PSStartTresureLaderNoiseSE(u8 state, f32 a1, f32)
 				                                  sLaderNoiseFuefukiVolumeMin, sLaderNoiseFuefukiVolumeMax, JALCalc::CS_POSITIVE_CURVE);
 				PSM::MiddleBossSeq* seq = PSMGetMiddleBossSeq();
 				if (seq && *seq->getHandleP()) {
-					f32 vol = (*seq->getHandleP())->getVolume(0);
+					f32 vol = (*seq->getHandleP())->getVolume(SOUNDPARAM_Unk0);
 					if (vol > 0.0f) {
 						calc *= JALCalc::linearTransform(vol, 0.0f, 1.0f, 1.0f, 0.2f, true);
 					}
 				}
-				sound->setVolume(calc, 0, 0);
+				sound->setVolume(calc, 0, SOUNDPARAM_Unk0);
 			}
 		}
 		break;
@@ -1478,13 +1478,13 @@ JAISe* PSStartTresureLaderNoiseSE(u8 state, f32 a1, f32)
 			if (sound) {
 				PSM::MiddleBossSeq* seq = PSMGetMiddleBossSeq();
 				if (seq && *seq->getHandleP()) {
-					f32 vol = (*seq->getHandleP())->getVolume(0);
+					f32 vol = (*seq->getHandleP())->getVolume(SOUNDPARAM_Unk0);
 					if (vol > 0.0f) {
 						f32 calc = JALCalc::linearTransform(vol, 0.0f, 1.0f, 1.0f, 0.2f, true);
-						sound->setVolume(calc, 0, 0);
+						sound->setVolume(calc, 0, SOUNDPARAM_Unk0);
 					}
 				}
-				sound->setPitch(1.2f, 0, 0);
+				sound->setPitch(1.2f, 0, SOUNDPARAM_Unk0);
 			}
 		}
 		break;

@@ -331,7 +331,7 @@ JAISound* Env_Pollutin::play()
 		MiddleBossSeq* seq = PSMGetMiddleBossSeq();
 		if (seq && *seq->getHandleP()) {
 			JAISound** se = seq->getHandleP();
-			f32 vol       = (*se)->getVolume(0);
+			f32 vol       = (*se)->getVolume(SOUNDPARAM_Unk0);
 			if (vol > 0.0f) {
 				mVolume = JALCalc::linearTransform(vol, 0.0f, 1.0f, 1.0f, _50, true);
 			}

@@ -1319,17 +1319,17 @@ void Scene_Ground::fadeMainBgm(f32 p1, u32 p2, PSM::Scene_Ground::Time time)
 	case GroundTime_On:
 		if (p1 == 0.0f) {
 			if (*seq->getHandleP()) {
-				(*seq->getHandleP())->setVolume(p1, p2, 2);
+				(*seq->getHandleP())->setVolume(p1, p2, SOUNDPARAM_Demo);
 			}
 			if (mEnvSeMgr) {
-				mEnvSeMgr->setVolumeRequest(p1, p2, 2);
+				mEnvSeMgr->setVolumeRequest(p1, p2, SOUNDPARAM_Demo);
 			}
 		} else {
 			if (*seq->getHandleP()) {
-				(*seq->getHandleP())->setVolume(p1, p2 * 3, 2);
+				(*seq->getHandleP())->setVolume(p1, p2 * 3, SOUNDPARAM_Demo);
 			}
 			if (mEnvSeMgr) {
-				mEnvSeMgr->setVolumeRequest(p1, p2, 2);
+				mEnvSeMgr->setVolumeRequest(p1, p2, SOUNDPARAM_Demo);
 			}
 		}
 		break;
@@ -1807,12 +1807,12 @@ void Scene_Cave::startPollutUpSe()
 		JAISe* se1 = PSSystem::spSysIF->playSystemSe(PSSE_EV_POLUTIONMIX_DOWN01, 0);
 		JAISe* se2 = PSSystem::spSysIF->playSystemSe(PSSE_EV_POLUTIONMIX_DOWN02, 0);
 		if (se1) {
-			se1->setPan(1.0f, 80, 0);
-			se1->setDolby(1.0f, 80, 0);
+			se1->setPan(1.0f, 80, SOUNDPARAM_Unk0);
+			se1->setDolby(1.0f, 80, SOUNDPARAM_Unk0);
 		}
 		if (se2) {
-			se2->setPan(1.0f, 80, 0);
-			se2->setDolby(1.0f, 80, 0);
+			se2->setPan(1.0f, 80, SOUNDPARAM_Unk0);
+			se2->setDolby(1.0f, 80, SOUNDPARAM_Unk0);
 		}
 	}
 }
@@ -1944,7 +1944,7 @@ void Scene_Challenge::startMainSeq()
 		seq->startSeq();
 		JAISound* se = *seq->getHandleP();
 		if (se) {
-			se->setVolume(0.0f, 0, 2);
+			se->setVolume(0.0f, 0, SOUNDPARAM_Demo);
 		}
 	}
 }
@@ -2015,14 +2015,14 @@ void* PSChangeBgm_ChallengeGame()
 		P2ASSERTLINE(1181, seq);
 		JAISound* sound = *seq->getHandleP();
 		if (sound) {
-			sound->setVolume(0.0f, 0, 1);
+			sound->setVolume(0.0f, 0, SOUNDPARAM_Dopplar);
 		}
 
 		PSSystem::SeqBase* seq2 = seqmgr->getSeq(2);
 		P2ASSERTLINE(1190, seq2);
 		JAISound* sound2 = *seq2->getHandleP();
 		if (sound2) {
-			sound2->setVolume(1.0f, 30, 2);
+			sound2->setVolume(1.0f, 30, SOUNDPARAM_Demo);
 		}
 	}
 	/*
@@ -2240,7 +2240,7 @@ void PSMuteSE_on2D()
 {
 	PSSystem::SeqBase* seq = PSMGetSceneMgrCheck()->mScenes->mSeqMgr.getSeq(0);
 	JAISound* se           = *seq->getHandleP();
-	se->setVolume(0.0f, 0, 0);
+	se->setVolume(0.0f, 0, SOUNDPARAM_Unk0);
 }
 
 /**
@@ -2251,5 +2251,5 @@ void PSMuteOffSE_on2D()
 {
 	PSSystem::SeqBase* seq = PSMGetSceneMgrCheck()->mScenes->mSeqMgr.getSeq(0);
 	JAISound* se           = *seq->getHandleP();
-	se->setVolume(1.0f, 0, 0);
+	se->setVolume(1.0f, 0, SOUNDPARAM_Unk0);
 }

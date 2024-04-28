@@ -652,30 +652,30 @@ void JASTrack::getDolby() const
 void JASTrack::initTimed()
 {
 	for (u8 i = 0; i < 18; i++) {
-		mTimedParam.mMoveParams[i]._08 = 0.0f;
-		mTimedParam.mMoveParams[i]._00 = 1.0f;
-		mTimedParam.mMoveParams[i]._04 = 1.0f;
+		mTimedParam.mMoveParams[i]._08        = 0.0f;
+		mTimedParam.mMoveParams[i]._00        = 1.0f;
+		mTimedParam.mMoveParams[i].mGoalValue = 1.0f;
 	}
-	mTimedParam.mMoveParams[1]._00  = 0.0f;
-	mTimedParam.mMoveParams[1]._04  = 0.0f;
-	mTimedParam.mMoveParams[3]._00  = 0.5f;
-	mTimedParam.mMoveParams[3]._04  = 0.5f;
-	mTimedParam.mMoveParams[16]._00 = 0.5f;
-	mTimedParam.mMoveParams[16]._04 = 0.5f;
-	mTimedParam.mMoveParams[17]._00 = 0.0f;
-	mTimedParam.mMoveParams[17]._04 = 0.0f;
-	mTimedParam.mMoveParams[2]._00  = 0.0f;
-	mTimedParam.mMoveParams[2]._04  = 0.0f;
-	mTimedParam.mMoveParams[4]._00  = 0.0f;
-	mTimedParam.mMoveParams[4]._04  = 0.0f;
-	mTimedParam.mMoveParams[13]._00 = 0.0f;
-	mTimedParam.mMoveParams[13]._04 = 0.0f;
-	mTimedParam.mMoveParams[14]._00 = 0.0f;
-	mTimedParam.mMoveParams[14]._04 = 0.0f;
-	mTimedParam.mMoveParams[15]._00 = 0.0f;
-	mTimedParam.mMoveParams[15]._04 = 0.0f;
-	mTimedParam.mMoveParams[5]._00  = 0.0f;
-	mTimedParam.mMoveParams[5]._04  = 0.0f;
+	mTimedParam.mMoveParams[1]._00         = 0.0f;
+	mTimedParam.mMoveParams[1].mGoalValue  = 0.0f;
+	mTimedParam.mMoveParams[3]._00         = 0.5f;
+	mTimedParam.mMoveParams[3].mGoalValue  = 0.5f;
+	mTimedParam.mMoveParams[16]._00        = 0.5f;
+	mTimedParam.mMoveParams[16].mGoalValue = 0.5f;
+	mTimedParam.mMoveParams[17]._00        = 0.0f;
+	mTimedParam.mMoveParams[17].mGoalValue = 0.0f;
+	mTimedParam.mMoveParams[2]._00         = 0.0f;
+	mTimedParam.mMoveParams[2].mGoalValue  = 0.0f;
+	mTimedParam.mMoveParams[4]._00         = 0.0f;
+	mTimedParam.mMoveParams[4].mGoalValue  = 0.0f;
+	mTimedParam.mMoveParams[13]._00        = 0.0f;
+	mTimedParam.mMoveParams[13].mGoalValue = 0.0f;
+	mTimedParam.mMoveParams[14]._00        = 0.0f;
+	mTimedParam.mMoveParams[14].mGoalValue = 0.0f;
+	mTimedParam.mMoveParams[15]._00        = 0.0f;
+	mTimedParam.mMoveParams[15].mGoalValue = 0.0f;
+	mTimedParam.mMoveParams[5]._00         = 0.0f;
+	mTimedParam.mMoveParams[5].mGoalValue  = 0.0f;
 }
 
 /**

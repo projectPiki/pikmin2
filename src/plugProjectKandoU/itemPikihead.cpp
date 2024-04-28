@@ -44,7 +44,7 @@ void FallState::init(Item* item, StateArg* arg)
 {
 	_14 = 10.0f - randFloat() * 0.5f; // 9.5-10.5
 	_10 = _14 * 0.2f;                 // 1.9-2.1
-	item->mEfxTane->createTanekira_(item->mEfxTane->mPos);
+	item->mEfxTane->createTanekira_(item->mEfxTane->mEfxPos);
 	item->mAnimator.startAnim(4, nullptr);
 }
 
@@ -227,7 +227,7 @@ void HatugaState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent) { t
  */
 void WaitState::init(Item* item, StateArg* arg)
 {
-	item->mEfxTane->createKourin_(item->mEfxTane->mPos);
+	item->mEfxTane->createKourin_(item->mEfxTane->mEfxPos);
 	item->mAnimator.startAnim(0, item);
 	if (item->mHeadType == Flower) {
 		mTimer = 2.0f * randFloat() + pikiMgr->mParms->mPikiParms.mWitherFromFlowerTime.mValue;
@@ -274,7 +274,7 @@ void WaitState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent) { ite
 void GrowState::init(Item* item, StateArg* arg)
 {
 	item->mAnimator.startAnim(6, item);
-	item->mEfxTane->createGlow1_(item->mEfxTane->mPos);
+	item->mEfxTane->createGlow1_(item->mEfxTane->mEfxPos);
 }
 
 /**
@@ -297,7 +297,7 @@ void GrowState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent)
 {
 	if (keyEvent.mType == KEYEVENT_2) {
 		item->mHeadType = (item->mHeadType + 1) % 3;
-		efx::createSimpleGlow2(*item->mEfxTane->mPos); // TODO: not declared yet
+		efx::createSimpleGlow2(*item->mEfxTane->mEfxPos); // TODO: not declared yet
 		if (item->mHeadType == Bud) {
 			item->startSound(PSSE_PK_SE_ONY_TSUBOMI);
 		} else if (item->mHeadType == Flower) {

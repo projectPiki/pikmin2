@@ -820,7 +820,7 @@ void SeqBase::pauseOn(PauseMode pause)
 		break;
 	case SeqBase::MODE1:
 		if (sound) {
-			sound->setVolume(0.0f, 15, 11);
+			sound->setVolume(0.0f, 15, SOUNDPARAM_Pause);
 		} else {
 			noSound = true;
 		}
@@ -829,7 +829,7 @@ void SeqBase::pauseOn(PauseMode pause)
 		if (sound) {
 			f32 volume = mPausedMinVolume / 127.0f;
 			volume     = (volume > 1.0f) ? 1.0f : volume;
-			sound->setVolume(volume, 15, 11);
+			sound->setVolume(volume, 15, SOUNDPARAM_Pause);
 		} else {
 			noSound = true;
 		}
@@ -862,7 +862,7 @@ void SeqBase::pauseOff()
 	} else if (mPauseMode == SeqBase::MODE2 || mPauseMode == SeqBase::MODE1) {
 		JAISound* sound = *getHandleP();
 		if (sound) {
-			(*getHandleP())->setVolume(1.0f, 15, 11);
+			(*getHandleP())->setVolume(1.0f, 15, SOUNDPARAM_Pause);
 		}
 	} else if (mPauseMode != SeqBase::MODE4) {
 		JAISound* sound = *getHandleP();
@@ -1032,8 +1032,8 @@ lbl_80331E98:
 void SeqBase::setConfigVolume()
 {
 	f32 vol = PSGetSystemIFA()->mBgmVolume;
-	(*getHandleP())->setVolume(vol, 0, 8);
-	(*getHandleP())->setVolume(0.8f, 0, 3);
+	(*getHandleP())->setVolume(vol, 0, SOUNDPARAM_Unk8);
+	(*getHandleP())->setVolume(0.8f, 0, SOUNDPARAM_Unk3);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1175,8 +1175,8 @@ void StreamBgm::startSeq()
 	P2ASSERTLINE(704, mJaiSound);
 	P2ASSERTLINE(705, mId == mJaiSound->mSoundID);
 	if (mId == 0xc001101f) {
-		(*getHandleP())->setVolume(1.0f, 0, 8);
-		(*getHandleP())->setVolume(0.8f, 0, 3);
+		(*getHandleP())->setVolume(1.0f, 0, SOUNDPARAM_Unk8);
+		(*getHandleP())->setVolume(0.8f, 0, SOUNDPARAM_Unk3);
 	} else {
 		setConfigVolume();
 	}
@@ -1189,8 +1189,8 @@ void StreamBgm::startSeq()
 void StreamBgm::setConfigVolume()
 {
 	f32 vol = PSGetSystemIFA()->mBgmVolume;
-	(*getHandleP())->setVolume(vol, 0, 8);
-	(*getHandleP())->setVolume(0.8f, 0, 3);
+	(*getHandleP())->setVolume(vol, 0, SOUNDPARAM_Unk8);
+	(*getHandleP())->setVolume(0.8f, 0, SOUNDPARAM_Unk3);
 }
 
 /**
@@ -1218,8 +1218,8 @@ void SeSeq::seqLoadAfter() { startSeq(); }
 void SeSeq::setConfigVolume()
 {
 	f32 vol = PSGetSystemIFA()->mSfxVolume;
-	(*getHandleP())->setVolume(vol, 0, 8);
-	(*getHandleP())->setVolume(0.8f, 0, 3);
+	(*getHandleP())->setVolume(vol, 0, SOUNDPARAM_Unk8);
+	(*getHandleP())->setVolume(0.8f, 0, SOUNDPARAM_Unk3);
 }
 
 /**

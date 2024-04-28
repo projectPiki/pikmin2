@@ -1267,7 +1267,7 @@ void setSeqMuteFromSeStart(JAISound* p1)
 		if (i != seHandle->_14 && info->mSequence != nullptr && (info->mSequence->getSwBit() & 8) == 0) {
 			// TODO: are these args in the right order?
 			info->mSequence->setVolume(JAIGlobalParameter::getParamSeqMuteVolumeSePlay() / 127.0f,
-			                           JAIGlobalParameter::getParamSeqMuteMoveSpeedSePlay(), 9);
+			                           JAIGlobalParameter::getParamSeqMuteMoveSpeedSePlay(), SOUNDPARAM_Unk9);
 			seqMuteFlagFromSe |= 1 << p1->_14;
 		}
 	}
