@@ -1805,7 +1805,7 @@ u32 OnCycle::avoidCheck()
 
 	MeloArrArg arg;
 	arg.mTrackIndex = track->mIndex;
-	arg.mCylceNum   = num;
+	arg.mCycleNum   = num;
 	if (meloMgr.isToAvoid(arg) == true) {
 		return 0x8000;
 	}

@@ -237,11 +237,11 @@ void EnvSe_PauseOffReservator::reservatorTask() { mMgr->setAllPauseFlag(0); }
  */
 ClusterSe::PartInitArg::PartInitArg()
 {
-	_00      = 0xff;
-	_01      = 0xff;
-	_02      = 0xff;
-	_03      = 0xff;
-	mSoundID = PSSE_NULL;
+	mMaxEnemyCount           = 255;
+	mMinEnemyCount           = 255;
+	mVolumeDecreaseThreshold = 255;
+	mVolumeIncreaseThreshold = 255;
+	mSoundID                 = PSSE_NULL;
 }
 
 /**
@@ -250,14 +250,14 @@ ClusterSe::PartInitArg::PartInitArg()
  */
 void ClusterSe::PartInitArg::check()
 {
-	P2ASSERTBOOLLINE(368, _00 != 0 && _00 != 255);
-	P2ASSERTBOOLLINE(369, _01 != 255 && _00 > _01);
-	P2ASSERTLINE(370, _02 != 255);
-	P2ASSERTLINE(371, _03 != 255);
+	P2ASSERTBOOLLINE(368, mMaxEnemyCount != 0 && mMaxEnemyCount != 255);
+	P2ASSERTBOOLLINE(369, mMinEnemyCount != 255 && mMaxEnemyCount > mMinEnemyCount);
+	P2ASSERTLINE(370, mVolumeDecreaseThreshold != 255);
+	P2ASSERTLINE(371, mVolumeIncreaseThreshold != 255);
 
-	P2ASSERTLINE(373, _00 >= _02);
-	P2ASSERTLINE(374, _02 > _03);
-	P2ASSERTLINE(375, _03 >= _01);
+	P2ASSERTLINE(373, mMaxEnemyCount >= mVolumeDecreaseThreshold);
+	P2ASSERTLINE(374, mVolumeDecreaseThreshold > mVolumeIncreaseThreshold);
+	P2ASSERTLINE(375, mVolumeIncreaseThreshold >= mMinEnemyCount);
 
 	P2ASSERTLINE(377, mSoundID != 0xFFFFFFFF);
 }
@@ -281,12 +281,12 @@ void ClusterSe::Part::identify(PartInitArg initArg)
 	mInitArg = initArg;
 }
 
-void ClusterSe::Part::play(u8 p1, JAInter::Object* obj)
+void ClusterSe::Part::play(u8 count, JAInter::Object* obj)
 {
-	if (p1 > mInitArg._00) {
+	if (count > mInitArg.mMaxEnemyCount) {
 		return;
 	}
-	if (p1 < mInitArg._01) {
+	if (count < mInitArg.mMinEnemyCount) {
 		return;
 	}
 
@@ -296,10 +296,10 @@ void ClusterSe::Part::play(u8 p1, JAInter::Object* obj)
 	}
 
 	f32 val = 1.0f;
-	if (p1 > mInitArg._02) {
-		val = JALCalc::linearTransform(p1, mInitArg._00, mInitArg._02, 0.0f, val, true);
-	} else if (mInitArg._03 > p1) {
-		val = JALCalc::linearTransform(p1, mInitArg._03, mInitArg._01, val, 0.0f, true);
+	if (count > mInitArg.mVolumeDecreaseThreshold) {
+		val = JALCalc::linearTransform(count, mInitArg.mMaxEnemyCount, mInitArg.mVolumeDecreaseThreshold, 0.0f, val, true);
+	} else if (mInitArg.mVolumeIncreaseThreshold > count) {
+		val = JALCalc::linearTransform(count, mInitArg.mVolumeIncreaseThreshold, mInitArg.mMinEnemyCount, val, 0.0f, true);
 	}
 
 	if (val != 1.0f) {
@@ -353,11 +353,11 @@ void ClusterSe::Mgr::constructParts(PSSystem::ClusterSe::Factory& factory)
  * @note Address: 0x803412D8
  * @note Size: 0x1A4
  */
-void ClusterSe::Mgr::play(u8 p1, JAInter::Object* obj)
+void ClusterSe::Mgr::play(u8 count, JAInter::Object* obj)
 {
 	P2ASSERTLINE(522, obj);
 	for (u8 i = 0; i < mCount; i++) {
-		mParts[i].play(p1, obj);
+		mParts[i].play(count, obj);
 	}
 }
 } // namespace PSSystem

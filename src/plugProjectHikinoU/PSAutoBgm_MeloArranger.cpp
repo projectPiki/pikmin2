@@ -22,7 +22,7 @@ bool MeloArr_RandomAvoid::avoidChk(MeloArrArg& meloArg)
 inline void MeloArrArg::assertCheck() const
 {
 	P2ASSERTLINE(89, mTrackIndex < 16);
-	P2ASSERTLINE(90, mCylceNum != 0xFF);
+	P2ASSERTLINE(90, mCycleNum != 0xFF);
 }
 
 /**

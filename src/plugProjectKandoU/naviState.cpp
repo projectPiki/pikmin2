@@ -3165,8 +3165,8 @@ void NaviNukuAdjustState::exec(Navi* navi)
 
 	mNaviPosition = navi->getPosition();
 
-	Vector3f pikiToNavi = mPikiHead->getPosition() - navi->getPosition();
-	pikiToNavi.length(); // unused
+	Vector3f sproutToNavi = mPikiHead->getPosition() - navi->getPosition();
+	sproutToNavi.length(); // unused
 
 	Vector3f targetToNavi    = mTargetPosition - navi->getPosition(); // f26, f27, f28
 	f32 targetToNaviDistance = targetToNavi.length();                 // f31

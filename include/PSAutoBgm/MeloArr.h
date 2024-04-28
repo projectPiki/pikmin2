@@ -12,14 +12,14 @@ namespace PSAutoBgm {
 struct MeloArrArg {
 	MeloArrArg()
 	    : mTrackIndex(0xFF)
-	    , mCylceNum(0xFF)
+	    , mCycleNum(0xFF)
 	{
 	}
 
 	void assertCheck() const;
 
 	u8 mTrackIndex; // _00
-	u8 mCylceNum;   // _01
+	u8 mCycleNum;   // _01
 };
 
 // this has some funky inheritance going on I think?

@@ -20,11 +20,11 @@ struct PartInitArg {
 
 	void check();
 
-	u8 _00;           // _00
-	u8 _01;           // _01
-	u8 _02;           // _02
-	u8 _03;           // _03
-	SoundID mSoundID; // _04
+	u8 mMaxEnemyCount;           // _00
+	u8 mMinEnemyCount;           // _01
+	u8 mVolumeDecreaseThreshold; // _02
+	u8 mVolumeIncreaseThreshold; // _03
+	SoundID mSoundID;            // _04
 };
 
 /**
@@ -36,7 +36,7 @@ struct Part {
 	virtual JAISound* callSe(JAInter::Object* obj); // _08
 
 	void identify(PartInitArg initArg);
-	void play(u8, JAInter::Object*);
+	void play(u8 count, JAInter::Object* obj);
 
 	PartInitArg mInitArg; // _04
 };
@@ -60,7 +60,7 @@ struct Mgr {
 		mParts = nullptr;
 	}
 	void constructParts(PSSystem::ClusterSe::Factory& factory);
-	void play(u8, JAInter::Object*);
+	void play(u8 count, JAInter::Object* obj);
 
 	u8 mCount;    // _00, number of parts in array
 	Part* mParts; // _04
