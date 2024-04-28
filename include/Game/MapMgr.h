@@ -32,19 +32,19 @@ struct WaterBox;
 
 struct MapMgr : virtual public GenericObjectMgr {
 	struct BeamCollisionArg {
-		BeamCollisionArg(f32 beamRadius, int p2, u8 p3)
+		BeamCollisionArg(f32 beamRadius, int index, u8 hitSuccess)
 		{
 			mBeamRadius = beamRadius;
-			_1C         = p2;
-			mHitSuccess = p3;
+			mIndex      = index;
+			mHitSuccess = hitSuccess;
 		}
 
-		Vector3f mPosition; // _00
-		Vector3f _0C;       // _0C
-		f32 mBeamRadius;    // _18
-		int _1C;            // _1C
-		bool mHitSuccess;   // _20
-		f32 _24;            // _24
+		Vector3f mPosition;       // _00
+		Vector3f mTargetPosition; // _0C
+		f32 mBeamRadius;          // _18
+		int mIndex;               // _1C
+		bool mHitSuccess;         // _20
+		f32 mTargetDistance;      // _24
 	};
 
 	static bool traceMoveDebug;

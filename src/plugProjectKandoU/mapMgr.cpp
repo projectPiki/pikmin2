@@ -176,44 +176,48 @@ Matrixf* MapMgr::getDemoMatrix() { return (mCourseInfo) ? &mCourseInfo->mDemoMat
  * @note Address: 0x80162740
  * @note Size: 0x704
  */
-f32 MapMgr::getBestAngle(Vector3f& position, f32 p2, f32 divisor)
+f32 MapMgr::getBestAngle(Vector3f& position, f32 distance, f32 divisor)
 {
 	P2ASSERTLINE(488, divisor > 0.0f);
-	Vector3f pos = position;
-	pos.y        = 15.0f + getMinY(pos);
+	Vector3f adjustedPos = position;
+	adjustedPos.y        = 15.0f + getMinY(adjustedPos);
 
 	f32 angles[16]; // 0x7C
 	for (int i = 0; i < 16; i++) {
 		angles[i] = 0.0f;
 	}
 
+	// Shoot 16 beams, 22.5 degrees apart from each other (PI / 8)
 	for (int i = 0; i < 16; i++) {
 		f32 angle    = (PI / 8) * (f32)i;
-		f32 tanTheta = p2 * (f32)tan(divisor);
+		f32 tanTheta = distance * (f32)tan(divisor);
 
-		Vector3f offset  = Vector3f(p2 * sinf(angle), tanTheta, p2 * cosf(angle));
-		Vector3f beamPos = pos;
+		Vector3f offset  = Vector3f(distance * sinf(angle), tanTheta, distance * cosf(angle));
+		Vector3f beamPos = adjustedPos;
 		offset           = offset + beamPos;
+
 		BeamCollisionArg beamArg(10.0f, 0, 0);
-		beamArg._1C       = i;
+		beamArg.mIndex    = i;
 		beamArg.mPosition = beamPos;
 
-		beamArg._0C         = offset;
-		beamArg.mBeamRadius = 10.0f;
+		beamArg.mTargetPosition = offset;
+		beamArg.mBeamRadius     = 10.0f;
 		checkBeamCollision(beamArg);
-		angles[i] = beamArg._24;
+		angles[i] = beamArg.mTargetDistance;
 	}
 
-	f32 tempAngles[16]; // 0x14
+	// Average and smooth out the angles
+	f32 averagedAngles[16]; // 0x14
 	for (int i = 0; i < 16; i++) {
-		tempAngles[i] = 0.0f;
-		tempAngles[i] = (angles[(i + 15) % 16] + angles[(i) % 16] + angles[(i + 1) % 16]) / 3.0f;
+		averagedAngles[i] = 0.0f;
+		averagedAngles[i] = (angles[(i + 15) % 16] + angles[(i) % 16] + angles[(i + 1) % 16]) / 3.0f;
 	}
 
 	for (int i = 0; i < 16; i++) {
-		angles[i] = tempAngles[i];
+		angles[i] = averagedAngles[i];
 	}
 
+	// Find the best angle
 	f32 bestAngle    = 128000.0f;
 	int bestAngleNum = 0;
 	for (int i = 0; i < 16; i++) {
@@ -223,7 +227,7 @@ f32 MapMgr::getBestAngle(Vector3f& position, f32 p2, f32 divisor)
 		}
 	}
 
-	return (f32)bestAngleNum * 0.3926991f;
+	return (f32)bestAngleNum * (PI / 8);
 	/*
 	stwu     r1, -0x180(r1)
 	mflr     r0
@@ -704,10 +708,10 @@ lbl_80162DC0:
  */
 void MapMgr::checkBeamCollision(BeamCollisionArg& arg)
 {
-	arg.mHitSuccess = 0;
-	arg._24         = 9.9999998E+10f;
+	arg.mHitSuccess     = 0;
+	arg.mTargetDistance = 9.9999998E+10f;
 
-	Vector3f sep = arg._0C - arg.mPosition;
+	Vector3f sep = arg.mTargetPosition - arg.mPosition;
 	f32 dist     = sep.normalise();
 
 	if (dist == 0.0f) {
@@ -731,7 +735,7 @@ void MapMgr::checkBeamCollision(BeamCollisionArg& arg)
 		}
 
 		if (moveInfo.mWallTriangle || moveInfo.mBounceTriangle || moveInfo._4C) {
-			arg.mHitSuccess = 1;
+			arg.mHitSuccess = true;
 			break;
 		}
 
@@ -739,8 +743,8 @@ void MapMgr::checkBeamCollision(BeamCollisionArg& arg)
 		prevVelocity  = velocity;
 	}
 
-	Vector3f sep2 = arg._0C - arg.mPosition;
-	arg._24       = sep2.length();
+	Vector3f sep2       = arg.mTargetPosition - arg.mPosition;
+	arg.mTargetDistance = sep2.length();
 }
 
 /**
@@ -1652,6 +1656,11 @@ void ShapeMapMgr::doEntry()
 }
 
 /**
+ * Finds the intersection point between a ray and the map's collision geometry.
+ *
+ * @param info The ray intersection information.
+ * @return True if an intersection is found, false otherwise.
+ *
  * @note Address: 0x80163DCC
  * @note Size: 0x214
  */
@@ -1663,30 +1672,38 @@ bool ShapeMapMgr::findRayIntersection(Sys::RayIntersectInfo& info)
 
 	Vector3f midPoint = (startPos + info.mIntersectEdge.mEndPos) / 2;
 	Sys::Sphere sphere;
-	sphere.mRadius             = edgeLen;
-	sphere.mPosition           = midPoint;
+	sphere.mRadius   = edgeLen;
+	sphere.mPosition = midPoint;
+
 	Sys::TriIndexList* triList = mMapCollision.mDivider->findTriLists(sphere);
-	Vector3f outPos;
+	Vector3f closestIntersectionPoint;
 	f32 minDist = 1.28E7f;
-	bool check  = false;
-	for (triList; triList; triList = static_cast<Sys::TriIndexList*>(triList->mNext)) {
+
+	bool intersectionFound = false;
+	// Iterate through all the triangles in the list
+	for (; triList; triList = static_cast<Sys::TriIndexList*>(triList->mNext)) {
 		for (int i = 0; i < triList->getNum(); i++) {
+			// Get the triangle
 			Sys::Triangle* tri = mMapCollision.mDivider->mTriangleTable->getTriangle(triList->mObjects[i]);
-			Vector3f interVec;
-			if (info.condition(*tri) && tri->intersect(info.mIntersectEdge, info.mRadius, interVec)) {
-				check       = true;
-				f32 sqrDist = interVec.sqrDistance(startPos);
-				if (interVec.sqrDistance(startPos) < minDist) {
-					outPos        = interVec;
-					info.mNormalY = tri->mTrianglePlane.mNormal.y;
-					minDist       = sqrDist;
+
+			// Check if the triangle intersects with the ray
+			Vector3f currIntersectionPoint;
+			if (info.condition(*tri) && tri->intersect(info.mIntersectEdge, info.mRadius, currIntersectionPoint)) {
+				intersectionFound = true;
+
+				// Check if the intersection point is closer to the start position
+				f32 distance = currIntersectionPoint.sqrDistance(startPos);
+				if (currIntersectionPoint.sqrDistance(startPos) < minDist) {
+					closestIntersectionPoint = currIntersectionPoint;
+					info.mNormalY            = tri->mTrianglePlane.mNormal.y;
+					minDist                  = distance;
 				}
 			}
 		}
 	}
 
-	info.mIntersectPosition = outPos;
-	return check;
+	info.mIntersectPosition = closestIntersectionPoint;
+	return intersectionFound;
 }
 
 /**
