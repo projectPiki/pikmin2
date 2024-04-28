@@ -63,7 +63,7 @@ void LightObj::set(Matrixf& posMtx)
 	Matrixf invMtx, tposeMtx;
 	Vector3f pos;
 
-#ifndef NONMATCHING
+#if MATCHING
 	Vector3f* posPtr = &pos; // INTNS: Required for matching compile.
 #endif
 

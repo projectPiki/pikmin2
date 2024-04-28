@@ -319,7 +319,7 @@ void GeneralEnemyMgr::createEnemyMgr(u8 type, int enemyID, int limit)
 		if ((gameSystem != nullptr) && (gameSystem->mIsInCave == 0)) {
 			limit = 10;
 		} else {
-			limit = 30;
+			limit = TAMAGOMUSHI_GROUP_COUNT;
 		}
 		mgr = new TamagoMushi::Mgr(limit, type);
 		break;
@@ -354,7 +354,7 @@ void GeneralEnemyMgr::createEnemyMgr(u8 type, int enemyID, int limit)
 		if ((gameSystem != nullptr) && (gameSystem->mIsInCave == 0)) {
 			limit = 10;
 		} else {
-			limit = 25;
+			limit = SHIJIMICHOU_GROUP_COUNT;
 		}
 		mgr = new ShijimiChou::Mgr(limit, type);
 		break;

@@ -175,6 +175,9 @@ inline int getEnemyMgrID(int enemyID)
 	return idx;
 }
 
+#define SHIJIMICHOU_GROUP_COUNT 25
+#define TAMAGOMUSHI_GROUP_COUNT 30
+
 #define IS_ENEMY_BOSS(id)                                                                                                        \
 	(id == EnemyTypeID::EnemyID_Queen || id == EnemyTypeID::EnemyID_SnakeCrow || id == EnemyTypeID::EnemyID_KingChappy           \
 	 || id == EnemyTypeID::EnemyID_Damagumo || id == EnemyTypeID::EnemyID_OoPanModoki || id == EnemyTypeID::EnemyID_Houdai       \

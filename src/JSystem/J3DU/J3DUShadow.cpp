@@ -1,7 +1,7 @@
 #include "JSystem/J3DU/J3DUShadow.h"
 #include "JSystem/JUtility/JUTTexture.h"
 
-#ifdef MATCHING
+#if MATCHING
 // Function contents here are all made up for the sake of matching.
 
 /**

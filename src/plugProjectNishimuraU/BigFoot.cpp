@@ -603,7 +603,7 @@ void Obj::createItemAndEnemy()
 			birthArg.mFaceDir = mFaceDir;
 			getThrowupItemPosition(&birthArg.mPosition);
 			Vector3f velocity = Vector3f(0.0f);
-			mititeMgr->createGroupByBigFoot(birthArg, 30, velocity, 100.0f);
+			mititeMgr->createGroupByBigFoot(birthArg, TAMAGOMUSHI_GROUP_COUNT, velocity, 100.0f);
 		}
 	}
 }

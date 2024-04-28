@@ -6,7 +6,7 @@
 
 ARAM::Mgr* gAramMgr;
 
-#ifdef MATCHING
+#if MATCHING
 static const char* SDATA2_FIX = "";
 #endif
 

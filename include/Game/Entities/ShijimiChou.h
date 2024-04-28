@@ -242,7 +242,7 @@ struct Parms : public EnemyParmsBase {
 		mFlyType              = 0;
 		mDoUpdateAnimation    = false;
 		mDoManualFlight       = false;
-		mGroupCount           = 25;
+		mGroupCount           = SHIJIMICHOU_GROUP_COUNT;
 		mCanFall              = true;
 		mUseParmFlyType       = false;
 		mTraceGoalWeight      = 4.0f;

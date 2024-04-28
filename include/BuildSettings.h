@@ -5,6 +5,7 @@
 // something.
 #define LOCALIZED true
 #define MATCHING  true
+#define BUGFIX    false
 
 #define USADEMO1 1
 #define USAFINAL 2

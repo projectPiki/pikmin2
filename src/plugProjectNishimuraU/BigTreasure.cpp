@@ -18,7 +18,7 @@
 namespace Game {
 namespace BigTreasure {
 
-#ifdef MATCHING
+#if MATCHING
 static const int unusedBigTreasureArray[] = { 0, 0, 0 };
 static const char bigTreasureName[]       = "246-BigTreasure";
 #endif

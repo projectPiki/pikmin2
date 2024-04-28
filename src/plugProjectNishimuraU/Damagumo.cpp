@@ -556,7 +556,7 @@ void Obj::createItemAndEnemy()
 			EnemyBirthArg birthArg;
 			birthArg.mFaceDir = mFaceDir;
 			getThrowupItemPosition(&birthArg.mPosition);
-			specMgr->createGroupByBigFoot(birthArg, 25);
+			specMgr->createGroupByBigFoot(birthArg, SHIJIMICHOU_GROUP_COUNT);
 		}
 	}
 }

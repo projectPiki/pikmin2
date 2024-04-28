@@ -14,7 +14,7 @@
 
 namespace PikiAI {
 
-#ifdef MATCHING
+#if MATCHING
 static const char unusedAiBattleName[] = "aiBattle";
 #endif
 
