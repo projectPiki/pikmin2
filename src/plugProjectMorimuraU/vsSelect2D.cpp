@@ -496,12 +496,19 @@ void TVsSelectOnyon::posUpdate(f32 rate)
 			}
 		}
 	}
-	f32 dist = getAngDist();
-	dist     = mAngleTimer * dist;
-	dist     = FABS(dist) > TAU ? TAU : (dist < 0.0f) ? (TAU) : dist;
+
+	f32 dist  = mAngleTimer * getAngDist();
+	f32 clamp = TAU;
+	if (FABS(dist) > clamp) {
+		if (dist > 0.0f) {
+			dist = clamp;
+		} else {
+			dist = -clamp;
+		}
+	}
 
 	mGoalAngle  = roundAng(mGoalAngle + dist);
-	f32 speed   = rate * TVsSelect::mMoveSpeed;
+	f32 speed   = TVsSelect::mMoveSpeed * rate;
 	mAngleDef.x = speed * sinf(mGoalAngle);
 	mAngleDef.y = speed * -cosf(mGoalAngle);
 
@@ -531,229 +538,6 @@ void TVsSelectOnyon::posUpdate(f32 rate)
 		mOnyonPane->show();
 	}
 	mOnyonPane->updateScale(scale);
-
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	fmr      f31, f1
-	lwz      r3, 0x38(r3)
-	addi     r0, r3, 1
-	stw      r0, 0x38(r31)
-	lwz      r0, 0x38(r31)
-	cmpwi    r0, 0
-	ble      lbl_8039A158
-	lfs      f2, lbl_8051F180@sda21(r2)
-	fcmpu    cr0, f2, f31
-	bne      lbl_8039A134
-	lfs      f1, 0x34(r31)
-	lfs      f0, mAngUp__Q28Morimura9TVsSelect@sda21(r13)
-	fadds    f0, f1, f0
-	stfs     f0, 0x34(r31)
-	lfs      f0, 0x34(r31)
-	fcmpo    cr0, f0, f2
-	ble      lbl_8039A158
-	stfs     f2, 0x34(r31)
-	b        lbl_8039A158
-
-lbl_8039A134:
-	lfs      f2, 0x34(r31)
-	lfs      f1, mAngUp__Q28Morimura9TVsSelect@sda21(r13)
-	lfs      f0, lbl_8051F170@sda21(r2)
-	fsubs    f1, f2, f1
-	stfs     f1, 0x34(r31)
-	lfs      f1, 0x34(r31)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8039A158
-	stfs     f0, 0x34(r31)
-
-lbl_8039A158:
-	mr       r3, r31
-	bl       getAngDist__Q28Morimura14TVsSelectOnyonFv
-	lfs      f0, 0x34(r31)
-	lfs      f2, lbl_8051F1C8@sda21(r2)
-	fmuls    f1, f0, f1
-	fabs     f0, f1
-	frsp     f0, f0
-	fcmpo    cr0, f0, f2
-	ble      lbl_8039A194
-	lfs      f0, lbl_8051F170@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8039A190
-	fmr      f1, f2
-	b        lbl_8039A194
-
-lbl_8039A190:
-	fneg     f1, f2
-
-lbl_8039A194:
-	lfs      f0, 0x2c(r31)
-	fadds    f1, f0, f1
-	bl       roundAng__Ff
-	stfs     f1, 0x2c(r31)
-	lfs      f0, lbl_8051F170@sda21(r2)
-	lfs      f1, mMoveSpeed__Q28Morimura9TVsSelect@sda21(r13)
-	lfs      f2, 0x2c(r31)
-	fmuls    f3, f1, f31
-	fcmpo    cr0, f2, f0
-	bge      lbl_8039A1E8
-	lfs      f0, lbl_8051F1B0@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f0, f0
-	b        lbl_8039A20C
-
-lbl_8039A1E8:
-	lfs      f0, lbl_8051F1B4@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-
-lbl_8039A20C:
-	fmuls    f1, f3, f0
-	lfs      f0, lbl_8051F170@sda21(r2)
-	stfs     f1, 0x24(r31)
-	lfs      f2, 0x2c(r31)
-	fcmpo    cr0, f2, f0
-	bge      lbl_8039A228
-	fneg     f2, f2
-
-lbl_8039A228:
-	lfs      f1, lbl_8051F1B4@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	lfs      f0, lbl_8051F1CC@sda21(r2)
-	fmuls    f1, f2, f1
-	fctiwz   f1, f1
-	stfd     f1, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r3, r0
-	lfs      f1, 4(r3)
-	fneg     f1, f1
-	fmuls    f1, f3, f1
-	stfs     f1, 0x28(r31)
-	lfs      f1, 0x34(r31)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8039A270
-	fmr      f1, f0
-
-lbl_8039A270:
-	lfs      f0, lbl_8051F1D0@sda21(r2)
-	fdivs    f31, f0, f1
-	fcmpo    cr0, f31, f0
-	cror     2, 0, 2
-	bne      lbl_8039A29C
-	lfs      f0, lbl_8051F170@sda21(r2)
-	stfs     f0, 0x24(r31)
-	stfs     f0, 0x28(r31)
-	stfs     f0, 0x1c(r31)
-	stfs     f0, 0x20(r31)
-	b        lbl_8039A2D4
-
-lbl_8039A29C:
-	lfs      f1, lbl_8051F1C8@sda21(r2)
-	lfs      f0, 0x2c(r31)
-	fsubs    f1, f1, f0
-	bl       roundAng__Ff
-	lfs      f0, lbl_8051F1D4@sda21(r2)
-	lwz      r3, 8(r31)
-	fmuls    f1, f0, f1
-	lfs      f0, lbl_8051F1C8@sda21(r2)
-	fdivs    f0, f1, f0
-	stfs     f0, 0xc0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8039A2D4:
-	lfs      f0, 0x24(r31)
-	lfs      f6, 0x1c(r31)
-	lfs      f1, 0x28(r31)
-	lfs      f5, 0x20(r31)
-	fsubs    f2, f0, f6
-	lfs      f0, lbl_8051F1D8@sda21(r2)
-	fsubs    f4, f1, f5
-	lfs      f1, lbl_8051F1E0@sda21(r2)
-	fmuls    f2, f2, f0
-	lfs      f3, lbl_8051F1DC@sda21(r2)
-	fmuls    f0, f4, f0
-	fadds    f2, f6, f2
-	fadds    f0, f5, f0
-	stfs     f2, 0x1c(r31)
-	stfs     f0, 0x20(r31)
-	lfs      f2, 0xc(r31)
-	lfs      f0, 0x1c(r31)
-	fadds    f0, f2, f0
-	stfs     f0, 0xc(r31)
-	lfs      f2, 0x10(r31)
-	lfs      f0, 0x20(r31)
-	fadds    f0, f2, f0
-	stfs     f0, 0x10(r31)
-	lfs      f0, 0xc(r31)
-	lfs      f2, 0x10(r31)
-	fadds    f0, f1, f0
-	lwz      r3, 8(r31)
-	fadds    f1, f3, f2
-	stfs     f0, 0xd4(r3)
-	stfs     f1, 0xd8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_8051F1E4@sda21(r2)
-	fcmpo    cr0, f31, f0
-	ble      lbl_8039A36C
-	fmr      f31, f0
-
-lbl_8039A36C:
-	lfs      f0, lbl_8051F1D0@sda21(r2)
-	fcmpo    cr0, f31, f0
-	cror     2, 0, 2
-	bne      lbl_8039A390
-	lwz      r3, 8(r31)
-	li       r0, 0
-	fmr      f31, f0
-	stb      r0, 0xb0(r3)
-	b        lbl_8039A39C
-
-lbl_8039A390:
-	lwz      r3, 8(r31)
-	li       r0, 1
-	stb      r0, 0xb0(r3)
-
-lbl_8039A39C:
-	lwz      r3, 8(r31)
-	stfs     f31, 0xcc(r3)
-	stfs     f31, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	psq_l    f31, 56(r1), 0, qr0
-	lwz      r0, 0x44(r1)
-	lfd      f31, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /**
