@@ -490,8 +490,8 @@ struct NaviNukuAdjustStateArg : public StateArg {
 	}
 
 	f32 mAngleToItem;              // _00
-	Vector3f _04;                  // _04
-	int _10;                       // _10
+	Vector3f mUnusedVelocity;      // _04
+	int mUnusedState;              // _10
 	ItemPikihead::Item* mPikihead; // _14
 	u8 _18;                        // _18
 };
@@ -512,14 +512,14 @@ struct NaviNukuAdjustState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	f32 mAngleToPiki;
-	Vector3f mTargetPosition;
-	bool _20;
-	Vector3f mNaviPosition;
-	f32 mAngleToItem;
-	Vector3f _34;
-	int _40;
-	ItemPikihead::Item* mPikiHead;
+	f32 mAngleToPiki;               // _10
+	Vector3f mTargetPosition;       // _14
+	bool mUnusedBool;               // _20
+	Vector3f mNaviPosition;         // _24
+	f32 mAngleToItem;               // _30
+	Vector3f mUnusedVelocity;       // _34
+	int mUnusedState;               // _40
+	ItemPikihead::Item* mPikiHead;  // _44
 	u8 mIsFollowing;                // _48
 	u8 _49[0x3];                    // _49, unknown/buffer
 	u8 mIsMoving;                   // _4C

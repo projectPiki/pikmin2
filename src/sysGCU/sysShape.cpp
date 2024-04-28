@@ -124,13 +124,13 @@ void Animator::setLastFrame()
  * @note Address: 0x80428F78
  * @note Size: 0x2AC
  */
-void Animator::animate(f32 timeFactor)
+void Animator::animate(f32 deltaTime)
 {
 	if (!mAnimInfo) {
 		return;
 	}
 
-	mTimer += timeFactor;
+	mTimer += deltaTime;
 
 	bool found = false;
 	SysShape::KeyEvent* currentEv;

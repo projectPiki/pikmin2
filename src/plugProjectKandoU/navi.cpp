@@ -820,10 +820,14 @@ void Navi::setupNukuAdjustArg(ItemPikihead::Item* item, NaviNukuAdjustStateArg& 
 	Vector3f direction = item->getPosition() - getPosition();
 	arg.mAngleToItem   = angDist(roundAng(pikmin2_atan2f(direction.x, direction.z)), mFaceDir) / 10.0f;
 
-	f32 length    = pikmin2_sqrtf(direction.sqrMagnitude());
-	f32 norm      = 1.0f / length;
-	arg._04       = direction * (3.0003002f * (norm * (length - 15.0f)));
-	arg._10       = 2;
+	f32 distance = pikmin2_sqrtf(direction.sqrMagnitude());
+	f32 norm     = 1.0f / distance;
+
+	// These two lines are unused
+	// Minimum distance to item is 15.0f
+	arg.mUnusedVelocity = direction * (3.0003002f * (norm * (distance - 15.0f)));
+	arg.mUnusedState    = 2;
+
 	arg.mPikihead = item;
 }
 
@@ -834,10 +838,10 @@ void Navi::setupNukuAdjustArg(ItemPikihead::Item* item, NaviNukuAdjustStateArg& 
 bool Navi::hasDope(int sprayType)
 {
 	if (gameSystem->isVersusMode()) {
-		return (mSprayCounts[sprayType] > 0); // signed to generate andc
-	} else {
-		return playData->hasDope(sprayType);
+		return mSprayCounts[sprayType] > 0;
 	}
+
+	return playData->hasDope(sprayType);
 }
 
 /**
@@ -848,9 +852,9 @@ int Navi::getDopeCount(int sprayType)
 {
 	if (gameSystem->isVersusMode()) {
 		return (mSprayCounts[sprayType]);
-	} else {
-		return playData->getDopeCount(sprayType);
 	}
+
+	return playData->getDopeCount(sprayType);
 }
 
 /**
@@ -860,10 +864,10 @@ int Navi::getDopeCount(int sprayType)
 void Navi::useDope(int sprayType)
 {
 	if (gameSystem->isVersusMode()) {
-		(mSprayCounts[sprayType]--);
-	} else {
-		playData->useDope(sprayType);
+		mSprayCounts[sprayType]--;
 	}
+
+	playData->useDope(sprayType);
 }
 
 /**
@@ -1135,8 +1139,10 @@ void Navi::platCallback(PlatEvent& plat)
 			NaviFlickArg arg(obj, mag, naviMgr->mNaviParms->mNaviParms.mElectricGateDamage());
 			transit(NSID_Flick, &arg);
 		}
+
 		return;
 	}
+
 	if (plat.mInstance->mId.match('finl', '*')) {
 		mCPlateMgr->shrink();
 	}
@@ -1338,19 +1344,25 @@ void Navi::doAnimation()
 	if (isMovieMotion()) {
 		f32 time = sys->mDeltaTime;
 		updateCell();
+
 		AILODParm parm;
 		parm.mFar   = 0.02f;
 		parm.mClose = 0.015f;
 		updateLOD(parm);
+
 		mModel->clearAnimatorAll();
-		f32 calc = time * 30.0f;
-		mAnimator.mSelfAnimator.animate(calc);
-		mAnimator.mBoundAnimator.animate(calc);
+
+		f32 animTime = time * 30.0f;
+		mAnimator.mSelfAnimator.animate(animTime);
+		mAnimator.mBoundAnimator.animate(animTime);
+
 		updateTrMatrix();
+
 		SysShape::Model* model                                        = mModel;
 		model->mJ3dModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = mAnimator.mBoundAnimator.getCalc();
 		PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 		mModel->mJ3dModel->calc();
+
 		mCollTree->update();
 		updateCursor();
 	} else {

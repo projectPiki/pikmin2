@@ -2921,12 +2921,12 @@ void NaviNukuAdjustState::init(Navi* navi, StateArg* stateArg)
 
 	NaviNukuAdjustStateArg* arg = static_cast<NaviNukuAdjustStateArg*>(stateArg);
 
-	mAngleToItem = arg->mAngleToItem;
-	_34          = arg->_04;
-	_40          = arg->_10;
-	mPikiHead    = arg->mPikihead;
-	mIsFollowing = arg->_18;
-	_20          = 0;
+	mAngleToItem    = arg->mAngleToItem;
+	mUnusedVelocity = arg->mUnusedVelocity;
+	mUnusedState    = arg->mUnusedState;
+	mPikiHead       = arg->mPikihead;
+	mIsFollowing    = arg->_18;
+	mUnusedBool     = 0;
 
 	Vector3f diff = arg->mPikihead->getPosition() - navi->getPosition();
 	mAngleToPiki  = JMAAtan2Radian(diff.x, diff.z);
