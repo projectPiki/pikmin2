@@ -1661,7 +1661,7 @@ bool ShapeMapMgr::findRayIntersection(Sys::RayIntersectInfo& info)
 	Vector3f endPos   = info.mIntersectEdge.mEndPos;
 	f32 edgeLen       = startPos.distance(endPos);
 
-	Vector3f midPoint = (startPos + endPos) * 0.5f;
+	Vector3f midPoint = (startPos + info.mIntersectEdge.mEndPos) / 2;
 	Sys::Sphere sphere;
 	sphere.mRadius             = edgeLen;
 	sphere.mPosition           = midPoint;
@@ -1676,7 +1676,7 @@ bool ShapeMapMgr::findRayIntersection(Sys::RayIntersectInfo& info)
 			if (info.condition(*tri) && tri->intersect(info.mIntersectEdge, info.mRadius, interVec)) {
 				check       = true;
 				f32 sqrDist = interVec.sqrDistance(startPos);
-				if (sqrDist < minDist) {
+				if (interVec.sqrDistance(startPos) < minDist) {
 					outPos        = interVec;
 					info.mNormalY = tri->mTrianglePlane.mNormal.y;
 					minDist       = sqrDist;
@@ -1687,155 +1687,6 @@ bool ShapeMapMgr::findRayIntersection(Sys::RayIntersectInfo& info)
 
 	info.mIntersectPosition = outPos;
 	return check;
-	/*
-	stwu     r1, -0xc0(r1)
-	mflr     r0
-	stw      r0, 0xc4(r1)
-	stfd     f31, 0xb0(r1)
-	psq_st   f31, 184(r1), 0, qr0
-	stfd     f30, 0xa0(r1)
-	psq_st   f30, 168(r1), 0, qr0
-	stfd     f29, 0x90(r1)
-	psq_st   f29, 152(r1), 0, qr0
-	stfd     f28, 0x80(r1)
-	psq_st   f28, 136(r1), 0, qr0
-	stfd     f27, 0x70(r1)
-	psq_st   f27, 120(r1), 0, qr0
-	stfd     f26, 0x60(r1)
-	psq_st   f26, 104(r1), 0, qr0
-	stfd     f25, 0x50(r1)
-	psq_st   f25, 88(r1), 0, qr0
-	stmw     r25, 0x34(r1)
-	mr       r26, r4
-	lfs      f0, lbl_8051886C@sda21(r2)
-	lfs      f30, 4(r4)
-	mr       r25, r3
-	lfs      f6, 0x10(r4)
-	lfs      f31, 0(r4)
-	fsubs    f1, f30, f6
-	lfs      f7, 0xc(r4)
-	lfs      f29, 8(r4)
-	lfs      f5, 0x14(r4)
-	fsubs    f3, f31, f7
-	fmuls    f1, f1, f1
-	fsubs    f2, f29, f5
-	fmadds   f1, f3, f3, f1
-	fmuls    f2, f2, f2
-	fadds    f4, f2, f1
-	fcmpo    cr0, f4, f0
-	ble      lbl_80163E6C
-	ble      lbl_80163E70
-	frsqrte  f0, f4
-	fmuls    f4, f0, f4
-	b        lbl_80163E70
-
-lbl_80163E6C:
-	fmr      f4, f0
-
-lbl_80163E70:
-	fadds    f2, f31, f7
-	lfs      f3, lbl_805188C4@sda21(r2)
-	fadds    f1, f30, f6
-	stfs     f4, 0x20(r1)
-	fadds    f0, f29, f5
-	addi     r4, r1, 0x14
-	fmuls    f2, f2, f3
-	fmuls    f1, f1, f3
-	fmuls    f0, f0, f3
-	stfs     f2, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	lwz      r3, 0x50(r25)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lfs      f25, lbl_805188C8@sda21(r2)
-	mr       r29, r3
-	li       r28, 0
-	b        lbl_80163F7C
-
-lbl_80163EC4:
-	li       r27, 0
-	li       r30, 0
-	b        lbl_80163F6C
-
-lbl_80163ED0:
-	lwz      r4, 0x24(r29)
-	mr       r3, r26
-	lwz      r5, 0x50(r25)
-	lwzx     r0, r4, r30
-	lwz      r4, 0x1c(r5)
-	mulli    r0, r0, 0x60
-	lwz      r4, 0x24(r4)
-	add      r31, r4, r0
-	mr       r4, r31
-	bl       condition__Q23Sys16RayIntersectInfoFRQ23Sys8Triangle
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80163F64
-	lfs      f1, 0x18(r26)
-	mr       r3, r31
-	mr       r4, r26
-	addi     r5, r1, 8
-	bl       "intersect__Q23Sys8TriangleFRQ23Sys4EdgefR10Vector3<f>"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80163F64
-	lfs      f4, 0xc(r1)
-	li       r28, 1
-	lfs      f3, 8(r1)
-	fsubs    f0, f4, f30
-	lfs      f5, 0x10(r1)
-	fsubs    f1, f3, f31
-	fsubs    f2, f5, f29
-	fmuls    f0, f0, f0
-	fmadds   f0, f1, f1, f0
-	fmadds   f1, f2, f2, f0
-	fcmpo    cr0, f1, f25
-	bge      lbl_80163F64
-	lfs      f0, 0x10(r31)
-	fmr      f28, f3
-	fmr      f27, f4
-	fmr      f26, f5
-	stfs     f0, 0x48(r26)
-	fmr      f25, f1
-
-lbl_80163F64:
-	addi     r30, r30, 4
-	addi     r27, r27, 1
-
-lbl_80163F6C:
-	lwz      r0, 0x1c(r29)
-	cmpw     r27, r0
-	blt      lbl_80163ED0
-	lwz      r29, 4(r29)
-
-lbl_80163F7C:
-	cmplwi   r29, 0
-	bne      lbl_80163EC4
-	stfs     f28, 0x34(r26)
-	mr       r3, r28
-	stfs     f27, 0x38(r26)
-	stfs     f26, 0x3c(r26)
-	psq_l    f31, 184(r1), 0, qr0
-	lfd      f31, 0xb0(r1)
-	psq_l    f30, 168(r1), 0, qr0
-	lfd      f30, 0xa0(r1)
-	psq_l    f29, 152(r1), 0, qr0
-	lfd      f29, 0x90(r1)
-	psq_l    f28, 136(r1), 0, qr0
-	lfd      f28, 0x80(r1)
-	psq_l    f27, 120(r1), 0, qr0
-	lfd      f27, 0x70(r1)
-	psq_l    f26, 104(r1), 0, qr0
-	lfd      f26, 0x60(r1)
-	psq_l    f25, 88(r1), 0, qr0
-	lfd      f25, 0x50(r1)
-	lmw      r25, 0x34(r1)
-	lwz      r0, 0xc4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xc0
-	blr
-	*/
 }
 
 /**
