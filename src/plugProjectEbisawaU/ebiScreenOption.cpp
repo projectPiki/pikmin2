@@ -238,7 +238,7 @@ bool TOption::doUpdateStateOpen()
 	mMainScreen->update();
 
 #if VERNUM == 1 // demo
-	_180[0]->hide();
+	mOptionPanes[0]->hide();
 #endif
 
 	if (mAnimOpenScreen.isFinish() && isClosed()) {
