@@ -16,11 +16,13 @@ static f32 Unit01[] = { 0.0f, 1.0f };
  * @note Address: 0x8005EE78
  * @note Size: 0xF0
  */
-void J3DCalcBBoardMtx(Mtx mtx)
+void J3DCalcBBoardMtx(register Mtx mtx)
 {
-	f32 x = (mtx[0][0] * mtx[0][0]) + (mtx[1][0] * mtx[1][0]) + (mtx[2][0] * mtx[2][0]);
-	f32 y = (mtx[0][1] * mtx[0][1]) + (mtx[1][1] * mtx[1][1]) + (mtx[2][1] * mtx[2][1]);
-	f32 z = (mtx[0][2] * mtx[0][2]) + (mtx[1][2] * mtx[1][2]) + (mtx[2][2] * mtx[2][2]);
+	f32 x, y, z;
+
+	x = SQUARE(mtx[0][0]) + SQUARE(mtx[1][0]) + SQUARE(mtx[2][0]);
+	y = SQUARE(mtx[0][1]) + SQUARE(mtx[1][1]) + SQUARE(mtx[2][1]);
+	z = SQUARE(mtx[0][2]) + SQUARE(mtx[1][2]) + SQUARE(mtx[2][2]);
 	if (x > 0.0f) {
 		x = JMAFastSqrt(x);
 	}
@@ -31,92 +33,22 @@ void J3DCalcBBoardMtx(Mtx mtx)
 		z = JMAFastSqrt(z);
 	}
 
+	register f32 zero = 0.0f;
+
+// zero out gaps of zeroes
+#ifdef __MWERKS__ // clang-format off
+    asm {
+        psq_st zero, 0x04(mtx), 0, 0
+      
+        psq_st zero, 0x20(mtx), 0, 0
+    }
+#endif // clang-format on
+
 	mtx[0][0] = x;
-	mtx[1][0] = 0.0f;
+	mtx[1][0] = zero;
 	mtx[1][1] = y;
-	mtx[1][2] = 0.0f;
+	mtx[1][2] = zero;
 	mtx[2][2] = z;
-
-	/*
-	lfs      f2, 0(r3)
-	lfs      f1, 0x10(r3)
-	fmuls    f2, f2, f2
-	lfs      f3, 0x20(r3)
-	fmuls    f1, f1, f1
-	lfs      f5, 4(r3)
-	lfs      f4, 0x14(r3)
-	fmuls    f7, f3, f3
-	lfs      f3, 8(r3)
-	fadds    f6, f2, f1
-	lfs      f2, 0x18(r3)
-	fmuls    f5, f5, f5
-	fmuls    f4, f4, f4
-	lfs      f8, 0x24(r3)
-	lfs      f9, 0x28(r3)
-	fmuls    f3, f3, f3
-	lfs      f1, lbl_80516998@sda21(r2)
-	fmuls    f2, f2, f2
-	fadds    f7, f7, f6
-	fmuls    f6, f8, f8
-	fadds    f5, f5, f4
-	fmuls    f4, f9, f9
-	fadds    f2, f3, f2
-	fcmpo    cr0, f7, f1
-	fadds    f3, f6, f5
-	fadds    f2, f4, f2
-	ble      lbl_8005EEFC
-	ble      lbl_8005EEF4
-	frsqrte  f1, f7
-	fmuls    f1, f1, f7
-	b        lbl_8005EEF8
-
-lbl_8005EEF4:
-	fmr      f1, f7
-
-lbl_8005EEF8:
-	fmr      f7, f1
-
-lbl_8005EEFC:
-	lfs      f1, lbl_80516998@sda21(r2)
-	fcmpo    cr0, f3, f1
-	ble      lbl_8005EF20
-	ble      lbl_8005EF18
-	frsqrte  f1, f3
-	fmuls    f1, f1, f3
-	b        lbl_8005EF1C
-
-lbl_8005EF18:
-	fmr      f1, f3
-
-lbl_8005EF1C:
-	fmr      f3, f1
-
-lbl_8005EF20:
-	lfs      f1, lbl_80516998@sda21(r2)
-	fcmpo    cr0, f2, f1
-	ble      lbl_8005EF44
-	ble      lbl_8005EF3C
-	frsqrte  f1, f2
-	fmuls    f1, f1, f2
-	b        lbl_8005EF40
-
-lbl_8005EF3C:
-	fmr      f1, f2
-
-lbl_8005EF40:
-	fmr      f2, f1
-
-lbl_8005EF44:
-	lfs      f0, lbl_80516998@sda21(r2)
-	psq_st   f0, 4(r3), 0, qr0
-	psq_st   f0, 32(r3), 0, qr0
-	stfs     f7, 0(r3)
-	stfs     f0, 0x10(r3)
-	stfs     f3, 0x14(r3)
-	stfs     f0, 0x18(r3)
-	stfs     f2, 0x28(r3)
-	blr
-	*/
 }
 
 /**
@@ -125,8 +57,8 @@ lbl_8005EF44:
  */
 void J3DCalcYBBoardMtx(Mtx mtx)
 {
-	f32 x = (mtx[0][0] * mtx[0][0]) + (mtx[1][0] * mtx[1][0]) + (mtx[2][0] * mtx[2][0]);
-	f32 z = (mtx[0][2] * mtx[0][2]) + (mtx[1][2] * mtx[1][2]) + (mtx[2][2] * mtx[2][2]);
+	f32 x = SQUARE(mtx[0][0]) + SQUARE(mtx[1][0]) + SQUARE(mtx[2][0]);
+	f32 z = SQUARE(mtx[0][2]) + SQUARE(mtx[1][2]) + SQUARE(mtx[2][2]);
 
 	if (x > 0.0f) {
 		x = JMAFastSqrt(x);
