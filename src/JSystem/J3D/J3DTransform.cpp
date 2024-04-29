@@ -22,13 +22,13 @@ void J3DCalcBBoardMtx(Mtx mtx)
 	f32 y = (mtx[0][1] * mtx[0][1]) + (mtx[1][1] * mtx[1][1]) + (mtx[2][1] * mtx[2][1]);
 	f32 z = (mtx[0][2] * mtx[0][2]) + (mtx[1][2] * mtx[1][2]) + (mtx[2][2] * mtx[2][2]);
 	if (x > 0.0f) {
-		x *= sqrtf(x);
+		x = JMAFastSqrt(x);
 	}
 	if (y > 0.0f) {
-		y *= sqrtf(y);
+		y = JMAFastSqrt(y);
 	}
 	if (z > 0.0f) {
-		z *= sqrtf(z);
+		z = JMAFastSqrt(z);
 	}
 
 	mtx[0][0] = x;
@@ -129,10 +129,10 @@ void J3DCalcYBBoardMtx(Mtx mtx)
 	f32 z = (mtx[0][2] * mtx[0][2]) + (mtx[1][2] * mtx[1][2]) + (mtx[2][2] * mtx[2][2]);
 
 	if (x > 0.0f) {
-		x *= sqrtf(x);
+		x = JMAFastSqrt(x);
 	}
 	if (z > 0.0f) {
-		z *= sqrtf(z);
+		z = JMAFastSqrt(z);
 	}
 
 	Vec vec = { 0.0f, -mtx[2][1], mtx[1][1] };
@@ -145,99 +145,6 @@ void J3DCalcYBBoardMtx(Mtx mtx)
 	mtx[1][2] = vec.y * z;
 	mtx[2][0] = 0.0f;
 	mtx[2][2] = vec.z * z;
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stfd     f30, 0x20(r1)
-	psq_st   f30, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lfs      f0, lbl_80516998@sda21(r2)
-	lfs      f2, 0(r3)
-	lfs      f1, 0x10(r3)
-	fmuls    f2, f2, f2
-	lfs      f3, 0x20(r3)
-	fmuls    f1, f1, f1
-	lfs      f6, 8(r3)
-	lfs      f5, 0x18(r3)
-	fmuls    f4, f3, f3
-	fadds    f3, f2, f1
-	lfs      f7, 0x28(r3)
-	fmuls    f2, f6, f6
-	fmuls    f1, f5, f5
-	fadds    f31, f4, f3
-	fmuls    f3, f7, f7
-	fadds    f1, f2, f1
-	fcmpo    cr0, f31, f0
-	fadds    f30, f3, f1
-	ble      lbl_8005EFF0
-	ble      lbl_8005EFE8
-	frsqrte  f0, f31
-	fmuls    f0, f0, f31
-	b        lbl_8005EFEC
-
-lbl_8005EFE8:
-	fmr      f0, f31
-
-lbl_8005EFEC:
-	fmr      f31, f0
-
-lbl_8005EFF0:
-	lfs      f0, lbl_80516998@sda21(r2)
-	fcmpo    cr0, f30, f0
-	ble      lbl_8005F014
-	ble      lbl_8005F00C
-	frsqrte  f0, f30
-	fmuls    f0, f0, f30
-	b        lbl_8005F010
-
-lbl_8005F00C:
-	fmr      f0, f30
-
-lbl_8005F010:
-	fmr      f30, f0
-
-lbl_8005F014:
-	lis      r4, lbl_8047889C@ha
-	addi     r3, r1, 8
-	addi     r7, r4, lbl_8047889C@l
-	lwz      r6, 0(r7)
-	mr       r4, r3
-	lwz      r5, 4(r7)
-	lwz      r0, 8(r7)
-	stw      r6, 8(r1)
-	stw      r5, 0xc(r1)
-	stw      r0, 0x10(r1)
-	lfs      f0, 0x24(r31)
-	fneg     f0, f0
-	stfs     f0, 0xc(r1)
-	lfs      f0, 0x14(r31)
-	stfs     f0, 0x10(r1)
-	bl       PSVECNormalize
-	stfs     f31, 0(r31)
-	lfs      f1, lbl_80516998@sda21(r2)
-	stfs     f1, 8(r31)
-	stfs     f1, 0x10(r31)
-	lfs      f0, 0xc(r1)
-	fmuls    f0, f0, f30
-	stfs     f0, 0x18(r31)
-	stfs     f1, 0x20(r31)
-	lfs      f0, 0x10(r1)
-	fmuls    f0, f0, f30
-	stfs     f0, 0x28(r31)
-	psq_l    f31, 56(r1), 0, qr0
-	lfd      f31, 0x30(r1)
-	psq_l    f30, 40(r1), 0, qr0
-	lfd      f30, 0x20(r1)
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /**

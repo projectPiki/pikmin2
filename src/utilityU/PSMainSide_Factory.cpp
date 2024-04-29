@@ -848,12 +848,12 @@ void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 					builder.mCurrentId = link;
 				}
 				list->append(link);
-				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_SEMI_KUMA02); // 'minmin cicada'
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_SEMI_KUMA02); // 'bear cicada'
 				if (!list->getFirst()) {
 					builder.mCurrentId = link;
 				}
 				list->append(link);
-				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_SEMI_MINMIN02); // 'niinii cicada'
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_SEMI_MINMIN02); // 'minmin cicada'
 				if (!list->getFirst()) {
 					builder.mCurrentId = link;
 				}
