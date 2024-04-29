@@ -68,11 +68,11 @@ struct BaseGameSection : public BaseHIOSection {
 
 		// _00		= VTBL
 		// _00-_198	= LookAtCamera
-		f32 mAngleX;             // _198, angleX?
-		f32 mAngleY;             // _19C, angleY?
-		f32 _1A0;                // _1A0, cameraDistance?
-		f32 _1A4;                // _1A4
-		f32 _1A8;                // _1A8, angle?
+		f32 mAngleX;             // _198
+		f32 mAngleY;             // _19C
+		f32 mTargetDistance;     // _1A0
+		f32 mUnusedDist;         // _1A4, set to same as above, not used for anything
+		f32 mTargetFrontAngle;   // _1A8
 		Controller* mController; // _1AC
 	};
 
@@ -232,7 +232,7 @@ struct BaseGameSection : public BaseHIOSection {
 
 	// _00 		= VTBL
 	// _00-_48 	= BaseHIOSection
-	// should there not be another 0x4 here in USA (not demo)? ...
+	// All the remaining unnamed variables seem to be unused.
 	u32 mMoney;                                               // _48
 	u32 _4C;                                                  // _4C
 	BlendCamera* mBlendCamera;                                // _50
@@ -245,7 +245,7 @@ struct BaseGameSection : public BaseHIOSection {
 	WipeInFader* mWipeInFader;                                // _D4
 	WipeOutFader* mWipeOutFader;                              // _D8
 	WipeOutInFader* mWipeOutInFader;                          // _DC
-	u32 _E0;                                                  // _E0
+	u32 mUnusedVal;                                           // _E0
 	int mPrevNaviIdx;                                         // _E4
 	f32 mSecondViewportHeight;                                // _E8
 	f32 mSplit;                                               // _EC
@@ -260,7 +260,7 @@ struct BaseGameSection : public BaseHIOSection {
 	Controller* mControllerP2;                                // _110
 	int mPlayerMode;                                          // _114
 	Splitter* mSplitter;                                      // _118
-	u8 _11C;                                                  // _11C
+	u8 mUnusedFlag;                                           // _11C, true by default, set false in single and vs game
 	int _120;                                                 // _120
 	u32 _124;                                                 // _124
 	GameLightMgr* mLightMgr;                                  // _128
@@ -270,7 +270,7 @@ struct BaseGameSection : public BaseHIOSection {
 	Viewport* mTreasureGetViewport;                           // _138
 	Creature* mDraw2DCreature;                                // _13C
 	f32 mDraw2DCreatureScale;                                 // _140
-	f32 _144;                                                 // _144
+	f32 mUnused2DCreatureVal;                                 // _144
 	Delegate1<BaseGameSection, Rectf&>* mKanteiDelegate;      // _148
 	ZoomCamera* mTreasureZoomCamera;                          // _14C
 	u32 _150;                                                 // _150
@@ -279,10 +279,10 @@ struct BaseGameSection : public BaseHIOSection {
 	int mXfbBoundsX;                                          // _15C
 	int mXfbBoundsY;                                          // _160
 	u8 mXfbFlags;                                             // _164
-	JUTTexture* _168;                                         // _168
-	int mTexData1;                                            // _16C
-	int _170;                                                 // _170
-	                                                          // u8 _174[0xA0];                                        // _174
+	JUTTexture* mXfbTexture2d;                                // _168
+	int mXfbBounds2dX;                                        // _16C
+	int mXfbBounds2dY;                                        // _170
+
 // not sure where this goes, but it goes after mTexData1 and before mContainer1 (VsGameSection).
 #if BUILDTARGET == USADEMO1
 	u8 _DemoPadding3[0x4];

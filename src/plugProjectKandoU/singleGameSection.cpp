@@ -271,11 +271,11 @@ void SingleGameSection::onInit()
 
 	System::assert_fragmentation("SGS::onInit");
 
-	mWeatherEfx = nullptr;
-	_194        = false;
+	mWeatherEfx   = nullptr;
+	mIsExitingMap = false;
 	clearCaveMenus();
 
-	_11C              = 0;
+	mUnusedFlag       = false;
 	mLoadGameCallback = new Delegate<Game::SingleGameSection>(this, setupFloatMemory);
 
 	mFsm = new SingleGame::FSM;
@@ -443,7 +443,7 @@ void SingleGameSection::onClearHeap()
  * @note Address: 0x80153410
  * @note Size: 0xC
  */
-void SingleGameSection::onStartHeap() { _194 = 0; }
+void SingleGameSection::onStartHeap() { mIsExitingMap = 0; }
 
 /**
  * @note Address: 0x8015341C
@@ -689,7 +689,7 @@ void SingleGameSection::openCaveInMenu(ItemCave::Item* cave, int naviID)
 		isSC = true;
 	}
 
-	if (!_194 && !(mOpenMenuFlags & 1)) {
+	if (!mIsExitingMap && !(mOpenMenuFlags & 1)) {
 		mCaveIndex = id;
 		og::Screen::DispMemberAnaDemo disp;
 		disp.mUnusedValue    = 0;
@@ -734,7 +734,7 @@ void SingleGameSection::openCaveInMenu(ItemCave::Item* cave, int naviID)
  */
 void SingleGameSection::openCaveMoreMenu(ItemHole::Item* hole, Controller* input)
 {
-	if (!_194 && !(mOpenMenuFlags & 2)) {
+	if (!mIsExitingMap && !(mOpenMenuFlags & 2)) {
 		og::Screen::DispMemberCaveMore disp;
 		disp.mCaveID = mCaveIndex;
 		int pikis    = GameStat::mePikis;
@@ -773,7 +773,7 @@ void SingleGameSection::saveCaveMore() { pikiMgr->caveSaveAllPikmins(false, fals
  */
 void SingleGameSection::openKanketuMenu(ItemBigFountain::Item* geyser, Controller*)
 {
-	if (!_194 && !(mOpenMenuFlags & 4)) {
+	if (!mIsExitingMap && !(mOpenMenuFlags & 4)) {
 		og::Screen::DispMemberKanketuMenu disp;
 		int pikis = GameStat::mePikis;
 		if (pikis > 0) {
@@ -874,7 +874,7 @@ bool SingleGameSection::updateCaveMenus()
  */
 void SingleGameSection::goNextFloor(ItemHole::Item* hole)
 {
-	_194 = true;
+	mIsExitingMap = true;
 	mCurrentState->onNextFloor(this, hole);
 }
 
@@ -886,8 +886,8 @@ void SingleGameSection::goCave(ItemCave::Item* cave)
 {
 	strcpy(mCaveFilename, cave->mCaveFilename);
 	mCaveID.setID(cave->mCaveID.getID());
-	_194    = true;
-	mInCave = true;
+	mIsExitingMap = true;
+	mInCave       = true;
 	mCurrentState->onHoleIn(this, cave);
 }
 
@@ -897,8 +897,8 @@ void SingleGameSection::goCave(ItemCave::Item* cave)
  */
 void SingleGameSection::goMainMap(ItemBigFountain::Item* fountain)
 {
-	_194    = true;
-	mInCave = false;
+	mIsExitingMap = true;
+	mInCave       = false;
 	mCurrentState->onFountainReturn(this, fountain);
 }
 

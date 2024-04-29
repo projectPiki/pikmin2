@@ -29,7 +29,7 @@ struct InitArg : public ItemInitArg {
 		mVelocity        = Vector3f::zero;
 		mIsAlreadyBuried = false;
 		mHeadType        = Leaf;
-		_1C              = -1.0f;
+		mAutopluckTimer  = -1.0f;
 	}
 
 	inline InitArg(EPikiKind pikiKind, Vector3f& vel)
@@ -38,7 +38,7 @@ struct InitArg : public ItemInitArg {
 		mVelocity        = vel;
 		mIsAlreadyBuried = false;
 		mHeadType        = Leaf;
-		_1C              = -1.0f;
+		mAutopluckTimer  = -1.0f;
 	}
 
 	inline InitArg(EPikiKind pikiKind, Vector3f& vel, bool isAlreadyBuried, int headType, f32 p5)
@@ -47,7 +47,7 @@ struct InitArg : public ItemInitArg {
 		mVelocity        = vel;
 		mIsAlreadyBuried = isAlreadyBuried;
 		mHeadType        = headType;
-		_1C              = -1.0f;
+		mAutopluckTimer  = -1.0f;
 	}
 
 	virtual const char* getName() { return "ItemPikiHead::InitArg"; } // _08 (weak)
@@ -57,7 +57,7 @@ struct InitArg : public ItemInitArg {
 	Vector3f mVelocity;    // _08
 	bool mIsAlreadyBuried; // _14
 	int mHeadType;         // _18
-	f32 _1C;               // _1C
+	f32 mAutopluckTimer;   // _1C
 };
 
 struct FSM : public ItemFSM<Item> {
@@ -219,7 +219,7 @@ struct Item : public FSMItem<Item, FSM, State> {
 	// _00      = VTBL
 	// _00-_1E0 = FSMItem
 	efx::TPkEffectTane* mEfxTane; // _1E0
-	f32 _1E4;                     // _1E4
+	f32 mAutopluckedTimer;        // _1E4
 	Vector3f mEfxPosition;        // _1E8
 	u16 mColor;                   // _1F4
 	u16 mHeadType;                // _1F6

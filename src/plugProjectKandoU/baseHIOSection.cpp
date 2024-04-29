@@ -28,7 +28,7 @@ BaseHIOSection::BaseHIOSection(JKRHeap* heap)
 	u32 totalFreeSize = JKRHeap::sCurrentHeap->getTotalFreeSize();
 
 	JUT_ASSERTLINE(314, freeSize == totalFreeSize, "fragmentation occurred : after sound\n");
-	mPlayer4Controller = new Controller(Controller::PORT_3);
+	mDebugController = new Controller(Controller::PORT_3);
 }
 
 /**
@@ -44,8 +44,8 @@ BaseHIOSection::~BaseHIOSection()
 
 	mRootNode = nullptr;
 
-	delete mPlayer4Controller;
-	mPlayer4Controller = nullptr;
+	delete mDebugController;
+	mDebugController = nullptr;
 }
 
 /**

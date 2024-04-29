@@ -22,9 +22,9 @@ static const char unusedName[] = "routeMgr";
  * @note Address: 0x80172520
  * @note Size: 0x14
  */
-WayPointIterator::WayPointIterator(WayPoint* wp, bool r5)
+WayPointIterator::WayPointIterator(WayPoint* wp, bool max)
     : mWayPoint(wp)
-    , _08(r5)
+    , mMaxIndexType(max)
 {
 	mIndex = 0;
 }
@@ -55,7 +55,7 @@ void WayPointIterator::next()
  */
 bool WayPointIterator::isDone()
 {
-	if (_08) {
+	if (mMaxIndexType) {
 		if (mIndex >= 16) {
 			return true;
 		}

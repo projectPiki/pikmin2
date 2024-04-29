@@ -190,7 +190,7 @@ void PathNode::initNode()
 	// UNUSED FUNCTION
 	mPrevious = nullptr;
 	mSibling  = nullptr;
-	_1C       = nullptr;
+	mRootNode = nullptr;
 	mParent   = nullptr;
 	mChild    = nullptr;
 	mNext     = nullptr;
@@ -203,7 +203,7 @@ void PathNode::initNode()
 void PathNode::add(Game::PathNode* newNode)
 {
 	// UNUSED FUNCTION
-	if (_1C != nullptr) {
+	if (mRootNode != nullptr) {
 		PathNode* node;
 		for (node = mSibling; node->mSibling != nullptr;) {
 			node = node->mSibling;
@@ -211,7 +211,7 @@ void PathNode::add(Game::PathNode* newNode)
 		node->mSibling     = newNode;
 		newNode->mPrevious = node;
 	} else {
-		_1C = newNode;
+		mRootNode = newNode;
 	}
 }
 
@@ -332,8 +332,8 @@ void AStarPathfinder::initsearch(Game::AStarContext* context)
 	s16 startID = context->mStartWPID;
 	s16 endID   = context->mEndWPID;
 	setContext(context);
-	mContext->_08[0].initNode();
-	mContext->_08[1].initNode();
+	mContext->mNodeLists[0].initNode();
+	mContext->mNodeLists[1].initNode();
 	mContext->mUsedNodeCount = 0;
 	PathNode* node           = mContext->getNode(startID);
 	node->mWpIndex           = startID;
@@ -341,8 +341,8 @@ void AStarPathfinder::initsearch(Game::AStarContext* context)
 	node->mDistanceToEnd     = estimate(startID, endID);
 	node->mChild             = nullptr;
 	node->_22                = 0;
-	mContext->_08[0].add(node);
-	node->mParent = mContext->_08 + 0;
+	mContext->mNodeLists[0].add(node);
+	node->mParent = mContext->mNodeLists + 0;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -475,10 +475,10 @@ int AStarPathfinder::search(Game::AStarContext* context, int maxIterations, Game
 {
 	mContext   = context;
 	s16 endIdx = context->mEndWPID;
-	for (int i = maxIterations; mContext->_08[0]._1C && i > 0; i--) {
+	for (int i = maxIterations; mContext->mNodeLists[0].mRootNode && i > 0; i--) {
 		f32 minDist          = 1280000.0f;
 		PathNode* targetNode = nullptr;
-		for (PathNode* node = mContext->_08[0]._1C; node; node = node->mSibling) {
+		for (PathNode* node = mContext->mNodeLists[0].mRootNode; node; node = node->mSibling) {
 			f32 dist = node->_00 + node->mDistanceToEnd;
 			if (dist < minDist) {
 				minDist    = dist;
@@ -489,7 +489,7 @@ int AStarPathfinder::search(Game::AStarContext* context, int maxIterations, Game
 		if (targetNode) {
 			PathNode* child = targetNode->mParent;
 			if (child) {
-				PathNode* node     = child->_1C;
+				PathNode* node     = child->mRootNode;
 				PathNode* prevNode = nullptr;
 				while (node) {
 					if (node == targetNode) {
@@ -503,7 +503,7 @@ int AStarPathfinder::search(Game::AStarContext* context, int maxIterations, Game
 							targetNode->mSibling  = nullptr;
 							targetNode->mParent   = nullptr;
 						} else {
-							child->_1C = node->mSibling;
+							child->mRootNode = node->mSibling;
 							if (node->mSibling) {
 								node->mSibling->mPrevious = nullptr;
 							}
@@ -541,7 +541,7 @@ int AStarPathfinder::search(Game::AStarContext* context, int maxIterations, Game
 		}
 	}
 
-	if (!mContext->_08[0]._1C) {
+	if (!mContext->mNodeLists[0].mRootNode) {
 		return 1;
 	}
 

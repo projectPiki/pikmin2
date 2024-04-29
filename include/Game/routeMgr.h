@@ -115,9 +115,9 @@ struct WayPoint : public JKRDisposer {
 	s16 mToLinks[8];    // _5E
 	u8 mDoFloorSnap;    // _6E
 	u32 : 0;
-	u8 _70[4]; // _70
-	u8 _74;    // _74
-	s16 _76;   // _76
+	u8 _70[4];      // _70
+	u8 _74;         // _74
+	s16 mDoorIndex; // _76
 };
 
 struct WayPointIterator {
@@ -132,7 +132,7 @@ struct WayPointIterator {
 
 	int mIndex;          // _00
 	WayPoint* mWayPoint; // _04
-	bool _08;            // _08
+	bool mMaxIndexType;  // _08, true = 16, false = 8
 };
 
 struct WPCondition : public Condition<WayPoint> {

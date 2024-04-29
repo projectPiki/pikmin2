@@ -115,7 +115,7 @@ struct MapUnit {
 	void save(Stream&);
 	void setupSizeInfo();
 
-	s16 _04;                           // _04
+	s16 mUnusedIdx;                    // _04
 	char* mName;                       // _08
 	J3DModelData* mModelData;          // _0C
 	MapCollision mCollision;           // _10
@@ -125,7 +125,7 @@ struct MapUnit {
 	BoundBox mBoundingBox;             // _7C
 	Vector2<u16> mCellSize;            // _94
 	u8 _98[0x10];                      // _98
-	u8 _A8;                            // _A8
+	u8 mHasCollision;                  // _A8, not used?
 	EditorRouteMgr mRouteMgr;          // _AC
 	int mAnimationCount;               // _E8
 	Sys::MatTexAnimation* mAnimations; // _EC
@@ -159,7 +159,7 @@ struct PartsView : public CNode {
 	u32 _60;                     // _060
 	u8 _64[8];                   // _064
 	s16 mUnitKind;               // _06C, 0=cap, 1=room, 2=corridor
-	BitFlag<u16> _6E;            // _06E
+	BitFlag<u16> mFlags;         // _06E
 	EditorRouteMgr mRouteMgr;    // _070
 	AStarContext mAStarContext;  // _0AC
 	AStarPathfinder mPathFinder; // _110

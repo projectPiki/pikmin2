@@ -291,7 +291,7 @@ void MainResultState::cleanup(SingleGameSection* game)
 	if (mPelletMgr) {
 		gameSystem->addObjectMgr_reuse(mPelletMgr);
 	}
-	mGameSect->_168 = nullptr;
+	mGameSect->mXfbTexture2d = nullptr;
 	gameSystem->resetFlag(GAMESYS_DisableCollision);
 }
 

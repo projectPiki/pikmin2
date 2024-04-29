@@ -45,7 +45,7 @@ void CaveState::init(SingleGameSection* game, StateArg* arg)
 	mLosePellets = false;
 	mDrawSave    = false;
 	game->setupCaveGames();
-	game->_194 = false;
+	game->mIsExitingMap = false;
 	sys->heapStatusDump(true);
 	gameSystem->mTimeMgr->setFlag(TIMEFLAG_Stopped);
 	gameSystem->setFlag(GAMESYS_IsGameWorldActive);

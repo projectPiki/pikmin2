@@ -16,16 +16,17 @@ PartsView::PartsView()
 {
 	mMapUnit = nullptr;
 	mModel   = nullptr;
-	_60      = 8;
-	_5C      = 8;
-	_58      = 0;
-	_50      = 0.0f;
-	_54      = 0.0f;
+
+	_60 = 8; // NONE of these are used for anything, like come on
+	_5C = 8;
+	_58 = 0;
+	_50 = 0.0f;
+	_54 = 0.0f;
 
 	mAStarContext.init(&mRouteMgr, 0x80);
 	mPathFinder.setContext(&mAStarContext);
 	mUnitKind = 1;
-	_6E.clear();
+	mFlags.clear();
 	mBaseGen = new Cave::BaseGen();
 }
 
@@ -91,10 +92,10 @@ void PartsView::read(Stream& input)
 	mUnitKind = input.readShort();
 
 	if (shouldReadFlags >= 1) {
-		BitFlag<u16>* flags = &_6E;
+		BitFlag<u16>* flags = &mFlags;
 		flags->readBytes(input);
 	} else {
-		_6E.clear();
+		mFlags.clear();
 	}
 
 	mDoorCount = input.readInt();

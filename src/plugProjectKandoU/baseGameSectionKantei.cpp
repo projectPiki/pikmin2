@@ -171,12 +171,12 @@ void BaseGameSection::ZoomCamera::init(f32 dist1, f32 dist2, Vector3f& pos, Cont
 	} else {
 		angle = JMath::asinAcosTable_.mTable[(u32)(dist * 1023.5f)];
 	}
-	mAngleY = angle;
-	_1A8    = angle;
+	mAngleY           = angle;
+	mTargetFrontAngle = angle;
 
-	_1A0 = dist1;
-	_1A4 = dist1;
-	_1A0 *= 0.75f;
+	mTargetDistance = dist1;
+	mUnusedDist     = dist1;
+	mTargetDistance *= 0.75f;
 	mLookAtPosition = pos;
 	makeLookAt();
 }
@@ -187,8 +187,8 @@ void BaseGameSection::ZoomCamera::init(f32 dist1, f32 dist2, Vector3f& pos, Cont
  */
 void BaseGameSection::ZoomCamera::makeLookAt()
 {
-	f32 hFactor = sinf(mAngleY) * _1A0;
-	f32 y       = cosf(mAngleY) * _1A0;
+	f32 hFactor = sinf(mAngleY) * mTargetDistance;
+	f32 y       = cosf(mAngleY) * mTargetDistance;
 
 	mPosition = mLookAtPosition + Vector3f(hFactor * cosf(getAngleX()), y, hFactor * sinf(getAngleX()));
 
@@ -240,8 +240,8 @@ void BaseGameSection::ZoomCamera::doUpdate()
 
 	mAngleY -= (PI / 50) * val2;
 
-	f32 lowerLim = _1A8 - TORADIANS(30.6f);
-	f32 upperLim = TORADIANS(30.6f) + _1A8;
+	f32 lowerLim = mTargetFrontAngle - TORADIANS(30.6f);
+	f32 upperLim = TORADIANS(30.6f) + mTargetFrontAngle;
 
 	if (mAngleY < lowerLim) {
 		mAngleY = lowerLim;
@@ -283,7 +283,7 @@ void BaseGameSection::do_drawOtakaraWindow(Graphics& gfx)
 			if (mDraw2DCreatureScale >= 1.0f) {
 				mDraw2DCreatureScale = 1.0f;
 				mTreasureGetState    = 2;
-				_144                 = 6.0f;
+				mUnused2DCreatureVal = 6.0f;
 			}
 			break;
 		case 2:

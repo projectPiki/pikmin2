@@ -326,7 +326,7 @@ void CollisionBuffer::alloc(CellObject* object, int nodeCount)
  */
 CollNode::CollNode()
     : mCellObject(nullptr)
-    , _04(0.0f)
+    , mObjDistance(0.0f)
 {
 }
 
@@ -339,8 +339,8 @@ void CollisionBuffer::clear()
 {
 	mUsedNodeCount = 0;
 	for (int nodeIndex = 0; nodeIndex < mNodeCount; nodeIndex++) {
-		mCollNodes[nodeIndex].mCellObject = nullptr;
-		mCollNodes[nodeIndex]._04         = 100000.0f;
+		mCollNodes[nodeIndex].mCellObject  = nullptr;
+		mCollNodes[nodeIndex].mObjDistance = 100000.0f;
 	}
 }
 
@@ -376,18 +376,18 @@ void CollisionBuffer::pikiInsertPiki(CellObject* object, f32 distance)
 		for (; (nodeIndex >= 0); nodeIndex--) {
 			// for (; nodeIndex >= 0 && mCollNodes[nodeIndex]._04 > distance && mCollNodes->mCellObject->isPiki();
 			// nodeIndex--) {
-			if (!(mCollNodes[nodeIndex]._04 > distance && mCollNodes[nodeIndex].mCellObject->isPiki())) {
+			if (!(mCollNodes[nodeIndex].mObjDistance > distance && mCollNodes[nodeIndex].mCellObject->isPiki())) {
 				break;
 			}
 			if (nodeIndex + 1 < mNodeCount) {
-				mCollNodes[nodeIndex + 1].mCellObject = mCollNodes[nodeIndex].mCellObject;
-				mCollNodes[nodeIndex + 1]._04         = mCollNodes[nodeIndex]._04;
+				mCollNodes[nodeIndex + 1].mCellObject  = mCollNodes[nodeIndex].mCellObject;
+				mCollNodes[nodeIndex + 1].mObjDistance = mCollNodes[nodeIndex].mObjDistance;
 			}
 		}
 		// Insert the object.
 		if (nodeIndex + 1 < mNodeCount) {
-			mCollNodes[nodeIndex + 1].mCellObject = object;
-			mCollNodes[nodeIndex + 1]._04         = distance;
+			mCollNodes[nodeIndex + 1].mCellObject  = object;
+			mCollNodes[nodeIndex + 1].mObjDistance = distance;
 			if (mUsedNodeCount < mNodeCount) {
 				mUsedNodeCount++;
 			}
@@ -408,18 +408,18 @@ void CollisionBuffer::pikiInsertOther(CellObject* object, f32 distance)
 		for (; (nodeIndex >= 0); nodeIndex--) {
 			// for (; nodeIndex >= 0 && mCollNodes[nodeIndex]._04 > distance && mCollNodes->mCellObject->isPiki();
 			// nodeIndex--) {
-			if (!(mCollNodes[nodeIndex]._04 > distance || mCollNodes[nodeIndex].mCellObject->isPiki())) {
+			if (!(mCollNodes[nodeIndex].mObjDistance > distance || mCollNodes[nodeIndex].mCellObject->isPiki())) {
 				break;
 			}
 			if (nodeIndex + 1 < mNodeCount) {
-				mCollNodes[nodeIndex + 1].mCellObject = mCollNodes[nodeIndex].mCellObject;
-				mCollNodes[nodeIndex + 1]._04         = mCollNodes[nodeIndex]._04;
+				mCollNodes[nodeIndex + 1].mCellObject  = mCollNodes[nodeIndex].mCellObject;
+				mCollNodes[nodeIndex + 1].mObjDistance = mCollNodes[nodeIndex].mObjDistance;
 			}
 		}
 		// Insert the object.
 		if (nodeIndex + 1 < mNodeCount) {
-			mCollNodes[nodeIndex + 1].mCellObject = object;
-			mCollNodes[nodeIndex + 1]._04         = distance;
+			mCollNodes[nodeIndex + 1].mCellObject  = object;
+			mCollNodes[nodeIndex + 1].mObjDistance = distance;
 			if (mUsedNodeCount < mNodeCount) {
 				mUsedNodeCount++;
 			}
@@ -436,17 +436,17 @@ void CollisionBuffer::insertSort(CellObject* object, f32 distance)
 	if (findIndex(object) == -1) {
 		int index = mUsedNodeCount - 1;
 		for (; index >= 0; index--) {
-			if (!(mCollNodes[index]._04 > distance)) {
+			if (!(mCollNodes[index].mObjDistance > distance)) {
 				break;
 			}
 			if (index + 1 < mNodeCount) {
-				mCollNodes[index + 1].mCellObject = mCollNodes[index].mCellObject;
-				mCollNodes[index + 1]._04         = mCollNodes[index]._04;
+				mCollNodes[index + 1].mCellObject  = mCollNodes[index].mCellObject;
+				mCollNodes[index + 1].mObjDistance = mCollNodes[index].mObjDistance;
 			}
 		}
 		if (index + 1 < mNodeCount) {
-			mCollNodes[index + 1].mCellObject = object;
-			mCollNodes[index + 1]._04         = distance;
+			mCollNodes[index + 1].mCellObject  = object;
+			mCollNodes[index + 1].mObjDistance = distance;
 			if (mUsedNodeCount < mNodeCount) {
 				mUsedNodeCount++;
 			}

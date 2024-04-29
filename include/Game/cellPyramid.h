@@ -27,7 +27,7 @@ struct CollNode {
 	CollNode();
 
 	CellObject* mCellObject; // _00
-	f32 _04;                 // _04
+	f32 mObjDistance;        // _04
 };
 
 struct CollisionBuffer {

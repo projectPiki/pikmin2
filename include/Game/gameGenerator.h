@@ -68,7 +68,7 @@ struct Generator : public CNode {
 	int mDaysTillResurrection; // _70
 	u32 mDeathCount;           // _74
 	u32 mDayNum;               // _78
-	u32 _7C;                   // _7C
+	u32 mUnusedVal;            // _7C, set to 0 in a few places, never used
 	u8 _80[4];                 // _80
 	int mDayLimit;             // _84
 	u8 _88[12];                // _88
@@ -108,14 +108,14 @@ struct GeneratorMgr : public CNode {
 	GeneratorMgr* mParentMgr; // _20
 	Vector3f mCursorPosition; // _24
 	Generator* mGenerator;    // _30
-	ID32 _34;                 // _34
+	ID32 mAltVersionID;       // _34, set to 'v0.1' and never used
 	ID32 mVersionID;          // _40
 	int mGeneratorCount;      // _4C
-	ID32 _50;                 // _50
+	ID32 mUnusedID;           // _50, entirely never touched
 	Vector3f mStartPos;       // _5C
 	f32 mStartDir;            // _68, v0.1 adds the start direction
-	u8 _6C;                   // _6C
-	u8 _6D;                   // _6D
+	u8 mUnusedFlag;           // _6C, set to true for nonloop/loop, not used
+	u8 mUnusedFlag2;          // _6D
 
 	static Delegate1<struct BaseGameSection, Vector3f&>* cursorCallback;
 };

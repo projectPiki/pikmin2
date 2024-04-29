@@ -64,29 +64,29 @@ void ActFormation::init(ActionArg* initArg)
 
 	mNavi = mParent->mNavi;
 	Game::GameStat::formationPikis.inc(mParent);
-	mInitArg.mCreature = formationArg->mCreature;
-	mInitArg._08       = formationArg->_08;
-	mInitArg._09       = formationArg->_09;
+	mInitArg.mCreature           = formationArg->mCreature;
+	mInitArg.mIsDemoFollow       = formationArg->mIsDemoFollow;
+	mInitArg.mDoUseTouchCooldown = formationArg->mDoUseTouchCooldown;
 
-	if (mInitArg._09) {
+	if (mInitArg.mDoUseTouchCooldown) {
 		mTouchingNaviCooldownTimer = 45;
 	} else {
 		mTouchingNaviCooldownTimer = 0;
 	}
 
 	Game::Navi* initNavi = static_cast<Game::Navi*>(formationArg->mCreature);
-	bool initCheck       = formationArg->_08;
+	bool initCheck       = formationArg->mIsDemoFollow;
 
 	if (!initNavi) {
 		mSlotID = -1;
 		return;
 	}
 
-	mDistanceType    = 5;
-	mOldDistanceType = 5;
-	mDistanceCounter = 0;
-	_60              = false;
-	_61              = false;
+	mDistanceType         = 5;
+	mOldDistanceType      = 5;
+	mDistanceCounter      = 0;
+	mHasLostNumbness      = false;
+	mHadNumbnessLastFrame = false;
 
 	mCPlate = initNavi->mCPlateMgr;
 	mSlotID = mCPlate->getSlot(mParent, this, initCheck);
@@ -96,13 +96,13 @@ void ActFormation::init(ActionArg* initArg)
 
 	mParent->startMotion(Game::IPikiAnims::RUN2, Game::IPikiAnims::RUN2, nullptr, nullptr);
 
-	_30             = 0;
-	_31             = 0;
-	mSortState      = 0;
-	mAnimationTimer = 0;
-	_50             = 0.0f;
-	mIsAnimating    = 0;
-	mFootmark       = nullptr;
+	mHasReleasedSlot   = false;
+	mUnusedVal         = 0;
+	mSortState         = 0;
+	mAnimationTimer    = 0;
+	mTripCheckMoveDist = 0.0f;
+	mIsAnimating       = 0;
+	mFootmark          = nullptr;
 
 	mParent->setPastel(false);
 	mTouchingWallTimer = 0;
@@ -269,7 +269,7 @@ int PikiAI::ActFormation::exec()
 		return ACTEXEC_Fail;
 	}
 
-	if (!mInitArg._08 && mNavi && mNavi->mPellet) {
+	if (!mInitArg.mIsDemoFollow && mNavi && mNavi->mPellet) {
 		return ACTEXEC_Fail;
 	}
 
@@ -277,7 +277,7 @@ int PikiAI::ActFormation::exec()
 		return ACTEXEC_Fail;
 	}
 
-	if (!mInitArg._08 && !Game::gameSystem->isMultiplayerMode() && mNavi && !mNavi->mController1
+	if (!mInitArg.mIsDemoFollow && !Game::gameSystem->isMultiplayerMode() && mNavi && !mNavi->mController1
 	    && mNavi->getStateID() == Game::NSID_Follow) {
 		mNextAIType = ACT_Formation;
 		mParent->getCreatureID();
@@ -304,7 +304,7 @@ int PikiAI::ActFormation::exec()
 		return ACTEXEC_Continue;
 	}
 
-	_61 = _60;
+	mHadNumbnessLastFrame = mHasLostNumbness;
 	if (!mParent->mNavi) {
 		return ACTEXEC_Fail;
 	}
@@ -341,19 +341,22 @@ int PikiAI::ActFormation::exec()
 		mFootmarkFlags     = -1;
 	}
 
-	Vector3f movieSep = mParent->mPositionBeforeMovie - mParent->getPosition();
-	_50 += movieSep.length();
+	// add to how much the piki has moved since the last trip, if it exceeds 100
+	// and the piki is currently at 110+ speed, do a rng check to trip
+	// whether it passes the rng or not, reset the move distance each time
+	Vector3f moveSep = mParent->mPreviousPosition - mParent->getPosition();
+	mTripCheckMoveDist += moveSep.length();
 
-	if (mParent->getKind() != Game::Bulbmin && _50 >= 100.0f && mParent->mSimVelocity.length() > 110.0f) {
+	if (mParent->getKind() != Game::Bulbmin && mTripCheckMoveDist >= 100.0f && mParent->mSimVelocity.length() > 110.0f) {
 		if (randFloat() >= 0.99f && randFloat() > 0.7f) {
 			if (mParent->getStateID() == Game::PIKISTATE_Walk) {
 				mParent->mFsm->transit(mParent, Game::PIKISTATE_Koke, nullptr);
 			}
-			_50 = 0.0f;
+			mTripCheckMoveDist = 0.0f;
 			return ACTEXEC_Continue;
 		}
 
-		_50 = 0.0f;
+		mTripCheckMoveDist = 0.0f;
 	}
 
 	Vector3f sep = slotPos - mParent->getPosition(); // 0x114
@@ -362,10 +365,10 @@ int PikiAI::ActFormation::exec()
 	sep.normalise();
 
 	if (dist < 60.0f && mParent->mNavi->mCommandOn1 && mSortState != FORMATION_SORT_STARTED) {
-		if (!_60
+		if (!mHasLostNumbness
 		    && (mParent->mNavi->mSceneAnimationTimer - 2.0f * randFloat())
 		           >= static_cast<Game::NaviParms*>(mParent->mNavi->mParms)->mNaviParms.mPikiLoseNumbnessTime.mValue) {
-			_60 = true;
+			mHasLostNumbness = true;
 			return ACTEXEC_Continue;
 		}
 
@@ -379,7 +382,7 @@ int PikiAI::ActFormation::exec()
 			}
 
 			slotPos              = mParent->mNavi->getPosition(); // 0x138
-			_60                  = false;
+			mHasLostNumbness     = false;
 			Vector3f naviPikiDir = slotPos - mParent->getPosition(); // 0xf8
 			naviPikiDir.normalise();
 
@@ -389,7 +392,8 @@ int PikiAI::ActFormation::exec()
 				}
 			} else {
 				mParent->setSpeed(1.0f, naviPikiDir);
-				if (_61 && !_60) {
+				// if the piki lost numbness last frame, but not this frame, start the walk anim
+				if (mHadNumbnessLastFrame && !mHasLostNumbness) {
 					mParent->startMotion(Game::IPikiAnims::WALK, Game::IPikiAnims::WALK, nullptr, nullptr);
 				}
 			}
@@ -438,8 +442,8 @@ int PikiAI::ActFormation::exec()
 		mDistanceType = 3;
 		mParent->setMoveRotation(false);
 
-		if (_60 && dist < 10.0f) {
-			_60 = true; // this has to be true to get... set to true lol
+		if (mHasLostNumbness && dist < 10.0f) {
+			mHasLostNumbness = true; // this has to be true to get... set to true lol
 		}
 
 		f32 factor  = 10.0f / static_cast<Game::PikiParms*>(mParent->mParms)->mCreatureProps.mProps.mAccel.mValue; // f26
@@ -514,27 +518,28 @@ int PikiAI::ActFormation::exec()
 	}
 
 	if (dist < static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mWhiteDistance.mValue) {
-		mLostPikiTimer = 0.0f;
-		_30            = 0;
+		mLostPikiTimer   = 0.0f;
+		mHasReleasedSlot = false;
 	} else if (dist < static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mGrayDistance.mValue) {
 		mLostPikiTimer += sys->mDeltaTime;
-		if (!_30) {
+		if (!mHasReleasedSlot) {
 			if (mSlotID != -1) {
 				mCPlate->releaseSlot(mParent, mSlotID);
 				mSlotID = mCPlate->getSlot(mParent, this, false);
 			}
-			_30 = 1;
+			mHasReleasedSlot = true;
 		}
-		if ((!mInitArg._08 && mSlotID == -1)
+		if ((!mInitArg.mIsDemoFollow && mSlotID == -1)
 		    || mLostPikiTimer > static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mLostChildTime.mValue) {
 			return ACTEXEC_Fail;
 		}
 
-	} else if (!mInitArg._08) {
+	} else if (!mInitArg.mIsDemoFollow) {
 		return ACTEXEC_Fail;
 	}
 
-	if (_61 && !_60) {
+	// if the piki lost numbness last frame, but not this frame, start the walk anim
+	if (mHadNumbnessLastFrame && !mHasLostNumbness) {
 		mParent->startMotion(Game::IPikiAnims::WALK, Game::IPikiAnims::WALK, nullptr, nullptr);
 	}
 

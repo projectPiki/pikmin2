@@ -239,11 +239,11 @@ void ActBattle::onKeyEvent(SysShape::KeyEvent const& event)
 					// both result in the same outcome - would've been ~29% for leaf to kill spicy, up to ~74% for spicy to kill leaf
 					if (randFloat() <= thisHappa / (thisHappa + otherHappa)) {
 						Game::DyingStateArg arg;
-						arg._04 = true;
+						arg.mDoUseKillArg = true;
 						mOther->mFsm->transit(mOther, Game::PIKISTATE_Dying, &arg);
 					} else {
 						Game::DyingStateArg arg;
-						arg._04 = true;
+						arg.mDoUseKillArg = true;
 						mOther->mFsm->transit(mOther, Game::PIKISTATE_Dying, &arg);
 					}
 				} else {

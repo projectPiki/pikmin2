@@ -131,7 +131,7 @@ struct PelletIterator {
 	Pellet* operator*();
 	void setFirst();
 
-	u32 _00;                              // _00 - unknown
+	u32 mType;                            // _00, always 0, if its anything else the game will crash, so thats probably good
 	FixedSizePelletMgr<Pellet>* mMgr;     // _04
 	TObjectNode<GenericObjectMgr>* mNode; // _08
 	int mIndex;                           // _0C
@@ -143,16 +143,16 @@ struct PelletIterator {
 struct PelletInitArg : public CreatureInitArg {
 	PelletInitArg()
 	{
-		_1C                   = 0;
+		mDoSkipCreateModel    = false;
 		mState                = 0;
 		mPelletType           = PELTYPE_INVALID;
 		mPelView              = nullptr;
-		_17                   = 0;
-		_04                   = true;
+		mDontCheckCollected   = 0;
+		mUnusedFlag           = true;
 		mAdjustWeightForSquad = 0;
 		mMaxCarriers          = -1;
 		mMinCarriers          = -1;
-		_1E                   = 0;
+		mUnusedFlag2          = false;
 		mFromEnemy            = 0;
 	}
 
@@ -165,17 +165,17 @@ struct PelletInitArg : public CreatureInitArg {
 		return "PelletInitArg";
 	}
 
-	bool _04;                 // _04
+	bool mUnusedFlag;         // _04, always true, never used
 	char* mTextIdentifier;    // _08
 	int mPelletColor;         // _0C, for number pellets
 	int mPelletIndex;         // _10
 	u16 mState;               // _14
 	u8 mPelletType;           // _16
-	u8 _17;                   // _17
+	u8 mDontCheckCollected;   // _17, true = dont check if you already have it before spawning, never true
 	PelletView* mPelView;     // _18
-	u8 _1C;                   // _1C
+	u8 mDoSkipCreateModel;    // _1C, true for corpses, or breadbug drops since those were already loaded
 	u8 mAdjustWeightForSquad; // _1D, should Item decrease weight for piki squads that are less than minimum carry weight
-	u8 _1E;                   // _1E
+	u8 mUnusedFlag2;          // _1E, always false, never used
 	u8 mFromEnemy;            // _1F
 	int mMinCarriers;         // _20
 	int mMaxCarriers;         // _24
@@ -428,9 +428,9 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 
 	inline void setupDynParticle(int idx, f32 height, Vector3f& rotation)
 	{
-		_2F4                          = _2F4 + rotation;
-		mDynParticle->getAt(idx)->_00 = rotation;
-		mDynParticle->getAt(idx)->_18 = height;
+		mRotation                           = mRotation + rotation;
+		mDynParticle->getAt(idx)->mRotation = rotation;
+		mDynParticle->getAt(idx)->mRadius   = height;
 	}
 
 	inline bool checkBedamaColor(int color)
@@ -475,7 +475,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	f32 mAngleOffset;                 // _3E0
 	PelletSlots mSlots;               // _3E4
 	s16 mSlotCount;                   // _3F4
-	u8 _3F6;                          // _3F6
+	u8 mIsAlwaysCarried;              // _3F6, is never set to true, probably testing
 	u32 mPikminCount[PikiColorCount]; // _3F8
 	u32 mTotalCarriers;               // _414, might be for non-pikmin carriers?
 	f32 mCarryPower;                  // _418
@@ -550,12 +550,12 @@ struct PelletAppearState : public PelletState {
 	virtual bool appeared() { return false; } // _24 (weak)
 
 	f32 mTime;      // _10
-	f32 mAngle;     // _14
+	f32 mTimeSine;  // _14
 	f32 mGoalScale; // _18
 	f32 _1C;        // _1C
 	f32 _20;        // _20
-	f32 _24;        // _24
-	f32 _28;        // _28
+	f32 mDuration;  // _24
+	f32 mMagnitude; // _28
 	bool mEfxMade;  // _29
 };
 
@@ -674,8 +674,8 @@ struct PelletScaleAppearState : public PelletState {
 	f32 mGoalScale; // _18
 	f32 _1C;        // _1C
 	f32 _20;        // _20
-	f32 _24;        // _24
-	f32 _28;        // _28
+	f32 mDuration;  // _24
+	f32 mMagnitude; // _28
 	bool mEfxMade;  // _2C
 };
 

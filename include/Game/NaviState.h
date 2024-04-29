@@ -606,8 +606,8 @@ struct NaviPelletState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u8 _10;     // _10
-	int mState; // _14
+	u8 mDoForceWakeup; // _10, never set to true
+	int mState;        // _14
 };
 
 struct NaviPressedState : public NaviState {
@@ -736,10 +736,10 @@ struct NaviThrowState : public NaviState, virtual public SysShape::MotionListene
 	// _00-_10 = NaviState
 	// _10-_14 = MotionListener VTBL
 
-	u8 _14;      // _14
-	u8 _15;      // _15
-	Piki* mPiki; // _18
-	Navi* mNavi; // _1C
+	u8 mHasThrown; // _14
+	u8 mDidCancel; // _15, set to true on pressing b, never used
+	Piki* mPiki;   // _18
+	Navi* mNavi;   // _1C
 
 	// _20 = MotionListener
 };
@@ -765,11 +765,11 @@ struct NaviThrowWaitState : public NaviState, virtual public SysShape::MotionLis
 	// _10-_14 = MotionListener VTBL
 	Piki* mHeldPiki;                         // _14, held piki to be thrown
 	Piki* mNextPiki;                         // _18
-	int _1C;                                 // _1C
-	bool _20;                                // _20
+	int mHoldChargeLevel;                    // _1C
+	bool mHasHeldPiki;                       // _20
 	int _24;                                 // _24
-	f32 _28;                                 // _28
-	f32 _2C;                                 // _2C
+	f32 mNextPikiTimeLimit;                  // _28
+	f32 mUnusedVal;                          // _2C
 	Delegate<NaviThrowWaitState>* mDelegate; // _30
 	Navi* mNavi;                             // _34
 	int mCurrHappa;                          // _38

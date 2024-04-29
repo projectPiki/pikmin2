@@ -74,9 +74,9 @@ void FakePiki::initFakePiki()
 
 	mFakePikiFlags.clear();
 	initCaptureStomach();
-	_180       = 0.0f;
-	mRoomIndex = -1;
-	_184       = 0;
+	_180                 = 0.0f;
+	mRoomIndex           = -1;
+	mDontUseWallCallback = 0; // only runs wallCallback if this is 0 (it always is)
 }
 
 /**
@@ -199,7 +199,7 @@ void FakePiki::clearDoAnimCallback() { mDoAnimCallback = nullptr; }
  */
 void FakePiki::updateWalkAnimation()
 {
-	Vector3f sep  = Vector3f(mPosition.x - mPositionBeforeMovie.x, 0.0f, mPosition.z - mPositionBeforeMovie.z);
+	Vector3f sep  = Vector3f(mPosition.x - mPreviousPosition.x, 0.0f, mPosition.z - mPreviousPosition.z);
 	f32 animSpeed = sep.length() / sys->getDeltaTime();
 
 	int boundIdx;
@@ -1503,7 +1503,7 @@ void FakePiki::move(f32 rate)
 	mBounceTriangle    = info.mBounceTriangle;
 	mCollisionPosition = info.mPosition;
 
-	if (!_184 && info.mWallTriangle) {
+	if (!mDontUseWallCallback && info.mWallTriangle) {
 		wallCallback(info.mReflectPosition);
 	}
 
@@ -1517,7 +1517,7 @@ void FakePiki::move(f32 rate)
 		mCollisionPosition = info.mPosition;
 	}
 
-	if (!_184 && info.mWallTriangle) {
+	if (!mDontUseWallCallback && info.mWallTriangle) {
 		wallCallback(info.mReflectPosition);
 	}
 
@@ -1554,16 +1554,19 @@ void FakePiki::move(f32 rate)
 		return;
 	}
 
-	if (mPositionBeforeMovie.distance(mPosition) > 1.0f) {
-		f32 chance;
+	// If moved at least least 1.0 units since last frame,
+	// random chance to make splash/dust while walking
+	// 3.3% for navis, less for pikis depending on how many are in the party
+	if (mPreviousPosition.distance(mPosition) > 1.0f) {
+		f32 efxChance;
 		if (isNavi()) {
-			chance = 0.033333335f;
+			efxChance = 0.033333335f;
 		} else {
 			int counter = GameStat::formationPikis;
-			chance      = -0.025000002f * ((f32)counter / 100.0f) + 0.033333335f;
+			efxChance   = -0.025000002f * ((f32)counter / 100.0f) + 0.033333335f;
 		}
 
-		if (randFloat() <= chance) {
+		if (randFloat() <= efxChance) {
 			if (mBounceTriangle->mCode.mContents == 8) {
 				efx::createSimpleWalkwater(mPosition);
 			} else {
@@ -2110,7 +2113,7 @@ void FakePiki::doAnimation()
 
 	SysShape::Animator::verbose = false;
 
-	mPositionBeforeMovie = mPosition;
+	mPreviousPosition = mPosition;
 
 	if ((isMovieExtra() || !isMovieActor()) && mFakePikiBounceTriangle) {
 		if (useMoveVelocity() || !mBounceTriangle) {

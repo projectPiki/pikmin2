@@ -245,7 +245,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	s32 mSprayCounts[2];                    // _25C proven signed by Navi::hasDope
 	u8 _264[4];                             // _264
 	bool mIsAlive;                          // _268
-	u8 _269;                                // _269
+	u8 mUnusedFlag;                         // _269
 	u8 mPluckingCounter;                    // _26A
 	PSM::Navi* mSoundObj;                   // _26C
 	NaviFSM* mFsm;                          // _270
@@ -263,10 +263,10 @@ struct Navi : public FakePiki, virtual public PelletView {
 	f32 mHealth;                            // _2A0
 	u8 mInvincibleTimer;                    // _2A4
 	Piki* mNextThrowPiki;                   // _2A8
-	u8 _2AC;                                // _2AC
+	u8 mUnusedFlag2;                        // _2AC
 	f32 mHoldPikiTimer;                     // _2B0
-	f32 _2B4;                               // _2B4
-	f32 _2B8;                               // _2B8
+	f32 mHoldPikiCharge;                    // _2B4, neither charge is used for anything
+	f32 mHoldPikiCharge2;                   // _2B8
 	u8 mThrowTimer;                         // _2BC, use NAVI_THROWSTATE enum
 	SysShape::Joint* mBeaconJoint;          // _2C0
 	Vector3f mBeaconPosition;               // _2C4

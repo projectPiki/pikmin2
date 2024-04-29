@@ -1005,7 +1005,7 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 		GXSetChanMatColor(GX_COLOR0A0, (JUtility::TColor)0xffffffff);
 		GXSetZMode(0, GX_LESS, 0);
 		Matrixf matrix2;
-		Vector3f anotherVec = Vector3f(0.0f, 0.0f, machine._40);
+		Vector3f anotherVec = Vector3f(0.0f, 0.0f, machine.mRotationZ);
 		matrix2.makeTR(newvec, anotherVec);
 		Matrixf* anotherMtx = new Matrixf;
 		PSMTXConcat(*(Mtx*)matrix, *(Mtx*)&matrix2, *(Mtx*)anotherMtx);
@@ -1108,11 +1108,11 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
  */
 void VsGame::CardMgr::SlotMachine::startZoomIn()
 {
-	_44 = 20.0f;
-	_40 = 0.0f;
-	_38 = 1;
-	_3C = 0.0f;
-	_50 = 0;
+	_44        = 20.0f;
+	mRotationZ = 0.0f;
+	_38        = 1;
+	mTimer     = 0.0f;
+	_50        = 0;
 }
 
 /**
@@ -1121,10 +1121,10 @@ void VsGame::CardMgr::SlotMachine::startZoomIn()
  */
 void VsGame::CardMgr::SlotMachine::startZoomUse()
 {
-	_40 = 0.0f;
-	_38 = 2;
-	_3C = 0.0f;
-	_48 = 30.0f;
+	mRotationZ = 0.0f;
+	_38        = 2;
+	mTimer     = 0.0f;
+	_48        = 30.0f;
 }
 
 /**
@@ -1134,23 +1134,23 @@ void VsGame::CardMgr::SlotMachine::startZoomUse()
 void VsGame::CardMgr::SlotMachine::updateZoomIn()
 {
 	if (_50 == 0) {
-		_3C += sys->mDeltaTime * 4.0f;
-		_44 = _3C * 10.0f + 20.0f;
+		mTimer += sys->mDeltaTime * 4.0f;
+		_44 = mTimer * 10.0f + 20.0f;
 		_48 = 0.0f;
-		if (_3C > 1.0f) {
-			_3C = 0.0f;
-			_50 = 1;
+		if (mTimer > 1.0f) {
+			mTimer = 0.0f;
+			_50    = 1;
 		}
 	} else {
-		_3C += sys->mDeltaTime;
-		if (_3C > 1.0f) {
-			_3C -= 1.0f;
+		mTimer += sys->mDeltaTime;
+		if (mTimer > 1.0f) {
+			mTimer -= 1.0f;
 		}
 
-		_44 = sinf(_3C * TAU) * 5.0f + 30.0f;
-		_48 = sinf(_3C * TAU * 2.0f) * 5.0f + 30.0f;
+		_44 = sinf(mTimer * TAU) * 5.0f + 30.0f;
+		_48 = sinf(mTimer * TAU * 2.0f) * 5.0f + 30.0f;
 	}
-	_40 = cosf(_3C * TAU) * 10.0f * DEG2RAD * PI;
+	mRotationZ = cosf(mTimer * TAU) * 10.0f * DEG2RAD * PI;
 }
 
 /**
@@ -1159,14 +1159,14 @@ void VsGame::CardMgr::SlotMachine::updateZoomIn()
  */
 void VsGame::CardMgr::SlotMachine::updateZoomUse()
 {
-	_3C += sys->mDeltaTime * 3.0f;
-	if (_3C > 1.0f) {
-		_3C -= 1.0f;
+	mTimer += sys->mDeltaTime * 3.0f;
+	if (mTimer > 1.0f) {
+		mTimer -= 1.0f;
 	}
 
-	_44 = sinf(_3C * TAU) * 5.0f + 30.0f;
-	_48 = -(_3C * 30.0f - 30.0f);
-	_40 = (cosf(_3C * TAU) * 5.0f + 5.0f) * 360.0f * DEG2RAD * PI;
+	_44        = sinf(mTimer * TAU) * 5.0f + 30.0f;
+	_48        = -(mTimer * 30.0f - 30.0f);
+	mRotationZ = (cosf(mTimer * TAU) * 5.0f + 5.0f) * 360.0f * DEG2RAD * PI;
 }
 } // namespace VsGame
 } // namespace Game

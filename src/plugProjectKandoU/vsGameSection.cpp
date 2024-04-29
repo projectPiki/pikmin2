@@ -169,7 +169,7 @@ void VsGameSection::onInit()
 	}
 
 	gameSystem->mIsInCave = true;
-	_11C                  = 0;
+	mUnusedFlag           = false;
 	mHole                 = nullptr;
 	mPokoCount            = 0;
 	mIsMenuRunning        = false;
@@ -928,10 +928,10 @@ bool GameMessageVsBirthTekiTreasure::actVs(VsGameSection* section)
 	f32 tobiChance = 0.2f;
 
 	if (tobiFactor > 0.8f) {
-		_10 += 2;
+		mTekiBirthNum += 2;
 		tobiChance = 0.8f;
 	} else if (tobiFactor > 0.5f) {
-		_10 += 1;
+		mTekiBirthNum += 1;
 		tobiChance = 0.5f;
 	} else if (tobiFactor > 0.1f) {
 		tobiChance = 0.2f;
@@ -946,8 +946,8 @@ bool GameMessageVsBirthTekiTreasure::actVs(VsGameSection* section)
 	}
 	if (!(randFloat() > tobiChance)) {
 		int nodes = section->mTekiMgr->mNodeCount - 1;
-		for (int i = 0; i < _10; i++) {
-			section->mTekiMgr->birth(nodes, mPosition, _14);
+		for (int i = 0; i < mTekiBirthNum; i++) {
+			section->mTekiMgr->birth(nodes, mPosition, mDoSetExitTimer);
 		}
 		return true;
 	}
@@ -1011,12 +1011,12 @@ Pellet* VsGameSection::createCardPellet()
 
 	PelletConfig* config = PelletList::Mgr::getConfigAndKind(name, kind);
 	JUT_ASSERTLINE(1759, config, "zannenn\n");
-	pelletArg.mPelletIndex    = config->mParams.mIndex;
-	pelletArg.mTextIdentifier = config->mParams.mName.mData;
-	pelletArg.mPelletType     = kind;
-	pelletArg._1C             = 1;
-	pelletArg.mMinCarriers    = 1;
-	pelletArg.mMaxCarriers    = 1;
+	pelletArg.mPelletIndex       = config->mParams.mIndex;
+	pelletArg.mTextIdentifier    = config->mParams.mName.mData;
+	pelletArg.mPelletType        = kind;
+	pelletArg.mDoSkipCreateModel = true;
+	pelletArg.mMinCarriers       = 1;
+	pelletArg.mMaxCarriers       = 1;
 
 	for (int i = 0; i < mMaxCherries; i++) {
 		Pellet* pellet = mCherryArray[i];

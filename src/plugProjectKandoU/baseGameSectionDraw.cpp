@@ -111,7 +111,8 @@ void BaseGameSection::newdraw_drawAll(Viewport* vp)
 	mDrawBuffer1->get(7)->draw();
 	mDrawBuffer2->get(7)->draw();
 
-	if (!_168 && (mXfbFlags & 3) == 0) {
+	// only capture normal xfb image if the 2d one doesnt exist
+	if (!mXfbTexture2d && (mXfbFlags & 3) == 0) {
 		mXfbImage->capture(mXfbBoundsX, mXfbBoundsY, GX_TF_RGB565, true, 0);
 	}
 	mLightMgr->set(gfx);

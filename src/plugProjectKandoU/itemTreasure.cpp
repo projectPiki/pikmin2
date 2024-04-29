@@ -132,9 +132,9 @@ void Item::releasePellet()
 		if (gameSystem->isVersusMode()) {
 			f32 test = randFloat() * 3.0f;
 			GameMessageVsBirthTekiTreasure mesg;
-			mesg.mPosition = mPosition;
-			mesg._14       = false;
-			mesg._10       = (int)test + 1;
+			mesg.mPosition       = mPosition;
+			mesg.mDoSetExitTimer = false;
+			mesg.mTekiBirthNum   = (int)test + 1;
 			gameSystem->mSection->sendMessage(mesg);
 		}
 

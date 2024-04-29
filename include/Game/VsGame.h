@@ -63,7 +63,7 @@ struct TekiNode : public CNode {
 	// _00 		= VTBL
 	// _00-_18	= CNode
 	EnemyTypeID::EEnemyTypeID mId; // _18
-	int _1C;                       // _1C
+	int mTekiNum;                  // _1C
 	int mNodeID;                   // _20
 };
 
@@ -172,8 +172,8 @@ struct CardMgr {
 		u32 mAppearState;   // _30, unknown
 		f32 mAppearValue;   // _34
 		int _38;            // _38
-		f32 _3C;            // _3C, timer?
-		f32 _40;            // _40
+		f32 mTimer;         // _3C
+		f32 mRotationZ;     // _40
 		f32 _44;            // _44
 		f32 _48;            // _48
 		int _4C;            // _4C, maybe currentSlotIndex?
@@ -410,7 +410,7 @@ struct GameState : public State {
 	u32 _0C;                    // _0C
 	Controller* mController;    // _10
 	BitFlag<u16> mFlags;        // _14
-	u8 _16;                     // _16
+	u8 mSubState;               // _16
 	f32 mTimer;                 // _18
 	f32 mFloorExtendTimer;      // _1C
 	f32 mDisplayTime;           // _20
@@ -430,21 +430,21 @@ struct VSState : public GameState {
 struct LoadArg : public StateArg {
 	inline LoadArg()
 	    : _00(0)
-	    , _04(0)
-	    , _08(false)
+	    , mGameLoadType(0)
+	    , mNeedClearHeap(false)
 	{
 	}
 
 	inline LoadArg(u32 a, int b, bool c)
 	    : _00(a)
-	    , _04(b)
-	    , _08(c)
+	    , mGameLoadType(b)
+	    , mNeedClearHeap(c)
 	{
 	}
 
-	u32 _00;  // _00, unknown
-	int _04;  // _04, unknown
-	bool _08; // _08
+	u32 _00;             // _00, unused
+	int mGameLoadType;   // _04
+	bool mNeedClearHeap; // _08
 };
 
 struct LoadState : public State {
@@ -463,14 +463,14 @@ struct LoadState : public State {
 	f32 _14;                                      // _10
 	Controller* mController;                      // _14
 	VsGameSection* mSection;                      // _18
-	bool _1C;                                     // _1C
-	u32 _20;                                      // _20
-	int _24;                                      // _24
-	bool _28;                                     // _28
+	bool mIsLoadStarted;                          // _1C
+	u32 mUnusedVal;                               // _20
+	int mGameStartType;                           // _24
+	bool mNeedClearHeap;                          // _28
 	Delegate<Game::VsGame::LoadState>* mDelegate; // _2C
 	DvdThreadCommand mDvdThreadCommand;           // _30
-	bool _9C;                                     // _9c
-	f32 _A0;                                      // _A0
+	bool mIsGameStarting;                         // _9c
+	f32 mAutoStartTime;                           // _A0
 };
 
 struct ResultArg : public StateArg {

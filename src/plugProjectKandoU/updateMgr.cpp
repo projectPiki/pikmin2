@@ -11,8 +11,8 @@ UpdateMgr* collisionUpdateMgr;
  */
 UpdateContext::UpdateContext()
     : mMgr(0)
-    , _04(-1)
-    , _09(false)
+    , mClientIndex(-1)
+    , mDoForceActive(false)
 {
 }
 
@@ -23,7 +23,7 @@ UpdateContext::UpdateContext()
  */
 bool UpdateContext::updatable()
 {
-	if (_09) {
+	if (mDoForceActive) {
 		return true;
 	}
 
@@ -41,7 +41,7 @@ bool UpdateContext::updatable()
 void UpdateContext::init(UpdateMgr* mgr)
 {
 	mMgr = mgr;
-	if (_09 == false) {
+	if (mDoForceActive == false) {
 		mgr->addClient(this);
 	}
 }
@@ -52,7 +52,7 @@ void UpdateContext::init(UpdateMgr* mgr)
  */
 void UpdateContext::exit()
 {
-	if (_09 == false) {
+	if (mDoForceActive == false) {
 		if (mMgr) {
 			mMgr->removeClient(this);
 			mMgr = nullptr;
@@ -67,11 +67,11 @@ void UpdateContext::exit()
  */
 UpdateMgr::UpdateMgr()
 {
-	_08 = nullptr;
-	_0C = nullptr;
-	_00 = 0;
-	_04 = 0;
-	_10 = 0;
+	mClientListA = nullptr;
+	mClientListB = nullptr;
+	mMaxClientId = 0;
+	_04          = 0;
+	_10          = 0;
 }
 
 /**
@@ -82,7 +82,7 @@ UpdateMgr::UpdateMgr()
 void UpdateMgr::update()
 {
 	int i = ++_10;
-	if (i < _00) {
+	if (i < mMaxClientId) {
 		return;
 	}
 	_10 = 0;
@@ -98,7 +98,7 @@ bool UpdateMgr::updatable(UpdateContext* context)
 	if (context == nullptr) {
 		return false;
 	}
-	return (u8)(context->_04 == _10);
+	return (u8)(context->mClientIndex == _10);
 }
 
 /**
@@ -110,14 +110,14 @@ void UpdateMgr::create(int count)
 	if (count <= 0) {
 		count = 1;
 	}
-	_00 = count;
-	_08 = new int[count];
-	_0C = new int[count];
-	_04 = 0;
-	_10 = 0;
-	for (int i = 0; i < _00; i++) {
-		_08[i] = nullptr;
-		_0C[i] = nullptr;
+	mMaxClientId = count;
+	mClientListA = new int[count];
+	mClientListB = new int[count];
+	_04          = 0;
+	_10          = 0;
+	for (int i = 0; i < mMaxClientId; i++) {
+		mClientListA[i] = nullptr;
+		mClientListB[i] = nullptr;
 	}
 	_14 = 0;
 }
@@ -128,23 +128,23 @@ void UpdateMgr::create(int count)
  */
 void UpdateMgr::addClient(UpdateContext* context)
 {
-	if (context->_04 != -1) {
+	if (context->mClientIndex != -1) {
 		removeClient(context);
 	}
-	int v1                 = _00;
+	int v1                 = mMaxClientId;
 	int smallestValueIndex = -1;
 	int smallestValue      = 10000;
-	for (int i = 0; i < _00; i++) {
-		if (_08[i] < smallestValue) {
+	for (int i = 0; i < mMaxClientId; i++) {
+		if (mClientListA[i] < smallestValue) {
 			smallestValueIndex = i;
-			smallestValue      = _08[i];
+			smallestValue      = mClientListA[i];
 		}
 	}
 	if (smallestValueIndex != -1) {
-		context->_04 = smallestValueIndex;
-		_08[smallestValueIndex]++;
+		context->mClientIndex = smallestValueIndex;
+		mClientListA[smallestValueIndex]++;
 		if (context->_08) {
-			_0C[smallestValueIndex]++;
+			mClientListB[smallestValueIndex]++;
 		}
 		_04++;
 	}
@@ -156,15 +156,15 @@ void UpdateMgr::addClient(UpdateContext* context)
  */
 void UpdateMgr::removeClient(UpdateContext* context)
 {
-	int clientIDMaybe = context->_04;
+	int clientIDMaybe = context->mClientIndex;
 	if (clientIDMaybe != -1) {
-		JUT_ASSERTLINE(155, (clientIDMaybe >= 0 && clientIDMaybe < _00), "mail to [%d-%d] %d\n", 0, _00, clientIDMaybe);
-		_08[context->_04]--;
+		JUT_ASSERTLINE(155, (clientIDMaybe >= 0 && clientIDMaybe < mMaxClientId), "mail to [%d-%d] %d\n", 0, mMaxClientId, clientIDMaybe);
+		mClientListA[context->mClientIndex]--;
 		if (context->_08) {
-			_0C[context->_04]--;
+			mClientListB[context->mClientIndex]--;
 		}
 		_04--;
-		context->_04 = -1;
+		context->mClientIndex = -1;
 	}
 }
 } // namespace Game

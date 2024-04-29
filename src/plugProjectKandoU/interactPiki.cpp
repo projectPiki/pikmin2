@@ -223,7 +223,7 @@ bool InteractDope::actPiki(Game::Piki* piki)
 	PikiState* currState = piki->mCurrentState;
 	if (mSprayType != SPRAY_TYPE_BITTER && currState->dopable() && !piki->doped()) {
 		DopeStateArg spicyArg;
-		spicyArg._00 = mSprayType;
+		spicyArg.mDopeType = mSprayType;
 		piki->mFsm->transit(piki, PIKISTATE_Dope, &spicyArg);
 		return true;
 	}
@@ -232,7 +232,7 @@ bool InteractDope::actPiki(Game::Piki* piki)
 			Navi* navi = static_cast<Navi*>(mCreature);
 			if (piki->getKind() == navi->getNaviID() && !currState->dead()) {
 				FallMeckStateArg bitterArg;
-				bitterArg._00 = true;
+				bitterArg.mDoAutoPluck = true;
 				piki->mFsm->transit(piki, PIKISTATE_FallMeck, &bitterArg);
 				return true;
 			}
@@ -280,7 +280,7 @@ bool InteractHanaChirashi::actPiki(Game::Piki* piki)
 	if (pikiKind == Purple) {
 		int pikiHappa = piki->mHappaKind;
 		if (pikiHappa >= Bud) {
-			efx::createSimpleChiru(*piki->mEffectsObj->_0C, piki->mEffectsObj->mPikiColor);
+			efx::createSimpleChiru(*piki->mEffectsObj->mStemPosition, piki->mEffectsObj->mPikiColor);
 			piki->startSound(PSSE_PK_FLOWER_FALL_VOICE, true);
 			piki->mHappaKind = Leaf;
 		}

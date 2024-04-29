@@ -379,13 +379,13 @@ void Item::onInit(CreatureInitArg* settings)
 		if (itemInitArg->mPikminType == -1) {
 			mColor = Blue;
 		}
-		mVelocity = itemInitArg->mVelocity;
-		mHeadType = itemInitArg->mHeadType;
-		_1E4      = itemInitArg->_1C;
+		mVelocity         = itemInitArg->mVelocity;
+		mHeadType         = itemInitArg->mHeadType;
+		mAutopluckedTimer = itemInitArg->mAutopluckTimer;
 	} else {
-		mColor    = randFloat() * 5.0f;
-		mHeadType = Leaf;
-		_1E4      = -1.0f;
+		mColor            = randFloat() * 5.0f;
+		mHeadType         = Leaf;
+		mAutopluckedTimer = -1.0f;
 	}
 	mEfxTane->init();
 	mEfxTane->mPikiColor   = mColor;
@@ -648,9 +648,9 @@ lbl_801DA0E8:
 void Item::doAI()
 {
 	mFsm->exec(this);
-	if (_1E4 > 0.0f) {
-		_1E4 -= sys->mDeltaTime;
-		if (_1E4 <= 0.0f) {
+	if (mAutopluckedTimer > 0.0f) {
+		mAutopluckedTimer -= sys->mDeltaTime;
+		if (mAutopluckedTimer <= 0.0f) {
 			PikiMgr::mBirthMode = PikiMgr::PSM_Force;
 			Piki* piki          = pikiMgr->birth();
 			PikiMgr::mBirthMode = PikiMgr::PSM_Normal;

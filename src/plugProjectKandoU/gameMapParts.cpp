@@ -116,13 +116,13 @@ void Door::read(Stream& stream)
  */
 MapUnit::MapUnit()
 {
-	mModelData   = nullptr;
-	_04          = -1;
-	_A8          = 0;
-	mCellSize.y  = 0;
-	mCellSize.x  = 0;
-	mTexture     = nullptr;
-	mImgResource = nullptr;
+	mModelData    = nullptr;
+	mUnusedIdx    = -1;
+	mHasCollision = false;
+	mCellSize.y   = 0;
+	mCellSize.x   = 0;
+	mTexture      = nullptr;
+	mImgResource  = nullptr;
 }
 
 /**
@@ -314,9 +314,9 @@ void MapUnitMgr::makeUnit(MapUnit* unit, char* folder)
 		delete[] gridResource;
 
 		unit->mCollision.getBoundBox(unit->mBoundingBox);
-		unit->_A8 = 1;
+		unit->mHasCollision = true;
 	} else {
-		unit->_A8 = 0;
+		unit->mHasCollision = false;
 	}
 
 	// Load map code data
@@ -5211,14 +5211,14 @@ void RoomMapMgr::makeOneRoom(f32 centreX, f32 centreY, f32 direction, char* unit
 
 	room->mDoorInfos = new RoomDoorInfo[room->mDoorNum];
 
-	room->mFlags = mui->_6E;
+	room->mFlags = mui->mFlags;
 
 	for (int i = 0; i < mui->mDoorCount; i++) {
 		Door* door   = mui->getDoor(i);
 		WayPoint* wp = unit->mRouteMgr.getWayPoint(door->mWpIndex);
 
 		wp->mDoFloorSnap = 1;
-		wp->_76          = i;
+		wp->mDoorIndex   = i;
 	}
 
 	int counter = 0;
@@ -5240,7 +5240,7 @@ void RoomMapMgr::makeOneRoom(f32 centreX, f32 centreY, f32 direction, char* unit
 			RoomLink* targetLink = nullptr; // r23
 			FOREACH_NODE(RoomLink, link->mChild, linkNode)
 			{
-				if (linkNode->mLinkIndex == wp->_76) {
+				if (linkNode->mLinkIndex == wp->mDoorIndex) {
 					targetLink = linkNode;
 					break;
 				}
@@ -5249,7 +5249,7 @@ void RoomMapMgr::makeOneRoom(f32 centreX, f32 centreY, f32 direction, char* unit
 			P2ASSERTLINE(3459, targetLink);
 			MapRoom* aliveRoom = getMapRoom(targetLink->mAliveMapIndex); // r21
 
-			Door* door = mui->getDoor(wp->_76); // r22
+			Door* door = mui->getDoor(wp->mDoorIndex); // r22
 
 			Vector3f doorDirs[4] = { (Vector3f) { 0.0f, 0.0f, 1.0f }, (Vector3f) { 1.0f, 0.0f, 0.0f }, (Vector3f) { 0.0f, 0.0f, -1.0f },
 				                     (Vector3f) { -1.0f, 0.0f, 0.0f } }; // 0x1B4

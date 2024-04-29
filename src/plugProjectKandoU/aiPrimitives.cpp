@@ -1506,9 +1506,9 @@ void ActPathMove::init(ActionArg* settings)
 	mPellet = pathMoveArg->mPellet;
 
 	// this doesn't seem to be used, input is always 0 anyway.
-	_3C = (pathMoveArg->_18 > 0);
-	if (_3C) {
-		_38 = pathMoveArg->_18;
+	mUnusedPathFlag = (pathMoveArg->_18 > 0);
+	if (mUnusedPathFlag) {
+		mUnusedSlotId = pathMoveArg->_18;
 	}
 
 	mContextHandle = 0;
@@ -4892,7 +4892,7 @@ void ActStickAttack::createEfx()
 	}
 
 	case STICKATK_Treasure:
-		efx::createSimpleDig(*mParent->mEffectsObj->_0C);
+		efx::createSimpleDig(*mParent->mEffectsObj->mStemPosition);
 		mParent->startSound(mCreature, PSSE_PK_VC_DIGGING, PSGame::SeMgr::SETSE_PikiCarry);
 		break;
 

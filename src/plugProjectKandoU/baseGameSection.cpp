@@ -92,14 +92,14 @@ BaseGameSection::BaseGameSection(JKRHeap* heap)
 	mTheExpHeap         = nullptr;
 	theExpHeap          = nullptr;
 	mBackupHeap         = nullptr;
-	_168                = nullptr;
+	mXfbTexture2d       = nullptr;
 	mFbTexture          = nullptr;
 	mXfbImage           = nullptr;
 	mXfbBoundsX         = 0;
 	mXfbBoundsY         = 0;
-	_170                = 0;
-	mTexData1           = 0;
-	_E0                 = 0;
+	mXfbBounds2dY       = 0;
+	mXfbBounds2dX       = 0;
+	mUnusedVal          = 0;
 	mBlackFader         = new BlackFader;
 	mWipeInFader        = new WipeInFader;
 	mWipeOutFader       = new WipeOutFader;
@@ -250,8 +250,8 @@ void BaseGameSection::init()
 	sys->setFrameRate(2);
 	System::assert_fragmentation("BaseGameSection::MoviePlayer");
 	initJ3D();
-	_11C   = true;
-	mapMgr = nullptr;
+	mUnusedFlag = true;
+	mapMgr      = nullptr;
 	System::assert_fragmentation("BaseGameSection::InitJ3D");
 	System::assert_fragmentation("BaseGameSection::Before 2D");
 
@@ -608,9 +608,9 @@ void BaseGameSection::initGenerators()
 		onceGeneratorMgr->mName = "Generator(Init)";
 		addGenNode(onceGeneratorMgr);
 
-		limitGeneratorMgr        = new GeneratorMgr;
-		limitGeneratorMgr->mName = "Generator(Limit)";
-		limitGeneratorMgr->_6C   = true;
+		limitGeneratorMgr              = new GeneratorMgr;
+		limitGeneratorMgr->mName       = "Generator(Limit)";
+		limitGeneratorMgr->mUnusedFlag = true;
 		addGenNode(limitGeneratorMgr);
 
 		plantsGeneratorMgr        = new GeneratorMgr;
@@ -737,7 +737,7 @@ void BaseGameSection::initGenerators()
 					}
 
 					GeneratorMgr* currentNonloopMgr = new GeneratorMgr;
-					currentNonloopMgr->_6C          = true; // is nonrepeating?
+					currentNonloopMgr->mUnusedFlag  = true; // is nonrepeating?
 
 					currentNonloopMgr->read(noonloopTxt, false);
 					currentNonloopMgr->setDayLimit(currentGen->mDayLimit);
@@ -780,7 +780,7 @@ void BaseGameSection::initGenerators()
 						}
 
 						GeneratorMgr* currentLoopMgr = new GeneratorMgr;
-						currentLoopMgr->_6C          = true; // is nonrepeating?
+						currentLoopMgr->mUnusedFlag  = true; // is nonrepeating?
 
 						currentLoopMgr->read(loopTxt, false);
 						currentLoopMgr->setDayLimit(currentGen->mMaximumDay - 30);
@@ -1278,7 +1278,7 @@ void BaseGameSection::prepareHoleIn(Vector3f& suroundPos, bool killPikihead)
 				vec.y = mapMgr->getMinY(vec);
 				piki->setPosition(vec, false);
 				PikiAI::ActFormationInitArg arg(aliveOrima, 1);
-				arg._09 = false;
+				arg.mDoUseTouchCooldown = false;
 				piki->mBrain->start(PikiAI::ACT_Formation, &arg);
 				piki->movie_begin(false);
 			}
@@ -1334,7 +1334,7 @@ void BaseGameSection::prepareFountainOn(Vector3f& suroundPos)
 			piki->mNavi = aliveOrima;
 
 			PikiAI::ActFormationInitArg arg(aliveOrima);
-			arg._08 = 1;
+			arg.mIsDemoFollow = true;
 			piki->mBrain->start(PikiAI::ACT_Formation, &arg);
 			piki->movie_begin(false);
 		}
@@ -1427,10 +1427,10 @@ void BaseGameSection::draw2D(Graphics& gfx)
 	j3dSys.reinitGX();
 	gfx.mOrthoGraph.setPort();
 	draw_Ogawa2D(gfx);
-	if (_168) {
-		_168->capture(mTexData1, _170, GX_TF_RGB565, false, 0);
+	if (mXfbTexture2d) {
+		mXfbTexture2d->capture(mXfbBounds2dX, mXfbBounds2dY, GX_TF_RGB565, false, 0);
 	}
-	if (!_168 && mXfbFlags & 2) {
+	if (!mXfbTexture2d && mXfbFlags & 2) {
 		mXfbImage->capture(mXfbBoundsX, mXfbBoundsY, GX_TF_RGB565, true, 0);
 		mXfbFlags &= ~2;
 		mXfbFlags |= 1;

@@ -238,7 +238,7 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	// _178-_17C = MotionListener
 	BitFlag<u32> mFakePikiFlags;            // _17C
 	f32 _180;                               // _180
-	u32 _184;                               // _184
+	u32 mDontUseWallCallback;               // _184
 	IDelegate* mDoAnimCallback;             // _188
 	s16 mRoomIndex;                         // _18C
 	WaterBox* mWaterBox;                    // _190
@@ -259,7 +259,7 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	int _22C;                               // _22C, anim id of some description?
 	int _230;                               // _230, anim id of some description?
 	f32 mAnimSpeed;                         // _234
-	Vector3f mPositionBeforeMovie;          // _238
+	Vector3f mPreviousPosition;             // _238, used to check what movements was made each frame
 	f32 mFaceDirOffset;                     // _244
 	Sys::Triangle* mFakePikiBounceTriangle; // _248
 	Sys::TriIndexList* mTriList;            // _24C

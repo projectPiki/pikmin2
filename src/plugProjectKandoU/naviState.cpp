@@ -5324,21 +5324,23 @@ void NaviThrowWaitState::init(Navi* navi, StateArg* stateArg)
 			piki->mFsm->transit(piki, PIKISTATE_GoHang, 0);
 		}
 	}
-	_20 = false;
-	_1C = 0;
+	mHasHeldPiki     = false;
+	mHoldChargeLevel = 0;
 	if (mHeldPiki) {
 		rumbleMgr->startRumble(RUMBLETYPE_Nudge, mNavi->mNaviIndex);
 		mHeldPiki->mFsm->transit(mHeldPiki, PIKISTATE_Hanged, 0);
-		_20 = true;
+		mHasHeldPiki = true;
 	}
 	NaviParms* parms = static_cast<NaviParms*>(navi->mParms);
-	navi->_2B4       = _1C / 3.0f * (parms->mNaviParms.mMaxCallTime.mValue - parms->mNaviParms.mCircleDisappearTime.mValue)
-	           + parms->mNaviParms.mCircleDisappearTime.mValue;
-	parms      = static_cast<NaviParms*>(navi->mParms);
-	navi->_2B8 = _1C / 3.0f * (parms->mNaviParms.mMaxCallTime.mValue - parms->mNaviParms.mCircleDisappearTime.mValue)
-	           + parms->mNaviParms.mCircleDisappearTime.mValue;
-	_28 = 3.0f;
-	_2C = 0.1f;
+	navi->mHoldPikiCharge
+	    = mHoldChargeLevel / 3.0f * (parms->mNaviParms.mMaxCallTime.mValue - parms->mNaviParms.mCircleDisappearTime.mValue)
+	    + parms->mNaviParms.mCircleDisappearTime.mValue;
+	parms = static_cast<NaviParms*>(navi->mParms);
+	navi->mHoldPikiCharge2
+	    = mHoldChargeLevel / 3.0f * (parms->mNaviParms.mMaxCallTime.mValue - parms->mNaviParms.mCircleDisappearTime.mValue)
+	    + parms->mNaviParms.mCircleDisappearTime.mValue;
+	mNextPikiTimeLimit = 3.0f;
+	mUnusedVal         = 0.1f;
 	navi->setDoAnimCallback(mDelegate);
 	/*
 	stwu     r1, -0xb0(r1)
@@ -5740,8 +5742,8 @@ void NaviThrowWaitState::onKeyEvent(SysShape::KeyEvent const& key)
 	case 2:
 		break;
 	case 1:
-		if (_1C < 3) {
-			_1C++;
+		if (mHoldChargeLevel < 3) {
+			mHoldChargeLevel++;
 		}
 		break;
 	}
@@ -5760,7 +5762,7 @@ void NaviThrowWaitState::doAnimCallback() { lockHangPiki(mNavi); }
  */
 void NaviThrowWaitState::lockHangPiki(Navi* navi)
 {
-	if (mHeldPiki && _20) {
+	if (mHeldPiki && mHasHeldPiki) {
 		CollPart* part = navi->mCollTree->getCollPart('rhnd');
 		Vector3f pos;
 		pos = part->mPosition;
@@ -5790,8 +5792,8 @@ void NaviThrowWaitState::exec(Navi* navi)
 		if (!mNextPiki) {
 			return;
 		}
-		_28 -= sys->mDeltaTime;
-		if (_28 < 0.0f) {
+		mNextPikiTimeLimit -= sys->mDeltaTime;
+		if (mNextPikiTimeLimit < 0.0f) {
 			transit(navi, NSID_Walk, nullptr);
 			return;
 		}
@@ -5813,7 +5815,7 @@ void NaviThrowWaitState::exec(Navi* navi)
 		mNextPiki = nullptr;
 		rumbleMgr->startRumble(RUMBLETYPE_Nudge, mNavi->mNaviIndex);
 		mHeldPiki->mFsm->transit(mHeldPiki, PIKISTATE_Hanged, 0);
-		_20 = true;
+		mHasHeldPiki = true;
 	} else {
 		transit(navi, NSID_Punch, nullptr);
 		return;
@@ -5821,11 +5823,14 @@ void NaviThrowWaitState::exec(Navi* navi)
 
 	navi->mNextThrowPiki = mNextPiki;
 	NaviParms* parms     = static_cast<NaviParms*>(navi->mParms);
-	navi->_2B4           = _1C / 3.0f * (parms->mNaviParms.mMaxCallTime.mValue - parms->mNaviParms.mCircleDisappearTime.mValue)
-	           + parms->mNaviParms.mCircleDisappearTime.mValue;
-	parms      = static_cast<NaviParms*>(navi->mParms);
-	navi->_2B8 = _1C / 3.0f * (parms->mNaviParms.mMaxCallTime.mValue - parms->mNaviParms.mCircleDisappearTime.mValue)
-	           + parms->mNaviParms.mCircleDisappearTime.mValue;
+
+	navi->mHoldPikiCharge
+	    = mHoldChargeLevel / 3.0f * (parms->mNaviParms.mMaxCallTime.mValue - parms->mNaviParms.mCircleDisappearTime.mValue)
+	    + parms->mNaviParms.mCircleDisappearTime.mValue;
+	parms = static_cast<NaviParms*>(navi->mParms);
+	navi->mHoldPikiCharge2
+	    = mHoldChargeLevel / 3.0f * (parms->mNaviParms.mMaxCallTime.mValue - parms->mNaviParms.mCircleDisappearTime.mValue)
+	    + parms->mNaviParms.mCircleDisappearTime.mValue;
 
 	/*
 	stwu     r1, -0xf0(r1)
@@ -6668,10 +6673,10 @@ void NaviThrowState::init(Navi* navi, StateArg* stateArg)
 	navi->mAnimSpeed = 30.0f;
 	navi->startMotion(IPikiAnims::THROW, IPikiAnims::THROW, this, nullptr);
 	navi->enableMotionBlend();
-	_14   = 0;
-	_15   = 0;
-	mNavi = navi;
-	mPiki = static_cast<NaviThrowInitArg*>(stateArg)->mPiki;
+	mHasThrown = false;
+	mDidCancel = 0;
+	mNavi      = navi;
+	mPiki      = static_cast<NaviThrowInitArg*>(stateArg)->mPiki;
 	if (!navi->assertMotion(IPikiAnims::THROW)) {
 		transit(navi, NSID_Walk, nullptr);
 	}
@@ -6686,12 +6691,12 @@ void NaviThrowState::onKeyEvent(SysShape::KeyEvent const& key)
 	switch (key.mType) {
 	case 2:
 		if (!mPiki->isThrowable()) {
-			_14 = true;
+			mHasThrown = true;
 		} else {
 			Vector3f pos = mNavi->mWhistle->mPosition;
 			mNavi->throwPiki(mPiki, pos);
 			mPiki->mFsm->transit(mPiki, PIKISTATE_Flying, nullptr);
-			_14 = true;
+			mHasThrown = true;
 		}
 		break;
 	case KEYEVENT_END:
@@ -6772,13 +6777,13 @@ void NaviThrowState::exec(Navi* navi)
 	if (navi->mController1) {
 		navi->control();
 		if (navi->mController1->getButton() & Controller::PRESS_B) {
-			_15 = true;
+			mDidCancel = true;
 		}
 		navi->findNextThrowPiki();
-		if (_14 && navi->mController1->getButtonDown() & Controller::PRESS_A && navi->throwable()) {
+		if (mHasThrown && navi->mController1->getButtonDown() & Controller::PRESS_A && navi->throwable()) {
 			transit(navi, NSID_ThrowWait, nullptr);
 		}
-		if (_14 && navi->mController1->getButtonDown() & Controller::PRESS_B) {
+		if (mHasThrown && navi->mController1->getButtonDown() & Controller::PRESS_B) {
 			transit(navi, NSID_Gather, nullptr);
 		}
 	}
@@ -6796,7 +6801,7 @@ void NaviThrowState::cleanup(Navi* navi) { }
  */
 void NaviPelletState::init(Navi* navi, StateArg* stateArg)
 {
-	_10 = false;
+	mDoForceWakeup = false;
 	navi->startMotion(IPikiAnims::JKOKE, IPikiAnims::JKOKE, navi, nullptr);
 
 	if (navi->mNaviIndex == NAVIID_Olimar) {
@@ -6857,7 +6862,7 @@ void NaviPelletState::exec(Navi* navi)
 		if (mState == 1 || mState == 0) {
 			// probably a combination of enums
 			if (navi->mController1 && navi->mController1->getButtonDown() & 0x70f) {
-				if (_10) {
+				if (mDoForceWakeup) {
 					navi->mAnimSpeed = 60.0f;
 					navi->finishMotion();
 				} else {
@@ -6898,7 +6903,7 @@ void NaviPelletState::exec(Navi* navi)
  */
 void NaviPelletState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 {
-	if (_10) {
+	if (mDoForceWakeup) {
 		if (key.mType == 1) {
 			if (navi->mAnimator.mSelfAnimator.mFlags & 2) {
 				if (playData->mStoryFlags & STORY_DebtPaid) {

@@ -1434,13 +1434,13 @@ void PelletAppearState::init(Pellet* pelt, StateArg*)
 	pelt->mScale = 0.01f;
 	mGoalScale   = 1.0f;
 	mTime        = 0.0f;
-	mAngle       = 0.0f;
+	mTimeSine    = 0.0f;
 
-	_28      = (PI / 5) * randFloat() + TAU;
-	_20      = 0.4f * randFloat() + 0.3f;
-	_24      = 0.8f * randFloat() + 1.8f;
-	_1C      = 0.7f * randFloat();
-	mEfxMade = false;
+	mMagnitude = (PI / 5) * randFloat() + TAU;
+	_20        = 0.4f * randFloat() + 0.3f;
+	mDuration  = 0.8f * randFloat() + 1.8f;
+	_1C        = 0.7f * randFloat();
+	mEfxMade   = false;
 }
 
 /**
@@ -1465,13 +1465,13 @@ void PelletAppearState::exec(Pellet* pelt)
 				mEfxMade = true;
 			}
 
-			mAngle       = roundAng(_28 * frameTime + mAngle);
+			mTimeSine    = roundAng(mMagnitude * frameTime + mTimeSine);
 			f32 rad      = 0.2f * mGoalScale;
-			f32 sinTheta = sinf(mAngle);
-			f32 idk      = (mTime - (_1C + _20)) / _24;
+			f32 sinTheta = sinf(mTimeSine);
+			f32 idk      = (mTime - (_1C + _20)) / mDuration;
 			mGoalScale   = -(idk * idk - 1.0f);
 			scale        = rad * sinTheta + 1.0f;
-			if (mTime >= _24 + (_1C + _20)) {
+			if (mTime >= mDuration + (_1C + _20)) {
 				scale = 1.0f;
 				transit(pelt, PELSTATE_Normal, nullptr);
 			}
@@ -1502,11 +1502,11 @@ void PelletScaleAppearState::init(Pellet* pelt, StateArg*)
 	mTime        = 0.0f;
 	mAngle       = 0.0f;
 
-	_28      = (PI / 5) * randFloat() + 18.849556f;
-	_20      = 0.05f * randFloat() + 0.1f;
-	_24      = 0.2f * randFloat() + 0.6f;
-	_1C      = 0.0f;
-	mEfxMade = false;
+	mMagnitude = (PI / 5) * randFloat() + 18.849556f;
+	_20        = 0.05f * randFloat() + 0.1f;
+	mDuration  = 0.2f * randFloat() + 0.6f;
+	_1C        = 0.0f;
+	mEfxMade   = false;
 	pelt->setCollisionFlick(false);
 }
 
@@ -1527,13 +1527,13 @@ void PelletScaleAppearState::exec(Pellet* pelt)
 				mEfxMade = true;
 			}
 
-			mAngle       = roundAng(_28 * frameTime + mAngle);
+			mAngle       = roundAng(mMagnitude * frameTime + mAngle);
 			f32 rad      = 0.1f * mGoalScale;
 			f32 sinTheta = sinf(mAngle);
-			f32 idk      = (mTime - (_1C + _20)) / _24;
+			f32 idk      = (mTime - (_1C + _20)) / mDuration;
 			mGoalScale   = -(idk * idk - 1.0f);
 			scale        = rad * sinTheta + 1.0f;
-			if (mTime >= _24 + (_1C + _20)) {
+			if (mTime >= mDuration + (_1C + _20)) {
 				scale = 1.0f;
 				transit(pelt, PELSTATE_Normal, nullptr);
 			}

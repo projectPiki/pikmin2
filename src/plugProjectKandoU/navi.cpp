@@ -87,7 +87,7 @@ Navi::Navi()
 	mFootmarks = new Footmarks;
 	mFootmarks->alloc(16);
 
-	mUpdateContext._09 = true;
+	mUpdateContext.mDoForceActive = true;
 
 	mCursorMatAnim = new Sys::MatRepeatAnimator;
 	mArrowMatAnim  = new Sys::MatLoopAnimator;
@@ -132,7 +132,7 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 	_2DE           = 0;
 	mNextThrowPiki = nullptr;
 	mHoldPikiTimer = 0.0f;
-	_2AC           = 0;
+	mUnusedFlag2   = 0;
 
 	mCollTree->createFromFactory(mModel, naviMgr->mCollData, nullptr);
 	JUT_ASSERTLINE(838, ((int)mCollTree->mPart) >= 0x80000000,
@@ -157,7 +157,7 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 	setLifeMax();
 
 	mPluckingCounter = 0;
-	_269             = 0;
+	mUnusedFlag      = 0;
 
 	Vector3f modelScale;
 	modelScale = Vector3f(OLIMAR_SCALE);
@@ -2304,10 +2304,10 @@ void Navi::movieStartDemoAnimation(SysShape::AnimInfo* info)
  */
 void Navi::movieSetTranslation(Vector3f& newpos, f32 dir)
 {
-	mSimVelocity         = 0.0f;
-	mVelocity            = 0.0f;
-	mAcceleration        = 0.0f;
-	mPositionBeforeMovie = mPosition;
+	mSimVelocity      = 0.0f;
+	mVelocity         = 0.0f;
+	mAcceleration     = 0.0f;
+	mPreviousPosition = mPosition;
 	setPosition(newpos, false);
 	mFaceDir = dir;
 }

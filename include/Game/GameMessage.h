@@ -68,9 +68,9 @@ struct GameMessageVsBirthTekiTreasure : public GameMessage {
 	virtual bool actVs(VsGameSection*); // _10
 
 	// _00 = VTBL
-	Vector3f mPosition; // _04
-	int _10;            // _10
-	bool _14;           // _14
+	Vector3f mPosition;   // _04
+	int mTekiBirthNum;    // _10
+	bool mDoSetExitTimer; // _14
 };
 
 struct GameMessageVsGetDoping : public GameMessage {

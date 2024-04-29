@@ -215,8 +215,8 @@ void DayEndState::onMovieStart(SingleGameSection* game, MovieConfig* config, u32
 				Navi* navi = naviMgr->getAliveOrima(ALIVEORIMA_Active);
 				JUT_ASSERTLINE(376, navi, "no alive navi");
 				PikiAI::ActFormationInitArg arg(navi);
-				piki->mNavi = navi;
-				arg._08     = true;
+				piki->mNavi       = navi;
+				arg.mIsDemoFollow = true;
 				piki->mBrain->start(PikiAI::ACT_Formation, &arg);
 				piki->movie_begin(false);
 			}

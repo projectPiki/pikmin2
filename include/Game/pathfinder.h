@@ -57,7 +57,7 @@ struct PathNode {
 	PathNode* mParent;   // _10
 	PathNode* mSibling;  // _14
 	PathNode* mPrevious; // _18
-	PathNode* _1C;       // _1C
+	PathNode* mRootNode; // _1C
 	s16 mWpIndex;        // _20
 	u8 _22;              // _22
 };
@@ -86,16 +86,16 @@ struct AStarContext {
 
 	bool checkContext() { return mHandleIdx != 0 && mState == PATHFIND_Busy; }
 
-	s16 mStartWPID;     // _00
-	s16 mEndWPID;       // _02
-	u8 mRequestFlag;    // _04
-	PathNode _08[2];    // _08
-	s16 mUsedNodeCount; // 50
-	s16 mWpNum;         // _52
-	u8 mState;          // _54, see PathFindState enum
-	PathNode* _58;      // _58, guess
-	PathNode* mNode;    // _5C
-	u32 mHandleIdx;     // _60
+	s16 mStartWPID;         // _00
+	s16 mEndWPID;           // _02
+	u8 mRequestFlag;        // _04
+	PathNode mNodeLists[2]; // _08, only the first seems to be used for anything
+	s16 mUsedNodeCount;     // 50
+	s16 mWpNum;             // _52
+	u8 mState;              // _54, see PathFindState enum
+	PathNode* _58;          // _58, guess
+	PathNode* mNode;        // _5C
+	u32 mHandleIdx;         // _60
 };
 
 struct AStarPathfinder {

@@ -15,10 +15,10 @@ struct UpdateContext {
 	void init(UpdateMgr*);
 	bool updatable();
 
-	UpdateMgr* mMgr; // _00
-	int _04;         // _04
-	bool _08;        // _08
-	bool _09;        // _09
+	UpdateMgr* mMgr;     // _00
+	int mClientIndex;    // _04
+	bool _08;            // _08
+	bool mDoForceActive; // _09
 };
 
 struct UpdateMgr {
@@ -34,12 +34,12 @@ struct UpdateMgr {
 	void balanceClient(UpdateContext*);
 	void showInfo(Graphics&, int, int);
 
-	int _00;  // _00
-	u32 _04;  // _04
-	int* _08; // _08
-	int* _0C; // _0C
-	u32 _10;  // _10
-	u32 _14;  // _14
+	int mMaxClientId;  // _00
+	u32 _04;           // _04
+	int* mClientListA; // _08
+	int* mClientListB; // _0C
+	u32 _10;           // _10
+	u32 _14;           // _14
 };
 
 extern UpdateMgr* collisionUpdateMgr;

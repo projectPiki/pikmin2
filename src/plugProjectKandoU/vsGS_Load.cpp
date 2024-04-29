@@ -19,9 +19,9 @@ namespace VsGame {
  */
 LoadState::LoadState()
     : State(VGS_Load)
-    , _20(0)
-    , _24(0)
-    , _28(0)
+    , mUnusedVal(0)
+    , mGameStartType(0)
+    , mNeedClearHeap(0)
 {
 	mController = new Controller(JUTGamePad::PORT_0);
 	mDelegate   = new Delegate<Game::VsGame::LoadState>(this, &dvdLoad);
@@ -42,14 +42,14 @@ void LoadState::init(Game::VsGameSection* section, StateArg* args)
 	Game::GameStat::clear();
 
 	LoadArg* loadArg = static_cast<LoadArg*>(args);
-	_20              = loadArg->_00;
-	_24              = loadArg->_04;
-	_28              = loadArg->_08;
+	mUnusedVal       = loadArg->_00;
+	mGameStartType   = loadArg->mGameLoadType;
+	mNeedClearHeap   = loadArg->mNeedClearHeap;
 
 	section->refreshHIO();
-	_1C = 0;
-	_9C = 0;
-	_A0 = 15.0f;
+	mIsLoadStarted  = false;
+	mIsGameStarting = 0;
+	mAutoStartTime  = 15.0f;
 
 	for (int i = 0; i < 7; i++) {
 		section->mMarbleYellow[i] = nullptr;
@@ -68,8 +68,8 @@ void LoadState::dvdLoad() { mSection->setupFloatMemory(); }
  */
 void LoadState::exec(VsGameSection* section)
 {
-	if (!_1C) {
-		if (_28) {
+	if (!mIsLoadStarted) {
+		if (mNeedClearHeap) {
 			sys->heapStatusDump(true);
 			section->clearHeap();
 			sys->heapStatusDump(true);
@@ -86,29 +86,29 @@ void LoadState::exec(VsGameSection* section)
 		floor.mCaveID = id.getID();
 		Screen::gGame2DMgr->open_Floor(floor);
 		sys->dvdLoadUseCallBack(&mDvdThreadCommand, mDelegate);
-		_1C = true;
-		_9C = false;
+		mIsLoadStarted  = true;
+		mIsGameStarting = false;
 	} else {
 		section->BaseHIOSection::doUpdate();
 		if (particle2dMgr) {
 			particle2dMgr->update();
 		}
 		Screen::gGame2DMgr->update();
-		if (gameSystem->isVersusMode() && (_A0 > 0.0f)) {
+		if (gameSystem->isVersusMode() && (mAutoStartTime > 0.0f)) {
 			if (mDvdThreadCommand.mMode == 2) { // probably an enum
 				Screen::gGame2DMgr->set_FloorVS_LoadEnd();
 				if (mController->isButtonDown(JUTGamePad::PRESS_A | JUTGamePad::PRESS_START)) {
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_FLOOR_COMPLETE, nullptr);
-					_A0 = 0.0f;
+					mAutoStartTime = 0.0f;
 				}
 			}
-			_A0 -= sys->mDeltaTime;
+			mAutoStartTime -= sys->mDeltaTime;
 		}
-		if (!_9C && mDvdThreadCommand.mMode == 2) {
-			if (gameSystem->isChallengeMode() || (gameSystem->isVersusMode() && _A0 <= 0.0f)) {
+		if (!mIsGameStarting && mDvdThreadCommand.mMode == 2) {
+			if (gameSystem->isChallengeMode() || (gameSystem->isVersusMode() && mAutoStartTime <= 0.0f)) {
 				section->postSetupFloatMemory();
-				_9C = true;
-				if (!_24) {
+				mIsGameStarting = true;
+				if (!mGameStartType) {
 					transit(section, VGS_Game, nullptr);
 				} else {
 					transit(section, VGS_VS, nullptr);

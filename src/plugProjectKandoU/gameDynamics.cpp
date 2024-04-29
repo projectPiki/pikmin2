@@ -77,7 +77,7 @@ void Game::Rigid::initPositionIndex(Vector3f& posVec, int configIdx, Vector3f& q
 	config->_24         = Vector3f(0.0f);
 	config->_30         = Vector3f(0.0f);
 	config->_3C         = Vector3f(0.0f);
-	config->_48.set(quatVec);
+	config->mPrimaryRotation.set(quatVec);
 }
 
 /**
@@ -87,7 +87,7 @@ void Game::Rigid::initPositionIndex(Vector3f& posVec, int configIdx, Vector3f& q
 void Game::Rigid::updateMatrix(int configIdx)
 {
 	RigidConfig* config = &mConfigs[configIdx];
-	_04.makeTQ(config->mPosition, config->_48);
+	mPrimaryMatrix.makeTQ(config->mPosition, config->mPrimaryRotation);
 }
 
 /**
@@ -293,13 +293,13 @@ void Game::Rigid::integrate(f32 timeStep, int configIdx)
 	RigidConfig* thisConfig  = &mConfigs[configIdx]; // r31
 	RigidConfig* otherConfig = &mConfigs[1 - configIdx];
 
-	otherConfig->mPosition = thisConfig->mPosition;
-	otherConfig->_48       = thisConfig->_48;
+	otherConfig->mPosition        = thisConfig->mPosition;
+	otherConfig->mPrimaryRotation = thisConfig->mPrimaryRotation;
 	Matrixf matQ; // 0x1d0
 	Matrixf matC; // 0x1a0
 	Matrixf matT; // 0x170
 
-	matQ.makeQ(thisConfig->_48);
+	matQ.makeQ(thisConfig->mPrimaryRotation);
 	PSMTXTranspose(matQ.mMatrix.mtxView, matT.mMatrix.mtxView);
 	PSMTXConcat(matQ.mMatrix.mtxView, _144.mMatrix.mtxView, matC.mMatrix.mtxView);
 	PSMTXConcat(matC.mMatrix.mtxView, matT.mMatrix.mtxView, thisConfig->_58.mMatrix.mtxView);
@@ -313,15 +313,15 @@ void Game::Rigid::integrate(f32 timeStep, int configIdx)
 	Quat q1;                        // 0x160
 	Quat q2(0.0f, thisConfig->_24); // 0x150
 
-	q1 = thisConfig->_48 * q2;
+	q1 = thisConfig->mPrimaryRotation * q2;
 
 	if (mFlags.typeView & 1) {
 		Quat q3; // 0x140
 		q3 = Quat((0.5f * timeStep) * q1.w, q1.v * (0.5f * timeStep));
 		Quat q4; // 0x130
-		q4 = Quat(q3 + thisConfig->_48);
+		q4 = Quat(q3 + thisConfig->mPrimaryRotation);
 		Vector3f vec1; // 0x124
-		f32 yDeg48 = getYDegree(thisConfig->_48, vec1);
+		f32 yDeg48 = getYDegree(thisConfig->mPrimaryRotation, vec1);
 		Vector3f vec2; // 0x118
 		f32 yDeg4 = getYDegree(q4, vec2);
 		f32 f29   = JMASSin(8192);
@@ -331,22 +331,22 @@ void Game::Rigid::integrate(f32 timeStep, int configIdx)
 				thisConfig->_30 = thisConfig->_30 + vec1.cross(yAxis) * 1000.0f;
 				thisConfig->_24 = thisConfig->_58.mtxMult(thisConfig->_30);
 				if (!(yDeg4 < f29)) {
-					thisConfig->_48 = q4;
+					thisConfig->mPrimaryRotation = q4;
 				}
 			} else {
-				thisConfig->_48 = q4;
+				thisConfig->mPrimaryRotation = q4;
 			}
 		} else {
-			thisConfig->_48 = Quat(thisConfig->_48 + q3);
+			thisConfig->mPrimaryRotation = Quat(thisConfig->mPrimaryRotation + q3);
 		}
 	} else {
 		Quat q5; // 0x108
-		q5              = Quat((0.5f * timeStep) * q1.w, q1.v * (0.5f * timeStep));
-		thisConfig->_48 = Quat(thisConfig->_48 + q5);
+		q5                           = Quat((0.5f * timeStep) * q1.w, q1.v * (0.5f * timeStep));
+		thisConfig->mPrimaryRotation = Quat(thisConfig->mPrimaryRotation + q5);
 	}
 
-	thisConfig->_48.normalise();
-	_04.makeTQ(thisConfig->mPosition, thisConfig->_48);
+	thisConfig->mPrimaryRotation.normalise();
+	mPrimaryMatrix.makeTQ(thisConfig->mPosition, thisConfig->mPrimaryRotation);
 	/*
 	stwu     r1, -0x240(r1)
 	mflr     r0

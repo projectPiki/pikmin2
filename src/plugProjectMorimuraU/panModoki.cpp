@@ -1929,8 +1929,8 @@ void Obj::throwUpEatItem()
 			Pellet* pellet = mHeldTreasures[i];
 			if (pellet) {
 				pellet->mMgr->setComeAlive(pellet);
-				initArg.mState = PELSTATE_Bury;
-				initArg._1C    = 1;
+				initArg.mState             = PELSTATE_Bury;
+				initArg.mDoSkipCreateModel = 1; // breadbug drops are already loaded
 				pellet->init(&initArg);
 
 				Vector3f pos = mHomePosition;

@@ -24,7 +24,7 @@ struct StageData : public CNode {
 	int mStartNumBitter;          // _64
 	int mStartNumSpicy;           // _68
 	int mFloorCounts;             // _6C
-	s32 _70;                      // _70
+	s32 mOtakaraNum;              // _70, unused
 	int mStageIndex;              // _74
 	f32* mFloorTimerExtensions;   // _78
 };

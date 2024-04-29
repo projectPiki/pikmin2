@@ -104,7 +104,7 @@ struct SingleGameSection : public BaseGameSection {
 	struct Game::ItemHole::Item* mHole;                   // _188
 	struct Game::ItemBigFountain::Item* mFountain;        // _18C
 	u32 mCaveIndex;                                       // _190
-	bool _194;                                            // _194
+	bool mIsExitingMap;                                   // _194
 	char mCaveFilename[0x20];                             // _195
 	bool mDoEnd;                                          // _1B5
 	DvdThreadCommand mDvdThread;                          // _1B8

@@ -243,7 +243,7 @@ void Obj::initMouthSlots()
 
 	for (int i = 0; i < mMouthSlots.getMax(); i++) {
 		MouthCollPart* slot = mMouthSlots.getSlot(i);
-		slot->_6C           = 1;
+		slot->mIsOniKurage  = true;
 		f32 offset          = cDefaultKamuJointOffset[i];
 		slot->mRadius       = 1.0f;
 		slot->mOffset.x     = offset;

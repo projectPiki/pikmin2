@@ -45,7 +45,7 @@ GameState::GameState()
  */
 void GameState::init(VsGameSection* section, StateArg* stateArg)
 {
-	_16 = 0;
+	mSubState = 0;
 	mFlags.clear();
 	section->refreshHIO();
 	do_init(section);
@@ -90,7 +90,7 @@ void GameState::clearLoseCauses()
 {
 	mLoseCauses[0].clear();
 	mLoseCauses[1].clear();
-	_16 = 0;
+	mSubState = 0;
 }
 
 /**
@@ -247,7 +247,7 @@ void GameState::exec(VsGameSection* section)
 			return;
 		}
 
-		if (!_16) {
+		if (!mSubState) {
 			if (!GameStat::getAllPikmins(Red)) {
 				setLoseCause(VSPLAYER_Red, VSLOSE_Extinction);
 			}
@@ -331,12 +331,12 @@ void GameState::exec(VsGameSection* section)
 
 	if (!section->mMenuFlags || section->updateCaveMenus()) {
 		update_GameChallenge(section);
-		if (!_16) {
+		if (mSubState == 0) {
 			checkSMenu(section);
 		}
 
 		// check we're in VS Mode and that someone needs to lose
-		if (gameSystem->isVersusMode() && !isFlag(VSGS_Unk9) && !isFlag(VSGS_Unk10) && _16 != 1
+		if (gameSystem->isVersusMode() && !isFlag(VSGS_Unk9) && !isFlag(VSGS_Unk10) && mSubState != 1
 		    && (getLoseCauses(VSPLAYER_Red) || getLoseCauses(VSPLAYER_Blue))) {
 
 			gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
@@ -536,14 +536,14 @@ void GameState::cleanup(VsGameSection* section)
  */
 void GameState::onBattleFinished(VsGameSection* section, int winnerMaybe, bool check)
 {
-	if (_16) {
+	if (mSubState) {
 		return;
 	}
 
 	setLoseCause(1 - winnerMaybe, VSLOSE_Unk3);
 
 	if (check) {
-		_16 = 1;
+		mSubState = 1;
 	}
 }
 
@@ -551,7 +551,7 @@ void GameState::onBattleFinished(VsGameSection* section, int winnerMaybe, bool c
  * @note Address: 0x8022A858
  * @note Size: 0x10
  */
-bool GameState::isCardUsable(VsGameSection* section) { return (u32) !(_16); }
+bool GameState::isCardUsable(VsGameSection* section) { return (u32) !(mSubState); }
 
 /**
  * @note Address: 0x8022A868
@@ -566,11 +566,11 @@ void GameState::onRedOrBlueSuckStart(VsGameSection* section, int player, bool is
 		}
 	}
 
-	if (_16) {
+	if (mSubState) {
 		return;
 	}
 
-	_16 = 1;
+	mSubState = 1;
 
 	u8 loseReason = VSLOSE_Unk3;
 	if (!isYellow) {
@@ -801,8 +801,8 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 p1,
 		PSMCancelToPauseOffMainBgm();
 		section->mCurrentFloor++;
 		LoadArg arg;
-		arg._04 = 0;
-		arg._08 = true;
+		arg.mGameLoadType  = 0;
+		arg.mNeedClearHeap = true;
 		transit(section, VGS_Load, &arg);
 
 	} else if (config->is("s12_cv_giveup")) {
@@ -869,7 +869,7 @@ void GameState::onOrimaDown(VsGameSection* section, int naviIdx)
 	P2ASSERTBOUNDSLINE(1341, 0, naviIdx, 2);
 
 	if (gameSystem->isVersusMode()) {
-		if (!_16) {
+		if (!mSubState) {
 			setLoseCause(naviIdx, VSLOSE_Unk1);
 		}
 		return;
@@ -972,9 +972,9 @@ void GameState::update_GameChallenge(VsGameSection* section)
 	}
 
 	if (gameSystem->isVersusMode()) {
-		if (Screen::gGame2DMgr->check_VsStatus() == 2 && _16 == 1 && !(moviePlayer->isFlag(MVP_IsActive))) {
-			_16 = 2;
-		} else if (_16 == 1) {
+		if (Screen::gGame2DMgr->check_VsStatus() == 2 && mSubState == 1 && !(moviePlayer->isFlag(MVP_IsActive))) {
+			mSubState = 2;
+		} else if (mSubState == 1) {
 			Screen::gGame2DMgr->check_VsStatus(); // probably in a leftover && check
 		}
 

@@ -16,15 +16,15 @@ TekiMgr::TekiMgr() { mNodeCount = 0; }
  * @note Address: 0x80235394
  * @note Size: 0xA0
  */
-void TekiMgr::entry(EnemyTypeID::EEnemyTypeID id, int a2)
+void TekiMgr::entry(EnemyTypeID::EEnemyTypeID id, int count)
 {
-	TekiNode* newNode = new TekiNode();
+	TekiNode* newNode = new TekiNode;
 	newNode->mId      = id;
-	newNode->_1C      = a2;
+	newNode->mTekiNum = count;
 	newNode->mNodeID  = mNodeCount++;
 	mNode.add(newNode);
 
-	generalEnemyMgr->addEnemyNum(id, a2, nullptr);
+	generalEnemyMgr->addEnemyNum(id, count, nullptr);
 }
 
 /**
@@ -50,14 +50,14 @@ bool TekiMgr::birthable(int)
  * @note Address: 0x80235434
  * @note Size: 0xD8
  */
-EnemyBase* TekiMgr::birth(int idx, Vector3f& position, bool check)
+EnemyBase* TekiMgr::birth(int idx, Vector3f& position, bool setTimeLimit)
 {
 	TekiNode* node = getNode(idx);
 	if (node) {
 		EnemyBirthArg birthArg;
 		birthArg.mFaceDir  = TAU * randFloat();
 		birthArg.mPosition = position;
-		if (check) {
+		if (setTimeLimit) {
 			birthArg.mExistenceLength = 50.0f;
 		}
 		EnemyBase* teki = generalEnemyMgr->birth(node->mId, birthArg);

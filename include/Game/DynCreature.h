@@ -41,13 +41,13 @@ struct DynCreature : public Creature {
 	int getParticleNum();
 	void simulateCylinder(Sys::Cylinder&, f32);
 
-	DynParticle* mDynParticle; // _178
-	Rigid mRigid;              // _17C
-	Vector3f _2F4;             // _2F4
-	Vector3f _300;             // _300
-	DynParticle* _30C;         // _30C
-	u8 _310;                   // _310
-	u8 _311;                   // _311
+	DynParticle* mDynParticle;      // _178
+	Rigid mRigid;                   // _17C
+	Vector3f mRotation;             // _2F4
+	Vector3f _300;                  // _300
+	DynParticle* mCurrentChildPtcl; // _30C
+	u8 mCanBounce;                  // _310
+	u8 _311;                        // _311
 };
 } // namespace Game
 

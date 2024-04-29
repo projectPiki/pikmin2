@@ -70,12 +70,12 @@ DynParticle* DynParticle::getAt(int idx)
  */
 DynCreature::DynCreature()
 {
-	_30C         = nullptr;
-	mDynParticle = nullptr;
-	_2F4         = Vector3f(0.0f);
-	_300         = Vector3f(0.0f);
-	_310         = 0;
-	_311         = 0;
+	mCurrentChildPtcl = nullptr;
+	mDynParticle      = nullptr;
+	mRotation         = Vector3f(0.0f);
+	_300              = Vector3f(0.0f);
+	mCanBounce        = 0;
+	_311              = 0;
 }
 
 /**
@@ -129,7 +129,7 @@ void DynCreature::releaseParticles()
 void DynCreature::updateParticlePositions()
 {
 	for (DynParticle* particle = mDynParticle; particle; particle = particle->mNext) {
-		particle->_0C = mBaseTrMatrix.mtxMult(particle->_00);
+		particle->mPosition = mBaseTrMatrix.mtxMult(particle->mRotation);
 	}
 }
 
@@ -141,10 +141,10 @@ void DynCreature::computeForces(f32 friction)
 {
 	if (DynamicsParms::mInstance->mNewFriction()) {
 		for (DynParticle* particle = mDynParticle; particle; particle = particle->mNext) {
-			if (!particle->_2C) {
+			if (!particle->mIsTouching) {
 				continue;
 			}
-			Vector3f sep      = particle->_0C - _300;
+			Vector3f sep      = particle->mPosition - _300;
 			Vector3f crossVec = mRigid.mConfigs[0]._24.cross(sep) + mRigid.mConfigs[0].mVelocity;
 
 			f32 dotProd  = crossVec.dot(particle->_20); // f13
@@ -171,7 +171,7 @@ void DynCreature::computeForces(f32 friction)
 	int validCount = 0;
 	int count      = 0;
 	for (DynParticle* particle = mDynParticle; particle; particle = particle->mNext, count++) {
-		if (particle->_2C) {
+		if (particle->mIsTouching) {
 			validCount++;
 		}
 	}
@@ -193,10 +193,10 @@ void DynCreature::computeForces(f32 friction)
 	f32 coeff = -friction * prop; // f3
 
 	for (DynParticle* particle = mDynParticle; particle; particle = particle->mNext) {
-		if (!particle->_2C) {
+		if (!particle->mIsTouching) {
 			continue;
 		}
-		Vector3f sep      = particle->_0C - _300;
+		Vector3f sep      = particle->mPosition - _300;
 		Vector3f crossVec = mRigid.mConfigs[0]._24.cross(sep) + mRigid.mConfigs[0].mVelocity;
 		Vector3f vec      = particle->_20 * crossVec.dot(particle->_20);
 		vec               = crossVec - vec;
@@ -593,14 +593,14 @@ void DynCreature::tracemoveCallback(Vector3f& vec1, Vector3f& vec2)
 {
 	bool collCheck = mRigid.resolveCollision(0, vec1, vec2, DynamicsParms::mInstance->mElasticity());
 
-	if (_30C && collCheck) {
-		if (!_310) {
+	if (mCurrentChildPtcl && collCheck) {
+		if (!mCanBounce) {
 			bounceCallback(nullptr);
 		}
 
-		_311      = 1;
-		_30C->_2C = 1;
-		_30C->_20 = vec2;
+		_311                           = 1;
+		mCurrentChildPtcl->mIsTouching = 1;
+		mCurrentChildPtcl->_20         = vec2;
 	}
 }
 
@@ -662,37 +662,37 @@ int DynCreature::getParticleNum()
  */
 void DynCreature::simulate(f32 rate)
 {
-	_310 = _311;
-	_311 = 0;
+	mCanBounce = _311;
+	_311       = 0;
 
 	Delegate2<DynCreature, Vector3f&, Vector3f&> delegate(this, &DynCreature::tracemoveCallback);
 
-	_300 = mBaseTrMatrix.mtxMult(_2F4);
+	_300 = mBaseTrMatrix.mtxMult(mRotation);
 	mRigid.integrate(rate, 0);
 
 	Vector3f velocity;
 	Sys::Sphere moveSphere;
 	for (DynParticle* particle = mDynParticle; particle; particle = particle->mNext) {
-		particle->_0C = mBaseTrMatrix.mtxMult(particle->_00);
+		particle->mPosition = mBaseTrMatrix.mtxMult(particle->mRotation);
 
 		velocity     = mRigid.mConfigs[0]._24;
-		Vector3f sep = particle->_0C - _300;
+		Vector3f sep = particle->mPosition - _300;
 		velocity.cross(velocity, sep);
 		velocity = velocity + mRigid.mConfigs[0].mVelocity;
 
-		f32 radius   = particle->_18;
+		f32 radius   = particle->mRadius;
 		f32 extraRad = rate * velocity.length();
 		if (extraRad > 50.0f) {
 			extraRad = 50.0f;
 		}
 		radius += extraRad;
 
-		JUT_ASSERTLINE(497, range_check(particle->_00) && range_check(particle->_0C), "simulate error\n");
+		JUT_ASSERTLINE(497, range_check(particle->mRotation) && range_check(particle->mPosition), "simulate error\n");
 
-		moveSphere.mPosition = particle->_0C;
-		moveSphere.mRadius   = radius;
-		_30C                 = particle;
-		_30C->_2C            = 0;
+		moveSphere.mPosition           = particle->mPosition;
+		moveSphere.mRadius             = radius;
+		mCurrentChildPtcl              = particle;
+		mCurrentChildPtcl->mIsTouching = 0;
 
 		MoveInfo info(&moveSphere, &velocity, 1.0f, &delegate);
 		info.mUseIntersectionAlgo = true;
@@ -1066,7 +1066,7 @@ Vector3f DynCreature::getPosition() { return mRigid.mConfigs[0].mPosition; }
 void DynCreature::onSetPosition(Vector3f& pos)
 {
 	mRigid.initPosition(pos, Vector3f::zero);
-	mBaseTrMatrix = mRigid._04;
+	mBaseTrMatrix = mRigid.mPrimaryMatrix;
 	onSetPosition();
 }
 

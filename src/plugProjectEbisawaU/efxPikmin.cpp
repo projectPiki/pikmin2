@@ -1293,14 +1293,14 @@ void TNaviEffect::killOrimadamage_()
  */
 void TPkEffect::init()
 {
-	mPikiColor     = -1;
-	_0C            = nullptr;
-	mHamonPosPtr   = nullptr;
-	_14            = nullptr;
-	_18            = nullptr;
-	_1C            = nullptr;
-	mHeight        = nullptr;
-	mMoeSmokeTimer = 0;
+	mPikiColor       = -1;
+	mStemPosition    = nullptr;
+	mHamonPosPtr     = nullptr;
+	mAltStemPosition = nullptr;
+	mHappaJointMtx   = nullptr;
+	mBaseObjMatrix   = nullptr;
+	mHeight          = nullptr;
+	mMoeSmokeTimer   = 0;
 	mFlags.clear();
 }
 

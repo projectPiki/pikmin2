@@ -162,7 +162,7 @@ Generator::Generator()
 	mNextGenerator        = 0;
 	mPrevGenerator        = 0;
 	mCreature             = nullptr;
-	_7C                   = 0;
+	mUnusedVal            = 0;
 	mChild                = nullptr;
 	mParent               = nullptr;
 	mPrev                 = nullptr;
@@ -292,17 +292,17 @@ void Generator::saveCreature(Stream& output)
 void Generator::generate()
 {
 	if (isExpired()) {
-		_7C       = 0;
-		mCreature = nullptr;
+		mUnusedVal = 0;
+		mCreature  = nullptr;
 		return;
 	}
 
 	if (ramMode == RM_Disc) {
-		_7C         = 0;
+		mUnusedVal  = 0;
 		mDeathCount = 0;
 		mDayNum     = gameSystem->mTimeMgr->mDayCount;
 	} else if ((mReservedNum & 4) == 0) {
-		_7C = 0;
+		mUnusedVal = 0;
 		return;
 	}
 
@@ -492,25 +492,22 @@ void Generator::write(Stream& output)
  */
 GeneratorMgr::GeneratorMgr()
     : CNode("genMgr")
-    , _34()
-    , mVersionID()
-    , _50()
 {
 	mParentMgr      = nullptr;
 	mChildMgr       = nullptr;
 	mNextMgr        = nullptr;
-	_6D             = 0;
+	mUnusedFlag2    = 0;
 	mStartPos       = Vector3f(0.0f);
 	mStartDir       = 0.0f;
 	mGeneratorCount = 0;
 	mGenerator      = nullptr;
-	_34.setID('v0.1');
+	mAltVersionID.setID('v0.1');
 	mVersionID.setID('v0.0');
 	if (!GenObjectFactory::factory) {
-		GenObjectFactory::factory = new GenObjectFactoryFactory();
+		GenObjectFactory::factory = new GenObjectFactoryFactory;
 	}
-	_6C   = 0;
-	mName = "GeneratorMgr";
+	mUnusedFlag = 0;
+	mName       = "GeneratorMgr";
 }
 
 /**

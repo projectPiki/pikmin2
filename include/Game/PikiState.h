@@ -136,19 +136,19 @@ struct PikiAutoNukiState : public PikiState {
 };
 
 struct BlowStateArg : public StateArg {
-	inline BlowStateArg(Vector3f& vec, f32 p1, u8 lethal, u16 p3, Creature* creature)
+	inline BlowStateArg(Vector3f& vec, f32 leafChance, u8 lethal, u16 flags, Creature* creature)
 	{
 		mBlowDirection = vec;
-		mChanceToLeaf  = p1;
+		mChanceToLeaf  = leafChance;
 		mIsLethal      = lethal;
-		_12            = p3;
+		mFlags         = flags;
 		mHeldNavi      = creature;
 	}
 
 	Vector3f mBlowDirection; // _00
 	f32 mChanceToLeaf;       // _0C
 	bool mIsLethal;          // _10
-	u16 _12;                 // _12
+	u16 mFlags;              // _12
 	Creature* mHeldNavi;     // _14
 };
 
@@ -180,7 +180,7 @@ struct PikiBlowState : public PikiState {
 	f32 mChanceToLeaf;       // _24
 	bool mIsWhistled;        // _28
 	bool mIsLethal;          // _29
-	u16 _2A;                 // _2A
+	u16 mFlags;              // _2A
 };
 
 struct PikiCarrotState : public PikiState {
@@ -249,11 +249,11 @@ struct PikiDenkiDyingState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	f32 _10; // _10
+	f32 mWaitTime; // _10
 };
 
 struct DopeStateArg : public StateArg {
-	int _00; // _00
+	int mDopeType; // _00
 };
 
 struct PikiDopeState : public PikiState {
@@ -270,11 +270,11 @@ struct PikiDopeState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	bool _10;     // _10
-	f32 _14;      // _14, dope timer?
-	s16 _18;      // _18, spray type?
-	s16 mAnimIdx; // _1A
-	Navi* mNavi;  // _1C
+	bool mHasAnimStarted; // _10
+	f32 mStartWaitTime;   // _14
+	s16 mDopeState;       // _18
+	s16 mAnimIdx;         // _1A
+	Navi* mNavi;          // _1C
 };
 
 struct PikiDrownState : public PikiState {
@@ -293,26 +293,26 @@ struct PikiDrownState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	u16 _10;      // _10
-	u16 _12;      // _12
-	u16 _14;      // _14
-	u16 _16;      // _16
-	f32 _18;      // _18
-	bool _1C;     // _1C
-	Navi* mNavi;  // _20
-	Vector3f _24; // _24
-	bool _30;     // _30
+	u16 mSubState;          // _10
+	u16 mSizumuAnimDelay;   // _12
+	u16 mUnusedVal;         // _14
+	u16 mMoveState;         // _16
+	f32 _18;                // _18
+	bool mIsEscaped;        // _1C
+	Navi* mNavi;            // _20
+	Vector3f mMoveVelocity; // _24
+	bool mIsCalled;         // _30
 };
 
 struct DyingStateArg : public StateArg {
 	inline DyingStateArg()
 	    : mAnimIdx(IPikiAnims::NULLANIM)
-	    , _04(false)
+	    , mDoUseKillArg(false)
 	{
 	}
 
-	int mAnimIdx; // _00
-	bool _04;     // _04
+	int mAnimIdx;       // _00
+	bool mDoUseKillArg; // _04
 };
 
 struct PikiDyingState : public PikiState {
@@ -331,17 +331,17 @@ struct PikiDyingState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	int mAnimIdx; // _10
-	bool _14;     // _14, unknown
+	int mAnimIdx;       // _10
+	bool mDoUseKillArg; // _14
 };
 
 struct EmotionStateArg : public StateArg {
-	inline EmotionStateArg(u16 p1)
-	    : _00(p1)
+	inline EmotionStateArg(u16 type)
+	    : mType(type)
 	{
 	}
 
-	u16 _00; // _00
+	u16 mType; // _00
 };
 
 struct PikiEmotionState : public PikiState {
@@ -358,12 +358,12 @@ struct PikiEmotionState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	u8 _10[0xC]; // _10, unknown
-	u8 _1C;      // _1C
-	u8 _1D;      // _1D
-	u8 _1E[0x6]; // _1E, unknown
-	u16 _24;     // _24
-	s16 _26;     // _26, animIdx?
+	u8 _10[0xC];       // _10, unknown
+	u8 mUnusedVal;     // _1C
+	u8 mRepeatCounter; // _1D
+	u8 _1E[0x6];       // _1E, unknown
+	u16 mEmotionType;  // _24
+	s16 mAnimIdx;      // _26
 };
 
 struct PikiEscapeState : public PikiState {
@@ -384,12 +384,12 @@ struct PikiEscapeState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	s8 _10; // _10
-	u8 _11; // _11
+	s8 mDoFinishAnim; // _10
+	u8 mSubState;     // _11
 };
 
 struct FallMeckStateArg : public StateArg {
-	bool _00; // _00
+	bool mDoAutoPluck; // _00
 };
 
 struct PikiFallMeckState : public PikiState {
@@ -410,7 +410,7 @@ struct PikiFallMeckState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	bool _10; // _10
+	bool mDoAutoPluck; // _10
 };
 
 struct FlickStateArg : public StateArg {
@@ -468,9 +468,9 @@ struct PikiFlyingState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	f32 _10;                     // _10
+	f32 mSlowFallWaitTimer;      // _10
 	u8 mIsFlowerPiki;            // _14
-	u8 _15;                      // _15
+	u8 mUnusedVal;               // _15
 	u8 _16[0x2];                 // _16, unknown/padding
 	u8 _18[0x4];                 // _18, unknown
 	Vector3f mVelocityDirection; // _1C
@@ -500,11 +500,11 @@ struct PikiFountainonState : public PikiState {
 	// _00     = VTBL
 	// _00-_10 = PikiState
 	// u8 _10[0x24]; // _10, unknown
-	Vector3f _10;   // _10
-	Vector3f _1C;   // _1C
-	f32 _28;        // _28, length?
-	f32 _2C;        // _2C, timer?
-	f32 mCountdown; // _30
+	Vector3f mAvgPosition; // _10
+	Vector3f mPosDiff;     // _1C
+	f32 mTargetDist;       // _28, length?
+	f32 mTimer;            // _2C
+	f32 mCountdown;        // _30
 };
 
 struct PikiGoHangState : public PikiState {
@@ -575,8 +575,8 @@ struct PikiHipDropState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	f32 _10; // _10
-	u16 _14; // _14
+	f32 mWaitTimer; // _10
+	u16 mSubState;  // _14
 };
 
 struct HoleinStateArg : public StateArg {
@@ -599,15 +599,15 @@ struct PikiHoleinState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	Vector3f _10;       // _10
-	Vector3f _1C;       // _1C
-	f32 _28;            // _28, length?
-	f32 _2C;            // _2C, timer?
-	f32 mCountdown;     // _30
-	bool _34;           // _34
-	Vector3f mPosition; // _38
-	u8 _44;             // _44
-	f32 mScale;         // _48
+	Vector3f mGoalPos;      // _10
+	Vector3f mPosDiff;      // _1C
+	f32 mTargetDist;        // _28
+	f32 mTimer;             // _2C
+	f32 mCountdown;         // _30
+	bool mNeedHoldPos;      // _34
+	Vector3f mHeldPosition; // _38
+	u8 mHasPlayedSound;     // _44
+	f32 mScale;             // _48
 };
 
 struct KokeDamageStateArg : public StateArg {
@@ -662,8 +662,8 @@ struct PikiKokeState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	s8 mTimer; // _10
-	bool _11;  // _11
+	s8 mTimer;           // _10
+	bool mFallSoundType; // _11
 };
 
 struct PikiLookAtState : public PikiState, virtual SysShape::MotionListener {
@@ -682,9 +682,9 @@ struct PikiLookAtState : public PikiState, virtual SysShape::MotionListener {
 	// _00     = VTBL
 	// _00-_10 = PikiState
 	// _10-_14 = MotionListener VTBL
-	f32 _14; // _14
-	u16 _18; // _18
-	         // _1C = MotionListener again?
+	f32 mWaitTime; // _14
+	u16 mSubState; // _18
+	               // _1C = MotionListener again?
 };
 
 struct NukareStateArg : public StateArg {
@@ -706,9 +706,9 @@ struct PikiNukareState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	Navi* mNavi;  // _10
-	bool _14;     // _14
-	s16 mAnimIdx; // _16
+	Navi* mNavi;    // _10
+	bool mDoFinish; // _14
+	s16 mAnimIdx;   // _16
 };
 
 struct PanicStateArg : public StateArg {
@@ -738,15 +738,15 @@ struct PikiPanicState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	f32 mDeathTimer; // _10, when this reaches 0, piki dies
-	f32 mDramaTimer; // _14, when this reaches 0, piki does dramatic effect (hop/cough/sound)
-	f32 mAngle;      // _18
-	f32 mSpeed;      // _1C
-	bool _20;        // _20
-	bool _21;        // _21
-	u8 _22;          // _22
-	u16 mPanicType;  // _24
-	f32 _28;         // _28
+	f32 mDeathTimer;       // _10, when this reaches 0, piki dies
+	f32 mDramaTimer;       // _14, when this reaches 0, piki does dramatic effect (hop/cough/sound)
+	f32 mAngle;            // _18
+	f32 mSpeed;            // _1C
+	bool mIsCalled;        // _20
+	bool mIsLobsterLanded; // _21
+	u8 mSubState;          // _22
+	u16 mPanicType;        // _24
+	f32 mDemoWaitTime;     // _28
 };
 
 struct PikiPressedState : public PikiState {
@@ -765,7 +765,7 @@ struct PikiPressedState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	f32 _10; // _10
+	f32 mWaitTime; // _10
 };
 
 struct SuikomiStateArg : public StateArg {
@@ -843,8 +843,8 @@ struct PikiTaneState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	f32 _10; // _10
-	f32 _14; // _14
+	f32 mHorizontalDrag; // _10
+	f32 mVerticalDrag;   // _14
 };
 
 struct PikiWalkState : public PikiState {

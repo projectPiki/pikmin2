@@ -228,11 +228,11 @@ struct TPkEffectTane {
 struct TPkEffect {
 	TPkEffect()
 	    : mPikiColor(-1)
-	    , _0C(nullptr)
+	    , mStemPosition(nullptr)
 	    , mHamonPosPtr(nullptr)
-	    , _14(nullptr)
-	    , _18(nullptr)
-	    , _1C(nullptr)
+	    , mAltStemPosition(nullptr)
+	    , mHappaJointMtx(nullptr)
+	    , mBaseObjMatrix(nullptr)
 	    , mHeight(nullptr)
 	    , mMoeSmokeTimer(0)
 	{
@@ -314,7 +314,7 @@ struct TPkEffect {
 	inline void doDoping()
 	{
 		setFlag(PKEFF_Doped);
-		createDoping_(_0C);
+		createDoping_(mStemPosition);
 		killKourin_();
 	}
 
@@ -323,7 +323,7 @@ struct TPkEffect {
 		resetFlag(PKEFF_Doped);
 		killDoping_();
 		if (isFlag(PKEFF_Light)) {
-			createKourin_(_0C);
+			createKourin_(mStemPosition);
 		}
 	}
 
@@ -331,7 +331,7 @@ struct TPkEffect {
 	{
 		setFlag(PKEFF_Light);
 		if (!isFlag(PKEFF_Doped)) {
-			createKourin_(_0C);
+			createKourin_(mStemPosition);
 		}
 	}
 
@@ -348,21 +348,21 @@ struct TPkEffect {
 		// needs a lot more
 	}
 
-	BitFlag<u32> mFlags;       // _00
-	BitFlag<u32> mBackupFlags; // _04
-	int mPikiColor;            // _08, kourin color?
-	Vector3f* _0C;             // _0C, kourin position?
-	Vector3f* mHamonPosPtr;    // _10
-	Vector3f* _14;             // _14
-	Matrixf* _18;              // _18
-	Matrixf* _1C;              // _1C
-	f32* mHeight;              // _20, unknown
-	int mMoeSmokeTimer;        // _24, unknown
-	Vector3f mHamonPosition;   // _28, dive vector?
-	TPkNageBlur mNageBlur;     // _34
-	TPkMoeA mMoeA;             // _48
-	TPkBlackDown mBlackDown;   // _5C
-	ToeKourin mOeKourin;       // _70
+	BitFlag<u32> mFlags;        // _00
+	BitFlag<u32> mBackupFlags;  // _04
+	int mPikiColor;             // _08, kourin color?
+	Vector3f* mStemPosition;    // _0C, kourin position?
+	Vector3f* mHamonPosPtr;     // _10
+	Vector3f* mAltStemPosition; // _14, used for some effects
+	Matrixf* mHappaJointMtx;    // _18
+	Matrixf* mBaseObjMatrix;    // _1C
+	f32* mHeight;               // _20, unknown
+	int mMoeSmokeTimer;         // _24, unknown
+	Vector3f mHamonPosition;    // _28, dive vector?
+	TPkNageBlur mNageBlur;      // _34
+	TPkMoeA mMoeA;              // _48
+	TPkBlackDown mBlackDown;    // _5C
+	ToeKourin mOeKourin;        // _70
 	// u8 _8C[4];                 // _8C, unknown
 	ToeDoping mOeDoping;     // _90
 	ToeNagekira mOeNagekira; // _AC

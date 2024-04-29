@@ -88,10 +88,10 @@ void CaveResultState::loadResource()
 	mResultTextures = new ResultTexMgr::Mgr;
 	mResultTextures->create(arg);
 
-	JUTTexture* texture = new JUTTexture(sys->getRenderModeWidth(), sys->getRenderModeHeight(), GX_TF_RGB565);
-	texture->mMinFilter = 0;
-	texture->mMagFilter = 0;
-	mSection->_168      = texture;
+	JUTTexture* texture     = new JUTTexture(sys->getRenderModeWidth(), sys->getRenderModeHeight(), GX_TF_RGB565);
+	texture->mMinFilter     = 0;
+	texture->mMagFilter     = 0;
+	mSection->mXfbTexture2d = texture;
 
 	createResultNodes();
 
@@ -371,8 +371,8 @@ void CaveResultState::cleanup(SingleGameSection* section)
 	PSMGetSceneMgrCheck()->deleteCurrentScene();
 
 	playData->mCaveCropMemory->clear();
-	_14            = 0;
-	mSection->_168 = nullptr;
+	_14                     = 0;
+	mSection->mXfbTexture2d = nullptr;
 	mMainHeap->freeAll();
 	mMainHeap->destroy();
 	mMainHeap = nullptr;

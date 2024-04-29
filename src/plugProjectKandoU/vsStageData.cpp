@@ -20,7 +20,7 @@ StageData::StageData()
 	mStartNumSpicy        = 0;
 	mStartNumBitter       = 0;
 	mFloorCounts          = 1;
-	_70                   = 0;
+	mOtakaraNum           = 0;
 	mStageIndex           = 0;
 	mFloorTimerExtensions = nullptr;
 }
@@ -46,7 +46,7 @@ void StageData::read(Stream& stream)
 	}
 	if (version >= 2) {
 		mFloorCounts = stream.readInt();
-		_70          = stream.readInt(); // unuused otakara num
+		mOtakaraNum  = stream.readInt();
 	}
 	if (version >= 3) {
 		mStageIndex = stream.readInt();

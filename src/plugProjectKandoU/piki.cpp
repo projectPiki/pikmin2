@@ -130,9 +130,9 @@ void Piki::onInit(CreatureInitArg* initArg)
 	pikiMgr->setupPiki(this);
 	initAnimator();
 	mEffectsObj->init();
-	mEffectsObj->_0C        = &mLeafStemOffset;
-	mEffectsObj->_14        = &mLeafStemPosition;
-	mEffectsObj->mPikiColor = -1;
+	mEffectsObj->mStemPosition    = &mLeafStemOffset;
+	mEffectsObj->mAltStemPosition = &mLeafStemPosition;
+	mEffectsObj->mPikiColor       = -1;
 	mCollTree->attachModel(mModel);
 
 	PikiInitArg* pikiArg = static_cast<PikiInitArg*>(initArg);
@@ -340,10 +340,10 @@ void Piki::movieStartDemoAnimation(SysShape::AnimInfo* animInfo)
  */
 void Piki::movieSetTranslation(Vector3f& position, f32 faceDir)
 {
-	mSimVelocity         = Vector3f(0.0f);
-	mVelocity            = Vector3f(0.0f);
-	mAcceleration        = Vector3f(0.0f);
-	mPositionBeforeMovie = mPosition;
+	mSimVelocity      = Vector3f(0.0f);
+	mVelocity         = Vector3f(0.0f);
+	mAcceleration     = Vector3f(0.0f);
+	mPreviousPosition = mPosition;
 	setPosition(position, false);
 	mFaceDir = faceDir;
 }
@@ -1366,15 +1366,15 @@ void Piki::changeShape(int color)
 
 	int count = GameStat::alivePikis;
 
-	mEffectsObj->mPikiColor   = color;
-	mEffectsObj->mHamonPosPtr = &mPosition;
-	mEffectsObj->_1C          = &mBaseTrMatrix;
+	mEffectsObj->mPikiColor     = color;
+	mEffectsObj->mHamonPosPtr   = &mPosition;
+	mEffectsObj->mBaseObjMatrix = &mBaseTrMatrix;
 
-	mLeafStemJoint           = mModel->getJoint("happajnt3");
-	mHappaJoint1             = mModel->getJoint("happajnt1");
-	mEffectsObj->_18         = mModel->getJoint("happajnt3")->getWorldMatrix();
-	SysShape::Joint* headJnt = mModel->getJoint("headjnt");
-	headJnt->mJ3d->mFunction = sNeckCallback;
+	mLeafStemJoint              = mModel->getJoint("happajnt3");
+	mHappaJoint1                = mModel->getJoint("happajnt1");
+	mEffectsObj->mHappaJointMtx = mModel->getJoint("happajnt3")->getWorldMatrix();
+	SysShape::Joint* headJnt    = mModel->getJoint("headjnt");
+	headJnt->mJ3d->mFunction    = sNeckCallback;
 }
 
 /**
