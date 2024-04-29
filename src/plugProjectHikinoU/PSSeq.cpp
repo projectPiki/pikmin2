@@ -1796,14 +1796,14 @@ void JumpBgmPort::requestEveryBeat(u16 state)
  */
 u16 JumpBgmPort::output()
 {
-	u16 check = _64;
-	if (check != 0xffff) {
+	u16 track = _64;
+	if (track != 0xffff) {
 		OSLockMutex(&mMutex4);
 		_64 = -1;
 		OSUnlockMutex(&mMutex4);
 
 		OSLockMutex(&mMutex3);
-		_50 = check;
+		_50 = track;
 		OSUnlockMutex(&mMutex3);
 
 		P2ASSERTLINE(1173, mOwner);
@@ -1812,10 +1812,10 @@ u16 JumpBgmPort::output()
 		}
 	}
 
-	if (check != 0xffff) {
-		_70 = check;
+	if (track != 0xffff) {
+		_70 = track;
 	}
-	return check;
+	return track;
 }
 
 /**

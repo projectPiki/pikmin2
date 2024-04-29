@@ -29,10 +29,10 @@ struct PersEnvInfo {
 };
 
 struct EnvSe_Perspective_AvoidY : public PSGame::EnvSe_Perspective {
-	EnvSe_Perspective_AvoidY(u32 a1, f32 a2, Vec a3)
-	    : PSGame::EnvSe_Perspective(a1, a2, a3)
+	EnvSe_Perspective_AvoidY(u32 soundID, f32 volume, Vec pos)
+	    : PSGame::EnvSe_Perspective(soundID, volume, pos)
 	{
-		_48 = 500.0f;
+		_48 = 400.0f;
 	}
 
 	virtual JAISound* play();                    // _0C
@@ -45,6 +45,12 @@ struct EnvSe_Perspective_AvoidY : public PSGame::EnvSe_Perspective {
 };
 
 struct Env_Pollutin : public PSGame::EnvSe_AutoPan {
+	Env_Pollutin(u32 soundID)
+	    : EnvSe_AutoPan(soundID, 0.0f, 1.0f, 1.0f, 0.0018554f, 0.0008554f)
+	    , _50(1.0f)
+	{
+	}
+
 	virtual JAISound* play();                    // _0C
 	virtual u32 getCastType() { return 'poll'; } // _10 (weak)
 
@@ -62,12 +68,11 @@ struct PersEnvManager {
 	bool playOk(EnvSe_Perspective_AvoidY*);
 	void exec();
 
-	PSSystem::EnvSeMgr* mEnvSeMgr;  // _00
-	u8 _04;                         // _04
-	u8 _05[0x3];                    // _05, possibly padding
-	EnvSe_Perspective_AvoidY** _08; // _08, unknown ptr
-	f32* _0C;                       // _0C, unknown ptr
-	f32 _10;                        // _10
+	PSSystem::EnvSeMgr* mEnvSeMgr;          // _00
+	u8 mSeCount;                            // _04
+	EnvSe_Perspective_AvoidY** mPersEnvSes; // _08, array of mSeCount sound effects
+	f32* _0C;                               // _0C, unknown ptr
+	f32 _10;                                // _10
 };
 
 struct EnvSeObjBuilder : public PSGame::Builder_EvnSe_Perspective {
@@ -79,10 +84,20 @@ struct EnvSeObjBuilder : public PSGame::Builder_EvnSe_Perspective {
 
 	void setInfo(PersEnvInfo);
 
+	inline void createNewId(u32 id)
+	{
+		PSSystem::IdLink* link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(id);
+		PSSystem::IdList* list = &mList;
+		if (!mCurrentId) {
+			mCurrentId = link;
+		}
+		list->append(link);
+	}
+
 	// _00     = VTBL
 	// _00-_4C = PSGame::Builder_EvnSe_Perspective
-	void* _4C;                // _4C, unknown ptr
-	PersEnvInfo mPersEnvInfo; // _50
+	PSSystem::IdLink* mCurrentId; // _4C
+	PersEnvInfo mPersEnvInfo;     // _50
 };
 
 struct SeSound : public JAISe {
@@ -121,6 +136,9 @@ struct SeSound : public JAISe {
 	static f32 cCenterRad;
 	static const f32 smACosPrm[];
 };
+
+void SetNoYOfset(PSSystem::EnvSeMgr* mgr);
+void SetBossBgmMuteVol(PSSystem::EnvSeMgr* mgr, u32 id, f32 vol);
 } // namespace PSM
 
 #endif

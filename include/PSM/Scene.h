@@ -62,7 +62,6 @@ struct SceneMgr : public PSGame::PikSceneMgr {
 
 	// _00      = VTBL
 	// _00-_0D  = PikSceneMgr
-	u8 _10; // _10, unknown
 };
 
 //////////// GLOBAL SCENE

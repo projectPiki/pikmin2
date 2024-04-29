@@ -6,8 +6,6 @@
 #include "PSSystem/PSDirector.h"
 #include "PSSystem/PSSeq.h"
 #include "PSGame/SceneInfo.h"
-#include "JSystem/JAudio/JAI/JAInter.h"
-#include "JSystem/JAudio/JAD/JADUtility.h"
 
 namespace PSM {
 struct MiddleBossSeq;
@@ -59,12 +57,8 @@ struct PikScene : public PSSystem::Scene {
 struct PikSceneMgr : public PSSystem::SceneMgr {
 	/**
 	 * @brief Default constructor for PikSceneMgr.
-	 * Initializes the access mode to JADUtility::MODE_0.
 	 */
-	PikSceneMgr()
-	    : mAccessMode(JADUtility::MODE_0)
-	{
-	}
+	PikSceneMgr() { _10 = 0; }
 
 	/**
 	 * @brief Creates a new scene and sets it as the current scene.
@@ -168,7 +162,7 @@ struct PikSceneMgr : public PSSystem::SceneMgr {
 
 	// _00      = VTBL
 	// _00-_08  = SceneMgr
-	u8 mAccessMode; // _0C,  JADUtility::AccessMode
+	u8 _10; // _10, unknown
 };
 } // namespace PSGame
 

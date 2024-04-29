@@ -16,306 +16,33 @@
 #include "PSAutoBgm/MeloArr.h"
 #include "nans.h"
 
+#define CREATE_NEW_ID(id, builder)                                                   \
+	{                                                                                \
+		PSSystem::IdLink* link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(id); \
+		PSSystem::IdList* list = &builder.mList;                                     \
+		if (!builder.mCurrentId) {                                                   \
+			builder.mCurrentId = link;                                               \
+		}                                                                            \
+		list->append(link);                                                          \
+	}
+
 static const u32 padding[] = { 0, 0, 0 };
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-        .4byte __sinit_PSMainSide_Factory_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8049CE68
-    lbl_8049CE68:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_8049CE74
-    lbl_8049CE74:
-        .4byte 0x50534D61
-        .4byte 0x696E5369
-        .4byte 0x64655F46
-        .4byte 0x6163746F
-        .4byte 0x72792E63
-        .4byte 0x70700000
-    .global lbl_8049CE8C
-    lbl_8049CE8C:
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x50534761
-        .4byte 0x6D652E68
-        .4byte 0x00000000
-        .4byte 0x50535363
-        .4byte 0x656E652E
-        .4byte 0x68000000
-        .4byte 0x67657420
-        .4byte 0x736F756E
-        .4byte 0x64207363
-        .4byte 0x656E6520
-        .4byte 0x61740A69
-        .4byte 0x6E76616C
-        .4byte 0x69642074
-        .4byte 0x696D6D69
-        .4byte 0x6E670A00
-        .4byte 0x50534D61
-        .4byte 0x696E5369
-        .4byte 0x64655F53
-        .4byte 0x63656E65
-        .4byte 0x2E680000
-        .4byte 0x6B75726F
-        .4byte 0x5F706F73
-        .4byte 0x742E626D
-        .4byte 0x73000000
-        .4byte 0x5053436F
-        .4byte 0x6D6D6F6E
-        .4byte 0x2E680000
-        .4byte 0x6D5F626F
-        .4byte 0x73732E62
-        .4byte 0x6D730000
-        .4byte 0x6C5F626F
-        .4byte 0x73732E62
-        .4byte 0x6D730000
-        .4byte 0x62617474
-        .4byte 0x6C655F74
-        .4byte 0x2E626D73
-        .4byte 0x00000000
-        .4byte 0x44BB8000
-        .4byte 0x43EF8000
-        .4byte 0x4430C000
-        .4byte 0x444A0000
-        .float 1.0
-        .4byte 0x44BB8000
-        .4byte 0x43EF8000
-        .4byte 0x4430C000
-        .4byte 0x444A0000
-        .float 1.0
-        .4byte 0x44BB8000
-        .4byte 0x43BD8000
-        .4byte 0x4410C000
-        .4byte 0x4480E000
-        .4byte 0x3F666666
-        .4byte 0x44BB8000
-        .4byte 0x43EF8000
-        .4byte 0x4430C000
-        .4byte 0x444A0000
-        .float 1.0
-        .4byte 0x44BB8000
-        .4byte 0x43BD8000
-        .4byte 0x43EF8000
-        .4byte 0x448D6000
-        .float 1.0
-        .4byte 0x97909094
-        .4byte 0x88CA9275
-        .4byte 0x41766F69
-        .4byte 0x64000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804EE158
-    lbl_804EE158:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_804EE164
-    lbl_804EE164:
-        .4byte lbl_8045A578
-        .4byte lbl_8045A5CC
-        .4byte lbl_8045A5CC
-        .4byte lbl_8045A5CC
-        .4byte lbl_8045A5CC
-        .4byte lbl_8045A618
-        .4byte lbl_8045A618
-        .4byte lbl_8045A618
-        .4byte lbl_8045A618
-        .4byte lbl_8045A618
-        .4byte lbl_8045A618
-        .4byte lbl_8045A5F4
-        .4byte lbl_8045A5F4
-        .4byte lbl_8045A5A0
-        .4byte lbl_8045A618
-        .4byte lbl_8045A618
-        .4byte lbl_8045A618
-        .4byte lbl_8045A618
-        .4byte lbl_8045A618
-        .4byte lbl_8045A618
-        .4byte lbl_8045A5CC
-    .global lbl_804EE1B8
-    lbl_804EE1B8:
-        .4byte lbl_8045AB94
-        .4byte lbl_8045AC24
-        .4byte lbl_8045ACB4
-        .4byte lbl_8045AD88
-        .4byte lbl_8045AE5C
-        .4byte lbl_8045AF30
-        .4byte lbl_8045B004
-        .4byte lbl_8045B0D8
-        .4byte lbl_8045B1AC
-        .4byte lbl_8045B280
-        .4byte lbl_8045B354
-        .4byte lbl_8045B428
-        .4byte lbl_8045B4FC
-        .4byte lbl_8045B5D0
-        .4byte lbl_8045B6A4
-    .global lbl_804EE1F4
-    lbl_804EE1F4:
-        .4byte lbl_8045C8C8
-        .4byte lbl_8045C820
-        .4byte lbl_8045C8C8
-        .4byte lbl_8045C898
-        .4byte lbl_8045C8C8
-        .4byte lbl_8045C898
-        .4byte lbl_8045C898
-        .4byte lbl_8045C898
-        .4byte lbl_8045C838
-        .4byte lbl_8045C850
-        .4byte lbl_8045C868
-        .4byte lbl_8045C880
-        .4byte lbl_8045C8C8
-    .global __vt__Q23PSM10BigBossSeq
-    __vt__Q23PSM10BigBossSeq:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q23PSM10BigBossSeqFv
-        .4byte init__Q28PSSystem11DirectedBgmFv
-        .4byte scene1st__Q28PSSystem7SeqBaseFPQ28PSSystem11TaskChecker
-        .4byte startSeq__Q28PSSystem10JumpBgmSeqFv
-        .4byte stopSeq__Q28PSSystem11DirectedBgmFUl
-        .4byte pauseOn__Q28PSSystem7SeqBaseFQ38PSSystem7SeqBase9PauseMode
-        .4byte pauseOff__Q28PSSystem7SeqBaseFv
-        .4byte getCastType__Q28PSSystem10JumpBgmSeqFv
-        .4byte getSeqType__Q28PSSystem6BgmSeqFv
-        .4byte exec__Q23PSM13MiddleBossSeqFv
-        .4byte onPlayingFrame__Q28PSSystem10JumpBgmSeqFv
-        .4byte isPlaying__Q28PSSystem7SeqBaseFv
-        .4byte seqLoadAfter__Q28PSSystem7SeqBaseFv
-        .4byte getHandleP__Q28PSSystem6BgmSeqFv
-        .4byte setConfigVolume__Q28PSSystem7SeqBaseFv
-        .4byte newSeqTrackRoot__Q28PSSystem10JumpBgmSeqFv
-        .4byte
-   newSeqTrackChild__Q28PSSystem11DirectedBgmFUcRQ28PSSystem12SeqTrackRoot
-        .4byte getSeqStartPoint__Q28PSSystem10JumpBgmSeqFv
-        .4byte requestJumpBgmQuickly__Q23PSM13MiddleBossSeqFUs
-        .4byte requestJumpBgmOnBeat__Q23PSM13MiddleBossSeqFUs
-        .4byte requestJumpBgmEveryBeat__Q23PSM13MiddleBossSeqFUs
-        .4byte outputJumpRequest__Q28PSSystem10JumpBgmSeqFv
-        .4byte onJump__Q23PSM10BigBossSeqFUs
-        .4byte jumpCheck__Q23PSM10BigBossSeqFUs
-    .global __vt__Q23PSM13MiddleBossSeq
-    __vt__Q23PSM13MiddleBossSeq:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q23PSM13MiddleBossSeqFv
-        .4byte init__Q28PSSystem11DirectedBgmFv
-        .4byte scene1st__Q28PSSystem7SeqBaseFPQ28PSSystem11TaskChecker
-        .4byte startSeq__Q28PSSystem10JumpBgmSeqFv
-        .4byte stopSeq__Q28PSSystem11DirectedBgmFUl
-        .4byte pauseOn__Q28PSSystem7SeqBaseFQ38PSSystem7SeqBase9PauseMode
-        .4byte pauseOff__Q28PSSystem7SeqBaseFv
-        .4byte getCastType__Q28PSSystem10JumpBgmSeqFv
-        .4byte getSeqType__Q28PSSystem6BgmSeqFv
-        .4byte exec__Q23PSM13MiddleBossSeqFv
-        .4byte onPlayingFrame__Q28PSSystem10JumpBgmSeqFv
-        .4byte isPlaying__Q28PSSystem7SeqBaseFv
-        .4byte seqLoadAfter__Q28PSSystem7SeqBaseFv
-        .4byte getHandleP__Q28PSSystem6BgmSeqFv
-        .4byte setConfigVolume__Q28PSSystem7SeqBaseFv
-        .4byte newSeqTrackRoot__Q28PSSystem10JumpBgmSeqFv
-        .4byte
-   newSeqTrackChild__Q28PSSystem11DirectedBgmFUcRQ28PSSystem12SeqTrackRoot
-        .4byte getSeqStartPoint__Q28PSSystem10JumpBgmSeqFv
-        .4byte requestJumpBgmQuickly__Q23PSM13MiddleBossSeqFUs
-        .4byte requestJumpBgmOnBeat__Q23PSM13MiddleBossSeqFUs
-        .4byte requestJumpBgmEveryBeat__Q23PSM13MiddleBossSeqFUs
-        .4byte outputJumpRequest__Q28PSSystem10JumpBgmSeqFv
-        .4byte onJump__Q23PSM13MiddleBossSeqFUs
-        .4byte jumpCheck__Q23PSM13MiddleBossSeqFUs
-    .global __vt__Q23PSM8SceneMgr
-    __vt__Q23PSM8SceneMgr:
-        .4byte 0
-        .4byte 0
-        .4byte exec__Q28PSSystem8SceneMgrFv
-        .4byte
-   newAndSetCurrentScene__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfo .4byte
-   newAndSetGlobalScene__Q26PSGame11PikSceneMgrFv .4byte
-   newMainBgm__Q23PSM8SceneMgrFPCcRQ27JAInter9SoundInfo .4byte
-   newDirectedBgm__Q23PSM8SceneMgrFPCcRQ27JAInter9SoundInfo .4byte
-   newAutoBgm__Q23PSM8SceneMgrFPCcPCcRQ27JAInter9SoundInfoQ210JADUtility10AccessModeRQ26PSGame9SceneInfoPQ28PSSystem15DirectorMgrBase
-        .4byte curSceneIsBigBossFloor__Q23PSM8SceneMgrFv
-        .4byte newGameScene__Q23PSM8SceneMgrFUcPQ26PSGame9SceneInfo
-    .global __vt__Q28PSSystem8SceneMgr
-    __vt__Q28PSSystem8SceneMgr:
-        .4byte 0
-        .4byte 0
-        .4byte exec__Q28PSSystem8SceneMgrFv
-    .global __vt__Q23PSM15EnvSeObjBuilder
-    __vt__Q23PSM15EnvSeObjBuilder:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q23PSM15EnvSeObjBuilderFv
-        .4byte onBuild__Q23PSM15EnvSeObjBuilderFPQ28PSSystem9EnvSeBase
-        .4byte newSeObj__Q23PSM15EnvSeObjBuilderFUlf3Vec
-    .global __vt__Q23PSM24EnvSe_Perspective_AvoidY
-    __vt__Q23PSM24EnvSe_Perspective_AvoidY:
-        .4byte 0
-        .4byte 0
-        .4byte exec__Q28PSSystem9EnvSeBaseFv
-        .4byte play__Q23PSM24EnvSe_Perspective_AvoidYFv
-        .4byte getCastType__Q23PSM24EnvSe_Perspective_AvoidYFv
-        .4byte setPanAndDolby__Q28PSSystem9EnvSeBaseFP8JAISound
-    .global __vt__Q23PSM12Env_Pollutin
-    __vt__Q23PSM12Env_Pollutin:
-        .4byte 0
-        .4byte 0
-        .4byte exec__Q28PSSystem9EnvSeBaseFv
-        .4byte play__Q23PSM12Env_PollutinFv
-        .4byte getCastType__Q23PSM12Env_PollutinFv
-        .4byte setPanAndDolby__Q26PSGame13EnvSe_AutoPanFP8JAISound
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80516308
-    lbl_80516308:
-        .skip 0x4
-    .global lbl_8051630C
-    lbl_8051630C:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80520C20
-    lbl_80520C20:
-        .float 1.0
-    .global lbl_80520C24
-    lbl_80520C24:
-        .4byte 0x00000000
-    .global lbl_80520C28
-    lbl_80520C28:
-        .4byte 0x43C80000
-    .global lbl_80520C2C
-    lbl_80520C2C:
-        .4byte 0x43EF8000
-    .global lbl_80520C30
-    lbl_80520C30:
-        .4byte 0x3AF330E5
-    .global lbl_80520C34
-    lbl_80520C34:
-        .4byte 0x3A603CEC
-    .global lbl_80520C38
-    lbl_80520C38:
-        .float 0.5
-    .global lbl_80520C3C
-    lbl_80520C3C:
-        .4byte 0x43BD8000
-    .global lbl_80520C40
-    lbl_80520C40:
-        .4byte 0x3E8F5C29
-    .global lbl_80520C44
-    lbl_80520C44:
-        .4byte 0x3F19999A
-    .global lbl_80520C48
-    lbl_80520C48:
-        .4byte 0x461C4000
-        .4byte 0x00000000
-*/
-
 namespace PSM {
+
+// idk if these are Vec&, Vec*, Vec, or JGeometry::TVec3f/Vector3f equivalents. this is the closest i've gotten but stack is off
+// might take EnvSe_Perspective_AvoidY* and Navi*? seems unlikely comparing the functions it's used in but who knows
+// see EnvSe_Perspective_AvoidY::play and PersEnvManager::exec
+static inline f32 getSoundDistance(Vec& sound, Vec& navi)
+{
+	f32 x = sound.x - navi.x;
+	x *= x;
+	f32 z = sound.z - navi.z;
+	z *= z;
+	f32 dist = x + z;
+	sqrtf(dist);
+	return dist;
+}
 
 /**
  * @note Address: 0x80459BD4
@@ -359,23 +86,24 @@ JAISound* EnvSe_Perspective_AvoidY::play()
 	if (!navi) {
 		hasNavi = false;
 	}
-	Scene_Game* scene = PSMGetGameScene();
-	if (hasNavi && scene->mPersEnvMgr && scene->mPersEnvMgr->playOk(this)) {
-		mPosition.y  = _48 + navi->getPosition().y;
+	Scene_Game* scene            = PSMGetGameScene();
+	PSM::PersEnvManager* persMgr = scene->mPersEnvMgr;
+	if (hasNavi && persMgr && persMgr->playOk(this)) {
+		mPosition.y = _48 + navi->getPosition().y;
+
 		Vector3f pos = navi->getPosition();
-		f32 x        = mPosition.x - pos.x;
-		f32 z        = mPosition.z - pos.z;
-		f32 dist     = (x * x) + (z * z);
-		dist         = _sqrtf(dist);
-		int players  = PSSystem::SingletonBase<ObjCalcBase>::getInstance()->getPlayerNo(mPosition);
-		PSSystem::spSysIF->startSoundVecT(mSoundID, &mSound, &mPosition, 0, 0, players);
+		Vec naviPos  = *(Vec*)&pos;
+		f32 dist     = getSoundDistance(mPosition, naviPos); // this is close. need to match with this and PersEnvManager::exec
+
+		PSSystem::spSysIF->startSoundVecT(mSoundID, &mSound, &mPosition, 0, 0,
+		                                  PSSystem::SingletonBase<ObjCalcBase>::getInstance()->getPlayerNo(mPosition));
 		f32 calc;
 		if (dist < mInfo._08) {
-			calc = JALCalc::linearTransform(dist, mInfo._04, mInfo._08, 0.0f, mInfo._0C, true);
-		} else if (dist < mInfo._08) {
-			calc = mInfo._0C;
+			calc = JALCalc::linearTransform(dist, mInfo._04, mInfo._08, 0.0f, mInfo._10, true);
+		} else if (dist < mInfo._0C) {
+			calc = mInfo._10;
 		} else {
-			calc = JALCalc::linearTransform(dist, mInfo._08, mInfo._00, mInfo._0C, 0.0f, true);
+			calc = JALCalc::linearTransform(dist, mInfo._0C, mInfo._00, mInfo._10, 0.0f, true);
 		}
 		mVolume = calc;
 	}
@@ -556,7 +284,10 @@ lbl_8045A0A8:
  * @note Address: 0x8045A0C8
  * @note Size: 0xA0
  */
-PSGame::EnvSe_Perspective* EnvSeObjBuilder::newSeObj(u32 a1, f32 a2, Vec a3) { return new EnvSe_Perspective_AvoidY(a1, a2, a3); }
+PSGame::EnvSe_Perspective* EnvSeObjBuilder::newSeObj(u32 soundID, f32 volume, Vec pos)
+{
+	return new EnvSe_Perspective_AvoidY(soundID, volume, pos);
+}
 
 /**
  * @note Address: 0x8045A168
@@ -573,27 +304,7 @@ void EnvSeObjBuilder::onBuild(PSSystem::EnvSeBase* se)
  * @note Address: 0x8045A1C4
  * @note Size: 0x3C
  */
-SceneMgr::SceneMgr()
-    : _10(0)
-{
-	/*
-	lis      r4, __vt__Q28PSSystem8SceneMgr@ha
-	lis      r5, __vt__Q26PSGame11PikSceneMgr@ha
-	addi     r0, r4, __vt__Q28PSSystem8SceneMgr@l
-	lis      r4, __vt__Q23PSM8SceneMgr@ha
-	stw      r0, 0(r3)
-	li       r6, 0
-	addi     r5, r5, __vt__Q26PSGame11PikSceneMgr@l
-	addi     r0, r4, __vt__Q23PSM8SceneMgr@l
-	stw      r6, 4(r3)
-	stw      r6, 8(r3)
-	stb      r6, 0xc(r3)
-	stw      r5, 0(r3)
-	stb      r6, 0x10(r3)
-	stw      r0, 0(r3)
-	blr
-	*/
-}
+SceneMgr::SceneMgr() { }
 
 /**
  * @note Address: 0x8045A200
@@ -602,76 +313,13 @@ SceneMgr::SceneMgr()
 PSSystem::BgmSeq* SceneMgr::newMainBgm(const char* bmsFilePath, JAInter::SoundInfo& info)
 {
 	DirectorMgr_Scene* director = new DirectorMgr_Scene(nullptr, 8);
-	PSSystem::JumpBgmSeq* seq   = new PSSystem::JumpBgmSeq(bmsFilePath, info, director);
+	PSSystem::DirectedBgm* seq  = new PSSystem::JumpBgmSeq(bmsFilePath, info, director);
 
 	P2ASSERTLINE(349, seq);
 	seq->init();
 	director->initTrackMap(*seq);
 	director->initAndAdaptToBgm(*seq);
 	return seq;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	li       r3, 0x88
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_8045A240
-	li       r4, 0
-	li       r5, 8
-	bl       __ct__Q23PSM17DirectorMgr_SceneFPQ23PSM17DirectorMgr_SceneUc
-	mr       r31, r3
-
-lbl_8045A240:
-	li       r3, 0x134
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8045A264
-	mr       r4, r29
-	mr       r5, r30
-	mr       r6, r31
-	bl
-__ct__Q28PSSystem10JumpBgmSeqFPCcRCQ27JAInter9SoundInfoPQ28PSSystem15DirectorMgrBase
-	mr       r0, r3
-
-lbl_8045A264:
-	cmplwi   r0, 0
-	mr       r30, r0
-	bne      lbl_8045A28C
-	lis      r3, lbl_8049CE74@ha
-	lis      r5, lbl_8049CE8C@ha
-	addi     r3, r3, lbl_8049CE74@l
-	li       r4, 0x15d
-	addi     r5, r5, lbl_8049CE8C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8045A28C:
-	mr       r3, r30
-	lwz      r12, 0x10(r30)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	mr       r4, r30
-	bl       initTrackMap__Q23PSM17DirectorMgr_SceneFRQ28PSSystem11DirectedBgm
-	mr       r3, r31
-	mr       r4, r30
-	bl initAndAdaptToBgm__Q28PSSystem15DirectorMgrBaseFRQ28PSSystem11DirectedBgm
-	lwz      r0, 0x24(r1)
-	mr       r3, r30
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -692,12 +340,15 @@ PSSystem::BgmSeq* SceneMgr::newDirectedBgm(const char* name, JAInter::SoundInfo&
 	if (!strcmp(name, "m_boss.bms")) {
 		director = new DirectorMgr_Battle;
 		seq      = new MiddleBossSeq(name, info, director);
+
 	} else if (!strcmp(name, "l_boss.bms")) {
 		director = new DirectorMgr_Battle;
 		seq      = new BigBossSeq(name, info, director);
+
 	} else if (!strcmp(name, "battle_t.bms")) {
 		director = new DirectorMgr_2PBattle;
 		seq      = new PSSystem::DirectedBgm(name, info, director);
+
 	} else {
 		JUT_PANICLINE(403, "P2Assert");
 	}
@@ -717,19 +368,23 @@ PSSystem::BgmSeq* SceneMgr::newDirectedBgm(const char* name, JAInter::SoundInfo&
 PSSystem::Scene* SceneMgr::newGameScene(u8 wscene, PSGame::SceneInfo* info)
 {
 	PSSystem::Scene* scene = nullptr;
-	if (info->mSceneType == PSGame::SceneInfo::CHALLENGE_MODE || info->mSceneType == PSGame::SceneInfo::TWO_PLAYER_BATTLE) {
+	if (info->getSceneType() == PSGame::SceneInfo::CHALLENGE_MODE || info->getSceneType() == PSGame::SceneInfo::TWO_PLAYER_BATTLE) {
 		scene = new Scene_Challenge(wscene, info);
+
 	} else {
 		if (info->isCaveFloor()) {
 			scene = new Scene_Cave(wscene, info);
+
 		} else {
 			switch (info->mSceneType) {
 			case PSGame::SceneInfo::SCENE_NULL:
 				scene = new Scene_Global(wscene, info);
 				break;
+
 			case PSGame::SceneInfo::PIKLOPEDIA:
 				scene = new Scene_Zukan(wscene, info);
 				break;
+
 			case PSGame::SceneInfo::COURSE_TUTORIAL:
 			case PSGame::SceneInfo::COURSE_FOREST:
 			case PSGame::SceneInfo::COURSE_YAKUSHIMA:
@@ -737,6 +392,7 @@ PSSystem::Scene* SceneMgr::newGameScene(u8 wscene, PSGame::SceneInfo* info)
 			case PSGame::SceneInfo::COURSE_TUTORIALDAY1:
 				scene = new Scene_Ground(wscene, info);
 				break;
+
 			case PSGame::SceneInfo::WORLD_MAP_NORMAL:
 			case PSGame::SceneInfo::WORLD_MAP_NEWLEVEL:
 				scene = new Scene_WorldMap(wscene, info);
@@ -754,173 +410,6 @@ PSSystem::Scene* SceneMgr::newGameScene(u8 wscene, PSGame::SceneInfo* info)
 	scene->init();
 
 	return scene;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	li       r29, 0
-	lbz      r0, 6(r5)
-	cmplwi   r0, 6
-	beq      lbl_8045A4E8
-	clrlwi   r0, r0, 0x18
-	cmplwi   r0, 7
-	bne      lbl_8045A510
-
-lbl_8045A4E8:
-	li       r3, 0x68
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8045A508
-	mr       r4, r30
-	mr       r5, r31
-	bl       __ct__Q23PSM15Scene_ChallengeFUcPQ26PSGame9SceneInfo
-	mr       r0, r3
-
-lbl_8045A508:
-	mr       r29, r0
-	b        lbl_8045A618
-
-lbl_8045A510:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8045A554
-	li       r3, 0x68
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8045A54C
-	mr       r4, r30
-	mr       r5, r31
-	bl       __ct__Q23PSM10Scene_CaveFUcPQ26PSGame9SceneInfo
-	mr       r0, r3
-
-lbl_8045A54C:
-	mr       r29, r0
-	b        lbl_8045A618
-
-lbl_8045A554:
-	lbz      r0, 6(r31)
-	cmplwi   r0, 0x14
-	bgt      lbl_8045A618
-	lis      r3, lbl_804EE164@ha
-	slwi     r0, r0, 2
-	addi     r3, r3, lbl_804EE164@l
-	lwzx     r0, r3, r0
-	mtctr    r0
-	bctr
-
-lbl_8045A578:
-	li       r3, 0x28
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8045A598
-	mr       r4, r30
-	mr       r5, r31
-	bl       __ct__Q23PSM12Scene_GlobalFUcPQ26PSGame9SceneInfo
-	mr       r0, r3
-
-lbl_8045A598:
-	mr       r29, r0
-	b        lbl_8045A618
-
-lbl_8045A5A0:
-	li       r3, 0x38
-	bl       __nw__FUl
-	or.      r29, r3, r3
-	beq      lbl_8045A618
-	mr       r4, r30
-	mr       r5, r31
-	bl       __ct__Q23PSM13Scene_ObjectsFUcPQ26PSGame9SceneInfo
-	lis      r3, __vt__Q23PSM11Scene_Zukan@ha
-	addi     r0, r3, __vt__Q23PSM11Scene_Zukan@l
-	stw      r0, 0(r29)
-	b        lbl_8045A618
-
-lbl_8045A5CC:
-
-lbl_8045A5CC:
-
-lbl_8045A5CC:
-
-lbl_8045A5CC:
-
-lbl_8045A5CC:
-	li       r3, 0x60
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8045A5EC
-	mr       r4, r30
-	mr       r5, r31
-	bl       __ct__Q23PSM12Scene_GroundFUcPQ26PSGame9SceneInfo
-	mr       r0, r3
-
-lbl_8045A5EC:
-	mr       r29, r0
-	b        lbl_8045A618
-
-lbl_8045A5F4:
-
-lbl_8045A5F4:
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8045A614
-	mr       r4, r30
-	mr       r5, r31
-	bl       __ct__Q23PSM14Scene_WorldMapFUcPQ26PSGame9SceneInfo
-	mr       r0, r3
-
-lbl_8045A614:
-	mr       r29, r0
-
-lbl_8045A618:
-	cmplwi   r29, 0
-	bne      lbl_8045A648
-	li       r3, 0x28
-	bl       __nw__FUl
-	or.      r29, r3, r3
-	beq      lbl_8045A648
-	mr       r4, r30
-	mr       r5, r31
-	bl       __ct__Q23PSM9SceneBaseFUcPQ26PSGame9SceneInfo
-	lis      r3, __vt__Q23PSM15Scene_NoObjects@ha
-	addi     r0, r3, __vt__Q23PSM15Scene_NoObjects@l
-	stw      r0, 0(r29)
-
-lbl_8045A648:
-	cmplwi   r29, 0
-	bne      lbl_8045A66C
-	lis      r3, lbl_8049CE74@ha
-	lis      r5, lbl_8049CE8C@ha
-	addi     r3, r3, lbl_8049CE74@l
-	li       r4, 0x1d4
-	addi     r5, r5, lbl_8049CE8C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8045A66C:
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x24(r1)
-	mr       r3, r29
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -929,18 +418,495 @@ lbl_8045A66C:
  */
 void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 {
-	PSGame::SceneInfo* info = scene->getSceneInfoA();
-	PSSystem::EnvSeMgr* mgr = nullptr;
-	u8 type                 = info->mSceneType;
+	PSGame::SceneInfo* info = scene->getSceneInfoA(); // r28
+	PSSystem::EnvSeMgr* mgr = nullptr;                // r29
+	u8 type                 = info->getSceneType();   // r25
 
-	JGeometry::TBox3f bounds(info->mBounds);
-	EnvSeObjBuilder builder(bounds);
+	EnvSeObjBuilder builder(JGeometry::TBox3f(info->mBounds)); // 0xE8
 
 	switch (type) {
 	case PSGame::SceneInfo::CHALLENGE_MODE:
-		mgr                = new PSSystem::EnvSeMgr;
-		scene->mPersEnvMgr = new PersEnvManager(mgr);
+		mgr                     = new PSSystem::EnvSeMgr;
+		PersEnvManager* persMgr = new PersEnvManager(mgr);
+		scene->mPersEnvMgr      = persMgr;
+		PSSystem::IdLink* link  = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT01_MIX1);
+		PSSystem::IdList* list  = &builder.mList;
+		if (!list->getFirst()) {
+			builder.mCurrentId = link;
+		}
+		list->append(link);
+		link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT02_MIX1);
+		if (!list->getFirst()) {
+			builder.mCurrentId = link;
+		}
+		list->append(link);
+		link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT03_MIX1);
+		if (!list->getFirst()) {
+			builder.mCurrentId = link;
+		}
+		list->append(link);
+		link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT04_MIX1);
+		if (!list->getFirst()) {
+			builder.mCurrentId = link;
+		}
+		list->append(link);
+		link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT05_MIX1);
+		if (!list->getFirst()) {
+			builder.mCurrentId = link;
+		}
+		list->append(link);
+		link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT01_MIX2);
+		if (!list->getFirst()) {
+			builder.mCurrentId = link;
+		}
+		list->append(link);
+		link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT02_MIX2);
+		if (!list->getFirst()) {
+			builder.mCurrentId = link;
+		}
+		list->append(link);
+		link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT03_MIX2);
+		if (!list->getFirst()) {
+			builder.mCurrentId = link;
+		}
+		list->append(link);
+		link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT04_MIX2);
+		if (!list->getFirst()) {
+			builder.mCurrentId = link;
+		}
+		list->append(link);
+		link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT05_MIX2);
+		if (!list->getFirst()) {
+			builder.mCurrentId = link;
+		}
+		list->append(link);
+		PSM::PersEnvInfo envInfo = (PSM::PersEnvInfo) { 1500.0f, 479.0f, 707.0f, 808.0f, 1.0f };
+		persMgr->_10             = 479.0f;
+		builder.setInfo(envInfo);
+		builder.build(1.0f, mgr);
+		PSM::SetNoYOfset(mgr);
+		mgr->mEnvList.append(new Env_Pollutin(PSSE_EV_POLUTION_MIX01));
+		mgr->mEnvList.append(new Env_Pollutin(PSSE_EV_POLUTION_MIX02));
+
 		break;
+	case PSGame::SceneInfo::TWO_PLAYER_BATTLE:
+		break;
+	}
+
+	if (!mgr && info->getFlag(PSGame::SceneInfo::SFBS_1) == 1) {
+		if (info->isCaveFloor()) {
+			mgr                     = new PSSystem::EnvSeMgr;
+			PersEnvManager* persMgr = new PersEnvManager(mgr); // r30
+			scene->mPersEnvMgr      = persMgr;
+			switch (static_cast<PSGame::CaveFloorInfo*>(info)->mFloorNum) {
+			case 0: {
+				PSSystem::IdLink* link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT02_MIX1);
+				PSSystem::IdList* list = &builder.mList;
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT03_MIX1);
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+			} break;
+
+			case 1: {
+				PSSystem::IdLink* link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT02_MIX2);
+				PSSystem::IdList* list = &builder.mList;
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT03_MIX2);
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+			} break;
+
+			case 2: {
+				PSSystem::IdLink* link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT02_MIX1);
+				PSSystem::IdList* list = &builder.mList;
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT03_MIX2);
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT04_MIX1);
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+			} break;
+
+			case 3: {
+				PSSystem::IdLink* link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT03_MIX1);
+				PSSystem::IdList* list = &builder.mList;
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT04_MIX2);
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT01_MIX1);
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+			} break;
+
+			case 4: {
+				PSSystem::IdLink* link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT04_MIX1);
+				PSSystem::IdList* list = &builder.mList;
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT01_MIX2);
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT05_MIX1);
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+			} break;
+
+			case 5: {
+				PSSystem::IdLink* link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT01_MIX1);
+				PSSystem::IdList* list = &builder.mList;
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT05_MIX2);
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP01_MIX1);
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+			} break;
+
+			case 6: {
+				PSSystem::IdLink* link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT05_MIX1);
+				PSSystem::IdList* list = &builder.mList;
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP01_MIX2);
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP06_MIX1);
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+			} break;
+
+			case 7: {
+				PSSystem::IdLink* link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP01_MIX1);
+				PSSystem::IdList* list = &builder.mList;
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP06_MIX2);
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP02_MIX1);
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+			} break;
+
+			case 8: {
+				PSSystem::IdLink* link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP06_MIX1);
+				PSSystem::IdList* list = &builder.mList;
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP02_MIX2);
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP05_MIX1);
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+			} break;
+
+			case 9: {
+				PSSystem::IdLink* link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP02_MIX1);
+				PSSystem::IdList* list = &builder.mList;
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP05_MIX2);
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP04_MIX1);
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+			} break;
+
+			case 10: {
+				PSSystem::IdLink* link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP05_MIX2);
+				PSSystem::IdList* list = &builder.mList;
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP04_MIX2);
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP03_MIX1);
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+			} break;
+
+			case 11: {
+				PSSystem::IdLink* link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP05_MIX2);
+				PSSystem::IdList* list = &builder.mList;
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP04_MIX2);
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP03_MIX2);
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+			} break;
+
+			case 12: {
+				PSSystem::IdLink* link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP05_MIX2);
+				PSSystem::IdList* list = &builder.mList;
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP04_MIX2);
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP03_MIX2);
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+			} break;
+
+			case 13: {
+				PSSystem::IdLink* link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP05_MIX2);
+				PSSystem::IdList* list = &builder.mList;
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP04_MIX2);
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP03_MIX2);
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+			} break;
+
+			case 14:
+			default: {
+				PSSystem::IdLink* link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP05_MIX2);
+				PSSystem::IdList* list = &builder.mList;
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP04_MIX2);
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP03_MIX2);
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+			} break;
+			}
+
+			PSM::PersEnvInfo envInfo = (PSM::PersEnvInfo) { 1500.0f, 479.0f, 707.0f, 808.0f, 1.0f };
+			persMgr->_10             = 479.0f;
+			builder.setInfo(envInfo);
+			builder.build(1.0f, mgr);
+			SetNoYOfset(mgr);
+			mgr->mEnvList.append(new Env_Pollutin(PSSE_EV_POLUTION_MIX01));
+			mgr->mEnvList.append(new Env_Pollutin(PSSE_EV_POLUTION_MIX02));
+
+		} else {
+			switch (type) {
+			case PSGame::SceneInfo::COURSE_TUTORIAL:
+			case PSGame::SceneInfo::COURSE_TUTORIALDAY1: {
+				PSSystem::EnvSeMgr* tutorialMgr = new PSSystem::EnvSeMgr;
+				mgr                             = tutorialMgr;
+				PSGame::EnvSe_AutoPan* pan0     = new PSGame::EnvSe_AutoPan(PSSE_MP_WIND_BACK, 0.0f, 0.5f, 1.0f, 0.0018554f, 0.0008554f);
+				P2ASSERTLINE(778, pan0);
+				pan0->setDirection(true, false);
+				tutorialMgr->mEnvList.append(pan0);
+
+				PSGame::EnvSe_AutoPan* pan1 = new PSGame::EnvSe_AutoPan(PSSE_MP_WIND_BACK, 1.0f, 0.5f, 1.0f, 0.0018554f, 0.0008554f);
+				P2ASSERTLINE(785, pan1);
+				pan1->setDirection(false, true);
+				tutorialMgr->mEnvList.append(pan1);
+			} break;
+
+			case PSGame::SceneInfo::COURSE_FOREST: {
+				PSSystem::EnvSeMgr* forestMgr = new PSSystem::EnvSeMgr;
+				mgr                           = forestMgr;
+				PersEnvManager* persMgr       = new PersEnvManager(forestMgr);
+				scene->mPersEnvMgr            = persMgr;
+				PSSystem::IdLink* link        = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_BIRD_SP_SUZUME); // 'sparrow'
+				PSSystem::IdList* list        = &builder.mList;
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_BIRD_SP_UGUISU); // 'japanese warbler'
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_BIRD_SP_HIBARI); // 'lark'
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				PSM::PersEnvInfo envInfo = (PSM::PersEnvInfo) { 1500.0f, 379.0f, 579.0f, 1031.0f, 0.9f };
+				persMgr->_10             = 379.0f;
+				builder.setInfo(envInfo);
+				builder.build(1.0f, forestMgr);
+			} break;
+			case PSGame::SceneInfo::COURSE_YAKUSHIMA: {
+				PSSystem::EnvSeMgr* yakuMgr = new PSSystem::EnvSeMgr;
+				mgr                         = yakuMgr;
+				PersEnvManager* persMgr     = new PersEnvManager(yakuMgr);
+				scene->mPersEnvMgr          = persMgr;
+				PSSystem::IdLink* link      = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_SEMI_KUMA01); // 'bear cicada'
+				PSSystem::IdList* list      = &builder.mList;
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_SEMI_MINMIN01); // 'minmin cicada'
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_SEMI_NIINII01); // 'niinii cicada'
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_SEMI_KUMA02); // 'minmin cicada'
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_SEMI_MINMIN02); // 'niinii cicada'
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_SEMI_NIINII02); // 'niinii cicada'
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				PSM::PersEnvInfo envInfo = (PSM::PersEnvInfo) { 1500.0f, 479.0f, 707.0f, 808.0f, 1.0f };
+				persMgr->_10             = 479.0f;
+				builder.setInfo(envInfo);
+				builder.build(1.0f, yakuMgr);
+			} break;
+			case PSGame::SceneInfo::COURSE_LAST: {
+				PSSystem::EnvSeMgr* lastMgr = new PSSystem::EnvSeMgr;
+				mgr                         = lastMgr;
+				PersEnvManager* persMgr     = new PersEnvManager(lastMgr);
+				scene->mPersEnvMgr          = persMgr;
+				PSSystem::IdLink* link      = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_BIRD_FA_KAMO); // 'duck'
+				PSSystem::IdList* list      = &builder.mList;
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_BIRD_FA_MOZU); // 'shrike'
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_BIRD_FA_KAMO); // 'duck'
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				link = new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_BIRD_FA_TSUGUMI); // 'thrush'
+				if (!list->getFirst()) {
+					builder.mCurrentId = link;
+				}
+				list->append(link);
+				PSM::PersEnvInfo envInfo = (PSM::PersEnvInfo) { 1500.0f, 379.0f, 479.0f, 1131.0f, 1.0f };
+				persMgr->_10             = 379.0f;
+				builder.setInfo(envInfo);
+				builder.build(1.0f, lastMgr);
+			} break;
+			}
+		}
+
+		if (mgr) {
+			SetBossBgmMuteVol(mgr, PSSE_EV_POLUTION_MIX01, 0.28f);
+			SetBossBgmMuteVol(mgr, PSSE_EV_POLUTION_MIX02, 0.28f);
+			scene->adaptEnvSe(mgr);
+		}
 	}
 	/*
 	stwu     r1, -0x170(r1)
@@ -2889,55 +2855,13 @@ lbl_8045BF30:
  */
 void SetBossBgmMuteVol(PSSystem::EnvSeMgr* mgr, u32 id, f32 vol)
 {
+	EnvSe_Perspective_AvoidY* se;
 	for (JSULink<PSSystem::EnvSeBase>* link = mgr->mEnvList.getFirst(); link; link = link->getNext()) {
-		EnvSe_Perspective_AvoidY* se = (EnvSe_Perspective_AvoidY*)link->mValue;
+		se = (EnvSe_Perspective_AvoidY*)link->getObjectPtr();
 		if (se->getCastType() == 'poll' && id == se->mSoundID) {
 			se->mInfo._04 = vol;
 		}
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x18(r1)
-	fmr      f31, f1
-	stw      r31, 0x14(r1)
-	stw      r30, 0x10(r1)
-	stw      r29, 0xc(r1)
-	mr       r29, r4
-	lwz      r30, 0(r3)
-	b        lbl_8045BFC0
-
-lbl_8045BF88:
-	lwz      r31, 0(r30)
-	mr       r3, r31
-	lwz      r12, 0x10(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addis    r0, r3, 0x8f91
-	cmplwi   r0, 0x6c6c
-	bne      lbl_8045BFBC
-	lwz      r0, 0x24(r31)
-	cmplw    r29, r0
-	bne      lbl_8045BFBC
-	stfs     f31, 0x50(r31)
-
-lbl_8045BFBC:
-	lwz      r30, 0xc(r30)
-
-lbl_8045BFC0:
-	cmplwi   r30, 0
-	bne      lbl_8045BF88
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x18(r1)
-	lwz      r31, 0x14(r1)
-	lwz      r30, 0x10(r1)
-	lwz      r29, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -2963,39 +2887,9 @@ void EnvSeObjBuilder::setInfo(PersEnvInfo info) { mPersEnvInfo = info; }
  * @note Address: 0x8045C088
  * @note Size: 0x70
  */
-EnvSeObjBuilder::EnvSeObjBuilder(JGeometry::TBox3f p1)
-    : PSGame::Builder_EvnSe_Perspective(p1)
+EnvSeObjBuilder::EnvSeObjBuilder(JGeometry::TBox3f bounds)
+    : PSGame::Builder_EvnSe_Perspective(bounds)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lfs      f5, 0(r4)
-	stw      r0, 0x34(r1)
-	lfs      f4, 4(r4)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	lfs      f3, 8(r4)
-	lfs      f2, 0xc(r4)
-	lfs      f1, 0x10(r4)
-	lfs      f0, 0x14(r4)
-	addi     r4, r1, 8
-	stfs     f5, 8(r1)
-	stfs     f4, 0xc(r1)
-	stfs     f3, 0x10(r1)
-	stfs     f2, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "__ct__Q26PSGame25Builder_EvnSe_PerspectiveFQ29JGeometry8TBox3<f>"
-	lis      r4, __vt__Q23PSM15EnvSeObjBuilder@ha
-	mr       r3, r31
-	addi     r0, r4, __vt__Q23PSM15EnvSeObjBuilder@l
-	stw      r0, 0(r31)
-	lwz      r31, 0x2c(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -3006,157 +2900,30 @@ PSSystem::BgmSeq* SceneMgr::newAutoBgm(const char* conductorFileName, const char
                                        JADUtility::AccessMode mode, PSGame::SceneInfo& sceneinfo, PSSystem::DirectorMgrBase* directorMgr)
 {
 	DirectorMgr_Scene* scene = new DirectorMgr_Scene_AutoBgm(directorMgr, 8);
-	PSAutoBgm::AutoBgm* bgm  = new PSAutoBgm::AutoBgm(conductorFileName, bmsFileName, soundInfo, mode, directorMgr);
+	PSAutoBgm::AutoBgm* bgm  = new PSAutoBgm::AutoBgm(conductorFileName, bmsFileName, soundInfo, mode, scene);
 	P2ASSERTLINE(1015, bgm);
 	bgm->init();
 	scene->initTrackMap(*bgm);
 	scene->initAndAdaptToBgm(*bgm);
 
-	PSAutoBgm::MeloArr_RandomAvoid* melo = new PSAutoBgm::MeloArr_RandomAvoid("—”ˆÊ’uAvoid");
+	PSAutoBgm::MeloArr_RandomAvoid* melo = new PSAutoBgm::MeloArr_RandomAvoid("—”ˆÊ’uAvoid"); // 'random position Avoid'
 	melo->_18                            = true;
 	bgm->mMeloArr.mList.append(melo);
 	return bgm;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lis       r3, 0x804A
-	  stw       r0, 0x34(r1)
-	  stmw      r25, 0x14(r1)
-	  subi      r31, r3, 0x3198
-	  mr        r25, r4
-	  mr        r26, r5
-	  mr        r27, r6
-	  mr        r28, r7
-	  mr        r29, r9
-	  li        r3, 0x88
-	  bl        -0x4382B8
-	  mr.       r30, r3
-	  beq-      .loc_0x5C
-	  mr        r4, r29
-	  li        r5, 0x8
-	  bl        0x1314C
-	  lis       r3, 0x804F
-	  subi      r3, r3, 0x6E8
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x10
-	  stw       r0, 0xC(r30)
-
-	.loc_0x5C:
-	  li        r3, 0x350
-	  bl        -0x4382E8
-	  mr.       r29, r3
-	  beq-      .loc_0x88
-	  mr        r4, r25
-	  mr        r5, r26
-	  mr        r6, r27
-	  mr        r7, r28
-	  mr        r8, r30
-	  bl        -0x1205A8
-	  mr        r29, r3
-
-	.loc_0x88:
-	  cmplwi    r29, 0
-	  bne-      .loc_0xA4
-	  addi      r3, r31, 0xC
-	  addi      r5, r31, 0x24
-	  li        r4, 0x3F7
-	  crclr     6, 0x6
-	  bl        -0x431B8C
-
-	.loc_0xA4:
-	  mr        r3, r29
-	  lwz       r12, 0x10(r29)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r30
-	  mr        r4, r29
-	  bl        0x13434
-	  mr        r3, r30
-	  mr        r4, r29
-	  bl        -0x118928
-	  li        r3, 0x20
-	  bl        -0x43835C
-	  mr.       r30, r3
-	  beq-      .loc_0x138
-	  mr        r25, r30
-	  mr        r4, r30
-	  bl        -0x435A5C
-	  addi      r3, r25, 0x10
-	  addi      r4, r31, 0x128
-	  bl        -0x3A2034
-	  lis       r4, 0x804E
-	  lis       r3, 0x804E
-	  subi      r4, r4, 0x5218
-	  li        r5, 0x1
-	  stw       r4, 0x14(r25)
-	  addi      r0, r4, 0x8
-	  subi      r3, r3, 0x51EC
-	  li        r4, 0
-	  stw       r0, 0x10(r25)
-	  addi      r0, r3, 0x8
-	  lfs       f0, 0x28E4(r2)
-	  stb       r5, 0x18(r25)
-	  stb       r4, 0x19(r25)
-	  stw       r3, 0x14(r30)
-	  stw       r0, 0x10(r30)
-	  stfs      f0, 0x1C(r30)
-
-	.loc_0x138:
-	  li        r0, 0x1
-	  mr        r4, r30
-	  stb       r0, 0x18(r30)
-	  addi      r3, r29, 0x340
-	  bl        -0x435990
-	  mr        r3, r29
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
 }
 
 /**
  * @note Address: 0x8045C290
  * @note Size: 0x60
  */
-MiddleBossSeq::MiddleBossSeq(const char* p1, const JAInter::SoundInfo& info, PSSystem::DirectorMgrBase* directorMgr)
-    : PSSystem::JumpBgmSeq(p1, info, directorMgr)
+MiddleBossSeq::MiddleBossSeq(const char* bmsFileName, const JAInter::SoundInfo& info, PSSystem::DirectorMgrBase* directorMgr)
+    : PSSystem::JumpBgmSeq(bmsFileName, info, directorMgr)
     , mCurrBossObj(nullptr)
     , _138(0)
     , _13C(3)
     , _13E(-1)
     , _140(0)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x129074
-	  lis       r4, 0x804F
-	  lis       r3, 0x1
-	  subi      r0, r4, 0x1D70
-	  li        r5, 0
-	  stw       r0, 0x10(r31)
-	  li        r4, 0x3
-	  subi      r0, r3, 0x1
-	  mr        r3, r31
-	  stw       r5, 0x134(r31)
-	  stw       r5, 0x138(r31)
-	  sth       r4, 0x13C(r31)
-	  sth       r0, 0x13E(r31)
-	  stb       r5, 0x140(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /**
@@ -3166,66 +2933,20 @@ MiddleBossSeq::MiddleBossSeq(const char* p1, const JAInter::SoundInfo& info, PSS
 void MiddleBossSeq::onJump(u16 track)
 {
 	switch (track) {
-	case 1:
-	case 2:
-	case 3:
 	case 4:
-		return;
+		break;
 	case 9:
 		_13E = 0;
 		break;
+	case 3:
+	case 5:
+	case 6:
+	case 7:
+	case 8:
+		P2ASSERTLINE(1078, mCurrBossObj);
+		mCurrBossObj->mHasReset = true;
+		break;
 	}
-
-	P2ASSERTLINE(1078, mCurrBossObj);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	clrlwi   r0, r4, 0x10
-	cmpwi    r0, 4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	beq      lbl_8045C370
-	bge      lbl_8045C320
-	cmpwi    r0, 3
-	bge      lbl_8045C33C
-	b        lbl_8045C370
-
-lbl_8045C320:
-	cmpwi    r0, 9
-	beq      lbl_8045C330
-	bge      lbl_8045C370
-	b        lbl_8045C33C
-
-lbl_8045C330:
-	li       r0, 0
-	sth      r0, 0x13e(r31)
-	b        lbl_8045C370
-
-lbl_8045C33C:
-	lwz      r0, 0x134(r31)
-	cmplwi   r0, 0
-	bne      lbl_8045C364
-	lis      r3, lbl_8049CE74@ha
-	lis      r5, lbl_8049CE8C@ha
-	addi     r3, r3, lbl_8049CE74@l
-	li       r4, 0x436
-	addi     r5, r5, lbl_8049CE8C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8045C364:
-	lwz      r3, 0x134(r31)
-	li       r0, 1
-	stb      r0, 0xff(r3)
-
-lbl_8045C370:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -3235,7 +2956,7 @@ lbl_8045C370:
 void MiddleBossSeq::exec()
 {
 	SeqBase::exec();
-	if (_13E != 0xffff) {
+	if (_13E != 0xFFFF) {
 		_13E++;
 	}
 }
@@ -3247,37 +2968,10 @@ void MiddleBossSeq::exec()
 void MiddleBossSeq::requestJumpBgmQuickly(u16 flag)
 {
 	u16 flag2 = jumpCheck(flag);
-	if (flag2 != 0xffff) {
+	if (flag2 != 0xFFFF) {
 		JumpBgmSeq::requestJumpBgmQuickly(flag2);
 		JumpBgmSeq::setAvoidJumpTimer_Checked(_138);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x10
-	mr       r4, r3
-	cmplwi   r0, 0xffff
-	beq      lbl_8045C40C
-	mr       r3, r31
-	bl       requestJumpBgmQuickly__Q28PSSystem10JumpBgmSeqFUs
-	lwz      r4, 0x138(r31)
-	mr       r3, r31
-	bl       setAvoidJumpTimer_Checked__Q28PSSystem10JumpBgmSeqFUl
-
-lbl_8045C40C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -3287,85 +2981,96 @@ lbl_8045C40C:
 void MiddleBossSeq::requestJumpBgmOnBeat(u16 flag)
 {
 	u16 flag2 = jumpCheck(flag);
-	if (flag2 != 0xffff) {
+	if (flag2 != 0xFFFF) {
 		JumpBgmSeq::requestJumpBgmOnBeat(flag2);
 		JumpBgmSeq::setAvoidJumpTimer_Checked(_138);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x10
-	mr       r4, r3
-	cmplwi   r0, 0xffff
-	beq      lbl_8045C468
-	mr       r3, r31
-	bl       requestJumpBgmOnBeat__Q28PSSystem10JumpBgmSeqFUs
-	lwz      r4, 0x138(r31)
-	mr       r3, r31
-	bl       setAvoidJumpTimer_Checked__Q28PSSystem10JumpBgmSeqFUl
-
-lbl_8045C468:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
  * @note Address: 0x8045C47C
  * @note Size: 0x5C
  */
-void MiddleBossSeq::requestJumpBgmEveryBeat(u16 flag)
+void MiddleBossSeq::requestJumpBgmEveryBeat(u16 track)
 {
-	u16 flag2 = jumpCheck(flag);
-	if (flag2 != 0xffff) {
-		JumpBgmSeq::requestJumpBgmEveryBeat(flag2);
+	u16 checkedTrack = jumpCheck(track);
+	if (checkedTrack != 0xFFFF) {
+		JumpBgmSeq::requestJumpBgmEveryBeat(checkedTrack);
 		JumpBgmSeq::setAvoidJumpTimer_Checked(_138);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x10
-	mr       r4, r3
-	cmplwi   r0, 0xffff
-	beq      lbl_8045C4C4
-	mr       r3, r31
-	bl       requestJumpBgmEveryBeat__Q28PSSystem10JumpBgmSeqFUs
-	lwz      r4, 0x138(r31)
-	mr       r3, r31
-	bl       setAvoidJumpTimer_Checked__Q28PSSystem10JumpBgmSeqFUl
-
-lbl_8045C4C4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
  * @note Address: 0x8045C4D8
  * @note Size: 0x214
  */
-u32 MiddleBossSeq::jumpCheck(u16)
+u16 MiddleBossSeq::jumpCheck(u16 track)
 {
+	bool check  = true;
+	bool check2 = true;
+	_138        = 0;
+	if (track > 1 && track < 5) { // probably an inline?
+		check2 = false;
+	}
+	if (!check2 && track != 7) {
+		check = false;
+	}
+	P2ASSERTLINE(1136, !check);
+	switch (mJumpPort._70) {
+	case 1:
+		if (track == 1) {
+			return 0xFFFF;
+		}
+		break;
+	case 2:
+	case 3:
+	case 4: // please someone get this switch case to spawn correctly
+	        // case 5:
+	        // case 6:
+	        // case 7:
+		break;
+	case 8:
+	case 9:
+		if (track != 1 && track != 10) {
+			return 0xFFFF;
+		}
+		break;
+		// case 9:
+		// 	break;
+	}
+
+	switch (track) {
+	case 3:
+		_13C++;
+		if (_13C == 4) {
+			_13C = 5;
+		} else if (_13C == 8) {
+			_13C = 3;
+		}
+		track = _13C;
+		_138  = 50;
+		break;
+	case 4:
+		P2ASSERTLINE(1205, mCurrBossObj);
+		if (_13E < 400 || !mCurrBossObj->mHasReset) {
+			return 0xFFFF;
+		}
+		_138 = 90;
+		break;
+	case 9:
+		_138 = 180;
+		break;
+	case 10:
+		_138                      = 180;
+		mJumpPort.mAvoidJumpTimer = 0;
+		break;
+	case 11:
+		mJumpPort.mAvoidJumpTimer = 0;
+		break;
+	}
+
+	return track;
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3547,300 +3252,102 @@ lbl_8045C6D4:
  * @note Address: 0x8045C6EC
  * @note Size: 0x6C
  */
-BigBossSeq::BigBossSeq(const char* p1, const JAInter::SoundInfo& info, PSSystem::DirectorMgrBase* directorMgr)
-    : MiddleBossSeq(p1, info, directorMgr)
+BigBossSeq::BigBossSeq(const char* bmsFileName, const JAInter::SoundInfo& info, PSSystem::DirectorMgrBase* directorMgr)
+    : MiddleBossSeq(bmsFileName, info, directorMgr)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x1294D0
-	  lis       r3, 0x804F
-	  lis       r4, 0x1
-	  subi      r0, r3, 0x1D70
-	  lis       r3, 0x804F
-	  stw       r0, 0x10(r31)
-	  li        r6, 0
-	  li        r5, 0x3
-	  subi      r4, r4, 0x1
-	  stw       r6, 0x134(r31)
-	  subi      r0, r3, 0x1DD8
-	  mr        r3, r31
-	  stw       r6, 0x138(r31)
-	  sth       r5, 0x13C(r31)
-	  sth       r4, 0x13E(r31)
-	  stb       r6, 0x140(r31)
-	  stw       r0, 0x10(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /**
  * @note Address: 0x8045C758
  * @note Size: 0x80
  */
-MiddleBossSeq::~MiddleBossSeq()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8045C7BC
-	lis      r4, __vt__Q23PSM13MiddleBossSeq@ha
-	addi     r0, r4, __vt__Q23PSM13MiddleBossSeq@l
-	stw      r0, 0x10(r30)
-	beq      lbl_8045C7AC
-	lis      r4, __vt__Q28PSSystem10JumpBgmSeq@ha
-	addi     r0, r4, __vt__Q28PSSystem10JumpBgmSeq@l
-	stw      r0, 0x10(r30)
-	beq      lbl_8045C7AC
-	lis      r5, __vt__Q28PSSystem11DirectedBgm@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q28PSSystem11DirectedBgm@l
-	stw      r0, 0x10(r30)
-	bl       __dt__Q28PSSystem6BgmSeqFv
-
-lbl_8045C7AC:
-	extsh.   r0, r31
-	ble      lbl_8045C7BC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8045C7BC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+MiddleBossSeq::~MiddleBossSeq() { }
 
 /**
  * @note Address: 0x8045C7D8
  * @note Size: 0x1B4
  */
-u32 BigBossSeq::jumpCheck(u16)
+u16 BigBossSeq::jumpCheck(u16 track)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	stw      r0, 0x138(r3)
-	lhz      r0, 0x130(r3)
-	cmplwi   r0, 0xc
-	bgt      lbl_8045C8C8
-	lis      r3, lbl_804EE1F4@ha
-	slwi     r0, r0, 2
-	addi     r3, r3, lbl_804EE1F4@l
-	lwzx     r0, r3, r0
-	mtctr    r0
-	bctr
+	_138 = 0;
+	switch (mJumpPort._70) {
+	case 1:
+		if (track == 1) {
+			return 0xFFFF;
+		}
+		break;
+	case 8:
+		if (track == 8) {
+			return 0xFFFF;
+		}
+		break;
+	case 9:
+		if (track == 9) {
+			return 0xFFFF;
+		}
+		break;
+	case 10:
+		if (track == 10) {
+			return 0xFFFF;
+		}
+		break;
+	case 11:
+		if (track == 11) {
+			return 0xFFFF;
+		}
+		break;
+	case 3:
+	case 5:
+	case 6:
+	case 7:
+		if (track != 1 && (u16)(track - 8) > 3 && track != 13) {
+			return 0xFFFF;
+		}
+		break;
+	case 0:
+	case 2:
+	case 4:
+	case 12:
+		break;
+	}
 
-lbl_8045C820:
-	clrlwi   r0, r31, 0x10
-	cmplwi   r0, 1
-	bne      lbl_8045C8C8
-	lis      r3, 0x0000FFFF@ha
-	addi     r3, r3, 0x0000FFFF@l
-	b        lbl_8045C974
-
-lbl_8045C838:
-	clrlwi   r0, r31, 0x10
-	cmplwi   r0, 8
-	bne      lbl_8045C8C8
-	lis      r3, 0x0000FFFF@ha
-	addi     r3, r3, 0x0000FFFF@l
-	b        lbl_8045C974
-
-lbl_8045C850:
-	clrlwi   r0, r31, 0x10
-	cmplwi   r0, 9
-	bne      lbl_8045C8C8
-	lis      r3, 0x0000FFFF@ha
-	addi     r3, r3, 0x0000FFFF@l
-	b        lbl_8045C974
-
-lbl_8045C868:
-	clrlwi   r0, r31, 0x10
-	cmplwi   r0, 0xa
-	bne      lbl_8045C8C8
-	lis      r3, 0x0000FFFF@ha
-	addi     r3, r3, 0x0000FFFF@l
-	b        lbl_8045C974
-
-lbl_8045C880:
-	clrlwi   r0, r31, 0x10
-	cmplwi   r0, 0xb
-	bne      lbl_8045C8C8
-	lis      r3, 0x0000FFFF@ha
-	addi     r3, r3, 0x0000FFFF@l
-	b        lbl_8045C974
-
-lbl_8045C898:
-
-lbl_8045C898:
-
-lbl_8045C898:
-
-lbl_8045C898:
-	clrlwi   r3, r31, 0x10
-	cmplwi   r3, 1
-	beq      lbl_8045C8C8
-	addi     r0, r31, -8
-	clrlwi   r0, r0, 0x10
-	cmplwi   r0, 3
-	ble      lbl_8045C8C8
-	cmplwi   r3, 0xd
-	beq      lbl_8045C8C8
-	lis      r3, 0x0000FFFF@ha
-	addi     r3, r3, 0x0000FFFF@l
-	b        lbl_8045C974
-
-lbl_8045C8C8:
-	clrlwi   r0, r31, 0x10
-	cmpwi    r0, 0xc
-	beq      lbl_8045C94C
-	bge      lbl_8045C8E4
-	cmpwi    r0, 4
-	beq      lbl_8045C8F0
-	b        lbl_8045C970
-
-lbl_8045C8E4:
-	cmpwi    r0, 0xe
-	bge      lbl_8045C970
-	b        lbl_8045C960
-
-lbl_8045C8F0:
-	lwz      r0, 0x134(r30)
-	cmplwi   r0, 0
-	bne      lbl_8045C918
-	lis      r3, lbl_8049CE74@ha
-	lis      r5, lbl_8049CE8C@ha
-	addi     r3, r3, lbl_8049CE74@l
-	li       r4, 0x534
-	addi     r5, r5, lbl_8049CE8C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8045C918:
-	lhz      r0, 0x13e(r30)
-	cmplwi   r0, 0x320
-	blt      lbl_8045C934
-	lwz      r3, 0x134(r30)
-	lbz      r0, 0xff(r3)
-	cmplwi   r0, 0
-	bne      lbl_8045C940
-
-lbl_8045C934:
-	lis      r3, 0x0000FFFF@ha
-	addi     r3, r3, 0x0000FFFF@l
-	b        lbl_8045C974
-
-lbl_8045C940:
-	li       r0, 0x5a
-	stw      r0, 0x138(r30)
-	b        lbl_8045C970
-
-lbl_8045C94C:
-	li       r3, 0xb4
-	li       r0, 0
-	stw      r3, 0x138(r30)
-	stw      r0, 0x12c(r30)
-	b        lbl_8045C970
-
-lbl_8045C960:
-	li       r3, 0xb4
-	li       r0, 0
-	stw      r3, 0x138(r30)
-	stw      r0, 0x12c(r30)
-
-lbl_8045C970:
-	mr       r3, r31
-
-lbl_8045C974:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	switch (track) {
+	case 4:
+		P2ASSERTLINE(1332, mCurrBossObj);
+		if (_13E < 800 || !mCurrBossObj->mHasReset) {
+			return 0xFFFF;
+		}
+		_138 = 90;
+		break;
+	case 12:
+		_138                      = 180;
+		mJumpPort.mAvoidJumpTimer = 0;
+		break;
+	case 13:
+		_138                      = 180;
+		mJumpPort.mAvoidJumpTimer = 0;
+	}
+	return track;
 }
 
 /**
  * @note Address: 0x8045C98C
  * @note Size: 0x98
  */
-void BigBossSeq::onJump(u16)
+void BigBossSeq::onJump(u16 track)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	clrlwi   r0, r4, 0x10
-	cmpwi    r0, 8
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bge      lbl_8045C9C4
-	cmpwi    r0, 4
-	beq      lbl_8045CA10
-	bge      lbl_8045C9DC
-	cmpwi    r0, 3
-	bge      lbl_8045C9DC
-	b        lbl_8045CA10
-
-lbl_8045C9C4:
-	cmpwi    r0, 0xc
-	beq      lbl_8045C9D0
-	b        lbl_8045CA10
-
-lbl_8045C9D0:
-	li       r0, 0
-	sth      r0, 0x13e(r31)
-	b        lbl_8045CA10
-
-lbl_8045C9DC:
-	lwz      r0, 0x134(r31)
-	cmplwi   r0, 0
-	bne      lbl_8045CA04
-	lis      r3, lbl_8049CE74@ha
-	lis      r5, lbl_8049CE8C@ha
-	addi     r3, r3, lbl_8049CE74@l
-	li       r4, 0x562
-	addi     r5, r5, lbl_8049CE8C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8045CA04:
-	lwz      r3, 0x134(r31)
-	li       r0, 1
-	stb      r0, 0xff(r3)
-
-lbl_8045CA10:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	switch (track) {
+	case 12:
+		_13E = 0;
+		break;
+	case 3:
+	case 5:
+	case 6:
+	case 7:
+		P2ASSERTLINE(1378, mCurrBossObj);
+		mCurrBossObj->mHasReset = true;
+		break;
+	}
 }
 
 /**
@@ -3849,11 +3356,11 @@ lbl_8045CA10:
  */
 PersEnvManager::PersEnvManager(PSSystem::EnvSeMgr* mgr)
 {
-	mEnvSeMgr = mgr;
-	_04       = 3;
-	_08       = new EnvSe_Perspective_AvoidY*[3];
-	_0C       = new f32[3];
-	_10       = 0.0f;
+	mEnvSeMgr   = mgr;
+	mSeCount    = 3;
+	mPersEnvSes = new EnvSe_Perspective_AvoidY*[3];
+	_0C         = new f32[3];
+	_10         = 0.0f;
 }
 
 /**
@@ -3862,8 +3369,8 @@ PersEnvManager::PersEnvManager(PSSystem::EnvSeMgr* mgr)
  */
 bool PersEnvManager::playOk(EnvSe_Perspective_AvoidY* se)
 {
-	for (u8 i = 0; i < _04; i++) {
-		if (_08[i] == se) {
+	for (u8 i = 0; i < mSeCount; i++) {
+		if (mPersEnvSes[i] == se) {
 			return true;
 		}
 	}
@@ -3876,6 +3383,46 @@ bool PersEnvManager::playOk(EnvSe_Perspective_AvoidY* se)
  */
 void PersEnvManager::exec()
 {
+	EnvSe_Perspective_AvoidY* se;
+	Game::Navi* navi = Game::naviMgr->getActiveNavi();
+	if (!navi) {
+		return;
+	}
+
+	for (u8 i = 0; i < mSeCount; i++) {
+		mPersEnvSes[i] = nullptr;
+		_0C[i]         = 10000.0f;
+	}
+
+	for (u8 i = 0; i < mSeCount; i++) {
+		for (JSULink<PSSystem::EnvSeBase>* link = mEnvSeMgr->mEnvList.getFirst(); link; link = link->getNext()) {
+			se = (EnvSe_Perspective_AvoidY*)link->getObjectPtr();
+			if (se->getCastType() != 'pers') {
+				continue;
+			}
+
+			bool isAlreadyInList = false;
+			for (u8 j = 0; j < i; j++) {
+				if (mPersEnvSes[j] == se) {
+					isAlreadyInList = true;
+					break;
+				}
+			}
+
+			if (isAlreadyInList) {
+				continue;
+			}
+
+			Vec soundDist = se->mPosition;
+			Vector3f pos  = navi->getPosition();
+			Vec naviPos   = *(Vec*)&pos;
+			f32 dist = getSoundDistance(soundDist, naviPos); // this is close. need to match with this and EnvSe_Perspective_AvoidY::play
+			if (_0C[i] > dist) {
+				_0C[i]         = dist;
+				mPersEnvSes[i] = se;
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0

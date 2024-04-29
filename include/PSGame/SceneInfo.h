@@ -24,27 +24,27 @@ struct SceneInfo {
 
 	enum GameType {
 		SCENE_NULL = 0,
-		COURSE_TUTORIAL,
-		COURSE_FOREST,
-		COURSE_YAKUSHIMA,
-		COURSE_LAST,
-		COURSE_TEST,
-		CHALLENGE_MODE, // includes key get
-		TWO_PLAYER_BATTLE,
-		TITLE_SCREEN, // includes options high score and bonus themes
-		CAVE_RESULTS,
-		FILE_SELECT,
-		WORLD_MAP_NORMAL,
-		WORLD_MAP_NEWLEVEL,
-		PIKLOPEDIA,
-		ENDING_COMPLETE,
-		ENDING_DEBTRESULT,
-		CHALLENGE_RESULTS,
-		CHALLENGE_MENU,
-		TITLE_18,
-		VERSUS_MENU,
-		COURSE_TUTORIALDAY1,
-		SCENE_COUNT, // not actual scene, used as max
+		COURSE_TUTORIAL,     // 1, Valley of Repose (not Day 1)
+		COURSE_FOREST,       // 2, Awakening Wood
+		COURSE_YAKUSHIMA,    // 3, Perplexing Pool
+		COURSE_LAST,         // 4, Wistful Wild
+		COURSE_TEST,         // 5, Test map
+		CHALLENGE_MODE,      // 6, includes key get
+		TWO_PLAYER_BATTLE,   // 7
+		TITLE_SCREEN,        // 8, includes options high score and bonus themes
+		CAVE_RESULTS,        // 9
+		FILE_SELECT,         // 10
+		WORLD_MAP_NORMAL,    // 11
+		WORLD_MAP_NEWLEVEL,  // 12
+		PIKLOPEDIA,          // 13
+		ENDING_COMPLETE,     // 14, All Treasures ending
+		ENDING_DEBTRESULT,   // 15, Debt Paid ending
+		CHALLENGE_RESULTS,   // 16
+		CHALLENGE_MENU,      // 17
+		TITLE_18,            // 18
+		VERSUS_MENU,         // 19
+		COURSE_TUTORIALDAY1, // 20, Valley of Repose (Day 1)
+		SCENE_COUNT,         // 21, not actual scene, used as max
 	};
 
 	SceneInfo();

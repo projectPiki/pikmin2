@@ -414,8 +414,8 @@ struct TBox2 : TBox<TVec2<T> > {
 
 template <typename T>
 struct TBox3 {
-	// TBox3() {}
-	// TBox2(const TBox2& other) { set(other); }
+	TBox3() { }
+	TBox3(const TBox3& other) { set(other); }
 	// TBox3(const TVec3<T>& i, const TVec3<T> f) { set(i, f); }
 	// // TBox2(const TVec2<T>& i, T x1, T y1) { set(i, x1, y1); }
 	// // TBox2(T x0, T y0, const TVec2<T>& f) { set(x0, y0, f); }
@@ -425,6 +425,13 @@ struct TBox3 {
 	// {
 	// 	f.x = f.y = f.z = val;
 	// 	i.x = i.y = i.z = val;
+	// }
+
+	// inline TBox3& operator=(const TBox3& other)
+	// {
+	// 	mMin = other.mMin;
+	// 	mMax = other.mMax;
+	// 	return *this;
 	// }
 
 	inline bool isValid() { return mMax.isAbove(mMin); }

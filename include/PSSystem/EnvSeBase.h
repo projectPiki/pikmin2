@@ -5,6 +5,7 @@
 #include "PSSystem/Reservator.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "SoundID.h"
+#include "P2Macros.h"
 
 struct JAISound;
 
@@ -22,6 +23,27 @@ struct MoveParamSet {
 	u32 mMoveTime;  // _04
 	int mParamType; // _08, see JASTrack::ParamType enum
 	u8 mSoundType;  // _0C, see JAISoundType enum
+};
+
+struct IdLink : public JSULink<IdLink> {
+	IdLink(u32 id)
+	    : JSULink(this)
+	    , mId(id)
+	{
+	}
+
+	~IdLink() { }
+
+	// _00-_10 = JSULink
+	u32 mId; // _10
+};
+
+struct IdList : public JSUList<IdLink> {
+	IdList() { }
+
+	~IdList() { }
+
+	// _00-_0C = JSUList
 };
 
 struct EnvSeBase : public JSULink<EnvSeBase> {
@@ -52,7 +74,11 @@ struct EnvSeBase : public JSULink<EnvSeBase> {
 };
 
 struct EnvSeMgr {
-	EnvSeMgr() { }
+	EnvSeMgr()
+	{
+		mReservator.mMgr = this;
+		FORCE_DONT_INLINE;
+	}
 
 	void setAllPauseFlag(u8);
 	void on();

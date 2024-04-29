@@ -986,7 +986,7 @@ EnvSe_Perspective* Builder_EvnSe_Perspective::newSeObj(u32 soundID, f32 volume, 
  */
 Builder_EvnSe_Perspective::~Builder_EvnSe_Perspective()
 {
-	FOREACH_NODE(JSULink<EnvSe_Perspective>, mList.getFirst(), se)
+	FOREACH_NODE(PSSystem::IdLink, mList.getFirst(), se)
 	{
 		mList.remove(se);
 		if (se)

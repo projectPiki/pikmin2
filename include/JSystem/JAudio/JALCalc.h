@@ -25,7 +25,7 @@ extern const f32 cEqualPSlope;
  * @param unbounded If true, the transformed value can exceed the output range.
  * @return The transformed value.
  */
-f32 linearTransform(f32 x, f32 xStart, f32 xEnd, f32 yStart, f32 yEnd, bool doQuickCalc);
+f32 linearTransform(f32 x, f32 xStart, f32 xEnd, f32 yStart, f32 yEnd, bool unbounded);
 
 f32 getParamByExp(f32 x, f32 xStart, f32 xEnd, f32 y, f32 yStart, f32 yEnd, CurveSign curve);
 f32 getRandom(f32, f32, f32);

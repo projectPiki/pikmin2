@@ -19,7 +19,8 @@ f32 linearTransform(f32 x, f32 xStart, f32 xEnd, f32 yStart, f32 yEnd, bool unbo
 	if (unbounded)
 		return result;
 
-	// If the bounds given are valid
+	// If the bounds given are valid, proportion through domain = proportion through range
+	// e.g. input value is 80% of the way from xStart to xEnd, output will be 80% of the way from yStart to yEnd
 	if (yStart < yEnd) {
 		// If we overshoot the end, we clamp to the end
 		if (result > yEnd)
@@ -32,7 +33,8 @@ f32 linearTransform(f32 x, f32 xStart, f32 xEnd, f32 yStart, f32 yEnd, bool unbo
 		return result;
 	}
 
-	// From here, start is greater than end
+	// From here, start is greater than end, implies flipped proportionality
+	// i.e. 80% of the way from xStart to xEnd maps to 20% of the way from yStart to yEnd
 
 	// Clamp to the start
 	if (result > yStart)
