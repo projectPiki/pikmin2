@@ -362,7 +362,8 @@ void SeqHeap::loadSeqAsync(TaskChecker* task)
 {
 	mTask = task;
 	P2ASSERTLINE(247, !mOwner);
-	PSAdvanceTask(mTask); // something needs to happen here to make mTask go into r28 not r30
+	task = mTask; // this is so dumb but necessary for register allocation
+	PSAdvanceTask(task);
 
 	int size     = ((int*)(mOwnerSeq->getFileEntry()))[3];
 	u8* fileData = mFileData;
@@ -370,68 +371,6 @@ void SeqHeap::loadSeqAsync(TaskChecker* task)
 	int res
 	    = JASResArcLoader::loadResourceAsync(JAInter::SequenceMgr::getArchivePointer(), offs, fileData, size, &loadedCallback, (u32)this);
 	JUT_ASSERTLINE(266, res == 1, "SeqBase::loadSeqAsync() fault loading sequence");
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r27, r3
-	lis      r3, lbl_8048F848@ha
-	addi     r31, r3, lbl_8048F848@l
-	stw      r4, 0x14(r27)
-	lwz      r0, 4(r27)
-	cmplwi   r0, 0
-	beq      lbl_8033147C
-	addi     r3, r31, 0
-	addi     r5, r31, 0xc
-	li       r4, 0xf7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8033147C:
-	lwz      r28, 0x14(r27)
-	cmplwi   r28, 0
-	beq      lbl_803314A4
-	mr       r3, r28
-	bl       OSLockMutex
-	lbz      r4, 0x18(r28)
-	mr       r3, r28
-	addi     r0, r4, 1
-	stb      r0, 0x18(r28)
-	bl       OSUnlockMutex
-
-lbl_803314A4:
-	lwz      r3, 0x10(r27)
-	bl       getFileEntry__Q28PSSystem7SeqBaseFv
-	lwz      r30, 0xc(r3)
-	lwz      r29, 0xc(r27)
-	lwz      r3, 0x10(r27)
-	bl       getFileEntry__Q28PSSystem7SeqBaseFv
-	lhz      r28, 0(r3)
-	bl       getArchivePointer__Q27JAInter11SequenceMgrFv
-	lis      r5, loadedCallback__Q28PSSystem7SeqHeapFUlUl@ha
-	mr       r4, r28
-	addi     r7, r5, loadedCallback__Q28PSSystem7SeqHeapFUlUl@l
-	mr       r6, r30
-	mr       r5, r29
-	mr       r8, r27
-	bl       loadResourceAsync__15JASResArcLoaderFP10JKRArchiveUsPUcUlPFUlUl_vUl
-	cmpwi    r3, 1
-	beq      lbl_803314FC
-	addi     r3, r31, 0
-	addi     r5, r31, 0x5c
-	li       r4, 0x10a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803314FC:
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
