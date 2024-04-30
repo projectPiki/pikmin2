@@ -471,66 +471,110 @@ ASM void J3DMtxProjConcat(register Mtx mtx1, register Mtx mtx2, register Mtx dst
  * @note Address: 0x8005F750
  * @note Size: 0xDC
  */
-void J3DPSMtxArrayConcat(Mtx mtxA, Mtx mtxB, Mtx dst, u32 count)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  stfd      f14, 0x8(r1)
-	  lis       r7, 0x8051
-	  stfd      f15, 0x10(r1)
-	  addi      r7, r7, 0x46E0
-	  stfd      f31, 0x28(r1)
-	  subi      r4, r4, 0x8
-	  subi      r5, r5, 0x8
-	  mtctr     r6
 
-	.loc_0x24:
-	  psq_l     f0,0x0(r3),0,0
-	  psq_l     f6,0x8(r4),0,0
-	  psq_l     f7,0x10(r4),0,0
-	  psq_l     f8,0x18(r4),0,0
-	  ps_muls0  f12, f6, f0
-	  psq_l     f2,0x10(r3),0,0
-	  ps_muls0  f13, f7, f0
-	  psq_l     f31,0x0(r7),0,0
-	  ps_muls0  f14, f6, f2
-	  psq_l     f9,0x20(r4),0,0
-	  ps_muls0  f15, f7, f2
-	  psq_l     f1,0x8(r3),0,0
-	  ps_madds1 f12, f8, f0, f12
-	  psq_l     f3,0x18(r3),0,0
-	  ps_madds1 f14, f8, f2, f14
-	  psq_l     f10,0x28(r4),0,0
-	  ps_madds1 f13, f9, f0, f13
-	  psq_lu    f11,0x30(r4),0,0
-	  ps_madds1 f15, f9, f2, f15
-	  psq_l     f4,0x20(r3),0,0
-	  psq_l     f5,0x28(r3),0,0
-	  ps_madds0 f12, f10, f1, f12
-	  ps_madds0 f13, f11, f1, f13
-	  ps_madds0 f14, f10, f3, f14
-	  ps_madds0 f15, f11, f3, f15
-	  psq_st    f12,0x8(r5),0,0
-	  ps_muls0  f2, f6, f4
-	  ps_madds1 f13, f31, f1, f13
-	  ps_muls0  f0, f7, f4
-	  psq_st    f14,0x18(r5),0,0
-	  ps_madds1 f15, f31, f3, f15
-	  psq_st    f13,0x10(r5),0,0
-	  ps_madds1 f2, f8, f4, f2
-	  ps_madds1 f0, f9, f4, f0
-	  ps_madds0 f2, f10, f5, f2
-	  psq_st    f15,0x20(r5),0,0
-	  ps_madds0 f0, f11, f5, f0
-	  psq_st    f2,0x28(r5),0,0
-	  ps_madds1 f0, f31, f5, f0
-	  psq_stu   f0,0x30(r5),0,0
-	  bdnz+     .loc_0x24
-	  lfd       f14, 0x8(r1)
-	  lfd       f15, 0x10(r1)
-	  lfd       f31, 0x28(r1)
-	  addi      r1, r1, 0x40
-	  blr
-	*/
+#ifdef __MWERKS__ // clang-format off
+asm void J3DPSMtxArrayConcat(register Mtx mA, register Mtx mB, register Mtx mAB, register u32 count) {
+#define FP0 fp0
+#define FP1 fp1
+#define FP2 fp2
+#define FP3 fp3
+#define FP4 fp4
+#define FP5 fp5
+#define FP6 fp6
+#define FP7 fp7
+#define FP8 fp8
+#define FP9 fp9
+#define FP10 fp10
+#define FP11 fp11
+#define FP12 fp12
+#define FP13 fp13
+#define FP14 fp14
+#define FP15 fp15
+#define FP31 fp31
+#define UNIT_R r7
+    
+    // this is just PSMtxConcat???
+    nofralloc
+    
+	stwu      sp, -0x40(sp)
+	stfd    FP14,  0x08(sp)
+	addis UNIT_R, 0, Unit01@ha
+	stfd    FP15,  0x10(sp)
+	addi  UNIT_R, UNIT_R, Unit01@l
+	stfd    FP31,  0x28(sp)
+    subi  mB,  mB, 0x08
+    subi mAB, mAB, 0x08
+    mtctr count
+loop:
+	psq_l   FP0, 0x00(mA), 0, 0
+	psq_l   FP6, 0x08(mB), 0, 0
+	psq_l   FP7, 0x10(mB), 0, 0
+	psq_l   FP8, 0x18(mB), 0, 0
+	    ps_muls0 FP12, FP6, FP0
+	psq_l   FP2, 0x10(mA), 0, 0
+	    ps_muls0 FP13, FP7, FP0
+	psq_l  FP31, 0x00(UNIT_R), 0, 0
+	    ps_muls0 FP14, FP6, FP2
+	psq_l   FP9, 0x20(mB), 0, 0
+	    ps_muls0 FP15, FP7, FP2
+	psq_l   FP1, 0x08(mA), 0, 0
+		ps_madds1 FP12, FP8, FP0, FP12
+	psq_l   FP3, 0x18(mA), 0, 0
+		ps_madds1 FP14, FP8, FP2, FP14
+	psq_l  FP10, 0x28(mB), 0, 0
+		ps_madds1 FP13, FP9, FP0, FP13
+	psq_lu FP11, 0x30(mB), 0, 0
+		ps_madds1 FP15, FP9, FP2, FP15
+	psq_l   FP4, 0x20(mA), 0, 0
+	psq_l   FP5, 0x28(mA), 0, 0
+        ps_madds0 FP12, FP10, FP1, FP12
+        ps_madds0 FP13, FP11, FP1, FP13
+        ps_madds0 FP14, FP10, FP3, FP14
+        ps_madds0 FP15, FP11, FP3, FP15
+	psq_st FP12, 0x08(mAB), 0, 0
+
+	    ps_muls0 FP2, FP6, FP4
+        ps_madds1 FP13, FP31, FP1, FP13
+	    ps_muls0 FP0, FP7, FP4
+	psq_st FP14, 0x18(mAB), 0, 0
+        ps_madds1 FP15, FP31, FP3, FP15
+
+	psq_st FP13, 0x10(mAB), 0, 0
+
+		ps_madds1 FP2, FP8, FP4, FP2
+		ps_madds1 FP0, FP9, FP4, FP0
+        ps_madds0 FP2, FP10, FP5, FP2
+	psq_st FP15, 0x20(mAB), 0, 0
+        ps_madds0 FP0, FP11, FP5, FP0
+	psq_st  FP2, 0x28(mAB), 0, 0
+        ps_madds1 FP0, FP31, FP5, FP0
+	psq_stu FP0, 0x30(mAB), 0, 0
+
+    bdnz loop
+
+    lfd    FP14, 0x08(sp)
+    lfd    FP15, 0x10(sp)
+	lfd    FP31, 0x28(sp)
+	addi sp, sp, 0x40
+	blr
+
+#undef FP0
+#undef FP1
+#undef FP2
+#undef FP3
+#undef FP4
+#undef FP5
+#undef FP6
+#undef FP7
+#undef FP8
+#undef FP9
+#undef FP10
+#undef FP11
+#undef FP12
+#undef FP13
+#undef FP14
+#undef FP15
+#undef FP31
+#undef UNIT_R
 }
+#endif // clang-format on

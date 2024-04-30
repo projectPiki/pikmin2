@@ -221,7 +221,7 @@ LIBS = [
         "objects": [
             ["JSystem/J3D/J3DSys", True],
             ["JSystem/J3D/J3DVertex", True],
-            ["JSystem/J3D/J3DTransform", False],
+            ["JSystem/J3D/J3DTransform", True],
             ["JSystem/J3D/J3DPacket", True],
             ["JSystem/J3D/J3DShape", False],
             ["JSystem/J3D/J3DMaterial", False],
