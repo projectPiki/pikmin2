@@ -65,15 +65,15 @@ void DirectorMgr_Scene::initTrackMap(::PSSystem::DirectedBgm& bgm)
 		path = "/user/Totaka/trackMap_Seq_T.txt";
 	} else if (!strcmp(bms, "caveconc.bms")) {
 		path = "/user/Totaka/trackMap_Cond_T.txt";
-		P2ASSERTLINE(116, bgm.getCastType() == ::PSSystem::DirectedBgm::BgmType_Cave);
+		P2ASSERTLINE(116, bgm.getCastType() == PSSystem::SeqBase::TYPE_AutoBgm);
 		bms = static_cast<PSAutoBgm::AutoBgm*>(&bgm)->mConductorFilePath;
 	} else if (!strncmp("new_", bms, strlen("new_"))) {
 		path = "/user/Totaka/trackMap_Cond_T.txt";
-		P2ASSERTLINE(126, bgm.getCastType() == ::PSSystem::DirectedBgm::BgmType_Cave);
+		P2ASSERTLINE(126, bgm.getCastType() == PSSystem::SeqBase::TYPE_AutoBgm);
 		bms = static_cast<PSAutoBgm::AutoBgm*>(&bgm)->mConductorFilePath;
 	} else if (!strcmp(bms, "cavesoil.bms") || (!strcmp(bms, "cavemetal.bms"))) {
 		path = "/user/Wakai/trackMap_Cond_W.txt";
-		P2ASSERTLINE(139, bgm.getCastType() == ::PSSystem::DirectedBgm::BgmType_Cave);
+		P2ASSERTLINE(139, bgm.getCastType() == PSSystem::SeqBase::TYPE_AutoBgm);
 		bms = static_cast<PSAutoBgm::AutoBgm*>(&bgm)->mConductorFilePath;
 	} else {
 		path = "/user/Wakai/trackMap_Seq_W.txt";
@@ -131,7 +131,7 @@ void DirectorMgr_Scene::initTrackMap(::PSSystem::DirectedBgm& bgm)
 		break;
 	}
 	case Director_Ground: {
-		if (bgm.getCastType() == ::PSSystem::DirectedBgm::BgmType_Cave) {
+		if (bgm.getCastType() == PSSystem::SeqBase::TYPE_AutoBgm) {
 			actor = new GroundDirector_Cave("GroundD  ", trackMap.mGroundTrackCount, 100, 100);
 		} else {
 			actor = new ActorDirector_Scaled("GroundD  ", trackMap.mGroundTrackCount, 300.0f, 600.0f, 200, 200, 10);
@@ -154,7 +154,7 @@ void DirectorMgr_Scene::initTrackMap(::PSSystem::DirectedBgm& bgm)
 			if (trackMap.mPikNum[i])
 				actor->setTrack(id++, bgm.getChildTrack(i));
 		}
-		if (bgm.getCastType() == 3) {
+		if (bgm.getCastType() == PSSystem::SeqBase::TYPE_AutoBgm) {
 			static_cast<PSAutoBgm::AutoBgm*>(&bgm)->setPikiMaskNum(trackMap.mPikNum);
 		}
 		break;
@@ -854,7 +854,7 @@ PikminNumberDirector* DirectorMgr_Scene_AutoBgm::newPikminNumberDirector(int pik
  * @note Size: 0x50
  */
 DirectorMgr_Battle::DirectorMgr_Battle()
-    : ::PSSystem::DirectorMgrBase(::PSSystem::DirectedBgm::BgmType_Battle)
+    : ::PSSystem::DirectorMgrBase(2)
 {
 }
 
@@ -1084,7 +1084,7 @@ lbl_80470460:
  * @note Size: 0x50
  */
 DirectorMgr_2PBattle::DirectorMgr_2PBattle()
-    : ::PSSystem::DirectorMgrBase(::PSSystem::DirectedBgm::BgmType_2PBattle)
+    : ::PSSystem::DirectorMgrBase(8)
 {
 }
 

@@ -129,7 +129,7 @@ PSSystem::StreamBgm* Scene_Global::getGlobalStream()
 {
 	PSSystem::SeqBase* seq = mSeqMgr.getSeq(1);
 	P2ASSERTLINE(114, seq);
-	P2ASSERTLINE(115, seq->getCastType() == 1);
+	P2ASSERTLINE(115, seq->getCastType() == PSSystem::SeqBase::TYPE_StreamBgm);
 	return static_cast<PSSystem::StreamBgm*>(seq);
 }
 
@@ -1347,7 +1347,7 @@ void Scene_Ground::jumpMainBgm(u8 time)
 {
 	MiddleBossSeq* seq = static_cast<MiddleBossSeq*>(mSeqMgr.getFirst()->getObject());
 	P2ASSERTLINE(846, seq);
-	P2ASSERTLINE(847, seq->getCastType() == CCT_EnemyBoss);
+	P2ASSERTLINE(847, seq->getCastType() == PSSystem::SeqBase::TYPE_JumpBgmSeq);
 	seq->requestJumpBgmOnBeat(time);
 
 	if (mEnvSeMgr) {
@@ -2165,9 +2165,7 @@ lbl_8046B754:
  */
 void PSStart2DStream(u32 id)
 {
-	PSSystem::StreamBgm* seq = static_cast<PSSystem::StreamBgm*>(PSMGetSceneMgrCheck()->mScenes->mSeqMgr.getSeq(1));
-	P2ASSERTLINE(114, seq);
-	P2ASSERTLINE(115, seq->getCastType() == 1);
+	PSSystem::StreamBgm* seq = static_cast<PSM::Scene_Global*>(PSMGetSceneMgrCheck()->mScenes)->getGlobalStream();
 	seq->setId(id);
 	seq->startSeq();
 }
@@ -2178,9 +2176,7 @@ void PSStart2DStream(u32 id)
  */
 u8 PSStop2DStream()
 {
-	PSSystem::StreamBgm* seq = static_cast<PSSystem::StreamBgm*>(PSMGetSceneMgrCheck()->mScenes->mSeqMgr.getSeq(1));
-	P2ASSERTLINE(114, seq);
-	P2ASSERTLINE(115, seq->getCastType() == 1);
+	PSSystem::StreamBgm* seq = static_cast<PSM::Scene_Global*>(PSMGetSceneMgrCheck()->mScenes)->getGlobalStream();
 	seq->stopSeq(30);
 }
 
@@ -2224,7 +2220,7 @@ void PSPauseOff() { static_cast<PSM::Scene_Game*>(PSMGetChildScene())->pauseOff_
  */
 void PSStartChallengeTimeUpStream()
 {
-	PSStart2DStream(0xc0011016);
+	PSStart2DStream(P2_STREAM_SOUND_ID(PSSTR_CHALLENGE_TIMEUP));
 
 	PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(PSMGetChildScene());
 	PSSystem::checkGameScene(scene);

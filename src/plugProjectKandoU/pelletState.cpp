@@ -262,8 +262,8 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 						playData->isDemoFlag(DEMO_First_Spicy_Spray_Made);
 						int dope0 = playData->getDopeFruitCount(type);
 						playData->addDopeFruit(type);
-						playData->getDopeFruitCount(0);
-						playData->getDopeFruitCount(1);
+						playData->getDopeFruitCount(SPRAY_TYPE_SPICY);
+						playData->getDopeFruitCount(SPRAY_TYPE_BITTER);
 						if (!playData->isDemoFlag(DEMO_First_Spicy_Berry)) {
 							playData->setDemoFlag(DEMO_First_Spicy_Berry);
 							gameSystem->mSection->setDraw2DCreature(pelt);
@@ -278,7 +278,7 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 							if (dope0 + 1 >= _aiConstants->mDopeCount.mData) {
 								playData->setDemoFlag(DEMO_First_Spicy_Spray_Made);
 								BaseItem* item = ItemHoney::mgr->birth();
-								ItemHoney::InitArg arg(1, 1);
+								ItemHoney::InitArg arg(HONEY_R, true);
 								item->init(&arg);
 								Vector3f pos(0.0f, FLOAT_DIST_MAX, 0.0f);
 								item->setPosition(pos, false);
@@ -301,8 +301,8 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 						playData->isDemoFlag(DEMO_First_Bitter_Spray_Made);
 						int dope0 = playData->getDopeFruitCount(type);
 						playData->addDopeFruit(type);
-						playData->getDopeFruitCount(0);
-						playData->getDopeFruitCount(1);
+						playData->getDopeFruitCount(SPRAY_TYPE_SPICY);
+						playData->getDopeFruitCount(SPRAY_TYPE_BITTER);
 						if (!playData->isDemoFlag(DEMO_First_Bitter_Berry)) {
 							playData->setDemoFlag(DEMO_First_Bitter_Berry);
 							gameSystem->mSection->setDraw2DCreature(pelt);
@@ -316,7 +316,7 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 							if (dope0 + 1 >= _aiConstants->mDopeCount.mData) {
 								playData->setDemoFlag(DEMO_First_Bitter_Spray_Made);
 								BaseItem* item = ItemHoney::mgr->birth();
-								ItemHoney::InitArg arg(2, 1);
+								ItemHoney::InitArg arg(HONEY_B, true);
 								item->init(&arg);
 								Vector3f pos(0.0f, FLOAT_DIST_MAX, 0.0f);
 								item->setPosition(pos, false);
@@ -351,9 +351,9 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 					MoviePlayArg moviearg("s17_suck_equipment", const_cast<char*>(section->getCurrentCourseInfo()->mName),
 					                      section->mMovieFinishCallback, 0);
 					moviearg.mPelletName = pelt->mConfig->mParams.mName.mData;
-					moviearg.mStreamID   = 0xc001100b;
+					moviearg.mStreamID   = P2_STREAM_SOUND_ID(PSSTR_EQUIP_GET);
 					if (pelt->mConfig->mParams.mIndex >= 8) {
-						moviearg.mStreamID = 0xc001100a;
+						moviearg.mStreamID = P2_STREAM_SOUND_ID(PSSTR_POWERUP_GET);
 					}
 					moviePlayer->play(moviearg);
 					doPlay = true;
@@ -379,6 +379,7 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 				moviearg.mPelletName    = pelt->mConfig->mParams.mName.mData;
 				moviePlayer->play(moviearg);
 				doPlay = true;
+
 			} else if (pelt->getKind() == PELTYPE_UPGRADE) {
 				// Upgrade carried to the cave pod
 				gameSystem->mSection->setDraw2DCreature(pelt);
@@ -388,12 +389,13 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 				moviearg.mDelegateStart = section->mMovieStartCallback;
 				moviearg.mOrigin        = mOnyon->getPosition();
 				moviearg.mAngle         = mOnyon->getFaceDir();
-				moviearg.mStreamID      = 0xc001100b;
+				moviearg.mStreamID      = P2_STREAM_SOUND_ID(PSSTR_EQUIP_GET);
 				if (pelt->mConfig->mParams.mIndex >= 8) {
-					moviearg.mStreamID = 0xc001100a;
+					moviearg.mStreamID = P2_STREAM_SOUND_ID(PSSTR_POWERUP_GET);
 				}
 				moviePlayer->play(moviearg);
 				doPlay = true;
+
 			} else if (pelt->getKind() == PELTYPE_CARCASS && pelt->mPelletFlag != Pellet::FLAG_NAVI_NAPSACK
 			           && !playData->isDemoFlag(DEMO_First_Corpse_In_Cave)) {
 				// first corpse collected in cave

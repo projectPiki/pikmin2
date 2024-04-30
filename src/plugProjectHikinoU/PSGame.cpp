@@ -575,7 +575,7 @@ PSM::MiddleBossSeq* PikScene::getMiddleBossBgm()
 	}
 
 	name = seq->mBmsFileName;
-	if ((!strcmp(name, "m_boss.bms") || !strcmp(name, "l_boss.bms")) && seq->getCastType() == 4) {
+	if ((!strcmp(name, "m_boss.bms") || !strcmp(name, "l_boss.bms")) && seq->getCastType() == PSSystem::SeqBase::TYPE_JumpBgmSeq) {
 		return seq;
 	}
 	return nullptr;
@@ -598,7 +598,7 @@ PSSystem::Scene* PikSceneMgr::newAndSetGlobalScene()
 {
 	JUT_ASSERTLINE(1002, !mScenes, "2重にグローバルシーンを作成しようとした"); // 'I tried to create a global scene twice'
 	SceneInfo info;
-	info.mSceneType = 0;
+	info.mSceneType = SceneInfo::SCENE_NULL;
 	info.mCameras   = 0;
 	info.setStageFlag(SceneInfo::SCENEFLAG_Unk0, SceneInfo::SFBS_1);
 
@@ -614,18 +614,18 @@ PSSystem::Scene* PikSceneMgr::newAndSetGlobalScene()
 	P2ASSERTLINE(1028, PSSystem::SingletonBase<PSSystem::SeqDataList>::getInstance()->onlyLoad("/user/Totaka/BgmList.txt",
 	                                                                                           JKRDvdRipper::ALLOC_DIR_TOP));
 
-	JAInter::SoundInfo sound = { 0x00001f00, 255, 0, 0, 0x3F800000, 0x7f000000 };
-	P2ASSERTLINE(1040, sound.mVolume.c <= 0x7f);
-	PSSystem::SeSeq* seq = new PSSystem::SeSeq("se.bms", sound);
-	P2ASSERTLINE(1043, seq);
-	seq->init();
-	mScenes->appendSeq(seq);
+	JAInter::SoundInfo seInfo = { 0x00001F00, 255, 0, 0, 0x3F800000, 0x7f000000 };
+	P2ASSERTLINE(1040, seInfo.mVolume.c <= 127);
+	PSSystem::SeSeq* seSeq = new PSSystem::SeSeq("se.bms", seInfo);
+	P2ASSERTLINE(1043, seSeq);
+	seSeq->init();
+	mScenes->appendSeq(seSeq);
 
-	JAInter::SoundInfo sound2 = { 0x00000000, 0x7F, 1, 0, 0x3F800000, 0x32000000 };
-	PSSystem::BgmSeq* seq2    = newStreamBgm(0xc0011011, sound2);
-	P2ASSERTLINE(1061, seq2);
-	seq2->init();
-	mScenes->appendSeq(seq2);
+	JAInter::SoundInfo bgmInfo = { 0x00000000, 0x7F, 1, 0, 0x3F800000, 0x32000000 };
+	PSSystem::BgmSeq* bgmSeq   = newStreamBgm(P2_STREAM_SOUND_ID(PSSTR_OPTION), bgmInfo);
+	P2ASSERTLINE(1061, bgmSeq);
+	bgmSeq->init();
+	mScenes->appendSeq(bgmSeq);
 	return mScenes;
 }
 
@@ -637,11 +637,11 @@ PSSystem::Scene* PikSceneMgr::newAndSetCurrentScene(SceneInfo& info)
 {
 	u8 sceneType = info.getSceneType();
 	P2ASSERTLINE(1093, sceneType != SceneInfo::SCENE_NULL);
-	JUT_ASSERTLINE(1094, sceneType < SceneInfo::SCENE_COUNT, "scene noが不正");
+	JUT_ASSERTLINE(1094, sceneType < SceneInfo::SCENE_COUNT, "scene noが不正"); // 'scene no is invalid'
 
 	checkScene();
 
-	JUT_ASSERTLINE(1095, !mScenes->mChild, "前回のmCurrentSceneの後処理が不正");
+	JUT_ASSERTLINE(1095, !mScenes->mChild, "前回のmCurrentSceneの後処理が不正"); // 'previous mCurrentScene post-processing is invalid
 
 	info.setStageCamera();
 
@@ -724,14 +724,15 @@ PSSystem::BgmSeq* PikSceneMgr::newStreamBgm(u32 id, JAInter::SoundInfo& info)
  */
 PSSystem::BgmSeq* PikSceneMgr::initBossBgm(SceneInfo& info, u8* wScene)
 {
-	JAInter::SoundInfo sound = { 0x00000000, 0x7F, 0x02, 0, 0x3F800000, 0x28000000 };
+	JAInter::SoundInfo soundInfo = { 0x00000000, 127, 2, 0, 0x3F800000, 0x28000000 };
 
 	PSSystem::DirectedBgm* seq;
 	if (curSceneIsBigBossFloor()) {
-		seq     = (PSSystem::DirectedBgm*)newDirectedBgm("l_boss.bms", sound);
+		seq     = (PSSystem::DirectedBgm*)newDirectedBgm("l_boss.bms", soundInfo);
 		*wScene = PSSystem::WaveScene::WSCENE35_TitanDweevil;
+
 	} else {
-		seq = (PSSystem::DirectedBgm*)newDirectedBgm("m_boss.bms", sound);
+		seq = (PSSystem::DirectedBgm*)newDirectedBgm("m_boss.bms", soundInfo);
 	}
 
 	P2ASSERTLINE(1264, seq);
@@ -739,7 +740,7 @@ PSSystem::BgmSeq* PikSceneMgr::initBossBgm(SceneInfo& info, u8* wScene)
 	seq->assertValidTrack();
 
 	seq->mRootTrack->mBeatInterval = 60;
-	P2ASSERTLINE(1267, sound.mVolume.c <= 0x7f);
+	P2ASSERTLINE(1267, soundInfo.mVolume.c <= 127);
 	return seq;
 }
 
@@ -749,35 +750,37 @@ PSSystem::BgmSeq* PikSceneMgr::initBossBgm(SceneInfo& info, u8* wScene)
  */
 void PikSceneMgr::initAdditionalBgm(SceneInfo& info, PSSystem::Scene* scene)
 {
-	JAInter::SoundInfo sound = { 0x00000000, 0x7F, 0x01, 0, 0x3F800000, 0x32000000 };
+	JAInter::SoundInfo soundInfo = { 0x00000000, 0x7F, 0x01, 0, 0x3F800000, 0x32000000 };
 
 	PSSystem::BgmSeq* seq;
 	switch (info.mSceneType) {
 	case SceneInfo::TITLE_SCREEN:
-		seq = newStreamBgm(0xc0011011, sound);
+		seq = newStreamBgm(P2_STREAM_SOUND_ID(PSSTR_OPTION), soundInfo);
 		P2ASSERTLINE(1290, seq);
 		scene->appendSeq(seq);
 
-		seq = newBgmSeq("hiscore.bms", sound);
+		seq = newBgmSeq("hiscore.bms", soundInfo);
 		P2ASSERTLINE(1296, seq);
 		scene->appendSeq(seq);
 
-		seq = newStreamBgm(0xc0011010, sound);
+		seq = newStreamBgm(P2_STREAM_SOUND_ID(PSSTR_OMAKE), soundInfo);
 		P2ASSERTLINE(1302, seq);
 		scene->appendSeq(seq);
 		break;
+
 	case SceneInfo::COURSE_TUTORIALDAY1:
-		seq = newBgmSeq("n_tutorial_1stday.bms", sound);
+		seq = newBgmSeq("n_tutorial_1stday.bms", soundInfo);
 		P2ASSERTLINE(1318, seq);
 		scene->appendSeq(seq);
 		break;
+
 	case SceneInfo::CHALLENGE_MODE:
-		sound._05                     = 0x04;
-		sound.mVolume.c               = 0x23;
-		sound.mFlag                   = 0x1f00;
+		soundInfo._05                 = 4;
+		soundInfo.mVolume.c           = 35;
+		soundInfo.mFlag               = 0x1F00;
 		JADUtility::AccessMode flag   = (JADUtility::AccessMode)mAccessMode;
 		PSSystem::DirectedBgm* seqold = (PSSystem::DirectedBgm*)scene->mSeqMgr.getFirstSeq();
-		seq                           = newAutoBgm("cavekeyget.cnd", "cavekeyget.bms", sound, flag, info, seqold->mDirectorMgr);
+		seq                           = newAutoBgm("cavekeyget.cnd", "cavekeyget.bms", soundInfo, flag, info, seqold->mDirectorMgr);
 		scene->appendSeq(seq);
 		scene->setSecondaryWaveScene(PSSystem::WaveScene::WSCENE5_Challenge_KeyGet);
 		P2ASSERTLINE(1342, seq == scene->mSeqMgr.getSeq(2));
@@ -787,7 +790,7 @@ void PikSceneMgr::initAdditionalBgm(SceneInfo& info, PSSystem::Scene* scene)
 	// Check for submerged castle theme
 	if (info.isCaveFloor() && info.mSceneType == SceneInfo::COURSE_YAKUSHIMA) {
 		if (static_cast<CaveFloorInfo&>(info).getCaveNoFromID() == 3 && !static_cast<CaveFloorInfo&>(info).isBossFloor()) {
-			seq = newBgmSeq("kuro_post.bms", sound);
+			seq = newBgmSeq("kuro_post.bms", soundInfo);
 			P2ASSERTLINE(1353, seq);
 			scene->appendSeq(seq);
 		}
@@ -804,13 +807,14 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 	JADUtility::AccessMode mode = (JADUtility::AccessMode)mAccessMode;
 	PSSystem::BgmSeq* bgm       = nullptr;
 
-	JAInter::SoundInfo sound = { 0x00001f00, 0x7F, 0xFF, 0, 0x3F800000, 0x32000000 };
-	sound._05                = 1;
+	JAInter::SoundInfo soundInfo = { 0x1F00, 127, 255, 0, 0x3F800000, 0x32000000 };
+	soundInfo._05                = 1;
 
 	CaveFloorInfo& cinfo = static_cast<CaveFloorInfo&>(info);
-	P2ASSERTLINE(1393, sound._05 < 5);
+	P2ASSERTLINE(1393, soundInfo._05 < 5);
 
 	if (info.isCaveFloor()) {
+		// we're in a 'cave' (story mode cave, 2P battle, vs or challenge mode)
 		switch (info.mSceneType) {
 		case SceneInfo::CHALLENGE_MODE:
 			const char* path = "/user/Totaka/ChallengeBgmList.txt";
@@ -825,24 +829,25 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 			char* bmsName;
 			list->getSeqAndWaveFromConductor(name, &wScene2, &bmsName);
 			*wScene = wScene2;
-			bgm     = newAutoBgm(name, bmsName, sound, (JADUtility::AccessMode)mode, info, nullptr);
+			bgm     = newAutoBgm(name, bmsName, soundInfo, (JADUtility::AccessMode)mode, info, nullptr);
 			delete PSSystem::SingletonBase<ConductorList>::sInstance;
 			PSSystem::SingletonBase<ConductorList>::sInstance = nullptr;
 			break;
 
 		case SceneInfo::TWO_PLAYER_BATTLE:
-			bgm     = newDirectedBgm("battle_t.bms", sound);
+			bgm     = newDirectedBgm("battle_t.bms", soundInfo);
 			*wScene = PSSystem::WaveScene::WSCENE6_2P_Battle;
 			break;
 		}
 
 		if (!bgm) {
 			switch (cinfo.mBetaType) {
-			case 1: // Floor without music for bosses, apparently it loads caveconc_00 by default
-				bgm = newAutoBgm("caveconc_00_0.cnd", "caveconc.bms", sound, (JADUtility::AccessMode)mode, info, nullptr);
+			case CaveFloorInfo::BetaType_Boss: // Floor without music for bosses, apparently it loads caveconc_00 by default
+				bgm = newAutoBgm("caveconc_00_0.cnd", "caveconc.bms", soundInfo, (JADUtility::AccessMode)mode, info, nullptr);
 				break;
-			case 2:
-				bgm     = newAutoBgm("caverelax.cnd", "caverelax.bms", sound, (JADUtility::AccessMode)mode, info, nullptr);
+
+			case CaveFloorInfo::BetaType_Relax: // Rest floor, load rest/relax music
+				bgm     = newAutoBgm("caverelax.cnd", "caverelax.bms", soundInfo, (JADUtility::AccessMode)mode, info, nullptr);
 				*wScene = PSSystem::WaveScene::WSCENE28_CaveRestFloor;
 				break;
 			}
@@ -850,8 +855,8 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 
 		// Check for submerged castle theme
 		if (info.isCaveFloor() && info.mSceneType == SceneInfo::COURSE_YAKUSHIMA) {
-			if (cinfo.getCaveNoFromID() == 3 && !cinfo.isBossFloor()) {
-				bgm = newBgmSeq("kuro_pre.bms", sound);
+			if (cinfo.getCaveNoFromID() == 3 && !cinfo.isBossFloor()) { // cave is submerged castle + not sublevel 5
+				bgm = newBgmSeq("kuro_pre.bms", soundInfo);             // cue spooky music
 				P2ASSERTLINE(1566, bgm);
 				*wScene = PSSystem::WaveScene::WSCENE48_SubmergedCastle;
 			}
@@ -879,6 +884,7 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 				txtpath = "/user/Totaka/BgmList_BgmTest.txt";
 				break;
 			}
+
 			PSSystem::SingletonBase<PSGame::ConductorList>::newHeapInstance();
 			ConductorList* list = PSSystem::SingletonBase<PSGame::ConductorList>::getInstance();
 			bool loaded         = list->load(txtpath, JKRDvdRipper::ALLOC_DIR_BOTTOM);
@@ -889,74 +895,96 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 			char* bmsName;
 			list->getSeqAndWaveFromConductor(name, &wScene2, &bmsName);
 			*wScene = wScene2;
-			bgm     = newAutoBgm(name, bmsName, sound, (JADUtility::AccessMode)mode, info, nullptr);
+			bgm     = newAutoBgm(name, bmsName, soundInfo, (JADUtility::AccessMode)mode, info, nullptr);
 			delete PSSystem::SingletonBase<ConductorList>::sInstance;
 			PSSystem::SingletonBase<ConductorList>::sInstance = nullptr;
 		}
+
 	} else {
+		// we're in story mode overworld, a menu/title/ending, or piklopedia
 		switch (info.mSceneType) {
+		// OVERWORLD
 		case SceneInfo::COURSE_TUTORIAL:
 		case SceneInfo::COURSE_TUTORIALDAY1:
-			bgm     = newMainBgm("n_tutorial.bms", sound);
+			bgm     = newMainBgm("n_tutorial.bms", soundInfo);
 			*wScene = PSSystem::WaveScene::WSCENE15_Valley_of_Repose;
 			break;
+
 		case SceneInfo::COURSE_FOREST:
-			bgm     = newMainBgm("forest.bms", sound);
+			bgm     = newMainBgm("forest.bms", soundInfo);
 			*wScene = PSSystem::WaveScene::WSCENE2_Awakening_Wood;
 			break;
+
 		case SceneInfo::COURSE_YAKUSHIMA:
-			bgm     = newMainBgm("yakushima.bms", sound);
+			bgm     = newMainBgm("yakushima.bms", soundInfo);
 			*wScene = PSSystem::WaveScene::WSCENE3_Perplexing_Pool;
 			P2ASSERTLINE(1640, bgm);
 			static_cast<PSSystem::DirectedBgm*>(bgm)->assertValidTrack();
 			static_cast<PSSystem::DirectedBgm*>(bgm)->mRootTrack->mBeatInterval = 30;
 			break;
+
 		case SceneInfo::COURSE_LAST:
-			bgm     = newMainBgm("last.bms", sound);
+			bgm     = newMainBgm("last.bms", soundInfo);
 			*wScene = PSSystem::WaveScene::WSCENE4_Wistful_Wild;
 			P2ASSERTLINE(1650, bgm);
 			static_cast<PSSystem::DirectedBgm*>(bgm)->assertValidTrack();
 			static_cast<PSSystem::DirectedBgm*>(bgm)->mRootTrack->mBeatInterval = 30;
 			break;
+
+		// TITLE
 		case SceneInfo::TITLE_SCREEN:
-			bgm     = newStreamBgm(0xc0011000, sound);
+			bgm     = newStreamBgm(P2_STREAM_SOUND_ID(PSSTR_TITLE), soundInfo);
 			*wScene = PSSystem::WaveScene::WSCENE21_HighScores;
 			break;
+
+		// RESULTS
 		case SceneInfo::CAVE_RESULTS:
-			bgm = newStreamBgm(0xc0011013, sound);
+			bgm = newStreamBgm(P2_STREAM_SOUND_ID(PSSTR_U_RESULT), soundInfo);
 			break;
 		case SceneInfo::CHALLENGE_RESULTS:
-			bgm = newStreamBgm(0xc0011014, sound);
+			bgm = newStreamBgm(P2_STREAM_SOUND_ID(PSSTR_C_RESULT), soundInfo);
 			break;
+
+		// FILE SELECT
 		case SceneInfo::FILE_SELECT:
-			bgm = newStreamBgm(0xc001101e, sound);
+			bgm = newStreamBgm(P2_STREAM_SOUND_ID(PSSTR_FILE_SELECT), soundInfo);
 			break;
+
+		// MAP
 		case SceneInfo::WORLD_MAP_NORMAL:
-			bgm     = newBgmSeq("worldmap.bms", sound);
+			bgm     = newBgmSeq("worldmap.bms", soundInfo);
 			*wScene = PSSystem::WaveScene::WSCENE16_WorldMap;
 			break;
 		case SceneInfo::WORLD_MAP_NEWLEVEL:
-			bgm     = newBgmSeq("worldmap_intro.bms", sound);
+			bgm     = newBgmSeq("worldmap_intro.bms", soundInfo);
 			*wScene = PSSystem::WaveScene::WSCENE16_WorldMap;
 			break;
+
+		// CM MENU
 		case SceneInfo::CHALLENGE_MENU:
-			bgm     = newBgmSeq("c_menu.bms", sound);
+			bgm     = newBgmSeq("c_menu.bms", soundInfo);
 			*wScene = PSSystem::WaveScene::WSCENE20_ChallengeSelect;
 			break;
+
+		// PIKLOPEDIA
 		case SceneInfo::PIKLOPEDIA:
-			bgm     = newBgmSeq("book.bms", sound);
+			bgm     = newBgmSeq("book.bms", soundInfo);
 			*wScene = PSSystem::WaveScene::WSCENE36_Piklopedia;
 			break;
+
+		// ENDINGS
 		case SceneInfo::ENDING_COMPLETE:
-			bgm     = newBgmSeq("comp_result.bms", sound);
+			bgm     = newBgmSeq("comp_result.bms", soundInfo);
 			*wScene = PSSystem::WaveScene::WSCENE19_Final_Result;
 			break;
 		case SceneInfo::ENDING_DEBTRESULT:
-			bgm     = newBgmSeq("f_result.bms", sound);
+			bgm     = newBgmSeq("f_result.bms", soundInfo);
 			*wScene = PSSystem::WaveScene::WSCENE19_Final_Result;
 			break;
+
+		// VS MENU
 		case SceneInfo::VERSUS_MENU:
-			bgm = newStreamBgm(0xc001100f, sound);
+			bgm = newStreamBgm(P2_STREAM_SOUND_ID(PSSTR_VS_MENU), soundInfo);
 			break;
 		default:
 			JUT_PANICLINE(1745, "P2Assert");
@@ -964,7 +992,7 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 	}
 
 	P2ASSERTLINE(1749, bgm);
-	P2ASSERTLINE(1750, sound.mVolume.c <= 127);
+	P2ASSERTLINE(1750, soundInfo.mVolume.c <= 127);
 
 	return bgm;
 	/*
@@ -2156,17 +2184,21 @@ u16 seqCpuSync(JASTrack* track, u16 command)
 
 	switch (command) {
 	case 0x4000:
-		P2ASSERTLINE(2085, seq->getCastType() == 4);
+		P2ASSERTLINE(2085, seq->getCastType() == PSSystem::SeqBase::TYPE_JumpBgmSeq);
 		return static_cast<PSSystem::JumpBgmSeq*>(seq)->getSeqStartPoint();
 	case 0x4001:
-		P2ASSERTLINE(2095, seq->getCastType() == 4);
+		P2ASSERTLINE(2095, seq->getCastType() == PSSystem::SeqBase::TYPE_JumpBgmSeq);
 		return static_cast<PSSystem::JumpBgmSeq*>(seq)->outputJumpRequest();
 	case 0xe00:
-		P2ASSERTBOOLLINE(2107, seq->getCastType() == 2 || seq->getCastType() == 4 || seq->getCastType() == 3);
+		P2ASSERTBOOLLINE(2107, seq->getCastType() == PSSystem::SeqBase::TYPE_DirectedBgm
+		                           || seq->getCastType() == PSSystem::SeqBase::TYPE_JumpBgmSeq
+		                           || seq->getCastType() == PSSystem::SeqBase::TYPE_AutoBgm);
 		static_cast<PSSystem::DirectedBgm*>(seq)->initRootTrack_onPlaying(track);
 		return 0;
 	case 0xf00:
-		P2ASSERTBOOLLINE(2117, seq->getCastType() == 2 || seq->getCastType() == 4 || seq->getCastType() == 3);
+		P2ASSERTBOOLLINE(2117, seq->getCastType() == PSSystem::SeqBase::TYPE_DirectedBgm
+		                           || seq->getCastType() == PSSystem::SeqBase::TYPE_JumpBgmSeq
+		                           || seq->getCastType() == PSSystem::SeqBase::TYPE_AutoBgm);
 		static_cast<PSSystem::DirectedBgm*>(seq)->initChildTrack_onPlaying(track, track->_348 & 0xf);
 		return 0;
 	case 0x600:
@@ -2975,7 +3007,9 @@ PSSystem::DirectedBgm* PSGetDirectedMainBgm()
 	}
 
 	PSSystem::DirectedBgm* seq = (PSSystem::DirectedBgm*)scene->mSeqMgr.getFirstSeq();
-	if (seq && (seq->getCastType() == 2 || seq->getCastType() == 3 || seq->getCastType() == 4)) {
+	if (seq
+	    && (seq->getCastType() == PSSystem::SeqBase::TYPE_DirectedBgm || seq->getCastType() == PSSystem::SeqBase::TYPE_AutoBgm
+	        || seq->getCastType() == PSSystem::SeqBase::TYPE_JumpBgmSeq)) {
 		return seq;
 	}
 	return nullptr;

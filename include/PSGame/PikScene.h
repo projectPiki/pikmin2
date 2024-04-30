@@ -105,7 +105,7 @@ struct PikSceneMgr : public PSSystem::SceneMgr {
 	    = 0;
 
 	/**
-	 * @brief Checks if the current scene is a boss floor.
+	 * @brief Checks if the current scene is the Titan Dweevil floor.
 	 * @return False.
 	 */
 	virtual bool curSceneIsBigBossFloor() { return false; }

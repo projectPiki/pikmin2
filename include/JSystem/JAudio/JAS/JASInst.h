@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "JSystem/JAudio/JAS/JASOscillator.h"
+#include "JSystem/JAudio/JAS/JASBNKParser.h"
 
 enum JASInstTarget {
 	JASINST_Volume = 0,
@@ -137,8 +138,8 @@ struct JASBasicInst : public JASInst {
 		TVeloRegion* getVeloRegion(int) const;
 
 		int mBaseKey;              // _00
-		u32 mVeloRegionCount;      // _04 - velo region count?
-		TVeloRegion* mVeloRegions; // _08 - velo region pointer?
+		u32 mVeloRegionCount;      // _04
+		TVeloRegion* mVeloRegions; // _08
 	};
 
 	JASBasicInst();

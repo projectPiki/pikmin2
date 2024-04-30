@@ -22,7 +22,7 @@ struct BgmSeq : public SeqBase {
 	BgmSeq(const char* bmsFileName, const JAInter::SoundInfo& info);
 
 	virtual ~BgmSeq();                                    // _08
-	virtual u8 getCastType() { return 0; }                // _24 (weak)
+	virtual u8 getCastType() { return TYPE_BgmSeq; }      // _24 (weak)
 	virtual u32 getSeqType() { return 0x80000000; }       // _28 (weak)
 	virtual JAISound** getHandleP() { return &mHandleP; } // _3C (weak)
 
@@ -36,21 +36,13 @@ struct BgmSeq : public SeqBase {
  * @size = 0xB8
  */
 struct DirectedBgm : public BgmSeq {
-
-	enum CastType {
-		BgmType_NULL     = 0,
-		BgmType_Battle   = 2,
-		BgmType_Cave     = 3,
-		BgmType_2PBattle = 8,
-	};
-
 	DirectedBgm(const char* bmsFileName, const JAInter::SoundInfo& info, DirectorMgrBase* directorMgr);
 
 	virtual ~DirectedBgm() { }                                  // _08 (weak)
 	virtual void init();                                        // _0C
 	virtual void startSeq();                                    // _14
 	virtual void stopSeq(u32);                                  // _18
-	virtual u8 getCastType() { return 2; }                      // _24 (weak)
+	virtual u8 getCastType() { return TYPE_DirectedBgm; }       // _24 (weak)
 	virtual void onPlayingFrame();                              // _30
 	virtual SeqTrackRoot* newSeqTrackRoot();                    // _44
 	virtual SeqTrackChild* newSeqTrackChild(u8, SeqTrackRoot&); // _48
@@ -113,17 +105,17 @@ struct JumpBgmPort {
 struct JumpBgmSeq : public DirectedBgm {
 	JumpBgmSeq(const char* bmsFileName, const JAInter::SoundInfo& info, DirectorMgrBase* directorMgr);
 
-	virtual ~JumpBgmSeq() { }                          // _08 (weak)
-	virtual void startSeq();                           // _14
-	virtual u8 getCastType() { return 4; }             // _24 (weak)
-	virtual void onPlayingFrame();                     // _30
-	virtual PSSystem::SeqTrackRoot* newSeqTrackRoot(); // _44
-	virtual u16 getSeqStartPoint();                    // _4C
-	virtual void requestJumpBgmQuickly(u16);           // _50
-	virtual void requestJumpBgmOnBeat(u16);            // _54
-	virtual void requestJumpBgmEveryBeat(u16);         // _58
-	virtual u16 outputJumpRequest();                   // _5C
-	virtual void onJump(u16) { }                       // _60 (weak)
+	virtual ~JumpBgmSeq() { }                            // _08 (weak)
+	virtual void startSeq();                             // _14
+	virtual u8 getCastType() { return TYPE_JumpBgmSeq; } // _24 (weak)
+	virtual void onPlayingFrame();                       // _30
+	virtual PSSystem::SeqTrackRoot* newSeqTrackRoot();   // _44
+	virtual u16 getSeqStartPoint();                      // _4C
+	virtual void requestJumpBgmQuickly(u16);             // _50
+	virtual void requestJumpBgmOnBeat(u16);              // _54
+	virtual void requestJumpBgmEveryBeat(u16);           // _58
+	virtual u16 outputJumpRequest();                     // _5C
+	virtual void onJump(u16) { }                         // _60 (weak)
 
 	void startSeq(u16);
 	void setAvoidJumpTimer_Checked(u32);

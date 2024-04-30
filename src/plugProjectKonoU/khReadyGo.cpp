@@ -27,7 +27,7 @@ bool ObjReadyGo::doUpdateFadein()
 
 	DispReadyGo* disp = static_cast<DispReadyGo*>(getDispMember());
 
-	if (disp->mGameType == 0) {
+	if (disp->mGameType == DispReadyGo::TYPE_2PBattle) {
 		PSSystem::spSysIF->playSystemSe(PSSE_READYGO_BATTLE_COME, 0);
 	} else {
 		PSSystem::spSysIF->playSystemSe(PSSE_READYGO_CHALLENGE_COME, 0);
@@ -70,10 +70,10 @@ void ObjReadyGo::doCreate(JKRArchive* arc)
 
 	getOwner()->setColorBG(0, 0, 0, 160);
 
-	if (disp->mGameType == 0) {
-		PSStart2DStream(0xc0011022);
+	if (disp->mGameType == DispReadyGo::TYPE_2PBattle) {
+		PSStart2DStream(P2_STREAM_SOUND_ID(PSSTR_READY_GO_2P));
 	} else {
-		PSStart2DStream(0xc0011023);
+		PSStart2DStream(P2_STREAM_SOUND_ID(PSSTR_READY_GO_CHALLENGE));
 	}
 }
 
@@ -166,7 +166,7 @@ bool ObjReadyGo::updateAnimation()
 			             getPaneCenterY(mScreen[i]->search('NALL')) + msVal.mEfxOffsetY);
 			efx2d::Arg arg = vec;
 
-			if (disp->mGameType == 0) {
+			if (disp->mGameType == DispReadyGo::TYPE_2PBattle) {
 				efx2d::T2DGoBatl efx;
 				efx.create(&arg);
 			} else {

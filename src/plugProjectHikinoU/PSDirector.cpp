@@ -8,7 +8,7 @@ u8 DirectorBase::sToolMode;
  * @note Address: 0x80342EB4
  * @note Size: 0x214
  */
-DirectorBase::DirectorBase(int tracks, const char*)
+DirectorBase::DirectorBase(int numTracks, const char* name)
     : JADHioNode(nullptr)
 {
 	mTracks = nullptr;
@@ -17,12 +17,12 @@ DirectorBase::DirectorBase(int tracks, const char*)
 	OSInitMutex(&mMutex2);
 	mIsBegin  = false;
 	mEnabled  = false;
-	mTrackNum = tracks;
-	P2ASSERTLINE(24, tracks > 0);
-	mTracks        = new SeqTrackBase*[tracks];
-	mTrackFlagList = new u8[tracks];
+	mTrackNum = numTracks;
+	P2ASSERTLINE(24, numTracks > 0);
+	mTracks        = new SeqTrackBase*[numTracks];
+	mTrackFlagList = new u8[numTracks];
 	P2ASSERTLINE(29, mTracks);
-	for (u8 i = 0; i < tracks; i++) {
+	for (u8 i = 0; i < numTracks; i++) {
 		mTracks[i]        = nullptr;
 		mTrackFlagList[i] = false;
 	}
@@ -260,11 +260,11 @@ void SwitcherDirector::doUpdateRequest()
  * @note Address: 0x80343848
  * @note Size: 0x88
  */
-DirectorMgrBase::DirectorMgrBase(u8 type)
+DirectorMgrBase::DirectorMgrBase(u8 count)
     : JADHioNode("ディレクターマネージャ") // "Director Manager"
 {
 	mDirectors     = nullptr;
-	mDirectorCount = type;
+	mDirectorCount = count;
 	P2ASSERTLINE(394, mDirectorCount != 0);
 }
 

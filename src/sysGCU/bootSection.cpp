@@ -1440,7 +1440,7 @@ void BootSection::updateLoadResourceFirst()
 		PSSystem::checkSceneMgr(mgr);
 		PSM::Scene_Global* scene = static_cast<PSM::Scene_Global*>(mgr->mScenes);
 		P2ASSERTLINE(1723, scene);
-		scene->startGlobalStream(0xc001101f);
+		scene->startGlobalStream(P2_STREAM_SOUND_ID(PSSTR_PIKMIN_GREET));
 #endif
 		setMode(SID_LOAD_MEMORY_CARD);
 	}

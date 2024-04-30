@@ -12,6 +12,8 @@
 #include "PSSystem/Reservator.h"
 #include "stl/string.h"
 
+#define P2_STREAM_SOUND_ID(soundID) (JAISoundID_Type_Stream | 0x10000 | soundID)
+
 namespace PSSystem {
 struct SeqPlayReservator;
 struct SeqPauseOffReservator;
@@ -22,7 +24,16 @@ struct Scene;
 /**
  * @size 0x68
  */
-struct SeqBase : JSULink<SeqBase> {
+struct SeqBase : public JSULink<SeqBase> {
+	enum CastType {
+		TYPE_BgmSeq      = 0,
+		TYPE_StreamBgm   = 1,
+		TYPE_DirectedBgm = 2,
+		TYPE_AutoBgm     = 3,
+		TYPE_JumpBgmSeq  = 4,
+		TYPE_SeSeq       = 5,
+	};
+
 	// need to work out what these are
 	enum PauseMode { MODE0 = 0, MODE1 = 1, MODE2 = 2, MODE3 = 3, MODE4 = 4 };
 
@@ -44,7 +55,10 @@ struct SeqBase : JSULink<SeqBase> {
 	virtual JAISound** getHandleP() = 0; // _3C
 	virtual void setConfigVolume();      // _40
 
-	inline bool isDirectedType() { return (getCastType() == 2 || getCastType() == 3 || getCastType() == 4); }
+	inline bool isDirectedType()
+	{
+		return (getCastType() == TYPE_DirectedBgm || getCastType() == TYPE_AutoBgm || getCastType() == TYPE_JumpBgmSeq);
+	}
 
 	void* getFileEntry();
 
@@ -117,7 +131,7 @@ struct SeSeq : public SeqBase {
 	}
 	virtual ~SeSeq();                                                                  // _08
 	virtual void stopSeq(u32);                                                         // _18
-	virtual u8 getCastType() { return 5; }                                             // _24 (weak)
+	virtual u8 getCastType() { return TYPE_SeSeq; }                                    // _24 (weak)
 	virtual u32 getSeqType() { return 0x80000800; }                                    // _28 (weak)
 	virtual void seqLoadAfter();                                                       // _38
 	virtual JAISound** getHandleP() { return (JAISound**)(JAInter::SeMgr::seHandle); } // _3C (weak)

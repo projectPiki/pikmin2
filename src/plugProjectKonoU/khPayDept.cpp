@@ -82,13 +82,13 @@ void ObjPayDept::doCreate(JKRArchive* arc)
 
 	switch (disp->mPayDeptType) {
 	case DispPayDept::PAYDEPT_Percent:
-		PSStart2DStream(0xc0011021);
+		PSStart2DStream(P2_STREAM_SOUND_ID(PSSTR_PAY_NOT_ENOUGH));
 		break;
 	case DispPayDept::PAYDEPT_DebtPayed:
-		PSStart2DStream(0xc0011020);
+		PSStart2DStream(P2_STREAM_SOUND_ID(PSSTR_PAY_COMPLETE));
 		break;
 	case DispPayDept::PAYDEPT_Complete:
-		PSStart2DStream(0xc0011020);
+		PSStart2DStream(P2_STREAM_SOUND_ID(PSSTR_PAY_COMPLETE));
 		break;
 	}
 }
@@ -104,7 +104,7 @@ bool ObjPayDept::doUpdateFadein()
 	}
 
 	DispPayDept* disp = static_cast<DispPayDept*>(getDispMember());
-	u32 soundID       = -1;
+	u32 soundID       = PSSE_NULL;
 	switch (disp->mPayDeptType) {
 	case DispPayDept::PAYDEPT_Percent:
 		soundID = PSSE_PAY_COME;
@@ -117,7 +117,7 @@ bool ObjPayDept::doUpdateFadein()
 		break;
 	}
 
-	if (soundID != -1) {
+	if (soundID != PSSE_NULL) {
 		PSSystem::spSysIF->playSystemSe(soundID, 0);
 	}
 	return true;

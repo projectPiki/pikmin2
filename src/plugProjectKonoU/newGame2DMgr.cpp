@@ -241,7 +241,7 @@ void Game2DMgr::open_GameChallenge2P(og::Screen::DispMemberChallenge2P& disp, in
 			kh::Screen::DispReadyGo disp2;
 			disp2.mIs2Player    = true;
 			disp2.mIsFinalFloor = true;
-			disp2.mGameType     = 1;
+			disp2.mGameType     = kh::Screen::DispReadyGo::TYPE_Challenge;
 			SetSceneArg arg2(SCENE_READY_GO, &disp2);
 			if (mScreenMgr->setScene(arg2)) {
 				mScreenMgr->startScene(nullptr);
@@ -251,7 +251,7 @@ void Game2DMgr::open_GameChallenge2P(og::Screen::DispMemberChallenge2P& disp, in
 		if (mScreenMgr->setScene(arg)) {
 			kh::Screen::DispReadyGo disp2;
 			disp2.mIs2Player = true;
-			disp2.mGameType  = 1;
+			disp2.mGameType  = kh::Screen::DispReadyGo::TYPE_Challenge;
 			SetSceneArg arg2(SCENE_READY_GO, &disp2);
 			if (mScreenMgr->setScene(arg2)) {
 				mScreenMgr->startScene(nullptr);
@@ -286,7 +286,7 @@ void Game2DMgr::open_GameChallenge1P(og::Screen::DispMemberChallenge1P& disp, in
 		if (mScreenMgr->setScene(arg)) {
 			kh::Screen::DispReadyGo disp2;
 			disp2.mIsFinalFloor = true;
-			disp2.mGameType     = 1;
+			disp2.mGameType     = kh::Screen::DispReadyGo::TYPE_Challenge;
 			SetSceneArg arg2(SCENE_READY_GO, &disp2);
 			if (mScreenMgr->setScene(arg2)) {
 				mScreenMgr->startScene(nullptr);
@@ -295,7 +295,7 @@ void Game2DMgr::open_GameChallenge1P(og::Screen::DispMemberChallenge1P& disp, in
 	} else if (type == 1) {
 		if (mScreenMgr->setScene(arg)) {
 			kh::Screen::DispReadyGo disp2;
-			disp2.mGameType = 1;
+			disp2.mGameType = kh::Screen::DispReadyGo::TYPE_Challenge;
 			SetSceneArg arg2(SCENE_READY_GO, &disp2);
 			if (mScreenMgr->setScene(arg2)) {
 				mScreenMgr->startScene(nullptr);

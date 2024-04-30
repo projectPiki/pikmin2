@@ -191,7 +191,7 @@ void Demo::demo1stLoadSync()
 void Demo::initDemoScene(PSM::DemoArg& arg, PSM::Scene_Demo* scene)
 {
 	if (!strcmp(arg.mName, "s21_dayend_takeoff")) {
-		scene->mGate = 1;
+		scene->mGate = true;
 	}
 }
 
@@ -203,158 +203,158 @@ PSSystem::BgmSeq* Demo::initiate(DemoArg demoArg, u8* unk)
 {
 	PSSystem::BgmSeq* seq;
 	u32 AST_ID;
-	char buffer[32];
-	JAInter::SoundInfo audio_info = { 0x00000000, 0x7F, 0x03, 0, 0x3F800000, 0x3C000000 };
+	char bmsFilePath[32];
+	JAInter::SoundInfo audio_info = { 0, 127, 3, 0, 0x3F800000, 0x3C000000 };
 
-	seq       = nullptr;
-	buffer[0] = '\0';
-	AST_ID    = -1;
+	seq            = nullptr;
+	bmsFilePath[0] = '\0';
+	AST_ID         = PSSE_NULL;
 
-	DemoInitiator init = DemoInitiator(unk, demoArg.mName, AST_ID, buffer);
+	DemoInitiator init = DemoInitiator(unk, demoArg.mName, AST_ID, bmsFilePath);
 	init.setDefaultValues();
 
-	init.setDefault("s02_dayend_result", 0xc0011012);
+	init.setDefault("s02_dayend_result", P2_STREAM_SOUND_ID(PSSTR_RESULT));
 	init.setDefault("s01_dayend", demoArg.mBgmID);
-	init.setDefault("s03_orimadown", 0xc0011005);
-	init.setDefault("s05_pikminzero", 0xc0011006);
-	init.setDefault("s11_dope_first_b", 0xc0011001);
-	init.setDefault("s11_dope_first_r", 0xc0011001);
-	init.setDefault("s11_dopebin_first_b", 0xc0011008);
-	init.setDefault("s11_dopebin_first_r", 0xc0011008);
+	init.setDefault("s03_orimadown", P2_STREAM_SOUND_ID(PSSTR_PLAYERDOWN));
+	init.setDefault("s05_pikminzero", P2_STREAM_SOUND_ID(PSSTR_ANNIHI));
+	init.setDefault("s11_dope_first_b", P2_STREAM_SOUND_ID(PSSTR_TREASURE_GET));
+	init.setDefault("s11_dope_first_r", P2_STREAM_SOUND_ID(PSSTR_TREASURE_GET));
+	init.setDefault("s11_dopebin_first_b", P2_STREAM_SOUND_ID(PSSTR_DOPING));
+	init.setDefault("s11_dopebin_first_r", P2_STREAM_SOUND_ID(PSSTR_DOPING));
 
 	if (!streq("s01_dayend", init.mName)) {
 		bool is_key = demoArg.mCameraName && streq(demoArg.mCameraName, "key");
 
 		init.setDefault("s17_suck_equipment", demoArg.mBgmID, !is_key);
-		init.setDefault("s17_suck_equipment", 0xc0011007, is_key);
+		init.setDefault("s17_suck_equipment", P2_STREAM_SOUND_ID(PSSTR_KEYGET), is_key);
 
 		init.setDefault("s22_cv_suck_equipment", demoArg.mBgmID, !is_key);
-		init.setDefault("s22_cv_suck_equipment", 0xc0011007, is_key);
+		init.setDefault("s22_cv_suck_equipment", P2_STREAM_SOUND_ID(PSSTR_KEYGET), is_key);
 
-		init.setDefault("s10_suck_treasure", 0xc0011001, !is_key);
-		init.setDefault("s10_suck_treasure", 0xc0011007, is_key);
+		init.setDefault("s10_suck_treasure", P2_STREAM_SOUND_ID(PSSTR_TREASURE_GET), !is_key);
+		init.setDefault("s10_suck_treasure", P2_STREAM_SOUND_ID(PSSTR_KEYGET), is_key);
 
-		init.setDefault("s22_cv_suck_treasure", 0xc0011007, is_key);
-		init.setDefault("s22_cv_suck_treasure", 0xc0011001, !is_key);
+		init.setDefault("s22_cv_suck_treasure", P2_STREAM_SOUND_ID(PSSTR_KEYGET), is_key);
+		init.setDefault("s22_cv_suck_treasure", P2_STREAM_SOUND_ID(PSSTR_TREASURE_GET), !is_key);
 	}
 
-	init.setDefault("s04_dayend_orimadown", 0xc001101d);
-	init.setDefault("s06_dayend_pikminzero", 0xc001101d);
+	init.setDefault("s04_dayend_orimadown", P2_STREAM_SOUND_ID(PSSTR_ZENMETSU_DAYEND));
+	init.setDefault("s06_dayend_pikminzero", P2_STREAM_SOUND_ID(PSSTR_ZENMETSU_DAYEND));
 
-	init.setDefault("g1A_red_doping", 0xc0011009);
-	init.setDefault("g1A_red_doping", 0xc0011009);
-	init.setDefault("g1B_black_doping", 0xc0011047);
-	init.setDefault("g02_boot_onyonR", 0xc001100c);
-	init.setDefault("g1E_boot_onyonY", 0xc001100c);
-	init.setDefault("g20_boot_onyonB", 0xc001100c);
-	init.setDefault("g03_meet_redpikmin", 0xc001100d);
-	init.setDefault("g1F_meet_yellowpikmin", 0xc001100d);
-	init.setDefault("g21_meet_bluepikmin", 0xc001100d);
-	init.setDefault("g24_meet_blackpikmin", 0xc001100d);
-	init.setDefault("g27_meet_whitepikmin", 0xc001100d);
-	init.setDefault("g33_camera_demo", 0xc0011024);
+	init.setDefault("g1A_red_doping", P2_STREAM_SOUND_ID(PSSTR_DOPED));
+	init.setDefault("g1A_red_doping", P2_STREAM_SOUND_ID(PSSTR_DOPED));
+	init.setDefault("g1B_black_doping", P2_STREAM_SOUND_ID(PSSTR_BLACK_DOPING));
+	init.setDefault("g02_boot_onyonR", P2_STREAM_SOUND_ID(PSSTR_ONYONBOOT));
+	init.setDefault("g1E_boot_onyonY", P2_STREAM_SOUND_ID(PSSTR_ONYONBOOT));
+	init.setDefault("g20_boot_onyonB", P2_STREAM_SOUND_ID(PSSTR_ONYONBOOT));
+	init.setDefault("g03_meet_redpikmin", P2_STREAM_SOUND_ID(PSSTR_PIKMIN_MEET));
+	init.setDefault("g1F_meet_yellowpikmin", P2_STREAM_SOUND_ID(PSSTR_PIKMIN_MEET));
+	init.setDefault("g21_meet_bluepikmin", P2_STREAM_SOUND_ID(PSSTR_PIKMIN_MEET));
+	init.setDefault("g24_meet_blackpikmin", P2_STREAM_SOUND_ID(PSSTR_PIKMIN_MEET));
+	init.setDefault("g27_meet_whitepikmin", P2_STREAM_SOUND_ID(PSSTR_PIKMIN_MEET));
+	init.setDefault("g33_camera_demo", P2_STREAM_SOUND_ID(PSSTR_CAMERA_DEMO));
 
 	if (PSMGetGameSceneA()->isCave()) {
-		init.setDefault("s09_holein", 0xc0011046);
+		init.setDefault("s09_holein", P2_STREAM_SOUND_ID(PSSTR_IN_HOLE_U));
 	} else {
-		init.setDefault("s09_holein", 0xc0011026);
+		init.setDefault("s09_holein", P2_STREAM_SOUND_ID(PSSTR_IN_HOLE));
 	}
 
-	init.setDefault("s16_find_item_00", 0xc0011027);
-	init.setDefault("s16_find_item_01", 0xc0011027);
-	init.setDefault("s16_find_item_02", 0xc0011027);
-	init.setDefault("s16_find_item_03", 0xc0011027);
-	init.setDefault("s16_find_item_04", 0xc0011027);
-	init.setDefault("s16_find_item_05", 0xc0011027);
-	init.setDefault("s16_find_item_06", 0xc0011027);
-	init.setDefault("s16_find_item_07", 0xc0011027);
-	init.setDefault("s16_find_item_08", 0xc0011027);
-	init.setDefault("s16_find_item_09", 0xc0011027);
-	init.setDefault("s16_find_item_10", 0xc0011027);
-	init.setDefault("s16_find_item_11", 0xc0011027);
-	init.setDefault("s16_find_item_12", 0xc0011027);
+	init.setDefault("s16_find_item_00", P2_STREAM_SOUND_ID(PSSTR_TREASURE_GLAD)); // brute knuckles
+	init.setDefault("s16_find_item_01", P2_STREAM_SOUND_ID(PSSTR_TREASURE_GLAD)); // dream material
+	init.setDefault("s16_find_item_02", P2_STREAM_SOUND_ID(PSSTR_TREASURE_GLAD)); // amplified amplifier
+	init.setDefault("s16_find_item_03", P2_STREAM_SOUND_ID(PSSTR_TREASURE_GLAD)); // professional noisemaker
+	init.setDefault("s16_find_item_04", P2_STREAM_SOUND_ID(PSSTR_TREASURE_GLAD)); // stellar orb
+	init.setDefault("s16_find_item_05", P2_STREAM_SOUND_ID(PSSTR_TREASURE_GLAD)); // justice alloy
+	init.setDefault("s16_find_item_06", P2_STREAM_SOUND_ID(PSSTR_TREASURE_GLAD)); // forged courage
+	init.setDefault("s16_find_item_07", P2_STREAM_SOUND_ID(PSSTR_TREASURE_GLAD)); // repugnant appendage
+	init.setDefault("s16_find_item_08", P2_STREAM_SOUND_ID(PSSTR_TREASURE_GLAD)); // prototype detector
+	init.setDefault("s16_find_item_09", P2_STREAM_SOUND_ID(PSSTR_TREASURE_GLAD)); // five man napsack
+	init.setDefault("s16_find_item_10", P2_STREAM_SOUND_ID(PSSTR_TREASURE_GLAD)); // spherical atlas
+	init.setDefault("s16_find_item_11", P2_STREAM_SOUND_ID(PSSTR_TREASURE_GLAD)); // geographic projection
+	init.setDefault("s16_find_item_12", P2_STREAM_SOUND_ID(PSSTR_TREASURE_GLAD)); // the key
 
-	init.setDefault("s0C_cv_escape", 0xc0011028);
+	init.setDefault("s0C_cv_escape", P2_STREAM_SOUND_ID(PSSTR_OUT_HOLE));
 
-	init.setDefault("g01_pick_me", 0xc0011029);
+	init.setDefault("g01_pick_me", P2_STREAM_SOUND_ID(PSSTR_MYSTERY));
 
-	init.setDefault("g04_find_treasure", 0xc0011027);
+	init.setDefault("g04_find_treasure", P2_STREAM_SOUND_ID(PSSTR_TREASURE_GLAD));
 
-	init.setDefault("g05_find_cave_f_01", 0xc0011029);
-	init.setDefault("g05_find_cave_f_02", 0xc0011029);
-	init.setDefault("g05_find_cave_f_03", 0xc0011029);
-	init.setDefault("g05_find_cave_f_04", 0xc0011029);
-	init.setDefault("g05_find_cave_l_01", 0xc0011029);
-	init.setDefault("g05_find_cave_l_02", 0xc0011029);
-	init.setDefault("g05_find_cave_l_03", 0xc0011029);
-	init.setDefault("g05_find_cave_t_01", 0xc0011029);
-	init.setDefault("g05_find_cave_t_02", 0xc0011029);
-	init.setDefault("g05_find_cave_t_03", 0xc0011029);
-	init.setDefault("g05_find_cave_y_01", 0xc0011029);
-	init.setDefault("g05_find_cave_y_02", 0xc0011029);
-	init.setDefault("g05_find_cave_y_03", 0xc0011029);
-	init.setDefault("g05_find_cave_y_04", 0xc0011029);
+	init.setDefault("g05_find_cave_f_01", P2_STREAM_SOUND_ID(PSSTR_MYSTERY)); // hole of beasts
+	init.setDefault("g05_find_cave_f_02", P2_STREAM_SOUND_ID(PSSTR_MYSTERY)); // white flower garden
+	init.setDefault("g05_find_cave_f_03", P2_STREAM_SOUND_ID(PSSTR_MYSTERY)); // bulblax kingdom
+	init.setDefault("g05_find_cave_f_04", P2_STREAM_SOUND_ID(PSSTR_MYSTERY)); // snagret hole
+	init.setDefault("g05_find_cave_l_01", P2_STREAM_SOUND_ID(PSSTR_MYSTERY)); // cavern of chaos
+	init.setDefault("g05_find_cave_l_02", P2_STREAM_SOUND_ID(PSSTR_MYSTERY)); // hole of heroes
+	init.setDefault("g05_find_cave_l_03", P2_STREAM_SOUND_ID(PSSTR_MYSTERY)); // dream den
+	init.setDefault("g05_find_cave_t_01", P2_STREAM_SOUND_ID(PSSTR_MYSTERY)); // emergence cave
+	init.setDefault("g05_find_cave_t_02", P2_STREAM_SOUND_ID(PSSTR_MYSTERY)); // subterranean complex
+	init.setDefault("g05_find_cave_t_03", P2_STREAM_SOUND_ID(PSSTR_MYSTERY)); // frontier cavern
+	init.setDefault("g05_find_cave_y_01", P2_STREAM_SOUND_ID(PSSTR_MYSTERY)); // citadel of spiders
+	init.setDefault("g05_find_cave_y_02", P2_STREAM_SOUND_ID(PSSTR_MYSTERY)); // gluttons kitchen
+	init.setDefault("g05_find_cave_y_03", P2_STREAM_SOUND_ID(PSSTR_MYSTERY)); // shower room
+	init.setDefault("g05_find_cave_y_04", P2_STREAM_SOUND_ID(PSSTR_MYSTERY)); // submerged castle
 
-	init.setDefault("g0A_cv_find_hole", 0xc0011029);
-	init.setDefault("g0B_cv_find_fountain", 0xc0011029);
+	init.setDefault("g0A_cv_find_hole", P2_STREAM_SOUND_ID(PSSTR_MYSTERY));
+	init.setDefault("g0B_cv_find_fountain", P2_STREAM_SOUND_ID(PSSTR_MYSTERY));
 
-	init.setDefault("g18_find_gate", 0xc001102a);
-	init.setDefault("g19_find_rock", 0xc0011029);
-	init.setDefault("g2D_red_extract", 0xc0011027);
-	init.setDefault("g2E_black_extract", 0xc0011027);
-	init.setDefault("g34_yellow_extract", 0xc001102b);
-	init.setDefault("g37_get_louie", 0xc0011027);
-	init.setDefault("g38_find_whitepom", 0xc0011029);
-	init.setDefault("g39_find_blackpom", 0xc0011029);
+	init.setDefault("g18_find_gate", P2_STREAM_SOUND_ID(PSSTR_GLAD));
+	init.setDefault("g19_find_rock", P2_STREAM_SOUND_ID(PSSTR_MYSTERY));
+	init.setDefault("g2D_red_extract", P2_STREAM_SOUND_ID(PSSTR_TREASURE_GLAD));
+	init.setDefault("g2E_black_extract", P2_STREAM_SOUND_ID(PSSTR_TREASURE_GLAD));
+	init.setDefault("g34_yellow_extract", P2_STREAM_SOUND_ID(PSSTR_PIKMIN_GLAD));
+	init.setDefault("g37_get_louie", P2_STREAM_SOUND_ID(PSSTR_TREASURE_GLAD));
+	init.setDefault("g38_find_whitepom", P2_STREAM_SOUND_ID(PSSTR_MYSTERY));
+	init.setDefault("g39_find_blackpom", P2_STREAM_SOUND_ID(PSSTR_MYSTERY));
 
-	init.setDefault("x01_gamestart", 0xc001102c);
-	init.setDefault("x02_watch_red_pikmin", 0xc001102d);
-	init.setDefault("x06_join", 0xc001102e);
-	init.setDefault("x12_drain_water", 0xc001102a);
-	init.setDefault("x10_find_yellow_onyon", 0xc001102f);
-	init.setDefault("x11_find_blue_onyon", 0xc0011030);
-	init.setDefault("x16_hiba", 0xc0011031);
-	init.setDefault("x13_exp_leafchappy", 0xc001102a);
-	init.setDefault("x20_blackman", 0xc0011032);
+	init.setDefault("x01_gamestart", P2_STREAM_SOUND_ID(PSSTR_START_DEMO_TUTORIAL));
+	init.setDefault("x02_watch_red_pikmin", P2_STREAM_SOUND_ID(PSSTR_WATCH_PIKMIN));
+	init.setDefault("x06_join", P2_STREAM_SOUND_ID(PSSTR_JOIN));
+	init.setDefault("x12_drain_water", P2_STREAM_SOUND_ID(PSSTR_GLAD));
+	init.setDefault("x10_find_yellow_onyon", P2_STREAM_SOUND_ID(PSSTR_ONYON));
+	init.setDefault("x11_find_blue_onyon", P2_STREAM_SOUND_ID(PSSTR_BLUE_ONYON));
+	init.setDefault("x16_hiba", P2_STREAM_SOUND_ID(PSSTR_HIBA));
+	init.setDefault("x13_exp_leafchappy", P2_STREAM_SOUND_ID(PSSTR_GLAD));
+	init.setDefault("x20_blackman", P2_STREAM_SOUND_ID(PSSTR_KUROIHITO));
 
-	init.setDefault("s13_pikmin_supply", 0xc0011033);
-	init.setDefault("s0B_cv_coursein", 0xc0011036);
-	init.setDefault("s0E_return_cave", 0xc0011037);
+	init.setDefault("s13_pikmin_supply", P2_STREAM_SOUND_ID(PSSTR_EXPLAIN));
+	init.setDefault("s0B_cv_coursein", P2_STREAM_SOUND_ID(PSSTR_FLOOR_IN));
+	init.setDefault("s0E_return_cave", P2_STREAM_SOUND_ID(PSSTR_RETURN));
 
-	init.setDefault("e00_E3_cavestart", 0xc0011039);
+	init.setDefault("e00_E3_cavestart", P2_STREAM_SOUND_ID(PSSTR_CHALLENGE_START));
 
-	init.setDefault("g07_cv_gamestart", 0xc001103a);
-	init.setDefault("g08_first_return", 0xc001103b);
-	init.setDefault("g09_first_sunset", 0xc0011033);
-	init.setDefault("g16_100_pikmin", 0xc0011033);
-	init.setDefault("g16_95_pikmin", 0xc0011033);
-	init.setDefault("g26_inout_black", 0xc001104a);
-	init.setDefault("g29_inout_white", 0xc0011048);
-	init.setDefault("g2B_white_poison", 0xc0011031);
-	init.setDefault("g2C_inout_red", 0xc0011033);
-	init.setDefault("g36_find_louie", 0xc0011031);
+	init.setDefault("g07_cv_gamestart", P2_STREAM_SOUND_ID(PSSTR_UNDERGROUND_START));
+	init.setDefault("g08_first_return", P2_STREAM_SOUND_ID(PSSTR_RETURN_E));
+	init.setDefault("g09_first_sunset", P2_STREAM_SOUND_ID(PSSTR_EXPLAIN));
+	init.setDefault("g16_100_pikmin", P2_STREAM_SOUND_ID(PSSTR_EXPLAIN));
+	init.setDefault("g16_95_pikmin", P2_STREAM_SOUND_ID(PSSTR_EXPLAIN));
+	init.setDefault("g26_inout_black", P2_STREAM_SOUND_ID(PSSTR_EXPLAIN_90));
+	init.setDefault("g29_inout_white", P2_STREAM_SOUND_ID(PSSTR_EXPLAIN_60));
+	init.setDefault("g2B_white_poison", P2_STREAM_SOUND_ID(PSSTR_HIBA));
+	init.setDefault("g2C_inout_red", P2_STREAM_SOUND_ID(PSSTR_EXPLAIN));
+	init.setDefault("g36_find_louie", P2_STREAM_SOUND_ID(PSSTR_HIBA));
 
-	init.setDefault("x01_coursein_forest", 0xc0011034);
-	init.setDefault("x01_coursein_yakushima", 0xc0011034);
-	init.setDefault("x01_coursein_last", 0xc0011034);
-	init.setDefault("x04_exp_y", 0xc0011049);
-	init.setDefault("x05_louiestart", 0xc0011035);
-	init.setDefault("x07_first_recovery", 0xc0011049);
-	init.setDefault("x08_cv_suck_carcass", 0xc0011033);
-	init.setDefault("x09_exp_detector", 0xc0011033);
-	init.setDefault("x14_white_dig", 0xc0011033);
+	init.setDefault("x01_coursein_forest", P2_STREAM_SOUND_ID(PSSTR_START_DEMO_OTHER));
+	init.setDefault("x01_coursein_yakushima", P2_STREAM_SOUND_ID(PSSTR_START_DEMO_OTHER));
+	init.setDefault("x01_coursein_last", P2_STREAM_SOUND_ID(PSSTR_START_DEMO_OTHER));
+	init.setDefault("x04_exp_y", P2_STREAM_SOUND_ID(PSSTR_EXPLAIN_75));
+	init.setDefault("x05_louiestart", P2_STREAM_SOUND_ID(PSSTR_LUGIE_START));
+	init.setDefault("x07_first_recovery", P2_STREAM_SOUND_ID(PSSTR_EXPLAIN_75));
+	init.setDefault("x08_cv_suck_carcass", P2_STREAM_SOUND_ID(PSSTR_EXPLAIN));
+	init.setDefault("x09_exp_detector", P2_STREAM_SOUND_ID(PSSTR_EXPLAIN));
+	init.setDefault("x14_white_dig", P2_STREAM_SOUND_ID(PSSTR_EXPLAIN));
 
-	init.setDefault("g32_get_map", 0xc0011048);
-	init.setDefault("g35_president_gamestart", 0xc0011033);
+	init.setDefault("g32_get_map", P2_STREAM_SOUND_ID(PSSTR_EXPLAIN_60));
+	init.setDefault("g35_president_gamestart", P2_STREAM_SOUND_ID(PSSTR_EXPLAIN));
 
-	init.setDefault("x15_exp_x", 0xc0011033);
-	init.setDefault("x17_join_guide", 0xc0011033);
-	init.setDefault("x18_exp_pellet", 0xc0011033);
+	init.setDefault("x15_exp_x", P2_STREAM_SOUND_ID(PSSTR_EXPLAIN));
+	init.setDefault("x17_join_guide", P2_STREAM_SOUND_ID(PSSTR_EXPLAIN));
+	init.setDefault("x18_exp_pellet", P2_STREAM_SOUND_ID(PSSTR_EXPLAIN));
 
-	init.setDefault("x03_find_red_onyon", 0xc001103c);
+	init.setDefault("x03_find_red_onyon", P2_STREAM_SOUND_ID(PSSTR_RED_ONYON));
 
 	if (streq("s02_dayend_result", init.mName)) {
-		audio_info.mVolume.c -= 0xf;
+		audio_info.mVolume.c -= 15;
 	}
 	// clang-format off
 	if (streq("s10_suck_treasure",        init.mName) ||
@@ -368,16 +368,25 @@ PSSystem::BgmSeq* Demo::initiate(DemoArg demoArg, u8* unk)
 		streq("x19_vs_bedama",            init.mName))
 	// clang-format on
 	{
+		// suck up something
 		mDoStartWithAudio = false;
 		mMovieStartSE     = PSSE_EV_HOME_PELLET_BACUUM;
-	} else if (streq("g2F_appear_hole", init.mName)) { // change BGM in challenge mode when hole/fountain appear
+
+	} else if (streq("g2F_appear_hole", init.mName)) {
+		// change BGM in challenge mode when hole/fountain appear
 		mMovieStartSE = PSSE_SY_WORK_FINISH;
 		mFuncptr      = PSChangeBgm_ChallengeGame;
+
 	} else if (streq("g30_appear_fountain", init.mName)) {
+		// change BGM in challenge mode when hole/fountain appear
 		mFuncptr = PSChangeBgm_ChallengeGame;
+
 	} else if (streq("x20_blackman", init.mName) || streq("x03_find_red_onyon", init.mName)) {
+		// waterwraith and red onyon cutscenes don't start with audio
 		mDoStartWithAudio = false;
+
 	} else if (streq("s01_dayend", init.mName)) {
+		// modify day end cutscene sound effects based on which captain's active
 		switch ((u32)demoArg.mCameraName) {
 		case 1:
 			mMovieStartSE = PSSE_PL_DAYEND_KAISAN_LUI;
@@ -393,20 +402,24 @@ PSSystem::BgmSeq* Demo::initiate(DemoArg demoArg, u8* unk)
 	}
 
 	if (streq("x20_blackman", init.mName)) {
+		// load up tyre falling sound effect for waterwraith
 		mMovieStartSE = PSSE_EN_TIRE_FALL;
 	}
 
-	if (AST_ID != -1) {
+	if (AST_ID != PSSE_NULL) {
+		// we have streamed music, play it
 		PSGame::PikSceneMgr* scene_mgr = (PSGame::PikSceneMgr*)PSSystem::getSceneMgr();
 		PSSystem::checkSceneMgr(scene_mgr);
 
 		seq  = scene_mgr->newStreamBgm(AST_ID, audio_info);
 		*unk = -1;
-	} else if (buffer[0] != '\0') {
+
+	} else if (bmsFilePath[0] != '\0') {
+		// we have bgm, play it
 		PSGame::PikSceneMgr* scene_mgr = (PSGame::PikSceneMgr*)PSSystem::getSceneMgr();
 		PSSystem::checkSceneMgr(scene_mgr);
 
-		seq = scene_mgr->newBgmSeq(buffer, audio_info);
+		seq = scene_mgr->newBgmSeq(bmsFilePath, audio_info);
 		P2ASSERTLINE(632, seq);
 	}
 	return seq;

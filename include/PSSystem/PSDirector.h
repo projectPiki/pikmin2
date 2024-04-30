@@ -5,13 +5,12 @@
 #include "JSystem/JAudio/JAD/JADHioNode.h"
 #include "JSystem/JAudio/JAS/JASTrack.h"
 #include "PSSystem/PSSeq.h"
-// #include "PSSystem/SeqTrack.h"
 
 namespace PSSystem {
 struct SeqTrackBase;
 
 struct DirectorBase : public JADHioNode {
-	DirectorBase(int, const char*);
+	DirectorBase(int numTracks, const char* name);
 
 	virtual ~DirectorBase() { }                     // _08 (weak)
 	virtual void exec();                            // _0C
@@ -48,11 +47,11 @@ struct DirectorBase : public JADHioNode {
 		return false;
 	}
 
-	inline void fadeAllTracks(f32 rate, u32 a2)
+	inline void fadeAllTracks(f32 rate, u32* a2)
 	{
 		for (u8 i = 0; i < mTrackNum; i++) {
 			P2ASSERTLINE(51, i < mTrackNum);
-			static_cast<PSSystem::SeqTrackChild*>(mTracks[i])->fade(rate, a2, nullptr);
+			static_cast<PSSystem::SeqTrackChild*>(mTracks[i])->fade(rate, *a2, nullptr);
 		}
 	}
 
@@ -88,8 +87,8 @@ struct OneShotDirector : public DirectorBase {
 };
 
 struct SwitcherDirector : public DirectorBase {
-	inline SwitcherDirector(int p1, const char* p2)
-	    : DirectorBase(p1, p2)
+	inline SwitcherDirector(int numTracks, const char* name)
+	    : DirectorBase(numTracks, name)
 	{
 	}
 
@@ -121,7 +120,7 @@ struct DirectorCopyActor : public DirectorActorBase {
 };
 
 struct DirectorMgrBase : public JADHioNode {
-	DirectorMgrBase(u8);
+	DirectorMgrBase(u8 count);
 
 	virtual ~DirectorMgrBase() { }                           // _08 (weak)
 	virtual DirectorBase* newDirector(u8, DirectedBgm&) = 0; // _0C

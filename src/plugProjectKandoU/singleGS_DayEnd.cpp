@@ -117,12 +117,13 @@ void DayEndState::exec(SingleGameSection* game)
 				}
 
 				if (numTreasures == 0) {
-					arg.mStreamID = 0xC0011004;
+					arg.mStreamID = P2_STREAM_SOUND_ID(PSSTR_DAYEND_B); // bad day end
 				} else if (numTreasures <= 14) {
-					arg.mStreamID = 0xC0011002;
+					arg.mStreamID = P2_STREAM_SOUND_ID(PSSTR_DAYEND_N); // normal day end
 				} else {
-					arg.mStreamID = 0xC0011003;
+					arg.mStreamID = P2_STREAM_SOUND_ID(PSSTR_DAYEND_G); // good day end
 				}
+
 				JUT_ASSERTLINE(222, naviMgr->getAliveOrima(ALIVEORIMA_Active), "no alive:s01_dayend");
 				Navi* navi = naviMgr->getActiveNavi();
 				int id     = 0;

@@ -7,10 +7,10 @@
 
 namespace JASBNKParser {
 struct THeader {
-	u8 _00[0x24];           // _00
-	u32 mInstOffsets[0x80]; // _24
-	u8 _224[0x190];         // _224
-	u32 mPercOffsets[12];   // _3B4
+	u8 _00[0x20];           // _00
+	u32 mInstOffsets[0x80]; // _20
+	u8 _220[0x190];         // _220
+	u32 mPercOffsets[12];   // _3B0
 };
 
 struct TInst {
@@ -77,8 +77,6 @@ struct TVmap {
 };
 
 JASBasicBank* createBasicBank(void* stream);
-JASOscillator::Data* findOscPtr(JASBasicBank*, THeader*, TOsc*);
-s16* getOscTableEndPtr(s16*);
 
 // unused/inlined:
 u32 getUsedHeapSize();

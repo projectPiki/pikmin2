@@ -1174,7 +1174,7 @@ void StreamBgm::startSeq()
 	OSUnlockMutex(&mMutex);
 	P2ASSERTLINE(704, mJaiSound);
 	P2ASSERTLINE(705, mId == mJaiSound->mSoundID);
-	if (mId == 0xc001101f) {
+	if (mId == P2_STREAM_SOUND_ID(PSSTR_PIKMIN_GREET)) {
 		(*getHandleP())->setVolume(1.0f, 0, SOUNDPARAM_Unk8);
 		(*getHandleP())->setVolume(0.8f, 0, SOUNDPARAM_Unk3);
 	} else {

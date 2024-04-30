@@ -273,7 +273,7 @@ void Sound::stopSound()
  */
 void Sound::setVsWin1P()
 {
-	PSStart2DStream(0xc0011043);
+	PSStart2DStream(P2_STREAM_SOUND_ID(PSSTR_VS_BEE_WIN_ORI));
 
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 	PSSystem::checkSceneMgr(mgr);
@@ -288,7 +288,7 @@ void Sound::setVsWin1P()
  */
 void Sound::setVsWin2P()
 {
-	PSStart2DStream(0xc0011044);
+	PSStart2DStream(P2_STREAM_SOUND_ID(PSSTR_VS_BEE_WIN_LUI));
 
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 	PSSystem::checkSceneMgr(mgr);
@@ -303,7 +303,7 @@ void Sound::setVsWin2P()
  */
 void Sound::setVsDraw()
 {
-	PSStart2DStream(0xc0011045);
+	PSStart2DStream(P2_STREAM_SOUND_ID(PSSTR_VS_BEE_DROW));
 
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 	PSSystem::checkSceneMgr(mgr);

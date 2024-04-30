@@ -99,15 +99,15 @@ JAInter::SoundInfo* JAInter::SoundTable::getInfoPointer(u32 soundID)
 {
 	SoundInfo* info = nullptr;
 	u32 category;
-	switch (soundID & 0xC0000000) {
-	case 0x00000000:
+	switch (soundID & JAISoundID_TypeMask) {
+	case JAISoundID_Type_Se:
 		category = soundID >> 0xC & 0xFF;
 		JAIGlobalParameter::getParamSeCategoryMax();
 		break;
-	case 0x80000000:
+	case JAISoundID_Type_Sequence:
 		category = 0x10;
 		break;
-	case 0xC0000000:
+	case JAISoundID_Type_Stream:
 		category = 0x11;
 		break;
 	}

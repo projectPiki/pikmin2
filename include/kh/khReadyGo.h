@@ -10,12 +10,17 @@ struct JKRArchive;
 namespace kh {
 namespace Screen {
 struct DispReadyGo : public og::Screen::DispMemberBase {
+	enum GameType {
+		TYPE_2PBattle  = 0,
+		TYPE_Challenge = 1,
+	};
+
 	DispReadyGo()
 	{
 		mStatus       = 0;
 		mIs2Player    = false;
 		mIsFinalFloor = false;
-		mGameType     = 0;
+		mGameType     = TYPE_2PBattle;
 	}
 
 	virtual u32 getSize() { return sizeof(DispReadyGo); } // _08 (weak)
@@ -27,7 +32,7 @@ struct DispReadyGo : public og::Screen::DispMemberBase {
 	int mStatus;        // _08
 	bool mIs2Player;    // _0C
 	bool mIsFinalFloor; // _0D
-	int mGameType;      // _10
+	int mGameType;      // _10, see GameType enum
 };
 
 struct ObjReadyGo : public ::Screen::ObjBase {

@@ -39,7 +39,7 @@ struct AutoBgm : public PSSystem::DirectedBgm {
 	virtual void startSeq();                                                                              // _14
 	virtual void pauseOn(PSSystem::SeqBase::PauseMode);                                                   // _1C
 	virtual void pauseOff();                                                                              // _20
-	virtual u8 getCastType() { return 3; }                                                                // _24 (weak)
+	virtual u8 getCastType() { return TYPE_AutoBgm; }                                                     // _24 (weak)
 	virtual PSSystem::SeqTrackRoot* newSeqTrackRoot() { return new AutoBgmSeqTrackRoot(&mConductorMgr); } // _44 (weak)
 
 	void loadConductor(PSSystem::TaskChecker*);
@@ -74,7 +74,7 @@ struct ConductorArcMgr {
 	{
 		mArchive = nullptr;
 		mArchive = JKRMountArchive("/AudioRes/Conductor.arc", JKRArchive::EMM_Dvd, JKRGetCurrentHeap(), JKRArchive::EMD_Head);
-		P2ASSERTLINE(746, mArchive); // this file needs to be PSAutoBgm.h
+		P2ASSERTLINE(746, mArchive);
 	}
 
 	static void createInstance()
