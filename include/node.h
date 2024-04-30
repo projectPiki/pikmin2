@@ -2,19 +2,22 @@
 #define _NODE_H
 
 #include "types.h"
+#include "JSystem/JSupport/JSUList.h"
 
 struct Graphics;
 
-struct Node {
-	char* mName;   // _00
-	Node* mParent; // _04
-	u32 _08;       // _08
-	Node* mNext;   // _0C
-	Node* mPrev;   // _10
-	u32 _14;       // _14
-	Node* mChild;  // _18
-	u32 _1C;       // _1C
+struct CoreNode {
+	CoreNode()
+	    : mTree(this)
+	{
+		mName = "root";
+	}
 
+	char* mName;             // _00
+	JSUTree<CoreNode> mTree; // _04
+};
+
+struct Node : public CoreNode {
 	Node() { init(); }
 
 	virtual void update();         // _08
@@ -22,6 +25,8 @@ struct Node {
 	virtual void displayInfo(int); // _10
 
 	void init();
+
+	// _00-_20 = CoreNode
 };
 
 #endif

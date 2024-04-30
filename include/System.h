@@ -19,11 +19,10 @@ void kando_panic_f(bool, const char*, s32, const char*, ...);
 extern void preUserCallback(u16, OSContext*, u32, u32);
 
 struct HeapInfo : public Node, public JKRDisposer {
-	inline HeapInfo(char* name) { mName = name; }
 
 	virtual ~HeapInfo(); // _20 (weak)
 
-	void search(HeapInfo*);
+	HeapInfo* search(HeapInfo*);
 
 	void dump(int, bool);
 	void getTotalUsedSize();
@@ -33,14 +32,16 @@ struct HeapInfo : public Node, public JKRDisposer {
 	void isValidUsedSize();
 	void getUsedSize(bool);
 
+	inline JSUTree<CoreNode>* getTree() { return &mTree; }
+
 	// _00-_24 = Node
 	// _20     = VTBL (Node)
 	// _24-_3C = JKRDisposer
-	u32 _3C;         // _3C
-	int _40;         // _40
-	u32 _44;         // _44
-	HeapStatus* _48; // _48
-	HeapStatus* _4C; // _4C
+	u32 _3C;       // _3C
+	int _40;       // _40
+	u32 _44;       // _44
+	HeapInfo* _48; // _48
+	HeapInfo* _4C; // _4C
 };
 
 struct HeapStatus {

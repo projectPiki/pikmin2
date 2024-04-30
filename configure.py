@@ -1576,7 +1576,7 @@ LIBS = [
             ["sysGCU/dvdStatus", True],
             ["sysGCU/sysTimers", True],
             ["sysGCU/modelMgr", True],
-            ["sysGCU/heapStatus", False],
+            ["sysGCU/heapStatus", True],
             ["sysGCU/light", True],
             ["sysGCU/wipe", True],
             ["sysGCU/moviePlayer", False],

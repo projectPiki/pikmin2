@@ -21,18 +21,11 @@ void Node::displayInfo(int whitespaceAmt)
 
 	OSReport("[%s]\n", mName);
 
-	Node* next = mParent;
-	if (next) {
-		next = (Node*)(((u8*)next) - 12);
-	}
-
-	while (next) {
-		next->mNext->displayInfo(whitespaceAmt + 1);
-
-		next = next->mChild;
-		if (next) {
-			next = (Node*)(((u8*)next) - 12);
-		}
+	JSUTreeIterator<CoreNode> iterator;
+	for (iterator = mTree.getFirstChild(); iterator != mTree.getEndChild();) {
+		Node* child = static_cast<Node*>(iterator.getObject());
+		child->displayInfo(whitespaceAmt + 1);
+		iterator++;
 	}
 }
 
@@ -42,18 +35,11 @@ void Node::displayInfo(int whitespaceAmt)
  */
 void Node::update()
 {
-	Node* next = mParent;
-	if (next) {
-		next = (Node*)(((u8*)next) - 12);
-	}
-
-	while (next) {
-		next->mNext->update();
-
-		next = next->mChild;
-		if (next) {
-			next = (Node*)(((u8*)next) - 12);
-		}
+	JSUTreeIterator<CoreNode> iterator;
+	for (iterator = mTree.getFirstChild(); iterator != mTree.getEndChild();) {
+		Node* child = static_cast<Node*>(iterator.getObject());
+		child->update();
+		iterator++;
 	}
 }
 
@@ -63,18 +49,11 @@ void Node::update()
  */
 void Node::draw(Graphics& gfx)
 {
-	Node* next = mParent;
-	if (next) {
-		next = (Node*)(((u8*)next) - 12);
-	}
-
-	while (next) {
-		next->mNext->draw(gfx);
-
-		next = next->mChild;
-		if (next) {
-			next = (Node*)(((u8*)next) - 12);
-		}
+	JSUTreeIterator<CoreNode> iterator;
+	for (iterator = mTree.getFirstChild(); iterator != mTree.getEndChild();) {
+		Node* child = static_cast<Node*>(iterator.getObject());
+		child->draw(gfx);
+		iterator++;
 	}
 }
 
