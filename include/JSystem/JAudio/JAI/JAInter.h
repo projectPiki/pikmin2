@@ -77,8 +77,10 @@ struct LinkSound {
 
 namespace SequenceMgr {
 struct CustomHeapInfo {
+	CustomHeapInfo() { }
+
 	u32 _00; // _00, unknown
-	u32 _04; // _04, unknown
+	u8 _04;  // _04, unknown
 };
 
 typedef JAInter::SequenceMgr::CustomHeapInfo (*CustomHeapCallback)(u32, u16, JAISequence*);

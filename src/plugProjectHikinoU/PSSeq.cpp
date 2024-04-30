@@ -31,18 +31,15 @@ SeqDataList::~SeqDataList() { }
 int SeqDataList::getSeqVolume(char const* bmsname)
 {
 	char buf[32];
-	u8 volume[4];
 	P2ASSERTLINE(36, mFile);
 	RamStream stream(mFile, -1);
 	stream.resetPosition(true, 1);
 	stream.readString(buf, 32);
 
 	while (strcmp(buf, "endoffile")) {
-		for (int i = 0; i < 1; i++) {
-			volume[i] = stream.readByte();
-		}
+		volatile u8 volume = stream.readByte();
 		if (!strcmp(buf, bmsname)) {
-			return *volume;
+			return volume;
 		}
 		stream.readString(buf, 32);
 	}
@@ -290,12 +287,13 @@ void StreamSound::stopInner(u32 type) { JAInter::StreamMgr::releaseStreamBuffer(
 SeqHeap::SeqHeap(u32 entry, SeqBase* seq)
 {
 	mOwner    = nullptr;
-	mSize     = (entry + 0x1f) & 0xffffffe0;
+	u32 size  = (entry + 0x1f) & 0xffffffe0;
+	mSize     = size;
 	mFileData = nullptr;
 	mOwnerSeq = seq;
 	mTask     = nullptr;
 	P2ASSERTLINE(134, seq);
-	if (entry) {
+	if (size) {
 		mFileData = new (JKRGetCurrentHeap(), 0x20) u8[mSize];
 		P2ASSERTLINE(138, mFileData);
 		P2ASSERTLINE(139, mSize != 0);
@@ -315,203 +313,45 @@ SeqHeap::~SeqHeap() { delete[] mFileData; }
  */
 JAInter::SequenceMgr::CustomHeapInfo SeqHeap::requestCallback(u32 request, u16 res, JAISequence* seq)
 {
+	JAInter::SequenceMgr::CustomHeapInfo info;
+	info._00         = 0;
+	info._04         = 0;
 	static int oldID = 0;
 
-	bool status = false;
-	u8* file    = nullptr;
-
+	u16 res2 = (u16)res;
 	switch (request) {
 	case 0: {
 		P2ASSERTLINE(190, seq);
-		SeqSound* sound = static_cast<SeqSound*>(seq);
-		P2ASSERTLINE(192, sound->mSeq);
-		SeqHeap* heap = sound->mSeq->mSeqHeap;
+		SeqBase* baseSeq = static_cast<SeqSound*>(seq)->mSeq;
+		P2ASSERTLINE(192, baseSeq);
+		SeqHeap* heap = baseSeq->mSeqHeap;
 		if (!heap->mOwner) {
-			status      = true;
-			size_t size = JASResArcLoader::getResSize(JAInter::SequenceMgr::getArchivePointer(), res);
-			P2ASSERTLINE(201, heap->mSize <= size);
+			info._04 = 1;
+			P2ASSERTLINE(201, JASResArcLoader::getResSize(JAInter::SequenceMgr::getArchivePointer(), res2) <= heap->mSize);
 		} else {
-			status = false;
+			info._04 = 0;
 		}
-		file = heap->mFileData;
-		P2ASSERTLINE(208, file);
+		info._00 = (u32)heap->mFileData;
+		P2ASSERTLINE(208, info._00);
 	} break;
-	case 1: {
+	case 1:
+	case 3: {
 		P2ASSERTLINE(220, seq);
-		SeqSound* sound = static_cast<SeqSound*>(seq);
-		P2ASSERTLINE(222, sound->mSeq);
+		SeqBase* sound = static_cast<SeqSound*>(seq)->mSeq;
+		P2ASSERTLINE(222, sound);
 		JKRArchive* arc = JAInter::SequenceMgr::getArchivePointer();
 		P2ASSERTLINE(224, arc);
-		size_t size = JASResArcLoader::getResSize(arc, res);
-		sound->mSeq->mSeqHeap->loadedCallback(size, (u32)sound->mSeq->mSeqHeap);
+		size_t size = JASResArcLoader::getResSize(arc, res2);
+		sound->mSeqHeap->loadedCallback(size, (u32)sound->mSeqHeap);
 	} break;
 	case 2: {
-		P2ASSERTLINE(220, seq);
+		P2ASSERTLINE(233, seq);
 		SeqSound* sound = static_cast<SeqSound*>(seq);
 		sound->mSeq     = nullptr;
 	} break;
 	}
 
-	// supposed to return some struct?
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r26, 8(r1)
-	li       r30, 0
-	mr       r31, r3
-	mr       r27, r6
-	mr       r29, r30
-	lbz      r0, init$2941@sda21(r13)
-	extsb.   r0, r0
-	bne      lbl_80331274
-	li       r0, 1
-	stw      r30, oldID$2940@sda21(r13)
-	stb      r0, init$2941@sda21(r13)
-
-lbl_80331274:
-	cmpwi    r4, 2
-	clrlwi   r28, r5, 0x10
-	beq      lbl_803313F4
-	bge      lbl_80331294
-	cmpwi    r4, 0
-	beq      lbl_803312A0
-	bge      lbl_80331368
-	b        lbl_80331420
-
-lbl_80331294:
-	cmpwi    r4, 4
-	bge      lbl_80331420
-	b        lbl_80331368
-
-lbl_803312A0:
-	cmplwi   r27, 0
-	bne      lbl_803312C4
-	lis      r3, lbl_8048F848@ha
-	lis      r5, lbl_8048F854@ha
-	addi     r3, r3, lbl_8048F848@l
-	li       r4, 0xbe
-	addi     r5, r5, lbl_8048F854@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803312C4:
-	lwz      r27, 0x6a4(r27)
-	cmplwi   r27, 0
-	bne      lbl_803312EC
-	lis      r3, lbl_8048F848@ha
-	lis      r5, lbl_8048F854@ha
-	addi     r3, r3, lbl_8048F848@l
-	li       r4, 0xc0
-	addi     r5, r5, lbl_8048F854@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803312EC:
-	lwz      r27, 0x28(r27)
-	lwz      r0, 4(r27)
-	cmplwi   r0, 0
-	bne      lbl_80331338
-	li       r29, 1
-	bl       getArchivePointer__Q27JAInter11SequenceMgrFv
-	mr       r4, r28
-	bl       getResSize__15JASResArcLoaderFP10JKRArchiveUs
-	lwz      r0, 8(r27)
-	cmplw    r3, r0
-	ble      lbl_8033133C
-	lis      r3, lbl_8048F848@ha
-	lis      r5, lbl_8048F854@ha
-	addi     r3, r3, lbl_8048F848@l
-	li       r4, 0xc9
-	addi     r5, r5, lbl_8048F854@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	b        lbl_8033133C
-
-lbl_80331338:
-	li       r29, 0
-
-lbl_8033133C:
-	lwz      r30, 0xc(r27)
-	cmplwi   r30, 0
-	bne      lbl_80331420
-	lis      r3, lbl_8048F848@ha
-	lis      r5, lbl_8048F854@ha
-	addi     r3, r3, lbl_8048F848@l
-	li       r4, 0xd0
-	addi     r5, r5, lbl_8048F854@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	b        lbl_80331420
-
-lbl_80331368:
-	cmplwi   r27, 0
-	bne      lbl_8033138C
-	lis      r3, lbl_8048F848@ha
-	lis      r5, lbl_8048F854@ha
-	addi     r3, r3, lbl_8048F848@l
-	li       r4, 0xdc
-	addi     r5, r5, lbl_8048F854@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8033138C:
-	lwz      r27, 0x6a4(r27)
-	cmplwi   r27, 0
-	bne      lbl_803313B4
-	lis      r3, lbl_8048F848@ha
-	lis      r5, lbl_8048F854@ha
-	addi     r3, r3, lbl_8048F848@l
-	li       r4, 0xde
-	addi     r5, r5, lbl_8048F854@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803313B4:
-	bl       getArchivePointer__Q27JAInter11SequenceMgrFv
-	or.      r26, r3, r3
-	bne      lbl_803313DC
-	lis      r3, lbl_8048F848@ha
-	lis      r5, lbl_8048F854@ha
-	addi     r3, r3, lbl_8048F848@l
-	li       r4, 0xe0
-	addi     r5, r5, lbl_8048F854@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803313DC:
-	mr       r3, r26
-	mr       r4, r28
-	bl       getResSize__15JASResArcLoaderFP10JKRArchiveUs
-	lwz      r4, 0x28(r27)
-	bl       loadedCallback__Q28PSSystem7SeqHeapFUlUl
-	b        lbl_80331420
-
-lbl_803313F4:
-	cmplwi   r27, 0
-	bne      lbl_80331418
-	lis      r3, lbl_8048F848@ha
-	lis      r5, lbl_8048F854@ha
-	addi     r3, r3, lbl_8048F848@l
-	li       r4, 0xe9
-	addi     r5, r5, lbl_8048F854@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80331418:
-	li       r0, 0
-	stw      r0, 0x6a4(r27)
-
-lbl_80331420:
-	stw      r30, 0(r31)
-	stb      r29, 4(r31)
-	lmw      r26, 8(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return info;
 }
 
 /**
@@ -663,96 +503,6 @@ void SeqBase::init()
 		}
 		mSeqHeap = new SeqHeap(((int*)getFileEntry())[3], this);
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r29, 0x14(r1)
-	lwz      r4, 0x14(r3)
-	cmplwi   r4, 0
-	beq      lbl_80331820
-	lwz      r3,
-"sInstance__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>"@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80331744
-	bl       getSeqVolume__Q28PSSystem11SeqDataListFPCc
-	stb      r3, 0x24(r30)
-
-lbl_80331744:
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_8033181C
-	mr       r3, r30
-	bl       getFileEntry__Q28PSSystem7SeqBaseFv
-	lwz      r4, 0xc(r3)
-	lis      r3, __vt__Q28PSSystem7SeqHeap@ha
-	addi     r0, r3, __vt__Q28PSSystem7SeqHeap@l
-	li       r3, 0
-	stw      r0, 0(r31)
-	addi     r0, r4, 0x1f
-	rlwinm   r29, r0, 0, 0, 0x1a
-	cmplwi   r30, 0
-	stw      r3, 4(r31)
-	stw      r29, 8(r31)
-	stw      r3, 0xc(r31)
-	stw      r30, 0x10(r31)
-	stw      r3, 0x14(r31)
-	bne      lbl_803317B0
-	lis      r3, lbl_8048F848@ha
-	lis      r5, lbl_8048F854@ha
-	addi     r3, r3, lbl_8048F848@l
-	li       r4, 0x86
-	addi     r5, r5, lbl_8048F854@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803317B0:
-	cmplwi   r29, 0
-	beq      lbl_8033181C
-	lwz      r3, 8(r31)
-	li       r5, 0x20
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	bl       __nwa__FUlP7JKRHeapi
-	stw      r3, 0xc(r31)
-	lwz      r0, 0xc(r31)
-	cmplwi   r0, 0
-	bne      lbl_803317F4
-	lis      r3, lbl_8048F848@ha
-	lis      r5, lbl_8048F854@ha
-	addi     r3, r3, lbl_8048F848@l
-	li       r4, 0x8a
-	addi     r5, r5, lbl_8048F854@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803317F4:
-	lwz      r0, 8(r31)
-	cmplwi   r0, 0
-	bne      lbl_8033181C
-	lis      r3, lbl_8048F848@ha
-	lis      r5, lbl_8048F854@ha
-	addi     r3, r3, lbl_8048F848@l
-	li       r4, 0x8b
-	addi     r5, r5, lbl_8048F854@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8033181C:
-	stw      r31, 0x28(r30)
-
-lbl_80331820:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -912,117 +662,20 @@ void SeqBase::onPlayingFrame() { }
 void SeqBase::startSeq()
 {
 	OSLockMutex(&mMutex);
-	int flag            = ((int*)getFileEntry())[0];
-	u8 type             = getSeqType();
-	JAISequence* handle = (JAISequence*)getHandleP();
+	int flag = ((u16*)getFileEntry())[0];
+	flag |= getSeqType();
+	JAISequence** handle = (JAISequence**)getHandleP();
 
-	JAInter::SequenceMgr::storeSeqBuffer(&handle, nullptr, flag | type, 0, 0, &mSoundInfo);
+	JAInter::SequenceMgr::storeSeqBuffer(handle, nullptr, flag, 0, 0, &mSoundInfo);
 
-	handle = (JAISequence*)getHandleP();
-	P2ASSERTLINE(534, handle);
-	JUT_ASSERTLINE(538, handle, "seq not played");
-	SeqSound* se = (SeqSound*)(this);
-	se->mSeq     = this;
+	SeqSound** seqHandle = (SeqSound**)(JAISequence**)getHandleP();
+	P2ASSERTLINE(534, seqHandle);
+	SeqSound* sound = static_cast<SeqSound*>(*seqHandle);
+	JUT_ASSERTLINE(538, sound, "seq not played");
+	sound->mSeq = this;
 	setConfigVolume();
-	mSeqSound = (SeqSound*)&handle->mSeqParameter.mTrack.mHead;
+	mSeqSound = (SeqSound*)&(sound)->mSeqParameter.mTrack.mHead;
 	OSUnlockMutex(&mMutex);
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lis      r3, lbl_8048F848@ha
-	addi     r30, r3, lbl_8048F848@l
-	addi     r3, r29, 0x50
-	bl       OSLockMutex
-	bl       getArchivePointer__Q27JAInter11SequenceMgrFv
-	cmplwi   r3, 0
-	bne      lbl_80331DD4
-	addi     r3, r30, 0
-	addi     r5, r30, 0xc
-	li       r4, 0x192
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80331DD4:
-	bl       getArchivePointer__Q27JAInter11SequenceMgrFv
-	lwz      r4, 0x14(r29)
-	bl       findNameResource__10JKRArchiveCFPCc
-	or.      r31, r3, r3
-	bne      lbl_80331E00
-	lwz      r6, 0x14(r29)
-	addi     r3, r30, 0
-	addi     r5, r30, 0x8c
-	li       r4, 0x194
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80331E00:
-	mr       r3, r29
-	lhz      r31, 0(r31)
-	lwz      r12, 0x10(r29)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	or       r31, r31, r3
-	mr       r3, r29
-	lwz      r12, 0x10(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	mr       r5, r31
-	addi     r8, r29, 0x18
-	li       r4, 0
-	li       r6, 0
-	li       r7, 0
-	bl
-storeSeqBuffer__Q27JAInter11SequenceMgrFPP11JAISequencePQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo
-	mr       r3, r29
-	lwz      r12, 0x10(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r31, r3, r3
-	bne      lbl_80331E78
-	addi     r3, r30, 0
-	addi     r5, r30, 0xc
-	li       r4, 0x216
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80331E78:
-	lwz      r31, 0(r31)
-	cmplwi   r31, 0
-	bne      lbl_80331E98
-	addi     r3, r30, 0
-	addi     r5, r30, 0x9c
-	li       r4, 0x21a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80331E98:
-	stw      r29, 0x6a4(r31)
-	mr       r3, r29
-	lwz      r12, 0x10(r29)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	addi     r0, r31, 0x30c
-	addi     r3, r29, 0x50
-	stw      r0, 0x4c(r29)
-	bl       OSUnlockMutex
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -1034,62 +687,6 @@ void SeqBase::setConfigVolume()
 	f32 vol = PSGetSystemIFA()->mBgmVolume;
 	(*getHandleP())->setVolume(vol, 0, SOUNDPARAM_Unk8);
 	(*getHandleP())->setVolume(0.8f, 0, SOUNDPARAM_Unk3);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	lwz      r0, spSysIF__8PSSystem@sda21(r13)
-	mr       r31, r3
-	cmplwi   r0, 0
-	bne      lbl_80331F20
-	lis      r3, lbl_8048F8F4@ha
-	lis      r5, lbl_8048F854@ha
-	addi     r3, r3, lbl_8048F8F4@l
-	li       r4, 0x18b
-	addi     r5, r5, lbl_8048F854@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80331F20:
-	mr       r3, r31
-	lwz      r4, spSysIF__8PSSystem@sda21(r13)
-	lwz      r12, 0x10(r31)
-	lfs      f31, 0x24(r4)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0(r3)
-	fmr      f1, f31
-	li       r4, 0
-	li       r5, 8
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	lwz      r12, 0x10(r31)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0(r3)
-	li       r4, 0
-	lfs      f1, lbl_8051E0B8@sda21(r2)
-	li       r5, 3
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -1190,7 +787,7 @@ void StreamBgm::setConfigVolume()
 {
 	f32 vol = PSGetSystemIFA()->mBgmVolume;
 	(*getHandleP())->setVolume(vol, 0, SOUNDPARAM_Unk8);
-	(*getHandleP())->setVolume(0.8f, 0, SOUNDPARAM_Unk3);
+	(*getHandleP())->setVolume(0.5f, 0, SOUNDPARAM_Unk3);
 }
 
 /**
@@ -1219,7 +816,7 @@ void SeSeq::setConfigVolume()
 {
 	f32 vol = PSGetSystemIFA()->mSfxVolume;
 	(*getHandleP())->setVolume(vol, 0, SOUNDPARAM_Unk8);
-	(*getHandleP())->setVolume(0.8f, 0, SOUNDPARAM_Unk3);
+	(*getHandleP())->setVolume(1.0f, 0, SOUNDPARAM_Unk3);
 }
 
 /**
@@ -1304,37 +901,6 @@ SeqTrackRoot* DirectedBgm::newSeqTrackRoot()
 	SeqTrackRoot* track = new SeqTrackRoot;
 	P2ASSERTLINE(839, track);
 	return track;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r3, 0x2c4
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_80332C3C
-	bl       __ct__Q28PSSystem12SeqTrackRootFv
-	mr       r31, r3
-
-lbl_80332C3C:
-	cmplwi   r31, 0
-	bne      lbl_80332C60
-	lis      r3, lbl_8048F848@ha
-	lis      r5, lbl_8048F854@ha
-	addi     r3, r3, lbl_8048F848@l
-	li       r4, 0x347
-	addi     r5, r5, lbl_8048F854@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80332C60:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -1361,260 +927,13 @@ void DirectedBgm::init()
 		mChildTracks[i] = newSeqTrackChild(i, *mRootTrack);
 	}
 	mIsInitialized = true;
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lis      r3, lbl_8048F848@ha
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	addi     r28, r3, lbl_8048F848@l
-	lwz      r4, 0x14(r31)
-	cmplwi   r4, 0
-	beq      lbl_80332E3C
-	lwz      r3,
-"sInstance__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>"@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80332D34
-	bl       getSeqVolume__Q28PSSystem11SeqDataListFPCc
-	stb      r3, 0x24(r31)
-
-lbl_80332D34:
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r29, r3, r3
-	beq      lbl_80332E38
-	bl       getArchivePointer__Q27JAInter11SequenceMgrFv
-	cmplwi   r3, 0
-	bne      lbl_80332D64
-	addi     r3, r28, 0
-	addi     r5, r28, 0xc
-	li       r4, 0x192
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80332D64:
-	bl       getArchivePointer__Q27JAInter11SequenceMgrFv
-	lwz      r4, 0x14(r31)
-	bl       findNameResource__10JKRArchiveCFPCc
-	or.      r30, r3, r3
-	bne      lbl_80332D90
-	lwz      r6, 0x14(r31)
-	addi     r3, r28, 0
-	addi     r5, r28, 0x8c
-	li       r4, 0x194
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80332D90:
-	lwz      r4, 0xc(r30)
-	lis      r3, __vt__Q28PSSystem7SeqHeap@ha
-	addi     r0, r3, __vt__Q28PSSystem7SeqHeap@l
-	li       r3, 0
-	stw      r0, 0(r29)
-	addi     r0, r4, 0x1f
-	rlwinm   r30, r0, 0, 0, 0x1a
-	cmplwi   r31, 0
-	stw      r3, 4(r29)
-	stw      r30, 8(r29)
-	stw      r3, 0xc(r29)
-	stw      r31, 0x10(r29)
-	stw      r3, 0x14(r29)
-	bne      lbl_80332DDC
-	addi     r3, r28, 0
-	addi     r5, r28, 0xc
-	li       r4, 0x86
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80332DDC:
-	cmplwi   r30, 0
-	beq      lbl_80332E38
-	lwz      r3, 8(r29)
-	li       r5, 0x20
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	bl       __nwa__FUlP7JKRHeapi
-	stw      r3, 0xc(r29)
-	lwz      r0, 0xc(r29)
-	cmplwi   r0, 0
-	bne      lbl_80332E18
-	addi     r3, r28, 0
-	addi     r5, r28, 0xc
-	li       r4, 0x8a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80332E18:
-	lwz      r0, 8(r29)
-	cmplwi   r0, 0
-	bne      lbl_80332E38
-	addi     r3, r28, 0
-	addi     r5, r28, 0xc
-	li       r4, 0x8b
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80332E38:
-	stw      r29, 0x28(r31)
-
-lbl_80332E3C:
-	mr       r3, r31
-	lwz      r12, 0x10(r31)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x70(r31)
-	lwz      r0, 0x70(r31)
-	cmplwi   r0, 0
-	bne      lbl_80332E74
-	addi     r3, r28, 0
-	addi     r5, r28, 0xc
-	li       r4, 0x357
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80332E74:
-	li       r28, 0
-	b        lbl_80332EA8
-
-lbl_80332E7C:
-	mr       r3, r31
-	mr       r4, r28
-	lwz      r12, 0x10(r31)
-	lwz      r5, 0x70(r31)
-	lwz      r12, 0x48(r12)
-	mtctr    r12
-	bctrl
-	rlwinm   r4, r28, 2, 0x16, 0x1d
-	addi     r28, r28, 1
-	addi     r0, r4, 0x74
-	stwx     r3, r31, r0
-
-lbl_80332EA8:
-	clrlwi   r0, r28, 0x18
-	cmplwi   r0, 0x10
-	blt      lbl_80332E7C
-	li       r0, 1
-	stb      r0, 0xb4(r31)
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
  * @note Address: 0x80332EDC
  * @note Size: 0x154
  */
-void DirectedBgm::startSeq()
-{
-	SeqBase::startSeq();
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lis      r3, lbl_8048F848@ha
-	addi     r30, r3, lbl_8048F848@l
-	addi     r3, r29, 0x50
-	bl       OSLockMutex
-	bl       getArchivePointer__Q27JAInter11SequenceMgrFv
-	cmplwi   r3, 0
-	bne      lbl_80332F28
-	addi     r3, r30, 0
-	addi     r5, r30, 0xc
-	li       r4, 0x192
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80332F28:
-	bl       getArchivePointer__Q27JAInter11SequenceMgrFv
-	lwz      r4, 0x14(r29)
-	bl       findNameResource__10JKRArchiveCFPCc
-	or.      r31, r3, r3
-	bne      lbl_80332F54
-	lwz      r6, 0x14(r29)
-	addi     r3, r30, 0
-	addi     r5, r30, 0x8c
-	li       r4, 0x194
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80332F54:
-	mr       r3, r29
-	lhz      r31, 0(r31)
-	lwz      r12, 0x10(r29)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	or       r31, r31, r3
-	mr       r3, r29
-	lwz      r12, 0x10(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	mr       r5, r31
-	addi     r8, r29, 0x18
-	li       r4, 0
-	li       r6, 0
-	li       r7, 0
-	bl
-storeSeqBuffer__Q27JAInter11SequenceMgrFPP11JAISequencePQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo
-	mr       r3, r29
-	lwz      r12, 0x10(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r31, r3, r3
-	bne      lbl_80332FCC
-	addi     r3, r30, 0
-	addi     r5, r30, 0xc
-	li       r4, 0x216
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80332FCC:
-	lwz      r31, 0(r31)
-	cmplwi   r31, 0
-	bne      lbl_80332FEC
-	addi     r3, r30, 0
-	addi     r5, r30, 0x9c
-	li       r4, 0x21a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80332FEC:
-	stw      r29, 0x6a4(r31)
-	mr       r3, r29
-	lwz      r12, 0x10(r29)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	addi     r0, r31, 0x30c
-	addi     r3, r29, 0x50
-	stw      r0, 0x4c(r29)
-	bl       OSUnlockMutex
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+void DirectedBgm::startSeq() { SeqBase::startSeq(); }
 
 /**
  * @note Address: 0x80333030
@@ -1677,78 +996,28 @@ JumpBgmPort::JumpBgmPort(JumpBgmSeq* owner)
  */
 void JumpBgmPort::onBeatTop(BeatMgr& mgr)
 {
-	if (!mgr.mFlags) {
-		return;
+	if ((mgr.mFlags & 1)) {
+		u16 mode = _34;
+		if (mode != 0xFFFF) {
+			OSLockMutex(&mMutex4);
+			_64 = mode;
+			OSUnlockMutex(&mMutex4);
+			OSLockMutex(&mMutex2);
+			_34 = 0xFFFF;
+			OSUnlockMutex(&mMutex2);
+			return;
+		}
 	}
 
-	u16 mode = _34;
-	if (mode != 0xffff) {
-		OSLockMutex(&mMutex4);
-		_64 = mode;
-		OSUnlockMutex(&mMutex4);
-		OSLockMutex(&mMutex2);
-		_34 = 0xffff;
-		OSUnlockMutex(&mMutex2);
-	} else if (_18 != 0xffff) {
+	u16 mode = _18;
+	if (mode != 0xFFFF) {
 		OSLockMutex(&mMutex4);
 		_64 = mode;
 		OSUnlockMutex(&mMutex4);
 		OSLockMutex(&mMutex1);
-		_18 = 0xffff;
+		_18 = 0xFFFF;
 		OSUnlockMutex(&mMutex1);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lbz      r0, 0(r4)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_803331DC
-	lhz      r31, 0x34(r30)
-	cmplwi   r31, 0xffff
-	beq      lbl_803331DC
-	addi     r3, r30, 0x54
-	bl       OSLockMutex
-	sth      r31, 0x6c(r30)
-	addi     r3, r30, 0x54
-	bl       OSUnlockMutex
-	addi     r3, r30, 0x1c
-	bl       OSLockMutex
-	lis      r4, 0x0000FFFF@ha
-	addi     r3, r30, 0x1c
-	addi     r0, r4, 0x0000FFFF@l
-	sth      r0, 0x34(r30)
-	bl       OSUnlockMutex
-	b        lbl_80333218
-
-lbl_803331DC:
-	lhz      r31, 0x18(r30)
-	cmplwi   r31, 0xffff
-	beq      lbl_80333218
-	addi     r3, r30, 0x54
-	bl       OSLockMutex
-	sth      r31, 0x6c(r30)
-	addi     r3, r30, 0x54
-	bl       OSUnlockMutex
-	mr       r3, r30
-	bl       OSLockMutex
-	lis      r4, 0x0000FFFF@ha
-	mr       r3, r30
-	addi     r0, r4, 0x0000FFFF@l
-	sth      r0, 0x18(r30)
-	bl       OSUnlockMutex
-
-lbl_80333218:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -1856,112 +1125,10 @@ void JumpBgmSeq::startSeq()
 {
 	DirectedBgm::startSeq();
 
-	OSLockMutex(&mJumpPort.mMutex3);
+	OSMutex* mutex = &mJumpPort.mMutex3;
+	OSLockMutex(mutex);
 	mJumpPort._50 = 0;
-	OSUnlockMutex(&mJumpPort.mMutex3);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lis      r3, lbl_8048F848@ha
-	addi     r30, r3, lbl_8048F848@l
-	addi     r3, r29, 0x50
-	bl       OSLockMutex
-	bl       getArchivePointer__Q27JAInter11SequenceMgrFv
-	cmplwi   r3, 0
-	bne      lbl_8033348C
-	addi     r3, r30, 0
-	addi     r5, r30, 0xc
-	li       r4, 0x192
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8033348C:
-	bl       getArchivePointer__Q27JAInter11SequenceMgrFv
-	lwz      r4, 0x14(r29)
-	bl       findNameResource__10JKRArchiveCFPCc
-	or.      r31, r3, r3
-	bne      lbl_803334B8
-	lwz      r6, 0x14(r29)
-	addi     r3, r30, 0
-	addi     r5, r30, 0x8c
-	li       r4, 0x194
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803334B8:
-	mr       r3, r29
-	lhz      r31, 0(r31)
-	lwz      r12, 0x10(r29)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	or       r31, r31, r3
-	mr       r3, r29
-	lwz      r12, 0x10(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	mr       r5, r31
-	addi     r8, r29, 0x18
-	li       r4, 0
-	li       r6, 0
-	li       r7, 0
-	bl
-storeSeqBuffer__Q27JAInter11SequenceMgrFPP11JAISequencePQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo
-	mr       r3, r29
-	lwz      r12, 0x10(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r31, r3, r3
-	bne      lbl_80333530
-	addi     r3, r30, 0
-	addi     r5, r30, 0xc
-	li       r4, 0x216
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80333530:
-	lwz      r31, 0(r31)
-	cmplwi   r31, 0
-	bne      lbl_80333550
-	addi     r3, r30, 0
-	addi     r5, r30, 0x9c
-	li       r4, 0x21a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80333550:
-	stw      r29, 0x6a4(r31)
-	mr       r3, r29
-	lwz      r12, 0x10(r29)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	addi     r0, r31, 0x30c
-	addi     r3, r29, 0x50
-	stw      r0, 0x4c(r29)
-	bl       OSUnlockMutex
-	addi     r30, r29, 0xf0
-	mr       r3, r30
-	bl       OSLockMutex
-	li       r0, 0
-	mr       r3, r30
-	sth      r0, 0x108(r29)
-	bl       OSUnlockMutex
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	OSUnlockMutex(mutex);
 }
 
 /**
@@ -1972,114 +1139,10 @@ void JumpBgmSeq::startSeq(u16 type)
 {
 	BgmSeq::startSeq();
 
-	OSLockMutex(&mJumpPort.mMutex3);
+	OSMutex* mutex = &mJumpPort.mMutex3;
+	OSLockMutex(mutex);
 	mJumpPort._50 = type;
-	OSUnlockMutex(&mJumpPort.mMutex3);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lis      r3, lbl_8048F848@ha
-	addi     r30, r3, lbl_8048F848@l
-	addi     r3, r28, 0x50
-	bl       OSLockMutex
-	bl       getArchivePointer__Q27JAInter11SequenceMgrFv
-	cmplwi   r3, 0
-	bne      lbl_80333604
-	addi     r3, r30, 0
-	addi     r5, r30, 0xc
-	li       r4, 0x192
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80333604:
-	bl       getArchivePointer__Q27JAInter11SequenceMgrFv
-	lwz      r4, 0x14(r28)
-	bl       findNameResource__10JKRArchiveCFPCc
-	or.      r31, r3, r3
-	bne      lbl_80333630
-	lwz      r6, 0x14(r28)
-	addi     r3, r30, 0
-	addi     r5, r30, 0x8c
-	li       r4, 0x194
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80333630:
-	mr       r3, r28
-	lhz      r31, 0(r31)
-	lwz      r12, 0x10(r28)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	or       r31, r31, r3
-	mr       r3, r28
-	lwz      r12, 0x10(r28)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	mr       r5, r31
-	addi     r8, r28, 0x18
-	li       r4, 0
-	li       r6, 0
-	li       r7, 0
-	bl
-storeSeqBuffer__Q27JAInter11SequenceMgrFPP11JAISequencePQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo
-	mr       r3, r28
-	lwz      r12, 0x10(r28)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r31, r3, r3
-	bne      lbl_803336A8
-	addi     r3, r30, 0
-	addi     r5, r30, 0xc
-	li       r4, 0x216
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803336A8:
-	lwz      r31, 0(r31)
-	cmplwi   r31, 0
-	bne      lbl_803336C8
-	addi     r3, r30, 0
-	addi     r5, r30, 0x9c
-	li       r4, 0x21a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803336C8:
-	stw      r28, 0x6a4(r31)
-	mr       r3, r28
-	lwz      r12, 0x10(r28)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	addi     r0, r31, 0x30c
-	addi     r3, r28, 0x50
-	stw      r0, 0x4c(r28)
-	bl       OSUnlockMutex
-	addi     r30, r28, 0xf0
-	mr       r3, r30
-	bl       OSLockMutex
-	sth      r29, 0x108(r28)
-	mr       r3, r30
-	bl       OSUnlockMutex
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	OSUnlockMutex(mutex);
 }
 
 /**
@@ -2162,74 +1225,14 @@ bool SeqMgr::isPlaying()
 SeqMgr::~SeqMgr()
 {
 	OSDisableInterrupts();
-	FOREACH_NODE(JSULink<SeqBase>, getFirst(), link)
-	{
+	JSULink<SeqBase>* link = getFirst();
+	while (link) {
+		JSULink<SeqBase>* next = link->getNext();
 		remove(link);
 		delete link->getObject();
+		link = next;
 	}
 	OSEnableInterrupts();
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	or.      r28, r3, r3
-	beq      lbl_80333AA8
-	lis      r3, __vt__Q28PSSystem6SeqMgr@ha
-	addi     r0, r3, __vt__Q28PSSystem6SeqMgr@l
-	stw      r0, 0xc(r28)
-	bl       OSDisableInterrupts
-	lwz      r30, 0(r28)
-	b        lbl_80333A78
-
-lbl_80333A44:
-	lwz      r31, 0xc(r30)
-	mr       r3, r28
-	mr       r4, r30
-	bl       remove__10JSUPtrListFP10JSUPtrLink
-	lwz      r3, 0(r30)
-	cmplwi   r3, 0
-	beq      lbl_80333A74
-	lwz      r12, 0x10(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80333A74:
-	mr       r30, r31
-
-lbl_80333A78:
-	cmplwi   r30, 0
-	bne      lbl_80333A44
-	bl       OSEnableInterrupts
-	cmplwi   r28, 0
-	beq      lbl_80333A98
-	mr       r3, r28
-	li       r4, 0
-	bl       __dt__10JSUPtrListFv
-
-lbl_80333A98:
-	extsh.   r0, r29
-	ble      lbl_80333AA8
-	mr       r3, r28
-	bl       __dl__FPv
-
-lbl_80333AA8:
-	lwz      r0, 0x24(r1)
-	mr       r3, r28
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -2310,99 +1313,24 @@ SeqBase* SeqMgr::findSeq(JASTrack* track)
 	FOREACH_NODE(JSULink<SeqBase>, getFirst(), link)
 	{
 		if (link->getObject()->getSeqType() != 1 && link->getObject()->getHandleP()) {
-			if (*link->getObject()->getHandleP()) {
-				SeqSound* se   = (SeqSound*)(link->getObject());
+			JAISequence* seq = static_cast<JAISequence*>(*link->getObject()->getHandleP());
+			if (seq) {
+				SeqSound* se   = (SeqSound*)(seq);
 				JASTrack* temp = &se->mSeqParameter.mTrack;
 				if (temp == track) {
 					return link->getObject();
 				}
 				// needs to not unroll
-				// for (int i = 0; i < 16; i++) {
-				if (temp->mChildList[0] == track) {
-					return link->getObject();
+				for (u8 i = 0; i < 16; i++) {
+					if (temp->mChildList[i] == track) {
+						return link->getObject();
+					}
 				}
-				//}
 			}
 		}
 	}
 
 	return nullptr;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r4
-	lwz      r31, 0(r3)
-	b        lbl_80333DB8
-
-lbl_80333D14:
-	lwz      r3, 0(r31)
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 1
-	beq      lbl_80333DB4
-	lwz      r3, 0(r31)
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0
-	beq      lbl_80333DB4
-	lwz      r3, 0(r31)
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0(r3)
-	cmplwi   r3, 0
-	beq      lbl_80333DB4
-	addi     r4, r3, 0x30c
-	cmplw    r4, r30
-	bne      lbl_80333D80
-	lwz      r3, 0(r31)
-	b        lbl_80333DC4
-
-lbl_80333D80:
-	li       r5, 0
-	b        lbl_80333DA8
-
-lbl_80333D88:
-	rlwinm   r3, r5, 2, 0x16, 0x1d
-	addi     r0, r3, 0x2fc
-	lwzx     r0, r4, r0
-	cmplw    r0, r30
-	bne      lbl_80333DA4
-	lwz      r3, 0(r31)
-	b        lbl_80333DC4
-
-lbl_80333DA4:
-	addi     r5, r5, 1
-
-lbl_80333DA8:
-	clrlwi   r0, r5, 0x18
-	cmplwi   r0, 0x10
-	blt      lbl_80333D88
-
-lbl_80333DB4:
-	lwz      r31, 0xc(r31)
-
-lbl_80333DB8:
-	cmplwi   r31, 0
-	bne      lbl_80333D14
-	li       r3, 0
-
-lbl_80333DC4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**

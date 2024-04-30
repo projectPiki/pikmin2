@@ -129,13 +129,13 @@ struct SeSeq : public SeqBase {
 	    : SeqBase(bmsFileName, info)
 	{
 	}
-	virtual ~SeSeq();                                                                  // _08
-	virtual void stopSeq(u32);                                                         // _18
-	virtual u8 getCastType() { return TYPE_SeSeq; }                                    // _24 (weak)
-	virtual u32 getSeqType() { return 0x80000800; }                                    // _28 (weak)
-	virtual void seqLoadAfter();                                                       // _38
-	virtual JAISound** getHandleP() { return (JAISound**)(JAInter::SeMgr::seHandle); } // _3C (weak)
-	virtual void setConfigVolume();                                                    // _40
+	virtual ~SeSeq();                                                                   // _08
+	virtual void stopSeq(u32);                                                          // _18
+	virtual u8 getCastType() { return TYPE_SeSeq; }                                     // _24 (weak)
+	virtual u32 getSeqType() { return 0x80000800; }                                     // _28 (weak)
+	virtual void seqLoadAfter();                                                        // _38
+	virtual JAISound** getHandleP() { return (JAISound**)(&JAInter::SeMgr::seHandle); } // _3C (weak)
+	virtual void setConfigVolume();                                                     // _40
 
 	// _00-_10  = JSULink<SeqBase>
 	// _10      = VTABLE
