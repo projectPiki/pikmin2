@@ -35,6 +35,9 @@ static inline void J3DFifoWriteXFCmd(u16 cmd, u16 len)
 struct J3DCurrentMtxInfo {
 	u32 mMtxIdxRegA; // _00
 	u32 mMtxIdxRegB; // _04
+	u32 getMtxIdxRegA() const { return mMtxIdxRegA; }
+	u32 getMtxIdxRegB() const { return mMtxIdxRegB; }
+
 };
 
 struct J3DCurrentMtx : public J3DCurrentMtxInfo {
@@ -55,8 +58,8 @@ struct J3DCurrentMtx : public J3DCurrentMtxInfo {
 
 	inline void load() const
 	{
-		J3DFifoWriteCPCmd(0x30, getMtxIdxRegA()); // CP_MATINDEX_A
-		J3DFifoWriteCPCmd(0x40, getMtxIdxRegB()); // CP_MATINDEX_B
+		J3DFifoWriteCPCmd(0x30, ((J3DCurrentMtxInfo*)this)->mMtxIdxRegA); // CP_MATINDEX_A
+		J3DFifoWriteCPCmd(0x40, ((J3DCurrentMtxInfo*)this)->mMtxIdxRegB); // CP_MATINDEX_B
 		J3DFifoWriteXFCmd(0x1018, 2);
 		GXWGFifo.s32 = getMtxIdxRegA();
 		GXWGFifo.u32 = getMtxIdxRegB();

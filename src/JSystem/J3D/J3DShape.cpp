@@ -196,51 +196,6 @@ void J3DShape::loadPreDrawSetting() const
 		sOldVcdVatCmd = mVcdVatCmd;
 	}
 	mCurrentMtx.load();
-
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x2c(r3)
-	lwz      r0, sOldVcdVatCmd__8J3DShape@sda21(r13)
-	cmplw    r0, r3
-	beq      lbl_80060E74
-	li       r4, 0xc0
-	bl       GXCallDisplayList
-	lwz      r0, 0x2c(r31)
-	stw      r0, sOldVcdVatCmd__8J3DShape@sda21(r13)
-
-lbl_80060E74:
-	li       r9, 8
-	lis      r8, 0xCC008000@ha
-	stb      r9, 0xCC008000@l(r8)
-	li       r0, 0x30
-	lwz      r3, 0x40(r31)
-	li       r7, 0x40
-	stb      r0, -0x8000(r8)
-	li       r6, 0x10
-	lwz      r10, 0x44(r31)
-	li       r5, 1
-	stw      r3, -0x8000(r8)
-	li       r4, 0x1018
-	lwz      r3, 0x40(r31)
-	stb      r9, -0x8000(r8)
-	lwz      r0, 0x44(r31)
-	stb      r7, -0x8000(r8)
-	stw      r10, -0x8000(r8)
-	stb      r6, -0x8000(r8)
-	sth      r5, -0x8000(r8)
-	sth      r4, -0x8000(r8)
-	stw      r3, -0x8000(r8)
-	stw      r0, -0x8000(r8)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 void J3DLoadCPCmd(u8 cmd, u32 param)
@@ -282,7 +237,7 @@ void J3DShape::drawFast() const
 	// end of loadVtxArray
 
 	j3dSys.setModelDrawMtx(mDrawMtx[*mCurrentViewNumber]);
-	j3dSys.setModelNrmMtx((Mtx*)mScaleFlagArray[*mCurrentViewNumber]);
+	j3dSys.setModelNrmMtx((Mtx*)mNrmMtx[*mCurrentViewNumber]);
 	J3DShapeMtx::sCurrentScaleFlag = mScaleFlagArray;
 	J3DShapeMtx::sNBTFlag          = mHasNBT;
 	sEnvelopeFlag                  = mHasPNMTXIdx;
@@ -293,8 +248,9 @@ void J3DShape::drawFast() const
 		// LOD flag shenanigans
 		if (J3DShapeMtx::getLODFlag() != 0)
 			J3DShapeMtx::resetMtxLoadCache();
-
-		for (u16 n = getMtxGroupNum(), i = 0; i < n; i++) {
+		u16 i = 0;
+		u32 n = getMtxGroupNum();
+		for (i; i < n; i++) {
 			if (getShapeMtx(i) != nullptr)
 				getShapeMtx(i)->load();
 			if (getShapeDraw(i) != nullptr)
@@ -303,7 +259,9 @@ void J3DShape::drawFast() const
 	} else {
 		J3DFifoLoadPosMtxImm(*j3dSys.getShapePacket()->getBaseMtxPtr(), GX_PNMTX0);
 		J3DFifoLoadNrmMtxImm(*j3dSys.getShapePacket()->getBaseMtxPtr(), GX_PNMTX0);
-		for (u16 n = getMtxGroupNum(), i = 0; i < n; i++)
+		u16 i = 0;
+		u32 n = getMtxGroupNum();
+		for (i; i < n; i++)
 			if (getShapeDraw(i) != nullptr)
 				getShapeDraw(i)->draw();
 	}
@@ -506,56 +464,6 @@ void J3DShape::draw() const
 	resetVcdVatCache();
 	loadPreDrawSetting();
 	drawFast();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x2c(r3)
-	stw      r0, sOldVcdVatCmd__8J3DShape@sda21(r13)
-	cmplw    r0, r3
-	beq      lbl_80061190
-	li       r4, 0xc0
-	bl       GXCallDisplayList
-	lwz      r0, 0x2c(r31)
-	stw      r0, sOldVcdVatCmd__8J3DShape@sda21(r13)
-
-lbl_80061190:
-	li       r10, 8
-	lis      r9, 0xCC008000@ha
-	stb      r10, 0xCC008000@l(r9)
-	li       r0, 0x30
-	lwz      r3, 0x40(r31)
-	li       r8, 0x40
-	stb      r0, -0x8000(r9)
-	li       r7, 0x10
-	lwz      r11, 0x44(r31)
-	li       r6, 1
-	stw      r3, -0x8000(r9)
-	li       r5, 0x1018
-	lwz      r4, 0x40(r31)
-	mr       r3, r31
-	stb      r10, -0x8000(r9)
-	lwz      r0, 0x44(r31)
-	stb      r8, -0x8000(r9)
-	stw      r11, -0x8000(r9)
-	stb      r7, -0x8000(r9)
-	sth      r6, -0x8000(r9)
-	sth      r5, -0x8000(r9)
-	stw      r4, -0x8000(r9)
-	stw      r0, -0x8000(r9)
-	lwz      r12, 0(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**
@@ -576,7 +484,9 @@ void J3DShape::simpleDraw() const
 	J3DLoadArrayBasePtr(GX_VA_CLR0, j3dSys.getVtxCol());
 	// end of loadVtxArray
 
-	for (u16 n = getMtxGroupNum(), i = 0; i < n; i++) {
+	u16 i = 0;
+	u32 n = getMtxGroupNum();
+	for (i; i < n; i++) {
 		if (getShapeDraw(i) != nullptr) {
 			getShapeDraw(i)->draw();
 		}
@@ -694,8 +604,10 @@ void J3DShape::simpleDrawCache() const
 		sOldVcdVatCmd = mVcdVatCmd;
 	}
 
-	if (J3DShapeMtx::sNBTFlag != 0 && !mHasPNMTXIdx)
+	if (J3DShape::sEnvelopeFlag != 0 && !mHasPNMTXIdx)
+	{
 		mCurrentMtx.load();
+	}
 
 	// start of loadVtxArray
 	J3DLoadArrayBasePtr(GX_VA_POS, j3dSys.getVtxPos());
@@ -704,114 +616,9 @@ void J3DShape::simpleDrawCache() const
 	}
 	J3DLoadArrayBasePtr(GX_VA_CLR0, j3dSys.getVtxCol());
 	// end of loadVtxArray
-
-	for (u16 n = getMtxGroupNum(), i = 0; i < n; i++)
+	u16 i = 0;
+	u32 n = getMtxGroupNum();
+	for (i; i < n; i++)
 		if (getShapeDraw(i) != NULL)
 			getShapeDraw(i)->draw();
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lwz      r3, 0x2c(r3)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	lwz      r0, sOldVcdVatCmd__8J3DShape@sda21(r13)
-	cmplw    r0, r3
-	beq      lbl_800613AC
-	li       r4, 0xc0
-	bl       GXCallDisplayList
-	lwz      r0, 0x2c(r31)
-	stw      r0, sOldVcdVatCmd__8J3DShape@sda21(r13)
-
-lbl_800613AC:
-	lbz      r0, sEnvelopeFlag__8J3DShape@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_8006141C
-	lbz      r0, 0x48(r31)
-	cmplwi   r0, 0
-	bne      lbl_8006141C
-	li       r9, 8
-	lis      r8, 0xCC008000@ha
-	stb      r9, 0xCC008000@l(r8)
-	li       r0, 0x30
-	lwz      r3, 0x40(r31)
-	li       r7, 0x40
-	stb      r0, -0x8000(r8)
-	li       r6, 0x10
-	lwz      r10, 0x44(r31)
-	li       r5, 1
-	stw      r3, -0x8000(r8)
-	li       r4, 0x1018
-	lwz      r3, 0x40(r31)
-	stb      r9, -0x8000(r8)
-	lwz      r0, 0x44(r31)
-	stb      r7, -0x8000(r8)
-	stw      r10, -0x8000(r8)
-	stb      r6, -0x8000(r8)
-	sth      r5, -0x8000(r8)
-	sth      r4, -0x8000(r8)
-	stw      r3, -0x8000(r8)
-	stw      r0, -0x8000(r8)
-
-lbl_8006141C:
-	li       r6, 8
-	lis      r5, 0xCC008000@ha
-	stb      r6, 0xCC008000@l(r5)
-	li       r4, 0xa0
-	lis      r3, j3dSys@ha
-	lbz      r0, 0x34(r31)
-	stb      r4, -0x8000(r5)
-	addi     r3, r3, j3dSys@l
-	cmplwi   r0, 0
-	lwz      r0, 0x10c(r3)
-	clrlwi   r0, r0, 1
-	stw      r0, -0x8000(r5)
-	bne      lbl_80061468
-	stb      r6, -0x8000(r5)
-	li       r0, 0xa1
-	stb      r0, -0x8000(r5)
-	lwz      r0, 0x110(r3)
-	clrlwi   r0, r0, 1
-	stw      r0, -0x8000(r5)
-
-lbl_80061468:
-	li       r0, 8
-	lis      r4, 0xCC008000@ha
-	stb      r0, 0xCC008000@l(r4)
-	li       r0, 0xa2
-	lis      r3, j3dSys@ha
-	lhz      r30, 0xa(r31)
-	stb      r0, -0x8000(r4)
-	addi     r3, r3, j3dSys@l
-	lwz      r31, 0x3c(r31)
-	li       r29, 0
-	lwz      r0, 0x114(r3)
-	clrlwi   r0, r0, 1
-	stw      r0, -0x8000(r4)
-	b        lbl_800614B8
-
-lbl_800614A0:
-	rlwinm   r0, r29, 2, 0xe, 0x1d
-	lwzx     r3, r31, r0
-	cmplwi   r3, 0
-	beq      lbl_800614B4
-	bl       draw__12J3DShapeDrawCFv
-
-lbl_800614B4:
-	addi     r29, r29, 1
-
-lbl_800614B8:
-	clrlwi   r0, r29, 0x10
-	cmplw    r0, r30
-	blt      lbl_800614A0
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }

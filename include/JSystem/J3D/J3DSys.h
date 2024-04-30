@@ -78,7 +78,7 @@ struct J3DSys {
 	void setModelNrmMtx(Mtx* pMtxArr)
 	{
 		mModelNormMtx = pMtxArr;
-		GXSetArray(GX_NRM_MTX_ARRAY, mModelNormMtx, sizeof(*mModelNormMtx));
+		GXSetArray(GX_NRM_MTX_ARRAY, mModelNormMtx, sizeof(Mtx33)); // why???
 	}
 
 	// Type 0: Opa Buffer
