@@ -1637,13 +1637,13 @@ void PikiPanicState::panicRun(Piki* piki)
 
 		switch (mPanicType) {
 		case PIKIPANIC_Fire:
-			deathMgr->inc(2);
+			deathMgr->inc(DeathCounter::COD_Fire);
 			break;
 		case PIKIPANIC_Water:
-			deathMgr->inc(3);
+			deathMgr->inc(DeathCounter::COD_Water);
 			break;
 		case PIKIPANIC_Gas:
-			deathMgr->inc(6);
+			deathMgr->inc(DeathCounter::COD_Poison);
 			break;
 		}
 		transit(piki, PIKISTATE_Dying, nullptr);
@@ -1697,13 +1697,13 @@ void PikiPanicState::panicLobster(Piki* piki)
 	if (mDeathTimer < 0.0f) {
 		switch (mPanicType) {
 		case PIKIPANIC_Fire:
-			deathMgr->inc(2);
+			deathMgr->inc(DeathCounter::COD_Fire);
 			break;
 		case PIKIPANIC_Water:
-			deathMgr->inc(3);
+			deathMgr->inc(DeathCounter::COD_Water);
 			break;
 		case PIKIPANIC_Gas:
-			deathMgr->inc(6);
+			deathMgr->inc(DeathCounter::COD_Poison);
 			break;
 		}
 
@@ -1846,7 +1846,7 @@ void PikiDyingState::exec(Piki* piki)
 	piki->mVelocity = Vector3f(0.0f);
 	if (!piki->assertMotion(mAnimIdx) && piki->isAlive()) {
 		if (mDoUseKillArg) {
-			PikiKillArg killArg(-0x80000000);
+			PikiKillArg killArg(-CKILL_VsChargePiki);
 			piki->kill(&killArg);
 
 		} else if (moviePlayer == nullptr || !moviePlayer->isPlaying("s09_holein")) {
@@ -1868,7 +1868,7 @@ void PikiDyingState::cleanup(Piki* piki) { }
 void PikiDyingState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
 {
 	if (mDoUseKillArg) {
-		PikiKillArg killArg(-0x80000000);
+		PikiKillArg killArg(-CKILL_VsChargePiki);
 		piki->kill(&killArg);
 	} else {
 		piki->kill(nullptr);
@@ -1915,7 +1915,7 @@ void PikiDenkiDyingState::exec(Piki* piki)
 		fxArg.mPosition = piki->getPosition(); // why do this differently, smh.
 		kandenFx.create(&fxArg);
 
-		deathMgr->inc(4);
+		deathMgr->inc(DeathCounter::COD_Electricity);
 		piki->startSound(PSSE_PK_VC_ELEC_DEAD, true);
 		piki->kill(nullptr);
 	}
@@ -1972,7 +1972,7 @@ void PikiPressedState::exec(Piki* piki)
 	mWaitTime -= sys->mDeltaTime;
 	if (mWaitTime <= 0.0f) {
 		if (piki->isPikmin()) {
-			deathMgr->inc(0);
+			deathMgr->inc(DeathCounter::COD_Battle);
 		}
 		piki->kill(nullptr);
 	}
@@ -3224,7 +3224,7 @@ bool PikiFallMeckState::becomePikihead(Piki* piki)
 			sprout->init(&initArg);
 			sprout->setPosition(pikiPos, false);
 
-			CreatureKillArg killArg(CKILL_Unk1);
+			CreatureKillArg killArg(CKILL_DontCountAsDeath);
 
 			piki->kill(&killArg);
 
@@ -3767,7 +3767,7 @@ void PikiSuikomiState::execStomach(Piki* piki)
 		piki->mScale = Vector3f(scale);
 		if (mTimer <= 0.0f) {
 			if (piki->isPikmin()) {
-				deathMgr->inc(0);
+				deathMgr->inc(DeathCounter::COD_Battle);
 			}
 
 			piki->kill(nullptr);

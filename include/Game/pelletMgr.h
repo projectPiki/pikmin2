@@ -191,7 +191,7 @@ struct PelletNumberInitArg : public PelletInitArg {
 
 struct PelletKillArg : public CreatureKillArg {
 	inline PelletKillArg()
-	    : CreatureKillArg(0)
+	    : CreatureKillArg(CKILL_NULL)
 	{
 		_08 = 1;
 	}

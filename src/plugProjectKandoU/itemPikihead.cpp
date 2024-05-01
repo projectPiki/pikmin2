@@ -417,7 +417,7 @@ void Item::onKill(CreatureKillArg* settings)
 		mCurrentState->cleanup(this);
 	}
 	mgr->kill(this);
-	if (!settings || !settings->isFlag(CKILL_Unk1)) {
+	if (!settings || !settings->isFlag(CKILL_DontCountAsDeath)) {
 		GameStat::mePikis.dec(mColor);
 	}
 }

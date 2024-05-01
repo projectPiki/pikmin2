@@ -287,7 +287,7 @@ void Obj::shotPikmin()
 					mUsedSlotCount--;
 				}
 			}
-			CreatureKillArg killArg(CKILL_Unk1);
+			CreatureKillArg killArg(CKILL_DontCountAsDeath);
 			InteractKill kill(this, &killArg);
 			creature->stimulate(kill);
 		}

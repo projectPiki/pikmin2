@@ -1251,7 +1251,7 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 
 	endStick();
 
-	if ((!killArg || !(killArg->isFlag(CKILL_Unk29))) && isEvent(0, EB_DeathEffectEnabled)) {
+	if ((!killArg || !killArg->isFlag(CKILL_DisableDeathEffects)) && isEvent(0, EB_DeathEffectEnabled)) {
 		Vector3f effectPos;
 		getCommonEffectPos(effectPos);
 		f32 scaleMod                      = mScaleModifier;
@@ -1264,7 +1264,7 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 		PSStartEnemyGhostSE(this, 0.0f);
 	}
 
-	if (!killArg || !(killArg->isFlag(CKILL_Unk31))) {
+	if (!killArg || !(killArg->isFlag(CKILL_NotKilledByPlayer))) {
 		if (isEvent(0, EB_Bittered)) {
 			mEnemyStoneObj->dead();
 			deathProcedure();
@@ -1344,7 +1344,7 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 			forceKillEffects();
 			becomeCarcass();
 
-		} else if (mExistDuration == 0.0f && isEvent(0, EB_LeaveCarcass) && (!killArg || !(killArg->isFlag(CKILL_Unk30)))) {
+		} else if (mExistDuration == 0.0f && isEvent(0, EB_LeaveCarcass) && (!killArg || !(killArg->isFlag(CKILL_LeaveNoCarcass)))) {
 			if (!mPellet) {
 				PelletViewArg pvArg;
 				setCarcassArg(pvArg);
@@ -2148,7 +2148,7 @@ void EnemyBase::gotoHell()
 	}
 
 	throwupItem();
-	EnemyKillArg killArg(CKILL_Unk29 | CKILL_Unk30 | CKILL_Unk31);
+	EnemyKillArg killArg(CKILL_DisableDeathEffects | CKILL_LeaveNoCarcass | CKILL_NotKilledByPlayer);
 	kill(&killArg);
 }
 

@@ -508,7 +508,7 @@ int Creature::checkHell(Creature::CheckHellArg& hellArg)
 
 	if (pos.y < -500.0f) {
 		if (isPiki() && static_cast<Piki*>(this)->isPikmin()) {
-			deathMgr->inc(0);
+			deathMgr->inc(DeathCounter::COD_Battle); // getting sent to hell would get you into valhalla in P2
 		}
 
 		if (hellArg.mIsKillPiki) {

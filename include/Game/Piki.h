@@ -3,11 +3,11 @@
 
 #include "JSystem/JAudio/JAI/JAInter/Object.h"
 #include "JSystem/JUtility/TColor.h"
-
 #include "PSM/Piki.h"
-
 #include "Game/FakePiki.h"
 #include "Game/StateMachine.h"
+
+#define MAX_PIKI_COUNT (100) // Maximum number of pikmin allowed out of the onyon/in a cave
 
 namespace efx {
 struct Context;
@@ -96,8 +96,8 @@ struct PikiInitArg : public CreatureInitArg {
 };
 
 struct PikiKillArg : public CreatureKillArg {
-	inline PikiKillArg(int p1)
-	    : CreatureKillArg(p1)
+	inline PikiKillArg(int flags)
+	    : CreatureKillArg(flags)
 	{
 	}
 

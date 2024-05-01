@@ -827,8 +827,7 @@ void Pellet::onKill(CreatureKillArg* killArg)
 	mCollTree->release();
 	mMgr->kill(this);
 
-	if (((killArg != nullptr) && (static_cast<PelletKillArg*>(killArg)->_08 != 0))
-	    || ((gameSystem->isVersusMode()) && (mPelletFlag == FLAG_VS_CHERRY))) {
+	if ((killArg && (static_cast<PelletKillArg*>(killArg)->_08 != 0)) || (gameSystem->isVersusMode() && mPelletFlag == FLAG_VS_CHERRY)) {
 		mMgr->setRevival(this);
 	}
 

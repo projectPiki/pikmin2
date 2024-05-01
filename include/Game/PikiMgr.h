@@ -33,9 +33,9 @@ struct PikiMgr : public MonoObjectMgr<Piki> {
 	// vtable 1
 	virtual ~PikiMgr() { } // _08 (weak)
 	// vtable 2
+	virtual Piki* birth();                           // _7C
 	virtual void doAnimation();                      // _64 (weak)
 	virtual void doEntry();                          // _68 (weak)
-	virtual Piki* birth();                           // _7C
 	virtual void resetMgr();                         // _80 (weak)
 	virtual void onAlloc();                          // _88
 	virtual void doSimpleDraw(Viewport* vp);         // _8C (weak)

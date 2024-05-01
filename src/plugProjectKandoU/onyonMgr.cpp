@@ -97,7 +97,7 @@ void Onyon::movieUserCommand(u32 code, MoviePlayer* player)
 				int& pikiHeadCount = playData->mPikiContainer.getCount(furthestPiki->mColor, furthestPiki->mHeadType);
 				pikiHeadCount++;
 
-				CreatureKillArg killArg(CKILL_Unk1);
+				CreatureKillArg killArg(CKILL_DontCountAsDeath);
 				furthestPiki->kill(&killArg);
 			} else {
 				// No piki head, try kill an actual Piki
@@ -121,7 +121,7 @@ void Onyon::movieUserCommand(u32 code, MoviePlayer* player)
 					int& pikiCount = playData->mPikiContainer.getCount(targetPiki->mPikiKind, targetPiki->mHappaKind);
 					pikiCount++;
 
-					CreatureKillArg pikiKillArg(CKILL_Unk1);
+					CreatureKillArg pikiKillArg(CKILL_DontCountAsDeath);
 					targetPiki->kill(&pikiKillArg);
 				}
 			}
@@ -1505,7 +1505,7 @@ void Onyon::enterPiki(Piki* piki)
 	int& count = playData->mPikiContainer.getCount(piki->mPikiKind, piki->mHappaKind);
 	count++;
 
-	PikiKillArg killarg(1);
+	PikiKillArg killarg(CKILL_DontCountAsDeath);
 	piki->kill(&killarg);
 
 	if (mOnyonType <= ONYON_TYPE_YELLOW && mToBirth) {

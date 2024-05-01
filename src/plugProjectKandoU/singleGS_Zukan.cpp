@@ -6096,7 +6096,7 @@ void ZukanState::clearHeapB_teki()
 		Iterator<Piki> iterator2(pikiMgr);
 		CI_LOOP(iterator2) { buffer2[j++] = *iterator2; }
 
-		PikiKillArg arg(0x10001);
+		PikiKillArg arg(CKILL_DontCountAsDeath | CKILL_Unk17);
 		for (int k = 0; k < j; k++) {
 			buffer2[k]->kill(&arg);
 		}

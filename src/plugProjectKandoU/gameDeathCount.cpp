@@ -316,13 +316,13 @@ void DeathCounter::reset()
 int& DeathCounter::operator()(int cod)
 {
 	// UNUSED FUNCTION
-	if (cod == COD_SourceCount) {
-		int& v = mTotal;
-		mTotal = 0;
+	if (cod == COD_All) {
+		int& total = mTotal;
+		mTotal     = 0;
 		for (int i = 0; i < COD_SourceCount; i++) {
 			mTotal += mCounts[i];
 		}
-		return v;
+		return total;
 	} else {
 		P2ASSERTBOUNDSINCLUSIVELINE(338, 0, cod, COD_SourceCount);
 		return mCounts[cod];

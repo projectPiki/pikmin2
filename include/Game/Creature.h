@@ -115,6 +115,16 @@ struct CreatureInitArg {
 	// _00 VTBL
 };
 
+enum CreatureKillFlags {
+	CKILL_NULL                = 0,
+	CKILL_DontCountAsDeath    = 1,          // for sprouts <-> pikis, force kills, entering onyons etc
+	CKILL_Unk17               = 0x10000,    // unknown, set by some piki deaths but doesn't seem to be used
+	CKILL_DisableDeathEffects = 0x10000000, // enemy died to kill plane, force kill, end of day etc - don't do ghost
+	CKILL_LeaveNoCarcass      = 0x20000000, // enemy died to kill plane, force kill, end of day etc - don't leave a body
+	CKILL_NotKilledByPlayer   = 0x40000000, // disables bitter drop checking, corpse creation and setting of zukan/piklopedia flags
+	CKILL_VsChargePiki        = 0x80000000, // set vs onyon to charge a piki
+};
+
 struct CreatureKillArg {
 	inline CreatureKillArg(int flags)
 	    : mFlags(flags)
@@ -133,13 +143,6 @@ struct CreatureKillArg {
 	// _00 VTBL
 	int mFlags; // _04
 };
-
-#define CKILL_NULL  (0)
-#define CKILL_Unk1  (0x1)
-#define CKILL_Unk29 (0x10000000)
-#define CKILL_Unk30 (0x20000000)
-#define CKILL_Unk31 (0x40000000)
-#define CKILL_Unk32 (0x80000000)
 
 #define CREATURE_HELL_ALIVE    (0)
 #define CREATURE_HELL_BELOWMAP (1)

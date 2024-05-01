@@ -90,14 +90,15 @@ struct IPikiAnims {
 };
 
 enum FakePikiDynamics {
-	FPFLAGS_MoveRotationDisabled   = 0x1,
-	FPFLAGS_UpdateTrMatrixDisabled = 0x2,
-	FPFLAGS_MoveVelocityDisabled   = 0x4,
-	FPFLAGS_MapCollisionDisabled   = 0x8,
-	FPFLAGS_PikiBeingPlucked       = 0x10,
-	FPFLAGS_Zikatu                 = 0x20,
-	FPFLAGS_WasZikatu              = 0x80,
-	FPFLAGS_Unk8                   = 0x100,
+	FPFLAGS_MoveRotationDisabled   = 0x1,  // do not rotate
+	FPFLAGS_UpdateTrMatrixDisabled = 0x2,  // do not update mBaseTrMatrix
+	FPFLAGS_MoveVelocityDisabled   = 0x4,  // do not move
+	FPFLAGS_MapCollisionDisabled   = 0x8,  // do not care about map collision
+	FPFLAGS_PikiBeingPlucked       = 0x10, // piki currently being plucked
+	FPFLAGS_Zikatu                 = 0x20, // wild piki
+	FPFLAGS_PikiEnteringCave       = 0x40, // piki flagged as entering a cave (in party, right color if SC, etc)
+	FPFLAGS_WasZikatu     = 0x80,  // was previously wild - used so louie can't whistle olimar's pikis til the bag's down on day 1 lol
+	FPFLAGS_IsWildBulbmin = 0x100, // bulbmin that haven't been whistled yet
 };
 
 struct FakePiki : public Creature, public SysShape::MotionListener {

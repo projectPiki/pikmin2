@@ -204,7 +204,7 @@ void DayEndState::onMovieStart(SingleGameSection* game, MovieConfig* config, u32
 				}
 			}
 			for (int j = 0; j < i; j++) {
-				PikiKillArg arg(1);
+				PikiKillArg arg(CKILL_DontCountAsDeath);
 				pikiBuffer[j]->kill(&arg);
 			}
 			pikiMgr->moveAllPikmins(*(Vector3f*)&origin, 50.0f, nullptr);

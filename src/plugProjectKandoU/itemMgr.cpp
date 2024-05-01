@@ -674,7 +674,7 @@ void TNodeItemMgr::killAll()
 	     node                        = (TObjectNode<BaseItem>*)mNodeObjectMgr.mNode.mChild) {
 		node->mContents->getCreatureName();
 		BaseItem* creature = node->mContents;
-		CreatureKillArg arg(CKILL_Unk1);
+		CreatureKillArg arg(CKILL_DontCountAsDeath);
 		creature->kill(&arg);
 		if (creature->mSoundObj != nullptr && PSSystem::SingletonBase<PSM::ObjMgr>::sInstance) {
 			PSSystem::SingletonBase<PSM::ObjMgr>::sInstance->remove(creature->mSoundObj);

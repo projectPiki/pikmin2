@@ -139,8 +139,8 @@ void Piki::onInit(CreatureInitArg* initArg)
 	if (pikiArg && pikiArg->mLeader) {
 		PikiAI::CreatureActionArg actionArg(pikiArg->mLeader);
 		mBrain->start(PikiAI::ACT_Teki, &actionArg);
-		changeShape(5);
-		setFPFlag(FPFLAGS_Unk8);
+		changeShape(Bulbmin);
+		setFPFlag(FPFLAGS_IsWildBulbmin);
 	} else {
 		mBrain->start(PikiAI::ACT_Free, nullptr);
 		GameStat::alivePikis.inc(this);
@@ -173,7 +173,7 @@ void Piki::onInit(CreatureInitArg* initArg)
  */
 void Piki::onKill(CreatureKillArg* killArg)
 {
-	if (gameSystem->isVersusMode() && killArg && killArg->isFlag(CKILL_Unk32)) {
+	if (gameSystem->isVersusMode() && killArg && killArg->isFlag(CKILL_VsChargePiki)) {
 		Onyon* onyon = ItemOnyon::mgr->getOnyon(getKind());
 		if (onyon) {
 			onyon->vsChargePikmin();
@@ -183,7 +183,7 @@ void Piki::onKill(CreatureKillArg* killArg)
 	clearDope();
 	mEffectsObj->clear();
 
-	if (!killArg || !(killArg->isFlag(CKILL_Unk1))) {
+	if (!killArg || !(killArg->isFlag(CKILL_DontCountAsDeath))) {
 		if (gameSystem && gameSystem->isChallengeMode() && isPikmin()) {
 			GameMessageVsPikminDead deadMsg;
 			gameSystem->mSection->sendMessage(deadMsg);
@@ -796,14 +796,17 @@ void Piki::setSpeed(f32 multiplier, Vector3f& vec, f32 max)
  */
 bool Piki::isPikmin()
 {
-	if (BaseHIOParms::sTekiChappyFlag && isFPFlag(FPFLAGS_Unk8)) {
+	// wild bulbmin are not Pikmin
+	if (BaseHIOParms::sTekiChappyFlag && isFPFlag(FPFLAGS_IsWildBulbmin)) {
 		return false;
 	}
 
+	// things following enemies are not Pikmin
 	if (getCurrActionID() == PikiAI::ACT_Teki) {
 		return false;
 	}
 
+	// all other Piki are Pikmin
 	return true;
 }
 

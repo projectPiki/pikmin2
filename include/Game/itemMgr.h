@@ -208,7 +208,7 @@ struct FixedSizeItemMgr : public BaseItemMgr, public Container<T> {
 	{
 		for (int i = 0; i < mMonoObjectMgr.mMax; i++) {
 			T* item = mMonoObjectMgr.getAt(i);
-			CreatureKillArg killArg(1);
+			CreatureKillArg killArg(CKILL_DontCountAsDeath);
 			if (item->isAlive()) {
 				item->kill(&killArg);
 			}
@@ -306,7 +306,7 @@ void NodeItemMgr<T>::killAll()
 	CI_LOOP(iter)
 	{
 		T* item = (*iter);
-		CreatureKillArg killArg(1);
+		CreatureKillArg killArg(CKILL_DontCountAsDeath);
 		if (item->isAlive()) {
 			item->kill(&killArg);
 		}

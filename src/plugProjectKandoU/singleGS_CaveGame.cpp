@@ -1070,8 +1070,7 @@ void CaveState::onMovieDone(Game::SingleGameSection* game, Game::MovieConfig* co
 				gameSystem->mSection->setPlayerMode(0);
 			}
 		} else {
-			// probably make this 100 a constant define
-			Piki* pikilist[100];
+			Piki* pikilist[MAX_PIKI_COUNT];
 			int pikis = 0;
 			Iterator<Piki> it(pikiMgr);
 			CI_LOOP(it)
@@ -1084,10 +1083,10 @@ void CaveState::onMovieDone(Game::SingleGameSection* game, Game::MovieConfig* co
 
 			for (int i = 0; i < pikis; i++) {
 				if (pikilist[i]->isPikmin()) {
-					deathMgr->inc(0);
-					deathMgr->inc(7);
+					deathMgr->inc(DeathCounter::COD_Battle);
+					deathMgr->inc(DeathCounter::COD_All);
 				}
-				PikiKillArg killarg(true);
+				PikiKillArg killarg(CKILL_DontCountAsDeath);
 				pikilist[i]->kill(&killarg);
 			}
 			gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
@@ -1112,8 +1111,8 @@ void CaveState::onMovieDone(Game::SingleGameSection* game, Game::MovieConfig* co
 		{
 			ItemPikihead::Item* head = *it;
 			if (head->isAlive()) {
-				deathMgr->inc(0);
-				deathMgr->inc(7);
+				deathMgr->inc(DeathCounter::COD_Battle);
+				deathMgr->inc(DeathCounter::COD_All);
 			}
 		}
 		pikiMgr->caveSaveAllPikmins(true, true);

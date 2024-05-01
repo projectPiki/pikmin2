@@ -10,7 +10,7 @@ KANDO_FILES:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/singleGameSection.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/cellPyramid.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/naviMgr.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/pikiMgr.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/pikiMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/mapMgr.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/baseHIOSection.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/naviWhistle.o\

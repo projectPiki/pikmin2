@@ -302,6 +302,15 @@ struct Vector3 {
 		return 0.0f;
 	}
 
+	inline f32 qDistance(Vector3& them)
+	{
+		f32 diffX = this->x - them.x;
+		f32 diffY = this->y - them.y;
+		f32 diffZ = this->z - them.z;
+
+		return pikmin2_sqrtf(SQUARE(diffX) + SQUARE(diffY) + SQUARE(diffZ));
+	}
+
 	f32 length() const;
 	f32 distance(Vector3&);
 	f32 distance2D(Vector3&);

@@ -18,8 +18,10 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 	{
 		return (void*)mMax;
 	}
-	virtual T* getAt(int index); // _24 (weak)
-
+	virtual T* getAt(int index) // _24 (weak)
+	{
+		return &mArray[index];
+	}
 	virtual int getTo() // _28 (weak)
 	{
 		return mMax;
@@ -232,10 +234,10 @@ void* MonoObjectMgr<T>::getStart() // _18 (weak)
 // 	return &mArray[(int)idx];
 // }
 
-template <typename T>
-T* MonoObjectMgr<T>::getAt(int index)
-{
-	return &mArray[index];
-}
+// template <typename T>
+// T* MonoObjectMgr<T>::getAt(int index)
+// {
+// 	return &mArray[index];
+// }
 
 #endif

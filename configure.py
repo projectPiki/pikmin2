@@ -899,7 +899,7 @@ LIBS = [
             ["plugProjectKandoU/singleGameSection", True],
             ["plugProjectKandoU/cellPyramid", False],
             ["plugProjectKandoU/naviMgr", True],
-            ["plugProjectKandoU/pikiMgr", False],
+            ["plugProjectKandoU/pikiMgr", True],
             ["plugProjectKandoU/mapMgr", False],
             ["plugProjectKandoU/baseHIOSection", True],
             ["plugProjectKandoU/naviWhistle", False],

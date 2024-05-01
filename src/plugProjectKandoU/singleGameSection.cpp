@@ -647,7 +647,7 @@ void SingleGameSection::saveMainMapSituation(bool isSubmergedCastle)
 			Piki* piki = (*iterator);
 			if (piki->isAlive() && piki->getKind() != Blue) {
 				playData->mPikiContainer.getCount(piki->getKind(), piki->getHappa())++;
-				PikiKillArg killArg(0x10001);
+				PikiKillArg killArg(CKILL_DontCountAsDeath | CKILL_Unk17);
 				piki->kill(&killArg);
 			}
 			iterator.next();
@@ -698,22 +698,22 @@ void SingleGameSection::openCaveInMenu(ItemCave::Item* cave, int naviID)
 		disp.mPayedDebt      = playData->mStoryFlags & STORY_DebtPaid;
 		disp.mPikisField     = GameStat::getMapPikmins(AllPikminCalcs) - GameStat::getZikatuPikmins(AllPikminCalcs);
 
-		int pikis = 0;
+		int enteringPikiCount = 0;
 		Iterator<Piki> iterator(pikiMgr);
 		CI_LOOP(iterator)
 		{
 			Piki* piki = *iterator;
-			piki->mFakePikiFlags.unset(0x40);
+			piki->resetFPFlag(FPFLAGS_PikiEnteringCave);
 			if (piki->isAlive() && piki->getCurrActionID() == PikiAI::ACT_Formation) {
 				int state = piki->getStateID();
 				if (state != PIKISTATE_Flying && state != PIKISTATE_HipDrop && piki->mNavi && naviID == piki->mNavi->mNaviIndex
-				    && (!isSC || (int)piki->getKind() == Blue)) {
-					pikis++;
-					piki->mFakePikiFlags.set(0x40);
+				    && (!isSC || piki->getKind() == Blue)) {
+					enteringPikiCount++;
+					piki->setFPFlag(FPFLAGS_PikiEnteringCave);
 				}
 			}
 		}
-		disp.mPikis  = pikis;
+		disp.mPikis  = enteringPikiCount;
 		disp.mCaveID = mCaveIndex;
 		if (Screen::gGame2DMgr->open_CaveInMenu(disp)) {
 			playData->setSaveFlag(3, nullptr);
