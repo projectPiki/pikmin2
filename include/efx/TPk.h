@@ -8,12 +8,13 @@
 #include "efx/Toe.h"
 #include "BitFlag.h"
 
-#define PKEFF_Light (0x1)
-#define PKEFF_Doped (0x2)
-#define PKEFF_Fire  (0x4)
-#define PKEFF_Gas   (0x8)
-#define PKEFF_Water (0x10)
-#define PKEFF_Drown (0x20)
+#define PKEFF_Light       (0x1)
+#define PKEFF_Doped       (0x2)
+#define PKEFF_Fire        (0x4)
+#define PKEFF_Gas         (0x8)
+#define PKEFF_Water       (0x10)
+#define PKEFF_Drown       (0x20)
+#define PKEFF_InMovieDraw (0x80000000)
 
 namespace efx {
 void createSimplePkAp(Vector3f&);
@@ -272,10 +273,18 @@ struct TPkEffect {
 
 	inline bool isFlag(int flagID) { return mFlags.typeView & flagID; }
 
-	inline void clear()
+	// for start of cutscene, disable all effects
+	inline void killAllEffects()
 	{
-		mFlags.clear();
-		mBackupFlags.clear();
+		if (!isFlag(PKEFF_InMovieDraw)) {
+			mBackupFlags.typeView = mFlags.typeView;
+			mFlags.clear();
+			setFlag(PKEFF_InMovieDraw);
+		}
+
+		mNageBlur.forceKill();
+		mMoeA.forceKill();
+		mBlackDown.forceKill();
 		killKourin_();
 		killDoping_();
 		killNage_();
@@ -290,18 +299,35 @@ struct TPkEffect {
 
 	inline void doDead()
 	{
-		clear();
+		killAllEffects();
 		createSimpleDead(*mHamonPosPtr, mPikiColor);
 	}
 
-	inline void doWaterEntry()
+	inline void doWaterEntry(bool flag)
 	{
-		bool flag = isFlag(PKEFF_Drown);
 		setFlag(PKEFF_Drown);
 		updateHamon_();
 		if (!flag) {
 			createSimpleDive(mHamonPosition);
 		}
+	}
+
+	inline void doCreateWater()
+	{
+		setFlag(PKEFF_Water);
+		createWater_(mAltStemPosition);
+	}
+
+	inline void doCreateChudoku()
+	{
+		setFlag(PKEFF_Gas);
+		createChudoku_(mStemPosition);
+	}
+
+	inline void doCreateMoe()
+	{
+		setFlag(PKEFF_Fire);
+		createMoe_(mStemPosition);
 	}
 
 	inline void doWaterExit()
@@ -341,11 +367,26 @@ struct TPkEffect {
 		killKourin_();
 	}
 
-	inline void setMovieDraw()
+	// for following movie draw, recreate all active effects
+	inline void createAllEffects()
 	{
-		doKillDoping();
-		doDoping();
-		// needs a lot more
+		if (isFlag(PKEFF_InMovieDraw)) {
+			mFlags.typeView = mBackupFlags.typeView;
+			resetFlag(PKEFF_InMovieDraw);
+		}
+
+		if (isFlag(PKEFF_Light))
+			doLightEffect();
+		if (isFlag(PKEFF_Doped))
+			doDoping();
+		if (isFlag(PKEFF_Fire))
+			doCreateMoe();
+		if (isFlag(PKEFF_Gas))
+			doCreateChudoku();
+		if (isFlag(PKEFF_Water))
+			doCreateWater();
+		if (isFlag(PKEFF_Drown))
+			doWaterEntry(isFlag(PKEFF_Drown));
 	}
 
 	BitFlag<u32> mFlags;        // _00
@@ -363,15 +404,14 @@ struct TPkEffect {
 	TPkMoeA mMoeA;              // _48
 	TPkBlackDown mBlackDown;    // _5C
 	ToeKourin mOeKourin;        // _70
-	// u8 _8C[4];                 // _8C, unknown
-	ToeDoping mOeDoping;     // _90
-	ToeNagekira mOeNagekira; // _AC
-	ToeMoeBC mOeMoeBC;       // _C8
-	ToeChudoku mOeChudoku;   // _100
-	ToeWater mOeWater;       // _11C
-	ToeHamonA mOeHamonA;     // _154
-	ToeHamonB mOeHamonB;     // _170
-	ToeMoeSmoke mOeMoeSmoke; // _18C
+	ToeDoping mOeDoping;        // _90
+	ToeNagekira mOeNagekira;    // _AC
+	ToeMoeBC mOeMoeBC;          // _C8
+	ToeChudoku mOeChudoku;      // _100
+	ToeWater mOeWater;          // _11C
+	ToeHamonA mOeHamonA;        // _154
+	ToeHamonB mOeHamonB;        // _170
+	ToeMoeSmoke mOeMoeSmoke;    // _18C
 };
 
 struct TPkEffectMgr : public JKRDisposer {

@@ -2204,9 +2204,9 @@ u16 seqCpuSync(JASTrack* track, u16 command)
 	case 0x600:
 	case 0x300:
 	case 0x800:
-		JADUtility::PrmSetRc<PSAutoBgm::Track>* prm = static_cast<PSAutoBgm::AutoBgm*>(seq)->mConductorMgr.mPrmSetRc;
+		PSAutoBgm::Conductor* prm = static_cast<PSAutoBgm::AutoBgm*>(seq)->mConductorMgr.mPrmSetRc;
 		P2ASSERTLINE(2128, prm);
-		return ((PSAutoBgm::Conductor*)prm)->seqCpuSync_AutoBgm(track, command, testID, root);
+		return prm->seqCpuSync_AutoBgm(track, command, testID, root);
 	default:
 		return 0;
 	}

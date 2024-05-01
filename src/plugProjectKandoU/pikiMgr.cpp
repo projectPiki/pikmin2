@@ -257,201 +257,13 @@ void PikiMgr::setMovieDraw(bool drawOn)
 		if (!mOpenIds[i]) {
 			if (!mArray[i].isMovieActor()) {
 				if (drawOn) {
-					mArray[i].mEffectsObj->setMovieDraw();
+					mArray[i].mEffectsObj->createAllEffects();
 				} else {
-					mArray[i].mEffectsObj->clear();
+					mArray[i].mEffectsObj->killAllEffects();
 				}
 			}
 		}
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	clrlwi.  r0, r4, 0x18
-	stmw     r26, 8(r1)
-	mr       r28, r4
-	mr       r27, r3
-	bne      lbl_8015EFB0
-	lbz      r0, 0x39(r27)
-	ori      r0, r0, 1
-	stb      r0, 0x39(r27)
-	b        lbl_8015EFBC
-
-lbl_8015EFB0:
-	lbz      r0, 0x39(r27)
-	rlwinm   r0, r0, 0, 0x18, 0x1e
-	stb      r0, 0x39(r27)
-
-lbl_8015EFBC:
-	li       r29, 0
-	li       r30, 0
-	b        lbl_8015F1E0
-
-lbl_8015EFC8:
-	lwz      r3, 0x2c(r27)
-	lbzx     r0, r3, r29
-	cmplwi   r0, 0
-	bne      lbl_8015F1D8
-	lwz      r0, 0x28(r27)
-	add      r3, r0, r30
-	lwz      r12, 0(r3)
-	lwz      r12, 0xb8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8015F1D8
-	clrlwi.  r0, r28, 0x18
-	beq      lbl_8015F110
-	lwz      r3, 0x28(r27)
-	addi     r0, r30, 0x258
-	lwzx     r31, r3, r0
-	lwz      r0, 0(r31)
-	rlwinm.  r0, r0, 0, 0, 0
-	beq      lbl_8015F02C
-	lwz      r0, 4(r31)
-	stw      r0, 0(r31)
-	lwz      r0, 0(r31)
-	clrlwi   r0, r0, 1
-	stw      r0, 0(r31)
-
-lbl_8015F02C:
-	lwz      r3, 0(r31)
-	clrlwi.  r0, r3, 0x1f
-	beq      lbl_8015F058
-	ori      r0, r3, 1
-	stw      r0, 0(r31)
-	lwz      r0, 0(r31)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	bne      lbl_8015F058
-	lwz      r4, 0xc(r31)
-	mr       r3, r31
-	bl       "createKourin___Q23efx9TPkEffectFP10Vector3<f>"
-
-lbl_8015F058:
-	lwz      r3, 0(r31)
-	rlwinm.  r0, r3, 0, 0x1e, 0x1e
-	beq      lbl_8015F080
-	ori      r0, r3, 2
-	mr       r3, r31
-	stw      r0, 0(r31)
-	lwz      r4, 0xc(r31)
-	bl       "createDoping___Q23efx9TPkEffectFP10Vector3<f>"
-	mr       r3, r31
-	bl       killKourin___Q23efx9TPkEffectFv
-
-lbl_8015F080:
-	lwz      r3, 0(r31)
-	rlwinm.  r0, r3, 0, 0x1d, 0x1d
-	beq      lbl_8015F0A0
-	ori      r0, r3, 4
-	mr       r3, r31
-	stw      r0, 0(r31)
-	lwz      r4, 0xc(r31)
-	bl       "createMoe___Q23efx9TPkEffectFP10Vector3<f>"
-
-lbl_8015F0A0:
-	lwz      r3, 0(r31)
-	rlwinm.  r0, r3, 0, 0x1c, 0x1c
-	beq      lbl_8015F0C0
-	ori      r0, r3, 8
-	mr       r3, r31
-	stw      r0, 0(r31)
-	lwz      r4, 0xc(r31)
-	bl       "createChudoku___Q23efx9TPkEffectFP10Vector3<f>"
-
-lbl_8015F0C0:
-	lwz      r3, 0(r31)
-	rlwinm.  r0, r3, 0, 0x1b, 0x1b
-	beq      lbl_8015F0E0
-	ori      r0, r3, 0x10
-	mr       r3, r31
-	stw      r0, 0(r31)
-	lwz      r4, 0x14(r31)
-	bl       "createWater___Q23efx9TPkEffectFP10Vector3<f>"
-
-lbl_8015F0E0:
-	lwz      r0, 0(r31)
-	rlwinm.  r26, r0, 0, 0x1a, 0x1a
-	beq      lbl_8015F1D8
-	ori      r0, r0, 0x20
-	mr       r3, r31
-	stw      r0, 0(r31)
-	bl       updateHamon___Q23efx9TPkEffectFv
-	cmplwi   r26, 0
-	bne      lbl_8015F1D8
-	addi     r3, r31, 0x28
-	bl       "createSimpleDive__3efxFR10Vector3<f>"
-	b        lbl_8015F1D8
-
-lbl_8015F110:
-	lwz      r3, 0x28(r27)
-	addi     r0, r30, 0x258
-	lwzx     r31, r3, r0
-	lwz      r3, 0(r31)
-	rlwinm.  r0, r3, 0, 0, 0
-	bne      lbl_8015F14C
-	stw      r3, 4(r31)
-	li       r0, 0
-	stb      r0, 0(r31)
-	stb      r0, 1(r31)
-	stb      r0, 2(r31)
-	stb      r0, 3(r31)
-	lwz      r0, 0(r31)
-	oris     r0, r0, 0x8000
-	stw      r0, 0(r31)
-
-lbl_8015F14C:
-	addi     r3, r31, 0x34
-	lwz      r12, 0x34(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x48
-	lwz      r12, 0x48(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x5c
-	lwz      r12, 0x5c(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       killKourin___Q23efx9TPkEffectFv
-	mr       r3, r31
-	bl       killDoping___Q23efx9TPkEffectFv
-	mr       r3, r31
-	bl       killNage___Q23efx9TPkEffectFv
-	mr       r3, r31
-	bl       killMoe___Q23efx9TPkEffectFv
-	mr       r3, r31
-	bl       killChudoku___Q23efx9TPkEffectFv
-	mr       r3, r31
-	bl       killMoeSmoke___Q23efx9TPkEffectFv
-	mr       r3, r31
-	bl       killBlackDown___Q23efx9TPkEffectFv
-	mr       r3, r31
-	bl       killWater___Q23efx9TPkEffectFv
-	mr       r3, r31
-	bl       killHamonA___Q23efx9TPkEffectFv
-	mr       r3, r31
-	bl       killHamonB___Q23efx9TPkEffectFv
-
-lbl_8015F1D8:
-	addi     r30, r30, 0x2c8
-	addi     r29, r29, 1
-
-lbl_8015F1E0:
-	lwz      r0, 0x24(r27)
-	cmpw     r29, r0
-	blt      lbl_8015EFC8
-	lmw      r26, 8(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /**
@@ -473,9 +285,10 @@ void PikiMgr::debugShapeDL(char* text)
  */
 void PikiMgr::doSimpleDraw(Viewport* vp)
 {
+	int vpid = vp->mVpId;
 	for (int i = 0; i < 5; i++) {
 		J3DModelData& modelData = *mHappaModel[i];
-		J3DMaterial* mat        = modelData.mJointTree.mRootNode->mMaterial;
+		J3DMaterial* mat        = (*modelData.mJointTree.mJoints)->mMaterial;
 		j3dSys.mVtxPos          = modelData.getVertexData()->getVtxPosArray();
 		j3dSys.mVtxNorm         = modelData.getVertexData()->getVtxNrmArray();
 		j3dSys.mVtxColor        = modelData.getVertexData()->getVtxColorArray(0);
@@ -487,19 +300,18 @@ void PikiMgr::doSimpleDraw(Viewport* vp)
 				if (!mOpenIds[j]) {
 					Piki* piki = &mArray[j];
 					if (piki->mLod.mFlags & 4) {
-						if (!piki->doped() && piki->mLod.mFlags & 0x10) {
+						if (!piki->doped() && piki->mLod.mFlags & 0x10 << vpid) {
 							int id = piki->getHappa();
 							// make purple and white pikmin use the red flower/bud
-							if ((piki->getKind() == Purple || piki->getKind() == White) && id != 0) {
+							if ((piki->getKind() == White || piki->getKind() == Purple) && id >= 1) {
 								id += 2;
 							}
-							if (i == id) {
-								Matrixf* mtx  = piki->mLeafStemJoint->getWorldMatrix();
-								Matrixf* mtx2 = vp->getMatrix(1);
+							if (id == i) {
 								Mtx test;
-								PSMTXConcat(mtx->mMatrix.mtxView, mtx2->mMatrix.mtxView, test);
+								Matrixf* mtx = piki->mLeafStemJoint->getWorldMatrix();
+								PSMTXConcat(vp->getMatrix(1)->mMatrix.mtxView, mtx->mMatrix.mtxView, test);
 								GXLoadPosMtxImm(test, 0);
-								GXLoadPosMtxImm(test, 0);
+								GXLoadNrmMtxImm(test, 0);
 								mat->mShape->simpleDrawCache();
 							}
 						}
@@ -508,126 +320,6 @@ void PikiMgr::doSimpleDraw(Viewport* vp)
 			}
 		}
 	}
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stmw     r22, 0x38(r1)
-	mr       r23, r3
-	mr       r24, r4
-	li       r3, 0x10
-	mr       r29, r23
-	li       r27, 0
-	lhz      r0, 0x18(r4)
-	lis      r4, j3dSys@ha
-	addi     r31, r4, j3dSys@l
-	slw      r28, r3, r0
-
-lbl_8015F2B8:
-	lwz      r5, 0x58(r29)
-	li       r0, 0
-	lwz      r4, 0x28(r5)
-	lwz      r3, 0xa0(r5)
-	lwz      r4, 0(r4)
-	lwz      r26, 0x58(r4)
-	stw      r3, 0x10c(r31)
-	lwz      r3, 0xa4(r5)
-	stw      r3, 0x110(r31)
-	lwz      r3, 0xac(r5)
-	stw      r3, 0x114(r31)
-	stw      r0, sOldVcdVatCmd__8J3DShape@sda21(r13)
-	b        lbl_8015F3F0
-
-lbl_8015F2EC:
-	mr       r3, r26
-	lwz      r12, 0(r26)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r26)
-	bl       loadPreDrawSetting__8J3DShapeCFv
-	li       r25, 0
-	li       r30, 0
-	b        lbl_8015F3E0
-
-lbl_8015F314:
-	lwz      r3, 0x2c(r23)
-	lbzx     r0, r3, r25
-	cmplwi   r0, 0
-	bne      lbl_8015F3D8
-	lwz      r0, 0x28(r23)
-	add      r22, r0, r30
-	lbz      r0, 0xd8(r22)
-	rlwinm.  r0, r0, 0, 0x1d, 0x1d
-	beq      lbl_8015F3D8
-	mr       r3, r22
-	bl       doped__Q24Game4PikiFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8015F3D8
-	lbz      r0, 0xd8(r22)
-	and.     r0, r0, r28
-	beq      lbl_8015F3D8
-	lbz      r3, 0x2b8(r22)
-	lbz      r0, 0x2b9(r22)
-	cmpwi    r3, 4
-	mr       r4, r0
-	beq      lbl_8015F370
-	cmpwi    r3, 3
-	bne      lbl_8015F37C
-
-lbl_8015F370:
-	cmpwi    r0, 1
-	blt      lbl_8015F37C
-	addi     r4, r4, 2
-
-lbl_8015F37C:
-	cmpw     r4, r27
-	bne      lbl_8015F3D8
-	lwz      r3, 0x268(r22)
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	mr       r0, r3
-	mr       r3, r24
-	mr       r22, r0
-	li       r4, 1
-	bl       getMatrix__8ViewportFb
-	mr       r4, r22
-	addi     r5, r1, 8
-	bl       PSMTXConcat
-	addi     r3, r1, 8
-	li       r4, 0
-	bl       GXLoadPosMtxImm
-	addi     r3, r1, 8
-	li       r4, 0
-	bl       GXLoadNrmMtxImm
-	lwz      r3, 8(r26)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8015F3D8:
-	addi     r30, r30, 0x2c8
-	addi     r25, r25, 1
-
-lbl_8015F3E0:
-	lwz      r0, 0x24(r23)
-	cmpw     r25, r0
-	blt      lbl_8015F314
-	lwz      r26, 4(r26)
-
-lbl_8015F3F0:
-	cmplwi   r26, 0
-	bne      lbl_8015F2EC
-	addi     r27, r27, 1
-	addi     r29, r29, 4
-	cmpwi    r27, 5
-	blt      lbl_8015F2B8
-	lmw      r22, 0x38(r1)
-	lwz      r0, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
 }
 
 /**
@@ -1939,11 +1631,14 @@ void PikiMgr::caveSaveFormationPikmins(bool doKill)
 	Piki* list[100];
 	CI_LOOP(iterator)
 	{
-
 		Piki* piki = *iterator;
 		if (piki->isAlive() && (piki->getCurrActionID() != 0 || (piki->mFakePikiFlags.typeView & 0x40))) {
 			list[i++] = piki;
 		}
+	}
+
+	if (i == 0) {
+		for (int j = 125; j > 0; j--) { }
 	}
 
 	for (int j = 0; j < i; j++) {

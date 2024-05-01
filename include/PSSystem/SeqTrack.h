@@ -67,7 +67,7 @@ struct SeqTrackRoot : public SeqTrackBase {
 	f32 mSwingMagnitude;                  // _34, how significant the swing is (?)
 	int mSwingState;                      // _38, 0 = olimar, 1 = louie
 	BeatMgr mBeatMgr;                     // _3C
-	u16 mBeatInterval;                    // _3E
+	u16 mBeatInterval;                    // _3E, used to determine swing movement rate, usually 60
 	TaskEntry_Tempo mTempoTask;           // _40, for low health
 	TaskEntry_OuterParam _100;            // _100
 	TaskEntry_PitMod mPitchModTask;       // _16C, for taking damage
