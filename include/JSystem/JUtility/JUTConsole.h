@@ -7,10 +7,10 @@
 #include "stdarg.h"
 #include "types.h"
 
-inline s32 colorCheck(s32 diff, s32 t)
+inline s32 checkColorDifference(s32 diff, s32 t)
 {
-	s32 ret = diff - t;
-	return ret + 1;
+	s32 result = diff - t;
+	return result + 1;
 }
 
 struct JUTConsole : public JKRDisposer {
@@ -82,8 +82,8 @@ struct JUTConsole : public JKRDisposer {
 	bool isVisible() const { return mIsVisible; }
 	void setVisible(bool visible) { mIsVisible = visible; }
 
-	void setLineAttr(int param_0, u8 param_1) { mBuf[(_20 + 2) * param_0] = param_1; }
-	u8* getLinePtr(int param_0) const { return &mBuf[(_20 + 2) * param_0] + 1; }
+	void setLineAttr(int lineIndex, u8 attribute) { mBuf[(_20 + 2) * lineIndex] = attribute; }
+	u8* getLinePtr(int lineIndex) const { return &mBuf[(_20 + 2) * lineIndex] + 1; }
 	int diffIndex(int startIndex, int endIndex) const
 	{
 		int diff = endIndex - startIndex;
@@ -111,29 +111,29 @@ struct JUTConsole : public JKRDisposer {
 
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
-	JGadget::TLinkListNode mListNode; // _18
-	u32 _20;                          // _20
-	int mMaxLines;                    // _24
-	u8* mBuf;                         // _28
-	bool _2C;                         // _2C
-	int _30;                          // _30
-	int _34;                          // _34
-	int _38;                          // _38
-	int _3C;                          // _3C
-	int mPositionX;                   // _40
-	int mPositionY;                   // _44
-	u32 mHeight;                      // _48
-	JUTFont* mFont;                   // _4C
-	f32 mFontSizeX;                   // _50
-	f32 mFontSizeY;                   // _54
-	int mOutput;                      // _58
-	JUtility::TColor _5C;             // _5C
-	JUtility::TColor _60;             // _60
-	int _64;                          // _64
-	bool mIsVisible;                  // _68
-	bool _69;                         // _69
-	bool _6A;                         // _6A
-	bool _6B;                         // _6B
+	JGadget::TLinkListNode mListNode;       // _18
+	u32 _20;                                // _20
+	int mMaxLines;                          // _24
+	u8* mBuf;                               // _28
+	bool mUnusedFlag;                       // _2C
+	int mCurrentLineIndex;                  // _30
+	int mStartLineIndex;                    // _34
+	int _38;                                // _38
+	int mLineOffset;                        // _3C
+	int mPositionX;                         // _40
+	int mPositionY;                         // _44
+	u32 mHeight;                            // _48
+	JUTFont* mFont;                         // _4C
+	f32 mFontSizeX;                         // _50
+	f32 mFontSizeY;                         // _54
+	int mOutput;                            // _58
+	JUtility::TColor mInactiveConsoleColor; // _5C
+	JUtility::TColor mActiveConsoleColor;   // _60
+	int _64;                                // _64
+	bool mIsVisible;                        // _68
+	bool _69;                               // _69
+	bool _6A;                               // _6A
+	bool _6B;                               // _6B
 };
 
 struct JUTConsoleManager {

@@ -101,7 +101,7 @@ void JUTRomFont::setGX()
  * @note Address: 0x80032954
  * @note Size: 0x480
  */
-f32 JUTRomFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, int chr, bool flag)
+f32 JUTRomFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, int chr, bool unused)
 {
 	GXTexObj texObj;
 	s32 width;

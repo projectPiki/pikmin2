@@ -17,17 +17,19 @@ static JUTConsole* sWarningConsole;
  * @note Address: 0x800280DC
  * @note Size: 0x88
  */
-JUTConsole* JUTConsole::create(uint param_0, uint param_1, JKRHeap* param_2)
+JUTConsole* JUTConsole::create(uint bufferSize, uint bufferCount, JKRHeap* heap)
 {
-	JUTConsoleManager* mgr = JUTConsoleManager::sManager;
-	u32 byteCount          = getObjectSizeFromBufferSize(param_0, param_1);
-	void* buf              = JKRHeap::alloc(byteCount, 0, param_2);
-	u8* mem                = (u8*)buf;
-	JUTConsole* console    = new (mem) JUTConsole(param_0, param_1, true);
-	console->mBuf          = mem + sizeof(JUTConsole);
+	JUTConsoleManager* consoleManager = JUTConsoleManager::sManager;
+
+	u32 byteCount = getObjectSizeFromBufferSize(bufferSize, bufferCount);
+	void* buffer  = JKRHeap::alloc(byteCount, 0, heap);
+	u8* memory    = (u8*)buffer;
+
+	JUTConsole* console = new (memory) JUTConsole(bufferSize, bufferCount, true);
+	console->mBuf       = memory + sizeof(JUTConsole);
 	console->clear();
 
-	mgr->appendConsole(console);
+	consoleManager->appendConsole(console);
 	return console;
 }
 
@@ -35,12 +37,12 @@ JUTConsole* JUTConsole::create(uint param_0, uint param_1, JKRHeap* param_2)
  * @note Address: 0x80028164
  * @note Size: 0x98
  */
-JUTConsole* JUTConsole::create(uint param_0, void* param_1, u32 param_2)
+JUTConsole* JUTConsole::create(uint bufferSize, void* memory, u32 objectSize)
 {
 	JUTConsoleManager* mgr = JUTConsoleManager::sManager;
-	u32 byteCount          = getLineFromObjectSize(param_2, param_0);
-	u8* mem                = (u8*)param_1;
-	JUTConsole* console    = new (mem) JUTConsole(param_0, byteCount, false);
+	u32 byteCount          = getLineFromObjectSize(objectSize, bufferSize);
+	u8* mem                = (u8*)memory;
+	JUTConsole* console    = new (mem) JUTConsole(bufferSize, byteCount, false);
 	console->mBuf          = mem + sizeof(JUTConsole);
 	console->clear();
 
@@ -61,11 +63,11 @@ JUTConsole* JUTConsole::create(uint param_0, void* param_1, u32 param_2)
  * @note Address: 0x800281FC
  * @note Size: 0x100
  */
-JUTConsole::JUTConsole(uint param_0, uint param_1, bool param_2)
+JUTConsole::JUTConsole(uint bufferSize, uint maxLines, bool unused)
 {
-	_2C       = param_2;
-	_20       = param_0;
-	mMaxLines = param_1;
+	mUnusedFlag = unused;
+	_20         = bufferSize;
+	mMaxLines   = maxLines;
 
 	mPositionX = 30;
 	mPositionY = 50;
@@ -82,8 +84,8 @@ JUTConsole::JUTConsole(uint param_0, uint param_1, bool param_2)
 	_6B        = false;
 	mOutput    = 1;
 
-	_5C.set(0, 0, 0, 100);
-	_60.set(0, 0, 0, 230);
+	mInactiveConsoleColor.set(0, 0, 0, 100);
+	mActiveConsoleColor.set(0, 0, 0, 230);
 	_64 = 8;
 }
 
@@ -97,28 +99,30 @@ JUTConsole::~JUTConsole() { JUTConsoleManager::sManager->JUTConsoleManager::remo
  * @note Address: 0x8002836C
  * @note Size: 0x10
  */
-size_t JUTConsole::getObjectSizeFromBufferSize(uint b1, uint b2) { return (b1 + 2) * b2 + sizeof(JUTConsole); }
-
+size_t JUTConsole::getObjectSizeFromBufferSize(uint bufferSize, uint bufferCount)
+{
+	return (bufferSize + 2) * bufferCount + sizeof(JUTConsole);
+}
 /**
  * @note Address: 0x8002837C
  * @note Size: 0x10
  */
-size_t JUTConsole::getLineFromObjectSize(u32 param_1, uint param_2) { return (param_1 - sizeof(JUTConsole)) / (param_2 + 2); }
-
+size_t JUTConsole::getLineFromObjectSize(u32 objectSize, uint bufferSize) { return (objectSize - sizeof(JUTConsole)) / (bufferSize + 2); }
 /**
  * @note Address: 0x8002838C
  * @note Size: 0x5C
  */
 void JUTConsole::clear()
 {
-	_30 = 0;
-	_34 = 0;
-	_38 = 0;
-	_3C = 0;
+	mCurrentLineIndex = 0;
+	mStartLineIndex   = 0;
+	_38               = 0;
+	mLineOffset       = 0;
 
 	for (int i = 0; i < (u32)mMaxLines; i++) {
 		setLineAttr(i, 0);
 	}
+
 	mBuf[0] = 0xFF;
 	mBuf[1] = 0;
 }
@@ -127,18 +131,18 @@ void JUTConsole::clear()
  * @note Address: 0x800283E8
  * @note Size: 0x55C
  */
-void JUTConsole::doDraw(JUTConsole::EConsoleType inputType) const
+void JUTConsole::doDraw(JUTConsole::EConsoleType consoleType) const
 {
 	f32 fontYOffset;
 	s32 changeLine_1;
 	s32 changeLine_2;
 
-	if (mIsVisible && (mFont || (inputType == CONSOLETYPE_Unk2))) {
+	if (mIsVisible && (mFont || (consoleType == CONSOLETYPE_Unk2))) {
 		if (mHeight != 0) {
-			bool testVal = (inputType == CONSOLETYPE_Active);
-			fontYOffset  = 2.0f + mFontSizeY;
+			bool isActiveConsole = (consoleType == CONSOLETYPE_Active);
+			fontYOffset          = 2.0f + mFontSizeY;
 
-			if (inputType != CONSOLETYPE_Unk2) {
+			if (consoleType != CONSOLETYPE_Unk2) {
 				if (JUTVideo::getManager() == nullptr) {
 					J2DOrthoGraph ortho(0.0f, 0.0f, 640.0f, 480.0f, -1.0f, 1.0f);
 					ortho.setPort();
@@ -148,27 +152,28 @@ void JUTConsole::doDraw(JUTConsole::EConsoleType inputType) const
 					                    -1.0f, 1.0f);
 					ortho.setPort();
 				}
+
 				const JUtility::TColor* TColorChoice;
 
-				if (testVal) {
-					TColorChoice = &this->_60;
+				if (isActiveConsole) {
+					TColorChoice = &this->mActiveConsoleColor;
 				} else {
-					TColorChoice = &this->_5C;
+					TColorChoice = &this->mInactiveConsoleColor;
 				}
 
 				J2DFillBox((f32)(mPositionX - 2), (f32)(s32)((f32)mPositionY - fontYOffset), (f32)(s32)((mFontSizeX * (f32)_20) + 4.0f),
 				           (f32)(s32)(fontYOffset * (f32)mHeight), (JUtility::TColor)*TColorChoice);
 
 				mFont->setGX();
-				if (testVal) {
-					int colordiff = _38;
-					int colorf30  = _30;
+				if (isActiveConsole) {
+					int endIndex   = _38;
+					int startIndex = mCurrentLineIndex;
 
-					s32 s = colorCheck(diffIndex(colorf30, colordiff), mHeight);
+					s32 s = checkColorDifference(diffIndex(startIndex, endIndex), mHeight);
 					if (s <= 0) {
 						mFont->setCharColor(JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF));
 
-					} else if (colorf30 == (s32)_34) {
+					} else if (startIndex == (s32)mStartLineIndex) {
 						mFont->setCharColor(JUtility::TColor(0xFF, 0xE6, 0xE6, 0xFF));
 
 					} else {
@@ -183,24 +188,24 @@ void JUTConsole::doDraw(JUTConsole::EConsoleType inputType) const
 			}
 
 			char* linePtr;
-			s32 currLine = _30;
+			s32 currLine = mCurrentLineIndex;
 			s32 yFactor  = 0;
 
 			do {
 				linePtr = (char*)getLinePtr(currLine); // getLinePtr was fixed, it was adding to the array index not to the address
 				if ((u8)linePtr[-1] != 0) {            // necessary explicit comparison
 
-					if (inputType != 2) {
-						f32 f1, f2, f3, f4;
-						f2             = (((f32)yFactor * fontYOffset) + (f32)mPositionY);
-						f4             = mFontSizeY;
-						f1             = mPositionX;
-						f3             = mFontSizeX;
+					if (consoleType != 2) {
+						f32 posX, posY, scaleX, scaleY;
+						posY           = (((f32)yFactor * fontYOffset) + (f32)mPositionY);
+						scaleY         = mFontSizeY;
+						posX           = mPositionX;
+						scaleX         = mFontSizeX;
 						JUTFont* pFont = mFont;
 						u32 lineLength = strlen((char*)linePtr);
 						bool inputBool = true;
 
-						pFont->drawString_size_scale(f1, f2, f3, f4, linePtr, lineLength, inputBool);
+						pFont->drawString_size_scale(posX, posY, scaleX, scaleY, linePtr, lineLength, inputBool);
 
 					} else {
 
@@ -215,7 +220,7 @@ void JUTConsole::doDraw(JUTConsole::EConsoleType inputType) const
 				} else {
 					break;
 				}
-			} while ((yFactor < mHeight) && (changeLine_2 != _34));
+			} while ((yFactor < mHeight) && (changeLine_2 != mStartLineIndex));
 		}
 	}
 }
@@ -245,56 +250,56 @@ void JUTConsole::print(const char* str)
 {
 	if (mOutput & 1) {
 		const u8* r29 = (const u8*)str;
-		u8* r28       = getLinePtr(_38) + _3C;
+		u8* r28       = getLinePtr(_38) + mLineOffset;
 		while (*r29) {
-			if (_6A && _34 == nextIndex(_38)) {
+			if (_6A && mStartLineIndex == nextIndex(_38)) {
 				break;
 			}
 			if (*r29 == '\n') {
 				r29++;
-				_3C = _20;
+				mLineOffset = _20;
 			} else if (*r29 == '\t') {
 				r29++;
-				while (_3C < _20) {
+				while (mLineOffset < _20) {
 					*(r28++) = ' ';
-					_3C++;
-					if (_3C % _64 == 0) {
+					mLineOffset++;
+					if (mLineOffset % _64 == 0) {
 						break;
 					}
 				}
 			} else if (mFont && mFont->isLeadByte(*r29)) {
-				if (_3C + 1 < _20) {
+				if (mLineOffset + 1 < _20) {
 					*(r28++) = *(r29++);
 					*(r28++) = *(r29++);
-					_3C++;
-					_3C++;
+					mLineOffset++;
+					mLineOffset++;
 				} else {
 					*(r28++) = 0;
-					_3C++;
+					mLineOffset++;
 				}
 			} else {
 				*(r28++) = *(r29++);
-				_3C++;
+				mLineOffset++;
 			}
 
-			if (_3C < _20) {
+			if (mLineOffset < _20) {
 				continue;
 			}
-			*r28 = 0;
-			_38  = nextIndex(_38);
-			_3C  = 0;
+			*r28        = 0;
+			_38         = nextIndex(_38);
+			mLineOffset = 0;
 			setLineAttr(_38, 0xff);
 			r28          = getLinePtr(_38);
 			*r28         = 0;
-			int local_28 = diffIndex(_30, _38);
+			int local_28 = diffIndex(mCurrentLineIndex, _38);
 			if (local_28 == mHeight) {
-				_30 = nextIndex(_30);
+				mCurrentLineIndex = nextIndex(mCurrentLineIndex);
 			}
-			if (_38 == _34) {
-				_34 = nextIndex(_34);
+			if (_38 == mStartLineIndex) {
+				mStartLineIndex = nextIndex(mStartLineIndex);
 			}
-			if (_38 == _30) {
-				_30 = nextIndex(_30);
+			if (_38 == mCurrentLineIndex) {
+				mCurrentLineIndex = nextIndex(mCurrentLineIndex);
 			}
 
 			if (_6B) {
@@ -341,21 +346,21 @@ void JUTConsole::dumpToConsole(JUTConsole*, uint)
 void JUTConsole::scroll(int amount)
 {
 	if (amount < 0) {
-		int var = _30 - _34;
-		var     = _30 - _34 >= 0 ? var : var + mMaxLines;
+		int indexDiff = mCurrentLineIndex - mStartLineIndex;
+		indexDiff     = mCurrentLineIndex - mStartLineIndex >= 0 ? indexDiff : indexDiff + mMaxLines;
 
-		if (amount < -var) {
-			amount = -var;
+		if (amount < -indexDiff) {
+			amount = -indexDiff;
 		}
 	} else if (amount > 0) {
-		int var2 = _38 - _34;
+		int var2 = _38 - mStartLineIndex;
 		var2     = var2 >= 0 ? var2 : var2 + mMaxLines;
 
 		if (var2 + 1 <= mHeight) {
 			amount = 0;
 		} else {
-			int var3 = _38 - _30;
-			var3     = _38 - _30 >= 0 ? var3 : var3 + mMaxLines;
+			int var3 = _38 - mCurrentLineIndex;
+			var3     = _38 - mCurrentLineIndex >= 0 ? var3 : var3 + mMaxLines;
 
 			if (amount > (s32)(var3 - mHeight + 1)) {
 				amount = var3 - mHeight + 1;
@@ -363,12 +368,13 @@ void JUTConsole::scroll(int amount)
 		}
 	}
 
-	_30 += amount;
-	if (_30 < 0) {
-		_30 += mMaxLines;
+	mCurrentLineIndex += amount;
+	if (mCurrentLineIndex < 0) {
+		mCurrentLineIndex += mMaxLines;
 	}
-	if (_30 >= (u32)mMaxLines) {
-		_30 -= mMaxLines;
+
+	if (mCurrentLineIndex >= (u32)mMaxLines) {
+		mCurrentLineIndex -= mMaxLines;
 	}
 }
 
@@ -378,10 +384,12 @@ void JUTConsole::scroll(int amount)
  */
 int JUTConsole::getUsedLine() const
 {
-	int line = _38 - _34;
+	int line = _38 - mStartLineIndex;
+
 	if (line >= 0) {
 		return line;
 	}
+
 	return line + mMaxLines;
 }
 
@@ -391,10 +399,12 @@ int JUTConsole::getUsedLine() const
  */
 int JUTConsole::getLineOffset() const
 {
-	int line = _30 - _34;
+	int line = mCurrentLineIndex - mStartLineIndex;
+
 	if (line >= 0) {
 		return line;
 	}
+
 	return line + mMaxLines;
 }
 

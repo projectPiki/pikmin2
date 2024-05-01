@@ -53,22 +53,24 @@ void JUTFont::setGradColor(JUtility::TColor bottomColor, JUtility::TColor topCol
  * @note Size: 0x118
  * Matches
  */
-f32 JUTFont::drawString_size_scale(f32 w, f32 x, f32 y, f32 z, const char* str, u32 u, bool flag)
+f32 JUTFont::drawString_size_scale(f32 posX, f32 posY, f32 scaleX, f32 scaleY, const char* string, u32 length, bool unused)
 {
-	int str_int;
-	f32 w_old = w;
+	int currentChar;
+	f32 initialWidth = posX;
 
-	for (; u != 0; u--, str++) {
-		u8 temp = str[0];
-		str_int = temp;
-		if (isLeadByte(str_int)) {
-			u--;
-			u8 byte_char = *(++str);
-			str_int      = str_int << 8; // moves high byte to low byte
-			str_int |= byte_char;
+	for (; length != 0; length--, string++) {
+		u8 temp     = string[0];
+		currentChar = temp;
+
+		if (isLeadByte(currentChar)) {
+			length--;
+			u8 nextChar = *(++string);
+			currentChar = currentChar << 8; // moves high byte to low byte
+			currentChar |= nextChar;
 		}
-		w += (drawChar_scale(w, x, y, z, str_int, flag));
-		flag = true;
+
+		posX += (drawChar_scale(posX, posY, scaleX, scaleY, currentChar, unused));
+		unused = true;
 	}
-	return w - w_old;
+	return posX - initialWidth;
 }
