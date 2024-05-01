@@ -245,22 +245,26 @@ void FakePiki::updateWalkAnimation()
 		otherIdx  = IPikiAnims::ASIBUMI;
 
 	} else if (animSpeed < parms->mFakePikiParms.mRunStartSpeed()) {
-		f32 val       = animSpeed - parms->mFakePikiParms.mWalkStartSpeed();
-		f32 diff      = parms->mFakePikiParms.mRunStartSpeed() - parms->mFakePikiParms.mWalkStartSpeed();
+		// regswaps here - inline maybe?
+		f32 val = (animSpeed - parms->mFakePikiParms.mWalkStartSpeed())
+		        / (parms->mFakePikiParms.mRunStartSpeed() - parms->mFakePikiParms.mWalkStartSpeed());
 		otherListener = this;
 		otherIdx      = IPikiAnims::WALK;
 
-		animSpeed = (val / diff) * (parms->mFakePikiParms.mWalkPlaybackFrameCountMin() - parms->mFakePikiParms.mWalkPlaybackFrameCountMax())
-		          + parms->mFakePikiParms.mWalkPlaybackFrameCountMin();
+		f32 max = parms->mFakePikiParms.mWalkPlaybackFrameCountMax();
+		max -= parms->mFakePikiParms.mWalkPlaybackFrameCountMin();
+		animSpeed = parms->mFakePikiParms.mWalkPlaybackFrameCountMin() + val * (max);
 
 	} else if (animSpeed < parms->mFakePikiParms.mEscapeStartSpeed()) {
-		f32 val       = animSpeed - parms->mFakePikiParms.mRunStartSpeed();
-		f32 diff      = parms->mFakePikiParms.mEscapeStartSpeed() - parms->mFakePikiParms.mRunStartSpeed();
+		// regswaps here - inline maybe?
+		f32 val = (animSpeed - parms->mFakePikiParms.mRunStartSpeed())
+		        / (parms->mFakePikiParms.mEscapeStartSpeed() - parms->mFakePikiParms.mRunStartSpeed());
 		otherListener = this;
 		otherIdx      = IPikiAnims::RUN2;
 
-		animSpeed = (val / diff) * (parms->mFakePikiParms.mRunPlaybackFrameCountMax() - parms->mFakePikiParms.mRunPlaybackFrameCountMin())
-		          + parms->mFakePikiParms.mRunPlaybackFrameCountMin();
+		f32 max = parms->mFakePikiParms.mRunPlaybackFrameCountMax();
+		max -= parms->mFakePikiParms.mRunPlaybackFrameCountMin();
+		animSpeed = val * (max) + parms->mFakePikiParms.mRunPlaybackFrameCountMin();
 
 	} else {
 		animSpeed     = parms->mFakePikiParms.mEscapePlaybackFrameCountMin();
@@ -301,14 +305,14 @@ void FakePiki::updateWalkAnimation()
 				mAnimator.mBoundAnimator.startAnim(otherIdx, otherListener);
 			}
 		} else if (mBoundAnimIdx == IPikiAnims::NULLANIM) {
-			f32 boundRate = mAnimator.mBoundAnimator.mTimer;
-			f32 selfRate  = mAnimator.mSelfAnimator.mTimer;
+			f32 boundRate = mAnimator.mBoundAnimator.getTimer();
+			f32 selfRate  = mAnimator.mSelfAnimator.getTimer();
 			mAnimator.mBoundAnimator.startAnim(otherIdx, otherListener);
 			mAnimator.mBoundAnimator.setCurrFrame(boundRate);
 			mAnimator.mSelfAnimator.startAnim(otherIdx, nullptr);
 			mAnimator.mSelfAnimator.setCurrFrame(selfRate);
 		} else {
-			f32 boundRate = mAnimator.mBoundAnimator.mTimer;
+			f32 boundRate = mAnimator.mBoundAnimator.getTimer();
 			mAnimator.mBoundAnimator.startAnim(otherIdx, otherListener);
 			mAnimator.mBoundAnimator.setCurrFrame(boundRate);
 		}
@@ -764,12 +768,13 @@ void FakePiki::updateLook()
 
 	if (angY < PI) {
 		if (mNeckTheta > PI) {
-			val = TAU - (mNeckTheta - angX);
+			val = TAU - (mNeckTheta - angY);
 		} else {
 			val = angDist(angle1, angle3);
 		}
 	} else if (mNeckTheta <= PI) {
-		val = (TAU - (mNeckTheta - angY)) * -1.0f;
+		val = TAU - (mNeckTheta - angY);
+		val *= -1.0f;
 	} else {
 		val = angDist(angle1, angle3);
 	}
@@ -1940,112 +1945,14 @@ void FakePiki::updateStomach()
 	f32 rad = stomach->mRadius - 8.5f;
 
 	if (dist > rad) {
-		mPosition = stomach->mPosition + sep * rad;
+		mPosition    = stomach->mPosition + sep * rad;
+		mSimVelocity = mSimVelocity - sep * (1.1f * mSimVelocity.dot(sep));
 
-		Vector3f simVel = mSimVelocity;
-		// f32 factor = ;
-		mSimVelocity = simVel - sep * (1.1f * dot(simVel, sep));
-
+		// this is some leftover debug thing
 		Vector3f sep2 = Vector3f(mPosition.y - mTargetCollObj->mPosition.y, mPosition.z - mTargetCollObj->mPosition.z,
 		                         mPosition.x - mTargetCollObj->mPosition.x);
 		_length2(sep2);
 	}
-	/*
-	lwz      r4, 0x194(r3)
-	cmplwi   r4, 0
-	beqlr
-	lfs      f1, 0x210(r3)
-	lfs      f0, 0x50(r4)
-	lfs      f2, 0x214(r3)
-	fsubs    f0, f1, f0
-	lfs      f1, 0x54(r4)
-	lfs      f3, 0x20c(r3)
-	fsubs    f1, f2, f1
-	lfs      f2, 0x4c(r4)
-	fmuls    f4, f0, f0
-	fsubs    f9, f3, f2
-	lfs      f2, lbl_805182B4@sda21(r2)
-	fmuls    f5, f1, f1
-	fmadds   f3, f9, f9, f4
-	fadds    f4, f5, f3
-	fcmpo    cr0, f4, f2
-	ble      lbl_8013F3D4
-	ble      lbl_8013F3D8
-	frsqrte  f2, f4
-	fmuls    f4, f2, f4
-	b        lbl_8013F3D8
-
-lbl_8013F3D4:
-	fmr      f4, f2
-
-lbl_8013F3D8:
-	lfs      f2, lbl_805182B4@sda21(r2)
-	fcmpo    cr0, f4, f2
-	ble      lbl_8013F3FC
-	lfs      f2, lbl_80518304@sda21(r2)
-	fdivs    f2, f2, f4
-	fmuls    f9, f9, f2
-	fmuls    f0, f0, f2
-	fmuls    f1, f1, f2
-	b        lbl_8013F400
-
-lbl_8013F3FC:
-	fmr      f4, f2
-
-lbl_8013F400:
-	lfs      f3, 0x1c(r4)
-	lfs      f2, lbl_805182B0@sda21(r2)
-	fsubs    f7, f3, f2
-	fcmpo    cr0, f4, f7
-	blelr
-	fmuls    f2, f9, f7
-	lfs      f3, 0x4c(r4)
-	fmuls    f5, f0, f7
-	lfs      f6, 0x50(r4)
-	fmuls    f7, f1, f7
-	lfs      f8, 0x54(r4)
-	fadds    f3, f3, f2
-	lfs      f4, lbl_80518344@sda21(r2)
-	fadds    f5, f6, f5
-	lfs      f2, lbl_805182B4@sda21(r2)
-	fadds    f6, f8, f7
-	stfs     f3, 0x20c(r3)
-	stfs     f5, 0x210(r3)
-	stfs     f6, 0x214(r3)
-	lfs      f7, 0x204(r3)
-	lfs      f8, 0x200(r3)
-	fmuls    f3, f7, f0
-	lfs      f6, 0x208(r3)
-	fmadds   f3, f8, f9, f3
-	fmadds   f3, f6, f1, f3
-	fmuls    f5, f4, f3
-	fmuls    f4, f9, f5
-	fmuls    f3, f0, f5
-	fmuls    f0, f1, f5
-	fsubs    f4, f8, f4
-	fsubs    f1, f7, f3
-	fsubs    f0, f6, f0
-	stfs     f4, 0x200(r3)
-	stfs     f1, 0x204(r3)
-	stfs     f0, 0x208(r3)
-	lwz      r4, 0x194(r3)
-	lfs      f1, 0x210(r3)
-	lfs      f0, 0x50(r4)
-	lfs      f4, 0x20c(r3)
-	fsubs    f5, f1, f0
-	lfs      f3, 0x4c(r4)
-	lfs      f1, 0x214(r3)
-	lfs      f0, 0x54(r4)
-	fsubs    f3, f4, f3
-	fmuls    f4, f5, f5
-	fsubs    f1, f1, f0
-	fmadds   f0, f3, f3, f4
-	fmuls    f1, f1, f1
-	fadds    f0, f1, f0
-	fcmpo    cr0, f0, f2
-	blelr
-	blr
-	*/
 }
 
 /**
