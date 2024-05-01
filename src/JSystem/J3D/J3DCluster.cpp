@@ -60,15 +60,33 @@ void J3DDeformer::deform(J3DVertexBuffer* vtxbuffer, u16 index)
  */
 void J3DDeformer::deform_VtxPosF32(J3DVertexBuffer* vtxbuffer, J3DCluster* cluster, J3DClusterKey* key, f32* weights)
 {
-	for (u16 i = 0; i < cluster->_12; i++) {
-		f32* pos = (f32*)((int)vtxbuffer->mVtxPos[0] + (int)cluster->_18[i] * 12);
+	int n = cluster->_12_count;
+	u16* ind = (u16*)&mDeformData->mVtxPos;
+	int n2 = cluster->_10;
+	u16* asd = cluster->_18;
+
+	f32* v = (f32*)(vtxbuffer->mVtxPos[0]);
+	for (int i = 0; i < n; i++) {
+		int j = ind[i] * 3;
+		
+		f32* pos = &v[j];
 		pos[0]   = 0.0f;
 		pos[1]   = 0.0f;
 		pos[2]   = 0.0f;
 	}
 
 	f32 test[2] = { 1.0f, -1.0f };
-	for (u16 i = 0; i < cluster->_12; i++) { }
+	f32*t = test;
+	for (u16 i = 0; i < n; i++) 
+	{
+		u16 j2 = 1;
+
+		for(u16 j = 0; j < n2; j++)
+		{
+			weights[j] *= t[j2];
+
+		}
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)

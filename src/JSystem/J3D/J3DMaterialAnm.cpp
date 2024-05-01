@@ -41,32 +41,34 @@ void J3DMaterialAnm::initialize()
  */
 void J3DMaterialAnm::calc(J3DMaterial* material) const
 {
-	for (u32 i = 0; i < 2; i++) {
+	GXColor* color;
+	for (u32 i = 0; i < ARRAY_SIZE(mMatColAnmList); i++) {
 		if (mMatColAnmList[i].getAnmFlag()) {
-			GXColor* color = material->mColorBlock->getMatColor(i);
+			color = material->mColorBlock->getMatColor(i);
 			mMatColAnmList[i].calc(color);
 		}
 	}
 
-	u16 tmp;
-	for (u32 i = 0; i < 8; i++) {
+	for (u32 i = 0; i < ARRAY_SIZE(mTexNoAnmList); i++) {
 		if (mTexNoAnmList[i].getAnmFlag()) {
+			u16 tmp;
 			mTexNoAnmList[i].calc(&tmp);
 			material->mTevBlock->setTexNo(i, tmp);
 		}
 	}
-	for (u32 i = 0; i < 3; i++) {
+	for (u32 i = 0; i < 3; i++) { // why is this 3??
 		if (mTevColAnmList[i].getAnmFlag()) {
 			J3DGXColorS10* color = material->getTevBlock()->getTevColor(i);
 			mTevColAnmList[i].calc(color);
 		}
 	}
-	for (u32 i = 0; i < 4; i++) {
+	for (u32 i = 0; i < ARRAY_SIZE(mTevKColAnmList); i++) {
 		if (mTevKColAnmList[i].getAnmFlag()) {
-			mTevKColAnmList[i].calc((GXColor*)material->mTevBlock->getTevKColor(i));
+			GXColor *color = material->mTevBlock->getTevKColor(i);
+			mTevKColAnmList[i].calc(color);
 		}
 	}
-	for (u32 i = 0; i < 8; i++) {
+	for (u32 i = 0; i < ARRAY_SIZE(mTexMtxAnmList); i++) {
 		if (mTexMtxAnmList[i].getAnmFlag()) {
 			mTexMtxAnmList[i].calc(&material->mTexGenBlock->getTexMtx(i)->mTexMtxInfo.mSRT);
 		}
