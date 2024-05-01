@@ -759,9 +759,9 @@ void Mgr::onLoadResources()
 	mPlatformA      = loadPlatform(arc, "cap_platform.bin");
 	mPlatformB      = loadPlatform(arc, "side_platform.bin");
 	MapCode::Code code;
-	code.setCode(1, 2, true);
+	code.setCode(MapCode::Code::Attribute1, MapCode::Code::SlipCode_Steep, true);
 	mPlatformA->setMapCodeAll(code);
-	code.setCode(1, 0, true);
+	code.setCode(MapCode::Code::Attribute1, MapCode::Code::SlipCode_NoSlip, true);
 	mPlatformB->setMapCodeAll(code);
 	closeTextArc(arc);
 }

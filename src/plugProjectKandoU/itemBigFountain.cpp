@@ -526,7 +526,7 @@ void Mgr::onLoadResources()
 	mPlatform = loadPlatform(textArc, "platform.bin");
 
 	MapCode::Code mapCode;
-	mapCode.setCode(MapCode::Code::Attribute1, MapCode::Code::SlipCode2, true);
+	mapCode.setCode(MapCode::Code::Attribute1, MapCode::Code::SlipCode_Steep, true);
 	mPlatform->setMapCodeAll(mapCode);
 
 	closeTextArc(textArc);

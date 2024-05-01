@@ -37,7 +37,6 @@ struct J3DCurrentMtxInfo {
 	u32 mMtxIdxRegB; // _04
 	u32 getMtxIdxRegA() const { return mMtxIdxRegA; }
 	u32 getMtxIdxRegB() const { return mMtxIdxRegB; }
-
 };
 
 struct J3DCurrentMtx : public J3DCurrentMtxInfo {

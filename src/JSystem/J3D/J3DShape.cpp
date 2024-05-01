@@ -604,8 +604,7 @@ void J3DShape::simpleDrawCache() const
 		sOldVcdVatCmd = mVcdVatCmd;
 	}
 
-	if (J3DShape::sEnvelopeFlag != 0 && !mHasPNMTXIdx)
-	{
+	if (J3DShape::sEnvelopeFlag != 0 && !mHasPNMTXIdx) {
 		mCurrentMtx.load();
 	}
 

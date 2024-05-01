@@ -273,6 +273,22 @@ struct TPkEffect {
 
 	inline bool isFlag(int flagID) { return mFlags.typeView & flagID; }
 
+	inline void clear()
+	{
+		mFlags.clear();
+		mBackupFlags.clear();
+		killKourin_();
+		killDoping_();
+		killNage_();
+		killMoe_();
+		killChudoku_();
+		killMoeSmoke_();
+		killBlackDown_();
+		killWater_();
+		killHamonA_();
+		killHamonB_();
+	}
+
 	// for start of cutscene, disable all effects
 	inline void killAllEffects()
 	{

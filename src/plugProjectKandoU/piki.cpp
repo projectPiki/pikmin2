@@ -189,8 +189,10 @@ void Piki::onKill(CreatureKillArg* killArg)
 			gameSystem->mSection->sendMessage(deadMsg);
 		}
 
-		Vector3f pikiPos = getPosition();
-		mEffectsObj->doDead();
+		Vector3f pikiPos          = getPosition();
+		efx::TPkEffect* effectObj = mEffectsObj;
+		effectObj->clear();
+		efx::createSimpleDead(*effectObj->mHamonPosPtr, effectObj->mPikiColor);
 		mSoundObj->startFreePikiSound(PSSE_PK_VC_GHOST, 90, 0);
 
 		if (gameSystem && !gameSystem->isFlag(GAMESYS_DisableDeathCounter)) {
@@ -487,7 +489,7 @@ void Piki::inWaterCallback(WaterBox* wbox)
 	mEffectsObj->mHeight = wbox->getSeaHeightPtr();
 	if (isAlive()) {
 		efx::TPkEffect* effectObj = mEffectsObj;
-		effectObj->doWaterEntry(); // regswap in this inline
+		effectObj->doWaterEntry(effectObj->isFlag(PKEFF_Drown)); // regswap in this inline
 		mSoundObj->startFreePikiSetSound(PSSE_PK_SE_WATER_IN, PSGame::SeMgr::SETSE_PikiLanding, 90, 0);
 	}
 

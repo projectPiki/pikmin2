@@ -1267,7 +1267,7 @@ void Mgr::onLoadResources()
 	}
 
 	MapCode::Code mapCode;
-	mapCode.setCode(MapCode::Code::Attribute1 + MapCode::Code::Attribute2, MapCode::Code::SlipCode0, true);
+	mapCode.setCode(MapCode::Code::Attribute1 + MapCode::Code::Attribute2, MapCode::Code::SlipCode_NoSlip, true);
 
 	mObjectPathComponent             = "user/Kando/bridge/s_bridge";
 	JKRArchive* textArcShort         = openTextArc("texts.szs");

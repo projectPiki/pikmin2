@@ -1116,320 +1116,65 @@ void FakePiki::turnTo(Vector3f& targetPos)
  */
 void FakePiki::moveVelocity()
 {
-	Sys::Triangle* tri   = mBounceTriangle;
+	// update simulation (next/target) velocity based on the triangle we're standing on
+	Sys::Triangle* tri   = mBounceTriangle; // triangle we're currently on
 	Vector3f newVelocity = Vector3f(0.0f);
-	Vector3f oldVelocity = Vector3f(mVelocity);
+	Vector3f oldVelocity = Vector3f(mVelocity); // our current velocity
 
 	if (tri) {
-		f32 oldSpeed     = oldVelocity.length();
-		f32 collSpeedDot = dot(oldVelocity, mCollisionPosition);
-		Vector3f vec1    = oldVelocity - (mCollisionPosition * collSpeedDot);
+		// update our direction based on collision, but keep speed the same
+		f32 oldSpeed    = oldVelocity.length();
+		Vector3f newDir = mCollisionPosition * oldVelocity.dot(mCollisionPosition);
+		newDir          = oldVelocity - newDir;
+		newDir.normalise();
 
-		vec1.normalise();
+		oldVelocity = newDir * oldSpeed;
 
-		oldVelocity = vec1 * oldSpeed;
-
+		// check if we're on slippery ground
 		int code = tri->mCode.getSlipCode();
-		if (code == 0) {
+		if (code == MapCode::Code::SlipCode_NoSlip) {
+			// ground is not slippery
 			if (oldSpeed < 0.1f) {
-				Vector3f scaleVec = Vector3f(0.0f, -_aiConstants->mGravity.mData * sys->mDeltaTime, 0.0f);
-				f32 collScaleDot  = dot(scaleVec, mCollisionPosition);
-				Vector3f vec2     = scaleVec - mCollisionPosition * collScaleDot;
-				vec2              = Vector3f(-vec2.x, -vec2.y, -vec2.z);
-				newVelocity       = vec2 * 1.0f;
+				// going below speed threshold, slow to a stop
+				Vector3f fallVelocity = Vector3f(0.0f, -(_aiConstants->mGravity.mData * sys->mDeltaTime), 0.0f);
+				Vector3f newDir       = mCollisionPosition * fallVelocity.dot(mCollisionPosition);
+				newDir                = fallVelocity - newDir;
+				// decelerate to a stop
+				newDir      = Vector3f(-newDir.x, -newDir.y, -newDir.z);
+				newVelocity = newDir * 1.0f;
 			}
+
 		} else {
-			Vector3f scaleVec = Vector3f(0.0f, -_aiConstants->mGravity.mData * sys->mDeltaTime, 0.0f);
-			f32 collScaleDot  = dot(scaleVec, mCollisionPosition);
-			Vector3f vec2     = scaleVec - mCollisionPosition * collScaleDot;
-			vec2.normalise();
+			// some form of slipping happening
+			Vector3f fallVelocity = Vector3f(0.0f, -(_aiConstants->mGravity.mData * sys->mDeltaTime), 0.0f);
+			Vector3f moveDir      = mCollisionPosition * fallVelocity.dot(mCollisionPosition);
+			moveDir               = fallVelocity - moveDir;
+			moveDir.normalise();
 
-			f32 scale;
-			if (code == MapCode::Code::SlipCode2) {
-				scale = 2.5f;
+			f32 slipFactor;
+			if (code == MapCode::Code::SlipCode_Steep) {
+				// if we're on steep/extra slippery ground, slip faster
+				slipFactor = 2.5f;
 				if (isNavi() && ((Navi*)this)->getOlimarData()->hasItem(OlimarData::ODII_RepugnantAppendage)) {
-					scale = 4.0f;
+					// if we have rush boots, we slip even FASTER on steep slopes
+					slipFactor = 4.0f;
 				}
+
 			} else {
-				scale = 1.0f;
+				// gradual slope, just slip at regular gravity
+				slipFactor = 1.0f;
 			}
 
-			newVelocity = (((vec2 * _aiConstants->mGravity.mData) * sys->mDeltaTime) * scale);
+			// slip under gravity, extra if extra slippery slope
+			newVelocity = (((moveDir * _aiConstants->mGravity.mData) * sys->mDeltaTime) * slipFactor);
 		}
 	}
 
-	Vector3f vec3 = (oldVelocity + mSimPosition) - mSimVelocity;
+	Vector3f accel = (oldVelocity + mSimPosition) - mSimVelocity;
+	accel.length(); // remnant from some commented out code block with a comparison, probably, or debug info
 
-	vec3.length(); // something's gotten commented out involving this
-
-	vec3 *= sys->mDeltaTime / 0.1f;
-	mSimVelocity = mSimVelocity + vec3;
-
+	mSimVelocity = mSimVelocity + accel * (sys->mDeltaTime / 0.1f);
 	mSimVelocity = mSimVelocity + newVelocity;
-
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stfd     f31, 0x70(r1)
-	psq_st   f31, 120(r1), 0, qr0
-	stfd     f30, 0x60(r1)
-	psq_st   f30, 104(r1), 0, qr0
-	stfd     f29, 0x50(r1)
-	psq_st   f29, 88(r1), 0, qr0
-	stfd     f28, 0x40(r1)
-	psq_st   f28, 72(r1), 0, qr0
-	stfd     f27, 0x30(r1)
-	psq_st   f27, 56(r1), 0, qr0
-	stfd     f26, 0x20(r1)
-	psq_st   f26, 40(r1), 0, qr0
-	stfd     f25, 0x10(r1)
-	psq_st   f25, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lfs      f30, lbl_805182B4@sda21(r2)
-	lwz      r3, 0xc8(r3)
-	fmr      f29, f30
-	lfs      f27, 0x1e4(r31)
-	fmr      f28, f30
-	cmplwi   r3, 0
-	lfs      f26, 0x1e8(r31)
-	lfs      f25, 0x1ec(r31)
-	beq      lbl_8013DEFC
-	fmuls    f0, f26, f26
-	fmuls    f1, f25, f25
-	fmadds   f0, f27, f27, f0
-	fadds    f31, f1, f0
-	fcmpo    cr0, f31, f30
-	ble      lbl_8013DCCC
-	ble      lbl_8013DCD0
-	frsqrte  f0, f31
-	fmuls    f31, f0, f31
-	b        lbl_8013DCD0
-
-lbl_8013DCCC:
-	fmr      f31, f30
-
-lbl_8013DCD0:
-	lfs      f2, 0xd0(r31)
-	lfs      f3, 0xcc(r31)
-	fmuls    f1, f26, f2
-	lfs      f4, 0xd4(r31)
-	lfs      f0, lbl_805182B4@sda21(r2)
-	fmadds   f1, f27, f3, f1
-	fmadds   f1, f25, f4, f1
-	fmuls    f2, f2, f1
-	fmuls    f3, f3, f1
-	fmuls    f1, f4, f1
-	fsubs    f4, f26, f2
-	fsubs    f2, f27, f3
-	fsubs    f3, f25, f1
-	fmuls    f1, f4, f4
-	fmuls    f5, f3, f3
-	fmadds   f1, f2, f2, f1
-	fadds    f1, f5, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_8013DD2C
-	ble      lbl_8013DD30
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_8013DD30
-
-lbl_8013DD2C:
-	fmr      f1, f0
-
-lbl_8013DD30:
-	lfs      f0, lbl_805182B4@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8013DD50
-	lfs      f0, lbl_80518304@sda21(r2)
-	fdivs    f0, f0, f1
-	fmuls    f2, f2, f0
-	fmuls    f4, f4, f0
-	fmuls    f3, f3, f0
-
-lbl_8013DD50:
-	fmuls    f27, f2, f31
-	addi     r3, r3, 0x5c
-	fmuls    f26, f4, f31
-	fmuls    f25, f3, f31
-	bl       getSlipCode__Q27MapCode4CodeFv
-	cmpwi    r3, 0
-	bne      lbl_8013DDE4
-	lfs      f0, lbl_805182D4@sda21(r2)
-	fcmpo    cr0, f31, f0
-	bge      lbl_8013DEFC
-	lwz      r4, _aiConstants__4Game@sda21(r13)
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 0x28(r4)
-	lfs      f0, 0x54(r3)
-	lfs      f7, 0xd0(r31)
-	fmuls    f0, f1, f0
-	lfs      f4, lbl_805182B4@sda21(r2)
-	lfs      f1, 0xcc(r31)
-	lfs      f6, 0xd4(r31)
-	fneg     f5, f0
-	lfs      f2, lbl_80518304@sda21(r2)
-	fmuls    f0, f5, f7
-	fmadds   f0, f4, f1, f0
-	fmadds   f0, f4, f6, f0
-	fmuls    f3, f1, f0
-	fmuls    f1, f7, f0
-	fmuls    f0, f6, f0
-	fsubs    f3, f4, f3
-	fsubs    f1, f5, f1
-	fsubs    f0, f4, f0
-	fneg     f3, f3
-	fneg     f1, f1
-	fneg     f0, f0
-	fmuls    f30, f3, f2
-	fmuls    f29, f1, f2
-	fmuls    f28, f0, f2
-	b        lbl_8013DEFC
-
-lbl_8013DDE4:
-	lwz      r5, _aiConstants__4Game@sda21(r13)
-	lwz      r4, sys@sda21(r13)
-	lfs      f1, 0x28(r5)
-	lfs      f0, 0x54(r4)
-	lfs      f2, 0xd0(r31)
-	fmuls    f0, f1, f0
-	lfs      f3, lbl_805182B4@sda21(r2)
-	lfs      f6, 0xcc(r31)
-	lfs      f5, 0xd4(r31)
-	fneg     f4, f0
-	fmuls    f0, f4, f2
-	fmadds   f0, f3, f6, f0
-	fmadds   f0, f3, f5, f0
-	fmuls    f1, f2, f0
-	fmuls    f2, f6, f0
-	fmuls    f0, f5, f0
-	fsubs    f28, f4, f1
-	fsubs    f30, f3, f2
-	fsubs    f29, f3, f0
-	fmuls    f0, f28, f28
-	fmuls    f1, f29, f29
-	fmadds   f0, f30, f30, f0
-	fadds    f1, f1, f0
-	fcmpo    cr0, f1, f3
-	ble      lbl_8013DE58
-	ble      lbl_8013DE5C
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_8013DE5C
-
-lbl_8013DE58:
-	fmr      f1, f3
-
-lbl_8013DE5C:
-	lfs      f0, lbl_805182B4@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8013DE7C
-	lfs      f0, lbl_80518304@sda21(r2)
-	fdivs    f0, f0, f1
-	fmuls    f30, f30, f0
-	fmuls    f28, f28, f0
-	fmuls    f29, f29, f0
-
-lbl_8013DE7C:
-	cmpwi    r3, 2
-	bne      lbl_8013DEC4
-	mr       r3, r31
-	lfs      f31, lbl_80518308@sda21(r2)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8013DEC8
-	mr       r3, r31
-	bl       getOlimarData__Q24Game4NaviFv
-	li       r4, 7
-	bl       hasItem__Q24Game10OlimarDataFi
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8013DEC8
-	lfs      f31, lbl_8051830C@sda21(r2)
-	b        lbl_8013DEC8
-
-lbl_8013DEC4:
-	lfs      f31, lbl_80518304@sda21(r2)
-
-lbl_8013DEC8:
-	lwz      r3, _aiConstants__4Game@sda21(r13)
-	lwz      r4, sys@sda21(r13)
-	lfs      f0, 0x28(r3)
-	lfs      f3, 0x54(r4)
-	fmuls    f2, f30, f0
-	fmuls    f1, f28, f0
-	fmuls    f0, f29, f0
-	fmuls    f2, f2, f3
-	fmuls    f1, f1, f3
-	fmuls    f0, f0, f3
-	fmuls    f30, f2, f31
-	fmuls    f29, f1, f31
-	fmuls    f28, f0, f31
-
-lbl_8013DEFC:
-	lfs      f0, 0x1f4(r31)
-	lfs      f2, 0x1f8(r31)
-	fadds    f1, f26, f0
-	lfs      f8, 0x204(r31)
-	lfs      f0, 0x1f0(r31)
-	fadds    f2, f25, f2
-	lfs      f7, 0x208(r31)
-	fsubs    f3, f1, f8
-	fadds    f1, f27, f0
-	lfs      f9, 0x200(r31)
-	fsubs    f4, f2, f7
-	lfs      f0, lbl_805182B4@sda21(r2)
-	fmuls    f5, f3, f3
-	fsubs    f2, f1, f9
-	fmuls    f6, f4, f4
-	fmadds   f1, f2, f2, f5
-	fadds    f1, f6, f1
-	fcmpo    cr0, f1, f0
-	lwz      r3, sys@sda21(r13)
-	lfs      f0, lbl_805182D4@sda21(r2)
-	lfs      f1, 0x54(r3)
-	fdivs    f0, f1, f0
-	fmuls    f2, f2, f0
-	fmuls    f1, f3, f0
-	fmuls    f0, f4, f0
-	fadds    f2, f9, f2
-	fadds    f1, f8, f1
-	fadds    f0, f7, f0
-	stfs     f2, 0x200(r31)
-	stfs     f1, 0x204(r31)
-	stfs     f0, 0x208(r31)
-	lfs      f0, 0x200(r31)
-	lfs      f1, 0x204(r31)
-	fadds    f0, f0, f30
-	lfs      f2, 0x208(r31)
-	fadds    f1, f1, f29
-	fadds    f2, f2, f28
-	stfs     f0, 0x200(r31)
-	stfs     f1, 0x204(r31)
-	stfs     f2, 0x208(r31)
-	psq_l    f31, 120(r1), 0, qr0
-	lfd      f31, 0x70(r1)
-	psq_l    f30, 104(r1), 0, qr0
-	lfd      f30, 0x60(r1)
-	psq_l    f29, 88(r1), 0, qr0
-	lfd      f29, 0x50(r1)
-	psq_l    f28, 72(r1), 0, qr0
-	lfd      f28, 0x40(r1)
-	psq_l    f27, 56(r1), 0, qr0
-	lfd      f27, 0x30(r1)
-	psq_l    f26, 40(r1), 0, qr0
-	lfd      f26, 0x20(r1)
-	psq_l    f25, 24(r1), 0, qr0
-	lfd      f25, 0x10(r1)
-	lwz      r0, 0x84(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
 }
 
 /**

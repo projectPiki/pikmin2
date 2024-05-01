@@ -20,11 +20,11 @@ struct Code {
 	};
 
 	enum SlipCode {
-		SlipCode0     = 0x0,
-		SlipCode1     = 0x1,
-		SlipCode2     = 0x2,
-		SlipCode3     = 0x3,
-		SLIPCODE_MASK = 0x3,
+		SlipCode_NoSlip  = 0x0, // normal ground
+		SlipCode_Gradual = 0x1, // slow slip if not moving, like in VoR going up to SCx
+		SlipCode_Steep   = 0x2, // strong slip, cannot walk up, like slope behind ship in VoR
+		SlipCode3        = 0x3, // unknown
+		SLIPCODE_MASK    = 0x3,
 	};
 #pragma enumsalwaysint reset
 
@@ -34,7 +34,7 @@ struct Code {
 	char* getSlipCodeName();
 	bool isBald();
 	void read(Stream&);
-	void setCode(int, int, bool);
+	void setCode(int attribute, int slip, bool isBald);
 	void write(Stream&);
 
 	inline char* getContents() { return (char*)mContents; }

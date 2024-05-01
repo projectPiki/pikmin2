@@ -486,7 +486,7 @@ Mgr::Mgr()
 	mPlatforms[2] = loadPlatform(textArc, "platform_3.bin");
 
 	MapCode::Code mapCode;
-	mapCode.setCode(MapCode::Code::Attribute1 | MapCode::Code::Attribute2, MapCode::Code::SlipCode0, true);
+	mapCode.setCode(MapCode::Code::Attribute1 | MapCode::Code::Attribute2, MapCode::Code::SlipCode_NoSlip, true);
 
 	mPlatforms[0]->setMapCodeAll(mapCode);
 	mPlatforms[1]->setMapCodeAll(mapCode);
