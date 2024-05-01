@@ -170,7 +170,7 @@ void PikiDemoWaitState::cleanup(Piki* piki) { }
 void PikiCarrotState::init(Piki* piki, StateArg* stateArg)
 {
 	piki->startMotion(IPikiAnims::WAIT, IPikiAnims::WAIT, nullptr, nullptr);
-	piki->_180 = 0.3f;
+	piki->mTraceMoveRadius = 0.3f;
 	piki->setMoveVelocity(false);
 	piki->setMoveRotation(false);
 	piki->setCollisionFlick(true);
@@ -1322,7 +1322,7 @@ void PikiNukareState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
 		rumbleMgr->startRumble(RUMBLETYPE_PluckPiki, (int)mNavi->mNaviIndex);
 
 		Vector3f position = piki->getPosition();
-		piki->setFPFlag(FPFLAGS_Unk5);
+		piki->setFPFlag(FPFLAGS_PikiBeingPlucked);
 		Sys::Sphere sphere(position, 10.0f);
 		WaterBox* wbox = piki->checkWater(nullptr, sphere);
 
@@ -1357,7 +1357,7 @@ void PikiNukareState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
  * @note Address: 0x8018B6D0
  * @note Size: 0x10
  */
-void PikiNukareState::cleanup(Piki* piki) { piki->resetFPFlag(FPFLAGS_Unk5); }
+void PikiNukareState::cleanup(Piki* piki) { piki->resetFPFlag(FPFLAGS_PikiBeingPlucked); }
 
 /**
  * @note Address: 0x8018B6E0

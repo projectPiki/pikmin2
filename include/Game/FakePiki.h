@@ -94,7 +94,7 @@ enum FakePikiDynamics {
 	FPFLAGS_UpdateTrMatrixDisabled = 0x2,
 	FPFLAGS_MoveVelocityDisabled   = 0x4,
 	FPFLAGS_MapCollisionDisabled   = 0x8,
-	FPFLAGS_Unk5                   = 0x10,
+	FPFLAGS_PikiBeingPlucked       = 0x10,
 	FPFLAGS_Zikatu                 = 0x20,
 	FPFLAGS_WasZikatu              = 0x80,
 	FPFLAGS_Unk8                   = 0x100,
@@ -237,7 +237,7 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	// _000-_178 = Creature
 	// _178-_17C = MotionListener
 	BitFlag<u32> mFakePikiFlags;            // _17C
-	f32 _180;                               // _180
+	f32 mTraceMoveRadius;                   // _180, 0.0f for everything except carrot pikmin, which is 0.3f
 	u32 mDontUseWallCallback;               // _184
 	IDelegate* mDoAnimCallback;             // _188
 	s16 mRoomIndex;                         // _18C

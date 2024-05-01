@@ -74,7 +74,7 @@ void FakePiki::initFakePiki()
 
 	mFakePikiFlags.clear();
 	initCaptureStomach();
-	_180                 = 0.0f;
+	mTraceMoveRadius     = 0.0f;
 	mRoomIndex           = -1;
 	mDontUseWallCallback = 0; // only runs wallCallback if this is 0 (it always is)
 }
@@ -1201,595 +1201,161 @@ void FakePiki::moveRotation()
  */
 void FakePiki::move(f32 rate)
 {
-	f32 collRad  = getMapCollisionRadius();
+	f32 collRad  = getMapCollisionRadius(); // this is 8.5f for both pikis and navis
 	Vector3f pos = mPosition;
 	pos.y += collRad;
 
-	Vector3f translation;
-	if (isFPFlag(FPFLAGS_Unk5) && mModel) {
-		translation = mModel->mJoints[1].getWorldMatrix()->getColumn(3);
-		pos         = translation;
+	Vector3f jointPos; // this is some specific joint position, possibly stem?
+	if (isFPFlag(FPFLAGS_PikiBeingPlucked) && mModel) {
+		jointPos = mModel->mJoints[1].getWorldMatrix()->getColumn(3);
+		pos      = jointPos;
 	}
 
-	Sys::Sphere sphere(pos, collRad);
-	Vector3f vec;
-	vec = mSimVelocity + mAcceleration;
+	// set up sphere to simulate movement with
+	Sys::Sphere moveSphere(pos, collRad);
+	// radius of traced movement
+	f32 traceRadius = mTraceMoveRadius;
+	// reset y acceleration for purposes of this calculation
+	mAcceleration.y = 0.0f;
+	// calculate simple next-frame velocity
+	Vector3f velocity;
+	velocity = mSimVelocity + mAcceleration;
 
-	MoveInfo info(&sphere, &vec, 0.0f);
+	MoveInfo info(&moveSphere, &velocity, traceRadius);
+	info.mInfoOrigin        = this;
 	mFakePikiBounceTriangle = nullptr;
 
 	if (useMapCollision()) {
-		mTriList       = mapMgr->traceMove(info, rate);
-		mSimVelocity   = vec;
+		// simulate movement (for one frame, usually)
+		mTriList = mapMgr->traceMove(info, rate);
+		// set next frame velocity as calculated by traceMove
+		mSimVelocity   = velocity;
 		info.mVelocity = &mSimVelocity;
 
+		// if we're in a cave room, mark it as visited + mark us as in that room
 		if (info.mRoomIndex != -1 && mapMgr->mRouteMgr) {
-			mRoomIndex    = info.mRoomIndex;
-			MapRoom* room = static_cast<RoomMapMgr*>(mapMgr)->getMapRoom(info.mRoomIndex);
+			mRoomIndex = info.mRoomIndex;
 
+			MapRoom* room = static_cast<RoomMapMgr*>(mapMgr)->getMapRoom(info.mRoomIndex);
 			if (!room->mIsVisited) {
+				// make room visited
 				mapMgr->mRouteMgr->openRoom(info.mRoomIndex);
 				room->mIsVisited = true;
 			}
 
+			// NB: ignore this block, it's just forcing instructions to spawn
+			// there's probably some debug code that went here for navis in 2P mode but idk what - HP
 			if (isNavi() && gameSystem->isMultiplayerMode()) {
-				bool mode = gameSystem->isMultiplayerMode(); // something else needs to go here to make this work
+				mRoomIndex = mRoomIndex;
+				if (gameSystem->isStoryMode()) {
+					if (mRoomIndex) {
+						static_cast<Navi*>(this)->mController1 = static_cast<Navi*>(this)->mController1;
+					}
+				}
 			}
 		}
+
 	} else {
+		// we're not using map collision, do the simplest movement calculation possible
 		info.mMoveSphere->mPosition = info.mMoveSphere->mPosition + mSimVelocity * rate;
 		info.mBounceTriangle        = nullptr;
 	}
 
 	if (!mBounceTriangle && info.mBounceTriangle) {
+		// we were falling and next frame we hit something - bounce
 		bounceCallback(info.mBounceTriangle);
 	}
 
+	// update tri we're on and its position
 	mBounceTriangle    = info.mBounceTriangle;
 	mCollisionPosition = info.mPosition;
 
+	// we're gonna run into a wall
 	if (!mDontUseWallCallback && info.mWallTriangle) {
 		wallCallback(info.mReflectPosition);
 	}
 
+	// we're on a platform, change position accordingly since it might move us
 	if (platMgr) {
 		platMgr->traceMove(info, rate);
 	}
 
+	// if platform made it so we're on a triangle, bounce and re-update tri position
 	if (!mBounceTriangle && info.mBounceTriangle) {
 		bounceCallback(info.mBounceTriangle);
 		mBounceTriangle    = info.mBounceTriangle;
 		mCollisionPosition = info.mPosition;
 	}
 
+	// platform made us hit a wall
 	if (!mDontUseWallCallback && info.mWallTriangle) {
 		wallCallback(info.mReflectPosition);
 	}
 
+	// we're on sufficiently flat ground, update fakepiki-specific triangle (for knockbacks and burying from mamuta hit, etc)
 	if (mBounceTriangle && mBounceTriangle->mTrianglePlane.mNormal.y > 0.6f) {
 		mFakePikiBounceTriangle = mBounceTriangle;
 	}
 
-	if (isFPFlag(FPFLAGS_Unk5)) {
-		Vector3f diff = sphere.mPosition - translation;
+	if (isFPFlag(FPFLAGS_PikiBeingPlucked)) {
+		// I'M BEING PLUCKED OVER HERE, offset by some joint position (probably stem?)
+		Vector3f diff = moveSphere.mPosition - jointPos;
 		diff.y        = 0.0f;
 		mPosition += diff;
+		moveSphere.mPosition = mPosition;
 
-		sphere.mPosition = mPosition;
 	} else {
-		mPosition = sphere.mPosition;
+		// update position based on simulation (and remove collision radius from height)
+		mPosition = moveSphere.mPosition;
 		mPosition.y -= collRad;
 	}
 
+	// if we're in a cave room and the floor has hidden collision (?), recalculate position
 	if (mapMgr->hasHiddenCollision()) {
 		Sys::Sphere bbSphere(mPosition, collRad);
 		mapMgr->constraintBoundBox(bbSphere);
 
-		mPosition        = bbSphere.mPosition;
-		sphere.mPosition = mPosition;
+		mPosition            = bbSphere.mPosition;
+		moveSphere.mPosition = mPosition;
 	}
 
-	mBoundingSphere = sphere;
+	// update bounding sphere
+	mBoundingSphere = moveSphere;
 
+	// if we're not on actual ground, don't worry about effects
 	if (!mBounceTriangle) {
 		return;
 	}
 
+	// if we're in water, don't worry about effects
 	if (inWater()) {
 		return;
 	}
 
 	// If moved at least least 1.0 units since last frame,
 	// random chance to make splash/dust while walking
-	// 3.3% for navis, less for pikis depending on how many are in the party
+	// 3.333% for navis, less for pikis depending on how many are in the party
 	if (mPreviousPosition.distance(mPosition) > 1.0f) {
 		f32 efxChance;
 		if (isNavi()) {
 			efxChance = 0.033333335f;
 		} else {
+			// scale down effect chance for big pikmin parties so you don't get a million particles
+			// example: each piki in a full 100-pikmin party has a 0.8% chance to make splash/dust
+			// - for a single pikmin party, that chance is 3.31%
 			int counter = GameStat::formationPikis;
 			efxChance   = -0.025000002f * ((f32)counter / 100.0f) + 0.033333335f;
 		}
 
 		if (randFloat() <= efxChance) {
-			if (mBounceTriangle->mCode.mContents == 8) {
+			// make walk effect based on terrain
+			if (mBounceTriangle->mCode.mContents == 8) { // Attribute4, no slip, not bald?
 				efx::createSimpleWalkwater(mPosition);
 			} else {
 				efx::createSimpleWalksmoke(mPosition);
 			}
 		}
 	}
-	/*
-	stwu     r1, -0x130(r1)
-	mflr     r0
-	stw      r0, 0x134(r1)
-	stfd     f31, 0x120(r1)
-	psq_st   f31, 296(r1), 0, qr0
-	stfd     f30, 0x110(r1)
-	psq_st   f30, 280(r1), 0, qr0
-	stfd     f29, 0x100(r1)
-	psq_st   f29, 264(r1), 0, qr0
-	stfd     f28, 0xf0(r1)
-	psq_st   f28, 248(r1), 0, qr0
-	stw      r31, 0xec(r1)
-	stw      r30, 0xe8(r1)
-	stw      r29, 0xe4(r1)
-	stw      r28, 0xe0(r1)
-	lwz      r12, 0(r3)
-	fmr      f28, f1
-	mr       r31, r3
-	lwz      r12, 0x200(r12)
-	mtctr    r12
-	bctrl
-	fmr      f31, f1
-	lwz      r0, 0x17c(r31)
-	lfs      f1, 0x210(r31)
-	rlwinm.  r0, r0, 0, 0x1b, 0x1b
-	lfs      f0, 0x20c(r31)
-	fadds    f1, f1, f31
-	lfs      f2, 0x214(r31)
-	beq      lbl_8013E150
-	lwz      r3, 0x174(r31)
-	cmplwi   r3, 0
-	beq      lbl_8013E150
-	lwz      r3, 0x10(r3)
-	addi     r3, r3, 0x3c
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lfs      f30, 0xc(r3)
-	lfs      f29, 0x2c(r3)
-	fmr      f0, f30
-	lfs      f1, 0x1c(r3)
-	fmr      f2, f29
-
-lbl_8013E150:
-	stfs     f0, 0x24(r1)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f5, lbl_805182B4@sda21(r2)
-	addi     r4, r3, sincosTable___5JMath@l
-	stfs     f1, 0x28(r1)
-	li       r5, 0
-	lfs      f0, lbl_80518314@sda21(r2)
-	addi     r7, r1, 0x24
-	stfs     f2, 0x2c(r1)
-	addi     r6, r1, 0x18
-	li       r0, -1
-	mr       r3, r31
-	stfs     f31, 0x30(r1)
-	lfs      f7, 0x180(r31)
-	stfs     f5, 0x120(r31)
-	lfs      f3, 0x208(r31)
-	lfs      f2, 0x124(r31)
-	lfs      f4, 0x204(r31)
-	lfs      f1, 0x120(r31)
-	fadds    f6, f3, f2
-	lfs      f3, 0x200(r31)
-	lfs      f2, 0x11c(r31)
-	fadds    f4, f4, f1
-	lfs      f1, 0x800(r4)
-	fadds    f2, f3, f2
-	stw      r5, 0x48(r1)
-	stfs     f4, 0x1c(r1)
-	stfs     f2, 0x18(r1)
-	stfs     f6, 0x20(r1)
-	stw      r7, 0x34(r1)
-	stw      r6, 0x38(r1)
-	stfs     f7, 0x3c(r1)
-	stfs     f5, 0x40(r1)
-	stw      r5, 0x44(r1)
-	stw      r5, 0x78(r1)
-	stb      r5, 0xa8(r1)
-	stb      r5, 0x4d(r1)
-	stb      r5, 0x4c(r1)
-	stw      r5, 0x7c(r1)
-	stb      r5, 0xc4(r1)
-	stw      r5, 0xc8(r1)
-	stfs     f1, 0x60(r1)
-	stfs     f0, 0x64(r1)
-	stw      r0, 0xcc(r1)
-	stw      r5, 0x80(r1)
-	stb      r5, 0x4e(r1)
-	stw      r31, 0x48(r1)
-	stw      r5, 0x248(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1ec(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8013E30C
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	fmr      f1, f28
-	addi     r4, r1, 0x34
-	lwz      r12, 4(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24c(r31)
-	addi     r0, r31, 0x200
-	lfs      f0, 0x18(r1)
-	stfs     f0, 0x200(r31)
-	lfs      f0, 0x1c(r1)
-	stfs     f0, 0x204(r31)
-	lfs      f0, 0x20(r1)
-	stfs     f0, 0x208(r31)
-	lwz      r4, 0xcc(r1)
-	stw      r0, 0x38(r1)
-	cmpwi    r4, -1
-	beq      lbl_8013E354
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	lwz      r0, 8(r3)
-	cmplwi   r0, 0
-	beq      lbl_8013E354
-	sth      r4, 0x18c(r31)
-	lwz      r0, 0xcc(r1)
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	extsh    r4, r0
-	bl       getMapRoom__Q24Game10RoomMapMgrFs
-	mr       r30, r3
-	lbz      r0, 0xbc(r3)
-	cmplwi   r0, 0
-	bne      lbl_8013E2C4
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	lwz      r0, 0xcc(r1)
-	lwz      r3, 8(r3)
-	extsh    r4, r0
-	bl       openRoom__Q24Game8RouteMgrFs
-	li       r0, 1
-	stb      r0, 0xbc(r30)
-
-lbl_8013E2C4:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8013E354
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r0, 0
-	lwz      r3, 0x44(r3)
-	cmpwi    r3, 1
-	beq      lbl_8013E2FC
-	cmpwi    r3, 3
-	bne      lbl_8013E300
-
-lbl_8013E2FC:
-	li       r0, 1
-
-lbl_8013E300:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_8013E354
-	b        lbl_8013E354
-
-lbl_8013E30C:
-	lfs      f0, 0x200(r31)
-	li       r0, 0
-	lwz      r3, 0x34(r1)
-	lfs      f2, 0x204(r31)
-	fmuls    f0, f0, f28
-	lfs      f1, 0(r3)
-	lfs      f4, 0x208(r31)
-	fmuls    f2, f2, f28
-	lfs      f3, 4(r3)
-	fadds    f0, f1, f0
-	lfs      f5, 8(r3)
-	fmuls    f1, f4, f28
-	fadds    f2, f3, f2
-	stfs     f0, 0(r3)
-	fadds    f0, f5, f1
-	stfs     f2, 4(r3)
-	stfs     f0, 8(r3)
-	stw      r0, 0x78(r1)
-
-lbl_8013E354:
-	lwz      r0, 0xc8(r31)
-	cmplwi   r0, 0
-	bne      lbl_8013E380
-	lwz      r4, 0x78(r1)
-	cmplwi   r4, 0
-	beq      lbl_8013E380
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	lwz      r12, 0xe8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8013E380:
-	lwz      r0, 0x78(r1)
-	stw      r0, 0xc8(r31)
-	lfs      f0, 0x84(r1)
-	stfs     f0, 0xcc(r31)
-	lfs      f0, 0x88(r1)
-	stfs     f0, 0xd0(r31)
-	lfs      f0, 0x8c(r1)
-	stfs     f0, 0xd4(r31)
-	lwz      r0, 0x184(r31)
-	cmplwi   r0, 0
-	bne      lbl_8013E3D0
-	lwz      r0, 0x7c(r1)
-	cmplwi   r0, 0
-	beq      lbl_8013E3D0
-	mr       r3, r31
-	addi     r4, r1, 0x90
-	lwz      r12, 0(r31)
-	lwz      r12, 0x204(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8013E3D0:
-	lwz      r3, platMgr__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8013E3E8
-	fmr      f1, f28
-	addi     r4, r1, 0x34
-	bl       traceMove__Q24Game7PlatMgrFRQ24Game8MoveInfof
-
-lbl_8013E3E8:
-	lwz      r0, 0xc8(r31)
-	cmplwi   r0, 0
-	bne      lbl_8013E434
-	lwz      r4, 0x78(r1)
-	cmplwi   r4, 0
-	beq      lbl_8013E434
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	lwz      r12, 0xe8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x78(r1)
-	stw      r0, 0xc8(r31)
-	lfs      f0, 0x84(r1)
-	stfs     f0, 0xcc(r31)
-	lfs      f0, 0x88(r1)
-	stfs     f0, 0xd0(r31)
-	lfs      f0, 0x8c(r1)
-	stfs     f0, 0xd4(r31)
-
-lbl_8013E434:
-	lwz      r0, 0x184(r31)
-	cmplwi   r0, 0
-	bne      lbl_8013E464
-	lwz      r0, 0x7c(r1)
-	cmplwi   r0, 0
-	beq      lbl_8013E464
-	mr       r3, r31
-	addi     r4, r1, 0x90
-	lwz      r12, 0(r31)
-	lwz      r12, 0x204(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8013E464:
-	lwz      r3, 0xc8(r31)
-	cmplwi   r3, 0
-	beq      lbl_8013E484
-	lfs      f1, 0x10(r3)
-	lfs      f0, lbl_80518314@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8013E484
-	stw      r3, 0x248(r31)
-
-lbl_8013E484:
-	lwz      r0, 0x17c(r31)
-	rlwinm.  r0, r0, 0, 0x1b, 0x1b
-	beq      lbl_8013E4E4
-	lfs      f0, 0x24(r1)
-	lfs      f3, 0x2c(r1)
-	fsubs    f1, f0, f30
-	lfs      f2, 0x20c(r31)
-	lfs      f0, lbl_805182B4@sda21(r2)
-	fsubs    f3, f3, f29
-	fadds    f1, f2, f1
-	stfs     f1, 0x20c(r31)
-	lfs      f1, 0x210(r31)
-	fadds    f0, f1, f0
-	stfs     f0, 0x210(r31)
-	lfs      f0, 0x214(r31)
-	fadds    f0, f0, f3
-	stfs     f0, 0x214(r31)
-	lfs      f0, 0x20c(r31)
-	stfs     f0, 0x24(r1)
-	lfs      f0, 0x210(r31)
-	stfs     f0, 0x28(r1)
-	lfs      f0, 0x214(r31)
-	stfs     f0, 0x2c(r1)
-	b        lbl_8013E508
-
-lbl_8013E4E4:
-	lfs      f0, 0x24(r1)
-	stfs     f0, 0x20c(r31)
-	lfs      f0, 0x28(r1)
-	stfs     f0, 0x210(r31)
-	lfs      f0, 0x2c(r1)
-	stfs     f0, 0x214(r31)
-	lfs      f0, 0x210(r31)
-	fsubs    f0, f0, f31
-	stfs     f0, 0x210(r31)
-
-lbl_8013E508:
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	lwz      r12, 4(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8013E588
-	lfs      f0, 0x20c(r31)
-	addi     r4, r1, 8
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	stfs     f0, 8(r1)
-	lfs      f0, 0x210(r31)
-	stfs     f0, 0xc(r1)
-	lfs      f0, 0x214(r31)
-	stfs     f0, 0x10(r1)
-	stfs     f31, 0x14(r1)
-	lwz      r12, 4(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 8(r1)
-	stfs     f0, 0x20c(r31)
-	lfs      f0, 0xc(r1)
-	stfs     f0, 0x210(r31)
-	lfs      f0, 0x10(r1)
-	stfs     f0, 0x214(r31)
-	lfs      f0, 0x20c(r31)
-	stfs     f0, 0x24(r1)
-	lfs      f0, 0x210(r31)
-	stfs     f0, 0x28(r1)
-	lfs      f0, 0x214(r31)
-	stfs     f0, 0x2c(r1)
-
-lbl_8013E588:
-	lfs      f0, 0x24(r1)
-	stfs     f0, 0x218(r31)
-	lfs      f0, 0x28(r1)
-	stfs     f0, 0x21c(r31)
-	lfs      f0, 0x2c(r1)
-	stfs     f0, 0x220(r31)
-	lfs      f0, 0x30(r1)
-	stfs     f0, 0x224(r31)
-	lwz      r0, 0xc8(r31)
-	cmplwi   r0, 0
-	beq      lbl_8013E714
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x8c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8013E714
-	lfs      f1, 0x23c(r31)
-	lfs      f0, 0x210(r31)
-	lfs      f3, 0x238(r31)
-	fsubs    f4, f1, f0
-	lfs      f2, 0x20c(r31)
-	lfs      f1, 0x240(r31)
-	lfs      f0, 0x214(r31)
-	fsubs    f3, f3, f2
-	fmuls    f4, f4, f4
-	fsubs    f2, f1, f0
-	lfs      f0, lbl_805182B4@sda21(r2)
-	fmadds   f1, f3, f3, f4
-	fmuls    f2, f2, f2
-	fadds    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_8013E620
-	ble      lbl_8013E624
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_8013E624
-
-lbl_8013E620:
-	fmr      f1, f0
-
-lbl_8013E624:
-	lfs      f0, lbl_80518304@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8013E714
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8013E654
-	lfs      f28, lbl_80518318@sda21(r2)
-	b        lbl_8013E6BC
-
-lbl_8013E654:
-	lis      r3, formationPikis__Q24Game8GameStat@ha
-	li       r29, 0
-	addi     r28, r3, formationPikis__Q24Game8GameStat@l
-	mr       r30, r29
-
-lbl_8013E664:
-	mr       r3, r28
-	lwz      r12, 0(r28)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r30, r30, 1
-	add      r29, r29, r3
-	cmpwi    r30, 7
-	addi     r28, r28, 0x20
-	blt      lbl_8013E664
-	xoris    r3, r29, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xd4(r1)
-	lfd      f2, lbl_80518328@sda21(r2)
-	stw      r0, 0xd0(r1)
-	lfs      f1, lbl_80518320@sda21(r2)
-	lfd      f0, 0xd0(r1)
-	lfs      f3, lbl_8051831C@sda21(r2)
-	fsubs    f2, f0, f2
-	lfs      f0, lbl_80518318@sda21(r2)
-	fdivs    f1, f2, f1
-	fmadds   f28, f3, f1, f0
-
-lbl_8013E6BC:
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xd4(r1)
-	lfd      f2, lbl_80518328@sda21(r2)
-	stw      r0, 0xd0(r1)
-	lfs      f0, lbl_80518324@sda21(r2)
-	lfd      f1, 0xd0(r1)
-	fsubs    f1, f1, f2
-	fdivs    f0, f1, f0
-	fcmpo    cr0, f0, f28
-	cror     2, 0, 2
-	bne      lbl_8013E714
-	lwz      r3, 0xc8(r31)
-	lbz      r0, 0x5c(r3)
-	cmplwi   r0, 8
-	bne      lbl_8013E70C
-	addi     r3, r31, 0x20c
-	bl       "createSimpleWalkwater__3efxFR10Vector3<f>"
-	b        lbl_8013E714
-
-lbl_8013E70C:
-	addi     r3, r31, 0x20c
-	bl       "createSimpleWalksmoke__3efxFR10Vector3<f>"
-
-lbl_8013E714:
-	psq_l    f31, 296(r1), 0, qr0
-	lfd      f31, 0x120(r1)
-	psq_l    f30, 280(r1), 0, qr0
-	lfd      f30, 0x110(r1)
-	psq_l    f29, 264(r1), 0, qr0
-	lfd      f29, 0x100(r1)
-	psq_l    f28, 248(r1), 0, qr0
-	lfd      f28, 0xf0(r1)
-	lwz      r31, 0xec(r1)
-	lwz      r30, 0xe8(r1)
-	lwz      r29, 0xe4(r1)
-	lwz      r0, 0x134(r1)
-	lwz      r28, 0xe0(r1)
-	mtlr     r0
-	addi     r1, r1, 0x130
-	blr
-	*/
 }
 
 /**
