@@ -71,8 +71,7 @@ BOOL THPPlayerGetAudioInfo(void* dst);
 // f32 THPPlayerGetFrameRate();
 BOOL THPPlayerSetVolume(int vol, int duration);
 
-int THPPlayerDrawCurrentFrame(GXRenderModeObj* obj, int x, int y, int polyWidth,
-                              int polyHeight); // TODO, parameter names from dwarf info if it exists
+int THPPlayerDrawCurrentFrame(GXRenderModeObj* obj, int x, int y, int polyWidth, int polyHeight);
 u32 THPPlayerGetTotalFrame();
 u8 THPPlayerGetState();
 

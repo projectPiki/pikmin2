@@ -12,17 +12,17 @@ WipeBase::WipeBase()
 	mTimer    = 0.0f;
 	mSpeed    = 1.0f;
 	mIsActive = false;
-	_21       = 1;
+	mUnused   = 1;
 }
 
 /**
  * @note Address: 0x8042BD68
  * @note Size: 0x40
  */
-void WipeBase::start(f32 p1)
+void WipeBase::start(f32 speed)
 {
 	mTimer    = 0.0f;
-	mSpeed    = p1;
+	mSpeed    = speed;
 	mIsActive = true;
 	on_start();
 }
