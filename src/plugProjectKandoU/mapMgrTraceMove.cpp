@@ -65,71 +65,105 @@ Sys::TriIndexList* MapMgr::traceMove(MapCollision& coll, Game::MoveInfo& info, f
  */
 Sys::TriIndexList* MapMgr::traceMove_test1203_cylinder(MapCollision& coll, Game::MoveInfo& info, f32 deltaTime)
 {
-	Sys::Sphere* sphere         = info.mMoveSphere;            // r26
-	Vector3f* vel               = info.mVelocity;              // r25
+	Sys::Sphere* moveSphere = info.mMoveSphere; // r26
+	Vector3f* velocity      = info.mVelocity;   // r25
+
 	Sys::VertexTable* vertTable = coll.mDivider->mVertexTable; // r24
+
+	// some debug printing
 	if (MapMgr::traceMoveDebug) {
-		getMinY(sphere->mPosition);
+		P2DEBUG(getMinY(moveSphere->mPosition));
 	}
 
-	Vector3f spherePos = sphere->mPosition;
-	sphere->mPosition += (*vel) * deltaTime;
-	Sys::TriIndexList* triList   = coll.mDivider->findTriLists(*sphere); // r23
-	Sys::TriangleTable* triTable = coll.mDivider->mTriangleTable;        // r19
+	Vector3f startPos = moveSphere->mPosition;
 
-	Vector3f intersectPoint;
-	Vector3f unused;
+	// update position one step
+	moveSphere->mPosition = moveSphere->mPosition + (*velocity) * deltaTime;
 
+	Sys::TriangleTable* triTable = coll.mDivider->mTriangleTable;            // r19
+	Sys::TriIndexList* triList   = coll.mDivider->findTriLists(*moveSphere); // r23
+
+	Vector3f intersectPoint; // r20/0x5C
+	// NB: this really shouldn't be a sphere - it's a direction + a magnitude stored separately
+	// it could be a Vector3f and separate float, but that doesn't work stack-wise, at least how i've tried
+	// it could be a Plane, but again doesn't work stack-wise and has a non-trivial ctor so unlikely
+	// for now, just treat overlapSphere.mPosition as a direction and overlapSphere.mRadius as a magnitude
+	Sys::Sphere overlapSphere; // r27/0x4C
+
+	// loop through all triangles in all lists to see what we're interacting with
 	for (triList; triList; triList = static_cast<Sys::TriIndexList*>(triList->mNext)) {
-		mTotalTriCount += triList->mCount;
+		mTotalTriCount += triList->getNum();
 
-		for (int i = 0; i < triList->mCount; i++) {
-			int idx            = triList->mObjects[i];     // r21
-			Sys::Triangle* tri = &triTable->mObjects[idx]; // r29
+		for (int i = 0; i < triList->getNum(); i++) {
+			int idx            = triList->getIndex(i);       // r21
+			Sys::Triangle* tri = triTable->getTriangle(idx); // r29
+
+			// if optimisation level is high enough, get rid of things we're not even barely touching
+			// (NB: opt level is 1 in vanilla)
 			if (mTraceMoveOptLevel >= 1) {
-				if (!tri->fastIntersect(*sphere)) {
+				if (!tri->fastIntersect(*moveSphere)) {
 					mMissedIntersectionCount++;
 					continue;
 				}
 			}
 
+			// debug printing enabled probably
 			if (traceMoveDebug) {
 				Sys::Triangle::debug = true;
 			}
 
 			Sys::Triangle::SphereSweep sweep;
-			sweep.mStartPos = spherePos;
+			sweep.mStartPos = startPos;
+			sweep.mSphere   = *moveSphere;
 
-			sweep.mSweepType = Sys::Triangle::SphereSweep::ST_SphereInsidePlane;
 			if (info.mUseIntersectionAlgo) {
 				sweep.mSweepType = Sys::Triangle::SphereSweep::ST_SphereIntersectPlane;
 			}
 
-			bool intersectCheck;
+			bool isIntersecting;
 			if (info.mIntersectType != Game::MoveInfo::IT_Triangle) {
-				Sys::Cylinder cylinder(sphere->mPosition, info.mDirection, info.mDistance, sphere->mRadius);
+				// check cylinder instead of triangle
+				Sys::Cylinder cylinder(moveSphere->mPosition, info.mDirection, info.mDistance, moveSphere->mRadius);
 				f32 overlap;
-				intersectCheck = cylinder.intersect(*tri, overlap);
+				isIntersecting = cylinder.intersect(*tri, overlap);
+
+				// build an overlap "sphere" to use for calculations later
+				overlapSphere.mPosition = tri->mTrianglePlane.mNormal;
+				overlapSphere.mRadius   = overlap;
+				intersectPoint          = moveSphere->mPosition;
 			} else {
-				intersectCheck = tri->intersect(*vertTable, sweep);
+				// intersect with tri
+				isIntersecting = tri->intersect(*vertTable, sweep);
 			}
 
-			if (intersectCheck) {
+			// we're intersecting something
+			if (isIntersecting) {
+				// add info of triangle to array
 				if (info.mTriangleArray) {
 					info.mTriangleArray->store(*tri, *vertTable, idx);
 				}
 
+				// if we're a rigid body with a resolveCollision callback, do said callback
 				if (info.mIntersectCallback) {
-					info.mIntersectCallback->invoke(intersectPoint, unused);
+					info.mIntersectCallback->invoke(intersectPoint, overlapSphere.mPosition);
 				}
 
 				if (intersectPoint.y >= info.mBounceThreshold) {
+					// intersecting hard enough to bounce
 					info.mBounceTriangle = tri;
-					info.mPosition       = intersectPoint;
+					info.mPosition       = overlapSphere.mPosition;
+
 				} else if (FABS(intersectPoint.y) <= info.mWallThreshold) {
+					// intersecting a wall hard enough to reflect
 					info.mWallTriangle    = tri;
-					info.mReflectPosition = intersectPoint;
+					info.mReflectPosition = overlapSphere.mPosition;
 				}
+
+				// update position and velocity based on collision
+				f32 dotProd           = overlapSphere.mPosition.dot(*velocity);
+				dotProd               = (1.0f + info.mTraceRadius) * dotProd;
+				*velocity             = *velocity - overlapSphere.mPosition * dotProd;
+				moveSphere->mPosition = moveSphere->mPosition + overlapSphere.mPosition * overlapSphere.mRadius;
 			}
 			Sys::Triangle::debug = false;
 		}
