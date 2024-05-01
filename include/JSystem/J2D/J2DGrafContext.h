@@ -89,15 +89,15 @@ struct J2DPerspGraph : public J2DGrafContext {
 
 struct J2DOrthoGraph : public J2DGrafContext {
 	J2DOrthoGraph();
-	J2DOrthoGraph(f32, f32, f32, f32, f32, f32);
+	J2DOrthoGraph(f32 left, f32 top, f32 right, f32 bottom, f32 nearPlaneDistance, f32 farPlaneDistance);
 
 	virtual ~J2DOrthoGraph() {};                                       // _08 (weak)
 	virtual void setPort();                                            // _14
 	virtual J2DGrafType getGrafType() const { return J2DGraf_Ortho; }; // _20 (weak)
 	virtual void setLookat();                                          // _24
 
-	void setOrtho(JGeometry::TBox2f const&, f32, f32);
-	void scissorBounds(JGeometry::TBox2f*, JGeometry::TBox2f const*);
+	void setOrtho(JGeometry::TBox2<f32> const& bounds, f32 far, f32 near);
+	void scissorBounds(JGeometry::TBox2<f32>* outputBounds, JGeometry::TBox2<f32> const* inputBounds);
 
 	f32 getWidthPower() const { return mBounds.getWidth() / mOrtho.getWidth(); }
 	f32 getHeightPower() const { return mBounds.getHeight() / mOrtho.getHeight(); }

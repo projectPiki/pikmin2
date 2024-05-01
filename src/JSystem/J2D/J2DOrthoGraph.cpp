@@ -15,12 +15,12 @@ J2DOrthoGraph::J2DOrthoGraph()
  * @note Address: 0x800355D8
  * @note Size: 0xE4
  */
-J2DOrthoGraph::J2DOrthoGraph(f32 left, f32 top, f32 right, f32 bottom, f32 param_4, f32 param_5)
+J2DOrthoGraph::J2DOrthoGraph(f32 left, f32 top, f32 right, f32 bottom, f32 nearPlaneDistance, f32 farPlaneDistance)
     : J2DGrafContext(left, top, right, bottom)
 {
 	mOrtho = JGeometry::TBox2<f32>(0, 0, right, bottom);
-	mNear  = -param_5;
-	mFar   = -param_4;
+	mNear  = -farPlaneDistance;
+	mFar   = -nearPlaneDistance;
 	setLookat();
 }
 
@@ -30,7 +30,7 @@ J2DOrthoGraph::J2DOrthoGraph(f32 left, f32 top, f32 right, f32 bottom, f32 param
  */
 void J2DOrthoGraph::setPort()
 {
-	J2DGrafContext::setPort(); // thiscall
+	J2DGrafContext::setPort();
 	C_MTXOrtho(mMtx44, mOrtho.i.y, mOrtho.f.y, mOrtho.i.x, mOrtho.f.x, mNear, mFar);
 	GXSetProjection(mMtx44, GX_ORTHOGRAPHIC);
 }
