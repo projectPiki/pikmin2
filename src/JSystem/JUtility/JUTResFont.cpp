@@ -320,7 +320,7 @@ f32 JUTResFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, i
 	f32 posMaxY   = descent * scaled_height + pos_y;
 
 	// glyph section
-	ResFONT::GlyphBlock* used_glyphs = mGlyphBlocks[_66];
+	ResFONT::GlyphBlock* used_glyphs = mGlyphBlocks[mCurrentGlyphBlockIndex];
 	u16 tex_width                    = used_glyphs->mTextureWidth;
 	u16 tex_height                   = used_glyphs->mTextureHeight;
 	int t_width                      = mWidth;
@@ -539,13 +539,13 @@ void JUTResFont::loadImage(int code, GXTexMapID id)
 	mWidth            = cellCol * mGlyphBlocks[i]->mCellWidth;
 	mHeight           = cellRow * mGlyphBlocks[i]->mCellHeight;
 
-	if (pageIdx != mTexPageIdx || i != _66) {
+	if (pageIdx != mTexPageIdx || i != mCurrentGlyphBlockIndex) {
 		GXInitTexObj(&mTexObj, &mGlyphBlocks[i]->mData[pageIdx * mGlyphBlocks[i]->mTextureSize], mGlyphBlocks[i]->mTextureWidth,
 		             mGlyphBlocks[i]->mTextureHeight, (GXTexFmt)mGlyphBlocks[i]->mTextureFormat, GX_CLAMP, GX_CLAMP, 0);
 
 		GXInitTexObjLOD(&mTexObj, GX_LINEAR, GX_LINEAR, 0.0f, 0.0f, 0.0f, 0U, 0U, GX_ANISO_1);
-		mTexPageIdx = pageIdx;
-		_66         = i;
+		mTexPageIdx             = pageIdx;
+		mCurrentGlyphBlockIndex = i;
 	}
 
 	GXLoadTexObj(&mTexObj, id);

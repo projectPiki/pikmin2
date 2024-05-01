@@ -43,6 +43,7 @@ void JUTCacheFont::deleteMemBlocks_CacheFont()
 	if (mIsHeapBuffer) {
 		delete[] mCacheBuffer;
 	}
+
 	delete mAramBlock;
 	delete mInfoBlock;
 	delete mMemBlocks;
@@ -166,6 +167,7 @@ bool JUTCacheFont::initiate(const ResFONT* resource, void* buffer, u32 size, JKR
 		mIsValid = false;
 		return false;
 	}
+
 	return true;
 }
 
@@ -180,19 +182,25 @@ bool JUTCacheFont::internal_initiate(const ResFONT* resource, void* buffer, u32 
 	deleteMemBlocks_ResFont();
 	JUTResFont::initialize_state();
 	JUTFont::initialize_state();
+
 	if (resource == nullptr) {
 		return false;
 	}
+
 	mResource = resource;
 	mIsValid  = true;
+
 	getMemorySize(resource, &mWidthBlockCount, &mWidthBlocksSize, &mGlyphBlockCount, &mGlyphBlocksSize, &mMapBlockCount, &mMapBlocksSize,
 	              &mMaxSheetSize);
+
 	if (!allocArea(buffer, size, heap)) {
 		return false;
 	}
+
 	if (!allocArray(heap)) {
 		return false;
 	}
+
 	setBlock();
 	return true;
 }
@@ -204,26 +212,33 @@ bool JUTCacheFont::internal_initiate(const ResFONT* resource, void* buffer, u32 
 bool JUTCacheFont::allocArea(void* buffer, u32 size, JKRHeap* heap)
 {
 	mInfoBlock = (ResFONT::InfoBlock*)new (heap, 0) ResFONT();
+
 	if (!mInfoBlock) {
 		return false;
 	}
+
 	if (mWidthBlocksSize != 0) {
 		mWidthBlockBuffer = new (heap, 0) u8[mWidthBlocksSize];
+
 		if (!mWidthBlockBuffer) {
 			return false;
 		}
 	}
+
 	if (mGlyphBlockCount != 0) {
 		mGlyphBlockBuffer = new (heap, 0) u8[mGlyphBlockCount << 5];
+
 		if (!mGlyphBlockBuffer) {
 			return false;
 		}
+
 		mAramBlock = JKRAram::sAramObject->mAramHeap->alloc(mGlyphBlocksSize - (mGlyphBlockCount * sizeof(ResFONT::GlyphBlock)),
 		                                                    JKRAramHeap::AM_Head);
 		if (!mAramBlock) {
 			return false;
 		}
 	}
+
 	if (mMapBlocksSize != 0) {
 		mMapBlockBuffer = new (heap, 0) u8[mMapBlocksSize];
 		if (!mMapBlockBuffer) {
@@ -237,16 +252,20 @@ bool JUTCacheFont::allocArea(void* buffer, u32 size, JKRHeap* heap)
 	if (mCachePageCount == 0) {
 		return false;
 	}
+
 	if (buffer) {
 		mCacheBuffer  = buffer;
 		mIsHeapBuffer = false;
 	} else {
 		mCacheBuffer = new (heap, 0x20) u8[bufSize];
+
 		if (mCacheBuffer == nullptr) {
 			return false;
 		}
+
 		mIsHeapBuffer = true;
 	}
+
 	invalidiateAllCache();
 	return true;
 }
@@ -291,24 +310,36 @@ bool JUTCacheFont::allocArray(JKRHeap* heap)
  */
 void JUTCacheFont::setBlock()
 {
-	int widthNum                  = 0;
-	int glyphNum                  = 0;
-	int mapNum                    = 0;
+	// Initialize variables
+	int widthNum = 0;
+	int glyphNum = 0;
+	int mapNum   = 0;
+
+	// Cast block buffers to their respective types
 	ResFONT::WidthBlock* widthBuf = (ResFONT::WidthBlock*)mWidthBlockBuffer;
 	ResFONT::GlyphBlock* glyphBuf = (ResFONT::GlyphBlock*)mGlyphBlockBuffer;
 	ResFONT::MapBlock* mapBuf     = (ResFONT::MapBlock*)mMapBlockBuffer;
-	u32 aramAddress               = mAramBlock->getAddress();
-	mMaxCode                      = 0xffff;
-	const int* data               = (int*)mResource->mData;
 
+	// Get ARAM address
+	u32 aramAddress = mAramBlock->getAddress();
+
+	// Set max code to maximum possible value
+	mMaxCode = 0xffff;
+
+	// Cast resource data to int pointer
+	const int* data = (int*)mResource->mData;
+
+	// Loop through all blocks in the resource
 	for (int i = 0; i < mResource->mNumBlocks; i++) {
 		switch (*data) {
 		case 'INF1':
+			// Copy data to info block and set lead byte
 			memcpy(mInfoBlock, data, 0x20);
 			mIsLeadByte = &JUTResFont::saoAboutEncoding_[mInfoBlock->mFontType];
 			break;
 
 		case 'WID1':
+			// Copy data to width block and increment width block pointer and counter
 			memcpy(widthBuf, data, data[1]);
 			mWidthBlocks[widthNum] = widthBuf;
 			widthBuf               = (ResFONT::WidthBlock*)((u8*)widthBuf + data[1]);
@@ -316,6 +347,7 @@ void JUTCacheFont::setBlock()
 			break;
 
 		case 'GLY1':
+			// Copy data to glyph block and increment glyph block pointer and counter
 			memcpy(glyphBuf, data, 0x20);
 			JKRAramBlock* block
 			    = JKRAram::mainRamToAram((u8*)data + 0x20, aramAddress, data[1] - 0x20, Switch_0, 0, nullptr, 0xffffffff, nullptr);
@@ -332,6 +364,7 @@ void JUTCacheFont::setBlock()
 			break;
 
 		case 'MAP1':
+			// Copy data to map block and increment map block pointer and counter
 			memcpy(mapBuf, data, data[1]);
 			mMapBlocks[mapNum] = mapBuf;
 			if (mMaxCode > mMapBlocks[mapNum]->mStartCode) {
@@ -342,10 +375,12 @@ void JUTCacheFont::setBlock()
 			break;
 
 		default:
+			// Report unknown data block
 			JUTReportConsole("Unknown data block\n");
 			break;
 		}
 
+		// Move to the next data block
 		data = (int*)((u8*)data + data[1]);
 	}
 }
@@ -356,29 +391,44 @@ void JUTCacheFont::setBlock()
  */
 JUTCacheFont::TGlyphCacheInfo* JUTCacheFont::determineBlankPage()
 {
+	// Get the current page
 	TGlyphCacheInfo* currPage = getCurrPage();
 	if (currPage) {
-		mCurrPage                 = currPage->mNext;
+		// If a current page exists, move to the next page
+		mCurrPage = currPage->mNext;
+
+		// Get the next page
 		TGlyphCacheInfo* nextPage = currPage->mNext;
 		if (!nextPage) {
+			// If there is no next page, set the end page address to null
 			mEndPageAddr = nullptr;
 		} else {
+			// If there is a next page, set its previous page to null
 			nextPage->mPrev = nullptr;
 		}
+
+		// Return the current page
 		return currPage;
 	}
 
+	// Get the end page
 	TGlyphCacheInfo* endPage = mEndPage;
 	while (endPage) {
+		// Get the previous page
 		TGlyphCacheInfo* prev = endPage->mPrev;
+
+		// If the end page's font type is ANSI, unlink it and increment the blank page count
 		if (endPage->mFontType == OS_FONT_ENCODE_ANSI) {
 			unlink(endPage);
 			mBlankPageCount++;
 			return endPage;
 		}
+
+		// Move to the previous page
 		endPage = prev;
 	}
 
+	// If no suitable page was found, return null
 	return nullptr;
 }
 
@@ -386,23 +436,33 @@ JUTCacheFont::TGlyphCacheInfo* JUTCacheFont::determineBlankPage()
  * @note Address: N/A
  * @note Size: 0x120
  */
-void JUTCacheFont::getGlyphFromAram(JUTCacheFont::TGlyphCacheInfo* info, JUTCacheFont::TCachePage* page, int* code, int* texPageID)
+void JUTCacheFont::getGlyphFromAram(JUTCacheFont::TGlyphCacheInfo* glyphInfo, JUTCacheFont::TCachePage* cachePage, int* glyphCode,
+                                    int* texturePageID)
 {
-	memcpy(page, info, sizeof(TGlyphCacheInfo));
-	prepend(page);
-	int cellCount = page->mNumRows * page->mNumCols;
-	int pageNum   = *code / cellCount;
-	page->mStartCode += pageNum * cellCount;
-	u16 lastCode   = page->mStartCode + cellCount - 1;
-	page->mEndCode = page->mEndCode < lastCode ? page->mEndCode : lastCode;
-	*texPageID     = pageNum;
-	*code -= pageNum * cellCount;
-	u8* image     = getImage(page);
-	u8* addr      = JKRAram::aramToMainRam((u32)info->mPrev + page->mPageSize * pageNum, image, page->mPageSize, Switch_0, 0, nullptr,
-                                      0xFFFFFFFF, nullptr);
-	GXTexObj* obj = getTexObj(page);
-	GXInitTexObj(obj, image, page->mTexWidth, page->mTexHeight, (GXTexFmt)page->mTexFormat, GX_CLAMP, GX_CLAMP, GX_FALSE);
-	GXInitTexObjLOD(obj, GX_LINEAR, GX_LINEAR, 0.0f, 0.0f, 0.0f, GX_FALSE, GX_FALSE, GX_ANISO_1);
+	memcpy(cachePage, glyphInfo, sizeof(TGlyphCacheInfo));
+	prepend(cachePage);
+
+	int totalCells = cachePage->mNumRows * cachePage->mNumCols;
+	int pageNumber = *glyphCode / totalCells;
+
+	cachePage->mStartCode += pageNumber * totalCells;
+
+	// Set the end code of the page to the smaller of the existing end code and the last code
+	u16 lastCode        = cachePage->mStartCode + totalCells - 1;
+	cachePage->mEndCode = cachePage->mEndCode < lastCode ? cachePage->mEndCode : lastCode;
+
+	*texturePageID = pageNumber;
+	*glyphCode -= pageNumber * totalCells;
+
+	u8* imageData = getImage(cachePage);
+	u8* addr = JKRAram::aramToMainRam((u32)glyphInfo->mPrev + cachePage->mPageSize * pageNumber, imageData, cachePage->mPageSize, Switch_0,
+	                                  0, nullptr, 0xFFFFFFFF, nullptr);
+
+	// Set the image data to the page
+	GXTexObj* textureObject = getTexObj(cachePage);
+	GXInitTexObj(textureObject, imageData, cachePage->mTexWidth, cachePage->mTexHeight, (GXTexFmt)cachePage->mTexFormat, GX_CLAMP, GX_CLAMP,
+	             GX_FALSE);
+	GXInitTexObjLOD(textureObject, GX_LINEAR, GX_LINEAR, 0.0f, 0.0f, 0.0f, GX_FALSE, GX_FALSE, GX_ANISO_1);
 }
 
 /**
@@ -446,23 +506,28 @@ JUTCacheFont::TGlyphCacheInfo* JUTCacheFont::loadCache_char_subroutine(int* code
 				break;
 			}
 		}
+
 		if (i < mGlyphBlockCount) {
 			TCachePage* blankPage = (TCachePage*)determineBlankPage();
+
 			if (blankPage == nullptr) {
 				return nullptr;
 			}
+
 			int texPageIdx;
 			getGlyphFromAram((JUTCacheFont::TGlyphCacheInfo*)mGlyphBlocks[i], blankPage, code, &texPageIdx);
-			mTexPageIdx = texPageIdx;
-			_66         = i;
-			outPage     = blankPage;
+			mTexPageIdx             = texPageIdx;
+			mCurrentGlyphBlockIndex = i;
+			outPage                 = blankPage;
 		} else {
 			return nullptr;
 		}
 	}
+
 	if (isSJIS) {
 		outPage->mFontType = OS_FONT_ENCODE_SJIS;
 	}
+
 	return outPage;
 }
 
@@ -483,23 +548,41 @@ bool JUTCacheFont::loadCache_string(const char* str, bool isSJIS)
 {
 	int curChar;
 	do {
+		// Get the current character from the string
 		curChar = (u8)str[0];
+
+		// If the current character is the lead byte of a multibyte character
 		if (isLeadByte(curChar)) {
 			str++;
+			// Combine the lead byte and the second byte to form the full character code
 			curChar = ((curChar << 8) & ~0xFF) | ((u8)str[0]);
 		}
+
+		// If the character code is not zero (end of string)
 		if (curChar) {
-			int code     = getFontCode(curChar);
+			// Get the font code for the current character
+			int code = getFontCode(curChar);
+
+			// Load the glyph for the character into the cache
 			int subCheck = (bool)loadCache_char_subroutine(&code, isSJIS);
+
+			// If the glyph could not be loaded into the cache
 			if (subCheck == 0) {
+				// Return false to indicate failure
 				return false;
 			}
+
+			// Move to the next character in the string
 			str++;
 			continue;
 		}
+
+		// If the character code is zero (end of string), break the loop
 		break;
 	} while (true);
 
+	// If the function has not returned yet, all glyphs were successfully loaded into the cache
+	// Return true to indicate success
 	return true;
 }
 
@@ -509,26 +592,22 @@ bool JUTCacheFont::loadCache_string(const char* str, bool isSJIS)
  */
 void JUTCacheFont::invalidiateAllCache()
 {
-	int* bufAddr = (int*)mCacheBuffer; // treat as TGlyphCacheInfo
+	// Treat the cache buffer as an array of TGlyphCacheInfo and iterate over each page in the cache
+	int* bufAddr = (int*)mCacheBuffer;
 	for (int i = 0; i < mCachePageCount; i++) {
-		int prev;
-		if (i == 0) {
-			prev = 0;
-		} else {
-			prev = (int)bufAddr - mPageSize;
-		}
-		bufAddr[0] = prev; // mPrev
+		// Set the previous page address
+		int prev   = (i == 0) ? 0 : (int)bufAddr - mPageSize;
+		bufAddr[0] = prev;
 
-		int next;
-		if (i == mCachePageCount - 1) {
-			next = 0;
-		} else {
-			next = (int)bufAddr + mPageSize;
-		}
-		bufAddr[1] = next; // mNext
-		bufAddr    = (int*)((int)bufAddr + mPageSize);
+		// Set the next page address
+		int next   = (i == mCachePageCount - 1) ? 0 : (int)bufAddr + mPageSize;
+		bufAddr[1] = next;
+
+		// Move to the next page
+		bufAddr = (int*)((int)bufAddr + mPageSize);
 	}
 
+	// Set the end page address to the last page, set the current page to the first page, and initialize the start and end pages to null
 	mEndPageAddr = (void*)((int)bufAddr - mPageSize);
 	mCurrPage    = (TGlyphCacheInfo*)mCacheBuffer;
 	mStartPage   = nullptr;
@@ -546,6 +625,7 @@ void JUTCacheFont::unlink(TGlyphCacheInfo* cacheInfo)
 	} else {
 		cacheInfo->mPrev->mNext = cacheInfo->mNext;
 	}
+
 	if (!cacheInfo->mNext) {
 		mEndPage = cacheInfo->mPrev;
 	} else {
@@ -563,6 +643,7 @@ void JUTCacheFont::prepend(TGlyphCacheInfo* cacheInfo)
 	mStartPage               = cacheInfo;
 	cacheInfo->mPrev         = nullptr;
 	cacheInfo->mNext         = oldHead;
+
 	if (!oldHead) {
 		mEndPage = cacheInfo;
 	} else {

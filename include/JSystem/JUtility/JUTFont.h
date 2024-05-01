@@ -239,7 +239,7 @@ struct JUTResFont : public JUTFont {
 	u16 mWidthBlockCount;               // _60
 	u16 mGlyphBlockCount;               // _62
 	u16 mMapBlockCount;                 // _64
-	u16 _66;                            // _66
+	u16 mCurrentGlyphBlockIndex;        // _66
 	u16 mMaxCode;                       // _68
 	const IsLeadByte* mIsLeadByte;      // _6C
 };
