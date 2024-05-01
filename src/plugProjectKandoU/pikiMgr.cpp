@@ -391,8 +391,8 @@ void PikiMgr::doEntry()
 		u8 flag = mFlags[1];
 		for (int i = 0; i < mMax; i++) {
 			if (!mOpenIds[i]) {
-				if (flag & 1 || mArray[i].isMovieActor()) {
-					mArray[i].mLod.mFlags &= ~0x30;
+				if ((flag & 1) && !mArray[i].isMovieActor()) {
+					mArray[i].mLod.mFlags &= -0x35;
 				} else {
 					mArray[i].isMovieActor();
 				}
@@ -402,7 +402,7 @@ void PikiMgr::doEntry()
 				if (piki->getKind() == Blue && mFlags[0] & 1) {
 					piki->mLod.mFlags &= ~0x10;
 				} else if (piki->getKind() == Red && mFlags[0] & 2) {
-					piki->mLod.mFlags &= ~0x10;
+					piki->mLod.mFlags &= ~0x20;
 				}
 				mArray[i].doEntry();
 			}
@@ -411,8 +411,8 @@ void PikiMgr::doEntry()
 		u8 flag = mFlags[1];
 		for (int i = 0; i < mMax; i++) {
 			if (!mOpenIds[i]) {
-				if (flag & 1 || mArray[i].isMovieActor()) {
-					mArray[i].mLod.mFlags &= ~0x30;
+				if ((flag & 1) && !mArray[i].isMovieActor()) {
+					mArray[i].mLod.mFlags &= -0x35;
 				} else {
 					mArray[i].isMovieActor();
 				}
@@ -643,8 +643,6 @@ void PikiMgr::getStorePikmin(int, int)
  * @note Address: 0x8015F968
  * @note Size: 0x34C
  */
-// void moveAllPikmins__Q24Game7PikiMgrFR10Vector3f
-// fP23Condition<Game::Piki>()
 void PikiMgr::moveAllPikmins(Vector3f& pos, f32 range, Condition<Piki>* cond)
 {
 	Iterator<Piki> iterator(this);
@@ -654,14 +652,12 @@ void PikiMgr::moveAllPikmins(Vector3f& pos, f32 range, Condition<Piki>* cond)
 		if (piki->mFlags.isSet(2) && (!cond || cond->satisfy(piki))) {
 			f32 angle = randFloat() * TAU;
 			f32 dist  = randFloat() * range;
-			f32 x     = cos(angle) * dist;
-			f32 y     = 0.0f;
-			f32 z     = sin(angle) * dist;
-			Vector3f setpos(pos.x + x, pos.y + y, pos.z + z);
+			Vector3f mappos(pikmin2_sinf(angle) * dist, 0.0f, pikmin2_cosf(angle) * dist);
+			mappos += pos;
 			if (mapMgr) {
-				setpos.y = mapMgr->getMinY(setpos);
+				mappos.y = mapMgr->getMinY(mappos);
 			}
-			piki->setPosition(setpos, false);
+			piki->setPosition(mappos, false);
 		}
 	}
 	/*
@@ -918,194 +914,6 @@ void PikiMgr::forceEnterPikmins(u8 check)
 			piki->kill(&arg);
 		}
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r5, "__vt__22Iterator<Q24Game4Piki>"@ha
-	stw      r0, 0x34(r1)
-	li       r0, 0
-	addi     r5, r5, "__vt__22Iterator<Q24Game4Piki>"@l
-	stw      r31, 0x2c(r1)
-	cmplwi   r0, 0
-	mr       r31, r4
-	stw      r30, 0x28(r1)
-	stw      r0, 0x1c(r1)
-	stw      r5, 0x10(r1)
-	stw      r0, 0x14(r1)
-	stw      r3, 0x18(r1)
-	bne      lbl_8015FD08
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-	b        lbl_8015FF14
-
-lbl_8015FD08:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-	b        lbl_8015FD74
-
-lbl_8015FD20:
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8015FF14
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-
-lbl_8015FD74:
-	lwz      r12, 0x10(r1)
-	addi     r3, r1, 0x10
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8015FD20
-	b        lbl_8015FF14
-
-lbl_8015FD94:
-	lwz      r3, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r30, r3
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8015FE58
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8015FE58
-	clrlwi   r0, r31, 0x18
-	cmplwi   r0, 1
-	bne      lbl_8015FE08
-	mr       r3, r30
-	bl       getCurrActionID__Q24Game4PikiFv
-	cmpwi    r3, 0
-	bne      lbl_8015FE08
-	lwz      r0, 0x17c(r30)
-	rlwinm.  r0, r0, 0, 0x19, 0x19
-	bne      lbl_8015FE58
-
-lbl_8015FE08:
-	lwz      r3, playData__4Game@sda21(r13)
-	lbz      r4, 0x2b8(r30)
-	lbz      r5, 0x2b9(r30)
-	addi     r3, r3, 0xa8
-	bl       getCount__Q24Game13PikiContainerFii
-	lwz      r7, 0(r3)
-	lis      r6, __vt__Q24Game15CreatureKillArg@ha
-	lis      r5, 0x00010001@ha
-	lis      r4, __vt__Q24Game11PikiKillArg@ha
-	addi     r0, r7, 1
-	addi     r6, r6, __vt__Q24Game15CreatureKillArg@l
-	stw      r0, 0(r3)
-	addi     r5, r5, 0x00010001@l
-	addi     r0, r4, __vt__Q24Game11PikiKillArg@l
-	mr       r3, r30
-	stw      r6, 8(r1)
-	addi     r4, r1, 8
-	stw      r5, 0xc(r1)
-	stw      r0, 8(r1)
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-
-lbl_8015FE58:
-	lwz      r0, 0x1c(r1)
-	cmplwi   r0, 0
-	bne      lbl_8015FE84
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-	b        lbl_8015FF14
-
-lbl_8015FE84:
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-	b        lbl_8015FEF8
-
-lbl_8015FEA4:
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8015FF14
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-
-lbl_8015FEF8:
-	lwz      r12, 0x10(r1)
-	addi     r3, r1, 0x10
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8015FEA4
-
-lbl_8015FF14:
-	lwz      r3, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x14(r1)
-	cmplw    r4, r3
-	bne      lbl_8015FD94
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /**
@@ -1116,8 +924,8 @@ void PikiMgr::killDayEndPikmins(PikiContainer& container)
 {
 	container.clear();
 
-	Iterator<Piki> iterator(this);
 	int i = 0;
+	Iterator<Piki> iterator(this);
 	Piki* list[100];
 	CI_LOOP(iterator)
 	{
@@ -1133,6 +941,7 @@ void PikiMgr::killDayEndPikmins(PikiContainer& container)
 					continue;
 				}
 			}
+
 			bool safe = false;
 			Iterator<Onyon> onyons(ItemOnyon::mgr);
 			CI_LOOP(onyons)
@@ -1140,11 +949,12 @@ void PikiMgr::killDayEndPikmins(PikiContainer& container)
 				Onyon* onyon      = *onyons;
 				Vector3f pikipos  = piki->getPosition();
 				Vector3f onyonpos = onyon->getPosition();
-				if (pikipos.distance(onyonpos) < 300.0f) {
+				if (pikmin2_sqrtf(pikipos.sqrDistance(onyonpos)) < 300.0f) {
 					safe = true;
+					break;
 				}
 			}
-			if (safe)
+			if (!safe)
 				list[i++] = piki;
 		}
 	}
@@ -1602,8 +1412,8 @@ lbl_8016050C:
  */
 void PikiMgr::killAllPikmins()
 {
-	Iterator<Piki> iterator(this);
 	int i = 0;
+	Iterator<Piki> iterator(this);
 	Piki* list[100];
 	CI_LOOP(iterator)
 	{
@@ -1626,13 +1436,13 @@ void PikiMgr::killAllPikmins()
  */
 void PikiMgr::caveSaveFormationPikmins(bool doKill)
 {
-	Iterator<Piki> iterator(this);
 	int i = 0;
+	Iterator<Piki> iterator(this);
 	Piki* list[100];
 	CI_LOOP(iterator)
 	{
 		Piki* piki = *iterator;
-		if (piki->isAlive() && (piki->getCurrActionID() != 0 || (piki->mFakePikiFlags.typeView & 0x40))) {
+		if (piki->isAlive() && piki->getCurrActionID() == 0 && (piki->isFPFlag(0x40))) {
 			list[i++] = piki;
 		}
 	}
@@ -1648,216 +1458,7 @@ void PikiMgr::caveSaveFormationPikmins(bool doKill)
 			list[j]->kill(&arg);
 		}
 	}
-
 	playData->mCaveSaveData.mCavePikis.dump("caveSaveFormationPikmins");
-	/*
-	stwu     r1, -0x1d0(r1)
-	mflr     r0
-	lis      r5, "__vt__22Iterator<Q24Game4Piki>"@ha
-	stw      r0, 0x1d4(r1)
-	addi     r0, r5, "__vt__22Iterator<Q24Game4Piki>"@l
-	stmw     r25, 0x1b4(r1)
-	li       r29, 0
-	cmplwi   r29, 0
-	mr       r30, r4
-	li       r31, 0
-	stw      r29, 0x1c(r1)
-	stw      r0, 0x10(r1)
-	stw      r29, 0x14(r1)
-	stw      r3, 0x18(r1)
-	bne      lbl_80160804
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-	b        lbl_801609A8
-
-lbl_80160804:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-	b        lbl_80160870
-
-lbl_8016081C:
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801609A8
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-
-lbl_80160870:
-	lwz      r12, 0x10(r1)
-	addi     r3, r1, 0x10
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8016081C
-	b        lbl_801609A8
-
-lbl_80160890:
-	lwz      r3, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r27, r3
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801608EC
-	mr       r3, r27
-	bl       getCurrActionID__Q24Game4PikiFv
-	cmpwi    r3, 0
-	bne      lbl_801608EC
-	lwz      r0, 0x17c(r27)
-	rlwinm.  r0, r0, 0, 0x19, 0x19
-	beq      lbl_801608EC
-	addi     r3, r1, 0x20
-	addi     r31, r31, 1
-	stwx     r27, r3, r29
-	addi     r29, r29, 4
-
-lbl_801608EC:
-	lwz      r0, 0x1c(r1)
-	cmplwi   r0, 0
-	bne      lbl_80160918
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-	b        lbl_801609A8
-
-lbl_80160918:
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-	b        lbl_8016098C
-
-lbl_80160938:
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801609A8
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-
-lbl_8016098C:
-	lwz      r12, 0x10(r1)
-	addi     r3, r1, 0x10
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80160938
-
-lbl_801609A8:
-	lwz      r3, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x14(r1)
-	cmplw    r4, r3
-	bne      lbl_80160890
-	cmpwi    r31, 0
-	bne      lbl_801609DC
-	li       r0, 0x7d
-	mtctr    r0
-
-lbl_801609D8:
-	bdnz     lbl_801609D8
-
-lbl_801609DC:
-	lis      r5, __vt__Q24Game15CreatureKillArg@ha
-	lis      r4, 0x00010001@ha
-	lis      r3, __vt__Q24Game11PikiKillArg@ha
-	addi     r26, r1, 0x20
-	clrlwi   r27, r30, 0x18
-	addi     r28, r5, __vt__Q24Game15CreatureKillArg@l
-	addi     r30, r4, 0x00010001@l
-	addi     r29, r3, __vt__Q24Game11PikiKillArg@l
-	li       r25, 0
-	b        lbl_80160A48
-
-lbl_80160A04:
-	lwz      r3, playData__4Game@sda21(r13)
-	lwz      r4, 0(r26)
-	addi     r3, r3, 0x60
-	bl       __cl__Q24Game13PikiContainerFPQ24Game4Piki
-	lwz      r4, 0(r3)
-	cmplwi   r27, 0
-	addi     r0, r4, 1
-	stw      r0, 0(r3)
-	beq      lbl_80160A40
-	stw      r28, 8(r1)
-	addi     r4, r1, 8
-	lwz      r3, 0(r26)
-	stw      r30, 0xc(r1)
-	stw      r29, 8(r1)
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-
-lbl_80160A40:
-	addi     r26, r26, 4
-	addi     r25, r25, 1
-
-lbl_80160A48:
-	cmpw     r25, r31
-	blt      lbl_80160A04
-	lwz      r5, playData__4Game@sda21(r13)
-	lis      r3, lbl_8047E148@ha
-	addi     r4, r3, lbl_8047E148@l
-	addi     r3, r5, 0x60
-	bl       dump__Q24Game13PikiContainerFPc
-	lmw      r25, 0x1b4(r1)
-	lwz      r0, 0x1d4(r1)
-	mtlr     r0
-	addi     r1, r1, 0x1d0
-	blr
-	*/
 }
 
 /**
@@ -1866,8 +1467,8 @@ lbl_80160A48:
  */
 void PikiMgr::caveSaveAllPikmins(bool check1, bool check2)
 {
-	Iterator<Piki> iterator(this);
 	int i = 0;
+	Iterator<Piki> iterator(this);
 	Piki* list[100];
 	CI_LOOP(iterator)
 	{
@@ -1902,6 +1503,7 @@ void PikiMgr::saveFormationPikmins(PikiContainer&)
 void PikiMgr::saveAllPikmins(PikiContainer& container)
 {
 	container.clear();
+
 	Iterator<Piki> iterator(this);
 	int i = 0;
 	Piki* list[100];
