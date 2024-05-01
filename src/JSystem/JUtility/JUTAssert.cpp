@@ -31,12 +31,15 @@ u32 flush_subroutine()
 	if (sMessageLife == 0) {
 		return 0;
 	}
+
 	if (sMessageLife != -1) {
 		sMessageLife--;
 	}
+
 	if (sMessageLife < 5) {
 		return 0;
 	}
+
 	return sMessageLife;
 }
 
@@ -64,11 +67,17 @@ void flushMessage_dbPrint()
 {
 	JUTFont* font;
 	if (flush_subroutine() != 0 && sVisible == true && JUTDbPrint::sDebugPrint != nullptr && JUTDbPrint::sDebugPrint->mFont != nullptr) {
-		font = JUTDbPrint::sDebugPrint->mFont;
+		// Get the font from the debug print
+		JUTFont* font = JUTDbPrint::sDebugPrint->mFont;
 
-		u8 tmp = ((VIGetRetraceCount() & 0x3C) << 2) | 0xF;
+		// Calculate the color intensity based on the retrace count
+		u8 colorIntensity = ((VIGetRetraceCount() & 0x3C) << 2) | 0xF;
+
+		// Set the graphics system and character color for the font
 		font->setGX();
-		font->setCharColor(JUtility::TColor(255, tmp, tmp, 255));
+		font->setCharColor(JUtility::TColor(255, colorIntensity, colorIntensity, 255));
+
+		// Draw the message file line and message string at specific positions
 		font->drawString(30, 36, sMessageFileLine, true);
 		font->drawString(30, 54, sMessageString, true);
 	}
@@ -78,6 +87,6 @@ void flushMessage_dbPrint()
  * @note Address: 0x800280C4
  * @note Size: 0x18
  */
-void setMessageCount(int p1) { sMessageLife = p1 <= 0 ? 0 : p1; }
+void setMessageCount(int messageCount) { sMessageLife = messageCount <= 0 ? 0 : messageCount; }
 
 } // namespace JUTAssertion
