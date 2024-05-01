@@ -45,7 +45,7 @@ def modify_makefile(whole_file_path:Path, unlink:bool):
         return
     
     # turn the path into a unix-based path, and replace the extension with .o
-    part_to_change = whole_file_path.with_suffix(".o")
+    part_to_change = PurePosixPath(whole_file_path.with_suffix(".o"))
 
     # remove the "src" path at the beginning and change it to "asm"
     part_to_change_to = PurePosixPath("asm") / PurePosixPath(*part_to_change.parts[1:])
