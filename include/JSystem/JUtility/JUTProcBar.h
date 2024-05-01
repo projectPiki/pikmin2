@@ -11,50 +11,51 @@ public:
 
 		void clear()
 		{
-			mCost = 0;
-			_08   = 0;
-			_0C   = 0;
+			mMeasurementCost = 0;
+			mPeakCost        = 0;
+			mPeakAccumulator = 0;
 		}
 
 		void start(u8 red, u8 green, u8 blue)
 		{
-			mR         = red;
-			mG         = green;
-			mB         = blue;
+			mR = red;
+			mG = green;
+			mB = blue;
+
 			mStartTick = OSGetTick();
 		}
 
 		void end()
 		{
-			mCost = OSTicksToMicroseconds(OSDiffTick(OSGetTick(), mStartTick));
-			if (mCost == 0) {
-				mCost = 1;
+			mMeasurementCost = OSTicksToMicroseconds(OSDiffTick(OSGetTick(), mStartTick));
+			if (mMeasurementCost == 0) {
+				mMeasurementCost = 1;
 			}
 		}
 
 		void accumePeek()
 		{
-			if (++_0C >= 0x10 || mCost >= _08) {
-				_08 = mCost;
-				_0C = 0;
+			if (++mPeakAccumulator >= 16 || mMeasurementCost >= mPeakCost) {
+				mPeakCost        = mMeasurementCost;
+				mPeakAccumulator = 0;
 			}
 		}
 
-		int calcBarSize(int p1, int p2) { return mCost * p1 / p2; }
+		int calcBarSize(int scale, int totalLength) { return mMeasurementCost * scale / totalLength; }
 
-		u32 mStartTick; // _00
-		u32 mCost;      // _04
-		u32 _08;        // _08
-		u32 _0C;        // _0C
-		u8 mR;          // _10
-		u8 mG;          // _11
-		u8 mB;          // _12
+		u32 mStartTick;       // _00
+		u32 mMeasurementCost; // _04
+		u32 mPeakCost;        // _08
+		u32 mPeakAccumulator; // _0C
+		u8 mR;                // _10
+		u8 mG;                // _11
+		u8 mB;                // _12
 	};
 
 	struct CParamSet {
 		CParamSet() { }
 
-		void setBarWidth(int w) { mBarWidth = w; };
+		void setBarHeight(int w) { mBarHeight = w; };
 		void setWidth(int w) { mWidth = w; }
 		void setUserPosition(int pos) { mUserPosition = pos; }
 		void setPosition(int x, int y)
@@ -63,7 +64,7 @@ public:
 			mPosY = y;
 		}
 
-		int mBarWidth;     // _00
+		int mBarHeight;    // _00
 		int mPosX;         // _04
 		int mPosY;         // _08
 		int mWidth;        // _0C
@@ -81,11 +82,12 @@ public:
 	void drawHeapBar();
 
 	// unused/inlined:
-	void bar_subroutine(int, int, int, int, int, int, int, JUtility::TColor, JUtility::TColor);
-	void adjustMeterLength(u32, f32*, f32, f32, int*);
+	void bar_subroutine(int startX, int startY, int height, int totalUnits, int maxHighlightedUnits, int filledUnits, int highlitedUnits,
+	                    JUtility::TColor fillColor, JUtility::TColor highlightedColor);
+	void adjustMeterLength(u32 totalUnits, f32* currentLength, f32 maxLength, f32 minLength, int* adjustmentFactor);
 	void getUnuseUserBar();
 
-	inline u32 calcGPUTime() { return mGp.mCost - mGpWait.mCost; }
+	inline u32 calcGPUTime() { return mGp.mMeasurementCost - mGpWait.mMeasurementCost; }
 
 	void setVisible(bool visible) { mVisible = visible; }
 	void setVisibleHeapBar(bool visible) { mHeapBarVisible = visible; }
@@ -104,9 +106,9 @@ public:
 	void wholeLoopStart() { mWholeLoop.start(255, 129, 30); }
 	void wholeLoopEnd() { mWholeLoop.end(); }
 
-	u32 getGpCost() const { return mGp.mCost; }
-	u32 getCpuCost() const { return mCpu.mCost; }
-	u32 getUserCost(int idx) { return sManager->mUsers[idx].mCost; }
+	u32 getGpCost() const { return mGp.mMeasurementCost; }
+	u32 getCpuCost() const { return mCpu.mMeasurementCost; }
+	u32 getUserCost(int idx) { return sManager->mUsers[idx].mMeasurementCost; }
 	void setCostFrame(int frame) { mCostFrame = frame; }
 
 	static JUTProcBar* sManager;
@@ -118,11 +120,11 @@ public:
 	CTime mWholeLoop;     // _50
 	CTime mUsers[8];      // _64
 	int mCostFrame;       // _104
-	u32 _108;             // _108, active users?
+	u32 mUnused;          // _108
 	bool mVisible;        // _10C
 	int _110;             // _110
 	CParamSet mParams;    // _114
-	int _128;             // _128
+	int mDisableHeapBar;  // _128
 	JKRHeap* mWatchHeap;  // _12C
 	bool mHeapBarVisible; // _130
 };                        // 0x134 size

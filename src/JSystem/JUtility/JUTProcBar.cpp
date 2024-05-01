@@ -18,22 +18,25 @@ JUTProcBar::JUTProcBar()
 {
 	mVisible        = true;
 	mHeapBarVisible = true;
-	_108            = 0;
-	int height      = JUTVideo::getManager()->getEfbHeight();
-	if (height > 400) {
-		mParams.setBarWidth(2);
-		mParams.setPosition(39, height - 40);
+	mUnused         = 0;
+
+	int screenHeight = JUTVideo::getManager()->getEfbHeight();
+
+	if (screenHeight > 400) {
+		mParams.setBarHeight(2);
+		mParams.setPosition(39, screenHeight - 40);
 		mParams.setWidth(562);
-		mParams.setUserPosition(height - 70);
+		mParams.setUserPosition(screenHeight - 70);
 	} else {
-		mParams.setBarWidth(1);
-		mParams.setPosition(39, height - 20);
+		mParams.setBarHeight(1);
+		mParams.setPosition(39, screenHeight - 20);
 		mParams.setWidth(562);
-		mParams.setUserPosition(height - 35);
+		mParams.setUserPosition(screenHeight - 35);
 	}
-	_110       = 1;
-	_128       = 0;
-	mWatchHeap = nullptr;
+
+	_110            = 1;
+	mDisableHeapBar = 0;
+	mWatchHeap      = nullptr;
 }
 
 /**
@@ -89,18 +92,23 @@ void JUTProcBar::clear()
  * @note Address: N/A
  * @note Size: 0x18C
  */
-void JUTProcBar::bar_subroutine(int param_0, int param_1, int param_2, int param_3, int param_4, int param_5, int param_6,
-                                JUtility::TColor param_7, JUtility::TColor param_8)
+void JUTProcBar::bar_subroutine(int startX, int startY, int height, int totalUnits, int maxHighlightedUnits, int filledUnits,
+                                int highlitedUnits, JUtility::TColor fillColor, JUtility::TColor highlightedColor)
 {
-	int var2 = param_5 * param_3 / param_4;
-	int var1 = param_6 * param_3 / param_4;
+	// Calculate width of the filled and highlighted parts of the bar
+	int filledWidth      = filledUnits * totalUnits / maxHighlightedUnits;
+	int highlightedWidth = highlitedUnits * totalUnits / maxHighlightedUnits;
 
-	J2DFillBox(param_0, param_1, var2, param_2, param_7);
-	if (var1 >= 0) {
-		if (var1 < 6)
-			J2DFillBox(param_0, param_1, var1, param_2, param_8);
-		else
-			J2DFillBox(param_0 + var1 - 6, param_1, 6.0f, param_2, param_8);
+	// Draw filled part of the bar
+	J2DFillBox(startX, startY, filledWidth, height, fillColor);
+
+	// Draw highlighted part of the bar
+	if (highlightedWidth >= 0) {
+		if (highlightedWidth < 6) {
+			J2DFillBox(startX, startY, highlightedWidth, height, highlightedColor);
+		} else {
+			J2DFillBox(startX + highlightedWidth - 6, startY, 6.0f, height, highlightedColor);
+		}
 	}
 }
 
@@ -108,32 +116,46 @@ void JUTProcBar::bar_subroutine(int param_0, int param_1, int param_2, int param
  * @note Address: N/A
  * @note Size: 0x144
  */
-void JUTProcBar::adjustMeterLength(u32 param_0, f32* param_1, f32 param_2, f32 param_3, int* param_4)
+void JUTProcBar::adjustMeterLength(u32 totalUnits, f32* currentLength, f32 maxLength, f32 minLength, int* adjustmentFactor)
 {
-	BOOL var2 = false;
-	f32 var1  = *param_1;
-	while (var1 > param_2) {
-		if (param_0 * var1 * 20.0f / 16666.0f <= mParams.mWidth - 30.0f)
-			break;
+	BOOL lengthAdjusted = false;
+	f32 adjustedLength  = *currentLength;
 
-		var1 -= 0.1f;
-		var2 = true;
+	// Reduce length if it exceeds maximum length
+	while (adjustedLength > maxLength) {
+		if (totalUnits * adjustedLength * 20.0f / 16666.0f <= mParams.mWidth - 30.0f) {
+			break;
+		}
+
+		adjustedLength -= 0.1f;
+		lengthAdjusted = true;
 	}
 
-	if (var1 >= param_3)
-		*param_4 = 0;
-	if (var1 > param_3 - 0.2f)
-		var1 = param_3;
+	// Set adjustment factor to 0 if length is within limits
+	if (adjustedLength >= minLength) {
+		*adjustmentFactor = 0;
+	}
 
-	while (!var2 && var1 < param_3) {
-		(*param_4)++;
-		if (*param_4 < 0x1e)
+	// Limit length to minimum length
+	if (adjustedLength > minLength - 0.2f) {
+		adjustedLength = minLength;
+	}
+
+	// Increase length if it is less than minimum length
+	while (!lengthAdjusted && adjustedLength < minLength) {
+		(*adjustmentFactor)++;
+		if (*adjustmentFactor < 30) {
 			break;
-		if ((param_0 * var1 * 20.0f / 16666.0f) < (mParams.mWidth - 60.0f))
-			var1 += 0.2f;
+		}
+
+		if ((totalUnits * adjustedLength * 20.0f / 16666.0f) < (mParams.mWidth - 60.0f)) {
+			adjustedLength += 0.2f;
+		}
+
 		break;
 	}
-	*param_1 = var1;
+
+	*currentLength = adjustedLength;
 }
 
 /**
@@ -154,114 +176,196 @@ void JUTProcBar::drawProcessBar()
 {
 	if (mVisible) {
 		int frameDuration = 16666; // duration in miliseconds? for how long a frame takes,
-		if (JUTVideo::getManager() && ((JUTVideo::getManager()->getRenderMode()->viTVmode >> 2) & 0x0f) == 1) // possibly a define
-			frameDuration = 20000;                                                                            // duration for PAL
+
+		// Check if the current TV mode is NTSC_DS or PAL_DS
+		if (JUTVideo::getManager() && ((JUTVideo::getManager()->getRenderMode()->viTVmode >> 2) & 15) == 1) {
+			frameDuration = 20000;
+		}
 
 		static int cnt = 0;
-		adjustMeterLength(mWholeLoop.mCost, &oneFrameRate, 1.0f, 10.0f, &cnt);
-		int r28 = oneFrameRate * 20.0f;
-		int r27 = mParams.mBarWidth * 8;
-		int r26 = mParams.mBarWidth * 2;
-		int r25 = mParams.mBarWidth * 10;
-		int r24 = (mParams.mWidth - 4 + r28) / r28;
+
+		adjustMeterLength(mWholeLoop.mMeasurementCost, &oneFrameRate, 1.0f, 10.0f, &cnt);
+
+		int oneBarWidth = oneFrameRate * 20.0f;
+
+		// Assuming they split it originally 80/20
+		int _80BarHeight = mParams.mBarHeight * 8;
+		int _20BarHeight = mParams.mBarHeight * 2;
+
+		int fullBarHeight = mParams.mBarHeight * 10;
+
+		int barSegments = (mParams.mWidth - 4 + oneBarWidth) / oneBarWidth;
 
 		mIdle.accumePeek();
 		mGp.accumePeek();
 		mCpu.accumePeek();
 
-		u32 totalTime = (mGp.mCost - mGpWait.mCost) - mCpu.mCost; // unsure of types
-		u32 gpuTime   = (mGp.mCost - mGpWait.mCost);
-		J2DFillBox(mParams.mPosX, mParams.mPosY, mParams.mWidth, r27, JUtility::TColor(0, 0, 50, 200));
-		J2DDrawFrame(mParams.mPosX, mParams.mPosY, mParams.mWidth, r27, JUtility::TColor(50, 50, 150, 255), 6);
-		if (mCostFrame > r24)
-			J2DFillBox(mParams.mPosX, mParams.mPosY + r27 + 1, mParams.mWidth, 1.0f, JUtility::TColor(250, 0, 0, 200));
-		else
-			J2DFillBox(mParams.mPosX, mParams.mPosY + r27 + 1, mCostFrame * r28 + 2, 1.0f, JUtility::TColor(0, 250, 250, 200));
+		// Calculate the total time spent in the GPU and CPU
+		u32 totalTime = (mGp.mMeasurementCost - mGpWait.mMeasurementCost) - mCpu.mMeasurementCost;
 
-		int stack92 = mWholeLoop.mCost * r28 / frameDuration;
-		if (stack92 > mParams.mWidth)
+		// Calculate the time spent in the GPU
+		u32 gpuTime = (mGp.mMeasurementCost - mGpWait.mMeasurementCost);
+
+		// Draw the outline of the bar
+		J2DFillBox(mParams.mPosX, mParams.mPosY, mParams.mWidth, _80BarHeight, JUtility::TColor(0, 0, 50, 200));
+		J2DDrawFrame(mParams.mPosX, mParams.mPosY, mParams.mWidth, _80BarHeight, JUtility::TColor(50, 50, 150, 255), 6);
+
+		// Draw the bar segments
+		if (mCostFrame > barSegments) {
+			// Draw the bar in red if the cost exceeds the maximum
+			J2DFillBox(mParams.mPosX, mParams.mPosY + _80BarHeight + 1, mParams.mWidth, 1.0f, JUtility::TColor(250, 0, 0, 200));
+		} else {
+			// Draw the bar in cyan if the cost is within limits
+			J2DFillBox(mParams.mPosX, mParams.mPosY + _80BarHeight + 1, mCostFrame * oneBarWidth + 2, 1.0f,
+			           JUtility::TColor(0, 250, 250, 200));
+		}
+
+		// Calculate the width of the bar based on the total time spent in the whole loop
+		int barWidth = mWholeLoop.mMeasurementCost * oneBarWidth / frameDuration;
+		if (barWidth > mParams.mWidth) {
+			// Draw the bar in orange if the cost exceeds the maximum
 			J2DFillBox(mParams.mPosX, mParams.mPosY, mParams.mWidth, 1.0f, JUtility::TColor(255, 100, 0, 255));
-		else
-			J2DFillBox(mParams.mPosX, mParams.mPosY, stack92, 1.0f, JUtility::TColor(50, 255, 0, 255));
+		} else {
+			// Draw the bar in green if the cost is within limits
+			J2DFillBox(mParams.mPosX, mParams.mPosY, barWidth, 1.0f, JUtility::TColor(50, 255, 0, 255));
+		}
 
 		if (_110 == 0) {
-			int r23 = mParams.mPosY + mParams.mBarWidth;
-			bar_subroutine(mParams.mPosX + 1, r23, r26, r28, frameDuration, mGp.mCost, mGp._08, JUtility::TColor(80, 255, 80, 255),
-			               JUtility::TColor(100, 255, 120, 255));
-			r23 += mParams.mBarWidth * 2;
-			bar_subroutine(mParams.mPosX + 1, r23, r26, r28, frameDuration, mCpu.mCost, mCpu._08, JUtility::TColor(255, 80, 80, 255),
-			               JUtility::TColor(255, 100, 100, 255));
-			r23 += mParams.mBarWidth * 2;
-			bar_subroutine(mParams.mPosX + 1, r23, r26, r28, frameDuration, mIdle.mCost, mIdle._08, JUtility::TColor(180, 180, 160, 255),
-			               JUtility::TColor(200, 200, 200, 255));
+			// Draw the GPU bar
+			int barPositionY = mParams.mPosY + mParams.mBarHeight;
+			bar_subroutine(mParams.mPosX + 1, barPositionY, _20BarHeight, oneBarWidth, frameDuration, mGp.mMeasurementCost, mGp.mPeakCost,
+			               JUtility::TColor(80, 255, 80, 255), JUtility::TColor(100, 255, 120, 255));
+
+			// Draw the CPU bar
+			barPositionY += mParams.mBarHeight * 2;
+			bar_subroutine(mParams.mPosX + 1, barPositionY, _20BarHeight, oneBarWidth, frameDuration, mCpu.mMeasurementCost, mCpu.mPeakCost,
+			               JUtility::TColor(255, 80, 80, 255), JUtility::TColor(255, 100, 100, 255));
+
+			// Draw the idle bar
+			barPositionY += mParams.mBarHeight * 2;
+			bar_subroutine(mParams.mPosX + 1, barPositionY, _20BarHeight, oneBarWidth, frameDuration, mIdle.mMeasurementCost,
+			               mIdle.mPeakCost, JUtility::TColor(180, 180, 160, 255), JUtility::TColor(200, 200, 200, 255));
 		} else {
-			int r22 = mParams.mPosY + mParams.mBarWidth;
-			int r21 = mParams.mPosX + 1;
-			bar_subroutine(r21, r22, r26, r28, frameDuration, gpuTime, -1, JUtility::TColor(80, 255, 80, 255),
-			               JUtility::TColor(80, 255, 80, 255));
-			int thingy1 = gpuTime * r28 / frameDuration + r21; // inline or define?
-			J2DFillBox(thingy1, r22, mGpWait.calcBarSize(r28, frameDuration), r26, JUtility::TColor(0, 255, 0, 255));
-			int r30 = mGp.calcBarSize(r28, frameDuration) + r21;
-			r21 += totalTime * r28 / frameDuration;
-			r22 += mParams.mBarWidth * 2;
-			bar_subroutine(r21, r22, r26, r28, frameDuration, mCpu.mCost, -1, JUtility::TColor(255, 80, 80, 255),
-			               JUtility::TColor(255, 80, 80, 255));
-			r22 += mParams.mBarWidth * 2;
-			bar_subroutine(r30, r22, r26, r28, frameDuration, mIdle.mCost, -1, JUtility::TColor(180, 180, 160, 255),
-			               JUtility::TColor(180, 180, 160, 255));
+			int barPositionY = mParams.mPosY + mParams.mBarHeight;
+			int barPositionX = mParams.mPosX + 1;
+
+			// Draw the GPU time bar
+			bar_subroutine(barPositionX, barPositionY, _20BarHeight, oneBarWidth, frameDuration, gpuTime, -1,
+			               JUtility::TColor(80, 255, 80, 255), JUtility::TColor(80, 255, 80, 255));
+
+			int gpuTimeBarWidth = gpuTime * oneBarWidth / frameDuration + barPositionX;
+			J2DFillBox(gpuTimeBarWidth, barPositionY, mGpWait.calcBarSize(oneBarWidth, frameDuration), _20BarHeight,
+			           JUtility::TColor(0, 255, 0, 255));
+
+			// Draw the CPU time bar
+			int totalBarWidth = mGp.calcBarSize(oneBarWidth, frameDuration) + barPositionX;
+			barPositionX += totalTime * oneBarWidth / frameDuration;
+			barPositionY += mParams.mBarHeight * 2;
+			bar_subroutine(barPositionX, barPositionY, _20BarHeight, oneBarWidth, frameDuration, mCpu.mMeasurementCost, -1,
+			               JUtility::TColor(255, 80, 80, 255), JUtility::TColor(255, 80, 80, 255));
+
+			// Draw the idle time bar
+			barPositionY += mParams.mBarHeight * 2;
+			bar_subroutine(totalBarWidth, barPositionY, _20BarHeight, oneBarWidth, frameDuration, mIdle.mMeasurementCost, -1,
+			               JUtility::TColor(180, 180, 160, 255), JUtility::TColor(180, 180, 160, 255));
 		}
-		for (int i = 1; i < r24; i++) {
-			int temp2 = mParams.mPosX + i * r28 + 1;
-			J2DDrawLine(temp2, mParams.mPosY + mParams.mBarWidth, temp2, mParams.mPosY + r27 - mParams.mBarWidth,
+
+		// Loop through each segment of the bar
+		for (int i = 1; i < barSegments; i++) {
+			// Calculate the x-coordinate for the current segment
+			int x = mParams.mPosX + i * oneBarWidth + 1;
+
+			// Draw a vertical line at the calculated x-coordinate
+			// The y-coordinates for the line start at the top of the bar and end at the bottom
+			// The color of the line is determined by whether the current segment number is a multiple of 5
+			// If it is, the line is cyan; otherwise, it's a lighter blue
+			// The last argument (12) is the thickness of the line
+			J2DDrawLine(x, mParams.mPosY + mParams.mBarHeight, x, mParams.mPosY + _80BarHeight - mParams.mBarHeight,
 			            (i % 5) != 0 ? JUtility::TColor(100, 100, 255, 255) : JUtility::TColor(180, 255, 255, 255), 12);
 		}
-		u32 temp3 = 0;
+
+		u32 maxCost = 0;
 		for (int i = 0; i < 8; i++) {
 			CTime* time = &mUsers[i];
-			if (++time->_0C >= 0x10 || time->mCost > time->_08) {
-				time->_08 = time->mCost;
-				time->_0C = 0;
+
+			// If the peak accumulator for the current user has reached 16
+			// or the measurement cost is greater than the peak cost...
+			if (++time->mPeakAccumulator >= 16 || time->mMeasurementCost > time->mPeakCost) {
+				// Set the peak cost to the measurement cost
+				time->mPeakCost        = time->mMeasurementCost;
+				time->mPeakAccumulator = 0;
 			}
-			if (time->_08 > temp3)
-				temp3 = time->_08;
+
+			if (time->mPeakCost > maxCost) {
+				maxCost = time->mPeakCost;
+			}
 		}
-		if ((bool)temp3 == true) {
+
+		if ((bool)maxCost == true) {
 			static int cntUser = 0;
-			adjustMeterLength(temp3, &oneFrameRateUser, 1.0f, 10.0f, &cntUser);
-			int r21 = oneFrameRateUser * 20.0f;
-			J2DFillBox(mParams.mPosX, mParams.mUserPosition, mParams.mWidth, r25, JUtility::TColor(0, 0, 50, 200));
-			J2DDrawFrame(mParams.mPosX, mParams.mUserPosition, mParams.mWidth, r25, JUtility::TColor(50, 50, 150, 255), 6);
-			for (int i = 0; i < 8; i++) {
-				CTime* time = &mUsers[i];
-				if (++time->_0C >= 0x10 || time->mCost > time->_08) {
-					time->_08 = time->mCost;
-					time->_0C = 0;
-				}
-				if (time->mCost != 0 || time->_08 != 0) {
-					int temp4   = time->mCost * r21 / frameDuration;
-					int temp5   = time->_08 * r21 / frameDuration;
-					time->mCost = 0;
-					J2DFillBox(mParams.mPosX + 1, mParams.mUserPosition + mParams.mBarWidth + i * mParams.mBarWidth, temp4,
-					           mParams.mBarWidth, JUtility::TColor(time->mR, time->mG, time->mB, 255));
 
-					if (temp5 < 3u)
-						J2DFillBox(mParams.mPosX, mParams.mUserPosition + mParams.mBarWidth + i * mParams.mBarWidth, temp5,
-						           mParams.mBarWidth, JUtility::TColor(255, 200, 50, 255));
-					else
-						J2DFillBox(mParams.mPosX + temp5 - 3, mParams.mUserPosition + mParams.mBarWidth + i * mParams.mBarWidth, 3.0f,
-						           mParams.mBarWidth, JUtility::TColor(255, 200, 50, 255));
+			adjustMeterLength(maxCost, &oneFrameRateUser, 1.0f, 10.0f, &cntUser);
+
+			int userBarWidth = oneFrameRateUser * 20.0f;
+			J2DFillBox(mParams.mPosX, mParams.mUserPosition, mParams.mWidth, fullBarHeight, JUtility::TColor(0, 0, 50, 200));
+			J2DDrawFrame(mParams.mPosX, mParams.mUserPosition, mParams.mWidth, fullBarHeight, JUtility::TColor(50, 50, 150, 255), 6);
+
+			for (int userIndex = 0; userIndex < 8; userIndex++) {
+				CTime* time = &mUsers[userIndex];
+
+				if (++time->mPeakAccumulator >= 16 || time->mMeasurementCost > time->mPeakCost) {
+					time->mPeakCost        = time->mMeasurementCost;
+					time->mPeakAccumulator = 0;
+				}
+
+				if (time->mMeasurementCost != 0 || time->mPeakCost != 0) {
+					// Calculate the width of the measurement cost bar and peak cost bar
+					int measurementCostBarWidth = time->mMeasurementCost * userBarWidth / frameDuration;
+					int peakCostBarWidth        = time->mPeakCost * userBarWidth / frameDuration;
+
+					time->mMeasurementCost = 0;
+
+					// Draw the measurement cost bar
+					J2DFillBox(mParams.mPosX + 1, mParams.mUserPosition + mParams.mBarHeight + userIndex * mParams.mBarHeight,
+					           measurementCostBarWidth, mParams.mBarHeight, JUtility::TColor(time->mR, time->mG, time->mB, 255));
+
+					if (peakCostBarWidth < 3u) {
+						// If it is, draw the entire peak cost bar
+						// The bar is drawn at a position determined by the current user index and the bar height
+						// The color of the bar is set to a specific shade of yellow
+						J2DFillBox(mParams.mPosX, mParams.mUserPosition + mParams.mBarHeight + userIndex * mParams.mBarHeight,
+						           peakCostBarWidth, mParams.mBarHeight, JUtility::TColor(255, 200, 50, 255));
+					} else {
+						// If the width of the peak cost bar is 3 units or more, draw only the last 3 units of the bar
+						// The bar is drawn at a position determined by the current user index, the bar height, and the peak cost bar width
+						// The color of the bar is set to the same specific shade of yellow
+						J2DFillBox(mParams.mPosX + peakCostBarWidth - 3,
+						           mParams.mUserPosition + mParams.mBarHeight + userIndex * mParams.mBarHeight, 3.0f, mParams.mBarHeight,
+						           JUtility::TColor(255, 200, 50, 255));
+					}
 				}
 			}
 
-			int r22 = (mParams.mWidth - 4 + r21) / r21;
+			// Calculate the total number of segments in the progress bar
+			int totalProgressBarSegments = (mParams.mWidth - 4 + userBarWidth) / userBarWidth;
 
-			for (int i = 1; i < r22; i++) {
-				int temp6 = mParams.mPosX + i * r21 + 1;
-				J2DDrawLine(temp6, mParams.mUserPosition + mParams.mBarWidth, temp6, mParams.mUserPosition + r25 - mParams.mBarWidth,
-				            (i % 5) != 0 ? JUtility::TColor(100, 100, 255, 255) : JUtility::TColor(180, 255, 255, 255), 12);
+			// Loop through each segment of the progress bar
+			for (int segmentIndex = 1; segmentIndex < totalProgressBarSegments; segmentIndex++) {
+				// Calculate the x-coordinate for the current segment
+				int segmentPositionX = mParams.mPosX + segmentIndex * userBarWidth + 1;
+
+				// Draw a vertical line at the calculated x-coordinate
+				// The y-coordinates for the line start at the top of the bar and end at the bottom
+				// The color of the line is determined by whether the current segment number is a multiple of 5
+				// If it is, the line is cyan; otherwise, it's a lighter blue
+				// The last argument (12) is the thickness of the line
+				J2DDrawLine(segmentPositionX, mParams.mUserPosition + mParams.mBarHeight, segmentPositionX,
+				            mParams.mUserPosition + fullBarHeight - mParams.mBarHeight,
+				            (segmentIndex % 5) != 0 ? JUtility::TColor(100, 100, 255, 255) : JUtility::TColor(180, 255, 255, 255), 12);
 			}
 		}
-		_108 = 0;
+
+		mUnused = 0;
 	}
 }
 
@@ -278,25 +382,34 @@ void JUTProcBar::getUnuseUserBar()
  * @note Address: N/A
  * @note Size: 0x68
  */
-int addrToXPos(void* param_0, int param_1) { return param_1 * (((u32)param_0 - 0x80000000) / (f32)JKRHeap::getMemorySize()); }
-
+int addrToXPos(void* baseAddress, int xPosMultiplier)
+{
+	return xPosMultiplier * (((u32)baseAddress - 0x80000000) / (f32)JKRHeap::getMemorySize());
+}
 /**
  * @note Address: N/A
  * @note Size: 0x68
  */
-int byteToXLen(int param_0, int param_1) { return param_1 * (param_0 / (f32)JKRHeap::getMemorySize()); }
-
+int byteToXLen(int byteCount, int xLenMultiplier) { return xLenMultiplier * (byteCount / (f32)JKRHeap::getMemorySize()); }
 /**
  * @note Address: N/A
  * @note Size: 0x264
  */
-void heapBar(JKRHeap* param_0, int param_1, int param_2, int param_3, int param_4, int param_5)
+void heapBar(JKRHeap* heap, int baseXPos, int baseYPos, int unusedParam, int xPosMultiplier, int barHeight)
 {
-	int stack52 = param_1 + addrToXPos(param_0->getStartAddr(), param_4);
-	int var1    = param_1 + addrToXPos(param_0->getEndAddr(), param_4);
-	int stack36 = byteToXLen(param_0->getTotalFreeSize(), param_4);
-	J2DFillBox(stack52, param_2 - param_5 * 2 + param_5 / 2, var1 - stack52, param_5 / 2, JUtility::TColor(255, 0, 200, 255));
-	J2DFillBox(stack52, param_2 - param_5 * 2 + param_5 / 2, stack36, param_5 / 2, JUtility::TColor(255, 180, 250, 255));
+	int heapStartXPos   = baseXPos + addrToXPos(heap->getStartAddr(), xPosMultiplier);
+	int heapEndXPos     = baseXPos + addrToXPos(heap->getEndAddr(), xPosMultiplier);
+	int freeSpaceLength = byteToXLen(heap->getTotalFreeSize(), xPosMultiplier);
+
+	// Draw the entire heap bar
+	// The color of the bar is set to a specific shade of purple
+	J2DFillBox(heapStartXPos, baseYPos - barHeight * 2 + barHeight / 2, heapEndXPos - heapStartXPos, barHeight / 2,
+	           JUtility::TColor(255, 0, 200, 255));
+
+	// Draw the free space in the heap bar
+	// The color of the free space is set to a lighter shade of purple
+	J2DFillBox(heapStartXPos, baseYPos - barHeight * 2 + barHeight / 2, freeSpaceLength, barHeight / 2,
+	           JUtility::TColor(255, 180, 250, 255));
 }
 
 /**
@@ -306,26 +419,46 @@ void heapBar(JKRHeap* param_0, int param_1, int param_2, int param_3, int param_
 void JUTProcBar::drawHeapBar()
 { // barWidth * 2 / 2 is a workaround, if height / 2 is used and barWidth * 2 gets replaced with height then there will be regswaps
 	if (mHeapBarVisible) {
-		int barWidth = mParams.mBarWidth;
-		int posX     = mParams.mPosX;
-		int posY     = mParams.mPosY;
-		int width    = mParams.mWidth;
-		int height   = barWidth * 2;
-		J2DFillBox(posX, posY - barWidth * 4, width, height, JUtility::TColor(100, 0, 50, 200));
-		J2DDrawFrame(posX, posY - barWidth * 4, width, height, JUtility::TColor(100, 50, 150, 255), 6);
-		int codeStart = posX + addrToXPos(JKRHeap::getCodeStart(), width);
-		int codeEnd   = posX + addrToXPos(JKRHeap::getCodeEnd(), width);
-		J2DFillBox(codeStart, posY - barWidth * 4, codeEnd - codeStart, height, JUtility::TColor(255, 50, 150, 255));
-		int userRamStart = posX + addrToXPos(JKRHeap::getUserRamStart(), width);
-		int userRamEnd   = posX + addrToXPos(JKRHeap::getUserRamEnd(), width);
-		J2DFillBox(userRamStart, posY - barWidth * 4, userRamEnd - userRamStart, height, JUtility::TColor(0, 50, 150, 255));
-		int totalFreeSize = byteToXLen(JKRHeap::getRootHeap()->getTotalFreeSize(), width);
-		J2DFillBox(userRamStart, posY - barWidth * 4, totalFreeSize, barWidth * 2 / 2,
-		           JUtility::TColor(0, 250, 250, 255)); // Nintendo Moment?
-		if (_128 == 0) {
+		int barHeight      = mParams.mBarHeight;
+		int barPosX        = mParams.mPosX;
+		int barPosY        = mParams.mPosY;
+		int barWidth       = mParams.mWidth;
+		int totalBarHeight = barHeight * 2;
+
+		// Draw the background of the heap bar
+		J2DFillBox(barPosX, barPosY - barHeight * 4, barHeight, totalBarHeight, JUtility::TColor(100, 0, 50, 200));
+
+		// Draw the frame of the heap bar
+		J2DDrawFrame(barPosX, barPosY - barHeight * 4, barHeight, totalBarHeight, JUtility::TColor(100, 50, 150, 255), 6);
+
+		// Calculate the start and end positions of the code section in the heap bar
+		int codeStartPos = barPosX + addrToXPos(JKRHeap::getCodeStart(), barHeight);
+		int codeEndPos   = barPosX + addrToXPos(JKRHeap::getCodeEnd(), barHeight);
+
+		// Draw the code section in the heap bar
+		J2DFillBox(codeStartPos, barPosY - barHeight * 4, codeEndPos - codeStartPos, totalBarHeight, JUtility::TColor(255, 50, 150, 255));
+
+		// Calculate the start and end positions of the data section in the heap bar
+		int userRamStartPos = barPosX + addrToXPos(JKRHeap::getUserRamStart(), barHeight);
+		int userRamEndPos   = barPosX + addrToXPos(JKRHeap::getUserRamEnd(), barHeight);
+
+		// Draw the user RAM usage section of the heap bar
+		J2DFillBox(userRamStartPos, barPosY - barHeight * 4, userRamEndPos - userRamStartPos, totalBarHeight,
+		           JUtility::TColor(0, 50, 150, 255));
+
+		// Calculate the total free size of the heap
+		int totalFreeSize = byteToXLen(JKRHeap::getRootHeap()->getTotalFreeSize(), barHeight);
+
+		// Draw the free space in the heap bar
+		J2DFillBox(userRamStartPos, barPosY - barHeight * 4, totalFreeSize, barHeight * 2 / 2, JUtility::TColor(0, 250, 250, 255));
+
+		// Draw the heap bar if applies
+		if (mDisableHeapBar == 0) {
 			JKRHeap* heap = mWatchHeap ? mWatchHeap : JKRHeap::getCurrentHeap();
-			if (heap != JKRHeap::getSystemHeap())
-				heapBar(heap, posX, posY, height, width, barWidth * 2);
+
+			if (heap != JKRHeap::getSystemHeap()) {
+				heapBar(heap, barPosX, barPosY, totalBarHeight, barHeight, barHeight * 2);
+			}
 		}
 	}
 }
