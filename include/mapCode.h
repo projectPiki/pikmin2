@@ -23,7 +23,6 @@ struct Code {
 		SlipCode_NoSlip  = 0x0, // normal ground
 		SlipCode_Gradual = 0x1, // slow slip if not moving, like in VoR going up to SCx
 		SlipCode_Steep   = 0x2, // strong slip, cannot walk up, like slope behind ship in VoR
-		SlipCode3        = 0x3, // unknown
 		SLIPCODE_MASK    = 0x3,
 	};
 #pragma enumsalwaysint reset
