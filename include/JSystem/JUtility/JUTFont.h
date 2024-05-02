@@ -44,6 +44,13 @@ struct ResFONT {
 
 	// MAP1, size: 0x14
 	struct MapBlock : public BlockHeader {
+		enum MappingMethod {
+			MM_Direct         = 0,
+			MM_SjisConversion = 1,
+			MM_Indexed        = 2,
+			MM_BinarySearch   = 3,
+		};
+
 		// _00 = BlockHeader
 		u16 mMappingMethod; // _08
 		u16 mStartCode;     // _0A
