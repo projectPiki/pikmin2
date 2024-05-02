@@ -137,31 +137,31 @@ DispDayEndResultMail::DispDayEndResultMail(JKRHeap* heap, MailCategory category)
  */
 ObjDayEndResultBase::ObjDayEndResultBase()
 {
-	mScreenTitle       = nullptr;
-	mTitleAnmTransform = nullptr;
-	mTitleAnmColor     = nullptr;
-	mScreenMain        = nullptr;
-	mMainAnimTrans1    = nullptr;
-	mMainAnimTrans2    = nullptr;
-	mMainAnimSRT       = nullptr;
-	mMainAnimTev       = nullptr;
-	mScreenStars       = nullptr;
-	mStarsAnimColor    = nullptr;
-	mStarsAnimTimer1   = 0.0f;
-	mMainAnimTimer4    = 0.0f;
-	mMainAnimTimer3    = 0.0f;
-	mMainAnimTimer2    = 0.0f;
-	mMainAnimTimer1    = 0.0f;
-	mTitleAnimTimer2   = 0.0f;
-	mTitleAnimTimer1   = 0.0f;
-	mFadeoutMaxFrame   = 0.0f;
-	mFadeoutMinFrame   = 0.0f;
-	mFadeinMaxFrame    = 0.0f;
-	mFadeinMinFrame    = 0.0f;
-	mNextBtnFadePane   = nullptr;
-	_95                = 255;
-	_94                = 255;
-	mFlags             = 0;
+	mScreenTitle             = nullptr;
+	mTitleAnmTransform       = nullptr;
+	mTitleAnmColor           = nullptr;
+	mScreenMain              = nullptr;
+	mMainAnimTrans1          = nullptr;
+	mMainAnimTrans2          = nullptr;
+	mMainAnimSRT             = nullptr;
+	mMainAnimTev             = nullptr;
+	mScreenStars             = nullptr;
+	mStarsAnimColor          = nullptr;
+	mStarsAnimTimer1         = 0.0f;
+	mMainAnimTimer4          = 0.0f;
+	mMainAnimTimer3          = 0.0f;
+	mMainAnimTimer2          = 0.0f;
+	mMainAnimTimer1          = 0.0f;
+	mTitleAnimColorTimer     = 0.0f;
+	mTitleAnimTransformTimer = 0.0f;
+	mFadeoutMaxFrame         = 0.0f;
+	mFadeoutMinFrame         = 0.0f;
+	mFadeinMaxFrame          = 0.0f;
+	mFadeinMinFrame          = 0.0f;
+	mNextBtnFadePane         = nullptr;
+	_95                      = 255;
+	_94                      = 255;
+	mFlags                   = 0;
 }
 
 /**
@@ -267,14 +267,14 @@ void ObjDayEndResultBase::doDraw(Graphics& gfx)
 {
 	gfx.mOrthoGraph.setPort();
 
-	mScreenTitle->setXY(msVal._1C, 0.0f);
+	mScreenTitle->setXY(msVal.mTitleScreenPosX, 0.0f);
 	mScreenTitle->draw(gfx, gfx.mOrthoGraph);
 
 	gfx.mOrthoGraph.setPort();
-	mScreenStars->setXY(msVal._14, 0.0f);
+	mScreenStars->setXY(msVal.mStarsScreenPosX, 0.0f);
 	mScreenStars->draw(gfx, gfx.mOrthoGraph);
 
-	mScreenMain->setXY(msVal._18, 0.0f);
+	mScreenMain->setXY(msVal.mMainScreenPosX, 0.0f);
 }
 
 /**
@@ -283,19 +283,19 @@ void ObjDayEndResultBase::doDraw(Graphics& gfx)
  */
 void ObjDayEndResultBase::updateCommon()
 {
-	mTitleAnmTransform->mCurrentFrame = mTitleAnimTimer1;
-	mTitleAnmColor->mCurrentFrame     = mTitleAnimTimer2;
+	mTitleAnmTransform->mCurrentFrame = mTitleAnimTransformTimer;
+	mTitleAnmColor->mCurrentFrame     = mTitleAnimColorTimer;
 	mScreenTitle->animation();
 
-	mTitleAnimTimer1 += 1.0f;
-	mTitleAnimTimer2 += 1.0f;
+	mTitleAnimTransformTimer += 1.0f;
+	mTitleAnimColorTimer += 1.0f;
 
-	if (mTitleAnimTimer1 >= mTitleAnmTransform->mTotalFrameCount) {
-		mTitleAnimTimer1 = 0.0f;
+	if (mTitleAnimTransformTimer >= mTitleAnmTransform->mTotalFrameCount) {
+		mTitleAnimTransformTimer = 0.0f;
 	}
 
-	if (mTitleAnimTimer2 >= mTitleAnmColor->mTotalFrameCount) {
-		mTitleAnimTimer2 = 0.0f;
+	if (mTitleAnimColorTimer >= mTitleAnmColor->mTotalFrameCount) {
+		mTitleAnimColorTimer = 0.0f;
 	}
 
 	mMainAnimSRT->mCurrentFrame = mMainAnimTimer3;

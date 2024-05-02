@@ -260,8 +260,8 @@ struct ObjDayEndResultBase : public ::Screen::ObjBase {
 	P2DScreen::Mgr_tuning* mScreenTitle; // _38
 	J2DAnmTransform* mTitleAnmTransform; // _3C
 	J2DAnmColor* mTitleAnmColor;         // _40
-	f32 mTitleAnimTimer1;                // _44
-	f32 mTitleAnimTimer2;                // _48
+	f32 mTitleAnimTransformTimer;        // _44
+	f32 mTitleAnimColorTimer;            // _48
 	P2DScreen::Mgr_tuning* mScreenMain;  // _4C
 	J2DAnmTransform* mMainAnimTrans1;    // _50
 	J2DAnmTransform* mMainAnimTrans2;    // _54
@@ -286,56 +286,56 @@ struct ObjDayEndResultBase : public ::Screen::ObjBase {
 	struct StaticValues {
 		inline StaticValues()
 		{
-			_00       = 100.0f;
-			_04       = 0.25f;
-			mAnimRate = 1.0f;
-			_0C       = 1.0f;
-			_10       = 0.1f;
-			_24       = 8;
-			_28       = 3;
-			_4C       = 30;
-			_4D       = 90;
-			_4E       = 160;
-			_4F       = 32;
-			_50       = 20;
-			_14       = -8.0f;
-			_18       = 0.0f;
-			_1C       = 0.0f;
-			_20       = 23.0f;
-			_2C       = 0.899f;
-			_30       = 0.889f;
-			_34       = 0.336f;
-			_38       = 0.433f;
-			_40       = 0.4f;
-			_48       = 0.68;
-			_3C       = 0.1f;
-			_44       = 0.1f;
+			_00              = 100.0f;
+			_04              = 0.25f;
+			mAnimRate        = 1.0f;
+			_0C              = 1.0f;
+			_10              = 0.1f;
+			_24              = 8;
+			_28              = 3;
+			_4C              = 30;
+			_4D              = 90;
+			_4E              = 160;
+			_4F              = 32;
+			_50              = 20;
+			mStarsScreenPosX = -8.0f;
+			mMainScreenPosX  = 0.0f;
+			mTitleScreenPosX = 0.0f;
+			_20              = 23.0f;
+			_2C              = 0.899f;
+			_30              = 0.889f;
+			_34              = 0.336f;
+			_38              = 0.433f;
+			_40              = 0.4f;
+			_48              = 0.68;
+			_3C              = 0.1f;
+			_44              = 0.1f;
 		}
 
-		f32 _00;       // _00
-		f32 _04;       // _04
-		f32 mAnimRate; // _08
-		f32 _0C;       // _0C
-		f32 _10;       // _10
-		f32 _14;       // _14
-		f32 _18;       // _18
-		f32 _1C;       // _1C
-		f32 _20;       // _20
-		u32 _24;       // _24
-		u32 _28;       // _28
-		f32 _2C;       // _2C
-		f32 _30;       // _30
-		f32 _34;       // _34
-		f32 _38;       // _38
-		f32 _3C;       // _3C
-		f32 _40;       // _40
-		f32 _44;       // _44
-		f32 _48;       // _48
-		u8 _4C;        // _4C
-		u8 _4D;        // _4D
-		u8 _4E;        // _4E
-		u8 _4F;        // _4F
-		u8 _50;        // _50
+		f32 _00;              // _00
+		f32 _04;              // _04
+		f32 mAnimRate;        // _08
+		f32 _0C;              // _0C
+		f32 _10;              // _10
+		f32 mStarsScreenPosX; // _14
+		f32 mMainScreenPosX;  // _18
+		f32 mTitleScreenPosX; // _1C
+		f32 _20;              // _20
+		u32 _24;              // _24
+		u32 _28;              // _28
+		f32 _2C;              // _2C
+		f32 _30;              // _30
+		f32 _34;              // _34
+		f32 _38;              // _38
+		f32 _3C;              // _3C
+		f32 _40;              // _40
+		f32 _44;              // _44
+		f32 _48;              // _48
+		u8 _4C;               // _4C
+		u8 _4D;               // _4D
+		u8 _4E;               // _4E
+		u8 _4F;               // _4F
+		u8 _50;               // _50
 	};
 
 	static StaticValues msVal;
