@@ -453,12 +453,12 @@ void Item::getCarryInfoParam(CarryInfoParam& param)
 	param.mUseType  = 0;
 	param.mPosition = mPosition;
 	param.mPosition.y += 50.0f;
-	param.mYOffsetMax = 50.0f;
-	param._14         = 1;
-	param.mValue1     = mCurrentWeight;
-	param.mValue2     = mBagMaxWeight;
-	param.mColor      = 6;
-	param.mIsTopFirst = FALSE;
+	param.mYOffsetMax    = 50.0f;
+	param.mUnused        = 1;
+	param.mCurrentWeight = mCurrentWeight;
+	param.mMaxWeight     = mBagMaxWeight;
+	param.mColor         = 6;
+	param.mIsTopFirst    = FALSE;
 }
 
 /**

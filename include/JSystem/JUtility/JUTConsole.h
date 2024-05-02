@@ -82,8 +82,8 @@ struct JUTConsole : public JKRDisposer {
 	bool isVisible() const { return mIsVisible; }
 	void setVisible(bool visible) { mIsVisible = visible; }
 
-	void setLineAttr(int lineIndex, u8 attribute) { mBuf[(_20 + 2) * lineIndex] = attribute; }
-	u8* getLinePtr(int lineIndex) const { return &mBuf[(_20 + 2) * lineIndex] + 1; }
+	void setLineAttr(int lineIndex, u8 attribute) { mBuf[(mLineLength + 2) * lineIndex] = attribute; }
+	u8* getLinePtr(int lineIndex) const { return &mBuf[(mLineLength + 2) * lineIndex] + 1; }
 	int diffIndex(int startIndex, int endIndex) const
 	{
 		int diff = endIndex - startIndex;
@@ -112,13 +112,13 @@ struct JUTConsole : public JKRDisposer {
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
 	JGadget::TLinkListNode mListNode;       // _18
-	u32 _20;                                // _20
+	u32 mLineLength;                        // _20
 	int mMaxLines;                          // _24
 	u8* mBuf;                               // _28
 	bool mUnusedFlag;                       // _2C
 	int mCurrentLineIndex;                  // _30
 	int mStartLineIndex;                    // _34
-	int _38;                                // _38
+	int mCurrentLineIndex;                  // _38
 	int mLineOffset;                        // _3C
 	int mPositionX;                         // _40
 	int mPositionY;                         // _44
@@ -129,7 +129,7 @@ struct JUTConsole : public JKRDisposer {
 	int mOutput;                            // _58
 	JUtility::TColor mInactiveConsoleColor; // _5C
 	JUtility::TColor mActiveConsoleColor;   // _60
-	int _64;                                // _64
+	int mTabWidth;                          // _64
 	bool mIsVisible;                        // _68
 	bool _69;                               // _69
 	bool _6A;                               // _6A

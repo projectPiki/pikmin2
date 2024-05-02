@@ -1732,17 +1732,17 @@ void Pellet::getCarryInfoParam(CarryInfoParam& infoParam)
 	infoParam.mUseType    = 0;
 	infoParam.mPosition   = mRigid.mConfigs[0].mPosition;
 	infoParam.mYOffsetMax = 30.0f + mConfig->mParams.mHeight.mData;
-	infoParam._14         = 1;
+	infoParam.mUnused     = 1;
 	infoParam.mIsTopFirst = TRUE;
-	infoParam.mValue2     = getTotalCarryPikmins();
+	infoParam.mMaxWeight  = getTotalCarryPikmins();
 	int minVal;
 	if (mMinCarriers > 0) {
 		minVal = mMinCarriers;
 	} else {
 		minVal = mConfig->mParams.mMin.mData;
 	}
-	infoParam.mValue1 = minVal;
-	infoParam.mColor  = mCarryColor;
+	infoParam.mCurrentWeight = minVal;
+	infoParam.mColor         = mCarryColor;
 }
 
 /**

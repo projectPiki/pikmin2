@@ -56,10 +56,10 @@ struct CarryInfoParam {
 	u32 mUseType;         // _00, 1 means color by scale, 0 means color by coded table
 	Vector3f mPosition;   // _04
 	f32 mYOffsetMax;      // _10
-	u8 _14;               // _14
+	u8 mUnused;           // _14
 	u8 mColor;            // _15
-	s16 mValue1;          // _16
-	s16 mValue2;          // _18
+	s16 mCurrentWeight;   // _16
+	s16 mMaxWeight;       // _18
 	BOOL mIsTopFirst;     // _1C, 0 means value1 on bottom, 1 means value2 on bottom
 	int mValue;           // _20
 	CarryInfo mCarryInfo; // _24

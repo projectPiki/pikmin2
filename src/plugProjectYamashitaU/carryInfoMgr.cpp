@@ -210,8 +210,8 @@ void CarryInfo::draw(Graphics& gfx, CarryInfoParam& param)
 				colorbottom.a = colortop.a;
 
 				drawNumberPrim(gfx, 0.0f, 0.0f, 10, colortop, 1.0f);
-				drawNumber(gfx, 0.0f, offs1, param.mValue1, colortop, scale1);
-				drawNumber(gfx, 0.0f, offs2, param.mValue2, colorbottom, scale2);
+				drawNumber(gfx, 0.0f, offs1, param.mCurrentWeight, colortop, scale1);
+				drawNumber(gfx, 0.0f, offs2, param.mMaxWeight, colorbottom, scale2);
 				break;
 			case 1:
 				f32 x    = 7.0f;
