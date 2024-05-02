@@ -116,7 +116,7 @@ void JUTConsole::clear()
 {
 	mCurrentLineIndex = 0;
 	mStartLineIndex   = 0;
-	mCurrentLineIndex = 0;
+	mCurrentLineIndex_ = 0;
 	mLineOffset       = 0;
 
 	for (int i = 0; i < (u32)mMaxLines; i++) {
@@ -167,8 +167,8 @@ void JUTConsole::doDraw(JUTConsole::EConsoleType consoleType) const
 
 				mFont->setGX();
 				if (isActiveConsole) {
-					int endIndex   = mCurrentLineIndex;
 					int startIndex = mCurrentLineIndex;
+					int endIndex   = mCurrentLineIndex_;
 
 					s32 s = checkColorDifference(diffIndex(startIndex, endIndex), mHeight);
 					if (s <= 0) {
@@ -252,9 +252,9 @@ void JUTConsole::print(const char* str)
 {
 	if (mOutput & 1) {
 		const u8* currentChar = (const u8*)str;
-		u8* lineChar          = getLinePtr(mCurrentLineIndex) + mLineOffset;
+		u8* lineChar          = getLinePtr(mCurrentLineIndex_) + mLineOffset;
 		while (*currentChar) {
-			if (_6A && mStartLineIndex == nextIndex(mCurrentLineIndex)) {
+			if (_6A && mStartLineIndex == nextIndex(mCurrentLineIndex_)) {
 				break;
 			}
 			if (*currentChar == '\n') {
@@ -289,19 +289,19 @@ void JUTConsole::print(const char* str)
 			}
 
 			*lineChar         = 0;
-			mCurrentLineIndex = nextIndex(mCurrentLineIndex);
+			mCurrentLineIndex_ = nextIndex(mCurrentLineIndex_);
 			mLineOffset       = 0;
-			setLineAttr(mCurrentLineIndex, 0xff);
-			lineChar  = getLinePtr(mCurrentLineIndex);
+			setLineAttr(mCurrentLineIndex_, 0xff);
+			lineChar  = getLinePtr(mCurrentLineIndex_);
 			*lineChar = 0;
-			int diff  = diffIndex(mCurrentLineIndex, mCurrentLineIndex);
+			int diff  = diffIndex(mCurrentLineIndex, mCurrentLineIndex_);
 			if (diff == mHeight) {
 				mCurrentLineIndex = nextIndex(mCurrentLineIndex);
 			}
-			if (mCurrentLineIndex == mStartLineIndex) {
+			if (mCurrentLineIndex_ == mStartLineIndex) {
 				mStartLineIndex = nextIndex(mStartLineIndex);
 			}
-			if (mCurrentLineIndex == mCurrentLineIndex) {
+			if (mCurrentLineIndex_ == mCurrentLineIndex) {
 				mCurrentLineIndex = nextIndex(mCurrentLineIndex);
 			}
 
@@ -356,14 +356,14 @@ void JUTConsole::scroll(int amount)
 			amount = -indexDiff;
 		}
 	} else if (amount > 0) {
-		int var2 = mCurrentLineIndex - mStartLineIndex;
+		int var2 = mCurrentLineIndex_ - mStartLineIndex;
 		var2     = var2 >= 0 ? var2 : var2 + mMaxLines;
 
 		if (var2 + 1 <= mHeight) {
 			amount = 0;
 		} else {
-			int var3 = mCurrentLineIndex - mCurrentLineIndex;
-			var3     = mCurrentLineIndex - mCurrentLineIndex >= 0 ? var3 : var3 + mMaxLines;
+			int var3 = mCurrentLineIndex_ - mCurrentLineIndex;
+			var3     = mCurrentLineIndex_ - mCurrentLineIndex >= 0 ? var3 : var3 + mMaxLines;
 
 			if (amount > (s32)(var3 - mHeight + 1)) {
 				amount = var3 - mHeight + 1;
@@ -387,7 +387,7 @@ void JUTConsole::scroll(int amount)
  */
 int JUTConsole::getUsedLine() const
 {
-	int line = mCurrentLineIndex - mStartLineIndex;
+	int line = mCurrentLineIndex_ - mStartLineIndex;
 
 	if (line >= 0) {
 		return line;
