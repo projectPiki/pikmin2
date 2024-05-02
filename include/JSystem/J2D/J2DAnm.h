@@ -46,8 +46,8 @@ struct J2DAnmBase {
 	 */
 	J2DAnmBase()
 	{
-		mCurrentFrame = 0.0f;
-		mFrameLength  = 0;
+		mCurrentFrame    = 0.0f;
+		mTotalFrameCount = 0;
 	}
 
 	/**
@@ -65,7 +65,7 @@ struct J2DAnmBase {
 	 * @brief Gets the maximum frame of the animation.
 	 * @return The maximum frame of the animation.
 	 */
-	inline s16 getFrameMax() const { return mFrameLength; }
+	inline s16 getFrameMax() const { return mTotalFrameCount; }
 
 	/**
 	 * @brief Sets the current frame of the animation.
@@ -86,11 +86,11 @@ struct J2DAnmBase {
 	inline J2DAnmKind getKind() const { return mKind; }
 
 	// _00 = VTBL
-	u8 mAttribute;     // _04
-	u8 _05;            // _05
-	s16 mFrameLength;  // _06
-	f32 mCurrentFrame; // _08
-	J2DAnmKind mKind;  // _0C
+	u8 mAttribute;        // _04
+	u8 _05;               // _05
+	s16 mTotalFrameCount; // _06
+	f32 mCurrentFrame;    // _08
+	J2DAnmKind mKind;     // _0C
 };
 
 /**
@@ -567,11 +567,11 @@ struct J2DAnmTransformKey : public J2DAnmTransform {
 struct J2DAnmVisibilityFull : public J2DAnmBase {
 	J2DAnmVisibilityFull()
 	{
-		_10     = 0;
-		mTable  = nullptr;
-		_12     = 0;
-		mValues = nullptr;
-		mKind   = J2DANM_VisibilityFull;
+		mAnimTableNum1 = 0;
+		mTable         = nullptr;
+		mAnimTableNum2 = 0;
+		mValues        = nullptr;
+		mKind          = J2DANM_VisibilityFull;
 	}
 
 	virtual ~J2DAnmVisibilityFull() { } // _08 (weak)
@@ -580,8 +580,8 @@ struct J2DAnmVisibilityFull : public J2DAnmBase {
 
 	// _00     = VTBL
 	// _00-_10 = J2DAnmBase
-	u16 _10;                           // _10
-	u16 _12;                           // _12
+	u16 mAnimTableNum1;                // _10
+	u16 mAnimTableNum2;                // _12
 	J3DAnmVisibilityFullTable* mTable; // _14
 	u8* mValues;                       // _18
 };

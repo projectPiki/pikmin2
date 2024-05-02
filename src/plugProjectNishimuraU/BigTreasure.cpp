@@ -1390,7 +1390,7 @@ void Obj::startBlendAnimation(int animIdx, bool doBlendAnim)
 		f32 time;
 
 		if (animInfo) {
-			time = animInfo->mAnm->mFrameLength;
+			time = animInfo->mAnm->mTotalFrameCount;
 		} else {
 			time = 0.0f;
 		}

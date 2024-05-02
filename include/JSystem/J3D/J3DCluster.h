@@ -11,8 +11,8 @@ struct J3DCluster {
 	f32 _04;                // _04
 	int _08;                // _08
 	int _0C;                // _0C
-	u16 _10;                // _10
-	u16 _12_count;          // _12
+	u16 mSize;              // _10
+	u16 mCount;             // _12
 	u16 _14;                // _14
 	u16 _16;                // _16
 	u16 _18[2];             // _18
@@ -21,11 +21,11 @@ struct J3DCluster {
 };
 
 struct J3DClusterKey {
-	int _00; // _00
-	int _04; // _04
-	int _08; // _08
-	int _0C; // _0C
-	int _10; // _10
+	int _00;          // _00
+	int _04;          // _04
+	int _08;          // _08
+	int _0C;          // _0C
+	int mWeightCount; // _10
 };
 
 #endif

@@ -1224,7 +1224,7 @@ void Obj::startBlendAnimation(int animIdx, bool blendAnim)
 		SysShape::AnimInfo* animInfo = anim.mAnimInfo;
 		f32 f1;
 		if (animInfo) {
-			f1 = (f32)animInfo->mAnm->mFrameLength;
+			f1 = (f32)animInfo->mAnm->mTotalFrameCount;
 		} else {
 			f1 = 0.0f;
 		}

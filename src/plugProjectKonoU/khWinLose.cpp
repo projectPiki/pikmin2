@@ -171,7 +171,7 @@ bool ObjWinLose::updateAnimation()
 			}
 
 			// Check if the animation has finished for both the first and third animations
-			if (mAnimTime1[i] >= mAnim1[i]->mFrameLength || mAnimTime3[i] >= mAnim3[i]->mFrameLength) {
+			if (mAnimTime1[i] >= mAnim1[i]->mTotalFrameCount || mAnimTime3[i] >= mAnim3[i]->mTotalFrameCount) {
 				mAnimTime3[i] = 0.0f;
 				mAnimTime1[i] = 0.0f;
 
@@ -193,10 +193,10 @@ bool ObjWinLose::updateAnimation()
 			mAnimTime4[i] += 1.0f;
 
 			// Check if the animation has finished for both the second and fourth animations
-			if (mAnimTime2[i] >= mAnim2[i]->mFrameLength) {
+			if (mAnimTime2[i] >= mAnim2[i]->mTotalFrameCount) {
 				mAnimTime2[i] = 0.0f;
 			}
-			if (mAnimTime4[i] >= mAnim4[i]->mFrameLength) {
+			if (mAnimTime4[i] >= mAnim4[i]->mTotalFrameCount) {
 				mAnimTime4[i] = 0.0f;
 			}
 

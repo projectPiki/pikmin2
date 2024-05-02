@@ -16,7 +16,7 @@ void E3DAnimRes::load(J3DModelData* modelData, JKRArchive* archive, char* resour
 	mAnmCalcMtx    = J3DNewMtxCalcAnm((modelData->mJointTree).mFlags & 0xf, mAnimTransform);
 
 	mStartFrame = 0.0f;
-	mStopFrame  = mAnimTransform->mFrameLength - 2.0f;
+	mStopFrame  = mAnimTransform->mTotalFrameCount - 2.0f;
 
 	mLoopStart = mStartFrame;
 	mLoopEnd   = mStopFrame;

@@ -2221,47 +2221,47 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 	}
 
 	mAnimTimers[2] += 1.0f;
-	if (mAnimTimers[2] >= mKitaAnim3->mFrameLength) {
+	if (mAnimTimers[2] >= mKitaAnim3->mTotalFrameCount) {
 		mAnimTimers[2] = 0.0f;
 	}
 
 	mAnimTimers[3] += 1.0f;
-	if (mAnimTimers[3] >= mKitaAnim4->mFrameLength) {
+	if (mAnimTimers[3] >= mKitaAnim4->mTotalFrameCount) {
 		mAnimTimers[3] = 0.0f;
 	}
 
 	mAnimTimers[4] += 1.0f;
-	if (mAnimTimers[4] >= mKitaAnim5->mFrameLength) {
+	if (mAnimTimers[4] >= mKitaAnim5->mTotalFrameCount) {
 		mAnimTimers[4] = 0.0f;
 	}
 
 	mAnimTimers[5] += 1.0f;
-	if (mAnimTimers[5] >= mRocketAnim1->mFrameLength) {
+	if (mAnimTimers[5] >= mRocketAnim1->mTotalFrameCount) {
 		mAnimTimers[5] = 0.0f;
 	}
 
 	mAnimTimers[6] += 1.0f;
-	if (mAnimTimers[6] >= mRocketAnim2->mFrameLength) {
+	if (mAnimTimers[6] >= mRocketAnim2->mTotalFrameCount) {
 		mAnimTimers[6] = 0.0f;
 	}
 
 	mAnimTimers[7] += 0.5f;
-	if (mAnimTimers[7] >= mInfoAnim1->mFrameLength) {
+	if (mAnimTimers[7] >= mInfoAnim1->mTotalFrameCount) {
 		mAnimTimers[7] = 0.0f;
 	}
 
 	mAnimTimers[8] += 0.5f;
-	if (mAnimTimers[8] >= mInfoAnim2->mFrameLength) {
+	if (mAnimTimers[8] >= mInfoAnim2->mTotalFrameCount) {
 		mAnimTimers[8] = 0.0f;
 	}
 
 	mAnimTimers[9] += 0.5f;
-	if (mAnimTimers[9] >= mInfoAnim3->mFrameLength) {
+	if (mAnimTimers[9] >= mInfoAnim3->mTotalFrameCount) {
 		mAnimTimers[9] = 0.0f;
 	}
 
 	mAnimTimers[1] += 1.0f;
-	if (mAnimTimers[1] >= mKitaAnim2->mFrameLength) {
+	if (mAnimTimers[1] >= mKitaAnim2->mTotalFrameCount) {
 		mAnimTimers[1] = 0.0f;
 	}
 
@@ -5759,7 +5759,7 @@ void WorldMap::changeInfo()
 	u64 tags2[4]
 	    = { '8396_01', '8398_01', '8401_01', '8410_01' }; // "Hole of Beasts" 	"White Flower Garden"	"Bulblax Kingdom" 	"Snagret Hole"
 	u64 tags3[4]     = { '8397_01', '8402_01', '8403_01',
-                     '8411_01' }; // "Citadel of Spiders"	"Glutton's Kitchen"		"Shower Room"		"Submerged Castle"
+		                 '8411_01' }; // "Citadel of Spiders"	"Glutton's Kitchen"		"Shower Room"		"Submerged Castle"
 	u64 tags4[4]     = { '8412_01', '8413_01', '8414_01', 'no_data' }; // "Cavern of Chaos" 	"Hole of Heroes"	 	"Dream Den"
 	u64* caveTags[4] = { tags1, tags2, tags3, tags4 };
 

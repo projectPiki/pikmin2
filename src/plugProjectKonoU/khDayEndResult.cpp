@@ -290,11 +290,11 @@ void ObjDayEndResultBase::updateCommon()
 	mTitleAnimTimer1 += 1.0f;
 	mTitleAnimTimer2 += 1.0f;
 
-	if (mTitleAnimTimer1 >= mTitleAnmTransform->mFrameLength) {
+	if (mTitleAnimTimer1 >= mTitleAnmTransform->mTotalFrameCount) {
 		mTitleAnimTimer1 = 0.0f;
 	}
 
-	if (mTitleAnimTimer2 >= mTitleAnmColor->mFrameLength) {
+	if (mTitleAnimTimer2 >= mTitleAnmColor->mTotalFrameCount) {
 		mTitleAnimTimer2 = 0.0f;
 	}
 
@@ -305,11 +305,11 @@ void ObjDayEndResultBase::updateCommon()
 	mMainAnimTimer3 += 1.0f;
 	mMainAnimTimer4 += 1.0f;
 
-	if (mMainAnimTimer3 >= mMainAnimSRT->mFrameLength) {
+	if (mMainAnimTimer3 >= mMainAnimSRT->mTotalFrameCount) {
 		mMainAnimTimer3 = 0.0f;
 	}
 
-	if (mMainAnimTimer4 >= mMainAnimTev->mFrameLength) {
+	if (mMainAnimTimer4 >= mMainAnimTev->mTotalFrameCount) {
 		mMainAnimTimer4 = 0.0f;
 	}
 
@@ -318,7 +318,7 @@ void ObjDayEndResultBase::updateCommon()
 
 	mMainAnimTimer2 += 1.0f;
 
-	if (mMainAnimTimer2 >= mMainAnimTrans2->mFrameLength) {
+	if (mMainAnimTimer2 >= mMainAnimTrans2->mTotalFrameCount) {
 		mMainAnimTimer2 = 0.0f;
 	}
 
@@ -327,7 +327,7 @@ void ObjDayEndResultBase::updateCommon()
 
 	mStarsAnimTimer1 += 1.0f;
 
-	if (mStarsAnimTimer1 >= mStarsAnimColor->mFrameLength) {
+	if (mStarsAnimTimer1 >= mStarsAnimColor->mTotalFrameCount) {
 		mStarsAnimTimer1 = 0.0f;
 	}
 
@@ -941,7 +941,7 @@ void ObjDayEndResultItem::updateCommon()
 	mScreenMain->search('N_3d')->animationTransform();
 
 	mMainAnimTimer5++;
-	if (mMainAnimTimer5 >= mMainAnimTrans3->mFrameLength) {
+	if (mMainAnimTimer5 >= mMainAnimTrans3->mTotalFrameCount) {
 		mMainAnimTimer5 = 0.0f;
 	}
 }
@@ -2907,12 +2907,12 @@ void ObjDayEndResultTitl::updateCommon()
 	mScreenMain->animation();
 
 	mAnimTimer1 += 1.0f;
-	if (mAnimTimer1 >= mMainAnimTrans->mFrameLength) {
+	if (mAnimTimer1 >= mMainAnimTrans->mTotalFrameCount) {
 		mAnimTimer1 = 0.0f;
 	}
 
 	mAnimTimer2 += 1.0f;
-	if (mAnimTimer2 >= mMainAnimSRT->mFrameLength) {
+	if (mAnimTimer2 >= mMainAnimSRT->mTotalFrameCount) {
 		mAnimTimer2 = 0.0f;
 	}
 }

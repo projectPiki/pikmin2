@@ -6,12 +6,12 @@
  */
 HeapStatus::HeapStatus()
 {
-	mHeapInfo._3C             = 0;
-	mHeapInfo._40             = -1;
-	mHeapInfo._44             = 0;
-	mHeapInfo._48             = &mHeapInfo;
-	_50                       = 0;
-	mHeapInfo.mTreeParentHeap = &mHeapInfo;
+	mHeapInfo.mUnused0     = 0;
+	mHeapInfo.mUnused1     = -1;
+	mHeapInfo.mUnused2     = 0;
+	mHeapInfo.mCurrentNode = &mHeapInfo;
+	_50                    = 0;
+	mHeapInfo.mParent      = &mHeapInfo;
 }
 
 /**
@@ -83,30 +83,28 @@ void HeapStatus::dumpNode()
  */
 HeapInfo::~HeapInfo()
 {
-	// this is probably two calls to an inline based on the assert
-	// but i cannot be arsed working out which inline and this matches so WHATEVER
-	HeapInfo* info1 = _48->mTreeParentHeap;
-	HeapInfo* info0 = _48;
+	HeapInfo* info1 = mCurrentNode->mParent;
+	HeapInfo* info0 = mCurrentNode;
 	if (info1 == this) {
 		if (info1->mTree.getParent()) {
-			info0->mTreeParentHeap = static_cast<HeapInfo*>(info1->mTree.getParent()->getObject());
-			HeapInfo* info2        = info0->mTreeParentHeap;
-			info0->mTreeParentHeap = info0->search(info2);
-			if (info2 != info0->mTreeParentHeap) {
+			info0->mParent  = static_cast<HeapInfo*>(info1->mTree.getParent()->getObject());
+			HeapInfo* info2 = info0->mParent;
+			info0->mParent  = info0->search(info2);
+			if (info2 != info0->mParent) {
 				JUT_PANICLINE(277, "EXIT\n");
 			}
 		}
 
 	} else {
 		if (search(info1)) {
-			_48->mTreeParentHeap = this;
-			HeapInfo* info3      = _48->mTreeParentHeap;
-			HeapInfo* info2      = _48; // _r29
+			mCurrentNode->mParent = this;
+			HeapInfo* info3       = mCurrentNode->mParent;
+			HeapInfo* info2       = mCurrentNode; // _r29
 			if (info3->mTree.getParent()) {
-				info2->mTreeParentHeap = static_cast<HeapInfo*>(info3->mTree.getParent()->getObject());
-				HeapInfo* info4        = info2->mTreeParentHeap;
-				info2->mTreeParentHeap = info2->search(info4);
-				if (info4 != info2->mTreeParentHeap) {
+				info2->mParent  = static_cast<HeapInfo*>(info3->mTree.getParent()->getObject());
+				HeapInfo* info4 = info2->mParent;
+				info2->mParent  = info2->search(info4);
+				if (info4 != info2->mParent) {
 					JUT_PANICLINE(277, "EXIT\n");
 				}
 			}

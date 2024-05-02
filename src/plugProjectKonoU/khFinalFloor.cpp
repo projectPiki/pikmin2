@@ -148,9 +148,9 @@ bool ObjFinalFloor::updateAnimation()
 			mScreen[i]->hide();
 
 			// Reset animation if current frame is >75% of the length.
-			if (mAnimTime1[i] > (mAnim1[i]->mFrameLength * 3) >> 2) {
-				mAnimTime1[i] = mAnim1[i]->mFrameLength;
-				mAnimTime2[i] = mAnim2[i]->mFrameLength;
+			if (mAnimTime1[i] > (mAnim1[i]->mTotalFrameCount * 3) >> 2) {
+				mAnimTime1[i] = mAnim1[i]->mTotalFrameCount;
+				mAnimTime2[i] = mAnim2[i]->mTotalFrameCount;
 			} else {
 				mAnimTime2[i] = 0.0f;
 				mAnimTime1[i] = 0.0f;
@@ -163,7 +163,7 @@ bool ObjFinalFloor::updateAnimation()
 		// Update the animation times and check if the animation has finished
 		mAnimTime1[i] += msVal.mAnimSpeed;
 		mAnimTime2[i] += msVal.mAnimSpeed;
-		if (mAnimTime1[i] >= mAnim1[i]->mFrameLength || mAnimTime2[i] >= mAnim2[i]->mFrameLength) {
+		if (mAnimTime1[i] >= mAnim1[i]->mTotalFrameCount || mAnimTime2[i] >= mAnim2[i]->mTotalFrameCount) {
 			ret = true;
 		}
 	}
@@ -189,7 +189,7 @@ void ObjFinalFloor::stopSound()
  */
 void ObjFinalFloor::restartSound()
 {
-	if (mAnimTime1[0] <= (mAnim1[0]->mFrameLength * 3) >> 2) {
+	if (mAnimTime1[0] <= (mAnim1[0]->mTotalFrameCount * 3) >> 2) {
 		PSSystem::spSysIF->playSystemSe(PSSE_FINALLEVEL_COME, &mSound, 0);
 		startBGM();
 	}

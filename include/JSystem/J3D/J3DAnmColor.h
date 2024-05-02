@@ -136,7 +136,7 @@ struct J3DAnmColorKey : public J3DAnmColor {
 struct J3DAnmColorKeyData : J3DFileBlockBase {
 	u8 mAttribute;               // _08
 	u8 _09[3];                   // _09
-	s16 mFrameLength;            // _0C
+	s16 mTotalFrameCount;        // _0C
 	u16 mUpdateMaterialNum;      // _0E
 	u16 _10;                     // _10
 	u16 _12;                     // _12

@@ -171,7 +171,7 @@ bool ObjPayDept::updateAnimation()
 	mScreen->animation();
 	mAnimTime1 += msVal.mAnimSpeed;
 	mAnimTime2 += msVal.mAnimSpeed;
-	if (mAnimTime1 >= mAnim1->mFrameLength || mAnimTime2 >= mAnim2->mFrameLength) {
+	if (mAnimTime1 >= mAnim1->mTotalFrameCount || mAnimTime2 >= mAnim2->mTotalFrameCount) {
 		ret = true;
 	}
 	return ret;

@@ -507,8 +507,8 @@ void Pikmin::TUnit::init(ebi::title::Pikmin::TMgr* mgr, s32 color)
 
 	mModel = mManager->mAnimator->newJ3DModel(color);
 
-	mFrameControlA.init(mManager->mAnimator->mWaitAnim->mFrameLength);
-	mFrameControlB.init(mManager->mAnimator->mWaveAnim->mFrameLength);
+	mFrameControlA.init(mManager->mAnimator->mWaitAnim->mTotalFrameCount);
+	mFrameControlB.init(mManager->mAnimator->mWaveAnim->mTotalFrameCount);
 
 	switch (sys->mRegion) {
 	case System::LANG_Japanese:

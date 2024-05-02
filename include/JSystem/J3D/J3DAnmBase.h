@@ -42,7 +42,7 @@ struct J3DAnmBase {
 	inline J3DAnmBase()
 	    : mAttribute(0)
 	    , _05(0)
-	    , mFrameLength(0)
+	    , mTotalFrameCount(0)
 	    , mCurrentFrame(0.0f)
 	{
 	}
@@ -51,26 +51,26 @@ struct J3DAnmBase {
 	virtual J3DAnmKind getKind() const = 0; // _0C
 
 	u8 getAttribute() const { return mAttribute; }
-	s16 getFrameMax() const { return mFrameLength; }
+	s16 getFrameMax() const { return mTotalFrameCount; }
 	f32 getFrame() const { return mCurrentFrame; }
 	void setFrame(f32 frame) { mCurrentFrame = frame; }
 
 	// _00 = VTBL
-	u8 mAttribute;     // _04
-	u8 _05;            // _05
-	s16 mFrameLength;  // _06
-	f32 mCurrentFrame; // _08
+	u8 mAttribute;        // _04
+	u8 _05;               // _05
+	s16 mTotalFrameCount; // _06
+	f32 mCurrentFrame;    // _08
 };
 
 /**
  * @fabricated
  */
 struct J3DAnmFullData : public J3DFileBlockBase {
-	u8 mAttribute;      // _08
-	u8 _09;             // _09
-	s16 mMaxFrame;      // _0A
-	u16 mAnimTableNum1; // _0C
-	u16 mAnimTableNum2;
+	u8 mAttribute;        // _08
+	u8 mRotationScale;    // _09
+	s16 mTotalFrameCount; // _0A
+	u16 mExtraInfo1;      // _0C
+	u16 mExtraInfo2;      // _0E
 };
 
 struct J3DAnmKeyTableBase {

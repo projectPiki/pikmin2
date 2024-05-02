@@ -154,7 +154,7 @@ bool ObjReadyGo::updateAnimation()
 		mAnimTime2[i] += msVal.mAnimSpeed;
 
 		// Check if the animation is complete
-		if (mAnimTime1[i] >= mAnim1[i]->mFrameLength - 2 || mAnimTime2[i] >= mAnim2[i]->mFrameLength - 2) {
+		if (mAnimTime1[i] >= mAnim1[i]->mTotalFrameCount - 2 || mAnimTime2[i] >= mAnim2[i]->mTotalFrameCount - 2) {
 			done = true;
 		}
 

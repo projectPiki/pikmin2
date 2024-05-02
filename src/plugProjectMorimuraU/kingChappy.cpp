@@ -2516,7 +2516,7 @@ void Obj::startMotionSelf(int animIdx, SysShape::MotionListener* listener)
 		SysShape::Animator& sysAnim = animator->getAnimator(0);
 		f32 frame;
 		if (sysAnim.mAnimInfo) {
-			frame = sysAnim.mAnimInfo->mAnm->mFrameLength;
+			frame = sysAnim.mAnimInfo->mAnm->mTotalFrameCount;
 		} else {
 			frame = 0.0f;
 		}

@@ -76,7 +76,7 @@ struct J3DAnmClusterKey : public J3DAnmCluster {
 
 struct J3DAnmClusterKeyData : public J3DFileBlockBase {
 	u8 mAttribute;        // _08
-	s16 mFrameLength;     // _0A
+	s16 mTotalFrameCount; // _0A
 	u8 _0C[4];            // _0C - unknown/filler
 	void* mTableOffset;   // _10
 	void* mWeightsOffset; // _14

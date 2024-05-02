@@ -293,8 +293,8 @@ void E2DCallBack_AnmBase::loadAnm(char* path, JKRArchive* archive, s32 frame, s3
 	mFrameCtrl.mFrame = (s16)frame;
 	mFrameCtrl.mLoop  = (s16)frame;
 
-	if (mAnim->mFrameLength < maxFrame) {
-		maxFrame = mAnim->mFrameLength;
+	if (mAnim->mTotalFrameCount < maxFrame) {
+		maxFrame = mAnim->mTotalFrameCount;
 	}
 	mFrameCtrl.mEnd = maxFrame;
 }

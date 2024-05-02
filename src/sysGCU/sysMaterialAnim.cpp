@@ -35,7 +35,7 @@ void MatBaseAnimation::attachResource(void* resource, J3DModelData* modelData)
 f32 MatBaseAnimation::getFrameMax()
 {
 	P2ASSERTLINE(57, getAnmBase());
-	return getAnmBase()->mFrameLength;
+	return getAnmBase()->mTotalFrameCount;
 }
 
 /**

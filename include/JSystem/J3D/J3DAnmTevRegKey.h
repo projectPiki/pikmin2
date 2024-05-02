@@ -87,7 +87,7 @@ struct J3DAnmTevRegKey : public J3DAnmBase {
 struct J3DAnmTevRegKeyData : J3DFileBlockBase {
 	u8 mAttribute;                   // _08
 	u8 _09;                          // _09
-	s16 mFrameMax;                   // _0A
+	s16 mTotalFrameCount;            // _0A
 	u16 mCRegUpdateMaterialNum;      // _0C
 	u16 mKRegUpdateMaterialNum;      // _0E
 	u16 _10;                         // _10

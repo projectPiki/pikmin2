@@ -100,7 +100,7 @@ void Animator::setFrameByKeyType(u32 id)
 	JUT_ASSERTLINE(300, !(mFlags & 0x80), "ExMotionErr::setFrameByKeyType(%d)\n", id);
 
 	if (id == KEYEVENT_END) {
-		setCurrFrame(mAnimInfo->mAnm->mFrameLength - 1.0f);
+		setCurrFrame(mAnimInfo->mAnm->mTotalFrameCount - 1.0f);
 	} else {
 		KeyEvent* evt = mAnimInfo->getAnimKeyByType(id);
 		if (evt) {
@@ -116,7 +116,7 @@ void Animator::setFrameByKeyType(u32 id)
 void Animator::setLastFrame()
 {
 	if (mAnimInfo) {
-		setCurrFrame(mAnimInfo->mAnm->mFrameLength - 1.0f);
+		setCurrFrame(mAnimInfo->mAnm->mTotalFrameCount - 1.0f);
 	}
 }
 
@@ -165,13 +165,13 @@ void Animator::animate(f32 deltaTime)
 		mCurAnimKey = mAnimInfo->getLowestAnimKey(mTimer);
 	}
 
-	int time = mAnimInfo->mAnm->mFrameLength;
+	int time = mAnimInfo->mAnm->mTotalFrameCount;
 	if (time >= mTimer) {
 		mTimer = time - 1.0f;
 
 		if (mListener && !(mFlags & 1)) {
 			KeyEvent event;
-			event.mFrame   = (f32)mAnimInfo->mAnm->mFrameLength;
+			event.mFrame   = (f32)mAnimInfo->mAnm->mTotalFrameCount;
 			event.mType    = KEYEVENT_END;
 			event.mAnimIdx = mAnimInfo->mId;
 			mFlags |= 1;

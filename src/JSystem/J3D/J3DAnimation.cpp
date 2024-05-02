@@ -348,12 +348,12 @@ void J3DAnmTextureSRTKey::calcTransform(f32 p1, u16 p2, J3DTextureSRTInfo* info)
 		info->mRotation = 0;
 		break;
 	case 1:
-		info->mRotation = mRotation1Vals[zInf->mRotationInfo.mOffset] << _0C;
+		info->mRotation = mRotation1Vals[zInf->mRotationInfo.mOffset] << mRotationScale;
 		break;
 	default:
 		info->mRotation
 		    = static_cast<s32>(J3DGetKeyFrameInterpolation<s16>(p1, &zInf->mRotationInfo, &mRotation1Vals[zInf->mRotationInfo.mOffset]))
-		   << _0C;
+		   << mRotationScale;
 	}
 
 	switch (xInf->mTranslationInfo.mMaxFrame) {

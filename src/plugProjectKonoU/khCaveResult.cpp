@@ -1378,22 +1378,22 @@ void ObjCaveResult::updateAnimation()
 
 	if (!isFlag(CAVERESFLAG_SaveOpen)) {
 		mAnimTimers[0] += 1.0f;
-		if (mAnimTimers[0] >= mMainAnim->mFrameLength) {
+		if (mAnimTimers[0] >= mMainAnim->mTotalFrameCount) {
 			mAnimTimers[0] = 0.0f;
 		}
 
 		mAnimTimers[2] += 1.0f;
-		if (mAnimTimers[2] >= mMainAnimColor->mFrameLength) {
+		if (mAnimTimers[2] >= mMainAnimColor->mTotalFrameCount) {
 			mAnimTimers[2] = 0.0f;
 		}
 
 		mAnimTimers[4] += 1.0f;
-		if (mAnimTimers[4] >= mAnimTexSRT->mFrameLength) {
+		if (mAnimTimers[4] >= mAnimTexSRT->mTotalFrameCount) {
 			mAnimTimers[4] = 0.0f;
 		}
 
 		mAnimTimers[5] += 1.0f;
-		if (mAnimTimers[5] >= mAnimTevReg->mFrameLength) {
+		if (mAnimTimers[5] >= mAnimTevReg->mTotalFrameCount) {
 			mAnimTimers[5] = 0.0f;
 		}
 	}

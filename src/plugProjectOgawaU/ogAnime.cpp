@@ -66,7 +66,7 @@ void AnimBaseBase::init(JKRArchive* archive, char* resourcePath)
 	JUT_ASSERTLINE(87, resource, "no name resource (%s) \n", resourcePath);
 	mAnm = J2DAnmLoaderDataBase::load(resource);
 
-	mLastFrame      = mAnm->mFrameLength - 1;
+	mLastFrame      = mAnm->mTotalFrameCount - 1;
 	mMinFrame       = 0.0f;
 	mArea           = mLastFrame;
 	mLength         = mArea - mMinFrame;

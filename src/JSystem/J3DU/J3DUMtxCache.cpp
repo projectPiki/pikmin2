@@ -16,7 +16,7 @@ void init(J3DModel* model, J3DAnmTransform* transform, T* table)
 
 	data->getJointNodePointer(0)->mMtxCalc = base;
 
-	int frameCount = transform->mFrameLength;
+	int frameCount = transform->mTotalFrameCount;
 	int jointCount = data->mJointTree.mJointCnt;
 
 	for (int i = 0; i < frameCount; i++) {

@@ -43,10 +43,10 @@ void J3DDeformer::deform(J3DVertexBuffer* vtxbuffer, u16 index)
 	u16 size = 0;
 	if (mAnmCluster) {
 		for (u16 i = 0; i < index; i++) {
-			size += mDeformData->getCluster(i)->_10;
+			size += mDeformData->getCluster(i)->mSize;
 		}
 
-		u16 max = mDeformData->getCluster(index)->_10;
+		u16 max = mDeformData->getCluster(index)->mSize;
 		for (u16 i = 0; i < max; i++) {
 			mWeightList[i] = mAnmCluster->getWeight(size++);
 		}
@@ -60,28 +60,28 @@ void J3DDeformer::deform(J3DVertexBuffer* vtxbuffer, u16 index)
  */
 void J3DDeformer::deform_VtxPosF32(J3DVertexBuffer* vtxbuffer, J3DCluster* cluster, J3DClusterKey* key, f32* weights)
 {
-	int n    = cluster->_12_count;
-	u16* ind = (u16*)&mDeformData->mVtxPos;
-	int n2   = cluster->_10;
-	u16* asd = cluster->_18;
+	int clusterCount   = cluster->mCount;
+	u16* vertexIndices = (u16*)&mDeformData->mVtxPos;
+	int clusterSize    = cluster->mSize;
+	u16* dataUnused    = cluster->_18;
 
-	f32* v = (f32*)(vtxbuffer->mVtxPos[0]);
-	for (int i = 0; i < n; i++) {
-		int j = ind[i] * 3;
+	f32* vertexPositions = (f32*)(vtxbuffer->mVtxPos[0]);
+	for (int i = 0; i < clusterCount; i++) {
+		int vertexIndex = vertexIndices[i] * 3;
 
-		f32* pos = &v[j];
-		pos[0]   = 0.0f;
-		pos[1]   = 0.0f;
-		pos[2]   = 0.0f;
+		f32* position = &vertexPositions[vertexIndex];
+		position[0]   = 0.0f;
+		position[1]   = 0.0f;
+		position[2]   = 0.0f;
 	}
 
-	f32 test[2] = { 1.0f, -1.0f };
-	f32* t      = test;
-	for (u16 i = 0; i < n; i++) {
-		u16 j2 = 1;
+	f32 weightModifiers[2] = { 1.0f, -1.0f };
+	f32* weightModifier    = weightModifiers;
+	for (u16 i = 0; i < clusterCount; i++) {
+		u16 modifierIndex = 1;
 
-		for (u16 j = 0; j < n2; j++) {
-			weights[j] *= t[j2];
+		for (u16 j = 0; j < clusterSize; j++) {
+			weights[j] *= weightModifier[modifierIndex];
 		}
 	}
 	/*
@@ -619,11 +619,11 @@ void J3DDeformer::deform(J3DVertexBuffer* vtxbuffer, u16 index, f32* weights)
 
 		u16 size = 0;
 		for (u16 i = 0; i < index; i++) {
-			size += mDeformData->getCluster(i)->_10 + 1;
+			size += mDeformData->getCluster(i)->mSize + 1;
 		}
 
 		J3DClusterKey* key = mDeformData->getClusterKey(size);
-		normalizeWeight(key->_10, weights);
+		normalizeWeight(key->mWeightCount, weights);
 		deform_VtxPosF32(vtxbuffer, cluster, key, weights);
 		if ((mFlags & UseNrm) && key->_0C && mDeformData->_14 == 4) {
 			deform_VtxNrmF32(vtxbuffer, cluster, key, weights);

@@ -37,11 +37,11 @@ struct HeapInfo : public Node, public JKRDisposer {
 	// _00-_24 = Node
 	// _20     = VTBL (Node)
 	// _24-_3C = JKRDisposer
-	u32 _3C;                   // _3C
-	int _40;                   // _40
-	u32 _44;                   // _44
-	HeapInfo* _48;             // _48
-	HeapInfo* mTreeParentHeap; // _4C
+	u32 mUnused0;           // _3C
+	int mUnused1;           // _40
+	u32 mUnused2;           // _44
+	HeapInfo* mCurrentNode; // _48
+	HeapInfo* mParent;      // _4C
 };
 
 struct HeapStatus {
