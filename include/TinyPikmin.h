@@ -27,19 +27,19 @@ struct TinyPikmin {
 	void draw();
 	void drawPikmin(f32, f32, f32, f32);
 
-	int mState;       // _00
-	s32 mColor;       // _04
-	f32 _08;          // _08
-	f32 _0C;          // _0C
-	f32 mPosX;        // _10
-	f32 mPosY;        // _14
-	f32 mTimer2;      // _18
-	f32 mTimerFactor; // _1C
-	f32 mTimer;       // _20
-	f32 _24;          // _24
-	f32 mVelX;        // _28
-	f32 mVelY;        // _2C
-	f32 mAngle;       // _30
+	int mState;          // _00
+	s32 mColor;          // _04
+	f32 mVelocityX;      // _08
+	f32 mVelocityY;      // _0C
+	f32 mPositionX;      // _10
+	f32 mPositionY;      // _14
+	f32 mScaleAnimTimer; // _18
+	f32 mTimeScale;      // _1C
+	f32 mWaitTimer;      // _20
+	f32 mWaitDuration;   // _24
+	f32 mVelocityX;      // _28
+	f32 mVelocityY;      // _2C
+	f32 mAngle;          // _30
 };
 
 #endif

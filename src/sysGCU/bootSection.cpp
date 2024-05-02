@@ -34,14 +34,14 @@ J2DPicture* TinyPikminMgr::sPikminTex[6];
  */
 TinyPikmin::TinyPikmin()
 {
-	mState  = 0;
-	mColor  = 0;
-	_08     = 0.0f;
-	_0C     = 0.0f;
-	mPosY   = 0.0f;
-	mTimer2 = 1.0f;
-	mTimer  = 0.0f;
-	_24     = 1.0f;
+	mState        = 0;
+	mColor        = 0;
+	mVelocityX    = 0.0f;
+	mVelocityY    = 0.0f;
+	mPositionY    = 0.0f;
+	mScaleAnimTimer   = 1.0f;
+	mWaitTimer        = 0.0f;
+	mWaitDuration = 1.0f;
 }
 
 /**
@@ -50,35 +50,35 @@ TinyPikmin::TinyPikmin()
  */
 void TinyPikmin::init(int color, f32 delay, f32 u2, f32 x)
 {
-	mState  = INACTIVE;
-	mColor  = color;
-	_08     = delay + u2;
-	_0C     = 166.0f;
-	mPosX   = 0.0f;
-	mPosY   = 70.0f;
-	mTimer2 = randFloat();
-	mTimer  = 0.0f;
-	_24     = x;
-	mVelX   = 0.0f;
-	mVelY   = 0.0f;
-	mAngle  = 0.0f;
+	mState        = INACTIVE;
+	mColor        = color;
+	mVelocityX    = delay + u2;
+	mVelocityY    = 166.0f;
+	mPositionX    = 0.0f;
+	mPositionY    = 70.0f;
+	mScaleAnimTimer   = randFloat();
+	mWaitTimer        = 0.0f;
+	mWaitDuration = x;
+	mVelocityX    = 0.0f;
+	mVelocityY    = 0.0f;
+	mAngle        = 0.0f;
 
 	switch (mColor) {
 	case White:
-		mTimerFactor = 2.0f;
+		mTimeScale = 2.0f;
 		break;
 	case Purple:
-		mTimerFactor = 1.0f;
+		mTimeScale = 1.0f;
 		if (sTinyPikminMgr->mDoSlamPikmin) {
-			mPosY = -200.0f;
+			mPositionY = -200.0f;
 		}
 		break;
 	default:
-		mTimerFactor = 1.5f;
+		mTimeScale = 1.5f;
 	}
 
 	if (sTinyPikminMgr->mMode == 1) {
-		mPosY = -200.0f;
+		mPositionY = -200.0f;
 	}
 }
 
@@ -90,8 +90,8 @@ void TinyPikmin::wind(f32 xVel)
 {
 	if (mState != INACTIVE && mState != WAIT) {
 		mState = SLAMMED;
-		mVelX += xVel;
-		mVelY -= randFloat() * 20.0f + 10.0f;
+		mVelocityX += xVel;
+		mVelocityY -= randFloat() * 20.0f + 10.0f;
 	}
 }
 
@@ -102,7 +102,7 @@ void TinyPikmin::wind(f32 xVel)
 void TinyPikmin::appear()
 {
 	if (mState != WAIT) {
-		mTimer = 0.0f;
+		mWaitTimer = 0.0f;
 		mState = WAIT;
 	}
 }
@@ -124,21 +124,21 @@ void TinyPikmin::update()
 {
 	switch (mState) {
 	case WAIT:
-		if (mTimer > _24) {
-			mTimer = 0.0f;
-			mState = LANDED;
-			mVelY  = -(randFloat() * 7.0f + 8.5f);
+		if (mWaitTimer > mWaitDuration) {
+			mWaitTimer     = 0.0f;
+			mState     = LANDED;
+			mVelocityY = -(randFloat() * 7.0f + 8.5f);
 		} else {
-			mTimer += sys->mDeltaTime;
+			mWaitTimer += sys->mDeltaTime;
 		}
 		break;
 	case INACTIVE:
 		break;
 	case LANDED:
-		mVelY += TINYPIKMIN_FALL_ACCEL;
-		mPosY += mVelY;
-		if (mVelY > 0.0f && mPosY > 0.0f) {
-			if (sTinyPikminMgr->mDoSlamPikmin && mColor == Purple && mVelY > 10.0f) {
+		mVelocityY += TINYPIKMIN_FALL_ACCEL;
+		mPositionY += mVelocityY;
+		if (mVelocityY > 0.0f && mPositionY > 0.0f) {
+			if (sTinyPikminMgr->mDoSlamPikmin && mColor == Purple && mVelocityY > 10.0f) {
 				// Trigger slam effect
 				for (int i = 0; i < TinyPikminMgr::sTinyPikminNum; i++) {
 					TinyPikmin* piki;
@@ -147,13 +147,14 @@ void TinyPikmin::update()
 					} else {
 						piki = nullptr;
 					}
+
 					if (piki != this) {
-						Vector2f vec(piki->_08 - _08, piki->_0C - _0C);
+						Vector2f vec(piki->mVelocityX - mVelocityX, piki->mVelocityY - mVelocityY);
 						f32 dist = _lenVec2D(vec);
 						if (dist < 300.0f) {
 							f32 x   = (1.0f - dist / 300.0f) * 20.0f;
 							f32 dir = 1.0f;
-							if (piki->_08 < _08) {
+							if (piki->mVelocityX < mVelocityX) {
 								dir = -1.0f;
 							}
 							x *= dir;
@@ -163,12 +164,12 @@ void TinyPikmin::update()
 				}
 				sBootSection->mLogoShakeStrength = 15.0f;
 			}
-			mVelY = 0.0f;
-			mPosY = 0.0f;
-			mTimer += sys->mDeltaTime;
-			if (sTinyPikminMgr->_08 && mTimer > 1.0f) {
-				mState = FALLING;
-				mVelY  = randFloat() * -4.0f + 4.0f;
+			mVelocityY = 0.0f;
+			mPositionY = 0.0f;
+			mWaitTimer += sys->mDeltaTime;
+			if (sTinyPikminMgr->_08 && mWaitTimer > 1.0f) {
+				mState     = FALLING;
+				mVelocityY = randFloat() * -4.0f + 4.0f;
 			}
 			if (randFloat() > 0.9f) {
 				f32 weight;
@@ -183,40 +184,41 @@ void TinyPikmin::update()
 					weight = 1.0f;
 					break;
 				}
-				mVelY = weight * randFloat() * -4.0f + -1.0f;
+				mVelocityY = weight * randFloat() * -4.0f + -1.0f;
 			}
 		}
 		break;
 	case FALLING:
-		if (mPosY > TINYPIKMIN_STAND_HEIGHT) {
-			mPosY  = TINYPIKMIN_STAND_HEIGHT;
-			mVelY  = 0.0f;
-			mState = INACTIVE;
+		if (mPositionY > TINYPIKMIN_STAND_HEIGHT) {
+			mPositionY = TINYPIKMIN_STAND_HEIGHT;
+			mVelocityY = 0.0f;
+			mState     = INACTIVE;
 		} else {
-			mVelY += TINYPIKMIN_FALL_ACCEL;
-			mPosY += mVelY;
+			mVelocityY += TINYPIKMIN_FALL_ACCEL;
+			mPositionY += mVelocityY;
 		}
 		break;
 	case SLAMMED:
-		mVelX *= 0.98f;
-		mVelY += TINYPIKMIN_FALL_ACCEL;
-		mPosX += mVelX;
-		mPosY += mVelY;
-		mAngle = -(mVelX * 0.75f - mAngle);
+		mVelocityX *= 0.98f;
+		mVelocityY += TINYPIKMIN_FALL_ACCEL;
+		mPositionX += mVelocityX;
+		mPositionY += mVelocityY;
+		mAngle = -(mVelocityX * 0.75f - mAngle);
 		if (mAngle > 360.0f) {
 			mAngle -= 360.0f;
 		}
 		if (mAngle < 0.0f) {
 			mAngle += 360.0f;
 		}
-		if (mPosY > TINYPIKMIN_OFFSCREEN_Y) {
+		if (mPositionY > TINYPIKMIN_OFFSCREEN_Y) {
 			mState = INACTIVE;
 		}
 		break;
 	}
-	mTimer2 += mTimerFactor * sys->mDeltaTime;
-	if (mTimer2 > 1.0f) {
-		mTimer2 = 0.0f;
+
+	mScaleAnimTimer += mTimeScale * sys->mDeltaTime;
+	if (mScaleAnimTimer > 1.0f) {
+		mScaleAnimTimer = 0.0f;
 	}
 }
 
@@ -227,24 +229,26 @@ void TinyPikmin::update()
 void TinyPikmin::draw()
 {
 	if (mState != INACTIVE) {
-		f32 x, y;
-		if (mPosY < 0.0f) {
-			y = FABS(mPosY / 10.0f);
-			if (y > 1.0f) {
-				y = 1.0f;
+		f32 xScale, yScale;
+		if (mPositionY < 0.0f) {
+			yScale = FABS(mPositionY / 10.0f);
+			if (yScale > 1.0f) {
+				yScale = 1.0f;
 			}
-			y *= x * 0.2f + 1.0f;
-			x = (1.0f - x) * 0.2f + 0.8f;
+
+			yScale *= xScale * 0.2f + 1.0f;
+			xScale = (1.0f - xScale) * 0.2f + 0.8f;
 		} else {
-			y = 1.0f;
-			x = 1.0f;
+			yScale = 1.0f;
+			xScale = 1.0f;
 		}
-		f32 angle = mTimer2 * TAU;
-		x *= sinf(angle) * 0.1f + 1.0f;
-		y *= -(sinf(angle) * 0.08f - 1.0f);
-		f32 yoffs = _0C + mPosY;
-		f32 xoffs = _08 + mPosX;
-		drawPikmin(x, y, xoffs, yoffs);
+
+		f32 angle = mScaleAnimTimer * TAU;
+		xScale *= sinf(angle) * 0.1f + 1.0f;     // [0.9, 1.1]
+		yScale *= -(sinf(angle) * 0.08f - 1.0f); // [1.08, 0.92]
+		f32 yPosition = mVelocityY + mPositionY;
+		f32 xPosition = mVelocityX + mPositionX;
+		drawPikmin(xScale, yScale, xPosition, yPosition);
 	}
 }
 
@@ -252,12 +256,12 @@ void TinyPikmin::draw()
  * @note Address: N/A
  * @note Size: 0x100
  */
-void TinyPikmin::drawPikmin(f32 x, f32 y, f32 xoffs, f32 yoffs)
+void TinyPikmin::drawPikmin(f32 xScale, f32 yScale, f32 xPosition, f32 yPosition)
 {
 	J2DPicture* pic = sTinyPikminMgr->sPikminTex[mColor];
-	pic->updateScale(x, y);
+	pic->updateScale(xScale, yScale);
 	pic->rotate(pic->getWidth() / 2, pic->getHeight() / 2, J2DROTATE_Z, mAngle);
-	pic->draw(pic->getWidth() / 2 - xoffs, pic->getHeight() / 2 - yoffs, false, false, false);
+	pic->draw(pic->getWidth() / 2 - xPosition, pic->getHeight() / 2 - yPosition, false, false, false);
 }
 
 /**
