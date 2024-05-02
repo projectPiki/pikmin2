@@ -188,7 +188,7 @@ void J2DAnmKeyLoader_v15::setAnmTransform(J2DAnmTransformKey* anm, const J3DAnmT
 	anm->_22              = data->mAnimTableNum1;
 	anm->mFrameLength     = data->mMaxFrame;
 	anm->mAttribute       = data->mAttribute;
-	anm->_24              = data->_09;
+	anm->mRotationScale   = data->_09;
 	anm->mCurrentFrame    = 0;
 	anm->mInfoTable       = JSUConvertOffsetToPtr<J3DAnmTransformKeyTable>(data, (void*)data->mTableOffset);
 	anm->mScaleVals       = JSUConvertOffsetToPtr<f32>(data, (void*)data->mScaleOffset);

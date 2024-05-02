@@ -416,24 +416,28 @@ void JPASetRMtxSTVecfromMtx(const Mtx p1, Mtx p2, JGeometry::TVec3f* vec1, JGeom
  * @note Address: 0x80093F60
  * @note Size: 0xC8
  */
-f32 JPACalcKeyAnmValue(f32 p1, u16 p2, const f32* p3)
+f32 JPACalcKeyAnmValue(f32 currentFrame, u16 keyFrameCount, const f32* keyFrameData)
 {
-	if (p1 < p3[0]) {
-		return p3[1];
+	if (currentFrame < keyFrameData[0]) {
+		return keyFrameData[1];
 	}
-	int ind = p2 - 1;
-	if (p3[ind * 4] <= p1) {
-		return p3[ind * 4 + 1];
+
+	int lastKeyFrameIndex = keyFrameCount - 1;
+	if (keyFrameData[lastKeyFrameIndex * 4] <= currentFrame) {
+		return keyFrameData[lastKeyFrameIndex * 4 + 1];
 	}
-	int x = p2;
-	while (x > 1) {
-		u32 uVar3 = x / 2;
-		if (p1 >= p3[uVar3 * 4]) {
-			p3 += uVar3 * 4;
-			x -= uVar3;
+
+	int currentFrame = keyFrameCount;
+	while (currentFrame > 1) {
+		u32 halfIndex = currentFrame / 2;
+		if (currentFrame >= keyFrameData[halfIndex * 4]) {
+			keyFrameData += halfIndex * 4;
+			currentFrame -= halfIndex;
 		} else {
-			x = uVar3;
+			currentFrame = halfIndex;
 		}
 	}
-	return JMAHermiteInterpolation(p1, p3[0], p3[1], p3[3], p3[4], p3[5], p3[6]);
+
+	return JMAHermiteInterpolation(currentFrame, keyFrameData[0], keyFrameData[1], keyFrameData[3], keyFrameData[4], keyFrameData[5],
+	                               keyFrameData[6]);
 }

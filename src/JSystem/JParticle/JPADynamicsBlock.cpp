@@ -38,18 +38,18 @@ void JPAVolumeLine(JPAEmitterWorkData* workData)
  */
 void JPAVolumeCircle(JPAEmitterWorkData* workData)
 {
-	s16 thetai;
-	f32 theta;
+	s16 angleInShort;
+	f32 angleInFloat;
 	f32 distance;
-	f32 sizeXZ;
-	f32 temp;
+	f32 circleSizeInXZ;
+
 	if (workData->mEmitter->checkDynFlag(JPADYN_FixedInterval)) {
-		theta  = (s16)((workData->mVolumeEmitIdx << 16) / workData->mCreateNumber);
-		thetai = theta * workData->mVolumeSweep;
+		angleInFloat = (s16)((workData->mVolumeEmitIdx << 16) / workData->mCreateNumber);
+		angleInShort = angleInFloat * workData->mVolumeSweep;
 		workData->mVolumeEmitIdx++;
 	} else {
-		theta  = workData->mVolumeSweep * workData->mEmitter->getRandS16();
-		thetai = theta;
+		angleInFloat = workData->mVolumeSweep * workData->mEmitter->getRandS16();
+		angleInShort = angleInFloat;
 	}
 
 	distance = workData->mEmitter->getRandF32();
@@ -57,8 +57,8 @@ void JPAVolumeCircle(JPAEmitterWorkData* workData)
 		distance = 1.0f - (distance * distance);
 	}
 
-	sizeXZ = workData->mVolumeSize * (workData->mVolumeMinRad + distance * (1.0f - workData->mVolumeMinRad));
-	workData->mVolumePos.set(sizeXZ * JMASSin(thetai), 0.0f, sizeXZ * JMASCos(thetai));
+	circleSizeInXZ = workData->mVolumeSize * (workData->mVolumeMinRad + distance * (1.0f - workData->mVolumeMinRad));
+	workData->mVolumePos.set(circleSizeInXZ * JMASSin(angleInShort), 0.0f, circleSizeInXZ * JMASCos(angleInShort));
 	workData->mVelOmni.mul(workData->mVolumePos, workData->mGlobalScl);
 	workData->mVelAxis.set(workData->mVolumePos.x, 0.0f, workData->mVolumePos.z);
 }

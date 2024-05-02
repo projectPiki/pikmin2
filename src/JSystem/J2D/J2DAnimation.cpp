@@ -14,13 +14,14 @@ f32 J2DGetKeyFrameInterpolation(f32, J3DAnmKeyTableBase*, T*);
  * @note Address: 0x8005AF0C
  * @note Size: 0x56C
  */
-void J2DAnmTransformFull::getTransform(u16 p1, J3DTransformInfo* transformInfo) const
+void J2DAnmTransformFull::getTransform(u16 transformIndex, J3DTransformInfo* transformInfo) const
 {
-	u16 idx                         = (p1 * 3);
+	u16 idx                         = (transformIndex * 3);
 	J3DAnmTransformFullTable* xPart = &mTable[idx];
 	J3DAnmTransformFullTable* yPart = &mTable[idx + 1];
 	J3DAnmTransformFullTable* zPart = &mTable[idx + 2];
-	u16 xMaxFrame                   = xPart->mScaleMaxFrame;
+
+	u16 xMaxFrame = xPart->mScaleMaxFrame;
 	if (getFrame() < 0) {
 		transformInfo->mScale.x = mScaleVals[xPart->mScaleOffset];
 	} else if (getFrame() >= xMaxFrame) {
@@ -28,6 +29,7 @@ void J2DAnmTransformFull::getTransform(u16 p1, J3DTransformInfo* transformInfo) 
 	} else {
 		transformInfo->mScale.x = mScaleVals[(xPart->mScaleOffset + (int)getFrame())];
 	}
+
 	u16 yMaxFrame = yPart->mScaleMaxFrame;
 	if (getFrame() < 0) {
 		transformInfo->mScale.y = mScaleVals[yPart->mScaleOffset];
@@ -36,6 +38,7 @@ void J2DAnmTransformFull::getTransform(u16 p1, J3DTransformInfo* transformInfo) 
 	} else {
 		transformInfo->mScale.y = mScaleVals[(yPart->mScaleOffset + (int)getFrame())];
 	}
+
 	u16 zMaxFrame = zPart->mScaleMaxFrame;
 	if (getFrame() < 0) {
 		transformInfo->mScale.z = mScaleVals[zPart->mScaleOffset];
@@ -44,6 +47,7 @@ void J2DAnmTransformFull::getTransform(u16 p1, J3DTransformInfo* transformInfo) 
 	} else {
 		transformInfo->mScale.z = mScaleVals[(zPart->mScaleOffset + (int)getFrame())];
 	}
+
 	xMaxFrame = xPart->mRotationMaxFrame;
 	if (getFrame() < 0) {
 		transformInfo->mRotation.x = mRotationVals[xPart->mRotationOffset];
@@ -52,6 +56,7 @@ void J2DAnmTransformFull::getTransform(u16 p1, J3DTransformInfo* transformInfo) 
 	} else {
 		transformInfo->mRotation.x = mRotationVals[(xPart->mRotationOffset + (int)getFrame())];
 	}
+
 	yMaxFrame = yPart->mRotationMaxFrame;
 	if (getFrame() < 0) {
 		transformInfo->mRotation.y = mRotationVals[yPart->mRotationOffset];
@@ -60,6 +65,7 @@ void J2DAnmTransformFull::getTransform(u16 p1, J3DTransformInfo* transformInfo) 
 	} else {
 		transformInfo->mRotation.y = mRotationVals[(yPart->mRotationOffset + (int)getFrame())];
 	}
+
 	zMaxFrame = zPart->mRotationMaxFrame;
 	if (getFrame() < 0) {
 		transformInfo->mRotation.z = mRotationVals[zPart->mRotationOffset];
@@ -68,6 +74,7 @@ void J2DAnmTransformFull::getTransform(u16 p1, J3DTransformInfo* transformInfo) 
 	} else {
 		transformInfo->mRotation.z = mRotationVals[(zPart->mRotationOffset + (int)getFrame())];
 	}
+
 	xMaxFrame = xPart->mTranslationMaxFrame;
 	if (getFrame() < 0) {
 		transformInfo->mTranslation.x = mTranslationVals[xPart->mTranslationOffset];
@@ -76,6 +83,7 @@ void J2DAnmTransformFull::getTransform(u16 p1, J3DTransformInfo* transformInfo) 
 	} else {
 		transformInfo->mTranslation.x = mTranslationVals[(xPart->mTranslationOffset + (int)getFrame())];
 	}
+
 	yMaxFrame = yPart->mTranslationMaxFrame;
 	if (getFrame() < 0) {
 		transformInfo->mTranslation.y = mTranslationVals[yPart->mTranslationOffset];
@@ -84,6 +92,7 @@ void J2DAnmTransformFull::getTransform(u16 p1, J3DTransformInfo* transformInfo) 
 	} else {
 		transformInfo->mTranslation.y = mTranslationVals[(yPart->mTranslationOffset + (int)getFrame())];
 	}
+
 	zMaxFrame = zPart->mTranslationMaxFrame;
 	if (getFrame() < 0) {
 		transformInfo->mTranslation.z = mTranslationVals[zPart->mTranslationOffset];
@@ -98,9 +107,9 @@ void J2DAnmTransformFull::getTransform(u16 p1, J3DTransformInfo* transformInfo) 
  * @note Address: 0x8005B478
  * @note Size: 0x420
  */
-void J2DAnmTransformKey::calcTransform(f32 p1, u16 p2, J3DTransformInfo* transformInfo) const
+void J2DAnmTransformKey::calcTransform(f32 frame, u16 transformIndex, J3DTransformInfo* transformInfo) const
 {
-	u16 idx                       = p2 * 3;
+	u16 idx                       = transformIndex * 3;
 	J3DAnmTransformKeyTable* xInf = &mInfoTable[idx];
 	J3DAnmTransformKeyTable* yInf = &mInfoTable[idx + 1];
 	J3DAnmTransformKeyTable* zInf = &mInfoTable[idx + 2];
@@ -113,7 +122,7 @@ void J2DAnmTransformKey::calcTransform(f32 p1, u16 p2, J3DTransformInfo* transfo
 		transformInfo->mScale.x = mScaleVals[xInf->mScaleInfo.mOffset];
 		break;
 	default:
-		transformInfo->mScale.x = J2DGetKeyFrameInterpolation<f32>(p1, &xInf->mScaleInfo, &mScaleVals[xInf->mScaleInfo.mOffset]);
+		transformInfo->mScale.x = J2DGetKeyFrameInterpolation<f32>(frame, &xInf->mScaleInfo, &mScaleVals[xInf->mScaleInfo.mOffset]);
 	}
 
 	switch (yInf->mScaleInfo.mMaxFrame) {
@@ -124,7 +133,7 @@ void J2DAnmTransformKey::calcTransform(f32 p1, u16 p2, J3DTransformInfo* transfo
 		transformInfo->mScale.y = mScaleVals[yInf->mScaleInfo.mOffset];
 		break;
 	default:
-		transformInfo->mScale.y = J2DGetKeyFrameInterpolation<f32>(p1, &yInf->mScaleInfo, &mScaleVals[yInf->mScaleInfo.mOffset]);
+		transformInfo->mScale.y = J2DGetKeyFrameInterpolation<f32>(frame, &yInf->mScaleInfo, &mScaleVals[yInf->mScaleInfo.mOffset]);
 	}
 
 	switch (zInf->mScaleInfo.mMaxFrame) {
@@ -135,7 +144,7 @@ void J2DAnmTransformKey::calcTransform(f32 p1, u16 p2, J3DTransformInfo* transfo
 		transformInfo->mScale.z = mScaleVals[zInf->mScaleInfo.mOffset];
 		break;
 	default:
-		transformInfo->mScale.z = J2DGetKeyFrameInterpolation<f32>(p1, &zInf->mScaleInfo, &mScaleVals[zInf->mScaleInfo.mOffset]);
+		transformInfo->mScale.z = J2DGetKeyFrameInterpolation<f32>(frame, &zInf->mScaleInfo, &mScaleVals[zInf->mScaleInfo.mOffset]);
 	}
 
 	switch (xInf->mRotationInfo.mMaxFrame) {
@@ -143,12 +152,12 @@ void J2DAnmTransformKey::calcTransform(f32 p1, u16 p2, J3DTransformInfo* transfo
 		transformInfo->mRotation.x = 0;
 		break;
 	case 1:
-		transformInfo->mRotation.x = mRotationVals[xInf->mRotationInfo.mOffset] << _24;
+		transformInfo->mRotation.x = mRotationVals[xInf->mRotationInfo.mOffset] << mRotationScale;
 		break;
 	default:
 		transformInfo->mRotation.x
-		    = static_cast<s32>(J2DGetKeyFrameInterpolation<s16>(p1, &xInf->mRotationInfo, &mRotationVals[xInf->mRotationInfo.mOffset]))
-		   << _24;
+		    = static_cast<s32>(J2DGetKeyFrameInterpolation<s16>(frame, &xInf->mRotationInfo, &mRotationVals[xInf->mRotationInfo.mOffset]))
+		   << mRotationScale;
 	}
 
 	switch (yInf->mRotationInfo.mMaxFrame) {
@@ -156,12 +165,12 @@ void J2DAnmTransformKey::calcTransform(f32 p1, u16 p2, J3DTransformInfo* transfo
 		transformInfo->mRotation.y = 0;
 		break;
 	case 1:
-		transformInfo->mRotation.y = mRotationVals[yInf->mRotationInfo.mOffset] << _24;
+		transformInfo->mRotation.y = mRotationVals[yInf->mRotationInfo.mOffset] << mRotationScale;
 		break;
 	default:
 		transformInfo->mRotation.y
-		    = static_cast<s32>(J2DGetKeyFrameInterpolation<s16>(p1, &yInf->mRotationInfo, &mRotationVals[yInf->mRotationInfo.mOffset]))
-		   << _24;
+		    = static_cast<s32>(J2DGetKeyFrameInterpolation<s16>(frame, &yInf->mRotationInfo, &mRotationVals[yInf->mRotationInfo.mOffset]))
+		   << mRotationScale;
 	}
 
 	switch (zInf->mRotationInfo.mMaxFrame) {
@@ -169,12 +178,12 @@ void J2DAnmTransformKey::calcTransform(f32 p1, u16 p2, J3DTransformInfo* transfo
 		transformInfo->mRotation.z = 0;
 		break;
 	case 1:
-		transformInfo->mRotation.z = mRotationVals[zInf->mRotationInfo.mOffset] << _24;
+		transformInfo->mRotation.z = mRotationVals[zInf->mRotationInfo.mOffset] << mRotationScale;
 		break;
 	default:
 		transformInfo->mRotation.z
-		    = static_cast<s32>(J2DGetKeyFrameInterpolation<s16>(p1, &zInf->mRotationInfo, &mRotationVals[zInf->mRotationInfo.mOffset]))
-		   << _24;
+		    = static_cast<s32>(J2DGetKeyFrameInterpolation<s16>(frame, &zInf->mRotationInfo, &mRotationVals[zInf->mRotationInfo.mOffset]))
+		   << mRotationScale;
 	}
 
 	switch (xInf->mTranslationInfo.mMaxFrame) {
@@ -186,7 +195,7 @@ void J2DAnmTransformKey::calcTransform(f32 p1, u16 p2, J3DTransformInfo* transfo
 		break;
 	default:
 		transformInfo->mTranslation.x
-		    = J2DGetKeyFrameInterpolation<f32>(p1, &xInf->mTranslationInfo, &mTranslationVals[xInf->mTranslationInfo.mOffset]);
+		    = J2DGetKeyFrameInterpolation<f32>(frame, &xInf->mTranslationInfo, &mTranslationVals[xInf->mTranslationInfo.mOffset]);
 	}
 
 	switch (yInf->mTranslationInfo.mMaxFrame) {
@@ -198,7 +207,7 @@ void J2DAnmTransformKey::calcTransform(f32 p1, u16 p2, J3DTransformInfo* transfo
 		break;
 	default:
 		transformInfo->mTranslation.y
-		    = J2DGetKeyFrameInterpolation<f32>(p1, &yInf->mTranslationInfo, &mTranslationVals[yInf->mTranslationInfo.mOffset]);
+		    = J2DGetKeyFrameInterpolation<f32>(frame, &yInf->mTranslationInfo, &mTranslationVals[yInf->mTranslationInfo.mOffset]);
 	}
 
 	switch (zInf->mTranslationInfo.mMaxFrame) {
@@ -210,7 +219,7 @@ void J2DAnmTransformKey::calcTransform(f32 p1, u16 p2, J3DTransformInfo* transfo
 		break;
 	default:
 		transformInfo->mTranslation.z
-		    = J2DGetKeyFrameInterpolation<f32>(p1, &zInf->mTranslationInfo, &mTranslationVals[zInf->mTranslationInfo.mOffset]);
+		    = J2DGetKeyFrameInterpolation<f32>(frame, &zInf->mTranslationInfo, &mTranslationVals[zInf->mTranslationInfo.mOffset]);
 	}
 }
 
@@ -303,6 +312,7 @@ void J2DAnmColorKey::getColor(u16 idx, GXColor* color) const
 			OSf32tou8(&val, &color->r);
 		}
 	}
+
 	switch (info->mColorInfo[1].mMaxFrame) {
 	case 0:
 		color->g = 0;
@@ -320,6 +330,7 @@ void J2DAnmColorKey::getColor(u16 idx, GXColor* color) const
 			OSf32tou8(&val, &color->g);
 		}
 	}
+
 	switch (info->mColorInfo[2].mMaxFrame) {
 	case 0:
 		color->b = 0;
@@ -337,6 +348,7 @@ void J2DAnmColorKey::getColor(u16 idx, GXColor* color) const
 			OSf32tou8(&val, &color->b);
 		}
 	}
+
 	switch (info->mColorInfo[3].mMaxFrame) {
 	case 0:
 		color->a = 0;
@@ -425,6 +437,7 @@ void J2DAnmVtxColorKey::getColor(u8 tableIdx, u16 idx, GXColor* color) const
 			color->r = 255;
 		}
 	}
+
 	switch (info->mColorInfo[1].mMaxFrame) {
 	case 0:
 		color->g = 0;
@@ -442,6 +455,7 @@ void J2DAnmVtxColorKey::getColor(u8 tableIdx, u16 idx, GXColor* color) const
 			color->g = 255;
 		}
 	}
+
 	switch (info->mColorInfo[2].mMaxFrame) {
 	case 0:
 		color->b = 0;
@@ -459,6 +473,7 @@ void J2DAnmVtxColorKey::getColor(u8 tableIdx, u16 idx, GXColor* color) const
 			color->b = 255;
 		}
 	}
+
 	switch (info->mColorInfo[3].mMaxFrame) {
 	case 0:
 		color->a = 0;
@@ -488,6 +503,7 @@ void J2DAnmTextureSRTKey::calcTransform(f32 frame, u16 inputIdx, J3DTextureSRTIn
 	J3DAnmTransformKeyTable* xInf = &mInfoTable[idx];
 	J3DAnmTransformKeyTable* yInf = &mInfoTable[idx + 1];
 	J3DAnmTransformKeyTable* zInf = &mInfoTable[idx + 2];
+
 	switch (xInf->mScaleInfo.mMaxFrame) {
 	case 0:
 		texInfo->mScaleX = 1;
@@ -498,6 +514,7 @@ void J2DAnmTextureSRTKey::calcTransform(f32 frame, u16 inputIdx, J3DTextureSRTIn
 	default:
 		texInfo->mScaleX = J2DGetKeyFrameInterpolation<f32>(frame, &xInf->mScaleInfo, &mScaleVals[xInf->mScaleInfo.mOffset]);
 	}
+
 	switch (yInf->mScaleInfo.mMaxFrame) {
 	case 0:
 		texInfo->mScaleY = 1;
@@ -508,6 +525,7 @@ void J2DAnmTextureSRTKey::calcTransform(f32 frame, u16 inputIdx, J3DTextureSRTIn
 	default:
 		texInfo->mScaleY = J2DGetKeyFrameInterpolation<f32>(frame, &yInf->mScaleInfo, &mScaleVals[yInf->mScaleInfo.mOffset]);
 	}
+
 	switch (zInf->mRotationInfo.mMaxFrame) {
 	case 0:
 		texInfo->mRotation = 0;
@@ -520,6 +538,7 @@ void J2DAnmTextureSRTKey::calcTransform(f32 frame, u16 inputIdx, J3DTextureSRTIn
 		    = static_cast<s32>(J2DGetKeyFrameInterpolation<s16>(frame, &zInf->mRotationInfo, &mRotationVals[zInf->mRotationInfo.mOffset]))
 		   << _10;
 	}
+
 	switch (xInf->mTranslationInfo.mMaxFrame) {
 	case 0:
 		texInfo->mTranslationX = 0;
@@ -531,6 +550,7 @@ void J2DAnmTextureSRTKey::calcTransform(f32 frame, u16 inputIdx, J3DTextureSRTIn
 		texInfo->mTranslationX
 		    = J2DGetKeyFrameInterpolation<f32>(frame, &xInf->mTranslationInfo, &mTranslationVals[xInf->mTranslationInfo.mOffset]);
 	}
+
 	switch (yInf->mTranslationInfo.mMaxFrame) {
 	case 0:
 		texInfo->mTranslationY = 0;
@@ -580,32 +600,37 @@ void J2DAnmTextureSRTKey::searchUpdateMaterialID(J2DScreen* screen)
 void J2DAnmTexPattern::searchUpdateMaterialID(J2DScreen* screen)
 {
 	if (screen && screen->mNameTab && screen->mTexRes) {
-		for (u16 entry = 0; entry < this->getUpdateMaterialNum(); entry++) {
-			s32 idx = screen->mNameTab->getIndex(mNameTab.getName(entry));
-			if (idx != -1) {
-				mUpdateMaterialID[entry] = idx;
+		for (u16 entryIndex = 0; entryIndex < this->getUpdateMaterialNum(); entryIndex++) {
+			s32 nameIndex = screen->mNameTab->getIndex(mNameTab.getName(entryIndex));
+			if (nameIndex != -1) {
+				mUpdateMaterialID[entryIndex] = nameIndex;
 			} else {
-				mUpdateMaterialID[entry] = 0xFFFF;
+				mUpdateMaterialID[entryIndex] = 0xFFFF;
 			}
 		}
 
 		delete[] mImgPtrArray;
 		mImgPtrArray = new J2DAnmTexPatternTIMGPointer[screen->mTexRes->mCount];
+
 		if (mImgPtrArray) {
 			JUTResReference resRef;
+
 			for (u16 i = 0; i < screen->mTexRes->mCount; i++) {
-				s8* var1      = screen->mTexRes->getResReference(i);
-				ResTIMG* var2 = nullptr;
-				if (var1) {
-					var2 = (ResTIMG*)resRef.getResource(var1, 'TIMG', nullptr);
-					if (!var2 && J2DScreen::getDataManage()) {
-						var2 = (ResTIMG*)J2DScreen::getDataManage()->get(screen->mTexRes->getName(i));
+				s8* resReference       = screen->mTexRes->getResReference(i);
+				ResTIMG* imageResource = nullptr;
+
+				if (resReference) {
+					imageResource = (ResTIMG*)resRef.getResource(resReference, 'TIMG', nullptr);
+					if (!imageResource && J2DScreen::getDataManage()) {
+						imageResource = (ResTIMG*)J2DScreen::getDataManage()->get(screen->mTexRes->getName(i));
 					}
 				}
-				mImgPtrArray[i].mImg = var2;
-				if (var2 && var2->mPaletteFormat) {
-					JUTPalette* palette      = new JUTPalette(GX_TLUT0, (GXTlutFmt)var2->mColorFormat, (JUTTransparency)var2->mTransparency,
-                                                         var2->mPaletteEntryCount, ((u8*)var2) + var2->mPaletteOffset);
+
+				mImgPtrArray[i].mImg = imageResource;
+				if (imageResource && imageResource->mPaletteFormat) {
+					JUTPalette* palette
+					    = new JUTPalette(GX_TLUT0, (GXTlutFmt)imageResource->mColorFormat, (JUTTransparency)imageResource->mTransparency,
+					                     imageResource->mPaletteEntryCount, ((u8*)imageResource) + imageResource->mPaletteOffset);
 					mImgPtrArray[i].mPalette = palette;
 				}
 			}
@@ -656,11 +681,11 @@ ResTIMG* J2DAnmTexPattern::getResTIMG(u16 idx) const
 {
 	if (!mImgPtrArray) {
 		return nullptr;
-	} else {
-		u16 texNo;
-		this->getTexNo(idx, &texNo);
-		return mImgPtrArray[texNo].mImg;
 	}
+
+	u16 texNo;
+	this->getTexNo(idx, &texNo);
+	return mImgPtrArray[texNo].mImg;
 }
 
 /**
@@ -671,11 +696,11 @@ JUTPalette* J2DAnmTexPattern::getPalette(u16 idx) const
 {
 	if (!mImgPtrArray) {
 		return nullptr;
-	} else {
-		u16 texNo;
-		this->getTexNo(idx, &texNo);
-		return mImgPtrArray[texNo].mPalette;
 	}
+
+	u16 texNo;
+	this->getTexNo(idx, &texNo);
+	return mImgPtrArray[texNo].mPalette;
 }
 
 /**
@@ -703,6 +728,7 @@ void J2DAnmTevRegKey::getTevColorReg(u16 idx, GXColorS10* color) const
 {
 	J3DAnmCRegKeyTable* info = &mCRegKeyTable[idx];
 	f32 val;
+
 	switch (info->mTables[0].mMaxFrame) {
 	case 0:
 		color->r = 0;
@@ -720,6 +746,7 @@ void J2DAnmTevRegKey::getTevColorReg(u16 idx, GXColorS10* color) const
 			OSf32tos16(&val, &color->r);
 		}
 	}
+
 	switch (info->mTables[1].mMaxFrame) {
 	case 0:
 		color->g = 0;
@@ -737,6 +764,7 @@ void J2DAnmTevRegKey::getTevColorReg(u16 idx, GXColorS10* color) const
 			OSf32tos16(&val, &color->g);
 		}
 	}
+
 	switch (info->mTables[2].mMaxFrame) {
 	case 0:
 		color->b = 0;
@@ -754,6 +782,7 @@ void J2DAnmTevRegKey::getTevColorReg(u16 idx, GXColorS10* color) const
 			OSf32tos16(&val, &color->b);
 		}
 	}
+
 	switch (info->mTables[3].mMaxFrame) {
 	case 0:
 		color->a = 0;
@@ -798,6 +827,7 @@ void J2DAnmTevRegKey::getTevKonstReg(u16 idx, GXColor* color) const
 			OSf32tou8(&val, &color->r);
 		}
 	}
+
 	switch (info->mTables[1].mMaxFrame) {
 	case 0:
 		color->g = 0;
@@ -815,6 +845,7 @@ void J2DAnmTevRegKey::getTevKonstReg(u16 idx, GXColor* color) const
 			OSf32tou8(&val, &color->g);
 		}
 	}
+
 	switch (info->mTables[2].mMaxFrame) {
 	case 0:
 		color->b = 0;
@@ -832,6 +863,7 @@ void J2DAnmTevRegKey::getTevKonstReg(u16 idx, GXColor* color) const
 			OSf32tou8(&val, &color->b);
 		}
 	}
+
 	switch (info->mTables[3].mMaxFrame) {
 	case 0:
 		color->a = 0;
@@ -867,6 +899,7 @@ void J2DAnmTevRegKey::searchUpdateMaterialID(J2DScreen* screen)
 				mCRegUpdateMaterialID[i] = 0xFFFF;
 			}
 		}
+
 		for (u16 i = 0; i < mKRegUpdateMaterialNum; i++) {
 			int index = screen->mNameTab->getIndex(mKRegNameTab.getName(i));
 			if (index != -1) {
@@ -879,43 +912,49 @@ void J2DAnmTevRegKey::searchUpdateMaterialID(J2DScreen* screen)
 }
 
 template <class T>
-f32 J2DGetKeyFrameInterpolation(f32 p1, J3DAnmKeyTableBase* table, T* values)
+f32 J2DGetKeyFrameInterpolation(f32 currentFrame, J3DAnmKeyTableBase* keyTable, T* keyValues)
 {
-	if (p1 < values[0]) {
-		return values[1];
-	} else {
-		if (table->mType == 0) {
-			if (values[(table->mMaxFrame - 1) * 3] <= p1) {
-				return values[(table->mMaxFrame - 1) * 3 + 1];
+	if (currentFrame < keyValues[0]) {
+		return keyValues[1];
+	}
+
+	if (keyTable->mType == 0) {
+		if (keyValues[(keyTable->mMaxFrame - 1) * 3] <= currentFrame) {
+			return keyValues[(keyTable->mMaxFrame - 1) * 3 + 1];
+		}
+
+		u32 frameCount = keyTable->mMaxFrame;
+		while (frameCount > 1) {
+			u32 halfFrameCount = frameCount / 2;
+			u32 upperIndex     = halfFrameCount * 3;
+			if (currentFrame >= keyValues[upperIndex]) {
+				keyValues = keyValues + upperIndex;
+				frameCount -= halfFrameCount;
 			} else {
-				u32 tmp = table->mMaxFrame;
-				while (tmp > 1) {
-					u32 halfTmp = tmp / 2;
-					u32 upIdx   = halfTmp * 3;
-					if (p1 >= values[upIdx]) {
-						values = values + upIdx;
-						tmp -= halfTmp;
-					} else {
-						tmp = halfTmp;
-					}
-				}
-				return J2DHermiteInterpolation<T>(p1, &values[0], &values[1], &values[2], &values[3], &values[4], &values[5]);
+				frameCount = halfFrameCount;
 			}
-		} else if (values[(table->mMaxFrame - 1) * 4] <= p1) {
-			return values[(table->mMaxFrame - 1) * 4 + 1];
+		}
+
+		return J2DHermiteInterpolation<T>(currentFrame, &keyValues[0], &keyValues[1], &keyValues[2], &keyValues[3], &keyValues[4],
+		                                  &keyValues[5]);
+	}
+
+	if (keyValues[(keyTable->mMaxFrame - 1) * 4] <= currentFrame) {
+		return keyValues[(keyTable->mMaxFrame - 1) * 4 + 1];
+	}
+
+	u32 frameCount = keyTable->mMaxFrame;
+	while (frameCount > 1) {
+		u32 halfFrameCount = frameCount / 2;
+		u32 upperIndex     = halfFrameCount * 4;
+		if (currentFrame >= keyValues[upperIndex]) {
+			keyValues = keyValues + upperIndex;
+			frameCount -= halfFrameCount;
 		} else {
-			u32 tmp = table->mMaxFrame;
-			while (tmp > 1) {
-				u32 halfTmp = tmp / 2;
-				u32 upIdx   = halfTmp * 4;
-				if (p1 >= values[upIdx]) {
-					values = values + upIdx;
-					tmp -= halfTmp;
-				} else {
-					tmp = halfTmp;
-				}
-			}
-			return J2DHermiteInterpolation<T>(p1, &values[0], &values[1], &values[3], &values[4], &values[5], &values[6]);
+			frameCount = halfFrameCount;
 		}
 	}
+
+	return J2DHermiteInterpolation<T>(currentFrame, &keyValues[0], &keyValues[1], &keyValues[3], &keyValues[4], &keyValues[5],
+	                                  &keyValues[6]);
 }

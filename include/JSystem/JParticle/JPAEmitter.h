@@ -301,7 +301,7 @@ struct JPABaseEmitter {
 	}
 	void setVolumeSize(u16 size) { mVolumeSize = size; }
 	void setLifeTime(s16 lifetime) { mLifeTime = lifetime; }
-	u32 getAge() const { return mTick; }
+	u32 getAge() const { return mCurrentFrame; }
 
 	f32 getRandF32() { return mRandom.getRandF32(); }
 	f32 getRandZP() { return mRandom.getRandZP(); }
@@ -345,7 +345,7 @@ struct JPABaseEmitter {
 	u32 mFlags;                              // _F4
 	f32 mEmitCount;                          // _F8
 	f32 mScaleOut;                           // _FC
-	u32 mTick;                               // _100
+	u32 mCurrentFrame;                       // _100
 	s16 mWaitTime;                           // _104
 	s16 mRateStepTimer;                      // _106
 	GXColor mPrmClr;                         // _108
@@ -410,7 +410,7 @@ struct JPAEmitterWorkData {
 	int mRotType;                          // _204
 	int mPlaneType;                        // _208
 	int mDLType;                           // _20C
-	int mPrjType;                          // _210
+	int mProjectionType;                   // _210
 	s16 mClrKeyFrame;                      // _214
 	u8 mDrawCount;                         // _216
 };

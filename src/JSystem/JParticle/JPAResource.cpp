@@ -1872,7 +1872,7 @@ bool JPAResource::calc(JPAEmitterWorkData* data, JPABaseEmitter* emitter)
 		}
 	}
 
-	emitter->mTick++;
+	emitter->mCurrentFrame++;
 	return false;
 	/*
 	stwu     r1, -0x20(r1)
@@ -2345,10 +2345,10 @@ void JPAResource::drawP(JPAEmitterWorkData* data)
 	if (flag != 4 && flag != 8) {
 		test = false;
 	}
-	data->mDLType     = test;
-	data->mPlaneType  = ((u32)data->mDLType) ? 2 : mBaseShape->mData->mFlags >> 10 & 1;
-	data->mPrjType    = ((u32)data->mDLType) ? 0 : (u32)data->mDLType >> 0x18 & 1 + 1;
-	data->mpAlivePtcl = data->mEmitter->mAlivePtclChld.getFirst();
+	data->mDLType         = test;
+	data->mPlaneType      = ((u32)data->mDLType) ? 2 : mBaseShape->mData->mFlags >> 10 & 1;
+	data->mProjectionType = ((u32)data->mDLType) ? 0 : (u32)data->mDLType >> 0x18 & 1 + 1;
+	data->mpAlivePtcl     = data->mEmitter->mAlivePtclChld.getFirst();
 	setPTev();
 
 	for (int i = mDrawEmitterFuncListNum - 1; 0 <= i; i--) {
@@ -2670,10 +2670,10 @@ void JPAResource::drawC(JPAEmitterWorkData* data)
 	if (flag != 4 && flag != 8) {
 		test = false;
 	}
-	data->mDLType     = test;
-	data->mPlaneType  = ((u32)data->mDLType) ? 2 : mChildShape->mData->mFlags >> 10 & 1;
-	data->mPrjType    = 0;
-	data->mpAlivePtcl = data->mEmitter->mAlivePtclChld.getFirst();
+	data->mDLType         = test;
+	data->mPlaneType      = ((u32)data->mDLType) ? 2 : mChildShape->mData->mFlags >> 10 & 1;
+	data->mProjectionType = 0;
+	data->mpAlivePtcl     = data->mEmitter->mAlivePtclChld.getFirst();
 	setCTev(data);
 
 	for (int i = mDrawEmitterChildFuncListNum - 1; 0 <= i; i--) {
@@ -3127,7 +3127,7 @@ void JPAResource::calcField(JPAEmitterWorkData* workData, JPABaseParticle* parti
 void JPAResource::calcKey(JPAEmitterWorkData* data)
 {
 	for (int i = mKeyBlockNum - 1; i >= 0; i--) {
-		f32 calc = mKeyBlocks[i]->calc(data->mEmitter->mTick);
+		f32 calc = mKeyBlocks[i]->calc(data->mEmitter->mCurrentFrame);
 
 		switch (mKeyBlocks[i]->mDataStart->mFlag) {
 		case 0:

@@ -165,7 +165,7 @@ struct JPAKeyBlock {
 	void init_jpa(const u8*, JKRHeap*);
 
 	const JPAKeyBlockData* mDataStart; // _00
-	const f32* _04;                    // _04
+	const f32* mKeyFrameData;          // _04
 };
 
 #endif

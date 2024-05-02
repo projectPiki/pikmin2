@@ -56,7 +56,7 @@ void JPABaseEmitter::init(JPAEmitterManager* manager, JPAResource* resource)
 	mEmitCount = 0.0f;
 	initFlag(0x30);
 	mDrawTimes     = 1;
-	mTick          = 0;
+	mCurrentFrame  = 0;
 	mWaitTime      = 0;
 	mRateStepTimer = 0;
 	// mTexAnmIdx     = 0;
@@ -363,7 +363,7 @@ bool JPABaseEmitter::processTermination()
 		setFlag(8);
 		return getParticleNumber() == 0;
 	}
-	if (mTick >= mMaxFrame) {
+	if (mCurrentFrame >= mMaxFrame) {
 		setFlag(8);
 		if (isFlag(0x40)) {
 			return 0;

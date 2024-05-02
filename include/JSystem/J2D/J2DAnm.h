@@ -544,8 +544,8 @@ struct J2DAnmTransformKey : public J2DAnmTransform {
 	J2DAnmTransformKey()
 	    : J2DAnmTransform(nullptr, nullptr, nullptr)
 	{
-		_24        = 0;
-		mInfoTable = nullptr;
+		mRotationScale = 0;
+		mInfoTable     = nullptr;
 	}
 
 	virtual ~J2DAnmTransformKey() { }                               // _08 (weak)
@@ -559,7 +559,7 @@ struct J2DAnmTransformKey : public J2DAnmTransform {
 	// _00-_1C = J2DAnmTransform
 	u8 _1C[6];                           // _1C, unknown
 	u16 _22;                             // _22
-	int _24;                             // _24
+	int mRotationScale;                  // _24
 	J3DAnmTransformKeyTable* mInfoTable; // _28
 };
 

@@ -266,8 +266,8 @@ void JPACalcClrIdxNormal(JPAEmitterWorkData* work)
 {
 	JPABaseShape* bsp = work->mResource->getBsp();
 	s16 keyFrame;
-	if (work->mEmitter->mTick < bsp->mData->mClrAnmFrmMax) {
-		keyFrame = work->mEmitter->mTick;
+	if (work->mEmitter->mCurrentFrame < bsp->mData->mClrAnmFrmMax) {
+		keyFrame = work->mEmitter->mCurrentFrame;
 	} else {
 		keyFrame = bsp->mData->mClrAnmFrmMax;
 	}
@@ -297,7 +297,7 @@ void JPACalcClrIdxNormal(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 void JPACalcClrIdxRepeat(JPAEmitterWorkData* work)
 {
 	JPABaseShape* shape = work->mResource->getBsp();
-	work->mClrKeyFrame  = work->mEmitter->mTick % (shape->getClrAnmMaxFrm() + 1);
+	work->mClrKeyFrame  = work->mEmitter->mCurrentFrame % (shape->getClrAnmMaxFrm() + 1);
 }
 
 /**
@@ -318,13 +318,16 @@ void JPACalcClrIdxRepeat(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
  */
 void JPACalcClrIdxReverse(JPAEmitterWorkData* work)
 {
-	JPABaseShape* shape = work->mResource->getBsp();
-	u32 maxFrm          = shape->getClrAnmMaxFrm();
-	u32 tick            = work->mEmitter->mTick;
-	u32 uVar1           = tick / maxFrm;
-	tick                = tick % maxFrm;
-	uVar1 &= 1;
-	work->mClrKeyFrame = tick + (uVar1) * (maxFrm - tick * 2);
+	JPABaseShape* shape         = work->mResource->getBsp();
+	u32 colourAnimLength        = shape->getClrAnmMaxFrm();
+	u32 tick                    = work->mEmitter->mCurrentFrame;
+	u32 colourAnimationProgress = tick / colourAnimLength;
+	tick                        = tick % colourAnimLength;
+
+	// Progress is 0 or 1
+	colourAnimationProgress &= 1;
+
+	work->mClrKeyFrame = tick + (colourAnimationProgress) * (colourAnimLength - tick * 2);
 }
 
 /**
@@ -333,11 +336,11 @@ void JPACalcClrIdxReverse(JPAEmitterWorkData* work)
  */
 void JPACalcClrIdxReverse(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
-	JPABaseShape* shape = work->mResource->getBsp();
-	int tick            = ptcl->getAge() + shape->getClrLoopOfst(ptcl->mAnmRandom);
-	int maxFrm          = shape->mData->mClrAnmFrmMax;
-	int rem             = tick % maxFrm;
-	work->mClrKeyFrame  = rem + ((tick / maxFrm) & 1) * (maxFrm - rem * 2);
+	JPABaseShape* baseShape = work->mResource->getBsp();
+	int particleAgeOffset   = ptcl->getAge() + baseShape->getClrLoopOfst(ptcl->mAnmRandom);
+	int maxFrameCount       = baseShape->mData->mClrAnmFrmMax;
+	int remainder           = particleAgeOffset % maxFrameCount;
+	work->mClrKeyFrame      = remainder + ((particleAgeOffset / maxFrameCount) & 1) * (maxFrameCount - remainder * 2);
 }
 
 /**
@@ -448,33 +451,56 @@ void JPAGenTexCrdMtxPrj(JPAEmitterWorkData*)
  * @note Address: 0x8008BC78
  * @note Size: 0x198
  */
-void JPAGenCalcTexCrdMtxAnm(JPAEmitterWorkData* work)
+void JPAGenCalcTexCrdMtxAnm(JPAEmitterWorkData* workData)
 {
-	JPABaseShape* shape = work->mResource->getBsp();
-	f32 dVar16          = work->mEmitter->mTick;
-	f32 dVar15          = 0.5f * (1.0f + shape->getTilingS());
-	f32 dVar14          = 0.5f * (1.0f + shape->getTilingT());
-	f32 dVar11          = (dVar16 * shape->getIncTransX()) + shape->getInitTransX();
-	f32 dVar10          = (dVar16 * shape->getIncTransY()) + shape->getInitTransY();
-	f32 dVar13          = (dVar16 * shape->getIncScaleX()) + shape->getInitScaleX();
-	f32 dVar12          = (dVar16 * shape->getIncScaleY()) + shape->getInitScaleY();
-	s32 local_c0        = (dVar16 * shape->getIncRot()) + shape->getInitRot();
-	f32 dVar8           = JMASSin(local_c0);
-	f32 dVar9           = JMASCos(local_c0);
-	Mtx local_108;
-	local_108[0][0] = dVar13 * dVar9;
-	local_108[0][1] = -dVar13 * dVar8;
-	local_108[0][2] = 0.0f;
-	local_108[0][3] = (dVar15 + (dVar13 * ((dVar8 * (dVar14 + dVar10)) - (dVar9 * (dVar15 + dVar11)))));
-	local_108[1][0] = dVar12 * dVar8;
-	local_108[1][1] = dVar12 * dVar9;
-	local_108[1][2] = 0.0f;
-	local_108[1][3] = (dVar14 + (-dVar12 * ((dVar8 * (dVar15 + dVar11)) + (dVar9 * (dVar14 + dVar10)))));
-	local_108[2][0] = 0.0f;
-	local_108[2][1] = 0.0f;
-	local_108[2][2] = 1.0f;
-	local_108[2][3] = 0.0f;
-	GXLoadTexMtxImm(local_108, GX_TEXMTX0, GX_MTX2x4);
+	// Get the base shape from the resource
+	JPABaseShape* baseShape = workData->mResource->getBsp();
+
+	// Get the current tick count from the emitter
+	f32 tickCount = workData->mEmitter->mCurrentFrame;
+
+	// Calculate half of the tiling for S and T
+	f32 halfTilingS = 0.5f * (1.0f + baseShape->getTilingS());
+	f32 halfTilingT = 0.5f * (1.0f + baseShape->getTilingT());
+
+	// Calculate the X and Y translations
+	f32 transX = (tickCount * baseShape->getIncTransX()) + baseShape->getInitTransX();
+	f32 transY = (tickCount * baseShape->getIncTransY()) + baseShape->getInitTransY();
+
+	// Calculate the X and Y scales
+	f32 scaleX = (tickCount * baseShape->getIncScaleX()) + baseShape->getInitScaleX();
+	f32 scaleY = (tickCount * baseShape->getIncScaleY()) + baseShape->getInitScaleY();
+
+	// Calculate the rotation
+	s32 rotation = (tickCount * baseShape->getIncRot()) + baseShape->getInitRot();
+
+	// Calculate the sine and cosine of the rotation
+	f32 sinRotation = JMASSin(rotation);
+	f32 cosRotation = JMASCos(rotation);
+
+	// Initialize the transformation matrix
+	Mtx transformationMatrix;
+
+	// Fill the transformation matrix with calculated values
+	transformationMatrix[0][0] = scaleX * cosRotation;
+	transformationMatrix[0][1] = -scaleX * sinRotation;
+	transformationMatrix[0][2] = 0.0f;
+	transformationMatrix[0][3]
+	    = (halfTilingS + (scaleX * ((sinRotation * (halfTilingT + transY)) - (cosRotation * (halfTilingS + transX)))));
+	transformationMatrix[1][0] = scaleY * sinRotation;
+	transformationMatrix[1][1] = scaleY * cosRotation;
+	transformationMatrix[1][2] = 0.0f;
+	transformationMatrix[1][3]
+	    = (halfTilingT + (-scaleY * ((sinRotation * (halfTilingS + transX)) + (cosRotation * (halfTilingT + transY)))));
+	transformationMatrix[2][0] = 0.0f;
+	transformationMatrix[2][1] = 0.0f;
+	transformationMatrix[2][2] = 1.0f;
+	transformationMatrix[2][3] = 0.0f;
+
+	// Load the transformation matrix into the texture matrix
+	GXLoadTexMtxImm(transformationMatrix, GX_TEXMTX0, GX_MTX2x4);
+
+	// Set the texture coordinate generation parameters
 	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEX0, GX_TEXMTX0, false, GX_PTIDENTITY);
 	/*
 	stwu     r1, -0x70(r1)
@@ -586,33 +612,55 @@ void JPAGenCalcTexCrdMtxAnm(JPAEmitterWorkData* work)
  * @note Address: 0x8008BE10
  * @note Size: 0x170
  */
-void JPALoadCalcTexCrdMtxAnm(JPAEmitterWorkData* work, JPABaseParticle* particle)
+void JPALoadCalcTexCrdMtxAnm(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
-	JPABaseShape* shape = work->mResource->getBsp();
-	f32 dVar16          = particle->mAge;
-	f32 dVar15          = 0.5f * (1.0f + shape->getTilingS());
-	f32 dVar14          = 0.5f * (1.0f + shape->getTilingT());
-	f32 dVar11          = (dVar16 * shape->getIncTransX()) + shape->getInitTransX();
-	f32 dVar10          = (dVar16 * shape->getIncTransY()) + shape->getInitTransY();
-	f32 dVar13          = (dVar16 * shape->getIncScaleX()) + shape->getInitScaleX();
-	f32 dVar12          = (dVar16 * shape->getIncScaleY()) + shape->getInitScaleY();
-	s32 local_c0        = (dVar16 * shape->getIncRot()) + shape->getInitRot();
-	f32 dVar8           = JMASSin(local_c0);
-	f32 dVar9           = JMASCos(local_c0);
-	Mtx local_108;
-	local_108[0][0] = dVar13 * dVar9;
-	local_108[0][1] = -dVar13 * dVar8;
-	local_108[0][2] = 0.0f;
-	local_108[0][3] = (dVar15 + (dVar13 * ((dVar8 * (dVar14 + dVar10)) - (dVar9 * (dVar15 + dVar11)))));
-	local_108[1][0] = dVar12 * dVar8;
-	local_108[1][1] = dVar12 * dVar9;
-	local_108[1][2] = 0.0f;
-	local_108[1][3] = (dVar14 + (-dVar12 * ((dVar8 * (dVar15 + dVar11)) + (dVar9 * (dVar14 + dVar10)))));
-	local_108[2][0] = 0.0f;
-	local_108[2][1] = 0.0f;
-	local_108[2][2] = 1.0f;
-	local_108[2][3] = 0.0f;
-	GXLoadTexMtxImm(local_108, 0x1e, GX_MTX2x4);
+	// Get the base shape from the resource
+	JPABaseShape* baseShape = workData->mResource->getBsp();
+
+	// Get the age of the particle
+	f32 particleAge = particle->mAge;
+
+	// Calculate half of the tiling for S and T
+	f32 halfTilingS = 0.5f * (1.0f + baseShape->getTilingS());
+	f32 halfTilingT = 0.5f * (1.0f + baseShape->getTilingT());
+
+	// Calculate the X and Y translations
+	f32 translationX = (particleAge * baseShape->getIncTransX()) + baseShape->getInitTransX();
+	f32 translationY = (particleAge * baseShape->getIncTransY()) + baseShape->getInitTransY();
+
+	// Calculate the X and Y scales
+	f32 scaleX = (particleAge * baseShape->getIncScaleX()) + baseShape->getInitScaleX();
+	f32 scaleY = (particleAge * baseShape->getIncScaleY()) + baseShape->getInitScaleY();
+
+	// Calculate the rotation
+	s32 rotation = (particleAge * baseShape->getIncRot()) + baseShape->getInitRot();
+
+	// Calculate the sine and cosine of the rotation
+	f32 sinRotation = JMASSin(rotation);
+	f32 cosRotation = JMASCos(rotation);
+
+	// Initialize the transformation matrix
+	Mtx transformationMatrix;
+
+	// Fill the transformation matrix with calculated values
+	transformationMatrix[0][0] = scaleX * cosRotation;
+	transformationMatrix[0][1] = -scaleX * sinRotation;
+	transformationMatrix[0][2] = 0.0f;
+	transformationMatrix[0][3]
+	    = (halfTilingS + (scaleX * ((sinRotation * (halfTilingT + translationY)) - (cosRotation * (halfTilingS + translationX)))));
+	transformationMatrix[1][0] = scaleY * sinRotation;
+	transformationMatrix[1][1] = scaleY * cosRotation;
+	transformationMatrix[1][2] = 0.0f;
+	transformationMatrix[1][3]
+	    = (halfTilingT + (-scaleY * ((sinRotation * (halfTilingS + translationX)) + (cosRotation * (halfTilingT + translationY)))));
+	transformationMatrix[2][0] = 0.0f;
+	transformationMatrix[2][1] = 0.0f;
+	transformationMatrix[2][2] = 1.0f;
+	transformationMatrix[2][3] = 0.0f;
+
+	// Load the transformation matrix into the texture matrix
+	GXLoadTexMtxImm(transformationMatrix, 0x1e, GX_MTX2x4);
+
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -744,7 +792,7 @@ void JPALoadTexAnm(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 void JPACalcTexIdxNormal(JPAEmitterWorkData* work)
 {
 	JPABaseShape* shape = work->mResource->mBaseShape;
-	u32 tick            = shape->getTexAnmKeyNum() - 1 < work->mEmitter->mTick ? shape->getTexAnmKeyNum() - 1 : work->mEmitter->mTick;
+	u32 tick = shape->getTexAnmKeyNum() - 1 < work->mEmitter->mCurrentFrame ? shape->getTexAnmKeyNum() - 1 : work->mEmitter->mCurrentFrame;
 	work->mEmitter->mTexAnmIdx = shape->getTexIdx(tick);
 }
 
@@ -766,7 +814,7 @@ void JPACalcTexIdxNormal(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 void JPACalcTexIdxRepeat(JPAEmitterWorkData* work)
 {
 	JPABaseShape* shape        = work->mResource->getBsp();
-	work->mEmitter->mTexAnmIdx = shape->getTexIdx(work->mEmitter->mTick % shape->getTexAnmKeyNum());
+	work->mEmitter->mTexAnmIdx = shape->getTexIdx(work->mEmitter->mCurrentFrame % shape->getTexAnmKeyNum());
 }
 
 /**
@@ -783,28 +831,46 @@ void JPACalcTexIdxRepeat(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
  * @note Address: 0x8008C160
  * @note Size: 0x50
  */
-void JPACalcTexIdxReverse(JPAEmitterWorkData* work)
+void JPACalcTexIdxReverse(JPAEmitterWorkData* workData)
 {
-	JPABaseShape* shape        = work->mResource->getBsp();
-	int tick                   = work->mEmitter->mTick;
-	int keyNum                 = (int)shape->getTexAnmKeyNum() - 1;
-	int div                    = tick / keyNum;
-	int rem                    = tick % keyNum;
-	work->mEmitter->mTexAnmIdx = shape->getTexIdx(rem + (div & 1) * (keyNum - rem * 2));
+	// Get the base shape from the resource
+	JPABaseShape* baseShape = workData->mResource->getBsp();
+
+	// Get the current tick from the emitter
+	int currentTick = workData->mEmitter->mCurrentFrame;
+
+	// Calculate the number of keys
+	int totalKeys = (int)baseShape->getTexAnmKeyNum() - 1;
+
+	// Calculate the quotient and remainder of the current tick divided by the total keys
+	int quotient  = currentTick / totalKeys;
+	int remainder = currentTick % totalKeys;
+
+	// Calculate the texture animation index
+	workData->mEmitter->mTexAnmIdx = baseShape->getTexIdx(remainder + (quotient & 1) * (totalKeys - remainder * 2));
 }
 
 /**
  * @note Address: 0x8008C1B0
  * @note Size: 0x5C
  */
-void JPACalcTexIdxReverse(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
+void JPACalcTexIdxReverse(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
-	JPABaseShape* shape = work->mResource->mBaseShape;
-	s32 tick            = shape->getTexLoopOfst(ptcl->mAnmRandom) + ptcl->mAge;
-	int keyNum          = (int)shape->getTexAnmKeyNum() - 1;
-	int div             = tick / keyNum;
-	int rem             = tick % keyNum;
-	ptcl->mTexAnmIdx    = shape->getTexIdx(rem + (div & 1) * (keyNum - rem * 2));
+	// Get the base shape from the resource
+	JPABaseShape* baseShape = workData->mResource->mBaseShape;
+
+	// Calculate the current tick based on the particle's age and the texture loop offset
+	s32 currentTick = baseShape->getTexLoopOfst(particle->mAnmRandom) + particle->mAge;
+
+	// Calculate the total number of keys
+	int totalKeys = (int)baseShape->getTexAnmKeyNum() - 1;
+
+	// Calculate the quotient and remainder of the current tick divided by the total keys
+	int quotient  = currentTick / totalKeys;
+	int remainder = currentTick % totalKeys;
+
+	// Calculate the texture animation index
+	particle->mTexAnmIdx = baseShape->getTexIdx(remainder + (quotient & 1) * (totalKeys - remainder * 2));
 }
 
 /**
@@ -869,35 +935,60 @@ void loadPrj(const JPAEmitterWorkData* workData, const Mtx p2)
  * @note Address: 0x8008C35C
  * @note Size: 0x1AC
  */
-void loadPrjAnm(const JPAEmitterWorkData* work, const Mtx p2)
+void loadPrjAnm(const JPAEmitterWorkData* workData, const Mtx transformationMatrix)
 {
-	JPABaseShape* shape = work->mResource->getBsp();
-	f32 dVar16          = work->mEmitter->getAge();
-	f32 dVar15          = 0.5f * (1.0f + shape->getTilingS());
-	f32 dVar14          = 0.5f * (1.0f + shape->getTilingT());
-	f32 dVar11          = (dVar16 * shape->getIncTransX()) + shape->getInitTransX();
-	f32 dVar10          = (dVar16 * shape->getIncTransY()) + shape->getInitTransY();
-	f32 dVar13          = (dVar16 * shape->getIncScaleX()) + shape->getInitScaleX();
-	f32 dVar12          = (dVar16 * shape->getIncScaleY()) + shape->getInitScaleY();
-	s32 local_c0        = (dVar16 * shape->getIncRot()) + shape->getInitRot();
-	f32 dVar8           = JMASSin(local_c0);
-	f32 dVar9           = JMASCos(local_c0);
-	Mtx local_108;
-	local_108[0][0] = dVar13 * dVar9;
-	local_108[0][1] = -dVar13 * dVar8;
-	local_108[0][2] = (dVar15 + (dVar13 * ((dVar8 * (dVar14 + dVar10)) - (dVar9 * (dVar15 + dVar11)))));
-	local_108[0][3] = 0.0f;
-	local_108[1][0] = dVar12 * dVar8;
-	local_108[1][1] = dVar12 * dVar9;
-	local_108[1][2] = (dVar14 + (-dVar12 * ((dVar8 * (dVar15 + dVar11)) + (dVar9 * (dVar14 + dVar10)))));
-	local_108[1][3] = 0.0f;
-	local_108[2][0] = 0.0f;
-	local_108[2][1] = 0.0f;
-	local_108[2][2] = 1.0f;
-	local_108[2][3] = 0.0f;
-	PSMTXConcat(local_108, work->mPrjMtx, local_108);
-	PSMTXConcat(local_108, p2, local_108);
-	GXLoadTexMtxImm(local_108, 0x1e, GX_MTX3x4);
+	// Get the base shape from the resource
+	JPABaseShape* baseShape = workData->mResource->getBsp();
+
+	// Get the age of the emitter
+	f32 emitterAge = workData->mEmitter->getAge();
+
+	// Calculate half of the tiling for S and T
+	f32 halfTilingS = 0.5f * (1.0f + baseShape->getTilingS());
+	f32 halfTilingT = 0.5f * (1.0f + baseShape->getTilingT());
+
+	// Calculate the X and Y translations
+	f32 translationX = (emitterAge * baseShape->getIncTransX()) + baseShape->getInitTransX();
+	f32 translationY = (emitterAge * baseShape->getIncTransY()) + baseShape->getInitTransY();
+
+	// Calculate the X and Y scales
+	f32 scaleX = (emitterAge * baseShape->getIncScaleX()) + baseShape->getInitScaleX();
+	f32 scaleY = (emitterAge * baseShape->getIncScaleY()) + baseShape->getInitScaleY();
+
+	// Calculate the rotation
+	s32 rotation = (emitterAge * baseShape->getIncRot()) + baseShape->getInitRot();
+
+	// Calculate the sine and cosine of the rotation
+	f32 sinRotation = JMASSin(rotation);
+	f32 cosRotation = JMASCos(rotation);
+
+	// Initialize the transformation matrix
+	Mtx localTransformationMatrix;
+
+	// Fill the transformation matrix with calculated values
+	localTransformationMatrix[0][0] = scaleX * cosRotation;
+	localTransformationMatrix[0][1] = -scaleX * sinRotation;
+	localTransformationMatrix[0][2]
+	    = (halfTilingS + (scaleX * ((sinRotation * (halfTilingT + translationY)) - (cosRotation * (halfTilingS + translationX)))));
+	localTransformationMatrix[0][3] = 0.0f;
+	localTransformationMatrix[1][0] = scaleY * sinRotation;
+	localTransformationMatrix[1][1] = scaleY * cosRotation;
+	localTransformationMatrix[1][2]
+	    = (halfTilingT + (-scaleY * ((sinRotation * (halfTilingS + translationX)) + (cosRotation * (halfTilingT + translationY)))));
+	localTransformationMatrix[1][3] = 0.0f;
+	localTransformationMatrix[2][0] = 0.0f;
+	localTransformationMatrix[2][1] = 0.0f;
+	localTransformationMatrix[2][2] = 1.0f;
+	localTransformationMatrix[2][3] = 0.0f;
+
+	// Concatenate the local transformation matrix with the projection matrix
+	PSMTXConcat(localTransformationMatrix, workData->mPrjMtx, localTransformationMatrix);
+
+	// Concatenate the local transformation matrix with the passed transformation matrix
+	PSMTXConcat(localTransformationMatrix, transformationMatrix, localTransformationMatrix);
+
+	// Load the local transformation matrix into the texture matrix
+	GXLoadTexMtxImm(localTransformationMatrix, 0x1e, GX_MTX3x4);
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -1016,15 +1107,15 @@ void loadPrjAnm(const JPAEmitterWorkData* work, const Mtx p2)
 void JPADrawBillboard(JPAEmitterWorkData* work, JPABaseParticle* particle)
 {
 	if (particle->checkStatus(8) == 0) {
-		JGeometry::TVec3f local_48;
-		PSMTXMultVec(work->mPosCamMtx, (Vec*)&particle->mPosition, (Vec*)&local_48);
+		JGeometry::TVec3f position;
+		PSMTXMultVec(work->mPosCamMtx, (Vec*)&particle->mPosition, (Vec*)&position);
 		Mtx mtx;
 		mtx[0][0] = work->mGlobalPtclScl.x * particle->mParticleScaleX;
-		mtx[0][3] = local_48.x;
+		mtx[0][3] = position.x;
 		mtx[1][1] = work->mGlobalPtclScl.y * particle->mParticleScaleY;
-		mtx[1][3] = local_48.y;
+		mtx[1][3] = position.y;
 		mtx[2][2] = 1.0f;
-		mtx[2][3] = local_48.z;
+		mtx[2][3] = position.z;
 		mtx[2][1] = 0.0f;
 		mtx[2][0] = 0.0f;
 		mtx[1][2] = 0.0f;
@@ -1032,7 +1123,7 @@ void JPADrawBillboard(JPAEmitterWorkData* work, JPABaseParticle* particle)
 		mtx[0][2] = 0.0f;
 		mtx[0][1] = 0.0f;
 		GXLoadPosMtxImm(mtx, 0);
-		p_prj[work->mPrjType](work, mtx);
+		p_prj[work->mProjectionType](work, mtx);
 		GXCallDisplayList(jpa_dl, sizeof(jpa_dl));
 	}
 }
@@ -1044,8 +1135,8 @@ void JPADrawBillboard(JPAEmitterWorkData* work, JPABaseParticle* particle)
 void JPADrawRotBillboard(JPAEmitterWorkData* work, JPABaseParticle* particle)
 {
 	if (particle->checkStatus(8) == 0) {
-		JGeometry::TVec3f local_48;
-		PSMTXMultVec(work->mPosCamMtx, (Vec*)&particle->mPosition, (Vec*)&local_48);
+		JGeometry::TVec3f position;
+		PSMTXMultVec(work->mPosCamMtx, (Vec*)&particle->mPosition, (Vec*)&position);
 		f32 sinRot    = JMASSin(particle->mRotateAngle);
 		f32 cosRot    = JMASCos(particle->mRotateAngle);
 		f32 particleX = work->mGlobalPtclScl.x * particle->mParticleScaleX;
@@ -1054,18 +1145,18 @@ void JPADrawRotBillboard(JPAEmitterWorkData* work, JPABaseParticle* particle)
 		Mtx mtx;
 		mtx[0][0] = cosRot * particleX;
 		mtx[0][1] = -sinRot * particleY;
-		mtx[0][3] = local_48.x;
+		mtx[0][3] = position.x;
 		mtx[1][0] = sinRot * particleX;
 		mtx[1][1] = cosRot * particleY;
-		mtx[1][3] = local_48.y;
+		mtx[1][3] = position.y;
 		mtx[2][2] = 1.0f;
-		mtx[2][3] = local_48.z;
+		mtx[2][3] = position.z;
 		mtx[2][1] = 0.0f;
 		mtx[2][0] = 0.0f;
 		mtx[1][2] = 0.0f;
 		mtx[0][2] = 0.0f;
 		GXLoadPosMtxImm(mtx, 0);
-		p_prj[work->mPrjType](work, mtx);
+		p_prj[work->mProjectionType](work, mtx);
 		GXCallDisplayList(jpa_dl, sizeof(jpa_dl));
 	}
 }
@@ -1077,24 +1168,24 @@ void JPADrawRotBillboard(JPAEmitterWorkData* work, JPABaseParticle* particle)
 void JPADrawYBillboard(JPAEmitterWorkData* work, JPABaseParticle* particle)
 {
 	if (particle->checkStatus(8) == 0) {
-		JGeometry::TVec3f local_48;
-		PSMTXMultVec(work->mPosCamMtx, (Vec*)&particle->mPosition, (Vec*)&local_48);
+		JGeometry::TVec3f position;
+		PSMTXMultVec(work->mPosCamMtx, (Vec*)&particle->mPosition, (Vec*)&position);
 		Mtx mtx;
 		f32 particleY = work->mGlobalPtclScl.y * particle->mParticleScaleY;
 		mtx[0][0]     = work->mGlobalPtclScl.x * particle->mParticleScaleX;
-		mtx[0][3]     = local_48.x;
+		mtx[0][3]     = position.x;
 		mtx[1][1]     = work->mYBBCamMtx[1][1] * particleY;
 		mtx[1][2]     = work->mYBBCamMtx[1][2];
-		mtx[1][3]     = local_48.y;
+		mtx[1][3]     = position.y;
 		mtx[2][1]     = work->mYBBCamMtx[2][1] * particleY;
 		mtx[2][2]     = work->mYBBCamMtx[2][2];
-		mtx[2][3]     = local_48.z;
+		mtx[2][3]     = position.z;
 		mtx[2][0]     = 0.0f;
 		mtx[1][0]     = 0.0f;
 		mtx[0][2]     = 0.0f;
 		mtx[0][1]     = 0.0f;
 		GXLoadPosMtxImm(mtx, 0);
-		p_prj[work->mPrjType](work, mtx);
+		p_prj[work->mProjectionType](work, mtx);
 		GXCallDisplayList(jpa_dl, sizeof(jpa_dl));
 	}
 }
@@ -1106,31 +1197,33 @@ void JPADrawYBillboard(JPAEmitterWorkData* work, JPABaseParticle* particle)
 void JPADrawRotYBillboard(JPAEmitterWorkData* work, JPABaseParticle* particle)
 {
 	if (particle->checkStatus(8) == 0) {
-		JGeometry::TVec3f local_48;
-		PSMTXMultVec(work->mPosCamMtx, (Vec*)&particle->mPosition, (Vec*)&local_48);
+		JGeometry::TVec3f position;
+		PSMTXMultVec(work->mPosCamMtx, (Vec*)&particle->mPosition, (Vec*)&position);
 		f32 sinRot = JMASSin(particle->mRotateAngle);
 		f32 cosRot = JMASCos(particle->mRotateAngle);
 		Mtx mtx;
-		f32 particleX = work->mGlobalPtclScl.x * particle->mParticleScaleX;
-		f32 particleY = work->mGlobalPtclScl.y * particle->mParticleScaleY;
-		f32 local_98  = (f32)(sinRot * particleX);
-		f32 local_94  = (f32)(cosRot * particleY);
-		f32 local_90  = work->mYBBCamMtx[1][1];
-		f32 fVar1     = work->mYBBCamMtx[2][1];
-		mtx[0][0]     = (f32)(cosRot * particleX);
-		mtx[0][1]     = (f32)(-sinRot * particleY);
-		mtx[0][2]     = 0.0f;
-		mtx[0][3]     = local_48.x;
-		mtx[1][0]     = local_98 * local_90;
-		mtx[1][1]     = local_94 * local_90;
-		mtx[1][2]     = -fVar1;
-		mtx[1][3]     = local_48.y;
-		mtx[2][0]     = local_98 * fVar1;
-		mtx[2][1]     = local_94 * fVar1;
-		mtx[2][2]     = local_90;
-		mtx[2][3]     = local_48.z;
+		f32 scaleX            = work->mGlobalPtclScl.x * particle->mParticleScaleX;
+		f32 scaleY            = work->mGlobalPtclScl.y * particle->mParticleScaleY;
+		f32 transformedWidth  = (f32)(sinRot * scaleX);
+		f32 transformedHeight = (f32)(cosRot * scaleY);
+
+		f32 boundsY11 = work->mYBBCamMtx[1][1];
+		f32 boundsY21 = work->mYBBCamMtx[2][1];
+
+		mtx[0][0] = (f32)(cosRot * scaleX);
+		mtx[0][1] = (f32)(-sinRot * scaleY);
+		mtx[0][2] = 0.0f;
+		mtx[0][3] = position.x;
+		mtx[1][0] = transformedWidth * boundsY11;
+		mtx[1][1] = transformedHeight * boundsY11;
+		mtx[1][2] = -boundsY21;
+		mtx[1][3] = position.y;
+		mtx[2][0] = transformedWidth * boundsY21;
+		mtx[2][1] = transformedHeight * boundsY21;
+		mtx[2][2] = boundsY11;
+		mtx[2][3] = position.z;
 		GXLoadPosMtxImm(mtx, 0);
-		p_prj[work->mPrjType](work, mtx);
+		p_prj[work->mProjectionType](work, mtx);
 		GXCallDisplayList(jpa_dl, sizeof(jpa_dl));
 	}
 }
@@ -1328,44 +1421,47 @@ void basePlaneTypeX(Mtx mtx, f32 xz, f32 y)
  * @note Address: 0x8008CCAC
  * @note Size: 0x350
  */
-void JPADrawDirection(JPAEmitterWorkData* work, JPABaseParticle* particle)
+void JPADrawDirection(JPAEmitterWorkData* emitterData, JPABaseParticle* particle)
 {
 	if (particle->checkStatus(8) == 0) {
-		JGeometry::TVec3f local_6c;
-		JGeometry::TVec3f local_78;
-		p_direction[work->mDirType](work, particle, &local_6c);
-		if (!local_6c.isZero()) {
-			local_6c.normalize();
-			local_78.cross(particle->mBaseAxis, local_6c);
-			if (!local_78.isZero()) {
-				local_78.normalize();
-				particle->mBaseAxis.cross(local_6c, local_78);
+		JGeometry::TVec3f directionVector;
+		JGeometry::TVec3f crossProductVector;
+		p_direction[emitterData->mDirType](emitterData, particle, &directionVector);
+		if (!directionVector.isZero()) {
+			directionVector.normalize();
+			crossProductVector.cross(particle->mBaseAxis, directionVector);
+			if (!crossProductVector.isZero()) {
+				crossProductVector.normalize();
+				particle->mBaseAxis.cross(directionVector, crossProductVector);
 				particle->mBaseAxis.normalize();
-				Mtx local_60;
-				f32 fVar1      = work->mGlobalPtclScl.x * particle->mParticleScaleX;
-				f32 fVar2      = work->mGlobalPtclScl.y * particle->mParticleScaleY;
-				local_60[0][0] = particle->mBaseAxis.x;
-				local_60[0][1] = local_6c.x;
-				local_60[0][2] = local_78.x;
-				local_60[0][3] = particle->mPosition.x;
-				local_60[1][0] = particle->mBaseAxis.y;
-				local_60[1][1] = local_6c.y;
-				local_60[1][2] = local_78.y;
-				local_60[1][3] = particle->mPosition.y;
-				local_60[2][0] = particle->mBaseAxis.z;
-				local_60[2][1] = local_6c.z;
-				local_60[2][2] = local_78.z;
-				local_60[2][3] = particle->mPosition.z;
-				p_plane[work->mPlaneType](local_60, fVar1, fVar2);
-				PSMTXConcat(work->mPosCamMtx, local_60, local_60);
-				GXLoadPosMtxImm(local_60, 0);
-				p_prj[work->mPrjType](work, local_60);
-				GXCallDisplayList(p_dl[work->mDLType], sizeof(jpa_dl));
+
+				Mtx transformationMatrix;
+
+				f32 scaleX = emitterData->mGlobalPtclScl.x * particle->mParticleScaleX;
+				f32 scaleY = emitterData->mGlobalPtclScl.y * particle->mParticleScaleY;
+
+				transformationMatrix[0][0] = particle->mBaseAxis.x;
+				transformationMatrix[0][1] = directionVector.x;
+				transformationMatrix[0][2] = crossProductVector.x;
+				transformationMatrix[0][3] = particle->mPosition.x;
+				transformationMatrix[1][0] = particle->mBaseAxis.y;
+				transformationMatrix[1][1] = directionVector.y;
+				transformationMatrix[1][2] = crossProductVector.y;
+				transformationMatrix[1][3] = particle->mPosition.y;
+				transformationMatrix[2][0] = particle->mBaseAxis.z;
+				transformationMatrix[2][1] = directionVector.z;
+				transformationMatrix[2][2] = crossProductVector.z;
+				transformationMatrix[2][3] = particle->mPosition.z;
+
+				p_plane[emitterData->mPlaneType](transformationMatrix, scaleX, scaleY);
+				PSMTXConcat(emitterData->mPosCamMtx, transformationMatrix, transformationMatrix);
+				GXLoadPosMtxImm(transformationMatrix, 0);
+				p_prj[emitterData->mProjectionType](emitterData, transformationMatrix);
+				GXCallDisplayList(p_dl[emitterData->mDLType], sizeof(jpa_dl));
 			}
 		}
 	}
 }
-
 /**
  * @note Address: 0x8008CFFC
  * @note Size: 0x3FC
@@ -1375,38 +1471,38 @@ void JPADrawRotDirection(JPAEmitterWorkData* work, JPABaseParticle* particle)
 	if (particle->checkStatus(8) == 0) {
 		f32 sinRot = JMASSin(particle->mRotateAngle);
 		f32 cosRot = JMASCos(particle->mRotateAngle);
-		JGeometry::TVec3<f32> local_6c;
-		JGeometry::TVec3<f32> local_78;
-		p_direction[work->mDirType](work, particle, &local_6c);
-		if (!local_6c.isZero()) {
-			local_6c.normalize();
-			local_78.cross(particle->mBaseAxis, local_6c);
-			if (!local_78.isZero()) {
-				local_78.normalize();
-				particle->mBaseAxis.cross(local_6c, local_78);
+		JGeometry::TVec3<f32> direction;
+		JGeometry::TVec3<f32> crossProduct;
+		p_direction[work->mDirType](work, particle, &direction);
+		if (!direction.isZero()) {
+			direction.normalize();
+			crossProduct.cross(particle->mBaseAxis, direction);
+			if (!crossProduct.isZero()) {
+				crossProduct.normalize();
+				particle->mBaseAxis.cross(direction, crossProduct);
 				particle->mBaseAxis.normalize();
 				f32 particleX = work->mGlobalPtclScl.x * particle->mParticleScaleX;
 				f32 particleY = work->mGlobalPtclScl.y * particle->mParticleScaleY;
-				Mtx auStack_80;
-				Mtx local_60;
-				p_rot[work->mRotType](sinRot, cosRot, auStack_80);
-				p_plane[work->mPlaneType](auStack_80, particleX, particleY);
-				local_60[0][0] = particle->mBaseAxis.x;
-				local_60[0][1] = local_6c.x;
-				local_60[0][2] = local_78.x;
-				local_60[0][3] = particle->mPosition.x;
-				local_60[1][0] = particle->mBaseAxis.y;
-				local_60[1][1] = local_6c.y;
-				local_60[1][2] = local_78.y;
-				local_60[1][3] = particle->mPosition.y;
-				local_60[2][0] = particle->mBaseAxis.z;
-				local_60[2][1] = local_6c.z;
-				local_60[2][2] = local_78.z;
-				local_60[2][3] = particle->mPosition.z;
-				PSMTXConcat(local_60, auStack_80, auStack_80);
-				PSMTXConcat(work->mPosCamMtx, auStack_80, local_60);
-				GXLoadPosMtxImm(local_60, 0);
-				p_prj[work->mPrjType](work, local_60);
+				Mtx rotationMtx;
+				Mtx transformationMtx;
+				p_rot[work->mRotType](sinRot, cosRot, rotationMtx);
+				p_plane[work->mPlaneType](rotationMtx, particleX, particleY);
+				transformationMtx[0][0] = particle->mBaseAxis.x;
+				transformationMtx[0][1] = direction.x;
+				transformationMtx[0][2] = crossProduct.x;
+				transformationMtx[0][3] = particle->mPosition.x;
+				transformationMtx[1][0] = particle->mBaseAxis.y;
+				transformationMtx[1][1] = direction.y;
+				transformationMtx[1][2] = crossProduct.y;
+				transformationMtx[1][3] = particle->mPosition.y;
+				transformationMtx[2][0] = particle->mBaseAxis.z;
+				transformationMtx[2][1] = direction.z;
+				transformationMtx[2][2] = crossProduct.z;
+				transformationMtx[2][3] = particle->mPosition.z;
+				PSMTXConcat(transformationMtx, rotationMtx, rotationMtx);
+				PSMTXConcat(work->mPosCamMtx, rotationMtx, transformationMtx);
+				GXLoadPosMtxImm(transformationMtx, 0);
+				p_prj[work->mProjectionType](work, transformationMtx);
 				GXCallDisplayList(p_dl[work->mDLType], sizeof(jpa_dl));
 			}
 		}
@@ -1420,32 +1516,32 @@ void JPADrawRotDirection(JPAEmitterWorkData* work, JPABaseParticle* particle)
 void JPADrawDBillboard(JPAEmitterWorkData* work, JPABaseParticle* particle)
 {
 	if (particle->checkStatus(8) == 0) {
-		JGeometry::TVec3<f32> local_70;
-		p_direction[work->mDirType](work, particle, &local_70);
-		JGeometry::TVec3<f32> aTStack_7c;
-		aTStack_7c.set(work->mPosCamMtx[2][0], work->mPosCamMtx[2][1], work->mPosCamMtx[2][2]);
-		local_70.cross(local_70, aTStack_7c);
-		if (!local_70.isZero()) {
-			local_70.normalize();
-			PSMTXMultVecSR(work->mPosCamMtx, (Vec*)&local_70, (Vec*)&local_70);
-			JGeometry::TVec3<f32> local_88;
-			PSMTXMultVec(work->mPosCamMtx, (Vec*)&particle->mPosition, (Vec*)&local_88);
+		JGeometry::TVec3<f32> direction;
+		p_direction[work->mDirType](work, particle, &direction);
+		JGeometry::TVec3<f32> cameraPos;
+		cameraPos.set(work->mPosCamMtx[2][0], work->mPosCamMtx[2][1], work->mPosCamMtx[2][2]);
+		direction.cross(direction, cameraPos);
+		if (!direction.isZero()) {
+			direction.normalize();
+			PSMTXMultVecSR(work->mPosCamMtx, (Vec*)&direction, (Vec*)&direction);
+			JGeometry::TVec3<f32> particlePos;
+			PSMTXMultVec(work->mPosCamMtx, (Vec*)&particle->mPosition, (Vec*)&particlePos);
 			f32 particleX = work->mGlobalPtclScl.x * particle->mParticleScaleX;
 			f32 particleY = work->mGlobalPtclScl.y * particle->mParticleScaleY;
-			Mtx local_60;
-			local_60[0][0] = local_70.x * particleX;
-			local_60[0][1] = -local_70.y * particleY;
-			local_60[0][3] = local_88.x;
-			local_60[1][0] = local_70.y * particleX;
-			local_60[1][1] = local_70.x * particleY;
-			local_60[1][3] = local_88.y;
-			local_60[2][2] = 1.0f;
-			local_60[2][3] = local_88.z;
-			local_60[2][1] = 0.0f;
-			local_60[2][0] = 0.0f;
-			local_60[0][2] = 0.0f;
-			GXLoadPosMtxImm(local_60, 0);
-			p_prj[work->mPrjType](work, local_60);
+			Mtx transformMtx;
+			transformMtx[0][0] = direction.x * particleX;
+			transformMtx[0][1] = -direction.y * particleY;
+			transformMtx[0][3] = particlePos.x;
+			transformMtx[1][0] = direction.y * particleX;
+			transformMtx[1][1] = direction.x * particleY;
+			transformMtx[1][3] = particlePos.y;
+			transformMtx[2][2] = 1.0f;
+			transformMtx[2][3] = particlePos.z;
+			transformMtx[2][1] = 0.0f;
+			transformMtx[2][0] = 0.0f;
+			transformMtx[0][2] = 0.0f;
+			GXLoadPosMtxImm(transformMtx, 0);
+			p_prj[work->mProjectionType](work, transformMtx);
 			GXCallDisplayList(jpa_dl, sizeof(jpa_dl));
 		}
 	}
@@ -1470,7 +1566,7 @@ void JPADrawRotation(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 		mtx[2][3] = ptcl->mPosition.z;
 		PSMTXConcat(work->mPosCamMtx, mtx, mtx);
 		GXLoadPosMtxImm(mtx, 0);
-		p_prj[work->mPrjType](work, mtx);
+		p_prj[work->mProjectionType](work, mtx);
 		GXCallDisplayList(p_dl[work->mDLType], sizeof(jpa_dl));
 	}
 }
@@ -1501,12 +1597,12 @@ void JPADrawPoint(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 void JPADrawLine(JPAEmitterWorkData* work, JPABaseParticle* particle)
 {
 	if (particle->checkStatus(8) == 0) {
-		JGeometry::TVec3f local_1c;
-		local_1c.x = particle->mPosition.x;
+		JGeometry::TVec3f position;
+		position.x = particle->mPosition.x;
 		// JGeometry::setTVec3f(&particle->mPosition.x, &local_1c.x);
-		JGeometry::TVec3f local_28;
-		particle->getVelVec(local_28);
-		if (!local_28.isZero()) {
+		JGeometry::TVec3f direction;
+		particle->getVelVec(direction);
+		if (!direction.isZero()) {
 			// local_28.setLength(work->mGlobalPtclScl.y * (25.0f * particle->mParticleScaleY));
 			// local_28.sub(local_1c, local_28);
 			GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
@@ -1514,9 +1610,9 @@ void JPADrawLine(JPAEmitterWorkData* work, JPABaseParticle* particle)
 			GXBegin(GX_LINES, GX_VTXFMT1, 2);
 			f32 zero = 0.0f;
 			f32 one  = 1.0f;
-			GXPosition3f32(local_1c.x, local_1c.y, local_1c.z);
+			GXPosition3f32(position.x, position.y, position.z);
 			GXTexCoord2f32(zero, zero);
-			GXPosition3f32(local_28.x, local_28.y, local_28.z);
+			GXPosition3f32(direction.x, direction.y, direction.z);
 			GXTexCoord2f32(zero, one);
 			GXEnd();
 			GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
