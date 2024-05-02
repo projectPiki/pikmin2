@@ -8,11 +8,11 @@ struct JKRArchive;
 
 struct JUTResReference {
 	enum ResType {
-		RESTYPE_Null = 0,
-		RESTYPE_Unk1 = 1,
-		RESTYPE_Unk2 = 2,
-		RESTYPE_Unk3 = 3,
-		RESTYPE_Unk4 = 4,
+		RESTYPE_Null              = 0,
+		RESTYPE_None              = 1,
+		RESTYPE_GlobalArchive     = 2,
+		RESTYPE_FileLoaderArchive = 3,
+		RESTYPE_FileLoader        = 4,
 	};
 
 	JUTResReference() { mType = 0; }

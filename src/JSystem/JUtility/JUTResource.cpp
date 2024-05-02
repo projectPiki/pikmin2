@@ -13,7 +13,7 @@ void* JUTResReference::getResource(JSUInputStream* stream, u32 resType, JKRArchi
 	stream->read(&mNameLength, 1);
 	stream->read(&mName, mNameLength);
 
-	if (mType == RESTYPE_Unk2 || mType == RESTYPE_Unk3 || mType == RESTYPE_Unk4) {
+	if (mType == RESTYPE_GlobalArchive || mType == RESTYPE_FileLoaderArchive || mType == RESTYPE_FileLoader) {
 		mName[mNameLength] = 0;
 	}
 
@@ -32,7 +32,7 @@ void* JUTResReference::getResource(const void* data, u32 resType, JKRArchive* ar
 		memcpy(&mName, &((u8*)data)[2], mNameLength);
 	}
 
-	if (mType == RESTYPE_Unk2 || mType == RESTYPE_Unk3 || mType == RESTYPE_Unk4) {
+	if (mType == RESTYPE_GlobalArchive || mType == RESTYPE_FileLoaderArchive || mType == RESTYPE_FileLoader) {
 		mName[mNameLength] = 0;
 	}
 
@@ -47,15 +47,15 @@ void* JUTResReference::getResource(u32 resType, JKRArchive* archive)
 {
 	void* res = nullptr;
 	switch (mType) {
-	case RESTYPE_Unk1:
+	case RESTYPE_None:
 		break;
-	case RESTYPE_Unk2:
+	case RESTYPE_GlobalArchive:
 		res = JKRArchive::getGlbResource(resType, mName, archive);
 		break;
-	case RESTYPE_Unk3:
+	case RESTYPE_FileLoaderArchive:
 		res = JKRFileLoader::getGlbResource(mName, archive);
 		break;
-	case RESTYPE_Unk4:
+	case RESTYPE_FileLoader:
 		res = JKRFileLoader::getGlbResource(mName);
 		break;
 	}

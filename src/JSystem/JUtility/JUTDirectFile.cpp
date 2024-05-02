@@ -16,7 +16,7 @@ int JUTDirectFile::fetch32byte()
 	// Enable interrupts, read data asynchronously from the DVD into the buffer, then restore the previous interrupt state
 	int interrupts = OSEnableInterrupts();
 	int readRes    = DVDReadAsync(&mFileInfo, mSectorStart, ALIGN_NEXT(mToRead, DVD_MIN_TRANSFER_SIZE),
-	                              ALIGN_PREV(mPos, DVD_MIN_TRANSFER_SIZE), nullptr);
+                               ALIGN_PREV(mPos, DVD_MIN_TRANSFER_SIZE), nullptr);
 	OSRestoreInterrupts(interrupts);
 
 	// If the read operation failed, return -1. Otherwise, wait for the command block to finish and return the number of bytes read

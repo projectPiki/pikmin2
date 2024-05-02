@@ -44,6 +44,7 @@ JUTRomFont::~JUTRomFont()
 		spFontHeader_    = nullptr;
 		spAboutEncoding_ = nullptr;
 	}
+
 	mIsValid = false;
 }
 

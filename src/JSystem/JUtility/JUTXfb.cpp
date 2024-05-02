@@ -87,21 +87,21 @@ void JUTXfb::destroyManager()
  * @note Address: 0x80033E48
  * @note Size: 0xE8
  */
-void JUTXfb::initiate(u16 p1, u16 p2, JKRHeap* heap, JUTXfb::EXfbNumber number)
+void JUTXfb::initiate(u16 width, u16 height, JKRHeap* heap, JUTXfb::EXfbNumber number)
 {
 	if (heap == nullptr) {
 		heap = JKRHeap::getSystemHeap();
 	}
 
-	u16 v2    = ALIGN_NEXT(p1, 0x10);
-	u32 v1    = v2 * p2;
-	int flags = 0x20;
-	v1 <<= 1;
+	u16 alignedWidth  = ALIGN_NEXT(width, 0x10);
+	u32 alignedHeight = alignedWidth * height;
+	int flags         = 0x20;
+	alignedHeight <<= 1;
 
-	mBuffers[0] = new (heap, flags) u8[v1];
+	mBuffers[0] = new (heap, flags) u8[alignedHeight];
 	mEnabled[0] = true;
 	if (number >= DoubleBuffer) {
-		mBuffers[1] = new (heap, flags) u8[v1];
+		mBuffers[1] = new (heap, flags) u8[alignedHeight];
 		mEnabled[1] = true;
 	} else {
 		mBuffers[1] = nullptr;
@@ -109,7 +109,7 @@ void JUTXfb::initiate(u16 p1, u16 p2, JKRHeap* heap, JUTXfb::EXfbNumber number)
 	}
 
 	if (number >= TripleBuffer) {
-		mBuffers[2] = new (heap, flags) u8[v1];
+		mBuffers[2] = new (heap, flags) u8[alignedHeight];
 		mEnabled[2] = true;
 	} else {
 		mBuffers[2] = nullptr;
