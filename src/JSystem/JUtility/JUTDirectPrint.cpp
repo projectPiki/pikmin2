@@ -103,6 +103,7 @@ JUTDirectPrint* JUTDirectPrint::start()
 	if (!sDirectPrint) {
 		sDirectPrint = new JUTDirectPrint();
 	}
+
 	return sDirectPrint;
 }
 
@@ -113,54 +114,78 @@ JUTDirectPrint* JUTDirectPrint::start()
  */
 void JUTDirectPrint::erase(int x, int y, int width, int height)
 {
+	// If the frame buffer is not initialized, exit the function
 	if (!mFrameBuffer) {
 		return;
 	}
 
-	if (400 < mFBWidth) {
+	// If the frame buffer width is greater than 400, double the x coordinate and width
+	if (mFBWidth > 400) {
 		x     = x << 1;
 		width = width << 1;
 	}
 
-	if (300 < mFBHeight) {
+	// If the frame buffer height is greater than 300, double the y coordinate and height
+	if (mFBHeight > 300) {
 		y      = y << 1;
 		height = height << 1;
 	}
 
+	// Get the starting pixel position in the frame memory
 	u16* pixel = mFrameMemory + mStride * y + x;
+
 	for (int i = 0; i < height; i++) {
 		for (int j = 0; j < width; j++) {
+			// Set the pixel to the erase color (0x1080)
 			*pixel = 0x1080;
 			pixel  = pixel + 1;
 		}
 
+		// Move to the start of the next line in the frame memory
 		pixel += mStride - width;
 	}
 }
 
 /**
+ * @brief Draws a character at the specified position.
+ *
+ * This function is responsible for drawing a character at the given position on the screen.
+ *
+ * @param posX The X-coordinate of the position where the character should be drawn.
+ * @param posY The Y-coordinate of the position where the character should be drawn.
+ * @param character The character to be drawn.
+ *
  * @note Address: 0x80029D38
  * @note Size: 0x254
  */
-void JUTDirectPrint::drawChar(int position_x, int position_y, int ch)
+void JUTDirectPrint::drawChar(int posX, int posY, int character)
 {
+	// Array used for bit manipulation
 	static u32 twiceBit[4] = { 0x00000000, 0x00000003, 0x0000000C, 0x0000000F };
 
-	int codepoint = (100 <= ch) ? ch - 100 : ch;
-	int col_index = (codepoint % 5) * 6;
-	int row_index = (codepoint / 5) * 7;
+	// Calculate the character code, column and row indices
+	int charCode    = (100 <= character) ? character - 100 : character;
+	int columnIndex = (charCode % 5) * 6;
+	int rowIndex    = (charCode / 5) * 7;
 
-	const u32* font_data = (100 > ch) ? sFontData + row_index : sFontData2 + row_index;
+	// Choose the font data based on the character code
+	const u32* fontData = (100 > character) ? sFontData + rowIndex : sFontData2 + rowIndex;
 
-	int scale_x = (mFBWidth < 400) ? 1 : 2;
-	int scale_y = (mFBHeight < 300) ? 1 : 2;
+	// Determine the scale based on the frame buffer dimensions
+	int scaleX = (mFBWidth < 400) ? 1 : 2;
+	int scaleY = (mFBHeight < 300) ? 1 : 2;
 
-	u16* pixel = mFrameMemory + mStride * position_y * scale_y + position_x * scale_x;
+	// Calculate the starting pixel pointer
+	u16* pixelPtr = mFrameMemory + mStride * posY * scaleY + posX * scaleX;
+
+	// Loop over the height of the character (7 pixels)
 	for (int y = 0; y < 7; y++) {
-		u32 data = *font_data << col_index;
-		font_data += 1;
+		// Get the font data for the current row
+		u32 data = *fontData << columnIndex;
+		fontData += 1;
 
-		if (scale_x == 1) {
+		// Adjust the data based on the scale
+		if (scaleX == 1) {
 			data = (data & 0xfc000000) >> 1;
 		} else {
 			u32 a = twiceBit[(data >> 26) & 3];
@@ -169,28 +194,43 @@ void JUTDirectPrint::drawChar(int position_x, int position_y, int ch)
 			data  = (a | b | c) << 19;
 		}
 
-		for (int x = 0; x < scale_x * 6; x += 2) {
-			u16 value;
+		// Loop over the width of the character (6 pixels)
+		for (int x = 0; x < scaleX * 6; x += 2) {
+			u16 pixelValue;
 
-			value    = (((data & 0x40000000) ? mCharColor_Y : 0)
-                     | ((data & 0x80000000) ? mCharColor_Cb4 : 32) + ((data & 0x40000000) ? mCharColor_Cb2 : 64)
-                           + ((data & 0x20000000) ? mCharColor_Cb4 : 32));
-			pixel[0] = value;
-			if (scale_y > 1)
-				pixel[mStride] = value;
+			// Calculate the pixel value based on the data and color
+			pixelValue = (((data & 0x40000000) ? mCharColor_Y : 0)
+			              | ((data & 0x80000000) ? mCharColor_Cb4 : 32) + ((data & 0x40000000) ? mCharColor_Cb2 : 64)
+			                    + ((data & 0x20000000) ? mCharColor_Cb4 : 32));
 
-			value    = (((data & 0x20000000) ? mCharColor_Y : 0)
-                     | ((data & 0x40000000) ? mCharColor_Cr4 : 32) + ((data & 0x20000000) ? mCharColor_Cr2 : 64)
-                           + ((data & 0x10000000) ? mCharColor_Cr4 : 32));
-			pixel[1] = value;
-			if (scale_y > 1)
-				pixel[1 + mStride] = value;
+			// Set the pixel value
+			pixelPtr[0] = pixelValue;
 
-			pixel += 2;
+			// If scaleY is greater than 1, set the pixel value in the next row
+			if (scaleY > 1) {
+				pixelPtr[mStride] = pixelValue;
+			}
+
+			// Calculate the pixel value for the next pixel
+			pixelValue = (((data & 0x20000000) ? mCharColor_Y : 0)
+			              | ((data & 0x40000000) ? mCharColor_Cr4 : 32) + ((data & 0x20000000) ? mCharColor_Cr2 : 64)
+			                    + ((data & 0x10000000) ? mCharColor_Cr4 : 32));
+
+			// Set the pixel value for the next pixel
+			pixelPtr[1] = pixelValue;
+
+			// If scaleY is greater than 1, set the pixel value in the next row
+			if (scaleY > 1) {
+				pixelPtr[1 + mStride] = pixelValue;
+			}
+
+			// Move to the next pair of pixels
+			pixelPtr += 2;
 			data <<= 2;
 		}
 
-		pixel += mStride * scale_y - 6 * scale_x;
+		// Move to the start of the next row
+		pixelPtr += mStride * scaleY - 6 * scaleX;
 	}
 }
 
@@ -212,35 +252,39 @@ void JUTDirectPrint::changeFrameBuffer(void* buffer, u16 pixelWidth, u16 pixelHe
  * @note Address: N/A
  * @note Size: 0x228
  */
-void JUTDirectPrint::printSub(u16 position_x, u16 position_y, const char* format, va_list args, bool clear)
+void JUTDirectPrint::printSub(u16 positionX, u16 positionY, const char* format, va_list args, bool clear)
 {
-	char buffer[256];
+	char textBuffer[256];
 	if (!mFrameMemory) {
 		return;
 	}
 
-	int buffer_length = vsnprintf(buffer, ARRAY_SIZE(buffer), format, args);
-	u16 x             = position_x;
-	if (buffer_length > 0) {
+	int textLength       = vsnprintf(textBuffer, ARRAY_SIZE(textBuffer), format, args);
+	u16 initialPositionX = positionX;
+	if (textLength > 0) {
 		if (clear) {
-			erase(position_x - 6, position_y - 3, (buffer_length + 2) * 6, 0xd);
+			erase(positionX - 6, positionY - 3, (textLength + 2) * 6, 13);
 		}
 
-		char* ptr = buffer;
-		for (; 0 < buffer_length; buffer_length--, ptr++) {
-			int codepoint = sAsciiTable[*ptr & 0x7f];
-			if (codepoint == 0xfe) {
-				position_x = x;
-				position_y += 7;
-			} else if (codepoint == 0xfd) {
-				s32 current_position = (int)position_x;
-				s32 tab              = (current_position - x + 0x2f) % 0x30;
-				position_x           = current_position + 0x30 - tab;
+		char* charPtr = textBuffer;
+		for (; 0 < textLength; textLength--, charPtr++) {
+			int codepoint = sAsciiTable[*charPtr & 0x7f];
+			if (codepoint == 0xFE) {
+				// Newline character
+				positionX = initialPositionX;
+				positionY += 7;
+			} else if (codepoint == 0xFD) {
+				// Tab character
+				s32 currentPosition = (int)positionX;
+				s32 tabSpace        = (currentPosition - initialPositionX + 0x2f) % 0x30;
+				positionX           = currentPosition + 0x30 - tabSpace;
 			} else {
-				if (codepoint != 0xff) {
-					drawChar(position_x, position_y, codepoint);
+				// Draw the character
+				if (codepoint != 0xFF) {
+					drawChar(positionX, positionY, codepoint);
 				}
-				position_x += 6;
+
+				positionX += 6;
 			}
 		}
 	}
@@ -290,12 +334,20 @@ void JUTDirectPrint::setCharColor(JUtility::TColor color) { setCharColor(color.r
  */
 void JUTDirectPrint::setCharColor(u8 r, u8 g, u8 b)
 {
+	// Set the character color using the RGB color values passed in
 	mCharColor = JUtility::TColor(r, g, b, 0xFF);
-	u16 Y      = 0.257 * (int)r + 0.504 * (int)g + 0.098 * (int)b + 16;
-	u16 Cb     = -0.148 * (int)r - 0.291 * (int)g + 0.439 * (int)b + 128;
-	u16 Cr     = 0.439 * (int)r - 0.368 * (int)g - 0.071 * (int)b + 128;
 
-	mCharColor_Y   = Y << 8;
+	// Calculate the Y, Cb, and Cr color space values
+	u16 Y  = 0.257 * (int)r + 0.504 * (int)g + 0.098 * (int)b + 16;
+	u16 Cb = -0.148 * (int)r - 0.291 * (int)g + 0.439 * (int)b + 128;
+	u16 Cr = 0.439 * (int)r - 0.368 * (int)g - 0.071 * (int)b + 128;
+
+	// Store the calculated Y, Cb, and Cr values into member variables
+	// The Y value is shifted left by 8 bits for later bit manipulation
+	mCharColor_Y = Y << 8;
+
+	// Store the Cb and Cr values, as well as half and quarter of their values
+	// These will be used for color calculations when drawing the characters
 	mCharColor_Cb  = Cb;
 	mCharColor_Cb2 = Cb / 2;
 	mCharColor_Cb4 = Cb / 4;

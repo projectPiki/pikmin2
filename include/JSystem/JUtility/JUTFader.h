@@ -31,8 +31,8 @@ struct JUTFader {
 	u16 mTicksRun;              // _0A - ticks the current fade has run
 	JUtility::TColor mColor;    // _0C - color of fade
 	JGeometry::TBox2f mViewBox; // _10 - ortho box to render within
-	int _20;                    // _20 - ???
-	EStatus _24;                // _24 - ???
+	int mFadeTimer;             // _20 - ???
+	EStatus mNextStatus;        // _24 - ???
 };
 
 #endif

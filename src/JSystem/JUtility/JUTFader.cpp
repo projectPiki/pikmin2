@@ -7,15 +7,15 @@
  * @note Address: 0x8002CE5C
  * @note Size: 0xAC
  */
-JUTFader::JUTFader(int p1, int p2, int p3, int p4, JUtility::TColor color)
+JUTFader::JUTFader(int startX, int startY, int width, int height, JUtility::TColor color)
     : mColor(color)
-    , mViewBox(p1, p2, p1 + p3, p2 + p4)
+    , mViewBox(startX, startY, startX + width, startY + height)
 {
 	mStatus      = Status_Out;
 	mTicksTarget = 0;
 	mTicksRun    = 0;
-	_24          = Status_Out;
-	_20          = -1;
+	mNextStatus  = Status_Out;
+	mFadeTimer   = -1;
 }
 
 /**
@@ -24,31 +24,38 @@ JUTFader::JUTFader(int p1, int p2, int p3, int p4, JUtility::TColor color)
  */
 void JUTFader::control()
 {
-	if (0 <= _20 && _20-- == 0) {
-		mStatus = _24;
+	if (mFadeTimer >= 0 && mFadeTimer-- == 0) {
+		mStatus = mNextStatus;
 	}
+
 	if (mStatus == Status_In) {
 		return;
 	}
+
 	switch (mStatus) {
 	case Status_Out:
 		mColor.a = 0xFF;
 		break;
+
 	case Status_FadingIn:
-		// _0A++;
 		mColor.a = 0xFF - ((++mTicksRun * 0xFF) / mTicksTarget);
+
 		if (mTicksRun >= mTicksTarget) {
 			mStatus = Status_In;
 		}
+
 		break;
+
 	case Status_FadingOut:
-		// _0A++;
 		mColor.a = ((++mTicksRun * 0xFF) / mTicksTarget);
+
 		if (mTicksRun >= mTicksTarget) {
 			mStatus = Status_Out;
 		}
+
 		break;
 	}
+
 	draw();
 }
 
@@ -61,6 +68,7 @@ void JUTFader::draw()
 	if (mColor.a == 0) {
 		return;
 	}
+
 	J2DOrthoGraph orthograph;
 	orthograph.setColor(mColor);
 	orthograph.fillBox(mViewBox);
@@ -82,11 +90,13 @@ void JUTFader::start(int)
 bool JUTFader::startFadeIn(int duration)
 {
 	bool isStarting = (mStatus == Status_Out);
+
 	if (isStarting) {
 		mStatus      = Status_FadingIn;
 		mTicksRun    = 0;
 		mTicksTarget = duration;
 	}
+
 	return isStarting;
 }
 
@@ -97,11 +107,13 @@ bool JUTFader::startFadeIn(int duration)
 bool JUTFader::startFadeOut(int duration)
 {
 	bool isStarting = (mStatus == Status_In);
+
 	if (isStarting) {
 		mStatus      = Status_FadingOut;
 		mTicksRun    = 0;
 		mTicksTarget = duration;
 	}
+
 	return isStarting;
 }
 
