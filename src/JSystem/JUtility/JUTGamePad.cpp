@@ -157,46 +157,63 @@ u32 JUTGamePad::read()
 		break;
 	}
 
-	u32 v1 = 0;
+	// Initialize reset mask and iterate over all controllers
+	u32 resetMask = 0;
 	for (int i = 0; i < PAD_MAX_CONTROLLERS; i++) {
 		if (mPadStatus[i].err == 0) {
-			u32 main = mPadMStick[i].update(mPadStatus[i].stickX, mPadStatus[i].stickY, sStickMode, STICK_Main, mPadButton[i].mButton);
-			u32 sub  = mPadSStick[i].update(mPadStatus[i].substickX, mPadStatus[i].substickY, sStickMode, STICK_Sub, mPadButton[i].mButton);
-			mPadButton[i].update(&mPadStatus[i], main << 0x18 | sub << 0x10);
+			// If no error on the controller, update main and sub sticks and button status
+			u32 mainStick = mPadMStick[i].update(mPadStatus[i].stickX, mPadStatus[i].stickY, sStickMode, STICK_Main, mPadButton[i].mButton);
+			u32 subStick
+			    = mPadSStick[i].update(mPadStatus[i].substickX, mPadStatus[i].substickY, sStickMode, STICK_Sub, mPadButton[i].mButton);
+
+			mPadButton[i].update(&mPadStatus[i], mainStick << 0x18 | subStick << 0x10);
 		} else if (mPadStatus[i].err == -1) {
+			// If controller error is -1, reset main and sub sticks and button status, and update reset mask if pad reset is not suppressed
 			mPadMStick[i].update(0, 0, sStickMode, STICK_Main, 0);
 			mPadSStick[i].update(0, 0, sStickMode, STICK_Sub, 0);
 			mPadButton[i].update(nullptr, 0);
+
 			if ((sSuppressPadReset & 0x80000000U >> i) == 0) {
-				v1 |= 0x80000000U >> i;
+				resetMask |= 0x80000000U >> i;
 			}
 		} else {
+			// For other errors, reset button down, up, and repeat status
 			mPadButton[i].mButtonDown = 0;
 			mPadButton[i].mButtonUp   = 0;
 			mPadButton[i].mRepeat     = 0;
 		}
 	}
+
+	// Iterate over all pads in the pad list, update their status, and execute virtual_10 function if pad record is active and no error on
+	// the controller
 	for (JSUPtrLink* link = mPadList.getFirstLink(); link != nullptr; link = link->getNext()) {
 		JUTGamePad* pad = static_cast<JUTGamePad*>(link->getObjectPtr());
 		if (pad->mPadReplay != nullptr && pad->mPadReplay->mIsActive) {
+			// If pad replay is active, get the current status and update main and sub sticks and button status
 			PADStatus status;
 			pad->mPadReplay->getStatus(&status);
-			u32 main = pad->mMStick.update(status.stickX, status.stickY, sStickMode, STICK_Main, pad->mPadButton->mButton);
-			u32 sub  = pad->mSStick.update(status.substickX, status.substickY, sStickMode, STICK_Sub, pad->mPadButton->mButton);
-			pad->mPadButton->update(&status, main << 0x18 | sub << 0x10);
+			u32 mainStick = pad->mMStick.update(status.stickX, status.stickY, sStickMode, STICK_Main, pad->mPadButton->mButton);
+			u32 subStick  = pad->mSStick.update(status.substickX, status.substickY, sStickMode, STICK_Sub, pad->mPadButton->mButton);
+
+			pad->mPadButton->update(&status, mainStick << 0x18 | subStick << 0x10);
 		} else {
+			// If pad replay is not active, assign a new port number if invalid and update the pad
 			if (pad->mPortNum == PORT_INVALID) {
 				pad->assign();
 			}
+
 			pad->update();
 		}
+
 		if (pad->mPadRecord != nullptr && pad->mPadRecord->mIsActive && 0 <= pad->mPortNum && mPadStatus[pad->mPortNum].err == 0) {
 			pad->mPadRecord->virtual_10();
 		}
 	}
-	if (v1 != 0) {
-		PADReset(v1);
+
+	if (resetMask != 0) {
+		PADReset(resetMask);
 	}
+
 	checkResetSwitch();
 	return sRumbleSupported;
 	/*
@@ -463,7 +480,7 @@ void JUTGamePad::assign()
 		if (mPadStatus[i].err == 0 && ((u8*)JUTGamePad::mPadAssign)[i] == 0) {
 			mPortNum      = i;
 			mPadAssign[i] = 1;
-			mPadButton[i].setRepeat(mButton._24, mButton._28, mButton._2C);
+			mPadButton[i].setRepeat(mButton.mRepeatMask, mButton.mRepeatDelay, mButton.mRepeatRate);
 			mRumble.clear(this);
 			break;
 		}
@@ -524,9 +541,9 @@ lbl_8002D9BC:
  * @note Address: 0x8002D9D0
  * @note Size: 0x6C
  */
-void JUTGamePad::checkResetCallback(s64 p1)
+void JUTGamePad::checkResetCallback(s64 padState)
 {
-	if (p1 >= C3ButtonReset::sThreshold) {
+	if (padState >= C3ButtonReset::sThreshold) {
 		C3ButtonReset::sResetOccurred     = true;
 		C3ButtonReset::sResetOccurredPort = (EPadPort)mPortNum;
 		if (C3ButtonReset::sCallback != nullptr) {
@@ -546,7 +563,7 @@ void JUTGamePad::update()
 		return;
 	}
 
-	if (0 <= mPortNum && mPortNum < 4) {
+	if (mPortNum < 0 || mPortNum >= 4) {
 		mButton = mPadButton[mPortNum];
 		mMStick = mPadMStick[mPortNum];
 		mSStick = mPadSStick[mPortNum];
@@ -555,6 +572,7 @@ void JUTGamePad::update()
 
 	if (_A8 == 0 || C3ButtonReset::sResetPattern != (getButton() & C3ButtonReset::sResetMaskPattern)) {
 		mButtonReset.mIsReset = false;
+
 	} else if (C3ButtonReset::sResetOccurred == false) {
 		if (mButtonReset.mIsReset == true) {
 			checkResetCallback(OSGetTime() - mOsResetTime);
@@ -572,20 +590,22 @@ void JUTGamePad::update()
 
 	for (JSUPtrLink* link = JUTGamePadLongPress::sPatternList.getFirstLink(); link != nullptr; link = link->getNext()) {
 		JUTGamePadLongPress* longPress = static_cast<JUTGamePadLongPress*>(link->getObjectPtr());
-		if (longPress->mIsValid && 0 <= mPortNum && mPortNum < 4) {
+
+		if (longPress->mIsValid && mPortNum > 0 && mPortNum < 4) {
 			if ((getButton() & longPress->mMaskPattern) == longPress->mPattern) {
-				if (longPress->_20[mPortNum] == 1) {
+				if (longPress->mLongPressStatus[mPortNum] == 1) {
 					longPress->checkCallback(mPortNum, OSGetTime() - longPress->mTimer[mPortNum]);
 				} else {
-					longPress->_20[mPortNum]    = 1;
-					longPress->mTimer[mPortNum] = OSGetTime();
+					longPress->mLongPressStatus[mPortNum] = 1;
+					longPress->mTimer[mPortNum]           = OSGetTime();
 				}
 			} else {
-				longPress->_20[mPortNum] = 0;
+				longPress->mLongPressStatus[mPortNum] = 0;
 			}
 		}
 	}
-	if (0 <= mPortNum && mPortNum < 4) {
+
+	if (mPortNum > 0 && mPortNum < 4) {
 		mRumble.update(mPortNum);
 	}
 	/*
@@ -865,11 +885,11 @@ void JUTGamePad::CButton::clear()
 	mAnalogB      = 0;
 	mTriggerLeft  = 0;
 	mTriggerRight = 0;
-	_1C           = 0;
-	_20           = 0;
-	_24           = 0;
-	_28           = 0;
-	_2C           = 0;
+	mRepeatCount  = 0;
+	mRepeatStart  = 0;
+	mRepeatMask   = 0;
+	mRepeatDelay  = 0;
+	mRepeatRate   = 0;
 }
 
 /**
@@ -877,33 +897,35 @@ void JUTGamePad::CButton::clear()
  * @note Size: 0x190
  * update__Q210JUTGamePad7CButtonFPC9PADStatusUl
  */
-void JUTGamePad::CButton::update(PADStatus const* status, u32 p2)
+void JUTGamePad::CButton::update(PADStatus const* status, u32 buttonStatus)
 {
-	p2 |= ((status != nullptr) ? status->button : 0);
+	buttonStatus |= ((status != nullptr) ? status->button : 0);
 	mRepeat = 0;
-	if (_28 != 0) {
-		if (_24 != 0) {
-			u32 v1  = p2 & _24;
-			mRepeat = 0;
-			if (v1 == 0) {
-				_20 = 0;
-				_1C = 0;
-			} else if (_20 == v1) {
-				_1C++;
-				if (_1C == _28 || (_1C > _28 && _1C - _28 == ((_1C - _28) / _2C) * _2C)) {
-					mRepeat = v1;
+	if (mRepeatDelay != 0) {
+		if (mRepeatMask != 0) {
+			u32 buttonPressed = buttonStatus & mRepeatMask;
+			mRepeat           = 0;
+			if (buttonPressed == 0) {
+				mRepeatStart = 0;
+				mRepeatCount = 0;
+			} else if (mRepeatStart == buttonPressed) {
+				mRepeatCount++;
+				if (mRepeatCount == mRepeatDelay
+				    || (mRepeatCount > mRepeatDelay
+				        && mRepeatCount - mRepeatDelay == ((mRepeatCount - mRepeatDelay) / mRepeatRate) * mRepeatRate)) {
+					mRepeat = buttonPressed;
 				}
 			} else {
-				mRepeat = v1 & (_20 ^ 0xFFFFFFFF);
-				_20     = v1;
-				_1C     = 0;
+				mRepeat      = buttonPressed & (mRepeatStart ^ 0xFFFFFFFF);
+				mRepeatStart = buttonPressed;
+				mRepeatCount = 0;
 			}
 		}
 	}
-	mButtonDown = p2 & (p2 ^ mButton);
-	mButtonUp   = mButton & (p2 ^ mButton);
-	mButton     = p2;
-	mRepeat     = mRepeat | (_24 ^ 0xFFFFFFFF) & mButtonDown;
+	mButtonDown = buttonStatus & (buttonStatus ^ mButton);
+	mButtonUp   = mButton & (buttonStatus ^ mButton);
+	mButton     = buttonStatus;
+	mRepeat     = mRepeat | (mRepeatMask ^ 0xFFFFFFFF) & mButtonDown;
 	if (status != nullptr) {
 		mAnalogA      = status->analogA;
 		mAnalogB      = status->analogB;
@@ -1826,26 +1848,26 @@ lbl_8002E798:
  * @note Address: 0x8002E7CC
  * @note Size: 0x1C
  */
-void JUTGamePad::CButton::setRepeat(u32 p1, u32 p2, u32 p3)
+void JUTGamePad::CButton::setRepeat(u32 repeatMask, u32 repeatDelay, u32 repeatRate)
 {
-	_20 = 0;
-	_1C = 0;
-	_24 = p1;
-	_28 = p2;
-	_2C = p3;
+	mRepeatStart = 0;
+	mRepeatCount = 0;
+	mRepeatMask  = repeatMask;
+	mRepeatDelay = repeatDelay;
+	mRepeatRate  = repeatRate;
 }
 
 /**
  * @note Address: 0x8002E7E8
  * @note Size: 0x4C
  */
-void JUTGamePad::setButtonRepeat(u32 p1, u32 p2, u32 p3)
+void JUTGamePad::setButtonRepeat(u32 mask, u32 delay, u32 rate)
 {
-	mButton.setRepeat(p1, p2, p3);
+	mButton.setRepeat(mask, delay, rate);
 	if (mPortNum < 0) {
 		return;
 	}
-	mPadButton[mPortNum].setRepeat(p1, p2, p3);
+	mPadButton[mPortNum].setRepeat(mask, delay, rate);
 }
 
 /**

@@ -91,11 +91,11 @@ struct JUTGamePad : public JKRDisposer {
 		f32 mAnalogL;     // _10
 		f32 mAnalogR;     // _14
 		u32 mRepeat;      // _18
-		u32 _1C;          // _1C
-		u32 _20;          // _20
-		u32 _24;          // _24
-		u32 _28;          // _28
-		u32 _2C;          // _2C
+		u32 mRepeatCount; // _1C
+		u32 mRepeatStart; // _20
+		u32 mRepeatMask;  // _24
+		u32 mRepeatDelay; // _28
+		u32 mRepeatRate;  // _2C
 	};
 
 	struct CRumble {
@@ -339,17 +339,17 @@ struct JUTGamePadLongPress {
 
 	static JSUPtrList sPatternList;
 
-	u8 _00[0x10];       // _00, unknown
-	bool mIsValid;      // _10
-	bool _11;           // _11
-	u32 mPattern;       // _14
-	u32 mMaskPattern;   // _18
-	u32 _1C;            // _1C
-	u8 _20[4];          // _20
-	OSTime mTimer[4];   // _28
-	u8 _48[4];          // _48
-	Callback mCallback; // _4C
-	u32 _50;            // _50
+	u8 _00[0x10];           // _00, unknown
+	bool mIsValid;          // _10
+	bool _11;               // _11
+	u32 mPattern;           // _14
+	u32 mMaskPattern;       // _18
+	u32 _1C;                // _1C
+	u8 mLongPressStatus[4]; // _20
+	OSTime mTimer[4];       // _28
+	u8 _48[4];              // _48
+	Callback mCallback;     // _4C
+	u32 _50;                // _50
 };
 
 // entirely unused/inlined
