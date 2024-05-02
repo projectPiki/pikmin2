@@ -910,13 +910,13 @@ void JUTGamePad::CButton::update(PADStatus const* status, u32 buttonStatus)
 				mRepeatCount = 0;
 			} else if (mRepeatStart == buttonPressed) {
 				mRepeatCount++;
-				if (mRepeatCount == mRepeatDelay
-				    || (mRepeatCount > mRepeatDelay
-				        && mRepeatCount - mRepeatDelay == ((mRepeatCount - mRepeatDelay) / mRepeatRate) * mRepeatRate)) {
+				if (mRepeatCount == mRepeatDelay || 
+					(mRepeatCount > mRepeatDelay && 
+					(mRepeatCount - mRepeatDelay) % mRepeatRate == 0)) {
 					mRepeat = buttonPressed;
 				}
 			} else {
-				mRepeat      = buttonPressed & (mRepeatStart ^ 0xFFFFFFFF);
+				mRepeat      = buttonPressed & (mRepeatStart ^ ~0);
 				mRepeatStart = buttonPressed;
 				mRepeatCount = 0;
 			}
@@ -925,7 +925,7 @@ void JUTGamePad::CButton::update(PADStatus const* status, u32 buttonStatus)
 	mButtonDown = buttonStatus & (buttonStatus ^ mButton);
 	mButtonUp   = mButton & (buttonStatus ^ mButton);
 	mButton     = buttonStatus;
-	mRepeat     = mRepeat | (mRepeatMask ^ 0xFFFFFFFF) & mButtonDown;
+	mRepeat     = mRepeat | (mRepeatMask ^ ~0) & mButtonDown;
 	if (status != nullptr) {
 		mAnalogA      = status->analogA;
 		mAnalogB      = status->analogB;
@@ -1308,11 +1308,11 @@ u32 JUTGamePad::CStick::getButton(u32 p1)
 	p1 &= 0xF;
 
 	if (-sReleasePoint < mXPos && mXPos < sReleasePoint) {
-		p1 = p1 & 0xC;
+		p1 = p1 & ~3;
 	} else if (mXPos <= -sPressPoint) {
-		p1 = p1 & 0xD | 1;
+		p1 = p1 & ~2 | 1;
 	} else if (mXPos >= sPressPoint) {
-		p1 = p1 & 0xE | 2;
+		p1 = p1 & ~1 | 2;
 	}
 
 	if (-sReleasePoint < mYPos && mYPos < sReleasePoint) {
@@ -1467,42 +1467,10 @@ void JUTGamePad::CRumble::startMotor(int)
 void JUTGamePad::CRumble::stopMotor(int chan, bool p2)
 {
 	if ((mEnabled & sChannelMask[chan]) != 0) {
-		u32 v1 = p2;
-		PADControlMotor(chan, getNumBit((u8*)&v1, 6));
+		u8 v1 = p2 ? PAD_MOTOR_STOP_HARD : PAD_MOTOR_STOP;
+		PADControlMotor(chan, v1);
+		mStatus[chan] = 0;
 	}
-	mStatus[chan] = 0;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, sChannelMask__Q210JUTGamePad7CRumble@ha
-	stw      r0, 0x14(r1)
-	slwi     r0, r3, 2
-	addi     r5, r5, sChannelMask__Q210JUTGamePad7CRumble@l
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r6, mEnabled__Q210JUTGamePad7CRumble@sda21(r13)
-	lwzx     r0, r5, r0
-	and.     r0, r6, r0
-	beq      lbl_8002E438
-	clrlwi   r5, r4, 0x18
-	li       r0, 2
-	neg      r4, r5
-	or       r4, r4, r5
-	srawi    r4, r4, 0x1f
-	and      r0, r0, r4
-	clrlwi   r4, r0, 0x18
-	bl       PADControlMotor
-	li       r0, 0
-	addi     r3, r13, mStatus__Q210JUTGamePad7CRumble@sda21
-	stbx     r0, r3, r31
-
-lbl_8002E438:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /**

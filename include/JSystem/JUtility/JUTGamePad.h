@@ -109,7 +109,7 @@ struct JUTGamePad : public JKRDisposer {
 
 		void clear(JUTGamePad* pad);
 		static void setEnabled(u32);
-		void stopMotor(int, bool);
+		static void stopMotor(int, bool);
 		void update(s16);
 
 		// unused/inlined:
