@@ -56,7 +56,7 @@ struct JAISe : public JAISound {
 	virtual void setSeDistanceDolby(u8);                                                     // _EC
 	virtual void setSePositionDopplar();                                                     // _F0
 
-	u32 getSeCategoryNumber();
+	u8 getSeCategoryNumber();
 	void setSeInterVolume(u8, f32, u32, u8);
 	void setSeInterPan(u8, f32, u32, u8);
 	void setSeInterDolby(u8, f32, u32, u8);

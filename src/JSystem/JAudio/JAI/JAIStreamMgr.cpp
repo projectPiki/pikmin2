@@ -34,14 +34,12 @@ int dataFileNumber;
 MgrCallback mgrCallback;
 u32 sChannelMax         = 2;
 u32 decodedBufferBlocks = 0x2760;
-} // namespace StreamMgr
-} // namespace JAInter
 
 /**
  * @note Address: 0x800B764C
  * @note Size: 0x31C
  */
-void JAInter::StreamMgr::init()
+void init()
 {
 	if (flags._01 != 0) {
 		return;
@@ -296,8 +294,7 @@ lbl_800B7954:
  * @note Address: 0x800B7968
  * @note Size: 0x358
  */
-void JAInter::StreamMgr::storeStreamBuffer(JAIStream** soundHandlePtr, JAInter::Actor* actor, u32 soundID, u32 p4, u8 p5,
-                                           JAInter::SoundInfo* info)
+void storeStreamBuffer(JAIStream** soundHandlePtr, JAInter::Actor* actor, u32 soundID, u32 p4, u8 p5, JAInter::SoundInfo* info)
 {
 	if (soundHandlePtr != nullptr && *soundHandlePtr != nullptr && (*soundHandlePtr)->checkSoundHandle(soundID, info)) {
 		return;
@@ -588,7 +585,7 @@ void JAInter::StreamMgr::storeStreamBuffer(JAIStream** soundHandlePtr, JAInter::
  * @note Address: 0x800B7CC0
  * @note Size: 0x88
  */
-void JAInter::StreamMgr::releaseStreamBuffer(JAIStream* stream, u32 fadeTime)
+void releaseStreamBuffer(JAIStream* stream, u32 fadeTime)
 {
 	if (fadeTime == 0 || stream->mState < SOUNDSTATE_Playing) {
 		stopDirect();
@@ -607,7 +604,7 @@ void JAInter::StreamMgr::releaseStreamBuffer(JAIStream* stream, u32 fadeTime)
  * @note Address: 0x800B7D48
  * @note Size: 0x1AC
  */
-void JAInter::StreamMgr::checkSystem()
+void checkSystem()
 {
 	if (finishFlag == 2) {
 		if (controlStatus == 5) {
@@ -683,7 +680,7 @@ void JAInter::StreamMgr::checkSystem()
  * @note Address: 0x800B7EF4
  * @note Size: 0xA00
  */
-void JAInter::StreamMgr::PlayingStream()
+void PlayingStream()
 {
 	if (streamSound == nullptr) {
 		return;
@@ -1764,7 +1761,7 @@ lbl_800B88D0:
  * @note Address: N/A
  * @note Size: 0x38
  */
-void JAInter::StreamMgr::RequestStream()
+void RequestStream()
 {
 	// UNUSED FUNCTION
 }
@@ -1773,7 +1770,7 @@ void JAInter::StreamMgr::RequestStream()
  * @note Address: 0x800B88F4
  * @note Size: 0xA8
  */
-void JAInter::StreamMgr::changeCallback()
+void changeCallback()
 {
 	switch (controlStatus) {
 	case 4:
@@ -1855,7 +1852,7 @@ lbl_800B898C:
  * @note Address: 0x800B899C
  * @note Size: 0x30
  */
-void JAInter::StreamMgr::processGFrameStream()
+void processGFrameStream()
 {
 	if (flags._01 == 0) {
 		checkSystem();
@@ -1867,7 +1864,7 @@ void JAInter::StreamMgr::processGFrameStream()
  * @note Address: 0x800B89CC
  * @note Size: 0xE8
  */
-void JAInter::StreamMgr::checkEntriedStream()
+void checkEntriedStream()
 {
 	if (streamSound->mState != SOUNDSTATE_Stored) {
 		return;
@@ -1893,7 +1890,7 @@ void JAInter::StreamMgr::checkEntriedStream()
  * @note Address: 0x800B8AB4
  * @note Size: 0x70
  */
-void JAInter::StreamMgr::systemCallBack(u32 status, JASAramStream* stream, void* p3)
+void systemCallBack(u32 status, JASAramStream* stream, void* p3)
 {
 	systemStatus = status;
 	if (status == 0) {
@@ -1914,7 +1911,7 @@ void JAInter::StreamMgr::systemCallBack(u32 status, JASAramStream* stream, void*
  * @note Address: 0x800B8B24
  * @note Size: 0xC8
  */
-void JAInter::StreamMgr::prepareSystem(s32 inode)
+void prepareSystem(s32 inode)
 {
 	u32 start;
 	u32 length;
@@ -1937,7 +1934,7 @@ void JAInter::StreamMgr::prepareSystem(s32 inode)
  * @note Address: 0x800B8BEC
  * @note Size: 0x198
  */
-void JAInter::StreamMgr::playDirect(char* path)
+void playDirect(char* path)
 {
 	prepareSw   = 0;
 	mgrCallback = nullptr;
@@ -1980,7 +1977,7 @@ void JAInter::StreamMgr::playDirect(char* path)
  * @note Address: 0x800B8D84
  * @note Size: 0x3C
  */
-void JAInter::StreamMgr::stopDirect()
+void stopDirect()
 {
 	if (controlStatus == 5) {
 		controlStatus = 6;
@@ -1994,7 +1991,7 @@ void JAInter::StreamMgr::stopDirect()
  * @note Address: 0x800B8DC0
  * @note Size: 0xEC
  */
-void JAInter::StreamMgr::initChannel()
+void initChannel()
 {
 	u32 flag = streamSound->mSoundInfo->mFlag;
 	if (flag == 0) {
@@ -2022,19 +2019,19 @@ void JAInter::StreamMgr::initChannel()
  * @note Address: 0x800B8EAC
  * @note Size: 0x8
  */
-JASAramStream* JAInter::StreamMgr::getStreamObjectPointer() { return streamSystem; }
+JASAramStream* getStreamObjectPointer() { return streamSystem; }
 
 /**
  * @note Address: 0x800B8EB4
  * @note Size: 0x8
  */
-u32 JAInter::StreamMgr::getSystemStatus() { return systemStatus; }
+u32 getSystemStatus() { return systemStatus; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAInter::StreamMgr::setParentHeap(JASHeap*)
+void setParentHeap(JASHeap*)
 {
 	// UNUSED FUNCTION
 }
@@ -2043,7 +2040,7 @@ void JAInter::StreamMgr::setParentHeap(JASHeap*)
  * @note Address: N/A
  * @note Size: 0x10
  */
-void JAInter::StreamMgr::setAllockCallback(JAInter::StreamMgr::AllocCallback)
+void setAllockCallback(AllocCallback)
 {
 	// UNUSED FUNCTION
 }
@@ -2052,7 +2049,7 @@ void JAInter::StreamMgr::setAllockCallback(JAInter::StreamMgr::AllocCallback)
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAInter::StreamMgr::setDeallockCallback(JAInter::StreamMgr::DeallocCallback)
+void setDeallockCallback(DeallocCallback)
 {
 	// UNUSED FUNCTION
 }
@@ -2061,13 +2058,13 @@ void JAInter::StreamMgr::setDeallockCallback(JAInter::StreamMgr::DeallocCallback
  * @note Address: 0x800B8EBC
  * @note Size: 0x8
  */
-u32 JAInter::StreamMgr::getDecodedBufferBlocks() { return decodedBufferBlocks; }
+u32 getDecodedBufferBlocks() { return decodedBufferBlocks; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAInter::StreamMgr::setDecodedBufferBlocks(u32 count)
+void setDecodedBufferBlocks(u32 count)
 {
 	// UNUSED FUNCTION
 	decodedBufferBlocks = count;
@@ -2077,13 +2074,13 @@ void JAInter::StreamMgr::setDecodedBufferBlocks(u32 count)
  * @note Address: 0x800B8EC4
  * @note Size: 0x18
  */
-u32 JAInter::StreamMgr::getDecodedBufferSize(u32 p1) { return decodedBufferBlocks * p1 * sChannelMax >> 1; }
+u32 getDecodedBufferSize(u32 p1) { return decodedBufferBlocks * p1 * sChannelMax >> 1; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x8
  */
-JAIStream* JAInter::StreamMgr::getStreamSound()
+JAIStream* getStreamSound()
 {
 	// UNUSED FUNCTION
 	return streamSound;
@@ -2093,7 +2090,7 @@ JAIStream* JAInter::StreamMgr::getStreamSound()
  * @note Address: N/A
  * @note Size: 0x8
  */
-void JAInter::StreamMgr::setChannelMax(u32 max)
+void setChannelMax(u32 max)
 {
 	// UNUSED FUNCTION
 	sChannelMax = max;
@@ -2103,13 +2100,15 @@ void JAInter::StreamMgr::setChannelMax(u32 max)
  * @note Address: 0x800B8EDC
  * @note Size: 0x8
  */
-u32 JAInter::StreamMgr::getChannelMax() { return sChannelMax; }
+u32 getChannelMax() { return sChannelMax; }
 
 /**
  * @note Address: N/A
  * @note Size: 0x10
  */
-void JAInter::StreamMgr::setExternalAramBuffer(void (*)(JASHeap*))
+void setExternalAramBuffer(void (*)(JASHeap*))
 {
 	// UNUSED FUNCTION
 }
+} // namespace StreamMgr
+} // namespace JAInter

@@ -93,7 +93,7 @@ void JAISound::initMultiMoveParameter(JAInter::MoveParaSet*, u8, u32, f32, f32, 
  * @note Address: 0x800B3B24
  * @note Size: 0x24
  */
-u32 JAISe::getSeCategoryNumber() { return JAInter::SeMgr::changeIDToCategory(mSoundID); }
+u8 JAISe::getSeCategoryNumber() { return JAInter::SeMgr::changeIDToCategory(mSoundID); }
 
 /**
  * @note Address: 0x800B3B48

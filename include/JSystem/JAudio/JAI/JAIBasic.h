@@ -19,7 +19,7 @@ struct JAIBasic {
 	virtual JAISequence* makeSequence();       // _08
 	virtual JAISe* makeSe();                   // _0C
 	virtual JAIStream* makeStream();           // _10
-	virtual BOOL getMapInfoFxline(u32);        // _14
+	virtual u16 getMapInfoFxline(u32);         // _14
 	virtual BOOL getMapInfoGround(u32);        // _18
 	virtual f32 getMapInfoFxParameter(u32);    // _1C
 	virtual void setSeExtParameter(JAISound*); // _20

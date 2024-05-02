@@ -135,6 +135,8 @@ struct JAISound : public JSULink<JAISound> {
 	void getPointer(u8, char);
 	void getActorGroundNumber();
 
+	inline JAISound_0x34* getSoundObj() { return mSoundObj; }
+
 	// _00 - _10: JSULink
 	// VTBL _10
 	u8 _14;                         // _14

@@ -36,7 +36,7 @@ void checkSeMovePara();
 void sendSeAllParameter(JAISe*);
 void checkPlayingSeUpdateMultiplication(JAISe*, SeqUpdateData*, f32*, MoveParaSet*, f32, u8, f32*);
 void checkPlayingSeUpdateAddition(JAISe*, SeqUpdateData*, f32*, MoveParaSet*, u8, f32*, f32);
-u32 changeIDToCategory(u32);
+u8 changeIDToCategory(u32);
 void releaseSeRegist(JAISe*);
 void storeSeBuffer(JAISe**, Actor*, u32, u32, u8, SoundInfo*);
 void releaseSeBuffer(JAISe* se, u32 fadeTime);
@@ -48,8 +48,7 @@ void clearSeqMuteFromSeStop(JAISound*);
 extern StartCallback seStartCallback;
 
 extern TrackUpdate* seTrackUpdate;
-// static SeParameter* categoryInfoTable;
-extern u16** categoryInfoTable;
+extern u8** categoryInfoTable;
 extern JAISound*** sePlaySound;
 extern LinkSound* seRegist;
 extern JAISequence* seHandle;

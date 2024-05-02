@@ -766,7 +766,7 @@ void JAIBasic::changeSoundScene(u32)
  * @note Address: 0x800ACA94
  * @note Size: 0x10
  */
-BOOL JAIBasic::getMapInfoFxline(u32 p1) { return p1 != 0; }
+u16 JAIBasic::getMapInfoFxline(u32 p1) { return p1 != 0; }
 
 /**
  * @note Address: 0x800ACAA4

@@ -263,8 +263,8 @@ struct SeParameter {
 	{
 	}
 
-	u8 _00[0x20];                    // _00 - unknown
-	s16 _20;                         // _20
+	u16 _00[0x10];                   // _00, possibly not this size but definitely an array at _00 of u16s
+	u16 _20;                         // _20
 	u8 _22[0x2];                     // _22 - possibly padding
 	MoveParaSet _24[16];             // _24
 	MoveParaSet mVolumes[8];         // _124
