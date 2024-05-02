@@ -133,6 +133,22 @@ struct JAIStream : public JAISound {
 	void getStreamInterFxmix(u8 type);
 	void getStreamInterDolby(u8 type);
 
+	inline void initStreamParam()
+	{
+		mStreamParameter.mPans
+		    = new (JAIBasic::msCurrentHeap, 0x20) JAInter::MoveParaSet[JAIGlobalParameter::getParamStreamParameterLines()];
+		mStreamParameter.mPitches
+		    = new (JAIBasic::msCurrentHeap, 0x20) JAInter::MoveParaSet[JAIGlobalParameter::getParamStreamParameterLines()];
+		mStreamParameter.mFxmixes
+		    = new (JAIBasic::msCurrentHeap, 0x20) JAInter::MoveParaSetInitZero[JAIGlobalParameter::getParamStreamParameterLines()];
+		mStreamParameter.mDolbys
+		    = new (JAIBasic::msCurrentHeap, 0x20) JAInter::MoveParaSetInitZero[JAIGlobalParameter::getParamStreamParameterLines()];
+		mStreamParameter.mChannelVolumes = new (JAIBasic::msCurrentHeap, 0x20) JAInter::MoveParaSet[JAInter::StreamMgr::sChannelMax];
+		mStreamParameter.mChannelPans    = new (JAIBasic::msCurrentHeap, 0x20) JAInter::MoveParaSet[JAInter::StreamMgr::sChannelMax];
+		mStreamParameter.mChannelFxmixes = new (JAIBasic::msCurrentHeap, 0x20) JAInter::MoveParaSet[JAInter::StreamMgr::sChannelMax];
+		mStreamParameter.mChannelDolbys  = new (JAIBasic::msCurrentHeap, 0x20) JAInter::MoveParaSet[JAInter::StreamMgr::sChannelMax];
+	}
+
 	// _00-_10  = JSULink
 	// _10      = VTABLE
 	// _14-_48  = JAISound

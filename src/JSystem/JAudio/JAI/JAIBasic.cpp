@@ -558,7 +558,7 @@ void JAIBasic::startSoundBasic(u32 id, JAISe** handlePtr, JAInter::Actor* actor,
  */
 void JAIBasic::startSoundBasic(u32 id, JAIStream** handlePtr, JAInter::Actor* actor, u32 p4, u8 p5, JAInter::SoundInfo* info)
 {
-	if (_0E._2 != true && JAInter::StreamMgr::flags._1 == 0) {
+	if (_0E._2 != true && JAInter::StreamMgr::flags._01 == 0) {
 		JAInter::StreamMgr::storeStreamBuffer(handlePtr, actor, id, p4, p5, info);
 	}
 }

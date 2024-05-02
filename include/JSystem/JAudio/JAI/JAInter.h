@@ -25,7 +25,7 @@ enum JAISoundTrackActiveFlags {
 	SOUNDACTIVE_Unk6                 = 1 << 5,  // 0x20
 	SOUNDACTIVE_ChannelVolume        = 1 << 6,  // 0x40
 	SOUNDACTIVE_ChannelPan           = 1 << 7,  // 0x80
-	SOUNDACTIVE_Unk9                 = 1 << 8,  // 0x100
+	SOUNDACTIVE_ChannelDolby         = 1 << 8,  // 0x100
 	SOUNDACTIVE_Unk10                = 1 << 9,  // 0x200
 	SOUNDACTIVE_Unk11                = 1 << 10, // 0x400
 	SOUNDACTIVE_TrackFxmix           = 1 << 11, // 0x800

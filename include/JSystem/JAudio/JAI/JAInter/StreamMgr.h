@@ -79,14 +79,15 @@ void setChannelMax(u32);
 void setExternalAramBuffer(ExternalAramBufferCallback);
 
 extern struct Flags {
-	u16 _0 : 1;
-	u16 _1 : 1;
-	u16 _2 : 1;
-	u16 _3 : 1;
-	u16 _4 : 1;
-	u16 _5 : 1;
-	u16 _6 : 1;
+	u16 _00 : 1;
+	u16 _01 : 1;
+	u16 _02 : 1;
+	u16 _03 : 1;
+	u16 _04 : 1;
+	u16 _05 : 1;
+	u16 _06 : 1;
 } flags;
+
 extern u8 prepareSw;
 extern u8 prepareFlag;
 extern u8 externalAram;
