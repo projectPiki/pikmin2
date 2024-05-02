@@ -64,7 +64,7 @@ void J3DMaterialAnm::calc(J3DMaterial* material) const
 	}
 	for (u32 i = 0; i < ARRAY_SIZE(mTevKColAnmList); i++) {
 		if (mTevKColAnmList[i].getAnmFlag()) {
-			GXColor *color = material->mTevBlock->getTevKColor(i);
+			GXColor* color = material->mTevBlock->getTevKColor(i);
 			mTevKColAnmList[i].calc(color);
 		}
 	}

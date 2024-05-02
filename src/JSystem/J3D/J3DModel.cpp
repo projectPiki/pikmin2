@@ -1129,7 +1129,6 @@ void J3DModel::calcBumpMtx()
 		}
 	}
 
-
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
