@@ -105,7 +105,7 @@ struct JUTFont {
 	void initialize_state();
 	void setCharColor(JUtility::TColor color);
 	void setGradColor(JUtility::TColor bottomColor, JUtility::TColor topColor);
-	f32 drawString_size_scale(f32, f32, f32, f32, const char*, u32, bool);
+	f32 drawString_size_scale(f32 posX, f32 posY, f32 scaleX, f32 scaleY, const char* string, u32 length, bool unused);
 
 	void drawString(int posX, int posY, const char* str, bool visible) { drawString_size(posX, posY, str, strlen(str), visible); }
 

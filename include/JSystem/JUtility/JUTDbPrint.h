@@ -11,11 +11,11 @@ struct JKRHeap;
 // Name made up.
 struct JUTDbPrintList {
 	JUTDbPrintList* mNext; // _00
-	s16 _04;               // _04
-	s16 _06;               // _06
-	s16 _08;               // _08
-	s16 _0A;               // _0A
-	u8 _0C;                // _0C
+	s16 mPositionX;        // _04
+	s16 mPositionY;        // _06
+	s16 mItemCount;        // _08
+	s16 mStringLength;     // _0A
+	u8 mString;            // _0C
 };
 
 struct JUTDbPrint {
