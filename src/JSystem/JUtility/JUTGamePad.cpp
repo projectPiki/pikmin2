@@ -5,6 +5,7 @@
 #include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JSystem.h"
 #include "types.h"
+#include "JSystem/JMath.h"
 
 u32 JUTGamePad::CRumble::sChannelMask[PAD_MAX_CONTROLLERS] = { 0x80000000, 0x40000000, 0x20000000, 0x10000000 };
 static u32 channel_mask[PAD_MAX_CONTROLLERS]               = { 0x80000000, 0x40000000, 0x20000000, 0x10000000 };
@@ -160,6 +161,7 @@ u32 JUTGamePad::read()
 	// Initialize reset mask and iterate over all controllers
 	u32 resetMask = 0;
 	for (int i = 0; i < PAD_MAX_CONTROLLERS; i++) {
+		u32 bitTest = 0x80000000 >> i;
 		if (mPadStatus[i].err == 0) {
 			// If no error on the controller, update main and sub sticks and button status
 			u32 mainStick = mPadMStick[i].update(mPadStatus[i].stickX, mPadStatus[i].stickY, sStickMode, STICK_Main, mPadButton[i].mButton);
@@ -173,8 +175,8 @@ u32 JUTGamePad::read()
 			mPadSStick[i].update(0, 0, sStickMode, STICK_Sub, 0);
 			mPadButton[i].update(nullptr, 0);
 
-			if ((sSuppressPadReset & 0x80000000U >> i) == 0) {
-				resetMask |= 0x80000000U >> i;
+			if ((sSuppressPadReset & bitTest) == 0) {
+				resetMask |= bitTest;
 			}
 		} else {
 			// For other errors, reset button down, up, and repeat status
@@ -1075,8 +1077,37 @@ void JUTGamePad::CStick::clear()
  * @note Size: 0x2B8
  * update__Q210JUTGamePad6CStickFScScQ210JUTGamePad10EStickModeQ210JUTGamePad11EWhichStickUl
  */
-u32 JUTGamePad::CStick::update(s8, s8, JUTGamePad::EStickMode, JUTGamePad::EWhichStick, u32)
+u32 JUTGamePad::CStick::update(s8 r4, s8 r5, JUTGamePad::EStickMode r6, JUTGamePad::EWhichStick stick, u32 r8)
 {
+	s32 v1;
+
+	switch (sClampMode)
+	{
+		case 1:
+			v1 = (stick == STICK_Main) ? 0x36 : 0x2a;
+			break;
+		case 2:
+			v1 = (stick == STICK_Main) ? 0x26 : 0x1d;
+			break;
+		default:
+			v1 = (stick == STICK_Main) ? 0x45 : 0x39;
+			break;
+	}
+
+	this->_0E = r4;
+	this->_0F = r5;
+	this->mXPos = (f32)r4 / v1;
+	this->mYPos =  (f32)r5 / v1;
+
+	f32 sq_dist = SQUARE(mXPos) + SQUARE(mYPos);
+
+	f32 d = dolsqrtf(sq_dist);
+
+
+	mAngle = atan2(d , sq_dist) * (32768 / PI);
+
+
+	return getButton(r8 >> ((stick == STICK_Main) ? 0x18 : 0x10));
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x40(r1)
